@@ -1,0 +1,48 @@
+內容授權
+========
+
+本專案的程式碼以 GNU General Public License v3.0 授權，全文見 `LICENSE`。
+本檔說明程式碼以外的內容如何授權。
+
+CC BY-NC-SA 4.0
+---------------
+
+下列內容以「創用 CC 姓名標示─非商業性─相同方式分享 4.0 國際」
+（Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International，
+簡稱 CC BY-NC-SA 4.0）授權：
+
+- `guides/`：翻譯指引
+- `glossary/`：詞彙表
+- `rules/`：欄位規則、人工調整與重翻範圍
+- `tw` 分支：繁體中文譯文與語言包
+
+授權全文：https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-hant
+（英文版：https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode）
+
+使用時請標示來源、不得用於商業目的，改作後須以相同方式分享。
+
+不適用 CC BY-NC-SA 4.0 的部分
+-----------------------------
+
+- `raw` 分支：保存的是遊戲官方語言檔原文，著作權屬於 Project Moon。
+  保存目的只是比對每次遊戲更新的差異，不在本授權範圍內，也不因放在本 repo 而
+  改變權利歸屬。
+- 程式碼（`cmd/`、`internal/` 等）：依 `LICENSE` 的 GPL-3.0 授權。
+- 語言包內附的字型（Sarasa Gothic）：依該字型自己的授權（SIL Open Font License），
+  不受 CC BY-NC-SA 4.0 影響。
+
+上游來源
+--------
+
+初始譯文以下列上游專案的成果為基礎（LocalizeLimbusCompany 僅作對照參考）。
+上游譯文以 CC BY-NC-SA 4.0 發布，本專案的譯文因含有匯入的上游譯文，沿用相同授權
+並標示來源：
+
+- ParatranzUploader（Paratranz 上的社群繁體中文譯文）：
+  https://github.com/user-unknown-0711/ParatranzUploader
+- LimbusTraditionalMandarin／storyline（繁體中文劇情翻譯）：
+  https://github.com/LimbusTraditionalMandarin/storyline
+- LocalizeLimbusCompany／LocalizeLimbusCompany（簡體中文在地化，作為參考）：
+  https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany
+
+感謝上游譯者與維護者。
