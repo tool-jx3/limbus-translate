@@ -1,0 +1,201 @@
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"os"
+	"path/filepath"
+	"reflect"
+	"strings"
+	"testing"
+
+	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
+)
+
+func writeTestFile(t *testing.T, root, rel, content string) {
+	t.Helper()
+	p := filepath.Join(root, filepath.FromSlash(rel))
+	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// learnRepo builds a repo root with a small raw worktree in which "key" and
+// "codeName" are the same in all three languages three times; codeName is
+// also a manual identifier, so only key is learned.
+func learnRepo(t *testing.T) string {
+	t.Helper()
+	root := t.TempDir()
+	writeTestFile(t, root, "lct.yaml", "worktrees: { raw: .work/raw, tw: .work/tw }\n")
+	manual, err := os.ReadFile("../../rules/fields.manual.yaml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "rules/fields.manual.yaml", string(manual))
+	for _, l := range []struct{ dir, prefix, text string }{
+		{"kr", "KR_", "한국어"}, {"en", "EN_", "English"}, {"jp", "JP_", "日本語"},
+	} {
+		writeTestFile(t, root, ".work/raw/"+l.dir+"/"+l.prefix+"Sample-1.json", `{"dataList": [
+			{"id": 1, "key": "k1", "codeName": "c1", "text": "`+l.text+`1"},
+			{"id": 2, "key": "k2", "codeName": "c2", "text": "`+l.text+`2"},
+			{"id": 3, "key": "k3", "codeName": "c3", "text": "`+l.text+`3"}
+		]}`)
+	}
+	return root
+}
+
+// runLearn runs "lct fields learn" with args in root and returns its output.
+func runLearn(t *testing.T, root string, jsonOut bool, args ...string) (string, error) {
+	t.Helper()
+	cfg, err := config.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var out bytes.Buffer
+	err = runFieldsLearn(&cli.Context{Root: root, Config: cfg, JSON: jsonOut, Out: &out}, args)
+	return out.String(), err
+}
+
+func TestFieldsLearnReportsWithoutWriting(t *testing.T) {
+	root := learnRepo(t)
+	out, err := runLearn(t, root, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, "  - key\n") {
+		t.Errorf("output should list the learned field key:\n%s", out)
+	}
+	if strings.Contains(out, "codeName") {
+		t.Errorf("a manual identifier must not be repeated in the learned rules:\n%s", out)
+	}
+	if !strings.Contains(out, "does not exist") {
+		t.Errorf("output should say there is no rules/fields.yaml yet:\n%s", out)
+	}
+	if _, err := os.Stat(filepath.Join(root, "rules/fields.yaml")); !os.IsNotExist(err) {
+		t.Errorf("rules/fields.yaml must not be written without --write, stat err = %v", err)
+	}
+}
+
+func TestFieldsLearnWriteThenDiff(t *testing.T) {
+	root := learnRepo(t)
+	target := filepath.Join(root, "rules/fields.yaml")
+
+	out, err := runLearn(t, root, false, "--write")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, "wrote rules/fields.yaml") {
+		t.Errorf("output should report the write:\n%s", out)
+	}
+	written, err := os.ReadFile(target)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := (&fields.Learned{IdentifierFields: []string{"key"}}).YAML()
+	if !bytes.Equal(written, want) {
+		t.Errorf("rules/fields.yaml =\n%s\nwant\n%s", written, want)
+	}
+	if _, err := fields.Load(root); err != nil {
+		t.Fatalf("the written file must load: %v", err)
+	}
+
+	out, err = runLearn(t, root, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, "up to date") {
+		t.Errorf("a second run should find nothing to change:\n%s", out)
+	}
+
+	// Pretend the file was learned from older data: it lacks key and has a
+	// field that is gone.
+	writeTestFile(t, root, "rules/fields.yaml", string((&fields.Learned{IdentifierFields: []string{"usage"}}).YAML()))
+	out, err = runLearn(t, root, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, line := range []string{"+ identifier_fields: key", "- identifier_fields: usage", "would change"} {
+		if !strings.Contains(out, line) {
+			t.Errorf("output should contain %q:\n%s", line, out)
+		}
+	}
+	if got, _ := os.ReadFile(target); strings.Contains(string(got), "key") {
+		t.Errorf("a run without --write must leave the file alone:\n%s", got)
+	}
+
+	if _, err := runLearn(t, root, false, "--write"); err != nil {
+		t.Fatal(err)
+	}
+	if got, _ := os.ReadFile(target); !bytes.Equal(got, want) {
+		t.Errorf("--write should bring the file up to date, got:\n%s", got)
+	}
+}
+
+func TestFieldsLearnJSON(t *testing.T) {
+	root := learnRepo(t)
+	writeTestFile(t, root, "rules/fields.yaml", string((&fields.Learned{IdentifierFields: []string{"usage"}}).YAML()))
+	out, err := runLearn(t, root, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		Learned struct {
+			IdentifierFields []string            `json:"identifier_fields"`
+			GroupFields      map[string][]string `json:"group_fields"`
+		} `json:"learned"`
+		Existing bool `json:"existing"`
+		Changes  []struct {
+			Op, Group, Field string
+		} `json:"changes"`
+		Written bool `json:"written"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	if len(got.Learned.IdentifierFields) != 1 || got.Learned.IdentifierFields[0] != "key" {
+		t.Errorf("learned = %+v", got.Learned)
+	}
+	if !got.Existing || got.Written || len(got.Changes) != 2 {
+		t.Errorf("existing=%v written=%v changes=%+v", got.Existing, got.Written, got.Changes)
+	}
+}
+
+func TestFieldsLearnUserErrors(t *testing.T) {
+	root := learnRepo(t)
+	empty := t.TempDir()
+	writeTestFile(t, empty, "lct.yaml", "worktrees: { raw: .work/raw }\n")
+	writeTestFile(t, empty, ".work/raw/kr/readme.txt", "no KR files")
+	writeTestFile(t, empty, ".work/raw/en/readme.txt", "")
+	writeTestFile(t, empty, ".work/raw/jp/readme.txt", "")
+	noRaw := t.TempDir()
+	writeTestFile(t, noRaw, "lct.yaml", "worktrees: { raw: .work/raw }\n")
+
+	cases := []struct {
+		name string
+		root string
+		args []string
+		want string
+	}{
+		{"unknown flag", root, []string{"--nope"}, "nope"},
+		{"positional argument", root, []string{"extra"}, "extra"},
+		{"no raw worktree", noRaw, nil, "no raw worktree"},
+		{"raw worktree without KR files", empty, nil, "no KR files"},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			_, err := runLearn(t, c.root, false, c.args...)
+			if err == nil || !strings.Contains(err.Error(), c.want) {
+				t.Fatalf("error = %v, want one mentioning %q", err, c.want)
+			}
+			// All of these are mistakes of the user, not system failures.
+			if reflect.TypeOf(err) != reflect.TypeOf(cli.UserError("")) {
+				t.Errorf("error %v (%T) should be a user error (exit 1)", err, err)
+			}
+		})
+	}
+}

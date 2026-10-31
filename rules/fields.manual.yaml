@@ -1,0 +1,5 @@
+identifier_fields: [id, model, codeName]
+group_fields: { BattleSpeechBubbleDlg: [desc] }   # PersonalityVoiceDlg 的 desc 是語音標題，要翻
+source_comment_prefixes: ["//", "SE //"]
+name_only: { file_glob: "Items*", field: desc, pattern: 'name\s*만\s*번역' }
+notinclude_substring: notinclude
