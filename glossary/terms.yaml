@@ -1,0 +1,111 @@
+# 譯名統一列表（多用於系統類翻譯）
+#
+# 欄位：
+#   kr / jp / en  原文（KR 為主）
+#   zh            採用譯名
+#   forbidden     禁用譯法（驗證時以子字串比對；以 re: 開頭者為正規表示式）
+#   category      分類，見 glossary/README.md
+#   evidence      2026-10-29 既有繁中的使用情況（KR 含此詞的行數 / 使用採用譯名的行數 / 使用禁用譯法的行數）
+#   notes         補充
+#
+# 原註：若有疑問請優先以 ParaTranz 上的譯名為標準或於文本討論區發問。
+
+- kr: 도약 모듈
+  jp: 跳躍モジュール
+  en: Takeoff Module
+  zh: 跳躍成長模組
+  forbidden: [跳躍成長模塊]
+  category: [system]
+  evidence: { kr_lines: 75, approved: 75, forbidden: 0 }
+
+- kr: 특정 추출
+  jp: 特定抽出
+  en: Target Extraction
+  zh: 特定提取
+  forbidden: [特定抽取]
+  category: [system]
+  evidence: { kr_lines: 295, approved: 261, forbidden: 0 }
+  notes: 另有 19 行譯為「定向提取」，需確認是否為同一詞的不一致譯法
+
+- kr: 패키지
+  jp: パッケージ
+  en: Package
+  zh: 組合包
+  forbidden: [禮包]
+  category: [system]
+  evidence: { kr_lines: 221, approved: 215, forbidden: 0 }
+  notes: 「每月補給包」等專有商品名不在此限
+
+- kr: 인격 학습 티켓
+  jp: 人格学習チケット
+  en: Identity Training Ticket
+  zh: 人格訓練券
+  forbidden: [人格訓練卷, 人格經驗券]
+  category: [system]
+  evidence: { kr_lines: 100, approved: 95, forbidden: 0 }
+
+- kr: 3성 인격 출현 추출 티켓
+  jp: 星3人格出現 抽出チケット
+  en: 3★ Guarantee Decaextraction Ticket
+  zh: 3星人格必得十連提取券
+  forbidden: [3★人格必得十連提取券]
+  category: [system]
+  evidence: { kr_lines: 14, approved: 10, forbidden: 0 }
+
+- kr: 인격 특수 강화 티켓
+  jp: 人格特殊強化チケット
+  en: Level Boost Ticket
+  zh: 人格等級直升券
+  forbidden: []
+  category: [system]
+  evidence: { kr_lines: 29, approved: 29, forbidden: 0 }
+
+- kr: 인격 성장 도약 티켓
+  jp: 人格成長跳躍チケット
+  en: Identity Takeoff Ticket
+  zh: 人格跳躍成長券
+  forbidden: []
+  category: [system]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+
+- kr: 시즌
+  jp: シーズン  # 原指引寫「シーズ」，依官方 JP 應為「シーズン」
+  en: Season
+  zh: 賽季
+  forbidden: ["re:第\\d+季"]
+  category: [system]
+  evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規
+
+- kr: 주요 이야기
+  jp: メインストーリー
+  en: (The) Main Story
+  zh: 主線劇情
+  forbidden: [主線故事]
+  category: [system]
+  evidence: { kr_lines: 107, approved: 80, forbidden: 0 }
+
+- kr: 자아 파편
+  jp: 自我の破片
+  en: Egoshard
+  zh: 自我碎片
+  forbidden: [人格碎片]
+  category: [system]
+  evidence: { kr_lines: 186, approved: 186, forbidden: 0 }
+  notes: 全語料另有 7 行出現「人格碎片」，對應的 KR 不是「자아 파편」，需確認
+
+- kr: 배틀 패스
+  jp: バトルパス
+  en: Battle Pass
+  zh: 戰鬥通行證
+  forbidden: []
+  category: [system]
+  evidence: { kr_lines: 29, approved: 22, forbidden: 0 }
+
+- kr: 림버스 패스
+  jp: リンバスパス
+  en: Limbus Pass
+  zh: 巴士通行證
+  forbidden: [邊獄通行證]
+  category: [system]
+  evidence: { kr_lines: 58, approved: 35, forbidden: 0 }

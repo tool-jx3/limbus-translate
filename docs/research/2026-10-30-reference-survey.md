@@ -9,6 +9,8 @@
 - 已翻譯過的部分，除非人工介入或原文有改變，不重新翻譯
 - 官方 JSON 有些欄位不需翻譯（例如 `id`、`model`），可從三語檔案比對歸納出規則（見 §1）
 - 翻譯時要針對不同檔案族群建立對應的指引，例如不同角色、不同檔名類型（見 §1「檔案族群與角色」）
+- 分兩階段：第一階段套用上游譯文（Paratranz 為主、LLC 輔助）當作起點；第二階段不再使用上游譯文，全部自己翻譯。因此不需要 Paratranz API，只需在第一階段匯入一次 release 檔案
+- 既有社群指引已整理進 `guides/`、`glossary/`，並以現有繁中譯文補充（見 §7）
 
 ## 1. 官方原文（生肉）
 
@@ -180,6 +182,23 @@ ParatranzUploader 與 LTM 都用 Sarasa Gothic TC Bold（SIL OFL）。
 - Agent SDK / headless 模式會自動載入專案 `.claude/skills`、`CLAUDE.md`，因此 CI 跑的 skill 與人在 Claude Code 裡用的 skill 是**同一份檔案**
 - 認證：Claude Console 的 API key → GitHub secret `ANTHROPIC_API_KEY`
 - Go 直接呼叫 API：`github.com/anthropics/anthropic-sdk-go/v2`，可用 Message Batches（半價、非即時）、prompt caching、structured outputs（`output_config.format`）
+
+## 7. 既有繁中語料（2026-10-29）
+
+- ParatranzUploader release `1793285016` 的 `localize_files.zip`：2380 檔
+- LTM release `1792667238` 的 `Hant.zip`：2348 檔（不只劇情，是完整語言包）
+- 需要翻譯的單位（排除識別欄位與三語相同的值）共 181,855 個：
+
+| 狀態 | Paratranz | LTM |
+|---|---|---|
+| 確實是中文譯文 | 89.7% | 97.9% |
+| 等於 EN 原文（未翻） | 8.6% | 0.2% |
+| 不含漢字 | 1.4% | 1.4% |
+| 缺檔或缺條目 | 0.1% | 0.4% |
+
+- Paratranz 覆蓋最差的族群：`RPGSystem` 62.2%、`BattleSpeechBubbleDlg` 85.4%、`StoryData` 86.9%
+- 兩邊都有中文的 162,639 個單位中，有 64,269 個（約 40%）譯文不同，是兩條不同的翻譯脈絡（LTM 由 LLC 轉繁再校對）。角色名也不同，例如莫梭／默爾索
+- 只有 GitHub release 的直接下載網址可用；GitHub API 對未掛載的 repo 會被這個環境的代理擋下
 
 ## 6. 實測過程備註
 
