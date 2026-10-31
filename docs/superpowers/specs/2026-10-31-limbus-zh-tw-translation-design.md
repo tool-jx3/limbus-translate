@@ -20,12 +20,12 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - 自動翻譯與人工介入走同一套規則、同一個 CLI、同一份 skill
 - 每個譯文欄位都能追溯：來自哪裡、根據哪一版原文、用了哪一版規則
 - 兩個階段：
-  - **第一階段**：以 `user-unknown-0711/ParatranzUploader` 的譯文為主；未翻的部分依規則翻譯，以 LLC 簡中、LTM 繁中為參考；規則可以改進
-  - **第二階段**：不再使用上游譯文，全部依規則自己翻；規則可以改進；可以人工調整舊譯文
+  - **第一階段（一次性，不自動化）**：在 Claude Code 工作階段中完成。以 `user-unknown-0711/ParatranzUploader` 的譯文為主；未翻的部分依規則翻譯，以 LLC 簡中、LTM 繁中為參考；過程中可以改進規則。完成後把 `raw`、`tw` 的初始狀態上傳到 repo，第一階段即結束（§8.3）
+  - **第二階段（GitHub Actions）**：之後所有自動化都是第二階段。不再使用上游譯文，全部依規則自己翻；規則可以改進；可以人工調整舊譯文
 
 **非目標**
 
-- 不使用 Paratranz API，也不回寫 Paratranz
+- 不使用 Paratranz API，也不回寫 Paratranz；GitHub Actions 不讀任何上游譯文
 - 不做簡轉繁（OpenCC）；LLC 簡中只作為給 Claude 的參考
 - 不做網頁介面
 - 不做其他語言
@@ -67,9 +67,9 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
                  │ guides/ glossary/ rules/  lct.yaml   │
                  └──────────────────────────────────────┘
  狀態 API ─┐                 │ 讀規則
- CDN zip ──┼─ lct fetch ─▶ raw（orphan）：每次遊戲更新一個 commit
-上游 release┘                 │
- (第一階段)                   ▼
+ CDN zip ──┴─ lct fetch ─▶ raw（orphan）：每次遊戲更新一個 commit
+                              │   （第一階段：lct bootstrap 匯入上游，建立初始 tw）
+                              ▼
                     lct plan：逐欄位決定 沿用／匯入／翻譯／重翻
                               │ 待譯清單
                               ▼
@@ -118,14 +118,13 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 ```json
 {"key": "StoryData/S1037B.json|/dataList/12/content",
- "kr_sha": "…", "para_sha": "…", "para_kr_sha": "…", "zh": "…",
+ "kr_sha": "…", "zh": "…",
  "origin": "paratranz | claude | human | copy | fallback",
  "since": "raw-20261029", "rules": "<main commit>", "model": "…", "batch": "…",
  "flags": ["needs_review"]}
 ```
 
 - `kr_sha`：KR 原文（去 BOM、CRLF→LF）的 sha256
-- `para_sha`、`para_kr_sha`：第一階段中，這個單位最近一次看到的 Paratranz 譯文的 sha256，以及「這段 Paratranz 譯文第一次出現時」的 KR sha256（用來判斷 Paratranz 是否過時，§8.3）；第二階段不再更新
 - `origin`：`copy` = 識別碼或三語相同；`fallback` = 翻譯失敗暫用 EN 原文
 - 上一版 `tw` 的紀錄就是這一版的「既有譯文」
 
@@ -176,31 +175,36 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | 順序 | 條件 | 結果 |
 |---|---|---|
 | 1 | 欄位規則判定不翻 | `copy` |
-| 1a | 檔案在凍結清單（`lct.yaml` 的 `frozen`，目前為 `BgmLyrics/**`）且已有譯文 | 沿用既有譯文，不被 Paratranz 或 Claude 取代；KR 變了也不動，只列入報表 |
-| 2 | 有人工調整，且其 `kr_sha` = 目前 KR | 用人工調整，`human` |
-| 3 | **第一階段**：Paratranz 有「有效譯文」且未過時（§8.3） | 用 Paratranz，`paratranz` |
+| 2 | 檔案在凍結清單（`lct.yaml` 的 `frozen`，目前為 `BgmLyrics/**`）且已有譯文 | 沿用既有譯文，不被取代；KR 變了也不動，只列入報表 |
+| 3 | 有人工調整，且其 `kr_sha` = 目前 KR | 用人工調整，`human` |
 | 4 | 既有紀錄的 `kr_sha` = 目前 KR | 沿用 |
 | 5 | 相同文字重用成立 | 沿用 |
-| 6 | 其他（新增、KR 變更、人工調整已過期、Paratranz 無效） | 進待譯清單 |
+| 6 | 其他（新增、KR 變更、人工調整已過期） | 進待譯清單 |
 
-- 第一階段中，Paratranz 之後補上的有效譯文會取代 Claude 的譯文（「以 Paratranz 為主」）；仍有效的人工調整（第 2 條）優先
-- 第二階段不再讀上游；`paratranz` 來源的紀錄照第 4 條沿用，直到 KR 變更或人工介入
+- 這是第二階段（GitHub Actions）的邏輯。第一階段匯入的 `paratranz` 紀錄照第 4 條沿用，直到 KR 變更或人工介入
 - 人工調整的 `kr_sha` 與目前 KR 不同 → 調整「過期」，該單位重翻；舊調整當作參考給 Claude，報表列出
 
-### 8.3 第一階段匯入 Paratranz
+### 8.3 第一階段（一次性，在 Claude Code 工作階段中完成）
+
+步驟：
+
+1. 建好 `lct` 的核心功能與 skill
+2. 以 2026-10-29 的官方語言包（token `l20261029_n2rX1Jku6_9sBiu9Np24`）建立 `raw` 的第一個 commit
+3. `lct bootstrap` 匯入固定版本的上游：ParatranzUploader release `1793285016` 的 `localize_files.zip`、LTM release `1792667238` 的 `Hant.zip`、LLC release `2026103002`（2026-10-30）的 `LimbusLocalize_2026103002.zip`。依下面的條件決定每個單位是直接採用 Paratranz，還是進待譯清單
+4. 在這個工作階段中，以 `translate-pending` skill 翻完待譯清單。走的是與 CI 相同的 `lct batch next／submit` 與驗證；可以多個子代理並行。這一步的花費算在 Claude Code 工作階段，不用 Console API key
+5. 過程中發現的規則問題，直接改進 `guides/`、`glossary/`
+6. `lct build` 產生第一版 `tw`，與 `raw` 一起 push 到 repo；第一階段結束
+7. 手動觸發一次 `rebuild.yml`，由 CI 打包並發布第一個 Release（這個工作階段無法呼叫建立 Release 的 API）
+
+第一階段結束後，上游譯文不再被讀取；`lct bootstrap` 只保留給重建初始狀態用。
 
 「有效譯文」的條件：
 
 - 不等於 EN 原文（EN ≠ KR 時）——ParatranzUploader 用英文填未翻條目，約 8.6%
 - 不等於 KR 原文、不含諺文、含漢字（純數字或符號的值走 `copy`）
-- **檔案骨架相符**：ParatranzUploader 以當時的 KR 檔為骨架輸出，識別欄位（`id`、`model` 等）原樣保留。匯入前先比對 Paratranz 檔與目前 KR 檔的識別欄位序列與結構：
+- **檔案骨架相符**：ParatranzUploader 以當時的 KR 檔為骨架輸出，識別欄位（`id`、`model` 等）原樣保留。匯入前先比對 Paratranz 檔與 10/29 KR 檔的識別欄位序列與結構：
   - 完全相同 → 依 JSON pointer 直接對應
-  - 不同（Paratranz 用的是舊版原文，例如劇情插了一行）→ 以識別欄位序列做序列比對，只匯入對得上的單位；對不上的不匯入
-- **未過時**：每個單位記錄「這段 Paratranz 譯文第一次出現時的 KR」（`para_kr_sha`）。只有 `para_kr_sha` 等於目前 KR 才採用：
-  - 第一次匯入時，骨架相符的單位視為對應目前 KR
-  - 之後 KR 變了而 Paratranz 譯文沒變 → `para_kr_sha` 仍是舊 KR，不採用，只當參考，之後幾週也一樣
-  - Paratranz 之後改了這句 → 新譯文第一次出現時記下當時的 KR，若等於目前 KR 就採用
-- 來源：`user-unknown-0711/ParatranzUploader` 最新 release 的 `localize_files.zip`
+  - 不同 → 以識別欄位序列做序列比對，只匯入對得上的單位；對不上的進待譯清單
 
 匯入前的正規化：
 
@@ -214,7 +218,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 ### 8.4 待譯清單
 
-存在 `tw` 分支的 `.meta/pending.jsonl`，跨次建置保留。每筆記錄：key、原因（新增／KR 變更／調整過期／Paratranz 修正／人工要求重翻）、上一版 KR 與譯文、人工調整內容（若有）。
+存在 `tw` 分支的 `.meta/pending.jsonl`，跨次建置保留。每筆記錄：key、原因（新增／KR 變更／調整過期／Paratranz 修正（只在第一階段）／人工要求重翻）、上一版 KR 與譯文、人工調整內容（若有）。
 
 ## 9. 翻譯流程（Claude）
 
@@ -222,7 +226,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 - `lct batch next [--family F] [--max-units N]` 產生 `work/batches/<id>.json`：
   - 要讀的指引檔（依疊加順序）、命中的詞彙條目、關鍵字表（`[ID]` → 本專案的中文名）
-  - 每個單位：key、說話者（角色 id）、KR／EN／JP、參考譯文（第一階段：LLC 簡中、LTM 繁中；明確標示為參考，不是答案）、上一版 KR 與譯文、人工調整內容、需保留的 `[ID]`／佔位符／標籤
+  - 每個單位：key、說話者（角色 id）、KR／EN／JP、參考譯文（只在第一階段：LLC 簡中、LTM 繁中、未通過驗證的 Paratranz 草稿；明確標示為參考，不是答案）、上一版 KR 與譯文、人工調整內容、需保留的 `[ID]`／佔位符／標籤
   - 劇情：一個檔（一個場景）一批；未變的前後行附上既有譯文作為上下文
   - 其他：同檔分批，每批上限 N 個單位
   - 批次依 `guides/families.md` 的翻譯優先序發放
@@ -244,7 +248,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 | skill | 用途 | 誰用 |
 |---|---|---|
-| `translate-pending` | 依 §9.1 迴圈翻完待譯清單 | CI；人在本機執行時只產生預覽 |
+| `translate-pending` | 依 §9.1 迴圈翻完待譯清單 | CI；第一階段在本工作階段中使用；人在本機執行時只產生預覽 |
 | `weekly-update` | 在本機依序跑 fetch → plan → translate-pending → build，等同 CI 流程，結果只寫到本機的 `out/` 供進遊戲測試 | 人 |
 | `adjust` | 人工調整譯文，並把調整整理進規則（§11） | 人 |
 | `rules-review` | 整理報表中的建議與尚未歸納的調整，提出指引／詞彙修改 | 人 |
@@ -252,7 +256,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
 
-**寫入權**：`raw`、`tw` 分支與 Release 只由 CI 寫入。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
+**寫入權**：第一階段的初始 commit 之後，`raw`、`tw` 分支與 Release 只由 CI 寫入。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
 
 ## 10. 驗證（`lct validate`，CI 與 skill 共用）
 
@@ -316,7 +320,7 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release。每日那次另外：第一階段檢查上游是否有新 release；待譯清單不是空的就繼續翻。三者都沒有變化就直接結束 |
+| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release。每日那次另外：待譯清單不是空的就繼續翻。沒有新 token、也沒有待譯就直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
 
@@ -340,7 +344,7 @@ LimbusCompany_Data/
 - 兩個 zip：只有文字、含字型（同 ParatranzUploader 的做法）
 - 字型：Sarasa Gothic TC（SIL OFL），固定版本並驗證 checksum
 - Release tag `zh-TW-YYYYMMDD.N`；release notes 由報表摘要產生
-- `version.json` 與 `.meta/build.json` 記錄：raw tag 與 token、`main` commit、上游 release tag（第一階段）、模型、花費
+- `version.json` 與 `.meta/build.json` 記錄：raw tag 與 token、`main` commit、模型、花費；第一階段的初始建置另記上游 release tag
 
 ## 14. 報表
 
@@ -358,7 +362,8 @@ LimbusCompany_Data/
 
 | 指令 | 用途 |
 |---|---|
-| `lct fetch` | 讀狀態 API、比對 token、下載 zip（第一階段另抓上游 release） |
+| `lct fetch` | 讀狀態 API、比對 token、下載 zip |
+| `lct bootstrap` | 第一階段：匯入固定版本的上游譯文，建立初始紀錄與待譯清單（§8.3） |
 | `lct snapshot` | 寫入 `raw` 分支並打 tag |
 | `lct plan` | §8：對齊、決定來源、更新待譯清單 |
 | `lct pending [--count]` | 查待譯清單 |
@@ -382,7 +387,7 @@ LimbusCompany_Data/
 cmd/lct/                 CLI 入口
 internal/…               fetch、snapshot、align、units、rules、guide、validate、pack、report…
 guides/  glossary/  rules/
-lct.yaml                 phase（1／2）、上游來源、輸出資料夾名、字型、批次大小、重試次數
+lct.yaml                 輸出資料夾名、字型、凍結清單、批次大小、重試次數、第一階段用的上游版本
 .claude/skills/          §9.3
 .claude/settings.json    工具權限
 CLAUDE.md                專案說明（AGENTS.md 指向它）
@@ -405,6 +410,7 @@ docs/
 - Go；Claude Code（Agent SDK）＋ Console API key；skill 與自動化同步（做法 A）
 - GitHub Actions；原文與譯文各一個 orphan 分支；狀態 API 網址放 secret
 - 兩個階段的範圍（§2）；兩階段都能改進規則
+- 第一階段不自動化，在 Claude Code 工作階段中一次完成並上傳；之後的 GitHub Actions 都是第二階段
 - KR 為主、JP／EN 輔助
 - 原文沒變不重翻；KR 變了依變化重翻
 - 人工調整不是最高優先的永久覆寫，而是歸納進規則
@@ -415,18 +421,17 @@ docs/
 
 - 輸出資料夾名 `zh-TW`；字型 Sarasa Gothic TC
 - 人工調整存在 `main` 的 `rules/adjustments/`，與其他規則一起審核
-- 第一階段中，Paratranz 之後補上的有效譯文會取代 Claude 譯文（依「以 Paratranz 為主」推得）
 - 翻譯失敗暫用 EN 原文
 - `raw` 版面沿用 `tool-jx3/Assets`
-- 預設模型 `claude-opus-5-5`，可由 variable 更換；每次建置有花費上限
 - 每次建置都發 Release（文字版＋含字型版）
 - 只輸出 KR 與 EN 都有的檔
 - `raw`、`tw` 與 Release 只由 CI 寫入；人工介入一律經由 `main`（§9.3）
-- Paratranz 匯入先比對識別欄位骨架，並以 `para_kr_sha` 判斷是否過時（§8.3）
+- Paratranz 匯入先比對識別欄位骨架，對不上的單位不匯入（§8.3）
 - 名稱表（關鍵字、說話者）取自本專案現行譯文，直接具約束力；Claude 提出的新詞要審核（§7）
 - 結構類驗證一律強制；內容類驗證對規則改變後的既有單位只警告（§10）
 - 凍結（`BgmLyrics/**`）＝既有譯文不被取代，KR 變了也不動、只報告；新加入的歌詞照一般流程翻譯
-- 每日檢查上游新 release，並繼續翻待譯清單（§12）
+- 每日一次繼續翻待譯清單（§12）
+- 第二階段預設模型 `claude-opus-5-5`、每次建置花費上限 `LCT_MAX_USD` 預設 30 美元，都可隨時改 variable
 
 ## 19. 交給實作者決定
 
@@ -442,4 +447,5 @@ docs/
 - 遊戲在自訂語言下實際讀哪些檔：只有 KR 有的 53 個檔、只有 EN 有的 10 個檔要不要輸出（Steam 公告在本環境無法讀取）
 - `StoryData` 中 `PC*`、`ES*` 前綴的正式名稱
 - `tool-jx3/Assets` 與 `tool-jx3/ParatranzUploader` 之後是否改用本專案的 `raw` 分支或退役
+- `raw` 分支要從 10/29 開始，還是先匯入 `tool-jx3/Assets` 的歷次 commit 當作過去的更新歷史
 - 程式碼的授權（譯文內容已確定為 CC BY-NC-SA 4.0）
