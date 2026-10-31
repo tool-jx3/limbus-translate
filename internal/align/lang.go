@@ -26,8 +26,9 @@ type LangAligned struct {
 	Method Method
 }
 
-// storyPrefix starts the file names of story scripts, whose ids are line
-// numbers and are never used to match entries.
+// storyPrefix starts the file names of story scripts. Their ids are line
+// numbers, so they never select id mode; sequence mode still uses them, but
+// only to break ties between equally long matches.
 const storyPrefix = "StoryData/"
 
 // AlignLang matches the strings of kr to the strings of other, another

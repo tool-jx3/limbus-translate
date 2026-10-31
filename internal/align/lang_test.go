@@ -199,6 +199,30 @@ func TestAlignIDThreshold(t *testing.T) {
 	})
 }
 
+func TestAlignTieBreakKeepsPairCount(t *testing.T) {
+	// Content-only lines with KR ids 0..n-1 and JP ids 1..n. Shifting by one
+	// would match n-1 ids, but the id tie-break must never cost a pair: all n
+	// lines pair by position.
+	const n = 5
+	lines := func(lang string, firstID int) *jsonx.Node {
+		items := make([]string, n)
+		for i := range items {
+			items[i] = fmt.Sprintf(`{"id": %d, "content": "%s line %d"}`, firstID+i, lang, i)
+		}
+		return mustParse(t, `{"dataList": [`+strings.Join(items, ", ")+`]}`)
+	}
+	kr, jp := lines("kr", 0), lines("jp", 1)
+	got := AlignLang("StoryData/S001A.json", kr, jp)
+
+	for i := range n {
+		p := fmt.Sprintf("/dataList/%d/content", i)
+		wantAligned(t, got, p, jp, p, MethodSequence)
+	}
+	if len(got) != n {
+		t.Errorf("%d aligned, want %d: %+v", len(got), n, got)
+	}
+}
+
 func TestAlignNested(t *testing.T) {
 	kr := mustParse(t, `{"dataList": [
 		{"id": "burn", "levelList": [{"id": 1, "desc": "화상 1"}, {"id": 2, "desc": "화상 2"}],
