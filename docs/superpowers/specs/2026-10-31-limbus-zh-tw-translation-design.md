@@ -51,6 +51,15 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - GitHub Actions 單一 job 上限 6 小時
 - 原文快照每次約 90 MB（三語解壓後），git 以差異壓縮，週更變動小
 
+### 3.1 Claude 使用規範（依官方文件 code.claude.com/docs/en/legal-and-compliance，2026-10-31 查閱）
+
+- **第二階段（CI）**：用 Claude Console 的 API key，適用 Commercial Terms。官方明文允許把自己的 API key 放在 secrets 給自己的工作流程使用，花費記在 key 的擁有者名下
+- **第一階段（本工作階段）**：使用者本人在 Claude Code 中處理自己的專案，屬於一般使用。官方註明 Pro／Max／Ultra 方案的用量上限是以「一般、個人使用」為前提；1.87 萬句、多個子代理並行可能碰到用量上限，必要時分多次進行
+- **不做的事**：不提供 Claude 帳號登入給他人、不轉售或代他人付費使用 Claude、不使用他人的帳號憑證
+- **名稱**：專案名稱、Release 名稱不使用「Claude Code」「Anthropic」或其標誌；說明文件可以寫「使用 Claude Code 翻譯」
+- **Anthropic Usage Policy**：翻譯遊戲文本（含暴力、髒話等虛構內容）沒有問題
+- **著作權**：遊戲原文屬於 Project Moon。遊戲官方提供自訂語言功能，本專案非商業、譯文以 CC BY-NC-SA 4.0 發布；但 `raw` 分支會公開保存原文，是否符合 Project Moon 的條款由使用者自行確認（其他社群專案也公開保存原文，例如 LocalizeLimbusCompany）
+
 ## 4. 做法（Approaches）
 
 | 做法 | 內容 | 取捨 |
@@ -299,7 +308,10 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
 
 ### 9.2 CI 執行
 
-- 安裝固定版本的 Claude Code CLI，build `lct`
+- 用官方支援的兩種形式之一，兩者都讀 repo 的 `.claude/skills/` 與 `CLAUDE.md`：
+  - **翻譯迴圈**：安裝固定版本的 Claude Code CLI，以 headless 模式執行（官方對 Python／TypeScript 以外語言的建議做法）
+  - **規則 PR**（`rules-proposal.yml`）：用官方的 `anthropics/claude-code-action@v1`，`prompt: "/rules-review"`。它以 Claude GitHub App 的身分推送與開 PR，所以 `ci.yml` 會在這個 PR 上正常執行（用 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow）。需要在 repo 安裝 Claude GitHub App
+- build `lct`
 - 迴圈執行：`claude -p "/translate-pending" --output-format json --model "$LCT_MODEL" --max-turns <N>`
   - 直到 `lct pending --count` 為 0、累計 `total_cost_usd` 達到 `LCT_MAX_USD`，或時間快到上限
   - 沒翻完的留在待譯清單，下次建置繼續；已翻完的照常打包，未翻部分用 `fallback`
@@ -319,6 +331,14 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
 | `review` | 讀最新的審核 Issue，帶人逐項處理 | 人 |
 
 SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
+
+依官方 skill 規格：
+
+- 每個 skill 是 `.claude/skills/<名稱>/SKILL.md`，開頭 YAML 寫 `name`、`description`
+- `allowed-tools` 預先允許該 skill 需要的工具（例如 `Bash(lct *)`），CI 與人工執行都不必逐次確認
+- 只該由人或 CI 明確呼叫的 skill（`translate-pending`、`adjust`、`rules-review`、`review`）設 `disable-model-invocation: true`，避免 Claude 在對話中自行啟動
+- SKILL.md 保持在 500 行以內，其他內容放在引用的檔案；`CLAUDE.md` 保持精簡（每次執行都會讀）
+- headless 模式（`claude -p "/skill-name"`）一次只能呼叫一個 skill
 
 **寫入權**：第一階段的初始 commit 之後，`raw`、`tw` 分支與 Release 只由 CI 寫入。CI 對 `main` 只能開 PR，不能直接 push。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
 
@@ -399,7 +419,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 每天 12:00 UTC+8 一次（cron `0 4 * * *`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯就直接結束 |
+| `update.yml` | 每週四 12:00 UTC+8（cron `0 4 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯就直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue |
 | `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成後，報表有新建議時；手動 | §11.2：跑 `rules-review` skill，開或更新規則 PR |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
@@ -408,7 +428,9 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 - secrets：`ANTHROPIC_API_KEY`、`LIMBUS_STATUS_URL`
 - variables：`LIMBUS_CDN_TEMPLATE`（預設 `https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip`）、`LCT_MODEL`、`LCT_MAX_USD`
 - `GITHUB_TOKEN` 需要 `contents: write`；`rules-proposal.yml` 另需 `pull-requests: write`；`update.yml`／`rebuild.yml` 開審核 Issue 需要 `issues: write`
-- 用 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow（GitHub 的限制），所以影響評估在 `rules-proposal.yml` 內自己跑。若想讓 `ci.yml` 也在 CI 開的 PR 上執行，可另設 GitHub App 或 PAT 的 secret（`RULES_PR_TOKEN`）
+- `rules-proposal.yml` 以 Claude GitHub App 的身分開 PR（§9.2），所以 `ci.yml` 會在規則 PR 上執行，影響評估也會出現在 PR 上
+- GitHub 只從預設分支執行排程；公開 repo 連續 60 天沒有活動時會停用排程。每週寫入 `raw`／`tw` 應能維持活動；若被停用，到 Actions 頁面重新啟用即可
+- 排程在整點附近可能延遲數分鐘到數十分鐘
 
 ## 13. 打包與發佈
 
@@ -525,6 +547,7 @@ docs/
 - CI 可以開 PR 改進規則，由人審核決定是否調整、合併
 - 做法 B 列為第三階段，第二階段穩定後再開發
 - 需要人處理的項目以 GitHub Issue 通知（§14）
+- `update.yml` 每週四 12:00 UTC+8 執行一次。其他日子的臨時更新與未翻完的待譯清單，靠手動觸發、`repository_dispatch` 或下週四處理
 - 輸出檔案以 KR 為準（§6.2）
 - `StoryData` 的 `PC*` 是明日方舟聯動劇情，`ES*` 是第八章的特殊劇情模式
 - 不動 `tool-jx3/Assets`、`tool-jx3/ParatranzUploader`，本專案也不依賴這兩個 repo（§3）
@@ -548,7 +571,7 @@ docs/
 - 名稱表（關鍵字、說話者）取自本專案現行譯文，直接具約束力；Claude 提出的新詞要審核（§7）
 - 結構類驗證一律強制；內容類驗證對規則改變後的既有單位只警告（§10）
 - 凍結（`BgmLyrics/**`）＝既有譯文不被取代，KR 變了也不動、只報告；新加入的歌詞照一般流程翻譯
-- `update.yml` 每天 12:00 UTC+8 跑一次，同時處理週四更新、其他日子的臨時更新與未翻完的待譯清單（§12）。GitHub 的排程在整點附近可能延遲數分鐘到數十分鐘
+- 規則 PR 用官方的 `anthropics/claude-code-action`；翻譯迴圈用 Claude Code CLI 的 headless 模式（§9.2）
 - 第二階段預設模型 `claude-opus-5-5`、每次建置花費上限 `LCT_MAX_USD` 預設 30 美元，都可隨時改 variable
 
 ## 19. 交給實作者決定
