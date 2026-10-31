@@ -136,7 +136,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 規則在 `rules/fields.yaml`（自動產生）與 `rules/fields.manual.yaml`（人工）。三層：
 
 1. **欄位層**：整個欄位在三語中永遠相同 → 識別碼，不翻，輸出 KR 值（`key`、`usage`、`imgStr`、`colorCode`、`timeline`…共 15 個）
-2. **檔案群×欄位層**：例如 `BattleSpeechBubbleDlg*` 的 `desc`、語音檔的 `desc` 是觸發標籤，不翻
+2. **檔案群×欄位層**：例如 `BattleSpeechBubbleDlg*` 的 `desc` 是觸發標籤，不翻。`PersonalityVoiceDlg` 的 `desc` 是語音標題（`인격 획득` → EN「Identity Acquisition」），要翻
 3. **單值層**：這一格三語相同（例如 `......`）→ 原樣輸出
 
 人工規則強制 `id`、`model`、`codeName` 不翻（三語偶有差異，但是識別碼），以及 Hakimi 歸納的特例（`//`、`SE //` 開頭的字串；`Items` 中註明 `name만 번역` 的 desc）。

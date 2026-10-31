@@ -79,7 +79,7 @@ Hakimi 的規則（`tools/resource_fields.py`）：`id/key/index/level/model` �
 | `StoryData/E*`、`PC*` 等 | 數百 | 約 8% | 其他劇情（活動、間章等，前綴意義待確認） |
 | `Passives*` | 91 | 5.1% | |
 | `RPGSystem/rpg-loc-*` | 189 | 5.1% | RPG 探索的對話、NPC、選項 |
-| `PersonalityVoiceDlg/Voice_<角色>_<人格>_<編號>` | 194 | 4.7% | 人格語音；`desc` 是事件標籤（如 `인격 획득`），台詞在 `dlg` |
+| `PersonalityVoiceDlg/Voice_<角色>_<人格>_<編號>` | 194 | 4.7% | 人格語音；`desc` 是語音標題（如 `인격 획득` → EN「Identity Acquisition」，要翻），台詞在 `dlg` |
 | `Bufs*`、`BattleKeywords*` | 101 | 6.5% | 狀態效果與關鍵字（詞彙表來源） |
 | `AbnormalityGuides*`、`AbEvents*`、`ActionEvents*`、`ChoiceEventEffect*` | 108 | 約 7.6% | 異想體觀測與事件文本 |
 | `EGOgift*` | 29 | 2.7% | |
