@@ -429,6 +429,29 @@ func TestLearnThresholds(t *testing.T) {
 	}
 }
 
+func TestLearnCounted(t *testing.T) {
+	f := newFixture(t)
+	f.add("Count-1.json", []row{
+		{"key": all("k1"), "text": differs(1)}, // 2 counted
+		{"key": all("-"), "text": differs(2)},  // "-" is empty: 1 counted
+		{"gap": [3]string{"d", absent, "d"}},   // no aligned EN: 0 counted
+		{"gap": [3]string{"e", "e", absent}},   // no aligned JP: 0 counted
+	})
+	f.addOnly("KrOnly.json", rowsN(5, func(i int) row { return row{"key": all("x")} }), 0) // not in EN and JP
+	if got, want := f.learn().Counted, 3; got != want {
+		t.Errorf("Counted = %d, want %d", got, want)
+	}
+
+	// Packs that share no file count nothing.
+	none := newFixture(t)
+	none.addOnly("A.json", rowsN(3, func(i int) row { return row{"key": all("x")} }), 0)
+	none.addOnly("B.json", rowsN(3, func(i int) row { return row{"key": all("x")} }), 1)
+	none.addOnly("C.json", rowsN(3, func(i int) row { return row{"key": all("x")} }), 2)
+	if got := none.learn().Counted; got != 0 {
+		t.Errorf("Counted = %d, want 0", got)
+	}
+}
+
 func TestLearnGroupRatioBoundary(t *testing.T) {
 	f := newFixture(t)
 	// 99 of 100 identical: exactly 99% qualifies.

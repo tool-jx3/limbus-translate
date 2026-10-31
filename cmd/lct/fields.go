@@ -36,10 +36,17 @@ type learnReport struct {
 	Written  bool            `json:"written"`
 }
 
+// noUnitsCounted explains an empty result: the packs have no file in common
+// with aligned text.
+const noUnitsCounted = "the raw packs counted no units (no file in all three languages has aligned text)"
+
 func (r learnReport) String() string {
 	var b strings.Builder
 	b.Write(r.Learned.YAML())
 	b.WriteString("\n")
+	if r.Learned.Counted == 0 {
+		fmt.Fprintf(&b, "warning: %s, so --write is refused\n", noUnitsCounted)
+	}
 	switch {
 	case r.Written:
 		fmt.Fprintf(&b, "wrote %s", generatedRules)
@@ -79,8 +86,15 @@ func runFieldsLearn(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	if len(set.KR.Files()) == 0 {
-		return cli.UserError(fmt.Sprintf("fields learn: the raw worktree at %s has no KR files", rawRoot))
+	// A pack without files teaches nothing, and writing the empty result
+	// would wipe the rules.
+	for _, p := range []struct {
+		lang string
+		pack *pack.Pack
+	}{{"KR", set.KR}, {"EN", set.EN}, {"JP", set.JP}} {
+		if len(p.pack.Files()) == 0 {
+			return cli.UserError(fmt.Sprintf("fields learn: the raw worktree at %s has no %s files", rawRoot, p.lang))
+		}
 	}
 
 	manual, err := fields.LoadManual(ctx.Root)
@@ -107,6 +121,9 @@ func runFieldsLearn(ctx *cli.Context, args []string) error {
 	}
 
 	if *write {
+		if learned.Counted == 0 {
+			return cli.UserError("fields learn: " + noUnitsCounted + "; refusing to overwrite " + generatedRules)
+		}
 		if err := os.MkdirAll(filepath.Dir(target), 0o755); err != nil {
 			return err
 		}

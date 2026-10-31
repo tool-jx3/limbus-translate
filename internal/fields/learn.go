@@ -37,6 +37,10 @@ type Learned struct {
 	// GroupFields maps a file group (see Group) to the fields that are never
 	// translated in its files.
 	GroupFields map[string][]string `yaml:"group_fields" json:"group_fields"`
+	// Counted is how many units Learn counted to get these rules. It is not
+	// part of rules/fields.yaml, so it is 0 for rules read from there. A
+	// result with nothing counted holds no evidence and is not worth saving.
+	Counted int `yaml:"-" json:"counted_units"`
 }
 
 // LoadLearned reads rules/fields.yaml. A missing file reads as no rules.
@@ -87,14 +91,15 @@ type groupField struct{ group, field string }
 //     counted occurrences are identical is a group field, unless the field is
 //     already in layer 1.
 //
-// The result does not know the manual rules; use Without to drop what they
-// already say.
+// Counted in the result is the number of units counted. The result does not
+// know the manual rules; use Without to drop what they already say.
 func Learn(kr, en, jp *pack.Pack) (*Learned, error) {
 	if kr == nil || en == nil || jp == nil {
 		return nil, fmt.Errorf("fields: Learn needs the KR, EN and JP packs")
 	}
 	byField := make(map[string]*counts)
 	byGroup := make(map[groupField]*counts)
+	counted := 0
 	bump := func(c *counts, same bool) {
 		c.total++
 		if same {
@@ -130,12 +135,13 @@ func Learn(kr, en, jp *pack.Pack) (*Learned, error) {
 				continue
 			}
 			same := u.KR == e.Value && u.KR == j.Value
+			counted++
 			bump(entry(byField, u.Field), same)
 			bump(entry(byGroup, groupField{group, u.Field}), same)
 		}
 	}
 
-	l := &Learned{IdentifierFields: []string{}, GroupFields: map[string][]string{}}
+	l := &Learned{IdentifierFields: []string{}, GroupFields: map[string][]string{}, Counted: counted}
 	isIdentifier := make(map[string]bool)
 	for _, field := range slices.Sorted(maps.Keys(byField)) {
 		c := byField[field]
@@ -171,7 +177,7 @@ func entry[K comparable](m map[K]*counts, k K) *counts {
 // group fields. The generated file then holds only what the manual file does
 // not.
 func (l *Learned) Without(manual *Rules) *Learned {
-	out := &Learned{IdentifierFields: []string{}, GroupFields: map[string][]string{}}
+	out := &Learned{IdentifierFields: []string{}, GroupFields: map[string][]string{}, Counted: l.Counted}
 	for _, f := range l.IdentifierFields {
 		if !manual.identifiers[f] {
 			out.IdentifierFields = append(out.IdentifierFields, f)

@@ -165,6 +165,74 @@ func TestFieldsLearnJSON(t *testing.T) {
 	}
 }
 
+// A pack without files would make Learn return no rules at all, and --write
+// would then wipe rules/fields.yaml.
+func TestFieldsLearnRefusesEmptyENOrJPPack(t *testing.T) {
+	for _, c := range []struct{ lang, file, want string }{
+		{"en", ".work/raw/en/EN_Sample-1.json", "no EN files"},
+		{"jp", ".work/raw/jp/JP_Sample-1.json", "no JP files"},
+	} {
+		t.Run(c.lang, func(t *testing.T) {
+			root := learnRepo(t)
+			keep := string((&fields.Learned{IdentifierFields: []string{"usage"}}).YAML())
+			writeTestFile(t, root, "rules/fields.yaml", keep)
+			if err := os.Remove(filepath.Join(root, c.file)); err != nil {
+				t.Fatal(err)
+			}
+			for _, args := range [][]string{nil, {"--write"}} {
+				_, err := runLearn(t, root, false, args...)
+				if err == nil || !strings.Contains(err.Error(), c.want) {
+					t.Fatalf("args %v: error = %v, want one mentioning %q", args, err, c.want)
+				}
+				if reflect.TypeOf(err) != reflect.TypeOf(cli.UserError("")) {
+					t.Errorf("error %v (%T) should be a user error (exit 1)", err, err)
+				}
+			}
+			if got, _ := os.ReadFile(filepath.Join(root, "rules/fields.yaml")); string(got) != keep {
+				t.Errorf("rules/fields.yaml was modified:\n%s", got)
+			}
+		})
+	}
+}
+
+// All three packs have files, but none in common (or none with aligned
+// text), so nothing was counted. Reporting is fine; writing would wipe the
+// rules.
+func TestFieldsLearnRefusesWriteWhenNothingCounted(t *testing.T) {
+	root := t.TempDir()
+	writeTestFile(t, root, "lct.yaml", "worktrees: { raw: .work/raw }\n")
+	manual, err := os.ReadFile("../../rules/fields.manual.yaml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "rules/fields.manual.yaml", string(manual))
+	writeTestFile(t, root, ".work/raw/kr/KR_A.json", `{"dataList": [{"id": 1, "key": "x"}]}`)
+	writeTestFile(t, root, ".work/raw/en/EN_B.json", `{"dataList": [{"id": 1, "key": "x"}]}`)
+	writeTestFile(t, root, ".work/raw/jp/JP_C.json", `{"dataList": [{"id": 1, "key": "x"}]}`)
+	keep := string((&fields.Learned{IdentifierFields: []string{"usage"}}).YAML())
+	writeTestFile(t, root, "rules/fields.yaml", keep)
+
+	_, err = runLearn(t, root, false, "--write")
+	if err == nil || !strings.Contains(err.Error(), "counted no units") {
+		t.Fatalf("error = %v, want one saying no units were counted", err)
+	}
+	if reflect.TypeOf(err) != reflect.TypeOf(cli.UserError("")) {
+		t.Errorf("error %v (%T) should be a user error (exit 1)", err, err)
+	}
+	if got, _ := os.ReadFile(filepath.Join(root, "rules/fields.yaml")); string(got) != keep {
+		t.Errorf("rules/fields.yaml was modified:\n%s", got)
+	}
+
+	// Without --write it still reports, and says why --write would refuse.
+	out, err := runLearn(t, root, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, "counted no units") {
+		t.Errorf("the report should warn that nothing was counted:\n%s", out)
+	}
+}
+
 func TestFieldsLearnUserErrors(t *testing.T) {
 	root := learnRepo(t)
 	empty := t.TempDir()
