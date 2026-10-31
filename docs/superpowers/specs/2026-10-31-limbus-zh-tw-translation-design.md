@@ -22,6 +22,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - 兩個階段：
   - **第一階段（一次性，不自動化）**：在 Claude Code 工作階段中完成。以 `user-unknown-0711/ParatranzUploader` 的譯文為主；未翻的部分依規則翻譯，以 LLC 簡中、LTM 繁中為參考；過程中可以改進規則。完成後把 `raw`、`tw` 的初始狀態上傳到 repo，第一階段即結束（§8.3）
   - **第二階段（GitHub Actions）**：之後所有自動化都是第二階段。不再使用上游譯文，全部依規則自己翻；規則可以改進；可以人工調整舊譯文
+  - **第三階段（將來）**：第二階段穩定後，把 CI 的大量翻譯改用做法 B（§4）
 
 **非目標**
 
@@ -57,7 +58,24 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | B | Go 用 `anthropic-sdk-go` 直接打 Messages API（Batch 半價、prompt caching），skill 只給人用 | 最省、最可控；但有兩個執行器，靠測試防止分岔 |
 | C | 另外用 TS／Python Agent SDK 包一層 | 違反 Go 偏好、多一個 runtime，比 `claude -p` 多得到的很少 |
 
-使用者選 A。「一批」的定義放在 `lct batch next／submit` 這個接縫上；日後若某週量太大想省錢，可以在同一個接縫後面加上 B 的 Batch API 路徑，prompt 與驗證不必改。
+使用者選 A。做法 B 列為**第三階段**，等第二階段穩定後再開發。
+
+為了讓第三階段不必重寫，現在就遵守：
+
+- 「一批」的定義只在 `lct batch next／submit`。批次輸入與輸出的 JSON schema 放在 `schemas/`，是兩種做法共用的契約
+- 翻譯指示（輸出格式、參考譯文怎麼用、遇到疑問怎麼回報）寫在 `prompts/translate.md`。skill 讀它；第三階段的 Go 程式以 `go:embed` 嵌入同一份。SKILL.md 只寫流程
+- 驗證只有 `lct validate` 一套
+- 紀錄裡的 `model`、`batch` 欄位能區分做法 A 與 B 的產出
+
+第三階段的範圍：
+
+- `lct translate --batch-api`：以 `anthropic-sdk-go` 送 Message Batches（半價），使用 prompt caching。重送迴圈（驗證失敗 → 只把失敗的單位再送一次）改由 Go 實作
+- 人工介入（`adjust`、`rules-review` 等 skill）仍用 Claude Code（做法 A）
+
+開始第三階段的條件（建議）：
+
+- 第二階段連續數週沒有因流程問題需要人工修復
+- 已累積數週的實際花費（`total_cost_usd`）與驗證通過率，可以和 B 的試跑結果比較
 
 ## 5. 整體架構
 
@@ -193,9 +211,21 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 這與跨語言對齊（§6.5）用同一套程式。
 
+KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新中，約 30 個檔有中間插入，例如：
+
+- `StoryData/S918A.json`：在第 2、4、6 行之間各插入一行，後面 47 句不變的內容全部錯開
+- `EGOgift_MirrorDungeon.json`：插入 1 條，720 句不變的內容換了位置
+- `Bufs*`、`BattleKeywords*`：在既有條目裡新增欄位
+
+處理方式：
+
+- 劇情的 id 是行號，插行後會全部重新編號，所以劇情一律用序列對齊，不用 id
+- 有唯一 id 的檔用 id 對齊；條目內新增的欄位是新單位
+- 對齊後，不變的單位帶著原譯文移到新的 key（JSON pointer）；`.meta/units/` 的紀錄每次建置都以新 key 重寫
+
 結果：每個單位標為 **不變**（KR 相同）、**變更**（對到舊單位但 KR 不同）、**新增**、**刪除**。插行造成的位置平移不算變更。
 
-**相同文字重用**：新增單位的 KR 若與同族群、同欄位、（對話則）同說話者的既有單位完全相同，直接沿用其譯文。短字串只限同檔重用（門檻由實作者定）。
+**相同文字重用**：新增單位的 KR 若與同族群、同欄位、（對話則）同說話者的既有單位完全相同，直接沿用其譯文。「既有單位」包含上一版同檔中這次被刪除的單位，所以 id 被重新編號的條目不會重翻。短字串只限同檔重用（門檻由實作者定）。
 
 ### 8.2 每個單位的譯文來源
 
@@ -205,7 +235,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 |---|---|---|
 | 1 | 欄位規則判定不翻 | `copy` |
 | 2 | 檔案在凍結清單（`lct.yaml` 的 `frozen`，目前為 `BgmLyrics/**`）且已有譯文 | 沿用既有譯文，不被取代；KR 變了也不動，只列入報表 |
-| 3 | 有人工調整，且其 `kr_sha` = 目前 KR | 用人工調整，`human` |
+| 3 | 有人工調整對得上這個單位（查找方式見 §11.1），且其 `kr_sha` = 目前 KR | 用人工調整，`human` |
 | 4 | 既有紀錄的 `kr_sha` = 目前 KR | 沿用 |
 | 5 | 相同文字重用成立 | 沿用 |
 | 6 | 其他（新增、KR 變更、人工調整已過期） | 進待譯清單 |
@@ -283,7 +313,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | `rules-review` | 整理報表中的建議與尚未歸納的調整，提出指引／詞彙修改 | CI（開 PR）與人 |
 | `term-decision` | 決定詞彙表候選條目 | 人 |
 
-SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
+SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
 
 **寫入權**：第一階段的初始 commit 之後，`raw`、`tw` 分支與 Release 只由 CI 寫入。CI 對 `main` 只能開 PR，不能直接 push。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
 
@@ -327,6 +357,7 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
 
    ```yaml
    - key: StoryData/E002X.json|/dataList/14/content
+     raw: raw-20261029       # 調整時根據的原文版本
      kr_sha: …
      zh: 啊……但丁閣下，時鐘的時針好像在不停顫抖呢？您還好嗎？
      reason: 鴻璐對但丁說話用敬語，第二人稱用「您」
@@ -338,6 +369,12 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
 6. commit 到 `main` → 觸發重建（§12），CI 依調整與重翻要求更新 `tw`
 
 人工調整只在它所根據的 KR 版本有效。KR 變了就依目前規則重翻；調整背後的道理已經寫進規則，會反映在重翻結果。
+
+**查找**：因為插行會讓 key 改變，人工調整不能只靠 key 對應：
+
+1. `key` 所指的單位 `kr_sha` 相同 → 套用
+2. 否則在同一檔、同欄位中找 `kr_sha` 相同的單位（多個時取最接近原位置的）→ 套用，並在報表列為「key 已移動」；`rules-proposal.yml` 會在規則 PR 中順便更新這些 key
+3. 都找不到 → 這筆調整已過期（KR 改了），該單位重翻
 
 ### 11.2 規則改進（`rules-review` skill）
 
@@ -426,6 +463,8 @@ LimbusCompany_Data/
 cmd/lct/                 CLI 入口
 internal/…               fetch、snapshot、align、units、rules、guide、validate、pack、report…
 guides/  glossary/  rules/
+prompts/                 翻譯指示（skill 與第三階段共用）
+schemas/                 批次輸入／輸出、規則檔的 JSON schema
 lct.yaml                 輸出資料夾名、字型、凍結清單、批次大小、重試次數、第一階段用的上游版本
 .claude/skills/          §9.3
 .claude/settings.json    工具權限
@@ -439,7 +478,7 @@ docs/
 - Go 單元測試：對齊（含插行）、來源決策、Paratranz 有效判定與 `[ID]` 還原、驗證規則
 - 真實資料 fixture：從 10/29 語言包挑小量檔案
 - 跨語言對齊 fixture：`EventVerificationUIText.json`、`Passives.json`（換順序）、`StoryData/E001X.json`、`StoryData/S706B.json`（id 打錯）、`StoryData/P10511.json`（多一行）
-- 重播測試：用 `tool-jx3/Assets` 的歷次 commit 當作連續幾週的原文，驗證「不變不重翻、變了才重翻」
+- 重播測試：用 `tool-jx3/Assets` 的歷次 commit 當作連續幾週的原文，驗證「不變不重翻、變了才重翻」，包含中間插入的情況（例如 `StoryData/S918A.json`、`EGOgift_MirrorDungeon.json`、`Bufs*`）與人工調整 key 移動
 - 不呼叫 Claude 的乾跑模式（待譯全部走 `fallback`），讓 CI 能完整跑過流程
 - skill 契約測試：skill 引用的檔案與 `lct` 指令都存在；不含模型名稱
 
@@ -452,6 +491,7 @@ docs/
 - 兩個階段的範圍（§2）；兩階段都能改進規則
 - 第一階段不自動化，在 Claude Code 工作階段中一次完成並上傳；之後的 GitHub Actions 都是第二階段
 - CI 可以開 PR 改進規則，由人審核決定是否調整、合併
+- 做法 B 列為第三階段，第二階段穩定後再開發
 - KR 為主、JP／EN 輔助
 - 原文沒變不重翻；KR 變了依變化重翻
 - 人工調整不是最高優先的永久覆寫，而是歸納進規則

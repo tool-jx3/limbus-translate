@@ -218,6 +218,15 @@ ParatranzUploader 與 LTM 都用 Sarasa Gothic TC Bold（SIL OFL）。
 - 巢狀陣列：在頂層順序一致的檔中，沒有發現巢狀陣列順序不同
 - 結論：不能只用 JSON 路徑對齊三語；設計見 spec §6.5
 
+## 9. KR 在檔案中間插入資料（`tool-jx3/Assets` 歷史）
+
+比對 `tool-jx3/Assets` 最近 13 個 commit（12 次更新）中修改過的 KR 檔，攤平成字串序列後做序列比對：
+
+- 約 30 個檔有「不在檔尾」的插入，幾乎每次更新都有
+- 例：`StoryData/KR_S918A.json` 在第 2、4、6 行之間各插入一行（47 句不變的內容錯開）；`KR_EGOgift_MirrorDungeon.json` 插入 1 條（720 句換位置）；`KR_Skills_Abnormality-a1c971.json` 中間插入 23 句；`KR_BattleKeywords*`、`KR_Bufs*` 在既有條目內新增欄位
+- 結論：不能用 JSON pointer 當跨版本的身分；劇情要用序列對齊，人工調整要能跟著移動（spec §8.1、§11.1）
+- 腳本：`docs/research/scripts/insert_scan.py`（在 `tool-jx3/Assets` 的 clone 內執行，參數為兩個 commit）
+
 ## 6. 實測過程備註
 
 - 本次雲端環境的網路政策擋掉 `limbus-api.voidfissure.de` 與 `store.steampowered.com`，所以 Steam 公告原文與狀態 API 回應沒有直接讀到；CDN（`downloadcommon.limbuscompanycdn.org`）可連
