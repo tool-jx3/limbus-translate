@@ -1,0 +1,14 @@
+{
+  "dataList": [
+    {
+      "id": 1020901,
+      "name": "Red Mist",
+      "desc": "At the start of the turn, inflict [Bleed] on [the enemy]."
+    },
+    {
+      "id": 1020902,
+      "name": "Blue Wave",
+      "desc": "When an attack hits, recover 3 HP."
+    }
+  ]
+}
