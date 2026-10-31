@@ -34,7 +34,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 **反目標**（技術上能跑但算失敗的情況）
 
 - 原文沒變的行被重翻，或同一句每週換說法
-- CI 自己改了規則（CI 只能提出建議）
+- 規則未經人審核就改變（CI 只能開 PR 提出修改，合併由人決定）
 - 發出驗證失敗的檔案（標籤壞掉會讓遊戲顯示錯亂）
 - 人工調整在 KR 原文改變後仍然默默蓋過新譯文
 - 把 LTM 等不同翻譯脈絡的名稱混進產出（例如「默爾索」）
@@ -130,7 +130,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 ## 7. 規則
 
-規則都在 `main`，由人審核後才變更。CI 只讀，不寫。
+規則都在 `main`，由人審核後才變更。CI 不能直接寫入 `main`，只能開 PR 提出修改（§11.2）。
 
 | 規則 | 位置 | 性質 |
 |---|---|---|
@@ -251,12 +251,12 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | `translate-pending` | 依 §9.1 迴圈翻完待譯清單 | CI；第一階段在本工作階段中使用；人在本機執行時只產生預覽 |
 | `weekly-update` | 在本機依序跑 fetch → plan → translate-pending → build，等同 CI 流程，結果只寫到本機的 `out/` 供進遊戲測試 | 人 |
 | `adjust` | 人工調整譯文，並把調整整理進規則（§11） | 人 |
-| `rules-review` | 整理報表中的建議與尚未歸納的調整，提出指引／詞彙修改 | 人 |
+| `rules-review` | 整理報表中的建議與尚未歸納的調整，提出指引／詞彙修改 | CI（開 PR）與人 |
 | `term-decision` | 決定詞彙表候選條目 | 人 |
 
 SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
 
-**寫入權**：第一階段的初始 commit 之後，`raw`、`tw` 分支與 Release 只由 CI 寫入。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
+**寫入權**：第一階段的初始 commit 之後，`raw`、`tw` 分支與 Release 只由 CI 寫入。CI 對 `main` 只能開 PR，不能直接 push。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
 
 ## 10. 驗證（`lct validate`，CI 與 skill 共用）
 
@@ -312,9 +312,17 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
 
 ### 11.2 規則改進（`rules-review` skill）
 
-- 來源：週報中的建議（不一致譯法、新說話者、新欄位、新檔案族群、Claude 的 `note`）、尚未歸納進規則的人工調整
-- Claude 提出具體的檔案修改；人同意後 commit 到 `main`
-- 規則改了不會自動重翻舊譯文。要套用到舊譯文，由人以 `lct requeue` 指定範圍（這算人工介入）
+- 來源：週報中的建議（不一致譯法、新說話者、新欄位、新檔案族群、Claude 的 `note`、詞彙候選）、尚未歸納進規則的人工調整
+- **CI 開 PR**：每次建置後，若報表有新的建議，`rules-proposal.yml` 以 `claude -p "/rules-review"` 跑同一份 skill：
+  - 在分支 `rules-proposal/<日期>` 修改 `guides/`、`glossary/`、`rules/`，對 `main` 開 PR
+  - PR 說明逐項列出：建議內容、理由、證據（檔名#id、KR 與現行譯文、出現次數）
+  - PR 說明附上影響評估：以目前 `tw` 跑 `lct validate`，列出合併後有多少既有單位會不符合新規則
+  - 若建議要套用到舊譯文，PR 裡另附 `rules/requeue/*.yaml`；合併即代表人同意重翻
+- **人審核**：可以直接改 PR 內容、刪掉不要的項目，再決定合併或關閉。合併後由 `rebuild.yml` 依新規則重建
+- **不重複提出**：每個建議有穩定的 id。人不採用的項目記在 `rules/declined.yaml`（在 PR 中移到這裡再合併）；關閉而未合併的 CI PR 中的項目也視為不採用。CI 會略過這兩者
+- 同一時間最多一個 CI 開的規則 PR；已有未處理的 PR 時，新建議加進該 PR
+- 人也可以在本機用 `rules-review` skill 提出修改，流程相同
+- 規則改了不會自動重翻舊譯文。要套用到舊譯文，必須由人指定範圍：用 `lct requeue`，或合併附有 `rules/requeue/` 的 PR（這都算人工介入）
 
 ## 12. GitHub Actions
 
@@ -322,12 +330,14 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
 |---|---|---|
 | `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release。每日那次另外：待譯清單不是空的就繼續翻。沒有新 token、也沒有待譯就直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release |
+| `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成後，報表有新建議時；手動 | §11.2：跑 `rules-review` skill，開或更新規則 PR |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
 
 - 所有寫入 `raw`／`tw` 的 workflow 共用一個 `concurrency` 群組，依序執行
 - secrets：`ANTHROPIC_API_KEY`、`LIMBUS_STATUS_URL`
 - variables：`LIMBUS_CDN_TEMPLATE`（預設 `https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip`）、`LCT_MODEL`、`LCT_MAX_USD`
-- `GITHUB_TOKEN` 需要 `contents: write`
+- `GITHUB_TOKEN` 需要 `contents: write`；`rules-proposal.yml` 另需 `pull-requests: write`
+- 用 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow（GitHub 的限制），所以影響評估在 `rules-proposal.yml` 內自己跑。若想讓 `ci.yml` 也在 CI 開的 PR 上執行，可另設 GitHub App 或 PAT 的 secret（`RULES_PR_TOKEN`）
 
 ## 13. 打包與發佈
 
@@ -411,6 +421,7 @@ docs/
 - GitHub Actions；原文與譯文各一個 orphan 分支；狀態 API 網址放 secret
 - 兩個階段的範圍（§2）；兩階段都能改進規則
 - 第一階段不自動化，在 Claude Code 工作階段中一次完成並上傳；之後的 GitHub Actions 都是第二階段
+- CI 可以開 PR 改進規則，由人審核決定是否調整、合併
 - KR 為主、JP／EN 輔助
 - 原文沒變不重翻；KR 變了依變化重翻
 - 人工調整不是最高優先的永久覆寫，而是歸納進規則
