@@ -118,14 +118,14 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 ```json
 {"key": "StoryData/S1037B.json|/dataList/12/content",
- "kr_sha": "…", "para_sha": "…", "zh": "…",
+ "kr_sha": "…", "para_sha": "…", "para_kr_sha": "…", "zh": "…",
  "origin": "paratranz | claude | human | copy | fallback",
  "since": "raw-20261029", "rules": "<main commit>", "model": "…", "batch": "…",
  "flags": ["needs_review"]}
 ```
 
 - `kr_sha`：KR 原文（去 BOM、CRLF→LF）的 sha256
-- `para_sha`：第一階段最後一次匯入時 Paratranz 譯文的 sha256（用來判斷 Paratranz 是否過時，§8.3）；第二階段不再更新
+- `para_sha`、`para_kr_sha`：第一階段中，這個單位最近一次看到的 Paratranz 譯文的 sha256，以及「這段 Paratranz 譯文第一次出現時」的 KR sha256（用來判斷 Paratranz 是否過時，§8.3）；第二階段不再更新
 - `origin`：`copy` = 識別碼或三語相同；`fallback` = 翻譯失敗暫用 EN 原文
 - 上一版 `tw` 的紀錄就是這一版的「既有譯文」
 
@@ -148,6 +148,14 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 `lct guide resolve <批次>` 決定一批要帶哪些指引檔與詞彙條目；CI 與人工都經過這個指令，所以看到的內容一定相同。
 
+**名稱表**（自動產生，具約束力）：
+
+- 關鍵字表：`[ID]` → 本專案目前 `BattleKeywords*`／`Bufs*` 譯文中的名稱
+- 說話者名稱表：`model` → 本專案目前 `ScenarioModelCodes` 譯文中的名稱
+- 這兩張表反映語言包自己的現行譯名，所以不需要逐條審核就能約束翻譯；要改名走 `term-decision`。第一階段時它們來自 Paratranz 的譯名
+- Claude 在 `note` 提出的新詞只是候選，不具約束力，審核通過才寫進 `glossary/terms.yaml`
+- LTM／LLC 的名稱只作參考。從兩者的 `ScenarioModelCodes` 與本專案不同的名稱（例如「默爾索」）產生「他源名稱」清單；譯文出現時列為警告
+
 ## 8. 每次建置的決策邏輯
 
 ### 8.1 新舊原文對齊
@@ -168,6 +176,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | 順序 | 條件 | 結果 |
 |---|---|---|
 | 1 | 欄位規則判定不翻 | `copy` |
+| 1a | 檔案在凍結清單（`lct.yaml` 的 `frozen`，目前為 `BgmLyrics/**`）且已有譯文 | 沿用既有譯文，不被 Paratranz 或 Claude 取代；KR 變了也不動，只列入報表 |
 | 2 | 有人工調整，且其 `kr_sha` = 目前 KR | 用人工調整，`human` |
 | 3 | **第一階段**：Paratranz 有「有效譯文」且未過時（§8.3） | 用 Paratranz，`paratranz` |
 | 4 | 既有紀錄的 `kr_sha` = 目前 KR | 沿用 |
@@ -184,7 +193,14 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 - 不等於 EN 原文（EN ≠ KR 時）——ParatranzUploader 用英文填未翻條目，約 8.6%
 - 不等於 KR 原文、不含諺文、含漢字（純數字或符號的值走 `copy`）
-- **未過時**：若這個單位的 KR 這次有變更，而 Paratranz 譯文與上次匯入的完全相同（以紀錄中的 `para_sha` 比對），代表 Paratranz 還沒跟上新原文。此時不採用，只把它當作參考給 Claude
+- **檔案骨架相符**：ParatranzUploader 以當時的 KR 檔為骨架輸出，識別欄位（`id`、`model` 等）原樣保留。匯入前先比對 Paratranz 檔與目前 KR 檔的識別欄位序列與結構：
+  - 完全相同 → 依 JSON pointer 直接對應
+  - 不同（Paratranz 用的是舊版原文，例如劇情插了一行）→ 以識別欄位序列做序列比對，只匯入對得上的單位；對不上的不匯入
+- **未過時**：每個單位記錄「這段 Paratranz 譯文第一次出現時的 KR」（`para_kr_sha`）。只有 `para_kr_sha` 等於目前 KR 才採用：
+  - 第一次匯入時，骨架相符的單位視為對應目前 KR
+  - 之後 KR 變了而 Paratranz 譯文沒變 → `para_kr_sha` 仍是舊 KR，不採用，只當參考，之後幾週也一樣
+  - Paratranz 之後改了這句 → 新譯文第一次出現時記下當時的 KR，若等於目前 KR 就採用
+- 來源：`user-unknown-0711/ParatranzUploader` 最新 release 的 `localize_files.zip`
 
 匯入前的正規化：
 
@@ -228,17 +244,21 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 | skill | 用途 | 誰用 |
 |---|---|---|
-| `translate-pending` | 依 §9.1 迴圈翻完待譯清單 | CI 與人 |
-| `weekly-update` | 在本機依序跑 fetch → plan → translate-pending → build，等同 CI 流程 | 人 |
+| `translate-pending` | 依 §9.1 迴圈翻完待譯清單 | CI；人在本機執行時只產生預覽 |
+| `weekly-update` | 在本機依序跑 fetch → plan → translate-pending → build，等同 CI 流程，結果只寫到本機的 `out/` 供進遊戲測試 | 人 |
 | `adjust` | 人工調整譯文，並把調整整理進規則（§11） | 人 |
 | `rules-review` | 整理報表中的建議與尚未歸納的調整，提出指引／詞彙修改 | 人 |
 | `term-decision` | 決定詞彙表候選條目 | 人 |
 
 SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
 
+**寫入權**：`raw`、`tw` 分支與 Release 只由 CI 寫入。人的所有介入都經由 `main`：人工調整寫 `rules/adjustments/`，重翻要求寫 `rules/requeue/`（CI 處理後在 `tw` 的紀錄中標記為已處理）。也可以在手動觸發 workflow 時帶參數。這樣不需要處理多人同時寫 `tw` 的衝突。
+
 ## 10. 驗證（`lct validate`，CI 與 skill 共用）
 
 **硬性（不通過就退回）**
+
+結構類檢查（JSON、結構、`[ID]`、佔位符、標籤、但丁的 `<…>`、非空）對所有單位一律強制，不通過的既有單位改用 `fallback` 並進待譯清單。內容類檢查（禁用譯法、殘留諺文／簡體）對新翻的單位強制；規則改變後才不符合的既有單位只列為警告，等人決定是否重翻（不違反「規則改了不自動重翻」）。
 
 - JSON 有效；結構（鍵、型別、陣列長度）與 KR 骨架相同；識別欄位等於 KR
 - `[ID]` 的種類與數量與 KR 相同（全大寫替換變數同樣要保留）
@@ -281,8 +301,8 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
    ```
 
 4. **把調整歸納進規則**：Claude 提出對應的指引或詞彙修改，人同意後寫入
-5. 依新規則找出其他違反的 Claude 譯文，人同意後 `lct requeue` 送回待譯清單
-6. commit 到 `main` → 觸發重建（§12）
+5. 依新規則找出其他違反的 Claude 譯文，人同意後 `lct requeue` 寫入 `rules/requeue/<日期>-<主題>.yaml`（範圍與理由）
+6. commit 到 `main` → 觸發重建（§12），CI 依調整與重翻要求更新 `tw`
 
 人工調整只在它所根據的 KR 版本有效。KR 變了就依目前規則重翻；調整背後的道理已經寫進規則，會反映在重翻結果。
 
@@ -296,9 +316,9 @@ SKILL.md 只寫流程；規則內容都引用 `guides/`、`glossary/` 的檔案�
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次檢查臨時更新；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release |
+| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release。每日那次另外：第一階段檢查上游是否有新 release；待譯清單不是空的就繼續翻。三者都沒有變化就直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release |
-| `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試 |
+| `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
 
 - 所有寫入 `raw`／`tw` 的 workflow 共用一個 `concurrency` 群組，依序執行
 - secrets：`ANTHROPIC_API_KEY`、`LIMBUS_STATUS_URL`
@@ -401,6 +421,12 @@ docs/
 - 預設模型 `claude-opus-5-5`，可由 variable 更換；每次建置有花費上限
 - 每次建置都發 Release（文字版＋含字型版）
 - 只輸出 KR 與 EN 都有的檔
+- `raw`、`tw` 與 Release 只由 CI 寫入；人工介入一律經由 `main`（§9.3）
+- Paratranz 匯入先比對識別欄位骨架，並以 `para_kr_sha` 判斷是否過時（§8.3）
+- 名稱表（關鍵字、說話者）取自本專案現行譯文，直接具約束力；Claude 提出的新詞要審核（§7）
+- 結構類驗證一律強制；內容類驗證對規則改變後的既有單位只警告（§10）
+- 凍結（`BgmLyrics/**`）＝既有譯文不被取代，KR 變了也不動、只報告；新加入的歌詞照一般流程翻譯
+- 每日檢查上游新 release，並繼續翻待譯清單（§12）
 
 ## 19. 交給實作者決定
 
