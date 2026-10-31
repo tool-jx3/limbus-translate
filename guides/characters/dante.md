@@ -2,6 +2,7 @@
 id: dante
 name: 但丁
 name_kr: 단테
+gender: unspecified  # 性別不明：第二人稱用「你」，第三人稱用「他」
 number: null  # ScenarioModelCodes nickName：관리자 → 執行經理
 code: null
 models: [단테, 단테1, 단테2, 단테3]

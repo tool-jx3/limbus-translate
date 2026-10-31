@@ -2,6 +2,7 @@
 id: vergilius
 name: 維吉里烏斯
 name_kr: 베르길리우스
+gender: male
 number: null  # ScenarioModelCodes nickName：길잡이 → 嚮導
 code: null
 models: [베르길리우스, 베르길리우스2, 베르길리우스3, 다친베르길리우스, 베르길리우스만우]

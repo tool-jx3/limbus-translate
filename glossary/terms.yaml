@@ -3,6 +3,7 @@
 # 欄位：
 #   kr / jp / en  原文（KR 為主）
 #   zh            採用譯名
+#   status        approved（已採用）／candidate（候選，待人工確認）
 #   forbidden     禁用譯法（驗證時以子字串比對；以 re: 開頭者為正規表示式）
 #   category      分類，見 glossary/README.md
 #   evidence      2026-10-29 既有繁中的使用情況（KR 含此詞的行數 / 使用採用譯名的行數 / 使用禁用譯法的行數）
@@ -15,6 +16,7 @@
   en: Takeoff Module
   zh: 跳躍成長模組
   forbidden: [跳躍成長模塊]
+  status: approved
   category: [system]
   evidence: { kr_lines: 75, approved: 75, forbidden: 0 }
 
@@ -23,15 +25,17 @@
   en: Target Extraction
   zh: 特定提取
   forbidden: [特定抽取]
+  status: approved
   category: [system]
   evidence: { kr_lines: 295, approved: 261, forbidden: 0 }
-  notes: 另有 19 行譯為「定向提取」，需確認是否為同一詞的不一致譯法
+  notes: 既有譯文中 GachaTitle.json 的 20 行譯為「定向提取」，KR 同樣是「특정 추출」（특정 = 特定），統一為「特定提取」
 
 - kr: 패키지
   jp: パッケージ
   en: Package
   zh: 組合包
   forbidden: [禮包]
+  status: approved
   category: [system]
   evidence: { kr_lines: 221, approved: 215, forbidden: 0 }
   notes: 「每月補給包」等專有商品名不在此限
@@ -41,6 +45,7 @@
   en: Identity Training Ticket
   zh: 人格訓練券
   forbidden: [人格訓練卷, 人格經驗券]
+  status: approved
   category: [system]
   evidence: { kr_lines: 100, approved: 95, forbidden: 0 }
 
@@ -49,6 +54,7 @@
   en: 3★ Guarantee Decaextraction Ticket
   zh: 3星人格必得十連提取券
   forbidden: [3★人格必得十連提取券]
+  status: approved
   category: [system]
   evidence: { kr_lines: 14, approved: 10, forbidden: 0 }
 
@@ -57,6 +63,7 @@
   en: Level Boost Ticket
   zh: 人格等級直升券
   forbidden: []
+  status: approved
   category: [system]
   evidence: { kr_lines: 29, approved: 29, forbidden: 0 }
 
@@ -65,6 +72,7 @@
   en: Identity Takeoff Ticket
   zh: 人格跳躍成長券
   forbidden: []
+  status: approved
   category: [system]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
 
@@ -73,6 +81,7 @@
   en: Season
   zh: 賽季
   forbidden: ["re:第\\d+季"]
+  status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
   notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規
@@ -82,6 +91,7 @@
   en: (The) Main Story
   zh: 主線劇情
   forbidden: [主線故事]
+  status: approved
   category: [system]
   evidence: { kr_lines: 107, approved: 80, forbidden: 0 }
 
@@ -90,15 +100,17 @@
   en: Egoshard
   zh: 自我碎片
   forbidden: [人格碎片]
+  status: approved
   category: [system]
   evidence: { kr_lines: 186, approved: 186, forbidden: 0 }
-  notes: 全語料另有 7 行出現「人格碎片」，對應的 KR 不是「자아 파편」，需確認
+  notes: 既有譯文另有 7 行「人格碎片」，KR 是「전용 파편」，見下方「전용 파편」條目
 
 - kr: 배틀 패스
   jp: バトルパス
   en: Battle Pass
   zh: 戰鬥通行證
   forbidden: []
+  status: approved
   category: [system]
   evidence: { kr_lines: 29, approved: 22, forbidden: 0 }
 
@@ -107,5 +119,19 @@
   en: Limbus Pass
   zh: 巴士通行證
   forbidden: [邊獄通行證]
+  status: approved
   category: [system]
   evidence: { kr_lines: 58, approved: 35, forbidden: 0 }
+
+- kr: 전용 파편
+  jp: 専用破片
+  en: only Shard
+  zh: 專用碎片
+  status: candidate
+  forbidden: [人格碎片]
+  category: [system]
+  evidence: { kr_lines: 7, approved: 0, forbidden: 7 }
+  notes: >-
+    例：시즌 8 동기화 · 환상해석 전용 파편 (공용) → 第8賽季同步・異想解析專用碎片（共通）。
+    KR／JP／EN 都沒有「人格」，既有譯文的「專用人格碎片」多加了字，又與「자아 파편」的禁用譯法相同。
+    既有譯文的連接符號「&」「＆」混用，KR 為「·」，需另定一種

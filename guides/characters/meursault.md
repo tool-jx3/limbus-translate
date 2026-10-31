@@ -2,6 +2,7 @@
 id: meursault
 name: 莫梭
 name_kr: 뫼르소
+gender: male
 number: 5
 code: "05"
 models: [뫼르소, 뫼르소요리사, 뫼르소다침, 뫼르소그림자, 뫼르소만우]

@@ -2,6 +2,7 @@
 id: charon
 name: 卡戎
 name_kr: 카론
+gender: female
 number: null  # ScenarioModelCodes nickName：운전수 → 司機
 code: null
 models: [카론, 카론만우]

@@ -2,6 +2,7 @@
 id: rodion
 name: 羅佳
 name_kr: 로쟈
+gender: female
 number: 9
 code: "09"
 models: [로쟈, 로쟈SD, 탐정로쟈, 주민로쟈, 로쟈다침, 로쟈그림자, 로쟈만우]

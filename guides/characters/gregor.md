@@ -2,6 +2,7 @@
 id: gregor
 name: 格里高爾
 name_kr: 그레고르
+gender: male
 number: 13
 code: "12"
 models: [그레고르, 그레고르요리사, 그레고르다침, 그레고르F, 그레고르그림자, 그레고르만우]

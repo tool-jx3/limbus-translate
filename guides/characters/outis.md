@@ -2,6 +2,7 @@
 id: outis
 name: 奧提斯
 name_kr: 오티스
+gender: female
 number: 12
 code: "11"
 models: [오티스, 오티스요리사, 주민오티스, 오티스다침, 오티스그림자, 오티스만우]

@@ -2,6 +2,7 @@
 id: sinclair
 name: 辛克萊
 name_kr: 싱클레어
+gender: male
 number: 11
 code: "10"
 models: [싱클레어, 싱클레어다침, 싱클레어그림자, 싱클레어만우]
