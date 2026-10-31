@@ -207,6 +207,17 @@ ParatranzUploader 與 LTM 都用 Sarasa Gothic TC Bold（SIL OFL）。
 - 兩邊都有中文的 162,639 個單位中，有 64,269 個（約 40%）譯文不同，是兩條不同的翻譯脈絡（LTM 由 LLC 轉繁再校對）。角色名也不同，例如莫梭／默爾索
 - 只有 GitHub release 的直接下載網址可用；GitHub API 對未掛載的 repo 會被這個環境的代理擋下
 
+## 8. 跨語言順序與 id 不一致（2026-10-29）
+
+以 KR 為準比對 EN、JP 的 `dataList`（三語都有的 2,366 個檔）：
+
+- 換順序（同一批 id）：JP 2 檔（`EventVerificationUIText.json`、`Passives.json` 第 627～633 條），EN 0 檔
+- 劇情 id 打錯：JP 5 檔（`StoryData/7D111I2`、`E001X`、`E715B`、`S706B`、`S736B`），例如 `E001X` 第 201 行 KR `id=201`、JP `id=211`，說話者與內容相同
+- 多一行：`StoryData/P10511.json` 的 EN、JP 都比 KR 多一行無 id 的內容
+- `EGOVoiceDig/Voice_EGO_Enemy_999.json`：EN 比 KR 少一條
+- 巢狀陣列：在頂層順序一致的檔中，沒有發現巢狀陣列順序不同
+- 結論：不能只用 JSON 路徑對齊三語；設計見 spec §6.5
+
 ## 6. 實測過程備註
 
 - 本次雲端環境的網路政策擋掉 `limbus-api.voidfissure.de` 與 `store.steampowered.com`，所以 Steam 公告原文與狀態 API 回應沒有直接讀到；CDN（`downloadcommon.limbuscompanycdn.org`）可連

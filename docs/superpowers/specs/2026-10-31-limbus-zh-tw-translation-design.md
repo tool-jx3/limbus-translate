@@ -128,6 +128,33 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - `origin`：`copy` = 識別碼或三語相同；`fallback` = 翻譯失敗暫用 EN 原文
 - 上一版 `tw` 的紀錄就是這一版的「既有譯文」
 
+### 6.5 跨語言對齊（KR 與 EN／JP、參考譯文）
+
+輸出一律用 KR 的結構與順序，所以其他語言檔的順序不影響產出；但交給 Claude 的 EN／JP 參考、§6.3 的三語比對、第一階段的 LLC／LTM 參考，都必須先「對到同一句」。不能只靠 JSON 路徑（陣列位置）對齊。
+
+2026-10-29 實測（KR、EN、JP 三語都有的 2,366 個檔）：
+
+| 情況 | JP | EN | 例 |
+|---|---|---|---|
+| 同一批 id、順序不同 | 2 檔 | 0 | `EventVerificationUIText.json`（18 條中 14 條位置不同）、`Passives.json`（第 627～633 條） |
+| 劇情 id 打錯（位置、說話者、內容都對得上，只有 id 不同） | 5 檔 | 0 | `StoryData/E001X.json` 第 201 行：KR `id=201`、JP `id=211` |
+| 多一行 | 1 檔 | 1 檔 | `StoryData/P10511.json`：EN、JP 比 KR 多一行無 id 的內容，之後全部錯開 |
+| 其他 id 集合不同 | — | 1 檔 | `EGOVoiceDig/Voice_EGO_Enemy_999.json`：EN 少一條 |
+
+對齊規則，依檔逐一判斷：
+
+1. **id 對齊**：`dataList` 條目在兩邊都有 id、且 id 在檔內唯一 → 依 id 對齊（處理換順序）
+2. **序列對齊**：`StoryData`、沒有 id、id 重複，或 id 對齊後有大量對不上的 → 以每條的「指紋」做序列比對（LCS）。劇情的 id 只是行號，不可靠，所以指紋用 `model`、`place`／`teller`／`title` 等欄位是否存在，以及欄位名集合，不用 id（處理 id 打錯與插行）
+3. **巢狀陣列**（例如技能的等級、硬幣）：在已對齊的條目內，有 id 就依 id，否則依位置
+4. **驗證**：對齊後檢查識別欄位（`model` 等）是否一致；不一致或對不上的單位標為「未對齊」
+
+使用方式：
+
+- 交給 Claude 的批次中，每個單位的 EN／JP 都附上對齊方式（`pointer`／`id`／`sequence`）；「未對齊」的就不提供那個語言，寧可少給，也不給錯的句子
+- §6.3 的三語比對只用已對齊的單位
+- 新舊 KR 的比對（§8.1）、第一階段的 Paratranz／LLC／LTM 匯入（§8.3）用同一套對齊程式
+- 報表列出有跨語言順序或 id 不一致的檔，以及「未對齊」的單位數
+
 ## 7. 規則
 
 規則都在 `main`，由人審核後才變更。CI 不能直接寫入 `main`，只能開 PR 提出修改（§11.2）。
@@ -163,6 +190,8 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 1. 條目有檔內唯一的 `id`：以（`id`, 條目內欄位路徑）對齊
 2. 其他（`StoryData`、重複 id、無 id）：把檔內單位依序列成（欄位名, KR 文字）序列，做序列差異比對（LCS／Myers）。對上的沿用；插入的是新單位；替換的配對成「舊→新」
+
+這與跨語言對齊（§6.5）用同一套程式。
 
 結果：每個單位標為 **不變**（KR 相同）、**變更**（對到舊單位但 KR 不同）、**新增**、**刪除**。插行造成的位置平移不算變更。
 
@@ -409,6 +438,7 @@ docs/
 
 - Go 單元測試：對齊（含插行）、來源決策、Paratranz 有效判定與 `[ID]` 還原、驗證規則
 - 真實資料 fixture：從 10/29 語言包挑小量檔案
+- 跨語言對齊 fixture：`EventVerificationUIText.json`、`Passives.json`（換順序）、`StoryData/E001X.json`、`StoryData/S706B.json`（id 打錯）、`StoryData/P10511.json`（多一行）
 - 重播測試：用 `tool-jx3/Assets` 的歷次 commit 當作連續幾週的原文，驗證「不變不重翻、變了才重翻」
 - 不呼叫 Claude 的乾跑模式（待譯全部走 `fallback`），讓 CI 能完整跑過流程
 - skill 契約測試：skill 引用的檔案與 `lct` 指令都存在；不含模型名稱
