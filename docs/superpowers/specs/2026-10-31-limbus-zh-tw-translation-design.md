@@ -99,6 +99,9 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
                               │
                               ▼
                 tw（orphan）：譯文成品＋逐欄位紀錄；GitHub Release
+                              │
+                              ▼
+                審核 Issue（需要人處理的項目）；規則 PR（CI 提出的規則修改）
 ```
 
 ## 6. 資料與識別
@@ -209,7 +212,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 1. 條目有檔內唯一的 `id`：以（`id`, 條目內欄位路徑）對齊
 2. 其他（`StoryData`、重複 id、無 id）：把檔內單位依序列成（欄位名, KR 文字）序列，做序列差異比對（LCS／Myers）。對上的沿用；插入的是新單位；替換的配對成「舊→新」
 
-這與跨語言對齊（§6.5）用同一套程式。
+這與跨語言對齊（§6.5）用同一套對齊程式，只是比對的內容不同：新舊 KR 之間比 KR 文字；跨語言之間文字不同，所以比識別欄位。
 
 KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新中，約 30 個檔有中間插入，例如：
 
@@ -395,8 +398,8 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release。每日那次另外：待譯清單不是空的就繼續翻。沒有新 token、也沒有待譯就直接結束 |
-| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release |
+| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue（§14）。每日那次另外：待譯清單不是空的就繼續翻。沒有新 token、也沒有待譯就直接結束 |
+| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue |
 | `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成後，報表有新建議時；手動 | §11.2：跑 `rules-review` skill，開或更新規則 PR |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
 
@@ -517,6 +520,7 @@ docs/
 - 第一階段不自動化，在 Claude Code 工作階段中一次完成並上傳；之後的 GitHub Actions 都是第二階段
 - CI 可以開 PR 改進規則，由人審核決定是否調整、合併
 - 做法 B 列為第三階段，第二階段穩定後再開發
+- 需要人處理的項目以 GitHub Issue 通知（§14）
 - KR 為主、JP／EN 輔助
 - 原文沒變不重翻；KR 變了依變化重翻
 - 人工調整不是最高優先的永久覆寫，而是歸納進規則
