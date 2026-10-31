@@ -2,11 +2,13 @@ package align
 
 import (
 	"fmt"
+	"math"
 	"reflect"
 	"strings"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 func kept(oldPtr, newPtr string) VersionMatch {
@@ -71,10 +73,22 @@ func TestVersionsStoryInsert(t *testing.T) {
 	})
 }
 
+// Story lines for the edit tests. B2 is an edit of B (Dice 0.76) and Y is
+// not (Dice 0.24); X and D share no bigram with B or B2.
+const (
+	lineA  = "선장, 오늘은 어디로 가는 거야?"
+	lineB  = "그야 물론 모험이지!"
+	lineB2 = "그야 물론 모험이라네!"
+	lineY  = "그야 당연하지."
+	lineC  = "또 시작이네."
+	lineD  = "인터뷰어는 한숨을 쉬었다."
+	lineX  = "조용히 해. 누가 듣겠어."
+)
+
 func TestVersionsStoryEdit(t *testing.T) {
 	const file = "StoryData/S100A.json"
 	t.Run("replace", func(t *testing.T) {
-		got := AlignVersions(file, story(t, "가", "나", "다"), story(t, "가", "나!", "다"))
+		got := AlignVersions(file, story(t, lineA, lineB, lineC), story(t, lineA, lineB2, lineC))
 		wantVersions(t, got, []VersionMatch{
 			kept("/dataList/0/content", "/dataList/0/content"),
 			changed("/dataList/1/content", "/dataList/1/content"),
@@ -82,7 +96,7 @@ func TestVersionsStoryEdit(t *testing.T) {
 		})
 	})
 	t.Run("replace and insert", func(t *testing.T) {
-		got := AlignVersions(file, story(t, "가", "나", "다"), story(t, "가", "나!", "라", "다"))
+		got := AlignVersions(file, story(t, lineA, lineB, lineC), story(t, lineA, lineB2, lineX, lineC))
 		wantVersions(t, got, []VersionMatch{
 			kept("/dataList/0/content", "/dataList/0/content"),
 			changed("/dataList/1/content", "/dataList/1/content"),
@@ -90,8 +104,17 @@ func TestVersionsStoryEdit(t *testing.T) {
 			kept("/dataList/2/content", "/dataList/3/content"),
 		})
 	})
+	t.Run("insert before edit", func(t *testing.T) {
+		got := AlignVersions(file, story(t, lineA, lineB, lineC), story(t, lineA, lineX, lineB2, lineC))
+		wantVersions(t, got, []VersionMatch{
+			kept("/dataList/0/content", "/dataList/0/content"),
+			added("/dataList/1/content"),
+			changed("/dataList/1/content", "/dataList/2/content"),
+			kept("/dataList/2/content", "/dataList/3/content"),
+		})
+	})
 	t.Run("replace and delete", func(t *testing.T) {
-		got := AlignVersions(file, story(t, "가", "나", "라", "다"), story(t, "가", "나!", "다"))
+		got := AlignVersions(file, story(t, lineA, lineB, lineD, lineC), story(t, lineA, lineB2, lineC))
 		wantVersions(t, got, []VersionMatch{
 			kept("/dataList/0/content", "/dataList/0/content"),
 			changed("/dataList/1/content", "/dataList/1/content"),
@@ -99,14 +122,139 @@ func TestVersionsStoryEdit(t *testing.T) {
 			deleted("/dataList/2/content"),
 		})
 	})
+	t.Run("unrelated replacement", func(t *testing.T) {
+		// Too little in common to be an edit of the old line.
+		got := AlignVersions(file, story(t, lineA, lineB, lineC), story(t, lineA, lineY, lineC))
+		wantVersions(t, got, []VersionMatch{
+			kept("/dataList/0/content", "/dataList/0/content"),
+			added("/dataList/1/content"),
+			kept("/dataList/2/content", "/dataList/2/content"),
+			deleted("/dataList/1/content"),
+		})
+	})
+	t.Run("inserted speaker", func(t *testing.T) {
+		// The inserted line's model and teller come first in the unmatched
+		// run, yet only a content string may pair with the old content.
+		old := story(t, lineA, lineB, lineC)
+		cur := mustParse(t, fmt.Sprintf(`{"dataList": [
+			{"id": 1, "content": %q},
+			{"id": 2, "model": "중지제자", "teller": "???", "content": %q},
+			{"id": 3, "content": %q},
+			{"id": 4, "content": %q}]}`, lineA, lineX, lineB2, lineC))
+		got := AlignVersions(file, old, cur)
+		wantVersions(t, got, []VersionMatch{
+			kept("/dataList/0/content", "/dataList/0/content"),
+			added("/dataList/1/model"),
+			added("/dataList/1/teller"),
+			added("/dataList/1/content"),
+			changed("/dataList/1/content", "/dataList/2/content"),
+			kept("/dataList/2/content", "/dataList/3/content"),
+		})
+		for _, m := range got {
+			if m.Status == StatusChanged && units.FieldName(m.OldPointer) != units.FieldName(m.NewPointer) {
+				t.Errorf("changed pair across fields: %+v", m)
+			}
+		}
+	})
 	t.Run("same text in another field", func(t *testing.T) {
 		old := mustParse(t, `{"dataList": [{"id": 1, "teller": "???", "content": "가"}]}`)
 		cur := mustParse(t, `{"dataList": [{"id": 1, "title": "???", "content": "가"}]}`)
 		wantVersions(t, AlignVersions(file, old, cur), []VersionMatch{
-			changed("/dataList/0/teller", "/dataList/0/title"),
+			added("/dataList/0/title"),
 			kept("/dataList/0/content", "/dataList/0/content"),
+			deleted("/dataList/0/teller"),
 		})
 	})
+}
+
+func TestVersionsCRLF(t *testing.T) {
+	// KR text is compared after "\r\n" becomes "\n", as kr_sha does.
+	t.Run("sequence", func(t *testing.T) {
+		got := AlignVersions("StoryData/S100A.json", story(t, lineA, "x\r\ny", lineC), story(t, lineA, "x\ny", lineC))
+		wantVersions(t, got, []VersionMatch{
+			kept("/dataList/0/content", "/dataList/0/content"),
+			kept("/dataList/1/content", "/dataList/1/content"),
+			kept("/dataList/2/content", "/dataList/2/content"),
+		})
+	})
+	t.Run("id and pointer", func(t *testing.T) {
+		old := mustParse(t, `{"title": "제\r\n목", "dataList": [{"id": "a", "desc": "가\r\n나"}]}`)
+		cur := mustParse(t, `{"title": "제\n목", "dataList": [{"id": "a", "desc": "가\n나"}]}`)
+		wantVersions(t, AlignVersions("Sample.json", old, cur), []VersionMatch{
+			kept("/title", "/title"),
+			kept("/dataList/0/id", "/dataList/0/id"),
+			kept("/dataList/0/desc", "/dataList/0/desc"),
+		})
+	})
+	t.Run("next to an insertion", func(t *testing.T) {
+		got := AlignVersions("StoryData/S100A.json",
+			story(t, lineA, "x\r\ny", lineC), story(t, lineA, lineX, "x\ny", lineC))
+		wantVersions(t, got, []VersionMatch{
+			kept("/dataList/0/content", "/dataList/0/content"),
+			added("/dataList/1/content"),
+			kept("/dataList/1/content", "/dataList/2/content"),
+			kept("/dataList/2/content", "/dataList/3/content"),
+		})
+	})
+}
+
+func TestDice(t *testing.T) {
+	cases := []struct {
+		a, b string
+		want float64
+	}{
+		{"가나다", "가나다", 1},
+		{"가나다", "라마바", 0},
+		{"가나다라", "가나마바", 2.0 / 6}, // bigram 가나 in common
+		{"ㅋㅋㅋ", "ㅋㅋ", 1},          // repeated bigrams count once
+		{"가", "가", 1},             // shorter than 2 runes: single runes
+		{"가", "나", 0},
+		{"가", "가나", 0},             // a rune is not a bigram
+		{"\x00가", "가", 0},          // nor is a bigram that starts with NUL
+		{lineB, lineB2, 16.0 / 21}, // 8 of 10 and 11 bigrams
+		{lineB, lineY, 4.0 / 17},   // 그야 and "야 " of 10 and 7
+		{lineB, lineX, 0},
+	}
+	for _, c := range cases {
+		if got := dice(grams(c.a), grams(c.b)); math.Abs(got-c.want) > 1e-9 {
+			t.Errorf("dice(%q, %q) = %v, want %v", c.a, c.b, got, c.want)
+		}
+	}
+}
+
+func TestPairEdits(t *testing.T) {
+	// Each text has 10 distinct bigrams. s shares 3 with t3 (Dice 0.3) and 2
+	// with t2 (Dice 0.2); t9 shares 9 with t3 (Dice 0.9) and 7 with t2.
+	const (
+		s  = "가나다라마바사아자차카"
+		t3 = "가나다라파타하거너더러"
+		t2 = "가나다파타하거너더러너"
+		t9 = "가나다라파타하거너더리"
+	)
+	content := func(texts ...string) []text {
+		out := make([]text, len(texts))
+		for i, s := range texts {
+			out[i] = text{"content", s}
+		}
+		return out
+	}
+	cases := []struct {
+		name string
+		a, b []text
+		want [][2]int
+	}{
+		{"at the threshold", content(s), content(t3), [][2]int{{0, 0}}},
+		{"below the threshold", content(s), content(t2), nil},
+		{"another field", []text{{"name", t3}}, content(t9), nil},
+		{"most alike wins", content(s, t9), content(t3), [][2]int{{1, 0}}},
+		// 0.7 + 0.3 beats the single 0.9 pair, which would cross them.
+		{"most alike in total wins", content(t9, s), content(t2, t3), [][2]int{{0, 0}, {1, 1}}},
+	}
+	for _, c := range cases {
+		if got := pairEdits(c.a, c.b); !reflect.DeepEqual(got, c.want) {
+			t.Errorf("%s: pairEdits = %v, want %v", c.name, got, c.want)
+		}
+	}
 }
 
 func TestVersionsIDFieldAdded(t *testing.T) {
