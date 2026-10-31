@@ -399,7 +399,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 週四更新時段每 20 分鐘（約 UTC 01:00–05:00）；每日一次；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue（§14）。每日那次另外：待譯清單不是空的就繼續翻。沒有新 token、也沒有待譯就直接結束 |
+| `update.yml` | 每天 12:00 UTC+8 一次（cron `0 4 * * *`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯就直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue |
 | `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成後，報表有新建議時；手動 | §11.2：跑 `rules-review` skill，開或更新規則 PR |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
@@ -548,7 +548,7 @@ docs/
 - 名稱表（關鍵字、說話者）取自本專案現行譯文，直接具約束力；Claude 提出的新詞要審核（§7）
 - 結構類驗證一律強制；內容類驗證對規則改變後的既有單位只警告（§10）
 - 凍結（`BgmLyrics/**`）＝既有譯文不被取代，KR 變了也不動、只報告；新加入的歌詞照一般流程翻譯
-- 每日一次繼續翻待譯清單（§12）
+- `update.yml` 每天 12:00 UTC+8 跑一次，同時處理週四更新、其他日子的臨時更新與未翻完的待譯清單（§12）。GitHub 的排程在整點附近可能延遲數分鐘到數十分鐘
 - 第二階段預設模型 `claude-opus-5-5`、每次建置花費上限 `LCT_MAX_USD` 預設 30 美元，都可隨時改 variable
 
 ## 19. 交給實作者決定
