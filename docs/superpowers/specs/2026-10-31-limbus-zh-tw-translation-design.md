@@ -47,6 +47,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - Claude：Claude Code CLI 以 headless 模式（`claude -p`）執行；認證用 GitHub secret `ANTHROPIC_API_KEY`（Claude Console 的 key）。官方 Agent SDK 只有 Python／TypeScript，官方文件建議其他語言以子行程執行 CLI，這正是本設計的做法
 - 狀態 API 網址放 GitHub secret（第三方服務，可能更換）
 - 授權：上游譯文是 CC BY-NC-SA 4.0；只要產出含有匯入的上游譯文，語言包就必須沿用 CC BY-NC-SA 4.0、標示來源、不可商用
+- **不依賴其他 repo**：CI 不讀取、不寫入任何其他 GitHub repo。只用 GitHub 官方的 `actions/*`；Release、Issue、PR 用 runner 內建的 `gh` 指令；字型放在本 repo。第一階段下載上游 release 是一次性的，之後不再讀取
 - GitHub Actions 單一 job 上限 6 小時
 - 原文快照每次約 90 MB（三語解壓後），git 以差異壓縮，週更變動小
 
@@ -108,18 +109,18 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 ### 6.1 原文快照（`raw` 分支）
 
-- orphan 分支，版面沿用 `tool-jx3/Assets`：`kr/`、`en/`、`jp/` 下放解壓後原樣的檔案（保留 `KR_` 等前綴、BOM、CRLF），外加 `meta/source.json`（`token`、`created_at`、取得時間、各檔 sha256）
+- orphan 分支：`kr/`、`en/`、`jp/` 下放解壓後原樣的檔案（保留 `KR_` 等前綴、BOM、CRLF），外加 `meta/source.json`（`token`、`created_at`、取得時間、各檔 sha256）
+- 從 2026-10-29 的官方語言包開始，不匯入其他 repo 的歷史
 - `.gitattributes` 設 `* -text`，git 不改換行
 - 每次遊戲更新一個 commit，打 tag `raw-YYYYMMDD`（同日多次加 `.N`）
 - token 與 `meta/source.json` 相同就不建新 commit
-- 這個版面讓 `tool-jx3/ParatranzUploader` 之後可以直接改讀這個分支（是否退役 `tool-jx3/Assets` 由使用者決定，見 §20）
 
 ### 6.2 翻譯單位與 key
 
 - **檔名**：去掉語言前綴的相對路徑，例如 `StoryData/S1037B.json`、`Skills_personality-08.json`
 - **單位**：一個字串欄位。key = `<檔名>|<JSON pointer>`，例如 `StoryData/S1037B.json|/dataList/12/content`
 - 不可把檔案壓成 id→條目 的表：有重複 id、無 id 的條目、沒有 `dataList` 的檔
-- **骨架**：以 KR 檔的結構為準輸出。檔案集合預設為「KR 與 EN 都有的檔」（2,366 個）；只有 KR 有的 53 個、只有 EN 有的 10 個先不輸出，列在報表（見 §20）
+- **骨架**：以 KR 檔的結構為準輸出。**檔案集合以 KR 為準**：輸出全部 KR 檔（10/29 為 2,419 個）。其中只有 KR 有的檔（53 個）沒有 EN／JP 可參考，只依 KR 翻譯；只有 EN 有的檔（10 個）不輸出，列在報表
 
 ### 6.3 哪些欄位要翻
 
@@ -421,8 +422,8 @@ LimbusCompany_Data/
       Info/              # 授權（CC BY-NC-SA 4.0）、來源標示、version.json（建置輸入）
 ```
 
-- 兩個 zip：只有文字、含字型（同 ParatranzUploader 的做法）
-- 字型：Sarasa Gothic TC（SIL OFL），固定版本並驗證 checksum
+- 兩個 zip：只有文字、含字型
+- 字型：Sarasa Gothic TC Bold（SIL OFL），連同 OFL 授權文字放在本 repo 的 `assets/fonts/`（約 23 MB），不在建置時下載
 - Release tag `zh-TW-YYYYMMDD.N`；release notes 由報表摘要產生
 - `version.json` 與 `.meta/build.json` 記錄：raw tag 與 token、`main` commit、模型、花費；第一階段的初始建置另記上游 release tag
 
@@ -491,12 +492,16 @@ LimbusCompany_Data/
 cmd/lct/                 CLI 入口
 internal/…               fetch、snapshot、align、units、rules、guide、validate、pack、report…
 guides/  glossary/  rules/
+assets/fonts/            字型與 OFL 授權
+testdata/                測試用的官方原檔片段
 prompts/                 翻譯指示（skill 與第三階段共用）
 schemas/                 批次輸入／輸出、規則檔的 JSON schema
 lct.yaml                 輸出資料夾名、字型、凍結清單、批次大小、重試次數、第一階段用的上游版本
 .claude/skills/          §9.3
 .claude/settings.json    工具權限
 CLAUDE.md                專案說明（AGENTS.md 指向它）
+LICENSE                  程式碼授權（MIT）
+LICENSE-CONTENT          內容授權（CC BY-NC-SA 4.0），說明適用範圍
 .github/workflows/       §12
 docs/
 ```
@@ -506,7 +511,7 @@ docs/
 - Go 單元測試：對齊（含插行）、來源決策、Paratranz 有效判定與 `[ID]` 還原、驗證規則
 - 真實資料 fixture：從 10/29 語言包挑小量檔案
 - 跨語言對齊 fixture：`EventVerificationUIText.json`、`Passives.json`（換順序）、`StoryData/E001X.json`、`StoryData/S706B.json`（id 打錯）、`StoryData/P10511.json`（多一行）
-- 重播測試：用 `tool-jx3/Assets` 的歷次 commit 當作連續幾週的原文，驗證「不變不重翻、變了才重翻」，包含中間插入的情況（例如 `StoryData/S918A.json`、`EGOgift_MirrorDungeon.json`、`Bufs*`）與人工調整 key 移動
+- 重播測試：驗證「不變不重翻、變了才重翻」，包含中間插入的情況與人工調整 key 移動。第一階段時，把幾組有中間插入的官方原檔前後版本（例如 `StoryData/S918A.json`、`EGOgift_MirrorDungeon.json`、`Bufs*`，取自調查時看過的歷史）複製進 `testdata/`；之後再以本 repo 的 `raw` 歷史補充。測試不在執行時讀取其他 repo
 - 不呼叫 Claude 的乾跑模式（待譯全部走 `fallback`），讓 CI 能完整跑過流程
 - skill 契約測試：skill 引用的檔案與 `lct` 指令都存在；不含模型名稱
 
@@ -521,6 +526,9 @@ docs/
 - CI 可以開 PR 改進規則，由人審核決定是否調整、合併
 - 做法 B 列為第三階段，第二階段穩定後再開發
 - 需要人處理的項目以 GitHub Issue 通知（§14）
+- 輸出檔案以 KR 為準（§6.2）
+- `StoryData` 的 `PC*` 是明日方舟聯動劇情，`ES*` 是第八章的特殊劇情模式
+- 不動 `tool-jx3/Assets`、`tool-jx3/ParatranzUploader`；本專案不依賴其他 repo（§3）
 - KR 為主、JP／EN 輔助
 - 原文沒變不重翻；KR 變了依變化重翻
 - 人工調整不是最高優先的永久覆寫，而是歸納進規則
@@ -532,9 +540,9 @@ docs/
 - 輸出資料夾名 `zh-TW`；字型 Sarasa Gothic TC
 - 人工調整存在 `main` 的 `rules/adjustments/`，與其他規則一起審核
 - 翻譯失敗暫用 EN 原文
-- `raw` 版面沿用 `tool-jx3/Assets`
+- `raw` 從 2026-10-29 開始，不匯入 `tool-jx3/Assets` 的歷史（理由：歷史已保存在原處；譯文紀錄本來就從 10/29 開始，更早的差異不會用到；避免依賴其他 repo）
+- 授權：程式碼 MIT；`guides/`、`glossary/`、`rules/` 與 `tw` 分支的譯文用 CC BY-NC-SA 4.0；`raw` 分支是 Project Moon 的原文，著作權屬於原作者，只為比對差異而保存
 - 每次建置都發 Release（文字版＋含字型版）
-- 只輸出 KR 與 EN 都有的檔
 - `raw`、`tw` 與 Release 只由 CI 寫入；人工介入一律經由 `main`（§9.3）
 - Paratranz 匯入先比對識別欄位骨架，對不上的單位不匯入（§8.3）
 - 名稱表（關鍵字、說話者）取自本專案現行譯文，直接具約束力；Claude 提出的新詞要審核（§7）
@@ -549,13 +557,8 @@ docs/
 - 相同文字重用的長度門檻
 - 批次大小、重試次數、`--max-turns` 的預設值
 - 簡體專用字的判定方式
-- 字型取得方式（下載固定版本或放在 repo）
 - release notes 的格式
 
 ## 20. 待確認
 
-- 遊戲在自訂語言下實際讀哪些檔：只有 KR 有的 53 個檔、只有 EN 有的 10 個檔要不要輸出（Steam 公告在本環境無法讀取）
-- `StoryData` 中 `PC*`、`ES*` 前綴的正式名稱
-- `tool-jx3/Assets` 與 `tool-jx3/ParatranzUploader` 之後是否改用本專案的 `raw` 分支或退役
-- `raw` 分支要從 10/29 開始，還是先匯入 `tool-jx3/Assets` 的歷次 commit 當作過去的更新歷史
-- 程式碼的授權（譯文內容已確定為 CC BY-NC-SA 4.0）
+目前沒有。
