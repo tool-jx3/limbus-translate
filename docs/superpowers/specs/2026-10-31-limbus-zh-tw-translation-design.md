@@ -310,7 +310,7 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
 
 - 用官方支援的兩種形式之一，兩者都讀 repo 的 `.claude/skills/` 與 `CLAUDE.md`：
   - **翻譯迴圈**：安裝固定版本的 Claude Code CLI，以 headless 模式執行（官方對 Python／TypeScript 以外語言的建議做法）
-  - **規則 PR**（`rules-proposal.yml`）：用官方的 `anthropics/claude-code-action@v1`，`prompt: "/rules-review"`。它以 Claude GitHub App 的身分推送與開 PR，所以 `ci.yml` 會在這個 PR 上正常執行（用 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow）。需要在 repo 安裝 Claude GitHub App
+  - **規則 PR**（`rules-proposal.yml`）：用官方的 `anthropics/claude-code-action@v1`，`prompt: "/rules-review"`。它以 Claude GitHub App 的身分推送與開 PR，所以 `ci.yml` 會在這個 PR 上正常執行（用 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow）。需要在 repo 安裝 Claude GitHub App。Claude 的認證同樣用 Console 的 API key（`anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}`），費用記在 Console；GitHub App 只負責 GitHub 上的操作，與計費無關
 - build `lct`
 - 迴圈執行：`claude -p "/translate-pending" --output-format json --model "$LCT_MODEL" --max-turns <N>`
   - 直到 `lct pending --count` 為 0、累計 `total_cost_usd` 達到 `LCT_MAX_USD`，或時間快到上限
