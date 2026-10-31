@@ -8,6 +8,7 @@
 - 翻譯以 KR 韓文為主，JP 日文與 EN 英文作為輔助
 - 已翻譯過的部分，除非人工介入或原文有改變，不重新翻譯
 - 官方 JSON 有些欄位不需翻譯（例如 `id`、`model`），可從三語檔案比對歸納出規則（見 §1）
+- 翻譯時要針對不同檔案族群建立對應的指引，例如不同角色、不同檔名類型（見 §1「檔案族群與角色」）
 
 ## 1. 官方原文（生肉）
 
@@ -58,6 +59,35 @@
 檔案集合：KR 比 EN 多 53 個檔（例如 `Passives-a1c9p1~p3.json`），LLC 簡中也沒有這些檔。以 KR 為骨架時，要先確認遊戲實際讀取的檔名清單（`tool-jx3/Assets` 裡的 `RemoteLocalizeFileList.json` 可能就是），避免把遊戲不讀的檔也拿去翻。
 
 Hakimi 的規則（`tools/resource_fields.py`）：`id/key/index/level/model` 不翻；`notinclude` 檔不翻；`//`、`SE //` 開頭的來源字串不翻；`Items` 的 desc 寫著 `name만 번역` 時只翻 name。
+
+### 檔案族群與角色（以 KR 字元數計）
+
+| 族群 | 檔數 | 占 KR 字元 | 備註 |
+|---|---|---|---|
+| `Skills*` | 127 | 20.5% | 技能名稱與效果，術語密度最高 |
+| `StoryData/P1xxxx` | 181 | 約 5.6% | 人格故事；`P10805` 的 `108` = 8 號罪人（以實瑪利）、`05` = 人格序號 |
+| `StoryData/S*` | 數百 | 約 10% | 主線（`S1037B` 為第 10 章） |
+| `StoryData/E*`、`PC*` 等 | 數百 | 約 8% | 其他劇情（活動、間章等，前綴意義待確認） |
+| `Passives*` | 91 | 5.1% | |
+| `RPGSystem/rpg-loc-*` | 189 | 5.1% | RPG 探索的對話、NPC、選項 |
+| `PersonalityVoiceDlg/Voice_<角色>_<人格>_<編號>` | 194 | 4.7% | 人格語音；`desc` 是事件標籤（如 `인격 획득`），台詞在 `dlg` |
+| `Bufs*`、`BattleKeywords*` | 101 | 6.5% | 狀態效果與關鍵字（詞彙表來源） |
+| `AbnormalityGuides*`、`AbEvents*`、`ActionEvents*`、`ChoiceEventEffect*` | 108 | 約 7.6% | 異想體觀測與事件文本 |
+| `EGOgift*` | 29 | 2.7% | |
+| `BattleAnnouncerDlg/Announcer_<名稱>` | 65 | 2.2% | 播報員，每個播報員一個檔 |
+| `Tutorial*`、`MainUIText*`、`MirrorDungeonUI*`、`UI_*` 等 | — | 約 4% | 系統介面 |
+| `BattleSpeechBubbleDlg*` | 11 | 1.0% | 戰鬥對白；`desc` 是觸發標籤 |
+| 其他（`StoryTheaterDanteNoteDetail`、`Items`、`BgmLyrics/*`、`Enemies*`…） | — | — | 長尾 |
+
+角色辨識的三個層次：
+
+1. **檔名**：`PersonalityVoiceDlg/Voice_<角色>_*`、`EGOVoiceDig/Voice_EGO_<角色>_<n>`、`AbDlg_<角色>`、`Announcer_<名稱>`。拼法不一致（`Donquixote`/`DonQuixote`、`Outist`、`Meursalut`），需要別名表
+2. **編號**：人格編號 `1SSII`（`SS` = 罪人序號 01 李箱…12 格雷戈爾，`II` = 人格序號），用於 `StoryData/P1SSII`、語音檔尾碼、`Skills_*` 等
+3. **逐行**：`StoryData` 每行的 `model`（韓文說話者鍵值）。出現次數最多：단테 2987、파우스트 2516、이스마엘 2365、히스클리프 2024、오티스 1919、홍루 1852、싱클레어 1850、로쟈 1832、돈키호테 1695、그레고르 1679、이상 1562、료슈 1425、뫼르소 1202、베르길리우스 761。也有變體鍵值（`단테2`、`과거료슈3`），需要對到同一角色。`ScenarioModelCodes-AutoCreated` 提供 `{id, name, nickName}`（例：`이상` → `1번 수감자`）
+
+同一角色的不同人格語氣可能差很多：例如 `Voice_DonQuixote_Bloodfiend_10310` 用正式的 `~겁니다`、稱對方 `당신`，與唐吉訶德平常的語氣不同。指引可能需要「角色 → 人格」兩層。
+
+StoryData 每行的欄位組合：`content+model` 33972、只有 `content`（旁白）13669、`content+model+teller+title` 6958、`content+model+title` 3937；`place` 只在場景開頭。
 
 ### 自訂語言包的安裝結構（ParatranzUploader / LTM 的發佈包）
 
