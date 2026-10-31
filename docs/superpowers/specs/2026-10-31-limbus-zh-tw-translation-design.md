@@ -312,6 +312,7 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
 | `adjust` | 人工調整譯文，並把調整整理進規則（§11） | 人 |
 | `rules-review` | 整理報表中的建議與尚未歸納的調整，提出指引／詞彙修改 | CI（開 PR）與人 |
 | `term-decision` | 決定詞彙表候選條目 | 人 |
+| `review` | 讀最新的審核 Issue，帶人逐項處理 | 人 |
 
 SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
 
@@ -402,7 +403,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 - 所有寫入 `raw`／`tw` 的 workflow 共用一個 `concurrency` 群組，依序執行
 - secrets：`ANTHROPIC_API_KEY`、`LIMBUS_STATUS_URL`
 - variables：`LIMBUS_CDN_TEMPLATE`（預設 `https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip`）、`LCT_MODEL`、`LCT_MAX_USD`
-- `GITHUB_TOKEN` 需要 `contents: write`；`rules-proposal.yml` 另需 `pull-requests: write`
+- `GITHUB_TOKEN` 需要 `contents: write`；`rules-proposal.yml` 另需 `pull-requests: write`；`update.yml`／`rebuild.yml` 開審核 Issue 需要 `issues: write`
 - 用 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow（GitHub 的限制），所以影響評估在 `rules-proposal.yml` 內自己跑。若想讓 `ci.yml` 也在 CI 開的 PR 上執行，可另設 GitHub App 或 PAT 的 secret（`RULES_PR_TOKEN`）
 
 ## 13. 打包與發佈
@@ -424,15 +425,39 @@ LimbusCompany_Data/
 
 ## 14. 報表
 
-每次建置寫 `tw` 分支的 `.meta/report.md`，並放進 job summary：
+每次建置產生一份報表，分成「需要你處理」與「資訊」兩部分，每一項都附連結。
 
-- 各來源的單位數（`paratranz`／`claude`／`human`／`copy`／`fallback`）
-- 這次新增、因 KR 變更重翻、人工調整過期、仍待譯、`needs_review` 的單位
-- 驗證警告
-- 新欄位、新檔案族群、未對應的說話者（`model` 不在任何角色的清單中）
-- 同一 KR 不同譯法的清單
-- Claude 的 `note`
-- 花費與模型
+### 14.1 你會在哪裡看到
+
+| 地方 | 內容 | 怎麼知道有新的 |
+|---|---|---|
+| **審核 Issue**（每次遊戲更新一則，例如「審核：2026-11-05 更新」） | 只有「需要你處理」的項目，做成勾選清單 | GitHub 對新 Issue 的通知（網頁、Email、手機 App） |
+| **規則 PR**（§11.2） | CI 提出的規則修改 | GitHub 對新 PR 的通知 |
+| **GitHub Release 說明** | 精簡版：這次更新了什麼、各來源比例、仍顯示英文的數量 | 下載語言包時看到 |
+| **Actions 執行頁的 summary** | 完整報表 | 進到該次執行查看；失敗時 GitHub 會寄信 |
+| **`tw` 分支 `.meta/reports/<raw tag>.md`** | 完整報表的存檔，可回頭比較歷次 | 需要時查閱 |
+
+沒有需要處理的項目時不開 Issue。`review` skill（§9.3）可以在 Claude Code 裡讀最新的審核 Issue，帶你逐項處理（接受、改譯文、改規則）。
+
+### 14.2 需要你處理
+
+| 項目 | 例 | 處理方式 |
+|---|---|---|
+| 翻譯失敗、暫用英文的單位（`needs_review`） | 3 次都沒通過驗證 | 看原因；用 `adjust` 修正，或改規則後要求重翻 |
+| 人工調整已過期 | KR 改了，已依規則重翻 | 確認新譯文；沒問題就把舊調整刪掉 |
+| 凍結檔的 KR 有變（`BgmLyrics/**`） | 歌詞原文被修改 | 決定是否解除凍結 |
+| 未對應的說話者 | 新角色、新 NPC 的 `model` | 規則 PR 會附上建議的角色資料，審核 PR 即可 |
+| 新的欄位、檔案族群 | 遊戲新增欄位 | 規則 PR 會附上建議的欄位規則 |
+
+### 14.3 資訊
+
+- 這次的輸入：raw tag 與 token、`main` commit、模型、花費
+- 原文變化：新增／修改／刪除的檔；中間插入的檔；附 GitHub 比較頁連結（`raw-上次...raw-這次`），可直接看 KR 的差異
+- 譯文變化：各來源（`paratranz`／`claude`／`human`／`copy`／`fallback`）的單位數；這次新翻、因 KR 變更重翻的數量；附 `tw` 的比較頁連結
+- 自動處理的事：人工調整「key 已移動」、id 重新編號後沿用的譯文
+- 跨語言順序或 id 不一致的檔，「未對齊」的單位數
+- 驗證警告：數量與前幾筆，完整清單在存檔
+- 同一 KR 不同譯法的清單；Claude 的 `note`
 
 ## 15. `lct` 指令一覽
 
