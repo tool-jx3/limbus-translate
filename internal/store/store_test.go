@@ -715,24 +715,33 @@ func TestWithLockIgnoresLockFileInGit(t *testing.T) {
 	}
 }
 
-func TestWithLockKeepsExistingGitignore(t *testing.T) {
-	root := t.TempDir()
-	path := filepath.Join(root, ".meta", ".gitignore")
-	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
-		t.Fatal(err)
-	}
-	const mine = "# written by a person\n*.tmp\n"
-	if err := os.WriteFile(path, []byte(mine), 0o644); err != nil {
-		t.Fatal(err)
-	}
-	s := Open(root)
-	for range 2 {
-		if err := s.WithLock(func() error { return nil }); err != nil {
-			t.Fatal(err)
-		}
-	}
-	if got := readFile(t, path); got != mine {
-		t.Errorf(".meta/.gitignore was changed: %q", got)
+// An existing .meta/.gitignore keeps its lines; the ones lct needs that it
+// lacks are added at the end, once.
+func TestWithLockCompletesExistingGitignore(t *testing.T) {
+	for _, tc := range []struct{ name, mine, want string }{
+		{"lacks both", "# written by a person\n*.tmp\n", "# written by a person\n*.tmp\n.lock\n.*.tmp*\n"},
+		{"lacks the final newline", "# mine\n.lock", "# mine\n.lock\n.*.tmp*\n"},
+		{"has both", ".*.tmp*\n# mine\n.lock\n", ".*.tmp*\n# mine\n.lock\n"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			root := t.TempDir()
+			path := filepath.Join(root, ".meta", ".gitignore")
+			if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(path, []byte(tc.mine), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			s := Open(root)
+			for range 2 {
+				if err := s.WithLock(func() error { return nil }); err != nil {
+					t.Fatal(err)
+				}
+			}
+			if got := readFile(t, path); got != tc.want {
+				t.Errorf(".meta/.gitignore = %q, want %q", got, tc.want)
+			}
+		})
 	}
 }
 
@@ -744,8 +753,40 @@ func TestWithLockGitignoreIsStable(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	if got := readFile(t, filepath.Join(root, ".meta", ".gitignore")); got != ".lock\n" {
-		t.Errorf(".meta/.gitignore = %q, want %q", got, ".lock\n")
+	if got, want := readFile(t, filepath.Join(root, ".meta", ".gitignore")), ".lock\n.*.tmp*\n"; got != want {
+		t.Errorf(".meta/.gitignore = %q, want %q", got, want)
+	}
+}
+
+// A temporary file that a killed lct left behind, in .meta or below it, is
+// not committed to the tw branch.
+func TestGitignoreCoversLeftoverTemporaryFiles(t *testing.T) {
+	git, err := exec.LookPath("git")
+	if err != nil {
+		t.Skip("git not installed")
+	}
+	root := t.TempDir()
+	if out, err := exec.Command(git, "-C", root, "init", "-q").CombinedOutput(); err != nil {
+		t.Fatalf("git init: %v: %s", err, out)
+	}
+	s := Open(root)
+	if err := s.WithLock(func() error { return nil }); err != nil {
+		t.Fatal(err)
+	}
+	for _, rel := range []string{".meta/.pending.jsonl.tmp123", ".meta/units/StoryData/.S1.json.jsonl.tmp456"} {
+		p := filepath.Join(root, filepath.FromSlash(rel))
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte("partial"), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		if out, err := exec.Command(git, "-C", root, "check-ignore", rel).CombinedOutput(); err != nil {
+			t.Errorf("git does not ignore %s: %v: %s", rel, err, out)
+		}
+	}
+	if out, err := exec.Command(git, "-C", root, "check-ignore", ".meta/units/StoryData/S1.json.jsonl").CombinedOutput(); err == nil {
+		t.Errorf("a record file must not be ignored: %s", out)
 	}
 }
 

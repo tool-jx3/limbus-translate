@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"strings"
 	"syscall"
 )
 
@@ -22,7 +23,8 @@ import (
 // from inside fn deadlocks.
 //
 // WithLock also makes sure .meta/.gitignore exists and ignores the lock file
-// (see ensureGitignore), so commits of the tw worktree never carry it.
+// and leftover temporary files (see ensureGitignore), so commits of the tw
+// worktree never carry them.
 func (s *Store) WithLock(fn func() error) error {
 	if err := os.MkdirAll(s.metaDir(), 0o755); err != nil {
 		return fmt.Errorf("store: create lock directory: %w", err)
@@ -51,17 +53,35 @@ func (s *Store) WithLock(fn func() error) error {
 	return fn()
 }
 
-// ensureGitignore creates .meta/.gitignore with the line ".lock" when the
-// file is missing. An existing file is left as it is.
+// gitignoreLines are the lines .meta/.gitignore must hold: the lock file, and
+// the temporary files writeFileAtomic leaves when lct is killed mid-write.
+var gitignoreLines = []string{lockName, ".*.tmp*"}
+
+// ensureGitignore makes sure .meta/.gitignore holds every line of
+// gitignoreLines. A missing file is created with them; an existing one keeps
+// its lines and gets the missing ones appended.
 func (s *Store) ensureGitignore() error {
 	path := filepath.Join(s.metaDir(), gitignoreName)
-	if _, err := os.Stat(path); err == nil {
-		return nil
-	} else if !errors.Is(err, fs.ErrNotExist) {
-		return fmt.Errorf("store: check %s: %w", path, err)
+	old, err := os.ReadFile(path)
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return fmt.Errorf("store: read %s: %w", path, err)
 	}
-	if err := writeFileAtomic(path, []byte(lockName+"\n")); err != nil {
-		return fmt.Errorf("store: create %s: %w", path, err)
+	have := map[string]bool{}
+	for _, line := range strings.Split(string(old), "\n") {
+		have[strings.TrimSpace(line)] = true
+	}
+	data := old
+	for _, line := range gitignoreLines {
+		if have[line] {
+			continue
+		}
+		if len(data) > 0 && data[len(data)-1] != '\n' {
+			data = append(data, '\n')
+		}
+		data = append(data, line+"\n"...)
+	}
+	if err := writeFileAtomic(path, data); err != nil {
+		return fmt.Errorf("store: write %s: %w", path, err)
 	}
 	return nil
 }
