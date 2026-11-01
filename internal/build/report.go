@@ -85,13 +85,15 @@ func Markdown(opt Options, rep *Report) []byte {
 		{"Needs review", rep.NeedsReview},
 		{"Structural fallback", rep.StructuralFallback},
 		{"Unaligned", rep.Unaligned},
+		{"Field rule override", rep.FieldRuleOverride},
 	} {
 		fmt.Fprintf(&b, "| %s | %d |\n", row.label, row.n)
 	}
 	b.WriteString("\n" +
 		"Pending units have no translation made from the current KR text; their EN text, or KR, is shown.\n" +
 		"Structural fallbacks are translations that break the structure of KR (tags, [ID]s, placeholders) and were replaced the same way.\n" +
-		"Unaligned units are pending units with no EN text either.\n")
+		"Unaligned units are pending units with no EN text either.\n" +
+		"Field rule overrides are records of units the field rules do not translate; KR is shown instead.\n")
 
 	counts := func(title, head string, m map[string]int) {
 		fmt.Fprintf(&b, "\n## %s\n\n", title)

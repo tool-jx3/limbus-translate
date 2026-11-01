@@ -68,7 +68,8 @@ type Options struct {
 
 // Report counts what a build did.
 type Report struct {
-	// Origins counts the records used, by origin.
+	// Origins counts the records used, by origin. A copy record of a unit the
+	// field rules do not translate counts as used: KR is what it holds.
 	Origins map[string]int `json:"origins"`
 	// Pending counts the translatable units that have no usable record; their
 	// EN text, or KR when there is none, stands in.
@@ -81,6 +82,9 @@ type Report struct {
 	StructuralFallback int `json:"structural_fallback"`
 	// Unaligned counts the pending units that have no EN text either.
 	Unaligned int `json:"unaligned"`
+	// FieldRuleOverride counts the records, other than copies, that the
+	// field rules overrode: the unit is not translated, so KR is shown.
+	FieldRuleOverride int `json:"field_rule_override"`
 	// Warnings counts the warnings of the used records, by issue code. It
 	// covers the same records as Origins and NeedsReview, those that fall back
 	// structurally included.
@@ -254,26 +258,33 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 
 // fill decides the text of one unit.
 //
-// A record is used when it was made from the KR text there is now, or when
-// the file is frozen. A used record that breaks the structure of KR is
-// replaced by EN (or KR) and queued for translation again, with the broken
-// text as the draft; a frozen file's record is written as it is and never
-// queued, since a frozen file is not translated again. A unit with no
-// usable record shows EN (or KR); it counts as pending unless the field rules
-// say it is not translated at all.
+// The field rules come first (spec 8.2): a unit they do not translate keeps
+// KR, whatever its record says. Otherwise a record is used when it was made
+// from the KR text there is now, or when the file is frozen. A used record
+// that breaks the structure of KR is replaced by EN (or KR) and queued for
+// translation again, with the broken text as the draft; a frozen file's record
+// is written as it is and never queued, since a frozen file is not translated
+// again. A unit with no usable record shows EN (or KR) and counts as pending.
 func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	key := units.Key(u.File, u.Pointer)
 	rec, ok := b.records[key]
-	if ok && (frozen || rec.KRSha == units.KRSha(u.KR)) {
-		return b.useRecord(u, key, rec, frozen, al)
-	}
+	usable := ok && (frozen || rec.KRSha == units.KRSha(u.KR))
 
 	en, jp, err := al.get(u.Pointer)
 	if err != nil {
 		return "", err
 	}
 	if !b.fr.Classify(u, en, jp).Translate {
+		switch {
+		case usable && rec.Origin == store.OriginCopy:
+			b.countUsed(rec)
+		case usable:
+			b.rep.FieldRuleOverride++
+		}
 		return u.KR, nil
+	}
+	if usable {
+		return b.useRecord(u, key, rec, frozen, al)
 	}
 	b.rep.Pending++
 	if en == nil || en.Value == "" {
@@ -282,11 +293,16 @@ func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	return standIn(u, en), nil
 }
 
-func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *aligner) (string, error) {
+// countUsed counts rec among the records used.
+func (b *builder) countUsed(rec store.Record) {
 	b.rep.Origins[rec.Origin]++
 	if slices.Contains(rec.Flags, store.FlagNeedsReview) {
 		b.rep.NeedsReview++
 	}
+}
+
+func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *aligner) (string, error) {
+	b.countUsed(rec)
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
 	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true})

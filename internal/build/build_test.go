@@ -252,6 +252,53 @@ func TestBuildCountsPendingAndSkipsWhatIsNotTranslated(t *testing.T) {
 	}
 }
 
+// Field rules come before records (spec 8.2): a unit they do not translate
+// keeps KR, whatever a record says.
+func TestBuildFieldRulesBeatRecords(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"model":"뫼르소","content":"가"},{"id":2,"model":"이상","content":"-"}]}`
+	e := newEnv(t, map[string]string{"A.json": kr}, nil)
+	model := rec("A.json", "/dataList/0/model", "뫼르소", "莫梭") // model is an identifier field
+	dash := rec("A.json", "/dataList/1/content", "-", "－")   // "-" is an empty value
+	dash.Origin = store.OriginHuman
+	copied := rec("A.json", "/dataList/1/model", "이상", "이상")
+	copied.Origin = store.OriginCopy
+	e.save(model, dash, copied)
+	rep := e.run()
+
+	want := `{
+  "dataList": [
+    {
+      "id": 1,
+      "model": "뫼르소",
+      "content": "가"
+    },
+    {
+      "id": 2,
+      "model": "이상",
+      "content": "-"
+    }
+  ]
+}
+`
+	if got := e.out("A.json"); got != want {
+		t.Errorf("A.json =\n%s\nwant\n%s", got, want)
+	}
+	// The copy agrees with the field rules and counts as used; the other two
+	// were overridden.
+	if want := map[string]int{"copy": 1}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+	if rep.Pending != 1 {
+		t.Errorf("Pending = %d, want 1: only the content of entry 1", rep.Pending)
+	}
+	if rep.FieldRuleOverride != 2 {
+		t.Errorf("FieldRuleOverride = %d, want 2", rep.FieldRuleOverride)
+	}
+	if md := string(Markdown(e.opt, rep)); !strings.Contains(md, "| Field rule override | 2 |") {
+		t.Errorf("report lacks the field rule override row:\n%s", md)
+	}
+}
+
 func TestBuildUsesRecordOnlyForTheCurrentKR(t *testing.T) {
 	krFile := `{"dataList":[{"id":1,"content":"가"}]}`
 	enFile := `{"dataList":[{"id":1,"content":"EN text"}]}`
@@ -827,6 +874,7 @@ func TestReportMarkdown(t *testing.T) {
 		NeedsReview:        2,
 		StructuralFallback: 1,
 		Unaligned:          5,
+		FieldRuleOverride:  6,
 		Warnings:           map[string]int{"length-ratio": 7, "hangul": 1},
 		MissingGlyphs:      []rune{'`', 0xE000, '字'},
 	}
@@ -842,7 +890,7 @@ func TestReportMarkdown(t *testing.T) {
 			t.Errorf("report lacks %q:\n%s", want, got)
 		}
 	}
-	for label, n := range map[string]int{"Pending": 4, "Needs review": 2, "Structural fallback": 1, "Unaligned": 5} {
+	for label, n := range map[string]int{"Pending": 4, "Needs review": 2, "Structural fallback": 1, "Unaligned": 5, "Field rule override": 6} {
 		if !strings.Contains(got, label) || !strings.Contains(got, "| "+label+" | "+strconv.Itoa(n)+" |") {
 			t.Errorf("report lacks the row %q = %d:\n%s", label, n, got)
 		}
