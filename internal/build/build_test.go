@@ -25,6 +25,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/translate"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
@@ -994,6 +995,97 @@ func TestBuildRecordsZipChecksums(t *testing.T) {
 	e.run()
 	if again, err := ReadInfo(e.opt.TWRoot); err != nil || !reflect.DeepEqual(again.Zips, want) {
 		t.Errorf("Zips after a second build = %v, %v, want %v", again.Zips, err, want)
+	}
+}
+
+// writeTranslation records a translation run in the tw worktree, as lct
+// translate does.
+func writeTranslation(t *testing.T, e *testEnv, res translate.Result) {
+	t.Helper()
+	if err := store.Open(e.opt.TWRoot).WriteMetaJSON(translate.MetaFile, res); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// jsonKeys decodes a JSON file (Info/version.json, build.json) into a map, to
+// tell a field that is absent from one that is empty.
+func jsonKeys(t *testing.T, name string) map[string]any {
+	t.Helper()
+	b, err := os.ReadFile(name)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var m map[string]any
+	if err := json.Unmarshal(b, &m); err != nil {
+		t.Fatalf("%s: %v", name, err)
+	}
+	return m
+}
+
+// The model and the cost of the translation go into build.json and
+// version.json, but only when the translation is of the inputs of this
+// build: the same raw tag and the same rules.
+func TestBuildRecordsModelAndCost(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"}]}`}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	buildJSON := filepath.Join(e.opt.TWRoot, ".meta", "build.json")
+	versionJSON := func() string {
+		return filepath.Join(e.opt.TWRoot, dataDir, "Lang", e.opt.LangDir, "Info", "version.json")
+	}
+	same := translate.Result{
+		Model: "model-x", Runs: 3, CostUSD: 1.25, Stopped: translate.StopDone,
+		PendingBefore: 9, RawTag: testTag, RulesCommit: "abc1234",
+	}
+
+	writeTranslation(t, e, same)
+	e.run()
+	for _, name := range []string{buildJSON, versionJSON()} {
+		m := jsonKeys(t, name)
+		if m["model"] != "model-x" || m["cost_usd"] != 1.25 {
+			t.Errorf("%s: model, cost_usd = %v, %v, want model-x, 1.25", filepath.Base(name), m["model"], m["cost_usd"])
+		}
+	}
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if info.Model != "model-x" || info.CostUSD != 1.25 {
+		t.Errorf("ReadInfo: Model, CostUSD = %q, %v, want model-x, 1.25", info.Model, info.CostUSD)
+	}
+
+	for name, other := range map[string]translate.Result{
+		"another raw tag":        {Model: "model-x", CostUSD: 1.25, RawTag: "raw-20260101", RulesCommit: "abc1234"},
+		"another rules":          {Model: "model-x", CostUSD: 1.25, RawTag: testTag, RulesCommit: "def5678"},
+		"dirty rules":            {Model: "model-x", CostUSD: 1.25, RawTag: testTag, RulesCommit: "abc1234+dirty"},
+		"neither tag nor commit": {Model: "model-x", CostUSD: 1.25},
+	} {
+		writeTranslation(t, e, other)
+		e.run()
+		for _, f := range []string{buildJSON, versionJSON()} {
+			m := jsonKeys(t, f)
+			if _, ok := m["model"]; ok {
+				t.Errorf("%s, %s: has model %v", name, filepath.Base(f), m["model"])
+			}
+			if _, ok := m["cost_usd"]; ok {
+				t.Errorf("%s, %s: has cost_usd %v", name, filepath.Base(f), m["cost_usd"])
+			}
+		}
+	}
+
+	// No translation at all is the common case (the first build, a dry run).
+	if err := os.Remove(filepath.Join(e.opt.TWRoot, ".meta", translate.MetaFile)); err != nil {
+		t.Fatal(err)
+	}
+	e.run()
+	if _, ok := jsonKeys(t, buildJSON)["model"]; ok {
+		t.Error("build.json has a model although nothing was translated")
+	}
+
+	// A translation record that cannot be read is an error, not a build
+	// without a model.
+	mustWrite(t, filepath.Join(e.opt.TWRoot, ".meta", translate.MetaFile), []byte("{"))
+	if _, err := Run(e.opt, e.src, e.fr); err == nil {
+		t.Error("Run with a broken translate.json succeeded")
 	}
 }
 

@@ -334,6 +334,74 @@ func TestNextSkipsNeedsReviewAndStale(t *testing.T) {
 	}
 }
 
+// Available counts what Next hands out: every kind of item Next skips is left
+// out of the count, and draining the queue with Next takes exactly as many
+// units as the count said.
+func TestAvailableCountsWhatNextHandsOut(t *testing.T) {
+	kr := map[string]string{
+		"Other.json":           dataList(t, 6, "", line),
+		"StoryData/S001A.json": dataList(t, 3, "파우스트", line),
+	}
+	env := newEnv(t, kr, nil, nil)
+	list := items("Other.json", 0, 6)
+	list[0].Flags = []string{store.FlagNeedsReview}
+	list[1].Lease = &store.Lease{Batch: "20261101T000000-aaaaaaaa", Until: testNow.Add(time.Hour)}  // leased
+	list[2].Lease = &store.Lease{Batch: "20261101T000000-bbbbbbbb", Until: testNow.Add(-time.Hour)} // expired
+	list = append(list, items("StoryData/S001A.json", 0, 3)...)
+	list = append(list,
+		store.PendingItem{Key: "Gone.json|/dataList/0/content", Reason: "new"},         // file left KR
+		store.PendingItem{Key: "Other.json|/dataList/99/content", Reason: "new"},       // pointer left KR
+		store.PendingItem{Key: "Other.json|/dataList/0/nothing", Reason: "kr-changed"}, // no such field
+	)
+	seed(t, env, list...)
+
+	got, err := Available(env, testNow)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := 7; got != want { // Other 2..5 (4) and the story (3)
+		t.Errorf("Available = %d, want %d", got, want)
+	}
+
+	// Available reads the queue each time it is called.
+	b := mustNext(t, env, NextOptions{})
+	if after, err := Available(env, testNow); err != nil || after != got-len(b.Units) {
+		t.Errorf("Available after a batch of %d = %d, %v, want %d", len(b.Units), after, err, got-len(b.Units))
+	}
+
+	taken := len(b.Units)
+	for {
+		b := mustNext(t, env, NextOptions{})
+		if b == nil {
+			break
+		}
+		taken += len(b.Units)
+	}
+	if taken != got {
+		t.Errorf("Next handed out %d units in all, Available said %d", taken, got)
+	}
+	if left, err := Available(env, testNow); err != nil || left != 0 {
+		t.Errorf("Available after draining = %d, %v, want 0", left, err)
+	}
+}
+
+func TestCountClaimableAsksKROnlyForFreeItems(t *testing.T) {
+	pending := items("A.json", 0, 3)
+	pending[0].Flags = []string{store.FlagNeedsReview}
+	pending[1].Lease = &store.Lease{Batch: "b", Until: testNow.Add(time.Hour)}
+	var asked []string
+	n := CountClaimable(pending, testNow, func(k string) bool {
+		asked = append(asked, k)
+		return true
+	})
+	if n != 1 || !slices.Equal(asked, []string{key("A.json", 2)}) {
+		t.Errorf("CountClaimable = %d having asked about %v, want 1 having asked about the free item only", n, asked)
+	}
+	if !Claimable(pending[2], testNow) || Claimable(pending[0], testNow) || Claimable(pending[1], testNow) {
+		t.Error("Claimable must be true for the free item only")
+	}
+}
+
 func TestNextFamilyAndLimit(t *testing.T) {
 	kr := map[string]string{
 		"Other.json":           dataList(t, 5, "", line),

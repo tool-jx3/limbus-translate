@@ -121,6 +121,11 @@ type builder struct {
 //
 // Every input is checked before anything is written; a font that does not match
 // opt.FontSHA256 is ErrFontChecksum.
+//
+// The store may hold .meta/translate.json, the record of the last translation
+// run (see package translate). When that run was made for opt.RawTag and
+// opt.RulesCommit, its model and cost go into Info/version.json and the build
+// record.
 func Run(opt Options, src pack.Set, fr *fields.Rules) (*Report, error) {
 	if err := checkOptions(opt); err != nil {
 		return nil, err
@@ -179,6 +184,11 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
+	// Read before anything is written, like the other inputs.
+	tr, err := readTranslation(st, opt)
+	if err != nil {
+		return nil, err
+	}
 	b := &builder{
 		opt: opt, src: src, fr: fr,
 		records: records,
@@ -209,7 +219,8 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		return nil, err
 	}
 
-	info, err := encodeJSON(newVersionInfo(opt))
+	version := newVersionInfo(opt, tr)
+	info, err := encodeJSON(version)
 	if err != nil {
 		return nil, err
 	}
@@ -233,7 +244,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
-	if err := writeMeta(st, opt, zips, b.rep); err != nil {
+	if err := writeMeta(st, opt, version, zips, b.rep); err != nil {
 		return nil, err
 	}
 	return b.rep, nil

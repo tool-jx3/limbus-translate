@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
@@ -95,7 +96,7 @@ func runPending(ctx *cli.Context, args []string) error {
 		if review {
 			c.NeedsReview++
 		}
-		if !leased && !review {
+		if batch.Claimable(it, now) {
 			c.Available++
 		}
 	}

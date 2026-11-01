@@ -14,25 +14,54 @@ import (
 	"unicode"
 
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/translate"
 )
 
-// versionInfo is what Info/version.json records: the inputs of the build.
+// versionInfo is what Info/version.json records: the inputs of the build and
+// what the translation of them cost.
 type versionInfo struct {
 	RawTag      string            `json:"raw_tag"`
 	RawToken    string            `json:"raw_token"`
 	RulesCommit string            `json:"rules_commit"`
 	BuiltAt     string            `json:"built_at"`
 	Upstream    map[string]string `json:"upstream,omitempty"`
+	// Model and CostUSD are those of the translation run (see translation).
+	Model   string  `json:"model,omitempty"`
+	CostUSD float64 `json:"cost_usd,omitempty"`
 }
 
-func newVersionInfo(opt Options) versionInfo {
+func newVersionInfo(opt Options, tr translation) versionInfo {
 	return versionInfo{
 		RawTag:      opt.RawTag,
 		RawToken:    opt.RawToken,
 		RulesCommit: opt.RulesCommit,
 		BuiltAt:     opt.BuiltAt.UTC().Truncate(time.Second).Format(time.RFC3339),
 		Upstream:    opt.Upstream,
+		Model:       tr.Model,
+		CostUSD:     tr.CostUSD,
 	}
+}
+
+// translation is the model and the cost of the translation run a build is of.
+// The zero value says there is none.
+type translation struct {
+	Model   string
+	CostUSD float64
+}
+
+// readTranslation reads what lct translate left in .meta/translate.json. It
+// is of this build only if it was made for the same raw tag and the same
+// rules commit; a run for other inputs, or none, gives the zero translation.
+func readTranslation(st *store.Store, opt Options) (translation, error) {
+	var res translate.Result
+	found, err := st.ReadMetaJSON(translate.MetaFile, &res)
+	if err != nil {
+		return translation{}, err
+	}
+	if !found || res.RawTag != opt.RawTag || res.RulesCommit != opt.RulesCommit {
+		return translation{}, nil
+	}
+	return translation{Model: res.Model, CostUSD: res.CostUSD}, nil
 }
 
 // infoName is the file of the store that holds Info.
@@ -51,6 +80,11 @@ type Info struct {
 	RulesCommit string            `json:"rules_commit"`
 	BuiltAt     string            `json:"built_at"`
 	Upstream    map[string]string `json:"upstream,omitempty"`
+	// Model and CostUSD are the model and the cost (in US dollars) of the
+	// translation run of these inputs, from .meta/translate.json; absent when
+	// that file is of other inputs or there is none.
+	Model   string  `json:"model,omitempty"`
+	CostUSD float64 `json:"cost_usd,omitempty"`
 	// Zips is the sha256 (lowercase hex) of each zip the build wrote to
 	// OutDir, by file name. publish checks the zips it releases against it.
 	Zips   map[string]string `json:"zips"`
@@ -90,13 +124,12 @@ func ReportPath(opt Options) string {
 	return filepath.Join(opt.TWRoot, ".meta", "reports", opt.RawTag+".md")
 }
 
-// writeMeta writes the build record and the report to the store. zips are the
-// checksums of the zips, by file name.
-func writeMeta(st *store.Store, opt Options, zips map[string]string, rep *Report) error {
-	v := newVersionInfo(opt)
+// writeMeta writes the build record and the report to the store. v is the
+// content of Info/version.json, zips the checksums of the zips, by file name.
+func writeMeta(st *store.Store, opt Options, v versionInfo, zips map[string]string, rep *Report) error {
 	info := Info{
 		RawTag: v.RawTag, RawToken: v.RawToken, RulesCommit: v.RulesCommit, BuiltAt: v.BuiltAt, Upstream: v.Upstream,
-		Zips: zips, Report: *rep,
+		Model: v.Model, CostUSD: v.CostUSD, Zips: zips, Report: *rep,
 	}
 	if err := st.WriteMetaJSON(infoName, info); err != nil {
 		return err
@@ -107,7 +140,7 @@ func writeMeta(st *store.Store, opt Options, zips map[string]string, rep *Report
 // Markdown renders the report of a build: its inputs and every field of rep.
 func Markdown(opt Options, rep *Report) []byte {
 	var b strings.Builder
-	info := newVersionInfo(opt)
+	info := newVersionInfo(opt, translation{})
 	fmt.Fprintf(&b, "# Build report %s\n\n", opt.RawTag)
 	fmt.Fprintf(&b, "- Raw token: `%s`\n- Rules commit: `%s`\n- Built at: %s\n", info.RawToken, info.RulesCommit, info.BuiltAt)
 	for _, name := range slices.Sorted(maps.Keys(info.Upstream)) {

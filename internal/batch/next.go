@@ -106,9 +106,66 @@ func Next(env Env, opt NextOptions) (*Batch, error) {
 // its file and its index in the pending list.
 type slot struct{ pos, idx int }
 
-// eligible reports whether a pending item may be handed out.
-func eligible(it store.PendingItem, now time.Time) bool {
+// Claimable reports whether a pending item may be handed out at now: it is not
+// leased (or its lease has run out) and not flagged needs_review, which marks
+// an item that waits for a person. It is the one definition of an item a batch
+// can take; Next, Available and CountClaimable (so lct plan and lct translate)
+// all rest on it. That the unit is still in KR is checked apart, by whoever
+// has KR at hand.
+func Claimable(it store.PendingItem, now time.Time) bool {
 	return store.LeaseFree(it, now) && !hasFlag(it.Flags, store.FlagNeedsReview)
+}
+
+// CountClaimable counts the items of pending that a batch can take at now:
+// the claimable ones whose unit inKR says is still in KR. inKR is asked only
+// about claimable items.
+func CountClaimable(pending []store.PendingItem, now time.Time, inKR func(key string) bool) int {
+	n := 0
+	for _, it := range pending {
+		if Claimable(it, now) && inKR(it.Key) {
+			n++
+		}
+	}
+	return n
+}
+
+// Available counts the units Next could hand out at now: it reads the pending
+// queue of env.Store and counts the claimable items whose file is in the KR
+// pack of env and whose pointer names a unit of that file. It takes no lock; the
+// count is what the queue held when it was read.
+func Available(env Env, now time.Time) (int, error) {
+	if err := env.check(); err != nil {
+		return 0, err
+	}
+	pending, err := env.Store.LoadPending()
+	if err != nil {
+		return 0, err
+	}
+	ld := newLoader(env)
+	var loadErr error // the first KR file that could not be read
+	n := CountClaimable(pending, now, func(key string) bool {
+		if loadErr != nil {
+			return false
+		}
+		file, pointer, err := units.SplitKey(key) // LoadPending checked the keys
+		if err != nil {
+			return false
+		}
+		fd, err := ld.file(file)
+		if err != nil {
+			loadErr = err
+			return false
+		}
+		if fd == nil {
+			return false
+		}
+		_, ok := fd.index[pointer]
+		return ok
+	})
+	if loadErr != nil {
+		return 0, loadErr
+	}
+	return n, nil
 }
 
 // cut chooses the next batch and returns it with the pending indexes of its
@@ -131,7 +188,7 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		if !env.Src.KR.Has(file) || opt.Family != "" && family != opt.Family {
 			continue
 		}
-		if slices.ContainsFunc(idxs, func(i int) bool { return eligible(pending[i], now) }) {
+		if slices.ContainsFunc(idxs, func(i int) bool { return Claimable(pending[i], now) }) {
 			files = append(files, candidate{file, family, env.Rules.Priority(family)})
 		}
 	}
@@ -179,7 +236,7 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		}
 		twins := newTwinFilter(env, fd, busy)
 		chosen := firstEligible(slots, func(s slot) bool {
-			return eligible(pending[s.idx], now) && twins.pick(s.pos, pending[s.idx])
+			return Claimable(pending[s.idx], now) && twins.pick(s.pos, pending[s.idx])
 		}, limit)
 		if len(chosen) == 0 {
 			continue

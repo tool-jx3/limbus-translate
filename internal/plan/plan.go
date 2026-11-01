@@ -883,12 +883,10 @@ func keySet(items []store.PendingItem) map[string]bool {
 
 // report counts the units a batch can take now.
 func (p *planner) report(pending []store.PendingItem) {
-	now := time.Now()
-	for _, it := range pending {
-		if _, inKR := p.cur[it.Key]; inKR && store.LeaseFree(it, now) && !slices.Contains(it.Flags, store.FlagNeedsReview) {
-			p.sum.Pending++
-		}
-	}
+	p.sum.Pending = batch.CountClaimable(pending, time.Now(), func(key string) bool {
+		_, inKR := p.cur[key]
+		return inKR
+	})
 }
 
 // nonNil turns a nil list into an empty one, which is written as [].
