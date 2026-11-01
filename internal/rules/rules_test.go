@@ -292,9 +292,15 @@ func TestGlossaryHits(t *testing.T) {
 		t.Errorf("hit fields = %+v, want 組合包, forbidden 禮包, approved", *hit)
 	}
 
-	// Latin text holds no Korean term.
-	if hits := r.GlossaryHits("no term in this text 123"); len(hits) != 0 {
-		t.Errorf("no term in the text, but hits = %+v", hits)
+	// Whatever terms the glossary holds, a hit is an approved term that occurs
+	// in the text. (That a text without a term has no hit is checked on a
+	// glossary of its own, in TestGlossaryHitsSkipCandidates.)
+	for _, text := range []string{"이 패키지는 한정 판매입니다.", "아무 용어도 없는 문장", "시즌 보상: 도약 모듈"} {
+		for _, h := range r.GlossaryHits(text) {
+			if !strings.Contains(text, h.KR) || h.Status != "approved" {
+				t.Errorf("GlossaryHits(%q) returned %+v: not an approved term of the text", text, h)
+			}
+		}
 	}
 	if hits := r.GlossaryHits(""); len(hits) != 0 {
 		t.Errorf("empty KR, but hits = %+v", hits)
@@ -354,6 +360,10 @@ func TestGlossaryHitsSkipCandidates(t *testing.T) {
 	hits := r.GlossaryHits("자아 파편과 전용 파편")
 	if len(hits) != 1 || hits[0].KR != "자아 파편" || hits[0].Status != "approved" {
 		t.Errorf("hits = %+v, want only the approved 자아 파편", hits)
+	}
+	// a Korean text with none of the terms has no hit
+	if hits := r.GlossaryHits("아무 용어도 없는 문장"); len(hits) != 0 {
+		t.Errorf("no term in the text, but hits = %+v", hits)
 	}
 
 	// and in the real glossary, whatever candidates it holds at the moment

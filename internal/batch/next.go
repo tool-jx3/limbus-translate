@@ -336,30 +336,39 @@ func cleanRefs(refs map[string]string) map[string]string {
 	return out
 }
 
-// storyContext returns the translated lines near the units of a story batch:
-// for every unit, the lines up to contextLines places before and after it among
-// the units of the file, each once, in document order. A line is shown if it
-// has a record that is not a copy and was made from the KR text the line has
-// now, and it does not wait for translation. So the units of the batch are
-// never shown, and neither is a line that needs review.
+// storyContext returns the translated strings near the units of a story batch:
+// those of every dataList element (a line of a story, or a group of texts of an
+// RPG dialogue) up to contextElements before or after the element of any unit
+// of the batch, each once, in document order. A string is shown if it has a
+// record that is not a copy and was made from the KR text it has now, and it
+// does not wait for translation. So the units of the batch are never shown, and
+// neither is a string that needs review. Strings outside the dataList belong to
+// no element and are not looked at.
 func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingByKey map[string]store.PendingItem, chosen []slot) []ContextLine {
-	lines := []ContextLine{}
-	from := 0 // the first position not looked at yet; chosen is in document order
+	near := map[int]bool{} // the elements in reach
 	for _, s := range chosen {
-		for p := max(from, s.pos-contextLines); p <= min(s.pos+contextLines, len(fd.units)-1); p++ {
-			u := fd.units[p]
-			key := units.Key(u.File, u.Pointer)
-			if _, waits := pendingByKey[key]; waits {
-				continue
+		if at := fd.units[s.pos].ItemIndex; at >= 0 {
+			for i := at - contextElements; i <= at+contextElements; i++ {
+				near[i] = true
 			}
-			rec, ok := recs[key]
-			if !ok || rec.Origin == store.OriginCopy || rec.ZH == "" || rec.KRSha != units.KRSha(u.KR) {
-				continue
-			}
-			id, _ := speaker(env.Rules, fd.doc, u)
-			lines = append(lines, ContextLine{Key: key, Speaker: id, KR: u.KR, ZH: rec.ZH})
 		}
-		from = s.pos + contextLines + 1
+	}
+
+	lines := []ContextLine{}
+	for _, u := range fd.units {
+		if u.ItemIndex < 0 || !near[u.ItemIndex] {
+			continue
+		}
+		key := units.Key(u.File, u.Pointer)
+		if _, waits := pendingByKey[key]; waits {
+			continue
+		}
+		rec, ok := recs[key]
+		if !ok || rec.Origin == store.OriginCopy || rec.ZH == "" || rec.KRSha != units.KRSha(u.KR) {
+			continue
+		}
+		id, _ := speaker(env.Rules, fd.doc, u)
+		lines = append(lines, ContextLine{Key: key, Speaker: id, KR: u.KR, ZH: rec.ZH})
 	}
 	return lines
 }

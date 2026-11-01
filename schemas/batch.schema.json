@@ -63,7 +63,7 @@
           "key": { "description": "<file>|<JSON pointer>. Use it as the key of the output.", "type": "string" },
           "field": { "description": "The name of the field the text is in, such as content.", "type": "string" },
           "speaker": {
-            "description": "Character id of the speaker, or the raw model key when it is no known character, or \"\".",
+            "description": "Character id of the speaker. The speaker is named by the line's model, or by the speaker field of an RPG dialogue line; a name that is no known character is given as it is. \"\" when the line has none.",
             "type": "string"
           },
           "kr": { "description": "The Korean text to translate.", "type": "string" },

@@ -68,6 +68,16 @@ func TestValidParatranzSymbolOnly(t *testing.T) {
 		{"Latin label", "1F BOSS", "1F BOSS", "1F BOSS", true},
 		{"no EN known", "…….", "", "……", true},
 		{"zh may equal KR", "……", "……", "……", true},
+		{"EN differs from KR but zh is the same fullwidth ellipsis", "…….", "……", "……", true},
+		// ParatranzUploader fills an untranslated entry with the EN text. For a
+		// KR without Hangul that is told by EN being different from KR, zh being
+		// EN, and zh looking like Latin text or three dots.
+		{"EN fill with Latin letters", "LCB&LCD", "The LCB & The LCD", "The LCB & The LCD", false},
+		{"EN fill with dots", "…….", ".......", ".......", false},
+		{"EN fill with dots and a mark", "…!", "...!", "...!", false},
+		{"EN fill, Dante-wrapped dots", "<…….>", "<.......>", "<.......>", false},
+		{"zh equals EN, but EN is KR", "LCB", "LCB", "LCB", true},
+		{"zh differs from EN", "LCB&LCD", "The LCB & The LCD", "LCB＆LCD", true},
 		{"empty", "…….", "", "", false},
 		{"blank", "…….", "", " \t\n", false},
 		{"Hangul in the translation", "…….", "", "……가", false},
@@ -607,7 +617,8 @@ func TestRunUnalignedAndEmptyParatranz(t *testing.T) {
 }
 
 // The lines the pilot found queued for nothing: KR without Hangul, Paratranz
-// already right. They are adopted, not queued.
+// already right. They are adopted, not queued. Where Paratranz holds the EN
+// fill instead, they are queued.
 func TestRunAdoptsSymbolOnlyParatranz(t *testing.T) {
 	in := sources{
 		kr: packFiles{"A.json": `{"dataList":[
@@ -615,19 +626,25 @@ func TestRunAdoptsSymbolOnlyParatranz(t *testing.T) {
 			{"id":2,"content":"<…….>"},
 			{"id":3,"content":"…!"},
 			{"id":4,"content":"1F BOSS"},
-			{"id":5,"content":"……","extra":"말줄임"}]}`},
+			{"id":5,"content":"……","extra":"말줄임"},
+			{"id":6,"content":"…….","extra":""},
+			{"id":7,"content":"LCB&LCD"}]}`},
 		en: packFiles{"A.json": `{"dataList":[
 			{"id":1,"content":"......"},
 			{"id":2,"content":"<......>"},
 			{"id":3,"content":"...!"},
 			{"id":4,"content":"1F BOSS"},
-			{"id":5,"content":"......","extra":"Ellipsis"}]}`},
+			{"id":5,"content":"......","extra":"Ellipsis"},
+			{"id":6,"content":".......","extra":""},
+			{"id":7,"content":"The LCB & The LCD"}]}`},
 		pz: packFiles{"A.json": `{"dataList":[
 			{"id":1,"content":"……"},
 			{"id":2,"content":"<……>"},
 			{"id":3,"content":"…！"},
 			{"id":4,"content":"1F BOSS"},
-			{"id":5,"content":"……","extra":""}]}`},
+			{"id":5,"content":"……","extra":""},
+			{"id":6,"content":".......","extra":""},
+			{"id":7,"content":"The LCB & The LCD"}]}`},
 	}.inputs(t)
 
 	res, err := Run(in, testFieldRules(t), &rules.Rules{})
@@ -647,6 +664,17 @@ func TestRunAdoptsSymbolOnlyParatranz(t *testing.T) {
 	// A line with Hangul and an empty Paratranz value is still queued.
 	if it, ok := pending[units.Key("A.json", "/dataList/4/extra")]; !ok || it.Reason != "new" {
 		t.Errorf("Hangul line with an empty paratranz value = %+v (queued %v), want pending new", it, ok)
+	}
+	// Where Paratranz holds the EN fill instead (dots, or Latin text for a KR
+	// of Latin text), the line is queued.
+	for _, i := range []int{5, 6} {
+		k := units.Key("A.json", "/dataList/"+string(rune('0'+i))+"/content")
+		if it, ok := pending[k]; !ok || it.Reason != "new" {
+			t.Errorf("item %d = %+v (queued %v), want pending new: Paratranz holds the EN fill", i+1, it, ok)
+		}
+		if _, ok := res.Records[k]; ok {
+			t.Errorf("item %d must not have a record", i+1)
+		}
 	}
 }
 

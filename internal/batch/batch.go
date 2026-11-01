@@ -36,9 +36,10 @@ const (
 	DefaultLeaseTTL      = 120 * time.Minute
 )
 
-// contextLines is how many units on each side of a unit of a story batch are
-// looked at for context, counted in the file's document order.
-const contextLines = 3
+// contextElements is how many dataList elements (lines of a story, groups of
+// texts of an RPG dialogue) on each side of the element of a unit of a story
+// batch are looked at for context.
+const contextElements = 3
 
 // Env is what Next and Submit work with.
 type Env struct {

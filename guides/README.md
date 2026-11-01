@@ -8,14 +8,14 @@
 |---|---|---|
 | `base.md` | 共通原則、程式格式須知、標點 | 每一批都套用 |
 | `families.md` | 檔名規律、檔案族群、翻譯優先序、凍結項目 | 依檔名判斷族群 |
-| `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`；語音／`AbDlg` 看檔名） |
+| `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`，RPG 對話看該行的 `speaker` 欄位，對得上角色 id 才套用；語音／`AbDlg` 看檔名） |
 | `../glossary/terms.yaml` | 譯名統一列表（硬性規定） | 每一批注入命中的條目 |
 
 疊加順序：`base` → 族群 → 角色 → 單檔備註。詞彙表與 `base.md` 的格式規則是硬性規定，角色風格不能推翻它們。
 
 `characters/*.md` 開頭的 YAML 是給程式用的對照資料：
 
-- `models`：劇情 `StoryData` 裡代表此角色本人的 `model` 鍵值（含受傷、剪影、愚人節等狀態差分）
+- `models`：劇情 `StoryData` 裡代表此角色本人的 `model` 鍵值（含受傷、剪影、愚人節等狀態差分）；RPG 對話的 `speaker` 欄位也用這份對照
 - `models_other_self`：過去、幼年等其他時期的本人，語氣可能不同，翻譯時要看劇情判斷
 - `models_not_this`：鍵值裡有角色名但不是本人（例如 `뫼르소엄마` 是莫梭的母親），或是多人同時說話
 - `file_names`：`AbDlg_`、`PersonalityVoiceDlg/Voice_`、`EGOVoiceDig/Voice_EGO_` 檔名中的拼法（遊戲檔名拼法不一致，如 `Meursalut`、`Outist`）

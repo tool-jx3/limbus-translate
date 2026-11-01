@@ -218,8 +218,11 @@ func ForeignNames(ours, ltm *jsonx.Node) []string {
 //
 // A KR text without Hangul (ellipses, "…!", a Latin name or label) has nothing
 // to translate, so Paratranz holds the right text however it looks: zh is
-// valid if it is not blank and has no Hangul. It is neither compared with kr
-// or en nor required to have Han characters.
+// valid if it is not blank and has no Hangul. It need not have Han characters
+// and may equal kr. But ParatranzUploader fills untranslated entries with the
+// EN text, so zh is not valid if it is that fill: zh equals en, en differs from
+// kr, and zh has an ASCII letter or two dots in a row (an EN text like "......"
+// where KR has "……", or "The LCB & The LCD" where KR has "LCB&LCD").
 //
 // For a KR text with Hangul, ParatranzUploader fills untranslated entries with
 // the EN text and the pack holds some KR text and symbol-only values, so zh is
@@ -228,13 +231,19 @@ func ForeignNames(ours, ltm *jsonx.Node) []string {
 // character.
 func ValidParatranz(kr, en, zh string) bool {
 	if !hasHangul(kr) {
-		return strings.TrimSpace(zh) != "" && !hasHangul(zh)
+		if strings.TrimSpace(zh) == "" || hasHangul(zh) {
+			return false
+		}
+		isENFill := zh == en && en != kr && (strings.Contains(zh, "..") || strings.IndexFunc(zh, isASCIILetter) >= 0)
+		return !isENFill
 	}
 	if zh == kr || zh == en {
 		return false
 	}
 	return !hasHangul(zh) && strings.IndexFunc(zh, isHan) >= 0
 }
+
+func isASCIILetter(r rune) bool { return r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' }
 
 func isHan(r rune) bool { return unicode.Is(unicode.Han, r) }
 
