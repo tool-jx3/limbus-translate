@@ -1,0 +1,29 @@
+{
+  "dataList": [
+    {
+      "id": 10101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬撃",
+          "desc": "[Laceration]威力{0}付与"
+        },
+        {
+          "level": 2,
+          "name": "刺突",
+          "desc": "<color=#f8c200>攻撃</color>時、ダメージ増加"
+        }
+      ]
+    },
+    {
+      "id": 10102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防御",
+          "desc": "防御時、[Laceration]を{0}付与"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "dataList": [
+    {
+      "id": 10101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "베기",
+          "desc": "[Laceration] 위력 {0} 부여"
+        },
+        {
+          "level": 2,
+          "name": "찌르기",
+          "desc": "<color=#f8c200>공격</color> 시 피해 증가"
+        }
+      ]
+    },
+    {
+      "id": 10102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "방어",
+          "desc": "방어 시 [Laceration] {0} 부여"
+        }
+      ]
+    }
+  ]
+}

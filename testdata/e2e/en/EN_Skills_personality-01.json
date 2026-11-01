@@ -1,0 +1,29 @@
+{
+  "dataList": [
+    {
+      "id": 10101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "Slash",
+          "desc": "Inflict {0} [Laceration] Potency"
+        },
+        {
+          "level": 2,
+          "name": "Pierce",
+          "desc": "<color=#f8c200>On Hit</color>, deal more damage"
+        }
+      ]
+    },
+    {
+      "id": 10102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "Guard",
+          "desc": "When guarding, inflict {0} [Laceration]"
+        }
+      ]
+    }
+  ]
+}

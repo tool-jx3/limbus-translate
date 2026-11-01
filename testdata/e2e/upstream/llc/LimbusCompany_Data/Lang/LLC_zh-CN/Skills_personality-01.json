@@ -1,0 +1,17 @@
+{
+  "dataList": [
+    {
+      "id": 10101,
+      "levelList": [
+        { "level": 1, "name": "斩击", "desc": "施加{0}层[Laceration]强度" },
+        { "level": 2, "name": "突刺", "desc": "<color=#f8c200>攻击</color>时，伤害增加" }
+      ]
+    },
+    {
+      "id": 10102,
+      "levelList": [
+        { "level": 1, "name": "防御", "desc": "防御时，施加{0}层[Laceration]" }
+      ]
+    }
+  ]
+}
