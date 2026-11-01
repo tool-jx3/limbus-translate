@@ -47,7 +47,8 @@ type SubmitResult struct {
 	// still leased to it: their lease ended and they are free again.
 	Released []string `json:"released"`
 	// Notes is how many translator notes were added to .meta/notes.jsonl.
-	// A note already stored for the same unit and batch is not counted again.
+	// A note already stored with the same key, batch and text is not added
+	// or counted again.
 	Notes int `json:"notes"`
 }
 

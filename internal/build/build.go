@@ -357,7 +357,7 @@ func standIn(u units.Unit, en *align.LangAligned) string {
 }
 
 // aligner finds the EN and JP text of the units of one file. The alignment is
-// slow, so it only runs when a unit needs it.
+// slow, so it runs once per file, when the first unit asks.
 type aligner struct {
 	set    pack.Set
 	file   string
