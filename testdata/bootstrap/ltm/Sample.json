@@ -1,0 +1,20 @@
+{
+  "dataList": [
+    {
+      "id": 1,
+      "model": "Faust"
+    },
+    {
+      "id": 2,
+      "content": "賦予5層[Laceration]強度"
+    },
+    {
+      "id": 3,
+      "content": "<color=#f8c200>攻擊</color>時，傷害增加"
+    },
+    {
+      "id": 4,
+      "content": "恢復體力"
+    }
+  ]
+}

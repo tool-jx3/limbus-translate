@@ -1,0 +1,399 @@
+package main
+
+import (
+	"archive/zip"
+	"bytes"
+	"encoding/json"
+	"os"
+	"path/filepath"
+	"reflect"
+	"strings"
+	"testing"
+
+	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/store"
+)
+
+// bootstrapFixture is the small data set shared with internal/bootstrap.
+const bootstrapFixture = "../../testdata/bootstrap"
+
+const bootstrapYAML = `worktrees: { raw: .work/raw, tw: .work/tw }
+frozen: ["BgmLyrics/**"]
+bootstrap:
+  paratranz: { repo: owner/pz, tag: "11", asset: localize_files.zip }
+  ltm: { repo: owner/ltm, tag: "22", asset: Hant.zip }
+  llc: { repo: owner/llc, tag: "33", asset: LimbusLocalize_33.zip }
+`
+
+func copyDir(t *testing.T, src, dst string) {
+	t.Helper()
+	err := filepath.WalkDir(src, func(p string, d os.DirEntry, err error) error {
+		if err != nil || d.IsDir() {
+			return err
+		}
+		rel, err := filepath.Rel(src, p)
+		if err != nil {
+			return err
+		}
+		copyFile(t, p, filepath.Join(dst, rel))
+		return nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+// speakers are the ScenarioModelCodes files added to the fixture's upstream
+// packs: LTM names 뫼르소 differently.
+const (
+	speakersOurs = `{"dataList":[{"id":"뫼르소","name":"莫梭"},{"id":"이상","name":"李箱"}]}`
+	speakersLTM  = `{"dataList":[{"id":"뫼르소","name":"默爾索"},{"id":"이상","name":"李箱"}]}`
+)
+
+// bootstrapRepo makes an lct repo root ready for "lct bootstrap": rules, a raw
+// worktree holding the fixture packs and a snapshot record, and (unless
+// noUpstream) an upstream directory laid out as --fetch leaves it.
+func bootstrapRepo(t *testing.T, noUpstream bool) (root, upstream string) {
+	t.Helper()
+	root = snapshotRepo(t)
+	writeTestFile(t, root, "lct.yaml", bootstrapYAML)
+
+	for _, f := range []string{"rules/fields.manual.yaml", "glossary/terms.yaml", "guides/routing.yaml"} {
+		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
+	}
+	copyDir(t, filepath.Join(repoRoot, "guides/characters"), filepath.Join(root, "guides/characters"))
+
+	rawWT := filepath.Join(root, ".work", "raw")
+	for _, lang := range packLangs {
+		copyDir(t, filepath.Join(bootstrapFixture, lang), filepath.Join(rawWT, lang))
+	}
+	writeTestFile(t, rawWT, "meta/source.json", `{"tag":"raw-20261029","token":"`+testToken+`","created_at":"`+testCreatedAt+`","fetched_at":"2026-10-29T03:00:00Z","files":{}}`+"\n")
+
+	upstream = filepath.Join(t.TempDir(), "upstream")
+	if !noUpstream {
+		copyDir(t, filepath.Join(bootstrapFixture, "paratranz"), filepath.Join(upstream, "paratranz"))
+		copyDir(t, filepath.Join(bootstrapFixture, "ltm"), filepath.Join(upstream, "ltm"))
+		copyDir(t, filepath.Join(bootstrapFixture, "llc"), filepath.Join(upstream, "llc", "LimbusCompany_Data", "Lang", "LLC_zh-CN"))
+		writeTestFile(t, upstream, "paratranz/ScenarioModelCodes-AutoCreated.json", speakersOurs)
+		writeTestFile(t, upstream, "ltm/ScenarioModelCodes-AutoCreated.json", speakersLTM)
+	}
+	return root, upstream
+}
+
+type bootstrapOut struct {
+	RawTag       string         `json:"raw_tag"`
+	Records      int            `json:"records"`
+	Pending      int            `json:"pending"`
+	ForeignNames int            `json:"foreign_names"`
+	Stats        map[string]int `json:"stats"`
+}
+
+func runBootstrapJSON(t *testing.T, root string, args ...string) (bootstrapOut, error) {
+	t.Helper()
+	ctx, out := testCtx(t, root, "", true)
+	err := runBootstrap(ctx, args)
+	var got bootstrapOut
+	if err == nil {
+		if err := json.Unmarshal(out.Bytes(), &got); err != nil {
+			t.Fatalf("output is not JSON: %v\n%s", err, out)
+		}
+	}
+	return got, err
+}
+
+func TestBootstrapImportsFixture(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	got, err := runBootstrapJSON(t, root, "--upstream", upstream)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	wantStats := map[string]int{
+		"copy": 2, "paratranz": 2, "paratranz-repair": 1, "new": 1, "unaligned-paratranz": 0, "frozen": 0,
+	}
+	if got.RawTag != "raw-20261029" || got.Records != 4 || got.Pending != 2 || got.ForeignNames != 1 || !reflect.DeepEqual(got.Stats, wantStats) {
+		t.Errorf("output = %+v, want raw-20261029, 4 records, 2 pending, 1 foreign name, stats %v", got, wantStats)
+	}
+
+	tw := filepath.Join(root, ".work", "tw")
+	if branch := runGitIn(t, tw, "symbolic-ref", "--short", "HEAD"); branch != "tw" {
+		t.Errorf("worktree is on %q, want tw", branch)
+	}
+	st := store.Open(tw)
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if r := recs["Sample.json|/dataList/1/content"]; r.ZH != "增加5級 [Laceration] 強度" || r.Origin != store.OriginParatranz || r.Since != "raw-20261029" {
+		t.Errorf("adopted record = %+v", r)
+	}
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(pending) != 2 || pending[0].Reason != "paratranz-repair" || pending[1].Reason != "new" {
+		t.Errorf("pending = %+v, want the repair item and the new item in key order", pending)
+	}
+	names, err := os.ReadFile(filepath.Join(tw, ".meta", "foreign-names.json"))
+	if err != nil || string(names) != "[\n  \"默爾索\"\n]\n" {
+		t.Errorf("foreign-names.json = %q, %v", names, err)
+	}
+}
+
+func TestBootstrapTextOutput(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	ctx, out := testCtx(t, root, "", false)
+	if err := runBootstrap(ctx, []string{"--upstream", upstream}); err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{"raw-20261029", "paratranz-repair", "unaligned-paratranz", "4 records", "2 pending"} {
+		if !strings.Contains(out.String(), want) {
+			t.Errorf("output does not mention %q:\n%s", want, out)
+		}
+	}
+}
+
+func TestBootstrapEmptyForeignNamesIsEmptyList(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	for _, side := range []string{"paratranz", "ltm"} {
+		if err := os.Remove(filepath.Join(upstream, side, "ScenarioModelCodes-AutoCreated.json")); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
+		t.Fatal(err)
+	}
+	names, err := os.ReadFile(filepath.Join(root, ".work", "tw", ".meta", "foreign-names.json"))
+	if err != nil || string(names) != "[]\n" {
+		t.Errorf("foreign-names.json = %q, %v, want []", names, err)
+	}
+}
+
+func TestBootstrapRefusesToOverwriteWithoutForce(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
+		t.Fatal(err)
+	}
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	before, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// A person's work since the import must survive a second run.
+	edited := before["Sample.json|/dataList/1/content"]
+	edited.ZH, edited.Origin = "手改的譯文", store.OriginHuman
+	before[edited.Key] = edited
+	if err := st.SaveRecords(before); err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = runBootstrapJSON(t, root, "--upstream", upstream)
+	if !isUserError(err) || !strings.Contains(err.Error(), "--force") {
+		t.Fatalf("err = %v (%T), want a user error that mentions --force", err, err)
+	}
+	after, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(before, after) {
+		t.Error("a refused bootstrap changed the records")
+	}
+
+	// A store with only pending items is just as protected.
+	if err := st.SaveRecords(map[string]store.Record{}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); !isUserError(err) {
+		t.Errorf("pending items alone: err = %v, want a user error", err)
+	}
+}
+
+func TestBootstrapForceReplacesTheStore(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	tw := filepath.Join(root, ".work", "tw")
+	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
+		t.Fatal(err)
+	}
+	st := store.Open(tw)
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	recs["Old.json|/dataList/0/name"] = store.Record{Key: "Old.json|/dataList/0/name", ZH: "舊", Origin: store.OriginClaude}
+	if err := st.SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+	if err := st.SavePending([]store.PendingItem{{Key: "Old.json|/dataList/1/name", Reason: "requeue"}}); err != nil {
+		t.Fatal(err)
+	}
+
+	got, err := runBootstrapJSON(t, root, "--upstream", upstream, "--force")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Records != 4 || got.Pending != 2 {
+		t.Errorf("output = %+v, want 4 records and 2 pending", got)
+	}
+	recs, err = st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, ok := recs["Old.json|/dataList/0/name"]; ok || len(recs) != 4 {
+		t.Errorf("after --force: %d records, stale one present: %v", len(recs), ok)
+	}
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(pending) != 2 {
+		t.Errorf("after --force: %d pending items, want 2: %+v", len(pending), pending)
+	}
+	if _, err := os.Stat(filepath.Join(tw, ".meta", "units", "Old.json.jsonl")); !os.IsNotExist(err) {
+		t.Errorf("the stale record file is still there: %v", err)
+	}
+}
+
+func TestBootstrapUsageErrors(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	noSnapshot, upstream2 := bootstrapRepo(t, false)
+	if err := os.Remove(filepath.Join(noSnapshot, ".work", "raw", "meta", "source.json")); err != nil {
+		t.Fatal(err)
+	}
+	missingUpstream, _ := bootstrapRepo(t, true)
+	noLLC, upstream3 := bootstrapRepo(t, false)
+	if err := os.RemoveAll(filepath.Join(upstream3, "llc")); err != nil {
+		t.Fatal(err)
+	}
+
+	tests := []struct {
+		name string
+		root string
+		args []string
+		want string
+	}{
+		{"stray argument", root, []string{"--upstream", upstream, "stray"}, "stray"},
+		{"unknown flag", root, []string{"--nope"}, "nope"},
+		{"no raw snapshot", noSnapshot, []string{"--upstream", upstream2}, "snapshot"},
+		{"no upstream directory", missingUpstream, []string{"--upstream", filepath.Join(missingUpstream, "nowhere")}, "--fetch"},
+		{"no LLC directory", noLLC, []string{"--upstream", upstream3}, "llc"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			_, err := runBootstrapJSON(t, tc.root, tc.args...)
+			if !isUserError(err) {
+				t.Fatalf("err = %v (%T), want a user error", err, err)
+			}
+			if !strings.Contains(err.Error(), tc.want) {
+				t.Errorf("err = %q, want it to mention %q", err, tc.want)
+			}
+		})
+	}
+	// Refusing must leave no tw worktree behind.
+	if _, err := os.Stat(filepath.Join(noSnapshot, ".work", "tw")); !os.IsNotExist(err) {
+		t.Errorf("a refused bootstrap created the tw worktree: %v", err)
+	}
+}
+
+func TestUpstreamURL(t *testing.T) {
+	up := config.Upstream{Repo: "user-unknown-0711/ParatranzUploader", Tag: "1793285016", Asset: "localize_files.zip"}
+	want := "https://github.com/user-unknown-0711/ParatranzUploader/releases/download/1793285016/localize_files.zip"
+	if got := upstreamURL("https://github.com", up); got != want {
+		t.Errorf("upstreamURL = %q, want %q", got, want)
+	}
+	if upstreamBase != "https://github.com" {
+		t.Errorf("upstreamBase = %q, want https://github.com", upstreamBase)
+	}
+}
+
+// writeZipFile writes a zip holding files (name to content) at p.
+func writeZipFile(t *testing.T, p string, files map[string]string) {
+	t.Helper()
+	var buf bytes.Buffer
+	zw := zip.NewWriter(&buf)
+	for name, content := range files {
+		w, err := zw.Create(name)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, err := w.Write([]byte(content)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := zw.Close(); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, buf.Bytes(), 0o644); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func readFixtureFile(t *testing.T, rel string) string {
+	t.Helper()
+	b, err := os.ReadFile(filepath.Join(bootstrapFixture, rel))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return string(b)
+}
+
+func TestBootstrapFetchDownloadsAndExtractsThePinnedAssets(t *testing.T) {
+	root, upstream := bootstrapRepo(t, true)
+
+	// A fake GitHub: <base>/<repo>/releases/download/<tag>/<asset>.
+	gh := t.TempDir()
+	writeZipFile(t, filepath.Join(gh, "owner/pz/releases/download/11/localize_files.zip"), map[string]string{
+		"Sample.json": readFixtureFile(t, "paratranz/Sample.json"),
+		"Bufs.json":   readFixtureFile(t, "paratranz/Bufs.json"),
+	})
+	writeZipFile(t, filepath.Join(gh, "owner/ltm/releases/download/22/Hant.zip"), map[string]string{
+		"Sample.json": readFixtureFile(t, "ltm/Sample.json"),
+	})
+	writeZipFile(t, filepath.Join(gh, "owner/llc/releases/download/33/LimbusLocalize_33.zip"), map[string]string{
+		"LimbusCompany_Data/Lang/LLC_zh-CN/Sample.json": readFixtureFile(t, "llc/Sample.json"),
+	})
+	old := upstreamBase
+	upstreamBase = "file://" + gh
+	t.Cleanup(func() { upstreamBase = old })
+
+	// What an earlier fetch left behind must not survive.
+	writeTestFile(t, upstream, "paratranz/Stale.json", `{"dataList":[]}`)
+
+	got, err := runBootstrapJSON(t, root, "--fetch", "--upstream", upstream)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Records != 4 || got.Pending != 2 {
+		t.Errorf("output = %+v, want 4 records and 2 pending", got)
+	}
+	for _, rel := range []string{"paratranz.zip", "ltm.zip", "llc.zip", "paratranz/Sample.json", "llc/LimbusCompany_Data/Lang/LLC_zh-CN/Sample.json"} {
+		if _, err := os.Stat(filepath.Join(upstream, filepath.FromSlash(rel))); err != nil {
+			t.Errorf("--fetch left no %s: %v", rel, err)
+		}
+	}
+	if _, err := os.Stat(filepath.Join(upstream, "paratranz", "Stale.json")); !os.IsNotExist(err) {
+		t.Errorf("a file of the earlier fetch survived: %v", err)
+	}
+}
+
+func TestBootstrapFetchFailureIsASystemError(t *testing.T) {
+	root, upstream := bootstrapRepo(t, true)
+	old := upstreamBase
+	upstreamBase = "file://" + t.TempDir() // no release in there
+	t.Cleanup(func() { upstreamBase = old })
+
+	_, err := runBootstrapJSON(t, root, "--fetch", "--upstream", upstream)
+	if err == nil || isUserError(err) {
+		t.Errorf("err = %v, want a system error for a failed download", err)
+	}
+}
+
+func TestBootstrapIsRegistered(t *testing.T) {
+	if !strings.Contains(strings.Join(cli.Commands(), " "), "bootstrap") {
+		t.Errorf("bootstrap is not registered (have: %v)", cli.Commands())
+	}
+}

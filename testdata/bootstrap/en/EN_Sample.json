@@ -1,0 +1,20 @@
+{
+  "dataList": [
+    {
+      "id": 1,
+      "model": "Faust"
+    },
+    {
+      "id": 2,
+      "content": "Inflict 5 [Laceration] Potency"
+    },
+    {
+      "id": 3,
+      "content": "<color=#f8c200>Attack</color> increases damage"
+    },
+    {
+      "id": 4,
+      "content": "Restores HP"
+    }
+  ]
+}

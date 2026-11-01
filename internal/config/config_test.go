@@ -98,3 +98,33 @@ func TestFindRootNotFound(t *testing.T) {
 		t.Fatal("FindRoot outside a repo: want error, got nil")
 	}
 }
+
+func TestMatchAny(t *testing.T) {
+	tests := []struct {
+		name     string
+		patterns []string
+		file     string
+		want     bool
+	}{
+		{"directory pattern, file below it", []string{"BgmLyrics/**"}, "BgmLyrics/BgmLyrics_Credit7.json", true},
+		{"directory pattern, nested file", []string{"BgmLyrics/**"}, "BgmLyrics/a/b.json", true},
+		{"directory pattern, sibling with the same prefix", []string{"BgmLyrics/**"}, "BgmLyricsExtra/a.json", false},
+		{"directory pattern, file at the root", []string{"BgmLyrics/**"}, "BgmLyrics.json", false},
+		{"directory pattern, the directory name alone", []string{"BgmLyrics/**"}, "BgmLyrics", false},
+		{"directory pattern, other directory", []string{"BgmLyrics/**"}, "StoryData/S1.json", false},
+		{"glob pattern", []string{"Bufs*.json"}, "Bufs_Mirror3.json", true},
+		{"glob does not cross a slash", []string{"Bufs*.json"}, "StoryData/Bufs1.json", false},
+		{"exact name", []string{"MainUIText.json"}, "MainUIText.json", true},
+		{"second pattern matches", []string{"A/**", "B*.json"}, "Bx.json", true},
+		{"malformed glob matches nothing", []string{"[a"}, "a", false},
+		{"no patterns", nil, "BgmLyrics/a.json", false},
+		{"bare /** has no directory", []string{"/**"}, "a.json", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MatchAny(tt.patterns, tt.file); got != tt.want {
+				t.Errorf("MatchAny(%q, %q) = %v, want %v", tt.patterns, tt.file, got, tt.want)
+			}
+		})
+	}
+}

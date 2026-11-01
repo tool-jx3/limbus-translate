@@ -1,0 +1,20 @@
+{
+  "dataList": [
+    {
+      "id": 1,
+      "model": "Faust"
+    },
+    {
+      "id": 2,
+      "content": "[Laceration]威力5付与"
+    },
+    {
+      "id": 3,
+      "content": "<color=#f8c200>攻撃</color>時、ダメージ増加"
+    },
+    {
+      "id": 4,
+      "content": "体力を回復する"
+    }
+  ]
+}
