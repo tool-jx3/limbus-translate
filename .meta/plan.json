@@ -1,0 +1,26 @@
+{
+  "raw_tag": "raw-20261029",
+  "prev_raw_tag": "raw-20261029",
+  "rules_commit": "7bad47f10cd5508824b923385f25022da6b58439",
+  "changes": {
+    "unchanged": 0,
+    "moved": 0,
+    "changed": 0,
+    "new": 0,
+    "deleted": 0
+  },
+  "copy": 0,
+  "reused": 0,
+  "adjustments": {
+    "applied": 0,
+    "moved": [],
+    "expired": []
+  },
+  "requeue_applied": [],
+  "rewrite_applied": [],
+  "frozen_changed": [],
+  "new_speakers": [],
+  "field_changes": [],
+  "new_files_default_family": [],
+  "pending": 0
+}
