@@ -16,6 +16,12 @@ var (
 	// tagRe matches a TextMeshPro tag such as <color=#f8c200> or </color>.
 	// It cannot match <0>, which is a placeholder.
 	tagRe = regexp.MustCompile(`</?[A-Za-z][A-Za-z0-9-]*(=[^>]*)?( [^>]*)?>`)
+	// langStyleRe matches a per-language style tag such as <style="dkr"> or
+	// <style="DEN_CP9_1">. KR writes dkr, EN den and JP djp; the suffix tells
+	// the lyric lines apart. The groups are the opening quote, the language
+	// prefix (d plus the language code), the suffix and the closing quote;
+	// callers accept a match only when the quotes agree.
+	langStyleRe = regexp.MustCompile(`<style=("?)((?i:d(?:kr|en|jp)))((?:_[A-Za-z0-9_]+)?)("?)>`)
 )
 
 // IDs returns the [ID] tokens of s in order of appearance, duplicates kept.
@@ -44,4 +50,30 @@ func tagName(tok string) (name string, closing bool) {
 		end = len(rest)
 	}
 	return rest[:end], closing
+}
+
+// langStyle splits an opening tag tok, which Tags returned, into the quote
+// around its value, the language prefix (d plus the language code) and the
+// suffix, if it is a per-language style tag. Anything else, such as
+// <style="highlight">, <style="dzh"> or a value with one quote, is not.
+func langStyle(tok string) (quote, prefix, suffix string, ok bool) {
+	m := langStyleRe.FindStringSubmatch(tok)
+	if m == nil || m[0] != tok || m[1] != m[4] {
+		return "", "", "", false
+	}
+	return m[1], m[2], m[3], true
+}
+
+// comparableTag returns the form of tag token tok, which Tags returned, in
+// which tags compare equal when they mean the same: a closing tag is its
+// name, and a per-language style tag has its language code replaced by * and
+// its suffix lower-cased. The result is only for comparing.
+func comparableTag(tok string) string {
+	if name, closing := tagName(tok); closing {
+		return "</" + name + ">"
+	}
+	if quote, _, suffix, ok := langStyle(tok); ok {
+		return "<style=" + quote + "d*" + strings.ToLower(suffix) + quote + ">"
+	}
+	return tok
 }

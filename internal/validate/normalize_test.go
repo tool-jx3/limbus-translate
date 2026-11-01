@@ -69,3 +69,44 @@ func TestNormalizeIgnoresKR(t *testing.T) {
 		t.Errorf("Normalize depends on kr: %q vs %q", a, b)
 	}
 }
+
+// The Chinese translation writes djp for every language style, whichever
+// language KR uses; other styles are left alone.
+func TestNormalizeLanguageStyle(t *testing.T) {
+	tests := []struct {
+		name, kr, in, want string
+	}{
+		{"dkr", `<style="dkr">피`, `<style="dkr">血`, `<style="djp">血`},
+		{"dkr with suffix", `<style="dkr_CP6_2">피`, `<style="dkr_CP6_2">血`, `<style="djp_CP6_2">血`},
+		{"upper case keeps its case", `<style="DKR_CP9_1">피`, `<style="DKR_CP9_1">血`, `<style="DJP_CP9_1">血`},
+		{"capitalized keeps its case", `<style="Den_x">피`, `<style="Den_x">血`, `<style="Djp_x">血`},
+		{"en", `<style="den">피`, `<style="den">血`, `<style="djp">血`},
+		{"already djp", `<style="dkr">피`, `<style="djp">血`, `<style="djp">血`},
+		{"already DJP with suffix", `<style="DKR_CP9_1">피`, `<style="DJP_CP9_1">血`, `<style="DJP_CP9_1">血`},
+		{"unquoted value", `<style=dkr>피`, `<style=dkr>血`, `<style=djp>血`},
+		{"with closing tag", `<style="dkr">피</style>`, `<style="dkr">血</style>`, `<style="djp">血</style>`},
+		{"several tags", `<style="dkr_CP6_1">가</style> <style="dkr_CP6_2">나</style>`, `<style="dkr_CP6_1">甲</style> <style="DKR_CP6_2">乙</style>`, `<style="djp_CP6_1">甲</style> <style="DJP_CP6_2">乙</style>`},
+		{"KR has no style tag", `피`, `<style="dkr">血`, `<style="djp">血`},
+		{"KR is empty", ``, `<style="dkr_CP6_2">血`, `<style="djp_CP6_2">血`},
+		{"highlight is left alone", `<style="highlight">피`, `<style="highlight">血</style>`, `<style="highlight">血</style>`},
+		{"upgradeHighlight is left alone", `<style="upgradeHighlight">피`, `<style="upgradeHighlight">血`, `<style="upgradeHighlight">血`},
+		{"yellow is left alone", `<style="yellow">피`, `<style="yellow">血`, `<style="yellow">血`},
+		{"highlightConverted is left alone", `<style="highlightConverted">피`, `<style="highlightConverted">血`, `<style="highlightConverted">血`},
+		{"unknown language code is left alone", `<style="dkr">피`, `<style="dzh">血`, `<style="dzh">血`},
+		{"longer language code is left alone", `<style="dkr">피`, `<style="dkrx">血`, `<style="dkrx">血`},
+		{"unbalanced quote is left alone", `<style="dkr">피`, `<style="dkr>血`, `<style="dkr>血`},
+		{"text that is not a tag is left alone", `dkr`, `dkr <style> style="dkr"`, `dkr <style> style="dkr"`},
+		{"other repairs still apply", `<style="dkr">[Burn]`, `<style="dkr">增加[Burn]強度`, `<style="djp">增加 [Burn] 強度`},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			got := Normalize(tc.kr, tc.in)
+			if got != tc.want {
+				t.Errorf("Normalize(%q, %q) = %q, want %q", tc.kr, tc.in, got, tc.want)
+			}
+			if again := Normalize(tc.kr, got); again != got {
+				t.Errorf("Normalize is not idempotent: %q -> %q", got, again)
+			}
+		})
+	}
+}

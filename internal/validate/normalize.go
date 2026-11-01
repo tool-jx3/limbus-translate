@@ -31,6 +31,10 @@ var (
 //     while a "][" between other brackets is left alone
 //   - all-caps variables such as [ATTRIBUTES] get no added space
 //   - the space before [TabExplain] is removed
+//   - the language of a per-language style tag becomes jp, whatever KR and EN
+//     write: <style="dkr_CP6_2"> becomes <style="djp_CP6_2">, <style="DKR_CP9_1">
+//     becomes <style="DJP_CP9_1"> (the case of the letters, the quotes and the
+//     suffix are kept; other styles such as "highlight" are left alone)
 //
 // Normalize is idempotent. kr is the Korean original; no rule depends on it
 // today, but callers pass it so a rule that does can be added without
@@ -38,8 +42,26 @@ var (
 func Normalize(kr, zh string) string {
 	s := unescaper.Replace(zh)
 	s = tabExplainRe.ReplaceAllString(s, "[TabExplain]")
+	s = langStyleRe.ReplaceAllStringFunc(s, toJapaneseStyle)
 	s = spaceAroundIDs(s)
 	return separateAdjacentIDs(s)
+}
+
+// toJapaneseStyle rewrites a per-language style tag, which langStyleRe
+// matched, to the language the Chinese translation uses. Each letter of the
+// new language code takes the case of the letter it replaces.
+func toJapaneseStyle(tok string) string {
+	quote, prefix, suffix, ok := langStyle(tok)
+	if !ok {
+		return tok
+	}
+	code := []byte("jp")
+	for i := range code {
+		if prefix[1+i] >= 'A' && prefix[1+i] <= 'Z' {
+			code[i] -= 'a' - 'A'
+		}
+	}
+	return "<style=" + quote + prefix[:1] + string(code) + suffix + quote + ">"
 }
 
 // spaceAroundIDs adds the spaces base.md asks for around each [ID].

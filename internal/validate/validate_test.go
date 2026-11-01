@@ -417,3 +417,81 @@ func TestIsDanteLine(t *testing.T) {
 		}
 	}
 }
+
+// The language code of a lyric style tag differs between KR, EN and JP, and the
+// Chinese community packs write djp, so the three count as the same tag.
+func TestLanguageStyleTagsAreEquivalent(t *testing.T) {
+	tests := []struct {
+		name, kr, zh string
+	}{
+		{"dkr and djp", `<style="dkr">피가 보고 싶었어`, `<style="djp">我期待了暴力`},
+		{"dkr and den", `<style="dkr">피가 보고 싶었어`, `<style="den">我期待了暴力`},
+		{"suffix kept", `<style="dkr_CP6_2">피가`, `<style="djp_CP6_2">血`},
+		{"kr and en upper case", `<style="DKR_CP9_1">피가`, `<style="DEN_CP9_1">血`},
+		{"suffix case ignored", `<style="DKR_CP9_1">피가`, `<style="djp_cp9_1">血`},
+		{"language code case ignored", `<style="dkr">피가`, `<style="DJP">血`},
+		{"mixed case code", `<style="Den_x">피가`, `<style="dJp_X">血`},
+		{"unquoted value", `<style=dkr>피가`, `<style=djp>血`},
+		{"with closing tag", `<style="dkr">피가</style>`, `<style="djp">血</style>`},
+		{"next to another tag", `<b><style="dkr">피가</b>`, `<b><style="djp">血</b>`},
+		{"two lines of one lyric", `<style="dkr_CP6_1">가</style> <style="dkr_CP6_2">나</style>`, `<style="djp_CP6_1">甲</style> <style="djp_CP6_2">乙</style>`},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			if is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); ok {
+				t.Errorf("Check(%q, %q) reports %s: %s", tc.kr, tc.zh, is.Code, is.Message)
+			}
+		})
+	}
+}
+
+func TestLanguageStyleTagsStillCompared(t *testing.T) {
+	tests := []struct {
+		name, kr, zh string
+		missing      string // the real KR tag the message must name
+		unexpected   string // the real zh tag the message must name
+	}{
+		{"different suffix", `<style="dkr">피가`, `<style="djp_CP6_2">血`, `<style="dkr">`, `<style="djp_CP6_2">`},
+		{"suffix dropped", `<style="dkr_CP6_2">피가`, `<style="djp">血`, `<style="dkr_CP6_2">`, `<style="djp">`},
+		{"other suffix", `<style="dkr_CP6_1">피가`, `<style="djp_CP6_2">血`, `<style="dkr_CP6_1">`, `<style="djp_CP6_2">`},
+		{"non-language style", `<style="highlight">피가`, `<style="djp">血`, `<style="highlight">`, `<style="djp">`},
+		{"language style where KR has a plain one", `<style="dkr">피가`, `<style="highlight">血`, `<style="dkr">`, `<style="highlight">`},
+		{"unknown language code", `<style="dkr">피가`, `<style="dzh">血`, `<style="dkr">`, `<style="dzh">`},
+		{"longer language code", `<style="dkr">피가`, `<style="djpn">血`, `<style="dkr">`, `<style="djpn">`},
+		{"suffix without underscore", `<style="dkr">피가`, `<style="djp2">血`, `<style="dkr">`, `<style="djp2">`},
+		{"quotes differ", `<style="dkr">피가`, `<style=djp>血`, `<style="dkr">`, `<style=djp>`},
+		{"unbalanced quote", `<style="dkr">피가`, `<style="djp>血`, `<style="dkr">`, `<style="djp>`},
+		{"other style names differ", `<style="highlight">피가`, `<style="yellow">血`, `<style="highlight">`, `<style="yellow">`},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch)
+			if !ok {
+				t.Fatalf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+			// The canonical form is only for comparing: the message shows real tags.
+			for _, want := range []string{"missing " + tc.missing, "unexpected " + tc.unexpected} {
+				if !strings.Contains(is.Message, want) {
+					t.Errorf("message %q does not contain %q", is.Message, want)
+				}
+			}
+		})
+	}
+}
+
+// A language style that matches must not hide a real difference, nor show up
+// in its message.
+func TestLanguageStyleTagsDoNotHideOtherDifferences(t *testing.T) {
+	is, ok := find(Check(`<style="dkr"><b>피가</b>`, `<style="djp">血`, Context{}), CodeTagMismatch)
+	if !ok {
+		t.Fatal("a missing <b> is not reported")
+	}
+	if want := ": missing </b> <b>"; !strings.Contains(is.Message, want) || strings.Contains(is.Message, "style") {
+		t.Errorf("message %q should name only the <b> tags (%q)", is.Message, want)
+	}
+	// Two KR tags against one zh tag of the same language still differ by one.
+	is, ok = find(Check(`<style="dkr">가 <style="dkr">나`, `<style="djp">甲 乙`, Context{}), CodeTagMismatch)
+	if !ok || !strings.Contains(is.Message, `missing <style="dkr">`) {
+		t.Errorf("a dropped language style is not reported: %+v", is)
+	}
+}

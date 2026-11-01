@@ -170,18 +170,37 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 
 // tagDiff compares the tags of kr and zh: opening tags by their full text,
 // closing tags by name. Closing tags are written as </name> in the result.
+// The language of a per-language style tag does not count (see comparableTag),
+// but the result names the tags as written: the KR tag for a missing one, the
+// zh tag for an extra one.
 func tagDiff(kr, zh string) (missing, extra []string) {
-	split := func(s string) []string {
-		var tokens []string
+	split := func(s string) (keys []string, written map[string]string) {
+		written = map[string]string{}
 		for _, tok := range Tags(s) {
-			if name, closing := tagName(tok); closing {
-				tok = "</" + name + ">"
+			key := comparableTag(tok)
+			keys = append(keys, key)
+			if _, seen := written[key]; seen {
+				continue
 			}
-			tokens = append(tokens, tok)
+			written[key] = key // a closing tag is shown as </name>
+			if _, closing := tagName(tok); !closing {
+				written[key] = tok
+			}
 		}
-		return tokens
+		return keys, written
 	}
-	return multisetDiff(split(kr), split(zh))
+	krKeys, krWritten := split(kr)
+	zhKeys, zhWritten := split(zh)
+	missing, extra = multisetDiff(krKeys, zhKeys)
+	for i, key := range missing {
+		missing[i] = krWritten[key]
+	}
+	for i, key := range extra {
+		extra[i] = zhWritten[key]
+	}
+	slices.Sort(missing)
+	slices.Sort(extra)
+	return missing, extra
 }
 
 // nestingProblem returns what is wrong with the nesting of the tags of s, or
