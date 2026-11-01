@@ -1,0 +1,72 @@
+{
+  "dataList": [
+    {
+      "key": "Setting_Sisyphus_CheckpointRestart",
+      "text": "從檢查點重新開始"
+    },
+    {
+      "key": "Sisyphus_CheckpointRestartConfirmDesc",
+      "text": "要從檢查點重新開始嗎？"
+    },
+    {
+      "key": "Sisyphus_SkipConfirmDesc",
+      "text": "要跳過這段內容前往下一段嗎？"
+    },
+    {
+      "key": "Setting_Sisyphus_PushRock",
+      "text": "毆打落石"
+    },
+    {
+      "key": "Setting_Sisyphus_CatchRock",
+      "text": "抓住落石"
+    },
+    {
+      "key": "Setting_Sisyphus_Log",
+      "text": "紀錄"
+    },
+    {
+      "key": "WardenArena_ResistFate",
+      "text": "抵抗命運"
+    },
+    {
+      "key": "KeyDesc_SisypMoveUp",
+      "text": "往上移動"
+    },
+    {
+      "key": "KeyDesc_SisypMoveDown",
+      "text": "往下移動"
+    },
+    {
+      "key": "KeyDesc_SisypMoveLeft",
+      "text": "往左移動"
+    },
+    {
+      "key": "KeyDesc_SisypMoveRight",
+      "text": "往右移動"
+    },
+    {
+      "key": "KeyDesc_SisypAttack",
+      "text": "毆打落石"
+    },
+    {
+      "key": "KeyDesc_SisypGrab",
+      "text": "抓住落石"
+    },
+    {
+      "key": "KeyDesc_SisypRunToggle",
+      "text": "切換奔跑"
+    },
+    {
+      "key": "KeyDesc_SisypRestart",
+      "text": "從檢查點重新開始"
+    },
+    {
+      "key": "KeyDesc_SyncNormalSysypKey",
+      "text": "輸入快捷鍵"
+    },
+    {
+      "key": "KeyDesc_SisypLogToggle",
+      "text": "所有紀錄"
+    }
+  ]
+}

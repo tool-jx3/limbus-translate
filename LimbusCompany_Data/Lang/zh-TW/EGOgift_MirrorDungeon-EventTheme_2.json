@@ -1,0 +1,884 @@
+{
+  "dataList": [
+    {
+      "id": 9751,
+      "name": "蛇蛻",
+      "desc": "回合開始時，使全體友方單位獲得2層 [DefenseUp]。\n友方單位的攻擊等級增加(自身的 [DefenseUp] 層數÷4)。(最多+10)",
+      "simpleDesc": [
+        {
+          "abilityID": 9751,
+          "simpleDesc": "全體友方單位獲得 [DefenseUp] 並增加攻擊等級"
+        }
+      ]
+    },
+    {
+      "id": 19751,
+      "name": "蛇蛻+",
+      "desc": "回合開始時，使全體友方單位獲得<style=\"upgradeHighlight\">4</style>層 [DefenseUp]。\n友方單位的攻擊等級增加(自身的 [DefenseUp] 層數÷<style=\"upgradeHighlight\">3</style>)。(最多+10)",
+      "simpleDesc": [
+        {
+          "abilityID": 19751,
+          "simpleDesc": "全體友方單位獲得 [DefenseUp] 並增加攻擊等級"
+        }
+      ]
+    },
+    {
+      "id": 29751,
+      "name": "蛇蛻++",
+      "desc": "回合開始時，使全體友方單位獲得4層 [DefenseUp]。\n友方單位的攻擊等級增加(自身的 [DefenseUp] 層數÷<style=\"upgradeHighlight\">2</style>)。(最多+10)",
+      "simpleDesc": [
+        {
+          "abilityID": 29751,
+          "simpleDesc": "全體友方單位獲得 [DefenseUp] 並增加攻擊等級"
+        }
+      ]
+    },
+    {
+      "id": 9752,
+      "name": "虛假的光相",
+      "desc": "攻擊命中時，使自身獲得1層 [Zazen]。(每個技能最多2次)\n若本回合自身受到敵方單位的技能攻擊，則令獲得的 [Zazen] 額外+1層。",
+      "simpleDesc": [
+        {
+          "abilityID": 9752,
+          "simpleDesc": "攻擊命中時，使自身獲得1層 [Zazen]"
+        }
+      ]
+    },
+    {
+      "id": 19752,
+      "name": "虛假的光相+",
+      "desc": "攻擊命中時，使自身獲得1層 [Zazen]。(每個技能最多<style=\"upgradeHighlight\">3</style>次)\n若本回合自身受到敵方單位的技能攻擊，則令獲得的 [Zazen] 額外+1層。",
+      "simpleDesc": [
+        {
+          "abilityID": 19752,
+          "simpleDesc": "攻擊命中時，使自身獲得1層 [Zazen]"
+        }
+      ]
+    },
+    {
+      "id": 29752,
+      "name": "虛假的光相++",
+      "desc": "攻擊命中時，使自身獲得<style=\"upgradeHighlight\">2</style>層 [Zazen]。(每個技能最多3次)\n若本回合自身受到敵方單位的技能攻擊，則令獲得的 [Zazen] 額外+1層。",
+      "simpleDesc": [
+        {
+          "abilityID": 29752,
+          "simpleDesc": "攻擊命中時，使自身獲得2層 [Zazen]"
+        }
+      ]
+    },
+    {
+      "id": 9753,
+      "name": "節拍器",
+      "desc": "回合數為奇數時，使全體友方單位獲得1層 [AttackDmgUp]。回合數為偶數時，使全體友方單位獲得1層 [Protection]。",
+      "simpleDesc": [
+        {
+          "abilityID": 9753,
+          "simpleDesc": "全體友方單位的攻擊或防禦隨回合數獲得強化"
+        }
+      ]
+    },
+    {
+      "id": 19753,
+      "name": "節拍器+",
+      "desc": "回合數為奇數時，使全體友方單位獲得1層 [AttackDmgUp]。回合數為偶數時，使全體友方單位獲得1層 [Protection] <style=\"upgradeHighlight\">與1層 [DefenseUp]</style>。",
+      "simpleDesc": [
+        {
+          "abilityID": 19753,
+          "simpleDesc": "全體友方單位的攻擊或防禦隨回合數獲得強化"
+        }
+      ]
+    },
+    {
+      "id": 29753,
+      "name": "節拍器++",
+      "desc": "回合數為奇數時，使全體友方單位獲得1層 [AttackDmgUp] <style=\"upgradeHighlight\">與1層 [AttackUp]</style>。回合數為偶數時，使全體友方單位獲得1層 [Protection] 與1層 [DefenseUp]。",
+      "simpleDesc": [
+        {
+          "abilityID": 29753,
+          "simpleDesc": "全體友方單位的攻擊或防禦隨回合數獲得強化"
+        }
+      ]
+    },
+    {
+      "id": 9754,
+      "name": "枷鎖",
+      "desc": "關卡開始時，使全體友方單位的體力上限增加(當前階層×2)%(最多20%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9754,
+          "simpleDesc": "全體友方單位的體力上限隨當前階層提升"
+        }
+      ]
+    },
+    {
+      "id": 19754,
+      "name": "枷鎖+",
+      "desc": "關卡開始時，使全體友方單位的體力上限增加(當前階層×<style=\"upgradeHighlight\">3</style>)%(最多<style=\"upgradeHighlight\">30</style>%)",
+      "simpleDesc": [
+        {
+          "abilityID": 19754,
+          "simpleDesc": "全體友方單位的體力上限隨當前階層提升"
+        }
+      ]
+    },
+    {
+      "id": 29754,
+      "name": "枷鎖++",
+      "desc": "關卡開始時，使全體友方單位的體力上限增加(當前階層×<style=\"upgradeHighlight\">5</style>)%(最多<style=\"upgradeHighlight\">50</style>%)",
+      "simpleDesc": [
+        {
+          "abilityID": 29754,
+          "simpleDesc": "全體友方單位的體力上限隨當前階層提升"
+        }
+      ]
+    },
+    {
+      "id": 9755,
+      "name": "輕蔑的視線的輕蔑",
+      "desc": "[第6順位友方單位專屬]\n\n戰鬥開始時，每有1個指定自身為目標的敵方單位的攻擊技能，使自身造成的傷害+10%(最多+20%)\n\n戰鬥開始時，若自身被2個及以上技能指定為目標，則對指定自身的全體敵方單位造成(指定自身的技能數)點固定體力與理智傷害。(最多3點，不會對友方單位造成傷害)",
+      "simpleDesc": [
+        {
+          "abilityID": 9755,
+          "simpleDesc": "根據指定自身的敵方單位的技能數相應使造成的傷害增加，造成固定傷害"
+        }
+      ]
+    },
+    {
+      "id": 19755,
+      "name": "輕蔑的視線的輕蔑+",
+      "desc": "[第6順位友方單位專屬]\n\n戰鬥開始時，每有1個指定自身為目標的敵方單位的攻擊技能，使自身造成的傷害+10%(最多+20%)\n\n戰鬥開始時，若自身被2個及以上技能指定為目標，則對指定自身的全體敵方單位造成<style=\"upgradeHighlight\">(2×指定自身的技能數)</style>點固定體力與理智傷害。(最多<style=\"upgradeHighlight\">5</style>點，不會對友方單位造成傷害)",
+      "simpleDesc": [
+        {
+          "abilityID": 19755,
+          "simpleDesc": "根據指定自身的敵方單位的技能數相應使造成的傷害增加，造成固定傷害"
+        }
+      ]
+    },
+    {
+      "id": 29755,
+      "name": "輕蔑的視線的輕蔑++",
+      "desc": "[<style=\"upgradeHighlight\">第1</style>、第6順位友方單位專屬]\n\n戰鬥開始時，每有1個指定自身為目標的敵方單位的攻擊技能，使自身造成的傷害+10%(最多+<style=\"upgradeHighlight\">30</style>%)\n\n戰鬥開始時，若自身被2個及以上技能指定為目標，則對指定自身的全體敵方單位造成(2×指定自身的技能數)點固定體力與理智傷害。(最多<style=\"upgradeHighlight\">10</style>點，不會對友方單位造成傷害)",
+      "simpleDesc": [
+        {
+          "abilityID": 29755,
+          "simpleDesc": "根據指定自身的敵方單位的技能數相應使造成的傷害增加，造成固定傷害"
+        }
+      ]
+    },
+    {
+      "id": 9756,
+      "name": "未孵化的火種",
+      "desc": "受到致死傷害時，攻擊期間內體力固定為1點。該攻擊結束後使自身恢復體力上限20%的體力(每場戰鬥最多1次)。",
+      "simpleDesc": [
+        {
+          "abilityID": 9756,
+          "simpleDesc": "受到致死傷害時不會陣亡，並恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 19756,
+      "name": "未孵化的火種+",
+      "desc": "受到致死傷害時，攻擊期間內體力固定為1點。該攻擊結束後使自身恢復體力上限20%的體力(每場戰鬥最多1次)。\n\n<style=\"upgradeHighlight\">若自身帶有 [Combustion]，則改為攻擊期間內體力固定為1點。該攻擊結束後使自身恢復體力上限30%的體力(以上效果合計每場戰鬥最多1次)。</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 19756,
+          "simpleDesc": "受到致死傷害時不會陣亡，並恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 29756,
+      "name": "未孵化的火種++",
+      "desc": "受到致死傷害時，攻擊期間內體力固定為1點。該攻擊結束後使自身恢復體力上限20%的體力(每場戰鬥最多1次)。\n\n若自身帶有 [Combustion]，則改為攻擊期間內體力固定為1點。該攻擊結束後使自身恢復體力上限<style=\"upgradeHighlight\">40</style>%的體力(以上效果合計每場戰鬥最多1次)。",
+      "simpleDesc": [
+        {
+          "abilityID": 29756,
+          "simpleDesc": "受到致死傷害時不會陣亡，並恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 9757,
+      "name": "對羊接地插頭",
+      "desc": "戰鬥中受到攻擊時，下回合對攻擊者施加1層 [Paralysis]。(每回合每名單位最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9757,
+          "simpleDesc": "受到攻擊時，下回合施加1層 [Paralysis]"
+        }
+      ]
+    },
+    {
+      "id": 19757,
+      "name": "對羊接地插頭+",
+      "desc": "戰鬥中受到攻擊時，下回合對攻擊者施加1層 [Paralysis]。(每回合每名單位最多1次)\n\n<style=\"upgradeHighlight\">戰鬥開始時，若嫉妒完全共鳴數不低於5，則對全體敵方單位施加1層 [Paralysis]。</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 19757,
+          "simpleDesc": "戰鬥開始時與受到傷害時，下回合施加1層 [Paralysis]"
+        }
+      ]
+    },
+    {
+      "id": 9758,
+      "name": "王的殘渣",
+      "desc": "回合開始時，若有人格解除待命進入戰場，則使其恢復10點理智值並獲得2層 [Enhancement] 和2層 [ParryingResultUp]，並獲得與其1、2、3技能對應的罪孽碎片各1個。",
+      "simpleDesc": [
+        {
+          "abilityID": 9758,
+          "simpleDesc": "解除待命時恢復理智值，獲得拚點威力提升與罪孽碎片"
+        }
+      ]
+    },
+    {
+      "id": 9759,
+      "name": "熄滅的提燈",
+      "desc": "[第7順位友方單位專屬]\n\n技能或硬幣效果對自身施加的 [Vibration] 回數額外+1回\n\n- 若攻擊目標陷入混亂、士氣低落或陷入恐慌，則改為額外+2回",
+      "simpleDesc": [
+        {
+          "abilityID": 9759,
+          "simpleDesc": "技能或硬幣效果對自身施加的 [Vibration] 回數增加"
+        }
+      ]
+    },
+    {
+      "id": 9760,
+      "name": "熄滅的燭臺",
+      "desc": "[第1順位友方單位專屬]\n\n回合開始時，若有敵方單位陷入混亂、士氣低落或陷入恐慌，則對全體敵方單位施加1層 [AttackDown] 與1層 [DefenseDown] (每回合最多3次)\n\n攻擊陷入混亂、士氣低落或陷入恐慌的敵方單位時，對其施加1層 [AttackDown] 與1層 [DefenseDown] (每回合最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9760,
+          "simpleDesc": "施加1層 [AttackDown] 與1層 [DefenseDown]"
+        },
+        {
+          "abilityID": 97601,
+          "simpleDesc": "施加1層 [AttackDown] 與1層 [DefenseDown]"
+        }
+      ]
+    },
+    {
+      "id": 9761,
+      "name": "影子怪物",
+      "desc": "[第1、第2、第7、第8順位友方單位專屬]\n\n技能或硬幣效果對自身施加的 [Vibration] 回數額外+1回\n- 若攻擊目標陷入混亂、士氣低落或陷入恐慌，則改為額外+2回\n\n回合開始時，若有敵方單位陷入混亂、士氣低落或陷入恐慌，則對全體敵方單位施加2層 [AttackDown] 與2層 [DefenseDown] (每回合最多3次)\n\n攻擊陷入混亂、士氣低落或陷入恐慌的敵方單位時，對其施加1層 [AttackDown] 與1層 [DefenseDown] (每回合全體友方單位共計最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9761,
+          "simpleDesc": "技能或硬幣效果對自身施加的 [Vibration] 回數增加"
+        },
+        {
+          "abilityID": 97611,
+          "simpleDesc": "施加1層 [AttackDown] 與1層 [DefenseDown]"
+        },
+        {
+          "abilityID": 97612,
+          "simpleDesc": "施加1層 [AttackDown] 與1層 [DefenseDown]"
+        }
+      ]
+    },
+    {
+      "id": 9762,
+      "name": "包裝盒",
+      "desc": "友方單位技能命中時，使目標增加1級某1種隨機效果的強度，該效果可能為 [Combustion]、[Laceration]、[Vibration]、[Burst] 或 [Sinking] (每回合最多3次)\n\n友方單位擊殺敵方單位時，隨機使1名友方單位獲得1回／1層某1種隨機效果，該效果可能為 [Breath]、[Charge]、[Agility]、[AttackUp] 或 [DefenseUp] (每回合最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9762,
+          "simpleDesc": "施加隨機減益效果"
+        },
+        {
+          "abilityID": 97621,
+          "simpleDesc": "獲得隨機增益效果"
+        }
+      ]
+    },
+    {
+      "id": 9763,
+      "name": "包裝緞帶",
+      "desc": "Turn Start: randomly select 1 out of 'Wrath ~ Envy DMG Up' effects and apply 1 Stack to all allies\n\nTurn Start: randomly select 1 out of 'Wrath ~ Envy Fragility' effects and inflict 1 Stack to all enemies",
+      "simpleDesc": [
+        {
+          "abilityID": 9763,
+          "simpleDesc": "獲得隨機屬性的傷害強化"
+        },
+        {
+          "abilityID": 97631,
+          "simpleDesc": "施加隨機屬性的易損"
+        }
+      ]
+    },
+    {
+      "id": 9764,
+      "name": "禮物",
+      "desc": "When an ally hits with a Skill, randomly select 2 of the following effects: [Combustion], [Laceration], [Vibration], [Burst], and [Sinking], then inflict 1 Potency of the selected effect (3 times per turn)\n\nWhen an ally hits with a Skill, randomly select one of the following effects: [Breath] Count, [Charge] Count, [Agility], [AttackUp], and [DefenseUp], then inflict 1 of the selected effect to 2 random allies (3 times per turn)\n\nTurn Start: randomly select 2 out of 'Wrath ~ Envy DMG Up' effects and apply 1 Stack to all allies\n\nTurn Start: randomly select 2 out of 'Wrath ~ Envy Fragility' effects and inflict 1 Stack to all enemies",
+      "simpleDesc": [
+        {
+          "abilityID": 9764,
+          "simpleDesc": "施加隨機減益效果"
+        },
+        {
+          "abilityID": 97641,
+          "simpleDesc": "獲得隨機增益效果"
+        },
+        {
+          "abilityID": 97642,
+          "simpleDesc": "獲得隨機屬性的傷害強化"
+        }
+      ]
+    },
+    {
+      "id": 9765,
+      "name": "快樂的毛絨玩偶",
+      "desc": "Gain 2 [Breath] Potency next turn based on the number of allied Attack Skills that dealt damage by Turn End\n- In Focused Encounters, gain 4 [Breath] Potency instead.\n\nTurn Start: apply 2 [Breath], +2 [Breath] Count, and 2 [Protection] on the ally with the least HP.\n\nDeal +(absolute value of SP)% damage. (min 0%)\n\nWhen an ally with Plus Coin Skills recovers from Stagger, fully heal SP. (does not activate when Corroded)\n\nFor an ally with all Minus Coin Skills: gain 5 [Paralysis] at Turn Start.",
+      "simpleDesc": [
+        {
+          "abilityID": 9765,
+          "simpleDesc": "獲得呼吸法 強度"
+        },
+        {
+          "abilityID": 97651,
+          "simpleDesc": "施加隨機增益效果"
+        },
+        {
+          "abilityID": 97652,
+          "simpleDesc": "獲得 [Breath] 與 [Protection]"
+        },
+        {
+          "abilityID": 97653,
+          "simpleDesc": "造成的傷害增加"
+        },
+        {
+          "abilityID": 97654,
+          "simpleDesc": "恢復全部理智值"
+        },
+        {
+          "abilityID": 97655,
+          "simpleDesc": "施加 [Paralysis]"
+        }
+      ]
+    },
+    {
+      "id": 9766,
+      "name": "默示契約更新",
+      "desc": "若沒有存活的 [RequestedTarget]，則對友方單位攻擊的首個敵方單位施加 [RequestedTarget]。(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9766,
+          "simpleDesc": "施加 [RequestedTarget]"
+        }
+      ]
+    },
+    {
+      "id": 9767,
+      "name": "黑焰菸斗",
+      "desc": "[第1順位友方單位專屬]\n\n每回合使自身獲得2層 [Enhancement] 並對自身施加1層 [Vulnerable]\n\n若主要目標減少了防禦等級，則攻擊前使自身獲得5級 [Breath] 強度\n\n傲慢突刺技能造成的傷害+(50÷硬幣數)%。(包括E.G.O)",
+      "simpleDesc": [
+        {
+          "abilityID": 9767,
+          "simpleDesc": "使自身獲得 [Enhancement] 並對自身施加 [Vulnerable]"
+        },
+        {
+          "abilityID": 97671,
+          "simpleDesc": "獲得 [Breath] 強度"
+        },
+        {
+          "abilityID": 97672,
+          "simpleDesc": "突刺技能造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9768,
+      "name": "平等",
+      "desc": "若敵方單位的突刺抗性不高於1.5，則使其突刺抗性+0.3",
+      "simpleDesc": [
+        {
+          "abilityID": 9768,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9769,
+      "name": "迅捷指揮",
+      "desc": "回合結束時，若本回合有撤退的友方單位，則下回合開始時使速度值最高的1名友方單位獲得2層 [Enhancement] 與1層 [AttackDmgUp]\n\n戰鬥開始時，若本回合有解除待命的友方單位，則使解除待命的友方單位獲得2層 [Enhancement] 與2層 [Endurance]",
+      "simpleDesc": [
+        {
+          "abilityID": 9769,
+          "simpleDesc": "獲得 [Enhancement] 與 [AttackDmgUp]"
+        },
+        {
+          "abilityID": 97691,
+          "simpleDesc": "獲得 [Enhancement] 與 [Endurance]"
+        }
+      ]
+    },
+    {
+      "id": 9770,
+      "name": "齒輪碎片",
+      "desc": "回合開始時，若自身帶有 [Breath]，則使自身獲得2層 [DefenseUp] 與1層 [Endurance]\n\n若自身帶有 [Breath]，則首枚命中的硬幣造成的傷害+10%\n\n若該硬幣命中時暴擊，則使其暴擊時造成的傷害+20%",
+      "simpleDesc": [
+        {
+          "abilityID": 9770,
+          "simpleDesc": "獲得 [DefenseUp] 與 [Endurance]"
+        },
+        {
+          "abilityID": 97701,
+          "simpleDesc": "首枚命中的硬幣造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9771,
+      "name": "近身格鬥術教材",
+      "desc": "If a Skill that can spend [Bullet] does not spend [Bullet], gain 1 [Enhancement] this turn and next turn (once per turn)\n\nWhen gaining [Bullet], Skill 3 deals +50% damage this turn and next turn when used\n\nWhen using a Skill that spends [Bullet], gain 3 [Breath] and +1 [Breath] Count",
+      "simpleDesc": [
+        {
+          "abilityID": 9771,
+          "simpleDesc": "獲得 [Enhancement]"
+        },
+        {
+          "abilityID": 97711,
+          "simpleDesc": "3技能造成的傷害增加"
+        },
+        {
+          "abilityID": 97712,
+          "simpleDesc": "獲得 [Breath] 強度與回數"
+        }
+      ]
+    },
+    {
+      "id": 9772,
+      "name": "點火手套",
+      "desc": "增加 [Combustion] 強度或施加特殊燒傷的基礎攻擊技能與敵方單位拚點勝利時，使其增加2級 [Combustion] 強度(每回合每名友方單位最多2次)\n\n增加 [Combustion] 回數的基礎攻擊技能與敵方單位拚點勝利時，使其增加2回 [Combustion] (每回合每名敵方單位最多3次)\n\n增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的基礎攻擊技能增加等同於其擁有量的攻擊等級(最多3級)\n- 若該技能擁有量不低於3個，則額外增加2級攻擊等級",
+      "simpleDesc": [
+        {
+          "abilityID": 9772,
+          "simpleDesc": "增加 [Conbustion] 強度"
+        },
+        {
+          "abilityID": 97721,
+          "simpleDesc": "增加 [Conbustion] 回數"
+        },
+        {
+          "abilityID": 97722,
+          "simpleDesc": "增加攻擊等級"
+        }
+      ]
+    },
+    {
+      "id": 9773,
+      "name": "荊棘戰鬥靴",
+      "desc": "On Clash Win with a Base Attack Skill that inflicts [Burst] Potency or Count against an enemy, inflict +3 [Burst] Count (2 times per turn per enemy)\n\nOn Hit: if the enemy does not have [Burst], Coin effects that inflict [Burst] Potency inflict [Burst] Count instead (max 4; 2 times per turn per enemy; for Abnormalities, for each Part)\n\nBase Attack Skills that inflict [Burst] Potency or Count: each Skill gains Offense Level equal to the number of copies of each Skill(max 3).\n- If a Skill has 3+ copies, gain 2 additional Offense Level.",
+      "simpleDesc": [
+        {
+          "abilityID": 9773,
+          "simpleDesc": "增加 [Burst] 回數"
+        },
+        {
+          "abilityID": 97731,
+          "simpleDesc": "增加 [Burst] 回數"
+        },
+        {
+          "abilityID": 97732,
+          "simpleDesc": "增加攻擊等級"
+        }
+      ]
+    },
+    {
+      "id": 9774,
+      "name": "重燃火花塞",
+      "desc": "增加 [Combustion] 回數的基礎攻擊技能造成的傷害+20%、增加的 [Combustion] 回數額外+1回。該技能命中帶有 [Combustion] 或特殊燒傷的敵方單位時，對其施加1層 [DefenseDown] (每回合每名友方單位最多2次)\n\n回合開始時，使所有基礎攻擊技能均為增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的技能的友方單位獲得等同於其存活回合數的 [AttackUp] (不包括登場回合，最多5層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9774,
+          "simpleDesc": "施加 [DefenseDown]"
+        },
+        {
+          "abilityID": 97741,
+          "simpleDesc": "獲得 [AttackUp]"
+        },
+        {
+          "abilityID": 97742,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9775,
+      "name": "強化劑Mk.4",
+      "desc": "增加 [Burst] 強度或 [Burst] 回數的基礎攻擊技能的最後一枚硬幣命中 [Burst] 強度不高於15級的敵方單位時，使其增加3回 [Burst] (每回合每名友方單位最多1次)\n\n增加 [Burst] 回數的基礎攻擊技能的拚點威力+1、造成的傷害+20%",
+      "simpleDesc": [
+        {
+          "abilityID": 9775,
+          "simpleDesc": "增加 [Burst] 回數"
+        },
+        {
+          "abilityID": 97751,
+          "simpleDesc": "拚點威力增加、造成的傷害增加"
+        },
+        {
+          "abilityID": 97752,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9776,
+      "name": "餘火",
+      "desc": "回合開始時，使全體敵方單位(若是異想體，則改為部位)增加1～2回 [Combustion] \n\n帶有 [Combustion] 的敵方單位受到友方單位增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的攻擊技能(包括E.G.O技能)的攻擊5次時，觸發該敵方單位的 [Combustion] 1次，並使其減少1回 [Combustion] (每回合每名敵方單位最多2次，若是異想體則改為每個部位)",
+      "simpleDesc": [
+        {
+          "abilityID": 9776,
+          "simpleDesc": "增加 [Combustion] 回數"
+        },
+        {
+          "abilityID": 97761,
+          "simpleDesc": "觸發 [Combustion]"
+        }
+      ]
+    },
+    {
+      "id": 9777,
+      "name": "細枝",
+      "desc": "帶有 [Burst] 的敵方單位因受到友方單位增加 [Burst] 強度或 [Burst] 回數的攻擊技能(包括E.G.O技能)的攻擊而觸發 [Burst] 3次時，下回合對該敵方單位施加2回 [AttackDown] (每回合每名敵方單位最多3次，若是異想體則改為每個部位)\n\n透過增加 [Burst] 回數的基礎攻擊技能擊殺敵方單位時，下回合將陣亡單位的 [Burst] 回數隨機施加給1名敵方單位(每回合最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9777,
+          "simpleDesc": "施加 [AttackDown]"
+        },
+        {
+          "abilityID": 97771,
+          "simpleDesc": "增加 [Burst] 回數"
+        },
+        {
+          "abilityID": 97772,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9778,
+      "name": "常規作戰用裝備",
+      "desc": "屬於邊獄公司的友方單位的2技能攻擊等級+1、造成的傷害+15%；3技能的攻擊等級+2、造成的傷害+30%\n\n若待命人員中屬於邊獄公司的友方單位不低於4名，則回合開始時隨機使2名友方單位獲得2層 [AttackUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 9778,
+          "simpleDesc": "攻擊等級增加、造成的傷害增加"
+        },
+        {
+          "abilityID": 97781,
+          "simpleDesc": "獲得攻擊等級提升 "
+        }
+      ]
+    },
+    {
+      "id": 9779,
+      "name": "作戰批准卡",
+      "desc": "戰鬥中友方單位陣亡或撤退時，下回合開始時隨機使全體友方單位獲得共計3層 [AttackUp] (每回合最多2次)\n- 若陣亡或撤退的友方單位數不低於3名，則改為下回合開始時隨機使全體友方單位獲得共計6層 [AttackUp] (每回合最多2次)\n\n回合開始時，使理智值最低的3名友方單位分別恢復15點、10點與5點理智值(不會重複生效，依理智值由低到高順序，不對侵蝕或陷入恐慌的單位生效)",
+      "simpleDesc": [
+        {
+          "abilityID": 9779,
+          "simpleDesc": "獲得攻擊等級提升 "
+        },
+        {
+          "abilityID": 97791,
+          "simpleDesc": "恢復理智值"
+        }
+      ]
+    },
+    {
+      "id": 9780,
+      "name": "高風險作戰用裝備",
+      "desc": "屬於邊獄公司的友方單位的2技能的攻擊等級+2、造成的傷害+20%；3技能的攻擊等級+3、造成的傷害+40%\n\n回合開始時，每有1名屬於邊獄公司的友方單位陣亡或待命，隨機使1名友方單位獲得2層 [AttackUp]\n\n戰鬥中友方單位陣亡或撤退時，下回合開始時隨機使全體友方單位獲得共計3層 [AttackUp] (平均分配，每回合最多2次)\n- 若陣亡或撤退的友方單位數不低於3名，則改為下回合開始時隨機使全體友方單位獲得共計6層 [AttackUp]\n- 若陣亡或撤退的屬於邊獄公司的友方單位數不低於3名，則改為下回合開始時隨機使全體友方單位獲得共計8層 [AttackUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 9780,
+          "simpleDesc": "攻擊等級增加、造成的傷害增加"
+        },
+        {
+          "abilityID": 97801,
+          "simpleDesc": "隨機使友方單位獲得攻擊等級提升"
+        },
+        {
+          "abilityID": 97802,
+          "simpleDesc": "隨機使友方單位獲得攻擊等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9781,
+      "name": "木質酒杯",
+      "desc": "拚點失敗時，使自身獲得1層 [Protection] 並恢復3～6點理智值(每回合每名友方單位最多1次)。\n\n透過拚點失敗的技能的 [SuperCoin] 效果(不包括E.G.O技能)攻擊敵方單位時，加算硬幣技能的加算硬幣威力+(3÷硬幣數)、造成的傷害+20%(加算硬幣威力最少+1)；若為減算硬幣，則使其技能造成的傷害+40%。",
+      "simpleDesc": [
+        {
+          "abilityID": 9781,
+          "simpleDesc": "獲得守護並恢復理智值"
+        },
+        {
+          "abilityID": 97811,
+          "simpleDesc": "硬幣威力與造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9782,
+      "name": "陳舊的刀柄",
+      "desc": "回合開始時，使所有友方單位獲得1層 [ScarletResultUp]。\n\n屬於劍契組或黑雲會的友方單位改為獲得2層 [ScarletResultUp] 與1層 [SlashResultUp]。",
+      "simpleDesc": [
+        {
+          "abilityID": 9782,
+          "simpleDesc": "獲得色慾威力提升 "
+        },
+        {
+          "abilityID": 97821,
+          "simpleDesc": "獲得色慾威力提升與斬擊威力提升 "
+        }
+      ]
+    },
+    {
+      "id": 9783,
+      "name": "絕景",
+      "desc": "回合開始時，若屬於黑雲會的友方單位不低於3名，則觸發該效果(以參戰人員為基準)。\n\n回合開始時，使全體友方單位獲得2層 [ScarletResultUp] 與1層 [SlashResultUp]。\n\n屬於黑雲會的友方單位的基礎攻擊技能硬幣威力+(4÷硬幣數)(最少+1)，增加的 [Laceration] 強度額外+1級、[Laceration] 回數額外+1回、造成的傷害+(80÷硬幣數)%。\n\n屬於黑雲會的友方單位第一混亂閾值無效，回合開始時若現存體力低於50%，則使自身獲得2層 [Protection]。本回合受到敵方單位傷害的屬於黑雲會的友方單位在下回合獲得2層 [Agility]。",
+      "simpleDesc": [
+        {
+          "abilityID": 9783,
+          "simpleDesc": "獲得色慾威力提升與斬擊威力提升 "
+        },
+        {
+          "abilityID": 97831,
+          "simpleDesc": "硬幣威力、增加的流血強度與流血回數、造成的傷害增加"
+        },
+        {
+          "abilityID": 97832,
+          "simpleDesc": "第一混亂閾值無效，體力低於一定值時獲得守護，受到傷害時獲得迅捷"
+        }
+      ]
+    },
+    {
+      "id": 9784,
+      "name": "琢磨",
+      "desc": "回合開始時，若屬於劍契組的友方單位不低於3名，則觸發該效果(以參戰人員為基準)。\n\n回合開始時，使全體友方單位獲得2層 [SlashResultUp] 並使其造成的斬擊傷害+35%。\n\n屬於劍契組的友方單位對敵方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度÷2)點傲慢傷害。\n\n回合結束時，若屬於劍契組的友方單位的 [Breath] 強度不低於30級，則使其消耗10級 [Breath] 強度並在下回合獲得2層 [SlashDamageUp]。",
+      "simpleDesc": [
+        {
+          "abilityID": 9784,
+          "simpleDesc": "獲得斬擊威力提升並使造成的傷害增加"
+        },
+        {
+          "abilityID": 97841,
+          "simpleDesc": "額外造成(自身的 [Breath] 強度÷2)點傲慢傷害"
+        },
+        {
+          "abilityID": 97842,
+          "simpleDesc": "獲得斬擊傷害強化"
+        }
+      ]
+    },
+    {
+      "id": 9785,
+      "name": "叢雲",
+      "desc": "回合開始時，若屬於黑雲會的友方單位不低於3名，則觸發該效果(以參戰人員為基準)。\n\n使用基礎攻擊技能的 [SuperCoin] 命中時造成的傷害+(40÷硬幣數)%(不包括E.G.O技能)，若該單位屬於黑雲會，則改為造成的傷害+(80÷硬幣數)%。\n\n使擁有斬擊基礎攻擊技能的屬於黑雲會的友方單位獲得2層 [SlashDamageUp]，回合結束時屬於黑雲會的友方單位每失去10%的體力，下回合使其獲得1層 [AttackUp] 與1層 [DefenseUp] (最多5層)。\n\n若屬於黑雲會的友方單位陣亡，下回合使屬於黑雲會的全體友方單位獲得2層 [AttackDmgUp] (每回合最多1次)。",
+      "simpleDesc": [
+        {
+          "abilityID": 9785,
+          "simpleDesc": "造成的傷害增加"
+        },
+        {
+          "abilityID": 97851,
+          "simpleDesc": "獲得斬擊傷害強化、攻擊等級提升、防禦等級提升 "
+        },
+        {
+          "abilityID": 97852,
+          "simpleDesc": "獲得傷害強化 "
+        }
+      ]
+    },
+    {
+      "id": 9786,
+      "name": "強化紋身 - 中指",
+      "desc": "打擊技能的拚點威力+1\n- 屬於中指的友方單位改為拚點威力+1、硬幣威力+1\n- 屬於中指的友方單位的主要目標帶有 [RetaliationBook] 時，改為拚點威力+1、硬幣威力+1、造成的傷害+10%",
+      "simpleDesc": [
+        {
+          "abilityID": 9786,
+          "simpleDesc": "拚點威力增加。屬於中指的友方單位硬幣威力與造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9787,
+      "name": "異文符咒",
+      "desc": "自身的攻擊技能擊殺帶有 [Burst] 的目標(若是集中遭遇戰，則改為破壞部位)時，將目標的 [Burst] 強度平均施加給全體敵方單位(若是集中遭遇戰，則改為所有部位)(每名敵方單位最多2級，無條件捨去)\n\n自身的攻擊技能擊殺帶有 [BurstAgility] 的目標(若是集中遭遇戰，則改為破壞部位)時，將目標的 [Burst] 強度與回數平均施加給全體敵方單位(若是集中遭遇戰，則改為所有部位)(每名敵方單位最多2點，無條件捨去)",
+      "simpleDesc": [
+        {
+          "abilityID": 9787,
+          "simpleDesc": "增加破裂強度"
+        },
+        {
+          "abilityID": 97871,
+          "simpleDesc": "增加破裂強度與回數"
+        }
+      ]
+    },
+    {
+      "id": 9788,
+      "name": "卯足",
+      "desc": "若自身的速度值高於目標，則使自身技能增加破裂強度或破裂回數時，額外增加(速度值之差÷3)級破裂強度或回數 ",
+      "simpleDesc": [
+        {
+          "abilityID": 9788,
+          "simpleDesc": "增加破裂強度或破裂回數"
+        }
+      ]
+    },
+    {
+      "id": 9789,
+      "name": "情義鎖鏈",
+      "desc": "友方單位受到攻擊時，使與該友方單位屬於同一陣營的全體友方單位造成的打擊傷害+5%(每回合最多+15%)\n\n屬於中指的友方單位改為獲得1層 [AttackUp] 並使造成的打擊傷害+10%(每回合最多3次，每回合最多+30%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9789,
+          "simpleDesc": "造成的打擊傷害增加。屬於中指的友方單位獲得攻擊等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9790,
+      "name": "鐫刻的異文",
+      "desc": "與帶有 [Burst] 的目標拚點時，使自身的拚點威力+(目標的 [Burst] 強度÷20)(最多+2)\n- 與帶有 [BurstAgility] 的目標拚點時，改為使自身的拚點威力+(目標的 [Burst] 強度÷15)(最多+3)\n\n透過 [BurstAgility] 效果造成傷害時，對目標造成( [BurstAgility] 傷害量÷3)點固定傷害",
+      "simpleDesc": [
+        {
+          "abilityID": 9790,
+          "simpleDesc": "拚點威力增加"
+        },
+        {
+          "abilityID": 97901,
+          "simpleDesc": "透過黑獸 - 卯符咒造成傷害時，額外造成傷害"
+        }
+      ]
+    },
+    {
+      "id": 9791,
+      "name": "影織斗笠",
+      "desc": "回合結束時，使屬於黑獸 - 卯的友方單位在下回合獲得2層 [Agility]\n\n若自身的速度值高於目標或進行單方面攻擊，則(速度值之差÷3)每有1點，使自身造成的斬擊傷害+10%(最多+30%)\n\n若自身的速度值高於目標，則(速度值之差÷3)每有1點，使自身受到的傷害-10%(最多-30%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9791,
+          "simpleDesc": "獲得迅捷"
+        },
+        {
+          "abilityID": 97911,
+          "simpleDesc": "造成的斬擊傷害增加"
+        },
+        {
+          "abilityID": 97912,
+          "simpleDesc": "受到的傷害減少"
+        }
+      ]
+    },
+    {
+      "id": 9792,
+      "name": "永恆的緣分鎖鏈",
+      "desc": "Turn Start: activates when there are 2 or more The Middle Identities (only counts Identities on the field)\n\nWhen hit, all allies in the same faction deal +5% more Blunt damage (15% per turn)\nThe Middle Identities gain 1 [AttackUp] and deal +10% more Blunt damage instead (3 per turn, 30% per turn)\n\nBlunt Skills gain Base Power +1\n- The Middle Identities gain Base Power +1 and Coin Power +1 instead\n- If the target has [RetaliationBook], The Middle Identities gain Base Power +1, Coin Power +1, and deal +30% damage instead\n\nThe Middle Identities gain Min Speed +1 and Max Speed +1 for the Encounter",
+      "simpleDesc": [
+        {
+          "abilityID": 9792,
+          "simpleDesc": "造成的打擊傷害增加。屬於中指的友方單位獲得攻擊等級提升 "
+        },
+        {
+          "abilityID": 97921,
+          "simpleDesc": "打擊技能威力增加"
+        },
+        {
+          "abilityID": 97922,
+          "simpleDesc": "最小與最大速度值增加"
+        }
+      ]
+    },
+    {
+      "id": 9793,
+      "name": "漆字琉璃鈿",
+      "desc": "Turn Start: This Gift activates for the whole Encounter when there are 5 or more Identities that inflict [Burst] Potency or [Burst] Count (except E.G.O Skills; except Backup Units)\n\nWhen defeating a target with [Burst](for Focused Encounters, a Part) with an Attack Skill, inflict the [Burst] Potency on the target between all enemies(for Focused Encounters, all Parts) (max 3 per enemy)\n\nWhen defeating a target with [BurstAgility](for Focused Encounters, a Part) with an Attack Skill, inflict the [Burst] Potency and Count on the target between all enemies(for Focused Encounters, all Parts) (max 6 per enemy)\n\nWhen clashing against targets with [Burst], gain ([Burst] on the target / 20) Clash Power (max 2)\n- When clashing against targets with [BurstAgility], gain ([Burst] on the target / 10) Coin Power instead (max 2)\n\nWhen dealing damage with [BurstAgility] effect, deal fixed damage by ([BurstAgility] damage / 2)",
+      "simpleDesc": [
+        {
+          "abilityID": 9793,
+          "simpleDesc": "增加破裂強度"
+        },
+        {
+          "abilityID": 97931,
+          "simpleDesc": "增加破裂強度"
+        },
+        {
+          "abilityID": 97932,
+          "simpleDesc": "拚點威力增加"
+        },
+        {
+          "abilityID": 97933,
+          "simpleDesc": "透過黑獸 - 卯符咒造成傷害時，額外造成傷害"
+        }
+      ]
+    },
+    {
+      "id": 9794,
+      "name": "滿滿當當的燃料罐",
+      "desc": "[第2、第4順位友方單位專屬]\n\n受到使體力降至0點的傷害時，有60%的機率不會受到傷害並使自身恢復30點體力(每場戰鬥每個人格最多1次)\n以下情況不會觸發避免陣亡與體力恢復效果\n- 受到攻擊時技能造成的傷害高於自身體力上限\n- 自身帶有體力恢復降低 效果",
+      "simpleDesc": [
+        {
+          "abilityID": 9794,
+          "simpleDesc": "恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 2080,
+      "name": "陳舊的刀柄",
+      "desc": "回合開始時，使所有友方單位獲得1層 [ScarletResultUp]。\n\n屬於劍契組或黑雲會的友方單位改為獲得2層 [ScarletResultUp] 與1層 [SlashResultUp]。",
+      "simpleDesc": [
+        {
+          "abilityID": 2080,
+          "simpleDesc": "獲得色慾威力提升"
+        },
+        {
+          "abilityID": 20801,
+          "simpleDesc": "獲得色慾威力提升與斬擊威力提升"
+        }
+      ]
+    },
+    {
+      "id": 2081,
+      "name": "絕景",
+      "desc": "回合開始時，若屬於黑雲會的友方單位不低於3名，則觸發該效果(以參戰人員為基準)。\n\n回合開始時，使全體友方單位獲得2層 [ScarletResultUp] 與1層 [SlashResultUp]。\n\n屬於黑雲會的友方單位的基礎攻擊技能硬幣威力+(4÷硬幣數)(最少+1)，增加的 [Laceration] 強度額外+1級、[Laceration] 回數額外+1回、造成的傷害+(80÷硬幣數)%。\n\n屬於黑雲會的友方單位第一混亂閾值無效，回合開始時若現存體力低於50%，則使自身獲得2層 [Protection]。本回合受到敵方單位傷害的屬於黑雲會的友方單位在下回合獲得2層 [Agility]。",
+      "simpleDesc": [
+        {
+          "abilityID": 2081,
+          "simpleDesc": "獲得色慾威力提升與斬擊威力提升"
+        },
+        {
+          "abilityID": 20811,
+          "simpleDesc": "硬幣威力、增加的流血強度與流血回數、造成的傷害增加"
+        },
+        {
+          "abilityID": 20812,
+          "simpleDesc": "第一混亂閾值無效，體力低於一定值時獲得守護 ，受到傷害時獲得迅捷"
+        }
+      ]
+    },
+    {
+      "id": 2082,
+      "name": "琢磨",
+      "desc": "回合開始時，若屬於劍契組的友方單位不低於3名，則觸發該效果(以參戰人員為基準)。\n\n回合開始時，使全體友方單位獲得2層 [SlashResultUp] 並使其造成的斬擊傷害+35%。\n\n屬於劍契組的友方單位對敵方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度÷2)點傲慢傷害。\n\n回合結束時，若屬於劍契組的友方單位的 [Breath] 強度不低於30級，則使其消耗10級 [Breath] 強度並在下回合獲得2層 [SlashDamageUp]。",
+      "simpleDesc": [
+        {
+          "abilityID": 2082,
+          "simpleDesc": "獲得斬擊威力提升並使造成的傷害增加"
+        },
+        {
+          "abilityID": 20821,
+          "simpleDesc": "額外造成(自身的 [Breath] 強度÷2)點傲慢傷害"
+        },
+        {
+          "abilityID": 20822,
+          "simpleDesc": "獲得斬擊傷害強化"
+        }
+      ]
+    }
+  ]
+}

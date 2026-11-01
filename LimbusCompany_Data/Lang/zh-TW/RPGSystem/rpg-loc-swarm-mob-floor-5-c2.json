@@ -1,0 +1,16 @@
+{
+  "dataList": [
+    {
+      "key": "swarm_5f_c2_larouge_spa",
+      "displayName": "丹紅派 專櫃人員"
+    },
+    {
+      "key": "swarm_5f_c2_larouge_elite",
+      "displayName": "丹紅派 專櫃經理"
+    },
+    {
+      "key": "swarm_5f_c2_larouge_sickle",
+      "displayName": "丹紅派 工作人員"
+    }
+  ]
+}

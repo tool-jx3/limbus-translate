@@ -1,0 +1,1315 @@
+{
+  "dataList": [
+    {
+      "id": 2060411,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "美味蘇打",
+          "abName": "韋爾奇樂牌汽水",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndSkillHead] 使現存體力比例最低的2名友方單位恢復10點體力"
+                },
+                {
+                  "desc": "[EndSkillTail] 使理智值最低的2名友方單位恢復10點理智值"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "美味蘇打",
+          "abName": "韋爾奇樂牌汽水",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndSkillHead] 使現存體力比例最低的2名友方單位恢復12點體力"
+                },
+                {
+                  "desc": "[EndSkillTail] 使理智值最低的2名友方單位恢復12點理智值"
+                },
+                {
+                  "desc": "[CriticalEndSkill] 使現存體力比例最低的1名友方單位恢復6點體力；使理智值最低的1名友方單位恢復6點理智值"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "美味蘇打",
+          "abName": "韋爾奇樂牌汽水",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndSkillHead] 使現存體力比例最低的2名友方單位恢復15點體力"
+                },
+                {
+                  "desc": "[EndSkillTail] 使理智值最低的2名友方單位恢復15點理智值"
+                },
+                {
+                  "desc": "[CriticalEndSkill] 使現存體力比例最低的1名友方單位恢復8點體力；使理智值最低的1名友方單位恢復8點理智值"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060421,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "美味蘇打",
+          "abName": "韋爾奇樂牌汽水",
+          "desc": "[CantIdentify]\n指定體力最低的單位",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層束縛 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級震顫 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "美味蘇打",
+          "abName": "韋爾奇樂牌汽水",
+          "desc": "[CantIdentify]\n指定體力最低的單位",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層束縛 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級震顫 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "美味蘇打",
+          "abName": "韋爾奇樂牌汽水",
+          "desc": "[CantIdentify]\n指定體力最低的單位",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層束縛 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級震顫 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060511,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "沸騰腐蝕",
+          "abName": "陸行珍珠",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(暴食共鳴數/2)級破裂 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層束縛 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "沸騰腐蝕",
+          "abName": "陸行珍珠",
+          "desc": "[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(暴食共鳴數/2)級破裂 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加2層暴食易損 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層束縛 <style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "沸騰腐蝕",
+          "abName": "陸行珍珠",
+          "desc": "[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1\n若現存體力不高於25%，則使本技能的攻擊容量額外+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(暴食共鳴數/2)級破裂 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層暴食易損 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層束縛 <style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060521,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "沸騰腐蝕",
+          "abName": "陸行珍珠",
+          "desc": "[CantIdentify]\n指定體力最低的單位",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(暴食共鳴數/3)回破裂 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量20%的體力"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層束縛 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "沸騰腐蝕",
+          "abName": "陸行珍珠",
+          "desc": "[CantIdentify]\n指定體力最低的單位\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(暴食共鳴數/3)回破裂 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量30%的體力"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層束縛 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "沸騰腐蝕",
+          "abName": "陸行珍珠",
+          "desc": "[CantIdentify]\n指定體力最低的單位\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1\n若現存體力不高於25%，則使本技能的攻擊容量額外+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(暴食共鳴數/3)回破裂 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量50%的體力"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層束縛 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "若目標帶有 [Vibration]，則使本技能造成的傷害+((目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多+20%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "若目標帶有 [Vibration]，則使本技能造成的傷害+((目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多<style=\"highlight\">+25%</style>)\n<style=\"highlight\">- 若最大共鳴數不低於4，則改為造成的傷害+(5+(目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多+35%)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與<style=\"highlight\">2回 [Vibration] </style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho] </style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "若目標帶有 [Vibration]，則使本技能造成的傷害+(<style=\"highlight\">5</style>+(目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多<style=\"highlight\">+30</style>%)\n- 若最大共鳴數不低於4，則改為造成的傷害+(<style=\"highlight\">7.5</style>+(目標的 [Vibration] 強度與 [Vibration] 回數之和)/<style=\"highlight\">1.5</style>)%(最多<style=\"highlight\">+40%</style>)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與<style=\"highlight\">3</style>回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[CantIdentify]\n隨機指定目標\n若目標帶有 [Vibration]，則使本技能造成的傷害+((目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多+25%)\n- 若最大共鳴數不低於4，則改為造成的傷害最多+35%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與3回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[CantIdentify]\n隨機指定目標\n若目標帶有 [Vibration]，則使本技能造成的傷害+((目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多<style=\"highlight\">+30%</style>)\n- 若最大共鳴數不低於4，<style=\"highlight\">則改為造成的傷害+(5+(目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多+40%)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與3回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho] </style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[CantIdentify]\n隨機指定目標\n若目標帶有 [Vibration]，則使本技能造成的傷害+(<style=\"highlight\">5</style>+(目標的 [Vibration] 強度與 [Vibration] 回數之和)/2)%(最多<style=\"highlight\">+40%</style>)\n- 若最大共鳴數不低於4，則改為造成的傷害+(<style=\"highlight\">7.5</style>+(目標的 [Vibration] 強度與 [Vibration] 回數之和)/<style=\"highlight\">1.5</style>)%(最多<style=\"highlight\">+50%</style>)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">6</style>級 [Vibration] 強度與<style=\"highlight\">6</style>回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "套索",
+          "abName": "玫瑰獵人",
+          "desc": "目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 每有2點暴食共鳴數，使目標增加1回 [Burst] (最多3回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "套索",
+          "abName": "玫瑰獵人",
+          "desc": "<style=\"highlight\">若自身與目標的速度值之和不低於6，則使本技能的硬幣威力+1</style>\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)\n<style=\"highlight\">[BeforeAttack] 下回合使自身獲得2層 [Agility] </style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 每有2點暴食共鳴數，使目標增加1回 [Burst] (最多3回)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 隨機使目標增加共計(自身的速度值÷2)級 [Laceration] 強度(最多3級)</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 隨機使目標增加共計(自身的速度值÷2)級 [Burst] 強度(最多3級)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "套索",
+          "abName": "玫瑰獵人",
+          "desc": "若自身與目標的速度值之和不低於6，則使本技能的硬幣威力+1\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 下回合使自身獲得2層 [Agility] <style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合對目標施加2層 [TakeHpHealReduce] </style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 每有2點暴食共鳴數，使目標增加1回 [Burst] (最多3回)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 隨機使目標增加共計(自身的速度值)級 [Laceration] 強度(最多7級)</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 隨機使目標增加共計(自身的速度值)級 [Burst] 強度(最多7級)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "套索",
+          "abName": "玫瑰獵人",
+          "desc": "[CantIdentify]\n隨機指定目標\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Laceration] 強度，使本硬幣造成的傷害+1%(最多+20%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Burst] 強度，使本硬幣造成的傷害+1%(最多+20%)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "套索",
+          "abName": "玫瑰獵人",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">若自身與目標的速度值之和不低於6，則使本技能的硬幣威力+1</style>\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)\n<style=\"highlight\">[BeforeAttack] 下回合使自身獲得2層 [Agility] </style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Laceration] 強度，使本硬幣造成的傷害+1%<style=\"highlight\">(最多+30%)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Burst] 強度，使本硬幣造成的傷害+1%<style=\"highlight\">(最多+30%)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "套索",
+          "abName": "玫瑰獵人",
+          "desc": "[CantIdentify]\n隨機指定目標\n若自身與目標的速度值之和不低於6，則使本技能的硬幣威力+1\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 下回合使自身獲得2層 [Agility]\n<style=\"highlight\">[BeforeAttack] 若暴食或色慾共鳴數不低於4，則使本技能的攻擊容量+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合對目標施加3層 [TakeHpHealReduce] </style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Laceration] 強度，使本硬幣造成的傷害+1%(最多+30%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Burst] 強度，使本硬幣造成的傷害+1%(最多+30%)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "汙血泣淚 - 始",
+          "abName": "應龍",
+          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使自身受到等同於本技能最終威力的固定傷害\n- 該傷害不會使自身陷入混亂或使自身的體力低於1點"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "汙血泣淚 - 始",
+          "abName": "應龍",
+          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance] <style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使自身受到等同於本技能最終威力的固定傷害\n- 該傷害不會使自身陷入混亂或使自身的體力低於1點<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "汙血泣淚 - 始",
+          "abName": "應龍",
+          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance] <style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使自身受到等同於本技能最終威力的固定傷害\n- 該傷害不會使自身陷入混亂或使自身的體力低於1點<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060812,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "汙血泣淚 - 終",
+          "abName": "應龍",
+          "desc": "本技能不會消耗罪孽碎片\n[CantDuel]\n自身每帶有1層 [DragonLance]，則使本技能造成的傷害+2%(最多+6%)\n自身每帶有1層 [CondensedBlood]，則使本技能造成的傷害+4%(最多+20%)\n[WhenUse] 若主要目標的 [Burst] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [CondensedBlood] 層數不低於3層，則使本技能的攻擊容量+1、基礎威力+1\n[EndSkill] 解除自身的 [DragonLance] 與 [CondensedBlood]，自身陣亡",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "汙血泣淚 - 終",
+          "abName": "應龍",
+          "desc": "This Skill does not consume E.G.O Resources\n[CantDuel]\nDeal <style=\"highlight\">+3%</style> damage for every [DragonLance] on self (max <style=\"highlight\">9%</style>)\nDeal <style=\"highlight\">+6%</style> damage for every [CondensedBlood] on self (max <style=\"highlight\">30%</style>)\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 5 [Burst] on main target (max 2)</style>\n[WhenUse] At 3+ [CondensedBlood], Atk Weight +1 and Base Power +1\n<style=\"highlight\">- At 4+ [CondensedBlood], Atk Weight +2 and Base Power +2 instead</style>\n[EndSkill] Remove [DragonLance] and [CondensedBlood] from self, then dies",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "汙血泣淚 - 終",
+          "abName": "應龍",
+          "desc": "This Skill does not consume E.G.O Resources\n[CantDuel]\nDeal +3% damage for every [DragonLance] on self (max 9%)\nDeal +6% damage for every [CondensedBlood] on self (max 30%)\n[WhenUse] Coin Power +1 for every 5 [Burst] on main target (max <style=\"highlight\">3</style>)\n[WhenUse] At 3+ [CondensedBlood], Atk Weight +1 and Base Power +1\n- At 4+ [CondensedBlood], Atk Weight +2 and Base Power +2 instead\n<style=\"highlight\">- At 5+ [CondensedBlood], Atk Weight +3 and Base Power +3 instead</style>\n[EndSkill] Remove [DragonLance] and [CondensedBlood] from self, then dies",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "汙血泣淚 - 始",
+          "abName": "應龍",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-8)\n[EndSkill] 使自身獲得 [DragonLance]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "汙血泣淚 - 始",
+          "abName": "應龍",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-8)\n[EndSkill] 使自身獲得 [DragonLance] <style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "汙血泣淚 - 始",
+          "abName": "應龍",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n<style=\"highlight\">- 若最大共鳴數不低於6，則改為使本技能的攻擊容量+2</style>\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-8)\n[EndSkill] 使自身獲得 [DragonLance]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "寧作吾",
+          "abName": "令",
+          "desc": "[WhenUse] Gain 2 [Breath]\n[BeforeAttack] At 5+ ([Breath] Potency + [Breath] Count), Final Power +1\n[BeforeAttack] If this unit has [Cianjing], deal +15% damage\n[BeforeAttack] If this unit has [SeniorCianjing], deal +27% damage\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [Cianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度/2)%(最多+15%)"
+                },
+                {
+                  "desc": "若自身帶有 [SeniorCianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度與 [Breath] 回數之和/2)%(最多+30%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "寧作吾",
+          "abName": "令",
+          "desc": "[WhenUse] Gain <style=\"highlight\">3</style> [Breath]\n[BeforeAttack] <style=\"highlight\">Final Power +1 for every 5 ([Breath] Potency + [Breath] Count) (max 2)</style>\n[BeforeAttack] If this unit has [Cianjing], gain <style=\"highlight\">+1 Atk Weight</style> and deal +15% damage\n[BeforeAttack] If this unit has [SeniorCianjing], gain <style=\"highlight\">+2 Atk Weight</style> and deal +27% damage\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [Cianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度/2)%(最多<style=\"highlight\">+20</style>%)"
+                },
+                {
+                  "desc": "若自身帶有 [SeniorCianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度與 [Breath] 回數之和/2)%(最多+<style=\"highlight\">40</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "寧作吾",
+          "abName": "令",
+          "desc": "[WhenUse] Gain <style=\"highlight\">4</style> [Breath]\n[BeforeAttack] Final Power +1 for every 5 ([Breath] Potency + [Breath] Count) (max <style=\"highlight\">3</style>)\n<style=\"highlight\">[BeforeAttack] If this unit does not have [Cianjing] or [SeniorCianjing], recuperate half of E.G.O resources and SP consumed by this Skill (rounded down; this effect applies to Corrosion Skill as well if it activated due to the \"To Corrode\" probability when using the Awakening Skill)</style>\n[BeforeAttack] If this unit has [Cianjing], gain +1 Atk Weight and deal +<style=\"highlight\">25</style>% damage\n[BeforeAttack] If this unit has [SeniorCianjing], gain +2 Atk Weight and deal +<style=\"highlight\">45</style>% damage\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [Cianjing]，則使本硬幣暴擊時造成的傷害+(<style=\"highlight\">自身的 [Breath] 強度</style>)%(最多+20%)"
+                },
+                {
+                  "desc": "若自身帶有 [SeniorCianjing]，則使本硬幣暴擊時造成的傷害+(<style=\"highlight\">自身的 [Breath] 強度與 [Breath] 回數之和</style>)%(最多+40%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "寧作吾",
+          "abName": "令",
+          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Gain 2 [Breath] and +2 [Breath] Count\n[BeforeAttack] If this unit has [Cianjing] or [SeniorCianjing], Coin Power +1\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量10%的傲慢傷害(最多10點)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量15%的傲慢傷害(最多15點)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若自身帶有 [Cianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度/2)%(最多+20%)"
+                },
+                {
+                  "desc": "若自身帶有 [SeniorCianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度與 [Breath] 回數之和/2)%(最多+40%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量25%的傲慢傷害(最多25點)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "寧作吾",
+          "abName": "令",
+          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Gain <style=\"highlight\">3</style> [Breath] and +<style=\"highlight\">3</style> [Breath] Count\n[BeforeAttack] If this unit has [Cianjing] or [SeniorCianjing], <style=\"highlight\">gain +1 Atk Weight, Base Power +1</style>, and Coin Power +1\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量10%的傲慢傷害(最多10點)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量15%的傲慢傷害(最多15點)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若自身帶有 [Cianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度/2)%(最多<style=\"highlight\">+30</style>%)"
+                },
+                {
+                  "desc": "若自身帶有 [SeniorCianjing]，則使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度與 [Breath] 回數之和/2)%(最多+<style=\"highlight\">60</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量25%的傲慢傷害(最多25點)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "寧作吾",
+          "abName": "令",
+          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Gain <style=\"highlight\">4</style> [Breath] and +<style=\"highlight\">4</style> [Breath] Count\n[BeforeAttack] If this unit has [Cianjing] or [SeniorCianjing], gain +<style=\"highlight\">2</style> Atk Weight, Base Power +<style=\"highlight\">2</style>, and Coin Power +<style=\"highlight\">2</style>\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量10%的傲慢傷害(最多10點)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量15%的傲慢傷害(最多15點)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若自身帶有 [Cianjing]，則使本硬幣暴擊時造成的傷害+(<style=\"highlight\">自身的 [Breath] 強度</style>)%(最多+30%)"
+                },
+                {
+                  "desc": "若自身帶有 [SeniorCianjing]，則使本硬幣暴擊時造成的傷害+(<style=\"highlight\">自身的 [Breath] 強度與 [Breath] 回數之和</style>)%(最多+60%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度<style=\"highlight\">與2回 [Sinking]</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成本硬幣傷害量25%的傲慢傷害(最多25點)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2061011,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "否決宣告",
+          "abName": "梅特羅波利斯的居民",
+          "desc": "[BeforeAttack] 使自身獲得1回 [Charge]\n[BeforeAttack] 消耗自身最多6回 [Charge] 並使自身與除自身以外的隨機(1+自身消耗的 [Charge] 回數÷2)名友方單位獲得5層 [ChargeForceField] (最多5名，無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                }
+              ]
+            },
+            {}
+          ]
+        },
+        {
+          "level": 3,
+          "name": "否決宣告",
+          "abName": "梅特羅波利斯的居民",
+          "desc": "<style=\"highlight\">[WhenUse] 使自身增加等同於自身 [Charge] 強度的<noparse>拚點威力</noparse>(最多+2)</style>\n[BeforeAttack] 使自身獲得<style=\"highlight\">3</style>回 [Charge]\n[BeforeAttack] 消耗自身最多<style=\"highlight\">8</style>回 [Charge] 並使自身與除自身以外的隨機(1+自身消耗的 [Charge] 回數÷2)名友方單位獲得5層 [ChargeForceField] (最多<style=\"highlight\">6</style>名，無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標施加1層 [PhotoElectricity]</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "否決宣告",
+          "abName": "梅特羅波利斯的居民",
+          "desc": "[WhenUse] 使自身增加等同於自身 [Charge] 強度的<noparse>拚點威力</noparse>(最多+<style=\"highlight\">3</style>)\n[BeforeAttack] 使自身獲得<style=\"highlight\">5</style>回 [Charge]\n[BeforeAttack] 消耗自身最多<style=\"highlight\">10</style>回 [Charge] 並使自身與除自身以外的隨機(1+自身消耗的 [Charge] 回數÷2)名友方單位獲得5層 [ChargeForceField] (最多<style=\"highlight\">7</style>名，無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加<style=\"highlight\">2</style>層 [PhotoElectricity]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2061021,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "否決宣告",
+          "abName": "梅特羅波利斯的居民",
+          "desc": "[CantIdentify]\n隨機指定目標\n對帶有護盾的目標造成的傷害+15%\n[BeforeAttack] 每有1枚硬幣被破壞，則使本硬幣的基礎威力-6(最多-12)\n[BeforeAttack] 使自身獲得3回 [Charge]\n[BeforeAttack] 消耗自身最多6回 [Charge] 並使自身與除自身以外的隨機(1+自身消耗的 [Charge] 回數÷2)名友方單位獲得7層 [ChargeForceField] (最多5名，無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 消耗自身最多10回 [Charge] 並使本硬幣增加等同於消耗回數的<noparse>最終威力</noparse>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "否決宣告",
+          "abName": "梅特羅波利斯的居民",
+          "desc": "[CantIdentify]\n隨機指定目標\n對帶有護盾的目標造成的傷害+<style=\"highlight\">20</style>%\n[BeforeAttack] 每有1枚硬幣被破壞，則使本硬幣的基礎威力-6(最多-12)\n<style=\"highlight\">[BeforeAttack] 使自身增加等同於自身 [Charge] 強度的<noparse>最終威力</noparse>(最多+2)</style>\n[BeforeAttack] 使自身獲得<style=\"highlight\">4</style>回 [Charge]\n[BeforeAttack] 消耗自身最多<style=\"highlight\">8</style>回 [Charge] 並使自身與除自身以外的隨機(1+自身消耗的 [Charge] 回數÷2)名友方單位獲得7層 [ChargeForceField] (最多<style=\"highlight\">6</style>名，無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 消耗自身最多10回 [Charge] 並使本硬幣增加等同於消耗回數的<noparse>最終威力</noparse>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標施加1層 [PhotoElectricity]</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "否決宣告",
+          "abName": "梅特羅波利斯的居民",
+          "desc": "[CantIdentify]\n隨機指定目標\n對帶有護盾的目標造成的傷害+<style=\"highlight\">25</style>%\n[BeforeAttack] 每有1枚硬幣被破壞，則使本硬幣的基礎威力-6(最多-12)\n[BeforeAttack] 使自身增加等同於自身 [Charge] 強度的<noparse>最終威力</noparse>(最多+<style=\"highlight\">3</style>)\n[BeforeAttack] 使自身獲得<style=\"highlight\">5</style>回 [Charge]\n[BeforeAttack] 消耗自身最多<style=\"highlight\">10</style>回 [Charge] 並使自身與除自身以外的隨機(1+自身消耗的 [Charge] 回數÷2)名友方單位獲得7層 [ChargeForceField] (最多<style=\"highlight\">7</style>名，無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 消耗自身最多10回 [Charge] 並使本硬幣增加等同於消耗回數的<noparse>最終威力</noparse>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加<style=\"highlight\">2</style>層 [PhotoElectricity]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

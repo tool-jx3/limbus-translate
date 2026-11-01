@@ -1,0 +1,25 @@
+{
+  "dataList": [
+    {
+      "id": "TheDrifter_LowMorale",
+      "name": "朴刀",
+      "desc": "- 士氣低落\n- 單方面攻擊造成的傷害 +10%，反擊造成的傷害 +30%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TheDrifter_Panic",
+      "name": "朴刀",
+      "desc": "- 陷入恐慌\n- 單方面攻擊造成的傷害 +20%，反擊造成的傷害 +50%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "SipOfAlcohol",
+      "name": "豪飲",
+      "desc": "- 最大值：5\n- 回合結束時若具有3層以上，則恢復體力上限5%的體力(本體、部位)\n- 回合結束時若具有5層以上，下回合獲得3層強壯、2層易損",
+      "summary": "",
+      "undefined": "-"
+    }
+  ]
+}

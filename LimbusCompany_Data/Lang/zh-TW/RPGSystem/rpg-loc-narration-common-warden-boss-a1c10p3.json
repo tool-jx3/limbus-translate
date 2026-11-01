@@ -1,0 +1,22 @@
+{
+  "dataList": [
+    {
+      "key": "NAR_WARDEN_CANDLE_MARK",
+      "texts": [
+        {
+          "index": 0,
+          "text": "哈哈……異鄉人們，知道我等這一刻有多久了嗎？"
+        }
+      ]
+    },
+    {
+      "key": "NAR_WARDEN_CANDLE_YELLOW",
+      "texts": [
+        {
+          "index": 0,
+          "text": "試著誘導他攻擊那根蠟燭吧。到時候會發生超有趣的事情喔！"
+        }
+      ]
+    }
+  ]
+}

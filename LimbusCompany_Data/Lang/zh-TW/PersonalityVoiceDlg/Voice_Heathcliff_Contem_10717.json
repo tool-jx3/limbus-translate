@@ -1,0 +1,124 @@
+{
+  "dataList": [
+    {
+      "id": "get_10717_1",
+      "desc": "獲得時",
+      "dlg": "Ohh, is that right, mate...? No soul in machine stitching, eh...?\nRight, I'll give you your bloody handmade! HANDMADE! BESPOKE! HAND-SEWN!!"
+    },
+    {
+      "id": "lobby_morning_10717_1",
+      "desc": "早晨問候",
+      "dlg": "New season... I'm stitchin' up whatever I fancy, whatever I can get my hands on. Just like the Voice said... never had to put up with all that shite quietly in the first place..."
+    },
+    {
+      "id": "lobby_noon_10717_1",
+      "desc": "午時問候",
+      "dlg": "... Oi, hear that blubberin'? Sounds proper desperate, ain't it? And... a bit sweet, too...!\n*snicker* I'm starvin'... Gonna get my teeth into that... chew it right up!"
+    },
+    {
+      "id": "lobby_night_10717_1",
+      "desc": "晚間問候",
+      "dlg": "Looms... heh. Loopwheels. Sewing machines... heh, heheh... 43200G... No, no, bugger that! Shift the lot! It's \"handmade\" they're after, innit? \"HANDMADE\"... Khh... Why do they keep bangin' on about \"handmade\" when what they're <i>actually</i> after are bleedin' machines... EH?!"
+    },
+    {
+      "id": "smalltalk_10717_1",
+      "desc": "對話 1",
+      "dlg": "Look... if you know sod all about somethin', you keep your gob shut, don't you? But there's always some smart-arsed git, innit? Knows a fingernail's worth, reckons he's got the whole bleedin' hand sussed.\n... And, oh, can't those buggers stop gabbin'... No! Gabbin' ain't even the problem! Why do they come out with nothin' but shite... and act like every bleedin' word's some big truth...?!"
+    },
+    {
+      "id": "smalltalk_10717_2",
+      "desc": "對話 2",
+      "dlg": "That's how they did it dozens of seasons back... Hang on. Them lot used to kick up a stink 'cause their clobber shrank in the wash. Had to be pre-shrunk, they said. Now they're after the stuff that ain't been treated? Can't they make up their mind?"
+    },
+    {
+      "id": "smalltalk_10717_3",
+      "desc": "對話 3",
+      "dlg": "Selvedge... and rigid denim... ain't the same thing..."
+    },
+    {
+      "id": "smalltalk_10717_4",
+      "desc": "同步後對話 1",
+      "dlg": "I sewed it by hand, just like you bloody asked!! What?! The stitches are too even, so a machine must've done it?! Get back here, you c$#%! I'll show you 18 premium stitches! Shit-ten and bugger-eight, straight into your skin! WITH THIS NEEDLE!!!"
+    },
+    {
+      "id": "smalltalk_10717_5",
+      "desc": "同步後對話 2",
+      "dlg": "\"Proper leather's got to show its teacore, hasn't it?!\" \"Chrome-tanned and full aniline, 'course it is?!\" \"Wouldn't touch it if it ain't full-grain?!\" Oh, now that I've converted to Le Rouge, bloody leather's fair game to b**** and m*** over too, that it...?!"
+    },
+    {
+      "id": "neglect_10717_1",
+      "desc": "閒置",
+      "dlg": "針數……針數……針數、針數、針數、針數、針數、針數、針數！"
+    },
+    {
+      "id": "gacksung_10717_1",
+      "desc": "進行同步",
+      "dlg": "Pick stitch too obvious, you say?! I'll pick-stitch your bum!!!"
+    },
+    {
+      "id": "formation_10717_1",
+      "desc": "人格出戰",
+      "dlg": "What now?! Another mardy sod with a complaint?! Give it here!"
+    },
+    {
+      "id": "battleentry_10717_1",
+      "desc": "進入戰鬥",
+      "dlg": "Difficult customers in black... I KILL!"
+    },
+    {
+      "id": "battle_select_10717_1",
+      "desc": "戰鬥中選中人格",
+      "dlg": "That racket's doin' my head in... What're you gonna start blatherin' about now?!"
+    },
+    {
+      "id": "battle_endcommand_10717_1",
+      "desc": "進行攻擊",
+      "dlg": "哭聲躍動著……！"
+    },
+    {
+      "id": "battle_enemy_break_10717_1",
+      "desc": "敵方混亂",
+      "dlg": "You ain't even got a clue about what you're yappin'..."
+    },
+    {
+      "id": "battle_break_10717_1",
+      "desc": "自身混亂",
+      "dlg": "啊……真假……"
+    },
+    {
+      "id": "battle_kill_10717_1",
+      "desc": "擊殺敵方",
+      "dlg": "Don't you give me lip about my work!"
+    },
+    {
+      "id": "battle_dead_10717_1",
+      "desc": "自身陣亡",
+      "dlg": "It's... the wrong way round...?! Now you're just... tryin' to piss me off, aren't you..."
+    },
+    {
+      "id": "choice_success_p_10717_2",
+      "desc": "判定成功",
+      "dlg": "Not a single complaint? Pull the other one! It's got bells on!"
+    },
+    {
+      "id": "choice_fail_n_10717_1",
+      "desc": "判定失敗",
+      "dlg": "H-heheheh! Oh, give over! Stop talkin' out your arse!!!"
+    },
+    {
+      "id": "battle_clear_10717_1",
+      "desc": "戰鬥勝利",
+      "dlg": "More... more...! That ain't... near enough...!! Those bastards... the whole bleedin' lot...!"
+    },
+    {
+      "id": "battle_clear_ex_10717_1",
+      "desc": "EX CLEAR戰鬥勝利",
+      "dlg": "Even? Neat as a pin! Stitched your traps right shut! Heh, heheheh...! Still reckon that's a machine job, you cheeky sods?!"
+    },
+    {
+      "id": "battle_defeat_10717_1",
+      "desc": "戰鬥失敗",
+      "dlg": "One bite... If I could just get my teeth in... one bleedin' bite...!!! Again... again...!"
+    }
+  ]
+}

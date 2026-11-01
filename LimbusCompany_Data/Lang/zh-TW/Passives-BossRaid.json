@@ -1,0 +1,181 @@
+{
+  "dataList": [
+    {
+      "id": 500101,
+      "name": "遊戲到此為止",
+      "desc": "回合開始時，根據當前回合數獲得等量的 [AttackUp] 層數"
+    },
+    {
+      "id": 500102,
+      "name": "寫進帳簿裡吧",
+      "desc": "回合開始時，對全體敵方單位施加1層 [RicardoBookRaid]\n\n受到攻擊時，對攻擊者施加2層 [RicardoBookRaid]\n攻擊命中時，使目標減少1層 [RicardoBookRaid]\n\n本場戰鬥中，根據被減少的 [RicardoBookRaid] 層數使自身增加等量的 [RicardoTattooRaid] 層數"
+    },
+    {
+      "id": 500103,
+      "name": "你那罪孽太深重了",
+      "desc": "使用技能時，若目標的<color=#ff6000><mark=#ff000040><b><u> [RicardoBookRaid] 層數不低於20層，</u></b></mark></color>\n則使該技能的所有硬幣轉變為 [SuperCoin]\n\n<color=#ff6000><mark=#ff000040><b><u>若里卡多的技能指定 [RicardoBookRaid] 層數為最大值的目標</u></b></mark></color>，則使該技能增加<color=#ff6000><mark=#ff000040><b><u>無法改變目標</u></b></mark></color>"
+    },
+    {
+      "id": 500104,
+      "name": "老實接受處刑吧",
+      "desc": "戰鬥開始時，若目標<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，\n則使自身對該目標造成的傷害-30%"
+    },
+    {
+      "id": 500105,
+      "name": "家族之情",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>若現存體力不高於60%，則改變自身模式</u></b></mark></color>\n- 解除除自身固有狀態以外的所有狀態"
+    },
+    {
+      "id": 500106,
+      "name": "黑獸那混帳留下的傷還痛著啊",
+      "desc": "第2階段專屬被動技能\n第2階段開始時，對里卡多施加 [BurstAgility] 及 [BurstZilu]\n里卡多受到的暴食傷害+50%"
+    },
+    {
+      "id": 500107,
+      "name": "中指的優先復仇對象",
+      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>若有目標的 [RicardoBookRaid] 層數為30層，</u></b></mark></color>\n則額外獲得一個行動槽並使用「立即處刑！」"
+    },
+    {
+      "id": 500108,
+      "name": "幼兄",
+      "desc": "從第2回合起，每回合開始時，使包括自身在內的<color=#ff6000><mark=#ff000040><b><u>全體友方單位恢復10點理智值</u></b></mark></color>\n自身受到 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 的傷害-20%"
+    },
+    {
+      "id": 500109,
+      "name": "梳理髮型",
+      "desc": "適用於固定恐慌效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為0點\n\n<color=#ff6000><mark=#ff000040><b><u>若現存體力不高於50%，則改變自身模式</u></b></mark></color>\n- 解除除自身固有狀態以外的所有狀態"
+    },
+    {
+      "id": 500110,
+      "name": "梳理髮型",
+      "desc": "適用於固定恐慌效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為0點"
+    },
+    {
+      "id": 501401,
+      "name": "空間型扭曲：顯影室",
+      "desc": "自身不會陣亡且只會受到指定自身為主要目標的技能造成的傷害，不會受到此外任何傷害\n\n速度值固定為1點\n\n關卡中登場的回合開始時，使自身獲得3層 [PhotoTransitionChoiCamera]\n\n<color=#ff6000><mark color=#ff000040><b><u>若自身的現存體力為1點或回合開始時自身的 [PhotoTransitionChoiCamera] 層數為0層</color></mark></b></u>，則觸發以下效果\n- 移除N公司2級員工與自身\n- 使林慶業返回戰場\n- 改變戰鬥地點</color></mark></b></u>"
+    },
+    {
+      "id": 501201,
+      "name": "本國劍術 - 大環刀",
+      "desc": "關卡開始時，獲得5層 [ChoiSwordsmanship]\n\n<color=#ff6000><mark color=#ff000040><b><u>每經過3回合，改變自身的本國架勢</color></mark></b></u>\n\n回合結束時，若自身帶有護盾，則下回合使自身獲得5級 [Breath] 強度以及2回 [Breath]\n\n當下列條件遭到觸發時，林慶業將改變自身行動模式，並使用技能「本國弓術[肉] - 有的放矢」\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時",
+      "flavor": "The Sword of the Homeland, S Corp.'s traditional art of swordsmanship, is also divided into three branches: Sal, Pi, and Ppyeo.\nWithin their teachings exist techniques to hew and cleave through creatures of colossal stature such as Sanguns.\nTo perform them in full, a swordsman must wield a great hwando capable of bearing the strain of the techniques."
+    },
+    {
+      "id": 501202,
+      "name": "頭釘甲[肉] - 鐵壁",
+      "desc": "受到 [Laceration]、[Burst]、[Sinking] 效果造成的傷害 -30% (無條件捨去)\n\n使自身獲得 [PanicChangeLock]；回合結束時，若自身處於恐慌狀態，則使自身的理智值恢復至45點\n\n自身首次於關卡中進入戰場時，使自身獲得5層 [ChoiSwordsmanshipShield]\n\n<color=#ff6000><mark color=#ff000040><b><u>當 [ChoiSwordsmanshipShield] 遭到解除時，下回合使自身陷入混亂\n自身因上述效果而陷入混亂的回合結束時，使戰鬥進入下一階段</color></mark></b></u>\n- 階段1期間，自身的體力值不會減少至<color=#ff6000><mark color=#ff000040><b><u>70%以下</color></mark></b></u>\n- 自身的體力值減少至70%以下時，使回合<color=#ff6000><mark color=#ff000040><b><u>立即強制結束</color></mark></b></u>，並進入下一階段\n- 進入新的戰鬥階段時，使自身的理智值恢復至45點",
+      "flavor": "The Eastern Warstride Armors are not so much \"equipped\" as they are \"piloted.\" S Corp.'s Dujeong Brigandine is one example of such armor.\nMuch like R Corp.'s Powered Armor Suit and the Full Plate Armor used by the Knights of the West, the Dujeong Brigandine greatly augments the user's offensive and defensive combat capabilities.\nYet these advantages do not mean that armors of such potency are readily supplied for combat personnel. Each unit has its own unique controls and comes with the limitation of requiring separate fuels.\nWhat remains certain, however, is that, as with all the aforementioned armors, once a rider has familiarized himself with the Dujeong Brigandine's extended reach and heightened power output, he becomes a machine of war that strides across battlefields with the promise of slaughter."
+    },
+    {
+      "id": 501203,
+      "name": "淬鍊武藝",
+      "desc": "拚點勝利時，使自身獲得2回 [Breath] (每回合最多2次)\n\n自身攻擊技能命中時，若目標帶有的 [Laceration] 強度低於5級，則於攻擊結束時使目標增加1級 [Laceration] 強度與2回 [Laceration] (每技能最多1次；每回合最多2次；優先指定主要目標)",
+      "flavor": "'There are those who persevere in training for lack of talent. Then there are those blessed with talent, only to let it rust.'\n'All men say that the title of Apex Blade can only be seized by the gifted.'\n'It matters not. Until the day comes for this blade of mine to rise high enough to meet the clouds, I shall persevere in honing my prowess.'"
+    },
+    {
+      "id": 501204,
+      "name": "隱隱刺痛的記憶",
+      "desc": "拚點失敗時，對自身施加1層 [RegretSCorp] (每回合最多1次)"
+    },
+    {
+      "id": 501205,
+      "name": "顯影的記憶",
+      "desc": "關卡中登場後，獲得3層 [PhotoTransitionChoi]\n\n<color=#ff6000><mark color=#ff000040><b><u>回合開始時，若自身的 [PhotoTransitionChoi] 層數為0，則自身將撤退並切換戰場地點</color></mark></b></u>\n\n重返戰場時，根據自身撤退的回合數以及本國架勢型態，使自身獲得或失去 [ChoiSwordsmanship] 層數\n- [ChoiSwordsmanshipOne]：獲得層數\n- [ChoiSwordsmanshipMany]：失去層數\n\n[ChoiSwordsmanshipShield] 遭到消除後，解除自身的 [PhotoTransitionChoi] 效果"
+    },
+    {
+      "id": 501206,
+      "name": "映射戰鬥",
+      "desc": "與同一目標拚點時，若拚點次數超過10次，則使自身該次拚點時的拚點威力隨機增加或減少(拚點次數 ÷ 10) (無條件捨去)\n\n[Laceration]、[Burst] 與 [Sinking] 的強度最多只能疊加至30級，回數最多10回\n\n[Combustion] 與 [Vibration] 的<color=#ff6000><mark color=#ff000040><b><u>強度最多50級，回數最多30回</color></mark></b></u>",
+      "flavor": ""
+    },
+    {
+      "id": 501207,
+      "name": "錯位的記憶",
+      "desc": "回合開始時，使以下效果生效：\n- 自身處於 [ChoiSwordsmanshipOne] 時，若自身的 [ChoiSwordsmanship] 層數低於5層：\n對自身施加(5 - [ChoiSwordsmanship] 層數)層的<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n- 自身處於 [ChoiSwordsmanshipMany] 時，若自身的 [ChoiSwordsmanship] 層數高於5層：\n根據超出的層數，對自身施加等數的<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>層數"
+    },
+    {
+      "id": 501301,
+      "name": "本國劍術[肉] - 撕裂血肉",
+      "desc": "關卡開始時，使自身獲得5層 [ChoiSwordsmanship]\n\n每經過3回合，改變自身的本國架勢\n\n自身的斬擊技能命中時，使自身獲得1級 [Breath] 強度 (每技能最多1次)\n\n當下列條件遭到觸發時，使自身改變至包含技能「本國弓術[肉] - 有的放矢」的行動模式\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時\n\n回合開始時，若自身的 [ChoiSwordsmanship] 層數為最小值或最大值，則發動強力技能\n若自身於上回合使用了技能「本國弓術[肉] - 有的放矢」，則無視自身 [ChoiSwordsmanship] 層數，發動強力技能\n自身體力值減少至60%以下時，將無視自身 [ChoiSwordsmanship] 層數，發動強力技能",
+      "flavor": "The Sword of the Homeland passed down in the Sal Court Circle is not, at its heart, an art of killing.\nTo cut and cut again until blood runs dry and the bone is laid bare—that is the essence of this art that strips the opponent's flesh into ribbons.\nThat is the Sword of the Homeland practiced by \"Sal.\""
+    },
+    {
+      "id": 501304,
+      "name": "本國劍術[肉] - 更換架勢",
+      "desc": "<color=#ff6000><mark color=#ff000040><b><u>回合開始時，根據自身的本國架勢，使自身的 [ChoiSwordsmanship] 層數增加或減少2層 (關卡開始即第1回合不會發動)</color></mark></b></u>\n- [ChoiSwordsmanshipOne]：增加\n- [ChoiSwordsmanshipMany]：減少\n\n自身裝備了嫉妒技能的回合中，自身的 [ChoiSwordsmanship] 層數將不受任何效果影響，並且<color=#ff6000><mark color=#ff000040><b><u>將於下回合使 [ChoiSwordsmanship] 重置至5層</color></mark></b></u>"
+    },
+    {
+      "id": 501305,
+      "name": "頭釘甲[肉] - 泰山",
+      "desc": "Take -30% damage from [Combustion], [Laceration], [Vibration], [Burst], [Sinking] (rounded down, excluding Stagger Threshold raised by [VibrationExplosion])\n\nGain the effects of [PanicChangeLock]; If this unit is Panicked at Turn End, reset SP to 45\n\nTurn Start: Gain the following effects:\n- When in [ChoiSwordsmanshipOne]: At less than 5 [ChoiSwordsmanship] Stack, gain (5 - [ChoiSwordsmanship] Stack) <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n- When in [ChoiSwordsmanshipMany]: At more than 5 [ChoiSwordsmanship] Stack, gain <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u> equal to surplus [ChoiSwordsmanship] Stack past 5",
+      "flavor": "The three Court Circles of Sal, Pi, and Ppyeo each remade the standard Dujeong Brigandine of S Corp. into forms suited to their own doctrines.\nThe olden tales say that the \"Sal\" has ever been the first to spearhead a slaughter, eager to cleave the enemy's flesh before any other.\nThe \"Pi\" harvests the blood that spills forth from each opened flesh wound and turns it into endurance on the battlefield.\nThe \"Ppyeo\" takes the close of a slaughter. They part one joint from the other, bringing the enemy to their knees. Then, a blade through the neckbone finishes the collective act of killing."
+    },
+    {
+      "id": 501501,
+      "name": "潰散的記憶",
+      "desc": "陣亡時，獲得1個持有量最少的罪孽碎片",
+      "summary": "陣亡時，獲得罪孽碎片"
+    },
+    {
+      "id": 501911,
+      "name": "映射戰鬥",
+      "desc": "At 10+ Clashes against the same enemy, randomly gain or lose Clash Power by (Clash Count/10) in a Clash (max 10)\n\nMax Potency cap for [Combustion], [Laceration], [Vibration], [Burst], and [Sinking]: 30\nMax Count cap for the above effects: 10\n\nTeam 1 Encounter Start:\n- This unit and all Sinners on the field: Change SP to 30 (for Minus Coin Identities, -30)\n- Gain +3 E.G.O Resource for all Affinities\n\nUpon activating the Passive effects of \"Tiantui Star\",\nEnd the turn and enter Phase 2 next turn\n- Entering the new phase does not reset effects on this unit\n\nTeam 2 & 3 Encounter Start:\nBased on this unit's current HP percentage, the Passive effects below are considered to have activated in the order listed\n- More than 85% HP: Tigermark Round[TabExplain] Reload[TabExplain]\n- 85% or lower: Tigermark Round[TabExplain] Reload[TabExplain]; Lei Heng\n- 66% or lower: Tigermark Round[TabExplain] Reload[TabExplain]; Lei Heng; Tiantui Star\n- 50% or lower: Tigermark Round[TabExplain] Reload[TabExplain]; Lei Heng; Tiantui Star; Lei Heng, The Pinky's Tiantui Star"
+    },
+    {
+      "id": 501901,
+      "name": "拇指幹部 指揮官IIII",
+      "desc": "受到 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 的傷害-30%\n\n擲出消耗 [BulletPropellant] 的硬幣時，即使自身消耗了所有 [BulletPropellant]，攻擊也不會取消，但該硬幣增加 [Combustion] 強度與 [Combustion] 回數的效果不會觸發\n\n拚點進行時，使目標增加(1+拚點進行次數÷3)回 [Vibration]\n(最多3回，每個目標每回合最多3次)"
+    },
+    {
+      "id": 501902,
+      "name": "東部十劍",
+      "desc": "關卡開始時與改變模式的回合開始時，\n- 對自身施加1層 [Bothersome]\n- 自身每失去10%的體力，使自身恢復5點理智值(最多40點)\n\n適用於 [PanicChangeLock] 效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為45點"
+    },
+    {
+      "id": 501903,
+      "name": "選擇獵物",
+      "desc": "回合開始時，對在上回合<color=#ff6000><mark=#ff000040><b><u>對自身造成的傷害最高的罪人施加1層 [Prey_leiheng]</u></b></mark></color>\n\n雷橫攻擊帶有 [Prey_leiheng] 的罪人，若攻擊結束時目標\n- 陷入混亂，則使所有罪人失去10點理智值，並在本回合與下回合中對其施加1層 [ParryingResultDown] (每回合最多1次)\n- 陣亡，則以上效果額外觸發1次"
+    },
+    {
+      "id": 501904,
+      "name": "天退星刀",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>單方面攻擊命中時</u></b></mark></color>造成的傷害+30%，且下回合對目標施加1層 [Vulnerable]\n\n技能消耗 [BulletPropellant] 的硬幣命中時造成的傷害+20%，且下回合對目標施加2層 [DefenseDown]\n\n<color=#ff6000><mark=#ff000040><b><u>若目標裝備了守備技能，則以上效果不會觸發</u></b></mark></color>"
+    },
+    {
+      "id": 501912,
+      "name": "天退星刀 過熱",
+      "desc": "若使用了強力攻擊(「快刀亂麻」、「超絕猛虎殺擊亂斬」)，則下回合對自身施加層數等同於本場戰鬥期間自身使用該技能次數的 [Complacency] (最多5層)"
+    },
+    {
+      "id": 501910,
+      "name": "插翅虎",
+      "desc": "戰鬥開始時，<color=#ff6000><mark=#ff000040><b><u>根據自身的速度值</u></b></mark></color>\n- 使自身恢復等同於自身速度值的理智值。若自身的理智值不高於0點，則使恢復的理智值變為2倍\n- 使自身獲得(自身的速度值÷3)層 [SlashDamageUp] (最多5層)\n\n戰鬥開始時，<color=#ff6000><mark=#ff000040><b><u>若自身的 [Binding] 層數不低於3層，則不會觸發以上效果</u></b></mark></color>並對自身施加層數等同於自身 [Binding] 層數的 [DefenseDown] (最多9層)"
+    },
+    {
+      "id": 501905,
+      "name": "裝填虎標彈",
+      "desc": "第一個回合結束時，使自身裝填 [BulletPropellant] 並在下回合改變自身模式\n- 若自身陷入混亂，則解除自身混亂"
+    },
+    {
+      "id": 501906,
+      "name": "雷橫",
+      "desc": "回合結束時現存體力不高於85%或第2回合結束時，下回合改變自身模式\n- 使用強力攻擊(「快刀亂麻」)，每3回合重複該技能。使用該技能的回合使自身的最小與最大速度值+10\n- 該回合開始時，使自身獲得25層 [BattleSense]\n- 若自身陷入混亂，則解除自身混亂"
+    },
+    {
+      "id": 501907,
+      "name": "天退星",
+      "desc": "戰鬥進行中，若現存體力不高於66%，則下回合改變階段與自身模式\n- 該回合開始時，使自身獲得1層 [Irritation]\n- 該回合開始時，使自身獲得18發 [BulletPropellantSpecial] 並立刻裝填\n．若自身消耗了所有 [BulletPropellantSpecial]，則使其轉變為 [BulletPropellant] 並在下回合召喚2名嚴厲的拇指 士兵為自身補給 [BulletPropellantSpecial]\n- 若自身陷入混亂，則解除自身混亂"
+    },
+    {
+      "id": 501908,
+      "name": "小指 天退星 雷橫",
+      "desc": "若回合結束時現存體力不高於50%，則下回合改變自身模式\n- 強力攻擊「快刀亂麻 」改為「超絕猛虎殺擊亂斬 」。使用該技能的回合使自身的最小與最大速度值+15\n- 使自身的 [BattleSense] 轉變為 [RestoredBattleSense]\n- 使自身的 [Irritation] 轉變為 [HugeIrritation]\n- 若自身陷入混亂，則解除自身混亂"
+    },
+    {
+      "id": 502001,
+      "name": "猛虎標彈支援",
+      "desc": "回合開始時，對自身施加3層 [Vulnerable]\n回合結束時，為雷橫補給 [BulletPropellantSpecial]\n\n自身陣亡時，下回合對雷橫施加1層 [Vulnerable]"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "dataList": [
+    {
+      "id": 155101,
+      "name": "很會煮菜喔",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>若自身帶有 [SapsareeCooking]，則在本回合最後使用技能「啊！現在可是我的用餐時間耶！」</u></b></mark></color>\n(若除自身以外所有目標全數陣亡或自身陷入混亂，則不會觸發本效果)\n回合結束時，若自身未使用技能「啊！現在可是我的用餐時間喔」，則使自身獲得1層 [SapsareeHungry]",
+      "flavor": "這種東西在5樓的餐廳也不會被稱做料理。"
+    },
+    {
+      "id": 155702,
+      "name": "手工製作",
+      "desc": "場上每有1名針靈[TabExplain]存活，則使自身技能的最終威力+1",
+      "flavor": "在手縫圈中，熟練職人的多寡決定了品牌的生死。"
+    },
+    {
+      "id": 156301,
+      "name": "漆黑派 華達呢布料",
+      "desc": "關卡開始時，使自身獲得30層 [NoirSuit]\n\n回合開始時，\n- 使自身獲得自身體力上限(自身的 [NoirSuit] 層數÷5)%的護盾(陷入混亂時不會觸發此效果)",
+      "flavor": "由追求莊重感與堅固耐用性的漆黑派所打造出代表該品牌最高工藝的旗艦款布料。"
+    },
+    {
+      "id": 156403,
+      "name": "陣型保存",
+      "desc": "Boost the level of \"Le Noir\" allies\n\nAll \"Le Noir\" allies take -5% damage for every living \"Le Noir\" ally on the field\nOn death of a \"Le Noir\" ally, all \"Le Noir\" allies gain 1 [NoirSquareCollapse] for the rest of this Encounter (including newly summoned units)",
+      "flavor": "Each stays at their post and faithfully performs the duty entrusted to them. Together, they form a formation, and that formation becomes an image that preserves the whole. Fulfill thy charge faithfully, each in thine appointed place."
+    },
+    {
+      "id": 156404,
+      "name": "戰鬥續行",
+      "desc": "Start this Encounter with 45 SP"
+    }
+  ]
+}

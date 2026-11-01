@@ -1,0 +1,139 @@
+{
+  "dataList": [
+    {
+      "id": "battle_awaken_20501_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "諸多事物束縛而來……"
+    },
+    {
+      "id": "battle_awaken_20502_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "正在依序除去對象。"
+    },
+    {
+      "id": "battle_erosion_20502_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "將障礙物砸扁。"
+    },
+    {
+      "id": "battle_awaken_20503_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "我將會為你祈禱，因此你勢必粉身碎骨。"
+    },
+    {
+      "id": "battle_erosion_20503_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "只有你……不要寬恕我。"
+    },
+    {
+      "id": "battle_awaken_20504_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "……停下。你逃不掉的。"
+    },
+    {
+      "id": "battle_erosion_20504_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "我會親自將你撞倒。"
+    },
+    {
+      "id": "battle_awaken_20505_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "這身拘束服，根本就不足以……阻止我施暴。"
+    },
+    {
+      "id": "battle_erosion_20505_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "腦袋變成……金屬……大腦變得……光滑……結束，開始。結束，開始！"
+    },
+    {
+      "id": "battle_awaken_20506_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "我只剩下這些電力了……咕，連這些也要……！"
+    },
+    {
+      "id": "battle_erosion_20506_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": ""
+    },
+    {
+      "id": "battle_awaken_20507_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "自血中綻放吧。美豔的花唷。我心甘情願將你納為己物！"
+    },
+    {
+      "id": "battle_erosion_20507_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "完全不夠！這迫切的飢渴無法滿足……將堤壩……擊垮吧！以根莖貫穿吧！！！"
+    },
+    {
+      "id": "battle_awaken_20508_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "蒸氣壓縮活塞壓力限制解除，觀測完成所需時間向量計算完畢……\n轉換累積的過去，維持動差值……發射。"
+    },
+    {
+      "id": "battle_erosion_20508_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "壓縮、壓縮。無法……無法無視蒸氣逆流。過去已侵蝕、記憶已侵蝕。\n時間逆流向使用者，咕嗚……無法……理解。"
+    },
+    {
+      "id": "battle_awaken_20509_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "望月斬首！就此，氣絕吧！"
+    },
+    {
+      "id": "battle_awaken_20509_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "望月斬首！"
+    },
+    {
+      "id": "battle_awaken_20509_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "就此，氣絕吧！"
+    },
+    {
+      "id": "battle_erosion_20509_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": ""
+    },
+    {
+      "id": "battle_erosion_20509_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "斬殺！"
+    },
+    {
+      "id": "battle_awaken_20510_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "一鳴槍聲。自閃爍的視野中，向深邃的黑夜而去……子彈，將與他人的視線交會。"
+    },
+    {
+      "id": "battle_awaken_20510_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "一鳴槍聲。自閃爍的視野中，向深邃的黑夜而去……子彈，"
+    },
+    {
+      "id": "battle_awaken_20510_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "將與他人的視線交會。"
+    },
+    {
+      "id": "battle_erosion_20510_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "喵準（En joue），槍口指向人頭。"
+    },
+    {
+      "id": "battle_erosion_20510_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "子彈瞄準日斑，"
+    },
+    {
+      "id": "battle_erosion_20510_3",
+      "desc": "E.G.O侵蝕",
+      "dlg": "於耀眼之中貫穿。"
+    },
+    {
+      "id": "battle_awaken_20501_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "即使諸多視線無止盡地束縛而來……我也欣然……！"
+    }
+  ]
+}

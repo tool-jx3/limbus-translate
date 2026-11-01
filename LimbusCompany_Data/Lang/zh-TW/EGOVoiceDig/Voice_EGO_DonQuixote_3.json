@@ -1,0 +1,154 @@
+{
+  "dataList": [
+    {
+      "id": "battle_awaken_20301_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "奔騰吧，駑騂難得！正義必勝！"
+    },
+    {
+      "id": "battle_awaken_20301_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "奔騰吧，駑騂難得！無論重複多少次，直至抵達夢之所在！"
+    },
+    {
+      "id": "battle_awaken_20302_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "這招也試著接下吧！"
+    },
+    {
+      "id": "battle_erosion_20302_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "……碾碎他們。"
+    },
+    {
+      "id": "battle_awaken_20303_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "哈！吾將以雷電焚燒一切！！！"
+    },
+    {
+      "id": "battle_erosion_20303_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": ""
+    },
+    {
+      "id": "battle_awaken_20304_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "向您致敬！！！！！！吾懇求您在離去之前嚐嚐這碗湯！！！！"
+    },
+    {
+      "id": "battle_erosion_20304_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "嘔嘔……吃、吃完再走……"
+    },
+    {
+      "id": "battle_awaken_20305_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "來，祈願吧！祈願此石自願向汝飛去！"
+    },
+    {
+      "id": "battle_erosion_20305_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "虔誠地……祈禱吧……以免災禍……降於汝身……"
+    },
+    {
+      "id": "battle_awaken_20306_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "汝所見的電火花……是何種顏色！"
+    },
+    {
+      "id": "battle_erosion_20306_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "不要再……奪走吾的東西了……"
+    },
+    {
+      "id": "battle_awaken_20307_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "只需無止境地將血液盡數飲下……沒錯……！於陶醉中綻放、綻放、綻放吧！"
+    },
+    {
+      "id": "battle_erosion_20307_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "你們怎能體會我等的飢渴！將你們的血液吸食殆盡後……它……它才會更加鮮紅地綻放！"
+    },
+    {
+      "id": "battle_awaken_20308_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "呼呼！星羅棋布之願……汝望何者成真！"
+    },
+    {
+      "id": "battle_erosion_20308_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "呼……願望、慾望，將所有煩惱通通破滅……！將汝從中解放！"
+    },
+    {
+      "id": "battle_awaken_20309_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "阿爾卡那．光破斬！"
+    },
+    {
+      "id": "battle_awaken_20309_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "湛藍於正義者，朱紅於愛之者。"
+    },
+    {
+      "id": "battle_awaken_20309_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "埋葬命運之流，吾以汝之名義，"
+    },
+    {
+      "id": "battle_awaken_20309_4",
+      "desc": "E.G.O覺醒",
+      "dlg": "在此向光明起誓。"
+    },
+    {
+      "id": "battle_awaken_20309_5",
+      "desc": "E.G.O覺醒",
+      "dlg": "面對阻攔吾等前行之路，一切深惡痛絕之徒。"
+    },
+    {
+      "id": "battle_awaken_20309_6",
+      "desc": "E.G.O覺醒",
+      "dlg": "吾與汝協力，賜予偉大的愛之力吧……"
+    },
+    {
+      "id": "battle_erosion_20309_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "阻攔吾等前行之路，一切深惡痛絕之徒啊……"
+    },
+    {
+      "id": "battle_erosion_20309_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "咕……並非善良，亦非邪惡，應當消逝之徒……"
+    },
+    {
+      "id": "battle_erosion_20309_3",
+      "desc": "E.G.O侵蝕",
+      "dlg": "賜予偉大的愛之力吧……"
+    },
+    {
+      "id": "battle_erosion_20309_4",
+      "desc": "E.G.O侵蝕",
+      "dlg": "哈。這種東西有什麼用。"
+    },
+    {
+      "id": "battle_erosion_20309_5",
+      "desc": "E.G.O侵蝕",
+      "dlg": "如果總得有反派存在。那就是你。"
+    },
+    {
+      "id": "battle_erosion_20309_6",
+      "desc": "E.G.O侵蝕",
+      "dlg": "我是受選之人……與你們不同，天差地別！！！ "
+    },
+    {
+      "id": "battle_awaken_20310_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "是汝的敗北！規則即是規則……來，把手伸向這裡吧！"
+    },
+    {
+      "id": "battle_erosion_20310_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "朋友！有朋友來了！那麼，我要出……剪、剪刀……！你要出什麼？！"
+    }
+  ]
+}

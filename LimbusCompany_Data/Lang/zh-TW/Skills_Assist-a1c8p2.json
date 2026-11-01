@@ -1,0 +1,124 @@
+{
+  "dataList": [
+    {
+      "id": 40000201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "弱點突刺",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於3種，則使本技能的基礎威力+1\n[WhenUse] 使自身獲得1回 [Breath] \n[OnDirectAttack] 使目標增加1回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+30%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "複劍仲衝",
+          "desc": "[StartBattle] 使自身獲得1層 [Protection]\n[WhenUse] 若目標帶有的負面狀態不少於3種，則使本技能的硬幣威力+1\n[WhenUse] 使自身增加3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "加斥我援",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於3種，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得3回 [Breath]\n[WhenUse] 使自身獲得6級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+100%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防護",
+          "desc": "[CanDuelGuard]\n[StartBattle] 隨機解除1種自身帶有且可解除的負面狀態\n[StartBattle] 使自身恢復10點理智值\n[WhenUse] 使自身獲得2層 [ProtectStance]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

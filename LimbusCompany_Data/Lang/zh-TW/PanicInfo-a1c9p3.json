@@ -1,0 +1,76 @@
+{
+  "dataList": [
+    {
+      "id": 1071,
+      "panicName": "烈火侵蝕",
+      "lowMoraleDescription": "回合開始時，對自身施加1層 [Vulnerable]",
+      "panicDescription": "回合開始時，對自身施加1層 [Vulnerable] 以及5級 [Combustion] 強度"
+    },
+    {
+      "id": 1073,
+      "panicName": "傾瀉而出的睏意",
+      "lowMoraleDescription": "自身透過技能效果獲得的 [LanternHohenheimBigBird] 效果層數減少1層",
+      "panicDescription": "一回合內無法行動"
+    },
+    {
+      "id": 1078,
+      "panicName": "一家之恥",
+      "lowMoraleDescription": "回合開始時，自身獲得1層 [SlashDamageUp]、1層 [ParryingResultUp]，並對自身施加1層 [Vulnerable]\n使用技能時無法獲得望",
+      "panicDescription": "回合開始時，自身獲得2層 [SlashDamageUp]、2層 [ParryingResultUp]，並對自身施加2層 [Vulnerable]\n使用技能時無法獲得望"
+    },
+    {
+      "id": 1079,
+      "panicName": "「我、我……殺了我吧……」",
+      "lowMoraleDescription": "回合開始時，對自身施加8層 [ParryingResultDown] 以及5層 [ResultReduction]",
+      "panicDescription": "回合開始時，對自身施加10層 [ParryingResultDown] 以及5層 [ResultReduction]"
+    },
+    {
+      "id": 1077,
+      "panicName": "過時的藝術",
+      "lowMoraleDescription": "回合開始時，使自身獲得1層 [AttackUp]",
+      "panicDescription": "回合開始時，使自身獲得2層 [AttackUp]"
+    },
+    {
+      "id": 1075,
+      "panicName": "狂暴",
+      "lowMoraleDescription": "回合開始時，使自身獲得2層 [Enhancement] 與4層 [DefenseDown]；上回合自身每受到30點體力值傷害，則使自身獲得1層 [AttackDmgUp] (最多5層)",
+      "panicDescription": "回合開始時，使自身獲得3層 [Enhancement] 與5層 [DefenseDown]；上回合自身每受到25點體力值傷害，則使自身獲得1層 [AttackDmgUp] (最多5層)"
+    },
+    {
+      "id": 1076,
+      "panicName": "狂熱",
+      "lowMoraleDescription": "回合開始時，對自身施加2層 [DefenseDown]；上回合自身每受到30點體力值傷害，則使自身獲得1層 [AttackDmgUp] (最多5層)",
+      "panicDescription": "回合開始時，使自身獲得1層 [Enhancement] 與3層 [DefenseDown]；上回合自身每受到25體力值傷害，則使自身獲得1層 [AttackDmgUp] (最多5層)"
+    },
+    {
+      "id": 1081,
+      "panicName": "無法挽回的毀損之軀",
+      "lowMoraleDescription": "回合開始時，對自身施加1層 [Vulnerable]，並使以斯拉和韋斯帕獲得2層 [Endurance]",
+      "panicDescription": "對自身施加1層 [Vulnerable]，並且使用「調整呼吸」"
+    },
+    {
+      "id": 1082,
+      "panicName": "自我防衛 - 面具",
+      "lowMoraleDescription": "對自身施加1層 [Reduction]，使自身獲得2層 [DefenseUp]",
+      "panicDescription": "對自身施加1層 [Reduction]，使自身獲得3層 [DefenseUp]"
+    },
+    {
+      "id": 1083,
+      "panicName": "阿賴耶",
+      "lowMoraleDescription": "-",
+      "panicDescription": "-"
+    },
+    {
+      "id": 1080,
+      "panicName": "在第二次煙霾戰爭",
+      "lowMoraleDescription": "回合開始時，對自身施加1層 [Vulnerable]\n自身理智值恢復效率+2",
+      "panicDescription": "回合開始時，對自身施加2層 [Vulnerable]，並使自身獲得2層 [ParryingResultUp]"
+    },
+    {
+      "id": 1084,
+      "panicName": "仿造的父輩",
+      "lowMoraleDescription": "- 回合開始時，對自身施加5級 [Combustion] 強度和5級 [Laceration] 強度\n- 自身受到來自良秀造成的傷害+10%",
+      "panicDescription": "- 回合開始時，對自身施加5級 [Combustion] 強度、3回 [Combustion]、5級 [Laceration] 強度、3回 [Laceration]\n- 自身受到來自良秀造成的傷害+20%"
+    }
+  ]
+}

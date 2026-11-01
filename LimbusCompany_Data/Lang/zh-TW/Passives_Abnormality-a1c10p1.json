@@ -1,0 +1,266 @@
+{
+  "dataList": [
+    {
+      "id": 146501,
+      "name": "漆黑派 布料",
+      "desc": "關卡開始時，使自身獲得5層 [NoirBindArmor]\n回合開始時，使自身獲得自身體力上限(自身的 [NoirBindArmor] 層數)%的護盾",
+      "flavor": "漆黑派的布料如同鎧甲般牢固的穩定形態來修飾顧客們的體態。"
+    },
+    {
+      "id": 146502,
+      "name": "介紹",
+      "desc": "目標每帶有1層 [NoirNoComply]，則使自身對目標造成的傷害與受到來自目標的傷害+10%\n若目標的 [NoirNoComply] 層數為3層，則使本技能對其造成的傷害+200%",
+      "flavor": "漆黑派遵從總公司嚴厲的管理手冊接待顧客們。"
+    },
+    {
+      "id": 146503,
+      "name": "保存",
+      "desc": "本場戰鬥中，根據自身累計消耗的 [ChargeNoir] 回數\n- 每消耗3回，則使自身獲得1層 [NoirBindArmor]\n- 每消耗10回，則使自身獲得1級 [ChargeNoir] 強度",
+      "flavor": "將力量凝聚、集中、固定。有時使其不變比變化需要更強大的力量。"
+    },
+    {
+      "id": 146603,
+      "name": "代謝作用",
+      "desc": "自身在戰鬥中首次登場時，使自身獲得10回 [ChargeRouge]\n\n在本場戰鬥中，自身每消耗10回 [ChargeRouge]，則使其獲得1級 [ChargeRouge] 強度"
+    },
+    {
+      "id": 149401,
+      "name": "丹紅派 夾克",
+      "desc": "Turn End: Gain or lose up to 10 [ChargeRouge] Count\n\nWhen hit, if the attacker used Skills that gain [Charge], transfer 1 [ChargeRouge] Count as [Charge] Count to the attacker (once per the attacker's Skill)\nGain 1 [AttackUp] every time the effect above activates\nTurn Start: Consume up to 5 excess [ChargeRouge] Count beyond 15 on self to heal ([ChargeRouge] Count consumed)% HP"
+    },
+    {
+      "id": 149402,
+      "name": "肌肉纖維丹寧布",
+      "desc": "自身每帶有1級 [ChargeRouge] 強度，則使自身技能造成的傷害+1%(最多+10%)\n\n若使用技能時，自身的現存體力不高於50%，則使該技能獲得的 [ChargeRouge] 回數額外+2回\n自身每失去1%的體力，則使自身的技能造成的傷害+1%"
+    },
+    {
+      "id": 149301,
+      "name": "丹紅派 夾克",
+      "desc": "回合結束時，使自身獲得或失去最多10回 [ChargeRouge]\n\n自身受到攻擊時，若攻擊者使用的技能為獲得 [Charge] 的技能，則使自身的1回 [Charge] 轉移給攻擊者(攻擊者每個技能最多1次)\n該效果觸發時，使自身獲得1層 [AttackUp]"
+    },
+    {
+      "id": 149302,
+      "name": "迫切",
+      "desc": "回合開始時，若自身的 [ChargeRouge] 強度不低於3級且 [ChargeRouge] 回數不低於10回，則使用「強勢行銷」\n\n自身每失去1%的體力，則使自身的技能造成的傷害+1%"
+    },
+    {
+      "id": 149303,
+      "name": "聽到了……另一位神的聲音……",
+      "desc": "關卡開始時，使自身獲得 [RisingMadnessRouge]\n- 回合開始時，若自身的體力在本場戰鬥中首次不高於50%，\n則使自身的 [RisingMadnessRouge] 轉變為 [RisingMadnessRouge2nd]\n\n拚點失敗時，使自身獲得2回 [ChargeRouge]",
+      "flavor": "雖然聽到了溫柔的聲音，但卻無法再發生變化，精神被封鎖於肉體之中，因分裂而發狂。"
+    },
+    {
+      "id": 146601,
+      "name": "丹紅派精品專櫃 新品型錄",
+      "desc": "[RougeThreeNormal] 模式\n\n解除自身帶有的 [RougeThreeCocoon] 與 [RougeThreeCocoonShield] 並使自身獲得 [RougeThreeNormal]\n<color=#ff6000><mark=#ff000040><b><u>自身受到攻擊時，使自身獲得1層 [RougeThreeNormal]\n回合結束時，若自身帶有20層 [RougeThreeNormal]，則下回合使自身改變為 [RougeThreeCocoon] 模式</u></b></mark></color>\n\n若自身處於 [RougeThreeNormal] 模式時，受到使自身體力低於10點的傷害，則無視該傷害並使自身恢復體力上限30%的體力且結束該回合。而後使自身改變為 [RougeThreeCocoon] 模式並在本場戰鬥中使自身獲得2層 [Enhancement] (每場戰鬥最多1次)"
+    },
+    {
+      "id": 146602,
+      "name": "請到更衣室中",
+      "desc": "[RougeThreeCocoon] 模式\n\n解除自身帶有的 [RougeThreeNormal]，並使自身獲得1層 [RougeThreeCocoon] 與500層 [RougeThreeCocoonShield]\n\n<color=#ff6000><mark=#ff000040><b><u>自身受到攻擊時，使自身獲得 [RougeThreeCocoonHit]</u></b></mark></color>\n若自身的 [RougeThreeCocoonShield] 層數為0層或自身的 [RougeThreeCocoon] 層數為3層，則使自身失去20點理智值並結束本回合。下回合使自身改變為 [RougeThreeNormal] 模式並在本場戰鬥中使自身獲得1層 [AttackDmgUp] (若自身陷入混亂則解除混亂)"
+    },
+    {
+      "id": 147401,
+      "name": "副廚",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>若自身的攻擊技能使目標陣亡，則使自身獲得1層 [SapsareeCooking]</u></b></mark></color>\n- 使用技能時，若目標每帶有3種狀態效果，則額外使自身獲得1層 [SapsareeCooking] (最多2層)",
+      "flavor": "雖然稱號是主廚，但絕不會被5樓的餐廳認可。"
+    },
+    {
+      "id": 147402,
+      "name": "很會煮菜喔",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>若自身帶有 [SapsareeCooking]，則在本回合最後使用技能「啊！現在可是我的用餐時間耶！」</u></b></mark></color>\n(若除自身以外所有目標全數陣亡或自身陷入混亂，則不會觸發本效果)\n回合結束時，若自身未使用技能「啊！現在可是我的用餐時間喔」，則使自身獲得1層 [SapsareeHungry]",
+      "flavor": "這種東西在5樓的餐廳也不會被稱做料理。"
+    },
+    {
+      "id": 147403,
+      "name": "渴求烹飪",
+      "desc": "每4回合使用強力暴食技能\n(若因自身陷入混亂而無法觸發，則在下回合觸發)\n- 回合結束時，若自身的 [SapsareeYammi] 層數不低於5層，則下回合使用強力暴食技能\n\n- 回合結束時，若自身的 [SapsareeHungry] 層數不低於3層，則下回合使用強力暴怒技能",
+      "flavor": "做成吃的和做成料理不同。妳只是……讓它變得能吃而已。"
+    },
+    {
+      "id": 147404,
+      "name": "超級好吃！！！",
+      "desc": "回合開始時，自身每帶有1層 [SapsareeYammi]，則使自身恢復3點理智值",
+      "flavor": "美食廣場的那群傢伙也配談論味道嗎？"
+    },
+    {
+      "id": 147405,
+      "name": "逃跑囉！",
+      "desc": "若副廚的現存體力不高於30%，則結束本場戰鬥",
+      "flavor": "我不想死。"
+    },
+    {
+      "id": 147501,
+      "name": "美味的食材。",
+      "desc": "若自身帶有的狀態效果不低於5種，則使自身攻擊等級+3、防禦等級+3",
+      "flavor": "這種東西甚至稱不上食材。"
+    },
+    {
+      "id": 147502,
+      "name": "軟化肉質",
+      "desc": "自身受到攻擊時，下回合對自身施加1層防禦等級降低並使自身獲得1層攻擊等級提升(每回合最多3次)",
+      "flavor": "錢包那堅韌的皮革，就算軟化也沒用。"
+    },
+    {
+      "id": 147503,
+      "name": "肚子餓了……",
+      "desc": "回合結束時，若副廚未使用技能「啊！現在可是我的用餐時間喔」，則使自身獲得1層 [SapsareeHungry]",
+      "flavor": "雖然不是為了作為食材而做出錢包，但因為被當作食材飼養，所以當然也會肚子餓。"
+    },
+    {
+      "id": 148101,
+      "name": "拼布",
+      "desc": "關卡開始時，使自身獲得30層 [UnresolvedFeelings]\n若自身現存體力不高於50%，則在特定模式使用的技能替換為強力技能",
+      "flavor": "在修改衣物時本該被丟棄的邊角料，被一層又一層地縫合在一起。雖然單看任何一塊碎布都毫無價值，但作為布料的本質並未消失，因此樓層經理才會將其蒐集起來。"
+    },
+    {
+      "id": 148102,
+      "name": "確認戒心",
+      "desc": "回合開始時，觸發以下效果\n<color=#ff6000><mark=#ff000040><b><u>- 若帶有10層 [Wariness] 的罪人不低於1名，則自身額外獲得1個攻擊行動槽並裝備技能「警報廣播」</u></b></mark></color>\n- 對未帶有 [ReliefSense] 的所有罪人施加1層 [Wariness]\n- 每有1名人格帶有 [HorribleTerror]，則使自身獲得1層 [HorribleEat]\n\n<color=#ff6000><mark=#ff000040><b><u>自身被罪人的技能命中時</u></b></mark></color>且該技能攻擊結束後，對該罪人施加層數等同於自身受到該技能攻擊次數的 <color=#ff6000><mark=#ff000040><b><u>[Wariness]</u></b></mark></color>",
+      "flavor": "傾聽，並非僅憑雙耳，而是始於敞開心扉。"
+    },
+    {
+      "id": 148103,
+      "name": "感謝",
+      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>若帶有3層 [ReliefSense] 的罪人不低於1名，則使自身額外獲得1個攻擊行動槽並在其中裝備技能「感謝……聆聽……」</u></b></mark></color>",
+      "flavor": "對導覽廣播充耳不聞的顧客，真的太多了……謝謝你好好聽我說話。"
+    },
+    {
+      "id": 148104,
+      "name": "恐慌射殺",
+      "desc": "對陷入恐慌的目標造成的傷害+200%",
+      "flavor": "當精神崩潰之時，肉體也能輕易擊碎，的確存在著這樣的技巧。"
+    },
+    {
+      "id": 149201,
+      "name": "漆黑派 布料",
+      "desc": "關卡開始時，使自身獲得5層 [NoirBindArmor]\n\n回合開始時，使自身獲得自身體力上限(自身的 [NoirBindArmor] 層數÷2)%的護盾\n\n若自身陷入混亂，則失去自身所有 [NoirBindArmor]\n回合開始時，解除自身混亂並使自身獲得5層 [NoirBindArmor]",
+      "flavor": "漆黑派的布料如同鎧甲般牢固的穩定形態來修飾顧客們的體態。"
+    },
+    {
+      "id": 149202,
+      "name": "保存",
+      "desc": "本場戰鬥中，根據自身累計消耗的 [ChargeNoir] 回數\n- 每消耗5回，則使自身獲得1層 [NoirBindArmor]\n- 每消耗10回，則使自身獲得1級 [ChargeNoir] 強度",
+      "flavor": "將力量凝聚、集中、固定。有時使其不變比變化需要更強大的力量。"
+    },
+    {
+      "id": 149203,
+      "name": "為停止而變化",
+      "desc": "回合開始時，若自身的 [ChargeNoir] 回數不低於10回，則使用強力技能\n\n使用技能時，若自身的 [ChargeNoir] 回數不低於15回，\n則消耗自身3回 [ChargeNoir] 並使該技能造成的傷害+20%",
+      "flavor": "這道新的聲音說，為了讓自己維持不變，它會幫我改變自己……"
+    },
+    {
+      "id": 149204,
+      "name": "聽到了……另一位神的聲音……",
+      "desc": "關卡開始時，使自身獲得2層 [RisingMadnessNoir]\n- 回合開始時，若自身的體力在本場戰鬥中首次不高於50%，\n則使自身的 [RisingMadnessNoir] 轉變為 [RisingMadnessNoir2nd]\n\n拚點失敗時，使自身獲得2回 [ChargeNoir]",
+      "flavor": "雖然聽到了溫柔的聲音，但卻無法再發生變化，精神被封鎖於肉體之中，因分裂而發狂。"
+    },
+    {
+      "id": 148201,
+      "name": "漆黑派 布料",
+      "desc": "關卡開始時，使自身獲得3層 [NoirBindArmor]\n\n回合開始時，使自身獲得自身體力上限(自身的 [NoirBindArmor] 層數)%的護盾(陷入混亂時不會觸發此效果)",
+      "flavor": "漆黑派的布料如同鎧甲般牢固的穩定形態來修飾顧客們的體態。"
+    },
+    {
+      "id": 148202,
+      "name": "保存",
+      "desc": "本場戰鬥中，根據自身累計消耗的 [ChargeNoir] 回數\n- 每消耗3回，則使自身獲得1層 [NoirBindArmor]\n- 每消耗10回，則使自身獲得1級 [ChargeNoir] 強度\n\n若自身的 [ChargeNoir] 強度不低於3級，則使自身的 [ChargeNoir] 最大回數+5",
+      "flavor": "將力量凝聚、集中、固定。有時使其不變比變化需要更強大的力量。"
+    },
+    {
+      "id": 148203,
+      "name": "凝聚的發散",
+      "desc": "回合開始時，若自身的 [ChargeNoir] 強度不低於3級且自身的 [ChargeNoir] 回數不低於10回，則使用強力技能",
+      "flavor": "為了使其停止而聚集於一處的力量，總有一日會噴湧而出。"
+    },
+    {
+      "id": 148204,
+      "name": "保存轉換的悖論",
+      "desc": "若自身帶有護盾，則受到罪人攻擊時，\n使自身獲得1回 [ChargeNoir] (每個技能最多1次，每回合最多3次)\n- 若自身的 [ChargeNoir] 強度不低於3級／5級，則改為使自身獲得2回／3回 [ChargeNoir]\n\n回合結束時，若自身帶有護盾，\n則自身每帶有1級 [ChargeNoir] 強度，使下回合自身獲得1回 [ChargeNoir] 與1層 [DefenseUp] (分別最多+3)",
+      "flavor": "將那些想強加在我身上的外力，全部變成我保護自己的力量。\n\n這是一個無論你多麼不渴望改變、多麼想保持靜止，也勢必得改變些什麼的世界。"
+    },
+    {
+      "id": 148301,
+      "name": "漆黑派 華達呢布料",
+      "desc": "關卡開始時，使自身獲得30層 [NoirSuit]\n\n回合開始時，\n- 使自身獲得自身體力上限(自身的 [NoirSuit] 層數÷5)%的護盾(陷入混亂時不會觸發此效果)",
+      "flavor": "由追求莊重感與堅固耐用性的漆黑派所打造出代表該品牌最高工藝的旗艦款布料。"
+    },
+    {
+      "id": 148302,
+      "name": "保存",
+      "desc": "本場戰鬥中，根據自身累計消耗的 [ChargeNoir] 回數\n每消耗10回，則使自身獲得1級 [ChargeNoir] 強度\n\n若自身的 [ChargeNoir] 強度不低於3級，則使自身的 [ChargeNoir] 最大回數+5",
+      "flavor": "將力量凝聚、集中、固定。有時使其不變比變化需要更強大的力量。"
+    },
+    {
+      "id": 148303,
+      "name": "反饋",
+      "desc": "回合開始時，若自身帶有 [Realisation]，則使自身從「單腳踢」改為使用「單腳踢 - 多樣訂製」\n\n觸發 [VibrationExplosion] 時，使 [VibrationExplosion] 造成的混亂閾值前移量+20%\n- 若自身的 [ChargeNoir] 回數不低於12回，則改為觸發 [VibrationExplosion] 時，消耗1回 [ChargeNoir] \n並使 [VibrationExplosion] 造成的混亂閾值前移量+40%(每名目標分別觸發)\n\n觸發 [VibrationExplosion] 時，若目標未擁有混亂閾值，\n則對其造成等同於自身 [DefenseUp] 層數的固定傷害(最多20點)",
+      "flavor": "漆黑派深信透過給予對方強烈的震顫並使其動搖，便能瓦解對方的價值。\n\n在他們的認知裡，目標震顫的越劇烈，便代表著對方正分分秒秒的經歷著變質。\n\n漆黑派的戰鬥技術正是基於這樣的信念所打造出來的。"
+    },
+    {
+      "id": 148304,
+      "name": "保存轉換的悖論的悖論",
+      "desc": "若自身帶有護盾，則受到罪人攻擊時，\n- 使該罪人增加1級 [Vibration] 強度(每個技能最多1次)\n- 使自身獲得1回 [ChargeNoir] (每個技能最多1次，每回合最多3次)\n．若自身的 [ChargeNoir] 強度不低於3級／5級，則改為獲得2回／3回 [ChargeNoir]\n\n回合結束時，若自身帶有護盾，\n則自身每帶有1級 [ChargeNoir] 強度，下回合使自身獲得1回 [ChargeNoir] 與2層 [DefenseUp] (分別最多3回、6層)",
+      "flavor": "越是努力試圖保持不變，存在就越會朝著變化的狀態發展。\n\n只要存在必將推移，既然有所前進，就勢必會伴隨著變化。"
+    },
+    {
+      "id": 149601,
+      "name": "開始縫製",
+      "desc": "回合開始時，隨機對2名敵方單位施加 [NiddleExpected]"
+    },
+    {
+      "id": 149602,
+      "name": "手工製作",
+      "desc": "場上每有1名針靈[TabExplain]存活，則使自身技能的最終威力+1",
+      "flavor": "在手縫圈中，熟練職人的多寡決定了品牌的生死。"
+    },
+    {
+      "id": 149603,
+      "name": "即使堵上耳朵也能看見的客訴",
+      "desc": "每到3的倍數的回合數，會聽見繭的哭泣聲\n進入第2階段後，繭的哭泣聲則每回合持續\n\n在聽見繭的哭泣聲的回合，自身免疫無法行動狀態\n\n若自身的體力降至混亂閾值之下，則下回合對自身施加2層 [Vulnerable]",
+      "flavor": "從繭裡能聽到聲音。\n「紗支數未滿80支雙股紗的，我可不認同那是布料。」「鈕扣孔為什麼不是橫向的？」\n「用舊式織布機去織單面布？」「赤耳布邊怎麼不是紅色的？」\n「這沒有做防縮加工呢。」「Super 150以下的都是便宜布料啦。」\n「你說Super的數字單純只是線的粗細？明明直徑跟紗支數是不同的概念，你連這種事都不知道哦。」\n「修改褲腳，當然是用于仁的針車來下擺鎖鏈繡對吧？」「這是硬挺丹寧嗎？啊，還是該說布邊呢？」\n「仔細一看，這針距也太均勻了。是用機器車的吧？」「不是純手工縫的話，才不配叫高級訂製呢。」\n「啊，這鈕扣孔不是米蘭式手工鈕扣孔呢。」「紗支數超過200支，才配稱為襯衫布料。」\n「啊，表面上看得到針腳。」「看得到兩列針腳。不及格。」\n「這算什麼縫份邊緣處理。」「沒超過3股扭繩可不行。」"
+    },
+    {
+      "id": 148401,
+      "name": "尚未成熟的丹紅之神",
+      "desc": "回合結束時，自身的 [ChargeRouge] 回數不會減少\n<color=#ff6000><mark=#ff000040><b><u>進行拚點時，每觸發1次目標的 [Laceration]</u></b></mark></color>，使自身獲得1回 [ChargeRouge]\n擊殺目標時，使自身獲得回數等同於目標的 [Laceration] 強度與 [Laceration] 回數之和的 [ChargeRouge]\n回合開始時，自身每帶有1回 [ChargeRouge]，使自身恢復3點理智值",
+      "flavor": "因被渴望而催生出的神明。就連它的誕生、都稱不上完整。"
+    },
+    {
+      "id": 148402,
+      "name": "脈動的薔薇色肌肉",
+      "desc": "回合開始時，若自身未帶有 [Gourmandise] 且<color=#ff6000><mark=#ff000040><b><u>自身的 [ChargeRouge] 回數不低於15回，則消耗自身所有 [ChargeRouge] 回數並使自身獲得 [Gourmandise]</u></b></mark></color>\n\n若自身帶有 [Gourmandise]，則觸發以下效果：\n- 使用技能時，對自身施加3回 [Laceration]\n- 技能命中時，使自身增加1級 [Laceration] 強度\n- 部位受到攻擊時，對自身施加1層 [BuffetSick]\n- 拚點失敗時，對自身施加3層 [BuffetSick]\n- 擊殺目標時，若其帶有的 [BloodyMucus] 層數不低於3層，則下回合在場上生成「被剝離的丹紅之神肉片」\n- 戰鬥結束時，每有1名敵方單位帶有 [BloodyMucus]，則使自身恢復3點理智值\n\n回合結束且解除了自身的 [Gourmandise] 狀態時，<color=#ff6000><mark=#ff000040><b><u>若自身的 [BuffetSick] 層數不低於30層</u></b></mark></color>，則下回合弱化自身模式並使場上的「被剝離的丹紅之神肉片」陷入混亂\n\n※ [BloodyMucus] 的層數可透過使用<color=#ff6000><mark=#ff000040><b><u>E.G.O技能或守備技能</u></b></mark></color>減少\n※ 「被剝離的丹紅之神肉片」會獲得層數等同於被擊殺之目標 [BloodyMucus] 層數的 [DeterioratingBody]\n※ 若「被剝離的丹紅之神肉片」帶有 [DeterioratingBody] 狀態，則不會陣亡\n※ 場上最多生成3個「被剝離的丹紅之神肉片」",
+      "flavor": "手腳如發狂般的亂舞。彷彿那本就不是自己身體的一部分。"
+    },
+    {
+      "id": 148403,
+      "name": "差距",
+      "desc": "對低於自身速度值的目標造成的傷害+50%",
+      "flavor": "映入眼簾的一切，都在以各自的速度移動。"
+    },
+    {
+      "id": 148404,
+      "name": "求生本能",
+      "desc": "回合開始時，使自身獲得1層 [SavePlacenta] 並使命繩部位獲得5層 [Protection]\n若自身帶有 [Gourmandise] 或陷入混亂，則不會觸發此被動技能",
+      "flavor": "身體脫離了意志，只是為了自我防衛而徒勞地掙扎。明明連這具身體的哪一部分真正屬於自己都已經分不清楚了。"
+    },
+    {
+      "id": 148405,
+      "name": "被切斷的命繩",
+      "desc": "回合結束時，若命繩部位被破壞，則下回合對軀幹部位施加3層 [Vulnerable]",
+      "flavor": "附著在身上的東西、這些懸吊垂掛著的東西，究竟哪一部分才算是自己，我已經完全無法衡量。"
+    },
+    {
+      "id": 148406,
+      "name": "暴力誕生的暴走",
+      "desc": "回合結束時，若命繩部位未被破壞且本體的現存體力不高於50%，則使自身獲得 [Gourmandise]\n在命繩部位被破壞前，自身的 [Gourmandise] 層數不會減少",
+      "flavor": "肉體從溫暖的地方，被拋向寒冷的所在。意識從涼爽的地方，被扔到炙熱的場所。就這樣，一切都這麼粗暴。"
+    },
+    {
+      "id": 149701,
+      "name": "無意識的脈動",
+      "desc": "- 生成時，獲得層數等同於被擊殺之目標 [BloodyMucus] 層數的 [DeterioratingBody]\n\n[DeterioratingBody] 解除時陣亡",
+      "flavor": "這是活著的。但卻沒有大腦。難道意識不只能從大腦誕生，也能從這不斷搏動的肌肉中孕育出來嗎？"
+    }
+  ]
+}

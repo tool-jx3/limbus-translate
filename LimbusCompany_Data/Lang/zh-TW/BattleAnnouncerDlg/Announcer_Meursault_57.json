@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_57_1",
+      "dlg": "我只是一如既往，竭盡所能完成自己所負的職責。\n經理……您此刻是否竭盡全力了？"
+    },
+    {
+      "id": "announcer_cheer_57_2",
+      "dlg": "......."
+    },
+    {
+      "id": "announcer_specialcheer_57_1",
+      "dlg": "您必須轉動時鐘，經理。"
+    },
+    {
+      "id": "announcer_specialcheer_57_2",
+      "dlg": "若您已經疲憊到無法轉動時鐘，建議停止指揮並在撤退後進行休息。"
+    },
+    {
+      "id": "announcer_enemy_break_57_1",
+      "dlg": "敵人已陷入混亂。"
+    },
+    {
+      "id": "announcer_ally_break_57_1",
+      "dlg": "罪人已倒下。或許需要保護他。"
+    },
+    {
+      "id": "announcer_killenemy_57_1",
+      "dlg": "敵人已被擊殺。"
+    },
+    {
+      "id": "announcer_ally_dead_57_1",
+      "dlg": "罪人已死亡。真是不樂見的損失。"
+    },
+    {
+      "id": "announcer_enemy_adv_57_1",
+      "dlg": "我同意，這確實很痛苦難受。儘管如此，我覺得這場激烈的戰鬥……很愉快。"
+    },
+    {
+      "id": "announcer_ally_adv_57_1",
+      "dlg": "您在這場戰鬥做出的所有判斷都相當有效。因此我很期待經理接下來的判斷。"
+    },
+    {
+      "id": "announcer_ally_advex_57_1",
+      "dlg": "雖然缺乏足夠的判斷依據，若要表明主觀立場……似乎值得一試，經理。"
+    },
+    {
+      "id": "announcer_danger_57_1",
+      "dlg": "所剩時間不多了。若您難以做出判斷，交給我也沒關係。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_57_1",
+      "dlg": "左側地面傳來2次震動以及31次探索弱點的視線。\n經理，看來敵人即將採取密集攻勢。"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_57_1",
+      "dlg": "即使是從未經歷、記憶中也不存在的情況，只要專注當下想必就能掌握清楚。"
+    },
+    {
+      "id": "announcer_advatk_physical_57_1",
+      "dlg": "瞄準了弱點。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_57_1",
+      "dlg": "即使效率不彰，不代表就是錯誤。因為非效率的詞語本身也不過是主觀判斷。"
+    },
+    {
+      "id": "announcer_advatk_attr_57_1",
+      "dlg": "十分有效率。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_57_1",
+      "dlg": "若您中意那股感覺，就沒有問題。"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_57_1",
+      "dlg": "世界——原本就從未脫離過不合理性。想必現在也不會有所不同。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_57_1",
+      "dlg": "看來是瘋了。"
+    },
+    {
+      "id": "announcer_ally_specialbuff_57_1",
+      "dlg": "這份援助……難以理解。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_57_1",
+      "dlg": "必須背負的痛苦增加了。"
+    },
+    {
+      "id": "announcer_enemy_destroy_57_1",
+      "dlg": "已破壞敵人的部位。"
+    },
+    {
+      "id": "announcer_enemy_destroy_57_2",
+      "dlg": "阻擋進展順利。您必須要掌握該部位的特徵並思考下一個計畫了。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_57_1",
+      "dlg": "經理，很遺憾出現了大量傷員。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_57_2",
+      "dlg": "依感覺來看，雖然判斷需要修正整體戰略……但您認為呢，經理。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_57_1",
+      "dlg": "已給予致命傷害。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_57_2",
+      "dlg": "……敵人還有戰鬥意志。"
+    },
+    {
+      "id": "announcer_multikillenemy_57_1",
+      "dlg": "罪人打倒了大量敵人。"
+    },
+    {
+      "id": "announcer_battle_win_57_1",
+      "dlg": "做得好，經理。"
+    },
+    {
+      "id": "announcer_battle_defeat_57_1",
+      "dlg": "只是跌落，要斷定是失敗還太早了。要再爬上去一次嗎，經理？"
+    },
+    {
+      "id": "announcer_equip_57_1",
+      "dlg": "5號罪人，莫梭。開始錄音。雖然尚未收到其他命令，但既然輪到我了，我原本就想試試看。"
+    }
+  ]
+}

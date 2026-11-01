@@ -1,0 +1,220 @@
+{
+  "dataList": [
+    {
+      "id": "MuscleContraction",
+      "name": "肌肉纖維的機械性收縮與鬆弛",
+      "desc": "- 最大值：2\n- 本效果每有1層，使本單位造成的傷害+15%\n- 戰鬥開始時，若本效果層數為2，則使本單位攻擊技能中的所有硬幣轉變為無法被破壞的硬幣\n- 本單位攻擊結束後，使本效果解除",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DuelEdge",
+      "name": "決鬥高潮",
+      "desc": "- 最大值：20\n- 本單位與「拇指 弟子 - 路秋」拚點時，使「拇指 弟子 - 路秋」獲得技能威力提升與造成的傷害增加\n- 若本單位在回合中沒有與「拇指 弟子 - 路秋」拚點，則於回合結束時解除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "HostageCharon",
+      "name": "人質事件",
+      "desc": "- 與「拇指 弟子 - 路秋」拚點時，使本單位的拚點威力-1\n- 使本單位對「拇指 弟子 - 路秋」造成的傷害-20%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "SeveredTendon",
+      "name": "腱斷裂",
+      "desc": "- 最大值：3\n- 本效果每有1層，使本單位的基礎攻擊技能的基礎威力-1\n- 回合結束時，本效果層數減少1層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "HowDareYouApple",
+      "name": "竟敢……！",
+      "desc": "- 最大值：4\n- 本效果每有1層，使本單位造成的傷害+20%\n- 於使用特定技能時消耗",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RapidGrowthApple",
+      "name": "急速生長",
+      "desc": "- 最大值：3\n- 本效果每有1層，使部位的防禦等級-1(此效果無法使防禦等級降至1以下)\n- 手臂部位全數遭到破壞後，解除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "HumanFleshTheRings",
+      "name": "人體材料",
+      "desc": "- 最大值：2\n- 特殊充能（級數固定）",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "BoneBladeTheRings",
+      "name": "作品名：法希雅",
+      "desc": "- 回合開始時，使本單位獲得4層基礎威力提升\n- 本單位使用攻擊技能施加流血時，額外增加2級流血強度",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "UnsteadyTheRings",
+      "name": "劇烈顫抖的甲冑",
+      "desc": "- 最大層數：3\n- 本效果每有1層，則使「受抑的肉體」的最終威力-10\n- 若本效果層數為3，則本單位使用技能「受抑的肉體」後，於下回合使自身陷入混亂並解除此效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "IronMaiden_LowMorale",
+      "name": "鐵處女",
+      "desc": "- 士氣低落\n- 回合開始時，使自身獲得1層攻擊等級降低、1層防禦等級提升",
+      "summary": "回合開始時，使自身獲得1層攻擊等級降低、1層防禦等級提升",
+      "undefined": "-"
+    },
+    {
+      "id": "IronMaiden_Panic",
+      "name": "鐵處女",
+      "desc": "- 陷入恐慌\n- 回合開始時，使自身獲得2層攻擊等級降低、2層防禦等級提升",
+      "summary": "回合開始時，使自身獲得2層攻擊等級降低、2層防禦等級提升",
+      "undefined": "-"
+    },
+    {
+      "id": "DicipleLittleFinger",
+      "name": "月下青刀",
+      "desc": "- 最大層數：50\n- 本效果每有1層，則於回合開始時，使本單位獲得5點護盾值\n- 本效果每有1層，使本單位暴擊時造成的傷害+1%\n- 本單位受到攻擊命中時，使本效果減少1層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RyoshuSlotPlusA1C9",
+      "name": "過去的惡臭",
+      "desc": "- 本單位的技能槽位+1\n- 使本單位對隸屬於蜘蛛巢的敵方單位造成的傷害+10%\n- 本單位陷入混亂時，使本單位下回合解除混亂並獲得1層強壯(每場戰鬥最多發動1次)\n- 無法使本單位撤退",
+      "summary": "對隸屬於蜘蛛巢的敵方單位造成的傷害量增加",
+      "undefined": "-"
+    },
+    {
+      "id": "ObservationMoses",
+      "name": "觀察力",
+      "desc": "- 使本單位無法被指定為魅惑目標\n- 使本單位對精靈的部位造成的傷害+25%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "CalmAnalysisMoses",
+      "name": "冷靜分析",
+      "desc": "- 使本單位對精靈提燈造成的傷害+25%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TeachersCommand",
+      "name": "拇指父輩的命令",
+      "desc": "- 使本單位的攻擊等級-5",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TeachersPet_LowMorale",
+      "name": "教材",
+      "desc": "- 與帶有決鬥高潮的目標拚點時，使本單位的拚點威力+1\n- 本單位拚點失敗時，下回合對自身施加1層易損 (每回合最多1次)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TeachersPet_Panic",
+      "name": "教材",
+      "desc": "- 與帶有決鬥高潮的目標拚點時，使本單位的拚點威力+2\n- 本單位拚點失敗時，下回合對自身施加1層易損 (每回合最多1次)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RyoshuStartA1C9",
+      "name": "復甦的喜悅",
+      "desc": "- 使本單位對隸屬於蜘蛛巢的敵方單位造成的傷害+10%\n- 本單位陷入混亂時，使本單位於下回合解除混亂並獲得1層強壯(每場戰鬥最多發動1次)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "BreathLoss_LowMorale",
+      "name": "紊亂的呼吸",
+      "desc": "回合開始時，使自身失去3級呼吸法強度",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "BreathLoss_Panic",
+      "name": "紊亂的呼吸",
+      "desc": "回合開始時，使自身失去5級呼吸法強度",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "IndexPrescriptTargetMarkToEnemy",
+      "name": "指令之印",
+      "desc": "- 使本單位行動槽中的一個基本攻擊技能獲得指令之印",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "IndexPrescriptTargetToEnemy",
+      "name": "指令對象",
+      "desc": "- 使本單位受到隸屬於食指的單位造成的傷害+10%\n- 本效果無視戰場中隸屬於食指的人格數量，每回合只對1名單位生效",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "BlessingOfIndexPrescriptAlly",
+      "name": "指令加護",
+      "desc": "- 本效果每有3層，則使本單位的攻擊等級+1\n- 最大層數：9",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "IndexPrescript_Base",
+      "name": "指令",
+      "desc": "- 使本單位在特定條件下獲得「指令[紙片]」",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "指令會以各種方式傳達。其到來的方法與型態，就如同神諭般單方面的決策。"
+    },
+    {
+      "id": "IndexPrescriptFaust_0",
+      "name": "指令[紙片] I",
+      "desc": "使用帶有指令之印的技能，或使其命中敵方單位。\n\n- 若本單位帶有的指令加護層數於0~2層之間，則於回合開始時獲得本效果\n- 本單位從達成該指令獲得的指令加護層數最多疊加至：3",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "指令會以各種方式傳達。其到來的方法與型態，就如同神諭般單方面的決策。"
+    },
+    {
+      "id": "IndexPrescriptFaust_1",
+      "name": "指令[紙片] II",
+      "desc": "使用帶有指令之印的技能命中敵方單位。\n\n- 若本單位帶有的指令加護層數於3~5層之間，則於回合開始時獲得本效果\n- 本單位從達成該指令獲得的指令加護層數最多疊加至：6",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "指令會以各種方式傳達。其到來的方法與型態，就如同神諭般單方面的決策。"
+    },
+    {
+      "id": "IndexPrescriptFaust_2",
+      "name": "指令[紙片] III",
+      "desc": "使用E.G.O覺醒技能或帶有指令之印的「3技能」命中敵方單位。\n\n- 若本單位帶有的指令加護層數於6~8層之間，則於回合開始時獲得本效果\n- 本單位從達成該指令獲得的指令加護層數最多疊加至：9",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "指令會以各種方式傳達。其到來的方法與型態，就如同神諭般單方面的決策。"
+    },
+    {
+      "id": "IndexPrescriptFaust_3",
+      "name": "指令[紙片] IV",
+      "desc": "殲滅所有敵人。在此期間靜候下次指令。\n\n- 若本單位帶有的指令加護層數為9層，則於回合開始時獲得本效果",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "指令會以各種方式傳達。其到來的方法與型態，就如同神諭般單方面的決策。"
+    },
+    {
+      "id": "KarmaOfIndexAlly",
+      "name": "業報",
+      "desc": "- 回合開始時：\n．本效果每帶有10層，則對本單位施加1層防禦等級降低\n．本效果每帶有20層，則對本單位施加1層易損\n- 最大層數：100",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "接受指令並執行。其將化為業報，必然於因果循環中積累不停。"
+    }
+  ]
+}

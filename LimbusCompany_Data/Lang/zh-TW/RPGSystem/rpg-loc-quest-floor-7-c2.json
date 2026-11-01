@@ -1,0 +1,29 @@
+{
+  "dataList": [
+    {
+      "key": "Q7001_C2",
+      "title": "明亮的房間",
+      "description": "莫梭滾動著石頭抵達了頂端，而石頭又再次滾落下去。然後我們最終抵達的地方是……百貨公司的頂端。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前進。"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "然後坐下。"
+        }
+      ]
+    },
+    {
+      "key": "Q7002_C2",
+      "title": "???",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    }
+  ]
+}

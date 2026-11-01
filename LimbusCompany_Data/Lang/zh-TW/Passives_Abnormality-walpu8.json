@@ -1,0 +1,44 @@
+{
+  "dataList": [
+    {
+      "id": 136601,
+      "name": "徬徨的考驗",
+      "desc": "入場時，使自身獲得1~3層的 [RunHallway]\n回合開始時，若自身的 [RunHallway] 層數為0，則使用技能「群體遷徙」\n(本效果發動時，將使自身解除混亂)\n\n當「大軟QQ」在戰場上時，該被動不會生效",
+      "flavor": "「考驗和異想體完全不同。所謂考驗，是從這家公司深處流動的人類的夢境中隨機抽出的，嚴重心理創傷具象化。」"
+    },
+    {
+      "id": 136602,
+      "name": "直擊味覺",
+      "desc": "攻擊命中時，若目標對該攻擊的抗性為脆弱、致命(抗性為1以上時)，下回合對該目標施加1層 [Binding] (每技能最多1次)",
+      "flavor": "\"How could such a flavorful beverage end up being called BongBong?\""
+    },
+    {
+      "id": 136603,
+      "name": "味道的秘密",
+      "desc": "使擊殺自身的目標獲得1層 [PumpkinJelly]"
+    },
+    {
+      "id": 136901,
+      "name": "徬徨的考驗",
+      "desc": "關卡開始時，獲得3層 [RunHallway]\n回合開始時，若 [RunHallway] 層數為0，則使用技能「群體遷徙」\n(本效果發動時，將使自身解除混亂)\n\n當場上除了「自身召喚的軟QQ」以外，不存在其他「軟QQ」時：\n則使「群體遷徙」的效果失效，並使自身於下回合獲得3層 [RunHallway]",
+      "flavor": "\"These Ordeal things keep popping out from that murky-white smoke... just what is that smoke supposed to be, Captain?!\""
+    },
+    {
+      "id": 136902,
+      "name": "接連不斷的考驗",
+      "desc": "自身撤退後，將於4回合過後與「自身召喚的軟QQ」一起重返戰場；隨後，使自身獲得3層 [RunHallway]\n\n若戰場上沒有可用位置，則使隨機1名「軟QQ」撤退，並使自身重返戰場"
+    },
+    {
+      "id": 136903,
+      "name": "脆弱的柑橘泡泡",
+      "desc": "自身受到來自單方面攻擊的傷害 +100%\n當自身與<color=#ff6000><mark color=#ff000040><b><u>消耗彈藥的技能</color></mark></b></u>拚點時，使自身的拚點威力 -3，且使自身此次拚點的攻擊技能硬幣轉變為普通硬幣",
+      "flavor": "\"I know those carbonated bubbles are tasty, but be careful around them, okay? They're unprocessed and highly acidic. Sure, a few spatters of little BongBongs' pop bubbles might not be so dangerous, but getting doused in the undiluted fluid of those massive BunBuns'll melt you guys into a puddle.\""
+    },
+    {
+      "id": 136904,
+      "name": "生產食品",
+      "desc": "擊殺敵方時，召喚1名「軟QQ」\n回合結束時，若自身的 [RunHallway] 層數為0，則下回合將召喚最大限度的「軟QQ」們",
+      "flavor": "「這種碳酸的製作方法據說是秘密。可能是只有他們才知道的秘方吧。」"
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+{
+  "dataList": [
+    {
+      "id": 40004101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "丹紅之釘",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "丹紅之釘",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有2級 [ChargeRouge] 強度，則對目標施加1層 [BloodyMucusAlly] (最多2層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標沒有理智值，則使本技能造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標失去10點理智值"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "丹紅之釘",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若目標的理智值高於自身或目標沒有理智值，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有2級 [ChargeRouge] 強度，則對目標施加1層 [BloodyMucusAlly] (最多2層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標沒有理智值，則使本技能造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標失去10點理智值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BuffetGold]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "走開",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "走開",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有2級 [ChargeRouge] 強度，則對目標施加1層 [BloodyMucusAlly] (最多2層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有2級 [ChargeRouge] 強度，則對目標施加1層 [BloodyMucusAlly] (最多2層)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "走開",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有2級 [ChargeRouge] 強度，則對目標施加1層 [BloodyMucusAlly] (最多2層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BuffetGold]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有2級 [ChargeRouge] 強度，則對目標施加1層 [BloodyMucusAlly] (最多2層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BuffetGold]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "加油",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標獲得1層 [ParryingResultUp]"
+                },
+                {
+                  "desc": "[EndCoin] 自身每帶有1級 [ChargeRouge] 強度，則使自身獲得1層 [AttackUp] (最多5層)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "加油",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n\n[WhenUse] 自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標獲得1層 [ParryingResultUp]"
+                },
+                {
+                  "desc": "[EndCoin] 自身每帶有1級 [ChargeRouge] 強度，則使自身獲得1層 [AttackUp] (最多5層)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "加油",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n\n[WhenUse] 自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)\n[EndSkill] 若自身帶有 [GourmandiseAlly] 且自身的 [ChargeRouge] 回數不低於10回，則消耗最多10回 [ChargeRouge]，技能命中時使所有目標獲得1層 [SkillPowerUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標獲得1層 [ParryingResultUp]"
+                },
+                {
+                  "desc": "[EndCoin] 自身每帶有1級 [ChargeRouge] 強度，則使自身獲得1層 [AttackUp] (最多5層)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "加油",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n\n[WhenUse] 自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)\n[EndSkill] 若自身帶有 [GourmandiseAlly] 且自身的 [ChargeRouge] 回數不低於10回，則消耗最多10回 [ChargeRouge]，技能命中時使所有目標獲得1層 [SkillPowerUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標獲得1層 [SkillPowerUp]"
+                },
+                {
+                  "desc": "[EndCoin] 自身每帶有1級 [ChargeRouge]，則本回合與下回合中使自身獲得1層 [AttackUp] (最多5層)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "別受傷",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力×2)點體力\n- 若目標屬於丹紅派，則使目標失去體力，並使自身恢復(目標失去的體力)點體力(本效果造成的傷害不會使目標陷入混亂且體力不會降至1點以下)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "別受傷",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n\n[WhenUse] 自身每帶有3級 [ChargeRouge] 強度，則使本技能的攻擊容量+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力×2)點體力\n- 若目標屬於丹紅派，則使目標失去體力，並使自身恢復(目標失去的體力)點體力(本效果造成的傷害不會使目標陷入混亂且體力不會降至1點以下)"
+                },
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力)點理智值\n- 若目標的理智值為最大值，則使其隨機解除1種可解除的負面狀態"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "別受傷",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n\n[WhenUse] 自身每帶有3級 [ChargeRouge] 強度，則使本技能的攻擊容量+4",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力×2)點體力\n- 額外使目標恢復其體力上限的(自身的 [ChargeRouge] 強度×2)點體力\n- 若目標屬於丹紅派，則使目標失去體力，並使自身恢復(目標失去的體力)點體力(本效果造成的傷害不會使目標陷入混亂且體力不會降至1點以下)"
+                },
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力)點理智值\n- 額外使目標恢復(自身的 [ChargeRouge] 強度×3)點理智值\n- 若目標的理智值為最大值，則使其隨機解除1種可解除的負面狀態"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "抓住我的手",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n\n[WhenUse] 下回合對自身施加5層 [Binding]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 解除目標的混亂狀態"
+                },
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力)點體力"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "抓住我的手",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 解除目標的混亂狀態"
+                },
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力)點體力"
+                },
+                {
+                  "desc": "[EndCoin] 下回合使目標獲得其體力上限50%的護盾"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "丹紅之釘的洗禮",
+          "desc": "[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗最多10回 [ChargeRouge] 並使本技能的攻擊容量+2、硬幣威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "丹紅之釘的洗禮",
+          "desc": "[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗最多10回 [ChargeRouge] 並使本技能的攻擊容量+2、硬幣威力+2\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "丹紅之釘的洗禮",
+          "desc": "[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗最多10回 [ChargeRouge] 並使本技能的攻擊容量+2、硬幣威力+2\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeRouge] 強度不低於5級，則觸發以下效果\n- 使本技能的攻擊容量+2\n- 使本技能的硬幣威力+(自身的 [ChargeRouge] 強度-3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BuffetGold]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BuffetGold]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BloodyMucusAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BuffetGold]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004107,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我來結束一切……",
+          "desc": "[CantDuel]\n目標每失去1%體力，則使本技能造成的傷害+0.5%(最多+30%)\n[WhenUse] 若自身帶有 [GourmandiseAlly]，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有 [GourmandiseAlly]，則重複使用本硬幣(最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "嘔吐（la nausée）",
+          "desc": "[StartBattle] 消耗自身所有 [ChargeRouge] 回數並使包含自身的所有友方單位恢復其體力上限的(消耗的 [ChargeRouge] 回數)%體力",
+          "flavor": "此為成神過程中必然經歷的感覺。有人是暈眩、有人是噁心、有人是發作、有人是欺瞞，有人則是拒絕。世上的一切都令人眩暈、恐懼、混亂。為了熬過這一切，也為了保護界線尚未模糊且仍屬於自己的事物，無論要吐出什麼都要試圖守護。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40004202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤紅之洞（le Trou rouge）",
+          "desc": "[StartBattle] 使自身獲得4回 [ChargeRouge]",
+          "flavor": "這是丹紅之洞。儘管仍然閉合著，卻懷抱著像洞般無止盡的飢餓。如同寄予的期望，如同既定的誕生。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

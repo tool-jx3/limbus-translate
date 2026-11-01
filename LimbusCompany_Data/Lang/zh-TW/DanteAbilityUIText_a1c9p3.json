@@ -1,0 +1,28 @@
+{
+  "dataList": [
+    {
+      "id": "danteAbility_Personality_Selection_UIPopup_Title",
+      "content": "{0}：選擇罪人"
+    },
+    {
+      "id": "danteAbility_Personality_Selection_UIPopup_View_Battle_Status",
+      "content": "確認戰鬥狀況"
+    },
+    {
+      "id": "danteAbility_Personality_Selection_UIPopup_Confirm_Desc",
+      "content": "要適用於{0}嗎？\n適用對象：<color=#f8c200>[{1}]</color>"
+    },
+    {
+      "id": "danteAbility_Apply",
+      "content": "適用"
+    },
+    {
+      "id": "danteAbilityButton_resume",
+      "content": "返回"
+    },
+    {
+      "id": "danteAbility_view_battle_status",
+      "content": "現在的戰鬥狀況"
+    }
+  ]
+}

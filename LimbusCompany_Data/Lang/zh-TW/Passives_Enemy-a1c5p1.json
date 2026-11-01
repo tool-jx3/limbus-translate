@@ -1,0 +1,69 @@
+{
+  "dataList": [
+    {
+      "id": 9008301,
+      "name": "與鯨相連",
+      "desc": "該單位陣亡時，對穴掌鯨造成傷害。"
+    },
+    {
+      "id": 9008302,
+      "name": "連結的痛楚",
+      "desc": "陣亡時對相連的人魚造成10點傷害並在下回合使其獲得2層傷害強化 。\n該效果不會讓相連的人魚的體力低於1。"
+    },
+    {
+      "id": 9008401,
+      "name": "輕鬆喘息",
+      "desc": "If this unit has <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u>, gain 5 <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u> upon Clash Win."
+    },
+    {
+      "id": 9008402,
+      "name": "硬幣的兩面",
+      "desc": "每回合第1枚硬幣正面命中時，下回合使自身獲得1層傷害強化 。\n第1枚硬幣反面命中時，下回合使自身獲得1層傷害弱化 。"
+    },
+    {
+      "id": 9008601,
+      "name": "那裡不痛嗎？",
+      "desc": "On Hit, if target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, regain SP equal to <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+    },
+    {
+      "id": 9008701,
+      "name": "前往前線！！",
+      "desc": "When gaining Protection, gain 1 additional <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</color></link></u> if this unit's Speed is at 1"
+    },
+    {
+      "id": 9008702,
+      "name": "那裡不痛嗎？",
+      "desc": "On Hit, if target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, regain SP equal to <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+    },
+    {
+      "id": 9101201,
+      "name": "硬幣的兩面",
+      "desc": "每回合第1枚硬幣正面命中時，下回合使自身獲得2層傷害強化 與1層強壯 。\n第1枚硬幣反面命中時，下回合使自身獲得2層傷害弱化 與1層虛弱 。"
+    },
+    {
+      "id": 9101202,
+      "name": "停下……別過來！",
+      "desc": "拚點失敗時，使自身增加4級呼吸法 強度並獲得3回呼吸法 。"
+    },
+    {
+      "id": 9101203,
+      "name": "好耶！",
+      "desc": "暴擊時，下回合使自身獲得1層加算硬幣強化 。\n使自身恢復15點理智值。\n使除自身以外的全體友方單位恢復10點理智值。\n(每回合最多1次)"
+    },
+    {
+      "id": 9101204,
+      "name": "你在搞什麼？",
+      "desc": "戰鬥中被擊退後，使全體友方單位失去30點理智值。"
+    },
+    {
+      "id": 9101205,
+      "name": "那裡不痛嗎？",
+      "desc": "If target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> On Hit, regain SP equal to <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+    },
+    {
+      "id": 9101101,
+      "name": "與鯨相連",
+      "desc": "該單位陣亡時，對穴掌鯨造成傷害。"
+    }
+  ]
+}

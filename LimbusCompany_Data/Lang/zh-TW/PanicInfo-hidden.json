@@ -1,0 +1,10 @@
+{
+  "dataList": [
+    {
+      "id": 1063,
+      "panicName": "糖果",
+      "lowMoraleDescription": "與帶有 [GiveMeCandy] 的人格進行拚點時，拚點威力+3；與其他人格進行拚點時，拚點威力-1",
+      "panicDescription": "與帶有 [GiveMeCandy] 的人格進行拚點時，拚點威力+5，與其他人格進行拚點時，拚點威力-2"
+    }
+  ]
+}

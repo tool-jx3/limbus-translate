@@ -1,0 +1,816 @@
+{
+  "dataList": [
+    {
+      "id": 2070511,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使目標增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 ，本效果重複(2+最大暴食完全共鳴數)次(最多5次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使目標增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 ，本效果重複(2+最大暴食完全共鳴數)次(最多5次)"
+                },
+                {
+                  "desc": "[EnemyKill] 下回合隨機使2名友方單位獲得1層某1種隨機效果，該效果可能為呼吸法 、充能 、迅捷 、攻擊等級提升 或防禦等級提升 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 ，本效果重複(2+最大暴食完全共鳴數)次(最多7次)"
+                },
+                {
+                  "desc": "[EnemyKill] 下回合隨機使2名友方單位獲得2層某1種隨機效果，該效果可能為呼吸法 、充能 、迅捷 、攻擊等級提升 或防禦等級提升 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070521,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "[CantIdentify]\n指定理智值最高的單位\n[BeforeAttack] 使目標失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 ，本效果重複(2+最大暴食完全共鳴數)次(最多7次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "[CantIdentify]\n指定理智值最高的單位\n[BeforeAttack] 使目標失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 ，本效果重複(2+最大暴食完全共鳴數)次(最多7次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "[CantIdentify]\n指定理智值最高的單位\n若主要目標的理智值不低於15點，則使本技能的攻擊容量+1\n[BeforeAttack] 使目標失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 ，本效果重複(2+最大暴食完全共鳴數)次(最多7次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[EndSkill] 3回合內，回合結束時使自身失去10點理智值\n[EndSkill] 下回合對自身施加20層 [Binding] 並使自身獲得1層 [ForwardToTheKing] 與1層 [Enhancement]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[EndSkill] 3回合內，回合結束時使自身失去10點理智值\n[EndSkill] 下回合對自身施加20層 [Binding] 並使自身獲得1層 [ForwardToTheKing] 與1層 [Enhancement]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[EndSkill] 3回合內，回合結束時使自身失去10點理智值\n[EndSkill] 下回合對自身施加20層 [Binding] 並使自身獲得1層 [ForwardToTheBoundKing] 與2層 [Enhancement]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[EndSkill] 下回合對自身施加20層 [Binding] 並使自身獲得1層 [ForwardToTheKing] 與2層 [Enhancement]\n[EndSkill] 下回合按編隊順序對除自身以外的2名友方單位施加20層 [Binding] 並使其獲得3層 [Enhancement]\n- 額外使(最大憂鬱或傲慢共鳴數-2)名友方單位獲得以上效果(最多2名)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[EndSkill] 下回合對自身施加20層 [Binding] 並使自身獲得1層 [ForwardToTheKing] 與2層 [Enhancement]\n[EndSkill] 下回合按編隊順序對除自身以外的2名友方單位施加20層 [Binding] 並使其獲得3層 [Enhancement] 與1層<style=\"highlight\"> [AzureDamageUp] </style>\n- 額外使(最大憂鬱或傲慢共鳴數-2)名友方單位獲得以上效果(最多<style=\"highlight\">3</style>名)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[EndSkill] 下回合對自身施加20層 [Binding] 並使自身獲得1層 [ForwardToTheKing] 與3層 [Enhancement]\n[EndSkill] 下回合按編隊順序對除自身以外的2名友方單位施加20層 [Binding] 並使其獲得3層 [Enhancement] 與<style=\"highlight\">2</style>層 [AzureDamageUp]\n- 額外使(最大憂鬱或傲慢共鳴數-2)名友方單位獲得以上效果(最多<style=\"highlight\">4</style>名)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n- 若該共鳴為完全共鳴，則改為獲得(最大共鳴數+2)層 [BoseProjektil]\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多3級)\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，則使本硬幣暴擊時造成的傷害+5%(最多+35%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[CriticalTargetKill] 若自身帶有 [Bullet]，則使自身獲得1發 [Bullet] (每場戰鬥最多2發)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n- 若該共鳴為完全共鳴，則改為獲得(最大共鳴數+2)層 [BoseProjektil]\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多<style=\"highlight\">4</style>級)\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本硬幣暴擊時造成的傷害+<style=\"highlight\">10</style>%(最多<style=\"highlight\">+70</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[CriticalTargetKill] 若自身帶有 [Bullet]，則使自身獲得1發 [Bullet] (每場戰鬥最多2發)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n- 若該共鳴為完全共鳴，則改為獲得(最大共鳴數+2)層 [BoseProjektil]\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多<style=\"highlight\">7</style>級)\n[BeforeAttack] 使自身獲得1回 [Breath]\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本硬幣暴擊時造成的傷害+<style=\"highlight\">15</style>%(最多<style=\"highlight\">+105</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[CriticalTargetKill] 若自身帶有 [Bullet]，則使自身獲得1發 [Bullet] (每場戰鬥最多3發)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain (highest Reson. + 1) [BoseProjektil] (max 7)\n- If it was an A-Reson., gain (highest Reson. + 2) [BoseProjektil] instead\n[BeforeAttack] Deal +2% damage for every [BoseProjektil] (max 14%)\n[BeforeAttack] Gain 1 [Breath] for every [BoseProjektil] (max 3)\n[BeforeAttack] Deal +3% damage for every 5 [Breath] on self (max 15%)\n[BeforeAttack] Consume 5 [Breath] on self\n[EndSkill] Lose every [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2級 [Sinking] 強度 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain (highest Reson. + 1) [BoseProjektil] (max 7)\n- If it was an A-Reson., gain (highest Reson. + 2) [BoseProjektil] instead\n<style=\"highlight\">[BeforeAttack] At 3+ [BoseProjektil], gain 1 Atk Weight</style>\n[BeforeAttack] Deal +2% damage for every [BoseProjektil] (max 14%)\n[BeforeAttack] Gain 1 [Breath] for every [BoseProjektil] (max <style=\"highlight\">4</style>)\n[BeforeAttack] Deal +<style=\"highlight\">4</style>% damage for every 5 [Breath] on self (max <style=\"highlight\">20</style>%)\n[BeforeAttack] Consume 5 [Breath] on self\n[EndSkill] Lose every [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與3級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain (highest Reson. + 1) [BoseProjektil] (max 7)\n- If it was an A-Reson., gain (highest Reson. + 2) [BoseProjektil] instead\n[BeforeAttack] Gain 1 Atk Weight for <style=\"highlight\">every 3 [BoseProjektil] (max 2)</style>\n[BeforeAttack] Deal +<style=\"highlight\">3</style>% damage for every [BoseProjektil] (max <style=\"highlight\">21</style>%)\n[BeforeAttack] Gain 1 [Breath] for every [BoseProjektil] (max <style=\"highlight\">7</style>)\n[BeforeAttack] Deal +<style=\"highlight\">5</style>% damage for every 5 [Breath] on self (max <style=\"highlight\">25</style>%)\n[BeforeAttack] Consume 5 [Breath] on self\n[EndSkill] Lose every [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與3級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "失衡慣性",
+          "abName": "發條裝置時間不倒翁",
+          "desc": "[BeforeAttack] 對自身施加(最大共鳴數)回 [Vibration] (最多6回，每回合最多20回)\n- 若該共鳴為怠惰共鳴，則使自身的 [Vibration] [Switch_Vibration] 為 [VibrationSpring]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 1 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a 4+ Sloth A-Reson., inflict 1 [AmberTakeDamageUp] next turn as well"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "失衡慣性",
+          "abName": "發條裝置時間不倒翁",
+          "desc": "[BeforeAttack] 對自身施加(<style=\"highlight\">2+</style>最大共鳴數)回 [Vibration] (最多<style=\"highlight\">8</style>回，每回合最多20回)\n- 若該共鳴為怠惰共鳴，則使自身的 [Vibration] [Switch_Vibration] 為 [VibrationSpring]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 1 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">Sloth A-Reson.</style>, inflict 1 [AmberTakeDamageUp] next turn as well"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "失衡慣性",
+          "abName": "發條裝置時間不倒翁",
+          "desc": "[BeforeAttack] 對自身施加(<style=\"highlight\">4+</style>最大共鳴數)回 [Vibration] (最多8回，每回合最多20回)\n- 若該共鳴為怠惰共鳴，則使自身的 [Vibration] [Switch_Vibration] 為 [VibrationSpring]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 1 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">3+ Sloth Reson.</style>, inflict 1 [AmberTakeDamageUp] next turn as well"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "失衡慣性",
+          "abName": "發條裝置時間不倒翁",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 對自身施加(2+最大共鳴數)回 [Vibration] (最多8回，每回合最多20回)\n- 若該共鳴為怠惰共鳴，則使自身的 [Vibration] [Switch_Vibration] 為 [VibrationSpring]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 2 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a 4+ Sloth A-Reson, inflict 2 [AmberTakeDamageUp] next turn as well"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "失衡慣性",
+          "abName": "發條裝置時間不倒翁",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 對自身施加(<style=\"highlight\">4+</style>最大共鳴數)回 [Vibration] (最多8回，每回合最多20回)\n- 若該共鳴為怠惰共鳴，則使自身的 [Vibration] [Switch_Vibration] 為 [VibrationSpring]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 2 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">Sloth A-Reson</style>, inflict 2 [AmberTakeDamageUp] next turn as well"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "失衡慣性",
+          "abName": "發條裝置時間不倒翁",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 對自身施加(4+最大共鳴數)回 [Vibration] (最多<style=\"highlight\">10</style>回，每回合最多20回)\n- 若該共鳴為怠惰共鳴，則使自身的 [Vibration] [Switch_Vibration] 為 [VibrationSpring]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加6級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加4回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 2 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">3+ Sloth Reson.</style>, inflict 2 [AmberTakeDamageUp] next turn as well"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "移居申請",
+          "abName": "Kqe-1j-23",
+          "desc": "[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 4+ Envy Reson., gain +7 [Charge] Count instead\n[BeforeAttack] Consume all [Charge] Count on self. Deal +2% damage for every [Charge] Count consumed (max 30%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [IDMicroChip]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身隨機獲得1~2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "移居申請",
+          "abName": "Kqe-1j-23",
+          "desc": "[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 4+ Envy Reson., gain +7 [Charge] Count instead\n[BeforeAttack] Consume all [Charge] Count on self. Deal +3% damage for every [Charge] Count consumed (max 45%)\n<style=\"highlight\">- If this consumed 5+ [Charge] Count, Base Power +1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [IDMicroChip]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身隨機獲得1~2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "移居申請",
+          "abName": "Kqe-1j-23",
+          "desc": "<style=\"highlight\">Coin Power +1 for every 6 [Combustion] on the main target (max 3)</style>\n[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 4+ Envy Reson., gain +7 [Charge] Count instead\n[BeforeAttack] Consume all [Charge] Count on self. Deal +3% damage for every [Charge] Count consumed (max 45%)\n- If this consumed 5+ [Charge] Count, Base Power +1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [IDMicroChip]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身隨機獲得<style=\"highlight\">1~3</style>回 [Charge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2070921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "移居申請",
+          "abName": "Kqe-1j-23",
+          "desc": "[CantIdentify]\n優先指定體力值最高的單位\n[BeforeAttack] 若自身帶有的 [Charge] 回數少於10回，則扣除自身體力上限10%的體力，並使自身獲得10回 [Charge]\n(該效果不會使本單位陷入混亂或陣亡)\n[BeforeAttack] 使自身獲得(最高共鳴數+1)回的 [Charge] (最多8回)\n- 若嫉妒共鳴不低於5級，則直接獲得8回 [Charge]\n[BeforeAttack] 消耗自身帶有的所有 [Charge] 回數，每消耗1回 [Charge] ，則使本技能造成的傷害+3%(最多+50%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [IDMicroChip]，則使本硬幣造成的傷害+20%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [IDMicroChip]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身隨機獲得1~2回 [Charge]"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "移居申請",
+          "abName": "Kqe-1j-23",
+          "desc": "[CantIdentify]\n優先指定體力值最高的單位\n[BeforeAttack] 若自身帶有的 [Charge] 回數少於10回，則扣除自身體力上限10%的體力，並使自身獲得10回 [Charge]\n(該效果不會使本單位陷入混亂或陣亡)\n[BeforeAttack] 使自身獲得(最高共鳴數+<style=\"highlight\">2</style>)回的 [Charge] (最多8回)\n- 若嫉妒共鳴不低於5級，則直接獲得8回 [Charge]\n[BeforeAttack] 消耗自身帶有的所有 [Charge] 回數，每消耗1回 [Charge] ，則使本技能造成的傷害+3%(最多<style=\"highlight\">+55%</style>)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [IDMicroChip]，則使本硬幣造成的傷害+20%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [IDMicroChip]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身隨機獲得1~2回 [Charge]"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "移居申請",
+          "abName": "Kqe-1j-23",
+          "desc": "[CantIdentify]\n優先指定體力值最高的單位\n<style=\"highlight\">目標每帶有6級 [Combustion] 強度，則使本技能的硬幣威力+1</style>\n[BeforeAttack] 若自身帶有的 [Charge] 回數少於10回，則扣除自身體力上限10%的體力，並使自身獲得10回 [Charge]\n(該效果不會使本單位陷入混亂或陣亡)\n[BeforeAttack] 使自身獲得(最高共鳴數+<style=\"highlight\">3</style>)回的 [Charge] (最多<style=\"highlight\">10回</style>)\n- 若嫉妒共鳴不低於5級，則直接獲得<style=\"highlight\">10回</style> [Charge]\n[BeforeAttack] 消耗自身帶有的所有 [Charge] 回數，每消耗1回 [Charge] ，則使本技能造成的傷害+3%(最多<style=\"highlight\">+60%</style>)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [IDMicroChip]，則使本硬幣造成的傷害+20%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [IDMicroChip]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身隨機獲得<style=\"highlight\">1~3</style>回 [Charge]"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

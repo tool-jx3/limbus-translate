@@ -1,0 +1,324 @@
+{
+  "dataList": [
+    {
+      "id": 9021501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "伸長手",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有10級，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蛇貫臂",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有8級，則使本技能的硬幣威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "隱擊貫蛇",
+          "desc": "若自身帶有 [SnakeStance] 且目標帶有 [BurstPoison]，則使本技能變為無法拚點的技能\n自身的 [Breath] 強度與目標的 [Burst] 強度之和每有4級，則使本技能的硬幣威力+1(最多+10)\n[WinDuel] 使目標增加2回 [Burst] 並使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [SnakeStance]，則使本硬幣造成的傷害+25%(最多+50%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1層 [SnakeStance]，則消耗目標3層 [BurstPoison] (每回合最多5層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加 [BurstPoison]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "尋找機會",
+          "desc": "[CanDuelGuard]\n[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得3層 [SnakeStance] (每個技能最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "伸長臂",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有10級，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蛇齧臂",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有8級，則使本技能的硬幣威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加1回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "陰擊貫蛇",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有8級，則使本技能的硬幣威力+1(最多+4)\n[WinDuel] 使目標增加2回 [Burst]\n[WinDuel] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加 [BurstPoison] (每個技能最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有 [SnakeStance]，則重複使用本硬幣1次(每個技能最多1次)"
+                },
+                {
+                  "desc": "- 令重複使用的硬幣造成的傷害-70%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "觀察機會",
+          "desc": "[CanDuelGuard]\n[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得3層 [SnakeStance] (每個技能最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "變形伸臂",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有10級，則使本技能的硬幣威力+1(最多+2)\n[WinDuel] 使自身獲得3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 若自身的 [Breath] 強度不低於10級，則使自身獲得1層 [SnakeStance] 並重複使用本硬幣1次(每個技能最多1次，每回合最大 [SnakeStance] 獲取量：2)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蛇伸長臂",
+          "desc": "[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有8級，則使本技能的硬幣威力+1(最多+3)\n[BeforeAttack] 若自身帶有 [SnakeStance]，則使本技能的攻擊容量+2\n- 使本技能變為 [WideAreaRampage] 技能\n- 攻擊相同目標時，若目標的 [Burst] 回數不高於2回，則對其施加1回 [Burst] 並消耗其1層 [BurstPoison]\n[WinDuel] 對全體目標施加1回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [BurstPoison]，則使其增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蛇尖貫極",
+          "desc": "若自身帶有 [SnakeStance] 且目標帶有 [BurstPoison]，則使本技能變為無法拚點的技能\n[WhenUse] 自身的 [Breath] 強度與目標的 [Burst] 強度之和每有4級，則使本技能的硬幣威力+1(最多+10)\n[WinDuel] 使目標增加2回 [Burst] 並使自身獲得3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [SnakeStance]，則使本技能造成的傷害+100%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1層 [SnakeStance]，則消耗目標5層 [BurstPoison] (每回合最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加10級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加 [BurstPoison]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "等待機會",
+          "desc": "[CanDuelGuard]\n[WhenUse] 目標每帶有4級 [Burst] 強度，使本技能的硬幣威力+1(最多+3)\n[WhenUse] 使自身獲得3層 [SnakeStance] (每個技能最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

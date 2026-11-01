@@ -1,0 +1,267 @@
+{
+  "dataList": [
+    {
+      "id": 9427,
+      "name": "守鎮魚叉",
+      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力不高於體力上限的30%，則下回合使自身獲得1層 [Enhancement]",
+      "simpleDesc": [
+        {
+          "abilityID": 9427,
+          "simpleDesc": "下回合使自身獲得1層強壯 "
+        }
+      ]
+    },
+    {
+      "id": 19427,
+      "name": "守鎮魚叉+",
+      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力不高於體力上限的40%，則下回合使自身獲得1層 [Enhancement]\n\n回合結束時，若有友方單位陷入混亂，則下回合使自身的 [Aggro] +6，並使自身獲得4層 [DefenseUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 19427,
+          "simpleDesc": "下回合使自身獲得1層強壯 "
+        },
+        {
+          "abilityID": 194271,
+          "simpleDesc": "下回合挑釁值 +6，獲得4層防禦等級提升 "
+        }
+      ]
+    },
+    {
+      "id": 29427,
+      "name": "守鎮魚叉++",
+      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力不高於體力上限的50%，則下回合使自身獲得1層 [Enhancement]\n\n回合結束時，若有友方單位陷入混亂，則下回合使自身的 [Aggro] +6，並使自身獲得4層 [DefenseUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 29427,
+          "simpleDesc": "下回合使自身獲得1層強壯 "
+        },
+        {
+          "abilityID": 294271,
+          "simpleDesc": "下回合挑釁值 +6，獲得4層防禦等級提升 "
+        }
+      ]
+    },
+    {
+      "id": 9428,
+      "name": "鯨心",
+      "desc": "使用攻擊技能命中帶有 [Laceration] 或特殊流血的敵方單位時，使自身增加1級 [Breath] 強度。(每回合每名人格最多3次)\n\n暴擊命中時，以50%的機率使自身於下回合獲得1層 [PenetrateResultUp] (每回合每名人格最多2次；包括E.G.O技能與反擊技能)\n\n基礎技能正面暴擊命中時，令該硬幣對目標施加的負面狀態額外 +1。(每回合每名人格最多1次；包括反擊技能，E.G.O技能除外)",
+      "simpleDesc": [
+        {
+          "abilityID": 9428,
+          "simpleDesc": "增加1級呼吸法 強度"
+        },
+        {
+          "abilityID": 94281,
+          "simpleDesc": "有機率下回合獲得 [PenetrateResultUp]"
+        },
+        {
+          "abilityID": 94282,
+          "simpleDesc": "施加的負面狀態額外+1"
+        }
+      ]
+    },
+    {
+      "id": 9431,
+      "name": "損壞的小提琴",
+      "desc": "[第5、第6順位友方單位專屬]\n\n若現存體力不高於45%，則拚點勝利時使自身獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每回合每名單位最多2次)\n\n若現存體力不高於20%，則改為使用技能時使自身獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每回合每名單位最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9431,
+          "simpleDesc": "獲得1層攻擊等級提升 與1層體力恢復提升 "
+        },
+        {
+          "abilityID": 94311,
+          "simpleDesc": "獲得1層攻擊等級提升 與1層體力恢復提升 "
+        }
+      ]
+    },
+    {
+      "id": 19431,
+      "name": "損壞的小提琴+",
+      "desc": "[第5、第6順位友方單位專屬]\n\n若現存體力不高於<style=\"upgradeHighlight\">65%</style>，則拚點勝利時使自身獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每回合每名單位最多2次)\n\n若現存體力不高於<style=\"upgradeHighlight\">40%</style>，則改為使用技能時使自身獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每回合每名單位最多2次)\n\n<style=\"upgradeHighlight\">拚點勝利且拚點次數不低於5時，使拚點勝利的技能造成的傷害+(拚點次數×2)%(最多+20%)</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 19431,
+          "simpleDesc": "獲得1層攻擊等級提升 與1層體力恢復提升 "
+        },
+        {
+          "abilityID": 194311,
+          "simpleDesc": "獲得1層攻擊等級提升 與1層體力恢復提升 "
+        },
+        {
+          "abilityID": 194312,
+          "simpleDesc": "根據拚點次數增加造成的傷害"
+        }
+      ]
+    },
+    {
+      "id": 29431,
+      "name": "損壞的小提琴++",
+      "desc": "[第5、第6順位友方單位專屬]\n\n若現存體力不高於65%，則拚點勝利時使自身獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每回合每名單位最多2次)\n\n若現存體力不高於40%，則改為使用技能時使自身獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每回合每名單位最多2次)\n\n拚點勝利且拚點次數不低於5時，使拚點勝利的技能造成的傷害<style=\"upgradeHighlight\">+(拚點次數×3)%(最多+30%)</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 29431,
+          "simpleDesc": "獲得1層攻擊等級提升 與1層體力恢復提升 "
+        },
+        {
+          "abilityID": 294311,
+          "simpleDesc": "獲得1層攻擊等級提升 與1層體力恢復提升 "
+        },
+        {
+          "abilityID": 294312,
+          "simpleDesc": "根據拚點次數增加造成的傷害"
+        }
+      ]
+    },
+    {
+      "id": 9432,
+      "name": "宅邸模型八音盒",
+      "desc": "回合結束時，若自身陷入混亂，則解除自身的混亂，下回合開始時使全體敵方單位增加4級 [Sinking] 強度與4回 [Sinking] (每場戰鬥最多1次；不包括強制混亂；若是集中遭遇戰，則改為所有部位)\n\n擊殺敵方單位時，對 [Sinking] 回數最低的1名敵方單位施加2回 [Sinking] (每回合最多3次；若是集中遭遇戰，則改為1個部位)",
+      "simpleDesc": [
+        {
+          "abilityID": 9432,
+          "simpleDesc": "下回合使全體敵方單位增加4級沉淪 強度並施加4回沉淪 "
+        },
+        {
+          "abilityID": 94321,
+          "simpleDesc": "對帶有的沉淪 回數最低的1名敵方單位施加2回沉淪 "
+        }
+      ]
+    },
+    {
+      "id": 9435,
+      "name": "管家式束縛法",
+      "desc": "回合開始時，對上回合解除混亂的敵方單位施加1層 [Binding]\n\n現存體力比例最高的友方單位攻擊命中時，若目標陷入混亂，則每層混亂階段使造成的傷害+7.5%",
+      "simpleDesc": [
+        {
+          "abilityID": 9435,
+          "simpleDesc": "對解除混亂的敵方單位施加1層束縛 "
+        },
+        {
+          "abilityID": 94351,
+          "simpleDesc": "根據目標的混亂階段增加造成的傷害"
+        }
+      ]
+    },
+    {
+      "id": 19435,
+      "name": "管家式束縛法+",
+      "desc": "回合開始時，對上回合解除混亂的敵方單位施加<style=\"upgradeHighlight\">2</style>層 [Binding]\n\n現存體力比例最高的友方單位攻擊命中時，若目標陷入混亂，則每層混亂階段使造成的傷害+<style=\"upgradeHighlight\">10%</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 19435,
+          "simpleDesc": "對解除混亂的敵方單位施加2層束縛 "
+        },
+        {
+          "abilityID": 194351,
+          "simpleDesc": "根據目標的混亂階段增加造成的傷害"
+        }
+      ]
+    },
+    {
+      "id": 29435,
+      "name": "管家式束縛法++",
+      "desc": "回合開始時，對上回合解除混亂的敵方單位施加<style=\"upgradeHighlight\">3</style>層 [Binding]\n\n現存體力比例最高的友方單位攻擊命中時，若目標陷入混亂，則每層混亂階段使造成的傷害+<style=\"upgradeHighlight\">12.5%</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 29435,
+          "simpleDesc": "對解除混亂的敵方單位施加3層束縛 "
+        },
+        {
+          "abilityID": 294351,
+          "simpleDesc": "根據目標的混亂階段增加造成的傷害"
+        }
+      ]
+    },
+    {
+      "id": 9436,
+      "name": "折射玻璃管",
+      "desc": "Regular Encounters) On Hit against enemies with 10+ (sum of [Sinking] Count and Potency):\nif the target is at -45 SP, deal (([Sinking] Potency on target) / 2) Gloom damage (once per Skill)\n\nFocused Encounters) On Hit against enemies with 10+ (sum of [Sinking] Count and Potency):\ndeal (([Sinking] Potency on target) / 2) Gloom damage (once per Skill)\n\nIf the Skill that hit an enemy inflicts [Sinking](including [Sinking] Count and Unique <noparse>Sinking</noparse>), instead of dealing ([Sinking] Potency on target / 2) Gloom damage, deal ([Sinking] Potency on target) Gloom damage\n(Each turn, this applies only to the first Sinking-inflicting Skill that hits)",
+      "simpleDesc": [
+        {
+          "abilityID": 9436,
+          "simpleDesc": "根據目標帶有的沉淪 強度造成憂鬱傷害"
+        },
+        {
+          "abilityID": 94361,
+          "simpleDesc": "根據目標帶有的沉淪 強度造成憂鬱傷害"
+        }
+      ]
+    },
+    {
+      "id": 9437,
+      "name": "拉．曼查領自由通行券",
+      "desc": "攻擊命中 [Laceration] ，特殊流血與 [Burst] 之和不低於10點的敵方單位時，使自身增加1級 [Breath] 強度並使自身獲得1回 [Breath] (每個技能最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9437,
+          "simpleDesc": "獲得1級呼吸法 強度與1回呼吸法 "
+        }
+      ]
+    },
+    {
+      "id": 9438,
+      "name": "勝利之證",
+      "desc": "擊殺敵方單位時，使理智值最低的1名友方單位恢復3點理智值。\n\n攻擊結束後，若有 [Laceration]，特殊流血與 [Burst] 之和不低於10點的敵方單位陣亡，則下回合使1名友方單位獲得2層 [AttackUp] (優先指定擊殺該敵方單位的友方單位)。",
+      "simpleDesc": [
+        {
+          "abilityID": 9438,
+          "simpleDesc": "恢復3點理智值"
+        },
+        {
+          "abilityID": 9438,
+          "simpleDesc": "下回合隨機使1名友方單位獲得2層攻擊等級提升 "
+        }
+      ]
+    },
+    {
+      "id": 9439,
+      "name": "吞噬一切的魔方",
+      "desc": "友方單位陣亡時，獲得其1、2技能對應的罪孽碎片各1個。\n\n攻擊結束後，若敵方單位陣亡，則隨機獲得1個罪孽碎片(每個技能最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9439,
+          "simpleDesc": "隨機獲得1個罪孽碎片"
+        }
+      ]
+    },
+    {
+      "id": 9440,
+      "name": "遊行的面具",
+      "desc": "屬於血魔的所有友方單位基礎技能的硬幣威力+1\n\n遭遇戰中新的敵方單位增援時，戰鬥開始時使其增加3級 [Laceration] 強度與2回 [Laceration]。\n\n若友方單位中存在<血魔>，則新的敵方單位增援時觸發全體敵方單位的 [Laceration] 1次，並使全體敵方單位減少1回 [Laceration]",
+      "simpleDesc": [
+        {
+          "abilityID": 94402,
+          "simpleDesc": "基礎技能的硬幣威力+1"
+        },
+        {
+          "abilityID": 9440,
+          "simpleDesc": "使增援的敵方單位增加3級流血 強度與3回流血"
+        },
+        {
+          "abilityID": 94401,
+          "simpleDesc": "觸發全體敵方單位的流血 1次(流血 回數減少1回)"
+        }
+      ]
+    },
+    {
+      "id": 19440,
+      "name": "遊行的面具+",
+      "desc": "屬於血魔的所有友方單位基礎技能的硬幣威力+1\n\n遭遇戰中新的敵方單位增援時，戰鬥開始時使其增加<style=\"upgradeHighlight\">5</style>級 [Laceration] 強度與3回 [Laceration] 。\n\n若友方單位中存在<血魔>，則新的敵方單位增援時觸發全體敵方單位的 [Laceration] 1次，並使全體敵方單位減少1回 [Laceration]",
+      "simpleDesc": [
+        {
+          "abilityID": 94402,
+          "simpleDesc": "基礎技能的硬幣威力+1"
+        },
+        {
+          "abilityID": 194405,
+          "simpleDesc": "使增援的敵方單位增加5級流血 強度與3回流血 "
+        },
+        {
+          "abilityID": 1944051,
+          "simpleDesc": "觸發全體敵方單位的流血 1次(流血 回數減少1回)"
+        }
+      ]
+    }
+  ]
+}

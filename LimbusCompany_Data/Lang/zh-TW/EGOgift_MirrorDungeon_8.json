@@ -1,0 +1,122 @@
+{
+  "dataList": [
+    {
+      "id": 9284,
+      "name": "過季的丹紅派衣飾",
+      "desc": "友方單位透過基礎攻擊技能的技能效果或硬幣效果恢復體力時，額外恢復50%體力(每回合最多3次，無條件<noparse>捨去</noparse>)\n\n[高級訂製服::丹紅派 精品專櫃 以實瑪利 專屬效果]\n自身與高級訂製服::丹紅派 丹紅之神 辛克萊同時存在於戰場上時，則回合開始時使自身獲得1層 [RougeIshmaelCocoon] 並進入 [RougeIshmaelCocoon] 狀態(每場戰鬥最多1次)\n- 若「請到<noparse>更衣室</noparse>中……」的被動效果中，「本場戰鬥中若受到使自身體力降至0點的傷害時，不會受到該傷害，並立即使自身獲得2層 [RougeIshmaelCocoon] 並進入 [RougeIshmaelCocoon] 狀態(每場戰鬥最多1次)」的效果已發動，則不會觸發專屬效果\n- 專屬效果發動時，則不會觸發「請到<noparse>更衣室</noparse>中……」的被動效果中，「本場戰鬥中若受到使自身體力降至0點的傷害時，不會受到該傷害，並立即使自身獲得2層 [RougeIshmaelCocoon] 並進入 [RougeIshmaelCocoon] 狀態(每場戰鬥最多1次)」的效果",
+      "simpleDesc": [
+        {
+          "abilityID": 9284,
+          "simpleDesc": "立即進入 [RougeIshmaelCocoon] 狀態"
+        },
+        {
+          "abilityID": 92841,
+          "simpleDesc": "額外恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 9285,
+      "name": "汽水",
+      "desc": "本回合透過自身的技能效果或硬幣效果嘗試恢復體力至少1次的罪人，下一回合使其技能造成的傷害+10%，並使其獲得等同於(本回合嘗試恢復的體力總計÷10)的 [AttackUp] (最多6層，無條件<noparse>捨去</noparse>)\n\n若戰場上有與自己屬於同一陣營的人格，則使除自身以外同一陣營的人格獲得透過上述效果獲得的 [AttackUp] 一半的 [AttackUp] (最少1層，每回合最多獲得3層，無條件<noparse>捨去</noparse>)",
+      "simpleDesc": [
+        {
+          "abilityID": 9285,
+          "simpleDesc": "造成的傷害增加[TabExplain]並獲得 [AttackUp]"
+        }
+      ]
+    },
+    {
+      "id": 9286,
+      "name": "漆黑派 品牌西裝褲",
+      "desc": "When allies that have 2+ [Charge] Potency trigger [VibrationExplosion], apply the following effects:\n- Deal ([Charge] Potency on self x [Charge] Count) Envy Damage (2 times per skill, max 100 damage per tick)\n- Every 2 times the above effect deals Envy Damage, inflict 3 [Binding] next turn on target\n\nEvery time an ally triggers [VibrationExplosion] using a Skill, gain ([Charge] Potency on self / 3) [AttackUp] next turn (max 5 per turn; rounded down)",
+      "simpleDesc": [
+        {
+          "abilityID": 9286,
+          "simpleDesc": "造成嫉妒傷害並施加 [Binding]"
+        },
+        {
+          "abilityID": 92861,
+          "simpleDesc": "獲得 [AttackUp]"
+        }
+      ]
+    },
+    {
+      "id": 9287,
+      "name": "漆黑派 瑪麗珍鞋",
+      "desc": "戰鬥開始時，使帶有護盾最多的人格攻擊命中時對目標造成等同於該人格現存護盾50%的怠惰傷害(每個技能最多2次，每回合最多造成100點傷害；無條件<noparse>捨去</noparse>)\n- 若不低於2名人格帶有相同的護盾值，則依照編入順序觸發\n\n若為 [PersonalityCharge]，則改為對目標造成等同於該人格現存護盾100%的怠惰傷害(每個技能最多3次，每回合最多造成100點傷害；無條件<noparse>捨去</noparse>)",
+      "simpleDesc": [
+        {
+          "abilityID": 9287,
+          "simpleDesc": "根據護盾值造成相應的怠惰傷害"
+        }
+      ]
+    },
+    {
+      "id": 9288,
+      "name": "裁縫之王的珠針",
+      "desc": "回合開始時，若敵方單位未帶有 [SewingKingMark]，則隨機對敵方單位施加 [SewingKingMark] (若為集中遭遇戰，則改為以部位判定)",
+      "simpleDesc": [
+        {
+          "abilityID": 9288,
+          "simpleDesc": "施加 [SewingKingMark]；陣亡時造成固定傷害"
+        }
+      ]
+    },
+    {
+      "id": 9289,
+      "name": "軟骨",
+      "desc": "使消耗 [Charge] 回數或特殊 [Charge] 的技能造成的傷害+(自身的 [Charge] 強度×2)%(最多+10%)\n\n回合結束時，若本回合消耗了 [Charge] 回數或特殊 [Charge]，則下回合使自身獲得1層 [Agility]\n\n若目標的速度值低於自身，則使自身的拚點威力+1\n- 若自身為屬於薛西弗斯的人格，則改為使自身的最終威力+1",
+      "simpleDesc": [
+        {
+          "abilityID": 9289,
+          "simpleDesc": "造成的傷害、拚點威力、最終威力增加[TabExplain]並獲得 [Agility]"
+        }
+      ]
+    },
+    {
+      "id": 9290,
+      "name": "毛巾",
+      "desc": "本回合裝備了守備技能的人格受到敵方單位攻擊造成的傷害-20%\n- 戰鬥結束時，若自身為 [PersonalityCharge]，則下回合使自身獲得2層 [AttackUp]\n- 戰鬥結束時，若自身為屬於薛西弗斯的人格，則下回合使自身獲得1層 [ResultEnhancement]",
+      "simpleDesc": [
+        {
+          "abilityID": 9290,
+          "simpleDesc": "受到的傷害減少[TabExplain]並獲得 [AttackUp] 與 [ResultEnhancement]"
+        }
+      ]
+    },
+    {
+      "id": 9291,
+      "name": "花藝剪",
+      "desc": "[第1順位人格專屬效果]\n\n屬於薛西弗斯的人格或 [PersonalityCharge] 其基礎技能的最後1枚硬幣命中時，對主要目標造成該硬幣最終傷害量5%的斬擊傷害(每個技能最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9291,
+          "simpleDesc": "對主要目標造成斬擊傷害[TabExplain]"
+        }
+      ]
+    },
+    {
+      "id": 19291,
+      "name": "花藝剪+",
+      "desc": "[第1順位人格專屬效果]\n\n屬於薛西弗斯的人格或 [PersonalityCharge] 其基礎技能的最後1枚硬幣命中時，對主要目標造成該硬幣最終傷害量<style=\"upgradeHighlight\">10%</style>的斬擊傷害(每個技能最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 19291,
+          "simpleDesc": "對主要目標造成斬擊傷害[TabExplain]"
+        }
+      ]
+    },
+    {
+      "id": 29291,
+      "name": "花藝剪++",
+      "desc": "[第1順位人格專屬效果]\n\n屬於薛西弗斯的人格或 [PersonalityCharge] 其基礎技能的最後1枚硬幣命中時，對主要目標造成該硬幣最終傷害量<style=\"upgradeHighlight\">15%</style>的斬擊傷害(每個技能最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 29291,
+          "simpleDesc": "對主要目標造成斬擊傷害[TabExplain]"
+        }
+      ]
+    }
+  ]
+}

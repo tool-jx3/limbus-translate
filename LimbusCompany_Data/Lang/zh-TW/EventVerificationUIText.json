@@ -1,0 +1,76 @@
+{
+  "dataList": [
+    {
+      "id": "event_verification_btn",
+      "content": "Project Moon 10周年驗證"
+    },
+    {
+      "id": "event_verification_popup_title",
+      "content": "Project Moon 10周年驗證"
+    },
+    {
+      "id": "event_verification_popup_desc",
+      "content": "請向會場的工作人員出示此畫面。\n由工作人員輸入驗證碼。\n\n<b><color=#990000>請經理注意，如果您自行完成了此帳戶的驗證，則無法再次於活動現場進行驗證。\n這代表您將無法在現場領取入場手環，也無法進入公演會場。</color></b>"
+    },
+    {
+      "id": "event_verification_authenticate_btn",
+      "content": "驗證"
+    },
+    {
+      "id": "event_verification_confirm_desc",
+      "content": "Unless this verification process is handled by an on-site staff member, you will not be able to receive the entrance bracelet or enter the concert hall.\nAre you sure you want to proceed?"
+    },
+    {
+      "id": "event_verification_retry_btn",
+      "content": "Retry"
+    },
+    {
+      "id": "event_verification_staff_code_placeholder",
+      "content": "Staff Verification Code"
+    },
+    {
+      "id": "event_verification_input_verified",
+      "content": "Verified Account (Cannot re-verify)"
+    },
+    {
+      "id": "event_verification_verified",
+      "content": "Account verification completed."
+    },
+    {
+      "id": "event_verification_already_verified",
+      "content": "This account has already been verified. (Cannot re-verify)"
+    },
+    {
+      "id": "event_verification_verified_at",
+      "content": "Verification Date: {0} (KST)"
+    },
+    {
+      "id": "event_verification_level_required",
+      "content": "Only accounts with Manager Level {0} or higher may proceed with the verification."
+    },
+    {
+      "id": "event_verification_not_started",
+      "content": "Now is not the verification period."
+    },
+    {
+      "id": "event_verification_ended",
+      "content": "Verification period has passed."
+    },
+    {
+      "id": "event_verification_locked",
+      "content": "<b><color=#990000>3 incorrect verification code attempts.</color></b>\nPlease try again after {0} seconds."
+    },
+    {
+      "id": "event_verification_invalid_code",
+      "content": "<b><color=#990000>Incorrect verification code.</color></b>\nPlease try inputting the code again."
+    },
+    {
+      "id": "event_verification_failed_title",
+      "content": "Verification Failed"
+    },
+    {
+      "id": "event_verification_unavailable",
+      "content": "No verifications available."
+    }
+  ]
+}

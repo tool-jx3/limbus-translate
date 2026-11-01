@@ -1,0 +1,124 @@
+{
+  "dataList": [
+    {
+      "id": "get_10716_1",
+      "desc": "獲得時",
+      "dlg": "……他給了卑賤的我睡覺的地方和食物。還教了我……花了一輩子，連夢裡都不可能看到的超強劍術。\n我知道，我都知道……可是我……到底還要這樣過日子到什麼時候？"
+    },
+    {
+      "id": "lobby_morning_10716_1",
+      "desc": "早晨問候",
+      "dlg": "還在睡啊。也是，畢竟灌了這麼多烈酒……離她醒來大概還需要四小時吧。得快點整理一下，做個能解酒的培根三明治……\n哈啊……算了吧。之前才被嫌太難吃，還被痛揍一頓，這樣就夠了吧。幹嘛還打算再做一次……"
+    },
+    {
+      "id": "lobby_noon_10716_1",
+      "desc": "午時問候",
+      "dlg": "她的確說要在這時候指導我的，沒有在長廊的話……是中央那邊的人又出了什麼課題給她嗎？\n……我在想什麼。只要照著指示等待就好……"
+    },
+    {
+      "id": "lobby_night_10716_1",
+      "desc": "晚間問候",
+      "dlg": "該死……已經傍晚了嗎……太晚回去肯定會被師傅揍得像狗一樣吧……哈啊……"
+    },
+    {
+      "id": "smalltalk_10716_1",
+      "desc": "對話 1",
+      "dlg": "就算只是模仿也沒關係。說到底，我也不是因為想變強才鍛鍊巴勒莫。\n師傅叫我吠就吠，叫我咬就咬的獵犬。這樣就好了。只要能照著吩咐去做，這樣就好了。"
+    },
+    {
+      "id": "smalltalk_10716_2",
+      "desc": "對話 2",
+      "dlg": "Master's always on me about \"Ticket,\" about how she's always been a better student than I am... But the techniques that Ticket lady's teachin' Sinclair—that ain't Master's Palermitan Style at all. What the hell is goin' on?\n... Well, not for me to pick it apart, is it? I only need to copy that runaway Yoshihide's style. Right, just do as I'm told... <i>exactly</i> as I'm told."
+    },
+    {
+      "id": "smalltalk_10716_3",
+      "desc": "對話 3",
+      "dlg": "I've acquired the name of the company Yoshihide's collaborating with and the list of Fixer Offices on their payroll. But if I may—something's off, Master. The intel's too detailed for the cost I've paid to acquire them. Could it be that they leaked this intel on purpose, intending us to learn of this—\n<color=#923838>Yeah? So what? They obviously weren't being careful, lucky us! Ya gotta quit whining about that \"gut-feeling\" and all that crap. Keep your damn head down, keep trainin' like I told ya.</color>\nUnderstood, Master."
+    },
+    {
+      "id": "smalltalk_10716_4",
+      "desc": "同步後對話 1",
+      "dlg": "以實瑪利那傢伙死了、辛克萊倒戈了……弟子裡面剩下的只有唐吉訶德大人……和浮士德。不論是逃跑還是殺掉，這時候……是最適合的吧。\n不對。先防衛襲擊，再趁她精疲力盡的時候會比較好吧？沒錯。現在先去幫師父……"
+    },
+    {
+      "id": "smalltalk_10716_5",
+      "desc": "同步後對話 2",
+      "dlg": "對我的鞭打、所有的嘲弄以及輕視，我都撐得過去。那種程度的事，只要忍一下就過了。\n儘管這樣，我還是決定殺掉師父的理由是……因為我察覺到了。那些暴力，永遠不會有從我身上消失的一天。"
+    },
+    {
+      "id": "neglect_10716_1",
+      "desc": "閒置",
+      "dlg": "……若是現在，說不定能殺得了她。"
+    },
+    {
+      "id": "gacksung_10716_1",
+      "desc": "進行同步",
+      "dlg": "一對一的對決的話，對習得巴勒莫的我更有利。"
+    },
+    {
+      "id": "formation_10716_1",
+      "desc": "人格出戰",
+      "dlg": "遵循戰鬥的禮儀，一次處理一個。"
+    },
+    {
+      "id": "battleentry_10716_1",
+      "desc": "進入戰鬥",
+      "dlg": "這場戰鬥結束之後，一定……"
+    },
+    {
+      "id": "battle_select_10716_1",
+      "desc": "戰鬥中選中人格",
+      "dlg": "面對強敵時，不要硬碰硬，用劍尖扣住並順勢化開……人數較多時要把重心壓低……"
+    },
+    {
+      "id": "battle_endcommand_10716_1",
+      "desc": "進行攻擊",
+      "dlg": "注視這個軌跡然後好好回想吧。"
+    },
+    {
+      "id": "battle_enemy_break_10716_1",
+      "desc": "敵方混亂",
+      "dlg": "履行我的職責。"
+    },
+    {
+      "id": "battle_break_10716_1",
+      "desc": "自身混亂",
+      "dlg": "呼……"
+    },
+    {
+      "id": "battle_kill_10716_1",
+      "desc": "擊殺敵方",
+      "dlg": "只是重演罷了。"
+    },
+    {
+      "id": "battle_dead_10716_1",
+      "desc": "自身陣亡",
+      "dlg": "都是因為……還尚未完成……"
+    },
+    {
+      "id": "choice_success_p_10716_2",
+      "desc": "判定成功",
+      "dlg": "按照您的指示，已執行完畢。"
+    },
+    {
+      "id": "choice_fail_n_10716_1",
+      "desc": "判定失敗",
+      "dlg": "……對不起，師父。"
+    },
+    {
+      "id": "battle_clear_10716_1",
+      "desc": "戰鬥勝利",
+      "dlg": "呼……我說過了吧。其他劍術在決鬥時絕對跟不上巴勒莫的加速。\n同一種我反覆練了千次，不夠的話就數萬次。對手是你的話，至少我是覺得我絕不會輸。"
+    },
+    {
+      "id": "battle_clear_ex_10716_1",
+      "desc": "EX CLEAR戰鬥勝利",
+      "dlg": "……這是人類能做出來的事嗎？應該不是吧。忘記養育之恩，從背後捅人一刀的傢伙，哪能稱得上是人類。\n儘管這樣……您不會怪我的吧。畢竟您本來就是死有餘辜的人。"
+    },
+    {
+      "id": "battle_defeat_10716_1",
+      "desc": "戰鬥失敗",
+      "dlg": "要是在死得這麼窩囊之前，至少先試過一次就好了……"
+    }
+  ]
+}

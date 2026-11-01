@@ -1,0 +1,954 @@
+{
+  "dataList": [
+    {
+      "id": 124701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "鐵馬碎",
+          "desc": "[WhenUse] 若目標的 [Burst] 強度與 [Vibration] 強度之和不低於6級，則使本技能的基礎威力+3\n[DefeatDuel] 使目標的 [Vibration] 強度減少2級",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破踏碎",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Vibration] 強度之和每有4級，則使本技能的基礎威力+2(最多+4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "馬陣粉碎",
+          "desc": "[WhenUse] 若目標的 [Burst] 強度與 [Vibration] 強度之和不低於6級，則使本技能的基礎威力+2\n[WhenUse] 若自身的理智值不高於-30點，則使自身所有硬幣必定朝向反面\n[DefeatDuel] 使目標的 [Vibration] 強度減少2級",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Burst] 強度與5回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "擊碎斬",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Vibration] 強度之和每有4級，使本技能的基礎威力+2(最多+4)\n- 若目標的 [Burst] 強度與 [Vibration] 強度之和不低於15級，則使本技能的減算硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "擊潰……汙穢之蛇……",
+          "desc": "[WhenUse] 主要目標的 [Burst] 強度與 [Vibration] 強度之和每有4級，使本技能的基礎威力+2(最多+4)\n[DefeatDuel] 使本技能的基礎威力-8\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對次要目標施加1層 [SweptAwayWei]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "奔馬穿陣",
+          "desc": "[WhenUse] 主要目標的 [Burst] 強度與 [Vibration] 強度之和每有4級，使本技能的基礎威力+2(最多+6)\n[DefeatDuel] 使本技能的基礎威力-5\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則使其增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使1名次要目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對次要目標施加1層 [SweptAwayWei]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124707,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "不會讓你們通過此處……！",
+          "desc": "指定 [Vibration] 強度最低的敵方單位\n[WhenUse] 若目標未帶有 [Vibration]，則使本技能的基礎威力-5\n[BeforeAttack] 若目標未帶有 [Vibration]，則使本技能造成的傷害-90%\n[DefeatDuel] 使本技能的基礎威力-4\n[DefeatDuel] 使本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 124708,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "狂馬裂空衝",
+          "desc": "自身每失去1%的體力，使自身造成的傷害+1%(最多+80%)\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+2\n[BeforeAttack] 若自身未帶有 [LegStrengthHorse]，則使本技能造成的傷害+120%，並在下回合對自身施加2層 [Vulnerable]\n[DefeatDuel] 使本技能的基礎威力-12\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加5級 [Burst] 強度與5回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加5級 [Vibration] 強度與5回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "前旋斬",
+          "desc": "[WhenUse] 使目標增加5級 [Laceration] 強度，並使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得1層 [SipOfAlcoholJin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咽道酒",
+          "desc": "[WhenUse] 使目標增加5級 [Laceration] 強度，並使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得1層 [SipOfAlcoholJin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Laceration] 強度不低於5級，則使其增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "落酒",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有1層 [DrunkBlood]，使本技能的基礎威力+1(最多+2)\n[WinDuel] 使自身獲得1層 [SipOfAlcoholJin]\n[DefeatDuel] 使自身失去2層 [SipOfAlcoholJin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "取",
+          "desc": "[WhenUse] 目標每帶有5級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 目標每帶有1層 [DrunkBlood]，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的 [SipOfAlcoholJin] 層數不低於3層，則使本技能的所有硬幣變更為 [SuperCoin]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "目標的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成的傷害+1%(最多+20%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [SipOfAlcoholJin] 層數不低於3層，則重複使用本硬幣1次(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "真鎮終斬",
+          "desc": "[WhenUse] 目標每帶有6級 [Laceration] 強度，則使本技能的硬幣威力+5(最多+10)\n[WhenUse] 若目標帶有 [DrunkBlood]，則使本技能的所有硬幣變更為 [SuperCoin]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "目標每帶有1層 [DrunkBlood]，則使本硬幣造成的傷害+10%(最多+50%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2層 [SipOfAlcoholJin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成(其 [DrunkBlood] 層數×5)點色慾傷害(最多25點)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127206,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉靠",
+          "desc": "[WhenUse] 自身每帶有1層 [SipOfAlcoholJin]，則使自身獲得10點護盾(最多50點)\n[WhenUse] 若目標帶有 [DrunkBlood]，則使其增加5級 [Laceration] 強度",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127207,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉回攻",
+          "desc": "[DuelCounter]\n[WhenUse] 自身每帶有1層 [SipOfAlcoholJin]，則使本技能造成的傷害+20%(最多+100%)\n[WhenUse] 若目標帶有 [DrunkBlood]，則使本技能造成的傷害+50%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [SlashResistDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成(其 [DrunkBlood] 層數×5)點色慾傷害(最多25點)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127208,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "真 - 真鎮終斬",
+          "desc": "指定賈惜春\n[CantChangeTarget]\n[WhenUse] 若自身的速度值高於目標，則使本技能的硬幣威力+1\n[WhenUse] 自身每帶有1層 [SipOfAlcoholJin]，下回合使自身獲得1層 [AttackUp] 與1層 [Agility] (最多3層)\n[WinDuel] 使本技能的攻擊容量+7",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若目標帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，則使本硬幣造成傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "目標每帶有1層 [DrunkBlood]，則使本硬幣造成的傷害+10%(最多+50%)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加10級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標造成(其 [DrunkBlood] 層數×10)點色慾傷害(最多50點)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127209,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "落醉斬",
+          "desc": "[WhenUse] 自身每帶有5級 [Breath] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使真 - 真鎮終斬造成的傷害+20%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 重複使用本硬幣(最多5次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127210,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉影步",
+          "desc": "[WhenUse] 每有2名友方單位存活，則使本技能的基礎威力+6(最多+12)\n[OnSucceedEvade] 使自身增加3級 [Breath] 強度\n[EndBattle] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102506,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "真鎮終斬",
+          "desc": "[StartBattle] 直到本技能結束，自身的體力不會低於1點。\n[WhenUse] 使自身獲得10層 [AttackUp]\n[WhenUse] 使自身獲得5層 [Enhancement]\n[WhenUse] 使自身獲得10層 [AttackDmgUp]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若目標帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，則使本硬幣造成傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得5層 [SipOfAlcohol]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "猛然下砸",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "連續揮打",
+          "desc": "[WinDuel] 使本技能造成的傷害+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "強力橫揮",
+          "desc": "[WinDuel] 使自身獲得1層 [Enhancement]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "生長",
+          "desc": "[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使本硬幣造成的傷害+20%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使本硬幣造成的傷害+50%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 115905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 邪氣暴走",
+          "desc": "[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+4)\n[DefeatDuel] 使本技能造成的傷害-50%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗目標所有 [OminousTalisman]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 115706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咿呀……",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 115707,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "這種扮家家酒……",
+          "desc": "",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 115708,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "...",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於3種，則使本技能的基礎威力+1\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[DefeatDuel] 對自身施加1層 [Vulnerable]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "造成5點理智傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "造成5點理智傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 115709,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "是兒戲嗎？",
+          "desc": "[WhenUse] 使自身恢復15點理智值\n[WhenUse] 若目標帶有的負面狀態數不少於3種，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

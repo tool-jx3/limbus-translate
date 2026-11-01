@@ -1,0 +1,28 @@
+{
+  "dataList": [
+    {
+      "key": "swarm_lanoir_guard",
+      "displayName": "突進的漆黑派"
+    },
+    {
+      "key": "swarm_larouge_elite",
+      "displayName": "丹紅派 店長"
+    },
+    {
+      "key": "swarm_larouge_sickle_sp",
+      "displayName": "丹紅派 工作人員"
+    },
+    {
+      "key": "swarm_larouge_spa_staff",
+      "displayName": "反抗的丹紅派"
+    },
+    {
+      "key": "swarm_renoir_contemporary",
+      "displayName": "突擊的漆黑派"
+    },
+    {
+      "key": "swarm_renoir_high_domestic_2",
+      "displayName": "突擊的漆黑派"
+    }
+  ]
+}

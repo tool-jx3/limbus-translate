@@ -1,0 +1,36 @@
+{
+  "dataList": [
+    {
+      "id": "Fingers",
+      "content": "手指"
+    },
+    {
+      "id": "TheRings",
+      "content": "環指"
+    },
+    {
+      "id": "TheMiddle",
+      "content": "中指"
+    },
+    {
+      "id": "NestH",
+      "content": "H公司"
+    },
+    {
+      "id": "Heishou",
+      "content": "黑獸"
+    },
+    {
+      "id": "Sweeper",
+      "content": "清道夫"
+    },
+    {
+      "id": "NightBackstreet",
+      "content": "後巷深宵"
+    },
+    {
+      "id": "Line5",
+      "content": "折射軌道 5號線"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "dataList": [
+    {
+      "id": "select_announcer_popup_title",
+      "content": "選擇播報員"
+    },
+    {
+      "id": "select_announcer_popup_confirm_desc",
+      "content": "選擇<color=#f8c200>{0}</color>作為播報員嗎？"
+    },
+    {
+      "id": "select_announcer_popup_exchange_confirm_desc",
+      "content": "選擇已持有播報員將會兌換成{0}。"
+    }
+  ]
+}

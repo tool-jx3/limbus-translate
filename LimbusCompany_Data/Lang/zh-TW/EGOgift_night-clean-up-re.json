@@ -1,0 +1,96 @@
+{
+  "dataList": [
+    {
+      "id": 9269,
+      "name": "登場專屬音響",
+      "desc": "當友方使用打擊類型技能命中目標時，使該友方恢復技能造成傷害量的5%體力值\n\n當友方使用反擊技能命中目標時，使該友方恢復5點理智值 (每回合每人格最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9269,
+          "simpleDesc": "根據造成的傷害量等比例恢復體力"
+        },
+        {
+          "abilityID": 92691,
+          "simpleDesc": "恢復理智值"
+        }
+      ]
+    },
+    {
+      "id": 9270,
+      "name": "幼．兄登場",
+      "desc": "友方單位受到攻擊時，使該友方單位獲得3層 [AttackUp] 並使攻擊者增加4回 [Laceration] (每個技能最多1次)\n\n屬於中指的人格使用的基礎技能基礎威力+1、造成的傷害+(30÷硬幣數)%\n- 回合開始時，若屬於中指的人格不低於3名，則改為基礎威力+1、造成的傷害+(60÷硬幣數)%\n- 若不低於5名，則改為基礎威力+2、造成的傷害+(90÷硬幣數)%\n\n打擊技能命中時，使該友方單位恢復造成傷害量10%的體力\n\n反擊技能命中時，使自身恢復5點理智值(每回合每名人格最多2次)\n\n回合結束時，若戰鬥開始時裝備了反擊技能的友方單位在本回合未使用反擊技能，則下回合使該友方單位獲得1層 [PlusCoinValueUp] 與1層 [MinusCoinValueDown]",
+      "simpleDesc": [
+        {
+          "abilityID": 9270,
+          "simpleDesc": "使攻擊者增加 [Laceration] 回數，並使受到攻擊的友方單位獲得 [AttackUp]"
+        },
+        {
+          "abilityID": 92701,
+          "simpleDesc": "基礎威力增加[TabExplain]、造成的傷害增加[TabExplain]"
+        },
+        {
+          "abilityID": 92702,
+          "simpleDesc": "根據造成的傷害量等比例恢復體力"
+        },
+        {
+          "abilityID": 92703,
+          "simpleDesc": "恢復理智值"
+        },
+        {
+          "abilityID": 92704,
+          "simpleDesc": "下回合獲得 [PlusCoinValueUp] 與 [MinusCoinValueDown]"
+        }
+      ]
+    },
+    {
+      "id": 9271,
+      "name": "黑獸丸 - 卯",
+      "desc": "屬於黑獸 - 卯的人格首次登場時，1回合內使其最小速度值固定為10(若最小速度值不低於10，則不會觸發該效果)\n\n自身帶有 [LegStrength] 時，使自身基礎技能的拚點威力+1、造成的傷害+10%",
+      "simpleDesc": [
+        {
+          "abilityID": 9271,
+          "simpleDesc": "最小速度值固定"
+        },
+        {
+          "abilityID": 92711,
+          "simpleDesc": "拚點威力增加[TabExplain]、造成的傷害增加[TabExplain]"
+        }
+      ]
+    },
+    {
+      "id": 9272,
+      "name": "暗中活動",
+      "desc": "When a Heishou Pack - Mao Branch Identity enters the Encounter for the first time, cap its min Speed to 10 for 3 turns (at 10+ min Speed, this effect does not activate)\n\nBase Skills gain Clash Power +1 and deal +10% damage for every [LegStrength] Stack\n\nWhen inflicting [BurstAgility], also inflict it on 2 enemies that do not have [BurstAgility] (once per turn; in Focused Encounters, Parts)\n\nIf an ally's Speed is faster than its target's, the ally's Skills inflict (Speed difference / 3) more [Burst] or [Burst] Count (max 3)\n\nTurn End: Heishou Pack - Mao Branch allies gain 2 [Agility] next turn\nIf an ally's Speed is faster than its target's, or when an ally uses an Unopposed Attack, the said ally deals +10% Slash damage for every (Speed difference / 3) (max 30%)\nIf an ally's Speed is faster than its target's, take -10% damage for every (Speed difference / 3) (max 30%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9272,
+          "simpleDesc": "最小速度值固定"
+        },
+        {
+          "abilityID": 92721,
+          "simpleDesc": "拚點威力增加[TabExplain]、造成的傷害增加[TabExplain]"
+        },
+        {
+          "abilityID": 92722,
+          "simpleDesc": "額外施加 [BurstAgility]"
+        },
+        {
+          "abilityID": 92723,
+          "simpleDesc": "Skills inflict +1 more [Burst] or [Burst] Count"
+        },
+        {
+          "abilityID": 92724,
+          "simpleDesc": "回合結束時，下回合使自身獲得 [Agility]"
+        },
+        {
+          "abilityID": 92725,
+          "simpleDesc": "造成的斬擊傷害增加[TabExplain]"
+        },
+        {
+          "abilityID": 92726,
+          "simpleDesc": "受到的傷害減少[TabExplain]"
+        }
+      ]
+    }
+  ]
+}

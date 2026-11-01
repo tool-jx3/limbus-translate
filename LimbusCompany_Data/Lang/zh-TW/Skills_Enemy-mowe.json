@@ -1,0 +1,909 @@
+{
+  "dataList": [
+    {
+      "id": 9014501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬化手臂",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血式強化突刺",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "收集血液",
+          "desc": "若目標的 [Laceration] 強度不低於10級，則使本技能造成的傷害+20%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 吸收目標最多10級 [Laceration] 強度並使自身恢復(吸收的 [Laceration] 強度×2)%體力(本效果不會使目標的 [Laceration] 強度降至1級以下)",
+                  "summary": "[OnSucceedAttack] 吸收目標的 [Laceration] 強度並恢復體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬化手臂",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血強化砍擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "收集血液",
+          "desc": "若目標的 [Laceration] 強度不低於10級，則使本技能造成的傷害+20%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 吸收目標最多10級 [Laceration] 強度並使自身恢復(吸收的 [Laceration] 強度×2)%體力(本效果不會使目標的 [Laceration] 強度降至1級以下)",
+                  "summary": "[OnSucceedAttack] 吸收目標的 [Laceration] 強度並恢復體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬化手臂",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血強化打擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "收集血液",
+          "desc": "若目標的 [Laceration] 強度不低於10級，則使本技能造成的傷害+20%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 吸收目標最多10級 [Laceration] 強度並使自身恢復(吸收的 [Laceration] 強度×2)%體力(本效果不會使目標的 [Laceration] 強度降至1級以下)",
+                  "summary": "[OnSucceedAttack] 吸收目標的 [Laceration] 強度並恢復體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕裂",
+          "desc": "[WhenUse] 使自身獲得2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "刺倒",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血武器強化",
+          "desc": "[WhenUse] 消耗自身所有 [Charge] 回數與體力上限2×(15-消耗的 [Charge] 回數)%的體力並使本技能的硬幣威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加6層 [DefenseDown]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 吸收目標最多10級 [Laceration] 強度並使自身恢復(吸收的 [Laceration] 強度×2)%體力(該效果不會使目標的 [Laceration] 強度降至1級以下)",
+                  "summary": "[OnSucceedAttack] 吸收目標的 [Laceration] 強度並恢復體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "突刺",
+          "desc": "[WhenUse] 使自身獲得2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "割裂",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血武器強化",
+          "desc": "[WhenUse] 消耗自身所有 [Charge] 回數與體力上限2×(15-消耗的 [Charge] 回數)%的體力並使本技能的硬幣威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 吸收目標最多10級 [Laceration] 強度並使自身恢復(吸收的 [Laceration] 強度×2)%體力(該效果不會使目標的 [Laceration] 強度降至1級以下)",
+                  "summary": "[OnSucceedAttack] 吸收目標的 [Laceration] 強度並恢復體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9014904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "揮舞長槍",
+          "desc": "[WhenUse] 使自身獲得2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕開傷口",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血武器強化",
+          "desc": "[WhenUse] 消耗自身所有 [Charge] 回數與體力上限2×(15-消耗的 [Charge] 回數)%的體力並使本技能的硬幣威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [AttackDown]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 吸收目標最多10級 [Laceration] 強度並使自身恢復(吸收的 [Laceration] 強度×2)%體力(該效果不會使目標的 [Laceration] 強度降至1級以下)",
+                  "summary": "[OnSucceedAttack] 吸收目標的 [Laceration] 強度並恢復體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "義體啟動",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗5回 [Charge] 並使自身獲得3層 [AttackUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "魚叉標記",
+          "desc": "[StartBattle] 若自身的 [Charge] 回數不高於5回，則使自身獲得5回 [Charge] 並對自身施加3回 [Laceration] 與1層 [Vulnerable]\n[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗5回 [Charge] 並使自身獲得3層 [AttackUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血強化魚叉",
+          "desc": "[WhenUse] 消耗自身體力上限10%的體力並使自身獲得10回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]。"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9015104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "義體啟動",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數不高於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血血液逆流",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數不高於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "活體能量轉換式充能",
+          "desc": "[WhenUse] 消耗自身體力上限10%的體力並使自身獲得15回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101805,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血血液轉移",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數不高於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101806,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "活體能量轉換式再充能",
+          "desc": "[WhenUse] 消耗自身體力上限10%的體力並使自身獲得15回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

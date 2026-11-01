@@ -1,0 +1,319 @@
+{
+  "dataList": [
+    {
+      "key": "Q-3000",
+      "title": "帶回皮革",
+      "description": "監工要求8張皮革作為黃金壽衣的代價。\n把散落在百貨公司各處的東西收集回來吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "地下2樓的3張皮革",
+          "goalDescription2": "地下1樓的皮革",
+          "goalDescription3": "1樓的皮革",
+          "goalDescription4": "2樓的皮革",
+          "goalDescription5": "3樓的皮革",
+          "goalDescription6": "4樓的皮革"
+        }
+      ]
+    },
+    {
+      "key": "Q-3010",
+      "title": "收集黃金皮革",
+      "description": "我們在地下3樓遇到了監工。依監工所言，要用黃金皮革製作衣服就必須回到我們走過的地方收集才行。他告訴我們黃金皮革所在的位置。去收集黃金皮革吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "獲取調色盤的黃金松脂",
+          "goalDescription2": "獲取B2F樓層經理的黃金皮革",
+          "goalDescription3": "獲取裁縫之王的黃金皮革",
+          "goalDescription4": "獲取副廚的黃金皮革",
+          "goalDescription5": "從1樓的屍山取得黃金皮革",
+          "goalDescription6": "從4樓牆壁取得黃金皮革",
+          "goalDescription7": "從丹紅派品牌總監的屍體取得黃金皮革",
+          "goalDescription8": "從3樓樓層經理那裡取得黃金皮革"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011",
+      "title": "帶回皮革 - 地下1樓",
+      "description": "監工要求8張皮革的其中1張在地下1樓。\n從美食廣場的副廚那裡弄來吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往地下1樓的美食廣場",
+          "goalDescription2": "獲取副廚的黃金皮革（4/8）"
+        }
+      ]
+    },
+    {
+      "key": "Q-3012",
+      "title": "帶回皮革 - 1樓",
+      "description": "監工要求8張皮革的其中1張在1樓。\n翻找屍山找出來吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "撿起屍山縫隙裡的黃金皮革（5/8）",
+          "goalDescription2": "獲取屍山縫隙裡的黃金皮革（5/8）"
+        }
+      ]
+    },
+    {
+      "key": "Q-3013",
+      "title": "帶回皮革 - 2樓",
+      "description": "監工要求8張皮革的其中1張在2樓。\n從品牌總監身上獲取吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "撿起丹紅派品牌總監的黃金皮革（7/8）",
+          "goalDescription2": "獲取丹紅派品牌總監的黃金皮革（7/8）"
+        }
+      ]
+    },
+    {
+      "key": "Q-3014",
+      "title": "帶回皮革 － 3樓",
+      "description": "監工要求8張皮革的其中1張在3樓。\n從3樓樓層經理那裡弄來吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往3樓樓層經理的房間",
+          "goalDescription2": "獲取3樓樓層經理的黃金皮革（8/8）"
+        }
+      ]
+    },
+    {
+      "key": "Q-3015",
+      "title": "帶回皮革 － 4樓",
+      "description": "監工要求8張皮革的其中1張在4樓。\n撥開解體派遺留的水泥堆吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "撿起牆壁縫隙裡的黃金皮革（6/8）",
+          "goalDescription2": "獲取牆壁縫隙裡的黃金皮革（6/8）"
+        }
+      ]
+    },
+    {
+      "key": "Q-3006",
+      "title": "回去找監工",
+      "description": "終於收齊8張黃金皮革了。回去找地下3樓的監工交出收集的皮革，為普依製作黃金皮革之服吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回去找監工"
+        }
+      ]
+    },
+    {
+      "key": "Q-3003",
+      "title": "前往製革廠",
+      "description": "8張黃金皮革收集齊全了。製作量身訂做的衣服需要幾道工序，首先必須測量尺寸。為了測量尺寸，去找位於製革廠的鞣皮匠吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往製革廠"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "版型準備完畢前打倒蜂擁而至的敵人"
+        },
+        {
+          "index": 2,
+          "goalDescription1": "跟鞣皮匠交談"
+        }
+      ]
+    },
+    {
+      "key": "Q-3004",
+      "title": "前往裁剪室",
+      "description": "普依的尺寸測量完畢，也準備好版型了。接下來還有裁切跟縫製作業。前往裁剪室吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往裁剪室"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "打倒蜂擁而至的敵人直到裁剪工序結束"
+        },
+        {
+          "index": 2,
+          "goalDescription1": "檢查切削機"
+        }
+      ]
+    },
+    {
+      "key": "Q-3007",
+      "title": "結束縫製",
+      "description": "裁剪作業結束了。接下來只要交給養育者縫製就能完成黃金皮革之服了。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "去找養育者"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "打倒蜂擁而至的敵人直到養育者縫製完畢"
+        }
+      ]
+    },
+    {
+      "key": "Q-3001",
+      "title": "跟監工收下完成的黃金壽衣",
+      "description": "所有工序完成了。跟監工收下完成的衣服吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟監工收下完成的黃金壽衣"
+        }
+      ]
+    },
+    {
+      "key": "Q-3005",
+      "title": "打倒監工",
+      "description": "監工雖然替我們完成了黃金皮革之服，卻捨不得交出來而開始攻擊我們。打倒監工帶走完成的黃金皮革之服吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "打倒監工"
+        }
+      ]
+    },
+    {
+      "key": "Q-3002",
+      "title": "前往5樓",
+      "description": "普依穿上由監工完成的黃金皮革之服。然而吞食噗扭的普依心情看起來不太好。現在就先前往5樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "抵達5樓"
+        }
+      ]
+    },
+    {
+      "key": "Q-3010A",
+      "title": "(내부) 팔레트 가죽 확보 신호",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "팔레트의 가죽 확보 (내부 신호)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3010B",
+      "title": "(내부) 플로어 매니저 가죽 확보 신호",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "플로어 매니저 가죽 확보 (내부 신호)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3010S",
+      "title": "(내부) 보디가드 교대 신호",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "보디가드 교대 (내부 신호)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011S",
+      "title": "(내부) 황금가죽 수주 신호",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "황금가죽 수주 (내부 신호)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011T",
+      "title": "(내부) 삽살이 개전 신호",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "삽살이 개전 (내부 신호)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011H1",
+      "title": "(내부) 삽살이 타격 1",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "삽살이 타격 1 (내부)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011H2",
+      "title": "(내부) 삽살이 타격 2",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "삽살이 타격 2 (내부)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011H3",
+      "title": "(내부) 삽살이 타격 3",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "삽살이 타격 3 (내부)"
+        }
+      ]
+    },
+    {
+      "key": "Q-3003A",
+      "title": "製革廠的工序",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "保護製革廠的工序直到最後"
+        }
+      ]
+    },
+    {
+      "key": "Q-3003B",
+      "title": "裁剪室的工序",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "保護裁剪室的工序直到最後"
+        }
+      ]
+    },
+    {
+      "key": "Q-3003C",
+      "title": "外側廣場的工序",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "保護外側廣場的工序直到最後"
+        }
+      ]
+    },
+    {
+      "key": "Q-3011R",
+      "title": "跟副廚再次交涉",
+      "description": "交出手臂的交易代價實在太大了。回去找地下1樓美食廣場的副廚，以其他代價協商獲取黃金皮革吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟副廚再次交涉"
+        }
+      ]
+    }
+  ]
+}

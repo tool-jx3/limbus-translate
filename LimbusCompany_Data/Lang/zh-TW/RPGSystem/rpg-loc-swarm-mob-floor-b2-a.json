@@ -1,0 +1,24 @@
+{
+  "dataList": [
+    {
+      "key": "swarm_green_needle",
+      "displayName": "綠色針靈"
+    },
+    {
+      "key": "swarm_pus_blue",
+      "displayName": "滿溢的藍色淚水"
+    },
+    {
+      "key": "swarm_pus_red",
+      "displayName": "化膿的紅色淚水"
+    },
+    {
+      "key": "swarm_pus_yellow",
+      "displayName": "潰爛的黃色淚水"
+    },
+    {
+      "key": "swarm_red_needle",
+      "displayName": "紅色針靈"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "dataList": [
+    {
+      "id": 132203,
+      "name": "重疊的殘影",
+      "desc": "關卡開始時，使自身獲得 [TimeEntangleFour]\n每個階段的第一個回合開始時，使自身獲得(自身的 [TimeEntangleDesc] 階段×400)層 [TimeGapAb]\n(每個 [TimeEntangleDesc] 階段最多1次)\n\n在第3與第4階段 [TimeEntangleDesc]，<color=#ff6000><mark=#ff000040><b><u>若自身失去所有 [TimeGapAb]，則改變自身模式並在下回合使自身陷入混亂</u></b></mark></color>\n\n受到來自 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 的體力傷害、失去的理智值與混亂閾值前移量-30%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132204,
+      "name": "殘影迴響",
+      "desc": "每當自身的硬幣命中時，額外造成(該硬幣的最終傷害量÷10)點的斬擊(該效果會根據自身的 [TimeEntangleDesc] 階段增加發動次數；該效果造成的傷害無法使目標陷入混亂)",
+      "summary": "追加斬擊傷害",
+      "undefined": "-"
+    },
+    {
+      "id": 132205,
+      "name": "自多重時間斬來的殘影",
+      "desc": "自身的攻擊技能結束時，對每個目標造成(暴擊命中的斬擊硬幣數×10)點的斬擊傷害(該效果造成的傷害無法使目標陷入混亂)\n\n自身的攻擊技能結束時，消耗自身帶有的超過20級以上的 [Breath] 強度，並且根據消耗量對目標施加等量層數的 [PhantomIncision]",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132208,
+      "name": "地慧星刀 拔刀",
+      "desc": "每4回合將使用強力的攻擊行動模式\n- 若自身帶有的 [PhantomIncisionTotal] 層數高於50層，則強化上述的行動模式，使其更加致命",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「……令人厭倦，如烙印般的劍。」"
+    },
+    {
+      "id": 132216,
+      "name": "「就陪妳過個幾招吧」",
+      "desc": "自身的攻擊技能對裝備了守備技能的目標造成的最終傷害-50%\n\n本場戰鬥每經過4個回合，則在接下來的每個回合結束時，對自身施加2層 [Vulnerable] 且使自身獲得2層 [AttackDmgUp] (本效果可疊加；每場遭遇戰最多累積2次)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132101,
+      "name": "活體神經 - 解除部分抑制力",
+      "desc": "自身陣亡時，取消該回合所有技能\n上述效果發動時，使自身獲得10層 [SelfCharge]",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132102,
+      "name": "頑強的生命力",
+      "desc": "每5個回合時，使自身頭部部位獲得與部位體力等量的護盾值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132103,
+      "name": "斷絕的生命力",
+      "desc": "發動過「盤繞」後，若自身的護盾值被消耗殆盡，則使自身消耗所有 [SelfCharge] 層數\n並且所有部位將在下回合陷入混亂",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132001,
+      "name": "最後的火種",
+      "desc": "自身殘存體力低於30%時，透過技能效果獲得的 [MRcAiBa] 層數額外+1",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132002,
+      "name": "點燃火種",
+      "desc": "When the Wings Part is broken, inflict [MRcAiBb] equal to [MRcAiBa] Stack to the last attacker; then, all [MRcAiBa] on self expires.\n\nWhen using 'Ardor Blossom Star' at 0 [MRcAiBa], use 'Stoke the Flames' as well",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132003,
+      "name": "燃燒的火種",
+      "desc": "根據自身帶有的 [MRcAiBa] 層數，使自身等量的非暴怒技能轉換為暴怒技能",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132004,
+      "name": "齧合的紅焰",
+      "desc": "根據自身帶有的 [MRcAiBa] 層數，使自身等量的非暴怒技能轉換為暴怒技能\n\n自身的攻擊命中時，根據紅焰蛾本回合會使用的暴怒技能數量，使目標增加等量級數的 [Combustion] 強度\n\n自身的攻擊命中時，使自身恢復(紅焰蛾本回合會使用的暴怒技能數量×2)點體力值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132005,
+      "name": "支援補給",
+      "desc": "當紅焰蛾的翅膀部位遭到破壞時，我方將獲得所有屬性的罪孽碎片各2個，並使罪人恢復15點理智值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132006,
+      "name": "燃燒之翼 - 解除部分抑制力",
+      "desc": "自身不會受到 [Combustion] 造成的傷害\n\n回合結束時，使自身的本體恢復自身帶有的([Combustion] ×5)點的體力值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132501,
+      "name": "由終端傳達的指令",
+      "desc": "關卡開始時，使自身獲得體力上限20%的護盾(該護盾在本場戰鬥期間持續存在)\n\n回合開始時\n- 根據自身的 [UnlockBuff_Base] 階段，使自身獲得 [IndexPrescript_Base_2nd]\n- <color=#ff6000><mark=#ff000040><b><u>隨機對1名敵方單位施加 [IndexPrescriptTargetToPersonality] 並優先攻擊該單位</u></b></mark></color>(不包括特定階段)\n\n自身每帶有1層 [BlessingOfIndexPrescriptEnemy]，則使自身對 [IndexPrescriptTargetToPersonality] 造成的傷害+2.5%(最多+20%)\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數為9層，則改為對所有目標造成的傷害+30%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132502,
+      "name": "指令之意",
+      "desc": "回合結束時，<color=#ff6000><mark=#ff000040><b><u>若自身執行了 [IndexPrescript_Base_2nd]</u></b></mark></color>：\n- 使自身恢復15點理智值，並且使自身獲得(自身的 [UnlockBuff_Base] 階段+1)層的 [BlessingOfIndexPrescriptEnemy] (每回合最多1次)\n\n回合結束時，<color=#ff6000><mark=#ff000040><b><u>若自身未能執行 [IndexPrescript_Base_2nd]</u></b></mark></color>：\n- 對自身施加1層 [PressureOfPrescript] 與5層 [KarmaOfIndexStudent]\n- 若自身沒有 [UnlockBuff_Base]，則於回合結束時使自身獲得1層 [BlessingOfIndexPrescriptEnemy]\n- 當自身的 [BlessingOfIndexPrescriptEnemy] 層數為9時，則不會對自身施加 [KarmaOfIndexStudent]\n- 自身處在綻放[TabExplain]E.G.O::代行狀態時，對自身施加的 [KarmaOfIndexStudent] 層數加倍",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132503,
+      "name": "解放",
+      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 90%-/75%-/60%- HP,\n- Gain [UnlockBuff_1]/[UnlockBuff_2]/[UnlockBuff_3]\n- Heal to 45 SP\n- <color=#ff6000><mark=#ff000040><b><u>Consume all [PressureOfPrescript]</u></b></mark></color> and recover from Stagger\n- Gain 1 [BlessingOfIndexPrescriptEnemy] in the turn after [UnlockBuff_Base] was gained for the first time\n\nIf [UnlockBuff_Base] was gained based on HP conditional above,\n- Gain [KarmaOfIndexStudent] by (sum of healed SP / 15)\n- Increase [BlessingOfIndexPrescriptEnemy] to 3/6/9 if this unit had less than 3/6/9 [BlessingOfIndexPrescriptEnemy]; gain 1 [DefenseDown] and 2 [KarmaOfIndexStudent] next turn for every [BlessingOfIndexPrescriptEnemy] Stack gained\n\nMin & Max Speed +10 in the turn this unit uses its powerful attack",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「指令所授予的劍與布，只會在完成指令時解放其力量並顯現。」"
+    },
+    {
+      "id": 132504,
+      "name": "綻放E.G.O::代行",
+      "desc": "若自身於回合開始時帶有 [UnlockBuff_Base] 且自身理智值高於25點：\n則消耗自身15點理智值，使自身進入綻放[TabExplain]E.G.O::代行狀態，並解除自身的混亂\n- 使自身獲得 [Blandishment_Enemy] 並且改變自身的抗性\n- 若自身的理智值不高於0，則於回合開始時解除綻放[TabExplain]E.G.O::代行狀態",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 132505,
+      "name": "抹殺態勢",
+      "desc": "當韋斯帕進入戰場時：\n- 若自身的 [UnlockBuff_Base] 低於2階段，則使自身獲得 [UnlockBuff_3] 後，將自身的理智值恢復至45點並解除自身的混亂\n- 使自身獲得1層 [Blandishment_Shin_Enemy]，並且使自身獲得等於自身體力上限50%的護盾值(該護盾將維持至戰鬥結束或遭到消除殆盡為止)\n- 被動技能「解放[TabExplain]」將不再消耗自身帶有的 [PressureOfPrescript]\n- 將 [PressureOfPrescript] 強化至 [PressureOfPrescript_2nd] 並將效果層數增加到最大值\n- 回合開始時，使自身獲得1層 [PressureOfPrescript_2nd]\n- 本場戰鬥自身理智值不會再降低至0以下\n\n自身的體力值降低至20%或以下時，使自身獲得最大層數的 [PressureOfPrescript_2nd]",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「危、危險的人……可能無法完成指令也、也說不定。」"
+    },
+    {
+      "id": 132230,
+      "name": "恐慌恢復",
+      "desc": "若自身陷入恐慌，則於回合結束時，使自身理智值恢復至30點",
+      "summary": "",
+      "undefined": "-"
+    }
+  ]
+}

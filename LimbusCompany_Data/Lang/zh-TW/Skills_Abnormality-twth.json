@@ -1,0 +1,467 @@
+{
+  "dataList": [
+    {
+      "id": 142201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "展現原色",
+          "desc": "目標的 [Laceration] 強度與 [Sinking] 強度之和每有6級，使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [EagleClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [EagleClawWound]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "強烈塗佈",
+          "desc": "目標的 [Laceration] 強度與 [Sinking] 強度之和每有6級，使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BearClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BearClawWound]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "野獸派 - 原始解放",
+          "desc": "目標的 [Laceration] 強度與 [Sinking] 強度之和每有6級，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [BearClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度與2回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [EagleClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [BoldBrushstrokes]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "批評",
+          "desc": "[CantChangeTarget]\n[WhenUse]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，則使本技能的拚點威力+2(最多+12)\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6、造成的傷害+100%\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能的拚點威力+6、造成的傷害-90%\n[DefeatDuel]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 重複使用本硬幣(最多2次)\n- 拚點失敗後命中時，改為重複使用本硬幣(最多1次)\n- 若目標裝備了守備技能，則不會觸發此效果"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度與2回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "原色處理",
+          "desc": "目標的 [Laceration] 強度與 [Sinking] 強度之和每有6級，使本技能的最終威力+1(最多+2)\n[DefeatDuel] 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [EagleClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [EagleClawWound]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "激烈塗佈",
+          "desc": "目標的 [Laceration] 強度與 [Sinking] 強度之和每有6級，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [BearClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [BearClawWound]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "野獸派 - 展現暴力",
+          "desc": "目標的 [Laceration] 強度與 [Sinking] 強度之和每有6級，使本技能的最終威力+1(最多+4)\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若目標帶有的負面狀態不少於3種，</u></b></mark></color>則使本技能的所有硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能造成的傷害-75%\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [BearClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [EagleClawWound]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [BoldBrushstrokes]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "靈感的戰慄",
+          "desc": "可無視速度值與本技能拚點\n[WhenUse] 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1、造成的傷害+10%(分別最多+6、+60%)\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 使本技能造成的傷害-75%\n- 使本技能施加的 [BearClawWound] 與 [EagleClawWound] 層數減少至1/3(無條件進位)\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度與3回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度與3回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加9層 [BearClawWound]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加9層 [EagleClawWound]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [BoldBrushstrokes]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 142305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "將你膚下那脈動的紅色顏料揮灑開來吧。",
+          "desc": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+100%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>此硬幣會命中全體目標</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 500604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "批評",
+          "desc": "[CantChangeTarget]\n[WhenUse]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的拚點威力+2(最多+12)\n- 場上<color=#ff6000><mark=#ff000040><b><u>每有1名屬於環指 野獸派 學徒的友方單位</u></b></mark></color>，使本技能造成的傷害+12.5%(最多+50%)\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6、造成的傷害+200%\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能的拚點威力+6、造成的傷害-90%，造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[DefeatDuel]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 重複使用本硬幣(最多2次)\n- 拚點失敗後命中時，改為重複使用本硬幣(最多1次)\n- 若目標裝備了守備技能，則不會觸發此效果"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度與2回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 500704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "靈感的戰慄",
+          "desc": "可無視速度值與本技能拚點\n[WhenUse] 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1、造成的傷害+10%(分別最多+6、+60%)\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 使本技能造成的傷害-75%\n- 使本技能施加的 [BearClawWound] 與 [EagleClawWound] 層數減少至1/3(無條件進位)\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度與3回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度與3回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加9層 [BearClawWound]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加9層 [EagleClawWound]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [BoldBrushstrokes]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 500705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "將你膚下那脈動的紅色顏料揮灑開來吧。",
+          "desc": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+200%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>此硬幣會命中全體目標</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

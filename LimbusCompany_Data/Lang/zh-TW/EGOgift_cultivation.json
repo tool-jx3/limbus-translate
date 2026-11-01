@@ -1,0 +1,222 @@
+{
+  "dataList": [
+    {
+      "id": 9819,
+      "name": "血炎刀",
+      "desc": "戰鬥首個回合開始時，使擁有對自身施加 [Combustion] 強度的基礎攻擊技能的友方單位，對自身施加5級 [Combustion] 強度並使其恢復8點理智值\n\n屬於黑獸-酉的友方人格可維持或恢復的體力上限固定為49%，而使其受到的傷害與受到的體力恢復量-50%(不包括E.G.O飾品恢復的體力)",
+      "simpleDesc": [
+        {
+          "abilityID": 9819,
+          "simpleDesc": "增加 [Combustion] 強度、增加攻擊等級並恢復理智值"
+        },
+        {
+          "abilityID": 98191,
+          "simpleDesc": "體力上限固定，但受到的傷害與恢復量減少"
+        }
+      ]
+    },
+    {
+      "id": 9820,
+      "name": "黑鐵馬鎧",
+      "desc": "回合開始時，使防禦等級最高的1名友方單位獲得(其防禦等級÷3)點護盾(優先使屬於黑獸-午的單位獲得，最多15點護盾)\n\n帶有護盾的友方單位拚點勝利時，使敵方單位增加(自身的速度值÷2)級 [Vibration] 強度，並在下回合使自身獲得2層 [Agility] 與2層 [DefenseUp] (每回合每名友方單位最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9820,
+          "simpleDesc": "使1名友方單位獲得護盾與 [Agility]"
+        },
+        {
+          "abilityID": 98201,
+          "simpleDesc": "根據速度值，相應增加震顫強度，下回合增加防禦等級"
+        }
+      ]
+    },
+    {
+      "id": 9821,
+      "name": "封心紅布",
+      "desc": "[第1順位友方單位專屬]\n\n其他友方單位單方面攻擊命中敵方單位時，下回合使自身獲得1層 [AttackUp] (每回合每名友方單位最多1次，每回合最多6次)\n\n其他友方單位進行 [RetreatForCommon] 時，下回合使自身獲得1層 [SlashResultUp] 與1層 [SlashDamageUp] (每回合最多1次)\n\n符合所有條件時，下回合使自身獲得1層 [ResultEnhancement] (每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9821,
+          "simpleDesc": "下回合增加攻擊等級"
+        },
+        {
+          "abilityID": 98211,
+          "simpleDesc": "下回合獲得斬擊威力提升與斬擊傷害強化"
+        },
+        {
+          "abilityID": 98212,
+          "simpleDesc": "下回合獲得威力提升"
+        }
+      ]
+    },
+    {
+      "id": 9822,
+      "name": "德目 - 智",
+      "desc": "[第6順位友方單位專屬]\n\n使用增加 [Burst] 強度或 [Burst] 回數的攻擊技能(包括E.G.O技能)拚點勝利時，下回合使自身獲得2層 [DefenseUp] (每回合最多1次)\n- 屬於家主候選人的單位下回合額外獲得1層 [Agility]",
+      "simpleDesc": [
+        {
+          "abilityID": 9822,
+          "simpleDesc": "獲得防禦等級提升，屬於家主候選人的單位下回合額外獲得 [Agility]"
+        }
+      ]
+    },
+    {
+      "id": 9823,
+      "name": "德目 - 勇",
+      "desc": "[第6順位友方單位專屬]\n\n使用增加 [Burst] 強度或 [Burst] 回數的攻擊技能(包括E.G.O技能)拚點勝利時，下回合使自身獲得2層 [AttackUp] (每回合最多1次)\n- 屬於家主候選人的單位下回合額外獲得3層 [AttackUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 9823,
+          "simpleDesc": "獲得攻擊等級提升，屬於家主候選人的單位下回合額外獲得 [AttackUp]"
+        }
+      ]
+    },
+    {
+      "id": 9824,
+      "name": "德目 - 仁",
+      "desc": "[第6順位友方單位專屬]\n\n使用增加 [Burst] 強度或 [Burst] 回數的攻擊技能(包括E.G.O技能)拚點勝利時，使自身恢復15點體力(每回合最多1次)\n- 屬於家主候選人的單位下回合額外獲得1層 [Protection]",
+      "simpleDesc": [
+        {
+          "abilityID": 9824,
+          "simpleDesc": "恢復體力，屬於家主候選人的單位下回合額外獲得 [Protection]"
+        }
+      ]
+    },
+    {
+      "id": 9825,
+      "name": "切磋琢磨",
+      "desc": "[第6順位友方單位專屬]\n\n使用增加 [Burst] 強度或 [Burst] 回數的攻擊技能(包括E.G.O技能)拚點勝利時，使自身恢復20點體力並在下回合獲得3層 [AttackUp] 與3層 [DefenseUp] (每回合最多1次)\n- 若自身屬於家主候選人，則下回合額外使包括自身在內的全體友方單位獲得1層 [Agility]、1層 [Protection] 與3層 [AttackUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 9825,
+          "simpleDesc": "獲得攻擊等級提升與防禦等級提升並恢復體力，若自身屬於家主候選人，則下回合額外使包括自身在內的全體友方單位獲得迅捷、守護與攻擊等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9826,
+      "name": "紹興酒",
+      "desc": "[第2順位友方單位專屬]\n\n自身每失去1%的體力，使自身基礎技能造成的傷害+1%(最多+10%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9826,
+          "simpleDesc": "根據已失去體力使自身造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 19826,
+      "name": "紹興酒+",
+      "desc": "[第2、<style=\"upgradeHighlight\">第4</style>順位友方單位專屬]\n\n自身每失去1%的體力，使自身基礎技能造成的傷害+1%(最多+10%)",
+      "simpleDesc": [
+        {
+          "abilityID": 19826,
+          "simpleDesc": "根據已失去體力使自身造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 29826,
+      "name": "紹興酒++",
+      "desc": "[第2、第4、<style=\"upgradeHighlight\">第6</style>順位友方單位專屬]\n\n自身每失去1%的體力，使自身基礎技能造成的傷害+1%(最多+10%)",
+      "simpleDesc": [
+        {
+          "abilityID": 29826,
+          "simpleDesc": "根據已失去體力使自身造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9827,
+      "name": "家人的怨恨",
+      "desc": "關卡內生成的血宴變為2倍\n增加 [Laceration] 強度、[Laceration] 回數與施加特殊流血的技能攻擊後，使自身恢復造成傷害量30%的體力(最多20點)\n- 透過以上效果恢復體力時，下回合使自身獲得1層 [Enhancement] (最多2層)\n\n[BloodDinner_Common_Accumulation] 層數每有50層，則下回合開始時使全體友方單位獲得1層 [AttackUp] (最多5層)\n屬於拉．曼查領的友方單位每帶有30層 [BloodDinner_Accumulation]，則下回合開始時使其獲得1層 [AttackUp] (最多3層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9827,
+          "simpleDesc": "生成的血宴增加"
+        },
+        {
+          "abilityID": 98271,
+          "simpleDesc": "恢復體力"
+        },
+        {
+          "abilityID": 98272,
+          "simpleDesc": "獲得攻擊等級提升"
+        },
+        {
+          "abilityID": 98272,
+          "simpleDesc": "獲得攻擊等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9828,
+      "name": "為了指揮官",
+      "desc": "[第1順位友方單位專屬]\n使用消耗 [Bullet] 的技能時，觸發以下效果：\n- 下回合使自身獲得3層 [Agility] (每回合最多1次)\n- 命中時使目標 [VibrationExplosion]，消耗其1回 [Vibration] (每回合最多2次)\n- 拚點勝利後命中時，若目標帶有 [Combustion] 與 [Vibration] (包括特殊震顫與特殊燒傷)，則對其造成等同於其 [Combustion] 強度與 [Vibration] 強度之和的暴怒傷害(每回合最多2次)\n\n暴怒共鳴數不低於4時，觸發以下效果：\n- 使用暴怒技能時，使其硬幣威力+2\n- 命中時，若消耗了 [Bullet]，則使造成的傷害+30%",
+      "simpleDesc": [
+        {
+          "abilityID": 9828,
+          "simpleDesc": "獲得迅捷"
+        },
+        {
+          "abilityID": 98281,
+          "simpleDesc": "觸發震顫引爆"
+        },
+        {
+          "abilityID": 98282,
+          "simpleDesc": "造成暴怒傷害"
+        },
+        {
+          "abilityID": 98283,
+          "simpleDesc": "增加硬幣威力"
+        },
+        {
+          "abilityID": 98284,
+          "simpleDesc": "造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9829,
+      "name": "中指的紀律",
+      "desc": "打擊基礎技能的硬幣威力+1，屬於中指的友方單位改為硬幣威力+2\n友方單位受到攻擊時，下回合使全體友方單位獲得2層 [AttackUp] (每回合最多3次)\n\n戰鬥中屬於中指的友方單位不低於3名時，觸發以下效果：\n戰鬥開始時，嫉妒共鳴數每有3點，獲得1層 [Enhancement] 與1層 [Protection] (最多3層)\n屬於中指的友方單位使用嫉妒基礎技能時，使該技能的所有硬幣變更為 [SuperCoin]，該友方單位受到的傷害-50%，\n並在本回合與下回合中獲得2層 [HitDamageUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 9829,
+          "simpleDesc": "增加硬幣威力"
+        },
+        {
+          "abilityID": 98291,
+          "simpleDesc": "增加硬幣威力"
+        },
+        {
+          "abilityID": 98292,
+          "simpleDesc": "攻擊等級提升"
+        },
+        {
+          "abilityID": 98293,
+          "simpleDesc": "獲得強壯和守護"
+        },
+        {
+          "abilityID": 98294,
+          "simpleDesc": "變更為無法被破壞的硬幣、受到的傷害減少、打擊傷害強化"
+        }
+      ]
+    },
+    {
+      "id": 9830,
+      "name": "可米的小禮物",
+      "desc": "使關卡的首個回合開始時與解除待命的全體友方單位獲得3層 [VerEmergencyCandy]\n若友方單位上回合未消耗 [VerEmergencyCandy]，則回合開始時使其獲得1層 [VerHunger]",
+      "simpleDesc": [
+        {
+          "abilityID": 9830,
+          "simpleDesc": "獲得備用糖果"
+        },
+        {
+          "abilityID": 98301,
+          "simpleDesc": "獲得飢餓"
+        }
+      ]
+    }
+  ]
+}

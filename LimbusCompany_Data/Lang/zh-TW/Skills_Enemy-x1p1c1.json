@@ -1,0 +1,174 @@
+{
+  "dataList": [
+    {
+      "id": 9103901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕嗚",
+          "desc": "",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕喔嗚",
+          "desc": "",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕咕咕！",
+          "desc": "",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層束縛 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕咕！",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加4層加算硬幣弱化 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕喔喔！",
+          "desc": "[WinDuel] 使本技能威力+1",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級震顫 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級震顫 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1級震顫 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咯咯咕",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使目標增加1回震顫 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咯咯",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使目標增加3級震顫 強度"
+                }
+              ]
+            },
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9104104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "咕咯",
+          "desc": "[WhenUse] 使自身恢復10點體力",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    }
+  ]
+}

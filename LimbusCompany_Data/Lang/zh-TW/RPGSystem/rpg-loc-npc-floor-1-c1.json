@@ -1,0 +1,88 @@
+{
+  "dataList": [
+    {
+      "key": "N101002",
+      "displayName": "克羅默"
+    },
+    {
+      "key": "N101012",
+      "displayName": "走馬看花的顧客"
+    },
+    {
+      "key": "N101013",
+      "displayName": "接受手術的顧客"
+    },
+    {
+      "key": "N101016",
+      "displayName": "누추한 크로머 언니"
+    },
+    {
+      "key": "N101017",
+      "displayName": "???"
+    },
+    {
+      "key": "N101018",
+      "displayName": "단테 SD"
+    },
+    {
+      "key": "N101019",
+      "displayName": "로쟈 SD"
+    },
+    {
+      "key": "N101020",
+      "displayName": "이스마엘 SD"
+    },
+    {
+      "key": "N101021",
+      "displayName": "李箱"
+    },
+    {
+      "key": "N101022",
+      "displayName": "浮士德"
+    },
+    {
+      "key": "N101023",
+      "displayName": "辛克萊"
+    },
+    {
+      "key": "N101024",
+      "displayName": "格里高爾"
+    },
+    {
+      "key": "N101025",
+      "displayName": "良秀"
+    },
+    {
+      "key": "N101026",
+      "displayName": "希斯克利夫"
+    },
+    {
+      "key": "N101027",
+      "displayName": "奧提斯"
+    },
+    {
+      "key": "N101028",
+      "displayName": "鴻璐"
+    },
+    {
+      "key": "N101029",
+      "displayName": "唐吉訶德"
+    },
+    {
+      "key": "N999901",
+      "displayName": "발소리 Fixed 예시(참고용 — 스폰 미배치)"
+    },
+    {
+      "key": "N101031",
+      "displayName": "焦急的顧客"
+    },
+    {
+      "key": "N101032",
+      "displayName": "被逼到絕境的顧客"
+    },
+    {
+      "key": "N101033",
+      "displayName": "貧窮的顧客"
+    }
+  ]
+}

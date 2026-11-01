@@ -1,0 +1,135 @@
+{
+  "dataList": [
+    {
+      "id": 142201,
+      "name": "環指 野獸派導覽員",
+      "desc": "回合開始時，每有1名屬於環指 野獸派 學徒的友方單位，<color=#ff6000><mark=#ff000040><b><u>使自身獲得2層 [Protection]</u></b></mark></color>\n- 若本場戰鬥中自身使用了「批評」，則從下回合起改為獲得2層 [Protection] 並恢復5點理智值\n(若自身理智值低於-15點，則使恢復的理智值變為2倍)\n- 若沒有屬於環指 野獸派 學徒的友方單位，則改為對自身施加2層 [Vulnerable] 並使自身的理智值變為0點\n\n受到攻擊容量為1的技能攻擊前，若有其他屬於學徒的友方單位，\n則令其<color=#ff6000><mark=#ff000040><b><u>代替自身受到攻擊(每回合最多2次，不包括支援單位)</u></b></mark></color>\n\n自身使用「批評」的回合結束時，若本場戰鬥中有屬於環指 野獸派 學徒的友方單位陣亡，則在對應位置<color=#ff6000><mark=#ff000040><b><u>以相同的學徒單位填補空缺</u></b></mark></color>\n- 每回合開始時對以該效果登場、屬於學徒的單位施加層數等同於本場戰鬥中陣亡的友方單位數的 [Vulnerable] 與 [AttackDown] (分別最多10層)",
+      "summary": "受到攻擊前，令其他屬於學徒的友方單位代替受到攻擊",
+      "flavor": ""
+    },
+    {
+      "id": 142202,
+      "name": "指導鞭策",
+      "desc": "回合開始時，使屬於環指 野獸派 學徒的友方單位\n隨機獲得層數共計等同於其存活回合數(包括本回合)的\n[AttackUp] 或 [DefenseUp] (最多5層)\n\n若有屬於學徒的友方單位陷入混亂，則<color=#ff6000><mark=#ff000040><b><u>回合結束時解除其混亂</u></b></mark></color>\n- 下回合使因該效果而解除混亂且屬於學徒的單位，所有物理屬性與罪孽屬性的抗性變為「致命」\n\n若有屬於學徒的單位陷入恐慌，則回合結束時使其理智值恢復至45點",
+      "summary": "",
+      "flavor": ""
+    },
+    {
+      "id": 142203,
+      "name": "野獸派 - 野性的色彩",
+      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "summary": "施加強烈的原色",
+      "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
+    },
+    {
+      "id": 142204,
+      "name": "寄宿著人生的獸面",
+      "desc": "適用於 [PanicChangeLock] 效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為20點\n\n<color=#ff6000><mark=#ff000040><b><u>若現存體力不高於70%，則改變自身模式</u></b></mark></color>\n- 解除除自身固有狀態以外的所有狀態\n- 該回合開始時，使自身獲得 [FaubismWolfMask] 並使自身的理智值恢復至45點",
+      "summary": "",
+      "flavor": ""
+    },
+    {
+      "id": 142301,
+      "name": "環指 野獸派導覽員 盧峯",
+      "desc": "In the turn this unit uses a powerful attack, Min & Max Speed +15\n\nTake -30% damage from Unopposed Attacks\nDeal +30% damage with Unopposed Attacks\n- If the Slot targeted by this unit's Unopposed Attack has 2+ [Aggro], reduce the increased damage from this effect by 5% per [Aggro] Stack (min 0%)\n\nOn Clash Lose, gain 1 [AttackDmgUp] (5 per turn)\n- At Turn End, or at Attack End of a Skill that hit a Sinner, the [AttackDmgUp] effect gained with this effect expires",
+      "summary": "受到單方面攻擊的傷害減少、單方面攻擊造成的傷害增加\n拚點失敗時獲得傷害強化 ",
+      "flavor": ""
+    },
+    {
+      "id": 142302,
+      "name": "野獸派 - 染血狼面：覺醒的野性",
+      "desc": "Turn Start: <color=#ff6000><mark=#ff000040><b><u>Gain 8 [Protection]</u></b></mark></color>\n- Gain 2 fewer [Protection] at Turn Start <color=#ff6000><mark=#ff000040><b><u>for every type of negative effect on this unit</u></b></mark></color>\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, gain 2 [Vulnerable] from this effect instead</u></b></mark></color> for the next turn\n\n<color=#ff6000><mark=#ff000040><b><u>Gain 1 Defense Level each time this unit is hit</u></b></mark></color> by a Skill Coin (max 20 per turn)\n- Turn End: Defense Level gained due to this effect expires\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, lose 1 Defense Level each time this unit is hit by a Skill Coin instead</u></b></mark></color> for the next turn (max 20; expires at Turn End)",
+      "summary": "受到攻擊時，增加防禦等級\n上回合特定技能拚點失敗時，改為減少防禦等級",
+      "flavor": ""
+    },
+    {
+      "id": 142303,
+      "name": "野獸派 - 野性的色彩",
+      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "summary": "施加強烈的原色",
+      "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
+    },
+    {
+      "id": 142304,
+      "name": "野獸派 - 注入極限值顏料",
+      "desc": "適用於 [PanicChangeLock] 效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為30點\n\n<color=#ff6000><mark=#ff000040><b><u>若現存體力不高於35%</u></b></mark></color>，則使<color=#ff6000><mark=#ff000040><b><u>自身的 [FaubismWolfMask] 轉變為 [FaubismWolfMaskBlooded]，並使自身的理智值恢復至45點</u></b></mark></color>",
+      "summary": "",
+      "flavor": ""
+    },
+    {
+      "id": 142401,
+      "name": "藝術的痕跡",
+      "desc": "陣亡時，獲得2個持有量最少的罪孽碎片",
+      "summary": "陣亡時，獲得罪孽碎片",
+      "flavor": ""
+    },
+    {
+      "id": 500601,
+      "name": "映射戰鬥",
+      "desc": "若與同一目標拚點不低於10次，則隨機使自身的拚點威力增加或減少(拚點次數÷10)(無條件捨去)\n\n[Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 強度最多累計到30級，回數最多累計到10回",
+      "flavor": ""
+    },
+    {
+      "id": 500602,
+      "name": "環指 野獸派導覽員",
+      "desc": "回合開始時，每有1名屬於環指 野獸派 學徒的友方單位，<color=#ff6000><mark=#ff000040><b><u>使自身獲得2層 [Protection]</u></b></mark></color>\n- 若本場戰鬥中自身使用了「批評」，則從下回合起改為獲得2層 [Protection] 並恢復5點理智值\n(若自身理智值低於-15點，則使恢復的理智值變為2倍)\n- 若沒有屬於環指 野獸派 學徒的友方單位，則改為對自身施加2層 [Vulnerable] 並使自身的理智值變為0點\n\n受到攻擊容量為1的技能攻擊前，若有其他屬於學徒的友方單位，\n則<color=#ff6000><mark=#ff000040><b><u>使其獲得2層 [Protection] 並令其代替自身受到攻擊(每回合最多2次)</u></b></mark></color>\n\n自身使用「批評」的回合結束時，若本場戰鬥中有屬於環指 野獸派 學徒的友方單位陣亡，則在對應位置<color=#ff6000><mark=#ff000040><b><u>以相同的學徒單位填補空缺</u></b></mark></color>\n- 每回合開始時對以該效果登場的屬於學徒的單位施加層數等同於本場戰鬥中陣亡友方單位數的 [Vulnerable] 與 [AttackDown] (分別最多10層)",
+      "summary": "受到攻擊前，令其他屬於學徒的友方單位代替受到攻擊",
+      "flavor": ""
+    },
+    {
+      "id": 500603,
+      "name": "指導鞭策",
+      "desc": "回合開始時，使屬於環指 野獸派 學徒的友方單位\n隨機獲得層數共計等同於其存活回合數(包括本回合)的\n[AttackUp] 或 [DefenseUp] (最多5層)\n\n若有屬於學徒的友方單位陷入混亂，則<color=#ff6000><mark=#ff000040><b><u>回合結束時解除其混亂</u></b></mark></color>\n- 下回合使因該效果而解除混亂且屬於學徒的單位，所有物理屬性與罪孽屬性的抗性變為「致命」\n\n若有屬於學徒的單位陷入恐慌，則回合結束時使其理智值恢復至45點",
+      "summary": "",
+      "flavor": ""
+    },
+    {
+      "id": 500604,
+      "name": "野獸派 - 野性的色彩",
+      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "summary": "施加強烈的原色",
+      "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
+    },
+    {
+      "id": 500605,
+      "name": "寄宿著人生的獸面",
+      "desc": "適用於 [PanicChangeLock] 效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為45點\n\n<color=#ff6000><mark=#ff000040><b><u>若現存體力不高於70%，則改變自身模式</u></b></mark></color>\n- 解除除自身固有狀態以外的所有狀態\n- 使場上的全體罪人<color=#ff6000><mark=#ff000040><b><u>增加8級 [Laceration] 強度、8級 [Sinking] 強度、8回 [Laceration]、8回 [Sinking]</u></b></mark></color>\n- 該回合開始時，使自身獲得 [FaubismWolfMask] 並使自身的理智值恢復至45點",
+      "summary": "",
+      "flavor": ""
+    },
+    {
+      "id": 500701,
+      "name": "映射戰鬥",
+      "desc": "若與同一目標拚點不低於10次，則隨機使自身的拚點威力增加或減少(拚點次數÷10)(無條件捨去)\n\n[Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 強度最多累計到30級，回數最多累計到10回",
+      "flavor": ""
+    },
+    {
+      "id": 500702,
+      "name": "環指 野獸派導覽員 盧峯",
+      "desc": "In the turn this unit uses a powerful attack, Min & Max Speed +15\n\nTake -50% damage from Unopposed Attacks\nDeal +50% damage with Unopposed Attacks\n- If the Slot targeted by this unit's Unopposed Attack has 2+ [Aggro], reduce the increased damage from this effect by 5% per [Aggro] Stack (min 0%)\n\nOn Clash Lose, gain 1 [AttackDmgUp] (5 per turn)\n- At Turn End, or at Attack End of a Skill that hit a Sinner, the [AttackDmgUp] effect gained with this effect expires",
+      "summary": "受到單方面攻擊的傷害減少、單方面攻擊造成的傷害增加\n拚點失敗時獲得傷害強化 ",
+      "flavor": ""
+    },
+    {
+      "id": 500703,
+      "name": "野獸派 - 染血狼面：覺醒的野性",
+      "desc": "Turn Start: <color=#ff6000><mark=#ff000040><b><u>Gain 10 [Protection]</u></b></mark></color>\n- Gain 1 fewer [Protection] at Turn Start <color=#ff6000><mark=#ff000040><b><u>for every type of negative effect on this unit</u></b></mark></color>\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, gain 2 [Vulnerable] from this effect instead</u></b></mark></color> for the next turn\n\n<color=#ff6000><mark=#ff000040><b><u>Gain 1 Defense Level each time this unit is hit</u></b></mark></color> by a Skill Coin (max 20 per turn)\n- Turn End: Defense Level gained due to this effect expires\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, lose 1 Defense Level each time this unit is hit by a Skill Coin instead</u></b></mark></color> for the next turn (max 20; expires at Turn End)",
+      "summary": "受到攻擊時，增加防禦等級\n上回合特定技能拚點失敗時，改為減少防禦等級",
+      "flavor": ""
+    },
+    {
+      "id": 500704,
+      "name": "野獸派 - 野性的色彩",
+      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "summary": "施加強烈的原色",
+      "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
+    },
+    {
+      "id": 500705,
+      "name": "野獸派 - 注入極限值顏料",
+      "desc": "適用於 [PanicChangeLock] 效果，\n回合結束時，若自身陷入恐慌，則使自身的理智值變為45點\n\n<color=#ff6000><mark=#ff000040><b><u>若現存體力不高於35%</u></b></mark></color>，則使自身的<color=#ff6000><mark=#ff000040><b><u> [FaubismWolfMask] 轉變為\n[FaubismWolfMaskBlooded] 並使自身的理智值恢復至45點</u></b></mark></color>",
+      "summary": "",
+      "flavor": ""
+    }
+  ]
+}

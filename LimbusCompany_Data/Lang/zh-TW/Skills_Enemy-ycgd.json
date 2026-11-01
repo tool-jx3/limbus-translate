@@ -1,0 +1,556 @@
+{
+  "dataList": [
+    {
+      "id": 9011001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬草除根",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "猛勁斬擊",
+          "desc": "若目標的 [Laceration] 強度不低於7級，則使本技能的硬幣威力+1\n[WinDuel] 下回合使自身獲得1層 [SlashDamageUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "擾雲霧靄",
+          "desc": "若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1\n[WinDuel] 下回合使自身獲得1層 [SlashResultUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+20%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+10%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+40%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避",
+          "desc": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1層)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "揮砍",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕裂",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+30%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "銳利之舞",
+          "desc": "[WinDuel] 下回合使自身獲得1層 [SlashDamageUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+10%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+10%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有 [Laceration]，則使本硬幣造成的傷害+20%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避",
+          "desc": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1層)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "縱斬",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "回斬",
+          "desc": "[WinDuel] 下回合對目標施加1層 [Paralysis]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "猛勁斬擊",
+          "desc": "[WinDuel] 下回合使自身獲得1層 [Protection]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[StartBattle] 使自身獲得1層 [Protection]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "透斬",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "銳利一擊",
+          "desc": "若目標的 [Laceration] 強度不低於7級，則使本技能的硬幣威力+1\n[WinDuel] 下回合使自身獲得1層 [Protection]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "猛勁斬擊",
+          "desc": "若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1\n[StartBattle] 使自身獲得1層 [Protection]\n[WinDuel] 下回合使自身獲得1層 [Protection]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9011304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[StartBattle] 使自身獲得2層 [Protection]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "墨雲",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能造成的傷害+10%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "血振納刀",
+          "desc": "若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [SlashTakeDamageUp]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [SlashTakeDamageUp]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "雲渦撕裂",
+          "desc": "若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "銳刃",
+          "desc": "[StartBattle] 使包括自身在內的全體友方單位獲得2層 [SlashDamageUp]\n[StartBattle] 使自身獲得2層 [SlashResultUp]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬絕蒼空",
+          "desc": "[StartBattle] 若目標的 [Laceration] 強度不低於10級，則使本技能的攻擊容量+1\n[StartBattle] 若本回合自身使用的攻擊技能不低於5個，則使本技能的最終威力+5\n[WinDuel] 使全體友方單位恢復10點理智值\n若目標的 [Laceration] 強度不低於7級，則使本技能造成的傷害+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標的 [Laceration] 強度不低於7級，則使本硬幣造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加10回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9101306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "後巷規矩",
+          "desc": "[WhenUse] 除自身以外每有1名友方單位存活，使本技能額外增加1枚硬幣(最多3枚)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[EnemyKill] 使全體友方單位恢復20點理智值"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

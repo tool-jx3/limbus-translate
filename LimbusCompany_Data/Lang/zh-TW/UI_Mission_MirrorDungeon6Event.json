@@ -1,0 +1,200 @@
+{
+  "dataList": [
+    {
+      "id": "mission_ui_condition_tags_201001025",
+      "content": "通關第{1}或更高層鏡像迷宮時持有至少{0}件主題卡包限定合成E.G.O飾品"
+    },
+    {
+      "id": "mission_ui_condition_tags_201001026",
+      "content": "通關第{1}或更高層鏡像迷宮時持有至少{0}件5級或EX級E.G.O飾品"
+    },
+    {
+      "id": "mission_ui_condition_tags_201002004",
+      "content": "通關鏡像迷宮第{0}層{1}次"
+    },
+    {
+      "id": "mission_ui_condition_tags_201002005",
+      "content": "遊玩一次鏡像迷宮中，通關{0}個折射軌道相關主題卡包"
+    },
+    {
+      "id": "mission_ui_condition_tags_201002006",
+      "content": "遊玩一次鏡像迷宮中，通關{0}個與章節名稱相同的主線故事相關主題卡包"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003019",
+      "content": "通關第{2}或更高層鏡像迷宮時在編隊中編入至少{0}名屬於T公司的人格與至少{1}名屬於聖愚的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003020",
+      "content": "通關第{1}或更高層鏡像迷宮時在編隊中編入至少{0}名屬於R公司的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003021",
+      "content": "通關第{1}或更高層鏡像迷宮時在編隊中編入至少{0}名屬於Zwei協會的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003022",
+      "content": "通關第{1}或更高層鏡像迷宮時在編隊中編入至少{0}名屬於Cinq協會的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003023",
+      "content": "通關第{1}或更高層鏡像迷宮時在編隊中編入至少{0}名屬於玫瑰扳手工坊的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003024",
+      "content": "通關第{1}或更高層鏡像迷宮時在編隊中編入至少{0}名屬於黑獸的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003025",
+      "content": "擊殺「懼而迴避」主題卡包BOSS時在編隊中編入包括「準執柄者 辛克萊」在內至少{0}名屬於N公司狂信徒的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003026",
+      "content": "擊殺「無所改變」主題卡包BOSS時在編隊中編入包括「綻放E.G.O::山茶花 李箱」在內至少{0}名屬於技術解放聯盟的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003027",
+      "content": "擊殺「定義為惡」主題卡包BOSS時在編隊中編入包括「裴廓德號 船長 以實瑪利」在內至少{0}名屬於裴廓德號的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003028",
+      "content": "擊殺「不思觀望」主題卡包BOSS時在編隊中編入包括「鴻園君主 鴻璐」、「家主候選人 以實瑪利」與至少4名屬於黑獸人格在內的{0}名人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003029",
+      "content": "使用租借編隊通關第{0}層鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201004007",
+      "content": "於商店將一名友方單位的1技能和2技能全部替換為3技能，並通關第{0}或更高層鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201004008",
+      "content": "在一次鏡像迷宮進程中，至少使用商店合成功能{0}次，並通關第{1}或更高層鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201004009",
+      "content": "通關第{0}或更高層鏡像迷宮並離開商店時，擁有的經費為0"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005016_6",
+      "content": "使用單個技能對敵方單位造成不低於{0}點技能傷害（包括對護盾造成的傷害與技能命中時觸發的沉淪氾濫與時間延付造成的傷害，不包括關鍵字與其他來源造成的傷害）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005017_6",
+      "content": "在一次鏡像迷宮進程中，使所有人格等級不低於{0}，並通關第{1}或更高層鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005018_6",
+      "content": "在一場戰鬥的首個回合中，{0}名罪人剩餘的所有硬幣均暴擊命中主要目標"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005019_6",
+      "content": "在一場遭遇戰中拚點威力不低於{0}"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005020",
+      "content": "在第{0}或更高層鏡像迷宮的BOSS遭遇戰中，於{1}回合後觸發E.G.O飾品「強壓的重擔」的效果，並完成該遭遇戰。"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005021",
+      "content": "在一回合中裝備{0}種不同罪孽屬性的技能"
+    },
+    {
+      "id": "mission_ui_condition_tags_201005022",
+      "content": "在一場遭遇戰中，使一名罪人的速度值不低於{0}"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006001",
+      "content": "選擇至少1項「等級強化」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006002",
+      "content": "選擇至少1項「衰老」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006003",
+      "content": "選擇至少1項「火之烙印」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006004",
+      "content": "選擇至少1項「通貨膨脹」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006005",
+      "content": "選擇至少1項「自我干涉」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006006",
+      "content": "選擇至少1項「精神錯亂」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006007",
+      "content": "選擇至少1項「加速神經」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006008",
+      "content": "選擇至少1項「精神衰弱」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006009",
+      "content": "選擇至少1項「阻絕震顫」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006010",
+      "content": "選擇至少1項「生命力增幅」的制約並完成鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006011",
+      "content": "選擇至少1項「破壞力」的制約並完成鏡像迷宮。"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006012",
+      "content": "制約點數不低於{0}時通關鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201000001",
+      "content": "完成所有成就（不包含隱藏成就）"
+    },
+    {
+      "id": "ui_condition_clear_201100001_CLEAR",
+      "content": "通關隱藏節點 - 唐吉訶德"
+    },
+    {
+      "id": "ui_condition_clear_201100002_CLEAR",
+      "content": "通關隱藏節點 - 雷橫"
+    },
+    {
+      "id": "ui_condition_clear_201100003_CLEAR",
+      "content": "通關隱藏節點 - 里卡多"
+    },
+    {
+      "id": "ui_condition_clear_201100004_CLEAR",
+      "content": "通關隱藏節點 - 可米與維吉里烏斯"
+    },
+    {
+      "id": "mission_ui_condition_tags_201100005",
+      "content": "於E.G.O飾品列表中解鎖EX級飾品「富」"
+    },
+    {
+      "id": "mission_ui_condition_tags_201100006",
+      "content": "於E.G.O飾品列表中解鎖EX級飾品「某種哲學」"
+    },
+    {
+      "id": "ui_condition_clear_201100001_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100002_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100003_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100004_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    }
+  ]
+}

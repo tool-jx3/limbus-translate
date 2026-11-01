@@ -1,0 +1,28 @@
+{
+  "dataList": [
+    {
+      "id": "GetConfirmedObject",
+      "content": "<color=#ebcaa2>獲得器物{reward}！</color>"
+    },
+    {
+      "id": "GetConfirmedCoin",
+      "content": "<color=#ebcaa2>獲得器物{reward}{stack}個！</color>"
+    },
+    {
+      "id": "LoseConfirmedCoin",
+      "content": "<color=#ebcaa2>失去器物{reward}{stack}個！</color>"
+    },
+    {
+      "id": "DestroyObject",
+      "content": "<color=#ebcaa2>器物{reward}</color><color=#e30000>失效！</color>"
+    },
+    {
+      "id": "GetConfirmedObjectOnWinBattle",
+      "content": "<color=#ebcaa2>下場戰鬥勝利後，將獲得器物{reward}！</color>"
+    },
+    {
+      "id": "HiddenGiftUnlockHiddenRoute",
+      "content": "<color=#ebcaa2>地圖中追加了新的路線！</color>"
+    }
+  ]
+}

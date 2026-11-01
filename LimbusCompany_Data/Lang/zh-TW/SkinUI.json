@@ -1,0 +1,140 @@
+{
+  "dataList": [
+    {
+      "id": "title_skin",
+      "content": "外觀投影"
+    },
+    {
+      "id": "label_skin_equip_warning",
+      "content": "使用外觀投影時，可能會出現無法替換人格演出的情況。"
+    },
+    {
+      "id": "btn_title_skin_acquisition",
+      "content": "獲取方式"
+    },
+    {
+      "id": "desc_skin_acquisition_Gacksung",
+      "content": "獲得該人格並同步至第4階段後，便可透過「製作投影」獲取"
+    },
+    {
+      "id": "desc_skin_acquisition_Reward_40501",
+      "content": "映射戰鬥 - 作為經歷記憶限定獎勵獲取"
+    },
+    {
+      "id": "btn_title_open_UnitInformationPanel",
+      "content": "前往同步"
+    },
+    {
+      "id": "label_have_skin_craft_item_count",
+      "content": "持有數"
+    },
+    {
+      "id": "btn_title_deck_unequip_skin",
+      "content": "解除現在編隊\n全部外形投影"
+    },
+    {
+      "id": "label_can_craft",
+      "content": "可製作"
+    },
+    {
+      "id": "label_cannot_craft",
+      "content": "無法製作"
+    },
+    {
+      "id": "btn_title_craft_skin",
+      "content": "製作投影"
+    },
+    {
+      "id": "btn_title_equip_skin",
+      "content": "外觀投影"
+    },
+    {
+      "id": "label_equip_skin_main",
+      "content": "<正在投影>"
+    },
+    {
+      "id": "label_equip_skin_list",
+      "content": "投影中"
+    },
+    {
+      "id": "btn_title_can_not_equip_skin",
+      "content": "無法投影"
+    },
+    {
+      "id": "btn_title_unequip_skin",
+      "content": "解除外觀投影"
+    },
+    {
+      "id": "popup_title_craft_skin",
+      "content": "製作投影"
+    },
+    {
+      "id": "popup_title_exchange_craft_skin_item",
+      "content": "兌換"
+    },
+    {
+      "id": "popup_desc_exchange_craft_skin_item",
+      "content": "是否要兌換成{0}？"
+    },
+    {
+      "id": "popup_desc_exchange_craft_skin_item_count",
+      "content": "持有數"
+    },
+    {
+      "id": "btn_title_expected_skin",
+      "content": "無法投影"
+    },
+    {
+      "id": "popup_desc_exchange_skin_cost_item",
+      "content": "是否要兌換成{0}？"
+    },
+    {
+      "id": "modal_desc_craft_skin_caution",
+      "content": "部分人格可能會出現即使使用外觀投影，演出也無法完全對應的情況，或是無法進行外觀投影的情況\n\n是否製作該人格的投影用外觀？"
+    },
+    {
+      "id": "btn_exchange_popup_cancel_btn_text_select_character",
+      "content": "取消"
+    },
+    {
+      "id": "btn_exchange_popup_cancel_btn_text_exchange_controller",
+      "content": "選擇兌換道具"
+    },
+    {
+      "id": "exchange_confirm_popup_exchange_skin_currency",
+      "content": "是否要兌換{1}個{0}？"
+    },
+    {
+      "id": "exchange_confirm_popup_title",
+      "content": "確認兌換"
+    },
+    {
+      "id": "exchange_result_popup_title",
+      "content": "兌換完畢"
+    },
+    {
+      "id": "exchange_result_popup_desc",
+      "content": "成功製作{1}個{0}"
+    },
+    {
+      "id": "popup_desc_craft_skin_confirm",
+      "content": "要製作投影用外觀嗎？"
+    },
+    {
+      "id": "view_skin_status_button_label",
+      "content": "外觀投影"
+    },
+    {
+      "id": "craft_purchase_confirm_popup_title",
+      "content": "確認製作"
+    },
+    {
+      "id": "label_invalid_personality",
+      "content": "未獲得"
+    },
+    {
+      "id": "button_title_source_item_reset",
+      "content": "返還所選道具"
+    }
+  ]
+}

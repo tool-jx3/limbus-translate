@@ -1,0 +1,40 @@
+{
+  "dataList": [
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P1_T1",
+      "content": "瓦爾普吉斯之夜"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P1_D1",
+      "content": "活動期間，能夠進行瓦爾普吉斯之夜特定提取。"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P1_D2",
+      "content": "瓦爾普吉斯之夜特定提取中，本次瓦爾普吉斯之夜的人格及E.G.O的提取機率提升。"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P1_D3",
+      "content": "湧潮悲歌 以實瑪利僅能透過[善意的巡禮活動獎勵]獲得，無法透過提取、自動販賣機或[理想]兌換獲得。"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P1_D4",
+      "content": "※ E.G.O不會被重複提取。因此，已經獲得的E.G.O無法從卡池中提取，請注意。\n（已經獲得的E.G.O在[理想]兌換清單中會顯示為「已擁有」，因此無法進行兌換。）"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P2_D1",
+      "content": "瓦爾普吉斯之夜特定提取中，本次瓦爾普吉斯之夜的人格及E.G.O的提取機率提升。"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P2_D2",
+      "content": "但在此情況下提取機率不會提升。"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P3_D1",
+      "content": "活動時間結束後，瓦爾普吉斯之夜的人格及E.G.O將從提取中除去。"
+    },
+    {
+      "id": "TutoSpecialEvent_Pilgrimage_P3_D2",
+      "content": "活動期間，在全部提取（除去賽季相關提取）中也可以提取以往瓦爾普吉斯之夜的所有人格及E.G.O。\n\n但在此情況下其他人格及E.G.O的提取機率不會提升。"
+    }
+  ]
+}

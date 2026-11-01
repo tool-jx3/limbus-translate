@@ -1,0 +1,344 @@
+{
+  "dataList": [
+    {
+      "id": 962201,
+      "name": "損壞的手段",
+      "desc": "手臂部位被破壞時，每回合對手臂部位施加1層 [Reduction]"
+    },
+    {
+      "id": 962202,
+      "name": "施加折射的沉淪",
+      "desc": "When gaining [Sinking], gain 1 additional Potency and Count (does not apply on Cycle[TabExplain]-related buffs)"
+    },
+    {
+      "id": 962301,
+      "name": "過往重現",
+      "desc": "若 [AccumulatedPast] 層數不低於50層，且本體體力不高於80%，則在回合結束時消耗50層 [AccumulatedPast]，並恢復200點本體體力"
+    },
+    {
+      "id": 962302,
+      "name": "消逝的過去",
+      "desc": "軀幹部位被破壞時，消耗所有 [AccumulatedPast]\n軀幹部位被破壞時，使軀幹部位在本場戰鬥中觸發以下效果\n- 本回合起，使軀幹部位的罪孽抗性變為0.5\n- 下回合起，使軀幹部位的物理抗性變為0.5"
+    },
+    {
+      "id": 962303,
+      "name": "被破壞的排氣口",
+      "desc": "蒸氣槍部位被破壞時，消耗所有部位的所有 [Breath] 強度\n蒸氣槍部位被破壞後，自身每獲得 [Breath] 強度時，則對自身施加層數等量的 [Vulnerable]\n蒸氣槍部位被破壞後，每次使用攻擊技能都會使自身失去1級 [Breath] 強度"
+    },
+    {
+      "id": 962304,
+      "name": "折射的燒傷與流血",
+      "desc": "[Combustion] 和 [Laceration] 的強度最多累積30級\n[Combustion] 和 [Laceration] 的回數最多累積5回"
+    },
+    {
+      "id": 962305,
+      "name": "施加折射的沉淪",
+      "desc": "When gaining [Sinking], gain 1 additional Potency and Count (does not apply on Cycle[TabExplain]-related buffs)"
+    },
+    {
+      "id": 962306,
+      "name": "蒸氣洩漏",
+      "desc": "蒸氣槍部位受到攻擊時，使自身失去1級 [Breath] 強度與1回 [Breath]"
+    },
+    {
+      "id": 962307,
+      "name": "重疊的過去",
+      "desc": "每回合，每帶有80層 [AccumulatedPast]，使自身獲得1層 [Enhancement]\n若帶有的 [AccumulatedPast] 超過80層時，則額外獲得1個行動槽"
+    },
+    {
+      "id": 962308,
+      "name": "節拍器",
+      "desc": "If [AccumulatedPast] is an odd number, gain 3 [Vulnerable] and [AttackDmgUp]\nIf it is an even number, gain 3 [Protection] and [AttackDmgDown]"
+    },
+    {
+      "id": 962401,
+      "name": "損壞的傘",
+      "desc": "軀幹部位被破壞時，每回合對軀幹部位施加1層 [AttackDmgDown]"
+    },
+    {
+      "id": 962402,
+      "name": "磨損殆盡的傘",
+      "desc": "頭部部位被破壞時，每回合對自身施加1層 [AttackDmgDown]"
+    },
+    {
+      "id": 962403,
+      "name": "最後的掙扎",
+      "desc": "剩餘15%體力時，\n- 每回合對自身施加10層 [Binding] 與1層 [Reduction]\n- 新召喚的舊傘體力增加30%\n- 每回合使用「尋找某物的哭聲」或「哀求的哭聲」"
+    },
+    {
+      "id": 962404,
+      "name": "虛榮心",
+      "desc": "第一個回合開始時，獲得2層 [WaveFoxUmbrella] (最多6層)\n獲得 [WaveFoxUmbrella] 時，額外獲得與「巡迴數」等量的層數\n根據帶有的 [WaveFoxUmbrella] 層數，獲得相應層數的 [Protection]\n「等待」位於行動槽時，根據 [WaveFoxUmbrella] 層數，召喚相應數量的舊傘"
+    },
+    {
+      "id": 962405,
+      "name": "折射的破裂與沉淪",
+      "desc": "[Burst] 和 [Sinking] 的強度最多累積30級\n[Burst] 和 [Sinking] 的回數最多累積5回"
+    },
+    {
+      "id": 962406,
+      "name": "施加折射的流血",
+      "desc": "When gaining [Laceration], gain 1 additional Potency and Count (does not apply on Cycle[TabExplain]-related buffs)"
+    },
+    {
+      "id": 962501,
+      "name": "被捨棄的舊傘",
+      "desc": "若該單位在人格的技能結束時陣亡，則使該人格恢復10點理智值，下回合使該人格獲得2層 [Agility]\n\n該單位死亡時，對流浪狐狸的所有部位施加1層 [ShardOfUmbrella] 與2層 [Binding]"
+    },
+    {
+      "id": 961801,
+      "name": "黃金時間",
+      "desc": "回合結束時，若現存體力為6%～24%，則立即使自身恢復體力上限80%的本體體力與部位體力。解除自身混亂(每場戰鬥最多1次)"
+    },
+    {
+      "id": 961802,
+      "name": "時間逆向回溯",
+      "desc": "觸發黃金時間後，回合開始時對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 961803,
+      "name": "過度充能",
+      "desc": "回合結束時，若自身的 [Charge] 回數不低於5回，則下回合使自身獲得3層 [AttackDmgUp]"
+    },
+    {
+      "id": 961804,
+      "name": "折射的破裂與沉淪",
+      "desc": "[Burst] 和 [Sinking] 的強度最多累積30級\n[Burst] 和 [Sinking] 的回數最多累積5回"
+    },
+    {
+      "id": 961805,
+      "name": "施加折射的燒傷",
+      "desc": "When gaining [Combustion], gain 1 additional Potency and Count (does not apply on Cycle[TabExplain]-related buffs)"
+    },
+    {
+      "id": 962001,
+      "name": "魅惑",
+      "desc": "對速度值最低的敵方單位施加 [FairyCharm]\n根據巡迴數相應增加 [FairyCharm] 人數\n精靈部位再生時增加 [FairyCharm] 人數"
+    },
+    {
+      "id": 962002,
+      "name": "顯露的深淵",
+      "desc": "精靈部位被破壞後，露出軀幹\n軀幹再次隱藏時，移除所有增益與減益效果"
+    },
+    {
+      "id": 962003,
+      "name": "領先的誘餌",
+      "desc": "精靈部位受到攻擊也不會消耗本體的體力\n根據受到 [FairyCharm] 的數量相應增加行動槽"
+    },
+    {
+      "id": 962004,
+      "name": "損毀的根系",
+      "desc": "當軀幹部位遭到破壞時，\n- 使精靈的部位以體力上限60%的狀態再生\n- 本體受到技能效果恢復的體力+20點"
+    },
+    {
+      "id": 962005,
+      "name": "進化的誘餌",
+      "desc": "精靈的部位再生時，使其體力上限+30%"
+    },
+    {
+      "id": 962006,
+      "name": "折射的破裂與沉淪",
+      "desc": "[Burst] 和 [Sinking] 的強度最多累積30級\n[Burst] 和 [Sinking] 的回數最多累積5回"
+    },
+    {
+      "id": 962007,
+      "name": "精靈粉末",
+      "desc": "精靈的部位遭到破壞時，使全體人格於下回合獲得5級 [Breath] 強度與2回 [Breath]"
+    },
+    {
+      "id": 962101,
+      "name": "衰退的生命力",
+      "desc": "使用防禦技能後若消耗了所有護盾，下回合對所有部位施加3層 [AttackDown] 與3層 [Vulnerable]"
+    },
+    {
+      "id": 962102,
+      "name": "堅硬的甲殼",
+      "desc": "若頭部未被破壞，每回合使軀幹獲得3層 [Protection]"
+    },
+    {
+      "id": 962103,
+      "name": "自體發電",
+      "desc": "第一個回合開始時，使自身獲得3層 [SelfCharge]\n每當巡迴數增加時，使自身額外獲得1層 [SelfCharge] (最多8層)"
+    },
+    {
+      "id": 962104,
+      "name": "鮮活的神經",
+      "desc": "自身陣亡時，取消該回合所有技能\n上述效果發動時，使自身獲得10層 [SelfCharge]"
+    },
+    {
+      "id": 962105,
+      "name": "折射的流血與震顫",
+      "desc": "[Laceration] 和 [Vibration] 的強度最多累積30級\n[Laceration] 和 [Vibration] 的回數最多累積5回"
+    },
+    {
+      "id": 962106,
+      "name": "折射的充能",
+      "desc": "若目標帶有 [Charge]，則攻擊命中時使目標失去1回 [Charge] 並使自身獲得1層 [SelfCharge] (每回合最多3次；包含特殊充能，但當中不包含層數固定的特殊充能)"
+    },
+    {
+      "id": 960101,
+      "name": "深入記憶的強化肉體",
+      "desc": "左臂部位被破壞時，每回合對自身施加4層 [Reduction]"
+    },
+    {
+      "id": 960102,
+      "name": "誘人的精靈酒",
+      "desc": "回合開始時，若精靈酒存在於戰場上，則對所有部位施加5層 [Binding]"
+    },
+    {
+      "id": 960201,
+      "name": "精靈酒",
+      "desc": "若體力為0點，則下回合隨機對3名人格施加5層 [TipsinessRail]，且對其餘人格在下回合施加5層 [ParryingResultDown]\n\n回合結束時，若擊殺了精靈酒，則下回合使紳士精靈的本體體力恢復10%，並使其獲得2層 [Enhancement]、2層 [Agility] 與2層 [Protection]"
+    },
+    {
+      "id": 960301,
+      "name": "丟失的手段",
+      "desc": "左臂部位被破壞時，每回合對自身施加4層 [Reduction]"
+    },
+    {
+      "id": 960302,
+      "name": "受損的綠蔭",
+      "desc": "頭部部位被破壞時，每回合對自身施加5層 [DefenseDown]"
+    },
+    {
+      "id": 960401,
+      "name": "被汙染的葉子",
+      "desc": "使長腿精靈與紳士精靈獲得以下效果\n- 每回合開始時，獲得1層 [Enhancement]\n- 回合結束時，下回合獲得1層 [Enhancement] 與1層 [AttackDmgUp] (每經過1回合則額外增加1層本效果)"
+    },
+    {
+      "id": 960501,
+      "name": "次元逃遁",
+      "desc": "第2回合開始時，自身隨機召喚4個次元裂縫並躲入其中\n- 若所有部位都陷入混亂，則該效果於下回合發動\n- 自身藏匿於次元裂縫中時，不會陷入混亂"
+    },
+    {
+      "id": 960502,
+      "name": "被困的次元逃遁",
+      "desc": "若所有次元裂縫皆被破壞，下回合使自身脫離次元裂縫\n隨後，使自身失去5回 [Charge]，並使自身所有部位的混亂閾值前移30點"
+    },
+    {
+      "id": 960503,
+      "name": "修復次元折射刃",
+      "desc": "當刀刃部位遭到破壞，使自身失去5回 [Charge]\n下回合結束時，消耗自身2回 [Charge] 並使遭到破壞的刀刃部位恢復\n\n若刀刃部位處於被破壞的狀態，則每回合開始時，對自身施加2層 [AttackDown]"
+    },
+    {
+      "id": 960504,
+      "name": "嘗試強行突破次元 - 解除部分抑制力",
+      "desc": "At 60% or less Core HP, end turn and gain a new pattern\n- Deactivate \"Dimensional Escape\" Passive\n- Deactivate \"Trapped Dimensional Escape\" Passive\n- If neither of the arms is broken, use a powerful Skill every few turns"
+    },
+    {
+      "id": 960601,
+      "name": "血流成河的次元",
+      "desc": "若穿越血流成河的次元，使自身造成的傷害+10%"
+    },
+    {
+      "id": 960701,
+      "name": "劇毒沸騰的次元",
+      "desc": "若穿越劇毒沸騰的次元，使本體體力上限+20%"
+    },
+    {
+      "id": 960801,
+      "name": "震顫不止的次元",
+      "desc": "若穿越震顫不止的次元，使自身的最小與最大速度值+1"
+    },
+    {
+      "id": 960901,
+      "name": "電流湧動的次元",
+      "desc": "若穿越電流湧動的次元，使自身的硬幣威力+1"
+    },
+    {
+      "id": 961001,
+      "name": "永恆的枷鎖",
+      "desc": "體力上限+(巡迴數×5)%\n造成的傷害-(巡迴數×5)%"
+    },
+    {
+      "id": 961002,
+      "name": "損壞的告示牌",
+      "desc": "告示牌部位被破壞時，玫瑰的體力上限-20%"
+    },
+    {
+      "id": 961003,
+      "name": "四散的肉塊",
+      "desc": "肉部位被破壞時，使本體的體力上限-20%"
+    },
+    {
+      "id": 961004,
+      "name": "匯為一體的藤蔓",
+      "desc": "擊殺玫瑰時，使本體與肉部位失去30點體力。\n- 此後於本場戰鬥中，使自身對該罪孽屬性的抗性+0.1(可疊加)"
+    },
+    {
+      "id": 961007,
+      "name": "罪孽纏身的荊棘",
+      "desc": "每回合，所有部位根據帶有 [PrepareSinRose] 效果的罪人數量，每有1名，則使自身獲得1層 [Protection] 與4層 [DefenseUp]"
+    },
+    {
+      "id": 961005,
+      "name": "盛放的罪孽",
+      "desc": "若自身的 [BloomingRose] 為4層，則於本場戰鬥期間進入 [EnhanceRose]"
+    },
+    {
+      "id": 961006,
+      "name": "綻於藤蔓的玫瑰",
+      "desc": "玫瑰告示牌本體陣亡時，則自身陣亡"
+    },
+    {
+      "id": 961101,
+      "name": "憎惡",
+      "desc": "受到攻擊時，下回合使自身獲得1層 [AttackUp] 並對自身施加1層 [DefenseDown]"
+    },
+    {
+      "id": 961102,
+      "name": "餘火",
+      "desc": "陣亡時，對目標造成等同於自身受到的傷害的等值傷害，並使目標增加5級 [Combustion] 強度"
+    },
+    {
+      "id": 961104,
+      "name": "噴湧的暴怒",
+      "desc": "自身處於 [EnhanceRose] 時，透過技能效果增加的 [Combustion] 強度額外+1級\n陣亡時，若自身處於 [EnhanceRose]，則對全體友方單位施加4回 [Combustion]"
+    },
+    {
+      "id": 961203,
+      "name": "搖曳的色慾",
+      "desc": "自身處於 [EnhanceRose] 時，透過技能效果增加的 [Laceration] 強度額外+1級\n陣亡時，若自身處於 [EnhanceRose]，則對全體友方單位施加4回 [Laceration]"
+    },
+    {
+      "id": 961301,
+      "name": "無力",
+      "desc": "自身受到攻擊時，若下回合未陷入混亂，則使自身獲得5層 [Protection]"
+    },
+    {
+      "id": 961303,
+      "name": "粉碎的怠惰",
+      "desc": "自身處於 [EnhanceRose] 時，透過技能效果增加的 [Vibration] 強度額外+1級\n陣亡時，若自身處於 [EnhanceRose]，則對全體友方單位施加4回 [Vibration]"
+    },
+    {
+      "id": 961401,
+      "name": "飢餓",
+      "desc": "回合結束時，若本回合內未能造成傷害，則下回合對自身施加2層 [BurstVulnerable]"
+    },
+    {
+      "id": 961403,
+      "name": "滋生的暴食",
+      "desc": "自身處於 [EnhanceRose] 時，透過技能效果增加的 [Burst] 強度額外+1級\n陣亡時，若自身處於 [EnhanceRose]，則對全體友方單位施加4回 [Burst]"
+    },
+    {
+      "id": 961502,
+      "name": "自我破壞",
+      "desc": "自身受到攻擊時，下回合使自身的憂鬱抗性變為脆弱(1.5)並獲得5層 [Protection]"
+    },
+    {
+      "id": 961504,
+      "name": "搖曳的憂鬱",
+      "desc": "自身處於 [EnhanceRose] 時，透過技能效果增加的 [Sinking] 強度額外+1級\n陣亡時，若自身處於 [EnhanceRose]，則對全體友方單位施加4回 [Sinking]"
+    },
+    {
+      "id": 961604,
+      "name": "膨脹的傲慢",
+      "desc": "若自身處於 [EnhanceRose]，則回合開始時，自身透過技能效果獲得的 [Breath] 強度額外+1級\n若自身處於 [EnhanceRose]，則自身陣亡時，使全體敵方單位獲得4回 [Breath]"
+    },
+    {
+      "id": 961704,
+      "name": "刺眼的嫉妒",
+      "desc": "若自身處於 [EnhanceRose]，則回合開始時，自身透過技能效果獲得的 [Charge] 強度額外+1級\n若自身處於 [EnhanceRose]，則自身陣亡時，使全體敵方單位獲得4回 [Charge]"
+    }
+  ]
+}

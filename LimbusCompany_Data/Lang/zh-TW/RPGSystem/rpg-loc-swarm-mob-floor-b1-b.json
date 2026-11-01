@@ -1,0 +1,44 @@
+{
+  "dataList": [
+    {
+      "key": "swarm_baggar",
+      "displayName": "皮夾"
+    },
+    {
+      "key": "swarm_collecter_type_e",
+      "displayName": "眼之試吃員"
+    },
+    {
+      "key": "swarm_collecter_type_m",
+      "displayName": "口之試吃員"
+    },
+    {
+      "key": "swarm_collector_type_n",
+      "displayName": "鼻之試吃員"
+    },
+    {
+      "key": "swarm_denim_baggar",
+      "displayName": "丹寧皮夾"
+    },
+    {
+      "key": "swarm_horizontal_hide",
+      "displayName": "爬行的皮革"
+    },
+    {
+      "key": "swarm_resident",
+      "displayName": "口渴的卡其派"
+    },
+    {
+      "key": "swarm_resident_b",
+      "displayName": "挨餓的卡其派"
+    },
+    {
+      "key": "swarm_resident_b_fisher",
+      "displayName": "挨餓的卡其派"
+    },
+    {
+      "key": "swarm_resident_fisher",
+      "displayName": "口渴的卡其派"
+    }
+  ]
+}

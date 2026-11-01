@@ -1,0 +1,84 @@
+{
+  "dataList": [
+    {
+      "id": "cultivation_rewardShopButton",
+      "content": "獎勵兌換"
+    },
+    {
+      "id": "cultivation_missionbutton_normal",
+      "content": "成就"
+    },
+    {
+      "id": "cultivation_missionbutton_not_clear",
+      "content": "通關8.5-3"
+    },
+    {
+      "id": "cultivation_classbutton_normal",
+      "content": "養成"
+    },
+    {
+      "id": "cultivation_classbutton_not_clear",
+      "content": "進入8.5-4"
+    },
+    {
+      "id": "cultivation_stagebutton_normal",
+      "content": "關卡"
+    },
+    {
+      "id": "cultivation_stagebutton_not_clear",
+      "content": "通關8-33"
+    },
+    {
+      "id": "cultivation_stagebutton_end_event",
+      "content": "活動結束"
+    },
+    {
+      "id": "cultivation_bonus_preview",
+      "content": "活動加成角色"
+    },
+    {
+      "id": "cultivation_storybutton_before_start",
+      "content": "通關8.5-1"
+    },
+    {
+      "id": "cultivation_storybutton_normal",
+      "content": "跳轉至放映室"
+    },
+    {
+      "id": "cultivation_bonus_popup_title",
+      "content": "活動加成角色"
+    },
+    {
+      "id": "cultivation_bonusUI_Desc",
+      "content": "活動期間，編隊內存在下列人格<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>獲取量提升。\n獲取量提升合計最大值為<color=#ffa7a7>120%</color>。"
+    },
+    {
+      "id": "cultivation_scrap_guide_title",
+      "content": "活動道具介紹"
+    },
+    {
+      "id": "cultivation_rewardpage_desc",
+      "content": "通關活動關卡及迷宮後，將獲得<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>。\n在首次通關活動關卡以外的主線關卡及通關鏡像迷宮時，也可獲得<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>。\n\n在活動、主線關卡及鏡像迷宮中低機率可以獲得<color=#ffa7a7>[假裝不是秘笈的秘笈]</color>，獲得時，<color=#ffa7a7>[假裝不是秘笈的秘笈]</color>將會自動轉換為20個<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>。\n\n您可以在<color=#ffa7a7>獎勵兌換]</color>處根據所持有的<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>數量兌換多種獎勵。"
+    },
+    {
+      "id": "cultivation_reward_popup_desc",
+      "content": "通關活動關卡與迷宮、\n首次通關主線劇情關卡、以及通關鏡像迷宮時，\n可獲得<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>。\n\n可在<color=#ffa7a7>[獎勵兌換]</color>處中花費<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>，\n以獲得各種各樣的獎勵。"
+    },
+    {
+      "id": "cultivation_mission_reward_popup_desc",
+      "content": "完成授課後可以完成各種成就，\n並獲得<color=#ffa7a7>[智、勇、仁 基礎教學書]</color>。\n\n活動結束後將無法完成成就，僅能領取獎勵。"
+    },
+    {
+      "id": "ask_xichun_class_node_enter",
+      "content": "要移動至教室\n並重新上課嗎？"
+    },
+    {
+      "id": "not_playing_xichun_class_node",
+      "content": "課程尚未開始。"
+    },
+    {
+      "id": "not_playing_xichun_class_node_retry",
+      "content": "課程結束。\n若還想聽課，請重新進入關卡8.5-4。"
+    }
+  ]
+}

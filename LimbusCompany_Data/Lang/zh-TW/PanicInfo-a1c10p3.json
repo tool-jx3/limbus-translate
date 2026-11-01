@@ -1,0 +1,44 @@
+{
+  "dataList": [
+    {
+      "id": 1114,
+      "panicName": "慾求（le désir）",
+      "lowMoraleDescription": "攻擊等級+3、防禦等級+3",
+      "panicDescription": "攻擊等級+5、防禦等級+5",
+      "flavor": "I don't know any of these words. They just... came from somewhere.\nThey pop into my head on their own. They get stuck in there on their own. They're all just fancy-sounding words that came from outside. I don't really know what any of them mean.\n\n... But somehow, I get it..."
+    },
+    {
+      "id": 1116,
+      "panicName": "同步異常",
+      "lowMoraleDescription": "受到的傷害+12.5%\n最小與最大速度值-1\n消耗 [ChargeNoir] 的技能造成的傷害-15%",
+      "panicDescription": "受到的傷害+20%\n最小與最大速度值-2\n消耗 [ChargeNoir] 的技能造成的傷害-25%"
+    },
+    {
+      "id": 1117,
+      "panicName": "罪惡感",
+      "lowMoraleDescription": "最小與最大速度值-1\n若目標的速度值高於自身，則使自身受到的傷害+10%",
+      "panicDescription": "最小與最大速度值-2\n若目標的速度值高於自身，則使自身受到的傷害+15%",
+      "flavor": "\"You feel your sins crawling on your back.\""
+    },
+    {
+      "id": 1118,
+      "panicName": "漆黑之神-漆黑派的巨人-牧師-鎚派",
+      "lowMoraleDescription": "無法確認",
+      "panicDescription": "無法確認",
+      "flavor": "Time passes at a tremendous pace within the Sisyphe System, unhindered by material resistance. Yet through their respective viewpoints, the Giants can synchronize themselves with the System's internal flow of time and communicate with its customers.\n\nAmong them, the Giant who represents the Hammers holds authority over the System's internal memories and time, with the power to reset portions of its inventory at his own discretion."
+    },
+    {
+      "id": 1120,
+      "panicName": "向更外層的皮革！",
+      "lowMoraleDescription": "防禦等級-2、攻擊等級+2",
+      "panicDescription": "防禦等級+5、攻擊等級+3"
+    },
+    {
+      "id": 1122,
+      "panicName": "嘔吐（la nausée）",
+      "lowMoraleDescription": "造成的傷害-10%",
+      "panicDescription": "基礎威力-1、造成的傷害-10%",
+      "flavor": "Revulsion. Nausea before the world. The world simply exists. Nothing in it bears any inherent meaning; everything before our eyes is merely the product of chance.\n\nEverything is a contingency. Everything."
+    }
+  ]
+}

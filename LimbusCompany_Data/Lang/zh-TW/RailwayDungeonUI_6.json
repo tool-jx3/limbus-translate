@@ -1,0 +1,88 @@
+{
+  "dataList": [
+    {
+      "id": "railway_dungeon_enter_recommend_growth",
+      "content": "- 人格：同步 {1}階段，{0}級\n- E.G.O：異想解析 {2}階段"
+    },
+    {
+      "id": "railway_dungeon_enter_recommend_growth_level_max",
+      "content": "- 人格：同步 {1}階段，{0}級（最高等級上限：{3}）\n- EGO：異想解析 {2}階段"
+    },
+    {
+      "id": "railway_dungeon_6_reward_condition_warning",
+      "content": "※第7賽季 蛛絲線紅結束後領取獎勵時，適用於賽季變化的賽季相關道具<color=#990000>自我碎片箱與自我碎片自選箱獲得數量將減半</color>，請注意。\n（未被繼承的自我碎片箱與自我碎片自選箱將會被轉換為紡錘箱。）"
+    },
+    {
+      "id": "railway_dungeon_6_reward_condition_special_ticket",
+      "content": "第7賽季 蛛絲線紅期間內，以總計回合數111以下通關折射軌道6號線時獲得"
+    },
+    {
+      "id": "railway_dungeon_6_reward_condition_special_ticket_warning",
+      "content": "<color=#990000>※第7賽季 蛛絲線紅結束後便無法獲得。</color>"
+    },
+    {
+      "id": "railway_dungeon_6_banner_reward_condition_1",
+      "content": "通關折射軌道6號線時獲得"
+    },
+    {
+      "id": "railway_dungeon_6_banner_reward_condition_2",
+      "content": "<color=#990000>第7賽季 蛛絲線紅期間內，以總計回合數{0}以下</color>通關折射軌道6號線時獲得"
+    },
+    {
+      "id": "railway_6_warning_enter_node_1",
+      "content": "進入第5區段時，將會繼承通關第1區段後的體力百分比及理智。\n\n是否以選擇的編隊入場？"
+    },
+    {
+      "id": "railway_6_must_participate_all",
+      "content": "存在未編隊的人格。\n\n※在折射軌道6號線，必須將所有罪人編入隊伍才能進入戰鬥。"
+    },
+    {
+      "id": "railway_6_past",
+      "content": "過去"
+    },
+    {
+      "id": "railway_6_present",
+      "content": "現在"
+    },
+    {
+      "id": "railway_6_future",
+      "content": "未來"
+    },
+    {
+      "id": "railway_6_check_first_stage_unit_hp_mp",
+      "content": "罪人當前狀況"
+    },
+    {
+      "id": "railway_6_ui_battle_effect",
+      "content": "生效中的效果"
+    },
+    {
+      "id": "railway_6_ui_empty_battle_effect_desc",
+      "content": "沒有生效中的效果。"
+    },
+    {
+      "id": "railway_6_ui_passive_effect_title",
+      "content": "羅生蝶::蝶 被動技能"
+    },
+    {
+      "id": "railway_6_ui_empty_passive_effect_desc",
+      "content": "通關第2區段時顯示。"
+    },
+    {
+      "id": "railway_6_ui_empty_statistics_desc",
+      "content": "將在通關該區段時顯示。"
+    },
+    {
+      "id": "railway_6_ui_attack_resistance_buff_for_ui",
+      "content": "{0}抗性 +0.25，{1}抗性 +0.25"
+    },
+    {
+      "id": "railway_6_ui_attack_resistance_buff_for_ui_only_one",
+      "content": "{0}抗性 +0.25"
+    },
+    {
+      "id": "railway_6_ui__attack_resistance_buff_for_ui_empty",
+      "content": "無生效的效果"
+    }
+  ]
+}

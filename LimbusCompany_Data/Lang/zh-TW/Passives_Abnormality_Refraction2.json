@@ -1,0 +1,494 @@
+{
+  "dataList": [
+    {
+      "id": 853901,
+      "name": "損壞的傘",
+      "desc": "軀幹部位被破壞後，每回合對軀幹部位施加1層傷害弱化 "
+    },
+    {
+      "id": 853902,
+      "name": "磨損殆盡的傘",
+      "desc": "頭部部位被破壞時，每回合對自身施加1層傷害弱化 "
+    },
+    {
+      "id": 853903,
+      "name": "最後的掙扎",
+      "desc": "剩餘15%體力時，每回合對自身施加10層束縛 與1層虛弱 \n新召喚的舊傘體力增加30%。每回合使用技能「尋找某物的哭聲」"
+    },
+    {
+      "id": 853904,
+      "name": "虛榮心",
+      "desc": "Gain 2 <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u> at the start of Turn 1 (max 6)\nGain additional <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u> equal to the number of \"Cycle Counts\"\nGain <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</color></link></u> equal to <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u>\nIf \"Waiting Skill\" is slotted, summon Old Umbrella equal to <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u>"
+    },
+    {
+      "id": 853905,
+      "name": "折射的破裂與沉淪",
+      "desc": "<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>與<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>的強度只能累積到30級。\n<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>與<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 853906,
+      "name": "施加折射的流血",
+      "desc": "自身被施加<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度或回數時，額外施加1級流血 強度與1回流血 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 854001,
+      "name": "被捨棄的舊傘",
+      "desc": "自身被擊殺時，下回合使擊殺該單位的罪人獲得2層迅捷 ，\n並對流浪狐狸的所有部位施加2層束縛 ，\n且對流浪狐狸施加1層雨傘碎片 。"
+    },
+    {
+      "id": 854101,
+      "name": "衰退的生命力",
+      "desc": "使用防禦技能後若消耗了全部護盾，下回合對自身施加3層攻擊等級降低 與3層易損 。"
+    },
+    {
+      "id": 854102,
+      "name": "堅硬的甲殼",
+      "desc": "若頭部未被破壞\n每回合使軀幹獲得3層守護。"
+    },
+    {
+      "id": 854104,
+      "name": "折射的充能",
+      "desc": "攻擊命中時，若目標帶有充能 ，則使目標失去1回充能 並使自身獲得1層自體發電 。(每回合最多3次)"
+    },
+    {
+      "id": 854103,
+      "name": "折射的流血與震顫",
+      "desc": "<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的強度只能累積到30級。\n<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 854105,
+      "name": "自體發電",
+      "desc": "第一個回合開始時，使自身獲得3層自體發電 \n每當巡迴數增加時，使自身額外獲得1層自體發電 (最多8層)"
+    },
+    {
+      "id": 854201,
+      "name": "細胞分裂",
+      "desc": "手臂部位被破壞後，每回合對自身所有部位施加1層虛弱 。"
+    },
+    {
+      "id": 854202,
+      "name": "誘人的精靈酒",
+      "desc": "When Fairy Wine is on the field, all Parts gain 5 <sprite name=\"Binding\"><color=#e30000><u><link=\"Binding\">Bind</color></link></u>"
+    },
+    {
+      "id": 854203,
+      "name": "折射的流血與震顫",
+      "desc": "<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的強度只能累積到30級。\n<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 854204,
+      "name": "施加折射的破裂",
+      "desc": "自身被施加<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>強度或回數時，額外追加1級破裂 強度與1回破裂 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 854301,
+      "name": "精靈酒",
+      "desc": "被人格擊殺時，下回合對所有人格施加5層醉意 。\n未陣亡時，下回合使紳士精靈恢復體力上限10%的體力，並使其獲得2層強壯 ，2層迅捷 ，2層守護 。\n回合結束時移除。"
+    },
+    {
+      "id": 854401,
+      "name": "損壞的手段",
+      "desc": "手臂部位被破壞時，每回合對手臂部位施加1層虛弱 "
+    },
+    {
+      "id": 854402,
+      "name": "施加折射的沉淪",
+      "desc": "自身被施加<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>強度或回數時，額外追加1級沉淪 強度與1回沉淪 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 854501,
+      "name": "丟失的手段",
+      "desc": "手臂部位被破壞後，每回合對自身施加1層虛弱 "
+    },
+    {
+      "id": 854502,
+      "name": "受損的綠蔭",
+      "desc": "頭部被破壞後，每回合對自身施加2層防禦等級降低 "
+    },
+    {
+      "id": 854503,
+      "name": "折射的流血與震顫",
+      "desc": "<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的強度只能累積到30級。\n<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 854504,
+      "name": "施加折射的破裂",
+      "desc": "自身被施加<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>強度或回數時，額外追加1級破裂 強度與1回破裂 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 854601,
+      "name": "被汙染的葉子",
+      "desc": "每回合開始時，長腿精靈獲得3層體力恢復提升 與1層強壯 。\n若四葉草在場上存在4回合以上，則額外使長腿精靈獲得1層強壯 與2層傷害強化 。"
+    },
+    {
+      "id": 854701,
+      "name": "細胞分裂",
+      "desc": "手臂部位被破壞後，每回合對自身施加1層虛弱 。"
+    },
+    {
+      "id": 854702,
+      "name": "誘人的精靈酒",
+      "desc": "When Fairy Wine is on the field, all Parts gain 5 <sprite name=\"Binding\"><color=#e30000><u><link=\"Binding\">Bind</color></link></u>"
+    },
+    {
+      "id": 854703,
+      "name": "折射的流血與震顫",
+      "desc": "<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的強度只能累積到30級。\n<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>與<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 854704,
+      "name": "施加折射的破裂",
+      "desc": "自身被施加<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>強度或回數時，額外追加1級破裂 強度與1回破裂 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 854801,
+      "name": "精靈酒",
+      "desc": "被人格擊殺時，下回合對所有人格施加5層醉意 。\n未陣亡時，下回合使紳士精靈恢復體力上限10%的體力，並使其獲得2層強壯 ，2層迅捷 ，2層守護 。\n回合結束時移除。"
+    },
+    {
+      "id": 854901,
+      "name": "魅惑",
+      "desc": "對速度值最低的敵方單位施加魅惑 。\n根據巡迴數 相應增加魅惑 人數。\n精靈部位再生時增加魅惑 人數。"
+    },
+    {
+      "id": 854902,
+      "name": "顯露的深淵",
+      "desc": "精靈部位被破壞後，露出軀幹。\n軀幹再次隱藏時，移除所有增益與減益效果。"
+    },
+    {
+      "id": 854903,
+      "name": "領先的誘餌",
+      "desc": "Cannot damage Core by damaging the Fairy.\nTargets more slots based on the number of <sprite name=\"FairyCharm\"><color=#a16a3b><u><link=\"FairyCharm\">Charmed</color></link></u> units."
+    },
+    {
+      "id": 854904,
+      "name": "損毀的根系",
+      "desc": "若軀幹部位被破壞，精靈再生時會以60%的體力上限再生。\n若軀幹部位被破壞，本體透過技能效果恢復的體力+20"
+    },
+    {
+      "id": 854905,
+      "name": "進化的誘餌",
+      "desc": "精靈部位再生時，體力上限+20%。"
+    },
+    {
+      "id": 854906,
+      "name": "折射的破裂與沉淪",
+      "desc": "<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>與<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>的強度只能累積到30級。\n<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>與<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 854907,
+      "name": "精靈粉末",
+      "desc": "精靈被擊殺時，下回合使所有人格增加5級呼吸法 強度，並獲得2回呼吸法 "
+    },
+    {
+      "id": 855001,
+      "name": "次元逃遁",
+      "desc": "從第二回合開始每隔幾個回合便會躲進次元。\n所有部位陷入混亂時，下回合會躲進次元。\n躲在次元中時，無法陷入混亂。\n本體體力低於30%時，將不再會躲進次元。"
+    },
+    {
+      "id": 855002,
+      "name": "被困的次元逃遁",
+      "desc": "所有次元在被生成的回合內被破壞時，下回合會主動撕開次元並出場。\n隨後失去5回充能 ，並使所有部位的混亂閾值前移30。"
+    },
+    {
+      "id": 855003,
+      "name": "修復次元折射刃",
+      "desc": "當刀刃部位遭到破壞，使自身失去5回充能 \n下回合結束時，消耗自身2回充能 並使遭到破壞的刀刃部位恢復\n若刀刃部位處於被破壞的狀態，則每回合開始時，對自身施加2層攻擊等級降低 "
+    },
+    {
+      "id": 855004,
+      "name": "折射的燒傷與破裂",
+      "desc": "<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>與<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>的強度只能累積到30級。\n<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>與<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 855005,
+      "name": "施加折射的震顫",
+      "desc": "自身被施加<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>強度或回數時，額外追加1級震顫 強度與1回震顫 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 856001,
+      "name": "血流成河的次元",
+      "desc": "若穿越血流成河的次元，使自身造成的傷害+10%"
+    },
+    {
+      "id": 856101,
+      "name": "劇毒沸騰的次元",
+      "desc": "若穿越劇毒沸騰的次元，使本體體力上限+20%"
+    },
+    {
+      "id": 856201,
+      "name": "震顫不止的次元",
+      "desc": "若穿越震顫不止的次元，使自身的最小與最大速度值+1"
+    },
+    {
+      "id": 856301,
+      "name": "電流湧動的次元",
+      "desc": "若穿越電流湧動的次元，使自身的硬幣威力+1"
+    },
+    {
+      "id": 855101,
+      "name": "黃金時間",
+      "desc": "回合結束時，若現存體力為6%～24%，則立即使自身恢復體力上限80%的本體體力與部位體力。解除自身的混亂。(最多1次)"
+    },
+    {
+      "id": 855102,
+      "name": "時間逆向回溯",
+      "desc": "觸發黃金時間後，回合開始時對自身施加2層易損 "
+    },
+    {
+      "id": 855103,
+      "name": "過度充能",
+      "desc": "回合結束時，若自身的充能 回數不低於5回，則下回合使自身獲得3層傷害強化 "
+    },
+    {
+      "id": 855104,
+      "name": "折射的破裂與沉淪",
+      "desc": "<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>與<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>的強度只能累積到30級。\n<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>與<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>的回數只能累積到5回。"
+    },
+    {
+      "id": 855105,
+      "name": "施加折射的燒傷",
+      "desc": "自身被施加<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>強度或回數時，額外追加1級燒傷 強度與1回燒傷 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 855501,
+      "name": "過往重現",
+      "desc": "若<sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPastMirror\">累積的過去</color></link></u>層數不低於50層，且本體體力不高於80%，則在回合結束時消耗50層<sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPastMirror\">累積的過去</color></link></u>，並恢復200點本體體力。"
+    },
+    {
+      "id": 855502,
+      "name": "消逝的過去",
+      "desc": "軀幹部位被破壞後，消耗所有<sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPastMirror\">累積的過去</color></link></u>。\n軀幹部位被破壞後，下回合起使軀幹部位的所有罪孽抗性與物理抗性在本場戰鬥中全部變為「抵抗」(0.5)。"
+    },
+    {
+      "id": 855503,
+      "name": "被破壞的排氣口",
+      "desc": "When the Steam Blaster is broken, completely spend all parts' Poise.\nAfter the Steam Blaster is broken, gain <sprite name=\"Vulnerable\"><color=#f8c200><u><link=\"Vulnerable\">Fragile</color></link></u> equal to the number of <sprite name=\"Breath\"><color=#e30000><u><link=\"Breath\">Poise</color></link></u> every time this unit gains <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u>.\nAfter the Steam Blaster is broken, lose 1 Poise every time this unit uses an Attack Skill."
+    },
+    {
+      "id": 855504,
+      "name": "折射的燒傷與流血",
+      "desc": "<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>和<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度最多累積到30級。\n<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>和<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>回數最多累積到5回。"
+    },
+    {
+      "id": 855505,
+      "name": "施加折射的沉淪",
+      "desc": "自身被施加<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</color></link></u>強度或回數時，額外追加1級沉淪 強度與1回沉淪 。(不適用於巡迴[TabExplain]效果)"
+    },
+    {
+      "id": 855506,
+      "name": "蒸氣洩漏",
+      "desc": "蒸氣槍部位受到攻擊時，使自身失去1級<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度與1回呼吸法 "
+    },
+    {
+      "id": 855507,
+      "name": "重疊的過去",
+      "desc": "Gain 1 Attack Power Up for every 80 Accumulated Past every turn.\nAt 80+ <sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPast\">Accumulated Past</color></link></u>, gain +1 Slot."
+    },
+    {
+      "id": 855508,
+      "name": "節拍器",
+      "desc": "If the <sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPastMirror\">Accumulated Past</color></link></u> is an odd number, gain 3 [Vulnerable] and [AttackDmgUp]\nIf it is an even number, gain 3 [Protection] and [AttackDmgDown]"
+    },
+    {
+      "id": 855601,
+      "name": "永恆的枷鎖",
+      "desc": "體力上限+(巡迴數×5)%。\n造成的傷害-(巡迴數×5)%"
+    },
+    {
+      "id": 855602,
+      "name": "損壞的告示牌",
+      "desc": "告示牌部位被破壞時，玫瑰的體力上限減少"
+    },
+    {
+      "id": 855603,
+      "name": "四散的肉塊",
+      "desc": "肉部位被破壞時，減少本體的體力上限"
+    },
+    {
+      "id": 855604,
+      "name": "匯為一體的藤蔓",
+      "desc": "擊殺玫瑰時，使本體與肉部位失去30點體力。\n此後於本場戰鬥中，使自身對該罪孽屬性的抗性+0.1(可疊加)"
+    },
+    {
+      "id": 856401,
+      "name": "憎惡",
+      "desc": "每當受到攻擊時，下回合使自身獲得1層攻擊等級提升 與1層防禦等級降低 "
+    },
+    {
+      "id": 856402,
+      "name": "餘火",
+      "desc": "受到攻擊而陣亡時，對目標造成等同於自身受到的傷害的等值傷害，並使目標增加5級燒傷 強度"
+    },
+    {
+      "id": 856403,
+      "name": "盛放的罪孽",
+      "desc": "綻放的罪孽 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 856404,
+      "name": "噴湧的暴怒",
+      "desc": "處於強化狀態時透過技能效果增加的燒傷 強度額外+1級。\n陣亡時若處於強化狀態，則對全體友方單位施加4回燒傷 "
+    },
+    {
+      "id": 856405,
+      "name": "綻於藤蔓的玫瑰",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 856501,
+      "name": "單方面的慾望",
+      "desc": "拚點時最終威力-2，單方面攻擊時最終威力+2 "
+    },
+    {
+      "id": 856502,
+      "name": "盛放的罪孽",
+      "desc": "綻放的罪孽 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 856503,
+      "name": "搖曳的色慾",
+      "desc": "處於強化狀態時，透過技能效果增加的流血 強度額外+1級。\n陣亡時若處於強化狀態，則對全體友方單位施加4回流血 "
+    },
+    {
+      "id": 856504,
+      "name": "綻於藤蔓的玫瑰",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 856601,
+      "name": "無力",
+      "desc": "自身受到攻擊時，若下回合未陷入混亂，則使自身獲得5層守護 "
+    },
+    {
+      "id": 856602,
+      "name": "黃色玫瑰2",
+      "desc": "綻放 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 856603,
+      "name": "粉碎的怠惰",
+      "desc": "處於強化狀態時透過技能效果增加的震顫 強度額外+1級。\n陣亡時若處於強化狀態，則對全體友方單位施加4回震顫 "
+    },
+    {
+      "id": 856604,
+      "name": "黃色玫瑰4",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 856701,
+      "name": "飢餓",
+      "desc": "回合結束時，若本回合內未能造成傷害，則對自身施加2層破裂易損 "
+    },
+    {
+      "id": 856702,
+      "name": "綠色玫瑰2",
+      "desc": "綻放 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 856703,
+      "name": "滋生的暴食",
+      "desc": "處於強化狀態時透過技能效果增加的破裂 強度額外+1級。\n陣亡時若處於強化狀態，則對全體友方單位施加4回破裂 "
+    },
+    {
+      "id": 856704,
+      "name": "綠色玫瑰4",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 856801,
+      "name": "不安",
+      "desc": "拚點時最終威力+2，單方面攻擊時最終威力-2 "
+    },
+    {
+      "id": 856802,
+      "name": "自我破壞",
+      "desc": "自身受到攻擊時，下回合使自身的憂鬱抗性變為脆弱(1.5)並獲得5層守護 "
+    },
+    {
+      "id": 856803,
+      "name": "藍色玫瑰3",
+      "desc": "綻放 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 856804,
+      "name": "搖曳的憂鬱",
+      "desc": "處於強化狀態時透過技能效果增加的沉淪 強度額外+1級。\n陣亡時若處於強化狀態，則對全體友方單位施加4回沉淪 "
+    },
+    {
+      "id": 856805,
+      "name": "藍色玫瑰5",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 856901,
+      "name": "遷怒",
+      "desc": "每回合開始時，使友方單位增加1級呼吸法 強度並獲得1回呼吸法 "
+    },
+    {
+      "id": 856902,
+      "name": "優越感",
+      "desc": "本單位在場時，友方單位每帶有1級呼吸法 強度，使其暴擊時造成的傷害+5%"
+    },
+    {
+      "id": 856903,
+      "name": "靛色玫瑰3",
+      "desc": "綻放 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 856904,
+      "name": "膨脹的傲慢",
+      "desc": "回合開始時若處於強化狀態，透過技能效果增加的呼吸法 強度額外+1級。\n陣亡時若處於強化狀態，則使全體敵方單位獲得4回呼吸法 "
+    },
+    {
+      "id": 856905,
+      "name": "靛色玫瑰5",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 857001,
+      "name": "猜疑",
+      "desc": "每回合開始時，隨機使2名友方單位獲得1回充能 "
+    },
+    {
+      "id": 857002,
+      "name": "自卑感",
+      "desc": "本單位在場時，友方單位每帶有1回充能 ，使其造成的傷害+5%"
+    },
+    {
+      "id": 857003,
+      "name": "紫色玫瑰3",
+      "desc": "綻放 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 857004,
+      "name": "刺眼的嫉妒",
+      "desc": "回合開始時若處於強化狀態，透過技能效果獲得的充能 回數額外+1回。\n陣亡時若處於強化狀態，則使全體敵方單位獲得4回充能 "
+    },
+    {
+      "id": 857005,
+      "name": "紫色玫瑰5",
+      "desc": "擊殺玫瑰告示牌本體時陣亡"
+    },
+    {
+      "id": 855605,
+      "name": "盛放的罪孽",
+      "desc": "綻放的罪孽 層數為4時，在本場戰鬥中將變為強化狀態"
+    },
+    {
+      "id": 855606,
+      "name": "綻於藤蔓的玫瑰",
+      "desc": "玫瑰告示牌被鎮壓後死亡"
+    },
+    {
+      "id": 854403,
+      "name": "蔓延的火種",
+      "desc": "At the end of the turn, if this unit has <sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">Burn</color></link></u>, inflict the same amount of <sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">Burn</color></link></u> to all units with <sprite name=\"WrappedCurseTagRe\"><color=#a16a3b><u><link=\"WrappedCurseTagRe\">Entangled Curse Talisman</color></link></u> next turn"
+    },
+    {
+      "id": 855607,
+      "name": "罪孽纏身的荊棘",
+      "desc": "每回合，所有部位根據帶有冠冕 的罪人數量，獲得相應層數的守護 "
+    }
+  ]
+}

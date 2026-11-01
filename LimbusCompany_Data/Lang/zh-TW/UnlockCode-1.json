@@ -1,0 +1,230 @@
+{
+  "dataList": [
+    {
+      "id": 101,
+      "openCondition": "通關主線劇情第1章",
+      "relatedChapterText": "Canto I"
+    },
+    {
+      "id": 102,
+      "openCondition": "通關主線劇情第2章",
+      "relatedChapterText": "Canto II"
+    },
+    {
+      "id": 103,
+      "openCondition": "通關主線劇情第3章",
+      "relatedChapterText": "Canto III"
+    },
+    {
+      "id": 104,
+      "openCondition": "通關主線劇情第4章",
+      "relatedChapterText": "Canto IV"
+    },
+    {
+      "id": 105,
+      "openCondition": "通關主線劇情第5章",
+      "askLevelUp": "人格等級上限根據主線劇情進度解鎖，\n透過本張票券可達到的最高等級(Lv. {0})\n將在通過章節5後解鎖。",
+      "relatedChapterText": "Canto V"
+    },
+    {
+      "id": 106,
+      "openCondition": "通關主線劇情第6章",
+      "askLevelUp": "人格等級上限根據主線劇情進度解鎖，\n透過本張票券可達到的最高等級(Lv. {0})\n將在通過章節6後解鎖。",
+      "relatedChapterText": "Canto VI"
+    },
+    {
+      "id": 108,
+      "openCondition": "通關主線劇情第8章",
+      "askLevelUp": "人格等級上限根據主線劇情進度解鎖，\n透過本張票券可達到的最高等級(Lv. {0})\n將在通過章節8後解鎖。",
+      "openConditionNumber": "通關8-33",
+      "relatedChapterText": "Canto VIII"
+    },
+    {
+      "id": 9103,
+      "openCondition": "通關 地獄雞",
+      "relatedChapterText": "地獄雞"
+    },
+    {
+      "id": 9104,
+      "openCondition": "通關 去．海．邊",
+      "relatedChapterText": "去．海．邊"
+    },
+    {
+      "id": 9105,
+      "openCondition": "通關 20區的奇蹟",
+      "relatedChapterText": "20區的奇蹟"
+    },
+    {
+      "id": 9106,
+      "openCondition": "通關第2次 瓦爾普吉斯之夜",
+      "relatedChapterText": "第2次 瓦爾普吉斯之夜"
+    },
+    {
+      "id": 9107,
+      "openCondition": "通關 肉斬骨斷",
+      "relatedChapterText": "肉斬骨斷"
+    },
+    {
+      "id": 9108,
+      "openCondition": "通關第2次 時間殺人時間",
+      "relatedChapterText": "第3次 瓦爾普吉斯之夜"
+    },
+    {
+      "id": 9109,
+      "openCondition": "通關 時間殺人時間",
+      "relatedChapterText": "時間殺人時間"
+    },
+    {
+      "id": 107,
+      "openCondition": "通關 主線劇情第7章 ",
+      "relatedChapterText": "Canto VII"
+    },
+    {
+      "id": 9110,
+      "openCondition": "通關 WARP列車謀殺案",
+      "relatedChapterText": "WARP列車謀殺案"
+    },
+    {
+      "id": 9111,
+      "openCondition": "通關第4次 瓦爾普吉斯之夜",
+      "relatedChapterText": "第4次 瓦爾普吉斯之夜"
+    },
+    {
+      "id": 9113,
+      "openCondition": "通關第5次 瓦爾普吉斯之夜",
+      "relatedChapterText": "第5次 瓦爾普吉斯之夜"
+    },
+    {
+      "id": 9114,
+      "openCondition": "通關 LCB定期體檢",
+      "relatedChapterText": "LCB定期體檢"
+    },
+    {
+      "id": 9116,
+      "openCondition": "通關 深夜清掃",
+      "relatedChapterText": "深夜清掃"
+    },
+    {
+      "id": 9117,
+      "openCondition": "通關第6次 瓦爾普吉斯之夜",
+      "relatedChapterText": "第6次 瓦爾普吉斯之夜"
+    },
+    {
+      "id": 9119,
+      "openCondition": "通關 切磋琢春",
+      "relatedChapterText": "切磋琢春"
+    },
+    {
+      "id": 109,
+      "openCondition": "通關主線劇情第9章",
+      "relatedChapterText": "Canto IX"
+    },
+    {
+      "id": 9123,
+      "openCondition": "通關第8次 瓦爾普吉斯之夜",
+      "relatedChapterText": "第8次 瓦爾普吉斯之夜"
+    },
+    {
+      "id": 9125,
+      "openCondition": "通關 搓揉撚合",
+      "openConditionNumber": "通關9.5-14",
+      "relatedChapterText": "搓揉撚合"
+    },
+    {
+      "id": 912520,
+      "openCondition": "映射戰鬥][鬥戰射映 - 搓揉撚合 通關普通難度"
+    },
+    {
+      "id": 912521,
+      "openCondition": "映射戰鬥][鬥戰射映 - 搓揉撚合 通關困難難度"
+    },
+    {
+      "id": 9126,
+      "openCondition": "通關 深夜清掃 復刻 ",
+      "openConditionNumber": "通關7.5-26 困難難度",
+      "relatedChapterText": "深夜清掃 復刻"
+    },
+    {
+      "id": 912620,
+      "openCondition": "映射戰鬥][鬥戰射映 - 深夜清掃 通關普通難度"
+    },
+    {
+      "id": 912621,
+      "openCondition": "映射戰鬥][鬥戰射映 - 深夜清掃 通關困難難度"
+    },
+    {
+      "id": 9127,
+      "openCondition": "通關 經歷記憶",
+      "openConditionNumber": "通關9.5-26",
+      "relatedChapterText": "經歷記憶"
+    },
+    {
+      "id": 912720,
+      "openCondition": "映射戰鬥][鬥戰射映 - 經歷記憶 通關普通難度"
+    },
+    {
+      "id": 912721,
+      "openCondition": "映射戰鬥][鬥戰射映 - 經歷記憶 通關困難難度"
+    },
+    {
+      "id": 100001,
+      "openCondition": "通關折射軌道 1號線",
+      "relatedChapterText": "折射軌道 1號線"
+    },
+    {
+      "id": 100002,
+      "openCondition": "通關折射軌道 2號線",
+      "relatedChapterText": "折射軌道 2號線"
+    },
+    {
+      "id": 100003,
+      "openCondition": "通關折射軌道 3號線",
+      "relatedChapterText": "折射軌道 3號線"
+    },
+    {
+      "id": 100004,
+      "openCondition": "通關折射軌道 4號線",
+      "relatedChapterText": "折射軌道 4號線"
+    },
+    {
+      "id": 100005,
+      "openCondition": "通關折射軌道 5號線",
+      "relatedChapterText": "折射軌道 5號線"
+    },
+    {
+      "id": 100006,
+      "openCondition": "通關折射軌道 6號線",
+      "relatedChapterText": "折射軌道 6號線"
+    },
+    {
+      "id": 101001,
+      "openCondition": "通關折射軌道 1號線 復刻",
+      "relatedChapterText": "折射軌道 1號線 復刻"
+    },
+    {
+      "id": 101002,
+      "openCondition": "通關折射軌道2號線 復刻",
+      "relatedChapterText": "折射軌道2號線 復刻"
+    },
+    {
+      "id": 912722,
+      "openCondition": "映射戰鬥][鬥戰射映 - 插翅虎 通關普通難度"
+    },
+    {
+      "id": 912723,
+      "openCondition": "映射戰鬥][鬥戰射映 - 插翅虎 通關困難難度"
+    },
+    {
+      "id": 110,
+      "openCondition": "通關主線劇情第10章",
+      "openConditionNumber": "通關10-7",
+      "relatedChapterText": "Canto X"
+    },
+    {
+      "id": 9128,
+      "openCondition": "通關主線劇情第10章",
+      "openConditionNumber": "通關10-7",
+      "relatedChapterText": "Canto X"
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "dataList": [
+    {
+      "id": 9017801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "齒輪指引",
+          "desc": "[WhenUse] 使自身增加2級 [Smoke] 強度",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加1回 [Smoke]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "肉之齒輪：停止",
+          "desc": "[WhenUse] 使自身增加4級 [Smoke] 強度並對自身施加2回 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Smoke] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Smoke] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蒸氣噴發",
+          "desc": "目標每帶有3級 [Smoke] 強度，使本技能的拚點威力+1(最多+2)\n自身每帶有3級 [Smoke] 強度，使本技能造成的傷害+10%(最多+20%)\n[WhenUse] 若自身的 [Smoke] 強度不低於10級，則使本技能的硬幣威力+2\n[EndSkill] 消耗自身所有 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Smoke] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有3級 [Smoke] 強度，重複使用本硬幣1次(最多3次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避指示",
+          "desc": "[OnSucceedEvade] 使自身增加3級 [Smoke] 強度並對自身施加1回 [Smoke]\n[OnSucceedEvade] 若自身的 [Smoke] 強度不低於10級，則下回合使自身獲得1層 [ParryingResultUp] 與3層 [Protection] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "遵循齒輪",
+          "desc": "[WhenUse] 使自身增加2級 [Smoke] 強度",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加1回 [Smoke]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "肉之齒輪：緊勒",
+          "desc": "[WhenUse] 使自身增加4級 [Smoke] 強度並對自身施加2回 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Smoke]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Smoke]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "突襲指示",
+          "desc": "目標每帶有3級 [Smoke] 強度，使本技能的拚點威力+1(最多+2)\n自身每帶有3級 [Smoke] 強度，使本技能造成的傷害+10%(最多+20%)\n[WhenUse] 若自身的 [Smoke] 強度不低於10級，則使本技能的硬幣威力+2\n[EndSkill] 消耗自身所有 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2回 [Smoke]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有3級 [Smoke] 強度，重複使用本硬幣1次(最多3次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9017904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避指示",
+          "desc": "[OnSucceedEvade] 使自身增加3級 [Smoke] 強度並對自身施加1回 [Smoke]\n[OnSucceedEvade] 若自身的 [Smoke] 強度不低於10級，則下回合使自身獲得1層 [ParryingResultUp] 與3層 [Protection] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9018001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "肉之齒輪：命令",
+          "desc": "[WhenUse] 使自身增加3級 [Smoke] 強度並對自身施加2回 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Smoke] 強度與2回 [Smoke]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9018002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "思想齒輪：接受",
+          "desc": "[WhenUse] 使自身增加4級 [Smoke] 強度並對自身施加2回 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Smoke] 強度與2回 [Smoke]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9018003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "肉之齒輪：限制",
+          "desc": "目標每帶有3級 [Smoke] 強度，使本技能的硬幣威力+1\n自身每帶有3級 [Smoke] 強度，使本技能造成的傷害+10%\n本技能重複使用硬幣時，消耗自身的3級 [Smoke] 強度\n[WhenUse] 若自身的 [Smoke] 強度不低於10級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Smoke]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有5級 [Smoke] 強度，重複使用本硬幣1次(最多2次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9018004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "思想齒輪：解除",
+          "desc": "目標每帶有3級 [Smoke] 強度，使本技能的拚點威力+1\n自身每帶有3級 [Smoke] 強度，使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Smoke] 強度不低於10級，則使本技能的硬幣威力+2\n[EndSkill] 消耗自身所有 [Smoke]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Smoke] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2回 [Smoke]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有3級 [Smoke] 強度，重複使用本硬幣1次(最多3次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9018005,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "思想齒輪：蒸氣",
+          "desc": "[WhenUse] 使自身增加5級 [Smoke] 強度並對自身施加2回 [Smoke]\n[WhenUse] 若自身的 [Smoke] 強度不低於10級，則下回合使自身獲得2層 [PlusCoinValueUp] 與3層 [Protection] (每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    }
+  ]
+}

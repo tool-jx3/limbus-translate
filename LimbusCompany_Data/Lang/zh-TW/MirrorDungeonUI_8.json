@@ -1,0 +1,28 @@
+{
+  "dataList": [
+    {
+      "id": "mirror_dungeon_progress_text_8",
+      "content": "薛西弗斯之鏡第{0}層"
+    },
+    {
+      "id": "mirror_dungeon_start_buff_Panel_title_md8",
+      "content": "薛西弗斯的星之恩惠"
+    },
+    {
+      "id": "mirrordungeon_theme_hard_blocked_8",
+      "content": "通過第九章後開放。"
+    },
+    {
+      "id": "mirrordungeon_theme_hard_blocked_short_8",
+      "content": "通過第九章"
+    },
+    {
+      "id": "mirror_dungeon_detect_theme_pack_side_popup_locked_by_unlockcode_110",
+      "content": "該主題卡包將在以下條件達成後解鎖：通過9.5-26關卡及第十章。"
+    },
+    {
+      "id": "mirrordungeon_theme_pack_blocked_short_110",
+      "content": "通關9.5-26與第十章"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "dataList": [
+    {
+      "id": 9243,
+      "name": "實驗性提取物：紅艷煞",
+      "desc": "使增加 [Combustion] 強度、[Combustion] 回數或特殊燒傷的攻擊技能造成的傷害+10%\n- 若為對自身施加 [Combustion] 回數的技能，則額外使該技能的拚點威力+1\n- 每失去2%體力，則額外使技能造成的傷害+1%(最多+15%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9243,
+          "simpleDesc": "攻擊技能造成的傷害增加[TabExplain]，滿足條件時增加拚點威力[TabExplain]"
+        }
+      ]
+    },
+    {
+      "id": 9244,
+      "name": "實驗性提取物：提燈",
+      "desc": "使增加 [Burst] 強度、[Burst] 回數的攻擊技能造成的傷害+10%\n- 自身失去不低於體力上限20%的體力時，額外使技能的拚點威力+1\n- 自身所有行動槽的 [Aggro] 之和每有1點，則額外使攻擊技能造成的傷害+1%(最多+15%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9244,
+          "simpleDesc": "攻擊技能造成的傷害增加[TabExplain]，滿足條件時增加拚點威力[TabExplain]"
+        }
+      ]
+    },
+    {
+      "id": 9245,
+      "name": "改裝提取物：AEDD",
+      "desc": "當友方單位回合中獲得了超過最大值的 [Charge] 回數或者特殊充能時，則每超過2回，使該單位下回合獲得1層 [AttackUp] (每人格每回合最多2次)\n- 若該人格為帶有獲得或消耗 [Charge] 回數或者特殊充能的基礎技能時，則改為每回合最多6次\n- 若該單位帶有 [HighVoltageExoshell]，則額外獲得1級 [Charge] 強度 (每關卡最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9245,
+          "simpleDesc": "根據超出的 [Charge] 回數獲得 [AttackUp] 層數；滿足條件時獲得 [Charge] 強度"
+        }
+      ]
+    },
+    {
+      "id": 9246,
+      "name": "某人遺失的員工證",
+      "desc": "使邊獄公司所屬人格獲得以下效果：\n- 回合開始時，獲得(參戰且屬於邊獄公司人格數÷3)層 [ParryingResultUp] (最多2層，無條件捨去)\n\n若為屬於LCE人格，則適用以下效果\n- 使自身<noparse>造成的傷害</noparse>+(參戰且裝備了E.G.O裝備的人格數×10)%(最多+30%)\n- 當屬於同陣營的友方單位陣亡時，獲得所有屬性各1個罪孽碎片，並在而後的本場戰鬥期間，回合開始時，獲得1層 [PlusCoinValueUp] 與1層 [MinusCoinValueUp] (每場戰鬥每名人格最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9246,
+          "simpleDesc": "根據參戰且屬於邊獄公司人格數獲得 [ParryingResultUp]"
+        },
+        {
+          "abilityID": 92461,
+          "simpleDesc": "根據參戰且裝備了E.G.O裝備的人格數增加造成的傷害[TabExplain]"
+        },
+        {
+          "abilityID": 92462,
+          "simpleDesc": "屬於同陣營友方單位死亡時，獲得罪孽碎片，並在而後的本場戰鬥期間，回合開始時的下回合獲得 [PlusCoinValueUp] 與 [MinusCoinValueUp]"
+        }
+      ]
+    },
+    {
+      "id": 9248,
+      "name": "山茶花、眼鏡與寄到的信",
+      "desc": "[第1、第2、第3順位友方單位專屬]\n\n使用增加 [Burst] 強度或 [Burst] 回數的攻擊技能拚點勝利時，使目標增加5級 [Burst] 強度和3回 [Burst] (每名人格每回合最多1次)\n\n與速度值低於自身的敵方單位拚點時，使該技能的最終威力+1、造成的傷害+25%\n\n當與帶有 [AttackUp] 的敵方單位拚點勝利時，使自身獲得3層 [AttackUp] 並對該敵方單位施加3層 [AttackDown] (每名人格每回合最多3次)\n\n使用1技能、2技能以及3技能時，觸發以下效果(每種技能最多1次)\n- 使用該技能的人格在本場戰鬥期間，回合開始時獲得1層 [Agility] 和1層 [SkillPowerUp] (最多累計3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9248,
+          "simpleDesc": "拚點勝利時，使目標增加 [Burst] 強度"
+        },
+        {
+          "abilityID": 92481,
+          "simpleDesc": "與速度較低的敵人拚點時，增加拚點威力[TabExplain]並使造成的傷害增加[TabExplain]"
+        },
+        {
+          "abilityID": 92482,
+          "simpleDesc": "滿足條件時，使自身獲得 [AttackUp] 並對敵方單位施加 [AttackDown]"
+        },
+        {
+          "abilityID": 92483,
+          "simpleDesc": "滿足條件時，回合開始時獲得 [Agility] 與 [SkillPowerUp]"
+        }
+      ]
+    },
+    {
+      "id": 9249,
+      "name": "小而精緻的小提琴",
+      "desc": "[第5、第6順位友方單位專屬]\n\n技能造成傷害時，恢復等同於造成的傷害10%的體力(每個技能最多20點)\n\n拚點勝利時，獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每名人格每回合最多2次)\n\n使用技能時，獲得1層 [AttackUp] 與1層 [TakeHpHealIncrease] (每名人格每回合最多2次)\n\n打擊類型技能造成的傷害+10%\n\n技能拚點勝利時，使該技能造成的傷害+(拚點次數×6)%(最多+30%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9249,
+          "simpleDesc": "根據造成傷害使自身相應恢復體力值"
+        },
+        {
+          "abilityID": 92491,
+          "simpleDesc": "拚點勝利時，使自身獲得 [AttackUp] 與 [TakeHpHealIncrease]"
+        },
+        {
+          "abilityID": 92492,
+          "simpleDesc": "使用技能時，使自身獲得 [AttackUp] 與 [TakeHpHealIncrease]"
+        },
+        {
+          "abilityID": 92493,
+          "simpleDesc": "打擊技能造成的傷害增加[TabExplain]"
+        },
+        {
+          "abilityID": 92494,
+          "simpleDesc": "拚點勝利時造成的傷害增加[TabExplain]"
+        }
+      ]
+    }
+  ]
+}

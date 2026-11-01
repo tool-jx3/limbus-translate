@@ -1,0 +1,136 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_54_1",
+      "dlg": "紙條。同行。觀望。十三……應該就是這些人了。\n你們想必已經收到通知了，別在意我們。各自執行自己的指令，再代行就好了吧？"
+    },
+    {
+      "id": "announcer_cheer_54_2",
+      "dlg": "- M-Mister Rien, m-may I still go out on these outings with you occasionally... e-even after my big sis Yoshihide comes back?\n- Now seems too early a time to contemplate such questions. But... I don't see why not.\n- I-I'm happy to hear that, hehe."
+    },
+    {
+      "id": "announcer_specialcheer_54_1",
+      "dlg": "（嗶嗶聲）對、對不起……雖然我想幫忙，指、指令之意說是不、不可以。"
+    },
+    {
+      "id": "announcer_specialcheer_54_2",
+      "dlg": "嗯。看來還是準備回家比較好。\n不過似、似乎還留著一絲希、希望。"
+    },
+    {
+      "id": "announcer_enemy_break_54_1",
+      "dlg": "不可以對指令產生疑問。嗯。所以下次不要再猶豫，還是用盡全力刺下去比較好。"
+    },
+    {
+      "id": "announcer_ally_break_54_1",
+      "dlg": "因為各位都很親、親切……同伴陷入危險應、應該會幫忙吧？"
+    },
+    {
+      "id": "announcer_killenemy_54_1",
+      "dlg": "很、很遺憾，但這是必、必然的死亡。"
+    },
+    {
+      "id": "announcer_ally_dead_54_1",
+      "dlg": "這也是你的命運吧。看來這座都市沒有那麼需要你。"
+    },
+    {
+      "id": "announcer_enemy_adv_54_1",
+      "dlg": "別太怨恨世界。就算對不會改變的都市喊叫，想必也只會傳回回音而已。"
+    },
+    {
+      "id": "announcer_ally_adv_54_1",
+      "dlg": "有時也會有如此溫柔的命運到來呢。\n指令不是一直都、都很溫柔嗎？\n……索拉。並非所有人都能被神所愛。若有人獲得了愛，必然有人受到憎恨。"
+    },
+    {
+      "id": "announcer_ally_advex_54_1",
+      "dlg": "雖然是個難以理解的指令，看來你抓到線索了。\n不、不用太擔心也沒關係。因為命運早、早已注定。"
+    },
+    {
+      "id": "announcer_danger_54_1",
+      "dlg": "您、您的指令……看來距離期限已、已經沒有多少時間了。該、該怎麼辦呢？明明必、必須執行指令……\n嗯。在命運離你而去前，還是稍微加快腳步比較好呢。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_54_1",
+      "dlg": "（嗶嗶聲）【讓呼吸逆流而去，將尚未綻開的傷口輕柔摺疊，用比骨骼更古老的聲音打開門扉。】"
+    },
+    {
+      "id": "announcer_enemy_specialskill_54_2",
+      "dlg": "（嗶嗶聲）【彼方的呼吸。摺疊的傷口。遙遠的聲音。敞開的門。】請、請小心一點。"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_54_1",
+      "dlg": "若要建議的話……世上並非只分為叉子與湯匙兩種而已。有時將兩者合而為一就會成為正確答案。\n叉、叉匙嗎？\n沒錯。湯叉。"
+    },
+    {
+      "id": "announcer_advatk_physical_54_1",
+      "dlg": "從揮舞它的時候就能感覺到了吧。那把武器就是對你而言的中獎。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_54_1",
+      "dlg": "那種方式……看來不適合你呢。"
+    },
+    {
+      "id": "announcer_advatk_attr_54_1",
+      "dlg": "哇……我也很喜、喜歡那種說法！"
+    },
+    {
+      "id": "announcer_disadvatk_attr_54_1",
+      "dlg": "您、您真的這、這麼想嗎？我覺得最好再讀、讀一次比較好……"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_54_1",
+      "dlg": "……既然要求如此殘酷的試煉，看來是對你有所期待呢。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_54_1",
+      "dlg": "呼呼……露出了不錯的表情啊。稍微再觀察一下也沒關係吧？"
+    },
+    {
+      "id": "announcer_ally_specialbuff_54_1",
+      "dlg": "請、請別慌張。因為這同、同樣也是指令之意。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_54_1",
+      "dlg": "您並未妥、妥善執行指令呢。為什麼……為什麼會這樣呢……？"
+    },
+    {
+      "id": "announcer_enemy_destroy_54_1",
+      "dlg": "那個指令、那種做法……真有趣呢。"
+    },
+    {
+      "id": "announcer_enemy_destroy_54_2",
+      "dlg": "真、真厲害。【奪取盲者的雙眼】……那道指令是以、以這種方式解讀啊……！\n既然雙臂都被砍斷了，下一道指令的執行想必也是必然的。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_54_1",
+      "dlg": "哎呀……抽到落空了啊。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_54_2",
+      "dlg": "你知道未能保護到理應守護之物的人最後會剩下什麼嗎？\n我、我不太清楚。\n……只會殘留下軀殼喔。最終落得空空如也的下場。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_54_1",
+      "dlg": "別放在心上。為了活下去總會有人不得不受到傷害。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_54_2",
+      "dlg": "你們只不過是遵從都市的意志執行指令而已。因此沒必要懷抱羞恥感、罪惡感之類的沉重情感，不是嗎？\n我、我理解您遺憾的心情，但指令必、必須執行不可。"
+    },
+    {
+      "id": "announcer_multikillenemy_54_1",
+      "dlg": "哇啊……非、非常帥氣！\n看來離收到新布料的那天不遠了。"
+    },
+    {
+      "id": "announcer_battle_win_54_1",
+      "dlg": "（嗶嗶聲）代行完成。"
+    },
+    {
+      "id": "announcer_battle_defeat_54_1",
+      "dlg": "是啊，還是把結局留到最後比較好吧。"
+    },
+    {
+      "id": "announcer_equip_54_1",
+      "dlg": "輔助修行者們……這、這種指令要是和禮恩先生一起代、代行就好了……\n（嗶嗶聲）……準備完成就告訴我吧，看來我也必須同行了。\n禮、禮恩先生也收到了指令……！這次指、指令之意也和我的想法相同呢。嘿嘿。"
+    }
+  ]
+}

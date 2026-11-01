@@ -1,0 +1,1127 @@
+{
+  "dataList": [
+    {
+      "id": 2010611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "往昔",
+          "abName": "某日的肖像",
+          "desc": "[EndSkill] 隨機使目標增加共計6+(憂鬱共鳴數)級 [Sinking] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "往昔",
+          "abName": "某日的肖像",
+          "desc": "[EndSkill] 隨機使目標增加共計6+(憂鬱共鳴數)級 [Sinking] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "往昔",
+          "abName": "某日的肖像",
+          "desc": "[EndSkill] 隨機使目標增加共計6+(憂鬱共鳴數<style=\"highlight\">×1.5</style>)級 [Sinking] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "往昔",
+          "abName": "某日的肖像",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度，並在下回合對其施加2層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "往昔",
+          "abName": "某日的肖像",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若憂鬱共鳴數不低於3，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度，並在下回合對其施加2層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "往昔",
+          "abName": "某日的肖像",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若憂鬱共鳴數不低於3，則使本技能的攻擊容量+1\n[BeforeAttack] 若憂鬱共鳴數不低於5，則使本技能的攻擊容量額外+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度，並在下回合對其施加2層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對主要目標造成傷害。"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1層 [BoseProjektil]，使本硬幣造成的傷害+8%(最多+56%)"
+                },
+                {
+                  "desc": "[AllyKill] 使自身與隨機2名友方單位增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[AllyKillFail] 使自身增加1級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對次要目標造成傷害\n- 若本技能的第一枚硬幣未擊殺友方單位，則僅隨機對1名次要目標造成傷害"
+                },
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本硬幣暴擊時造成的傷害+2%(最多+14%)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil] <style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對主要目標造成傷害。<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1層 [BoseProjektil]，使本硬幣造成的傷害<style=\"highlight\">+10%(最多+70%)</style>"
+                },
+                {
+                  "desc": "[AllyKill] 使自身與隨機2名友方單位增加3級 [Breath] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[AllyKill] 獲得被擊殺友方單位的1技能對應的1個罪孽碎片</style>"
+                },
+                {
+                  "desc": "[AllyKillFail] 使自身增加<style=\"highlight\">3</style>級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對次要目標造成傷害\n- 若本技能的第一枚硬幣未擊殺友方單位，則僅隨機對1名次要目標造成傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本硬幣暴擊時造成的傷害<style=\"highlight\">+5%(最多+35%)</style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n<style=\"highlight\">- 若該共鳴為傲慢共鳴，則改為使自身獲得(最大共鳴數×2)層 [BoseProjektil] (最多7層)</style>\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對主要目標造成傷害。<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1層 [BoseProjektil]，使本硬幣造成的傷害<style=\"highlight\">+15%(最多+105%)</style>"
+                },
+                {
+                  "desc": "[AllyKill] 使自身與隨機2名友方單位增加3級 [Breath] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[AllyKill] 獲得被擊殺友方單位的1、2技能對應的罪孽碎片各1個</style>"
+                },
+                {
+                  "desc": "[AllyKillFail] 使自身增加<style=\"highlight\">3</style>級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對次要目標造成傷害\n- 若本技能的第一枚硬幣未擊殺友方單位，則僅隨機對1名次要目標造成傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本硬幣暴擊時造成的傷害<style=\"highlight\">+9%(最多+63%)</style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[CantIdentify]\n指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使本技能造成的傷害+2%(最多+14%)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil] ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對主要目標造成傷害。"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1層 [BoseProjektil]，使本硬幣造成的傷害+10%(最多+70%)"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1級 [Breath] 強度，使本硬幣造成的傷害+2%(最多+50%)"
+                },
+                {
+                  "desc": "[AllyKill] 使自身與隨機3名友方單位增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[AllyKill] 自身每帶有1層 [BoseProjektil]，使本技能下一枚硬幣造成的傷害+2%(最多+14%)"
+                },
+                {
+                  "desc": "[AllyKill] 獲得被擊殺友方單位的1、2技能對應的罪孽碎片各1個"
+                },
+                {
+                  "desc": "[AllyKillFail] 使自身增加1級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對次要目標造成傷害\n- 若本技能的第一枚硬幣未擊殺友方單位，則僅隨機對1名次要目標造成傷害"
+                },
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本硬幣暴擊時造成的傷害+2%(最多+14%)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[CantIdentify]\n指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使本技能造成的傷害<style=\"highlight\">+3%(最多+21%)</style>\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對主要目標造成傷害。<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1層 [BoseProjektil]，使本硬幣造成的傷害<style=\"highlight\">+12%(最多+84%)</style>"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1級 [Breath] 強度，使本硬幣造成的傷害+2%(最多+50%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[AllyKill] 使自身與隨機3名友方單位增加<style=\"highlight\">3</style>級 [Breath] 強度"
+                },
+                {
+                  "desc": "[AllyKill] 自身每帶有1層 [BoseProjektil]，使本技能下一枚硬幣造成的傷害<style=\"highlight\">+5%(最多+35%)</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[AllyKill] 獲得被擊殺友方單位的1、2、3技能對應的罪孽碎片各1個</style>"
+                },
+                {
+                  "desc": "[AllyKillFail] 使自身增加<style=\"highlight\">2</style>級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對次要目標造成傷害\n- 若本技能的第一枚硬幣未擊殺友方單位，則僅隨機對1名次要目標造成傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "自身每帶有1層 [BoseProjektil]，使本技能暴擊時造成的傷害<style=\"highlight\">+3%(最多+21%)</style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加<style=\"highlight\">4</style>級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "凶彈",
+          "abName": "凶彈射手",
+          "desc": "[CantIdentify]\n指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n<style=\"highlight\">- 若該共鳴為傲慢共鳴，則改為使自身獲得(最大共鳴數×2)層 [BoseProjektil] (最多7層)</style>\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使本技能造成的傷害<style=\"highlight\">+4%(最多+28%)</style>\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對主要目標造成傷害。<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1層 [BoseProjektil]，使本硬幣造成的傷害+15%(最多+105%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "若主要目標為友方單位，則自身每帶有1級 [Breath] 強度，使本硬幣造成的傷害+2%(最多+50%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">使本硬幣暴擊時造成的傷害+30%</style>"
+                },
+                {
+                  "desc": "[AllyKill] 使自身與隨機3名友方單位增加<style=\"highlight\">4</style>級 [Breath] 強度"
+                },
+                {
+                  "desc": "[AllyKill] 自身每帶有1層 [BoseProjektil]，使本技能下一枚硬幣造成的傷害<style=\"highlight\">+7%(最多+49%)</style>"
+                },
+                {
+                  "desc": "[AllyKill] 獲得被擊殺友方單位的1、2、3技能對應的罪孽碎片各1個<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[AllyKillFail] 使自身增加<style=\"highlight\">3</style>級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "本硬幣僅對次要目標造成傷害\n- 若本技能的第一枚硬幣未擊殺友方單位，則僅隨機對1名次要目標造成傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">自身每帶有1層 [BoseProjektil]，使本技能暴擊時造成的傷害+4%(最多+28%)</style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加<style=\"highlight\">5</style>級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "三千大世界",
+          "abName": "羅生蝶",
+          "desc": "[BeforeAttack] 使自身獲得(最大共鳴數)級的 [Breath] 強度 (最多7級)\n- 若此共鳴為完全共鳴，則額外獲得(最大共鳴數÷3)回的 [Breath] (最多2回；無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 本回合與下回合中，對目標施加1層 [ThreeMirrorpartYiSang]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(目標帶有的 [Sinking] 強度÷3)級的 [Combustion] 強度 (最多5級；無條件捨去)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Combustion] 效果1次；隨後使目標帶有的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "三千大世界",
+          "abName": "羅生蝶",
+          "desc": "<style=\"highlight\">[BeforeAttack] 若主要目標帶有的 [Combustion] 強度與 [Sinking] 強度之和不低於15級，則使本技能的硬幣威力+1</style>\n[BeforeAttack] 使自身獲得(最大共鳴數)級的 [Breath] 強度 (最多7級)\n- 若此共鳴為完全共鳴，則額外獲得(最大共鳴數÷3)回的 [Breath] (最多2回；無條件捨去)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 本回合與下回合中，對目標施加1層 [ThreeMirrorpartYiSang]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(目標帶有的 [Sinking] 強度÷3)級的 [Combustion] 強度 (最多5級；無條件捨去)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Combustion] 效果1次；隨後使目標帶有的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "三千大世界",
+          "abName": "羅生蝶",
+          "desc": "[BeforeAttack] 主要目標帶有的 [Combustion] 強度與 [Sinking] 強度之和不低於<style=\"highlight\">10</style>級，則使本技能的硬幣威力+1\n[BeforeAttack] 使自身獲得(最大共鳴數)級的 [Breath] 強度 (最多7級)\n- 若此共鳴為完全共鳴，則額外獲得(最大共鳴數÷3)回的 [Breath] (最多2回；無條件捨去) ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 本回合與下回合中，對目標施加1層 [ThreeMirrorpartYiSang]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(目標帶有的 [Sinking] 強度÷3)級的 [Combustion] 強度 (最多5級；無條件捨去)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Combustion] 效果1次；隨後使目標帶有的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "三千大世界",
+          "abName": "羅生蝶",
+          "desc": "[CantIdentify]\n隨機指定目標\n本技能的硬幣命中時，對自身施加5級 [Combustion] 強度並使本技能最後一枚硬幣使用時的最終威力+1(最多+3，每枚硬幣最多1次)\n[BeforeAttack] 使自身獲得(最大共鳴數)級 [Breath] 強度(最多7級)\n- 若此共鳴為完全共鳴，則額外使自身獲得(最大共鳴數÷3)回 [Breath] (最多2回，無條件捨去)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-1(最多-4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [ThreeMirrorpartYiSang]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 所有目標帶有的 [Combustion] 強度與 [Sinking] 強度之和每有10級，使本硬幣造成的傷害+10%(最多+40%)",
+                  "summary": "[OnStartCoin] 根據所有目標帶有的 [Combustion] 與 [Sinking] 總強度使<noparse>傷害增加</noparse>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Combustion] 效果1次；隨後使目標帶有的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "三千大世界",
+          "abName": "羅生蝶",
+          "desc": "[CantIdentify]\n隨機指定目標\n本技能的硬幣命中時，對自身施加<style=\"highlight\">4</style>級 [Combustion] 強度並使本技能最後一枚硬幣使用時的最終威力+1(最多+3，每枚硬幣最多1次)\n[BeforeAttack] 使自身獲得(最大共鳴數)級 [Breath] 強度(最多7級)\n- 若此共鳴為完全共鳴，則額外使自身獲得(最大共鳴數÷3)回 [Breath] (最多2回，無條件捨去)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-1(最多-4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [ThreeMirrorpartYiSang]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 所有目標帶有的 [Combustion] 強度與 [Sinking] 強度之和每有10級，使本硬幣造成的傷害+10%(最多<style=\"highlight\">+50%</style>)",
+                  "summary": "[OnStartCoin] 根據所有目標帶有的 [Combustion] 與 [Sinking] 總強度使<noparse>傷害增加</noparse>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Combustion] 效果1次；隨後使目標帶有的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "三千大世界",
+          "abName": "羅生蝶",
+          "desc": "[CantIdentify]\n隨機指定目標\n本技能的硬幣命中時，對自身施加<style=\"highlight\">3</style>級 [Combustion] 強度並使本技能最後一枚硬幣使用時的最終威力+1(最多+3，每枚硬幣最多1次)\n[BeforeAttack] 使自身獲得(最大共鳴數)級 [Breath] 強度(最多7級)\n- 若此共鳴為完全共鳴，則額外使自身獲得(最大共鳴數÷3)回 [Breath] (最多2回，無條件捨去)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-1(最多-4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [ThreeMirrorpartYiSang]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">4</style>級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 所有目標帶有的 [Combustion] 強度與 [Sinking] 強度之和每有10級，使本硬幣造成的傷害+10%(最多<style=\"highlight\">+60%</style>)",
+                  "summary": "[OnStartCoin] 根據所有目標帶有的 [Combustion] 與 [Sinking] 總強度使<noparse>傷害增加</noparse>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Combustion] 效果1次；隨後使目標帶有的 [Combustion] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "莊嚴哀悼",
+          "abName": "亡蝶葬儀",
+          "desc": "[WideAreaRampage]\nWhen inflicting [SinkingWhite] using this Skill's effects: (Chance to flip Heads)% chance to inflict The Departed. If this unit did not inflict The Departed, inflict The Living instead. (calculates every [SinkingWhite] Stack independently)\n\nIf Lobotomy E.G.O::Solemn Lament Yi Sang used this Skill:\n- [BeforeAttack] Gain a random assortment of (Gloom Reson. + 1) [BulletLament] (max 7)\n- [EndSkill] [ReloadLament]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加1點 [SinkingWhite]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加2點 [SinkingWhite]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加2點 [SinkingWhite]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加3點 [SinkingWhite]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "消耗自身所有 [BulletLament]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [SinkingWhite] (生蝶)強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [SinkingWhite] (亡蝶)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "莊嚴哀悼",
+          "abName": "亡蝶葬儀",
+          "desc": "[WideAreaRampage]\nWhen inflicting [SinkingWhite] using this Skill's effects: (Chance to flip Heads)% chance to inflict The Departed. If this unit did not inflict The Departed, inflict The Living instead. (calculates every [SinkingWhite] Stack independently)\n\nIf Lobotomy E.G.O::Solemn Lament Yi Sang used this Skill:\n- [BeforeAttack] Gain a random assortment of (Gloom Reson. + 1) [BulletLament] (max 7)\n- [EndSkill] [ReloadLament]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加1點 [SinkingWhite]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加2點 [SinkingWhite]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加2點 [SinkingWhite]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加3點 [SinkingWhite]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "消耗自身所有 [BulletLament]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [SinkingWhite] (生蝶)強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [SinkingWhite] (亡蝶)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標造成等同於其所有 [SinkingWhite] 點數的憂鬱傷害</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標造成本硬幣最終傷害量(本硬幣消耗的 [BulletLament] 點數×2)%的憂鬱傷害</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "莊嚴哀悼",
+          "abName": "亡蝶葬儀",
+          "desc": "[WideAreaRampage]\nWhen inflicting [SinkingWhite] using this Skill's effects: (Chance to flip Heads)% chance to inflict The Departed. If this unit did not inflict The Departed, inflict The Living instead. (calculates every [SinkingWhite] Stack independently)\n<style=\"highlight\">Clash Power +1 for every 4 ([Sinking] + both [SinkingWhite]) on the main target (max 4)</style>\n\nIf Lobotomy E.G.O::Solemn Lament Yi Sang used this Skill:\n- [BeforeAttack] Gain a random assortment of (Gloom Reson. + 1) [BulletLament] (max 7)\n- [EndSkill] [ReloadLament]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加1點 [SinkingWhite]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標增加1回 [Sinking]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加2點 [SinkingWhite]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標增加1回 [Sinking]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加2點 [SinkingWhite]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標增加1回 [Sinking]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機對目標施加3點 [SinkingWhite]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標增加1回 [Sinking]</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 本回合與下回合中對目標施加1層 [AzureTakeDamageUp] 與1層 [AzureResistDown]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "消耗自身所有 [BulletLament]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [SinkingWhite] (生蝶)強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [SinkingWhite] (亡蝶)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成等同於其所有 [SinkingWhite] 點數的憂鬱傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(本硬幣消耗的 [BulletLament] 點數×2)%的憂鬱傷害<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2010921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "莊嚴哀悼",
+          "abName": "亡蝶葬儀",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能攻擊容量增加(最大共鳴數÷2)(最多2，無條件捨去)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-2(最多-6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [SinkingWhite] (生蝶)強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [SinkingWhite] (亡蝶)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "莊嚴哀悼",
+          "abName": "亡蝶葬儀",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能攻擊容量增加(最大共鳴數÷2)(最多2，無條件捨去)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-2(最多-6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [SinkingWhite] (生蝶)強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [SinkingWhite] (亡蝶)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標造成等同於其所有 [SinkingWhite] 點數的憂鬱傷害</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "莊嚴哀悼",
+          "abName": "亡蝶葬儀",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">主要目標的 [Sinking] 強度與兩種 [SinkingWhite] 的點數之和每有4點，使本技能的拚點威力+1(最多+4)</style>\n[BeforeAttack] 使本技能攻擊容量增加(最大共鳴數÷2)(最多2，無條件捨去)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-2(最多-6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [SinkingWhite] (生蝶)強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [SinkingWhite] (亡蝶)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 本回合與下回合中對目標施加1層 [AzureTakeDamageUp] 與1層 [AzureResistDown]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成等同於其所有 [SinkingWhite] 點數的憂鬱傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標造成等同於其 [Sinking] 強度的憂鬱傷害</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

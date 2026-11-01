@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_56_1",
+      "dlg": "明明每天都看得到卻還是不習慣。一如既往。"
+    },
+    {
+      "id": "announcer_cheer_56_2",
+      "dlg": "我說啊……我喜歡看見周而復始的景色裡出現些微變化。即使一日的終點終究不會有所改變，但是自記憶中浮現某種久遠的感覺……我很喜歡。"
+    },
+    {
+      "id": "announcer_specialcheer_56_1",
+      "dlg": "不久後你就會想念我了，小甜心。"
+    },
+    {
+      "id": "announcer_specialcheer_56_2",
+      "dlg": "若繼續被那樣釘牢的話，或許會讓擁有的一切意義枯竭殆盡。"
+    },
+    {
+      "id": "announcer_enemy_break_56_1",
+      "dlg": "顧客很快就會蜂擁而來。為了釋放各自的慾望……釘牢……然後買賣。"
+    },
+    {
+      "id": "announcer_ally_break_56_1",
+      "dlg": "我說啊。每當我感到暈眩時就會放音樂來聽。閉上眼睛安靜聆聽，不知不覺心情就會舒緩不少。"
+    },
+    {
+      "id": "announcer_killenemy_56_1",
+      "dlg": "結果又跌落谷底了呢。"
+    },
+    {
+      "id": "announcer_ally_dead_56_1",
+      "dlg": "別皺著一張臉了，小甜心。讓人看見的話還以為有人死了呢。\n反正……發生於陰影界的事情不過就是一場短暫的小騷動而已，不是嗎？"
+    },
+    {
+      "id": "announcer_enemy_adv_56_1",
+      "dlg": "這種狀況需要理由嗎？只是……變成這樣了而已。這背後並沒有什麼特別的因果關係，真的是偶然……落入這種處境罷了。"
+    },
+    {
+      "id": "announcer_ally_adv_56_1",
+      "dlg": "如果無數個偶然重疊，讓你來到了外面的世界……啊，要不要乾脆結婚呢？如此一來，擺在戀人兩個字前的難聽詞語就不必特別拿下來了。"
+    },
+    {
+      "id": "announcer_ally_advex_56_1",
+      "dlg": "重新再來一次不是比較輕鬆嗎？總比辛苦掙扎，要來得更好吧。"
+    },
+    {
+      "id": "announcer_danger_56_1",
+      "dlg": "我想或許曾經見過，誰都絕對無法看見，卻還是會突然產生自己曾經看過的某種感覺。你知道人們如何稱呼那種偶然不可逆的感覺嗎？\n人們稱之為「沒時間」喔。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_56_1",
+      "dlg": "拚命掙扎，還真努力呢。究竟是想表達什麼呢？警告……危機……或者是不滿呢？"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_56_1",
+      "dlg": "為什麼必須這麼做呢？拋棄那種無謂的疑問。\n因為認定萬事理應存在理由的期盼會讓你失望。"
+    },
+    {
+      "id": "announcer_advatk_physical_56_1",
+      "dlg": "那是彷彿被釘固般老套的攻擊呢。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_56_1",
+      "dlg": "呼呼。這段時間裡似乎變得更有幽默感了呢？我會好好記住剛才那個動作喔，小甜心。"
+    },
+    {
+      "id": "announcer_advatk_attr_56_1",
+      "dlg": "真有效率。很符合你的作風。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_56_1",
+      "dlg": "這個……或許還挺有趣的呢？"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_56_1",
+      "dlg": "今天的陽光格外舒適呢。對你而言，或許有點炎熱吧？"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_56_1",
+      "dlg": "即使是那些長久被牢牢釘住的顧客，也未必熟悉百貨公司的一切。就連他們有時也會感到陌生喔"
+    },
+    {
+      "id": "announcer_ally_specialbuff_56_1",
+      "dlg": "毫不猶豫就抓住伸來的援手了。你覺得接下來會怎麼樣呢？會遭到背叛嗎？也說不定什麼都不會發生喔。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_56_1",
+      "dlg": "身處於陌生事物之間時，突然就會感到一陣暈眩呢。"
+    },
+    {
+      "id": "announcer_enemy_destroy_56_1",
+      "dlg": "從一變成了二，但那個打從最初原本就是一體的嗎？"
+    },
+    {
+      "id": "announcer_enemy_destroy_56_2",
+      "dlg": "或許最初本來就是一體的吧。然而被賦予某個角色，登上舞台接受觀眾視線的瞬間……就再也沒有任何事物能維持一體的了。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_56_1",
+      "dlg": "不需要為此悲傷。因為這一切僅僅是漫無方向地漂泊而已。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_56_2",
+      "dlg": "但你現在明白了吧？拚命掙扎只會令悲傷越來越沉重。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_56_1",
+      "dlg": "見到它們逐漸崩潰的模樣，整理庫存的時間也快到了。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_56_2",
+      "dlg": "不過果然……完成想做之事的姿態理當受到讚許。因為薛西弗斯百貨公司是為了讓人能坦率面對慾望，由我親自設計的地方。"
+    },
+    {
+      "id": "announcer_multikillenemy_56_1",
+      "dlg": "居然這麼快就能展示如此激情的台步。看來你新職場的同事，能在薛西弗斯百貨公司成為優質顧客呢。"
+    },
+    {
+      "id": "announcer_battle_win_56_1",
+      "dlg": "恭喜你，小甜心。雖然這點小小的勝利終究無法改變結局呢。"
+    },
+    {
+      "id": "announcer_battle_defeat_56_1",
+      "dlg": "哎呀。你決定要跟我共度一生了嗎？真浪漫呢。"
+    },
+    {
+      "id": "announcer_equip_56_1",
+      "dlg": "還需要再次自我介紹嗎？我的名字是簡。很樂意為你們講述的聲音之名……也是百貨公司的巨人。"
+    }
+  ]
+}

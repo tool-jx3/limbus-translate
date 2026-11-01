@@ -1,0 +1,1910 @@
+{
+  "dataList": [
+    {
+      "id": 150301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "還給我……",
+          "desc": "若目標裝備了守備技能，則使本技能造成的傷害-90%\n自身每帶有1層 [HeavyBlackYarn]，使本技能的拚點威力+1\n[WhenUse] 目標每帶有5層 [TangleBlackYarn]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "交出來……",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n自身每帶有1層 [HeavyBlackYarn]，則使本技能的拚點威力+1\n[WhenUse] 主要目標每帶有3層 [TangleBlackYarn]，則使本技能的拚點威力+1(最多+8)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [TangleBlackYarn]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的<color=#ff6000><mark=#ff000040><b><u> [TangleBlackYarn] 層數不低於15層，則使其陷入混亂</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "別奪走……",
+          "desc": "自身每帶有1層 [HeavyBlackYarn]，則使本技能的拚點威力+1\n[WhenUse] 主要目標每帶有5層 [TangleBlackYarn]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [TangleBlackYarn]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "纏來纏去",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n自身每帶有1層 [HeavyBlackYarn]，則使本技能的拚點威力+1\n[WhenUse] 目標每帶有3層 [TangleBlackYarn]，則使本技能的拚點威力+1(最多+8)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [TangleBlackYarn]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [TangleBlackYarn]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的<color=#ff6000><mark=#ff000040><b><u> [TangleBlackYarn] 層數不低於15層，則使其陷入混亂</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "古老之物的掙扎",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n自身每帶有1層 [HeavyBlackYarn]，則使本技能的拚點威力-1\n[WhenUse] 主要目標每帶有3層 [TangleBlackYarn]，則使本技能的基礎威力+1(最多+3)\n[WhenUse] 若主要目標的 [TangleBlackYarn] 層數不低於15層，則使本技能的基礎威力+3",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [TangleBlackYarn]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [TangleBlackYarn]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的<color=#ff6000><mark=#ff000040><b><u> [TangleBlackYarn] 層數不低於15層，則使其陷入混亂</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "糾纏",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n自身每帶有1層 [HeavyBlackYarn]，則使本技能的拚點威力-1\n[WhenUse] 主要目標每帶有3層 [TangleBlackYarn]，則使本技能的基礎威力+1(最多+3)\n[WhenUse] 若主要目標的 [TangleBlackYarn] 層數不低於15層，則使本技能的基礎威力+3",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層 [TangleBlackYarn]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層 [TangleBlackYarn]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150307,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "無底深淵之口",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n[StartBattle] 目標每帶有2層 [TangleBlackYarn]，則使本技能的基礎威力+1、造成的傷害+10%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加5層 [TangleBlackYarn]"
+                },
+                {
+                  "desc": "[DefeatDuelAttack] 使目標<color=#ff6000><mark=#ff000040><b><u>減少10層 [TangleBlackYarn]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標<color=#ff6000><mark=#ff000040><b><u>陷入混亂</u></b></mark></color>或目標的<color=#ff6000><mark=#ff000040><b><u> [TangleBlackYarn] 層數不低於20層</u></b></mark></color>，則重複使用本硬幣(每個技能最多1次)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標造成其體力上限150%的固定傷害</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150308,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "洗淨",
+          "desc": "[DuelCounter]\n[WhenUse] 目標每帶有2層 [TangleBlackYarn]，則使本技能的基礎威力+1\n[WinDuel] 令目標<color=#ff6000><mark=#ff000040><b><u>失去所有 [TangleBlackYarn] </u></b></mark></color>且令使用本技能的部位移除所有 [SickBlackYarn]\n[DefeatDuel] 令目標<color=#ff6000><mark=#ff000040><b><u>失去所有 [TangleBlackYarn] </u></b></mark></color>且令使用本技能的部位帶有的 [SickBlackYarn] 層數減半",
+          "flavor": "然而百貨公司的時代無法洗淨舊時代的殘渣。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "春之誕生",
+          "desc": "[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>使目標失去5點理智值</color></mark></b></u>\n- 不包含帶有 [FlowerLaurelWreath] 的目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "秋之暮落",
+          "desc": "[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>使目標失去5點理智值</color></mark></b></u>\n- 不包含帶有 [FlowerLaurelWreath] 的目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "曾渴望成為人類的人偶",
+          "desc": "[WhenUse] 目標的 [Vibration] 強度與 [Sinking] 強度之和每有3級，則使本技能的最終威力+1(最多+2)\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>使目標失去10點理智值</color></mark></b></u>\n- 不包含帶有 [FlowerLaurelWreath] 的目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成等同於其 [Sinking] 強度的理智傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "曾渴望成為人偶的人類",
+          "desc": "[WideAreaRampage]\n[WhenUse] 主要目標的 [Vibration] 強度與 [Sinking] 強度之和每有3級，則使本技能的最終威力+1(最多+2)\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>令所有目標失去10點理智值</color></mark></b></u>\n- 不包含帶有 [FlowerLaurelWreath] 的目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層 [AlriuneSillage]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層 [AlriuneSillage]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "本硬幣會命中全體攻擊目標"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "散發芬香的月桂冠",
+          "desc": "<color=#ff6000><mark color=#ff000040><b><u>可無視速度值與本技能拚點</color></mark></b></u>\n本技能不會對目標造成傷害且不會觸發目標的 [Sinking]\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>使目標獲得1層 [FlowerLaurelWreath] (每回合最多1次)</color></mark></b></u>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標恢復20點理智值"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懷抱歸於塵土之願",
+          "desc": "[WhenUse] 主要目標的 [Vibration] 強度與 [Sinking] 強度之和每有3級，則使本技能的最終威力+1(最多+8)\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若主要目標未帶有 [FlowerLaurelWreath]，則使本技能的最終威力+5</color></mark></b></u>\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n- 不會觸發目標的 [Sinking]\n\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>令所有目標失去10點理智值</color></mark></b></u>\n- 不包含帶有 [FlowerLaurelWreath] 的目標\n[EndSkillAll] 自身的 [AlriunePetal] 重置為0層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加等同於其 [AlriuneSillage] 層數的 [Vibration] 強度 (每個目標分別計算)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加等同於其 [AlriuneSillage] 層數的 [Sinking] 強度 (每個目標分別計算)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150107,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "與一切求生之物同歸於墳墓",
+          "desc": "[CantDuel] [CantChangeTarget]\n本技能不會觸發目標的守備技能\n若目標未陷入恐慌或未處於侵蝕狀態，則取消本攻擊",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成其體力上限120%的固定傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150108,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "若眾人心中的慾望置換為花朵之時……",
+          "desc": "可無視速度值與本技能拚點\n本技能不會對目標造成傷害\n[EndSkill]<color=#ff6000><mark color=#ff000040><b><u>使目標失去25點理智值</color></mark></b></u>\n- 不包含帶有 [FlowerLaurelWreath] 的目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] Inflict 10 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "花堆",
+          "desc": "本技能造成的傷害固定為0點",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [AlriuneSillage]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [AlriuneSillage]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "心之裂痕",
+          "desc": "本技能造成的傷害固定為0點\n[WhenUse] 目標帶有的負面效果數與其層數之和每有3點，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "席捲而來的絕望",
+          "desc": "本技能造成的傷害固定為0點\n[WhenUse] 目標每帶有3種負面效果，則使本技能的最終威力+1(最多+3)\n[DefeatDuel]\n- 不會觸發目標的 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] <color=#ff6000><mark color=#ff000040><b><u>使目標受到等同於 [Sinking] 強度的理智傷害</color></mark></b></u>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "始動",
+          "desc": "[StartBattle]\n<color=#ff6000><mark color=#ff000040><b><u>- 使自身獲得自身體力上限30%的護盾</color></mark></b></u>\n- 使自身的 [ChargeKhaki] 回數恢復為最大值\n- 下回合使自身獲得1層 [SpreadingDye]",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "弦線藝數",
+          "desc": "自身每帶有2級 [ChargeKhaki] 強度，則使本技能的拚點威力+1(最多+3)\n[WhenUse] 下回合使自身獲得1層 [Agility]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] <color=#ff6000><mark color=#ff000040><b><u>下回合對目標施加1層 [Binding]</color></mark></b></u>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "鎖鏈縫",
+          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+20%\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 消耗自身4回 [ChargeKhaki] 並使本技能的硬幣威力+2\n[WhenUse]<color=#ff6000><mark color=#ff000040><b><u>若自身的速度值高於目標且自身的現存體力不高於體力上限50%，</color></mark></b></u>\n- 則使本技能所有硬幣轉變為 [SuperCoin]\n- 則使本技能造成的傷害+(速度值之差×15)%(最多+40%)[TabExplain]\n<color=#ff6000><mark color=#ff000040><b><u>[DefeatDuel] 下回合對自身施加1層 [Binding]</color></mark></b></u>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [ThreadDye]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ThreadDye]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本技能的硬幣為 [SuperCoin]，<color=#ff6000><mark color=#ff000040><b><u>則使自身獲得4回 [ChargeKhaki]</color></mark></b></u>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "車縫",
+          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+20%\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 消耗自身4回 [ChargeKhaki] 並使本技能的硬幣威力+2\n[WhenUse]<color=#ff6000><mark color=#ff000040><b><u>若自身的速度值高於目標且自身的現存體力不高於體力上限50%，</color></mark></b></u>\n- 則使本技能所有硬幣轉變為 [SuperCoin]\n- 則使本技能造成的傷害+(速度值之差×15)%(最多+40%)[TabExplain]\n[WinDuel] 下回合使自身獲得1層 [Agility]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [ThreadDye]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ThreadDye]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本技能的硬幣為 [SuperCoin]，<color=#ff6000><mark color=#ff000040><b><u>則使自身獲得4回 [ChargeKhaki]</color></mark></b></u>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "三針虹彩包縫",
+          "desc": "[WideAreaRampage]\n可無視速度值與本技能拚點\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 消耗自身所有 [ChargeKhaki] 回數，每消耗1回 [ChargeKhaki]，使本技能造成的傷害+5%\n[WhenUse] 主要目標的 [Laceration] 強度與 [Laceration] 回數之和每有3點，則使本技能的硬幣威力+1(最多+3)\n[DefeatDuel]\n- 對自身施加10層 [AttackDmgDown] 與4層 [Paralysis]\n- 本技能造成的傷害不會使目標陷入混亂\n[EndSkillAll] <color=#ff6000><mark color=#ff000040><b><u>結束本回合</color></mark></b></u>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "本硬幣會命中全體目標"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [ThreadDye]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Inactible]，則觸發以下效果"
+                },
+                {
+                  "desc": "- 使目標下回合陷入混亂"
+                },
+                {
+                  "desc": "- 對目標造成本硬幣最終傷害量20%的色慾傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "鑲邊",
+          "desc": "[WhenUse]\n- 若自身的 [ChargeKhaki] 回數不低於10回，則使本技能的硬幣威力+1\n- 若自身帶有 [LargeTailoringShears]，則使本技能造成的傷害+(自身 [LargeTailoringShears] 層數×10)%(最多+30%)\n[WhenUse] 若自身的 [ChargeKhaki] 回數不高於15回，則使自身獲得2回 [ChargeKhaki]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度與2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeKhaki]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [ScissorsMark]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裁剪",
+          "desc": "[WhenUse]\n- 若目標的 [LargeTailoringShears] 層數不低於2層，則使本技能的攻擊容量+1\n- 若自身的 [ChargeKhaki] 回數不低於10回，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得4回 [ChargeKhaki]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [ChargeKhaki]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [ScissorsMark]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [ScissorsMark]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>[UnBrokenCoinOnSucceedAttack] 下回合使自身獲得1層 [FinishedFabric]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身的 [ChargeKhaki] 回數不低於12回，則消耗自身4回 [ChargeKhaki] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "固定，並沿著版型裁切",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n[WhenUse]\n- 若自身的 [ChargeKhaki] 回數不低於10回，則消耗自身10回 [ChargeKhaki] 並使本技能的硬幣威力+2\n．消耗自身剩餘的 [ChargeKhaki] 回數，最多消耗20回；每消耗1回，使本技能造成的傷害+1%(最多+20%)\n<color=#ff6000><mark=#ff000040><b><u>[DefeatDuel]\n- 使自身失去3層 [FinishedFabric]\n- 使本技能造成的傷害-75%\n- 對自身施加4層 [Paralysis]</u></b></mark></color>\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [ChargeKhaki]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層 [ScissorsMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>[UnBrokenCoinOnSucceedAttack] 下回合使自身獲得3層 [FinishedFabric]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斜裁",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點</u></b></mark></color>\n[WhenUse]\n- 根據自身帶有的 [LargeTailoringShears] 層數，相應使本技能的攻擊容量增加(最多+3)\n- 若自身的 [ChargeKhaki] 回數不低於10回，則消耗自身10回 [ChargeKhaki] 並使本技能的硬幣威力+2\n- 消耗自身剩餘的 [ChargeKhaki] 回數，最多消耗20回；每消耗1回，使本技能造成的傷害+1%(最多+20%)\n<color=#ff6000><mark=#ff000040><b><u>[DefeatDuel]\n- 使自身失去3層 [FinishedFabric]\n- 使本技能造成的傷害-90%\n- 對自身施加4層 [Paralysis]</u></b></mark></color>\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則對其施加5層 [ScissorsMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>[UnBrokenCoinOnSucceedAttack] 下回合使自身獲得1層 [FinishedFabric]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標為主要目標，則使其 [VibrationExplosion] 2次，並使其減少2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "製作版型",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>[CantChangeTarget]\n指定帶有 [TailoringTarget] 的單位為目標</u></b></mark></color>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>[OnSucceedAttack] 對目標施加9層 [ScissorsMark]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149506,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "鏈式包縫",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>[CantChangeTarget]\n指定帶有 [TailoringTarget] 的單位為目標</u></b></mark></color>\n若自身每帶有1層 [LargeTailoringShears]，\n則使本技能的最終威力+1、造成的傷害+20%(最多分別+3、+60%)\n若自身每帶有1級 [ChargeKhaki] 強度，\n則使本技能造成的傷害+4%(最多+20%)\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] 當目標罪人\n- 裝備了守備技能，則對自身施加4層 [Paralysis] 且本技能造成的傷害不會使目標陷入混亂\n- 未裝備守備技能，則下回合使自身獲得10層 [FinishedFabric]</u></b></mark></color>\n[EndSkill]\n- <color=#ff6000><mark=#ff000040><b><u>拚點結束後，</u></b></mark></color>對目標施加等同於該罪人技能最終拚點威力一半的 [DamagedFabric] 層數(最多20層)\n<color=#ff6000><mark=#ff000040><b><u>- 消耗目標所有 [ScissorsMark]</u></b></mark></color>\n<color=#ff6000><mark=#ff000040><b><u>[EndBattle] 下回合使自身獲得1層 [LargeTailoringShears]</u></b></mark></color>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其減少2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "被釘刺穿吧",
+          "desc": "[WhenUse] 自身每帶有1級 [ChargeNoir] 強度，則使本技能的硬幣威力+1(最多+3)",
+          "flavor": "釘是為了被鎚釘入而生。鎚所釘入之物便是釘。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得5回 [ChargeNoir]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得5回 [ChargeNoir]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "釘，生成吧",
+          "desc": "[WhenUse] 自身每帶有3級 [ChargeNoir] 強度，則使本技能的硬幣威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "flavor": "鎚揮落之處必有釘存在。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "猛力敲打",
+          "desc": "[WhenUse] 自身每帶有1級 [ChargeNoir] 強度，則使本技能的硬幣威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "默示",
+          "desc": "[WinDuel] 使目標增加3回 [Vibration]\n[WinDuel] 使目標 [VibrationExplosion]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Vulnerable]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>[DefeatDuelAttack] 對目標施加1層 [NoirShieldPiece]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "宣告保存神域",
+          "desc": "可無視速度值與本技能拚點。自身使用本技能前不會陷入混亂\n\n[StartBattle] 敵方單位每裝備了1個守備技能，則使本技能的拚點威力-2(最多-10)\n\n[WhenUse] 若主要目標<color=#ff6000><mark=#ff000040><b><u>未帶有 [NoirShieldPiece]，則使本技能的最終威力+5</u></b></mark></color>\n[WhenUse] 消耗自身所有 [ChargeNoir] 回數\n- 每消耗3回，則使本技能的最終威力+1\n- 使本技能造成的傷害+(消耗回數×5)%\n<color=#ff6000><mark=#ff000040><b><u>- 使自身獲得1層 [NoirField]</u></b></mark></color>\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [NoirShieldPiece]，"
+                },
+                {
+                  "desc": "- 本硬幣使目標受到的最終傷害-95%"
+                },
+                {
+                  "desc": "- 本硬幣造成的傷害不會使目標陷入混亂"
+                },
+                {
+                  "desc": "- 移除目標的 [NoirShieldPiece] 且使其獲得2層 [VibrationResonance]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] 3次，並使其減少3回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標的混亂閾值前移等同於本硬幣造成的最終傷害量"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150606,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啟示",
+          "desc": "自身使用本技能前不會陷入混亂\n<color=#ff6000><mark=#ff000040><b><u>[StartBattle] 使自身獲得999層 [NoirShieldUp]</u></b></mark></color>",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150607,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "誓言",
+          "desc": "[SupportEnemy]\n\n[EndSkill] 若目標為友方單位，則使其獲得6層 [AttackUp]\n[EndSkill] 使被視為目標的友方單位隨機使用一個攻擊技能\n\n[DefeatDuel] 對自身施加1層 [Vulnerable]\n<color=#ff6000><mark=#ff000040><b><u>[DefeatDuel] 使自身減少150層 [NoirShieldUp]</u></b></mark></color>",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150608,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "否決汝的誕生。",
+          "desc": "可無視速度值與本技能拚點。自身使用本技能前不會陷入混亂\n[WhenUse] 自身每帶有100層 [NoirShieldUp]，則使本技能的最終威力+1\n[WhenUse] 若目標帶有 [NoirShieldPiece]，則使本技能的拚點威力-5\n[DefeatDuel] 本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 結束本回合",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2層 [NoirNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有200層 [NoirShieldUp]，則額外使目標 [VibrationExplosion] 1次(最多4次)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 3次。"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150609,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "多次鎚下，否決汝的誕生！",
+          "desc": "可無視速度值與本技能拚點。自身使用本技能前不會陷入混亂\n\n[WhenUse] 消耗自身所有 [ChargeNoir] 回數\n- 每消耗3回，則使本技能的最終威力+1\n- 使本技能造成的傷害+(消耗回數×5)%\n\n[WhenUse] 若主要目標帶有 [NoirShieldPiece]，則使本技能的拚點威力-5\n[WhenUse] 若主要目標未帶有 [NoirShieldPiece]，則使本技能的最終威力+5\n[DefeatDuel] 本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 結束本回合",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2層 [NoirNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [NoirShieldPiece]，"
+                },
+                {
+                  "desc": "- 本硬幣使目標受到的最終傷害-95%"
+                },
+                {
+                  "desc": "- 本硬幣造成的傷害不會使目標陷入混亂"
+                },
+                {
+                  "desc": "- 移除目標的 [NoirShieldPiece] 且使其獲得2層 [VibrationResonance]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150610,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "信徒們，回應召喚吧",
+          "desc": "[StartBattle] 下回合召喚5名屬於漆黑派的友方單位(除自身以外，戰場上最多只有5名友方單位)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "消費紀錄呢？",
+          "desc": "本技能造成的傷害+(自身護盾值)%(最多+20%)\n[WhenUse] 使自身獲得2回 [ChargeNoir]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "購買資格呢？",
+          "desc": "[WhenUse] 自身的 [ChargeNoir] 回數與目標的 [Vibration] 強度之和每有6點，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得3回 [ChargeNoir]\n[WinDuel] 使自身獲得2回 [ChargeNoir]\n[WhenUse] 若自身的 [ChargeNoir] 強度不低於3級，則使本技能最後一枚硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "印花[法蘭絨]",
+          "desc": "使本技能造成的傷害+(自身的護盾值)%(最多+50%)\n[WhenUse] 目標每帶有6級 [Vibration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 消耗自身最多15回 [ChargeNoir]，\n並使自身獲得等同於自身體力上限(消耗的 [ChargeNoir] 回數×2)%的護盾，且該護盾會持續到下回合\n[WhenUse] 若自身消耗的 [ChargeNoir] 回數不低於10回，則使本技能的硬幣威力+2，且令本技能所有的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使自身獲得3回 [ChargeNoir]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]\n- 自身每帶有2級 [ChargeNoir] 強度，則額外觸發1次本效果(最多2次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "強化布料",
+          "desc": "本技能只會對友方單位使用，且對友方單位造成的傷害固定為0點\n[WhenUse] 目標每帶有4級 [Vibration] 強度，則使本技能的最終威力+2(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，使自身獲得3層 [DefenseUp]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標獲得等同於自身 [ChargeNoir] 回數的 [Charge] 回數\n- 若目標帶有的 [Charge] 回數為最大值，則下回合使其獲得3層 [DefenseUp] 與5層 [NoirBindArmor]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150405,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "為了保存",
+          "desc": "This Skill is used on allies; damage dealt to allies is fixed to 0\n[WhenUse] Final Power +2 for every 4 [Vibration] on target (max 6)\n[WhenUse] At 3+ [ChargeNoir] Potency, convert all Coins to [SuperCoin]s\n[WhenUse] At fewer than 10 [ChargeNoir] Count, gain up to 10 [ChargeNoir] Count; then, gain 1 [Vulnerable] for every 2 Count gained\n[DefeatDuel] Consume half of [ChargeNoir] Count on self\n[EndSkill] Consume all [ChargeNoir] Count on self",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，使自身獲得2層 [DefenseUp]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標獲得等同於自身 [ChargeNoir] 回數的 [Charge] 回數\n- 若目標帶有的 [ChargeNoir] 回數為最大值，則下回合使其獲得3層 [DefenseUp] 與5層 [NoirBindArmor]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你的價格是多少？",
+          "desc": "[WhenUse] 使自身獲得2回 [ChargeNoir]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "滿是瑕疵啊",
+          "desc": "[WhenUse] 自身的 [ChargeNoir] 回數與目標的 [Vibration] 強度之和每有6點，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得3回 [ChargeNoir]\n[WinDuel] 使自身獲得2回 [ChargeNoir]\n[WhenUse] 若自身的 [ChargeNoir] 強度不低於3級，則使本技能最後一枚硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "印花[毛氈]",
+          "desc": "使本技能造成的傷害+(自身的護盾值)%(最多+50%)\n[WhenUse] 目標每帶有6級 [Vibration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 消耗自身最多15回 [ChargeNoir]，\n並使自身獲得等同於自身體力上限(消耗的 [ChargeNoir] 回數×2)%的護盾，且該護盾會持續到下回合\n[WhenUse] 若自身消耗的 [ChargeNoir] 回數不低於10回，則使本技能的硬幣威力+2，且令本技能所有的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身消耗的 [ChargeNoir] 回數不低於10回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 150504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "印花[反響]",
+          "desc": "若自身帶有護盾，則自身受到敵方單位攻擊時，對敵方單位造成等同於(自身的 [ChargeNoir] 強度×自身的 [NoirBindArmor] 層數)的傷害\n[WhenUse] 使自身獲得3回 [ChargeNoir]",
+          "coinlist": []
+        }
+      ]
+    },
+    {
+      "id": 148801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "剝皮",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "削除肉部",
+          "desc": "戰場上<color=#ff6000><mark=#ff000040><b><u>每存活1名被鞣製的罪犯，則使自身造成的傷害+10%</u></b></mark></color>\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "腦部鞣製",
+          "desc": "無法改變拚點目標\n本技能優先指定現存體力最低的友方單位\n\n若自身無法攻擊指定的目標，則取消本技能",
+          "flavor": "以分解生皮的腦脂鞣製而成。地下3樓的秘傳醬汁。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標為友方單位，則觸發以下效果\n- 使其重新回到背上\n- 使其恢復其體力上限1%的體力\n- 使其恢復20點理智值\n- 本回合與下回合中，使其獲得2層 [AttackDmgUp]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "切割",
+          "desc": "[EndBattle] 下回合使自身召喚最多2名被鞣製的罪犯，並使其獲得 [B3FreshMob]\n\n- 戰場上最多存活6名被鞣製的罪犯，若召喚後會超過6名，則取消召喚。\n- 自身每召喚1名被鞣製的罪犯，則使自身消耗自身體力上限0.5%的體力\n- <color=#ff6000><mark=#ff000040><b><u>滿足以下條件時，則本效果無效</u></b></mark></color>\n．有不低於2個攻擊技能指定使用本技能的行動槽為主要目標\n．戰場上存活的被鞣製的罪犯不低於6名",
+          "flavor": "分開原罪與生皮的作業",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148805,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "大規模切割",
+          "desc": "[EndBattle] 下回合召喚最多4名，並使其獲得 [B3FreshMob]\n- 戰場上最多存活6名被鞣製的罪犯，若召喚後會超過6名，則取消召喚。\n- 自身每召喚1名被鞣製的罪犯，則使自身消耗自身體力上限0.5%的體力\n\n[StartBattle] 下回合使全體友方單位獲得1層 [AttackDmgUp]",
+          "flavor": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148806,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "原罪腦脂滾磨處理",
+          "desc": "戰場上<color=#ff6000><mark=#ff000040><b><u>每存活1名被鞣製的罪犯，則使自身造成的傷害+10%</u></b></mark></color>\n[StartBattle] 使除自身以外的所有友方單位獲得2層 [Enhancement]\n[WhenUse] 若自身的現存體力不高於體力上限50%，則戰場上每存活1名被鞣製的罪犯，使本技能的最終威力+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "flavor": "其腦裡罪人的大腦搖晃並交融，與腦脂一同鞣製的皮革四處飛散。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148807,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拋光、塗漆、精密加工",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能(包括可拚點的守備技能)\n\n[EndSkill] 隨機選擇3名被鞣製的罪犯，命令其對目標使用隨機技能(優先選擇未陷入混亂的友方單位)",
+          "flavor": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "本技能造成的傷害+100%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加10級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "揮灑腦脂",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Reduction]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "打磨腦脂",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [DefenseDown]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 149103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "贖罪浮雕",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使監工的部位與本體恢復等同於其體力上限1%的體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使監工的部位與本體恢復等同於其體力上限1%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

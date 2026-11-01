@@ -1,0 +1,56 @@
+{
+  "dataList": [
+    {
+      "id": 0,
+      "model": "어린가환",
+      "content": "我想玩做丸的遊戲！"
+    },
+    {
+      "id": 1,
+      "model": "어린가환",
+      "content": "把沙子、碎石、樹葉還有種子混在一起，做出最好的丸的人就是贏家！"
+    },
+    {
+      "id": 2,
+      "content": "樂。"
+    },
+    {
+      "id": 3,
+      "model": "홍루"
+    },
+    {
+      "id": 4,
+      "model": "홍루",
+      "content": "環一直都跟在我的身後。大概是因為想被奶奶所認可吧。"
+    },
+    {
+      "id": 5,
+      "model": "홍루",
+      "content": "環從小時候就是一個抱有夢想的孩子。"
+    },
+    {
+      "id": 6,
+      "model": "홍루",
+      "content": "他想成為這個都市中首屈一指的製丸師。"
+    },
+    {
+      "id": 7,
+      "model": "어린가환다침2",
+      "content": "抱歉沒聽哥說的話……"
+    },
+    {
+      "id": 8,
+      "model": "어린가환다침2",
+      "content": "But I was just so… envious… I just wanted to know… what they were gonna show here..."
+    },
+    {
+      "id": 9,
+      "content": "……."
+    },
+    {
+      "id": 10,
+      "model": "홍루",
+      "content": "也許，他真的已經變成了那樣也說不定。"
+    }
+  ]
+}

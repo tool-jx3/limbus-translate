@@ -1,0 +1,22 @@
+{
+  "dataList": [
+    {
+      "id": 1070,
+      "panicName": "愛恨",
+      "lowMoraleDescription": "自身對良秀造成與受到的傷害皆+10%",
+      "panicDescription": "自身對良秀造成與受到的傷害皆+20%"
+    },
+    {
+      "id": 1074,
+      "panicName": "不耐煩",
+      "lowMoraleDescription": "使自身獲得1層 [PenetrateResultUp] 與1層 [MentalIncreaseDown]",
+      "panicDescription": "使自身獲得2層 [PenetrateResultUp]、1層 [PenetrateDamageUp] 與2層 [MentalIncreaseDown]"
+    },
+    {
+      "id": 1072,
+      "panicName": "指令崩壞的危機",
+      "lowMoraleDescription": "對 [IndexPrescriptTargetToPersonality] 造成的傷害+20%\n受到來自非 [IndexPrescriptTargetToPersonality] 造成的傷害+10%",
+      "panicDescription": "本單位對 [IndexPrescriptTargetToPersonality] 造成的傷害+30%\n本單位受到來自非 [IndexPrescriptTargetToPersonality] 造成的傷害+20%"
+    }
+  ]
+}

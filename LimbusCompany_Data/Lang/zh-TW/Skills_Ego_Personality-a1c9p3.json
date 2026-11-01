@@ -1,0 +1,128 @@
+{
+  "dataList": [
+    {
+      "id": 2010112,
+      "levelList": [
+        {
+          "level": 4,
+          "name": "烏瞰刀",
+          "abName": "李箱",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加2層 [Reduction]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使全體友方單位獲得3層 [Agility]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030112,
+      "levelList": [
+        {
+          "level": 4,
+          "name": "桑丘之血",
+          "abName": "唐吉訶德",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復造成傷害量50%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050112,
+      "levelList": [
+        {
+          "level": 4,
+          "name": "他人之鎖",
+          "abName": "莫梭",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對自身施加3層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加4層 [Reduction]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Reduction]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得2層 [Protection]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2060112,
+      "levelList": [
+        {
+          "level": 4,
+          "name": "太虛幻境",
+          "abName": "鴻璐",
+          "desc": "[EndSkill] 使自身在內的全體友方單位恢復15點理智值\n[EndSkill] 解除自身在內的全體友方單位帶有的燒傷 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110112,
+      "levelList": [
+        {
+          "level": 4,
+          "name": "致智慧與苦難",
+          "abName": "奧提斯",
+          "desc": "若目標現存體力不高於50%，則使本技能造成的傷害+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Burst] 強度"
+                },
+                {
+                  "desc": "[EnemyKill] 隨機使1名友方單位獲得1層 [AttackDmgUp]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

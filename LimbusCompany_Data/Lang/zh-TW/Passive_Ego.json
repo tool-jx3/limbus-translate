@@ -1,0 +1,642 @@
+{
+  "dataList": [
+    {
+      "id": 2010111,
+      "name": "沉默",
+      "desc": "受到攻擊時，下回合對自身施加3層束縛 \n使用目標抗性為「脆弱」或「致命」的技能攻擊目標時造成的傷害+20%\n(每回合最多1次)"
+    },
+    {
+      "id": 2010211,
+      "name": "火星",
+      "desc": "拚點勝利時，對目標施加(暴怒完全共鳴數 ÷ 2)級燒傷 強度 (每個技能最多1次)"
+    },
+    {
+      "id": 2010311,
+      "name": "石頭爺爺",
+      "desc": "回合開始時，使自身獲得3層打擊守護 與怠惰守護 。"
+    },
+    {
+      "id": 2020111,
+      "name": "倦怠",
+      "desc": "若自身攻擊過程中有敵方單位陷入混亂，則使理智值最低的1名友方單位在下回合理智值恢復效率 +2。(每回合最多3次)"
+    },
+    {
+      "id": 2020211,
+      "name": "液膜",
+      "desc": "回合開始時，使現存體力最低的1名友方單位(包括自身)獲得2層守護 。"
+    },
+    {
+      "id": 2020311,
+      "name": "好痛！",
+      "desc": "自身每帶有1種負面狀態，使自身造成的傷害+10%。(最多+50%)"
+    },
+    {
+      "id": 2030111,
+      "name": "熱情過盛",
+      "desc": "攻擊命中時，若目標帶有 [Laceration]，則使自身恢復3點體力。"
+    },
+    {
+      "id": 2030211,
+      "name": "憂鬱浪潮",
+      "desc": "儀錶盤最右側的技能攻擊後，對目標造成(憂鬱完全共鳴數×2)點理智傷害\n(若目標沒有理智值，則使其受到憂鬱傷害)"
+    },
+    {
+      "id": 2040111,
+      "name": "藝術",
+      "desc": "自身上一回合每擊殺1名敵方單位，使自身造成與受到的傷害+5%。"
+    },
+    {
+      "id": 2040211,
+      "name": "第四根火柴",
+      "desc": "自身每使用4個技能，使第4個技能的最終威力+4，且每次命中時使目標增加4級燒傷 強度。"
+    },
+    {
+      "id": 2040212,
+      "name": "第四根火柴",
+      "desc": "Every 4th Skill this unit uses gains Final Power +4 and inflicts 4 [Combustion] On Hit\n- If the said Skill is a Wrath Skill, deal +([Combustion] Potency on all targets / 2)% additional damage (max 20%)\n- If the said Skill is an E.G.O Skill, apply the following effects at Coin Start of the first Coin:\n· If the said Coin is a Plus Coin, heal 10 SP\n· If the said Coin is a Minus Coin, lose 15 SP (this effect cannot reduce this unit's SP below -40)",
+      "summary": "每使用4個技能，則使第4個技能獲得強化"
+    },
+    {
+      "id": 2050111,
+      "name": "拒絕判斷",
+      "desc": "戰鬥開始時，若自身被3個及以上技能指定為目標，則使自身獲得3層守護 。"
+    },
+    {
+      "id": 2050211,
+      "name": "最終改造",
+      "desc": "若自身在體力不高於25%時使用了E.G.O技能「脫線一擊」，則使自身每回合獲得3層強壯 ，忍耐 和迅捷 ，但自身會在3回合後陣亡。"
+    },
+    {
+      "id": 2050311,
+      "name": "天降啟示",
+      "desc": "儀錶盤最左側的技能拚點勝利後，下回合隨機使1名友方單位獲得1層強壯 或1層忍耐 。"
+    },
+    {
+      "id": 2060111,
+      "name": "漣漪",
+      "desc": "戰鬥開始時，使理智值最低的友方單位恢復(最大完全共鳴數)點理智值，\n不包括陷入恐慌的友方單位。"
+    },
+    {
+      "id": 2060211,
+      "name": "縛身絲帶",
+      "desc": "下回合對儀錶盤最左側技能的目標施加(色慾完全共鳴數/4)層色慾易損 。"
+    },
+    {
+      "id": 2070111,
+      "name": "傲氣",
+      "desc": "除自身以外的友方單位擊殺敵方單位時，在下回合使自身獲得1層強壯 ，1層迅捷  。(最多3次)"
+    },
+    {
+      "id": 2070211,
+      "name": "咆哮",
+      "desc": "擊殺敵方單位後，使自身獲得(嫉妒完全共鳴數/2)回充能 。"
+    },
+    {
+      "id": 2080111,
+      "name": "強迫",
+      "desc": "進行自身有利的拚點時，拚點威力+2。進行自身不利的拚點時，拚點威力-2。"
+    },
+    {
+      "id": 2080211,
+      "name": "粉色絲帶",
+      "desc": "拚點勝利時，對目標施加1層粉色絲帶 。"
+    },
+    {
+      "id": 2080311,
+      "name": "火星飛散",
+      "desc": "自身的攻擊命中時，若目標帶有 [Combustion]，則隨機使3名敵方單位增加1級燒傷 強度。"
+    },
+    {
+      "id": 2090111,
+      "name": "斷絕",
+      "desc": "理智值恢復效率 +1，理智值減少效率 -1。"
+    },
+    {
+      "id": 2090211,
+      "name": "火種",
+      "desc": "擊殺帶有 [Combustion] 的敵方單位後，使自身恢復體力上限(暴怒完全共鳴數)%的體力。"
+    },
+    {
+      "id": 2090212,
+      "name": "火種",
+      "desc": "<style=\"highlight\">戰鬥開始時，若觸發暴怒完全共鳴，則拚點勝利時對主要目標施加1層 [CrimsonTakeDamageUp] (每回合最多1次)</style>\n\n擊殺帶有 [Combustion] 的敵方單位後，使自身恢復體力上限<style=\"highlight\">(暴怒共鳴數)</style>%的體力<style=\"highlight\">(最多12%)</style>",
+      "summary": "施加 [CrimsonTakeDamageUp]\n滿足條件使體力恢復固定值"
+    },
+    {
+      "id": 2090311,
+      "name": "寒氣",
+      "desc": "自身的攻擊命中時，若目標的 [Sinking] 強度不低於5級，則下回合對其施加1層束縛 和1層虛弱 \n(每個目標最多3次)"
+    },
+    {
+      "id": 2100111,
+      "name": "動搖",
+      "desc": "攻擊命中時，若當前硬幣的朝向與前一個硬幣不同，則失去5點理智值，並在下回合獲得1層傷害強化 。(每回合最多3次)"
+    },
+    {
+      "id": 2100211,
+      "name": "活祭儀式",
+      "desc": "用攻擊或反擊技能擊殺敵方單位後，獲得5個該技能對應屬性的罪孽碎片。"
+    },
+    {
+      "id": 2110111,
+      "name": "完美戰術",
+      "desc": "若自身在整個回合內沒有受到任何攻擊，則在下回合使自身獲得1層傷害強化 。(最多累計3層)"
+    },
+    {
+      "id": 2110211,
+      "name": "猜疑之枝",
+      "desc": "回合開始時，使自身獲得1層突刺傷害強化 。\n自身的攻擊正面命中時，下回合對目標施加1層束縛 和1回破裂 。"
+    },
+    {
+      "id": 2110311,
+      "name": "入定",
+      "desc": "回合開始時，使自身獲得1層色慾傷害強化 。\n若自身的理智值不高於0點則額外獲得1層。"
+    },
+    {
+      "id": 2120111,
+      "name": "異形發作",
+      "desc": "回合開始時，若現存體力不高於25%，則使自身恢復15點體力並獲得2層守護 。\n本效果觸發時，隨機使除自身以外的1名友方單位與1名敵方單位理智值減少效率 +2"
+    },
+    {
+      "id": 2120211,
+      "name": "蛆蟲",
+      "desc": "自身的攻擊命中時，有(暴食完全共鳴數×8)%的機率對目標施加5層蛆蟲 。"
+    },
+    {
+      "id": 2120311,
+      "name": "吸收養分",
+      "desc": "擊殺帶有破裂 的敵方單位後，使自身恢復體力上限(暴食完全共鳴數)%的體力。"
+    },
+    {
+      "id": 2030311,
+      "name": "無序放電",
+      "desc": "戰鬥開始時，隨機使1名帶有 [Charge] 的友方單位獲得(嫉妒完全共鳴數/2)回充能 。"
+    },
+    {
+      "id": 2020411,
+      "name": "適應型放電",
+      "desc": "自身帶有 [Charge] 時，每回充能 使自身造成的傷害+2%。\n技能的充能 回數消耗量降低2回。"
+    },
+    {
+      "id": 2030411,
+      "name": "暴食巨釜",
+      "desc": "回合開始時，將2個非色慾屬性的罪孽碎片轉換為1個色慾罪孽碎片。"
+    },
+    {
+      "id": 2100311,
+      "name": "燉菜噴湧",
+      "desc": "自身的攻擊反面命中時，若目標為敵方單位則使目標增加1級燒傷 強度。"
+    },
+    {
+      "id": 2010411,
+      "name": "彷徨之人",
+      "desc": "回合開始時，若自身在上回合未受到傷害，則獲得4回充能 。\n命中速度值低於自身的目標時，對目標施加1回破裂 。(每回合最多3次)"
+    },
+    {
+      "id": 2060311,
+      "name": "糾纏態現狀復原",
+      "desc": "命中帶有負面狀態的目標時，使自身獲得1回充能 。(每回合最多4次)\n戰鬥中自身體力首次降至0時，消耗所有充能 回數，並根據所消耗的回數來依比例恢復體力。(每場戰鬥最多1次，最多恢復體力上限25%的體力)"
+    },
+    {
+      "id": 2050411,
+      "name": "無法抑制的興奮",
+      "desc": "Combat Start: If this unit is targeted by 2 or more Skills, this unit’s Skills gain +1 Base Power; when hit, inflict 1 [Combustion] on the attacker (5 times per turn)"
+    },
+    {
+      "id": 2080411,
+      "name": "鬥殺於喝彩之中",
+      "desc": "若目標的體力不高於30%，則使暴怒屬性技能的傷害+20%"
+    },
+    {
+      "id": 2110411,
+      "name": "狩獵氣息",
+      "desc": "After a clash, gain 2 [Breath]\nWhen staggered, gain 2 [Protection]; when recovering from stagger, gain 5 [Breath]"
+    },
+    {
+      "id": 2070311,
+      "name": "神經質的放電",
+      "desc": "When hit, consume 1 [Charge] Count to heal 2.5% HP\nAt less than 40% HP, gain +1 [Charge] Count before activating the healing effect (can gain up to 10 [Charge] Count per turn)"
+    },
+    {
+      "id": 2120411,
+      "name": "交流放電",
+      "desc": "On Heads Hit, consume 2 [Charge] Count to apply +1 [Charge] Count on the [Charge]-possessing ally that has the lowest [Charge] Count"
+    },
+    {
+      "id": 2010511,
+      "name": "雨過天晴",
+      "desc": "回合開始時，全體友方單位恢復3點理智值"
+    },
+    {
+      "id": 2040311,
+      "name": "蛛網",
+      "desc": "On Clash Win, inflict 1 [Binding] next turn (3 times per turn)"
+    },
+    {
+      "id": 2040411,
+      "name": "捕食",
+      "desc": "If this unit healed more than 10% of its Max HP this turn, gain 1 [Enhancement] next turn."
+    },
+    {
+      "id": 2040511,
+      "name": "開罐的飲料",
+      "desc": "On Hit, if target has 5+ [Sinking], inflict 1 [Disarming] (5 times per turn)"
+    },
+    {
+      "id": 2040512,
+      "name": "開罐的飲料",
+      "desc": "攻擊命中敵方單位時，若目標的 [Sinking] 強度不低於5級，則對其施加1層 [Disarming] (每回合最多5次)\n\n<style=\"highlight\">攻擊命中陷入混亂或陷入恐慌的敵方單位時，下回合使自身獲得1層 [AttackUp] (每回合最多3次；若是集中遭遇戰，則改為以本體判定)</style>"
+    },
+    {
+      "id": 2060411,
+      "name": "遠海的鷗鳴",
+      "desc": "敵方單位陣亡時，使理智值最低的1名友方單位恢復1點理智值。\n每當敵方單位陣亡時，使理智值恢復量增加2點。(最多增加9點)\n波次開始時，使增加的恢復量清零。"
+    },
+    {
+      "id": 2100411,
+      "name": "精靈誘餌",
+      "desc": "在擊殺戰鬥開始時以自身為主要目標的敵方單位後，使自身恢復體力上限(3+暴食完全共鳴數)%的體力"
+    },
+    {
+      "id": 2070411,
+      "name": "禪那",
+      "desc": "解除混亂時，使自身體力上限提升該人格基礎體力上限的15%。\n隨後使自身恢復當前體力上限15%的體力。若現存體力不高於當前體力上限的30%，則改為恢復當前體力上限25%的體力。\n(每場戰鬥最多3次。關卡結束時解除體力上限提升的效果，並按現存體力比例調整自身體力。)"
+    },
+    {
+      "id": 2050511,
+      "name": "受縛的暴怒",
+      "desc": "自身位於儀錶盤最左側的技能基礎威力-1，硬幣威力+2\n回合開始時，若自身的速度值不高於4，則使自身獲得1層打擊威力提升 。"
+    },
+    {
+      "id": 2020511,
+      "name": "火焰之劍",
+      "desc": "On Heads Hit using a Lust affinity Skill, inflict 1 [Combustion] on target (6 times per turn)"
+    },
+    {
+      "id": 2020512,
+      "name": "火焰之劍",
+      "desc": "<style=\"highlight\">暴怒或</style>色慾技能正面命中時，使目標增加1級 [Combustion] 強度(每回合最多6次)\n<style=\"highlight\">- 若目標的 [Combustion] 強度為最大值，則改為對其施加1層 [DefenseDown]\n\n使用暴食基礎技能時，獲得1個暴食罪孽碎片(每回合最多1次)</style>"
+    },
+    {
+      "id": 2060511,
+      "name": "綠色淤漿",
+      "desc": "受到攻擊時，若現存體力不高於50%，則使攻擊者增加1級破裂 強度(每回合最多觸發(最大暴食完全共鳴數)次)"
+    },
+    {
+      "id": 2040611,
+      "name": "噬夢",
+      "desc": "傲慢技能暴擊時，使自身獲得1回呼吸法 (每回合最多3次)"
+    },
+    {
+      "id": 2080511,
+      "name": "魯莽航行",
+      "desc": "回合結束時，使除自身以外現存體力最低的1名的友方單位增加5級沉淪 強度，下回合使其獲得1層迅捷 與3層攻擊等級提升 "
+    },
+    {
+      "id": 2090411,
+      "name": "黏稠穢物",
+      "desc": "突刺技能正面命中時，對目標施加1層束縛 (每回合最多2次)"
+    },
+    {
+      "id": 2100511,
+      "name": "毀滅預言",
+      "desc": "色慾技能正面命中時，對自身與目標造成4點理智傷害\n(無法對沒有理智值的目標生效)\n使用色慾技能擊殺目標後，獲得5個色慾罪孽碎片"
+    },
+    {
+      "id": 2090511,
+      "name": "天降審判",
+      "desc": "敵方單位陷入混亂時，使現存體力比例最低的1名友方單位恢復其體力上限4%的體力(每回合最多1次)"
+    },
+    {
+      "id": 2070511,
+      "name": "無盡的憎恨",
+      "desc": "當自身帶有異常狀態或負面狀態，且主要目標或攻擊自身的單位帶有正面狀態時，透過技能或硬幣效果使自身或敵方單位增加的燒傷 、流血 、震顫 、破裂 或沉淪 強度額外+1級，透過技能或硬幣效果使自身獲得的呼吸法 或充能 回數額外+1回"
+    },
+    {
+      "id": 2110511,
+      "name": "平等的禮物",
+      "desc": "透過技能或硬幣效果使除自身以外的友方單位獲得正面狀態時，隨機使1名敵方單位增加1級某1種隨機效果的強度，該效果可能為燒傷 、流血 、震顫 、破裂 或沉淪 (每回合最多觸發5次。每名敵方單位最多增加5級，若是異想體，則改為對隨機部位。)"
+    },
+    {
+      "id": 2030511,
+      "name": "倒塌的石塔",
+      "desc": "擊殺帶有 [Laceration] 的敵方單位時，使自身增加2級呼吸法 強度並使自身獲得2回呼吸法 (每回合最多3次)"
+    },
+    {
+      "id": 2120511,
+      "name": "玫瑰王冠",
+      "desc": "回合開始時，隨機使1名敵方單位增加2級破裂 強度(若是集中遭遇戰，則為所有異想體部位)\n若使暴食屬性技能完全共鳴，則在戰鬥開始時使全體敵方單位增加2級破裂 強度"
+    },
+    {
+      "id": 2120611,
+      "name": "若能回到過去……",
+      "desc": "若自身攻擊後擊殺目標，則獲得持有量最少的1個罪孽碎片。\n目標的( [Sinking] 強度+回數)每有5點，額外獲得1個罪孽碎片(最多3個)\n(若持有量最少的罪孽碎片不低於2種，則隨機獲得其中的罪孽碎片)"
+    },
+    {
+      "id": 2010611,
+      "name": "破碎的昨日",
+      "desc": "若目標的 [Sinking] 強度不低於6級，則使自身的拚點威力+1\n若目標的 [Sinking] 回數不低於4回，則使自身的拚點威力+1"
+    },
+    {
+      "id": 2030611,
+      "name": "暴風般的哀鳴",
+      "desc": "若自身斬擊或嫉妒技能結束後擊殺目標，則下回合使自身獲得1層 [Enhancement] (每回合最多1次)"
+    },
+    {
+      "id": 2050611,
+      "name": "過載電纜",
+      "desc": "戰鬥開始時，若共鳴數不低於4，則使自身獲得2層 [AttackUp] 與2層 [DefenseUp]。\n若該共鳴為嫉妒共鳴，則使儀錶盤上位於自身兩側的友方單位獲得以上效果"
+    },
+    {
+      "id": 2070611,
+      "name": "拘束鎖鏈",
+      "desc": "- 戰鬥開始時，若包括自身技能在內的最大共鳴數不低於4，則使自身與參與該共鳴的全體友方單位獲得3層 [AttackUp] 與3層 [DefenseUp]\n- 若該共鳴為完全共鳴，則額外獲得2層攻擊等級提升 與防禦等級提升 "
+    },
+    {
+      "id": 2110611,
+      "name": "盛情款待",
+      "desc": "自身攻擊結束後，若使目標陷入混亂或擊殺目標，則獲得1個傲慢罪孽碎片與隨機1個其他罪孽碎片(每回合最多3次)"
+    },
+    {
+      "id": 2080611,
+      "name": "貪食",
+      "desc": "使用技能時，若主要目標本回合受到過傷害且體力未滿，則命中時：\n- 若自身的體力為最大值，則使自身造成的傷害+5～10%。\n- 若自身的體力未滿，則使自身恢復2～5點體力。\n(每回合最多7次)",
+      "summary": "若目標體力未滿，則命中時造成的傷害增加或使自身恢復體力"
+    },
+    {
+      "id": 2090611,
+      "name": "執念",
+      "desc": "令自身位於儀錶盤最左側的技能增加的 [Laceration] 強度變為2倍(每回合最多1次)",
+      "summary": "本技能增加的 [Laceration] 強度變為2倍"
+    },
+    {
+      "id": 2060611,
+      "name": "惆悵",
+      "desc": "自身透過技能使敵方單位 [VibrationExplosion] 時，下回合對該敵方單位施加1層 [AttackDown] 與2層 [DefenseDown]。(每回合最多3次，包括E.G.O技能)",
+      "summary": "使目標 [VibrationExplosion] 時，下回合對其施加1層 [AttackDown] 與2層 [DefenseDown]"
+    },
+    {
+      "id": 2100611,
+      "name": "淚膜",
+      "desc": "回合開始時若自身帶有護盾，則使自身獲得1層 [Protection]\n若自身帶有 [ShieldManagerCryingToad]，則使自身額外獲得1層 [Protection]",
+      "summary": "若自身帶有護盾，則使自身獲得1層 [Protection]\n若自身帶有 [ShieldManagerCryingToad]，則使自身額外獲得1層 [Protection]"
+    },
+    {
+      "id": 2020611,
+      "name": "奔騰的時間",
+      "desc": "自身透過技能使敵方單位 [VibrationExplosion] 時，下回合使自身獲得1層 [Agility]。(每回合最多4層，包括E.G.O技能)",
+      "summary": "[VibrationExplosion] 時，下回合獲得1層 [Agility]。(每回合最多4層，包括E.G.O技能)"
+    },
+    {
+      "id": 2040711,
+      "name": "視線的痕跡",
+      "desc": "自身對敵方單位使用基礎攻擊技能時，額外隨機獲得1個持有量最少且屬性與該攻擊技能不同的罪孽碎片(每回合最多2次)"
+    },
+    {
+      "id": 2070711,
+      "name": "粉碎的吊墜",
+      "desc": "戰鬥開始時，若最大共鳴數不低於3，則使自身增加3級 [Breath] 強度。"
+    },
+    {
+      "id": 2110711,
+      "name": "彷徨之人",
+      "desc": "最大 [Charge] 回數+5\n(自身的 [Charge] 強度-1)每有1點，使消耗 [Charge] 回數的技能造成的傷害+2%(最多+10%)",
+      "summary": "消耗 [Charge] 回數的技能造成的傷害增加"
+    },
+    {
+      "id": 2120711,
+      "name": "哀悼",
+      "desc": "回合結束時，若自身帶有負面狀態，則下回合使自身獲得1層 [Enhancement]\n攻擊陷入恐慌或E.G.O侵蝕的目標時，使自身造成的傷害+15%",
+      "summary": ""
+    },
+    {
+      "id": 2080711,
+      "name": "接待不速之客",
+      "desc": "若目標帶有 [UninvitedGuestPersonality] 或改變恐慌類型的狀態，則使自身的拚點威力+1\n攻擊該目標時，使理智值最低的1名友方單位恢復5點理智值(每回合最多1次)"
+    },
+    {
+      "id": 2020711,
+      "name": "伸展的套索",
+      "desc": "攻擊結束後，若使目標陷入混亂或擊殺目標，則隨機對2名敵方單位施加1回 [Burst] (每回合最多1次，不可疊加，若是集中遭遇戰，則改為隨機2個部位)",
+      "summary": "攻擊結束後，若使目標陷入混亂或擊殺目標，則隨機對2名敵方單位施加1回 [Burst]"
+    },
+    {
+      "id": 2060711,
+      "name": "狩獵時間",
+      "desc": "因 [Burst] 或 [Laceration] 傷害使敵方單位或友方單位陣亡時，隨機對1名敵方單位施加2層 [Snare]，下回合使自身獲得1層 [Agility] (每回合最多1次)"
+    },
+    {
+      "id": 2030711,
+      "name": "高聳的緋紅之花",
+      "desc": "每造成10點 [Laceration] 傷害，使自身恢復1點理智值(每回合最多10次)"
+    },
+    {
+      "id": 2090711,
+      "name": "刺入胸口的鐵釘",
+      "desc": "透過基礎攻擊技能對敵方單位施加 [Laceration] 或特殊流血時，對其施加1層 [DefenseDown] (每回合最多1次)\n- 若目標敵方單位帶有 [Laceration] 或特殊流血，則額外使其增加2級 [Laceration] 強度(每回合最多1次)\n\n若包括自身在內的友方單位受到技能直接體力傷害，則對目標敵方單位施加1層 [Curse] (每回合最多2次)",
+      "summary": ""
+    },
+    {
+      "id": 2100711,
+      "name": "骯髒的皮",
+      "desc": "戰鬥開始時，若自身帶有負面狀態，則使自身獲得1層 [ParryingResultUp] 與1層 [Endurance]\n- 自身每帶有3種負面狀態，使自身獲得1層 [Protection] (最多2層)"
+    },
+    {
+      "id": 2050711,
+      "name": "殘酷的晚宴",
+      "desc": "自身造成或受到 [Laceration] 傷害時，使自身恢復等同於 [Laceration] 傷害量的體力(每回合最多10點)\n- 觸發施加 [Laceration] 的技能或硬幣效果時，若目標帶有 [RoseWedge]，則使目標增加1級 [Laceration] 強度。(每回合最多2次)"
+    },
+    {
+      "id": 2010711,
+      "name": "下一個",
+      "desc": "攻擊結束後，若目標被擊殺，則使自身獲得2回 [Breath] (每回合最多2次)"
+    },
+    {
+      "id": 2070811,
+      "name": "損壞的鐘",
+      "desc": "Inflict [Vulnerable] this turn on enemies who were hit by [VibrationExplosion] from Skill, Coin, or Passive effects.\n- Does not stack with E.G.O Gifts that inflict [Vulnerable] upon triggering [VibrationExplosion]. (If the said E.G.O Gifts have been enhanced, subtract this effect's value from the final value before inflicting it.)",
+      "summary": "使敵方單位 [VibrationExplosion] 時，對其施加1層 [Vulnerable]"
+    },
+    {
+      "id": 2080811,
+      "name": "黑暗中的視線",
+      "desc": "令友方單位透過技能或硬幣效果對自身施加的 [Vibration] 回數額外+1回(每回合最多2次)\n- 若該友方單位的目標陷入混亂、士氣低落或陷入恐慌，則改為額外+2回\n- 不會與相同效果的E.G.O飾品疊加"
+    },
+    {
+      "id": 2120811,
+      "name": "不眠之夜",
+      "desc": "戰鬥開始時，對全體敵方單位施加(陷入混亂、士氣低落或陷入恐慌的敵方單位數)層 [AttackDown] 與 [DefenseDown] (每回合最多2層)\n- 不會與相同效果的E.G.O飾品疊加"
+    },
+    {
+      "id": 2110811,
+      "name": "七發子彈",
+      "desc": "- 基礎攻擊技能命中時，使目標增加(自身的 [FreischutzShotCount] 層數/3)級 [Combustion] 強度(每回合最多3次)\n- 使用腦葉公司E.G.O::魔彈[TabExplain] 奧提斯人格時，改為使目標增加(自身的 [FreischutzShotCount] 層數)級 [Combustion] 強度(每回合最多3次)\n- 若目標的 [Combustion] 強度不低於30級，則將以上效果改為施加1層 [DarkFlame] (每回合最多2次)"
+    },
+    {
+      "id": 2040811,
+      "name": "息",
+      "desc": "使用本E.G.O技能的下回合開始時，使自身獲得1層 [NebulizerInhale] (每回合最多1次)\n- 若本技能擊殺了敵方單位，則使自身額外獲得(擊殺的單位數)層 [NebulizerInhale]\n- 若本技能擊殺了友方單位，則使自身額外獲得(擊殺的單位數×2)層 [NebulizerInhale]\n- 該層數將在本場戰鬥期間累計"
+    },
+    {
+      "id": 2020811,
+      "name": "息",
+      "desc": "使用本E.G.O技能的下回合開始時，使自身獲得1層 [NebulizerExhale]\n- 該層數將在本場戰鬥期間累計\n\n戰鬥開始時，每當自身透過 [NebulizerExhale] 效果使友方單位累計獲得10回 [Breath] 時，使自身獲得1層 [NebulizerExhale]\n\n回合結束時，依現存體力比例由低到高的順序，使(最大共鳴數)名友方單位恢復體力上限(自身的 [NebulizerExhale] 層數)%的體力(最多6名)\n- 若受到恢復的友方單位的 [Breath] 強度不低於20級，則使其額外恢復1次體力"
+    },
+    {
+      "id": 2090811,
+      "name": "灼熱遊戲",
+      "desc": "具有10層以上 [Combustion] 回數的單位死亡時，將該單位具有的 [Combustion] 回數施加給所有敵方單位，並恢復自身8點理智(若是集中遭遇戰，則改為施加給全體敵方部位。每名目標最多3層，每回合最多2次)\n- 自身理智為最大值時，變更為使一名理智最低的一名友方單位恢復5點理智"
+    },
+    {
+      "id": 2030811,
+      "name": "衰弱符",
+      "desc": "自身的技能命中時，若目標的 [Burst] 強度不低於15級或自身造成暴擊，則下回合對目標施加1層 [DefenseDown] (最多6層)\n- 本被動生效時，不會與E.G.O飾品陳舊的木雕人偶疊加"
+    },
+    {
+      "id": 2080911,
+      "name": "蠱毒反殺",
+      "desc": "自身透過攻擊技能增加 [Sinking] 強度、施加 [Sinking] 回數或施加特殊沉淪時，下回合使自身獲得1層 [AttackUp] (最多2層)\n- 若完全共鳴數不低於3，則以上效果改為下回合使自身獲得1層 [AttackUp] (最多3層)"
+    },
+    {
+      "id": 2060811,
+      "name": "泣淚",
+      "desc": "若目標在自身的攻擊或反擊技能後陣亡：\n- 下回合使自身獲得2層 [Agility] (每回合最多1次)\n- 下回合使包含自身在內的所有友方單位獲得該技能對應的物理與罪孽屬性傷害強化各1層(每回合最多1次)\n- 下回合對所有敵方單位施加1層 [Reduction] (每回合最多1次)\n\n自身陣亡時：\n- 下回合使所有友方單位獲得1層 [ShamrockDamageUp] 與1層 [PenetrateDamageUp] (每回合最多1次)\n- 下回合對所有敵方單位施加1層 [Reduction] (每回合最多1次)"
+    },
+    {
+      "id": 2100811,
+      "name": "泣淚",
+      "desc": "- 回合結束時，若本回合自身帶有負面狀態、失去體力或失去理智值，則使自身恢復5點理智值。\n- 自身或友方單位陣亡時，下回合對全體敵方單位施加1層 [Vulnerable] (每回合最多1次)"
+    },
+    {
+      "id": 2030911,
+      "name": "阿爾卡那適性迴路",
+      "desc": "本場戰鬥中，每當自身累計消耗10回 [Charge] 時，使自身增加1級 [Charge] 強度\n- 若自身已透過消耗 [Charge] 回數而獲得 [Charge] 強度，則本效果不會重複生效\n- 自身每帶有1級 [Charge] 強度，使自身消耗 [Charge] 回數的基礎攻擊技能造成的傷害+5%(最多+25%)\n\n若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則使自身額外獲得1個3技能"
+    },
+    {
+      "id": 2050811,
+      "name": "節拍器",
+      "desc": "回合開始時，若是奇數回合，則使自身獲得1層 [AttackDmgUp]；若是偶數回合，則使自身獲得1層 [Protection]\n- 不會與E.G.O飾品節拍器疊加(若該E.G.O飾品已強化，則在獲得前扣除本效果的獲得量)\n- 不會影響其他友方單位獲得的狀態效果\n\n使用E.G.O技能時，下回合使自身獲得1層 [AccumulatedPastSinner] (每場戰鬥最多1次)\n- 此後每回合結束時，使自身獲得1層 [AccumulatedPastSinner]"
+    },
+    {
+      "id": 2020911,
+      "name": "醫生",
+      "desc": "回合開始時，使自身與現存體力比例最低的1名友方單位恢復自身體力上限(自身的 [CuredFilm] 層數)%的體力\n- 若自身的體力為最大值，則改為使現存體力比例最低的其他2名友方單位恢復體力\n- 若受到恢復的單位體力不高於25%或陷入混亂，則使該效果的恢復量增加至1.5倍\n\n回合結束時，若浮士德於本場戰鬥中最後使用的E.G.O技能為指令：熔毀，則使回合結束時 [CuredFilm] 減少的層數改為1層\n- 本效果在使用該E.G.O技能的回合起立即生效",
+      "summary": "回合開始時，使自身與現存體力比例最低的1名友方單位恢復體力"
+    },
+    {
+      "id": 2060911,
+      "name": "隨付箋詠醉屠蘇",
+      "desc": "回合結束時，在使用寧作吾 鴻璐時所消耗的罪孽碎片中(怠惰、憂鬱、傲慢)，獲得1個持有量最少的罪孽碎片\n\n本場戰鬥中每消耗或減少的1層 [Cianjing] 或 [SeniorCianjing]，則使自身造成的傷害+1%(最多+15%)",
+      "summary": "回合結束時，獲得罪孽碎片\n根據弦驚、大弦驚所消耗或減少的層數，相應使造成的傷害增加"
+    },
+    {
+      "id": 2081011,
+      "name": "深海之舞",
+      "desc": "- 戰鬥開始時，若場上僅有1名敵方單位，則使位於自身儀錶盤最左側的攻擊技能其拚點威力+1，且在拚點勝利後使該技能造成的傷害+11.5%(包含E.G.O技能)\n- 於自身重返戰鬥或解除待機的回合中，使自身的最小與最大速度值+1、拚點威力+1"
+    },
+    {
+      "id": 2120911,
+      "name": "俠客",
+      "desc": "符合以下條件時，使自身獲得 [MlynarWaiting]\n- 自身每受到3點體力傷害時，則獲得1層\n- 自身每受到5點護盾傷害時，則獲得1層\n- 除自身以外，每有1名友方單位陷入混亂時，則獲得10層\n- 除自身以外，每有1名友方單位陣亡時，則獲得20層\n\n回合開始時，若自身因受到傷害而陷入混亂且自身帶有40層 [MlynarWaiting] 時，則使本回合自身所有的抗性固定為2，並解除自身的混亂(每場戰鬥最多觸發1次；不包括強制混亂)"
+    },
+    {
+      "id": 2110911,
+      "name": "詛咒的懲罰遊戲",
+      "desc": "自身拚點勝利時，對拚點目標造成4點嫉妒傷害\n- 當自身現存體力值低於上限的33%，或目標的現存體力值低於上限的33%，則在下回合對目標施加1層 [ResultReduction] (每回合最多1次)\n- E.G.O飾品<noparse>巫毒娃娃</noparse>施加 [ResultReduction] 時，則此被動技能不會發動",
+      "summary": "拚點勝利時，造成嫉妒傷害\n滿足特定條件後，下回合施加 [ResultReduction]"
+    },
+    {
+      "id": 2070911,
+      "name": "連接電路",
+      "desc": "使用增加 [Combustion] 強度或施加特殊燒傷的技能或嫉妒技能對敵方單位造成傷害時，額外使目標增加該技能硬幣數量一半的 [Combustion] 強度\n(無條件進位；每回合最多3次)"
+    },
+    {
+      "id": 2010811,
+      "name": "織空",
+      "desc": "若目標帶有 [ThreeMirrorpartYiSang]，則自身的基礎攻擊技能使其增加的 [Combustion] 與 [Sinking] 強度額外+1 (每回合內最多額外增加總共8級)\n因 [Combustion] 傷害而陣亡的敵人每有1名，使自身在下回合從三種物理攻擊屬性中獲得隨機1種的<noparse>傷害強化</noparse>(每回合最多3次；每次隨機)",
+      "summary": "使自身對帶有 [ThreeMirrorpartYiSang] 的目標增加的 [Combustion] 和 [Sinking] 強度更多\n每有1名敵人因 [Combustion] 傷害陣亡，獲得一種隨機攻擊種類的<noparse>傷害強化</noparse>"
+    },
+    {
+      "id": 2040911,
+      "name": "三途",
+      "desc": "使用攻擊技能後，若有敵方單位陷入混亂或陣亡，則下回合使自身獲得1層 [CriticalDamageUp] (每回合最多3次)",
+      "summary": ""
+    },
+    {
+      "id": 2100911,
+      "name": "那，便是旋律",
+      "desc": "回合開始時，獲得2層 [ThatIsRhythm]\n\n擊殺目標時，使自身恢復最大值5%的體力，以及5點理智值(每回合最多1次)\n- 若使用E.G.O技能 - 諧律和聲擊殺目標，則使本效果的恢復量加倍\n\n回合結束時，若自身於該回合失去了理智值，則使自身恢復 (4+全體敵方單位帶有的 [Combustion] 強度與 [Laceration] 強度之和÷10)點理智值(最多10點；無條件捨去)"
+    },
+    {
+      "id": 2021011,
+      "name": "永不熄滅的火種",
+      "desc": "本效果在使用E.G.O技能後立即生效\n\n自身每帶有10級 [Combustion] 強度，則使自身的基礎攻擊技能以及硬幣效果使敵人增加的 [Combustion] 強度 +1 (最多+2，特殊<noparse>燒傷</noparse>除外)\n\n自身使用技能「紅艷煞 最大感應【劣化侵蝕】」時，使自身攻擊結束後不會死亡，且恢復自身體力最大值的40%，並於下回合獲得2層 [HitDamageUp] 以及1層 [CrimsonDamageUp] (每場戰鬥最多1次)"
+    },
+    {
+      "id": 2090911,
+      "name": "蛾與蝶的區別",
+      "desc": "若自身位於儀錶盤最左側的基礎攻擊技能為\n暴怒技能或色慾技能，\n則該技能攻擊結束後，隨機對1名敵方單位造成等同於\n該技能對主要目標造成傷害量30%的對應罪孽屬性的傷害（最多30點；若為集中遭遇戰，則改為以部位判定）\n\n若自身透過以上效果造成的傷害達到最大值，則下回合使自身獲得1層對應罪孽屬性的<noparse>傷害強化</noparse>，並在2回合內使以上效果無法觸發"
+    },
+    {
+      "id": 2010212,
+      "name": "火星",
+      "desc": "<style=\"highlight\">使用暴怒屬性或者施加 [Combustion] 強度或回數的技能時，若所有攻擊目標帶有的 [Combustion] 之和不低於6，則拚點威力 +1</style>\n\n拚點勝利時，對<style=\"highlight\">主要目標</style>施加(暴怒<style=\"highlight\">共鳴數 × 2</style>)級 [Combustion] 強度 (每個技能<style=\"highlight\">最多8級</style>)",
+      "summary": "增加拚點威力\n特定條件下施加 [Combustion]"
+    },
+    {
+      "id": 2050911,
+      "name": "劍峰滴落之酒",
+      "desc": "[AlwaysUseEGOPassive2050911]\n\n使用基礎技能攻擊命中時，對目標施加2級 [Laceration] 強度 (每個技能最多1次)\n\n該人格將視為帶有 [Laceration]、[Breath] 關鍵字\n- 該人格的基礎技能將被視為施加 [Laceration] 以及獲得 [Breath] 的技能\n\n[WhenUseEGOPassive]\n\n當友方單位陣亡時，下回合使自身獲得1層 [AlcoholKimPersonal]\n- 若陣亡的友方單位屬於劍契組，則改為獲得2層 [AlcoholKimPersonal]\n\n回合開始時，若自身帶有 [AlcoholKimPersonal]，則使自身進入 [GhostKimPersonal] 型態\n- 若為劍契組頭領 - 莫梭時，將額外獲得 [RootSoupKimPersonal] 效果\n\n回合開始時，若自身不帶有 [AlcoholKimPersonal]，則解除以下效果： [GhostKimPersonal]、[GrudgePersonal] 與 [RootSoupKimPersonal]\n \n當自身帶有 [AlcoholKimPersonal] 時，若自身受到會將體力值減少至0點的傷害，則使自身恢復最大體力值的([AlcoholKimPersonal] 層數 × 25)%，隨後解除自身帶有的 [AlcoholKimPersonal] 效果 (每場戰鬥最多1次；人格自身帶有的被動技能將優先觸發)\n- 陷入混亂時，則追加解除混亂狀態",
+      "summary": "獲得 [AlcoholKimPersonal]"
+    },
+    {
+      "id": 2010911,
+      "name": "下垂翅翼之蝶以凝結於氣息中露水為食",
+      "desc": "若目標帶有 [SinkingWhite]，則使自身的拚點威力+1\n\n自身攻擊命中目標時，目標的 [Sinking] 強度與兩種 [SinkingWhite] 的點數之和不低於15點時，則使其增加1級 [SinkingWhite] 強度(生蝶)與1回 [SinkingWhite] (亡蝶)(每回合最多1次。若是集中遭遇戰，則改為以部位判定)\n\n[AlwaysUseEGOPassive2010911]\n\n基礎技能攻擊命中時，使目標增加2級 [Vibration] 強度(每個技能最多1次)\n\n該人格視作施加 [Vibration] 與 [Sinking] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Vibration] 與 [Sinking] 的技能\n\n[WhenUseEGOPassive2010911]\n\n使自身的 [BulletLament] 強度與回數之和最大值+10\n自身 [ReloadLament] 後，使自身恢復10點理智值，並 [Discard] 除「葬儀師李箱，以上」以外自身所有行動槽中級別最低的1個基礎攻擊技能(每回合最多2次)\n若自身裝備了守備技能，則回合結束時使自身恢復10點理智值\n回合結束時，若自身陷入混亂，則解除自身混亂並使自身 [ReloadLament] (每場戰鬥最多1次，不包括強制混亂)",
+      "summary": "拚點威力提升、施加 [SinkingWhite]"
+    },
+    {
+      "id": 2031011,
+      "name": "這回輪到汝將針吞下……！",
+      "desc": "使嫉妒技能造成的傷害+10%\n- 每有1點嫉妒共鳴數，則額外使該技能造成的傷害+1%(最多+7%)\n\n回合開始時，使自身獲得(本場戰鬥中自身累計受到的體力傷害(包括護盾傷害)÷20)層 [AttackUp] (最多3層)\n\n戰鬥開始時，若觸發嫉妒完全共鳴，則對所有敵方單位施加1層 [NiddleEGO] (若是集中遭遇戰，則改為對所有部位)"
+    },
+    {
+      "id": 2030412,
+      "name": "暴食巨釜",
+      "desc": "回合開始時，將<style=\"highlight\">1</style>個非色慾屬性的罪孽碎片轉化為1個色慾罪孽碎片\n<style=\"highlight\">- 若色慾罪孽碎片數不少於20個，則不會觸發該效果，改為使自身獲得1層 [ScarletResultUp]\n\n色慾基礎技能攻擊前，每持有1個色慾罪孽碎片，使該技能造成的傷害+1%(最多+10%)</style>"
+    },
+    {
+      "id": 2100312,
+      "name": "燉菜噴湧",
+      "desc": "反面命中時，若目標為敵方單位，則使目標增加1級 [Combustion] 強度\n\n<style=\"highlight\">對敵方單位使用增加 [Combustion] 強度與回數的基礎攻擊技能時，\n\n- 若該技能為加算硬幣技能\n．理智值不高於40點時，使自身恢復4點理智值\n．理智值不低於40點時，使自身造成的傷害+10%\n\n- 若該技能為減算硬幣技能\n．理智值不低於-25點時，使自身失去4點理智值(該效果不會使自身的理智值低於-40點)\n．理智值不高於-25點時，使自身造成的傷害+10%</style>",
+      "summary": "反面命中時，使目標增加 [Combustion] 強度，並使自身恢復或失去理智值，或<noparse>造成的傷害增加</noparse>"
+    },
+    {
+      "id": 2121011,
+      "name": "處理小鎮移居申請",
+      "desc": "若最大共鳴數不低於3，則自身技能命中時，下回合對主要目標施加1層 [Binding] (每回合最多1次)\n\n若自身的 [Charge] 強度不低於3級，則使自身獲得或消耗 [Charge] 回數的基礎技能與使敵方單位增加 [Combustion] 強度與回數的基礎技能造成的傷害+10%"
+    },
+    {
+      "id": 2061011,
+      "name": "無人受傷的都市",
+      "desc": "最大 [Charge] 回數+5\n\n消耗 [Charge] 回數或特殊 [Charge] 的3技能(不包括E.G.O技能)造成的傷害+10%\n\n回合結束時，若自身本回合未受到攻擊，則使自身恢復4點理智值\n- 若自身擁有不低於2個減算硬幣基礎攻擊技能，則改為失去4點理智值(該效果不會使自身的理智值低於-40點)"
+    },
+    {
+      "id": 2091011,
+      "name": "分裂的觸覺",
+      "desc": "When this unit gains [Breath] Potency or Count, gain +1 [Breath] Count (2 times per turn)\n\nIf this unit is a [PersonalityBreath] or a [PersonalityVibration], Base Skills that have 1 base Atk Weight or are [WideAreaRampage] deal +10% damage\n\nAt Attack End, if target is Staggered or defeated, randomly inflict 1/3 of [Vibration] Potency on target between other random enemies next turn (rounded up; for Focused Encounters, Parts)\n- This effect does not stack with the effects of the E.G.O Gift \"Mirror Tactile Synaesthesia\""
+    },
+    {
+      "id": 2021111,
+      "name": "排空洞（le trou de vidange）",
+      "desc": "If this unit has 5 [BulletHole], does not consume E.G.O Resource when using \"Hollow\" E.G.O's Skills (both Awakening and Corrosion)\n\nTurn Start: Gain 1 [BulletHole] and 1 [BlackWingHole]\n\nWhen an ally defeats an enemy, the said ally heals 5 SP and gains 1 [Enhancement] next turn (once per turn)\n\n[Charge] Count max cap +5\n\nIf this unit gains [Charge] Count past the max [Charge] Count Cap, this unit randomly gains [Breath] Potency or Count equal to the surplus [Charge] Count gained (max 6 [Charge] Count converted per turn)",
+      "flavor": "It is not penetration that bores a hollow; it is emptiness.\nThe hollow desires to be filled, yet instead, things only ever spill forth from within."
+    },
+    {
+      "id": 2051011,
+      "name": "內出血（l'hémorragie interne）",
+      "desc": "[AlwaysUseEGOPassive]\nIf this unit has 5 [BulletHole], does not consume E.G.O Resource when using \"Hollow\" E.G.O's Skills (both Awakening and Corrosion)\n\nTurn Start: Gain 1 [BulletHole]\n\n[WhenUseEGOPassive]\nTurn Start: Gain 1 [BlackWingHole]\n\nHeal 5 SP every time this unit consumes or loses 3 cumulative [Bullet], and gain 1 [ResultEnhancement] next turn (including Unique [Bullet]; counts up to 9 [Bullet] per turn)",
+      "flavor": "The gaze of another nails into me, driving a hollow from which multitudes spill forth.\nThe discharge is then forged into a bullet that punches a hollow into you."
+    }
+  ]
+}

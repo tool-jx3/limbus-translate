@@ -1,0 +1,1057 @@
+{
+  "dataList": [
+    {
+      "id": 2030511,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "祈願石",
+          "abName": "繞佛塔",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "祈願石",
+          "abName": "繞佛塔",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 對目標施加2層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "祈願石",
+          "abName": "繞佛塔",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 對目標施加2層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030521,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "祈願石",
+          "abName": "繞佛塔",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使目標的 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "祈願石",
+          "abName": "繞佛塔",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使目標的 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "祈願石",
+          "abName": "繞佛塔",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加8級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使目標的 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(嫉妒共鳴數-2)(最多+1)\n[BeforeAttack] 若自身的 [Charge] 回數不低於20回，則消耗20回 [Charge] 並使本技能造成的傷害+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(嫉妒共鳴數-2)(最多+2)\n[BeforeAttack] 使本技能造成的傷害+(嫉妒共鳴數-3)×5%(最多+15%)\n[BeforeAttack] 若自身的 [Charge] 回數不低於20回，則消耗20回 [Charge] 並使本技能造成的傷害+35%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(嫉妒共鳴數-2)(最多+3)\n[BeforeAttack] 使本技能造成的傷害+(嫉妒共鳴數-3)×10%(最多+30%)\n[BeforeAttack] 若自身的 [Charge] 回數不低於20回，則消耗20回 [Charge] 並使本技能造成的傷害+40%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(嫉妒共鳴數-2)(最多+1)\n[BeforeAttack] 使本技能造成的傷害+(嫉妒共鳴數-3)×5%(最多+15%)\n[BeforeAttack] 若自身的 [Charge] 回數低於20回，則每相差1回 [Charge]，消耗自身體力上限1.5%的體力以獲得至20回 [Charge]\n[BeforeAttack] 消耗最多20回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+2.5%(最多+50%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EnemyKill] 使自身獲得3回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(嫉妒共鳴數-2)(最多<style=\"highlight\">+2</style>)\n[BeforeAttack] 使本技能造成的傷害+(嫉妒共鳴數-3)×<style=\"highlight\">8</style>%(最多<style=\"highlight\">+24</style>%)\n[BeforeAttack] 若自身的 [Charge] 回數低於20回，則每相差1回 [Charge]，消耗自身體力上限1.5%的體力以獲得至20回 [Charge]\n[BeforeAttack] 消耗最多20回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+<style=\"highlight\">3.5</style>%(最多<style=\"highlight\">+70</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EnemyKill] 使自身獲得3回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(嫉妒共鳴數-2)(最多<style=\"highlight\">+3</style>)\n[BeforeAttack] 使本技能造成的傷害+(嫉妒共鳴數-3)×<style=\"highlight\">12</style>%(最多<style=\"highlight\">+36</style>%)\n[BeforeAttack] 若自身的 [Charge] 回數低於20回，則每相差1回 [Charge]，消耗自身體力上限<style=\"highlight\">1</style>%的體力以獲得至20回 [Charge]\n[BeforeAttack] 消耗最多20回 [Charge]，每消耗1回 [Charge]，則使本技能造成的傷害+<style=\"highlight\">5</style>%(最多<style=\"highlight\">+100</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EnemyKill] 使自身獲得3回 [Charge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "使用本技能期間，自身的體力不會降至1點以下。\n自身每帶有100層 [BloodDinner_Accumulation]，使本技能的拚點威力+1(最多+2)\n[BeforeAttack] 若 [BloodDinner] 層數低於50層，則令本技能每次命中時使目標增加1級 [Laceration] 強度\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "每有1層 [BloodDinner_Common_Accumulation]，使本硬幣造成的傷害+0.1%(最多+10%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 100+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max 10%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 200+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max 20%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 300+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max 30%)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多3層)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "使用本技能期間，自身的體力不會降至1點以下。\n<style=\"highlight\">若目標的 [Laceration] 強度不低於10級，則使本技能的硬幣威力+1</style>\n自身每帶有100層 [BloodDinner_Accumulation]，使本技能的拚點威力+1(最多<style=\"highlight\">+3</style>)\n[BeforeAttack] 若 [BloodDinner] 層數低於<style=\"highlight\">75</style>層，則令本技能每次命中時使目標增加1級 [Laceration] 強度\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "每有1層 [BloodDinner_Common_Accumulation]，使本硬幣造成的傷害+0.1%(最多+10%)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 100+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">15</style>%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 200+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">25</style>%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 300+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">40</style>%)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多3層)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "使用本技能期間，自身的體力不會降至1點以下。\n目標每帶有<style=\"highlight\">10級</style> [Laceration] 強度，使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n自身每帶有100層 [BloodDinner_Accumulation]，使本技能的拚點威力+1<style=\"highlight\">(最多+5)</style>\n[BeforeAttack] 若 [BloodDinner] 層數低於<style=\"highlight\">100</style>層，則令本技能每次命中時使目標增加1級 [Laceration] 強度\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "每有1層 [BloodDinner_Common_Accumulation]，使本硬幣造成的傷害+0.1%(最多+10%)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 100+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">20</style>%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 200+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">30</style>%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "At 300+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">50</style>%)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多<style=\"highlight\">4</style>層)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[CantIdentify]\n隨機指定目標\n使用本技能期間，自身的體力不會降至1點以下\n若目標的 [Laceration] 強度不低於10級，則使本技能的硬幣威力-1\n[BeforeAttack] 若 [BloodDinner] 層數低於150層，則令本技能每次命中時使目標增加1級 [Laceration] 強度\n[BeforeAttack] 使自身增加20級 [Laceration] 強度，立即觸發自身的 [Laceration] 1次並使自身的 [Laceration] 回數減少2回",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 每有50層 [BloodDinner_Common_Accumulation]，使目標增加1級 [Laceration] 強度(最多10級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若 [BloodDinner] 層數不高於100層，則使目標增加10級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "每有100層 [BloodDinner_Common_Accumulation]，則使本硬幣造成的傷害+5%(最多+25%)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多3層)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使自身恢復本硬幣造成體力傷害量50%的體力(最多10點)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[CantIdentify]\n隨機指定目標\n使用本技能期間，自身的體力不會降至1點以下\n若目標的 [Laceration] 強度不低於10級，則使本技能的硬幣威力-1\n<style=\"highlight\">若自身的 [BloodDinner_Accumulation] 層數不低於200層，則使本技能的硬幣威力-1</style>\n[BeforeAttack] 若 [BloodDinner] 層數低於150層，則令本技能每次命中時使目標增加1級 [Laceration] 強度\n[BeforeAttack] 使自身增加20級 [Laceration] 強度，立即觸發自身的 [Laceration] 1次並使自身的 [Laceration] 回數減少2回",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 每有50層 [BloodDinner_Common_Accumulation]，使目標增加1級 [Laceration] 強度(最多10級)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若 [BloodDinner] 層數不高於100層，則使目標增加10級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "每有100層 [BloodDinner_Common_Accumulation]，使本硬幣造成的傷害+<style=\"highlight\">10</style>%(最多<style=\"highlight\">+50</style>%)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多<style=\"highlight\">4</style>層)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使自身恢復本硬幣造成體力傷害量50%的體力(最多10點)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[CantIdentify]\n隨機指定目標\n使用本技能期間，自身的體力不會降至1點以下\n若目標的 [Laceration] 強度不低於10級，則使本技能的硬幣威力-1\n若自身的 [BloodDinner_Accumulation] 層數不低於200層，則使本技能的硬幣威力-1\n[BeforeAttack] 若 [BloodDinner] 層數低於150層，則令本技能每次命中時使目標增加1級 [Laceration] 強度\n[BeforeAttack] 使自身增加20級 [Laceration] 強度，立即觸發自身的 [Laceration] 1次並使自身的 [Laceration] 回數減少2回<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 每有50層 [BloodDinner_Common_Accumulation]，使目標增加1級 [Laceration] 強度(最多10級)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若 [BloodDinner] 層數不高於100層，則使目標增加10級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "每有100層 [BloodDinner_Common_Accumulation]，使本硬幣造成的傷害+<style=\"highlight\">20</style>%(最多<style=\"highlight\">+100</style>%)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多<style=\"highlight\">5</style>層)"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使自身恢復本硬幣造成體力傷害量50%的體力(最多10點)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "朱符",
+          "abName": "因而無人哭泣",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(4+暴食共鳴數)層 [EntangledCurseTalisman] (最多10層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/2)級 [Burst] 強度(最多3級，無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/4)回 [Burst] (最多2回，無條件捨去)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "朱符",
+          "abName": "因而無人哭泣",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(4+暴食共鳴數)層 [EntangledCurseTalisman] (最多10層)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">目標每帶有1層 [EntangledCurseTalisman]，則使本硬幣造成的傷害+3%(最多+30%)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/2)級 [Burst] 強度(最多3級，無條件捨去)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/4)回 [Burst] (最多2回，無條件捨去)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "朱符",
+          "abName": "因而無人哭泣",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(4+暴食共鳴數)層 [EntangledCurseTalisman] (最多10層)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "目標每帶有1層 [EntangledCurseTalisman]，則使本硬幣造成的傷害+<style=\"highlight\">5</style>%(最多+<style=\"highlight\">50</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/2)級 [Burst] 強度(最多<style=\"highlight\">4</style>級，無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/4)回 [Burst] (最多2回，無條件捨去)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "朱符",
+          "abName": "因而無人哭泣",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(6+暴食共鳴數)層 [EntangledCurseTalisman] (最多10層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "目標每帶有1層 [EntangledCurseTalisman]，則使本硬幣造成的傷害+5%(最多+50%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/2)級 [Burst] 強度(最多3級，無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(其 [EntangledCurseTalisman] 層數/3)回 [Burst] (最多2回，無條件捨去)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "朱符",
+          "abName": "因而無人哭泣",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(6+暴食共鳴數)層 [EntangledCurseTalisman] (最多10層)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "目標每帶有1層 [EntangledCurseTalisman]，則使本硬幣造成的傷害+<style=\"highlight\">10</style>%(最多+<style=\"highlight\">100</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/2)級 [Burst] 強度(最多3級，無條件捨去)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(其 [EntangledCurseTalisman] 層數/3)回 [Burst] (最多2回，無條件捨去)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "朱符",
+          "abName": "因而無人哭泣",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(6+暴食共鳴數)層 [EntangledCurseTalisman] (最多10層)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "目標每帶有1層 [EntangledCurseTalisman]，使本硬幣造成的傷害+10%(最多+100%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(其 [EntangledCurseTalisman] 層數/2)級 [Burst] 強度(最多<style=\"highlight\">4</style>級，無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(其 [EntangledCurseTalisman] 層數/3)回 [Burst] (最多2回，無條件捨去)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "以愛與憎惡之名 - 大阿爾卡那．光破斬！！！",
+          "abName": "憎惡女王",
+          "desc": "[BeforeAttack] 隨機使除自身以外的1+(嫉妒共鳴數/3)名友方單位獲得1層 [MagicalGirlResponse] (最多3名)\n\n[BeforeAttack] 使本技能攻擊容量+(自身 [Charge] 強度-1)(最多+3)\n\n[EndSkill] 消耗自身所有 [Charge] 回數，使現存體力比例最低的2+(嫉妒共鳴數/2)名友方單位恢復(所消耗的 [Charge] 回數)%體力(最多5名，最多5%)\n\n[EndSkill] 若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則使自身獲得1層 [ArcanaQueenOfHate]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Charge] (每回合最多5回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對主要目標施加 [VillainMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Charge] 強度-1)級 [Burst] 強度(最多2級)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "以愛與憎惡之名 - 大阿爾卡那．光破斬！！！",
+          "abName": "憎惡女王",
+          "desc": "[BeforeAttack] 隨機使除自身以外的1+(嫉妒共鳴數/3)名友方單位獲得1層 [MagicalGirlResponse] (最多3名)\n<style=\"highlight\">- 若自身帶有 [MagicalGirlAppear]，則改為隨機使除自身以外的1+(嫉妒共鳴數/3)名友方單位獲得2層 [MagicalGirlResponse] (最多3名)</style>\n\n[BeforeAttack] 使本技能攻擊容量+(自身 [Charge] 強度-1)(最多+<style=\"highlight\">5</style>)\n[EndSkill] 消耗自身所有 [Charge] 回數，使現存體力最低的2+(嫉妒共鳴數/2)名友方單位恢復(所消耗的 [Charge] 回數)%體力(最多5名，最多<style=\"highlight\">8</style>%)\n\n[EndSkill] 若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則使自身獲得1層 [ArcanaQueenOfHate]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Charge] (每回合最多5回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對主要目標施加 [VillainMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Charge] 強度-1)級 [Burst] 強度(最多<style=\"highlight\">3</style>級)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "以愛與憎惡之名 - 大阿爾卡那．光破斬！！！",
+          "abName": "憎惡女王",
+          "desc": "[BeforeAttack] 隨機使除自身以外的1+(嫉妒共鳴數/<style=\"highlight\">2</style>)名友方單位獲得1層 [MagicalGirlResponse] (最多<style=\"highlight\">4</style>名)\n- 若自身帶有 [MagicalGirlAppear]，則改為隨機使除自身以外的1+(嫉妒共鳴數/<style=\"highlight\">2</style>)名友方單位獲得2層 [MagicalGirlResponse] (最多<style=\"highlight\">4</style>名)\n\n[BeforeAttack] 使本技能攻擊容量+(自身 [Charge] 強度-1)(最多+5)\n<style=\"highlight\">- 若自身帶有 [MagicalGirlAppear]，則改為使本技能攻擊容量+(自身 [Charge] 強度)(最多+5)</style>\n\n[EndSkill] 消耗自身所有 [Charge] 回數，使現存體力最低的2+(嫉妒共鳴數/2)名友方單位恢復(所消耗的 [Charge] 回數)%體力(最多5名，最多<style=\"highlight\">10</style>%)\n\n[EndSkill] 若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則使自身獲得1層 [ArcanaQueenOfHate]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得<style=\"highlight\">2</style>回 [Charge] (每回合最多<style=\"highlight\">10</style>回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對主要目標施加 [VillainMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Charge] 強度-1)級 [Burst] 強度(最多<style=\"highlight\">4</style>級)"
+                },
+                {
+                  "desc": "<style=\"highlight\">- 自身帶有 [MagicalGirlAppear] 時，使目標增加1回 [Burst]</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2030921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "極限逆位．阿爾卡那．光破斬 - 憎惡滅絕",
+          "abName": "憎惡女王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能攻擊容量+(自身 [Charge] 強度)(最多+5)\n\n[BeforeAttack] 消耗自身所有 [Charge] 回數，每消耗1回 [Charge]，則使本技能造成的傷害+1%(最多+20%)\n\n[BeforeAttack] 主要目標帶有 [VillainMark] 時，則自身每帶有1級 [Charge] 強度，使本技能造成的傷害+3%(最多+15%)\n\n[BeforeAttack] 每有3個嫉妒共鳴數，使本技能造成的傷害+5%(最多+10%，無條件捨去)\n\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-12(最多-24)\n\n[EndSkill] 若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則對自身施加1層 [HystericGauge] ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Charge] (每回合最多7回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 下回合對主要目標施加 [VillainMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Charge] 強度-1)級 [Sinking] 強度(最多2級)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "極限逆位．阿爾卡那．光破斬 - 憎惡滅絕",
+          "abName": "憎惡女王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能攻擊容量+(自身 [Charge] 強度)(最多+5)\n<style=\"highlight\">- 自身帶有 [NoVillain] 時，改為使本技能攻擊容量+(自身 [Charge] 強度+1)(最多+5)</style>\n\n[BeforeAttack] 消耗自身所有 [Charge] 回數，每消耗1回 [Charge]，則使本技能造成的傷害+<style=\"highlight\">2</style>%(最多+<style=\"highlight\">40</style>%)\n\n[BeforeAttack] 主要目標帶有 [VillainMark] 時，則自身每帶有1級 [Charge] 強度，使本技能造成的傷害+<style=\"highlight\">5</style>%(最多+<style=\"highlight\">25</style>%)\n<style=\"highlight\">- 自身帶有 [HystericGauge] 時，則改為自身每帶有1級 [Charge] 強度，使本技能造成的傷害+7%(最多+35%)</style>\n\n[BeforeAttack] 每有2個嫉妒共鳴數，使本技能造成的傷害+<style=\"highlight\">7</style>%(最多<style=\"highlight\">+21</style>%，無條件捨去)\n\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-12(最多-24)\n\n[EndSkill] 若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則對自身施加1層 [HystericGauge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge] (每回合最多<style=\"highlight\">10</style>回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 下回合對主要目標施加 [VillainMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Charge] 強度-1)級 [Sinking] 強度(最多<style=\"highlight\">3</style>級)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "極限逆位．阿爾卡那．光破斬 - 憎惡滅絕",
+          "abName": "憎惡女王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能攻擊容量+(自身 [Charge] )強度(最多+5)\n- 自身帶有 [NoVillain] 時，改為使本技能攻擊容量+(自身 [Charge] 強度+1)(最多+5)\n\n[BeforeAttack] 消耗自身所有 [Charge] 回數，每消耗1回 [Charge]，則使本技能造成的傷害<style=\"highlight\">+2.5</style>%(最多+<style=\"highlight\">50</style>%)\n\n[BeforeAttack] 主要目標帶有 [VillainMark] 時，則自身每帶有1級 [Charge] 強度，使本技能造成的傷害+5%(最多+25%)\n- 自身帶有 [HystericGauge] 時，則改為自身每帶有1級 [Charge] 強度，使本技能造成的傷害+<style=\"highlight\">10</style>%(最多+<style=\"highlight\">50</style>%)\n\n[BeforeAttack] 每有2個嫉妒共鳴數，使本技能造成的傷害<style=\"highlight\">+10</style>%(最多<style=\"highlight\">+30</style>%，無條件捨去)\n\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-12(最多-24)\n\n[EndSkill] 若自身為腦葉公司E.G.O:: 以愛與憎惡之名 唐吉訶德，則對自身施加1層 [HystericGauge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge] (每回合最多<style=\"highlight\">14</style>回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack]</style> 下回合對主要目標施加 [VillainMark]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Charge] 強度-1)級 [Sinking] 強度(最多<style=\"highlight\">4</style>級)"
+                },
+                {
+                  "desc": "<style=\"highlight\">- 自身帶有 [NoVillain] 時，使目標增加1回 [Sinking]</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2031011,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[WinDuelEndSkill] 使現存體力比例最低的(2+嫉妒共鳴數÷2)名友方單位恢復其體力上限2%的體力與5點理智值(最多3名)\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)點護盾(最多20點)\n[DefeatDuel] 使本技能對主要目標造成的傷害+100%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 下回合對目標施加1層 [ResultReduction] (每回合每個目標最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[WinDuelEndSkill] 使現存體力比例最低的(2+嫉妒共鳴數÷2)名友方單位恢復其體力上限<style=\"highlight\">4</style>%的體力與5點理智值(最多<style=\"highlight\">4</style>名)\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)點護盾(最多<style=\"highlight\">25</style>點)\n[DefeatDuel] 使本技能對主要目標造成的傷害+<style=\"highlight\">150</style>%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 下回合對目標施加1層 [ResultReduction] (每回合每個目標最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[WinDuelEndSkill] 使現存體力比例最低的(2+嫉妒共鳴數÷2)名友方單位恢復其體力上限<style=\"highlight\">6</style>%的體力與5點理智值(最多4名)\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)點護盾(最多<style=\"highlight\">30</style>點)\n[DefeatDuel] 使本技能對主要目標造成的傷害+<style=\"highlight\">200</style>%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 下回合對目標施加1層 [ResultReduction] (每回合每個目標最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2031021,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[CantIdentify]\n隨機指定目標\n若嫉妒共鳴數不低於2，則使本技能的最終威力+1\n[WinDuel] 使本技能對主要目標造成的傷害+60%\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)點護盾(最多20點)\n[DefeatDuel] 使本技能施加的 [ResultReduction] 層數額外+1層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [ResultReduction] (每回合每個目標最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[CantIdentify]\n隨機指定目標\n若嫉妒共鳴數<style=\"highlight\">每有2</style>，則使本技能的最終威力+1<style=\"highlight\">(最多+2)</style>\n[WinDuel] 使本技能對主要目標造成的傷害+<style=\"highlight\">80</style>%\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)點護盾(最多<style=\"highlight\">25</style>點)\n[DefeatDuel] 使本技能施加的 [ResultReduction] 層數額外+1層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [ResultReduction] (每回合每個目標最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[CantIdentify]\n隨機指定目標\n若嫉妒共鳴數每有2，則使本技能的最終威力+1(最多+<style=\"highlight\">3</style>)\n[WinDuel] 使本技能對主要目標造成的傷害+<style=\"highlight\">100</style>%\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)點護盾(最多<style=\"highlight\">30</style>點)\n[DefeatDuel] 使本技能施加的 [ResultReduction] 層數額外+1層",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [ResultReduction] (每回合每個目標最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

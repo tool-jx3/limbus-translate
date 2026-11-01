@@ -1,0 +1,201 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_41_1",
+      "dlg": "每當媽媽拿起刀出門時，我真正害怕的是……媽媽再也不會回來。\n你們會怎麼樣呢。可以平安歸來嗎？還是變成跟媽媽一樣的騙子呢？",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_cheer_41_2",
+      "dlg": "夜良秀苦！\n媽媽不喜歡說「請多指教」，所以我幫她想出來的招呼語。因為是良秀，所以是夜良秀苦！",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_specialcheer_41_1",
+      "dlg": "……不是為了死在這種地方，才離開蜘蛛巢的吧。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_specialcheer_41_2",
+      "dlg": "真的只有這樣嗎？\n如果殘留在撕裂記憶中的感情屬實，就不該在這種地方狼狽地死去吧。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_enemy_break_41_1",
+      "dlg": "不上不下的憐憫只會造成多餘的痛苦。\n如果打算奪走性命的話，你就該砍下首級才對。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_ally_break_41_1",
+      "dlg": "這種時候，只能說沒能保護你，對不起。",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_ally_break_41_2",
+      "dlg": "沒有比沒能保護你這句話，更為空虛的話語了。因為那句話，代表著最終仍未能守護。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_killenemy_41_1",
+      "dlg": "你們必須踏上的修羅之路，依然看不見盡頭地遙遠……還更遙遠。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_ally_dead_41_1",
+      "dlg": "即使看不見，也抓不住。但只要那條鎖鏈仍然相連……你們的時間就不會消失吧。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_enemy_adv_41_1",
+      "dlg": "這就是媽媽每次都會用奇怪縮語的狀況吧。萬短至藝。你們，被砍成一半了。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_ally_adv_41_1",
+      "dlg": "或許，應該是這樣的日子吧。媽媽比我更早回家的日子。\n放學回家時，若聽見門裡傳來媽媽的腳步聲……光是那道聲音就令我欣喜不已。",
+      "imgStr": "PinkyChibi_announcer_2"
+    },
+    {
+      "id": "announcer_ally_adv_41_2",
+      "dlg": "看來會早早結束呢。……從這種情況來看，縮短的藝術是無法預知結局的媽媽所選的最佳方法也說不定。\n無論是蜘蛛巢的生活或是我必須忍受的等待，她全都想要斬斷吧。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_ally_advex_41_1",
+      "dlg": "它並未斷開來。只是糾纏、打結在一起。接續的線索仍掌握於你們手中。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_ally_advex_41_2",
+      "dlg": "你打算放棄嗎？住手。如果輕易放手，總有一天必定……會為此後悔。",
+      "imgStr": "PinkyChibi_announcer_2"
+    },
+    {
+      "id": "announcer_danger_41_1",
+      "dlg": "你確定要這麼做嗎？沒有再忘記什麼吧？\n……如果不是想繼續留在這個令人厭煩的地方，那就確實做個了結。做到半點留戀不復存在的程度。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_enemy_specialskill_41_1",
+      "dlg": "嚯。你看到那邊了嗎？那個不管怎麼看都非常危險……啊！要不要我來告訴你可以躲藏的地方呢？",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_41_1",
+      "dlg": "錯綜複雜的問題必須要找出開端與結尾才能解決。\n如果做不到的話，倒不如乾脆全部斬斷，不留餘痕。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_advatk_physical_41_1",
+      "dlg": "……媽媽不管什麼武器都能運用自如。而其中最為出色的是刀。",
+      "imgStr": "PinkyChibi_announcer_2"
+    },
+    {
+      "id": "announcer_disadvatk_physical_41_1",
+      "dlg": "我知道喔。這種事情，學校是不會教的。",
+      "imgStr": "PinkyChibi_announcer_2"
+    },
+    {
+      "id": "announcer_disadvatk_physical_41_2",
+      "dlg": "無論怎麼教她，每次都會以奇怪的方式簡化言語。現在又更嚴重了。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_advatk_attr_41_1",
+      "dlg": "……姿勢沒有問題。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_disadvatk_attr_41_1",
+      "dlg": "哎呀！不是那樣做的啦！",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_disadvatk_attr_41_2",
+      "dlg": "哈。就說了，不是那樣做。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_41_1",
+      "dlg": "有人生氣時……就該這樣屏息躲起來。\n唔……",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_41_1",
+      "dlg": "那傢伙……被徹底困在了蜘蛛網裡呢。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_ally_specialbuff_41_1",
+      "dlg": "不願接受的餽贈也有成為助力的時刻。\n如同這副被替換成與媽媽相同顏色的義眼。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_ally_specialbuff_41_2",
+      "dlg": "無論是無法實現的希望，或是墜落後不留殘影的希望……全部都是我的願望。\n那麼敵人遞來的援手，也同樣算是種援助吧。",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_41_1",
+      "dlg": "難纏的的東西黏上來了。斬斷的方法……你知道吧？",
+      "imgStr": "PinkyChibi_announcer_4"
+    },
+    {
+      "id": "announcer_enemy_destroy_41_1",
+      "dlg": "被斬得支離破碎不留原形呢。如同媽媽被千刀萬剮的記憶一樣。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_enemy_destroy_41_2",
+      "dlg": "我以為那是像碎片一樣，忘記也無所謂，微不足道的記憶而已。\n如果早知道重要的記憶會消失，這份怨恨……或許不會那麼沉重吧。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_round_takebigdmg_41_1",
+      "dlg": "哦哦！？明明自信滿滿地衝過去……結果只是碰碰運氣嗎？",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_round_takebigdmg_41_2",
+      "dlg": "咳。無話可說。剛剛的事情我就裝作沒看見吧！",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_round_givebigdmg_41_1",
+      "dlg": "哇～剛剛就像跟叔叔阿姨們一樣呢！",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_round_givebigdmg_41_2",
+      "dlg": "小時候我不懂。為什麼媽媽不讓我跟叔叔們講話。\n那些外聘講師們……在手指中也算知名的佼佼者吧。他們每次都教給媽媽比你們展現的更加厲害，甚至更勝一籌的技術。",
+      "imgStr": "PinkyChibi_announcer_2"
+    },
+    {
+      "id": "announcer_multikillenemy_41_1",
+      "dlg": "如果要幫你們配戴花朵，相思花最合適了吧。最為鮮紅……地獄色的相思花。",
+      "imgStr": "PinkyChibi_announcer_3"
+    },
+    {
+      "id": "announcer_battle_win_41_1",
+      "dlg": "繼續這樣陪著媽媽走遍各處，留下更多回憶吧。\n總有一天……希望能帶著我去回憶中最美麗的地方。",
+      "imgStr": "PinkyChibi_announcer_1"
+    },
+    {
+      "id": "announcer_battle_defeat_41_1",
+      "dlg": "沒關係！再來一次吧！",
+      "imgStr": "PinkyChibi_announcer_1",
+      "playWeight": 0.7
+    },
+    {
+      "id": "announcer_battle_defeat_41_2",
+      "dlg": "你以為僅憑這種東西就能截斷道路嗎？\n不。你們的流動、連接的繩索……遠比你們所想來得堅韌。",
+      "imgStr": "PinkyChibi_announcer_4",
+      "playWeight": 0.3
+    },
+    {
+      "id": "announcer_equip_41_1",
+      "dlg": "有滴答滴答的時鐘先生，還有布隆布隆的巴士。交到許多很棒的朋友呢！\n嘻嘻。太好了。就算我消失，媽媽也不孤單了。",
+      "imgStr": "PinkyChibi_announcer_1"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "dataList": [
+    {
+      "id": 122301,
+      "name": "絕望騎士",
+      "desc": "Takes -50% damage from [Combustion], [Laceration], [Vibration], [Burst], and [Sinking] (rounded down)\nIf this unit hits with a Cracked [SuperCoin], it does not activate the target's [Sinking] effect (does not consume Count either)"
+    },
+    {
+      "id": 122302,
+      "name": "流淌的無助之淚",
+      "desc": "回合開始時，若場上沒有帶有 [HelplessTear] 的劍，則隨機使1把劍獲得 [HelplessTear] (每回合最多1次，場上有帶有 [HelplessTear] 的劍時不會生效)"
+    },
+    {
+      "id": 122303,
+      "name": "慘不忍睹的自尊",
+      "desc": "自身首次陷入混亂後，回合結束時，若有 [ColdBlackTear] 層數不低於5層的罪人，則下回合使用範圍技能\n自身首次陷入混亂後，回合結束時，若全體罪人均帶有 [ColdBlackTear]，則下回合使自身獲得 [SignOfDespair]"
+    },
+    {
+      "id": 122304,
+      "name": "共同分擔的悲傷",
+      "desc": "自身首次陷入混亂時，下回合解除自身的混亂，每回合使自身獲得10層 [Protection] 與500點護盾\n下回合召喚被忘卻的騎士之劍 "
+    },
+    {
+      "id": 122305,
+      "name": "磨損殆盡的騎士",
+      "desc": "每當劍刺入自身時，使自身每回合獲得的 [Protection] 層數減少3層，獲得的護盾減少100點；對自身施加1層 [CollapsedPride]\n若自身的 [CollapsedPride] 層數不低於3層，則自身不再獲得 [Protection] 與護盾，下回合使自身陷入混亂，並對自身施加 [WornOutKnight]"
+    },
+    {
+      "id": 122306,
+      "name": "僅存一絲的正義",
+      "desc": "若自身帶有 [WornOutKnight] 時，受到阿爾卡那[TabExplain]．光破斬攻擊，則自身體力不會低於5%，回合結束時陣亡"
+    },
+    {
+      "id": 122307,
+      "name": "共同分擔的悲傷",
+      "desc": "自身首次陷入混亂時，下回合解除自身的混亂，每回合使自身獲得10層 [Protection] 與500點護盾\n下回合召喚心擊碎痛之劍、撕心裂肺之劍、穿心欲絕之劍"
+    },
+    {
+      "id": 122308,
+      "name": "僅存一絲的正義",
+      "desc": "若自身帶有 [WornOutKnight] 且現存體力低於600點時，受到阿爾卡那[TabExplain]．光破斬攻擊，則自身體力不會低於5%，回合結束時陣亡"
+    },
+    {
+      "id": 122401,
+      "name": "穿心欲絕之劍",
+      "desc": "若帶有 [HelplessTear] 的劍體力降至0點，則使其刺入絕望騎士"
+    },
+    {
+      "id": 122402,
+      "name": "被忘卻的騎士之劍",
+      "desc": "自身被破壞的 [SuperCoin] 命中時，不會觸發目標的 [Sinking] 效果"
+    },
+    {
+      "id": 122403,
+      "name": "劍鋒指向所有未受保護之人",
+      "desc": "若有敵方單位帶有 [ChasingArcana]，則優先指定該敵方單位"
+    },
+    {
+      "id": 122404,
+      "name": "休息",
+      "desc": "未帶有 [HelplessTear] 時，自身的體力不會低於1點。\n回合結束時，若自身未帶有 [HelplessTear] 且現存體力為1點，則使自身體力恢復至最大值"
+    },
+    {
+      "id": 122405,
+      "name": "穿心欲絕之劍",
+      "desc": "若帶有 [HelplessTear] 的劍體力降至0點，則使其刺入絕望騎士；下回合隨機使1把劍與自身抗性為致命的相同物理抗性變為致命"
+    }
+  ]
+}

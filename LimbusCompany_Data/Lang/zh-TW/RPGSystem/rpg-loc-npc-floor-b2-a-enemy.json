@@ -1,0 +1,32 @@
+{
+  "dataList": [
+    {
+      "key": "N202031",
+      "displayName": "紅色針靈"
+    },
+    {
+      "key": "N202031Alt",
+      "displayName": "紅色針靈"
+    },
+    {
+      "key": "N202032",
+      "displayName": "綠色針靈"
+    },
+    {
+      "key": "N112001",
+      "displayName": "潰爛的黃色淚水"
+    },
+    {
+      "key": "N112002",
+      "displayName": "化膿的紅色淚水"
+    },
+    {
+      "key": "N112003",
+      "displayName": "滿溢的藍色淚水"
+    },
+    {
+      "key": "N202034",
+      "displayName": "黑色的線"
+    }
+  ]
+}

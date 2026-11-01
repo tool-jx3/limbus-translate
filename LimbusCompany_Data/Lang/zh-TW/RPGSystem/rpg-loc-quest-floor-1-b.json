@@ -1,0 +1,110 @@
+{
+  "dataList": [
+    {
+      "key": "Q1000",
+      "title": "오프닝",
+      "description": "로딩 직후 오프닝 연출(S1001B) 재생용 숨김 퀘스트",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1001",
+      "title": "任務1 - 開始",
+      "description": "回到廁所"
+    },
+    {
+      "key": "Q1011",
+      "title": "探索百貨公司",
+      "description": "真奇怪。我們再次回到了廁所，大家表現得像什麼都不記得一樣，而且沒看見莫梭的身影。這一切不可能都是場夢。總之先逛逛百貨公司吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "探索百貨公司"
+        }
+      ]
+    },
+    {
+      "key": "Q1013",
+      "title": "前往快時尚服飾館",
+      "description": "幸好看來不是場夢。先繼續前進吧。看來先找到位於某處的莫梭比較好。或許會在之前那間店裡吧？",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往快時尚服飾館"
+        }
+      ]
+    },
+    {
+      "key": "Q1021",
+      "title": "尋找莫梭",
+      "description": "莫梭應該就在這附近某處。找到莫梭後試著搭話吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟莫梭交談"
+        }
+      ]
+    },
+    {
+      "key": "Q1022",
+      "title": "下檔人台模特兒",
+      "description": "若要帶走莫梭就必須答應快時尚服飾館內含羞草的請求。迅速解決掉人台模特兒後離開這裡吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "尋找人台模特兒"
+        }
+      ]
+    },
+    {
+      "key": "Q1023",
+      "title": "下檔人台模特兒2",
+      "description": "沒必要繼續對話下去了。迅速下檔人台模特兒們吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "下檔人台模特兒"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "回去找含羞草"
+        }
+      ]
+    },
+    {
+      "key": "Q1031",
+      "title": "離開1樓",
+      "description": "幸好情況比最初有所好轉。這次必須導出不同結果。首先離開1樓是當務之急。趕快離開快時尚服飾館前往下一間店吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "離開快時尚服飾館"
+        }
+      ]
+    },
+    {
+      "key": "Q1064",
+      "title": "搭乘前往2樓的手扶梯",
+      "description": "遇見了上次也向我們搭話，名為杜布瓦的人。不過沒時間多聊了。趕快前往下一層吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "搭乘前往2樓的手扶梯"
+        }
+      ]
+    },
+    {
+      "key": "Q1012S",
+      "title": "（內部）1樓顧客位置交代通知",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "與克羅默的遭遇（內部通知）"
+        }
+      ]
+    }
+  ]
+}

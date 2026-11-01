@@ -1,0 +1,677 @@
+{
+  "dataList": [
+    {
+      "id": 0,
+      "place": "LCE 太平間",
+      "content": "今天，舉辦了包含馬頓在內的LCE研究員們的葬禮。"
+    },
+    {
+      "id": 1,
+      "content": "雖然和罪人們一同遊歷都市，見識過無數的死亡……"
+    },
+    {
+      "id": 2,
+      "content": "但因為從未有過這麼多人聚在一起悼念逝者的經驗，感覺有些奇妙。"
+    },
+    {
+      "id": 3,
+      "model": "싱클레어",
+      "content": "……這樣做就行了嗎？"
+    },
+    {
+      "id": 4,
+      "content": "罪人們似乎也是如此。"
+    },
+    {
+      "id": 5,
+      "content": "有些罪人向十分了解葬禮的流程及禮儀的莫梭詢問了各種問題。"
+    },
+    {
+      "id": 6,
+      "model": "뫼르소",
+      "content": "只要能表示敬意，細微的手勢動作並不重要。"
+    },
+    {
+      "id": 7,
+      "model": "로쟈",
+      "content": "那個，這要放在哪裡？"
+    },
+    {
+      "id": 8,
+      "model": "뫼르소",
+      "content": "嗯。右側，第三根柱子的下方……"
+    },
+    {
+      "id": 9,
+      "model": "오티스",
+      "content": "還真吵啊。難道忘了需要表現地莊重一點的指示嗎？"
+    },
+    {
+      "id": 10,
+      "model": "로쟈",
+      "content": "體諒一下嘛。葬禮什麼的我也沒參加過幾次。"
+    },
+    {
+      "id": 11,
+      "model": "이스마엘",
+      "content": "所以我不是叫你去讀手冊嗎。我甚至還幫你劃好底線了……"
+    },
+    {
+      "id": 12,
+      "model": "로쟈",
+      "content": "唔唔……抱歉，以實。超過30頁後讀起來就有點吃力了。"
+    },
+    {
+      "id": 13,
+      "model": "오티스",
+      "content": "應該全體罪人都有參加過葬禮的經驗才對吧。在T公司……造訪那座騷亂的宅邸時。"
+    },
+    {
+      "id": 14,
+      "model": "돈키호테",
+      "content": "啊！是指那場在希斯克利夫先生的宅邸舉行的無主葬禮嗎？"
+    },
+    {
+      "id": 15,
+      "model": "이스마엘",
+      "content": "要是沒有主人，那完全沒有理由找來Öufi協會的公證人進行所有權爭奪吧……已經說過很多次了，那單純是為了預防家族成員間的不和，才特意進行匿名處理……"
+    },
+    {
+      "id": 16,
+      "model": "돈키호테",
+      "content": "匿名處理是嗎……"
+    },
+    {
+      "id": 17,
+      "model": "돈키호테",
+      "content": "既然情況特殊，那也是無可奈何的吧……但心理還是殘留著些許遺憾，要是至少能得知姓名就好了……"
+    },
+    {
+      "id": 18,
+      "model": "히스클리프",
+      "content": "名字……是……"
+    },
+    {
+      "id": 19,
+      "model": "단테",
+      "content": "<……是凱瑟琳的葬禮對吧。>"
+    },
+    {
+      "id": 21,
+      "model": "뫼르소",
+      "content": "執行經理。我研讀了相關區域近五年的報紙，但無法確認到該姓名。"
+    },
+    {
+      "id": 22,
+      "model": "히스클리프",
+      "content": "......."
+    },
+    {
+      "id": 23,
+      "model": "히스클리프",
+      "content": "好了。時鐘頭。至少你還記得就夠了。"
+    },
+    {
+      "id": 24,
+      "content": "應該是金枝的影響吧。不知從何時開始，大家都把在咆哮山莊發生的事當成奇異的故事記憶著。"
+    },
+    {
+      "id": 25,
+      "content": "金枝本來就在那座宅邸，奈莉受到赫爾曼的唆使，建立了奪取金枝的計畫，林頓的實驗則是為了死去的妹妹所做的研究……他們似乎是這樣認為的。"
+    },
+    {
+      "id": 26,
+      "content": "在看到從唐吉訶德到浮士德，大家全都理所當然地說著那怪異的記憶後……"
+    },
+    {
+      "id": 27,
+      "content": "我和希斯克利夫頂多偶爾確認一下彼此的記憶，不再試圖糾正罪人們的記憶了。"
+    },
+    {
+      "id": 28,
+      "content": "因為我們明白了，只要是關於凱瑟琳的話題，不管是以何種形式，都已被塗抹上由金黃色所偽造的故事。"
+    },
+    {
+      "id": 29,
+      "model": "이스마엘",
+      "content": "總之，那時候該怎麼說呢……並不是能夠表示哀悼的氛圍吧。"
+    },
+    {
+      "id": 30,
+      "model": "이스마엘",
+      "content": "希斯克利夫一直處於暴怒狀態，而且那個叫辛德利的人又一直在阻撓遺囑的執行。唉……"
+    },
+    {
+      "id": 31,
+      "model": "단테",
+      "content": "<原本還以為葬禮都是那樣，看來果然還是不太正常對吧？>"
+    },
+    {
+      "id": 32,
+      "model": "이스마엘",
+      "content": "不，嘛……我認為能照著正式葬禮流程走的地方反而更加罕見吧。我也算去過各種地方，但從沒見過像樣的葬禮呢。"
+    },
+    {
+      "model": "이스마엘",
+      "content": "有準備棺材，甚至朗讀遺囑……至少還裝作有套流程，咆哮山莊的那場喪禮還比較像樣一點。"
+    },
+    {
+      "content": "……看來在都市裡，辦葬禮這件事本身就不太常見。"
+    },
+    {
+      "id": 33,
+      "model": "호엔하임",
+      "content": "就算是在這裡，葬禮也是件相當奢侈的文化啊。"
+    },
+    {
+      "id": 34,
+      "model": "호엔하임",
+      "content": "畢竟又不是什麼會因為有人死了就爽快給假的公司，而且能用來辦追思會的土地本身也十分昂貴。"
+    },
+    {
+      "id": 35,
+      "model": "단테",
+      "content": "<那一般來說……會怎麼做？>"
+    },
+    {
+      "id": 36,
+      "model": "로쟈",
+      "content": "我們……會直接把他們丟在死掉的地方。然後等睜開眼醒來……屍體就乾乾淨淨地消失了。"
+    },
+    {
+      "id": 37,
+      "model": "히스클리프",
+      "content": "沒錢硬湊再把人埋在某個地方，要是傳出什麼奇怪的流言蜚語也很麻煩吧。"
+    },
+    {
+      "id": 38,
+      "model": "단테",
+      "content": "<流言蜚語？>"
+    },
+    {
+      "id": 39,
+      "model": "히스클리프",
+      "content": "像是跟值錢的東西埋在一起，或什麼一隻手是高級義體之類的……嘛，就是像那樣的事。"
+    },
+    {
+      "id": 40,
+      "model": "히스클리프",
+      "content": "要看到這種死也不能安寧的慘狀的話，不如放著不管還比較好。"
+    },
+    {
+      "id": 41,
+      "model": "홍루",
+      "content": "如果有能埋葬的房間的話，大多都會進行埋葬呢。當然……也有可能在再積日時失去那間埋葬用的房間就是了。"
+    },
+    {
+      "id": 42,
+      "content": "聽到這些話，霍恩海姆嗤之以鼻，並深深地低下了頭。"
+    },
+    {
+      "id": 43,
+      "model": "호엔하임",
+      "content": "全都是毫無意義的事。"
+    },
+    {
+      "id": 44,
+      "model": "호엔하임",
+      "content": "所謂的慰藉死者，也全都是謊言。"
+    },
+    {
+      "id": 45,
+      "model": "호엔하임",
+      "content": "不過只是為了給活著的人找個藉口，才砸這麼多錢罷了。"
+    },
+    {
+      "id": 46,
+      "content": "霍恩海姆是真的這麼認為嗎？還是說，他想這樣認為呢。"
+    },
+    {
+      "id": 47,
+      "content": "他低著頭看不清表情，所以也無從推測。"
+    },
+    {
+      "id": 48,
+      "content": "葬禮並未持續太久。"
+    },
+    {
+      "id": 49,
+      "content": "短暫的默哀，與更加短促的告別之詞。"
+    },
+    {
+      "id": 50,
+      "content": "直到連尚未完全康復的阿莉莎也出席，獻上最後的弔唁後。"
+    },
+    {
+      "id": 51,
+      "content": "馬頓和其他研究者的生命，才隨著棺材燃燒的聲音，劃下了完整的句點。"
+    },
+    {
+      "id": 52,
+      "model": "알리사",
+      "content": "……那麼，你們準備要離開了嗎？"
+    },
+    {
+      "id": 53,
+      "model": "단테",
+      "content": "<啊。>"
+    },
+    {
+      "id": 54,
+      "model": "단테",
+      "content": "<……預計會待到格里高爾的狀況穩定一點。>"
+    },
+    {
+      "id": 55,
+      "model": "홍루",
+      "content": "他說在格里高爾先生穩定下來以前，都會繼續留在這裡呢。"
+    },
+    {
+      "id": 56,
+      "model": "알리사",
+      "content": "啊哈……"
+    },
+    {
+      "id": 57,
+      "content": "變身過後，倒下的格里高爾沒過幾天就恢復意識了。"
+    },
+    {
+      "id": 58,
+      "content": "霍恩海姆在診斷後雖然表示身體狀況並無大礙……"
+    },
+    {
+      "id": 59,
+      "content": "他還展示了那惡化到極點的心裡診斷結果，並補充說他應該暫時難以進行戰鬥任務。"
+    },
+    {
+      "id": 60,
+      "model": "알리사",
+      "content": "是這樣啊。不管怎樣，暫時是無法出發了呢。"
+    },
+    {
+      "id": 61,
+      "model": "알리사",
+      "content": "這樣的話，可以讓我把辛克萊先生帶去我們的部門一下下嗎？"
+    },
+    {
+      "id": 62,
+      "model": "단테",
+      "content": "<嗯？>"
+    },
+    {
+      "id": 63,
+      "model": "싱클레어",
+      "content": "我嗎？"
+    },
+    {
+      "id": 64,
+      "model": "알리사",
+      "content": "是的。似乎是想調查在出現在辛克萊先生身上的「印記」。"
+    },
+    {
+      "id": 65,
+      "model": "알리사",
+      "content": "The higher-ups didn't waste a second green-lighting the project. Which means what I'm telling you is more a notice of investigation than a request for permission..."
+    },
+    {
+      "id": 66,
+      "model": "싱클레어",
+      "content": "Huh...? W-what investigation? What are you—"
+    },
+    {
+      "id": 67,
+      "model": "호엔하임",
+      "content": "It's just a rather rudimentary instance of human experimentation. Calm yourself."
+    },
+    {
+      "id": 68,
+      "model": "싱클레어",
+      "content": "人體？！"
+    },
+    {
+      "id": 69,
+      "model": "알리사",
+      "content": "Did you really have to put it like that, Boss...? Not to worry, Sinclair. A swipe or two on your skin and maybe some talk therapy—that's all there is to it."
+    },
+    {
+      "id": 70,
+      "model": "알리사",
+      "content": "Of course, if we had your consent, the avenues of research could be vastly—"
+    },
+    {
+      "id": 71,
+      "model": "싱클레어",
+      "content": "No, I'm not giving you my consent!"
+    },
+    {
+      "id": 72,
+      "model": "호엔하임",
+      "content": "For your reference, the other departments have also submitted some quite enthusiastic requests for research and observational purposes."
+    },
+    {
+      "id": 73,
+      "model": "알리사",
+      "content": "Oh, you have no idea. We had to get Boss to fend off the LCA's Mirror World Observatorium Department and their hissy fits. They wanted to be the first ones to get their hands on you and spearhead the research, you see. Haha..."
+    },
+    {
+      "id": 74,
+      "model": "알리사",
+      "content": "And had we allowed them, they'd have kept you for a good few months before letting you go. So the least you could do to thank us is be a good boy and cooperate—Ah! Just in time. Our researchers are here."
+    },
+    {
+      "id": 75,
+      "content": "Alyssa waved at the researchers who were filing out of the funeral hall after paying their respects. It wasn't long before Sinclair found himself surrounded on all sides."
+    },
+    {
+      "id": 76,
+      "model": "싱클레어",
+      "content": "W-wait! I'm... I'm perfectly capable of walking there on my own, so just... just don't run any painful tests on me...!"
+    },
+    {
+      "id": 77,
+      "model": "알리사",
+      "content": "Of course, of course."
+    },
+    {
+      "id": 78,
+      "model": "단테",
+      "content": "<Stay strong, Sinclair...>"
+    },
+    {
+      "id": 79,
+      "content": "All I could do was to offer an unspoken encouragement to Sinclair, who sounded ready to collapse into full-blown panic any minute."
+    },
+    {
+      "id": 80,
+      "model": "히스클리프",
+      "content": "What about you? You not goin' with them?"
+    },
+    {
+      "id": 81,
+      "model": "알리사",
+      "content": "Oh, it's back to the long-term recovery ward for me."
+    },
+    {
+      "id": 82,
+      "model": "알리사",
+      "content": "I always thought scientific research was the one thing that flamed my passion, but with the recent events having introduced me to the merits of paid sick leave... I realized that time off beats research projects in my book. Marginally."
+    },
+    {
+      "id": 83,
+      "model": "호엔하임",
+      "content": "Enjoy it while it lasts. I highly suspect that every request for PTO submitted by our department will be rejected for the rest of the year."
+    },
+    {
+      "id": 84,
+      "model": "이스마엘",
+      "content": "Well, it's true your average corporation doesn't give more than a week off a year."
+    },
+    {
+      "id": 85,
+      "content": "As soon as Alyssa trudged off with her dragging steps, the researchers seized Sinclair and whisked—carried, really—him away."
+    },
+    {
+      "id": 86,
+      "model": "이스마엘",
+      "content": "All right... we should get going too."
+    },
+    {
+      "id": 87,
+      "model": "단테",
+      "content": "<Oh, do you all have somewhere else to be?>"
+    },
+    {
+      "id": 88,
+      "model": "홍루",
+      "content": "Well~ I thought I'd go visit Gregor. I'm worried about him."
+    },
+    {
+      "id": 89,
+      "model": "히스클리프",
+      "content": "Got something I said I'd help with—gotta be there for it."
+    },
+    {
+      "id": 90,
+      "model": "이스마엘",
+      "content": "I'm going with Sinclair to get some rest. Also to keep an eye on the researchers and stop them if they try anything fishy with the experiments."
+    },
+    {
+      "id": 91,
+      "model": "이스마엘",
+      "content": "Let me know later if you need anything, Dante."
+    },
+    {
+      "id": 92,
+      "content": "The Sinners fanned out in different directions. They seemed to have their own errands to run during our stay at the LCE."
+    },
+    {
+      "id": 93,
+      "model": "단테",
+      "content": "<Everyone's busy with their own thing...>"
+    },
+    {
+      "id": 94,
+      "model": "료슈",
+      "content": "呼……"
+    },
+    {
+      "id": 95,
+      "content": "The only ones keeping me company now were Ryōshū, who'd been filling the air around thick with cigarette smoke, and Don Quixote, who was sniffing and asking around at every corner for Vespa in a valiant quest for the new Color Fixer's whereabouts."
+    },
+    {
+      "id": 96,
+      "content": "Faust was still here, too—staring blankly into the air."
+    },
+    {
+      "id": 97,
+      "content": "Is she accessing the Gesellschaft?"
+    },
+    {
+      "id": 98,
+      "model": "호엔하임",
+      "content": "You seem to have some time to spare, Manager."
+    },
+    {
+      "id": 99,
+      "content": "As I stood there, wondering what I should do next to pass the time, Hohenheim, who had apparently finished tackling and signing the stack of papers, walked over to me."
+    },
+    {
+      "id": 100,
+      "model": "호엔하임",
+      "content": "This makes things rather convenient. There is something I had intended to discuss with you and Sinner Ryōshū—a matter that requires your assistance."
+    },
+    {
+      "id": 101,
+      "model": "단테",
+      "content": "<What kind of assistance?>"
+    },
+    {
+      "id": 102,
+      "model": "료슈",
+      "content": "W.K.O.A.? says C.H."
+    },
+    {
+      "id": 103,
+      "content": "Wait a minute... Did Ryōshū just... step in as my interpreter?"
+    },
+    {
+      "id": 104,
+      "content": "It's not that I don't appreciate her gesture—especially since she'd usually snap at me and tell me to find someone else to interpret whenever the issue came up..."
+    },
+    {
+      "id": 105,
+      "content": "But... I can't help but doubt whether her choice method of interpretation actually accomplishes anything."
+    },
+    {
+      "id": 106,
+      "model": "호엔하임",
+      "content": "... There is, I must admit, a certain novelty in witnessing the reconstitution of that which requires interpretation into yet another linguistic form equally demanding of it."
+    },
+    {
+      "id": 107,
+      "model": "호엔하임",
+      "content": "It would seem we are in need of more manpower."
+    },
+    {
+      "id": 108,
+      "content": "Scratching his head, Hohenheim looked around for a moment before coming to a sudden pause as though an idea had crossed his mind. At the end of his gaze was a certain someone who was busy badgering LCCA employees with her relentless questioning."
+    },
+    {
+      "id": 109,
+      "model": "돈키호테",
+      "content": "Who else, pray, might know where he is if thou knowest not?! Now listen closely! The one I seek is a bearer of hair fashioned in the likeness of a bowl..."
+    },
+    {
+      "id": 110,
+      "model": "호엔하임",
+      "content": "You there. Why don't you join us too?"
+    },
+    {
+      "id": 111,
+      "model": "돈키호테",
+      "content": "Hmm? Eh... Dost thou speak of me?"
+    },
+    {
+      "id": 112,
+      "content": "The LCCA personnel, who were cornered by Don Quixote and her rather forceful interrogation regarding Vespa's whereabouts, took the opportunity and fled the scene without so much as a backward glance the moment their captor turned her head to answer Hohenheim."
+    },
+    {
+      "id": 113,
+      "model": "호엔하임",
+      "content": "Indeed. There is a task that requires your assistance."
+    },
+    {
+      "id": 114,
+      "model": "돈키호테",
+      "content": "B-but I have yet more words to trade with the most noble Yellow Harpoon..."
+    },
+    {
+      "id": 115,
+      "model": "호엔하임",
+      "content": "You seek to emulate the virtue of chivalry. Does that entail turning down the earnest plea of those in need?"
+    },
+    {
+      "id": 116,
+      "model": "돈키호테",
+      "content": "Aah...! I... I..."
+    },
+    {
+      "id": 117,
+      "model": "호엔하임",
+      "content": "Hmm... For the sake of clarity and distinction, it would be prudent to assign you a different identifier from that of my assistant. You are to be \"Number 2\"—that is, Assistant no. 2."
+    },
+    {
+      "id": 118,
+      "model": "돈키호테",
+      "content": "... I have not yet concluded mine exchange with the Yellow Harpoon, but no true knight would abandon those who call for aid! Pray, speak thy quest! How may I be of service to thee?"
+    },
+    {
+      "id": 119,
+      "model": "호엔하임",
+      "content": "Delegating the interpretation of the Manager's speech to Sinner #4 has proven to be counterproductive. As such, your task will be to report to me what the Manager says."
+    },
+    {
+      "id": 120,
+      "model": "돈키호테",
+      "content": "Oho! That is indeed a simple task!"
+    },
+    {
+      "id": 121,
+      "model": "돈키호테",
+      "content": "However, this \"W.K.O.A.\" eludeth mine understanding as well! Prithee, allow me but a liiittle time to uncover its mystery!"
+    },
+    {
+      "id": 122,
+      "model": "호엔하임",
+      "content": "... Relay the Manager's words, not Sinner Ryōshū's."
+    },
+    {
+      "id": 123,
+      "model": "파우스트",
+      "content": "......."
+    },
+    {
+      "id": 124,
+      "model": "파우스트",
+      "content": "They are asking you what kind of assistance you need."
+    },
+    {
+      "id": 125,
+      "model": "호엔하임",
+      "content": "The request for interpretation was not directed to you, but I cannot deny that your meddling, in the present circumstance, is a welcome one."
+    },
+    {
+      "id": 126,
+      "model": "파우스트",
+      "content": "It was simply that the irrationality and inefficiency of your suboptimal staffing choice and workflow have become sufficiently unbearable."
+    },
+    {
+      "id": 127,
+      "model": "파우스트",
+      "content": "Faust hopes this was not some guileful scheme devised to elicit Faust's cooperation."
+    },
+    {
+      "id": 128,
+      "model": "호엔하임",
+      "content": "... Hah. In any case, Manager, this request of mine concerns an investigation into the \"Backdoors\" located in the House of Spiders."
+    },
+    {
+      "id": 129,
+      "model": "호엔하임",
+      "content": "I deemed that the two of you should be the ones most familiar with the structure and layout of the House. After all, you were the one monitoring the entirety of the five-pronged assault operation, and Sinner #4's familiarity does not bear repeating."
+    },
+    {
+      "id": 130,
+      "model": "단테",
+      "content": "<Do we go to the House of Spiders right away?>"
+    },
+    {
+      "id": 131,
+      "model": "료슈",
+      "content": "H.O.S.R.A.?"
+    },
+    {
+      "id": 132,
+      "model": "호엔하임",
+      "content": "... You have assisted enough."
+    },
+    {
+      "id": 133,
+      "model": "호엔하임",
+      "content": "Perhaps you could... help, Faust."
+    },
+    {
+      "id": 134,
+      "model": "파우스트",
+      "content": "... Sure."
+    },
+    {
+      "id": 135,
+      "content": "Although not word-for-word, Faust relayed my intention to Hohenheim, who responded by shaking his head."
+    },
+    {
+      "id": 136,
+      "model": "호엔하임",
+      "content": "Not immediately, no. There is one more member you should bring along."
+    },
+    {
+      "id": 137,
+      "model": "단테",
+      "content": "<One more member?>"
+    },
+    {
+      "id": 138,
+      "content": "Seeing me tilting my head, Hohenheim pushed up his glasses."
+    },
+    {
+      "id": 139,
+      "model": "호엔하임",
+      "content": "The Apprentice who was captured alive in the House of Spiders..."
+    },
+    {
+      "id": 140,
+      "model": "호엔하임",
+      "content": "Kira. She has regained consciousness."
+    }
+  ]
+}

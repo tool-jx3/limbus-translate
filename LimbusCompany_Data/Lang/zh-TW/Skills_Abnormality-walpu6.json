@@ -1,0 +1,756 @@
+{
+  "dataList": [
+    {
+      "id": 122301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "滿溢而出的絕望",
+          "desc": "[WhenUse] 若目標的 [Sinking] 強度不低於4級，則使本技能的硬幣威力+1\n[WinDuel] 對目標施加層數等同於本技能剩餘硬幣數的 [ColdBlackTear]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "銳利之淚",
+          "desc": "[WhenUse] 若目標的 [Sinking] 強度不低於4級，則使本技能的硬幣威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的基礎威力+1\n[WinDuel] 對目標施加層數等同於本技能剩餘硬幣數的 [ColdBlackTear] ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "流淌的絕望之淚",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若目標的 [ColdBlackTear] 層數不低於1層，則使本技能的硬幣威力+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "共同分擔的鈍化悲傷",
+          "desc": "[WhenUse] 對目標施加1層 [ColdBlackTear]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [ColdBlackTear] 層數不低於3層，則對其施加1層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "傾盆雨下的虛無絕望",
+          "desc": "優先指定 [ColdBlackTear] 層數最高的目標\n[WhenUse] 若主要目標的 [ColdBlackTear] 層數不低於5層，則使本技能的硬幣威力+5",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標造成其體力上限(其 [ColdBlackTear] 層數×6)%的固定傷害，解除目標的 [ColdBlackTear]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "阿爾卡那．落淚穿心",
+          "desc": "敵方單位使用阿爾卡那[TabExplain]．光破斬且自身未帶有 [CollapsedPride] 時使用",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [ColdBlackTear]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成其體力上限(其 [ColdBlackTear] 層數×6)%的固定傷害，解除目標的 [ColdBlackTear] (無視抗性)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "褪色的信念",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "磨滅殆盡的自尊",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "永無止盡的絕望",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "淚鋒之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+5(最多+10)\n[WhenUse] 若目標帶有 [ColdBlackTear]，則使本技能的最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加(其 [Sinking] 強度/10)層 [DefenseDown] (無條件捨去)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122405,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慟之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+3(最多+6)\n[WhenUse] 目標每帶有1層 [ColdBlackTear]，則使本技能的基礎威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標追加其體力上限(本技能威力)%的憂鬱傷害(最多30點)\n- 若目標的 [ColdBlackTear] 層數不低於2層，則額外追加1次憂鬱傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "褪色的信念",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "磨滅殆盡的自尊",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "永無止盡的絕望",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "淚鋒之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+5(最多+10)\n[WhenUse] 若目標帶有 [ColdBlackTear]，則使本技能的最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加(其 [Sinking] 強度/10)層 [DefenseDown] (無條件捨去)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慟之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+3(最多+6)\n[WhenUse] 目標每帶有1層 [ColdBlackTear]，則使本技能的基礎威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標追加其體力上限(本技能威力)%的憂鬱傷害(最多30點)\n- 若目標的 [ColdBlackTear] 層數不低於2層，則額外追加1次憂鬱傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "褪色的信念",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "磨滅殆盡的自尊",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "永無止盡的絕望",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "淚鋒之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+5(最多+10)\n[WhenUse] 若目標帶有 [ColdBlackTear]，則使本技能的最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加(其 [Sinking] 強度/10)層 [DefenseDown] (無條件捨去)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慟之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+3(最多+6)\n[WhenUse] 目標每帶有1層 [ColdBlackTear]，則使本技能的基礎威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標追加其體力上限(本技能威力)%的憂鬱傷害(最多30點)\n- 若目標的 [ColdBlackTear] 層數不低於2層，則額外追加1次憂鬱傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "褪色的信念",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "磨滅殆盡的自尊",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "永無止盡的絕望",
+          "desc": "[WhenUse] 目標每帶有4級 [Sinking] 強度，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若目標的理智值不低於10點，則使本技能的基礎威力+1\n[WhenUse] 若目標的理智值不低於20點，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "淚鋒之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+5(最多+10)\n[WhenUse] 若目標帶有 [ColdBlackTear]，則使本技能的最終威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Sinking] 強度不低於6級，則下回合對其施加(其 [Sinking] 強度/10)層 [DefenseDown] (無條件捨去)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 122705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慟之劍",
+          "desc": "[WhenUse] 目標每帶有6級 [Sinking] 強度，則使本技能的硬幣威力+3(最多+6)\n[WhenUse] 目標每帶有1層 [ColdBlackTear]，則使本技能的基礎威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標追加其體力上限(本技能威力)%的憂鬱傷害(最多30點)\n- 若目標的 [ColdBlackTear] 層數不低於2層，則額外追加1次憂鬱傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

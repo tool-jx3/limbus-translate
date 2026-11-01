@@ -1,0 +1,38 @@
+{
+  "dataList": [
+    {
+      "id": "6",
+      "nameList": [
+        {
+          "id": "0",
+          "content": "6號線正在進行中"
+        },
+        {
+          "id": "1",
+          "content": "第1區段：懸衣",
+          "shortName": "第1區段"
+        },
+        {
+          "id": "2",
+          "content": "第2區段：染汙",
+          "shortName": "第2區段"
+        },
+        {
+          "id": "3",
+          "content": "第3區段：童心-現象",
+          "shortName": "第3區段"
+        },
+        {
+          "id": "4",
+          "content": "第4區段：盤錯-耽溺-蒙昧",
+          "shortName": "第4區段"
+        },
+        {
+          "id": "5",
+          "content": "第5區段：到來",
+          "shortName": "第5區段"
+        }
+      ]
+    }
+  ]
+}

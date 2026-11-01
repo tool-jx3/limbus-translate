@@ -1,0 +1,84 @@
+{
+  "dataList": [
+    {
+      "id": "servererror_content",
+      "content": "伺服器發生錯誤。\n請稍後再試。"
+    },
+    {
+      "id": "serverstate_blocking_endpoint",
+      "content": "該功能正在維護。"
+    },
+    {
+      "id": "networkingerror_content",
+      "content": "網路連接不穩定。\n請檢查您的網路狀態。"
+    },
+    {
+      "id": "serverstate_temporary_check",
+      "content": "伺服器正在進行臨時維護。"
+    },
+    {
+      "id": "serverstate_regularcheck",
+      "content": "伺服器正在例行維護。"
+    },
+    {
+      "id": "serverstate_openpreparation",
+      "content": "遊戲仍在準備中。"
+    },
+    {
+      "id": "serverstate_verify_invaliduser",
+      "content": "帳戶不存在或已被停用。"
+    },
+    {
+      "id": "serverstate_verify_ban",
+      "content": "帳戶被封禁。"
+    },
+    {
+      "id": "serverstate_verify_invalidauth",
+      "content": "發生錯誤。\n請重新登入。"
+    },
+    {
+      "id": "serverstate_verify_invalidclientversion",
+      "content": "遊戲客戶端並非最新版本。\n請進行更新。"
+    },
+    {
+      "id": "serverstate_verify_invaliduuid",
+      "content": "該請求已被處理。\n請重啟遊戲，以便進行同步。"
+    },
+    {
+      "id": "serverstate_error_thirdparty_api",
+      "content": "外部伺服器通訊連接錯誤。請稍後重試。"
+    },
+    {
+      "id": "servererror_invalid_purchasing_package",
+      "content": "商品交易失敗。"
+    },
+    {
+      "id": "servererror_remain_restore_purchasing",
+      "content": "還有正在處理中的交易。\n請按下[恢復購買]後重新執行。"
+    },
+    {
+      "id": "servererror_invalid_battle_version",
+      "content": "版本已更新。\n請重新下載資源後重試。"
+    },
+    {
+      "id": "servererror_steam_auth_error",
+      "content": "Steam登入失敗。\n請確認Steam登入狀態並請稍後重試。"
+    },
+    {
+      "id": "servererror_invalid_date",
+      "content": "裝置的時間設定異常。\n請將裝置的時間與網路時間同步後重試。"
+    },
+    {
+      "id": "servererror_lack_of_stamina",
+      "content": "擁有的腦啡肽數量同步失敗。\n請確認裝置的時間設定是否為「自動」。"
+    },
+    {
+      "id": "servererror_egogift_not_exist",
+      "content": "擁有的E.G.O飾品狀態同步失敗。\n該動作無法執行。"
+    },
+    {
+      "id": "servererror_already_entered_stage",
+      "content": "目前已有進行中的關卡。\n請重啟遊戲，以便同步當前進度。"
+    }
+  ]
+}

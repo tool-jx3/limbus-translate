@@ -1,0 +1,139 @@
+{
+  "dataList": [
+    {
+      "id": "battle_awaken_20601_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "讓我們踏入這幻境中吧。"
+    },
+    {
+      "id": "battle_awaken_20601_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "縱使洗滌一切無常無情，終究仍徒勞無功。然而，我情願前往那塵芥之世。"
+    },
+    {
+      "id": "battle_awaken_20602_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "我會好好把握這捆縛的力道。"
+    },
+    {
+      "id": "battle_erosion_20602_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "一同咔嚓……咔嚓……"
+    },
+    {
+      "id": "battle_awaken_20603_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "想要躍遷到下一個世界的話……嘿咻！是這裡啊！"
+    },
+    {
+      "id": "battle_erosion_20603_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "反正……我也不是必須待在那邊……嘿嘿。"
+    },
+    {
+      "id": "battle_awaken_20604_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "好～變身完成！呼，滿載而歸哦！"
+    },
+    {
+      "id": "battle_erosion_20604_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "海鷗……海鷗的叫聲一直停不下來……！"
+    },
+    {
+      "id": "battle_awaken_20605_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "應該會很痛哦～一旦割傷了，它就再也取不出來了。"
+    },
+    {
+      "id": "battle_erosion_20605_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "汙穢寄宿進我的身體……從而重生為可用之材。"
+    },
+    {
+      "id": "battle_awaken_20606_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "因悲傷而動搖的心會像這樣……破裂開來。"
+    },
+    {
+      "id": "battle_erosion_20606_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "與我一同哭泣吧……直至身體破裂。"
+    },
+    {
+      "id": "battle_awaken_20607_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "順水推舟～果然藏在這裡吧？"
+    },
+    {
+      "id": "battle_erosion_20607_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "哈哈！抓到了～！不知分寸試圖逃跑……就是這種下場啦。"
+    },
+    {
+      "id": "battle_awaken_20608_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "蒙受此身應得知懲，已願欣然領受罪罰，奉以己心。"
+    },
+    {
+      "id": "battle_awaken_20608_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "以煩憂遮蔽澄澈蒼穹。以己軀獻祭之，灑盡鮮血於塵世之地。"
+    },
+    {
+      "id": "battle_erosion_20608_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "若此身之汙穢，已無昇天之道……萬惡之徒！與我一同沉淪於永劫之中吧！"
+    },
+    {
+      "id": "battle_awaken_20609_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "朦朧燈火，寄情染於紙箋之上。一筆詩句，化龍流連空硯一方。"
+    },
+    {
+      "id": "battle_erosion_20609_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "吐息摧碧落，"
+    },
+    {
+      "id": "battle_erosion_20609_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "萬響鑄喪鐘！"
+    },
+    {
+      "id": "battle_awaken_20610_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "你總有一日也會懷念的。懷念我們的世界。啊——啊啊——！"
+    },
+    {
+      "id": "battle_awaken_20610_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "你總有一日也會懷念的。懷念我們的世界。"
+    },
+    {
+      "id": "battle_awaken_20610_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "啊——"
+    },
+    {
+      "id": "battle_awaken_20610_4",
+      "desc": "E.G.O覺醒",
+      "dlg": "啊啊——！"
+    },
+    {
+      "id": "battle_awaken_20610_3-01",
+      "desc": "E.G.O覺醒",
+      "dlg": "啊——"
+    },
+    {
+      "id": "battle_awaken_20610_4-01",
+      "desc": "E.G.O覺醒",
+      "dlg": "啊啊——！"
+    },
+    {
+      "id": "battle_erosion_20610_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "不！不！不！不要靠近我，不要向我伸出手！"
+    }
+  ]
+}

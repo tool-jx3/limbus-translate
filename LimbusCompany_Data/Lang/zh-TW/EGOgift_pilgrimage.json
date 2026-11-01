@@ -1,0 +1,151 @@
+{
+  "dataList": [
+    {
+      "id": 9831,
+      "name": "恐魚的研究紀錄",
+      "desc": "對敵方單位造成的傷害+10%\n- 根據本場戰鬥中陣亡的敵方單位數量與部位被破壞次數，使造成的傷害+1%(最多+20%)\n- 上述效果可透過重複破壞相同部位觸發\n- 若敵方單位中具有恐魚，無條件發動最大效果",
+      "simpleDesc": [
+        {
+          "abilityID": 9831,
+          "simpleDesc": "造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9832,
+      "name": "黃金指南針",
+      "desc": "友方單位使用加算硬幣技能時，使其恢復5點理智值；使用減算硬幣技能時，使其失去5點理智值(該效果不會使理智值低於-40，每回合每名友方單位最多1次)\n\n回合開始時，使理智值於最高或低於-30的友方單位獲得1層 [ResultEnhancement] 與2層 [Protection]",
+      "simpleDesc": [
+        {
+          "abilityID": 9832,
+          "simpleDesc": "使用技能時，根據硬幣類型恢復理智值或失去理智值"
+        },
+        {
+          "abilityID": 98321,
+          "simpleDesc": "理智值於最高及不高於-30的友方單位獲得威力提升 與守護 "
+        }
+      ]
+    },
+    {
+      "id": 9833,
+      "name": "銀色鑰匙串",
+      "desc": "在BOSS遭遇戰中，回合開始時，獲得持有量最少的3種罪孽碎片各1個\n\n回合結束時，若本回合使用了E.G.O技能，則獲得3個持有量最少的罪孽碎片(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9833,
+          "simpleDesc": "最少的3種罪孽碎片各+1"
+        },
+        {
+          "abilityID": 98331,
+          "simpleDesc": "最少的罪孽碎片+3"
+        }
+      ]
+    },
+    {
+      "id": 9834,
+      "name": "恐魚乾",
+      "desc": "回合開始時，對全體敵方單位(若是異想體，則改為所有部位)施加3層 [DefenseDown]\n- 若敵方單位中存在恐魚，則改為施加7層 [DefenseDown]",
+      "simpleDesc": [
+        {
+          "abilityID": 9834,
+          "simpleDesc": "施加防禦等級降低 "
+        }
+      ]
+    },
+    {
+      "id": 9835,
+      "name": "輝煌燈火",
+      "desc": "[Effects apply only to the Identity with the earliest Deployment order]\n\nEvery turn, the first Attack Skill to be used gains Final Power +3\nIf the Attack Skill was an E.G.O Skill, it gains Final Power +4 and deals +25% damage instead.\n\nCombat Start: if this unit has [NervousImpairment] Stacks, consume up to 4 Stacks of it but gain (Stacks consumed x 2) [Combustion].",
+      "simpleDesc": [
+        {
+          "abilityID": 9835,
+          "simpleDesc": "每個回合首個使用的攻擊技能最終威力提升"
+        },
+        {
+          "abilityID": 98351,
+          "simpleDesc": "每個回合首個使用的攻擊技能最終威力提升、造成的傷害增加"
+        },
+        {
+          "abilityID": 98352,
+          "simpleDesc": "若自身帶有神經損傷 ，則消耗神經損傷 層數並對自身施加相應的燒傷 強度"
+        }
+      ]
+    },
+    {
+      "id": 9836,
+      "name": "古老的樂譜",
+      "desc": "包括E.G.O技能在內的攻擊技能若僅指定1個敵方單位(若是異想體，則改為部位)且攻擊命中時，使該技能造成的傷害+10%\n若該技能為增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的技能，則改為造成的傷害+25%\n\n[湧潮悲歌 以實瑪利E.G.O專屬效果]\n若該E.G.O技能僅命中1個敵方單位，使該技能最後一枚硬幣的威力+4、造成的傷害+20%",
+      "simpleDesc": [
+        {
+          "abilityID": 9836,
+          "simpleDesc": "攻擊容量為1的技能攻擊命中時造成的傷害增加"
+        },
+        {
+          "abilityID": 98361,
+          "simpleDesc": "攻擊容量為1且施加沉淪 的技能攻擊命中時造成的傷害增加"
+        },
+        {
+          "abilityID": 98362,
+          "simpleDesc": "強化湧潮悲歌 以實瑪利E.G.O的效果"
+        }
+      ]
+    },
+    {
+      "id": 9837,
+      "name": "金屬構造體",
+      "desc": "回合開始時，使全體友方單位獲得2層 [TakeHpHealIncrease]\n若該友方單位擁有增加 [Burst] 強度、[Burst] 回數的攻擊技能，則改為獲得4層 [TakeHpHealIncrease]\n\n[指令：熔毀 浮士德E.G.O專屬效果]\n若該E.G.O及其被動恢復的體力值超過體力上限，則將超出的治療量轉化為等量的護盾",
+      "simpleDesc": [
+        {
+          "abilityID": 9837,
+          "simpleDesc": "獲得體力恢復提升 "
+        },
+        {
+          "abilityID": 98371,
+          "simpleDesc": "獲得體力恢復提升 "
+        },
+        {
+          "abilityID": 98372,
+          "simpleDesc": "強化指令：熔毀 浮士德E.G.O的效果"
+        }
+      ]
+    },
+    {
+      "id": 9838,
+      "name": "宿月酒盞",
+      "desc": "回合開始時，使全體友方單位恢復5點理智值。若理智值為最大值，則改為獲得等同於超出恢復量的 [Breath] 強度(最多5級)\n使用使自身或其他單位獲得 [Breath] 強度、[Breath] 回數的攻擊技能時，使自身額外獲得2回 [Breath] (每回合每名友方單位最多1次)\n\n[寧作吾 鴻璐E.G.O專屬效果]\n- 覺醒：使用該E.G.O技能時不消耗理智值，且使自身恢復等同於原先消耗量的理智值\n- 侵蝕：使用該E.G.O技能時消耗的理智值-50%",
+      "simpleDesc": [
+        {
+          "abilityID": 9838,
+          "simpleDesc": "恢復理智值。若理智值為最大值，則改為增加呼吸法 強度"
+        },
+        {
+          "abilityID": 98381,
+          "simpleDesc": "使用使自身或其他單位獲得呼吸法 強度、呼吸法 回數的攻擊技能時，額外獲得呼吸法 回數"
+        },
+        {
+          "abilityID": 98382,
+          "simpleDesc": "強化寧作吾 鴻璐E.G.O的效果"
+        }
+      ]
+    },
+    {
+      "id": 9839,
+      "name": "古色古香的拆信刀",
+      "desc": "攻擊容量不低於2的技能造成的傷害+15%\n增加 [Vibration] 強度、[Vibration] 回數或施加特殊震顫的攻擊技能改為造成的傷害+(15+攻擊容量×5)%(最多+50%)\n\n[未照耀的榮光 格里高爾E.G.O專屬效果]\n- 覺醒：每重複使用一次該E.G.O技能的硬幣，使其造成的傷害+20%(最多+60%)\n- 侵蝕：攻擊前每消耗10層 [MlynarWaiting]，則使自身獲得1層 [AttackDmgUp] (最多4層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9839,
+          "simpleDesc": "使用攻擊容量不低於2的技能時，造成的傷害增加"
+        },
+        {
+          "abilityID": 98391,
+          "simpleDesc": "使用攻擊容量不低於2且施加震顫 的技能時，造成的傷害增加"
+        },
+        {
+          "abilityID": 98392,
+          "simpleDesc": "強化未照耀的榮光 格里高爾E.G.O的效果"
+        }
+      ]
+    }
+  ]
+}

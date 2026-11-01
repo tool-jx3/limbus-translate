@@ -1,0 +1,16 @@
+{
+  "dataList": [
+    {
+      "id": 1088,
+      "panicName": "萎靡的靈感",
+      "lowMoraleDescription": "- 若自身攻擊的目標帶有<color=#ff0000>被撕裂的色彩</color>，則使自身造成的傷害+10%\n- 對自身施加1層 [Vulnerable]",
+      "panicDescription": "- 若自身攻擊的目標帶有<color=#ff0000>被撕裂的色彩</color>，則使自身造成的傷害+20%\n- 對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1090,
+      "panicName": "衝動地著色",
+      "lowMoraleDescription": "- 自身攻擊的目標每帶有1種<color=#ff0000>負面狀態</color>，則使自身造成的傷害+2.5%(最多+15%)\n- 對自身施加1層 [Vulnerable]",
+      "panicDescription": "- 自身攻擊的目標每帶有1種<color=#ff0000>負面狀態</color>，則使自身造成的傷害+5%(最多+30%)\n- 對自身施加2層 [Vulnerable]"
+    }
+  ]
+}

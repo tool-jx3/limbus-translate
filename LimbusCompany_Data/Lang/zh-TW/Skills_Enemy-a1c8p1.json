@@ -1,0 +1,1416 @@
+{
+  "dataList": [
+    {
+      "id": 9020301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "貫穿要害",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破壞要害",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於3級，則使本技能的拚點威力 +1\n[WhenUse] 若目標的 [Vibration] 強度不低於4級，則使本技能的硬幣威力 +1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破壞轎子",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於3級，則使本技能的拚點威力 +1\n[WhenUse] 若目標的 [Vibration] 強度不低於4級，則使本技能的硬幣威力 +1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[WhenUse] 自身每帶有1種負面狀態，使自身獲得3點護盾(最多10點)"
+        }
+      ]
+    },
+    {
+      "id": 9020401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "貫穿要害",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "打擊要害",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於3級，則使本技能的拚點威力 +1\n[WhenUse] 若目標的 [Vibration] 強度不低於4級，則使本技能的硬幣威力 +1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破壞轎子",
+          "desc": "[WhenUse] 若目標的 [Laceration] 回數不低於3回，則使本技能的拚點威力+1\n[WhenUse] 若目標的 [Vibration] 回數不低於6回，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[WhenUse] 自身每帶有1種負面狀態，使自身獲得3點護盾(最多10點)"
+        }
+      ]
+    },
+    {
+      "id": 9020101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "單點打擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "環旋點打",
+          "desc": "自身每帶有1種負面狀態，使本硬幣的拚點威力+1(最多+3)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "環旋打",
+          "desc": "自身每帶有1種負面狀態，使本硬幣的拚點威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [AttackDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [AttackDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "自身每帶有1種負面狀態，使硬幣威力+1(最多+3)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "打擊中心",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "迴返點打",
+          "desc": "自身每帶有1種負面狀態，使本硬幣的拚點威力+1(最多+3)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "迴返打",
+          "desc": "自身每帶有1種負面狀態，使本硬幣的拚點威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "自身每帶有1種負面狀態，使硬幣威力+1(最多+3)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "猛爪",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "連續猛爪",
+          "desc": "[WhenUse] 若目標的 [Burst] 強度不低於4級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕扯",
+          "desc": "[WhenUse] 自身每失去20%的體力，則使本技能的基礎威力+1(最多+4)\n[WhenUse] 若目標的 [Burst] 強度不低於6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度與3回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "飛撲而來的破甕",
+          "desc": "[EndSkill] 下回合對目標隨機施加以下2種效果。自身對目標造成10點傷害後死亡\n- 使目標增加3層 [AttackDown]\n- 使目標增加3層 [DefenseDown]\n- 使目標增加1層 [Paralysis]\n- 使目標增加2層 [Binding]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "指爪撕扯",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "連續抓撓",
+          "desc": "[WhenUse] 若目標的 [Burst] 強度不低於4級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "糾纏不放",
+          "desc": "[WhenUse] 自身每失去20%的體力，則使本技能的基礎威力+1(最多+4)\n[WhenUse] 若目標的 [Burst] 強度不低於6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "飛撲而來的破甕",
+          "desc": "[EndSkill] 下回合對目標隨機施加以下2種效果。自身對目標造成10點傷害後死亡\n- 使目標增加3層 [AttackDown]\n- 使目標增加3層 [DefenseDown]\n- 使目標增加1層 [Paralysis]\n- 使目標增加2層 [Binding]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "深掘傷口",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "連續深掘",
+          "desc": "[WhenUse] 若目標的 [Burst] 強度不低於4級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "深掘血肉",
+          "desc": "[WhenUse] 自身每失去20%的體力，則使本技能的基礎威力+1(最多+4)\n[WhenUse] 若目標的 [Burst] 強度不低於6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "飛撲而來的破甕",
+          "desc": "[EndSkill] 下回合對目標隨機施加以下2種效果。自身對目標造成10點傷害後死亡\n- 使目標增加3層 [AttackDown]\n- 使目標增加3層 [DefenseDown]\n- 使目標增加1層 [Paralysis]\n- 使目標增加2層 [Binding]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕裂傷口",
+          "desc": "[WhenUse] 若目標的 [Burst] 強度不低於4級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕扯血肉",
+          "desc": "[WhenUse] 目標每帶有4級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蠱毒中掙扎",
+          "desc": "[WhenUse] 自身每失去10%體力，則使本技能的基礎威力+1(最多+5)\n[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的硬幣威力+1(最多+3)\n\n[WhenUse] 若目標的 [Burst] 強度與 [Burst] 回數之和不低於10，則對目標施加回數等同於其 [Burst] 回數的 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有的 [Burst] 強度與 [Burst] 回數之和不低於15，則使目標受到( [Burst] 強度 × [Burst] 回數)點的暴食傷害。(最多40)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Burst] 強度不低於5級，則重複使用本硬幣(最多2次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "飛撲而來的破甕",
+          "desc": "[EndSkill] 下回合對目標隨機施加以下3種效果。自身對目標造成30點傷害後死亡\n- 使目標增加4層 [AttackDown]\n- 使目標增加4層 [DefenseDown]\n- 使目標增加2層 [Paralysis]\n- 使目標增加2層 [Binding]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "揮砍",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "窮追不捨",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破像處決",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標自身帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成傷害+1%(最多+20%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "一掃而空",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "強壓破陣",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破傷處理",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標自身帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成傷害+1%(最多+20%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9019904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "回鋒一斬",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於8級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "逼勢一斬",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬浪",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若目標自身帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成傷害+1%(最多+20%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "馬出劫洗",
+          "desc": "[WhenUse] 目標每帶有5級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若目標自身帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成傷害+2%(最多+50%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020005,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [AttackDown] 與3層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "前旋斬",
+          "desc": "[WhenUse] 若目標帶有的 [Laceration] 強度不低於5級，則使本技能基礎威力+1\n[WhenUse] 使自身獲得1層 [SipOfAlcohol]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "嚥口酒",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 使自身獲得1層 [SipOfAlcohol]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "落酒",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1(最多+2)\n\n[DefeatDuel] 使自身消耗3層 [SipOfAlcohol]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身帶有 [SipOfAlcohol] 且不低於3層，則使本技能全部的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標自身帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，使本硬幣造成傷害+1%(最多+20%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有的 [SipOfAlcohol] 不低於3層，則重複使用本硬幣1次(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉回擊",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加4層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [AttackDown] 與5層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "真鎮終斬",
+          "desc": "[StartBattle] 在本技能解除前，自身的體力不會低於1\n[WhenUse] 使自身獲得10層 [AttackUp]\n[WhenUse] 使自身獲得5層 [Enhancement]\n[WhenUse] 使自身獲得10層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "若目標帶有的 [Laceration] 強度與 [Laceration] 回數之和每有1點，則使本硬幣造成傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得5層 [SipOfAlcohol] "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102107,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉靠",
+          "desc": "[WhenUse] 自身每帶有1層 [SipOfAlcohol]，使自身獲得5點護盾(最多25點)\n[WhenUse] 每有1個技能指定自身為目標，使自身獲得1層 [SipOfAlcohol] (最多5層)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

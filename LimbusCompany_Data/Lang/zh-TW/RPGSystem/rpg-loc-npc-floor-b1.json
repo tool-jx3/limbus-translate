@@ -1,0 +1,108 @@
+{
+  "dataList": [
+    {
+      "key": "N201002",
+      "displayName": "樓層經理"
+    },
+    {
+      "key": "N201003",
+      "displayName": "副廚"
+    },
+    {
+      "key": "N101018",
+      "displayName": "단테 SD"
+    },
+    {
+      "key": "N101022",
+      "displayName": "浮士德"
+    },
+    {
+      "key": "N101024",
+      "displayName": "格里高爾"
+    },
+    {
+      "key": "N201005",
+      "displayName": "口之試吃員"
+    },
+    {
+      "key": "N201007",
+      "displayName": "釣客"
+    },
+    {
+      "key": "N201017",
+      "displayName": "漆黑派 搬運工"
+    },
+    {
+      "key": "N201018",
+      "displayName": "丹紅派 搬運工"
+    },
+    {
+      "key": "N201008",
+      "displayName": "口渴的卡其派"
+    },
+    {
+      "key": "N201009",
+      "displayName": "挨餓的卡其派"
+    },
+    {
+      "key": "N201010",
+      "displayName": "挨餓的卡其派"
+    },
+    {
+      "key": "N201011",
+      "displayName": "屍體"
+    },
+    {
+      "key": "N201019",
+      "displayName": "口渴的卡其派"
+    },
+    {
+      "key": "N201020",
+      "displayName": "貪吃的卡其派"
+    },
+    {
+      "key": "N201021",
+      "displayName": "口渴的卡其派"
+    },
+    {
+      "key": "N201022",
+      "displayName": "飢餓的卡其派"
+    },
+    {
+      "key": "N201023",
+      "displayName": "挨餓的卡其派"
+    },
+    {
+      "key": "N201024",
+      "displayName": "貪吃的卡其派"
+    },
+    {
+      "key": "N201025",
+      "displayName": "口渴的卡其派"
+    },
+    {
+      "key": "N201026",
+      "displayName": "某物的屍體"
+    },
+    {
+      "key": "N201027",
+      "displayName": "黑暗之門"
+    },
+    {
+      "key": "N201028",
+      "displayName": "口渴的卡其派"
+    },
+    {
+      "key": "N201029",
+      "displayName": "飢餓的卡其派"
+    },
+    {
+      "key": "N201032",
+      "displayName": "謹慎的卡其派"
+    },
+    {
+      "key": "N201033",
+      "displayName": "猜疑的卡其派"
+    }
+  ]
+}

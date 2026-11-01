@@ -1,0 +1,16 @@
+{
+  "dataList": [
+    {
+      "id": "stage_statistic_title",
+      "content": "通關統計"
+    },
+    {
+      "id": "stage_statistic_popup_no_data",
+      "content": "沒有通關情報。"
+    },
+    {
+      "id": "formation_code_popup_copy_only_desc",
+      "content": "可以複製並讀取編隊代碼。"
+    }
+  ]
+}

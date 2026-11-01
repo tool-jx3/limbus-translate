@@ -1,0 +1,210 @@
+{
+  "dataList": [
+    {
+      "key": "Q1000",
+      "title": "오프닝",
+      "description": "로딩 직후 오프닝 연출(S1001B) 재생 처리용 숨겨진 퀘스트",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1011",
+      "title": "查看四周",
+      "description": "我們來到了名為薛西弗斯百貨公司的地方。莫梭會在哪裡呢？總之先環顧周遭吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "查看四周"
+        }
+      ]
+    },
+    {
+      "key": "Q1012",
+      "title": "回到廁所",
+      "description": "在薛西弗斯百貨公司遇到了克羅默的親姊姊。先回廁所重新整頓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回到廁所"
+        }
+      ]
+    },
+    {
+      "key": "Q1013",
+      "title": "尋找莫梭",
+      "description": "看來莫梭在百貨公司的某處。是個看得見地板上鋪著地毯，而前方則是陳列服飾的地方。逛逛百貨公司，尋找展示服飾的地方吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "探索百貨公司"
+        }
+      ]
+    },
+    {
+      "key": "Q1014",
+      "title": "???",
+      "description": "這裡似乎藏著什麼。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    },
+    {
+      "key": "Q1021",
+      "title": "尋找莫梭2",
+      "description": "看來莫梭就在這附近某處。去找莫梭吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "尋找莫梭"
+        }
+      ]
+    },
+    {
+      "key": "Q1022",
+      "title": "莫梭的提案",
+      "description": "決定是否接受莫梭的提案\n→ 接受時開始狩獵任務，暫時擱置的話可以再和快時尚專櫃人員搭話來接受提案",
+      "steps": [
+        {
+          "index": 0
+        },
+        {
+          "index": 1
+        }
+      ]
+    },
+    {
+      "key": "Q1023",
+      "title": "下檔人台模特兒",
+      "description": "為了帶回莫梭就必須下檔3個被稱作人台模特兒的東西。打倒人台模特兒後回去找似乎是店長的含羞草吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "下檔人台模特兒"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "回去找含羞草"
+        }
+      ]
+    },
+    {
+      "key": "Q1031",
+      "title": "探索薛西弗斯百貨公司",
+      "description": "聽了莫梭對薛西弗斯百貨公司的說明。雖然無法完全理解，但這裡看來沒有正常的出口。先繼續探索這裡吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "探索百貨公司"
+        }
+      ]
+    },
+    {
+      "key": "Q1032",
+      "title": "探索薛西弗斯百貨公司2",
+      "description": "遇到名為杜布瓦的人了。這個人看起來和我們同樣剛進入薛西弗斯百貨公司不久。為了尋找上樓的方法，繼續逛逛百貨公司吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "探索百貨公司"
+        }
+      ]
+    },
+    {
+      "key": "Q1041",
+      "title": "看看陳列的衣服",
+      "description": "我們來到了名為時尚展廳的地方。這裡的專櫃人員並未特別與我們搭話。看看店內陳列的衣服也不錯。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "看看衣服"
+        }
+      ]
+    },
+    {
+      "key": "Q1042",
+      "title": "擋下來襲的漆黑派專櫃人員",
+      "description": "",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1051",
+      "title": "前往丹紅派的專櫃",
+      "description": "從漆黑派專櫃人員聽說了黃金松脂的事情。這次要前往樓上的丹紅派時尚展廳。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往丹紅派時尚展廳"
+        }
+      ]
+    },
+    {
+      "key": "Q1052",
+      "title": "獲取大型針",
+      "description": "丹紅派時尚展廳的專櫃人員琦莉安拜託我們帶回大型針。尋找持有針的人台模特兒，取得針後回去找琦莉安吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "從人台模特兒取得大型針後回去找琦莉安"
+        }
+      ]
+    },
+    {
+      "key": "Q1061",
+      "title": "購買衣服",
+      "description": "若想前往樓上看來要先累積消費紀錄。跟專櫃人員購買衣服，繼續尋找前往樓上的方法吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟琦莉安購買衣服"
+        }
+      ]
+    },
+    {
+      "key": "Q1062",
+      "title": "前往手扶梯",
+      "description": "發現前往下一層的手扶梯了。還見到了剛才遇到的杜布瓦。看來先向他搭話比較好。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟杜布瓦交談"
+        }
+      ]
+    },
+    {
+      "key": "Q1064",
+      "title": "搭乘手扶梯",
+      "description": "手扶梯可以正常運作。這樣就能前往2樓了。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "搭乘前往2樓的手扶梯"
+        }
+      ]
+    },
+    {
+      "key": "Q1018",
+      "title": "???",
+      "description": "(히든) 못 획득 시 대화",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1001",
+      "title": "퀘스트1 - 시작",
+      "description": "未使用"
+    }
+  ]
+}

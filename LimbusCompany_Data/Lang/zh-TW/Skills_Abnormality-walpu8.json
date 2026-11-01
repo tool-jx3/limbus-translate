@@ -1,0 +1,313 @@
+{
+  "dataList": [
+    {
+      "id": 136601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "飛撲",
+          "desc": "優先指定現存體力比最高的敵方目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於4級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啃咬",
+          "desc": "優先指定現存體力比最高的敵方目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於4級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Laceration]，則下回合對其施加2層 [PenetrateResistDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "補充柑橘泡泡",
+          "desc": "優先指定現存體力比最高的敵方目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於4級，則使使本技能的硬幣威力 +1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "添加氣泡風味",
+          "desc": "[WhenUse] 目標帶有的 [Laceration] 強度每有4級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Laceration]，則下回合對其施加2層 [PenetrateResistDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "群體遷徙",
+          "desc": "[OnSucceedEvade] 下回合對目標施加2層 [Binding]\n[EndBattle] 解除自身帶有的 [RunHallway]；然後發動 [NextHallway]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啃食",
+          "desc": "優先指定速度值最低的敵方目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於4級，則使本技能的基礎威力+1\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "填滿中尺寸的柑橘泡泡",
+          "desc": "優先指定速度值最低的敵方目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於4級，則使本技能的硬幣威力+1\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "更濃、更多",
+          "desc": "優先指定速度值最低的敵方目標\n[WhenUse] 目標帶有的 [Laceration] 強度每有3級，則使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [PenetrateResistDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "軟QQ為了繁殖而捕食飼料",
+          "desc": "優先指定速度值最低的敵方目標\n[WhenUse] 目標帶有的 [Laceration] 強度每有3級，則使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 136905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "群體遷徙",
+          "desc": "[CanDuelGuard]\n[EndBattle] 解除自身帶有的 [RunHallway]；然後令自身與自身召喚其完美的食品發動 [NextHallway]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

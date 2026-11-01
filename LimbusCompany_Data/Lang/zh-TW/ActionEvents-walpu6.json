@@ -1,0 +1,88 @@
+{
+  "dataList": [
+    {
+      "id": 971060,
+      "name": "絕望騎士 收容單元",
+      "desc": "經歷了無數信任與背叛的輪迴，最終剩下黑色淚水成為全部情感的、絕望的異想體。\n\n往昔自稱維護正義的騎士英雄，如今已煙消雲散。\n\n認為亙古不變之物，如今滄海桑田，認為絕不消逝的自尊，也一點一滴地磨盡。\n\n不斷落淚的眼窩已漆黑扭曲，徒留燒焦的淚跡在臉上。",
+      "options": [
+        {
+          "message": "一切都會有所改變。",
+          "messageDesc": "進行憂鬱、傲慢、嫉妒優勢判定，獲得1件沉淪E.G.O飾品",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "我也有未能保護之物。",
+          "messageDesc": "進行憂鬱、傲慢、嫉妒優勢判定，獲得1件E.G.O飾品",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 971061,
+      "name": "憎惡女王 收容單元",
+      "desc": "收容單元的門是開著的。\n\n裡面有一位被陰鬱壟罩，倒在地板上喃喃自語的少女。\n\n「世界黑白分明。」\n\n「若是有光明，便有黑暗，不能只存在一方。」\n\n「我是善良的一方，所以其他人都是邪惡。」\n\n「我是被選中的。」\n\n「我是……不被需要的嗎？」\n\n「討厭……和平……嗎？」\n\n不安、強迫、執著、憔悴。\n\n如同這些詞語漂浮在周圍，被陰暗的氣息包圍著。",
+      "options": [
+        {
+          "message": "世界不是非黑即白。",
+          "messageDesc": "進行暴怒、傲慢、嫉妒優勢判定，獲得1件充能E.G.O飾品",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "只要妳不站在和平的一方就好了吧？",
+          "messageDesc": "選擇後，獲得1件充能E.G.O 飾品",
+          "result": [
+            "「……這樣啊。」\n\n少女似乎領悟了什麼，停止了顫抖……\n\n「只要我不成為和平的一方，善良的我就能存在……」\n\n它緩緩地飛上空，被不知何處飛來的蒼藍之槍貫穿。\n\n隨後，如同從中孵化般冒出了詭異的蛇形生物，迅速地爬出收容單元。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 971062,
+      "name": "腦葉公司 中央本部",
+      "desc": "There's a report on a Central Command Team Clerk's desk.\n\n<DAY ■■, ■■ ■■ Research Service Postmortem Report>\n\nThe report was partially censored, but it seemed to be talking about a newly developed shield bullet of sorts.\n\n'The Trauma Shield can protect its user from psychological damages from external sources for a ■■■■■■■ ■■■■ or ■■■■■■■■■.'\n\n'If Shield bullet ■■■■■■ is needed, request the manager or a ■■■■■■■■ for assistance.'\n\nNext to the heavily redacted report is a box labeled 'Trauma Shield sample & manual'.",
+      "options": [
+        {
+          "message": "拿走它。",
+          "messageDesc": "選擇後，獲得1件泛用E.G.O飾品",
+          "result": [
+            "「上次……好像叫培訓部？我在那裡注射的安瓿……看起來和這個類似。」\n\n「名稱似乎和那時不同。然而，保護對象的目的是不變的。」\n\n若是如同罪人所說，是有用的東西，那一定能派上用場吧。\n\n我們拿走了樣品。"
+          ]
+        },
+        {
+          "message": "保持原樣。",
+          "messageDesc": "",
+          "result": [
+            "不明白的東西就不要隨便觸碰吧，或許會引起意料之外的麻煩。\n\n我們就這樣放著離開。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 971063,
+      "name": "腦葉公司 倉庫",
+      "desc": "腦葉公司的倉庫內。\n\n損壞的機械殘骸中，混雜著肉塊般的東西。\n\n「那是……什麼？倉庫裡為什麼有這種東西？」\n\n「據浮士德所說，那是腦葉公司的Sephirah交替時廢棄的舊機體殘骸。」\n\n「……也就是屍體？」\n\n「有些不同。只是記憶被初始化，與最初被製造時的時間點一樣，都是同一個個體。」\n\n「如同被回溯一般。」\n\n「那啥，不就跟我們很像嗎。」\n\n氣氛變得有些尷尬。\n\n作為執行經理，有沒有鼓勵人心的話呢？",
+      "options": [
+        {
+          "message": "我們會做好的。如同往常一樣。",
+          "messageDesc": "選擇後，獲得1件泛用E.G.O飾品",
+          "result": [
+            "「還真積極呢～」\n\n「哦～但丁，是在裝模作樣嗎？」\n\n擔心是多餘的，氣氛很快就緩和了。"
+          ]
+        },
+        {
+          "message": "我們也可能失敗。如同往常一樣。",
+          "messageDesc": "選擇後，獲得1件泛用E.G.O飾品",
+          "result": [
+            "「都這種時候了，還說這種話嗎……？」\n\n「蠢貨。這是經理為了緩和氣氛的高級笑話啊！」\n\n「搞什麼……」\n\n擔心是多餘的，氣氛很快就緩和了。"
+          ]
+        }
+      ]
+    }
+  ]
+}

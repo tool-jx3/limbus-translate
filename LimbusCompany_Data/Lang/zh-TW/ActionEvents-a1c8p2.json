@@ -1,0 +1,496 @@
+{
+  "dataList": [
+    {
+      "id": 10801,
+      "name": "막힌길_뚫기",
+      "subDesc": "",
+      "desc": "一堵老舊的牆面擋住了我們的道路。\n寫著「發放門禁卡」的撥盤裝置映入眼簾。\n\n「看來這裡並不能簡單地通過啊。」\n「有誰能懂這些設備嗎？我對這東西一竅不通……」",
+      "options": [
+        {
+          "message": "操作裝置。",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10802,
+      "name": "부적_떼기",
+      "subDesc": "",
+      "desc": "佈滿裂痕的牆上貼了大量的符咒。\n\n風從縫隙吹進來。\n\n「看來另一側有空間呢。」\n\n有沒有通過這裡的辦法呢？\n\n罪人們分散調查後，發現了貼著顏色各異符咒的一面牆。\n\n「啊～每個方位都貼著不同顏色的呢～」\n「看起來似乎是個要照順序撕下符咒的機關。」\n\n要試著撕下符咒嗎？",
+      "options": [
+        {
+          "message": "試著撕下符咒。",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080201,
+      "name": "부적_떼기_북",
+      "subDesc": "",
+      "desc": "貼在牆壁西側的藍色符咒上面有著某種標記。\n\n似乎是在表達從這裡開始撕下符咒。\n\n撕下符咒後，牆壁開始搖晃。\n\n接下來該撕下哪個方位的符咒呢？",
+      "options": [
+        {
+          "message": "中央",
+          "messageDesc": "",
+          "result": [
+            "牆壁的搖晃戛然而止。\n\n伴隨著不祥的預感，主持人的聲音從喇叭中迴盪開來。\n\n「無法正確解開謎題的參加者就該受到懲罰吧？」\n\n喀噠喀噠的木頭碰撞聲傳來……\n幾扇關閉著的門被打開，裡面的木偶們隨之撲來。"
+          ]
+        },
+        {
+          "message": "東方",
+          "messageDesc": "",
+          "result": [
+            "牆壁的搖晃戛然而止。\n\n伴隨著不祥的預感，主持人的聲音從喇叭中迴盪開來。\n\n「無法正確解開謎題的參加者就該受到懲罰吧？」\n\n喀噠喀噠的木頭碰撞聲傳來……\n幾扇關閉著的門被打開，裡面的木偶們隨之撲來。"
+          ]
+        },
+        {
+          "message": "南方",
+          "messageDesc": "",
+          "result": [
+            "牆壁的搖晃戛然而止。\n\n伴隨著不祥的預感，主持人的聲音從喇叭中迴盪開來。\n\n「無法正確解開謎題的參加者就該受到懲罰吧？」\n\n喀噠喀噠的木頭碰撞聲傳來……\n幾扇關閉著的門被打開，裡面的木偶們隨之撲來。"
+          ]
+        },
+        {
+          "message": "北方",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080202,
+      "name": "부적_떼기_중앙",
+      "subDesc": "",
+      "desc": "撕下了牆壁北側的紅色符咒。\n\n牆壁搖晃得更激烈了。\n\n接下來該撕下哪個方位的符咒呢？",
+      "options": [
+        {
+          "message": "中央",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "東方",
+          "messageDesc": "",
+          "result": [
+            "牆壁的搖晃戛然而止。\n\n伴隨著不祥的預感，主持人的聲音從喇叭中迴盪開來。\n\n「無法正確解開謎題的參加者就該受到懲罰吧？」\n\n喀噠喀噠的木頭碰撞聲傳來……\n幾扇關閉著的門被打開，裡面的木偶們隨之撲來。"
+          ]
+        },
+        {
+          "message": "南方",
+          "messageDesc": "",
+          "result": [
+            "牆壁的搖晃戛然而止。\n\n伴隨著不祥的預感，主持人的聲音從喇叭中迴盪開來。\n\n「無法正確解開謎題的參加者就該受到懲罰吧？」\n\n喀噠喀噠的木頭碰撞聲傳來……\n幾扇關閉著的門被打開，裡面的木偶們隨之撲來。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080203,
+      "name": "부적_떼기_서",
+      "subDesc": "",
+      "desc": "撕下了牆壁中央的黃色符咒。\n\n牆壁搖晃得更激烈了。\n\n接下來該撕下哪個方位的符咒呢？",
+      "options": [
+        {
+          "message": "東方",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "南方",
+          "messageDesc": "",
+          "result": [
+            "牆壁的搖晃戛然而止。\n\n伴隨著不祥的預感，主持人的聲音從喇叭中迴盪開來。\n\n「無法正確解開謎題的參加者就該受到懲罰吧？」\n\n喀噠喀噠的木頭碰撞聲傳來……\n幾扇關閉著的門被打開，裡面的木偶們隨之撲來。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080204,
+      "name": "부적_떼기_끝",
+      "subDesc": "",
+      "desc": "撕下了牆壁東側的白色符咒。\n\n牆壁像是快要崩塌般地搖晃。\n\n接下來該撕下哪個方位的符咒呢。",
+      "options": [
+        {
+          "message": "南方",
+          "messageDesc": "",
+          "result": [
+            "牆壁崩塌了，出現了新的道路。\n\n在牆壁的殘骸之中，地上散落著幾文閃著微光的銅錢。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10803,
+      "name": "붉은_출입증_획득_전투",
+      "subDesc": "",
+      "desc": "「咳。你們是那個賈寶玉和他的勢力……沒錯吧？」\n\n「我說啊。因為牆壁突然升起，所以我跟自己的勢力走散了。」\n\n「這些追著我的傢伙，讓我很難再往前走……」\n\n「所以啊，能幫忙找找我的勢力的人在哪裡嗎？」\n\n「要是找到了，等我當上家主後，會好好關照你的。」\n\n「幹嘛？快給我想點辦法告訴我啊。」",
+      "options": [
+        {
+          "message": "交出古老的通行證。\n<size=75%><color=#a16a3b>擁有古老的通行證時可選擇</color></size>",
+          "messageDesc": "獲得器物",
+          "result": [
+            "雖然是個挺惹人厭的候選人……\n\n但在不知道還會遇上幾位候選人的現在，沒必要讓罪人跟這個沒有敵意的人起衝突。\n\n取而代之，我把用過的通行證遞給候選人。\n\n「雖然我們也有類似的東西……但根本沒用。」\n\n「希望這張有點用處吧。嘛……既然都這樣了，這張詭異的卡片你們就自己看著辦吧。」\n\n「還有，我從另一位候選人那裡撿到了這顆丸……太過可疑也沒什麼用處……這也讓你們拿去吧。」\n\n「那就這樣吧。下次見面我可不會再客氣了，小心點。」"
+          ]
+        },
+        {
+          "message": "打倒他並奪走銅錢。",
+          "messageDesc": "觸發遭遇戰。勝利後獲得銅錢",
+          "result": [
+            "雖然原本打算向罪人們解釋沒必要開打……\n\n但真的有必要幫助他嗎？\n\n提議說不如直接打倒他搶走銅錢，大多數罪人都點頭同意了。\n\n「什、什麼？你們現在是要與我為敵嗎？膽敢對史氏家族……」\n\n還沒等他繼續說更多惹人厭的話，罪人們便一齊揮起了武器。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10804,
+      "name": "죄수_꽃뜯기",
+      "subDesc": "",
+      "desc": "<i>一個枉自嗟呀，\n一個空勞牽掛。\n一個是水中月，\n一個是鏡中花。</i>\n\n倒下的鴻園囚犯們身上盛開著鮮花。\n他們毫無動靜，看來是死透了。\n\n「這裡的花……蘊含了H公司的強化技術。」\n「若能帶走，對今後的戰鬥應該會有所助益。」\n\n要折下哪朵花呢。",
+      "options": [
+        {
+          "message": "蓮花",
+          "messageDesc": "選擇後，獲得器物",
+          "result": [
+            "折下蓮花。\n折下的花變成了小小的丸，\n未被折下的花則在鏡中盛放。\n\n希望鴻園的囚犯能夠安息……\n表達了哀悼之意後，我們向著下一個地點前進。"
+          ]
+        },
+        {
+          "message": "相思花",
+          "messageDesc": "選擇後，獲得器物",
+          "result": [
+            "折下相思花。\n折下的花變成了小小的丸，\n未被折下的花則在鏡中盛放。\n\n希望鴻園的囚犯能夠安息……\n表達了哀悼之意後，我們向著下一個地點前進。"
+          ]
+        },
+        {
+          "message": "無名草",
+          "messageDesc": "選擇後，獲得器物",
+          "result": [
+            "折下無名草。\n折下的草變成了小小的丸，\n未被折下的花則在鏡中盛放。\n\n希望鴻園的囚犯能夠安息……\n表達了哀悼之意後，我們向著下一個地點前進。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10805,
+      "name": "환_도박",
+      "subDesc": "",
+      "desc": "我們來到了新的房間，房間里有一位被拘束的鴻園囚犯，一旁的桌子上放著丸。\n這裡有一位候選人像是在等待著誰一般佇立著。\n\n「來得好，這樣就湊夠人數了！」\n\n「現在請仔細觀察這邊桌子上放著的丸！」\n\n「這些丸是H公司正在開發中的新產品，還沒有商品化。」\n\n「據說其有著激發活力的功效……果真如此嗎？」\n\n「這種丸是真的具有這一功效的優良品，還是具有其他功效的瑕疵品呢。」\n\n「請各自決定預測的答案，以銅錢下注吧！」\n\n「答對的候選人將贏得這一局的所有銅錢！」",
+      "options": [
+        {
+          "message": "是優良品。",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "是瑕疵品。",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080501,
+      "name": "환_도박_코인_성공",
+      "subDesc": "",
+      "desc": "另一位候選人下注給「瑕疵品」。\n\n要賭上幾文銅錢呢？",
+      "options": [
+        {
+          "message": "1文\n<size=75%><color=#a16a3b>擁有1文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "贏下賭局時，獲得少量的銅錢\n輸掉賭局時，失去下注的銅錢",
+          "result": [
+            "我們下注1文銅錢，另一位候選人也下文1文銅錢。\n\n「來，揭曉成果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯身上的花變得更有活力了。\n\n「恭喜你！看來這種丸是優良品吧？」\n「下注給優良品的候選人將獲得銅錢！」\n「下注給瑕疵品的候選人則請交出銅錢。」",
+            "我們下注1文銅錢，另一位候選人也下文1文銅錢。\n\n「來，揭曉結果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯失去了意識，倒在了地上。\n\n「竟然是瑕疵品。」\n「下注給瑕疵品的候選人將獲得銅錢！」\n「下注給優良品的候選人則請交出銅錢。」"
+          ]
+        },
+        {
+          "message": "2文\n<size=75%><color=#a16a3b>擁有2文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "贏下賭局時，獲得少量的銅錢\n輸掉賭局時，失去下注的銅錢",
+          "result": [
+            "我們下注2文銅錢，另一位候選人也下注2文銅錢。\n\n「來，揭曉成果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯身上的花變得更有活力了。\n\n「恭喜你！看來這種丸是優良品吧？」\n「下注給優良品的候選人將獲得銅錢！」\n「下注給瑕疵品的候選人則請交出銅錢。」",
+            "我們下注2文銅錢，另一位候選人也下注2文銅錢。\n\n「來，揭曉結果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯失去了意識，倒在了地上。\n\n「竟然是瑕疵品。」\n「下注給瑕疵品的候選人將獲得銅錢！」\n「下注給優良品的候選人則請交出銅錢。」"
+          ]
+        },
+        {
+          "message": "3文\n<size=75%><color=#a16a3b>擁有3文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "贏下賭局時，獲得大量的銅錢\n輸掉賭局時，失去下注的銅錢",
+          "result": [
+            "我們下注3文銅錢，另一位候選人也下注3文銅錢。\n\n「來，揭曉成果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯身上的花變得更有活力了。\n\n「恭喜你！看來這種丸是優良品吧？」\n「下注給優良品的候選人將獲得銅錢！」\n「且由於其膽識過人，額外獎勵1文銅錢！」\n「下注給瑕疵品的候選人則請交出銅錢。」",
+            "我們下注3文銅錢，另一位候選人也下注3文銅錢。\n\n「來，揭曉結果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯失去了意識，倒在了地上。\n\n「竟然是瑕疵品。」\n「下注給瑕疵品的候選人將獲得銅錢！」\n「且由於其膽識過人，額外獎勵1文銅錢！」\n「下注給優良品的候選人則請交出銅錢。」"
+          ]
+        },
+        {
+          "message": "賭博的風險太大。還是離開吧。",
+          "messageDesc": "",
+          "result": [
+            "「哎呀……居然因為這點事情就害怕的逃跑了。」\n\n「如此軟弱的候選人，不由得讓人擔心其前程啊！」\n\n賭博的風險太大。\n我們丟下囚犯和候選人，離開了房間。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080502,
+      "name": "환_도박_코인_실패",
+      "subDesc": "",
+      "desc": "另一位候選人下注給「優良品」。\n\n要賭上幾文銅錢呢？",
+      "options": [
+        {
+          "message": "1文\n<size=75%><color=#a16a3b>擁有1文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "贏下賭局時，獲得少量的銅錢\n輸掉賭局時，失去下注的銅錢",
+          "result": [
+            "我們下注1文銅錢，另一位候選人也下文1文銅錢。\n\n「來，揭曉結果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯失去了意識，倒在了地上。\n\n「竟然是瑕疵品。」\n「下注給瑕疵品的候選人將獲得銅錢！」\n「下注給優良品的候選人則請交出銅錢。」",
+            "我們下注1文銅錢，另一位候選人也下文1文銅錢。\n\n「來，揭曉成果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯身上的花變得更有活力了。\n\n「恭喜你！看來這種丸是優良品吧？」\n「下注給優良品的候選人將獲得銅錢！」\n「下注給瑕疵品的候選人則請交出銅錢。」"
+          ]
+        },
+        {
+          "message": "2文\n<size=75%><color=#a16a3b>擁有2文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "贏下賭局時，獲得少量的銅錢\n輸掉賭局時，失去下注的銅錢",
+          "result": [
+            "我們下注2文銅錢，另一位候選人也下注2文銅錢。\n\n「來，揭曉結果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯失去了意識，倒在了地上。\n\n「竟然是瑕疵品。」\n「下注給瑕疵品的候選人將獲得銅錢！」\n「下注給優良品的候選人則請交出銅錢。」",
+            "我們下注2文銅錢，另一位候選人也下注2文銅錢。\n\n「來，揭曉成果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯身上的花變得更有活力了。\n\n「恭喜你！看來這種丸是優良品吧？」\n「下注給優良品的候選人將獲得銅錢！」\n「下注給瑕疵品的候選人則請交出銅錢。」"
+          ]
+        },
+        {
+          "message": "3文\n<size=75%><color=#a16a3b>擁有3文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "贏下賭局時，獲得大量的銅錢\n輸掉賭局時，失去下注的銅錢",
+          "result": [
+            "我們下注3文銅錢，另一位候選人也下注3文銅錢。\n\n「來，揭曉結果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯失去了意識，倒在了地上。\n\n「竟然是瑕疵品。」\n「下注給瑕疵品的候選人將獲得銅錢！」\n「且由於其膽識過人，額外獎勵1文銅錢！」\n「下注給優良品的候選人則請交出銅錢。」",
+            "我們下注3文銅錢，另一位候選人也下注3文銅錢。\n\n「來，揭曉成果吧！」\n\n囚犯服下了桌子上的丸，看上去很平靜。\n片刻過後，囚犯身上的花變得更有活力了。\n\n「恭喜你！看來這種丸是優良品吧？」\n「下注給優良品的候選人將獲得銅錢！」\n「且由於其膽識過人，額外獎勵1文銅錢！」\n「下注給瑕疵品的候選人則請交出銅錢。」"
+          ]
+        },
+        {
+          "message": "賭博的風險太大。還是離開吧。",
+          "messageDesc": "",
+          "result": [
+            "「哎呀……居然因為這點事情就害怕的逃跑了。」\n\n「如此軟弱的候選人，不由得讓人擔心其前程啊！」\n\n賭博的風險太大。\n我們丟下囚犯和候選人，離開了房間。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10806,
+      "name": "낭떠러지_도전",
+      "subDesc": "",
+      "desc": "<i>No wisdom nor virtue can change the past and the future,\nand human connections and fate make strangers of neighbors.</i>\n\n'Welcome, candidates! Congratulations on making it to the basement!'\n\n'Did you know that there are far more opportunities down here to collect those coins that you all want?'\n\n'In fact, there are so many opportunities that... there's one right under your feet, in that hole!'\n\n'Who will dare make the dark descent to claim the coins?!'\n\nThe hole leads into the pitch-black darkness of the building ruins. We don't need to go down there to know that it's probably a pretty risky trek.\n\nWe do need the coins, but... this might be too big a risk to take. What if we get injured or, even worse, killed?\n\nWhat should we do?",
+      "options": [
+        {
+          "message": "接受挑戰。",
+          "messageDesc": "色慾、暴食、嫉妒優勢判定 成功後，獲得銅錢",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "不挑戰。",
+          "messageDesc": "",
+          "result": [
+            "Collecting coins is important, but I don't want to potentially throw the Sinners' lives away for nothing this early in the game. There are just too many variables.\nWe decide to move on without delving into the hole."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10807,
+      "name": "죄인_고문",
+      "subDesc": "",
+      "desc": "房間里綁著一名囚犯。\n其面前擺滿了鞭子棍棒等各種武器。\n\n「現在被綁在諸位面前之人，是在H公司曾犯下重罪的囚犯。」\n「給予這個囚犯懲罰的候選人將獲得銅錢！」\n\n該如何抉擇？",
+      "options": [
+        {
+          "message": "給予懲罰。",
+          "messageDesc": "暴食、傲慢優勢判定 成功後，獲得銅錢",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "無法下手。將這局面翻轉。",
+          "messageDesc": "觸發遭遇戰。勝利後獲得銅錢",
+          "result": [
+            "囚犯看起來似乎已經因某種實驗，陷入了巨大的痛苦之中。\n雖然那人是囚犯，但我們既沒有權力也沒有理由給予其懲罰。\n與罪人們商議後，決定使那名囚犯從痛苦中解脫。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10808,
+      "name": "항아리_보기_뽀개기",
+      "subDesc": "",
+      "desc": "We enter a new room with a collection of jars at its center.\nI wonder if they're Xue Pan's jars he didn't get to use?\n\nI notice that one of the jars is cracked open.\nThere's a sound coming from within...\n\nMaybe someone's trapped in there, but...\n... I don't know if it's a good idea to fiddle with these things.\n\nWhat should we do?",
+      "options": [
+        {
+          "message": "窺探甕中。",
+          "messageDesc": "憂鬱優勢判定 成功後，獲得器物",
+          "result": [
+            ""
+          ]
+        },
+        {
+          "message": "破壞甕。",
+          "messageDesc": "觸發遭遇戰。勝利後獲得銅錢",
+          "result": [
+            "往可疑的甕裡看太危險了。\n不僅可能會傷害我們……還可能會波及附近的人。\n深思熟慮後，決定將所有甕都打碎。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10809,
+      "name": "타임어택_인형_전투",
+      "subDesc": "",
+      "desc": "<i>Resentment is an avenging cycle of infinite weight,\nevery meeting and reunion an immutable destiny;\nthus, karma of one’s previous life measures their worldly stay before the final flight.</i>\n\n<i>Wealth in the twilight of life is a fortune most rare;\nthose who understand this leave their home for temples,\nand those who are seduced by it fill their time with empty air.</i>\n\n<i>Birds, their bellies full with feed, flutter away to the forest;\nthe field of white snow remains pristine, nary a footstep marring its immaculacy.</i>\n\n'I see a candidate who just lost a bunch of coins!'\n'Someone among the audience wishes to grant an opportunity to rebound!'\n'Well, seems like... we'll have to send you some wooden dummies to recoup your lost coins!'",
+      "options": [
+        {
+          "message": "接受挑戰。",
+          "messageDesc": "觸發遭遇戰。勝利後獲得銅錢",
+          "result": [
+            "為了彌補損失，在此接受挑戰才是正確的。\n與罪人們達成了共識，決定擊敗所有的木人。"
+          ]
+        },
+        {
+          "message": "不進行挑戰。",
+          "messageDesc": "",
+          "result": [
+            "當下比起銅錢，我們更應該休息。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10810,
+      "name": "공포_견디기_내기",
+      "subDesc": "",
+      "desc": "<i>花落水流紅，\n閒愁萬種，\n無語怨東風。</i>\n\n能看到兩個巨大的甕，其上方安裝著不明裝置。\n靠近甕時，喇叭中傳出了主持人洪亮的聲音。\n\n「這又是一次獲得銅錢的機會！」\n「條件很簡單。只要在甕中待盡可能久的時間就好了。」\n「只要派出能忍受恐懼的下屬……便能輕易獲得銅錢！」",
+      "options": [
+        {
+          "message": "選擇罪人。",
+          "messageDesc": "",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10811,
+      "name": "붉은_출입증_사용",
+      "subDesc": "",
+      "desc": "<i>Springtime’s dream scatters like clouds in the wind,\nand falling petals float away on the stream;\nthus, to every son and daughter, we pose this question:\nwhy seek and wander for such vain suffering?</i>\n\nThere's another candidate in this room.\nThe moment we enter the threshold, the door shuts behind us, and the host's voice booms from the speakers once again.\n\n'Defeat the opposing candidate, and be granted the opportunity to find yourself a new path with <i>even better</i> opportunities!'\n\n'But... we don't want to make this fight too boring, do we? Let's add some variables.'\n\nWith a heavy thunking noise, suspicious plumes of smoke begin to seep from the ground. The Sinners who inhaled it begin to cough violently.\n... That can't be good.",
+      "options": [
+        {
+          "message": "接受挑戰。",
+          "messageDesc": "觸發遭遇戰。勝利後獲得銅錢，並在地圖上打開一條新路徑",
+          "result": [
+            "決定在罪人們受到嚴重傷害之前，迅速打倒敵人並離開。"
+          ]
+        },
+        {
+          "message": "使用通行證打開鎖住的門並離開。\n<size=75%><color=#a16a3b>持有紅色通行證時可選擇</color></size>",
+          "messageDesc": "地圖中追加了新的路線",
+          "result": [
+            "在這裡與其他候選人交戰是十分危險的選擇。\n\n正思考著是否還有其他路可走時，一個防盜鎖映入眼簾。\n能不能在那裡用之前遇到的候選人給予的通行卡呢？\n抱著試一試的心態，我把卡片貼了上去。\n\n已批准。\n\n伴隨著嗶嗶聲，緊鎖的門打開了。\n門一打開，我便和罪人們一起衝出了房間……\n另一位候選人似乎沒有發現我們已經不見蹤影。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10812,
+      "name": "가문_기물_획득",
+      "subDesc": "",
+      "desc": "「無論你是透過何種方式抵達此地……恭喜你！」\n「作為抵達這間隱藏房間的獎勵……你可以從中帶走一件有助於家主審查的器物。」\n「不過……如果你持有的銅錢不足，將無法選擇某些器物！」\n「這些都是各個家族提供的珍貴器物，請慎重抉擇。」\n\n要選擇哪一件器物呢？",
+      "options": [
+        {
+          "message": "史家的器物",
+          "messageDesc": "",
+          "result": [
+            "我打開了最左邊的箱子。\n裡面放著史氏家族的人所使用的斧頭。\n\n是一把能夠透過充能釋放強力衝擊波的斧頭……的樣子。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。",
+            "我打開了最左邊的箱子。\n裡面放著史氏家族的人所使用的斧頭。\n\n是一把能夠透過充能釋放強力衝擊波的斧頭……的樣子。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。"
+          ]
+        },
+        {
+          "message": "王家的器物\n<size=75%><color=#a16a3b>擁有10文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "",
+          "result": [
+            "我打開了從左數來第二個箱子。\n裡面放著王氏家族的人所使用的符咒。\n\n這些符咒有著各式各樣的功效……應該能派上用場。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。",
+            "我打開了從左數來第二個箱子。\n裡面放著王氏家族的人所使用的符咒。\n\n這些符咒有著各式各樣的功效……應該能派上用場。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。"
+          ]
+        },
+        {
+          "message": "薛家的器物\n<size=75%><color=#a16a3b>擁有20文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "",
+          "result": [
+            "我打開了從右數來第二個箱子。\n裡面放著薛氏家族的浪人們所使用的劍。\n\n雖然是把巨大的劍……但我確實見過它被輕巧地揮舞的樣子。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。",
+            "我打開了從右數來第二個箱子。\n裡面放著薛氏家族的浪人們所使用的劍。\n\n雖然是把巨大的劍……但我確實見過它被輕巧地揮舞的樣子。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。"
+          ]
+        },
+        {
+          "message": "賈家的器物\n<size=75%><color=#a16a3b>擁有25文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "",
+          "result": [
+            "我打開了最右邊的箱子。\n裡面放著賈氏家族所製作之色澤鮮豔的丸。\n\n作為H公司的奇點之一，其藥效肯定非比尋常。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。",
+            "我打開了最右邊的箱子。\n裡面放著賈氏家族所製作之色澤鮮豔的丸。\n\n作為H公司的奇點之一，其藥效肯定非比尋常。\n罪人們應該能用得上。\n\n收好器物後，我們離開了房間。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10813,
+      "name": "막바지_보너스",
+      "subDesc": "",
+      "desc": "<i>悲喜千般同幻渺，\n古今一夢盡荒唐。</i>\n\n在狹窄的走廊裡，遇到了另一位候選人的勢力。\n\n「雖然也可以在這裡進行戰鬥，但如果兩位候選人都同意的話……」\n「我們可以採用另一種別開生面的對決方式。」\n「做出你們的決定吧！」",
+      "options": [
+        {
+          "message": "戰鬥。",
+          "messageDesc": "觸發遭遇戰。勝利後獲得銅錢",
+          "result": [
+            "沒必要與能夠輕鬆戰勝的對手打賭。\n決定照常與對方戰鬥。"
+          ]
+        },
+        {
+          "message": "賭上銅錢。\n<size=75%><color=#a16a3b>擁有5文以上的銅錢時可選擇</color></size>",
+          "messageDesc": "色慾、暴食、嫉妒優勢判定 成功後，獲得銅錢；失敗後，失去銅錢",
+          "result": [
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081302,
+      "name": "막바지_보너스_내기_패배",
+      "subDesc": "",
+      "desc": "I mean, do we <i>have</i> to hand over our coins?\nWhy don't we just beat them up and take our coins back?\nActually... hey, nothing's stopping us from beating them up and taking <i>their</i> coins, too!\n\nThe question is... should we?",
+      "options": [
+        {
+          "message": "戰鬥。",
+          "messageDesc": "- 觸發遭遇戰。勝利後獲得銅錢",
+          "result": [
+            "「實在是明智而出色的判斷，經理！」\n「嗚嗚……經理老爺……怎能做出如此惡行……」\n\n罪人們做出了各自的回應後，便向對方候選人衝去。"
+          ]
+        },
+        {
+          "message": "退出。",
+          "messageDesc": "",
+          "result": [
+            "既然勝負已定，就應堂堂正正地接受結果。\n\n放下銅錢後，我們淒涼地離開了此處。"
+          ]
+        }
+      ]
+    }
+  ]
+}

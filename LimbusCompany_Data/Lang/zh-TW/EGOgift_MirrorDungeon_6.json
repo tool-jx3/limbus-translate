@@ -1,0 +1,170 @@
+{
+  "dataList": [
+    {
+      "id": 9799,
+      "name": "某種哲學",
+      "desc": "使飾品合成機率變為100%",
+      "simpleDesc": [
+        {
+          "abilityID": 9799,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9800,
+      "name": "富",
+      "desc": "購買與強化所有飾品的經費固定為1。\n\n每擁有500點經費，使全體友方單位獲得1層 [AttackUp] (最多20層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9800,
+          "simpleDesc": ""
+        },
+        {
+          "abilityID": 980001,
+          "simpleDesc": "獲得攻擊等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9801,
+      "name": "強韌丸",
+      "desc": "回合開始時，使體力上限最高的1名友方單位獲得(本場戰鬥其受到敵方單位技能攻擊次數)層 [DefenseUp] (最多6層)。",
+      "simpleDesc": [
+        {
+          "abilityID": 9801,
+          "simpleDesc": "獲得防禦等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9802,
+      "name": "電擊斧",
+      "desc": "消耗 [Charge] 回數的技能攻擊命中時，使目標增加1級 [Burst] 強度(每個技能最多3次；包括特殊充能)\n\n根據編入擁有施加 [Burst] 或獲得 [Charge] 的攻擊技能的友方單位數，相應強化本飾品效果(不包括E.G.O技能；所有編入人員將列入計算)。\n\n- 不低於6名\n對敵方單位造成 [Burst] 傷害時，使自身獲得1回 [Charge] (每個技能最多3次)\n\n- 不低於8名\n消耗 [Charge] 回數的技能攻擊命中時，使目標增加1回 [Burst] (每個技能最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9802,
+          "simpleDesc": "使目標增加1級破裂 強度"
+        },
+        {
+          "abilityID": 980201,
+          "simpleDesc": ""
+        },
+        {
+          "abilityID": 980202,
+          "simpleDesc": "使自身獲得1回充能 "
+        },
+        {
+          "abilityID": 980203,
+          "simpleDesc": "使目標增加1回破裂 "
+        }
+      ]
+    },
+    {
+      "id": 9803,
+      "name": "鏡中花",
+      "desc": "每回合開始時，使全體敵方單位增加3級 [Burst] 強度與1回 [Burst] (若是集中遭遇戰，則改為所有部位)\n\n根據編入的擁有施加 [Burst] 或獲得 [Breath] 的攻擊技能的友方單位數，相應強化本飾品效果(不包括E.G.O技能；所有編入人員將列入計算)。\n\n- 不低於6名\n技能命中並觸發 [Burst] 傷害時，使自身獲得1回 [Breath] (每個技能最多3次)\n\n- 不低於10名\n技能命中並暴擊時，使目標增加1回 [Burst] (每個技能最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9803,
+          "simpleDesc": "使目標增加3級破裂 強度與1回破裂 "
+        },
+        {
+          "abilityID": 980301,
+          "simpleDesc": ""
+        },
+        {
+          "abilityID": 980302,
+          "simpleDesc": "使自身獲得1回呼吸法 "
+        },
+        {
+          "abilityID": 980303,
+          "simpleDesc": "使目標增加1回破裂 "
+        }
+      ]
+    },
+    {
+      "id": 9804,
+      "name": "水中月",
+      "desc": "攻擊命中帶有的 [Burst] 強度不低於5級的敵方單位時，使自身增加1級 [Breath] 強度並使自身獲得1回 [Breath] (每個技能最多3次)。\n\n根據編入擁有施加 [Burst] 或獲得 [Breath] 的攻擊技能的友方單位數，相應強化本飾品效果(不包括E.G.O技能；所有編入人員將列入計算)。\n\n技能攻擊命中時，若目標的 [Burst] 強度不低於20級，則使該技能暴擊時造成的傷害+10%(每有1名編入且符合以上條件的友方單位，使該技能暴擊時造成的傷害額外+3%)\n\n- 不低於12名\n技能命中並暴擊時，隨機解除自身1種可解除的負面狀態(每回合每名友方單位最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9804,
+          "simpleDesc": "獲得呼吸法 強度與回數"
+        },
+        {
+          "abilityID": 980401,
+          "simpleDesc": ""
+        },
+        {
+          "abilityID": 980402,
+          "simpleDesc": "暴擊時造成的傷害增加"
+        },
+        {
+          "abilityID": 980403,
+          "simpleDesc": "隨機解除1種負面狀態"
+        }
+      ]
+    },
+    {
+      "id": 9795,
+      "name": "墜落的一滴",
+      "desc": "回合開始時，若擁有消耗 [BloodDinner] 的技能的友方單位不低於3名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n戰鬥開始時，若消耗 [BloodDinner] 的友方單位攻擊目標的 [Laceration] 強度不低於30級，則使其 [Laceration] 強度減少至15級，並獲得層數等同於減少的 [Laceration] 強度的 [BloodDinner]。(每回合全體敵方單位共計最多1次，群體技能僅對主要目標生效)\n\n該效果每獲得10層 [BloodDinner]，則下回合使擁有消耗 [BloodDinner] 的技能的友方單位獲得1層威力提升 與1層傷害強化 (最多4層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9795,
+          "simpleDesc": "使流血 強度減少並獲得血宴 "
+        },
+        {
+          "abilityID": 979501,
+          "simpleDesc": "獲得威力提升 與傷害強化 "
+        }
+      ]
+    },
+    {
+      "id": 9796,
+      "name": "哀傷的吐息",
+      "desc": "若第5順位的友方單位帶有的 [Breath] 強度與 [Breath] 回數之和不低於50：\n則使其技能在拚點勝利後或作為單方面攻擊時，該技能中的所有硬幣必定朝向正面(若是減算硬幣，則改為反面)，並使該技能暴擊時造成的傷害 +80% (每場戰鬥最多1次；不包括E.G.O技能)\n\n當編成隊伍中擁有增加 [Breath] 強度或獲得 [Breath] 回數的攻擊技能的友方單位不低於5名時：\n使第5順位友方單位暴擊時造成的傷害 +60% (每額外編入1名符合條件的友方單位，則使暴擊時造成的傷害額外+20%；所有編入人員都將列入計算)",
+      "simpleDesc": [
+        {
+          "abilityID": 9796,
+          "simpleDesc": "暴擊時造成的傷害增加"
+        },
+        {
+          "abilityID": 979601,
+          "simpleDesc": "暴擊時造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9797,
+      "name": "將毀的火砲",
+      "desc": "Turn Start: Gain 2 [GiftCannon] and 2 [GiftGlass] every turn\n\nStarting from the 2nd turn, Stacks of [GiftCannon] and [GiftGlass] gained from the above effect increase by 1 each (up to 8 times)",
+      "simpleDesc": [
+        {
+          "abilityID": 9797,
+          "simpleDesc": "獲得火力、易碎"
+        },
+        {
+          "abilityID": 979701,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9798,
+      "name": "貪欲之棘",
+      "desc": "關卡開始時，產生100層 [BloodDinner]\n回合開始時，對全體帶有 [Laceration] 的敵方單位(或部位)施加2層 [RoseThorn]。\n若全體敵方單位(或所有部位)均帶有 [Laceration]，則改為施加4層 [RoseThorn]。",
+      "simpleDesc": [
+        {
+          "abilityID": 9798,
+          "simpleDesc": "施加貪食棘 "
+        },
+        {
+          "abilityID": 979801,
+          "simpleDesc": "施加貪食棘 "
+        }
+      ]
+    }
+  ]
+}

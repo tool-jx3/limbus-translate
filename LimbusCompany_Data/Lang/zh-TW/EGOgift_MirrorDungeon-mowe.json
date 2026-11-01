@@ -1,0 +1,200 @@
+{
+  "dataList": [
+    {
+      "id": 9732,
+      "name": "經濟艙折價券",
+      "desc": "回合結束時，下回合使速度值最低且不高於5點的1名友方單位獲得1層 [Agility]。",
+      "simpleDesc": [
+        {
+          "abilityID": 9732,
+          "simpleDesc": "下回合獲得1層迅捷"
+        }
+      ]
+    },
+    {
+      "id": 9733,
+      "name": "罐裝冰淇淋",
+      "desc": "友方單位透過自身的攻擊技能效果失去體力時，下回合開始時使其恢復等同於該攻擊技能效果失去體力一半的體力。(無條件捨去)\n\n友方單位透過E.G.O技能效果恢復體力時，使其恢復的體力+12.5%。(無條件捨去)",
+      "simpleDesc": [
+        {
+          "abilityID": 9733,
+          "simpleDesc": "下回合開始時，恢復體力"
+        },
+        {
+          "abilityID": 97331,
+          "simpleDesc": "E.G.O技能恢復的體力增加"
+        }
+      ]
+    },
+    {
+      "id": 9734,
+      "name": "E型次元短劍",
+      "desc": "使獲得 [Charge] 回數或特殊充能的1技能拚點威力+1、造成的傷害+5%。\n\n若該技能為單硬幣技能，則改為拚點威力+1、造成的傷害+12.5%。\n\n屬於W公司的友方單位透過嫉妒技能(包括E.G.O技能)對敵方單位造成傷害時，對該敵方單位施加2層體力恢復降低 。(不可疊加)",
+      "simpleDesc": [
+        {
+          "abilityID": 9734,
+          "simpleDesc": "1技能拚點威力與造成的傷害增加"
+        },
+        {
+          "abilityID": 97341,
+          "simpleDesc": "1技能拚點威力與造成的傷害增加"
+        },
+        {
+          "abilityID": 97342,
+          "simpleDesc": "對目標施加2層體力恢復降低 "
+        }
+      ]
+    },
+    {
+      "id": 9735,
+      "name": "攜帶式力場電池",
+      "desc": "使獲得 [Charge] 回數或特殊充能的1技能拚點威力+2。\n\n友方單位使用該技能時，使其獲得2回 [Charge] 與1層 [ChargeForceField]。(每回合最多1次)\n\n本場戰鬥中，屬於W公司的友方單位受到除技能直接傷害以外的體力傷害時，使其獲得5層 [ChargeForceField]。(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9735,
+          "simpleDesc": "1技能的拚點威力增加，獲得充能回數與充能力場"
+        },
+        {
+          "abilityID": 97351,
+          "simpleDesc": "獲得充能力場 "
+        }
+      ]
+    },
+    {
+      "id": 9736,
+      "name": "生物發電電池",
+      "desc": "帶有 [Charge] 回數或特殊充能的友方單位每次拚點時，使其攻擊等級+1。(最多6級，攻擊後重置)\n\n回合結束時，使 [Charge] 回數與特殊充能(固定強度)之和不低於10點的友方單位在下回合獲得1層 [Agility]。若 [Charge] 回數與特殊充能(固定強度)之和不低於18點，則額外獲得3層 [AttackUp]。\n\n※ 擁有強度與回數的特殊充能以其回數計算",
+      "simpleDesc": [
+        {
+          "abilityID": 9736,
+          "simpleDesc": "增加攻擊等級"
+        },
+        {
+          "abilityID": 97361,
+          "simpleDesc": "獲得迅捷 "
+        },
+        {
+          "abilityID": 97362,
+          "simpleDesc": "獲得攻擊等級提升"
+        }
+      ]
+    },
+    {
+      "id": 9737,
+      "name": "心臟反應模塊",
+      "desc": "When an ally with [Charge] Count or 'Unique Charge' loses a Clash, gain Shield equal to ([Charge] Count + 'Unique Charge'). (once per turn)\n\nWhen at 50%- HP, gain (([Charge] Count + 'Unique Charge') x 2) Shield instead. (once per turn)\n\nIf a MultiCrack Office Identity received HP damage during this Encounter: next turn, they heal 33% of the HP lost last turn. (rounded down)",
+      "simpleDesc": [
+        {
+          "abilityID": 9737,
+          "simpleDesc": "獲得護盾"
+        },
+        {
+          "abilityID": 97371,
+          "simpleDesc": "根據上回合失去的體力，相應恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 9738,
+      "name": "義體關節伺服電機",
+      "desc": "根據友方單位使用獲得 [Charge] 回數或特殊充能的基礎攻擊技能次數，下回合使其獲得相應層數的 [Agility] 與相應回數的 [Charge]。(最多2次)\n\n屬於多裂紋事務所的友方單位透過基礎攻擊技能獲得或消耗 [Charge] 回數時，使其額外獲得1回 [Charge]。(最多2回)",
+      "simpleDesc": [
+        {
+          "abilityID": 9738,
+          "simpleDesc": "獲得迅捷與充能回數"
+        },
+        {
+          "abilityID": 97381,
+          "simpleDesc": "額外獲得充能回數"
+        }
+      ]
+    },
+    {
+      "id": 9739,
+      "name": "血液結晶",
+      "desc": "回合結束時，若自身帶有 [Laceration]，則使自身的 [Laceration] 強度減半並使自身恢復(減少的 [Laceration] 強度×自身的 [Laceration] 回數)點體力。(無條件捨去，該飾品效果每次最多恢復其體力上限10%的體力)",
+      "simpleDesc": [
+        {
+          "abilityID": 9739,
+          "simpleDesc": "自身的流血強度減半並恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 9740,
+      "name": "自動關節",
+      "desc": "回合開始時，若帶有獲得 [Charge] 回數或特殊充能攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n消耗 [Charge] 回數或特殊充能的加算硬幣基礎攻擊技能硬幣威力+1、造成的傷害+(該技能消耗的 [Charge] 回數與特殊充能之和×4)%(最多+40%)\n- 若為減算硬幣的基礎攻擊技能，則使硬幣威力改為基礎威力+(4÷該技能硬幣數)(最少+1，無條件捨去)\n\n回合結束時，帶有 [Charge] 回數或特殊充能的友方單位根據本場戰鬥中使用的消耗 [Charge] 回數或特殊充能的基礎攻擊技能數，下回合使其獲得相應層數的 [Agility] (最多2層)與 [AttackDmgUp] (最多3層)。\n\n屬於多裂紋事務所且 [Charge] 強度不低於5級的友方單位基礎攻擊技能的硬幣威力+1。",
+      "simpleDesc": [
+        {
+          "abilityID": 9740,
+          "simpleDesc": "硬幣/基礎威力與造成的傷害增加"
+        },
+        {
+          "abilityID": 97401,
+          "simpleDesc": "下回合獲得迅捷與傷害強化"
+        },
+        {
+          "abilityID": 97402,
+          "simpleDesc": "硬幣威力增加"
+        }
+      ]
+    },
+    {
+      "id": 9741,
+      "name": "過度充能電池",
+      "desc": "回合開始時，若帶有獲得 [Charge] 回數或特殊充能攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n消耗 [Charge] 回數或特殊充能的加算硬幣基礎攻擊技能硬幣威力+1、造成的傷害+(該技能消耗的 [Charge] 回數與特殊充能之和×4)%(最多+40%)\n- 若為減算硬幣的基礎攻擊技能，則使硬幣威力改為基礎威力+(4÷該技能硬幣數)(最少+1，無條件捨去)\n\n帶有 [Charge] 回數或特殊充能的友方單位基礎攻擊技能拚點時，使其拚點威力+2。拚點勝利時使其獲得3回 [Charge]，拚點失敗時使其失去6回 [Charge]。\n\n嫉妒基礎攻擊技能拚點勝利時，對目標施加1層 [VioletTakeDamageUp]。(最多疊加3層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9741,
+          "simpleDesc": "硬幣/基礎威力與造成的傷害增加"
+        },
+        {
+          "abilityID": 97411,
+          "simpleDesc": "拚點威力增加、拚點勝利時獲得充能回數，拚點失敗時失去充能回數"
+        },
+        {
+          "abilityID": 97412,
+          "simpleDesc": "施加嫉妒易損 "
+        }
+      ]
+    },
+    {
+      "id": 9742,
+      "name": "永動伺服電機",
+      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that gain [Charge] Count or 'Unique Charge' effects. (except E.G.O Skills; except Backup Units)\n\nPlus Coin Base Attack Skills that consume [Charge] Count or 'Unique Charge'(fixed Potency): gain Coin Power +1 and deal +(sum of [Charge] Count and 'Unique Charge'(fixed Potency) consumed by that Skill x 4)% damage (max 40%)\n- Minus Coin Base Attack Skills: Instead of gaining Coin Power, gain Base Power +(4 / # of Coins) (min 1; rounded down)\n\nWhen allies with [Charge] Count or 'Unique Charge' engage in a Clash with Base Attack Skills: Clash Power +1; gain 2 [AttackUp] at Turn Start for every instance of Clash Win in that Clash during this Encounter. (max 6)\n\nIn this Encounter, when an ally takes damage that would kill them, consume all [Charge] Count and 'Unique Charge'(fixed Potency) on self; then, immediately heal (10 + sum of [Charge] Count and 'Unique Charge'(fixed Potency) consumed)% HP (once per Encounter); then, gain 3 [Protection] until the ally is defeated.\n\n※ For 'Unique Charge' that has both Potency and Count, its Count will be used for above calculations",
+      "simpleDesc": [
+        {
+          "abilityID": 9742,
+          "simpleDesc": "硬幣/基礎威力與造成的傷害增加"
+        },
+        {
+          "abilityID": 97421,
+          "simpleDesc": "拚點威力增加、獲得攻擊等級提升"
+        },
+        {
+          "abilityID": 97422,
+          "simpleDesc": "陣亡前消耗充能回數並立即恢復體力、獲得守護"
+        }
+      ]
+    },
+    {
+      "id": 9743,
+      "name": "心動力寶石",
+      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that gain [Charge] Count or 'Unique Charge' effects. (except E.G.O Skills; except Backup Units)\n\nPlus Coin Base Attack Skills that consume [Charge] Count or 'Unique Charge': gain Coin Power +1 and deal +(sum of [Charge] Count and 'Unique Charge' consumed by that Skill x 4)% damage (max 40%)\n- Minus Coin Base Attack Skills: Instead of gaining Coin Power, gain Base Power +(4 / # of Coins) (min 1; rounded down)\n\nWhen allies have 15+ ([Charge] Count + 'Unique Charge'): when they use a Skill 3 that consumes [Charge] Count or 'Unique Charge', and if there are remaining [Charge] Count or 'Unique Charge' at Attack End, consume all remaining [Charge] Count and 'Unique Charge' to deal (sum of [Charge] Count and 'Unique Charge' consumed x 7.5)% fixed bonus damage. (max 75%)\n\nMax [Charge] Count +5.",
+      "simpleDesc": [
+        {
+          "abilityID": 9743,
+          "simpleDesc": "硬幣/基礎威力與造成的傷害增加"
+        },
+        {
+          "abilityID": 97431,
+          "simpleDesc": "消耗充能回數並額外造成傷害"
+        },
+        {
+          "abilityID": 97432,
+          "simpleDesc": "充能回數的最大值+5"
+        }
+      ]
+    }
+  ]
+}

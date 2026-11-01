@@ -1,0 +1,48 @@
+{
+  "dataList": [
+    {
+      "id": "storyDungeon_108_coinCount",
+      "content": "銅錢"
+    },
+    {
+      "id": "gabook",
+      "content": "賈寶玉"
+    },
+    {
+      "id": "gachiu",
+      "content": "賈丘"
+    },
+    {
+      "id": "gahwan",
+      "content": "賈環"
+    },
+    {
+      "id": "ego_gift_list_8",
+      "content": "持有中的器物"
+    },
+    {
+      "id": "get_ego_gift_desc_8",
+      "content": "獲得器物。"
+    },
+    {
+      "id": "subtractor_ego_gift_title",
+      "content": "失去E.G.O飾品"
+    },
+    {
+      "id": "subtractor_ego_gift_title_8",
+      "content": "遺失物品"
+    },
+    {
+      "id": "subtractor_ego_gift_desc",
+      "content": "失去了{1}個{0}。"
+    },
+    {
+      "id": "story_dungeon_cannot_move_to_target_node_side_popup_content",
+      "content": "無法前往此區域"
+    },
+    {
+      "id": "rankUITitle",
+      "content": "順位"
+    }
+  ]
+}

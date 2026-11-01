@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_16_1",
+      "dlg": "員工們的服裝檢查都完成了嗎。特別是像上次那種，讓人看見連袖口鈕扣都沒扣好就前往鎮壓的員工……"
+    },
+    {
+      "id": "announcer_cheer_16_2",
+      "dlg": "聲援是只有弱者才想聽到的安慰。情報部應該是一個更追求有價值之物的部門。"
+    },
+    {
+      "id": "announcer_specialcheer_16_1",
+      "dlg": "我知道大部分員工都狀態不佳。儘快結束戰鬥吧。"
+    },
+    {
+      "id": "announcer_specialcheer_16_2",
+      "dlg": "我不會說什麼「加油」之類的話。在這裡沒有比那更無意義且低效的寒暄了。"
+    },
+    {
+      "id": "announcer_enemy_break_16_1",
+      "dlg": "需鎮壓個體狀態不佳。只需精確的一擊，就能得到有效的效果。"
+    },
+    {
+      "id": "announcer_enemy_break_16_2",
+      "dlg": "敵對個體正等待我們的最後一擊。讓我們高效地解決吧。"
+    },
+    {
+      "id": "announcer_ally_break_16_1",
+      "dlg": "我有意識到有員工狀態不佳。能不能捨棄您那虛偽的同情心。"
+    },
+    {
+      "id": "announcer_ally_break_16_2",
+      "dlg": "一位員工失去了冷靜。注意不要被敵方注意到這個弱點。"
+    },
+    {
+      "id": "announcer_killenemy_16_1",
+      "dlg": "該鎮壓個體已解決。請按照這個效率處理剩下的個體。"
+    },
+    {
+      "id": "announcer_ally_dead_16_1",
+      "dlg": "出現了人員損失。目前的情況並不適合問責，儘快解決問題吧。"
+    },
+    {
+      "id": "announcer_enemy_adv_16_1",
+      "dlg": "敵方個體處於更加有利的狀態中。我沒預料到他們會佔據這樣的優勢，這是情報不足所導致的。"
+    },
+    {
+      "id": "announcer_ally_adv_16_1",
+      "dlg": "我方佔據優勢。我已經看到數名員工多次違反員工守則，我晚點會再追究這個責任。"
+    },
+    {
+      "id": "announcer_danger_16_1",
+      "dlg": "有員工面臨著死亡風險。請集中注意力。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_16_1",
+      "dlg": "個體發起了強力的進攻。預計這會對我方造成相當大的損害。"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_16_1",
+      "dlg": "這些個體似乎試圖進行難以預測的行動。請您謹慎地觀察對方的行為。"
+    },
+    {
+      "id": "announcer_advatk_physical_16_1",
+      "dlg": "您以正確的方式攻擊了該個體。這就是情報的力量。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_16_1",
+      "dlg": "一次無效的攻擊。看起來有些員工甚至沒有好好查看過該個體的相關紀錄。"
+    },
+    {
+      "id": "announcer_advatk_attr_16_1",
+      "dlg": "準確地貫穿了個體的弱點。看來您準備得很充分。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_16_1",
+      "dlg": "一次與個體情報相反的屬性攻擊。明明在情報部卻無法活用情報，真是讓人困擾。"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_16_1",
+      "dlg": "敵方個體處於一定的優勢中，請密切關注敵方的行為。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_16_1",
+      "dlg": "個體正處於劣勢。讓我們好好思考該如何活用這個機會。"
+    },
+    {
+      "id": "announcer_ally_specialbuff_16_1",
+      "dlg": "目前的情況對我方有利。保持這樣直到勝利。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_16_1",
+      "dlg": "敵方個體做出了預期之外的行為。這場戰鬥可能會比我預想中花費更多時間。"
+    },
+    {
+      "id": "announcer_enemy_destroy_16_1",
+      "dlg": "個體的部位被破壞了。看來您至少有看過應對手冊。"
+    },
+    {
+      "id": "announcer_enemy_destroy_16_2",
+      "dlg": "敵方個體有部位已被破壞。儘快摧毀其他部位吧。"
+    },
+    {
+      "id": "announcer_enemy_destroy_16_3",
+      "dlg": "個體現在處於部位受損的狀態，對我們來說沒有比這更有利的情況了。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_16_1",
+      "dlg": "有員工受到致命傷害。正如我每天所說：所有的死亡都沒有意義。現在，請找到克服損失的方法。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_16_2",
+      "dlg": "有員工遭遇緊急事態了。為了避免造成更大的損失，需要迅速鎮壓該個體。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_16_1",
+      "dlg": "成功對個體造成了致命傷害。今後的戰鬥也請繼續保持。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_16_2",
+      "dlg": "請重複剛才的攻擊，給予個體致命的一擊吧。"
+    },
+    {
+      "id": "announcer_multikillenemy_16_1",
+      "dlg": "這裡久違地有了一位優秀員工。高效處理了個體。這是只有情報部才能取得的成就。"
+    },
+    {
+      "id": "announcer_equip_16_1",
+      "dlg": "我是負責管轄情報部的Yesod。請有效利用情報，迅速進行鎮壓。"
+    }
+  ]
+}

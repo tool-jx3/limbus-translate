@@ -1,0 +1,2161 @@
+{
+  "dataList": [
+    {
+      "id": 148501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "犯下罪孽了吧……",
+          "desc": "[WhenUse]\n- 戰場上<color=#ff6000><mark=#ff000040><b><u>每有1支刑罰的燭台存活，則使本技能的最終威力+1(最多+4)</u></b></mark></color>\n- 若自身的 [ChargeNoir] 回數不低於10回，則使本技能的拚點威力+1\n[WhenUse] 使自身獲得3回 [ChargeNoir]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懺悔吧",
+          "desc": "[WhenUse]\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field</u></b></mark></color> (max 8)\n- At 15+ [ChargeNoir] Count, consume 5 [ChargeNoir] Count to gain Final Power +2\n[WhenUse] Gain +5 [ChargeNoir] Count\n[DefeatDuel] Damage dealt by this Skill cannot Stagger the target",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [Binding]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "判罪",
+          "desc": "Can Clash with this Skill regardless of Speed\n[BeforeAttack] <color=#ff6000><mark=#ff000040><b><u>Gain +(# of Candle of Retribution on the field) Atk Weight (max 2)</u></b></mark></color>\n[WhenUse]\n- If the main target <color=#ff6000><mark=#ff000040><b><u>has 1 Speed</u></b></mark></color>, deal +50% damage\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field (max 8)</u></b></mark></color>\n- At 15+ [ChargeNoir] Count, consume 10 [ChargeNoir] Count to gain Coin Power +1\n[DefeatDuel] Gain 3 [Paralysis], deal -50% damage and damage dealt by this Skill cannot Stagger the target",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度與1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度與2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加2層 [Binding]</u></b></mark></color>\n- 若為主要目標，則改為<color=#ff6000><mark=#ff000040><b><u>對其施加4層 [Binding]</u></b></mark></color>",
+                  "summary": "Inflict 2 [Binding] next turn; 4 instead on the main target"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度與3回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "罪惡感緊勒著你",
+          "desc": "Can Clash with this Skill regardless of Speed\n[BeforeAttack] Gain +(# of Candle of Retribution on the field) Atk Weight (max 4)\n[WhenUse]\n- If the main target <color=#ff6000><mark=#ff000040><b><u>has 1 Speed</u></b></mark></color>, deal +100% damage\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field (max 8)</u></b></mark></color>\n- If there are no Candle of Retribution on the field, Clash Power -3\n- At 15+ [ChargeNoir] Count, consume 10 [ChargeNoir] Count to gain Final Power +1 and Coin Power +1\n[DefeatDuel] Gain 4 [Paralysis], deal -50% damage, and damage dealt by this Skill cannot Stagger the target",
+          "flavor": "「人台模特兒們正唱著歌……」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [Binding]</u></b></mark></color>\n- 若目標為主要目標，則改為<color=#ff6000><mark=#ff000040><b><u>對其施加3層 [Binding]</u></b></mark></color>",
+                  "summary": "Inflict 1 [Binding] next turn; 3 instead on the main target"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [Binding]</u></b></mark></color>\n- 若目標為主要目標，則改為<color=#ff6000><mark=#ff000040><b><u>對其施加3層 [Binding]</u></b></mark></color>",
+                  "summary": "Inflict 1 [Binding] next turn; 3 instead on the main target"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度與2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [BlackStigmata]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懲罰",
+          "desc": "Can Clash with this Skill regardless of Speed\n[WhenUse]\n- If the main target has <color=#ff6000><mark=#ff000040><b><u>1 Speed</u></b></mark></color>, deal +100% damage\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field (max 8)</u></b></mark></color>\n- If there are no Candle of Retribution on the field, Clash Power -5\n- If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 4 [Paralysis], deal -50% damage, and damage dealt by this Skill cannot Stagger the target",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "贖罪之釘",
+          "desc": "若<color=#ff6000><mark=#ff000040><b><u>獄卒的體力不高於50%</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第1枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數為9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2</u></b></mark></color>\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[WhenUse] 使自身獲得1級 [Breath] 強度與1回 [Breath]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [MarkingNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [MarkingNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "刑罰之釘",
+          "desc": "若<color=#ff6000><mark=#ff000040><b><u>獄卒的體力不高於50%</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第1枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於6層／9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2／+3</u></b></mark></color>\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [CeremonialNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [CeremonialNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "審判",
+          "desc": "Can Clash with this Skill regardless of Speed\nIf the main target has <color=#ff6000><mark=#ff000040><b><u>3+/6+/9+ [ConfessionSecondPhase], Final Power +2/+3/+5</u></b></mark></color>\n[BeforeAttack] <color=#ff6000><mark=#ff000040><b><u>If the main target has 5+/9+ [ConfessionSecondPhase], gain +1/+3 Atk Weight</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 3 [Paralysis], deal -50% damage, and damage dealt by this Skill cannot Stagger the target",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "本硬幣<color=#ff6000><mark=#ff000040><b><u>只會命中主要目標</u></b></mark></color>"
+                },
+                {
+                  "desc": "使本硬幣造成的傷害+(自身已失去的體力比例)%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加4層 [ExecutionNailSecondPhase]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "在神的面前懺悔",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>When the Sinner that has [GoldenFabricWarderSecondPhase]</u></b></mark></color> attacks the Slot equipped with this Skill as its main target in the Chaining Phase, the said Skill used by the Sinner deals +100% damage (for E.G.O Skills, +200% damage)\n[EndBattle] At fewer than 100 [EncompassingVoiceSecondPhase] Stack, gain up to 100 Stack\n- The Warden loses SP equal to Stack gained (max 45)",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "贖罪吧",
+          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數為9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2</u></b></mark></color>\n[WhenUse] 消耗自身最多15層 [SpreadingVoiceSecondPhase]\n- 使本技能的最終威力+1、造成的傷害+15%\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [MarkingNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [MarkingNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [MarkingNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148606,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "接受刑罰吧",
+          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數為6／9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2／+3</u></b></mark></color>\n[WhenUse] 消耗自身最多15層 [SpreadingVoiceSecondPhase]\n- 使本技能的最終威力+2、造成的傷害+30%\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [CeremonialNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [CeremonialNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [CeremonialNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148607,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "審判……！宣告……！判罪……！",
+          "desc": "Can Clash with this Skill regardless of Speed\nThis Skill does not trigger the target's Defense Skill\nCannot be Staggered before using this Skill\nIf the main target has <color=#ff6000><mark=#ff000040><b><u>3+/6+/9+ [ConfessionSecondPhase], Final Power +2/+3/+5</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>If the main target has [GoldenFabricWarderSecondPhase]:</u></b></mark></color>\n<color=#ff6000><mark=#ff000040><b><u>- Final Power -5, Clash Power -5</u></b></mark></color>\n[WhenUse] Consume up to 40 [SpreadingVoiceSecondPhase] to:\n- Gain Final Power +3\n- Deal +50% damage\n[WhenUse] Deal +([SpreadingVoiceSecondPhase] Stack)% damage; at Attack End, consume all [SpreadingVoiceSecondPhase] on self\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose, this effect does not activate</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 5 [Paralysis], deal -75% damage, and damage dealt by this Skill cannot Stagger the target\n[EndSkill]\n- Gain 2 [Vulnerable] next turn\n- End this turn",
+          "coinlist": [
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>觸發目標帶有的 [ConfessionSecondPhase] 效果並消耗\n其所有層數</u></b></mark></color>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>拚點失敗</u></b></mark></color>時，使本硬幣<color=#ff6000><mark=#ff000040><b><u>只會命中主要目標</u></b></mark></color>\n<color=#ff6000><mark=#ff000040><b><u>- [DefeatDuelAttack] 對目標施加9層 [RestrainingNailSecondPhase]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則對其施加5層 [BlackStigmata]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148608,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "執行死刑",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>[CantChangeTarget]</u></b></mark></color>\n- <color=#ff6000><mark=#ff000040><b><u>若罪人帶有 [GoldenHideWarderSecondPhase]</u></b></mark></color>，則可無視速度值與<color=#ff6000><mark=#ff000040><b><u>本技能拚點</u></b></mark></color>\n優先指定帶有 [RestrainingNailSecondPhase] 的罪人\n不會觸發目標的守備技能\n自身使用本技能前不會陷入混亂\n[WhenUse] 若目標<color=#ff6000><mark=#ff000040><b><u>帶有 [GoldenHideWarderSecondPhase]，則使本技能的拚點威力-15</u></b></mark></color>\n[DefeatDuel] 下回合對自身施加5層 [Vulnerable]\n[EndBattle] 消耗自身所有 [SpreadingVoiceSecondPhase]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成<color=#ff6000><mark=#ff000040><b><u>其體力上限200%的固定傷害</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148609,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "犯下罪孽了吧……",
+          "desc": "[WhenUse] 使自身獲得2回 [ChargeNoir]\n[WhenUse] 使自身獲得1級 [Breath] 強度與2回 [Breath]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148610,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懺悔吧",
+          "desc": "[WhenUse] 使自身獲得2回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與1回 [Breath]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "哈……差不多該回去了吧？",
+          "desc": "若<color=#ff6000><mark=#ff000040><b><u>目標的 [ConfessionThirdPhase] 層數不低於5層</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第一枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數為9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2</u></b></mark></color>\n[WhenUse] 使自身獲得3回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與1回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "讓我下班吧。",
+          "desc": "若<color=#ff6000><mark=#ff000040><b><u>目標的 [ConfessionThirdPhase] 層數不低於5層</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第一枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於6層／9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2／+3</u></b></mark></color>\n[WhenUse] 使自身獲得5回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "「審判」",
+          "desc": "Can Clash with this Skill regardless of Speed\nIf the main target has <color=#ff6000><mark=#ff000040><b><u>3+/6+/9+ [ConfessionThirdPhase], Final Power +2/+3/+5</u></b></mark></color>\n[BeforeAttack] <color=#ff6000><mark=#ff000040><b><u>If the main target has 5+/9+ [ConfessionThirdPhase], gain +1/+3 Atk Weight</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 3 [Paralysis], deal -75% damage, and damage dealt by this Skill cannot Stagger the target",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "本硬幣<color=#ff6000><mark=#ff000040><b><u>只會命中主要目標</u></b></mark></color>"
+                },
+                {
+                  "desc": "使本硬幣造成的傷害+(自身已失去的體力比例)%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>對目標施加4層 [ExecutionNailThirdPhase]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "「在神的面前懺悔」是這樣說吧？",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>When the Sinner that has [GoldenFabricWarderThirdPhase]</u></b></mark></color> attacks the Slot equipped with this Skill as its main target in the Chaining Phase, the said Skill used by the Sinner deals +100% damage (for E.G.O Skills, +200% damage)\n[EndBattle] At fewer than 100 [EncompassingVoiceThirdPhase] Stack, gain up to 100 Stack\n- The Chaplain loses SP equal to Stack gained (max 45)",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "「贖罪吧」",
+          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數為9層</u></b></mark></color>，則使本技能的<color=#ff6000><mark=#ff000040><b><u>最終威力+2</u></b></mark></color>\n[WhenUse] 消耗最多15層 [SpreadingVoiceThirdPhase]\n- 使本技能的最終威力+1、造成的傷害+15%\n[WhenUse] 使自身獲得5回 [ChargeNoir]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "「接受刑罰吧」",
+          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於6層／9層</u></b></mark></color>，則使本技能的<color=#ff6000><mark=#ff000040><b><u>最終威力+2／+3</u></b></mark></color>\n[WhenUse] 消耗最多15層 [SpreadingVoiceThirdPhase]\n- 使本技能的最終威力+2、造成的傷害+30%\n[WhenUse] 使自身獲得6回 [ChargeNoir]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [GoldenNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148707,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你打算真的毀掉薛西弗斯系統嗎？",
+          "desc": "Can Clash with this Skill regardless of Speed\nThis Skill does not trigger the target's Defense Skill\nCannot be Staggered before using this Skill\nDeal +5% damage for every [ConfessionThirdPhase] on target (against each target separately)\n<color=#ff6000><mark=#ff000040><b><u>If the main target has 3+/6+/9+ [ConfessionThirdPhase], Final Power +2/+3/+5</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>If the main target has [GoldenFabricWarderThirdPhase]:\n- Final Power -5\n- Clash Power -5</u></b></mark></color>\n- All targets of this Skill <color=#ff6000><mark=#ff000040><b><u>gain Shield equal to 50% of their max HP, respectively</u></b></mark></color>; Shield gained from this effect is removed from the Sinner's total Shield at Attack End\n[WhenUse] Consume up to 40 [SpreadingVoiceThirdPhase] to:\n- Gain Final Power +3\n- Deal +50% damage\n[WhenUse] Deal +([SpreadingVoiceThirdPhase] Stack)% damage; at Attack End, consume all [SpreadingVoiceThirdPhase] on self\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose, this effect does not activate</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 5 [Paralysis], deal -90% damage, and damage dealt by this Skill cannot Stagger the target\n[EndSkill]\n- Gain 2 [Vulnerable] next turn\n- End this turn",
+          "coinlist": [
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>使目標 [Switch_Vibration] 為 [VibrationFocusing]</u></b></mark></color>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>觸發目標帶有的 [ConfessionThirdPhase] 效果並消耗\n其所有層數</u></b></mark></color>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>拚點失敗</u></b></mark></color>時，使本硬幣<color=#ff6000><mark=#ff000040><b><u>只會命中主要目標</u></b></mark></color>\n<color=#ff6000><mark=#ff000040><b><u>- [DefeatDuelAttack] 對目標施加9層 [RestrainingNailThirdPhase]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其減少2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148708,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "強制退場",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>[CantChangeTarget]</u></b></mark></color>\n- <color=#ff6000><mark=#ff000040><b><u>若罪人帶有 [GoldenHideWarderThirdPhase]</u></b></mark></color>，則可無視速度值與<color=#ff6000><mark=#ff000040><b><u>本技能拚點</u></b></mark></color>\n優先指定帶有 [RestrainingNailThirdPhase] 的罪人\n不會觸發目標的守備技能\n自身使用本技能前不會陷入混亂\n[WhenUse] 若目標<color=#ff6000><mark=#ff000040><b><u>帶有 [GoldenHideWarderThirdPhase]，則使本技能的拚點威力-15</u></b></mark></color>\n[DefeatDuel] 下回合對自身施加5層 [Vulnerable]\n[EndBattle] 消耗自身所有 [SpreadingVoiceThirdPhase]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[ExtractCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成<color=#ff6000><mark=#ff000040><b><u>其體力上限200%的固定傷害</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 148709,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "Shift + Delete",
+          "desc": "不會觸發目標的守備技能\n優先指定莫梭以外的罪人\n<color=#ff6000><mark=#ff000040><b><u>若與莫梭進行拚點</u></b></mark></color>，則使本技能的拚點威力-20\n自身使用本技能前不會陷入混亂\n[DefeatDuel] 本回合與下回合中對自身施加10層 [Vulnerable]\n[EndSkill] 牧師拚點失敗時，<color=#ff6000><mark=#ff000040><b><u>使牧師當前持有的護盾減少50%</u></b></mark></color>(最少0%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[ExtractCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成<color=#ff6000><mark=#ff000040><b><u>其現存體力50%的固定傷害</u></b></mark></color>\n(最少0點)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[ExtractCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成<color=#ff6000><mark=#ff000040><b><u>其現存體力50%的固定傷害</u></b></mark></color>\n(最少0點)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[ExtractCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成<color=#ff6000><mark=#ff000040><b><u>其體力上限200%的固定傷害</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "準備裁斷之釘",
+          "desc": "[WhenUse] 使自身獲得3回 [ChargeKhaki]\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "版型與設計",
+          "desc": "[WhenUse] 使自身獲得3回 [ChargeKhaki]\n[WhenUse] 使自身獲得2回 [Breath]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加1層 [AttackDmgDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "固定視點",
+          "desc": "[WhenUse] 消耗自身所有 [ChargeKhaki] 回數，每消耗3回，則使本技能造成的傷害+25%(最多+50%)\n[WhenUse] 使自身獲得3回 [ChargeKhaki]\n[WhenUse] 使自身獲得2回 [Breath]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 本回合與下回合中對目標施加1層 [PenetrateResistDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標造成本硬幣最終傷害量(<color=#ff6000><mark color=#ff000040><b><u>目標帶有的負面效果種類數</color></mark></b></u>×15)%的突刺傷害(最多45%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "如同觀點般",
+          "desc": "[WhenUse] 若自身每帶有2回 [ChargeKhaki]，則使本技能的最終威力+1(最多+5)\n[OnSucceedEvade] <color=#ff6000><mark color=#ff000040><b><u>使自身恢復自身體力上限2%的體力</color></mark></b></u>",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "捕捉",
+          "desc": "[CantIdentify]\n[CantDuel] [CantChangeTarget]\n優先指定友方單位\n本技能不會觸發守備技能",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標為友方單位，"
+                },
+                {
+                  "desc": "- 則擊殺目標"
+                },
+                {
+                  "desc": "- <color=#ff6000><mark color=#ff000040><b><u>使自身獲得1層 [JeanneDesign]</color></mark></b></u>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "第一步",
+          "desc": "[BeforeUse] 進行拚點時，若莫梭使用的技能不為<color=#ff6000><mark color=#ff000040><b><u>1技能</color></mark></b></u>，則使自身改為使用「你得照著版型來。」\n[WinDuel] 結束本技能並對目標使用「想起了一起在咖啡廳聊天的時光」",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "第二步",
+          "desc": "[BeforeUse] 進行拚點時，若莫梭使用的技能不為<color=#ff6000><mark color=#ff000040><b><u>2技能</color></mark></b></u>，則使自身改為使用「你得照著版型來。」\n[WinDuel] 結束本技能並對目標使用「想起了一起在咖啡廳聊天的時光」",
+          "coinlist": [
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "第三步",
+          "desc": "[BeforeUse] 進行拚點時，若莫梭使用的技能不為<color=#ff6000><mark color=#ff000040><b><u>3技能或E.G.O技能</color></mark></b></u>，則使自身改為使用「你得照著版型來。」\n[WinDuel] 結束本技能並對目標使用「想起了一起在咖啡廳聊天的時光」",
+          "coinlist": [
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你得照著版型來。",
+          "desc": "本技能必定觸發暴擊\n[StartDuel] 使目標的<color=#ff6000><mark color=#ff000040><b><u>硬幣翻為背面的機率固定為100%</color></mark></b></u>\n- 若為減算硬幣，則翻為正面",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3層 [JeannePathos]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3層 [JeannePathos]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "想起了一起在咖啡廳聊天的時光",
+          "desc": "[CantDuel]\n本技能適用於以下效果\n- 不會觸發守備技能\n- 該攻擊不會命中目標\n[WhenUse] 自身與目標皆獲得5層 [JeannePathos] 與5層 [JeanneLogos]",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "也曾經有吵過架呢。",
+          "desc": "[OnSucceedEvade] 自身與目標皆獲得4層 [JeannePathos] 與4層 [JeanneLogos]",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "權限：重構",
+          "desc": "[CantChangeTarget]\n不會觸發目標的守備技能\n主要目標指定為莫梭\n[StartDuel] 使自身硬幣翻為正面的機率固定為100%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標陣亡"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "權限：隔離",
+          "desc": "<color=#ff6000><mark color=#ff000040><b><u>[EndSkill] 下回合對目標施加1層 [JeanneCheat]</color></mark></b></u>",
+          "flavor": "Meur. If you want, you don't have to keep binding yourself in those chains anymore. You're allowed to judge for yourself. You should be allowed to speak. No more worrying about anyone's gaze, no more letting anyone else's thoughts weigh on you... Just <i>be</i> yourself.",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若本技能的硬幣未被破壞，則使其造成的傷害+20%"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若本技能的硬幣未被破壞，則使其造成的傷害+20%"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加1層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "只有這座舞台，全都是決定好的。",
+          "desc": "[BeforeUse] 進行拚點時，若目標<color=#ff6000><mark color=#ff000040><b><u>不為莫梭或本技能為單方面攻擊，</color></mark></b></u>則使自身改為使用「你沒有照著版型去做呢。」\n[DefeatDuel] 使莫梭獲得10層 [JeanneLogos]",
+          "coinlist": [
+            {
+              "coindescs": []
+            },
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你沒有照著版型去做呢。",
+          "desc": "本技能必定觸發暴擊\n[StartDuel] <color=#ff6000><mark color=#ff000040><b><u>使目標的硬幣翻為背面的機率固定為100%</color></mark></b></u>\n- 若為減算硬幣，則翻為正面\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>使自身恢復自身體力上限50%的體力</color></mark></b></u>",
+          "flavor": "小莫，得照著設計好的去做唷。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152405,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "到這裡為止都是設計好的哦。",
+          "desc": "[WhenUse] 自身每帶有2回特殊 [Charge]，則使本技能的最終威力+1(最多+5)",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152406,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "權限：視線",
+          "desc": "[WhenUse] Final Power +1 for every 4 Unique [Charge] (Potency + Count) on self (max 3)\n[WhenUse] Deal +10% damage for every 2 types of negative effects on all targets (max 50%; overlapping effects between units are counted separately)\n<color=#ff6000><mark color=#ff000040><b><u>[WinDuel] Inflict 1 [JeanneCheat] next turn</color></mark></b></u>\n[DefeatDuel] Deal -80% damage and damage dealt by this Skill cannot Stagger the target",
+          "flavor": "You must've understood the anxiety your mother felt better than anyone. But, Meur... simply sharing the same space with someone means becoming aware of their gaze. As long as you were there together, you must've had to bear your mother's gaze. You could hardly help but gaze her in return.\n\nIs that why you feel guilty?\nIt seems to me you're still trying to make what happened to your mother into something that was your fault.",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若本技能的硬幣未被破壞，則使其造成的傷害+50%"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加2層 [AttackDmgDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若本技能的硬幣未被破壞，則使其造成的傷害+50%"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "百貨公司的藍圖",
+          "desc": "[WhenUse] 自身受到技能造成的傷害-90%(每回合最多1次)",
+          "flavor": "這不是百貨公司的藍圖。",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "圖樣：慾求吧",
+          "desc": "[WhenUse] 若自身的 [ChargeRouge] 回數不為最大值，則消耗自身體力上限5%的體力並使自身獲得10回 [ChargeRouge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "圖樣：纏繞吧",
+          "desc": "[WhenUse] 若自身的 [ChargeRouge] 回數不為最大值，則消耗自身體力上限5%的體力並使自身獲得10回 [ChargeRouge]\n[WhenUse] 消耗自身5回 [ChargeRouge] 並使本技能的最終威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "圖樣：攝取吧",
+          "desc": "[WhenUse] 自身每失去2%體力，則使本技能造成的傷害+3%(最多+60%)\n[WhenUse] 消耗自身所有 [ChargeRouge] 回數，每消耗2回，則使本技能的最終威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [ScarletTakeDamageUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(自身失去的體力比例)%的色慾傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "圖樣：收集吧",
+          "desc": "[WhenUse] 使自身恢復自身體力上限25%的體力\n- 若自身的 [ChargeRouge] 強度不低於2級，則改為使自身恢復自身體力上限50%的體力",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裁斷：保存吧",
+          "desc": "[WhenUse] Gain +5 [ChargeNoir] Count\n- If target has [Vibration], gain +5 additional [ChargeNoir] Count",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裁斷：默示吧",
+          "desc": "[WhenUse] Gain 5 [ChargeNoir] Count\n- If target has [Vibration], gain 5 additional [ChargeNoir] Count\n[WhenUse] Final Power +1 for every 2 [ChargeNoir] Count on self (max 2)\n[WhenUse] At 10+ [ChargeNoir] Count, inflict 5 [Vibration] Potency on Coin Hit",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裁斷：固定吧",
+          "desc": "自身每帶有1級 [ChargeNoir] 強度，則使本技能造成的傷害+4%(最多+20%)\n[WhenUse] 消耗自身所有 [ChargeNoir] 回數，每消耗2回，則使本技能的最終威力+1(最多+3)\n- 若消耗的回數不低於10回，則本硬幣命中時，使目標增加5級 [Vibration] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成等同於本硬幣最終傷害量(目標的 [Vibration] 強度)%的怠惰傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裁斷：被釘刺穿吧",
+          "desc": "[StartBattle] 本回合與下回合中，使自身獲得等同於自身體力上限25%的護盾(最少1點)\n- 若自身的 [ChargeNoir] 強度不低於2級，則改為使自身獲得等同於自身體力上限40%的護盾",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "自我排泄（je m'expulse）",
+          "desc": "[WhenUse] 若主要目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] 若主要目標未帶有 [Laceration] 強度</u></b></mark></color>，則使本技能的所有硬幣轉變為 [SuperCoin]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "flavor": "排泄",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "自我嘔吐（je me crache）",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的基礎威力+2\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)</u></b></mark></color>",
+          "flavor": "嘔吐。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [BoneNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "自我賤化（je m'abjecte）",
+          "desc": "[WhenUse] 主要目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>自身每帶有2級 [ChargeRouge] 強度，則使本技能的攻擊容量+1(最多+2)</u></b></mark></color>",
+          "flavor": "扔出。",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [BoneNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [BoneNail] 層數不低於3層，則下回合對其施加2層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "衝動（la pulsion）",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n指定丹紅派 上級工作人員為目標\n\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗最多10回 [ChargeRouge] 並使本技能的攻擊容量+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 使目標增加10回 [ChargeRouge]"
+                },
+                {
+                  "desc": "[EndCoin] 使目標失去其現存體力50%的體力，<color=#ff6000><mark=#ff000040><b><u>並使其獲得5層 [AttackUp]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[EndCoin] <color=#ff6000><mark=#ff000040><b><u>使目標獲得3層 [BuffetRouge]</u></b></mark></color>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "存有之匱乏（le manque-à-être）",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 解除目標的混亂狀態"
+                },
+                {
+                  "desc": "[EndCoin] 使目標恢復(本技能的最終威力)點體力"
+                },
+                {
+                  "desc": "[EndCoin] 使目標獲得1層 [BuffetRouge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "享樂（la jouissance）",
+          "desc": "可無視速度值與本技能拚點\n\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>戰場上每有1名丹紅派 上級スタッフ存活，則使自身恢復15點理智值並使本技能的拚點威力+2</u></b></mark></color>\n[WhenUse] 若所有的丹紅派 上級スタッフ<color=#ff6000><mark=#ff000040><b><u>全數處於陣亡狀態</u></b></mark></color>，則使本技能的拚點威力-3\n[DefeatDuel] <color=#ff6000><mark=#ff000040><b><u>對自身施加1層 [BuffetDream]</u></b></mark></color>，並使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 使主要目標的 [BuffetScruple] 變為 [BuffetResolve]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標的 [Laceration] 3次並使其減少3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151707,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "要求（la demande）",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n本技能不會觸發守備技能\n[WhenUse] 移除主要目標所有的 [BoneNail]\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[EndSkill] 移除主要目標的 [BuffetScruple]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151708,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "以父之名（le Nom-du-Père）",
+          "desc": "[StartBattle] <color=#ff6000><mark=#ff000040><b><u>若自身帶有 [BuffetRouge]</u></b></mark></color>，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [BuffetScruple]</u></b></mark></color>，則使本技能的攻擊容量-2\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 移除主要目標的 [BuffetScruple]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [BoneNail]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [BoneNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [BoneNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [BoneNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151709,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閹割（la castration）",
+          "desc": "可無視速度值與本技能拚點\n使用本技能前自身不會陷入混亂\n\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若自身帶有的 [BuffetDream] 層數不高於5層，則使本技能的所有硬幣轉變為 [SuperCoin]</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>主要目標若帶有 [BuffetScruple]</u></b></mark></color>，則使本技能的硬幣威力-3\n[WhenUse] 若主要目標每帶有4級 [Laceration] 強度，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-95%，且本技能造成的傷害不會使目標陷入混亂，<color=#ff6000><mark=#ff000040><b><u>並對自身施加1層 [BuffetDream]</u></b></mark></color>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Laceration] 2次並使其減少2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151710,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "獨一特徵（le trait unaire）",
+          "desc": "[DuelCounter]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 所有敵方單位帶有的 <color=#ff6000><mark=#ff000040><b><u>[BoneNail] 層數之和每有5層，則使本技能的攻擊容量+1</u></b></mark></color>(最多+3)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "<color=#ff6000><mark=#ff000040><b><u>消耗所有敵方單位的 [BoneNail]</u></b></mark></color>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(消耗的 [BoneNail] 層數×5)%的色慾傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 每消耗4層 [BoneNail]，則使目標增加1回 [Laceration] (最多3回)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "脫離（Dégagé）",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] 若目標未帶有 [Laceration] 強度</u></b></mark></color>，則使本技能的所有硬幣轉變為 [SuperCoin]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BoneNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2層 [BoneNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151712,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "錨定點（le point de capiton）",
+          "desc": "[WhenUse] 目標每帶有4級 [Laceration] 強度，使本技能的最終威力+1(最多+3)\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] 若目標未帶有 [Laceration] 強度</u></b></mark></color>，則使本技能的所有硬幣轉變為 [SuperCoin]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BoneNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [BoneNail]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [BoneNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [BoneNail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151713,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "享樂（la jouissance）",
+          "desc": "可無視速度值與本技能拚點\n\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [BuffetScruple]</u></b></mark></color>，則使自身失去20點理智值並使本技能的硬幣威力-3\n[DefeatDuel] <color=#ff6000><mark=#ff000040><b><u>對自身施加1層 [BuffetDream]</u></b></mark></color>，並使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 使主要目標的 [BuffetScruple] 變為 [BuffetResolve]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標的 [Laceration] 3次並使其減少3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151714,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "父系隱喻（la métaphore paternelle）",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n[SupportAlly]\n本技能的使用順序固定為最後\n[EndSkill] 使自身恢復自身體力上限25%的體力",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndCoin] 下回合使「被剝離的丹紅之神肉片」轉化為「丹紅派 上級工作人員」復活"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "請……接納我們……",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身減少1層 [BuffetRevival]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 151802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "丹紅之……聲……",
+          "desc": "若自身帶有護盾，則自身受到攻擊時，使目標增加1回 [Laceration]\n[StartBattle] 使自身獲得自身體力上限25%的護盾\n[EndBattle] 若自身帶有護盾，則使自身減少1層 [BuffetRevival]",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "以此鐮刃回應！",
+          "desc": "[WhenUse] 使自身獲得6回 [ChargeRouge]\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗5回 [ChargeRouge] 並使本技能的基礎威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "請接納我的血肉！",
+          "desc": "[WhenUse] 使自身獲得4回 [ChargeRouge]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懷抱胸前，雙手奉上！",
+          "desc": "[StartBattle] 若自身的現存體力不高於自身體力上限的50%，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "不留分毫地吞食殆盡！",
+          "desc": "[StartBattle] 若自身的現存體力不高於自身體力上限的50%，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1\n[WinDuel] 使自身獲得10回 [ChargeRouge]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] Consume up to 5 [ChargeRouge] Count to deal Slash damage equal to ([ChargeRouge] Count consumed x 3)% of this Coin's final damage (max 15%)\n- Heal ([ChargeRouge] Count consumed)% HP"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] Consume up to 5 [ChargeRouge] Count to deal Slash damage equal to ([ChargeRouge] Count consumed x 3)% of this Coin's final damage (max 15%)\n- Heal ([ChargeRouge] Count consumed)% HP"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] Consume up to 5 [ChargeRouge] Count to deal Slash damage equal to ([ChargeRouge] Count consumed x 3)% of this Coin's final damage (max 15%)\n- Heal ([ChargeRouge] Count consumed)% HP"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "還不能倒下！",
+          "desc": "[DuelCounter]\n[WhenUse] 自身每帶有5回 [ChargeRouge]，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [ChargeRouge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRouge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 152106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "崇拜聲音",
+          "desc": "[CantDuel]\n[CantChangeTarget]\n指定丹紅之神為目標\n\n本技能適用於以下效果\n- 不會觸發守備技能\n- 不會因外部效果重複使用\n- 該攻擊不會命中目標\n\n[EndCoin] 使目標恢復20點理智值",
+          "coinlist": [
+            {
+              "coindescs": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

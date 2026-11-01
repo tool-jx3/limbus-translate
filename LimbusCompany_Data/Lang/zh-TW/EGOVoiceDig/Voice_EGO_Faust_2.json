@@ -1,0 +1,154 @@
+{
+  "dataList": [
+    {
+      "id": "battle_awaken_20201_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "浮士德知曉所有結果。"
+    },
+    {
+      "id": "battle_awaken_20202_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "這場戰鬥，將以勝利告終。"
+    },
+    {
+      "id": "battle_awaken_20203_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "刺穿……直至心靈深邃之處……"
+    },
+    {
+      "id": "battle_erosion_20202_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "即使我必須把一切盡數吐出……"
+    },
+    {
+      "id": "battle_erosion_20203_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "來吧……讓我們抱緊緊……"
+    },
+    {
+      "id": "battle_awaken_20204_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "雷電，完全充能。"
+    },
+    {
+      "id": "battle_erosion_20204_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": ""
+    },
+    {
+      "id": "battle_awaken_20205_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "記錄完成。所剩唯有……放你自由。"
+    },
+    {
+      "id": "battle_erosion_20205_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "真理、真理近在眼前……嘻嘻、嘻嘻嘻、嘻嘻！！！"
+    },
+    {
+      "id": "battle_awaken_20206_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "在你眼中，我是何種模樣。或許答案就隱藏於時間發條之中？"
+    },
+    {
+      "id": "battle_erosion_20206_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "就那樣。停下吧。在靜止的時間中。永遠地。"
+    },
+    {
+      "id": "battle_awaken_20207_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "遵循既定的故事。順理成章將其捕獲。"
+    },
+    {
+      "id": "battle_erosion_20207_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "滾開……！蘋果……蘋果被藏到哪裡去了？"
+    },
+    {
+      "id": "battle_awaken_20208_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "還記得第一次開口呼吸的瞬間嗎？對我而言……就是此刻。"
+    },
+    {
+      "id": "battle_erosion_20208_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "深深地吸氣吧……那或許是你的最後一次呼吸了。"
+    },
+    {
+      "id": "battle_awaken_20209_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "漫長的旅途。在這浪潮不止的時代中，尋找希望與未來。去找尋屬於自己的答案吧。"
+    },
+    {
+      "id": "battle_erosion_20209_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "指令：熔毀，啟動。行於塵埃之中，與孤獨一起，邁向遙不可及的未來吧。"
+    },
+    {
+      "id": "battle_awaken_20210_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "即使無法帶領您進入這以火焰縫合的星群之中……仍能擁抱您，讓您化作星光。"
+    },
+    {
+      "id": "battle_awaken_20210_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "即使無法帶領您進入這以火焰縫合的星群之中……"
+    },
+    {
+      "id": "battle_awaken_20210_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "仍能擁抱您，讓您化作星光。"
+    },
+    {
+      "id": "battle_erosion_20210_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "直到觸碰到那搖曳微光，無論多少次……！ 一同，燃燒吧。"
+    },
+    {
+      "id": "battle_erosion_20210_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "直到觸碰到那搖曳微光，"
+    },
+    {
+      "id": "battle_erosion_20210_3",
+      "desc": "E.G.O侵蝕",
+      "dlg": "無論多少次……！"
+    },
+    {
+      "id": "battle_erosion_20210_4",
+      "desc": "E.G.O侵蝕",
+      "dlg": " 一同，燃燒吧。"
+    },
+    {
+      "id": "battle_awaken_20211_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "瞄準目標的厄運，終將如期而至。人會消逝，唯有灰色留存。"
+    },
+    {
+      "id": "battle_awaken_20211_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "瞄準目標的厄運，終將如期而至。人會消逝，"
+    },
+    {
+      "id": "battle_awaken_20211_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "唯有灰色留存。"
+    },
+    {
+      "id": "battle_erosion_20211_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "無數視線、無數子彈。擊錘獨自敲動二十四次……"
+    },
+    {
+      "id": "battle_erosion_20211_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "自陰影之下，無休止地，"
+    },
+    {
+      "id": "battle_erosion_20211_3",
+      "desc": "E.G.O侵蝕",
+      "dlg": "傾瀉而下。"
+    }
+  ]
+}

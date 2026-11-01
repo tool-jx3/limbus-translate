@@ -1,0 +1,252 @@
+{
+  "dataList": [
+    {
+      "id": "Walpu8_event_desc",
+      "content": "在琥珀色的黃昏的普通及困難難度下完成任務。\n\n完成任務後，您將獲得多種獎勵。"
+    },
+    {
+      "id": "missionConditionTitle_10117",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10118",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10119",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味榨汁機]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10120",
+      "content": "在沒有軟QQ[柑橘口味]撤退的條件下完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10121",
+      "content": "帶有福利部隊長增益的友方單位在單次戰鬥中擊殺不低於5名敵方單位並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10122",
+      "content": "帶有福利部隊長增益的友方單位受到敵方單位攻擊技能傷害的次數低於5次且存活的條件下完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10123",
+      "content": "帶有福利部隊長增益的友方單位在單次戰鬥中擊殺1隻軟QQ[柑橘口味榨汁機]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10124",
+      "content": "不低於3名友方單位各自獲得1次軟QQ[柑橘口味]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10125",
+      "content": "單次戰鬥中使用單個攻擊技能造成不低於300點的傷害並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10126",
+      "content": "全體友方單位存活的狀態下鎮壓成功"
+    },
+    {
+      "id": "missionConditionTitle_10127",
+      "content": "全體友方單位的理智值未降至-45的條件下鎮壓成功"
+    },
+    {
+      "id": "missionConditionTitle_10128",
+      "content": "全體友方單位的流血強度不高於10級的條件下鎮壓成功"
+    },
+    {
+      "id": "missionConditionTitle_20065",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20066",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20067",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味榨汁機]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20068",
+      "content": "單次戰鬥中擊殺軟QQ[柑橘口味榨汁機]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20069",
+      "content": "在沒有軟QQ[柑橘口味榨汁機]撤退的條件下完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20070",
+      "content": "帶有福利部隊長增益的友方單位在單次戰鬥中擊殺不低於1隻軟QQ[柑橘口味榨汁機]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20071",
+      "content": "帶有福利部隊長增益的友方單位在單次戰鬥中擊殺不低於10名敵方單位並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20072",
+      "content": "帶有福利部隊長增益的友方單位受到敵方單位攻擊技能傷害的次數低於3次且存活的條件下完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20073",
+      "content": "使用單個攻擊技能擊殺不少於3名敵方單位並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20074",
+      "content": "全體友方單位各自獲得1次軟QQ[柑橘口味]並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20075",
+      "content": "單次戰鬥中使用單個攻擊技能造成不低於500點的傷害並完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20076",
+      "content": "全體友方單位存活的狀態下鎮壓成功"
+    },
+    {
+      "id": "missionConditionTitle_20077",
+      "content": "全體友方單位的理智值未降至-45的條件下鎮壓成功"
+    },
+    {
+      "id": "missionConditionTitle_20078",
+      "content": "全體友方單位的流血強度不高於10級的條件下鎮壓成功"
+    },
+    {
+      "id": "missionConditionTitle_20079",
+      "content": "完成簡單及困難難度的全部任務"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_01_title",
+      "content": "第8次 瓦爾普吉斯之夜 - 琥珀色的黃昏"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_01_title_01",
+      "content": "第8次 瓦爾普吉斯之夜 - 琥珀色的黃昏"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_01_desc_01",
+      "content": "[第8次 瓦爾普吉斯之夜 - 琥珀色的黃昏] 不論您的主線劇情進度，都將解鎖。您可以透過玻璃窗或駕駛席上的活動橫幅進入。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_02_title_01",
+      "content": "活動期間"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_02_desc_01",
+      "content": "第8次 瓦爾普吉斯之夜的活動持續時間顯示在這裡。活動期間內，完成簡單及困難難度的戰鬥任務，可以領取任務獎勵的報酬。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_03_title_01",
+      "content": "簡單難度戰鬥"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_03_desc_01",
+      "content": "選擇這扇門可進入簡單難度戰鬥。\n在第8次瓦爾普吉斯之夜活動期間，進入戰鬥時會消耗腦啡肽模組。\n簡單難度下，60級以下的人格等級將被自動提升至60。\n並且，人格的同步階段和E.G.O異想解析階段若是低於3階段，將被自動提升至3階段。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_03_title_02",
+      "content": "困難難度戰鬥"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_03_desc_02",
+      "content": "通過簡單難度將解鎖困難難度。在困難難度下，人格的等級、同步進度與E.G.O異想解析進度將保持不變。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_04_title_01",
+      "content": "福利部隊長 效果"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_04_desc_01",
+      "content": "以第一順位進入關卡的罪人將被賦予「福利部隊長」效果。擁有「福利部隊長」效果的罪人將在戰鬥中獲得額外技能槽並獲得增益。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_05_title_01",
+      "content": "任務列表"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_05_desc_01",
+      "content": "透過[任務列表]介面，能夠查看需要完成的任務，以及任務獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_06_desc_01",
+      "content": "[任務列表]介面將顯示獎勵領取期。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_06_desc_02",
+      "content": "能夠分別確認簡單及困難任務。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_06_desc_03",
+      "content": "完成任務可在[任務列表]領取多樣化獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu8_07_desc_01",
+      "content": "活動結束後，您也依然可以透過駕駛席-[外傳故事]及放映室-[其他故事]，隨時重溫[第8次 瓦爾普吉斯之夜 - 琥珀的黃昏]的關卡和故事。"
+    },
+    {
+      "id": "walpu8_reward_button_normal",
+      "content": "簡單難度"
+    },
+    {
+      "id": "walpu8_reward_button_hard",
+      "content": "困難難度"
+    },
+    {
+      "id": "walpu8_normal_difficulty",
+      "content": "簡單難度"
+    },
+    {
+      "id": "walpu8_hard_difficulty",
+      "content": "困難難度"
+    },
+    {
+      "id": "walpu8_hard_open_condition",
+      "content": "通過簡單難度後解鎖"
+    },
+    {
+      "id": "KillCount_Title_4",
+      "content": "琥珀色的黃昏"
+    },
+    {
+      "id": "LobotomyStartTypo_KillCountTitle_4",
+      "content": "鎮壓狀況"
+    },
+    {
+      "id": "LobotomyStartTypo_Title_Walpu8_Start",
+      "content": "琥珀色的黎明"
+    },
+    {
+      "id": "LobotomyStartTypo_Name_Walpu8_Start",
+      "content": "完美的食品"
+    },
+    {
+      "id": "LobotomyStartTypo_Desc_Walpu8_Start",
+      "content": "完美的食物、無瑕的替代品"
+    },
+    {
+      "id": "LobotomyClearTypo_Title_Walpu8_Win",
+      "content": "琥珀色的黃昏"
+    },
+    {
+      "id": "LobotomyClearTypo_Name_Walpu8_Win",
+      "content": "食物鏈"
+    },
+    {
+      "id": "LobotomyClearTypo_Desc_Walpu8_Win",
+      "content": "我們本可以生存。本可以繼續生活下去。"
+    },
+    {
+      "id": "LobotomyStartTypo_Title_Walpu8_Appear",
+      "content": "琥珀色的黃昏"
+    },
+    {
+      "id": "LobotomyStartTypo_Name_Walpu8_Appear",
+      "content": "食物鏈"
+    },
+    {
+      "id": "LobotomyStartTypo_Desc_Walpu8_Appear",
+      "content": "知曉那一味道，是不可避免的過程。"
+    },
+    {
+      "id": "walpu8_hard_stage_unlock_condition",
+      "content": "通過簡單難度後解鎖"
+    }
+  ]
+}

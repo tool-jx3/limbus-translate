@@ -1,0 +1,36 @@
+{
+  "dataList": [
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_title_01",
+      "content": "戰鬥畫面資訊量設定"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_01",
+      "content": "戰鬥畫面的右上方是控制戰鬥相關資訊的按鈕。\n\n按鈕分別顯示最小/中等/最大數量的資訊。"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_title_02",
+      "content": "MAX"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_02",
+      "content": "這是將資訊顯示到最大程度的設定。\n\n在開始遊戲時，這是預設選擇的設定。\n\n比起中等或最小資訊顯示，會提供更多詳細內容。\n\n會顯示技能中所使用的關鍵字相關資訊。"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_title_03",
+      "content": "MID"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_03",
+      "content": "這是中等程度資訊顯示的設定。\n\n與最大資訊顯示的差別在於，不會顯示技能中使用的關鍵字相關資訊。\n\n除此之外，顯示的內容與最大資訊顯示相同。"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_title_04",
+      "content": "MIN"
+    },
+    {
+      "id": "tutorial_upperSkillInfo_System_popup_04",
+      "content": "這是僅顯示最基本資訊的設定。\n\n與最大或中等顯示不同，將不會顯示技能效果與關鍵字相關的資訊。"
+    }
+  ]
+}

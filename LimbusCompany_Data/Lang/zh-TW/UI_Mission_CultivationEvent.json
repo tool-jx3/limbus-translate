@@ -1,0 +1,96 @@
+{
+  "dataList": [
+    {
+      "id": "mission_ui_condition_tags_10059",
+      "content": "通過第1次課間試煉。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10060",
+      "content": "通過第2次課間試煉。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10061",
+      "content": "通過第3次課間試煉。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10062",
+      "content": "通過第4次課間試煉。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10063",
+      "content": "接受所有老師的課程。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10064",
+      "content": "{0}日之間，保持賈惜春的士氣為「最高」。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10065",
+      "content": "平安地教導賈惜春。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10066",
+      "content": "接受3次李箱的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10067",
+      "content": "接受3次浮士德的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10068",
+      "content": "接受3次唐吉訶德的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10069",
+      "content": "接受3次良秀的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10070",
+      "content": "接受3次莫梭的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10071",
+      "content": "接受3次鴻璐的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10072",
+      "content": "接受3次希斯克利夫的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10073",
+      "content": "接受3次以實瑪利的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10074",
+      "content": "接受3次羅佳的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10075",
+      "content": "接受3次奧提斯的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10076",
+      "content": "接受3次格里高爾的授課。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10077",
+      "content": "使賈惜春的智達到{0}。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10079",
+      "content": "使賈惜春的勇達到{0}。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10081",
+      "content": "使賈惜春的仁達到{0}。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10083",
+      "content": "發現{0}組聯合授課效果。"
+    },
+    {
+      "id": "mission_ui_condition_tags_10086",
+      "content": "完成所有成就"
+    }
+  ]
+}

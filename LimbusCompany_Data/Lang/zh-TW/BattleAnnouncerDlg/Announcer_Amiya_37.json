@@ -1,0 +1,244 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_37_1",
+      "dlg": "來了！大家，請做好戰鬥準備！"
+    },
+    {
+      "id": "announcer_cheer_37_2",
+      "dlg": "能與邊獄公司的大家同行，我真的非常高興。"
+    },
+    {
+      "id": "announcer_specialcheer_37_1",
+      "dlg": "若是罪人的大家的話，一定辦得到。我相信著各位。"
+    },
+    {
+      "id": "announcer_specialcheer_37_2",
+      "dlg": "啊……這就是邊獄公司的做法啊。真是受教了。"
+    },
+    {
+      "id": "announcer_enemy_break_37_1",
+      "dlg": "對方應該也有自己的苦衷吧。但是我們也不能因此停手。"
+    },
+    {
+      "id": "announcer_ally_break_37_1",
+      "dlg": "各位，請振作起來！"
+    },
+    {
+      "id": "announcer_killenemy_37_1",
+      "dlg": "如果這是必須要的戰鬥的話……"
+    },
+    {
+      "id": "announcer_ally_dead_37_1",
+      "dlg": "罪人陣亡……該怎麼辦？！"
+    },
+    {
+      "id": "announcer_ally_dead_37_2",
+      "dlg": "罪人們沒能撤退。啊，不過但丁經理有能讓罪人們復活的能力對吧。呼……"
+    },
+    {
+      "id": "announcer_enemy_adv_37_1",
+      "dlg": "敵方佔據優勢……！得重新整理一次戰況才行。"
+    },
+    {
+      "id": "announcer_ally_adv_37_1",
+      "dlg": "我方佔據優勢！現在正是抓住勝利契機的時刻！"
+    },
+    {
+      "id": "announcer_ally_adv_37_2",
+      "dlg": "邊獄公司的各位。就趁著這個氣勢一鼓作氣邁向勝利吧。"
+    },
+    {
+      "id": "announcer_danger_37_1",
+      "dlg": "不論是多麼艱難的任務，各位都還有但丁經理在，所以一定能夠達成目標的。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_37_1",
+      "dlg": "敵人出現了！請全員做好準備！"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_37_1",
+      "dlg": "但丁經理……我似乎感受到了一股異樣的氣息……"
+    },
+    {
+      "id": "announcer_advatk_physical_37_1",
+      "dlg": "是非常有效的攻擊呢！"
+    },
+    {
+      "id": "announcer_advatk_physical_37_2",
+      "dlg": "如同博士一般非常優秀的指揮呢！"
+    },
+    {
+      "id": "announcer_disadvatk_physical_37_1",
+      "dlg": "即使這不是最有效的攻擊，但我想這已經是現況下最好的選擇。"
+    },
+    {
+      "id": "announcer_advatk_attr_37_1",
+      "dlg": "但丁經理的策略……真的十分奏效呢！"
+    },
+    {
+      "id": "announcer_disadvatk_attr_37_1",
+      "dlg": "沒有更有效的方法嗎……"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_37_1",
+      "dlg": "敵方的狀況似乎發生了變化。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_37_1",
+      "dlg": "敵方的狀態似乎變差了！"
+    },
+    {
+      "id": "announcer_ally_specialbuff_37_1",
+      "dlg": "各位罪人的身上……似乎有什麼變化……"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_37_1",
+      "dlg": "看來有必要檢查各位罪人的狀況，經理！"
+    },
+    {
+      "id": "announcer_enemy_destroy_37_1",
+      "dlg": "摘除部位！就這麼繼續下去吧。"
+    },
+    {
+      "id": "announcer_enemy_destroy_37_2",
+      "dlg": "繼續瞄準被摘除出的部位。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_37_1",
+      "dlg": "發現有罪人受到致命傷！請立即處理。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_37_2",
+      "dlg": "這也是作戰的一環……屬於邊獄公司的作戰方式……"
+    },
+    {
+      "id": "announcer_round_givebigdmg_37_1",
+      "dlg": "對敵方造成重大打擊了。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_37_2",
+      "dlg": "就這麼進行下去的話，應該可以打消敵方的勢頭！"
+    },
+    {
+      "id": "announcer_round_givebigdmg_37_3",
+      "dlg": "這是能和菁英幹員並駕齊驅的實力呢！"
+    },
+    {
+      "id": "announcer_round_givebigdmg_37_4",
+      "dlg": "敵方受到嚴重傷害。"
+    },
+    {
+      "id": "announcer_multikillenemy_37_1",
+      "dlg": "確認到已殲滅多數敵人。"
+    },
+    {
+      "id": "announcer_multikillenemy_37_2",
+      "dlg": "這就是邊獄公司的戰鬥啊……我又從中學到了一課。"
+    },
+    {
+      "id": "announcer_neglect_37_1",
+      "dlg": "如果是博士的話，會如何判斷呢。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_neglect_37_2",
+      "dlg": "經理，請指揮……！",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_1",
+      "dlg": "李箱先生一直懷念著再也回不去的那一日呢……但是，也能見到其為了翱翔天際而綻放羽翼的姿態。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_1-01",
+      "dlg": "啊……李箱先生的想法傳遞過來了，這是……嗯？對薄荷咖啡的深厚喜愛……？",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_2",
+      "dlg": "浮士德小姐……腦海中傳來了太多的思緒……感覺頭暈暈的。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_3",
+      "dlg": "唐吉訶德小姐那從不屈服的身姿，讓我想起了某位羅德島的幹員。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_4",
+      "dlg": "哇……良秀小姐就連思考方式也是略縮的呢。要理解真的非常困難……我會有能夠成功解讀的一天嗎。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_5",
+      "dlg": "莫梭先生的思考……實在難以形容啊。但是，我感覺他只是期望能被接納罷了。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_6",
+      "dlg": "鴻璐先生的心如同宏大的河流一般……具備強大力量的同時卻也不會有所氾濫，總是溫柔的流淌著呢。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_7",
+      "dlg": "希斯克利夫先生，即使再怎麼煩躁也……請不要捲起袖子準備打同伴……！",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_7-01",
+      "dlg": "能感受到愛著某個人的情感充斥著內心……但是，我不明白。那究竟是向著誰呢……？",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_8",
+      "dlg": "以實瑪利小姐做事一絲不苟，同時也一直考慮著各式各樣的情境呢。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_8-01",
+      "dlg": "偶爾能從以實瑪利小姐那裡窺見水手的冒險精神，連帶我的心都跟著雀躍了起來。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_9",
+      "dlg": "羅佳小姐，晚餐要吃什麼等到任務結束後再思考也不遲唷！",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_9-01",
+      "dlg": "羅佳小姐的心……有時會讓人感覺像是冰一般的寒冷……",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_10",
+      "dlg": "辛克萊先生所懷抱著的悲痛……我相信那肯定能夠化作辛克萊先生向前邁步的力量。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_11",
+      "dlg": "奧提斯小姐……似乎如同我重視著博士一般，重視著經理呢。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_11-01",
+      "dlg": "嗚……奧提斯小姐的這份情感與記憶……究竟是……",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_12",
+      "dlg": "雖然格里高爾先生看上去像是隨性的人……但實際上比誰都認真努力呢！",
+      "isHide": true
+    },
+    {
+      "id": "announcer_special_37_12-01",
+      "dlg": "格里高爾先生……抱持著如此多悲傷與痛苦的記憶……肯定很難受吧。",
+      "isHide": true
+    },
+    {
+      "id": "announcer_equip_37_1",
+      "dlg": "您就是執行經理但丁吧。我是阿米婭。作為擔當報告人員從羅德島前來。請多多指教。"
+    }
+  ]
+}

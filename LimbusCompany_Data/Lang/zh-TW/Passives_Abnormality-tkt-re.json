@@ -1,0 +1,29 @@
+{
+  "dataList": [
+    {
+      "id": 122801,
+      "name": "準點",
+      "desc": "回合結束時，若自身的 [LimitedTime] 層數可被60整除，則下回合使自身獲得2層 [SlashDamageUp] 與2層 [PenetrateDamageUp]"
+    },
+    {
+      "id": 122802,
+      "name": "殘存的時間",
+      "desc": "若自身處於 [TimeAcceleration] 狀態，則命中敵方單位時，對該敵方單位追加造成傷害量10%的當前使用技能之罪孽屬性的傷害(每回合最多2次)"
+    },
+    {
+      "id": 122901,
+      "name": "準點",
+      "desc": "回合結束時，若自身的 [LimitedTime] 層數或 [OwnTime] 層數之和可被60整除，則下回合使自身獲得2層 [SlashDamageUp] 與2層 [PenetrateDamageUp]"
+    },
+    {
+      "id": 122902,
+      "name": "時間超加速",
+      "desc": "若自身處於 [EquitableDistribution] 狀態，則命中敵方單位時，對該敵方單位追加造成傷害量10%的當前使用技能之罪孽屬性的傷害(每回合最多2次)"
+    },
+    {
+      "id": 123001,
+      "name": "時間超加速",
+      "desc": "回合結束時，若自身存活，則下回合隨機使時間殺人魔的1個部位獲得1層 [Protection]"
+    }
+  ]
+}

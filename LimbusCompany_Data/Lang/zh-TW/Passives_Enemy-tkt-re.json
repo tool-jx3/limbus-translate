@@ -1,0 +1,9 @@
+{
+  "dataList": [
+    {
+      "id": 9102401,
+      "name": "為了所有人",
+      "desc": "自身獲得 [VibrationDistribution] 時，即使沒有存活的友方單位，也視作有1名其他友方單位存活\n沒有其他友方單位存活時，若自身獲得 [VibrationDistribution]，則下回合對自身施加1層 [Vulnerable]"
+    }
+  ]
+}

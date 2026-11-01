@@ -1,0 +1,331 @@
+{
+  "dataList": [
+    {
+      "id": 130501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啟動義體",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 130502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血血液逆流",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 130503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "活體能量轉換式充能",
+          "desc": "[WhenUse] 消耗自身最大體力值的10%體力，並使自身獲得15回 [Charge]\n[DefeatDuel] 使該技能造成的傷害-50%且無法使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 130504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[WhenUse] 自身每帶有3回 [Laceration] 使該技能基礎威力+1 (最多+2)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 130505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "硬血血液轉移",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 130506,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "活體能量轉換式再充能",
+          "desc": "[WhenUse] 消耗自身最大體力值的10%體力，並使自身獲得15回 [Charge]\n[DefeatDuel] 使該技能造成的傷害-50%且無法使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 123804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "遊行的王子",
+          "desc": "[StartBattle] 根據帶有 [Laceration] 的目標增加本技能的攻擊容量 (最大+5)\n[WhenUse] 若主要目標帶有的 [Laceration] 強度不低於4，則使本技能基礎威力+1\n[WhenUse] 若主要目標帶有的 [Laceration] 回數不少於3，則使本技能硬幣威力+1\n[DefeatDuel] 使自身失去1層 [KeptBlood]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1層 [KeptBlood]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 123807,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我就是……這場遊行的……王子……！",
+          "desc": "[CantDuel]\n[WhenUse] 對自身施加4層 [Paralysis]\n[WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍\n[WhenUse] 將自身理智值重置為0\n[EndSkill] 使自身獲得10層 [KeptBlood]\n該回合自身不會陷入混亂；回合於本技能施放後強制結束",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 123808,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "絕對……不會回去……！",
+          "desc": "[WhenUse] 主要目標每帶有5級 [Laceration]，則使本技能拚點威力 +1 (最多+3)\n[WhenUse] 若主要目標帶有的 [Laceration] 回數不少於4，則使本技能硬幣威力 +1\n[WhenUse] 主要目標每帶有1回 [Laceration]，則使本技能造成的傷害+5% (最多+20%)\n[WinDuel] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍\n[DefeatDuel] 使<noparse>硬血長柄刀</noparse>的恢復效果不生效\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 使自身獲得10層 [KeptBlood]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

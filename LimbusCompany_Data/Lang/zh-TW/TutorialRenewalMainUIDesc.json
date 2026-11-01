@@ -1,0 +1,156 @@
+{
+  "dataList": [
+    {
+      "id": "tuto_10108_01",
+      "content": "本次作戰將說明E.G.O超頻。\n為了說明，這次作戰將暫時給予罪人良秀一個E.G.O。"
+    },
+    {
+      "id": "tuto_10108_02",
+      "content": "請嘗試讓良秀裝備上E.G.O。\n點擊按下個人檔案的上端部分。"
+    },
+    {
+      "id": "tuto_10108_03",
+      "content": "請點擊E.G.O介面。"
+    },
+    {
+      "id": "tuto_10108_04",
+      "content": "請選擇E.G.O。"
+    },
+    {
+      "id": "tuto_10108_05",
+      "content": "已裝備的E.G.O可以從此處一次性閱覽。"
+    },
+    {
+      "id": "tuto_10108_06",
+      "content": "接著請回到基礎編隊介面。"
+    },
+    {
+      "id": "tuto_10108_07",
+      "content": "此處能夠確認選擇的罪人<color=#f8c200>使用已裝備的E.G.O所需的必須資源<color=#ebcaa2>，及<color=#f8c200>技能可以獲取的罪孽碎片<color=#ebcaa2>。"
+    },
+    {
+      "id": "tuto_10108_08",
+      "content": "接著請選擇要排入編隊進行戰鬥的罪人。"
+    },
+    {
+      "id": "tuto_10108_09",
+      "content": "接著嘗試以選擇的罪人及其裝備的E.G.O開始戰鬥吧。"
+    },
+    {
+      "id": "tuto_lobby_at_start_01",
+      "content": "現在開始說明關於如何推進以後的劇情關卡。"
+    },
+    {
+      "id": "tuto_lobby_at_start_02",
+      "content": "點擊入場按鈕便能進入下一個劇情關卡。"
+    },
+    {
+      "id": "tuto_personality_ego_info_01",
+      "content": "這次將說明關於如何查看人格已裝備的E.G.O之方法。"
+    },
+    {
+      "id": "tuto_personality_ego_info_02",
+      "content": "請長按罪人李箱的圖像。"
+    },
+    {
+      "id": "tuto_personality_ego_info_03",
+      "content": "此處能夠確認罪人的情報並使其成長。"
+    },
+    {
+      "id": "tuto_personality_ego_info_04",
+      "content": "點擊標籤即可查看所裝備的人格及E.G.O的相關資料。"
+    },
+    {
+      "id": "tuto_personality_ego_info_05",
+      "content": "點擊該按鈕可以對人格進行升級。"
+    },
+    {
+      "id": "tuto_personality_ego_info_06",
+      "content": "點擊該按鈕可以對人格進行同步。"
+    },
+    {
+      "id": "tuto_personality_ego_info_07",
+      "content": "人格會隨著等級提升與同步階段而變得更強。\n在進入戰鬥前，請確認您的人格等級與同步階段。"
+    },
+    {
+      "id": "tuto_personality_ego_info_08",
+      "content": "點擊E.G.O標籤，查看E.G.O的資料。"
+    },
+    {
+      "id": "tuto_personality_ego_info_09",
+      "content": "此處可以查看E.G.O的相關資料。"
+    },
+    {
+      "id": "tuto_personality_ego_info_10",
+      "content": "點擊標籤即可查看E.G.O的相關資料。"
+    },
+    {
+      "id": "tuto_personality_ego_info_11",
+      "content": "此處為使用E.G.O技能所需要的罪孽碎片。"
+    },
+    {
+      "id": "tuto_personality_ego_info_12",
+      "content": "此處為使用E.G.O技能所消耗的理智值。"
+    },
+    {
+      "id": "tuto_personality_ego_info_13",
+      "content": "使用E.G.O技能時將會變更罪人的罪孽抗性。"
+    },
+    {
+      "id": "tuto_personality_ego_info_14",
+      "content": "點擊該按鈕可以對E.G.O進行異想解析。"
+    },
+    {
+      "id": "tuto_personality_ego_info_15",
+      "content": "E.G.O會隨著異想解析階段而變得更強。\n推薦您提升異想解析階段。"
+    },
+    {
+      "id": "tuto_personality_ego_info_16",
+      "content": "請留意基礎E.G.O將會隨著主線任務而提升異想解析階段。"
+    },
+    {
+      "id": "tuto_personality_ego_info_17",
+      "content": "詳細內容也記載於此操作手冊中，請參閱此處以獲得更多資訊。"
+    },
+    {
+      "id": "tuto_exp_mining_01",
+      "content": "但丁，梅菲斯托費勒斯準備了新的機能提供使用。\n您可以從這裡進行確認。"
+    },
+    {
+      "id": "tuto_exp_mining_02",
+      "content": "雖然可以透過戰鬥累積經驗來變強，但這需要花費不少時間。\n為了幫助加快這個過程，我們準備了採光作為輔助方式。"
+    },
+    {
+      "id": "tuto_exp_mining_03",
+      "content": "透過經驗採光、使用人格訓練券，\n可以更快地使人格成長。"
+    },
+    {
+      "id": "tuto_exp_mining_04",
+      "content": "之後開放的紡錘採光，可以獲得用於人格同步\n以及E.G.O異想解析的紡錘。"
+    },
+    {
+      "id": "tuto_exp_mining_05",
+      "content": "進入採光迷宮，需要消耗腦啡肽模塊。"
+    },
+    {
+      "id": "tuto_exp_mining_06",
+      "content": "已完成的採光戰鬥，將會開啟跳過戰鬥的功能。\n雖然會消耗2倍的模塊，但是可以節省時間並獲得1.5倍的報酬。"
+    },
+    {
+      "id": "tuto_exp_mining_07",
+      "content": "隨著旅程的推進，更高階的採光迷宮將會逐步解鎖。"
+    },
+    {
+      "id": "tuto_exp_mining_08",
+      "content": "高階的經驗採光關卡能夠得到比先前關卡更豐富的資源。所以建議您定期確認採光頁面是否更新。"
+    },
+    {
+      "id": "tuto_mirror_dungeon_01",
+      "content": "您的指揮技巧已經足夠熟練，但丁。\n現在的您得以使用梅菲斯托費勒斯的核心功能了。"
+    },
+    {
+      "id": "tuto_mirror_dungeon_02",
+      "content": "點擊此處進入鏡像迷宮。\n鏡像迷宮是用於測試多種可能性的場域，通關後可獲得通行證經驗與一定數量的狂氣。"
+    }
+  ]
+}

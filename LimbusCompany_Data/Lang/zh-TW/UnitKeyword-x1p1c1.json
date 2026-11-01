@@ -1,0 +1,32 @@
+{
+  "dataList": [
+    {
+      "id": "UnitKeyword_X1P1C1_ASSO_1",
+      "content": "邊獄幼稚園"
+    },
+    {
+      "id": "UnitKeyword_X1P1C1_ASSO_2",
+      "content": "企鵝班"
+    },
+    {
+      "id": "UnitKeyword_X1P1C1_ASSO_3",
+      "content": "小雞班"
+    },
+    {
+      "id": "UnitKeyword_X1P1C1_ASSO_4",
+      "content": "大象班"
+    },
+    {
+      "id": "UnitKeyword_X1P1C1_KEYWORD_1",
+      "content": "酥脆油炸用"
+    },
+    {
+      "id": "UnitKeyword_X1P1C1_KEYWORD_2",
+      "content": "甘甜燉煮用"
+    },
+    {
+      "id": "UnitKeyword_X1P1C1_KEYWORD_3",
+      "content": "酸甜醬滷用"
+    }
+  ]
+}

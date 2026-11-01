@@ -1,0 +1,353 @@
+{
+  "dataList": [
+    {
+      "key": "Q4001",
+      "title": "前往名品鞋室",
+      "description": "到達了4樓。沿著通道前往名品鞋室吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往名品鞋室"
+        }
+      ]
+    },
+    {
+      "key": "Q4002",
+      "title": "前往名品鞋室",
+      "description": "我們把跟在身後的孩子取名為普依。雖然看起來還是很戒備我們……總之就和之前一樣先去4樓的名品鞋室吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往名品鞋室"
+        }
+      ]
+    },
+    {
+      "key": "Q4002A",
+      "title": "打倒四腳",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": ""
+        }
+      ]
+    },
+    {
+      "key": "Q4003",
+      "title": "打倒單腳",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": ""
+        }
+      ]
+    },
+    {
+      "key": "Q4003A",
+      "title": "丹紅派 名品鞋室 NPC A",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟名品鞋室剩下的專櫃人員交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4003B",
+      "title": "前往家具展廳",
+      "description": "在丹紅派名品鞋室遇見的多蘿西亞說希望找到回家的方法，並拜託我們獲取心臟的碎片。願意幫助她的話就會告訴我們前往5樓的辦法。為了取得心臟的碎片，前往家具展廳吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "去找位於家具展廳的幸福衣櫥"
+        }
+      ]
+    },
+    {
+      "key": "Q4004",
+      "title": "跟駝背的檯燈交談",
+      "description": "向位於家具展廳的幸福衣櫥搭話，但那個人依然沉默不語。我們從其身上取下了幾樣物品。去找位於家具展廳的駝背的檯燈吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟駝背的檯燈交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4005",
+      "title": "등굽은 조명의 새 옷[미사용]",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "將衣服交給駝背的檯燈"
+        }
+      ]
+    },
+    {
+      "key": "Q4006",
+      "title": "回去找幸福衣櫥",
+      "description": "將從幸福衣櫥取來的衣服交給了駝背的檯燈。其他家具也爭先恐後地要求我們帶來裝扮用的衣服。回去找幸福衣櫥吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回去找幸福衣櫥"
+        }
+      ]
+    },
+    {
+      "key": "Q4007",
+      "title": "將衣服交給家具們",
+      "description": "這次幸福衣櫥也不吝惜地交出自己所擁有的東西。將衣服交給家具們吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "將衣服交給骨製衣帽架",
+          "goalDescription2": "將衣服交給慵懶的皮床",
+          "goalDescription3": "將衣服交給人皮窗簾",
+          "goalDescription4": "將衣服交給紅色軟墊",
+          "goalDescription5": "將衣服交給皮製沙發",
+          "goalDescription6": "將衣服交給雙子落地燈"
+        }
+      ]
+    },
+    {
+      "key": "Q4008",
+      "title": "詢問幸福衣櫥是否能給予心臟的碎片",
+      "description": "完成所有家具的請求了。問問幸福衣櫥是否能給予心臟的碎片吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "詢問幸福衣櫥是否能給予心臟的碎片"
+        }
+      ]
+    },
+    {
+      "key": "Q4008A",
+      "title": "家具們的襲擊",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "靜觀家具們的襲擊"
+        }
+      ]
+    },
+    {
+      "key": "Q4013",
+      "title": "調查幸福衣櫥的殘骸",
+      "description": "家具們肆意撕扯著幸福衣櫥，最後演變成互相爭鬥而弄壞了它。調查幸福衣櫥的殘骸吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "調查幸福衣櫥的殘骸"
+        }
+      ]
+    },
+    {
+      "key": "Q4021",
+      "title": "前往丹紅派名品鞋室",
+      "description": "漆黑派名品鞋室的事情都告一段落了。前往下方的丹紅派名品鞋室吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往丹紅派名品鞋室"
+        }
+      ]
+    },
+    {
+      "key": "Q4022",
+      "title": "回到丹紅派名品鞋室",
+      "description": "跟幸福衣櫥取得了心臟的碎片。回到丹紅派名品鞋室，將心臟交給多蘿西亞吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回到丹紅派名品鞋室"
+        }
+      ]
+    },
+    {
+      "key": "Q4023",
+      "title": "跟著多蘿西亞走",
+      "description": "將心臟的碎片交給了多蘿西亞。說是會教我們前往5樓的方法。跟著她走吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟著多蘿西亞走"
+        }
+      ]
+    },
+    {
+      "key": "Q4023A",
+      "title": "開在牆上的洞",
+      "description": "牆壁上開了個洞。靠近確認看看吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "確認開著的洞"
+        }
+      ]
+    },
+    {
+      "key": "Q4023B",
+      "title": "進入出現在牆上的入口",
+      "description": "多蘿西亞雙腳的鞋子彼此敲撞後，牆上就出現了通往某處的入口。進去裡面看看吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "進入出現在牆上的入口"
+        }
+      ]
+    },
+    {
+      "key": "Q4023C",
+      "title": "追上異想體",
+      "description": "我們進入了名為走失兒童保護中心的地方。異想體出現並帶走了多蘿西亞。追上它吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "追上異想體"
+        }
+      ]
+    },
+    {
+      "key": "Q4023D",
+      "title": "調查異想體的殘骸",
+      "description": "打倒了異想體。調查殘骸吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "調查異想體的殘骸"
+        }
+      ]
+    },
+    {
+      "key": "Q4023E",
+      "title": "調查異想體的殘骸",
+      "description": "一同被帶來此地的人倒在了地上。調查一下吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": ""
+        },
+        {
+          "index": 1,
+          "goalDescription1": ""
+        }
+      ]
+    },
+    {
+      "key": "Q4024",
+      "title": "前往其他專櫃",
+      "description": "普依獲得了一雙出色的鞋子。4樓似乎還有其他尚未去過的專櫃。前往還沒造訪過的專櫃吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往其他專櫃",
+          "goalDescription2": "跟手提包展廳的其他專櫃人員交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4024A",
+      "title": "調查丹紅派手提包展廳的牆壁",
+      "description": "調查牆壁吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "調查牆壁"
+        }
+      ]
+    },
+    {
+      "key": "Q4024B",
+      "title": "隱藏的東西",
+      "description": "藏在牆壁後方的東西露出了真面目。回答該如何處置那個吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "決定如何處置蕾妮"
+        }
+      ]
+    },
+    {
+      "key": "Q4024C",
+      "title": "決定如何處置蕾妮",
+      "description": "見證定下處置的結果吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "決定如何處置蕾妮"
+        }
+      ]
+    },
+    {
+      "key": "Q4025",
+      "title": "前往其他專櫃",
+      "description": "丹紅派手提包展廳的事告一段落了。前往其他專櫃吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往其他專櫃"
+        }
+      ]
+    },
+    {
+      "key": "Q4025A",
+      "title": "收集黃金材料",
+      "description": "漆黑派手提包展廳的設計師請我們收集黃金材料。要是答應他的請求，說不定會告訴我們前往5樓的手扶梯位置。金製材料可以從人台模特兒身上取得。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "獲取黃金鈕扣",
+          "goalDescription2": "獲取黃金牙齒",
+          "goalDescription3": "獲取黃金毛髮"
+        }
+      ]
+    },
+    {
+      "key": "Q4025B",
+      "title": "回去找漆黑派手提包展廳的設計師",
+      "description": "所有黃金材料收集齊全了。回報給設計師吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回去找漆黑派手提包展廳的設計師"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "跟第一個傑作交談",
+          "goalDescription2": "跟第二個傑作交談",
+          "goalDescription3": "跟第三個傑作交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4025C",
+      "title": "設計師的選擇",
+      "description": ".",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "見證設計師的選擇"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "見證設計師的選擇到最後"
+        }
+      ]
+    },
+    {
+      "key": "Q4026",
+      "title": "搭乘前往5樓的手扶梯",
+      "description": "手提包展廳的事告一段落了。朝通往5樓的手扶梯前進吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "搭乘前往5樓的手扶梯"
+        }
+      ]
+    }
+  ]
+}

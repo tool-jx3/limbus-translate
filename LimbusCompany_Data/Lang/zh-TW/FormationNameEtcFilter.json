@@ -1,0 +1,152 @@
+{
+  "dataList": [
+    {
+      "id": "formation_name_filter_Etc_title",
+      "content": "其他"
+    },
+    {
+      "id": "formation_name_filter_Etc_LIMBUS_COMPANY",
+      "content": "邊獄公司"
+    },
+    {
+      "id": "formation_name_filter_Etc_L_CORP",
+      "content": "腦葉公司本部"
+    },
+    {
+      "id": "formation_name_filter_Etc_H_CORP",
+      "content": "H公司"
+    },
+    {
+      "id": "formation_name_filter_Etc_N_CORP",
+      "content": "N公司"
+    },
+    {
+      "id": "formation_name_filter_Etc_R_CORP",
+      "content": "R公司"
+    },
+    {
+      "id": "formation_name_filter_Etc_T_CORP",
+      "content": "T公司"
+    },
+    {
+      "id": "formation_name_filter_Etc_W_CORP",
+      "content": "W公司"
+    },
+    {
+      "id": "formation_name_filter_Etc_ZWEI",
+      "content": "Zwei協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_SHI",
+      "content": "し協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_CINQ",
+      "content": "Cinq協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_LIU",
+      "content": "六協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_SEVEN",
+      "content": "Seven協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_DEVYAT",
+      "content": "Девять協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_DIECI",
+      "content": "Dieci協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_OUFI",
+      "content": "Öufi協會"
+    },
+    {
+      "id": "formation_name_filter_Etc_BLADE_LINEAGE",
+      "content": "劍契組"
+    },
+    {
+      "id": "formation_name_filter_Etc_BLACK_CLOUD",
+      "content": "黑雲會"
+    },
+    {
+      "id": "formation_name_filter_Etc_ATL",
+      "content": "技術解放聯盟"
+    },
+    {
+      "id": "formation_name_filter_Etc_WUTHERING_HEIGHTS",
+      "content": "咆哮山莊"
+    },
+    {
+      "id": "formation_name_filter_Etc_PEQUOD_CREW",
+      "content": "裴廓德號"
+    },
+    {
+      "id": "formation_name_filter_Etc_BLOODFIEND",
+      "content": "血魔"
+    },
+    {
+      "id": "formation_name_filter_Etc_BLACK_BEAST",
+      "content": "黑獸"
+    },
+    {
+      "id": "formation_name_filter_Etc_FINGER",
+      "content": "手指"
+    },
+    {
+      "id": "formation_name_filter_Etc_THUMB_FINGER",
+      "content": "拇指"
+    },
+    {
+      "id": "formation_name_filter_Etc_INDEX_FINGER",
+      "content": "食指"
+    },
+    {
+      "id": "formation_name_filter_Etc_MIDDLE_FINGER",
+      "content": "中指"
+    },
+    {
+      "id": "formation_name_filter_Etc_RING_FINGER",
+      "content": "環指"
+    },
+    {
+      "id": "formation_name_filter_Etc_LITTLE_FINGER",
+      "content": "小指"
+    },
+    {
+      "id": "formation_name_filter_Etc_SPIDER_HOUSE",
+      "content": "蜘蛛巢"
+    },
+    {
+      "id": "formation_name_filter_Etc_LIMBUS_COMPANY_LCE",
+      "content": "LCE"
+    },
+    {
+      "id": "formation_name_filter_Etc_EGO_EQUIPMENT",
+      "content": "E.G.O裝備"
+    },
+    {
+      "id": "formation_name_filter_Etc_BULLET",
+      "content": "彈藥"
+    },
+    {
+      "id": "formation_name_filter_Etc_DISCARD_SKILL",
+      "content": "丟棄"
+    },
+    {
+      "id": "formation_name_filter_Etc_SISYPHE",
+      "content": "薛西弗斯"
+    },
+    {
+      "id": "formation_name_filter_Etc_LE_ROUGE",
+      "content": "丹紅派"
+    },
+    {
+      "id": "formation_name_filter_Etc_LE_NOIR",
+      "content": "漆黑派"
+    }
+  ]
+}

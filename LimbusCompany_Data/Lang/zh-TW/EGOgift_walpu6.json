@@ -1,0 +1,97 @@
+{
+  "dataList": [
+    {
+      "id": 9805,
+      "name": "灰之星座的庇護",
+      "desc": "[第1順位友方單位專屬]\n\n關卡開始時，使自身獲得 [KnightBless] ",
+      "simpleDesc": [
+        {
+          "abilityID": 9744,
+          "simpleDesc": "獲得 [KnightBless]"
+        }
+      ]
+    },
+    {
+      "id": 9806,
+      "name": "未被受選之人",
+      "desc": "友方單位受到攻擊時，使攻擊者增加3級 [Sinking] 強度\n\n友方單位陣亡時，下回合使全體友方單位獲得2層 [Enhancement] (每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9806,
+          "simpleDesc": "增加 [Sinking] 強度"
+        },
+        {
+          "abilityID": 98061,
+          "simpleDesc": "獲得 [Enhancement]"
+        }
+      ]
+    },
+    {
+      "id": 9807,
+      "name": "淚鋒之劍",
+      "desc": "友方單位的技能命中時，若目標的理智值不高於-20點，則對目標造成(目標的 [Sinking] 強度)點憂鬱傷害(每個技能最多1次)\n\n- 若該技能為突刺技能，則對目標額外造成(目標的 [Sinking] 回數÷2)點固定傷害",
+      "simpleDesc": [
+        {
+          "abilityID": 9807,
+          "simpleDesc": "額外傷害"
+        }
+      ]
+    },
+    {
+      "id": 9808,
+      "name": "充滿魔法少女的愛之禮物",
+      "desc": "友方單位獲得或消耗 [Charge] 回數或特殊充能的技能命中時，隨機使1名友方單位恢復3點體力或理智值(不包括體力或理智值為最大值的友方單位)\n\n友方單位解除恐慌或E.G.O侵蝕時，使其恢復20點理智值",
+      "simpleDesc": [
+        {
+          "abilityID": 9808,
+          "simpleDesc": "隨機恢復體力或理智值"
+        },
+        {
+          "abilityID": 98081,
+          "simpleDesc": "恢復理智值"
+        }
+      ]
+    },
+    {
+      "id": 9809,
+      "name": "僅存的用處、寄宿的憎惡",
+      "desc": "透過攻擊技能消耗 [Charge] 回數時，下回合使自身獲得(消耗的 [Charge] 回數÷2)層 [AttackUp] (每回合最多10層；包括特殊充能)\n\n回合結束時，若本回合有友方單位失去了理智值，則下回合使其獲得1層 [Enhancement] 並對其施加1層 [Vulnerable]",
+      "simpleDesc": [
+        {
+          "abilityID": 9809,
+          "simpleDesc": "獲得 [AttackUp]"
+        },
+        {
+          "abilityID": 98091,
+          "simpleDesc": "獲得 [AttackUp] 並施加 [DefenseDown]"
+        }
+      ]
+    },
+    {
+      "id": 9810,
+      "name": "創傷防止力場",
+      "desc": "關卡開始時，使全體友方單位獲得2層 [TraumaShield]",
+      "simpleDesc": [
+        {
+          "abilityID": 9810,
+          "simpleDesc": "獲得 [TraumaShield]"
+        }
+      ]
+    },
+    {
+      "id": 9811,
+      "name": "價值處分",
+      "desc": "戰鬥中友方單位陣亡時，獲得所有屬性的罪孽碎片各2個\n\n戰鬥開始時，若本回合有解除待命的友方單位，則使理智值最低的2名友方單位恢復10點理智值(每回合最多1次，不包括陷入恐慌或E.G.O侵蝕的友方單位)",
+      "simpleDesc": [
+        {
+          "abilityID": 9811,
+          "simpleDesc": "獲得罪孽碎片"
+        },
+        {
+          "abilityID": 98111,
+          "simpleDesc": "恢復理智值"
+        }
+      ]
+    }
+  ]
+}

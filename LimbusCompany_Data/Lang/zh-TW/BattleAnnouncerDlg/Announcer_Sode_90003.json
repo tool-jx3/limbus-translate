@@ -1,0 +1,94 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_9SV-SA1_90003_1",
+      "dlg": "指揮支援就交給我吧。在環指父輩到場以前……抓緊時間吧。",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_2",
+      "dlg": "從屍體人偶身上確認到爆發反應！請在徹底活化前快點破壞它！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_3",
+      "dlg": "劍的攻勢比剛才更激烈……在劍揮下前，盡量鎮壓對方吧！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_4",
+      "dlg": "那確實是報告上……啊！各、各位！請先待命。現在不能攻擊！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_5",
+      "dlg": "霍恩海姆組長對應相當妥當……目標很快就會被壓制了。",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_6",
+      "dlg": "對手是……大師。……無論如何，這場戰鬥無法迴避。全員各自，請盡力以赴吧……！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_7",
+      "dlg": "友方的狀態……！必須迅速破壞掉那個構造體！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_8",
+      "dlg": "劍的攻勢比剛才更激烈……在劍揮下前，盡量鎮壓對方吧！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_9",
+      "dlg": "偵測到全方位攻擊……！這個攻擊範圍無法迴避，只能盡全力抵擋回去……！",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_10",
+      "dlg": "阿莉莎小姐……現在在做什麼……！？",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_11",
+      "dlg": "確認道B2級緊急狀態！按照流程，對傷員注射K公司安瓿。",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_12",
+      "dlg": "這到底是……辛克萊先生的數值……",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_13",
+      "dlg": "同時間……這種數值的攻擊無法應付……有、有什麼方法嗎……",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_14",
+      "dlg": "那種數量的敵人，一擊就……",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    },
+    {
+      "id": "announcer_9SV-SA1_90003_15",
+      "dlg": "……戰況更新。局勢，非常有利……辛克萊先生……到底是……",
+      "imgStr": "Saude_announcer",
+      "isHide": true
+    }
+  ]
+}

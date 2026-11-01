@@ -1,0 +1,1749 @@
+{
+  "dataList": [
+    {
+      "id": 40000901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "牽制",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50%(最多+100%)\n[WhenUse] 目標帶有的 [Laceration] 強度與 [Vibration] 強度之和每有2級，則使本技能的基礎威力+1(最多+5)\n[WhenUse] 使自身獲得3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "二連削",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50%(最多+100%)\n[WhenUse] 目標帶有的 [Laceration] 強度與 [Vibration] 強度之和每有2級，則使本技能的基礎威力+1(最多+5)\n[WhenUse] 使自身獲得3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "投擲刺槍",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50%(最多+200%)\n[WhenUse] 下回合使自身獲得2層 [CriticalDmgUpVespa]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加 [BeeSting]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標的混亂閾值前移本硬幣傷害量的40%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "植入刺槍 - 在那裡嗎。",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50% (最多+300%)\n[WhenUse] 下回合使自身獲得5層 [CriticalDmgUpVespa]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加 [ArtifactBeeSting]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標的混亂閾值前移本硬幣傷害量的60%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "回收刺槍",
+          "desc": "[CantDuel]\n優先指定帶有螫針刺槍的單位 (若沒有符合條件的目標，則取消本技能)\n目標每帶有1種負面效果，則使本技能造成的傷害+50%(最多+200%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 解除目標帶有的螫針刺槍"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000906,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊吧。",
+          "desc": "[DuelCounter]\n目標每帶有1種負面效果，則使本技能造成的傷害+50%(最多+100%)\n[StartBattle] <color=#ff6000><mark color=#ff000040><b><u>使自身獲得1層 [SupportProtect]</color></mark></b></u>\n[WhenUse] 下回合使自身獲得2層 [ResultEnhancement] ，與2層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000907,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我來支援。",
+          "desc": "[CanDuelGuard]\n[SupportProtect] 專用技能\n[WinDuel] 使全體友方單位恢復4點理智值(包含自身)\n- 若該單位隸屬於LCD，則改為恢復8點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000908,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "黃蜂針",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50% (最多+100%)\n[WhenUse] 下回合使自身獲得3層 [CriticalDmgUpVespa]",
+          "flavor": "<color=#fde55d>「連反抗之心都不允許」</color>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加 [BeeSting]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 解除目標帶有的 [BeeSting]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000909,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "岡格尼爾",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50 (最多+100%)\n[WhenUse] 目標每帶有10級 [Vibration] 強度，則使本技能造成的傷害+20%\n[BeforeAttack] 若目標的現存體力低於上限的50%，則本技能的 [VibrationExplosion] 將不會消耗目標的震顫回數\n[WhenUse] 自身的理智值不低於0點時，生成1望\n- 硬幣威力+1；造成的傷害+50%\n[WhenUse] 下回合使自身獲得3層 [CriticalDmgUpVespa]\n[EndSkill] 若本技能生成了望，則使自身失去2點理智值",
+          "flavor": "<color=#fde55d>「必定命中，必定貫穿。」</color>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加 [ArtifactBeeSting]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000910,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "空間斬 - 閃蜂光劍",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50 (最多+100%)\n[WhenUse] 目標每帶有10級 [Laceration] 強度，則使本技能造成的傷害+20%\n[WhenUse] 自身的理智值不低於0點時，生成2望\n- 硬幣威力+2；造成的傷害+100%\n[BeforeAttack] 若目標的現存體力低於上限的50%，則本技能觸發 [Laceration] 時將不會消耗流血回數\n[EndSkill] 若本技能生成了望，則使自身失去3點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標陷入混亂"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤之吐息：切削",
+          "desc": "若目標帶有負面效果，則使本技能造成的傷害+50%\n[WhenUse] 使自身失去3點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 額外造成5點傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 額外造成5點傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "白之吐息：霧。黎明。隱匿 - 精神守護",
+          "desc": "[CantDuel]\n指定友方單位為目標時，本技能將不會觸發守備技能；也不會造成傷害\n[WhenUse] 使自身獲得5級 [Breath] 與3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標恢復15點理智值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身和目標皆獲得2層 [MosesWhiteBreathMental]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤之吐息：肉體。血。加速。硬化 - 身體強化",
+          "desc": "[CantDuel]\n指定友方單位為目標時，本技能將不會觸發守備技能；也不會造成傷害\n[WhenUse] 使自身獲得5級 [Breath] 與3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身和目標皆獲得2層 [MosesRedBreathBody]、1層 [AttackUp] 以及1層 [DefenseUp]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "紫之吐息：躁動。疼痛。緊縛之物 - 壓抑",
+          "desc": "本技能不會觸發目標的守備技能\n若目標帶有負面效果，則使本技能造成的傷害+50%\n[WhenUse] 使自身失去8點理智值\n[WhenUse] 使自身獲得5級 [Breath] 強度與3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成8點理智值傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加4層 [MosesPurpleBreathBind]、2層 [Vulnerable] 與3層 [PlusCoinValueDown]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001005,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "調整呼吸",
+          "desc": "[CantDuel]\n本技能不會命中敵方；也不會觸發守備技能\n[WhenUse] 使自身獲得5級 [Breath] 強度與3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001006,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤之吐息：血。肌肉。收縮 - 守護",
+          "desc": "[CantDuel]\n指定友方單位為目標時，本技能將不會觸發守備技能；也不會造成傷害\n[WhenUse] 使自身獲得5級 [Breath] 與3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身和目標皆獲得1層 [MosesRedBreathShield] 與5層 [Protection]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001007,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "「深深吸入赤之吐息。」",
+          "desc": "[CantDuel]\n本技能不會命中敵方；也不會觸發守備技能\n[StartBattle] 使自身獲得100點護盾值 (每場戰鬥最多1次)\n[StartBattle] <color=#ff6000><mark=#ff000040><b><u>使自身獲得1層 [MosesRedBreathCharge]</u></b></mark></color>\n[EndBattle] 使自身失去15點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001008,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤之吐息：鼓動。血。硬化。憤怒 - 奔馳之軀",
+          "desc": "[CantDuel]\n指定友方單位為目標時，本技能將不會觸發守備技能；也不會造成傷害\n[WhenUse] 使自身獲得5級 [Breath] 與3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 賦予目標1層 [MosesRedBreathAttack] 與5層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "阿拉斯工坊 - 加速鐵拳！",
+          "desc": "自身的速度值高於6點時，使本技能造成的傷害+50%\n[WhenUse] 下回合使自身獲得3層 [Agility]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成3點打擊傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成3點打擊傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "涅斯塔工坊 - 一！二！擴散！",
+          "desc": "若目標帶有負面效果，則使本技能造成的傷害+50%\n[WhenUse] 若目標帶有至少5級 [Vibration] 強度，則本技能硬幣命中時，使目標增加1回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Vibration] 強度"
+                },
+                {
+                  "desc": "- 自身的速度值高於6點時，額外使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得2層 [Agility]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "螺絲工坊 - 螺絲！鑽頭！",
+          "desc": "若目標帶有負面效果，則使本技能造成的傷害+50%\n[WhenUse] 使自身獲得5回 [Charge]\n[WhenUse] 自身的 [Charge] 回數不低於10回時，將本技能的所有硬幣轉化為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [Charge] 回數不低於6回，則使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [Charge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "納米爾工坊 - 5倍重量！",
+          "desc": "If target has a negative effect, deal +50% damage\n[WhenUse] If this unit does not have [Charge] Count, inflict +1 additional [Vibration] Count on target on Skill Hit\n[WhenUse] At 15+ [Charge] Count, consume all [Charge] Count and apply the following effects:\n- Trigger an additional [VibrationExplosion]\n- [VibrationExplosion] triggered by this Skill does not consume target's [Vibration] Count",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我會阻擋並守護到底",
+          "desc": "[CanDuelGuard]\n[StartBattle] <color=#ff6000><mark color=#ff000040><b><u>使自身獲得1層 [SupportProtect]</color></mark></b></u>\n[WinDuel] 使目標增加2級 [Vibration] 強度與2回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "可不能讓老么獨攬所有的風采啊！",
+          "desc": "[CanDuelGuard]\n[SupportProtect] 專用技能\n[WinDuel] 使全體友方單位恢復4點理智值(包含自己)\n- 若該單位隸屬於LCD，則改為恢復8點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001107,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "尤里亞工坊 - 總攻擊模式，Mk.17！",
+          "desc": "目標每帶有1種負面效果，則使本技能造成的傷害+50% (最多+100%)\n[WhenUse] 若目標帶有的 [Vibration] 強度高於6級，則使本技能的基礎威力+3\n[WhenUse] 若自身的理智值不低於0點，則生成1望\n- 基礎威力+2，造成的傷害+20%\n[EndSkill] 若本技能生成了望，則使自身失去10點理智值",
+          "flavor": "手工特製黃金獵犬專用斧",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標帶有的 [Laceration] 1次並使其減少1回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "著火",
+          "desc": "[WhenUse] 若目標帶有的負面效果至少有3種，則使本技能的基礎威力+1\n[WhenUse] (自身的 [Combustion] 強度+目標的 [Combustion] 強度)，每有6級，則使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 對自身施加1回 [Combustion]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Combustion] 強度與1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加1級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "E.G.O紅艷煞 展開",
+          "desc": "[WhenUse] 若目標帶有的負面效果至少有3種，則使本技能的基礎威力+1\n[WhenUse] (自身的 [Combustion] 強度+目標的 [Combustion] 強度)，每有6級，則使本技能的硬幣威力+1 (最多+2)\n[WhenUse] 對自身施加3回 [Combustion]\n[BeforeAttack] 若自身帶有的 [Combustion] 強度至少有5級，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加1級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "渴火",
+          "desc": "[WhenUse] 若目標帶有的負面效果至少有3種，則使本技能的基礎威力+1\n[WhenUse] (自身的 [Combustion] 強度+主要目標的 [Combustion] 強度)，每有6級，則使本技能的硬幣威力+1 (最多+2)\n[WhenUse] (自身的 [Combustion] 強度+主要目標的 [Combustion] 強度)，每有1級，則使本技能造成的傷害+1% (最多+50%)\n[WhenUse] 對自身施加2回 [Combustion]\n[BeforeAttack] 自身帶有的 [Combustion] 強度每有5級，則使本技能的攻擊容量+1 (最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "提升紅艷煞感應度。",
+          "desc": "[WhenUse] 自身帶有的 [Combustion] 強度至少10級時，使本技能的硬幣威力+3\n[WhenUse] 使自身的 [Combustion] 強度減少10級\n[OnSucceedEvade] 使自身的 [Combustion] 減少5級 (每回合最多1次)",
+          "flavor": "「請別擔心。我也已經妥善準備了活下去的退路。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "紅艷煞 最大感應【劣化侵蝕】",
+          "desc": "[CantDuel]\n自身在使用技能期間不會陣亡\n[BeforeAttack] 本技能的攻擊容量+(所有敵方單位的行動槽總量)\n[WhenUse] (自身的 [Combustion] 強度 + 所有目標的 [Combustion] 強度)，每有1級，則使本技能造成的傷害+1% (最多+100%)\n[EndSkillAll] 使自身陷入無法戰鬥的狀態",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加10級 [Combustion] 強度與2回 [Combustion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "如燈之目",
+          "desc": "[CanDuelGuard]\n若目標的速度值高於自身，則每相差2點，使本技能的硬幣威力+1 (最多+2)\n- 自身的速度值為1時，則改為直接使硬幣威力+2\n[StartBattle] 使自身獲得6層 [LanternHohenheimBigBird]",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "速射",
+          "desc": "若目標的速度值高於自身，則每相差2點，使本技能的硬幣威力+1 (最多+2)\n- 自身的速度值為1時，則改為直接使硬幣威力+2\n[WhenUse] 使自身獲得5層 [LanternHohenheimBigBird]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 與1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度與1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "零距離注視",
+          "desc": "若目標的速度值高於自身，則每相差2點，使本技能的硬幣威力+1 (最多+2)\n- 自身的速度值為1時，則改為直接使硬幣威力+2\n[WhenUse] 使自身獲得4層 [LanternHohenheimBigBird]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度與1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "予被燈誘惑之人救贖",
+          "desc": "直到單方面攻擊結束前，自身不會受到體力值傷害；且無法被施加負面效果\n若目標的速度值高於自身，則每相差2點，使本技能的硬幣威力+1 (最多+6)\n- 自身的速度值為1時，則改為直接使硬幣威力+6\n若目標帶有 [DelusionHohenheimBigBird]，則直到攻擊結束前，使目標的突刺抗性+0.5\n[EndSkill] 將目標帶有的 [DelusionHohenheimBigBird] 解除",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 消耗自身帶有的所有 [LanternHohenheimBigBird] 層數，每消耗1層使本硬幣造成的傷害+15% (最多+300%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Sinking] 強度與2回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Combustion] 強度與2回 [Combustion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "燒灼穿刺",
+          "desc": "目標的 [Combustion] 與 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1 (最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "灼熱切割",
+          "desc": "目標的 [Combustion] 與 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1 (最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "跟從流向",
+          "desc": "目標的 [Combustion] 與 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1 (最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我將開拓道路",
+          "desc": "目標的 [Combustion] 與 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1 (最多+3)\n[WhenUse] 若自身的理智值不低於0點，則生成1望\n- 硬幣威力+1，造成的傷害+30%\n[EndSkill] 若本技能生成了望，則使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [SlashTakeDamageUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閉嘴",
+          "desc": "目標的 [Combustion] 與 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1 (最多+4)\n[WhenUse] 若自身的理智值不低於0點，則生成2望\n- 基礎威力+2，造成的傷害+60%\n[EndSkill] 若本技能生成了望，則使自身失去3點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001206,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "內出血",
+          "desc": "自身與目標的 [Laceration] 強度之和每有1級，使本技能造成的傷害+1% (最多+20%)\n[WhenUse] 對自身施加3級 [Laceration] 強度與5回 [Laceration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001207,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "望血斬",
+          "desc": "自身與目標的 [Laceration] 強度之和每有1級，使本技能造成的傷害+1% (最多+20%)\n[WhenUse] 對自身施加3級 [Laceration] 強度與5回 [Laceration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001208,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "沉浸鮮血而溺斃",
+          "desc": "自身與目標的 [Laceration] 強度之和每有1級，使本技能造成的傷害+1% (最多+30%)\n[WhenUse] 對自身施加6級 [Laceration] 強度與5回 [Laceration]\n[WhenUse] 若自身的理智值不低於0點，則生成2望\n- 硬幣威力+2，造成的傷害+60%\n[EndSkill] 若本技能生成了望，則使自身失去5點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身與目標的 [Laceration] 強度之和每有5級，則對目標施加1層 [BloodBranch] (最多3層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001209,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "獻給消亡血魔們的葬禮",
+          "desc": "自身與目標的 [Laceration] 強度之和每有1級，使本技能造成的傷害+1% (最多+50%)\n[WhenUse] 對自身施加10級 [Laceration] 強度與5回 [Laceration]\n[WhenUse] 若自身的理智值不低於0點，則生成3望\n- 硬幣威力+3，造成的傷害+90%\n[EndSkill] 若本技能生成了望，則使自身失去3點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身與目標的 [Laceration] 強度之和每有5級，則對目標施加1層 [BloodBranch] (最多5層)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "縱向斬擊",
+          "desc": "[WhenUse] 自身的速度值高於6點時，使本技能造成的傷害+20%\n[WhenUse] 使自身獲得4級 [Breath] 強度與2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "連續斬擊",
+          "desc": "[WhenUse] 自身的速度值高於6點時，使本技能造成的傷害+30%\n[WhenUse] 使自身獲得1級 [Breath] 強度與3回 [Breath]\n[WinDuel] 使本技能造成的傷害+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "塹壕戰特化交戰槍術",
+          "desc": "[WhenUse] 自身的速度值高於7點時，使本技能造成的傷害+40%\n[WhenUse] 使自身獲得4回 [Breath]\n[WinDuel] 使自身獲得1層 [Enhancement]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "真鎮終斬",
+          "desc": "若自身帶有 [WillAwakenSinclair]，則直到攻擊結束前，使目標的斬擊抗性+1\n[WhenUse] 自身的 [Breath] 每有5級，使本技能的基礎威力+2 (最多+8)\n[WhenUse] 若自身的理智值不低於5點，則生成1望；基礎威力+3\n[EndSkill] 若本技能生成了望，則使自身失去5點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[ExtractCoin]"
+                },
+                {
+                  "desc": "(目標的 [Burst] 強度 + [Burst] 回數)之和每有1點，則使本技能造成的傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 造成(自身的 [Breath] 強度×4)點的傲慢傷害 (最多80點)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 造成的傷害+150%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉睡浪浪",
+          "desc": "若自身帶有 [WillAwakenSinclair]，則直到攻擊結束前，使目標的斬擊抗性+1\n可無視速度差距使攻擊指定自身為目標\n[WhenUse] 自身的 [Breath] 每有3級，使本技能的基礎威力+1 (最多+2)\n[WhenUse] 目標每帶有1種負面效果，使本技能的基礎威力+2 (最多+4)\n[WhenUse] 下回合使自身獲得5層 [Agility]\n[WhenUse] 使自身獲得10級 [Breath] 強度與2回 [Breath]\n[WhenUse] 若自身的理智值不低於10點，則生成2望；基礎威力+6\n[EndSkill] 若本技能生成了望，則使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[ExtractCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級 [Laceration] 與2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Vulnerable]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能造成的傷害+400%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "揮散煙霾",
+          "desc": "[CantDuel]\n優先指定體力上限最低的敵人\n本技能不會觸發目標的守備技能\n[BeforeAttack] 使本技能的攻擊容量+(所有敵方單位的行動槽總數)\n[WhenUse] 自身的速度值高於4點時，使本技能造成的傷害+50%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 額外造成本硬幣最終傷害量40%的斬擊傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "揮砍",
+          "desc": "無法改變目標\n自身每有10層 [CutbondRyoshu]，則使本技能的最終威力+1 (最多+3)\n目標每有6級 [Laceration]，則使本技能的最終威力+1 (最多+3)",
+          "flavor": "「阿賴耶必須與我分隔兩地。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "塗抹",
+          "desc": "無法改變目標\n自身每有10層 [CutbondRyoshu]，則使本技能的最終威力+1 (最多+3)\n目標每有6級 [Laceration]，則使本技能的最終威力+1 (最多+3)",
+          "flavor": "「逃離蜘蛛巢。」\n\n「在阿賴耶變成小猿那樣以前。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "潑灑",
+          "desc": "無法改變目標\n自身使用本技能拚點時，機率性使目標拚點技能的第一枚硬幣消除\n自身每有10層 [CutbondRyoshu]，則使本技能的最終威力+1 (最多+5)\n目標每有6級 [Laceration]，則使本技能的最終威力+1 (最多+4)",
+          "flavor": "「我無法邊斬殺所有父輩，邊同時保護阿賴耶。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "描繪",
+          "desc": "無法改變目標\n自身使用本技能拚點時，機率性使目標拚點技能的第一枚硬幣消除\n自身每有10層 [CutbondRyoshu]，則使本技能的最終威力+1 (最多+5)\n目標每有6級 [Laceration]，則使本技能的最終威力+1 (最多+4)",
+          "flavor": "「將阿賴耶藏起來。有一間父輩們經常進出，堆積著時間金庫的房間。」\n\n「讓阿賴耶進那間房間裡的金庫避難。時間金庫可以確保安全。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度與1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "天殺",
+          "desc": "無法改變目標\n自身使用本技能拚點時，機率性使目標拚點技能的第一枚硬幣消除\n自身每有4層 [CutbondRyoshu]，則使本技能的最終威力+1 (最多+12)",
+          "flavor": "「接著用我的劍在金庫刻上劍痕。」\n\n「等我再次回來，只要還有那道劍痕，即使全部混雜在一起，我也能找出來。」\n\n「欲掩蔽樹木，須藏於林中。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40001506,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "「抹消我，也抹消妳。」",
+          "desc": "無法改變目標\n自身使用本技能拚點時，機率性使目標拚點技能的第一枚硬幣消除",
+          "flavor": "「即使耗費長久，也希望對阿賴耶而言只是片刻的事情。」",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

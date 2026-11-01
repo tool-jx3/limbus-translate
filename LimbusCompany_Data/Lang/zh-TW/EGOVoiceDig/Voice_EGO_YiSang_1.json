@@ -1,0 +1,169 @@
+{
+  "dataList": [
+    {
+      "id": "battle_awaken_20101_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "你認為「理想」該作何定義。"
+    },
+    {
+      "id": "battle_upgrade_20101_1",
+      "desc": "E.G.O解放",
+      "dlg": "打破樊籠，"
+    },
+    {
+      "id": "battle_upgrade_20101_2",
+      "desc": "E.G.O解放",
+      "dlg": "飛向自由。"
+    },
+    {
+      "id": "battle_awaken_20102_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "只是焚毀了我所欲焚之物。"
+    },
+    {
+      "id": "battle_erosion_20102_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "都將……化作灰燼。"
+    },
+    {
+      "id": "battle_awaken_20103_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "你若尋求福運，還請誠心祈禱。"
+    },
+    {
+      "id": "battle_erosion_20103_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "訴說你之心願……直言你所希冀……"
+    },
+    {
+      "id": "battle_awaken_20104_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "形色恍惚……彷彿此道抗拒受人銘記。"
+    },
+    {
+      "id": "battle_erosion_20104_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "此道，已被開闢。"
+    },
+    {
+      "id": "battle_awaken_20105_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "在這傾盆大雨中，不知傘是否會漏水。"
+    },
+    {
+      "id": "battle_erosion_20105_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "空氣太過寒冷……雨勢漸強，雨滴也只會愈加沉重。"
+    },
+    {
+      "id": "battle_awaken_20106_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "此為那位的肖像。你要靠過來……仔細觀賞嗎？"
+    },
+    {
+      "id": "battle_erosion_20106_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "不速之客請立即離開，不速之客請……！"
+    },
+    {
+      "id": "battle_awaken_20107_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "我能感知到沉重的槍身壓於胃腸之上。讓這凶惡的彈丸貫穿他們……！"
+    },
+    {
+      "id": "battle_erosion_20107_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "即使記憶四散而飛，也無須窺探它們……只需射擊，一直射擊！"
+    },
+    {
+      "id": "battle_erosion_20107_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "即使記憶四散而飛，也無須窺探它們……只需射擊，一直射擊！"
+    },
+    {
+      "id": "battle_awaken_20108_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "粉碎此刻，化為一千。粉碎映照於碎片中的未來，再為二千。而歪曲的過去，終將粉碎。終至一巡，萬象盡歸……三千大天！"
+    },
+    {
+      "id": "battle_awaken_20108_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "粉碎此刻，化為一千。"
+    },
+    {
+      "id": "battle_awaken_20108_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "粉碎映照於碎片中的未來，再為二千。"
+    },
+    {
+      "id": "battle_awaken_20108_4",
+      "desc": "E.G.O覺醒",
+      "dlg": "而歪曲的過去，終將粉碎。"
+    },
+    {
+      "id": "battle_awaken_20108_5",
+      "desc": "E.G.O覺醒",
+      "dlg": "終至一巡，萬象盡歸……三千大天！"
+    },
+    {
+      "id": "battle_erosion_20108_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "五百千萬億、那由他、阿僧祇的世界將再復染。"
+    },
+    {
+      "id": "battle_erosion_20108_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "其中歷經億劫的未來被粉碎，化為塵埃的我將被其造訪。"
+    },
+    {
+      "id": "battle_erosion_20108_3",
+      "desc": "E.G.O侵蝕",
+      "dlg": "化作粉塵的我之歷史必然！終將消散……而去。"
+    },
+    {
+      "id": "battle_awaken_20109_1",
+      "desc": "E.G.O覺醒",
+      "dlg": "初終。傳達訃告。此等慘烈炮火之中，蝴蝶必將火葬你！……而後，將無物留存。"
+    },
+    {
+      "id": "battle_awaken_20109_2",
+      "desc": "E.G.O覺醒",
+      "dlg": "初終。"
+    },
+    {
+      "id": "battle_awaken_20109_3",
+      "desc": "E.G.O覺醒",
+      "dlg": "這便傳達訃告。"
+    },
+    {
+      "id": "battle_awaken_20109_4",
+      "desc": "E.G.O覺醒",
+      "dlg": "此等慘烈炮火之中，蝴蝶必將火葬你！"
+    },
+    {
+      "id": "battle_awaken_20109_5",
+      "desc": "E.G.O覺醒",
+      "dlg": "……而後，將無物留存。"
+    },
+    {
+      "id": "battle_erosion_20109_1",
+      "desc": "E.G.O侵蝕",
+      "dlg": "初終。"
+    },
+    {
+      "id": "battle_erosion_20109_2",
+      "desc": "E.G.O侵蝕",
+      "dlg": "圓內之一點與圓外之一點相接，"
+    },
+    {
+      "id": "battle_erosion_20109_3",
+      "desc": "E.G.O侵蝕",
+      "dlg": "最終！"
+    },
+    {
+      "id": "battle_erosion_20109_4",
+      "desc": "E.G.O侵蝕",
+      "dlg": "直線將令圓安息。"
+    }
+  ]
+}

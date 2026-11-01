@@ -1,0 +1,115 @@
+{
+  "dataList": [
+    {
+      "key": "Q2001",
+      "title": "快速巡視2樓",
+      "description": "又來到了2樓。和上次一樣，應該沒辦法立刻進去吧。先快速巡視周遭吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "探索2樓"
+        }
+      ]
+    },
+    {
+      "key": "Q2003",
+      "title": "進入奢侈品館",
+      "description": "守門的人消失了。情況改變了嗎？進去看看吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "進入奢侈品館"
+        }
+      ]
+    },
+    {
+      "key": "Q2004",
+      "title": "進入奢侈品館內部2",
+      "description": "奢侈品館到處都是漆黑派的屍體。再往更深處走吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "再更深入奢侈品館內部"
+        }
+      ]
+    },
+    {
+      "key": "Q2005",
+      "title": "進入奢侈品館內部3",
+      "description": "和上次一樣看見了丹紅派製造的入口。進去裡面看看吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "進入奢侈品館的入口"
+        }
+      ]
+    },
+    {
+      "key": "Q2008",
+      "title": "觀察搖籃",
+      "description": "丹紅派品牌總監說，睡在搖籃裡面的存在很快就會醒來，請我們陪在祂身旁。先到搖籃前吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "觀察搖籃"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "讓碎片靠近搖籃"
+        },
+        {
+          "index": 2,
+          "goalDescription1": "餵搖籃吃下碎片"
+        },
+        {
+          "index": 3,
+          "goalDescription1": "救出搖籃之子"
+        }
+      ]
+    },
+    {
+      "key": "Q2008A",
+      "title": "跟從搖籃出來的孩子交談",
+      "description": "從搖籃裡現身的是如同幼童般的身影。試著搭話吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟從搖籃出來的孩子交談"
+        }
+      ]
+    },
+    {
+      "key": "Q2008B",
+      "title": "抓住逃跑的孩子",
+      "description": "從搖籃出來的孩子一看見我們就逃到了角落。抓住祂並試著搭話吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "抓住從搖籃出來的存在"
+        }
+      ]
+    },
+    {
+      "key": "Q2009",
+      "title": "離開奢侈品館",
+      "description": "從搖籃出來的孩子開始跟著我們走。雖然似乎是害怕我們而保持著距離……先離開奢侈品館吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "離開奢侈品館"
+        }
+      ]
+    },
+    {
+      "key": "Q2010",
+      "title": "前往4樓",
+      "description": "從不移身上獲得了脊椎。今後不知道會發生什麼事情，所以能準備的東西就先備妥比較好吧。既然這層的事情已經辦完了，那就前往4樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往4樓"
+        }
+      ]
+    }
+  ]
+}

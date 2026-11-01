@@ -1,0 +1,84 @@
+{
+  "dataList": [
+    {
+      "id": "StageInfoUI_ContinueText",
+      "content": "可繼續"
+    },
+    {
+      "id": "ContinueMainTitle",
+      "content": "繼續"
+    },
+    {
+      "id": "ContinueMainDesc_HellChainInsufficient",
+      "content": "戰鬥失敗。\n是否要消耗<color=#e94d37>40狂氣</color>繼續戰鬥？\n\n<color=#ebcaa2><接關時生效的效果></color>\n<color=#F8C200> - 重置人格與E.G.O的「每場戰鬥中具有觸發次數限制的效果」其觸發次數\n- 全屬性罪孽碎片+10\n- 完全恢復全體友方單位的體力值與理智值\n（減算硬幣人格則將理智值恢復至-30）</color>"
+    },
+    {
+      "id": "ContinueMainRemainContinueCount",
+      "content": "剩餘次數"
+    },
+    {
+      "id": "ContinueMainHaveLunacy",
+      "content": "持有狂氣"
+    },
+    {
+      "id": "ContinueMainFreeLunacy",
+      "content": "免費"
+    },
+    {
+      "id": "ContinueMainPaidLunacy",
+      "content": "付費"
+    },
+    {
+      "id": "ContinueMainCancel",
+      "content": "放棄關卡"
+    },
+    {
+      "id": "ContinueMainUseContinue",
+      "content": "繼續戰鬥"
+    },
+    {
+      "id": "ContinueMainBuyHellChain",
+      "content": "繼續戰鬥"
+    },
+    {
+      "id": "ContinueConfirm_Title_HellChain",
+      "content": "說明"
+    },
+    {
+      "id": "ContinueConfirm_Desc",
+      "content": "使用接關功能後通關時，\n將不視為EX通關。\n且因接關而消耗的資源將不會返還，\n不會退還用於接關的狂氣。\n\n但如果主動放棄當前關卡，或因為異常原因而導致遊戲終止，\n則本次戰鬥中用於接關的所有資源都將被返還。"
+    },
+    {
+      "id": "ContinueConfirm_Skip",
+      "content": "下次登入前不再顯示該視窗。"
+    },
+    {
+      "id": "ContinuePurchase_LunacyTitle",
+      "content": "狂氣"
+    },
+    {
+      "id": "ContinuePurchase_Notice",
+      "content": "※ 將會優先使用免費狂氣。"
+    },
+    {
+      "id": "ContinueConfirmCancel",
+      "content": "取消"
+    },
+    {
+      "id": "ContinueMainConfirm",
+      "content": "繼續戰鬥"
+    },
+    {
+      "id": "ContinueConfirm_Title_Lunacy",
+      "content": "說明"
+    },
+    {
+      "id": "ContinueResult_Win_Desc",
+      "content": "已通關該關卡，\n用於接關的資源已被消耗。"
+    },
+    {
+      "id": "ContinueResult_Defeat_Desc",
+      "content": "已放棄該關卡，\n用於接關的資源已返還。"
+    }
+  ]
+}

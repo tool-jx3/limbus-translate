@@ -1,0 +1,24 @@
+{
+  "dataList": [
+    {
+      "key": "swarm_denim_baggar",
+      "displayName": "丹寧皮夾"
+    },
+    {
+      "key": "swarm_leather_mutt",
+      "displayName": "皮革手套"
+    },
+    {
+      "key": "swarm_needle_leather_mutt",
+      "displayName": "針插手套"
+    },
+    {
+      "key": "swarm_shopper_a",
+      "displayName": "走投無路的卡其派"
+    },
+    {
+      "key": "swarm_shopper_b",
+      "displayName": "焦躁的卡其派"
+    }
+  ]
+}

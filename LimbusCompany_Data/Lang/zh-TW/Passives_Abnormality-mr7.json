@@ -1,0 +1,242 @@
+{
+  "dataList": [
+    {
+      "id": 131911,
+      "name": "鐵處女 - 去顫",
+      "desc": "登場時，使自身恢復30點理智值"
+    },
+    {
+      "id": 135201,
+      "name": "狩獵之印",
+      "desc": "每3回合指定隨機1名敵方單位，使其速度值變為1點，自身所有技能指定其為目標\n(若該效果因陷入混亂而無法觸發，則改為下回合觸發)"
+    },
+    {
+      "id": 135501,
+      "name": "由終端傳達的指令",
+      "desc": "關卡開始時，使自身獲得體力上限20%的護盾(該護盾在本場戰鬥期間持續存在)\n\n回合開始時\n- 根據自身的 [UnlockBuff_Base] 階段，使自身獲得 [IndexPrescript_Base_2nd]\n- <color=#ff6000><mark=#ff000040><b><u>隨機對1名敵方單位施加 [IndexPrescriptTargetToPersonality] 並優先攻擊該單位</u></b></mark></color>\n\n自身每帶有1層 [BlessingOfIndexPrescriptEnemy]，則使自身對 [IndexPrescriptTargetToPersonality] 造成的傷害+2.5%(最多+20%)\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數為9層，則改為對所有目標造成的傷害+30%"
+    },
+    {
+      "id": 135503,
+      "name": "解放",
+      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 90%-/70%-/50%- HP,\n- Gain [UnlockBuff_1]/[UnlockBuff_2]/[UnlockBuff_3]\n- Heal to 45 SP\n- Consume all [PressureOfPrescript] and recover from Stagger\n- Gain 1 [BlessingOfIndexPrescriptEnemy] in the turn after [UnlockBuff_Base] was gained for the first time\n\nIf [UnlockBuff_Base] was gained based on HP conditional above,\n- Gain [KarmaOfIndexStudent] by (sum of healed SP / 15)\n- Increase [BlessingOfIndexPrescriptEnemy] to 3/6/9 if this unit had less than 3/6/9 [BlessingOfIndexPrescriptEnemy]; gain 1 [DefenseDown] and 2 [KarmaOfIndexStudent] next turn for every [BlessingOfIndexPrescriptEnemy] Stack gained"
+    },
+    {
+      "id": 135505,
+      "name": "專注",
+      "desc": "獲得 [UnlockBuff_3] 後，觸發以下效果\n- 使自身獲得 [BlandishmentShinEnemyDelete] 與體力上限50%的護盾(在本場戰鬥期間維持)\n- 使自身的 [PressureOfPrescript] 轉變為 [PressureOfPrescript_2nd] 並獲得至最大值\n- 回合開始時，使自身獲得1層 [PressureOfPrescript_2nd]"
+    },
+    {
+      "id": 141801,
+      "name": "拚死奮戰",
+      "desc": "- 回合開始時，使自身獲得3層 [SupportProtect]\n- 拇指 父輩拚點勝利後，在其攻擊後對相同目標使用「上斬」進行單方面攻擊(每回合最多2次)",
+      "summary": "",
+      "undefined": "",
+      "flavor": "「若是現在，說不定能殺得了她。」\n\n看著沉睡的師父，路秋總是沉溺於同樣的想法。\n之所以尚未將那念頭付諸行動，是因為那早已刻入心中的恐懼，以及將自己從後巷帶出的那份恩情。\n然而那積壓已久的恨意實在太深。儘管嘴上說著會全心全意服從命令，但路秋暗自發誓。\n這場戰鬥結束後一定要殺了她。將她剩下的那顆眼睛也斬下、刺穿、徹底殺了她。\n那渾身瘀傷的少年眼中，初次湧現了生氣。"
+    },
+    {
+      "id": 137901,
+      "name": "保持威嚴",
+      "desc": "若「拇指 弟子 - 路秋」在場，則使自身受到的最終傷害-50%"
+    },
+    {
+      "id": 137911,
+      "name": "預知眼",
+      "desc": "在戰鬥中登場時，使自身獲得30層 [FutureEyeOnMirror]\n若自身的 [FutureEyeOnMirror] 層數為0層，則使自身的 [FutureEyeOnMirror] 轉變為 [FutureEyeOffMirror]",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "稱為奧丁之眼的這件遺物，實際上是某件分裂成三份遺物的其中一個碎片。"
+    },
+    {
+      "id": 137902,
+      "name": "加速的未來",
+      "desc": "進行拚點時，<color=#ff6000><mark=#ff000040><b><u>每次拚點使自身獲得1層 [LookingFuture]</u></b></mark></color>\n每回合最多獲得(回合開始時自身的 [FutureEyeOnMirror] 層數÷3)層 [LookingFuture]\n自身帶有 [FutureEyeOnMirror] 時，<color=#ff6000><mark=#ff000040><b><u>受到單方面攻擊或拚點失敗時，使用技能「預知」</u></b></mark></color>",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「這把劍每次碰撞就會逐漸升溫，不斷加速直到抵達我所見識的未來為止。」"
+    },
+    {
+      "id": 137908,
+      "name": "過載",
+      "desc": "滿足以下條件時，使自身的 [FutureEyeOnMirror] 層數減少\n- 若自身未獲得 [LookingFuture]，則每次拚點時，使自身的 [FutureEyeOnMirror] 層數減少1層\n- 受到單方面攻擊時，使自身的 [FutureEyeOnMirror] 層數減少1層\n- 拚點失敗時，使自身的 [FutureEyeOnMirror] 層數減少3層",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「眼睛隱隱刺痛且灼熱，視界染上一片艷紅。」"
+    },
+    {
+      "id": 137905,
+      "name": "巴勒莫之劍",
+      "desc": "主要目標每帶有1級燒傷 強度，使自身對護盾造成的傷害+15%(最多+300%)\n使用技能時，若目標的攻擊技能為斬擊技能或突刺技能，則使自身的拚點威力+1\n自身的技能效果觸發 [VibrationExplosion] 時，下回合使自身獲得2層 [AttackDmgUp] (每回合最多3次)\n自身的技能效果觸發暴擊時，使自身恢復5點理智值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 137904,
+      "name": "波納堤利家之恥",
+      "desc": "自身受到 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 的體力傷害、理智值與混亂閾值前移量-30%\n若自身帶有的 [AccelBullet] 數量不低於1發，則使自身消耗 [AccelBullet] 的技能造成的傷害+30%且對護盾造成的傷害+150%\n每消耗1發 [AccelBullet]，使自身獲得4級 [Breath] 強度\n擲出消耗 [AccelBullet] 的硬幣時，即使自身消耗了所有加速彈，也不會因自身彈藥耗盡而取消攻擊",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「明明傳授了巴勒莫、繼承了傳家之寶，竟然露出此等醜態。」\n「妳所繼承的遺物與劍因附著妳不名譽的餘響，所以不會回收。」\n「升格為二老闆後僅僅三日就被免職，恐怕也只有瓦倫奇娜妳而已了。」\n「妳是一家之恥。波納堤利將從妳身上撤回關愛。」"
+    },
+    {
+      "id": 137909,
+      "name": "心 - 瓦倫奇娜",
+      "desc": "自身受到攻擊或「拇指 弟子 - 路秋」失去戰鬥能力時，下回合使自身獲得 [ObsessionAndGreed]",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「呼……總之，按照那個狂信徒的計畫潛入，然後大鬧一場就好了吧……這麼做門票真的會回來嗎？」"
+    },
+    {
+      "id": 137906,
+      "name": "路秋。你這廢物",
+      "desc": "「拇指 弟子 - 路秋」失去戰鬥能力時，觸發被動技能「狩獵時間」",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 137910,
+      "name": "狩獵時間",
+      "desc": "Turn Start: If this unit is Staggered, recover from Stagger\n\nSelect a random Sinner and inflict [TeachersPrey]\n- Activates every 4 turns after the initial activation\n- If this unit kills the target with the Skill \"Disposal,\" activate it again next turn",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "巴勒莫幾乎完全體現了波納堤利家的作風。\n執著地專注於單一獵物，狩獵並肢解。拒絕隱匿行動。懷著名譽與勇氣，在眾目睽睽之下擊殺目標。\n那華麗的劍術締造了無數榮譽，讓波納堤利家躋身為後巷的七大家族。\n完全掌握巴勒莫的瓦倫奇娜在煙霾戰爭斬落了眾多軍官與資深士兵的頭顱，成為煙霾戰爭的英雄之一。\n但是誰能預料得到呢。那名聲竟然會成為她的腳鐐。"
+    },
+    {
+      "id": 138201,
+      "name": "仇怨紋身 [<s>長兄</s>]",
+      "desc": "自身受到的 [Combustion]、[Laceration]、[Vibration]、[Burst] 傷害-30%(無條件捨去)\n自身受到的混亂閾值前移量-50%(無條件捨去)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 138202,
+      "name": "復仇帳簿",
+      "desc": "關卡開始時，對所有罪人施加 [VengeanceBookSpider]\n\n若在本回合中自身命中的技能數超過3個，則每超過1個，下回合使自身獲得與超過技能數等量的 [ReinforcedTattooSpider] 層數",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 138203,
+      "name": "丫頭的教育",
+      "desc": "拚點勝利時，使自身獲得1層 [DaughterEducationSpider]\n\n技能命中時，使自身獲得1層 [DaughterEducationSpider] (每個技能最多1次，被破壞的硬幣不會觸發該效果)\n\n本回合中第一個使用的技能拚點勝利時，則額外獲得1層 [DaughterEducationSpider] 且該技能的硬幣威力+1",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 138204,
+      "name": "仇怨",
+      "desc": "每當自身被2個技能攻擊時，使自身獲得1層 [ResentmentSpider] 並使自身減少1層 [DaughterEducationSpider] (受擊次數將累積計算)\n\n若自身的 [ResentmentSpider] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力不高於90%、60%、40%，則使自身的 [ResentmentSpider] 層數變為最大值"
+    },
+    {
+      "id": 138205,
+      "name": "仇怨紋身最高輸出……雷瓦汀解除封印！",
+      "desc": "[MiddleFatherSwordFour] 解放時，使自身獲得 [MiddleFatherGutsMirror]"
+    },
+    {
+      "id": 138801,
+      "name": "這樣做就好了吧，把拔！",
+      "desc": "關卡開始時，使自身帶有 [HeatingWireOffSpider]\n\n回合開始時，若自身的 [GotACompliment] 層數不低於3層，則使自身獲得 [HeatingWireOnSpider] 且使自身施加 [Laceration] 的技能額外施加 [Combustion]\n- 回合結束時，若自身 [GotACompliment] 的層數不高於3層，則使自身的 [HeatingWireOnSpider] 轉變為 [HeatingWireOffSpider]\n\n若中指 父輩 - 馬蒂亞斯帶有 [MiddleFatherSwordFour]，則自身不會進入 [HeatingWireOffSpider] 狀態",
+      "flavor": "「把拔總是會誇獎我、買漫畫給我，超讚的」"
+    },
+    {
+      "id": 138802,
+      "name": "中指式刺青",
+      "desc": "若在本回合中自身命中的技能數超過2個，則每超過1個，下回合使自身獲得與超過技能數等量的 [ReinforcedTattooSpiderDaughter] 層數",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「我總有一天也會被中指認可為家人，跟大姐大哥一直一起生活嗎？」"
+    },
+    {
+      "id": 138803,
+      "name": "誇一句綺羅就飛上天",
+      "desc": "拚點勝利時，使自身獲得1層 [GotACompliment]\n\n技能命中時，使自身獲得1層 [GotACompliment] (每個技能最多1次，被破壞的硬幣不會觸發該效果)\n\n本回合中第一個使用的技能拚點勝利時，則額外獲得1層，則額外獲得1層 [GotACompliment] 且該技能的硬幣威力+1",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 138804,
+      "name": "中指說過絕對會以牙還牙的吧",
+      "desc": "每當自身被2個技能攻擊時，使自身獲得1層 [ResentmentSpiderDaughter] 並使自身減少1層 [GotACompliment] (受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力不高於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": 138001,
+      "name": "食指 父輩 禮恩",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>自身受到單方面攻擊造成的傷害-50%</u></b></mark></color>\n自身受到來自 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 造成的傷害-50%\n透過 [UnlockBuff_Base] 恢復理智值時，若自身的理智值不高於15點，則使其恢復至15點\n\n關卡開始時，對自身施加 [BurningWoundRien_Mask] 並使自身理智值恢復至30點\n\n若自身體力不高於55%，則結束本回合並改變自身模式\n- 解除除自身固有狀態以外的所有狀態\n- 若自身的 [StackRienSpecialSkill] 層數不高於9層，則使其增加至9層",
+      "flavor": "我遵循指令，等候著那一刻。\n即使女兒離開，我也一直、一直等待著。\n\n於是我收到了來自邊獄公司的聯絡，發現後門竟然敞開著。\n接著終端響起，我便意識到迎接女兒的時刻來臨了。"
+    },
+    {
+      "id": 138002,
+      "name": "神諭終端 [商神杖]",
+      "desc": "<color=#ff6000><mark=#ff000040>自身每枚硬幣的武器均會隨機決定且帶有特殊效果<b><u></u></b></mark></color>\n- [RienWeapon01Hatchet]\n- [RienWeapon02Stiletto]\n- [RienWeapon03Greatsword]\n- [RienWeapon04Rapier]\n- [RienWeapon05Sledgehammer]\n- [RienWeapon06Ultragreatsword]\n- [RienWeapon07Lance]\n- [RienWeapon08Chain]\n- [RienWeapon09Scythe]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法從相同的技能獲得2次)\n\n<color=#ff6000><mark=#ff000040><b>回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能<u></u></b></mark></color>\n- 本場戰鬥首次使用強力技能後，自身將獲得 [Shin_Rien]\n- 重置每種技能獲得 [StackRienSpecialSkill] 的上限\n- 自身最小與最大速度值+15\n- 回合結束時，下回合對自身施加1層 [Vulnerable] 與2層 [ResultReduction]\n\n第3回合開始時，若自身的 [StackRienSpecialSkill] 層數不高於9層，則強制增加至9層並對自身施加(增加的層數×3)層的 [KarmaOfIndexRien]\n- 此後，每3回合觸發一次該效果",
+      "flavor": "終端裡收納著運用類似奇點，可以改變形狀與質量如同金屬的液體。\n這種液體會根據終端所接收的指令變換姿態，配合殺害目標的情報與限制時間來轉換武器。\n某一日，我配發到過於短小的匕首，本來想等待它轉變成其他武器，結果直到殺害期限逼近都仍未出現像樣的武器。最終，等到最後出現的是叉子，所以不得不用那把叉子殺害目標。"
+    },
+    {
+      "id": 138003,
+      "name": "指令之意",
+      "desc": "回合開始時，\n- 根據自身的 [UnlockBuff_Base] 階段使自身獲得相應的 [IndexPrescript_Base_2nd]\n- 隨機對1名罪人施加 [IndexPrescriptTargetToPersonality] 並且優先攻擊該罪人\n<color=#ff6000><mark=#ff000040><b><u>- 自身對 [IndexPrescriptTargetToPersonality] 使用的技能硬幣將全數轉變為 [SuperCoin]</u></b></mark></color>\n\n攻擊時 [IndexPrescriptTargetToPersonality] 陣亡或自身無法攻擊目標時，\n<color=#ff6000><mark=#ff000040><b><u>隨機對1名罪人使用剩餘的技能\n- 優先指定現存體力最低的目標(不包括體力為1點的單位)</u></b></mark></color>\n- 隨機指定的罪人陣亡或體力降至1點時，對其他罪人重複該效果\n\n自身每帶有1層 [BlessingOfIndexPrescriptEnemy]，則使自身對 [IndexPrescriptTargetToPersonality] 造成的傷害+2.5%(最多+20%)\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數為9層，則改為對所有目標造成的傷害+30%",
+      "flavor": "您希望我組建家庭嗎。\n\n「怎麼會命定般地遇見你這樣的丈夫呢。」"
+    },
+    {
+      "id": 138004,
+      "name": "執行指令",
+      "desc": "若本回合自身執行了 [IndexPrescript_Base_2nd]，\n則回合結束時，使自身恢復10點理智值並獲得3層 [BlessingOfIndexPrescriptEnemy] (每回合最多1次)\n\n若本回合<color=#ff6000><mark=#ff000040><b><u>自身未執行 [IndexPrescript_Base_2nd]，\n則回合結束時，對自身施加8層 [KarmaOfIndexRien]</u></b></mark></color>\n- 若自身未帶有 [UnlockBuff_Base]，則回合結束時，使自身獲得1層 [BlessingOfIndexPrescriptEnemy]\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數為9層，則不會施加 [KarmaOfIndexRien]",
+      "flavor": "您希望我失去家人嗎。\n\n「親愛的。我去一趟北部哦。」\n「啊，下午會有包裹送來，可以幫我簽收一下嗎，女兒？」"
+    },
+    {
+      "id": 138005,
+      "name": "解放",
+      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 95%-/85%-/75%- HP,\n- Gain [UnlockBuff_Rien1]/[UnlockBuff_Rien2]/[UnlockBuff_Rien3]\n\nTurn 1 End: At lower than [UnlockBuff_Base] stage 1, gain [UnlockBuff_Rien1]\nTurn 2 End: At lower than [UnlockBuff_Base] stage 2, gain [UnlockBuff_Rien2]\n\nWhen gaining [UnlockBuff_Base] for the first time, if this unit's SP is below 15, heal up to 15 SP\n\nWhen [UnlockBuff_Base] is activated due to HP or Turn conditionals:\n- At less than 3/6/9 [BlessingOfIndexPrescriptEnemy] Stack, raise the Stack to 3/6/9 and gain 5 [KarmaOfIndexRien] at the next Turn Start for every Stack gained",
+      "flavor": "「遵從指令前行，那些閉關的事物理所當然就會解開。」"
+    },
+    {
+      "id": 138101,
+      "name": "父輩 禮恩 [贗品]",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>自身受到單方面攻擊造成的傷害-75%</u></b></mark></color>\n自身受到來自 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking] 效果造成的傷害-75%\n透過 [UnlockBuff_Base] 效果恢復理智值時，若自身的理智值低於15點，則恢復至15點\n\n自身現存體力不高於55%並改變自身模式時，觸發以下效果\n- 解除除自身固有狀態以外的所有狀態\n- 使自身獲得 [IndexPrescript_RienSecondPhase]\n- 將 [BurningWoundRien_Mask] 改變為 [BurningWoundRien]\n- 使自身的 [KarmaOfIndexRien] 轉變為 [KarmaOfIndexRien_2Phase] 並對自身施加10層該狀態\n- 若自身未帶有 [Shin_Rien]，則使自身獲得該效果\n\n若自身現存體力不高於25%，則改變自身模式並大幅度強化特定技能",
+      "flavor": "他總覺得似乎必須要模仿誰，卻不知道是誰，一度懷疑並差點違抗指令，最終才明白自己的模仿對象是誰，接受旨意完成了偽造的父輩。"
+    },
+    {
+      "id": 138102,
+      "name": "神諭終端 [商神杖] - 完全解放",
+      "desc": "<color=#ff6000><mark=#ff000040>自身每枚硬幣的武器均會隨機決定且帶有特殊效果<b><u></u></b></mark></color>\n- [RienWeapon01Hatchet2phase]\n- [RienWeapon02Stiletto2phase]\n- [RienWeapon03Greatsword2phase]\n- [RienWeapon04Rapier2phase]\n- [RienWeapon05Sledgehammer2phase]\n- [RienWeapon06Ultragreatsword2phase]\n- [RienWeapon07Lance2phase]\n- [RienWeapon08Chain2phase]\n- [RienWeapon09Scythe2phase]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法從相同的技能獲得2次)\n- 僅在特殊模式使用的技能不會獲得\n\n回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能\n- 重置每種技能獲得 [StackRienSpecialSkill] 的上限\n- 自身最小與最大速度值+15\n- 回合結束時，下回合對自身施加2層 [Vulnerable] 與3層 [ResultReduction]\n\n從改變模式的回合起觸發效果\n- 每經過3回合，若自身的 [StackRienSpecialSkill] 層數不高於9層，\n則強制增加至9層並對自身施加(增加的層數×5)層 [KarmaOfIndexRien_2Phase]",
+      "flavor": "透過電波傳送指令的都市之神荷米斯所賜予的最強武器，同時也是詛咒。"
+    },
+    {
+      "id": 138103,
+      "name": "指令之意",
+      "desc": "Turn Start:\n- Apply [IndexPrescriptTargetToPersonality] against a random Sinner, and prioritize attacking them\n<color=#ff6000><mark=#ff000040><b><u>- When using a Skill against [IndexPrescriptTargetToPersonality], convert all Coins on that Skill to [SuperCoin]s</u></b></mark></color>\n- Gain [Protection] equal to [BlessingOfIndexPrescriptEnemy] (max 9)\n<color=#ff6000><mark=#ff000040><b><u>\n· Lose 1 Stack for every 20 [KarmaOfIndexRien_2Phase]</u></b></mark></color>\n\nWhen attacking, if [IndexPrescriptTargetToPersonality] is killed, or if this unit can no longer attack that target, <color=#ff6000><mark=#ff000040><b><u>use the remaining Skills against a random other Sinner\n- Prioritizes targets with the least current HP, unless they have 1 HP\n- When the randomly chosen Sinner is killed, or if the said Sinner's HP is brought down to 1, repeat this effect on another Sinner</u></b></mark></color>\n\nDeal +5% damage against [IndexPrescriptTargetToPersonality] for every [BlessingOfIndexPrescriptEnemy] (max 40%)\n- At 9 [BlessingOfIndexPrescriptEnemy], deal +50% damage against all targets\n\nStarting from the first turn after the phase change, activate the following effects:\n- Turn Start: Gain [BlackNightmare]\n· If this unit used a powerful attack in the previous turn, lose [BlackNightmare] for that turn\n- When gaining [BlackNightmare], if this unit has fewer than 9 [StackRienSpecialSkill] Stacks, activate a unique pattern",
+      "flavor": "我組建了家庭。\n\n「你現在不應該出現在這裡。」\n「工作還在進行中。而且正在精細且美麗地裝飾著。」\n「……你，該不會想要違抗指令吧。」"
+    },
+    {
+      "id": 138104,
+      "name": "執行指令",
+      "desc": "若本回合自身執行了 [IndexPrescript_Base_2nd]，\n則回合結束時，使自身恢復15點理智值並獲得1層 [BlessingOfIndexPrescriptEnemy] (每回合最多1次)\n\n若本回合<color=#ff6000><mark=#ff000040><b><u>自身未執行 [IndexPrescript_Base_2nd]，\n則回合結束時，對自身施加8層 [KarmaOfIndexRien_2Phase] 並使自身的 [BlessingOfIndexPrescriptEnemy] 減少1層</u></b></mark></color>\n- 在使用了強力技能的回合，則改為對自身施加12層 [KarmaOfIndexRien_2Phase] 並使自身的 [BlessingOfIndexPrescriptEnemy] 層數減少2層",
+      "flavor": "我……失去了家人。\n\n「不要走……」\n「別離開啊……爸爸……請救救……我們……」"
+    },
+    {
+      "id": 138301,
+      "name": "我的所有身體元素都已於緹比雅之中",
+      "desc": "自身受到 [Combustion]、[Vibration]、[Burst] 與 [Sinking] 的體力傷害、理智傷害-30%\n自身受到的 [Laceration] 傷害-50%\n\n回合開始時，若自身陷入混亂則解除自身混亂，隨後使自身獲得2層 [CrimsonTakeDamageUp] 並且直到下回合自身無法使用「裝置藝術3號『簡易肋骨』」(每場戰鬥最多1次)\n\n回合結束時，自身每帶有4級 [Combustion] 強度，則下回合對自身施加1層 [DefenseDown] (最多15層)"
+    },
+    {
+      "id": 138306,
+      "name": "稍微欣賞弟子的展覽吧",
+      "desc": "若自身帶有 [SupportProtect]，<color=#ff6000><mark=#ff000040><b><u>則在拚點開始時使自身失去1層 [SupportProtect] </u></b></mark></color>(每個技能最多1次)"
+    },
+    {
+      "id": 141704,
+      "name": "藝廊裡自有一套鑑賞準則存在哦",
+      "desc": "若自身帶有 [SupportProtect]，<color=#ff6000><mark=#ff000040><b><u>則在拚點開始時使自身失去1層 [SupportProtect] </u></b></mark></color>(每個技能最多1次)"
+    },
+    {
+      "id": 141706,
+      "name": "在大師的面前以作品來證明自己的實力",
+      "desc": "環指 父輩進入戰場時，若自身的理智值不高於20點，則使其恢復至20點"
+    },
+    {
+      "id": 138302,
+      "name": "跑來跑去的觀眾請坐下好好欣賞吧",
+      "desc": "回合結束時，對速度值最高的罪人施加 [RedemptionTheRings]"
+    }
+  ]
+}

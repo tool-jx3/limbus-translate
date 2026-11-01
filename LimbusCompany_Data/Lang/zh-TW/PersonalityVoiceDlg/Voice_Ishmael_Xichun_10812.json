@@ -1,0 +1,124 @@
+{
+  "dataList": [
+    {
+      "id": "get_10812_1",
+      "desc": "獲得時",
+      "dlg": "據說無花能度過秋日，但不知為何鴻園卻一成不變。啊，是道與往日不同了嗎。"
+    },
+    {
+      "id": "lobby_morning_10812_1",
+      "desc": "早晨問候",
+      "dlg": "還真是喧囂的一晚，還能安然無恙地走在陽光之下……看來你運氣不錯呢。\n但勸你還是小心為上。即使到了白天，想要你命的人也不會消失。"
+    },
+    {
+      "id": "lobby_noon_10812_1",
+      "desc": "午時問候",
+      "dlg": "倉廩實而知禮節，沒必要省吃儉用。比起那些小錢，勢力的士氣和狀態才更為重要。"
+    },
+    {
+      "id": "lobby_night_10812_1",
+      "desc": "晚間問候",
+      "dlg": "哈啊……月黑風高，看來今晚是沒辦法睡個好覺了。不知今宵會有多少不速之客拜訪。"
+    },
+    {
+      "id": "smalltalk_10812_1",
+      "desc": "對話 1",
+      "dlg": "I am Ishmael of the Jia family, candidate for the seat of Family Hierarch of Hongyuan. I have found my clue, and I have returned to Hongyuan. Uh... what... what do you mean, that's weird...?\n... Yeah, no. There isn't anything weird about that. Of course I'm a Jia, I was born and raised by the Jia family."
+    },
+    {
+      "id": "smalltalk_10812_2",
+      "desc": "對話 2",
+      "dlg": "雖說要讓半吊子的結果映入長輩們眼中很難，但若是勒忒河的河水，想必連賈母老太太也會看一眼的吧。\n能從那條河的深處帶回東西的候選人，一定只有我一個。"
+    },
+    {
+      "id": "smalltalk_10812_3",
+      "desc": "對話 3",
+      "dlg": "想成為家主理由嗎？那當然是……嗯。我從來沒有……想過呢。因為自幼家裡的大人們便這麼希望嗎？因為生為賈氏家族的一員？\n希望能在審查結束前找到呢。無關乎家族，而是我自己想成為家主的理由。"
+    },
+    {
+      "id": "smalltalk_10812_4",
+      "desc": "同步後對話 1",
+      "dlg": "從後巷傳來的奇怪歌謠來看……差不多要回來了呢。\n希望那不祥的步伐不會邁向我這裡……但同樣身為候選人，肯定會在某處撞上吧。"
+    },
+    {
+      "id": "smalltalk_10812_5",
+      "desc": "同步後對話 2",
+      "dlg": "黑獸在家主審查中雖是強力的手牌……但因為沒有正當的後盾。我僅持有過兩次黑獸的轡頭。\n第一次為了解放■■而鬆開了，第二次……呼唔……因為其他家族那些不諳世事之輩，而輕而易舉地放手了。"
+    },
+    {
+      "id": "gacksung_10812_1",
+      "desc": "進行同步",
+      "dlg": "明明歡迎宴會上都沒露個臉……現在為了砍下我的腦袋而聚在這暖香塢了啊。"
+    },
+    {
+      "id": "neglect_10812_1",
+      "desc": "閒置",
+      "dlg": "……有話直說。別愣在那裡不開口，讓人心煩。"
+    },
+    {
+      "id": "formation_10812_1",
+      "desc": "人格出戰",
+      "dlg": "嗯。眼光不錯呢。這裡像我這麼有才的人才不多呢。"
+    },
+    {
+      "id": "battleentry_10812_1",
+      "desc": "進入戰鬥",
+      "dlg": "呼……按照準備好的來就好……"
+    },
+    {
+      "id": "battle_select_10812_1",
+      "desc": "戰鬥中選中人格",
+      "dlg": "不必要的關心就免了吧。我喜歡安靜點。"
+    },
+    {
+      "id": "battle_endcommand_10812_1",
+      "desc": "進行攻擊",
+      "dlg": "把他們全部清理掉，別浪費時間了。"
+    },
+    {
+      "id": "battle_enemy_break_10812_1",
+      "desc": "敵方混亂",
+      "dlg": "哼。真粗心大意！"
+    },
+    {
+      "id": "battle_break_10812_1",
+      "desc": "自身混亂",
+      "dlg": "咕！這到底是什麼策略……"
+    },
+    {
+      "id": "battle_kill_10812_1",
+      "desc": "擊殺敵方",
+      "dlg": "不錯的嘗試。"
+    },
+    {
+      "id": "battle_dead_10812_1",
+      "desc": "自身陣亡",
+      "dlg": "一回春天……竟轉瞬即逝……"
+    },
+    {
+      "id": "choice_success_p_10812_2",
+      "desc": "判定成功",
+      "dlg": "就這點事，比探囊取物還簡單。"
+    },
+    {
+      "id": "choice_fail_n_10812_1",
+      "desc": "判定失敗",
+      "dlg": "……請等一下。讓我再試一次。不，所以說，就讓我再試一次吧？"
+    },
+    {
+      "id": "battle_clear_10812_1",
+      "desc": "戰鬥勝利",
+      "dlg": "若是這點程度就沾沾自喜，那我也不會參加家主審查了吧。\n嘛……既然這樣，就再多幫我一些吧。能成為家主的話，必將湧泉相報。"
+    },
+    {
+      "id": "battle_clear_ex_10812_1",
+      "desc": "EX CLEAR戰鬥勝利",
+      "dlg": "嗬，沒想到這麼輕鬆就解決了……得給手下們一點銀子了。這種值得歡慶的日子，稍微放鬆一點也沒關係吧。"
+    },
+    {
+      "id": "battle_defeat_10812_1",
+      "desc": "戰鬥失敗",
+      "dlg": "... My clan... destroyed...? They didn't... even stand a chance... Haah, it's... ngh, it's nothing. This is all my fault. I... should've been better prepared."
+    }
+  ]
+}

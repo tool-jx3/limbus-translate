@@ -1,0 +1,34 @@
+{
+  "dataList": [
+    {
+      "id": 1092,
+      "panicName": "混雜的記憶",
+      "lowMoraleDescription": "回合開始時，使自身獲得1~3層 [AttackUp] 以及1~3層 [DefenseDown]",
+      "panicDescription": "回合開始時，使自身獲得1~5層 [AttackUp] 以及1~5層 [DefenseDown]"
+    },
+    {
+      "id": 1093,
+      "panicName": "怨恨",
+      "lowMoraleDescription": "- 回合開始時，使自身獲得1層 [Enhancement] 與1層 [Disarming]\n- 回合結束時，下回合使自身獲得2層 [Agility]",
+      "panicDescription": "- 回合開始時，使自身獲得2層 [Enhancement] 與2層 [Disarming]\n- 回合結束時，下回合使自身獲得2層 [Agility]"
+    },
+    {
+      "id": 1094,
+      "panicName": "情報執念",
+      "lowMoraleDescription": "- 與帶有 [TakePicture] 的目標拚點時，使自身的基礎威力 +1，且造成的傷害 +10%\n- 回合開始時，對自身施加1層 [Vulnerable]",
+      "panicDescription": "- 與帶有 [TakePicture] 的目標拚點時，使自身的基礎威力 +1，且造成的傷害 +0%\n- 回合開始時，對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1095,
+      "panicName": "鬱積的悔恨",
+      "lowMoraleDescription": "- 回合開始時，對自身施加2層 [AttackDmgDown] 並恢復40點體力值",
+      "panicDescription": "- 回合開始時，對自身施加3層 [AttackDmgDown] 並恢復60點體力值"
+    },
+    {
+      "id": 1096,
+      "panicName": "顯影的記憶",
+      "lowMoraleDescription": "對自身施加1層 [Vulnerable]，使自身造成的傷害量 +10%，且暴擊時造成的傷害 +15%",
+      "panicDescription": "對自身施加2層 [Vulnerable]，使自身造成的傷害量 +10%，且暴擊時造成的傷害 +30%；<color=#ff6000><mark color=#ff000040><b><u>使技能「本國弓術[肉] - 有的放矢」的硬幣施加的效果增加為2倍</color></mark></b></u>"
+    }
+  ]
+}

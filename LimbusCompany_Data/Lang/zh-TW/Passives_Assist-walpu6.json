@@ -1,0 +1,34 @@
+{
+  "dataList": [
+    {
+      "id": 40000301,
+      "name": "以愛與正義之名～此時此地，閃亮登場！",
+      "desc": "登場時，賦予全體罪人1層 [ResultEnhancement]\n自身不會陷入混亂"
+    },
+    {
+      "id": 40000302,
+      "name": "大家，真的非常感謝你們！",
+      "desc": "若阿爾卡那[TabExplain]．光破斬命中的目標帶有 [WornOutKnight]，則回合結束時鎮壓成功"
+    },
+    {
+      "id": 40000303,
+      "name": "我……終究也和其他人沒什麼兩樣嗎？",
+      "desc": "若阿爾卡那[TabExplain]．光破斬命中的目標未帶有 [WornOutKnight]，則對全體友方單位施加 [FailedToAssistQueen]"
+    },
+    {
+      "id": 40000304,
+      "name": "愛與正義之力",
+      "desc": "若自身帶有不低於10回的 [PowerOfLoveAndJustice] 時，則下回合使其減少10回，並使自身獲得1層 [PowerOfLoveAndJustice]\n\n若自身帶有的 [PowerOfLoveAndJustice] 層數不低於3層時，則使自身增加 [Burst] 強度時，額外對目標施加1回 [Burst] (每回合最多2次)"
+    },
+    {
+      "id": 40000305,
+      "name": "我……終究也和其他人沒什麼兩樣嗎？",
+      "desc": "若阿爾卡那[TabExplain]．光破斬命中的目標未帶有 [WornOutKnight] 且體力高於600點，則對全體友方單位施加 [FailedToAssistQueen]"
+    },
+    {
+      "id": 40000306,
+      "name": "大家，真的非常感謝你們！",
+      "desc": "若阿爾卡那[TabExplain]．光破斬命中的目標帶有 [WornOutKnight] 且體力不高於600點，則回合結束時鎮壓成功"
+    }
+  ]
+}

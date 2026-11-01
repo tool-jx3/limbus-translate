@@ -1,0 +1,253 @@
+{
+  "dataList": [
+    {
+      "id": 40003701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "來熱個身吧？",
+          "desc": "若目標的 [Combustion] 與 [Laceration] 強度之和不低於3級，則使本技能的最終威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成3點打擊傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成3點打擊傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成3點打擊傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，下回合則對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40003702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "痛毆",
+          "desc": "若目標的 [Combustion] 與 [Laceration] 強度之和不低於3級，則使本技能的最終威力+2\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則使本技能的硬幣命中時，使目標增加2級 [Laceration] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成5點打擊傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標混亂閾值前移5點"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成5點打擊傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標混亂閾值前移5點"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有的 [ResentmentSpiderDaughterTwo] 層數不低於3層，則重複使用本硬幣3次"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40003703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "切腹！",
+          "desc": "當自身帶有 [HeatingWireOnSpiderTwo] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n若目標帶有的 [Combustion] 強度與 [Laceration] 強度之和不低於3級，則使本技能的硬幣威力+1\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則本技能的硬幣命中時，使目標增加1回 [Laceration]\n[EndSkill] 自身帶有的 [ResentmentSpiderDaughterTwo] 層數不低於3層時，下回合使自身獲得1層 [VioletDamageUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40003704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "十字亂舞！",
+          "desc": "當自身帶有 [HeatingWireOnSpiderTwo] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n若目標帶有的 [Combustion] 強度與 [Laceration] 強度之和不低於3級，則使本技能的硬幣威力+1\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則本技能的硬幣命中時，使目標增加1回 [Laceration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成5點打擊傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，下回合則對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40003705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "紺紫痛擊！",
+          "desc": "當自身帶有 [HeatingWireOnSpiderTwo] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n若目標帶有的 [Combustion] 強度與 [Laceration] 強度之和不低於3級，則使本技能的硬幣威力+1\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則本技能的硬幣命中時，使目標增加1回 [Laceration]\n[WhenUse] 若現存體力不高於40%或自身的 [ReinforcedTattooSpiderDaughterTwo] 層數不低於2層，則使本技能造成的傷害+60%\n[WhenUse] 自身帶有的 [ResentmentSpiderDaughterTwo] 層數不低於2層時，則令本技能的硬幣命中時以50%的機率對目標施加1層 [Paralysis]\n[EndSkill] 消耗自身所有 [ResentmentSpiderDaughterTwo]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成5點打擊傷害"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標混亂閾值前移5點"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40003706,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "不會放過你的",
+          "desc": "當自身帶有 [HeatingWireOnSpiderTwo] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n受到攻擊時，自身每帶有1層 [ReinforcedTattooSpiderDaughterTwo] 將重複使用本技能1次(最多2次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則本技能的硬幣命中時，使目標增加1級 [Laceration] 強度\n[WhenUse] 若自身的現存體力低於上限的40%或自身的 [ReinforcedTattooSpiderDaughterTwo] 層數不低於2層，則使本技能造成的傷害+40%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身的混亂閾值後移10點"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

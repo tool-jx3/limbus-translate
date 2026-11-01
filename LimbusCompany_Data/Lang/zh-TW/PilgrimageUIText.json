@@ -1,0 +1,48 @@
+{
+  "dataList": [
+    {
+      "id": "pilgrimage_bonus_preview",
+      "content": "活動加成角色"
+    },
+    {
+      "id": "pilgrimage_stage_button",
+      "content": "關卡"
+    },
+    {
+      "id": "pilgrimage_theater_button",
+      "content": "放映室"
+    },
+    {
+      "id": "pilgrimage_reward_button",
+      "content": "獎勵兌換"
+    },
+    {
+      "id": "pilgrimage_reward_popup_desc",
+      "content": "活動關卡與主線關卡首次通關\n以及鏡像迷宮通關後\n可以獲得<color=#acb2ff>[恐魚標本]</color>。\n\n您可以在<color=#acb2ff>[獎勵兌換]</color>處\n根據所持有的<color=#acb2ff>[恐魚標本]</color>數量兌換不同獎勵。"
+    },
+    {
+      "id": "pilgrimage_scrap_guide_title",
+      "content": "活動道具介紹"
+    },
+    {
+      "id": "pilgrimage_rewardpage_desc",
+      "content": "通關活動關卡及迷宮後，將獲得<color=#acb2ff>[恐魚標本]</color>。\n在首次通關活動關卡以外的主線關卡及通關鏡像迷宮時，也可獲得<color=#acb2ff>[恐魚標本]</color>。\n\n在活動、主線關卡及鏡像迷宮中低機率可以獲得<color=#acb2ff>[閃耀的恐魚標本]</color>，獲得時，<color=#acb2ff>[閃耀的恐魚標本]</color>將會自動轉換為20個<color=#acb2ff>[恐魚標本]</color>。\n\n您可以在<color=#acb2ff>[獎勵兌換]</color>處根據所持有的<color=#acb2ff>[恐魚標本]</color>數量兌換多樣化獎勵。"
+    },
+    {
+      "id": "pilgrimage_bonusUI_Desc",
+      "content": "活動期間，編隊內存在下列E.G.O時，提升<color=#acb2ff>[恐魚標本]</color>的獲取量。\n獲取量提升合計最大值為<color=#acb2ff>120%</color>。"
+    },
+    {
+      "id": "pilgrimage_warning_spoiler",
+      "content": "本劇情包含主線章節8.5章 切磋琢春以後的內容。請問是否繼續？"
+    },
+    {
+      "id": "pilgrimage_hard_stage_clear_desc",
+      "content": "※ 通關困難難度關卡時，\n也會通關該關卡的普通難度。"
+    },
+    {
+      "id": "pilgrimage_chapter_progress_reward_desc",
+      "content": "※ 活動結束後將無法領取進度獎勵，請儘早領取。"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "dataList": [
+    {
+      "id": "AbnormalityLevel",
+      "content": "危險等級"
+    },
+    {
+      "id": "LCA",
+      "content": "The LCA"
+    },
+    {
+      "id": "Distortion",
+      "content": "扭曲"
+    },
+    {
+      "id": "Peccatula",
+      "content": "罪種"
+    },
+    {
+      "id": "NestS",
+      "content": "S公司"
+    },
+    {
+      "id": "LCD",
+      "content": "The LCD"
+    },
+    {
+      "id": "Monolith",
+      "content": "獨石"
+    },
+    {
+      "id": "PeccatulaLv2",
+      "content": "2階罪種"
+    },
+    {
+      "id": "Line3",
+      "content": "折射軌道 3號線"
+    },
+    {
+      "id": "BattlePower",
+      "content": "戰鬥力"
+    }
+  ]
+}

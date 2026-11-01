@@ -1,0 +1,1414 @@
+{
+  "dataList": [
+    {
+      "id": 2050511,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悔恨",
+          "abName": "被遺棄的殺人魔",
+          "desc": "[BeforeAttack] 隨機解除自身帶有的1種可解除的負面狀態",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2回震顫 ，對目標額外施加(暴怒完全共鳴數/3)回震顫 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "悔恨",
+          "abName": "被遺棄的殺人魔",
+          "desc": "[BeforeAttack] 隨機解除自身帶有的1種可解除的負面狀態",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2回震顫 ，對目標額外施加(暴怒完全共鳴數/3)回震顫 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 \n震顫引爆 時，若目標未擁有混亂閾值，\n則對目標造成最終混亂閾值前移量(6 + 2×(暴怒完全共鳴數))% 的暴怒傷害"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "悔恨",
+          "abName": "被遺棄的殺人魔",
+          "desc": "[BeforeAttack] 隨機解除自身帶有的2種可解除的負面狀態",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3回震顫 ，對目標額外施加(暴怒完全共鳴數/3)回震顫 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 \n震顫引爆 時，若目標未擁有混亂閾值，\n則對目標造成最終混亂閾值前移量(12 + 3×(暴怒完全共鳴數))% 的暴怒傷害。"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050521,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悔恨",
+          "abName": "被遺棄的殺人魔",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若自身帶有負面狀態，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 \n使震顫引爆 的混亂閾值前移量增加30%\n使目標的震顫 回數減少1回"
+                },
+                {
+                  "desc": "[EndSkill] 下回合對自身施加3層束縛 並獲得1層打擊威力提升 。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "悔恨",
+          "abName": "被遺棄的殺人魔",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若自身帶有負面狀態，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 \n使震顫引爆 的混亂閾值前移量增加40%\n若震顫引爆 時目標未擁有混亂閾值，\n則對目標造成最終混亂閾值前移量(6+2×(暴怒完全共鳴數))%的暴怒傷害\n使目標的震顫 回數減少1回"
+                },
+                {
+                  "desc": "[EndSkill] 下回合對自身施加3層束縛 並獲得1層打擊威力提升 。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "悔恨",
+          "abName": "被遺棄的殺人魔",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若自身帶有負面狀態，則使本技能的攻擊容量+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 \n使震顫引爆 的混亂閾值前移量增加50%\n若震顫引爆 時目標未擁有混亂閾值，\n則對目標造成最終混亂閾值前移量(12+3×(暴怒完全共鳴數))%的暴怒傷害\n使目標的震顫 回數減少1回"
+                },
+                {
+                  "desc": "[EndSkill] 下回合對自身施加3層束縛 並獲得1層打擊威力提升 。"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[BeforeAttack] 使自身獲得8回 [Charge]\n[EndSkill] 使除自身以外 [Charge] 回數最低的1名友方單位獲得8回 [Charge]\n- 額外使(最大嫉妒共鳴數-2)名友方單位獲得以上效果(最多3名)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[BeforeAttack] 使自身獲得8回 [Charge]\n[EndSkill] 使除自身以外 [Charge] 回數最低的1名友方單位獲得8回 [Charge]\n- 額外使(最大嫉妒共鳴數-2)名友方單位獲得以上效果(最多4名)\n- 若最大嫉妒共鳴數不低於4，則使自身與該友方單位獲得1層 [VioletDamageUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[BeforeAttack] 使自身獲得12回 [Charge]\n[EndSkill] 使除自身以外 [Charge] 回數最低的1名友方單位獲得8回 [Charge]\n- 額外使(最大嫉妒共鳴數-2)名友方單位獲得以上效果(最多<style=\"highlight\">5</style>名)\n- 若最大嫉妒共鳴數不低於4，則使自身與該友方單位獲得1層 [VioletDamageUp]\n<style=\"highlight\">- 若最大嫉妒共鳴數不低於6，則使自身與該友方單位獲得1層 [VioletDamageUp] </style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大嫉妒共鳴數-2)(最多+2)\n[BeforeAttack] 若自身的 [Charge] 回數不低於10回，則消耗最多20回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+2%(最多+40%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大嫉妒共鳴數-2)(最多<style=\"highlight\">+3</style>)\n[BeforeAttack] 若自身的 [Charge] 回數不低於10回，則消耗最多20回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+<style=\"highlight\">2.5</style>%(最多<style=\"highlight\">+50</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "電子哀鳴",
+          "abName": "夢中的電子羊",
+          "desc": "[CantIdentify]\nTargets Randomly\n[BeforeAttack] Gain Atk Weight equal to (highest Envy Reson. - 2) (max 3)\n<style=\"highlight\">[BeforeAttack] At 10+ [Charge] Count, apply the effects applied from 'On Hit' twice</style>\n[BeforeAttack] If this unit has 10+ [Charge] Count, spend up to 20 [Charge] Count; deal +<style=\"highlight\">3</style>% damage for every [Charge] Count consumed (max <style=\"highlight\">60</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[EndSkill] 3回合內，回合結束時使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加2回 [RoseWedge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [RoseWedge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "<style=\"highlight\">若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1</style>\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若最大共鳴數不低於4，則觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若最大共鳴數不低於4，則觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加2回 [RoseWedge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [RoseWedge]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] Activate the target's [Laceration] <style=\"highlight\">(1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "<style=\"highlight\">Coin Power +1 for every 6 [Laceration] on target (max 2)</style>\n[EndSkill] For 3 turns, lose 10 SP at Turn End",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若最大共鳴數不低於4，則觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若最大共鳴數不低於4，則觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加2回 [RoseWedge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [RoseWedge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] Activate the target's [Laceration] (1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[EnemyKill] 對敵方單位造成超過其剩餘體力的溢出傷害時，對全體敵方單位造成共計等同於溢出傷害量的固定傷害(最少1點)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Consume up to 10% of this unit's max HP and deal (HP consumed / 2) damage to all enemies and allies\n- At less than 50% of this unit's max HP, inflict and activate 5 [Laceration] on all allies once instead (lose 1 [Laceration] Count). Heal HP equal to the amount of [Laceration] damage dealt to allies",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身與目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身與目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加2回 [RoseWedge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [RoseWedge]"
+                },
+                {
+                  "desc": "- 若目標未帶有 [RoseWedge]，則額外使目標增加4級 [RoseWedge] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 觸發目標的 [Laceration] 1次(使目標的 [Laceration] 回數減少1回)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[CantIdentify]\nTargets randomly\n<style=\"highlight\">At 6+ ([Laceration] on self + [Laceration] on target), Coin Power +1</style>\n[WhenUse] Consume up to 10% of this unit's max HP and deal (HP consumed / 2) damage to all enemies and allies\n- At less than 50% of this unit's max HP, inflict and activate 5 [Laceration] on all allies once instead (lose 1 [Laceration] Count). Heal HP equal to the amount of [Laceration] damage dealt to allies",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身與目標增加<style=\"highlight\">3</style>級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身與目標增加<style=\"highlight\">3</style>級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加2回 [RoseWedge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [RoseWedge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- 若目標未帶有 [RoseWedge]，則額外使目標增加4級 [RoseWedge] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] Activate the target's [Laceration] <style=\"highlight\">(1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "渴望-蜜卡拉",
+          "abName": "四百朵玫瑰",
+          "desc": "[CantIdentify]\nTargets randomly\nCoin Power +1 for every 6 ([Laceration] on self + [Laceration] on target) <style=\"highlight\">(max 3)</style>\n[WhenUse] Consume up to 10% of this unit's max HP and deal (HP consumed / 2) damage to all enemies and allies\n- At less than 50% of this unit's max HP, inflict and activate 5 [Laceration] on all allies instead (lose 1 [Laceration] Count). Heal HP equal to the amount of [Laceration] damage dealt to allies",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身與目標增加3級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 觸發自身與目標的 [Laceration] 1次(使其 [Laceration] 回數減少1回)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身與目標增加3級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 觸發自身與目標的 [Laceration] 1次(使其 [Laceration] 回數減少1回)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加2回 [RoseWedge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [RoseWedge]"
+                },
+                {
+                  "desc": "- 若目標未帶有 [RoseWedge]，則額外使目標增加4級 [RoseWedge] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[WinDuelAttack] Activate the target's [Laceration] (1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[EnemyKill] 對敵方單位造成超過其剩餘體力的溢出傷害時，對全體敵方單位造成共計等同於溢出傷害量的固定傷害(最少1點)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "粉碎的過去",
+          "abName": "蒸氣運輸機",
+          "desc": "[EndSkill] 3回合內，回合結束時使自身失去10點理智值\n[EndSkill] 若在奇數回合(怠惰共鳴數)為奇數，或在偶數回合(怠惰共鳴數)為偶數，則使自身恢復10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(怠惰共鳴數/2)回 [Vibration] (最多+3)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則以目標現有的 [Vibration] [FusionVibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標每帶有1級 [Vibration] 強度，則使本硬幣造成的傷害+1%(最多+50%)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標的 [Vibration] 強度與 [Vibration] 回數之和每有1點，則使本硬幣造成的傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本硬幣的效果增加的傷害不低於100%，則使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "粉碎的過去",
+          "abName": "蒸氣運輸機",
+          "desc": "<style=\"highlight\">[BeforeAttack] 若主要目標的 [Vibration] 強度與 [Vibration] 回數之和不低於30點，則使本技能的攻擊容量+1</style>\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值\n[EndSkill] 若在奇數回合(怠惰共鳴數)為奇數，或在偶數回合(怠惰共鳴數)為偶數，則使自身恢復10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(怠惰共鳴數/2)回 [Vibration] (最多+3)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則以目標現有的 [Vibration] [FusionVibration]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標每帶有1級 [Vibration] 強度，則使本硬幣造成的傷害+1%(最多+50%)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標的 [Vibration] 強度與 [Vibration] 回數之和每有1點，則使本硬幣造成的傷害+1%(最多+100%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本硬幣的效果增加的傷害不低於100%，則使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "粉碎的過去",
+          "abName": "蒸氣運輸機",
+          "desc": "[BeforeAttack] If the main target has 30+ ([Vibration] + [Vibration] Count), gain +1 Atk Weight\n<style=\"highlight\">- At 100+, gain +3 Atk Weight instead</style>\n<style=\"highlight\">[BeforeAttack] For every 2 highest Reson., inflict 1 [Vibration] against all targets this unit attacks (max 3)</style>\n[EndSkill] For 3 turns, lose 10 SP at Turn End\n<style=\"highlight\">[EndSkill] Heal ([AccumulatedPastSinner] x 2)% HP</style>\n[EndSkill] When activating odd-numbered (Sloth Reson.) in odd-numbered turns, or when activating even-numbered (Sloth Reson.) in even-numbered turns, heal 10 SP",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(怠惰共鳴數/2)回 [Vibration] (最多+3)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則以目標現有的 [Vibration] [FusionVibration]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標每帶有1級 [Vibration] 強度，則使本硬幣造成的傷害+1%(最多+50%)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標的 [Vibration] 強度與 [Vibration] 回數之和每有1點，則使本硬幣造成的傷害+1%(最多+100%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本硬幣效果增加的傷害不低於50%，則使目標 [VibrationExplosion] 1次。</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本硬幣的效果增加的傷害不低於100%，則使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "粉碎的過去",
+          "abName": "蒸氣運輸機",
+          "desc": "[CantIdentify]\n隨機指定目標\n每有1點最大共鳴數，使本技能造成的傷害+10%(最多+100%)\n- 若最大共鳴為怠惰共鳴，則改為使本技能造成的傷害+20%(最多+100%)\n[BeforeAttack] 若在奇數回合(怠惰共鳴數)為偶數，或在偶數回合(怠惰共鳴數)為奇數，則使本技能造成的傷害+12%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標的 [Vibration] 強度與 [Vibration] 回數之和每有1點，則使本硬幣造成的傷害+1%(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度與2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(怠惰共鳴數)回 [Vibration] (最多+6)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則以目標現有的 [Vibration] [FusionVibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本硬幣的效果增加的傷害不低於100%，則使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "粉碎的過去",
+          "abName": "蒸氣運輸機",
+          "desc": "[CantIdentify]\n隨機指定目標\n每有1點最大共鳴數，使本技能造成的傷害+10%(最多+100%)\n- 若最大共鳴為怠惰共鳴，則改為使本技能造成的傷害+20%(最多+100%)\n<style=\"highlight\">[BeforeAttack] 若主要目標的 [Vibration] 強度與 [Vibration] 回數之和不低於30點，則使本技能的攻擊容量+2</style>\n[BeforeAttack] 若在奇數回合(怠惰共鳴數)為偶數，或在偶數回合(怠惰共鳴數)為奇數，則使本技能造成的傷害+12%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標的 [Vibration] 強度與 [Vibration] 回數之和每有1點，則使本硬幣造成的傷害+1%(最多+100%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度與2回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(怠惰共鳴數)回 [Vibration] (最多+6)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則以目標現有的 [Vibration] [FusionVibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本硬幣的效果增加的傷害不低於100%，則使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "粉碎的過去",
+          "abName": "蒸氣運輸機",
+          "desc": "[CantIdentify]\n隨機指定目標\n每有1點最大共鳴數，使本技能造成的傷害+10%(最多+100%)\n- 若最大共鳴為怠惰共鳴，則改為使本技能造成的傷害+20%(最多+100%)\n[BeforeAttack] 若主要目標的 [Vibration] 強度與 [Vibration] 回數之和不低於30點，則使本技能的攻擊容量+2\n[BeforeAttack] 若在奇數回合(怠惰共鳴數)為偶數，或在偶數回合(怠惰共鳴數)為奇數，則使本技能造成的傷害+12%\n<style=\"highlight\">[EndSkill] 使自身恢復體力上限(自身的 [AccumulatedPastSinner] 層數×3)%的體力</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnStartCoin] 主要目標的 [Vibration] 強度與 [Vibration] 回數之和每有1點，則使本硬幣造成的傷害<style=\"highlight\">+2%</style>(最多+100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度與2回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(怠惰共鳴數)回 [Vibration] (最多+6)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標為主要目標，則以目標現有的 [Vibration] [FusionVibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若本硬幣的效果增加的傷害不低於100%，則使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "著影揮刀",
+          "abName": "暗鬼",
+          "desc": "本場戰鬥中首次使用時，消耗的理智值減少15點\n- 劍契組 頭領 莫梭使用時，消耗的罪孽碎片減少1個暴怒、1個傲慢與1個嫉妒\n自身每帶有4級 [Breath] 強度，使本技能的拚點威力+1、造成的傷害+6%(分別最多+4、+12%)\n若自身在本場戰鬥獲得了 [AlcoholKimPersonal]，則使本技能對主要目標造成的傷害+60%\n- 劍契組 頭領 莫梭使用時，改為造成的傷害+120%\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數÷2)(最多+2，無條件捨去)\n[BeforeAttack] 使最先編入的(3+最大共鳴數)名友方單位獲得4回 [Breath]\n[EndSkill] 使除自身以外，屬於劍契組的人格中理智值最低的4名人格恢復10點理智值\n[EndSkill] 下回合使自身獲得4層 [AlcoholKimPersonal]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "著影揮刀",
+          "abName": "暗鬼",
+          "desc": "本場戰鬥中首次使用時，消耗的理智值減少15點\n- 劍契組 頭領 莫梭使用時，消耗的罪孽碎片減少1個暴怒、1個傲慢與1個嫉妒\n自身每帶有4級 [Breath] 強度，使本技能的拚點威力+1、造成的傷害+6%(分別最多+<style=\"highlight\">6</style>、+<style=\"highlight\">24</style>%)\n若自身在本場戰鬥獲得了 [AlcoholKimPersonal]，則使本技能對主要目標造成的傷害+<style=\"highlight\">80</style>%\n- 劍契組 頭領 莫梭使用時，改為造成的傷害+<style=\"highlight\">160</style>%\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數÷2)(最多+2，無條件捨去)\n[BeforeAttack] 使最先編入的(3+最大共鳴數)名友方單位獲得4回 [Breath]\n[EndSkill] 使除自身以外，屬於劍契組的人格中理智值最低的4名人格恢復10點理智值\n[EndSkill] 下回合使自身獲得4層 [AlcoholKimPersonal]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "著影揮刀",
+          "abName": "暗鬼",
+          "desc": "本場戰鬥中首次使用時，消耗的理智值減少15點\n- 劍契組 頭領 莫梭使用時，消耗的罪孽碎片減少1個暴怒、1個傲慢與1個嫉妒\n自身每帶有4級 [Breath] 強度，使本技能的拚點威力+1、造成的傷害+6%(分別最多+<style=\"highlight\">8</style>、+<style=\"highlight\">30</style>%)\n若自身在本場戰鬥獲得了 [AlcoholKimPersonal]，則使本技能對主要目標造成的傷害+<style=\"highlight\">100</style>%\n- 劍契組 頭領 莫梭使用時，改為造成的傷害+<style=\"highlight\">200</style>%\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數÷2)(最多+2，無條件捨去)\n[BeforeAttack] 使最先編入的(3+最大共鳴數)名友方單位獲得4回 [Breath]\n[EndSkill] 使除自身以外，屬於劍契組的人格中理智值最低的4名人格恢復10點理智值\n[EndSkill] 下回合使自身獲得4層 [AlcoholKimPersonal]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2050921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "著影揮刀",
+          "abName": "暗鬼",
+          "desc": "[CantIdentify]\n隨機指定目標\n自身每帶有4級 [Breath] 強度，則使本技能的拚點威力+2、造成的傷害+6%(分別最多+8、+12%)\n若自身在本場戰鬥獲得了 [AlcoholKimPersonal]，則使本技能對主要目標造成的傷害+60%\n- 劍契組 頭領 莫梭使用時，改為造成的傷害+120%\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-2(最多-8)\n[BeforeAttack] 使全體敵方單位與友方單位獲得4回 [Breath]、1層 [SlashDamageUp] 並對其施加1層 [SlashTakeDamageUp]\n[EndSkill] 使除自身以外，屬於劍契組的人格中理智值最低的4名人格恢復10點理智值\n[EndSkill] 下回合使自身獲得4層 [AlcoholKimPersonal]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "著影揮刀",
+          "abName": "暗鬼",
+          "desc": "[CantIdentify]\n隨機指定目標\n自身每帶有4級 [Breath] 強度，則使本技能的拚點威力+2、造成的傷害+6%(分別最多+<style=\"highlight\">12</style>、+<style=\"highlight\">24</style>%)\n若自身在本場戰鬥獲得了 [AlcoholKimPersonal]，則使本技能對主要目標造成的傷害+<style=\"highlight\">80</style>%\n- 劍契組 頭領 莫梭使用時，改為造成的傷害+<style=\"highlight\">160</style>%\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-2(最多-8)\n[BeforeAttack] 使全體敵方單位與友方單位獲得4回 [Breath]、1層 [SlashDamageUp] 並對其施加1層 [SlashTakeDamageUp]\n[EndSkill] 使除自身以外，屬於劍契組的人格中理智值最低的4名人格恢復10點理智值\n[EndSkill] 下回合使自身獲得4層 [AlcoholKimPersonal]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "著影揮刀",
+          "abName": "暗鬼",
+          "desc": "[CantIdentify]\n隨機指定目標\n自身每帶有4級 [Breath] 強度，則使本技能的拚點威力+2、造成的傷害+6%(分別最多+<style=\"highlight\">16</style>、+<style=\"highlight\">30</style>%)\n若自身在本場戰鬥獲得了 [AlcoholKimPersonal]，則使本技能對主要目標造成的傷害+<style=\"highlight\">100</style>%\n- 劍契組 頭領 莫梭使用時，改為造成的傷害+<style=\"highlight\">200</style>%\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-2(最多-8)\n[BeforeAttack] 使全體敵方單位與友方單位獲得4回 [Breath]、1層 [SlashDamageUp] 並對其施加1層 [SlashTakeDamageUp]\n[EndSkill] 使除自身以外，屬於劍契組的人格中理智值最低的4名人格恢復10點理智值\n[EndSkill] 下回合使自身獲得4層 [AlcoholKimPersonal]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的最終威力+2 (每枚硬幣最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2051011,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "空洞",
+          "abName": "空洞之人",
+          "desc": "若攻擊目標在使用本技能期間陣亡，則優先指定體力最低的攻擊目標進行攻擊(若為集中遭遇戰，則改為以部位判定)\n\n自身每帶有4點(自身的 [Breath] 強度+自身的 [Charge] 回數)，則使本硬幣的拚點威力+1(最多+5)\n自身每帶有1層 [BulletHole]，則使本硬幣的拚點威力+2\n\n[BeforeAttack] 若自身的 [Breath] 回數為3回，則使自身獲得5回 [Charge]\n[BeforeAttack] 使自身消耗(5-自身帶有的 [BulletHole] 層數)×3點理智值，使自身的 [BulletHole] 增加至最大值\n\n[EndSkill] 使自身獲得2層 [BlackWingHole]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "本硬幣只會命中主要目標"
+                },
+                {
+                  "desc": "使自身消耗1層 [BulletHole]"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+10%"
+                },
+                {
+                  "desc": "If this is the first Coin:\n- Deal +([Charge] Count x 5)% damage (max 100%)\n- Deal +([Breath] Potency x Count)% damage on Critical Hit (max 100%)\n- For this Coin, change target's Pierce Resist. to Fatal"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[EndCoin] 若自身的 [BulletHole] 層數不低於1層，則重複使用本硬幣(每個技能最多4次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+30%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "空洞",
+          "abName": "空洞之人",
+          "desc": "若攻擊目標在使用本技能期間陣亡，則優先指定體力最低的攻擊目標進行攻擊(若為集中遭遇戰，則改為以部位判定)\n\n自身每帶有4點(自身的 [Breath] 強度+自身的 [Charge] 回數)，則使本硬幣的拚點威力+1(最多+<style=\"highlight\">7</style>)\n自身每帶有1層 [BulletHole]，則使本硬幣的拚點威力+2\n\n[BeforeAttack] 若自身的 [Breath] 回數為3回，則使自身獲得5回 [Charge]\n[BeforeAttack] 使自身消耗(5-自身帶有的 [BulletHole] 層數)×3點理智值，使自身的 [BulletHole] 增加至最大值\n\n[EndSkill] 使自身獲得2層 [BlackWingHole]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "本硬幣只會命中主要目標<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "使自身消耗1層 [BulletHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害<style=\"highlight\">+15%</style>"
+                },
+                {
+                  "desc": "If this is the first Coin:\n- Deal +([Charge] Count x 5)% damage (max 100%)\n- Deal +([Breath] Potency x Count)% damage on Critical Hit (max 100%)\n- For this Coin, change target's Pierce Resist. to Fatal<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使最後一枚硬幣的硬幣威力+1</style>"
+                },
+                {
+                  "desc": "[EndCoin] 若自身的 [BulletHole] 層數不低於1層，則重複使用本硬幣(每個技能最多4次)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害<style=\"highlight\">+50%</style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnStartCoin] 若攻擊目標只有1名，則使本硬幣造成的傷害+50%(若為集中遭遇戰，則以本體判定)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "空洞",
+          "abName": "空洞之人",
+          "desc": "若攻擊目標在使用本技能期間陣亡，則優先指定體力最低的攻擊目標進行攻擊(若為集中遭遇戰，則改為以部位判定)\n\n自身每帶有4點(自身的 [Breath] 強度+自身的 [Charge] 回數)，則使本硬幣的拚點威力+1(最多+<style=\"highlight\">10</style>)\n自身每帶有1層 [BulletHole]，則使本硬幣的拚點威力+2\n\n[BeforeAttack] 若自身的 [Breath] 回數為3回，則使自身獲得5回 [Charge]\n[BeforeAttack] 使自身消耗(5-自身帶有的 [BulletHole] 層數)×3點理智值，使自身的 [BulletHole] 增加至最大值\n\n[EndSkill] 使自身獲得2層 [BlackWingHole]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "本硬幣只會命中主要目標<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "使自身消耗1層 [BulletHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "使本技能暴擊時造成的傷害<style=\"highlight\">+20%</style>"
+                },
+                {
+                  "desc": "If this is the first Coin:\n- Deal +([Charge] Count x 5)% damage (max 100%)\n- Deal +([Breath] Potency x Count)% damage on Critical Hit (max 100%)\n- For this Coin, change target's Pierce Resist. to Fatal<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標獲得1層 [PenetrateTakeDamageUp] (每個技能最多1次)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能最後一枚硬幣的硬幣威力+1<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[EndCoin] 若自身的 [BulletHole] 層數不低於1層，則重複使用本硬幣(每個技能最多4次)<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 若攻擊目標只有1名，則使本硬幣造成的傷害<style=\"highlight\">+100%</style>(若為集中遭遇戰，則以本體判定)"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnStartCoin] 自身每帶有4回 [Charge]，則使本技能的硬幣威力+1(最多+5)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2051021,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "空洞",
+          "abName": "空洞之人",
+          "desc": "[CantIdentify]\n隨機指定目標\n本技能不會觸發守備技能(包括可拚點的守備技能)\n自身每帶有4點(自身的 [Breath] 強度+自身的 [Charge] 回數)，則使本硬幣的拚點威力+1(最多+5)\n[BeforeAttack] 若自身未帶有 [BulletHole]，則使自身獲得1層 [BulletHole]\n[BeforeAttack] 每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5層 [BlackWingHole]"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5回 [Charge]"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "本硬幣翻為反面的機率與理智值無關，而是改為本硬幣有(自身帶有的 [BulletHole] 層數×20)%機率翻為反面"
+                },
+                {
+                  "desc": "[CoinHead]\n- 本硬幣不會命中目標"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得5級 [Breath] 強度"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得3回 [Breath]"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得2層 [BulletHole]"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得等同於本技能消耗的罪孽碎片一半的罪孽碎片(無條件捨去)"
+                },
+                {
+                  "desc": "[CoinTail]\n- 使本硬幣造成的傷害+(自身的充能回數×3)%(最多+60%)"
+                },
+                {
+                  "desc": "- 使本硬幣暴擊時造成的傷害+70%"
+                },
+                {
+                  "desc": "- [OnSucceedAttack] 對目標造成本硬幣最終傷害量10%的突刺傷害"
+                },
+                {
+                  "desc": "- [EndCoin] 消耗自身所有 [BulletHole]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "空洞",
+          "abName": "空洞之人",
+          "desc": "[CantIdentify]\n隨機指定目標\n本技能不會觸發守備技能(包括可拚點的守備技能)\n自身每帶有4點(自身的 [Breath] 強度+自身的 [Charge] 回數)，則使本硬幣的拚點威力+1(最多<style=\"highlight\">+7</style>)\n\n<style=\"highlight\">[BeforeAttack] 若攻擊目標只有1名，則使本硬幣造成的傷害+100%(若為集中遭遇戰，則以本體判定)</style>\n[BeforeAttack] 若自身未帶有 [BulletHole]，則使自身獲得1層 [BulletHole]\n[BeforeAttack] 每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5層 [BlackWingHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5回 [Charge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5級 [Breath] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "本硬幣翻為反面的機率與理智值無關，而是改為本硬幣有(自身帶有的 [BulletHole] 層數×20)%機率翻為反面<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CoinHead]\n- 本硬幣不會命中目標<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得5級 [Breath] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得3回 [Breath]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得2層 [BulletHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得等同於本技能消耗的罪孽碎片一半的罪孽碎片(無條件捨去)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CoinTail]\n- 使本硬幣造成的傷害+(自身的充能回數×<style=\"highlight\">4)%(最多+80%)</style>"
+                },
+                {
+                  "desc": "- 使本硬幣暴擊時造成的傷害<style=\"highlight\">+100%</style>"
+                },
+                {
+                  "desc": "- [OnSucceedAttack] 對目標造成本硬幣最終傷害量<style=\"highlight\">15%</style>的突刺傷害"
+                },
+                {
+                  "desc": "- [EndCoin] 消耗自身所有 [BulletHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "空洞",
+          "abName": "空洞之人",
+          "desc": "[CantIdentify]\n隨機指定目標\n本技能不會觸發守備技能(包括可拚點的守備技能)\n自身每帶有4點(自身的 [Breath] 強度+自身的 [Charge] 回數)，則使本硬幣的拚點威力+1(最多<style=\"highlight\">+10</style>)\n\n[BeforeAttack] 若攻擊目標只有1名，則使本硬幣造成的傷害<style=\"highlight\">+200%(若為集中遭遇戰，則以本體判定)\n[BeforeAttack] 使本硬幣的最終威力+(自身的 [BulletHole] 層數)</style>\n[BeforeAttack] 若自身未帶有 [BulletHole]，則使自身獲得1層 [BulletHole]\n[BeforeAttack] 每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-4)\n<style=\"highlight\">[EnemyKill] 使自身恢復5點理智值</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5層 [BlackWingHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5回 [Charge]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身獲得5級 [Breath] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合對目標施加1層 [Binding]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "本硬幣翻為反面的機率與理智值無關，而是改為本硬幣有(自身帶有的 [BulletHole] 層數×20)%機率翻為反面<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CoinHead]\n- 本硬幣不會命中目標<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得5級 [Breath] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得3回 [Breath]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">- [EndCoin] 隨機解除自身帶有的1種可解除的負面效果</style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得2層 [BulletHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- [EndCoin] 使自身獲得等同於本技能消耗的罪孽碎片一半的罪孽碎片(無條件捨去)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CoinTail]\n- 使本硬幣造成的傷害+(自身的充能回數×<style=\"highlight\">5)%(最多+100%)</style>"
+                },
+                {
+                  "desc": "- 使本硬幣暴擊時造成的傷害<style=\"highlight\">+130%</style>"
+                },
+                {
+                  "desc": "- [OnSucceedAttack] 對目標造成本硬幣最終傷害量<style=\"highlight\">20%</style>的突刺傷害"
+                },
+                {
+                  "desc": "<style=\"highlight\">[EnemyKill] 使自身恢復體力上限5%的體力</style>"
+                },
+                {
+                  "desc": "- [EndCoin] 消耗自身所有 [BulletHole]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

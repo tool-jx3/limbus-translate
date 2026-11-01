@@ -1,0 +1,150 @@
+{
+  "dataList": [
+    {
+      "key": "Q5001",
+      "title": "調查5樓",
+      "description": "終於跟普依來到了5樓。雖然不知道會發生什麼事情，就這樣繼續前進吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "調查5樓走廊上的門扉"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "聽克羅默說話"
+        }
+      ]
+    },
+    {
+      "key": "Q5011",
+      "title": "???",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    },
+    {
+      "key": "Q5002",
+      "title": "前往地下1樓",
+      "description": "聽說要進入5樓，我們所需的美德還不足。說是普依必須穿著由黃金皮革製作的壽衣才行。前往地下的話，似乎有人可以幫我們加工皮革。前往地下看看吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往地下1樓"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "觸碰5樓的帷幕"
+        }
+      ]
+    },
+    {
+      "key": "Q5004",
+      "title": "前往5樓深處",
+      "description": "普依穿上由監工完成的黃金皮革之服。然而吞食噗扭的普依心情看起來不太好。現在就先前往5樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往5樓深處"
+        },
+        {
+          "index": 1,
+          "goalDescription2": "打倒蜂擁而至的東西"
+        }
+      ]
+    },
+    {
+      "key": "Q5008",
+      "title": "(내부) 르누아르 길막 대면",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "面對阻塞道路的漆黑派"
+        }
+      ]
+    },
+    {
+      "key": "Q5006",
+      "title": "(내부) 르누아르 무리 돌파",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "打倒9位漆黑派 專櫃人員[陽光]",
+          "goalDescription2": "르누아르 경비원 7기 처치",
+          "goalDescription3": "르누아르 컨템포러리 점원 3기 처치",
+          "goalDescription4": "르누아르 메종 점원 2기 처치",
+          "goalDescription5": "르누아르 메종 2기 처치"
+        }
+      ]
+    },
+    {
+      "key": "Q5007",
+      "title": "前往5樓深處的帷幕",
+      "description": "打倒了在5樓蜂擁而至的敵人。現在前往5樓深處觸碰帷幕吧。既然普依穿上了黃金壽衣，或許會發生跟之前不同的變化。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "觸碰5樓的帷幕",
+          "goalDescription2": ""
+        }
+      ]
+    },
+    {
+      "key": "Q5003",
+      "title": "打倒漆黑派 品牌經理",
+      "description": "打倒堵住道路的漆黑派 品牌經理吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "打倒漆黑派 品牌經理"
+        }
+      ]
+    },
+    {
+      "key": "Q5005",
+      "title": "靜觀自助餐",
+      "description": "繭裂開了。\n靜觀自助餐會變成什麼樣子吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "靜觀自助餐最後會變成什麼"
+        }
+      ]
+    },
+    {
+      "key": "Q5009",
+      "title": "進入餐廳內",
+      "description": "我們順利進入了阻塞於5樓的帷幕內。裡面可以看見巨大的某些存在正在用餐。先避開敵人，繼續往深處逃吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "進入餐廳內"
+        }
+      ]
+    },
+    {
+      "key": "Q5010",
+      "title": "從蜂擁而至的漆黑派手中保護繭",
+      "description": "普依說自己很睏要睡著了。原地沉睡的普依化為繭的樣貌。漆黑派盯上了繭，從四面八方蜂擁而至。保護普依吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "從蜂擁而至的漆黑派手中保護繭"
+        }
+      ]
+    },
+    {
+      "key": "Q5012",
+      "title": "打倒黑色的線",
+      "description": "打倒阻塞道路的黑色的線",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "打倒黑色的線"
+        }
+      ]
+    }
+  ]
+}

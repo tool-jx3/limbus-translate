@@ -1,0 +1,52 @@
+{
+  "dataList": [
+    {
+      "id": "railwayBannerTitle",
+      "content": "折射軌道 開放"
+    },
+    {
+      "id": "railwayDungeonEntranceItemTitle_1001",
+      "content": "1號線"
+    },
+    {
+      "id": "railwayDungeonEntranceItemTitle_5",
+      "content": "5號線"
+    },
+    {
+      "id": "railway_dungeon_1001_entrance_recommended_level",
+      "content": "- 人格：同步 4階段，50級（最高等級上限：55）"
+    },
+    {
+      "id": "railway_dungeon_1001_entrance_recommended_gacksung",
+      "content": "- E.G.O異想解析 4階段"
+    },
+    {
+      "id": "railway_dungeon_advice_openCondition_title",
+      "content": "解鎖條件"
+    },
+    {
+      "id": "railway_dungeon_advice_level_title",
+      "content": "入場推薦配置"
+    },
+    {
+      "id": "railway_dungeon_advice_1001_openCondition_desc",
+      "content": "通關章節8"
+    },
+    {
+      "id": "railway_dungeon_advice_1001_level_desc",
+      "content": "- 人格：同步 4階段，55級\n- E.G.O異想解析 4階段"
+    },
+    {
+      "id": "railway_dungeon_1001_banner_reward_condition_1",
+      "content": "通關1號線復刻時，累計回合數在<color=#005823>{0}</color>以下獲得。"
+    },
+    {
+      "id": "railway_1001_must_participate_all",
+      "content": "存在未編隊的人格。"
+    },
+    {
+      "id": "railway_dungeon_1001_reward_condition_special_ticket",
+      "content": "通關折射軌道1號線復刻且總計回合數不超過120後獲得"
+    }
+  ]
+}

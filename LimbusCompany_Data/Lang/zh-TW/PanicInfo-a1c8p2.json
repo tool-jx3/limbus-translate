@@ -1,0 +1,58 @@
+{
+  "dataList": [
+    {
+      "id": 1043,
+      "panicName": "古木化",
+      "lowMoraleDescription": "使自身獲得1層 [AttackDmgUp] 並對自身施加1層 [Vulnerable] 與1層 [BurstVulnerable]",
+      "panicDescription": "使自身獲得2層 [AttackDmgUp] 並對自身施加2層 [Vulnerable] 與2層 [BurstVulnerable]"
+    },
+    {
+      "id": 1044,
+      "panicName": "邪心",
+      "lowMoraleDescription": "與帶有 [OminousTalisman] 的目標進行拚點時，使自身的拚點威力+2\n回合開始時，使自身獲得2層 [AttackDmgUp] 並對自身施加1層 [Vulnerable]",
+      "panicDescription": "與帶有 [OminousTalisman] 的目標進行拚點時，使自身的拚點威力+3\n回合開始時，使自身獲得3層 [AttackDmgUp] 並對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1045,
+      "panicName": "深沉的邪心",
+      "lowMoraleDescription": "與帶有 [OminousTalisman] 的目標進行拚點時，使自身的拚點威力+2\n回合開始時，使自身獲得3層 [AttackDmgUp] 並對自身施加1層 [Vulnerable]",
+      "panicDescription": "與帶有 [OminousTalisman] 的目標進行拚點時，使自身的拚點威力+3\n回合開始時，使自身獲得4層 [AttackDmgUp] 並對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1047,
+      "panicName": "賈丘",
+      "lowMoraleDescription": "對除了鴻璐以外的目標造成的傷害+10%",
+      "panicDescription": "對除了鴻璐以外的目標造成的傷害+20%"
+    },
+    {
+      "id": 1042,
+      "panicName": "充能回路逆流",
+      "lowMoraleDescription": "與帶有 [Burst] 的目標進行拚點時，使自身獲得3回 [Charge] 並對自身施加1層 [Vulnerable] (每回合最多2次)",
+      "panicDescription": "與帶有 [Burst] 的目標進行拚點時，使自身獲得5回 [Charge] 與1層 [AttackDmgUp] 並對自身施加2層 [Vulnerable] (每回合最多2次)"
+    },
+    {
+      "id": 9995,
+      "panicName": "調息",
+      "lowMoraleDescription": "回合開始時，使自身獲得2層 [DefenseUp] 並使自身的 [Breath] 強度減少2級",
+      "panicDescription": "回合開始時，使自身獲得5層 [DefenseUp] 並使自身的 [Breath] 強度減少5級"
+    },
+    {
+      "id": 1055,
+      "panicName": "雙刃羽",
+      "lowMoraleDescription": "回合開始時，對自身施加1層易損 並使自身獲得1層體力恢復提升 。自身的攻擊命中時，使目標增加1級破裂 強度與1級流血 強度",
+      "panicDescription": "回合開始時，對自身施加2層易損 並使自身獲得2層體力恢復提升 。自身的攻擊命中時，使目標增加1級破裂 強度與1級流血 強度"
+    },
+    {
+      "id": 1056,
+      "panicName": "鬱憤",
+      "lowMoraleDescription": "與帶有 [OminousTalisman] 的目標進行拚點時，使自身的拚點威力+2\n回合開始時，使自身獲得2層 [AttackDmgUp] 並對自身施加1層 [Vulnerable]",
+      "panicDescription": "與帶有 [OminousTalisman] 的目標進行拚點時，使自身的拚點威力+3\n回合開始時，使自身獲得3層 [AttackDmgUp] 並對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1058,
+      "panicName": "突擊指令",
+      "lowMoraleDescription": "回合開始時，對自身施加1層 [Vulnerable] 並使全體友方單位獲得1層 [AttackDmgUp]",
+      "panicDescription": "回合開始時，對自身施加2層 [Vulnerable] 並使全體友方單位獲得2層 [AttackDmgUp]"
+    }
+  ]
+}

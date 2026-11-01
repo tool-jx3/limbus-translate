@@ -1,0 +1,103 @@
+{
+  "dataList": [
+    {
+      "key": "Q1000",
+      "title": "오프닝",
+      "description": "로딩 직후 오프닝 연출(S1001B) 재생용 숨김 퀘스트",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1011",
+      "title": "接受即將發生於美妝館的一切",
+      "description": "結局沒有改變。接下來該怎麼辦才好？毫不猶豫地離開了廁所。準備接受即將發生的一切，而且必須趕快找到莫梭才行。",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1012",
+      "title": "일행 합류",
+      "description": "크로머 조우 컷씬",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "크로머와의 조우"
+        }
+      ]
+    },
+    {
+      "key": "Q1014",
+      "title": "???",
+      "description": "這裡似乎藏著什麼。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    },
+    {
+      "key": "Q1015",
+      "title": "???",
+      "description": "這裡似乎藏著什麼。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    },
+    {
+      "key": "Q1016",
+      "title": "???",
+      "description": "這裡似乎藏著什麼。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    },
+    {
+      "key": "Q1017",
+      "title": "???",
+      "description": "這裡似乎藏著什麼。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "???"
+        }
+      ]
+    },
+    {
+      "key": "Q1064",
+      "title": "前往2樓",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "抵達2樓"
+        }
+      ]
+    },
+    {
+      "key": "Q1018",
+      "title": "???",
+      "description": "(히든) 못 획득 시 대화",
+      "steps": [
+        {
+          "index": 0
+        }
+      ]
+    },
+    {
+      "key": "Q1001",
+      "title": "퀘스트1 - 시작"
+    }
+  ]
+}

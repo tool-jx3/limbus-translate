@@ -1,0 +1,229 @@
+{
+  "dataList": [
+    {
+      "id": "NoeulNageuneBuffA3",
+      "name": "晚霞旅人的樹液",
+      "desc": "- 最大體力值+50% (最多+200；嫉妒罪種除外)\n- 移除自身第一個混亂闊值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "NoeulNageuneBuffA4",
+      "name": "晚霞旅人的樹液",
+      "desc": "- 最大體力值+50% (最多+200；嫉妒罪種除外)\n- 受到來自無法被破壞的硬幣造成的傷害-20%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "NoeulNageuneBuffA5",
+      "name": "晚霞旅人的樹液",
+      "desc": "- 最大體力值+50% (最多+200；嫉妒罪種除外)\n- 移除自身第一個混亂闊值\n- 回合結束時，使理智值最低的4名友方單位恢復4點理智值 (陷入恐慌或侵蝕狀態的友方除外)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "NoeulNageuneBuffB3",
+      "name": "晚霞旅人的蛾",
+      "desc": "- 回合開始時，戰場上每有1名與自身陣營相同的友方單位，使自身獲得1層攻擊等級提升 (最多4層)",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "NoeulNageuneBuffB4",
+      "name": "晚霞旅人的蛾",
+      "desc": "- 每回合使自身隨機獲得1層斬擊傷害強化、1層突刺傷害強化或1層打擊傷害強化；使用相應類型的E.G.O技能時，使該技能造成的傷害 +50%\n- 無法被破壞的硬幣命中時，造成的傷害 +20%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "NoeulNageuneBuffB5",
+      "name": "晚霞旅人的蛾",
+      "desc": "- 回合開始時，本場戰鬥中每有1名陣亡的友方單位，則使自身獲得1層攻擊等級提升 (最多6層)\n- 戰鬥開始時，若觸發了完全共鳴，則使該共鳴連鎖內的技能造成的傷害 +20%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "HeatedWingScalesExplain",
+      "name": "受熱鱗粉",
+      "desc": "- 本單位因與羅生蝶::繭的技能「羅生 - 回歸」拚點過的攻擊技能影響，與該技能相應的類型與屬性抗性 +0.25",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TransparentWingScalesExplain",
+      "name": "銳利鱗粉",
+      "desc": "- 本單位因與羅生蝶::繭的技能「羅生 - 顯現」拚點過的攻擊技能影響，與該技能相應的類型與屬性抗性 +0.25",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RustedWingScalesExplain",
+      "name": "生鏽鱗粉",
+      "desc": "- 本單位因與羅生蝶::繭的技能「羅生 - 到來」拚點過的攻擊技能影響，與該技能相應的類型與屬性抗性 +0.25",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "HeatedWingScales",
+      "name": "受熱鱗粉",
+      "desc": "- 本單位因與羅生蝶::繭的技能「羅生 - 回歸」拚點過的攻擊技能影響，與該技能相應的類型與屬性抗性 +0.25",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TransparentWingScales",
+      "name": "銳利鱗粉",
+      "desc": "- 本單位因與羅生蝶::繭的技能「羅生 - 顯現」拚點過的攻擊技能影響，與該技能相應的類型與屬性抗性 +0.25",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RustedWingScales",
+      "name": "生鏽鱗粉",
+      "desc": "- 本單位因與羅生蝶::繭的技能「羅生 - 到來」拚點過的攻擊技能影響，與該技能相應的類型與屬性抗性 +0.25",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "StackPast",
+      "name": "過去 (關閉)",
+      "desc": "- 被動技能「過去」的效果暫時失效\n- 最大層數：30",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "StackPresent",
+      "name": "現在 (關閉)",
+      "desc": "- 被動技能「現在」的效果暫時失效\n- 最大層數：30",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "StackFuture",
+      "name": "未來 (關閉)",
+      "desc": "- 被動技能「未來」的效果暫時失效\n- 最大層數：30",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "StackPastActivate",
+      "name": "過去",
+      "desc": "- 被動技能「過去」的效果發動\n- 根據本效果的層數使自身獲得不同效果：\n．0~10：技能施加的燒傷強度與回數 +1\n．11~20：拚點威力 +1；技能施加的燒傷強度 +2、燒傷回數 +1\n．21~30：最終威力 +2；技能施加的燒傷強度 +3、燒傷回數 +2\n- 最大層數：30",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "StackPresentActivate",
+      "name": "現在",
+      "desc": "- 被動技能「現在」的效果發動\n- 根據本效果的層數使自身獲得不同效果：\n．0~10：透過技能獲得的呼吸法強度與回數 +1\n．11~20：拚點威力 +1；透過技能獲得的呼吸法強度 +2、呼吸法回數 +1\n．21~30：最終威力 +2；透過技能獲得的呼吸法強度 +3、呼吸法回數 +2\n- 最大層數：30",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "StackFutureActivate",
+      "name": "未來",
+      "desc": "- 被動技能「未來」的效果發動\n- 根據本效果的層數使自身獲得不同效果：\n．0~10：技能施加的流血強度與回數 +1\n．11~20：拚點威力 +1；技能施加的流血強度 +2、流血回數 +1\n．21~30：最終威力 +2；技能施加的流血強度 +3、流血回數 +2\n- 最大層數：30",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TimeGap",
+      "name": "時間脫節",
+      "desc": "- 每當自身於過去／現在／未來之中切換狀態時，使本效果層數 +1\n- 自身受到的傷害 +(層數 × 15)% (最多+150%)\n- 若本效果層數為10，則回合開始時，對自身施加5層易損\n- 最大層數：10",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "YesdragonSelfRefraction",
+      "name": "葬花針",
+      "desc": "- 最大層數：10\n- 本效果每有2層，使自身的攻擊等級與防禦等級 +1\n- 效果達到5層或以上時，使自身的最終威力 +1\n- 效果達到最大層時，使自身的硬幣威力 +1\n- 葬花針被消耗時，根據消耗的層數，每1層使我方獲得持有數最少的罪孽碎片1個",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "CondensedBloodRefraction",
+      "name": "龍血",
+      "desc": "- 最大強度：50\n- 回合結束時，根據本效果強度，每1級使自身受到最大體力值1%的固定傷害 (最低1點；不會因此陷入混亂)\n- 使用守備技能時，將使本效果回數減少1回\n- 回合結束時，使本效果強度加倍，並使本效果回數減少1回\n- 可以透過將回數減少至0來移除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DragonLanceRefraction",
+      "name": "葬花楔",
+      "desc": "- 最大層數：3\n- 強化應龍的特定技能",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "YesdragonPower",
+      "name": "龍氣",
+      "desc": "- 使自身受到的傷害量 -100%\n- 受到攻擊命中時，本效果將於命中的技能結束後解除",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "YesdragonWind",
+      "name": "變幻莫測的慈悲",
+      "desc": "- 最小與最大速度值 +3\n- 拚點威力 +2\n- 受到攻擊命中時，本效果將於命中的技能結束後解除",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TagGameBuff",
+      "name": "鬼",
+      "desc": "- 單方面攻擊時造成的傷害 -100%\n- 受到來自單方面攻擊造成的傷害 +80%\n- 所有嫉妒罪種以及本單位的技能槽位中，將只裝備守備技能\n- 回合結束時，本效果層數將減少1層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "YesdragonScale",
+      "name": "鱗甲",
+      "desc": "- 最大層數：20\n- 本效果不會因層數為0而解除\n- 因葬花針而受到傷害時，將使本效果的層數減少1層\n- 本效果每減少1層，將使本單位受到的傷害 +10%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ObservationTheRingsRail",
+      "name": "眺望",
+      "desc": "- 基礎攻擊等級 -20\n- 基礎防禦等級 -20\n- 回合開始時，若環指弟子尚存在戰場當中，則使自身獲得7層守護",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「在藝廊鑑賞作品時要保持悠閒與從容。最重要的是切勿急躁。」"
+    },
+    {
+      "id": "MiddleFingerLeashBuff",
+      "name": "被抑制的力量",
+      "desc": "- 自身的單方面攻擊造成的傷害 -100%\n- 當陣亡的友方單位超過3名時，則於回合結束時，解除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ScarBygoneDaysRefraction_LowMorale",
+      "name": "愛恨",
+      "desc": "造成與受到的傷害+10%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ScarBygoneDaysRefraction_Panic",
+      "name": "愛恨",
+      "desc": "造成與受到的傷害+20%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "PainfulScarRailway_Panic",
+      "name": "仿造的父輩",
+      "desc": "- 陷入恐慌\n- 回合開始時，對自身施加5級燒傷強度、3回燒傷、5級流血強度、3回流血 ",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "PainfulScarRailway_LowMorale",
+      "name": "仿造的父輩",
+      "desc": "- 士氣低落\n- 回合開始時，對自身施加5級燒傷強度和5級流血強度",
+      "summary": "",
+      "undefined": "-"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "dataList": [
+    {
+      "id": "LeakedOutSauce",
+      "name": "溢出的醃料",
+      "desc": "- 回合結束時，每帶有2層本效果，下回合使自身獲得1層迅捷 (最多10層)\n- 回合結束時解除本效果",
+      "summary": ""
+    },
+    {
+      "id": "DeliciousSauce",
+      "name": "黃金秘傳醬汁",
+      "desc": "- 使本技能拚點威力+2",
+      "summary": ""
+    },
+    {
+      "id": "Yummy_Lowmorale",
+      "name": "美味提升",
+      "desc": "- 士氣低落\n- 回合開始時，對自身施加1層易損。",
+      "summary": "施加易損",
+      "undefined": "-"
+    },
+    {
+      "id": "Yummy_Panic",
+      "name": "美味提升",
+      "desc": "- 恐慌\n- 回合開始時，對自身施加2層易損。",
+      "summary": "施加易損",
+      "undefined": "-"
+    }
+  ]
+}

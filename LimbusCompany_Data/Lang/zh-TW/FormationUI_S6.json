@@ -1,0 +1,252 @@
+{
+  "dataList": [
+    {
+      "id": "formation_ego_resource_detail",
+      "content": "詳情"
+    },
+    {
+      "id": "formation_deck_code_auto_filled",
+      "content": "未持有的人格與E.G.O已套用為基礎人格與基礎E.G.O。"
+    },
+    {
+      "id": "formation_deck_filled_complete",
+      "content": "編隊代號讀取完畢"
+    },
+    {
+      "id": "formation_set_to_default",
+      "content": "要初始化編隊嗎？\n\n<size=80%>將會回歸基礎人格與裝備基礎E.G.O的狀態。</size>"
+    },
+    {
+      "id": "formation_unable_to_set_default",
+      "content": "無法初始化基本編隊。"
+    },
+    {
+      "id": "formation_ego_resource_popup_title",
+      "content": "罪孽碎片詳情"
+    },
+    {
+      "id": "formation_ego_resource_popup_total_used",
+      "content": "總計消耗罪孽碎片"
+    },
+    {
+      "id": "formation_ego_resource_popup_total_acquirable",
+      "content": "總計罪孽碎片個數"
+    },
+    {
+      "id": "formation_ego_resource_popup_personality",
+      "content": "人格資源情報"
+    },
+    {
+      "id": "formation_ego_resource_popup_ego",
+      "content": "消耗罪孽碎片"
+    },
+    {
+      "id": "formation_code_popup_title",
+      "content": "編隊代碼"
+    },
+    {
+      "id": "formation_code_popup_desc",
+      "content": "複製編隊代碼後，\n可以讀取或是分享編隊。"
+    },
+    {
+      "id": "formation_code_popup_copy",
+      "content": "複製編隊代碼"
+    },
+    {
+      "id": "formation_code_popup_paste",
+      "content": "讀取編隊代碼"
+    },
+    {
+      "id": "formation_code_popup_paste_desc",
+      "content": "讀取複製的編隊代碼，\n編成了新的隊伍。"
+    },
+    {
+      "id": "formation_code_popup_paste_input",
+      "content": "輸入代碼"
+    },
+    {
+      "id": "formation_code_popup_copy_success",
+      "content": "已複製編隊代碼"
+    },
+    {
+      "id": "formation_side_button_all_personality",
+      "content": "所有人格"
+    },
+    {
+      "id": "formation_side_button_all_ego",
+      "content": "所有E.G.O"
+    },
+    {
+      "id": "formation_side_button_friend_support",
+      "content": "助戰"
+    },
+    {
+      "id": "character_list_title_all_personality",
+      "content": "人格"
+    },
+    {
+      "id": "character_list_title_all_personality_with_character_name",
+      "content": "人格：{0}"
+    },
+    {
+      "id": "character_list_title_all_ego",
+      "content": "E.G.O"
+    },
+    {
+      "id": "character_list_title_all_ego_with_character_name",
+      "content": "E.G.O: {0}"
+    },
+    {
+      "id": "character_list_title_friend_support",
+      "content": "助戰人格：{0}"
+    },
+    {
+      "id": "character_list_collect_rate",
+      "content": "收集率"
+    },
+    {
+      "id": "character_list_owned_toggle_label",
+      "content": "持有"
+    },
+    {
+      "id": "character_list_sort_label",
+      "content": "分類"
+    },
+    {
+      "id": "character_list_friend_support_not_existed",
+      "content": "沒有該罪人的助戰人格。"
+    },
+    {
+      "id": "character_list_friend_support_impossible",
+      "content": "無法指定該罪人的支援人格。"
+    },
+    {
+      "id": "view_personality_status_button_label",
+      "content": "人格"
+    },
+    {
+      "id": "formation_ui_announcer",
+      "content": "播報員"
+    },
+    {
+      "id": "formation_ui_announcer_detail",
+      "content": "播報員詳情"
+    },
+    {
+      "id": "formation_deck_code_invalid_code",
+      "content": "無效的編隊代碼。"
+    },
+    {
+      "id": "formation_ego_resource_popup_personality_desc",
+      "content": "以下是目前編隊中的人格所能收集的總罪孽碎片數量，以及每個人格各自能收集的罪孽碎片數量。"
+    },
+    {
+      "id": "formation_ego_resource_popup_ego_desc",
+      "content": "以下是目前裝備中的E.G.O所需要消耗的罪孽碎片數量。"
+    },
+    {
+      "id": "formation_current_personality",
+      "content": "現在選中的人格"
+    },
+    {
+      "id": "ego_sort_label_rarity",
+      "content": "稀有度"
+    },
+    {
+      "id": "ego_filter_label_attack_type",
+      "content": "E.G.O攻擊類型"
+    },
+    {
+      "id": "ego_filter_label_attribute_type",
+      "content": "E.G.O罪孽屬性"
+    },
+    {
+      "id": "personality_filter_label_attack_type",
+      "content": "攻擊類型"
+    },
+    {
+      "id": "personality_filter_label_attribute_type",
+      "content": "技能罪孽屬性"
+    },
+    {
+      "id": "character_list_personality_not_existed",
+      "content": "沒有對應的人格。"
+    },
+    {
+      "id": "character_list_ego_not_existed",
+      "content": "沒有對應的E.G.O"
+    },
+    {
+      "id": "filter_condition_speed",
+      "content": "速度值"
+    },
+    {
+      "id": "filter_condition_defense",
+      "content": "防禦等級"
+    },
+    {
+      "id": "filter_condition_grade",
+      "content": "階段{0}"
+    },
+    {
+      "id": "ego_sort_label_syncLevel",
+      "content": "異想解析"
+    },
+    {
+      "id": "ego_sort_label_crimson_resist",
+      "content": "暴怒抗性"
+    },
+    {
+      "id": "ego_sort_label_scarlet_resist",
+      "content": "色慾抗性"
+    },
+    {
+      "id": "ego_sort_label_amber_resist",
+      "content": "怠惰抗性"
+    },
+    {
+      "id": "ego_sort_label_shamrock_resist",
+      "content": "暴食抗性"
+    },
+    {
+      "id": "ego_sort_label_azure_resist",
+      "content": "憂鬱抗性"
+    },
+    {
+      "id": "ego_sort_label_indigo_resist",
+      "content": "傲慢抗性"
+    },
+    {
+      "id": "ego_sort_label_violet_resist",
+      "content": "嫉妒抗性"
+    },
+    {
+      "id": "personality_info_list_not_owned",
+      "content": "未獲得"
+    },
+    {
+      "id": "formation_must_participate_specific_character_with_baton",
+      "content": "罪人{0}不能作為待機人員參與戰鬥。"
+    },
+    {
+      "id": "character_list_skin_not_existed",
+      "content": "沒有符合條件的外觀。"
+    },
+    {
+      "id": "character_list_title_all_skin",
+      "content": "外觀投影"
+    },
+    {
+      "id": "character_list_title_all_skin_with_character_name",
+      "content": "解除外觀投影：{0}"
+    },
+    {
+      "id": "mainui_common_skin",
+      "content": "外觀投影"
+    },
+    {
+      "id": "formation_side_button_skin",
+      "content": "外觀投影"
+    }
+  ]
+}

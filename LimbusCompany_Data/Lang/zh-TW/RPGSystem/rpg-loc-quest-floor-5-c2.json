@@ -1,0 +1,58 @@
+{
+  "dataList": [
+    {
+      "key": "Q5000_C2",
+      "title": "前往5樓深處",
+      "description": "到達了5樓。接下來繼續往5樓深處前進吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往5樓深處"
+        }
+      ]
+    },
+    {
+      "key": "Q5001_C2",
+      "title": "阻止自助餐",
+      "description": "5樓存在著與過往不同，並未肥大化的自助餐。自助餐希望我們繼續停留於此處，但我們不能這麼做。若想要繼續前進，必須打倒自助餐才行。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "阻止自助餐"
+        }
+      ]
+    },
+    {
+      "key": "Q5002_C2",
+      "title": "前往5樓深處",
+      "description": "身為丹紅派丹紅之神的自助餐，同時也是我們同行者的普依一動也不動。接下來繼續前往5樓深處吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往5樓深處"
+        }
+      ]
+    },
+    {
+      "key": "Q5003_C2",
+      "title": "前往6樓",
+      "description": "結束用餐後通往6樓的道路就敞開了。前往6樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往6樓"
+        }
+      ]
+    },
+    {
+      "key": "Q5004T_C2",
+      "title": "뷔페 개전 신호",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "뷔페 개전"
+        }
+      ]
+    }
+  ]
+}

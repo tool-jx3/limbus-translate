@@ -1,0 +1,92 @@
+{
+  "dataList": [
+    {
+      "id": 9260,
+      "name": "作品：躍動",
+      "desc": "若自身在一回合內透過基礎技能消耗了不低於10回的 [Charge]，則下回合使自身基礎技能造成的傷害+20%(不包括固定強度的特殊<noparse>充能</noparse>)\n- 若消耗的 [Charge] 為特殊充能，則下回合令自身增加的 [Laceration] 強度與 [Laceration] 回數額外+1",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9261,
+      "name": "作品：野性",
+      "desc": "打擊技能對理智值不高於15點或 [Sinking] 強度不低於35級的敵方單位造成的傷害+20%(沉淪 強度以部位判定)\n- 若該打擊技能為增加 [Laceration] 強度、回數或施加特殊流血的技能或憂鬱技能，且該打擊技能命中，則下回合使自身獲得1層 [Enhancement] (每回合每名單位最多1次)",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9262,
+      "name": "萬物的骨架",
+      "desc": "屬於環指的人格攻擊後，對目標施加1層隨機物理屬性的抗性弱化(每回合最多2次)\n\n屬於環指的人格造成的傷害+10%",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9263,
+      "name": "佳作：進化的躍動",
+      "desc": "回合開始時，若屬於環指的人格不低於2名，則觸發該效果(以參戰人員為基準)\n\n屬於環指 人體派的人格基礎技能命中時，對目標施加1層 [SlashResistDown] (每個技能最多1次，每回合最多2次)\n\n屬於環指的人格造成的傷害+20%\n\n回合開始時，若全體敵方單位的 [Laceration] 強度總計不低於99級，則使屬於環指 人體派的人格獲得1層 [RingFingerPhysical]",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9264,
+      "name": "佳作：被剝落的野性",
+      "desc": "回合開始時，若屬於環指的人格不低於2名，則觸發該效果(以參戰人員為基準)\n\n屬於環指 野獸派的人格基礎技能命中時，對目標施加1層 [HitResistDown] (每個技能最多1次，每回合最多2次)\n\n屬於環指的人格造成的傷害+20%\n\n回合開始時，若全體敵方單位的 [Laceration] 強度總計不低於99級，則使屬於環指 野獸派的人格獲得1層 [RingFingerFauvism]",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9265,
+      "name": "中指式指虎",
+      "desc": "若敵方單位的打擊抗性不高於1.5，則使其打擊抗性+0.3",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9266,
+      "name": "空蕩蕩的鳥籠",
+      "desc": "At Attack End of a Skill that has 2+ Atk Weight, gain +(# of hits on an enemy / 2) E.G.O resource of that Skill's Affinity (rounded down; max 5 per Skill)\n\nOn Crit with a Skill that has 2+ Atk Weight, gain +(# of Coins that hit Critically) E.G.O resource of the least-owned Affinity at Attack End (max 3)",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9267,
+      "name": "灼熱的銅管",
+      "desc": "最大 [Combustion] 強度+11級\n\n戰鬥中首次施加的 [Combustion] 強度變為3倍(每場戰鬥最多1次)\n\n當觸發敵方單位的 [Combustion] 且令其受到 [Combustion] 效果的傷害時，使其受到等同於其 [Combustion] 強度的暴怒傷害\n\n施加 [Combustion] 強度、[Combustion] 回數或特殊燒傷的技能造成的傷害+20%",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 19267,
+      "name": "灼熱的銅管+",
+      "desc": "最大 [Combustion] 強度<style=\"upgradeHighlight\">+21</style>級\n\n戰鬥中首次施加的 [Combustion] 強度變為3倍(每場戰鬥最多1次)\n\n當觸發敵方單位的 [Combustion] 且令其受到 [Combustion] 效果的傷害時，使其受到等同於其 [Combustion] 強度的暴怒傷害\n\n施加 [Combustion] 強度、[Combustion] 回數或特殊燒傷的技能造成的傷害<style=\"upgradeHighlight\">+25%</style>",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 29267,
+      "name": "灼熱的銅管++",
+      "desc": "最大 [Combustion] 強度+21級\n\n戰鬥中首次施加的 [Combustion] 強度變為3倍(每場戰鬥最多1次)\n\n當觸發敵方單位的 [Combustion] 且令其受到 [Combustion] 效果的傷害時，使其受到( [Combustion] 強度×<style=\"upgradeHighlight\">1.5</style>)點暴怒傷害\n\n施加 [Combustion] 強度、[Combustion] 回數或特殊燒傷的技能造成的傷害<style=\"upgradeHighlight\">+30%</style>",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9268,
+      "name": "萬物的本能",
+      "desc": "回合結束時，使屬於環指的(帶有 [Laceration] 的敵方單位數)名人格在下回合獲得1層隨機罪孽屬性的<noparse>傷害強化</noparse>(每回合每名人格最多1次；若是集中遭遇戰，則以部位判定)\n\n屬於環指的人格造成的傷害+10%",
+      "simpleDesc": [
+        {}
+      ]
+    }
+  ]
+}

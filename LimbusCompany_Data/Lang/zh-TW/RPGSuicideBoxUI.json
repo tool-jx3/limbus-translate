@@ -1,0 +1,68 @@
+{
+  "dataList": [
+    {
+      "id": "rpg_suicidebox_reset_button_text",
+      "content": "整理庫存\n（重置）"
+    },
+    {
+      "id": "rpg_suicidebox_reset_confirm_desc",
+      "content": "要整理庫存嗎？\n\n選擇後將重置當前周目的紀錄，無法復原。\n※當前遊玩過程中未能獲得的道具，\n可在之後的遊玩過程中取得。\n※即使不整理庫存也能獲得所有道具。"
+    },
+    {
+      "id": "rpg_suicidebox_hardreset_button_text",
+      "content": "結束營業\n（初始化）"
+    },
+    {
+      "id": "rpg_suicidebox_hardreset_confirm_desc",
+      "content": "要結束營業嗎？\n\n選擇後將重置所有周目的紀錄，無法復原。"
+    },
+    {
+      "id": "rpg_suicidebox_main_screen_desc_default",
+      "content": "親手結束自己的生命，\n等同於坦言自己無法理解生命。\n那麼你會以怎樣的方式結束生命並奉獻於生活呢。"
+    },
+    {
+      "id": "rpg_suicidebox_coming_soon",
+      "content": "預定於{0}月{1}日（GMT+8）更新"
+    },
+    {
+      "id": "rpg_suicidebox_intro_ab_1",
+      "content": "使生涯唯一的瞬間變得更為清晰。\n感謝您今日使用自殺販賣機。"
+    },
+    {
+      "id": "rpg_suicidebox_intro_ab_2",
+      "content": "本型號為共同體驗型設施，可以與家人、友人、伴侶等複數人員使用。"
+    },
+    {
+      "id": "rpg_suicidebox_intro_ab_3",
+      "content": "本型號無法選擇大湖遇難、列車碰撞、藥物中毒、雷擊、失溫症等部分自殺體驗。\n若需要更多樣化體驗的客戶，請使用單人用自殺販賣機。"
+    },
+    {
+      "id": "rpg_suicidebox_intro_ab_4",
+      "content": "輕鬆體驗令人顫抖的恐怖與刺激。\n請按下方任一按鈕，體驗非比尋常的死亡。"
+    },
+    {
+      "id": "rpg_suicidebox_pressed_dialog_ab",
+      "content": "孕婦、老人、體弱人士、服藥人士以及心血管疾病患者請謹慎使用。\n若因強制使用而導致事故發生，將由用戶承擔一切責任。"
+    },
+    {
+      "id": "rpg_suicidebox_pressed_dialog_c",
+      "content": "諸多事物束縛而來。即使無法動彈，也願不會感到疼痛。"
+    },
+    {
+      "id": "rpg_suicidebox_enter_notice_condition_b",
+      "content": "- 人格：同步4階段"
+    },
+    {
+      "id": "rpg_suicidebox_enter_notice_question_b",
+      "content": "是否要使用自殺販賣機？"
+    },
+    {
+      "id": "rpg_suicidebox_enter_notice_condition_c",
+      "content": "- 人格：同步4階段"
+    },
+    {
+      "id": "rpg_suicidebox_enter_notice_question_c",
+      "content": "是否要使用自殺販賣機？"
+    }
+  ]
+}

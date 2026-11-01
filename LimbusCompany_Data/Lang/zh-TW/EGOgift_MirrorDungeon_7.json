@@ -1,0 +1,652 @@
+{
+  "dataList": [
+    {
+      "id": 9209,
+      "name": "為愛著都市的你",
+      "desc": "體力低於30%的友方單位受到攻擊時，下回合使該友方單位恢復最大體力值的80%，並使其他友方單位恢復最大體力值的40% (每關卡最多1次)\n- 超過最大體力值的治療量將化為護盾值\n- 當友方單位透過上述效果恢復了至少50點的體力值，使該友方單位獲得3層 [AttackUp] 並施加3層 [DefenseDown]",
+      "simpleDesc": [
+        {
+          "abilityID": 9209,
+          "simpleDesc": "恢復體力"
+        }
+      ]
+    },
+    {
+      "id": 9210,
+      "name": "肉錘",
+      "desc": "[第4順位友方單位專屬]\n\n若該友方單位擁有的打擊攻擊技能不低於2個，則於回合開始時，使該友方單位獲得1層 [ParryingResultUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 9210,
+          "simpleDesc": "獲得 [ParryingResultUp]"
+        }
+      ]
+    },
+    {
+      "id": 19210,
+      "name": "肉錘+",
+      "desc": "[第4順位友方單位專屬]\n\n若該友方單位擁有的打擊攻擊技能不低於2個，則於回合開始時，使該友方單位獲得<style=\"upgradeHighlight\">2層</style> [ParryingResultUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 19210,
+          "simpleDesc": "獲得 [ParryingResultUp]"
+        }
+      ]
+    },
+    {
+      "id": 29210,
+      "name": "肉錘++",
+      "desc": "[第4、<style=\"upgradeHighlight\">第5</style>順位友方單位專屬]\n\n若該友方單位擁有的打擊攻擊技能不低於2個，則於回合開始時，使該友方單位獲得2層 [ParryingResultUp]",
+      "simpleDesc": [
+        {
+          "abilityID": 29210,
+          "simpleDesc": "獲得 [ParryingResultUp]"
+        }
+      ]
+    },
+    {
+      "id": 9207,
+      "name": "機率與選擇",
+      "desc": "隨機使位於儀錶盤最左側的E.G.O技能造成的傷害-50%或+150% (每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9207,
+          "simpleDesc": "使E.G.O技能造成的傷害增加或減少"
+        }
+      ]
+    },
+    {
+      "id": 9208,
+      "name": "糾纏的因果",
+      "desc": "戰鬥開始時，若完全共鳴數不低於7，則本回合內使全體友方單位獲得最終威力+5 (每場戰鬥最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9208,
+          "simpleDesc": "最終威力提升"
+        }
+      ]
+    },
+    {
+      "id": 9211,
+      "name": "烏雲",
+      "desc": "回合開始時，若全體敵方單位帶有的 [Sinking] 強度以及 [Sinking] 回數之和不低於30，則發動以下效果：\n\n- 增加 [Sinking] 強度或回數的技能獲得最終威力 +1 (包含特殊沉淪；不包含E.G.O技能)\n\n- 當隊伍中擁有增加 [Sinking] 強度、[Sinking] 回數或特殊沉淪的攻擊技能的友方人格至少有6名時：\n使增加 [Sinking] 強度或回數的技能造成的傷害 +20% (包含特殊沉淪；包含待命人員；不包含E.G.O技能)\n．若攻擊目標的理智值為-45點，則額外使造成的傷害 +10%\n\n- 當隊伍中擁有增加 [Sinking] 強度、[Sinking] 回數或特殊沉淪的攻擊技能的友方人格至少有10名時：\n使增加 [Sinking] 強度或回數的技能獲得硬幣威力 +1 (包含特殊沉淪；包含待命人員；不包含E.G.O技能)\n．若是減算硬幣技能：則不獲得硬幣威力，改為獲得基礎威力 +(4 ÷ 技能硬幣數) (至少+1；無條件捨去)",
+      "simpleDesc": [
+        {
+          "abilityID": 9211,
+          "simpleDesc": "沉淪技能的最終威力提升"
+        },
+        {
+          "abilityID": 92111,
+          "simpleDesc": "沉淪技能的傷害提升"
+        },
+        {
+          "abilityID": 92112,
+          "simpleDesc": "沉淪技能的硬幣/基礎威力提升"
+        }
+      ]
+    },
+    {
+      "id": 9212,
+      "name": "此世之惡的終結",
+      "desc": "當屬於「裴廓德號」的人格至少有3名時，則發動本飾品的效果 (包含待命人員)\n\n使用攻擊技能命中帶有 [Laceration] 或特殊流血的敵方單位時，使自身獲得2回 [Breath] 或3級 [Breath] 強度 (每回合1名人格最多3次)\n\n技能暴擊命中時，以80%的機率使自身下回合獲得1層 [PenetrateResultUp] (每回合每1名人格最多2次；包含E.G.O技能以及反擊技能)\n- 若是屬於「裴廓德號」的人格，則觸發時額外獲得1層 [PlusCoinValueUp] (每回合1名人格最多1次)\n\n基礎技能的硬幣正面暴擊命中時，使該硬幣施加的負面效果 +1 (每回合每1名友方單位最多1次；包含反擊技能，E.G.O技能除外)\n\n當敵方單位或友方單位陣亡時：接下來的戰鬥期間，使屬於「裴廓德號」的人格每回合獲得1層 [PenetrateResultUp]、1層 [Protection] 以及1層 [CriticalDamageUp] (每關卡最多累加3次)\n\n當屬於「裴廓德號」的人格攻擊命中時，使編入順序最早的「裴廓德號」所屬人格恢復7點理智值 (每技能最多1次)\n\n友方單位擊殺敵方單位時，若編入順序最早的「裴廓德號」所屬人格失去了理智值，則使該人格恢復15點理智值",
+      "simpleDesc": [
+        {
+          "abilityID": 9212,
+          "simpleDesc": "獲得呼吸法 "
+        },
+        {
+          "abilityID": 92121,
+          "simpleDesc": "暴擊命中時，下回合機率性獲得 [PenetrateResultUp]；滿足條件時獲得 [PlusCoinValueUp]，增加負面效果的施加量"
+        },
+        {
+          "abilityID": 92122,
+          "simpleDesc": "獲得 [PenetrateResultUp]、[Protection]、[CriticalDamageUp]"
+        },
+        {
+          "abilityID": 92123,
+          "simpleDesc": "恢復理智值"
+        }
+      ]
+    },
+    {
+      "id": 9213,
+      "name": "小型摩天輪模型",
+      "desc": "屬於「血魔」的全體友方單位的基礎技能獲得硬幣威力 +1，且自身技能<noparse>造成的傷害</noparse>+(自身的 [BloodDinner_Accumulation] ÷ 10)%\n\n回合結束時，使2名現存體力值最低且帶有 [Laceration] 的友方單位恢復體力最大值5%的體力，並於下回合開始時獲得10層 [SwirlingBloodPersonality]\n\n擊殺敵方單位時，產生(該敵方本體的體力最大值 ÷ 10)層 [BloodDinner] (最多50層)\n\n回合結束時，若本回合有友方單位陣亡，則下回合使全體友方單位獲得2層 [Enhancement]\n\n在敵方具有增援的關卡中，若有增援登場，則在戰鬥開始時使登場的敵方單位增加5級 [Laceration] 強度以及3回 [Laceration]。\n當友方單位中有「血魔」時，若有增援登場，則觸發全體敵方單位的 [Laceration] 2次，並使他們帶有的 [Laceration] 減少2回",
+      "simpleDesc": [
+        {
+          "abilityID": 9213,
+          "simpleDesc": "基礎技能的硬幣威力提升"
+        },
+        {
+          "abilityID": 92131,
+          "simpleDesc": "恢復體力並獲得 [SwirlingBloodPersonality]"
+        },
+        {
+          "abilityID": 92132,
+          "simpleDesc": "獲得強壯"
+        },
+        {
+          "abilityID": 92133,
+          "simpleDesc": "增加流血 強度與回數"
+        }
+      ]
+    },
+    {
+      "id": 9214,
+      "name": "加熱鎚",
+      "desc": "若敵方單位帶有 [VibrationIgnition]，則觸發以下效果\n- 基礎技能命中時，使其增加1級 [Combustion] 強度(每個技能最多3次)\n- 基礎技能命中時，若其 [VibrationIgnition] 強度不低於15級，則使其增加1回 [Combustion] (每個技能最多2次)\n- 其每帶有3級 [Combustion] 強度，使其受到 [VibrationExplosion] 時造成的混亂閾值前移量+1%(最多+50%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9214,
+          "simpleDesc": "施加燒傷 "
+        },
+        {
+          "abilityID": 92141,
+          "simpleDesc": "震顫引爆的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9215,
+      "name": "紅領帶",
+      "desc": "使增加的 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的3技能拚點威力+2、造成的傷害+30%",
+      "simpleDesc": [
+        {
+          "abilityID": 9215,
+          "simpleDesc": "拚點威力增加、造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9216,
+      "name": "制服 - 六協會",
+      "desc": "回合開始時，若擁有增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n六協會所屬人格的友方單位，其基礎攻擊技能的加算硬幣威力+2(若為減算硬幣技能，則改為基礎威力+(8÷技能硬幣數)(最少+1；無條件捨去))\n\n增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷之3技能以外的技能，其傷害量+30%(包含E.G.O技能)\n\n增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷攻擊之3技能的加算硬幣威力+1(若為減算硬幣技能，則改為獲得基礎威力+(4÷技能硬幣數) (最少+1；無條件捨去))，且造成的傷害+30%\n- 編隊內每有一名友方單位與自身所屬同陣營，則該所屬人格的技能造成的傷害+5%(最多+20%，包含待命人員)\n\n回合結束時，使理智值最低的2名友方單位恢復8點理智值\n- 若其理智值不高於0點，則使其額外恢復5點理智值",
+      "simpleDesc": [
+        {
+          "abilityID": 9216,
+          "simpleDesc": "技能威力與造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9217,
+      "name": "某人的終端",
+      "desc": "攻擊結束時，若 [IndexPrescriptTargetToEnemy] 陣亡，則使擊殺 [IndexPrescriptTargetToEnemy] 的友方單位於下回合獲得1層 [AzureResultUp]，並隨機對1名存活的敵方單位增加3回 [Sinking] (每回合最多1次)\n- 若擊殺 [IndexPrescriptTargetToEnemy] 的友方單位屬於食指，則下回合不會獲得 [AzureResultUp]，改為獲得1層 [Enhancement] (每回合最多1次)\n\n回合結束時，對所屬食指的人格造成其體力上限(其 [KarmaOfIndexAlly] 層數)%的傷害\n(不會因本效果陷入混亂，且不會使友方單位的體力降至體力上限的20%以下)\n下回合使受到本效果傷害的友方單位獲得(其 [KarmaOfIndexAlly] 層數÷5)的 [ResultEnhancement] (最多2層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9217,
+          "simpleDesc": "獲得憂鬱威力提升。屬於食指的友方單位改為獲得強壯"
+        },
+        {
+          "abilityID": 92171,
+          "simpleDesc": "屬於食指的友方單位受到傷害並在下回合獲得威力提升"
+        }
+      ]
+    },
+    {
+      "id": 9218,
+      "name": "指令的庇護",
+      "desc": "上回合若透過技能效果增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪，則回合開始時，使自身獲得3級 [Breath] 強度或獲得2回 [Breath] (每回合每名友方單位最多1次)\n\n此次戰鬥期間，若有友方單位因此效果獲得3次以上的 [Breath]，則下回合起，使其暴擊時造成的傷害+30%",
+      "simpleDesc": [
+        {
+          "abilityID": 9218,
+          "simpleDesc": "獲得呼吸法強度與回數"
+        },
+        {
+          "abilityID": 92181,
+          "simpleDesc": "暴擊時造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9219,
+      "name": "萬能工具",
+      "desc": "使用相同攻擊類型的技能命中敵方單位12次時，使其對應類型的物理抗性+0.1(若是異想體，則改為所有部位；每場戰鬥每個敵方單位最多3次；該效果不會使敵方單位的抗性高於2.0)",
+      "simpleDesc": [
+        {
+          "abilityID": 9219,
+          "simpleDesc": "物理抗性弱化"
+        }
+      ]
+    },
+    {
+      "id": 19219,
+      "name": "萬能工具+",
+      "desc": "使用相同攻擊類型的技能命中敵方單位<style=\"upgradeHighlight\">9次</style>時，使其對應類型的物理抗性+0.1(若是異想體，則改為所有部位；每場戰鬥每個敵方單位最多3次；該效果不會使敵方單位的抗性高於2.0)",
+      "simpleDesc": [
+        {
+          "abilityID": 19219,
+          "simpleDesc": "物理抗性弱化"
+        }
+      ]
+    },
+    {
+      "id": 29219,
+      "name": "萬能工具++",
+      "desc": "使用相同攻擊類型的技能命中敵方單位<style=\"upgradeHighlight\">6次</style>時，使其對應類型的物理抗性+0.1(若是異想體，則改為所有部位；每場戰鬥每個敵方單位最多3次；該效果不會使敵方單位的抗性高於2.0)",
+      "simpleDesc": [
+        {
+          "abilityID": 29219,
+          "simpleDesc": "物理抗性弱化"
+        }
+      ]
+    },
+    {
+      "id": 9220,
+      "name": "被盜的收尾人雜誌",
+      "desc": "回合開始時，使自身獲得1層 [HitResultUp]\n\n若使嫉妒完全共鳴時，則戰鬥開始時，使自身獲得1層 [HitDamageUp]\n\n若屬於中指的友方單位不低於4名，則關卡開始時，隨機對1名敵方單位施加 [RetaliationBook]",
+      "simpleDesc": [
+        {
+          "abilityID": 9220,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9221,
+      "name": "熱線武器",
+      "desc": "嫉妒技能或反擊技能命中時，使目標增加1回 [Laceration] 或1回 [Combustion] (每回合最多3次)\n\n戰鬥中，若敵方單位的 [Laceration] 回數不足1回，且其 [Combustion] 回數不低於2回，則不會減少 [Laceration] 回數，而改為減少 [Combustion] 回數(每回合最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9221,
+          "simpleDesc": "施加流血回數與燒傷回數"
+        },
+        {
+          "abilityID": 92211,
+          "simpleDesc": "減少燒傷回數"
+        }
+      ]
+    },
+    {
+      "id": 9222,
+      "name": "純白畫布",
+      "desc": "加算硬幣攻擊技能命中 [Laceration] 強度不低於15級的敵方單位時，使自身恢復3點理智值(每回合每名友方單位最多1次)\n- 若自身或該敵方單位帶有的負面狀態不少於3種，則改為恢復6點理智值",
+      "simpleDesc": [
+        {
+          "abilityID": 9222,
+          "simpleDesc": "恢復理智值"
+        }
+      ]
+    },
+    {
+      "id": 9223,
+      "name": "凡作",
+      "desc": "使屬於環指的人格獲得 [Inspire]\n\n當帶有 [Inspire] 的環指所屬人格使用色慾或斬擊技能命中敵方單位時，下回合對該敵方單位施加 [ObjectOfExploration]\n- 若敵方單位已帶有 [ObjectOfExploration]，則將其帶有的 [ObjectOfExploration] 轉變為 [PaintingMaterial]\n\n當帶有 [Inspire] 的環指所屬人格擊殺帶有 [PaintingMaterial] 的敵方單位時，於下回合使該人格獲得1層 [PlusCoinValueUp] (每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9223,
+          "simpleDesc": "施加 [ObjectOfExploration]"
+        },
+        {
+          "abilityID": 92231,
+          "simpleDesc": "獲得 [PlusCoinValueUp]"
+        }
+      ]
+    },
+    {
+      "id": 9224,
+      "name": "佳作",
+      "desc": "使屬於環指的人格獲得 [Inspire]\n\n當帶有 [Inspire] 的環指所屬人格使用色慾或斬擊技能命中敵方單位時，下回合對該敵方單位施加 [ObjectOfExploration]\n- 若敵方單位已帶有 [ObjectOfExploration]，則將其帶有的 [ObjectOfExploration] 轉變為 [PaintingMaterial]\n\n當帶有 [Inspire] 的環指所屬人格擊殺帶有 [PaintingMaterial] 的敵方單位時：\n於下回合解除該人格帶有的 [Inspire] 並使其獲得 [GreatAesthetics]\n\n加算硬幣攻擊技能命中 [Laceration] 強度不低於15級的敵方單位時，使自身恢復3點理智值(每回合每名人格最多1次)\n- 若自身或該敵方單位帶有的負面狀態不少於3種，則改為恢復6點理智值",
+      "simpleDesc": [
+        {
+          "abilityID": 9224,
+          "simpleDesc": "獲得 [Inspire]"
+        },
+        {
+          "abilityID": 92241,
+          "simpleDesc": "施加 [ObjectOfExploration]"
+        },
+        {
+          "abilityID": 92242,
+          "simpleDesc": "獲得 [GreatAesthetics]"
+        }
+      ]
+    },
+    {
+      "id": 9225,
+      "name": "蜘蛛之絲",
+      "desc": "使用守備技能時，下回合使自身3技能造成的傷害+10%(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9225,
+          "simpleDesc": "3技能造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 19225,
+      "name": "蜘蛛之絲+",
+      "desc": "使用守備技能時，下回合使自身3技能造成的傷害<style=\"upgradeHighlight\">+15%</style>(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 19225,
+          "simpleDesc": "3技能造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 29225,
+      "name": "蜘蛛之絲++",
+      "desc": "使用守備技能時，下回合使自身3技能造成的傷害<style=\"upgradeHighlight\">+20%</style>(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 29225,
+          "simpleDesc": "3技能造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9226,
+      "name": "某人的青刀",
+      "desc": "戰鬥開始時，使帶有護盾的友方單位獲得1層 [CriticalDamageUp]\n友方單位的技能暴擊命中時，下回合使該友方單位獲得(自身的 [Breath] 強度÷5)點護盾(最多15點)",
+      "simpleDesc": [
+        {
+          "abilityID": 9226,
+          "simpleDesc": "獲得 [CriticalDamageUp]"
+        },
+        {
+          "abilityID": 92261,
+          "simpleDesc": "獲得護盾"
+        }
+      ]
+    },
+    {
+      "id": 9227,
+      "name": "寄宿鬼氣的環刃",
+      "desc": "戰鬥勝利6次後，該E.G.O飾品轉變為\n{0}\n\n全體友方單位受到的傷害+20%、拚點威力-1",
+      "simpleDesc": [
+        {
+          "abilityID": 9227,
+          "simpleDesc": "受到的傷害增加、拚點威力減少"
+        }
+      ]
+    },
+    {
+      "id": 9228,
+      "name": "人劍合一",
+      "desc": "全體友方單位造成的傷害+25%",
+      "simpleDesc": [
+        {
+          "abilityID": 9228,
+          "simpleDesc": "造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9229,
+      "name": "褪色的護手",
+      "desc": "戰鬥勝利6場後，使該E.G.O飾品效果改變\n{0}\n\n全體友方單位的最小與最大速度值-5 (該效果不會使速度值低於1)",
+      "simpleDesc": [
+        {
+          "abilityID": 9229,
+          "simpleDesc": "速度值降低"
+        }
+      ]
+    },
+    {
+      "id": 9230,
+      "name": "黃金時間",
+      "desc": "全體友方單位的最小與最大速度值+3\n若目標的速度值低於自身至少4點，則使自身技能的最終威力+2\n攻擊命中敵方單位時，下回合對其施加一層束縛 (每回合最多4次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9230,
+          "simpleDesc": "速度值提升、最終威力提升"
+        }
+      ]
+    },
+    {
+      "id": 9231,
+      "name": "那一日的紀錄",
+      "desc": "戰鬥勝利6次後，該E.G.O飾品轉變為\n{0}\n\n回合開始時，隨機使1名未陷入混亂的友方單位強制陷入混亂",
+      "simpleDesc": [
+        {
+          "abilityID": 9231,
+          "simpleDesc": "陷入混亂"
+        }
+      ]
+    },
+    {
+      "id": 9232,
+      "name": "可能性",
+      "desc": "因受到傷害而陷入混亂時，解除自身的混亂。使自身獲得自身體力上限50%的護盾，隨機解除1種自身帶有並可解除的負面狀態\n(不包括強制混亂，每場戰鬥最多2次)\n觸發以上效果後，下回合開始時使自身增加20級呼吸法強度(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9232,
+          "simpleDesc": "解除混亂及負面狀態"
+        }
+      ]
+    },
+    {
+      "id": 9242,
+      "name": "小鳳人偶",
+      "desc": "通關階層時使擁有的經費變為1.5倍\n\n- 每擁有1個飾品，使自身造成的傷害+0.5%(當前+{0}%。最多+100%)\n- 每擁有20個飾品，回合開始時使自身獲得1層 [Enhancement] (當前獲得{1}層。最多10層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9242,
+          "simpleDesc": "造成的傷害增加"
+        },
+        {
+          "abilityID": 92421,
+          "simpleDesc": "獲得 [Enhancement]"
+        }
+      ]
+    },
+    {
+      "id": 9256,
+      "name": "不完全的預知眼",
+      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\n[Effects apply only to #1 Deployed Identity]\n- In a Clash, gain 1 [LookingFutureMirror] with every Clash. Inflict 2 [Vibration] and [Combustion] on target (10 times per Skill)\n- On Clash Win, trigger [Switch_Vibration] into [VibrationIgnition] and trigger [VibrationExplosion] on the main target. Target loses 1 [Vibration] Count\n- On Hit with a Skill, if target is Staggered, deal +30% damage\n- On Crit, trigger [VibrationExplosion]. Target loses 1 [Vibration] Count (2 times per Skill)",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9257,
+      "name": "遺落的神諭",
+      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\nIn a Clash, gain Clash Power +1 for every 30 ([Sinking] on target + [Breath] on self) (max 5)\n\nDeal +25% damage with [SuperCoin]s\nTake -25% damage from [SuperCoin]s\n\n[The Index-faction Exclusive Effect]\n- Upon entering the Encounter for the first time, gain 6 [BlessingOfIndexPrescriptAlly]\n· If the unit is an Identity that can gain [UnlockBuff_Base], gain [UnlockBuffAlly_2] as well\n- Deal +50% damage against [IndexPrescriptTargetToEnemy]",
+      "simpleDesc": [
+        {
+          "abilityID": 98270,
+          "simpleDesc": "友方單位的硬幣威力或最終威力大幅增加"
+        },
+        {
+          "abilityID": 9257,
+          "simpleDesc": "根據目標的沉淪 強度與自身的呼吸法 強度之和相應增加拚點威力"
+        },
+        {
+          "abilityID": 92571,
+          "simpleDesc": "無法被破壞的硬幣 造成的傷害+25%"
+        },
+        {
+          "abilityID": 92572,
+          "simpleDesc": "使自身對指令對象造成的傷害+50%"
+        }
+      ]
+    },
+    {
+      "id": 9258,
+      "name": "復仇帳簿：附錄",
+      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\nEncounter Start: All allies gain 50 Shield for every The Middle-faction allied unit on the field (excluding Backup units; Shield gained via this effect does not expire at Turn End)\n\nAttack End with The Middle-faction allied units' Envy or Blunt Base Skills: Heal 10% of Skill damage dealt\n- If this effect is triggered by a Counter Skill, heal 20% of Skill damage dealt instead\n- Excess HP healed is converted into Shield (Shield gained via this effect does not expire at Turn End)\n\nCombat Start: The Middle-faction allied units gain Offense Level for the turn based on the number of Defense Skills equipped (max 12 Offense Level)\n- If 6+ Defense Skills are equipped, deal +30% damage with Envy Base Skills\n- Deal an additional +10% damage for every Defense Skill equipped beyond 6 (max 60%)",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9259,
+      "name": "成為作品的大師戒指",
+      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\nWhen The Ring-faction Identities use Base Attack Skills, apply the following effects based on the number of negative effect types on the target:\n- 2+: Clash Power +2\n- 4+: Deal +15% damage\n- 6+: Inflict +1 more Potency and Count of negative effects via Coin effects\n- 7+: Base Power +2\n- 8+: Deal +35% damage",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9250,
+      "name": "廉價版K公司安瓿",
+      "desc": "[第1順位友方單位專屬]\n關卡開始時，使自身獲得1層 [KAmpouleMirror]",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9251,
+      "name": "燃燒的命運",
+      "desc": "[Combustion] 強度上限 +30\n\n與帶有 [Combustion] 的目標拚點勝利時，觸發目標的 [Combustion] 1次，並使其的 [Combustion] 回數減少1回 (每人格最多1次)\n\n對帶有 [Combustion] 的敵方單位使用技能時，根據主要目標帶有的燒傷強度，使該技能的攻擊等級提升(主要目標帶有的 [Combustion] 強度級數 ÷ 10)",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9252,
+      "name": "釘與鎚",
+      "desc": "<noparse>N Corp. Fanatic</noparse> Identities: Base Skills gain Base Power +3\n\nWhen an <noparse>N Corp. Fanatic</noparse> Identity gains [AssemblePersonality], all <noparse>N Corp. Fanatic</noparse> Identities gain the same Stack of [AssemblePersonality] (once per turn including the first unit)\n- If there is a Lust A-Reson., triple the Stack gained\n\nEncounter Start: Inflict 2 [NailPersonality] on all enemies\n\nWhen an <noparse>N Corp. Fanatic</noparse> Identity uses a Base Skill to Clash against a target that has [NailPersonality], inflict 3 [Laceration] (once per Skill)\n\n<noparse>N Corp. Fanatic</noparse> Identities deal +100% damage using Base Skills against targets that have [NailPersonality]",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9253,
+      "name": "旋轉木馬的模型",
+      "desc": "第一個回合開始時，獲得300層 [BloodDinner]\n令 [Laceration] 效果生成的 [BloodDinner] 變為2倍\n使用消耗 [BloodDinner] 的技能時，在該技能攻擊後額外消耗相應層數的 [BloodDinner]\n\n[屬於拉．曼查領的人格專屬]\n屬於拉．曼查領的人格參戰時，根據人格觸發以下效果\n- 拉．曼查領 總督 唐吉訶德：獲得15層 [BloodArmorPersonalityFirst]\n- 拉．曼查領 公主 羅佳：獲得15層 [BloomingThornsRodionFirst]\n- 拉．曼查領 神父 格里高爾：獲得15層 [BloodyHandGregFirst]\n- 拉．曼查領 理髮師 奧提斯：獲得15層 [BloodScissorPersonalityFirst]\n- 拉．曼查領 王子 莫梭：獲得3層 [BloodArmorMeursault]\n\n[拉．曼查領 總督 唐吉訶德專屬]\n- 除自身以外每有1名屬於拉．曼查領的人格，使拉．曼查領 總督 唐吉訶德的基礎技能最終威力+1、造成的傷害+30%(最多+4；最多+120%；包括待命人員、包括陣亡的單位，不包括未編入的單位)",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9254,
+      "name": "再來一杯！",
+      "desc": "Base Skills that consume [Vibration] Count or [Charge] Count deal +20% damage (including 'Unique Charge'; excluding 'Unique Charge'(fixed Potency))\n\nWhen consuming [Vibration] Count or [Charge] Count by using Base Skills, regain the half of consumed Count at Skill End (min 1, rounded down; including 'Unique Charge', excluding 'Unique Charge'(fixed Potency))",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9255,
+      "name": "掌聲鼓勵！",
+      "desc": "使敵方單位增加 [Vibration] 強度、[Vibration] 回數或對敵方單位施加特殊<noparse>震顫</noparse>的基礎技能拚點勝利時，隨機使目標令以下的特殊<noparse>震顫</noparse> [FusionVibration] (每回合最多1次)\n- [VibrationIgnition]\n- [VibrationBleeding]\n- [VibrationEcho]\n- [VibrationCollapse]\n- [VibrationChainPersonality]",
+      "simpleDesc": [
+        {}
+      ]
+    },
+    {
+      "id": 9273,
+      "name": "紅線糾纏的蜘蛛巢",
+      "desc": "每有1名友方人格陣亡，使全體友方單位增加1級攻擊等級與1級防禦等級(最多10級)\n\n編入蜘蛛巢之刀 良秀時，除蜘蛛巢之刀 良秀以外的人格陣亡時不會在通過關卡後復活(BOSS關卡、隱藏節點)\n\n[第1順位人格專屬]\n\n回合開始時，若除自身以外的全體友方單位均陣亡，則使自身獲得 [RedButterfly]\n\n[蜘蛛巢之刀 良秀專屬]\n\n自身在戰鬥中首次登場時，每有1名屬於蜘蛛巢的友方人格陣亡，使自身獲得5層 [PhantomIncisionTotalID]\n每有2名屬於蜘蛛巢的友方人格陣亡，使自身的最終威力+1、硬幣威力+1、造成的傷害+10%(分別最多+3與+30%)\n除蜘蛛巢之刀 良秀以外的全體友方單位均陣亡時，所有選項變動值+12",
+      "simpleDesc": [
+        {
+          "abilityID": 9273,
+          "simpleDesc": "提升攻擊等級與防禦等級"
+        },
+        {
+          "abilityID": 92731,
+          "simpleDesc": "獲得 [RedButterfly]"
+        },
+        {
+          "abilityID": 92732,
+          "simpleDesc": "獲得 [PhantomIncisionTotalID]"
+        },
+        {
+          "abilityID": 92733,
+          "simpleDesc": "最終威力、硬幣威力與造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9274,
+      "name": "套索",
+      "desc": "暴擊命中敵方目標時，下回合對其施加1層 [Binding] (每回合最多2次)\n技能命中帶有 [Binding] 的敵方單位時，獲得1級 [Breath] 強度 (每人格每回合最多2次)\n\n回合開始時，對帶有 [Laceration] 的敵方單位施加與其帶有的 [Binding] 層數等數的 [AttackDown] (最多5層)\n\n回合開始時，若全體敵方單位(集中遭遇戰時，則改為所有部位)均帶有 [Binding]，則使全體友方單位獲得3級 [Breath] 強度",
+      "simpleDesc": [
+        {
+          "abilityID": 9274,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9275,
+      "name": "N公司固定小隊的包包",
+      "desc": "使用施加 [Laceration] 強度、[Laceration] 回數或特殊流血的技能命中敵方單位時，對其施加1層 [NailPersonality] (每技能最多1次)\n使帶有 [NailPersonality] 的敵方單位 [VibrationExplosion] 時，下回合對其施加1層 [Binding] (每回合最多3次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9275,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9276,
+      "name": "白瓷硯滴",
+      "desc": "友方人格獲得 [SupportProtect] 時，使該名友方獲得2層 [AttackDmgUp] 與2層 [Protection]\n\n[第1順位人格專屬]\n回合結束時，下回合獲得2層 [Agility]\n人格速度快於敵方目標時，速度值每相差1點，則使人格對其造成的傷害 +3% (最多+30%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9276,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9277,
+      "name": "蒲劍",
+      "desc": "當友方單位本回合沒有受到敵方攻擊命中時，下回合使該名友方單位獲得1層 [SlashDamageUp]\n當友方單位受到敵方攻擊命中時，使該名友方單位獲得4級 [Breath] 強度，並於本回合與下回合獲得1層 [CriticalDamageUp] (每人格每回合最多1次)\n- 若該人格屬於劍契組，則使該飾品的效果變為2倍",
+      "simpleDesc": [
+        {
+          "abilityID": 9277,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9278,
+      "name": "粉碎的木製刑具",
+      "desc": "使用斬擊技能命中敵方單位時，下回合對其施加1層 [DefenseDown] (每技能最多2次)\n當友方單位的速度快於敵方單位時，則每相差1點速度值，使該名友方單位的基礎攻擊技能對其造成的傷害 +3% (最多+12%)\n- 若該名敵方單位帶有 [Binding] 時，則使增加的傷害與上限值變為2倍",
+      "simpleDesc": [
+        {
+          "abilityID": 9278,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9279,
+      "name": "無紋劍鐔",
+      "desc": "每帶有1級 [Breath] 強度，使斬擊技能造成的傷害 +1% (最多+15%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9279,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9280,
+      "name": "本國劍譜",
+      "desc": "若敵方目標的斬擊耐性為1.5或以下時，使其斬擊抗性 +0.3\n斬擊技能的攻擊等級 +2\n攻擊斬擊耐性為脆弱(抗性1.0以上；不包含因陷入混亂而導致的抗性改動)的敵方目標時，使造成的斬擊傷害量 +(5+目標的斬擊抗性 × 10)% (最多+25%)\n\n每帶有1級 [Breath] 強度，則使斬擊技能造成的傷害量 +1.5% (最多+30%)\n\n將編入順序最早的1名非劍契組的S公司人格計算為屬於劍契組的人格，並使其每回合獲得 [BongukGiftEnhance]\n\n回合開始時，若戰場上屬於劍契組的人格不少於3名，則觸發該E.G.O飾品 (以參戰人員為基準)\n- 戰鬥開始時，使裝備了暴怒或傲慢屬性技能的劍契組人格獲得1層 [BongukGiftEnhance]",
+      "simpleDesc": [
+        {
+          "abilityID": 9280,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9282,
+      "name": "翼狀蠟燭",
+      "desc": "回合開始時，若屬於<noparse>黎明事務所</noparse>的人格不低於3名，則觸發該效果(以編隊人員為準)\n第一個回合使全體友方單位獲得2層 [DawnLight]\n使<noparse>黎明事務所</noparse> 收尾人 辛克萊在戰鬥開始時恢復10點理智值，且該人格透過被動「不穩定的自我外殼」進入不穩定E.G.O::蠟翼狀態的理智值條件改為不低於25點\n\n[屬於<noparse>黎明事務所</noparse>的人格專用效果]\n基礎技能攻擊命中時，使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度(每個技能最多1次)\n屬於<noparse>黎明事務所</noparse>的人格視作施加 [Combustion] 與 [Vibration] 的人格\n- 根據以上效果，其基礎技能也視作施加 [Combustion] 與 [Vibration] 的技能\n關卡開始時，若<noparse>黎明事務所</noparse> 收尾人 浮士德於戰鬥中登場，則使其獲得1層 [Firstlight]",
+      "simpleDesc": [
+        {
+          "abilityID": 9281,
+          "simpleDesc": ""
+        }
+      ]
+    },
+    {
+      "id": 9283,
+      "name": "上繳的雪茄",
+      "desc": "回合開始時，若屬於拇指的人格不低於3名，則觸發該效果(以參戰人員為基準)\n使屬於拇指的人格於回合開始時獲得1層 [PlusCoinValueUp] 與2層 [AttackDmgUp]\n每有1名屬於拇指的人格，使所有屬於拇指的人格獲得1層 [AttackUp] (最多4層)\n目標每帶有1級 [VibrationIgnition] 強度，使自身造成的傷害+1%(最多+20%)\n- 消耗 [Bullet] 的技能造成的傷害額外+1%(最多+20%)\n- 屬於拇指的人格造成的傷害額外+1%(最多+20%)\n\n自身的技能效果觸發 [VibrationExplosion] 時，下回合使自身獲得2層 [AttackUp] (每回合最多3次)\n\n蜘蛛巢 拇指 父輩 羅佳的3技能攻擊結束時，使蜘蛛巢 拇指 弟子 希斯克利夫獲得1層 [EvolvingManual]",
+      "simpleDesc": [
+        {
+          "abilityID": 9282,
+          "simpleDesc": ""
+        }
+      ]
+    }
+  ]
+}

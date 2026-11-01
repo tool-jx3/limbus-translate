@@ -1,0 +1,17 @@
+{
+  "dataList": [
+    {
+      "id": "AggressiveBokgak",
+      "name": "本能",
+      "desc": "最大層數：5\n回合結束時，若該效果層數不少於4層，則本單位會較為偏向進攻",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DeadEGOResource",
+      "name": "遺留的意志",
+      "desc": "陣亡時，根據自身擁有的基礎攻擊技能的罪孽與級別，獲得相應的罪孽碎片。",
+      "undefined": "-"
+    }
+  ]
+}

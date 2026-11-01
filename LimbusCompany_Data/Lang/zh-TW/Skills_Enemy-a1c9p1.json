@@ -1,0 +1,364 @@
+{
+  "dataList": [
+    {
+      "id": 9103601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "突刺",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "割裂肉體",
+          "desc": "若目標的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加2層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加2層 [DefenseDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "作品名：伴隨心動週期的骨骼解放",
+          "desc": "自身本體每失去體力值上限20%的體力，則使本技能的基礎威力+1(最多+4)\n目標每帶有3級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WinDuel] 使目標增加2回 [Vibration]\n[DefeatDuel] 下回合對自身施加1層 [Paralysis]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身本體失去現存體力值30%的體力(該效果無法使自身陷入混亂；無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使 [Switch_Vibration] 為 [VibrationBleeding]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "肌肉收縮",
+          "desc": "[CanDuelGuard]\n[StartBattle] Gain 1 [MuscleContraction] next turn. When hit, gain 1 additional [MuscleContraction] (once per turn)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "戳擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕裂血管",
+          "desc": "若目標帶有的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1\n若目標帶有的負面效果不少於3種，則使本技能造成的傷害量+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "作品名：伴隨心動週期的骨骼解放",
+          "desc": "自身本體每失去體力值上限20%的體力，則使本技能的基礎威力+1(最多+4)\n目標每帶有3級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WinDuel] 使目標增加2回 [Vibration]\n[DefeatDuel] 下回合對自身施加1層 [Paralysis]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身本體失去現存體力值30%的體力(該效果無法使自身陷入混亂；無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使 [Switch_Vibration] 為 [VibrationBleeding]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103705,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "肌肉收縮",
+          "desc": "[CanDuelGuard]\n[StartBattle] Gain 1 [MuscleContraction] next turn. When hit, gain 1 additional [MuscleContraction] (once per turn)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "受縛的肌肉",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Desire]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕裂",
+          "desc": "若目標的 [Laceration] 強度不低於5級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Desire]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Desire]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "用慾望上色的作品",
+          "desc": "自身本體每失去體力值上限20%的體力，則使本技能的基礎威力+1(最多+4)\n目標每帶有3級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WinDuel] 使目標增加2回 [Vibration]\n[DefeatDuel] 下回合對自身施加1層 [Paralysis]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnStartCoin] 使自身本體失去現存體力值30%的體力(該效果無法使自身陷入混亂；無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Desire]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使 [Switch_Vibration] 為 [VibrationBleeding]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9103805,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "施壓的絲帶",
+          "desc": "[CanDuelGuard]\nWhen hit, inflict 1 [PinkRibbon_Ishmael] against the attacker (once per Skill)\n[StartBattle] Gain 1 [MuscleContraction] next turn. When hit, gain 1 additional [MuscleContraction] (once per turn)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

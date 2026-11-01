@@ -1,0 +1,67 @@
+{
+  "dataList": [
+    {
+      "id": 40000501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤斬",
+          "desc": "[WhenUse] 目標每帶有3回 [Burst]，則使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身獲得2回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身獲得2回 [Breath]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "醉睡浪浪",
+          "desc": "可無視速度值將攻擊目標改為自身\n[WhenUse] 自身每帶有3級 [Breath] 強度，則使本技能的基礎威力+1(最多+3)\n[WhenUse] 目標每帶有1種負面狀態，則使本技能的基礎威力+3(最多+9)\n[WhenUse] 下回合使自身獲得5層 [Agility] (每回合最多1次)\n[WhenUse] 使自身獲得10級 [Breath] 強度並使自身增加2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級 [Laceration] 強度與2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使本技能造成的傷害+300%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

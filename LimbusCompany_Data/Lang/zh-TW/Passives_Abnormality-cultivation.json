@@ -1,0 +1,89 @@
+{
+  "dataList": [
+    {
+      "id": 124701,
+      "name": "原黑獸 - 午 筆頭",
+      "desc": "Encounter Start: reset this unit's SP to -15 and gain 3 [LegStrengthHorse] and 1 [CrazyWei]\nTake -50% damage from [Combustion], [Laceration], [Vibration], [Burst], and [Sinking] (rounded down)\n\nIf this unit hits with a Cracked [SuperCoin], it does not activate the target's [Burst] effect (does not consume Count either)\n\nDeal +50% damage against Staggered enemies"
+    },
+    {
+      "id": 124702,
+      "name": "踏平一切……擊潰萬物",
+      "desc": "自身帶有 [LegStrengthHorse] 且自身命中並造成 [VibrationExplosion] 時，若目標為主要目標，則對目標施加1層 [ConcussionWei]"
+    },
+    {
+      "id": 124703,
+      "name": "魂飛中天",
+      "desc": "If this unit has [LegStrengthHorse], gain 1 [ReboundWei] when hitting with a Skill that triggers [VibrationExplosion] against targets without [Vibration] (does not gain any [ReboundWei] if its Stack is already maxed)\n\nTurn End: if this unit's [ReboundWei] Stack is maxed, consume all of it; then, lose 1 [LegStrengthHorse] next turn"
+    },
+    {
+      "id": 124704,
+      "name": "讓這骯髒的蛇鱗片甲不留……",
+      "desc": "回合開始時，自身每有2點速度值，則使自身獲得1層 [AttackUp] (最多2層)\n若自身的速度值不低於5，則額外使自身獲得1層 [SlashDamageUp] 與1層 [HitDamageUp]"
+    },
+    {
+      "id": 124705,
+      "name": "不知分寸，知道這裡是何處嗎……！",
+      "desc": "拚點失敗時，若與自身進行拚點的目標之硬幣為加算硬幣，則使目標恢復5點理智值；若目標的硬幣為減算硬幣，則使目標失去5點理智值(若目標的理智值不高於-40點，則不會觸發)。獲得目標使用之技能對應屬性的2個罪孽碎片。(每回合最多3次)\n- 若該技能為暴怒或暴食技能，則額外獲得持有量最少的2個罪孽碎片。"
+    },
+    {
+      "id": 127201,
+      "name": "受擊之時",
+      "desc": "戰鬥中自身受到傷害時，使本回合自身造成的傷害+20%\n戰鬥中自身拚點失敗時，使自身受到該技能的傷害+15%"
+    },
+    {
+      "id": 127202,
+      "name": "泥醉修行",
+      "desc": "自身每失去1%的體力，使自身造成的傷害+2%(最多+100%)"
+    },
+    {
+      "id": 127203,
+      "name": "只要有酒就沒什麼好怕的",
+      "desc": "Turn Start: at max [SipOfAlcoholJin] Stack, consume 2 of its Stack and gain [DrunkAwakening]"
+    },
+    {
+      "id": 127204,
+      "name": "醉掌之夜客",
+      "desc": "關卡開始時，使自身的理智值恢復至10點\n受到的 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 傷害-50%(無條件捨去)\n\n受到來自罪人的傷害-30%\n\n若上回合自身獲得的 [SipOfAlcoholJin] 層數不低於2層，則回合開始時自身每失去10%的體力，使自身恢復5點理智值(最多40點)\n\n模式轉換時，若自身陷入混亂，則解除自身的混亂"
+    },
+    {
+      "id": 127205,
+      "name": "血滴成河",
+      "desc": "回合結束時，若有敵方單位的 [Laceration] 強度不低於10級，則觸發該效果\n帶有 [Laceration] 的敵方單位，每帶有5級 [Laceration] 強度，則對其施加1層 [DrunkBlood] (每名敵方單位最多3次)"
+    },
+    {
+      "id": 124801,
+      "name": "對練結束",
+      "desc": "自身體力低於20%時結束戰鬥"
+    },
+    {
+      "id": 124901,
+      "name": "反轉電路",
+      "desc": "回合開始時，若自身的 [Charge] 回數低於10回，則消耗自身體力上限的5%體力並使自身獲得5回 [Charge]\n回合結束時，若自身的 [Charge] 回數不低於15回，則消耗5回 [Charge] 並使自身恢復自身體力上限的5%體力"
+    },
+    {
+      "id": 125001,
+      "name": "卸下些許負擔",
+      "desc": "回合開始時，使自身恢復5點理智值\n回合開始時，若自身的理智值不低於20點，則使自身獲得1層 [Enhancement]"
+    },
+    {
+      "id": 125002,
+      "name": "責任的重量",
+      "desc": "本場戰鬥中，若自身體力不高於體力上限的50%，則從下回合起，每回合使自身獲得2層 [AttackDmgUp]"
+    },
+    {
+      "id": 125101,
+      "name": "恐怖統治",
+      "desc": "若目標的理智值低於0點，則每低1點，使自身造成的傷害+3%"
+    },
+    {
+      "id": 125102,
+      "name": "變有趣囉？",
+      "desc": "目標被施加負面狀態時，使自身獲得1層 [AttackUp] 與1層 [DefenseUp]"
+    },
+    {
+      "id": 125103,
+      "name": "扭曲的決心",
+      "desc": "拚點勝利時，使自身恢復5點理智值\n拚點失敗時，使自身獲得1層 [Enhancement]"
+    }
+  ]
+}

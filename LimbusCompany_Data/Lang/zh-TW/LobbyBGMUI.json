@@ -1,0 +1,120 @@
+{
+  "dataList": [
+    {
+      "id": "ui_lobby_bgm_title_window",
+      "content": "玻璃窗BGM設定"
+    },
+    {
+      "id": "ui_lobby_bgm_title",
+      "content": "設定罪人BGM"
+    },
+    {
+      "id": "ui_bgm_ui_all_bgm_toggle",
+      "content": "全部曲目"
+    },
+    {
+      "id": "ui_bgm_ui_all_playlist_toggle",
+      "content": "播放清單"
+    },
+    {
+      "id": "ui_bgm_ui_all_bgm_list_title",
+      "content": "全部曲目清單"
+    },
+    {
+      "id": "ui_bgm_ui_all_bgm_list_desc",
+      "content": "※選擇的BGM將於玻璃窗隨機播放"
+    },
+    {
+      "id": "ui_settings_popup_tab_title_change_ui",
+      "content": "變更UI"
+    },
+    {
+      "id": "ui_settings_popup_tab_title_change_bgm",
+      "content": "變更BGM"
+    },
+    {
+      "id": "ui_playing_lobby_bgm",
+      "content": "玻璃窗默認BGM播放中"
+    },
+    {
+      "id": "ui_playing_character_bgm",
+      "content": "所選罪人BGM播放中"
+    },
+    {
+      "id": "buy_bgm",
+      "content": "購買BGM"
+    },
+    {
+      "id": "notice_not_enough_twine",
+      "content": "※紡錘不足。"
+    },
+    {
+      "id": "not_enough_twine",
+      "content": "紡錘不足"
+    },
+    {
+      "id": "ui_jukebox_title",
+      "content": "點唱機"
+    },
+    {
+      "id": "ui_open_jukebox_button",
+      "content": "點唱機"
+    },
+    {
+      "id": "ui_setting_character_bgm_button",
+      "content": "設定罪人BGM"
+    },
+    {
+      "id": "ui_lobby_bgm_should_get_from_vending_machine",
+      "content": "需要於自動販賣機購買BGM"
+    },
+    {
+      "id": "ui_lobby_bgm_acquired_after_chapter_clear",
+      "content": "混音帶"
+    },
+    {
+      "id": "ui_lobby_bgm_filter_owned",
+      "content": "已擁有"
+    },
+    {
+      "id": "ui_lobby_bgm_no_item_in_playlist",
+      "content": "播放清單內沒有任何曲目。"
+    },
+    {
+      "id": "ui_lobby_bgm_no_item_in_search_list",
+      "content": "沒有與該類別一致的BGM。"
+    },
+    {
+      "id": "ui_lobby_bgm_playlist_registered_desc_lobby_bgm",
+      "content": "播放清單({0}/{1})"
+    },
+    {
+      "id": "ui_lobby_bgm_playlist_registered_desc_jukebox",
+      "content": "播放清單({0}/{1})"
+    },
+    {
+      "id": "ui_lobby_bgm_playlist_title",
+      "content": "播放清單"
+    },
+    {
+      "id": "ui_lobby_bgm_add_failed_by_empty_character",
+      "content": "請在設置BGM前選擇罪人。"
+    },
+    {
+      "id": "ui_lobby_bgm_add_failed_by_playlist_filled",
+      "content": "無法再添加更多曲目至播放清單"
+    },
+    {
+      "id": "ui_lobby_bgm_acquired_after_chapter_clear_with_condition",
+      "content": "混音帶 {0}"
+    },
+    {
+      "id": "ui_setting_lobby_bgm_button",
+      "content": "玻璃窗BGM設定"
+    },
+    {
+      "id": "ui_setting_dynamic_ui_select_clear",
+      "content": "重置選擇"
+    }
+  ]
+}

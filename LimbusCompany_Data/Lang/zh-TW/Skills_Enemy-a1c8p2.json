@@ -1,0 +1,830 @@
+{
+  "dataList": [
+    {
+      "id": 9021001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 揮砍",
+          "desc": "[WhenUse] 使自身獲得2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 橫掃",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 粉碎",
+          "desc": "[WhenUse] 消耗5回 [Charge] 並使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 若本技能消耗的 [Charge] 回數不低於5回，則使本技能增加的 [Burst] 強度額外+1級\n[BeforeAttack] 若本技能消耗了10回 [Charge]，則使目標增加3回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使用本技能時每消耗了5回 [Charge]，則使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 順流而行",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 劈砍",
+          "desc": "[WhenUse] 使自身獲得2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 纏繞",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 爆碎",
+          "desc": "[WhenUse] 消耗5回 [Charge] 並使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 若本技能消耗的 [Charge] 回數不低於5回，則使本技能增加的 [Burst] 強度額外+1級\n[BeforeAttack] 若本技能消耗了10回 [Charge]，則使目標增加3回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使用本技能時每消耗了5回 [Charge]，則使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 順流而行",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 劈碎",
+          "desc": "[WhenUse] 使自身獲得2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 捲碎",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 破碎",
+          "desc": "[WhenUse] 消耗5回 [Charge] 並使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 若本技能消耗的 [Charge] 回數不低於5回，則使本技能增加的 [Burst] 強度額外+2級\n[BeforeAttack] 若本技能消耗了10回 [Charge]，則使目標增加3回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成等同於其 [Burst] 強度的暴食傷害，並使其 [Burst] 回數減少1回(最多30)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充斧流 - 匯流",
+          "desc": "[WhenUse] 使自身獲得5回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "衝撞",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "引發騷亂",
+          "desc": "[WhenUse] 若目標帶有的 [Burst] 強度不低於4級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得2層 [DefenseUp]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "掙扎突刺",
+          "desc": "[StartBattle] 若自身體力不高於50%，則使本技能中的第三枚硬幣轉換為 [SuperCoin]\n[WhenUse] 目標每帶有4級 [Burst] 強度，使本技能的拚點威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度與3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[WinDuelAttack] 使自身恢復體力上限的(自身的 [DefenseUp] 層數)%的體力(最多10%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蜷縮",
+          "desc": "[WhenUse] 使自身獲得等同於體力上限10%的護盾 ",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "衝撞",
+          "desc": "",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "引發騷亂",
+          "desc": "[WhenUse] 若目標帶有的 [Burst] 強度不低於4級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使除自身以外現存體力比例最低的1名友方單位恢復自身體力上限5%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "掙扎踹擊",
+          "desc": "[StartBattle] 若自身體力不高於50%，則使本技能中的第三枚硬幣轉換為 [SuperCoin]\n[WhenUse] 目標每帶有4級 [Burst] 強度，使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[WinDuelAttack] 使包括自身在內現存體力比例最低的2名友方單位恢復自身體力上限10%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蜷縮",
+          "desc": "[OnSucceedEvade] 使目標增加2層 [Burst] (每回合最多2次)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "衝撞",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "引發騷亂",
+          "desc": "[WhenUse] 若目標帶有的 [Burst] 強度不低於4級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "掙扎揮擊",
+          "desc": "[StartBattle] 若自身體力不高於50%，則使本技能中的第三枚硬幣轉換為 [SuperCoin]\n[WhenUse] 目標每帶有4級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣造成的傷害+(自身已失去的體力比例)%(最多+50%)"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 重複使用本技能(最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蜷縮",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 符擊",
+          "desc": "[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 效力發動",
+          "desc": "[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 消耗目標2層 [OminousTalisman]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 詛咒人偶",
+          "desc": "[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗目標5層 [OminousTalisman]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 防禦",
+          "desc": "[StartBattle] 使自身獲得(20-自身的理智值)點護盾(最少0點，最多20點)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 符擊",
+          "desc": "[WhenUse] 若目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 效力發動",
+          "desc": "[WhenUse] 若目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 消耗目標3層 [OminousTalisman]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 執行",
+          "desc": "[StartBattle] 若自身理智值不高於-30點，則使本技能的最後一枚硬幣轉換為 [SuperCoin]\n[DefeatDuel] 使本技能的基礎威力減少75%(無條件捨去)\n[WhenUse] 目標每帶有4級 [Burst] 強度，則使本技能的最終威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗目標5層 [OminousTalisman]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 邪氣爆發",
+          "desc": "[StartBattle] 自身每帶有-10點理智值，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能的基礎威力減少75%(無條件捨去)，且本技能造成的傷害或效果不會使目標陷入混亂\n[EndSkill] 使自身的理智值重置為0點",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度與3回 [Burst]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗目標所有 [OminousTalisman]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9020905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "符靈術 - 防禦",
+          "desc": "[StartBattle] 使自身獲得(20-自身的理智值)點護盾(最少0點，最多40點)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    }
+  ]
+}

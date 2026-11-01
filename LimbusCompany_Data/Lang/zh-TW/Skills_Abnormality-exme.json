@@ -1,0 +1,1224 @@
+{
+  "dataList": [
+    {
+      "id": 144801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "繫緊捕繩",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和不低於6級，則使本技能的基礎威力+1\n[WhenUse] 使自身獲得3回 [Breath]\n- 若自身的速度值高於目標，則使自身額外獲得1回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [ScratchesHurt]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬斷肌腱",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和不低於6級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能最後一枚硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得2級 [Breath] 強度與3回 [Breath]\n[WhenUse] 若自身的速度值高於目標，使自身獲得3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [ScratchesHurt]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "大卸八塊",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得3級 [Breath] 強度\n[WinDuel] 使自身獲得2級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [ScratchesHurt]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合對目標施加1層 [ScratchesHurt]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "打上烙印",
+          "desc": "優先指定帶有 [TiedRope] 的目標\n若自身的速度值高於目標，則每差1點速度值，使本技能造成的傷害+25%(最多+100%)\n[WhenUse] 自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144805,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "阻截逃脫",
+          "desc": "[DuelCounter]\n[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 使自身獲得3級 [Breath] 強度\n[WinDuel] 使自身獲得3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [ScratchesHurt]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "鎮壓",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和不低於6級，則使本技能的基礎威力+1\n[WhenUse] 使自身獲得3回 [Breath]\n- 若自身的速度值高於目標，則使自身額外獲得1回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "絞扼咽喉",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]\n[WhenUse] 若自身的速度值高於目標，使自身獲得3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "執行推刷",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得3級 [Breath] 強度\n[WinDuel] 使自身獲得2級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 本回合與下回合中，對目標施加3層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] (目標帶有的 [Binding] 層數×20%)的機率對目標施加 [TiedRope]\n- 若目標陷入混亂，則必定施加"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "打上烙印",
+          "desc": "優先指定帶有 [TiedRope] 的目標\n若自身的速度值高於目標，則每差1點速度值，使本技能造成的傷害+25%(最多+100%)\n[WhenUse] 自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 144905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "攔截退路",
+          "desc": "[DuelCounter]\n[WhenUse] 若自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 使自身獲得3級 [Breath] 強度\n[WinDuel] 使自身獲得3回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "稜角突刺",
+          "desc": "[WhenUse] 下回合使自身獲得1層 [Agility] (每回合最多1次)\n若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於6級，則使本技能的基礎威力+1 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "重壓強擊",
+          "desc": "[WhenUse] 下回合使自身獲得2層 [Agility] (每回合最多1次)\n若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "固定拍攝對象",
+          "desc": "若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                },
+                {
+                  "desc": "[EndCoin] 下回合對目標施加1層 [TakePicture]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "瞬間捕捉",
+          "desc": "[DuelCounter]\n若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於4級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [AttackDown]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                },
+                {
+                  "desc": "[EndCoin] 下回合對目標施加1層 [TakePicture]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "鐵板強擊",
+          "desc": "[WhenUse] 下回合使自身獲得1層 [Agility] (每回合最多1次)\n若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於6級，則使本技能的基礎威力+1 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "釘頭敲擊",
+          "desc": "[WhenUse] 下回合使自身獲得2層 [Agility] (每回合最多1次)\n若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "固定焦點",
+          "desc": "若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [LensmanNail]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                },
+                {
+                  "desc": "[EndCoin] 下回合對目標施加 [TakePicture]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "瞬間捕捉",
+          "desc": "[DuelCounter]\n若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於4級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 若自身的速度值高於目標，則使本技能全部的硬幣轉變為 [SuperCoin]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [AttackDown]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                },
+                {
+                  "desc": "[EndCoin] 下回合對目標施加 [TakePicture]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裂牛",
+          "desc": "[WhenUse] 使自身獲得3級 [Breath] 強度\n[WhenUse] 若目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裂熊",
+          "desc": "[WhenUse] 使自身獲得3回 [Breath]\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能所有的硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斷熊",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於8級，則使本技能暴擊時造成的傷害+40%\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若自身的 [ChoiSwordsmanship] 層數不低於7層，則使本技能所有的硬幣轉變為 [SuperCoin]、暴擊時造成的傷害+20%</color></mark></b></u>\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [SlashResistDown]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145005,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國劍範 - 肉斬",
+          "desc": "[WhenUse] 使自身獲得3級 [Breath] 強度\n[WhenUse] 若目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145006,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "獵虎",
+          "desc": "[WhenUse] 使自身獲得3回 [Breath]\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能所有的硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145007,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裂虎",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於8級，則使本技能暴擊時造成的傷害+40%\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若自身的 [ChoiSwordsmanship] 層數不高於3層，則使本技能所有的硬幣轉變為 [SuperCoin]、暴擊時造成的傷害+20%</color></mark></b></u>\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [SlashResistDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145009,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國劍術[肉] - 重擺架勢",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n對於支援單位，本技能 [CantDuel]\n優先指定罪人\n若目標的技能為 [SupportProtect] 專用技能，則使本技能的硬幣轉變為 [SuperCoin]\n[StartDuel] <color=#ff6000><mark color=#ff000040><b><u>使自身失去3層 [ChoiSwordsmanship]</color></mark></b></u>\n- 若目標的技能為 [SupportProtect] 專用技能，則不觸發此效果\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>單方面攻擊或攻擊命中了使用 [SupportProtect] 的目標時，使自身獲得2層 [ChoiSwordsmanship]</color></mark></b></u>",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145010,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國劍術[肉] - 磨礪鋒刃",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n對於支援單位，本技能 [CantDuel]\n優先指定罪人\n若目標的技能為 [SupportProtect] 專用技能，則使本技能的硬幣轉變為 [SuperCoin]\n[StartDuel] <color=#ff6000><mark color=#ff000040><b><u>使自身獲得3層 [ChoiSwordsmanship]</color></mark></b></u>\n- 若目標的技能為 [SupportProtect] 專用技能，則不觸發此效果\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>單方面攻擊或攻擊命中了使用 [SupportProtect] 的目標時，使自身失去2層 [ChoiSwordsmanship]</color></mark></b></u>",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145011,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國弓術[肉] - 有的放矢",
+          "desc": "<color=#ff6000><mark color=#ff000040><b><u>優先指定 [Laceration] 強度最高的敵方單位</color></mark></b></u>\n本技能不受 [ChoiSwordsmanship] 影響\n[WhenUse] 消耗自身3級 [Breath] 強度並使本技能的最終威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度與4回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標的混亂閾值前移10點"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加3層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145012,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n[StartBattle] 使自身獲得5級 [Breath] 強度與5回 [Breath]\n[WhenUse] 下回合使自身獲得2層 [CriticalDamageUp]",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145013,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n[StartBattle] 使自身獲得5級 [Breath] 強度與5回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裂牛",
+          "desc": "[WhenUse] 使自身獲得3級 [Breath] 強度\n[WhenUse] 若目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裂熊",
+          "desc": "[WhenUse] 使自身獲得3回 [Breath]\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能所有的硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斷熊",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於8級，則使本技能暴擊時造成的傷害+40%\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [ChoiSwordsmanship] 層數超過6層，則每超過1層，使本技能的<noparse>最終威力增加</noparse>(最多+3)\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若自身的 [ChoiSwordsmanship] 層數不低於7層，則使本技能所有的硬幣轉變為 [SuperCoin]、暴擊時造成的傷害+20%</color></mark></b></u>\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [SlashResistDown]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "劍鋒之下山君亦斷",
+          "desc": "優先指定 [Laceration] 強度最高的敵方單位\n[WhenUse] 直到本技能結束時，自身不會因受到傷害而陷入混亂\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身的 [ChoiSwordsmanship] 層數超過6層，則每超過1層，使本技能的最終威力+2(最多+6)\n[WinDuel] <color=#ff6000><mark color=#ff000040><b><u>本技能不消耗 [Breath] 回數，硬幣必定朝向正面且必定暴擊命中</color></mark></b></u>\n[BeforeAttack] 自身每帶有2層 [ChoiSwordsmanship]，則使本技能暴擊時造成的傷害+20%(最多+80%)\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標造成本硬幣最終傷害量(自身的 [Breath] 強度×10)%的斬擊傷害(最多100%)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標造成本硬幣最終傷害量(目標的 [Laceration] 強度×10)%的色慾傷害(最多100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 1次。並使目標減少1回 [Laceration] "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國劍範 - 肉斬",
+          "desc": "[WhenUse] 使自身獲得3級 [Breath] 強度\n[WhenUse] 若目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "獵虎",
+          "desc": "[WhenUse] 使自身獲得3回 [Breath]\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能所有的硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145107,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "裂虎",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於8級，則使本技能暴擊時造成的傷害+40%\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若自身的 [ChoiSwordsmanship] 層數不高於3層，則使本技能所有的硬幣轉變為 [SuperCoin]、暴擊時造成的傷害+20%</color></mark></b></u>\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 本回合與下回合中，對目標施加1層 [SlashResistDown]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145108,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斷盡山虎之軀",
+          "desc": "優先指定 [Laceration] 強度最高的敵方單位\n<color=#ff6000><mark color=#ff000040><b><u>可無視速度值與本技能拚點</color></mark></b></u>\n[WhenUse] 直到本技能結束時，自身不會因受到傷害而陷入混亂\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WinDuel] <color=#ff6000><mark color=#ff000040><b><u>本技能不消耗 [Breath] 回數，硬幣必定朝向正面且必定暴擊命中</color></mark></b></u>\n[BeforeAttack] 自身每帶有2級 [Breath] 強度，則使本技能暴擊時造成的傷害+20%(最多+80%)\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能不會觸發暴擊\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 1次。並使目標減少1回 [Laceration] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 1次。並使目標減少1回 [Laceration] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 1次。並使目標減少1回 [Laceration] "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若主要目標的 [Laceration] 強度不低於10級，則使本硬幣命中的目標增加8回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加8回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145109,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國劍術[肉] - 重擺架勢",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n對於支援單位，本技能 [CantDuel]\n優先指定罪人\n若目標的技能為 [SupportProtect] 專用技能，則使本技能的硬幣轉變為 [SuperCoin]\n[StartDuel] <color=#ff6000><mark color=#ff000040><b><u>使自身失去3層 [ChoiSwordsmanship]</color></mark></b></u>\n- 若目標的技能為 [SupportProtect] 專用技能，則不觸發此效果\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>單方面攻擊或攻擊命中了使用 [SupportProtect] 的目標時，使自身獲得2層 [ChoiSwordsmanship]</color></mark></b></u>",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145110,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國劍術[肉] - 磨礪鋒刃",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n對於支援單位，本技能 [CantDuel]\n優先指定罪人\n若目標的技能為 [SupportProtect] 專用技能，則使本技能的硬幣轉變為 [SuperCoin]\n[StartDuel] <color=#ff6000><mark color=#ff000040><b><u>使自身獲得3層 [ChoiSwordsmanship]</color></mark></b></u>\n- 若目標的技能為 [SupportProtect] 專用技能，則不觸發此效果\n[EndSkill] <color=#ff6000><mark color=#ff000040><b><u>單方面攻擊或攻擊命中了使用 [SupportProtect] 的目標時，使自身失去2層 [ChoiSwordsmanship]</color></mark></b></u>",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145111,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "本國弓術[肉] - 有的放矢",
+          "desc": "<color=#ff6000><mark color=#ff000040><b><u>優先指定 [Laceration] 強度最高的敵方單位</color></mark></b></u>\n本技能不受 [ChoiSwordsmanship] 影響\n[WhenUse] 消耗自身3級 [Breath] 強度並使本技能的最終威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度與4回 [Laceration]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標的混亂閾值前移10點"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加3層 [Vulnerable]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145112,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n[StartBattle] 使自身獲得5級 [Breath] 強度與5回 [Breath]\n[WhenUse] 下回合使自身獲得2層 [CriticalDamageUp]",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 145113,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "反擊",
+          "desc": "本技能不受 [ChoiSwordsmanship] 影響\n[StartBattle] 使自身獲得5級 [Breath] 強度與5回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

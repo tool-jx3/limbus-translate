@@ -1,0 +1,184 @@
+{
+  "dataList": [
+    {
+      "id": 9840,
+      "name": "W公司制式帽子",
+      "desc": "使用獲得 [Charge] 回數或特殊充能回數的技能後，獲得相應的 [EmergencyChargeForceField] 層數(每名人格最多7層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9840,
+          "simpleDesc": "獲得緊急力場電池"
+        }
+      ]
+    },
+    {
+      "id": 9841,
+      "name": "C型清掃人員裝備套組",
+      "desc": "使用獲得 [Charge] 回數或特殊充能回數的技能後，獲得相應的 [EmergencyChargeForceField] 層數(每名人格最多7層)\n\n消耗 [Charge] 回數或特殊充能回數的技能造成的傷害+(隊伍中編入的具有消耗或獲得 [Charge] 回數與特殊充能技能的人格數量)%(包含編隊中所有人格)\n\n使獲得或消耗 [Charge] 回數或特殊充能回數的1技能拚點威力+3、造成的傷害+15%\n- 使用該技能時，令使用技能的單位獲得4回 [Charge] 與1層 [ChargeForceField] (每名人格每回合最多1次)\n\n屬於W公司的人格獲得以下效果\n- 自身使用技能(包含E.G.O技能)對敵方單位造成傷害時，對其施加2層 [TakeHpHealReduce] (無法疊加)\n- 戰鬥中，自身受到除技能直接傷害以外的體力傷害時，使自身獲得5層 [ChargeForceField] (每名人格每回合最多1次)\n- 自身2技能的拚點威力+3、造成的傷害+15%\n- 回合開始時，本回合使自身3技能造成的傷害+(戰場上屬於W公司的人格數×6.25)%\n- 回合開始時，使屬於W公司 2級 員工的單位獲得1層 [PlusCoinValueUp]\n- 回合開始時，使自身獲得(戰場上屬於W公司的人格數÷3)層 [ChargeLoad] (最多2層，無條件捨去)\n使最早編入且擁有施加 [DimensionRift] 的基礎技能的人格中，不屬於W公司的1名人格視作屬於W公司的人格",
+      "simpleDesc": [
+        {
+          "abilityID": 9841,
+          "simpleDesc": "獲得緊急力場電池"
+        },
+        {
+          "abilityID": 98411,
+          "simpleDesc": "增加或消耗充能回數的技能造成的傷害增加"
+        },
+        {
+          "abilityID": 98412,
+          "simpleDesc": "使技能1的拚點威力、造成的傷害增加並獲得充能回數與充能力場"
+        },
+        {
+          "abilityID": 98413,
+          "simpleDesc": "施加體力恢復降低"
+        },
+        {
+          "abilityID": 98414,
+          "simpleDesc": "獲得充能力場"
+        },
+        {
+          "abilityID": 98415,
+          "simpleDesc": "技能2的拚點威力、造成的傷害增加"
+        },
+        {
+          "abilityID": 98416,
+          "simpleDesc": "3技能造成的傷害增加"
+        },
+        {
+          "abilityID": 98417,
+          "simpleDesc": "賦予加算硬幣威力增加"
+        },
+        {
+          "abilityID": 98418,
+          "simpleDesc": "獲得負荷 "
+        }
+      ]
+    },
+    {
+      "id": 9842,
+      "name": "由血成肉，由肉成血",
+      "desc": "根據編隊中具有消耗 [BloodDinner] 的攻擊技能人格數強化飾品效果(不包含E.G.O技能，包含編入人員)\n\n波次的首個回合開始時，生成(編入人格數×20)層 [BloodDinner]，並使所有目標增加3級 [Laceration] 強度與3回 [Laceration] (波次的首個回合生成的 [BloodDinner] 最多100層)\n\n友方單位受到來自 [Laceration] 造成的傷害-(編入人格數×10)%( [Laceration] 造成的傷害不會低於1點；最多-40%)\n- 減少的傷害不會影響 [BloodDinner] 的儲存層數\n\n敵方單位受到來自 [Laceration] 造成的傷害+(編入人格數×5)%(最多+20%)",
+      "simpleDesc": [
+        {
+          "abilityID": 9842,
+          "simpleDesc": "獲得血宴並增加流血強度與流血回數"
+        },
+        {
+          "abilityID": 98421,
+          "simpleDesc": "受到的流血傷害減少"
+        },
+        {
+          "abilityID": 98422,
+          "simpleDesc": "造成的流血傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9843,
+      "name": "硬血長柄刀",
+      "desc": "根據編隊中具有消耗 [BloodDinner] 的攻擊技能人格數強化飾品效果(不包含E.G.O技能，包含所有編隊人員)\n\n關卡開始時，使所有友方單位獲得(編入人格數-2)層 [BloodArmorCasting] (最多3層)",
+      "simpleDesc": [
+        {
+          "abilityID": 9843,
+          "simpleDesc": "獲得硬血澆鑄"
+        }
+      ]
+    },
+    {
+      "id": 9205,
+      "name": "全血燒瓶",
+      "desc": "擊殺敵方單位時，生成(該敵方單位體力上限÷10)層 [BloodDinner] (最多50層)\n回合結束時，若本回合有友方單位陣亡，則下回合使全體友方單位獲得2層 [Enhancement]",
+      "simpleDesc": [
+        {
+          "abilityID": 9205,
+          "simpleDesc": "生成血宴"
+        },
+        {
+          "abilityID": 92051,
+          "simpleDesc": "獲得強壯"
+        }
+      ]
+    },
+    {
+      "id": 9206,
+      "name": "血香到來",
+      "desc": "戰鬥開始前，若體力最低的友方單位使用增加 [Laceration] 強度或施加特殊流血的攻擊技能命中目標時，使其恢復其體力上限3%的體力(每回合最多2次)\n\n使用增加 [Laceration] 強度或施加特殊流血的攻擊技能時拚點時，若敵方帶有 [Laceration] 強度或特殊流血，則使該技能的拚點威力+1\n- 若隊伍中具有增加 [Laceration] 強度或施加特殊流血的攻擊技能的人格不低於5名，則改為拚點威力+1、造成的傷害+10% (包含編入人員)\n- 若人格數不低於10名，則改為拚點威力+2、造成的傷害+15%",
+      "simpleDesc": [
+        {
+          "abilityID": 9206,
+          "simpleDesc": "恢復體力"
+        },
+        {
+          "abilityID": 92061,
+          "simpleDesc": "增加拚點威力或造成的傷害增加"
+        }
+      ]
+    },
+    {
+      "id": 9818,
+      "name": "廢棄的次元護手",
+      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，該回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9818,
+          "simpleDesc": "使最低的物理抗性增加"
+        }
+      ]
+    },
+    {
+      "id": 19818,
+      "name": "廢棄的次元護手+",
+      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，該回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)\n<style=\"upgradeHighlight\">- 額外施加1層 [VioletResistDown]</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 19818,
+          "simpleDesc": "使最低的物理抗性增加"
+        }
+      ]
+    },
+    {
+      "id": 29818,
+      "name": "廢棄的次元護手++",
+      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，該回合內使該敵方單位最低的物理抗性+0.1(每回合最多<style=\"upgradeHighlight\">2</style>次)\n- 額外施加1層 [VioletResistDown] 與<style=\"upgradeHighlight\">1層 [AzureResistDown]</style>",
+      "simpleDesc": [
+        {
+          "abilityID": 29818,
+          "simpleDesc": "使最低的物理抗性增加"
+        }
+      ]
+    },
+    {
+      "id": 9817,
+      "name": "藍星碎片",
+      "desc": "使士氣低落或陷入恐慌的敵方單位技能最終威力-1(若為沒有理智值的敵方單位，則改為該單位的 [Sinking] 強度不低於25級時觸發本效果)\n- 透過使用增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的技能對敵方單位造成傷害時，下回合對敵方單位施加2層 [DefenseDown] (每回合最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9817,
+          "simpleDesc": "使技能的最終威力減少，命中時施加防禦等級降低"
+        }
+      ]
+    },
+    {
+      "id": 19817,
+      "name": "藍星碎片+",
+      "desc": "使士氣低落或陷入恐慌的敵方單位技能最終威力<style=\"upgradeHighlight\">-2</style>(若為沒有理智值的敵方單位，則改為該單位的 [Sinking] 強度不低於<style=\"upgradeHighlight\">15</style>級時觸發本效果)\n- 透過使用增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的技能對敵方單位造成傷害時，下回合對敵方單位施加<style=\"upgradeHighlight\">3</style>層 [DefenseDown] (每回合最多2次)",
+      "simpleDesc": [
+        {
+          "abilityID": 19817,
+          "simpleDesc": "使技能的最終威力減少，命中時施加防禦等級降低"
+        }
+      ]
+    },
+    {
+      "id": 29817,
+      "name": "藍星碎片++",
+      "desc": "使士氣低落或陷入恐慌的敵方單位技能最終威力<style=\"upgradeHighlight\">-3</style>(若為沒有理智值的敵方單位，則改為該單位的 [Sinking] 強度不低於<style=\"upgradeHighlight\">10</style>級時觸發本效果)\n- 透過使用增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的技能對敵方單位造成傷害時，下回合對敵方單位施加3層 [DefenseDown] (每回合最多<style=\"upgradeHighlight\">3</style>次)",
+      "simpleDesc": [
+        {
+          "abilityID": 29817,
+          "simpleDesc": "使技能的最終威力減少，命中時施加防禦等級降低"
+        }
+      ]
+    }
+  ]
+}

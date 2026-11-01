@@ -1,0 +1,124 @@
+{
+  "dataList": [
+    {
+      "id": "get_10807_1",
+      "desc": "獲得時",
+      "dlg": "哈啊，請不要靠近。我還有好多螃蟹要捕獲。還有……你可能會濺到螃蟹的內臟。"
+    },
+    {
+      "id": "lobby_morning_10807_1",
+      "desc": "晨間問候",
+      "dlg": "早上必須努力動起來。我也必須提早抓好晚飯要吃的，還要留下時間喝酒。"
+    },
+    {
+      "id": "lobby_noon_10807_1",
+      "desc": "午間問候",
+      "dlg": "呼……真是悶熱。你知道嗎？正午的時候，這裡會湧上十分糟糕的溼氣和魚腥味。很煩人吧？"
+    },
+    {
+      "id": "lobby_night_10807_1",
+      "desc": "晚間問候",
+      "dlg": "太陽落山了，差不多可以休息了。正好……是我珍藏的酒泡好的日子！呼呼。"
+    },
+    {
+      "id": "smalltalk_10807_1",
+      "desc": "對話 1",
+      "dlg": "如果天氣稍微涼快一點就會輕鬆許多了，嗚……"
+    },
+    {
+      "id": "smalltalk_10807_2",
+      "desc": "對話 2",
+      "dlg": "Hey... Be careful with that crab driver. It's got a makeshift mod with scraps, so it could break your bones if you're not careful."
+    },
+    {
+      "id": "smalltalk_10807_3",
+      "desc": "對話 3",
+      "dlg": "Oh, what am I doing? Uh, we have to pull the scraps off the trash crabs first before processing them... That's how we make new stuff with the scrap, run the workshop, and cook us up dinner."
+    },
+    {
+      "id": "smalltalk_10807_4",
+      "desc": "同步後對話 1",
+      "dlg": "說起來……那個大傢伙曾經爬到了我們工坊所在的地方。它把那些幫我們從零開始的人全都殺掉之後……悠悠地走掉了。\n嘛，我也並沒有特別恨它。那個大傢伙也是，我也是，只是在為生存而戰。……我連那是不是同一個都不知道。"
+    },
+    {
+      "id": "smalltalk_10807_5",
+      "desc": "同步後對話 2",
+      "dlg": "唔～嗯。不用那麼全神貫注，偶爾一起喝一杯怎麼樣？"
+    },
+    {
+      "id": "gacksung_10807_1",
+      "desc": "進行同步",
+      "dlg": "Hup... I made a few modifications to the crab driver. I might try using this one to get the big guy."
+    },
+    {
+      "id": "neglect_10807_1",
+      "desc": "閒置",
+      "dlg": "呼……好悶……"
+    },
+    {
+      "id": "formation_10807_1",
+      "desc": "人格出戰",
+      "dlg": "各位，工具都帶了吧。"
+    },
+    {
+      "id": "battleentry_10807_1",
+      "desc": "進入戰鬥",
+      "dlg": "潛水準備完畢。"
+    },
+    {
+      "id": "battle_select_10807_1",
+      "desc": "戰鬥中選中人格",
+      "dlg": "怎麼了？"
+    },
+    {
+      "id": "battle_endcommand_10807_1",
+      "desc": "進行攻擊",
+      "dlg": "刺穿你。"
+    },
+    {
+      "id": "battle_enemy_break_10807_1",
+      "desc": "敵方混亂",
+      "dlg": "站不穩了吧，暫時應該不能重新振作了。"
+    },
+    {
+      "id": "battle_break_10807_1",
+      "desc": "自身混亂",
+      "dlg": "噢……"
+    },
+    {
+      "id": "battle_kill_10807_1",
+      "desc": "擊殺敵方",
+      "dlg": "粉碎完畢。"
+    },
+    {
+      "id": "battle_dead_10807_1",
+      "desc": "自身陣亡",
+      "dlg": "啊……哈啊……就這樣結束了……嗎？"
+    },
+    {
+      "id": "choice_success_p_10807_2",
+      "desc": "判定成功",
+      "dlg": "好，成功了！"
+    },
+    {
+      "id": "choice_fail_n_10807_1",
+      "desc": "判定失敗",
+      "dlg": "沒辦法估計啊，這個……"
+    },
+    {
+      "id": "battle_clear_10807_1",
+      "desc": "戰鬥勝利",
+      "dlg": "快點回去洗澡休息吧。"
+    },
+    {
+      "id": "battle_clear_ex_10807_1",
+      "desc": "EX CLEAR戰鬥勝利",
+      "dlg": "嗯……這樣一來報酬十分可觀呢。大家一起去吃陸產肉類吧？"
+    },
+    {
+      "id": "battle_defeat_10807_1",
+      "desc": "戰鬥失敗",
+      "dlg": "哈啊……這樣我就必須交違約金了對吧？"
+    }
+  ]
+}

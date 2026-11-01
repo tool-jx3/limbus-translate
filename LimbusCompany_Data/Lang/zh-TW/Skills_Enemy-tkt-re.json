@@ -1,0 +1,228 @@
+{
+  "dataList": [
+    {
+      "id": 9102401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你有良心嗎？",
+          "desc": "[WhenUse] 對自身施加2回 [Vibration]\n[WhenUse] 若自身的 [Vibration] 回數不低於5回，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你沒良心啊",
+          "desc": "[WhenUse] 對自身施加2回 [Vibration]\n[WhenUse] 若自身的 [Vibration] 回數不低於5回，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "保護得了他們嗎？",
+          "desc": "[WhenUse] 對自身施加2回 [Vibration]\n[WhenUse] 若自身的 [Vibration] 回數不低於5回，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使目標的 [Vibration] 回數減少1回"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "你那武器報廢了吧？",
+          "desc": "[WhenUse] 對自身施加3回 [Vibration]\n[WhenUse] 若自身的 [Vibration] 回數不低於5回，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102405,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "準備好了？",
+          "desc": "優先指定帶有 [VibrationCollapse] 的目標\n[WhenUse] 根據自身帶有的 [Vibration] 回數，對除了自身以外的全體友方單位施加相應回數的 [Vibration]\n[WhenUse] 使包括自身在內的全體友方單位的 [Vibration] [Switch_Vibration] 為 [VibrationDistribution]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加10級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標以 [VibrationEcho] [FusionVibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102406,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "[StartBattle] 使自身獲得5×(自身的 [Vibration] 回數)點護盾體力(最多60點)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9102407,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "為了我們的事業",
+          "desc": "[CantDuel]\n[StartBattle] Draw all other allies' [Vibration] Count to self; [Vibration] on all allies expire\n[StartBattle] Gain 1 [AttackUp] for every 3 [Vibration] Count on self\n[WhenUse] Gain 10 [Vibration] Count",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加10級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1回 [Vibration]，對目標追加20%的怠惰傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1回 [Vibration]，對目標追加20%的怠惰傷害"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 消耗自身的1回 [Vibration] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗自身的1回 [Vibration] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗自身的1回 [Vibration] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

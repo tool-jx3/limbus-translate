@@ -1,0 +1,552 @@
+{
+  "dataList": [
+    {
+      "id": "project_gs_button_label_open_lesson_ui",
+      "content": "選擇課程"
+    },
+    {
+      "id": "project_gs_button_label_progress_lesson",
+      "content": "開始授課"
+    },
+    {
+      "id": "project_gs_button_label_open_battle",
+      "content": "中間審查"
+    },
+    {
+      "id": "project_gs_stats_wisdom",
+      "content": "智"
+    },
+    {
+      "id": "project_gs_stats_courage",
+      "content": "勇"
+    },
+    {
+      "id": "project_gs_stats_benevolence",
+      "content": "仁"
+    },
+    {
+      "id": "project_gs_stats_wisdom_with_char",
+      "content": "智"
+    },
+    {
+      "id": "project_gs_stats_courage_with_char",
+      "content": "勇"
+    },
+    {
+      "id": "project_gs_stats_benevolence_with_char",
+      "content": "仁"
+    },
+    {
+      "id": "project_gs_condition",
+      "content": "士氣"
+    },
+    {
+      "id": "project_gs_day",
+      "content": "第{0}日"
+    },
+    {
+      "id": "project_gs_schedule_label",
+      "content": "日程表"
+    },
+    {
+      "id": "project_gs_desc_select_lesson",
+      "content": "請選擇課程"
+    },
+    {
+      "id": "project_gs_condition_highest",
+      "content": "最高"
+    },
+    {
+      "id": "project_gs_condition_high",
+      "content": "高"
+    },
+    {
+      "id": "project_gs_condition_medium",
+      "content": "良好"
+    },
+    {
+      "id": "project_gs_condition_low",
+      "content": "低"
+    },
+    {
+      "id": "project_gs_condition_lowest",
+      "content": "最低"
+    },
+    {
+      "id": "project_gs_title_grow_up",
+      "content": "養成"
+    },
+    {
+      "id": "project_gs_title_schedule",
+      "content": "日程表選擇"
+    },
+    {
+      "id": "project_gs_lesson_level_1",
+      "content": "初階"
+    },
+    {
+      "id": "project_gs_lesson_level_2",
+      "content": "中階"
+    },
+    {
+      "id": "project_gs_lesson_level_3",
+      "content": "高階"
+    },
+    {
+      "id": "project_gs_jia_xichun_name",
+      "content": "賈惜春"
+    },
+    {
+      "id": "project_gs_sinclair_name",
+      "content": "辛克萊"
+    },
+    {
+      "id": "project_gs_exp",
+      "content": "經驗值"
+    },
+    {
+      "id": "project_gs_combo",
+      "content": "聯合"
+    },
+    {
+      "id": "project_gs_fixed_lesson",
+      "content": "固定課程"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_1_critical_success",
+      "content": "和自己的內心對話了，是段寶貴的時間！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_1_success",
+      "content": "注視鏡子，知道了如何更坦率地表達自我！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_1_normal",
+      "content": "勉強地反思了自我。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_1_failure",
+      "content": "一直看著鏡子，對自己的身姿感到不自然……變得有些害怕，上課時無法集中。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_1_critical_failure",
+      "content": "鏡中的我是自己抑或他人呢……只是靜靜地看著鏡子直到下課。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_2_critical_success",
+      "content": "憑藉學到的技術，仿造了浮士德帶來的設計圖中的機器！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_2_success",
+      "content": "竟然理解了舊H公司相關的技術原理！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_2_normal",
+      "content": "勉強地學習了各種技術和工程學相關知識。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_2_failure",
+      "content": "雖然學習了許多工程學的相關知識，但不複習的話很快就會忘光。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_2_critical_failure",
+      "content": "進度太快了……浮士德的授課內容大部分都沒有理解。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_3_critical_success",
+      "content": "沉浸在令人澎湃的收尾人冒險故事中，甚至忘了呼吸！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_3_success",
+      "content": "聽著精彩的冒險故事，甚至忘記了時間的流逝！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_3_normal",
+      "content": "勉強學到了與收尾人相關的知識。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_3_failure",
+      "content": "今天的冒險故事有點無聊，但還是聽到了最後。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_3_critical_failure",
+      "content": "整堂課都在聽已經講過的冒險故事……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_4_critical_success",
+      "content": "精彩的一次冒險。期待下一局……不對，下一堂課！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_4_success",
+      "content": "在冒險中與辛克萊同心協力、靈機應變地解決了種種難關！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_4_normal",
+      "content": "享受了一次不錯的冒險。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_4_failure",
+      "content": "雖然是趟不錯的冒險，但進展有些緩慢。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_4_critical_failure",
+      "content": "江湖遊覽記中的勢力全滅……真相石沉大海……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_5_critical_success",
+      "content": "理解了士兵們的艱辛，變得能夠洞悉戰場的局勢了！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_5_success",
+      "content": "理解了城鎮戰與壕溝戰的差別，並能清楚說明了！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_5_normal",
+      "content": "勉強理解了翼際戰爭的相關知識。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_5_failure",
+      "content": "比起翼際戰爭，更沉浸在格里高爾的往事。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_5_critical_failure",
+      "content": "對格里高爾的悲傷產生情緒共鳴，以致於太難過而沒有專心聽課……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_6_critical_success",
+      "content": "識破了鴻璐準備的所有暗殺手法！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_6_success",
+      "content": "觀察鴻璐和黛玉之間的氣氛，察覺到了茶碗的微妙差異！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_6_normal",
+      "content": "勉強地重複訓練察言觀色和察覺徵兆。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_6_failure",
+      "content": "直覺似乎靈敏了一點，但還是不太清楚。辨別了半數有下毒的碗。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_6_critical_failure",
+      "content": "選到的碗都有毒。今天的直覺似乎不太準……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_7_critical_success",
+      "content": "下課。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_7_success",
+      "content": "課程結束。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_7_normal",
+      "content": "勉強地完成了課程。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_7_failure",
+      "content": "減少冗言贅字真的好難……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_7_critical_failure",
+      "content": "不僅沒有謹慎言詞，還將不必要的抱怨全部說了出口才下課。暗自發誓下次絕對不說廢話。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_8_critical_success",
+      "content": "只說了幾句話，對方就臉色發白地全盤托出！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_8_success",
+      "content": "學到了幾種能震懾對方的威脅手段！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_8_normal",
+      "content": "勉強地套出了必要的情報。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_8_failure",
+      "content": "雖然學到了方法，但必須說些刻薄的話時，總是會遲疑。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_8_critical_failure",
+      "content": "反而被對方牽著鼻子走，把自己的情報說出口了……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_9_critical_success",
+      "content": "完．課（完美的課程）！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_9_success",
+      "content": "重拾赤子之心，與小孩子盡情玩耍！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_9_normal",
+      "content": "勉強學習了與小孩子對話的方法。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_9_failure",
+      "content": "和小孩子玩有趣歸有趣……但筋疲力盡了。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_9_critical_failure",
+      "content": "讓小孩子哭了……感到兩眼一黑。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_10_critical_success",
+      "content": "不單單是隱藏，連做出必要表情的技術都學到了。終於贏了羅佳一局！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_10_success",
+      "content": "不只是表情，還成功隱藏了各種肢體動作，和羅佳玩了各種遊戲！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_10_normal",
+      "content": "勉強地學會了隱藏感情，不把它展露在臉上的方法。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_10_failure",
+      "content": "雖然努力嘗試隱藏表情，但還是藏不住拿到好牌時揚起的嘴角。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_10_critical_failure",
+      "content": "腦中想的東西完全浮現在臉上。被羅佳薛了一筆……"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_11_critical_success",
+      "content": "完全掌握了如何露出像要將人生吞活剝般的眼神，以及不拖泥帶水的動作！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_11_success",
+      "content": "學會了如何先發制人！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_11_normal",
+      "content": "還算是愉快地流了些汗。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_11_failure",
+      "content": "身體變得很遲鈍，只跟得上一半左右的課程。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_11_critical_failure",
+      "content": "武器從手上滑了出去，砸到希斯克利夫的頭……光道歉就花了整堂課的時間。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_12_critical_success",
+      "content": "拋開雜念，全力專注於技法上。感覺斬斷了某種無形之物！！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_12_success",
+      "content": "為了將除自身以外之事都化為無而進行冥想。雖然還有些生疏，但感覺抓到了點頭緒！"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_12_normal",
+      "content": "勉強理解了醉掌之夜客所說的話。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_12_failure",
+      "content": "要理解醉掌之夜客的動作實在不太容易……而且空氣中瀰漫的的酒氣讓我頭暈目眩。"
+    },
+    {
+      "id": "project_gs_lesson_result_desc_12_critical_failure",
+      "content": "與醉掌之夜客小酌幾杯……感覺不錯。"
+    },
+    {
+      "id": "project_gs_combo_desc_wisdom_up",
+      "content": "屬性：智 增加{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_wisdom_down",
+      "content": "屬性：智 減少{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_courage_up",
+      "content": "屬性：勇 增加{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_courage_down",
+      "content": "屬性：勇 減少{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_benevolence_up",
+      "content": "屬性：仁 增加{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_benevolence_down",
+      "content": "屬性：仁 減少{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_all_stats_up",
+      "content": "所有屬性增加{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_all_stats_down",
+      "content": "所有屬性減少{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_condition_up",
+      "content": "士氣恢復{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_condition_down",
+      "content": "士氣減少{0}點"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_critical_success",
+      "content": "授課 大成功"
+    },
+    {
+      "id": "project_gs_combo_desc_next_lesson_critical_success",
+      "content": "下一次的授課 大成功"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_wisdom_up",
+      "content": "授課結果所獲得的屬性：智 增加{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_wisdom_down",
+      "content": "授課結果所獲得的屬性：智 減少{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_courage_up",
+      "content": "授課結果所獲得的屬性：勇 增加{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_courage_down",
+      "content": "授課結果所獲得的屬性：勇 減少{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_benevolence_up",
+      "content": "授課結果所獲得的屬性：仁 增加{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_benevolence_down",
+      "content": "授課結果所獲得的屬性：仁 減少{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_all_up",
+      "content": "授課結果所獲得的所有屬性增加{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_stats_result_ratio_all_down",
+      "content": "授課結果所獲得的所有屬性減少{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_title",
+      "content": "可發生聯合的組合"
+    },
+    {
+      "id": "project_gs_restart",
+      "content": "重新開始"
+    },
+    {
+      "id": "project_gs_ask_to_restart",
+      "content": "要從第1天重新開始嗎？"
+    },
+    {
+      "id": "project_gs_finish_to_grow_up",
+      "content": "課程結束。"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_success_rate_up",
+      "content": "授課成功率上升{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_success_rate_down",
+      "content": "授課成功率下降{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_success_rate_changed",
+      "content": "授課成功率產生變動"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_critical_success_changed",
+      "content": "- 大成功：{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_success_changed",
+      "content": "- 成功：{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_normal_changed",
+      "content": "- 普通：{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_failure_changed",
+      "content": "- 失敗：{0}%"
+    },
+    {
+      "id": "project_gs_combo_desc_lesson_critical_failure_changed",
+      "content": "- 大失敗：{0}%"
+    },
+    {
+      "id": "project_gs_lesson_level_up_title",
+      "content": "通知"
+    },
+    {
+      "id": "project_gs_notice_unable_to_release_fixed_lesson",
+      "content": "這是一堂\n必修課。"
+    },
+    {
+      "id": "project_gs_combo_text_only_jia_xichun",
+      "content": "（賈惜春）"
+    },
+    {
+      "id": "project_gs_combo_text_only_sinclair",
+      "content": "（辛克萊）"
+    },
+    {
+      "id": "project_gs_ask_to_start_lesson",
+      "content": "要開始上課嗎？"
+    },
+    {
+      "id": "project_gs_do_not_see_ask_to_start_lesson_popup",
+      "content": "不再顯示該視窗"
+    },
+    {
+      "id": "project_gs_stats_saved",
+      "content": "成長紀錄"
+    },
+    {
+      "id": "project_gs_progress_label",
+      "content": "課程進度"
+    },
+    {
+      "id": "project_gs_ask_move_to_main",
+      "content": "要保存課程進度\n並返回主選單嗎？"
+    },
+    {
+      "id": "project_gs_exit_title",
+      "content": "課程結束"
+    },
+    {
+      "id": "project_gs_re_enter_warning",
+      "content": "已結束所有課程。\n再次入場時，會重置課程進度，若上完了最後一堂課，之前的成長紀錄將會被覆蓋。\n即使這樣也要入場嗎？"
+    },
+    {
+      "id": "project_gs_check_growth",
+      "content": "確認成長狀況"
+    },
+    {
+      "id": "project_gs_growth_desc",
+      "content": "賈惜春的（智： {0}．勇： {1}．仁： {2}）成長了！\n\n辛克萊的（智： {4}．勇： {5}．仁： {6}）成長了！"
+    },
+    {
+      "id": "project_gs_growth_result_popup_lessons",
+      "content": "已修課程"
+    },
+    {
+      "id": "project_gs_growth_result_popup_check_stats",
+      "content": "確認賈惜春的情報"
+    },
+    {
+      "id": "project_gs_ask_to_start_lesson_with_warning",
+      "content": "若上了最後一堂課，之前的成長紀錄將會被覆蓋。\n即使這樣也要開始上課嗎？"
+    },
+    {
+      "id": "project_gs_alarm_lesson_level_up",
+      "content": "課程：[{0}]的等級上升了{1}。"
+    }
+  ]
+}

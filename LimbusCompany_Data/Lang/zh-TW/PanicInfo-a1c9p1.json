@@ -1,0 +1,22 @@
+{
+  "dataList": [
+    {
+      "id": 1067,
+      "panicName": "紊亂的呼吸",
+      "lowMoraleDescription": "回合開始時，使自身失去3級 [Breath] 強度",
+      "panicDescription": "回合開始時，使自身失去5級 [Breath] 強度"
+    },
+    {
+      "id": 1068,
+      "panicName": "教材",
+      "lowMoraleDescription": "與帶有 [DuelEdge] 的目標拚點時，使本單位的拚點威力+1\n本單位拚點失敗時，下回合對自身施加1層 [Vulnerable] (每回合最多1次)",
+      "panicDescription": "與帶有 [DuelEdge] 的目標拚點時，使本單位的拚點威力+2\n本單位拚點失敗時，下回合對自身施加2層 [Vulnerable] (每回合最多1次)"
+    },
+    {
+      "id": 1069,
+      "panicName": "鐵處女",
+      "lowMoraleDescription": "回合開始時，對自身施加1層 [AttackDown] 並使自身獲得1層 [DefenseUp]",
+      "panicDescription": "回合開始時，對自身施加2層 [AttackDown] 並使自身獲得2層 [DefenseUp]"
+    }
+  ]
+}

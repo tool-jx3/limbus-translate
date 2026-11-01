@@ -1,0 +1,134 @@
+{
+  "dataList": [
+    {
+      "id": 139001,
+      "name": "血祭開幕",
+      "desc": "終末土偶被全部擊殺後，變更行動模式"
+    },
+    {
+      "id": 139003,
+      "name": "火祭開幕",
+      "desc": "手臂被全部破壞，或本體體力不高於70%時，進入下一階段"
+    },
+    {
+      "id": 139004,
+      "name": "熱氣",
+      "desc": "第3階段期間，每回合對全體敵方單位施加7層 [Combustion]"
+    },
+    {
+      "id": 139006,
+      "name": "星祭開幕",
+      "desc": "本體的體力不高於25%時，進入下一階段"
+    },
+    {
+      "id": 139101,
+      "name": "偶像崇拜",
+      "desc": "體力歸零時不會陣亡，並成為無法行動且不可選取的狀態\n終末日曆被鎮壓時將被一併鎮壓"
+    },
+    {
+      "id": 139301,
+      "name": "過往重現",
+      "desc": "若 [AccumulatedPastMirror] 層數不低於50層，且本體體力不高於80%，則在回合結束時消耗50層 [AccumulatedPastMirror]，並恢復200點本體體力"
+    },
+    {
+      "id": 139302,
+      "name": "消逝的過去",
+      "desc": "軀幹部位被破壞後，消耗所有 [AccumulatedPastMirror]。\n軀幹部位被破壞後，下回合起使軀幹部位的所有罪孽抗性與物理抗性在本場戰鬥中全部變為「抵抗」(0.5)"
+    },
+    {
+      "id": 139303,
+      "name": "被破壞的排氣口",
+      "desc": "蒸氣槍部位被破壞時，消耗所有部位的所有 [Breath] 強度\n蒸氣槍部位被破壞後，自身每獲得 [Breath] 強度時，則對自身施加層數等同於獲得 [Breath] 強度的 [Vulnerable]\n蒸氣槍部位被破壞後，每次使用攻擊技能都會使自身失去1級 [Breath] 強度"
+    },
+    {
+      "id": 139304,
+      "name": "蒸氣洩漏",
+      "desc": "蒸氣槍部位受到攻擊時，使自身失去1級 [Breath] 強度與1回 [Breath]"
+    },
+    {
+      "id": 139305,
+      "name": "節拍器",
+      "desc": "If the [AccumulatedPastMirror] is an odd number, gain 3 [Vulnerable] and [AttackDmgUp]\nIf it is an even number, gain 3 [Protection] and [AttackDmgDown]"
+    },
+    {
+      "id": 139401,
+      "name": "幸福的雞",
+      "desc": "回合結束時，根據參與戰鬥的生雞數量，使自身恢復(生雞數量×5)的體力"
+    },
+    {
+      "id": 139402,
+      "name": "憂鬱的雞",
+      "desc": "回合結束時，根據參與戰鬥的生雞數量，對全體敵方單位造成(生雞數量×5)點理智傷害"
+    },
+    {
+      "id": 139403,
+      "name": "衰弱的雞",
+      "desc": "部位被破壞時，根據直到部位被破壞為止陣亡的生雞數量，每回合對自身施加相應層數的 [Vulnerable]"
+    },
+    {
+      "id": 139404,
+      "name": "變強的雞",
+      "desc": "未進入部位破壞狀態時，每回合根據存活的生雞數量獲得相應層數的 [AttackDmgUp]"
+    },
+    {
+      "id": 139501,
+      "name": "小鳳小鳳到處走動",
+      "desc": "回合結束時，隨機對1名敵方單位造成3點理智傷害"
+    },
+    {
+      "id": 139701,
+      "name": "小鳳小鳳力量爆棚",
+      "desc": "回合結束時，下回合使包含自身在內的全體友方單位獲得2層 [AttackDmgUp] 與2層 [Protection] "
+    },
+    {
+      "id": 141001,
+      "name": "血囊",
+      "desc": "若自身帶有 [BloodPocket]，則使身體的暴怒抗性-50%、憂鬱抗性+50%"
+    },
+    {
+      "id": 141002,
+      "name": "液囊",
+      "desc": "自身帶有 [WaterPocket] 時，使本體恢復(層數×20)點體力值"
+    },
+    {
+      "id": 141003,
+      "name": "撕裂的血囊",
+      "desc": "軀幹部位被破壞後，拚點勝利時觸發敵方單位的 [Laceration] 1次，並使敵方單位的 [Laceration] 回數減少1回"
+    },
+    {
+      "id": 141004,
+      "name": "接連拍打",
+      "desc": "若目標使用與自身相同物理屬性的技能拚點，則使目標獲得1層 [PlayingWithWaterTogetherMirror] (每個技能最多1次，每回合最多3次)\n- 若該技能為打擊技能，則改為獲得2層 [PlayingWithWaterTogetherMirror]"
+    },
+    {
+      "id": 141101,
+      "name": "液囊",
+      "desc": "自身帶有 [WaterPocket] 時，使本體恢復(層數×30)點體力值"
+    },
+    {
+      "id": 141102,
+      "name": "撕裂的血囊",
+      "desc": "軀幹部位被破壞後，拚點勝利時觸發敵方單位的 [Laceration] 2次，並使敵方單位的 [Laceration] 回數減少2回"
+    },
+    {
+      "id": 141201,
+      "name": "血囊",
+      "desc": "若自身帶有 [BloodPocket]，則使身體的暴怒抗性-35%、憂鬱抗性+35%"
+    },
+    {
+      "id": 141202,
+      "name": "液囊",
+      "desc": "自身帶有 [WaterPocket] 時，使本體恢復(層數×35)點體力值"
+    },
+    {
+      "id": 141203,
+      "name": "撕裂的血囊",
+      "desc": "軀幹部位被破壞後，拚點勝利時觸發敵方單位的 [Laceration] 3次，並使敵方單位的 [Laceration] 回數減少3回"
+    },
+    {
+      "id": 141204,
+      "name": "猛力拍打水面",
+      "desc": "若目標未帶有 [PlayingWithWaterTogetherMirror]，則獲得以下效果\n- 造成的傷害+80%\n- 自身技能的最後一枚硬幣命中時，使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n\n若目標帶有 [PlayingWithWaterTogetherMirror]，獲得以下效果\n- 造成的傷害-50%\n- 目標每帶有1層 [PlayingWithWaterTogetherMirror]，使自身受到的傷害+10%(最多+100%)\n\n若沒有單位帶有 [PlayingWithWaterTogetherMirror]，獲得以下效果\n- 自身的技能命中時，使目標增加5級 [Laceration] 強度\n- 自身技能的最後一枚硬幣命中時，觸發目標的 [Laceration] 1次，並使其減少1回 [Laceration]"
+    }
+  ]
+}

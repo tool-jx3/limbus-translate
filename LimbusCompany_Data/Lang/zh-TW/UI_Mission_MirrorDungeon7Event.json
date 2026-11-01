@@ -1,0 +1,116 @@
+{
+  "dataList": [
+    {
+      "id": "mission_ui_condition_tags_201001027",
+      "content": "解鎖{0}個以上極限主題卡包"
+    },
+    {
+      "id": "mission_ui_condition_tags_201006013",
+      "content": "在未獲得E.G.O飾品「月之記憶」的情況下通關第15層鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201004010",
+      "content": "至少使用1次技能替換觀測功能並通關第5或更高層鏡像迷宮"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003030",
+      "content": "通關第5或更高層鏡像迷宮時在編隊中編入至少{0}名屬於六協會的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003031",
+      "content": "通關第5或更高層鏡像迷宮時在編隊中編入至少{0}名屬於中指的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003032",
+      "content": "擊殺「誘惑、徬徨、懷疑」、「教材」、「刀劍與作品」、「無法斬絕」4種主題卡包BOSS時在編隊中（不包括待命人員）編入包括「LCB罪人 良秀」在內至少3名屬於蜘蛛巢的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003033",
+      "content": "擊殺「心意相悖」主題卡包BOSS時在編隊中（不包括待命人員）編入包括「狂獵 希斯克利夫」在內至少3名屬於咆哮山莊的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003034",
+      "content": "擊殺「無盡的遊行」主題卡包BOSS時在編隊中（不包括待命人員）編入包括「Cinq協會 西部3科 莫梭」、「獵牙事務所 收尾人 鴻璐」、「Zwei協會 西部3科 辛克萊」、「炎拳事務所 倖存者 格里高爾」在內至少4名人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003035",
+      "content": "擊殺「WARP列車謀殺案 復刻」主題卡包BOSS時在編隊中（不包括待命人員）編入至少4名屬於血魔的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003036",
+      "content": "擊殺「懼而迴避」主題卡包BOSS時在編隊中（不包括待命人員）編入至少2名屬於機械融合生命體的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003037",
+      "content": "擊殺「20區的奇蹟 復刻」主題卡包BOSS時在編隊中（不包括待命人員）僅編入希斯克利夫與唐吉訶德的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003038",
+      "content": "擊殺「時間殺人時間 復刻」主題卡包BOSS時在編隊中（不包括待命人員）編入至少2名屬於T公司的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003039",
+      "content": "擊殺「美妙之聲」主題卡包BOSS時在編隊中（不包括待命人員）編入包括「狂獵 希斯克利夫」在內的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "mission_ui_condition_tags_201003040",
+      "content": "擊殺「WARP列車謀殺案」、「WARP列車謀殺案 復刻」、「重新開園的拉．曼查領」、「無盡的遊行」、「夢之終焉」5種主題卡包BOSS時在編隊中（不包括待命人員）編入包括「拉．曼查領 總督 唐吉訶德」在內的人格（不可使用租借編隊完成）"
+    },
+    {
+      "id": "ui_condition_clear_201100007_CLEAR",
+      "content": "通關隱藏節點 - 蜘蛛巢 拇指"
+    },
+    {
+      "id": "ui_condition_clear_201100008_CLEAR",
+      "content": "通關隱藏節點 - 蜘蛛巢 食指"
+    },
+    {
+      "id": "ui_condition_clear_201100009_CLEAR",
+      "content": "通關隱藏節點 - 蜘蛛巢 中指"
+    },
+    {
+      "id": "ui_condition_clear_201100010_CLEAR",
+      "content": "通關隱藏節點 - 蜘蛛巢 環指"
+    },
+    {
+      "id": "ui_condition_clear_201100011_CLEAR",
+      "content": "淨化受詛咒的E.G.O飾品，於E.G.O飾品列表中解鎖人劍合一"
+    },
+    {
+      "id": "ui_condition_clear_201100012_CLEAR",
+      "content": "淨化受詛咒的E.G.O飾品，於E.G.O飾品列表中解鎖黃金時間"
+    },
+    {
+      "id": "ui_condition_clear_201100013_CLEAR",
+      "content": "淨化受詛咒的E.G.O飾品，於E.G.O飾品列表中解鎖可能性"
+    },
+    {
+      "id": "ui_condition_clear_201100007_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100008_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100009_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100010_NONE",
+      "content": "通關隱藏節點 - ？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100011_NONE",
+      "content": "淨化受詛咒的E.G.O飾品，於E.G.O飾品列表中解鎖？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100012_NONE",
+      "content": "淨化受詛咒的E.G.O飾品，於E.G.O飾品列表中解鎖？？？"
+    },
+    {
+      "id": "ui_condition_clear_201100013_NONE",
+      "content": "淨化受詛咒的E.G.O飾品，於E.G.O飾品列表中解鎖？？？"
+    }
+  ]
+}

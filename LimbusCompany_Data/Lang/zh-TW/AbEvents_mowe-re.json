@@ -1,0 +1,43 @@
+{
+  "dataList": [
+    {
+      "id": 97108101,
+      "title": "There is a useful piece of gear on a W Corp. Cleanup Agent who was turned into a Bloodbag.",
+      "prevDesc": "",
+      "eventDesc": "",
+      "behaveDesc": "讓哪位罪人上前？",
+      "successDesc": [
+        "罪人{0}將血肉完全扯開。\n\n「啊……」\n\n但似乎碰到了奇怪的地方，護手沒辦法啟動了。"
+      ],
+      "failureDesc": [
+        "罪人{0}扯下了血肉，然而手卻受了傷。\n\n「……只要找到7B電路就能啟動了呢。」\n\n其中一名罪人發表了意見。但是再繼續下去的話，會加重罪人{0}手部的傷勢。\n\n花這些力氣真的值得嗎？"
+      ]
+    },
+    {
+      "id": 97108201,
+      "title": "There is a useful piece of gear on a W Corp. Cleanup Agent who was turned into a Bloodbag.",
+      "prevDesc": "",
+      "eventDesc": "",
+      "behaveDesc": "讓哪位罪人上前？",
+      "successDesc": [
+        "罪人{0}終於找到了接觸不良的電路，成功修理了護手。"
+      ],
+      "failureDesc": [
+        "「還差一點……」\n\n在將要結束的瞬間\n\n「……！經理，有敵襲！」\n\n似乎是花了太多時間，血袋發現了我們。"
+      ]
+    },
+    {
+      "id": 97108402,
+      "title": "A W Corp. Cleanup Agent is battling a group of Bloodbags.",
+      "prevDesc": "",
+      "eventDesc": "",
+      "behaveDesc": "讓哪位罪人上前？",
+      "successDesc": [
+        "當血袋之間出現了一道間隙時，我讓罪人{0}前去支援。\n\n……萬幸最後我們和員工都順利地清理血袋。\n\n「謝謝你們救了我！我差一點點也變成那種怪物了……」\n\n似乎想像到可怕的畫面，那名員工轉換了話題。\n\n「啊，我接下來也該撤退了。雖然微不足道……但還請你們收下。」"
+      ],
+      "failureDesc": [
+        "當血袋之間出現了一道間隙時，我讓罪人{0}前去支援。\n\n「一個人果然還是不行啊……」\n\n雖然我們清理完血袋了，但罪人{0}和員工那邊的戰鬥似乎還沒結束……\n\n萬幸的是，多虧罪人{0}的支援，W公司員工成功地被救了出來。\n\n「啊，我接下來也該撤退了。雖然微不足道……但還請你們收下。」\n\n"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "dataList": [
+    {
+      "id": "mirror_rental_title",
+      "content": "租借編隊"
+    },
+    {
+      "id": "mirror_rental_no_item",
+      "content": "現在沒有可租借的編隊。"
+    },
+    {
+      "id": "mirror_rental_period",
+      "content": "租借期間"
+    },
+    {
+      "id": "mirror_rental_keyword_label",
+      "content": "關鍵字"
+    },
+    {
+      "id": "mirror_rental_ask_to_enter",
+      "content": "是否使用租借編隊\n進入{0}？"
+    },
+    {
+      "id": "mirror_rental_warnings",
+      "content": "．租借期間，可以使用一次租借編隊進入鏡像迷宮。\n\n．使用租借編隊時，無法在商店更換人格、E.G.O、技能替換，也無法進入平行疊加模式。\n \n．使用租借編隊通關鏡像迷宮時，可以獲得鏡像迷宮通關獎勵以及活動道具。\n\n．使用每週加成時，每次只能消耗一格加成。\n\n．領取鏡像迷宮通關獎勵後，便會減少租借次數。"
+    },
+    {
+      "id": "mirror_rental_unable_by_running_other",
+      "content": "迷宮進行中"
+    },
+    {
+      "id": "mirror_rental_already_reward_acquired",
+      "content": "獎勵已領取"
+    },
+    {
+      "id": "unable_to_change_formation_by_rental_formation",
+      "content": "固定編隊"
+    },
+    {
+      "id": "mirror_rental_failed_to_enter",
+      "content": "無效租借編隊。UI已更新。\n（error code：{0}）"
+    },
+    {
+      "id": "mirror_rental_button_label",
+      "content": "租借"
+    },
+    {
+      "id": "mirror_unable_to_infinity_by_rental",
+      "content": "使用租借編隊時無法編輯。"
+    }
+  ]
+}

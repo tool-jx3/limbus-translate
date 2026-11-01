@@ -1,0 +1,10 @@
+{
+  "dataList": [
+    {
+      "id": 1040,
+      "panicName": "朴刀",
+      "lowMoraleDescription": "單方面攻擊造成的傷害 +10%，反擊造成的傷害 +30%",
+      "panicDescription": "單方面攻擊造成的傷害 +20%，反擊造成的傷害 +50%"
+    }
+  ]
+}

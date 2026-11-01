@@ -1,0 +1,52 @@
+{
+  "dataList": [
+    {
+      "id": 9021501,
+      "name": "機會於此",
+      "desc": "回合中，若自身消耗目標的 [BurstPoison] 並使其降至0層，則下回合使自身獲得1層 [PenetrateDamageUp] (最多2層)",
+      "summary": ""
+    },
+    {
+      "id": 9021502,
+      "name": "蛇毒",
+      "desc": "若目標帶有 [BurstPoison]，則自身每帶有1層 [SnakeStance]，使自身造成的傷害+2.5%(最多+7.5%)",
+      "summary": ""
+    },
+    {
+      "id": 9102301,
+      "name": "看到弱點了",
+      "desc": "使用 [WideAreaRampage] 攻擊時，攻擊相同目標時造成的傷害+20%，增加的 [Burst] 強度與 [Burst] 回數額外+1",
+      "summary": ""
+    },
+    {
+      "id": 9102302,
+      "name": "找到機會了",
+      "desc": "回合中，若自身消耗目標的 [BurstPoison] 並使其降至0層，則下回合使自身獲得1層 [PenetrateDamageUp] (最多2層)",
+      "summary": ""
+    },
+    {
+      "id": 9102303,
+      "name": "蛇極毒",
+      "desc": "若目標帶有 [BurstPoison]，則自身每帶有1層 [SnakeStance]，使自身造成的傷害+5%(最多+15%)",
+      "summary": ""
+    },
+    {
+      "id": 9102601,
+      "name": "覺悟",
+      "desc": "解除混亂時，使自身獲得1層 [Enhancement]",
+      "summary": ""
+    },
+    {
+      "id": 9102602,
+      "name": "教學的成果",
+      "desc": "進入關卡時，根據自身從課程中獲得的智/勇/仁之和，相應獲得 [StudyStatSinclair]",
+      "summary": ""
+    },
+    {
+      "id": 9102603,
+      "name": "傾聽內在的自己……",
+      "desc": "回合開始時，若自身陷入混亂，則解除自身的混亂並使自身獲得 [StudySignSinclair] (每場戰鬥最多1次)\n- 以上效果觸發後，自身所有技能的硬幣轉變為無法被破壞的硬幣 ",
+      "summary": ""
+    }
+  ]
+}

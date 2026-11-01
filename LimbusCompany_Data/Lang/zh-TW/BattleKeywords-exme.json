@@ -1,0 +1,220 @@
+{
+  "dataList": [
+    {
+      "id": "ScratchesHurt",
+      "name": "撕裂傷",
+      "desc": "- 最大層數：3\n- 回合開始時，本效果每有1層，則對自身施加2級流血強度\n．若層數為最大值，則額外施加1回流血\n- 回合結束時，本效果每有1層，則對自身施加1層束縛\n．若層數為最大值，則額外施加1層虛弱\n- 回合結束時，若本單位沒有受到暴擊攻擊命中，則使本效果層數減少1層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TiedRope",
+      "name": "捕縛",
+      "desc": "- 基礎層數：3\n- 本單位的速度值固定為1\n- 本單位基礎技能的硬幣威力固定為0\n- 回合結束時，使本效果層數減少1層\n- 若施加本效果者的增益效果「準備押送」失效，則本效果也將隨之消除",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "Look how the baseborn hunt the other baseborn to serve them up to the powers that be."
+    },
+    {
+      "id": "TiedWithRope",
+      "name": "準備押送",
+      "desc": "- 基礎層數：1\n- 自身的速度值固定為1\n- 自身施加的「捕縛」效果解除時，以及自身陷入混亂或陣亡時，解除本效果\n- 若自身施加「捕縛」的對象於本回合陣亡，則解除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RegretSCorp",
+      "name": "隱隱刺痛的記憶",
+      "desc": "- 最大層數：1\n- 回合結束時，下回合對自身施加1層束縛\n- 回合結束時，使自身獲得(當前回合數 ÷ 4)層拚點威力提升 (無條件捨去；最多3層)\n- 回合結束時，解除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "TakePicture",
+      "name": "情報取得",
+      "desc": "- 使用技能與遭到拍攝紀錄的技能級別相同時，拚點威力-5\n(※守備技能與E.G.O技能將分別判定)\n- 回合結束時，解除本效果",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "LensmanNail",
+      "name": "固定尖釘",
+      "desc": "- 最大層數：10\n- 回合開始時，自身每帶有2層束縛，則對自身施加1層攻擊等級降低 (最多3層)\n- 回合開始時，對自身施加與本效果層數相同級數的流血強度\n- 遭到震顫引爆時，對自身施加與本效果層數相同的流血回數\n- 回合結束時，下回合對自身施加與本效果層數相同的束縛層數(最多6層)，並使本效果層數減少1層",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "PhotoTransition",
+      "name": "轉換記憶",
+      "desc": "- 基礎層數：3\n- 回合結束時，使本效果層數減少1層；回合開始時，若本效果層數為0，則使特定單位以及效果產生改變\n(自身陷入混亂時，解除自身混亂狀態)\n\n- 上述效果發動後，使本效果層數重置為基礎值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "AengduNewArm",
+      "name": "鬼怪之臂",
+      "desc": "- 基礎攻擊等級 +4\n- 基礎防禦等級 +4\n- 受到的傷害 -20%\n- 使用技能時，下回合將使自身獲得1層迅捷 (每回合最多2次)\n- 戰鬥結束時，使自身獲得2回呼吸法",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "\"... Dokkaebi Arms? Do you, perchance, speak of Dokkaebis that often appear in tales of old? Hmm...\"\n\"I can scarcely believe it, yet after all I have witnessed while relying on the hospitality of Limbus Company, the existence of Dokkaebis from folklore may well be within reason.\"\n\"Come to think of it... I do recall hearing of a name called 'Dokkaebi Unit'...\""
+    },
+    {
+      "id": "WindBlade",
+      "name": "墨工坊 - 銳 拔刀二式 / 推力：多可比之火",
+      "desc": "- 最大層數：20\n- 本效果每有1層，使自身的斬擊傷害 +1% (最多+10%)\n- 本效果每有2層，使自身守備技能的拚點威力 -1 (最多-5)\n- 回合結束時，本效果每有5層，則下回合使自身獲得1層迅捷 (最多3層)",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "\"Hm? You like that model? Ooh, new girl's got an eye for quality! Excuse me~! Can we try this model? Oh, c'mon, relax! I know the deal—'You break it, you buy it.' Thanks! Hehe... See? Told ya I'm a regular here~ Okay, so the sword and the scabbard come as a set, so grab 'em both and feel the weight. How's that? Not as heavy as they look, huh?\"\n\"Oho...\"\n\"So there's this particle? Powder? Thingy in that scabbard under patent by Mook Workshop! Every time you sheathe and unsheathe the sword, for a brief moment, its blade comes out way sharper and lighter! And that model you're holding happens to focus on the <i>sharpness</i>! So it's like, *Ding!* and voila, you get a nice buff on your weapon!\"\n\"I think it's one of the Ye [銳] series models—that's Mook Workshop's classic lineup, by the way. Check out the finish here, it's... What the heck?! Hey, this is the Ye [銳] 'Type II' model that went out of production! You know what, this stuff really isn't easy to come by—we're lucky we found one here!\"\n\"If it's such a rarity, Lady Ezra, perhaps you ought to wield it instead...\"\n\"Hnngh... No, it's fine... Well, I can see it's literally made for you! And it'll work real nice with those boosters on your new prosthetic arms. It'll need some getting used to, but you'll be one heck of a fighter once you get the hang of it! Anyway, consider it a gift from yours truly—you're officially one of us now. Officially our new girl! No more temp ID.\"\n\"Then... I shall accept with gratitude.\"\n\"By the way... Remember that 'classic lineup' part? It's super durable, but there <i>are</i> delicate parts that you should watch out not to break—okay, you know what, let 'em break if it really comes to that. Just...\"\n\"Just don't die on us.\"\n\"... I shall take your words to heart.\""
+    },
+    {
+      "id": "Collage_LowMorale",
+      "name": "混雜的記憶",
+      "desc": "- 回合開始時，使自身獲得1~3層攻擊等級提升以及1~3層防禦等級降低",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "Collage_Panic",
+      "name": "混雜的記憶",
+      "desc": "- 回合開始時：使自身獲得1~5層攻擊等級提升，並且對自身施加1~5層防禦等級降低",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "Lensman_LowMorale",
+      "name": "情報執念",
+      "desc": "- 與帶有「情報取得」的目標拚點時，使自身的基礎威力 +1，且造成的傷害 +10%\n- 回合開始時，對自身施加1層易損",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "Lensman_Panic",
+      "name": "情報執念",
+      "desc": "- 與帶有「情報取得」的目標拚點時，使自身的基礎威力 +1，且造成的傷害 +20%\n- 回合開始時，對自身施加2層易損",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "Aengdu_Lowmorale",
+      "name": "怨恨",
+      "desc": "- 回合開始時，使自身獲得1層強壯且對自身施加1層破綻\n- 回合結束時，下回合使自身獲得2層迅捷",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "Aengdu_Panic",
+      "name": "怨恨",
+      "desc": "- 回合開始時，使自身獲得2層強壯且對自身施加2層破綻\n- 回合結束時，下回合使自身獲得2層迅捷",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "BrandedKimSatgat",
+      "name": "烙印[奴]",
+      "desc": "- 基礎攻擊等級減少??\n- 基礎防禦等級減少??",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DimensionalBagEzraETwo",
+      "name": "次元包 - 尤里亞工坊",
+      "desc": "從次元包拿出下一個工坊武器\n- 目前裝備的工坊武器：尤里亞工坊製斧頭\n- 包中下一把工坊武器：阿拉斯工坊製手套",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RestingKimSatgat_LowMorale",
+      "name": "鬱積的悔恨",
+      "desc": "- 士氣低落\n- 回合開始時，對自身施加2層傷害弱化，並使自身恢復40點體力值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "RestingKimSatgat_Panic",
+      "name": "鬱積的悔恨",
+      "desc": "- 陷入恐慌\n- 回合開始時，對自身施加3層傷害弱化，並使自身恢復60點體力值",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ChoiSwordsmanship",
+      "name": "本國劍術[肉]",
+      "desc": "- 最小層數：1；最大層數：9\n- 使用技能時，若本效果層數為最小或最大層數，則使本單位使用的所有硬幣轉化為<color=#ff6000><mark color=#ff000040><b><u>不可破壞的硬幣</color></mark></b></u>\n- <color=#ff6000><mark color=#ff000040><b><u>技能的基礎威力以及硬幣威力將隨著本效果層數產生變化</color></mark></b></u>\n．1~2層：基礎威力 -6，硬幣威力 +4\n．3~4層：基礎威力 -3，硬幣威力 +2\n．5層：無效果\n．6~7層：基礎威力 +4，硬幣威力 -2\n．8~9層：基礎威力 +8，硬幣威力 -3",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ChoiSwordsmanshipOne",
+      "name": "本國架勢 - 獵熊",
+      "desc": "將使用各種只有<color=#ff6000><mark color=#ff000040><b><u>單枚硬幣</color></mark></b></u>的技能\n\n林慶業的「本國劍術[肉]」層數在<color=#ff6000><mark color=#ff000040><b><u>較高時</color></mark></b></u>將會取得優勢",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "The mountains of S Corp.'s District 19 are home to all manner of beasts.\nAmongst them, the bear, in particular, boasts strength and force akin to boulders falling from the cliff in a landslide. Giving ground to the creature's charge is ill-advised—one must aim to hew it down with the first slash of the blade."
+    },
+    {
+      "id": "ChoiSwordsmanshipMany",
+      "name": "本國架勢 - 獵虎",
+      "desc": "將使用各種帶有<color=#ff6000><mark color=#ff000040><b><u>多枚硬幣</color></mark></b></u>的技能\n\n林慶業的「本國劍術[肉]」層數在<color=#ff6000><mark color=#ff000040><b><u>較低時</color></mark></b></u>將會取得優勢",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "Tigers are cunning and ferocious.\nOne cannot hope to cut through a tiger's flesh with a single stroke. Only a relentless flurry of chained slashes can overwhelm the creature until it is felled at last.\nFail to do so, and the tiger will escape death—or best its opponent to one day grow into a Sangun, a Lord of the Mountain.\nWhether these beings will grant auspicious fortune on men or return as malevolent calamity is impossible to tell."
+    },
+    {
+      "id": "ChoiSwordsmanshipShield",
+      "name": "頭釘甲[肉]",
+      "desc": "- 最大層數：5\n- 獲得本效果時，根據層數，每1層將使本單位獲得等同於最大體力值10%的護盾值 (最少1點；無條件捨去；由本效果提供的護盾不會於回合結束時消失)\n- 戰鬥開始時，每帶有2層本效果，則對本單位施加1層防禦等級降低 (無條件進位)\n- 本單位造成的斬擊傷害 +(本效果層數 × 2.5)%\n- <color=#ff6000><mark color=#ff000040><b><u>每當本單位的護盾累積受到等同於最大體力值10%的傷害時，使本效果層數減少1層</color></mark></b></u>",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "PhotoTransitionChoi",
+      "name": "轉換記憶",
+      "desc": "- 基礎層數：3\n- 回合結束時，使層數減少1層\n- <color=#ff6000><mark color=#ff000040><b><u>回合開始時，若本效果層數為0，則自身將撤退並切換戰場地點</color></mark></b></u>\n- 本單位重返戰場時，根據撤退的回合數以及本國架勢型態，使自身獲得或失去等數的「本國劍術[肉]」層數\n．本國架勢 - 獵熊時：獲得層數\n．本國架勢 - 獵虎時：失去層數",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "PhotoTransitionChoiCamera",
+      "name": "轉換記憶",
+      "desc": "- 基礎層數：3\n- 回合結束時，使層數減少1層\n- <color=#ff6000><mark color=#ff000040><b><u>回合開始時，若本效果層數為0，則林慶業將撤退並切換戰場地點</color></mark></b></u>\n- 林慶業重返戰場時，根據撤退的回合數以及本國架勢型態，使自身獲得或失去等數的「本國劍術[肉]」層數\n．本國架勢 - 獵熊時：獲得層數\n．本國架勢 - 獵虎時：失去層數",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ChoiSword_LowMorale",
+      "name": "顯影的記憶",
+      "desc": "- 士氣低落\n- 對自身施加1層易損，使自身造成的傷害量 +10%，且暴擊時造成的傷害 +15%",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "ChoiSword_Panic",
+      "name": "顯影的記憶",
+      "desc": "- 陷入恐慌\n- 對自身施加2層易損，使自身造成的傷害量 +10%，且暴擊時造成的傷害 +30%；使技能「本國弓術[肉] - 有的放矢」的硬幣施加的效果增加為2倍",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "DimensionalBagEzraDTwo",
+      "name": "次元包 - 納米爾工坊",
+      "desc": "從次元包拿出下一個工坊武器\n- 目前裝備的工坊武器：納米爾工坊製拳套\n- 包中下一把工坊武器：尤里亞工坊製斧頭",
+      "summary": "",
+      "undefined": "-",
+      "flavor": "「這是內含G公司奇點之球的產品，正確的使用方式是在空中按下開關啟動，再利用其重量擊潰目標。若成功命中可是很痛的喔！」"
+    },
+    {
+      "id": "SlaveHunersPower",
+      "name": "押送命令",
+      "desc": "- 基礎攻擊等級 +5\n- 基礎防禦等級 +5",
+      "summary": "",
+      "undefined": "-"
+    },
+    {
+      "id": "LensmanPower",
+      "name": "調查命令",
+      "desc": "- 基礎攻擊等級 +5\n- 基礎防禦等級 +5",
+      "summary": "",
+      "undefined": "-"
+    }
+  ]
+}

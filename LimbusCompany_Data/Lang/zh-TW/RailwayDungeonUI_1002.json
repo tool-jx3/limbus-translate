@@ -1,0 +1,56 @@
+{
+  "dataList": [
+    {
+      "id": "ui_railway_dungeon_rotation_count",
+      "content": "巡迴數"
+    },
+    {
+      "id": "ui_railway_dungeon_upper_status_ui_rotation_count",
+      "content": "循環數"
+    },
+    {
+      "id": "ui_railway_dungeon_reward_condition_clear_boss_after_cycle",
+      "content": "通關終點站時"
+    },
+    {
+      "id": "railway_dungeon_1002_banner_reward_condition_1",
+      "content": "通關折射軌道2號線復刻且不低於{1}循環、總計回合數<color=#005823>不超過{0}</color>後獲得。"
+    },
+    {
+      "id": "railway_1002_must_participate_all",
+      "content": "存在未編隊的人格。"
+    },
+    {
+      "id": "railway_dungeon_1002_change_rotation_alarm",
+      "content": "第{0}循環 已完成"
+    },
+    {
+      "id": "railway_1002_bgm_reward_desc",
+      "content": "通關折射軌道2號線 復刻"
+    },
+    {
+      "id": "railway_1001_bgm_reward_desc",
+      "content": "通關折射軌道 1號線 復刻"
+    },
+    {
+      "id": "railway_6_bgm_reward_desc",
+      "content": "通關折射軌道 6號線"
+    },
+    {
+      "id": "railway_clear_reward_popup_title",
+      "content": "通關獎勵"
+    },
+    {
+      "id": "railway_clear_reward_popup_item_column_desc",
+      "content": "獎勵"
+    },
+    {
+      "id": "railway_node_clear_info_ui_buff_list",
+      "content": "BUFF選擇列表"
+    },
+    {
+      "id": "railway_1002_no_buff_in_list",
+      "content": "當前沒有已選擇的BUFF"
+    }
+  ]
+}

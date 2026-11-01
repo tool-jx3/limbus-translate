@@ -1,0 +1,72 @@
+{
+  "dataList": [
+    {
+      "id": "unit_info_tooltip_status_0",
+      "content": "體力上限"
+    },
+    {
+      "id": "unit_info_tooltip_status_1",
+      "content": "速度值範圍"
+    },
+    {
+      "id": "unit_info_tooltip_attack_resist_0",
+      "content": "斬擊抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attack_resist_1",
+      "content": "突刺抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attack_resist_2",
+      "content": "打擊抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_0",
+      "content": "暴怒抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_1",
+      "content": "色慾抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_2",
+      "content": "怠惰抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_3",
+      "content": "暴食抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_4",
+      "content": "憂鬱抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_5",
+      "content": "傲慢抗性"
+    },
+    {
+      "id": "unit_info_tooltip_attribute_resist_6",
+      "content": "嫉妒抗性"
+    },
+    {
+      "id": "unit_info_tooltip_skill_count",
+      "content": "技能數量"
+    },
+    {
+      "id": "unit_info_tooltip_targetting_count",
+      "content": "攻擊容量"
+    },
+    {
+      "id": "unit_info_tooltip_targetting_count_desc",
+      "content": "本技能可以同時指向的技能槽數。"
+    },
+    {
+      "id": "unit_info_tooltip_ego_resource",
+      "content": "使用該技能所需的罪孽碎片數量"
+    },
+    {
+      "id": "tooltip_ego_resource_ui",
+      "content": "持有的罪孽碎片數量"
+    }
+  ]
+}

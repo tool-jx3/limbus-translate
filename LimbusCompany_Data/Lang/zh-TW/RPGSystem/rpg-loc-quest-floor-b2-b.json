@@ -1,0 +1,180 @@
+{
+  "dataList": [
+    {
+      "key": "Q-2000",
+      "title": "가리기 - 지하 2층 도착",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "지하 2층 방적장 진입용"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "방직장 컷씬"
+        }
+      ]
+    },
+    {
+      "key": "Q-2000A",
+      "title": "가리기 - 바늘이 대화 파트",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "줄 선 바늘이 대화"
+        }
+      ]
+    },
+    {
+      "key": "Q-2001",
+      "title": "探索地下2樓",
+      "description": "我們到達了地下2樓。看見了排隊靜候黃金染料的擁擠隊伍。向上次與我們交易過，名為裸體的人搭話吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟裸體交談"
+        }
+      ]
+    },
+    {
+      "key": "Q-2002",
+      "title": "跟裸體交談",
+      "description": "我們到達了地下2樓。看見了排隊靜候黃金染料的擁擠隊伍。向上次與我們交易過，名為裸體的人搭話吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟裸體交談"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "擊退襲來的漆黑派團體"
+        },
+        {
+          "index": 2,
+          "goalDescription1": "戰鬥後的情況整理"
+        }
+      ]
+    },
+    {
+      "key": "Q-2003",
+      "title": "前往染坊",
+      "description": "漆黑派襲擊了我們。總之得先尋找往地下更深處的方法。與染坊的調色盤詢問下樓的道路吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往染坊"
+        }
+      ]
+    },
+    {
+      "key": "Q-2004",
+      "title": "前往染坊",
+      "description": "漆黑派襲擊了我們。總之得先尋找往地下更深處的方法。與染坊的調色盤詢問下樓的道路吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往染坊"
+        }
+      ]
+    },
+    {
+      "key": "Q-2004A",
+      "title": "前往線團之巢",
+      "description": "看來調色盤想要地下2樓的樓層經理所持有的色彩繽紛的線團。為了完成調色盤的請求，前往線團之巢吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往線團之巢"
+        }
+      ]
+    },
+    {
+      "key": "Q-2005",
+      "title": "打倒漆黑派",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "打倒漆黑派"
+        }
+      ]
+    },
+    {
+      "key": "Q-2006",
+      "title": "打倒漆黑派2",
+      "description": "漆黑派仍不斷阻擋去路。邊打倒他們邊前進吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "繼續打倒漆黑派"
+        }
+      ]
+    },
+    {
+      "key": "Q-2007",
+      "title": "繼續朝線團之巢前進",
+      "description": "打倒所有阻擋去路的漆黑派了。現在前進抵達線團之巢吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "繼續朝線團之巢前進"
+        }
+      ]
+    },
+    {
+      "key": "Q-2008",
+      "title": "跟地下2樓的樓層經理交談",
+      "description": "我們抵達了線團之巢。向地下2樓的樓層經理搭話吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟地下2樓的樓層經理交談"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "討伐地下2樓的樓層經理"
+        },
+        {
+          "index": 2,
+          "goalDescription1": "獲取色彩繽紛的線團"
+        }
+      ]
+    },
+    {
+      "key": "Q-2009",
+      "title": "將線團交給調色盤",
+      "description": "跟地下2樓的樓層經理取得了色彩繽紛的線團。現在回到染坊，將色彩繽紛的線團交給調色盤吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "將線團交給調色盤"
+        }
+      ]
+    },
+    {
+      "key": "Q-2010",
+      "title": "抵達通往地下3樓的手扶梯",
+      "description": "調色盤遵守了約定，告訴我們通往地下3樓的手扶梯所在處。抵達通往地下3樓的手扶梯吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "抵達通往地下3樓的手扶梯"
+        }
+      ]
+    },
+    {
+      "key": "Q-2010A",
+      "title": "前往地下3樓",
+      "description": "我們抵達了通往地下3樓的手扶梯。前往地下3樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往地下3樓"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "探索地下3樓"
+        }
+      ]
+    }
+  ]
+}

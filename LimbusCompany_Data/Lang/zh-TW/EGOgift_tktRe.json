@@ -1,0 +1,138 @@
+{
+  "dataList": [
+    {
+      "id": 9812,
+      "name": "糾纏的時間",
+      "desc": "使敵方單位 [Switch_Vibration] 或 [FusionVibration] 時，使其 [VibrationExplosion] (每回合每名友方單位最多1次)",
+      "simpleDesc": [
+        {
+          "abilityID": 9812,
+          "simpleDesc": "使目標震顫引爆 "
+        }
+      ]
+    },
+    {
+      "id": 19812,
+      "name": "糾纏的時間+",
+      "desc": "使敵方單位 [Switch_Vibration] 或 [FusionVibration] 時，使其 [VibrationExplosion] (每回合每名友方單位最多<style=\"upgradeHighlight\">2</style>次)",
+      "simpleDesc": [
+        {
+          "abilityID": 19812,
+          "simpleDesc": "使目標震顫引爆 "
+        }
+      ]
+    },
+    {
+      "id": 29812,
+      "name": "糾纏的時間++",
+      "desc": "使敵方單位 [Switch_Vibration] 或 [FusionVibration] 時，使其 [VibrationExplosion] (每回合每名友方單位最多<style=\"upgradeHighlight\">3</style>次)",
+      "simpleDesc": [
+        {
+          "abilityID": 29812,
+          "simpleDesc": "使目標震顫引爆 "
+        }
+      ]
+    },
+    {
+      "id": 9813,
+      "name": "緊急授予型檢察官徽章",
+      "desc": "[第3順位友方單位專屬]\n\n受到體力減少至0點的傷害時，體力不會低於1點，立即恢復體力上限80%的體力並解除自身的混亂(每場戰鬥每名友方單位最多1次，無條件進位)\n此E.G.O飾品觸發時，下回合起，本場戰鬥期間每回合開始時使自身獲得2層 [Enhancement] 並對自身施加1層 [Vulnerable]\n若自身屬於T公司員工，則自身獲得 [TimeRentalTwoPersonality] 時，使自身額外再獲得1層\n若自身屬於T公司員工，則目標帶有 [TimeSuspend] 時，使自身攻擊技能造成的傷害+10%",
+      "simpleDesc": [
+        {
+          "abilityID": 9813,
+          "simpleDesc": "體力不會低於1點，立即恢復體力上限80%的體力"
+        },
+        {
+          "abilityID": 98131,
+          "simpleDesc": "自身獲得時間租賃時，使自身額外再獲得1層"
+        },
+        {
+          "abilityID": 98132,
+          "simpleDesc": "目標帶有時間延付時，使自身攻擊技能造成的傷害+10%"
+        }
+      ]
+    },
+    {
+      "id": 19813,
+      "name": "緊急授予型檢察官徽章+",
+      "desc": "[<style=\"upgradeHighlight\">第2</style>、第3順位友方單位專屬]\n\n受到體力減少至0點的傷害時，體力不會低於1點，立即恢復體力上限80%的體力並解除自身的混亂(每場戰鬥每名友方單位最多1次，無條件進位)\n此E.G.O飾品觸發時，下回合起，本場戰鬥期間每回合開始時使自身獲得2層 [Enhancement] 並對自身施加1層 [Vulnerable]\n若自身屬於T公司員工，則自身獲得 [TimeRentalTwoPersonality] 時，使自身額外再獲得1層\n若自身屬於T公司員工，則目標帶有 [TimeSuspend] 時，使自身攻擊技能造成的傷害+<style=\"upgradeHighlight\">12.5</style>%",
+      "simpleDesc": [
+        {
+          "abilityID": 19813,
+          "simpleDesc": "體力不會低於1點，立即恢復體力上限80%的體力"
+        },
+        {
+          "abilityID": 198131,
+          "simpleDesc": "自身獲得時間租賃時，使自身額外再獲得1層"
+        },
+        {
+          "abilityID": 198132,
+          "simpleDesc": "目標帶有時間延付時，使自身攻擊技能造成的傷害+10%"
+        }
+      ]
+    },
+    {
+      "id": 29813,
+      "name": "緊急授予型檢察官徽章++",
+      "desc": "[<style=\"upgradeHighlight\">第1</style>、第2、第3順位友方單位專屬]\n\n受到體力減少至0點的傷害時，體力不會低於1點，立即恢復體力上限80%的體力並解除自身的混亂(每場戰鬥每名友方單位最多1次，無條件進位)\n此E.G.O飾品觸發時，下回合起，本場戰鬥期間每回合開始時<style=\"upgradeHighlight\">使自身獲得2層 [Enhancement]</style>\n若自身屬於T公司員工，則自身獲得 [TimeRentalTwoPersonality] 時，使自身額外再獲得<style=\"upgradeHighlight\">2</style>層\n若自身屬於T公司員工，則目標帶有 [TimeSuspend] 時，使自身攻擊技能造成的傷害+<style=\"upgradeHighlight\">15</style>%",
+      "simpleDesc": [
+        {
+          "abilityID": 29813,
+          "simpleDesc": "體力不會低於1點，立即恢復體力上限80%的體力"
+        },
+        {
+          "abilityID": 298131,
+          "simpleDesc": "自身獲得時間租賃時，使自身額外再獲得1層"
+        },
+        {
+          "abilityID": 298132,
+          "simpleDesc": "目標帶有時間延付時，使自身攻擊技能造成的傷害+10%"
+        }
+      ]
+    },
+    {
+      "id": 9814,
+      "name": "強制糾纏音序器",
+      "desc": "回合開始時，使 [Vibration] 回數最高的1名友方單位的 [Vibration] 以 [VibrationDistribution] [FusionVibration]",
+      "simpleDesc": [
+        {
+          "abilityID": 9814,
+          "simpleDesc": "以震顫 - 分配振幅糾纏"
+        }
+      ]
+    },
+    {
+      "id": 19814,
+      "name": "強制糾纏音序器+",
+      "desc": "回合開始時，使 [Vibration] 回數最高的<style=\"upgradeHighlight\">2</style>名友方單位的 [Vibration] 以 [VibrationDistribution] [FusionVibration]",
+      "simpleDesc": [
+        {
+          "abilityID": 19814,
+          "simpleDesc": "以震顫 - 分配振幅糾纏"
+        }
+      ]
+    },
+    {
+      "id": 29814,
+      "name": "強制糾纏音序器++",
+      "desc": "回合開始時，使 [Vibration] 回數最高的<style=\"upgradeHighlight\">3</style>名友方單位的 [Vibration] 以 [VibrationDistribution] [FusionVibration]",
+      "simpleDesc": [
+        {
+          "abilityID": 29814,
+          "simpleDesc": "以震顫 - 分配振幅糾纏"
+        }
+      ]
+    },
+    {
+      "id": 9816,
+      "name": "超精密時間加速裝置",
+      "desc": "Effects apply only to #1 Deployed Identity\n\nApplies to Identities with Skills that inflict [Vibration] Potency, Count, or trigger [VibrationExplosion].\nEncounter Start: gain 5 [UltraPrecisionTimeAcceleration]",
+      "simpleDesc": [
+        {
+          "abilityID": 9816,
+          "simpleDesc": "使自身獲得5層超精密時間加速裝置"
+        }
+      ]
+    }
+  ]
+}

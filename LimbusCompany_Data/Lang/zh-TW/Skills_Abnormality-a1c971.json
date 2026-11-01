@@ -1,0 +1,689 @@
+{
+  "dataList": [
+    {
+      "id": 108001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "岩石洗禮",
+          "desc": "[WhenUse] 若目標的 [Vibration] 強度不低於5級，則使本技能的基礎威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "積聚岩石",
+          "desc": "[WinDuel] 若目標帶有 [Vibration] ，則使本技能的基礎威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "迸發的怠惰",
+          "desc": "[WhenUse] 目標每帶有3級 [Vibration] 強度，使本技能的硬幣威力+1(最多+3)\n[WinDuel] 目標每帶有5級 [Vibration] 強度，使本技能的攻擊容量+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有2回 [Vibration]，使其 [VibrationExplosion] 1次(最多2次)，並使其 [Vibration] 回數減少2回"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "防禦",
+          "desc": "若自身帶有護盾時受到攻擊，則使攻擊者增加2級 [Vibration] 強度 \n[WhenUse] 使自身獲得3層守護 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蠶食衝撞",
+          "desc": "[WhenUse] 若目標的 [Sinking] 強度不低於5級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度與2回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "激流",
+          "desc": "[WhenUse] 若目標帶有 [Sinking]，則使本技能的基礎威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Sinking] 強度與2回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 隨機使2名目標增加4級 [Sinking] 強度與2回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "漫溢的憂鬱",
+          "desc": "[WhenUse] 目標每帶有3級 [Sinking] 強度，使本技能的硬幣威力+1(最多+3)\n[WinDuel] 目標每帶有5級 [Sinking] 強度，使本技能的攻擊容量+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度與4回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有3級 [Sinking] 強度，則使本技能下一枚硬幣的威力+1(最多+3)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [SinkingSurge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避",
+          "desc": "[OnSucceedEvade] 使目標失去5點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "摧垮",
+          "desc": "[WhenUse] 消耗最多20層 [BloodDinner]，每消耗10層 [BloodDinner]，使自身獲得1層 [BloodArmor]\n[WhenUse] 自身每帶有10層 [BloodArmor]，使本技能的硬幣威力+1(最多+2)\n[WhenUse] 自身每帶有10級 [Laceration]，使本技能的硬幣威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "致傷",
+          "desc": "[WhenUse] 消耗最多20層 [BloodDinner]，每消耗10層 [BloodDinner]，使自身獲得1層 [BloodArmor]\n[WhenUse] 自身每帶有10層 [BloodArmor]，使本技能的硬幣威力+1(最多+2)\n[WhenUse] 自身每帶有10級 [Laceration]，使本技能的硬幣威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107903,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "唐吉訶德派硬血4式 - 剜除",
+          "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WinDuel] 自身的 [BloodArmor] 每有1階段，使本技能造成的傷害+20%(最多+60%)\n[DefeatDuel] 消耗4層 [BloodArmor]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "唐吉訶德派硬血11式 - 貫穿",
+          "desc": "[WhenUse] 目標每帶有3級 [Laceration] 強度，使本技能的基礎威力+1(最多+3)\n[WinDuel] 自身的 [BloodArmor] 每有1階段，使本技能造成的傷害+20% (最多+60%)\n[DefeatDuel] 消耗4層 [BloodArmor]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Activate [Laceration] on the target equal to its Count. Use up the target's [Laceration] Count down to 1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107905,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "唐吉訶德派桑丘變體4式-追蹤",
+          "desc": "Prioritizes targets with the most [Laceration]\n[BeforeAttack] Atk Weight +1 for every 10 [BloodArmor] on self (max 3)\n[WhenUse] Clash Power +1 for every 5 [Laceration] on the target (max 3)\n[WhenUse] Consume up to 30 [BloodDinner]: gain 1 [BloodArmor] and Coin Power +1 for every 15 [BloodDinner] consumed (max 2)\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration], and activate [Laceration] immediately. Lose 1 [Laceration] Count\n[EndSkill] Increase [BloodDinner] equal to the damage this Skill dealt",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]\n- 若本技能消耗了30層 [BloodDinner]，則額外施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107906,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "唐吉訶德派桑丘變體3式-突襲",
+          "desc": "Prioritizes targets with the most [Laceration]\n[BeforeAttack] Atk Weight +1 for every 10 [BloodArmor] on self (max 2)\n[WhenUse] Clash Power +1 for every 5 [Laceration] on the target (max 3)\n[WhenUse] Consume up to 30 [BloodDinner]: gain 1 [BloodArmor] and Coin Power +1 for every 15 [BloodDinner] consumed (max 2)\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration], and activate [Laceration] immediately. Lose 1 [Laceration] Count\n[EndSkill] Increase [BloodDinner] equal to the damage this Skill dealt",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]\n- 若本技能消耗了50層 [BloodDinner]，則額外施加2層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107907,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "唐吉訶德派硬血2式 - 硬血",
+          "desc": "可無視速度值與本技能拚點\n[StartBattle] 使自身獲得1層 [SwirlingBlood]\n[StartBattle] 消耗100層 [BloodDinner]，每消耗10層 [BloodDinner]，使自身獲得1層 [BloodArmor] 和20點護盾體力\n- 若 [BloodDinner] 層數不足，則使自身增加50級 [Laceration] 強度，並使自身的 [Laceration] 回數減少2回。隨後使自身獲得200點護盾體力(該傷害不會使自身的體力低於1)\n[DefeatDuel] 帶有透過本技能獲得的護盾體力時，對自身施加3層 [Vulnerable]\n[DefeatDuel] 使本技能造成的傷害-50%\n[EndSkill] 結束本回合",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107908,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "冒險結束了",
+          "desc": "目標每帶有1級 [Laceration] 強度，使本技能造成的傷害+10%(最多+200%)\n自身每帶有3層 [BloodArmor]，使本技能造成的傷害+10%(最多+100%)\n[StartBattle] 消耗(45-自身的理智值)層 [BloodDinner] 並使自身理智值恢復至45點\n- 若 [BloodDinner] 層數不足，則使自身增加20級 [Laceration] 強度並使自身理智值恢復至45點\n- 獲得等同於剩餘 [BloodDinner] 層數的護盾體力(最多100點)\n[WinDuel] 使目標增加10級 [Laceration] 強度\n[EndSkill] 獲得等同於對目標造成傷害量的 [BloodDinner] 層數\n[EndSkill] 若擊殺目標，則獲得等同於目標體力上限的 [BloodDinner] 層數",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加10級 [Laceration] 強度與3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使除目標以外的全體敵方單位增加5級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 107909,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "冒險結束了……",
+          "desc": "全體目標總計每帶有10級 [Laceration] 強度，使本技能造成的傷害+40%(最多+200%)\n自身每消耗1層 [BloodDinner]，使本技能造成的傷害+10%(最多+100%)\n[StartBattle] 消耗(45-自身的理智值)層 [BloodDinner] 並使自身理智值恢復至45點\n- 若 [BloodDinner] 層數不足，則使自身增加20級 [Laceration] 強度並使自身理智值恢復至45點\n- 獲得等同於剩餘 [BloodDinner] 層數的護盾體力(最多100點)\n[WinDuel] 使目標增加10級 [Laceration] 強度\n[EndSkill] 獲得等同於對目標造成傷害量的 [BloodDinner] 層數\n[EndSkill] 若擊殺目標，則獲得等同於目標體力上限的 [BloodDinner] 層數",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使目標增加10級 [Laceration] 強度與3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "壓縮",
+          "desc": "[WhenUse] 自身每帶有5級 [Breath] 強度，使本技能的最終威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Vibration] 強度與2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "分解",
+          "desc": "[WhenUse] 自身每帶有3級 [Breath] 強度，使本技能的最終威力+1(最多+5)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion]；成功使目標 [VibrationExplosion] 時，使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "執行分析",
+          "desc": "[WhenUse] 當自身帶有的 [Breath] 強度至少10級以上時，則將消耗自身 [Breath] 強度，每消耗3級 [Breath] 強度使本技能的最終威力 +2 (最多+4) 由本效果增加的最終威力每有1，則額外再消耗自身3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於5回，則使目標 [VibrationExplosion] ；成功使目標 [VibrationExplosion] 時，使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加5級 [Vibration] 強度與3回 [Vibration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] Trigger [VibrationExplosion] twice. When [VibrationExplosion] is triggered on the target, reduce target's [Vibration] Count by 1 (nullify 1 instance of [Vibration] Count reduction if this unit won the Clash)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啟動銷毀程序",
+          "desc": "[WhenUse] 消耗自身一半的 [Breath] 強度與 [Breath] 回數\n- 使本技能的最終威力+(消耗的 [Breath] 強度與 [Breath] 回數之和/2)(最多+20)\n- 使本技能造成的傷害+(消耗的 [Breath] 強度×2)%(最多+50%)\n- 使本技能暴擊時造成的傷害+(消耗的 [Breath] 回數×4)%(最多+100%)\n[DefeatDuel] 使自身剩餘的 [Breath] 回數減半",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若自身上回合未受到體力傷害，則使本硬幣必定暴擊"
+                },
+                {
+                  "desc": "若自身上回合受到了體力傷害，則使本硬幣必定不會暴擊，並使造成的傷害-80%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion] 3次；成功使目標 [VibrationExplosion] 時，每1次 [VibrationExplosion] 將減少目標的 [Vibration] 回數3回 (最多減少9回)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 108205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "考察",
+          "desc": "[WhenUse] 自身每帶有3級 [Breath] 強度，則使本技能的最終威力+1(最多+5)\n[WhenUse] 使自身增加4級 [Breath] 強度\n- 若自身帶有護盾，則額外使自身獲得2回 [Breath]",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 137801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "壓縮",
+          "desc": "[WhenUse] 自身每帶有5級 [Breath] 強度，使本技能的最終威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Vibration] 強度與2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 137802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "分解",
+          "desc": "[WhenUse] Final Power +1 for every 3 [Breath] Potency on self (max 5)\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] If the target has 20+ [ObservedPerson], convert all Coins on this Skill to [SuperCoin]s</u></b></mark></color>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 137803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "執行分析",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於10級，則消耗 [Breath] 強度，每消耗3級 [Breath] 強度，使本技能的最終威力+2(最多+4)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於5回，則使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                },
+                {
+                  "desc": "[WinDuelAttack] 使目標增加5級 [Vibration] 強度與3回 [Vibration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其 [Vibration] 回數減少2回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 137804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啟動銷毀程序",
+          "desc": "[WhenUse] 消耗自身一半的 [Breath] 強度與 [Breath] 回數\n- 使本技能的最終威力+(消耗的 [Breath] 強度與 [Breath] 回數之和/2)(最多+20)\n- 使本技能造成的傷害+(消耗的 [Breath] 強度×2)%(最多+50%)\n- 使本技能暴擊時造成的傷害+(消耗的 [Breath] 回數×4)%(最多+100%)\n[DefeatDuel] 使自身剩餘的 [Breath] 回數減半",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "若自身上回合未受到體力傷害，則使本硬幣必定暴擊"
+                },
+                {
+                  "desc": "若自身上回合受到了體力傷害，則使本硬幣必定不會暴擊，並使造成的傷害-80%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion] 3次，並使其 [Vibration] 回數減少3回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 137805,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "考察",
+          "desc": "[CanDuelGuard]\n[WhenUse] 自身每帶有3級 [Breath] 強度，則使本技能的最終威力 +1 (最多+5)\n[WhenUse] 使自身獲得4級 [Breath] 強度\n- 若自身帶有護盾，則額外獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

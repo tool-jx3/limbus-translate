@@ -1,0 +1,92 @@
+{
+  "dataList": [
+    {
+      "id": 128801,
+      "name": "苦戰",
+      "desc": "戰鬥開始時，使自身獲得8層 [Protection]\n- 戰鬥開始時，若自身士氣低落，則獲得的 [Protection] 層數減半\n- 戰鬥開始時，若自身陷入混亂或陷入恐慌，則不會獲得 [Protection]"
+    },
+    {
+      "id": 128802,
+      "name": "激浪的咆哮",
+      "desc": "受到攻擊時，對攻擊者施加1層 [ColdAirDOQ] (每個技能最多1次)"
+    },
+    {
+      "id": 128803,
+      "name": "俯視蒼生",
+      "desc": "當被動技能「命運的寵兒」發動時，觸發以下效果\n- 回合結束時，下回合對自身施加1層 [Binding] \n- 自身遭受傷害時，對目標施加1層 [ColdAirDOQ] (每個技能最多觸發1次)"
+    },
+    {
+      "id": 128804,
+      "name": "獵潮者",
+      "desc": "攻擊帶有 [FreezingDOQ] 的敵方單位時，使自身造成的傷害+175%"
+    },
+    {
+      "id": 128805,
+      "name": "命運的寵兒",
+      "desc": "受到使自身體力降至0點的傷害時，無視該傷害並使自身體力與理智值恢復至最大值，並改變自身模式 (每場戰鬥最多1次)"
+    },
+    {
+      "id": 128806,
+      "name": "對大潮的憤怒",
+      "desc": "每回合開始時，每有1名敵方單位帶有 [ColdAirDOQ]，則使自身獲得1層 [AttackUp]"
+    },
+    {
+      "id": 128807,
+      "name": "奔馳的羅辛南特",
+      "desc": "回合開始時，若帶有 [ColdAirDOQ] 的敵方單位不低於6名，則使自身獲得2層 [ParryingResultUp]"
+    },
+    {
+      "id": 128808,
+      "name": "騎士的妄念",
+      "desc": "關卡開始時，對自身施加 [WeakenDOQ]"
+    },
+    {
+      "id": 129101,
+      "name": "神經損傷",
+      "desc": "目標每帶有1層 [NervousImpairment]，使自身的技能造成的傷害+1%"
+    },
+    {
+      "id": 129102,
+      "name": "海嗣",
+      "desc": "關卡開始時，對自身施加5層 [SeaTerrorCell]\n[SeaTerrorCell] 改為使自身獲得 [AttackUp] 與 [DefenseUp]，而非對自身施加 [AttackDown] 與 [DefenseDown]"
+    },
+    {
+      "id": 129104,
+      "name": "同胞的呼喚",
+      "desc": "回合結束時，若存活的友方單位不高於2名，則消耗自身10點理智值並召喚兩名殼海狂奔者至戰場上\n\n回合結束時，若當前場上具有 [NetherseaBrandUnit]，則下回合使屬於恐魚的全體單位獲得2層 [Enhancement]\n- [NetherseaBrandUnit] 每進展1階段，則額外獲得1層 [AttackUp]",
+      "summary": "若場上具有 [NetherseaBrandUnit]，下回合使屬於恐魚的全體單位獲得攻擊增益"
+    },
+    {
+      "id": 129701,
+      "name": "向光而行的隊列",
+      "desc": "Take -90% damage from [Combustion], [Laceration], [Vibration], [Burst], [Sinking]\nTurn Start: gain 10 [Protection]\n\nTurn End: consume [AbyssalVitality] to summon Sea Terror horde\n- If there are fewer than 3 Shell Sea Runners or Deep Sea Sliders on the battlefield, randomly summon either of those units until there are a sum of 3 of them next turn and consume (# of summoned units x 4) [AbyssalVitality]\n- If Nethersea Founder isn't on the battlefield, consume 8 [AbyssalVitality] to summon it next turn\n- If Nethersea Spewer isn't on the battlefield, consume 12 [AbyssalVitality] to summon it next turn\n- If Basin Sea Reaper isn't on the battlefield, consume 20 [AbyssalVitality] to summon it next turn",
+      "summary": "受到的 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking] 傷害減少"
+    },
+    {
+      "id": 129702,
+      "name": "自我的責任",
+      "desc": "當自身召喚的恐魚單位陣亡時，使自身受到陣亡單位體力上限100%的固定體力傷害"
+    },
+    {
+      "id": 129703,
+      "name": "漂流的善意",
+      "desc": "體力不高於50%時，立即結束戰鬥並改變自身模式\n- 使被動技能「向光而行的隊列」失效\n- 使自身獲得100層 [AbyssalVitality]\n- 當獲得此被動效果或解除混亂時，使自身獲得等同於失去體力值的護盾 (每回合最多1次)\n- 自身獲得護盾時，觸發 [IndelibleGoodwill] 的效果\n\n回合開始時\n- 對帶有 [NervousImpairment] 且低於15層的全體敵方單位施加5層 [NervousImpairment]\n- 對自身施加(本場戰鬥中使用「在他們堅信的善意失去價值前」的次數×2)層 [Vulnerable] (最多6層)\n\n自身模式改變後，每回合根據陷入混亂的敵方單位數，使自身的技能行動槽相應減少 (最多減少6槽；不會生效於使用強力技能的回合)",
+      "summary": "消耗 [AbyssalVitality] 時，使自身恢復理智值"
+    },
+    {
+      "id": 129704,
+      "name": "溟痕樂園",
+      "desc": "若自身處在 [NetherseaBrandUnit] 之上，使自身的最終威力+3、硬幣威力+3，且攻擊命中目標時施加的 [NervousImpairment] 變為2倍"
+    },
+    {
+      "id": 129705,
+      "name": "勸誘同族",
+      "desc": "當自身的技能命中缽海收割者時，使缽海收割者從 [WaitingforCommandMod] 改變為 [ParticipationMod]"
+    },
+    {
+      "id": 129103,
+      "name": "細胞膜",
+      "desc": "若自身受到傷害後仍帶有護盾，則使目標增加2級 [Sinking] 強度"
+    }
+  ]
+}

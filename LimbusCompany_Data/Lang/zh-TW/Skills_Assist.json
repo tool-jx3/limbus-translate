@@ -1,0 +1,650 @@
+{
+  "dataList": [
+    {
+      "id": 40000101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤擊",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+1\n[WhenUse] 目標每帶有3級 [Burst] 強度，使本技能的基礎威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "赤擊貳型 - 破",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+1\n[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "赤擊參型 - 強",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+2\n[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤擊肆型 - 束",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+2\n[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 下回合使自身獲得3層 [Agility] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "name": "赤擊伍型 - 進",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+2\n[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 下回合使自身獲得3層 [Agility] (每回合最多1次)\n[WhenUse] 使自身增加3級 [Breath] 強度並使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合使自身獲得1層 [AttackUp]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Binding]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 重複使用本硬幣(最多2次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤鳳",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有6級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Gain +1 [Breath] Count. Gain [Breath] equal to [Burst] on target (max 5)"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] Gain 3 [Breath] next turn. Gain [Breath] Count equal to [Burst] Count on target next turn (max 2)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKillFail] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "赤鳳貳型 - 破",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於4種，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] Gain +1 [Breath] Count. Gain [Breath] equal to [Burst] on target (max 5)"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] Gain 3 [Breath] next turn. Gain [Breath] Count equal to [Burst] Count on target next turn (max 2)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKillFail] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "赤鳳參型 - 炎",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於4種，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有6級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加等同於目標 [Burst] 強度與 [Combustion] 強度之和的 [Breath] 強度(最多+10級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得回數等同於目標 [Burst] 強度與 [Combustion] 強度之和的 [Breath] (最多5回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKillFail] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤鳳肆型 - 氣",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於4種，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身增加3級 [Breath] 強度並使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [AttackUp]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加等同於目標 [Burst] 強度與 [Combustion] 強度之和的 [Breath] 強度(最多+10級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得回數等同於目標 [Burst] 強度與 [Combustion] 強度之和的 [Breath] (最多5回)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 對目標施加2層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKillFail] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "name": "赤鳳伍型 - 翼",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於4種，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有3級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身增加3級 [Breath] 強度並使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DefenseDown]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [AttackUp]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加等同於目標 [Burst] 強度與 [Combustion] 強度之和的 [Breath] 強度(最多+10級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得回數等同於目標 [Burst] 強度與 [Combustion] 強度之和的 [Breath] (最多5回)"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 對目標施加2層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKillFail] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKillFail] 對目標使用赤斬"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 隨機對1名目標使用赤斬"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤春",
+          "desc": "[BeforeAttack] 目標每帶有4種負面狀態，使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若目標帶有的負面狀態不低於5種，則使本技能的基礎威力+5\n[WhenUse] 若目標的 [Burst] 強度與 [Burst] 回數之和不低於15點，則使本技能的硬幣威力+5\n[WinDuel] 使目標增加2回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級流血 強度"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+200%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "赤春貳型 - 熱",
+          "desc": "[BeforeAttack] 目標每帶有3種負面狀態，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的基礎威力+5\n[WhenUse] 目標的 [Burst] 強度與 [Burst] 回數之和每有3點，使本技能的硬幣威力+1(最多+5)\n[WinDuel] 使目標增加2回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級流血 強度"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+200%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "赤春參型 - 斬",
+          "desc": "[BeforeAttack] 目標每帶有3種負面狀態，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的基礎威力+5\n[WhenUse] 目標的 [Burst] 強度與 [Burst] 回數之和每有3點，使本技能的硬幣威力+1(最多+5)\n[WinDuel] 使目標增加2回 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級流血 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級流血 強度"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+200%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤春肆型 - 巡",
+          "desc": "[BeforeAttack] 目標每帶有3種負面狀態，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的基礎威力+5\n[WhenUse] 目標的 [Burst] 強度與 [Burst] 回數之和每有3點，使本技能的硬幣威力+1(最多+5)\n[WinDuel] 使目標增加2回 [Burst]\n[WhenUse] 使自身增加5級 [Breath] 強度並使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級流血 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級流血 強度"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+200%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "name": "赤春伍型 - 花",
+          "desc": "[BeforeAttack] 目標每帶有3種負面狀態，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的基礎威力+5\n[WhenUse] 目標的 [Burst] 強度與 [Burst] 回數之和每有3點，使本技能的硬幣威力+1(最多+5)\n[WinDuel] 使目標增加2回 [Burst]\n[WhenUse] 使自身增加5級 [Breath] 強度並使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級流血 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加2回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加7級流血 強度"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+200%"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使目標增加3回流血 "
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1種負面狀態，使本硬幣造成的傷害+10%(最多+50%)"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [Agility] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "秀回",
+          "desc": "[OnSucceedEvade] 下回合使自身增加1級 [Breath] 強度。(每個技能最多3次)"
+        },
+        {
+          "level": 2,
+          "name": "秀回",
+          "desc": "[OnSucceedEvade] 下回合使自身獲得3級 [Breath] 強度。(每個技能最多2次)"
+        },
+        {
+          "level": 3,
+          "name": "秀回",
+          "desc": "[WhenUse] 目標每帶有2種負面狀態，則使本技能的基礎威力+2(最多+10)\n[OnSucceedEvade] 下回合使自身增加3級 [Breath] 強度。(每回合最多2次)"
+        },
+        {
+          "level": 4,
+          "name": "秀回流還",
+          "desc": "[WhenUse] 目標每帶有2種負面狀態，則使本技能的基礎威力+2(最多+10)\n[OnSucceedEvade] 下回合使自身增加3級 [Breath] 強度。(每回合最多2次)\n[OnSucceedEvade] 使用赤斬(每回合最多1次)。"
+        }
+      ]
+    }
+  ]
+}

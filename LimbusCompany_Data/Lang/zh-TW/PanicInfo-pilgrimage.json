@@ -1,0 +1,22 @@
+{
+  "dataList": [
+    {
+      "id": 1061,
+      "panicName": "善意之心",
+      "lowMoraleDescription": "- 造成的傷害+(目標帶有的 [NervousImpairment] 層數/2)%(最多+15%)\n回合開始時，使自身獲得1層 [AttackDmgUp] 並對自身施加2層 [Vulnerable] ",
+      "panicDescription": "- 造成的傷害+(目標帶有的 [NervousImpairment] 層數)%(最多+30%)\n- 回合開始時，使自身獲得2層 [AttackDmgUp] 並對自身施加3層 [Vulnerable]"
+    },
+    {
+      "id": 1062,
+      "panicName": "同族的呼喚",
+      "lowMoraleDescription": "回合結束時，消耗自身3%體力，使全體友方單位獲得1層 [Enhancement] 並對其施加1層 [Vulnerable] ",
+      "panicDescription": "回合結束時，消耗自身5%體力並對自身施加1層 [Vulnerable]，並使全體友方單位獲得1層 [Enhancement] 並對其施加1層 [Vulnerable] "
+    },
+    {
+      "id": 1064,
+      "panicName": "大群意志",
+      "lowMoraleDescription": "所有抗性改變為一般",
+      "panicDescription": "所有抗性改變為一般\n自身因技能被施加的 [Combustion]、[Laceration]、[Vibration]、[Burst] 強度增加為2倍"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "dataList": [
+    {
+      "id": 40000201,
+      "name": "加斥",
+      "desc": "友方單位攻擊敵方單位並造成傷害時，該攻擊結束時使用「弱點突刺 」進行單方面攻擊(每回合最多2次)"
+    },
+    {
+      "id": 40000202,
+      "name": "扶刺",
+      "desc": "When an enemy attacks another ally, and if the allied unit has less than 25% HP after the attack, use the Skill 'Aiding Strike' as an Unopposed Attack against the attacker (once per Encounter)"
+    },
+    {
+      "id": 40000203,
+      "name": "吸找",
+      "desc": "回合結束時，自身每帶有3級呼吸法 強度，則下回合使自身獲得1層防禦等級提升 (最多6層)"
+    },
+    {
+      "id": 40000204,
+      "name": "高揚",
+      "desc": "擊殺敵方單位時，使理智值最低的2名罪人恢復10點理智值"
+    }
+  ]
+}

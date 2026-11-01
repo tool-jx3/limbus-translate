@@ -1,0 +1,11 @@
+{
+  "raw_tag": "raw-20261029",
+  "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
+  "rules_commit": "fb2b0969a45c0ef78713157c38556f810fa441a5",
+  "built_at": "2026-11-01T04:52:44Z",
+  "upstream": {
+    "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
+    "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
+    "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
+  }
+}

@@ -1,0 +1,1042 @@
+{
+  "dataList": [
+    {
+      "id": 2100411,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "提燈",
+          "abName": "精靈提燈",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加3級破裂 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使現存體力比例最低的2名友方單位恢復其體力上限10%的體力"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "提燈",
+          "abName": "精靈提燈",
+          "desc": "[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加3級破裂 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使現存體力比例最低的2名友方單位恢復其體力上限12%的體力"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "提燈",
+          "abName": "精靈提燈",
+          "desc": "[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級破裂 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使現存體力比例最低的2名友方單位恢復其體力上限15%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100421,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "提燈",
+          "abName": "精靈提燈",
+          "desc": "[CantIdentify] \n指定體力最高的單位",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加2回破裂 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量30%的體力"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "提燈",
+          "abName": "精靈提燈",
+          "desc": "[CantIdentify]\n指定體力最高的單位\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加3回破裂 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層防禦等級降低 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量50%的體力"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "提燈",
+          "abName": "精靈提燈",
+          "desc": "[CantIdentify]\n指定體力最高的單位\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回破裂 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層防禦等級降低 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量50%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100511,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "9章2節",
+          "abName": "人皮預言者",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] If target has no [Combustion], inflict 4 Burn"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級燒傷 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "9章2節",
+          "abName": "人皮預言者",
+          "desc": "[BeforeAttack] 若色慾共鳴數不低於4，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] If target has no [Combustion], inflict 4 Burn"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級燒傷 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "9章2節",
+          "abName": "人皮預言者",
+          "desc": "[BeforeAttack] 若色慾共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 若最大色慾完全共鳴數不低於4，則使本技能的攻擊容量額外+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] If target has no [Combustion], inflict 4 Burn"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級燒傷 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 若目標的 [Combustion] 強度不低於10級，則下回合對其施加1層虛弱 與1層破綻 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100521,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "9章2節",
+          "abName": "人皮預言者",
+          "desc": "[CantIdentify]\n隨機指定目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] If target has no [Combustion], inflict 6 Burn"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級燒傷 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "9章2節",
+          "abName": "人皮預言者",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若色慾共鳴數不低於4，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] If target has no [Combustion], inflict 6 Burn"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級燒傷 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 若目標的 [Combustion] 強度不低於10級，則下回合對其施加1層色慾易損 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "9章2節",
+          "abName": "人皮預言者",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若色慾共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 若最大色慾完全共鳴數不低於4，則使本技能的攻擊容量額外+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] If target has no [Combustion], inflict 6 Burn"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級燒傷 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 若目標的 [Combustion] 強度不低於10級，則下回合對其施加2層色慾易損 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndSkill] 使自身與現存體力最低的1名友方單位獲得自身體力上限10%的護盾與2層 [ShieldManagerCryingToad]"
+                },
+                {
+                  "desc": "- 若最大共鳴數不低於4，則額外使1名友方單位獲得以上效果"
+                },
+                {
+                  "desc": "- 若以上友方單位帶有 [ShieldManagerCryingToad]，則使其 [ShieldManagerCryingToad] 層數變為2層"
+                },
+                {
+                  "desc": "- At 4+ highest Gloom A-Reson., this Skill's above effects change to 'apply 3 [ShieldManagerCryingToad]' and 'change the [ShieldManagerCryingToad] value to 3' instead."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "<style=\"highlight\">[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數-2)(最多+2)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndSkill] 使自身與現存體力最低的<style=\"highlight\">(1+(最大共鳴數-2))</style>名友方單位獲得自身體力上限<style=\"highlight\">14%</style>的護盾與2層 [ShieldManagerCryingToad] <style=\"highlight\">(除自身以外最大友方單位獲取數：3名)</style>"
+                },
+                {
+                  "desc": "- 若以上友方單位帶有 [ShieldManagerCryingToad]，則使其 [ShieldManagerCryingToad] 層數變為2層<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- At 4+ highest Gloom A-Reson., this Skill's above effects change to 'apply 3 [ShieldManagerCryingToad]' and 'change the [ShieldManagerCryingToad] value to 3' instead.<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數-2)(最多+2)<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[EndSkill] 使自身與現存體力最低的(1+(最大共鳴數-2))名友方單位獲得自身體力上限<style=\"highlight\">20%</style>的護盾與2層 [ShieldManagerCryingToad] (除自身以外最大友方單位獲取數：3名)"
+                },
+                {
+                  "desc": "- 若以上友方單位帶有 [ShieldManagerCryingToad]，則使其 [ShieldManagerCryingToad] 層數變為2層<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- At 4+ highest Gloom A-Reson., this Skill's above effects change to 'apply 3 [ShieldManagerCryingToad]' and 'change the [ShieldManagerCryingToad] value to 3' instead.<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 下回合使本技能對應行動槽的 [Aggro] +5",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[EndSkill] 使自身獲得自身體力上限(15+2.5×(最大共鳴數))%的護盾與2層 [ShieldManagerCryingToad] (最多+25%)"
+                },
+                {
+                  "desc": "- 若自身帶有 [ShieldManagerCryingToad]，則使自身的 [ShieldManagerCryingToad] 層數變為2層"
+                },
+                {
+                  "desc": "- At 4+ highest Gloom A-Reson., this Skill's above effects change to 'gain 3 [ShieldManagerCryingToad]' and 'change the [ShieldManagerCryingToad] value to 3' instead."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數-2)(最多+2)</style>\n[BeforeAttack] 下回合使本技能對應行動槽的<style=\"highlight\"> [Aggro] +10</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[EndSkill] 使自身獲得自身體力上限(<style=\"highlight\">18</style>+<style=\"highlight\">3</style>×(最大共鳴數))%的護盾與2層 [ShieldManagerCryingToad] (最多<style=\"highlight\">+30%</style>)"
+                },
+                {
+                  "desc": "- 若自身帶有 [ShieldManagerCryingToad]，則使自身的 [ShieldManagerCryingToad] 層數變為2層<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- At 4+ highest Gloom A-Reson., this Skill's above effects change to 'apply 3 [ShieldManagerCryingToad]' and 'change the [ShieldManagerCryingToad] value to 3' instead.<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "低泣",
+          "abName": "悲泣蟾蜍",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數-2)(最多+2)\n[BeforeAttack] 下回合使本技能對應行動槽的 [Aggro] +10<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度並<style=\"highlight\">對其施加3回 [Sinking] </style>"
+                },
+                {
+                  "desc": "[EndSkill] 使自身獲得自身體力上限(<style=\"highlight\">20</style>+<style=\"highlight\">5</style>×(最大共鳴數))%的護盾與2層 [ShieldManagerCryingToad] (最多<style=\"highlight\">+40%</style>)"
+                },
+                {
+                  "desc": "- 若自身帶有 [ShieldManagerCryingToad]，則使自身的 [ShieldManagerCryingToad] 層數變為2層<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "- At 4+ highest Gloom A-Reson., this Skill's above effects change to 'apply 3 [ShieldManagerCryingToad]' and 'change the [ShieldManagerCryingToad] value to 3' instead.<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">- 若憂鬱共鳴數不低於4，則使自身額外獲得自身體力上限10%的護盾</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "詛咒之釘",
+          "abName": "痛苦泰迪",
+          "desc": "[EndSkill] If target has [Curse], immediately activate it twice and reduce it by 2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]\n- 目標每帶有3種除 [Curse] 與 [NailPersonality] 以外的負面狀態，額外對其施加1層 [Curse] (最多2層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [NailPersonality]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "詛咒之釘",
+          "abName": "痛苦泰迪",
+          "desc": "<style=\"highlight\">[BeforeAttack] At 4+ Envy Reson. including this Skill, Atk Weight +1</style>\n[EndSkill] If target has [Curse], immediately activate it twice and reduce it by 2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]\n- 目標每帶有3種除 [Curse] 與 [NailPersonality] 以外的負面狀態，額外對其施加1層 [Curse] (最多2層)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加<style=\"highlight\">3</style>層 [NailPersonality]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 下回合對目標施加2層 [Binding] (每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "詛咒之釘",
+          "abName": "痛苦泰迪",
+          "desc": "<style=\"highlight\">[BeforeAttack] For every 3 Envy Reson. including this Skill, Atk Weight +1 (max 2)</style>\n[EndSkill] If target has [Curse], immediately activate it twice and reduce it by 2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]\n- 目標每帶有<style=\"highlight\">2</style>種除 [Curse] 與 [NailPersonality] 以外的負面狀態，額外對其施加1層 [Curse] (最多2層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [NailPersonality] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若目標的 [Curse] 層數不低於4層，則對其施加1層 [ParryingResultDown] (每回合最多1次)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加2層 [Binding] (每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "詛咒之釘",
+          "abName": "痛苦泰迪",
+          "desc": "[CantIdentify]\nTargets randomly\n[EndSkill] If target has [Curse], immediately activate it twice and reduce it by 2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加4層 [Curse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [NailPersonality]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "詛咒之釘",
+          "abName": "痛苦泰迪",
+          "desc": "[CantIdentify]\nTargets randomly\n[EndSkill] If target has [Curse], immediately activate it twice and reduce it by 2<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加<style=\"highlight\">3</style>級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加4層 [Curse] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加<style=\"highlight\">3</style>層 [NailPersonality]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackTail] 下回合對目標施加2層 [Binding] (每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "詛咒之釘",
+          "abName": "痛苦泰迪",
+          "desc": "[CantIdentify]\nTargets randomly\n[EndSkill] If target has [Curse], immediately activate it twice and reduce it by 2<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標增加3級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加4層 [Curse] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [NailPersonality] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若包括本技能在內嫉妒共鳴數不低於4，則對目標施加1層 [ParryingResultDown] (每回合最多1次)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 下回合對目標施加2層 [Binding] (每回合最多1次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackTail] 下回合對目標施加2層 [DefenseDown] (每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "汙血泣淚",
+          "abName": "應龍",
+          "desc": "[StartBattle] 使自身獲得 [YesdragonNodie]\n[BeforeAttack] 使自身獲得層數等同於暴食共鳴數的 [YesdragonSelf] (最多5層)\n[BeforeAttack] 使自身受到(自身的 [YesdragonSelf] 層數×2)點體力傷害\n- 若該效果使自身體力降至混亂閾值之下，則自身不會陷入混亂，而改為移除高於現存體力的混亂閾值\n[EndSkill] 在3回合內，回合結束時使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若現存體力不高於30%或自身的 [YesdragonSelf] 層數不低於20層，則重複使用本技能(每個技能最多1次)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 消耗自身所有體力並使本硬幣造成的傷害+20%(每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "汙血泣淚",
+          "abName": "應龍",
+          "desc": "<style=\"highlight\">若自身的 [YesdragonSelf] 層數不低於6層，則使本技能的硬幣威力+1</style>\n[StartBattle] 使自身獲得 [YesdragonNodie]\n[BeforeAttack] 使自身獲得層數等同於暴食共鳴數的 [YesdragonSelf] (最多5層)\n[BeforeAttack] 使自身受到(自身的 [YesdragonSelf] 層數×2)點體力傷害\n- 若該效果使自身體力降至混亂閾值之下，則自身不會陷入混亂，而改為移除高於現存體力的混亂閾值\n[EndSkill] 在3回合內，回合結束時使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若現存體力不高於30%或自身的 [YesdragonSelf] 層數不低於20層，則重複使用本技能(每個技能最多1次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 消耗自身所有體力並使本硬幣造成的傷害+20%(每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "汙血泣淚",
+          "abName": "應龍",
+          "desc": "<style=\"highlight\">自身每帶有6層 [YesdragonSelf]，則使本技能的硬幣威力+1(最多+3)</style>\n[StartBattle] 使自身獲得 [YesdragonNodie]\n[BeforeAttack] 使自身獲得層數等同於暴食共鳴數的 [YesdragonSelf] (最多5層)\n[BeforeAttack] 使自身受到(自身的 [YesdragonSelf] 層數×2)點體力傷害\n- 若該效果使自身體力降至混亂閾值之下，則自身不會陷入混亂，而改為移除高於現存體力的混亂閾值\n[EndSkill] 在3回合內，回合結束時使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">自身每失去2%的體力，則使本硬幣造成的傷害+1%(最多+40%)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若現存體力不高於30%或自身的 [YesdragonSelf] 層數不低於20層，則重複使用本技能(每個技能最多1次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 消耗自身所有體力並使本硬幣造成的傷害+20%(每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "汙血泣淚",
+          "abName": "應龍",
+          "desc": "[CantIdentify]\n隨機指定目標\n[StartBattle] 使自身獲得 [YesdragonNodie]\n[BeforeAttack] 使自身獲得(暴食共鳴數+4)層 [YesdragonSelf] (最多10層)\n[BeforeAttack] 使自身受到(自身的 [YesdragonSelf] 層數×2)點體力傷害\n- 若該效果使自身體力降至混亂閾值之下，則自身不會陷入混亂，而改為移除高於現存體力的混亂閾值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若現存體力不高於30%或自身的 [YesdragonSelf] 層數不低於20層，則重複使用本技能(每個技能最多1次)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 消耗自身所有體力並使本硬幣造成的傷害+20%(每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "汙血泣淚",
+          "abName": "應龍",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">若自身的 [YesdragonSelf] 層數不低於10層，則使本技能的基礎威力+1</style>\n[StartBattle] 使自身獲得 [YesdragonNodie]\n[BeforeAttack] 使自身獲得(暴食共鳴數+4)層 [YesdragonSelf] (最多10層)\n[BeforeAttack] 使自身受到(自身的 [YesdragonSelf] 層數×2)點體力傷害\n- 若該效果使自身體力降至混亂閾值之下，則自身不會陷入混亂，而改為移除高於現存體力的混亂閾值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若現存體力不高於30%或自身的 [YesdragonSelf] 層數不低於20層，則重複使用本技能(每個技能最多1次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 消耗自身所有體力並使本硬幣造成的傷害+20%(每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "汙血泣淚",
+          "abName": "應龍",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">自身每帶有10層 [YesdragonSelf]，則使本技能的基礎威力+1(最多+2)</style>\n[StartBattle] 使自身獲得 [YesdragonNodie]\n[BeforeAttack] 使自身獲得(暴食共鳴數+4)層 [YesdragonSelf] (最多10層)\n[BeforeAttack] 使自身受到(自身的 [YesdragonSelf] 層數×2)點體力傷害\n- 若該效果使自身體力降至混亂閾值之下，則自身不會陷入混亂，而改為移除高於現存體力的混亂閾值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">自身每失去2%的體力，則使本硬幣造成的傷害+1%(最多+40%)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若現存體力不高於30%或自身的 [YesdragonSelf] 層數不低於20層，則重複使用本技能(每個技能最多1次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 消耗自身所有體力並使本硬幣造成的傷害+20%(每回合最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "諧律和聲",
+          "abName": "歌唱機",
+          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力 +1(最多+6)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多+10%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復8點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 若自身的現存體力不低於10%，則使自身受到4~8點體力傷害(每枚硬幣最多1次)\n- 而後，重複使用本硬幣(每個技能最多4次)\n- 該效果造成的傷害不會使自身陷入混亂或使自身體力降至1點以下",
+                  "summary": "[OnSucceedAttackHead] 消耗自身的體力值後，重複使用本硬幣"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使隨機1名友方單位獲得1層 [ThatIsRhythm] (每枚硬幣最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "諧律和聲",
+          "abName": "歌唱機",
+          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+8</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+15</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">10</style>點理智值 (最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 若自身的現存體力不低於10%，則使自身受到4~8點體力傷害(每枚硬幣最多1次)\n- 而後，重複使用本硬幣(每個技能最多4次)\n- 該效果造成的傷害不會使自身陷入混亂或使自身體力降至1點以下",
+                  "summary": "[OnSucceedAttackHead] 消耗自身的體力值後，重複使用本硬幣"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使隨機1名友方單位獲得<style=\"highlight\">1~2</style>層 [ThatIsRhythm] (每枚硬幣最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "諧律和聲",
+          "abName": "歌唱機",
+          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+10</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+20</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">12</style>點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 若自身的現存體力不低於10%，則使自身受到4~8點體力傷害(每枚硬幣最多1次)\n- 而後，重複使用本硬幣(每個技能最多4次)\n- 該效果造成的傷害不會使自身陷入混亂或使自身體力降至1點以下",
+                  "summary": "[OnSucceedAttackHead] 消耗自身的體力值後，重複使用本硬幣"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使隨機1名友方單位獲得1~<style=\"highlight\">3</style>層 [ThatIsRhythm] (每枚硬幣最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2100921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "諧律和聲",
+          "abName": "歌唱機",
+          "desc": "[CantIdentify]\n隨機指定目標\n主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多+6)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多+10%)\n對次要目標造成的傷害-50%\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數÷2) (最多+2；無條件捨去)\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-2 (最多-6)\n[EndSkill] 使自身以外理智值最低的4名友方單位恢復10點理智值\n[EndSkill] 下回合使全體友方單位獲得2層 [ThatIsRhythm]、1層 [CrimsonDamageUp]、1層 [ScarletDamageUp]、1層 [VioletDamageUp] 以及1層 [Vulnerable]\n- 若有目標遭到擊殺，則使上述效果再次發動",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的現存體力不低於10%，則使自身受到10~20點體力傷害(每枚硬幣最多1次)\n- 而後，若失去的體力累計不高於50點，則重複使用本硬幣(每個技能最多4次)\n- 該效果造成的傷害不會使自身陷入混亂或使自身體力降至1點以下",
+                  "summary": "[OnSucceedAttack] 消耗自身體力\n滿足條件時重複使用本硬幣"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使隨機1名友方單位獲得1層 [ThatIsRhythm] (每枚硬幣最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "諧律和聲",
+          "abName": "歌唱機",
+          "desc": "[CantIdentify]\n隨機指定目標\n主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+8</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+15</style>%)\n對次要目標造成的傷害-50%\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數÷2) (最多+2；無條件捨去)\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-2(最多-6)\n[EndSkill] 使自身以外理智值最低的4名友方單位恢復<style=\"highlight\">12</style>點理智值\n[EndSkill] 下回合使全體友方單位獲得2層 [ThatIsRhythm]、1層 [CrimsonDamageUp]、1層 [ScarletDamageUp]、1層 [VioletDamageUp] 以及1層 [Vulnerable]\n- 若有目標遭到擊殺，則使上述效果再次發動",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的現存體力不低於10%，則使自身受到10~20點體力傷害(每枚硬幣最多1次)\n- 而後，若失去的體力累計不高於50點，則重複使用本硬幣(每個技能最多4次)\n- 該效果造成的傷害不會使自身陷入混亂或使自身體力降至1點以下",
+                  "summary": "[OnSucceedAttack] 消耗自身體力\n滿足條件時重複使用本硬幣"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使隨機1名友方單位獲得<style=\"highlight\">1~2</style>層 [ThatIsRhythm] (每枚硬幣最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "諧律和聲",
+          "abName": "歌唱機",
+          "desc": "[CantIdentify]\n隨機指定目標\n主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+10</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+20</style>%)\n對次要目標造成的傷害-50%\n[BeforeAttack] 使本技能的攻擊容量+(最大共鳴數÷2) (最多+2；無條件捨去)\n[BeforeAttack] 每有1枚硬幣遭到破壞，則使本技能的基礎威力-2(最多-6)\n[EndSkill] 使自身以外理智值最低的4名友方單位恢復<style=\"highlight\">15</style>點理智值\n[EndSkill] 下回合使全體友方單位獲得2層 [ThatIsRhythm]、1層 [CrimsonDamageUp]、1層 [ScarletDamageUp]、1層 [VioletDamageUp] 以及1層 [Vulnerable]\n- 若有目標遭到擊殺，則使上述效果再次發動",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的現存體力不低於10%，則使自身受到10~20點體力傷害(每枚硬幣最多1次)\n- 而後，若失去的體力累計不高於50點，則重複使用本硬幣(每個技能最多4次)\n- 該效果造成的傷害不會使自身陷入混亂或使自身體力降至1點以下",
+                  "summary": "[OnSucceedAttack] 消耗自身體力\n滿足條件時重複使用本硬幣"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使隨機1名友方單位獲得1~<style=\"highlight\">3</style>層 [ThatIsRhythm] (每枚硬幣最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

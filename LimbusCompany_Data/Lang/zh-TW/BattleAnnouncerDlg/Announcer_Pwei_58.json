@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_58_1",
+      "dlg": "……啊，現在必須要開口嗎？……為什麼？……聲援。我知道了。加油……！"
+    },
+    {
+      "id": "announcer_cheer_58_2",
+      "dlg": "肚子……明明很餓，看見你們就常常忘記這點。這是為什麼呢？"
+    },
+    {
+      "id": "announcer_specialcheer_58_1",
+      "dlg": "異鄉人們，衣服漸漸染上了紅色。就像丹紅派的衣服。……接下來，你們會成為追隨我的人嗎？"
+    },
+    {
+      "id": "announcer_specialcheer_58_2",
+      "dlg": "那個是、嘆息……嗎？只會在辛苦的時候嘆息。原來你們……都累了啊。"
+    },
+    {
+      "id": "announcer_enemy_break_58_1",
+      "dlg": "搖搖晃晃的……那是……覺得很痛嗎？"
+    },
+    {
+      "id": "announcer_ally_break_58_1",
+      "dlg": "為什麼要那樣靜止不動呢？嗯……腳很痛嗎？\n……雖然不喜歡等待……不過我會等的。"
+    },
+    {
+      "id": "announcer_killenemy_58_1",
+      "dlg": "死掉就不會動了嗎……？為什麼……？不對，還會重新站起來……因為不想要就這樣結束。"
+    },
+    {
+      "id": "announcer_ally_dead_58_1",
+      "dlg": "現在已經不動了。嗯……好像也不再疼痛了。我們很快就能在泉再次見面的喔。"
+    },
+    {
+      "id": "announcer_enemy_adv_58_1",
+      "dlg": "……一個接著一個，慢慢不再動彈了。如果大家再也不動的話，那時候就會剩下我一個人嗎？"
+    },
+    {
+      "id": "announcer_ally_adv_58_1",
+      "dlg": "那邊的東西正在噴血，而你們一臉放鬆地切割那些東西。\n……啊，這就是翻新嗎？"
+    },
+    {
+      "id": "announcer_ally_advex_58_1",
+      "dlg": "嚇我一跳。沒想到會變成……這樣子。果然……異鄉人們很厲害呢。"
+    },
+    {
+      "id": "announcer_danger_58_1",
+      "dlg": "看來……很快就會結束了。接著，結束之後似乎就誰都不剩了……\n如果結束之後也能陪在我身邊就好了。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_58_1",
+      "dlg": "……翻湧著。波動著。不久之後……就會噴湧而出。……是不是應該避開呢？"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_58_1",
+      "dlg": "我，知道這個。是遊戲吧？制定並配合規則遊玩。我也想加入。"
+    },
+    {
+      "id": "announcer_advatk_physical_58_1",
+      "dlg": "肌膚裂得令人舒暢的聲音響起了。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_58_1",
+      "dlg": "……我，正舉著手。又有想問的事情了。……為什麼要做出那種選擇呢？"
+    },
+    {
+      "id": "announcer_advatk_attr_58_1",
+      "dlg": "為我……唱歌的人說了。當穿著優質皮革製成的衣服活動時……就會發出令人愉快的聲音。……看來是真的。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_58_1",
+      "dlg": "皮革潰爛的聲音響起了。……討厭的聲音。"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_58_1",
+      "dlg": "他們就像吃了很多東西一樣充滿活力。明明在我觀看的期間什麼都沒放進嘴裡。\n……還有其他攝取方法嗎？"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_58_1",
+      "dlg": "他們看起來餓了……有氣無力、搖搖晃晃。我也是，肚子餓了。"
+    },
+    {
+      "id": "announcer_ally_specialbuff_58_1",
+      "dlg": "……如果有食物的話，也分給我就好了。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_58_1",
+      "dlg": "你們……看起來心情不太好。肚子餓了嗎？嗯，也沒有能分給你們的東西。\n……我也開始餓了。"
+    },
+    {
+      "id": "announcer_enemy_destroy_58_1",
+      "dlg": "啊，掉下來了。這個……被「料理」過了嗎？就像噗扭一樣。"
+    },
+    {
+      "id": "announcer_enemy_destroy_58_2",
+      "dlg": "那個……不是食物嗎？為什麼誰都不吃呢？\n沒人吃的話……我要吃。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_58_1",
+      "dlg": "看起來……很痛。疼痛，不好呢。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_58_2",
+      "dlg": "我希望你們不要感到疼痛。雖然你們不會跟隨我的聲音……不過你們是願意聆聽我說話的異鄉人，所以希望能聽我的話，不要感到疼痛。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_58_1",
+      "dlg": "就這樣、繼續、前進就好。因為我必須前往更高處才行。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_58_2",
+      "dlg": "那些……已經沉沒了吧？但是沒辦法。那些不沉落的話，你們就會……沉沒。"
+    },
+    {
+      "id": "announcer_multikillenemy_58_1",
+      "dlg": "全都倒下了。從附近的事物，直到遠處的事物。……你們，也會這麼做啊。"
+    },
+    {
+      "id": "announcer_battle_win_58_1",
+      "dlg": "結束了。現在只要往上走就好。\n……你們，到了上面也會陪在我身邊吧？"
+    },
+    {
+      "id": "announcer_battle_defeat_58_1",
+      "dlg": "……別擔心。你們還會重新站起來的。"
+    },
+    {
+      "id": "announcer_equip_58_1",
+      "dlg": "這是什麼？……我知道了。因為必須成為聲音才行。\n名字是……普依。應該是普依。在這裡說的話，你們聽得見嗎？"
+    }
+  ]
+}

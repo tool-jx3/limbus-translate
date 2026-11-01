@@ -1,0 +1,82 @@
+{
+  "dataList": [
+    {
+      "id": 128901,
+      "name": "渙散",
+      "desc": "回合結束時，若自身於本回合內沒有受到攻擊傷害，下回合使自身獲得2層 [Agility]\n若自身的速度值高於攻擊目標，則每相差1點，使自身對目標造成的傷害+5%(最大50%)"
+    },
+    {
+      "id": 128902,
+      "name": "浸染之劍",
+      "desc": "單方面攻擊命中時，對目標施加1層 [NervousImpairment]"
+    },
+    {
+      "id": 128903,
+      "name": "深海崇拜",
+      "desc": "回合開始時，每有1名友方單位存活，則使自身恢復3點理智值"
+    },
+    {
+      "id": 9102701,
+      "name": "深海恐懼",
+      "desc": "攻擊命中不帶有 [Sinking] 的目標時，使目標額外增加1級 [Sinking] 強度"
+    },
+    {
+      "id": 9102801,
+      "name": "深海恐懼",
+      "desc": "攻擊命中不帶有 [Sinking] 的目標時，使目標額外增加2級 [Sinking] 強度"
+    },
+    {
+      "id": 9102802,
+      "name": "溟痕樂園",
+      "desc": "若自身處在 [NetherseaBrandUnit] 之上，使自身的拚點威力+2，且攻擊命中目標時施加的 [NervousImpairment] 變為2倍"
+    },
+    {
+      "id": 9102901,
+      "name": "待命狀態",
+      "desc": "若自身處於 [WaitingforCommandMod]，則自身在受到傷害前不會進行攻擊\n\n受到傷害時，若自身處於 [WaitingforCommandMod]，則進入 [ParticipationMod] 狀態且下回合起自身開始使用攻擊技能"
+    },
+    {
+      "id": 9102902,
+      "name": "備戰",
+      "desc": "若自身處於 [ParticipationMod] ，回合開始時：\n- 對帶有少於15層 [NervousImpairment] 的敵方單位施加3層 [NervousImpairment]\n- 最小與最大速度值+3\n- 每損失10%體力使自身獲得1層 [AttackUp] (最多8層)\n\n若自身處於 [ParticipationMod]，回合結束時，對自身造成等同於自身最大體力10%的固定傷害",
+      "summary": ""
+    },
+    {
+      "id": 9102903,
+      "name": "生存反射",
+      "desc": "與目標拚點或單方面攻擊命中時，自身對目標施加2層 [NervousImpairment]\n- 若自身處在 [NetherseaBrandUnit] 之上，則使自身額外施加1層 [NervousImpairment]"
+    },
+    {
+      "id": 9102904,
+      "name": "溟痕樂園",
+      "desc": "若自身處在 [NetherseaBrandUnit] 之上，使自身的最終威力+2、硬幣威力+2，且攻擊命中目標時施加的 [NervousImpairment] 變為2倍"
+    },
+    {
+      "id": 9103001,
+      "name": "深度認知",
+      "desc": "自身全罪孽抗性-0.5"
+    },
+    {
+      "id": 9103002,
+      "name": "擴張本能",
+      "desc": "自身陣亡時，下回合於友方陣營生成 [NetherseaBrandUnit]"
+    },
+    {
+      "id": 9103003,
+      "name": "溟痕樂園",
+      "desc": "若自身處在 [NetherseaBrandUnit] 之上，使自身的最終威力+1、硬幣威力+1，且攻擊命中目標時施加的 [NervousImpairment] 變為2倍"
+    },
+    {
+      "id": 9103101,
+      "name": "溟痕樂園",
+      "desc": "自身攻擊技能指定最近的敵方目標為主要目標，並從最前方開始指定次要目標\n\n\n若自身處在 [NetherseaBrandUnit] 之上：\n- 攻擊技能改為指定最遠的敵方目標為主要目標，且使自身技能的所有硬幣變更為 [SuperCoin]\n- 最終威力+2、硬幣威力+2，且攻擊命中目標時施加的 [NervousImpairment] 層數變為2倍",
+      "summary": "若自身處在 [NetherseaBrandUnit] 之上，使技能受到強化"
+    },
+    {
+      "id": 9103201,
+      "name": "去除殘骸",
+      "desc": "自身速度值固定為1，以未啟用的狀態出現於可能會生成 [NetherseaBrandUnit] 的戰鬥中\n\n當 [NetherseaBrandUnit] 生成於戰場上後，自身轉為啟用狀態且可受到傷害\n- 受到使自身體力降為1點的傷害時，啟動聖徒之手並移除戰場上所有的 [NetherseaBrandUnit]。該效果發動後，下回合開始，使自身重新轉為未啟用狀態\n- 只會受到指定自身為主要目標的傷害，除此之外不會受到其他傷害\n- 自身轉為未啟用狀態時，移除自身所有狀態效果並使體力恢復至最大值",
+      "summary": "移除戰場上所有 [NetherseaBrandUnit]"
+    }
+  ]
+}

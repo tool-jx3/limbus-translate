@@ -1,0 +1,3102 @@
+{
+  "dataList": [
+    {
+      "id": 1080701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "粉碎準備",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加3回震顫 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2回沉淪 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "粉碎準備",
+          "desc": "[WhenUse] 對自身施加3回震顫 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加3回震顫 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2回沉淪 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "粉碎準備",
+          "desc": "[WhenUse] 對自身施加3回震顫 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加3回震顫 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回沉淪 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "爆裂打擊",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回震顫 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 下回合對目標施加2層防禦等級降低 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "爆裂打擊",
+          "desc": "若自身的震顫 回數不低於5回，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回震顫 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加2回震顫 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層防禦等級降低 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "爆裂打擊",
+          "desc": "若自身的震顫 回數不低於5回，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回震顫 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對自身施加2回震顫 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加4層防禦等級降低 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080703,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "激進判斷",
+          "desc": "若自身的震顫 回數不低於5回，則使本技能的硬幣威力+1\n若目標的沉淪 強度不低於6級，則使本技能造成的傷害+20%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5回沉淪 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗5回震顫 並在下回合對目標施加1層易損 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗5回震顫 並在下回合對目標施加2層易損 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "激進判斷",
+          "desc": "自身每帶有5回震顫 ，則使本技能的硬幣威力+1(最多+2)\n若目標的沉淪 強度不低於6級，則使本技能造成的傷害+40%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5回沉淪 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗5回震顫 並在下回合對目標施加1層易損 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級沉淪 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗5回震顫 並在下回合對目標施加2層易損 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "雷厲風行",
+          "desc": "[WhenUse] 使自身獲得2層破裂守護 (每回合最多6層)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "到我身邊！",
+          "desc": "[WhenUse] 下回合使除自身以外體力上限最高的1名友方單位最左側的行動槽的 [Aggro] +(最大共鳴數)(每回合最多1次)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級流血 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "到我身邊！",
+          "desc": "[WhenUse] 下回合使除自身以外體力上限最高的1名友方單位最左側的行動槽的 [Aggro] +(最大共鳴數)(每回合最多1次)\n- 若最大完全共鳴數不低於4，則觸發該效果時使該單位下回合獲得1層守護 (每回合最多1次)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級流血 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "到我身邊！",
+          "desc": "<style=\"highlight\">[StartBattle] 使儀錶盤上位於自身兩側的友方單位獲得2層防禦等級提升 </style>\n[WhenUse] 下回合使除自身以外體力上限最高的1名友方單位最左側的行動槽的 [Aggro] +(最大共鳴數)(每回合最多1次)\n- 若最大完全共鳴數不低於4，則觸發該效果時使該單位下回合獲得1層守護 (每回合最多1次)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級流血 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "追蹤到底！",
+          "desc": "[WhenUse] 以(最大共鳴數×10%)的機率，命令儀錶盤上位於自身右側的1名友方單位進行 [CoverAttack]。",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級流血 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級燒傷 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "追蹤到底！",
+          "desc": "[WhenUse] 以(最大共鳴數×15%)的機率，命令儀錶盤上位於自身右側的1名友方單位進行 [CoverAttack]。\n- 若最大共鳴數不低於4，則使該友方單位獲得1層傷害強化 \n- 若傲慢完全共鳴數不低於4，則使該友方單位獲得1層傲慢威力提升 ",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級流血 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級燒傷 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "追蹤到底！",
+          "desc": "[StartBattle] 使儀錶盤自身上位於自身兩側的2名友方單位獲得3層攻擊等級提升 \n[WhenUse] 以(最大共鳴數×20%)的機率，命令儀錶盤上位於自身右側的1名友方單位進行 [CoverAttack]。\n- 若最大共鳴數不低於4，則使該友方單位獲得2層傷害強化 \n- 若傲慢完全共鳴數不低於4，則使該友方單位獲得2層傲慢威力提升 ",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級流血 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級燒傷 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080803,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "執著魚叉",
+          "desc": "目標每失去1%的體力，使本技能造成的傷害+0.2%(最多20%)\n[EndSkill] 若使目標陷入混亂或擊殺目標，則使理智值最低的(1+最大完全共鳴數/2)名友方單位恢復10點理智值，使其增加2級呼吸法 強度並獲得4回呼吸法 (最多2次，最多4名友方單位)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回流血 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級流血 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回燒傷 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "執著魚叉",
+          "desc": "目標每失去1%的體力，使本技能造成的傷害+0.3%(最多30%)\n目標每帶有5級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[EndSkill] 若使目標陷入混亂或擊殺目標，則使理智值最低的(1+最大完全共鳴數/2)名友方單位恢復10點理智值，使其增加2級呼吸法 強度並獲得4回呼吸法 (最多4次，最多4名友方單位)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回流血 "
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級流血 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回燒傷 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "越過恐懼",
+          "desc": "[WhenUse] 使儀錶盤上位於自身兩側的友方單位恢復3點理智值(最多2次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "越過恐懼",
+          "desc": "[WhenUse] 使儀錶盤上位於自身兩側的友方單位恢復5點理智值(最多2次)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "掃開",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "掃開",
+          "desc": "[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "掃開",
+          "desc": "若自身的速度值高於目標，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得1層 [Agility]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080902,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "整理整頓",
+          "desc": "[WhenUse] 使自身獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [Agility]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "整理整頓",
+          "desc": "[WhenUse] 使自身獲得2回 [Breath]\n[WinDuel] 使自身增加2級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [Agility]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "整理整頓",
+          "desc": "若自身的速度值高於目標，則使本技能的硬幣威力+1\n[WhenUse] 使自身獲得2回 [Breath]\n[WinDuel] 使自身增加2級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [Agility]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 下回合對目標施加1層 [Binding]</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080903,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "軀體束縛法",
+          "desc": "[WhenUse] 使自身增加6級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [SlashTakeDamageUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "軀體束縛法",
+          "desc": "若自身的速度值高於目標，則使本技能的硬幣威力+1\n[WhenUse] 使自身增加6級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [SlashTakeDamageUp]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1080904,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "閃避",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "閃避",
+          "desc": "[OnSucceedEvade] 使自身恢復5點理智值(每回合最多1次)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "Zwei騎士團巨劍術",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的 [Aggro] +2\n[WhenUse] 自身每帶有4回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多2層)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [DefenseUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [DefenseUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Zwei騎士團巨劍術",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的 [Aggro] <style=\"highlight\">+3</style>\n[WhenUse] 自身每帶有<style=\"highlight\">3</style>回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多2層)\n<style=\"highlight\">[WhenUse] 若自身的 [DefenseUp] 層數不低於4層，則使本技能的基礎威力+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得<style=\"highlight\">2</style>層 [DefenseUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得<style=\"highlight\">2</style>層 [DefenseUp]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "Zwei騎士團巨劍術",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的 [Aggro] +3\n[WhenUse] 自身每帶有<style=\"highlight\">2</style>回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多<style=\"highlight\">3</style>層)\n[WhenUse] 自身每帶有<style=\"highlight\">4層</style> [DefenseUp]，則使本技能的基礎威力+1<style=\"highlight\">(最多+2)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得2層 [DefenseUp]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得2層 [DefenseUp]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "禁止通行。",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的 [Aggro] +3\n[WhenUse] 自身每帶有2回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多3層)\n[WinDuel] 對自身施加3回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [DefenseUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Vibration] 回數/2)級 [Vibration] 強度(最多2級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [DefenseUp] 層數不低於10層，則對目標施加1層 [Reduction]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "禁止通行。",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的 [Aggro] +3\n[WhenUse] 自身每帶有2回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多<style=\"highlight\">4</style>層)\n<style=\"highlight\">[WhenUse] 若自身的 [DefenseUp] 層數不低於5層，則使本技能的硬幣威力+1</style>\n[WinDuel] 對自身施加3回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">3</style>級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [DefenseUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Vibration] 回數/2)級 [Vibration] 強度(最多<style=\"highlight\">3</style>級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [DefenseUp] 層數不低於10層，則對目標施加1層 [Reduction]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "禁止通行。",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的 [Aggro] <style=\"highlight\">+5</style>\n[WhenUse] 自身每帶有2回 [Vibration]，使自身獲得1層 [DefenseUp] (最多<style=\"highlight\">5</style>層)\n[WhenUse] 若自身的 [DefenseUp] 層數不低於<style=\"highlight\">4</style>層，則使本技能的硬幣威力+1\n[WinDuel] 對自身施加3回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">4</style>級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得<style=\"highlight\">4</style>層 [DefenseUp]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [Vibration] 回數/2)級 [Vibration] 強度(最多<style=\"highlight\">4</style>級)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [DefenseUp] 層數不低於<style=\"highlight\">8</style>層，則對目標施加1層 [Reduction]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081003,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "保護",
+          "desc": "[WhenUse] 自身每帶有2回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多3層)\n[WhenUse] 若自身帶有 [DefensiveStance]，則使本技能造成的傷害+50%\n[WhenUse] 自身每帶有4層 [DefenseUp]，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 下回合使本技能對應行動槽的 [Aggro] +8\n[WinDuel] 對自身施加3回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 消耗自身所有 [Vibration] 回數並使目標增加相應的 [Vibration] 強度(最多10級)\n- 使本硬幣造成的傷害+(溢出 [Vibration] 強度×1.5)%(最多+30%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有 [DefensiveStance]，則使目標 [VibrationExplosion]，並使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "保護",
+          "desc": "[WhenUse] 自身每帶有2回 [Vibration]，則使自身獲得1層 [DefenseUp] (最多<style=\"highlight\">5</style>層)\n[WhenUse] 若自身帶有 [DefensiveStance]，則使本技能造成的傷害+<style=\"highlight\">70</style>%\n[WhenUse] 自身每帶有4層 [DefenseUp]，則使本技能的硬幣威力+1(最多<style=\"highlight\">+4</style>)\n[WhenUse] 下回合使本技能對應行動槽的 [Aggro] <style=\"highlight\">+10</style>\n[WinDuel] 對自身施加3回 [Vibration]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 消耗自身所有 [Vibration] 回數並使目標增加相應的 [Vibration] 強度(最多<style=\"highlight\">20</style>級)\n- 使本硬幣造成的傷害+(溢出 [Vibration] 強度×<style=\"highlight\">5</style>)%(最多<style=\"highlight\">+50</style>%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身帶有 [DefensiveStance]，則使目標 [VibrationExplosion]，並使目標的 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "您的盾牌",
+          "desc": "[CanDuelGuard]\n[StartBattle] 使自身獲得2層 [DefensiveStance] (每回合最多1次)\n[WhenUse] 對自身施加10回 [Vibration] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "您的盾牌",
+          "desc": "[CanDuelGuard]\n[StartBattle] 使自身獲得2層 [DefensiveStance] (每回合最多1次)\n[WhenUse] 對自身施加10回 [Vibration] (每回合最多1次)\n<style=\"highlight\">[WinDuel] 使目標 [VibrationExplosion]</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "血振納刀",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [AttackDown]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "血振納刀",
+          "desc": "<style=\"highlight\">若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [AttackDown]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "血振納刀",
+          "desc": "<style=\"highlight\">目標每帶有6級 [Laceration] 強度，使本技能的硬幣威力+1(最多+2)\n目標每帶有1種負面狀態，使本技能造成的傷害+10%(最多+30%)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [AttackDown]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "銳刃",
+          "desc": "[StartBattle] 使除自身以外速度值最高且屬於黑雲會的2名友方單位獲得1層 [AttackDmgUp] (每回合最多1次)\n- 若包括自身在內屬於黑雲會的友方單位不低於6名，則改為使5名友方單位獲得2層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "銳刃",
+          "desc": "<style=\"highlight\">若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1</style>\n[StartBattle] 使除自身以外速度值最高且屬於黑雲會的2名友方單位獲得<style=\"highlight\">2</style>層 [AttackDmgUp] (每回合最多1次)\n- 若包括自身在內屬於黑雲會的友方單位不低於6名，則改為使5名友方單位獲得<style=\"highlight\">3</style>層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 下回合使自身獲得1層 [SlashResultUp] (每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "銳刃",
+          "desc": "<style=\"highlight\">目標每帶有6級 [Laceration] 強度，使本技能的硬幣威力+1(最多+2)\n目標每帶有1種負面效果，使本技能造成的傷害+10%(最多+50%)</style>\n[StartBattle] 使除自身以外速度值最高且屬於黑雲會的2名友方單位獲得2層 [AttackDmgUp] (每回合最多1次)\n- 若包括自身在內屬於黑雲會的友方單位不低於6名，則改為使5名友方單位獲得4層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead]  對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">- 若包括自身在內屬於黑雲會的友方單位不低於6名，則改為對目標施加2層 [Vulnerable]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [SlashResultUp] (每回合最多<style=\"highlight\">2</style>次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081103,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "墨跡翻覆",
+          "desc": "若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 3次並使其流血 回數減少3回"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "墨跡翻覆",
+          "desc": "<style=\"highlight\">目標每帶有6級 [Laceration] 強度，使本技能的硬幣威力+1(最多+2)\n[EnemyKill] 下回合使自身獲得2層 [SlashResultUp] (每回合最多1次)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">目標每帶有1種負面效果，使本硬幣造成的傷害+10%(最多+100%)</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] 3次並使其流血 回數減少3回<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬刃紛飛",
+          "desc": "[StartBattle] 使自身獲得1層 [Protection] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "斬刃紛飛",
+          "desc": "[StartBattle] 使自身獲得1層 [Protection] (每回合最多1次)\n<style=\"highlight\">[StartBattle] 使包括自身在內(2+最大共鳴數)名速度值最高且屬於黑雲會的友方單位獲得2層 [Endurance] (每回合最多1次)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤擊",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+1\n[WinDuel] 使自身增加1級 [Breath] 強度並獲得1回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得1層 [AttackUp] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "赤擊",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+1\n<style=\"highlight\">[WhenUse] 若目標的 [Burst] 強度不低於3級，則使本技能的硬幣威力+1</style>\n[WinDuel] 使自身增加2級 [Breath] 強度並獲得1回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得1層 [AttackUp] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤擊",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的拚點威力+1\n[WhenUse] 目標<style=\"highlight\">每帶有3級 [Burst] 強度</style>，使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WinDuel] 使自身增加<style=\"highlight\">3</style>級 [Breath] 強度並獲得<style=\"highlight\">2</style>回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得1層 [AttackUp] (每回合最多<style=\"highlight\">2</style>次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤鳳",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據目標的 [Burst] 強度，使自身增加相應的 [Breath] 強度(最多5級)"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 根據目標的 [Burst] 回數，使自身獲得相應回數的 [Breath] (最多3回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+(20+自身的 [Breath] 強度+目標的 [Burst] 強度)%(最多+50%)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "赤鳳",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合對目標施加1層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合對目標施加1層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據目標的 [Burst] 強度，使自身增加相應的 [Breath] 強度(最多5級)"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 根據目標的 [Burst] 回數，使自身獲得相應回數的 [Breath] (最多3回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+(20+自身的 [Breath] 強度+目標的 [Burst] 強度)%(最多+50%)"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤鳳",
+          "desc": "[WhenUse] 若目標帶有的負面狀態不少於5種，則使本技能的硬幣威力+1\n<style=\"highlight\">[WhenUse] 若目標的 [Burst] 強度不低於4級，則使本技能的硬幣威力+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合對目標施加<style=\"highlight\">2</style>層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合對目標施加<style=\"highlight\">2</style>層 [DefenseDown]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據目標的 [Burst] 強度，使自身增加相應的 [Breath] 強度(最多5級)"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 根據目標的 [Burst] 回數，使自身獲得相應回數的 [Breath] (最多3回)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+(20+自身的 [Breath] 強度+目標的 [Burst] 強度)%(最多+50%)"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 下回合使自身獲得3層 [AttackUp] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081203,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "赤春",
+          "desc": "[BeforeAttack] 若主要目標帶有的負面狀態不少於6種，則使本技能的攻擊容量+1\n[WhenUse] 主要目標每帶有3種負面狀態，則使本技能的硬幣威力+2(最多+4)\n[WhenUse] 目標的 [Burst] 強度與 [Burst] 回數之和每有7，則使本技能的硬幣威力+1(最多+3)\n[WinDuel] 使自身增加4級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使本硬幣造成的傷害+(20+自身的 [Breath] 強度+主要目標的 [Burst] 強度)%(最多+40%)"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+(45+自身的 [Breath] 強度+主要目標的 [Burst] 強度)%(最多+65%)"
+                },
+                {
+                  "desc": "自身每帶有1層 [StartXichun]，則使本硬幣暴擊時造成的傷害+5%(最多+30%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 使自身獲得2回 [Breath] (每回合最多3次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤春",
+          "desc": "[BeforeAttack] 若主要目標帶有的負面狀態不少於5種，則使本技能的攻擊容量+1\n<style=\"highlight\">[BeforeAttack] 若自身的 [StartXichun] 層數不低於3層，則使本技能的攻擊容量+1</style>\n[WhenUse] 主要目標每帶有3種負面狀態，則使本技能的硬幣威力+2(最多+<style=\"highlight\">6</style>)\n[WhenUse] 目標的 [Burst] 強度與 [Burst] 回數之和每有7點，則使本技能的硬幣威力+1(最多+<style=\"highlight\">5</style>)\n[WinDuel] 使自身增加4級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使本硬幣造成的傷害+(<style=\"highlight\">50</style>+自身的 [Breath] 強度+主要目標的 [Burst] 強度)%(最多<style=\"highlight\">+75</style>%)"
+                },
+                {
+                  "desc": "使本硬幣暴擊時造成的傷害+(<style=\"highlight\">80</style>+自身的 [Breath] 強度+主要目標的 [Burst] 強度)%(最多<style=\"highlight\">+105</style>%)"
+                },
+                {
+                  "desc": "自身每帶有1層 [StartXichun]，使本硬幣暴擊時造成的傷害+5%(最多+30%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使目標增加1回 [Burst]</style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 使自身增加2級 [Breath] 強度並使自身獲得1回 [Breath]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[CriticalEnemyTargetKill] 使自身獲得2回 [Breath] (每回合最多3次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "秀回",
+          "desc": "[StartBattle] 若自身的 [StartXichun] 層數不低於3層，則在回合結束時進行 [RetreatForCommon]\n- 撤退時，移動到待命人員編隊順序最前面的位置(自身重返戰鬥優先於其他待命人員解除待命)\n[OnSucceedEvade] 使自身增加2級 [Breath] 強度(每回合最多2次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "秀回",
+          "desc": "[StartBattle] 若自身的 [StartXichun] 層數不低於3層，則在回合結束時進行 [RetreatForCommon]\n- 撤退時，移動到待命人員編隊順序最前面的位置(自身重返戰鬥優先於其他待命人員解除待命)\n<style=\"highlight\">[WhenUse] 使自身獲得1回 [Breath] (每回合最多2次)</style>\n[OnSucceedEvade] 使自身增加2級 [Breath] 強度(每回合最多2次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "赤擊 - 始",
+          "desc": "[CantDuel]\n[WhenUse] 使自身增加5級 [Breath] 強度並獲得2回 [Breath]\n[BeforeAttack] 消耗自身所有 [WaitingXichun] 並使本技能的攻擊容量+(自身的 [WaitingXichun] ×2)(最多+5)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "赤擊 - 始",
+          "desc": "[CantDuel]\n[WhenUse] 使自身增加5級 [Breath] 強度並獲得2回 [Breath]\n<style=\"highlight\">[WhenUse] 若自身的 [WaitingXichun] 層數不低於3層，則使本技能的硬幣威力+1</style>\n[BeforeAttack] 消耗自身所有 [WaitingXichun] 並使本技能的攻擊容量+(自身的 [WaitingXichun] ×2)(最多+5)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "赤擊 - 始",
+          "desc": "[CantDuel]\n[WhenUse] 使自身增加5級 [Breath] 強度並獲得2回 [Breath]\n[WhenUse] 若自身的 [WaitingXichun] 層數不低於3層，則使本技能的硬幣威力+<style=\"highlight\">2</style>\n[BeforeAttack] 消耗自身所有 [WaitingXichun] 並使本技能的攻擊容量+(自身的 [WaitingXichun] ×2)(最多+5)",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "斬鶴",
+          "desc": "[WhenUse] 若同一行動槽的另一個技能與本技能不同，將其 [Discard]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "斬鶴",
+          "desc": "[WhenUse] 若同一行動槽的另一個技能與本技能不同，將其 [Discard]\n<style=\"highlight\">[WhenUse] 若目標的 [Vibration] 強度與 [Sinking] 強度之和不低於6級，則使本技能的硬幣威力+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 對目標施加1回 [Sinking]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 對目標施加1回 [Vibration]</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "斬鶴",
+          "desc": "[WhenUse] 若同一行動槽的另一個技能與本技能不同，將其 [Discard]\n<style=\"highlight\">[WhenUse] 目標的 [Vibration] 強度與 [Sinking] 強度之和每有6級，使本技能的硬幣威力+1(最多+2)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "芒草飄落",
+          "desc": "[WhenUse] 若同一行動槽的另一個技能與本技能不同，將其 [Discard]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {}
+          ]
+        },
+        {
+          "level": 2,
+          "name": "芒草飄落",
+          "desc": "[WhenUse] 若同一行動槽的另一個技能與本技能不同，將其 [Discard]\n<style=\"highlight\">[WhenUse] 若目標的 [Vibration] 強度與 [Sinking] 強度之和不低於6級，則使本技能的硬幣威力+1</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 使目標增加1級 [Sinking] 強度</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 使目標增加1級 [Vibration] 強度</style>"
+                }
+              ]
+            },
+            {}
+          ]
+        },
+        {
+          "level": 4,
+          "name": "芒草飄落",
+          "desc": "[WhenUse] 若同一行動槽的另一個技能與本技能不同，將其 [Discard]\n<style=\"highlight\">[WhenUse] 目標的 [Vibration] 強度與 [Sinking] 強度之和每有6級，使本技能的硬幣威力+1(最多+2)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Sinking] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級 [Vibration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 使自身恢復5點理智值</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081303,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "櫻閃",
+          "desc": "自身每帶有1級 [HanafudaCombo] 強度，使自身造成的傷害+5%\n[WhenUse] 若裝備此技能的技能槽中列有的技能不相同，則 [Discard] 那個技能\n[WhenUse] 若目標帶有的 [Vibration]、[Sinking] 強度合計不低於6，則使本技能硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加1回 [Vibration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標未處於 [Switch_Vibration] 狀態，則使目標 [Switch_Vibration] 為 [VibrationCollapse]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "櫻閃",
+          "desc": "自身每帶有1級 [HanafudaCombo] 強度，使自身造成的傷害<style=\"highlight\">+10%</style>\n[WhenUse] 若裝備此技能的技能槽中列有的技能不相同，則 [Discard] 那個技能\n<style=\"highlight\">[WhenUse] 目標每合計帶有6級 [Vibration]、[Sinking] 強度，使本技能硬幣+1 (最多+3)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">若目標處於 [Switch_Vibration] 或 [FusionVibration] 狀態，則使本硬幣造成的傷害+48%</style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標未帶有 [Switch_Vibration]，則使目標 [Switch_Vibration] 為 [VibrationCollapse]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "洗混花札",
+          "desc": "[DuelCounter]\n[StartBattle] [Discard] 自身所有行動槽中級別最低的2個技能(每回合最多1次)\n[StartBattle] 若本技能使用時位於儀表盤最左側，下回合使自身帶有的花札隨機變更為與自身基礎攻擊技能相應的花色(每回合最多1次；不會與原有的牌堆相同)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "洗混花札",
+          "desc": "[DuelCounter]\n[StartBattle] [Discard] 自身所有行動槽中級別最低的2個技能(每回合最多1次)\n[StartBattle] 若本技能使用時位於儀表盤最左側，下回合使自身帶有的花札變更為與自身基礎攻擊技能相應的花色(每回合最多1次；不會與原有的牌堆相同)\n<style=\"highlight\">[StartBattle] 以50%的機率使自身獲得1級 [HanafudaCombo] 強度(每回合最多1次)</style>\n<style=\"highlight\">[WhenUse] 自身每帶有2級 [HanafudaCombo] 強度，使本技能硬幣威力+1(最多+2)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "光斬",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能，無法受外部效果影響再次使用\n\n[WhenUse] 若自身帶有的 [HanafudaCombo] 強度少於3，則取消本技能且使自身下回合獲得2層 [Enhancement]\n[WhenUse] 若自身帶有的 [HanafudaCombo] 強度不少於3，則根據強度發動以下效果：\n- 每1強度：使本技能造成的傷害+10%\n- 強度為4或以上：使本技能的基礎威力+1\n- 強度為5：最後的再使用硬幣命中後，觸發2次 [VibrationExplosion]；然後使目標的 [Vibration] 回數減少1回\n[EndSkillAll] 消除自身的 [HanafudaCombo]\n[EndSkillAll] 下回合將自身帶有的花札隨機變更為與自身基礎攻擊技能相應的牌堆(每回合最多1次)\n[EndSkillAll] 根據未消耗的硬幣數量，下回合使自身獲得相應的 [HanafudaCombo] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣重複發動([HanafudaCombo] 強度-1)次(最多4次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "光斬",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能，無法受外部效果影響再次使用\n\n[WhenUse] 若自身帶有的 [HanafudaCombo] 強度少於3，則取消本技能且使自身下回合獲得2層 [Enhancement]\n[WhenUse] 若自身帶有的 [HanafudaCombo] 強度不少於3，則根據強度發動以下效果：\n- 每1強度：使本技能造成的傷害+10%\n- 強度為4或以上：使本技能的基礎威力+1\n- 強度為5：最後的再使用硬幣命中後，觸發2次 [VibrationExplosion]；然後使目標的 [Vibration] 回數減少1回\n[EndSkillAll] 消除自身的 [HanafudaCombo]\n[EndSkillAll] 下回合將自身帶有的花札隨機變更為與自身基礎攻擊技能相應的牌堆(每回合最多1次)\n[EndSkillAll] 根據未消耗的硬幣數量，下回合使自身獲得相應的 [HanafudaCombo] 強度<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "使本硬幣重複發動([HanafudaCombo] 強度-1)次(最多4次)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttackHead] 對目標施加1層 [DefenseDown]</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "痛毆",
+          "desc": "[WhenUse] 恢復自身5點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {}
+          ]
+        },
+        {
+          "level": 2,
+          "name": "痛毆",
+          "desc": "<style=\"highlight\">若目標帶有的 [Combustion] 和 [Laceration] 強度合計不低於6級，則本技能硬幣威力+1</style>\n[WhenUse] 恢復自身5點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標額外造成5點打擊傷害</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "痛毆",
+          "desc": "若目標帶有的 [Combustion] 和 [Laceration] 強度合計不低於6級，則本技能硬幣威力+1\n[WhenUse] 恢復自身5點理智值<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成5點打擊傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 自身帶有 [ReinforcedTattooIshmael] 時，使目標增加1回 [Laceration]</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "十字亂舞",
+          "desc": "[StartBattle] 使本技能的攻擊等級+(最高共鳴數÷2) (最多+3；無條件捨去)\n[WhenUse] 下回合中，裝備本技能的行動槽 [Aggro] +5",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "十字亂舞",
+          "desc": "<style=\"highlight\">若目標帶有的 [Combustion] 和 [Laceration] 強度合計不低於6級，則本技能硬幣威力+1</style>\n[StartBattle] 使本技能的攻擊等級+(最高共鳴數÷2) (最多+3；無條件捨去)\n[WhenUse] 下回合中，裝備本技能的行動槽 [Aggro] +5\n<style=\"highlight\">[WhenUse] 自身帶有 [HeatingWireIshmael] 時，本技能第1、2號硬幣命中時，根據施加的 [Laceration] 對目標額外施加相應的 [Combustion]</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 對目標額外造成5點打擊傷害</style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "十字亂舞",
+          "desc": "若目標帶有的 [Combustion] 強度和 [Laceration] 強度之和不低於6級，則使本技能硬幣威力+1\n[StartBattle] 使本技能的攻擊等級+(最高共鳴數÷2) (最多+3；無條件捨去)\n<style=\"highlight\">- 若共鳴連鎖中具有完全共鳴，則從上述效果中獲得的攻擊等級×2倍</style>\n[WhenUse] 下回合中，裝備本技能的行動槽 [Aggro] +5\n[WhenUse] 自身帶有 [HeatingWireIshmael] 時，本技能第1、2號硬幣命中時，根據施加的 [Laceration] 對目標額外施加相應的 [Combustion]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標額外造成5點打擊傷害<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 自身帶有 [ReinforcedTattooIshmael] 時，下回合對目標施加1層 [Paralysis]、1層 [Binding] (每回合最多2次)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081403,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "紺紫痛擊",
+          "desc": "若目標帶有的 [Combustion] 強度和 [Laceration] 強度之和不低於6級，則使本技能硬幣威力+1\n[StartBattle] 使本技能的攻擊等級+(最高共鳴數÷2) (最多+3；無條件捨去)\n[WhenUse] 自身帶有 [HeatingWireIshmael] 時，本技能第1、2、4號硬幣命中時，根據施加的 [Laceration] 對目標額外施加相應的 [Combustion]\n[WhenUse] 自身至少帶有5層 [ResentmentIshmael] 時，本技能最終威力+1\n[EndSkill] 消耗自身帶有的所有 [ResentmentIshmael] 層數",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(嫉妒共鳴數×5)%的額外斬擊傷害 (最多30%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "紺紫痛擊",
+          "desc": "若目標帶有的 [Combustion] 強度和 [Laceration] 強度之和不低於6級，則使本技能硬幣威力+1\n[StartBattle] 使本技能的攻擊等級+(最高共鳴數÷2) (最多+3；無條件捨去)\n<style=\"highlight\">- 若共鳴連鎖中具有完全共鳴，則從上述效果中獲得的攻擊等級×2倍</style>\n[WhenUse] 自身帶有 [HeatingWireIshmael] 時，本技能第1、2、4號硬幣命中時，根據施加的 [Laceration] 對目標額外施加相應的 [Combustion]\n[WhenUse] 自身<style=\"highlight\">每帶有5層 [ResentmentIshmael]，則本技能最終威力+1 (最多+3)</style>\n[EndSkill] 消耗自身所有 [ResentmentIshmael] 層數\n<style=\"highlight\">[EndSkill] 若本技能作為反擊技能被使用，則下回合使自身獲得1層 [HitDamageUp] (每回合最多1次)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2回</style> [Laceration]"
+                }
+              ]
+            },
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(嫉妒共鳴數×5)%的額外斬擊傷害 (最多30%)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "可不會這樣就算了哦",
+          "desc": "[StartBattle] 使自身獲得失去體力值25%的護盾 (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的混亂閾值後移6點"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "可不會這樣就算了哦",
+          "desc": "<style=\"highlight\">[StartBattle] At 6+ sum of Envy A-Reson., use 'Violet~ Breaking Slam' as Counter\n(Activates from the leftmost Skill Slot. Activates 2 times per turn)</style>\n[StartBattle] Gain 25% of missing HP as Shield (once per turn)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身的混亂閾值後移6點<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "劍勢",
+          "desc": "[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 若自身帶有 [Agility]，則使自身獲得1層 [WindBladeIshmael] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "劍勢",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Agility] 層數不低於3層，則使本技能的拚點威力+1</style>\n[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 若自身帶有 [Agility]，則使自身獲得1層 [WindBladeIshmael] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "劍勢",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有5級 [Laceration] 強度，則使本技能的拚點威力+1(最多+2)</style>\n[WhenUse] 若自身的 [Agility] 層數不低於3層，則使本技能的拚點威力+1\n[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 若自身帶有 [Agility]，則使自身獲得1層 [WindBladeIshmael] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身帶有 [AengduNewArmIshmael] 且自身的 [Agility] 層數不低於3層，則重複使用本硬幣(每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "穿刺",
+          "desc": "[WhenUse] 使自身獲得3回 [Breath]\n[EndSkill] 自身每帶有1層 [Agility]，則使自身獲得1層 [WindBladeIshmael] (最多2層，每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得2層 [Agility] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "穿刺",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Agility] 層數不低於3層，則使本技能的拚點威力+2</style>\n[WhenUse] 使自身獲得3回 [Breath]\n[EndSkill] 自身每帶有1層 [Agility]，則使自身獲得1層 [WindBladeIshmael] (最多2層，每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得2層 [Agility] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "穿刺",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 目標每帶有5級 [Laceration] 強度，則使本技能的拚點威力+1(最多+2)</style>\n[WhenUse] 若自身的 [Agility] 層數不低於3層，則使本技能的拚點威力+2\n[WhenUse] 使自身獲得3回 [Breath]\n[EndSkill] 自身每帶有1層 [Agility]，則使自身獲得1層 [WindBladeIshmael] (最多2層，每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身帶有 [AengduNewArmIshmael] 且自身的 [Agility] 層數不低於3層，則重複使用本硬幣(每回合最多1次)</style>"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 下回合使自身獲得2層 [Agility] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "清潾火",
+          "desc": "自身每帶有1級 [Breath] 強度，使本技能暴擊時造成的傷害+1.5%(最多+30%)\n[WhenUse] 自身每帶有2層 [Agility]，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [WindBladeIshmael] 層數不低於10層，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身增加3級 [Breath] 強度\n[WhenUse] 下回合使自身獲得2層 [Agility] (每回合最多1次)\n[EndSkill] 自身每帶有1層 [Agility]，使自身獲得1層 [WindBladeIshmael] (最多3層，每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [WindBladeIshmael]，則使本硬幣暴擊時造成的傷害+2%(最多+20%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "清潾火",
+          "desc": "自身每帶有1級 [Breath] 強度，使本技能暴擊時造成的傷害+1.5%(最多+30%)\n[WhenUse] 自身每帶有2層 [Agility]，則使本技能的最終威力+1(最多+2)\n<style=\"highlight\">[WhenUse] 自身的 [Breath] 強度與目標的 [Laceration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身的 [WindBladeIshmael] 層數不低於10層，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身增加3級 [Breath] 強度\n[WhenUse] 下回合使自身獲得2層 [Agility] (每回合最多1次)\n[EndSkill] 自身每帶有1層 [Agility]，使自身獲得1層 [WindBladeIshmael] (最多3層，每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [Breath]"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [WindBladeIshmael]，則使本硬幣暴擊時造成的傷害+2%(最多+20%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "照亮前路",
+          "desc": "[CanDuelGuard]\n[StartBattle] 使自身獲得1層 [SupportProtect] (每回合最多1次)\n[WhenUse] 下回合使自身獲得2層 [Agility] (每回合最多1次)\n[WhenUse] 使自身獲得2回 [Breath] (每回合最多1次)\n[WinDuel] 使自身獲得3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "照亮前路",
+          "desc": "[CanDuelGuard]\n[StartBattle] 使自身獲得1層 [SupportProtect] (每回合最多1次)\n[WhenUse] 下回合使自身獲得2層 [Agility] (每回合最多1次)\n[WhenUse] 使自身獲得2回 [Breath] (每回合最多1次)\n[WinDuel] 使自身獲得3級 [Breath] 強度\n<style=\"highlight\">[EndSkillAll] 若自身帶有 [Agility]，則使自身獲得2層 [WindBladeIshmael] (每回合最多1次)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "骨斷",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能\n自身每失去1%體力，使本技能造成的傷害+0.5%(最多+20%)\n自身每帶有1層 [Agility]，則使本技能暴擊時造成的傷害+3%(最多+15%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "骨斷",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能\n自身每失去1%體力，使本技能造成的傷害+0.5%(最多+20%)\n自身每帶有1層 [Agility]，則使本技能暴擊時造成的傷害+3%(最多+15%)\n<style=\"highlight\">[WhenUse] 自身每帶有1層 [WindBladeIshmael]，則使本技能造成的傷害+1%(最多+15%)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "骨斷",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能\n自身每失去1%體力，使本技能造成的傷害+0.5%(最多+20%)\n自身每帶有1層 [Agility]，則使本技能暴擊時造成的傷害+3%(最多+15%)\n[WhenUse] 自身每帶有1層 [WindBladeIshmael]，則使本技能造成的傷害+1%(最多+15%)\n<style=\"highlight\">[WhenUse] 自身每帶有1級 [Breath] 強度，則使本技能暴擊時造成的傷害+1.5%(最多+30%)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081506,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "交戰清潾火",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能\n自身每帶有1級 [Breath] 強度，則使本技能暴擊時造成的傷害+1.5%(最多+30%)\n[WhenUse] 使自身獲得3回 [Breath]\n[EndSkill] 消耗自身所有 [WindBladeIshmael]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身的 [WindBladeIshmael] 層數超過15層，則每超過1層，使本硬幣暴擊時造成的傷害+5%(最多+25%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 若自身的 [Agility] 不低於5點，則重複使用本硬幣(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "交戰清潾火",
+          "desc": "[CantDuel]\n本技能不會觸發守備技能\n自身每帶有1級 [Breath] 強度，則使本技能暴擊時造成的傷害+1.5%(最多+30%)\n<style=\"highlight\">自身每帶有1層 [Agility]，則使本技能暴擊時造成的傷害+5%(最多+25%)</style>\n[WhenUse] 使自身獲得3回 [Breath]\n[EndSkill] 消耗自身所有 [WindBladeIshmael]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身的 [WindBladeIshmael] 層數超過15層，則每超過1層，使本硬幣暴擊時造成的傷害+5%(最多+25%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[CriticalOnSucceedAttack] 若自身的 [Agility] 不低於5點，則重複使用本硬幣(每個技能最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081507,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "判斷局勢",
+          "desc": "[CanDuelGuard]\n[SupportProtect] 專用技能\n\n[WhenUse] 使自身獲得3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "判斷局勢",
+          "desc": "[CanDuelGuard]\n[SupportProtect] 專用技能\n<style=\"highlight\">[WhenUse] 使 [SupportProtect] 保護[TabExplain]的目標恢復5點理智值</style>\n[WhenUse] 使自身獲得3級 [Breath] 強度",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "啊啊，您聽不見嗎？",
+          "desc": "[WhenUse] 若自身現存體力不低於80%，則使自身獲得3回 [ChargeRougeAlly]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "啊啊，您聽不見嗎？",
+          "desc": "<style=\"highlight\">若自身的 [ChargeRougeAlly] 強度不低於2級，則使本技能的硬幣威力+1</style>\n[WhenUse] 若自身現存體力不低於80%，則使自身獲得3回 [ChargeRougeAlly]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得<style=\"highlight\">3</style>回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "啊啊，您聽不見嗎？",
+          "desc": "若自身的 [ChargeRougeAlly] 強度不低於2級，則使本技能的硬幣威力+1\n[WhenUse] 若自身現存體力不低於80%，則使自身獲得<style=\"highlight\">5</style>回 [ChargeRougeAlly]\n<style=\"highlight\">[WhenUse] 目標每帶有3級 [Laceration] 強度，則使本技能的拚點威力+1(最多+2)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得3回 [ChargeRougeAlly]<style=\"highlight\"></style>"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "雖說您聽不見，但並不代表不存在哦！",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeRougeAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [RougeIshmaelEclose]，則重複使用本硬幣1次(每個技能最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 使自身恢復體力上限(自身的 [ChargeRougeAlly] 強度×2)%的體力(最多10%)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "雖說您聽不見，但並不代表不存在哦！",
+          "desc": "<style=\"highlight\">自身每帶有2級 [ChargeRougeAlly] 強度，使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeRougeAlly] 回數不高於10回，則消耗自身體力上限3×(10-現存 [ChargeRougeAlly] 回數)%的體力並使自身獲得至10回 [ChargeRougeAlly]\n[WhenUse] 消耗自身10回 [ChargeRougeAlly] 並使本技能的硬幣威力+1\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[BeforeAttack] 若自身帶有 [RougeIshmaelEclose]，則使本技能造成的傷害+20%\n- 若自身未帶有 [RougeIshmaelEclose]，則消耗自身體力上限20%的體力並觸發該效果</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得<style=\"highlight\">4</style>回 [ChargeRougeAlly]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [RougeIshmaelEclose]，則重複使用本硬幣1次(每個技能最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身的 [ChargeRougeAlly] 強度不低於3級，則下回合對目標施加1層 [ScarletTakeDamageUp] (每回合最多1次)</style>"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 使自身恢復體力上限(自身的 [ChargeRougeAlly] 強度×<style=\"highlight\">3</style>)%的體力(最多<style=\"highlight\">15%</style>)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "雖說您聽不見，但並不代表不存在哦！",
+          "desc": "自身每帶有2級 [ChargeRougeAlly] 強度，使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeRougeAlly] 回數不高於10回，則消耗自身體力上限3×(10-現存 [ChargeRougeAlly] 回數)%的體力並使自身獲得至10回 [ChargeRougeAlly]\n[WhenUse] 消耗自身10回 [ChargeRougeAlly] 並使本技能的硬幣威力+1\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[BeforeAttack] 若自身帶有 [RougeIshmaelEclose]，則使本技能造成的傷害+<style=\"highlight\">40%</style>\n- 若自身未帶有 [RougeIshmaelEclose]，則消耗自身體力上限20%的體力並觸發該效果",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeRougeAlly]<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [RougeIshmaelEclose]，則重複使用本硬幣1次(每個技能最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [ChargeRougeAlly] 強度不低於<style=\"highlight\">2</style>級，則下回合對目標施加1層 [ScarletTakeDamageUp] (每回合最多1次)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 使自身恢復體力上限(自身的 [ChargeRougeAlly] 強度×3)%的體力(最多15%)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081603,
+      "levelList": [
+        {
+          "level": 3,
+          "name": "刮去、剝除、釘牢！",
+          "desc": "自身每帶有1級 [ChargeRougeAlly] 強度，使本技能造成的傷害+5%(最多+25%)\n[StartBattle] 若現存體力低於自身體力上限的50%，或自身帶有 [RougeIshmaelEclose]，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若自身的 [ChargeRougeAlly] 回數不高於15回，則消耗自身體力上限3×(15-自身的 [ChargeRougeAlly] 回數)%的體力並使自身獲得至15回 [ChargeRougeAlly]\n[WhenUse] 消耗自身15回 [ChargeRougeAlly] 並使本技能的硬幣威力+3\n[WhenUse] 目標每帶有6級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 若自身帶有 [RougeIshmaelEclose]，則使本技能造成的傷害+40%\n- 若自身未帶有 [RougeIshmaelEclose]，則消耗自身體力上限20%的體力並觸發該效果",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [RougeIshmaelEclose]，則重複使用本硬幣1次(每個技能最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(自身的 [ChargeRougeAlly] 強度×10)%的色慾傷害(最多30%)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 使自身恢復體力上限(自身的 [ChargeRougeAlly] 強度×4)%的體力(最多20%)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "刮去、剝除、釘牢！",
+          "desc": "自身每帶有1級 [ChargeRougeAlly] 強度，使本技能造成的傷害+<style=\"highlight\">10%</style>(最多+<style=\"highlight\">50%</style>)\n[StartBattle] 若現存體力低於自身體力上限的50%，或自身帶有 [RougeIshmaelEclose]，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若自身的 [ChargeRougeAlly] 回數不高於15回，則消耗自身體力上限3×(15-自身的 [ChargeRougeAlly] 回數)%的體力並使自身獲得至15回 [ChargeRougeAlly]\n[WhenUse] 消耗自身15回 [ChargeRougeAlly] 並使本技能的硬幣威力+3\n[WhenUse] 目標每帶有6級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 若自身帶有 [RougeIshmaelEclose]，則使本技能造成的傷害+40%\n- 若自身未帶有 [RougeIshmaelEclose]，則消耗自身體力上限20%的體力並觸發該效果",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">4</style>級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "若自身帶有 [RougeIshmaelEclose]，則重複使用本硬幣1次(每個技能最多1次)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標造成本硬幣最終傷害量(自身的 [ChargeRougeAlly] 強度×10)%的色慾傷害(最多30%)"
+                },
+                {
+                  "desc": "[ReUseOnSucceedAttack] 使自身恢復體力上限(自身的 [ChargeRougeAlly] 強度×4)%的體力(最多20%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081604,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "果然……這個世界是有意義的吧？",
+          "desc": "[DuelCounter]\n[StartBattle] 若現存體力不高於體力上限的10%，則使自身獲得2層 [RougeIshmaelCocoon] 並進入 [RougeIshmaelCocoon] 狀態(每場戰鬥最多1次)\n[StartBattle] 若自身未帶有 [RougeIshmaelEclose]，則消耗自身體力上限20%的體力並在下回合使本技能對應行動槽的 [Aggro] +10(每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "果然……這個世界是有意義的吧？",
+          "desc": "[DuelCounter]\n[StartBattle] 若現存體力不高於體力上限的10%，則使自身獲得2層 [RougeIshmaelCocoon] 並進入 [RougeIshmaelCocoon] 狀態(每場戰鬥最多1次)\n[StartBattle] 若自身未帶有 [RougeIshmaelEclose]，則消耗自身體力上限20%的體力並在下回合使本技能對應行動槽的 [Aggro] +10(每回合最多1次)\n<style=\"highlight\">[WhenUse] 自身每帶有2級 [ChargeRougeAlly] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能造成的傷害+10%(最多+40%)</style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [ChargeRougeAlly]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身帶有 [RougeIshmaelEclose]，則使自身恢復體力上限10%的體力(每回合最多1次)</style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1081605,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "遵循那道聲，喜悅於我身之中",
+          "desc": "[RougeIshmaelCocoon] exclusive Skill\n[CanDuelGuard]\n[StartBattle] At 10+ [ChargeRougeAlly] Count, consume 10 [ChargeRougeAlly] Count to apply 1 [ResultEnhancement] next turn to 2 allies with the earliest Deployment orders (once per turn)\n[StartBattle] Heal 50% HP (once per turn)\n[WinDuel] Gain +5 [ChargeRougeAlly] Count (4 times per turn)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "遵循那道聲，喜悅於我身之中",
+          "desc": "[RougeIshmaelCocoon] exclusive Skill\n[CanDuelGuard]\n[StartBattle] At 10+ [ChargeRougeAlly] Count, consume 10 [ChargeRougeAlly] Count to apply 1 [ResultEnhancement] next turn to 2 allies with the earliest Deployment orders (once per turn)\n<style=\"highlight\">- If the affected ally is a Rouge Identity, gain +5 [ChargeRougeAlly] Count next turn and additionally apply 1 [AttackDmgUp] on the said ally</style>\n[StartBattle] Heal <style=\"highlight\">100</style>% HP (once per turn)\n<style=\"highlight\">[WinDuel] Remove 1 random removable negative effect applied to self (once per turn)</style>\n[WinDuel] Gain +5 [ChargeRougeAlly] Count (4 times per turn)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

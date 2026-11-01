@@ -1,0 +1,130 @@
+{
+  "dataList": [
+    {
+      "key": "Q-1000",
+      "title": "A1：地下1樓",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "進入地下1樓的食品賣場"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "食品賣場進入對話"
+        }
+      ]
+    },
+    {
+      "key": "Q-1001",
+      "title": "前往地下2樓",
+      "description": "獲得由屠夫烹製的黃金之繭了。接下來得尋找前往地下2樓的方法。往剛才行經走廊的下方道路走吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往地下2樓"
+        }
+      ]
+    },
+    {
+      "key": "Q-1002",
+      "title": "尋找下樓的手扶梯",
+      "description": "我們來到了滿是手扶梯的地方。調查手扶梯，試著找出哪個是通往地下2樓的手扶梯吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "調查手扶梯"
+        }
+      ]
+    },
+    {
+      "key": "Q-1003",
+      "title": "前往美食廣場",
+      "description": "我們來到了地下1樓。地下的景象與地上樓層的賣場截然不同。若要尋找繭，前往名為美食廣場的地方似乎比較好。前往地面描繪著蝸牛殼的地方吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "前往美食廣場"
+        }
+      ]
+    },
+    {
+      "key": "Q-1004",
+      "title": "追上副廚",
+      "description": "我們遇見了名為副廚的人。那個人說曾經在名為屠夫的人所擁有的倉庫裡見過黃金之繭。追上逃跑的副廚，打聽更多黃金之繭的情報吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "追上副廚"
+        }
+      ]
+    },
+    {
+      "key": "Q-1005",
+      "title": "去找屠夫",
+      "description": "從副廚得知了地下1樓的樓層經理，名為屠夫的存在。去向屠夫詢問獲取黃金之繭的方法吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "去找屠夫"
+        }
+      ]
+    },
+    {
+      "key": "Q-1006",
+      "title": "帶回被食者之思",
+      "description": "為了取得屠夫持有的黃金之繭就必須要將稱為被食者之思的肉類帶來。獲取新鮮肉類賣場某處吊著的被食者之思，然後交給屠夫吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "帶回被食者之思"
+        }
+      ]
+    },
+    {
+      "key": "Q-1008",
+      "title": "回到手扶梯大廳",
+      "description": "",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回到手扶梯大廳"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "手扶梯大廳返回對話"
+        }
+      ]
+    },
+    {
+      "key": "Q-1009",
+      "title": "定義手扶梯",
+      "description": "依簡所言，似乎不是要尋找下樓的手扶梯，而是必須賦予手扶梯定義。梯子，或者是山丘、鞋子。要告訴莫梭將其定義為何物呢？",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "將手扶梯定義為梯子、山丘、鞋子其中一種"
+        }
+      ]
+    },
+    {
+      "key": "Q-1010",
+      "title": "啟動手扶梯",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": ""
+        }
+      ]
+    },
+    {
+      "key": "Q-1011",
+      "title": "搭乘手扶梯下樓",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": ""
+        }
+      ]
+    }
+  ]
+}

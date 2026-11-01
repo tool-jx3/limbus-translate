@@ -1,0 +1,124 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_30_1",
+      "dlg": "即使是優秀的士兵，若不得適材適用，也只是無所作為。首先要觀察戰況。\n已經看過戰況了。接下來……揮刀即可。"
+    },
+    {
+      "id": "announcer_cheer_30_2",
+      "dlg": "主公對你們寄予厚望呢。全力以赴吧。\n呼。主公不是因為些微失誤而苛責的人，所以不用太緊張，像往常一樣就好。"
+    },
+    {
+      "id": "announcer_specialcheer_30_1",
+      "dlg": "情況不妙啊。\n照這樣突破過去就沒問題了。\n……認真的嗎？"
+    },
+    {
+      "id": "announcer_specialcheer_30_2",
+      "dlg": "嗯。前路已被陰影壟罩，只能尋得一絲光明了。\n有必要這麼拐彎抹角地說「危機」一詞嗎？\n……呼嗯，對你來說這個比喻有點難了嗎。"
+    },
+    {
+      "id": "announcer_enemy_break_30_1",
+      "dlg": "敵人如今慌亂地和醉酒的浪蕩子一般，若想取得勝機，就在此時。"
+    },
+    {
+      "id": "announcer_ally_break_30_1",
+      "dlg": "出現破綻了。要幫忙嗎？\n反過來利用這個破綻才是上策……\n如果是主公的話就會幫忙。\n……也是呢。趕緊照顧傷員吧。"
+    },
+    {
+      "id": "announcer_killenemy_30_1",
+      "dlg": "雖然稱不上扭轉局勢……但此仍不錯之舉。"
+    },
+    {
+      "id": "announcer_ally_dead_30_1",
+      "dlg": "……這真是失策呢。\n用簡易保存繃帶包起來吧。"
+    },
+    {
+      "id": "announcer_enemy_adv_30_1",
+      "dlg": "我竟然……在謀略上處於下風？\n鴻園地廣人稠、人才濟濟，對應之策也如是。\n……怎麼能把正論說得這麼惹人厭呢。\n不及於你。"
+    },
+    {
+      "id": "announcer_ally_adv_30_1",
+      "dlg": "雖情勢對我方有利，可一旦驕矜自傲，便會翻盤。\n……所以是什麼意思？\n保持戒心……非得要我說出來才懂嗎？"
+    },
+    {
+      "id": "announcer_ally_advex_30_1",
+      "dlg": "……眼中的意志尚未熄滅啊。\n真要完成使命嗎。若是當真，此戰之勝便不由天命決定，而在於諸位的意志了。"
+    },
+    {
+      "id": "announcer_danger_30_1",
+      "dlg": "如同被追到天涯海角一樣呢。\n然而，距離終點還有幾步之遙。竭盡全力，才能不留遺憾。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_30_1",
+      "dlg": "氣焰萬丈，但若意圖昭然天下。此乃下策。\n切忌掉以輕心，子貢。"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_30_1",
+      "dlg": "還真是奇策。然必有破解之術。\n倘若不察覺那一點的話，其命也如同風中殘燭。"
+    },
+    {
+      "id": "announcer_advatk_physical_30_1",
+      "dlg": "……正是如此。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_30_1",
+      "dlg": "……看來得重新佈陣列隊了。\n若無可避免，那只能擬定次佳之策了。"
+    },
+    {
+      "id": "announcer_advatk_attr_30_1",
+      "dlg": "……此計有效。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_30_1",
+      "dlg": "徒勞無功。\n子路唷，為何要說出淺顯易懂的事呢？\n……哈。"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_30_1",
+      "dlg": "看來對手也使出殺手鐧了呢。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_30_1",
+      "dlg": "所謂自亂陣腳就是這麼一回事。此機不可多得，趁勝追擊吧。"
+    },
+    {
+      "id": "announcer_ally_specialbuff_30_1",
+      "dlg": "是失策還是有意為之呢。\n若無法解讀其真意，那思考其用途才是上策。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_30_1",
+      "dlg": "對方似乎做了什麼手腳。\n仔細觀察。看來不是能輕易掙脫的魔爪。"
+    },
+    {
+      "id": "announcer_enemy_destroy_30_1",
+      "dlg": "哼。已經折下敵人的羽翼了。"
+    },
+    {
+      "id": "announcer_enemy_destroy_30_2",
+      "dlg": "有顯著的差距了啊。\n當然。如同滾下斜坡的雪球一般，我方的優勢將會持續擴大。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_30_1",
+      "dlg": "咕。是陷阱嗎？\n退下。由我來……\n……不，我還有對策。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_30_2",
+      "dlg": "不要氣餒。有些東西得要撞上了才明白。\n有必要用命來碰上嗎。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_30_1",
+      "dlg": "拿下敵方的車和炮了呢。此舉出乎意料地好。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_30_2",
+      "dlg": "取下敵人的四肢了。現在使盡全力吧。"
+    },
+    {
+      "id": "announcer_multikillenemy_30_1",
+      "dlg": "哼。揮劍之人何其多。重要的是揮劍之道。\n若是中意的話便直說吧，子路唷。面對此等稀世猛將，有什麼理由吝嗇讚美呢。"
+    },
+    {
+      "id": "announcer_equip_30_1",
+      "dlg": "我乃主公的謀士兼右臂的子貢。受主公之令，統領你們的部隊。\n……我是子路。"
+    }
+  ]
+}

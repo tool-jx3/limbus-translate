@@ -1,0 +1,174 @@
+{
+  "dataList": [
+    {
+      "id": 130601,
+      "name": "決鬥",
+      "desc": "自身與敵方單位拚點後，對拚點目標施加1層 [DuelEdge]\n與帶有 [DuelEdge] 的敵方單位拚點時，目標每帶有1層 [DuelEdge]，使自身恢復3點理智值 (最多恢復15點)"
+    },
+    {
+      "id": 130602,
+      "name": "巴勒莫劍術",
+      "desc": "Gain the following effects based on the target's [DuelEdge] Stack\n- For every Stack, deal +5% damage against and take -5% damage from the target with [DuelEdge]\n- At 1+ Stack, in a Clash against targets with [DuelEdge], gain Clash Power +1\n- At 2+ Stack, in a Clash against targets with [DuelEdge], gain Base Power +1\n- At 3+ Stack, in a Clash against targets with [DuelEdge], gain Coin Power +1 and inflict 3 [SeveredTendon] On Hit\n- At 4+ Stack, in a Clash against targets with [DuelEdge], gain Final Power +1"
+    },
+    {
+      "id": 130603,
+      "name": "巴勒莫刺劍 / 切斬刀",
+      "desc": "每當自身使用技能觸發 [VibrationExplosion] 時，下回合使自身獲得2層 [AttackUp] (每回合最多3次)"
+    },
+    {
+      "id": 130604,
+      "name": "狩獵之印",
+      "desc": "每3回合，隨機選擇良秀除外的1名敵方單位，將其速度值降至1，且使自身所有技能指定其為目標\n(若該效果因為自身陷入混亂而無法發動，則改為於下回合發動)"
+    },
+    {
+      "id": 130605,
+      "name": "僅為一個目的而製成的教材",
+      "desc": "關卡開始時，使自身獲得 [TeachersCommand]\n當自身與良秀拚點時，使自身拚點威力-3，並將自身的基礎攻擊技能的所有硬幣轉變為 [SuperCoin]\n自身拚點失敗時，使自身造成的傷害-80%，並且無法觸發任何命中效果"
+    },
+    {
+      "id": 130701,
+      "name": "尋找某物之手 - 解除部分抑制力",
+      "desc": "若有手臂部位遭到破壞，則使殘餘的手臂的技能硬幣轉換成 [SuperCoin] 且攻擊容量+1\n- 當自身使用受到此被動效果影響的技能時，使自身獲得1層 [RapidGrowthApple]"
+    },
+    {
+      "id": 130702,
+      "name": "黑檀女王 - 解除部分抑制力",
+      "desc": "若自身的根部部位尚未被破壞，則每當自身的果實部位受到攻擊命中時，使自身獲得1層 [HowDareYouApple]\n\n當自身帶有4層 [HowDareYouApple] 時，自身將使用施加強大負面效果的強力技能\n\n當自身的根部部位遭到破壞後，自身將無法獲得也無法失去 [HowDareYouApple] 層數\n當自身的果實部位也遭到破壞後，自身將失去所有 [HowDareYouApple] 層數"
+    },
+    {
+      "id": 130703,
+      "name": "纏繞的根",
+      "desc": "直到自身的根部部位被破壞前，每回合開始時，對全體敵方單位施加2層 [Binding]"
+    },
+    {
+      "id": 130704,
+      "name": "唯一的根",
+      "desc": "自身每有1個手臂部位遭到破壞，則使自身的根部部位獲得3層 [Enhancement]\n根部部位遭到破壞後，使此效果失效"
+    },
+    {
+      "id": 131901,
+      "name": "保護與抑制用甲冑",
+      "desc": "自身不處於混亂狀態時，則於回合開始時，使自身獲得2層 [Protection]、10層 [DefenseUp] 以及與自身當前體力值10%等量的護盾值\n\n本場戰鬥自身每累積使用1次「受抑的肉體」，則使此被動附加的效果層數減少1層 [Protection]、5層 [DefenseUp]，護盾值減少5%"
+    },
+    {
+      "id": 131902,
+      "name": "鐵處女 - 棘",
+      "desc": "If this unit isn't Staggered, when hit by the last Coin of an attacker, activate the following:\n- Deal Pierce damage by 20% of the said Coin's damage and inflict 2 [Laceration] (max damage per Skill: 100)\n- Damage from this effect cannot Stagger the target"
+    },
+    {
+      "id": 131903,
+      "name": "鐵處女 - 去顫",
+      "desc": "進入戰場時，使自身恢復30點理智值\n\n當自身體力降低至其最大值的60%以下時，使自身解除混亂並且強制結束回合(每場戰鬥最多1次)"
+    },
+    {
+      "id": 131904,
+      "name": "已作為材料的肉體",
+      "desc": "自身受到 [Combustion]、[Vibration]、[Burst] 與 [Sinking] 的體力傷害、理智值與前移的混亂閾值前移量-30%\n自身受到的 [Laceration] 傷害-50%"
+    },
+    {
+      "id": 131905,
+      "name": "珍貴的作品：法希雅",
+      "desc": "若自身在回合結束時帶有2層 [HumanFleshTheRings]，則於下回合解除自身帶有的 [HumanFleshTheRings] 層數並使自身獲得1層 [BoneBladeTheRings]\n\n若自身在回合開始時帶有 [BoneBladeTheRings]，則將於該回合使用強力攻擊\n\n若自身在發動強力攻擊前遭到攻擊技能命中，則對自身施加1層 [UnsteadyTheRings]"
+    },
+    {
+      "id": 131801,
+      "name": "為繼承星之名的修行",
+      "desc": "自身在攻擊結束後，對各個攻擊對象造成(造成暴擊的斬擊硬幣數量×10)的斬擊傷害 (此被動造成的傷害無法使目標陷入混亂)"
+    },
+    {
+      "id": 131802,
+      "name": "全神貫注",
+      "desc": "自身的 [Breath] 強度最多只能達到25級\n若獲得超過25級的 [Breath] 強度，則會轉化為 [DicipleLittleFinger]"
+    },
+    {
+      "id": 131803,
+      "name": "整劍",
+      "desc": "關卡開始時，使自身獲得50層 [DicipleLittleFinger]"
+    },
+    {
+      "id": 131804,
+      "name": "靜念",
+      "desc": "若自身帶有 [DicipleLittleFinger]，則觸發以下效果\n- 自身的理智值不會降至0點以下。若自身理智值低於0點，則使其恢復至0點\n- 將受到的理智傷害轉化為憂鬱傷害 (不包括基礎理智值的增減條件)"
+    },
+    {
+      "id": 131805,
+      "name": "恩義",
+      "desc": "與良秀以外的目標進行拚點時，使自身的拚點威力-2\n受到良秀以外的單位造成的傷害時，使自身受到的傷害量-20%"
+    },
+    {
+      "id": 130801,
+      "name": "魅惑",
+      "desc": "回合開始時，根據本場遭遇戰參戰的人數，使自身對速度值最低的罪人施加 [FairyCharm]\n施加 [FairyCharm] 的人數將隨著自身精靈部位的再生次數提升"
+    },
+    {
+      "id": 130802,
+      "name": "顯露的深淵",
+      "desc": "精靈的部位遭到破壞時，暴露自身的軀幹\n軀幹再次進入隱匿狀態時，解除所有增益與負面效果"
+    },
+    {
+      "id": 130803,
+      "name": "領先的誘餌",
+      "desc": "精靈的部位受到傷害時，不會使本體受到傷害\n自身特定技能的攻擊容量將隨著帶有 [FairyCharm] 的人數增加"
+    },
+    {
+      "id": 130804,
+      "name": "損毀的根系",
+      "desc": "破壞軀幹部位時，\n- 使精靈的部位以體力上限60%的狀態再生\n- 本體受到技能效果恢復的體力+20點"
+    },
+    {
+      "id": 130805,
+      "name": "進化的誘餌",
+      "desc": "精靈的部位再生時，使其體力上限+30%"
+    },
+    {
+      "id": 130806,
+      "name": "精靈粉末",
+      "desc": "精靈的部位遭到破壞時，使全體人格於下回合獲得5級 [Breath] 強度與2回 [Breath]"
+    },
+    {
+      "id": 130807,
+      "name": "攻擊性強化 - 解除部分抑制力",
+      "desc": "當精靈的部位再生次數達到2次時，自身將會使用更加強力的技能"
+    },
+    {
+      "id": 130901,
+      "name": "次元逃遁",
+      "desc": "第2回合開始時，自身隨機召喚4個次元裂縫並躲入其中\n- 若所有部位都陷入混亂，則該效果於下回合發動\n- 自身藏匿於次元裂縫中時，不會陷入混亂"
+    },
+    {
+      "id": 130902,
+      "name": "被困的次元逃遁",
+      "desc": "若所有次元裂縫皆被破壞，下回合使自身脫離次元裂縫\n隨後，使自身失去5回 [Charge]，並使自身所有部位的混亂閾值前移30點"
+    },
+    {
+      "id": 130903,
+      "name": "修復次元折射刃",
+      "desc": "當刀刃部位遭到破壞，使自身失去5回 [Charge]\n下回合結束時，消耗自身2回 [Charge] 並使遭到破壞的刀刃部位恢復\n\n若刀刃部位處於被破壞的狀態，則每回合開始時，對自身施加2層 [AttackDown]"
+    },
+    {
+      "id": 130904,
+      "name": "嘗試強行突破次元 - 解除部分抑制力",
+      "desc": "At 60% or less Core HP, end turn and gain a new pattern\n- Deactivate \"Dimensional Escape\" Passive\n- Deactivate \"Trapped Dimensional Escape\" Passive\n- If neither of its Arms are broken, use a powerful Skill every few turns"
+    },
+    {
+      "id": 131001,
+      "name": "血流成河的次元",
+      "desc": "若穿越血流成河的次元，使自身造成的傷害+10%"
+    },
+    {
+      "id": 131101,
+      "name": "劇毒沸騰的次元",
+      "desc": "若穿越劇毒沸騰的次元，使本體基礎體力上限+20%"
+    },
+    {
+      "id": 131201,
+      "name": "震顫不止的次元",
+      "desc": "若穿越震顫不止的次元，使自身的速度值+1"
+    },
+    {
+      "id": 131301,
+      "name": "電流湧動的次元",
+      "desc": "若穿越電流湧動的次元，使自身的硬幣威力+1"
+    }
+  ]
+}

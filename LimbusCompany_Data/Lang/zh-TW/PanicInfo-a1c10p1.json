@@ -1,0 +1,44 @@
+{
+  "dataList": [
+    {
+      "id": 1098,
+      "panicName": "拋棄皮革！",
+      "lowMoraleDescription": "防禦等級-3、攻擊等級+1",
+      "panicDescription": "防禦等級-5、攻擊等級+2"
+    },
+    {
+      "id": 1099,
+      "panicName": "回到殼中……",
+      "lowMoraleDescription": "最大速度值-1、防禦等級+1",
+      "panicDescription": "最大速度值-5、防禦等級+3",
+      "flavor": "就這樣死死地深入內部，向著最深處蜷縮凝聚。"
+    },
+    {
+      "id": 1102,
+      "panicName": "渴望烹飪",
+      "lowMoraleDescription": "自身每帶有1層 [SapsareeHungry]，使攻擊等級+1、受到的傷害+3%",
+      "panicDescription": "自身每帶有1層 [SapsareeHungry]，使攻擊等級+2、受到的傷害+5%",
+      "flavor": "你根本就不是想做料理。不過是沉溺在做菜的自我滿足，想模仿用餐罷了。"
+    },
+    {
+      "id": 1104,
+      "panicName": "FOMO",
+      "lowMoraleDescription": "自身每失去20%體力，使攻擊等級+1(最多+2)\n對自身施加1層 [Vulnerable]",
+      "panicDescription": "自身每失去20%體力，使攻擊等級+1(最多+2)\n對自身施加1層 [Vulnerable]",
+      "flavor": "明明絕不能錯過這波潮流……！"
+    },
+    {
+      "id": 1105,
+      "panicName": "糾纏的縫紉",
+      "lowMoraleDescription": "回合開始時，使自身獲得1層 [Reduction]",
+      "panicDescription": "回合開始時，使自身獲得1層 [Reduction] 並對自身施加1層 [AttackDmgDown]"
+    },
+    {
+      "id": 1121,
+      "panicName": "分裂",
+      "lowMoraleDescription": "防禦等級-3、攻擊等級+3\n與帶有5層 [BloodyMucus] 的目標進行拚點時，拚點威力+2",
+      "panicDescription": "防禦等級-5、攻擊等級+3\n造成的傷害+10%\n與帶有不低於3層 [BloodyMucus] 的目標進行拚點時，拚點威力+3",
+      "flavor": "到底……為什麼？我現在究竟變成了什麼模樣？我……到底是什麼？"
+    }
+  ]
+}

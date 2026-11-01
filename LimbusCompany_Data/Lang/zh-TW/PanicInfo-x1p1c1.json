@@ -1,0 +1,10 @@
+{
+  "dataList": [
+    {
+      "id": 1089,
+      "panicName": "美味提升",
+      "lowMoraleDescription": "回合開始時，對自身施加1層 [Vulnerable]",
+      "panicDescription": "回合開始時，對自身施加2層 [Vulnerable]"
+    }
+  ]
+}

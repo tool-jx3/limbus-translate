@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "key": "Q4001",
+      "title": "前往4樓",
+      "description": "帶著漆黑派給予的鑑定評價書前往4樓吧。聽說帶著這個就會受到漆黑派的盛重款待，說不定能更順利在百貨公司裡四處走動。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "搭乘前往4樓的手扶梯"
+        }
+      ]
+    },
+    {
+      "key": "Q4002",
+      "title": "探索4樓",
+      "description": "我們到達了4樓。這裡是什麼樣的專櫃呢？總之先往右走探索4樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "探索4樓"
+        }
+      ]
+    },
+    {
+      "key": "Q4003",
+      "title": "探索4樓2",
+      "description": "從漆黑派鞋廈的專櫃人員單腳聽說了能夠撕裂任何布料的武器。先離開漆黑派鞋廈，逛完4樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "結束與單腳的對話"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "探索4樓",
+          "goalDescription2": "跟駝背的檯燈交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4004",
+      "title": "跟家具展廳之主見面",
+      "description": "我們來到了名為家具展廳的地方。駝背的檯燈請我們拿來適合自己的衣服。去見家具展廳之主吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟家具展廳之主交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4005",
+      "title": "將新衣服交給駝背的檯燈",
+      "description": "家具展廳之主「幸福衣櫥」不發一語地展示著掛在身上的物品。我們取下了一件適合的衣服。交給駝背的檯燈吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "將新衣服交給駝背的檯燈"
+        }
+      ]
+    },
+    {
+      "key": "Q4006",
+      "title": "從幸福衣櫥取出衣服",
+      "description": "看見我們把衣服交給駝背的檯燈，其他家具開始表達不滿。回去找幸福衣櫥，取出交給其他家具的衣服吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "從幸福衣櫥取出衣服"
+        }
+      ]
+    },
+    {
+      "key": "Q4007",
+      "title": "將衣服交給家具們",
+      "description": "從幸福衣櫥取出了幾件衣服。現在將衣服分別交給家具們吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "將衣服交給骨製衣帽架",
+          "goalDescription2": "將衣服交給慵懶的皮床",
+          "goalDescription3": "將衣服交給人皮窗簾",
+          "goalDescription4": "將衣服交給紅色軟墊",
+          "goalDescription5": "將衣服交給皮製沙發",
+          "goalDescription6": "將衣服交給雙子落地燈"
+        }
+      ]
+    },
+    {
+      "key": "Q4008",
+      "title": "回去找幸福衣櫥",
+      "description": "將衣服全都交給了其他家具。再回去找幸福衣櫥吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "回去找幸福衣櫥"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "靜觀家具們的襲擊"
+        }
+      ]
+    },
+    {
+      "key": "Q4013",
+      "title": "跟駝背的檯燈交談",
+      "description": "連心臟都被撕扯下來的幸福衣櫥一動不動了。離開家具展廳前再次跟駝背的檯燈交談吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "跟駝背的檯燈交談"
+        }
+      ]
+    },
+    {
+      "key": "Q4009",
+      "title": "前往地下",
+      "description": "根據獲得的配方，我們必須透過黃金之繭獲取黃金線團。聽說可以在地下1樓找到黃金之繭。在地下1樓獲取黃金之繭後前往地下2樓吧。",
+      "steps": [
+        {
+          "index": 0,
+          "goalDescription1": "搭乘前往地下1樓的手扶梯"
+        },
+        {
+          "index": 1,
+          "goalDescription1": "探索地下1樓"
+        }
+      ]
+    }
+  ]
+}

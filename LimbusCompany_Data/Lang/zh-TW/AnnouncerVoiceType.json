@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "Danger",
+      "content": "危及情況"
+    },
+    {
+      "id": "SpecialSkill",
+      "content": "強力敵方技能警告"
+    },
+    {
+      "id": "SpecialGimmick",
+      "content": "敵方特殊機制警告"
+    },
+    {
+      "id": "AllyDebuff",
+      "content": "友方單位減益"
+    },
+    {
+      "id": "AllyBuff",
+      "content": "友方單位增益"
+    },
+    {
+      "id": "SpecialCheer",
+      "content": "特殊鼓勵"
+    },
+    {
+      "id": "EnemyAdv",
+      "content": "敵方單位優勢"
+    },
+    {
+      "id": "AllyDead",
+      "content": "友方單位陣亡時"
+    },
+    {
+      "id": "AllyBigDamage_Round",
+      "content": "重傷後進入新回合"
+    },
+    {
+      "id": "AllyAdvEx",
+      "content": "友方逆轉形勢"
+    },
+    {
+      "id": "AllyAdv",
+      "content": "友方單位優勢"
+    },
+    {
+      "id": "AllyBreak",
+      "content": "友方單位陷入混亂"
+    },
+    {
+      "id": "KillEnemy",
+      "content": "擊殺敵方單位時"
+    },
+    {
+      "id": "EnemyDestroy_RoundStart",
+      "content": "破壞敵方部位後進入新回合"
+    },
+    {
+      "id": "EnemyBigDamage_Round",
+      "content": "重傷敵方後進入新回合"
+    },
+    {
+      "id": "EnemyBreak",
+      "content": "敵方單位陷入混亂"
+    },
+    {
+      "id": "Cheer",
+      "content": "鼓勵"
+    },
+    {
+      "id": "AllyBigDamage",
+      "content": "受到重傷"
+    },
+    {
+      "id": "EnemyBigDamage",
+      "content": "造成重傷"
+    },
+    {
+      "id": "EnemyDestroy_Battle",
+      "content": "敵方單位部位被破壞"
+    },
+    {
+      "id": "MultiKillEnemy",
+      "content": "友方連續擊殺"
+    },
+    {
+      "id": "Equip",
+      "content": "選中播報員"
+    },
+    {
+      "id": "PhysicalAdv",
+      "content": "有利攻擊類型"
+    },
+    {
+      "id": "AttrAdv",
+      "content": "有利罪孽屬性"
+    },
+    {
+      "id": "PhysicalDisadv",
+      "content": "不利攻擊類型"
+    },
+    {
+      "id": "AttrDisadv",
+      "content": "不利罪孽屬性"
+    },
+    {
+      "id": "EnemyBuff",
+      "content": "敵方單位增益"
+    },
+    {
+      "id": "EnemyDebuff",
+      "content": "敵方單位減益"
+    },
+    {
+      "id": "Neglect",
+      "content": "閒置時"
+    },
+    {
+      "id": "MultiKillAlly",
+      "content": "敵方連續擊殺"
+    },
+    {
+      "id": "Win",
+      "content": "戰鬥勝利"
+    },
+    {
+      "id": "Defeat",
+      "content": "戰鬥失敗"
+    }
+  ]
+}

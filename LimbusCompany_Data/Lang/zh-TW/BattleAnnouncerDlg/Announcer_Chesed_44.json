@@ -1,0 +1,132 @@
+{
+  "dataList": [
+    {
+      "id": "announcer_cheer_44_1",
+      "dlg": "很安靜對吧？無論看多少次我也不能相信。這麼安靜的地方，很快就會變成地獄的這件事。"
+    },
+    {
+      "id": "announcer_cheer_44_2",
+      "dlg": "真煩惱呢。雖然我有自信跟誰都能打成一片，但只有主管是例外啊。\n跟主管笑著相處，就算是我也會有壓力的。"
+    },
+    {
+      "id": "announcer_specialcheer_44_1",
+      "dlg": "福利部的員工看起來狀態不是很好。請多關心一下他們吧。"
+    },
+    {
+      "id": "announcer_specialcheer_44_2",
+      "dlg": "至少不要讓他們痛苦地死去……但看來這也是過於奢侈的願望呢。"
+    },
+    {
+      "id": "announcer_enemy_break_44_1",
+      "dlg": "逆卡巴拉抑止力正在上升，趕快完成鎮壓吧，主管。"
+    },
+    {
+      "id": "announcer_ally_break_44_1",
+      "dlg": "主管還真是殘酷啊。員工們都已經變成這樣了，我不說你就察覺不到嗎？"
+    },
+    {
+      "id": "announcer_killenemy_44_1",
+      "dlg": "在發生可怕的事之前成功鎮壓了呢。主管，做得好。"
+    },
+    {
+      "id": "announcer_ally_dead_44_1",
+      "dlg": "一名員工死亡。……真想喝咖啡啊。"
+    },
+    {
+      "id": "announcer_enemy_adv_44_1",
+      "dlg": "不要對他們太苟刻。反正是些很快就不會再見的員工們。就算對他們嚴苟，又能得到什麼呢。"
+    },
+    {
+      "id": "announcer_ally_adv_44_1",
+      "dlg": "這樣一來員工們的性命就能延長一點了呢。\n即使只是這樣就能夠滿足，也不會有誰對主管有微詞。"
+    },
+    {
+      "id": "announcer_ally_advex_44_1",
+      "dlg": "看來不是從頭開始就無能呢。你都做到這種地步了。\n我也不是不明白你這麼努力的心情。所以，我只是想知道……這一切究竟有什麼意義呢。"
+    },
+    {
+      "id": "announcer_danger_44_1",
+      "dlg": "今天的工作很快就要結束了，沒什麼大不了。我期待的結局，並不是這種一天的結束啊，主管。"
+    },
+    {
+      "id": "announcer_enemy_specialskill_44_1",
+      "dlg": "抑止力變弱了啊。被壓制的根源，很快就會讓他們醒來吧。\n看來要準備好投身在像賭博一樣的命運啊，主管。"
+    },
+    {
+      "id": "announcer_enemy_specialgimmick_44_1",
+      "dlg": "不覺得每個人都有明確的職務很好嗎？\n這種時候不需要想得很清楚，只要做好當下要做的事就好了。"
+    },
+    {
+      "id": "announcer_advatk_physical_44_1",
+      "dlg": "我還以為懲戒部已經破壞了所有裝備，原來還有剩下的啊。"
+    },
+    {
+      "id": "announcer_disadvatk_physical_44_1",
+      "dlg": "沒關係。連那些都要注意會很累的。"
+    },
+    {
+      "id": "announcer_advatk_attr_44_1",
+      "dlg": "主管……至少不像哪裡的某人一樣將員工置於死地啊。"
+    },
+    {
+      "id": "announcer_disadvatk_attr_44_1",
+      "dlg": "你要注意的東西本來就很多，連這些小差錯都要逐一擔心的話，精神會崩潰的。"
+    },
+    {
+      "id": "announcer_enemy_specialbuff_44_1",
+      "dlg": "……減弱了逆卡巴拉抑止力。我沒辦法，主管。這是Angela的命令。\n可以的話……我不想壞了她的心情。"
+    },
+    {
+      "id": "announcer_enemy_specialdebuff_44_1",
+      "dlg": "增強了逆卡巴拉抑止力。我說過的吧。福利部算是個挺忙的部門。"
+    },
+    {
+      "id": "announcer_ally_specialbuff_44_1",
+      "dlg": "那股熊熊燃燒的想法，不會持續很久吧。直到它冷卻前熱血地行動也不壞。"
+    },
+    {
+      "id": "announcer_ally_specialdebuff_44_1",
+      "dlg": "人生，有時候也需要點苦味。"
+    },
+    {
+      "id": "announcer_enemy_destroy_44_1",
+      "dlg": "破壞了個體的部位。就因為這傢伙，昨天僅僅是福利部就死了八個員工，你知道嗎？他們被四分五裂，十分淒慘。"
+    },
+    {
+      "id": "announcer_enemy_destroy_44_2",
+      "dlg": "這樣員工們也能輕鬆地死去吧，主管。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_44_1",
+      "dlg": "最後咖啡還是冷掉了啊。這種時候就不要留戀，全部捨棄就好。"
+    },
+    {
+      "id": "announcer_round_takebigdmg_44_2",
+      "dlg": "很早以前這裡就像冷掉的咖啡一樣。無論我的感覺如何，還是主管多麼努力……全部都只在Angela的許可下才成立。\n所以沒有必要操心別讓員工受傷這種麻煩事。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_44_1",
+      "dlg": "鎮壓計畫的規模不會有點太大嗎？我覺得適當地休息一下是可以的。"
+    },
+    {
+      "id": "announcer_round_givebigdmg_44_2",
+      "dlg": "這種鎮壓對公司而言是最具有效率的，員工的犧牲不過是附加。\n不認為那種犧牲是廉價的話，就不要過分執著在鎮壓異想體。這裡的目的不是這個，主管也知道的吧？"
+    },
+    {
+      "id": "announcer_multikillenemy_44_1",
+      "dlg": "嗯……主管。看來有一名員工的部署出錯了。"
+    },
+    {
+      "id": "announcer_battle_win_44_1",
+      "dlg": "這次也圓滿成功了呢。能從Angela那邊得到很多讚賞嗎？\n「想必你的努力能讓這裡變得更好吧」什麼的，聽起來很有道理但一點都不有趣的話。"
+    },
+    {
+      "id": "announcer_battle_defeat_44_1",
+      "dlg": "我們要失敗多少次，習慣黑暗才能看到光芒啊。\n……哈。真羨慕主管。就連這種羞恥都能一下子忘掉。"
+    },
+    {
+      "id": "announcer_equip_44_1",
+      "dlg": "感謝你能等我。你不會因為我省略敬語而感到不舒服對吧？\n請多指教。我是Chesed。負責管理福利部。Angela讓我們暫時合作一陣子。"
+    }
+  ]
+}

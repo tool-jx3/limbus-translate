@@ -1,0 +1,65 @@
+{
+  "dataList": [
+    {
+      "id": 40003801,
+      "name": "邊獄公司製特殊試驗義體mk5 - 鬼怪之臂",
+      "desc": "關卡開始時，使自身獲得 [AengduNewArm]\n\n若有除自身以外現存體力不高於體力上限50%的友方單位，則使自身獲得1層 [SupportProtect] (每回合最多1次)",
+      "summary": "獲得 [SupportProtect]",
+      "flavor": "「外觀上，乍看跟其他巢或後巷見到的義體沒什麼兩樣……但似乎融入了邊獄公司獨有的技術。邊獄公司獨有的技術啊，究竟會是什麼呢？」\n「畢竟這件試製品是以LCD部門為主導製作的，想必跟扭曲的力量有所關聯……啊。我只是負責運輸業務的人員，並不清楚詳細的狀況。只不過是推測而已。無論如何，應該不單單只是用於強化身體的義體。」"
+    },
+    {
+      "id": 40003802,
+      "name": "鬼火腰擊",
+      "desc": "技能結束時，自身每帶有3級 [Breath] 強度，則使自身獲得1層 [WindBlade] (最多5層，每回合最多2次)\n\n基礎攻擊技能結束時，若自身的 [WindBlade] 層數不低於15層，則對敵方單位使用「交戰清潾火」(每回合最多1次)\n\n守備技能拚點失敗且自身的 [Agility] 層數不低於3層時，直到守備技能結束為止，自身不會陷入混亂，並在受到攻擊後對敵方單位使用「骨斷」(每回合最多2次，不包括強制混亂)",
+      "summary": "滿足條件以觸發額外技能"
+    },
+    {
+      "id": 40003803,
+      "name": "快劍",
+      "desc": "暴擊命中時，下回合使自身獲得1層 [Agility] (每個技能最多3次，每回合最多2次)",
+      "summary": "獲得 [Agility]"
+    },
+    {
+      "id": 40003804,
+      "name": "歸去之土",
+      "desc": "When 3 or more other Blade Lineage allies are defeated:\n- When gaining [Breath] Potency/Count using this unit's own Skills and Coin effects: Gain 1 more of each\n- When 5 or more other Blade Lineage allies are defeated, gain 2 more of each instead\n- Combat Start: Apply [SwordPlayOfTheHomeland] on self",
+      "summary": ""
+    },
+    {
+      "id": 40004001,
+      "name": "逃亡者",
+      "desc": "在戰鬥中首次登場時，對自身施加 [BrandedKimSatgat]"
+    },
+    {
+      "id": 40004002,
+      "name": "殺手本位",
+      "desc": "若自身的 [Breath] 回數為1回，則自身的 [Breath] 回數不會減少，而改為使自身失去10點體力(該效果不會使自身陷入混亂，且不會使自身的體力低於1點)\n\n使自身基礎技能暴擊時造成的傷害+(自身已失去體力比例÷2)(最多+50%)"
+    },
+    {
+      "id": 40004003,
+      "name": "本國劍術",
+      "desc": "Combat Start: If Pride Reson. was activated,\n- Gain (Pride Reson. x 2) [Breath] (max 8)\n- Apply 1 [SlashResultUp] and 1 [CriticalDamageUp] on all Sinners and Assist Units excluding this unit (for Blade Lineage targets, double this effect)\n\nTurn End: Gain ([Breath] on self / 4) [Agility] next turn (max 6, rounded down)"
+    },
+    {
+      "id": 40004004,
+      "name": "劍契組 頭領",
+      "desc": "When gaining [Breath] Potency/Count using this unit's own Skills and Coin effects: Apply 1 [Breath] Potency and 1 [Breath] Count on the Sinner and 2 Assist Units that do not have [Breath] or have the lowest [Breath] Potency (excluding this unit)\n- For Blade Lineage allies, apply 3 [Breath] Potency and +2 [Breath] Count instead\n\nWhen a Blade Lineage Sinner or Assist Unit is defeated, this unit loses 10 SP"
+    },
+    {
+      "id": 40004005,
+      "name": "肉斬骨斷",
+      "desc": "本場戰鬥中，受到使自身體力降至0點的傷害時，無視該傷害且本回合自身的體力不會低於1點(每場戰鬥最多1次)\n\n回合結束時，若自身的 [Breath] 強度不低於30級，則下回合使自身的速度值固定為20點並在最左側的行動槽裝備「肉斬」\n- 若因技能效果無法使用「肉斬」，則不會觸發該效果"
+    },
+    {
+      "id": 40004006,
+      "name": "脫離命運",
+      "desc": "本單位陣亡時，戰鬥判定為失敗",
+      "flavor": "即使會誤入歧途，但逆流而行或偏離道路都被「它」所禁止。"
+    },
+    {
+      "id": 40003901,
+      "name": "次元包 [以斯拉]",
+      "desc": "關卡開始時，獲得1層 [DimensionalBagEzraA]\n\n若自身使用當前裝備的工坊武器攻擊了1次以上，則於下回合改變裝備的工坊武器\n\n會使用的工坊武器：\n- 阿拉斯工坊製手套\n- 涅斯塔工坊製鎚\n- 螺絲工坊製電鑽鎚\n- 納米爾工坊製拳套\n- 尤里亞工坊製斧頭"
+    }
+  ]
+}

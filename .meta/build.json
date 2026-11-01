@@ -1,0 +1,35 @@
+{
+  "raw_tag": "raw-20261029",
+  "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
+  "rules_commit": "fb2b0969a45c0ef78713157c38556f810fa441a5",
+  "built_at": "2026-11-01T04:52:44Z",
+  "upstream": {
+    "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
+    "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
+    "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
+  },
+  "report": {
+    "origins": {
+      "copy": 90934,
+      "paratranz": 162207
+    },
+    "pending": 19642,
+    "needs_review": 3,
+    "structural_fallback": 0,
+    "frozen_fallback": [
+      "BgmLyrics/BgmLyrics_Cromer2.json|/dataList/20/content",
+      "BgmLyrics/BgmLyrics_Cromer2.json|/dataList/23/content",
+      "BgmLyrics/BgmLyrics_Cromer2.json|/dataList/45/content"
+    ],
+    "unaligned": 291,
+    "field_rule_override": 0,
+    "warnings": {
+      "ascii-ellipsis": 12,
+      "curly-quotes": 4,
+      "halfwidth-punct": 328,
+      "kana": 116,
+      "length-ratio": 11
+    },
+    "missing_glyphs": []
+  }
+}

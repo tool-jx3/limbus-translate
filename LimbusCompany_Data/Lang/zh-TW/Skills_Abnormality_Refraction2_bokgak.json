@@ -1,0 +1,2208 @@
+{
+  "dataList": [
+    {
+      "id": 962201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "纏繞符咒",
+          "desc": "[WhenUse] 對目標施加3層 [WrappedCurseTagRe]\n[DefeatDuel]\n- 本技能造成的傷害不會使目標陷入混亂\n- 使本技能不會觸發目標的 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "積累詛咒",
+          "desc": "[WhenUse] Inflict [WrappedCurseTagRe] equal to [WrappedCurseTagRe] on target\n- If target does not have [WrappedCurseTagRe], inflict 3 [WrappedCurseTagRe]",
+          "coinlist": [
+            {},
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度與2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與2回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962203,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "因而無人哭泣",
+          "desc": "[WhenUse] 若自身的 [ReattachedCurseTag_Re] 層數不低於10層，則使本技能的硬幣威力-1\n[WhenUse] 若目標的 [WrappedCurseTagRe] 層數不低於3層，則使本技能的所有硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能的最終威力-10、造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst]\n[EndBattle] 解除所有 [ReattachedCurseTag_Re]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962204,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "轉移符咒",
+          "desc": "[StartBattle] All Parts gain 3 [Protection]\n[WhenUse] All [WrappedCurseTagRe] on target expires\n- Gain [ReattachedCurseTag_Re] equal to the [WrappedCurseTagRe] Stack expired",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962205,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "複製詛咒",
+          "desc": "[WhenUse] Inflict [WrappedCurseTagRe] equal to [WrappedCurseTagRe] on target\n- If target does not have [WrappedCurseTagRe], inflict 3 [WrappedCurseTagRe]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962206,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "因而無人哭泣",
+          "desc": "[WhenUse] 若自身的 [ReattachedCurseTag_Re] 層數不低於10層，則使本技能的硬幣威力-1\n[WhenUse] 若目標的 [WrappedCurseTagRe] 層數不低於3層，則使本技能的所有硬幣轉變為 [SuperCoin]\n[DefeatDuel]\n- 使本技能的最終威力-10、造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst]\n[EndBattle] 解除所有 [ReattachedCurseTag_Re]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度與1回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加5層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "6463",
+          "desc": "自身每帶有50層 [AccumulatedPast]，則使本技能造成的傷害+10%\n[WhenUse] 若自身的 [AccumulatedPast] 層數為奇數，則使本技能造成的傷害+30%\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "6753",
+          "desc": "自身每帶有50層 [AccumulatedPast]，則使本技能造成的傷害+10%\n[WhenUse] 若自身的 [AccumulatedPast] 層數為偶數，則使自身獲得3層 [Protection] (每回合最多1次)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "853",
+          "desc": "[WhenUse] 自身每帶有5級 [Breath] 強度，則使本技能的拚點威力+1(最多+3)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標混亂閾值前移本硬幣傷害量的50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1層 [AccumulatedPast]，使本硬幣造成的傷害+1%(最多+50%) "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "5384",
+          "desc": "[WhenUse] 使所有部位獲得3級 [Breath] 強度與3回 [Breath]\n[DefeatDuel]\n- 使本技能造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標混亂閾值前移等同於自身 [Breath] 強度的數值"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 自身每帶有3級 [Breath] 強度，使本硬幣造成的傷害+20%(最多100%)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使所有部位增加4級 [Breath] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "6475384",
+          "desc": "若自身帶有的 [Breath] 強度不低於7級，則使本技能的硬幣傷害+1\n[DefeatDuel] \n- 使本技能造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若自身的 [Breath] 強度不低於5級，則使目標混亂閾值前移本硬幣傷害量的50%"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使所有部位獲得4回 [Breath] 並增加8級 [Breath] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "974569A",
+          "desc": "若自身的 [Breath] 強度不低於10級，則使本技能威力+2",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "自身每帶有1層 [AccumulatedPast]，則使本技能造成的傷害+1%(最多+200%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "沉悶的呻吟",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Sinking] 強度之和每有3級，使本技能的最終威力+1(最多+2)\n[DefeatDuel]\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "席捲而來的沉淪",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Sinking] 強度之和每有3級，使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "哀傷的反擊",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Sinking] 強度之和每有3級，使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "哀傷的洪流",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Sinking] 強度之和每有3級，使本技能的最終威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962405,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "尋找某物的哭聲",
+          "desc": "場上每存在1把舊傘，使本技能造成的傷害+25%\n[WhenUse] 每有1把舊傘存在，則使本技能的拚點威力+2\n[DefeatDuel]\n- 使本技能的最終威力-10、造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst] 與 [Sinking]\n[EndBattle] 移除所有舊傘\n[EndBattle] 使自身獲得層數等同於首個回合自身獲得的 [WaveFoxUmbrella] 層數的 [WaveFoxUmbrella]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962406,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "等待",
+          "desc": "[StartBattle] 全體敵方單位失去20點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962407,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "劇烈反應",
+          "desc": "[StartBattle] 使自身獲得 [Thorn]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962408,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "劇烈反應",
+          "desc": "[StartBattle] 使自身獲得 [Thorn]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962409,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "哀求的哭聲",
+          "desc": "拚點時，場上每存在1把舊傘，使本技能的拚點威力+2\n每把舊傘使本技能造成的傷害+25%\n[DefeatDuel]\n- 使本技能的最終威力-10、造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst] 與 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "散落的悲傷",
+          "desc": "[EndSkill] 使全體敵方單位增加3回 [Burst] 與3回 [Sinking]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "齧合的瞬間",
+          "desc": "自身每帶有3回 [Charge]，則使本技能的基礎威力+1\n[WhenUse] 使自身獲得3回 [Charge]\n[DefeatDuel] 消耗自身2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [InterlockingTimeBokGak]"
+                },
+                {
+                  "desc": "- 若目標帶有負面效果，則改為施加2層 [InterlockingTimeBokGak]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "吸收時間",
+          "desc": "自身每帶有3回 [Charge]，則使本技能的基礎威力+1\n[WhenUse] 使自身獲得4回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層 [TimeRental_Re]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加3層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "加速的瞬間",
+          "desc": "自身每帶有1層 [TimeRental_Re]，則使本技能的基礎威力+1\n[DefeatDuel]\n- 消耗自身3回 [Charge]\n- 本技能造成的傷害-80%\n- 本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [InterlockingTimeBokGak]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [InterlockingTimeBokGak]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得4回 [Charge]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 自身每帶有1層 [TimeRental_Re]，使本硬幣造成的傷害+20%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "充能防禦",
+          "desc": "[StartBattle] 使自身獲得2回充能 ",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懸掛的誘餌",
+          "desc": "[CantDuel]\n優先指定帶有 [FairyCharm] 的罪人\n本技能的攻擊容量等同於帶有 [FairyCharm] 的罪人數",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使本體與軀幹部位恢復15點體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "深埋的根",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "伸展的根",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "侵蝕之根",
+          "desc": "[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Burst] 強度，使本硬幣造成的傷害+5%(最多+100%)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962005,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "顯露的深淵",
+          "desc": "若目標帶有的 [Burst] 強度不低於5級，則使本技能造成的傷害+100%\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962006,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "自我陶醉",
+          "desc": "攻擊精靈提燈時，自身造成的傷害將為0點",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962007,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "懸掛的誘餌",
+          "desc": "[CantDuel]\n優先指定帶有 [FairyCharm] 的罪人\n本技能的攻擊容量等同於帶有 [FairyCharm] 的罪人數",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度與3回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與3回 [Laceration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使本體與軀幹部位恢復30點體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕咬",
+          "desc": "[StartBattle] 使自身獲得2層 [SelfCharge]\n[WhenUse] 若自身的 [SelfCharge] 層數不低於5層，則使本技能的基礎威力+2\n[DefeatDuel] 消耗自身1層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "尾針突刺",
+          "desc": "[StartBattle] 使自身獲得2層 [SelfCharge]\n[WhenUse] 若自身的 [SelfCharge] 層數不低於5層，則使本技能的硬幣威力+1\n[DefeatDuel] 消耗自身1層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "緊緊蜷縮",
+          "desc": "[StartBattle] 使自身獲得3層 [SelfCharge]\n[WhenUse] 若自身的 [SelfCharge] 層數不低於5層，則使本技能的基礎威力+2\n[DefeatDuel] 消耗自身1層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Vulnerable]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "注入電流",
+          "desc": "[StartBattle] 使自身獲得1層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%\n[DefeatDuel] 消耗自身2層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "電氣放電",
+          "desc": "[StartBattle] 使自身獲得1層 [SelfCharge]\n[WhenUse] 若自身帶有的 [SelfCharge] 不低於5層，則使本技能的硬幣威力+1\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%\n[DefeatDuel] 消耗自身3層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "放電",
+          "desc": "[StartBattle] 使自身獲得1層 [SelfCharge]\n若目標帶有 [Paralysis]，則使本技能造成的傷害+30%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加5層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962107,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "超高壓放電",
+          "desc": "[WhenUse] 若自身的 [SelfCharge] 層數超過7層，每多出1層 [SelfCharge]，使本技能造成的傷害+10%(最多+120%)\n[WhenUse] 消耗自身所有 [SelfCharge] 層數，若消耗的 [SelfCharge] 層數不低於10層，則使本技能的拚點威力+5\n[DefeatDuel] 本攻擊技能造成的傷害固定為0點",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對主要目標施加2層 [Vulnerable]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1層 [ElectricStorage]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對主要目標施加3層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標處於 [ElectricStorage] 狀態，則使對其造成本硬幣最終傷害量40%的固定傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962108,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "盤繞",
+          "desc": "[TurnStartBattle] 使自身的頭部部位獲得與其現存體力值等量的護盾值\n[EndBattle] 若自身的頭部部位還帶有殘留的護盾值，則下回合使自身獲得10層 [SelfCharge]",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962109,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蠕動的頭",
+          "desc": "優先指定體力最低的敵方單位\n若目標帶有 [Paralysis]，則使本技能造成的傷害+50%\n若目標裝備了守備技能，則使本技能造成的傷害-100%\n自身每帶有1層 [SelfCharge]，則使本技能的基礎威力+1\n[WhenUse] 消耗自身1層 [SelfCharge]\n[WhenUse] 若目標裝備了守備技能，則消耗自身2層 [SelfCharge]\n[DefeatDuel] 額外消耗2層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 962110,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "蠕動的尾",
+          "desc": "優先指定體力最低的敵方單位\n若目標帶有 [Paralysis]，則使本技能造成的傷害+50%\n若目標裝備了守備技能，則使本技能造成的傷害-100%\n自身每帶有1層 [SelfCharge]，則使本技能的基礎威力+1\n[WhenUse] 消耗自身1層 [SelfCharge]\n[WhenUse] 若目標裝備了守備技能，則消耗自身2層 [SelfCharge]\n[DefeatDuel] 額外消耗2層 [SelfCharge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "想喝醉嗎？",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度與2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "分著喝吧！",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使本體與使用本技能的部位恢復5%體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960103,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "只剩這些了！",
+          "desc": "優先指定帶有 [Vibration] 的目標",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據目標帶有的 [Vibration] 回數，相應使其 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗目標所有 [Vibration] 回數"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960104,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "這個我吃了！",
+          "desc": "優先指定帶有 [TipsinessRail] 的目標\n若目標未帶有 [TipsinessRail]，則使本技能的拚點威力+8\n[WhenUse] 若目標未帶有 [TipsinessRail]，則使本技能造成的傷害+200%\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [TipsinessRail] 層數不低於5層，則使本硬幣造成傷害為0點。"
+                },
+                {
+                  "desc": "下回合使紳士精靈陷入混亂"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗目標所有 [TipsinessRail]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960105,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "想要這杯精靈酒嗎？",
+          "desc": "[WhenUse] 下回合對自身施加3層 [Binding]",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960106,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "要來一杯嗎？",
+          "desc": "[StartBattle] 下回合召喚折射的精靈酒\n[DefeatDuel] 折射的精靈酒會以體力上限50%的體力被召喚\n[DefeatDuel] 使本技能造成的傷害量-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "甜美的精靈酒",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "舔舐傷口",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Laceration] 回數不低於2回，則使其增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Laceration] 回數不低於2回，則對其施加1層 [Paralysis]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "束縛傷痕",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "陷於血肉",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Laceration]，則使本體與使用本技能的部位恢復25點體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Laceration] 回數不低於2回，則使其增加5級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Laceration]，則使本體與使用本技能的部位恢復25點體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "綠蔭籠罩",
+          "desc": "優先指定 [Laceration] 強度最高的目標\n[StartBattle] 下回合生成折射的四葉草\n[DefeatDuel] 折射的四葉草會以體力上限50%的體力生成\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使本硬幣造成的傷害+(5×目標的 [Laceration] 強度×目標的 [Laceration] 回數)%(最多+200%)"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗目標所有 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "消化",
+          "desc": "[StartBattle] 使所有部位獲得3層 [Protection]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 目標每帶有1級 [Laceration] 強度，使本體與使用本技能的部位恢復自身體力上限1%的體力"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 消耗目標1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元斬",
+          "desc": "[WhenUse] 使自身獲得3回 [Charge]\n[DefeatDuel] 消耗自身2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "連續次元斬",
+          "desc": "[WhenUse] 使自身獲得3回 [Charge]\n[DefeatDuel] 消耗自身2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DimensionRift]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DimensionRift]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "吐出副產物",
+          "desc": "[WhenUse] 使自身獲得4回 [Charge]\n[DefeatDuel] 消耗自身2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960504,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "空間撕裂",
+          "desc": "若自身的 [Charge] 回數不低於10回，則消耗10回 [Charge] 並使本技能的拚點威力+5、造成的傷害+100%\n若自身的 [Charge] 回數不高於10回，則消耗100點本體體力並使本技能造成的傷害+80%(自身體力不會因該效果而低於1點)\n[DefeatDuel] 觸發以下效果\n- 對自身施加2層 [Paralysis]\n- 使本技能造成的傷害-80%\n- 本技能不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加3層 [DimensionRift]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使自身獲得2回 [Charge]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加3層 [DimensionRift]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960505,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "預備反擊",
+          "desc": "[WhenUse] 使自身獲得1回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960506,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "嘔吐副產物",
+          "desc": "[WhenUse] 若主要目標帶有 [DimensionRift]，則使本技能造成的傷害+10%\n[DefeatDuel] 消耗自身2回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加5層 [DimensionRift]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960507,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "高速空間撕裂",
+          "desc": "可無視速度差距與本技能拚點，在本技能發動前自身無法陷入混亂\n[DefeatDuel]\n- 對自身施加2層 [Reduction] 與1層 [Paralysis]\n- 使本技能造成的傷害-90%，且本技能造成的傷害無法使目標陷入混亂\n根據自身帶有的層數最高的次元效果，相應使本技能的拚點威力增加[TabExplain]\n自身每帶有1種次元效果，則使本技能造成的傷害+10%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960508,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "把握時機",
+          "desc": "[WhenUse] 若目標帶有 [DimensionRift]，則使本技能造成的傷害量+20%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DimensionRift]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960509,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "攻擊破綻",
+          "desc": "[WhenUse] 若主要目標帶有 [DimensionRift]，則使本技能造成的傷害+10%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [DimensionRift]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元移動",
+          "desc": "若該次元還殘留於戰場中，使迷失的乘客造成的傷害+10%",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元移動",
+          "desc": "若該次元還殘留於戰場中，使迷失的乘客最大體力上限+20%",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元移動",
+          "desc": "若該次元還殘留於戰場中，使迷失的乘客最小與最大速度值+1",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 960901,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元移動",
+          "desc": "若該次元還殘留於戰場中，使迷失的乘客的硬幣威力+1",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961001,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "前往永恆的庭院",
+          "desc": "[CantDuel]\n[WhenUse] 對場上的全體罪人施加 [PrepareSinRose]\n[WhenUse] 若自身本體體力不高於40%，則下回合生成帶有 [EnhanceRose] 的玫瑰",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961002,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "止步",
+          "desc": "本場戰鬥中每有1名罪人陣亡，使本技能的最終威力+1\n[WhenUse] 目標每帶有2種負面效果，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度與2級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961003,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拘束",
+          "desc": "本場戰鬥中每有1名罪人陣亡，使本技能的最終威力+1\n[WhenUse] 目標每帶有2種負面效果，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加2層 [Binding]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度與3級 [Burst] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力最低的玫瑰恢復其體力上限10%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961004,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "花開不息",
+          "desc": "優先指定未帶有 [PrepareSinRose] 的目標\n本場戰鬥中每有1名罪人陣亡，使本技能的最終威力+1\n[WhenUse] 目標每帶有2種負面效果，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 下回合對目標施加1層 [Paralysis] 與1層 [Binding]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加 [PrepareSinRose]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使本體恢復其體力上限5%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961005,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "隔絕之壁",
+          "desc": "每有1朵玫瑰存活，則使本技能的基礎威力+2\n[EndBattle] 若沒有玫瑰存活，則下回合對自身施加2層 [Vulnerable]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使本體恢復其體力上限5%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961006,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "永恆心願",
+          "desc": "[StartBattle] 下回合隨機使1朵玫瑰獲得1層 [Enhancement]\n若自身帶有護盾時受到攻擊，則使攻擊者增加1級 [Sinking] 強度",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961007,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "一同在此",
+          "desc": "[StartBattle] 下回合隨機使1朵玫瑰獲得1層 [Endurance]\n若自身帶有護盾時受到攻擊，則使攻擊者增加1級 [Sinking] 強度",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961101,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "烈烈暴怒",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961102,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "暴怒四散",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961201,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "色慾將至",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身混亂閾值後移本硬幣傷害量的50%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身混亂閾值後移本硬幣傷害量的50%"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使自身混亂閾值後移本硬幣傷害量的50%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961202,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "發掘色慾",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "怠惰凝滯",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Vibration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "頑固怠惰",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加8級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttackHead] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "睏倦怠惰",
+          "desc": "若自身帶有護盾時受到攻擊，則使自身與目標 [VibrationExplosion]\n[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "貪婪暴食",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "豐盛暴食",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4回 [Burst]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "暴食不息",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復造成傷害量25%的體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復造成傷害量25%的體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復造成傷害量25%的體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身恢復造成傷害量25%的體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961501,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "憂鬱滿溢",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Sinking] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961502,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "憂鬱氾濫",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961503,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "憂鬱圍繞",
+          "desc": "若自身帶有護盾時受到攻擊，則使自身與目標增加1回 [Sinking]\n[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961601,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "傲慢流露",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)\n[WhenUse] 使全體友方單位獲得3級 [Breath] 強度",
+          "coinlist": [
+            {},
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961602,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "傲慢自滿",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)\n[WhenUse] 使全體友方單位獲得2回 [Breath]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Breath]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Breath]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961603,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "尖銳傲慢",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)",
+          "coinlist": [
+            {},
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "嫉妒堆砌",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)\n[WhenUse] 使自身獲得3回 [Charge]\n[DefeatDuel] 使自身失去3回 [Charge]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Charge]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使自身獲得1回 [Charge]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 961702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "嫉妒傳播",
+          "desc": "[WhenUse] 每有1朵與自身罪孽屬性不同的玫瑰，使本技能的基礎威力+1(最多+6)\n[WhenUse] 消耗自身10回 [Charge] 並使本技能的硬幣威力+4",
+          "coinlist": [
+            {},
+            {},
+            {},
+            {}
+          ]
+        }
+      ]
+    }
+  ]
+}

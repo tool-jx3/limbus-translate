@@ -1,0 +1,183 @@
+{
+  "dataList": [
+    {
+      "id": 40000301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "以愛之名！",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Sinking] 強度之和每有5級，則使本技能的基礎威力+1(最多+2)\n[WhenUse] 使自身獲得10回 [PowerOfLoveAndJustice]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "在正義之名下！",
+          "desc": "[WhenUse] 目標的 [Burst] 強度與 [Sinking] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 使自身獲得10回 [PowerOfLoveAndJustice]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若目標的 [Burst] 強度與 [Sinking] 強度之和不低於10級，則下回合對其施加1層 [Binding]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "阿爾卡那．心跳跳",
+          "desc": "Mainly targets 'The Knight of Despair'\nSub-targets the ally with the most [ColdBlackTear]\n- If there are none, sub-targets the ally with the least HP\nInflicts 0 damage and does not activate the effects of [Sinking] and [ColdBlackTear] against allies\n\n[WinDuel] Remove 1 [ColdBlackTear] from the sub-targeted ally",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若指定敵方單位，則使目標增加1級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若指定友方單位，則使其恢復5點體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若指定敵方單位，則使目標增加1級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若指定友方單位，則使其恢復5點體力"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 若指定敵方單位，則使目標增加1級 [Burst] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 若指定友方單位，則使其恢復5點體力"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "只能用這招了！",
+          "desc": "[StartBattle] 使自身獲得1層 [ChasingArcana]\n[StartBattle] 使自身獲得50點護盾\n[StartBattle] 下回合使自身的 [Aggro] +20",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000305,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "詠唱 - 阿爾卡那．光破斬",
+          "desc": "[StartBattle] 使自身獲得50點護盾\n[StartBattle] 下回合使自身的 [Aggro] +20\n[EndBattle] 若護盾點數為0，則自身撤退",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000306,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "阿爾卡那．光破斬",
+          "desc": "[CantDuel]\n不會對被忘卻的騎士之劍造成傷害\n命中帶有 [WornOutKnight] 的敵方單位時，結束回合\n[EndBattle] 對自身施加 [UsedTooMuchPower]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標的體力降至其現存體力的(100-(其 [CollapsedPride] 層數×33))%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000307,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "阿爾卡那．光破斬",
+          "desc": "[CantDuel]\n僅透過硬幣效果造成傷害\n不會對心擊碎痛之劍、撕心裂肺之劍、穿心欲絕之劍造成傷害\n命中帶有 [WornOutKnight] 且體力不高於600點的敵方單位時，回合結束\n[EndBattle] 對自身施加 [UsedTooMuchPower]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 造成(目標的 [CollapsedPride] 層數×200)點固定傷害"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 40000308,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "只能用這招了！",
+          "desc": "[StartBattle] 使自身獲得1層 [ChasingArcanahard]\n[StartBattle] 使自身獲得50點護盾\n[StartBattle] 下回合使自身的 [Aggro] +20",
+          "coinlist": [
+            {
+              "coindescs": [
+                {}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

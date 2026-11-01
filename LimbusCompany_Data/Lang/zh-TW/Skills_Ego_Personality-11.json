@@ -1,0 +1,762 @@
+{
+  "dataList": [
+    {
+      "id": 2110511,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                },
+                {
+                  "desc": "[EndSkill] 使理智值最低的2名友方單位獲得1層最大共鳴數罪孽屬性的傷害強化 "
+                },
+                {
+                  "desc": "[EndSkill] 使理智值最低的2名友方單位恢復20點理智值"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                },
+                {
+                  "desc": "[EndSkill] 使理智值最低的3名友方單位獲得1層最大共鳴數罪孽屬性的傷害強化 "
+                },
+                {
+                  "desc": "[EndSkill] 使理智值最低的3名友方單位恢復20點理智值"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                },
+                {
+                  "desc": "[EndSkill] 使理智值最低的4名友方單位獲得1層最大共鳴數罪孽屬性的傷害強化 "
+                },
+                {
+                  "desc": "[EndSkill] 使理智值最低的4名友方單位恢復20點理智值"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110521,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使自身失去體力上限10%的體力",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標失去10點理智值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] Inflict 1 Fragility to the Affinity with the highest Resonance count"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使自身失去體力上限10%的體力",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標失去10點理智值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] Inflict 2 Fragility for the Affinity with the highest Resonance count"
+                },
+                {
+                  "desc": "[EndSkillTail] 使自身獲得1層最大共鳴數罪孽屬性的傷害強化 "
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "悲慘假日",
+          "abName": "聖道夫",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使自身失去體力上限10%的體力",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標失去10點理智值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標震顫引爆 "
+                },
+                {
+                  "desc": "[OnSucceedAttack] Inflict 2 Fragility for the Affinity with the highest Resonance count"
+                },
+                {
+                  "desc": "[EndSkillTail] 使自身獲得1層最大共鳴數罪孽屬性的傷害強化 "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110611,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(最大傲慢或怠惰共鳴數-2)(最多+2)\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCrack]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(最大傲慢或怠惰共鳴數-2)(最多+2)\n使目標被 [VibrationExplosion] 時的混亂閾值前移量增加50%\n[EndSkill] 3回合內，回合結束時使自身失去9點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCrack]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+(最大傲慢或怠惰共鳴數-2)(最多+2)\n使目標被 [VibrationExplosion] 時的混亂閾值前移量增加100%\n[EndSkill] 3回合內，回合結束時使自身失去8點理智值",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCrack]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110621,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大傲慢或怠惰共鳴數-2)(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCrack]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大傲慢或怠惰共鳴數-2)(最多+2)\n使目標被 [VibrationExplosion] 時的混亂閾值前移量增加50%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCrack]"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] <style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "拘束",
+          "abName": "受縛之王",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大傲慢或怠惰共鳴數-2)(最多+2)\n使目標被 [VibrationExplosion] 時的混亂閾值前移量增加50%",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加6級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCrack]"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
+                },
+                {
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion] <style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] <style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110711,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元撕裂者",
+          "abName": "迷失的乘客",
+          "desc": "[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 若自身的 [Charge] 回數低於10回，則消耗體力上限15%的體力並獲得10回 [Charge] (該傷害不會使自身體力降至0點，無條件捨去)\n[BeforeAttack] 消耗最多40回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+1%(最多+10%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(自身的 [Charge] 強度-1)層 [DimensionRift] (最多1層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1級 [Charge] 強度，下回合使自身獲得1層 [Agility] 與1層 [ChargeLoad] (每個技能最多1層)"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "次元撕裂者",
+          "abName": "迷失的乘客",
+          "desc": "[BeforeAttack] 若最大共鳴數不低於<style=\"highlight\">3</style>，則使本技能的攻擊容量+1\n[BeforeAttack] 若自身的 [Charge] 回數低於10回，則消耗體力上限15%的體力並獲得10回 [Charge] (該傷害不會使自身體力降至0點，無條件捨去)\n[BeforeAttack] 消耗最多40回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+1%(最多<style=\"highlight\">+20</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(自身的 [Charge] 強度-1)層 [DimensionRift] (最多<style=\"highlight\">2</style>層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1級 [Charge] 強度，下回合使自身獲得1層 [Agility] 與1層 [ChargeLoad] (每個技能最多<style=\"highlight\">2</style>層)"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "次元撕裂者",
+          "abName": "迷失的乘客",
+          "desc": "[BeforeAttack] 使本技能的攻擊容量+<style=\"highlight\">(最大共鳴數-2)</style><style=\"highlight\">(最多+2)</style>\n[BeforeAttack] 若自身的 [Charge] 回數低於10回，則消耗體力上限<style=\"highlight\">10</style>%的體力並獲得10回 [Charge] (該傷害不會使自身體力降至0點，無條件捨去)\n[BeforeAttack] 消耗最多40回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+1%(最多<style=\"highlight\">+30</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(自身的 [Charge] 強度-1)層 [DimensionRift] (最多2層)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1級 [Charge] 強度，下回合使自身獲得1層 [Agility] 與1層 [ChargeLoad] (每個技能最多<style=\"highlight\">3</style>層)"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110721,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "次元撕裂者",
+          "abName": "迷失的乘客",
+          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] At 4+ highest Reson., gain +1 Atk Weight\n[BeforeAttack] At less than maximum [Charge] Count, consume (missing [Charge] Count x 1.5)% HP to gain up to max [Charge] Count (max [Charge] Count obtainable from this effect: 30. This damage does not reduce this unit's HP to 0; rounded down)\n[BeforeAttack] Consume up to 40 [Charge] Count and deal +2% damage for every [Charge] Count consumed (max 20%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(自身的 [Charge] 強度-1)層 [DimensionRift] (最多2層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1級 [Charge] 強度，下回合使自身獲得1層 [Agility] 與1層 [ChargeLoad] (每個技能最多2層)"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "次元撕裂者",
+          "abName": "迷失的乘客",
+          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] At 4+ highest Reson., gain +1 Atk Weight\n[BeforeAttack] At less than maximum [Charge] Count, consume (missing [Charge] Count x <style=\"highlight\">1.2</style>)% HP to gain up to max [Charge] Count (max [Charge] Count obtainable from this effect: 30. This damage does not reduce this unit's HP to 0; rounded down)\n[BeforeAttack] Consume up to 40 [Charge] Count and deal +2% damage for every [Charge] Count consumed (max <style=\"highlight\">40</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(自身的 [Charge] 強度-1)層 [DimensionRift] (最多2層)<style=\"highlight\"></style>"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1級 [Charge] 強度，下回合使自身獲得1層 [Agility] 與1層 [ChargeLoad] (每個技能最多2層)"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "次元撕裂者",
+          "abName": "迷失的乘客",
+          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain <style=\"highlight\">(highest Reson. - 2)</style> Atk Weight <style=\"highlight\">(max 2)</style>\n[BeforeAttack] At less than maximum [Charge] Count, consume <style=\"highlight\">(missing [Charge] Count)%</style> HP to gain up to max [Charge] Count (max [Charge] Count obtainable from this effect: 30. This damage does not reduce this unit's HP to 0; rounded down)\n[BeforeAttack] Consume up to 40 [Charge] Count and deal +2% damage for every [Charge] Count consumed (max <style=\"highlight\">60</style>%)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加(自身的 [Charge] 強度-1)層 [DimensionRift] (最多<style=\"highlight\">4</style>層)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 自身每帶有1級 [Charge] 強度，下回合使自身獲得1層 [Agility] 與1層 [ChargeLoad] (每個技能最多<style=\"highlight\">3</style>層)"
+                },
+                {
+                  "desc": "[EnemyKill] 使自身獲得2回 [Charge]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110811,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "魔彈",
+          "abName": "魔彈射手",
+          "desc": "目標每帶有3級 [Combustion] 強度，使本技能造成的傷害+1%(最多+10%)\n[BeforeAttack] 若自身的 [FreischutzShotCount] 層數為0，則使自身獲得1層 [FreischutzShotCount]\n- 根據自身帶有的 [FreischutzShotCount] 層數決定發射的彈藥\n． [FreishutzOutisEgoBullet_1st]\n． [FreishutzOutisEgoBullet_2nd]\n． [FreishutzOutisEgoBullet_3rd]\n． [FreishutzOutisEgoBullet_4th]\n． [FreishutzOutisEgoBullet_5th]\n． [FreishutzOutisEgoBullet_6th]\n． [FreishutzOutisEgoBullet_7th]\n[EndSkill] 根據最大共鳴數使自身獲得相應層數的 [FreischutzShotCount] (最少1層，最多4層)\n[EndSkill] 若擊殺主要目標，則對全體帶有 [Combustion] 的敵方單位施加2層 [DarkFlame]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，使目標增加相應的 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，對目標施加相應層數的 [DarkFlame] (每回合每名目標最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "魔彈",
+          "abName": "魔彈射手",
+          "desc": "目標每帶有3級 [Combustion] 強度，使本技能造成的傷害+<style=\"highlight\">2</style>%(最多<style=\"highlight\">+20</style>%)\n[BeforeAttack] 若自身的 [FreischutzShotCount] 層數為0，則使自身獲得1層 [FreischutzShotCount]\n- 根據自身帶有的 [FreischutzShotCount] 層數決定發射的彈藥\n． [FreishutzOutisEgoBullet_1st]\n． [FreishutzOutisEgoBullet_2nd]\n． [FreishutzOutisEgoBullet_3rd]\n． [FreishutzOutisEgoBullet_4th]\n． [FreishutzOutisEgoBullet_5th]\n． [FreishutzOutisEgoBullet_6th]\n． [FreishutzOutisEgoBullet_7th]\n[EndSkill] 根據最大共鳴數使自身獲得相應層數的 [FreischutzShotCount] (最少1層，最多4層)\n[EndSkill] 若擊殺主要目標，則對全體帶有 [Combustion] 的敵方單位施加<style=\"highlight\">3</style>層 [DarkFlame]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，使目標增加相應的 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，對目標施加相應層數的 [DarkFlame] (每回合每名目標最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "魔彈",
+          "abName": "魔彈射手",
+          "desc": "目標每帶有3級 [Combustion] 強度，使本技能造成的傷害+<style=\"highlight\">3</style>%(最多<style=\"highlight\">+30</style>%)\n[BeforeAttack] 若自身的 [FreischutzShotCount] 層數為0，則使自身獲得1層 [FreischutzShotCount]\n- 根據自身帶有的 [FreischutzShotCount] 層數決定發射的彈藥\n． [FreishutzOutisEgoBullet_1st]\n． [FreishutzOutisEgoBullet_2nd]\n． [FreishutzOutisEgoBullet_3rd]\n． [FreishutzOutisEgoBullet_4th]\n． [FreishutzOutisEgoBullet_5th]\n． [FreishutzOutisEgoBullet_6th]\n． [FreishutzOutisEgoBullet_7th]\n[EndSkill] 根據最大共鳴數使自身獲得相應層數的 [FreischutzShotCount] (最少1層，最多4層)\n[EndSkill] 若擊殺主要目標，則對全體帶有 [Combustion] 的敵方單位施加<style=\"highlight\">4</style>層 [DarkFlame]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，使目標增加相應的 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，對目標施加相應層數的 [DarkFlame] (每回合每名目標最多1次)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110821,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "魔彈",
+          "abName": "魔彈射手",
+          "desc": "[CantIdentify]\n隨機指定目標\n目標每帶有3級 [Combustion] 強度，使本技能造成的傷害+1%(最多+10%)\n[BeforeAttack] 若自身的 [FreischutzShotCount] 層數為0，則使自身獲得1層 [FreischutzShotCount]\n- 根據自身帶有的 [FreischutzShotCount] 層數決定發射的彈藥\n． [FreishutzOutisEgoBullet_1st]\n． [FreishutzOutisEgoBullet_2nd]\n． [FreishutzOutisEgoBullet_3rd]\n． [FreishutzOutisEgoBullet_4th]\n． [FreishutzOutisEgoBullet_5th]\n． [FreishutzOutisEgoBullet_6th]\n． [FreishutzOutisEgoBullet_7th]\n[EndSkill] 根據最大共鳴數使自身獲得相應層數的 [FreischutzShotCount] (最少1層，最多4層)\n[EndSkill] 若擊殺主要目標，則對全體帶有 [Combustion] 的敵方單位施加3層 [DarkFlame]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，使目標增加相應的 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，對目標施加相應層數的 [DarkFlame] (每回合每名目標最多1次)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "魔彈",
+          "abName": "魔彈射手",
+          "desc": "[CantIdentify]\n隨機指定目標\n目標每帶有3級 [Combustion] 強度，使本技能造成的傷害+<style=\"highlight\">2</style>%(最多<style=\"highlight\">+20</style>%)\n[BeforeAttack] 若自身的 [FreischutzShotCount] 層數為0，則使自身獲得1層 [FreischutzShotCount]\n- 根據自身帶有的 [FreischutzShotCount] 層數決定發射的彈藥\n． [FreishutzOutisEgoBullet_1st]\n． [FreishutzOutisEgoBullet_2nd]\n． [FreishutzOutisEgoBullet_3rd]\n． [FreishutzOutisEgoBullet_4th]\n． [FreishutzOutisEgoBullet_5th]\n． [FreishutzOutisEgoBullet_6th]\n． [FreishutzOutisEgoBullet_7th]\n[EndSkill] 根據最大共鳴數使自身獲得相應層數的 [FreischutzShotCount] (最少1層，最多4層)\n[EndSkill] 若擊殺主要目標，則對全體帶有 [Combustion] 的敵方單位施加<style=\"highlight\">5</style>層 [DarkFlame]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，使目標增加相應的 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [FreischutzShotCount] 層數/3)回 [Combustion] (無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，對目標施加相應層數的 [DarkFlame] (每回合每名目標最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "魔彈",
+          "abName": "魔彈射手",
+          "desc": "[CantIdentify]\n隨機指定目標\n目標每帶有3級 [Combustion] 強度，使本技能造成的傷害+<style=\"highlight\">3</style>%(最多<style=\"highlight\">+30</style>%)\n[BeforeAttack] 若自身的 [FreischutzShotCount] 層數為0，則使自身獲得1層 [FreischutzShotCount]\n- 根據自身帶有的 [FreischutzShotCount] 層數決定發射的彈藥\n． [FreishutzOutisEgoBullet_1st]\n． [FreishutzOutisEgoBullet_2nd]\n． [FreishutzOutisEgoBullet_3rd]\n． [FreishutzOutisEgoBullet_4th]\n． [FreishutzOutisEgoBullet_5th]\n． [FreishutzOutisEgoBullet_6th]\n． [FreishutzOutisEgoBullet_7th]\n[EndSkill] 根據最大共鳴數使自身獲得相應層數的 [FreischutzShotCount] (最少1層，最多4層)\n[EndSkill] 若擊殺主要目標，則對全體帶有 [Combustion] 的敵方單位施加<style=\"highlight\">7</style>層 [DarkFlame]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，使目標增加相應的 [Combustion] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加(自身的 [FreischutzShotCount] 層數/<style=\"highlight\">2</style>)回 [Combustion] (無條件捨去)"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 根據自身帶有的 [FreischutzShotCount] 層數，對目標施加相應層數的 [DarkFlame] (每回合每名目標最多1次)<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110911,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "本技能 [UnBrokenCoinOnSucceedAttack] 時的效果在單方面攻擊時無法生效\n[WinDuel] 根據嫉妒共鳴數，消耗等量的嫉妒罪孽碎片；每消耗1個嫉妒罪孽碎片，則生成1個持有量最少罪孽碎片(最多消耗4個嫉妒罪孽碎片)\n[DefeatDuel] 使本技能的最終威力-4；使自身獲得(嫉妒共鳴數×5)的護盾值(最大20點)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限6%的體力值(每次技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
+                  "summary": "[UnBrokenCoinOnSucceedAttack] 恢復體力值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [NiddleEGO]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NailPersonality]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "本技能 [UnBrokenCoinOnSucceedAttack] 時的效果在單方面攻擊時無法生效\n[WinDuel] 根據嫉妒共鳴數，消耗等量的嫉妒罪孽碎片；每消耗1個嫉妒罪孽碎片，則生成1個持有量最少罪孽碎片(最多消耗5個嫉妒罪孽碎片)\n[DefeatDuel] 使本技能的最終威力-4；使自身獲得(嫉妒共鳴數×5)的護盾值(最大25點)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限8%的體力值(每次技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
+                  "summary": "[UnBrokenCoinOnSucceedAttack] 恢復體力值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [NiddleEGO]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Curse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NailPersonality]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "本技能 [UnBrokenCoinOnSucceedAttack] 時的效果在單方面攻擊時無法生效\n[WinDuel] 根據嫉妒共鳴數，消耗等量的嫉妒罪孽碎片；每消耗1個嫉妒罪孽碎片，則生成1個持有量最少罪孽碎片(最多消耗6個嫉妒罪孽碎片)\n[DefeatDuel] 使本技能的最終威力-4；使自身獲得(嫉妒共鳴數×5)的護盾值(最大30點)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限10%的體力值(每次技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
+                  "summary": "[UnBrokenCoinOnSucceedAttack] 恢復體力值"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [NiddleEGO]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Curse]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NailPersonality]<style=\"highlight\"></style>"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2110921,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[CantIdentify]\n隨機指定目標\n嫉妒共鳴數不低於2級時，使本技能的最終威力+1\n[WinDuel] 嫉妒共鳴數每有2級時，則使本技能的攻擊容量+1(最多+2)\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)的護盾值(最大20點)\n[DefeatDuel] 本技能施加的 [NiddleEGO] 與 [NailPersonality] 層數均+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [NiddleEGO]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NailPersonality]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[CantIdentify]\n隨機指定目標\n嫉妒共鳴數<style=\"highlight\">每有2級</style>時，使本技能的最終威力+1<style=\"highlight\">(最多+2)</style>\n[WinDuel] 嫉妒共鳴數每有2級時，則使本技能的攻擊容量+1(最多+2)\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)的護盾值(最大<style=\"highlight\">25點</style>)\n[DefeatDuel] 本技能施加的 [NiddleEGO]，<style=\"highlight\">[Curse]</style> 與 [NailPersonality] 層數均+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [NiddleEGO]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NailPersonality]"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 4,
+          "name": "我會出剪刀，你呢？",
+          "abName": "來玩吧？",
+          "desc": "[CantIdentify]\n隨機指定目標\n嫉妒共鳴數每有2級時，使本技能的最終威力+1(最多<style=\"highlight\">+3</style>)\n[WinDuel] 嫉妒共鳴數每有2級時，則使本技能的攻擊容量+1(最多+2)\n[DefeatDuel] 使自身獲得(嫉妒共鳴數×5)的護盾值(最大<style=\"highlight\">30點</style>)\n[DefeatDuel] 本技能施加的 [NiddleEGO]，[Curse] 與 [NailPersonality] 層數均+1<style=\"highlight\"></style>",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [NiddleEGO]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [NailPersonality]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

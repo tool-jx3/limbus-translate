@@ -1,0 +1,442 @@
+{
+  "dataList": [
+    {
+      "id": 9021301,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "破裂傷口",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021302,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "束縛傷口",
+          "desc": "[WhenUse] 若目標帶有的 [Laceration] 強度不低於2級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021303,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "化為血肉",
+          "desc": "[WhenUse] 若目標帶有的 [Laceration] 強度不低於3級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [Agility]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021304,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "綠蔭籠罩",
+          "desc": "[WhenUse] 對目標施加1層 [Paralysis]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021401,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "穿刺傷口",
+          "desc": "",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021402,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "舔舐傷口",
+          "desc": "[WhenUse] 若目標帶有的 [Laceration] 強度不低於2級，則使本技能的硬幣威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度與2回 [Laceration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021403,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "撕裂血肉",
+          "desc": "[WhenUse] 若目標帶有的 [Laceration] 強度不低於3級，則使本技能的拚點威力+1",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [Agility]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021404,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "綠蔭籠罩",
+          "desc": "[WhenUse] 對目標施加1層 [Paralysis]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021701,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "動真格地突刺",
+          "desc": "[WhenUse] 目標的 [Combustion] 與 [Vibration] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021702,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "灼熱突刺",
+          "desc": "[WhenUse] 目標的 [Combustion] 與 [Vibration] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Combustion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021703,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "推進斬",
+          "desc": "[WhenUse] 目標的 [Combustion] 與 [Vibration] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)\n[DefeatDuel] 使本技能造成的傷害-75%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使自身消耗1發 [BudgetBulletPropellant]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加4級 [Combustion] 強度"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationIgnition]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使自身消耗1發 [BudgetBulletPropellant]。"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021704,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "推進彈 再次裝填",
+          "desc": "[StartBattle] 使自身 [FullReload] (每回合最多1次)\n[WhenUse] 若目標的 [Combustion] 與 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+3\n[WhenUse] 下回合使自身獲得1層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021801,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "動真格地貫穿",
+          "desc": "[WhenUse] 目標的 [Combustion] 與 [Vibration] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Vibration]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021802,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "灼熱貫穿",
+          "desc": "[WhenUse] 目標的 [Combustion] 與 [Vibration] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Combustion]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021803,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "推進割裂",
+          "desc": "[WhenUse] 目標的 [Combustion] 與 [Vibration] 強度之和每有7級，則使本技能的硬幣威力+1(最多+2)\n[DefeatDuel] 使本技能造成的傷害-75%，且本技能造成的傷害不會使目標陷入混亂",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使自身消耗1發 [BudgetBulletPropellant]"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度與2回 [Vibration]，"
+                },
+                {
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度與2回 [Combustion]"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationIgnition]"
+                }
+              ]
+            },
+            {
+              "coindescs": [
+                {
+                  "desc": "[SuperCoin]"
+                },
+                {
+                  "desc": "使自身消耗1發 [BudgetBulletPropellant]。"
+                },
+                {
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9021804,
+      "levelList": [
+        {
+          "level": 1,
+          "name": "推進彈 再次裝填",
+          "desc": "[StartBattle] 使自身 [FullReload] (每回合最多1次)\n[WhenUse] 若目標的 [Combustion] 與 [Vibration] 強度之和不低於6級，則使本技能的硬幣威力+3\n[WhenUse] 下回合使自身獲得1層 [AttackDmgUp]",
+          "coinlist": [
+            {
+              "coindescs": [
+                {
+                  "desc": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

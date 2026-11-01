@@ -1,0 +1,46 @@
+{
+  "dataList": [
+    {
+      "id": 1049,
+      "panicName": "野獸本能",
+      "lowMoraleDescription": "對現存體力比例高於自身的目標造成的傷害+(體力比例差/2)%(最多+10%)\n回合開始時，使自身獲得1層 [Enhancement] 與1層 [AttackDmgUp] 並對自身施加1層 [Vulnerable]",
+      "panicDescription": "對現存體力比例高於自身的目標造成的傷害+(體力比例差)%(最多+25%)\n回合開始時，使自身獲得1層 [PlusCoinValueUp] 與2層 [AttackDmgUp] 並對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1046,
+      "panicName": "肉鏟",
+      "lowMoraleDescription": "回合開始時，對自身施加5級 [Laceration] 強度，並使自身獲得1層 [Enhancement]。",
+      "panicDescription": "回合開始時，對自身施加10級 [Laceration] 強度，並使自身獲得2層 [Enhancement]。"
+    },
+    {
+      "id": 1050,
+      "panicName": "紀律",
+      "lowMoraleDescription": "若自身上回合施加的 [Vibration] 強度不低於2級，則使自身獲得1層 [AmberDamageUp]，\n若自身上回合施加的 [Combustion] 強度不低於2級，則使自身獲得1層 [CrimsonDamageUp]，\n若自身上回合未能施加任何狀態，則對自身施加2層 [DefenseDown]。",
+      "panicDescription": "若自身上回合施加的 [Vibration] 強度不低於2級，則使自身獲得2層 [AmberDamageUp]\n若自身上回合施加的 [Combustion] 強度不低於2級，則使自身獲得2層 [CrimsonDamageUp]\n若自身上回合未能施加任何狀態，則對自身施加3層 [DefenseDown]"
+    },
+    {
+      "id": 1051,
+      "panicName": "柔軟黃金所鑄造的心",
+      "lowMoraleDescription": "回合開始時，使自身獲得1層 [Enhancement]，並對自身施加1層 [Vulnerable]",
+      "panicDescription": "回合開始時，使自身獲得2層 [Enhancement]，並對自身施加2層 [Vulnerable]"
+    },
+    {
+      "id": 1052,
+      "panicName": "嚮往新時代的心",
+      "lowMoraleDescription": "攻擊命中時，消耗自身的3點理智值並使目標增加2級 [Sinking] 強度",
+      "panicDescription": "攻擊命中時，使目標增加3級 [Sinking] 強度並對自身施加1級 [Sinking] 強度"
+    },
+    {
+      "id": 1053,
+      "panicName": "繼承的鴻園之意",
+      "lowMoraleDescription": "使所有部位獲得2層 [Enhancement] 並對其施加1層 [Binding]\n軀幹部位與鴻璐拚點失敗時，下回合使軀幹部位獲得1層 [AttackDmgUp] 並對其施加1層 [Vulnerable] (每回合最多1次)",
+      "panicDescription": "使所有部位獲得2層 [Enhancement] 並對其施加2層 [Binding]\n軀幹部位與鴻璐拚點失敗時，下回合使軀幹部位獲得2層 [AttackDmgUp] 並對其施加2層 [Vulnerable] (每回合最多1次)"
+    },
+    {
+      "id": 1054,
+      "panicName": "繼承悠久的鴻園之意",
+      "lowMoraleDescription": "使自身獲得2層 [Enhancement] 並對自身施加1層 [Vulnerable]\n對自身生成的單位施加3層 [DefenseDown]\n使自身造成的傷害+20%。若轎子部位的體力為0點，則改為使自身造成的傷害-10%",
+      "panicDescription": "使自身獲得2層 [Enhancement] 並對自身施加2層 [Vulnerable]\n對自身生成的單位施加6層 [DefenseDown]\n使自身造成的傷害+30%。若轎子部位的體力為0點，則改為使自身造成的傷害-15%"
+    }
+  ]
+}

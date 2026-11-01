@@ -1,0 +1,212 @@
+{
+  "dataList": [
+    {
+      "id": "Walpu6_event_desc",
+      "content": "在憎惡與絕望 - 簡單及困難難度下，鎮壓異想體並完成任務。\n\n完成任務後，您將獲得多種獎勵。"
+    },
+    {
+      "id": "missionConditionTitle_10047",
+      "content": "使用阿爾卡那．光破斬成功鎮壓帶有磨損殆盡的騎士的絕望騎士"
+    },
+    {
+      "id": "missionConditionTitle_10048",
+      "content": "憎惡女王未受到超過3次敵方單位攻擊技能傷害且存活的條件下完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_10049",
+      "content": "在單次戰鬥中，在忘卻的騎士之劍召喚後沒有使其復活的條件下通關"
+    },
+    {
+      "id": "missionConditionTitle_10050",
+      "content": "在單次戰鬥中，使帶有中央本部菁英員工的友方單位擊殺3把帶有無助之淚的劍且存活的條件下通關"
+    },
+    {
+      "id": "missionConditionTitle_10051",
+      "content": "帶有「中央本部菁英員工」效果的友方單位帶有不低於3級充能強度且存活的條件下完成戰鬥（包含特殊充能）"
+    },
+    {
+      "id": "missionConditionTitle_10052",
+      "content": "帶有「中央本部菁英員工」效果的友方單位未受到超過8次敵方單位攻擊技能傷害且存活的條件下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_10053",
+      "content": "在1場戰鬥中，帶有「福利部優秀員工」效果的友方單位使用其技能對敵方施加一定次數的沉淪或破裂強度"
+    },
+    {
+      "id": "missionConditionTitle_10054",
+      "content": "帶有「福利部優秀員工」效果的友方單位未受到超過8次敵方單位攻擊技能傷害且存活的條件下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_10055",
+      "content": "在1場戰鬥中，使用一定次數以上的減算硬幣技能"
+    },
+    {
+      "id": "missionConditionTitle_10056",
+      "content": "全體友方單位存活的狀態下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_10057",
+      "content": "全體友方單位的理智值未降至-45點的條件下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_10058",
+      "content": "在全體友方單位被施加的冰冷漆黑之淚回數皆低於20回的情況下通關"
+    },
+    {
+      "id": "missionConditionTitle_20052",
+      "content": "使用阿爾卡那．光破斬成功鎮壓帶有磨損殆盡的騎士的絕望騎士"
+    },
+    {
+      "id": "missionConditionTitle_20053",
+      "content": "憎惡女王未受到超過3次敵方單位攻擊技能傷害且存活的條件下完成鎮壓"
+    },
+    {
+      "id": "missionConditionTitle_20054",
+      "content": "在單次戰鬥中，在心擊碎痛之劍、撕心裂肺之劍、穿心欲絕之劍召喚後沒有使其復活的條件下通關"
+    },
+    {
+      "id": "missionConditionTitle_20055",
+      "content": "在單次戰鬥中，使帶有中央本部菁英員工的友方單位擊殺3把帶有無助之淚的劍且存活的條件下通關"
+    },
+    {
+      "id": "missionConditionTitle_20056",
+      "content": "帶有「中央本部菁英員工」效果的友方單位帶有不低於5級充能強度且存活的條件下完成戰鬥（包含特殊充能）"
+    },
+    {
+      "id": "missionConditionTitle_20057",
+      "content": "帶有「中央本部菁英員工」效果的友方單位未受到超過5次敵方單位攻擊技能傷害且存活的條件下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_20058",
+      "content": "在1場戰鬥中，帶有「福利部優秀員工」效果的友方單位使用其技能對敵方施加一定次數的沉淪或破裂強度"
+    },
+    {
+      "id": "missionConditionTitle_20059",
+      "content": "在單次戰鬥中，使帶有福利部優秀員工的友方單位與心擊碎痛之劍、撕心裂肺之劍、穿心欲絕之劍進行1次拚點"
+    },
+    {
+      "id": "missionConditionTitle_20060",
+      "content": "帶有「福利部優秀員工」效果的友方單位未受到超過5次敵方單位攻擊技能傷害且存活的條件下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_20061",
+      "content": "在1場戰鬥中，使用一定次數以上的減算硬幣技能"
+    },
+    {
+      "id": "missionConditionTitle_20062",
+      "content": "全體友方單位存活的狀態下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_20063",
+      "content": "全體友方單位的理智值未降至-45點的條件下完成戰鬥"
+    },
+    {
+      "id": "missionConditionTitle_20064",
+      "content": "在全體友方單位被施加的冰冷漆黑之淚回數皆低於10回的情況下通關"
+    },
+    {
+      "id": "missionConditionTitle_30005",
+      "content": "完成簡單及困難難度的全部任務"
+    },
+    {
+      "id": "walpu6_hard_stage_unlock_condition",
+      "content": "通過簡單難度後解鎖"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_01_title",
+      "content": "第6次 瓦爾普吉斯之夜 - 憎惡與絕望"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_01_title_01",
+      "content": "第6次 瓦爾普吉斯之夜 - 憎惡與絕望"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_01_desc_01",
+      "content": "[第6次 瓦爾普吉斯之夜 - 憎惡與絕望] 不論您的主線劇情進度，都將解鎖。您可以透過玻璃窗或駕駛席上的活動橫幅進入。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_02_title_01",
+      "content": "活動期間"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_02_desc_01",
+      "content": "第6次 瓦爾普吉斯之夜的活動持續時間顯示在這裡。活動期間內，完成簡單及困難難度的戰鬥任務，可以領取任務獎勵的報酬。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_03_title_01",
+      "content": "簡單難度戰鬥"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_03_desc_01",
+      "content": "選擇這扇門可進入簡單難度戰鬥。\n在第6次瓦爾普吉斯之夜活動期間，進入戰鬥時會消耗腦啡肽模組。\n簡單難度下，55級以下的人格等級將被自動提升至55。\n並且，人格的同步階段和E.G.O異想解析階段若是低於3階段，將被自動提升至3階段。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_03_title_02",
+      "content": "困難難度戰鬥"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_03_desc_02",
+      "content": "通過簡單難度將解鎖困難難度。在困難難度下，人格的等級、同步進度與E.G.O異想解析進度將保持不變。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_04_title_01",
+      "content": "中央本部菁英員工效果"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_04_desc_01",
+      "content": "以第一順位進入關卡的罪人將被賦予「中央本部菁英員工」效果。擁有「中央本部菁英員工」效果的罪人將在戰鬥中獲得額外技能槽，並獲得增益。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_04_title_02",
+      "content": "福利部優秀員工效果"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_04_desc_02",
+      "content": "以第二順位進入關卡的罪人將被賦予「福利部優秀員工」效果。擁有「福利部優秀員工」效果的罪人將在戰鬥中獲得增益。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_05_title_01",
+      "content": "任務列表"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_05_desc_01",
+      "content": "透過[任務列表]介面，能夠查看需要完成的任務，以及任務獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_06_desc_01",
+      "content": "[任務列表]介面將顯示獎勵領取期。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_06_desc_02",
+      "content": "能夠分別確認簡單及困難任務。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_06_desc_03",
+      "content": "完成任務可在[任務列表]領取多樣化獎勵。"
+    },
+    {
+      "id": "tutorial_mainui_walpu6_07_desc_01",
+      "content": "活動結束後，您也依然可以透過駕駛席 - [外傳故事] 及放映室 - [其他故事]，隨時重溫「第6次 瓦爾普吉斯之夜 - 憎惡與絕望」的關卡和故事。"
+    },
+    {
+      "id": "walpu6_reward_button_normal",
+      "content": "簡單難度"
+    },
+    {
+      "id": "walpu6_reward_button_hard",
+      "content": "困難難度"
+    },
+    {
+      "id": "walpu6_normal_difficulty",
+      "content": "簡單難度"
+    },
+    {
+      "id": "walpu6_hard_difficulty",
+      "content": "困難難度"
+    },
+    {
+      "id": "walpu6_hard_open_condition",
+      "content": "通過簡單難度後解鎖"
+    }
+  ]
+}
