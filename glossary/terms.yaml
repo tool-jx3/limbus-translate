@@ -84,7 +84,7 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）中指故事內的季節或時尚季時依語境譯「季」「換季」「這一季的流行」等
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -154,6 +154,7 @@
 
 - kr: 르루주
   zh: 丹紅派
+  forbidden: ["re:丹紅([ 們，。、！？…」]|$)"]
   status: approved
   category: [city]
   evidence: { kr_lines: 621, approved: 404, forbidden: 0 }
@@ -384,7 +385,7 @@
   zh: 走廊
   status: approved
   category: [general]
-  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）
+  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）。蜘蛛巢裡沒有指名的「복도」（다른 복도、이쪽 복도、복도를 이용해）仍寫「走廊」（既有 47 行）
 
 - kr: 변곡점
   zh: 曲折點
@@ -578,3 +579,155 @@
   status: approved
   category: [combat]
   notes: Passives_Abnormality-a1c10p2 的被動名與狀態名（Bufs／BattleKeywords-a1c10p2）
+
+- kr: 세가
+  zh: 勢力
+  status: approved
+  category: [city]
+  notes: 鴻園（第8章）候選人的「X 세가」（ScenarioModelCodes `보차 세가` → 寶釵的勢力）；成員寫「勢力成員」「勢力的人」。「세가지」（三種）不適用
+
+- kr: 르누아르
+  zh: 漆黑派
+  forbidden: ["re:漆黑([ 們，。、！？…」]|$)"]
+  status: approved
+  category: [city]
+  notes: 百貨公司派系（既有 559 行）；說話者名稱也寫「漆黑派 X」
+
+- kr: 르카키
+  zh: 卡其派
+  forbidden: ["re:卡其([ 們，。、！？…」]|$)"]
+  status: approved
+  category: [city]
+  notes: 百貨公司派系（既有 241 行），與漆黑派、丹紅派並列
+
+- kr: 메종
+  zh: 品牌旗艦店
+  status: approved
+  category: [city]
+  notes: 百貨公司的店（르누아르 메종 → 漆黑派 品牌旗艦店）；道具名用「漆黑派 品牌X」（品牌大禮帽、品牌西裝褲）
+
+- kr: 수선실
+  zh: 改衣坊
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 73 行）
+
+- kr: 마네킹
+  zh: 人台模特兒
+  forbidden: ["人體模型"]
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 84 行）
+
+- kr: 브랜드 매니저
+  zh: 品牌經理
+  forbidden: ["品牌總監"]
+  status: approved
+  category: [city]
+  notes: 「브랜드 디렉터」才是品牌總監
+
+- kr: 플로어 매니저
+  zh: 樓層經理
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 112 行）；標籤寫「3F 樓層經理」
+
+- kr: 매니저님
+  zh: 經理大人
+  status: approved
+  category: [city]
+  notes: 百貨公司裡對品牌經理、樓層經理的敬稱（杜布瓦等）
+
+- kr: 황금가죽
+  zh: 黃金皮革
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 74 行）
+
+- kr: 붉은 신
+  zh: 丹紅之神
+  forbidden: ["赤紅之神"]
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 81 行）
+
+- kr: 검은 신
+  zh: 漆黑之神
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 37 行）
+
+- kr: 욕망하라
+  zh: 慾求吧
+  status: approved
+  category: [city]
+  notes: 丹紅之聲的咒語（RPG 旁白）；與「걸쳐라」披覆吧並列
+
+- kr: 고갈시켜라
+  zh: 耗盡
+  status: approved
+  category: [city]
+  notes: 咒語「원하라, 원하는 만큼 서슴없이 고갈시켜라」→「渴望吧，並毫不遲疑地耗盡欲求的一切」（rpg-loc-narration-floor-3）
+
+- kr: 섭취하라
+  zh: 吸食殆盡
+  status: approved
+  category: [city]
+  notes: 咒語（RPG 旁白「慾求吧，並將慾望所求的一切吸食殆盡」）
+
+- kr: 로지온
+  zh: 羅狄翁
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢（既有 65 行）；女性
+
+- kr: 교본
+  zh: 教材
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢對希斯克利夫的稱呼（既有 34 行）；其他語境（例如 Passives 的「教程」）依語境
+
+- kr: 천살성도
+  zh: 天殺星刀
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢
+
+- kr: 지혜성도
+  zh: 地慧星刀
+  forbidden: ["智慧星刀"]
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢；EN Dihui
+
+- kr: 지혜성
+  zh: 地慧星
+  forbidden: ["智慧星"]
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢（既有 43 行）
+
+- kr: 천퇴성도
+  zh: 天退星刀
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢
+
+- kr: 파리 대왕
+  zh: 蒼蠅王
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢（既有 43 行）
+
+- kr: 예지안
+  zh: 預知眼
+  status: approved
+  category: [city]
+  notes: 既有 31 行
+
+- kr: 스승님
+  zh: 師父
+  forbidden: ["師傅"]
+  status: approved
+  category: [general]
+  notes: 蜘蛛巢的弟子稱師父（既有 58 行）；師父是武藝的師長，不是工匠
