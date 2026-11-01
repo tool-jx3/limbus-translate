@@ -41,7 +41,8 @@ type SubmitResult struct {
 	// Warnings are issues of accepted units.
 	Warnings []Rejection `json:"warnings"`
 	// NeedsReview are the rejected units that ran out of attempts and now
-	// stand in with their fallback text.
+	// wait for a person: they stand in with their fallback text, or keep the
+	// record they had when that is a translation of the current KR text.
 	NeedsReview []string `json:"needs_review"`
 	// Released are the units of the batch that were not submitted and were
 	// still leased to it: their lease ended and they are free again.
@@ -96,7 +97,9 @@ func foreignNameIssues(zh string, names []string) []validate.Issue {
 // a record (origin claude) and leaves the queue. With one, its attempts grow
 // and it keeps its lease, so the owner of b can send the fix; at maxAttempts
 // the lease ends and the unit gets a fallback record (the EN text, else KR)
-// flagged needs_review and stays in the queue flagged.
+// flagged needs_review and stays in the queue flagged. A record that is a
+// translation of the KR text there is now (see keepsRecord) is not replaced by
+// the fallback: it stays as it is, and only the queue item is flagged.
 //
 // A unit that b already got accepted is accepted again without being written
 // again, so the whole out file can be sent once more. Units of b that are not
@@ -303,6 +306,11 @@ func (s *submission) unit(o OutUnit) error {
 			return nil // the lease stays, for the fix
 		}
 		item.Lease = nil
+		item.Flags = withFlag(item.Flags, store.FlagNeedsReview)
+		s.res.NeedsReview = append(s.res.NeedsReview, o.Key)
+		if hasRecord && keepsRecord(existing, kr) {
+			return nil
+		}
 		text, err := fallbackText(fd, pointer, kr)
 		if err != nil {
 			return err
@@ -316,8 +324,6 @@ func (s *submission) unit(o OutUnit) error {
 			Rules:  s.env.RulesCommit,
 			Flags:  withFlag(existing.Flags, store.FlagNeedsReview),
 		}
-		item.Flags = withFlag(item.Flags, store.FlagNeedsReview)
-		s.res.NeedsReview = append(s.res.NeedsReview, o.Key)
 		return nil
 	}
 
@@ -338,6 +344,16 @@ func (s *submission) unit(o OutUnit) error {
 		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
 	}
 	return nil
+}
+
+// keepsRecord reports whether a unit that ran out of attempts keeps the record
+// it had: the record was made from the KR text there is now and is a
+// translation of it, not itself a stand-in. A requeued unit that cannot be
+// translated again then keeps the translation a person wanted improved, which
+// is better than the EN text. Any other record (made from another KR text, or
+// a fallback) is replaced by a fresh stand-in.
+func keepsRecord(rec store.Record, kr string) bool {
+	return rec.KRSha == units.KRSha(kr) && rec.Origin != store.OriginFallback
 }
 
 // fallbackText is the text that stands in for a translation that failed: the

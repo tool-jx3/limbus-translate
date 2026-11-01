@@ -1054,6 +1054,82 @@ func TestSubmitNeedsReview(t *testing.T) {
 	}
 }
 
+// A unit a person sent back (lct requeue) that fails every attempt must not
+// lose its translation to the stand-in text, when that translation was made
+// from the KR text there is now and is no stand-in itself. The unit waits for
+// a person all the same.
+func TestSubmitKeepsGoodRecordWhenRequeueFails(t *testing.T) {
+	const kr = "[Bleed] 위력"
+	krFiles := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] 위력"}]}`}
+	enFiles := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] Potency"}]}`}
+	k := key("Other.json", 0)
+
+	// run requeues the unit over the record, fails it maxAttempts times and
+	// returns the record and the pending item that are left.
+	run := func(t *testing.T, existing store.Record) (store.Record, store.PendingItem) {
+		t.Helper()
+		env := newEnv(t, krFiles, enFiles, nil)
+		env.RulesCommit = "0123abc"
+		if err := env.Store.SaveRecords(map[string]store.Record{k: existing}); err != nil {
+			t.Fatal(err)
+		}
+		seed(t, env, store.PendingItem{Key: k, Reason: "requeue", PrevZH: existing.ZH, Hint: "稱呼改用「您」"})
+		b := mustNext(t, env, NextOptions{})
+		for attempt := 1; attempt <= 3; attempt++ {
+			res, err := Submit(env, b, []OutUnit{{Key: k, ZH: "賦予流血"}}, "m", 3) // [Bleed] is missing
+			if err != nil {
+				t.Fatal(err)
+			}
+			if len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, "id-mismatch") {
+				t.Fatalf("attempt %d: rejected = %+v", attempt, res.Rejected)
+			}
+			if last := attempt == 3; (len(res.NeedsReview) == 1) != last || last && res.NeedsReview[0] != k {
+				t.Fatalf("attempt %d: needs review = %v", attempt, res.NeedsReview)
+			}
+		}
+		item := pendingMap(t, env)[k]
+		if item.Attempts != 3 || item.Lease != nil || !slices.Equal(item.Flags, []string{store.FlagNeedsReview}) {
+			t.Errorf("pending item = %+v, want attempts 3, no lease and needs_review", item)
+		}
+		return records(t, env)[k], item
+	}
+	good := func(origin string) store.Record {
+		return store.Record{Key: k, KRSha: units.KRSha(kr), ZH: "賦予[Bleed]威力", Origin: origin, Since: "raw-20261001", Rules: "oldrules", Model: "old-model", Batch: "old-batch"}
+	}
+
+	for _, origin := range []string{store.OriginParatranz, store.OriginClaude, store.OriginHuman} {
+		t.Run("a good "+origin+" record is kept", func(t *testing.T) {
+			want := good(origin)
+			got, _ := run(t, want)
+			if !reflect.DeepEqual(got, want) {
+				t.Errorf("record = %+v, want it unchanged: %+v", got, want)
+			}
+		})
+	}
+
+	// Every other case is as before: the stand-in text, flagged.
+	t.Run("a stale record is replaced", func(t *testing.T) {
+		stale := good(store.OriginParatranz)
+		stale.KRSha = units.KRSha("다른 원문")
+		got, _ := run(t, stale)
+		if got.Origin != store.OriginFallback || got.ZH != "[Bleed] Potency" || got.KRSha != units.KRSha(kr) || !slices.Equal(got.Flags, []string{store.FlagNeedsReview}) {
+			t.Errorf("record = %+v, want the fallback with the EN text and needs_review", got)
+		}
+		if got.Since != "raw-20261001" || got.Rules != "0123abc" {
+			t.Errorf("record = %+v, want the old since and the current rules", got)
+		}
+	})
+	t.Run("a fallback record is replaced", func(t *testing.T) {
+		old := good(store.OriginFallback)
+		old.ZH = "old stand-in"
+		old.Flags = []string{store.FlagNeedsReview}
+		got, _ := run(t, old)
+		if got.Origin != store.OriginFallback || got.ZH != "[Bleed] Potency" || !slices.Equal(got.Flags, []string{store.FlagNeedsReview}) || got.Rules != "0123abc" {
+			t.Errorf("record = %+v, want the fresh fallback with the EN text", got)
+		}
+	})
+}
+
 func TestSubmitFallbackWithoutEN(t *testing.T) {
 	kr := map[string]string{
 		"Other.json": dataList(t, 2, "", line),

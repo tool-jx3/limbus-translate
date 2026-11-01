@@ -292,7 +292,7 @@ func (r submitReport) String() string {
 			fmt.Fprintf(&b, "  %s\n", k)
 		}
 	}
-	keys("needs review (fallback text stands in)", r.NeedsReview)
+	keys("needs review (the fallback text, or the earlier translation, stands in)", r.NeedsReview)
 	keys("not submitted (free again)", r.Released)
 	return b.String()
 }

@@ -30,22 +30,23 @@ var defaultOrigins = []string{store.OriginParatranz, store.OriginClaude, store.O
 // knownOrigins are the values Record.Origin can take.
 var knownOrigins = append(slices.Clone(defaultOrigins), store.OriginCopy)
 
-// Selector says which units to act on.
+// Selector says which units to act on. It works in one of two modes.
 //
-// Keys, Files and Origins select records. Keys are unit keys; Files are
-// patterns for the file part of a key, in the form of lct.yaml's frozen list
-// (see config.MatchAny). A record is selected when its key is in Keys or its
-// file matches Files; with neither, every record is. Origins then keep the
-// records of those origins; without Origins that is every origin but copy
-// (copies in the selection are counted as skipped, not requeued). A Selector
-// whose Keys, Files and Origins are all empty selects no record.
+// Without NeedsReview and Leased it requeues records. Keys are unit keys;
+// Files are patterns for the file part of a key, in the form of lct.yaml's
+// frozen list (see config.MatchAny). A record is selected when its key is in
+// Keys or its file matches Files; with neither, every record is. Origins then
+// keep the records of those origins (a key without a record is out); without
+// Origins that is every origin but copy (copies in the selection are counted
+// as skipped, not requeued). A Selector whose Keys, Files and Origins are all
+// empty selects nothing.
 //
-// NeedsReview and Leased act on the pending queue only: units flagged
-// needs_review are reset, units with a lease are released. When Keys, Files
-// or Origins are given they narrow these too (Origins by the origin of the
-// unit's record: a pending unit without one is out); otherwise they act on the
-// whole queue. A pending unit they handled is not counted again for its
-// record.
+// With NeedsReview or Leased (either, or both) it acts on the pending queue
+// only and never requeues a record: units flagged needs_review are reset,
+// units with a lease are released. Keys, Files and Origins then just narrow
+// which pending units those are (Origins by the origin of the unit's record:
+// a pending unit without a record is out); without them the whole queue is
+// meant.
 type Selector struct {
 	Keys        []string
 	Files       []string
@@ -65,6 +66,10 @@ type Result struct {
 	// Released units lost their lease; nothing else changed.
 	Released int `json:"released"`
 	// AlreadyPending units were in the queue already; only their hint is new.
+	// A hint set on a leased unit does not reach the batch that holds the
+	// unit (its translator has the batch file already, and the submitted
+	// translation takes the unit off the queue); release the lease with
+	// Leased and the same keys to have the unit handed out again with it.
 	AlreadyPending int `json:"already_pending"`
 	// SkippedFrozen units are in a frozen file.
 	SkippedFrozen int `json:"skipped_frozen"`
@@ -72,7 +77,8 @@ type Result struct {
 	SkippedCopy int `json:"skipped_copy"`
 	// Missing counts the keys that cannot be requeued: the file or pointer
 	// has left KR, or (for a key named in Keys) there is no record to send
-	// back. MissingKeys lists them in order; it is never nil.
+	// back. MissingKeys lists them in order; it is never nil. Only the mode
+	// that requeues records reports them.
 	Missing     int      `json:"missing"`
 	MissingKeys []string `json:"missing_keys"`
 }
@@ -81,23 +87,24 @@ type Result struct {
 func (r Result) String() string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "requeued %d, reset %d, released %d\n", r.Requeued, r.Reset, r.Released)
-	fmt.Fprintf(&b, "already pending %d, skipped %d frozen and %d copy, missing %d", r.AlreadyPending, r.SkippedFrozen, r.SkippedCopy, r.Missing)
+	fmt.Fprintf(&b, "already pending %d, skipped %d frozen and %d copy, missing (gone from KR, or no record): %d", r.AlreadyPending, r.SkippedFrozen, r.SkippedCopy, r.Missing)
 	for _, k := range r.MissingKeys {
 		fmt.Fprintf(&b, "\n  missing: %s", k)
 	}
 	return b.String()
 }
 
-// recordMode reports whether the selector picks records.
-func (s Selector) recordMode() bool {
-	return len(s.Keys)+len(s.Files)+len(s.Origins) > 0
-}
+// stuckMode reports whether the selector acts on the pending queue only.
+func (s Selector) stuckMode() bool { return s.NeedsReview || s.Leased }
+
+// narrowed reports whether Keys, Files or Origins are given.
+func (s Selector) narrowed() bool { return len(s.Keys)+len(s.Files)+len(s.Origins) > 0 }
 
 // Validate reports a selector Apply cannot use: one that selects nothing, an
 // unknown origin, a malformed key or a malformed file pattern. A pattern that
 // merely matches nothing is not an error.
 func (s Selector) Validate() error {
-	if !s.recordMode() && !s.NeedsReview && !s.Leased {
+	if !s.stuckMode() && !s.narrowed() {
 		return errors.New("nothing is selected")
 	}
 	for _, o := range s.Origins {
@@ -125,7 +132,7 @@ func (s Selector) Validate() error {
 // of the raw snapshot, which tells whether a key is still there; frozen are
 // the patterns of the files that must not change (lct.yaml). hint is the
 // reason the translator is shown for every unit that is requeued, reset, or
-// already pending.
+// already pending (see Result.AlreadyPending for a unit that is leased).
 //
 // The whole read-modify-write is one store lock, so Apply can run next to
 // Next and Submit. It changes nothing when it returns an error.
@@ -146,15 +153,18 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 		if err != nil {
 			return err
 		}
+		// The records are read to requeue them, or to narrow the pending
+		// units by origin; not otherwise (there are 250 thousand of them).
 		var records map[string]store.Record
-		if sel.recordMode() {
+		if !sel.stuckMode() || len(sel.Origins) > 0 {
 			if records, err = st.LoadRecords(); err != nil {
 				return err
 			}
 		}
 		r := newRun(kr, frozen, sel, hint, records, pending, res)
-		r.stuckItems()
-		if err := r.requeueRecords(); err != nil {
+		if sel.stuckMode() {
+			r.stuckItems()
+		} else if err := r.requeueRecords(); err != nil {
 			return err
 		}
 		if !r.changed {
@@ -179,7 +189,6 @@ type run struct {
 	res     *Result
 
 	index   map[string]int  // key -> index in pending
-	touched map[string]bool // keys stuckItems handled
 	origins map[string]bool // origins that count
 	changed bool            // pending differs from what was loaded
 
@@ -190,7 +199,6 @@ func newRun(kr *pack.Pack, frozen []string, sel Selector, hint string, records m
 	r := &run{
 		kr: kr, frozen: frozen, sel: sel, hint: hint, records: records, pending: pending, res: res,
 		index:      make(map[string]int, len(pending)),
-		touched:    map[string]bool{},
 		origins:    map[string]bool{},
 		krPointers: map[string]map[string]bool{},
 	}
@@ -225,22 +233,19 @@ func (r *run) inScope(key string) bool {
 	return slices.Contains(r.sel.Keys, key) || config.MatchAny(r.sel.Files, fileOf(key))
 }
 
-// originOK reports whether the record of key passes Origins, when they are
-// given. A key without a record passes only when no Origins are given.
+// originOK reports whether key passes the origins in effect. A key without a
+// record passes only when no Origins are given.
 func (r *run) originOK(key string) bool {
-	if len(r.sel.Origins) == 0 {
-		return true
-	}
 	rec, ok := r.records[key]
-	return ok && r.origins[rec.Origin]
+	if !ok {
+		return len(r.sel.Origins) == 0
+	}
+	return r.origins[rec.Origin]
 }
 
 // stuckItems resets the units flagged needs_review and releases the leased
-// ones, as the selector asks.
+// ones, as the selector asks, among those that Keys, Files and Origins leave.
 func (r *run) stuckItems() {
-	if !r.sel.NeedsReview && !r.sel.Leased {
-		return
-	}
 	for i := range r.pending {
 		it := &r.pending[i]
 		review := r.sel.NeedsReview && slices.Contains(it.Flags, store.FlagNeedsReview)
@@ -261,7 +266,6 @@ func (r *run) stuckItems() {
 			it.Lease = nil
 			r.res.Released++
 		}
-		r.touched[it.Key] = true
 		r.changed = true
 	}
 }
@@ -293,14 +297,11 @@ func (r *run) candidates() []string {
 
 // requeueRecords sends the selected records back to the queue.
 func (r *run) requeueRecords() error {
-	if !r.sel.recordMode() {
-		return nil
-	}
 	for _, key := range r.candidates() {
-		rec, hasRec := r.records[key]
-		if r.touched[key] || hasRec && !r.origins[rec.Origin] {
+		if !r.originOK(key) {
 			continue
 		}
+		rec, hasRec := r.records[key]
 		file := fileOf(key)
 		switch i, queued := r.index[key]; {
 		case hasRec && rec.Origin == store.OriginCopy:

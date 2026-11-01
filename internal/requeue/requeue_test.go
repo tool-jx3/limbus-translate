@@ -264,6 +264,15 @@ func TestRequeueOriginFilter(t *testing.T) {
 		res := mustApply(t, st, set.KR, Selector{Keys: []string{key(otherFile, 0), key(otherFile, 1)}, Origins: []string{"claude"}})
 		checkResult(t, res, Result{Requeued: 1})
 	})
+	t.Run("origin also leaves out a key without a record", func(t *testing.T) {
+		st := seed(t)
+		noRecord := key(otherFile, 9)
+		res := mustApply(t, st, set.KR, Selector{Keys: []string{noRecord, key(otherFile, 1)}, Origins: []string{"claude"}})
+		checkResult(t, res, Result{Requeued: 1})
+		// Without Origins the same key is reported.
+		res = mustApply(t, st, set.KR, Selector{Keys: []string{noRecord}})
+		checkResult(t, res, Result{Missing: 1, MissingKeys: []string{noRecord}})
+	})
 	t.Run("a key of a copy record", func(t *testing.T) {
 		st := seed(t)
 		res := mustApply(t, st, set.KR, Selector{Keys: []string{key(otherFile, 4)}})
@@ -436,9 +445,9 @@ func TestRequeueAlreadyPending(t *testing.T) {
 	}
 }
 
-// --needs-review and --leased work on the pending items; --key and --file
-// narrow them, and --origin too when given. Used with a record selection, a
-// pending item they handled is not counted again as already pending.
+// --needs-review and --leased work on the pending items only. --key, --file
+// and --origin then just narrow which pending items they reset or release
+// (--origin by the origin of the item's record); no record is requeued.
 func TestRequeueSelectorsCombine(t *testing.T) {
 	set := openRaw(t, map[string]string{otherFile: dataList(3), storyFile: dataList(3)})
 	review := []string{store.FlagNeedsReview}
@@ -462,36 +471,79 @@ func TestRequeueSelectorsCombine(t *testing.T) {
 		return st
 	}
 
-	t.Run("a file narrows needs-review and also selects its records", func(t *testing.T) {
+	// noNewItems fails when a record was sent back: the pending list must
+	// still be the four items of seed.
+	noNewItems := func(t *testing.T, st *store.Store) map[string]store.PendingItem {
+		t.Helper()
+		got := pendingByKey(t, st)
+		if len(got) != 4 {
+			t.Errorf("pending has %d items, want the 4 it started with: %+v", len(got), got)
+		}
+		for k, it := range got {
+			if it.Reason == "requeue" {
+				t.Errorf("%s was requeued: %+v", k, it)
+			}
+		}
+		return got
+	}
+
+	t.Run("a file narrows needs-review and no record is requeued", func(t *testing.T) {
 		st := seed(t)
 		res := mustApply(t, st, set.KR, Selector{NeedsReview: true, Files: []string{otherFile}})
-		// otherFile|0 is reset (and not counted again); |1 is requeued; |2 is
-		// pending already; the story file is out of scope.
-		checkResult(t, res, Result{Reset: 1, Requeued: 1, AlreadyPending: 1})
-		got := pendingByKey(t, st)
-		if len(got[key(otherFile, 0)].Flags) != 0 || got[key(storyFile, 2)].Attempts != 3 {
+		// otherFile|0 is reset; the claude record of |1 stays where it is, and
+		// |2 is pending already but gets no hint; the story file is out of scope.
+		checkResult(t, res, Result{Reset: 1})
+		got := noNewItems(t, st)
+		if len(got[key(otherFile, 0)].Flags) != 0 || got[key(otherFile, 0)].Hint != hint || got[key(storyFile, 2)].Attempts != 3 {
 			t.Errorf("pending = %+v", got)
+		}
+		if got[key(otherFile, 2)].Hint != "" {
+			t.Errorf("a pending unit that is not flagged got a hint: %+v", got[key(otherFile, 2)])
 		}
 	})
 	t.Run("an origin narrows leased", func(t *testing.T) {
 		st := seed(t)
 		res := mustApply(t, st, set.KR, Selector{Leased: true, Origins: []string{"human"}})
-		// storyFile|1 is the only leased item whose record is human; the
-		// records of that origin are selected as well, and it was handled
-		// already.
+		// storyFile|1 is the only leased item whose record is human; the other
+		// records of that origin are not requeued.
 		checkResult(t, res, Result{Released: 1})
-		got := pendingByKey(t, st)
+		got := noNewItems(t, st)
 		if got[key(storyFile, 1)].Lease != nil || got[key(otherFile, 2)].Lease == nil {
 			t.Errorf("pending = %+v", got)
+		}
+	})
+	t.Run("an origin leaves out a pending unit without a record", func(t *testing.T) {
+		st := seed(t)
+		savePending(t, st, store.PendingItem{Key: key(storyFile, 2), Reason: "new", Lease: lease}) // no record
+		res := mustApply(t, st, set.KR, Selector{Leased: true, Origins: []string{"claude", "human"}})
+		checkResult(t, res, Result{})
+		if got := pendingByKey(t, st); got[key(storyFile, 2)].Lease == nil {
+			t.Errorf("the lease of a unit without a record was cleared: %+v", got)
 		}
 	})
 	t.Run("a key", func(t *testing.T) {
 		st := seed(t)
 		res := mustApply(t, st, set.KR, Selector{Leased: true, Keys: []string{key(otherFile, 2)}})
 		checkResult(t, res, Result{Released: 1})
-		if got := pendingByKey(t, st); got[key(storyFile, 1)].Lease == nil {
+		if got := noNewItems(t, st); got[key(storyFile, 1)].Lease == nil {
 			t.Errorf("the lease of another key was cleared: %+v", got)
 		}
+	})
+	t.Run("a key that is no pending unit is not requeued, nor reported missing", func(t *testing.T) {
+		st := seed(t)
+		gone := key(storyFile, 9) // not in KR, no record, not pending
+		res := mustApply(t, st, set.KR, Selector{NeedsReview: true, Keys: []string{key(otherFile, 1), gone}})
+		checkResult(t, res, Result{})
+		noNewItems(t, st)
+		res = mustApply(t, st, set.KR, Selector{Leased: true, Files: []string{"Gone.json", "BgmLyrics/**"}})
+		checkResult(t, res, Result{})
+		noNewItems(t, st)
+	})
+	t.Run("both flags at once", func(t *testing.T) {
+		st := seed(t)
+		res := mustApply(t, st, set.KR, Selector{NeedsReview: true, Leased: true})
+		checkResult(t, res, Result{Reset: 2, Released: 2})
+		noNewItems(t, st)
 	})
 }
 
@@ -657,7 +709,7 @@ func TestRequeueResultJSONAndText(t *testing.T) {
 	}
 
 	text := (&Result{Requeued: 2, Reset: 3, Released: 4, AlreadyPending: 5, SkippedFrozen: 6, SkippedCopy: 7, Missing: 1, MissingKeys: []string{"A.json|/x"}}).String()
-	for _, part := range []string{"requeued 2", "reset 3", "released 4", "already pending 5", "6 frozen", "7 copy", "missing 1", "A.json|/x"} {
+	for _, part := range []string{"requeued 2", "reset 3", "released 4", "already pending 5", "6 frozen", "7 copy", "missing (gone from KR, or no record): 1", "A.json|/x"} {
 		if !strings.Contains(text, part) {
 			t.Errorf("text %q lacks %q", text, part)
 		}

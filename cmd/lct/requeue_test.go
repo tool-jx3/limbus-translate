@@ -112,14 +112,26 @@ func TestRequeueCLIJSON(t *testing.T) {
 	}
 
 	// As text, and with a key that is gone.
-	code, stdout, stderr := lct(t, "requeue", "--key", "Sample.json|/dataList/9/content", "--needs-review", "--reason", "x")
+	const gone = "Sample.json|/dataList/9/content"
+	code, stdout, stderr := lct(t, "requeue", "--key", gone, "--reason", "x")
 	if code != 0 || stderr != "" {
 		t.Fatalf("exit code = %d, stderr = %q, want 0", code, stderr)
 	}
-	for _, part := range []string{"requeued 0", "missing 1", "Sample.json|/dataList/9/content"} {
+	for _, part := range []string{"requeued 0", "missing (gone from KR, or no record): 1", gone} {
 		if !strings.Contains(stdout, part) {
 			t.Errorf("output lacks %q:\n%s", part, stdout)
 		}
+	}
+
+	// --needs-review and --leased only narrow the pending units: no record
+	// is looked at, so a key that is gone is not reported.
+	var res struct {
+		Requeued, Missing int
+		MissingKeys       []string `json:"missing_keys"`
+	}
+	mustLct(t, &res, "requeue", "--key", gone, "--needs-review", "--leased", "--reason", "x")
+	if res.Requeued != 0 || res.Missing != 0 || len(res.MissingKeys) != 0 {
+		t.Errorf("result = %+v, want nothing: the key is no pending unit", res)
 	}
 }
 
@@ -131,8 +143,8 @@ func TestRequeueCLIReachesTheBatch(t *testing.T) {
 	}
 	var raw struct{ Reset, Requeued int }
 	mustLct(t, &raw, "requeue", "--needs-review", "--key", batchKey0, "--key", batchKey1, "--reason", "別再用「閣下」")
-	if raw.Reset != 1 || raw.Requeued != 1 {
-		t.Fatalf("result = %+v, want 1 reset and 1 requeued", raw)
+	if raw.Reset != 1 || raw.Requeued != 0 {
+		t.Fatalf("result = %+v, want 1 reset and nothing requeued (batchKey0 has a record, but is no pending unit)", raw)
 	}
 
 	got, _, err := runNextJSON(t, root)
@@ -147,12 +159,10 @@ func TestRequeueCLIReachesTheBatch(t *testing.T) {
 	if err := json.Unmarshal(data, &b); err != nil {
 		t.Fatal(err)
 	}
-	if len(b.Units) != 2 {
-		t.Fatalf("batch has %d units, want 2", len(b.Units))
+	if len(b.Units) != 1 || b.Units[0].Key != batchKey1 {
+		t.Fatalf("batch units = %+v, want only %s", b.Units, batchKey1)
 	}
-	for _, u := range b.Units {
-		if u.Hint != "別再用「閣下」" {
-			t.Errorf("unit %s hint = %q", u.Key, u.Hint)
-		}
+	if got := b.Units[0].Hint; got != "別再用「閣下」" {
+		t.Errorf("unit %s hint = %q", b.Units[0].Key, got)
 	}
 }

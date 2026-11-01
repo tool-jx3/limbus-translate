@@ -15,25 +15,31 @@ import (
 
 func init() {
 	cli.Register(cli.Command{
-		Name:  "requeue",
-		Usage: "send units back to the pending list with a reason: [--key K]... [--file GLOB]... [--origin O]... [--needs-review] [--leased] --reason TEXT",
-		Run:   runRequeue,
+		Name: "requeue",
+		Usage: "send units back to the pending list: [--key K]... [--file GLOB]... [--origin O]... --reason TEXT (always required); " +
+			"or reset (--needs-review) / release (--leased) pending units, narrowed by --key/--file/--origin, requeueing no record; " +
+			"a hint set on a leased unit misses the batch in flight: release it with --leased --key K",
+		Run: runRequeue,
 	})
 }
 
 // runRequeue is the phase 1 direct mode of requeue: it writes the local
 // pending list. It is a command for the person (or the controller) who runs
 // the translation, not for the translators, so no skill is allowed to run it.
+//
+// --key, --file and --origin select records to requeue. Given with
+// --needs-review or --leased they only narrow which pending units those reset
+// or release (one command, one kind of change).
 func runRequeue(ctx *cli.Context, args []string) error {
 	flags := flag.NewFlagSet("requeue", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
 	var keys, files, origins stringList
 	flags.Var(&keys, "key", "a unit key, <file>|<JSON pointer> (repeatable)")
 	flags.Var(&files, "file", "a pack file name or a glob such as StoryData/S1* or BgmLyrics/** (repeatable)")
-	flags.Var(&origins, "origin", "only records of this origin: paratranz, claude, human, fallback or copy (repeatable; default: all but copy)")
+	flags.Var(&origins, "origin", "only records of this origin: paratranz, claude, human, fallback or copy (repeatable; default: all but copy); a key without a record is left out")
 	needsReview := flags.Bool("needs-review", false, "reset the pending units that wait for a person")
 	leased := flags.Bool("leased", false, "release the leases of pending units, expired or not")
-	reason := flags.String("reason", "", "why the units go back; the translator sees it as the hint")
+	reason := flags.String("reason", "", "why the units go back; the translator sees it as the hint (not for a unit whose batch is in flight: release it with --leased)")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("requeue: " + err.Error())
 	}
