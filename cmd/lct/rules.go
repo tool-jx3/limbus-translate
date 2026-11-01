@@ -14,7 +14,7 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name:  "rules lint",
-		Usage: "check the guides, glossary and routing files",
+		Usage: "check the guides, glossary, routing and adjustment files",
 		Run:   runRulesLint,
 	})
 	cli.Register(cli.Command{

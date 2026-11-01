@@ -10,6 +10,10 @@ import (
 	"regexp"
 	"slices"
 	"strings"
+
+	"gopkg.in/yaml.v3"
+
+	"github.com/tool-jx3/limbus-translate/internal/adjust"
 )
 
 // LintError is one problem Lint found. File is relative to the repo root.
@@ -34,6 +38,7 @@ func Lint(root string) []error {
 	l.baseGuide()
 	l.characters()
 	l.routing()
+	l.adjustments()
 	return l.errs
 }
 
@@ -214,6 +219,105 @@ func (l *linter) routing() {
 	for _, f := range rt.Families {
 		if f.ID != "" && !listed[f.ID] {
 			l.report(RoutingFile, "family %q is missing from priority", f.ID)
+		}
+	}
+}
+
+// adjustmentFields are the keys an entry of an adjustment file may have.
+var adjustmentFields = func() map[string]bool {
+	m := map[string]bool{}
+	for _, f := range adjust.Fields {
+		m[f] = true
+	}
+	return m
+}()
+
+// adjustments checks the files of rules/adjustments. Anything in the
+// directory that Load would not read is reported, since a person who names a
+// file x.yml would otherwise find the adjustment silently ignored.
+func (l *linter) adjustments() {
+	entries, err := os.ReadDir(filepath.Join(l.root, filepath.FromSlash(adjust.Dir)))
+	if errors.Is(err, fs.ErrNotExist) {
+		return // no adjustments yet
+	}
+	if err != nil {
+		l.report(adjust.Dir, "%s", ioMessage(err))
+		return
+	}
+	keyOwner := map[string]string{} // key -> where it was first seen
+	for _, e := range entries {
+		rel := adjust.Dir + "/" + e.Name()
+		switch {
+		case !e.IsDir() && e.Name() == ".gitkeep":
+		case e.IsDir() || !adjust.IsFile(e.Name()):
+			l.report(rel, "not an adjustment file: only .yaml files directly in %s are read", adjust.Dir)
+		default:
+			l.adjustmentFile(rel, keyOwner)
+		}
+	}
+}
+
+// adjustmentFile checks the entries of one adjustment file. keyOwner holds
+// the keys of the files before it: a key may be adjusted once across all
+// files.
+func (l *linter) adjustmentFile(rel string, keyOwner map[string]string) {
+	data, ok := l.read(rel)
+	if !ok {
+		return
+	}
+	var doc yaml.Node
+	if err := yaml.Unmarshal(data, &doc); err != nil {
+		l.report(rel, "%v", err)
+		return
+	}
+	if doc.Kind == 0 { // empty file
+		return
+	}
+	list := doc.Content[0]
+	if list.Kind != yaml.SequenceNode {
+		l.report(rel, "line %d: an adjustment file must be a list of entries", list.Line)
+		return
+	}
+	for i, entry := range list.Content {
+		label := fmt.Sprintf("entry %d", i+1)
+		if entry.Kind != yaml.MappingNode {
+			l.report(rel, "%s: must be a mapping with the keys %s", label, strings.Join(adjust.Fields, ", "))
+			continue
+		}
+		var a adjust.Adjustment
+		if err := entry.Decode(&a); err != nil {
+			l.report(rel, "%s: %v", label, err)
+			continue
+		}
+		if a.Key != "" {
+			label += fmt.Sprintf(" (%s)", a.Key)
+		}
+
+		present := map[string]bool{}
+		for k := 0; k+1 < len(entry.Content); k += 2 {
+			present[entry.Content[k].Value] = true
+		}
+		for _, name := range unknownKeys(entry, adjustmentFields) {
+			l.report(rel, "%s: unknown field %q", label, name)
+		}
+		for _, name := range adjust.Fields {
+			if !present[name] {
+				l.report(rel, "%s: %s is missing", label, name)
+			}
+		}
+		for _, p := range a.Problems(l.root) {
+			if present[p.Field] {
+				l.report(rel, "%s: %s", label, p.Message)
+			}
+		}
+
+		if a.Key == "" {
+			continue
+		}
+		if first, dup := keyOwner[a.Key]; dup {
+			l.report(rel, "%s: the key is already adjusted by %s", label, first)
+		} else {
+			keyOwner[a.Key] = fmt.Sprintf("entry %d of %s", i+1, rel)
 		}
 	}
 }

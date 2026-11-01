@@ -165,7 +165,7 @@ func TestGuideResolveUsageErrors(t *testing.T) {
 
 func TestCommandsAreRegistered(t *testing.T) {
 	names := strings.Join(cli.Commands(), " ")
-	for _, want := range []string{"rules lint", "guide resolve"} {
+	for _, want := range []string{"rules lint", "guide resolve", "adjust add"} {
 		if !strings.Contains(names, want) {
 			t.Errorf("command %q is not registered (have: %s)", want, names)
 		}

@@ -565,6 +565,101 @@ func TestLint(t *testing.T) {
 	})
 }
 
+// adjustmentYAML is one entry of an adjustment file.
+func adjustmentYAML(key, sha, rule string) string {
+	return "- key: " + key + "\n  raw: raw-20261029\n  kr_sha: " + sha + "\n  zh: 新譯文\n  reason: 測試\n  rule: " + rule + "\n"
+}
+
+func TestLintAdjustments(t *testing.T) {
+	sha := strings.Repeat("ab", 32)
+	const keyA, keyB = "Story.json|/dataList/1/content", "Story.json|/dataList/2/content"
+	const fileA, fileB = "rules/adjustments/2026-11-01-a.yaml", "rules/adjustments/2026-11-02-b.yaml"
+
+	write := func(root, rel, content string) {
+		t.Helper()
+		p := filepath.Join(root, filepath.FromSlash(rel))
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	tests := []struct {
+		name  string
+		files map[string]string
+		want  []string // the messages of the errors, each of which must contain these parts
+		in    []string // the file each error is about
+	}{
+		{"valid files", map[string]string{
+			fileA:                               adjustmentYAML(keyA, sha, "guides/base.md") + adjustmentYAML(keyB, sha, "one-off"),
+			"rules/adjustments/.gitkeep":        "",
+			"rules/adjustments/2026-12-01.yaml": "",
+		}, nil, nil},
+		{"wrong sha", map[string]string{fileA: adjustmentYAML(keyA, "abc", "one-off")}, []string{"kr_sha"}, []string{fileA}},
+		{"upper case sha", map[string]string{fileA: adjustmentYAML(keyA, strings.ToUpper(sha), "one-off")}, []string{"kr_sha"}, []string{fileA}},
+		{"rule file does not exist", map[string]string{fileA: adjustmentYAML(keyA, sha, "guides/nothing.md")}, []string{"guides/nothing.md"}, []string{fileA}},
+		{"rule above the repo", map[string]string{fileA: adjustmentYAML(keyA, sha, "../outside.md")}, []string{"../outside.md"}, []string{fileA}},
+		{"rule is a directory", map[string]string{fileA: adjustmentYAML(keyA, sha, "guides")}, []string{"guides"}, []string{fileA}},
+		{"same key in two files", map[string]string{
+			fileA: adjustmentYAML(keyA, sha, "one-off"),
+			fileB: adjustmentYAML(keyA, sha, "one-off"),
+		}, []string{keyA, "2026-11-01-a.yaml"}, []string{fileB}},
+		{"same key twice in a file", map[string]string{
+			fileA: adjustmentYAML(keyA, sha, "one-off") + adjustmentYAML(keyA, sha, "one-off"),
+		}, []string{keyA, "entry 1"}, []string{fileA}},
+		{"missing reason", map[string]string{fileA: strings.Replace(adjustmentYAML(keyA, sha, "one-off"), "  reason: 測試\n", "", 1)}, []string{"reason", "missing"}, []string{fileA}},
+		{"missing key", map[string]string{fileA: strings.Replace(adjustmentYAML(keyA, sha, "one-off"), "- key: "+keyA+"\n  ", "- ", 1)}, []string{"key", "missing"}, []string{fileA}},
+		{"empty zh", map[string]string{fileA: strings.Replace(adjustmentYAML(keyA, sha, "one-off"), "zh: 新譯文", `zh: ""`, 1)}, []string{"zh"}, []string{fileA}},
+		{"key is not a unit key", map[string]string{fileA: adjustmentYAML("Story.json", sha, "one-off")}, []string{"key", "Story.json"}, []string{fileA}},
+		{"misspelled field", map[string]string{fileA: strings.Replace(adjustmentYAML(keyA, sha, "one-off"), "kr_sha:", "kr-sha:", 1)}, []string{"kr-sha"}, []string{fileA, fileA}}, // and kr_sha is missing
+		{"entry is not a mapping", map[string]string{fileA: "- just text\n"}, []string{"entry 1", "mapping"}, []string{fileA}},
+		{"file is not a list", map[string]string{fileA: "key: x\n"}, []string{"list"}, []string{fileA}},
+		{"broken yaml", map[string]string{fileA: "- key: [x\n"}, nil, []string{fileA}},
+		{"a file Load would not read", map[string]string{"rules/adjustments/2026-11-01-a.yml": adjustmentYAML(keyA, sha, "one-off")}, []string{".yaml"}, []string{"rules/adjustments/2026-11-01-a.yml"}},
+		{"a directory", map[string]string{"rules/adjustments/sub/2026-11-01-a.yaml": adjustmentYAML(keyA, sha, "one-off")}, []string{"sub"}, []string{"rules/adjustments/sub"}},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyRules(t)
+			if errs := rules.Lint(root); len(errs) != 0 {
+				t.Fatalf("the rules fail lint before the adjustments are added:\n%s", lintMessages(errs))
+			}
+			for rel, content := range tc.files {
+				write(root, rel, content)
+			}
+			errs := rules.Lint(root)
+			if len(errs) != len(tc.in) {
+				t.Fatalf("Lint found %d problem(s), want %d (in %v):\n%s", len(errs), len(tc.in), tc.in, lintMessages(errs))
+			}
+			for i, err := range errs {
+				var le rules.LintError
+				if !errors.As(err, &le) || le.File != tc.in[i] {
+					t.Errorf("error %d = %#v, want one about %s", i, err, tc.in[i])
+				}
+			}
+			msg := lintMessages(errs)
+			for _, want := range tc.want {
+				if !strings.Contains(msg, want) {
+					t.Errorf("lint output does not mention %q:\n%s", want, msg)
+				}
+			}
+		})
+	}
+
+	// Several problems in one run: each is reported, in file order.
+	t.Run("every problem is reported", func(t *testing.T) {
+		root := copyRules(t)
+		write(root, fileA, adjustmentYAML(keyA, "abc", "one-off"))
+		write(root, fileB, adjustmentYAML(keyB, sha, "guides/nothing.md")+adjustmentYAML(keyA, sha, "one-off"))
+		errs := rules.Lint(root)
+		msg := lintMessages(errs)
+		if len(errs) != 3 || !strings.Contains(errs[0].Error(), "kr_sha") || !strings.Contains(errs[1].Error(), "guides/nothing.md") || !strings.Contains(errs[2].Error(), keyA) {
+			t.Errorf("Lint found %d problem(s), want 3 (sha, rule, duplicate key) in order:\n%s", len(errs), msg)
+		}
+	})
+}
+
 func TestLintReportsEveryProblem(t *testing.T) {
 	root := copyRules(t)
 	edit(t, root, "guides/characters/ryoshu.md", replaceOnce("name_kr: 료슈\n", ""))
