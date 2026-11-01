@@ -6,8 +6,8 @@ gender: male
 number: 13
 code: "12"
 models: [그레고르, 그레고르요리사, 그레고르다침, 그레고르F, 그레고르그림자, 그레고르만우]
-models_other_self: [그레고르왕, 그레고르왕그림자, 그레고르네부장]  # 待確認：這些劇情中的身分與語氣
-models_not_this: []
+models_other_self: [그레고르왕, 그레고르왕그림자]  # 待確認：這些劇情中的身分與語氣
+models_not_this: [그레고르네부장]  # 泰德部長，格里高爾的前上司
 file_names: [Gregor]
 ---
 

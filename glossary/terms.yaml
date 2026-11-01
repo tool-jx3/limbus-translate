@@ -366,3 +366,48 @@
   status: approved
   category: [general]
   notes: 幼稚園劇情
+
+- kr: 혈귀
+  zh: 血魔
+  forbidden: [血鬼]
+  status: approved
+  category: [city]
+  notes: 既有繁中 632 處皆為「血魔」
+
+- kr: 작은 누님
+  zh: 幼姐
+  status: approved
+  category: [city]
+  notes: 中指的職稱（P11115、5D202A）；職稱保留「姐」字，不改「姊」
+
+- kr: 복도
+  zh: 走廊
+  status: approved
+  category: [general]
+  notes: 一般對話寫「走廊」；地點欄位與蜘蛛巢的專名寫「長廊」（「小指的長廊」「環指父輩的長廊」）
+
+- kr: 변곡점
+  zh: 曲折點
+  forbidden: [扭曲點]
+  status: approved
+  category: [general]
+  notes: 依關卡名 StageNode91-27「尋找曲折點」
+
+- kr: 친절한 시민
+  zh: 友好的市民
+  forbidden: [善良的市民]
+  status: approved
+  category: [general]
+  notes: 說話者名稱（1D306A）
+
+- kr: 대왕가오리 항구선
+  zh: 魟魚港船
+  status: approved
+  category: [city]
+  notes: 既有 S532B 的寫法
+
+- kr: 키라
+  zh: 綺羅
+  status: approved
+  category: [city]
+  notes: 뉴키라 同；自稱「我」（不用「咱」），稱父親「把拔」（第九章既有譯文）
