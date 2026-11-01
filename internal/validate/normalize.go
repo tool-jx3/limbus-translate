@@ -27,7 +27,8 @@ var (
 //     is a string end, a space or full-width punctuation; before an [ID] the
 //     neighbor may also be > or (, after it < ) or [ (half-width brackets
 //     are punctuation too)
-//   - adjacent IDs are separated: "][" becomes "] ["
+//   - adjacent IDs are separated: "[Burn][Bleed]" becomes "[Burn] [Bleed]",
+//     while a "][" between other brackets is left alone
 //   - all-caps variables such as [ATTRIBUTES] get no added space
 //   - the space before [TabExplain] is removed
 //
@@ -38,7 +39,7 @@ func Normalize(kr, zh string) string {
 	s := unescaper.Replace(zh)
 	s = tabExplainRe.ReplaceAllString(s, "[TabExplain]")
 	s = spaceAroundIDs(s)
-	return separateBrackets(s)
+	return separateAdjacentIDs(s)
 }
 
 // spaceAroundIDs adds the spaces base.md asks for around each [ID].
@@ -80,21 +81,22 @@ func needsSpaceAfter(text string) bool {
 	return text != "" && !unicode.IsSpace(r) && !strings.ContainsRune(fullwidthPunct, r) && !strings.ContainsRune("<)[", r)
 }
 
-// separateBrackets turns "][" into "] [", except before a [TabExplain], which
-// must stay attached to what precedes it.
-func separateBrackets(s string) string {
+// separateAdjacentIDs puts a space between two [ID]s that touch, except before
+// a [TabExplain], which must stay attached to what precedes it. Other
+// brackets are left alone: a mirrored event name such as 射影戰鬥][鬥戰影射
+// keeps its "][" in every language.
+func separateAdjacentIDs(s string) string {
+	locs := idRe.FindAllStringIndex(s, -1)
 	var b strings.Builder
-	for {
-		i := strings.Index(s, "][")
-		if i < 0 {
-			break
-		}
-		b.WriteString(s[:i+1])
-		s = s[i+1:]
-		if !strings.HasPrefix(s, "[TabExplain]") {
+	last := 0
+	for i := 1; i < len(locs); i++ {
+		start, end := locs[i][0], locs[i][1]
+		if locs[i-1][1] == start && s[start:end] != "[TabExplain]" {
+			b.WriteString(s[last:start])
 			b.WriteByte(' ')
+			last = start
 		}
 	}
-	b.WriteString(s)
+	b.WriteString(s[last:])
 	return b.String()
 }
