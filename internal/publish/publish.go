@@ -1,0 +1,244 @@
+// Package publish prepares a Release of the language pack: it commits the
+// build in the tw worktree, numbers the Release and writes its notes. Pushing
+// the commit and creating the Release are left to the workflow.
+package publish
+
+import (
+	"errors"
+	"fmt"
+	"io/fs"
+	"maps"
+	"os"
+	"path/filepath"
+	"regexp"
+	"slices"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/store"
+)
+
+const (
+	// lang is the language of the pack: the directory of the zips (see
+	// build.ZipPaths) and the start of every Release tag.
+	lang = "zh-TW"
+	// TagPrefix starts the name of every Release tag.
+	TagPrefix = lang + "-"
+	// notesName is the file Run writes the release notes to, in outDir.
+	notesName = "release-notes.md"
+
+	buildMetaName = "build.json"
+	dayLayout     = "20060102"
+)
+
+// ErrNotBuilt marks a refusal because there is no usable build to publish: no
+// .meta/build.json, one with no usable raw tag, or a zip of the build that is
+// missing. The fix is lct build.
+var ErrNotBuilt = errors.New("publish: not built")
+
+var (
+	// rawTagRe matches the tag of a raw snapshot, "raw-YYYYMMDD" or
+	// "raw-YYYYMMDD.N" (see raw.NextTag), and captures the day.
+	rawTagRe = regexp.MustCompile(`^` + regexp.QuoteMeta(raw.TagPrefix) + `(\d{8})(?:\.\d+)?$`)
+	// releaseTagRe matches a Release tag and captures the day and N.
+	releaseTagRe = regexp.MustCompile(`^` + regexp.QuoteMeta(TagPrefix) + `(\d{8})\.(\d+)$`)
+)
+
+// ReleaseTag returns the tag of the next Release of the pack built from the
+// snapshot rawTag: "zh-TW-YYYYMMDD.N", with the day of the snapshot and N one
+// more than the highest N of that day among existing (the tags that exist
+// already; names that are not Release tags are ignored), or 1.
+func ReleaseTag(rawTag string, existing []string) (string, error) {
+	m := rawTagRe.FindStringSubmatch(rawTag)
+	if m == nil {
+		return "", fmt.Errorf("publish: raw tag %q is not %sYYYYMMDD or %sYYYYMMDD.N", rawTag, raw.TagPrefix, raw.TagPrefix)
+	}
+	day := m[1]
+	if _, err := time.Parse(dayLayout, day); err != nil {
+		return "", fmt.Errorf("publish: raw tag %q does not hold a date", rawTag)
+	}
+	highest := 0
+	for _, name := range existing {
+		m := releaseTagRe.FindStringSubmatch(name)
+		if m == nil || m[1] != day {
+			continue
+		}
+		// A number too large for an int cannot be reached by counting.
+		if n, err := strconv.Atoi(m[2]); err == nil {
+			highest = max(highest, n)
+		}
+	}
+	return fmt.Sprintf("%s%s.%d", TagPrefix, day, highest+1), nil
+}
+
+// BuildInfo is .meta/build.json as lct build writes it: the inputs of the
+// build and what the build did. It has every field of the file, because the
+// store refuses a file with fields the type does not know.
+type BuildInfo struct {
+	RawTag      string            `json:"raw_tag"`
+	RawToken    string            `json:"raw_token"`
+	RulesCommit string            `json:"rules_commit"`
+	BuiltAt     string            `json:"built_at"`
+	Upstream    map[string]string `json:"upstream,omitempty"`
+	Report      build.Report      `json:"report"`
+}
+
+// readBuildInfo reads .meta/build.json of the tw worktree. A worktree without
+// one is ErrNotBuilt; one that cannot be read or decoded is an ordinary error.
+func readBuildInfo(twRoot string) (BuildInfo, error) {
+	var info BuildInfo
+	found, err := store.Open(twRoot).ReadMetaJSON(buildMetaName, &info)
+	if err != nil {
+		return BuildInfo{}, err
+	}
+	if !found {
+		return BuildInfo{}, fmt.Errorf("%w: %s has no .meta/%s; run lct build first", ErrNotBuilt, twRoot, buildMetaName)
+	}
+	return info, nil
+}
+
+// Result is what Run did. The JSON keys are read by the workflow.
+type Result struct {
+	// TWCommit is the HEAD of the tw worktree: the commit the Release is made
+	// from. Changed is whether this run made it; if not, it was there already.
+	TWCommit string `json:"tw_commit"`
+	Changed  bool   `json:"changed"`
+	// Tag is the tag the Release should get.
+	Tag string `json:"tag"`
+	// NotesPath is the file holding the release notes.
+	NotesPath string `json:"notes_path"`
+	// Assets are the files to attach to the Release: the zip with the text
+	// only, then the zip that also holds the font.
+	Assets []string `json:"assets"`
+}
+
+func (r Result) String() string {
+	state := "unchanged"
+	if r.Changed {
+		state = "committed"
+	}
+	s := fmt.Sprintf("%s: tw %s at %s\nnotes: %s\nassets:", r.Tag, state, r.TWCommit, r.NotesPath)
+	for _, a := range r.Assets {
+		s += "\n  " + a
+	}
+	return s
+}
+
+// Run commits the build that lct build left in the tw worktree and prepares
+// the Release of it: the tag, the notes (outDir/release-notes.md) and the list
+// of the zips to attach. root is the repo, whose tags number the Releases;
+// twRoot is the tw worktree and outDir the directory lct build wrote the zips
+// to.
+//
+// Everything that can be refused is checked before tw is touched: a worktree
+// that was not built, a raw tag that does not give a Release tag, or a missing
+// zip is ErrNotBuilt. If the build is what tw already holds, nothing is
+// committed and TWCommit is the HEAD of tw. The tag is the next free one of
+// the day of the snapshot, so until a Release with it exists (its tag is in
+// the repo), running again gives the same tag.
+func Run(root, twRoot, outDir string) (*Result, error) {
+	info, err := readBuildInfo(twRoot)
+	if err != nil {
+		return nil, err
+	}
+	existing, err := gitx.Tags(root, TagPrefix)
+	if err != nil {
+		return nil, err
+	}
+	tag, err := ReleaseTag(info.RawTag, existing)
+	if err != nil {
+		return nil, fmt.Errorf("%w: .meta/%s: %v", ErrNotBuilt, buildMetaName, err)
+	}
+	// The raw tag is a plain name now, safe to put in a path.
+	text, complete := build.ZipPaths(build.Options{OutDir: outDir, LangDir: lang, RawTag: info.RawTag})
+	assets := []string{text, complete}
+	for _, name := range assets {
+		fi, err := os.Stat(name)
+		if err == nil && !fi.Mode().IsRegular() || errors.Is(err, fs.ErrNotExist) {
+			return nil, fmt.Errorf("%w: %s is missing; run lct build first", ErrNotBuilt, name)
+		}
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	// No writer of the store, such as a batch, may change tw between the files
+	// being staged and the commit being made.
+	var sha string
+	var changed bool
+	err = store.Open(twRoot).WithLock(func() error {
+		var err error
+		sha, changed, err = gitx.CommitAll(twRoot, fmt.Sprintf("build: %s (rules %s)", info.RawTag, info.RulesCommit))
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	notesPath := filepath.Join(outDir, notesName)
+	if err := os.WriteFile(notesPath, Notes(info, tag), 0o644); err != nil {
+		return nil, err
+	}
+	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets}, nil
+}
+
+// Notes renders the release notes of the Release called tag, built from info,
+// in Markdown. The tag is the title: the Release name must not hold the name
+// of the product that translated the pack, which the text below it may.
+//
+// The parts come in this order: the title; what the pack is; how to install
+// it; the raw version; the rules version; a summary of the build report; the
+// licence and the sources.
+func Notes(info BuildInfo, tag string) []byte {
+	var b strings.Builder
+	rep := info.Report
+
+	fmt.Fprintf(&b, "# %s\n\n", tag)
+	b.WriteString("Limbus Company 臺灣繁體中文語言包，使用 Claude Code 翻譯。\n\n")
+
+	b.WriteString("## 安裝方式\n\n")
+	b.WriteString("把 zip 內的 `LimbusCompany_Data/` 解壓到遊戲資料夾，在遊戲設定選擇 zh-TW。\n\n")
+	b.WriteString("zip 有兩種：text 只有文字；complete 另含字型。\n\n")
+
+	b.WriteString("## 原文版本\n\n")
+	fmt.Fprintf(&b, "- raw tag：`%s`\n- token：`%s`\n\n", info.RawTag, info.RawToken)
+
+	b.WriteString("## 規則版本\n\n")
+	// Shown as built: a "+dirty" says the rules had changes that were not committed.
+	fmt.Fprintf(&b, "- rules commit：`%s`\n\n", info.RulesCommit)
+
+	b.WriteString("## 報表摘要\n\n")
+	if len(rep.Origins) == 0 {
+		b.WriteString("譯文來源（origins）：無。\n\n")
+	} else {
+		b.WriteString("| origins（譯文來源） | 單位數 |\n|---|---|\n")
+		for _, origin := range slices.Sorted(maps.Keys(rep.Origins)) {
+			fmt.Fprintf(&b, "| %s | %d |\n", origin, rep.Origins[origin])
+		}
+		b.WriteString("\n")
+	}
+	b.WriteString("| 項目 | 單位數 |\n|---|---|\n")
+	for _, row := range []struct {
+		label string
+		n     int
+	}{
+		{"pending：尚無譯文，暫時顯示英文（沒有英文則顯示韓文）", rep.Pending},
+		{"needs_review：待人工審核", rep.NeedsReview},
+		{"structural_fallback：譯文破壞原文結構，已改用原文", rep.StructuralFallback},
+		{"frozen_fallback：凍結檔中同樣的情況，需人工處理", len(rep.FrozenFallback)},
+		{"missing glyphs：字型缺字（字元數）", len(rep.MissingGlyphs)},
+	} {
+		fmt.Fprintf(&b, "| %s | %d |\n", row.label, row.n)
+	}
+	b.WriteString("\n")
+
+	b.WriteString("## 授權與來源\n\n")
+	b.WriteString("- 譯文採用 CC BY-NC-SA 4.0 授權，含 Paratranz 社群譯文（第一階段匯入）。\n")
+	b.WriteString("- 遊戲原文的著作權屬 Project Moon。\n")
+	b.WriteString("- 字型 Sarasa Gothic（SIL OFL），在 complete 版內。\n")
+	return []byte(b.String())
+}
