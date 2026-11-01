@@ -40,6 +40,7 @@ type Moved struct {
 // has. Its KR text and translation may serve a new unit with the same text.
 type DeletedUnit struct {
 	File, Field, KR string
+	Pointer         string        // where the string was in the old version
 	Record          *store.Record // nil when the unit had no record
 }
 
@@ -74,10 +75,13 @@ type Changes struct {
 //     item loses its lease, which was taken on the old version;
 //   - changed: its record is dropped and the unit is queued as "kr-changed"
 //     with the old KR and the old translation, keeping the Hint of a pending
-//     item it had. A changed unit of a frozen file (frozen holds the
-//     patterns of lct.yaml) keeps its record instead, with the old kr_sha,
-//     and is listed in FrozenChanged; with no record to keep, it is queued
-//     like any other changed unit;
+//     item it had. With no record but a pending item that carries a previous
+//     translation (the KR changed twice before the unit was retranslated),
+//     the new item keeps that item's PrevKR and PrevZH instead. A changed
+//     unit of a frozen file (frozen holds the patterns of lct.yaml) keeps
+//     its record instead, with the old kr_sha, and is listed in
+//     FrozenChanged; with no record to keep, it is queued like any other
+//     changed unit;
 //   - new: queued as "new".
 //
 // A string only the old version has is deleted: its record and pending item
@@ -86,13 +90,12 @@ type Changes struct {
 // whose key is not a string of the old version has nowhere to go and is
 // dropped.
 //
-// A moved record keeps its Since, which is the raw tag its translation was
-// written for, so rawTag, the tag of the new snapshot, is not recorded
-// anywhere. A pending item has no version.
+// A moved record keeps its Since, the raw tag its translation was written
+// for; a pending item has no version.
 //
 // Transition changes neither recs nor pending nor anything they hold; the
 // result shares no memory with them.
-func Transition(oldKR, newKR *pack.Pack, recs map[string]store.Record, pending []store.PendingItem, frozen []string, rawTag string) (*Moved, error) {
+func Transition(oldKR, newKR *pack.Pack, recs map[string]store.Record, pending []store.PendingItem, frozen []string) (*Moved, error) {
 	m := &mover{
 		recs:    recs,
 		pending: make(map[string]store.PendingItem, len(pending)),
@@ -194,8 +197,14 @@ func (m *mover) file(file string, oldDoc, newDoc *jsonx.Node) {
 				continue
 			}
 			queued := store.PendingItem{Key: newKey, Reason: ReasonKRChanged, PrevKR: old.KR}
-			if hasRec {
+			switch {
+			case hasRec:
 				queued.PrevZH = rec.ZH
+			case hasItem && item.PrevZH != "":
+				// The KR changed again before the unit was retranslated:
+				// keep the last translated pair, so PrevZH stays paired
+				// with the KR it translated.
+				queued.PrevKR, queued.PrevZH = item.PrevKR, item.PrevZH
 			}
 			if hasItem {
 				queued.Hint = item.Hint
@@ -210,7 +219,7 @@ func (m *mover) file(file string, oldDoc, newDoc *jsonx.Node) {
 		case align.StatusDeleted:
 			c.Deleted++
 			changed = true
-			d := DeletedUnit{File: file, Field: old.Field, KR: old.KR}
+			d := DeletedUnit{File: file, Field: old.Field, KR: old.KR, Pointer: vm.OldPointer}
 			if hasRec {
 				r := cloneRecord(rec)
 				d.Record = &r

@@ -20,7 +20,6 @@ const (
 	storyFile = "StoryData/S1.json"
 	bgmFile   = "BgmLyrics/L.json"
 	bufsFile  = "Bufs.json"
-	rawTag    = "raw-20261105"
 )
 
 var frozen = []string{"BgmLyrics/**"}
@@ -75,7 +74,7 @@ func recordsOf(rs ...store.Record) map[string]store.Record {
 
 func transition(t *testing.T, oldFiles, newFiles map[string]string, recs map[string]store.Record, pending []store.PendingItem) *Moved {
 	t.Helper()
-	m, err := Transition(openKR(t, oldFiles), openKR(t, newFiles), recs, pending, frozen, rawTag)
+	m, err := Transition(openKR(t, oldFiles), openKR(t, newFiles), recs, pending, frozen)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -164,6 +163,8 @@ func TestTransitionDuplicateLines(t *testing.T) {
 	}
 	if len(m.Deleted) != 1 || m.Deleted[0].KR != "……" || m.Deleted[0].Record == nil || m.Deleted[0].Record.ZH != "第一個省略號" {
 		t.Errorf("Deleted = %+v, want the first …", m.Deleted)
+	} else if m.Deleted[0].Pointer != "/dataList/1/content" || m.Deleted[0].Record.Key != contentKey(storyFile, 1) {
+		t.Errorf("Deleted[0] = %+v, want the old pointer /dataList/1/content", m.Deleted[0])
 	}
 	if m.Changes.Deleted != 1 || m.Changes.Unchanged != 4 || m.Changes.New != 0 {
 		t.Errorf("Changes = %+v", m.Changes)
@@ -223,6 +224,48 @@ func TestTransitionChangedWithoutRecordOrWithHint(t *testing.T) {
 		{Key: contentKey(storyFile, 1), Reason: "kr-changed", PrevKR: oldLines[1]},
 		{Key: contentKey(storyFile, 3), Reason: "kr-changed", PrevKR: oldLines[3], PrevZH: "舊譯 3", Hint: "改用「您」"},
 	}
+	if !reflect.DeepEqual(m.Pending, want) {
+		t.Errorf("pending = %+v, want %+v", m.Pending, want)
+	}
+}
+
+func TestTransitionChangedTwiceKeepsTheLastTranslatedPair(t *testing.T) {
+	// The KR of line 1 changed last week (A to B) and the unit was queued
+	// with A and its translation, then changed again (B to C) before anyone
+	// translated it. Line 3 changed last week too, but its item carries no
+	// translation to keep.
+	const kA, kB, kC = "안녕하세요 오늘은 날씨가 좋네요", "안녕하세요 오늘은 날씨가 나쁘네요", "안녕하세요 오늘은 날씨가 흐리네요"
+	const mB, mC = "안녕하세요 내일은 비가 올 거예요", "안녕하세요 내일은 눈이 올 거예요"
+	oldLines := []string{"첫째 줄", kB, "셋째 줄", mB, "다섯째 줄"}
+	newLines := []string{"첫째 줄", kC, "셋째 줄", mC, "다섯째 줄"}
+	pending := []store.PendingItem{
+		{Key: contentKey(storyFile, 1), Reason: "kr-changed", PrevKR: kA, PrevZH: "A 的譯文", Hint: "改用「您」", Attempts: 1},
+		{Key: contentKey(storyFile, 3), Reason: "kr-changed", PrevKR: "더 오래된 줄"},
+	}
+
+	m := transition(t, map[string]string{storyFile: story(oldLines...)}, map[string]string{storyFile: story(newLines...)}, nil, pending)
+
+	want := []store.PendingItem{
+		{Key: contentKey(storyFile, 1), Reason: "kr-changed", PrevKR: kA, PrevZH: "A 的譯文", Hint: "改用「您」"},
+		{Key: contentKey(storyFile, 3), Reason: "kr-changed", PrevKR: mB},
+	}
+	if !reflect.DeepEqual(m.Pending, want) {
+		t.Errorf("pending = %+v, want %+v", m.Pending, want)
+	}
+}
+
+func TestTransitionChangedPrefersTheRecordOverAnOldPair(t *testing.T) {
+	// A record exists (a requeued unit) next to an old pair: the record is
+	// the translation the unit has now.
+	const oldKR, newKR = "안녕하세요 오늘은 날씨가 좋네요", "안녕하세요 오늘은 날씨가 나쁘네요"
+	oldLines := []string{"첫째 줄", oldKR, "셋째 줄"}
+	newLines := []string{"첫째 줄", newKR, "셋째 줄"}
+	recs := recordsOf(translated(contentKey(storyFile, 1), oldKR, "現行譯文"))
+	pending := []store.PendingItem{{Key: contentKey(storyFile, 1), Reason: "requeue", PrevKR: "더 오래된 줄", PrevZH: "更舊的譯文"}}
+
+	m := transition(t, map[string]string{storyFile: story(oldLines...)}, map[string]string{storyFile: story(newLines...)}, recs, pending)
+
+	want := []store.PendingItem{{Key: contentKey(storyFile, 1), Reason: "kr-changed", PrevKR: oldKR, PrevZH: "現行譯文"}}
 	if !reflect.DeepEqual(m.Pending, want) {
 		t.Errorf("pending = %+v, want %+v", m.Pending, want)
 	}
@@ -332,7 +375,8 @@ func TestTransitionNewAndDeletedFiles(t *testing.T) {
 	}
 	for i, d := range m.Deleted {
 		wantKR, wantZH := []string{"사라진 이름", "또 사라진 이름"}[i], []string{"消失的名字", "又消失的名字"}[i]
-		if d.File != goneFile || d.Field != "name" || d.KR != wantKR || d.Record == nil || d.Record.ZH != wantZH {
+		wantPointer := fmt.Sprintf("/dataList/%d/name", i)
+		if d.File != goneFile || d.Pointer != wantPointer || d.Field != "name" || d.KR != wantKR || d.Record == nil || d.Record.ZH != wantZH {
 			t.Errorf("Deleted[%d] = %+v", i, d)
 		}
 	}
@@ -344,8 +388,8 @@ func TestTransitionDeletedUnitWithoutRecord(t *testing.T) {
 		map[string]string{storyFile: story("그대로")},
 		recordsOf(translated(contentKey(storyFile, 0), "그대로", "照舊")), nil)
 
-	if len(m.Deleted) != 1 || m.Deleted[0].KR != "지워질 줄" || m.Deleted[0].Record != nil {
-		t.Errorf("Deleted = %+v, want one untranslated unit with no record", m.Deleted)
+	if len(m.Deleted) != 1 || m.Deleted[0].KR != "지워질 줄" || m.Deleted[0].Record != nil || m.Deleted[0].Pointer != "/dataList/1/content" {
+		t.Errorf("Deleted = %+v, want one untranslated unit with no record at /dataList/1/content", m.Deleted)
 	}
 	mustEqual(t, "FilesChanged", m.Changes.FilesChanged, []string{storyFile})
 }
@@ -530,7 +574,7 @@ func TestTransitionReportsUnreadableFiles(t *testing.T) {
 	newKR := openKR(t, map[string]string{storyFile: story("첫째 줄")})
 	oldKR := openKR(t, map[string]string{storyFile: "not json"})
 
-	_, err := Transition(oldKR, newKR, nil, nil, frozen, rawTag)
+	_, err := Transition(oldKR, newKR, nil, nil, frozen)
 
 	if err == nil || !strings.Contains(err.Error(), storyFile) {
 		t.Errorf("err = %v, want one naming %s", err, storyFile)
