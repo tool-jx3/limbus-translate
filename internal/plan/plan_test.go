@@ -609,6 +609,117 @@ func TestPlanQueuesAnExpiredAdjustmentOnce(t *testing.T) {
 	}
 }
 
+// The key of an adjustment names a unit of the snapshot it was made for. A
+// line inserted before it moves that unit: when the unit's KR changes as well,
+// the adjustment expires, and its unit, at its new key, is the one queued with
+// it as a reference, not the unit its key names now (here the inserted line).
+// A second plan of the snapshot leaves it so.
+func TestPlanQueuesAnExpiredAdjustmentAtTheUnitsNewKey(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		story    = "StoryData/S1.json"
+		first    = "첫 번째 줄은 그대로입니다"
+		oldKR    = "두 번째 줄은 곧 바뀔 예정입니다"
+		newKR    = "두 번째 줄은 이미 바뀌었습니다"
+		inserted = "새로 끼워 넣은 줄입니다"
+	)
+	content := func(i int) string { return at(story, fmt.Sprintf("/dataList/%d/content", i)) }
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": oldKR})})
+	e.seed([]store.Record{translated(content(0), first, "第一行不變"), translated(content(1), oldKR, "第二行即將改變")}, nil)
+	// Made for the first snapshot and committed, but not planned before the
+	// next snapshot.
+	e.rule("rules/adjustments/2026-11-01-wording.yaml", adjustment(content(1), oldKR, "第二行就要改了。"))
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": inserted}, obj{"id": 3, "content": newKR})})
+
+	sum := e.run(tag1)
+
+	want := map[string]store.PendingItem{
+		content(1): {Key: content(1), Reason: ReasonNew},
+		content(2): {Key: content(2), Reason: ReasonAdjustmentExpired, PrevKR: oldKR, PrevZH: "第二行即將改變", Refs: map[string]string{RefAdjustment: "第二行就要改了。"}},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if want := []string{content(1)}; !reflect.DeepEqual(sum.Adjustments.Expired, want) {
+		t.Errorf("Expired = %q, want %q (the adjustment's own key)", sum.Adjustments.Expired, want)
+	}
+
+	e.run(tag1)
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("after a second plan pending = %v\nwant %v", got, want)
+	}
+}
+
+// An adjustment made for the current snapshot names its unit by its key, a
+// transition or not: one whose KR text that unit does not have expired, and
+// the unit is queued with it.
+func TestPlanQueuesAnExpiredAdjustmentOfTheCurrentSnapshotAtItsKey(t *testing.T) {
+	e := newPlanEnv(t)
+	const story = "StoryData/S1.json"
+	content := func(i int) string { return at(story, fmt.Sprintf("/dataList/%d/content", i)) }
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": "첫 번째 줄입니다"})})
+	e.seed([]store.Record{translated(content(0), "첫 번째 줄입니다", "第一行")}, nil)
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": "새로 들어온 줄입니다"}, obj{"id": 2, "content": "첫 번째 줄이 바뀌었습니다"})})
+	// Written for the new snapshot, but with the sha of a text it lacks.
+	e.rule("rules/adjustments/2026-11-05-wording.yaml", strings.ReplaceAll(adjustment(content(1), "첫 번째 줄입니다", "第一行改了。"), tag1, tag2))
+
+	e.run(tag1)
+
+	if it := e.pending()[content(1)]; it.Reason != ReasonAdjustmentExpired || it.Refs[RefAdjustment] != "第一行改了。" {
+		t.Errorf("the unit of the key = %+v, want adjustment-expired with the adjustment as a reference", it)
+	}
+	if it := e.pending()[content(0)]; it.Reason != ReasonNew || len(it.Refs) != 0 {
+		t.Errorf("the other unit = %+v, want new without a reference", it)
+	}
+}
+
+// An adjustment stays in effect over several snapshots, at whatever key its
+// text moves to, while its raw stays the snapshot it was made for. When it
+// expires, its unit is the one it was in effect at: followed from there to the
+// current snapshot, not looked up by its key.
+func TestPlanQueuesAnExpiredAdjustmentWhereItWasInEffect(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		story  = "StoryData/S1.json"
+		first  = "첫 번째 줄은 그대로입니다"
+		oldKR  = "조정된 줄은 나중에 바뀝니다"
+		newKR  = "조정된 줄은 결국 바뀌었습니다"
+		insert = "두 번째 판에서 들어온 줄입니다"
+		again  = "세 번째 판에서 들어온 줄입니다"
+	)
+	content := func(i int) string { return at(story, fmt.Sprintf("/dataList/%d/content", i)) }
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": oldKR})})
+	e.seed([]store.Record{translated(content(0), first, "第一行不變"), translated(content(1), oldKR, "調整過的那行")}, nil)
+	e.rule("rules/adjustments/2026-11-01-wording.yaml", adjustment(content(1), oldKR, "調整過的那一行。"))
+	if sum := e.run(""); sum.Adjustments.Applied != 1 {
+		t.Fatalf("first snapshot: Adjustments = %+v, want one applied", sum.Adjustments)
+	}
+
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": insert}, obj{"id": 3, "content": oldKR})})
+	if sum := e.run(""); !reflect.DeepEqual(sum.Adjustments.Moved, []MovedKey{{From: content(1), To: content(2)}}) {
+		t.Fatalf("second snapshot: Adjustments = %+v, want the adjustment moved to line 3", sum.Adjustments)
+	}
+
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": insert}, obj{"id": 3, "content": again}, obj{"id": 4, "content": newKR})})
+	sum := e.run("")
+
+	pending := e.pending()
+	if got, want := pending[content(3)], (store.PendingItem{
+		Key: content(3), Reason: ReasonAdjustmentExpired, PrevKR: oldKR, PrevZH: "調整過的那一行。",
+		Refs: map[string]string{RefAdjustment: "調整過的那一行。"},
+	}); !reflect.DeepEqual(got, want) {
+		t.Errorf("the adjusted line = %+v\nwant %+v", got, want)
+	}
+	for _, key := range []string{content(1), content(2)} {
+		if it := pending[key]; it.Reason != ReasonNew || len(it.Refs) != 0 {
+			t.Errorf("inserted line %s = %+v, want new without a reference", key, it)
+		}
+	}
+	if want := []string{content(1)}; !reflect.DeepEqual(sum.Adjustments.Expired, want) {
+		t.Errorf("Expired = %q, want %q", sum.Adjustments.Expired, want)
+	}
+}
+
 func TestPlanReusesTheSameText(t *testing.T) {
 	e := newPlanEnv(t)
 	const (

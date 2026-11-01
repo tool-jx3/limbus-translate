@@ -231,10 +231,11 @@ func (in Inputs) check() error {
 //     from its own file;
 //  6. otherwise it is queued: a unit that is not queued yet is queued as
 //     new, and a copy record it has goes (a copy is no translation). A unit
-//     whose adjustment expired (its KR text changed) is queued as
-//     adjustment-expired, with the adjustment as a reference, unless it has a
-//     record of its KR text already that is not human: the unit is queued
-//     once, and no more once it is translated again.
+//     whose adjustment expired (its KR text changed; see expiredUnit for how
+//     the unit is found) is queued as adjustment-expired, with the adjustment
+//     as a reference, unless it has a record of its KR text already that is
+//     not human: the unit is queued once, and no more once it is translated
+//     again.
 //
 // Steps 1 to 4 and 6 come first, and the adjustments that expired are queued.
 // The rewrite files and the request files of rules/rewrite and rules/requeue
@@ -320,7 +321,9 @@ func Run(in Inputs) (*Summary, error) {
 		if err := p.settle(adjusted.claims); err != nil {
 			return err
 		}
-		p.expire(adjusted)
+		if err := p.expire(adjusted); err != nil {
+			return err
+		}
 		applied, err := st.LoadApplied()
 		if err != nil {
 			return err
@@ -407,10 +410,12 @@ type planner struct {
 	records map[string]store.Record
 	pending map[string]store.PendingItem // by key; the request files make the final queue from it
 
-	// After a transition: the KR pack of the previous snapshot and the units
-	// it had that the current one has not.
-	oldKR   *pack.Pack
-	deleted []DeletedUnit
+	// After a transition: the KR pack of the previous snapshot, the units it
+	// had that the current one has not, and the records as they were before
+	// the transition, by their keys in the previous snapshot.
+	oldKR       *pack.Pack
+	deleted     []DeletedUnit
+	prevRecords map[string]store.Record
 
 	// from is the snapshot the state belongs to when Run starts.
 	from string
@@ -498,7 +503,7 @@ func (p *planner) transition(dir string) error {
 	if err != nil {
 		return err
 	}
-	p.oldKR, p.deleted, p.records = old, moved.Deleted, moved.Records
+	p.oldKR, p.deleted, p.prevRecords, p.records = old, moved.Deleted, p.records, moved.Records
 	p.setPending(moved.Pending)
 	p.sum.Changes, p.sum.FrozenChanged = moved.Changes, moved.FrozenChanged
 	if p.sum.FrozenChanged == nil {
@@ -678,7 +683,7 @@ func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
 
 // expire reports what became of the adjustments, and queues the units of
 // those that expired (step 6).
-func (p *planner) expire(r resolved) {
+func (p *planner) expire(r resolved) error {
 	adj := &p.sum.Adjustments
 	for key, c := range r.claims {
 		switch {
@@ -693,20 +698,28 @@ func (p *planner) expire(r resolved) {
 	for _, a := range r.beaten {
 		adj.Expired = append(adj.Expired, a.Key) // the unit has the winner's record
 	}
+	var finder *unitFinder
+	if len(r.expired) > 0 {
+		finder = p.newUnitFinder()
+	}
 	for _, a := range r.expired {
 		adj.Expired = append(adj.Expired, a.Key)
+		key, err := finder.expiredUnit(a)
+		if err != nil {
+			return err
+		}
 		// A unit that steps 1 to 3 settled (another adjustment may have
 		// moved to it) has its source.
-		ref, ok := p.cur[a.Key]
-		if !ok || p.settled[a.Key] {
+		ref, ok := p.cur[key]
+		if !ok || p.settled[key] {
 			continue
 		}
-		if rec, has := p.records[a.Key]; has && rec.KRSha == ref.sha && rec.Origin != store.OriginHuman {
+		if rec, has := p.records[key]; has && rec.KRSha == ref.sha && rec.Origin != store.OriginHuman {
 			continue // translated again already
 		}
-		item, queued := p.pending[a.Key]
+		item, queued := p.pending[key]
 		if !queued {
-			item = store.PendingItem{Key: a.Key}
+			item = store.PendingItem{Key: key}
 		}
 		item.Reason = ReasonAdjustmentExpired
 		item.Refs = maps.Clone(item.Refs)
@@ -714,10 +727,124 @@ func (p *planner) expire(r resolved) {
 			item.Refs = map[string]string{}
 		}
 		item.Refs[RefAdjustment] = a.ZH
-		p.pending[a.Key] = item
+		p.pending[key] = item
 	}
 	slices.Sort(adj.Expired)
 	sort.Slice(adj.Moved, func(i, j int) bool { return adj.Moved[i].From < adj.Moved[j].From })
+	return nil
+}
+
+// unitFinder finds the units of the adjustments that expired (expiredUnit).
+type unitFinder struct {
+	p *planner
+	// human holds the keys of the human records the state had before the
+	// transition, by what wrote them.
+	human map[humanRef][]string
+	// versions are the alignments of the files of the previous snapshot with
+	// the current one, made as they are needed.
+	versions map[string]*fileVersions
+}
+
+// humanRef is what tells the human record of an adjustment apart: the
+// adjustment file (Record.Batch), the KR text and the translation.
+type humanRef struct{ batch, krSha, zh string }
+
+// fileVersions is one file of the previous snapshot and what the current one
+// made of it.
+type fileVersions struct {
+	old   map[string]units.Unit         // its units, by pointer
+	moves map[string]align.VersionMatch // by old pointer
+}
+
+func (p *planner) newUnitFinder() *unitFinder {
+	f := &unitFinder{p: p, human: map[humanRef][]string{}, versions: map[string]*fileVersions{}}
+	for key, rec := range p.prevRecords {
+		if rec.Origin == store.OriginHuman && strings.HasPrefix(rec.Batch, batchAdjustment) {
+			ref := humanRef{rec.Batch, rec.KRSha, rec.ZH}
+			f.human[ref] = append(f.human[ref], key)
+		}
+	}
+	return f
+}
+
+// expiredUnit returns the key, in the current KR, of the unit the expired
+// adjustment a was made for, or "" when that unit is gone or the plan cannot
+// tell which it is. Only an adjustment made for the current snapshot names its
+// unit by its key: a key names a unit of one snapshot, a line inserted before
+// the unit moves it to another key, and its changed KR keeps adjust.Resolve
+// from finding it by its text. So, after a transition in this run, the unit
+// is taken where the adjustment was in the snapshot the state belonged to and
+// followed to the current one as the transition moved it (align.AlignVersions,
+// whose changed strings are the only ones an expired adjustment can be of):
+//
+//   - the unit the adjustment was in effect at, which has its human record;
+//   - else, for an adjustment made for that snapshot, the unit of its key, if
+//     that unit had the adjustment's KR text there.
+//
+// An adjustment made for an older snapshot and in effect at none of its units
+// then has no unit the plan can tell, and without a transition no adjustment
+// made for another snapshot has one. On a rerun of the plan that is what keeps
+// the state as it is: the run that made the transition queued the unit, and
+// the state carries that item.
+func (f *unitFinder) expiredUnit(a adjust.Adjustment) (string, error) {
+	p := f.p
+	if a.Raw == p.sum.RawTag {
+		return a.Key, nil
+	}
+	if p.oldKR == nil {
+		return "", nil
+	}
+	from, mustHaveText := "", false
+	switch keys := f.human[humanRef{batchAdjustment + a.File, a.KRSha, a.ZH}]; {
+	case slices.Contains(keys, a.Key):
+		from = a.Key
+	case len(keys) == 1:
+		from = keys[0]
+	case a.Raw == p.sum.PrevRawTag:
+		from, mustHaveText = a.Key, true
+	default:
+		return "", nil
+	}
+	file, pointer, err := units.SplitKey(from)
+	if err != nil {
+		return "", nil // a key that names no unit (adjust.Resolve said expired)
+	}
+	v, err := f.fileVersions(file)
+	if err != nil {
+		return "", err
+	}
+	if old, ok := v.old[pointer]; !ok || mustHaveText && units.KRSha(old.KR) != a.KRSha {
+		return "", nil
+	}
+	if m, ok := v.moves[pointer]; ok && m.Status == align.StatusChanged {
+		return units.Key(file, m.NewPointer), nil
+	}
+	return "", nil
+}
+
+func (f *unitFinder) fileVersions(file string) (*fileVersions, error) {
+	if v, ok := f.versions[file]; ok {
+		return v, nil
+	}
+	oldDoc, err := docOf(f.p.oldKR, file)
+	if err != nil {
+		return nil, err
+	}
+	newDoc, err := docOf(f.p.in.Src.KR, file)
+	if err != nil {
+		return nil, err
+	}
+	v := &fileVersions{old: map[string]units.Unit{}, moves: map[string]align.VersionMatch{}}
+	for _, u := range units.Extract(file, oldDoc) {
+		v.old[u.Pointer] = u
+	}
+	for _, m := range align.AlignVersions(file, oldDoc, newDoc) {
+		if m.OldPointer != "" {
+			v.moves[m.OldPointer] = m
+		}
+	}
+	f.versions[file] = v
+	return v, nil
 }
 
 // source is a translation that a unit of the same text may take.
