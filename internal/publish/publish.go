@@ -30,21 +30,35 @@ const (
 	// notesName is the file Run writes the release notes to, in outDir.
 	notesName = "release-notes.md"
 
-	buildMetaName = "build.json"
-	dayLayout     = "20060102"
+	dayLayout = "20060102"
 
 	// licenseURL is the text of the licence of the translations.
 	licenseURL = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 )
 
-// upstreamOrder is the order the upstream sources are listed in the notes;
+// importedSource is the upstream source whose translations phase 1 imported
+// into the records (origin paratranz). Every other source was only read, as a
+// reference.
+const importedSource = "paratranz"
+
+// referenceOrder is the order the reference sources are listed in the notes;
 // any other name follows, sorted.
-var upstreamOrder = []string{"paratranz", "ltm", "llc"}
+var referenceOrder = []string{"ltm", "llc"}
 
 // ErrNotBuilt marks a refusal because there is no usable build to publish: no
-// .meta/build.json, one with no usable raw tag, or a zip of the build that is
-// missing. The fix is lct build.
-var ErrNotBuilt = errors.New("publish: not built")
+// .meta/build.json, one with no usable raw tag, or a zip that is missing or is
+// not the one the build made. The fix is lct build. It is build.ErrNotBuilt, so
+// that a worktree that was never built is the same error from build.ReadInfo.
+var ErrNotBuilt = build.ErrNotBuilt
+
+// ErrDirtyRules marks a refusal because the build was made from rules with
+// changes that were not committed (its rules_commit ends in "+dirty"): the
+// Release could not be traced to the rules that made it. The fix is to commit
+// the rules and run lct build again.
+var ErrDirtyRules = errors.New("publish: the build was made from rules that were not committed")
+
+// dirtySuffix ends the rules commit of such a build (see gitx.Describe).
+const dirtySuffix = "+dirty"
 
 var (
 	// rawTagRe matches the tag of a raw snapshot, "raw-YYYYMMDD" or
@@ -81,32 +95,6 @@ func ReleaseTag(rawTag string, existing []string) (string, error) {
 	return fmt.Sprintf("%s%s.%d", TagPrefix, day, highest+1), nil
 }
 
-// BuildInfo is .meta/build.json as lct build writes it: the inputs of the
-// build and what the build did. It has every field of the file, because the
-// store refuses a file with fields the type does not know.
-type BuildInfo struct {
-	RawTag      string            `json:"raw_tag"`
-	RawToken    string            `json:"raw_token"`
-	RulesCommit string            `json:"rules_commit"`
-	BuiltAt     string            `json:"built_at"`
-	Upstream    map[string]string `json:"upstream,omitempty"`
-	Report      build.Report      `json:"report"`
-}
-
-// readBuildInfo reads .meta/build.json of the tw worktree. A worktree without
-// one is ErrNotBuilt; one that cannot be read or decoded is an ordinary error.
-func readBuildInfo(twRoot string) (BuildInfo, error) {
-	var info BuildInfo
-	found, err := store.Open(twRoot).ReadMetaJSON(buildMetaName, &info)
-	if err != nil {
-		return BuildInfo{}, err
-	}
-	if !found {
-		return BuildInfo{}, fmt.Errorf("%w: %s has no .meta/%s; run lct build first", ErrNotBuilt, twRoot, buildMetaName)
-	}
-	return info, nil
-}
-
 // Result is what Run did. The JSON keys are read by the workflow.
 type Result struct {
 	// TWCommit is the HEAD of the tw worktree: the commit the Release is made
@@ -120,6 +108,10 @@ type Result struct {
 	// Assets are the files to attach to the Release: the zip with the text
 	// only, then the zip that also holds the font.
 	Assets []string `json:"assets"`
+	// ReleaseNeeded is whether a Release must be made from TWCommit: this run
+	// committed it (Changed), or it has no Release tag yet, as when an earlier
+	// run committed it and the Release did not follow.
+	ReleaseNeeded bool `json:"release_needed"`
 }
 
 func (r Result) String() string {
@@ -127,7 +119,11 @@ func (r Result) String() string {
 	if r.Changed {
 		state = "committed"
 	}
-	s := fmt.Sprintf("%s: tw %s at %s\nnotes: %s\nassets:", r.Tag, state, r.TWCommit, r.NotesPath)
+	release := "not needed"
+	if r.ReleaseNeeded {
+		release = "needed"
+	}
+	s := fmt.Sprintf("%s: tw %s at %s, release %s\nnotes: %s\nassets:", r.Tag, state, r.TWCommit, release, r.NotesPath)
 	for _, a := range r.Assets {
 		s += "\n  " + a
 	}
@@ -142,18 +138,24 @@ func (r Result) String() string {
 // lct.yaml), which must be a plain name, as for build.ZipPaths.
 //
 // Everything that can be refused is checked before tw is touched: a worktree
-// that was not built, a raw tag that does not give a Release tag, or a missing
-// zip is ErrNotBuilt. If the build is what tw already holds, nothing is
+// that was not built, a raw tag that does not give a Release tag, or a zip that
+// is missing or is not the one the build made (its sha256 is not the one in
+// build.json) is ErrNotBuilt; a build made from rules that were not committed
+// is ErrDirtyRules. If the build is what tw already holds, nothing is
 // committed and TWCommit is the HEAD of tw. The tag is the next free one of
 // the day of the snapshot, so until a Release with it exists (its tag is in
-// the repo), running again gives the same tag.
+// the repo), running again gives the same tag. Result.ReleaseNeeded says
+// whether a Release is due for TWCommit.
 func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	if langDir == "" || langDir == "." || strings.ContainsAny(langDir, `/\`) || !filepath.IsLocal(langDir) {
 		return nil, fmt.Errorf("publish: language directory %q is not a plain name", langDir)
 	}
-	info, err := readBuildInfo(twRoot)
+	info, err := build.ReadInfo(twRoot)
 	if err != nil {
 		return nil, err
+	}
+	if strings.HasSuffix(info.RulesCommit, dirtySuffix) {
+		return nil, fmt.Errorf("%w (rules_commit %q); commit the rules and run lct build again", ErrDirtyRules, info.RulesCommit)
 	}
 	existing, err := gitx.Tags(root, TagPrefix)
 	if err != nil {
@@ -161,17 +163,13 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	}
 	tag, err := ReleaseTag(info.RawTag, existing)
 	if err != nil {
-		return nil, fmt.Errorf("%w: .meta/%s: %v", ErrNotBuilt, buildMetaName, err)
+		return nil, fmt.Errorf("publish: %w: .meta/build.json: %v", ErrNotBuilt, err)
 	}
 	// The raw tag is a plain name now, safe to put in a path.
 	text, complete := build.ZipPaths(build.Options{OutDir: outDir, LangDir: langDir, RawTag: info.RawTag})
 	assets := []string{text, complete}
 	for _, name := range assets {
-		fi, err := os.Stat(name)
-		if err == nil && !fi.Mode().IsRegular() || errors.Is(err, fs.ErrNotExist) {
-			return nil, fmt.Errorf("%w: %s is missing; run lct build first", ErrNotBuilt, name)
-		}
-		if err != nil {
+		if err := checkZip(name, info.Zips); err != nil {
 			return nil, err
 		}
 	}
@@ -189,11 +187,46 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 		return nil, err
 	}
 
+	// A commit that was made before, by a run whose Release did not follow,
+	// still needs its Release.
+	releaseNeeded := changed
+	if !changed {
+		tags, err := gitx.TagsAt(twRoot, TagPrefix)
+		if err != nil {
+			return nil, err
+		}
+		releaseNeeded = len(tags) == 0
+	}
+
 	notesPath := filepath.Join(outDir, notesName)
 	if err := os.WriteFile(notesPath, Notes(info, tag), 0o644); err != nil {
 		return nil, err
 	}
-	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets}, nil
+	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: releaseNeeded}, nil
+}
+
+// checkZip refuses the zip at name unless it is a file with the sha256 that
+// zips, the checksums of the build, give for its name.
+func checkZip(name string, zips map[string]string) error {
+	fi, err := os.Stat(name)
+	if err == nil && !fi.Mode().IsRegular() || errors.Is(err, fs.ErrNotExist) {
+		return fmt.Errorf("publish: %w: %s is missing; run lct build first", ErrNotBuilt, name)
+	}
+	if err != nil {
+		return err
+	}
+	want, ok := zips[filepath.Base(name)]
+	if !ok {
+		return fmt.Errorf("publish: %w: .meta/build.json has no checksum for %s; run lct build first", ErrNotBuilt, filepath.Base(name))
+	}
+	got, err := build.FileSHA256(name)
+	if err != nil {
+		return err
+	}
+	if !strings.EqualFold(got, want) {
+		return fmt.Errorf("publish: %w: %s has sha256 %s, but the build made one with %s; run lct build first", ErrNotBuilt, name, got, want)
+	}
+	return nil
 }
 
 // Notes renders the release notes of the Release called tag, built from info,
@@ -203,7 +236,7 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 // The parts come in this order: the title; what the pack is; how to install
 // it; the raw version; the rules version; a summary of the build report; the
 // licence and the sources.
-func Notes(info BuildInfo, tag string) []byte {
+func Notes(info build.Info, tag string) []byte {
 	var b strings.Builder
 	rep := info.Report
 
@@ -218,7 +251,6 @@ func Notes(info BuildInfo, tag string) []byte {
 	fmt.Fprintf(&b, "- raw tag：`%s`\n- token：`%s`\n\n", info.RawTag, info.RawToken)
 
 	b.WriteString("## 規則版本\n\n")
-	// Shown as built: a "+dirty" says the rules had changes that were not committed.
 	fmt.Fprintf(&b, "- rules commit：`%s`\n\n", info.RulesCommit)
 
 	b.WriteString("## 報表摘要\n\n")
@@ -239,7 +271,7 @@ func Notes(info BuildInfo, tag string) []byte {
 		{"pending：尚無譯文，暫時顯示英文（沒有英文則顯示韓文）", rep.Pending},
 		{"needs_review：待人工審核", rep.NeedsReview},
 		{"structural_fallback：譯文破壞原文結構，已改用原文", rep.StructuralFallback},
-		{"frozen_fallback：凍結檔中同樣的情況，需人工處理", len(rep.FrozenFallback)},
+		{"frozen_fallback：凍結檔需人工處理（同樣破壞原文結構，不重新翻譯）", len(rep.FrozenFallback)},
 		{"missing glyphs：字型缺字（字元數）", len(rep.MissingGlyphs)},
 	} {
 		fmt.Fprintf(&b, "| %s | %d |\n", row.label, row.n)
@@ -247,29 +279,39 @@ func Notes(info BuildInfo, tag string) []byte {
 	b.WriteString("\n")
 
 	b.WriteString("## 授權與來源\n\n")
-	fmt.Fprintf(&b, "- 譯文採用 [CC BY-NC-SA 4.0](%s) 授權，含 Paratranz 社群譯文（第一階段匯入）。\n", licenseURL)
-	if names := upstreamNames(info.Upstream); len(names) > 0 {
-		b.WriteString("- 第一階段匯入的上游來源：\n")
-		for _, name := range names {
-			fmt.Fprintf(&b, "  - %s: %s\n", name, info.Upstream[name])
+	// Sources are credited only when records of them went into the pack.
+	imported := rep.Origins[store.OriginParatranz] > 0
+	if imported {
+		fmt.Fprintf(&b, "- 譯文採用 [CC BY-NC-SA 4.0](%s) 授權，含 Paratranz 社群譯文（第一階段匯入）。\n", licenseURL)
+		if ref, ok := info.Upstream[importedSource]; ok {
+			fmt.Fprintf(&b, "- 匯入：%s: %s\n", importedSource, ref)
 		}
+		if names := referenceNames(info.Upstream); len(names) > 0 {
+			b.WriteString("- 第一階段的參考譯文（未匯入）：\n")
+			for _, name := range names {
+				fmt.Fprintf(&b, "  - %s: %s\n", name, info.Upstream[name])
+			}
+		}
+	} else {
+		fmt.Fprintf(&b, "- 譯文採用 [CC BY-NC-SA 4.0](%s) 授權。\n", licenseURL)
 	}
 	b.WriteString("- 遊戲原文的著作權屬 Project Moon。\n")
 	b.WriteString("- 字型 Sarasa Gothic（SIL OFL），在 complete 版內。\n")
 	return []byte(b.String())
 }
 
-// upstreamNames returns the names of the upstream sources in the order the
-// notes list them: upstreamOrder first, then any others sorted.
-func upstreamNames(upstream map[string]string) []string {
+// referenceNames returns the names of the reference sources in the order the
+// notes list them: referenceOrder first, then any others sorted. The imported
+// source is not one of them.
+func referenceNames(upstream map[string]string) []string {
 	var names []string
-	for _, name := range upstreamOrder {
+	for _, name := range referenceOrder {
 		if _, ok := upstream[name]; ok {
 			names = append(names, name)
 		}
 	}
 	for _, name := range slices.Sorted(maps.Keys(upstream)) {
-		if !slices.Contains(upstreamOrder, name) {
+		if name != importedSource && !slices.Contains(referenceOrder, name) {
 			names = append(names, name)
 		}
 	}

@@ -501,8 +501,8 @@ func TestBuildFrozenRecords(t *testing.T) {
 	if want := map[string]int{"paratranz": 1, "claude": 3}; !reflect.DeepEqual(rep.Origins, want) {
 		t.Errorf("Origins = %v, want %v", rep.Origins, want)
 	}
-	if rep.NeedsReview != 1 {
-		t.Errorf("NeedsReview = %d, want 1: the frozen record is flagged", rep.NeedsReview)
+	if rep.NeedsReview != 0 {
+		t.Errorf("NeedsReview = %d, want 0: the flagged frozen record is listed in FrozenFallback, once", rep.NeedsReview)
 	}
 	if rep.Warnings["hangul"] != 3 {
 		t.Errorf("Warnings = %v, want hangul 3: the frozen records' warnings count", rep.Warnings)
@@ -523,6 +523,39 @@ func TestBuildFrozenRecords(t *testing.T) {
 	data, err := json.Marshal(e2.run())
 	if err != nil || !strings.Contains(string(data), `"frozen_fallback":[]`) {
 		t.Errorf("report JSON = %s, %v, want an empty frozen_fallback list", data, err)
+	}
+}
+
+// A frozen record that breaks the structure of KR is a problem for a person,
+// listed in FrozenFallback. Its needs_review flag does not count it a second
+// time: NeedsReview is for the records that were used as they are.
+func TestBuildDoesNotCountFrozenFallbacksAsNeedsReview(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"content":"[Bleed] 중첩"},{"id":2,"content":"나"}]}`
+	en := `{"dataList":[{"id":1,"content":"[Bleed] stack"},{"id":2,"content":"B"}]}`
+	e := newEnv(t, map[string]string{"BgmLyrics/L.json": kr}, map[string]string{"BgmLyrics/L.json": en})
+	broken := rec("BgmLyrics/L.json", "/dataList/0/content", "[Bleed] 중첩", "中疊") // lost [Bleed]
+	broken.Flags = []string{store.FlagNeedsReview}
+	flagged := rec("BgmLyrics/L.json", "/dataList/1/content", "나", "乙") // fine, but a person should look
+	flagged.Flags = []string{store.FlagNeedsReview}
+	e.save(broken, flagged)
+
+	rep := e.run()
+	if want := []string{broken.Key}; !slices.Equal(rep.FrozenFallback, want) {
+		t.Errorf("FrozenFallback = %v, want %v", rep.FrozenFallback, want)
+	}
+	if rep.NeedsReview != 1 {
+		t.Errorf("NeedsReview = %d, want 1: only the flagged record that was used, not the frozen fallback", rep.NeedsReview)
+	}
+	// Both records are still used ones.
+	if want := map[string]int{"claude": 2}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+
+	// With only the frozen fallback, nothing needs review.
+	e2 := newEnv(t, map[string]string{"BgmLyrics/L.json": kr}, map[string]string{"BgmLyrics/L.json": en})
+	e2.save(broken)
+	if rep := e2.run(); rep.NeedsReview != 0 || len(rep.FrozenFallback) != 1 {
+		t.Errorf("NeedsReview = %d, FrozenFallback = %v, want 0 and the one key", rep.NeedsReview, rep.FrozenFallback)
 	}
 }
 
@@ -914,6 +947,77 @@ func TestBuildWritesBuildRecordAndReport(t *testing.T) {
 	}
 	if ReportPath(e.opt) != filepath.Join(e.opt.TWRoot, ".meta", "reports", testTag+".md") {
 		t.Errorf("ReportPath = %s", ReportPath(e.opt))
+	}
+}
+
+// build.json records the sha256 of the zips, by file name, so that publish can
+// tell the zips of this build from those of another.
+func TestBuildRecordsZipChecksums(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"}]}`}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	e.run()
+
+	text, complete := ZipPaths(e.opt)
+	want := map[string]string{}
+	for _, name := range []string{text, complete} {
+		data, err := os.ReadFile(name)
+		if err != nil {
+			t.Fatal(err)
+		}
+		want[filepath.Base(name)] = hex.EncodeToString(sha256Of(data))
+	}
+	if len(want) != 2 {
+		t.Fatalf("the two zips have the same name: %v", want)
+	}
+
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(info.Zips, want) {
+		t.Errorf("Zips = %v, want %v", info.Zips, want)
+	}
+
+	// The key of the file.
+	b, err := os.ReadFile(filepath.Join(e.opt.TWRoot, ".meta", "build.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var raw struct {
+		Zips map[string]string `json:"zips"`
+	}
+	if err := json.Unmarshal(b, &raw); err != nil || !reflect.DeepEqual(raw.Zips, want) {
+		t.Errorf("build.json zips = %v, %v, want %v", raw.Zips, err, want)
+	}
+
+	// The build is reproducible, so are the checksums.
+	e.run()
+	if again, err := ReadInfo(e.opt.TWRoot); err != nil || !reflect.DeepEqual(again.Zips, want) {
+		t.Errorf("Zips after a second build = %v, %v, want %v", again.Zips, err, want)
+	}
+}
+
+// ReadInfo reads what Run wrote; a worktree that was never built is
+// ErrNotBuilt, a file that cannot be read is another error.
+func TestReadInfo(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"}]}`}, nil)
+	if _, err := ReadInfo(e.opt.TWRoot); !errors.Is(err, ErrNotBuilt) {
+		t.Errorf("ReadInfo of a worktree that was not built: err = %v, want ErrNotBuilt", err)
+	}
+
+	rep := e.run()
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if info.RawTag != testTag || info.RawToken != testToken || info.RulesCommit != "abc1234" || info.BuiltAt != "2026-10-31T12:30:45Z" ||
+		!reflect.DeepEqual(info.Upstream, e.opt.Upstream) || !reflect.DeepEqual(&info.Report, rep) {
+		t.Errorf("ReadInfo = %+v, want the inputs and the report of the build (%+v)", info, rep)
+	}
+
+	mustWrite(t, filepath.Join(e.opt.TWRoot, ".meta", "build.json"), []byte("{"))
+	if _, err := ReadInfo(e.opt.TWRoot); err == nil || errors.Is(err, ErrNotBuilt) {
+		t.Errorf("ReadInfo of a broken file: err = %v, want an error that is not ErrNotBuilt", err)
 	}
 }
 

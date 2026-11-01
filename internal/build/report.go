@@ -3,6 +3,7 @@ package build
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"iter"
 	"maps"
@@ -34,10 +35,41 @@ func newVersionInfo(opt Options) versionInfo {
 	}
 }
 
-// buildMeta is .meta/build.json: the inputs and what the build did.
-type buildMeta struct {
-	versionInfo
-	Report *Report `json:"report"`
+// infoName is the file of the store that holds Info.
+const infoName = "build.json"
+
+// ErrNotBuilt is returned by ReadInfo for a tw worktree that has no
+// .meta/build.json: nothing has been built there.
+var ErrNotBuilt = errors.New("not built")
+
+// Info is .meta/build.json: the inputs of the build, the zips it made and what
+// it did. Run writes it last; ReadInfo reads it. It has every field of the
+// file, because the store refuses a file with fields the type does not know.
+type Info struct {
+	RawTag      string            `json:"raw_tag"`
+	RawToken    string            `json:"raw_token"`
+	RulesCommit string            `json:"rules_commit"`
+	BuiltAt     string            `json:"built_at"`
+	Upstream    map[string]string `json:"upstream,omitempty"`
+	// Zips is the sha256 (lowercase hex) of each zip the build wrote to
+	// OutDir, by file name. publish checks the zips it releases against it.
+	Zips   map[string]string `json:"zips"`
+	Report Report            `json:"report"`
+}
+
+// ReadInfo reads .meta/build.json of the tw worktree at twRoot. A worktree
+// without one is ErrNotBuilt; one that cannot be read or decoded is another
+// error.
+func ReadInfo(twRoot string) (Info, error) {
+	var info Info
+	found, err := store.Open(twRoot).ReadMetaJSON(infoName, &info)
+	if err != nil {
+		return Info{}, err
+	}
+	if !found {
+		return Info{}, fmt.Errorf("build: %w: %s has no .meta/%s; run lct build first", ErrNotBuilt, twRoot, infoName)
+	}
+	return info, nil
 }
 
 // encodeJSON renders v like the store does: 2-space indent, no HTML escaping,
@@ -58,9 +90,15 @@ func ReportPath(opt Options) string {
 	return filepath.Join(opt.TWRoot, ".meta", "reports", opt.RawTag+".md")
 }
 
-// writeMeta writes the build record and the report to the store.
-func writeMeta(st *store.Store, opt Options, rep *Report) error {
-	if err := st.WriteMetaJSON("build.json", buildMeta{newVersionInfo(opt), rep}); err != nil {
+// writeMeta writes the build record and the report to the store. zips are the
+// checksums of the zips, by file name.
+func writeMeta(st *store.Store, opt Options, zips map[string]string, rep *Report) error {
+	v := newVersionInfo(opt)
+	info := Info{
+		RawTag: v.RawTag, RawToken: v.RawToken, RulesCommit: v.RulesCommit, BuiltAt: v.BuiltAt, Upstream: v.Upstream,
+		Zips: zips, Report: *rep,
+	}
+	if err := st.WriteMetaJSON(infoName, info); err != nil {
 		return err
 	}
 	return st.WriteMetaFile("reports/"+opt.RawTag+".md", Markdown(opt, rep))
@@ -92,6 +130,7 @@ func Markdown(opt Options, rep *Report) []byte {
 	}
 	b.WriteString("\n" +
 		"Pending units have no translation made from the current KR text; their EN text, or KR, is shown.\n" +
+		"Needs review counts the used records that are flagged needs_review; a frozen fallback is not counted again here.\n" +
 		"Structural fallbacks are translations that break the structure of KR (tags, [ID]s, placeholders) and were replaced the same way.\n" +
 		"Frozen fallbacks are such translations in frozen files: they are not translated again, so each needs a person (listed below).\n" +
 		"Unaligned units are pending units with no EN text either.\n" +

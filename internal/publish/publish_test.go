@@ -1,6 +1,9 @@
 package publish
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"os"
 	"os/exec"
@@ -17,19 +20,35 @@ import (
 const (
 	testRawTag   = "raw-20261029"
 	testToken    = "l20261029_n2rX1Jku6_9sBiu9Np24"
-	testRules    = "0123456789abcdef0123456789abcdef01234567+dirty"
+	testRules    = "0123456789abcdef0123456789abcdef01234567"
 	testReleaseA = "zh-TW-20261029.1"
 	testLang     = "zh-TW"
 )
 
+// zipSum is the sha256 build.json records for a zip with the content text.
+func zipSum(text string) string {
+	sum := sha256.Sum256([]byte(text))
+	return hex.EncodeToString(sum[:])
+}
+
+// The zips of the fixture: their file names, and what they hold.
+const (
+	testTextZip     = "zh-TW_text_" + testRawTag + ".zip"
+	testCompleteZip = "zh-TW_complete_" + testRawTag + ".zip"
+)
+
 // testBuildJSON is .meta/build.json as internal/build writes it.
-const testBuildJSON = `{
+var testBuildJSON = `{
   "raw_tag": "` + testRawTag + `",
   "raw_token": "` + testToken + `",
   "rules_commit": "` + testRules + `",
   "built_at": "2026-10-29T03:00:00Z",
   "upstream": {
     "paratranz": "owner/pz@11"
+  },
+  "zips": {
+    "` + testCompleteZip + `": "` + zipSum("complete") + `",
+    "` + testTextZip + `": "` + zipSum("text") + `"
   },
   "report": {
     "origins": {
@@ -104,8 +123,8 @@ func newFixture(t *testing.T) fixture {
 	write(t, f.tw, ".meta/build.json", testBuildJSON)
 	write(t, f.tw, "LimbusCompany_Data/Lang/config.json", "{\"lang\": \"zh-TW\"}\n")
 	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Sample.json", "{}\n")
-	write(t, f.out, "zh-TW_text_"+testRawTag+".zip", "text")
-	write(t, f.out, "zh-TW_complete_"+testRawTag+".zip", "complete")
+	write(t, f.out, testTextZip, "text")
+	write(t, f.out, testCompleteZip, "complete")
 	return f
 }
 
@@ -141,10 +160,10 @@ func TestReleaseTag(t *testing.T) {
 	}
 }
 
-func testInfo(t *testing.T) BuildInfo {
+func testInfo(t *testing.T) build.Info {
 	t.Helper()
 	f := newFixture(t)
-	info, err := readBuildInfo(f.tw)
+	info, err := build.ReadInfo(f.tw)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -156,7 +175,7 @@ func TestNotes(t *testing.T) {
 	notes := string(Notes(info, testReleaseA))
 
 	for _, want := range []string{
-		testReleaseA, testRawTag, testToken, testRules, // the rules commit is shown as built, "+dirty" included
+		testReleaseA, testRawTag, testToken, testRules,
 		"CC BY-NC-SA 4.0", "Project Moon", "Sarasa Gothic", "SIL OFL", "Paratranz",
 		"使用 Claude Code 翻譯",
 		"LimbusCompany_Data/", "zh-TW",
@@ -210,9 +229,11 @@ func tableRow(t *testing.T, notes, item string) string {
 	return ""
 }
 
-// The upstream sources are credited as "name: repo@tag" under the licence, in
-// a fixed order whatever the map order; a build with none lists none.
-func TestNotesCreditsTheUpstreamSources(t *testing.T) {
+// The notes tell the sources that went into the pack from those that were only
+// read: paratranz is imported (a line "匯入：paratranz: repo@tag"), the others are
+// reference translations that were not imported. They come in a fixed order
+// whatever the map order. A build that used no imported record lists none.
+func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 	info := testInfo(t)
 	info.Upstream = map[string]string{
 		"llc":       "owner/llc@33",
@@ -220,19 +241,29 @@ func TestNotesCreditsTheUpstreamSources(t *testing.T) {
 		"paratranz": "owner/pz@11",
 		"ltm":       "owner/ltm@22",
 	}
-	notes := string(Notes(info, testReleaseA))
-	licence := strings.Index(notes, "## 授權與來源")
-	last := licence
-	if licence < 0 {
-		t.Fatalf("no licence part:\n%s", notes)
+	if info.Report.Origins["paratranz"] == 0 {
+		t.Fatal("the fixture has no paratranz records")
 	}
+	notes := string(Notes(info, testReleaseA))
+
+	licence := strings.Index(notes, "## 授權與來源")
+	imported := strings.Index(notes, "匯入：paratranz: owner/pz@11\n")
+	reference := strings.Index(notes, "第一階段的參考譯文（未匯入）")
+	if licence < 0 || imported <= licence || reference <= imported {
+		t.Fatalf("licence at %d, imported at %d, reference at %d; want them in this order:\n%s", licence, imported, reference, notes)
+	}
+	last := reference
 	// An unknown name is not dropped; it follows the known ones.
-	for _, line := range []string{"paratranz: owner/pz@11", "ltm: owner/ltm@22", "llc: owner/llc@33", "zzz: owner/zzz@9"} {
+	for _, line := range []string{"ltm: owner/ltm@22", "llc: owner/llc@33", "zzz: owner/zzz@9"} {
 		i := strings.Index(notes, "  - "+line+"\n")
 		if i <= last {
-			t.Errorf("%q is at %d, want it after %d, in the licence part; notes:\n%s", line, i, last, notes)
+			t.Errorf("%q is at %d, want it after %d, under the reference translations; notes:\n%s", line, i, last, notes)
 		}
 		last = max(last, i)
+	}
+	// paratranz is imported, so it is not also listed as a reference.
+	if strings.Contains(notes[reference:], "paratranz") {
+		t.Errorf("paratranz is listed among the reference translations:\n%s", notes)
 	}
 
 	// The same bytes however the map was filled.
@@ -242,15 +273,36 @@ func TestNotesCreditsTheUpstreamSources(t *testing.T) {
 		}
 	}
 
-	for _, empty := range []map[string]string{nil, {}} {
-		info.Upstream = empty
+	// Nothing was imported: no upstream is listed, whatever the build knows
+	// about, and Paratranz is not credited.
+	info.Report.Origins = map[string]int{"claude": 7}
+	for _, upstream := range []map[string]string{info.Upstream, nil, {}} {
+		info.Upstream = upstream
 		without := string(Notes(info, testReleaseA))
-		if strings.Contains(without, "上游") || strings.Contains(without, "@") {
-			t.Errorf("notes of a build with no upstream (%#v) list sources:\n%s", empty, without)
+		for _, banned := range []string{"匯入", "參考譯文", "@", "上游", "paratranz", "ltm", "llc", "Paratranz"} {
+			if strings.Contains(without, banned) {
+				t.Errorf("notes of a build with no imported records (upstream %#v) mention %q:\n%s", upstream, banned, without)
+			}
 		}
 		if !strings.Contains(without, "CC BY-NC-SA 4.0") || !strings.HasSuffix(without, "\n") {
-			t.Errorf("notes of a build with no upstream are incomplete:\n%s", without)
+			t.Errorf("notes of a build with no imported records are incomplete:\n%s", without)
 		}
+	}
+}
+
+// A frozen file's record that breaks the structure of KR is one problem, and
+// has one row: the one for a person to handle. It is not also a record to
+// review.
+func TestNotesCountsEachProblemOnce(t *testing.T) {
+	info := testInfo(t)
+	info.Report.NeedsReview = 0
+	info.Report.FrozenFallback = []string{"BgmLyrics/L.json|/dataList/0/content", "BgmLyrics/L.json|/dataList/1/content", "BgmLyrics/L.json|/dataList/2/content"}
+	notes := string(Notes(info, testReleaseA))
+	if r := tableRow(t, notes, "待人工審核"); !strings.HasSuffix(r, "| 0 |") {
+		t.Errorf("row for the records to review = %q, want the count 0", r)
+	}
+	if r := tableRow(t, notes, "凍結檔需人工處理"); !strings.HasSuffix(r, "| 3 |") {
+		t.Errorf("row for the frozen fallbacks = %q, want the count 3", r)
 	}
 }
 
@@ -274,7 +326,7 @@ func TestNotesSummarizesTheReport(t *testing.T) {
 // A report with nothing in it (no origins, no lists) still gives complete
 // notes, and the same bytes every time.
 func TestNotesOfAnEmptyReport(t *testing.T) {
-	info := BuildInfo{RawTag: testRawTag, RawToken: testToken, RulesCommit: "abc"}
+	info := build.Info{RawTag: testRawTag, RawToken: testToken, RulesCommit: "abc"}
 	notes := string(Notes(info, testReleaseA))
 	for _, want := range []string{"# " + testReleaseA, testToken, "abc", "CC BY-NC-SA 4.0"} {
 		if !strings.Contains(notes, want) {
@@ -460,16 +512,17 @@ func TestPublishRejectsAnUnreadableBuildJSON(t *testing.T) {
 	}
 }
 
-func TestReadBuildInfoOfTheRealFormat(t *testing.T) {
+func TestPublishReadsTheRealFormat(t *testing.T) {
 	f := newFixture(t)
-	info, err := readBuildInfo(f.tw)
+	info, err := build.ReadInfo(f.tw)
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := BuildInfo{
+	want := build.Info{
 		RawTag: testRawTag, RawToken: testToken, RulesCommit: testRules,
 		BuiltAt:  "2026-10-29T03:00:00Z",
 		Upstream: map[string]string{"paratranz": "owner/pz@11"},
+		Zips:     map[string]string{testTextZip: zipSum("text"), testCompleteZip: zipSum("complete")},
 		Report: build.Report{
 			Origins:            map[string]int{"claude": 7, "copy": 3, "paratranz": 30},
 			Pending:            1234,
@@ -506,6 +559,11 @@ func TestPublishUsesTheLanguageDirectory(t *testing.T) {
 		t.Fatalf("tw has a commit after a refusal: %q, %v", head, err)
 	}
 
+	// A build with lang_dir zh-XX names the zips, in build.json too, after it.
+	write(t, f.tw, ".meta/build.json", strings.NewReplacer(
+		testTextZip, "zh-XX_text_"+testRawTag+".zip",
+		testCompleteZip, "zh-XX_complete_"+testRawTag+".zip",
+	).Replace(testBuildJSON))
 	res, err := Run(f.root, f.tw, f.out, "zh-XX")
 	if err != nil {
 		t.Fatal(err)
@@ -530,5 +588,133 @@ func TestPublishRejectsALanguageDirectoryThatIsNotAName(t *testing.T) {
 		if head, err := gitx.Head(f.tw); err != nil || head != "" {
 			t.Errorf("Run(lang %q) committed to tw: %q, %v", bad, head, err)
 		}
+	}
+}
+
+// A build made from rules with changes that were not committed cannot be
+// reproduced from the repo, so it is not published; tw gets no commit.
+func TestPublishRefusesDirtyRules(t *testing.T) {
+	f := newFixture(t)
+	write(t, f.tw, ".meta/build.json", strings.Replace(testBuildJSON, testRules, "abc+dirty", 1))
+	before := runGit(t, f.tw, "status", "--porcelain", "-uall")
+
+	res, err := Run(f.root, f.tw, f.out, testLang)
+	if !errors.Is(err, ErrDirtyRules) {
+		t.Fatalf("Run = %+v, %v; want ErrDirtyRules", res, err)
+	}
+	if errors.Is(err, ErrNotBuilt) {
+		t.Errorf("a dirty build is not an unbuilt one: %v", err)
+	}
+	if head, err := gitx.Head(f.tw); err != nil || head != "" {
+		t.Errorf("tw has a commit after a refusal: %q, %v", head, err)
+	}
+	if after := runGit(t, f.tw, "status", "--porcelain", "-uall"); after != before {
+		t.Errorf("status changed from\n%s\nto\n%s", before, after)
+	}
+	if _, err := os.Stat(filepath.Join(f.out, "release-notes.md")); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("release-notes.md after a refusal: %v", err)
+	}
+}
+
+// The zips in out/ must be the ones the build made, byte for byte: after a
+// second build, or by hand, they may be another build's.
+func TestPublishRefusesZipsOfAnotherBuild(t *testing.T) {
+	for _, tc := range []struct {
+		name   string
+		damage func(t *testing.T, f fixture)
+		zip    string // the zip the error must name
+	}{
+		{"text zip", func(t *testing.T, f fixture) { write(t, f.out, testTextZip, "another build") }, testTextZip},
+		{"complete zip", func(t *testing.T, f fixture) { write(t, f.out, testCompleteZip, "another build") }, testCompleteZip},
+		{"no checksum recorded", func(t *testing.T, f fixture) {
+			write(t, f.tw, ".meta/build.json", strings.Replace(testBuildJSON, `"`+testTextZip+`": "`+zipSum("text")+`"`, `"other.zip": "0"`, 1))
+		}, testTextZip},
+		{"no checksums at all", func(t *testing.T, f fixture) {
+			var m map[string]json.RawMessage
+			if err := json.Unmarshal([]byte(testBuildJSON), &m); err != nil {
+				t.Fatal(err)
+			}
+			delete(m, "zips")
+			b, err := json.Marshal(m)
+			if err != nil {
+				t.Fatal(err)
+			}
+			write(t, f.tw, ".meta/build.json", string(b))
+		}, testTextZip},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			f := newFixture(t)
+			tc.damage(t, f)
+			before := runGit(t, f.tw, "status", "--porcelain", "-uall")
+
+			res, err := Run(f.root, f.tw, f.out, testLang)
+			if !errors.Is(err, ErrNotBuilt) || !strings.Contains(err.Error(), tc.zip) {
+				t.Fatalf("Run = %+v, %v; want ErrNotBuilt naming %s", res, err, tc.zip)
+			}
+			if head, err := gitx.Head(f.tw); err != nil || head != "" {
+				t.Errorf("tw has a commit after a refusal: %q, %v", head, err)
+			}
+			if after := runGit(t, f.tw, "status", "--porcelain", "-uall"); after != before {
+				t.Errorf("status changed from\n%s\nto\n%s", before, after)
+			}
+			if _, err := os.Stat(filepath.Join(f.out, "release-notes.md")); !errors.Is(err, os.ErrNotExist) {
+				t.Errorf("release-notes.md after a refusal: %v", err)
+			}
+		})
+	}
+}
+
+// A Release is needed when this run made a commit, or when the commit has no
+// Release tag yet (a Release that failed halfway). A tag that is not a Release
+// tag does not count.
+func TestPublishReleaseNeeded(t *testing.T) {
+	f := newFixture(t)
+
+	first, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !first.Changed || !first.ReleaseNeeded {
+		t.Fatalf("first run = %+v, want Changed and ReleaseNeeded", first)
+	}
+
+	// Unchanged, and no Release tag on the commit: the Release is still due.
+	if err := gitx.Tag(f.tw, "raw-20261029"); err != nil {
+		t.Fatal(err)
+	}
+	pending, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if pending.Changed || !pending.ReleaseNeeded || pending.TWCommit != first.TWCommit {
+		t.Errorf("second run = %+v, want no change but a Release needed at %s", pending, first.TWCommit)
+	}
+
+	// The Release was made: its tag is on the commit of tw.
+	if err := gitx.Tag(f.tw, "zh-TW-20261029.1"); err != nil {
+		t.Fatal(err)
+	}
+	done, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if done.Changed || done.ReleaseNeeded || done.TWCommit != first.TWCommit {
+		t.Errorf("third run = %+v, want neither a change nor a Release needed", done)
+	}
+
+	// A new commit needs a Release, whatever the tags of the older ones.
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Sample.json", "{\"changed\": true}\n")
+	next, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !next.Changed || !next.ReleaseNeeded {
+		t.Errorf("fourth run = %+v, want Changed and ReleaseNeeded", next)
+	}
+
+	// The workflow reads it as release_needed.
+	data, err := json.Marshal(done)
+	if err != nil || !strings.Contains(string(data), `"release_needed":false`) {
+		t.Errorf("result JSON = %s, %v, want release_needed", data, err)
 	}
 }

@@ -19,7 +19,11 @@ import (
 	"testing"
 	"time"
 
+	"golang.org/x/image/font/gofont/goregular"
+
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -1415,8 +1419,10 @@ func TestSubmitKeepsGoodRecordWhenRequeueFails(t *testing.T) {
 		t.Run("a good "+origin+" record is kept", func(t *testing.T) {
 			want := good(origin)
 			got, _ := run(t, want)
+			// Kept as it is, but for the flag that says a person must look.
+			want.Flags = []string{store.FlagNeedsReview}
 			if !reflect.DeepEqual(got, want) {
-				t.Errorf("record = %+v, want it unchanged: %+v", got, want)
+				t.Errorf("record = %+v, want it unchanged but flagged: %+v", got, want)
 			}
 		})
 	}
@@ -1442,6 +1448,68 @@ func TestSubmitKeepsGoodRecordWhenRequeueFails(t *testing.T) {
 			t.Errorf("record = %+v, want the fresh fallback with the EN text", got)
 		}
 	})
+}
+
+// A requeued unit that cannot be translated again keeps its good record; the
+// record is flagged needs_review, so that the build reports it: a unit stuck in
+// the queue is not left unseen.
+func TestSubmitFlagsAKeptRecordNeedsReview(t *testing.T) {
+	const kr = "[Bleed] 위력"
+	krFiles := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] 위력"}]}`}
+	enFiles := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] Potency"}]}`}
+	k := key("Other.json", 0)
+	tw := filepath.Join(t.TempDir(), "tw")
+	env := newEnvIn(t, tw, krFiles, enFiles, nil)
+	good := store.Record{Key: k, KRSha: units.KRSha(kr), ZH: "賦予[Bleed]威力", Origin: store.OriginClaude, Since: "raw-20261001", Batch: "old-batch"}
+	if err := env.Store.SaveRecords(map[string]store.Record{k: good}); err != nil {
+		t.Fatal(err)
+	}
+	seed(t, env, store.PendingItem{Key: k, Reason: "requeue", PrevZH: good.ZH, Hint: "稱呼改用「您」"})
+	b := mustNext(t, env, NextOptions{})
+	for range 3 {
+		if _, err := Submit(env, b, []OutUnit{{Key: k, ZH: "賦予流血"}}, "m", 3); err != nil { // [Bleed] is missing
+			t.Fatal(err)
+		}
+	}
+
+	got := records(t, env)[k]
+	if got.ZH != good.ZH || got.Origin != good.Origin || !slices.Equal(got.Flags, []string{store.FlagNeedsReview}) {
+		t.Fatalf("record = %+v, want the good translation kept and flagged needs_review", got)
+	}
+
+	rep, err := build.Run(buildOptions(t, tw), env.Src, mustFieldRules(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if rep.NeedsReview != 1 {
+		t.Errorf("NeedsReview = %d, want 1: the kept record is reported", rep.NeedsReview)
+	}
+}
+
+// buildOptions are the options of a build into the tw worktree at tw. The
+// font is Go Regular: small, with Latin letters and no Han.
+func buildOptions(t *testing.T, tw string) build.Options {
+	t.Helper()
+	dir := t.TempDir()
+	font := filepath.Join(dir, "font.ttf")
+	writeFile(t, font, string(goregular.TTF))
+	writeFile(t, filepath.Join(dir, "OFL.txt"), "OFL text\n")
+	writeFile(t, filepath.Join(dir, "LICENSE-CONTENT"), "content license\n")
+	sum := sha256.Sum256(goregular.TTF)
+	return build.Options{
+		TWRoot: tw, OutDir: filepath.Join(dir, "out"), LangDir: "zh-TW",
+		FontPath: font, FontSHA256: hex.EncodeToString(sum[:]), LicensePath: filepath.Join(dir, "LICENSE-CONTENT"),
+		RawTag: testTag, RawToken: "token", RulesCommit: "0123abc", BuiltAt: testNow,
+	}
+}
+
+func mustFieldRules(t *testing.T) *fields.Rules {
+	t.Helper()
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	return fr
 }
 
 func TestSubmitFallbackWithoutEN(t *testing.T) {

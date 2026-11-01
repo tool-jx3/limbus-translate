@@ -56,12 +56,12 @@ func TestPublishCommandCommitsTheBuild(t *testing.T) {
 		keys = append(keys, k)
 	}
 	slices.Sort(keys)
-	if want := []string{"assets", "changed", "notes_path", "tag", "tw_commit"}; !slices.Equal(keys, want) {
+	if want := []string{"assets", "changed", "notes_path", "release_needed", "tag", "tw_commit"}; !slices.Equal(keys, want) {
 		t.Errorf("output keys = %v, want %v", keys, want)
 	}
 
 	out := filepath.Join(root, "out")
-	if !res.Changed || res.Tag != "zh-TW-20261029.1" || res.TWCommit != runGitIn(t, tw, "rev-parse", "HEAD") ||
+	if !res.Changed || !res.ReleaseNeeded || res.Tag != "zh-TW-20261029.1" || res.TWCommit != runGitIn(t, tw, "rev-parse", "HEAD") ||
 		res.NotesPath != filepath.Join(out, "release-notes.md") ||
 		!slices.Equal(res.Assets, []string{
 			filepath.Join(out, "zh-TW_text_raw-20261029.zip"),
@@ -155,6 +155,26 @@ func TestPublishNeedsBuild(t *testing.T) {
 	}
 }
 
+// A build made before the rules were committed is "+dirty": publish refuses it
+// as a user error that says so, and tw gets no commit.
+func TestPublishRefusesADirtyBuild(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	if _, err := runBuildJSON(t, root); err != nil { // the rules were copied in after the last commit
+		t.Fatal(err)
+	}
+	tw := filepath.Join(root, ".work", "tw")
+	before := runGitIn(t, tw, "status", "--porcelain")
+
+	ctx, _ := testCtx(t, root, "", true)
+	if err := runPublish(ctx, nil); !isUserError(err) || !strings.Contains(err.Error(), "+dirty") {
+		t.Errorf("publish of a dirty build: err = %v (%T), want a user error naming +dirty", err, err)
+	}
+	if after := runGitIn(t, tw, "status", "--porcelain"); after != before {
+		t.Errorf("a refusal changed tw: %q -> %q", before, after)
+	}
+}
+
 func TestPublishRejectsArguments(t *testing.T) {
 	root := publishRepo(t)
 	ctx, _ := testCtx(t, root, "", true)
@@ -168,6 +188,11 @@ func TestPublishRejectsArguments(t *testing.T) {
 // lang_dir names the zips, as it does for lct build.
 func TestPublishUsesTheConfiguredLanguageDirectory(t *testing.T) {
 	root := publishRepo(t)
+	saved, err := os.ReadFile(filepath.Join(root, "lct.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	original := string(saved)
 
 	// Not set: a user error that says so, before tw is touched.
 	ctx, _ := testCtx(t, root, "worktrees: { raw: .work/raw, tw: .work/tw }\n", true)
@@ -180,11 +205,11 @@ func TestPublishUsesTheConfiguredLanguageDirectory(t *testing.T) {
 	if err := runPublish(ctx, nil); !isUserError(err) || !strings.Contains(err.Error(), "zh-XX_text_raw-20261029.zip") {
 		t.Errorf("publish with lang_dir zh-XX: err = %v (%T), want a user error naming zh-XX_text_raw-20261029.zip", err, err)
 	}
-	for _, kind := range []string{"text", "complete"} {
-		old := filepath.Join(root, "out", "zh-TW_"+kind+"_raw-20261029.zip")
-		if err := os.Rename(old, filepath.Join(root, "out", "zh-XX_"+kind+"_raw-20261029.zip")); err != nil {
-			t.Fatal(err)
-		}
+	// Built with that directory, the zips are named after it, in build.json
+	// too, and they are published.
+	ctx, _ = testCtx(t, root, strings.Replace(original, "lang_dir: zh-TW", "lang_dir: zh-XX", 1), true)
+	if err := runBuild(ctx, nil); err != nil {
+		t.Fatal(err)
 	}
 	res, _, err := runPublishJSON(t, root)
 	if err != nil {

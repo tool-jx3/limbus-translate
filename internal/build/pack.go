@@ -187,10 +187,11 @@ type zipEntry struct {
 	path string
 }
 
-// writeZips writes the two zips. The text zip holds the pack as it is in the
-// worktree; the complete zip adds the font, twice (the game reads Context and
-// Title separately), and its licence.
-func writeZips(opt Options, t *tree, in *inputs) error {
+// writeZips writes the two zips and returns the sha256 of each, by file name.
+// The text zip holds the pack as it is in the worktree; the complete zip adds
+// the font, twice (the game reads Context and Title separately), and its
+// licence.
+func writeZips(opt Options, t *tree, in *inputs) (map[string]string, error) {
 	var text []zipEntry
 	for rel := range t.written {
 		text = append(text, zipEntry{name: rel, path: t.path(rel)})
@@ -202,10 +203,36 @@ func writeZips(opt Options, t *tree, in *inputs) error {
 	)
 	textZip, completeZip := ZipPaths(opt)
 	modified := opt.BuiltAt.UTC().Truncate(time.Second)
-	if err := writeZip(textZip, text, modified); err != nil {
-		return err
+	sums := make(map[string]string, 2)
+	for _, z := range []struct {
+		dst     string
+		entries []zipEntry
+	}{{textZip, text}, {completeZip, complete}} {
+		if err := writeZip(z.dst, z.entries, modified); err != nil {
+			return nil, err
+		}
+		sum, err := FileSHA256(z.dst)
+		if err != nil {
+			return nil, fmt.Errorf("build: checksum of %s: %w", z.dst, err)
+		}
+		sums[filepath.Base(z.dst)] = sum
 	}
-	return writeZip(completeZip, complete, modified)
+	return sums, nil
+}
+
+// FileSHA256 is the lowercase hex sha256 of the file at path: the checksum
+// Info.Zips holds for a zip.
+func FileSHA256(path string) (string, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+	h := sha256.New()
+	if _, err := io.Copy(h, f); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(h.Sum(nil)), nil
 }
 
 // writeZip writes a zip of entries sorted by name, each deflated and stamped

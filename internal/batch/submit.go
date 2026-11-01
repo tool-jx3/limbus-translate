@@ -99,7 +99,8 @@ func foreignNameIssues(zh string, names []string) []validate.Issue {
 // the lease ends and the unit gets a fallback record (the EN text, else KR)
 // flagged needs_review and stays in the queue flagged. A record that is a
 // translation of the KR text there is now (see keepsRecord) is not replaced by
-// the fallback: it stays as it is, and only the queue item is flagged.
+// the fallback: its text stays as it is, and the record and the queue item are
+// flagged needs_review.
 //
 // A unit that b already got accepted is accepted again without being written
 // again, so the whole out file can be sent once more. Units of b that are not
@@ -309,6 +310,10 @@ func (s *submission) unit(o OutUnit) error {
 		item.Flags = withFlag(item.Flags, store.FlagNeedsReview)
 		s.res.NeedsReview = append(s.res.NeedsReview, o.Key)
 		if hasRecord && keepsRecord(existing, kr) {
+			// The record stays, but the unit is stuck: flag it, so that the
+			// build reports it for a person to look at.
+			existing.Flags = withFlag(existing.Flags, store.FlagNeedsReview)
+			s.records[o.Key] = existing
 			return nil
 		}
 		text, err := fallbackText(fd, pointer, kr)

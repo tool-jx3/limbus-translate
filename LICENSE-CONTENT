@@ -34,15 +34,21 @@ CC BY-NC-SA 4.0
 上游來源
 --------
 
-初始譯文以下列上游專案的成果為基礎（LocalizeLimbusCompany 僅作對照參考）。
-上游譯文以 CC BY-NC-SA 4.0 發布，本專案的譯文因含有匯入的上游譯文，沿用相同授權
-並標示來源：
+來源：ParatranzUploader（第一階段匯入）；LimbusTraditionalMandarin、LocalizeLimbusCompany（第一階段的參考譯文，未匯入）。
+
+匯入的上游譯文以 CC BY-NC-SA 4.0 發布，本專案的譯文因含有匯入的上游譯文，沿用
+相同授權並標示來源。參考譯文只用來對照，沒有匯入本專案的譯文。
+
+匯入：
 
 - ParatranzUploader（Paratranz 上的社群繁體中文譯文）：
   https://github.com/user-unknown-0711/ParatranzUploader
+
+參考譯文（未匯入）：
+
 - LimbusTraditionalMandarin／storyline（繁體中文劇情翻譯）：
   https://github.com/LimbusTraditionalMandarin/storyline
-- LocalizeLimbusCompany／LocalizeLimbusCompany（簡體中文在地化，作為參考）：
+- LocalizeLimbusCompany／LocalizeLimbusCompany（簡體中文在地化）：
   https://github.com/LocalizeLimbusCompany/LocalizeLimbusCompany
 
 感謝上游譯者與維護者。

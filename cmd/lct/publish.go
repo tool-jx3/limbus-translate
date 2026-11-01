@@ -43,7 +43,8 @@ func runPublish(ctx *cli.Context, args []string) error {
 		return err
 	}
 	res, err := publish.Run(ctx.Root, twRoot, filepath.Join(ctx.Root, buildOutDir), ctx.Config.LangDir)
-	if errors.Is(err, publish.ErrNotBuilt) {
+	// Both are fixed by building again: a user error, not a system one.
+	if errors.Is(err, publish.ErrNotBuilt) || errors.Is(err, publish.ErrDirtyRules) {
 		return cli.UserError(err.Error())
 	}
 	if err != nil {

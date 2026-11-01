@@ -74,7 +74,8 @@ type Report struct {
 	// Pending counts the translatable units that have no usable record; their
 	// EN text, or KR when there is none, stands in.
 	Pending int `json:"pending"`
-	// NeedsReview counts the used records that are flagged needs_review.
+	// NeedsReview counts the used records that are flagged needs_review,
+	// except those listed in FrozenFallback: a problem is counted once.
 	NeedsReview int `json:"needs_review"`
 	// StructuralFallback counts the used records that broke the structure of
 	// KR (tags, [ID]s, placeholders) and were replaced by EN, or KR, and
@@ -228,10 +229,11 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		return nil, err
 	}
 
-	if err := writeZips(opt, tree, in); err != nil {
+	zips, err := writeZips(opt, tree, in)
+	if err != nil {
 		return nil, err
 	}
-	if err := writeMeta(st, opt, b.rep); err != nil {
+	if err := writeMeta(st, opt, zips, b.rep); err != nil {
 		return nil, err
 	}
 	return b.rep, nil
@@ -285,7 +287,7 @@ func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	if !b.fr.Classify(u, en, jp).Translate {
 		switch {
 		case usable && rec.Origin == store.OriginCopy:
-			b.countUsed(rec)
+			b.countUsed(rec, true)
 		case usable:
 			b.rep.FieldRuleOverride++
 		}
@@ -301,19 +303,20 @@ func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	return standIn(u, en), nil
 }
 
-// countUsed counts rec among the records used.
-func (b *builder) countUsed(rec store.Record) {
+// countUsed counts rec among the records used. review says whether its
+// needs_review flag counts too.
+func (b *builder) countUsed(rec store.Record, review bool) {
 	b.rep.Origins[rec.Origin]++
-	if slices.Contains(rec.Flags, store.FlagNeedsReview) {
+	if review && slices.Contains(rec.Flags, store.FlagNeedsReview) {
 		b.rep.NeedsReview++
 	}
 }
 
 func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *aligner) (string, error) {
-	b.countUsed(rec)
 	// A copy is the KR text itself: there is nothing to check, and the Hangul
 	// it keeps would only flood the warnings.
 	if rec.Origin == store.OriginCopy {
+		b.countUsed(rec, true)
 		return rec.ZH, nil
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
@@ -327,13 +330,18 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 		}
 	}
 	if !validate.HasHard(issues) {
+		b.countUsed(rec, true)
 		return rec.ZH, nil
 	}
 
 	if frozen {
-		// Not translated again, so not queued: a person fixes it.
+		// Not translated again, so not queued: a person fixes it. It is
+		// listed in FrozenFallback and nowhere else, so a needs_review flag
+		// does not count it a second time.
+		b.countUsed(rec, false)
 		b.rep.FrozenFallback = append(b.rep.FrozenFallback, key)
 	} else {
+		b.countUsed(rec, true)
 		b.rep.StructuralFallback++
 		if !b.queued[key] {
 			b.queued[key] = true
