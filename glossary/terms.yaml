@@ -519,7 +519,7 @@
   forbidden: [心象]
   status: approved
   category: [general]
-  notes: 既有 98 行
+  notes: 既有 98 行；「심상치 않다」（不尋常）不是這個詞
 
 - kr: 영사기
   zh: 投影機
@@ -738,3 +738,16 @@
   status: approved
   category: [system, combat]
   notes: 既有 172 處
+
+- kr: 앙가즈망
+  zh: 介入
+  forbidden: [許諾, 交戰]
+  status: approved
+  category: [combat]
+  notes: 沙特的 engagement（介入、承擔），第十章簡的狀態與技能名：「앙가즈망(engagement)」→ 介入（engagement）
+
+- kr: 에트르 뿌르 수아
+  zh: 自為存在
+  status: approved
+  category: [combat]
+  notes: 沙特的 être-pour-soi（being-for-itself）；「에트르 뿌르 오트뤼」être-pour-autrui 是「為他人而存在」（既有）
