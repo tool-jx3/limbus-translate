@@ -310,7 +310,7 @@
 - kr: 신부
   zh: 牧師
   forbidden: [神父]
-  files: ["*a1c10*", "StoryData/S10*", "RPGSystem/**", "Enemies-a1c10*"]
+  files: ["*a1c10*", "StoryData/S10[0-9][0-9]*", "RPGSystem/**", "Enemies-a1c10*"]
   status: approved
   category: [general]
   notes: 第十章（莫梭的劇情、Enemies-a1c10*、S1034B、RPGSystem 百貨公司、*-a1c10* 狀態與技能）的「신부」是牧師莫里斯，譯「牧師」；其他檔譯「神父」（見下一條）

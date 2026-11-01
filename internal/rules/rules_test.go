@@ -468,12 +468,16 @@ func TestGlossaryHoldsBothRenderingsOfSinbu(t *testing.T) {
 	r := loadRepo(t)
 	for _, tc := range []struct{ file, zh string }{
 		{"StoryData/S1034B.json", "牧師"},
+		{"StoryData/S1034A2.json", "牧師"},
+		{"StoryData/S1000B.json", "牧師"},
 		{"StoryData/S1037B.json", "牧師"},
 		{"Enemies-a1c10p1.json", "牧師"},
 		{"Bufs-a1c10p3.json", "牧師"},
 		{"Skills_Abnormality-a1c10p3.json", "牧師"},
 		{"RPGSystem/rpg-loc-dialogue-floor-1-c2.json", "牧師"},
 		{"StoryData/S725B.json", "神父"},
+		{"StoryData/S101B.json", "神父"}, // chapter 1, not chapter 10
+		{"StoryData/S109B.json", "神父"},
 		{"Personality_Get_Condition.json", "神父"},
 		{"PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json", "神父"},
 		{"Enemies_Refraction5.json", "神父"},

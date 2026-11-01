@@ -206,9 +206,9 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 
 **詞彙條目的適用範圍**：
 
-- 條目可加 `files`：檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`（`StoryData/S10*`、`RPGSystem/**`）；省略 = 所有檔。只有批次的檔名符合時，條目才注入批次，也才檢查它的禁用譯法；`lct validate` 與 `lct adjust add` 同樣依單位所在的檔判斷（`lct validate` 以 `--file` 指定檔名）
+- 條目可加 `files`：檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`（`StoryData/S10[0-9][0-9]*`、`RPGSystem/**`）；省略 = 所有檔。只有批次的檔名符合時，條目才注入批次，也才檢查它的禁用譯法；`lct validate` 與 `lct adjust add` 同樣依單位所在的檔判斷（`lct validate` 以 `--file` 指定檔名）
 - 同一個 `kr` 可以有多個條目，其中至多一個不設 `files`（`rules lint` 檢查，`files` 的樣式也在這裡檢查）。某個檔符合有 `files` 的條目時，由這些條目代表這個詞，沒設 `files` 的那一條不適用；沒有任何條目符合時，用沒設 `files` 的那一條
-- 例：「신부」在第十章的檔（`*a1c10*`、`StoryData/S10*`、`RPGSystem/**`、`Enemies-a1c10*`）譯「牧師」並禁用「神父」，其他檔譯「神父」
+- 例：「신부」在第十章的檔（`*a1c10*`、`StoryData/S10[0-9][0-9]*`、`RPGSystem/**`、`Enemies-a1c10*`）譯「牧師」並禁用「神父」，其他檔譯「神父」；第十章的劇情檔是 S10xx（四位數），不含第一章的 S101B 等
 
 **疊加順序**：base → 族群 → 角色 → 人格 → 單檔備註。詞彙表、欄位規則與 `base.md` 的格式規則是硬性規定，風格指引不能推翻。
 
