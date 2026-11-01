@@ -673,3 +673,78 @@ func TestNaturalPointerOrderUsesUnescapedTokens(t *testing.T) {
 		t.Errorf("segment \"a/b\" must sort before \"a0\", got %d", got)
 	}
 }
+
+func TestWithLockIgnoresLockFileInGit(t *testing.T) {
+	git, err := exec.LookPath("git")
+	if err != nil {
+		t.Skip("git not installed")
+	}
+	root := t.TempDir()
+	if out, err := exec.Command(git, "-C", root, "init", "-q").CombinedOutput(); err != nil {
+		t.Fatalf("git init: %v: %s", err, out)
+	}
+	s := Open(root)
+	if err := s.WithLock(func() error { return nil }); err != nil {
+		t.Fatal(err)
+	}
+
+	gi := readFile(t, filepath.Join(root, ".meta", ".gitignore"))
+	if !strings.Contains("\n"+gi, "\n.lock\n") {
+		t.Errorf(".meta/.gitignore = %q, want a .lock line", gi)
+	}
+	out, err := exec.Command(git, "-C", root, "check-ignore", "--verbose", ".meta/.lock").CombinedOutput()
+	if err != nil {
+		t.Errorf("git check-ignore does not ignore .meta/.lock: %v: %s", err, out)
+	}
+
+	// The state files are not ignored, and a commit would not carry the lock.
+	if err := s.SavePending([]PendingItem{{Key: "A.json|/x", Reason: "new"}}); err != nil {
+		t.Fatal(err)
+	}
+	if out, err := exec.Command(git, "-C", root, "check-ignore", ".meta/pending.jsonl").CombinedOutput(); err == nil {
+		t.Errorf(".meta/pending.jsonl must not be ignored: %s", out)
+	}
+	status, err := exec.Command(git, "-C", root, "status", "--porcelain", "--untracked-files=all").Output()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, line := range strings.Split(string(status), "\n") {
+		if strings.HasSuffix(line, ".meta/.lock") {
+			t.Errorf("git status lists the lock file: %s", status)
+		}
+	}
+}
+
+func TestWithLockKeepsExistingGitignore(t *testing.T) {
+	root := t.TempDir()
+	path := filepath.Join(root, ".meta", ".gitignore")
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	const mine = "# written by a person\n*.tmp\n"
+	if err := os.WriteFile(path, []byte(mine), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	s := Open(root)
+	for range 2 {
+		if err := s.WithLock(func() error { return nil }); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if got := readFile(t, path); got != mine {
+		t.Errorf(".meta/.gitignore was changed: %q", got)
+	}
+}
+
+func TestWithLockGitignoreIsStable(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	for range 3 {
+		if err := s.WithLock(func() error { return nil }); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if got := readFile(t, filepath.Join(root, ".meta", ".gitignore")); got != ".lock\n" {
+		t.Errorf(".meta/.gitignore = %q, want %q", got, ".lock\n")
+	}
+}

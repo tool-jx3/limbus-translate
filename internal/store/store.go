@@ -38,11 +38,12 @@ const (
 const FlagNeedsReview = "needs_review"
 
 const (
-	metaDirName  = ".meta"
-	unitsDirName = "units"
-	pendingName  = "pending.jsonl"
-	lockName     = ".lock"
-	recordExt    = ".jsonl"
+	metaDirName   = ".meta"
+	unitsDirName  = "units"
+	pendingName   = "pending.jsonl"
+	lockName      = ".lock"
+	gitignoreName = ".gitignore"
+	recordExt     = ".jsonl"
 )
 
 // Record is the stored state of one translated unit: one line of a
