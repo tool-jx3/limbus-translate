@@ -296,6 +296,10 @@ func TestRequeueToFileUsage(t *testing.T) {
 		"no reason":           {[]string{"requeue", "--to-file", "x", "--file", "a"}, "--reason"},
 		"bad date":            {[]string{"requeue", "--to-file", "x", "--date", "2026-13-40", "--file", "a", "--reason", "r"}, "2026-13-40"},
 		"bad topic":           {[]string{"requeue", "--to-file", "a/b", "--file", "a", "--reason", "r"}, "a/b"},
+		// An empty topic must not fall back to the direct mode.
+		"empty topic":         {[]string{"requeue", "--to-file", "", "--file", "a", "--reason", "r"}, "--to-file needs a topic"},
+		"empty topic with =":  {[]string{"requeue", "--to-file=", "--file", "a", "--reason", "r"}, "--to-file needs a topic"},
+		"empty topic, a date": {[]string{"requeue", "--to-file", "", "--date", "2026-11-05", "--file", "a", "--reason", "r"}, "--to-file needs a topic"},
 		"bad key":             {[]string{"requeue", "--to-file", "x", "--key", "nope", "--reason", "r"}, "nope"},
 		"bad origin":          {[]string{"requeue", "--to-file", "x", "--file", "a", "--origin", "robot", "--reason", "r"}, "robot"},
 		"bad glob":            {[]string{"requeue", "--to-file", "x", "--file", "[a", "--reason", "r"}, "[a"},

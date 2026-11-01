@@ -64,7 +64,8 @@ type File struct {
 }
 
 // problems lists what is wrong with the values of f. present says which keys
-// the file has: a replace that is left out is a mistake, while an empty one
+// the file has: a replace that is left out (or written without a value, which
+// rulefile.Decode counts as left out) is a mistake, while an empty one ("")
 // deletes the matches.
 func (f File) problems(present map[string]bool) []string {
 	var ps []string

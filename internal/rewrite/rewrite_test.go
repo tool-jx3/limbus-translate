@@ -349,23 +349,28 @@ func TestLoadRewriteFiles(t *testing.T) {
 // rewriteFileProblems are files that cannot be applied, with what the error
 // must say. LoadFiles stops at the first of them, Lint lists them all.
 var rewriteFileProblems = map[string]struct{ text, want string }{
-	"not a mapping":   {"- a\n", "mapping"},
-	"empty":           {"", "reason"},
-	"unknown key":     {goodRewrite + "foo: 1\n", "foo"},
-	"misspelled key":  {strings.Replace(goodRewrite, "kr_pattern", "kr-pattern", 1), "kr-pattern"},
-	"no reason":       {strings.Replace(goodRewrite, "reason: 關鍵字名稱後加半形空格\n", "", 1), "reason"},
-	"blank reason":    {strings.Replace(goodRewrite, "reason: 關鍵字名稱後加半形空格", "reason: ' '", 1), "reason"},
-	"no files":        {strings.Replace(goodRewrite, "files:\n  - StoryData/**\n  - Bufs*.json\n", "", 1), "files"},
-	"empty files":     {strings.Replace(goodRewrite, "files:\n  - StoryData/**\n  - Bufs*.json\n", "files: []\n", 1), "files"},
-	"malformed glob":  {strings.Replace(goodRewrite, "Bufs*.json", "Bufs[.json", 1), "Bufs[.json"},
-	"unknown origin":  {strings.Replace(goodRewrite, "claude]", "robot]", 1), "robot"},
-	"no pattern":      {strings.Replace(goodRewrite, "pattern: '(\\d+級破裂)(強度)'\n", "", 1), "pattern"},
-	"empty pattern":   {strings.Replace(goodRewrite, "pattern: '(\\d+級破裂)(強度)'", "pattern: ''", 1), "pattern"},
-	"bad pattern":     {strings.Replace(goodRewrite, `'(\d+級破裂)(強度)'`, `'(\d+級破裂'`, 1), "pattern"},
-	"no replace":      {strings.Replace(goodRewrite, "replace: '$1 $2'\n", "", 1), "replace"},
-	"bad kr_pattern":  {strings.Replace(goodRewrite, "'강도'", "'(강도'", 1), "kr_pattern"},
-	"files is a text": {strings.Replace(goodRewrite, "files:\n  - StoryData/**\n  - Bufs*.json\n", "files: StoryData/**\n", 1), "files"},
-	"two documents":   {goodRewrite + "---\nreason: x\n", "document"},
+	"not a mapping":  {"- a\n", "mapping"},
+	"empty":          {"", "reason"},
+	"unknown key":    {goodRewrite + "foo: 1\n", "foo"},
+	"misspelled key": {strings.Replace(goodRewrite, "kr_pattern", "kr-pattern", 1), "kr-pattern"},
+	"no reason":      {strings.Replace(goodRewrite, "reason: 關鍵字名稱後加半形空格\n", "", 1), "reason"},
+	"blank reason":   {strings.Replace(goodRewrite, "reason: 關鍵字名稱後加半形空格", "reason: ' '", 1), "reason"},
+	"no files":       {strings.Replace(goodRewrite, "files:\n  - StoryData/**\n  - Bufs*.json\n", "", 1), "files"},
+	"empty files":    {strings.Replace(goodRewrite, "files:\n  - StoryData/**\n  - Bufs*.json\n", "files: []\n", 1), "files"},
+	"malformed glob": {strings.Replace(goodRewrite, "Bufs*.json", "Bufs[.json", 1), "Bufs[.json"},
+	"unknown origin": {strings.Replace(goodRewrite, "claude]", "robot]", 1), "robot"},
+	"no pattern":     {strings.Replace(goodRewrite, "pattern: '(\\d+級破裂)(強度)'\n", "", 1), "pattern"},
+	"empty pattern":  {strings.Replace(goodRewrite, "pattern: '(\\d+級破裂)(強度)'", "pattern: ''", 1), "pattern"},
+	"bad pattern":    {strings.Replace(goodRewrite, `'(\d+級破裂)(強度)'`, `'(\d+級破裂'`, 1), "pattern"},
+	"no replace":     {strings.Replace(goodRewrite, "replace: '$1 $2'\n", "", 1), "replace"},
+	// A replace without a value is null, not empty: it would delete every
+	// match, so it counts as left out.
+	"null replace":      {strings.Replace(goodRewrite, "replace: '$1 $2'\n", "replace:\n", 1), "replace is missing"},
+	"tilde replace":     {strings.Replace(goodRewrite, "replace: '$1 $2'\n", "replace: ~\n", 1), "replace is missing"},
+	"null word replace": {strings.Replace(goodRewrite, "replace: '$1 $2'\n", "replace: null\n", 1), "replace is missing"},
+	"bad kr_pattern":    {strings.Replace(goodRewrite, "'강도'", "'(강도'", 1), "kr_pattern"},
+	"files is a text":   {strings.Replace(goodRewrite, "files:\n  - StoryData/**\n  - Bufs*.json\n", "files: StoryData/**\n", 1), "files"},
+	"two documents":     {goodRewrite + "---\nreason: x\n", "document"},
 }
 
 // regexp.ReplaceAllString reads a reference to a group that does not exist as

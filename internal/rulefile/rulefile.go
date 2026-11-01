@@ -115,9 +115,13 @@ func ReadDir(root, dir string) ([]Entry, error) {
 // key of fields is decoded into the pointer there. It returns the keys the
 // mapping has, in the order they are written, so that the caller can tell a
 // key that fields lacks (a misspelled one) from one that is known, and a
-// field that was left out from one that was written empty. An empty file has
-// no keys. A file that is not a mapping, has more than one document, repeats
-// a key or has a value of the wrong kind is an error that says which key.
+// field that was left out from one that was written empty. A known key whose
+// value is null (nothing after the colon, ~ or null) counts as left out: it is
+// not returned and its pointer is not touched, since "replace:" is no more an
+// answer than no line at all. An unknown key is returned whatever its value.
+// An empty file has no keys. A file that is not a mapping, has more than one
+// document, repeats a key or has a value of the wrong kind is an error that
+// says which key.
 func Decode(data []byte, fields map[string]any) (keys []string, err error) {
 	dec := yaml.NewDecoder(bytes.NewReader(data))
 	var doc yaml.Node
@@ -149,8 +153,12 @@ func Decode(data []byte, fields map[string]any) (keys []string, err error) {
 			return nil, fmt.Errorf("line %d: %s is written twice", name.Line, key)
 		}
 		seen[key] = true
+		into, known := fields[key]
+		if known && value.Tag == "!!null" {
+			continue
+		}
 		keys = append(keys, key)
-		if into, known := fields[key]; known {
+		if known {
 			if err := value.Decode(into); err != nil {
 				return nil, fmt.Errorf("%s: %s", key, decodeMessage(err))
 			}

@@ -54,14 +54,21 @@ func runRequeue(ctx *cli.Context, args []string) error {
 	if flags.NArg() > 0 {
 		return cli.UserError("requeue: unexpected argument " + flags.Arg(0))
 	}
+	// --to-file "" must not fall back to the direct mode, which writes the
+	// pending list: a flag that was given is a request for a file.
+	toFileGiven := false
+	flags.Visit(func(f *flag.Flag) { toFileGiven = toFileGiven || f.Name == "to-file" })
+	if toFileGiven && strings.TrimSpace(*toFile) == "" {
+		return cli.UserError("requeue: --to-file needs a topic, the name of the request file rules/requeue/<date>-<topic>.yaml")
+	}
 	sel := requeue.Selector{Keys: keys, Files: files, Origins: origins, NeedsReview: *needsReview, Leased: *leased}
-	if *toFile == "" && *date != "" {
+	if !toFileGiven && *date != "" {
 		return cli.UserError("requeue: --date goes with --to-file")
 	}
-	if *toFile != "" && (sel.NeedsReview || sel.Leased) {
+	if toFileGiven && (sel.NeedsReview || sel.Leased) {
 		return cli.UserError("requeue: --to-file writes a request for records; it cannot be combined with --needs-review or --leased, which act on the pending list here")
 	}
-	if *toFile != "" && len(keys)+len(files) == 0 {
+	if toFileGiven && len(keys)+len(files) == 0 {
 		return cli.UserError("requeue: --to-file needs at least one --key or --file (--origin alone would requeue every file)")
 	}
 	if len(keys)+len(files)+len(origins) == 0 && !sel.NeedsReview && !sel.Leased {
@@ -74,7 +81,7 @@ func runRequeue(ctx *cli.Context, args []string) error {
 	if err := sel.Validate(); err != nil {
 		return cli.UserError("requeue: " + err.Error())
 	}
-	if *toFile != "" {
+	if toFileGiven {
 		return runRequeueToFile(ctx, sel, hint, *toFile, *date)
 	}
 

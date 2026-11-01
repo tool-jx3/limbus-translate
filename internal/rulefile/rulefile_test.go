@@ -123,6 +123,22 @@ func TestDecode(t *testing.T) {
 		t.Errorf("Decode of an empty value = %v, %v", keys, err)
 	}
 
+	// A key whose value is null (nothing after the colon, ~ or null) is a key
+	// that was left out, so that a required field cannot be satisfied by an
+	// empty line. An unknown key is still listed, to be reported.
+	for name, text := range map[string]string{"nothing": "reason:\n", "tilde": "reason: ~\n", "null": "reason: null\n"} {
+		reason, files = "x", nil
+		if keys, err := Decode([]byte(text+"files: [a]\nextra:\n"), fields()); err != nil || !slices.Equal(keys, []string{"files", "extra"}) {
+			t.Errorf("%s: Decode = %v, %v; want only files and the unknown extra", name, keys, err)
+		}
+		if reason != "x" {
+			t.Errorf("%s: reason = %q, want it left as it was", name, reason)
+		}
+	}
+	if keys, err := Decode([]byte("reason: 'null'\nfiles: []\n"), fields()); err != nil || !slices.Equal(keys, []string{"reason", "files"}) {
+		t.Errorf("Decode of the text null and an empty list = %v, %v; want both keys", keys, err)
+	}
+
 	for name, tc := range map[string]struct{ text, want string }{
 		"a list":              {"- a\n- b\n", "mapping"},
 		"a scalar":            {"just text\n", "mapping"},
