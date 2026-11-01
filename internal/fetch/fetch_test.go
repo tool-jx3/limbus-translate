@@ -28,12 +28,22 @@ func TestParseStatus(t *testing.T) {
 	}
 
 	bad := map[string]string{
-		"slash in token":       `{"latest_token":{"created_at":"2026-10-29 02:55:23","token":"l2026/../x"}}`,
-		"space in token":       `{"latest_token":{"created_at":"2026-10-29 02:55:23","token":"l2026 x"}}`,
-		"empty token":          `{"latest_token":{"created_at":"2026-10-29 02:55:23","token":""}}`,
-		"missing created_at":   `{"latest_token":{"token":"l20261029"}}`,
-		"missing latest_token": `{"other":{}}`,
-		"not json":             `<html>maintenance</html>`,
+		"slash in token":     `{"latest_token":{"created_at":"2026-10-29 02:55:23","token":"l2026/../x"}}`,
+		"space in token":     `{"latest_token":{"created_at":"2026-10-29 02:55:23","token":"l2026 x"}}`,
+		"empty token":        `{"latest_token":{"created_at":"2026-10-29 02:55:23","token":""}}`,
+		"missing created_at": `{"latest_token":{"token":"l20261029"}}`,
+		// created_at goes into $GITHUB_OUTPUT and into the name of a tag: it
+		// must be a date, and a time if it has one, and nothing else.
+		"created_at is no date":     `{"latest_token":{"created_at":"yesterday","token":"l20261029"}}`,
+		"created_at is not a day":   `{"latest_token":{"created_at":"2026-13-40 02:55:23","token":"l20261029"}}`,
+		"created_at has a new line": `{"latest_token":{"created_at":"2026-10-29 02:55:23\nfoo=bar","token":"l20261029"}}`,
+		"created_at ends in a line": `{"latest_token":{"created_at":"2026-10-29 02:55:23\n","token":"l20261029"}}`,
+		"created_at has a command":  `{"latest_token":{"created_at":"2026-10-29 $(id)","token":"l20261029"}}`,
+		"created_at has more words": `{"latest_token":{"created_at":"2026-10-29 02:55:23 UTC extra","token":"l20261029"}}`,
+		"created_at has no time":    `{"latest_token":{"created_at":"2026-10-29 ","token":"l20261029"}}`,
+		"created_at is a number":    `{"latest_token":{"created_at":20261029,"token":"l20261029"}}`,
+		"missing latest_token":      `{"other":{}}`,
+		"not json":                  `<html>maintenance</html>`,
 	}
 	for name, body := range bad {
 		t.Run(name, func(t *testing.T) {
@@ -41,6 +51,20 @@ func TestParseStatus(t *testing.T) {
 				t.Errorf("ParseStatus(%s) = %+v, want an error", body, got)
 			}
 		})
+	}
+}
+
+// The forms of created_at that are let through: the date of a raw tag, alone
+// or followed by a space or T and a time.
+func TestParseStatusAcceptsTheFormsOfCreatedAt(t *testing.T) {
+	for _, createdAt := range []string{
+		"2026-10-29 02:55:23", "2026-10-29T02:55:23", "2026-10-29T02:55:23Z", "2026-10-29 02:55",
+		"2026-10-29T02:55:23.123+08:00", "2026-10-29T02:55:23-0500", "2026-10-29",
+	} {
+		got, err := ParseStatus([]byte(`{"latest_token":{"created_at":"` + createdAt + `","token":"l20261029"}}`))
+		if err != nil || got.CreatedAt != createdAt {
+			t.Errorf("created_at %q: ParseStatus = %+v, %v; want it accepted as it is", createdAt, got, err)
+		}
 	}
 }
 

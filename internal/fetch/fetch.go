@@ -68,7 +68,29 @@ func ParseStatus(body []byte) (Status, error) {
 	if st.CreatedAt == "" {
 		return Status{}, errors.New("parse status: latest_token has no created_at")
 	}
+	if err := checkCreatedAt(st.CreatedAt); err != nil {
+		return Status{}, fmt.Errorf("parse status: %w", err)
+	}
 	return st, nil
+}
+
+// createdAtPattern is the shape of created_at: a date, and after it a space or
+// "T" and a time, as "2026-10-29 02:55:23" or "2026-10-29T02:55:23Z". It is the
+// form a raw tag takes its date from, and nothing more: the value goes to the
+// outputs of the workflow, one to a line, and into commit messages.
+var createdAtPattern = regexp.MustCompile(`^(\d{4}-\d{2}-\d{2})(?:[ T]\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?)?$`)
+
+// checkCreatedAt reports whether createdAt is a real date, alone or followed
+// by a time (see createdAtPattern).
+func checkCreatedAt(createdAt string) error {
+	m := createdAtPattern.FindStringSubmatch(createdAt)
+	if m == nil {
+		return fmt.Errorf("invalid created_at %q: want YYYY-MM-DD, optionally followed by a space or T and a time", createdAt)
+	}
+	if _, err := time.Parse("2006-01-02", m[1]); err != nil {
+		return fmt.Errorf("invalid created_at %q: %s is not a day", createdAt, m[1])
+	}
+	return nil
 }
 
 // FetchStatus reads and parses the status API at statusURL (https://, http://
