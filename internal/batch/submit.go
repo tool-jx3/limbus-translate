@@ -98,8 +98,9 @@ func foreignNameIssues(zh string, names, ignore []string) []validate.Issue {
 // is processed while it is still pending, it is not flagged needs_review, it
 // is leased to b (the lease may have run out, but no other batch may hold
 // it), and its KR text is the one b was cut with. Its text is
-// normalized and checked as a new translation. Without a hard issue it becomes
-// a record (origin claude) and leaves the queue. With one, its attempts grow
+// normalized (validate.Normalize, then the space after the keyword names of
+// env.KeywordNames) and checked as a new translation. Without a hard issue it
+// becomes a record (origin claude) and leaves the queue. With one, its attempts grow
 // and it keeps its lease, so the owner of b can send the fix; at maxAttempts
 // the lease ends and the unit gets a fallback record (the EN text, else KR)
 // flagged needs_review and stays in the queue flagged. A record that is a
@@ -305,7 +306,7 @@ func (s *submission) unit(o OutUnit) error {
 		return nil
 	}
 
-	zh := validate.Normalize(kr, o.ZH)
+	zh := validate.NormalizeKeywordSpace(validate.Normalize(kr, o.ZH), s.env.KeywordNames)
 	issues := CheckNew(s.env.Rules, file, kr, zh)
 	existing, hasRecord := s.records[o.Key]
 	since := s.since(o.Key)

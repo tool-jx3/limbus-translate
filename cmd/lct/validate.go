@@ -52,7 +52,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 	flags.SetOutput(io.Discard)
 	kr := flags.String("kr", "", "the Korean text")
 	zh := flags.String("zh", "", "the translation")
-	file := flags.String("file", "", "the pack file the text is from, such as StoryData/S1001B.json: glossary terms that apply to some files only are enforced when it matches")
+	file := flags.String("file", "", "the pack file the text is from, such as StoryData/S1001B.json: glossary terms that apply to some files only are enforced when it matches, and half-width brackets are reported in the labels of RPGSystem/")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("validate: " + err.Error())
 	}
@@ -71,7 +71,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 		return err
 	}
 	normalized := validate.Normalize(*kr, *zh)
-	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr)})
+	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr), File: *file})
 	if issues == nil {
 		issues = []validate.Issue{}
 	}

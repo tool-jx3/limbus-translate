@@ -2,6 +2,7 @@ package validate
 
 import (
 	"fmt"
+	"path"
 	"regexp"
 	"slices"
 	"strings"
@@ -39,7 +40,8 @@ const (
 // Issue codes. Structural codes are empty, id-mismatch, placeholder-mismatch,
 // tag-mismatch, tag-nesting and dante-wrapper; content codes are hangul,
 // simplified and forbidden-term; style codes are kana, halfwidth-punct,
-// ascii-ellipsis, curly-quotes and length-ratio.
+// halfwidth-bracket, placeholder-bracket, ascii-ellipsis, curly-quotes and
+// length-ratio.
 const (
 	CodeEmpty               = "empty"
 	CodeIDMismatch          = "id-mismatch"
@@ -52,6 +54,8 @@ const (
 	CodeForbiddenTerm       = "forbidden-term"
 	CodeKana                = "kana"
 	CodeHalfwidthPunct      = "halfwidth-punct"
+	CodeHalfwidthBracket    = "halfwidth-bracket"
+	CodePlaceholderBracket  = "placeholder-bracket"
 	CodeASCIIEllipsis       = "ascii-ellipsis"
 	CodeCurlyQuotes         = "curly-quotes"
 	CodeLengthRatio         = "length-ratio"
@@ -83,6 +87,9 @@ type Context struct {
 	// Existing is true for a unit that already shipped. Content issues of
 	// such a unit are warnings, since the rules may have changed since.
 	Existing bool
+	// File is the pack file the unit is from, such as RPGSystem/rpg-loc-quest-1.json;
+	// "" when it is not known.
+	File string
 }
 
 // issue builds an Issue with the severity its class has in this context.
@@ -108,6 +115,11 @@ func HasHard(issues []Issue) bool {
 var (
 	hangulRe   = regexp.MustCompile(`[\x{AC00}-\x{D7A3}\x{1100}-\x{11FF}\x{3130}-\x{318F}]`)
 	asciiEllRe = regexp.MustCompile(`\.{3,}`)
+	// openingBracketRe and closingBracketRe match the halves of the bracketed
+	// placeholder [{0}]: the opening bracket with the placeholder after it,
+	// and the placeholder with the closing bracket after it.
+	openingBracketRe = regexp.MustCompile(`\[\{[0-9]+\}`)
+	closingBracketRe = regexp.MustCompile(`\{[0-9]+\}\]`)
 )
 
 // IsDanteLine reports whether s, ignoring blanks at both ends, is a whole line
@@ -358,6 +370,14 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodeHalfwidthPunct, ClassStyle,
 			"half-width %s next to Chinese text; use ，。： instead", quoteList(marks)))
 	}
+	if marks := halfwidthBrackets(ctx.File, zh); len(marks) > 0 {
+		issues = append(issues, ctx.issue(CodeHalfwidthBracket, ClassStyle,
+			"half-width %s in a label of RPGSystem/; use （） instead", quoteList(marks)))
+	}
+	if frags := unpairedPlaceholderBrackets(kr, zh); len(frags) > 0 {
+		issues = append(issues, ctx.issue(CodePlaceholderBracket, ClassStyle,
+			"%s is missing its other bracket; keep both brackets of the placeholder as KR does", quoteList(frags)))
+	}
 	if asciiEllRe.MatchString(zh) {
 		issues = append(issues, ctx.issue(CodeASCIIEllipsis, ClassStyle, `"..." should be "……"`))
 	}
@@ -374,7 +394,7 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 
 // halfwidthPunct returns the distinct half-width , . : in s that touch Chinese
 // text. Tags and placeholders are ignored, and so are the dots of "...", which
-// ascii-ellipsis reports.
+// ascii-ellipsis reports, and the colons of "::", as in E.G.O::.
 func halfwidthPunct(s string) []string {
 	s = placeholderRe.ReplaceAllString(tagRe.ReplaceAllString(s, ""), "")
 	runes := []rune(s)
@@ -390,7 +410,7 @@ func halfwidthPunct(s string) []string {
 		if i+1 < len(runes) {
 			next = runes[i+1]
 		}
-		if r == '.' && (prev == '.' || next == '.') {
+		if r == '.' && (prev == '.' || next == '.') || r == ':' && (prev == ':' || next == ':') {
 			continue
 		}
 		if isChinese(prev) || isChinese(next) {
@@ -398,6 +418,73 @@ func halfwidthPunct(s string) []string {
 		}
 	}
 	return distinct(found)
+}
+
+// halfwidthBrackets returns the distinct half-width ( ) in zh, a text of file,
+// if file is a label of the RPG: a file under RPGSystem/ that is not
+// dialogue. Labels use the full-width （） (see guides/families.md). Tags are
+// not text.
+func halfwidthBrackets(file, zh string) []string {
+	if !strings.HasPrefix(file, "RPGSystem/") || strings.Contains(path.Base(file), "dialogue") {
+		return nil
+	}
+	var found []string
+	for _, r := range tagRe.ReplaceAllString(zh, "") {
+		if r == '(' || r == ')' {
+			found = append(found, string(r))
+		}
+	}
+	return distinct(found)
+}
+
+// unpairedPlaceholderBrackets returns the pieces of the bracketed placeholder
+// [{n}] that zh has broken: a "[{n}" with no "]" right after it, or a "{n}]"
+// with no "[" right before it. Something is only reported when KR pairs its
+// brackets and zh breaks more of them than KR does: KR itself writes
+// "[{0}장 {1}]", whose pieces are unpaired in the same way.
+func unpairedPlaceholderBrackets(kr, zh string) []string {
+	if !bracketsBalanced(kr) {
+		return nil
+	}
+	zhPieces := unpairedPieces(zh)
+	if len(zhPieces) <= len(unpairedPieces(kr)) {
+		return nil
+	}
+	return distinct(zhPieces)
+}
+
+// unpairedPieces returns the pieces of [{n}] in s that lack their other
+// bracket, in order of appearance.
+func unpairedPieces(s string) []string {
+	var pieces []string
+	for _, loc := range openingBracketRe.FindAllStringIndex(s, -1) {
+		if !strings.HasPrefix(s[loc[1]:], "]") {
+			pieces = append(pieces, s[loc[0]:loc[1]])
+		}
+	}
+	for _, loc := range closingBracketRe.FindAllStringIndex(s, -1) {
+		if !strings.HasSuffix(s[:loc[0]], "[") {
+			pieces = append(pieces, s[loc[0]:loc[1]])
+		}
+	}
+	return pieces
+}
+
+// bracketsBalanced reports whether every [ of s is closed by a later ] and
+// no ] comes before its [.
+func bracketsBalanced(s string) bool {
+	depth := 0
+	for _, r := range s {
+		switch r {
+		case '[':
+			depth++
+		case ']':
+			if depth--; depth < 0 {
+				return false
+			}
+		}
+	}
+	return depth == 0
 }
 
 // isChinese reports whether r is a Han character or CJK punctuation.

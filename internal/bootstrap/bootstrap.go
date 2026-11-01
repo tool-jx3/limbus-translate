@@ -356,7 +356,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 // check validates zh as a new translation of kr, a text of file, under the
 // approved glossary terms kr contains in that file.
 func (b *builder) check(file, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr)})
+	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file})
 }
 
 // settle records zh as the translation of u.

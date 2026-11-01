@@ -2690,3 +2690,127 @@ func TestForeignNameIgnoreList(t *testing.T) {
 		t.Errorf("warnings = %+v, want a foreign-name for 默爾索", res.Warnings)
 	}
 }
+
+// The tests of the space after keyword names.
+
+const keywordKR = "대상에게 파열 2레벨 부여"
+
+// The game shows the effect text of a status for "name + space", so a name
+// the translator wrote without an [ID] gets the space on submission.
+func TestSubmitAddsKeywordSpace(t *testing.T) {
+	kr := map[string]string{"Other.json": oneLine(t, keywordKR)}
+	env := newEnv(t, kr, nil, nil)
+	env.KeywordNames = []string{"破裂", "破裂易損", "強壯"}
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "使目標增加2級破裂強度"}}, "test-model", 3)
+	if err != nil || len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+		t.Fatalf("Submit = %+v, %v", res, err)
+	}
+	if got, want := records(t, env)[key("Other.json", 0)].ZH, "使目標增加2級破裂 強度"; got != want {
+		t.Errorf("record ZH = %q, want %q", got, want)
+	}
+}
+
+// Without names the text is only normalized.
+func TestSubmitWithoutKeywordNames(t *testing.T) {
+	kr := map[string]string{"Other.json": oneLine(t, keywordKR)}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+
+	if _, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "使目標增加2級破裂強度"}}, "test-model", 3); err != nil {
+		t.Fatal(err)
+	}
+	if got, want := records(t, env)[key("Other.json", 0)].ZH, "使目標增加2級破裂強度"; got != want {
+		t.Errorf("record ZH = %q, want %q", got, want)
+	}
+}
+
+// A twin takes the translation as it was accepted, space included.
+func TestSubmitKeywordSpaceReachesTwins(t *testing.T) {
+	text := keywordKR + " 하고 있다"
+	kr := map[string]string{"A.json": oneLine(t, text), "B.json": oneLine(t, text)}
+	env := newEnv(t, kr, nil, nil)
+	env.KeywordNames = []string{"破裂"}
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "使目標增加2級破裂強度"}}, "test-model", 3)
+	if err != nil || len(res.Accepted) != 1 || len(res.Reused) != 1 {
+		t.Fatalf("Submit = %+v, %v, want one accepted and one reused", res, err)
+	}
+	recs := records(t, env)
+	for _, f := range []string{"A.json", "B.json"} {
+		if got, want := recs[key(f, 0)].ZH, "使目標增加2級破裂 強度"; got != want {
+			t.Errorf("record ZH of %s = %q, want %q", f, got, want)
+		}
+	}
+}
+
+// CheckNew knows the file, which the warning about half-width brackets in the
+// labels of the RPG needs.
+func TestCheckNewKnowsTheFile(t *testing.T) {
+	r := testRules(t)
+	if issues := CheckNew(r, "RPGSystem/rpg-loc-quest-floor-3.json", "퀘스트", "(內部)任務"); !hasCode(issues, "halfwidth-bracket") {
+		t.Errorf("CheckNew of a quest label = %+v, want halfwidth-bracket", issues)
+	}
+	if issues := CheckNew(r, "RPGSystem/rpg-loc-dialogue-floor-3.json", "퀘스트", "(內部)任務"); hasCode(issues, "halfwidth-bracket") {
+		t.Errorf("CheckNew of a dialogue = %+v, want no halfwidth-bracket", issues)
+	}
+}
+
+func TestKeywordNames(t *testing.T) {
+	kr := map[string]string{
+		"Bufs.json": `{"dataList":[
+ {"id":"Burst","name":"파열"},
+ {"id":"Burn","name":"화상"},
+ {"id":"Bleed","name":"출혈"},
+ {"id":"Fragile","name":"파열 취약"},
+ {"id":"Same","name":"파열"},
+ {"id":"Review","name":"검토"}
+]}`,
+		"BattleKeywords.json": `{"dataList":[{"id":"Poise","name":"호흡"}]}`,
+		"Other.json":          oneLine(t, "다른 파일"),
+	}
+	env := newEnv(t, kr, nil, nil)
+	rec := func(file string, i int, krText, zh string, flags ...string) store.Record {
+		k := fmt.Sprintf("%s|/dataList/%d/name", file, i)
+		return store.Record{Key: k, KRSha: units.KRSha(krText), ZH: zh, Origin: store.OriginParatranz, Since: testTag, Flags: flags}
+	}
+	recs := []store.Record{
+		rec("Bufs.json", 0, "파열", "破裂"),
+		rec("Bufs.json", 1, "화상", "燒傷"),
+		// Made when Bleed was called something else.
+		rec("Bufs.json", 2, "옛 이름", "舊名"),
+		// Still Korean: no name of ours.
+		rec("Bufs.json", 3, "파열 취약", "파열 易損"),
+		// The same name for another id.
+		rec("Bufs.json", 4, "파열", "破裂"),
+		rec("Bufs.json", 5, "검토", "待審", store.FlagNeedsReview),
+		rec("BattleKeywords.json", 0, "호흡", "呼吸"),
+		// Not a keyword file.
+		{Key: key("Other.json", 0), KRSha: units.KRSha("다른 파일"), ZH: "別的檔案", Origin: store.OriginParatranz, Since: testTag},
+	}
+	byKey := map[string]store.Record{}
+	for _, r := range recs {
+		byKey[r.Key] = r
+	}
+	if err := env.Store.SaveRecords(byKey); err != nil {
+		t.Fatal(err)
+	}
+
+	got, err := KeywordNames(env.Src.KR, records(t, env))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{"呼吸", "燒傷", "破裂"}; !slices.Equal(got, want) {
+		t.Errorf("KeywordNames = %v, want %v: translated by a record of today's KR text, once each, sorted", got, want)
+	}
+
+	none, err := KeywordNames(env.Src.KR, nil)
+	if err != nil || none == nil || len(none) != 0 {
+		t.Errorf("KeywordNames without records = %#v, %v, want an empty list", none, err)
+	}
+}

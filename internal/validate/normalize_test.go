@@ -110,3 +110,69 @@ func TestNormalizeLanguageStyle(t *testing.T) {
 		})
 	}
 }
+
+func TestNormalizeKeywordSpace(t *testing.T) {
+	names := []string{"破裂", "破裂易損", "強壯"}
+	tests := []struct {
+		name, in, want string
+	}{
+		{"name before text", "2級破裂強度", "2級破裂 強度"},
+		{"name before full-width punctuation", "2層強壯，", "2層強壯 ，"},
+		{"name at the end", "3回破裂易損", "3回破裂易損 "},
+		{"the longer name wins", "使目標增加3回破裂易損強度", "使目標增加3回破裂易損 強度"},
+		{"the space is already there", "2級破裂 強度", "2級破裂 強度"},
+		{"no count before the name", "破裂的力量", "破裂的力量"},
+		{"a count of another kind", "2次破裂強度", "2次破裂強度"},
+		{"several digits", "12層強壯", "12層強壯 "},
+		{"two keywords", "2層強壯和1級破裂強度", "2層強壯 和1級破裂 強度"},
+		{"a count that no name follows", "2級強度", "2級強度"},
+		{"a name that is not in the list", "2級燒傷強度", "2級燒傷強度"},
+		{"a newline is not a half-width space", "2層強壯\n", "2層強壯 \n"},
+		{"a full-width space is not a half-width space", "2層強壯　", "2層強壯 　"},
+		{"a tag follows", "<color=#f00>2層強壯</color>", "<color=#f00>2層強壯 </color>"},
+		{"[TabExplain] must touch the name", "2層強壯[TabExplain]說明", "2層強壯[TabExplain]說明"},
+		{"an [ID] keeps its own spacing", "2層 [Burn] 強度", "2層 [Burn] 強度"},
+		{"empty", "", ""},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			got := NormalizeKeywordSpace(tc.in, names)
+			if got != tc.want {
+				t.Errorf("NormalizeKeywordSpace(%q) = %q, want %q", tc.in, got, tc.want)
+			}
+			if again := NormalizeKeywordSpace(got, names); again != got {
+				t.Errorf("NormalizeKeywordSpace is not idempotent: %q -> %q", got, again)
+			}
+			// Normalize must leave the space alone, or the two would undo each other.
+			if again := Normalize("", got); again != got {
+				t.Errorf("Normalize undoes the result: %q -> %q", got, again)
+			}
+		})
+	}
+}
+
+// The order of names does not decide which one matches, and a list without
+// usable names changes nothing.
+func TestNormalizeKeywordSpaceNames(t *testing.T) {
+	in := "2級破裂易損強度"
+	want := "2級破裂易損 強度"
+	for _, names := range [][]string{
+		{"破裂", "破裂易損"},
+		{"破裂易損", "破裂"},
+		{"", "破裂", "破裂易損"},
+	} {
+		if got := NormalizeKeywordSpace(in, names); got != want {
+			t.Errorf("NormalizeKeywordSpace(%q, %q) = %q, want %q", in, names, got, want)
+		}
+	}
+	for _, names := range [][]string{nil, {}, {""}} {
+		if got := NormalizeKeywordSpace(in, names); got != in {
+			t.Errorf("NormalizeKeywordSpace(%q, %q) = %q, want it unchanged", in, names, got)
+		}
+	}
+	names := []string{"破裂", "破裂易損"}
+	NormalizeKeywordSpace(in, names)
+	if names[0] != "破裂" || names[1] != "破裂易損" {
+		t.Errorf("NormalizeKeywordSpace reordered the caller's list: %q", names)
+	}
+}

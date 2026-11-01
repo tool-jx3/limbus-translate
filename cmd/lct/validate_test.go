@@ -194,3 +194,20 @@ func TestValidateEmptyKRIsAllowed(t *testing.T) {
 		t.Errorf("empty KR and zh: %v", err)
 	}
 }
+
+// The file of the text decides whether half-width brackets are reported.
+func TestValidateFileDecidesTheBracketWarning(t *testing.T) {
+	const kr, zh = "퀘스트", "(內部)任務"
+	out, err := validateOut(t, false, "--kr", kr, "--zh", zh, "--file", "RPGSystem/rpg-loc-quest-floor-3.json")
+	if err != nil || !strings.Contains(out, "halfwidth-bracket") {
+		t.Errorf("a quest label: output %q, error %v, want the halfwidth-bracket warning", out, err)
+	}
+	for _, args := range [][]string{
+		{"--kr", kr, "--zh", zh, "--file", "RPGSystem/rpg-loc-dialogue-floor-3.json"},
+		{"--kr", kr, "--zh", zh},
+	} {
+		if out, err := validateOut(t, false, args...); err != nil || strings.Contains(out, "halfwidth-bracket") {
+			t.Errorf("%v: output %q, error %v, want no halfwidth-bracket warning", args, out, err)
+		}
+	}
+}

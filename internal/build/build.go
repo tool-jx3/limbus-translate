@@ -321,7 +321,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
-	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true})
+	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File})
 	// Every used record counts its warnings, whether or not its text is
 	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {

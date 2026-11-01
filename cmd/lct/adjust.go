@@ -91,7 +91,7 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 		}
 	}
 
-	src, kr, err := adjustKRText(ctx, "adjust add", a.Key)
+	src, set, kr, err := adjustKRText(ctx, "adjust add", a.Key)
 	if err != nil {
 		return err
 	}
@@ -99,9 +99,13 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	keywords, err := keywordNames(openStore(ctx), set)
+	if err != nil {
+		return err
+	}
 
 	file, _, _ := units.SplitKey(a.Key) // adjustKRText checked the key
-	normalized, issues := prepareAdjustmentText(r, file, kr, a.ZH)
+	normalized, issues := prepareAdjustmentText(r, keywords, file, kr, a.ZH)
 	if validate.HasHard(issues) {
 		if err := ctx.Emit(validateReport{Normalized: normalized, OK: false, Issues: issues}); err != nil {
 			return err
@@ -126,48 +130,48 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 // pack and checks it against the KR text and the glossary terms that text
 // contains in file, the file of the unit. This is the only place that does
 // it: whatever has to happen to a translation before it is checked, as it
-// does for a batch submission, goes here. The text is a new one, so content
-// issues are hard.
-func prepareAdjustmentText(r *rules.Rules, file, kr, zh string) (string, []validate.Issue) {
-	zh = validate.Normalize(kr, zh)
-	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false})
+// does for a batch submission (Normalize, then the space after the keyword
+// names), goes here. The text is a new one, so content issues are hard.
+func prepareAdjustmentText(r *rules.Rules, keywordNames []string, file, kr, zh string) (string, []validate.Issue) {
+	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), keywordNames)
+	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false, File: file})
 }
 
-// adjustKRText returns the raw snapshot the repo is at and the KR text of the
-// unit key in it. A key that names no text of KR is a user error.
-func adjustKRText(ctx *cli.Context, command, key string) (*raw.Source, string, error) {
+// adjustKRText returns the raw snapshot the repo is at, its packs and the KR
+// text of the unit key in it. A key that names no text of KR is a user error.
+func adjustKRText(ctx *cli.Context, command, key string) (*raw.Source, pack.Set, string, error) {
 	cfg := ctx.Config
-	if cfg.Worktrees.Raw == "" {
-		return nil, "", cli.UserError(command + ": worktrees.raw must be set in lct.yaml")
+	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
+		return nil, pack.Set{}, "", cli.UserError(command + ": worktrees.raw and worktrees.tw must be set in lct.yaml")
 	}
 	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
 	src, err := raw.LastSource(rawWorktree)
 	if err != nil {
-		return nil, "", err
+		return nil, pack.Set{}, "", err
 	}
 	if src == nil {
-		return nil, "", cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
+		return nil, pack.Set{}, "", cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
 	}
 	set, err := pack.OpenRaw(rawWorktree)
 	if err != nil {
-		return nil, "", err
+		return nil, pack.Set{}, "", err
 	}
 
 	file, pointer, err := units.SplitKey(key)
 	if err != nil {
-		return nil, "", cli.UserError(command + ": " + err.Error())
+		return nil, pack.Set{}, "", cli.UserError(command + ": " + err.Error())
 	}
 	if !set.KR.Has(file) {
-		return nil, "", cli.UserError(fmt.Sprintf("%s: %s is not a file of the KR text in %s", command, file, src.Tag))
+		return nil, pack.Set{}, "", cli.UserError(fmt.Sprintf("%s: %s is not a file of the KR text in %s", command, file, src.Tag))
 	}
 	doc, err := set.KR.Doc(file)
 	if err != nil {
-		return nil, "", err
+		return nil, pack.Set{}, "", err
 	}
 	for _, u := range units.Extract(file, doc) {
 		if u.Pointer == pointer {
-			return src, u.KR, nil
+			return src, set, u.KR, nil
 		}
 	}
-	return nil, "", cli.UserError(fmt.Sprintf("%s: %s has no text at %s in the KR text of %s (is the key from an older version?)", command, file, pointer, src.Tag))
+	return nil, pack.Set{}, "", cli.UserError(fmt.Sprintf("%s: %s has no text at %s in the KR text of %s (is the key from an older version?)", command, file, pointer, src.Tag))
 }

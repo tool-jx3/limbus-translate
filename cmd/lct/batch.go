@@ -108,6 +108,18 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 	}, r, nil
 }
 
+// keywordNames reads the Chinese names of the keywords from the records in
+// the store, over the KR keyword files of src (see batch.KeywordNames). They
+// are what the commands that take a new translation (batch submit, adjust add)
+// put the space after a keyword name with.
+func keywordNames(st *store.Store, src pack.Set) ([]string, error) {
+	records, err := st.LoadRecords()
+	if err != nil {
+		return nil, err
+	}
+	return batch.KeywordNames(src.KR, records)
+}
+
 // batchPath is the file of a batch (suffix ".json") or of its translations
 // (".out.json").
 func batchPath(ctx *cli.Context, id, suffix string) string {
@@ -339,6 +351,9 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 		return err
 	}
 	if env.RulesCommit, err = rulesCommit(ctx, "batch submit"); err != nil {
+		return err
+	}
+	if env.KeywordNames, err = keywordNames(env.Store, env.Src); err != nil {
 		return err
 	}
 	res, err := batch.Submit(env, &b, out, *model, ctx.Config.Batch.MaxAttempts)

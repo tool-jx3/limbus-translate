@@ -311,3 +311,22 @@ func TestAdjustAddSystemErrors(t *testing.T) {
 		t.Errorf("exit code = %d, stderr = %q, want 2 naming the broken file", code, stderr)
 	}
 }
+
+func TestAdjustAddAddsTheSpaceAfterKeywordNames(t *testing.T) {
+	root, _ := keywordRepo(t)
+	oldNow := ruleFileNow
+	ruleFileNow = func() time.Time { return cliNow }
+	t.Cleanup(func() { ruleFileNow = oldNow })
+	t.Chdir(root)
+
+	var out adjustOut
+	mustLct(t, &out, adjustWith(adjustWith(adjustArgs(), "--key", statusKey), "--zh", "使目標增加2級破裂強度")...)
+	const want = "使目標增加2級破裂 強度"
+	if out.ZH != want {
+		t.Errorf("output zh = %q, want %q", out.ZH, want)
+	}
+	got, err := adjust.Load(root)
+	if err != nil || len(got) != 1 || got[0].ZH != want {
+		t.Errorf("Load = %+v, %v, want the adjustment with %q", got, err, want)
+	}
+}

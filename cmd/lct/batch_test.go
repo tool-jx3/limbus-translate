@@ -14,6 +14,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 const batchYAML = `worktrees: { raw: .work/raw, tw: .work/tw }
@@ -681,5 +682,53 @@ func TestPendingEmptyStore(t *testing.T) {
 	}
 	if strings.TrimSpace(out.String()) != "[]" {
 		t.Errorf("list of a store without state = %q, want []", out)
+	}
+}
+
+const (
+	statusKey = "Status.json|/dataList/0/content"
+	statusKR  = "대상에게 파열 2레벨 부여"
+)
+
+// keywordRepo is batchRepo with a unit that names a status in Korean, without
+// an [ID], and the official name of that status, translated, in the store: the
+// only pending unit is the one with the status.
+func keywordRepo(t *testing.T) (root string, st *store.Store) {
+	t.Helper()
+	root, st = batchRepo(t)
+	rawWT := filepath.Join(root, ".work", "raw")
+	writeTestFile(t, rawWT, "kr/KR_Status.json", `{"dataList":[{"id":1,"content":"`+statusKR+`"}]}`)
+	writeTestFile(t, rawWT, "kr/KR_Bufs.json", `{"dataList":[{"id":"Burst","name":"파열"}]}`)
+	const nameKey = "Bufs.json|/dataList/0/name"
+	if err := st.SaveRecords(map[string]store.Record{
+		nameKey: {Key: nameKey, KRSha: units.KRSha("파열"), ZH: "破裂", Origin: store.OriginParatranz, Since: "raw-20261029"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := st.SavePending([]store.PendingItem{{Key: statusKey, Reason: "new"}}); err != nil {
+		t.Fatal(err)
+	}
+	return root, st
+}
+
+// The name of a status that follows a count gets the half-width space the game
+// needs to show the effect text.
+func TestBatchSubmitAddsTheSpaceAfterKeywordNames(t *testing.T) {
+	root, st := keywordRepo(t)
+	next, _, err := runNextJSON(t, root)
+	if err != nil || next.Batch == nil {
+		t.Fatalf("batch next = %+v, %v", next, err)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: statusKey, ZH: "使目標增加2級破裂強度"})
+	got, raw, err := runSubmitJSON(t, root, *next.Batch)
+	if err != nil || !slices.Equal(got.Accepted, []string{statusKey}) {
+		t.Fatalf("submit: %v\n%s", err, raw)
+	}
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if rec := recs[statusKey]; rec.ZH != "使目標增加2級破裂 強度" {
+		t.Errorf("record ZH = %q, want the space after 破裂", rec.ZH)
 	}
 }

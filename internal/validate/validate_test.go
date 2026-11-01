@@ -742,3 +742,93 @@ func TestLanguageStyleComparisonKeyCannotBeForged(t *testing.T) {
 		})
 	}
 }
+
+// The colons of "E.G.O::" belong to the skill name and are not Chinese
+// punctuation gone wrong.
+func TestHalfwidthPunctIgnoresDoubleColon(t *testing.T) {
+	for _, zh := range []string{"腦葉公司E.G.O:: 淚鋒之劍 羅佳", "E.G.O::淚鋒之劍", "E.G.O:::淚鋒之劍"} {
+		if got := Check("가", zh, Context{}); len(got) != 0 {
+			t.Errorf("Check(%q) = %v, want no issues", zh, codes(got))
+		}
+	}
+	// A single colon beside Chinese text is still reported.
+	if _, ok := find(Check("가", "腦葉公司E.G.O:淚鋒之劍", Context{}), "halfwidth-punct"); !ok {
+		t.Error("a single colon next to Chinese text is no longer reported")
+	}
+}
+
+func TestPlaceholderBracket(t *testing.T) {
+	tests := []struct {
+		name, kr, zh string
+		want         bool
+	}{
+		{"opening bracket without its closing bracket", "[{0}]이(가)…", "<color>[{0}</color>獲得了", true},
+		{"both brackets", "[{0}]이(가)…", "[{0}]獲得了", false},
+		{"closing bracket without its opening bracket", "[{0}]이(가)…", "{0}]獲得了", true},
+		{"closing bracket after a tag", "[{0}]이(가)…", "<color>{0}</color>]獲得了", false},
+		{"both missing", "[{0}]이(가)…", "{0}獲得了", false},
+		{"bracket after the placeholder", "罪人[{0}]", "罪人[{0}", true},
+		{"two placeholders", "[{0}]와 [{1}]", "[{0}] 與 [{1}", true},
+		{"KR brackets are not paired", "[{0}이(가)…", "[{0}獲得了", false},
+		{"KR has an extra closing bracket", "{0}]이(가)…", "[{0}獲得了", false},
+		{"a named placeholder is not looked at", "[{Slot}]", "[{Slot}", false},
+		// KR itself writes these, and the translation keeps them.
+		{"KR writes the same unpaired pieces", "<color=#3246AB>[{0}장 {1}]</color>에 진입", "進入<color=#3246AB>[{0}章 {1}]</color>", false},
+		{"KR writes the same pieces around a percent template", "%[{1} {2}]/% 얻음", "獲得%[{1} {2}]/%", false},
+		{"zh breaks a pair that KR writes in full next to such pieces", "[{0}장 {1}] 와 [{2}]", "[{0}章 {1}] 與 [{2}", true},
+		{"a space after the closing bracket is not looked at", "[{0}]이(가)…", "[{0}] 獲得了", false},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			issues := Check(tc.kr, tc.zh, Context{})
+			var n int
+			for _, is := range issues {
+				if is.Code != "placeholder-bracket" {
+					continue
+				}
+				n++
+				if is.Severity != SeverityWarn || is.Class != ClassStyle {
+					t.Errorf("placeholder-bracket is %s/%s, want warn/style", is.Severity, is.Class)
+				}
+			}
+			if want := map[bool]int{true: 1, false: 0}[tc.want]; n != want {
+				t.Errorf("Check(%q, %q) has %d placeholder-bracket issues, want %d (codes %v)", tc.kr, tc.zh, n, want, codes(issues))
+			}
+		})
+	}
+}
+
+// Half-width parentheses are right in skills and wrong in the labels of the
+// RPG: only RPGSystem/ files that are not dialogue are looked at.
+func TestHalfwidthBracketInRPGLabels(t *testing.T) {
+	tests := []struct {
+		name, file, zh string
+		want           bool
+	}{
+		{"quest title", "RPGSystem/rpg-loc-quest-floor-3.json", "(內部)黃金皮革閃光", true},
+		{"closing parenthesis only", "RPGSystem/rpg-loc-quest-floor-3.json", "黃金皮革閃光（屍堆)", true},
+		{"full-width parentheses", "RPGSystem/rpg-loc-quest-floor-3.json", "（內部）黃金皮革閃光", false},
+		{"dialogue", "RPGSystem/rpg-loc-dialogue-floor-3.json", "(內部)黃金皮革閃光", false},
+		{"dialogue choice", "RPGSystem/rpg-loc-dialogue-choice-floor-3.json", "(內部)黃金皮革閃光", false},
+		{"skill file", "Skills_personality-01.json", "(內部)黃金皮革閃光", false},
+		{"no file given", "", "(內部)黃金皮革閃光", false},
+		{"a file that only mentions RPGSystem", "Other/RPGSystem/rpg-loc-quest-floor-3.json", "(內部)黃金皮革閃光", false},
+		{"markup is not text", "RPGSystem/rpg-loc-quest-floor-3.json", `<link="a(b)">黃金皮革閃光</link>`, false},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			issues := Check("가", tc.zh, Context{File: tc.file})
+			is, got := find(issues, "halfwidth-bracket")
+			if got != tc.want {
+				t.Fatalf("Check(%q) in %q has halfwidth-bracket = %v, want %v (codes %v)", tc.zh, tc.file, got, tc.want, codes(issues))
+			}
+			if got && (is.Severity != SeverityWarn || is.Class != ClassStyle) {
+				t.Errorf("halfwidth-bracket is %s/%s, want warn/style", is.Severity, is.Class)
+			}
+		})
+	}
+	// It stays a warning for a unit that shipped.
+	if is, ok := find(Check("가", "(內部)", Context{File: "RPGSystem/rpg-loc-quest-floor-3.json", Existing: true}), "halfwidth-bracket"); !ok || is.Severity != SeverityWarn {
+		t.Errorf("halfwidth-bracket of an existing unit = %+v, want a warning", is)
+	}
+}

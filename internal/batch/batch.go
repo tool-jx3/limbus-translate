@@ -58,6 +58,10 @@ type Env struct {
 	// bootstrap.ForeignNames); Submit warns about them, except the words of
 	// Rules.ForeignIgnore.
 	ForeignNames []string
+	// KeywordNames are the Chinese names of the keywords (see KeywordNames).
+	// Submit puts a half-width space after each of them that follows a count
+	// (validate.NormalizeKeywordSpace). Empty means no name is looked for.
+	KeywordNames []string
 	// Now is the clock: the time of the batch id and the base of lease expiry.
 	// The zero value means the current time.
 	Now time.Time
@@ -362,7 +366,7 @@ func glossaryFor(r *rules.Rules, file string, krs []string) []rules.Term {
 // rules.Rules.GlossaryHits), content issues being hard. zh is checked as it
 // is; Submit normalizes a translation first.
 func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr)})
+	return validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), File: file})
 }
 
 // ShortTextRunes is the length, in runes of the KR text, under which a text
@@ -398,29 +402,17 @@ func (g TextGroup) FileBound() bool {
 	return utf8.RuneCountInString(g.KR) < ShortTextRunes
 }
 
-// keywordNames builds the names this translation gives the [ID]s that occur
-// in krs. The table is read from the KR keyword files with every translated
-// name written over its KR text; a name that is still Korean is no name of
-// ours and is left out. Only a record made from the KR text there is now
-// counts as a translation.
-func keywordNames(env Env, records map[string]store.Record, krs []string) (map[string]string, error) {
-	want := map[string]bool{}
-	for _, kr := range krs {
-		for _, id := range validate.IDs(kr) {
-			want[strings.TrimSuffix(strings.TrimPrefix(id, "["), "]")] = true
-		}
-	}
-	table := map[string]string{}
-	if len(want) == 0 {
-		return table, nil
-	}
-
+// keywordTable is the name this translation gives each keyword id: the table
+// read from the KR keyword files with every translated name written over its
+// KR text. A name that is still Korean is no name of ours and is left out.
+// Only a record made from the KR text there is now counts as a translation.
+func keywordTable(kr *pack.Pack, records map[string]store.Record) (map[string]string, error) {
 	docs := map[string]*jsonx.Node{}
-	for _, file := range env.Src.KR.Files() {
+	for _, file := range kr.Files() {
 		if !names.IsKeywordFile(file) {
 			continue
 		}
-		doc, err := env.Src.KR.Doc(file)
+		doc, err := kr.Doc(file)
 		if err != nil {
 			return nil, fmt.Errorf("batch: %w", err)
 		}
@@ -435,10 +427,53 @@ func keywordNames(env Env, records map[string]store.Record, krs []string) (map[s
 		}
 		docs[file] = doc
 	}
+	table := map[string]string{}
 	for id, name := range names.KeywordTable(docs) {
-		if want[id] && !strings.ContainsFunc(name, func(r rune) bool { return unicode.Is(unicode.Hangul, r) }) {
+		if !strings.ContainsFunc(name, func(r rune) bool { return unicode.Is(unicode.Hangul, r) }) {
 			table[id] = name
 		}
 	}
 	return table, nil
+}
+
+// keywordNames builds the names this translation gives the [ID]s that occur
+// in krs (see keywordTable).
+func keywordNames(env Env, records map[string]store.Record, krs []string) (map[string]string, error) {
+	want := map[string]bool{}
+	for _, kr := range krs {
+		for _, id := range validate.IDs(kr) {
+			want[strings.TrimSuffix(strings.TrimPrefix(id, "["), "]")] = true
+		}
+	}
+	if len(want) == 0 {
+		return map[string]string{}, nil
+	}
+	all, err := keywordTable(env.Src.KR, records)
+	if err != nil {
+		return nil, err
+	}
+	table := map[string]string{}
+	for id, name := range all {
+		if want[id] {
+			table[id] = name
+		}
+	}
+	return table, nil
+}
+
+// KeywordNames lists, sorted and once each, the Chinese names this
+// translation gives the keywords, read from the records of the Bufs* and
+// BattleKeywords* files of kr (see keywordTable). It is what Env.KeywordNames
+// holds.
+func KeywordNames(kr *pack.Pack, records map[string]store.Record) ([]string, error) {
+	table, err := keywordTable(kr, records)
+	if err != nil {
+		return nil, err
+	}
+	list := make([]string, 0, len(table))
+	for _, name := range table {
+		list = append(list, name)
+	}
+	slices.Sort(list)
+	return slices.Compact(list), nil
 }

@@ -2,6 +2,7 @@ package validate
 
 import (
 	"regexp"
+	"slices"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -18,6 +19,8 @@ var (
 	// which the game replaces at run time.
 	variableRe = regexp.MustCompile(`^[A-Z0-9_]{2,}$`)
 	unescaper  = strings.NewReplacer("&lt;", "<", "&gt;", ">")
+	// keywordCountRe matches the count a keyword name follows: 2級, 3層, 1回.
+	keywordCountRe = regexp.MustCompile(`[0-9]+[級層回]`)
 )
 
 // Normalize repairs the mechanical formatting problems of translation zh:
@@ -120,5 +123,49 @@ func separateAdjacentIDs(s string) string {
 		}
 	}
 	b.WriteString(s[last:])
+	return b.String()
+}
+
+// NormalizeKeywordSpace puts a half-width space after each keyword name that
+// follows a count (2級, 3層, 1回) and is not followed by one: "2級破裂強度"
+// becomes "2級破裂 強度", "2層強壯，" becomes "2層強壯 ，" and a name at the
+// end of the text gets the space too. The game matches "keyword name + space"
+// to show the effect text of a status, so KR text that names a status in
+// Korean, without an [ID], needs it in the translation.
+//
+// names are the Chinese keyword names. The longest name that fits is used
+// ("破裂易損" before "破裂"), whatever the order of names. A name not
+// preceded by a count is left alone, and so is a name followed by
+// [TabExplain], which must touch the text before it (see Normalize).
+// NormalizeKeywordSpace is idempotent and does not change names.
+func NormalizeKeywordSpace(zh string, names []string) string {
+	locs := keywordCountRe.FindAllStringIndex(zh, -1)
+	if locs == nil || len(names) == 0 {
+		return zh
+	}
+	names = slices.DeleteFunc(slices.Clone(names), func(n string) bool { return n == "" })
+	// A name that is the start of another one is shorter in bytes, too.
+	slices.SortFunc(names, func(a, b string) int { return len(b) - len(a) })
+
+	var b strings.Builder
+	last := 0
+	for _, loc := range locs {
+		if loc[0] < last {
+			continue // inside the name before it
+		}
+		rest := zh[loc[1]:]
+		i := slices.IndexFunc(names, func(n string) bool { return strings.HasPrefix(rest, n) })
+		if i < 0 {
+			continue
+		}
+		after := loc[1] + len(names[i])
+		if strings.HasPrefix(zh[after:], " ") || strings.HasPrefix(zh[after:], "[TabExplain]") {
+			continue
+		}
+		b.WriteString(zh[last:after])
+		b.WriteByte(' ')
+		last = after
+	}
+	b.WriteString(zh[last:])
 	return b.String()
 }
