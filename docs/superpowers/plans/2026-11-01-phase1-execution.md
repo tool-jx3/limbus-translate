@@ -115,7 +115,7 @@
     5. 規則版本：rules commit
     6. 報表摘要：origins、pending、needs_review、structural_fallback、frozen_fallback、missing glyphs 數
     7. 授權與來源：譯文 CC BY-NC-SA 4.0，含 Paratranz 社群譯文（第一階段匯入），原文著作權屬 Project Moon，字型 Sarasa Gothic（SIL OFL）
-  - `publish.Run(root, twRoot, outDir string) (*Result, error)`，`Result{TWCommit string; Changed bool; Tag string; NotesPath string; Assets []string}`。流程：讀 `.meta/build.json`；`gitx.CommitAll(twRoot, "build: <raw tag> (rules <rules commit>)")`；以 `gitx.Tags(root, "zh-TW-")` 算 tag；寫 `<outDir>/release-notes.md`；`Assets` 為 `out/zh-TW_text_<raw tag>.zip`、`out/zh-TW_complete_<raw tag>.zip`（兩者都必須存在，否則使用者錯誤）
+  - `publish.Run(root, twRoot, outDir, langDir string) (*Result, error)`，`Result{TWCommit string; Changed bool; Tag string; NotesPath string; Assets []string}`。流程：讀 `.meta/build.json`；`gitx.CommitAll(twRoot, "build: <raw tag> (rules <rules commit>)")`；以 `gitx.Tags(root, "zh-TW-")` 算 tag；寫 `<outDir>/release-notes.md`；`Assets` 為 `out/zh-TW_text_<raw tag>.zip`、`out/zh-TW_complete_<raw tag>.zip`（兩者都必須存在，否則使用者錯誤）
   - CLI：`lct publish [--json]`。不 push、不建立 Release（由 workflow 執行）
 
 - [ ] **Step 1: 寫失敗測試**
