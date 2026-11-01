@@ -14,8 +14,14 @@ var (
 	// placeholderRe matches a runtime substitution such as {0}, {Slot} or <0>.
 	placeholderRe = regexp.MustCompile(`\{[^{}]+\}|<\d+>`)
 	// tagRe matches a TextMeshPro tag such as <color=#f8c200> or </color>.
-	// It cannot match <0>, which is a placeholder.
-	tagRe = regexp.MustCompile(`</?[A-Za-z][A-Za-z0-9-]*(=[^>]*)?( [^>]*)?>`)
+	// Only the names in richTextTags count, in any case: KR also writes <…>
+	// around plain text (the report title <DAY ■■, ■■ ■■ …>), which is not a
+	// tag. It cannot match <0>, which is a placeholder.
+	tagRe = regexp.MustCompile(`(?i)</?(?:` + strings.Join(richTextTags, "|") + `)(=[^>]*)?( [^>]*)?>`)
+	// tagShapeRe matches anything written like a tag, known name or not.
+	// IsDanteLine uses it so that a line starting with such a token is never
+	// taken for a line of Dante's dialogue.
+	tagShapeRe = regexp.MustCompile(`</?[A-Za-z][A-Za-z0-9-]*(=[^>]*)?( [^>]*)?>`)
 	// langStyleRe matches a per-language style tag such as <style="dkr"> or
 	// <style="DEN_CP9_1">. KR writes dkr, EN den and JP djp; the suffix tells
 	// the lyric lines apart. The groups are the opening quote, the language
@@ -23,6 +29,15 @@ var (
 	// callers accept a match only when the quotes agree.
 	langStyleRe = regexp.MustCompile(`<style=("?)((?i:d(?:kr|en|jp)))((?:_[A-Za-z0-9_]+)?)("?)>`)
 )
+
+// richTextTags lists the names of the tags Tags recognises: the TextMeshPro
+// rich-text tags, and ruby, which the game adds for the reading above a word.
+var richTextTags = []string{
+	"align", "allcaps", "alpha", "b", "br", "color", "cspace", "font", "font-weight", "gradient", "i", "indent",
+	"line-height", "line-indent", "link", "lowercase", "margin", "mark", "mspace", "nobr", "noparse", "page",
+	"pos", "rotate", "s", "size", "smallcaps", "space", "sprite", "strikethrough", "style", "sub", "sup", "u",
+	"uppercase", "voffset", "width", "ruby",
+}
 
 // IDs returns the [ID] tokens of s in order of appearance, duplicates kept.
 func IDs(s string) []string { return idRe.FindAllString(s, -1) }

@@ -57,6 +57,67 @@ func TestTokens(t *testing.T) {
 	}
 }
 
+// Only the rich-text tags TextMeshPro knows (and <ruby=…>) are tags. A KR
+// report title such as <DAY ■■, ■■ ■■ 연구 용역 결과 보고서> is ordinary text:
+// it is not compared as a tag, and its Korean has to be translated.
+func TestOnlyKnownTagNamesAreTags(t *testing.T) {
+	if got := Tags("<DAY ■■, ■■ ■■ 연구 용역 결과 보고서> 본문"); len(got) != 0 {
+		t.Errorf("Tags found %q in a text with only an unknown <…> token, want none", got)
+	}
+	if got, want := Tags("<color=#fff>x</color><Size=110%>y</Size>"),
+		[]string{"<color=#fff>", "</color>", "<Size=110%>", "</Size>"}; !reflect.DeepEqual(got, want) {
+		t.Errorf("Tags = %q, want %q", got, want)
+	}
+	// Every known name is a tag, in any case; a longer name that merely starts
+	// with a known one (<bold>, <sizes>) is not.
+	for _, name := range []string{
+		"align", "allcaps", "alpha", "b", "br", "color", "cspace", "font", "font-weight", "gradient", "i", "indent",
+		"line-height", "line-indent", "link", "lowercase", "margin", "mark", "mspace", "nobr", "noparse", "page",
+		"pos", "rotate", "s", "size", "smallcaps", "space", "sprite", "strikethrough", "style", "sub", "sup", "u",
+		"uppercase", "voffset", "width", "ruby",
+	} {
+		for _, tok := range []string{"<" + name + ">", "<" + strings.ToUpper(name) + "=1>", "</" + name + ">"} {
+			if got := Tags("가 " + tok + " 나"); len(got) != 1 || got[0] != tok {
+				t.Errorf("Tags(%q) = %q, want the tag itself", tok, got)
+			}
+		}
+	}
+	for _, tok := range []string{"<bold>", "<sizes=3>", "<day>", "<DAY ■■>", "</day>", "<fontx>"} {
+		if got := Tags(tok); len(got) != 0 {
+			t.Errorf("Tags(%q) = %q, want none", tok, got)
+		}
+	}
+	// An unknown <…> token does not hide the tags next to or inside it.
+	if got, want := Tags("<DAY <b>x</b> y>"), []string{"<b>", "</b>"}; !reflect.DeepEqual(got, want) {
+		t.Errorf("Tags around an unknown token = %q, want %q", got, want)
+	}
+}
+
+func TestUnknownAngleTokenIsOrdinaryText(t *testing.T) {
+	kr := "<DAY ■■, ■■ ■■ 연구 용역 결과 보고서>\n본문"
+	// Translating the Korean inside is not a tag difference.
+	if got := Check(kr, "<DAY ■■, ■■ ■■ 研究委託結果報告書>\n正文", Context{}); len(got) != 0 {
+		t.Errorf("a translated report title raised %v", got)
+	}
+	// Keeping the Korean is the hangul problem it always was.
+	issues := Check(kr, "<DAY ■■, ■■ ■■ 연구 용역 결과 보고서>\n正文", Context{})
+	if _, ok := find(issues, "hangul"); !ok {
+		t.Errorf("the Korean kept in the title raised %v, want hangul", codes(issues))
+	}
+	if _, ok := find(issues, "tag-mismatch"); ok {
+		t.Errorf("an unknown <…> token was compared as a tag: %v", codes(issues))
+	}
+	// The known tags around it are still compared.
+	issues = Check("<DAY ■■ 보고서> <b>본문</b>", "<DAY ■■ 報告書> 正文", Context{})
+	if got := codes(issues); !reflect.DeepEqual(got, []string{"tag-mismatch"}) {
+		t.Errorf("a lost <b> next to an unknown token raised %v, want tag-mismatch", got)
+	}
+	// The unknown token is text for the punctuation check as well.
+	if _, ok := find(Check("<DAY 가>", "<DAY 第3天, 報告>", Context{}), "halfwidth-punct"); !ok {
+		t.Error("a half-width comma next to Chinese inside an unknown <…> token should count")
+	}
+}
+
 func TestCheckStructural(t *testing.T) {
 	tests := []struct {
 		name, kr, zh string
@@ -443,6 +504,8 @@ func TestIsDanteLineLatinStart(t *testing.T) {
 		{"<0>", false},
 		{"<1> 별이라 <2>", false},
 		{"<color=#fff>N사</color>", false},
+		{"<DAY ■■, ■■ ■■ 연구 용역 결과 보고서>\n본문 <b>가</b>", false},
+		{"<DAY ■■, ■■ ■■ 연구 용역 결과 보고서>", false},
 		{"N사에서 살아온", false},
 		{"별이라… 아픈 건 아니지?", false},
 		{"<N사에서 살아온", false},
@@ -501,8 +564,6 @@ func TestRubyExemptionIsOnlyForRuby(t *testing.T) {
 	tests := []struct{ name, kr, zh string }{
 		{"color value", `<color=#f00>가</color>`, `<color=#0f0>甲</color>`},
 		{"size value", `<size=20>가</size>`, `<size=30>甲</size>`},
-		{"look-alike name", `<rubyx=가>나</rubyx>`, `<rubyx=甲>乙</rubyx>`},
-		{"ruby name inside a prefix", `<xruby=가>나</xruby>`, `<xruby=甲>乙</xruby>`},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
@@ -510,6 +571,16 @@ func TestRubyExemptionIsOnlyForRuby(t *testing.T) {
 				t.Errorf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
 			}
 		})
+	}
+}
+
+// A name that only looks like ruby is not a tag name, so it is not compared as
+// a tag at all (see TestOnlyKnownTagNamesAreTags).
+func TestRubyLookAlikeNamesAreNotTags(t *testing.T) {
+	for _, s := range []string{`<rubyx=가>나</rubyx>`, `<xruby=가>나</xruby>`} {
+		if got := Tags(s); len(got) != 0 {
+			t.Errorf("Tags(%q) = %q, want none", s, got)
+		}
 	}
 }
 

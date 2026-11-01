@@ -113,13 +113,14 @@ var (
 // IsDanteLine reports whether s, ignoring blanks at both ends, is a whole line
 // of Dante's dialogue: wrapped in <…> without starting with a tag or a <0>
 // placeholder. Any other character can follow the <, a letter or a digit
-// included (<N사에서 …>, <0.06%면 …>).
+// included (<N사에서 …>, <0.06%면 …>). A token written like a tag counts as one
+// here even when its name is not a tag name (<DAY ■■ …>, a report title).
 func IsDanteLine(s string) bool {
 	s = strings.TrimSpace(s)
 	if !strings.HasPrefix(s, "<") || !strings.HasSuffix(s, ">") {
 		return false
 	}
-	for _, re := range []*regexp.Regexp{tagRe, placeholderRe} {
+	for _, re := range []*regexp.Regexp{tagShapeRe, placeholderRe} {
 		if loc := re.FindStringIndex(s); loc != nil && loc[0] == 0 {
 			return false // <color=#fff>文字</color>, </b>, <0>
 		}
