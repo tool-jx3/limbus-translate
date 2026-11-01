@@ -915,3 +915,16 @@
   category: [city]
   notes: 既有譯文寫原文（P11009、4D305B、RPG floor-4-c2、common-a1c10p2）
 
+- kr: 클론
+  zh: 複製體
+  status: approved
+  category: [city]
+  notes: 百貨公司；「단테 클론」→ 但丁的複製體（npc-floor-2 既有），人名後加「的」
+
+- kr: 유체
+  zh: 幼蟲
+  forbidden: [幼體]
+  status: approved
+  category: [city]
+  notes: 百貨公司地下樓層（道具、RPG 既有）
+
