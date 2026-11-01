@@ -33,7 +33,8 @@ jobs:
       - name: Make sure origin has the raw tag
         run: |
           raw_tag=$(jq -er .tag .work/raw/meta/source.json)
-          if [ -z "$(git ls-remote --tags origin "refs/tags/$raw_tag")" ]; then
+          remote=$(git ls-remote --tags origin "refs/tags/$raw_tag")
+          if [ -z "$remote" ]; then
             git tag "$raw_tag" origin/raw
             git push origin "refs/tags/$raw_tag"
           fi
@@ -68,5 +69,9 @@ jobs:
         run: |
           tag=$(jq -er .tag out/publish.json)
           tw_commit=$(jq -er .tw_commit out/publish.json)
-          mapfile -t assets < <(jq -er '.assets[]' out/publish.json)
+          # set -e does not see a failing command inside <( ): capture the assets
+          # first, and refuse to make a Release that has not both zips.
+          assets_json=$(jq -ec '.assets | select(length == 2)' out/publish.json)
+          mapfile -t assets < <(jq -r '.[]' <<<"$assets_json")
+          [ "${#assets[@]}" -eq 2 ] || { echo 'publish.json has no assets' >&2; exit 1; }
           gh release create "$tag" "${assets[@]}" --target "$tw_commit" --title "$tag" --notes-file out/release-notes.md

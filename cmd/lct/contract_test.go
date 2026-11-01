@@ -16,6 +16,7 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/publish"
 )
 
 // The contract between the skills, the shared prompts and the rest of the
@@ -461,14 +462,21 @@ var rebuildMarkers = []struct{ text, why string }{
 	{"+refs/tags/*:refs/tags/*", "the tags are not fetched, so the Release number restarts at 1"},
 	{"git worktree add .work/raw raw", "lct build reads the raw worktree and does not make it"},
 	{"meta/source.json", "the raw tag is not read from the raw worktree"},
-	{"git ls-remote --tags origin", "origin is not asked for the raw tag"},
+	// The answer is assigned first, so that set -e sees a failing git.
+	{"remote=$(git ls-remote --tags origin", "origin is not asked for the raw tag, or its answer is not kept before it is tested"},
 	{`git push origin "refs/tags/`, "a raw tag that origin lacks is not pushed"},
 	{"bin/lct build", "the pack is not built"},
 	{"bin/lct publish", "the Release is not prepared"},
 	{"git push origin tw", "the tw commit is not pushed"},
 	{"gh release create", "no Release is created"},
-	{"--target", "the Release tag is not made at the tw commit"},
+	{`--target "$tw_commit"`, "the Release tag is not made at the tw commit"},
 	{"--notes-file", "the Release has no notes"},
+	// set -e does not see a failing command in a process substitution: the
+	// assets are captured first, then read, then counted, or a Release could
+	// be made with no zip.
+	{"assets_json=$(jq -ec", "the assets of publish.json are not captured before they are read"},
+	{"mapfile -t assets", "the assets are not read"},
+	{`"${#assets[@]}" -eq 2`, "the number of assets is not checked before the Release"},
 }
 
 // rebuildOrder pairs the commands of rebuild.yml that must run in that order:
@@ -476,11 +484,14 @@ var rebuildMarkers = []struct{ text, why string }{
 var rebuildOrder = [][2]string{
 	{"+refs/tags/*:refs/tags/*", "bin/lct publish"}, // the tags number the Release
 	{"git worktree add .work/raw raw", "meta/source.json"},
-	{"meta/source.json", "git ls-remote --tags origin"},
+	{"meta/source.json", "remote=$(git ls-remote --tags origin"},
 	{"git worktree add .work/raw raw", "bin/lct build"},
 	{"bin/lct build", "bin/lct publish"},
 	{"bin/lct publish", "git push origin tw"},
 	{"git push origin tw", "gh release create"}, // the Release is made from a pushed commit
+	{"assets_json=$(jq -ec", "mapfile -t assets"},
+	{"mapfile -t assets", `"${#assets[@]}" -eq 2`},
+	{`"${#assets[@]}" -eq 2`, "gh release create"}, // no Release without its zips
 }
 
 // workflowStep is a step of a job, as far as the contract reads it.
@@ -640,6 +651,50 @@ func checkRebuildWorkflow(file, content string) []string {
 	return problems
 }
 
+// publishKeyRe matches a key of out/publish.json that a jq command of the
+// workflow reads: the key after "jq -er ." or "jq -ec '.".
+var publishKeyRe = regexp.MustCompile(`jq -[a-z]+ '?\.([a-z_]+)`)
+
+// publishKeysRead are the keys of out/publish.json the rebuild must read.
+var publishKeysRead = []string{"tag", "tw_commit", "assets"}
+
+// checkPublishKeys reports the keys the workflow reads from out/publish.json
+// that result, the value lct publish --json prints, has no JSON key for, and
+// the keys in publishKeysRead it does not read at all (so the test cannot
+// pass by finding nothing).
+func checkPublishKeys(file, content string, result any) []string {
+	data, err := json.Marshal(result)
+	if err != nil {
+		return []string{fmt.Sprintf("%s: the publish result does not marshal: %v", file, err)}
+	}
+	var printed map[string]json.RawMessage
+	if err := json.Unmarshal(data, &printed); err != nil {
+		return []string{fmt.Sprintf("%s: the publish result is not a JSON object: %v", file, err)}
+	}
+	var problems []string
+	read := map[string]bool{}
+	for _, line := range strings.Split(content, "\n") {
+		if !strings.Contains(line, "out/publish.json") {
+			continue
+		}
+		for _, m := range publishKeyRe.FindAllStringSubmatch(line, -1) {
+			read[m[1]] = true
+		}
+	}
+	for _, key := range publishKeysRead {
+		if !read[key] {
+			problems = append(problems, fmt.Sprintf("%s: does not read %q from out/publish.json", file, key))
+		}
+	}
+	for key := range read {
+		if _, ok := printed[key]; !ok {
+			problems = append(problems, fmt.Sprintf("%s: reads %q from out/publish.json, which lct publish --json does not print", file, key))
+		}
+	}
+	sort.Strings(problems)
+	return problems
+}
+
 // mutate returns src with the one copy of old replaced by repl; a workflow
 // that has no copy or many fails the test, so a negative test cannot pass
 // without changing anything.
@@ -732,6 +787,11 @@ func TestWorkflowContract(t *testing.T) {
 		{"no raw worktree", "git worktree add .work/raw raw", "git worktree prune", `"git worktree add .work/raw raw"`},
 		{"no raw tag push", `git push origin "refs/tags/`, `echo "refs/tags/`, `git push origin \"refs/tags/`},
 		{"no tw push", "git push origin tw", "git status", `"git push origin tw"`},
+		{"an answer of origin that set -e does not see", "remote=$(git ls-remote --tags origin", ": $(git ls-remote --tags origin", `"remote=$(git ls-remote --tags origin"`},
+		{"a Release tag not made at the tw commit", `--target "$tw_commit"`, "--target main", "not made at the tw commit"},
+		{"assets read in a process substitution", "assets_json=$(jq -ec", "assets_json=$(cat out/publish.json; jq -ec", `"assets_json=$(jq -ec"`},
+		{"no check of the assets", `"${#assets[@]}" -eq 2`, `"${#assets[@]}" -ge 0`, "number of assets is not checked"},
+		{"assets read before they are captured", "assets_json=$(jq -ec", "mapfile -t assets </dev/null; assets_json=$(jq -ec", `"assets_json=$(jq -ec" must come before "mapfile -t assets"`},
 		{"a push before the build", "bin/lct build --json", "git push origin tw && bin/lct build --json", `"bin/lct publish" must come before "git push origin tw"`},
 		{"a release before the publish", "bin/lct publish --json >", "gh release create x && bin/lct publish --json >", `"git push origin tw" must come before "gh release create"`},
 		{"no token for gh", "GH_TOKEN: ${{ github.token }}", "GH_USER: x", "GH_TOKEN"},
@@ -765,6 +825,50 @@ func TestWorkflowContract(t *testing.T) {
 		problems := checkRebuildWorkflow(file, src)
 		if !slices.ContainsFunc(problems, func(p string) bool { return strings.Contains(p, "--title") }) {
 			t.Errorf("problems = %q, want one about --title", problems)
+		}
+	})
+}
+
+// The jq commands of rebuild.yml read the keys lct publish --json prints
+// (publish.Result): a key renamed in the code must fail here, not in the
+// Release step.
+func TestWorkflowReadsPublishResult(t *testing.T) {
+	file, rebuild := readRepoFile(t, filepath.Join(repoRoot, ".github", "workflows", "rebuild.yml"))
+	result := publish.Result{
+		TWCommit:  "0123456789abcdef0123456789abcdef01234567",
+		Changed:   true,
+		Tag:       "zh-TW-20261029.1",
+		NotesPath: "out/release-notes.md",
+		Assets:    []string{"out/text.zip", "out/complete.zip"},
+	}
+	for _, problem := range checkPublishKeys(file, rebuild, result) {
+		t.Error(problem)
+	}
+	if t.Failed() {
+		return
+	}
+
+	t.Run("a key the workflow reads that is not printed", func(t *testing.T) {
+		src := mutate(t, rebuild, "jq -er .tw_commit", "jq -er .tw_sha")
+		problems := checkPublishKeys(file, src, result)
+		want := []string{`does not read "tw_commit"`, `reads "tw_sha"`}
+		if len(problems) != len(want) {
+			t.Fatalf("problems = %q, want %d naming %q", problems, len(want), want)
+		}
+		for i, w := range want {
+			if !strings.Contains(problems[i], w) {
+				t.Errorf("problem %q does not contain %q", problems[i], w)
+			}
+		}
+	})
+	t.Run("a result that lost a key", func(t *testing.T) {
+		lost := struct {
+			Tag    string   `json:"tag"`
+			Assets []string `json:"assets"`
+		}{Tag: result.Tag, Assets: result.Assets}
+		problems := checkPublishKeys(file, rebuild, lost)
+		if len(problems) != 1 || !strings.Contains(problems[0], `reads "tw_commit"`) {
+			t.Errorf("problems = %q, want one saying it reads tw_commit, which is not printed", problems)
 		}
 	})
 }
