@@ -433,6 +433,26 @@ func TestBatchNextKeepsBatchIDsUnique(t *testing.T) {
 	}
 }
 
+// A work/batches that cannot be looked into is an error, not an id in use: the
+// search for a free id under the lock must end.
+func TestBatchNextFailsWhenBatchFilesCannotBeChecked(t *testing.T) {
+	root, st := batchRepo(t)
+	writeTestFile(t, root, "work/batches", "not a directory")
+	_, _, err := runNextJSON(t, root)
+	if err == nil || isUserError(err) {
+		t.Fatalf("err = %v, want a system error", err)
+	}
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, it := range pending {
+		if it.Lease != nil {
+			t.Errorf("item %s was leased by a batch that failed: %+v", it.Key, it.Lease)
+		}
+	}
+}
+
 func pendingItem(t *testing.T, st *store.Store, key string) (store.PendingItem, bool) {
 	t.Helper()
 	items, err := st.LoadPending()

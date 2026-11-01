@@ -160,8 +160,13 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 		LeaseTTL:      time.Duration(cfg.LeaseMinutes) * time.Minute,
 		// A batch file of an earlier batch, or its translations, must not be
 		// overwritten or picked up by a new batch with the same id.
-		IDTaken: func(id string) bool {
-			return pathExists(batchPath(ctx, id, ".json")) || pathExists(batchPath(ctx, id, ".out.json"))
+		IDTaken: func(id string) (bool, error) {
+			for _, suffix := range []string{".json", ".out.json"} {
+				if taken, err := pathExists(batchPath(ctx, id, suffix)); taken || err != nil {
+					return taken, err
+				}
+			}
+			return false, nil
 		},
 	}
 	if maxUnitsSet {
@@ -181,11 +186,17 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 	return ctx.Emit(nextReport{Batch: &b.ID, Path: path, Units: len(b.Units)})
 }
 
-// pathExists reports whether something is at path; an error other than "does
-// not exist" counts as yes, to be on the safe side.
-func pathExists(path string) bool {
+// pathExists reports whether something is at path. An error other than "does
+// not exist" is returned: it says nothing about whether the path is in use.
+func pathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
-	return err == nil || !errors.Is(err, fs.ErrNotExist)
+	switch {
+	case err == nil:
+		return true, nil
+	case errors.Is(err, fs.ErrNotExist):
+		return false, nil
+	}
+	return false, err
 }
 
 // writeJSONFile writes v as indented JSON with a final newline, without

@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -1358,7 +1359,7 @@ func TestNextKeepsBatchIDsUnique(t *testing.T) {
 	tests := []struct {
 		name  string
 		items []store.PendingItem
-		taken func(string) bool
+		taken func(string) (bool, error)
 		want  string
 	}{
 		{"no clash", []store.PendingItem{{Key: k0, Reason: "new"}}, nil, base},
@@ -1375,12 +1376,12 @@ func TestNextKeepsBatchIDsUnique(t *testing.T) {
 		{
 			"the caller knows a file with the id",
 			[]store.PendingItem{{Key: k0, Reason: "new"}},
-			func(id string) bool { return id == base }, base + "-2",
+			func(id string) (bool, error) { return id == base, nil }, base + "-2",
 		},
 		{
 			"both the lease and the caller",
 			[]store.PendingItem{{Key: k0, Reason: "new"}, {Key: k1, Reason: "new", Lease: &store.Lease{Batch: base + "-2", Until: testNow.Add(time.Hour)}}},
-			func(id string) bool { return id == base }, base + "-3",
+			func(id string) (bool, error) { return id == base, nil }, base + "-3",
 		},
 	}
 	for _, tt := range tests {
@@ -1396,6 +1397,48 @@ func TestNextKeepsBatchIDsUnique(t *testing.T) {
 				t.Errorf("lease = %+v, want the batch id %s", lease, tt.want)
 			}
 		})
+	}
+}
+
+// When IDTaken cannot tell, or says every id is taken, Next fails instead of
+// leasing anything (or searching forever under the lock).
+func TestNextFailsWhenNoIDIsFree(t *testing.T) {
+	k0 := key("Other.json", 0)
+	base := batchID(testNow, k0)
+	broken := errors.New("cannot look")
+	tests := []struct {
+		name  string
+		taken func(string) (bool, error)
+		want  string // in the error
+		is    error  // wrapped by the error, if not nil
+	}{
+		{"the check fails", func(string) (bool, error) { return false, broken }, "cannot look", broken},
+		{"every id is taken", func(string) (bool, error) { return true, nil }, base, nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			env := newEnv(t, map[string]string{"Other.json": dataList(t, 1, "", line)}, nil, nil)
+			seed(t, env, items("Other.json", 0, 1)...)
+			b, err := Next(env, NextOptions{IDTaken: tt.taken})
+			if err == nil || !strings.Contains(err.Error(), tt.want) {
+				t.Fatalf("Next = %+v, %v, want an error mentioning %q", b, err, tt.want)
+			}
+			if tt.is != nil && !errors.Is(err, tt.is) {
+				t.Errorf("err = %v, want it to wrap %v", err, tt.is)
+			}
+			if lease := pendingMap(t, env)[k0].Lease; lease != nil {
+				t.Errorf("lease = %+v, want none", lease)
+			}
+		})
+	}
+
+	// The last suffix tried is -1001: a thousand suffixes after the plain id.
+	env := newEnv(t, map[string]string{"Other.json": dataList(t, 1, "", line)}, nil, nil)
+	seed(t, env, items("Other.json", 0, 1)...)
+	last := base + "-1001"
+	b, err := Next(env, NextOptions{IDTaken: func(id string) (bool, error) { return id != last, nil }})
+	if err != nil || b == nil || b.ID != last {
+		t.Errorf("Next = %+v, %v, want batch %s", b, err, last)
 	}
 }
 

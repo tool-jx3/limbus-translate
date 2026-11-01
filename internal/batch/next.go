@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"errors"
+	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -23,9 +24,10 @@ type NextOptions struct {
 	// LeaseTTL is how long the units stay reserved for the batch.
 	LeaseTTL time.Duration
 	// IDTaken, when set, tells whether a batch id is already in use outside
-	// the pending queue (such as by a batch file). It is called inside the
-	// store lock, so it must not use the store.
-	IDTaken func(id string) bool
+	// the pending queue (such as by a batch file). An error, when it cannot
+	// tell, makes Next fail. It is called inside the store lock, so it must
+	// not use the store.
+	IDTaken func(id string) (bool, error)
 }
 
 func (o NextOptions) withDefaults() (NextOptions, error) {
@@ -51,7 +53,8 @@ func (o NextOptions) withDefaults() (NextOptions, error) {
 //
 // The id of a batch is the UTC time and the start of the hash of its first
 // key (see batchID). If a lease already names that id, or IDTaken says it is
-// in use, "-2", "-3" and so on is appended until the id is unique.
+// in use, "-2", "-3" and so on is appended until the id is unique; after
+// maxIDSuffixes suffixes Next gives up with an error.
 //
 // A batch holds units of one file. Outside StoryData/ that is the first
 // MaxUnits eligible units of the file. A story batch is a run of consecutive
@@ -175,7 +178,10 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		if len(chosen) == 0 {
 			continue
 		}
-		id := uniqueID(batchID(now, pending[chosen[0].idx].Key), pending, opt.IDTaken)
+		id, err := uniqueID(batchID(now, pending[chosen[0].idx].Key), pending, opt.IDTaken)
+		if err != nil {
+			return nil, nil, err
+		}
 		b, err := assemble(env, fd, id, c.family, pending, byFile[c.file], chosen, records)
 		if err != nil {
 			return nil, nil, err
@@ -229,21 +235,37 @@ func batchID(now time.Time, firstKey string) string {
 	return now.UTC().Format("20060102T150405") + "-" + hex.EncodeToString(sum[:])[:8]
 }
 
+// maxIDSuffixes is how many suffixes uniqueID tries after the plain id.
+const maxIDSuffixes = 1000
+
 // uniqueID returns id, or id with "-2", "-3"... appended, such that no lease
 // of pending (live or not: a batch that is still working under an old id must
-// not be mistaken for the new one) and no taken(id) holds it.
-func uniqueID(id string, pending []store.PendingItem, taken func(string) bool) string {
+// not be mistaken for the new one) and no taken(id) holds it. It fails when
+// taken fails or the last of maxIDSuffixes suffixes is taken too.
+func uniqueID(id string, pending []store.PendingItem, taken func(string) (bool, error)) (string, error) {
 	held := map[string]bool{}
 	for _, it := range pending {
 		if it.Lease != nil {
 			held[it.Lease.Batch] = true
 		}
 	}
-	candidate := id
-	for n := 2; held[candidate] || taken != nil && taken(candidate); n++ {
-		candidate = id + "-" + strconv.Itoa(n)
+	for n := 1; n <= 1+maxIDSuffixes; n++ { // id, then id-2 ... id-1001
+		candidate := id
+		if n > 1 {
+			candidate += "-" + strconv.Itoa(n)
+		}
+		inUse := held[candidate]
+		if !inUse && taken != nil {
+			var err error
+			if inUse, err = taken(candidate); err != nil {
+				return "", fmt.Errorf("batch: check batch id %s: %w", candidate, err)
+			}
+		}
+		if !inUse {
+			return candidate, nil
+		}
 	}
-	return candidate
+	return "", fmt.Errorf("batch: no free batch id: %s and its %d suffixes are all in use", id, maxIDSuffixes)
 }
 
 // assemble builds the batch of the chosen slots. filePending holds the
