@@ -146,8 +146,14 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodeTagMismatch, ClassStructural,
 			"tags differ from KR%s; opening tags must keep their attributes", describeDiff(missing, extra)))
 	}
-	if problem := nestingProblem(zh); problem != "" {
-		issues = append(issues, ctx.issue(CodeTagNesting, ClassStructural, "tags are not nested correctly: %s", problem))
+	// KR strings that are fragments (a lone </color>, an unclosed <color>)
+	// cannot be nested correctly by any translation, so the nesting of zh is
+	// only checked when KR's own tags are balanced. The comparison above still
+	// holds a fragment's translation to the same tags.
+	if nestingProblem(kr) == "" {
+		if problem := nestingProblem(zh); problem != "" {
+			issues = append(issues, ctx.issue(CodeTagNesting, ClassStructural, "tags are not nested correctly: %s", problem))
+		}
 	}
 	if danteRe.MatchString(strings.TrimSpace(kr)) && !danteRe.MatchString(strings.TrimSpace(zh)) {
 		issues = append(issues, ctx.issue(CodeDanteWrapper, ClassStructural,

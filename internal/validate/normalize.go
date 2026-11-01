@@ -25,7 +25,8 @@ var (
 //   - &lt; and &gt; become < and >
 //   - a half-width space is put on both sides of an [ID], unless the neighbor
 //     is a string end, a space or full-width punctuation; before an [ID] the
-//     neighbor may also be >, after it < ) or [
+//     neighbor may also be > or (, after it < ) or [ (half-width brackets
+//     are punctuation too)
 //   - adjacent IDs are separated: "][" becomes "] ["
 //   - all-caps variables such as [ATTRIBUTES] get no added space
 //   - the space before [TabExplain] is removed
@@ -70,7 +71,7 @@ func spaceAroundIDs(s string) string {
 // needsSpaceBefore reports whether an [ID] that follows text needs a space.
 func needsSpaceBefore(text string) bool {
 	r, _ := utf8.DecodeLastRuneInString(text)
-	return text != "" && !unicode.IsSpace(r) && !strings.ContainsRune(fullwidthPunct, r) && r != '>'
+	return text != "" && !unicode.IsSpace(r) && !strings.ContainsRune(fullwidthPunct, r) && !strings.ContainsRune(">(", r)
 }
 
 // needsSpaceAfter reports whether an [ID] that precedes text needs a space.
