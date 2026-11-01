@@ -748,3 +748,144 @@ func TestWithLockGitignoreIsStable(t *testing.T) {
 		t.Errorf(".meta/.gitignore = %q, want %q", got, ".lock\n")
 	}
 }
+
+func TestMetaJSONRoundTrip(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	names := []string{"默爾索", "<size=50%>害蟲</size> & 凱撒"}
+	if err := s.WriteMetaJSON("foreign-names.json", names); err != nil {
+		t.Fatal(err)
+	}
+
+	// 2-space indent, no HTML escaping, trailing newline, in .meta.
+	want := "[\n  \"默爾索\",\n  \"<size=50%>害蟲</size> & 凱撒\"\n]\n"
+	if got := readFile(t, filepath.Join(root, ".meta", "foreign-names.json")); got != want {
+		t.Errorf("file = %q, want %q", got, want)
+	}
+
+	var got []string
+	found, err := s.ReadMetaJSON("foreign-names.json", &got)
+	if err != nil || !found || !reflect.DeepEqual(got, names) {
+		t.Errorf("ReadMetaJSON = %v, %v, %v; want found, nil, %q", got, found, err, names)
+	}
+
+	// An empty list is "[]", not "null", and writing again replaces the file.
+	if err := s.WriteMetaJSON("foreign-names.json", []string{}); err != nil {
+		t.Fatal(err)
+	}
+	if got := readFile(t, filepath.Join(root, ".meta", "foreign-names.json")); got != "[]\n" {
+		t.Errorf("empty list file = %q, want %q", got, "[]\n")
+	}
+	got = []string{"stale"}
+	if found, err := s.ReadMetaJSON("foreign-names.json", &got); err != nil || !found || len(got) != 0 {
+		t.Errorf("ReadMetaJSON of [] = %q, %v, %v", got, found, err)
+	}
+}
+
+func TestMetaJSONStructsAndSubdirectories(t *testing.T) {
+	type doc struct {
+		Name  string         `json:"name"`
+		Count int            `json:"count"`
+		Extra map[string]int `json:"extra"`
+	}
+	s := Open(t.TempDir())
+	in := doc{Name: "a", Count: 2, Extra: map[string]int{"z": 1, "a": 2}}
+	if err := s.WriteMetaJSON("reports/last.json", in); err != nil {
+		t.Fatal(err)
+	}
+	var out doc
+	if found, err := s.ReadMetaJSON("reports/last.json", &out); err != nil || !found || !reflect.DeepEqual(out, in) {
+		t.Errorf("ReadMetaJSON = %+v, %v, %v; want %+v", out, found, err, in)
+	}
+}
+
+func TestMetaJSONMissingFileIsNotFound(t *testing.T) {
+	s := Open(filepath.Join(t.TempDir(), "no-such-tw"))
+	got := []string{"untouched"}
+	found, err := s.ReadMetaJSON("foreign-names.json", &got)
+	if err != nil || found {
+		t.Errorf("ReadMetaJSON = %v, %v; want not found, nil", found, err)
+	}
+	if !reflect.DeepEqual(got, []string{"untouched"}) {
+		t.Errorf("a missing file changed the target: %q", got)
+	}
+}
+
+func TestMetaJSONRejectsCorruptFiles(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	for name, content := range map[string]string{
+		"broken.json":   "[\"a\",",
+		"trailing.json": "[\"a\"] []\n",
+		"object.json":   "{\"unknown\": 1}\n",
+	} {
+		if err := os.MkdirAll(filepath.Join(root, ".meta"), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(root, ".meta", name), []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		var got []string
+		found, err := s.ReadMetaJSON(name, &got)
+		if err == nil || !strings.Contains(err.Error(), name) {
+			t.Errorf("%s: err = %v, want an error naming the file", name, err)
+		}
+		if found {
+			t.Errorf("%s: found = true on a corrupt file", name)
+		}
+	}
+	// Unknown fields are refused, like in the record files.
+	type doc struct{ A int }
+	if err := os.WriteFile(filepath.Join(root, ".meta", "extra.json"), []byte("{\"A\":1,\"B\":2}\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	var d doc
+	if _, err := s.ReadMetaJSON("extra.json", &d); err == nil {
+		t.Error("an unknown field must be refused")
+	}
+}
+
+func TestMetaJSONRejectsBadNames(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	for _, name := range []string{
+		"", "foreign-names", "foreign-names.txt", "../escape.json", "a/../../escape.json",
+		"/abs.json", "pending.jsonl", ".lock", "units/A.json.jsonl", "sub/",
+	} {
+		if err := s.WriteMetaJSON(name, []string{"x"}); err == nil {
+			t.Errorf("WriteMetaJSON(%q) succeeded", name)
+		}
+		var got []string
+		if _, err := s.ReadMetaJSON(name, &got); err == nil {
+			t.Errorf("ReadMetaJSON(%q) succeeded", name)
+		}
+	}
+	if exists(filepath.Join(root, "escape.json")) || exists(filepath.Join(filepath.Dir(root), "escape.json")) {
+		t.Error("a rejected name wrote a file")
+	}
+	if err := s.WriteMetaJSON("ok.json", make(chan int)); err == nil {
+		t.Error("a value JSON cannot encode must be an error")
+	}
+	if exists(filepath.Join(root, ".meta", "ok.json")) {
+		t.Error("a failed encode left a file")
+	}
+}
+
+func TestMetaJSONLeavesNoTempFiles(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	for i := 0; i < 3; i++ {
+		if err := s.WriteMetaJSON("foreign-names.json", []string{fmt.Sprint(i)}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	entries, err := os.ReadDir(filepath.Join(root, ".meta"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range entries {
+		if e.Name() != "foreign-names.json" {
+			t.Errorf("unexpected file %s in .meta", e.Name())
+		}
+	}
+}

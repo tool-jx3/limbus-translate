@@ -15,6 +15,7 @@ import (
 	"io"
 	"io/fs"
 	"os"
+	"path"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -463,4 +464,60 @@ func allDigits(s string) bool {
 		}
 	}
 	return true
+}
+
+// metaJSONPath returns the path of .meta/<name> for a JSON file the caller
+// keeps next to the records (such as foreign-names.json). name is a
+// slash-separated path below .meta that is already clean and ends in ".json",
+// so it can neither leave .meta nor be mistaken for a record file
+// (".jsonl"), the lock or the gitignore.
+func (s *Store) metaJSONPath(name string) (string, error) {
+	if !strings.HasSuffix(name, ".json") || path.Clean(name) != name || !filepath.IsLocal(filepath.FromSlash(name)) {
+		return "", fmt.Errorf("store: invalid meta file name %q: want a clean relative path ending in .json", name)
+	}
+	return filepath.Join(s.metaDir(), filepath.FromSlash(name)), nil
+}
+
+// WriteMetaJSON writes v as JSON to .meta/<name> (see metaJSONPath for the
+// names allowed), creating directories as needed: 2-space indent, no HTML
+// escaping, one trailing newline, so the same value always gives the same
+// bytes. The file is replaced atomically. Like the other writers it does not
+// take the lock; callers that need one run it inside WithLock.
+func (s *Store) WriteMetaJSON(name string, v any) error {
+	p, err := s.metaJSONPath(name)
+	if err != nil {
+		return err
+	}
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	enc.SetEscapeHTML(false)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(v); err != nil {
+		return fmt.Errorf("store: write %s: %w", name, err)
+	}
+	if err := writeFileAtomic(p, buf.Bytes()); err != nil {
+		return fmt.Errorf("store: write %s: %w", name, err)
+	}
+	return nil
+}
+
+// ReadMetaJSON reads .meta/<name> into v. A missing file is not an error: it
+// reports found as false and leaves v as it is. Unknown fields, trailing data
+// and malformed JSON are errors naming the file.
+func (s *Store) ReadMetaJSON(name string, v any) (found bool, err error) {
+	p, err := s.metaJSONPath(name)
+	if err != nil {
+		return false, err
+	}
+	data, err := os.ReadFile(p)
+	if errors.Is(err, fs.ErrNotExist) {
+		return false, nil
+	}
+	if err != nil {
+		return false, fmt.Errorf("store: read %s: %w", name, err)
+	}
+	if err := decodeStrict(data, v); err != nil {
+		return false, fmt.Errorf("store: read %s: %w", name, err)
+	}
+	return true, nil
 }

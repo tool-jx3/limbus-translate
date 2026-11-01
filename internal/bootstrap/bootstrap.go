@@ -44,6 +44,11 @@ const (
 	reasonParatranzRepair = StatParatranzRepair
 )
 
+// ForeignNamesFile is the name, below the store's .meta directory, of the
+// JSON list of ForeignNames that "lct bootstrap" writes (Store.WriteMetaJSON)
+// and later steps read (Store.ReadMetaJSON).
+const ForeignNamesFile = "foreign-names.json"
+
 // scenarioModelCodes lists the speakers. Its names are compared between our
 // translation and LTM's (ForeignNames).
 const scenarioModelCodes = "ScenarioModelCodes-AutoCreated.json"
@@ -178,15 +183,19 @@ func foreignNamesOf(pz, ltm *pack.Pack) ([]string, error) {
 
 // ForeignNames returns the names LTM gives to speakers that we name
 // differently: for every id in the dataList of both ScenarioModelCodes-
-// AutoCreated documents whose name differs, LTM's name. They are names the
-// translation must not use (LTM calls 뫼르소 "默爾索", we call it "莫梭"). The
-// result is sorted and has no duplicates; it is empty, not nil, when there is
-// none.
+// AutoCreated documents whose name differs, LTM's name (LTM calls 뫼르소
+// "默爾索", we call it "莫梭"). They are names the translation must not use,
+// so a name that ours also uses for any id is left out. The result is sorted
+// and has no duplicates; it is empty, not nil, when there is none.
 func ForeignNames(ours, ltm *jsonx.Node) []string {
 	mine, theirs := names.SpeakerTable(ours), names.SpeakerTable(ltm)
+	used := make(map[string]bool, len(mine))
+	for _, name := range mine {
+		used[name] = true
+	}
 	found := []string{}
 	for id, name := range theirs {
-		if mineName, ok := mine[id]; ok && mineName != name {
+		if mineName, ok := mine[id]; ok && mineName != name && !used[name] {
 			found = append(found, name)
 		}
 	}

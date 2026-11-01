@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
@@ -34,9 +32,6 @@ const (
 	defaultUpstream = "work/upstream"
 	// llcPackDir is where the LLC release zip keeps its files.
 	llcPackDir = "LimbusCompany_Data/Lang/LLC_zh-CN"
-	// foreignNamesFile is written beside the records, relative to the tw
-	// worktree.
-	foreignNamesFile = ".meta/foreign-names.json"
 )
 
 // upstreamBase is the host --fetch downloads release assets from. The tests
@@ -111,13 +106,9 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 		upDir = filepath.Join(ctx.Root, upDir)
 	}
 
-	if *doFetch {
-		if err := fetchUpstreams(context.Background(), cfg, upDir); err != nil {
-			return err
-		}
-	}
-	// Everything is read and checked before the tw worktree is touched.
-	in, err := openBootstrapInputs(ctx, upDir)
+	// Everything that is cheap to check comes first, so that a refusal costs
+	// no download and leaves the tw worktree alone.
+	in, err := openRawInputs(ctx)
 	if err != nil {
 		return err
 	}
@@ -129,12 +120,29 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
+	st := store.Open(twRoot)
+	if !*force {
+		// A first look, without the lock; the check that counts is the one
+		// inside the lock below. A tw worktree that does not exist yet has
+		// no state.
+		if err := refuseExistingState(st); err != nil {
+			return err
+		}
+	}
+
+	if *doFetch {
+		if err := fetchUpstreams(context.Background(), cfg, upDir); err != nil {
+			return err
+		}
+	}
+	if err := openUpstreamPacks(upDir, &in); err != nil {
+		return err
+	}
+
 	if err := gitx.EnsureWorktree(ctx.Root, twBranch, twRoot); err != nil {
 		return err
 	}
-	st := store.Open(twRoot)
 	var res *bootstrap.Result
 	err = st.WithLock(func() error {
 		if !*force {
@@ -152,7 +160,7 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 		if err := st.SavePending(res.Pending); err != nil {
 			return err
 		}
-		return writeForeignNames(filepath.Join(twRoot, filepath.FromSlash(foreignNamesFile)), res.ForeignNames)
+		return st.WriteMetaJSON(bootstrap.ForeignNamesFile, res.ForeignNames)
 	})
 	if err != nil {
 		return err
@@ -167,7 +175,8 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 }
 
 // refuseExistingState is the guard against importing over work: it fails with
-// a user error when the store already has records or pending items.
+// a user error when the store already has records or pending items. It only
+// reads; the run calls it once before downloading and once more under the lock.
 func refuseExistingState(st *store.Store) error {
 	records, err := st.LoadRecords()
 	if err != nil {
@@ -185,8 +194,9 @@ func refuseExistingState(st *store.Store) error {
 	return nil
 }
 
-// openBootstrapInputs opens the raw packs and the three upstream packs.
-func openBootstrapInputs(ctx *cli.Context, upDir string) (bootstrap.Inputs, error) {
+// openRawInputs opens the raw packs and reads the tag of their snapshot. A
+// raw worktree without a snapshot is a user error.
+func openRawInputs(ctx *cli.Context) (bootstrap.Inputs, error) {
 	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw))
 	src, err := raw.LastSource(rawWorktree)
 	if err != nil {
@@ -200,7 +210,11 @@ func openBootstrapInputs(ctx *cli.Context, upDir string) (bootstrap.Inputs, erro
 	if err != nil {
 		return bootstrap.Inputs{}, err
 	}
-	in := bootstrap.Inputs{Raw: set, RawTag: src.Tag, Frozen: ctx.Config.Frozen}
+	return bootstrap.Inputs{Raw: set, RawTag: src.Tag, Frozen: ctx.Config.Frozen}, nil
+}
+
+// openUpstreamPacks opens the Paratranz, LTM and LLC packs under upDir into in.
+func openUpstreamPacks(upDir string, in *bootstrap.Inputs) error {
 	for _, p := range []struct {
 		dir string
 		dst **pack.Pack
@@ -210,19 +224,21 @@ func openBootstrapInputs(ctx *cli.Context, upDir string) (bootstrap.Inputs, erro
 		{filepath.Join(upDir, "llc", filepath.FromSlash(llcPackDir)), &in.LLC},
 	} {
 		if info, err := os.Stat(p.dir); err != nil || !info.IsDir() {
-			return bootstrap.Inputs{}, cli.UserError(fmt.Sprintf(
+			return cli.UserError(fmt.Sprintf(
 				"bootstrap: %s is missing; run with --fetch to download the pinned releases", p.dir))
 		}
+		var err error
 		if *p.dst, err = pack.Open(p.dir, ""); err != nil {
-			return bootstrap.Inputs{}, err
+			return err
 		}
 	}
-	return in, nil
+	return nil
 }
 
 // fetchUpstreams downloads the three pinned release assets to
-// <upDir>/<name>.zip and extracts each into <upDir>/<name>, replacing what an
-// earlier fetch left there.
+// <upDir>/<name>.zip and extracts each into <upDir>/<name>. The archive is
+// extracted into <upDir>/<name>.tmp first and only then replaces the old
+// directory, so a failed fetch leaves what was there.
 func fetchUpstreams(ctx context.Context, cfg *config.Config, upDir string) error {
 	list := upstreams(cfg)
 	for _, u := range list {
@@ -236,47 +252,20 @@ func fetchUpstreams(ctx context.Context, cfg *config.Config, upDir string) error
 			return err
 		}
 		dest := filepath.Join(upDir, u.name)
+		staging := dest + ".tmp"
+		if err := os.RemoveAll(staging); err != nil { // left by a crashed fetch
+			return err
+		}
+		if err := fetch.ExtractZip(zipPath, staging); err != nil {
+			os.RemoveAll(staging)
+			return err
+		}
 		if err := os.RemoveAll(dest); err != nil {
 			return err
 		}
-		if err := fetch.ExtractZip(zipPath, dest); err != nil {
+		if err := os.Rename(staging, dest); err != nil {
 			return err
 		}
 	}
 	return nil
-}
-
-// writeForeignNames writes names as a JSON array, one name per line, replacing
-// the file atomically.
-func writeForeignNames(path string, names []string) error {
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	enc.SetIndent("", "  ")
-	if err := enc.Encode(names); err != nil {
-		return err
-	}
-	dir := filepath.Dir(path)
-	if err := os.MkdirAll(dir, 0o755); err != nil {
-		return err
-	}
-	f, err := os.CreateTemp(dir, "."+filepath.Base(path)+".tmp*")
-	if err != nil {
-		return err
-	}
-	tmp := f.Name()
-	_, err = f.Write(buf.Bytes())
-	if cerr := f.Close(); err == nil {
-		err = cerr
-	}
-	if err == nil {
-		err = os.Chmod(tmp, 0o644)
-	}
-	if err == nil {
-		err = os.Rename(tmp, path)
-	}
-	if err != nil {
-		os.Remove(tmp)
-	}
-	return err
 }

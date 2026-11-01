@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"slices"
+	"strings"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/fields"
@@ -175,6 +176,15 @@ func TestForeignNames(t *testing.T) {
 	}
 	if got := ForeignNames(single, nil); len(got) != 0 {
 		t.Errorf("ForeignNames without LTM's table = %q, want none", got)
+	}
+
+	// A name ours uses for any id is not foreign: LTM's 乙 for id a differs
+	// from our 甲, but 乙 is what we call id b.
+	shared := ForeignNames(
+		parseDoc(t, `{"dataList":[{"id":"a","name":"甲"},{"id":"b","name":"乙"},{"id":"c","name":"丙"}]}`),
+		parseDoc(t, `{"dataList":[{"id":"a","name":"乙"},{"id":"b","name":"乙"},{"id":"c","name":"丁"}]}`))
+	if want := []string{"丁"}; !slices.Equal(shared, want) {
+		t.Errorf("ForeignNames with a name ours also uses = %q, want %q", shared, want)
 	}
 
 	// sorted, so the file written from it is stable
@@ -427,13 +437,18 @@ func TestRunFrozenFilesAdoptParatranzVerbatim(t *testing.T) {
 		}
 	}
 
-	// The same content outside the frozen list follows the normal rules: no
-	// Han means no adoption, and a failed check means a repair.
-	if _, ok := res.Records[key("Songs/Lyrics.json", 0)]; ok {
-		t.Error("a translation without Han must not be adopted outside the frozen files")
-	}
-	if it := pending[key("Songs/Lyrics.json", 0)]; it.Reason != "new" {
-		t.Errorf("Songs item 1 = %+v, want reason new", it)
+	// The same content outside the frozen list follows the normal rules: a
+	// translation without Han is no translation, so items 1 and 2 (adopted
+	// above when frozen) are queued as new, and not as a repair either, since
+	// they never reach the check.
+	for _, i := range []int{0, 1} {
+		k := key("Songs/Lyrics.json", i)
+		if _, ok := res.Records[k]; ok {
+			t.Errorf("Songs item %d: a translation without Han must not be adopted outside the frozen files", i+1)
+		}
+		if it, ok := pending[k]; !ok || it.Reason != "new" || it.Draft != "" {
+			t.Errorf("Songs item %d = %+v (found %v), want reason new without a draft", i+1, it, ok)
+		}
 	}
 
 	// Frozen adoptions count as paratranz and as frozen.
@@ -653,7 +668,7 @@ func TestRunRejectsBadInputs(t *testing.T) {
 
 	// A broken KR file is an error that names the file.
 	bad := sources{kr: packFiles{"Broken.json": `{"dataList":`}}.inputs(t)
-	if _, err := Run(bad, fr, r); err == nil {
-		t.Error("Run with an unparsable KR file succeeded")
+	if _, err := Run(bad, fr, r); err == nil || !strings.Contains(err.Error(), "Broken.json") {
+		t.Errorf("Run with an unparsable KR file: err = %v, want an error naming Broken.json", err)
 	}
 }
