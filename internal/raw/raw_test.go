@@ -510,3 +510,83 @@ func TestValidate(t *testing.T) {
 		t.Errorf("Validate created the worktree path, stat err = %v", err)
 	}
 }
+
+// storyPack is a pack set whose only KR story file holds text.
+func storyPack(t *testing.T, text string) map[string]string {
+	return extracted(t,
+		map[string]string{"StoryData/KR_S1.json": "{\"dataList\":[{\"content\":\"" + text + "\"}]}\n", "KR_A.json": bomCRLF},
+		map[string]string{"EN_A.json": "{}\n"},
+		map[string]string{"JP_A.json": "{}\n"})
+}
+
+func TestOpenKRAtReadsAnOlderSnapshot(t *testing.T) {
+	wt := rawWorktree(t)
+	tag1, _, err := Snapshot(wt, storyPack(t, "first"), Source{Token: token1, CreatedAt: created1})
+	if err != nil {
+		t.Fatal(err)
+	}
+	tag2, _, err := Snapshot(wt, storyPack(t, "second"), Source{Token: token2, CreatedAt: created2})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if tag1 != "raw-20261029" || tag2 != "raw-20261105" {
+		t.Fatalf("tags = %s, %s", tag1, tag2)
+	}
+
+	dir := filepath.Join(t.TempDir(), "old")
+	p, err := OpenKRAt(wt, tag1, dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	doc, err := p.Doc("StoryData/S1.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n, ok := doc.Get("/dataList/0/content"); !ok || n.Str != "first" {
+		t.Errorf("/dataList/0/content = %+v, %v; want the first version", n, ok)
+	}
+	// The files are the bytes of the snapshot, and only the KR pack is exported.
+	if got := read(t, dir, "kr/KR_A.json"); got != bomCRLF {
+		t.Errorf("kr/KR_A.json = %q, want the BOM and CRLF kept", got)
+	}
+	entries, err := os.ReadDir(dir)
+	if err != nil || len(entries) != 1 || entries[0].Name() != "kr" {
+		t.Errorf("dir holds %v (%v), want only kr", entries, err)
+	}
+	// The worktree is left alone: still at the newest snapshot, still clean.
+	if got := read(t, wt, "kr/StoryData/KR_S1.json"); !strings.Contains(got, "second") {
+		t.Errorf("the worktree's file = %q, want the second version", got)
+	}
+	if got := runGit(t, wt, "status", "--porcelain"); got != "" {
+		t.Errorf("the worktree is dirty after OpenKRAt:\n%s", got)
+	}
+
+	// The newer tag gives the newer text.
+	p2, err := OpenKRAt(wt, tag2, filepath.Join(t.TempDir(), "new"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	doc2, err := p2.Doc("StoryData/S1.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n, ok := doc2.Get("/dataList/0/content"); !ok || n.Str != "second" {
+		t.Errorf("newer snapshot: /dataList/0/content = %+v, %v", n, ok)
+	}
+}
+
+func TestOpenKRAtUnknownTag(t *testing.T) {
+	wt := rawWorktree(t)
+	if _, _, err := Snapshot(wt, storyPack(t, "first"), Source{Token: token1, CreatedAt: created1}); err != nil {
+		t.Fatal(err)
+	}
+	// "raw" is the branch the worktree is on, not a tag: it must not stand in
+	// for a snapshot.
+	for _, tag := range []string{"raw-20250101", "raw"} {
+		dir := filepath.Join(t.TempDir(), "old")
+		p, err := OpenKRAt(wt, tag, dir)
+		if err == nil || !strings.Contains(err.Error(), tag) {
+			t.Errorf("OpenKRAt(%q) = %v, %v; want an error naming the tag", tag, p, err)
+		}
+	}
+}

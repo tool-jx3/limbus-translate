@@ -1,6 +1,8 @@
 package gitx
 
 import (
+	"archive/tar"
+	"bytes"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -564,4 +566,169 @@ func TestDescribeUnbornBranch(t *testing.T) {
 	if _, err := Describe(filepath.Join(t.TempDir(), "nowhere"), "guides"); err == nil {
 		t.Error("Describe outside a repo = nil error")
 	}
+}
+
+// Two versions of a file whose bytes a text conversion would change.
+const (
+	bomCRLF1 = "\xef\xbb\xbf{\r\n  \"v\": 1\r\n}\r\n"
+	bomCRLF2 = "\xef\xbb\xbf{\r\n  \"v\": 2\r\n}\r\n"
+)
+
+func TestArchiveExtractsTheTreeOfARevision(t *testing.T) {
+	repo := newRepo(t)
+	// Like the raw branch: no line-ending conversion, even where core.autocrlf
+	// asks for it.
+	runGit(t, repo, "config", "core.autocrlf", "true")
+	write(t, repo, ".gitattributes", "* -text\n")
+	write(t, repo, "kr/KR_A.json", bomCRLF1)
+	write(t, repo, "kr/StoryData/KR_S.json", "{}\n")
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "first")
+	if err := Tag(repo, "v1"); err != nil {
+		t.Fatal(err)
+	}
+	write(t, repo, "kr/KR_A.json", bomCRLF2)
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "second")
+
+	dest := filepath.Join(t.TempDir(), "dest")
+	if err := Archive(repo, "v1", []string{"kr"}, dest); err != nil {
+		t.Fatal(err)
+	}
+	got, err := os.ReadFile(filepath.Join(dest, "kr", "KR_A.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(got) != bomCRLF1 {
+		t.Errorf("kr/KR_A.json = %q, want the bytes of v1 %q", got, bomCRLF1)
+	}
+	if got := read(t, dest, "kr/StoryData/KR_S.json"); got != "{}\n" {
+		t.Errorf("kr/StoryData/KR_S.json = %q", got)
+	}
+	// Only the paths asked for come out: no other file, no archive header file.
+	if names := listFiles(t, dest); !slices.Equal(names, []string{"kr"}) {
+		t.Errorf("dest holds %v, want just kr", names)
+	}
+}
+
+func TestArchiveErrors(t *testing.T) {
+	repo := newRepo(t)
+	if err := Tag(repo, "v1"); err != nil {
+		t.Fatal(err)
+	}
+	tests := []struct {
+		name  string
+		rev   string
+		paths []string
+		want  string // must appear in the error
+	}{
+		{"unknown revision", "nope", []string{"sub"}, "nope"},
+		{"path not in the revision", "v1", []string{"missing"}, "missing"},
+		{"revision that looks like an option", "--output=/tmp/x", []string{"sub"}, "--output=/tmp/x"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			dest := filepath.Join(t.TempDir(), "dest")
+			err := Archive(repo, tc.rev, tc.paths, dest)
+			if err == nil || !strings.Contains(err.Error(), tc.want) {
+				t.Errorf("Archive(%q, %v) error = %v, want one naming %q", tc.rev, tc.paths, err, tc.want)
+			}
+		})
+	}
+}
+
+// tarOf builds a tar stream from entries; Linkname applies to links.
+func tarOf(t *testing.T, entries ...tar.Header) *bytes.Reader {
+	t.Helper()
+	var buf bytes.Buffer
+	tw := tar.NewWriter(&buf)
+	for _, h := range entries {
+		h := h
+		if h.Typeflag == tar.TypeReg {
+			h.Size = int64(len("x"))
+		}
+		if h.Mode == 0 && h.Typeflag != tar.TypeXGlobalHeader {
+			h.Mode = 0o644
+		}
+		if err := tw.WriteHeader(&h); err != nil {
+			t.Fatal(err)
+		}
+		if h.Typeflag == tar.TypeReg {
+			if _, err := tw.Write([]byte("x")); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
+	if err := tw.Close(); err != nil {
+		t.Fatal(err)
+	}
+	return bytes.NewReader(buf.Bytes())
+}
+
+func TestExtractTarRejectsUnsafeEntries(t *testing.T) {
+	outside := t.TempDir() // somewhere a careless extractor could write
+	tests := []struct {
+		name  string
+		entry tar.Header
+	}{
+		{"parent directory", tar.Header{Name: "../x", Typeflag: tar.TypeReg}},
+		{"parent directory inside a path", tar.Header{Name: "kr/../../x", Typeflag: tar.TypeReg}},
+		{"parent directory that stays inside", tar.Header{Name: "kr/../x", Typeflag: tar.TypeReg}},
+		{"parent directory as a directory", tar.Header{Name: "../d/", Typeflag: tar.TypeDir}},
+		{"absolute path", tar.Header{Name: filepath.Join(outside, "abs.txt"), Typeflag: tar.TypeReg}},
+		{"symbolic link", tar.Header{Name: "link", Typeflag: tar.TypeSymlink, Linkname: outside}},
+		{"hard link", tar.Header{Name: "link", Typeflag: tar.TypeLink, Linkname: "kr/ok.txt"}},
+		{"device", tar.Header{Name: "dev", Typeflag: tar.TypeChar}},
+		{"empty name", tar.Header{Name: "", Typeflag: tar.TypeReg}},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			parent := t.TempDir()
+			dest := filepath.Join(parent, "dest")
+			// A good entry first: an unsafe one later must still be an error.
+			good := tar.Header{Name: "kr/ok.txt", Typeflag: tar.TypeReg}
+			if err := extractTar(tarOf(t, good, tc.entry), dest); err == nil {
+				t.Fatal("extractTar succeeded, want an error")
+			}
+			if entries, err := os.ReadDir(parent); err != nil || len(entries) != 1 || entries[0].Name() != "dest" {
+				t.Errorf("parent holds %v (%v), want only dest", entries, err)
+			}
+			if entries, err := os.ReadDir(outside); err != nil || len(entries) != 0 {
+				t.Errorf("outside holds %v (%v), want nothing", entries, err)
+			}
+			if _, err := os.Lstat(filepath.Join(dest, "link")); err == nil {
+				t.Error("a link was created in dest")
+			}
+		})
+	}
+}
+
+func TestExtractTarWritesFilesAndDirectories(t *testing.T) {
+	dest := filepath.Join(t.TempDir(), "dest")
+	r := tarOf(t,
+		tar.Header{Name: "kr/", Typeflag: tar.TypeDir, Mode: 0o755},
+		tar.Header{Name: "kr/a.txt", Typeflag: tar.TypeReg},
+		tar.Header{Name: "deep/er/b.txt", Typeflag: tar.TypeReg},                                      // no entry for its directories
+		tar.Header{Typeflag: tar.TypeXGlobalHeader, PAXRecords: map[string]string{"comment": "0123"}}, // as git archive starts
+	)
+	if err := extractTar(r, dest); err != nil {
+		t.Fatal(err)
+	}
+	for _, rel := range []string{"kr/a.txt", "deep/er/b.txt"} {
+		if got := read(t, dest, rel); got != "x" {
+			t.Errorf("%s = %q, want x", rel, got)
+		}
+	}
+	if err := extractTar(tarOf(t, tar.Header{Name: "kr/a.txt", Typeflag: tar.TypeReg}), dest); err == nil {
+		t.Error("extracting over a file that exists must be an error")
+	}
+}
+
+func read(t *testing.T, dir, rel string) string {
+	t.Helper()
+	b, err := os.ReadFile(filepath.Join(dir, filepath.FromSlash(rel)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return string(b)
 }
