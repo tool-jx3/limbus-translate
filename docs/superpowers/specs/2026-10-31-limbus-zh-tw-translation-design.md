@@ -481,8 +481,8 @@ LimbusCompany_Data/
 | **審核 Issue**（每次遊戲更新一則，例如「審核：2026-11-05 更新」） | 只有「需要你處理」的項目，做成勾選清單 | GitHub 對新 Issue 的通知（網頁、Email、手機 App） |
 | **規則 PR**（§11.2） | CI 提出的規則修改 | GitHub 對新 PR 的通知 |
 | **GitHub Release 說明** | 精簡版：這次更新了什麼、各來源比例、仍顯示英文的數量 | 下載語言包時看到 |
-| **Actions 執行頁的 summary** | 完整報表 | 進到該次執行查看；失敗時 GitHub 會寄信 |
-| **`tw` 分支 `.meta/reports/<raw tag>.md`** | 完整報表的存檔，可回頭比較歷次 | 需要時查閱 |
+| **Actions 執行頁的 summary** | 完整報表，另附 `tw` 的比較頁連結（建置前的 `tw` commit 到 `tw`），可直接看這次譯文變了什麼 | 進到該次執行查看；失敗時 GitHub 會寄信 |
+| **`tw` 分支 `.meta/reports/<raw tag>.md`** | 完整報表的存檔，可回頭比較歷次；附 raw 的比較頁連結，不附 `tw` 的 | 需要時查閱 |
 
 沒有需要處理的項目時不開 Issue。`review` skill（§9.3）可以在 Claude Code 裡讀最新的審核 Issue，帶你逐項處理（接受、改譯文、改規則）。
 
@@ -500,7 +500,7 @@ LimbusCompany_Data/
 
 - 這次的輸入：raw tag 與 token、`main` commit、模型、花費
 - 原文變化：新增／修改／刪除的檔；中間插入的檔；附 GitHub 比較頁連結（`raw-上次...raw-這次`），可直接看 KR 的差異
-- 譯文變化：各來源（`paratranz`／`claude`／`human`／`copy`／`fallback`）的單位數；這次新翻、因 KR 變更重翻的數量；附 `tw` 的比較頁連結
+- 譯文變化：各來源（`paratranz`／`claude`／`human`／`copy`／`fallback`）的單位數；這次新翻、因 KR 變更重翻的數量；`tw` 的比較頁連結（建置前的 `tw` commit 到 `tw`）只放在 Actions 執行頁的 summary，不放進存檔的報表：它隨每次發佈而變，放進存檔會讓每次建置都改動 `tw`，Release 就沒有「只在 `tw` 有新 commit 時才建立」的意義
 - 自動處理的事：人工調整「key 已移動」、id 重新編號後沿用的譯文
 - 跨語言順序或 id 不一致的檔，「未對齊」的單位數
 - 驗證警告：數量與前幾筆，完整清單在存檔

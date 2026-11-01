@@ -11,6 +11,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/fetch"
+	"github.com/tool-jx3/limbus-translate/internal/raw"
 )
 
 // packLangs are the official packs, in the order they are fetched. The names
@@ -19,21 +20,34 @@ var packLangs = []string{"kr", "en", "jp"}
 
 func init() {
 	cli.Register(cli.Command{
-		Name:  "fetch",
-		Usage: "download the official KR/EN/JP packs [--token T --created-at S] [--status-url U] [--cdn-template T] --out DIR",
-		Run:   runFetch,
+		Name: "fetch",
+		Usage: "download the official KR/EN/JP packs [--token T --created-at S] [--status-url U] [--cdn-template T] --out DIR; " +
+			"or, with --check [--status-url U], only ask the status API whether its token differs from the snapshot on raw",
+		Run: runFetch,
 	})
 }
 
-// fetchResult is what "fetch" prints.
+// fetchResult is what "fetch" prints: the token and its creation time, and
+// either where the packs went (Dir) or, for --check, whether the token is a
+// new one (New).
 type fetchResult struct {
 	Token     string `json:"token"`
 	CreatedAt string `json:"created_at"`
-	Dir       string `json:"dir"`
+	Dir       string `json:"dir,omitempty"`
+	// New is set by --check only: the token of the status API is not the
+	// token of the snapshot on raw (or raw has no snapshot yet).
+	New *bool `json:"new,omitempty"`
 }
 
 func (r fetchResult) String() string {
-	return fmt.Sprintf("fetched %s (%s) into %s", r.Token, r.CreatedAt, r.Dir)
+	switch {
+	case r.New == nil:
+		return fmt.Sprintf("fetched %s (%s) into %s", r.Token, r.CreatedAt, r.Dir)
+	case *r.New:
+		return fmt.Sprintf("new: %s (%s) is not the snapshot on raw", r.Token, r.CreatedAt)
+	default:
+		return fmt.Sprintf("unchanged: %s (%s) is the snapshot on raw", r.Token, r.CreatedAt)
+	}
 }
 
 func firstNonEmpty(values ...string) string {
@@ -53,11 +67,20 @@ func runFetch(ctx *cli.Context, args []string) error {
 	statusURL := flags.String("status-url", "", "status API URL (default: $LIMBUS_STATUS_URL)")
 	cdnTemplate := flags.String("cdn-template", "", "CDN URL with {token} and {lang} (default: $LIMBUS_CDN_TEMPLATE, then lct.yaml)")
 	out := flags.String("out", "", "directory that receives kr/, en/ and jp/")
+	check := flags.Bool("check", false, "only ask the status API and compare its token with the snapshot on raw; download nothing")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("fetch: " + err.Error())
 	}
 	if flags.NArg() > 0 {
 		return cli.UserError("fetch: unexpected argument " + flags.Arg(0))
+	}
+	if *check {
+		for _, f := range []struct{ name, value string }{{"--out", *out}, {"--token", *token}, {"--created-at", *createdAt}, {"--cdn-template", *cdnTemplate}} {
+			if f.value != "" {
+				return cli.UserError("fetch: --check only asks the status API: it takes no " + f.name)
+			}
+		}
+		return runFetchCheck(ctx, *statusURL)
 	}
 	if *out == "" {
 		return cli.UserError("fetch: --out is required")
@@ -96,6 +119,30 @@ func runFetch(ctx *cli.Context, args []string) error {
 		return err
 	}
 	return ctx.Emit(fetchResult{Token: status.Token, CreatedAt: status.CreatedAt, Dir: outDir})
+}
+
+// runFetchCheck asks the status API for the latest token and says whether it
+// is new: whether it differs from the token of the snapshot on the raw
+// worktree. A raw worktree without a snapshot has no token, so everything is
+// new. Nothing is downloaded or written.
+func runFetchCheck(ctx *cli.Context, statusURL string) error {
+	url := firstNonEmpty(statusURL, os.Getenv("LIMBUS_STATUS_URL"))
+	if url == "" {
+		return cli.UserError("fetch: --check needs a status API: give --status-url or set $LIMBUS_STATUS_URL")
+	}
+	if ctx.Config.Worktrees.Raw == "" {
+		return cli.UserError("fetch: --check compares with the snapshot on raw: worktrees.raw is not set in lct.yaml")
+	}
+	status, err := fetch.FetchStatus(context.Background(), url)
+	if err != nil {
+		return err
+	}
+	last, err := raw.LastSource(filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw)))
+	if err != nil {
+		return err
+	}
+	isNew := last == nil || last.Token != status.Token
+	return ctx.Emit(fetchResult{Token: status.Token, CreatedAt: status.CreatedAt, New: &isNew})
 }
 
 // fetchPacks downloads and extracts the three packs into outDir/kr, en and jp,

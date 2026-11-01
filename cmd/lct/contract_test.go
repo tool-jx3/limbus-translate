@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
+	"maps"
 	"os"
 	"path"
 	"path/filepath"
+	"reflect"
 	"regexp"
 	"slices"
 	"sort"
@@ -16,7 +18,9 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
+	"github.com/tool-jx3/limbus-translate/internal/raw"
 )
 
 // The contract between the skills, the shared prompts and the rest of the
@@ -39,6 +43,9 @@ var (
 	lctGlobalFlags = []string{"--json"}
 	// modelNameRe matches a model name.
 	modelNameRe = regexp.MustCompile(`(?i)\b(opus|sonnet|haiku|fable|claude-[a-z0-9.-]+)\b`)
+	// notModelNames are what modelNameRe matches that is not a model: the npm
+	// package of the CLI, which the pipeline installs at a fixed version.
+	notModelNames = []string{"claude-code"}
 )
 
 // skillFrontmatter is the part of a SKILL.md frontmatter the contract checks.
@@ -332,6 +339,9 @@ func checkModelNames(root string, dirs ...string) []string {
 				return err
 			}
 			for _, name := range modelNameRe.FindAllString(string(data), -1) {
+				if slices.Contains(notModelNames, strings.ToLower(name)) {
+					continue
+				}
 				problems = append(problems, fmt.Sprintf("%s: names a model: %q", filepath.ToSlash(rel), name))
 			}
 			return nil
@@ -711,10 +721,12 @@ func TestCheckModelNames(t *testing.T) {
 	writeTestFile(t, root, ".claude/skills/demo/SKILL.md", "由 Claude 翻譯；不要寫死 Opus。\n")
 	writeTestFile(t, root, "prompts/model.md", "預設：claude-example-9。\n")
 	writeTestFile(t, root, "prompts/clean.md", "Claude 與 claude 可以單獨出現；opuses、haikus 不是模型名稱。\n")
+	writeTestFile(t, root, "prompts/cli.md", "npm install -g @anthropic-ai/claude-code@1.2.3 裝的是 CLI，不是模型；claude-code-x 仍是名稱。\n")
 
 	problems := checkModelNames(root, ".claude/skills", "prompts")
 	want := [][2]string{
 		{".claude/skills/demo/SKILL.md", `"Opus"`},
+		{"prompts/cli.md", `"claude-code-x"`},
 		{"prompts/model.md", `"claude-example-9"`},
 	}
 	if len(problems) != len(want) {
@@ -731,36 +743,101 @@ func TestCheckModelNames(t *testing.T) {
 	}
 }
 
-// The workflows are part of the contract too: what they run exists, they name
-// no model, hold no secret and give the Release no forbidden name, and the
-// manual rebuild is built so that a fresh clone numbers and publishes the
-// Release right (the raw worktree and every tag are there before it runs).
+// The workflows are part of the contract too. pipeline.yml is the one that
+// writes raw, tw and the Release, one run at a time; update.yml and
+// rebuild.yml only call it. What the contract holds them to: what they run
+// exists, they name no model, the secrets are the two the pipeline declares and
+// each is read only by the step that needs it, every secret and variable is
+// described in README.md, and the Release carries no forbidden name. The
+// pipeline is built so that a fresh clone numbers and publishes the Release
+// right (the raw and tw worktrees and every tag are there before it runs), and
+// stops early only when there is nothing to do.
+
+const (
+	workflowDir = ".github/workflows"
+	// pipelineUses is how a caller names the pipeline.
+	pipelineUses = "./.github/workflows/pipeline.yml"
+	// readmeActions is the heading of the README section that describes the
+	// secrets and variables.
+	readmeActions = "GitHub Actions 設定"
+)
+
+// workflowNames are the workflows this repo must have.
+var workflowNames = []string{"ci.yml", "pipeline.yml", "rebuild.yml", "update.yml"}
 
 var (
 	// workflowActions are the only actions a workflow may use, pinned to the
 	// major version.
-	workflowActions = []string{"actions/checkout@v4", "actions/setup-go@v5"}
+	workflowActions = []string{"actions/checkout@v5", "actions/setup-go@v6"}
+	// workflowRunner is the runner of every job that has steps.
+	workflowRunner = "ubuntu-24.04"
 	// workflowTitleRe matches the value of a --title flag.
 	workflowTitleRe = regexp.MustCompile(`--title(?:\s+|=)("[^"]*"|'[^']*'|\S+)`)
 	// forbiddenNameRe matches the names a Release must not carry.
 	forbiddenNameRe = regexp.MustCompile(`(?i)claude\s*code|anthropic`)
-	// workflowSecretRe matches a secret, or the status API URL of the game
-	// (the environment variable of lct fetch), which must not be in a
-	// workflow.
-	workflowSecretRe = regexp.MustCompile(`secrets\.|LIMBUS_STATUS_URL`)
+	// workflowRefRe matches a secret or a variable of the repo.
+	workflowRefRe = regexp.MustCompile(`\b(secrets|vars)\.([A-Za-z_][A-Za-z0-9_]*)`)
+	// workflowSecrets are the secrets of the repo. Neither is required: the
+	// pipeline runs without them (the API key only translates, the status URL
+	// only asks for a new game update).
+	workflowSecrets = []string{"ANTHROPIC_API_KEY", "LIMBUS_STATUS_URL"}
+	// claudeCLIRe matches the install of the translation CLI; the group is
+	// its version.
+	claudeCLIRe = regexp.MustCompile(`npm install -g @anthropic-ai/claude-code(?:@([^\s;&|]+))?`)
+	semverRe    = regexp.MustCompile(`^\d+\.\d+\.\d+$`)
+	// ghCommandRe matches a gh command that talks to GitHub with a token.
+	ghCommandRe = regexp.MustCompile(`\bgh (?:release|issue)\b`)
+	// jqCallRe matches a call of jq: its flags (--arg takes two words), the
+	// filter, and what it reads, which is either <<<"$variable" (group 3) or
+	// a file (group 4).
+	jqCallRe = regexp.MustCompile(`\bjq((?:\s+(?:--arg\s+\w+\s+\S+|-{1,2}[A-Za-z][\w-]*))*)\s+('[^']*'|"[^"]*"|[^\s'"<>|;&]+)(?:\s*<<<\s*"\$(\w+)"|\s+([^\s<>|;&)]+))?`)
+	// jqKeyRe matches a key a filter reads: .key, but not .[] or a dot inside
+	// a word.
+	jqKeyRe = regexp.MustCompile(`(?:^|[^\w\]"'$])\.([A-Za-z_]\w*)`)
+	// jqExitStatusRe matches the flags of jq that make a false or null result
+	// a failure.
+	jqExitStatusRe = regexp.MustCompile(`(?:^|\s)(?:-[A-Za-z]*e[A-Za-z]*|--exit-status)(?:\s|$)`)
 )
 
-// rebuildMarkers are the commands rebuild.yml must run, with the reason.
-var rebuildMarkers = []struct{ text, why string }{
+// pipelineInputs are the inputs of pipeline.yml and their types.
+var pipelineInputs = map[string]string{
+	"fetch": "boolean", "force": "boolean", "requeue": "string", "max_usd": "string", "dry_run": "boolean",
+}
+
+// pipelinePermissions are the permissions of the token of the pipeline: it
+// pushes and releases, and opens the issue. The callers grant the same.
+var pipelinePermissions = map[string]string{"contents": "write", "issues": "write"}
+
+// pipelineGated are the commands of pipeline.yml that must not run when
+// there is nothing to do; the step that runs one reads steps.decide.outputs
+// in its if.
+var pipelineGated = []string{
+	"bin/lct translate", "bin/lct build", "bin/lct publish", "git push origin tw", "gh release create", "gh issue",
+}
+
+// pipelineMarkers are the commands pipeline.yml must run, with the reason.
+var pipelineMarkers = []struct{ text, why string }{
 	{"+refs/heads/raw:refs/remotes/origin/raw", "the raw branch is not fetched"},
 	{"+refs/heads/tw:refs/remotes/origin/tw", "the tw branch is not fetched"},
 	{"+refs/tags/*:refs/tags/*", "the tags are not fetched, so the Release number restarts at 1"},
-	{"git worktree add .work/raw raw", "lct build reads the raw worktree and does not make it"},
+	{"git worktree add .work/raw raw", "lct reads the raw worktree and does not make it for plan and build"},
+	{"git worktree add .work/tw tw", "the tw worktree is not made"},
 	{"meta/source.json", "the raw tag is not read from the raw worktree"},
 	// The answer is assigned first, so that set -e sees a failing git.
 	{"remote=$(git ls-remote --tags origin", "origin is not asked for the raw tag, or its answer is not kept before it is tested"},
 	{`git push origin "refs/tags/`, "a raw tag that origin lacks is not pushed"},
+	{"go build -o bin/lct ./cmd/lct", "lct is not built"},
+	{"bin/lct fetch --check", "the status API is not asked before the packs are downloaded"},
+	{"--out .work/fetch", "the packs are not downloaded"},
+	{"bin/lct snapshot --from .work/fetch", "the packs are not snapshotted"},
+	{`git push origin raw "refs/tags/`, "the snapshot and its tag are not pushed"},
+	{"bin/lct plan", "the state is not carried to the snapshot"},
+	{"bin/lct requeue --file", "a requested requeue is not applied"},
+	{"bin/lct pending --count", "the pending units are not counted again after a requeue"},
+	{"bin/lct translate --max-usd", "nothing is translated"},
+	{"--deadline 5h --max-turns 300 --run-timeout 90m", "the translation has no time limits"},
 	{"bin/lct build", "the pack is not built"},
+	{"$GITHUB_STEP_SUMMARY", "the report is not shown on the summary page"},
 	{"bin/lct publish", "the Release is not prepared"},
 	{"git push origin tw", "the tw commit is not pushed"},
 	{"gh release create", "no Release is created"},
@@ -772,53 +849,108 @@ var rebuildMarkers = []struct{ text, why string }{
 	{"assets_json=$(jq -ec", "the assets of publish.json are not captured before they are read"},
 	{"mapfile -t assets", "the assets are not read"},
 	{`"${#assets[@]}" -eq 2`, "the number of assets is not checked before the Release"},
+	{"gh issue list --state open --search", "an open issue with the title is not looked for, so a rerun opens a second one"},
+	{"gh issue create --title", "the review issue is not opened"},
+	{"gh issue comment", "the parts after the first are not posted"},
 }
 
-// rebuildOrder pairs the commands of rebuild.yml that must run in that order:
-// the first before the second, by the first place each is written.
-var rebuildOrder = [][2]string{
+// pipelineOrder pairs the commands of pipeline.yml that must run in that
+// order: the first before the second, by the first place each is written.
+var pipelineOrder = [][2]string{
 	{"+refs/tags/*:refs/tags/*", "bin/lct publish"}, // the tags number the Release
 	{"git worktree add .work/raw raw", "meta/source.json"},
 	{"meta/source.json", "remote=$(git ls-remote --tags origin"},
-	{"git worktree add .work/raw raw", "bin/lct build"},
+	{"git worktree add .work/raw raw", "bin/lct fetch --check"},
+	{"git worktree add .work/tw tw", "bin/lct plan"},
+	{"go build -o bin/lct ./cmd/lct", "bin/lct fetch --check"},
+	{"bin/lct fetch --check", "bin/lct snapshot --from .work/fetch"},
+	{"bin/lct snapshot --from .work/fetch", `git push origin raw "refs/tags/`},
+	{`git push origin raw "refs/tags/`, "bin/lct plan"},
+	{"bin/lct plan", "bin/lct requeue --file"},
+	{"bin/lct requeue --file", "bin/lct pending --count"},
+	{"bin/lct pending --count", "bin/lct translate --max-usd"},
+	{"bin/lct translate --max-usd", "bin/lct build"},
 	{"bin/lct build", "bin/lct publish"},
 	{"bin/lct publish", "git push origin tw"},
 	{"git push origin tw", "gh release create"}, // the Release is made from a pushed commit
 	{"assets_json=$(jq -ec", "mapfile -t assets"},
 	{"mapfile -t assets", `"${#assets[@]}" -eq 2`},
 	{`"${#assets[@]}" -eq 2`, "gh release create"}, // no Release without its zips
+	{"gh release create", "gh issue create --title"},
+	{"gh issue list --state open --search", "gh issue create --title"},
 }
 
 // workflowStep is a step of a job, as far as the contract reads it.
 type workflowStep struct {
+	If   string            `yaml:"if"`
 	Uses string            `yaml:"uses"`
 	Run  string            `yaml:"run"`
 	With map[string]any    `yaml:"with"`
 	Env  map[string]string `yaml:"env"`
 }
 
-// workflowFile is the part of a workflow file the contract reads.
-type workflowFile struct {
-	On          any               `yaml:"on"`
-	Permissions map[string]string `yaml:"permissions"`
-	Concurrency struct {
+// workflowJob is a job: one with steps, or one that calls a workflow.
+type workflowJob struct {
+	RunsOn         string `yaml:"runs-on"`
+	TimeoutMinutes int    `yaml:"timeout-minutes"`
+	Concurrency    struct {
 		Group            string `yaml:"group"`
 		CancelInProgress bool   `yaml:"cancel-in-progress"`
 	} `yaml:"concurrency"`
-	Jobs map[string]struct {
-		Steps []workflowStep `yaml:"steps"`
-	} `yaml:"jobs"`
+	Permissions map[string]string `yaml:"permissions"`
+	Uses        string            `yaml:"uses"`
+	With        map[string]any    `yaml:"with"`
+	Secrets     any               `yaml:"secrets"` // a map, or "inherit"
+	Steps       []workflowStep    `yaml:"steps"`
+}
+
+// workflowInput is an input of workflow_call or workflow_dispatch.
+type workflowInput struct {
+	Type     string `yaml:"type"`
+	Required bool   `yaml:"required"`
+}
+
+// workflowEvents is what the workflow says about the events it runs on.
+type workflowEvents struct {
+	WorkflowCall struct {
+		Inputs  map[string]workflowInput `yaml:"inputs"`
+		Secrets map[string]struct {
+			Required bool `yaml:"required"`
+		} `yaml:"secrets"`
+	} `yaml:"workflow_call"`
+	WorkflowDispatch struct {
+		Inputs map[string]workflowInput `yaml:"inputs"`
+	} `yaml:"workflow_dispatch"`
+	Schedule []struct {
+		Cron string `yaml:"cron"`
+	} `yaml:"schedule"`
+	RepositoryDispatch struct {
+		Types []string `yaml:"types"`
+	} `yaml:"repository_dispatch"`
+	Push struct {
+		Branches []string `yaml:"branches"`
+		Paths    []string `yaml:"paths"`
+	} `yaml:"push"`
+}
+
+// workflowFile is the part of a workflow file the contract reads.
+type workflowFile struct {
+	On          any `yaml:"on"`
+	Concurrency struct {
+		Group string `yaml:"group"`
+	} `yaml:"concurrency"`
+	Jobs map[string]workflowJob `yaml:"jobs"`
+}
+
+// jobNames returns the names of the jobs, sorted.
+func (w *workflowFile) jobNames() []string {
+	return slices.Sorted(maps.Keys(w.Jobs))
 }
 
 // steps returns the steps of all jobs, the jobs in name order.
 func (w *workflowFile) steps() []workflowStep {
-	names := make([]string, 0, len(w.Jobs))
-	for name := range w.Jobs {
-		names = append(names, name)
-	}
-	sort.Strings(names)
 	var steps []workflowStep
-	for _, name := range names {
+	for _, name := range w.jobNames() {
 		steps = append(steps, w.Jobs[name].Steps...)
 	}
 	return steps
@@ -856,36 +988,81 @@ func (w *workflowFile) triggers() []string {
 	return events
 }
 
+// events returns what "on" says about the events, when it is a map.
+func (w *workflowFile) events() workflowEvents {
+	var ev workflowEvents
+	if on, ok := w.On.(map[string]any); ok {
+		if data, err := yaml.Marshal(on); err == nil {
+			_ = yaml.Unmarshal(data, &ev)
+		}
+	}
+	return ev
+}
+
 // parseWorkflow decodes a workflow file. A file that is not YAML, or has no
-// job with a step, gives the problems and no workflow.
+// job with a step or a workflow to call, gives the problems and no workflow.
 func parseWorkflow(file, content string) (*workflowFile, []string) {
 	var w workflowFile
 	if err := yaml.Unmarshal([]byte(content), &w); err != nil {
 		return nil, []string{fmt.Sprintf("%s: not valid YAML: %v", file, err)}
 	}
-	if len(w.steps()) == 0 {
-		return nil, []string{file + ": has no job with a step"}
+	if !slices.ContainsFunc(slices.Collect(maps.Values(w.Jobs)), func(j workflowJob) bool { return len(j.Steps) > 0 || j.Uses != "" }) {
+		return nil, []string{file + ": has no job with a step or a workflow to call"}
 	}
 	return &w, nil
 }
 
+func workflowPath(name string) string { return workflowDir + "/" + name }
+
+// checkWorkflowSet reports the workflows of workflowNames that are not among
+// have (file names).
+func checkWorkflowSet(have []string) []string {
+	var problems []string
+	for _, want := range workflowNames {
+		if !slices.Contains(have, want) {
+			problems = append(problems, workflowPath(want)+" does not exist")
+		}
+	}
+	return problems
+}
+
 // checkWorkflow checks a workflow file (a slash path relative to the root)
-// whose text is content: that it parses, that the lct commands it runs are
-// registered, that it uses only the pinned actions, that it holds no secret
-// and that the --title of a Release has no forbidden name.
+// whose text is content, whatever it does: that it parses, that the lct
+// commands it runs are registered, that it runs on the pinned runner and uses
+// only the pinned actions, that its scripts hold no expression and name no
+// secret (expressions reach a script through env), that its secrets are the
+// two of the repo, that no caller passes every secret on, and that the --title
+// of a Release has no forbidden name.
 func checkWorkflow(file, content string, commands []string) []string {
 	w, problems := parseWorkflow(file, content)
 	if w == nil {
 		return problems
 	}
 	problems = append(problems, checkLctCommands(file, content, commands)...)
+	for _, name := range w.jobNames() {
+		job := w.Jobs[name]
+		if len(job.Steps) > 0 && job.RunsOn != workflowRunner {
+			problems = append(problems, fmt.Sprintf("%s: job %s runs on %q, want %s", file, name, job.RunsOn, workflowRunner))
+		}
+		if inherit, ok := job.Secrets.(string); ok {
+			problems = append(problems, fmt.Sprintf("%s: job %s has secrets: %s, which hands every secret of the repo to the callee; list the ones it needs", file, name, inherit))
+		}
+	}
 	for _, s := range w.steps() {
 		if s.Uses != "" && !slices.Contains(workflowActions, s.Uses) {
 			problems = append(problems, fmt.Sprintf("%s: uses %q, which is not one of %s", file, s.Uses, strings.Join(workflowActions, ", ")))
 		}
+		if strings.Contains(s.Run, "${{") {
+			problems = append(problems, fmt.Sprintf("%s: a script holds an expression (${{ }}); pass the value through env: %q", file, firstLine(s.Run)))
+		}
+		if strings.Contains(s.Run, "secrets.") || strings.Contains(s.Run, "LIMBUS_STATUS_URL") {
+			problems = append(problems, fmt.Sprintf("%s: a script names a secret; lct reads LIMBUS_STATUS_URL from its own environment: %q", file, firstLine(s.Run)))
+		}
 	}
-	for _, m := range workflowSecretRe.FindAllString(content, -1) {
-		problems = append(problems, fmt.Sprintf("%s: refers to %q: a workflow uses only the token of the run", file, m))
+	for _, m := range workflowRefRe.FindAllStringSubmatch(content, -1) {
+		if m[1] == "secrets" && !slices.Contains(workflowSecrets, m[2]) {
+			problems = append(problems, fmt.Sprintf("%s: refers to secrets.%s, which is not one of %s", file, m[2], strings.Join(workflowSecrets, ", ")))
+		}
 	}
 	for _, m := range workflowTitleRe.FindAllStringSubmatch(content, -1) {
 		if forbiddenNameRe.MatchString(m[1]) {
@@ -895,95 +1072,487 @@ func checkWorkflow(file, content string, commands []string) []string {
 	return problems
 }
 
-// checkRebuildWorkflow checks the manual rebuild: it runs on request, one at
-// a time, may write to the repo, fetches the history and every tag, makes the
-// raw worktree, gives origin the raw tag, and builds, publishes and releases
-// in that order.
-func checkRebuildWorkflow(file, content string) []string {
+// firstLine returns the first line of a script, to say which step it is.
+func firstLine(s string) string {
+	line, _, _ := strings.Cut(strings.TrimSpace(s), "\n")
+	return line
+}
+
+// checkPipelineWorkflow checks pipeline.yml: it is only called, takes the
+// inputs and the two optional secrets, and has one job that runs one at a
+// time with the permissions it writes with. Its steps fetch the history, the
+// branches and every tag, make the worktrees, give origin the raw tag, ask the
+// status API, snapshot, plan, translate, build, publish, release and open the
+// issue, in that order; only the steps that need a secret have it; nothing but
+// the first steps runs when there is nothing to do; and the Release is made
+// only when the publish says it is needed.
+func checkPipelineWorkflow(file, content string) []string {
 	w, problems := parseWorkflow(file, content)
 	if w == nil {
 		return problems
 	}
-	if !slices.Contains(w.triggers(), "workflow_dispatch") {
-		problems = append(problems, file+": does not run on workflow_dispatch")
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
+
+	if events := w.triggers(); !slices.Equal(events, []string{"workflow_call"}) {
+		add("runs on %v, want only workflow_call", events)
 	}
-	if w.Permissions["contents"] != "write" {
-		problems = append(problems, fmt.Sprintf("%s: permissions.contents = %q, want write", file, w.Permissions["contents"]))
+	call := w.events().WorkflowCall
+	for _, name := range slices.Sorted(maps.Keys(pipelineInputs)) {
+		in, ok := call.Inputs[name]
+		switch {
+		case !ok:
+			add("has no input %q", name)
+		case in.Type != pipelineInputs[name]:
+			add("input %q has type %q, want %q", name, in.Type, pipelineInputs[name])
+		}
 	}
-	if w.Concurrency.Group != "lct-state" || w.Concurrency.CancelInProgress {
-		problems = append(problems, fmt.Sprintf("%s: concurrency = {group: %q, cancel-in-progress: %v}, want {group: \"lct-state\", cancel-in-progress: false}",
-			file, w.Concurrency.Group, w.Concurrency.CancelInProgress))
+	for _, name := range slices.Sorted(maps.Keys(call.Inputs)) {
+		if _, ok := pipelineInputs[name]; !ok {
+			add("input %q is not one of the inputs of the contract", name)
+		}
 	}
-	deep := slices.ContainsFunc(w.steps(), func(s workflowStep) bool {
+	for _, name := range workflowSecrets {
+		secret, ok := call.Secrets[name]
+		switch {
+		case !ok:
+			add("does not declare the secret %s", name)
+		case secret.Required:
+			add("the secret %s is required, but the pipeline must run without it", name)
+		}
+	}
+	for _, name := range slices.Sorted(maps.Keys(call.Secrets)) {
+		if !slices.Contains(workflowSecrets, name) {
+			add("declares the secret %s, which is not one of %s", name, strings.Join(workflowSecrets, ", "))
+		}
+	}
+
+	if len(w.Jobs) != 1 {
+		add("has %d jobs, want one", len(w.Jobs))
+		return problems
+	}
+	job := w.Jobs[w.jobNames()[0]]
+	if job.TimeoutMinutes != 350 {
+		add("timeout-minutes = %d, want 350", job.TimeoutMinutes)
+	}
+	if job.Concurrency.Group != "lct-state" || job.Concurrency.CancelInProgress {
+		add("concurrency = {group: %q, cancel-in-progress: %v}, want {group: \"lct-state\", cancel-in-progress: false}",
+			job.Concurrency.Group, job.Concurrency.CancelInProgress)
+	}
+	if !maps.Equal(job.Permissions, pipelinePermissions) {
+		add("permissions = %v, want %v", job.Permissions, pipelinePermissions)
+	}
+	deep := slices.ContainsFunc(job.Steps, func(s workflowStep) bool {
 		return strings.HasPrefix(s.Uses, "actions/checkout@") && fmt.Sprint(s.With["fetch-depth"]) == "0"
 	})
 	if !deep {
-		problems = append(problems, file+": no actions/checkout step with fetch-depth: 0")
+		add("no actions/checkout step with fetch-depth: 0")
 	}
 
 	runs := w.runs()
-	for _, m := range rebuildMarkers {
+	for _, m := range pipelineMarkers {
 		if !strings.Contains(runs, m.text) {
-			problems = append(problems, fmt.Sprintf("%s: no %q: %s", file, m.text, m.why))
+			add("no %q: %s", m.text, m.why)
 		}
 	}
-	for _, o := range rebuildOrder {
+	for _, o := range pipelineOrder {
 		first, second := strings.Index(runs, o[0]), strings.Index(runs, o[1])
 		if first >= 0 && second >= 0 && first > second {
-			problems = append(problems, fmt.Sprintf("%s: %q must come before %q", file, o[0], o[1]))
+			add("%q must come before %q", o[0], o[1])
 		}
 	}
-	// The step that releases takes the token of the run and names the Release.
-	if i := slices.IndexFunc(w.steps(), func(s workflowStep) bool { return strings.Contains(s.Run, "gh release create") }); i >= 0 {
-		step := w.steps()[i]
-		if step.Env["GH_TOKEN"] != "${{ github.token }}" {
-			problems = append(problems, file+": the gh release create step has no GH_TOKEN: ${{ github.token }}")
+	pins := claudeCLIRe.FindAllStringSubmatch(runs, -1)
+	if len(pins) == 0 {
+		add("does not install the claude CLI")
+	}
+	for _, m := range pins {
+		if !semverRe.MatchString(m[1]) {
+			add("installs the claude CLI as %q, want an exact version such as @1.2.3", m[0])
 		}
-		if !workflowTitleRe.MatchString(step.Run) {
-			problems = append(problems, file+": gh release create has no --title")
+	}
+
+	for _, s := range job.Steps {
+		if _, ok := s.Env["LIMBUS_STATUS_URL"]; ok && !strings.Contains(s.Run, "bin/lct fetch --check") {
+			add("the status API URL is in the environment of a step that does not ask the status API: %q", firstLine(s.Run))
+		}
+		if _, ok := s.Env["ANTHROPIC_API_KEY"]; ok && !strings.Contains(s.Run, "bin/lct translate") {
+			add("the API key is in the environment of a step that does not translate: %q", firstLine(s.Run))
+		}
+		if m := ghCommandRe.FindString(s.Run); m != "" && s.Env["GH_TOKEN"] != "${{ github.token }}" {
+			add("the step that runs %q has no GH_TOKEN: ${{ github.token }}", m)
+		}
+		for _, command := range pipelineGated {
+			if strings.Contains(s.Run, command) && !strings.Contains(s.If, "steps.decide.outputs.") {
+				add("%q runs even when there is nothing to do: the if of its step does not read steps.decide.outputs", command)
+			}
+		}
+	}
+	find := func(sub string) (workflowStep, bool) {
+		i := slices.IndexFunc(job.Steps, func(s workflowStep) bool { return strings.Contains(s.Run, sub) })
+		if i < 0 {
+			return workflowStep{}, false
+		}
+		return job.Steps[i], true
+	}
+	if s, ok := find("bin/lct fetch --check"); ok && s.Env["LIMBUS_STATUS_URL"] != "${{ secrets.LIMBUS_STATUS_URL }}" {
+		add("the step that asks the status API has no LIMBUS_STATUS_URL: ${{ secrets.LIMBUS_STATUS_URL }} in its env")
+	}
+	if s, ok := find("--out .work/fetch"); ok && s.Env["LIMBUS_CDN_TEMPLATE"] != "${{ vars.LIMBUS_CDN_TEMPLATE }}" {
+		add("the step that downloads the packs has no LIMBUS_CDN_TEMPLATE: ${{ vars.LIMBUS_CDN_TEMPLATE }} in its env")
+	}
+	if s, ok := find("bin/lct translate"); ok {
+		if s.Env["ANTHROPIC_API_KEY"] != "${{ secrets.ANTHROPIC_API_KEY }}" {
+			add("the translate step has no ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} in its env")
+		}
+		if s.Env["LCT_MODEL"] != "${{ vars.LCT_MODEL }}" {
+			add("the translate step has no LCT_MODEL: ${{ vars.LCT_MODEL }} in its env")
+		}
+		for _, part := range []string{"inputs.max_usd", "vars.LCT_MAX_USD", "'30'"} {
+			if !strings.Contains(s.Env["MAX_USD"], part) {
+				add("MAX_USD of the translate step is %q, which does not use %s", s.Env["MAX_USD"], part)
+			}
+		}
+		// A translation that fails must not stop the build: the command is
+		// followed by || so that set -e lets it pass, and by a warning.
+		line, after, _ := strings.Cut(s.Run[strings.Index(s.Run, "bin/lct translate"):], "\n")
+		if !strings.Contains(line, "||") {
+			add("the translate command is not followed by ||, so a failing translation stops the run before the build")
+		}
+		if !strings.Contains(after, "::warning::") {
+			add("the translate step does not say with ::warning:: after the command that it failed")
+		}
+	}
+	if s, ok := find("gh release create"); ok {
+		if !strings.Contains(s.If, "release_needed") {
+			add("the gh release create step does not read release_needed in its if: the Release must not follow the tag, which is a free number even when nothing is released")
+		}
+		if !workflowTitleRe.MatchString(s.Run) {
+			add("gh release create has no --title")
 		}
 	}
 	return problems
 }
 
-// publishKeyRe matches a key of out/publish.json that a jq command of the
-// workflow reads: the key after "jq -er ." or "jq -ec '.".
-var publishKeyRe = regexp.MustCompile(`jq -[a-z]+ '?\.([a-z_]+)`)
+// callerSpec says what a workflow that calls the pipeline must be.
+type callerSpec struct {
+	// inputs are the inputs the person gives by hand, and their types.
+	inputs map[string]string
+	// secrets are the secrets the caller passes.
+	secrets []string
+	// fetch is the value of the fetch input.
+	fetch bool
+}
 
-// publishKeysRead are the keys of out/publish.json the rebuild must read.
-var publishKeysRead = []string{"tag", "tw_commit", "assets"}
+// checkCaller checks a workflow that only calls pipeline.yml: one job that
+// calls it, passes the inputs it has and exactly the secrets it needs by
+// name, grants the permissions the pipeline writes with (a called workflow can
+// only keep or reduce them), and has no concurrency group of its own (the
+// pipeline holds lct-state; a caller in the same group would wait for itself).
+// pipeline is the parsed pipeline.yml, nil when it did not parse.
+func checkCaller(file string, w *workflowFile, pipeline *workflowFile, spec callerSpec) []string {
+	var problems []string
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
 
-// checkPublishKeys reports the keys the workflow reads from out/publish.json
-// that result, the value lct publish --json prints, has no JSON key for, and
-// the keys in publishKeysRead it does not read at all (so the test cannot
-// pass by finding nothing).
-func checkPublishKeys(file, content string, result any) []string {
-	data, err := json.Marshal(result)
-	if err != nil {
-		return []string{fmt.Sprintf("%s: the publish result does not marshal: %v", file, err)}
+	if len(w.Jobs) != 1 {
+		add("has %d jobs, want one that calls pipeline.yml", len(w.Jobs))
+		return problems
 	}
-	var printed map[string]json.RawMessage
-	if err := json.Unmarshal(data, &printed); err != nil {
-		return []string{fmt.Sprintf("%s: the publish result is not a JSON object: %v", file, err)}
+	job := w.Jobs[w.jobNames()[0]]
+	if job.Uses != pipelineUses {
+		add("the job calls %q, want %s", job.Uses, pipelineUses)
+	}
+	if !maps.Equal(job.Permissions, pipelinePermissions) {
+		add("the job has permissions %v, want %v: a called workflow gets no more than its caller", job.Permissions, pipelinePermissions)
+	}
+	if job.Concurrency.Group != "" || w.Concurrency.Group != "" {
+		add("has a concurrency group of its own; pipeline.yml holds lct-state, and a caller in the same group waits for itself")
+	}
+	switch secrets := job.Secrets.(type) {
+	case map[string]any:
+		for _, name := range slices.Sorted(maps.Keys(secrets)) {
+			if !slices.Contains(spec.secrets, name) {
+				add("passes the secret %s, which this workflow does not need", name)
+			} else if secrets[name] != "${{ secrets."+name+" }}" {
+				add("passes %s as %v, want ${{ secrets.%s }}", name, secrets[name], name)
+			}
+		}
+		for _, name := range spec.secrets {
+			if _, ok := secrets[name]; !ok {
+				add("does not pass the secret %s", name)
+			}
+		}
+	case string:
+		// checkWorkflow reports secrets: inherit.
+	default:
+		add("passes no secrets, want %s", strings.Join(spec.secrets, ", "))
+	}
+
+	if fetch, ok := job.With["fetch"].(bool); !ok || fetch != spec.fetch {
+		add("passes fetch = %v, want %v", job.With["fetch"], spec.fetch)
+	}
+	for _, name := range slices.Sorted(maps.Keys(spec.inputs)) {
+		if expr, _ := job.With[name].(string); !strings.Contains(expr, "inputs."+name) {
+			add("passes %s as %v, want an expression of inputs.%s", name, job.With[name], name)
+		}
+	}
+	if pipeline != nil {
+		called := pipeline.events().WorkflowCall.Inputs
+		for _, name := range slices.Sorted(maps.Keys(job.With)) {
+			if _, ok := called[name]; !ok {
+				add("passes %q, which pipeline.yml has no input for", name)
+			}
+		}
+		for _, name := range slices.Sorted(maps.Keys(called)) {
+			if _, ok := job.With[name]; !ok && called[name].Required {
+				add("does not pass the required input %q of pipeline.yml", name)
+			}
+		}
+	}
+	return problems
+}
+
+// checkDispatchInputs reports the manual inputs of ev that are not exactly
+// want, name and type.
+func checkDispatchInputs(file string, ev workflowEvents, want map[string]string) []string {
+	var problems []string
+	have := ev.WorkflowDispatch.Inputs
+	for _, name := range slices.Sorted(maps.Keys(want)) {
+		in, ok := have[name]
+		switch {
+		case !ok:
+			problems = append(problems, fmt.Sprintf("%s: workflow_dispatch has no input %q", file, name))
+		case in.Type != want[name]:
+			problems = append(problems, fmt.Sprintf("%s: workflow_dispatch input %q has type %q, want %q", file, name, in.Type, want[name]))
+		}
+	}
+	for _, name := range slices.Sorted(maps.Keys(have)) {
+		if _, ok := want[name]; !ok {
+			problems = append(problems, fmt.Sprintf("%s: workflow_dispatch has input %q, which is not one of the inputs of the contract", file, name))
+		}
+	}
+	return problems
+}
+
+// checkEvents reports the events of w when they are not exactly want.
+func checkEvents(file string, w *workflowFile, want ...string) []string {
+	if got := w.triggers(); !slices.Equal(got, want) {
+		return []string{fmt.Sprintf("%s: runs on %v, want %v", file, got, want)}
+	}
+	return nil
+}
+
+// updateCron is the schedule of update.yml: Thursday 12:00 in UTC+8.
+const updateCron = "0 4 * * 4"
+
+// checkUpdateWorkflow checks update.yml: every Thursday, on a dispatch of the
+// update event and by hand, it calls the pipeline with fetch on.
+func checkUpdateWorkflow(file, content, pipeline string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	parsed, _ := parseWorkflow(workflowPath("pipeline.yml"), pipeline)
+	inputs := map[string]string{"force": "boolean", "requeue": "string", "max_usd": "string", "dry_run": "boolean"}
+	problems = append(problems, checkCaller(file, w, parsed, callerSpec{inputs: inputs, secrets: workflowSecrets, fetch: true})...)
+	problems = append(problems, checkEvents(file, w, "repository_dispatch", "schedule", "workflow_dispatch")...)
+	problems = append(problems, checkDispatchInputs(file, w.events(), inputs)...)
+	ev := w.events()
+	if len(ev.Schedule) != 1 || ev.Schedule[0].Cron != updateCron {
+		problems = append(problems, fmt.Sprintf("%s: schedule = %v, want one cron %q", file, ev.Schedule, updateCron))
+	}
+	if !slices.Equal(ev.RepositoryDispatch.Types, []string{"limbus_update"}) {
+		problems = append(problems, fmt.Sprintf("%s: repository_dispatch types = %v, want [limbus_update]", file, ev.RepositoryDispatch.Types))
+	}
+	return problems
+}
+
+// rebuildPaths are the paths of main whose change rebuilds the pack.
+var rebuildPaths = []string{"rules/**", "glossary/**", "guides/**", "lct.yaml"}
+
+// checkRebuildWorkflow checks rebuild.yml: on a push to main that changes the
+// rules, and by hand, it calls the pipeline with fetch off.
+func checkRebuildWorkflow(file, content, pipeline string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	parsed, _ := parseWorkflow(workflowPath("pipeline.yml"), pipeline)
+	inputs := map[string]string{"requeue": "string", "max_usd": "string", "dry_run": "boolean"}
+	problems = append(problems, checkCaller(file, w, parsed, callerSpec{inputs: inputs, secrets: []string{"ANTHROPIC_API_KEY"}, fetch: false})...)
+	problems = append(problems, checkEvents(file, w, "push", "workflow_dispatch")...)
+	problems = append(problems, checkDispatchInputs(file, w.events(), inputs)...)
+	ev := w.events()
+	if !slices.Equal(ev.Push.Branches, []string{"main"}) {
+		problems = append(problems, fmt.Sprintf("%s: push branches = %v, want [main]", file, ev.Push.Branches))
+	}
+	if !slices.Equal(slices.Sorted(slices.Values(ev.Push.Paths)), slices.Sorted(slices.Values(rebuildPaths))) {
+		problems = append(problems, fmt.Sprintf("%s: push paths = %v, want %v", file, ev.Push.Paths, rebuildPaths))
+	}
+	return problems
+}
+
+// readmeSection returns the text of the section of readme under the heading
+// "## <heading>", up to the next heading of that level.
+func readmeSection(readme, heading string) (string, bool) {
+	lines := strings.Split(strings.ReplaceAll(readme, "\r\n", "\n"), "\n")
+	start := slices.Index(lines, "## "+heading)
+	if start < 0 {
+		return "", false
+	}
+	end := len(lines)
+	for i := start + 1; i < len(lines); i++ {
+		if strings.HasPrefix(lines[i], "## ") {
+			end = i
+			break
+		}
+	}
+	return strings.Join(lines[start+1:end], "\n"), true
+}
+
+// checkRefsDocumented reports the secrets and variables the workflows (file
+// name to text) use that no table row of the README section "GitHub Actions
+// 設定" lists by name.
+func checkRefsDocumented(files map[string]string, readme string) []string {
+	section, ok := readmeSection(readme, readmeActions)
+	if !ok {
+		return []string{fmt.Sprintf("README.md: no section %q", "## "+readmeActions)}
+	}
+	var rows []string
+	for _, line := range strings.Split(section, "\n") {
+		if strings.HasPrefix(line, "|") {
+			rows = append(rows, line)
+		}
 	}
 	var problems []string
-	read := map[string]bool{}
-	for _, line := range strings.Split(content, "\n") {
-		if !strings.Contains(line, "out/publish.json") {
+	seen := map[string]bool{}
+	for _, name := range slices.Sorted(maps.Keys(files)) {
+		for _, m := range workflowRefRe.FindAllStringSubmatch(files[name], -1) {
+			ref := m[1] + "." + m[2]
+			if seen[ref] {
+				continue
+			}
+			seen[ref] = true
+			if !slices.ContainsFunc(rows, func(row string) bool { return strings.Contains(row, "`"+m[2]+"`") }) {
+				problems = append(problems, fmt.Sprintf("%s: uses %s, which no table row of the section %q in README.md lists as `%s`", workflowPath(name), ref, readmeActions, m[2]))
+			}
+		}
+	}
+	return problems
+}
+
+// jqCall is a call of jq in a script: its flags, its filter and what it reads,
+// a variable name (from <<<"$name") or a file.
+type jqCall struct{ flags, filter, input string }
+
+// jqCalls returns the calls of jq in the scripts text.
+func jqCalls(runs string) []jqCall {
+	var calls []jqCall
+	for _, m := range jqCallRe.FindAllStringSubmatch(runs, -1) {
+		input := m[3]
+		if input == "" {
+			input = m[4]
+		}
+		calls = append(calls, jqCall{flags: m[1], filter: strings.Trim(m[2], `'"`), input: input})
+	}
+	return calls
+}
+
+// jsonFields maps the JSON keys of the struct v (or of what it points to) to
+// the kind of the field behind each.
+func jsonFields(v any) map[string]reflect.Kind {
+	t := reflect.TypeOf(v)
+	for t.Kind() == reflect.Pointer {
+		t = t.Elem()
+	}
+	fields := map[string]reflect.Kind{}
+	for i := 0; i < t.NumField(); i++ {
+		name, _, _ := strings.Cut(t.Field(i).Tag.Get("json"), ",")
+		if name == "" || name == "-" {
 			continue
 		}
-		for _, m := range publishKeyRe.FindAllStringSubmatch(line, -1) {
-			read[m[1]] = true
+		ft := t.Field(i).Type
+		for ft.Kind() == reflect.Pointer {
+			ft = ft.Elem()
+		}
+		fields[name] = ft.Kind()
+	}
+	return fields
+}
+
+// lctJSONInputs are what pipeline.yml feeds to jq: each is the output of an
+// lct command, kept in a variable or in a file, and the value that command
+// prints (its JSON keys are the ones jq may read). nil is output of another
+// tool, which is not checked.
+func lctJSONInputs() map[string]any {
+	return map[string]any{
+		"check":                      fetchResult{},
+		"snapshot":                   snapshotResult{},
+		"plan":                       plan.Summary{},
+		"count":                      pendingCount{},
+		"build":                      buildOutput{},
+		"out/publish.json":           publish.Result{},
+		".work/raw/meta/source.json": raw.Source{},
+		"issues":                     nil, // gh issue list
+	}
+}
+
+// lctJSONRequired are the keys pipeline.yml must read from each output, so
+// that the check cannot pass by finding nothing.
+var lctJSONRequired = map[string][]string{
+	"check":                      {"new", "token", "created_at"},
+	"snapshot":                   {"tag"},
+	"plan":                       {"pending", "requeue_applied", "rewrite_applied"},
+	"count":                      {"available"},
+	"build":                      {"review_issue_parts"},
+	"out/publish.json":           {"tag", "tw_commit", "assets", "release_needed"},
+	".work/raw/meta/source.json": {"tag"},
+}
+
+// checkJQKeys reports what the jq commands of the workflow read that the lct
+// output has no JSON key for, the keys in required that it does not read at
+// all, a jq -e on a boolean (which fails on false: ask for `| tostring`), and
+// keys read from an input the contract does not know. inputs maps what jq
+// reads to the value that prints it.
+func checkJQKeys(file, content string, inputs map[string]any, required map[string][]string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	read := map[string]map[string]bool{}
+	for _, call := range jqCalls(w.runs()) {
+		var keys []string
+		for _, m := range jqKeyRe.FindAllStringSubmatch(call.filter, -1) {
+			keys = append(keys, m[1])
+		}
+		printer, known := inputs[call.input]
+		switch {
+		case !known:
+			if len(keys) > 0 {
+				problems = append(problems, fmt.Sprintf("%s: jq reads %v from %q, whose JSON the contract does not know", file, keys, call.input))
+			}
+			continue
+		case printer == nil:
+			continue
+		}
+		fields := jsonFields(printer)
+		for _, key := range keys {
+			kind, printed := fields[key]
+			if read[call.input] == nil {
+				read[call.input] = map[string]bool{}
+			}
+			read[call.input][key] = true
+			switch {
+			case !printed:
+				problems = append(problems, fmt.Sprintf("%s: reads %q from %s, which %T does not print", file, key, call.input, printer))
+			case kind == reflect.Bool && jqExitStatusRe.MatchString(call.flags+" ") && !strings.Contains(call.filter, "tostring"):
+				problems = append(problems, fmt.Sprintf("%s: jq -e on the boolean %q fails when it is false; read '.%s | tostring'", file, key, key))
+			}
 		}
 	}
-	for _, key := range publishKeysRead {
-		if !read[key] {
-			problems = append(problems, fmt.Sprintf("%s: does not read %q from out/publish.json", file, key))
-		}
-	}
-	for key := range read {
-		if _, ok := printed[key]; !ok {
-			problems = append(problems, fmt.Sprintf("%s: reads %q from out/publish.json, which lct publish --json does not print", file, key))
+	for _, input := range slices.Sorted(maps.Keys(required)) {
+		for _, key := range required[input] {
+			if !read[input][key] {
+				problems = append(problems, fmt.Sprintf("%s: does not read %q from %s", file, key, input))
+			}
 		}
 	}
 	sort.Strings(problems)
@@ -1001,86 +1570,227 @@ func mutate(t *testing.T, src, old, repl string) string {
 	return strings.Replace(src, old, repl, 1)
 }
 
-func TestWorkflowContract(t *testing.T) {
-	commands := cli.Commands()
-	// Every workflow is under the contract; the two of this repo must exist.
-	all, err := filepath.Glob(filepath.Join(repoRoot, ".github", "workflows", "*.yml"))
+// mutateAll replaces every copy of old, of which there must be at least one.
+func mutateAll(t *testing.T, src, old, repl string) string {
+	t.Helper()
+	if !strings.Contains(src, old) {
+		t.Fatalf("the workflow has no copy of %q: update the test", old)
+	}
+	return strings.ReplaceAll(src, old, repl)
+}
+
+// readWorkflows reads every workflow of the repo: file name to text.
+func readWorkflows(t *testing.T) map[string]string {
+	t.Helper()
+	paths, err := filepath.Glob(filepath.Join(repoRoot, filepath.FromSlash(workflowDir), "*.yml"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{"ci.yml", "rebuild.yml"} {
-		if !slices.Contains(all, filepath.Join(repoRoot, ".github", "workflows", want)) {
-			t.Errorf(".github/workflows/%s does not exist", want)
+	files := map[string]string{}
+	for _, p := range paths {
+		_, content := readRepoFile(t, p)
+		files[filepath.Base(p)] = content
+	}
+	return files
+}
+
+// wantProblems fails the test unless problems is exactly one problem that
+// holds all of parts.
+func wantProblems(t *testing.T, problems []string, parts ...string) {
+	t.Helper()
+	if len(problems) != 1 {
+		t.Fatalf("got %d problems, want one holding %q:\n%s", len(problems), parts, strings.Join(problems, "\n"))
+	}
+	for _, part := range parts {
+		if !strings.Contains(problems[0], part) {
+			t.Errorf("problem %q does not contain %q", problems[0], part)
 		}
 	}
-	var ci string
-	for _, p := range all {
-		rel, content := readRepoFile(t, p)
-		for _, problem := range checkWorkflow(rel, content, commands) {
-			t.Error(problem)
-		}
-		if path.Base(rel) == "ci.yml" {
-			ci = content
-		}
+}
+
+// hasProblem fails the test unless one of problems holds all of parts.
+func hasProblem(t *testing.T, problems []string, parts ...string) {
+	t.Helper()
+	if !slices.ContainsFunc(problems, func(p string) bool {
+		return !slices.ContainsFunc(parts, func(part string) bool { return !strings.Contains(p, part) })
+	}) {
+		t.Errorf("problems = %q, want one holding %q", problems, parts)
 	}
-	for _, problem := range checkModelNames(repoRoot, ".github/workflows") {
+}
+
+func TestWorkflowContract(t *testing.T) {
+	commands := cli.Commands()
+	files := readWorkflows(t)
+	names := slices.Sorted(maps.Keys(files))
+	_, readme := readRepoFile(t, filepath.Join(repoRoot, "README.md"))
+	pipeline, update, rebuild, ci := files["pipeline.yml"], files["update.yml"], files["rebuild.yml"], files["ci.yml"]
+	pipelineFile, updateFile, rebuildFile, ciFile := workflowPath("pipeline.yml"), workflowPath("update.yml"), workflowPath("rebuild.yml"), workflowPath("ci.yml")
+
+	// The four workflows are under the contract; every workflow in the
+	// directory is checked.
+	for _, problem := range checkWorkflowSet(names) {
 		t.Error(problem)
 	}
-	file, rebuild := readRepoFile(t, filepath.Join(repoRoot, ".github", "workflows", "rebuild.yml"))
-	for _, problem := range checkRebuildWorkflow(file, rebuild) {
+	for _, name := range names {
+		for _, problem := range checkWorkflow(workflowPath(name), files[name], commands) {
+			t.Error(problem)
+		}
+	}
+	for _, problem := range checkModelNames(repoRoot, workflowDir) {
+		t.Error(problem)
+	}
+	for _, problem := range checkPipelineWorkflow(pipelineFile, pipeline) {
+		t.Error(problem)
+	}
+	for _, problem := range checkUpdateWorkflow(updateFile, update, pipeline) {
+		t.Error(problem)
+	}
+	for _, problem := range checkRebuildWorkflow(rebuildFile, rebuild, pipeline) {
+		t.Error(problem)
+	}
+	for _, problem := range checkRefsDocumented(files, readme) {
+		t.Error(problem)
+	}
+	for _, problem := range checkJQKeys(pipelineFile, pipeline, lctJSONInputs(), lctJSONRequired) {
 		t.Error(problem)
 	}
 	if t.Failed() {
 		return
 	}
 
-	// 1. Every bin/lct a workflow runs is a registered command.
-	t.Run("an unregistered lct command", func(t *testing.T) {
-		src := mutate(t, rebuild, "bin/lct publish --json", "bin/lct publsh --json")
-		problems := checkWorkflow(file, src, commands)
-		if len(problems) != 1 || !strings.Contains(problems[0], `"bin/lct publsh"`) {
-			t.Errorf("problems = %q, want one naming bin/lct publsh", problems)
+	// 1. The four workflows exist.
+	t.Run("a workflow that is missing", func(t *testing.T) {
+		for _, gone := range workflowNames {
+			have := slices.DeleteFunc(slices.Clone(names), func(n string) bool { return n == gone })
+			wantProblems(t, checkWorkflowSet(have), workflowPath(gone))
 		}
+	})
+
+	// 2. Every bin/lct a workflow runs is a registered command.
+	t.Run("an unregistered lct command", func(t *testing.T) {
+		src := mutate(t, pipeline, "bin/lct publish --json", "bin/lct publsh --json")
+		wantProblems(t, checkWorkflow(pipelineFile, src, commands), `"bin/lct publsh"`)
 	})
 	t.Run("a file that is not YAML", func(t *testing.T) {
-		problems := checkWorkflow(".github/workflows/ci.yml", ci+"\n  - [unclosed\n", commands)
-		if len(problems) != 1 || !strings.Contains(problems[0], "not valid YAML") {
-			t.Errorf("problems = %q, want one saying it is not valid YAML", problems)
-		}
+		wantProblems(t, checkWorkflow(ciFile, ci+"\n  - [unclosed\n", commands), "not valid YAML")
 	})
 
-	// 2. No model name.
+	// 3. No model name.
 	t.Run("a model name", func(t *testing.T) {
 		root := t.TempDir()
-		writeTestFile(t, root, ".github/workflows/rebuild.yml", rebuild+"# claude-example-9\n")
-		problems := checkModelNames(root, ".github/workflows")
-		if len(problems) != 1 || !strings.Contains(problems[0], "rebuild.yml") || !strings.Contains(problems[0], `"claude-example-9"`) {
-			t.Errorf("problems = %q, want one naming rebuild.yml and the model", problems)
-		}
+		writeTestFile(t, root, workflowDir+"/pipeline.yml", pipeline+"# claude-example-9\n")
+		wantProblems(t, checkModelNames(root, workflowDir), "pipeline.yml", `"claude-example-9"`)
 	})
-	t.Run("a secret", func(t *testing.T) {
-		src := mutate(t, rebuild, "${{ github.token }}", "${{ secrets.RELEASE_TOKEN }}")
-		problems := checkWorkflow(file, src, commands)
-		if len(problems) != 1 || !strings.Contains(problems[0], "secrets.") {
-			t.Errorf("problems = %q, want one naming secrets.", problems)
-		}
+
+	// 4. Secrets: the two of the repo, read by the step that needs them, and
+	// never written out.
+	t.Run("a secret that is not one of the two", func(t *testing.T) {
+		src := mutate(t, pipeline, "LCT_MODEL: ${{ vars.LCT_MODEL }}", "LCT_MODEL: ${{ secrets.RELEASE_TOKEN }}")
+		wantProblems(t, checkWorkflow(pipelineFile, src, commands), "secrets.RELEASE_TOKEN")
 	})
-	t.Run("an action that is not pinned", func(t *testing.T) {
-		src := mutate(t, rebuild, "actions/checkout@v4", "actions/checkout@main")
-		problems := checkWorkflow(file, src, commands)
-		if len(problems) != 1 || !strings.Contains(problems[0], "actions/checkout@main") {
-			t.Errorf("problems = %q, want one naming actions/checkout@main", problems)
+	t.Run("the status API URL named in a script", func(t *testing.T) {
+		src := mutate(t, pipeline, "bin/lct fetch --check --json", `bin/lct fetch --check --status-url "$LIMBUS_STATUS_URL" --json`)
+		wantProblems(t, checkWorkflow(pipelineFile, src, commands), "LIMBUS_STATUS_URL")
+	})
+	t.Run("an expression in a script", func(t *testing.T) {
+		src := mutate(t, pipeline, "bin/lct plan --json", "bin/lct plan --json # ${{ inputs.requeue }}")
+		wantProblems(t, checkWorkflow(pipelineFile, src, commands), "expression")
+	})
+	t.Run("the status API URL in the environment of every step", func(t *testing.T) {
+		src := mutate(t, pipeline, "LCT_MODEL: ${{ vars.LCT_MODEL }}", "LCT_MODEL: ${{ vars.LCT_MODEL }}\n          LIMBUS_STATUS_URL: ${{ secrets.LIMBUS_STATUS_URL }}")
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), "status API URL is in the environment")
+	})
+	t.Run("the API key in the environment of a step that does not translate", func(t *testing.T) {
+		src := mutate(t, pipeline, "LIMBUS_CDN_TEMPLATE: ${{ vars.LIMBUS_CDN_TEMPLATE }}", "LIMBUS_CDN_TEMPLATE: ${{ vars.LIMBUS_CDN_TEMPLATE }}\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}")
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), "API key is in the environment")
+	})
+	t.Run("a secret that is required", func(t *testing.T) {
+		src := mutate(t, pipeline, "ANTHROPIC_API_KEY: { required: false }", "ANTHROPIC_API_KEY: { required: true }")
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), "ANTHROPIC_API_KEY is required")
+	})
+	t.Run("a secret that is passed on by inherit", func(t *testing.T) {
+		secretsBlock := regexp.MustCompile(`(?m)^    secrets:\n(?:      .*\n)+`)
+		for file, src := range map[string]string{updateFile: update, rebuildFile: rebuild} {
+			if !secretsBlock.MatchString(src) {
+				t.Fatalf("%s has no secrets: block of the job to replace", file)
+			}
+			inherit := secretsBlock.ReplaceAllString(src, "    secrets: inherit\n")
+			wantProblems(t, checkWorkflow(file, inherit, commands), "secrets: inherit")
 		}
 	})
 
-	// 3. The rebuild is made for a fresh clone.
+	// 5. The actions and the runner are pinned.
+	t.Run("an action that is not pinned", func(t *testing.T) {
+		wantProblems(t, checkWorkflow(pipelineFile, mutate(t, pipeline, "actions/checkout@v5", "actions/checkout@main"), commands), "actions/checkout@main")
+		wantProblems(t, checkWorkflow(pipelineFile, mutate(t, pipeline, "actions/setup-go@v6", "actions/setup-go@v5"), commands), "actions/setup-go@v5")
+		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "actions/checkout@v5", "actions/checkout@v4"), commands), "actions/checkout@v4")
+	})
+	t.Run("a runner that is not pinned", func(t *testing.T) {
+		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
+		wantProblems(t, checkWorkflow(pipelineFile, mutate(t, pipeline, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
+	})
+
+	// 6. The claude CLI has a fixed version.
+	t.Run("a claude CLI that is not pinned", func(t *testing.T) {
+		for _, repl := range []string{"@anthropic-ai/claude-code@latest", "@anthropic-ai/claude-code", "@anthropic-ai/claude-code@2"} {
+			src := mutate(t, pipeline, "@anthropic-ai/claude-code@2.1.316", repl)
+			wantProblems(t, checkPipelineWorkflow(pipelineFile, src), "claude CLI")
+		}
+	})
+
+	// 7. The schedule and the callers.
+	t.Run("another cron", func(t *testing.T) {
+		src := mutate(t, update, "'"+updateCron+"'", "'0 5 * * 4'")
+		wantProblems(t, checkUpdateWorkflow(updateFile, src, pipeline), "0 5 * * 4")
+	})
+	for _, tc := range []struct{ name, file, src, old, repl, want string }{
+		{"no dispatch event", updateFile, update, "limbus_update", "limbus_updat", "repository_dispatch"},
+		{"fetch off in the update", updateFile, update, "fetch: true", "fetch: false", "passes fetch"},
+		{"fetch on in the rebuild", rebuildFile, rebuild, "fetch: false", "fetch: true", "passes fetch"},
+		{"another pipeline", updateFile, update, "uses: ./.github/workflows/pipeline.yml", "uses: ./.github/workflows/other.yml", "pipeline.yml"},
+		{"no write permission for the issue", rebuildFile, rebuild, "issues: write", "issues: read", "permissions"},
+		{"a branch other than main", rebuildFile, rebuild, "branches: [main]", "branches: [master]", "branches"},
+		{"a rules path dropped", rebuildFile, rebuild, "'glossary/**', ", "", "paths"},
+		{"an input the pipeline lacks", updateFile, update, "      max_usd: ${{ inputs.max_usd }}", "      maxusd: ${{ inputs.max_usd }}", `"maxusd"`},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutate(t, tc.src, tc.old, tc.repl)
+			var problems []string
+			if tc.file == updateFile {
+				problems = checkUpdateWorkflow(tc.file, src, pipeline)
+			} else {
+				problems = checkRebuildWorkflow(tc.file, src, pipeline)
+			}
+			hasProblem(t, problems, tc.file, tc.want)
+		})
+	}
+	t.Run("a secret the caller does not pass", func(t *testing.T) {
+		src := mutate(t, update, "      LIMBUS_STATUS_URL: ${{ secrets.LIMBUS_STATUS_URL }}\n", "")
+		wantProblems(t, checkUpdateWorkflow(updateFile, src, pipeline), "does not pass the secret LIMBUS_STATUS_URL")
+	})
+	t.Run("a concurrency group in a caller", func(t *testing.T) {
+		src := mutate(t, rebuild, "jobs:\n", "concurrency: { group: lct-state, cancel-in-progress: false }\n\njobs:\n")
+		wantProblems(t, checkRebuildWorkflow(rebuildFile, src, pipeline), "concurrency group")
+	})
+
+	// 8. The pipeline is made for a fresh clone, runs one at a time and
+	// stops only when there is nothing to do.
 	for _, tc := range []struct{ name, old, repl, want string }{
 		{"no concurrency group", "group: lct-state", "group: other", "concurrency"},
 		{"a run cancelled by the next", "cancel-in-progress: false", "cancel-in-progress: true", "concurrency"},
 		{"a shallow clone", "fetch-depth: 0", "fetch-depth: 1", "fetch-depth: 0"},
+		{"a job that may run past six hours", "timeout-minutes: 350", "timeout-minutes: 360", "timeout-minutes"},
+		{"no write permission", "contents: write", "contents: read", "permissions"},
+		{"no permission to open the issue", "issues: write", "issues: read", "permissions"},
+		{"another trigger", "workflow_call:", "workflow_dispatch:", "workflow_call"},
+		{"an input renamed", "dry_run: {", "dryrun: {", `"dry_run"`},
+		{"an input of the wrong type", "max_usd: { type: string", "max_usd: { type: number", `"max_usd"`},
+		{"a secret not declared", "LIMBUS_STATUS_URL: { required: false }", "LIMBUS_STATUS_URL_X: { required: false }", "LIMBUS_STATUS_URL"},
 		{"no tag fetch", "+refs/tags/*:refs/tags/*", "+refs/heads/main:refs/remotes/origin/main", `"+refs/tags/*:refs/tags/*"`},
 		{"no raw worktree", "git worktree add .work/raw raw", "git worktree prune", `"git worktree add .work/raw raw"`},
+		{"no tw worktree", "git worktree add .work/tw tw", "git worktree prune", `"git worktree add .work/tw tw"`},
 		{"no raw tag push", `git push origin "refs/tags/`, `echo "refs/tags/`, `git push origin \"refs/tags/`},
+		{"no snapshot push", `git push origin raw "refs/tags/`, `echo raw "refs/tags/`, `git push origin raw \"refs/tags/`},
 		{"no tw push", "git push origin tw", "git status", `"git push origin tw"`},
 		{"an answer of origin that set -e does not see", "remote=$(git ls-remote --tags origin", ": $(git ls-remote --tags origin", `"remote=$(git ls-remote --tags origin"`},
 		{"a Release tag not made at the tw commit", `--target "$tw_commit"`, "--target main", "not made at the tw commit"},
@@ -1089,81 +1799,127 @@ func TestWorkflowContract(t *testing.T) {
 		{"assets read before they are captured", "assets_json=$(jq -ec", "mapfile -t assets </dev/null; assets_json=$(jq -ec", `"assets_json=$(jq -ec" must come before "mapfile -t assets"`},
 		{"a push before the build", "bin/lct build --json", "git push origin tw && bin/lct build --json", `"bin/lct publish" must come before "git push origin tw"`},
 		{"a release before the publish", "bin/lct publish --json >", "gh release create x && bin/lct publish --json >", `"git push origin tw" must come before "gh release create"`},
-		{"no token for gh", "GH_TOKEN: ${{ github.token }}", "GH_USER: x", "GH_TOKEN"},
-		{"no manual trigger", "workflow_dispatch", "push", "workflow_dispatch"},
-		{"no write permission", "contents: write", "contents: read", "permissions.contents"},
+		{"a Release made when none is needed", " && steps.publish.outputs.release_needed == 'true'", "", "release_needed"},
+		{"a translation that stops the build", "|| status=$?", "", "not followed by ||"},
+		{"a translation that fails without a word", "::warning::lct translate", "::notice::lct translate", "::warning::"},
+		{"no fallback of the spending limit", "|| vars.LCT_MAX_USD || '30'", "", "MAX_USD"},
+		{"a build when nothing is to do", "        if: steps.decide.outputs.idle == 'false'\n        run: |\n          build=", "        run: |\n          build=", `"bin/lct build" runs even when there is nothing to do`},
+		{"an issue when nothing is to do", "        if: steps.decide.outputs.idle == 'false'\n        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          if [ ! -f out/review-issue/01.md ]", "        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          if [ ! -f out/review-issue/01.md ]", `"gh issue" runs even when there is nothing to do`},
+		{"no open issue is looked for", "gh issue list --state open --search", "gh issue list --state all --search", `"gh issue list --state open --search"`},
+		{"no title for the Release", `--title "$tag"`, "", "--title"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
-			src := mutate(t, rebuild, tc.old, tc.repl)
-			problems := checkRebuildWorkflow(file, src)
-			if len(problems) == 0 {
-				t.Fatalf("no problems, want one naming %q", tc.want)
-			}
-			if !slices.ContainsFunc(problems, func(p string) bool { return strings.Contains(p, tc.want) && strings.Contains(p, file) }) {
-				t.Errorf("problems = %q, want one naming %s and %q", problems, file, tc.want)
-			}
+			src := mutate(t, pipeline, tc.old, tc.repl)
+			hasProblem(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, tc.want)
 		})
 	}
+	t.Run("no token for gh", func(t *testing.T) {
+		src := mutateAll(t, pipeline, "GH_TOKEN: ${{ github.token }}", "GH_USER: x")
+		problems := checkPipelineWorkflow(pipelineFile, src)
+		hasProblem(t, problems, "gh release", "GH_TOKEN")
+		hasProblem(t, problems, "gh issue", "GH_TOKEN")
+	})
+	t.Run("no Release number unless the tags are there", func(t *testing.T) {
+		src := mutate(t, pipeline, "+refs/tags/*:refs/tags/*", "+refs/heads/main:refs/remotes/origin/main")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), "tags are not fetched")
+	})
 
-	// 4. The name of the Release.
-	for _, title := range []string{`"Claude Code $tag"`, `Anthropic-$tag`, `'zh-TW by claude  code'`} {
-		t.Run("title "+title, func(t *testing.T) {
-			src := mutate(t, rebuild, `--title "$tag"`, "--title "+title)
-			problems := checkWorkflow(file, src, commands)
-			if len(problems) != 1 || !strings.Contains(problems[0], "--title") || !strings.Contains(problems[0], title) {
-				t.Errorf("problems = %q, want one naming --title %s", problems, title)
+	// 9. Every secret and variable a workflow uses is in the README.
+	t.Run("a variable the README does not list", func(t *testing.T) {
+		src := mutate(t, pipeline, "LCT_MODEL: ${{ vars.LCT_MODEL }}", "LCT_MODEL: ${{ vars.LCT_MODEL }}\n          FOO: ${{ vars.FOO }}")
+		wantProblems(t, checkRefsDocumented(map[string]string{"pipeline.yml": src}, readme), "vars.FOO")
+	})
+	t.Run("a row dropped from the README", func(t *testing.T) {
+		for _, name := range []string{"ANTHROPIC_API_KEY", "LIMBUS_STATUS_URL", "LIMBUS_CDN_TEMPLATE", "LCT_MODEL", "LCT_MAX_USD"} {
+			var kept []string
+			for _, line := range strings.Split(readme, "\n") {
+				if !(strings.HasPrefix(line, "|") && strings.Contains(line, "`"+name+"`")) {
+					kept = append(kept, line)
+				}
 			}
-		})
-	}
-	t.Run("no title", func(t *testing.T) {
-		src := mutate(t, rebuild, `--title "$tag"`, "")
-		problems := checkRebuildWorkflow(file, src)
-		if !slices.ContainsFunc(problems, func(p string) bool { return strings.Contains(p, "--title") }) {
-			t.Errorf("problems = %q, want one about --title", problems)
+			if len(kept) == len(strings.Split(readme, "\n")) {
+				t.Fatalf("README.md has no table row for %s", name)
+			}
+			wantProblems(t, checkRefsDocumented(files, strings.Join(kept, "\n")), name)
 		}
 	})
+	t.Run("a README without the section", func(t *testing.T) {
+		src := mutate(t, readme, "## "+readmeActions, "## 設定")
+		wantProblems(t, checkRefsDocumented(files, src), readmeActions)
+	})
+	t.Run("a name in a table of another section", func(t *testing.T) {
+		section, _ := readmeSection(readme, readmeActions)
+		src := strings.Replace(readme, section, "\n", 1)
+		src += "\n## 別處\n\n| 名稱 |\n|---|\n| `ANTHROPIC_API_KEY` `LIMBUS_STATUS_URL` `LIMBUS_CDN_TEMPLATE` `LCT_MODEL` `LCT_MAX_USD` |\n"
+		problems := checkRefsDocumented(files, src)
+		for _, name := range []string{"ANTHROPIC_API_KEY", "LIMBUS_STATUS_URL", "LIMBUS_CDN_TEMPLATE", "LCT_MODEL", "LCT_MAX_USD"} {
+			hasProblem(t, problems, name)
+		}
+	})
+
+	// 10. The name of the Release.
+	for _, title := range []string{`"Claude Code $tag"`, `Anthropic-$tag`, `'zh-TW by claude  code'`} {
+		t.Run("title "+title, func(t *testing.T) {
+			src := mutate(t, pipeline, `--title "$tag"`, "--title "+title)
+			wantProblems(t, checkWorkflow(pipelineFile, src, commands), "--title", title)
+		})
+	}
 }
 
-// The jq commands of rebuild.yml read the keys lct publish --json prints
-// (publish.Result): a key renamed in the code must fail here, not in the
-// Release step.
-func TestWorkflowReadsPublishResult(t *testing.T) {
-	file, rebuild := readRepoFile(t, filepath.Join(repoRoot, ".github", "workflows", "rebuild.yml"))
-	result := publish.Result{
-		TWCommit:  "0123456789abcdef0123456789abcdef01234567",
-		Changed:   true,
-		Tag:       "zh-TW-20261029.1",
-		NotesPath: "out/release-notes.md",
-		Assets:    []string{"out/text.zip", "out/complete.zip"},
-	}
-	for _, problem := range checkPublishKeys(file, rebuild, result) {
+// The jq commands of pipeline.yml read the keys the lct commands print: a key
+// renamed in the code must fail here, not in a run of the workflow.
+func TestWorkflowReadsLctJSON(t *testing.T) {
+	file := workflowPath("pipeline.yml")
+	_, pipeline := readRepoFile(t, filepath.Join(repoRoot, filepath.FromSlash(file)))
+	inputs := lctJSONInputs()
+	for _, problem := range checkJQKeys(file, pipeline, inputs, lctJSONRequired) {
 		t.Error(problem)
 	}
 	if t.Failed() {
 		return
 	}
 
-	t.Run("a key the workflow reads that is not printed", func(t *testing.T) {
-		src := mutate(t, rebuild, "jq -er .tw_commit", "jq -er .tw_sha")
-		problems := checkPublishKeys(file, src, result)
-		want := []string{`does not read "tw_commit"`, `reads "tw_sha"`}
-		if len(problems) != len(want) {
-			t.Fatalf("problems = %q, want %d naming %q", problems, len(want), want)
-		}
-		for i, w := range want {
-			if !strings.Contains(problems[i], w) {
-				t.Errorf("problem %q does not contain %q", problems[i], w)
+	for _, tc := range []struct{ name, old, repl string }{
+		{"a key of publish", "jq -er .tw_commit", "jq -er .tw_sha"},
+		{"a key of plan", "jq -er .pending <<<\"$plan\"", "jq -er .pendng <<<\"$plan\""},
+		{"a key of the check", "jq -er .created_at <<<\"$check\"", "jq -er .createdat <<<\"$check\""},
+		{"a key of the snapshot", "jq -er .tag <<<\"$snapshot\"", "jq -er .name <<<\"$snapshot\""},
+		{"a key of the pending count", "jq -er .available", "jq -er .free"},
+		{"a key of build", "jq -er .review_issue_parts", "jq -er .issue_parts"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutate(t, pipeline, tc.old, tc.repl)
+			problems := checkJQKeys(file, src, inputs, lctJSONRequired)
+			if len(problems) != 2 {
+				t.Fatalf("problems = %q, want two: the old key is not read, the new one is not printed", problems)
 			}
+			if !strings.Contains(strings.Join(problems, "\n"), "does not print") || !strings.Contains(strings.Join(problems, "\n"), "does not read") {
+				t.Errorf("problems = %q, want one about a key that is not read and one about a key that is not printed", problems)
+			}
+		})
+	}
+	t.Run("a key of a result that was renamed", func(t *testing.T) {
+		lost := map[string]any{}
+		for k, v := range inputs {
+			lost[k] = v
 		}
-	})
-	t.Run("a result that lost a key", func(t *testing.T) {
-		lost := struct {
+		lost["out/publish.json"] = struct {
 			Tag    string   `json:"tag"`
 			Assets []string `json:"assets"`
-		}{Tag: result.Tag, Assets: result.Assets}
-		problems := checkPublishKeys(file, rebuild, lost)
-		if len(problems) != 1 || !strings.Contains(problems[0], `reads "tw_commit"`) {
-			t.Errorf("problems = %q, want one saying it reads tw_commit, which is not printed", problems)
-		}
+		}{}
+		problems := checkJQKeys(file, pipeline, lost, lctJSONRequired)
+		hasProblem(t, problems, `reads "tw_commit"`)
+		hasProblem(t, problems, `reads "release_needed"`)
+	})
+	t.Run("jq -e on a boolean", func(t *testing.T) {
+		src := mutate(t, pipeline, "jq -er '.release_needed | tostring'", "jq -er .release_needed")
+		wantProblems(t, checkJQKeys(file, src, inputs, lctJSONRequired), "tostring")
+		src = mutate(t, pipeline, "jq -er '.new | tostring'", "jq -er .new")
+		wantProblems(t, checkJQKeys(file, src, inputs, lctJSONRequired), "tostring")
+	})
+	t.Run("keys read from an output the contract does not know", func(t *testing.T) {
+		src := mutate(t, pipeline, "jq -er .tag .work/raw/meta/source.json", "jq -er .tag .work/raw/meta/other.json")
+		problems := checkJQKeys(file, src, inputs, lctJSONRequired)
+		hasProblem(t, problems, "other.json", "does not know")
 	})
 }

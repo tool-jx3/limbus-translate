@@ -4,10 +4,13 @@ import (
 	"archive/zip"
 	"bytes"
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
+	"sync/atomic"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
@@ -247,5 +250,154 @@ func TestFetchUsageErrors(t *testing.T) {
 				t.Errorf("a refused fetch created %s", out)
 			}
 		})
+	}
+}
+
+// statusURL writes a status API response for token and returns its file:// URL.
+func statusURL(t *testing.T, token, createdAt string) string {
+	t.Helper()
+	p := filepath.Join(t.TempDir(), "status.json")
+	body := `{"latest_token":{"created_at":"` + createdAt + `","token":"` + token + `"}}`
+	if err := os.WriteFile(p, []byte(body), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	return "file://" + p
+}
+
+// TestFetchCheck: --check asks the status API and compares its token with the
+// one of the snapshot on raw; it downloads nothing.
+func TestFetchCheck(t *testing.T) {
+	// A CDN that must not be asked for anything.
+	var hits atomic.Int32
+	cdn := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		hits.Add(1)
+		http.Error(w, "nothing may be downloaded", http.StatusInternalServerError)
+	}))
+	t.Cleanup(cdn.Close)
+	t.Setenv("LIMBUS_CDN_TEMPLATE", cdn.URL+"/{token}/localize_{lang}.zip")
+
+	snapshotted := snapshotRepo(t)
+	if _, err := runSnapshotJSON(t, snapshotted, "--from", extractedDir(t, "{}\n"), "--token", testToken, "--created-at", testCreatedAt); err != nil {
+		t.Fatal(err)
+	}
+
+	const newToken, newCreatedAt = "l20261105_n3wT0ken_xYz", "2026-11-05 03:10:00"
+	check := func(t *testing.T, root, status string) map[string]any {
+		t.Helper()
+		t.Setenv("LIMBUS_STATUS_URL", status)
+		ctx, out := testCtx(t, root, "", true)
+		if err := runFetch(ctx, []string{"--check"}); err != nil {
+			t.Fatal(err)
+		}
+		var got map[string]any
+		if err := json.Unmarshal(out.Bytes(), &got); err != nil {
+			t.Fatalf("output is not JSON: %v\n%s", err, out)
+		}
+		if len(got) != 3 {
+			t.Errorf("output = %v, want only token, created_at and new", got)
+		}
+		return got
+	}
+
+	t.Run("the token raw holds", func(t *testing.T) {
+		got := check(t, snapshotted, statusURL(t, testToken, testCreatedAt))
+		if got["token"] != testToken || got["created_at"] != testCreatedAt || got["new"] != false {
+			t.Errorf("output = %v, want token %s, created_at %s, new false", got, testToken, testCreatedAt)
+		}
+	})
+	t.Run("another token", func(t *testing.T) {
+		got := check(t, snapshotted, statusURL(t, newToken, newCreatedAt))
+		if got["token"] != newToken || got["created_at"] != newCreatedAt || got["new"] != true {
+			t.Errorf("output = %v, want token %s, created_at %s, new true", got, newToken, newCreatedAt)
+		}
+	})
+	t.Run("raw has no snapshot yet", func(t *testing.T) {
+		got := check(t, snapshotRepo(t), statusURL(t, testToken, testCreatedAt))
+		if got["new"] != true {
+			t.Errorf("output = %v, want new true", got)
+		}
+	})
+	t.Run("--status-url", func(t *testing.T) {
+		t.Setenv("LIMBUS_STATUS_URL", "")
+		ctx, out := testCtx(t, snapshotted, "", true)
+		if err := runFetch(ctx, []string{"--check", "--status-url", statusURL(t, newToken, newCreatedAt)}); err != nil {
+			t.Fatal(err)
+		}
+		if !strings.Contains(out.String(), `"new": true`) {
+			t.Errorf("output = %s, want new true", out)
+		}
+	})
+	t.Run("text output", func(t *testing.T) {
+		t.Setenv("LIMBUS_STATUS_URL", statusURL(t, newToken, newCreatedAt))
+		ctx, out := testCtx(t, snapshotted, "", false)
+		if err := runFetch(ctx, []string{"--check"}); err != nil {
+			t.Fatal(err)
+		}
+		if !strings.Contains(out.String(), newToken) || !strings.HasPrefix(out.String(), "new:") {
+			t.Errorf("output = %q, want the token after \"new:\"", out)
+		}
+		t.Setenv("LIMBUS_STATUS_URL", statusURL(t, testToken, testCreatedAt))
+		ctx, out = testCtx(t, snapshotted, "", false)
+		if err := runFetch(ctx, []string{"--check"}); err != nil {
+			t.Fatal(err)
+		}
+		if !strings.Contains(out.String(), testToken) || !strings.HasPrefix(out.String(), "unchanged:") {
+			t.Errorf("output = %q, want the token after \"unchanged:\"", out)
+		}
+	})
+
+	t.Run("a status API that fails", func(t *testing.T) {
+		missing := filepath.Join(t.TempDir(), "secret-path", "status.json")
+		t.Setenv("LIMBUS_STATUS_URL", "file://"+missing)
+		ctx, _ := testCtx(t, snapshotted, "", true)
+		err := runFetch(ctx, []string{"--check"})
+		if err == nil || isUserError(err) {
+			t.Fatalf("err = %v, want a system error", err)
+		}
+		if strings.Contains(err.Error(), "secret-path") {
+			t.Errorf("err = %q holds the status URL, which is a secret in CI", err)
+		}
+	})
+
+	t.Run("usage errors", func(t *testing.T) {
+		status := statusURL(t, newToken, newCreatedAt)
+		dest := filepath.Join(t.TempDir(), "dl")
+		tests := []struct {
+			name, status, yaml string
+			args               []string
+			want               string
+		}{
+			{"with --out", status, "", []string{"--check", "--out", dest}, "--out"},
+			{"with --token", status, "", []string{"--check", "--token", testToken}, "--token"},
+			{"with --created-at", status, "", []string{"--check", "--created-at", testCreatedAt}, "--created-at"},
+			{"with --cdn-template", status, "", []string{"--check", "--cdn-template", "file:///x/{token}/{lang}.zip"}, "--cdn-template"},
+			{"extra argument", status, "", []string{"--check", "stray"}, "stray"},
+			{"no status API", "", "", []string{"--check"}, "status"},
+			{"no raw worktree in lct.yaml", status, "cdn_template: file:///x/{token}/{lang}.zip\n", []string{"--check"}, "worktrees.raw"},
+		}
+		for _, tc := range tests {
+			t.Run(tc.name, func(t *testing.T) {
+				t.Setenv("LIMBUS_STATUS_URL", tc.status)
+				root := snapshotted
+				if tc.yaml != "" {
+					root = t.TempDir()
+				}
+				ctx, _ := testCtx(t, root, tc.yaml, true)
+				err := runFetch(ctx, tc.args)
+				if !isUserError(err) {
+					t.Fatalf("err = %v, want a user error", err)
+				}
+				if !strings.Contains(err.Error(), tc.want) {
+					t.Errorf("err = %q, want it to mention %q", err, tc.want)
+				}
+			})
+		}
+	})
+
+	if n := hits.Load(); n != 0 {
+		t.Errorf("--check asked the CDN %d times, want none", n)
+	}
+	if _, err := os.Stat(filepath.Join(snapshotted, ".work", "fetch")); !os.IsNotExist(err) {
+		t.Errorf("--check made a download directory, stat err = %v", err)
 	}
 }

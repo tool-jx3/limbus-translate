@@ -1,0 +1,42 @@
+name: update
+
+# Every Thursday at 12:00 (UTC+8), when a webhook reports a game update, and
+# by hand: ask the status API for a new game update and run the shared
+# pipeline. A run with no new update and nothing pending ends at once.
+on:
+  schedule:
+    - cron: '0 4 * * 4'
+  repository_dispatch:
+    types: [limbus_update]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Fetch and snapshot the latest update even if raw has it, and build even if nothing changed'
+        type: boolean
+        default: false
+      requeue:
+        description: 'A pack file name or glob (such as StoryData/S1*) whose translations go back to the pending list'
+        type: string
+        default: ''
+      max_usd:
+        description: 'Spend at most this many US dollars on translating (empty: the variable LCT_MAX_USD, else 30)'
+        type: string
+        default: ''
+      dry_run:
+        description: 'Do not translate; plan, build and release what there is'
+        type: boolean
+        default: false
+
+jobs:
+  update:
+    uses: ./.github/workflows/pipeline.yml
+    permissions: { contents: write, issues: write }
+    with:
+      fetch: true
+      force: ${{ inputs.force == true }}
+      requeue: ${{ inputs.requeue }}
+      max_usd: ${{ inputs.max_usd }}
+      dry_run: ${{ inputs.dry_run == true }}
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LIMBUS_STATUS_URL: ${{ secrets.LIMBUS_STATUS_URL }}

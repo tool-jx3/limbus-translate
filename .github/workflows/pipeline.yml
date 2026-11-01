@@ -1,0 +1,236 @@
+name: pipeline
+
+# The whole update, shared by update.yml (every week, with fetch) and by
+# rebuild.yml (new rules on main, without): fetch and snapshot the official
+# packs, plan, translate what is pending, build, push tw, make the Release and
+# open the review issue. raw, tw and the Releases are written only here, one
+# run at a time.
+on:
+  workflow_call:
+    inputs:
+      fetch: { type: boolean, required: true, description: 'Ask the status API for a new game update first' }
+      force: { type: boolean, default: false, description: 'Fetch and snapshot the latest update even if raw has it, and build even if nothing changed' }
+      requeue: { type: string, default: '', description: 'A pack file name or glob whose translations go back to the pending list' }
+      max_usd: { type: string, default: '', description: 'Spend at most this many US dollars on translating (empty: the variable LCT_MAX_USD, else 30)' }
+      dry_run: { type: boolean, default: false, description: 'Do not translate; plan, build and release what there is' }
+    secrets:
+      ANTHROPIC_API_KEY: { required: false }
+      LIMBUS_STATUS_URL: { required: false }
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    # One run at a time, whichever workflow called. A run that waits is never
+    # cancelled by the next.
+    concurrency: { group: lct-state, cancel-in-progress: false }
+    permissions: { contents: write, issues: write }
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out main with its history
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # lct plan and lct build read the raw and tw worktrees. The Release
+      # number counts the zh-TW-* tags, so every tag is fetched.
+      - name: Fetch the raw and tw branches and every tag, add their worktrees
+        run: |
+          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw' '+refs/tags/*:refs/tags/*'
+          git worktree add .work/raw raw
+          git worktree add .work/tw tw
+
+      # The raw tag is the date of the Release. Give origin the tag if it lacks it.
+      - name: Make sure origin has the raw tag
+        run: |
+          raw_tag=$(jq -er .tag .work/raw/meta/source.json)
+          remote=$(git ls-remote --tags origin "refs/tags/$raw_tag")
+          if [ -z "$remote" ]; then
+            git tag "$raw_tag" origin/raw
+            git push origin "refs/tags/$raw_tag"
+          fi
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Build lct
+        run: go build -o bin/lct ./cmd/lct
+
+      - name: Set the git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Only this step has the status API URL, a secret: lct reads it from its
+      # environment and never prints it.
+      - name: Ask the status API for the latest game update
+        id: check
+        if: inputs.fetch
+        env:
+          LIMBUS_STATUS_URL: ${{ secrets.LIMBUS_STATUS_URL }}
+        run: |
+          check=$(bin/lct fetch --check --json)
+          # new is read as text: the -e of the reader fails on false.
+          new=$(jq -er '.new | tostring' <<<"$check")
+          token=$(jq -er .token <<<"$check")
+          created_at=$(jq -er .created_at <<<"$check")
+          echo "latest game update $token ($created_at), new: $new"
+          {
+            echo "new=$new"
+            echo "token=$token"
+            echo "created_at=$created_at"
+          } >> "$GITHUB_OUTPUT"
+
+      # The token that was asked is the token that is downloaded.
+      - name: Download the packs and snapshot them on raw
+        if: inputs.fetch && (steps.check.outputs.new == 'true' || inputs.force)
+        env:
+          LIMBUS_CDN_TEMPLATE: ${{ vars.LIMBUS_CDN_TEMPLATE }}
+          TOKEN: ${{ steps.check.outputs.token }}
+          CREATED_AT: ${{ steps.check.outputs.created_at }}
+        run: |
+          bin/lct fetch --token "$TOKEN" --created-at "$CREATED_AT" --out .work/fetch
+          snapshot=$(bin/lct snapshot --from .work/fetch --token "$TOKEN" --created-at "$CREATED_AT" --json)
+          tag=$(jq -er .tag <<<"$snapshot")
+          git push origin raw "refs/tags/$tag"
+
+      # A requeue changes the pending list after the plan counted it, so it is
+      # counted again.
+      - name: Plan, and requeue what this run was asked to
+        id: plan
+        env:
+          REQUEUE: ${{ inputs.requeue }}
+        run: |
+          plan=$(bin/lct plan --json)
+          pending=$(jq -er .pending <<<"$plan")
+          applied=$(jq -er '(.requeue_applied | length) + (.rewrite_applied | length)' <<<"$plan")
+          if [ -n "$REQUEUE" ]; then
+            bin/lct requeue --file "$REQUEUE" --reason "手動執行 workflow 要求重翻"
+            count=$(bin/lct pending --count --json)
+            pending=$(jq -er .available <<<"$count")
+          fi
+          echo "$pending units can be translated; $applied request or rewrite files applied"
+          {
+            echo "pending=$pending"
+            echo "applied=$applied"
+          } >> "$GITHUB_OUTPUT"
+
+      # Nothing to do: no new game update, nothing pending, no request or
+      # rewrite file applied, nothing asked by hand. The steps after this one
+      # are skipped and the run ends green.
+      - name: Stop when there is nothing to do
+        id: decide
+        env:
+          FETCH: ${{ inputs.fetch }}
+          FORCE: ${{ inputs.force }}
+          REQUEUE: ${{ inputs.requeue }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          HAS_API_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+          NEW: ${{ steps.check.outputs.new }}
+          PENDING: ${{ steps.plan.outputs.pending }}
+          APPLIED: ${{ steps.plan.outputs.applied }}
+        run: |
+          idle=false
+          if [ "$FETCH" = true ] && [ "$NEW" != true ] && [ "$FORCE" != true ] && [ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ] && [ -z "$REQUEUE" ]; then
+            idle=true
+            echo '沒有新的遊戲更新，也沒有待譯，沒有重翻要求或改寫檔要套用：不建置、不發佈。' | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+          translate=false
+          if [ "$idle" = false ] && [ "$PENDING" -gt 0 ]; then
+            if [ "$DRY_RUN" = true ]; then
+              echo "::notice::dry_run: the $PENDING pending units are not translated"
+            elif [ "$HAS_API_KEY" != true ]; then
+              echo "::warning::ANTHROPIC_API_KEY is not set: the $PENDING pending units are not translated"
+            else
+              translate=true
+            fi
+          fi
+          {
+            echo "idle=$idle"
+            echo "translate=$translate"
+          } >> "$GITHUB_OUTPUT"
+
+      # A translation that fails stops nothing: what was translated is built
+      # and released, and the rest stays pending for the next run. Only this
+      # step has the API key.
+      - name: Translate what is pending
+        if: steps.decide.outputs.translate == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LCT_MODEL: ${{ vars.LCT_MODEL }}
+          MAX_USD: ${{ inputs.max_usd || vars.LCT_MAX_USD || '30' }}
+        run: |
+          if ! npm install -g @anthropic-ai/claude-code@2.1.316; then
+            echo '::warning::the claude CLI did not install: nothing is translated, and the pack is built as it is'
+            exit 0
+          fi
+          status=0
+          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 300 --run-timeout 90m || status=$?
+          if [ "$status" -ne 0 ]; then
+            echo "::warning::lct translate stopped with exit code $status; what was translated is built and released"
+          fi
+
+      - name: Build the pack
+        if: steps.decide.outputs.idle == 'false'
+        run: |
+          build=$(bin/lct build --json)
+          parts=$(jq -er .review_issue_parts <<<"$build")
+          echo "built; the review issue has $parts part(s)"
+          cat out/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      # release_needed, not the tag, says whether to release: the tag is the
+      # next free number even when nothing is released.
+      - name: Prepare the Release
+        id: publish
+        if: steps.decide.outputs.idle == 'false'
+        run: |
+          bin/lct publish --json > out/publish.json
+          cat out/publish.json
+          release_needed=$(jq -er '.release_needed | tostring' out/publish.json)
+          echo "release_needed=$release_needed" >> "$GITHUB_OUTPUT"
+
+      - name: Push tw
+        if: steps.decide.outputs.idle == 'false'
+        run: git push origin tw
+
+      - name: Create the Release
+        if: steps.decide.outputs.idle == 'false' && steps.publish.outputs.release_needed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(jq -er .tag out/publish.json)
+          tw_commit=$(jq -er .tw_commit out/publish.json)
+          # set -e does not see a failing command inside <( ): capture the assets
+          # first, and refuse to make a Release that has not both zips.
+          assets_json=$(jq -ec '.assets | select(length == 2)' out/publish.json)
+          mapfile -t assets < <(jq -r '.[]' <<<"$assets_json")
+          [ "${#assets[@]}" -eq 2 ] || { echo 'publish.json has no assets' >&2; exit 1; }
+          gh release create "$tag" "${assets[@]}" --target "$tw_commit" --title "$tag" --notes-file out/release-notes.md
+
+      # The first part is the issue, the others are comments on it. A run for
+      # a raw tag that already has an open issue (a rerun, or a rebuild after
+      # the update) comments on that issue with every part instead.
+      - name: Open the review issue
+        if: steps.decide.outputs.idle == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -f out/review-issue/01.md ]; then
+            echo 'Nothing needs a person: no review issue.'
+            exit 0
+          fi
+          title=$(cat out/review-issue/title.txt)
+          parts=(out/review-issue/*.md)
+          issues=$(gh issue list --state open --search "$title in:title" --limit 100 --json number,title,url)
+          url=$(jq -r --arg title "$title" '[.[] | select(.title == $title)] | first | .url // empty' <<<"$issues")
+          if [ -z "$url" ]; then
+            url=$(gh issue create --title "$title" --body-file "${parts[0]}")
+            parts=("${parts[@]:1}")
+          fi
+          echo "review issue: $url"
+          for part in "${parts[@]}"; do
+            gh issue comment "$url" --body-file "$part"
+          done
