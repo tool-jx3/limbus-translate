@@ -1966,7 +1966,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/35/texts/2/text","reason":"new","refs":{"llc":"明明不知道这条道路是否正确……你却……","ltm":"明明不知道這條道路是否正確……你卻……"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/35/texts/4/text","reason":"new","refs":{"llc":"我明白了。浮士德的提问……到此结束。","ltm":"我明白了。浮士德的提問……到此結束。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/36/texts/0/text","reason":"new","refs":{"llc":"你剪得那么小心翼翼干什么？","ltm":"你剪得那麼小心翼翼幹什麼？"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/36/texts/1/text","reason":"new","refs":{"llc":"<里面说不定有什么呢……>","ltm":"<裡面說不定有什麼呢……>"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/36/texts/1/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-common-a1c10p1.json|/dataList/48/texts/1/text）：「<不知道裡面會有什麼……>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<里面说不定有什么呢……>","ltm":"<裡面說不定有什麼呢……>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/36/texts/10/text","reason":"new","refs":{"llc":"<color=#ebcaa2>是啊，没错。而且不知道是不是因为制作经费不足，请的演员也全都是业余的，演技也很生硬。就是那样一个实在称不上制作精良的戏剧罐头呢。</color>","ltm":"<color=#ebcaa2>是啊，沒錯。而且不知道是不是因為製作經費不足，請的演員也全都是業餘的，演技也很生硬。就是那樣一個實在稱不上製作精良的戲劇罐頭呢。</color>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/36/texts/11/text","reason":"new","refs":{"llc":"<color=#ebcaa2>但是……体验那出戏剧的时光，却不可思议地让我感到惬意。</color>","ltm":"<color=#ebcaa2>但是……體驗那齣戲劇的時光，卻不可思議地讓我感到愜意。</color>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/36/texts/12/text","reason":"new","refs":{"llc":"<color=#ebcaa2>大家都无法理解那样的我……但小可爱，你一定明白的吧？</color>","ltm":"<color=#ebcaa2>大家都無法理解那樣的我……但小可愛，你一定明白的吧？</color>"}}
@@ -2094,7 +2094,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/10/text","reason":"new","refs":{"llc":"<我们的目标只有回收位于百货店顶层的金枝……>","ltm":"<我們的目標只有回收位於百貨公司頂層的金枝……>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/11/text","reason":"new","refs":{"llc":"<……以及将默尔索从这里带出来而已。>","ltm":"<……以及將默爾索從這裡帶出來而已。>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/13/text","reason":"new","refs":{"llc":"<目前能做的选择中，离那目标最近的……便是答应黑派的请求了。>","ltm":"<目前能做的選擇中，離那目標最近的……便是答應黑派的請求了。>"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/15/text","reason":"new","refs":{"llc":"在，经理。","ltm":"在，經理。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/15/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/89/texts/2/text）：「是的，經理。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"在，经理。","ltm":"在，經理。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/16/text","reason":"new","refs":{"llc":"在。","ltm":"在。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/17/text","reason":"new","refs":{"llc":"<我最后也想问问你们。>","ltm":"<我最後也想問問你們。>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/10/texts/18/text","reason":"new","refs":{"llc":"<这个选择真的是正确的吗？我们……>","ltm":"<這個選擇真的是正確的嗎？我們……>"}}
@@ -3647,7 +3647,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/14/texts/3/text","reason":"new","refs":{"llc":"吱咿点了点头，接着就像是被什么所吸引了，向着堂吉诃德盯着的展台靠近。","ltm":"吱咿點了點頭，接著就像是被什麼所吸引了，向著唐吉訶德盯著的展臺靠近。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/140/texts/0/text","reason":"new","refs":{"llc":"<通往扶梯的道路似乎被堵住了。>","ltm":"<通往手扶梯的道路似乎被堵住了。>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/141/texts/0/text","reason":"new","refs":{"llc":"先去……附近的店铺比较合适。","ltm":"先去……附近的店鋪比較合適。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/142/texts/0/text","reason":"new","refs":{"llc":"这是什么？","ltm":"這是什麼？"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/142/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/144/texts/1/text）：「這是什麼？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"这是什么？","ltm":"這是什麼？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/142/texts/1/text","reason":"new","refs":{"llc":"啊~这是花盆呢。是植物的家哦。","ltm":"啊~這是花盆呢。是植物的家哦。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/142/texts/10/text","reason":"new","refs":{"llc":"……有点苦。","ltm":"……有點苦。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/142/texts/11/text","reason":"new","refs":{"llc":"那便让吾也……用舌头轻尝一下吧……","ltm":"那便讓吾也……用舌頭輕嘗一下吧……"}}
@@ -3848,8 +3848,8 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/215/texts/3/text","reason":"new","refs":{"llc":"您也打算滑一下吗，经理阁下？","ltm":"您也打算滑一下嗎，經理閣下？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/215/texts/5/text","reason":"new","refs":{"llc":"似乎没那么好玩。","ltm":"似乎沒那麼好玩。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/0/text","reason":"new","refs":{"llc":"在抽屉中发现了一张纸。","ltm":"在抽屜中發現了一張紙。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/1/text","reason":"new","refs":{"llc":"[寻人启事]","ltm":"[失蹤人口]"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/2/text","reason":"new","refs":{"llc":"[外貌和着装：脸上有烧伤疤痕，戴着围巾和皮包……]","ltm":"[外貌和著裝：臉上有燒傷疤痕，戴著圍巾和皮包……]"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/1/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-4-c2.json|/dataList/5/texts/1/text）：「[尋人啟事]」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"[寻人启事]","ltm":"[失蹤人口]"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/2/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-4-c2.json|/dataList/5/texts/2/text）：「[外觀特徵：臉部的燒傷痕跡、圍巾、皮革包……]」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"[外貌和着装：脸上有烧伤疤痕，戴着围巾和皮包……]","ltm":"[外貌和著裝：臉上有燒傷疤痕，戴著圍巾和皮包……]"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/3/text","reason":"new","refs":{"llc":"[失踪地点：西西弗广场 1F ■■■纪念馆]","ltm":"[失蹤地點：薛西弗斯廣場 1F ■■■紀念館]"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/4/text","reason":"new","refs":{"llc":"<……烧伤疤痕？>","ltm":"<……燒傷疤痕？>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/216/texts/5/text","reason":"new","refs":{"llc":"难道是您认识的人吗？","ltm":"難道是您認識的人嗎？"}}
@@ -4164,7 +4164,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/43/texts/0/text","reason":"new","refs":{"llc":"有要买我的想法吗？可以便宜卖给你。","ltm":"有要買我的想法嗎？可以便宜賣給你。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/44/texts/0/text","reason":"new","refs":{"llc":"我会等着的。","ltm":"我會等著的。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/45/texts/0/text","reason":"new","refs":{"llc":"快去快乐衣橱那里吧。","ltm":"快去快樂衣櫥那裡吧。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/46/texts/0/text","reason":"new","refs":{"llc":"前面被完全堵住了。现在似乎过不去。","ltm":"前面被完全堵住了。現在似乎過不去。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/46/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-common-a1c10p1.json|/dataList/44/texts/0/text）：「被嚴實地封住了。目前似乎無法通行。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"前面被完全堵住了。现在似乎过不去。","ltm":"前面被完全堵住了。現在似乎過不去。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/47/texts/0/text","reason":"new","refs":{"llc":"四脚人能重生为自己憧憬的模样吗？重生后的四脚人……还会憧憬单脚人吗？","ltm":"四腳人能重生為自己憧憬的模樣嗎？重生後的四腳人……還會憧憬單腳人嗎？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/47/texts/1/text","reason":"new","refs":{"llc":"无论我们向谁发问，都无法得到这个问题的答案。","ltm":"無論我們向誰發問，都無法得到這個問題的答案。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/48/texts/0/text","reason":"new","refs":{"llc":"亮着的那一边向我们搭话。台灯安静地摇晃着。","ltm":"亮著的那一邊向我們搭話。檯燈安靜地搖晃著。"}}
@@ -4685,7 +4685,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/31/texts/8/text","reason":"new","refs":{"llc":"……我们，现在也在感受着同样的东西吗？","ltm":"……我們，現在也在感受著同樣的東西嗎？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/31/texts/9/text","reason":"new","refs":{"llc":"我好害怕。明明现在和你在一起……","ltm":"我好害怕。明明現在和你在一起……"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/32/texts/0/text","reason":"new","refs":{"llc":"<……默尔索，你也……觉得害怕吗？>","ltm":"<……默爾索，你也……覺得害怕嗎？>"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/32/texts/1/text","reason":"new","refs":{"llc":"是的，经理。","ltm":"是的，經理。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/32/texts/1/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/14/texts/20/text）：「正是如此，經理。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"是的，经理。","ltm":"是的，經理。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/32/texts/2/text","reason":"new","refs":{"llc":"<从什么时候开始的？>","ltm":"<從什麼時候開始的？>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/32/texts/4/text","reason":"new","refs":{"llc":"是从妈妈开始哭喊、发出怪声与尖叫之后，快要满一年的那一天……","ltm":"是從媽媽開始哭喊、發出怪聲與尖叫之後，快要滿一年的那一天……"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/32/texts/5/text","reason":"new","refs":{"llc":"开始的。","ltm":"開始的。"}}
@@ -4705,7 +4705,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/36/texts/2/text","reason":"new","refs":{"llc":"<这就是单脚人所说的传说中的武器吗……？>","ltm":"<這就是單腳人所說的傳說中的武器嗎……？>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/0/text","reason":"new","refs":{"llc":"也许吧。","ltm":"也許吧。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/1/text","reason":"new","refs":{"llc":"<暂且按约定去告诉她吧。>","ltm":"<暫且按約定去告訴她吧。>"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/2/text","reason":"new","refs":{"llc":"是，经理。","ltm":"是，經理。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/2/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/89/texts/2/text）：「是的，經理。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"是，经理。","ltm":"是，經理。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/3/text","reason":"new","refs":{"llc":"……真是。","ltm":"……真是。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/4/text","reason":"new","refs":{"llc":"毫无保留地……给予了呢。","ltm":"毫無保留地……給予了呢。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/37/texts/5/text","reason":"new","refs":{"llc":"一味给予者的结局，便是如此吗。","ltm":"一味給予者的結局，便是如此嗎。"}}
@@ -4775,7 +4775,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/4/texts/7/text","reason":"new","refs":{"llc":"等时机到了，鞋子自然会改变我们。","ltm":"等時機到了，鞋子自然會改變我們。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/4/texts/8/text","reason":"new","refs":{"llc":"能问出这种问题，看来各位是刚到这一楼层不久吧。","ltm":"能問出這種問題，看來各位是剛到這一階層不久吧。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/4/texts/9/text","reason":"new","refs":{"llc":"是的，我们是从楼下上来的。","ltm":"是的，我們是從樓下上來的。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/40/texts/0/text","reason":"new","refs":{"llc":"前面被完全堵住了。现在似乎过不去。","ltm":"前面被完全堵住了。現在似乎過不去。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/40/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-common-a1c10p1.json|/dataList/44/texts/0/text）：「被嚴實地封住了。目前似乎無法通行。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"前面被完全堵住了。现在似乎过不去。","ltm":"前面被完全堵住了。現在似乎過不去。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/41/texts/0/text","reason":"new","refs":{"llc":"虽然再也找不回站起来的勇气了，但不可思议的是，其现在看上去更加安宁……","ltm":"雖然再也找不回站起來的勇氣了，但不可思議的是，其現在看上去更加安寧……"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/42/texts/0/text","reason":"new","refs":{"llc":"亮着的那一边向我们搭话。台灯安静地摇晃着。","ltm":"亮著的那一邊向我們搭話。檯燈安靜地搖晃著。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/43/texts/0/text","reason":"new","refs":{"llc":"闪烁。","ltm":"閃爍。"}}
@@ -5408,7 +5408,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/13/texts/7/text","reason":"new","refs":{"llc":"虽然好像也有个别罪人通过各自的方式察觉到了这一点……但再怎么说，应该也没有人能像我和默尔索一样拥有清晰的记忆。","ltm":"雖然好像也有個別罪人通過各自的方式察覺到了這一點……但再怎麼說，應該也沒有人能像我和默爾索一樣擁有清晰的記憶。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/13/texts/8/text","reason":"new","refs":{"llc":"我虽然感到有些愧疚……但在搞清楚那位卫生间的女士给出的警告到底是什么意思之前，还是先……","ltm":"我雖然感到有些愧疚……但在搞清楚那位洗手間的女士給出的警告到底是什麼意思之前，還是先……"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/13/texts/9/text","reason":"new","refs":{"llc":"<要前往B2F的话……我们得让默尔索定义一下扶梯，但是……>","ltm":"<要前往B2F的話……我們得讓默爾索定義一下手扶梯，但是……>"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/130/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/130/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/131/texts/0/text","reason":"new","refs":{"llc":"我说你们是什么人噢？","ltm":"我說你們是什麼人噢？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/131/texts/1/text","reason":"new","refs":{"llc":"呵，这小玩偶还会说话呢。这也是那个叫人台的东西吗？","ltm":"呵，這小玩偶還會說話呢。這也是那個叫人台的東西嗎？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/131/texts/2/text","reason":"new","refs":{"llc":"我说我不是玩偶，是副主厨噢。","ltm":"我說我不是玩偶，是副主廚噢。"}}
@@ -6272,10 +6272,10 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/82/texts/6/text","reason":"new","refs":{"llc":"哈……你是说，垃圾滑槽在这里不是什么常识性概念吗……？","ltm":"哈……你是說，垃圾滑槽在這裡不是什麼常識性概念嗎……？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/82/texts/7/text","reason":"new","refs":{"llc":"……我拉开了眼看就要吵起来的二人。","ltm":"……我拉開了眼看就要吵起來的二人。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/83/texts/0/text","reason":"new","refs":{"llc":"那到底是什么东西？经历了那场奇妙的体验后，我再一次转动了把手，但门并没有被拉开。","ltm":"那到底是什麼東西？經歷了那場奇妙的體驗後，我再一次轉動了把手，但門並沒有被拉開。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/84/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/84/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/84/texts/1/text","reason":"new","refs":{"llc":"地图的边缘粘着什么东西。","ltm":"地圖的邊緣黏著什麼東西。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/84/texts/2/text","reason":"new","refs":{"llc":"默尔索获得了地图残片。","ltm":"默爾索獲得了地圖殘片。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/85/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/85/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/86/texts/0/text","reason":"new","refs":{"llc":"泛红的肉与皮正被展示着，看上去比外面挂着的肉更新鲜。","ltm":"泛紅的肉與皮正被展示著，看上去比外面掛著的肉更新鮮。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/87/texts/0/text","reason":"new","refs":{"llc":"有什么东西掉到了扶梯前。","ltm":"有什麼東西掉到了手扶梯前。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/87/texts/1/text","reason":"new","refs":{"llc":"默尔索获得了10枚眼球。","ltm":"默爾索獲得了10枚眼球。"}}
@@ -6314,8 +6314,8 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/102/texts/7/text","reason":"new","refs":{"llc":"我刚想坐上去，油灰就抬起了如同锥子一样尖锐的脚。","ltm":"我剛想坐上去，油灰就抬起了如同錐子一樣尖銳的腳。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/102/texts/8/text","reason":"new","refs":{"llc":"<……我还是站着吧。>","ltm":"<……我還是站著吧。>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/102/texts/9/text","reason":"new","refs":{"llc":"那张沙发，虽然很软但是不太结实。小孩先不说，你们坐上去大概会塌吧？","ltm":"那張沙發，雖然很軟但是不太結實。小孩先不說，你們坐上去大概會塌吧？"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/103/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/104/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/103/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/104/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/105/texts/0/text","reason":"new","refs":{"llc":"里面装满了天空色的染料，其光泽格外清透。","ltm":"裡面裝滿了天空色的染料，其光澤格外清透。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/106/texts/0/text","reason":"new","refs":{"llc":"蓝色的染料。良秀颇为不满地扭过头去，可能是因为这个颜色让她想起了小指父辈的房间。\n阿赖耶好像挺满意的，每当我们走到蓝色染料附近的时候，刀鞘都会发出清脆的声响。看来她喜欢蓝色？","ltm":"藍色的染料。良秀頗為不滿地扭過頭去，可能是因為這個顏色讓她想起了小指父輩的房間。\n阿賴耶好像挺滿意的，每當我們走到藍色染料附近的時候，刀鞘都會發出清脆的聲響。看來她喜歡藍色？"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/107/texts/0/text","reason":"new","refs":{"llc":"装满紫色染料的桶。桶的侧面写着“纯度良好”。","ltm":"裝滿紫色染料的桶。桶的側面寫著「純度良好」。"}}
@@ -6785,7 +6785,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/10/text","reason":"new","refs":{"llc":"阿赖耶仿佛压制不住怒火，刀鞘强烈地抖动了起来。","ltm":"阿賴耶彷彿壓制不住怒火，刀鞘強烈地抖動了起來。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/11/text","reason":"new","refs":{"llc":"她的意思是“别像乌合之众那样笨手笨脚的，快说明下这里是哪里吧，时钟”，经理。","ltm":"她的意思是「別像烏合之眾那樣笨手笨腳的，快說明下這裡是哪裡吧，時鐘」，經理。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/13/text","reason":"new","refs":{"llc":"说不定我们能解决沟通问题了，执行经理。","ltm":"說不定我們能解決溝通問題了，執行經理。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/14/text","reason":"new","refs":{"llc":"<确实……>","ltm":"<確實……>"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/14/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/141/texts/10/text）：「<是啊……>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<确实……>","ltm":"<確實……>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/15/text","reason":"new","refs":{"llc":"<啊，这里是B2F。不过我们得先确认下有没有来对地方……>","ltm":"<啊，這裡是B2F。不過我們得先確認下有沒有來對地方……>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/16/text","reason":"new","refs":{"llc":"哈哈哈，你可真是个多虑的人。你们没来错地方。","ltm":"哈哈哈，你可真是個多慮的人。你們沒來錯地方。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/16/texts/4/text","reason":"new","refs":{"llc":"阿赖耶识抖动了一下。","ltm":"阿賴耶識抖動了一下。"}}
@@ -6941,7 +6941,7 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/1/text","reason":"new","refs":{"llc":"<唔！？这是怎么回事……？>","ltm":"<唔！？這是怎麼回事……？>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/10/text","reason":"new","refs":{"llc":"……这话听着像是让我们准备打防御战。","ltm":"……這話聽著像是讓我們準備打防禦戰。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/11/text","reason":"new","refs":{"llc":"执行经理。我的建议是，我们应该挡住通往此处的走廊入口。","ltm":"執行經理。我的建議是，我們應該擋住通往此處的走廊入口。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/12/text","reason":"new","refs":{"llc":"<……就这么办。>","ltm":"<……就這麼辦。>"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/12/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1-b.json|/dataList/108/texts/12/text）：「<……就這樣做吧。>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<……就这么办。>","ltm":"<……就這麼辦。>"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/2/text","reason":"new","refs":{"llc":"呼……看来是在抽丝。这可不是我喜欢的那种悦耳尖叫。","ltm":"呼……看來是在抽絲。這可不是我喜歡的那種悅耳尖叫。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/3/text","reason":"new","refs":{"llc":"……经理，走廊有动静，有什么东西正在逼近。","ltm":"……經理，走廊有動靜，有什麼東西正在逼近。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/35/texts/4/text","reason":"new","refs":{"llc":"古老之物即将到来。","ltm":"古老的存在即將到來。"}}
@@ -7039,8 +7039,8 @@
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/72/texts/0/text","reason":"new","refs":{"llc":"一张涂成五颜六色的沙发。","ltm":"一張塗成五顏六色的沙發。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/72/texts/1/text","reason":"new","refs":{"llc":"如果我试着坐上去的话，调色板旁边的那个人会杀气腾腾地盯着我。","ltm":"如果我試著坐上去的話，調色盤旁邊的那個人會殺氣騰騰地盯著我。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/72/texts/3/text","reason":"new","refs":{"llc":"良秀也开始恶狠狠地盯着她了。刀鞘向后晃动，仿佛是想劝阻良秀。","ltm":"良秀也開始惡狠狠地盯著她了。刀鞘向後晃動，彷彿是想勸阻良秀。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/73/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
-{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/74/texts/0/text","reason":"new","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/73/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
+{"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/74/texts/0/text","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/111/texts/0/text）：「飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"饮料贩卖机上贴着像是百货店地图的东西。纸张严重损毁，我们连字都看不清。","ltm":"飲料販賣機上貼著像是百貨公司地圖的東西。紙張嚴重損毀，我們連字都看不清楚。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/75/texts/0/text","reason":"new","refs":{"llc":"碎肉从小块布料下面露了出来。","ltm":"碎肉從小塊布料下面露了出來。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/76/texts/0/text","reason":"new","refs":{"llc":"碎得不成样子的肉从小块布料下面露了出来。","ltm":"碎肉從小塊布料下面露了出來。"}}
 {"key":"RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/77/texts/0/text","reason":"new","refs":{"llc":"黄色的染料以及血肉四散飞溅。难以辨别原本样貌。","ltm":"黃色的染料以及血肉四散飛濺。難以辨別原本樣貌。"}}
@@ -7579,11 +7579,11 @@
 {"key":"RPGSystem/rpg-loc-quest-floor-1-c1.json|/dataList/2/steps/0/goalDescription1","reason":"new","refs":{"llc":"遭遇克罗默","ltm":"遭遇克羅默"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-1-c1.json|/dataList/2/title","reason":"new","refs":{"llc":"一行人会合","ltm":"一行人會合"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-1-c1.json|/dataList/8/description","reason":"new","refs":{"llc":"（隐藏）获得尖钉时的对话","ltm":"（隱藏）獲得尖釘時的對話"}}
-{"key":"RPGSystem/rpg-loc-quest-floor-1-c1.json|/dataList/9/title","reason":"new","refs":{"llc":"任务1-开始","ltm":"任務1-開始"}}
+{"key":"RPGSystem/rpg-loc-quest-floor-1-c1.json|/dataList/9/title","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-quest-floor-1-b.json|/dataList/1/title）：「任務1 - 開始」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"任务1-开始","ltm":"任務1-開始"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-1.json|/dataList/0/description","reason":"new","refs":{"llc":"载入后立即播放开场演出（S1001B）的隐藏任务","ltm":"載入後立即播放開場演出（S1001B）的隱藏任務"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-1.json|/dataList/0/title","reason":"new","refs":{"llc":"开场","ltm":"開場"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-1.json|/dataList/17/description","reason":"new","refs":{"llc":"（隐藏）获得尖钉时的对话","ltm":"（隱藏）獲得尖釘時的對話"}}
-{"key":"RPGSystem/rpg-loc-quest-floor-1.json|/dataList/18/title","reason":"new","refs":{"llc":"任务1-开始","ltm":"任務1-開始"}}
+{"key":"RPGSystem/rpg-loc-quest-floor-1.json|/dataList/18/title","reason":"new","hint":"同一句 KR 已有譯文（RPGSystem/rpg-loc-quest-floor-1-b.json|/dataList/1/title）：「任務1 - 開始」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"任务1-开始","ltm":"任務1-開始"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-3-b.json|/dataList/15/steps/0/goalDescription1","reason":"new","refs":{"llc":"（内部）楼层经理战斗开始触发","ltm":"（內部）樓層經理戰鬥開始觸發"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-3-b.json|/dataList/15/title","reason":"new","refs":{"llc":"（内部）楼层经理战斗开始通知","ltm":"樓層經理戰鬥開始通知"}}
 {"key":"RPGSystem/rpg-loc-quest-floor-3-b.json|/dataList/16/steps/0/goalDescription1","reason":"new","refs":{"llc":"（内部）楼层经理打击 1","ltm":"（內部）樓層經理打擊 1"}}
@@ -8089,451 +8089,18 @@
 {"key":"Skills_personality-12.json|/dataList/33/levelList/1/desc","reason":"paratranz-repair","draft":"自身每帶有1層 [Agility] 以及目標每帶有1層 [Binding]，則使本技能造成的傷害+<style=\"highlight\">15</style>%(最多+<style=\"highlight\">60</style>%)\n<style=\"highlight\">若目標帶有護盾，則使本技能造成的傷害+30%(若為集中遭遇戰，則不分本體與部位)</style>\n<style=\"highlight\">目標(若為異想體，則以本體為準)每失去最大體力值的1%，則使本技能造成的傷害+1%</style>\n- 若目標(若為異想體，則以本體為準)體力值少於最大值的20%，則<style=\"highlight\">改為</style>造成的傷害+<style=\"highlight\">100</style>%\n<style=\"highlight\">[WhenUse] 對目標施加5層 [DefenseDown]</style>\n[WhenUse] 目標帶有的 [Laceration] 強度與 [Vibration] 強度之和每有4級，則使本技能硬幣威力+1(最多+<style=\"highlight\">3</style>)\n[WinDuel]<style=\"highlight\">使目標增加4級 [Vibration] 強度</style>，後使其 [VibrationExplosion]","refs":{"llc":"自身的[Agility]层数与目标的[Binding]层数之和每有1层，使本技能造成的伤害+<style=\"highlight\">15</style>%(最多+<style=\"highlight\">60</style>%)\n<style=\"highlight\">若目标带有护盾，则使本技能造成的伤害+30%(若是集中遭遇战，则改为本体或部位)</style>\n<style=\"highlight\">敌方单位(本体)每失去1%的体力，使本技能造成的伤害+1%</style>\n- 若敌方单位(本体)现存体力不高于20%，则<style=\"highlight\">改为</style>使本技能造成的伤害+<style=\"highlight\">100</style>%\n<style=\"highlight\">[WhenUse] 对目标施加5层[DefenseDown]</style>\n[WhenUse] 目标的[Laceration]强度与[Vibration]强度之和每有4级，使本技能的硬币威力+1(最多+<style=\"highlight\">3</style>)\n[WinDuel] <style=\"highlight\">使目标增加4级[Vibration]强度</style>并使其[VibrationExplosion]","ltm":"自身的[Agility]層數與目標的[Binding]層數之和每有1層，使本技能造成的傷害+<style=\"highlight\">15</style>%(最多<style=\"highlight\">60</style>%)\n<style=\"highlight\">若目標帶有護盾，則使本技能造成的傷害+30%(集中遭遇戰中則為本體或部位)</style>\n<style=\"highlight\">敵方單位(本體)每損失1%的血量，使本技能造成的傷害+1%</style>\n- 若敵方單位(本體)的血量不高於20%，則<style=\"highlight\">改為</style>使本技能造成的傷害+<style=\"highlight\">100</style>%\n<style=\"highlight\">[WhenUse] 對目標施加5層[DefenseDown]</style>\n[WhenUse] 目標的[Laceration]強度與[Vibration]強度之和每有4級，使本技能的硬幣威力+1(最多+<style=\"highlight\">3</style>)\n[WinDuel] <style=\"highlight\">使目標增加4級[Vibration]強度</style>並使其[VibrationExplosion]"}}
 {"key":"Skills_personality-12.json|/dataList/45/levelList/1/desc","reason":"paratranz-repair","draft":"<style=\"highlight\">使本技能造成的傷害+(自身的 [Combustion] 強度與目標的 [Combustion] 強度之和)%(最多+30%)</style>\n[StartBattle] 隨機使除自身以外的2名友方單位獲得2層 [Protection]\n(優先使未帶有 [Protection] 且屬於黎明事務所[TabExplain]的友方單位獲得。每回合最多1次)\n[BeforeUse] 若自身帶有30層 [StigmaWorkshopHandStep1]，則改為使用「黎明時分」(每回合最多1次)\n<style=\"highlight\">[WhenUse] 目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身的 [StigmaWorkshopHandStep1] 層數不低於20層，則觸發以下效果\n- 使本技能的最終威力+1\n- 使本技能的所有硬幣轉變為 [SuperCoin]\n<style=\"highlight\">- 本技能的最後一枚硬幣命中時，觸發目標的 [Combustion]，並使其減少1回 [Combustion]</style>\n[EndSkill] 下回合使全體友方單位獲得1層 [DawnLight]\n- 若自身的 [StigmaWorkshopHandStep1] 層數不低於20層，則額外獲得1層 [DawnLight]","refs":{"llc":"<style=\"highlight\">使本技能造成的伤害+(自身与目标的[Combustion]强度之和)%(最多+30%)</style>\n[StartBattle] 随机使除自身以外的2名友方单位获得2层[Protection]\n(优先使未带有[Protection]的人格中属于黎明事务所[TabExplain]的友方单位获得。每回合最多1次)\n[BeforeUse] 若自身的[StigmaWorkshopHandStep1]层数为30层，则改为使用“黎明将至”(每回合最多1次)\n<style=\"highlight\">[WhenUse] 目标的[Combustion]强度与[Vibration]强度之和每有6级，使本技能的硬币威力+1(最多+2)</style>\n[WhenUse] 若自身的[StigmaWorkshopHandStep1]层数不低于20层，则触发以下效果\n- 使本技能的最终威力+1\n- 使本技能的所有硬币转化为[SuperCoin]\n<style=\"highlight\">- 本技能的最后一枚硬币命中时，触发目标的烧伤 ，并使其烧伤 层数减少1层</style>\n[EndSkill] 下回合使全体友方单位获得1层[DawnLight]\n- 若自身的[StigmaWorkshopHandStep1]层数不低于20层，则额外获得1层[DawnLight]","ltm":"<style=\"highlight\">使本技能造成的傷害+(自身與目標的[Combustion]強度之和)%(最多+30%)</style>\n[StartBattle] 隨機使除自身以外的2名友方單位獲得2層[Protection]\n(優先使未帶有[Protection]的人格中屬於黎明事務所[TabExplain]的友方單位獲得。每回合最多1次)\n[BeforeUse] 若自身的[StigmaWorkshopHandStep1]層數為30層，則改為使用「天將拂曉」(每回合最多1次)\n<style=\"highlight\">[WhenUse] 目標的[Combustion]強度與[Vibration]強度之和每有6級，使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身的[StigmaWorkshopHandStep1]層數不低於20層，則觸發以下效果\n- 使本技能的最終威力+1\n- 使本技能的所有硬幣轉化為[SuperCoin]\n<style=\"highlight\">- 本技能的最後一枚硬幣命中時，觸發目標的燒傷 ，並使其燒傷 層數減少1層</style>\n[EndSkill] 下回合使全體友方單位獲得1層[DawnLight]\n- 若自身的[StigmaWorkshopHandStep1]層數不低於20層，則額外獲得1層[DawnLight]"}}
 {"key":"Skills_personality-x1p1c1.json|/dataList/3/levelList/0/name","reason":"paratranz-repair","draft":"沒有<ruby=李箱>異常</ruby>","refs":{"llc":"没有异常","ltm":"沒有異常"}}
-{"key":"StoryData/E000X.json|/dataList/2/place","reason":"new","refs":{"llc":"#*% 的 #&*()!#%","ltm":"#&*()!#%의 #*%"}}
-{"key":"StoryData/E000X.json|/dataList/27/place","reason":"new","refs":{"llc":"#*% 的 #&*()!#%","ltm":"#&*()!#%의 #*%"}}
-{"key":"StoryData/E000X.json|/dataList/42/place","reason":"new","refs":{"llc":"#*% 的 #&*()!#%","ltm":"#&*()!#%의 #*%"}}
-{"key":"StoryData/E000X.json|/dataList/54/place","reason":"new","refs":{"llc":"#*% 的 #&*()!#%","ltm":"#&*()!#%의 #*%"}}
-{"key":"StoryData/E003I1.json|/dataList/0/content","reason":"new","refs":{"llc":"<我们不止能从它们身上得到肉，居然还能得到各种辅料啊？>","ltm":"<我們不止能從他們身上得到肉，居然還能得到各種輔料啊？>"}}
-{"key":"StoryData/E003I1.json|/dataList/1/content","reason":"new","refs":{"llc":"当然。小凤有将栖息地附近的其他食材储存在下半身的习性呢。","ltm":"當然。小鳳有將棲息地附近的其他食材儲存在下半身的習性呢。"}}
-{"key":"StoryData/E003I1.json|/dataList/10/content","reason":"new","refs":{"llc":"其他部分的话……唔，看起来太像虫子了~呕呕。","ltm":"其他部分的話……唔，看起來太像蟲子了~嘔嘔。"}}
-{"key":"StoryData/E003I1.json|/dataList/100/content","reason":"new","refs":{"llc":"嘿嘿嘿！大鸡腿！嘿嘿嘿！","ltm":"嘿嘿嘿！大雞腿！嘿嘿嘿！"}}
-{"key":"StoryData/E003I1.json|/dataList/101/content","reason":"new","refs":{"llc":"园长大人！园长大人！希斯克利夫他，希斯克利夫他啊！呀！喂！别甩了！肉汁甩得到处都是！","ltm":"園長大人！園長大人！希斯克利夫他，希斯克利夫他啊！呀！喂！別甩了！肉汁甩得到處都是！"}}
-{"key":"StoryData/E003I1.json|/dataList/102/content","reason":"new","refs":{"llc":"老大！班长老大！以实玛利和希斯克利夫又吵起来了！","ltm":"老大！班長老大！以實瑪利和希斯克利夫又吵起來了！"}}
-{"key":"StoryData/E003I1.json|/dataList/103/content","reason":"new","refs":{"llc":"<……真准备好了吗？>","ltm":"<……真準備好了嗎？>"}}
-{"key":"StoryData/E003I1.json|/dataList/104/content","reason":"new","refs":{"llc":"……没有异常，但丁园长。","ltm":"……沒有異常，但丁園長。"}}
-{"key":"StoryData/E003I1.json|/dataList/105/content","reason":"new","refs":{"llc":"脑袋疼得像烧起来了一样……不，本来就是烧着的吧。","ltm":"腦袋疼得像燒起來了一樣……不，本來就是燒著的吧。"}}
-{"key":"StoryData/E003I1.json|/dataList/12/content","reason":"new","refs":{"llc":"……格里高尔终于哭了出来。","ltm":"……格里高爾終於哭了出來。"}}
-{"key":"StoryData/E003I1.json|/dataList/13/content","reason":"new","refs":{"llc":"<罗佳！怎么能这么说话！快向格里高尔道歉。>","ltm":"<羅佳！怎麼能這麼說話！快向格里高爾道歉。>"}}
-{"key":"StoryData/E003I1.json|/dataList/14/content","reason":"new","refs":{"llc":"……虽然不知道为什么要道歉，但心里产生了要让罗佳向格里高尔道歉的冲动。","ltm":"……雖然不知道為什麼要道歉，但心裡產生了要讓羅佳向格里高爾道歉的衝動。"}}
-{"key":"StoryData/E003I1.json|/dataList/15/content","reason":"new","refs":{"llc":"欸？可是我又没做错事……","ltm":"欸？可是我又沒做錯事……"}}
-{"key":"StoryData/E003I1.json|/dataList/16/content","reason":"new","refs":{"llc":"*抽泣* 道、道……道歉！","ltm":"*抽泣* 道、道……道歉！"}}
-{"key":"StoryData/E003I1.json|/dataList/18/content","reason":"new","refs":{"llc":"以前说你的手看起来像虫子的事也对不起啦~所以别哭了……","ltm":"以前說你的手看起來像蟲子的事也對不起啦~所以別哭了……"}}
-{"key":"StoryData/E003I1.json|/dataList/19/content","reason":"new","refs":{"llc":"呜哇啊啊啊！！！虫子，不！不……不是、虫子……！","ltm":"嗚哇啊啊啊！！！蟲子，不！不……不是、蟲子……！"}}
-{"key":"StoryData/E003I1.json|/dataList/2/content","reason":"new","refs":{"llc":"那长着手脚的东西的，下半身吗……？","ltm":"那長著手腳的東西的，下半身嗎……？"}}
-{"key":"StoryData/E003I1.json|/dataList/20/content","reason":"new","refs":{"llc":"真是的……为什么还是哭个不停……？肚、肚子饿了？要给你点吃的吗？","ltm":"真是的……為什麼還是哭個不停……？肚、肚子餓了？要給你點吃的嗎？"}}
-{"key":"StoryData/E003I1.json|/dataList/21/content","reason":"new","refs":{"llc":"<你真不明白怎么回事吗……？>","ltm":"<你真不明白怎麼回事嗎……？>"}}
-{"key":"StoryData/E003I1.json|/dataList/22/content","reason":"new","refs":{"llc":"罗佳紧张地试图安抚格里高尔时，从后方传来了沙沙的脚步声。","ltm":"羅佳緊張地試圖安撫格里高爾時，從後方傳來了沙沙的腳步聲。"}}
-{"key":"StoryData/E003I1.json|/dataList/25/content","reason":"new","refs":{"llc":"粗犷的声音令人莫名感到安心，怀着这样的心情，我环顾着四周。","ltm":"粗獷的聲音令人莫名感到安心，懷著這樣的心情，我環顧著四周。"}}
-{"key":"StoryData/E003I1.json|/dataList/26/content","reason":"new","refs":{"llc":"是啊，说不定是负责其他班的老师，可以一起分担照顾孩子们的任务……","ltm":"是啊，說不定是負責其他班的老師，可以一起分擔照顧孩子們的任務……"}}
-{"key":"StoryData/E003I1.json|/dataList/27/content","reason":"new","refs":{"llc":"……但视线所及之处却没有看到任何人。","ltm":"……但視線所及之處卻沒有看到任何人。"}}
-{"key":"StoryData/E003I1.json|/dataList/28/content","reason":"new","refs":{"llc":"在这里。","ltm":"在這裡。"}}
-{"key":"StoryData/E003I1.json|/dataList/29/content","reason":"new","refs":{"llc":"声音是从下方传来的。","ltm":"聲音是從下方傳來的。"}}
-{"key":"StoryData/E003I1.json|/dataList/3/content","reason":"new","refs":{"llc":"我一边搜寻着是否曾有过这样的回忆，一边向企鹅班的方向望去……","ltm":"我一邊搜尋著是否曾有過這樣的回憶，一邊向企鵝班的方向望去……"}}
-{"key":"StoryData/E003I1.json|/dataList/30/content","reason":"new","refs":{"llc":"<啊，是默尔索小朋友啊。>","ltm":"<啊，是默爾索小朋友啊。>"}}
-{"key":"StoryData/E003I1.json|/dataList/31/content","reason":"new","refs":{"llc":"是我。菜肴都准备好了，由我来叫园长大人。","ltm":"是我。菜餚都準備好了，由我來叫園長大人。"}}
-{"key":"StoryData/E003I1.json|/dataList/32/content","reason":"new","refs":{"llc":"<对一个孩子而言……你的声线也太过于宽厚稳重了吧……>","ltm":"<對一個孩子而言……你的聲線也太過於寬厚穩重了吧……>"}}
-{"key":"StoryData/E003I1.json|/dataList/33/content","reason":"new","refs":{"llc":"说起话来也彬彬有礼……","ltm":"說起話來也彬彬有禮……"}}
-{"key":"StoryData/E003I1.json|/dataList/34/content","reason":"new","refs":{"llc":"感谢您的称赞。","ltm":"感謝您的稱讚。"}}
-{"key":"StoryData/E003I1.json|/dataList/36/content","reason":"new","refs":{"llc":"由我来带领企鹅班的小朋友前往活动场所，希望您能坐在厨房的监护席上监督我们。","ltm":"由我來帶領企鵝班的小朋友前往活動場所，希望您能坐在廚房的監護席上監督我們。"}}
-{"key":"StoryData/E003I1.json|/dataList/37/content","reason":"new","refs":{"llc":"狱儿园班长奥提斯已经就位。","ltm":"獄兒園班長奧提斯已經就位。"}}
-{"key":"StoryData/E003I1.json|/dataList/38/content","reason":"new","refs":{"llc":"<这、这样啊……谢谢。>","ltm":"<這、這樣啊……謝謝。>"}}
-{"key":"StoryData/E003I1.json|/dataList/39/content","reason":"new","refs":{"llc":"……茫然地望着走在罗佳和格里高尔前方的默尔索，我走进了厨房。","ltm":"……茫然地望著走在羅佳和格里高爾前方的默爾索，我走進了廚房。"}}
-{"key":"StoryData/E003I1.json|/dataList/40/content","reason":"new","refs":{"llc":"<这厨房还真是够乱的啊……>","ltm":"<這廚房還真是夠亂的啊……>"}}
-{"key":"StoryData/E003I1.json|/dataList/40/place","reason":"new","refs":{"llc":"幼儿园厨房？","ltm":"幼兒園廚房？"}}
-{"key":"StoryData/E003I1.json|/dataList/41/content","reason":"new","refs":{"llc":"乱？每样东西都在它应该在的位置，园长大人！","ltm":"亂？每樣東西都在它應該在的位置，園長大人！"}}
-{"key":"StoryData/E003I1.json|/dataList/42/content","reason":"new","refs":{"llc":"这样吗……？","ltm":"這樣嗎……？"}}
-{"key":"StoryData/E003I1.json|/dataList/43/content","reason":"new","refs":{"llc":"这处空间确实好像在什么地方见过……从一开始就这么觉得了。","ltm":"這處空間確實好像在什麼地方見過……從一開始就這麼覺得了。"}}
-{"key":"StoryData/E003I1.json|/dataList/44/content","reason":"new","refs":{"llc":"<咳，那……你们准备做什么菜？>","ltm":"<咳，那……你們準備做什麼菜？>"}}
-{"key":"StoryData/E003I1.json|/dataList/45/content","reason":"new","refs":{"llc":"是。我们准备了油杂小凤。","ltm":"是。我們準備了油雜小鳳。 "}}
-{"key":"StoryData/E003I1.json|/dataList/46/content","reason":"new","refs":{"llc":"还不太擅长较难的发音呢。","ltm":"還不太擅長較難的發音呢。"}}
-{"key":"StoryData/E003I1.json|/dataList/47/content","reason":"new","refs":{"llc":"等下……他是不是用了“准备了”这个说法？","ltm":"等下……他是不是用了「準備了」這個說法？"}}
-{"key":"StoryData/E003I1.json|/dataList/48/content","reason":"new","refs":{"llc":"<罗佳和格里高尔不是才被带进来的吗？啊，不过就烹饪而言格里高尔还是太小了……>","ltm":"<羅佳和格里高爾不是才被帶進來的嗎？啊，不過就烹飪而言格里高爾還是太小了……>"}}
-{"key":"StoryData/E003I1.json|/dataList/49/content","reason":"new","refs":{"llc":"是，园长大人。由于罗佳同学有会在烹饪期间使原材料出现持续损失的倾向，因此有意将其排除在外。","ltm":"是，園長大人。由於羅佳同學有會在烹飪期間使原材料出現持續損失的傾向，因此有意將其排除在外。"}}
-{"key":"StoryData/E003I1.json|/dataList/5/content","reason":"new","refs":{"llc":"……看到了格里高尔正在戳着小凤被撕裂后的残留部分。","ltm":"……看到了格里高爾正在戳著小鳳被撕裂後的殘留部分。"}}
-{"key":"StoryData/E003I1.json|/dataList/50/content","reason":"new","refs":{"llc":"哈？！把我……当沈么了！","ltm":"哈？！把我……當沈麼了！"}}
-{"key":"StoryData/E003I1.json|/dataList/51/content","reason":"new","refs":{"llc":"员长大人！叫训默尔！","ltm":"員長大人！叫訓默爾！"}}
-{"key":"StoryData/E003I1.json|/dataList/52/content","reason":"new","refs":{"llc":"现在，又有一根小凤的琵琶腿被消耗掉了。","ltm":"現在，又有一根小鳳的琵琶腿被消耗掉了。"}}
-{"key":"StoryData/E003I1.json|/dataList/53/content","reason":"new","refs":{"llc":"园长大人！给她点教训！","ltm":"園長大人！給她點教訓！"}}
-{"key":"StoryData/E003I1.json|/dataList/54/content","reason":"new","refs":{"llc":"<……罗佳去那边的反省椅上坐着。>","ltm":"<……羅佳去那邊的反省椅上坐著。>"}}
-{"key":"StoryData/E003I1.json|/dataList/55/content","reason":"new","refs":{"llc":"欸？！为为为什么？！可是如果有好吃的……要是不快快塞尽嘴里，我就要矮饿了……","ltm":"欸？！為為為什麼？！可是如果有好吃的……要是不快快塞盡嘴裡，我就要矮餓了……"}}
-{"key":"StoryData/E003I1.json|/dataList/56/content","reason":"new","refs":{"llc":"……这孩子究竟是从多么严酷的环境中活下来的呢？","ltm":"……這孩子究竟是從多麼嚴酷的環境中活下來的呢？"}}
-{"key":"StoryData/E003I1.json|/dataList/57/content","reason":"new","refs":{"llc":"<很遗憾，但被当场抓获的话是不能把你放走的。去坐着吧。>","ltm":"<很遺憾，但被當場抓獲的話是不能把你放走的。去坐著吧。>"}}
-{"key":"StoryData/E003I1.json|/dataList/58/content","reason":"new","refs":{"llc":"呜……可是我刚刚还分了饼干给大家……我是好孩子！！！","ltm":"嗚……可是我剛剛還分了餅乾給大家……我是好孩子！！！"}}
-{"key":"StoryData/E003I1.json|/dataList/59/content","reason":"new","refs":{"llc":"这是园长大仁的命令！快过去，你这企鹅班的耻辱！","ltm":"這是園長大仁的命令！快過去，你這企鵝班的恥辱！"}}
-{"key":"StoryData/E003I1.json|/dataList/6/content","reason":"new","refs":{"llc":"感觉是小孩子的好奇心发作了，但不知为何却面带着不像小孩子的超然表情。","ltm":"感覺是小孩子的好奇心發作了，但不知為何卻面帶著不像小孩子的超然表情。"}}
-{"key":"StoryData/E003I1.json|/dataList/60/content","reason":"new","refs":{"llc":"也没必要这么说吧……","ltm":"也沒必要這麼說吧……"}}
-{"key":"StoryData/E003I1.json|/dataList/61/content","reason":"new","refs":{"llc":"呼呼。就是这样在争吵中成长的吧？","ltm":"呼呼。就是這樣在爭吵中成長的吧？"}}
-{"key":"StoryData/E003I1.json|/dataList/62/content","reason":"new","refs":{"llc":"……像只是看着孩子们的一场玩闹一样，尤莉老师脸上浮现出了温和的笑容。","ltm":"……像只是看著孩子們的一場玩鬧一樣，尤莉老師臉上浮現出了溫和的笑容。"}}
-{"key":"StoryData/E003I1.json|/dataList/63/content","reason":"new","refs":{"llc":"好，那么……默尔索小朋友？能介绍一下这次的菜肴吗？","ltm":"好，那麼……默爾索小朋友？能介紹一下這次的菜餚嗎？"}}
-{"key":"StoryData/E003I1.json|/dataList/64/content","reason":"new","refs":{"llc":"是。作为今日特供的是……","ltm":"是。作為今日特供的是……"}}
-{"key":"StoryData/E003I1.json|/dataList/65/content","reason":"new","refs":{"llc":"难懂的介绍一直持续着。","ltm":"難懂的介紹一直持續著。"}}
-{"key":"StoryData/E003I1.json|/dataList/66/content","reason":"new","refs":{"llc":"一边听着一边不禁怀疑起来，这真的是能从一个小孩子嘴里说出来的介绍与技巧吗……","ltm":"一邊聽著一邊不禁懷疑起來，這真的是能從一個小孩子嘴裡說出來的介紹與技巧嗎……"}}
-{"key":"StoryData/E003I1.json|/dataList/67/content","reason":"new","refs":{"llc":"看到了似乎已经将罗佳牢牢固定在椅子上的奥提斯，正拍着手得意地走回来。","ltm":"看到了似乎已經將羅佳牢牢固定在椅子上的奧提斯，正拍著手得意地走回來。"}}
-{"key":"StoryData/E003I1.json|/dataList/68/content","reason":"new","refs":{"llc":"一回来就拿出比自己身体还大的素描本，开始一道道展示起自己用蜡笔描绘出的菜肴……","ltm":"一回來就拿出比自己身體還大的素描本，開始一道道展示起自己用蠟筆描繪出的菜餚……"}}
-{"key":"StoryData/E003I1.json|/dataList/69/content","reason":"new","refs":{"llc":"我决定不再去思考。","ltm":"我決定不再去思考。"}}
-{"key":"StoryData/E003I1.json|/dataList/7/content","reason":"new","refs":{"llc":"喂，格雷格~别摸那个，脏脏。","ltm":"喂，格雷格~別摸那個，髒髒。"}}
-{"key":"StoryData/E003I1.json|/dataList/70/content","reason":"new","refs":{"llc":"这里大概就是那样的地方吧。","ltm":"這裡大概就是那樣的地方吧。"}}
-{"key":"StoryData/E003I1.json|/dataList/71/content","reason":"new","refs":{"llc":"好~感谢~大家的介绍！","ltm":"好~感謝~大家的介紹！"}}
-{"key":"StoryData/E003I1.json|/dataList/72/content","reason":"new","refs":{"llc":"那么，来尝尝味道……","ltm":"那麼，來嚐嚐味道……"}}
-{"key":"StoryData/E003I1.json|/dataList/73/content","reason":"new","refs":{"llc":"嗯？不过有一部分还没有介绍过吧，默尔索小朋友？","ltm":"嗯？不過有一部分還沒有介紹過吧，默爾索小朋友？"}}
-{"key":"StoryData/E003I1.json|/dataList/74/content","reason":"new","refs":{"llc":"在菜肴顶上的……这是什么？","ltm":"在菜餚上的……這是什麼？"}}
-{"key":"StoryData/E003I1.json|/dataList/75/content","reason":"new","refs":{"llc":"尤莉老师所指的地方就像插着装饰蜡烛一样，一个陌生的物体直直地立在上面。","ltm":"尤莉老師所指的地方就像插著裝飾蠟燭一樣，一個陌生的物體直直地立在上面。"}}
-{"key":"StoryData/E003I1.json|/dataList/76/content","reason":"new","refs":{"llc":"好像是刚刚看到……格里高尔在捡的……","ltm":"好像是剛剛看到……格里高爾在撿的……"}}
-{"key":"StoryData/E003I1.json|/dataList/77/content","reason":"new","refs":{"llc":"这样的话……呼呼……就不会被忘记了吧。","ltm":"這樣的話……呼呼……就不會被忘記了吧。"}}
-{"key":"StoryData/E003I1.json|/dataList/78/content","reason":"new","refs":{"llc":"<是小凤虫的前腿——>","ltm":"<是小鳳蟲的前腿——>"}}
-{"key":"StoryData/E003I1.json|/dataList/8/content","reason":"new","refs":{"llc":"<明明你们的食材刚刚还出自上面……？>","ltm":"<明明你們的食材剛剛還出自上面……？>"}}
-{"key":"StoryData/E003I1.json|/dataList/80/content","reason":"new","refs":{"llc":"默尔索瞬间挥起拳头，把陌生的物体与令人垂涎的油炸小凤打成了一团不明物质……","ltm":"默爾索瞬間揮起拳頭，把陌生的物體與令人垂涎的油炸小鳳打成了一團不明物質……"}}
-{"key":"StoryData/E003I1.json|/dataList/82/content","reason":"new","refs":{"llc":"园长大人！我、我可以解释！这是，呃……！","ltm":"園長大人！我、我可以解釋！這是，呃……！"}}
-{"key":"StoryData/E003I1.json|/dataList/83/content","reason":"new","refs":{"llc":"默尔索同学！这破坏性的表演也是这份实验性菜肴的一部分对吧？！","ltm":"默爾索同學！這破壞性的表演也是這份實驗性菜餚的一部分對吧？！"}}
-{"key":"StoryData/E003I1.json|/dataList/84/content","reason":"new","refs":{"llc":"来，说说吧！这道菜肴的名字是！","ltm":"來，說說看！這道菜餚的名字是！"}}
-{"key":"StoryData/E003I1.json|/dataList/85/content","reason":"new","refs":{"llc":"今日的主菜。","ltm":"今日的主菜。"}}
-{"key":"StoryData/E003I1.json|/dataList/86/content","reason":"new","refs":{"llc":"……烂泥炸小凤。","ltm":"……爛泥炸小鳳。"}}
-{"key":"StoryData/E003I1.json|/dataList/88/content","reason":"new","refs":{"llc":"<你们全都给我到反省椅上坐着去！>","ltm":"<你們全都給我到反省椅上坐著去！>"}}
-{"key":"StoryData/E003I1.json|/dataList/89/content","reason":"new","refs":{"llc":"结果第一道菜肴还没试吃就结束了……","ltm":"結果第一道菜餚還沒試吃就結束了……"}}
-{"key":"StoryData/E003I1.json|/dataList/9/content","reason":"new","refs":{"llc":"欸？呃，那个……可是小凤肥嘟嘟的看起来很好吃欸~","ltm":"欸？呃，那個……可是小鳳肥嘟嘟的看起來很好吃欸~"}}
-{"key":"StoryData/E003I1.json|/dataList/90/place","reason":"new","refs":{"llc":"边狱幼儿园？","ltm":"邊獄幼兒園？"}}
-{"key":"StoryData/E003I1.json|/dataList/91/content","reason":"new","refs":{"llc":"想让脑袋稍微冷却一下，于是走到了厨房外，却感觉到有谁在扯着我的裤腿。","ltm":"想讓腦袋稍微冷卻一下，於是走到了廚房外，卻感覺到有誰在扯著我的褲腿。"}}
-{"key":"StoryData/E003I1.json|/dataList/92/content","reason":"new","refs":{"llc":"向下看去……","ltm":"向下看去……"}}
-{"key":"StoryData/E003I1.json|/dataList/93/content","reason":"new","refs":{"llc":"<啊，是李箱小朋友啊。>","ltm":"<啊，是李箱小朋友啊。>"}}
-{"key":"StoryData/E003I1.json|/dataList/94/content","reason":"new","refs":{"llc":"似的，李箱，我是。但丁园长。","ltm":"似的，李箱，我是。但丁園長。 "}}
-{"key":"StoryData/E003I1.json|/dataList/95/content","reason":"new","refs":{"llc":"<……原来如此，你还不习惯使用敬语和口语吧？>","ltm":"<……原來如此，你還不習慣使用敬語和口語吧？>"}}
-{"key":"StoryData/E003I1.json|/dataList/96/content","reason":"new","refs":{"llc":"很异常吗？","ltm":"很異常嗎？"}}
-{"key":"StoryData/E003I1.json|/dataList/97/content","reason":"new","refs":{"llc":"<不……没有关系。有什么事吗？>","ltm":"<不……沒有關係。有什麼事嗎？>"}}
-{"key":"StoryData/E003I1.json|/dataList/98/content","reason":"new","refs":{"llc":"小鸡班也完成了试验课程尊备。会来帮忙，但丁园长？","ltm":"小雞班也完成了試驗課程尊備。會來幫忙，但丁園長？"}}
-{"key":"StoryData/E003I1.json|/dataList/99/content","reason":"new","refs":{"llc":"远远望去看到了其他狱儿园小朋友的身影。是背着黄色小鸡背包的孩子们。","ltm":"遠遠望去看到了其他獄兒園小朋友的身影。是背著黃色小雞背包的孩子們。"}}
-{"key":"StoryData/E003I2.json|/dataList/0/content","reason":"new","refs":{"llc":"啊，是10区的小凤警卫队！","ltm":"啊，是10區的小鳳警衛隊！"}}
-{"key":"StoryData/E003I2.json|/dataList/0/place","reason":"new","refs":{"llc":"幼儿园厨房？","ltm":"幼兒園廚房？"}}
-{"key":"StoryData/E003I2.json|/dataList/1/content","reason":"new","refs":{"llc":"<掉落了大量的似乎是赌场筹码之类的东西……这究竟是什么东西……？>","ltm":"<掉落了大量的似乎是賭場籌碼之類的東西……這究竟是什麼東西……？>"}}
-{"key":"StoryData/E003I2.json|/dataList/10/content","reason":"new","refs":{"llc":"对吧对吧？辛可莱，快说是的。","ltm":"對吧對吧？辛可萊，快說是的。"}}
-{"key":"StoryData/E003I2.json|/dataList/101/content","reason":"new","refs":{"llc":"虽然浮士德并非会喜形于色的孩子，但她似乎感到满足，那就够了。","ltm":"雖然浮士德並非會喜形於色的孩子，但她似乎感到滿足，那就夠了。"}}
-{"key":"StoryData/E003I2.json|/dataList/104/content","reason":"new","refs":{"llc":"既要负责两个班级，又要负责孩子们的上下学接送……总觉得平时很少能见到卡戎呢。","ltm":"既要負責兩個班級，又要負責孩子們的上下學接送……總覺得平時很少能見到卡戎呢。"}}
-{"key":"StoryData/E003I2.json|/dataList/105/content","reason":"new","refs":{"llc":"<啊，暴龙班不参加今天的课程呢。>","ltm":"<啊，暴龍班不參加今天的課程呢。>"}}
-{"key":"StoryData/E003I2.json|/dataList/106/content","reason":"new","refs":{"llc":"嗯。暴龙班今天，园外委托学习。","ltm":"嗯。暴龍班今天，園外委託學習。"}}
-{"key":"StoryData/E003I2.json|/dataList/107/content","reason":"new","refs":{"llc":"现在也是，刚送完回来。","ltm":"現在也是，剛送完回來。"}}
-{"key":"StoryData/E003I2.json|/dataList/108/content","reason":"new","refs":{"llc":"<辛苦了……>","ltm":"<辛苦了……>"}}
-{"key":"StoryData/E003I2.json|/dataList/109/content","reason":"new","refs":{"llc":"在暴龙班的是哪些狱儿园小朋友来着。希望在外面不要受伤。","ltm":"在暴龍班的是哪些獄兒園小朋友來著。希望在外面不要受傷。"}}
-{"key":"StoryData/E003I2.json|/dataList/11/content","reason":"new","refs":{"llc":"欸……那、那个……啊？！","ltm":"欸……那、那個……啊？！"}}
-{"key":"StoryData/E003I2.json|/dataList/110/content","reason":"new","refs":{"llc":"担心，没有必要，园长老师。","ltm":"擔心，沒有必要，園長老師。"}}
-{"key":"StoryData/E003I2.json|/dataList/111/content","reason":"new","refs":{"llc":"恐龙。强得要命。","ltm":"恐龍。強得要命。"}}
-{"key":"StoryData/E003I2.json|/dataList/112/content","reason":"new","refs":{"llc":"<啊，也是呢。恐龙很强所以没关系吧？>","ltm":"<啊，也是呢。恐龍很強所以沒關係吧？>"}}
-{"key":"StoryData/E003I2.json|/dataList/113/content","reason":"new","refs":{"llc":"就这样和卡戎老师稍微聊了一会，远远地看见一个甩着大象包的狱儿园小朋友摇摇晃晃地走了回来。","ltm":"就這樣和卡戎老師稍微聊了一會，遠遠地看見一個甩著大象包的獄兒園小朋友搖搖晃晃地走了回來。"}}
-{"key":"StoryData/E003I2.json|/dataList/115/content","reason":"new","refs":{"llc":"已·按·说·做。11区的家伙们正在涌进来。","ltm":"已・按・說・做。11區的傢伙們正在湧進來。"}}
-{"key":"StoryData/E003I2.json|/dataList/116/content","reason":"new","refs":{"llc":"嗯。不错。","ltm":"嗯。不錯。"}}
-{"key":"StoryData/E003I2.json|/dataList/117/content","reason":"new","refs":{"llc":"真是不可思议呀，班长~奶奶说过，小凤安保人员一步都不会离开它保护的地方呢！","ltm":"真是不可思議呀，班長~奶奶說過，小鳳安保人員一步都不會離開它保護的地方呢！"}}
-{"key":"StoryData/E003I2.json|/dataList/118/content","reason":"new","refs":{"llc":"本应如此。","ltm":"本應如此。"}}
-{"key":"StoryData/E003I2.json|/dataList/119/content","reason":"new","refs":{"llc":"但浮浮无所不知。","ltm":"但浮浮無所不知。"}}
-{"key":"StoryData/E003I2.json|/dataList/12/content","reason":"new","refs":{"llc":"嘿嘿！现在是希斯的咯！","ltm":"嘿嘿！現在是希斯的咯！"}}
-{"key":"StoryData/E003I2.json|/dataList/120/content","reason":"new","refs":{"llc":"浮浮知晓能让小凤安保人员出动的唯一机制。","ltm":"浮浮知曉能讓小鳳安保人員出動的唯一機制。"}}
-{"key":"StoryData/E003I2.json|/dataList/121/content","reason":"new","refs":{"llc":"机·制是什么。班长。","ltm":"機・制是什麼。班長。"}}
-{"key":"StoryData/E003I2.json|/dataList/122/content","reason":"new","refs":{"llc":"这可不是缩写，良秀~","ltm":"這可不是縮寫，良秀~"}}
-{"key":"StoryData/E003I2.json|/dataList/123/content","reason":"new","refs":{"llc":"……唯一的方法是。","ltm":"……唯一的方法是。"}}
-{"key":"StoryData/E003I2.json|/dataList/124/content","reason":"new","refs":{"llc":"一开始就该用我能听·懂的说法，班长。","ltm":"一開始就該用我能聽・懂的說法，班長。"}}
-{"key":"StoryData/E003I2.json|/dataList/125/content","reason":"new","refs":{"llc":"<……所以呢，是什么方法？>","ltm":"<……所以呢，是什麼方法？>"}}
-{"key":"StoryData/E003I2.json|/dataList/126/content","reason":"new","refs":{"llc":"那是，禁忌……不……嗯。","ltm":"那是，禁忌……不……嗯。"}}
-{"key":"StoryData/E003I2.json|/dataList/127/content","reason":"new","refs":{"llc":"……做些坏事来打破规矩就行了。","ltm":"……做些壞事來打破規矩就行了。"}}
-{"key":"StoryData/E003I2.json|/dataList/128/content","reason":"new","refs":{"llc":"<啊，你的意思是打破禁忌吗。>","ltm":"<啊，你的意思是打破禁忌嗎。>"}}
-{"key":"StoryData/E003I2.json|/dataList/129/content","reason":"new","refs":{"llc":"<但……禁忌什么的，不是不应该去打破的东西吗……？>","ltm":"<但……禁忌什麼的，不是不應該去打破的東西嗎……？>"}}
-{"key":"StoryData/E003I2.json|/dataList/13/content","reason":"new","refs":{"llc":"在辛克莱惴惴不安的时候，希斯克利夫突然跳出来，卷走了桌上全部的筹码。","ltm":"在辛克萊惴惴不安的時候，希斯克利夫突然跳出來，捲走了桌上全部的籌碼。"}}
-{"key":"StoryData/E003I2.json|/dataList/13/place","reason":"new","refs":{"llc":"幼儿园厨房？","ltm":"幼兒園廚房？"}}
-{"key":"StoryData/E003I2.json|/dataList/130/content","reason":"new","refs":{"llc":"你要不是蠢·蛋的话，就确实是那回事。","ltm":"你要不是蠢・蛋的話，就確實是那回事。"}}
-{"key":"StoryData/E003I2.json|/dataList/131/content","reason":"new","refs":{"llc":"良秀。不可以对园长没有礼貌。","ltm":"良秀。不可以對園長沒有禮貌。"}}
-{"key":"StoryData/E003I2.json|/dataList/132/content","reason":"new","refs":{"llc":"……哈。那……确实如此？","ltm":"……哈。那……確實如此？"}}
-{"key":"StoryData/E003I2.json|/dataList/133/content","reason":"new","refs":{"llc":"<啊，没事。没关系的……>","ltm":"<啊，沒事。沒關係的……>"}}
-{"key":"StoryData/E003I2.json|/dataList/134/content","reason":"new","refs":{"llc":"感觉听到了一些平时没听过的话……","ltm":"感覺聽到了一些平時沒聽過的話……"}}
-{"key":"StoryData/E003I2.json|/dataList/135/content","reason":"new","refs":{"llc":"<总、总之……要怎么去打破禁忌呢……>","ltm":"<總、總之……要怎麼去打破禁忌呢……>"}}
-{"key":"StoryData/E003I2.json|/dataList/136/content","reason":"new","refs":{"llc":"过来这里。园长。","ltm":"過來這裡。園長。"}}
-{"key":"StoryData/E003I2.json|/dataList/137/content","reason":"new","refs":{"llc":"浮士德注视着某处，手中紧握着她的海绵剑。","ltm":"浮士德注視著某處，手中緊握著她的海綿劍。"}}
-{"key":"StoryData/E003I2.json|/dataList/138/content","reason":"new","refs":{"llc":"因此，跟随着她的目光……","ltm":"因此，跟隨著她的目光……"}}
-{"key":"StoryData/E003I2.json|/dataList/14/content","reason":"new","refs":{"llc":"欸？！喂，给我站住！","ltm":"欸？！喂，給我站住！"}}
-{"key":"StoryData/E003I2.json|/dataList/140/content","reason":"new","refs":{"llc":"在纷飞的尘土之后，我看见了……","ltm":"在紛飛的塵土之後，我看見了……"}}
-{"key":"StoryData/E003I2.json|/dataList/141/content","reason":"new","refs":{"llc":"<啊，感觉我好像明白怎么回事了。>","ltm":"<啊，感覺我好像明白怎麼回事了。>"}}
-{"key":"StoryData/E003I2.json|/dataList/142/content","reason":"new","refs":{"llc":"正一！！！！！！！！","ltm":"正一！！！！！！！！"}}
-{"key":"StoryData/E003I2.json|/dataList/143/content","reason":"new","refs":{"llc":"是堂吉诃德正高举着充气骑枪向我跑来。","ltm":"是唐吉訶德正高舉著充氣騎槍向我跑來。"}}
-{"key":"StoryData/E003I2.json|/dataList/144/content","reason":"new","refs":{"llc":"在那枪尖上……似乎挂着什么不断飘荡着的破布一样的东西。","ltm":"在那槍尖上……似乎掛著什麼不斷飄蕩著的破布一樣的東西。"}}
-{"key":"StoryData/E003I2.json|/dataList/145/content","reason":"new","refs":{"llc":"小凤的栖息地……小凤家的帐篷被破坏，对它们来说是一种禁……一种坏事。","ltm":"小鳳的棲息地……小鳳家的帳篷被破壞，對它們來說是一種禁……一種壞事。"}}
-{"key":"StoryData/E003I2.json|/dataList/146/content","reason":"new","refs":{"llc":"浮浮知道是堂吉诃德的话，一定能做到的。","ltm":"浮浮知道是唐吉訶德的話，一定能做到的。"}}
-{"key":"StoryData/E003I2.json|/dataList/147/content","reason":"new","refs":{"llc":"正一！正一！","ltm":"正一！正一！"}}
-{"key":"StoryData/E003I2.json|/dataList/148/content","reason":"new","refs":{"llc":"<天哪……>","ltm":"<天哪……>"}}
-{"key":"StoryData/E003I2.json|/dataList/149/content","reason":"new","refs":{"llc":"我什么都说不出来，只能用手扶住额头，即便如此也没法让即将到来的混乱减少半分。","ltm":"我什麼都說不出來，只能用手扶住額頭，即便如此也無法讓即將到來的混亂減少半分。"}}
-{"key":"StoryData/E003I2.json|/dataList/15/content","reason":"new","refs":{"llc":"……在我来得及劝阻他们之前，以实玛利就追着希斯克利夫噔噔噔地跑远了。","ltm":"……在我來得及勸阻他們之前，以實瑪利就追著希斯克利夫噔噔噔地跑遠了。"}}
-{"key":"StoryData/E003I2.json|/dataList/16/content","reason":"new","refs":{"llc":"……仍是无颜……呃……没脸面对……","ltm":"……仍是無顏……呃……沒臉面對……"}}
-{"key":"StoryData/E003I2.json|/dataList/16/place","reason":"new","refs":{"llc":"幼儿园厨房？","ltm":"幼兒園廚房？"}}
-{"key":"StoryData/E003I2.json|/dataList/17/content","reason":"new","refs":{"llc":"<不，你也辛苦了……>","ltm":"<不，你也辛苦了……>"}}
-{"key":"StoryData/E003I2.json|/dataList/18/content","reason":"new","refs":{"llc":"<说起来，又不是所需的材料，为什么我们要收集这么多筹码？>","ltm":"<說起來，又不是所需的材料，為什麼我們要收集這麼多籌碼？>"}}
-{"key":"StoryData/E003I2.json|/dataList/19/content","reason":"new","refs":{"llc":"你还不知道吗？像这样把它的包装剥开的话……","ltm":"你還不知道嗎？像這樣把它的包裝剝開的話……"}}
-{"key":"StoryData/E003I2.json|/dataList/2/content","reason":"new","refs":{"llc":"噢……你们有把它们捡回来吗？","ltm":"噢……你們有把它們撿回來嗎？"}}
-{"key":"StoryData/E003I2.json|/dataList/20/content","reason":"new","refs":{"llc":"尤莉老师咔嚓咔嚓地摆弄了一会包装纸，里面薄薄的圆形巧克力露了出来。","ltm":"尤莉老師咔嚓咔嚓地擺弄了一陣子包裝紙，裡面薄薄的圓形巧克力露了出來。"}}
-{"key":"StoryData/E003I2.json|/dataList/22/content","reason":"new","refs":{"llc":"老大，你知道这个吗？！","ltm":"老大，你知道這個嗎？！"}}
-{"key":"StoryData/E003I2.json|/dataList/23/content","reason":"new","refs":{"llc":"呼呼。事实使然。不，我是说，当然。","ltm":"呼呼。事實使然。不，我是說，當然。"}}
-{"key":"StoryData/E003I2.json|/dataList/24/content","reason":"new","refs":{"llc":"做得真棒，小鸡班。很好地掌握了10区的小凤们的习性呢！","ltm":"做得真棒，小雞班。很好地掌握了10區的小鳳們的習性呢！"}}
-{"key":"StoryData/E003I2.json|/dataList/25/content","reason":"new","refs":{"llc":"但……好像只剩下两个小朋友要留下来做料理了……大家没关系吗？","ltm":"但……好像只剩下兩個小朋友要留下來做料理了……大家沒關係嗎？"}}
-{"key":"StoryData/E003I2.json|/dataList/26/content","reason":"new","refs":{"llc":"……并无选择之余地……呃，没有。","ltm":"……並無選擇之餘地……呃，沒有。"}}
-{"key":"StoryData/E003I2.json|/dataList/27/content","reason":"new","refs":{"llc":"因为我有一份秘藏的菜谱。","ltm":"因為我有一份秘藏的菜譜。"}}
-{"key":"StoryData/E003I2.json|/dataList/28/content","reason":"new","refs":{"llc":"秘藏的菜谱……？","ltm":"秘藏的菜譜……？"}}
-{"key":"StoryData/E003I2.json|/dataList/29/content","reason":"new","refs":{"llc":"小弟啊，先来把小凤……","ltm":"小弟啊，先來把小鳳……"}}
-{"key":"StoryData/E003I2.json|/dataList/3/content","reason":"new","refs":{"llc":"是！我捡了这——么多片片！","ltm":"是！我撿了這——麼多片片！"}}
-{"key":"StoryData/E003I2.json|/dataList/30/content","reason":"new","refs":{"llc":"不久之后……","ltm":"不久之後……"}}
-{"key":"StoryData/E003I2.json|/dataList/31/content","reason":"new","refs":{"llc":"好，此番已然事毕……呃……完成了。","ltm":"好，此番已然事畢……呃……完成了。"}}
-{"key":"StoryData/E003I2.json|/dataList/33/content","reason":"new","refs":{"llc":"<这是……>","ltm":"<這是……>"}}
-{"key":"StoryData/E003I2.json|/dataList/34/content","reason":"new","refs":{"llc":"把小凤分割好，加入水，混合加入胡萝卜、土豆、洋葱和大蒜……","ltm":"把小鳳分割好，加入水，混合加入胡蘿蔔、土豆、洋蔥和大蒜……"}}
-{"key":"StoryData/E003I2.json|/dataList/35/content","reason":"new","refs":{"llc":"再堆上大量筹码即可。","ltm":"再堆上大量籌碼即可。"}}
-{"key":"StoryData/E003I2.json|/dataList/36/content","reason":"new","refs":{"llc":"呼。这就是“全凤炖”……请看。","ltm":"呼。這就是「全鳳燉」……請看。"}}
-{"key":"StoryData/E003I2.json|/dataList/37/content","reason":"new","refs":{"llc":"融化沸腾的巧克力咕嘟作响，在那之中不知为何似乎有小凤悲伤的表情闪过。","ltm":"融化沸騰的巧克力咕嘟作響，在那之中不知為何似乎有小鳳悲傷的表情閃過。"}}
-{"key":"StoryData/E003I2.json|/dataList/38/content","reason":"new","refs":{"llc":"<这……没问题吗？>","ltm":"<這……沒問題嗎？>"}}
-{"key":"StoryData/E003I2.json|/dataList/39/content","reason":"new","refs":{"llc":"啊……这不……理想吗……？","ltm":"啊……這不……理想嗎……？"}}
-{"key":"StoryData/E003I2.json|/dataList/4/content","reason":"new","refs":{"llc":"以实玛利得意地回答着，把一大袋筹码倒在了餐桌上。","ltm":"以實瑪利得意地回答著，把一大袋籌碼倒在了餐桌上。"}}
-{"key":"StoryData/E003I2.json|/dataList/40/content","reason":"new","refs":{"llc":"……李箱好像受到了我话语的冲击，一副马上就要哭出来了的表情。","ltm":"……李箱好像受到了我話語的衝擊，一副馬上就要哭出來了的表情。"}}
-{"key":"StoryData/E003I2.json|/dataList/41/content","reason":"new","refs":{"llc":"<啊，不……那、那个……>","ltm":"<啊，不……那、那個……>"}}
-{"key":"StoryData/E003I2.json|/dataList/42/content","reason":"new","refs":{"llc":"嗯~做得很好哦，李箱小朋友！","ltm":"嗯~做得很好哦，李箱小朋友！"}}
-{"key":"StoryData/E003I2.json|/dataList/43/content","reason":"new","refs":{"llc":"真的吗……？","ltm":"真的嗎……？"}}
-{"key":"StoryData/E003I2.json|/dataList/44/content","reason":"new","refs":{"llc":"当然了，看这黏稠浓厚的汤汁，还有这些火候正好的食材！","ltm":"當然了，看這黏稠濃厚的湯汁，還有這些火候正好的食材！"}}
-{"key":"StoryData/E003I2.json|/dataList/45/content","reason":"new","refs":{"llc":"由两个小朋友来完成可不轻松，真的做得很棒！","ltm":"由兩個小朋友來完成可不輕鬆，真的做得很棒！"}}
-{"key":"StoryData/E003I2.json|/dataList/47/content","reason":"new","refs":{"llc":"十分理想……","ltm":"十分理想……"}}
-{"key":"StoryData/E003I2.json|/dataList/48/content","reason":"new","refs":{"llc":"看着孩子们互相注视，露出感动的笑容，尤莉老师悄悄地走了过来。","ltm":"看著孩子們互相注視，露出感動的笑容，尤莉老師悄悄地走了過來。"}}
-{"key":"StoryData/E003I2.json|/dataList/49/content","reason":"new","refs":{"llc":"老师，我觉得因为是孩子们齐心协力完成的，所以味道并没有那么重要。","ltm":"老師，我覺得因為是孩子們齊心協力完成的，所以味道並沒有那麼重要。"}}
-{"key":"StoryData/E003I2.json|/dataList/5/content","reason":"new","refs":{"llc":"哦哦……闪闪的！","ltm":"哦哦……閃閃的！"}}
-{"key":"StoryData/E003I2.json|/dataList/50/content","reason":"new","refs":{"llc":"孩子们没有受伤、顺利完成体验，我对此感到开心。","ltm":"孩子們沒有受傷、順利完成體驗，我對此感到開心。"}}
-{"key":"StoryData/E003I2.json|/dataList/51/content","reason":"new","refs":{"llc":"<我没有考虑到……是我想得太浅了。>","ltm":"<我沒有考慮到……是我想得太淺了。>"}}
-{"key":"StoryData/E003I2.json|/dataList/52/content","reason":"new","refs":{"llc":"当然了，浸满巧克力的小凤一定很美味！","ltm":"當然了，浸滿巧克力的小鳳一定很美味！"}}
-{"key":"StoryData/E003I2.json|/dataList/54/content","reason":"new","refs":{"llc":"还有这样的俗话呢。只要有巧克力，就连鞋子都能吃得津津有味。","ltm":"還有這樣的俗話呢。只要有巧克力，就連鞋子都能吃得津津有味。"}}
-{"key":"StoryData/E003I2.json|/dataList/55/content","reason":"new","refs":{"llc":"<与我所知的版本似乎有些出入……>","ltm":"<與我所知的版本似乎有些出入……>"}}
-{"key":"StoryData/E003I2.json|/dataList/56/content","reason":"new","refs":{"llc":"也没有必要和我模糊的常识相互比对了吧。","ltm":"也沒有必要和我模糊的常識相互比對了吧。"}}
-{"key":"StoryData/E003I2.json|/dataList/57/content","reason":"new","refs":{"llc":"在这里就是这样的吧。","ltm":"在這裡就是這樣的吧。"}}
-{"key":"StoryData/E003I2.json|/dataList/58/content","reason":"new","refs":{"llc":"总之，尤莉老师终于有机会尝上一口……","ltm":"總之，尤莉老師終於有機會嘗上一口……"}}
-{"key":"StoryData/E003I2.json|/dataList/59/content","reason":"new","refs":{"llc":"啊，你给我站住！！！","ltm":"啊，你給我站住！！！"}}
-{"key":"StoryData/E003I2.json|/dataList/6/content","reason":"new","refs":{"llc":"老师老师，我做得很好吧？李箱哥哥可是连我的一半都没捡到！","ltm":"老師老師，我做得很好吧？李箱哥哥可是連我的一半都沒撿到！"}}
-{"key":"StoryData/E003I2.json|/dataList/61/content","reason":"new","refs":{"llc":"那时从远方传来了啪嗒啪嗒的声音……","ltm":"那時從遠方傳來了啪嗒啪嗒的聲音……"}}
-{"key":"StoryData/E003I2.json|/dataList/62/content","reason":"new","refs":{"llc":"希斯克利夫从另一侧的走廊飞快地冲进了餐厅。","ltm":"希斯克利夫從另一側的走廊飛快地衝進了餐廳。"}}
-{"key":"StoryData/E003I2.json|/dataList/63/content","reason":"new","refs":{"llc":"从他后面传来以实玛利怒火中烧、气喘吁吁的声音……","ltm":"從他後面傳來以實瑪利怒火中燒、氣喘吁吁的聲音……"}}
-{"key":"StoryData/E003I2.json|/dataList/64/content","reason":"new","refs":{"llc":"给我……站住！","ltm":"給我……站住！"}}
-{"key":"StoryData/E003I2.json|/dataList/65/content","reason":"new","refs":{"llc":"从暗处突然飞出来一只室内鞋，似乎是想扔向不断逃跑的希斯克利夫。","ltm":"從暗處突然飛出來一隻室內鞋，似乎是想扔向不斷逃跑的希斯克利夫。"}}
-{"key":"StoryData/E003I2.json|/dataList/66/content","reason":"new","refs":{"llc":"那只鞋的落点……","ltm":"那隻鞋的落點……"}}
-{"key":"StoryData/E003I2.json|/dataList/67/content","reason":"new","refs":{"llc":"咣当当当！","ltm":"咣噹噹噹！"}}
-{"key":"StoryData/E003I2.json|/dataList/7/content","reason":"new","refs":{"llc":"唔……无颜……呃……没脸……面对老师。","ltm":"唔……無顏……呃……沒臉……面對老師。"}}
-{"key":"StoryData/E003I2.json|/dataList/70/content","reason":"new","refs":{"llc":"嘿嘿，没打中！没打中！","ltm":"嘿嘿，沒打中！沒打中！"}}
-{"key":"StoryData/E003I2.json|/dataList/71/content","reason":"new","refs":{"llc":"不偏不倚地击中了……小鸡班的全凤炖。","ltm":"不偏不倚地擊中了……小雞班的全鳳燉。"}}
-{"key":"StoryData/E003I2.json|/dataList/72/content","reason":"new","refs":{"llc":"……但丁园长大人……","ltm":"……但丁園長大人……"}}
-{"key":"StoryData/E003I2.json|/dataList/73/content","reason":"new","refs":{"llc":"李箱的双眼中已经噙满了泪水。","ltm":"李箱的雙眼中已經充滿了淚水。"}}
-{"key":"StoryData/E003I2.json|/dataList/74/content","reason":"new","refs":{"llc":"哈啊、哈……你……欸！？","ltm":"哈啊、哈……你……欸！？"}}
-{"key":"StoryData/E003I2.json|/dataList/75/content","reason":"new","refs":{"llc":"这、这……这是不理想的……","ltm":"這、這……這是不理想的……"}}
-{"key":"StoryData/E003I2.json|/dataList/76/content","reason":"new","refs":{"llc":"……以实玛利。再怎么说，也不能这样吧。","ltm":"……以實瑪利。再怎麼說，也不能這樣吧。"}}
-{"key":"StoryData/E003I2.json|/dataList/77/content","reason":"new","refs":{"llc":"你不知道我和老大……为了这个……有多努力……","ltm":"你不知道我和老大……為了這個……有多努力……"}}
-{"key":"StoryData/E003I2.json|/dataList/78/content","reason":"new","refs":{"llc":"……请您……惩罚她……","ltm":"……請您……懲罰她……"}}
-{"key":"StoryData/E003I2.json|/dataList/79/content","reason":"new","refs":{"llc":"我看着……已经变得乱七八糟的菜肴和快要哭出来的李箱。","ltm":"我看著……已經變得亂七八糟的菜餚和快要哭出來的李箱。"}}
-{"key":"StoryData/E003I2.json|/dataList/8/content","reason":"new","refs":{"llc":"是吧？是吧？","ltm":"是吧？是吧？"}}
-{"key":"StoryData/E003I2.json|/dataList/80/content","reason":"new","refs":{"llc":"辛克莱跺着脚向着慌乱的以实玛利走去，希斯克利夫则在走廊的门缝后咯咯地偷笑着。","ltm":"辛克萊跺著腳向著慌亂的以實瑪利走去，希斯克利夫則在走廊的門縫後咯咯地偷笑著。"}}
-{"key":"StoryData/E003I2.json|/dataList/82/content","reason":"new","refs":{"llc":"此外，还有虽然脸上的笑容尚未消失，但额头上的青筋已经开始暴起的尤莉老师……","ltm":"此外，還有雖然臉上的笑容尚未消失，但額頭上已經開始暴起青筋的尤莉老師……"}}
-{"key":"StoryData/E003I2.json|/dataList/83/content","reason":"new","refs":{"llc":"只能这么说了。","ltm":"只能這麼說了。"}}
-{"key":"StoryData/E003I2.json|/dataList/84/content","reason":"new","refs":{"llc":"<去坐反省椅！>","ltm":"<去坐反省椅！>"}}
-{"key":"StoryData/E003I2.json|/dataList/86/content","reason":"new","refs":{"llc":"<这烹饪对决还有必要继续进行下去吗？>","ltm":"<這烹飪對決還有必要繼續進行下去嗎？>"}}
-{"key":"StoryData/E003I2.json|/dataList/86/place","reason":"new","refs":{"llc":"边狱幼儿园？","ltm":"邊獄幼兒園？"}}
-{"key":"StoryData/E003I2.json|/dataList/87/content","reason":"new","refs":{"llc":"<作为你们竞争对手的两个班级都自取灭亡了……你们就算直接把生小凤拿来也能获得胜利。>","ltm":"<作為你們競爭對手的兩個班級都自取滅亡了……你們就算直接把生小鳳拿來也能獲得勝利。>"}}
-{"key":"StoryData/E003I2.json|/dataList/88/content","reason":"new","refs":{"llc":"浮浮认为，这样的话由园长说出来并不合适。","ltm":"浮浮認為，這樣的話由園長說出來並不合適。"}}
-{"key":"StoryData/E003I2.json|/dataList/89/content","reason":"new","refs":{"llc":"这是培养儿童核心素养的关键……","ltm":"這是培養兒童核心素養的關鍵……"}}
-{"key":"StoryData/E003I2.json|/dataList/9/content","reason":"new","refs":{"llc":"果然我比他更适合当小鸡班的班长吧~","ltm":"果然我比他更適合當小雞班的班長吧~"}}
-{"key":"StoryData/E003I2.json|/dataList/90/content","reason":"new","refs":{"llc":"……嗯，那个……让孩子们……更好……更更好地……长大……","ltm":"……嗯，那個……讓孩子們……更好……更更好地……長大……"}}
-{"key":"StoryData/E003I2.json|/dataList/91/content","reason":"new","refs":{"llc":"<……为什么要改变说话方式？>","ltm":"<……為什麼要改變說話方式？>"}}
-{"key":"StoryData/E003I2.json|/dataList/92/content","reason":"new","refs":{"llc":"浮浮意识到浮浮使用的词汇层次过高，难以和那些——其他人交流。","ltm":"浮浮意識到浮浮使用的詞彙層次過高，難以和那些——其他人交流。"}}
-{"key":"StoryData/E003I2.json|/dataList/93/content","reason":"new","refs":{"llc":"<大、大概能听明白……放轻松点没关系的。>","ltm":"<大、大概能聽懂……放輕鬆點沒關係的。>"}}
-{"key":"StoryData/E003I2.json|/dataList/94/content","reason":"new","refs":{"llc":"不可以。因为浮浮是大象班的班长。","ltm":"不可以。因為浮浮是大象班的班長。"}}
-{"key":"StoryData/E003I2.json|/dataList/95/content","reason":"new","refs":{"llc":"班长要对班级里的所有成员……唔，孩子们负责。","ltm":"班長要對班級裡的所有成員……唔，孩子們負責。"}}
-{"key":"StoryData/E003I2.json|/dataList/96/content","reason":"new","refs":{"llc":"在不妨碍信息获取的前提下以体验学习为基础进行教育……啊……","ltm":"在不妨礙資訊獲取的前提下以體驗學習為基礎進行教育……啊……"}}
-{"key":"StoryData/E003I2.json|/dataList/97/content","reason":"new","refs":{"llc":"<得说出其他孩子们能理解的话才行，是这个意思吧？>","ltm":"<得說出其他孩子們能理解的話才行，是這個意思吧？>"}}
-{"key":"StoryData/E003I2.json|/dataList/98/content","reason":"new","refs":{"llc":"简而言之就是如此。","ltm":"簡而言之就是如此。"}}
-{"key":"StoryData/E003I2.json|/dataList/99/content","reason":"new","refs":{"llc":"<……这样啊。大象班的班长既稳重又很有责任心呢。>","ltm":"<……這樣啊。大象班的班長既穩重又很有責任心呢。>"}}
-{"key":"StoryData/E003I3.json|/dataList/0/content","reason":"new","refs":{"llc":"正如浮浮所想的那样，小凤安保人员们已经全都被干掉了。","ltm":"正如浮浮所想的那樣，小鳳安保人員們已經全都被幹掉了。"}}
-{"key":"StoryData/E003I3.json|/dataList/0/place","reason":"new","refs":{"llc":"边狱幼儿园？","ltm":"邊獄幼兒園？"}}
-{"key":"StoryData/E003I3.json|/dataList/1/content","reason":"new","refs":{"llc":"<……是呢。>","ltm":"<……是呢。>"}}
-{"key":"StoryData/E003I3.json|/dataList/13/content","reason":"new","refs":{"llc":"不要缩写。","ltm":"不要縮寫。"}}
-{"key":"StoryData/E003I3.json|/dataList/14/content","reason":"new","refs":{"llc":"……非……非常感谢。啧。","ltm":"……非……非常感謝。嘖。"}}
-{"key":"StoryData/E003I3.json|/dataList/15/content","reason":"new","refs":{"llc":"至少她很听班长的话。","ltm":"至少她很聽班長的話。"}}
-{"key":"StoryData/E003I3.json|/dataList/16/content","reason":"new","refs":{"llc":"<堂吉诃德，你也一样……欸，去哪儿了？>","ltm":"<唐吉訶德，你也一樣……欸，去哪了？>"}}
-{"key":"StoryData/E003I3.json|/dataList/17/content","reason":"new","refs":{"llc":"正一！正一！","ltm":"正一！正一！"}}
-{"key":"StoryData/E003I3.json|/dataList/18/content","reason":"new","refs":{"llc":"……兴致不减的堂吉诃德仍在空地上转着圈蹦蹦跳跳。","ltm":"……興致不減的唐吉訶德仍在空地上轉著圈蹦蹦跳跳。"}}
-{"key":"StoryData/E003I3.json|/dataList/19/content","reason":"new","refs":{"llc":"啊~堂吉诃德！直接坐在地上会弄脏自己的。来，我先给你在这里铺上丝绸包袱……","ltm":"啊~唐吉訶德！直接坐在地上會弄髒自己的。來，我先給你在這裡鋪上絲綢包袱……"}}
-{"key":"StoryData/E003I3.json|/dataList/20/content","reason":"new","refs":{"llc":"哎呀，你的嘴角还沾上血了……","ltm":"哎呀，你的嘴角還沾上血了……"}}
-{"key":"StoryData/E003I3.json|/dataList/22/content","reason":"new","refs":{"llc":"……堂吉诃德突然拍了一下鸿璐的手臂。","ltm":"……唐吉訶德突然拍了一下鴻璐的手臂。 "}}
-{"key":"StoryData/E003I3.json|/dataList/24/content","reason":"new","refs":{"llc":"别碰我的嘴。","ltm":"別碰我的嘴。"}}
-{"key":"StoryData/E003I3.json|/dataList/25/content","reason":"new","refs":{"llc":"……这样的盛宴真是久违了。","ltm":"……這樣的盛宴真是久違了。"}}
-{"key":"StoryData/E003I3.json|/dataList/26/content","reason":"new","refs":{"llc":"<……什么情况？>","ltm":"<……什麼情況？>"}}
-{"key":"StoryData/E003I3.json|/dataList/27/content","reason":"new","refs":{"llc":"<该不会，堂吉诃德是在装小孩吧……>","ltm":"<該不會，唐吉訶德是在裝小孩吧……>"}}
-{"key":"StoryData/E003I3.json|/dataList/28/content","reason":"new","refs":{"llc":"随他们去吧，园长老师。孩子们就是这样玩耍着长大的。","ltm":"隨他們去吧，園長老師。孩子們就是這樣玩耍著長大的。"}}
-{"key":"StoryData/E003I3.json|/dataList/29/content","reason":"new","refs":{"llc":"不要打扰吃饭的人。收音机讲的。","ltm":"不要打擾吃飯的人。收音機講的。"}}
-{"key":"StoryData/E003I3.json|/dataList/3/content","reason":"new","refs":{"llc":"<……怎、怎么了？>","ltm":"<……怎、怎麼了？>"}}
-{"key":"StoryData/E003I3.json|/dataList/30/content","reason":"new","refs":{"llc":"<啊，老师们！二位不是应该在厨房吗……>","ltm":"<啊，老師們！二位不是應該在廚房嗎……>"}}
-{"key":"StoryData/E003I3.json|/dataList/31/content","reason":"new","refs":{"llc":"孩子们来得太慢了，我就自己出来看一下。","ltm":"孩子們來得太慢了，我就自己出來看一下。"}}
-{"key":"StoryData/E003I3.json|/dataList/32/content","reason":"new","refs":{"llc":"很遗憾，前两个班级的菜肴我都没有机会品尝……","ltm":"很遺憾，前兩個班級的菜餚我都沒有機會品嚐……"}}
-{"key":"StoryData/E003I3.json|/dataList/33/content","reason":"new","refs":{"llc":"如果能品尝到你们做的，我会很开心的。","ltm":"如果能品嚐到你們做的，我會很開心的。"}}
-{"key":"StoryData/E003I3.json|/dataList/35/content","reason":"new","refs":{"llc":"那，浮士德小朋友？今天准备的菜肴是什么呢？","ltm":"那，浮士德小朋友？今天準備的菜餚是什麼呢？"}}
-{"key":"StoryData/E003I3.json|/dataList/38/content","reason":"new","refs":{"llc":"没有准备。","ltm":"沒有準備。"}}
-{"key":"StoryData/E003I3.json|/dataList/39/content","reason":"new","refs":{"llc":"欸？","ltm":"欸？"}}
-{"key":"StoryData/E003I3.json|/dataList/4/content","reason":"new","refs":{"llc":"园长大人，班长的表情好像是希望自己得到表扬！","ltm":"園長大人，班長的表情好像是希望自己得到表揚！"}}
-{"key":"StoryData/E003I3.json|/dataList/40/content","reason":"new","refs":{"llc":"浮浮只是想要小凤安保人员所持有的扩展类Ⅲ型警棍。","ltm":"浮浮只是想要小鳳安保人員所持有的擴展類Ⅲ型警棍。"}}
-{"key":"StoryData/E003I3.json|/dataList/41/content","reason":"new","refs":{"llc":"把它们分解后收集起来，就能用来制作新的玩具。","ltm":"把它們分解後收集起來， 就能用來製作新的玩具。"}}
-{"key":"StoryData/E003I3.json|/dataList/42/content","reason":"new","refs":{"llc":"收集了非常多，我们大获成功。","ltm":"收集了非常多，我們大獲成功。"}}
-{"key":"StoryData/E003I3.json|/dataList/43/content","reason":"new","refs":{"llc":"这话是，什么意思……","ltm":"這話是，什麼意思……"}}
-{"key":"StoryData/E003I3.json|/dataList/44/content","reason":"new","refs":{"llc":"浮浮很好奇。","ltm":"浮浮很好奇。"}}
-{"key":"StoryData/E003I3.json|/dataList/45/content","reason":"new","refs":{"llc":"只要为人体提供必需的营养，就能够维持生命。我认为像烹饪这样的行为，不由生产者而是由消费者来做是效率低下的。所以我们为什么一定要进行这样的体验学习呢？","ltm":"只要為人體提供必需的營養，就能夠維持生命。我認為像烹飪這樣的行為，不由生產者而是由消費者來做是效率低下的。所以我們為什麼一定要進行這樣的體驗學習呢？"}}
-{"key":"StoryData/E003I3.json|/dataList/47/content","reason":"new","refs":{"llc":"呃……哈哈，你说得有点太快了，老师没听明白……简单地说一下吧？","ltm":"呃……哈哈，你說得有點太快了，老師沒聽明白……簡單地說一下吧？"}}
-{"key":"StoryData/E003I3.json|/dataList/48/content","reason":"new","refs":{"llc":"啊，好的。","ltm":"啊，好的。"}}
-{"key":"StoryData/E003I3.json|/dataList/49/content","reason":"new","refs":{"llc":"嗯……浮浮对烹饪不感兴趣。","ltm":"嗯……浮浮對烹飪不感興趣。"}}
-{"key":"StoryData/E003I3.json|/dataList/5/content","reason":"new","refs":{"llc":"<这、这样啊！干得漂亮，浮士德。>","ltm":"<這、這樣啊！幹得漂亮，浮士德。>"}}
-{"key":"StoryData/E003I3.json|/dataList/50/content","reason":"new","refs":{"llc":"……她把那句话说出来了。","ltm":"……她把那句話說出來了。"}}
-{"key":"StoryData/E003I3.json|/dataList/52/content","reason":"new","refs":{"llc":"卡戎老师，没教过那种话。没有，责任。","ltm":"卡戎老師，沒教過那種話。沒有，責任。"}}
-{"key":"StoryData/E003I3.json|/dataList/53/content","reason":"new","refs":{"llc":"跑路跑路。","ltm":"跑路跑路。"}}
-{"key":"StoryData/E003I3.json|/dataList/55/content","reason":"new","refs":{"llc":"浮浮认为……能量果冻是更具效率之选。","ltm":"浮浮認為……能量果凍是更具效率之選。"}}
-{"key":"StoryData/E003I3.json|/dataList/56/content","reason":"new","refs":{"llc":"尤莉老师的表情……变得阴沉起来……！","ltm":"尤莉老師的表情……變得陰沉起來……！"}}
-{"key":"StoryData/E003I3.json|/dataList/57/content","reason":"new","refs":{"llc":"<……其、其他的小朋友们呢？良秀？鸿璐？>","ltm":"<……其、其他的小朋友們呢？良秀？鴻璐？>"}}
-{"key":"StoryData/E003I3.json|/dataList/58/content","reason":"new","refs":{"llc":"就餐时间也该精简才好。老师。","ltm":"就餐時間也該精簡才好。老師。"}}
-{"key":"StoryData/E003I3.json|/dataList/59/content","reason":"new","refs":{"llc":"嗯……我还是喜欢家里做的饭！","ltm":"嗯……我還是喜歡家裡做的飯！"}}
-{"key":"StoryData/E003I3.json|/dataList/6/content","reason":"new","refs":{"llc":"是。浮浮一向非常优秀。","ltm":"是。浮浮一向非常優秀。"}}
-{"key":"StoryData/E003I3.json|/dataList/61/content","reason":"new","refs":{"llc":"正一！正一！","ltm":"正一！正一！"}}
-{"key":"StoryData/E003I3.json|/dataList/62/content","reason":"new","refs":{"llc":"<已经全都暴露了不要这样了，堂吉诃德。>","ltm":"<已經全都暴露了不要這樣了，唐吉訶德。>"}}
-{"key":"StoryData/E003I3.json|/dataList/64/content","reason":"new","refs":{"llc":"……这样啊。","ltm":"……這樣啊。"}}
-{"key":"StoryData/E003I3.json|/dataList/65/content","reason":"new","refs":{"llc":"我只是希望孩子们能通过吃饭，快乐健康地成长下去。","ltm":"我只是希望孩子們能通過吃飯，快樂健康地成長下去。"}}
-{"key":"StoryData/E003I3.json|/dataList/66/content","reason":"new","refs":{"llc":"我眼睛的病让我的身体也很不好……当着两个班的班主任，还要利用空闲时间甚至加班来策划这次体验学习……","ltm":"我眼睛的病讓我的身體也很不好……當著兩個班的班主任，還要利用空閒時間甚至加班來策劃這次體驗學習……"}}
-{"key":"StoryData/E003I3.json|/dataList/67/content","reason":"new","refs":{"llc":"都是为了孩子们……","ltm":"都是為了孩子們……"}}
-{"key":"StoryData/E003I3.json|/dataList/68/content","reason":"new","refs":{"llc":"但结果……竟然是这样。","ltm":"但結果……竟然是這樣。"}}
-{"key":"StoryData/E003I3.json|/dataList/69/content","reason":"new","refs":{"llc":"<老、老师？>","ltm":"<老、老師？>"}}
-{"key":"StoryData/E003I3.json|/dataList/7/content","reason":"new","refs":{"llc":"<大家也做得很好……>","ltm":"<大家也做得很好……>"}}
-{"key":"StoryData/E003I3.json|/dataList/70/content","reason":"new","refs":{"llc":"我不想加班。","ltm":"我不想加班。"}}
-{"key":"StoryData/E003I3.json|/dataList/71/content","reason":"new","refs":{"llc":"尤莉老师的身体……正在发生奇怪的变化。","ltm":"尤莉老師的身體……正在發生奇怪的變化。"}}
-{"key":"StoryData/E003I3.json|/dataList/72/content","reason":"new","refs":{"llc":"我们没人想加班。","ltm":"我們沒人想加班。"}}
-{"key":"StoryData/E003I3.json|/dataList/73/content","reason":"new","refs":{"llc":"<请不要用那种让人感觉会有可怕事情发生的语气说话……！>","ltm":"<請不要用那種讓人感覺會有可怕事情發生的語氣說話……！>"}}
-{"key":"StoryData/E003I3.json|/dataList/74/content","reason":"new","refs":{"llc":"那到底要我怎么办？！难道当营养师是一种罪孽吗？","ltm":"那到底要我怎麼辦？！難道當營養師是一種罪孽嗎？"}}
-{"key":"StoryData/E003I3.json|/dataList/75/content","reason":"new","refs":{"llc":"……不，算了。","ltm":"……不，算了。"}}
-{"key":"StoryData/E003I3.json|/dataList/76/content","reason":"new","refs":{"llc":"如果谁都不去珍惜食物的话……","ltm":"如果誰都不去珍惜食物的話……"}}
-{"key":"StoryData/E003I3.json|/dataList/78/content","reason":"new","refs":{"llc":"正一？","ltm":"正一？"}}
-{"key":"StoryData/E003I3.json|/dataList/79/content","reason":"new","refs":{"llc":"<……别再演了。去把坐在反省椅上的孩子们都带过来。>","ltm":"<……別再演了。去把坐在反省椅上的孩子們都帶過來。>"}}
-{"key":"StoryData/E003I3.json|/dataList/8/content","reason":"new","refs":{"llc":"非常感谢，园长大人！","ltm":"非常感謝，園長大人！"}}
-{"key":"StoryData/E003I3.json|/dataList/80/content","reason":"new","refs":{"llc":"……明白了。","ltm":"……明白了。"}}
-{"key":"StoryData/E003I3.json|/dataList/81/content","reason":"new","refs":{"llc":"给你们……直接塞进嘴里就好了！！！","ltm":"給你們……直接塞進嘴裡就好了！！！"}}
-{"key":"StoryData/E003I3.json|/dataList/81/title","reason":"new","refs":{"llc":"扭曲","ltm":"扭曲"}}
-{"key":"StoryData/E003I3.json|/dataList/9/content","reason":"new","refs":{"llc":"今天在体验学习学到的东西，回家也要教给妹妹才行~","ltm":"今天在體驗學習學到的東西，回家也要教給妹妹才行~"}}
-{"key":"StoryData/E003I4.json|/dataList/10/content","reason":"new","refs":{"llc":"无论是梦还是现实……事情都会变得完全相同呢。真是不可思议。","ltm":"無論是夢還是現實……事情都會變得完全相同呢。真是不可思議。 "}}
-{"key":"StoryData/E003I4.json|/dataList/11/content","reason":"new","refs":{"llc":"……而我连吃都没法吃。","ltm":"……而我連吃都無法吃。"}}
-{"key":"StoryData/E003I4.json|/dataList/12/content","reason":"new","refs":{"llc":"经理兄的话，应该有能立刻让他们安静下来的好办法……对吧？","ltm":"經理兄的話，應該有能立刻讓他們安靜下來的好辦法……對吧？"}}
-{"key":"StoryData/E003I4.json|/dataList/13/content","reason":"new","refs":{"llc":"好办法？什么时候有那种东西了？","ltm":"好辦法？什麼時候有那種東西了？"}}
-{"key":"StoryData/E003I4.json|/dataList/14/content","reason":"new","refs":{"llc":"<呃……那个……反省椅怎么样？>","ltm":"<呃……那個……反省椅怎麼樣？>"}}
-{"key":"StoryData/E003I4.json|/dataList/15/content","reason":"new","refs":{"llc":"啊，我难道还没睡醒吗……","ltm":"啊，我難道還沒睡醒嗎……"}}
-{"key":"StoryData/E003I4.json|/dataList/16/content","reason":"new","refs":{"llc":"<啊，抱歉。我说了句蠢话。那个……>","ltm":"<啊，抱歉。我說了句蠢話。那個……>"}}
-{"key":"StoryData/E003I4.json|/dataList/17/content","reason":"new","refs":{"llc":"我摸着后脑勺尴尬地向前看去，不知为何罪人们却全都安静了下来。","ltm":"我摸著後腦勺尷尬地向前看去，不知為何罪人們卻全都安靜了下來。"}}
-{"key":"StoryData/E003I4.json|/dataList/19/content","reason":"new","refs":{"llc":"然后大家慢慢地闭上嘴……坐回了座位上。","ltm":"然後大家慢慢地閉上嘴……坐回了座位上。"}}
-{"key":"StoryData/E003I4.json|/dataList/2/content","reason":"new","refs":{"llc":"哈……我们家经理兄啊，你怎么定期在巴士上做噩梦呢。","ltm":"哈……我們家經理兄啊，你怎麼定期在巴士上做噩夢呢。"}}
-{"key":"StoryData/E003I4.json|/dataList/20/content","reason":"new","refs":{"llc":"就像……在椅子上反省一样。","ltm":"就像……在椅子上反省一樣。"}}
-{"key":"StoryData/E003I4.json|/dataList/21/content","reason":"new","refs":{"llc":"<你、你们，什么情况……？>","ltm":"<你、你們，什麼情況……？>"}}
-{"key":"StoryData/E003I4.json|/dataList/21/place","reason":"new","refs":{"llc":"梅菲斯托费勒斯 内部？","ltm":"梅菲斯托費勒斯 內部？"}}
-{"key":"StoryData/E003I4.json|/dataList/22/content","reason":"new","refs":{"llc":"大家……请保持安静……如果在反省椅上吵闹……就会被暴龙班抓走……","ltm":"大家……請保持安靜……如果在反省椅上吵鬧……就會被暴龍班抓走……"}}
-{"key":"StoryData/E003I4.json|/dataList/23/content","reason":"new","refs":{"llc":"暴龙……班？","ltm":"暴龍……班？"}}
-{"key":"StoryData/E003I4.json|/dataList/24/content","reason":"new","refs":{"llc":"他们怎么会知道这个词……","ltm":"他們怎麼會知道這個詞……"}}
-{"key":"StoryData/E003I4.json|/dataList/25/content","reason":"new","refs":{"llc":"好可怕，好可怕……听说暴龙班会一口把坏孩子们全吃掉……","ltm":"好可怕，好可怕……聽說暴龍班會一口把壞孩子們全吃掉……"}}
-{"key":"StoryData/E003I4.json|/dataList/26/content","reason":"new","refs":{"llc":"据说他每次离开幼儿园，其实都是去惩罚坏孩子们……","ltm":"據說他每次離開幼兒園，其實都是去懲罰壞孩子們……"}}
-{"key":"StoryData/E003I4.json|/dataList/27/content","reason":"new","refs":{"llc":"不，他们在说些什么呢？这里不是梅菲斯托费勒斯吗……","ltm":"不，他們在說些什麼呢？這裡不是梅菲斯托費勒斯嗎……"}}
-{"key":"StoryData/E003I4.json|/dataList/29/content","reason":"new","refs":{"llc":"有两个座位……还空着。","ltm":"有兩個座位……還空著。"}}
-{"key":"StoryData/E003I4.json|/dataList/3/content","reason":"new","refs":{"llc":"做、做梦？刚刚是做梦吗？","ltm":"做、做夢？剛剛是做夢嗎？"}}
-{"key":"StoryData/E003I4.json|/dataList/30/content","reason":"new","refs":{"llc":"但丁……园长大人……","ltm":"但丁……園長大人……"}}
-{"key":"StoryData/E003I4.json|/dataList/31/content","reason":"new","refs":{"llc":"其他小朋友们又开始吵闹了……","ltm":"其他小朋友們又開始吵鬧了……"}}
-{"key":"StoryData/E003I4.json|/dataList/32/content","reason":"new","refs":{"llc":"咿咿咿……！是暴龙班的班长，猩红霸王龙！","ltm":"咿咿咿……！是暴龍班的班長，猩紅霸王龍！"}}
-{"key":"StoryData/E003I4.json|/dataList/33/content","reason":"new","refs":{"llc":"你到底什么时候……才能背我一下……","ltm":"你到底什麼時候……才能背我一下……"}}
-{"key":"StoryData/E003I4.json|/dataList/34/content","reason":"new","refs":{"llc":"<是在说什么……？！不、不要过来……>","ltm":"<是在說什麼……？！不、不要過來……>"}}
-{"key":"StoryData/E003I4.json|/dataList/35/content","reason":"new","refs":{"llc":"什么时候背背我……<size=80%>背我……</size><size=60%>背我……</size><size=40%>背我……</size>","ltm":"什麼時候背背我…… <size=80%>背我……</size><size=60%>背我……</size><size=40%>背我……</size>"}}
-{"key":"StoryData/E003I4.json|/dataList/37/content","reason":"new","refs":{"llc":"<哈、哈啊、哈、哈……>","ltm":"<哈、哈啊、哈、哈……>"}}
-{"key":"StoryData/E003I4.json|/dataList/38/content","reason":"new","refs":{"llc":"这是……我的房间？","ltm":"這是……我的房間？"}}
-{"key":"StoryData/E003I4.json|/dataList/39/content","reason":"new","refs":{"llc":"那……之前的也都是梦？","ltm":"那……之前的也都是夢？"}}
-{"key":"StoryData/E003I4.json|/dataList/40/content","reason":"new","refs":{"llc":"我做了梦中梦……吗？","ltm":"我做了夢中夢……嗎?"}}
-{"key":"StoryData/E003I4.json|/dataList/41/content","reason":"new","refs":{"llc":"<怎么会有这么蠢的梦……哈啊啊……>","ltm":"<怎麼會有這麼蠢的夢……哈啊啊……>"}}
-{"key":"StoryData/E003I4.json|/dataList/42/content","reason":"new","refs":{"llc":"……不，还不是能松口气的时候。","ltm":"……不，還不是能鬆口氣的時候。"}}
-{"key":"StoryData/E003I4.json|/dataList/43/content","reason":"new","refs":{"llc":"这说不定也是梦呢……还、还是掐一下自己的脸吧！","ltm":"這說不定也是夢呢……還、還是掐一下自己的臉吧！"}}
-{"key":"StoryData/E003I4.json|/dataList/44/content","reason":"new","refs":{"llc":"<啊！呜……因为是钟表头所以不行吗。那就在大腿上试试，手臂也行……！>","ltm":"<啊！嗚……因為是鐘錶頭所以不行嗎。那就在大腿上試試，手臂也行……！>"}}
-{"key":"StoryData/E003I4.json|/dataList/45/content","reason":"new","refs":{"llc":"但丁。抱歉没敲门就进来，但我有急事要和你讨论……","ltm":"但丁。抱歉沒敲門就進來，但我有急事要和你討論……"}}
-{"key":"StoryData/E003I4.json|/dataList/47/content","reason":"new","refs":{"llc":"突然产生自虐倾向了吗？以前没有报告过这样的现象啊……","ltm":"突然產生自虐傾向了嗎？以前沒有報告過這樣的現象啊……"}}
-{"key":"StoryData/E003I4.json|/dataList/48/content","reason":"new","refs":{"llc":"<不，不。浮士德。先听我说。>","ltm":"<不，不。浮士德。先聽我說。>"}}
-{"key":"StoryData/E003I4.json|/dataList/49/content","reason":"new","refs":{"llc":"可能需要对你进行紧急检查。首先是……","ltm":"可能需要對你進行緊急檢查。首先是……"}}
-{"key":"StoryData/E003I4.json|/dataList/5/content","reason":"new","refs":{"llc":"脑袋里嗡嗡的声响渐渐沉了下来，耳边传来了巴士引擎的声音。刚刚发生的事情果然都是一场梦吧。","ltm":"腦袋裡嗡嗡的聲響漸漸沉了下來，耳邊傳來了巴士引擎的聲音。剛剛發生的事情果然都是一場夢吧。"}}
-{"key":"StoryData/E003I4.json|/dataList/50/content","reason":"new","refs":{"llc":"虽然向浮士德解释清楚这滑稽的状况并解除误会花费了很长时间。","ltm":"雖然向浮士德解釋清楚這滑稽的狀況並解除誤會花費了很長時間。"}}
-{"key":"StoryData/E003I4.json|/dataList/51/content","reason":"new","refs":{"llc":"不过谢天谢地。这终于不是梦了。","ltm":"不過謝天謝地。這終於不是夢了。"}}
-{"key":"StoryData/E003I4.json|/dataList/52/content","reason":"new","refs":{"llc":"只是……","ltm":"只是……"}}
-{"key":"StoryData/E003I4.json|/dataList/53/content","reason":"new","refs":{"llc":"只是巴士上的某一天所发生的又一个故事罢了。","ltm":"只是巴士上的某一天所發生的又一個故事罷了。"}}
-{"key":"StoryData/E003I4.json|/dataList/6/content","reason":"new","refs":{"llc":"<呃……格里高尔，谢了……多亏了你说噩梦的那句话，我才能立刻清醒过来。>","ltm":"<呃……格里高爾，謝了……多虧了你說噩夢的那句話，我才能立刻清醒過來。>"}}
-{"key":"StoryData/E003I4.json|/dataList/7/content","reason":"new","refs":{"llc":"哪里哪里……哦，要谢我的话，能帮我把那个处理掉吗？","ltm":"哪裡哪裡……哦，要謝我的話，能幫我把那個處理掉嗎？"}}
-{"key":"StoryData/E003I4.json|/dataList/8/content","reason":"new","refs":{"llc":"格里高尔指着的方向，罪人们在大声吵闹着什么。","ltm":"格里高爾指著的方向，罪人們在大聲吵鬧著什麼。"}}
-{"key":"StoryData/E003I4.json|/dataList/9/content","reason":"new","refs":{"llc":"真是没办法。又在为了聚餐地点吵个不停，说是因为很久没有聚餐了，所以一定要最大限度地吃点好的。","ltm":"真是沒辦法。又在為了聚餐地點吵個不停，說是因為很久沒有聚餐了，所以一定要最大限度地吃點好的。"}}
-{"key":"StoryData/E003X.json|/dataList/0/content","reason":"new","refs":{"llc":"我必须保持冷静。","ltm":"我必須保持冷靜。"}}
-{"key":"StoryData/E003X.json|/dataList/1/content","reason":"new","refs":{"llc":"无论发生什么事，都必须保持冷静。","ltm":"無論發生什麼事，都必須保持冷靜。"}}
-{"key":"StoryData/E003X.json|/dataList/10/content","reason":"new","refs":{"llc":"呵呵。不·妙。","ltm":"呵呵。不・妙。"}}
-{"key":"StoryData/E003X.json|/dataList/11/content","reason":"new","refs":{"llc":"欸……可是园长老师不是说过不要讲那种坏坏的词嘛！","ltm":"欸……可是園長老師不是說過不要講那種壞壞的詞嘛！"}}
-{"key":"StoryData/E003X.json|/dataList/12/content","reason":"new","refs":{"llc":"就是就是！园长老师！请您教训她！","ltm":"就是就是！園長老師！請您教訓她！"}}
-{"key":"StoryData/E003X.json|/dataList/13/content","reason":"new","refs":{"llc":"<对啊……我是幼儿园的园长来着……>","ltm":"<對啊…… 我是幼兒園的園長來著……>"}}
-{"key":"StoryData/E003X.json|/dataList/14/content","reason":"new","refs":{"llc":"总之，可以确定的是。","ltm":"總之，可以確定的是。"}}
-{"key":"StoryData/E003X.json|/dataList/15/content","reason":"new","refs":{"llc":"我现在确实身处地狱的正中央。","ltm":"我現在確實身處地獄的正中央。"}}
-{"key":"StoryData/E003X.json|/dataList/16/content","reason":"new","refs":{"llc":"过了一段时间……","ltm":"過了一段時間……"}}
-{"key":"StoryData/E003X.json|/dataList/17/content","reason":"new","refs":{"llc":"根据狱儿园小朋友们所言，今天他们打架的原因大概是这样的：","ltm":"根據獄兒園小朋友們所言，今天他們打架的原因大概是這樣的："}}
-{"key":"StoryData/E003X.json|/dataList/18/content","reason":"new","refs":{"llc":"……狱儿园小朋友？有这个说法吗？但总之……","ltm":"……獄兒園小朋友？有這個說法嗎？但總之……"}}
-{"key":"StoryData/E003X.json|/dataList/19/content","reason":"new","refs":{"llc":"营养师这次准备带领狱儿园小朋友们进行烹饪体验活动，三个班级对这道菜还是那道菜更好产生了分歧，于是就吵起来了。","ltm":"營養師這次準備帶領獄兒園小朋友們進行烹飪體驗活動，三個班級對這道菜還是那道菜更好產生了分歧，於是就吵起來了。"}}
-{"key":"StoryData/E003X.json|/dataList/2/content","reason":"new","refs":{"llc":"因为这里……","ltm":"因為這裡……"}}
-{"key":"StoryData/E003X.json|/dataList/20/content","reason":"new","refs":{"llc":"用“小凤”做出的菜是世界上最最美味的菜肴，在这方面大家达成了一致，但烹饪方式却引起了争执。","ltm":"用「小鳳」做出的菜是世界上最最美味的菜餚，在這方面大家達成了一致，但烹飪方式卻引起了爭執。"}}
-{"key":"StoryData/E003X.json|/dataList/21/content","reason":"new","refs":{"llc":"于是最后就变成了几个班级之间展开的烹饪对决，由营养师品评后决出第一名……","ltm":"於是最後就變成了幾個班級之間展開的烹飪對決，由營養師品評後決出第一名……"}}
-{"key":"StoryData/E003X.json|/dataList/22/content","reason":"new","refs":{"llc":"……这事情的走向好像在哪里经历过。","ltm":"……這事情的走向好像在哪裡經歷過。"}}
-{"key":"StoryData/E003X.json|/dataList/23/content","reason":"new","refs":{"llc":"唉……园长老师也辛苦了。","ltm":"唉……園長老師也辛苦了。"}}
-{"key":"StoryData/E003X.json|/dataList/24/content","reason":"new","refs":{"llc":"小朋友们，乱七八糟。卡戎，脑袋晕晕。","ltm":"小朋友們，亂七八糟。卡戎，腦袋暈暈。"}}
-{"key":"StoryData/E003X.json|/dataList/25/content","reason":"new","refs":{"llc":"<啊，尤莉老师，卡戎老师。>","ltm":"<啊，尤莉老師，卡戎老師。>"}}
-{"key":"StoryData/E003X.json|/dataList/26/content","reason":"new","refs":{"llc":"十二个孩子的性格各不相同，一个人带起来一定很辛苦吧。","ltm":"十二個孩子的性格各不相同，一個人帶起來一定很辛苦吧。"}}
-{"key":"StoryData/E003X.json|/dataList/27/content","reason":"new","refs":{"llc":"<不不，也不是只有我一个人在工作。老师们也各自负责着两个班级……>","ltm":"<不不，也不是只有我一個人在工作。老師們也各自負責著兩個班級……>"}}
-{"key":"StoryData/E003X.json|/dataList/28/content","reason":"new","refs":{"llc":"一个一直在外面散步。卡戎不担心。","ltm":"一個一直在外面散步。卡戎不擔心。"}}
-{"key":"StoryData/E003X.json|/dataList/29/content","reason":"new","refs":{"llc":"啊哈哈……看来卡戎老师有点放任主义呢。","ltm":"啊哈哈……看來卡戎老師有點放任主義呢。"}}
-{"key":"StoryData/E003X.json|/dataList/3/content","reason":"new","refs":{"llc":"啊，所以说~","ltm":"啊，所以說~"}}
-{"key":"StoryData/E003X.json|/dataList/30/content","reason":"new","refs":{"llc":"而且，大象班的小朋友们总是很安静。和其他吵闹的小朋友，不一样。","ltm":"而且，大象班的小朋友們總是很安靜。和其他吵鬧的小朋友，不一樣。"}}
-{"key":"StoryData/E003X.json|/dataList/31/content","reason":"new","refs":{"llc":"啊哈哈……","ltm":"啊哈哈……"}}
-{"key":"StoryData/E003X.json|/dataList/32/content","reason":"new","refs":{"llc":"<说、说起来！今天孩子们折腾了好一阵来着。>","ltm":"<說、說起來！今天孩子們折騰了好一陣子來著。>"}}
-{"key":"StoryData/E003X.json|/dataList/33/content","reason":"new","refs":{"llc":"捣乱吗，呼呼。","ltm":"搗亂嗎，呼呼。"}}
-{"key":"StoryData/E003X.json|/dataList/34/content","reason":"new","refs":{"llc":"当然我最开始预想的是大家一起来制作同一份菜肴……","ltm":"當然我最開始預想的是大家一起來製作同一份菜餚……"}}
-{"key":"StoryData/E003X.json|/dataList/35/content","reason":"new","refs":{"llc":"不过孩子们在做各种各样的菜肴时也能学到很多东西！","ltm":"不過孩子們在做各式各樣的菜餚時也能學到很多東西！"}}
-{"key":"StoryData/E003X.json|/dataList/36/content","reason":"new","refs":{"llc":"尤莉老师……不知为何，与模糊的记忆中相比，她的性格好像有些变化。","ltm":"尤莉老師……不知為何，與模糊的記憶中相比，她的性格好像有些變化。"}}
-{"key":"StoryData/E003X.json|/dataList/37/content","reason":"new","refs":{"llc":"啊，原来她是这么热情积极的人吗？","ltm":"啊，原來她是這麼熱情積極的人嗎？"}}
-{"key":"StoryData/E003X.json|/dataList/38/content","reason":"new","refs":{"llc":"在竞争中，孩子们也能从中感受到好胜心和成就感……","ltm":"在競爭中，孩子們也能從中感受到好勝心和成就感……"}}
-{"key":"StoryData/E003X.json|/dataList/39/content","reason":"new","refs":{"llc":"大象班给我听好了！！！我们企鹅班要拿下这次的胜利，独占园长老师的爱咯！！！","ltm":"大象班給我聽好了！！！我們企鵝班要拿下這次的勝利，獨佔園長老師的愛咯！！！"}}
-{"key":"StoryData/E003X.json|/dataList/4/content","reason":"new","refs":{"llc":"啊~就是那个人把那个人打了吧？是吧？","ltm":"啊~就是那個人把那個人打了吧？是吧？"}}
-{"key":"StoryData/E003X.json|/dataList/40/content","reason":"new","refs":{"llc":"……呼。白忙活。","ltm":"……呼。白忙活。"}}
-{"key":"StoryData/E003X.json|/dataList/41/content","reason":"new","refs":{"llc":"为了战胜对方而聚在一起，也能在过程中产生合作精神……","ltm":"為了戰勝對方而聚在一起，也能在過程中產生合作精神……"}}
-{"key":"StoryData/E003X.json|/dataList/42/content","reason":"new","refs":{"llc":"那个那个，这里是今天体验学习用的工具，能不能帮我一起搬过去嘛~","ltm":"那個那個，這裡是今天體驗學習用的工具，能不能幫我一起搬過去嘛~"}}
-{"key":"StoryData/E003X.json|/dataList/43/content","reason":"new","refs":{"llc":"我要做计划。找其他同学帮忙去。","ltm":"我要做計劃。找其他同學幫忙去。"}}
-{"key":"StoryData/E003X.json|/dataList/44/content","reason":"new","refs":{"llc":"好胜心向着奇怪的方向发展了，合作精神看上去也没有一点……","ltm":"好勝心向著奇怪的方向發展了，合作精神看上去也沒有一點……"}}
-{"key":"StoryData/E003X.json|/dataList/45/content","reason":"new","refs":{"llc":"收集材料的同时还可以锻炼体力，简直是一箭三雕呢！","ltm":"收集材料的同時還可以鍛鍊體力，簡直是一箭三雕呢！"}}
-{"key":"StoryData/E003X.json|/dataList/46/content","reason":"new","refs":{"llc":"嗯？收集材料？","ltm":"嗯？收集材料？"}}
-{"key":"StoryData/E003X.json|/dataList/47/content","reason":"new","refs":{"llc":"<意思是让孩子们自己来收集材料吗？>","ltm":"<意思是讓孩子們自己來收集材料嗎？>"}}
-{"key":"StoryData/E003X.json|/dataList/48/content","reason":"new","refs":{"llc":"嗯，当然了。","ltm":"嗯，當然了。"}}
-{"key":"StoryData/E003X.json|/dataList/49/content","reason":"new","refs":{"llc":"看那边。企鹅班的孩子们好像已经准备好了。","ltm":"看那邊。企鵝班的孩子們好像已經準備好了。"}}
-{"key":"StoryData/E003X.json|/dataList/5/content","reason":"new","refs":{"llc":"是总会发生超乎预料的事件的地方。","ltm":"是總會發生超乎預料的事件的地方。"}}
-{"key":"StoryData/E003X.json|/dataList/50/content","reason":"new","refs":{"llc":"<准备吗……>","ltm":"<準備嗎……>"}}
-{"key":"StoryData/E003X.json|/dataList/51/content","reason":"new","refs":{"llc":"将视线转向营养师所看着的方向，狱儿园小朋友们手里拿着一个什么东西，正往某处走去。","ltm":"將視線轉向營養師所看著的方向，獄兒園小朋友們手裡拿著一個什麼東西，正往某處走去。"}}
-{"key":"StoryData/E003X.json|/dataList/52/content","reason":"new","refs":{"llc":"那是……什么玩具吗？玩具斧头？","ltm":"那是……什麼玩具嗎？玩具斧頭？"}}
-{"key":"StoryData/E003X.json|/dataList/53/content","reason":"new","refs":{"llc":"最近的技术发展很惊人吧？","ltm":"最近的技術發展很驚人吧？"}}
-{"key":"StoryData/E003X.json|/dataList/54/content","reason":"new","refs":{"llc":"能让孩子们在不受伤的前提下体验学习，连那样的东西都发明出来了。","ltm":"能讓孩子們在不受傷的前提下體驗學習，連那樣的東西都發明出來了。"}}
-{"key":"StoryData/E003X.json|/dataList/55/content","reason":"new","refs":{"llc":"啊……原来是用那东西来捕猎烹饪材料啊。","ltm":"啊……原來是用那東西來捕獵烹飪材料啊。"}}
-{"key":"StoryData/E003X.json|/dataList/56/content","reason":"new","refs":{"llc":"好像是那么回事。","ltm":"好像是那麼回事。"}}
-{"key":"StoryData/E003X.json|/dataList/57/content","reason":"new","refs":{"llc":"远远看去从对面走过来的东西是……烹饪材料吗？","ltm":"遠遠看去從對面走過來的東西是……烹飪材料嗎？"}}
-{"key":"StoryData/E003X.json|/dataList/58/content","reason":"new","refs":{"llc":"感觉头上好像是个小凤啊……","ltm":"感覺頭上好像是個小鳳啊……"}}
-{"key":"StoryData/E003X.json|/dataList/59/content","reason":"new","refs":{"llc":"啊！是栖息在4区的小凤虫啊！它们具有外壳酥脆的特性，很适合烧烤和油炸。","ltm":"啊！是棲息在4區的小鳳蟲啊！它們具有外殼酥脆的特性，很適合燒烤和油炸。"}}
-{"key":"StoryData/E003X.json|/dataList/6/content","reason":"new","refs":{"llc":"<这样吧……孩子们。我们冷静下来，一个一个说好不好？>","ltm":"<這樣吧……孩子們。我們冷靜下來，一個一個說好不好？>"}}
-{"key":"StoryData/E003X.json|/dataList/6/place","reason":"new","refs":{"llc":"边狱幼儿园？","ltm":"邊獄幼兒園？"}}
-{"key":"StoryData/E003X.json|/dataList/60/content","reason":"new","refs":{"llc":"小凤和虫这两个词，是能这样合在一起说的吗……不，小凤不是那个什么吗……","ltm":"小鳳和蟲這兩個詞，是能這樣合在一起說的嗎……不，小鳳不是那個什麼嗎……"}}
-{"key":"StoryData/E003X.json|/dataList/61/content","reason":"new","refs":{"llc":"园长大人！报告！","ltm":"園長大人！報告！"}}
-{"key":"StoryData/E003X.json|/dataList/62/content","reason":"new","refs":{"llc":"还在模糊的记忆中搜寻时，不知何时一位一脸严肃的小朋友已经站在膝旁。","ltm":"還在模糊的記憶中搜尋時，不知何時一位一臉嚴肅的小朋友已經站在膝旁。"}}
-{"key":"StoryData/E003X.json|/dataList/63/content","reason":"new","refs":{"llc":"<是奥……奥提斯小朋友啊。>","ltm":"<是奧……奧提斯小朋友啊。>"}}
-{"key":"StoryData/E003X.json|/dataList/64/content","reason":"new","refs":{"llc":"不知为何，有种是用小孩子的语调在说话的大人的感觉……","ltm":"不知為何，有種是用小孩子的語調在說話的大人的感覺……"}}
-{"key":"StoryData/E003X.json|/dataList/65/content","reason":"new","refs":{"llc":"是！企鹅班的四名学生已准备完毕，随时可以参加实践课程！","ltm":"是！企鵝班的四名學生已準備完畢，隨時可以參加實踐課程！"}}
-{"key":"StoryData/E003X.json|/dataList/66/content","reason":"new","refs":{"llc":"手中拿着闪闪发光的武器的奥提斯正抬头望着我。","ltm":"手中拿著閃閃發光的武器的奧提斯正抬頭望著我。"}}
-{"key":"StoryData/E003X.json|/dataList/67/content","reason":"new","refs":{"llc":"对了……我得确保狱儿园小朋友们的园外学习安全进行来着。","ltm":"對了……我得確保獄兒園小朋友們的園外學習安全進行來著。"}}
-{"key":"StoryData/E003X.json|/dataList/68/content","reason":"new","refs":{"llc":"<好，那就出发吧？>","ltm":"<好，那就出發吧？>"}}
-{"key":"StoryData/E003X.json|/dataList/69/content","reason":"new","refs":{"llc":"是！请您指教！","ltm":"是！請您指教！"}}
-{"key":"StoryData/E003X.json|/dataList/7/content","reason":"new","refs":{"llc":"不、不是约好了不往外讲吗！你、你要告老师吗？","ltm":"不、不是約好了不往外講嗎！你、你要告老師嗎？"}}
-{"key":"StoryData/E003X.json|/dataList/8/content","reason":"new","refs":{"llc":"才没有呢！","ltm":"才沒有呢！"}}
-{"key":"StoryData/E003X.json|/dataList/9/content","reason":"new","refs":{"llc":"至于为什么我会从事这份职业，我自己也想不起来了……","ltm":"至於為什麼我會從事這份職業，我自己也想不起來了……"}}
-{"key":"StoryData/E091X.json|/dataList/15/content","reason":"paratranz-repair","draft":"昆蟲背上的巨大橙色膿疱啪地一聲炸開，膿液噴向了以實瑪利。","refs":{"llc":"长在虫子背部的巨大橙色脓疱啪的一声炸裂，里面的液体溅向了以实玛利。","ltm":"長在蟲子背部的巨大橙色膿疱啪的一聲炸裂，裡面的液體濺向了以實瑪利。"}}
-{"key":"StoryData/E402A.json|/dataList/4/content","reason":"paratranz-repair","draft":"……是廢料蟹。","refs":{"llc":"……是废料蟹。","ltm":"……是廢料蟹。"}}
-{"key":"StoryData/E402A.json|/dataList/7/content","reason":"paratranz-repair","draft":"是廢料蟹。它們在殼上裝上垃圾或廢料之類的東西，然後將其當做住所和武器。","refs":{"llc":"是废料蟹。它们在壳上装上垃圾或废料之类的东西，然后将其当做住所和武器。","ltm":"是廢料蟹。它們在殼上裝上垃圾或廢料之類的東西，然後將其當做住所和武器。"}}
-{"key":"StoryData/E403B.json|/dataList/118/content","reason":"paratranz-repair","draft":"只要處理廢料蟹，就可以收集廢料。","refs":{"llc":"只要处理废料蟹，就可以收集废料。","ltm":"只要處理廢料蟹，就可以收集廢料。"}}
-{"key":"StoryData/E403B.json|/dataList/62/content","reason":"paratranz-repair","draft":"廢料蟹出現了，所以您把周圍的東西撿起來製成了武器，之後把它粉身碎骨烤著吃掉了。","refs":{"llc":"废料蟹出现了，所以您把周围的东西捡起来制成了武器，之后把它粉身碎骨烤着吃掉了。","ltm":"廢料蟹出現了，所以您把周圍的東西撿起來製成了武器，之後把它粉身碎骨烤著吃掉了。"}}
-{"key":"StoryData/E403B.json|/dataList/90/content","reason":"paratranz-repair","draft":"不過如果要我回答的話，是的。我吃過很多蟹肉濃湯。","refs":{"llc":"不过如果要我回答的话，是的。我吃过很多蟹肉浓汤。","ltm":"不過如果要我回答的話，是的。我吃過很多蟹肉濃湯。"}}
-{"key":"StoryData/E404B.json|/dataList/1/content","reason":"paratranz-repair","draft":"我們到處捕殺廢料蟹，收集了一整車都裝不下的廢料。","refs":{"llc":"我们到处捕杀废料蟹，收集了一车都装不下的废料。","ltm":"我們到處捕殺廢料蟹，收集了一整車都裝不下的廢料。"}}
-{"key":"StoryData/E404B.json|/dataList/40/content","reason":"paratranz-repair","draft":"喂，你什麼意思？是你剛剛吃的蟹肉濃湯出問題了？","refs":{"llc":"喂，你什么意思？是你刚刚吃的蟹肉浓汤出问题了？","ltm":"喂，你什麼意思？是你剛剛吃的蟹肉濃湯出問題了？"}}
-{"key":"StoryData/E406B.json|/dataList/11/content","reason":"paratranz-repair","draft":"不會是……你之前一直在說的帝王廢料蟹腦髓釀酒吧？","refs":{"llc":"不会是……你之前一直在说的帝王废料蟹脑髓酿酒吧？","ltm":"不會是……你之前一直在說的帝王廢料蟹腦髓釀酒吧？"}}
-{"key":"StoryData/E406B.json|/dataList/22/content","reason":"paratranz-repair","draft":"雷恩……我要死在這了……我都能從肚子裡聽見廢料蟹的叫聲了……","refs":{"llc":"雷恩……我要死在这了……我都能从肚子里听见废料蟹的叫声了……","ltm":"雷恩……我要死在這了……我都能從肚子裡聽見廢料蟹的叫聲了……"}}
-{"key":"StoryData/E406B.json|/dataList/31/content","reason":"paratranz-repair","draft":"其他大多數罪人都忙於狩獵廢料蟹並收集廢料。","refs":{"llc":"其他大多数罪人都忙于狩猎废料蟹并收集废料。","ltm":"其他大多數罪人都忙於狩獵廢料蟹並收集廢料。"}}
-{"key":"StoryData/E407A.json|/dataList/25/content","reason":"paratranz-repair","draft":"太棒了～這下有錢了！今晚就不吃廢料蟹了，我們揮霍一下，來點豬肉如何？烤五花肉？","refs":{"llc":"太棒了~这下有钱了！今晚就不吃废料蟹了，我们挥霍一下，来点猪肉如何？烤五花肉？","ltm":"太棒了～這下有錢了！今晚就不吃廢料蟹了，我們揮霍一下，來點豬肉如何？烤五花肉？"}}
-{"key":"StoryData/E407B.json|/dataList/32/content","reason":"paratranz-repair","draft":"然後再用它的腦髓給我多釀點酒……","refs":{"llc":"然后再用它的脑汁给我多酿点酒……","ltm":"然後再用它的腦髓給我多釀點酒……"}}
-{"key":"StoryData/E407B.json|/dataList/36/content","reason":"paratranz-repair","draft":"嗯……這隻帝王廢料蟹應該存活了很長時間了。所以肯定跟之前的那隻是同一隻。","refs":{"llc":"嗯……这只帝王废料蟹应该存活了很长时间了。所以肯定跟之前的那只是同一只。","ltm":"嗯……這隻帝王廢料蟹應該存活了很長時間了。所以肯定跟之前的那隻是同一隻。"}}
-{"key":"StoryData/E407B.json|/dataList/49/content","reason":"paratranz-repair","draft":"我們只需要擊退那隻帝王廢料蟹，不是嗎？那我們就這麼辦，然後晚點再改造巴士。這樣我們就能夠爭取更多的時間……","refs":{"llc":"我们只需要击退那只帝王废料蟹，不是吗？那我们就这么办，然后晚点再改造巴士。这样我们就能够争取更多的时间……","ltm":"我們只需要擊退那隻帝王廢料蟹，不是嗎？那我們就這麼辦，然後晚點再改造巴士。這樣我們就能夠爭取更多的時間……"}}
+{"key":"StoryData/E003I1.json|/dataList/90/place","reason":"requeue","prev_zh":"邊獄幼稚園？","hint":"同一句 KR 已有譯文（StoryData/E003I1.json|/dataList/0/place）：「邊獄幼稚園？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/E003I2.json|/dataList/119/content","reason":"requeue","prev_zh":"但是浮浮全都知道。","hint":"빠우스트 統一寫「浮ㄙ德」（詞彙表；既有技能名）"}
+{"key":"StoryData/E003I2.json|/dataList/86/place","reason":"requeue","prev_zh":"邊獄幼稚園？","hint":"同一句 KR 已有譯文（StoryData/E003I1.json|/dataList/0/place）：「邊獄幼稚園？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/E003I2.json|/dataList/88/content","reason":"requeue","prev_zh":"浮浮認為，園長大人縮這種話很不恰當。","hint":"빠우스트 統一寫「浮ㄙ德」（詞彙表；既有技能名）"}
+{"key":"StoryData/E003I2.json|/dataList/92/content","reason":"requeue","prev_zh":"因為浮浮發現，浮浮想到的詞彙太高層次了，跟他者……跟別人說話會變得很困難。","hint":"빠우스트 統一寫「浮ㄙ德」（詞彙表；既有技能名）"}
+{"key":"StoryData/E003I2.json|/dataList/94/content","reason":"requeue","prev_zh":"不行。浮浮可是大象班的班長。","hint":"빠우스트 統一寫「浮ㄙ德」（詞彙表；既有技能名）"}
+{"key":"StoryData/E003X.json|/dataList/16/content","reason":"requeue","prev_zh":"一段時間後……","hint":"同一句 KR 已有譯文（StoryData/5D304A.json|/dataList/39/content）：「過了一段時間……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/E003X.json|/dataList/6/place","reason":"requeue","prev_zh":"邊獄幼稚園？","hint":"同一句 KR 已有譯文（StoryData/E003I1.json|/dataList/0/place）：「邊獄幼稚園？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/E402A.json|/dataList/4/content","reason":"requeue","prev_zh":"……是<size=110%>廢料</size>蟹。","hint":"크<size=110%>랲</size>게 統一寫成「<size=110%>廢料蟹</size>」（size 標籤包住整個詞，同既有譯文）"}
+{"key":"StoryData/E402A.json|/dataList/7/content","reason":"requeue","prev_zh":"是<size=110%>廢料</size>蟹。它們在殼上裝上垃圾或廢料之類的東西，然後將其當做住所和武器。","hint":"크<size=110%>랲</size>게 統一寫成「<size=110%>廢料蟹</size>」（size 標籤包住整個詞，同既有譯文）"}
+{"key":"StoryData/E404B.json|/dataList/1/content","reason":"requeue","prev_zh":"我們到處捕殺<size=110%>廢料</size>蟹，收集了一整車都裝不下的廢料。","hint":"크<size=110%>랲</size>게 統一寫成「<size=110%>廢料蟹</size>」（size 標籤包住整個詞，同既有譯文）"}
+{"key":"StoryData/E407A.json|/dataList/25/content","reason":"requeue","prev_zh":"太棒了～這下有錢了！今晚就不吃<size=110%>廢料</size>蟹了，我們揮霍一下，來點豬肉如何？烤五花肉？","hint":"크<size=110%>랲</size>게 統一寫成「<size=110%>廢料蟹</size>」（size 標籤包住整個詞，同既有譯文）"}
 {"key":"StoryData/E703B.json|/dataList/43/content","reason":"new","refs":{"llc":"那次事件之后，하나协会和Девять协会都追加了许多规定以防止有人误入次元包后被派送。","ltm":"那次事件之後，하나協會和Девять協會都追加了許多規定以防止有人誤入次元包後被派送。"}}
 {"key":"StoryData/E723B.json|/dataList/4/content","reason":"paratranz-repair","draft":"這、這裡很<ruby=李箱>奇怪</ruby>。","refs":{"llc":"这、这里像是有些异象。","ltm":"這、這裡好像有點異象。"}}
 {"key":"StoryData/E803B.json|/dataList/108/content","reason":"paratranz-repair","draft":"由<ruby=Gesellschaft>利益社會</ruby>構成的共同體……","refs":{"llc":"由利益社会所构成的共同体……","ltm":"由利益社會所構成的共同體……"}}
@@ -9199,7 +8766,7 @@
 {"key":"StoryData/E905B.json|/dataList/11/content","reason":"new","refs":{"llc":"不过，即便将生存的状态固定，并修复原本的肉体在理论上是可能的，但在现有的技术与环境下那种可能性接近于0。","ltm":"不過，即便將生存的狀態固定，並修復原本的肉體在理論上是可能的，但在現有的技術與環境下那種可能性接近於0。"}}
 {"key":"StoryData/E905B.json|/dataList/12/content","reason":"new","refs":{"llc":"虽然像我们这样的研究者有期待小概率的倾向，但是你们通常不是会称这种状态为不可能吗？","ltm":"雖然像我們這樣的研究者有期待微小機率的傾向，但是你們通常不是會稱這種狀態為不可能嗎？"}}
 {"key":"StoryData/E905B.json|/dataList/14/content","reason":"new","refs":{"llc":"但丁经理，你没有必要执着于眼下不可能的事。那些是我们该做的事情。","ltm":"但丁經理，你沒有必要執著於眼下不可能的事。那些是我們該做的事情。"}}
-{"key":"StoryData/E905B.json|/dataList/15/content","reason":"new","refs":{"llc":"<……这样啊。>","ltm":"<……這樣啊。>"}}
+{"key":"StoryData/E905B.json|/dataList/15/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/E618B.json|/dataList/14/content）：「<……這樣啊。>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<……这样啊。>","ltm":"<……這樣啊。>"}}
 {"key":"StoryData/E905B.json|/dataList/16/content","reason":"new","refs":{"llc":"啊。或许能找到恢复罪人良秀记忆的线索吧。只不过这终究也只是可能性层面的话题罢了。","ltm":"啊。或許能找到恢復罪人良秀記憶的線索吧。只不過這終究也只是可能性層面的話題罷了。"}}
 {"key":"StoryData/E905B.json|/dataList/17/content","reason":"new","refs":{"llc":"对你们而言，眼下把焦点放在这里会是更明智的选择。","ltm":"對你們而言，眼下把焦點放在這裡會是更明智的選擇。"}}
 {"key":"StoryData/E905B.json|/dataList/18/content","reason":"new","refs":{"llc":"要做到那样的话……嗯……对了。果然还是得再稍微调查一下那个刀鞘的数据比较好。","ltm":"要做到那樣的話……嗯……對了。果然還是得再稍微調查一下那個刀鞘的數據比較好。"}}
@@ -9825,20 +9392,20 @@
 {"key":"StoryData/E908B.json|/dataList/196/content","reason":"new","refs":{"llc":"就不得不打开它了。","ltm":"就不得不打開它了。"}}
 {"key":"StoryData/E908B.json|/dataList/197/content","reason":"new","refs":{"llc":"格里高尔将手放在门上……静静地调整呼吸，凝视着铁门。","ltm":"格里高爾將手放在門上……靜靜地調整呼吸，凝視著鐵門。"}}
 {"key":"StoryData/E908B.json|/dataList/198/content","reason":"new","refs":{"llc":"然后缓缓地，单手推开了那扇门。","ltm":"然後緩緩地，用單手推開了那扇門。"}}
-{"key":"StoryData/E908B.json|/dataList/199/content","reason":"new","refs":{"llc":"为什么要逃跑？您应该高举G公司的旗帜，冲在战斗的最前线！","ltm":"為什麼要逃跑？您應該高舉G公司的旗幟，衝在戰鬥的最前線！"}}
+{"key":"StoryData/E908B.json|/dataList/199/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/1D303B.json|/dataList/13/content）：「為什麼要逃跑？您應該高舉G公司的旗幟，衝在戰鬥的最前線！」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"为什么要逃跑？您应该高举G公司的旗帜，冲在战斗的最前线！","ltm":"為什麼要逃跑？您應該高舉G公司的旗幟，衝在戰鬥的最前線！"}}
 {"key":"StoryData/E908B.json|/dataList/199/teller","reason":"new","refs":{"llc":"托玛","ltm":"托瑪"}}
-{"key":"StoryData/E908B.json|/dataList/199/title","reason":"new","refs":{"llc":"记忆中的士兵","ltm":"記憶中的士兵"}}
+{"key":"StoryData/E908B.json|/dataList/199/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/1D301B.json|/dataList/42/title）：「記憶中的士兵」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"记忆中的士兵","ltm":"記憶中的士兵"}}
 {"key":"StoryData/E908B.json|/dataList/2/content","reason":"new","refs":{"llc":"多亏执行经理卓越的指挥。","ltm":"多虧執行經理卓越的指揮。"}}
 {"key":"StoryData/E908B.json|/dataList/20/content","reason":"new","refs":{"llc":"<有谁在那里吗？难道又是环指……>","ltm":"<有誰在那裡嗎？難道又是環指……>"}}
 {"key":"StoryData/E908B.json|/dataList/20/place","reason":"new","refs":{"llc":"蜘蛛巢，崩毁的拇指父辈的走廊","ltm":"蜘蛛巢，崩毀的拇指父輩的走廊"}}
-{"key":"StoryData/E908B.json|/dataList/200/content","reason":"new","refs":{"llc":"我、我不想死啊！","ltm":"我、我不想死啊！"}}
+{"key":"StoryData/E908B.json|/dataList/200/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/1D306A.json|/dataList/17/content）：「我、我不想死啊！」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"我、我不想死啊！","ltm":"我、我不想死啊！"}}
 {"key":"StoryData/E908B.json|/dataList/200/teller","reason":"new","refs":{"llc":"亲切的市民","ltm":"親切的市民"}}
-{"key":"StoryData/E908B.json|/dataList/200/title","reason":"new","refs":{"llc":"记忆中的某人","ltm":"記憶中的某人"}}
-{"key":"StoryData/E908B.json|/dataList/201/content","reason":"new","refs":{"llc":"呼呼，有个能回去的地方感觉真好。","ltm":"呼呼，有個能回去的地方感覺真好。"}}
+{"key":"StoryData/E908B.json|/dataList/200/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/1D305B.json|/dataList/12/title）：「回憶中的某人」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"记忆中的某人","ltm":"記憶中的某人"}}
+{"key":"StoryData/E908B.json|/dataList/201/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/1D306B.json|/dataList/9/content）：「呼呼，有個能回去的地方感覺真好。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"呼呼，有个能回去的地方感觉真好。","ltm":"呼呼，有個能回去的地方感覺真好。"}}
 {"key":"StoryData/E908B.json|/dataList/201/teller","reason":"new","refs":{"llc":"尤莉","ltm":"尤莉"}}
-{"key":"StoryData/E908B.json|/dataList/201/title","reason":"new","refs":{"llc":"8阶收尾人","ltm":"8階收尾人"}}
+{"key":"StoryData/E908B.json|/dataList/201/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/1D101A.json|/dataList/4/title）：「8階收尾人」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"8阶收尾人","ltm":"8階收尾人"}}
 {"key":"StoryData/E908B.json|/dataList/202/content","reason":"new","refs":{"llc":"啊，对了。祝你15岁生日快乐！","ltm":"啊，對了。祝你15歲生日快樂！"}}
-{"key":"StoryData/E908B.json|/dataList/203/content","reason":"new","refs":{"llc":"不过你可不能说我太残忍了。","ltm":"不過你可不能說我太殘忍了。"}}
+{"key":"StoryData/E908B.json|/dataList/203/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S945B.json|/dataList/39/content）：「但是你可別說這就叫殘忍啊。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"不过你可不能说我太残忍了。","ltm":"不過你可不能說我太殘忍了。"}}
 {"key":"StoryData/E908B.json|/dataList/204/content","reason":"new","refs":{"llc":"因为你们G公司的虫崽子们，才是更残忍地撕扯着人类、啃食着血肉前进的，他妈的怪物！","ltm":"因為你們G公司的蟲崽子們，才是更殘忍地撕扯著人類、啃食著血肉前進的，他媽的怪物！"}}
 {"key":"StoryData/E908B.json|/dataList/205/content","reason":"new","refs":{"llc":"虽然我认为自己已经从梦中苏醒……","ltm":"雖然我認為自己已經從夢中甦醒……"}}
 {"key":"StoryData/E908B.json|/dataList/206/content","reason":"new","refs":{"llc":"但我却仍然……","ltm":"但我卻仍然……"}}
@@ -9884,9 +9451,9 @@
 {"key":"StoryData/E908B.json|/dataList/58/content","reason":"new","refs":{"llc":"实际上……关于阻止格里高尔那种变化的手段，根本没有一丝头绪。","ltm":"實際上……關於阻止格里高爾那種變化的手段，根本沒有一絲頭緒。"}}
 {"key":"StoryData/E908B.json|/dataList/59/content","reason":"new","refs":{"llc":"在我们的旅程中，还将会遇见数不清的人。然后……总有一天……","ltm":"在我們的旅程中，還將會遇見數不清的人。然後……總有一天……"}}
 {"key":"StoryData/E908B.json|/dataList/6/content","reason":"new","refs":{"llc":"啊。在拇指那边，有一叠写着是谁来过、下了什么命令之类的纸。似乎直到最近都还在记录呢。","ltm":"啊。在拇指那邊，有一疊寫著是誰來過、下了什麼命令之類的紙。似乎直到最近都還在記錄呢。"}}
-{"key":"StoryData/E908B.json|/dataList/61/content","reason":"new","refs":{"llc":"无论罪人们……有着什么样的过去吗。","ltm":"無論罪人們……有著什麼樣的過去嗎。"}}
+{"key":"StoryData/E908B.json|/dataList/61/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/7D111I3.json|/dataList/42/content）：「無論罪人們……有著什麼樣的過去嗎。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"无论罪人们……有着什么样的过去吗。","ltm":"無論罪人們……有著什麼樣的過去嗎。"}}
 {"key":"StoryData/E908B.json|/dataList/61/place","reason":"new","refs":{"llc":"过去，自我心道 - 拉·曼却之眼","ltm":"過去，自我心道 - 拉．曼查之眼"}}
-{"key":"StoryData/E908B.json|/dataList/62/content","reason":"new","refs":{"llc":"哪怕那人杀了数百、成千、上万的无辜之人……您也会接受吗？","ltm":"哪怕那人殺了數百、成千、上萬的無辜之人……您也會接受嗎？"}}
+{"key":"StoryData/E908B.json|/dataList/62/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/7D111I3.json|/dataList/43/content）：「哪怕那人殺了數百、成千、上萬的無辜之人……您也會接受嗎？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"哪怕那人杀了数百、成千、上万的无辜之人……您也会接受吗？","ltm":"哪怕那人殺了數百、成千、上萬的無辜之人……您也會接受嗎？"}}
 {"key":"StoryData/E908B.json|/dataList/63/content","reason":"new","refs":{"llc":"必须面对关于那场战争更加深刻、更加黑暗的故事的日子，终将会到来吧。","ltm":"必須面對關於那場戰爭更加深刻、更加黑暗的故事的日子，終將會到來吧。"}}
 {"key":"StoryData/E908B.json|/dataList/63/place","reason":"new","refs":{"llc":"蜘蛛巢，崩毁的拇指父辈的走廊","ltm":"蜘蛛巢，崩毀的拇指父輩的走廊"}}
 {"key":"StoryData/E908B.json|/dataList/64/content","reason":"new","refs":{"llc":"到那时，在那样的环境中，格里高尔能撑得住吗？","ltm":"到那時，在那樣的環境中，格里高爾能撐得住嗎？"}}
@@ -10136,7 +9703,7 @@
 {"key":"StoryData/E910B.json|/dataList/78/content","reason":"new","refs":{"llc":"它连接着如同地牢一般的地下室。","ltm":"它連接著如同地牢一般的地下室。"}}
 {"key":"StoryData/E910B.json|/dataList/79/content","reason":"new","refs":{"llc":"那个假面叔叔，经常在哔哔声响起后就到这里来了呢。","ltm":"那個假面叔叔，經常在嗶聲響起後就到這裡來了呢。"}}
 {"key":"StoryData/E910B.json|/dataList/79/place","reason":"new","refs":{"llc":"里恩的地下室","ltm":"里恩的地下室"}}
-{"key":"StoryData/E910B.json|/dataList/8/content","reason":"new","refs":{"llc":"<抱、抱歉……>","ltm":"<抱、抱歉……>"}}
+{"key":"StoryData/E910B.json|/dataList/8/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/E501B.json|/dataList/87/content）：「<抱、抱歉……>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<抱、抱歉……>","ltm":"<抱、抱歉……>"}}
 {"key":"StoryData/E910B.json|/dataList/80/content","reason":"new","refs":{"llc":"但……那些家伙，是谁？","ltm":"但……那些傢伙，是誰？"}}
 {"key":"StoryData/E910B.json|/dataList/81/content","reason":"new","refs":{"llc":"食指……","ltm":"食指……"}}
 {"key":"StoryData/E910B.json|/dataList/83/content","reason":"new","refs":{"llc":"几小时前……还有人住着的痕迹。","ltm":"幾小時前……還有人住著的痕跡。"}}
@@ -10188,7 +9755,7 @@
 {"key":"StoryData/E912B.json|/dataList/10/content","reason":"new","refs":{"llc":"<要不稍微看看吧？>","ltm":"<要不稍微看看吧？>"}}
 {"key":"StoryData/E912B.json|/dataList/100/content","reason":"new","refs":{"llc":"<……我们的胜算如何？>","ltm":"<……我們的勝算如何？>"}}
 {"key":"StoryData/E912B.json|/dataList/101/content","reason":"new","refs":{"llc":"……感觉比咱满血的最佳状态还要强啊……","ltm":"……感覺比咱滿血的最佳狀態還要強啊……"}}
-{"key":"StoryData/E912B.json|/dataList/102/content","reason":"new","refs":{"llc":"认真的吗？","ltm":"認真的嗎？"}}
+{"key":"StoryData/E912B.json|/dataList/102/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S513B.json|/dataList/39/content）：「認真的嗎？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"认真的吗？","ltm":"認真的嗎？"}}
 {"key":"StoryData/E912B.json|/dataList/103/content","reason":"new","refs":{"llc":"……从戒指的形状来看，应该是野兽派的讲解员。如果以其他手指的等级来说，将其估计为指挥官，或者幼兄、幼姊这种级别比较恰当。","ltm":"……從戒指的形狀來看，應該是野獸派的講解員。如果以其他手指的等級來說，將其估計為指揮官，或者幼兄、幼姐這種級別比較恰當。"}}
 {"key":"StoryData/E912B.json|/dataList/104/content","reason":"new","refs":{"llc":"那么……或许比里卡多那等人物更强，若是运气不佳，甚至与那名为雷横之人相当……","ltm":"那麼……或許比里卡多那等人物更強，若是運氣不佳，甚至與那名為雷橫之人相當……"}}
 {"key":"StoryData/E912B.json|/dataList/105/content","reason":"new","refs":{"llc":"雷横……还不至于跟那家伙相提并论。","ltm":"雷橫……還不至於跟那傢伙相提並論。"}}
@@ -10396,7 +9963,7 @@
 {"key":"StoryData/E913B.json|/dataList/43/content","reason":"new","refs":{"llc":"毕竟……我们又不是要去什么支部或者迷宫那些地方……","ltm":"畢竟……我們又不是要去什麼支部或者迷宮那些地方……"}}
 {"key":"StoryData/E913B.json|/dataList/44/content","reason":"new","refs":{"llc":"那……倒也对哦。既然这样，要先在这里找找看吗？","ltm":"那……倒也對哦。既然這樣，要先在這裡找找看嗎？"}}
 {"key":"StoryData/E913B.json|/dataList/45/content","reason":"new","refs":{"llc":"呼……","ltm":"呼……"}}
-{"key":"StoryData/E913B.json|/dataList/46/content","reason":"new","refs":{"llc":"不用。没那个必要。","ltm":"不用。沒那個必要。"}}
+{"key":"StoryData/E913B.json|/dataList/46/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/8D207A.json|/dataList/49/content）：「不。沒那個必要。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"不用。没那个必要。","ltm":"不用。沒那個必要。"}}
 {"key":"StoryData/E913B.json|/dataList/47/content","reason":"new","refs":{"llc":"道路被封住了的话，就自己斩开一条。","ltm":"道路被封住了的話，就自己斬開一條。"}}
 {"key":"StoryData/E913B.json|/dataList/48/content","reason":"new","refs":{"llc":"你的记忆……已经不会消失了？","ltm":"你的記憶……已經不會消失了？"}}
 {"key":"StoryData/E913B.json|/dataList/49/content","reason":"new","refs":{"llc":"完全没有。这把刀到现在也一样……每次斩切都会夺走我的记忆。","ltm":"不。這把刀到現在也一樣……每次斬切都會奪走我的記憶。"}}
@@ -10426,7 +9993,7 @@
 {"key":"StoryData/E913B.json|/dataList/70/content","reason":"new","refs":{"llc":"之前还在剧烈摇晃的刀鞘，现在已经纹丝不动了。","ltm":"之前還在劇烈搖晃的刀鞘，現在已經紋絲不動了。"}}
 {"key":"StoryData/E913B.json|/dataList/71/content","reason":"new","refs":{"llc":"随后，雪白的刀身显露于眼前。","ltm":"隨後，雪白的刀身顯露於眼前。"}}
 {"key":"StoryData/E913B.json|/dataList/72/content","reason":"new","refs":{"llc":"只一瞬，它就斩断了那曾是门扉、如今已被封死的墙壁。","ltm":"只一瞬，它就斬斷了那曾是門扉、如今已被封死的牆壁。"}}
-{"key":"StoryData/E913B.json|/dataList/73/content","reason":"new","refs":{"llc":"当然。","ltm":"當然。"}}
+{"key":"StoryData/E913B.json|/dataList/73/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11214.json|/dataList/61/content）：「理所當然。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"当然。","ltm":"當然。"}}
 {"key":"StoryData/E913B.json|/dataList/74/content","reason":"new","refs":{"llc":"阿赖耶识斩去其存在，就意味着良秀的记忆也会被一同斩落。","ltm":"阿賴耶識斬去其存在，就意味著良秀的記憶也會被一同斬落。"}}
 {"key":"StoryData/E913B.json|/dataList/75/content","reason":"new","refs":{"llc":"<i><color=#5c53e7>啊，好可惜啊……明明已经一点点连上了……</i></color>","ltm":"<i><color=#5c53e7>啊，好可惜啊……明明已經一點點連上了……</i></color>"}}
 {"key":"StoryData/E913B.json|/dataList/76/content","reason":"new","refs":{"llc":"那开始一点点连接起来的，如丝线般纤细的阿赖耶的表象，也都会被斩得支离破碎、沉没下去吧。","ltm":"那開始一點點連接起來的，如絲線般纖細的阿賴耶的表象，也都會被斬得支離破碎、沉沒下去吧。"}}
@@ -10486,7 +10053,7 @@
 {"key":"StoryData/E914B.json|/dataList/143/content","reason":"new","refs":{"llc":"在因为自身原因对N公司吐露出不安的罪人之中。","ltm":"在因為自身原因對N公司吐露出不安的罪人之中。"}}
 {"key":"StoryData/E914B.json|/dataList/144/content","reason":"new","refs":{"llc":"唯有本应与那里联系最为紧密的默尔索，仍然带着与平日毫无差异的平静表情展开报纸开始阅读。","ltm":"唯有本應與那裡聯繫最為緊密的默爾索，仍然帶著與平日毫無差異的平靜表情展開報紙開始閱讀。"}}
 {"key":"StoryData/E914B.json|/dataList/146/content","reason":"new","refs":{"llc":"仿佛，一切如常。","ltm":"彷彿，一切如常。"}}
-{"key":"StoryData/E914B.json|/dataList/147/content","reason":"new","refs":{"llc":"出发咯。布隆布隆。","ltm":"出發啦，布隆布隆。"}}
+{"key":"StoryData/E914B.json|/dataList/147/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S002B.json|/dataList/11/content）：「出發囉。布隆布隆。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"出发咯。布隆布隆。","ltm":"出發啦，布隆布隆。"}}
 {"key":"StoryData/E914B.json|/dataList/148/content","reason":"new","refs":{"llc":"巴士就这样，慢慢驶向沉睡着故事的另一片远方。","ltm":"巴士就這樣，慢慢駛向沉睡著故事的另一片遠方。"}}
 {"key":"StoryData/E914B.json|/dataList/15/content","reason":"new","refs":{"llc":"不过，和L公司不同，即使W公司正在逐渐没落，但也还没有完全没落。","ltm":"不過，和L公司不同，即使W公司正在逐漸沒落，但也還沒有完全沒落。"}}
 {"key":"StoryData/E914B.json|/dataList/16/content","reason":"new","refs":{"llc":"正如各位所知，一家公司要想在这座都市中站稳脚跟，就必须具备充足的武力……","ltm":"正如各位所知，一家公司要想在這座都市中站穩腳跟，就必須具備充足的武力……"}}
@@ -10650,9 +10217,9 @@
 {"key":"StoryData/E917B.json|/dataList/159/content","reason":"new","refs":{"llc":"<这好像是N公司的标志……？>","ltm":"<這好像是N公司的標誌……？>"}}
 {"key":"StoryData/E917B.json|/dataList/16/content","reason":"new","refs":{"llc":"不过……他们看上去不像是听到这些夸人话之后该有的样子？","ltm":"不過……他們看上去不像是聽到這些誇人話之後該有的樣子？"}}
 {"key":"StoryData/E917B.json|/dataList/160/content","reason":"new","refs":{"llc":"啊，这么一说默尔索他……","ltm":"啊，這麼一說默爾索他……"}}
-{"key":"StoryData/E917B.json|/dataList/161/content","reason":"new","refs":{"llc":"……因为我曾是N公司的员工。","ltm":"……因為我曾是N公司的員工。"}}
+{"key":"StoryData/E917B.json|/dataList/161/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S315B.json|/dataList/18/content）：「……因我曾是N公司的員工。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"……因为我曾是N公司的员工。","ltm":"……因為我曾是N公司的員工。"}}
 {"key":"StoryData/E917B.json|/dataList/161/place","reason":"new","refs":{"llc":"过去，卡尔夫镇 广场","ltm":"過去，卡爾夫鎮 廣場"}}
-{"key":"StoryData/E917B.json|/dataList/162/content","reason":"new","refs":{"llc":"啊……？你竟然和他们一起工作过？","ltm":"嗯……？你竟然和他們一起工作過？"}}
+{"key":"StoryData/E917B.json|/dataList/162/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S315B.json|/dataList/19/content）：「欸……？你竟然和他們一起工作過？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"啊……？你竟然和他们一起工作过？","ltm":"嗯……？你竟然和他們一起工作過？"}}
 {"key":"StoryData/E917B.json|/dataList/163/content","reason":"new","refs":{"llc":"记得他说过自己以前在N公司工作过。也许他知道些什么……","ltm":"記得他說過自己以前在N公司工作過。也許他知道些什麼……"}}
 {"key":"StoryData/E917B.json|/dataList/163/place","reason":"new","refs":{"llc":"14区，成为废墟的照相馆","ltm":"14區，成為廢墟的照相館"}}
 {"key":"StoryData/E917B.json|/dataList/164/content","reason":"new","refs":{"llc":"<默尔索……或许你认识这些人？>","ltm":"<默爾索……或許你認識這些人？>"}}
@@ -10684,7 +10251,7 @@
 {"key":"StoryData/E917B.json|/dataList/19/content","reason":"new","refs":{"llc":"我还说您是平日不甚言语，但私下会关照部下之人。","ltm":"我還說您是平日不甚言語，但私下會關照手下之人。"}}
 {"key":"StoryData/E917B.json|/dataList/190/content","reason":"new","refs":{"llc":"简直……像是在斥责我一样。","ltm":"簡直……像是在斥責我一樣。"}}
 {"key":"StoryData/E917B.json|/dataList/191/content","reason":"new","refs":{"llc":"并不存在所谓客观。","ltm":"並不存在所謂客觀。"}}
-{"key":"StoryData/E917B.json|/dataList/192/content","reason":"new","refs":{"llc":"……经理。","ltm":"……經理。"}}
+{"key":"StoryData/E917B.json|/dataList/192/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1025B.json|/dataList/5/content）：「……經理。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"……经理。","ltm":"……經理。"}}
 {"key":"StoryData/E917B.json|/dataList/193/content","reason":"new","refs":{"llc":"不论是他的言语，还是表情。","ltm":"不論是他的言語，還是表情。"}}
 {"key":"StoryData/E917B.json|/dataList/194/content","reason":"new","refs":{"llc":"<啊……>","ltm":"<啊……>"}}
 {"key":"StoryData/E917B.json|/dataList/195/content","reason":"new","refs":{"llc":"即便能无限接近客观，一切也都不过是主观判断。无一例外。","ltm":"即便能無限接近客觀，一切也都不過是主觀判斷。無一例外。"}}
@@ -10965,7 +10532,7 @@
 {"key":"StoryData/E919A.json|/dataList/103/content","reason":"new","refs":{"llc":"也就是说……这样避人耳目偷偷地印照片……那这里的人情况也不会好到哪里去吧。","ltm":"也就是說……這樣避人耳目偷偷地洗照片……那這裡的人情況也不會好到哪裡去吧。"}}
 {"key":"StoryData/E919A.json|/dataList/104/content","reason":"new","refs":{"llc":"这么看来……就算扭曲了也不意外。","ltm":"這麼看來……就算扭曲了也不意外。"}}
 {"key":"StoryData/E919A.json|/dataList/105/content","reason":"new","refs":{"llc":"对吧？","ltm":"對吧？"}}
-{"key":"StoryData/E919A.json|/dataList/106/content","reason":"new","refs":{"llc":"……经理。","ltm":"……經理。"}}
+{"key":"StoryData/E919A.json|/dataList/106/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1025B.json|/dataList/5/content）：「……經理。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"……经理。","ltm":"……經理。"}}
 {"key":"StoryData/E919A.json|/dataList/107/content","reason":"new","refs":{"llc":"默尔索悄悄走到我身边。","ltm":"默爾索悄悄走到我身邊。"}}
 {"key":"StoryData/E919A.json|/dataList/108/content","reason":"new","refs":{"llc":"……依旧在摇着那个不明所以的圆筒。","ltm":"……依舊在搖著那個不明所以的圓筒。"}}
 {"key":"StoryData/E919A.json|/dataList/109/content","reason":"new","refs":{"llc":"为了进行胶片显影，可以向您请求一件事吗？","ltm":"為了進行底片顯影，可以向您請求一件事嗎？"}}
@@ -11131,7 +10698,7 @@
 {"key":"StoryData/E920B.json|/dataList/2/content","reason":"new","refs":{"llc":"在这随着闪光一同变化……已经扭曲得丑陋不堪的S公司后巷中，樱桃抬头仰望向高处的某个地方。","ltm":"在這隨著閃光一同變化……已經扭曲得醜陋不堪的S公司後巷中，櫻桃抬頭仰望向高處的某個地方。"}}
 {"key":"StoryData/E920B.json|/dataList/20/content","reason":"new","refs":{"llc":"<啊……这么说来，我们是在灯亮着的状态下回来的，就这么取出胶片真的可以吗？>","ltm":"<啊……這麼說來，我們是在燈亮著的狀態下回來的，就這麼取出底片真的可以嗎？>"}}
 {"key":"StoryData/E920B.json|/dataList/21/content","reason":"new","refs":{"llc":"可以。一切都已经显影完毕，被定影好的话就没有问题。","ltm":"可以。一切都已經顯影完畢，被定影好的話就沒有問題。"}}
-{"key":"StoryData/E920B.json|/dataList/22/content","reason":"new","refs":{"llc":"<太好了……>","ltm":"<太好了……>"}}
+{"key":"StoryData/E920B.json|/dataList/22/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/E070X.json|/dataList/7/content）：「<很好……>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<太好了……>","ltm":"<太好了……>"}}
 {"key":"StoryData/E920B.json|/dataList/23/content","reason":"new","refs":{"llc":"虽然他说的话中有一半我没有听懂，但既然他说没有问题，我便松了口气，将接过来的照片展开。","ltm":"雖然他說的話中有一半我沒有聽懂，但既然他說沒有問題，我便鬆了口氣，將接過來的照片展開。"}}
 {"key":"StoryData/E920B.json|/dataList/24/content","reason":"new","refs":{"llc":"怎么样……拍到什么特殊的东西了吗，经理兄？","ltm":"怎麼樣……拍到什麼特殊的東西了嗎，經理兄？"}}
 {"key":"StoryData/E920B.json|/dataList/25/content","reason":"new","refs":{"llc":"<呃……好像拍的是人……>","ltm":"<呃……好像拍的是人……>"}}
@@ -11437,7 +11004,7 @@
 {"key":"StoryData/E923B.json|/dataList/13/content","reason":"new","refs":{"llc":"是，经理。","ltm":"是，經理。"}}
 {"key":"StoryData/E923B.json|/dataList/130/content","reason":"new","refs":{"llc":"……唉。我就是担心会变成这样才拼命在外头到处转悠的。","ltm":"……唉。我就是擔心會變成這樣才拼命在外頭到處閒逛的。"}}
 {"key":"StoryData/E923B.json|/dataList/131/content","reason":"new","refs":{"llc":"……是那样的原理啊。","ltm":"……是那樣的原理啊。"}}
-{"key":"StoryData/E923B.json|/dataList/132/content","reason":"new","refs":{"llc":"<浮士德？>","ltm":"<浮士德？>"}}
+{"key":"StoryData/E923B.json|/dataList/132/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S929B.json|/dataList/4/content）：「<浮士德？>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<浮士德？>","ltm":"<浮士德？>"}}
 {"key":"StoryData/E923B.json|/dataList/133/content","reason":"new","refs":{"llc":"在向浮士德询问那是什么意思之前，文字便飞快地翻了过去，显示出了接下来的句子。","ltm":"在向浮士德詢問那是什麼意思之前，文字便飛快地翻了過去，顯示出了接下來的句子。"}}
 {"key":"StoryData/E923B.json|/dataList/134/content","reason":"new","refs":{"llc":"<color=#ffffff><i>“给予最安于虚假之人，其本应注视之物。”</color></i>","ltm":"<color=#ffffff><i>「給予最安於虛假之人，其本應注視之物。」</color></i>"}}
 {"key":"StoryData/E923B.json|/dataList/135/content","reason":"new","refs":{"llc":"啪！","ltm":"啪！"}}
@@ -11603,7 +11170,7 @@
 {"key":"StoryData/E923I.json|/dataList/3/content","reason":"new","refs":{"llc":"罪人们看起来比平时更加疲惫。","ltm":"罪人們看起來比平時更加疲憊。"}}
 {"key":"StoryData/E923I.json|/dataList/30/content","reason":"new","refs":{"llc":"<……啊，等一下。>","ltm":"<……啊，等一下。>"}}
 {"key":"StoryData/E923I.json|/dataList/31/content","reason":"new","refs":{"llc":"我突然想起了之前在LCE经历过的事情。","ltm":"我突然想起了之前在LCE經歷過的事情。"}}
-{"key":"StoryData/E923I.json|/dataList/32/content","reason":"new","refs":{"llc":"你可以在他面前读出写在上面的东西。他说那是一种……像密码之类的东西。","ltm":"你可以在他面前讀出寫在上面的東西。他說那是一種……像密碼之類的東西。"}}
+{"key":"StoryData/E923I.json|/dataList/32/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/E714B.json|/dataList/77/content）：「你可以在他面前讀出寫在上面的東西。他說那是一種……像密碼之類的東西。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"你可以在他面前读出写在上面的东西。他说那是一种……像密码之类的东西。","ltm":"你可以在他面前讀出寫在上面的東西。他說那是一種……像密碼之類的東西。"}}
 {"key":"StoryData/E923I.json|/dataList/32/place","reason":"new","refs":{"llc":"过去，LCE研究组 实验楼","ltm":"過去，LCE研究部 實驗樓"}}
 {"key":"StoryData/E923I.json|/dataList/33/content","reason":"new","refs":{"llc":"<啊……关键词！>","ltm":"<啊……關鍵詞！>"}}
 {"key":"StoryData/E923I.json|/dataList/33/place","reason":"new","refs":{"llc":"14区，放映室","ltm":"14區，放映室"}}
@@ -12074,7 +11641,7 @@
 {"key":"StoryData/E927B.json|/dataList/0/content","reason":"new","refs":{"llc":"……嗯，好的。明白啦，队长。","ltm":"……嗯，好的。明白啦，隊長。"}}
 {"key":"StoryData/E927B.json|/dataList/1/content","reason":"new","refs":{"llc":"呼~总之汇报结束了。各位都辛苦啦。","ltm":"呼~總之彙報結束了。各位都辛苦啦。"}}
 {"key":"StoryData/E927B.json|/dataList/10/content","reason":"new","refs":{"llc":"对我来说，这可能才是从这次任务中得到的最大酬劳吧。","ltm":"對我來說，這可能才是從這次任務中得到的最大酬勞吧。"}}
-{"key":"StoryData/E927B.json|/dataList/100/content","reason":"new","refs":{"llc":"预计将进行审判，重新决定对已驱逐人员的判决。","ltm":"預計將進行審判，重新決定對已驅逐人員的判決。"}}
+{"key":"StoryData/E927B.json|/dataList/100/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1003B.json|/dataList/38/content）：「為了對被放逐者重新執行處分，即將開庭審判。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"预计将进行审判，重新决定对已驱逐人员的判决。","ltm":"預計將進行審判，重新決定對已驅逐人員的判決。"}}
 {"key":"StoryData/E927B.json|/dataList/101/content","reason":"new","refs":{"llc":"他们淡然地回答。","ltm":"他們淡然地回答。"}}
 {"key":"StoryData/E927B.json|/dataList/102/content","reason":"new","refs":{"llc":"而我们只是茫然地望着那副场景。","ltm":"而我們只是茫然地望著那副場景。"}}
 {"key":"StoryData/E927B.json|/dataList/103/content","reason":"new","refs":{"llc":"在那阳光格外刺眼的下午。","ltm":"在陽光格外刺眼的下午。"}}
@@ -12147,26 +11714,26 @@
 {"key":"StoryData/E927B.json|/dataList/78/content","reason":"new","refs":{"llc":"这、这到底是什么情况？","ltm":"這、這到底是什麼情況？"}}
 {"key":"StoryData/E927B.json|/dataList/79/content","reason":"new","refs":{"llc":"不对，更重要的是！","ltm":"不對，更重要的是！"}}
 {"key":"StoryData/E927B.json|/dataList/8/content","reason":"new","refs":{"llc":"或许是松了口气，以斯拉望向樱桃和金笠的方向，耸了耸肩。","ltm":"或許是鬆了口氣，以斯拉望向櫻桃和金笠的方向，聳了聳肩。"}}
-{"key":"StoryData/E927B.json|/dataList/80/content","reason":"new","refs":{"llc":"<你知道会这样吗，默尔索？！>","ltm":"<你知道會這樣嗎，默爾索？！>"}}
+{"key":"StoryData/E927B.json|/dataList/80/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1003B.json|/dataList/29/content）：「<你早就知道了嗎，莫梭？！>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"<你知道会这样吗，默尔索？！>","ltm":"<你知道會這樣嗎，默爾索？！>"}}
 {"key":"StoryData/E927B.json|/dataList/81/content","reason":"new","refs":{"llc":"默尔索毫无抵抗地被扣上手铐，面对我的疑问，他平淡地点了点头。","ltm":"默爾索毫無抵抗地被扣上手銬，面對我的疑問，他平淡地點了點頭。"}}
-{"key":"StoryData/E927B.json|/dataList/82/content","reason":"new","refs":{"llc":"是的，经理。","ltm":"是的，經理。"}}
+{"key":"StoryData/E927B.json|/dataList/82/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1003B.json|/dataList/31/content）：「是的。經理。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"是的，经理。","ltm":"是的，經理。"}}
 {"key":"StoryData/E927B.json|/dataList/83/content","reason":"new","refs":{"llc":"<既然这样，你为什么……>","ltm":"<既然這樣，你為什麼……>"}}
 {"key":"StoryData/E927B.json|/dataList/84/content","reason":"new","refs":{"llc":"……对于这条件反射一般脱口而出的疑问，我却立刻想到了答案。","ltm":"……對於這條件反射一般脫口而出的疑問，我卻立刻想到了答案。"}}
 {"key":"StoryData/E927B.json|/dataList/85/content","reason":"new","refs":{"llc":"<是……因为我没问吧。>","ltm":"<是……因為我沒問吧。>"}}
-{"key":"StoryData/E927B.json|/dataList/86/content","reason":"new","refs":{"llc":"是的。","ltm":"是的。"}}
+{"key":"StoryData/E927B.json|/dataList/86/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P10507.json|/dataList/47/content）：「是的。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"是的。","ltm":"是的。"}}
 {"key":"StoryData/E927B.json|/dataList/87/content","reason":"new","refs":{"llc":"<哪怕我说“这种情况你得早点说啊”……之类的话，你也只会回答“下次我会照做”对吧。>","ltm":"<哪怕我說「這種情況你得早點說啊」……之類的話，你也只會回答「下次我會照做」對吧。>"}}
-{"key":"StoryData/E927B.json|/dataList/88/content","reason":"new","refs":{"llc":"是的。","ltm":"是的。"}}
+{"key":"StoryData/E927B.json|/dataList/88/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P10507.json|/dataList/47/content）：「是的。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"是的。","ltm":"是的。"}}
 {"key":"StoryData/E927B.json|/dataList/89/content","reason":"new","refs":{"llc":"逮捕完毕。即刻起，你将以嫌疑人的身份被移送至N公司本部接受审判。","ltm":"逮捕完畢。即刻起，你將以嫌疑人的身份被移送至N公司本部接受審判。"}}
 {"key":"StoryData/E927B.json|/dataList/9/content","reason":"new","refs":{"llc":"现在我知道你为什么总是会悄无声息地跑出去……而你似乎也没有继续这样做的理由了，总算是能放心了。","ltm":"現在我知道你為什麼總是會悄無聲息地跑出去……而你似乎也沒有繼續這樣做的理由了，總算是能放心了。"}}
 {"key":"StoryData/E927B.json|/dataList/90/content","reason":"new","refs":{"llc":"其余各位……是该嫌疑人目前任职的团体吗？","ltm":"其餘各位……是該嫌疑人目前任職的團體嗎？"}}
 {"key":"StoryData/E927B.json|/dataList/91/content","reason":"new","refs":{"llc":"什么团体不团体的……你到底要干什么……！","ltm":"什麼團體不團體的……你到底要幹什麼……！"}}
 {"key":"StoryData/E927B.json|/dataList/92/content","reason":"new","refs":{"llc":"希斯克利夫，对方是N公司。是翼。","ltm":"希斯克利夫，對方是N公司。是翼。"}}
-{"key":"StoryData/E927B.json|/dataList/93/content","reason":"new","refs":{"llc":"除非有委托等合理原因，否则应该尽一切可能避免无端的战斗。","ltm":"除非有委託等合理原因，否則應該盡一切可能避免無端的戰鬥。"}}
-{"key":"StoryData/E927B.json|/dataList/94/content","reason":"new","refs":{"llc":"我知道！但是那家伙要被带走了啊！！！","ltm":"我知道！但是那傢伙要被帶走了啊！！！"}}
+{"key":"StoryData/E927B.json|/dataList/93/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1003B.json|/dataList/35/content）：「除非有委託之類的合理理由，否則輕率的戰鬥應當被視為禁忌。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"除非有委托等合理原因，否则应该尽一切可能避免无端的战斗。","ltm":"除非有委託等合理原因，否則應該盡一切可能避免無端的戰鬥。"}}
+{"key":"StoryData/E927B.json|/dataList/94/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1003B.json|/dataList/36/content）：「那又怎樣！那混蛋要被帶走了啊！！！」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"我知道！但是那家伙要被带走了啊！！！","ltm":"我知道！但是那傢伙要被帶走了啊！！！"}}
 {"key":"StoryData/E927B.json|/dataList/95/content","reason":"new","refs":{"llc":"……这或许也是，“未能通知”我的信息之一。","ltm":"……這或許也是，「未能通知」我的情報之一。"}}
 {"key":"StoryData/E927B.json|/dataList/96/content","reason":"new","refs":{"llc":"也是已经决定好的走向。","ltm":"也是已經決定好的走向。"}}
 {"key":"StoryData/E927B.json|/dataList/97/content","reason":"new","refs":{"llc":"虽然浮士德语气冷静地制止着希斯克利夫。但她自己也难掩心中不快，紧盯着N公司的人们。","ltm":"雖然浮士德語氣冷靜地制止著希斯克利夫。但她自己也難掩心中不快，緊盯著N公司的人們。"}}
-{"key":"StoryData/E927B.json|/dataList/98/content","reason":"new","refs":{"llc":"你、你们要去哪儿？","ltm":"你、你們要去哪？"}}
+{"key":"StoryData/E927B.json|/dataList/98/content","reason":"new","hint":"同一句 KR 已有譯文（StoryData/S1003B.json|/dataList/37/content）：「要、要帶他去哪裡啊？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"你、你们要去哪儿？","ltm":"你、你們要去哪？"}}
 {"key":"StoryData/ES030B.json|/dataList/20/content","reason":"paratranz-repair","draft":"其名為「<ruby=J&J>江湖遊覽記</ruby>」，最近在鴻園的公子們之間很流行。風評也不錯。","refs":{"llc":"这个叫做《江湖游记》。听说最近在鸿园的公子哥之间很流行。评价也还不错。","ltm":"這個叫做《江湖遊覽記》。聽說最近在鴻園的公子哥之間很流行。評價也還不錯。"}}
 {"key":"StoryData/ES030B.json|/dataList/25/content","reason":"new","refs":{"llc":"……主持人？","ltm":"……主持人？"}}
 {"key":"StoryData/ES030B.json|/dataList/26/content","reason":"paratranz-repair","draft":"<ruby=Journey Master>旅行主持人</ruby>的縮寫，負責引導故事，令冒險者們順利抵達目的地，並根據他們的選擇，指引方向的人物。","refs":{"llc":"主持人是负责一边引导故事，使冒险者们能够顺利抵达目标，一边根据他们的选择指示道路的人。","ltm":"主持人是負責一邊引導故事，使冒險者們能夠順利抵達目標，一邊根據他們的選擇指示道路的人。"}}
@@ -12282,7 +11849,7 @@
 {"key":"StoryData/P10216.json|/dataList/8/content","reason":"new","refs":{"llc":"[在其下方可以确认到人体留下的痕迹。]","ltm":"[在其下方可以確認到人體留下的痕跡。]"}}
 {"key":"StoryData/P10216.json|/dataList/9/content","reason":"new","refs":{"llc":"[多数情况下人的末端部位会残留下来，而至于躯干的痕迹……]","ltm":"[多數情況下人的末端部位會殘留下來，而至於軀幹的痕跡……]"}}
 {"key":"StoryData/P10315.json|/dataList/0/content","reason":"new","refs":{"llc":"4F的召回情况如何。","ltm":"4F的召回情況如何。"}}
-{"key":"StoryData/P10315.json|/dataList/0/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/0/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/1/content","reason":"new","refs":{"llc":"制鞋馆已经完成了大规模召回，进入了检查阶段。箱包馆……据称还要一段时间。","ltm":"製鞋館已經完成了大規模召回，進入了檢查階段。箱包館……據稱還要一段時間。"}}
 {"key":"StoryData/P10315.json|/dataList/1/teller","reason":"new","refs":{"llc":"店员","ltm":"店員"}}
 {"key":"StoryData/P10315.json|/dataList/1/title","reason":"new","refs":{"llc":"黑派品牌世家","ltm":"黑派品牌世家"}}
@@ -12293,24 +11860,24 @@
 {"key":"StoryData/P10315.json|/dataList/11/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/11/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/12/content","reason":"new","refs":{"llc":"……声音已向吾传达过了。","ltm":"……聲音已向吾傳達過了。"}}
-{"key":"StoryData/P10315.json|/dataList/12/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/12/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/13/content","reason":"new","refs":{"llc":"我为了前往地下，等了很多个季度才下到了1F……","ltm":"我為了前往地下，等了很多個季度才下到了1F……"}}
 {"key":"StoryData/P10315.json|/dataList/14/content","reason":"new","refs":{"llc":"结果被黑派的品牌经理抓到了，现在正和她一起行动。","ltm":"結果被黑派的品牌經理抓到了，現在正和她一起行動。"}}
 {"key":"StoryData/P10315.json|/dataList/15/content","reason":"new","refs":{"llc":"而汝并不追随高贵的漆黑之神，仅仅是不断漂流的褐派而已啊。","ltm":"而汝並不追隨高貴的漆黑之神，僅僅是不斷漂流的褐派而已啊。"}}
-{"key":"StoryData/P10315.json|/dataList/15/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/15/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/16/content","reason":"new","refs":{"llc":"因为……无法推测出汝之义，所以在离开这一层之前，吾都计划将汝置于身侧。","ltm":"因為……無法推測出汝之義，所以在離開這一層之前，吾都計劃將汝置於身側。"}}
-{"key":"StoryData/P10315.json|/dataList/16/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/16/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/17/content","reason":"new","refs":{"llc":"义……是定义还是正义呢……？","ltm":"義……是定義還是正義呢……？"}}
 {"key":"StoryData/P10315.json|/dataList/17/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/17/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/18/content","reason":"new","refs":{"llc":"于这百货店内，未有一件事是确定的。","ltm":"於這百貨公司內，未有一件事是確定的。"}}
-{"key":"StoryData/P10315.json|/dataList/18/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/18/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/19/content","reason":"new","refs":{"llc":"曾经也有以黑派与红派之名所保存的价值，但都被名为虚无派的邪恶存在们所解体了……","ltm":"曾經也有以黑派與紅派之名所保存的價值，但都被名為虛無派的邪惡存在們所解體了……"}}
-{"key":"StoryData/P10315.json|/dataList/19/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/19/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/2/content","reason":"new","refs":{"llc":"再派若干店员去往箱包馆。若是继续拖延，红派甚至会将吾等驱逐出4F吧。","ltm":"再派若干店員去往箱包館。若是繼續拖延，紅派甚至會將吾等驅逐出4F吧。"}}
-{"key":"StoryData/P10315.json|/dataList/2/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/2/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/20/content","reason":"new","refs":{"llc":"纵使汝将褐派的无序当作秩序遵从，天秤也无法平衡吧。","ltm":"縱使汝將褐派的無序當作秩序遵從，天秤也無法平衡吧。"}}
-{"key":"StoryData/P10315.json|/dataList/20/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/20/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/21/content","reason":"new","refs":{"llc":"就像是改衣师小姐……帮助黑派那样吗？","ltm":"就像是改衣師小姐……幫助黑派那樣嗎？"}}
 {"key":"StoryData/P10315.json|/dataList/21/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/21/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
@@ -12326,16 +11893,16 @@
 {"key":"StoryData/P10315.json|/dataList/28/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/28/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/29/content","reason":"new","refs":{"llc":"就如汝那不分黑派红派的服装一般吗？","ltm":"就如汝那不分黑派紅派的服裝一般嗎？"}}
-{"key":"StoryData/P10315.json|/dataList/29/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/29/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/3/content","reason":"new","refs":{"llc":"至于3F……两件套确实受雇挡住了走廊，但其是被突破了吗。","ltm":"至於3F……兩件套確實受僱擋住了走廊，但其是被突破了嗎。"}}
-{"key":"StoryData/P10315.json|/dataList/3/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/3/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/30/content","reason":"new","refs":{"llc":"……是。","ltm":"……是。"}}
 {"key":"StoryData/P10315.json|/dataList/30/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/30/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/31/content","reason":"new","refs":{"llc":"……","ltm":"……"}}
-{"key":"StoryData/P10315.json|/dataList/31/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/31/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/32/content","reason":"new","refs":{"llc":"愈是永恒地于百货店内不断购物下去，汝愈是会成为一位更好的设计师吧。","ltm":"愈是永恆地於百貨公司內不斷購物下去，汝愈是會成為一位更好的設計師吧。"}}
-{"key":"StoryData/P10315.json|/dataList/32/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/32/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/33/content","reason":"new","refs":{"llc":"我、我也这么觉得，有朝一日自己能够成为很厉害的设计师的。","ltm":"我、我也這麼覺得，有朝一日自己能夠成為很厲害的設計師的。"}}
 {"key":"StoryData/P10315.json|/dataList/33/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/33/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
@@ -12346,9 +11913,9 @@
 {"key":"StoryData/P10315.json|/dataList/35/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/35/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/36/content","reason":"new","refs":{"llc":"……外界。真是遥不可及的词汇。","ltm":"……外界。真是遙不可及的詞彙。"}}
-{"key":"StoryData/P10315.json|/dataList/36/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/36/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/37/content","reason":"new","refs":{"llc":"汝在外界曾是何种存在呢。","ltm":"汝在外界曾是何種存在呢。"}}
-{"key":"StoryData/P10315.json|/dataList/37/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/37/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/38/content","reason":"new","refs":{"llc":"走在阳光格外强烈的走廊上，经理小姐没有看向我，而是这么问道。","ltm":"走在陽光格外強烈的走廊上，經理小姐沒有看向我，而是這麼問道。"}}
 {"key":"StoryData/P10315.json|/dataList/39/content","reason":"new","refs":{"llc":"外界……关于那边的记忆，我已经很模糊了。","ltm":"外界……關於那邊的記憶，我已經很模糊了。"}}
 {"key":"StoryData/P10315.json|/dataList/4/content","reason":"new","refs":{"llc":"虽然是有一个异乡人帮助了红派，但主要原因是红派通过广播室进行了迂回入侵。","ltm":"雖然是有一個異鄉人幫助了紅派，但主要原因是紅派通過廣播室進行了迂迴入侵。"}}
@@ -12361,23 +11928,23 @@
 {"key":"StoryData/P10315.json|/dataList/41/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/41/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/42/content","reason":"new","refs":{"llc":"吾未曾度过不怎么像样的人生，所以没法予汝安慰之词。","ltm":"吾未曾度過不怎麼像樣的人生，所以沒法予汝安慰之詞。"}}
-{"key":"StoryData/P10315.json|/dataList/42/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/42/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/43/content","reason":"new","refs":{"llc":"只要遵循漆黑之神的圣言，顺应百货店内的秩序……就不会过上如此那般的人生吧。","ltm":"只要遵循漆黑之神的聖言，順應百貨公司內的秩序……就不會過上如此那般的人生吧。"}}
-{"key":"StoryData/P10315.json|/dataList/43/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/43/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/44/content","reason":"new","refs":{"llc":"即便如此，吾也希望汝在此处过上像样的人生。","ltm":"即便如此，吾也希望汝在此處過上像樣的人生。"}}
-{"key":"StoryData/P10315.json|/dataList/44/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/44/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/45/content","reason":"new","refs":{"llc":"被称作漆黑之神的那位……究竟是何方神圣？我曾在黑派的店铺里听过几次其声音……","ltm":"被稱作漆黑之神的那位……究竟是何方神聖？我曾在黑派的店鋪裡聽過幾次其聲音……"}}
 {"key":"StoryData/P10315.json|/dataList/45/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/45/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/46/content","reason":"new","refs":{"llc":"嘘。","ltm":"噓。"}}
-{"key":"StoryData/P10315.json|/dataList/46/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/46/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/47/content","reason":"new","refs":{"llc":"在去往扶梯的路上，经理小姐停在了红派的当代服饰馆前。","ltm":"往手扶梯的路上，經理小姐停在了紅派的當代服飾館前。"}}
 {"key":"StoryData/P10315.json|/dataList/48/content","reason":"new","refs":{"llc":"默视吧。","ltm":"默視吧。"}}
-{"key":"StoryData/P10315.json|/dataList/48/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/48/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/49/content","reason":"new","refs":{"llc":"因为如今，漆黑之神正向吾传达圣言……","ltm":"因為如今，漆黑之神正向吾傳達聖言……"}}
-{"key":"StoryData/P10315.json|/dataList/49/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/49/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/5/content","reason":"new","refs":{"llc":"……由于新的声音，红派已不再倾听广播了。所以请如此告知3F的楼层经理……希望其转向黑派，阻止他们进入黑派的店铺。","ltm":"……由於新的聲音，紅派已不再傾聽廣播了。所以請如此告知3F的樓層經理……希望其轉向黑派，阻止他們進入黑派的店鋪。"}}
-{"key":"StoryData/P10315.json|/dataList/5/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/5/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/50/content","reason":"new","refs":{"llc":"经理小姐合上双眼，像是在祈祷一般，将头低了下去。","ltm":"經理小姐合上雙眼，像是在祈禱一般，將頭低了下去。"}}
 {"key":"StoryData/P10315.json|/dataList/51/content","reason":"new","refs":{"llc":"一个似曾相识的身影出现在走廊另一侧的钱包之间。","ltm":"一個似曾相識的身影出現在走廊另一側的錢包之間。"}}
 {"key":"StoryData/P10315.json|/dataList/52/content","reason":"new","refs":{"llc":"……","ltm":"……"}}
@@ -12397,21 +11964,21 @@
 {"key":"StoryData/P10315.json|/dataList/6/title","reason":"new","refs":{"llc":"黑派品牌世家","ltm":"黑派品牌世家"}}
 {"key":"StoryData/P10315.json|/dataList/60/content","reason":"new","refs":{"llc":"我无可奈何，最终还是含泪拿出了在3F获得的面料。","ltm":"我無可奈何，最終還是含淚拿出了在3F獲得的衣料。"}}
 {"key":"StoryData/P10315.json|/dataList/61/content","reason":"new","refs":{"llc":"……","ltm":"……"}}
-{"key":"StoryData/P10315.json|/dataList/61/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/61/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/62/content","reason":"new","refs":{"llc":"我的布料暂时挡住了那些扑过来的红派，而就在那时。","ltm":"我的衣料暫時擋住了那些撲過來的紅派，而就在那時。"}}
 {"key":"StoryData/P10315.json|/dataList/63/content","reason":"new","refs":{"llc":"经理小姐似乎已经听完了声音，慢慢睁开了双眼，举起了锤。","ltm":"經理小姐似乎已經聽完了聲音，慢慢睜開了雙眼，舉起了錘。"}}
 {"key":"StoryData/P10315.json|/dataList/64/content","reason":"new","refs":{"llc":"神域宣告。","ltm":"神域宣告。"}}
-{"key":"StoryData/P10315.json|/dataList/64/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/64/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/65/content","reason":"new","refs":{"llc":"虽与阳光不同，但那道光依旧灿烂耀眼，迸发而出。","ltm":"雖與陽光不同，但那道光依舊燦爛耀眼，迸發而出。"}}
 {"key":"StoryData/P10315.json|/dataList/66/content","reason":"new","refs":{"llc":"奇怪的纹样开始顺着我身上的衣服中那些黑派的布料蔓延开来。","ltm":"奇怪的紋樣開始順著我身上的衣服中那些黑派的布料蔓延開來。"}}
 {"key":"StoryData/P10315.json|/dataList/67/content","reason":"new","refs":{"llc":"……漆黑之神已然许诺过吾之永恒与保存。","ltm":"……漆黑之神已然許諾過吾之永恆與保存。"}}
-{"key":"StoryData/P10315.json|/dataList/67/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/67/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/68/content","reason":"new","refs":{"llc":"因此，汝本无必要挡在吾之身前……","ltm":"因此，汝本無必要擋在吾之身前……"}}
-{"key":"StoryData/P10315.json|/dataList/68/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/68/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/69/content","reason":"new","refs":{"llc":"那为……何物……？","ltm":"那為……何物……？"}}
-{"key":"StoryData/P10315.json|/dataList/69/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/69/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/7/content","reason":"new","refs":{"llc":"嗯。1F如何？","ltm":"嗯。1F如何？"}}
-{"key":"StoryData/P10315.json|/dataList/7/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/7/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/70/content","reason":"new","refs":{"llc":"是、是我保管的人台。","ltm":"是、是我保管的人台。"}}
 {"key":"StoryData/P10315.json|/dataList/70/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/70/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
@@ -12419,29 +11986,29 @@
 {"key":"StoryData/P10315.json|/dataList/71/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/71/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/72/content","reason":"new","refs":{"llc":"……虽然设计并非吾的喜好，然而完成得不错。","ltm":"……雖然設計並非吾的喜好，然而完成得不錯。"}}
-{"key":"StoryData/P10315.json|/dataList/72/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/72/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/73/content","reason":"new","refs":{"llc":"经理小姐每次挥动手臂之时，都会有放出璀璨光芒的钉子出现。","ltm":"經理小姐每次揮動手臂之時，都會有放出璀璨光芒的釘子出現。"}}
 {"key":"StoryData/P10315.json|/dataList/74/content","reason":"new","refs":{"llc":"简直如同由线织成的一般，被井然有序地制作出来的钉子飞向了红派……","ltm":"簡直如同由線織成的一般，被井然有序地製作出來的釘子飛向了紅派……"}}
 {"key":"StoryData/P10315.json|/dataList/75/content","reason":"new","refs":{"llc":"理所当然地，紧接着锤将钉砸了下去。","ltm":"理所當然地，緊接著錘將釘砸了下去。"}}
 {"key":"StoryData/P10315.json|/dataList/76/content","reason":"new","refs":{"llc":"当众多的红派被全都击溃之后，伪神的身影已经在不知不觉间消失了。","ltm":"當眾多的紅派被全都擊潰之後，偽神的身影已經在不知不覺間消失了。"}}
 {"key":"StoryData/P10315.json|/dataList/77/content","reason":"new","refs":{"llc":"……必须尽快夺回2F。","ltm":"……必須儘快奪回2F。"}}
-{"key":"StoryData/P10315.json|/dataList/77/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/77/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/78/content","reason":"new","refs":{"llc":"原本，吾是准备与汝这褐派同去B2F的……","ltm":"原本，吾是準備與汝這褐派同去B2F的……"}}
-{"key":"StoryData/P10315.json|/dataList/78/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/78/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/79/content","reason":"new","refs":{"llc":"但如今似乎到了向上走的时刻了。","ltm":"但如今似乎到了向上走的時刻了。"}}
-{"key":"StoryData/P10315.json|/dataList/79/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/79/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/8/content","reason":"new","refs":{"llc":"从各个店铺的营运计划，到奢侈品馆的夺回计划。","ltm":"從各個店鋪的營運計畫，到精品館的奪回計畫。"}}
 {"key":"StoryData/P10315.json|/dataList/80/content","reason":"new","refs":{"llc":"漆黑之神是那么说的吗？","ltm":"漆黑之神是那麼說的嗎？"}}
 {"key":"StoryData/P10315.json|/dataList/80/teller","reason":"new","refs":{"llc":"杜布瓦","ltm":"杜布瓦"}}
 {"key":"StoryData/P10315.json|/dataList/80/title","reason":"new","refs":{"llc":"褐派","ltm":"褐派"}}
 {"key":"StoryData/P10315.json|/dataList/81/content","reason":"new","refs":{"llc":"……并非。","ltm":"……並非。"}}
-{"key":"StoryData/P10315.json|/dataList/81/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/81/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/82/content","reason":"new","refs":{"llc":"漆黑之神……对于伪神……","ltm":"漆黑之神……對於偽神……"}}
-{"key":"StoryData/P10315.json|/dataList/82/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/82/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/83/content","reason":"new","refs":{"llc":"不，此亦为神所给予的试炼。不应将怀疑宣之于口。","ltm":"不，此亦為神所給予的試煉。不應將懷疑宣之於口。"}}
-{"key":"StoryData/P10315.json|/dataList/83/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/83/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/84/content","reason":"new","refs":{"llc":"愿那传闻能够平安传达。","ltm":"願那傳聞能夠平安傳達。"}}
-{"key":"StoryData/P10315.json|/dataList/84/title","reason":"new","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
+{"key":"StoryData/P10315.json|/dataList/84/title","reason":"new","hint":"同一句 KR 已有譯文（StoryData/P11016.json|/dataList/34/title）：「漆黑派 品牌經理」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致","refs":{"llc":"黑派品牌经理","ltm":"黑派品牌經理"}}
 {"key":"StoryData/P10315.json|/dataList/85/content","reason":"new","refs":{"llc":"目送着经理小姐乘上扶梯离去以后，","ltm":"目送著經理小姐乘上手扶梯離去以後，"}}
 {"key":"StoryData/P10315.json|/dataList/86/content","reason":"new","refs":{"llc":"我也该下去……","ltm":"我也該下去……"}}
 {"key":"StoryData/P10315.json|/dataList/87/content","reason":"new","refs":{"llc":"……之前有这东西吗？","ltm":"……之前有這東西嗎？"}}
@@ -13781,102 +13348,51 @@
 {"key":"StoryData/RPG1.json|/dataList/0/content","reason":"new","refs":{"llc":"우와... 너희 방금...","ltm":"우와... 너희 방금..."}}
 {"key":"StoryData/RPG1.json|/dataList/0/place","reason":"new","refs":{"llc":"시지프스 백화점 1층","ltm":"시지프스 백화점 1층"}}
 {"key":"StoryData/RPG1.json|/dataList/1/content","reason":"new","refs":{"llc":"그곳에서 나온 거야?","ltm":"그곳에서 나온 거야?"}}
-{"key":"StoryData/S830B.json|/dataList/129/content","reason":"paratranz-repair","draft":"砍吧，<ruby=天退星>插翅虎</ruby>。","refs":{"llc":"斩吧，<ruby=天退星>插翅虎</ruby>。","ltm":"砍吧，<ruby=天退星>插翅虎</ruby>。"},"attempts":3,"flags":["needs_review"]}
-{"key":"StoryData/S830B.json|/dataList/131/content","reason":"paratranz-repair","draft":"上囉，<ruby=天究星>沒遮攔</ruby>。","refs":{"llc":"好啊，<ruby=天究星>没遮拦</ruby>。","ltm":"好啊，<ruby=天究星>沒遮攔</ruby>。"},"attempts":3,"flags":["needs_review"]}
-{"key":"StoryData/S833A.json|/dataList/64/content","reason":"paratranz-repair","draft":"……那麼，<ruby=天退星>插翅虎</ruby>。吃我一記吧。就像你對<ruby=天究星>沒遮攔</ruby>所做的一樣。","refs":{"llc":"……那么，<ruby=天退星>插翅虎</ruby>。就吃我一招吧。就像你对<ruby=天究星>没遮拦</ruby>所做的那样。","ltm":"……那麼，<ruby=天退星>插翅虎</ruby>。吃我一招吧。就像你對<ruby=天究星>沒遮攔</ruby>所做的一樣。"},"attempts":3,"flags":["needs_review"]}
-{"key":"StoryData/S918B.json|/dataList/29/teller","reason":"requeue","prev_zh":"地彗星","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S918B.json|/dataList/30/teller","reason":"requeue","prev_zh":"地彗星","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S918B.json|/dataList/31/teller","reason":"requeue","prev_zh":"地彗星","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S918B.json|/dataList/32/teller","reason":"requeue","prev_zh":"地彗星","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S918B.json|/dataList/33/teller","reason":"requeue","prev_zh":"地彗星","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S918B.json|/dataList/34/teller","reason":"requeue","prev_zh":"地彗星","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S928B.json|/dataList/21/content","reason":"requeue","prev_zh":"那孩子說……人偶是一種仿制品。無論做到多麼栩栩如生，依舊沒有與會呼吸的真品比較的價值。","hint":"「仿制品」是簡體寫法，改為「仿製品」，其餘照舊"}
-{"key":"StoryData/S928B.json|/dataList/22/content","reason":"requeue","prev_zh":"但低估一件仿制品是不行的。根據理解的方式，反而能夠讓其成為理想中形態。","hint":"「仿制品」是簡體寫法，改為「仿製品」，其餘照舊"}
-{"key":"StoryData/S930B.json|/dataList/44/content","reason":"paratranz-repair","draft":"<ruby=Nice catch.>接得好。</ruby>","refs":{"llc":"接得好。","ltm":"接得好。"}}
-{"key":"StoryData/S930B.json|/dataList/71/content","reason":"paratranz-repair","draft":"論殺人……<ruby=YoshiHide>良秀</ruby>，妳比前兩名都優秀。","refs":{"llc":"在杀人这方面……<ruby=Yoshihide>良秀</ruby>，你比前两名更为优秀。","ltm":"在殺人這方面……<ruby=Yoshihide>良秀</ruby>，你比前兩名更為優秀。"}}
-{"key":"StoryData/S931B.json|/dataList/28/content","reason":"paratranz-repair","draft":"哦……<ruby=Ryō>良</ruby>……<ruby=shū>秀</ruby>……？","refs":{"llc":"呃……<ruby=りょう>Ryō</ruby>……<ruby=しゅう>shū</ruby>……？","ltm":"呃……<ruby=りょう>Ryō</ruby>……<ruby=しゅう>shū</ruby>……？"}}
-{"key":"StoryData/S931B.json|/dataList/30/content","reason":"paratranz-repair","draft":"要唸作<ruby=YoshiHide>良秀</ruby>才對。","refs":{"llc":"<ruby=ヨシヒデ>Yoshihide</ruby>，要这么读。","ltm":"<ruby=ヨシヒデ>Yoshihide</ruby>，要這麼讀。"}}
-{"key":"StoryData/S931B.json|/dataList/31/content","reason":"paratranz-repair","draft":"<ruby=Ryō–shū>良秀</ruby>！","refs":{"llc":"<ruby=りょう>Ryō</ruby>-<ruby=しゅう>shū</ruby>！","ltm":"<ruby=りょう>Ryō</ruby>-<ruby=しゅう>shū</ruby>！"}}
-{"key":"StoryData/S938B.json|/dataList/109/content","reason":"paratranz-repair","draft":"……是因為那個小鬼吧。我要是知道她這樣堵住我們<ruby=YoshiHide>良秀</ruby>的前路……我就該一早把她的頭擰下來。","refs":{"llc":"……肯定是因为那小鬼。早知道她会挡住我家<ruby=Yoshihide>良秀</ruby>的前途……当初就该扭断她的脖子了。","ltm":"……肯定是因為那小鬼。早知道她會擋住我家<ruby=Yoshihide>良秀</ruby>的前途……當初就該扭斷她的脖子了。"}}
-{"key":"StoryData/S938B.json|/dataList/91/content","reason":"paratranz-repair","draft":"……先不管其他傢伙，我對<ruby=YoshiHide>良秀</ruby>。對我們的丫頭，可沒有欠奉一絲的真心。","refs":{"llc":"……其他人我不清楚，但我对<ruby=Yoshihide>良秀</ruby>。对我家闺女从来没有哪怕一刻不是发自真心的。","ltm":"……其他人我不清楚，但我對<ruby=Yoshihide>良秀</ruby>。對我家女兒從來沒有哪怕一刻不是發自真心的。"}}
-{"key":"StoryData/S940B.json|/dataList/53/content","reason":"paratranz-repair","draft":"看來主人……還是把妳視為小孩呢，<ruby=YoshiHide>良秀</ruby>。","refs":{"llc":"看来主人她……<ruby=Yoshihide>良秀</ruby>，她仍然将你视为孩童。","ltm":"看來主人她……<ruby=Yoshihide>良秀</ruby>，她仍然將你視為孩童。"}}
-{"key":"StoryData/S940B.json|/dataList/55/content","reason":"paratranz-repair","draft":"請容我向<ruby=YoshiHide>良秀</ruby>閣下……及其友人們請教。","refs":{"llc":"希望<ruby=Yoshihide>良秀</ruby>阁下……与其友人们为小生解答一道疑问。","ltm":"希望<ruby=Yoshihide>良秀</ruby>閣下……與其友人們為小生解答一道疑問。"}}
-{"key":"StoryData/S940B.json|/dataList/74/content","reason":"paratranz-repair","draft":"這孩子就取名為<ruby=YoshiHide>良秀</ruby>吧。","refs":{"llc":"孩子的名字就叫做<ruby=Yoshihide>良秀</ruby>吧。","ltm":"孩子的名字就叫做<ruby=Yoshihide>良秀</ruby>吧。"}}
-{"key":"StoryData/S940B.json|/dataList/80/content","reason":"paratranz-repair","draft":"這傢伙……看來很滿意<ruby=YoshiHide>良秀</ruby>這個名字啊？很好！從今天開始你的名字就是<ruby=YoshiHide>良秀</ruby>了。<ruby=YoshiHide>良秀</ruby>！","refs":{"llc":"这孩子……好像很中意<ruby=Yoshihide>良秀</ruby>这个名字啊？好！今天开始你就叫做<ruby=Yoshihide>良秀</ruby>了。<ruby=Yoshihide>良秀</ruby>！","ltm":"這孩子……好像很中意<ruby=Yoshihide>良秀</ruby>這個名字啊？好！今天開始你就叫做<ruby=Yoshihide>良秀</ruby>了。<ruby=Yoshihide>良秀</ruby>！"}}
-{"key":"StoryData/S941B.json|/dataList/102/content","reason":"paratranz-repair","draft":"<ruby=YoshiHide>良秀</ruby>……對我而言……","refs":{"llc":"<ruby=Yoshihide>良秀</ruby>……于我而言……","ltm":"<ruby=Yoshihide>良秀</ruby>……於我而言……"}}
-{"key":"StoryData/S941B.json|/dataList/120/content","reason":"paratranz-repair","draft":"<ruby=你不可能>你唔可仍</ruby>……<ruby=得到自由>得刀茲由</ruby>……遮裡斯……<ruby=蜘蛛巢>蜘支朝</ruby>……","refs":{"llc":"你不会……日由的……惹一是……一呜巢……","ltm":"你不會……日由的……惹一是…………巢……"}}
-{"key":"StoryData/S941B.json|/dataList/121/content","reason":"paratranz-repair","draft":"<ruby=不徹底斬斷>噗撤低斬端</ruby>……<ruby=的話>的花</ruby>……","refs":{"llc":"不圆部割惹……就不人……","ltm":"不圓部割惹……就不人……"}}
-{"key":"StoryData/S942A.json|/dataList/10/content","reason":"paratranz-repair","draft":"但……我希望至少能與本該學習的<ruby=YoshiHide>良秀</ruby>小姐交鋒……最終死去……","refs":{"llc":"虽然我希望至少能与本应从我身上学习的<ruby=Yoshihide>良秀</ruby>小姐交锋……最后殒命……","ltm":"雖然我希望至少能與本應從我身上學習的<ruby=Yoshihide>良秀</ruby>小姐交鋒……最後殞命……"}}
-{"key":"StoryData/S942A.json|/dataList/3/content","reason":"paratranz-repair","draft":"你覺得<ruby=YoshiHide>良秀</ruby>小姐會在這種時候放棄戰鬥嗎？還是說……","refs":{"llc":"你觉得<ruby=Yoshihide>良秀</ruby>小姐会在这时候认输吗？或者说……","ltm":"你覺得<ruby=Yoshihide>良秀</ruby>小姐會在這時候認輸嗎？或者說……"}}
-{"key":"StoryData/S943B.json|/dataList/0/content","reason":"paratranz-repair","draft":"來吧。妳覺得如何，<ruby=YoshiHide>良秀</ruby>。\n所謂的極簡主義，就是這種概念。","refs":{"llc":"那么，你怎么看呢，<ruby=Yoshihide>良秀</ruby>？这概念被称为“极简主义”。","ltm":"那麼，你怎麼看呢，<ruby=Yoshihide>良秀</ruby>？這概念被稱為「極簡主義」。"}}
-{"key":"StoryData/S943B.json|/dataList/10/content","reason":"paratranz-repair","draft":"我會將妳培育成往後能共享一切藝術的重要弟子。\n所以<ruby=YoshiHide>良秀</ruby>，請好好跟上我所有的課程。","refs":{"llc":"我将把你培养成能够与我共同创作所有艺术的，我重要的徒弟，因此<ruby=Yoshihide>良秀</ruby>，请务必好好跟上我的所有课程。","ltm":"我將把你培養成能夠與我共同創作所有藝術的，我重要的徒弟，因此<ruby=Yoshihide>良秀</ruby>，請務必好好跟上我的所有課程。"}}
-{"key":"StoryData/S943B.json|/dataList/12/content","reason":"paratranz-repair","draft":"歸根究柢，所謂藝術便是在每個剎那間反覆經歷選擇與痛苦……<ruby=YoshiHide>良秀</ruby>，在妳的眼中，這份作品……看起來如何？","refs":{"llc":"毕竟，艺术是在每个瞬间进行的选择与痛苦的重复……<ruby=Yoshihide>良秀</ruby>，在你眼中，这件作品……看起来如何呢？","ltm":"畢竟，藝術是在每個瞬間進行的選擇與痛苦的重複……<ruby=Yoshihide>良秀</ruby>，在你眼中，這件作品……看起來如何呢？"}}
-{"key":"StoryData/S943B.json|/dataList/136/content","reason":"paratranz-repair","draft":"啊……我們的<ruby=YoshiHide>良秀</ruby>，在久遠的過去將我的劍粉碎殆盡的時候……","refs":{"llc":"啊……曾经我们的<ruby=Yoshihide>良秀</ruby>将我的剑粉碎的时候……","ltm":"啊……曾經我們的<ruby=Yoshihide>良秀</ruby>將我的劍粉碎的時候……"}}
-{"key":"StoryData/S943B.json|/dataList/15/content","reason":"paratranz-repair","draft":"怎麼會是屠殺呢，<ruby=YoshiHide>良秀</ruby>。我是在刻意表現出野獸派的強烈感。","refs":{"llc":"屠宰吗，<ruby=Yoshihide>良秀</ruby>。我的本意是复现野兽派的强烈表现力。","ltm":"屠宰嗎，<ruby=Yoshihide>良秀</ruby>。我的本意是復現野獸派的強烈表現力。"}}
-{"key":"StoryData/S943B.json|/dataList/20/content","reason":"paratranz-repair","draft":"我很欣慰，<ruby=YoshiHide>良秀</ruby>……","refs":{"llc":"我真高兴啊，<ruby=Yoshihide>良秀</ruby>……","ltm":"我真高興啊，<ruby=Yoshihide>良秀</ruby>……"}}
-{"key":"StoryData/S943B.json|/dataList/25/content","reason":"paratranz-repair","draft":"儘管在喜好上存在主觀的見解差異……<ruby=YoshiHide>良秀</ruby>所擁有的美學審美觀，透過知識的系統化，已經能夠掌握住美的結構了。","refs":{"llc":"即便我们的审美存在主观上的偏差……也是我将<ruby=Yoshihide>良秀</ruby>的审美观通过知识形成体系，从而使她能够结构性地理解美。","ltm":"即便我們的審美存在主觀上的偏差……也是我將<ruby=Yoshihide>良秀</ruby>的審美觀通過知識形成體系，從而使她能夠結構性地理解美。"}}
-{"key":"StoryData/S943B.json|/dataList/8/content","reason":"paratranz-repair","draft":"<ruby=YoshiHide>良秀</ruby>，那是因為妳只注意到表面的現象。\n這份材料所感受到的痛苦僅有剎那，但我們所留下的造形卻是永恆。","refs":{"llc":"<ruby=Yoshihide>良秀</ruby>，这是因为你只看到了表象。那些材料所感受到的痛苦只是刹那，而我们所塑造的形态才是永恒。","ltm":"<ruby=Yoshihide>良秀</ruby>，這是因為你只看到了表象。那些材料所感受到的痛苦只是剎那，而我們所塑造的形態才是永恆。"}}
-{"key":"StoryData/S947B.json|/dataList/100/content","reason":"paratranz-repair","draft":"<ruby=YoshiHide>良秀</ruby>。總有一天，我也想將自己的孩子……真正以我的血肉打造，完成只屬於我的孩子。","refs":{"llc":"<ruby=Yoshihide>良秀</ruby>。总有一天啊，我想完成自己的孩子……真正混合我的血与肉所制作的，只属于我的孩子。","ltm":"<ruby=Yoshihide>良秀</ruby>。總有一天啊，我想完成自己的孩子……真正混合我的血與肉所製作的，只屬於我的孩子。"}}
-{"key":"StoryData/S947B.json|/dataList/14/content","reason":"paratranz-repair","draft":"請好好跟上我的課程。美麗與力量，皆立於知識的基石上。從現在開始，來學習美學吧。<ruby=YoshiHide>良秀</ruby>某天不也要建立屬於自己的藝廊嗎？","refs":{"llc":"请好好跟上我的课程，不论是美丽还是力量，都奠基于名为知识的磐石之上。让我们从现在开始学习美学吧。总有一天，<ruby=Yoshihide>良秀</ruby>也会建立自己的画廊吧？","ltm":"請好好跟上我的課程，不論是美麗還是力量，都奠基於名為知識的磐石之上。讓我們從現在開始學習美學吧。總有一天，<ruby=Yoshihide>良秀</ruby>也會建立自己的畫廊吧？"}}
-{"key":"StoryData/S947B.json|/dataList/160/content","reason":"paratranz-repair","draft":"喂，<ruby=YoshiHide>良秀</ruby>。既然妳有才能，就給我死命地練吧，聽到沒？","refs":{"llc":"喂，<ruby=Yoshihide>良秀</ruby>。你天赋不错，可要拼老命好好练啊，懂不？","ltm":"喂，<ruby=Yoshihide>良秀</ruby>。你天賦不錯，可要拼老命好好練啊，懂不？"}}
-{"key":"StoryData/S947B.json|/dataList/167/content","reason":"requeue","prev_zh":"說起來。妳那邊的遺物……很要命吧？聽說除了小指那個叫地彗星的，小家子氣的傢伙以外，每個名聲響亮的人想拔都拔不出來，還把自己搞成了廢人是吧。","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S947B.json|/dataList/243/content","reason":"paratranz-repair","draft":"<ruby=YoshiHide>良秀</ruby>，那把刀……","refs":{"llc":"<ruby=Yoshihide>良秀</ruby>，那把刀……","ltm":"<ruby=Yoshihide>良秀</ruby>，那把刀……"}}
-{"key":"StoryData/S947B.json|/dataList/245/content","reason":"paratranz-repair","draft":"父輩很快就會再打造只屬於<ruby=YoshiHide>良秀</ruby>的劍……所以妳要好好帶在身邊。","refs":{"llc":"父辈会打造一把仅属于<ruby=Yoshihide>良秀</ruby>的刀……你要时刻带在身边。","ltm":"這把由父輩親自為<ruby=Yoshihide>良秀</ruby>打造的刀……要時刻帶在身邊。"}}
-{"key":"StoryData/S947B.json|/dataList/313/content","reason":"paratranz-repair","draft":"啊，請不要再破壞下去了，<ruby=YoshiHide>良秀</ruby>。那是我為了妳花了十年以上做好的，我的……","refs":{"llc":"啊啊。别再砍了，<ruby=Yoshihide>良秀</ruby>。这是为了你花费十多年组装的，我的……","ltm":"啊啊。別再砍了，<ruby=Yoshihide>良秀</ruby>。這是為了你花費十多年組裝的，我的……"}}
-{"key":"StoryData/S947B.json|/dataList/323/content","reason":"paratranz-repair","draft":"<ruby=你不可能>你唔可仍</ruby>……<ruby=得到自由>得刀茲由</ruby>……遮裡斯……<ruby=蜘蛛巢>蜘支朝</ruby>……","refs":{"llc":"你不会……日由的……惹一是……一呜巢……","ltm":"你不會……日由的……惹一是…………巢……"}}
-{"key":"StoryData/S947B.json|/dataList/324/content","reason":"paratranz-repair","draft":"<ruby=不徹底斬斷>噗撤低斬端</ruby>……<ruby=的話>的花</ruby>……","refs":{"llc":"不圆部割惹……就不人……（不全部割舍，就不能）","ltm":"不圓部割惹……就不人……"}}
-{"key":"StoryData/S947B.json|/dataList/96/content","reason":"paratranz-repair","draft":"<ruby=YoshiHide>良秀</ruby>，我為了妳的生日準備了一個小禮物。","refs":{"llc":"<ruby=Yoshihide>良秀</ruby>，我为你的生日准备了小小的礼物。","ltm":"<ruby=Yoshihide>良秀</ruby>，我為你的生日準備了小小的禮物。"}}
-{"key":"StoryData/S947B.json|/dataList/98/content","reason":"paratranz-repair","draft":"剛好可以收進<ruby=YoshiHide>良秀</ruby>的掌心，是個小巧可愛的尺寸吧。","refs":{"llc":"和<ruby=Yoshihide>良秀</ruby>的手掌正合适，很可爱的大小吧。","ltm":"和<ruby=Yoshihide>良秀</ruby>的手掌正合適，很可愛的大小吧。"}}
-{"key":"StoryData/S948A.json|/dataList/72/content","reason":"paratranz-repair","draft":"雖然妳也是……被期待成為阿賴耶識的適任者，經由拇指高層幹部之手，繼承了<ruby=YoshiHide>良秀</ruby>的血脈而誕生的……","refs":{"llc":"你也是……因为那些希望得到更多阿赖耶识适配者的拇指上层干部们而诞生的，继承了<ruby=Yoshihide>良秀</ruby>之血的孩子……","ltm":"你也是……因為那些希望得到更多阿賴耶識適配者的拇指上層幹部們而誕生的，繼承了<ruby=Yoshihide>良秀</ruby>之血的孩子……"}}
-{"key":"StoryData/S948A.json|/dataList/73/content","reason":"paratranz-repair","draft":"但適性要達到我們<ruby=YoshiHide>良秀</ruby>那樣的數值是不可能的。","refs":{"llc":"不过要达到我们<ruby=Yoshihide>良秀</ruby>那样的适应度是不可能的。","ltm":"不過要達到我們<ruby=Yoshihide>良秀</ruby>那樣的適應度是不可能的。"}}
-{"key":"StoryData/S948A.json|/dataList/80/content","reason":"paratranz-repair","draft":"但我們一定會與那孩子，noun. <ruby=YoshiHide>良秀</ruby>再會的。","refs":{"llc":"但我们肯定会与<ruby=Yoshihide>良秀</ruby>那孩子再会的。","ltm":"但我們肯定會與<ruby=Yoshihide>良秀</ruby>那孩子再會的。"}}
-{"key":"StoryData/S949A.json|/dataList/100/content","reason":"paratranz-repair","draft":"果然還是更喜歡唸成<ruby=Ryō–shū>良秀</ruby>。","refs":{"llc":"果然，我还是最喜欢<ruby=りょうしゅう>良秀</ruby>了。","ltm":"果然，我還是最喜歡<ruby=りょー>良</ruby><ruby=しゅー>秀</ruby>。"}}
-{"key":"StoryData/S949A.json|/dataList/88/content","reason":"paratranz-repair","draft":"<ruby=Ryō>良</ruby>……<ruby=shū>秀</ruby>……？","refs":{"llc":"<ruby=りょう>Ryō</ruby>……<ruby=しゅう>shū</ruby>……？","ltm":"<ruby=りょう>Ryō</ruby>……<ruby=しゅう>shū</ruby>……？"}}
-{"key":"StoryData/S949A.json|/dataList/90/content","reason":"paratranz-repair","draft":"要唸作<ruby=YoshiHide>良秀</ruby>才對。","refs":{"llc":"<ruby=ヨシヒデ>Yoshihide</ruby>，要这么读。","ltm":"<ruby=ヨシヒデ>Yoshihide</ruby>，要這麼讀。"}}
-{"key":"StoryData/S949A.json|/dataList/91/content","reason":"paratranz-repair","draft":"<ruby=Ryō–shū>良秀</ruby>！這樣比較好唸又可愛！","refs":{"llc":"<ruby=りょう>Ryō</ruby>-<ruby=しゅう>shū</ruby>！这样更好念也更好听！","ltm":"<ruby=りょう>Ryō</ruby>-<ruby=しゅう>shū</ruby>！這樣更好念也更好聽！"}}
-{"key":"StoryData/S949B.json|/dataList/20/content","reason":"requeue","prev_zh":"為繼承地彗星而與主人共進退乃是事實……","hint":"「地彗星」是錯字：KR 지혜성（括號內漢字 地慧星），統一寫「地慧星」，其餘照舊"}
-{"key":"StoryData/S951B.json|/dataList/100/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/101/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/102/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/103/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/104/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/105/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/106/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/107/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/108/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/46/content","reason":"paratranz-repair","draft":"已經會……使用阿賴耶識了呢，<ruby=Yoshi>良</ruby>……<ruby=Hide>秀</ruby>……","refs":{"llc":"你已经……能够使用阿赖耶识了啊，<ruby=Yoshi>良</ruby>……<ruby=hide>秀</ruby>……","ltm":"你已經……能夠使用阿賴耶識了啊，<ruby=Yoshi>良</ruby>……<ruby=hide>秀</ruby>……"}}
-{"key":"StoryData/S951B.json|/dataList/68/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/69/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/70/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/71/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/72/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/73/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/74/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/75/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/76/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/77/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/78/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/79/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/80/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/81/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/82/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/83/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/84/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/85/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/86/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/87/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/88/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/89/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/90/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/91/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/92/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/93/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/94/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/95/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/96/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/97/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/98/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
-{"key":"StoryData/S951B.json|/dataList/99/title","reason":"new","refs":{"llc":"Gesellschaft","ltm":"Gesellschaft"}}
+{"key":"StoryData/S1002B.json|/dataList/0/place","reason":"requeue","prev_zh":"1F 美妝樓層","hint":"뷰티관 統一寫「美妝館」（詞彙表；地點標籤寫 1F 美妝館）"}
+{"key":"StoryData/S1002B.json|/dataList/101/content","reason":"requeue","prev_zh":"被稱為克羅默姐姐的人一邊盯著我的頭，一邊咂著嘴。","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1002B.json|/dataList/118/content","reason":"requeue","prev_zh":"良秀用下巴指向克羅默的姐姐方才所在之處……","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1002B.json|/dataList/89/content","reason":"requeue","prev_zh":"我當然是姐姐啦。可別跟我說我看起來像她妹妹喔。","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1002B.json|/dataList/91/content","reason":"requeue","prev_zh":"那個混蛋……把我的家人全都殺了……父親、母親、姐姐……全部……讓我什麼都不剩了！","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1017B.json|/dataList/24/content","reason":"requeue","prev_zh":"脖子被勒得都快斷了……","hint":"同一句 KR 已有譯文（StoryData/S1001B.json|/dataList/22/content）：「脖子被勒得都快斷掉了……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1017B.json|/dataList/28/content","reason":"requeue","prev_zh":"……是故意那樣做的？","hint":"同一句 KR 已有譯文（StoryData/S1001B.json|/dataList/26/content）：「……他們是故意那麼做的？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1017B.json|/dataList/82/content","reason":"requeue","prev_zh":"……我問的不是這個。","hint":"同一句 KR 已有譯文（StoryData/S1001B.json|/dataList/51/content）：「……我問的應該不是這個。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1017B.json|/dataList/83/content","reason":"requeue","prev_zh":"妳是這裡的相關人員嗎？雖然不可否認，妳看起來有些眼熟……","hint":"同一句 KR 已有譯文（StoryData/S1001B.json|/dataList/52/content）：「妳是這裡的相關人員嗎？雖然不可否認，妳的樣貌有些眼熟……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1017B.json|/dataList/89/content","reason":"requeue","prev_zh":"我們，就這樣……出去也可以嗎？","hint":"同一句 KR 已有譯文（StoryData/S1001B.json|/dataList/61/content）：「我們就……這樣直接出去也可以嗎？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/16/content","reason":"requeue","prev_zh":"我到現在從沒看過有顧客從泉走出來。經過了好幾季，我也從來沒看過那扇門打開。","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/20/content）：「我到現在為止，從沒見過有顧客從泉走出來。過了好幾季，我都沒看過那扇門打開。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/24/content","reason":"requeue","prev_zh":"……怎麼看都是那種油嘴滑舌、轉頭就會背叛的面相。問她到底在說什麼也很頭痛，隨便應付一下就閃人吧，啊？","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/44/content）：「……怎麼看都是那種油嘴滑舌、回頭就會背叛的面相，問她在說什麼也很麻煩，隨便應付兩句就閃人吧，嗯？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/25/content","reason":"requeue","prev_zh":"就說了，只跟我講也沒用啊……","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/45/content）：「就說了，光跟我講也沒有用啊……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/48/content","reason":"requeue","prev_zh":"汝乃克羅默那人的血親啊。莫非……","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/87/content）：「是克羅默……那人的血親啊。莫非……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/50/content","reason":"requeue","prev_zh":"我當然是姐姐啦。可別跟我說我看起來像她妹妹喔。","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1018B.json|/dataList/52/content","reason":"requeue","prev_zh":"那個混蛋……把我的家人全都殺了……父親、母親、姐姐……全部……讓我什麼都不剩了！","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1018B.json|/dataList/54/content","reason":"requeue","prev_zh":"別用那種輕描淡寫的口氣……","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/93/content）：「不准妳那樣輕描淡寫地……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/6/content","reason":"requeue","prev_zh":"嗯、嗯？在往客服中心的途中……放棄？不是，就算可以放棄，為什麼會掉下來啊……？","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/5/content）：「嗯、嗯？在去客服中心的路上……放棄了？不是，就算會放棄，為什麼會掉下來啊……？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1018B.json|/dataList/7/content","reason":"requeue","prev_zh":"那我也問一個，走路的時候為什麼要左腳和右腳一起動？","hint":"同一句 KR 已有譯文（StoryData/S1002B.json|/dataList/6/content）：「我也問個問題，走路的時候為什麼要左腳和右腳一起動？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1025B.json|/dataList/62/content","reason":"requeue","prev_zh":"<……我？>","hint":"同一句 KR 已有譯文（StoryData/E722A.json|/dataList/34/content）：「<……我嗎？>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1031B.json|/dataList/2/content","reason":"requeue","prev_zh":"<……那個人是克羅默的姐姐。名字跟妹妹一樣，也叫克羅默。>","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
+{"key":"StoryData/S1037B.json|/dataList/122/content","reason":"requeue","prev_zh":"<color=#E1B643>不必看任何人的臉色，不必在意任何人的想法……就只是活出你的樣子，只作為你自己活下去。</color>","hint":"同一句 KR 已有譯文（StoryData/S1025B.json|/dataList/37/content）：「<color=#E1B643>不用看任何人的臉色，不用在意任何人的想法……就能活得像你自己，只作為你自己活下去。</color>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1040B.json|/dataList/13/content","reason":"requeue","prev_zh":"莫梭用無法理解的眼神看著我們，回答了簡。","hint":"同一句 KR 已有譯文（StoryData/S1039I.json|/dataList/13/content）：「莫梭用無法理解的眼神望著我們，回答了簡。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/1/content","reason":"requeue","prev_zh":"在那之上，莫梭連個像樣的角色都沒能分到，只是不停地被推擠到一旁。","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/1/content）：「在那上頭，莫梭連個像樣的角色都沒分到，只是不斷地被推離。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/11/content","reason":"requeue","prev_zh":"<跟妳不一樣，我……什麼都無從得知……所以好害怕。>","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/11/content）：「<和妳不同，我……什麼都無從得知……好害怕。>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/3/content","reason":"requeue","prev_zh":"正當我對那份茫然、對黑暗中毫無回應的寂靜感到疲憊時……","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/3/content）：「正當我對那份茫然、對黑暗中無人回應的死寂感到疲憊時……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/34/content","reason":"requeue","prev_zh":"是即使背負著那所有的不安來到這裡……也不曾減少的不安。","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/34/content）：「是即使背負著所有不安一路走到這裡……也從未減輕的不安。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/39/content","reason":"requeue","prev_zh":"這樣一來，莫梭不過是一如往常地被人注視罷了。","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/39/content）：「這樣一來，莫梭仍只是一如往常地被注視著而已。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/65/content","reason":"requeue","prev_zh":"<……只能拚命掙扎吧。>","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/65/content）：「<……大概就只是拚命掙扎吧。>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/66/content","reason":"requeue","prev_zh":"<連接下來會有什麼都不知道，一邊感到不安……>","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/66/content）：「<連接下來會有什麼都不知道，一邊不安著……>」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/68/content","reason":"requeue","prev_zh":"帶領罪人們的經理……一年前，在不情願之下貿然接受的那個稱號……真的能是我嗎。","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/68/content）：「帶領罪人們的經理……一年前，在不情願的情況下突然接受的那個稱號……真的能是我嗎。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/74/content","reason":"requeue","prev_zh":"那個存在身上，還會剩下什麼。","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/74/content）：「那個存在還剩下什麼。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1041B.json|/dataList/8/content","reason":"requeue","prev_zh":"莫梭雖然警告過我，不要和陽光交談，不要長時間凝視它……","hint":"同一句 KR 已有譯文（StoryData/S1039I2.json|/dataList/8/content）：「莫梭雖然警告過我，不要和陽光交談，也不要長時間注視它……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1042B.json|/dataList/42/content","reason":"requeue","prev_zh":"咳……咳呃……","hint":"同一句 KR 已有譯文（StoryData/S1034B.json|/dataList/36/content）：「咳……咳咳……」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1044B.json|/dataList/75/place","reason":"requeue","prev_zh":"N公司 薛西弗斯塔 外部","hint":"同一句 KR 已有譯文（StoryData/S1044B.json|/dataList/124/place）：「N公司 薛西弗斯塔外部」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1046C.json|/dataList/0/content","reason":"requeue","prev_zh":"低垂著頭，在灰色的都市裡徘徊……漫無目的活著的灰色人們。","hint":"同一句 KR 已有譯文（StoryData/S1043C.json|/dataList/0/content）：「低著頭，漫步於灰色的都市……毫無目的地活著的灰色人們。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1046C.json|/dataList/10/content","reason":"requeue","prev_zh":"我會給予力量。讓他們能夠抬起頭，望向遠方的光芒。","hint":"同一句 KR 已有譯文（StoryData/S1043C.json|/dataList/11/content）：「我會給予力量。讓人們能夠抬起頭，望向遠方的光。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1046C.json|/dataList/2/content","reason":"requeue","prev_zh":"我知道，N公司的景象並不能代表整個都市。因為我也見過充滿生氣的巢、情感被放大到極致的巢。","hint":"同一句 KR 已有譯文（StoryData/S1043C.json|/dataList/2/content）：「我知道N公司的景象無法代表整座都市。因為我也見過充滿生氣的巢，見過情感被放大到極致的巢。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1046C.json|/dataList/8/content","reason":"requeue","prev_zh":"在不肯回答我們為何而生的冷漠世界裡……無法如願活下去的人們。儘管如此，仍被欺騙、被馴服，活在「只要想選擇，就有選擇的自由」這種錯覺之中的人們。","hint":"同一句 KR 已有譯文（StoryData/S1043C.json|/dataList/9/content）：「在不肯回答自己為何而生的冷漠世界裡……無法如願而活的人們。即便如此，依然受騙、被馴服，活在「只要想選擇，就有選擇的自由」這種錯覺中的人們。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1047C.json|/dataList/2/content","reason":"requeue","prev_zh":"但是……我想要這麼做。是我自己想要。","hint":"同一句 KR 已有譯文（StoryData/S1044C.json|/dataList/8/content）：「但是……我渴望著。是我自己在渴望著。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1047C.json|/dataList/4/content","reason":"requeue","prev_zh":"以我的力量，以我的計畫。","hint":"同一句 KR 已有譯文（StoryData/S1044C.json|/dataList/12/content）：「憑我的力量，憑我的計畫。」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S1060B.json|/dataList/2/content","reason":"requeue","prev_zh":"被告莫梭為何殺害母親？","hint":"同一句 KR 已有譯文（StoryData/S1042B.json|/dataList/76/content）：「被告莫梭，為何殺害了母親？」。除非上下文明顯不同，請完全沿用，讓重複出現的台詞一致"}
+{"key":"StoryData/S915B.json|/dataList/21/content","reason":"requeue","prev_zh":"完成之後，就讓良秀妳來用用吧。","hint":"KR 沒有第二人稱，써주세요 是對良秀的敬語請求：不要加「妳」，語氣要保持客氣，也不要漏掉 마침내（終於）。參考：等它終於完成，就請良秀來使用吧。"}
+{"key":"StoryData/S916B.json|/dataList/82/content","reason":"requeue","prev_zh":"他似乎在喊著……良秀。","hint":"KR -군 是直述觀察，不要加「似乎」；不要漏掉 계속（一直）。參考：他一直在喊著……良秀。"}
+{"key":"StoryData/S926I1.json|/dataList/6/content","reason":"requeue","prev_zh":"聽、聽到那句話，我想了一下。啊，就算有朝一日，家人們都在等待的良、良秀姐姐重返此地……","hint":"누나／언니 用臺灣標準字「姊姊」，不寫「姐姐」（詞彙表）"}
 {"key":"StoryTheaterDanteNoteDetail_13.json|/dataList/0/desc","reason":"new","refs":{"llc":"- 我们带着满心的不安抵达了N公司……但实际上，我们抵达的黄油街和之前去过的其他后巷并没有什么太大的区别。\n- 原本还做好了异端审判官蜂拥而至、喊着要把我脑袋拧下来就扑过来……或者遇到新九人会的某个人之类情况的觉悟……\n- 不过回想起来，默尔索说过异端审判官并不是N公司的主流。再加上我们到达其他区域时也从未立刻撞上新九人会……从某种意义上来说，或许这是理所当然的结果。\n- 黄油街的大多数居民似乎对我们做什么都不太关心。只要没有直接影响到他们的生活……不管这条街上发生什么，他们大概都不会在意吧。","ltm":"- 我們帶著滿心的不安抵達了N公司……但實際上，我們抵達的奶油街和之前去過的其他後巷並沒有什麼太大的區別。\n- 原本還做好了異端審判官蜂擁而至、喊著要把我腦袋擰下來就撲過來……或者遇到新九人會的某個人之類情況的覺悟……\n- 不過回想起來，默爾索說過異端審判官並不是N公司的主流。再加上我們到達其他區域時也從未立刻撞上新九人會……從某種意義上來說，或許這是理所當然的結果。\n- 奶油街的大多數居民似乎對我們做什麼都不太關心。只要沒有直接影響到他們的生活……不管這條街上發生什麼，他們大概都不會在意吧。"}}
 {"key":"StoryTheaterDanteNoteDetail_13.json|/dataList/1/desc","reason":"new","refs":{"llc":"- 只要吃下去，就能获得至今从未有过的经验的罐头。\n- 据说原料是在名为西西弗百货的地方生产的，然后在与其相连的工厂里被加工成罐头的形式。\n- 其中所谓的量产型经验罐头，是在原料里混入各种信息，从而带来刺激而强烈的经验。据说在N公司的后巷，人们会像享受娱乐、外出或下馆子一样去吃经验罐头。\n- 呃……可是有几个人格不是通过钉子从人身上抽取什么来制作罐头的吗？难道说西西弗百货生产原料指的是……\n- 我产生了不祥的想法，于是询问了默尔索，所幸克罗默和异端审判官们的做法是老式的……现在已经几乎不再使用了。\n- 看了我写下内容的默尔索，再次强调说罐头并不是提供梦或经验的东西。那么罐头提供的果然是“记忆”吗？经验与记忆究竟有何不同？\n- 我偶尔会窥见罪人们的记忆，但那些记忆并不是我的经验。不过，在窥见记忆的瞬间，也许我能说自己也有了那些经验。不，应该不能这么说……？\n- ……这似乎不是能立刻下定结论的话题。","ltm":"- 只要吃下去，就能獲得至今從未有過的經驗的罐頭。\n- 據說原料是在名為薛西弗斯百貨的地方生產的，然後在與其相連的工廠裡被加工成罐頭的形式。\n- 其中所謂的量產型經驗罐頭，是在原料裡混入各種資訊，從而帶來刺激而強烈的經驗。據說在N公司的後巷，人們會像享受娛樂、外出或下館子一樣去吃經驗罐頭。\n- 呃……可是有幾個人格不是通過釘子從人身上抽取什麼來製作罐頭的嗎？難道說薛西弗斯百貨生產原料指的是……\n- 我產生了不祥的想法，於是詢問了默爾索，所幸克羅默和異端審判官們的做法是老式的……現在已經幾乎不再使用了。\n- 看了我寫下內容的默爾索，再次強調說罐頭並不是提供夢或經驗的東西。那麼罐頭提供的果然是「記憶」嗎？經驗與記憶究竟有何不同？\n- 我偶爾會窺見罪人們的記憶，但那些記憶並不是我的經驗。不過，在窺見記憶的瞬間，也許我能說自己也有了那些經驗。不，應該不能這麼說……？\n- ……這似乎不是能立刻下定結論的話題。"}}
 {"key":"StoryTheaterDanteNoteDetail_13.json|/dataList/2/desc","reason":"new","refs":{"llc":"- 根据现场推理小队的队长摩西的研究结果，扭曲就像疾病的发展一样，可以分为初期、中期和末期。想起霍恩海姆说过的“扭曲的末路是异想体”这句话……那么在末期，如果病情？之类的东西恶化，就会变成异想体也说不定。\n- 以斯拉还顺口提到过有潜伏期这种东西……但如果无法直接看到或感受到扭曲的前兆，那这种区分似乎也没有太大意义。\n- 至今为止我们见过的扭曲都是某个人变成异形的样子……但这次委托目标的扭曲看起来像是覆盖了整条街道的一种现象。根据以斯拉的说明，这是“场所型扭曲”……\n- 关于由扭曲引发的侵蚀现象，我们在委托结束后也听说了。这似乎是我和罪人们见过数次的东西。即使没有进入自我心道或心象迷宫，周围的景象也偶尔会改变，似乎指的就是这种现象。\n- 但是这种现象我也在并非扭曲，而是展现E.G.O的人们身上见过……这两者之间有什么不同呢。","ltm":"- 根據現場推理小隊的隊長摩西的研究結果，扭曲就像疾病的發展一樣，可以分為初期、中期和末期。想起霍恩海姆說過的「扭曲的末路是異想體」這句話……那麼在末期，如果病情？之類的東西惡化，就會變成異想體也說不定。\n- 以斯拉還順口提到過有潛伏期這種東西……但如果無法直接看到或感受到扭曲的前兆，那這種區分似乎也沒有太大意義。\n- 至今為止我們見過的扭曲都是某個人變成異形的樣子……但這次委託目標的扭曲看起來像是覆蓋了整條街道的一種現象。根據以斯拉的說明，這是「場所型扭曲」……\n- 關於由扭曲引發的侵蝕現象，我們在委託結束後也聽說了。這似乎是我和罪人們見過數次的東西。即使沒有進入自我心道或心像迷宮，周圍的景象也偶爾會改變，似乎指的就是這種現象。\n- 但是這種現象我也在並非扭曲，而是展現E.G.O的人們身上見過……這兩者之間有什麼不同呢。"}}
