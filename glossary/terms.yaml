@@ -897,8 +897,15 @@
 
 - kr: 쪼용
   zh: ㄤ靜
-  forbidden: [小森]
+  forbidden: [小森, "安～靜"]
   status: approved
   category: [city]
   notes: 針靈等的臭奶呆「조용」（安靜），既有 paratranz 5 處
+
+- kr: 랭콜로르
+  zh: 無色染料
+  forbidden: [朗克洛]
+  status: approved
+  category: [city]
+  notes: L'Incolore，百貨公司地下2F（quest-floor-b2 既有「無色染料」）；只指顏色時可寫「無色」
 
