@@ -87,7 +87,7 @@ type Report struct {
 	FieldRuleOverride int `json:"field_rule_override"`
 	// Warnings counts the warnings of the used records, by issue code. It
 	// covers the same records as Origins and NeedsReview, those that fall back
-	// structurally included.
+	// structurally included, except copies, which are not checked.
 	Warnings map[string]int `json:"warnings"`
 	// MissingGlyphs lists, sorted, the characters of the output that the font
 	// cannot show. It does not stop the build.
@@ -303,6 +303,11 @@ func (b *builder) countUsed(rec store.Record) {
 
 func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *aligner) (string, error) {
 	b.countUsed(rec)
+	// A copy is the KR text itself: there is nothing to check, and the Hangul
+	// it keeps would only flood the warnings.
+	if rec.Origin == store.OriginCopy {
+		return rec.ZH, nil
+	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
 	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true})

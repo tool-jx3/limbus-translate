@@ -404,6 +404,28 @@ func TestBuildReportsFlagsAndWarnings(t *testing.T) {
 	}
 }
 
+// A copy record holds the KR text itself: it is not checked, so a name kept in
+// Hangul adds no warning.
+func TestBuildDoesNotCheckCopyRecords(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"content":"이스마엘"},{"id":2,"content":"가"}]}`
+	e := newEnv(t, map[string]string{"A.json": kr}, nil)
+	name := rec("A.json", "/dataList/0/content", "이스마엘", "이스마엘")
+	name.Origin = store.OriginCopy
+	warned := rec("A.json", "/dataList/1/content", "가", "甲가")
+	e.save(name, warned)
+
+	rep := e.run()
+	if got := e.out("A.json"); !strings.Contains(got, `"이스마엘"`) {
+		t.Errorf("A.json =\n%s\nwant the copy", got)
+	}
+	if want := map[string]int{"copy": 1, "claude": 1}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+	if want := map[string]int{"hangul": 1}; !reflect.DeepEqual(rep.Warnings, want) {
+		t.Errorf("Warnings = %v, want %v: only the claude record", rep.Warnings, want)
+	}
+}
+
 // A record that falls back structurally is still a used record: its warnings
 // are counted with its origin and its review flag, so that all three cover the
 // same set of records.
