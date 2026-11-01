@@ -459,7 +459,7 @@
   zh: 摩西
   status: approved
   category: [city]
-  notes: 劇情中櫻桃等人稱她「아씨」時寫「摩西女士」；播報員台詞沿用既有的「摩西閣下」（Announcer_LCDAengdu_90004）
+  notes: 劇情中櫻桃等人稱她「아씨」時寫「摩西女士」；播報員台詞沿用既有的「摩西閣下」（Announcer_LCDAengdu_90004）；職稱「팀장」寫「隊長」（摩西隊長、現場推理小組的隊長，既有 12／14）
 
 - kr: 발렌치나
   zh: 瓦倫奇娜
@@ -673,7 +673,7 @@
   zh: 吸食殆盡
   status: approved
   category: [city]
-  notes: 咒語（RPG 旁白「慾求吧，並將慾望所求的一切吸食殆盡」）
+  notes: 只用於咒語「…남김없이 섭취하라」（RPG 旁白「慾求吧，並將慾望所求的一切吸食殆盡」）；單獨的命令與技能名沿用既有「攝取吧」（「圖樣：攝取吧」「渴求吧！攝取吧！」）
 
 - kr: 로지온
   zh: 羅狄翁
@@ -933,4 +933,22 @@
   status: approved
   category: [general]
   notes: 依語境：稱但丁「經理」（約 1,170 行；唐吉訶德「經理老爺」）；腦葉公司、廢墟圖書館的播報員（安吉拉、源質）與 LEGO 人格稱「主管」（約 100 行）；系統文字「管理員」
+
+- kr: 날개
+  zh: 翼
+  status: approved
+  category: [city]
+  notes: 都市的「翼」（巨企），量詞「片」（某片翼、折斷之翼、成為翼）；只有真的鳥翅膀才寫「翅膀」「羽翼」
+
+- kr: 현장추리팀
+  zh: 現場推理小組
+  status: approved
+  category: [city]
+  notes: LCD 部門；也寫作「현장 추리팀」；팀장 → 隊長
+
+- kr: 현장 추리팀
+  zh: 現場推理小組
+  status: approved
+  category: [city]
+  notes: 見「현장추리팀」
 
