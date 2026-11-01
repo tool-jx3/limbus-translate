@@ -30,7 +30,7 @@ const testTag = "raw-20261029"
 
 var testNow = time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC)
 
-// The rules of the tests: two families, one character and two glossary
+// The rules of the tests: two families, two characters and two glossary
 // terms (one still a candidate).
 const (
 	testRouting = `families:
@@ -62,6 +62,16 @@ file_names: [Faust]
 
 # 浮士德
 `
+	testSinclair = `---
+id: sinclair
+name: 辛克萊
+name_kr: 싱클레어
+models: [싱클레어]
+file_names: [Sinclair]
+---
+
+# 辛克萊
+`
 )
 
 func writeFile(t *testing.T, p, content string) {
@@ -80,6 +90,7 @@ func testRules(t *testing.T) *rules.Rules {
 	writeFile(t, filepath.Join(root, "guides/routing.yaml"), testRouting)
 	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), testGlossary)
 	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
+	writeFile(t, filepath.Join(root, "guides/characters/sinclair.md"), testSinclair)
 	r, err := rules.Load(root)
 	if err != nil {
 		t.Fatal(err)
@@ -424,21 +435,18 @@ func TestStorySplit(t *testing.T) {
 	if len(b2.Units) != 120 || b2.Units[0].Key != key(file, 120) || b2.Units[119].Key != key(file, 239) {
 		t.Fatalf("batch 2 = %d units from %s to %s", len(b2.Units), b2.Units[0].Key, b2.Units[len(b2.Units)-1].Key)
 	}
-	// The last lines of batch 1 come first; the model strings between them
-	// are not translations and are left out.
+	// The last line of batch 1 is the one translated line within three units
+	// of batch 2 (the model strings between are not translations); the end of
+	// batch 2 borders on line 240, which waits for batch 3.
 	var gotCtx []string
 	for _, c := range b2.Context {
 		gotCtx = append(gotCtx, c.Key+"="+c.ZH)
 	}
-	var wantCtx []string
-	for i := 115; i < 120; i++ {
-		wantCtx = append(wantCtx, fmt.Sprintf("%s=譯文 %d", key(file, i), i))
-	}
-	if !slices.Equal(gotCtx, wantCtx) {
+	if wantCtx := []string{fmt.Sprintf("%s=譯文 119", key(file, 119))}; !slices.Equal(gotCtx, wantCtx) {
 		t.Errorf("batch 2 context = %v, want %v", gotCtx, wantCtx)
 	}
-	if c := b2.Context[0]; c.Speaker != "faust" || c.KR != line(115) {
-		t.Errorf("context line = %+v, want speaker faust and KR %q", c, line(115))
+	if c := b2.Context[0]; c.Speaker != "faust" || c.KR != line(119) {
+		t.Errorf("context line = %+v, want speaker faust and KR %q", c, line(119))
 	}
 
 	// Batch 2 is still out: its lines are not context for batch 3.
@@ -454,16 +462,22 @@ func TestStorySplit(t *testing.T) {
 	}
 }
 
-func TestStoryRunAndContext(t *testing.T) {
+// A story batch takes every unit that can be handed out, with the lines that
+// cannot in between: a line that needs review is skipped, it does not end the
+// batch.
+func TestStoryBatchSkipsLinesThatAreNotEligible(t *testing.T) {
 	const file = "StoryData/S001A.json"
 	env := newEnv(t, map[string]string{file: dataList(t, 12, "파우스트", line)}, nil, nil)
-	// Lines 0-1 and 5-6 are translated; 3 needs review; 2, 4 and 7-10 wait;
-	// 11 is translated.
+	// Lines 0-1 and 5-6 are translated; 3 needs review; 9 is out with another
+	// batch; 2, 4, 7, 8 and 10 wait; 11 is translated.
 	pending := []store.PendingItem{}
 	for _, i := range []int{2, 3, 4, 7, 8, 9, 10} {
 		it := store.PendingItem{Key: key(file, i), Reason: "new"}
-		if i == 3 {
+		switch i {
+		case 3:
 			it.Flags = []string{store.FlagNeedsReview}
+		case 9:
+			it.Lease = &store.Lease{Batch: "20261101T020000-aaaaaaaa", Until: testNow.Add(time.Hour)}
 		}
 		pending = append(pending, it)
 	}
@@ -480,28 +494,20 @@ func TestStoryRunAndContext(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// The run ends at line 3, which is out of reach.
+	// One batch holds 2, 4, 7, 8 and 10; lines 3 and 9, which cannot be handed
+	// out, stay behind without ending it.
 	b1 := mustNext(t, env, NextOptions{})
-	if want := []string{key(file, 2)}; !slices.Equal(keysOf(b1), want) {
+	if want := []string{key(file, 2), key(file, 4), key(file, 7), key(file, 8), key(file, 10)}; !slices.Equal(keysOf(b1), want) {
 		t.Fatalf("batch 1 = %v, want %v", keysOf(b1), want)
 	}
-	if got := ctxKeys(b1); !slices.Equal(got, []string{key(file, 0), key(file, 1)}) {
-		t.Errorf("batch 1 context = %v, want lines 0 and 1 (line 3 is pending, so nothing follows)", got)
+	// Each entry is two units (model, content), so "three units" is a line and
+	// a half. Line 0 is out of reach of every unit; lines 3 and 9 are not
+	// translations; the model of line 6 is a copy.
+	if got, want := ctxKeys(b1), []string{key(file, 1), key(file, 5), key(file, 6), key(file, 11)}; !slices.Equal(got, want) {
+		t.Errorf("batch 1 context = %v, want %v", got, want)
 	}
-
-	// The next run starts at line 4. Lines 5 and 6 are translated, so they do
-	// not end it; they are context inside its span.
-	b2 := mustNext(t, env, NextOptions{})
-	if want := []string{key(file, 4), key(file, 7), key(file, 8), key(file, 9), key(file, 10)}; !slices.Equal(keysOf(b2), want) {
-		t.Fatalf("batch 2 = %v, want %v", keysOf(b2), want)
-	}
-	// Before: line 3 is pending, so the walk stops at once. Inside: 5 and 6.
-	// After: line 11.
-	if got, want := ctxKeys(b2), []string{key(file, 5), key(file, 6), key(file, 11)}; !slices.Equal(got, want) {
-		t.Errorf("batch 2 context = %v, want %v", got, want)
-	}
-	if b3 := mustNext(t, env, NextOptions{}); b3 != nil {
-		t.Errorf("batch 3 = %+v, want nil: line 3 needs review", b3)
+	if b2 := mustNext(t, env, NextOptions{}); b2 != nil {
+		t.Errorf("batch 2 = %+v, want nil: line 3 needs review and line 9 is leased", b2)
 	}
 }
 
@@ -515,7 +521,8 @@ func ctxKeys(b *Batch) []string {
 
 func TestStoryContextLimit(t *testing.T) {
 	const file = "StoryData/S001A.json"
-	env := newEnv(t, map[string]string{file: dataList(t, 30, "파우스트", line)}, nil, nil)
+	// No model strings: one unit per line.
+	env := newEnv(t, map[string]string{file: dataList(t, 30, "", line)}, nil, nil)
 	seed(t, env, items(file, 10, 12)...)
 	recs := map[string]store.Record{}
 	for i := 0; i < 30; i++ {
@@ -527,21 +534,19 @@ func TestStoryContextLimit(t *testing.T) {
 		t.Fatal(err)
 	}
 	b := mustNext(t, env, NextOptions{})
+	// Three lines before line 10 and three after line 11.
 	var want []string
-	for i := 5; i < 10; i++ {
-		want = append(want, key(file, i))
-	}
-	for i := 12; i < 17; i++ {
+	for _, i := range []int{7, 8, 9, 12, 13, 14} {
 		want = append(want, key(file, i))
 	}
 	if got := ctxKeys(b); !slices.Equal(got, want) {
-		t.Errorf("context = %v, want 5 lines on each side: %v", got, want)
+		t.Errorf("context = %v, want 3 lines on each side: %v", got, want)
 	}
 }
 
 func TestStoryContextSkipsNeedsReviewLines(t *testing.T) {
 	const file = "StoryData/S001A.json"
-	env := newEnv(t, map[string]string{file: dataList(t, 10, "파우스트", line)}, nil, nil)
+	env := newEnv(t, map[string]string{file: dataList(t, 10, "", line)}, nil, nil)
 	// Lines 0-3 are translated, line 4 waits for a person, 5 and 6 are to
 	// translate, 7 needs review too, 8 is translated, 9 is pending.
 	var pending []store.PendingItem
@@ -565,15 +570,229 @@ func TestStoryContextSkipsNeedsReviewLines(t *testing.T) {
 	}
 
 	b := mustNext(t, env, NextOptions{})
-	if want := []string{key(file, 5), key(file, 6)}; !slices.Equal(keysOf(b), want) {
+	if want := []string{key(file, 5), key(file, 6), key(file, 9)}; !slices.Equal(keysOf(b), want) {
 		t.Fatalf("units = %v, want %v", keysOf(b), want)
 	}
-	// Before: line 4 needs review and is skipped, so the walk goes on to
-	// 3..0. After: line 7 is skipped too and line 8 is shown; line 9 waits,
-	// which ends the walk.
-	want := []string{key(file, 0), key(file, 1), key(file, 2), key(file, 3), key(file, 8)}
+	// Lines 4 and 7 need review: not translations, and not in the way either.
+	// Line 0 is out of reach (three lines before line 5 reach line 2).
+	want := []string{key(file, 2), key(file, 3), key(file, 8)}
 	if got := ctxKeys(b); !slices.Equal(got, want) {
 		t.Errorf("context = %v, want %v", got, want)
+	}
+}
+
+// translated is a translation of kr made from the current KR text.
+func translated(k, kr, zh string) store.Record {
+	return store.Record{Key: k, KRSha: units.KRSha(kr), ZH: zh, Origin: store.OriginParatranz, Since: testTag}
+}
+
+// A story file is one batch: its pending lines need not be next to each other,
+// and the lines around them that are translated are the context.
+func TestStoryBatchTakesWholeFile(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	// No model strings: one unit per line.
+	env := newEnv(t, map[string]string{file: dataList(t, 10, "", line)}, nil, nil)
+	seed(t, env, store.PendingItem{Key: key(file, 1), Reason: "new"},
+		store.PendingItem{Key: key(file, 4), Reason: "new"}, store.PendingItem{Key: key(file, 8), Reason: "new"})
+	recs := map[string]store.Record{}
+	for _, i := range []int{0, 2, 3, 5, 6, 7, 9} {
+		recs[key(file, i)] = translated(key(file, i), line(i), fmt.Sprintf("舊 %d", i))
+	}
+	if err := env.Store.SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+
+	b := mustNext(t, env, NextOptions{})
+	if want := []string{key(file, 1), key(file, 4), key(file, 8)}; !slices.Equal(keysOf(b), want) {
+		t.Fatalf("units = %v, want all three pending lines of the file", keysOf(b))
+	}
+	// Within three lines of line 1: 0, 2, 3; of line 4: 2, 3, 5, 6, 7; of line
+	// 8: 5, 6, 7, 9. Each once, in document order, none of the batch's own.
+	var want []string
+	for _, i := range []int{0, 2, 3, 5, 6, 7, 9} {
+		want = append(want, key(file, i))
+	}
+	if got := ctxKeys(b); !slices.Equal(got, want) {
+		t.Errorf("context = %v, want %v", got, want)
+	}
+	for _, c := range b.Context {
+		if c.ZH == "" || !strings.HasPrefix(c.ZH, "舊 ") {
+			t.Errorf("context line %+v has no stored translation", c)
+		}
+	}
+	if next := mustNext(t, env, NextOptions{}); next != nil {
+		t.Errorf("a second batch = %+v, want nil: the file is leased", next)
+	}
+}
+
+// A file with more units than StoryMaxUnits is cut in document order, the next
+// batch carrying on from the first unit left.
+func TestStoryBatchSplitsAtMax(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	env := newEnv(t, map[string]string{file: dataList(t, 500, "", line)}, nil, nil)
+	var pending []store.PendingItem
+	for i := 0; i < 500; i += 2 { // every other line: 250 pending, none next to another
+		pending = append(pending, store.PendingItem{Key: key(file, i), Reason: "new"})
+	}
+	seed(t, env, pending...)
+	opt := NextOptions{MaxUnits: 40, StoryMaxUnits: 120}
+
+	next := 0 // the n-th pending line the next batch starts at
+	for n, size := range []int{120, 120, 10} {
+		b := mustNext(t, env, opt)
+		if b == nil {
+			t.Fatalf("batch %d = nil, want %d units", n+1, size)
+		}
+		if len(b.Units) != size {
+			t.Fatalf("batch %d has %d units, want %d", n+1, len(b.Units), size)
+		}
+		if first, last := b.Units[0].Key, b.Units[size-1].Key; first != key(file, 2*next) || last != key(file, 2*(next+size-1)) {
+			t.Errorf("batch %d runs from %s to %s, want lines %d to %d", n+1, first, last, 2*next, 2*(next+size-1))
+		}
+		next += size
+	}
+	if b := mustNext(t, env, opt); b != nil {
+		t.Errorf("batch 4 = %+v, want nil", b)
+	}
+}
+
+func TestIsStory(t *testing.T) {
+	tests := []struct {
+		file string
+		want bool
+	}{
+		{"StoryData/S001A.json", true},
+		{"RPGSystem/rpg-loc-dialogue-floor-3.json", true},
+		{"RPGSystem/rpg-loc-dialogue-common-a1c10p1.json", true},
+		{"RPGSystem/rpg-loc-dialogue-route-c.json", true},
+		{"RPGSystem/rpg-loc-dialogue-choice-floor-3.json", false}, // the options of a dialogue
+		{"RPGSystem/rpg-loc-dialogue-choice-common-a1c10p1.json", false},
+		{"RPGSystem/rpg-loc-location-floor-3.json", false},
+		{"RPGSystem/rpg-loc-item-common.json", false},
+		{"RPGSystem/other/rpg-loc-dialogue-floor-3.json", false}, // one directory only
+		{"rpg-loc-dialogue-floor-3.json", false},
+		{"Other.json", false},
+	}
+	for _, tt := range tests {
+		if got := isStory(tt.file); got != tt.want {
+			t.Errorf("isStory(%q) = %v, want %v", tt.file, got, tt.want)
+		}
+	}
+}
+
+// The RPG dialogue files hold the speaker in the object of each line
+// (dataList[].texts[].speaker), not in a model. They are read as a story:
+// whole file, context, and the speaker's guide. Their option files are not.
+func TestRPGDialogueIsStory(t *testing.T) {
+	const dialogue = "RPGSystem/rpg-loc-dialogue-floor-3.json"
+	const choice = "RPGSystem/rpg-loc-dialogue-choice-floor-3.json"
+	text := func(file string, entry, n int) string {
+		return fmt.Sprintf("%s|/dataList/%d/texts/%d/text", file, entry, n)
+	}
+
+	t.Run("dialogue", func(t *testing.T) {
+		const kr = `{"dataList":[
+ {"key":"D1","texts":[{"index":0,"text":"과감하게… 신중하게…"}]},
+ {"key":"D2","texts":[
+  {"index":0,"text":"엇… 이번엔 저랑 오티스 씨인가 보네요.","speaker":"싱클레어"},
+  {"index":1,"text":"무슨 말이지?","speaker":"오티스"},
+  {"index":2,"text":"…아, 그렇군요.","speaker":"싱클레어"}]},
+ {"key":"D3","texts":[{"index":0,"text":"이쪽이다."}]}
+]}`
+		env := newEnv(t, map[string]string{dialogue: kr}, nil, nil)
+		// D1 is translated; the four lines after it wait.
+		seed(t, env,
+			store.PendingItem{Key: text(dialogue, 1, 0), Reason: "new"},
+			store.PendingItem{Key: text(dialogue, 1, 1), Reason: "new"},
+			store.PendingItem{Key: text(dialogue, 1, 2), Reason: "new"},
+			store.PendingItem{Key: text(dialogue, 2, 0), Reason: "new"})
+		if err := env.Store.SaveRecords(map[string]store.Record{
+			text(dialogue, 0, 0): translated(text(dialogue, 0, 0), "과감하게… 신중하게…", "放手一搏……"),
+		}); err != nil {
+			t.Fatal(err)
+		}
+
+		// Four units are more than a plain batch of 2 would hold.
+		b := mustNext(t, env, NextOptions{MaxUnits: 2})
+		if b == nil || len(b.Units) != 4 {
+			t.Fatalf("batch = %+v, want one batch of all 4 pending lines", b)
+		}
+		var speakers []string
+		for _, u := range b.Units {
+			speakers = append(speakers, u.Speaker)
+		}
+		// 싱클레어 is a character; 오티스 is not one here and stays as written;
+		// the last line has no speaker.
+		if want := []string{"sinclair", "오티스", "sinclair", ""}; !slices.Equal(speakers, want) {
+			t.Errorf("speakers = %q, want %q", speakers, want)
+		}
+		if !slices.Contains(b.Guides, "guides/characters/sinclair.md") {
+			t.Errorf("guides = %v, want sinclair's", b.Guides)
+		}
+		if want := []string{text(dialogue, 0, 0)}; !slices.Equal(ctxKeys(b), want) {
+			t.Errorf("context = %v, want %v: the translated line before the first pending one", ctxKeys(b), want)
+		}
+	})
+
+	t.Run("options", func(t *testing.T) {
+		const kr = `{"dataList":[
+ {"key":"DC1","text":"그대가 되리니"},
+ {"key":"DC2","text":"우리가 되리니"},
+ {"key":"DC3","text":"값이 오르리니"}]}`
+		env := newEnv(t, map[string]string{choice: kr}, nil, nil)
+		var pending []store.PendingItem
+		for i := 0; i < 3; i++ {
+			pending = append(pending, store.PendingItem{Key: fmt.Sprintf("%s|/dataList/%d/text", choice, i), Reason: "new"})
+		}
+		seed(t, env, pending...)
+		b := mustNext(t, env, NextOptions{MaxUnits: 2})
+		if b == nil || len(b.Units) != 2 {
+			t.Fatalf("batch = %+v, want a plain batch of 2 units", b)
+		}
+		if len(b.Context) != 0 {
+			t.Errorf("context = %v, want none", b.Context)
+		}
+	})
+}
+
+// The speaker of a line is its dataList element's model; when that is empty,
+// the "speaker" string of the object the line is in.
+func TestSpeakerFromTheObjectOfTheLine(t *testing.T) {
+	const file = "Other.json"
+	kr := map[string]string{file: `{"dataList":[
+ {"id":0,"model":"파우스트","speaker":"싱클레어","content":"가"},
+ {"id":1,"texts":[{"text":"나","speaker":"싱클레어"}]},
+ {"id":2,"texts":[{"text":"다"}]},
+ {"id":3,"tags":["라"],"speaker":"싱클레어"},
+ {"id":4,"texts":[{"text":"마","speaker":7}]},
+ {"id":5,"model":"","texts":[{"text":"바","speaker":"싱클레어"}]}
+]}`}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env,
+		store.PendingItem{Key: file + "|/dataList/0/content", Reason: "new"},
+		store.PendingItem{Key: file + "|/dataList/1/texts/0/text", Reason: "new"},
+		store.PendingItem{Key: file + "|/dataList/2/texts/0/text", Reason: "new"},
+		store.PendingItem{Key: file + "|/dataList/3/tags/0", Reason: "new"},
+		store.PendingItem{Key: file + "|/dataList/4/texts/0/text", Reason: "new"},
+		store.PendingItem{Key: file + "|/dataList/5/texts/0/text", Reason: "new"})
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || len(b.Units) != 6 {
+		t.Fatalf("batch = %+v, want 6 units", b)
+	}
+	got := map[string]string{}
+	for _, u := range b.Units {
+		got[strings.TrimPrefix(u.Key, file+"|")] = u.Speaker
+	}
+	want := map[string]string{
+		"/dataList/0/content":      "faust",    // the model wins over a speaker beside it
+		"/dataList/1/texts/0/text": "sinclair", // no model: the speaker of the object
+		"/dataList/2/texts/0/text": "",         // neither
+		"/dataList/3/tags/0":       "",         // the speaker is not in the object of the string
+		"/dataList/4/texts/0/text": "",         // not a string
+		"/dataList/5/texts/0/text": "sinclair", // an empty model is no model
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("speakers = %v, want %v", got, want)
 	}
 }
 
@@ -734,7 +953,7 @@ func TestStaleRecordsAreNotUsed(t *testing.T) {
 	})
 	t.Run("story context", func(t *testing.T) {
 		const file = "StoryData/S001A.json"
-		env := newEnv(t, map[string]string{file: dataList(t, 4, "파우스트", line)}, nil, nil)
+		env := newEnv(t, map[string]string{file: dataList(t, 4, "", line)}, nil, nil)
 		seed(t, env, items(file, 3, 4)...)
 		recs := map[string]store.Record{}
 		for i := 0; i < 3; i++ {

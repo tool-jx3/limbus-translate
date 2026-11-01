@@ -11,6 +11,7 @@ package batch
 import (
 	"errors"
 	"fmt"
+	"path"
 	"slices"
 	"strings"
 	"time"
@@ -35,9 +36,9 @@ const (
 	DefaultLeaseTTL      = 120 * time.Minute
 )
 
-// contextLines is how many translated lines of context a story batch gets on
-// each side.
-const contextLines = 5
+// contextLines is how many units on each side of a unit of a story batch are
+// looked at for context, counted in the file's document order.
+const contextLines = 3
 
 // Env is what Next and Submit work with.
 type Env struct {
@@ -81,8 +82,8 @@ type Batch struct {
 type BatchUnit struct {
 	Key   string `json:"key"`
 	Field string `json:"field"`
-	// Speaker is a character id, or the raw model key of a speaker that is
-	// no known character, or "".
+	// Speaker is a character id, or the raw model or speaker string of a
+	// speaker that is no known character, or "".
 	Speaker string `json:"speaker"`
 	KR      string `json:"kr"`
 	// Reason is why the unit is pending.
@@ -148,8 +149,27 @@ func (e Env) now() time.Time {
 	return e.Now
 }
 
-// isStory reports whether file is a story script.
-func isStory(file string) bool { return strings.HasPrefix(file, align.StoryPrefix) }
+// The RPG dialogue files are read as stories: dataList[].texts[] holds the
+// lines of a conversation. The files of the options (rpg-loc-dialogue-choice-*)
+// match the first pattern too but hold single phrases.
+const (
+	rpgDialogueGlob = "RPGSystem/rpg-loc-dialogue-*"
+	rpgChoiceGlob   = "RPGSystem/rpg-loc-dialogue-choice-*"
+)
+
+// isStory reports whether file is a story script: a StoryData/ file or an RPG
+// dialogue file. Its units are batched by the whole file, with context.
+func isStory(file string) bool {
+	if strings.HasPrefix(file, align.StoryPrefix) {
+		return true
+	}
+	// The patterns are fixed and valid, so Match cannot fail.
+	if dialogue, _ := path.Match(rpgDialogueGlob, file); dialogue {
+		choice, _ := path.Match(rpgChoiceGlob, file)
+		return !choice
+	}
+	return false
+}
 
 // hasFlag reports whether flags holds flag.
 func hasFlag(flags []string, flag string) bool { return slices.Contains(flags, flag) }
@@ -251,21 +271,40 @@ func (fd *fileData) aligned(lang int, pointer string) (*align.LangAligned, error
 var voiceFilePrefixes = []string{"PersonalityVoiceDlg/", "EGOVoiceDig/", "BattleAnnouncerDlg/", "AbDlg_"}
 
 // speaker names the speaker of a unit: the character id when the character is
-// known, otherwise the raw model key (possibly empty). Voice and AbDlg files
-// belong to the character in the file name; the lines of other files to the
-// character of their model.
-func speaker(r *rules.Rules, u units.Unit) (id string, known bool) {
-	var c *rules.Character
-	var ok bool
+// known, otherwise the raw key (possibly empty). Voice and AbDlg files belong
+// to the character in the file name; the lines of other files to the character
+// of their model or speaker (see speakerKey).
+func speaker(r *rules.Rules, doc *jsonx.Node, u units.Unit) (id string, known bool) {
 	if slices.ContainsFunc(voiceFilePrefixes, func(p string) bool { return strings.HasPrefix(u.File, p) }) {
-		c, ok = r.CharacterByFile(u.File)
-	} else {
-		c, _, ok = r.CharacterByModel(u.Model)
+		if c, ok := r.CharacterByFile(u.File); ok {
+			return c.ID, true
+		}
+		return u.Model, false
 	}
-	if ok {
+	key := speakerKey(doc, u)
+	if c, _, ok := r.CharacterByModel(key); ok {
 		return c.ID, true
 	}
-	return u.Model, false
+	return key, false
+}
+
+// speakerKey is the string that names who says a unit in KR: the model of the
+// dataList element it is in or, when that is empty, the "speaker" string of the
+// object the unit itself is in (the RPG dialogue files keep it there:
+// dataList[].texts[].speaker). doc is the file the unit is from. It is "" when
+// there is neither.
+func speakerKey(doc *jsonx.Node, u units.Unit) string {
+	if u.Model != "" {
+		return u.Model
+	}
+	i := strings.LastIndex(u.Pointer, "/")
+	if i < 0 {
+		return ""
+	}
+	if n, ok := doc.Get(u.Pointer[:i] + "/speaker"); ok && n.Kind == jsonx.String {
+		return n.Str
+	}
+	return ""
 }
 
 // constraints reads what a translation of kr must keep.

@@ -37,11 +37,43 @@ func TestValidParatranz(t *testing.T) {
 		{"digits only", "가", "A", "123", false},
 		{"symbols only", "가", "A", "！？", false},
 		{"empty", "가", "A", "", false},
-		{"copy of KR that has Han", "甲", "甲", "甲", false},
+		{"copy of KR that has Han and Hangul", "가甲", "가甲", "가甲", false},
+		{"KR without Hangul needs no translation, so a copy of it is valid", "甲", "甲", "甲", true},
 		{"EN equal to KR does not forbid a different translation", "가", "가", "甲", true},
 		{"no EN known", "가", "", "甲", true},
 		{"Han with Latin text", "가", "A", "增加 [Bleed] 強度", true},
 		{"Latin only", "가", "A", "Restores HP", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := ValidParatranz(tt.kr, tt.en, tt.zh); got != tt.want {
+				t.Errorf("ValidParatranz(%q, %q, %q) = %v, want %v", tt.kr, tt.en, tt.zh, got, tt.want)
+			}
+		})
+	}
+}
+
+// A KR line without Hangul (ellipses, "…!", a Latin name) is not translated
+// at all, so Paratranz holds the right text however little of it there is.
+func TestValidParatranzSymbolOnly(t *testing.T) {
+	tests := []struct {
+		name       string
+		kr, en, zh string
+		want       bool
+	}{
+		{"ellipsis with a period", "…….", "......", "……", true},
+		{"Dante-wrapped ellipsis", "<…….>", "<......>", "<……>", true},
+		{"ellipsis with a mark", "…!", "...!", "…！", true},
+		{"Latin name", "Malkuth", "Malkuth", "Malkuth", true},
+		{"Latin label", "1F BOSS", "1F BOSS", "1F BOSS", true},
+		{"no EN known", "…….", "", "……", true},
+		{"zh may equal KR", "……", "……", "……", true},
+		{"empty", "…….", "", "", false},
+		{"blank", "…….", "", " \t\n", false},
+		{"Hangul in the translation", "…….", "", "……가", false},
+		// A KR line with Hangul keeps the current conditions.
+		{"KR with Hangul, zh equals EN", "말쿠트", "Malkuth", "Malkuth", false},
+		{"KR with Hangul, no Han", "1층 보스", "1F Boss", "1F BOSS", false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -178,21 +210,39 @@ func TestForeignNames(t *testing.T) {
 		t.Errorf("ForeignNames without LTM's table = %q, want none", got)
 	}
 
-	// A name ours uses for any id is not foreign: LTM's 乙 for id a differs
-	// from our 甲, but 乙 is what we call id b.
+	// A name ours uses for any id is not foreign: LTM's 乙乙 for id a differs
+	// from our 甲甲, but 乙乙 is what we call id b.
 	shared := ForeignNames(
-		parseDoc(t, `{"dataList":[{"id":"a","name":"甲"},{"id":"b","name":"乙"},{"id":"c","name":"丙"}]}`),
-		parseDoc(t, `{"dataList":[{"id":"a","name":"乙"},{"id":"b","name":"乙"},{"id":"c","name":"丁"}]}`))
-	if want := []string{"丁"}; !slices.Equal(shared, want) {
+		parseDoc(t, `{"dataList":[{"id":"a","name":"甲甲"},{"id":"b","name":"乙乙"},{"id":"c","name":"丙丙"}]}`),
+		parseDoc(t, `{"dataList":[{"id":"a","name":"乙乙"},{"id":"b","name":"乙乙"},{"id":"c","name":"丁丁"}]}`))
+	if want := []string{"丁丁"}; !slices.Equal(shared, want) {
 		t.Errorf("ForeignNames with a name ours also uses = %q, want %q", shared, want)
 	}
 
 	// sorted, so the file written from it is stable
 	many := ForeignNames(
-		parseDoc(t, `{"dataList":[{"id":"a","name":"甲"},{"id":"b","name":"乙"},{"id":"c","name":"丙"}]}`),
-		parseDoc(t, `{"dataList":[{"id":"a","name":"丁"},{"id":"b","name":"戊"},{"id":"c","name":"己"}]}`))
+		parseDoc(t, `{"dataList":[{"id":"a","name":"甲甲"},{"id":"b","name":"乙乙"},{"id":"c","name":"丙丙"}]}`),
+		parseDoc(t, `{"dataList":[{"id":"a","name":"丁丁"},{"id":"b","name":"戊戊"},{"id":"c","name":"己己"}]}`))
 	if !slices.IsSorted(many) || len(many) != 3 {
 		t.Errorf("ForeignNames = %q, want 3 sorted names", many)
+	}
+}
+
+// A one-character name matches ordinary words (LTM's "空" would match the "空"
+// of "空洞"), so it is not listed. Two characters are enough.
+func TestForeignNamesSkipsSingleRune(t *testing.T) {
+	ours := parseDoc(t, `{"dataList":[
+		{"id":"a","name":"天"},
+		{"id":"b","name":"地"},
+		{"id":"c","name":"X"},
+		{"id":"d","name":"玄"}]}`)
+	ltm := parseDoc(t, `{"dataList":[
+		{"id":"a","name":"空"},
+		{"id":"b","name":"空洞"},
+		{"id":"c","name":"Y"},
+		{"id":"d","name":"YY"}]}`)
+	if got, want := ForeignNames(ours, ltm), []string{"YY", "空洞"}; !slices.Equal(got, want) {
+		t.Errorf("ForeignNames = %q, want %q (one-character names left out, two kept)", got, want)
 	}
 }
 
@@ -553,6 +603,50 @@ func TestRunUnalignedAndEmptyParatranz(t *testing.T) {
 	}
 	if res.Stats["new"] != 3 {
 		t.Errorf("new = %d, want 3 (Stats %v)", res.Stats["new"], res.Stats)
+	}
+}
+
+// The lines the pilot found queued for nothing: KR without Hangul, Paratranz
+// already right. They are adopted, not queued.
+func TestRunAdoptsSymbolOnlyParatranz(t *testing.T) {
+	in := sources{
+		kr: packFiles{"A.json": `{"dataList":[
+			{"id":1,"content":"……."},
+			{"id":2,"content":"<…….>"},
+			{"id":3,"content":"…!"},
+			{"id":4,"content":"1F BOSS"},
+			{"id":5,"content":"……","extra":"말줄임"}]}`},
+		en: packFiles{"A.json": `{"dataList":[
+			{"id":1,"content":"......"},
+			{"id":2,"content":"<......>"},
+			{"id":3,"content":"...!"},
+			{"id":4,"content":"1F BOSS"},
+			{"id":5,"content":"......","extra":"Ellipsis"}]}`},
+		pz: packFiles{"A.json": `{"dataList":[
+			{"id":1,"content":"……"},
+			{"id":2,"content":"<……>"},
+			{"id":3,"content":"…！"},
+			{"id":4,"content":"1F BOSS"},
+			{"id":5,"content":"……","extra":""}]}`},
+	}.inputs(t)
+
+	res, err := Run(in, testFieldRules(t), &rules.Rules{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	pending := pendingByKey(res)
+	for i, want := range []string{"……", "<……>", "…！", "1F BOSS", "……"} {
+		k := units.Key("A.json", "/dataList/"+string(rune('0'+i))+"/content")
+		if r, ok := res.Records[k]; !ok || r.ZH != want || r.Origin != store.OriginParatranz {
+			t.Errorf("item %d record = %+v (found %v), want %q from paratranz", i+1, r, ok, want)
+		}
+		if it, queued := pending[k]; queued {
+			t.Errorf("item %d is queued (%+v), want it settled", i+1, it)
+		}
+	}
+	// A line with Hangul and an empty Paratranz value is still queued.
+	if it, ok := pending[units.Key("A.json", "/dataList/4/extra")]; !ok || it.Reason != "new" {
+		t.Errorf("Hangul line with an empty paratranz value = %+v (queued %v), want pending new", it, ok)
 	}
 }
 

@@ -56,11 +56,12 @@ func (o NextOptions) withDefaults() (NextOptions, error) {
 // in use, "-2", "-3" and so on is appended until the id is unique; after
 // maxIDSuffixes suffixes Next gives up with an error.
 //
-// A batch holds units of one file. Outside StoryData/ that is the first
-// MaxUnits eligible units of the file. A story batch is a run of consecutive
-// eligible units, at most StoryMaxUnits: translated lines in between do not
-// end the run, a pending line that is not eligible does. It comes with
-// Context, translated lines around and between its units.
+// A batch holds units of one file: the first MaxUnits eligible units of the
+// file in document order, or for a story file (StoryData/ and the RPG
+// dialogue, see isStory) the first StoryMaxUnits. The units need not be next
+// to each other, and a pending line that is not eligible is skipped. The next
+// batch of the file starts at the first eligible unit left. A story batch comes
+// with Context, translated lines near its units.
 //
 // It returns nil, nil when there is nothing to hand out. The whole cut is one
 // store lock, so concurrent calls never share a unit.
@@ -168,13 +169,11 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		}
 		slices.SortFunc(slots, func(a, b slot) int { return a.pos - b.pos })
 
-		ok := func(s slot) bool { return eligible(pending[s.idx], now) }
-		var chosen []slot
+		limit := opt.MaxUnits
 		if isStory(c.file) {
-			chosen = storyRun(slots, ok, opt.StoryMaxUnits)
-		} else {
-			chosen = firstEligible(slots, ok, opt.MaxUnits)
+			limit = opt.StoryMaxUnits
 		}
+		chosen := firstEligible(slots, func(s slot) bool { return eligible(pending[s.idx], now) }, limit)
 		if len(chosen) == 0 {
 			continue
 		}
@@ -207,25 +206,6 @@ func firstEligible(slots []slot, ok func(slot) bool, max int) []slot {
 		}
 	}
 	return out
-}
-
-// storyRun returns the first run of slots that ok accepts, at most max. Slots
-// before the run that ok refuses are skipped; the first one after it ends it.
-func storyRun(slots []slot, ok func(slot) bool, max int) []slot {
-	var run []slot
-	for _, s := range slots {
-		switch {
-		case !ok(s) && len(run) > 0:
-			return run
-		case !ok(s):
-			// not started yet
-		case len(run) == max:
-			return run
-		default:
-			run = append(run, s)
-		}
-	}
-	return run
 }
 
 // batchID is the UTC time and the start of the hash of the first key, so
@@ -287,7 +267,7 @@ func assemble(
 	needRecords := isStory(fd.file)
 	for _, s := range chosen {
 		item, u := pending[s.idx], fd.units[s.pos]
-		who, known := speaker(env.Rules, u)
+		who, known := speaker(env.Rules, fd.doc, u)
 		if known && !slices.Contains(speakers, who) {
 			speakers = append(speakers, who)
 		}
@@ -356,80 +336,30 @@ func cleanRefs(refs map[string]string) map[string]string {
 	return out
 }
 
-// What a story line is to the context of a batch.
-const (
-	lineSkip    = iota // no translation to show
-	lineShow           // a translated line
-	lineBlocked        // waits for translation: the translated text ends here
-)
-
-// storyContext returns the translated lines around and between the units of a
-// story batch, in document order: up to contextLines before the first unit
-// and after the last, and every one between them. Walking outwards stops at
-// the first line that waits for translation, since nothing translated lies
-// right next to the batch beyond it. A line that needs review does not wait
-// for the translation that is being made now, so it is skipped like the lines
-// that are not translations (copied identifiers, the fallback text of a
-// pending unit, a record made from another KR text).
+// storyContext returns the translated lines near the units of a story batch:
+// for every unit, the lines up to contextLines places before and after it among
+// the units of the file, each once, in document order. A line is shown if it
+// has a record that is not a copy and was made from the KR text the line has
+// now, and it does not wait for translation. So the units of the batch are
+// never shown, and neither is a line that needs review.
 func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingByKey map[string]store.PendingItem, chosen []slot) []ContextLine {
-	classify := func(pos int) (ContextLine, int) {
-		u := fd.units[pos]
-		key := units.Key(u.File, u.Pointer)
-		if it, waits := pendingByKey[key]; waits {
-			if hasFlag(it.Flags, store.FlagNeedsReview) {
-				return ContextLine{}, lineSkip
-			}
-			return ContextLine{}, lineBlocked
-		}
-		rec, ok := recs[key]
-		if !ok || rec.Origin == store.OriginCopy || rec.ZH == "" || rec.KRSha != units.KRSha(u.KR) {
-			return ContextLine{}, lineSkip
-		}
-		id, _ := speaker(env.Rules, u)
-		return ContextLine{Key: key, Speaker: id, KR: u.KR, ZH: rec.ZH}, lineShow
-	}
-
-	inBatch := make(map[int]bool, len(chosen))
+	lines := []ContextLine{}
+	from := 0 // the first position not looked at yet; chosen is in document order
 	for _, s := range chosen {
-		inBatch[s.pos] = true
-	}
-	first, last := chosen[0].pos, chosen[len(chosen)-1].pos
-
-	var before []ContextLine
-walkBack:
-	for p := first - 1; p >= 0 && len(before) < contextLines; p-- {
-		switch l, kind := classify(p); kind {
-		case lineBlocked:
-			break walkBack
-		case lineShow:
-			before = append(before, l)
+		for p := max(from, s.pos-contextLines); p <= min(s.pos+contextLines, len(fd.units)-1); p++ {
+			u := fd.units[p]
+			key := units.Key(u.File, u.Pointer)
+			if _, waits := pendingByKey[key]; waits {
+				continue
+			}
+			rec, ok := recs[key]
+			if !ok || rec.Origin == store.OriginCopy || rec.ZH == "" || rec.KRSha != units.KRSha(u.KR) {
+				continue
+			}
+			id, _ := speaker(env.Rules, fd.doc, u)
+			lines = append(lines, ContextLine{Key: key, Speaker: id, KR: u.KR, ZH: rec.ZH})
 		}
-	}
-	slices.Reverse(before)
-
-	lines := before
-	for p := first + 1; p < last; p++ {
-		if inBatch[p] {
-			continue
-		}
-		if l, kind := classify(p); kind == lineShow {
-			lines = append(lines, l)
-		}
-	}
-
-	shown := 0
-walkOn:
-	for p := last + 1; p < len(fd.units) && shown < contextLines; p++ {
-		switch l, kind := classify(p); kind {
-		case lineBlocked:
-			break walkOn
-		case lineShow:
-			lines = append(lines, l)
-			shown++
-		}
-	}
-	if lines == nil {
-		return []ContextLine{}
+		from = s.pos + contextLines + 1
 	}
 	return lines
 }

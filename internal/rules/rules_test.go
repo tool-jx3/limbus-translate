@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"strings"
 	"testing"
 
@@ -25,13 +26,18 @@ func loadRepo(t *testing.T) *rules.Rules {
 	return r
 }
 
+// The rules are edited all through phase 1, so nothing here counts the guides
+// or the terms: it checks that they load and that a few known entries are in.
 func TestLoadRepoRules(t *testing.T) {
 	r := loadRepo(t)
-	if got := len(r.Characters); got != 15 {
-		t.Errorf("characters = %d, want 15", got)
+	if len(r.Characters) < 1 {
+		t.Error("no character guide loaded")
 	}
-	if got := len(r.Glossary); got != 13 {
-		t.Errorf("glossary terms = %d, want 13", got)
+	if len(r.Glossary) < 1 {
+		t.Error("no glossary term loaded")
+	}
+	if i := slices.IndexFunc(r.Glossary, func(g rules.Term) bool { return g.KR == "도약 모듈" }); i < 0 || r.Glossary[i].ZH != "跳躍成長模組" {
+		t.Errorf("the glossary should hold 도약 모듈 → 跳躍成長模組, got %+v", r.Glossary)
 	}
 	ishmael, ok := r.CharacterByID("ishmael")
 	if !ok {
@@ -57,8 +63,9 @@ func TestLoadRepoRules(t *testing.T) {
 	if dante.Number != nil || dante.Code != nil || len(dante.FileNames) != 0 {
 		t.Errorf("dante number/code/file_names = %v / %v / %v", dante.Number, dante.Code, dante.FileNames)
 	}
-	if len(r.Routing.Families) != 12 || len(r.Routing.Priority) != 12 {
-		t.Errorf("routing has %d families and %d priorities, want 12 and 12", len(r.Routing.Families), len(r.Routing.Priority))
+	// Lint requires every family to be in the priority list exactly once.
+	if len(r.Routing.Families) < 1 || len(r.Routing.Priority) != len(r.Routing.Families) {
+		t.Errorf("routing has %d families and %d priorities, want at least one family and as many priorities", len(r.Routing.Families), len(r.Routing.Priority))
 	}
 }
 
@@ -264,17 +271,29 @@ func TestGuidesFor(t *testing.T) {
 	}
 }
 
+// hitFor returns the hit for the term kr, nil if there is none.
+func hitFor(hits []rules.Term, kr string) *rules.Term {
+	if i := slices.IndexFunc(hits, func(h rules.Term) bool { return h.KR == kr }); i >= 0 {
+		return &hits[i]
+	}
+	return nil
+}
+
+// The text of these tests is picked from terms that are in the glossary today,
+// but they only look for those terms among the hits: a term added later may
+// well occur in the same sentence.
 func TestGlossaryHits(t *testing.T) {
 	r := loadRepo(t)
-	hits := r.GlossaryHits("이 패키지는 한정 판매입니다.")
-	if len(hits) != 1 || hits[0].KR != "패키지" || hits[0].ZH != "組合包" {
-		t.Fatalf("hits = %+v, want only 패키지 → 組合包", hits)
+	hit := hitFor(r.GlossaryHits("이 패키지는 한정 판매입니다."), "패키지")
+	if hit == nil {
+		t.Fatal("the text contains 패키지, but it is not among the hits")
 	}
-	if !reflect.DeepEqual(hits[0].Forbidden, []string{"禮包"}) || hits[0].Status != "approved" {
-		t.Errorf("hit fields = %+v", hits[0])
+	if hit.ZH != "組合包" || !slices.Contains(hit.Forbidden, "禮包") || hit.Status != "approved" {
+		t.Errorf("hit fields = %+v, want 組合包, forbidden 禮包, approved", *hit)
 	}
 
-	if hits := r.GlossaryHits("아무 용어도 없는 문장"); len(hits) != 0 {
+	// Latin text holds no Korean term.
+	if hits := r.GlossaryHits("no term in this text 123"); len(hits) != 0 {
 		t.Errorf("no term in the text, but hits = %+v", hits)
 	}
 	if hits := r.GlossaryHits(""); len(hits) != 0 {
@@ -282,19 +301,39 @@ func TestGlossaryHits(t *testing.T) {
 	}
 
 	// several hits come back in glossary order, not text order
-	hits = r.GlossaryHits("시즌 보상: 도약 모듈")
+	hits := r.GlossaryHits("시즌 보상: 도약 모듈")
 	var got []string
 	for _, h := range hits {
-		got = append(got, h.KR)
+		if h.KR == "도약 모듈" || h.KR == "시즌" {
+			got = append(got, h.KR)
+		}
 	}
-	if want := []string{"도약 모듈", "시즌"}; !reflect.DeepEqual(got, want) {
+	if want := []string{"도약 모듈", "시즌"}; !slices.Equal(got, want) {
 		t.Errorf("hit order = %v, want %v", got, want)
 	}
 }
 
 // Candidate terms do not bind until they are approved.
 func TestGlossaryHitsSkipCandidates(t *testing.T) {
-	r := loadRepo(t)
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(string) string {
+		return `- kr: 시즌
+  zh: 賽季
+  status: approved
+- kr: 자아 파편
+  zh: 自我碎片
+  status: approved
+  forbidden: [人格碎片]
+- kr: 전용 파편
+  zh: 專屬碎片
+  status: candidate
+  forbidden: [人格碎片]
+`
+	})
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
 	var candidate *rules.Term
 	for i := range r.Glossary {
 		if r.Glossary[i].KR == "전용 파편" {
@@ -316,20 +355,31 @@ func TestGlossaryHitsSkipCandidates(t *testing.T) {
 	if len(hits) != 1 || hits[0].KR != "자아 파편" || hits[0].Status != "approved" {
 		t.Errorf("hits = %+v, want only the approved 자아 파편", hits)
 	}
+
+	// and in the real glossary, whatever candidates it holds at the moment
+	live := loadRepo(t)
+	for _, term := range live.Glossary {
+		if term.Status == "candidate" && hitFor(live.GlossaryHits(term.KR), term.KR) != nil {
+			t.Errorf("the candidate %s is among the hits of its own text", term.KR)
+		}
+	}
 }
 
 func TestToValidate(t *testing.T) {
 	r := loadRepo(t)
-	hits := r.GlossaryHits("시즌")
-	if len(hits) != 1 {
-		t.Fatalf("hits = %+v", hits)
+	hit := hitFor(r.GlossaryHits("시즌"), "시즌")
+	if hit == nil {
+		t.Fatal("시즌 should be an approved term")
 	}
-	want := validate.Term{KR: "시즌", Forbidden: []string{`re:第\d+季`}}
-	if got := hits[0].ToValidate(); !reflect.DeepEqual(got, want) {
+	if !slices.Contains(hit.Forbidden, `re:第\d+季`) {
+		t.Fatalf("시즌 forbids %v, want the pattern re:第\\d+季 among them", hit.Forbidden)
+	}
+	want := validate.Term{KR: "시즌", Forbidden: hit.Forbidden}
+	if got := hit.ToValidate(); !reflect.DeepEqual(got, want) {
 		t.Errorf("ToValidate = %+v, want %+v", got, want)
 	}
 	// and the converted term really drives validate.Check
-	ctx := validate.Context{Terms: []validate.Term{hits[0].ToValidate()}}
+	ctx := validate.Context{Terms: []validate.Term{hit.ToValidate()}}
 	if !validate.HasHard(validate.Check("시즌 8", "第8季", ctx)) {
 		t.Error("第8季 should be a hard forbidden-term issue")
 	}

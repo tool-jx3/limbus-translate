@@ -13,6 +13,7 @@ import (
 	"slices"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/config"
@@ -49,6 +50,9 @@ const (
 // JSON list of ForeignNames that "lct bootstrap" writes (Store.WriteMetaJSON)
 // and later steps read (Store.ReadMetaJSON).
 const ForeignNamesFile = "foreign-names.json"
+
+// minForeignNameRunes is the fewest characters a foreign name has.
+const minForeignNameRunes = 2
 
 // scenarioModelCodes lists the speakers. Its names are compared between our
 // translation and LTM's (ForeignNames).
@@ -189,8 +193,10 @@ func foreignNamesOf(pz, ltm *pack.Pack) ([]string, error) {
 // differently: for every id in the dataList of both ScenarioModelCodes-
 // AutoCreated documents whose name differs, LTM's name (LTM calls 뫼르소
 // "默爾索", we call it "莫梭"). They are names the translation must not use,
-// so a name that ours also uses for any id is left out. The result is sorted
-// and has no duplicates; it is empty, not nil, when there is none.
+// so a name that ours also uses for any id is left out, and so is a name of
+// fewer than two characters: it would match ordinary words ("空" in "空洞").
+// The result is sorted and has no duplicates; it is empty, not nil, when there
+// is none.
 func ForeignNames(ours, ltm *jsonx.Node) []string {
 	mine, theirs := names.SpeakerTable(ours), names.SpeakerTable(ltm)
 	used := make(map[string]bool, len(mine))
@@ -199,7 +205,7 @@ func ForeignNames(ours, ltm *jsonx.Node) []string {
 	}
 	found := []string{}
 	for id, name := range theirs {
-		if mineName, ok := mine[id]; ok && mineName != name && !used[name] {
+		if mineName, ok := mine[id]; ok && mineName != name && !used[name] && utf8.RuneCountInString(name) >= minForeignNameRunes {
 			found = append(found, name)
 		}
 	}
@@ -208,12 +214,22 @@ func ForeignNames(ours, ltm *jsonx.Node) []string {
 }
 
 // ValidParatranz reports whether zh, the Paratranz string for the KR text kr,
-// is a translation. ParatranzUploader fills untranslated entries with the EN
-// text, and the pack holds some KR text and symbol-only values, so a string is
+// is a translation.
+//
+// A KR text without Hangul (ellipses, "…!", a Latin name or label) has nothing
+// to translate, so Paratranz holds the right text however it looks: zh is
+// valid if it is not blank and has no Hangul. It is neither compared with kr
+// or en nor required to have Han characters.
+//
+// For a KR text with Hangul, ParatranzUploader fills untranslated entries with
+// the EN text and the pack holds some KR text and symbol-only values, so zh is
 // valid only if it differs from kr and from en (the EN text aligned to the
 // unit, "" if there is none), has no Hangul and has at least one Han
 // character.
 func ValidParatranz(kr, en, zh string) bool {
+	if !hasHangul(kr) {
+		return strings.TrimSpace(zh) != "" && !hasHangul(zh)
+	}
 	if zh == kr || zh == en {
 		return false
 	}

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -12,9 +13,14 @@ import (
 
 func validateOut(t *testing.T, jsonOut bool, args ...string) (string, error) {
 	t.Helper()
-	var out bytes.Buffer
 	// validate reads the glossary, so it needs the repo root.
-	err := runValidate(&cli.Context{Root: "../..", JSON: jsonOut, Out: &out}, args)
+	return validateIn(t, "../..", jsonOut, args...)
+}
+
+func validateIn(t *testing.T, root string, jsonOut bool, args ...string) (string, error) {
+	t.Helper()
+	var out bytes.Buffer
+	err := runValidate(&cli.Context{Root: root, JSON: jsonOut, Out: &out}, args)
 	return out.String(), err
 }
 
@@ -66,13 +72,25 @@ func TestValidateEnforcesGlossary(t *testing.T) {
 }
 
 func TestValidateIgnoresCandidateTerms(t *testing.T) {
-	// 전용 파편 is only a candidate in the glossary, and 人格碎片 is on its
+	// A glossary of its own, so that approving a candidate in the real one
+	// does not break this: 전용 파편 is only a candidate, and 人格碎片 is on its
 	// forbidden list, so it must not be enforced yet.
-	if out, err := validateOut(t, false, "--kr", "전용 파편", "--zh", "專用人格碎片"); err != nil {
+	root := t.TempDir()
+	copyDir(t, filepath.Join(repoRoot, "guides"), filepath.Join(root, "guides"))
+	writeTestFile(t, root, "glossary/terms.yaml", `- kr: 자아 파편
+  zh: 自我碎片
+  status: approved
+  forbidden: [人格碎片]
+- kr: 전용 파편
+  zh: 專屬碎片
+  status: candidate
+  forbidden: [人格碎片]
+`)
+	if out, err := validateIn(t, root, false, "--kr", "전용 파편", "--zh", "專用人格碎片"); err != nil {
 		t.Errorf("a candidate term must not bind: %v\n%s", err, out)
 	}
 	// the approved 자아 파편 forbids the same rendering, and does bind
-	if _, err := validateOut(t, false, "--kr", "자아 파편", "--zh", "人格碎片"); !errors.Is(err, cli.ErrFindings) {
+	if _, err := validateIn(t, root, false, "--kr", "자아 파편", "--zh", "人格碎片"); !errors.Is(err, cli.ErrFindings) {
 		t.Errorf("an approved term must bind: err = %v", err)
 	}
 }
