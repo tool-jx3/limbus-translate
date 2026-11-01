@@ -682,6 +682,34 @@ func TestBatchUnitContent(t *testing.T) {
 	}
 }
 
+// The reason a person sent a unit back (lct requeue) reaches the translator.
+func TestNextCarriesHint(t *testing.T) {
+	env := newEnv(t, map[string]string{"Other.json": dataList(t, 2, "", line)}, nil, nil)
+	pending := items("Other.json", 0, 2)
+	pending[0].Reason = "requeue"
+	pending[0].PrevZH = "舊譯"
+	pending[0].Hint = "稱呼改用「您」"
+	seed(t, env, pending...)
+
+	b := mustNext(t, env, NextOptions{})
+	if len(b.Units) != 2 {
+		t.Fatalf("batch has %d units, want 2", len(b.Units))
+	}
+	if got := b.Units[0].Hint; got != "稱呼改用「您」" {
+		t.Errorf("unit 0 hint = %q, want the hint of its pending item", got)
+	}
+	if got := b.Units[1].Hint; got != "" {
+		t.Errorf("unit 1 hint = %q, want none", got)
+	}
+	data, err := json.Marshal(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if n := strings.Count(string(data), `"hint"`); n != 1 {
+		t.Errorf("the batch JSON has %d hint properties, want 1 (only a unit with a hint has one): %s", n, data)
+	}
+}
+
 // A translation made from another KR text is no translation of the text there
 // is now: it names no keyword and is no line of context.
 func TestStaleRecordsAreNotUsed(t *testing.T) {
@@ -1519,6 +1547,7 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	pending := items(file, 0, 2)
 	pending[0].Refs = map[string]string{"llc": "a", "ltm": "b"}
 	pending[0].PrevKR, pending[0].PrevZH, pending[0].Draft = "p", "q", "r"
+	pending[0].Hint = "s"
 	seed(t, env, pending...)
 	if err := env.Store.SaveRecords(map[string]store.Record{
 		"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", KRSha: units.KRSha("출혈"), ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
@@ -1554,6 +1583,18 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	unitProps, _ := schemaProps(t, unitSchema)
 	enSchema := unitProps["en"]
 	keepSchema := unitProps["keep"]
+
+	// Every optional property of a unit is set by the fixture, so the check
+	// below sees it.
+	first := top["units"].([]any)[0].(map[string]any)
+	for name := range unitProps {
+		if _, ok := first[name]; !ok {
+			t.Errorf("the fixture's first unit has no %q, so the schema's property is not checked", name)
+		}
+	}
+	if hint, ok := unitProps["hint"]; !ok || hint["type"] != "string" {
+		t.Errorf("the unit schema's hint = %v, want a string property", hint)
+	}
 
 	for i, u := range top["units"].([]any) {
 		um := u.(map[string]any)

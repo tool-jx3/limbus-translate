@@ -262,6 +262,32 @@ func TestSettingsContract(t *testing.T) {
 	}
 }
 
+// A unit can carry a hint (lct requeue): the schema declares it and the
+// shared prompt tells the translator what to do with it.
+func TestBatchSchemaDeclaresHint(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	var schema struct {
+		Properties struct {
+			Units struct {
+				Items struct {
+					Properties map[string]struct {
+						Type string `json:"type"`
+					} `json:"properties"`
+				} `json:"items"`
+			} `json:"units"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(content), &schema); err != nil {
+		t.Fatalf("schemas/batch.schema.json does not parse: %v", err)
+	}
+	if hint, ok := schema.Properties.Units.Items.Properties["hint"]; !ok || hint.Type != "string" {
+		t.Errorf("schemas/batch.schema.json: units.items.properties.hint = %+v (declared %v), want a string property", hint, ok)
+	}
+	if _, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md")); !strings.Contains(prompt, "`hint`") {
+		t.Error("prompts/translate.md does not tell the translator what to do with `hint`")
+	}
+}
+
 // The translate-pending skill may use exactly the R35 tools.
 func TestTranslatePendingTools(t *testing.T) {
 	_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))

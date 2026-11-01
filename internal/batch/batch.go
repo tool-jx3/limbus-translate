@@ -88,10 +88,12 @@ type BatchUnit struct {
 	// Reason is why the unit is pending.
 	Reason string `json:"reason"`
 	// PrevKR and PrevZH are the previous version, Draft a text to fix with
-	// as few changes as possible.
+	// as few changes as possible, Hint what a person who sent the unit back
+	// for another translation wants fixed (the rest of PrevZH is to be kept).
 	PrevKR string             `json:"prev_kr,omitempty"`
 	PrevZH string             `json:"prev_zh,omitempty"`
 	Draft  string             `json:"draft,omitempty"`
+	Hint   string             `json:"hint,omitempty"`
 	EN     *align.LangAligned `json:"en,omitempty"`
 	JP     *align.LangAligned `json:"jp,omitempty"`
 	// Refs are other translations to look at, such as "llc" and "ltm". They

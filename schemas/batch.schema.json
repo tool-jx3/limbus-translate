@@ -72,8 +72,12 @@
             "type": "string"
           },
           "prev_kr": { "description": "The previous KR text, when the KR text changed.", "type": "string" },
-          "prev_zh": { "description": "The previous translation, when the KR text changed.", "type": "string" },
+          "prev_zh": { "description": "The previous translation, when the KR text changed or a person sent the unit back (see hint).", "type": "string" },
           "draft": { "description": "A draft to repair with as few changes as possible.", "type": "string" },
+          "hint": {
+            "description": "Why a person sent the unit back for another translation (reason requeue): what to fix. Keep the rest of prev_zh as far as it can be kept.",
+            "type": "string"
+          },
           "en": {
             "description": "The EN text aligned to the unit, with how it was matched. A help for understanding KR.",
             "type": "object",

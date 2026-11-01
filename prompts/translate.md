@@ -38,6 +38,7 @@
 
 - 有 `prev_kr`、`prev_zh` 時（`reason` 為 `kr-changed`）：比對新舊 KR，KR 沒變的部分沿用 `prev_zh` 的措辭，只改 KR 變動之處
 - 有 `draft` 時（`reason` 為 `paratranz-repair`、`structural-fail`）：以 draft 為底做最小幅度的修正，讓它符合 `keep` 與驗證，例如補上缺少的標籤、拿掉 KR 沒有的 `[ID]`（改寫成中文名稱）、換掉殘留的諺文、簡體字與禁用譯法；其餘保留原譯者的措辭。只有 draft 明顯錯譯時才重譯該處，並在 `note` 說明
+- `hint`：人要求重翻的理由，照它修正，其他部分盡量保留 `prev_zh`
 
 ## 必須保留的內容 `keep`
 

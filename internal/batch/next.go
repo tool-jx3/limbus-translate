@@ -308,6 +308,7 @@ func assemble(
 			PrevKR:  item.PrevKR,
 			PrevZH:  item.PrevZH,
 			Draft:   item.Draft,
+			Hint:    item.Hint,
 			EN:      en,
 			JP:      jp,
 			Refs:    cleanRefs(item.Refs),

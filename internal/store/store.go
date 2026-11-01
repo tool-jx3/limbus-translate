@@ -64,12 +64,15 @@ type Record struct {
 // PendingItem is a unit waiting to be translated: one line of
 // .meta/pending.jsonl. Reason is one of "new", "kr-changed",
 // "adjustment-expired", "paratranz-repair", "requeue" or "structural-fail".
+// Hint is the reason a person gave when sending the unit back (lct requeue);
+// the translator is shown it and fixes the unit accordingly.
 type PendingItem struct {
 	Key      string            `json:"key"`
 	Reason   string            `json:"reason"`
 	PrevKR   string            `json:"prev_kr,omitempty"`
 	PrevZH   string            `json:"prev_zh,omitempty"`
 	Draft    string            `json:"draft,omitempty"`
+	Hint     string            `json:"hint,omitempty"`
 	Refs     map[string]string `json:"refs,omitempty"`
 	Attempts int               `json:"attempts,omitempty"`
 	Flags    []string          `json:"flags,omitempty"`
