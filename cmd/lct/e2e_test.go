@@ -281,8 +281,12 @@ func TestPhase1DryRun(t *testing.T) {
 			t.Errorf("bootstrap stats[%s] = %d, want at least 1 (stats %v)", stat, boot.Stats[stat], boot.Stats)
 		}
 	}
-	// 20 strings: 5 identifiers, 11 adopted, 2 to repair, 2 to translate.
-	wantStats := map[string]int{"copy": 5, "paratranz": 11, "paratranz-repair": 2, "new": 2, "unaligned-paratranz": 0, "frozen": 0}
+	// 20 strings: 5 identifiers, 11 adopted, 2 to repair, 2 to translate;
+	// LLC and LTM both align to the 4 queued units.
+	wantStats := map[string]int{
+		"copy": 5, "paratranz": 11, "paratranz-repair": 2, "new": 2, "unaligned-paratranz": 0, "frozen": 0,
+		"refs-llc": 4, "refs-ltm": 4,
+	}
 	if len(boot.Stats) != len(wantStats) {
 		t.Errorf("bootstrap stats = %v, want %v", boot.Stats, wantStats)
 	}

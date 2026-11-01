@@ -122,6 +122,7 @@ func TestBootstrapImportsFixture(t *testing.T) {
 
 	wantStats := map[string]int{
 		"copy": 2, "paratranz": 3, "paratranz-repair": 1, "new": 1, "unaligned-paratranz": 0, "frozen": 1,
+		"refs-llc": 2, "refs-ltm": 2,
 	}
 	if got.RawTag != "raw-20261029" || got.Records != 5 || got.Pending != 2 || got.ForeignNames != 1 || !reflect.DeepEqual(got.Stats, wantStats) {
 		t.Errorf("output = %+v, want raw-20261029, 5 records, 2 pending, 1 foreign name, stats %v", got, wantStats)

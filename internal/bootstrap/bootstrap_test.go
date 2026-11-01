@@ -270,6 +270,8 @@ func TestBootstrapFixture(t *testing.T) {
 		"new":                 1, // Sample.json item 4 holds the EN text
 		"unaligned-paratranz": 0,
 		"frozen":              0,
+		"refs-llc":            2, // both pending items have an LLC string
+		"refs-ltm":            2, // and an LTM string
 	}
 	if !reflect.DeepEqual(res.Stats, wantStats) {
 		t.Errorf("Stats = %v, want %v", res.Stats, wantStats)
@@ -526,6 +528,10 @@ func TestRunUnalignedAndEmptyParatranz(t *testing.T) {
 	// Refs only name the sources that have the unit.
 	if want := map[string]string{"llc": "附加句"}; !reflect.DeepEqual(extra.Refs, want) {
 		t.Errorf("Extra.json Refs = %v, want %v (no ltm key without an LTM file)", extra.Refs, want)
+	}
+	// The stats count the pending items that got each reference.
+	if res.Stats["refs-llc"] != 1 || res.Stats["refs-ltm"] != 0 {
+		t.Errorf("refs-llc = %d, refs-ltm = %d, want 1 and 0 (Stats %v)", res.Stats["refs-llc"], res.Stats["refs-ltm"], res.Stats)
 	}
 
 	// An empty Paratranz value is not a translation, but it is aligned.

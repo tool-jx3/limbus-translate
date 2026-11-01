@@ -34,6 +34,8 @@ const (
 	StatNew             = "new"                 // queued for translation
 	StatUnalignedPZ     = "unaligned-paratranz" // no Paratranz string for the unit
 	StatFrozen          = "frozen"              // adopted in a frozen file (also counted in paratranz)
+	StatRefsLLC         = "refs-llc"            // queued items that got an LLC reference
+	StatRefsLTM         = "refs-ltm"            // queued items that got an LTM reference
 )
 
 // The reasons of the pending items Run creates. They double as the Stats key
@@ -127,6 +129,7 @@ func Run(in Inputs, fr *fields.Rules, r *rules.Rules) (*Result, error) {
 			Stats: map[string]int{
 				StatCopy: 0, StatParatranz: 0, StatParatranzRepair: 0,
 				StatNew: 0, StatUnalignedPZ: 0, StatFrozen: 0,
+				StatRefsLLC: 0, StatRefsLTM: 0,
 			},
 		},
 	}
@@ -349,18 +352,20 @@ func (b *builder) settle(u units.Unit, zh, origin string, flags []string) {
 	}
 }
 
-// queue adds u to the pending items with the LLC and LTM strings as Refs.
+// queue adds u to the pending items with the LLC and LTM strings as Refs,
+// counting the items that get each.
 func (b *builder) queue(u units.Unit, a alignedFile, reason, draft string) {
 	var refs map[string]string
 	for _, ref := range []struct {
-		name    string
-		aligned map[string]align.LangAligned
-	}{{"llc", a.llc}, {"ltm", a.ltm}} {
+		name, stat string
+		aligned    map[string]align.LangAligned
+	}{{"llc", StatRefsLLC, a.llc}, {"ltm", StatRefsLTM, a.ltm}} {
 		if v, ok := ref.aligned[u.Pointer]; ok && v.Value != "" {
 			if refs == nil {
 				refs = map[string]string{}
 			}
 			refs[ref.name] = v.Value
+			b.res.Stats[ref.stat]++
 		}
 	}
 	b.res.Pending = append(b.res.Pending, store.PendingItem{
