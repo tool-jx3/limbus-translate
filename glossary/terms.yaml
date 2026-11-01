@@ -822,3 +822,10 @@
   status: approved
   category: [city]
   notes: 見「뀽뀽이」
+
+- kr: 소다
+  zh: 蘇打
+  forbidden: [汽水]
+  status: approved
+  category: [city]
+  notes: 百貨公司的飲料（既有 RPG 16 處）；「정육 소다」→ 精肉蘇打
