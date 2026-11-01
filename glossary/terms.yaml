@@ -282,7 +282,7 @@
   zh: Hana協會
   status: approved
   category: [city]
-  notes: 協會名沿用拉丁字母（同 Zwei協會、Cinq協會）；不可保留韓文
+  notes: 協會名沿用原文字母（拉丁或西里爾，同 Zwei協會、Cinq協會、Девять協會）；不可保留韓文
 
 - kr: 감정평가서
   zh: 鑑定評價書
@@ -384,7 +384,7 @@
   zh: 走廊
   status: approved
   category: [general]
-  notes: 一般對話寫「走廊」；地點欄位與蜘蛛巢的專名寫「長廊」（「小指的長廊」「環指父輩的長廊」）
+  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）
 
 - kr: 변곡점
   zh: 曲折點
@@ -411,3 +411,57 @@
   status: approved
   category: [city]
   notes: 뉴키라 同；自稱「我」（不用「咱」），稱父親「把拔」（第九章既有譯文）
+
+- kr: 제뱌찌 협회
+  zh: Девять協會
+  forbidden: [Devyat協會]
+  status: approved
+  category: [city]
+  notes: 既有 93 處
+
+- kr: 계획
+  zh: 計畫
+  forbidden: [計劃]
+  status: approved
+  category: [general]
+  notes: 教育部標準字（既有 計畫 225 處）
+
+- kr: 바가지머리
+  zh: 西瓜頭
+  forbidden: [鍋蓋頭]
+  status: approved
+  category: [general]
+  notes: 良秀對綺羅的稱呼（既有 S930B）；縮略語也要從「西瓜頭」造
+
+- kr: 기록부
+  zh: 記錄員
+  forbidden: [記錄部人員]
+  status: approved
+  category: [city]
+  notes: N公司的職業（EN Docugrapher），指人時寫「記錄員」
+
+- kr: 살피뼈 농축산
+  zh: 肉血骨農牧產業
+  forbidden: [肉血骨農畜產]
+  status: approved
+  category: [city]
+  notes: 既有 E512B、BattleSpeechBubbleDlg-exme
+
+- kr: 추노꾼
+  zh: 推奴手
+  forbidden: [推奴者]
+  status: approved
+  category: [city]
+  notes: 既有 E918A、exme 系列
+
+- kr: 모제스
+  zh: 摩西
+  status: approved
+  category: [city]
+  notes: 櫻桃等人稱她「아씨」時寫「摩西女士」
+
+- kr: 발렌치나
+  zh: 瓦倫奇娜
+  status: approved
+  category: [city]
+  notes: 自稱「老娘」（S930B 既有 5 處）
