@@ -308,3 +308,61 @@
   status: approved
   category: [general]
   notes: 第十章（莫梭的劇情、Enemies-a1c10*、S1034B 等）的「신부」是牧師莫里斯，譯「牧師」；其他章節與人格譯「神父」
+
+- kr: 누나
+  zh: 姊姊
+  forbidden: [姐姐]
+  status: approved
+  category: [general]
+  notes: 臺灣標準字（既有 41 處）
+
+- kr: 언니
+  zh: 姊姊
+  forbidden: [姐姐]
+  status: approved
+  category: [general]
+  notes: 臺灣標準字（既有 59 處）
+
+- kr: 수감생
+  zh: 罪園生
+  status: approved
+  category: [general]
+  notes: 愚人節幼稚園劇情的造詞（罪人＋園生；既有 21 處）
+
+- kr: 생각 의자
+  zh: 反省椅
+  status: approved
+  category: [general]
+  notes: 幼稚園劇情
+
+- kr: 생각의자
+  zh: 反省椅
+  status: approved
+  category: [general]
+  notes: 同「생각 의자」，沒有空格的寫法
+
+- kr: 원장님
+  zh: 園長
+  status: approved
+  category: [general]
+  notes: 幼稚園劇情；幼兒口齒不清的 원짱님／원당님 寫「園長大銀」
+
+- kr: 티라노 반
+  zh: 暴龍班
+  status: approved
+  category: [general]
+  notes: 幼稚園劇情（企鵝班、大象班、小雞班同理）
+
+- kr: 빠우스트
+  zh: 浮ㄙ德
+  forbidden: [浮浮]
+  status: approved
+  category: [general]
+  notes: 幼兒口齒不清的「浮士德」（既有技能名）
+
+- kr: 림버스 유치원
+  zh: 邊獄幼稚園
+  forbidden: [邊獄幼兒園]
+  status: approved
+  category: [general]
+  notes: 幼稚園劇情
