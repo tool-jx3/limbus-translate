@@ -20,7 +20,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - 自動翻譯與人工介入走同一套規則、同一個 CLI、同一份 skill
 - 每個譯文欄位都能追溯：來自哪裡、根據哪一版原文、用了哪一版規則
 - 兩個階段：
-  - **第一階段（一次性，不自動化）**：在 Claude Code 工作階段中完成。以 `user-unknown-0711/ParatranzUploader` 的譯文為主；未翻的部分依規則翻譯，以 LLC 簡中、LTM 繁中為參考；過程中可以改進規則。完成後把 `raw`、`tw` 的初始狀態上傳到 repo，第一階段即結束（§8.3）
+  - **第一階段（一次性，不自動化）**：在 Claude Code 工作階段中完成。以 `user-unknown-0711/ParatranzUploader` 的譯文為主；未翻的部分依規則翻譯，以 LLC 簡中、LTM 繁中為參考；過程中可以改進規則。完成後把 `raw`、`tw` 的初始狀態上傳到 repo（存檔點除外），第一階段即結束（§8.3）
   - **第二階段（GitHub Actions）**：之後所有自動化都是第二階段。不再使用上游譯文，全部依規則自己翻；規則可以改進；可以人工調整舊譯文
   - **第三階段（將來）**：第二階段穩定後，把 CI 的大量翻譯改用做法 B（§4）
 
@@ -269,7 +269,7 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
      - 每一波翻譯結束、沒有批次在跑時，commit `tw` 的 `.meta` 並 push `tw`
      - 第一階段紀錄的 `model` 記 `phase1-session`
 5. 過程中發現的規則問題，直接改進 `guides/`、`glossary/`
-6. `lct build` 產生第一版 `tw`，與 `raw` 一起 push 到 repo；第一階段結束
+6. `lct build` 產生第一版 `tw`，與 `raw` 一起最終 push 到 repo；第一階段結束
 7. 手動觸發一次 `rebuild.yml`，由 CI 打包並發布第一個 Release（這個工作階段無法呼叫建立 Release 的 API）
 
 第一階段結束後，上游譯文不再被讀取；`lct bootstrap` 只保留給重建初始狀態用。
@@ -548,7 +548,7 @@ docs/
 - Go；Claude Code（Agent SDK）＋ Console API key；skill 與自動化同步（做法 A）
 - GitHub Actions；原文與譯文各一個 orphan 分支；狀態 API 網址放 secret
 - 兩個階段的範圍（§2）；兩階段都能改進規則
-- 第一階段不自動化，在 Claude Code 工作階段中一次完成並上傳；之後的 GitHub Actions 都是第二階段
+- 第一階段不自動化，在 Claude Code 工作階段中一次完成並上傳（存檔點除外）；之後的 GitHub Actions 都是第二階段
 - CI 可以開 PR 改進規則，由人審核決定是否調整、合併
 - 做法 B 列為第三階段，第二階段穩定後再開發
 - 需要人處理的項目以 GitHub Issue 通知（§14）
