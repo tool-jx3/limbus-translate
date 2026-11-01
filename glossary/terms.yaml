@@ -84,7 +84,7 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -751,3 +751,17 @@
   status: approved
   category: [combat]
   notes: 沙特的 être-pour-soi（being-for-itself）；「에트르 뿌르 오트뤼」être-pour-autrui 是「為他人而存在」（既有）
+
+- kr: 간수
+  zh: 獄卒
+  forbidden: [看守]
+  status: approved
+  category: [city]
+  notes: 既有 49 行（「進行薛西弗斯之刑刑罰的獄卒」）
+
+- kr: 붉은 신[미생]
+  zh: 丹紅之神[尚未誕生]
+  forbidden: ["[未生]"]
+  status: approved
+  category: [city]
+  notes: Enemies-a1c10p1 既有
