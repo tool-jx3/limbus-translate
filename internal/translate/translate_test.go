@@ -253,13 +253,13 @@ func TestRunStopsOnAnError(t *testing.T) {
 
 func TestRunStopsOnAnErrorAndKeepsItsCost(t *testing.T) {
 	f := newFake(t, 5, 1)
-	t.Setenv("FAKE_OUT", `{"type":"result","subtype":"error_max_turns","is_error":true,"num_turns":9,"total_cost_usd":0.7,"result":"ran out of turns"}`)
+	t.Setenv("FAKE_OUT", `{"type":"result","subtype":"error_during_execution","is_error":true,"num_turns":9,"total_cost_usd":0.7,"result":"it broke"}`)
 	res := mustRun(t, f.opts())
 
 	if res.Stopped != StopError || !near(res.CostUSD, 0.7) {
 		t.Errorf("result = %+v, want error and the 0.7 the run cost", res)
 	}
-	for _, want := range []string{"error_max_turns", "9 turns", "ran out of turns"} {
+	for _, want := range []string{"error_during_execution", "9 turns", "it broke"} {
 		if !strings.Contains(res.Error, want) {
 			t.Errorf("Error = %q, lacks %q", res.Error, want)
 		}
@@ -267,6 +267,61 @@ func TestRunStopsOnAnErrorAndKeepsItsCost(t *testing.T) {
 	// The run took one unit before it failed; the result says where it stands.
 	if res.PendingBefore != 5 || res.PendingAfter != 4 {
 		t.Errorf("pending %d -> %d, want 5 -> 4", res.PendingBefore, res.PendingAfter)
+	}
+}
+
+// A skill that works batch after batch is expected to run out of turns: such a
+// round ends normally, whatever is_error says, and the loop goes on.
+func TestRunContinuesAfterARunOutOfTurns(t *testing.T) {
+	const outOfTurns = `{"type":"result","subtype":"error_max_turns","is_error":true,"total_cost_usd":0.2,"num_turns":7}`
+	for name, exit := range map[string]string{"exit 0": "0", "exit 1": "1"} {
+		f := newFake(t, 3, 1)
+		t.Setenv("FAKE_OUT", outOfTurns)
+		t.Setenv("FAKE_EXIT", exit)
+		res := mustRun(t, f.opts())
+
+		if res.Stopped != StopDone || res.Runs != 3 || res.Error != "" {
+			t.Errorf("%s: result = %+v, want done after 3 runs, no error", name, res)
+		}
+		if !near(res.CostUSD, 0.6) {
+			t.Errorf("%s: CostUSD = %v, want the three runs' 0.6", name, res.CostUSD)
+		}
+	}
+}
+
+// Running out of turns changes nothing about the other reasons to stop.
+func TestRunStopsAfterRunsOutOfTurnsAsUsual(t *testing.T) {
+	for _, c := range []struct {
+		name         string
+		count, dec   int
+		out          string
+		maxUSD       float64
+		stopped      string
+		runs         int
+		wantCostNear float64
+	}{
+		{"cost cap", 10, 1, `{"subtype":"error_max_turns","is_error":true,"total_cost_usd":0.6}`, 1.0, StopCost, 2, 1.2},
+		{"no progress", 10, 0, `{"subtype":"error_max_turns","is_error":true,"total_cost_usd":0.1}`, 100, StopNoProgress, 2, 0.2},
+	} {
+		f := newFake(t, c.count, c.dec)
+		t.Setenv("FAKE_OUT", c.out)
+		opt := f.opts()
+		opt.MaxUSD = c.maxUSD
+		res := mustRun(t, opt)
+		if res.Stopped != c.stopped || res.Runs != c.runs || !near(res.CostUSD, c.wantCostNear) {
+			t.Errorf("%s: result = %+v, want %s after %d runs costing %v", c.name, res, c.stopped, c.runs, c.wantCostNear)
+		}
+	}
+}
+
+// Only the turn limit is let through: the cost must still be reported, and a
+// run that hung is still killed and still an error.
+func TestRunOutOfTurnsStillNeedsItsCost(t *testing.T) {
+	f := newFake(t, 5, 1)
+	t.Setenv("FAKE_OUT", `{"subtype":"error_max_turns","is_error":true,"num_turns":7}`)
+	res := mustRun(t, f.opts())
+	if res.Stopped != StopError || res.Runs != 1 || !strings.Contains(res.Error, "total_cost_usd") {
+		t.Errorf("result = %+v, want error after 1 run, naming total_cost_usd", res)
 	}
 }
 

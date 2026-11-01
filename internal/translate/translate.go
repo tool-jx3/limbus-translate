@@ -58,6 +58,9 @@ const (
 	waitDelay = 5 * time.Second
 	// stderrKept is how much of the end of a run's stderr an error carries.
 	stderrKept = 1024
+	// subtypeMaxTurns is the subtype of the result of a run that stopped at its
+	// --max-turns limit.
+	subtypeMaxTurns = "error_max_turns"
 	// snippetLen is the most characters of a run's output an error quotes.
 	snippetLen = 300
 )
@@ -160,6 +163,15 @@ func (o Options) check() error {
 // last two runs got nowhere (StopNoProgress); when none holds it starts one
 // run of the skill. A run that fails ends Run with StopError.
 //
+// A run fails when it cannot be started, exits non-zero, prints something
+// that is not a JSON object or reports is_error, and when it takes longer
+// than RunTimeout (it is killed). The one exception is a run that stopped at
+// its --max-turns limit (subtype "error_max_turns"): the skill hands out batch
+// after batch, so running out of turns is how a run normally ends. Whatever
+// is_error and the exit status say, such a round counts as a normal one: its
+// cost is added and the loop goes on, left to the other reasons to stop. It
+// must still report its cost, and a run that timed out is not let through.
+//
 // The error is for bad options only. Every problem of the runs themselves,
 // and of Available, ends in a Result that says StopError, so that what the
 // runs already cost is never lost.
@@ -228,6 +240,9 @@ func Run(opt Options) (*Result, error) {
 	}
 }
 
+// errNoCost is the error of a run whose result does not say what it cost.
+var errNoCost = errors.New("claude printed no total_cost_usd: the cost of the run is unknown")
+
 // output is the JSON object a run prints with --output-format json; only the
 // fields Run uses are named.
 type output struct {
@@ -293,6 +308,11 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	switch {
 	case timedOut:
 		return cost, true, fmt.Errorf("claude timed out after %v and was killed", opt.RunTimeout)
+	case decodeErr == nil && out.Subtype == subtypeMaxTurns:
+		// The normal end of a long run; see Run.
+		if out.TotalCostUSD == nil {
+			return 0, true, errNoCost
+		}
 	case waitErr != nil:
 		msg := waitErr.Error()
 		if s := stderr.String(); s != "" {
@@ -304,7 +324,7 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	case out.IsError:
 		return cost, true, fmt.Errorf("claude reported an error (subtype %q, %d turns): %s", out.Subtype, out.NumTurns, snippet(out.Result))
 	case out.TotalCostUSD == nil:
-		return 0, true, errors.New("claude printed no total_cost_usd: the cost of the run is unknown")
+		return 0, true, errNoCost
 	}
 	return cost, true, nil
 }
