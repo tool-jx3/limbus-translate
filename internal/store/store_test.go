@@ -889,3 +889,42 @@ func TestMetaJSONLeavesNoTempFiles(t *testing.T) {
 		}
 	}
 }
+
+func TestWriteMetaFile(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	path := filepath.Join(root, ".meta", "reports", "raw-20261029.md")
+	if err := s.WriteMetaFile("reports/raw-20261029.md", []byte("# Report\n")); err != nil {
+		t.Fatal(err)
+	}
+	if got := readFile(t, path); got != "# Report\n" {
+		t.Errorf("file = %q", got)
+	}
+	// Writing again replaces the file; the same bytes leave it alone.
+	if err := s.WriteMetaFile("reports/raw-20261029.md", []byte("# Report 2\n")); err != nil {
+		t.Fatal(err)
+	}
+	if got := readFile(t, path); got != "# Report 2\n" {
+		t.Errorf("rewritten file = %q", got)
+	}
+	entries, err := os.ReadDir(filepath.Dir(path))
+	if err != nil || len(entries) != 1 {
+		t.Errorf("reports/ = %v, %v; want just the report, no temp files", entries, err)
+	}
+}
+
+func TestWriteMetaFileRejectsBadNames(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	for _, name := range []string{
+		"", "report", "report.txt", "report.json", "../escape.md", "a/../../escape.md",
+		"/abs.md", "pending.jsonl", ".lock", "sub/", "./report.md",
+	} {
+		if err := s.WriteMetaFile(name, []byte("x")); err == nil {
+			t.Errorf("WriteMetaFile(%q) succeeded", name)
+		}
+	}
+	if exists(filepath.Join(root, "escape.md")) || exists(filepath.Join(filepath.Dir(root), "escape.md")) || exists(filepath.Join(root, "abs.md")) {
+		t.Error("a rejected name wrote a file")
+	}
+}

@@ -466,25 +466,25 @@ func allDigits(s string) bool {
 	return true
 }
 
-// metaJSONPath returns the path of .meta/<name> for a JSON file the caller
-// keeps next to the records (such as foreign-names.json). name is a
-// slash-separated path below .meta that is already clean and ends in ".json",
-// so it can neither leave .meta nor be mistaken for a record file
-// (".jsonl"), the lock or the gitignore.
-func (s *Store) metaJSONPath(name string) (string, error) {
-	if !strings.HasSuffix(name, ".json") || path.Clean(name) != name || !filepath.IsLocal(filepath.FromSlash(name)) {
-		return "", fmt.Errorf("store: invalid meta file name %q: want a clean relative path ending in .json", name)
+// metaPath returns the path of .meta/<name> for a file the caller keeps next
+// to the records (such as foreign-names.json). name is a slash-separated path
+// below .meta that is already clean and ends in ext, so it can neither leave
+// .meta nor be mistaken for a record file (".jsonl"), the lock or the
+// gitignore.
+func (s *Store) metaPath(name, ext string) (string, error) {
+	if !strings.HasSuffix(name, ext) || path.Clean(name) != name || !filepath.IsLocal(filepath.FromSlash(name)) {
+		return "", fmt.Errorf("store: invalid meta file name %q: want a clean relative path ending in %s", name, ext)
 	}
 	return filepath.Join(s.metaDir(), filepath.FromSlash(name)), nil
 }
 
-// WriteMetaJSON writes v as JSON to .meta/<name> (see metaJSONPath for the
+// WriteMetaJSON writes v as JSON to .meta/<name> (see metaPath for the
 // names allowed), creating directories as needed: 2-space indent, no HTML
 // escaping, one trailing newline, so the same value always gives the same
 // bytes. The file is replaced atomically. Like the other writers it does not
 // take the lock; callers that need one run it inside WithLock.
 func (s *Store) WriteMetaJSON(name string, v any) error {
-	p, err := s.metaJSONPath(name)
+	p, err := s.metaPath(name, ".json")
 	if err != nil {
 		return err
 	}
@@ -501,11 +501,27 @@ func (s *Store) WriteMetaJSON(name string, v any) error {
 	return nil
 }
 
+// WriteMetaFile writes data, a Markdown document such as a build report, to
+// .meta/<name>, creating directories as needed. name is a clean relative path
+// below .meta that ends in ".md". The file is replaced atomically and left
+// alone when it already holds data. Like the other writers it does not take
+// the lock.
+func (s *Store) WriteMetaFile(name string, data []byte) error {
+	p, err := s.metaPath(name, ".md")
+	if err != nil {
+		return err
+	}
+	if err := writeFileAtomic(p, data); err != nil {
+		return fmt.Errorf("store: write %s: %w", name, err)
+	}
+	return nil
+}
+
 // ReadMetaJSON reads .meta/<name> into v. A missing file is not an error: it
 // reports found as false and leaves v as it is. Unknown fields, trailing data
 // and malformed JSON are errors naming the file.
 func (s *Store) ReadMetaJSON(name string, v any) (found bool, err error) {
-	p, err := s.metaJSONPath(name)
+	p, err := s.metaPath(name, ".json")
 	if err != nil {
 		return false, err
 	}

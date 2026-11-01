@@ -29,7 +29,11 @@ func TestLoadDefaults(t *testing.T) {
 	if cfg.Batch != wantBatch {
 		t.Errorf("Batch = %+v, want %+v", cfg.Batch, wantBatch)
 	}
-	wantFont := Font{Path: "assets/fonts/SarasaGothicTC-Bold.ttf"}
+	wantFont := Font{
+		Path:    "assets/fonts/SarasaGothicTC-Bold.ttf",
+		Version: "1.0.43",
+		SHA256:  "cddc7ff155199b59656c750f881f696ebd1b3a0baf053ec8333b712f8429c20a",
+	}
 	if cfg.Font != wantFont {
 		t.Errorf("Font = %+v, want %+v", cfg.Font, wantFont)
 	}

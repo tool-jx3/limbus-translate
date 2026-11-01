@@ -12,7 +12,9 @@ import (
 	"os/exec"
 	"path/filepath"
 	"slices"
+	"strconv"
 	"strings"
+	"time"
 )
 
 // Error is a failed git command.
@@ -283,6 +285,20 @@ func Head(dir string) (string, error) {
 		return "", nil
 	}
 	return "", err
+}
+
+// CommitTime returns the committer time of HEAD in UTC, to whole seconds. It
+// is an error if the branch has no commits.
+func CommitTime(dir string) (time.Time, error) {
+	out, err := git(dir, "log", "-1", "--format=%ct")
+	if err != nil {
+		return time.Time{}, err
+	}
+	sec, err := strconv.ParseInt(strings.TrimSpace(out), 10, 64)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("gitx: commit time of %s: %w", dir, err)
+	}
+	return time.Unix(sec, 0).UTC(), nil
 }
 
 // Tag creates a lightweight tag called name on HEAD. It is an error if the tag

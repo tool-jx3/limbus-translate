@@ -7,6 +7,7 @@ import (
 	"slices"
 	"strings"
 	"testing"
+	"time"
 )
 
 // runGit runs a git command in dir and returns its trimmed output.
@@ -424,6 +425,34 @@ func TestHead(t *testing.T) {
 	got, err := Head(repo)
 	if err != nil || got != runGit(t, repo, "rev-parse", "HEAD") {
 		t.Errorf("Head = %q, %v", got, err)
+	}
+}
+
+func TestCommitTime(t *testing.T) {
+	repo := newRepo(t)
+	cmd := exec.Command("git", "-C", repo, "commit", "-q", "--allow-empty", "-m", "dated")
+	cmd.Env = append(os.Environ(), "GIT_COMMITTER_DATE=2026-10-31T12:30:45+08:00", "GIT_AUTHOR_DATE=2000-01-01T00:00:00Z")
+	if out, err := cmd.CombinedOutput(); err != nil {
+		t.Fatalf("git commit: %v\n%s", err, out)
+	}
+	got, err := CommitTime(repo)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The committer date counts, not the author date, and the result is UTC.
+	if want := time.Date(2026, 10, 31, 4, 30, 45, 0, time.UTC); !got.Equal(want) || got.Location() != time.UTC {
+		t.Errorf("CommitTime = %v, want %v", got, want)
+	}
+}
+
+func TestCommitTimeUnbornBranch(t *testing.T) {
+	repo := filepath.Join(t.TempDir(), "repo")
+	if err := os.MkdirAll(repo, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	runGit(t, repo, "init", "-q", "-b", "main")
+	if _, err := CommitTime(repo); err == nil {
+		t.Error("CommitTime of a branch without commits succeeded")
 	}
 }
 
