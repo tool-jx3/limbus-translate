@@ -7,13 +7,14 @@ import (
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 func init() {
 	cli.Register(cli.Command{
 		Name:  "validate",
-		Usage: "normalize and check one translation: --kr S --zh S",
+		Usage: "normalize and check one translation against the glossary: --kr S --zh S",
 		Run:   runValidate,
 	})
 }
@@ -63,8 +64,18 @@ func runValidate(ctx *cli.Context, args []string) error {
 		return cli.UserError("validate: usage: lct validate --kr TEXT --zh TEXT")
 	}
 
+	// The glossary terms the KR text contains are enforced on the translation.
+	r, err := rules.Load(ctx.Root)
+	if err != nil {
+		return err
+	}
+	var terms []validate.Term
+	for _, t := range r.GlossaryHits(*kr) {
+		terms = append(terms, t.ToValidate())
+	}
+
 	normalized := validate.Normalize(*kr, *zh)
-	issues := validate.Check(*kr, normalized, validate.Context{})
+	issues := validate.Check(*kr, normalized, validate.Context{Terms: terms})
 	if issues == nil {
 		issues = []validate.Issue{}
 	}

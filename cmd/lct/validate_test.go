@@ -13,7 +13,8 @@ import (
 func validateOut(t *testing.T, jsonOut bool, args ...string) (string, error) {
 	t.Helper()
 	var out bytes.Buffer
-	err := runValidate(&cli.Context{JSON: jsonOut, Out: &out}, args)
+	// validate reads the glossary, so it needs the repo root.
+	err := runValidate(&cli.Context{Root: "../..", JSON: jsonOut, Out: &out}, args)
 	return out.String(), err
 }
 
@@ -37,6 +38,38 @@ func TestValidateHardIssueIsFindings(t *testing.T) {
 	}
 	if !strings.Contains(out, "id-mismatch") || !strings.Contains(out, "hard") {
 		t.Errorf("output should list the hard id-mismatch:\n%s", out)
+	}
+}
+
+func TestValidateEnforcesGlossary(t *testing.T) {
+	// 패키지 is 組合包 in the glossary, and 禮包 is forbidden for it.
+	out, err := validateOut(t, false, "--kr", "패키지 구매", "--zh", "購買禮包")
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings", err)
+	}
+	if !strings.Contains(out, "forbidden-term") || !strings.Contains(out, "禮包") {
+		t.Errorf("output should list the forbidden term:\n%s", out)
+	}
+
+	// the adopted rendering passes
+	if out, err := validateOut(t, false, "--kr", "패키지 구매", "--zh", "購買組合包"); err != nil {
+		t.Errorf("the approved rendering must pass: %v\n%s", err, out)
+	}
+	// a forbidden rendering only counts when the KR contains the term
+	if out, err := validateOut(t, false, "--kr", "구매", "--zh", "購買禮包"); err != nil {
+		t.Errorf("a term absent from KR must not be enforced: %v\n%s", err, out)
+	}
+	// regular-expression entries work through the same path
+	if _, err := validateOut(t, false, "--kr", "시즌 8", "--zh", "第8季"); !errors.Is(err, cli.ErrFindings) {
+		t.Errorf("第8季 should be forbidden for 시즌: err = %v", err)
+	}
+}
+
+func TestValidateNeedsRules(t *testing.T) {
+	var out bytes.Buffer
+	err := runValidate(&cli.Context{Root: t.TempDir(), Out: &out}, []string{"--kr", "가", "--zh", "好"})
+	if err == nil || errors.Is(err, cli.ErrFindings) {
+		t.Errorf("err = %v, want a system error about the missing rules", err)
 	}
 }
 

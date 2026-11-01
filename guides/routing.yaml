@@ -1,0 +1,78 @@
+# 檔案族群路由（程式用，由 lct 讀取）
+#
+# families：有序清單，清單順序就是比對順序，取第一個符合的族群。
+#   id      族群 id
+#   match   檔名樣式（Go path.Match 的 glob），比對去掉語言前綴、以 / 分隔的相對路徑，
+#           例如 StoryData/S1037B.json、Passives_Enemy-twth.json。
+#           * 不會跨過 /，所以 StoryData/S* 只比對 StoryData 底下的檔案。
+#           空清單 [] 表示符合其餘所有檔案；這樣的族群只能有一個，而且要放在最後。
+#   guide   該族群套用的指引檔（相對於 repo 根目錄）
+#
+# 較具體的族群排在前面，避免被較寬的樣式搶走：
+#   Passives_Enemy* 要先於 ally 的 Passives*；AbEvents_Mirror* 要先於 abnormality 的 AbEvents*。
+#
+# priority：待譯項目的發放順序，族群 id 依 guides/families.md「照列出的順序」排列，越前面越先翻。
+#   每個族群都要列在這裡，各列一次。
+
+families:
+  - id: walpu-refraction
+    match: ["*walpu*", "*Refraction*", "Railway*"]
+    guide: guides/families.md
+
+  - id: mirror
+    match: ["*Mirror*", "MirrorDungeon*", "EGOgift*", "DungeonStartBuffs*", "ActionEvents*"]
+    guide: guides/families.md
+
+  - id: dante-note
+    match: ["StoryTheaterDanteNote*"]
+    guide: guides/families.md
+
+  - id: enemy
+    match: ["Enemies*", "Skills_Enemy*", "Passives_Enemy*", "Skills_Abnormality*", "Passives_Abnormality*"]
+    guide: guides/families.md
+
+  - id: story-main
+    match: ["StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
+    guide: guides/families.md
+
+  - id: story-interlude
+    match: ["StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
+    guide: guides/families.md
+
+  - id: identity
+    match: ["PersonalityVoiceDlg/*", "StoryData/P1*", "BattleSpeechBubbleDlg*"]
+    guide: guides/families.md
+
+  - id: ego-voice
+    match: ["EGOVoiceDig/*"]
+    guide: guides/families.md
+
+  - id: announcer
+    match: ["BattleAnnouncerDlg/*"]
+    guide: guides/families.md
+
+  - id: ally
+    match: ["Skills_personality*", "Skills_Ego*", "Passive_Ego*", "Egos*", "Personalit*", "Passives*", "Skills_Assist*", "Passives_Assist*"]
+    guide: guides/families.md
+
+  - id: abnormality
+    match: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "AbEventsResultLog*"]
+    guide: guides/families.md
+
+  - id: other
+    match: []
+    guide: guides/families.md
+
+priority:
+  - story-main
+  - story-interlude
+  - ego-voice
+  - announcer
+  - identity
+  - ally
+  - enemy
+  - abnormality
+  - dante-note
+  - mirror
+  - walpu-refraction
+  - other

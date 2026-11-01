@@ -1,0 +1,173 @@
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+
+	"github.com/tool-jx3/limbus-translate/internal/cli"
+)
+
+// repoRoot is the repo itself: the commands read its real rule files.
+const repoRoot = "../.."
+
+func runIn(t *testing.T, run func(*cli.Context, []string) error, root string, jsonOut bool, args ...string) (string, error) {
+	t.Helper()
+	var out bytes.Buffer
+	err := run(&cli.Context{Root: root, JSON: jsonOut, Out: &out}, args)
+	return out.String(), err
+}
+
+func TestRulesLintCleanRepo(t *testing.T) {
+	out, err := runIn(t, runRulesLint, repoRoot, false)
+	if err != nil {
+		t.Fatalf("lint of the repo's rules: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "ok") {
+		t.Errorf("output should say the rules are ok:\n%s", out)
+	}
+}
+
+// brokenRules is a root whose ryoshu.md lacks name_kr.
+func brokenRules(t *testing.T) string {
+	t.Helper()
+	root := t.TempDir()
+	for _, f := range []string{"glossary/terms.yaml", "guides/base.md", "guides/families.md", "guides/routing.yaml"} {
+		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
+	}
+	entries, err := os.ReadDir(filepath.Join(repoRoot, "guides/characters"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range entries {
+		src := filepath.Join(repoRoot, "guides/characters", e.Name())
+		dst := filepath.Join(root, "guides/characters", e.Name())
+		copyFile(t, src, dst)
+	}
+	p := filepath.Join(root, "guides/characters/ryoshu.md")
+	data, err := os.ReadFile(p)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, []byte(strings.Replace(string(data), "name_kr: 료슈\n", "", 1)), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	return root
+}
+
+func copyFile(t *testing.T, src, dst string) {
+	t.Helper()
+	data, err := os.ReadFile(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Dir(dst), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(dst, data, 0o644); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestRulesLintReportsFindings(t *testing.T) {
+	out, err := runIn(t, runRulesLint, brokenRules(t), false)
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings", err)
+	}
+	if !strings.Contains(out, "guides/characters/ryoshu.md") || !strings.Contains(out, "name_kr") {
+		t.Errorf("output should name the file and the field:\n%s", out)
+	}
+}
+
+func TestRulesLintJSON(t *testing.T) {
+	out, err := runIn(t, runRulesLint, brokenRules(t), true)
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings", err)
+	}
+	var got struct {
+		OK     bool `json:"ok"`
+		Errors []struct {
+			File    string `json:"file"`
+			Message string `json:"message"`
+		} `json:"errors"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	if got.OK || len(got.Errors) != 1 || got.Errors[0].File != "guides/characters/ryoshu.md" || !strings.Contains(got.Errors[0].Message, "name_kr") {
+		t.Errorf("report = %+v", got)
+	}
+
+	out, err = runIn(t, runRulesLint, repoRoot, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, `"ok": true`) || !strings.Contains(out, `"errors": []`) {
+		t.Errorf("a clean result should be ok with an empty errors array:\n%s", out)
+	}
+}
+
+func TestRulesLintRejectsArguments(t *testing.T) {
+	_, err := runIn(t, runRulesLint, repoRoot, false, "extra")
+	if err == nil || errors.Is(err, cli.ErrFindings) {
+		t.Errorf("err = %v, want a user error", err)
+	}
+}
+
+func TestGuideResolve(t *testing.T) {
+	out, err := runIn(t, runGuideResolve, repoRoot, true, "--file", "StoryData/S1037B.json", "--speaker", "faust", "--speaker", "dante")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		File   string   `json:"file"`
+		Family string   `json:"family"`
+		Guides []string `json:"guides"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	want := []string{"guides/base.md", "guides/families.md", "guides/characters/faust.md", "guides/characters/dante.md"}
+	if got.File != "StoryData/S1037B.json" || got.Family != "story-main" || strings.Join(got.Guides, ",") != strings.Join(want, ",") {
+		t.Errorf("resolved = %+v", got)
+	}
+
+	text, err := runIn(t, runGuideResolve, repoRoot, false, "--file", "AbDlg_Merusault.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{"abnormality", "guides/base.md", "guides/characters/meursault.md"} {
+		if !strings.Contains(text, want) {
+			t.Errorf("text output lacks %q:\n%s", want, text)
+		}
+	}
+}
+
+func TestGuideResolveUsageErrors(t *testing.T) {
+	tests := [][]string{
+		{},
+		{"--file", ""},
+		{"--file", "StoryData/S1037B.json", "--speaker", "nobody"},
+		{"--file", "StoryData/S1037B.json", "extra"},
+		{"--bogus"},
+	}
+	for _, args := range tests {
+		_, err := runIn(t, runGuideResolve, repoRoot, false, args...)
+		if err == nil || errors.Is(err, cli.ErrFindings) {
+			t.Errorf("args %q: err = %v, want a user error", args, err)
+		}
+	}
+}
+
+func TestCommandsAreRegistered(t *testing.T) {
+	names := strings.Join(cli.Commands(), " ")
+	for _, want := range []string{"rules lint", "guide resolve"} {
+		if !strings.Contains(names, want) {
+			t.Errorf("command %q is not registered (have: %s)", want, names)
+		}
+	}
+}
