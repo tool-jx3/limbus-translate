@@ -386,6 +386,7 @@ const (
 	adjKeptZH    = "早知道就帶傘來了。"
 	adjChangedZH = "雨天的冒險也不壞！"
 	requeueHint  = "狀態名稱改用新譯名"
+	toneHint     = "語氣再口語一點"
 )
 
 func TestPhase2Replay(t *testing.T) {
@@ -441,14 +442,46 @@ func TestPhase2Replay(t *testing.T) {
 		t.Errorf("first publish = %+v, want a new tw commit to release as zh-TW-20261029.1", pub1)
 	}
 
-	// 2. A person works on main: two adjustments of S1, a request to
+	// 2. Before the next update a person asks for two lines of S1 to be
+	// translated again: the reworded line to come (line 2) and the last line,
+	// which the insertion will move. rebuild.yml runs: the plan queues them,
+	// and the translation run takes them in a batch and is killed before it
+	// hands the batch in, so they stay leased; build and publish follow.
+	var written requeueWritten
+	mustLct(t, &written, "requeue", "--key", p2Content(s1, 1), "--key", p2Content(s1, 4), "--reason", toneHint, "--to-file", "s1-tone", "--date", "2026-11-02")
+	runGitIn(t, p.root, "add", "-A")
+	runGitIn(t, p.root, "commit", "-q", "-m", "rules: requeue two lines of S1")
+	rebuild := p.plan()
+	if rebuild.RawTag != phase2Raw1 || rebuild.PrevRawTag != phase2Raw1 || !reflect.DeepEqual(rebuild.RequeueApplied, []plan.Applied{{ID: "2026-11-02-s1-tone", Units: 2}}) || rebuild.Pending != 2 {
+		t.Errorf("rebuild plan = %+v, want the request of %s applied to 2 units", rebuild, phase2Raw1)
+	}
+	var killed nextOut
+	mustLct(t, &killed, "batch", "next")
+	if killed.Batch == nil || killed.Units != 2 {
+		t.Fatalf("batch next = %+v, want the two requeued lines", killed)
+	}
+	for _, key := range []string{p2Content(s1, 1), p2Content(s1, 4)} {
+		want := store.PendingItem{Key: key, Reason: "requeue", PrevZH: "譯", Hint: toneHint, Lease: &store.Lease{Batch: *killed.Batch}}
+		got := p.pending()[key]
+		if got.Lease != nil {
+			want.Lease.Until = got.Lease.Until
+		}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("%s before the update = %+v, want %+v", key, got, want)
+		}
+	}
+	p.build()
+	if pub := p.publish(); !pub.Changed || !pub.ReleaseNeeded || pub.Tag != "zh-TW-20261029.2" {
+		t.Errorf("rebuild publish = %+v, want the new queue committed to tw and released as zh-TW-20261029.2", pub)
+	}
+
+	// 3. A person works on main: two adjustments of S1, a request to
 	// translate Bufs.json again and a rewrite of the short lines of S1.
 	var added adjustAdded
 	mustLct(t, &added, "adjust", "add", "--key", p2Content(s1, 2), "--zh", adjKeptZH,
 		"--reason", "以實瑪利的口吻", "--rule", "one-off", "--topic", "umbrella", "--date", "2026-11-03")
 	mustLct(t, &added, "adjust", "add", "--key", p2Content(s1, 1), "--zh", adjChangedZH,
 		"--reason", "唐吉訶德的口吻", "--rule", "one-off", "--topic", "rain", "--date", "2026-11-03")
-	var written requeueWritten
 	mustLct(t, &written, "requeue", "--file", bufs, "--reason", requeueHint, "--to-file", "bufs", "--date", "2026-11-03")
 	if written.ID != "2026-11-03-bufs" {
 		t.Errorf("requeue --to-file = %+v, want the id 2026-11-03-bufs", written)
@@ -460,13 +493,14 @@ func TestPhase2Replay(t *testing.T) {
 	runGitIn(t, p.root, "commit", "-q", "-m", "rules: adjust S1, requeue Bufs, rewrite S1")
 	rules2 := runGitIn(t, p.root, "rev-parse", "HEAD")
 
-	// 3. The second update.
+	// 4. The second update.
 	p.update("v2", phase2Token2, phase2CreatedAt2, phase2Raw2)
 	plan2 := p.plan()
 	checkPhase2SecondPlan(t, plan2, rules2)
 	checkPhase2SecondState(t, p, recs1, rules2)
+	checkPhase2StaleBatch(t, p, *killed.Batch)
 
-	// 4. The same plan again (a rebuild, a rerun) changes nothing.
+	// 5. The same plan again (a rebuild, a rerun) changes nothing.
 	before := p.state()
 	again := p.plan()
 	if after := p.state(); !reflect.DeepEqual(after, before) {
@@ -485,14 +519,14 @@ func TestPhase2Replay(t *testing.T) {
 		t.Errorf(".meta/plan.json = %+v (%v), want what the second plan printed", onDisk, err)
 	}
 
-	// 5. Translate and build.
+	// 6. Translate and build.
 	firstRun := len(p.batches())
-	p.translate(5)
+	p.translate(6)
 	checkPhase2Batches(t, p.batches()[firstRun:])
 	built2 := p.build()
 	checkPhase2SecondBuild(t, p, built2)
 
-	// 6. Publish: a Release; then a build of nothing new releases nothing.
+	// 7. Publish: a Release; then a build of nothing new releases nothing.
 	pub2 := p.publish()
 	if !pub2.Changed || !pub2.ReleaseNeeded || pub2.Tag != "zh-TW-20261105.1" {
 		t.Errorf("second publish = %+v, want a new tw commit to release as zh-TW-20261105.1", pub2)
@@ -564,9 +598,9 @@ func checkPhase2SecondPlan(t *testing.T, sum plan.Summary, rules string) {
 		NewSpeakers:           []string{},
 		FieldChanges:          []fields.Change{},
 		NewFilesDefaultFamily: []string{},
-		// The narrator line and the reworded line of S1, the second line of
-		// S2, the name (requeued) and the desc of Bufs.
-		Pending: 5,
+		// The narrator line, the reworded line and the requeued last line of
+		// S1, the second line of S2, the name (requeued) and the desc of Bufs.
+		Pending: 6,
 	}
 	if !reflect.DeepEqual(sum, want) {
 		t.Errorf("second plan = %+v\nwant %+v", sum, want)
@@ -617,7 +651,7 @@ func checkPhase2SecondState(t *testing.T, p *phase2, recs1 map[string]store.Reco
 		t.Errorf("records of S1 = %v\nwant %v", gotS1, wantS1)
 	}
 	for key := range wantS1 {
-		if it, ok := pending[key]; ok {
+		if it, ok := pending[key]; ok && key != p2Content(s1, 5) { // requeued before the update
 			t.Errorf("%s kept its KR but is queued: %+v", key, it)
 		}
 	}
@@ -645,29 +679,80 @@ func checkPhase2SecondState(t *testing.T, p *phase2, recs1 map[string]store.Reco
 		}
 	}
 
-	// The queue: the reworded line of S1 with its previous version and the
-	// adjustment that expired, the inserted line as new, the requeued name
-	// of Bufs with the hint, and the new strings without a source.
+	// The queue: the reworded line of S1, which was pending already, with
+	// the KR and the translation of the last version paired, the hint of its
+	// request and the adjustment that expired; the inserted line as new; the
+	// requeued last line of S1 at its new key; the requeued name of Bufs with
+	// the hint, and the new strings without a source. The transition cleared
+	// the leases of the killed batch.
 	want := map[string]store.PendingItem{
 		bufs + "|/dataList/0/desc": {Key: bufs + "|/dataList/0/desc", Reason: "new"},
 		bufs + "|/dataList/0/name": {Key: bufs + "|/dataList/0/name", Reason: "requeue", PrevZH: "譯", Hint: requeueHint},
 		p2Content(s1, 1):           {Key: p2Content(s1, 1), Reason: "new"},
 		p2Content(s1, 2): {
 			Key: p2Content(s1, 2), Reason: plan.ReasonAdjustmentExpired, PrevKR: "비 오는 날의 모험도 나쁘지 않소!", PrevZH: "譯",
-			Refs: map[string]string{plan.RefAdjustment: adjChangedZH},
+			Hint: toneHint, Refs: map[string]string{plan.RefAdjustment: adjChangedZH},
 		},
+		// The text it was queued with: a rewrite changes the records, not the
+		// queue.
+		p2Content(s1, 5): {Key: p2Content(s1, 5), Reason: "requeue", PrevZH: "譯", Hint: toneHint},
 		p2Content(s2, 1): {Key: p2Content(s2, 1), Reason: "new"},
 	}
 	if !reflect.DeepEqual(pending, want) {
 		t.Errorf("pending = %v\nwant %v", pending, want)
+	}
+	if it, ok := pending[p2Content(s1, 4)]; ok {
+		t.Errorf("the old key of the requeued last line is still queued: %+v", it)
+	}
+	for key, it := range pending {
+		if it.Lease != nil {
+			t.Errorf("%s is still leased after the transition: %+v", key, it.Lease)
+		}
 	}
 
 	applied, err := p.store().LoadApplied()
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !slices.Equal(applied.Requeue, []string{"2026-11-03-bufs"}) || !slices.Equal(applied.Rewrite, []string{"2026-11-03-s1-lines"}) {
-		t.Errorf("applied.json = %+v, want the request and the rewrite file", applied)
+	if !slices.Equal(applied.Requeue, []string{"2026-11-02-s1-tone", "2026-11-03-bufs"}) || !slices.Equal(applied.Rewrite, []string{"2026-11-03-s1-lines"}) {
+		t.Errorf("applied.json = %+v, want both request files and the rewrite file", applied)
+	}
+}
+
+// checkPhase2StaleBatch hands in the batch the killed run took before the
+// second snapshot, as a run that comes back to life would: its keys are of
+// the first snapshot, and the transition took its leases, so every unit is
+// turned away and nothing changes (the first key now names the inserted line,
+// the second the line that took the place of the requeued one).
+func checkPhase2StaleBatch(t *testing.T, p *phase2, id string) {
+	t.Helper()
+	var b batch.Batch
+	if err := json.Unmarshal(readFile(t, filepath.Join(p.root, "work", "batches", id+".json")), &b); err != nil {
+		t.Fatal(err)
+	}
+	var out []batch.OutUnit
+	for _, u := range b.Units {
+		out = append(out, batch.OutUnit{Key: u.Key, ZH: fakeTranslate(u)})
+	}
+	writeOut(t, p.root, id, out...)
+	before := p.state()
+	code, stdout, stderr := lct(t, "--json", "batch", "submit", id)
+	var sub submitOut
+	if err := json.Unmarshal([]byte(stdout), &sub); err != nil {
+		t.Fatalf("batch submit %s: exit %d, %q (stderr %q): %v", id, code, stdout, stderr, err)
+	}
+	var rejected []string
+	for _, r := range sub.Rejected {
+		if len(r.Errors) == 1 && r.Errors[0].Code == batch.CodeLeaseLost {
+			rejected = append(rejected, r.Key)
+		}
+	}
+	slices.Sort(rejected)
+	if code != 1 || len(sub.Accepted)+len(sub.Released) != 0 || !slices.Equal(rejected, []string{p2Content(s1, 1), p2Content(s1, 4)}) {
+		t.Errorf("stale batch %s: exit %d, submit = %+v, want both units turned away as %s", id, code, sub, batch.CodeLeaseLost)
+	}
+	if after := p.state(); !reflect.DeepEqual(after, before) {
+		t.Errorf("handing in the stale batch changed the state:\nbefore %v\nafter  %v", before, after)
 	}
 }
 
@@ -677,12 +762,15 @@ func checkPhase2Batches(t *testing.T, batches []batch.Batch) {
 	t.Helper()
 	handed := handedOut(batches)
 	keys := slices.Sorted(maps.Keys(handed))
-	if want := []string{bufs + "|/dataList/0/desc", bufs + "|/dataList/0/name", p2Content(s1, 1), p2Content(s1, 2), p2Content(s2, 1)}; !slices.Equal(keys, want) {
+	if want := []string{bufs + "|/dataList/0/desc", bufs + "|/dataList/0/name", p2Content(s1, 1), p2Content(s1, 2), p2Content(s1, 5), p2Content(s2, 1)}; !slices.Equal(keys, want) {
 		t.Fatalf("units handed out = %q, want %q", keys, want)
 	}
 	if u := handed[p2Content(s1, 2)]; u.Reason != plan.ReasonAdjustmentExpired || u.PrevKR != "비 오는 날의 모험도 나쁘지 않소!" || u.PrevZH != "譯" ||
-		u.Refs[plan.RefAdjustment] != adjChangedZH || u.Speaker == "" {
-		t.Errorf("the reworded line = %+v, want its previous version, the expired adjustment as a reference and its speaker", u)
+		u.Hint != toneHint || u.Refs[plan.RefAdjustment] != adjChangedZH || u.Speaker == "" {
+		t.Errorf("the reworded line = %+v, want its previous version, the hint of its request, the expired adjustment as a reference and its speaker", u)
+	}
+	if u := handed[p2Content(s1, 5)]; u.Reason != "requeue" || u.Hint != toneHint || u.PrevZH != "譯" || u.KR != "감기에 걸려도 난 모른다." {
+		t.Errorf("the requeued last line = %+v, want it at its new key with the hint and its previous translation", u)
 	}
 	if u := handed[p2Content(s1, 1)]; u.Reason != "new" || u.Refs[plan.RefAdjustment] != "" {
 		t.Errorf("the inserted line = %+v, want a new line without the adjustment of another", u)
@@ -738,7 +826,7 @@ func checkPhase2SecondBuild(t *testing.T, p *phase2, built buildOut) {
 		"/dataList/2/model":   "돈키호테", "/dataList/2/content": "譯",
 		"/dataList/3/model": "이스마엘", "/dataList/3/content": adjKeptZH,
 		"/dataList/4/model": "파우스트", "/dataList/4/content": "譯文",
-		"/dataList/5/model": "이스마엘", "/dataList/5/content": "譯文",
+		"/dataList/5/model": "이스마엘", "/dataList/5/content": "譯", // translated again
 	}
 	if got := p.packStrings(s1); !reflect.DeepEqual(got, wantS1) {
 		t.Errorf("S1 in the pack = %v\nwant %v", got, wantS1)
