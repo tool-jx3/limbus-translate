@@ -44,13 +44,16 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 | workflow | 何時執行 | 做什麼 |
 |---|---|---|
-| `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、也沒有要套用的重翻或改寫檔就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → build → 推 `tw` → 建立 Release → 有需要人處理的項目時開審核 Issue |
-| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ build → 推 `tw` → 建立 Release → 審核 Issue |
+| `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，而且 `tw` 上次建置用的就是目前的 `raw` 就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 建立 Release → 有需要人處理的項目時開審核 Issue |
+| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 建立 Release → 審核 Issue |
 | `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint` |
 
 `update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。細節：
 
-- 翻譯最多進行 5 小時，單次執行最長 90 分鐘；到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
+- 翻譯最多進行 5 小時。每一輪執行最多 100 個回合，用完回合是正常的結束，接著開下一輪；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
+- 翻譯一結束（包括失敗、被取消或逾時），已翻的內容馬上 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit）。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它後面。
+- 「沒事可做」還要看 `tw` 上次建置的 raw tag（`tw` 的 `.meta/build.json` 的 `raw_tag`）是不是目前 `raw` 的 tag；`tw` 落後 `raw`（例如上次翻完卻沒建置成功），或讀不到那個檔，就不算沒事可做，這次會補建置與發布。
+- Claude Code CLI 在單獨的一個步驟安裝，那一步沒有 `ANTHROPIC_API_KEY`；key 只在執行 `lct translate` 的那一步。執行時設定 `DISABLE_AUTOUPDATER=1`，CLI 不會在執行中更新自己。
 - 只有 `tw` 有新 commit、或該 commit 還沒有 Release 時才建立 Release。
 - 審核 Issue 的標題是「審核：YYYY-MM-DD 更新」（日期取 raw tag 的日期）；沒有需要處理的項目時不開。同一個 raw tag 重跑時，內容會留言在還開著的同名 Issue，不另開新的。完整報表在該次執行的 summary。
 - 所有會寫入 `raw`、`tw` 的執行共用 concurrency 群組 `lct-state`，一次只跑一個。GitHub 的群組最多一個執行中、一個等待中，新的等待會取代舊的等待；如果某次被取代，到 Actions 頁面手動執行一次即可。

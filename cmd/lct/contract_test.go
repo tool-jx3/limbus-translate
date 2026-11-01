@@ -17,6 +17,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
+	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
@@ -830,7 +831,20 @@ var pipelinePermissions = map[string]string{"contents": "write", "issues": "writ
 // there is nothing to do; the step that runs one reads steps.decide.outputs
 // in its if.
 var pipelineGated = []string{
-	"bin/lct translate", "bin/lct build", "bin/lct publish", "git push origin tw", "gh release create", "gh issue",
+	"npm install", "bin/lct translate", "git -C .work/tw push origin tw", "bin/lct build", "bin/lct publish", "git push origin tw", "gh release create", "gh issue",
+}
+
+// pipelineIdleTerms are the terms, in this order, of the condition under which
+// the decide step ends the run with nothing to do. Every term keeps a run from
+// ending early that has something to do; the terms are joined by &&.
+var pipelineIdleTerms = []struct{ text, why string }{
+	{`[ "$FETCH" = true ]`, "a rebuild, which asks for no game update, could end as idle"},
+	{`[ "$NEW" != true ]`, "a new game update could end as idle"},
+	{`[ "$FORCE" != true ]`, "a forced run could end as idle"},
+	{`[ "$PENDING" -eq 0 ]`, "a run with units to translate could end as idle"},
+	{`[ "$APPLIED" -eq 0 ]`, "a run that applies a request or rewrite file could end as idle"},
+	{`[ -z "$REQUEUE" ]`, "a run asked by hand to requeue could end as idle"},
+	{`[ "$built_tag" = "$raw_tag" ]`, "a tw that was last built from another raw snapshot could end as idle, and would never be built"},
 }
 
 // pipelineMarkers are the commands pipeline.yml must run, with the reason.
@@ -852,8 +866,21 @@ var pipelineMarkers = []struct{ text, why string }{
 	{"bin/lct plan", "the state is not carried to the snapshot"},
 	{"bin/lct requeue --file", "a requested requeue is not applied"},
 	{"bin/lct pending --count", "the pending units are not counted again after a requeue"},
+	{"installed=true", "the install step does not say that the claude CLI is there, so the translate step never runs"},
 	{"bin/lct translate --max-usd", "nothing is translated"},
-	{"--deadline 5h --max-turns 300 --run-timeout 90m", "the translation has no time limits"},
+	// A run of the CLI has to end at its turn limit, which is a normal end of
+	// a round; with more turns than fit in 90 minutes it would be killed and
+	// counted as an error, which ends the whole loop.
+	{"--deadline 5h --max-turns 100 --run-timeout 90m", "the translation has no time limits, or a turn limit that does not end a run before the 90 minutes do"},
+	// What was translated is kept before anything can fail.
+	{"git -C .work/tw status --porcelain", "the step that keeps the translations does not look for what changed, so it commits nothing or commits when there is nothing"},
+	{"git -C .work/tw commit", "the translations are not committed to tw right after translating"},
+	{"translate: keep the progress of", "the commit that keeps the translations has no plain message"},
+	{"git -C .work/tw push origin tw", "the translations are not pushed to tw right after translating, so a build, publish or push that fails loses them"},
+	// The idle check looks at what tw was built from.
+	{".work/tw/.meta/build.json", "the raw tag tw was built from is not read, so a tw that lags raw counts as done"},
+	// created_at goes to $GITHUB_OUTPUT: nothing but a date and a time.
+	{`[!A-Za-z0-9_:.+\ -]`, "the token and the date of the status API are written to the outputs unchecked"},
 	{"bin/lct build", "the pack is not built"},
 	{"$GITHUB_STEP_SUMMARY", "the report is not shown on the summary page"},
 	{"bin/lct publish", "the Release is not prepared"},
@@ -867,7 +894,9 @@ var pipelineMarkers = []struct{ text, why string }{
 	{"assets_json=$(jq -ec", "the assets of publish.json are not captured before they are read"},
 	{"mapfile -t assets", "the assets are not read"},
 	{`"${#assets[@]}" -eq 2`, "the number of assets is not checked before the Release"},
-	{"gh issue list --state open --search", "an open issue with the title is not looked for, so a rerun opens a second one"},
+	// Listed, not searched: the search index lags behind and does not hold
+	// Chinese titles well.
+	{"gh issue list --state open --limit 500 --json number,title,url", "the open issues are not listed, so a rerun opens a second issue"},
 	{"gh issue create --title", "the review issue is not opened"},
 	{"gh issue comment", "the parts after the first are not posted"},
 }
@@ -887,6 +916,10 @@ var pipelineOrder = [][2]string{
 	{"bin/lct plan", "bin/lct requeue --file"},
 	{"bin/lct requeue --file", "bin/lct pending --count"},
 	{"bin/lct pending --count", "bin/lct translate --max-usd"},
+	{"npm install -g @anthropic-ai/claude-code", "bin/lct translate --max-usd"}, // installed by a step of its own, before it
+	{"bin/lct translate --max-usd", "git -C .work/tw commit"},
+	{"git -C .work/tw commit", "git -C .work/tw push origin tw"},
+	{"git -C .work/tw push origin tw", "bin/lct build"}, // kept before anything that can fail
 	{"bin/lct translate --max-usd", "bin/lct build"},
 	{"bin/lct build", "bin/lct publish"},
 	{"bin/lct publish", "git push origin tw"},
@@ -895,7 +928,7 @@ var pipelineOrder = [][2]string{
 	{"mapfile -t assets", `"${#assets[@]}" -eq 2`},
 	{`"${#assets[@]}" -eq 2`, "gh release create"}, // no Release without its zips
 	{"gh release create", "gh issue create --title"},
-	{"gh issue list --state open --search", "gh issue create --title"},
+	{"gh issue list --state open --limit 500", "gh issue create --title"},
 }
 
 // workflowStep is a step of a job, as far as the contract reads it.
@@ -1100,10 +1133,13 @@ func firstLine(s string) string {
 // inputs and the two optional secrets, and has one job that runs one at a
 // time with the permissions it writes with. Its steps fetch the history, the
 // branches and every tag, make the worktrees, give origin the raw tag, ask the
-// status API, snapshot, plan, translate, build, publish, release and open the
-// issue, in that order; only the steps that need a secret have it; nothing but
-// the first steps runs when there is nothing to do; and the Release is made
-// only when the publish says it is needed.
+// status API, snapshot, plan, decide, install the claude CLI, translate, keep
+// the translations on tw, build, publish, release and open the issue, in that
+// order; only the steps that need a secret have it (the install of the CLI has
+// none); the run ends early only under the exact idle condition; nothing but
+// the first steps runs when there is nothing to do; the translations are
+// pushed to tw before anything that can fail; and the Release is made only
+// when the publish says it is needed.
 func checkPipelineWorkflow(file, content string) []string {
 	w, problems := parseWorkflow(file, content)
 	if w == nil {
@@ -1217,7 +1253,47 @@ func checkPipelineWorkflow(file, content string) []string {
 	if s, ok := find("--out .work/fetch"); ok && s.Env["LIMBUS_CDN_TEMPLATE"] != "${{ vars.LIMBUS_CDN_TEMPLATE }}" {
 		add("the step that downloads the packs has no LIMBUS_CDN_TEMPLATE: ${{ vars.LIMBUS_CDN_TEMPLATE }} in its env")
 	}
+	// The condition of the idle exit: each term, then all of them joined by &&.
+	if s, ok := find("idle=true"); ok {
+		lines := strings.Split(s.Run, "\n")
+		at := slices.IndexFunc(lines, func(l string) bool { return strings.TrimSpace(l) == "idle=true" })
+		cond := ""
+		if at > 0 {
+			cond = strings.TrimSpace(lines[at-1])
+		}
+		var terms []string
+		lacking := false
+		for _, term := range pipelineIdleTerms {
+			terms = append(terms, term.text)
+			if !strings.Contains(cond, term.text) {
+				lacking = true
+				add("the idle condition lacks %s: %s", term.text, term.why)
+			}
+		}
+		if want := "if " + strings.Join(terms, " && ") + "; then"; !lacking && cond != want {
+			add("the terms of the idle condition are not joined by && as %q: one term that is false must be enough to keep the run going", want)
+		}
+	} else {
+		add("no step sets idle=true: the run never ends when there is nothing to do")
+	}
 	if s, ok := find("bin/lct translate"); ok {
+		if claudeCLIRe.MatchString(s.Run) {
+			add("the translate step installs the claude CLI itself: the API key is in its environment while npm runs the install scripts; install it in a step of its own")
+		}
+		if !strings.Contains(s.If, "steps.cli.outputs.installed == 'true'") {
+			add("the translate step does not read steps.cli.outputs.installed == 'true' in its if: it would run without the claude CLI")
+		}
+		if s.Env["DISABLE_AUTOUPDATER"] != "1" {
+			add("the translate step has no DISABLE_AUTOUPDATER: \"1\" in its env: the CLI may update itself in the middle of a run")
+		}
+		if keep, ok := find("git -C .work/tw push origin tw"); ok {
+			if !strings.HasPrefix(keep.If, "always() && ") {
+				add("the step that keeps the translations on tw does not start its if with always(): a translate step that fails or is cancelled would lose them")
+			}
+			if keep.If != "always() && "+s.If {
+				add("the if of the step that keeps the translations on tw is %q, want always() followed by the if of the translate step: it must run exactly when the translate step does", keep.If)
+			}
+		}
 		if s.Env["ANTHROPIC_API_KEY"] != "${{ secrets.ANTHROPIC_API_KEY }}" {
 			add("the translate step has no ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} in its env")
 		}
@@ -1240,8 +1316,11 @@ func checkPipelineWorkflow(file, content string) []string {
 		}
 	}
 	if s, ok := find("gh release create"); ok {
-		if !strings.Contains(s.If, "release_needed") {
-			add("the gh release create step does not read release_needed in its if: the Release must not follow the tag, which is a free number even when nothing is released")
+		if !strings.Contains(s.If, "steps.publish.outputs.release_needed == 'true'") {
+			add("the if of the gh release create step is %q, which lacks steps.publish.outputs.release_needed == 'true': the Release must not follow the tag, which is a free number even when nothing is released", s.If)
+		}
+		if !strings.Contains(s.If, "steps.decide.outputs.idle == 'false'") {
+			add("the if of the gh release create step is %q, which lacks steps.decide.outputs.idle == 'false': no Release when there is nothing to do", s.If)
 		}
 		if !workflowTitleRe.MatchString(s.Run) {
 			add("gh release create has no --title")
@@ -1509,6 +1588,7 @@ func lctJSONInputs() map[string]any {
 		"build":                      buildOutput{},
 		"out/publish.json":           publish.Result{},
 		".work/raw/meta/source.json": raw.Source{},
+		".work/tw/.meta/build.json":  build.Info{},
 		"issues":                     nil, // gh issue list
 	}
 }
@@ -1523,6 +1603,7 @@ var lctJSONRequired = map[string][]string{
 	"build":                      {"review_issue_parts"},
 	"out/publish.json":           {"tag", "tw_commit", "assets", "release_needed"},
 	".work/raw/meta/source.json": {"tag"},
+	".work/tw/.meta/build.json":  {"raw_tag"},
 }
 
 // checkJQKeys reports what the jq commands of the workflow read that the lct
@@ -1818,19 +1899,75 @@ func TestWorkflowContract(t *testing.T) {
 		{"a push before the build", "bin/lct build --json", "git push origin tw && bin/lct build --json", `"bin/lct publish" must come before "git push origin tw"`},
 		{"a release before the publish", "bin/lct publish --json >", "gh release create x && bin/lct publish --json >", `"git push origin tw" must come before "gh release create"`},
 		{"a Release made when none is needed", " && steps.publish.outputs.release_needed == 'true'", "", "release_needed"},
+		{"a Release that follows a test that is not the pinned one", "steps.publish.outputs.release_needed == 'true'", "steps.publish.outputs.release_needed != 'false'", "release_needed == 'true'"},
+		{"a Release made when there is nothing to do", "if: steps.decide.outputs.idle == 'false' && steps.publish.outputs.release_needed == 'true'", "if: steps.publish.outputs.release_needed == 'true'", "steps.decide.outputs.idle == 'false'"},
 		{"a translation that stops the build", "|| status=$?", "", "not followed by ||"},
 		{"a translation that fails without a word", "::warning::lct translate", "::notice::lct translate", "::warning::"},
 		{"no fallback of the spending limit", "|| vars.LCT_MAX_USD || '30'", "", "MAX_USD"},
 		{"a build when nothing is to do", "        if: steps.decide.outputs.idle == 'false'\n        run: |\n          build=", "        run: |\n          build=", `"bin/lct build" runs even when there is nothing to do`},
 		{"an issue when nothing is to do", "        if: steps.decide.outputs.idle == 'false'\n        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          if [ ! -f out/review-issue/01.md ]", "        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          if [ ! -f out/review-issue/01.md ]", `"gh issue" runs even when there is nothing to do`},
-		{"no open issue is looked for", "gh issue list --state open --search", "gh issue list --state all --search", `"gh issue list --state open --search"`},
+		{"no open issue is looked for", "gh issue list --state open --limit 500", "gh issue list --state all --limit 500", `"gh issue list --state open --limit 500 --json number,title,url"`},
+		{"the issues searched for in the index", "gh issue list --state open --limit 500 --json", `gh issue list --state open --search "$title in:title" --limit 500 --json`, `"gh issue list --state open --limit 500 --json number,title,url"`},
 		{"no title for the Release", `--title "$tag"`, "", "--title"},
+
+		// The turn limit ends a run before the time limit does.
+		{"a turn limit above the time limit", "--max-turns 100", "--max-turns 300", `--max-turns 100 --run-timeout 90m`},
+
+		// The translations are kept right after translating.
+		{"translations kept without always()", "if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "if: steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "always()"},
+		{"translations kept when the translate step did not run", "if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "if: always()", "exactly when the translate step does"},
+		{"translations kept whatever decide says", "if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "if: always() && steps.cli.outputs.installed == 'true'", "exactly when the translate step does"},
+		{"translations not looked for", "git -C .work/tw status --porcelain", "git -C .work/tw status --short", `"git -C .work/tw status --porcelain"`},
+		{"translations not committed", "git -C .work/tw commit", "git -C .work/tw stash", `"git -C .work/tw commit"`},
+		{"translations committed with a message of no meaning", "translate: keep the progress of", "wip", `"translate: keep the progress of"`},
+		{"translations not pushed", "git -C .work/tw push origin tw", "git -C .work/tw status", `"git -C .work/tw push origin tw"`},
+		{"translations never kept", "          if [ -n \"$(git -C .work/tw status --porcelain)\" ]; then\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n            git -C .work/tw push origin tw\n          fi\n", "          true\n", `"git -C .work/tw commit"`},
+
+		// The idle check: every term of it is pinned.
+		{"idle without asking for a fetch", `[ "$FETCH" = true ] && `, "", `[ "$FETCH" = true ]`},
+		{"idle with a new game update", ` && [ "$NEW" != true ]`, "", `[ "$NEW" != true ]`},
+		{"idle with force", ` && [ "$FORCE" != true ]`, "", `[ "$FORCE" != true ]`},
+		{"idle with units pending", ` && [ "$PENDING" -eq 0 ]`, "", `[ "$PENDING" -eq 0 ]`},
+		{"idle with request or rewrite files applied", ` && [ "$APPLIED" -eq 0 ]`, "", `[ "$APPLIED" -eq 0 ]`},
+		{"idle with a requeue asked for", ` && [ -z "$REQUEUE" ]`, "", `[ -z "$REQUEUE" ]`},
+		{"idle with a tw that lags raw", ` && [ "$built_tag" = "$raw_tag" ]`, "", `[ "$built_tag" = "$raw_tag" ]`},
+		{"idle when the tags differ", `[ "$built_tag" = "$raw_tag" ]`, `[ "$built_tag" != "$raw_tag" ]`, `[ "$built_tag" = "$raw_tag" ]`},
+		{"idle terms joined by ||", `[ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ]`, `[ "$PENDING" -eq 0 ] || [ "$APPLIED" -eq 0 ]`, "joined by &&"},
+		{"the raw tag tw was built from is not read", "jq -r '.raw_tag // empty' .work/tw/.meta/build.json 2>/dev/null", "echo ''", `".work/tw/.meta/build.json"`},
+
+		// The status answer is checked before it is written to the outputs.
+		{"a status answer written unchecked", `[!A-Za-z0-9_:.+\ -]`, `[!A-Za-z0-9_:.+-]`, "unchecked"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			src := mutate(t, pipeline, tc.old, tc.repl)
 			hasProblem(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, tc.want)
 		})
 	}
+	t.Run("translations kept only after the build", func(t *testing.T) {
+		src := mutate(t, pipeline, "bin/lct build --json", "bin/lct build --json; git -C .work/tw push origin tw")
+		src = mutate(t, src, "            git -C .work/tw push origin tw\n          fi", "            git -C .work/tw status\n          fi")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), `"git -C .work/tw push origin tw" must come before "bin/lct build"`)
+	})
+	t.Run("the claude CLI installed where the API key is", func(t *testing.T) {
+		src := mutate(t, pipeline, "          status=0\n          bin/lct translate", "          npm install -g @anthropic-ai/claude-code@2.1.316\n          status=0\n          bin/lct translate")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), "translate step installs the claude CLI")
+	})
+	t.Run("the API key in the environment of the install step", func(t *testing.T) {
+		src := mutate(t, pipeline, "        id: cli\n        if: steps.decide.outputs.translate == 'true'\n", "        id: cli\n        if: steps.decide.outputs.translate == 'true'\n        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n")
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), "API key is in the environment")
+	})
+	t.Run("an install that runs when there is nothing to translate", func(t *testing.T) {
+		src := mutate(t, pipeline, "        id: cli\n        if: steps.decide.outputs.translate == 'true'\n", "        id: cli\n")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), `"npm install" runs even when there is nothing to do`)
+	})
+	t.Run("a translation that runs although the CLI did not install", func(t *testing.T) {
+		src := mutate(t, pipeline, "        if: steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'\n", "        if: steps.decide.outputs.translate == 'true'\n")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), "steps.cli.outputs.installed == 'true'")
+	})
+	t.Run("the CLI allowed to update itself", func(t *testing.T) {
+		src := mutate(t, pipeline, "          DISABLE_AUTOUPDATER: '1'\n", "")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), "DISABLE_AUTOUPDATER")
+	})
 	t.Run("no token for gh", func(t *testing.T) {
 		src := mutateAll(t, pipeline, "GH_TOKEN: ${{ github.token }}", "GH_USER: x")
 		problems := checkPipelineWorkflow(pipelineFile, src)
@@ -1904,6 +2041,7 @@ func TestWorkflowReadsLctJSON(t *testing.T) {
 		{"a key of the snapshot", "jq -er .tag <<<\"$snapshot\"", "jq -er .name <<<\"$snapshot\""},
 		{"a key of the pending count", "jq -er .available", "jq -er .free"},
 		{"a key of build", "jq -er .review_issue_parts", "jq -er .issue_parts"},
+		{"a key of the last build", "jq -r '.raw_tag // empty'", "jq -r '.rawtag // empty'"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			src := mutate(t, pipeline, tc.old, tc.repl)
@@ -1936,7 +2074,7 @@ func TestWorkflowReadsLctJSON(t *testing.T) {
 		wantProblems(t, checkJQKeys(file, src, inputs, lctJSONRequired), "tostring")
 	})
 	t.Run("keys read from an output the contract does not know", func(t *testing.T) {
-		src := mutate(t, pipeline, "jq -er .tag .work/raw/meta/source.json", "jq -er .tag .work/raw/meta/other.json")
+		src := mutateAll(t, pipeline, "jq -er .tag .work/raw/meta/source.json", "jq -er .tag .work/raw/meta/other.json")
 		problems := checkJQKeys(file, src, inputs, lctJSONRequired)
 		hasProblem(t, problems, "other.json", "does not know")
 	})

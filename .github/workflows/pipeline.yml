@@ -2,9 +2,9 @@ name: pipeline
 
 # The whole update, shared by update.yml (every week, with fetch) and by
 # rebuild.yml (new rules on main, without): fetch and snapshot the official
-# packs, plan, translate what is pending, build, push tw, make the Release and
-# open the review issue. raw, tw and the Releases are written only here, one
-# run at a time.
+# packs, plan, translate what is pending, keep the translations on tw, build,
+# push tw, make the Release and open the review issue. raw, tw and the Releases
+# are written only here, one run at a time.
 on:
   workflow_call:
     inputs:
@@ -77,6 +77,12 @@ jobs:
           new=$(jq -er '.new | tostring' <<<"$check")
           token=$(jq -er .token <<<"$check")
           created_at=$(jq -er .created_at <<<"$check")
+          # Every output is a line of $GITHUB_OUTPUT: a line break in a value would
+          # write an output of its own. lct has checked the token and the date
+          # already; here nothing but their characters is let through either.
+          case "$token$created_at" in
+            *[!A-Za-z0-9_:.+\ -]*) echo '::error::the status API answered with a token or a date that has characters neither has'; exit 1 ;;
+          esac
           echo "latest game update $token ($created_at), new: $new"
           {
             echo "new=$new"
@@ -119,8 +125,10 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       # Nothing to do: no new game update, nothing pending, no request or
-      # rewrite file applied, nothing asked by hand. The steps after this one
-      # are skipped and the run ends green.
+      # rewrite file applied, nothing asked by hand, and tw was last built from
+      # the raw snapshot there is now (tw lags raw when an earlier run
+      # translated but did not get to build). The steps after this one are
+      # skipped and the run ends green.
       - name: Stop when there is nothing to do
         id: decide
         env:
@@ -133,10 +141,14 @@ jobs:
           PENDING: ${{ steps.plan.outputs.pending }}
           APPLIED: ${{ steps.plan.outputs.applied }}
         run: |
+          raw_tag=$(jq -er .tag .work/raw/meta/source.json)
+          # No build.json, or one that cannot be read, is a tw that was not built
+          # from this snapshot: not idle.
+          built_tag=$(jq -r '.raw_tag // empty' .work/tw/.meta/build.json 2>/dev/null) || built_tag=
           idle=false
-          if [ "$FETCH" = true ] && [ "$NEW" != true ] && [ "$FORCE" != true ] && [ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ] && [ -z "$REQUEUE" ]; then
+          if [ "$FETCH" = true ] && [ "$NEW" != true ] && [ "$FORCE" != true ] && [ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ] && [ -z "$REQUEUE" ] && [ "$built_tag" = "$raw_tag" ]; then
             idle=true
-            echo '沒有新的遊戲更新，也沒有待譯，沒有重翻要求或改寫檔要套用：不建置、不發佈。' | tee -a "$GITHUB_STEP_SUMMARY"
+            echo '沒有新的遊戲更新，也沒有待譯，沒有重翻要求或改寫檔要套用，tw 也已經建置到目前的 raw：不建置、不發佈。' | tee -a "$GITHUB_STEP_SUMMARY"
           fi
           translate=false
           if [ "$idle" = false ] && [ "$PENDING" -gt 0 ]; then
@@ -151,26 +163,55 @@ jobs:
           {
             echo "idle=$idle"
             echo "translate=$translate"
+            echo "raw_tag=$raw_tag"
           } >> "$GITHUB_OUTPUT"
+
+      # The CLI is installed in a step of its own: npm runs the install scripts
+      # of the package and of everything it needs, and the API key must not be
+      # in their environment.
+      - name: Install the claude CLI
+        id: cli
+        if: steps.decide.outputs.translate == 'true'
+        run: |
+          if npm install -g @anthropic-ai/claude-code@2.1.316; then
+            echo 'installed=true' >> "$GITHUB_OUTPUT"
+          else
+            echo '::warning::the claude CLI did not install: nothing is translated, and the pack is built as it is'
+            echo 'installed=false' >> "$GITHUB_OUTPUT"
+          fi
 
       # A translation that fails stops nothing: what was translated is built
       # and released, and the rest stays pending for the next run. Only this
-      # step has the API key.
+      # step has the API key. A run of the CLI normally ends at its turn limit
+      # (100 turns, well inside 90 minutes); the 90 minutes only guard against
+      # a run that hangs.
       - name: Translate what is pending
-        if: steps.decide.outputs.translate == 'true'
+        if: steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LCT_MODEL: ${{ vars.LCT_MODEL }}
           MAX_USD: ${{ inputs.max_usd || vars.LCT_MAX_USD || '30' }}
+          DISABLE_AUTOUPDATER: '1'
         run: |
-          if ! npm install -g @anthropic-ai/claude-code@2.1.316; then
-            echo '::warning::the claude CLI did not install: nothing is translated, and the pack is built as it is'
-            exit 0
-          fi
           status=0
-          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 300 --run-timeout 90m || status=$?
+          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 100 --run-timeout 90m || status=$?
           if [ "$status" -ne 0 ]; then
             echo "::warning::lct translate stopped with exit code $status; what was translated is built and released"
+          fi
+
+      # What was translated is kept on tw before anything else can fail, and
+      # also when the translate step was cancelled or ran out of time: a build,
+      # publish or push that fails later does not throw the paid work away.
+      # Nothing changed, nothing committed. Publish commits on top of this.
+      - name: Keep the translations on tw
+        if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'
+        env:
+          RAW_TAG: ${{ steps.decide.outputs.raw_tag }}
+        run: |
+          if [ -n "$(git -C .work/tw status --porcelain)" ]; then
+            git -C .work/tw add -A
+            git -C .work/tw commit --quiet -m "translate: keep the progress of $RAW_TAG"
+            git -C .work/tw push origin tw
           fi
 
       - name: Build the pack
@@ -224,7 +265,10 @@ jobs:
           fi
           title=$(cat out/review-issue/title.txt)
           parts=(out/review-issue/*.md)
-          issues=$(gh issue list --state open --search "$title in:title" --limit 100 --json number,title,url)
+          # Not --search: its index lags behind new issues and breaks up a title
+          # that is Chinese. The open issues are listed and the title is compared
+          # exactly.
+          issues=$(gh issue list --state open --limit 500 --json number,title,url)
           url=$(jq -r --arg title "$title" '[.[] | select(.title == $title)] | first | .url // empty' <<<"$issues")
           if [ -z "$url" ]; then
             url=$(gh issue create --title "$title" --body-file "${parts[0]}")
