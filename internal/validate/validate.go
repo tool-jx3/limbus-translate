@@ -173,6 +173,12 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 // The language of a per-language style tag does not count (see comparableTag),
 // but the result names the tags as written: the KR tag for a missing one, the
 // zh tag for an extra one.
+//
+// zh may close a tag that KR opens and never closes (the lyric <style="dkr">,
+// which the official EN text closes at the end of the line): per tag name, as
+// many extra closing tags are accepted as KR has openings without a closing
+// tag, which is none if KR's tags of that name are balanced. Tags without a
+// closing tag (<br>, <sprite>) never take part.
 func tagDiff(kr, zh string) (missing, extra []string) {
 	split := func(s string) (keys []string, written map[string]string) {
 		written = map[string]string{}
@@ -192,6 +198,16 @@ func tagDiff(kr, zh string) (missing, extra []string) {
 	krKeys, krWritten := split(kr)
 	zhKeys, zhWritten := split(zh)
 	missing, extra = multisetDiff(krKeys, zhKeys)
+	unclosed := unclosedTags(kr)
+	extra = slices.DeleteFunc(extra, func(key string) bool {
+		name, isClosing := strings.CutPrefix(key, "</")
+		name = strings.TrimSuffix(name, ">")
+		if !isClosing || unclosed[name] <= 0 {
+			return false
+		}
+		unclosed[name]--
+		return true
+	})
 	for i, key := range missing {
 		missing[i] = krWritten[key]
 	}
@@ -201,6 +217,25 @@ func tagDiff(kr, zh string) (missing, extra []string) {
 	slices.Sort(missing)
 	slices.Sort(extra)
 	return missing, extra
+}
+
+// unclosedTags returns, per tag name as written, how many more times s opens
+// the tag than it closes it. The count is zero or negative for a name that s
+// closes as often as it opens or more often, and self-closing tags are left
+// out.
+func unclosedTags(s string) map[string]int {
+	open := map[string]int{}
+	for _, tok := range Tags(s) {
+		name, closing := tagName(tok)
+		switch {
+		case selfClosing[strings.ToLower(name)]:
+		case closing:
+			open[name]--
+		default:
+			open[name]++
+		}
+	}
+	return open
 }
 
 // nestingProblem returns what is wrong with the nesting of the tags of s, or

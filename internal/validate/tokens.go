@@ -52,6 +52,9 @@ func tagName(tok string) (name string, closing bool) {
 	return rest[:end], closing
 }
 
+// langStyleKey starts the comparison form of every per-language style tag.
+const langStyleKey = "\x00lang-style="
+
 // langStyle splits an opening tag tok, which Tags returned, into the quote
 // around its value, the language prefix (d plus the language code) and the
 // suffix, if it is a per-language style tag. Anything else, such as
@@ -66,14 +69,16 @@ func langStyle(tok string) (quote, prefix, suffix string, ok bool) {
 
 // comparableTag returns the form of tag token tok, which Tags returned, in
 // which tags compare equal when they mean the same: a closing tag is its
-// name, and a per-language style tag has its language code replaced by * and
-// its suffix lower-cased. The result is only for comparing.
+// name, and a per-language style tag has its language code left out and its
+// suffix lower-cased. The result is only for comparing, and a per-language
+// style tag's form starts with a NUL, which no tag token does, so no tag in a
+// text can be equal to it.
 func comparableTag(tok string) string {
 	if name, closing := tagName(tok); closing {
 		return "</" + name + ">"
 	}
 	if quote, _, suffix, ok := langStyle(tok); ok {
-		return "<style=" + quote + "d*" + strings.ToLower(suffix) + quote + ">"
+		return langStyleKey + quote + strings.ToLower(suffix) + quote
 	}
 	return tok
 }

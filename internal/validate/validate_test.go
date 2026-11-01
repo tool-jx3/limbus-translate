@@ -495,3 +495,76 @@ func TestLanguageStyleTagsDoNotHideOtherDifferences(t *testing.T) {
 		t.Errorf("a dropped language style is not reported: %+v", is)
 	}
 }
+
+// A tag KR opens and never closes (the lyric <style="dkr">, a lone <size=20>)
+// may be closed in zh: the official EN text does so.
+func TestExtraClosingTagForUnclosedKRTag(t *testing.T) {
+	tests := []struct {
+		name, kr, zh string
+	}{
+		{"style closed after a sized word", `<style="dkr"><size=20>별</size>`, `<style="djp">一顆<size=20>星星</size></style>`},
+		{"style closed at the end", `<style="dkr">어쩌면 그때가 바로`, `<style="djp">可能就是那個時候</style>`},
+		{"two tags both closed", `<style="dkr"><size=20>잔물결`, `<style="djp"><size=20>層層波浪</size></style>`},
+		{"two unclosed openings, two closings", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲</style> <style="djp">乙</style>`},
+		{"other tag", `<b>가`, `<b>甲</b>`},
+		{"the closing tag is optional", `<style="dkr">가`, `<style="djp">甲`},
+		{"fewer closings than the allowance", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲 <style="djp">乙</style>`},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			if is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); ok {
+				t.Errorf("Check(%q, %q) reports %s: %s", tc.kr, tc.zh, is.Code, is.Message)
+			}
+		})
+	}
+}
+
+// The allowance is per tag name: KR's openings minus KR's closings, at least
+// 0. Nothing else about the comparison changes.
+func TestExtraClosingTagStillLimited(t *testing.T) {
+	tests := []struct {
+		name, kr, zh string
+		diff         string // what the message must say, as describeDiff words it
+	}{
+		{"KR closes the tag", `<b>x</b>`, `<b>x</b></b>`, ": unexpected </b>"},
+		{"beyond the allowance", `<style="dkr">a`, `<style="djp">a</style></style>`, ": unexpected </style>"},
+		{"three closings, one allowed", `<style="dkr">a`, `<style="djp">a</style></style></style>`, ": unexpected </style> </style>"},
+		{"a name KR never opened", `<style="dkr">a`, `<style="djp">a</b>`, ": unexpected </b>"},
+		{"no tags in KR", `a`, `a</b>`, ": unexpected </b>"},
+		{"the allowance belongs to another name", `<style="dkr"><size=20>a</size>`, `<style="djp"><size=20>a</size></size>`, ": unexpected </size>"},
+		{"KR has more closings than openings", `x</color>`, `x</color></color>`, ": unexpected </color>"},
+		{"self-closing tags have no closing tag", `A<br>B`, `A<br></br>B`, ": unexpected </br>"},
+		{"an extra opening tag is still reported", `<style="dkr">a`, `<style="djp"><b>a</style>`, ": unexpected <b>"},
+		{"a missing closing tag is still reported", `<b>x</b>`, `<b>x`, ": missing </b>"},
+		{"a missing opening tag is still reported", `<style="dkr">a`, `a</style>`, ": missing <style=\"dkr\">"},
+		{"a forgiven closing tag does not hide a missing one", `<style="dkr"><b>a</b>`, `<style="djp">a</style>`, ": missing </b> <b>"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch)
+			if !ok {
+				t.Fatalf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+			if want := "tags differ from KR" + tc.diff + "; opening tags"; !strings.Contains(is.Message, want) {
+				t.Errorf("message %q does not contain %q", is.Message, want)
+			}
+		})
+	}
+}
+
+// The comparison form of a language style must not be writable in a
+// translation: a literal d* is an ordinary, different style.
+func TestLanguageStyleComparisonKeyCannotBeForged(t *testing.T) {
+	tests := []struct{ name, kr, zh string }{
+		{"star for the language", `<style="dkr">피가`, `<style="d*">血`},
+		{"star with a suffix", `<style="dkr_CP6_2">피가`, `<style="d*_cp6_2">血`},
+		{"star in KR", `<style="d*">피가`, `<style="djp">血`},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			if _, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); !ok {
+				t.Errorf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+		})
+	}
+}
