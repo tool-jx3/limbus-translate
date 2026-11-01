@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -71,19 +72,62 @@ func ParseStatus(body []byte) (Status, error) {
 }
 
 // FetchStatus reads and parses the status API at statusURL (https://, http://
-// or file://). Errors never repeat statusURL, which is a secret in CI.
+// or file://). statusURL is a secret in CI, so a failed request is reported
+// only as "status request failed: <kind>" (see requestFailure), which holds no
+// part of it.
 func FetchStatus(ctx context.Context, statusURL string) (Status, error) {
 	body, err := open(ctx, statusClient, statusURL)
 	if err != nil {
-		return Status{}, fmt.Errorf("fetch status: %w", err)
+		return Status{}, requestFailure(err)
 	}
 	defer body.Close()
 	data, err := io.ReadAll(io.LimitReader(body, maxStatusBytes))
 	if err != nil {
-		return Status{}, fmt.Errorf("fetch status: %w", unwrapURLError(err))
+		return Status{}, requestFailure(err)
 	}
 	return ParseStatus(data)
 }
+
+// requestFailure reports a failed status request by its kind alone: the
+// errors of the network and file layers carry the host, the address or the
+// path, so none of their text is kept.
+func requestFailure(err error) error {
+	var kind string
+	var httpErr *httpStatusError
+	var netErr net.Error
+	switch {
+	case errors.As(err, &httpErr):
+		kind = fmt.Sprintf("HTTP %d", httpErr.code)
+	case errors.Is(err, context.DeadlineExceeded) || errors.As(err, &netErr) && netErr.Timeout():
+		kind = "timeout"
+	case errors.Is(err, context.Canceled):
+		kind = "canceled"
+	case errors.Is(err, errMalformedURL):
+		kind = "malformed URL"
+	case errors.Is(err, errUnsupportedScheme):
+		kind = "unsupported URL scheme"
+	case errors.Is(err, fs.ErrNotExist):
+		kind = "no such file"
+	case errors.As(err, new(*fs.PathError)):
+		kind = "file error"
+	default:
+		kind = "connection error"
+	}
+	return fmt.Errorf("status request failed: %s", kind)
+}
+
+var (
+	errMalformedURL      = errors.New("malformed URL")
+	errUnsupportedScheme = errors.New("unsupported URL scheme")
+)
+
+// httpStatusError is a response that is not 2xx.
+type httpStatusError struct {
+	code   int
+	status string // such as "404 Not Found"
+}
+
+func (e *httpStatusError) Error() string { return "HTTP " + e.status }
 
 // PackURL fills the CDN template: {token} becomes token and {lang} becomes
 // lang ("kr", "en" or "jp").
@@ -124,7 +168,7 @@ func Download(ctx context.Context, rawURL, dest string) error {
 func open(ctx context.Context, client *http.Client, rawURL string) (io.ReadCloser, error) {
 	u, err := url.Parse(rawURL)
 	if err != nil {
-		return nil, errors.New("malformed URL")
+		return nil, errMalformedURL
 	}
 	switch u.Scheme {
 	case "file":
@@ -132,7 +176,7 @@ func open(ctx context.Context, client *http.Client, rawURL string) (io.ReadClose
 	case "http", "https":
 		req, err := http.NewRequestWithContext(ctx, http.MethodGet, rawURL, nil)
 		if err != nil {
-			return nil, errors.New("malformed URL")
+			return nil, errMalformedURL
 		}
 		resp, err := client.Do(req)
 		if err != nil {
@@ -140,11 +184,11 @@ func open(ctx context.Context, client *http.Client, rawURL string) (io.ReadClose
 		}
 		if resp.StatusCode < 200 || resp.StatusCode > 299 {
 			resp.Body.Close()
-			return nil, fmt.Errorf("HTTP %s", resp.Status)
+			return nil, &httpStatusError{code: resp.StatusCode, status: resp.Status}
 		}
 		return resp.Body, nil
 	default:
-		return nil, fmt.Errorf("unsupported URL scheme %q", u.Scheme)
+		return nil, fmt.Errorf("%w %q", errUnsupportedScheme, u.Scheme)
 	}
 }
 

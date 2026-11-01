@@ -4,12 +4,15 @@ import (
 	"archive/zip"
 	"bytes"
 	"context"
+	"net"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
 
 const sampleStatus = `{"latest_token":{"created_at":"2026-10-29 02:55:23","f_token":"f20261029_FMWPLYWVe3fbkNrw12En","token":"l20261029_n2rX1Jku6_9sBiu9Np24"}}`
@@ -276,5 +279,73 @@ func TestFetchStatusFileURL(t *testing.T) {
 	}
 	if got.Token != "l20261029_n2rX1Jku6_9sBiu9Np24" {
 		t.Errorf("FetchStatus = %+v", got)
+	}
+}
+
+// The status URL is a secret in CI: a failed request is reported by its kind
+// only, never with any part of the URL, whatever went wrong.
+func TestFetchStatusErrorsHideTheURL(t *testing.T) {
+	// A port that nothing listens on.
+	ln, err := net.Listen("tcp", "127.0.0.1:0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	host, port, err := net.SplitHostPort(ln.Addr().String())
+	if err != nil {
+		t.Fatal(err)
+	}
+	ln.Close()
+
+	slow := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		<-r.Context().Done()
+	}))
+	defer slow.Close()
+	broken := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "down", http.StatusServiceUnavailable)
+	}))
+	defer broken.Close()
+	missingFile := filepath.Join(t.TempDir(), "secret-dir", "latest.json")
+
+	tests := []struct {
+		name, url, class string
+		timeout          time.Duration
+	}{
+		{"refused", "http://" + net.JoinHostPort(host, port) + "/secret-path/latest?key=s3cr3t", "connection error", 0},
+		{"timeout", slow.URL + "/secret-path/latest?key=s3cr3t", "timeout", 100 * time.Millisecond},
+		{"HTTP error", broken.URL + "/secret-path/latest?key=s3cr3t", "HTTP 503", 0},
+		{"missing file", "file://" + missingFile, "", 0},
+		{"unsupported scheme", "gopher://secret-host.example/secret-path", "", 0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ctx := context.Background()
+			if tt.timeout > 0 {
+				var cancel context.CancelFunc
+				ctx, cancel = context.WithTimeout(ctx, tt.timeout)
+				defer cancel()
+			}
+			_, err := FetchStatus(ctx, tt.url)
+			if err == nil {
+				t.Fatal("FetchStatus succeeded, want an error")
+			}
+			msg := err.Error()
+			if !strings.HasPrefix(msg, "status request failed: ") || tt.class != "" && msg != "status request failed: "+tt.class {
+				t.Errorf("error = %q, want \"status request failed: %s\"", msg, tt.class)
+			}
+			u, perr := url.Parse(tt.url)
+			if perr != nil {
+				t.Fatal(perr)
+			}
+			// The host, the port, every part of the path and the query.
+			parts := []string{u.Host, u.Hostname(), u.Port(), u.RawQuery, "secret", "s3cr3t", "latest"}
+			for _, seg := range strings.Split(u.Path, "/") {
+				parts = append(parts, seg)
+			}
+			for _, part := range parts {
+				if part != "" && strings.Contains(msg, part) {
+					t.Errorf("error %q holds %q, a part of the URL", msg, part)
+				}
+			}
+		})
 	}
 }
