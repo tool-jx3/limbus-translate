@@ -112,6 +112,9 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	if len(in.Raw.KR.Files()) == 0 {
+		return cli.UserError(fmt.Sprintf("bootstrap: the KR pack of %s has no files", cfg.Worktrees.Raw))
+	}
 	fr, err := fields.Load(ctx.Root)
 	if err != nil {
 		return err
@@ -141,6 +144,10 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 	}
 	if err := openUpstreamPacks(upDir, &in); err != nil {
 		return err
+	}
+	// An empty pack would replace the store with nothing.
+	if len(in.Paratranz.Files()) == 0 {
+		return cli.UserError(fmt.Sprintf("bootstrap: the Paratranz pack in %s has no files", filepath.Join(upDir, "paratranz")))
 	}
 
 	if err := gitx.EnsureWorktree(ctx.Root, twBranch, twRoot); err != nil {

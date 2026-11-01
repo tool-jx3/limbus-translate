@@ -329,6 +329,65 @@ func TestBootstrapUsageErrors(t *testing.T) {
 	}
 }
 
+// An empty KR or Paratranz pack has nothing to import; with --force it would
+// replace a good store with an empty one. It is refused before the tw
+// worktree is touched.
+func TestBootstrapRefusesEmptyPacks(t *testing.T) {
+	for _, tc := range []struct {
+		name  string
+		empty func(root, upstream string) string // empties a pack, returns its directory
+	}{
+		{"KR", func(root, _ string) string { return filepath.Join(root, ".work", "raw", "kr") }},
+		{"Paratranz", func(_, upstream string) string { return filepath.Join(upstream, "paratranz") }},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			root, upstream := bootstrapRepo(t, false)
+			if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
+				t.Fatal(err)
+			}
+			st := store.Open(filepath.Join(root, ".work", "tw"))
+			before, err := st.LoadRecords()
+			if err != nil {
+				t.Fatal(err)
+			}
+			dir := tc.empty(root, upstream)
+			if err := os.RemoveAll(dir); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.MkdirAll(dir, 0o755); err != nil {
+				t.Fatal(err)
+			}
+
+			_, err = runBootstrapJSON(t, root, "--upstream", upstream, "--force")
+			if !isUserError(err) || !strings.Contains(err.Error(), "no files") {
+				t.Fatalf("err = %v (%T), want a user error saying the pack has no files", err, err)
+			}
+			after, err := st.LoadRecords()
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !reflect.DeepEqual(before, after) {
+				t.Error("a refused bootstrap changed the records")
+			}
+		})
+	}
+
+	// Nothing is created either.
+	fresh, upstream := bootstrapRepo(t, false)
+	if err := os.RemoveAll(filepath.Join(upstream, "paratranz")); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Join(upstream, "paratranz"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := runBootstrapJSON(t, fresh, "--upstream", upstream); !isUserError(err) {
+		t.Fatalf("err = %v, want a user error", err)
+	}
+	if _, err := os.Stat(filepath.Join(fresh, ".work", "tw")); !os.IsNotExist(err) {
+		t.Errorf("a refused bootstrap created the tw worktree: %v", err)
+	}
+}
+
 func TestUpstreamURL(t *testing.T) {
 	up := config.Upstream{Repo: "user-unknown-0711/ParatranzUploader", Tag: "1793285016", Asset: "localize_files.zip"}
 	want := "https://github.com/user-unknown-0711/ParatranzUploader/releases/download/1793285016/localize_files.zip"
