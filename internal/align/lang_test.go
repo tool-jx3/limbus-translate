@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
@@ -289,5 +291,60 @@ func TestLangAlignedJSON(t *testing.T) {
 	var back LangAligned
 	if err := json.Unmarshal(data, &back); err != nil || back != (LangAligned{Value: "Inflict <b>", Method: MethodID}) {
 		t.Errorf("round trip = %+v, %v", back, err)
+	}
+}
+
+// FileAligner aligns the EN and JP files of one KR file once and looks the
+// strings up by pointer; a pack that is missing, or lacks the file, has none.
+func TestFileAligner(t *testing.T) {
+	const file = "Skills.json"
+	dir := t.TempDir()
+	for _, f := range []struct{ rel, text string }{
+		{"en/EN_Skills.json", `{"dataList":[{"id":1,"name":"Slash"},{"id":2,"name":"Pierce"}]}`},
+		{"jp/JP_Other.json", `{}`},
+	} {
+		p := filepath.Join(dir, filepath.FromSlash(f.rel))
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(f.text), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	en, err := pack.Open(filepath.Join(dir, "en"), "EN_")
+	if err != nil {
+		t.Fatal(err)
+	}
+	jp, err := pack.Open(filepath.Join(dir, "jp"), "JP_")
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := mustParse(t, `{"dataList":[{"id":2,"name":"관통"},{"id":1,"name":"베기"}]}`)
+
+	for _, tt := range []struct {
+		name   string
+		en, jp *pack.Pack
+		wantEN string
+	}{
+		{"both packs", en, jp, "Pierce"},
+		{"no JP pack", en, nil, "Pierce"},
+	} {
+		a := NewFileAligner(file, kr, tt.en, tt.jp)
+		gotEN, gotJP, err := a.Get("/dataList/0/name")
+		if err != nil {
+			t.Fatalf("%s: %v", tt.name, err)
+		}
+		if gotEN == nil || gotEN.Value != tt.wantEN || gotEN.Method != MethodID {
+			t.Errorf("%s: EN = %+v, want %q matched by id", tt.name, gotEN, tt.wantEN)
+		}
+		if gotJP != nil {
+			t.Errorf("%s: JP = %+v, want none (the pack lacks the file)", tt.name, gotJP)
+		}
+		if gotEN, _, _ := a.Get("/dataList/9/name"); gotEN != nil {
+			t.Errorf("%s: a pointer KR does not have = %+v, want none", tt.name, gotEN)
+		}
+	}
+	if gotEN, gotJP, err := NewFileAligner(file, kr, nil, nil).Get("/dataList/0/name"); gotEN != nil || gotJP != nil || err != nil {
+		t.Errorf("no packs = %+v, %+v, %v; want nothing", gotEN, gotJP, err)
 	}
 }

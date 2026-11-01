@@ -74,6 +74,8 @@ type Result struct {
 	SkippedFrozen int `json:"skipped_frozen"`
 	// SkippedCopy units are copies.
 	SkippedCopy int `json:"skipped_copy"`
+	// SkippedHeld units are held by the caller of ApplyTo (Apply holds none).
+	SkippedHeld int `json:"skipped_held,omitempty"`
 	// Missing counts the keys that cannot be requeued: the file or pointer
 	// has left KR, or (for a key named in Keys) there is no record to send
 	// back. MissingKeys lists them in order; it is never nil. Only the mode
@@ -157,7 +159,7 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 				return err
 			}
 		}
-		r, err := apply(kr, frozen, sel, hint, records, pending)
+		r, err := apply(kr, frozen, sel, hint, nil, records, pending)
 		if err != nil {
 			return err
 		}
@@ -178,17 +180,21 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 // state and pending queue. It returns the queue as Apply would leave it, with
 // what it did. Neither records nor pending is changed.
 //
+// held, when not nil, names the units whose source the caller has decided
+// otherwise (the plan: a unit a human adjustment holds). A record of such a
+// unit is left alone like one of a frozen file, and counted in SkippedHeld.
+//
 // It is how a caller makes a requeue part of a larger change that is saved
 // at once, such as the plan, which records the request file as applied in the
 // same lock.
-func ApplyTo(records map[string]store.Record, pending []store.PendingItem, kr *pack.Pack, frozen []string, sel Selector, hint string) ([]store.PendingItem, *Result, error) {
+func ApplyTo(records map[string]store.Record, pending []store.PendingItem, kr *pack.Pack, frozen []string, sel Selector, hint string, held func(key string) bool) ([]store.PendingItem, *Result, error) {
 	if kr == nil {
 		return nil, nil, errors.New("requeue: no KR pack")
 	}
 	if err := sel.Validate(); err != nil {
 		return nil, nil, fmt.Errorf("requeue: %w", err)
 	}
-	r, err := apply(kr, frozen, sel, hint, records, slices.Clone(pending))
+	r, err := apply(kr, frozen, sel, hint, held, records, slices.Clone(pending))
 	if err != nil {
 		return nil, nil, err
 	}
@@ -197,9 +203,10 @@ func ApplyTo(records map[string]store.Record, pending []store.PendingItem, kr *p
 
 // apply carries out sel on records and pending, which it changes in place,
 // and returns the run with the result. records may be nil when sel only acts
-// on the pending queue and names no Origins.
-func apply(kr *pack.Pack, frozen []string, sel Selector, hint string, records map[string]store.Record, pending []store.PendingItem) (*run, error) {
+// on the pending queue and names no Origins; held may be nil.
+func apply(kr *pack.Pack, frozen []string, sel Selector, hint string, held func(string) bool, records map[string]store.Record, pending []store.PendingItem) (*run, error) {
 	r := newRun(kr, frozen, sel, hint, records, pending, &Result{MissingKeys: []string{}})
+	r.held = held
 	if sel.stuckMode() {
 		r.stuckItems()
 	} else if err := r.requeueRecords(); err != nil {
@@ -212,6 +219,7 @@ func apply(kr *pack.Pack, frozen []string, sel Selector, hint string, records ma
 type run struct {
 	kr      *pack.Pack
 	frozen  []string
+	held    func(key string) bool // may be nil
 	sel     Selector
 	hint    string
 	records map[string]store.Record // nil unless sel picks records
@@ -338,6 +346,8 @@ func (r *run) requeueRecords() error {
 			r.res.SkippedCopy++
 		case config.MatchAny(r.frozen, file):
 			r.res.SkippedFrozen++
+		case r.held != nil && r.held(key):
+			r.res.SkippedHeld++
 		case queued:
 			r.pending[i].Hint = r.hint
 			r.res.AlreadyPending++

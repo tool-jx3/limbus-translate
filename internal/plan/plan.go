@@ -77,12 +77,15 @@ type Inputs struct {
 // Summary is what Run did; .meta/plan.json holds it. The lists are never nil.
 type Summary struct {
 	// RawTag is the current snapshot, PrevRawTag the one the state belonged
-	// to before. They are equal when there was no new snapshot.
+	// to before it. They are equal when the plan of RawTag found no older
+	// state; a plan of a snapshot that was planned already keeps PrevRawTag,
+	// Changes, FrozenChanged, NewSpeakers and NewFilesDefaultFamily of that
+	// plan (see Run).
 	RawTag      string `json:"raw_tag"`
 	PrevRawTag  string `json:"prev_raw_tag"`
 	RulesCommit string `json:"rules_commit"`
 	// Changes are what became of the strings between the two snapshots; all
-	// zero without a new one.
+	// zero when there is no older one.
 	Changes Changes `json:"changes"`
 	// Copy counts the copy records written: units the field rules do not
 	// translate that had no copy of their KR text yet.
@@ -204,8 +207,11 @@ func (in Inputs) check() error {
 // The state belongs to the snapshot of the last plan (the raw tag of
 // .meta/plan.json), or else to that of the last build (BuildRawTag), or else
 // to the current one. When that is not the current snapshot, the state is
-// first carried over to it (Transition). Then every unit of the current KR
-// gets the first source that holds:
+// first carried over to it (Transition). When it is, and the last plan was of
+// it too, the summary keeps what that plan said the snapshot brought
+// (PrevRawTag, Changes, FrozenChanged, NewSpeakers, NewFilesDefaultFamily);
+// the rest of it is what this run did. Then every unit of the current KR gets
+// the first source that holds:
 //
 //  1. the field rules do not translate it: a copy record (its KR text), and
 //     it leaves the queue;
@@ -229,13 +235,17 @@ func (in Inputs) check() error {
 //     record of its KR text already that is not human: the unit is queued
 //     once, and no more once it is translated again.
 //
+// Steps 1 to 4 and 6 come first, and the adjustments that expired are queued.
 // Then the rewrite files and the request files of rules/rewrite and
 // rules/requeue that .meta/applied.json does not list are applied, each in
 // file name order, rewrites first (so that a requeued unit shows the
 // rewritten text as its previous translation), and their ids are added to
-// applied.json. A rewrite changes no record of a frozen file and no text it
-// would leave with a hard issue of a new translation; a request leaves out
-// frozen files and copies (see requeue.Apply).
+// applied.json. Neither touches a unit that steps 1 to 3 decided: the next
+// plan would set it back. A rewrite changes no record of a frozen file and no
+// text it would leave with a hard issue of a new translation; a request
+// leaves out frozen files and copies too (see requeue.Apply). Step 5 comes
+// last, so that the translations it copies are rewritten already, and a unit
+// that was just requeued serves no other.
 //
 // The whole run is one store lock, and the store is written at its end: the
 // records, the queue, applied.json, then plan.json. The ids of the applied
@@ -292,7 +302,7 @@ func Run(in Inputs) (*Summary, error) {
 		if err := p.load(st); err != nil {
 			return err
 		}
-		if p.sum.PrevRawTag != p.sum.RawTag {
+		if p.from != p.sum.RawTag {
 			tmp, err := os.MkdirTemp(in.TmpDir, "lct-plan-")
 			if err != nil {
 				return fmt.Errorf("plan: %w", err)
@@ -307,17 +317,19 @@ func Run(in Inputs) (*Summary, error) {
 			return err
 		}
 		p.expire(adjusted)
-		if err := p.reuse(); err != nil {
-			return err
-		}
-		pending := p.pendingList()
 		applied, err := st.LoadApplied()
 		if err != nil {
 			return err
 		}
-		if pending, err = p.applyRuleFiles(&applied, rewrites, requeues, pending); err != nil {
+		pending, err := p.applyRuleFiles(&applied, rewrites, requeues, p.pendingList())
+		if err != nil {
 			return err
 		}
+		p.setPending(pending)
+		if err := p.reuse(); err != nil {
+			return err
+		}
+		pending = p.pendingList()
 		p.report(pending)
 
 		// In this order; see the doc of Run.
@@ -381,6 +393,9 @@ type planner struct {
 	oldKR   *pack.Pack
 	deleted []DeletedUnit
 
+	// from is the snapshot the state belongs to when Run starts.
+	from string
+
 	files   []*krFile          // the current KR files, in name order
 	cur     map[string]unitRef // the current units, by key
 	settled map[string]bool    // keys whose source steps 1 to 3 decided
@@ -412,11 +427,19 @@ func (p *planner) load(st *store.Store) error {
 	}
 	switch {
 	case found && last.RawTag != "":
-		p.sum.PrevRawTag = last.RawTag
+		p.from = last.RawTag
 	case p.in.BuildRawTag != "":
-		p.sum.PrevRawTag = p.in.BuildRawTag
+		p.from = p.in.BuildRawTag
 	default:
-		p.sum.PrevRawTag = p.sum.RawTag
+		p.from = p.sum.RawTag
+	}
+	p.sum.PrevRawTag = p.from
+	if found && last.RawTag == p.sum.RawTag && last.PrevRawTag != "" {
+		// This snapshot was planned already: what it brought stays in the
+		// summary, for the report and the review issue of its raw tag.
+		s := p.sum
+		s.PrevRawTag, s.Changes = last.PrevRawTag, last.Changes
+		s.FrozenChanged, s.NewSpeakers, s.NewFilesDefaultFamily = nonNil(last.FrozenChanged), nonNil(last.NewSpeakers), nonNil(last.NewFilesDefaultFamily)
 	}
 	if p.records, err = st.LoadRecords(); err != nil {
 		return err
@@ -444,7 +467,9 @@ func (p *planner) pendingList() []store.PendingItem {
 }
 
 // transition carries the state from the previous snapshot to the current one,
-// exporting the previous KR pack into dir.
+// exporting the previous KR pack into dir, and notes what the new snapshot
+// brought: the changes, the new speakers, the new files of the catch-all
+// family.
 func (p *planner) transition(dir string) error {
 	old, err := raw.OpenKRAt(p.in.RawWorktree, p.sum.PrevRawTag, dir)
 	if err != nil {
@@ -474,6 +499,13 @@ func (p *planner) transition(dir string) error {
 		}
 	}
 	slices.Sort(p.sum.NewSpeakers)
+	if def := defaultFamily(p.in.Rules); def != "" {
+		for _, f := range p.sum.Changes.FilesAdded {
+			if p.in.Rules.Family(f) == def {
+				p.sum.NewFilesDefaultFamily = append(p.sum.NewFilesDefaultFamily, f)
+			}
+		}
+	}
 	return nil
 }
 
@@ -567,14 +599,14 @@ func (p *planner) settle(claims map[string]*claim) error {
 		}
 		f := &krFile{name: name, doc: doc, units: units.Extract(name, doc), frozen: config.MatchAny(p.in.Frozen, name)}
 		p.files = append(p.files, f)
-		al := &aligner{set: p.in.Src, file: name, kr: doc}
+		al := align.NewFileAligner(name, doc, p.in.Src.EN, p.in.Src.JP)
 		for i, u := range f.units {
 			key := units.Key(name, u.Pointer)
 			ref := unitRef{file: f, i: i, sha: units.KRSha(u.KR)}
 			p.cur[key] = ref
-			en, jp, err := al.get(u.Pointer)
+			en, jp, err := al.Get(u.Pointer)
 			if err != nil {
-				return err
+				return fmt.Errorf("plan: %w", err)
 			}
 			p.unit(key, ref, p.in.Fields.Classify(u, en, jp).Translate, claims[key])
 		}
@@ -783,11 +815,14 @@ func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (
 }
 
 // applyRuleFiles applies the rewrite and request files that applied does not
-// list, adding their ids to it, and returns the queue they leave.
+// list, adding their ids to it, and returns the queue they leave. Neither
+// kind touches a unit whose source steps 1 to 3 decided (a copy, a frozen
+// unit with a record, an adjusted unit): the next plan would only set it back.
 func (p *planner) applyRuleFiles(applied *store.Applied, rewrites []rewrite.File, requeues []requeue.File, pending []store.PendingItem) ([]store.PendingItem, error) {
+	held := func(key string) bool { return p.settled[key] }
 	ok := func(key, kr, zh string) bool {
 		file, _, _ := strings.Cut(key, "|")
-		return !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, kr, zh))
+		return !held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, kr, zh))
 	}
 	for _, f := range rewrites {
 		if slices.Contains(applied.Rewrite, f.ID) {
@@ -801,7 +836,7 @@ func (p *planner) applyRuleFiles(applied *store.Applied, rewrites []rewrite.File
 		if slices.Contains(applied.Requeue, f.ID) {
 			continue
 		}
-		out, res, err := requeue.ApplyTo(p.records, pending, p.in.Src.KR, p.in.Frozen, f.Selector, strings.TrimSpace(f.Reason))
+		out, res, err := requeue.ApplyTo(p.records, pending, p.in.Src.KR, p.in.Frozen, f.Selector, strings.TrimSpace(f.Reason), held)
 		if err != nil {
 			return nil, fmt.Errorf("plan: %s/%s.yaml: %w", requeue.Dir, f.ID, err)
 		}
@@ -812,22 +847,22 @@ func (p *planner) applyRuleFiles(applied *store.Applied, rewrites []rewrite.File
 	return pending, nil
 }
 
-// report fills in the parts of the summary that look at the result: the new
-// files of the catch-all family and the units a batch can take now.
+// report counts the units a batch can take now.
 func (p *planner) report(pending []store.PendingItem) {
-	if def := defaultFamily(p.in.Rules); def != "" {
-		for _, f := range p.sum.Changes.FilesAdded {
-			if p.in.Rules.Family(f) == def {
-				p.sum.NewFilesDefaultFamily = append(p.sum.NewFilesDefaultFamily, f)
-			}
-		}
-	}
 	now := time.Now()
 	for _, it := range pending {
 		if _, inKR := p.cur[it.Key]; inKR && store.LeaseFree(it, now) && !slices.Contains(it.Flags, store.FlagNeedsReview) {
 			p.sum.Pending++
 		}
 	}
+}
+
+// nonNil turns a nil list into an empty one, which is written as [].
+func nonNil(s []string) []string {
+	if s == nil {
+		return []string{}
+	}
+	return s
 }
 
 // defaultFamily is the id of the catch-all family of the routing, the one
@@ -839,46 +874,4 @@ func defaultFamily(r *rules.Rules) string {
 		}
 	}
 	return ""
-}
-
-// aligner aligns the EN and JP texts of one file to its KR units, once, on
-// first use.
-type aligner struct {
-	set    pack.Set
-	file   string
-	kr     *jsonx.Node
-	loaded bool
-	en, jp map[string]align.LangAligned
-}
-
-// get returns the EN and JP texts aligned to the unit at pointer; nil means
-// there is none.
-func (a *aligner) get(pointer string) (en, jp *align.LangAligned, err error) {
-	if !a.loaded {
-		if a.en, err = a.align(a.set.EN); err != nil {
-			return nil, nil, err
-		}
-		if a.jp, err = a.align(a.set.JP); err != nil {
-			return nil, nil, err
-		}
-		a.loaded = true
-	}
-	pick := func(m map[string]align.LangAligned) *align.LangAligned {
-		if v, ok := m[pointer]; ok {
-			return &v
-		}
-		return nil
-	}
-	return pick(a.en), pick(a.jp), nil
-}
-
-func (a *aligner) align(other *pack.Pack) (map[string]align.LangAligned, error) {
-	if !other.Has(a.file) {
-		return nil, nil
-	}
-	doc, err := other.Doc(a.file)
-	if err != nil {
-		return nil, fmt.Errorf("plan: %w", err)
-	}
-	return align.AlignLang(a.file, a.kr, doc), nil
 }

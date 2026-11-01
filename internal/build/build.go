@@ -247,7 +247,7 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 		return nil, err
 	}
 	out := kr.Clone() // the parsed tree is shared; never modify it
-	al := &aligner{set: b.src, file: file, kr: kr}
+	al := align.NewFileAligner(file, kr, b.src.EN, b.src.JP)
 	frozen := config.MatchAny(b.opt.Frozen, file)
 	for _, u := range units.Extract(file, kr) {
 		text, err := b.fill(u, frozen, al)
@@ -275,12 +275,12 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 // is replaced the same way but never queued, since a frozen file is not
 // translated again (it is listed in FrozenFallback). A unit with no usable
 // record shows EN (or KR) and counts as pending.
-func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
+func (b *builder) fill(u units.Unit, frozen bool, al *align.FileAligner) (string, error) {
 	key := units.Key(u.File, u.Pointer)
 	rec, ok := b.records[key]
 	usable := ok && (frozen || rec.KRSha == units.KRSha(u.KR))
 
-	en, jp, err := al.get(u.Pointer)
+	en, jp, err := al.Get(u.Pointer)
 	if err != nil {
 		return "", err
 	}
@@ -312,7 +312,7 @@ func (b *builder) countUsed(rec store.Record, review bool) {
 	}
 }
 
-func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *aligner) (string, error) {
+func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *align.FileAligner) (string, error) {
 	// A copy is the KR text itself: there is nothing to check, and the Hangul
 	// it keeps would only flood the warnings.
 	if rec.Origin == store.OriginCopy {
@@ -348,7 +348,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 			b.added = append(b.added, store.PendingItem{Key: key, Reason: ReasonStructuralFail, Draft: rec.ZH})
 		}
 	}
-	en, _, err := al.get(u.Pointer)
+	en, _, err := al.Get(u.Pointer)
 	if err != nil {
 		return "", err
 	}
@@ -362,46 +362,4 @@ func standIn(u units.Unit, en *align.LangAligned) string {
 		return en.Value
 	}
 	return u.KR
-}
-
-// aligner finds the EN and JP text of the units of one file. The alignment is
-// slow, so it runs once per file, when the first unit asks.
-type aligner struct {
-	set    pack.Set
-	file   string
-	kr     *jsonx.Node
-	loaded bool
-	en, jp map[string]align.LangAligned
-}
-
-// get returns the EN and JP text aligned to the unit at pointer; nil means
-// there is none.
-func (a *aligner) get(pointer string) (en, jp *align.LangAligned, err error) {
-	if !a.loaded {
-		if a.en, err = a.align(a.set.EN); err != nil {
-			return nil, nil, err
-		}
-		if a.jp, err = a.align(a.set.JP); err != nil {
-			return nil, nil, err
-		}
-		a.loaded = true
-	}
-	pick := func(m map[string]align.LangAligned) *align.LangAligned {
-		if v, ok := m[pointer]; ok {
-			return &v
-		}
-		return nil
-	}
-	return pick(a.en), pick(a.jp), nil
-}
-
-func (a *aligner) align(other *pack.Pack) (map[string]align.LangAligned, error) {
-	if other == nil || !other.Has(a.file) {
-		return nil, nil
-	}
-	doc, err := other.Doc(a.file)
-	if err != nil {
-		return nil, err
-	}
-	return align.AlignLang(a.file, a.kr, doc), nil
 }

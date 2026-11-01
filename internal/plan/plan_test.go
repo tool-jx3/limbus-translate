@@ -292,15 +292,26 @@ func TestPlanWithoutTransitionChangesNothing(t *testing.T) {
 	}
 }
 
+// A second plan of the same snapshot changes nothing: every requeue and
+// rewrite file is applied once, and none of them touches a unit whose source
+// steps 1 to 3 decide (a copy, an adjusted unit), which the next plan would
+// only set back. Reuse runs after the rule files, so it sees what they fixed.
 func TestPlanTwiceIsIdempotent(t *testing.T) {
 	e := newPlanEnv(t)
-	const s1 = "StoryData/S1.json"
+	const (
+		s1     = "StoryData/S1.json"
+		skills = "Skills_A.json"
+		magic  = "마법으로 적을 공격합니다"
+	)
+	adjusted, copyKey := descKey(skills, 1), at(skills, "/dataList/2/key")
+	skillsV1 := dataList(obj{"id": 1, "desc": "피해량이 2배 증가한다"}, obj{"id": 2, "desc": "적에게 2배 피해를 준다"}, obj{"id": 3, "key": "2_SLASH"})
 	e.snapshot(map[string]string{
 		s1: dataList(
 			obj{"id": 0, "model": "이상", "content": "첫 번째 줄입니다."},
 			obj{"id": 1, "model": "파우스트", "content": "두 번째 줄입니다."},
 			obj{"id": 2, "model": "이상", "content": "세 번째 줄입니다."}),
-		"Skills_A.json": dataList(obj{"id": 1, "desc": "피해량이 2배 증가한다"}),
+		skills:          skillsV1,
+		"Skills_M.json": dataList(obj{"id": 1, "desc": magic}),
 	})
 	e.seed([]store.Record{
 		copied(at(s1, "/dataList/0/model"), "이상"),
@@ -309,8 +320,12 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 		translated(at(s1, "/dataList/0/content"), "첫 번째 줄입니다.", "這是第一行。"),
 		translated(at(s1, "/dataList/1/content"), "두 번째 줄입니다.", "這是第二行。"),
 		translated(at(s1, "/dataList/2/content"), "세 번째 줄입니다.", "這是第三行。"),
-		translated(descKey("Skills_A.json", 0), "피해량이 2배 증가한다", "傷害增加2倍"),
+		translated(descKey(skills, 0), "피해량이 2배 증가한다", "傷害增加2倍"),
+		translated(adjusted, "적에게 2배 피해를 준다", "對敵人造成兩倍傷害"),
+		copied(copyKey, "2_SLASH"),
+		translated(descKey("Skills_M.json", 0), magic, "用法術攻擊敵人"), // 마법 is 魔法, never 法術
 	}, nil)
+	e.rule("rules/adjustments/2026-11-01-wording.yaml", adjustment(adjusted, "적에게 2배 피해를 준다", "對敵人造成2倍傷害。"))
 	e.run("") // the state belongs to the first snapshot
 
 	e.snapshot(map[string]string{
@@ -319,10 +334,18 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 			obj{"id": 1, "model": "그레고르", "content": "새로 들어온 줄입니다."},
 			obj{"id": 2, "model": "파우스트", "content": "두 번째 줄입니다."},
 			obj{"id": 3, "model": "이상", "content": "세 번째 줄을 고쳤습니다."}),
-		"Skills_A.json": dataList(obj{"id": 1, "desc": "피해량이 2배 증가한다"}),
+		skills:          skillsV1,
+		"Skills_M.json": dataList(obj{"id": 1, "desc": magic}),
+		"Skills_N.json": dataList(obj{"id": 1, "desc": magic}), // the same text, in a new file
 	})
 	e.rule("rules/requeue/2026-11-05-honorific.yaml", "reason: 稱呼改用您\nkeys: [\"StoryData/S1.json|/dataList/2/content\"]\n")
+	// Every origin but copy by default, human too: the adjusted unit is in it.
+	e.rule("rules/requeue/2026-11-06-skills.yaml", "reason: 全部重翻\nfiles: [\"Skills_A*\"]\n")
 	e.rule("rules/rewrite/2026-11-05-space.yaml", "reason: 加空格\nfiles: [\"Skills*\"]\npattern: '(2)(倍)'\nreplace: '$1 $2'\n")
+	// It names the origins of the adjusted unit and of the copy.
+	e.rule("rules/rewrite/2026-11-06-held.yaml", "reason: 加空格\nfiles: [\"Skills*\"]\norigins: [human, copy]\npattern: '(2)(倍|_)'\nreplace: '$1 $2'\n")
+	// It fixes the translation that Skills_N.json can then reuse.
+	e.rule("rules/rewrite/2026-11-07-magic.yaml", "reason: 마법 是魔法\nfiles: [\"Skills_M*\"]\npattern: '法術'\nreplace: '魔法'\n")
 
 	first := e.run("")
 	recs1, pending1, applied1 := e.records(), e.pending(), e.applied()
@@ -334,20 +357,42 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 	if first.PrevRawTag != tag1 || first.RawTag != tag2 {
 		t.Errorf("first run: %s from %s, want %s from %s", first.RawTag, first.PrevRawTag, tag2, tag1)
 	}
-	if want := []Applied{{ID: "2026-11-05-honorific", Units: 1}}; !reflect.DeepEqual(first.RequeueApplied, want) {
+	if want := []Applied{{ID: "2026-11-05-honorific", Units: 1}, {ID: "2026-11-06-skills", Units: 1}}; !reflect.DeepEqual(first.RequeueApplied, want) {
 		t.Errorf("first RequeueApplied = %+v, want %+v", first.RequeueApplied, want)
 	}
-	if want := []Applied{{ID: "2026-11-05-space", Units: 1}}; !reflect.DeepEqual(first.RewriteApplied, want) {
+	if want := []Applied{{ID: "2026-11-05-space", Units: 1}, {ID: "2026-11-06-held", Units: 0}, {ID: "2026-11-07-magic", Units: 1}}; !reflect.DeepEqual(first.RewriteApplied, want) {
 		t.Errorf("first RewriteApplied = %+v, want %+v", first.RewriteApplied, want)
 	}
-	if got := recs1[descKey("Skills_A.json", 0)].ZH; got != "傷害增加2 倍" {
+	if got := recs1[descKey(skills, 0)].ZH; got != "傷害增加2 倍" {
 		t.Errorf("rewritten zh = %q, want 傷害增加2 倍", got)
 	}
 	if it := pending1[at(s1, "/dataList/2/content")]; it.Reason != "requeue" || it.Hint != "稱呼改用您" || it.PrevZH != "這是第二行。" {
 		t.Errorf("requeued item = %+v, want reason requeue with the hint and the old translation", it)
 	}
-	if want := (store.Applied{Requeue: []string{"2026-11-05-honorific"}, Rewrite: []string{"2026-11-05-space"}}); !reflect.DeepEqual(applied1, want) {
-		t.Errorf("applied = %+v, want %+v", applied1, want)
+	if it := pending1[descKey(skills, 0)]; it.Reason != "requeue" || it.Hint != "全部重翻" || it.PrevZH != "傷害增加2 倍" {
+		t.Errorf("requeued skill = %+v, want reason requeue with the rewritten text as the old translation", it)
+	}
+	if got := recs1[adjusted]; got.Origin != store.OriginHuman || got.ZH != "對敵人造成2倍傷害。" {
+		t.Errorf("adjusted unit = %+v, want the adjustment's text, not rewritten", got)
+	}
+	if got := recs1[copyKey]; got.Origin != store.OriginCopy || got.ZH != "2_SLASH" {
+		t.Errorf("copied unit = %+v, want the KR text, not rewritten", got)
+	}
+	for _, key := range []string{adjusted, copyKey} {
+		if it, queued := pending1[key]; queued {
+			t.Errorf("%s was requeued (%+v), want it left to its source", key, it)
+		}
+	}
+	reusedKey := descKey("Skills_N.json", 0)
+	if got := recs1[reusedKey]; got.ZH != "用魔法攻擊敵人" || got.Batch != "reuse:"+descKey("Skills_M.json", 0) || first.Reused != 1 {
+		t.Errorf("Skills_N = %+v (reused %d), want the rewritten translation reused", got, first.Reused)
+	}
+	wantApplied := store.Applied{
+		Requeue: []string{"2026-11-05-honorific", "2026-11-06-skills"},
+		Rewrite: []string{"2026-11-05-space", "2026-11-06-held", "2026-11-07-magic"},
+	}
+	if !reflect.DeepEqual(applied1, wantApplied) {
+		t.Errorf("applied = %+v, want %+v", applied1, wantApplied)
 	}
 
 	second := e.run("")
@@ -365,11 +410,51 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 	if string(appliedJSON2) != string(appliedJSON1) {
 		t.Errorf("second run changed applied.json:\n%s\nwant\n%s", appliedJSON2, appliedJSON1)
 	}
-	if len(second.RequeueApplied) != 0 || len(second.RewriteApplied) != 0 {
-		t.Errorf("second run applied %+v and %+v again", second.RequeueApplied, second.RewriteApplied)
+	if len(second.RequeueApplied) != 0 || len(second.RewriteApplied) != 0 || second.Reused != 0 || second.Copy != 0 {
+		t.Errorf("second run: applied %+v and %+v, reused %d, copied %d; want nothing again", second.RequeueApplied, second.RewriteApplied, second.Reused, second.Copy)
 	}
-	if second.PrevRawTag != tag2 || !reflect.DeepEqual(second.Changes, Changes{}) {
-		t.Errorf("second run: from %s with changes %+v, want from %s with none", second.PrevRawTag, second.Changes, tag2)
+}
+
+// A plan of a snapshot that was planned already keeps what that snapshot
+// brought, for the report and the review issue of its raw tag; what the run
+// did itself is counted afresh (R15).
+func TestPlanRerunKeepsWhatTheSnapshotBrought(t *testing.T) {
+	e := newPlanEnv(t)
+	const bgm = "BgmLyrics/L.json"
+	e.snapshot(map[string]string{
+		"StoryData/S1.json": dataList(obj{"id": 0, "model": "이상", "content": "줄 하나"}),
+		bgm:                 dataList(obj{"id": 1, "content": "노래 가사"}),
+	})
+	e.seed([]store.Record{
+		copied(at("StoryData/S1.json", "/dataList/0/model"), "이상"),
+		translated(at("StoryData/S1.json", "/dataList/0/content"), "줄 하나", "第一行"),
+		translated(at(bgm, "/dataList/0/content"), "노래 가사", "歌詞"),
+	}, nil)
+	e.snapshot(map[string]string{
+		"StoryData/S1.json": dataList(obj{"id": 0, "model": "이상", "content": "줄 하나"}, obj{"id": 1, "model": "새인물", "content": "줄 둘"}),
+		bgm:                 dataList(obj{"id": 1, "content": "바뀐 노래 가사"}),
+		"Misc.json":         dataList(obj{"id": 1, "desc": "새 파일"}),
+	})
+	e.rule("rules/requeue/2026-11-05-story.yaml", "reason: 重翻\nfiles: [\"StoryData/**\"]\n")
+
+	first := e.run(tag1)
+	if first.PrevRawTag != tag1 || first.Changes.New == 0 || len(first.FrozenChanged) != 1 || len(first.NewSpeakers) != 1 ||
+		len(first.NewFilesDefaultFamily) != 1 || len(first.RequeueApplied) != 1 {
+		t.Fatalf("first run = %+v, want a transition with a frozen change, a new speaker, a new file and a request applied", first)
+	}
+
+	second := e.run(tag1)
+
+	if second.RawTag != tag2 || second.PrevRawTag != first.PrevRawTag || !reflect.DeepEqual(second.Changes, first.Changes) ||
+		!reflect.DeepEqual(second.FrozenChanged, first.FrozenChanged) || !reflect.DeepEqual(second.NewSpeakers, first.NewSpeakers) ||
+		!reflect.DeepEqual(second.NewFilesDefaultFamily, first.NewFilesDefaultFamily) {
+		t.Errorf("second run = %+v\nwant what the snapshot brought kept from %+v", second, first)
+	}
+	if len(second.RequeueApplied) != 0 || len(second.RewriteApplied) != 0 || second.Copy != 0 {
+		t.Errorf("second run applied %+v and %+v and copied %d, want nothing", second.RequeueApplied, second.RewriteApplied, second.Copy)
+	}
+	if second.Pending != first.Pending {
+		t.Errorf("second run Pending = %d, want %d: nothing changed", second.Pending, first.Pending)
 	}
 }
 
