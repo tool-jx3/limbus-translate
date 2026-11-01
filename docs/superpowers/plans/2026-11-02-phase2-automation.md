@@ -24,6 +24,9 @@
 - `GITHUB_TOKEN` 權限：`contents: write`、`issues: write`
 - 翻譯迴圈：`claude -p "/translate-pending" --output-format json --model "$LCT_MODEL" --max-turns <N>`；停止條件：沒有可領的待譯、累計 `total_cost_usd` ≥ 上限、接近時間上限（單一 job 6 小時）
 - 審核 Issue 標題 `審核：YYYY-MM-DD 更新`（日期取 raw tag 的日期）；沒有需要處理的項目時不開 Issue
+- 審核 Issue 的內文與留言各有 65,536 字元上限：內容超過時分段，第一段是 Issue 內文，其餘依序留言在同一個 Issue；每段不超過 60,000 字元，不把同一項拆到兩段
+- 關鍵字名稱後加半形空格（使用者決定）：KR 用韓文寫狀態名、沒有 `[ID]` 時，中文狀態名後加一個半形空格（「2級破裂 強度」「2層強壯 ，」），因為遊戲以「關鍵字＋空格」配對顯示效果說明；`lct batch submit` 與 `lct adjust add` 在驗證前自動補上
+- 需要設定的 secrets 與 variables 寫在 `README.md` 的「GitHub Actions 設定」
 - Release tag `zh-TW-YYYYMMDD.N`；只在 `tw` 有新 commit、或該 commit 還沒有 Release 時才建立 Release
 - skill、`prompts/`、workflow 不寫模型名稱；模型由 `--model` 或 `LCT_MODEL` 給
 - `raw`、`tw` 分支與 Release 只由 CI 寫入；人經由 `main` 介入
@@ -41,7 +44,7 @@
 2. **同一次更新跑兩次 plan**（`update.yml` 之後 `rebuild.yml` 又跑一次，或手動重跑）：狀態不變，重翻要求與改寫檔不會套用第二次 — Task 6 `TestPlanTwiceIsIdempotent`
 3. **上週沒翻完的待譯遇上這週的新版本**：待譯項目的 key 要跟著搬，租約清掉，`prev_kr` 不被覆寫成錯的版本 — Task 3 `TestTransitionMovesPendingItemsAndClearsLeases`
 4. **一次 Claude 執行卡住或花費超過上限**：要能殺掉、停止迴圈，並照常打包已翻好的部分 — Task 9 `TestRunKillsAHungRun`、`TestRunStopsAtCostCap`
-5. **審核 Issue 超過 GitHub 的 65,536 字元上限**（例如一次 3,000 筆 needs_review）：Issue 要截斷並指向完整報表，不能讓 `gh issue create` 失敗 — Task 10 `TestReviewIssueTruncates`
+5. **審核 Issue 超過 GitHub 的 65,536 字元上限**（例如一次 3,000 筆 needs_review）：分成多段，第一段發 Issue、其餘依序留言在同一個 Issue，每一段都不超過上限、每一項都在 — Task 10 `TestReviewIssueSplits`
 
 ## File Structure
 
@@ -56,12 +59,12 @@
 | `internal/plan/plan.go`、`cmd/lct/plan.go` | `lct plan`：§8.2 全流程與 `.meta/plan.json` | 6 |
 | `internal/batch/twins.go` | 兄弟句（同 KR）的延後發放與送出時沿用 | 7 |
 | `internal/rules/glossary.go`、`internal/rules/rules.go` | 詞彙條目的 `files` 範圍、外來名稱忽略清單 | 7 |
-| `internal/validate/validate.go` | 新增的警告 | 8 |
+| `internal/validate/normalize.go`、`internal/validate/validate.go` | 關鍵字名稱後的空格、新增的警告 | 8 |
 | `internal/translate/translate.go`、`cmd/lct/translate.go` | `lct translate`：CI 翻譯迴圈 | 9 |
 | `internal/build/report.go`、`internal/build/issue.go` | §14 報表、審核 Issue | 10 |
 | `internal/publish/publish.go` | release notes、Release 判斷 | 1、10 |
 | `cmd/lct/search.go`、`.claude/skills/adjust/`、`.claude/skills/weekly-update/` | `lct search` 與兩個 skill | 11 |
-| `.github/workflows/pipeline.yml`、`update.yml`、`rebuild.yml`、`ci.yml` | §12 | 12 |
+| `.github/workflows/pipeline.yml`、`update.yml`、`rebuild.yml`、`ci.yml`、`README.md` | §12；secrets 與 variables 的說明 | 12 |
 | `cmd/lct/e2e_phase2_test.go`、`testdata/phase2/` | §17 重播測試 | 13 |
 
 ---
@@ -392,30 +395,35 @@ git commit -m "feat(batch,rules): translate identical lines once, scope glossary
 git push -u origin claude/festive-wright-g2k853
 ```
 
-### Task 8: 新增的驗證警告（#1 C）
+### Task 8: 關鍵字名稱後的空格與新增的驗證警告（使用者決定、#1 C）
 
 **Files:**
-- Modify: `internal/validate/validate.go`、`internal/build/build.go`、`internal/batch/submit.go`（傳入檔名）
-- Test: `internal/validate/validate_test.go`
+- Modify: `internal/validate/normalize.go`、`internal/validate/validate.go`、`internal/build/build.go`、`internal/batch/batch.go`、`internal/batch/submit.go`、`cmd/lct/batch.go`、`cmd/lct/adjust.go`、`guides/base.md`
+- Test: `internal/validate/normalize_test.go`、`internal/validate/validate_test.go`、`internal/batch/batch_test.go`
 
 **Interfaces:**
 - Produces:
+  - `validate.NormalizeKeywordSpace(zh string, names []string) string`：`names` 中的名稱緊接在 `\d+(級|層|回)` 之後、後面不是半形空格時（包括字串結尾），在名稱後插入一個半形空格；名稱依長度由長到短比對（「破裂易損」先於「破裂」）
+  - `batch.Env` 加 `KeywordNames []string`：`cmd/lct` 以 `names.KeywordTable` 從目前 `Bufs*`、`BattleKeywords*` 的紀錄取出全部中文狀態名；`batch.Submit` 在 `validate.Normalize` 之後呼叫 `NormalizeKeywordSpace`；`lct adjust add` 同樣處理
+  - `guides/base.md` 的「KR 寫韓文狀態名、沒有 `[ID]` 時」改成：寫官方中文名，名稱後加一個半形空格（「1級燒傷 強度」「2層守護 」「2層強壯 ，」）；遊戲以「關鍵字＋空格」配對顯示效果說明；`lct batch submit` 會自動補上。刪掉「新譯與修改時不加空格」與「照抄兄弟檔時空格拿掉」兩句
   - `validate.Context` 加 `File string`
   - 半形標點警告不再對 `E.G.O::`（兩個以上連續的 `:`）報警
   - 新警告 `placeholder-bracket`：zh 有 `[{n}` 而沒有緊接的 `]`，或 `{n}]` 前沒有 `[`，且 KR 的方括號是成對的
   - 新警告 `halfwidth-bracket`：`File` 在 `RPGSystem/` 下、檔名不含 `dialogue`，zh 含半形 `(` 或 `)`
 
 - [ ] **Step 1: 寫失敗的測試**
+  - `TestNormalizeKeywordSpace`：`names = [破裂, 破裂易損, 強壯]`；「2級破裂強度」→「2級破裂 強度」；「2層強壯，」→「2層強壯 ，」；「3回破裂易損」→「3回破裂易損 」；「2級破裂 強度」不變；「破裂的力量」（前面沒有數量）不變
+  - `TestSubmitAddsKeywordSpace`：out 檔的 zh 是「使目標增加2級破裂強度」→ 收下的紀錄是「使目標增加2級破裂 強度」
   - `TestHalfwidthPunctIgnoresDoubleColon`：`「腦葉公司E.G.O:: 淚鋒之劍 羅佳」` 沒有 `halfwidth-punct`
   - `TestPlaceholderBracket`：KR `[{0}]이(가)…`、zh `<color>[{0}</color>獲得了` → 一個 `placeholder-bracket` 警告；zh `[{0}]獲得了` → 沒有
   - `TestHalfwidthBracketInRPGLabels`：`File: "RPGSystem/rpg-loc-quest-floor-3.json"`、zh `(內部)…` → 警告；`File: "RPGSystem/rpg-loc-dialogue-floor-3.json"` → 沒有
 
 - [ ] **Step 2: 執行測試確認失敗**
 
-Run: `go test ./internal/validate/`
+Run: `go test ./internal/validate/ ./internal/batch/`
 Expected: FAIL
 
-- [ ] **Step 3: 實作**（三者都是 `ClassStyle` 警告）
+- [ ] **Step 3: 實作**（三個新警告都是 `ClassStyle`）
 
 - [ ] **Step 4: 執行測試確認通過**
 
@@ -425,8 +433,8 @@ Expected: PASS
 - [ ] **Step 5: Commit 並 push**
 
 ```bash
-git add internal/validate internal/build internal/batch
-git commit -m "feat(validate): warn on unbalanced placeholder brackets and half-width brackets in RPG labels"
+git add internal/validate internal/build internal/batch cmd/lct guides/base.md
+git commit -m "feat(validate): space after keyword names; warn on unbalanced placeholder brackets and half-width brackets in RPG labels"
 git push -u origin claude/festive-wright-g2k853
 ```
 
@@ -489,8 +497,8 @@ git push -u origin claude/festive-wright-g2k853
   - `build.Info` 加 `NotesSeen int` `json:"notes_seen"`（建置當時 note 的總數；下次只報告之後的）
   - `build.Options` 加 `RepoURL string`（例如 `https://github.com/tool-jx3/limbus-translate`；空字串時不產生比較頁連結）、`PrevTWCommit string`
   - 報表 `.meta/reports/<raw tag>.md` 依 §14.2、§14.3 分成「需要你處理」與「資訊」兩節；比較頁連結 `<RepoURL>/compare/<prev raw tag>...<raw tag>` 與 `<RepoURL>/compare/<PrevTWCommit>...tw`
-  - `build.ReviewIssue(info build.Info, sum *plan.Summary, pending []store.PendingItem) (title, body string, ok bool)`：需要處理的項目 = needs_review 的待譯（key 與最後一次的錯誤）、過期的人工調整、凍結檔 KR 有變、凍結檔 fallback、新說話者、欄位規則變化、預設族群的新檔、翻譯迴圈的 `Stopped` 是 `"error"`；沒有任何一項時 `ok == false`。每項是 `- [ ] ` 勾選清單；body 超過 60,000 字元時截斷並加一行「完整清單見 `.meta/reports/<raw tag>.md`」
-  - `lct build` 寫 `out/summary.md`（完整報表，超過 1,000,000 位元組時截斷）；`ReviewIssue` 為真時寫 `out/review-issue.md` 與 `out/review-issue-title.txt`，否則刪掉舊的；`buildOutput` 加 `ReviewIssue string` `json:"review_issue"`（路徑或空字串）。`RepoURL` 取 `$GITHUB_SERVER_URL/$GITHUB_REPOSITORY`，`PrevTWCommit` 取建置前 `tw` 的 HEAD
+  - `build.ReviewIssue(info build.Info, sum *plan.Summary, pending []store.PendingItem) (title string, parts []string, ok bool)`：需要處理的項目 = needs_review 的待譯（key 與最後一次的錯誤）、過期的人工調整、凍結檔 KR 有變、凍結檔 fallback、新說話者、欄位規則變化、預設族群的新檔、翻譯迴圈的 `Stopped` 是 `"error"`；沒有任何一項時 `ok == false`。每項是 `- [ ] ` 勾選清單。`parts[0]` 是 Issue 內文，其餘是依序要留言的內容；每段不超過 60,000 字元，只在兩項之間切開（單一項本身超過上限時截斷該項並註明）；分成多段時每段開頭寫「（第 i／M 段）」，第一段另寫完整報表的位置 `.meta/reports/<raw tag>.md`
+  - `lct build` 寫 `out/summary.md`（完整報表，超過 1,000,000 位元組時截斷）；`ReviewIssue` 為真時寫 `out/review-issue/title.txt` 與 `out/review-issue/01.md`、`02.md`…（兩位數，依序），否則刪掉整個 `out/review-issue/`；`buildOutput` 加 `ReviewIssueParts int` `json:"review_issue_parts"`（段數，沒有 Issue 時為 0）。`RepoURL` 取 `$GITHUB_SERVER_URL/$GITHUB_REPOSITORY`，`PrevTWCommit` 取建置前 `tw` 的 HEAD
   - release notes 依 §14.1 精簡：這次的原文版本與變化數（新增／修改／刪除單位）、各來源比例（百分比，一位小數）、仍顯示英文的數量（pending ＋ fallback）、授權與來源（Task 1 的寫法）；不再列完整表格
   - `batch.Submit`：所有 key 驗證完才寫 note（批次檔有格式錯的 key 時什麼都不寫）
 
@@ -499,9 +507,9 @@ git push -u origin claude/festive-wright-g2k853
   - `TestReportListsNewNotesOnce`：建置一次（2 筆 note）、加 1 筆後再建置 → 第二份報表只列 1 筆，`notes_seen == 3`
   - `TestReportWarningSamples`：12 筆 `kana` 警告 → `WarningSamples["kana"]` 有 10 個 key、排序
   - `TestReportInconsistentRenderings`：同族群同欄位同 KR 兩種 `zh` → 一組，`ZH` 兩個、`Keys` 兩個
-  - `TestReviewIssueOnlyWithItems`：沒有任何需要處理的項目 → `ok == false`，`lct build` 刪掉舊的 `out/review-issue.md`
+  - `TestReviewIssueOnlyWithItems`：沒有任何需要處理的項目 → `ok == false`，`lct build` 刪掉舊的 `out/review-issue/`
   - `TestReviewIssueChecklist`：每類各一項 → body 每項以 `- [ ] ` 開頭，標題 `審核：2026-11-05 更新`
-  - `TestReviewIssueTruncates`：3,000 筆 needs_review → body ≤ 60,000 字元，最後一行指向報表
+  - `TestReviewIssueSplits`：3,000 筆 needs_review → 多段，每段 ≤ 60,000 字元、開頭有「（第 i／M 段）」；所有段合起來恰好含 3,000 個 `- [ ] ` 項目，沒有一項被拆開；`lct build` 寫出的 `01.md`…檔數等於 `review_issue_parts`
   - `TestNotesAreConcise`：notes 有比例（例如 `paratranz 60.0%`）與「仍顯示英文」一行，沒有完整報表的表格
   - `TestSubmitNoteWithABadKeyWritesNothing`：out 檔一筆合法、一筆 key 格式錯且有 note → 錯誤，`notes.jsonl` 沒變
 
@@ -569,12 +577,12 @@ git push -u origin claude/festive-wright-g2k853
 ### Task 12: Workflows（§12、#1 A5）
 
 **Files:**
-- Create: `.github/workflows/pipeline.yml`、`.github/workflows/update.yml`
+- Create: `.github/workflows/pipeline.yml`、`.github/workflows/update.yml`、`README.md`
 - Modify: `.github/workflows/rebuild.yml`、`.github/workflows/ci.yml`、`cmd/lct/fetch.go`、`cmd/lct/contract_test.go`
 - Test: `cmd/lct/fetch_test.go`、`cmd/lct/contract_test.go`
 
 **Interfaces:**
-- Consumes: `lct fetch`、`lct snapshot`、`lct plan`、`lct requeue`、`lct translate`、`lct build`、`lct publish` 的 JSON 輸出；`publish.Result.ReleaseNeeded`；`out/review-issue.md`、`out/review-issue-title.txt`、`out/summary.md`
+- Consumes: `lct fetch`、`lct snapshot`、`lct plan`、`lct requeue`、`lct translate`、`lct build`、`lct publish` 的 JSON 輸出；`publish.Result.ReleaseNeeded`；`out/review-issue/`（`title.txt`、`01.md`…）、`out/summary.md`
 - Produces:
   - `lct fetch --check`：只問狀態 API，輸出 `{token, created_at, new}`（`new` = 與 raw 的 `meta/source.json` 的 token 不同），不下載
   - `pipeline.yml`（`on: workflow_call`；inputs：`fetch`（boolean）、`force`（boolean）、`requeue`（string）、`max_usd`（string）、`dry_run`（boolean）；secrets：`ANTHROPIC_API_KEY`、`LIMBUS_STATUS_URL`，都不是必填）：單一 job，`runs-on: ubuntu-24.04`、`timeout-minutes: 350`、`concurrency: { group: lct-state, cancel-in-progress: false }`、`permissions: { contents: write, issues: write }`。步驟依序：
@@ -587,15 +595,17 @@ git push -u origin claude/festive-wright-g2k853
     7. 有可領的待譯、`dry_run` 為假、`ANTHROPIC_API_KEY` 不是空的 → `npm install -g @anthropic-ai/claude-code@2.1.316`，`bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 300 --run-timeout 90m`（`MAX_USD` = input `max_usd`，否則 `vars.LCT_MAX_USD`，否則 `30`；`LCT_MODEL` = `vars.LCT_MODEL`）；失敗只發 `::warning::`，繼續
     8. `bin/lct build --json`；`out/summary.md` 附到 `$GITHUB_STEP_SUMMARY`
     9. `bin/lct publish --json > out/publish.json`；push `tw`；`release_needed` 為真 → `gh release create`（沿用現有的 asset 檢查）
-    10. `out/review-issue.md` 存在 → `gh issue create --title "$(cat out/review-issue-title.txt)" --body-file out/review-issue.md`
+    10. `out/review-issue/01.md` 存在 → `gh issue create --title "$(cat out/review-issue/title.txt)" --body-file out/review-issue/01.md`，記下 Issue 網址；其餘 `02.md`…依檔名順序 `gh issue comment <網址> --body-file <檔>`
   - `update.yml`：`on: schedule: cron '0 4 * * 4'`、`repository_dispatch: types: [limbus_update]`、`workflow_dispatch`（inputs `force`、`requeue`、`max_usd`、`dry_run`）；job `uses: ./.github/workflows/pipeline.yml`，`with: fetch: true` 加上 inputs，明列 `secrets:` 兩個（不用 `secrets: inherit`）
   - `rebuild.yml`：`on: push: branches: [main], paths: ['rules/**', 'glossary/**', 'guides/**', 'lct.yaml']` 與 `workflow_dispatch`（inputs `requeue`、`max_usd`、`dry_run`）；`with: fetch: false`
   - `ci.yml`：`actions/checkout@v5`、`actions/setup-go@v6`、`runs-on: ubuntu-24.04`
+  - `README.md`（中文）：專案一句話說明與授權；安裝語言包（同 release notes）；「GitHub Actions 設定」一節，以表格列出每個 secret 與 variable 的名稱、用途、必填與否、預設值、怎麼取得（`ANTHROPIC_API_KEY`：Claude Console 的 API key，費用記在 Console；`LIMBUS_STATUS_URL`：狀態 API 網址；`LCT_MODEL`：翻譯用的模型；`LCT_MAX_USD`：每次建置花費上限，預設 30；`LIMBUS_CDN_TEMPLATE`：選填，預設值同 `lct.yaml`），設定位置（Settings → Secrets and variables → Actions），Actions 的 Workflow permissions 需要讀寫；三個 workflow 何時執行、手動執行的輸入；人工介入的方式（`rules/adjustments/`、`rules/requeue/`、`rules/rewrite/` 經由 `main`）
+  - 契約測試另加：workflow 中出現的每個 `secrets.X` 與 `vars.X` 都列在 `README.md` 的「GitHub Actions 設定」中
   - 契約測試：四個 workflow 都存在；所有 `bin/lct` 指令已註冊；沒有模型名稱；`pipeline.yml` 讀的 `jq` 鍵都在對應的 Go 型別（`publish.Result`、`plan.Summary`、`fetchResult`）中；Claude Code CLI 有固定版本；`update.yml` 的 cron 是 `0 4 * * 4`；兩個呼叫者都不用 `secrets: inherit`；action 版本是 `checkout@v5`、`setup-go@v6`
 
 - [ ] **Step 1: 寫失敗的測試**
   - `TestFetchCheck`：以 `file://` 的狀態檔與有 snapshot 的 raw worktree → token 相同時 `new == false`、不同時 `new == true`，兩者都沒有下載任何 zip
-  - `TestWorkflowContract` 依上列各點各加一個以 `mutate` 改壞 workflow 的子測試（例如把 cron 改成 `0 5 * * 4` → 恰好一個問題）
+  - `TestWorkflowContract` 依上列各點各加一個以 `mutate` 改壞 workflow 的子測試（例如把 cron 改成 `0 5 * * 4` → 恰好一個問題；workflow 多用一個 `vars.FOO` 而 README 沒有 → 恰好一個問題）
 
 - [ ] **Step 2: 執行測試確認失敗**
 
@@ -614,7 +624,7 @@ Expected: PASS；演練時兩種情況都走到預期的步驟
 - [ ] **Step 5: Commit 並 push**
 
 ```bash
-git add .github cmd/lct
+git add .github cmd/lct README.md
 git commit -m "ci: weekly update and rebuild share one pipeline: fetch, plan, translate, build, release, review issue"
 git push -u origin claude/festive-wright-g2k853
 ```
@@ -636,7 +646,7 @@ fixture（全部小檔）：v1 → v2 有 `StoryData/KR_S1.json` 在第 2 行前
   2. 在 repo commit 一個人工調整（S1 不變的一句）、一個人工調整（S1 被改的那句，會過期）、一個重翻要求檔（`files: [Bufs.json]`）、一個改寫檔
   3. snapshot v2 → `lct plan`：S1 不變的句子都沒有進待譯、紀錄都在新 key；改的那句是 `kr-changed` 帶 `prev_zh`；第一個調整 `moved`、第二個 `expired`；S2 那句與 S1 相同的 KR 被重用；凍結檔那句在 `frozen_changed`；重翻要求套用一次
   4. 再跑一次 `lct plan`：狀態不變
-  5. `lct translate` → `lct build`：`out/review-issue.md` 存在，含過期調整與凍結檔兩項；`build.json` 有 `model`、`cost_usd`
+  5. `lct translate` → `lct build`：`out/review-issue/01.md` 存在，含過期調整與凍結檔兩項；`build.json` 有 `model`、`cost_usd`
   6. `lct publish`：`release_needed == true`；不做任何變更再 build、publish → `release_needed == false`
 
 - [ ] **Step 2: 執行測試確認失敗（尚未有 fixture 時）**
@@ -661,7 +671,7 @@ git push -u origin claude/festive-wright-g2k853
 
 ### Task 14（控制者）：上線
 
-- [ ] **Step 1（使用者）:** 到 repo Settings → Secrets and variables → Actions：
+- [ ] **Step 1（使用者）:** 依 `README.md` 的「GitHub Actions 設定」，到 repo Settings → Secrets and variables → Actions：
   - secrets：`ANTHROPIC_API_KEY`（Claude Console 的 key）、`LIMBUS_STATUS_URL`
   - variables：`LCT_MODEL`（要用的模型）、`LCT_MAX_USD`（例如 `30`）
 - [ ] **Step 2:** 最終全分支審查（SDD 的 final review），修正後 `git checkout main && git merge --ff-only claude/festive-wright-g2k853 && go test ./... && git push origin main`，再 `git checkout claude/festive-wright-g2k853`。這次 push 動到 `rules/`、`glossary/`，會觸發一次 `rebuild.yml`；預期：`plan` 沒有版本轉移，套用 Task 7 的詞彙修改（只改規則、不改舊譯文），build、publish，`release_needed` 依 `tw` 是否有新 commit 決定
@@ -673,7 +683,7 @@ git push -u origin claude/festive-wright-g2k853
 
 在 Task 14 之後，全部經由 `main` 的檔案讓 CI 處理（每個檔都會觸發 `rebuild.yml`；可以一次 commit 多個檔）。
 
-- [ ] **Step 1:** 改寫檔 `rules/rewrite/<date>-status-name-spacing.yaml`：`files: ["**"]`、`origins: [paratranz]`、`pattern: '(\d+(?:級|層|回)[\p{Han}]{1,8}) (強度|[，。、；）)])'`、`replace: '$1$2'`、`kr_pattern` 留空。先在本機以 `lct plan` 的乾跑（暫存的 tw 副本）確認改寫數量約 1,500～2,100、全部通過驗證；#1 對這條決定若被使用者推翻就不做
+- [ ] **Step 1:** 補回關鍵字名稱後的空格（使用者決定：遊戲以「關鍵字＋空格」配對顯示效果說明）。改寫檔 `rules/rewrite/<date>-keyword-space.yaml`：`files: ["**"]`、`origins: [claude, paratranz]`、`pattern` 為 `(\d+(?:級|層|回)(?:<名稱 1>|<名稱 2>|…))([^ ]|$)`（名稱取自 `names.KeywordTable`，由長到短，以腳本產生）、`replace: '$1 $2'`。2026-11-02 的資料中約 314 筆 claude、572 筆 paratranz 紀錄缺這個空格。先在本機以暫存的 tw 副本跑 `lct plan` 確認改寫筆數與此相近、全部通過驗證
 - [ ] **Step 2:** 掃描並寫重翻要求檔，每個檔附具體的 `reason`（翻譯者看得到）：
   - 技能文字漏掉「本回合」限定（KR 含 `해당 턴|이번 턴|그 턴`、zh 不含 `本回合|該回合|當回合|這回合|此回合`，排除 `해당 턴 종료 시`）
   - 社群草稿修補後與草稿 95% 以上相同的 199 筆
