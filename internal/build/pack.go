@@ -24,7 +24,8 @@ const (
 	// configPath is the file that makes the game use the language directory.
 	configPath = dataDir + "/Lang/config.json"
 	// fontFile is the name the font has in the zip, whatever it is called on
-	// disk; oflFile is its licence, which lies next to the font on disk.
+	// disk; oflFile is its licence, which lies next to the font on disk (see
+	// FontLicensePath).
 	fontFile = "SarasaGothicTC-Bold.ttf"
 	oflFile  = "OFL.txt"
 )
@@ -50,6 +51,12 @@ func ZipPaths(opt Options) (text, complete string) {
 	return name("text"), name("complete")
 }
 
+// FontLicensePath is where the licence of the font at fontPath must lie: next
+// to it, called OFL.txt.
+func FontLicensePath(fontPath string) string {
+	return filepath.Join(filepath.Dir(fontPath), oflFile)
+}
+
 // inputs are the files besides the records that a build reads. They are all
 // read and checked before anything is written.
 type inputs struct {
@@ -70,7 +77,7 @@ func loadInputs(opt Options) (*inputs, error) {
 	if in.face, err = sfnt.Parse(in.font); err != nil {
 		return nil, fmt.Errorf("build: parse font %s: %w", opt.FontPath, err)
 	}
-	if in.ofl, err = os.ReadFile(filepath.Join(filepath.Dir(opt.FontPath), oflFile)); err != nil {
+	if in.ofl, err = os.ReadFile(FontLicensePath(opt.FontPath)); err != nil {
 		return nil, fmt.Errorf("build: read font licence: %w", err)
 	}
 	if in.license, err = os.ReadFile(opt.LicensePath); err != nil {

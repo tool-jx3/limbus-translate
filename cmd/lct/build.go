@@ -39,21 +39,22 @@ func init() {
 	})
 }
 
-// buildOutput is what "build" prints.
+// buildOutput is what "build" prints. Report is the object that
+// .meta/build.json holds; ReportPath is the markdown report.
 type buildOutput struct {
 	RawTag      string        `json:"raw_tag"`
 	TextZip     string        `json:"text_zip"`
 	CompleteZip string        `json:"complete_zip"`
-	Report      string        `json:"report"`
-	Summary     *build.Report `json:"summary"`
+	Report      *build.Report `json:"report"`
+	ReportPath  string        `json:"report_path"`
 }
 
 func (o buildOutput) String() string {
-	s := o.Summary
+	r := o.Report
 	return fmt.Sprintf("built %s: %d pending, %d structural fallbacks, %d need review, %d unaligned, %d missing glyphs\n"+
 		"text zip:     %s\ncomplete zip: %s\nreport:       %s",
-		o.RawTag, s.Pending, s.StructuralFallback, s.NeedsReview, s.Unaligned, len(s.MissingGlyphs),
-		o.TextZip, o.CompleteZip, o.Report)
+		o.RawTag, r.Pending, r.StructuralFallback, r.NeedsReview, r.Unaligned, len(r.MissingGlyphs),
+		o.TextZip, o.CompleteZip, o.ReportPath)
 }
 
 func runBuild(ctx *cli.Context, args []string) error {
@@ -93,21 +94,23 @@ func runBuild(ctx *cli.Context, args []string) error {
 	}
 	fontPath := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Font.Path))
 	licensePath := filepath.Join(ctx.Root, licenseFile)
-	for _, f := range []string{fontPath, licensePath} {
+	for _, f := range []string{fontPath, build.FontLicensePath(fontPath), licensePath} {
 		if _, err := os.Stat(f); err != nil {
 			return cli.UserError("build: " + err.Error())
 		}
 	}
-	builtAt, err := buildTime(ctx.Root)
-	if err != nil {
-		return err
-	}
+	// The commit comes before the build time, which is read from it unless
+	// SOURCE_DATE_EPOCH is set: a repo without commits is a user error.
 	rulesCommit, err := gitx.Head(ctx.Root)
 	if err != nil {
 		return err
 	}
 	if rulesCommit == "" {
 		return cli.UserError("build: the repo has no commit to record as the rules commit")
+	}
+	builtAt, err := buildTime(ctx.Root)
+	if err != nil {
+		return err
 	}
 
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
@@ -146,8 +149,8 @@ func runBuild(ctx *cli.Context, args []string) error {
 		RawTag:      src.Tag,
 		TextZip:     textZip,
 		CompleteZip: completeZip,
-		Report:      build.ReportPath(opt),
-		Summary:     rep,
+		Report:      rep,
+		ReportPath:  build.ReportPath(opt),
 	})
 }
 

@@ -292,7 +292,8 @@ func TestBuildStructuralFallback(t *testing.T) {
 	if want := map[string]int{"claude": 2}; !reflect.DeepEqual(rep.Origins, want) {
 		t.Errorf("Origins = %v, want %v (the record was used, then rejected)", rep.Origins, want)
 	}
-	want := []store.PendingItem{{Key: broken.Key, Reason: "structural-fail"}}
+	// The broken translation rides along as the draft to fix.
+	want := []store.PendingItem{{Key: broken.Key, Reason: "structural-fail", Draft: "中疊"}}
 	if got := e.pending(); !reflect.DeepEqual(got, want) {
 		t.Errorf("pending = %+v, want %+v", got, want)
 	}
@@ -353,6 +354,78 @@ func TestBuildReportsFlagsAndWarnings(t *testing.T) {
 	}
 	if rep.Warnings["hangul"] != 1 {
 		t.Errorf("Warnings = %v, want one hangul", rep.Warnings)
+	}
+}
+
+// A record that falls back structurally is still a used record: its warnings
+// are counted with its origin and its review flag, so that all three cover the
+// same set of records.
+func TestBuildCountsWarningsOfRecordsThatFallBack(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"content":"[Bleed] 중첩"},{"id":2,"content":"나"}]}`
+	en := `{"dataList":[{"id":1,"content":"[Bleed] stack"},{"id":2,"content":"B"}]}`
+	e := newEnv(t, map[string]string{"A.json": kr}, map[string]string{"A.json": en})
+	// Loses [Bleed] (hard) and keeps Hangul (a warning for an existing unit).
+	broken := rec("A.json", "/dataList/0/content", "[Bleed] 중첩", "中疊가")
+	broken.Flags = []string{store.FlagNeedsReview}
+	warned := rec("A.json", "/dataList/1/content", "나", "乙나")
+	e.save(broken, warned)
+
+	rep := e.run()
+	if got := e.out("A.json"); !strings.Contains(got, `"[Bleed] stack"`) || strings.Contains(got, "中疊") {
+		t.Errorf("A.json =\n%s\nwant EN for the unit that lost [Bleed]", got)
+	}
+	if rep.StructuralFallback != 1 || rep.NeedsReview != 1 {
+		t.Errorf("StructuralFallback=%d NeedsReview=%d, want 1 1", rep.StructuralFallback, rep.NeedsReview)
+	}
+	if want := map[string]int{"claude": 2}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+	if rep.Warnings["hangul"] != 2 {
+		t.Errorf("Warnings = %v, want hangul 2: the unit that fell back counts too", rep.Warnings)
+	}
+	// Only warnings are counted, never the hard issue that caused the fallback.
+	if rep.Warnings["id-mismatch"] != 0 {
+		t.Errorf("Warnings = %v counts a hard issue", rep.Warnings)
+	}
+}
+
+// A frozen file keeps its record as it is, whatever the structure check says:
+// no EN stands in, nothing is counted as a fallback and nothing is queued.
+func TestBuildFrozenRecordIsUsedVerbatim(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"content":"[Bleed] 중첩"},{"id":2,"content":"나"}]}`
+	en := `{"dataList":[{"id":1,"content":"[Bleed] stack"},{"id":2,"content":"B"}]}`
+	e := newEnv(t,
+		map[string]string{"BgmLyrics/L.json": kr, "A.json": kr},
+		map[string]string{"BgmLyrics/L.json": en, "A.json": en})
+	// Lost [Bleed] (hard), kept Hangul (warning), flagged, and made from other KR text.
+	lyric := rec("BgmLyrics/L.json", "/dataList/0/content", "옛날", "中疊가")
+	lyric.Origin, lyric.Flags = store.OriginParatranz, []string{store.FlagNeedsReview}
+	// The same record in a file that is not frozen does fall back.
+	plain := rec("A.json", "/dataList/0/content", "[Bleed] 중첩", "中疊가")
+	e.save(lyric, plain)
+
+	rep := e.run()
+	if got := e.out("BgmLyrics/L.json"); !strings.Contains(got, `"中疊가"`) || strings.Contains(got, "stack") {
+		t.Errorf("frozen file =\n%s\nwant the record verbatim", got)
+	}
+	if got := e.out("A.json"); !strings.Contains(got, `"[Bleed] stack"`) {
+		t.Errorf("a file that is not frozen must still fall back:\n%s", got)
+	}
+	if rep.StructuralFallback != 1 {
+		t.Errorf("StructuralFallback = %d, want 1: only the file that is not frozen", rep.StructuralFallback)
+	}
+	if want := map[string]int{"paratranz": 1, "claude": 1}; !reflect.DeepEqual(rep.Origins, want) {
+		t.Errorf("Origins = %v, want %v", rep.Origins, want)
+	}
+	if rep.NeedsReview != 1 {
+		t.Errorf("NeedsReview = %d, want 1: the frozen record is flagged", rep.NeedsReview)
+	}
+	if rep.Warnings["hangul"] != 2 {
+		t.Errorf("Warnings = %v, want hangul 2: the frozen record's warning counts", rep.Warnings)
+	}
+	want := []store.PendingItem{{Key: plain.Key, Reason: "structural-fail", Draft: "中疊가"}}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %+v, want only %+v: a frozen record is never queued", got, want)
 	}
 }
 

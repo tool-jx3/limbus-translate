@@ -76,11 +76,14 @@ type Report struct {
 	// NeedsReview counts the used records that are flagged needs_review.
 	NeedsReview int `json:"needs_review"`
 	// StructuralFallback counts the used records that broke the structure of
-	// KR (tags, [ID]s, placeholders) and were replaced by EN, or KR.
+	// KR (tags, [ID]s, placeholders) and were replaced by EN, or KR. A frozen
+	// file's records are never replaced.
 	StructuralFallback int `json:"structural_fallback"`
 	// Unaligned counts the pending units that have no EN text either.
 	Unaligned int `json:"unaligned"`
-	// Warnings counts the warnings of the translations written, by issue code.
+	// Warnings counts the warnings of the used records, by issue code. It
+	// covers the same records as Origins and NeedsReview, those that fall back
+	// structurally included.
 	Warnings map[string]int `json:"warnings"`
 	// MissingGlyphs lists, sorted, the characters of the output that the font
 	// cannot show. It does not stop the build.
@@ -253,14 +256,16 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 //
 // A record is used when it was made from the KR text there is now, or when
 // the file is frozen. A used record that breaks the structure of KR is
-// replaced by EN (or KR) and queued for translation again. A unit with no
+// replaced by EN (or KR) and queued for translation again, with the broken
+// text as the draft; a frozen file's record is written as it is and never
+// queued, since a frozen file is not translated again. A unit with no
 // usable record shows EN (or KR); it counts as pending unless the field rules
 // say it is not translated at all.
 func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	key := units.Key(u.File, u.Pointer)
 	rec, ok := b.records[key]
 	if ok && (frozen || rec.KRSha == units.KRSha(u.KR)) {
-		return b.useRecord(u, key, rec, al)
+		return b.useRecord(u, key, rec, frozen, al)
 	}
 
 	en, jp, err := al.get(u.Pointer)
@@ -277,7 +282,7 @@ func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	return standIn(u, en), nil
 }
 
-func (b *builder) useRecord(u units.Unit, key string, rec store.Record, al *aligner) (string, error) {
+func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *aligner) (string, error) {
 	b.rep.Origins[rec.Origin]++
 	if slices.Contains(rec.Flags, store.FlagNeedsReview) {
 		b.rep.NeedsReview++
@@ -285,22 +290,27 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, al *alig
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
 	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true})
-	if validate.HasHard(issues) {
-		b.rep.StructuralFallback++
-		if !b.queued[key] {
-			b.queued[key] = true
-			b.added = append(b.added, store.PendingItem{Key: key, Reason: ReasonStructuralFail})
-		}
-		en, _, err := al.get(u.Pointer)
-		if err != nil {
-			return "", err
-		}
-		return standIn(u, en), nil
-	}
+	// Every used record counts its warnings, whether or not its text is
+	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {
-		b.rep.Warnings[is.Code]++
+		if is.Severity == validate.SeverityWarn {
+			b.rep.Warnings[is.Code]++
+		}
 	}
-	return rec.ZH, nil
+	if !validate.HasHard(issues) || frozen {
+		return rec.ZH, nil
+	}
+
+	b.rep.StructuralFallback++
+	if !b.queued[key] {
+		b.queued[key] = true
+		b.added = append(b.added, store.PendingItem{Key: key, Reason: ReasonStructuralFail, Draft: rec.ZH})
+	}
+	en, _, err := al.get(u.Pointer)
+	if err != nil {
+		return "", err
+	}
+	return standIn(u, en), nil
 }
 
 // standIn is the text shown for a unit that has no translation: the EN text

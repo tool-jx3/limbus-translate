@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"reflect"
+	"slices"
 	"strconv"
 	"strings"
 	"testing"
@@ -47,8 +49,8 @@ type buildOut struct {
 	RawTag      string        `json:"raw_tag"`
 	TextZip     string        `json:"text_zip"`
 	CompleteZip string        `json:"complete_zip"`
-	Report      string        `json:"report"`
-	Summary     *build.Report `json:"summary"`
+	Report      *build.Report `json:"report"`
+	ReportPath  string        `json:"report_path"`
 }
 
 func runBuildJSON(t *testing.T, root string, args ...string) (buildOut, error) {
@@ -90,12 +92,12 @@ func TestBuildCommandBuildsThePack(t *testing.T) {
 	if got.RawTag != "raw-20261029" ||
 		got.TextZip != filepath.Join(out, "zh-TW_text_raw-20261029.zip") ||
 		got.CompleteZip != filepath.Join(out, "zh-TW_complete_raw-20261029.zip") ||
-		got.Report != filepath.Join(root, ".work", "tw", ".meta", "reports", "raw-20261029.md") {
+		got.ReportPath != filepath.Join(root, ".work", "tw", ".meta", "reports", "raw-20261029.md") {
 		t.Errorf("output = %+v", got)
 	}
 	// The fixture import leaves two units to translate; they show EN until then.
-	if got.Summary == nil || got.Summary.Pending != 2 || got.Summary.StructuralFallback != 0 {
-		t.Errorf("summary = %+v, want 2 pending", got.Summary)
+	if got.Report == nil || got.Report.Pending != 2 || got.Report.StructuralFallback != 0 {
+		t.Errorf("report = %+v, want 2 pending", got.Report)
 	}
 
 	tw := filepath.Join(root, ".work", "tw")
@@ -107,7 +109,7 @@ func TestBuildCommandBuildsThePack(t *testing.T) {
 	if err != nil || !strings.Contains(string(sample), "增加5級 [Laceration] 強度") || !strings.Contains(string(sample), "<color=#f8c200>") {
 		t.Errorf("Sample.json = %q, %v", sample, err)
 	}
-	for _, name := range []string{got.Report, filepath.Join(tw, ".meta", "build.json"), got.TextZip, got.CompleteZip} {
+	for _, name := range []string{got.ReportPath, filepath.Join(tw, ".meta", "build.json"), got.TextZip, got.CompleteZip} {
 		if _, err := os.Stat(name); err != nil {
 			t.Error(err)
 		}
@@ -156,6 +158,50 @@ func TestBuildCommandBuildsThePack(t *testing.T) {
 	}
 }
 
+func TestBuildCommandJSONHasTheReportObject(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	ctx, out := testCtx(t, root, "", true)
+	if err := runBuild(ctx, nil); err != nil {
+		t.Fatal(err)
+	}
+	var fields map[string]json.RawMessage
+	if err := json.Unmarshal(out.Bytes(), &fields); err != nil {
+		t.Fatal(err)
+	}
+	var keys []string
+	for k := range fields {
+		keys = append(keys, k)
+	}
+	slices.Sort(keys)
+	if want := []string{"complete_zip", "raw_tag", "report", "report_path", "text_zip"}; !slices.Equal(keys, want) {
+		t.Errorf("output keys = %v, want %v", keys, want)
+	}
+
+	// "report" is the Report that .meta/build.json holds.
+	var fromOutput build.Report
+	if err := json.Unmarshal(fields["report"], &fromOutput); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(root, ".work", "tw", ".meta", "build.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var meta struct {
+		Report build.Report `json:"report"`
+	}
+	if err := json.Unmarshal(b, &meta); err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(fromOutput, meta.Report) || fromOutput.Pending != 2 {
+		t.Errorf("report = %+v, build.json has %+v", fromOutput, meta.Report)
+	}
+	var path string
+	if err := json.Unmarshal(fields["report_path"], &path); err != nil || !strings.HasSuffix(path, "raw-20261029.md") {
+		t.Errorf("report_path = %q, %v", path, err)
+	}
+}
+
 func TestBuildCommandUsesSourceDateEpoch(t *testing.T) {
 	root := buildRepo(t)
 	t.Setenv(sourceDateEpoch, "1793500000")
@@ -194,6 +240,16 @@ func TestBuildCommandRefusesWhatItCannotBuild(t *testing.T) {
 				t.Fatal(err)
 			}
 		}, nil, "SarasaGothicTC-Bold.ttf"},
+		{"font licence missing", func(t *testing.T, root string) {
+			if err := os.Remove(filepath.Join(root, "assets", "fonts", "OFL.txt")); err != nil {
+				t.Fatal(err)
+			}
+		}, nil, "OFL.txt"},
+		{"repo without commits", func(t *testing.T, root string) {
+			// With SOURCE_DATE_EPOCH unset, the build time would come from
+			// HEAD: the missing commit must be reported before it is asked for.
+			runGitIn(t, root, "checkout", "-q", "--orphan", "unborn")
+		}, nil, "no commit"},
 		{"content licence missing", func(t *testing.T, root string) {
 			if err := os.Remove(filepath.Join(root, "LICENSE-CONTENT")); err != nil {
 				t.Fatal(err)
