@@ -114,6 +114,12 @@ var (
 	asciiEllRe = regexp.MustCompile(`\.{3,}`)
 )
 
+// IsDanteLine reports whether s, ignoring blanks at both ends, is a whole line
+// of Dante's dialogue: wrapped in <…> that is not a tag.
+func IsDanteLine(s string) bool {
+	return danteRe.MatchString(strings.TrimSpace(s))
+}
+
 // Check validates translation zh of the Korean text kr. It does not change zh;
 // callers pass it through Normalize first. The issues come structural first,
 // then content, then style.
@@ -155,7 +161,7 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 			issues = append(issues, ctx.issue(CodeTagNesting, ClassStructural, "tags are not nested correctly: %s", problem))
 		}
 	}
-	if danteRe.MatchString(strings.TrimSpace(kr)) && !danteRe.MatchString(strings.TrimSpace(zh)) {
+	if IsDanteLine(kr) && !IsDanteLine(zh) {
 		issues = append(issues, ctx.issue(CodeDanteWrapper, ClassStructural,
 			"KR is a line of Dante's dialogue wrapped in <…>; the translation must be wrapped in <…> too"))
 	}

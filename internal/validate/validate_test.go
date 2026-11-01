@@ -396,3 +396,24 @@ func TestSimplifiedTable(t *testing.T) {
 		}
 	}
 }
+
+func TestIsDanteLine(t *testing.T) {
+	tests := []struct {
+		s    string
+		want bool
+	}{
+		{"<별이라… 아픈 건 아니지?>", true},
+		{" <별이라…> ", true},
+		{"<별이라…\n아픈 건 아니지?>", true},
+		{"<color=#f00>A</color>", false},
+		{"</b>", false},
+		{"<0>", false},
+		{"별이라", false},
+		{"", false},
+	}
+	for _, tt := range tests {
+		if got := IsDanteLine(tt.s); got != tt.want {
+			t.Errorf("IsDanteLine(%q) = %v, want %v", tt.s, got, tt.want)
+		}
+	}
+}

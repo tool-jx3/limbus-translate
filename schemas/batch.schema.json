@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "lct translation batch",
+  "description": "work/batches/<id>.json, written by `lct batch next`: the units to translate and everything a translator needs. The translation goes to work/batches/<id>.out.json (see batch-out.schema.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "family", "file", "guides", "glossary", "keywords", "units", "context"],
+  "properties": {
+    "id": {
+      "description": "Batch id: the UTC time (yyyymmddThhmmss) and the first 8 hex digits of the sha256 of the first unit's key.",
+      "type": "string",
+      "pattern": "^[0-9]{8}T[0-9]{6}-[0-9a-f]{8}$"
+    },
+    "family": {
+      "description": "File family of the batch's file (guides/routing.yaml).",
+      "type": "string"
+    },
+    "file": {
+      "description": "The one pack file all units belong to, such as StoryData/S1037B.json.",
+      "type": "string"
+    },
+    "guides": {
+      "description": "Guide files to read, relative to the repo root, in the order they layer (later ones refine earlier ones).",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "glossary": {
+      "description": "The approved glossary terms the units contain. They bind.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kr", "zh", "status"],
+        "properties": {
+          "kr": { "type": "string" },
+          "jp": { "type": "string" },
+          "en": { "type": "string" },
+          "zh": { "description": "The name to use.", "type": "string" },
+          "status": { "type": "string" },
+          "notes": { "type": "string" },
+          "forbidden": {
+            "description": "Renderings the translation must not contain; an entry starting with \"re:\" is a regular expression.",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "category": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "keywords": {
+      "description": "Keyword [ID]s of the units (without brackets) and the name this translation gives them. Keep the [ID] itself in the text; the name is for understanding.",
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "field", "speaker", "kr", "reason", "keep"],
+        "properties": {
+          "key": { "description": "<file>|<JSON pointer>. Use it as the key of the output.", "type": "string" },
+          "field": { "description": "The name of the field the text is in, such as content.", "type": "string" },
+          "speaker": {
+            "description": "Character id of the speaker, or the raw model key when it is no known character, or \"\".",
+            "type": "string"
+          },
+          "kr": { "description": "The Korean text to translate.", "type": "string" },
+          "reason": {
+            "description": "Why the unit is pending: new, kr-changed, adjustment-expired, paratranz-repair, requeue or structural-fail.",
+            "type": "string"
+          },
+          "prev_kr": { "description": "The previous KR text, when the KR text changed.", "type": "string" },
+          "prev_zh": { "description": "The previous translation, when the KR text changed.", "type": "string" },
+          "draft": { "description": "A draft to repair with as few changes as possible.", "type": "string" },
+          "en": {
+            "description": "The EN text aligned to the unit, with how it was matched. A help for understanding KR.",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "method"],
+            "properties": {
+              "value": { "type": "string" },
+              "method": { "type": "string", "enum": ["pointer", "id", "sequence"] }
+            }
+          },
+          "jp": {
+            "description": "The JP text aligned to the unit, with how it was matched. A help for understanding KR.",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "method"],
+            "properties": {
+              "value": { "type": "string" },
+              "method": { "type": "string", "enum": ["pointer", "id", "sequence"] }
+            }
+          },
+          "refs": {
+            "description": "Other translations (llc: simplified Chinese, ltm: traditional Chinese) to look at. They are references, not answers.",
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "keep": {
+            "description": "What the translation must keep from KR. Validation compares kinds and counts.",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ids", "placeholders", "tags", "dante_wrapper"],
+            "properties": {
+              "ids": { "description": "[ID] tokens, as in KR.", "type": "array", "items": { "type": "string" } },
+              "placeholders": { "description": "{0}, <0>, {Slot} and the like.", "type": "array", "items": { "type": "string" } },
+              "tags": { "description": "TextMeshPro tags, opening and closing.", "type": "array", "items": { "type": "string" } },
+              "dante_wrapper": { "description": "KR is a line of Dante wrapped in <...>; the translation must be wrapped too.", "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "context": {
+      "description": "Story batches only: translated lines before, between and after the units. Read them for continuity; do not translate them.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "speaker", "kr", "zh"],
+        "properties": {
+          "key": { "type": "string" },
+          "speaker": { "type": "string" },
+          "kr": { "type": "string" },
+          "zh": { "type": "string" }
+        }
+      }
+    }
+  }
+}

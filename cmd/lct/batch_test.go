@@ -1,0 +1,494 @@
+package main
+
+import (
+	"encoding/json"
+	"errors"
+	"os"
+	"path/filepath"
+	"slices"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
+	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/store"
+)
+
+const batchYAML = `worktrees: { raw: .work/raw, tw: .work/tw }
+batch: { max_units: 40, story_max_units: 120, max_attempts: 3, lease_minutes: 120 }
+`
+
+const (
+	batchKR = `{"dataList":[
+ {"id":1,"content":"[Laceration] 위력 5 부여"},
+ {"id":2,"content":"뫼르소가 말했다"}
+]}`
+	batchEN = `{"dataList":[
+ {"id":1,"content":"Inflict 5 [Laceration] Potency"},
+ {"id":2,"content":"Meursault said"}
+]}`
+	batchJP = `{"dataList":[
+ {"id":1,"content":"[Laceration]を5付与"},
+ {"id":2,"content":"ムルソーは言った"}
+]}`
+)
+
+var (
+	batchKey0 = "Sample.json|/dataList/0/content"
+	batchKey1 = "Sample.json|/dataList/1/content"
+)
+
+// batchRepo makes an lct repo root ready for the batch commands: the real
+// rules, a raw worktree with one file and its snapshot record, and two pending
+// units. The foreign name 默爾索 is registered.
+func batchRepo(t *testing.T) (root string, st *store.Store) {
+	t.Helper()
+	root = t.TempDir()
+	writeTestFile(t, root, "lct.yaml", batchYAML)
+	for _, f := range []string{"glossary/terms.yaml", "guides/routing.yaml"} {
+		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
+	}
+	copyDir(t, filepath.Join(repoRoot, "guides/characters"), filepath.Join(root, "guides/characters"))
+
+	rawWT := filepath.Join(root, ".work", "raw")
+	writeTestFile(t, rawWT, "kr/KR_Sample.json", batchKR)
+	writeTestFile(t, rawWT, "en/EN_Sample.json", batchEN)
+	writeTestFile(t, rawWT, "jp/JP_Sample.json", batchJP)
+	writeTestFile(t, rawWT, "meta/source.json", `{"tag":"raw-20261029","token":"t","created_at":"2026-10-29 02:55:23","fetched_at":"2026-10-29T03:00:00Z","files":{}}`+"\n")
+
+	st = store.Open(filepath.Join(root, ".work", "tw"))
+	if err := st.SavePending([]store.PendingItem{
+		{Key: batchKey0, Reason: "new", Refs: map[string]string{"llc": "赋予 5 级裂伤"}},
+		{Key: batchKey1, Reason: "new"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := st.WriteMetaJSON(bootstrap.ForeignNamesFile, []string{"默爾索"}); err != nil {
+		t.Fatal(err)
+	}
+	return root, st
+}
+
+type nextOut struct {
+	Batch *string `json:"batch"`
+	Path  string  `json:"path"`
+	Units int     `json:"units"`
+}
+
+func runNextJSON(t *testing.T, root string, args ...string) (nextOut, string, error) {
+	t.Helper()
+	ctx, out := testCtx(t, root, "", true)
+	err := runBatchNext(ctx, args)
+	var got nextOut
+	if err == nil {
+		if err := json.Unmarshal(out.Bytes(), &got); err != nil {
+			t.Fatalf("output is not JSON: %v\n%s", err, out)
+		}
+	}
+	return got, out.String(), err
+}
+
+type submitOut struct {
+	Batch    string `json:"batch"`
+	Accepted []string
+	Rejected []struct {
+		Key    string
+		Issues []struct{ Code, Message string }
+	}
+	Warnings []struct {
+		Key    string
+		Issues []struct{ Code string }
+	}
+	NeedsReview []string `json:"needs_review"`
+	Released    []string
+}
+
+func runSubmitJSON(t *testing.T, root string, args ...string) (submitOut, string, error) {
+	t.Helper()
+	ctx, out := testCtx(t, root, "", true)
+	err := runBatchSubmit(ctx, args)
+	var got submitOut
+	if out.Len() > 0 {
+		if jerr := json.Unmarshal(out.Bytes(), &got); jerr != nil {
+			t.Fatalf("output is not JSON: %v\n%s", jerr, out)
+		}
+	}
+	return got, out.String(), err
+}
+
+func writeOut(t *testing.T, root, id string, units ...batch.OutUnit) {
+	t.Helper()
+	data, err := json.Marshal(units)
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "work/batches/"+id+".out.json", string(data))
+}
+
+func TestBatchNextWritesTheBatchFile(t *testing.T) {
+	root, st := batchRepo(t)
+	got, raw, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Batch == nil || got.Units != 2 {
+		t.Fatalf("output = %s, want a batch of 2 units", raw)
+	}
+	id := *got.Batch
+	wantPath := filepath.Join(root, "work", "batches", id+".json")
+	if got.Path != wantPath {
+		t.Errorf("path = %q, want %q", got.Path, wantPath)
+	}
+
+	data, err := os.ReadFile(wantPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.HasSuffix(string(data), "}\n") || !strings.Contains(string(data), "\n  \"id\": \""+id+"\"") {
+		t.Errorf("the batch file should be indented JSON with a final newline:\n%.200s", data)
+	}
+	if strings.Contains(string(data), `\u003c`) {
+		t.Error("the batch file escapes < and >")
+	}
+	var b batch.Batch
+	if err := json.Unmarshal(data, &b); err != nil {
+		t.Fatal(err)
+	}
+	if b.ID != id || b.File != "Sample.json" || len(b.Units) != 2 {
+		t.Fatalf("batch = %+v", b)
+	}
+	u := b.Units[0]
+	if u.EN == nil || u.JP == nil || u.Refs["llc"] == "" || !slices.Equal(u.Keep.IDs, []string{"[Laceration]"}) {
+		t.Errorf("unit 0 = %+v, want EN, JP, the llc ref and the [Laceration] ID", u)
+	}
+
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, it := range pending {
+		if it.Lease == nil || it.Lease.Batch != id {
+			t.Errorf("item %s has lease %+v, want one for %s", it.Key, it.Lease, id)
+		}
+	}
+
+	// Nothing is left to hand out.
+	_, raw, err = runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var null map[string]any
+	if err := json.Unmarshal([]byte(raw), &null); err != nil {
+		t.Fatal(err)
+	}
+	if v, ok := null["batch"]; !ok || v != nil || len(null) != 1 {
+		t.Errorf("output = %s, want {\"batch\": null}", raw)
+	}
+	ctx, out := testCtx(t, root, "", false)
+	if err := runBatchNext(ctx, nil); err != nil || !strings.Contains(out.String(), "nothing") {
+		t.Errorf("text output = %q, %v, want a note that there is nothing to hand out", out, err)
+	}
+}
+
+func TestBatchNextOptions(t *testing.T) {
+	root, _ := batchRepo(t)
+	got, raw, err := runNextJSON(t, root, "--max-units", "1", "--family", "other")
+	if err != nil || got.Units != 1 {
+		t.Fatalf("output = %s, %v, want 1 unit", raw, err)
+	}
+	if got, raw, err := runNextJSON(t, root, "--family", "story-main"); err != nil || got.Batch != nil {
+		t.Errorf("output = %s, %v, want no batch in another family", raw, err)
+	}
+	got, raw, err = runNextJSON(t, root, "--family", "other")
+	if err != nil || got.Units != 1 {
+		t.Errorf("output = %s, %v, want the other unit", raw, err)
+	}
+}
+
+func TestBatchNextUserErrors(t *testing.T) {
+	root, _ := batchRepo(t)
+	for _, args := range [][]string{
+		{"--max-units", "0"},
+		{"--max-units", "-3"},
+		{"--family", "nonsense"},
+		{"extra"},
+		{"--nope"},
+	} {
+		if _, _, err := runNextJSON(t, root, args...); !isUserError(err) {
+			t.Errorf("batch next %v: err = %v, want a user error", args, err)
+		}
+	}
+
+	if err := os.Remove(filepath.Join(root, ".work", "raw", "meta", "source.json")); err != nil {
+		t.Fatal(err)
+	}
+	_, _, err := runNextJSON(t, root)
+	if !isUserError(err) || !strings.Contains(err.Error(), "snapshot") {
+		t.Errorf("without a snapshot: err = %v, want a user error that mentions snapshot", err)
+	}
+}
+
+func TestBatchSubmit(t *testing.T) {
+	root, st := batchRepo(t)
+	next, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	id := *next.Batch
+	writeOut(t, root, id,
+		batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"},
+		batch.OutUnit{Key: batchKey1, ZH: "默爾索說了話"}, // a foreign name: accepted with a warning
+	)
+
+	t.Setenv("LCT_MODEL", "env-model")
+	got, raw, err := runSubmitJSON(t, root, id)
+	if err != nil {
+		t.Fatalf("submit: %v\n%s", err, raw)
+	}
+	if got.Batch != id || len(got.Accepted) != 2 || len(got.Rejected) != 0 {
+		t.Fatalf("output = %s", raw)
+	}
+	if len(got.Warnings) != 1 || got.Warnings[0].Key != batchKey1 || got.Warnings[0].Issues[0].Code != "foreign-name" {
+		t.Errorf("warnings = %+v, want foreign-name on %s", got.Warnings, batchKey1)
+	}
+	for _, field := range []string{`"accepted"`, `"rejected"`, `"warnings"`, `"needs_review"`, `"released"`} {
+		if !strings.Contains(raw, field) {
+			t.Errorf("output lacks %s:\n%s", field, raw)
+		}
+	}
+
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	rec := recs[batchKey0]
+	if rec.Origin != store.OriginClaude || rec.Model != "env-model" || rec.Batch != id || rec.Since != "raw-20261029" {
+		t.Errorf("record = %+v, want claude, LCT_MODEL, the batch and the raw tag", rec)
+	}
+	if rec.ZH != "賦予5級 [Laceration] 威力" {
+		t.Errorf("record ZH = %q, want it normalized", rec.ZH)
+	}
+	if pending, _ := st.LoadPending(); len(pending) != 0 {
+		t.Errorf("pending = %v, want empty", pending)
+	}
+}
+
+func TestBatchSubmitModelFlagBeatsEnvironment(t *testing.T) {
+	root, st := batchRepo(t)
+	next, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	id := *next.Batch
+	writeOut(t, root, id, batch.OutUnit{Key: batchKey1, ZH: "有人說了話"})
+
+	t.Setenv("LCT_MODEL", "env-model")
+	// The flag may come after the id, and units left out are released.
+	got, _, err := runSubmitJSON(t, root, id, "--model", "flag-model")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{batchKey0}; !slices.Equal(got.Released, want) {
+		t.Errorf("released = %v, want %v", got.Released, want)
+	}
+	recs, _ := st.LoadRecords()
+	if recs[batchKey1].Model != "flag-model" {
+		t.Errorf("model = %q, want flag-model", recs[batchKey1].Model)
+	}
+	pending, _ := st.LoadPending()
+	if len(pending) != 1 || pending[0].Key != batchKey0 || pending[0].Lease != nil {
+		t.Errorf("pending = %+v, want the omitted unit, released", pending)
+	}
+}
+
+func TestBatchSubmitRejectionIsAFinding(t *testing.T) {
+	root, st := batchRepo(t)
+	next, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	id := *next.Batch
+	writeOut(t, root, id,
+		batch.OutUnit{Key: batchKey0, ZH: "賦予5級威力"}, // [Laceration] is missing
+		batch.OutUnit{Key: batchKey1, ZH: "有人說了話"},
+	)
+	got, raw, err := runSubmitJSON(t, root, id)
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings (exit 1)", err)
+	}
+	if len(got.Accepted) != 1 || len(got.Rejected) != 1 || got.Rejected[0].Key != batchKey0 {
+		t.Fatalf("output = %s", raw)
+	}
+	if is := got.Rejected[0].Issues; len(is) == 0 || is[0].Code != "id-mismatch" || !strings.Contains(is[0].Message, "[Laceration]") {
+		t.Errorf("rejected issues = %+v, want id-mismatch naming [Laceration]", is)
+	}
+
+	// The text form tells the translator what to fix.
+	next2, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeOut(t, root, *next2.Batch, batch.OutUnit{Key: batchKey0, ZH: "還是沒有"})
+	ctx, out := testCtx(t, root, "", false)
+	err = runBatchSubmit(ctx, []string{*next2.Batch})
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("text run: err = %v, want cli.ErrFindings", err)
+	}
+	for _, want := range []string{"1 rejected", batchKey0, "id-mismatch"} {
+		if !strings.Contains(out.String(), want) {
+			t.Errorf("text output lacks %q:\n%s", want, out)
+		}
+	}
+	item, _ := pendingItem(t, st, batchKey0)
+	if item.Attempts != 2 {
+		t.Errorf("attempts = %d, want 2", item.Attempts)
+	}
+}
+
+func pendingItem(t *testing.T, st *store.Store, key string) (store.PendingItem, bool) {
+	t.Helper()
+	items, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, it := range items {
+		if it.Key == key {
+			return it, true
+		}
+	}
+	return store.PendingItem{}, false
+}
+
+func TestBatchSubmitUserErrors(t *testing.T) {
+	root, _ := batchRepo(t)
+	next, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	id := *next.Batch
+
+	tests := []struct {
+		name string
+		args []string
+		prep func()
+		want string
+	}{
+		{"no id", nil, nil, "batch id"},
+		{"two ids", []string{id, id}, nil, "unexpected"},
+		{"id that leaves the directory", []string{"../x"}, nil, "invalid batch id"},
+		{"unknown batch", []string{"20250101T000000-00000000"}, nil, "does not exist"},
+		{"no out file", []string{id}, nil, ".out.json"},
+		{"out is not a list", []string{id}, func() {
+			writeTestFile(t, root, "work/batches/"+id+".out.json", `{"units": []}`)
+		}, "not valid"},
+		{"out has an unknown field", []string{id}, func() {
+			writeTestFile(t, root, "work/batches/"+id+".out.json", `[{"key":"k","translation":"x"}]`)
+		}, "not valid"},
+		{"out is not JSON", []string{id}, func() {
+			writeTestFile(t, root, "work/batches/"+id+".out.json", `[{"key":`)
+		}, "not valid"},
+		{"batch file of another id", []string{id}, func() {
+			writeTestFile(t, root, "work/batches/"+id+".out.json", `[]`)
+			data, _ := os.ReadFile(filepath.Join(root, "work", "batches", id+".json"))
+			other := "20250101T000000-00000000"
+			writeTestFile(t, root, "work/batches/"+id+".json", strings.Replace(string(data), id, other, 1))
+		}, "another batch"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if tt.prep != nil {
+				tt.prep()
+			}
+			_, _, err := runSubmitJSON(t, root, tt.args...)
+			if !isUserError(err) || !strings.Contains(err.Error(), tt.want) {
+				t.Errorf("err = %v, want a user error containing %q", err, tt.want)
+			}
+		})
+	}
+}
+
+func TestPending(t *testing.T) {
+	root := t.TempDir()
+	writeTestFile(t, root, "lct.yaml", batchYAML)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	future := time.Now().Add(time.Hour)
+	past := time.Now().Add(-time.Hour)
+	if err := st.SavePending([]store.PendingItem{
+		{Key: "A.json|/dataList/0/content", Reason: "new"},
+		{Key: "A.json|/dataList/1/content", Reason: "new", Lease: &store.Lease{Batch: "b", Until: future}},
+		{Key: "A.json|/dataList/2/content", Reason: "kr-changed", Lease: &store.Lease{Batch: "b", Until: past}},
+		{Key: "B.json|/dataList/0/content", Reason: "kr-changed", Attempts: 3, Flags: []string{store.FlagNeedsReview}},
+		{Key: "B.json|/dataList/1/content", Reason: "paratranz-repair"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+
+	ctx, out := testCtx(t, root, "", true)
+	if err := runPending(ctx, []string{"--count"}); err != nil {
+		t.Fatal(err)
+	}
+	var count struct {
+		Total       int            `json:"total"`
+		ByReason    map[string]int `json:"by_reason"`
+		Leased      int            `json:"leased"`
+		NeedsReview int            `json:"needs_review"`
+	}
+	if err := json.Unmarshal(out.Bytes(), &count); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	if count.Total != 5 || count.Leased != 1 || count.NeedsReview != 1 ||
+		count.ByReason["new"] != 2 || count.ByReason["kr-changed"] != 2 || count.ByReason["paratranz-repair"] != 1 {
+		t.Errorf("count = %+v, want 5 pending, 1 leased (the other lease ran out), 1 needs_review", count)
+	}
+
+	ctx, out = testCtx(t, root, "", false)
+	if err := runPending(ctx, []string{"--count"}); err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{"pending: 5", "new", "kr-changed", "leased: 1", "needs_review: 1"} {
+		if !strings.Contains(out.String(), want) {
+			t.Errorf("text count lacks %q:\n%s", want, out)
+		}
+	}
+
+	ctx, out = testCtx(t, root, "", true)
+	if err := runPending(ctx, nil); err != nil {
+		t.Fatal(err)
+	}
+	var list []store.PendingItem
+	if err := json.Unmarshal(out.Bytes(), &list); err != nil || len(list) != 5 {
+		t.Errorf("list = %d items, %v\n%s", len(list), err, out)
+	}
+	ctx, out = testCtx(t, root, "", false)
+	if err := runPending(ctx, nil); err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.Count(out.String(), "\n"); got != 5 || !strings.Contains(out.String(), "B.json|/dataList/0/content") {
+		t.Errorf("text list should have a line per item:\n%s", out)
+	}
+
+	if err := runPending(ctx, []string{"extra"}); !isUserError(err) {
+		t.Errorf("stray argument: err = %v, want a user error", err)
+	}
+}
+
+func TestPendingEmptyStore(t *testing.T) {
+	root := t.TempDir()
+	writeTestFile(t, root, "lct.yaml", batchYAML)
+	ctx, out := testCtx(t, root, "", true)
+	if err := runPending(ctx, []string{"--count"}); err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out.String(), `"total": 0`) || !strings.Contains(out.String(), `"by_reason": {}`) {
+		t.Errorf("count of a store without state:\n%s", out)
+	}
+	ctx, out = testCtx(t, root, "", true)
+	if err := runPending(ctx, nil); err != nil {
+		t.Fatal(err)
+	}
+	if strings.TrimSpace(out.String()) != "[]" {
+		t.Errorf("list of a store without state = %q, want []", out)
+	}
+}

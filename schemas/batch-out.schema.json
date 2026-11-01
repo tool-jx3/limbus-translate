@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "lct batch output",
+  "description": "work/batches/<id>.out.json, written by the translator and read by `lct batch submit <id>`: one entry per translated unit. Units left out stay pending.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["key", "zh"],
+    "properties": {
+      "key": { "description": "The key of a unit of the batch.", "type": "string", "minLength": 1 },
+      "zh": { "description": "The translation, in Traditional Chinese (Taiwan).", "type": "string" },
+      "note": { "description": "A question or a new term to report. It goes to the report; it never becomes a rule by itself.", "type": "string" }
+    }
+  }
+}

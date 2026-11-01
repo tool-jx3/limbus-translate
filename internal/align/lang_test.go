@@ -1,6 +1,7 @@
 package align
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"reflect"
@@ -272,5 +273,21 @@ func TestLCS(t *testing.T) {
 	// Ties go to the earliest pairs.
 	if got, want := LCS([]string{"a", "a"}, []string{"a"}), [][2]int{{0, 0}}; !reflect.DeepEqual(got, want) {
 		t.Errorf("LCS([a a], [a]) = %v, want %v", got, want)
+	}
+}
+
+// Batches write an aligned string to their JSON file, so its field names are
+// part of the batch schema.
+func TestLangAlignedJSON(t *testing.T) {
+	data, err := json.Marshal(LangAligned{Value: "Inflict <b>", Method: MethodID})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := `{"value":"Inflict \u003cb\u003e","method":"id"}`; string(data) != want {
+		t.Errorf("JSON = %s, want %s", data, want)
+	}
+	var back LangAligned
+	if err := json.Unmarshal(data, &back); err != nil || back != (LangAligned{Value: "Inflict <b>", Method: MethodID}) {
+		t.Errorf("round trip = %+v, %v", back, err)
 	}
 }

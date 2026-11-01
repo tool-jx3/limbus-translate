@@ -22,8 +22,8 @@ const (
 
 // LangAligned is the string another file has for one KR string.
 type LangAligned struct {
-	Value  string
-	Method Method
+	Value  string `json:"value"`
+	Method Method `json:"method"`
 }
 
 // storyPrefix starts the file names of story scripts. Their ids are line
