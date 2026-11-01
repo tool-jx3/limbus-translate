@@ -84,7 +84,7 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。劇情中指故事內的季節週期（例如百貨公司的季）時可譯「季」
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）中指故事內的季節或時尚季時依語境譯「季」「換季」「這一季的流行」等
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -283,3 +283,10 @@
   status: approved
   category: [city]
   notes: 協會名沿用拉丁字母（同 Zwei協會、Cinq協會）；不可保留韓文
+
+- kr: 감정평가서
+  zh: 鑑定評價書
+  forbidden: [鑑定評估書]
+  status: approved
+  category: [city]
+  notes: RPG 道具「漆黑派的鑑定評價書」等既有譯名
