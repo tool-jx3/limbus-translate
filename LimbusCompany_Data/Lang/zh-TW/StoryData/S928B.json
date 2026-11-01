@@ -113,19 +113,19 @@
       "id": 20,
       "model": "약지아비",
       "teller": "???",
-      "content": "The City boasts many a work of art, yet Yoshihide found the marionette dolls particularly distasteful."
+      "content": "良秀在這個都市的作品中特別不喜歡提線木偶。"
     },
     {
       "id": 21,
       "model": "약지아비",
       "teller": "???",
-      "content": "那孩子說……人偶是一種仿制品。無論做到多麼栩栩如生，依舊沒有與會呼吸的真品比較的價值。"
+      "content": "那孩子說……人偶是一種仿製品。無論做到多麼栩栩如生，依舊沒有與會呼吸的真品比較的價值。"
     },
     {
       "id": 22,
       "model": "약지아비",
       "teller": "???",
-      "content": "但低估一件仿制品是不行的。根據理解的方式，反而能夠讓其成為理想中形態。"
+      "content": "不過，可不能只把它單純當成仿製品喔。換個角度想，它反而可能成為理想鄉呢。"
     },
     {
       "id": 23,
@@ -147,7 +147,7 @@
     {
       "id": 26,
       "model": "호엔하임",
-      "content": "話說回來…… 助手君幹勁滿滿的計劃就這麼泡湯了啊。"
+      "content": "話說回來……助手那雄心勃勃的計畫就這麼泡湯了啊。"
     },
     {
       "id": 27,

@@ -13,11 +13,11 @@
     {
       "id": 2,
       "model": "그레고르",
-      "content": "Huh. You keep getting these nightmare cycles on the Bus, Manager Bud."
+      "content": "哈……我們這位經理兄怎麼老是定期在巴士上做惡夢啊。"
     },
     {
       "id": 3,
-      "content": "N-nightmare...? So it was all a dream?"
+      "content": "夢、夢？剛才那是夢嗎？"
     },
     {
       "id": 4,
@@ -26,61 +26,61 @@
     },
     {
       "id": 5,
-      "content": "As the buzzing in my head gradually settled, the sound of the bus engine came back into focus—I guess what just happened must've been a dream, nothing more."
+      "content": "腦袋裡的嗡嗡聲漸漸平息下來，巴士的引擎聲也傳進了耳裡，看來剛才發生的事似乎真的只是一場夢。"
     },
     {
       "id": 6,
       "model": "단테",
-      "content": "<Ngh... Thanks, Gregor... You saying it was a nightmare snapped me out of it.>"
+      "content": "<唔……格里高爾，謝了……多虧你說那是惡夢，我才馬上清醒過來。>"
     },
     {
       "id": 7,
       "model": "그레고르",
-      "content": "Hey, no problem. Or if you really wanna thank me... We could use a hand with <i>that</i>."
+      "content": "謝什麼。啊，對了……既然要謝我，能不能替我處理一下那邊？"
     },
     {
       "id": 8,
-      "content": "Where Gregor pointed, the Sinners were arguing loudly over something."
+      "content": "格里高爾伸手指向某處，只見那裡的罪人們正扯著嗓門，不知在吵吵鬧鬧些什麼。"
     },
     {
       "id": 9,
       "model": "그레고르",
-      "content": "*sigh* Again with where to go for the team dinner. They each want what they think is the best since it's been a while."
+      "content": "唉。又在為了聚餐地點吵成那樣。說什麼難得聚餐一次，一定要吃最好吃的。"
     },
     {
       "id": 10,
-      "content": "Dream or reality... Some things never change. It's almost amazing how they keep getting into the same arguments."
+      "content": "不管是在夢裡還是現實……怎麼都能為了同一件事吵起來，真是不可思議。"
     },
     {
       "id": 11,
-      "content": "... And I don't even get to eat anything."
+      "content": "……我明明連吃都不能吃。"
     },
     {
       "id": 12,
       "model": "그레고르",
-      "content": "Well, Manager Bud... I'm sure <i>you</i> oughta have a wise way to shush them quick. Right?"
+      "content": "經理兄的話，應該有能讓他們馬上安靜下來的聰明辦法……對吧？"
     },
     {
       "id": 13,
-      "content": "\"Wise\" way? Did I ever have a \"wise\" way to quiet them down?"
+      "content": "聰明的辦法？有那種東西嗎？"
     },
     {
       "id": 14,
       "model": "단테",
-      "content": "<Uh, well... To the time-out chair, everyone!>"
+      "content": "<呃……那個……大家都去坐反省椅？>"
     },
     {
       "id": 15,
-      "content": "Oh, I'm probably still half-asleep..."
+      "content": "啊，難道我還沒完全睡醒嗎……"
     },
     {
       "id": 16,
       "model": "단테",
-      "content": "<... Sorry, that came out weird. What I mean to say is...>"
+      "content": "<唔，抱歉。不小心說了句奇怪的話。我是說……>"
     },
     {
       "id": 17,
-      "content": "I was awkwardly scratching the back of my head when I noticed that somehow, the Sinners had all gone quiet."
+      "content": "我一邊摸著後腦勺一邊往前看，不知為何，罪人們全都安靜了下來。"
     },
     {
       "id": 18,
@@ -89,44 +89,44 @@
     },
     {
       "id": 19,
-      "content": "Slowly, one by one... they clenched their mouths shut and took their seats..."
+      "content": "接著，大家慢慢地……緊緊閉上嘴巴，開始坐回位子上。"
     },
     {
       "id": 20,
-      "content": "As if they were children who were anticipating one heck of a scolding."
+      "content": "就像……在反省似的。"
     },
     {
       "id": 21,
-      "place": "Inside Mephistopheles?",
+      "place": "梅菲斯托費勒斯 內部？",
       "model": "단테",
-      "content": "<W-what's going on, guys...?>"
+      "content": "<怎、怎麼了，大家……？>"
     },
     {
       "id": 22,
       "model": "이스마엘",
-      "content": "Everyone... Please keep quiet... The Terror T-rexes will come if you're noisy in the time-out chair..."
+      "content": "大家……請安靜……要是在反省椅上吵鬧……暴龍班就會來了……"
     },
     {
       "id": 23,
-      "content": "Terror T-rexes...?"
+      "content": "暴龍……班？"
     },
     {
       "id": 24,
-      "content": "Hang on... Why do they recognize that name?"
+      "content": "你們怎麼會知道那個詞……"
     },
     {
       "id": 25,
       "model": "로쟈",
-      "content": "I'm so, so scared... Heard the Terror T-rexes gobble up bad kids in a single bite..."
+      "content": "好可怕、好可怕……聽說暴龍班會把壞小孩一口吃掉……"
     },
     {
       "id": 26,
       "model": "이스마엘",
-      "content": "There's even a rumor saying... that they always go on external learning... so they can catch any children who misbehave..."
+      "content": "還有傳言說，他們每次都到園外去，其實是為了懲罰壞孩子……"
     },
     {
       "id": 27,
-      "content": "What are they on about? We're on Mephistopheles..."
+      "content": "不對，說到底這是在說什麼？這裡是梅菲斯托費勒斯……"
     },
     {
       "id": 28,
@@ -134,39 +134,39 @@
     },
     {
       "id": 29,
-      "content": "There are two seats empty."
+      "content": "座位……空了兩個呢。"
     },
     {
       "id": 30,
       "model": "베르길리우스만우",
       "title": "???",
-      "content": "Big Teesh Danteeehh...."
+      "content": "但丁ㄟ……園長大銀……"
     },
     {
       "id": 31,
       "model": "베르길리우스만우",
       "title": "???",
-      "content": "The otha fwiends are being noisy again..."
+      "content": "小朋友們不是又在吵鬧了嗎～……"
     },
     {
       "id": 32,
       "model": "싱클레어",
-      "content": "Eeek...! It's the Red Theropod, Terror T-rex's Class Captain!"
+      "content": "咿咿咿……！是暴龍班的班長，猩紅暴龍！"
     },
     {
       "id": 33,
       "model": "베르길리우스만우",
-      "content": "When do I get... uppies fwom you...?"
+      "content": "到底神麼時候……才要給偶揹揹……"
     },
     {
       "id": 34,
       "model": "단테",
-      "content": "<W-w-what on earth are you saying...?! S-stay back...!>"
+      "content": "<你在說什麼……？！別、別過來……>"
     },
     {
       "id": 35,
       "model": "베르길리우스만우",
-      "content": "Uppies...? <size=80%>Uppies...?</size> <size=60%>Uppies...?</size>"
+      "content": "肯揹偶了嗎……了嗎……了嗎……"
     },
     {
       "id": 36,
@@ -177,42 +177,42 @@
       "id": 38,
       "place": "但丁的房間",
       "model": "단테",
-      "content": "<*huff* *huff* *choke*>"
+      "content": "<哈、哈啊、哈、哈……>"
     },
     {
       "id": 39,
-      "content": "Is this... my room?"
+      "content": "這裡是……我的房間？"
     },
     {
       "id": 40,
-      "content": "Then... was that just now also a dream?"
+      "content": "那……剛才那個也是夢？"
     },
     {
       "id": 41,
-      "content": "So I had two dreams in a row, huh..."
+      "content": "我竟然連續做了兩次夢……嗎？"
     },
     {
       "id": 42,
       "model": "단테",
-      "content": "<That was such a weird-ass dream... *sigh*>"
+      "content": "<這是什麼鬼夢啊……哈啊啊……>"
     },
     {
       "id": 43,
-      "content": "... No, it's still too early to let my guard down."
+      "content": "……不，現在鬆一口氣還太早了。"
     },
     {
       "id": 44,
-      "content": "I could still be trapped in a dream world. R-right, I should try pinching my cheek to make sure!"
+      "content": "這搞不好也是夢……捏、捏一下臉頰看看吧！"
     },
     {
       "id": 45,
       "model": "단테",
-      "content": "<Dang it! Forgot I got a clock for a head. Fine, then the thigh... and one on the arm too!>"
+      "content": "<啊！唔……我的頭是時鐘，捏不了。那就捏大腿或手臂……！>"
     },
     {
       "id": 46,
       "model": "파우스트",
-      "content": "Apologies for coming in without knocking, Dante, but there is an urgent matter to discuss—"
+      "content": "但丁，沒有敲門就進來很抱歉，但我有件急事想和您商量……"
     },
     {
       "id": 47,
@@ -222,33 +222,33 @@
     {
       "id": 48,
       "model": "파우스트",
-      "content": "Have you developed a sudden urge for self-harm? No such phenomenon has ever been reported before..."
+      "content": "您突然產生了自殘的衝動嗎？從未有過這類情況的報告……"
     },
     {
       "id": 49,
       "model": "단테",
-      "content": "<No, no, Faust. Wait. Hear me out first.>"
+      "content": "<不，不是啦。浮士德。妳聽我說。>"
     },
     {
       "id": 50,
       "model": "파우스트",
-      "content": "You may require immediate medical examination. First..."
+      "content": "或許需要盡快為您進行診察。首先……"
     },
     {
       "id": 51,
-      "content": "It took a good long while to try and explain to Faust the ridiculous situation I found myself in, but in the end, I managed to clear things up."
+      "content": "雖然要向浮士德重新說明這滑稽的狀況、解開誤會，花了好長一段時間。"
     },
     {
       "id": 52,
-      "content": "And thankfully, this part wasn't a dream."
+      "content": "不過還好。至少這一次不是夢。"
     },
     {
       "id": 53,
-      "content": "Just..."
+      "content": "只是……"
     },
     {
       "id": 54,
-      "content": "Just another anecdote to be told about a certain day on the Bus."
+      "content": "往日某一天裡的一段故事罷了。"
     }
   ]
 }

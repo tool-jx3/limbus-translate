@@ -9,31 +9,31 @@
     {
       "id": 1,
       "model": "오티스",
-      "content": "It's evident no one—"
+      "content": "與人交談的時候……"
     },
     {
       "id": 2,
       "model": "잔느",
-      "content": "<color=#a5ab8e>—taught me that showing my face is the barest courtesy when initiating conversation? I <i>was</i> taught, actually, but I'm not in there with you to give you an in-person greeting.</color>"
+      "content": "<color=#a5ab8e>我聽說現身是基本的禮貌，不過我和你們不一樣，並不待在百貨公司裡。</color>"
     },
     {
       "id": 3,
       "model": "잔느",
-      "content": "<color=#a5ab8e>I'm not a customer here at the Grand Magasin. I'm one of what is called the \"Giants\"—the pillars that keep Sisyphe standing.</color>"
+      "content": "<color=#a5ab8e>因為我不是顧客，而是支撐這座薛西弗斯百貨公司的巨人之一。</color>"
     },
     {
       "id": 4,
       "model": "오티스",
-      "content": "A \"Giant,\" you say... Hm, what's that? A—"
+      "content": "所謂的巨人……"
     },
     {
       "id": 5,
       "model": "잔느",
-      "content": "<color=#a5ab8e>—faction? Not really. The daily operations of the Grand Magasin rely entirely on us Giants' management. We don't even get to take PTO when we want to.</color>"
+      "content": "<color=#a5ab8e>與其說是勢力，不如說是營運的人吧。百貨公司是靠我們巨人運轉、營運的。所以連休假都沒辦法想休就休。</color>"
     },
     {
       "id": 6,
-      "content": "<color=#a5ab8e>Oh yeah, you might hear some of its customers calling out to disembodied \"Voices\" as you make your way through the Grand Magasin. That'd usually be us speaking, the \"Giants.\" Though there might be some exceptions.</color>"
+      "content": "<color=#a5ab8e>啊，顧客們偶爾稱作聲音的存在，其真面目就是巨人。不過也常有不是的時候就是了。</color>"
     },
     {
       "id": 7,
@@ -43,90 +43,90 @@
     {
       "id": 8,
       "model": "오티스",
-      "content": "Are you reading my mind?"
+      "content": "能讀取別人的想法嗎？"
     },
     {
       "id": 9,
       "model": "잔느",
-      "content": "<color=#a5ab8e>*chuckle* Of course not. The questions were just so predictable that I couldn't help myself, that's all.</color>"
+      "content": "<color=#a5ab8e>呵呵，怎麼可能。只是這問題常有人問，很容易猜到罷了。</color>"
     },
     {
       "id": 10,
       "model": "싱클레어",
-      "content": "E-excuse me..."
+      "content": "那……那個……"
     },
     {
       "id": 11,
-      "content": "Sinclair gingerly sidled into the conversation."
+      "content": "辛克萊小心翼翼地插了話。"
     },
     {
       "id": 12,
       "model": "싱클레어",
-      "content": "If you two were in a romantic relationship... <i>once</i>, does that mean..."
+      "content": "曾經……是戀人關係的話，那現在……"
     },
     {
       "id": 13,
       "model": "잔느",
-      "content": "<color=#a5ab8e>He meant it quite literally—our relationship burned with mutual yearning, the kind doused only by immediate gratification... And we never squandered so much as a single moment to get things <i>steamy</i> between the two of us. Until Meursault one day up and left N Corp. forever without so much as a proper goodbye.</color>"
+      "content": "<color=#a5ab8e>就是字面上的意思。我們曾經是一刻也不浪費、熱烈渴求著彼此的關係……但有一天，連好好道別的時間都沒有，你就永遠離開了N公司。</color>"
     },
     {
       "id": 14,
       "model": "잔느",
-      "content": "<color=#a5ab8e>You did, didn't you?</color>"
+      "content": "<color=#a5ab8e>對吧？</color>"
     },
     {
       "id": 15,
       "model": "뫼르소",
-      "content": "I did."
+      "content": "沒錯。"
     },
     {
       "id": 16,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Lemme ask again, now that we've gone through a round of Liquidation. Did you return because you missed me?</color>"
+      "content": "<color=#a5ab8e>既然整理庫存結束了，我得再問一次。你是因為想見我才回來的嗎？</color>"
     },
     {
       "id": 17,
       "model": "뫼르소",
-      "content": "As it is basic courtesy one extends to an old flame..."
+      "content": "若要在舊情人面前保持基本的禮貌……"
     },
     {
       "id": 18,
       "model": "뫼르소",
-      "content": "\"I missed you.\""
+      "content": "我會回答：我很想念妳。"
     },
     {
       "id": 19,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Hehe, fine. That's good enough for me.</color>"
+      "content": "<color=#a5ab8e>呵呵，好吧，我就滿足於這個回答。</color>"
     },
     {
       "id": 20,
       "model": "오티스",
-      "content": "I don't know what game you two are playing, but..."
+      "content": "我不知道你們兩個在密謀什麼……"
     },
     {
       "id": 21,
       "model": "오티스",
-      "content": "If you're a Giant, and if the Giants are akin to overseers of this \"department store,\" is it within your authority to release us from here?"
+      "content": "如果巨人是某種營運這裡的管理者般的存在……那是不是也能放我們離開這裡？"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "... She cannot. She will not, even if it were within her ability to do so."
+      "content": "……那是不可能的。即便可能，她也不會那麼做。"
     },
     {
       "id": 23,
       "model": "오티스",
-      "content": "Right... Of course you'd know."
+      "content": "是啊……想必如此。"
     },
     {
       "id": 24,
-      "content": "Outis glared askance at Meursault."
+      "content": "奧提斯用懷疑的眼神瞪著莫梭。"
     },
     {
       "id": 25,
       "model": "잔느",
-      "content": "<color=#a5ab8e>So this new coworker of yours—she's always like this, huh? So untrusting.</color>"
+      "content": "<color=#a5ab8e>你的同伴不管什麼時候都充滿了懷疑呢。</color>"
     },
     {
       "id": 26,
@@ -136,32 +136,32 @@
     {
       "id": 27,
       "model": "잔느",
-      "content": "<color=#a5ab8e>I am a Giant of the Grand Magasin—protecting and maintaining the Grand Magasin is my job. I can keep you company with stories about this place, but...</color>"
+      "content": "<color=#a5ab8e>我是有義務守護並維持百貨公司的巨人。雖然可以一邊看著你們，一邊跟你們聊聊百貨公司的種種……</color>"
     },
     {
       "id": 28,
       "model": "잔느",
-      "content": "<color=#a5ab8e>... I can't pick out just the 13 of you like it's a crane game.</color>"
+      "content": "<color=#a5ab8e>但沒辦法像夾娃娃那樣，只把你們挑出來送出去。</color>"
     },
     {
       "id": 29,
       "model": "오티스",
-      "content": "Still have to follow the rules and conditions, hm? Then you have nothing to offer us but the illusion of omnipotence. Unremarkable."
+      "content": "看似全能，卻附帶著限制與條件嗎。也沒什麼特別的。"
     },
     {
       "id": 30,
       "model": "단테",
-      "content": "<... She won't always have her eyes on us. She still has a department store to manage, after all.>"
+      "content": "<……她應該不會每分每秒都在看吧。畢竟還得管理百貨公司，不可能只盯著我們。>"
     },
     {
       "id": 31,
       "model": "오티스",
-      "content": "I'm starting to get a clearer picture, Executive Manager. Each \"Giant\" must also be responsible for overseeing an aspect of this place."
+      "content": "我大致了解情況了。另外，看來每個巨人都有各自主管的領域。"
     },
     {
       "id": 32,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Oh? Looks like she's more than just a paranoiac... Pfft, your friends each have something special about them, huh?</color>"
+      "content": "<color=#a5ab8e>不只是充滿懷疑而已……噗，你的朋友們每個都有些不凡之處呢。</color>"
     },
     {
       "id": 33,
@@ -171,42 +171,42 @@
     {
       "id": 34,
       "model": "싱클레어",
-      "content": "Um... May I ask you a question, Miss Jeanne? Why did you let us hear your Voice? Was it just because you were happy to see Meursault...?"
+      "content": "那個……那麼，簡小姐為什麼要讓我們聽見您的聲音呢？單純只是因為很高興見到莫梭先生嗎……？"
     },
     {
       "id": 35,
       "model": "잔느",
-      "content": "<color=#a5ab8e>At work, I'm usually... all by myself.</color>"
+      "content": "<color=#a5ab8e>我……上班的時候，大多是一個人。</color>"
     },
     {
       "id": 36,
       "model": "잔느",
-      "content": "<color=#a5ab8e>I sit in one corner of this moderately-sized room that isn't too big or too small... staring into the unbearable vastness of the Grand Magasin like it's the most normal thing in the world to do.</color>"
+      "content": "<color=#a5ab8e>在一間不大也不小的房間一角，理所當然地看守著這座寬廣而巨大的百貨公司。</color>"
     },
     {
       "id": 37,
       "model": "싱클레어",
-      "content": "... And?"
+      "content": "……然後呢？"
     },
     {
       "id": 38,
       "model": "잔느",
-      "content": "<color=#a5ab8e>You know, sometimes...</color>"
+      "content": "<color=#a5ab8e>只是偶爾……</color>"
     },
     {
       "id": 39,
       "model": "잔느",
-      "content": "<color=#a5ab8e>... Sometimes I just want to talk about this feeling with someone.</color>"
+      "content": "<color=#a5ab8e>會想找個人聊聊這種心情。</color>"
     },
     {
       "id": 40,
       "model": "오티스",
-      "content": "Care to elaborate—"
+      "content": "那又是什麼……"
     },
     {
       "id": 41,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Time to bid each other adieu. I know you're dying to see me, but try to exercise some restraint for now.</color>"
+      "content": "<color=#a5ab8e>我該走了，就算想我，也稍微忍耐一下吧。</color>"
     },
     {
       "id": 42,
@@ -216,52 +216,52 @@
     {
       "id": 43,
       "model": "오티스",
-      "content": "... I know you're still here."
+      "content": "……怎麼可能已經走了，一定還在看著。"
     },
     {
       "id": 44,
       "model": "잔느",
-      "content": "<color=#a5ab8e>... Boo, boring.</color>"
+      "content": "<color=#a5ab8e>……真無趣。</color>"
     },
     {
       "id": 45,
       "model": "오티스",
-      "content": "I'm used to dealing with the likes of you."
+      "content": "……我很熟悉妳這種類型的人。"
     },
     {
       "id": 46,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Hey, don't take it too seriously. It's not often that I get to fool around like this at work.</color>"
+      "content": "<color=#a5ab8e>別那麼認真嘛。開玩笑的。因為我上班的時候，不太有機會像這樣跟人開玩笑。</color>"
     },
     {
       "id": 47,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Leaving for real now—tchao.</color>"
+      "content": "<color=#a5ab8e>那我真的走囉。</color>"
     },
     {
       "id": 48,
       "model": "싱클레어",
-      "content": "... It doesn't feel all that real."
+      "content": "……總覺得沒什麼真實感呢。"
     },
     {
       "id": 49,
       "model": "단테",
-      "content": "<What doesn't?>"
+      "content": "<哪一點？>"
     },
     {
       "id": 50,
       "model": "싱클레어",
-      "content": "That Meursault of all people used to be romantically involved with someone."
+      "content": "莫梭先生曾經跟某人是戀人關係這件事……"
     },
     {
       "id": 51,
       "model": "뫼르소",
-      "content": "Our relationship entailed elements that are no different from what is conventionally expected from \"romantic partners.\""
+      "content": "和一般的戀人沒什麼不同。"
     },
     {
       "id": 52,
       "model": "뫼르소",
-      "content": "We went on dates and spent time together."
+      "content": "我們約會，一起共度時光。"
     }
   ]
 }

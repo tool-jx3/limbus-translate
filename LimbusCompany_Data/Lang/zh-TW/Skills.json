@@ -2118,7 +2118,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級燒傷 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 2 Burn on 2 random enemies"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則隨機使2名敵方單位增加2級燒傷強度"
                 }
               ]
             },
@@ -2142,7 +2142,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級燒傷 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 3 Burn on 2 random enemies"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則隨機使2名敵方單位增加3級燒傷強度"
                 }
               ]
             },
@@ -2185,7 +2185,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3回燒傷 "
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 3 Burn on 2 random enemies"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則隨機使2名敵方單位增加3級燒傷強度"
                 }
               ]
             }
@@ -2216,7 +2216,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3回燒傷 "
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 3 Burn on 2 random enemies"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則隨機使2名敵方單位增加3級燒傷強度"
                 }
               ]
             }
@@ -2877,7 +2877,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 若目標現存體力不高於25%，則使本硬幣在未擊殺目標時重複使用1次\n正面命中時，使本硬幣造成的傷害+50%"
+                  "desc": "[OnSucceedAttackHead] 若目標現存體力低於25%，則使本硬幣在未擊殺目標時重複使用1次\n若本硬幣朝向正面，則使本硬幣造成的傷害+50%"
                 },
                 {
                   "desc": "[ReUseOnSucceedAttackHead] 使本硬幣造成的傷害+50%"
@@ -2908,7 +2908,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 若目標現存體力不高於25%，則使本硬幣在未擊殺目標時重複使用1次\n正面命中時，使本硬幣造成的傷害+50%"
+                  "desc": "[OnSucceedAttackHead] 若目標現存體力低於25%，則使本硬幣在未擊殺目標時重複使用1次\n若本硬幣朝向正面，則使本硬幣造成的傷害+50%"
                 },
                 {
                   "desc": "[ReUseOnSucceedAttackHead] 使本硬幣造成的傷害+50%"
@@ -4304,7 +4304,7 @@
         {
           "level": 3,
           "name": "處決",
-          "desc": "若自身的理智值不高於0點，則使本技能威力+1",
+          "desc": "若自身的理智值低於0點，則使本技能威力+1",
           "coinlist": [
             {},
             {},
@@ -4321,7 +4321,7 @@
         {
           "level": 4,
           "name": "處決",
-          "desc": "若自身的理智值不高於0點，則使本技能威力+1",
+          "desc": "若自身的理智值低於0點，則使本技能威力+1",
           "coinlist": [
             {
               "coindescs": [
@@ -4647,7 +4647,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Defense Power Down"
+                  "desc": "[OnSucceedAttack] 對目標施加2層破綻"
                 }
               ]
             }
@@ -5390,7 +5390,7 @@
         {
           "level": 3,
           "name": "皮納塔派對",
-          "desc": "若目標的理智值不高於0點，則根據其理智值依比例增加自身的暴擊率",
+          "desc": "若目標的理智值低於0點，則根據其理智值依比例增加自身的暴擊率",
           "coinlist": [
             {
               "coindescs": [
@@ -5404,7 +5404,7 @@
         {
           "level": 4,
           "name": "皮納塔派對",
-          "desc": "若目標的理智值不高於0點，則根據其理智值依比例增加自身的暴擊率\n若自身的呼吸法 回數不低於5回，則使暴擊時造成的傷害+30%",
+          "desc": "若目標的理智值低於0點，則根據其理智值依比例增加自身的暴擊率\n若自身的呼吸法回數不低於5回，則使暴擊時造成的傷害+30%",
           "coinlist": [
             {
               "coindescs": [
@@ -5687,7 +5687,7 @@
         {
           "level": 3,
           "name": "腰擊劍勢",
-          "desc": "若目標現存體力不高於25%，則使本技能的最終威力+2",
+          "desc": "若目標現存體力低於25%，則使本技能的最終威力+2",
           "coinlist": [
             {},
             {
@@ -5702,7 +5702,7 @@
         {
           "level": 4,
           "name": "腰擊劍勢",
-          "desc": "若目標現存體力不高於50%，則使本技能的最終威力+2",
+          "desc": "若目標現存體力低於50%，則使本技能的最終威力+2",
           "coinlist": [
             {},
             {
@@ -6531,7 +6531,7 @@
         {
           "level": 4,
           "name": "穿刺釘刑",
-          "desc": "[WhenUse] 下回合使本技能對應行動槽的挑釁值 +4\n若現存體力不高於50%，則使本技能的硬幣威力+2",
+          "desc": "[WhenUse] 下回合使本技能對應行動槽的挑釁值 +4\n若自身現存體力低於50%，則使本技能的硬幣威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -6680,7 +6680,7 @@
         {
           "level": 1,
           "name": "愚不可及……！",
-          "desc": "[StartBattle] 使自身獲得1層守護 \n若現存體力不高於50%，則使本技能的最終威力+2",
+          "desc": "[StartBattle] 使自身獲得1層守護\n若自身現存體力低於50%，則使本技能的最終威力+2",
           "coinlist": [
             {}
           ]
@@ -7508,7 +7508,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 1 [Combustion]; if target already has [Combustion], inflict 1 more"
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度。若目標帶有 [Combustion]，則使其額外增加1級燒傷強度"
                 }
               ]
             },
@@ -7529,14 +7529,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 1 [Combustion]; if target already has [Combustion], inflict 1 more"
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度。若目標帶有 [Combustion]，則使其額外增加1級燒傷強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +1 [Combustion] Count; at 30+ SP, inflict 1 more; at 45+ SP, inflict 2 more"
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Combustion]。若自身的理智值不低於30點，則對其額外施加1回燒傷；若自身的理智值不低於45點，則對其額外施加2回燒傷"
                 }
               ]
             }
@@ -7550,14 +7550,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 1 [Combustion]; if target already has [Combustion], inflict 1 more"
+                  "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度。若目標帶有 [Combustion]，則使其額外增加1級燒傷強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +1 [Combustion] Count; at 30+ SP, inflict 1 more; at 45+ SP, inflict 2 more"
+                  "desc": "[OnSucceedAttack] 對目標施加1回 [Combustion]。若自身的理智值不低於30點，則對其額外施加1回燒傷；若自身的理智值不低於45點，則對其額外施加2回燒傷"
                 }
               ]
             }
@@ -9790,14 +9790,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Rupture\nIf target has 10+ [Burst], heal by 20% of damage dealt"
+                  "desc": "[OnSucceedAttack] 使目標增加2級破裂強度\n若目標的 [Burst] 強度不低於10級，則使自身恢復本硬幣傷害量20%的體力"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Rupture\nIf target has 10+ [Burst], heal by 20% of damage dealt"
+                  "desc": "[OnSucceedAttack] 使目標增加2級破裂強度\n若目標的 [Burst] 強度不低於10級，則使自身恢復本硬幣傷害量20%的體力"
                 }
               ]
             }
@@ -9811,14 +9811,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Rupture\nIf target has 10+ [Burst], heal by 50% of damage dealt"
+                  "desc": "[OnSucceedAttack] 使目標增加2級破裂強度\n若目標的 [Burst] 強度不低於10級，則使自身恢復本硬幣傷害量50%的體力"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Rupture\nIf target has 10+ [Burst], heal by 50% of damage dealt"
+                  "desc": "[OnSucceedAttack] 使目標增加2級破裂強度\n若目標的 [Burst] 強度不低於10級，則使自身恢復本硬幣傷害量50%的體力"
                 }
               ]
             }
@@ -9832,14 +9832,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Rupture\nIf target has 10+ [Burst], heal by 50% of damage dealt"
+                  "desc": "[OnSucceedAttack] 使目標增加2級破裂強度\n若目標的 [Burst] 強度不低於10級，則使自身恢復本硬幣傷害量50%的體力"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Rupture\nIf target has 10+ [Burst], heal by 50% of damage dealt"
+                  "desc": "[OnSucceedAttack] 使目標增加2級破裂強度\n若目標的 [Burst] 強度不低於10級，則使自身恢復本硬幣傷害量50%的體力"
                 }
               ]
             }
@@ -10087,7 +10087,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has [Talisman], inflict +1 [Burst] Count"
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Talisman]，則使其增加1回破裂"
                 }
               ]
             }
@@ -10108,7 +10108,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has [Talisman], inflict +3 [Burst] Count"
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Talisman]，則使其增加3回破裂"
                 }
               ]
             }
@@ -10222,7 +10222,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 2 Burn Count"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則對目標施加2回燒傷"
                 }
               ]
             }
@@ -10250,7 +10250,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 2 Burn Count"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則對目標施加2回燒傷"
                 }
               ]
             }
@@ -10278,7 +10278,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has 6+ [Combustion], inflict 2 Burn Count"
+                  "desc": "[OnSucceedAttack] 若目標的 [Combustion] 強度不低於6級，則對目標施加2回燒傷"
                 }
               ]
             }

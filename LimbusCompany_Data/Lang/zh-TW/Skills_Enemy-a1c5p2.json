@@ -51,7 +51,7 @@
         {
           "level": 1,
           "name": "收穫恐懼",
-          "desc": "若目標的理智值不高於20點，則使本技能體力恢復量 +20%",
+          "desc": "若目標的理智值低於20點，則使本次攻擊的體力恢復量額外+20%",
           "coinlist": [
             {
               "coindescs": [
@@ -83,7 +83,7 @@
         {
           "level": 1,
           "name": "麻痺精神",
-          "desc": "若目標的理智值不高於-15點，則使本技能造成的傷害+50%",
+          "desc": "若目標的理智值低於-15點，則使本技能造成的傷害+50%",
           "coinlist": [
             {
               "coindescs": [
@@ -165,7 +165,7 @@
                   "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量40%的體力"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Copy one of the buffs currently applied to the target. Gain the copied buff next turn.\n(Limited to: Attack Power Up, Haste, Damage Up, and <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</link></u></color>)"
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得1種目標帶有的增益狀態。\n(僅限強壯、迅捷、傷害強化與<sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">守護</link></u></color>)"
                 }
               ]
             },
@@ -242,7 +242,7 @@
                   "desc": "[OnSucceedAttack] 使自身恢復本硬幣傷害量40%的體力"
                 },
                 {
-                  "desc": "Copy one of the buffs currently applied to the target. Gain the copied buff next turn.\n(Limited to: Attack Power Up, Haste, Damage Up, and <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</link></u></color>)"
+                  "desc": "下回合使自身獲得1種目標帶有的增益狀態。\n(僅限強壯、迅捷、傷害強化與<sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">守護</link></u></color>)"
                 }
               ]
             },
@@ -263,7 +263,7 @@
         {
           "level": 1,
           "name": "-... .…",
-          "desc": "If target has <sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">Sinking</link></u></color>, the HP heal effect also applies to 1 other Pallidified ally with the lowest SP",
+          "desc": "若目標帶有<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</link></u></color>，則本技能的體力恢復效果同時對現存體力最低的1名白化的友方單位生效",
           "coinlist": [
             {
               "coindescs": [
@@ -295,7 +295,7 @@
         {
           "level": 1,
           "name": ".--- .",
-          "desc": "If target has <sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">Sinking</link></u></color>, the HP heal effect also applies to 1 other Pallidified ally with the lowest SP",
+          "desc": "若目標帶有<sprite name=\"Sinking\"><color=#e30000><u><link=\"Sinking\">沉淪</link></u></color>，則本技能的體力恢復效果同時對現存體力最低的1名白化的友方單位生效",
           "coinlist": [
             {
               "coindescs": [
@@ -317,12 +317,12 @@
         {
           "level": 1,
           "name": "-. .…",
-          "desc": "[WhenUse] If target has <sprite name=\"AaCePbBa\"><color=#e30000><u><link=\"AaCePbBa\">Pallid Noise</link></u></color>, all other Pallidified allies heal 30 HP",
+          "desc": "[WhenUse] 若目標帶有<sprite name=\"AaCePbBa\"><color=#e30000><u><link=\"AaCePbBa\">蒼白的噪音</link></u></color>，則使除自身以外現存體力最低的1名白化的友方單位恢復30點體力",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "Copy one of the buffs currently applied to the target. Gain the copied buff next turn.\n(Limited to: Attack Power Up, Haste, Damage Up, and <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</link></u></color>)"
+                  "desc": "下回合使自身獲得1種目標帶有的增益狀態。\n(僅限強壯、迅捷、傷害強化與<sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">守護</link></u></color>)"
                 }
               ]
             },
@@ -509,7 +509,7 @@
         {
           "level": 1,
           "name": "--. . ...-",
-          "desc": "If target has <sprite name=\"AaCePbBa\"><color=#e30000><u><link=\"AaCePbBa\">Pallid Noise</link></u></color>, deal 1 SP damage to target for every other surviving ally",
+          "desc": "若目標帶有<sprite name=\"AaCePbBa\"><color=#e30000><u><link=\"AaCePbBa\">蒼白的噪音</link></u></color>，則除自身以外每有1名友方單位存活，對目標造成1點理智傷害",
           "coinlist": [
             {
               "coindescs": [

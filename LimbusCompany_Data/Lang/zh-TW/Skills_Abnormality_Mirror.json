@@ -95,7 +95,7 @@
         {
           "level": 1,
           "name": "淨化",
-          "desc": "[WhenUse] 若目標現存體力不高於30%，則使本技能威力+2",
+          "desc": "[WhenUse] 若目標現存體力低於30%，則使本技能威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -358,12 +358,12 @@
         {
           "level": 1,
           "name": "榮耀執握",
-          "desc": "[WhenUse] 若目標現存體力不高於30%，則使本技能造成的傷害+100%",
+          "desc": "[WhenUse] 若目標現存體力低於30%，則使本技能造成的傷害+100%",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 若目標現存體力不高於30%，則直接擊殺目標並使自身恢復30點體力\n下回合使自身獲得2層強壯 "
+                  "desc": "[OnSucceedAttackHead] 若目標現存體力低於30%，則直接擊殺目標並使自身恢復30點體力\n下回合使自身獲得2層強壯"
                 }
               ]
             }
@@ -377,7 +377,7 @@
         {
           "level": 1,
           "name": "給我懺悔！！",
-          "desc": "[WhenUse] 若目標現存體力不高於30%，則使本技能造成的傷害+100%",
+          "desc": "[WhenUse] 若目標現存體力低於30%，則使本技能造成的傷害+100%",
           "coinlist": [
             {
               "coindescs": [

@@ -2,503 +2,503 @@
   "dataList": [
     {
       "id": 0,
-      "place": "The House of Spiders Forward Base",
-      "content": "Hohenheim brought us to what looked like a research lab, lined with cables, rows of screens, and diagrams full of complex symbols and shapes."
+      "place": "蜘蛛巢 前哨基地",
+      "content": "霍恩海姆帶我們來的地方，是一個塞滿了各種電線、顯示器，以及艱澀符號與圖形，宛如研究設施的空間。"
     },
     {
       "id": 1,
       "model": "단테",
-      "content": "<I didn't know there was a place like this in the House of Spiders...>"
+      "content": "<原來還有這種地方啊。>"
     },
     {
       "id": 2,
       "model": "파우스트",
-      "content": "This is a forward base constructed by Limbus Company following Operation Spider Pyre. It did not exist prior to the House's fall."
+      "content": "這裡是焚燒蜘蛛巢作戰之後，由邊獄公司接手並建立的前哨基地。是當時還不存在的空間呢。"
     },
     {
       "id": 3,
       "model": "파우스트",
-      "content": "It is intended for additional Backdoor investigation and research into irregular phenomena observed during the operation."
+      "content": "看來是為了進一步調查後門，以及研究作戰時發生的特異現象而設置的。"
     },
     {
       "id": 4,
       "model": "단테",
-      "content": "<Irregular phenomena?>"
+      "content": "<特異現象？>"
     },
     {
       "id": 5,
       "model": "파우스트",
-      "content": "... An example:"
+      "content": "……比如說。"
     },
     {
       "id": 6,
       "model": "파우스트",
-      "content": "Research subjects such as \"A Spatial Analysis of the Correlation between the Emergence of Sinner #11's Sign and the Manifestation of Possible Future.\""
+      "content": "可以舉出[11號罪人的印記出現與未來可能性實體化現象之空間關聯性分析]這類研究主題為例呢。"
     },
     {
       "id": 7,
       "model": "단테",
-      "content": "<Oh...>"
+      "content": "<啊哈……>"
     },
     {
       "id": 8,
-      "content": "Looking around, I spotted Sinclair and a group of researchers surrounding him—the same people who had dragged him off earlier."
+      "content": "環顧四周，確實看到了辛克萊和圍在他身邊的研究人員。是剛才半強迫地把辛克萊帶走的那些人。"
     },
     {
       "id": 9,
-      "content": "They were accompanied by... a gaggle of Sinners who had tagged along to either watch the show or kill some time while they took a breather after work."
+      "content": "而在旁邊……似乎聚集著來看熱鬧，或是做完手邊工作來休息的罪人們。"
     },
     {
       "id": 10,
       "model": "파우스트",
-      "content": "Hohenheim. How long will the examination take?"
+      "content": "霍恩海姆。檢查需要多久？"
     },
     {
       "id": 11,
       "model": "호엔하임",
-      "content": "Hmm. With Sinclair's biometric assessment concluded, the analyzer device should be available for the Relic now."
+      "content": "嗯。幸好辛克萊的生物檢測剛結束，應該馬上就能使用分析儀。"
     },
     {
       "id": 12,
       "model": "호엔하임",
-      "content": "Which means that it should be finished in... an hour from now, at the latest."
+      "content": "嘛，這樣的話……最晚大概一個小時吧。"
     },
     {
       "id": 13,
-      "content": "The scabbard rattled again at the mention of \"an hour.\""
+      "content": "聽到「一個小時」，刀又左右晃動了起來。"
     },
     {
       "id": 14,
-      "content": "... I don't know why, or how... but the way it swayed... almost felt like a child trembling."
+      "content": "雖然不知道為什麼，但那動作在我看來……也像是孩子在發抖一樣。"
     },
     {
       "id": 15,
       "model": "호엔하임",
-      "content": "It's moving again."
+      "content": "又動了啊。"
     },
     {
       "id": 16,
       "model": "호엔하임",
-      "content": "Come along, Ryōshū. I expect you will want to witness the procedure."
+      "content": "良秀，妳也跟過來吧。想必妳會想親眼看著過程。"
     },
     {
       "id": 17,
       "model": "료슈",
-      "content": "Fine."
+      "content": "好。"
     },
     {
       "id": 18,
-      "content": "Ryōshū and Hohenheim headed off to the side—the examination was probably going to start immediately."
+      "content": "良秀和霍恩海姆似乎打算立刻開始檢查，往一旁走去，不見了身影。"
     },
     {
       "id": 19,
       "model": "단테",
-      "content": "<Time to get to Sinclair, then... Wait.>"
+      "content": "<那我去看看辛克萊……咦？>"
     },
     {
       "id": 20,
-      "content": "I was making my way toward Sinclair, who was getting bombarded with questions, when an unexpected figure behind a pillar caught my eye."
+      "content": "我走向正遭受各種提問轟炸的辛克萊時，原本被柱子擋住的意外人物格外引人注目。"
     },
     {
       "id": 21,
-      "content": "It was Vespa Crabro, with a big piece of paper covered in crooked handwriting taped on his back."
+      "content": "那是……背後貼著一張寫著歪歪扭扭字跡的大紙的韋斯帕。"
     },
     {
       "id": 22,
       "model": "단테",
-      "content": "<\"Snack... thief\"?>"
+      "content": "<零食……小偷？>"
     },
     {
       "id": 23,
       "model": "싱클레어",
-      "content": "Ah. Manager."
+      "content": "啊。經理。"
     },
     {
       "id": 24,
       "model": "카론",
-      "content": "... Charon's snacks. Mister String Bean ate up all of them."
+      "content": "……這個竹竿大叔，把卡戎的。零食，全吃光了。"
     },
     {
       "id": 25,
       "model": "베스파",
-      "content": "... Sorry, but I think there's been some misunderstanding..."
+      "content": "……非常抱歉。似乎是哪裡出了差錯……"
     },
     {
       "id": 26,
       "model": "카론",
-      "content": "Verg. Kick his ass."
+      "content": "維吉。教訓他。"
     },
     {
       "id": 27,
       "model": "베르길리우스",
-      "content": "*sigh*"
+      "content": "哈啊……"
     },
     {
       "id": 28,
       "model": "베르길리우스",
-      "content": "... Not only is this matter not worth pointing fingers over, but Charon also shares some of the responsibility for leaving them out on the table unattended."
+      "content": "……這既不是值得追究對錯的事，況且把東西放在桌上就離開座位的卡戎也並非毫無過錯。"
     },
     {
       "id": 29,
       "model": "베르길리우스",
-      "content": "Still, I would prefer you exercise more care next time... Or you'll put me in a tough spot."
+      "content": "不過，下次還是希望你多注意點……因為之後我的處境會變得相當辛苦。"
     },
     {
       "id": 30,
       "model": "베스파",
-      "content": "... Understood."
+      "content": "……是。"
     },
     {
       "id": 31,
       "model": "베르길리우스",
-      "content": "... Charon."
+      "content": "……卡戎。"
     },
     {
       "id": 32,
       "model": "카론",
-      "content": "Charon, Super Sulky Mode engaged. Not talking for half a day."
+      "content": "超級鬧彆扭模式。接下來半天，卡戎不說話。"
     },
     {
       "id": 33,
       "model": "베르길리우스",
-      "content": "Deploying \"Super Pass Bitter Candy.\""
+      "content": "用「超級PASS苦味糖」吧。"
     },
     {
       "id": 34,
       "model": "카론",
-      "content": "... Beep, beep. Mode disabled."
+      "content": "……嗶嗶。模式解除。"
     },
     {
       "id": 35,
       "model": "베스파",
-      "content": "Mm... I'm not sure if this is an appropriate request, but may I remove the paper from my back now...? It's a little... inconvenient for me."
+      "content": "那個……雖然不知道這樣的請求是否妥當，現在可以把背上這張紙撕下來了嗎？這樣有點……困擾。"
     },
     {
       "id": 36,
       "model": "카론",
-      "content": "Charon forgives this time. Next time, no mercy."
+      "content": "卡戎，只原諒這一次。下次門都沒有。"
     },
     {
       "id": 37,
       "model": "베르길리우스",
-      "content": "... Best make sure she doesn't listen to that radio channel again."
+      "content": "……下次還是別讓她聽那個廣播頻道比較好。"
     },
     {
       "id": 38,
-      "content": "Vergilius looked on with an inscrutable expression as Charon peeled the \"Snack Thief\" sign off Vespa's back."
+      "content": "維吉里烏斯用複雜的眼神看著正在撕下寫著「零食小偷」紙張的卡戎。"
     },
     {
       "id": 39,
       "model": "베르길리우스",
-      "content": "Make sure to remember this... so I don't have to think I'm burning through what little candy chance I have left on such trivial nonsense."
+      "content": "為了不讓我覺得把所剩無幾的拿糖哄人權限用在這種無聊事上是種浪費……希望你務必牢記在心。"
     },
     {
       "id": 40,
       "model": "베스파",
-      "content": "... Thank you."
+      "content": "……謝謝。"
     },
     {
       "id": 41,
-      "content": "Vespa gave a polite thanks, but he was already picking something off another plate and stuffing it into his mouth."
+      "content": "韋斯帕一邊恭敬地道謝，一邊卻已經拿起另一個盤子裡的其他食物放進了嘴裡。"
     },
     {
       "id": 42,
       "model": "로쟈",
-      "content": "W-wait a minute... I was saving that for later!"
+      "content": "等、等一下，那是我留著待會兒要吃的欸～！"
     },
     {
       "id": 43,
       "model": "베스파",
-      "content": "... I assumed you were being picky."
+      "content": "……我以為您是挑食。"
     },
     {
       "id": 44,
       "model": "로쟈",
-      "content": "Well, now you know! Yet I still see you gobbling up my share!"
+      "content": "那現在也該停嘴了吧！"
     },
     {
       "id": 45,
       "model": "로쟈",
-      "content": "Ugh...! He took <i>my</i> snack, too, Verg! Kick his ass!"
+      "content": "嗚嗚……！他偷走我的零食也要教訓他，維吉！"
     },
     {
       "id": 46,
       "model": "베르길리우스",
-      "content": "... Rodion. Rodion Romanovich."
+      "content": "……羅狄翁。羅狄翁．羅曼諾維奇。"
     },
     {
       "id": 47,
       "model": "베르길리우스",
-      "content": "I am aware that half of the total snack budget allocated to each Sinner is being funneled into your snacking expenses... And now you're raiding the LCE's supplies as well?"
+      "content": "據我所知，公司為每位罪人分別核算的副食費，有一半都是妳在花，妳還非得連LCE部門的點心都要占走嗎。"
     },
     {
       "id": 48,
       "model": "로쟈",
-      "content": "Chill~ That's totes been agreed upon, mmkay~?"
+      "content": "不是啦～那個都～是有經過大家同意的嘛～"
     },
     {
       "id": 49,
       "model": "로쟈",
-      "content": "Besides, that's that, and this is this!"
+      "content": "而且那是那，這是這啊！"
     },
     {
       "id": 50,
       "model": "베르길리우스",
-      "content": "*sigh*"
+      "content": "唉……"
     },
     {
       "id": 51,
-      "content": "The lines on Vergilius's brow looked deeper than usual today..."
+      "content": "今天維吉里烏斯眉間的皺紋，看起來比平時還要深……"
     },
     {
       "id": 52,
-      "content": "Hoping to help him out of this endless cycle of snack-related headaches and to satisfy my own nagging curiosity, I drew near our guide and broke his brooding silence with my tick-tocks."
+      "content": "為了把他從無止境的零食枷鎖中解救出來，也順便問問我好奇的事，我決定走到維吉里烏斯身旁滴答幾聲。"
     },
     {
       "id": 53,
       "model": "단테",
-      "content": "<... Did we learn anything about Sinclair's Sign?>"
+      "content": "<……辛克萊的印記有查出什麼嗎？>"
     },
     {
       "id": 54,
       "model": "파우스트",
-      "content": "Dante is inquiring about the outcome of the research on the Sign."
+      "content": "但丁正在詢問關於印記的研究結果。"
     },
     {
       "id": 55,
       "model": "베르길리우스",
-      "content": "I've heard from the researchers... but nothing of particular significance came out of it."
+      "content": "……我問過研究人員了，但似乎沒有什麼太有意義的結果。"
     },
     {
       "id": 56,
       "model": "파우스트",
-      "content": "Observation of the Sign has so far been limited to two individuals: the Manager and Sinclair. Due to the limited accessibility to the phenomenon, the only verifiable information has so far been its existence."
+      "content": "說到底，印記的存在雖然得到承認，但除了經理和辛克萊先生之外，這裡沒有任何人親眼見過印記。"
     },
     {
       "id": 57,
       "model": "파우스트",
-      "content": "Researching that which cannot be observed is bound to be difficult."
+      "content": "要研究無法確認的事物，自然會很困難吧。"
     },
     {
       "id": 58,
-      "content": "... Faust has a point. Aside from Sinclair, none of the Sinners can actually see the Sign."
+      "content": "……正如浮士德所說，除了辛克萊以外的罪人都無法直接看見印記。"
     },
     {
       "id": 59,
-      "content": "And the same would go for the researchers. Even Sonya said only a select few people could perceive it."
+      "content": "而這對研究人員來說應該也一樣吧。索尼亞也說過，如果不是特別的人，就看不見印記。"
     },
     {
       "id": 60,
       "model": "파우스트",
-      "content": "If there were more individuals bearing Signs, there would be a wider pool for a comparative analysis of statistical samples to narrow down the scope..."
+      "content": "要是擁有印記的人更多，或許就能透過比較來縮小研究結果的範圍……"
     },
     {
       "id": 61,
       "model": "파우스트",
-      "content": "However, records indicate no suitable references exist. At present, the research effort is limited to reducing variables such as whether or not the irregular phenomena are tied to the location where the battle took place."
+      "content": "從紀錄來看，由於沒有可供對照的研究史料，似乎只是在嘗試排除例外，例如是否與戰鬥當時的空間有關。"
     },
     {
       "id": 62,
       "model": "단테",
-      "content": "<By \"individuals bearing Signs\"... Do you mean people like Demian and Sansón?>"
+      "content": "<說到擁有印記的人……像是德米安，還有那個，參孫之類的……>"
     },
     {
       "id": 63,
       "model": "로쟈",
-      "content": "Wait, then could those guys do what Sinclair did? Pull in some superpowered future self and just wreck everything?"
+      "content": "那那些人也能像我們家小辛一樣……突然把超強的未來的自己拉過來戰鬥嗎？！"
     },
     {
       "id": 64,
       "model": "로쟈",
-      "content": "Even Sonya...?"
+      "content": "難道……索尼亞也……"
     },
     {
       "id": 65,
-      "content": "I should step in and put an end to this subject before Rodya gets the blues."
+      "content": "……在羅佳的臉色變得更陰沉之前，還是打斷這個話題比較好吧。"
     },
     {
       "id": 66,
       "model": "단테",
-      "content": "<I don't think so. From what Ishmael and Faust reported back then...>"
+      "content": "<那個……應該不是。照當時透過以實瑪利和浮士德所見所聞的內容來看……>"
     },
     {
       "id": 67,
       "model": "이스마엘",
-      "content": "Right. Sinclair from the future said each Sign carries a different power, I think."
+      "content": "是的。當時未來的辛克萊先生說過，每個印記應該都擁有不同的力量。"
     },
     {
       "id": 68,
       "model": "이스마엘",
-      "content": "Maybe, you know... those layers of light rings Demian used to finish off Kromer, or Sansón dragging us into his \"story\"... those could be it."
+      "content": "說不定德米安……那傢伙身上纏著一大堆發光的環，還有那個使出把我們丟進故事裡的力量、名叫參孫的人，他們的力量就是那個呢。"
     },
     {
       "id": 69,
       "model": "돈키호테",
-      "content": "... Aye, that doth seem plausible."
+      "content": "……嗯，或許確實如此。"
     },
     {
       "id": 70,
       "model": "단테",
-      "content": "<So none of that is information we can confirm yet.>"
+      "content": "<這些都不是馬上就能確認的事呢。>"
     },
     {
       "id": 71,
       "model": "파우스트",
-      "content": "Correct. As you have stated, any discussion of this subject would not venture beyond the realm of wild speculation. Nothing has been proven yet—ergo, fear would be an unnecessary response at present."
+      "content": "是的。正如您所說，現階段的說法不過是臆測。因此，也沒有必要為了尚未查明的事實而事先害怕。"
     },
     {
       "id": 73,
       "model": "이상",
-      "content": "Hmm..."
+      "content": "嗯……"
     },
     {
       "id": 74,
       "model": "이상",
-      "content": "This is, at best, grounded in supposition, but it would seem that the researchers are coaxing forth a hypothesis from the vestiges left in the wake of Sinclair's future self."
+      "content": "雖說終究只是推測，但研究人員似乎正透過未來的辛克萊留下的痕跡，建立一項假說。"
     },
     {
       "id": 75,
       "model": "히스클리프",
-      "content": "Oh, that... That bit about the Sign maybe being some Singularity or whatever, yeah?"
+      "content": "啊……那個叫什麼來著。說印記可能是奇點還是什麼的那個？"
     },
     {
       "id": 76,
       "model": "뫼르소",
-      "content": "The precise position of the hypothesis was that the fundamental principles of the Sign's working may be equivalent to those of Singularities or Relics."
+      "content": "準確來說，是印記的根本運作原理有可能與奇點或遺物相同的假說。"
     },
     {
       "id": 77,
       "model": "뫼르소",
-      "content": "But as no actionable evidence was obtained from Sinclair, there is presently no means by which this hypothesis may be validated."
+      "content": "不過，由於從辛克萊身上也沒有得到特別的線索，目前沒有方法驗證所建立的假說。"
     },
     {
       "id": 78,
       "model": "단테",
-      "content": "<I see... Then nothing came out of them dragging Sinclair off for that research.>"
+      "content": "<從被帶走的辛克萊身上，也沒查出什麼啊。>"
     },
     {
       "id": 79,
       "model": "싱클레어",
-      "content": "Oh, you also thought I was being \"dragged off,\" but still let it happen anyway...?"
+      "content": "您明明覺得我是被帶走的，還那麼爽快地把我送走了嗎，經理……？"
     },
     {
       "id": 80,
       "model": "단테",
-      "content": "<Ah...! No, I mean...>"
+      "content": "<呃……那、那個。>"
     },
     {
       "id": 81,
       "model": "싱클레어",
-      "content": "Haha... I'm kidding. Just thought I'd try going along with the mood."
+      "content": "哈哈。開玩笑的。只是順著氣氛試著說說看。"
     },
     {
       "id": 82,
-      "content": "The old Sinclair wouldn't have even thought to joke around like that... He's really changed lately—for the better, I think?"
+      "content": "要是以前的辛克萊，根本無法想像會開這種玩笑……最近他好像變了很多。雖然似乎是好的變化。"
     },
     {
       "id": 83,
       "model": "단테",
-      "content": "<So... Did anything happen that we should worry about?>"
+      "content": "<沒發生什麼不好的事吧？>"
     },
     {
       "id": 84,
       "model": "이스마엘",
-      "content": "I stuck close to him just in case. Nothing serious came up."
+      "content": "我也是以防萬一，一直跟在他旁邊，沒有發生什麼會造成問題的事。"
     },
     {
       "id": 85,
       "model": "이스마엘",
-      "content": "Just took some blood, a small skin sample... Oh, and they were also checking if the Sign reacts to electrical stimulation."
+      "content": "嘛，頂多就是抽了點血、稍微取走一點皮膚樣本吧？好像還說要確認給予電刺激時紋路會不會浮現。"
     },
     {
       "id": 86,
       "model": "싱클레어",
-      "content": "Yeah. And, um... ah! I had to fill out some questionnaires too."
+      "content": "沒錯。還有，嗯……啊！還做了幾份問卷調查之類的。"
     },
     {
       "id": 87,
       "model": "싱클레어",
-      "content": "Things like \"Please describe what you remember from the battle exactly as it happened\" or \"List the sensations you felt when you regained consciousness.\""
+      "content": "像是「如實描述戰鬥當時的記憶。」之類的……「記錄重新恢復意識時感受到的感覺」之類的……"
     },
     {
       "id": 88,
       "model": "이상",
-      "content": "And... your memories of that moment have yet to return?"
+      "content": "記憶仍然沒有恢復嗎？"
     },
     {
       "id": 89,
       "model": "싱클레어",
-      "content": "No... I don't know if they'll ever come back, actually. Faust said they only exist with my future self, so..."
+      "content": "是的……說不定不會恢復了。照浮士德小姐所說，那一瞬間的記憶應該只有未來的我才擁有……"
     },
     {
       "id": 90,
       "model": "싱클레어",
-      "content": "Wait, but for my future self to even have those memories... shouldn't I carry them in the first place? Um... which comes first?"
+      "content": "咦？可是如果是未來的我擁有的記憶，那我應該也要想得起來才對……嗯……到底哪個在先呢……？"
     },
     {
       "id": 91,
       "model": "이상",
-      "content": "A paradox, it would seem. Hm... in such a case..."
+      "content": "真是個悖論啊。嗯，這種情況下……"
     },
     {
       "id": 92,
       "model": "파우스트",
-      "content": "That Sinclair is merely one branch among many possible futures."
+      "content": "因為那位辛克萊先生，也只不過是未來的可能性之一。"
     },
     {
       "id": 93,
       "model": "이상",
-      "content": "If the future unfurls into boundless branches by means of ceaseless bifurcation... then the body of information that constitutes a certain future would scatter into grains more fleeting than dust, too diminished to ever reverse their course and trace their path back to the self that now exists... Is that the theory suggested?"
+      "content": "若未來因分歧而無限分化……那些資訊便會散落得比粉末還細小，無法逆流回到此刻的我身上，是這樣的理論嗎。"
     },
     {
       "id": 94,
       "model": "파우스트",
-      "content": "Not a certainty, but a plausible interpretation."
+      "content": "雖然無法確定，但有這種可能性。"
     },
     {
       "id": 95,
       "model": "히스클리프",
-      "content": "Here you go again, more of that nonsense only you lot understand..."
+      "content": "又在講只有他們自己懂的艱深話題……"
     },
     {
       "id": 96,
       "model": "히스클리프",
-      "content": "Oi. Memory or not, that future guy still came outta him, didn't he?"
+      "content": "喂。不過就算記憶飛了，到頭來那還是從這小子身上跑出來的吧。"
     },
     {
       "id": 97,
       "model": "히스클리프",
-      "content": "Then some part of him's got to be left in there somewhere, yeah? Like muscle memory or whatever, perhaps he can still pull off some of those tricks from back then..."
+      "content": "那不就會有什麼經驗或訣竅之類的留在身體裡嗎？像是當時做過的事，現在也能做之類的……"
     },
     {
       "id": 98,
       "model": "싱클레어",
-      "content": "Tricks from back then...?"
+      "content": "做過的……事嗎？"
     },
     {
       "id": 99,
       "model": "히스클리프",
-      "content": "Heard you kicked off proper out there. Even pulled out that trick you picked up from that... plastered old geezer, right?"
+      "content": "嘛，聽說你大幹了一場。還用了從那個……醉醺醺的老頭那學來的招式是吧？"
     },
     {
       "id": 100,
       "model": "이스마엘",
-      "content": "Not just that. He was using that \"Mang (望)\" technique quite effortlessly, too."
+      "content": "何止那樣？他連那個叫「望」的東西都用得很自然呢？"
     },
     {
       "id": 101,
       "model": "히스클리프",
-      "content": "Wha?! That glowin' ring thing?!"
+      "content": "啥？！那個會發光的圓圈？！"
     },
     {
       "id": 102,
       "model": "이스마엘",
-      "content": "Yup, the glowing ring thing. He had two of them coiled around his weapon."
+      "content": "對，他還纏上了那個發光的圓圈喔？而且還兩個。"
     },
     {
       "id": 103,
       "model": "싱클레어",
-      "content": "I used the glowing ring thing?!"
+      "content": "我纏上了那個發光的圓圈？！"
     },
     {
       "id": 104,
@@ -507,173 +507,173 @@
     },
     {
       "model": "싱클레어",
-      "content": "... Th-this is the first time I'm hearing anything about it..."
+      "content": "……這、這件事我今天還是第一次聽說……？"
     },
     {
       "id": 105,
       "model": "로쟈",
-      "content": "... All right, so what exactly <i>is</i> that glowing ring thing? Anyone?"
+      "content": "……所以說。那個發光的圓圈到底是什麼，有人知道嗎？"
     },
     {
       "id": 106,
       "model": "싱클레어",
-      "content": "Uh... Maybe some technique that enhances physical capability?"
+      "content": "呃……不是像身體強化技術之類的東西嗎？"
     },
     {
       "id": 107,
       "model": "로쟈",
-      "content": "I mean, I guess that flashy aura that makes ya real tough's one part of it. But there's gotta be more, right...?"
+      "content": "不是啦。纏上那閃閃發亮的氣場就會變得超～結實這種事，我也知道啦……"
     },
     {
       "id": 109,
       "model": "히스클리프",
-      "content": "Dunno... could be a secret Finger thing they pass down to their members. Technique, gear... somethin' like that."
+      "content": "嘛……是從手指那裡傳授下來的技術或裝備……之類的東西吧？"
     },
     {
       "id": 110,
       "model": "히스클리프",
-      "content": "Look at it—that black coney leader, that Lei Heng prick... and the Nursefathers we fought. Whole lot of 'em's Finger, ain't they?"
+      "content": "那個黑漆漆的兔子隊長也好，雷橫那傢伙也好，在這裡遇到的那些叫父輩的傢伙也好，不都是手指出身嗎。"
     },
     {
       "id": 111,
       "model": "이상",
-      "content": "Hm... the notion seems to unravel... for even among the LCD, there were those who came to wield it."
+      "content": "嗯。若是如此，隸屬於LCD的人不也用過嗎。"
     },
     {
       "id": 112,
       "model": "이스마엘",
-      "content": "And Vergilius too."
+      "content": "維吉里烏斯先生也用過呢。"
     },
     {
       "model": "히스클리프",
-      "content": "Hm... so what, only the proper hard bastards can use it? Some posh top-end trick, is it?"
+      "content": "嗯……那是只有超強的傢伙才能用的高級技術嗎……"
     },
     {
       "id": 113,
-      "content": "Without anyone in particular prompting it, the Sinners slowly turned their gaze toward Vergilius and Vespa."
+      "content": "罪人們的視線自然而然地轉向了維吉里烏斯和韋斯帕。"
     },
     {
       "id": 114,
       "model": "베스파",
-      "content": "Hm..."
+      "content": "嗯……"
     },
     {
       "id": 115,
       "model": "베스파",
-      "content": "I only learned to wield it from my team leader, too. I have a sensory understanding of Shin (心), but I can claim nothing too profound."
+      "content": "我也只是從隊長那裡學來的。雖然憑感覺理解了心，但並非完全了解。"
     },
     {
       "model": "베스파",
-      "content": "However, what I can spare are some rumors, though they are all without proper sources."
+      "content": "不過，幾則來源不明的傳聞，我想我還是能告訴各位"
     },
     {
       "id": 116,
       "model": "싱클레어",
-      "content": "Rumors...?"
+      "content": "傳聞……嗎？"
     },
     {
       "id": 117,
       "model": "베스파",
-      "content": "They circulated among elite Fixers and Association leadership."
+      "content": "是在高階收尾人和協會高層人員之間流傳的傳聞。"
     },
     {
       "id": 118,
       "model": "베스파",
-      "content": "That there exists a power called Shin—capable of enhancing the body without having to pay expensive upkeep costs."
+      "content": "據說有一種叫做心的力量，不需要昂貴的維持費用就能強化身體……"
     },
     {
       "id": 119,
       "model": "돈키호테",
-      "content": "A rumor among Fixers, sayest thou?"
+      "content": "汝是說，在收尾人之間流傳的嗎？"
     },
     {
       "id": 120,
       "model": "베스파",
-      "content": "Yes. Even the technique to manifest it—how-to tips, really—spread through hearsay."
+      "content": "是的。就連稱得上是要領的東西，也和傳聞一起流傳著。"
     },
     {
       "id": 121,
       "model": "뉴키라",
-      "content": "Oh yeah, that tracks. That Super Rookie Column in the latest mag bonus vid? Bro was really poppin' off with it—straight up aurafarmed with a shiny Mang wrapped around the weapon!"
+      "content": "啊～也是啦，這期收尾人雜誌特典影片的特級新人單元裡出現的那個收尾人，也超帥氣地纏了一圈望對吧？"
     },
     {
       "id": 122,
       "model": "돈키호테",
-      "content": "Hm? It must be that mine eyes are yet to be privy to seeing such a marvel in a video..."
+      "content": "嗯、嗯嗯？吾從未看過那種內容的影片……"
     },
     {
       "id": 123,
       "model": "뉴키라",
-      "content": "Wait, you serious? It's in the latest issue. Literally on the videotape in the back. Maybe you missed it?"
+      "content": "欸？收尾人雜誌最新一期明明就有啊……妳是不是沒看到附在最後面的錄影帶？"
     },
     {
       "id": 124,
       "model": "돈키호테",
-      "content": "Video... \"tape\"? Uh..."
+      "content": "錄影……帶……？啊……"
     },
     {
       "id": 125,
       "model": "돈키호테",
-      "content": "Alas, uh... For many a week have I been stranded from Mephi, reaving me of a chance to read not only the prior chronicle, but the latest one as well..."
+      "content": "那個……自從無法回到梅菲身邊，轉眼已過了好幾週……別說最新一期，吾連上一期都沒能看到……"
     },
     {
       "id": 126,
       "model": "돈키호테",
-      "content": "Khh... Woe is me...! When I return, I shall feast through the night upon those noble exploits of adventuring Fixers...!"
+      "content": "咕嗚嗚……何等冤屈……等回去之後，就算要熬夜，吾也一定要把積下來的收尾人精彩冒險……"
     },
     {
       "id": 127,
-      "content": "As Don Quixote dramatically spiraled into a state of utter dejection, Outis cut into the conversation, her gaze narrowing with suspicion."
+      "content": "趁唐吉訶德消沉之際，奧提斯帶著滿臉的不信任插進了對話。"
     },
     {
       "id": 128,
       "model": "오티스",
-      "content": "... From what I recall, the mantle of Shin grants its users a high degree of physical enhancement."
+      "content": "……據我記憶，以心纏身的人，無一例外都達到了高水準的身體強化。"
     },
     {
       "id": 129,
       "model": "오티스",
-      "content": "There is no such thing as reinforcement without supplies. No power of that magnitude comes without an equivalent cost to wield it."
+      "content": "所有力量都必然伴隨著相應的代價。那種程度的身體強化，不可能毫無代價吧？"
     },
     {
       "id": 130,
       "model": "베르길리우스",
-      "content": "That power..."
+      "content": "那股力量……"
     },
     {
       "id": 131,
       "model": "베르길리우스",
-      "content": "... relies on emotion and will for manifestation. Its output is not consistent like prosthesis and augmentation."
+      "content": "是透過情感與內心發揮出來的，所以和強化手術不同，無法保證穩定的輸出。"
     },
     {
       "id": 132,
       "model": "베르길리우스",
-      "content": "And depending on how it is used, the \"consequence\" it demands can reach levels comparable to the E.G.O you use."
+      "content": "依使用方式不同，也得付出與你們使用的E.G.O相近程度的代價。"
     },
     {
       "id": 133,
       "model": "이상",
-      "content": "... You mean to say that it exacts a toll upon the mind."
+      "content": "……也就是說，在精神上必須耗費相當的能量啊。"
     },
     {
       "id": 134,
       "model": "베스파",
-      "content": "I can walk you through the fundamentals if you'd like."
+      "content": "若有需要，我可以把要領教給各位。"
     },
     {
       "id": 135,
       "model": "오티스",
-      "content": "... From what I observed, it appeared to be a technique reserved for those of considerable strength. At our current level... is it not unreasonable to assume we could make use of it?"
+      "content": "……那看起來像是只有強者才能使用的技術。以我們的水準……不是用不了嗎？"
     },
     {
       "id": 136,
       "model": "베스파",
-      "content": "Regarding that... our Team Leader has been conducting intensive research,"
+      "content": "關於那方面，隊長正在深入研究……"
     },
     {
       "id": 137,
       "model": "베스파",
-      "content": "and according to her, physical strength itself has little bearing on one's ability to learn and wield Shin."
+      "content": "據我所知，肉體的強弱似乎並不會影響心的學習。"
     },
     {
       "id": 138,
@@ -683,12 +683,12 @@
     {
       "id": 139,
       "model": "베르길리우스",
-      "content": "As the Yellow Harpoon says,"
+      "content": "正如蜜黃蜂槍所說。"
     },
     {
       "id": 140,
       "model": "베르길리우스",
-      "content": "it is, in essence, a power that can be learned by almost anyone, provided they know the proper method of training."
+      "content": "只要知道要領，這大致上是誰都能學會的力量，這點沒錯。"
     },
     {
       "id": 141,
@@ -697,88 +697,88 @@
     },
     {
       "id": 142,
-      "content": "Vespa's brows visibly twitched the moment \"Yellow Harpoon\" left Vergilius's lips."
+      "content": "一被叫作蜜黃蜂槍，韋斯帕的眉間就抽動了一下。"
     },
     {
       "id": 143,
-      "content": "Yeah, doesn't seem like he's a big fan of his own title. \"The Yellow Harpoon\"... Hmm."
+      "content": "難道他不喜歡這個稱號嗎？蜜黃蜂槍……嗯……"
     },
     {
       "id": 144,
-      "content": "Well, it fits, I think... He's got those yellow stripes on his clothes, and he uses a harpoon, too. Can he argue with that?"
+      "content": "我覺得挺好的啊。黃色的，又用刺槍。"
     },
     {
       "id": 145,
       "model": "베르길리우스",
-      "content": "If I were to exaggerate, even Sinner Yi Sang's pre-contract self could manage to learn it."
+      "content": "說得誇張一點，就連簽訂契約之前的罪人李箱也學得會的程度。"
     },
     {
       "id": 146,
       "model": "이상",
-      "content": "... W-why must this self of mine be chosen as the point of comparison?"
+      "content": "……為、為何比較的對象偏偏是我。"
     },
     {
       "id": 147,
       "model": "히스클리프",
-      "content": "Well... 'cause you're the... wimpiest one here."
+      "content": "誰叫你……是吊車尾嘛。"
     },
     {
       "id": 148,
       "model": "싱클레어",
-      "content": "Don't let it get to you..."
+      "content": "請別太在意……"
     },
     {
       "id": 149,
       "model": "이상",
-      "content": "Ahhh..."
+      "content": "唉唉……"
     },
     {
       "id": 150,
       "model": "베르길리우스",
-      "content": "Even so, it would be a mistake to assume it's a power anyone can grasp with ease."
+      "content": "但話雖如此，這也確實不是誰都能輕易掌握的力量。"
     },
     {
       "id": 151,
       "model": "베르길리우스",
-      "content": "As long as you are bound by contract as \"Sinners\"... your ability to wield it will be severely limited,"
+      "content": "在你們以「罪人」身分受契約束縛的期間……要駕馭那股力量會很困難。"
     },
     {
       "id": 152,
       "model": "베르길리우스",
-      "content": "unless you rely on particular Identities or come upon an extraordinary circumstance."
+      "content": "除非覆蓋上某幾種人格，或是發生了驚人的例外。"
     },
     {
       "id": 153,
       "model": "히스클리프",
-      "content": "Tch… Shame that. Would've been useful."
+      "content": "嘖……那還真可惜。"
     },
     {
       "id": 154,
       "model": "뉴키라",
-      "content": "... Hey, then what about me? Can I learn it too?"
+      "content": "……那個，那我呢？我學得會嗎？"
     },
     {
       "id": 155,
-      "content": "Kira, who had been fidgeting with her fingers, raised an arm and asked as though she couldn't hold the question back any longer."
+      "content": "一直扭著手指、默默聽著的綺羅舉起手問道。"
     },
     {
       "id": 156,
-      "content": "Come to think of it... the Middle Nursefather didn't use any Shin or Mang."
+      "content": "這麼說來……中指的父輩那傢伙，並沒有用過心或望呢。"
     },
     {
       "id": 157,
       "model": "뉴키라",
-      "content": "Papa never taught me how to use it... He always said I could get stronger without a stupid crutch like that."
+      "content": "把拔他……說不用那種東西也已經夠強了，所以都沒教我。"
     },
     {
       "id": 158,
       "model": "베스파",
-      "content": "Hah! It wasn't that he didn't teach you. He <i>couldn't</i>."
+      "content": "哈。不是不教，而是教不了吧。"
     },
     {
       "id": 159,
       "model": "베스파",
-      "content": "He was a man who probably had never once reflected upon his own sins. A piece of trash like him would be incapable of even comprehending such a power in the first place."
+      "content": "那個恐怕從未反省過自身罪孽的垃圾……大概連那股力量都無法理解吧。"
     },
     {
       "id": 160,
@@ -787,74 +787,74 @@
     },
     {
       "id": 161,
-      "content": "Vespa's responses always come back dripping with venomous hatred whenever the conversation turns to the topic of the Fingers."
+      "content": "只要跟韋斯帕聊到和手指有關的話題，他的回答大多都夾雜著憎惡。"
     },
     {
       "id": 162,
-      "content": "Kira must've noticed too, or perhaps she simply couldn't find the right words to push back."
+      "content": "不知道是因為綺羅也明白這一點，還是……因為她想不出什麼話能反駁韋斯帕……"
     },
     {
       "id": 163,
-      "content": "Either way, she held her tongue, her expression settling into a blend of frustration and something that looked a little too close to sadness."
+      "content": "她帶著不滿與悲傷交雜的表情，保持沉默。"
     },
     {
       "id": 164,
       "model": "베르길리우스",
-      "content": "If you want to reduce it to a yes-or-no... then yes. You will be able to learn it with the odds in your favor."
+      "content": "若以這種標準，用行或不行……來回答的話，妳有很高的機率學得會。"
     },
     {
       "id": 165,
       "model": "베르길리우스",
-      "content": "That is, assuming that the company decides to tolerate your... continued existence."
+      "content": "不過，那得是這間公司決定接納妳的存在之後的……事了。"
     },
     {
       "id": 166,
       "model": "뉴키라",
-      "content": "... I already said I get it."
+      "content": "……我就說我知道了啦。"
     },
     {
       "id": 167,
       "model": "베르길리우스",
-      "content": "As it stands, you're nothing more than a pending case of disposal. Closer to a threat than you are to an ally, strictly speaking."
+      "content": "妳目前只是暫緩處分的對象，什麼都不是。嚴格來說，比起同伴，妳更接近敵人。"
     },
     {
       "id": 168,
       "model": "베르길리우스",
-      "content": "Don't get comfortable because the Manager and the Sinners treat you with lenience. Step out of line, and you will be the one who pays the price."
+      "content": "別因為經理和罪人們對妳寬厚，就忘了自己的身分。一不小心越了線，倒楣的可是妳。"
     },
     {
       "id": 169,
-      "content": "There was nothing in what Vergilius said that I could argue with."
+      "content": "維吉里烏斯的話並沒有錯。"
     },
     {
       "id": 170,
-      "content": "Kira had been a member of the House of Spiders. She murdered scores of LCE researchers..."
+      "content": "綺羅身為蜘蛛巢的一員，奪走了好幾名LCE研究員的性命……"
     },
     {
       "id": 171,
-      "content": "... and left us with plenty of memories we'd rather not revisit."
+      "content": "也給我們留下了不少不愉快的回憶。"
     },
     {
       "id": 172,
-      "content": "For now, we're just... working together. Not contesting that decision doesn't mean we have no hard feelings toward her."
+      "content": "只是眼下對於一起共事，並沒有太大的不滿而已。"
     },
     {
       "id": 173,
-      "content": "Leaving Kira alone with her thoughts, the Sinners slipped back into their own business—snacks, idle chatter, and conversations about whatever had happened around LCE."
+      "content": "就在罪人們撇下似乎心事重重的綺羅，各自聊著零食或在LCE發生的事情之際。"
     },
     {
       "id": 174,
       "model": "호엔하임",
-      "content": "The examination is concluded."
+      "content": "檢查結束了。"
     },
     {
       "id": 175,
       "model": "호엔하임",
-      "content": "I suppose it won't be an issue to let you hear the results together."
+      "content": "嗯，大家一起聽應該也無妨吧。"
     },
     {
       "id": 176,
-      "content": "And before we knew it, Hohenheim and Ryōshū returned."
+      "content": "結束檢查的霍恩海姆和良秀回來了。"
     }
   ]
 }

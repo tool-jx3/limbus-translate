@@ -54,7 +54,7 @@
         {
           "level": 1,
           "name": "阿爾卡那．心跳跳",
-          "desc": "Mainly targets 'The Knight of Despair'\nSub-targets the ally with the most [ColdBlackTear]\n- If there are none, sub-targets the ally with the least HP\nInflicts 0 damage and does not activate the effects of [Sinking] and [ColdBlackTear] against allies\n\n[WinDuel] Remove 1 [ColdBlackTear] from the sub-targeted ally",
+          "desc": "主要目標指定絕望騎士\n次要目標指定 [ColdBlackTear] 層數最高的友方單位\n- 若沒有，則次要目標改為指定體力值最低的友方單位\n對友方單位造成的傷害變為0點，且不會觸發其 [Sinking] 或 [ColdBlackTear] 效果\n\n[WinDuel] 解除作為次要目標的友方單位的1層 [ColdBlackTear]",
           "coinlist": [
             {
               "coindescs": [

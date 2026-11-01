@@ -1377,7 +1377,7 @@
         {
           "level": 1,
           "name": "真鎮終斬",
-          "desc": "[StartBattle] 在本技能解除前，自身的體力不會低於1\n[WhenUse] 使自身獲得10層 [AttackUp]\n[WhenUse] 使自身獲得5層 [Enhancement]\n[WhenUse] 使自身獲得10層 [AttackDmgUp]",
+          "desc": "[StartBattle] 在本技能結束前，自身的體力不會降至1點以下\n[WhenUse] 使自身獲得10層 [AttackUp]\n[WhenUse] 使自身獲得5層 [Enhancement]\n[WhenUse] 使自身獲得10層 [AttackDmgUp]",
           "coinlist": [
             {
               "coindescs": [

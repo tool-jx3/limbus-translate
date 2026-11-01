@@ -3,18 +3,18 @@
     {
       "id": 0,
       "model": "판사",
-      "content": "Defendant. State the time when you murdered your mother."
+      "content": "被告莫梭，是何時殺害了母親？"
     },
     {
       "id": 1,
       "model": "뫼르소",
       "title": "被告",
-      "content": "I killed Mother today. Or maybe it was yesterday."
+      "content": "今天，我殺了母親。不，也許是昨天。"
     },
     {
       "id": 2,
       "model": "판사",
-      "content": "Defendant. State your reasons for committing the act."
+      "content": "被告莫梭，為何殺害了母親？"
     },
     {
       "id": 3,
@@ -25,13 +25,13 @@
     {
       "id": 4,
       "model": "판사",
-      "content": "Answer!"
+      "content": "回答！"
     },
     {
       "id": 5,
       "model": "뫼르소",
       "title": "被告",
-      "content": "The sunlight... was overwhelming..."
+      "content": "因為陽光……太刺眼了……"
     }
   ]
 }

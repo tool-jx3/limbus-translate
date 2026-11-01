@@ -114,7 +114,7 @@
     },
     {
       "id": "dungeon_shop_upgrade_personality_desc",
-      "content": "將該人格的一個[{2}技能 - {0}]替換為[{3}技能 - {1}]"
+      "content": "將該人格的一個[技能 {2} - {0}]替換為[技能 {3} - {1}]"
     },
     {
       "id": "dungeon_shop_out",

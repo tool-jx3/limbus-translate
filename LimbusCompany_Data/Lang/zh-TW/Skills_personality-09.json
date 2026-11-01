@@ -1122,7 +1122,7 @@
         {
           "level": 3,
           "name": "慶典總會結束",
-          "desc": "[BeforeUse] At 25+ [BloomingThornsRodionFirst], activate 'Ascendant Don Quixote Hardblood[TabExplain] Arts - The Finale' instead\n[WhenUse] To self and (highest Reson.) allies: apply (3 + (1 for every 50 [BloodDinner_Accumulation] by this unit) [FestivalFeverRodion] this turn and next turn (max 10)\n[WhenUse] To self and (highest Reson.) allies: apply 3 [BloomingThornsRodionFirst]",
+          "desc": "[BeforeUse] 若自身的 [BloomingThornsRodionFirst] 層數不低於25層，則改為使用「唐吉訶德派硬血[TabExplain] 奧義 落幕」\n[WhenUse] 本回合與下回合使自身與(最大共鳴數)名友方單位獲得3層 [FestivalFeverRodion]，自身每帶有50層 [BloodDinner_Accumulation]，額外獲得1層(最多10層)\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得3層 [BloomingThornsRodionFirst]",
           "coinlist": [
             {
               "coindescs": [
@@ -1159,7 +1159,7 @@
         {
           "level": 4,
           "name": "慶典總會結束",
-          "desc": "[BeforeUse] At 25+ [BloomingThornsRodionFirst], activate 'Ascendant Don Quixote Hardblood[TabExplain] Arts - The Finale' instead\n<style=\"highlight\">[WhenUse] If target has 6+ [Laceration], Coin Power +1</style>\n[WhenUse] To self and (highest Reson.) allies: apply (3 + (1 for every 50 [BloodDinner_Accumulation] by this unit) [FestivalFeverRodion] this turn and next turn (max 10)\n[WhenUse] To self and (highest Reson.) allies: apply 3 [BloomingThornsRodionFirst]",
+          "desc": "[BeforeUse] 若自身的 [BloomingThornsRodionFirst] 層數不低於25層，則改為使用「唐吉訶德派硬血[TabExplain] 奧義 落幕」\n<style=\"highlight\">[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1</style>\n[WhenUse] 本回合與下回合使自身與(最大共鳴數)名友方單位獲得3層 [FestivalFeverRodion]，自身每帶有50層 [BloodDinner_Accumulation]，額外獲得1層(最多10層)\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得3層 [BloomingThornsRodionFirst]",
           "coinlist": [
             {
               "coindescs": [
@@ -1248,7 +1248,7 @@
         {
           "level": 1,
           "name": "唐吉訶德派硬血奧義 落幕",
-          "desc": "[WhenUse] To self and (highest Reson.) allies: apply 5 + (1 for every 50 [BloodDinner_Accumulation] by this unit) [FestivalFeverRodion] this turn and next turn (max 10)\n[WhenUse] To self and (highest Reson.) allies: apply 5 [BloomingThornsRodionFirst]\nDeal +1% damage for every 5 [BloodDinner_Accumulation] by this unit (max 50%)\n[EndSkill] Consume all [BloomingThornsRodionFirst] on self",
+          "desc": "[WhenUse] 本回合與下回合使自身與(最大共鳴數)名友方單位獲得5層 [FestivalFeverRodion]，自身每帶有50層 [BloodDinner_Accumulation]，額外獲得1層(最多10層)\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得5層 [BloomingThornsRodionFirst]\n自身每帶有5層 [BloodDinner_Accumulation]，使本技能造成的傷害+1%(最多+50%)\n[EndSkill] 消耗自身所有 [BloomingThornsRodionFirst]",
           "coinlist": [
             {
               "coindescs": [
@@ -1285,7 +1285,7 @@
         {
           "level": 4,
           "name": "唐吉訶德派硬血奧義 落幕",
-          "desc": "<style=\"highlight\">[WhenUse] If target has 6+ [Laceration], Coin Power +1</style>\n[WhenUse] To self and (highest Reson.) allies: apply 5 + (1 for every 50 [BloodDinner_Accumulation] by this unit) [FestivalFeverRodion] this turn and next turn (max 10)\n[WhenUse] To self and (highest Reson.) allies: apply 5 [BloomingThornsRodionFirst]\nDeal +1% damage for every 5 [BloodDinner_Accumulation] by this unit (max 50%)\n[EndSkill] Consume all [BloomingThornsRodionFirst] on self",
+          "desc": "<style=\"highlight\">[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1</style>\n[WhenUse] 本回合與下回合使自身與(最大共鳴數)名友方單位獲得5層 [FestivalFeverRodion]，自身每帶有50層 [BloodDinner_Accumulation]，額外獲得1層(最多10層)\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得5層 [BloomingThornsRodionFirst]\n自身每帶有5層 [BloodDinner_Accumulation]，使本技能造成的傷害+1%(最多+50%)\n[EndSkill] 消耗自身所有 [BloomingThornsRodionFirst]",
           "coinlist": [
             {
               "coindescs": [
@@ -1744,7 +1744,7 @@
         {
           "level": 3,
           "name": "阿爾卡那．穿刺",
-          "desc": "If target has 6+ [Sinking], Coin Power +1\nClash Power +1 for every 2 [ProtectiveSword] (max 2)\n[WhenUse] At 10+ [BlackTearsAlly], consume up to 20 [BlackTearsAlly]\n- Deal +(Stack consumed x 1.5)% damage\n[EndSkill] If target is defeated, regain half of [BlackTearsAlly] consumed by this Skill",
+          "desc": "若目標的 [Sinking] 強度不低於6級，則使本技能的硬幣威力+1\n自身每帶有2層 [ProtectiveSword]，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若自身的 [BlackTearsAlly] 層數不低於10層，則消耗最多20層 [BlackTearsAlly]\n- 使本技能造成的傷害+(消耗的層數×1.5)%\n[EndSkill] 若目標陣亡，則使自身獲得層數等同於本技能消耗的 [BlackTearsAlly] 層數一半的 [BlackTearsAlly]",
           "coinlist": [
             {},
             {
@@ -1766,7 +1766,7 @@
         {
           "level": 4,
           "name": "阿爾卡那．穿刺",
-          "desc": "If target has 6+ [Sinking], Coin Power +1\nClash Power +1 for <style=\"highlight\">every</style> [ProtectiveSword] (max <style=\"highlight\">5</style>)\n[WhenUse] At 10+ [BlackTearsAlly], consume up to 20 [BlackTearsAlly]\n- Deal +(Stack consumed x 1.5)% damage\n<style=\"highlight\">- Base Power +1 for every 5 Stack consumed</style>\n[EndSkill] If target is defeated, regain half of [BlackTearsAlly] consumed by this Skill",
+          "desc": "若目標的 [Sinking] 強度不低於6級，則使本技能的硬幣威力+1\n自身每帶有<style=\"highlight\">1</style>層 [ProtectiveSword]，則使本技能的拚點威力+1(最多<style=\"highlight\">+5</style>)\n[WhenUse] 若自身的 [BlackTearsAlly] 層數不低於10層，則消耗最多20層 [BlackTearsAlly]\n- 使本技能造成的傷害+(消耗的層數×1.5)%\n<style=\"highlight\">- 每消耗5層，使本技能的基礎威力+1</style>\n[EndSkill] 若目標陣亡，則使自身獲得層數等同於本技能消耗的 [BlackTearsAlly] 層數一半的 [BlackTearsAlly]",
           "coinlist": [
             {},
             {
@@ -1779,7 +1779,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "<style=\"highlight\">If this unit has [SwordCutwithTear], or consumed it with this Coin, deal +20% damage</style>"
+                  "desc": "<style=\"highlight\">若自身帶有 [SwordCutwithTear] 或本硬幣已將其消耗，則使本硬幣造成的傷害+20%</style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加等同於自身 [ProtectiveSword] 層數的 [Sinking] 強度(最多<style=\"highlight\">5</style>級)"
@@ -1796,7 +1796,7 @@
         {
           "level": 1,
           "name": "騎士信念",
-          "desc": "[CanDuelGuard]\n[StartBattle] Gain Shield equal to (SP / 5)% of this unit's max HP (once per turn)\n[WhenUse] Gain 3 [BlackTearsAlly] (2 times per turn)\n[EndBattle] At less than 3 [SwordCutwithTear], lose 15 SP and gain 1 [SwordCutwithTear] (once per turn)\n- If this unit has [SwordCutwithTear], lose ([SwordCutwithTear] Stack x 15) more SP",
+          "desc": "[CanDuelGuard]\n[StartBattle] 使自身獲得體力上限(自身的理智值/5)%的護盾(每回合最多1次)\n[WhenUse] 使自身獲得3層 [BlackTearsAlly] (每回合最多2次)\n[EndBattle] 若自身的 [SwordCutwithTear] 層數低於3層，則使自身失去15點理智值並使自身獲得1層 [SwordCutwithTear] (每回合最多1次)\n- 若自身帶有 [SwordCutwithTear]，則額外失去(帶有的層數×15)點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -1810,7 +1810,7 @@
         {
           "level": 4,
           "name": "騎士信念",
-          "desc": "[CanDuelGuard]\n<style=\"highlight\">[StartBattle] Coin Power +1 for every 2 [ProtectiveSword] (max 2)</style>\n[StartBattle] Gain Shield equal to (SP / <style=\"highlight\">3</style>)% of this unit's max HP (once per turn)\n[WhenUse] Gain <style=\"highlight\">5</style> [BlackTearsAlly] (2 times per turn)\n[EndBattle] At less than 3 [SwordCutwithTear], lose 15 SP to gain 1 [SwordCutwithTear] (once per turn)\n- If this unit has [SwordCutwithTear], lose ([SwordCutwithTear] Stack x 15) more SP",
+          "desc": "[CanDuelGuard]\n<style=\"highlight\">[StartBattle] 自身每帶有2層 [ProtectiveSword]，使本技能的硬幣威力+1(最多+2)</style>\n[StartBattle] 使自身獲得體力上限(自身的理智值/<style=\"highlight\">3</style>)%的護盾(每回合最多1次)\n[WhenUse] 使自身獲得<style=\"highlight\">5</style>層 [BlackTearsAlly] (每回合最多2次)\n[EndBattle] 若自身的 [SwordCutwithTear] 層數低於3層，則使自身失去15點理智值並使自身獲得1層 [SwordCutwithTear] (每回合最多1次)\n- 若自身帶有 [SwordCutwithTear]，則額外失去(帶有的層數×15)點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -1980,7 +1980,7 @@
         {
           "level": 3,
           "name": "阿爾卡那．落淚穿心",
-          "desc": "Final Power +1 for every 3 [Sinking] on target (max 2)\n[WhenUse] Lose 15 SP\n[WhenUse] At 10+ [BlackTearsAlly], consume up to 20 [BlackTearsAlly]\n- Deal +(Stack consumed x 3)% damage\n[EndSkill] If target is defeated, regain half of [BlackTearsAlly] consumed by this Skill",
+          "desc": "目標每帶有3級 [Sinking] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 使自身失去15點理智值\n[WhenUse] 若自身的 [BlackTearsAlly] 層數不低於10層，則消耗最多20層 [BlackTearsAlly]\n- 使本技能造成的傷害+(消耗的層數×3)%\n[EndSkill] 若目標陣亡，則使自身獲得層數等同於本技能消耗的 [BlackTearsAlly] 層數一半的 [BlackTearsAlly]",
           "coinlist": [
             {},
             {
@@ -2005,7 +2005,7 @@
         {
           "level": 4,
           "name": "阿爾卡那．落淚穿心",
-          "desc": "Final Power +1 for every 3 [Sinking] on target (max <style=\"highlight\">4</style>)\n[WhenUse] Lose 15 SP\n[WhenUse] At 10+ [BlackTearsAlly], consume up to 20 [BlackTearsAlly]\n- Deal +(Stack consumed x 3)% damage\n<style=\"highlight\">- Base Power +1 for every 5 Stack consumed</style>\n[EndSkill] If target is defeated, regain half of [BlackTearsAlly] consumed by this Skill",
+          "desc": "目標每帶有3級 [Sinking] 強度，則使本技能的最終威力+1(最多<style=\"highlight\">+4</style>)\n[WhenUse] 使自身失去15點理智值\n[WhenUse] 若自身的 [BlackTearsAlly] 層數不低於10層，則消耗最多20層 [BlackTearsAlly]\n- 使本技能造成的傷害+(消耗的層數×3)%\n<style=\"highlight\">- 每消耗5層，使本技能的基礎威力+1</style>\n[EndSkill] 若目標陣亡，則使自身獲得層數等同於本技能消耗的 [BlackTearsAlly] 層數一半的 [BlackTearsAlly]",
           "coinlist": [
             {},
             {
@@ -2035,7 +2035,7 @@
         {
           "level": 1,
           "name": "磨滅殆盡的自尊",
-          "desc": "[DuelCounter]\n[WhenUse] Gain 3 [BlackTearsAlly] (2 times per turn)\n[EndBattle] At less than 3 [SwordCutwithTear], lose 15 SP and gain 1 [SwordCutwithTear] (once per turn)\n- If this unit has [SwordCutwithTear], lose ([SwordCutwithTear] Stack x 15) more SP",
+          "desc": "[DuelCounter]\n[WhenUse] 使自身獲得3層 [BlackTearsAlly] (每回合最多2次)\n[EndBattle] 若自身的 [SwordCutwithTear] 層數低於3層，則使自身失去15點理智值並使自身獲得1層 [SwordCutwithTear] (每回合最多1次)\n- 若自身帶有 [SwordCutwithTear]，則額外失去(帶有的層數×15)點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2062,7 +2062,7 @@
         {
           "level": 4,
           "name": "磨滅殆盡的自尊",
-          "desc": "[DuelCounter]\n<style=\"highlight\">[StartBattle] Final Power +1 for every 2 [PenetratingSword] (max 2)</style>\n[WhenUse] Gain <style=\"highlight\">5</style> [BlackTearsAlly] (2 times per turn)\n[EndBattle] At less than 3 [SwordCutwithTear], lose 15 SP and gain 1 [SwordCutwithTear] (once per turn)\n- If this unit has [SwordCutwithTear], lose ([SwordCutwithTear] Stack x 15) more SP",
+          "desc": "[DuelCounter]\n<style=\"highlight\">[StartBattle] 自身每帶有2層 [PenetratingSword]，使本技能的最終威力+1(最多+2)</style>\n[WhenUse] 使自身獲得<style=\"highlight\">5</style>層 [BlackTearsAlly] (每回合最多2次)\n[EndBattle] 若自身的 [SwordCutwithTear] 層數低於3層，則使自身失去15點理智值並使自身獲得1層 [SwordCutwithTear] (每回合最多1次)\n- 若自身帶有 [SwordCutwithTear]，則額外失去(帶有的層數×15)點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2204,7 +2204,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身帶有的 [Charge] 回數不高於8回，則使自身獲得5級 [Sinking] 與4回 [Charge] (每回合最多1次)</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身帶有的 [Charge] 回數低於8回，則使自身獲得5級 [Sinking] 強度與4回 [Charge] (每回合最多1次)</style>"
                 }
               ]
             }
@@ -2228,10 +2228,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若自身帶有的 [Charge] 回數不高於8回，則使自身獲得5級 [Sinking] 與4回 [Charge] (每回合最多1次)<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若自身帶有的 [Charge] 回數低於8回，則使自身獲得5級 [Sinking] 強度與4回 [Charge] (每回合最多1次)<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] At 8+ [Charge] Count, consume 4 [Charge] Count and inflict 1 [HitTakeDamageUp] next turn (once per turn)</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身帶有的 [Charge] 回數不低於8回，則消耗4回並使目標於下回合獲得1層 [HitTakeDamageUp] (每回合最多1次)</style>"
                 }
               ]
             }
@@ -2245,7 +2245,7 @@
         {
           "level": 3,
           "name": "精神鞭韃 -  「啊哈哈……我們變成聖誕煙火了」",
-          "desc": "自身每帶有1級 [Charge] 強度，則使本技能造成的傷害+5%(最多+20%)\n[WhenUse] 若自身帶有的 [Charge] 回數不低於5回且不高於10回時：\n- 使自身獲得5回 [Sinking] 與5回 [Charge]\n- 使本技能的攻擊模式改變為 [CantIdentify]、[WideAreaRampage]，且攻擊容量+1\n- [BeforeUse] 若自身帶有的 [Charge] 強度不低於3級，則使上述效果的 [CantIdentify] 失效\n[WhenUse] 若自身帶有的 [Charge] 回數不低於10回時，則消耗自身所有 [Charge] 回數\n- 使本技能的硬幣威力+1\n- 本技能消耗的 [Charge] 回數超過10回時，則每超過1回時，使本技能造成的傷害+6%(最多+30%)",
+          "desc": "自身每帶有1級 [Charge] 強度，則使本技能造成的傷害+5%(最多+20%)\n[WhenUse] 若自身帶有的 [Charge] 回數不低於5回且低於10回時：\n- 使自身獲得5級 [Sinking] 強度與5回 [Charge]\n- 使本技能的攻擊模式改變為 [CantIdentify]、[WideAreaRampage]，且攻擊容量+1\n- [BeforeUse] 若自身帶有的 [Charge] 強度不低於3級，則使上述效果的 [CantIdentify] 失效\n[WhenUse] 若自身帶有的 [Charge] 回數不低於10回時，則消耗自身所有 [Charge] 回數\n- 使本技能的硬幣威力+1\n- 本技能消耗的 [Charge] 回數超過10回時，則每超過1回時，使本技能造成的傷害+6%(最多+30%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2292,7 +2292,7 @@
         {
           "level": 4,
           "name": "精神鞭韃 -  「啊哈哈……我們變成聖誕煙火了」",
-          "desc": "自身每帶有1級 [Charge] 強度，則使本技能造成的傷害<style=\"highlight\">+10%(最多+40%)</style>\n[WhenUse] 若自身帶有的 [Charge] 回數不低於5回且不高於10回時：\n- 使自身獲得5回 [Sinking] 與5回 [Charge]\n- 使本技能的攻擊模式改變為 [CantIdentify]、[WideAreaRampage]，且攻擊容量+1\n- [BeforeUse] 若自身帶有的 [Charge] 強度不低於3級，則使上述效果的 [CantIdentify] 失效\n[WhenUse] 若自身帶有的 [Charge] 回數不低於10回時，則消耗自身所有 [Charge] 回數\n- 使本技能的硬幣威力+<style=\"highlight\">2</style>\n- 本技能消耗的 [Charge] 回數超過10回時，則每超過1回時，使本技能造成的傷害<style=\"highlight\">+12%(最多+60%)</style>",
+          "desc": "自身每帶有1級 [Charge] 強度，則使本技能造成的傷害<style=\"highlight\">+10%(最多+40%)</style>\n[WhenUse] 若自身帶有的 [Charge] 回數不低於5回且低於10回時：\n- 使自身獲得5級 [Sinking] 強度與5回 [Charge]\n- 使本技能的攻擊模式改變為 [CantIdentify]、[WideAreaRampage]，且攻擊容量+1\n- [BeforeUse] 若自身帶有的 [Charge] 強度不低於3級，則使上述效果的 [CantIdentify] 失效\n[WhenUse] 若自身帶有的 [Charge] 回數不低於10回時，則消耗自身所有 [Charge] 回數\n- 使本技能的硬幣威力+<style=\"highlight\">2</style>\n- 本技能消耗的 [Charge] 回數超過10回時，則每超過1回時，使本技能造成的傷害<style=\"highlight\">+12%(最多+60%)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2671,7 +2671,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加1層 [BearClawWoundAlly]"
                 },
                 {
-                  "desc": "<style=\"highlight\">- If target does not have [BearClawWoundAlly], inflict 1 additional [BearClawWoundAlly]</style>"
+                  "desc": "<style=\"highlight\">- 若目標未帶有本效果，則額外施加1層</style>"
                 }
               ]
             },
@@ -2684,7 +2684,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加1層 [EagleClawWoundAlly]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "<style=\"highlight\">- If target does not have [EagleClawWoundAlly], inflict 1 additional [EagleClawWoundAlly]</style>"
+                  "desc": "<style=\"highlight\">- 若目標未帶有本效果，則額外施加1層</style>"
                 }
               ]
             }
@@ -2884,7 +2884,7 @@
         {
           "level": 1,
           "name": "砍擊",
-          "desc": "[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 10%)",
+          "desc": "[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+10%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2911,7 +2911,7 @@
         {
           "level": 2,
           "name": "砍擊",
-          "desc": "<style=\"highlight\">[WhenUse] At 6+ [Breath], Final Power +1</style>\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 10%)",
+          "desc": "<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的最終威力+1</style>\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+10%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2938,7 +2938,7 @@
         {
           "level": 4,
           "name": "砍擊",
-          "desc": "[WhenUse] At 6+ [Breath], Final Power +1\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 6 ([Combustion] + [Vibration]) on target (max 2)</style>\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 10%)",
+          "desc": "[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的最終威力+1\n<style=\"highlight\">[WhenUse] 目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+10%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2970,7 +2970,7 @@
         {
           "level": 1,
           "name": "老娘就滿心歡喜地射出這發子彈吧",
-          "desc": "Turn Start: If this unit does not have [AccelBullet], activate as \"Sezionatura di Cervo\"\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 15%)",
+          "desc": "回合開始時，若自身未帶有 [AccelBullet]，則改為使用「肢解鹿軀」\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3007,7 +3007,7 @@
         {
           "level": 2,
           "name": "老娘就滿心歡喜地射出這發子彈吧",
-          "desc": "Turn Start: If this unit does not have [AccelBullet], activate as \"Sezionatura di Cervo\"\n<style=\"highlight\">[WhenUse] At 6+ [Breath], Final Power +1</style>\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 15%)",
+          "desc": "回合開始時，若自身未帶有 [AccelBullet]，則改為使用「肢解鹿軀」\n<style=\"highlight\">[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的最終威力+1</style>\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3044,7 +3044,7 @@
         {
           "level": 4,
           "name": "老娘就滿心歡喜地射出這發子彈吧",
-          "desc": "Turn Start: If this unit does not have [AccelBullet], activate as \"Sezionatura di Cervo\"\n[WhenUse] At 6+ [Breath], Final Power +1\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 6 ([Combustion] + [Vibration]) on target (max 2)</style>\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 15%)",
+          "desc": "回合開始時，若自身未帶有 [AccelBullet]，則改為使用「肢解鹿軀」\n[WhenUse] 若自身的 [Breath] 強度不低於6級，則使本技能的最終威力+1\n<style=\"highlight\">[WhenUse] 目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3327,7 +3327,7 @@
         {
           "level": 1,
           "name": "肢解鹿軀",
-          "desc": "[WhenUse] If this unit is in [FutureEyeOffRodion] state, convert all Coins into [SuperCoin]s\n[WhenUse] Gain +4 [Breath] Count\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 15%)",
+          "desc": "[WhenUse] 若自身處於 [FutureEyeOffRodion] 狀態，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得4回 [Breath]\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3361,7 +3361,7 @@
         {
           "level": 2,
           "name": "肢解鹿軀",
-          "desc": "[WhenUse] If this unit is in [FutureEyeOffRodion] state, <style=\"highlight\">gain Final Power +2</style> and convert all Coins into [SuperCoin]s\n[WhenUse] Gain +4 [Breath] Count\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 15%)",
+          "desc": "[WhenUse] 若自身處於 [FutureEyeOffRodion] 狀態，則使本技能的<style=\"highlight\">最終威力+2</style>並使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得4回 [Breath]\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3395,7 +3395,7 @@
         {
           "level": 4,
           "name": "肢解鹿軀",
-          "desc": "[WhenUse] If this unit is in [FutureEyeOffRodion] state, gain Final Power +2 and convert all Coins into [SuperCoin]s\n[WhenUse] Gain +4 [Breath] Count\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 6 ([Combustion] + [Vibration]) on target (max 2)</style>\n[WinDuel] Lose (# of remaining Coins) [FutureEyeOnRodion] Stack on self; deal +5% damage for every Stack lost (max 15%)",
+          "desc": "[WhenUse] 若自身處於 [FutureEyeOffRodion] 狀態，則使本技能的最終威力+2並使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 使自身獲得4回 [Breath]\n<style=\"highlight\">[WhenUse] 目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[WinDuel] 使自身的 [FutureEyeOnRodion] 層數減少(剩餘硬幣數)，每減少1層，使本技能造成的傷害+5%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3636,7 +3636,7 @@
         {
           "level": 1,
           "name": "固定，並沿著版型裁切",
-          "desc": "[StartBattle] Apply the following effects to 1 other ally with the earliest Deployment Order (prioritizes [PersonalityCharge]; once per turn):\n- Apply 2 [AttackUp]\n- Apply Shield equal to 5% of this unit's max HP (min 1)\n- If the said Identity is [PersonalityCharge], apply an additional 1 [AttackUp] and Shield equal to 5% of this unit's max HP\n\n[WhenUse] If target has 6+ [Vibration] Potency, Coin Power +1\n[WhenUse] Consume 5 [ChargeKhakiAlly] Count to gain Final Power +2",
+          "desc": "[StartBattle] 使除自身以外編入順序最早的1名友方單位(充能人格優先)獲得2層 [AttackUp] 與自身體力上限5%的護盾(最少1點，每回合最多1次)\n- 若該人格為 [PersonalityCharge]，則使其額外獲得1層 [AttackUp] 與自身體力上限5%的護盾\n\n[WhenUse] 若目標的 [Vibration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 消耗自身5回 [ChargeKhakiAlly] 並使本技能的最終威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -3664,7 +3664,7 @@
         {
           "level": 2,
           "name": "固定，並沿著版型裁切",
-          "desc": "[StartBattle] Apply the following effects to <style=\"highlight\">this unit and</style> 1 other ally with the earliest Deployment Order (prioritizes [PersonalityCharge]; once per turn):\n- Apply 2 [AttackUp]\n- Apply Shield equal to 5% of this unit's max HP (min 1)\n- If the said Identity is [PersonalityCharge], apply an additional 1 [AttackUp] and Shield equal to 5% of this unit's max HP\n\n[WhenUse] If target has 6+ [Vibration] Potency, Coin Power +1\n[WhenUse] Consume 5 [ChargeKhakiAlly] Count to gain Final Power +2",
+          "desc": "[StartBattle] <style=\"highlight\">使自身與</style>除自身以外編入順序最早的1名友方單位(充能人格優先)獲得2層 [AttackUp] 與自身體力上限5%的護盾(最少1點，每回合最多1次)\n- 若該人格為 [PersonalityCharge]，則使其額外獲得1層 [AttackUp] 與自身體力上限5%的護盾\n\n[WhenUse] 若目標的 [Vibration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 消耗自身5回 [ChargeKhakiAlly] 並使本技能的最終威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -3692,7 +3692,7 @@
         {
           "level": 4,
           "name": "固定，並沿著版型裁切",
-          "desc": "[StartBattle] Apply the following effects to this unit, 1 other ally with the earliest Deployment Order (prioritizes [PersonalityCharge]), <style=\"highlight\">and 1 ally with the lowest current HP percentage</style> (once per turn):\n- Apply 2 [AttackUp]\n- Apply Shield equal to 5% of this unit's max HP (min 1)\n- If the said ally is [PersonalityCharge], apply an additional 1 [AttackUp] and Shield equal to 5% of this unit's max HP\n\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 6 [Vibration] Potency on target (max 2)</style>\n[WhenUse] Consume 5 [ChargeKhakiAlly] Count to gain Final Power +2",
+          "desc": "[StartBattle] 使自身與除自身以外編入順序最早的1名友方單位(充能人格優先)、<style=\"highlight\">現存體力比率最低的1名友方單位</style>皆獲得2層 [AttackUp] 與自身體力上限5%的護盾(最少1點，每回合最多1次)\n- 若該人格為 [PersonalityCharge]，則使其額外獲得1層 [AttackUp] 與自身體力上限5%的護盾\n\n<style=\"highlight\">[WhenUse] 目標每帶有6級 [Vibration] 強度，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 消耗自身5回 [ChargeKhakiAlly] 並使本技能的最終威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -3756,7 +3756,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] At 5+ [ChargeKhakiAlly] Count, consume 5 [ChargeKhakiAlly] Count to trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1"
+                  "desc": "[OnSucceedAttack] 若自身的 [ChargeKhakiAlly] 回數不低於5回，則消耗5回使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -3793,7 +3793,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] At 5+ [ChargeKhakiAlly] Count, consume 5 [ChargeKhakiAlly] Count to trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1"
+                  "desc": "[OnSucceedAttack] 若自身的 [ChargeKhakiAlly] 回數不低於5回，則消耗5回使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }

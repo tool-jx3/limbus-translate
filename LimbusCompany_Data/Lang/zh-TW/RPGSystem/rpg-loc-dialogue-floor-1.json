@@ -90,7 +90,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "完蛋，偏偏沒有多的空瓶了。上個季度你不是跟我借了3瓶嗎。到底什麼時候要還啊？",
+          "text": "該死，偏偏沒有多的空瓶了。你上一季不是跟我借了3個嗎？到底什麼時候要還啊？",
           "speaker": "貧窮的顧客"
         },
         {
@@ -498,7 +498,7 @@
         },
         {
           "index": 25,
-          "text": "妳沒聽見剛才的廣播嗎？流行又改變了。再經過幾個季度後還會再改變。因此我們——這裡！會一直需要布料。",
+          "text": "妳沒聽見剛才的廣播嗎？流行又變了一次。再過幾季還會再變。所以我們——這裡！會一直需要布料。",
           "speaker": "含羞草"
         },
         {
@@ -896,7 +896,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "既然都開始執行了就趕快結束這件事吧？畢竟不知道什麼時候季度就結束了……",
+          "text": "既然都開始了，能不能快點做完？誰知道這一季什麼時候會結束……",
           "speaker": "含羞草"
         }
       ]
@@ -1486,7 +1486,7 @@
         },
         {
           "index": 12,
-          "text": "哇，姐姐說話的方式就像在法庭曾負責我的檢察官大人一樣呢！",
+          "text": "哇，姊姊說話的方式就像在法庭上負責我的檢察官大人一樣呢！",
           "speaker": "???"
         },
         {
@@ -1601,8 +1601,8 @@
       "texts": [
         {
           "index": 0,
-          "text": "[미사용] 이제 퀘스트는 없어",
-          "speaker": "뉴비1 npc"
+          "text": "[未使用] 已經沒有任務了",
+          "speaker": "新人1 NPC"
         }
       ]
     },
@@ -2027,7 +2027,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "正當九個季度前，百貨公司突然開始出現裂縫迎來衰敗的時代……",
+          "text": "那是九棵季以前，百貨公司突然開始出現裂縫，衰敗的時代就此降臨……",
           "speaker": "古斯塔夫"
         },
         {
@@ -2062,7 +2062,7 @@
         },
         {
           "index": 7,
-          "text": "您們是想前往客服中心的顧客嗎……",
+          "text": "各位是想前往客服中心的顧客嗎……",
           "speaker": "古斯塔夫"
         },
         {
@@ -2077,7 +2077,7 @@
         },
         {
           "index": 10,
-          "text": "至少請您們代替我上樓傳達。將這份為黃金松脂獻上的永久忠誠……",
+          "text": "至少請各位代替我上樓傳達。將這份為黃金松脂獻上的永久忠誠……",
           "speaker": "古斯塔夫"
         },
         {
@@ -2097,12 +2097,12 @@
         },
         {
           "index": 14,
-          "text": "哦哦……您們確實是懷抱著與眾不同意志的異鄉人啊。",
+          "text": "哦哦……各位確實是懷抱著與眾不同意志的異鄉人啊。",
           "speaker": "古斯塔夫"
         },
         {
           "index": 15,
-          "text": "我來告訴您們獲得眼球的方法吧。可以從人台模特兒身上取得。只要有機會人台模特兒便會持續不斷地展出，所以您們願意認真去取得的話，應該就能收集到眼球了。",
+          "text": "我來告訴各位獲得眼球的方法吧。可以從人台模特兒身上取得。只要有機會，人台模特兒便會持續不斷地展出，所以各位願意認真去取得的話，應該就能收集到眼球了。",
           "speaker": "古斯塔夫"
         },
         {
@@ -2455,7 +2455,7 @@
         },
         {
           "index": 13,
-          "text": "明明離下次的兩隻季度服裝系列完工期限沒剩多少時間了……肩線還得加入剩餘的壓紋加工才行……",
+          "text": "明明離下次服裝系列的完工期限沒剩多少時間了……肩線也得把剩餘的壓紋加工做完才行……",
           "speaker": "琦莉安"
         },
         {
@@ -2524,7 +2524,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "통상 대화에용",
+          "text": "一般對話唷",
           "speaker": "莫梭"
         }
       ]
@@ -3354,12 +3354,12 @@
         },
         {
           "index": 6,
-          "text": "Why would anyone put that in the directory?",
+          "text": "上面不可能寫那種東西吧。",
           "speaker": "以實瑪利"
         },
         {
           "index": 7,
-          "text": "Hey, you never know...",
+          "text": "我只是想說問問看嘛……",
           "speaker": "羅佳"
         }
       ]
@@ -3396,12 +3396,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Ooh, another eyeball!",
+          "text": "這裡也有眼球耶！",
           "speaker": "羅佳"
         },
         {
           "index": 1,
-          "text": "Whoa, you were a blur. You've got fast hands, huh.",
+          "text": "快到連手都看不見了，動作還真是敏捷呢……",
           "speaker": "以實瑪利"
         },
         {
@@ -3420,27 +3420,27 @@
         },
         {
           "index": 1,
-          "text": "We can't leave the restroom. Heathcliff and Don Quixote both tried pretty much everything, but... nothing worked.",
+          "text": "我們出不了廁所。希斯克利夫先生和唐吉訶德小姐試了各種方法……但全都沒用。",
           "speaker": "辛克萊"
         },
         {
           "index": 2,
-          "text": "That's... a serious problem. It might mean we're the only ones allowed to go out.",
+          "text": "那可……麻煩了呢。這不就代表除了我們以外，誰都出不去嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "There has to be a way to circumvent this.",
+          "text": "一定會有辦法的。",
           "speaker": "奧提斯"
         },
         {
           "index": 4,
-          "text": "Four Sinners... on each floor...",
+          "text": "一層樓……罪人四名……",
           "speaker": "???"
         },
         {
           "index": 5,
-          "text": "... time... beyond that... cannot protect...",
+          "text": "在那之上的時間……無法守護……",
           "speaker": "???"
         },
         {
@@ -3450,42 +3450,42 @@
         },
         {
           "index": 7,
-          "text": "Argh! Can't you finish a bloody sentence?! What's that even mean?!",
+          "text": "啊啊煩死了！拜託把話說完好嗎！那到底是什麼意思！？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 8,
-          "text": "The meaning she seeks to convey appears to be that only four may exit the restroom simultaneously. Perhaps any number greater than that poses a certain risk.",
+          "text": "恐怕……最多只能有四個人出去。若是更多人成群行動，或許會有危險。",
           "speaker": "李箱"
         },
         {
           "index": 9,
-          "text": "<Okay... Isn't it still three, though? Counting me?>",
+          "text": "<可是算上我也才三個吧？>",
           "speaker": "但丁"
         },
         {
           "index": 10,
-          "text": "Counting Meursault, who is currently not present in the restroom, the number adds up to four.",
+          "text": "因為莫梭先生在外面，所以可以視為四人吧。",
           "speaker": "浮士德"
         },
         {
           "index": 11,
-          "text": "Oh, you're right. Hmm... Is there a way to change who is allowed out then, I wonder?",
+          "text": "說得也是呢。嗯……那麼出去的人是誰都無所謂嗎？",
           "speaker": "鴻璐"
         },
         {
           "index": 12,
-          "text": "I am afraid not, young Hong Lu. I harbored much the selfsame suspicion as thee, and had sought to depart moments after young Ishmael and Rodya's return... Alas, the door permitted not my passing.",
+          "text": "似乎並非如此。吾抱著一線希望試著出去……但即使以實瑪利和羅佳進來了，吾還是出不去……",
           "speaker": "唐吉訶德"
         },
         {
           "index": 13,
-          "text": "Four Sinners on each floor. That's what she said.",
+          "text": "一層樓的罪人是四名……那傢伙的確是這麼說的。",
           "speaker": "奧提斯"
         },
         {
           "index": 14,
-          "text": "And, if I were to hazard a guess... the roster cannot be altered once it has been finalized. Am I correct?",
+          "text": "看來是一旦決定就無法更改的機制。對嗎？",
           "speaker": "奧提斯"
         },
         {
@@ -3495,26 +3495,26 @@
         },
         {
           "index": 16,
-          "text": "She nodded lightly at Outis's conjecture before adding another comment."
+          "text": "那個人聽了奧提斯的話，輕輕點了點頭，又補上一句。"
         },
         {
           "index": 17,
-          "text": "... can... change... when floors... change...",
+          "text": "換了樓層……就能改變……",
           "speaker": "???"
         },
         {
           "index": 18,
-          "text": "... Can't be helped, I suppose. Let's the three of us head out for now.",
+          "text": "……沒辦法了。總之先由我們幾個去吧。",
           "speaker": "以實瑪利"
         },
         {
           "index": 19,
-          "text": "Mm. Remain vigilant, dear fellows.",
+          "text": "嗯。請多加小心。",
           "speaker": "李箱"
         },
         {
           "index": 20,
-          "text": "<Time to go find Meursault.>",
+          "text": "<再去找莫梭吧。>",
           "speaker": "但丁"
         }
       ]
@@ -3617,17 +3617,17 @@
         },
         {
           "index": 2,
-          "text": "If anything is visible, I propose we use those details to locate the site where he is being detained.",
+          "text": "用那股能力偵察莫梭——他的周遭情況，您意下如何？",
           "speaker": "奧提斯"
         },
         {
           "index": 3,
-          "text": "Oh, right. You could do that, couldn't you, Manager Bud? If you can spot anything from his end, that oughta narrow the search down and make things easier for us.",
+          "text": "喔，這麼說來經理兄，你還能做到那種事對吧？要是能從那邊看到些什麼，找人的時間就能省下不少了。",
           "speaker": "格里高爾"
         },
         {
           "index": 4,
-          "text": "<Hmm... I don't know if it'll work from here, but I'll give it a try.>",
+          "text": "<嗯……不知道在這裡行不行，總之先試試看。>",
           "speaker": "但丁"
         },
         {
@@ -3637,12 +3637,12 @@
         },
         {
           "index": 6,
-          "text": "<I think I see... uh, a carpeted floor? Yeah, that's carpet... and there are strips of fabric up ahead... Clothes, probably. Looks like they've got them on display. Meursault's standing absolutely still.>",
+          "text": "<地上好像有地毯……？之類的東西……前面有布料碎片……大概是衣服吧？總之好像陳列著那些東西。莫梭沒有在動。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "<He doesn't seem to be tied up or anything... Huh? There's someone beside him...>",
+          "text": "<他好像沒有被綁著……嗯？旁邊好像有人。>",
           "speaker": "但丁"
         },
         {
@@ -3657,7 +3657,7 @@
         },
         {
           "index": 10,
-          "text": "<He doesn't look to be injured or in any immediate danger... Let's start by finding a carpeted room with clothes on display.>",
+          "text": "<他似乎沒有哪裡受傷，也不像身處危險……先去找展示著衣服的地毯地板吧。>",
           "speaker": "但丁"
         }
       ]
@@ -3667,12 +3667,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Hm? How did you come back so soon?",
+          "text": "嗯？已經回來了嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 1,
-          "text": "No, I think somethin' went wrong here~ Right, Meur?",
+          "text": "不是啦，好像哪裡搞錯了～小莫，我說得沒錯吧？！",
           "speaker": "羅佳"
         },
         {
@@ -3682,7 +3682,7 @@
         },
         {
           "index": 3,
-          "text": "<... \"Hill\" was probably the wrong choice, then. Let's go back to B1 and try the escalator again.>",
+          "text": "<……看來不是『山丘』啊。再下去地下1樓搭手扶梯吧。>",
           "speaker": "但丁"
         }
       ]
@@ -3697,7 +3697,7 @@
         },
         {
           "index": 1,
-          "text": "是因季度更迭，而不合潮流的衣服。",
+          "text": "是過了季、已不符合流行的衣服。",
           "speaker": "莫梭"
         },
         {
@@ -3868,7 +3868,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "上面寫著［摺紙服裝系列 N°92，5種中的1種］。"
+          "text": "上面寫著[摺紙服裝系列 N°92，5件中的第1件]。"
         }
       ]
     },
@@ -3945,7 +3945,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I can see something twinkling there, but this probably isn't the right time to worry about that."
+          "text": "看見有什麼東西在閃閃發光。不過現在似乎不是在意那種事的時候。"
         }
       ]
     },
@@ -4004,7 +4004,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "您們也是想殺掉我掠奪黃金松脂的人嗎？",
+          "text": "各位也是想殺掉我、掠奪黃金松脂的人嗎？",
           "speaker": "古斯塔夫"
         }
       ]
@@ -4024,7 +4024,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "您們所追求的品牌就是僅用血液染紅的東西而已嗎？實在是太老土了。",
+          "text": "你們所追求的品牌就是僅用血液染紅的東西而已嗎？實在是太老土了。",
           "speaker": "琦莉安"
         }
       ]

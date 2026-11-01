@@ -8,7 +8,7 @@
     {
       "id": 40000202,
       "name": "扶刺",
-      "desc": "When an enemy attacks another ally, and if the allied unit has less than 25% HP after the attack, use the Skill 'Aiding Strike' as an Unopposed Attack against the attacker (once per Encounter)"
+      "desc": "敵方單位攻擊除了自身以外的友方單位後，若該友方單位的體力低於25%，則對攻擊者使用「加斥我援」進行單方面攻擊(每場戰鬥最多1次)"
     },
     {
       "id": 40000203,

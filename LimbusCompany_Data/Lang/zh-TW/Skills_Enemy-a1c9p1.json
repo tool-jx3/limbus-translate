@@ -30,7 +30,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]\n若目標帶有的負面效果不低於3種，則額外增加1回"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 下回合對目標施加2層 [DefenseDown]"
@@ -40,7 +40,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]\n若目標帶有的負面效果不低於3種，則額外增加1回"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 下回合對目標施加2層 [DefenseDown]"
@@ -108,7 +108,7 @@
         {
           "level": 1,
           "name": "肌肉收縮",
-          "desc": "[CanDuelGuard]\n[StartBattle] Gain 1 [MuscleContraction] next turn. When hit, gain 1 additional [MuscleContraction] (once per turn)",
+          "desc": "[CanDuelGuard]\n[StartBattle] 下回合使自身獲得1層 [MuscleContraction]。若自身遭到攻擊命中，則額外獲得1層(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -223,7 +223,7 @@
         {
           "level": 1,
           "name": "肌肉收縮",
-          "desc": "[CanDuelGuard]\n[StartBattle] Gain 1 [MuscleContraction] next turn. When hit, gain 1 additional [MuscleContraction] (once per turn)",
+          "desc": "[CanDuelGuard]\n[StartBattle] 下回合使自身獲得1層 [MuscleContraction]。若自身遭到攻擊命中，則額外獲得1層(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -269,7 +269,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]\n若目標帶有的負面效果不低於3種，則額外增加1回"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Desire]"
@@ -279,7 +279,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +2 [Laceration] Count\nIf target has 3+ types of negative effects, inflict +1 additional [Laceration] Count"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]\n若目標帶有的負面效果不低於3種，則額外增加1回"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 下回合對目標施加1層 [Desire]"
@@ -347,7 +347,7 @@
         {
           "level": 1,
           "name": "施壓的絲帶",
-          "desc": "[CanDuelGuard]\nWhen hit, inflict 1 [PinkRibbon_Ishmael] against the attacker (once per Skill)\n[StartBattle] Gain 1 [MuscleContraction] next turn. When hit, gain 1 additional [MuscleContraction] (once per turn)",
+          "desc": "[CanDuelGuard]\n自身遭到攻擊命中時，對攻擊者施加1層 [PinkRibbon_Ishmael] (每個技能最多1次)\n[StartBattle] 下回合使自身獲得1層 [MuscleContraction]。若自身遭到攻擊命中，則額外獲得1層(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [

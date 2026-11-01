@@ -36,7 +36,7 @@
         "罪人{0}迅速地敲打了那個人影而防止了更大的損傷，然而氣體還是停止排出了。\n\n那黑色的某物再次被吸入了異想體的懷中，我們決定在再次攻擊前逃脫這裡。\n\n……然而，我們仍感受到那異想體的氣體充斥在身旁。"
       ],
       "failureDesc": [
-        "{0} quickly stepped forward, but failed to strike the nigh-formless silhouette. {0} suffered multiple wounds in the process.\n\nThe silhouette was siphoned back into the Abnormality. We decided to leave as soon as possible before we were attacked again.\n\n... But it feels as though that Abnormality's breathing is still with us."
+        "罪人{0}挺身而出，但攻擊沒能觸及那難以辨清形體的黑色人影，罪人{0}身上的傷口只是越來越多。\n\n那黑色的某物再次被吸入了異想體的懷中，我們決定在再次遭受攻擊前，迅速離開這裡。\n\n……然而，我們仍覺得那異想體的氣息彷彿還縈繞在身旁。"
       ]
     },
     {
@@ -49,7 +49,7 @@
         "罪人{0}悄無聲息地接近薔薇，猛然揮下武器。\n\n一根被平整切下的荊棘掉落在地，自切斷面流出了聲響與鮮紅的血液。\n\n……雖然出乎意料，但薔薇似乎沒有因為折斷一根荊棘而受刺激。\n\n我們鬆了口氣，撿起散發著淡淡氣味的荊棘向外走去。"
       ],
       "failureDesc": [
-        "{0} snuck up to the rose, and with a fell swoop of their weapon...\n\n... struck the thorn and failed to chop it off. It was sturdier than any of us expected.\n\nThe rose, noticing the disturbance, immediately bound the Sinner with its thorny stem.\n\nI don't think it's necessary to recount what happened to the Sinner thereafter."
+        "罪人{0}悄無聲息地接近薔薇，猛然揮下武器。\n\n然而也許是荊棘比預想的還要更為堅硬，荊棘並沒有被切斷……\n\n薔薇似乎注意到了這點，用長著荊棘的莖纏繞住了罪人的身體。\n\n……我不想特地描繪出罪人經歷了什麼。"
       ]
     },
     {
@@ -62,7 +62,7 @@
         "罪人{0}找到了某物並帶了回來。\n\n是個看上去軟軟的墊子。\n\n「比起直接接住，不如讓他落在這塊墊子上……」\n\n其他罪人們迅速收拾了預測下墜位置附近的危險物品。\n\n而後罪人{0}攤開了墊子，使居民下墜的地點變成安全的狀態。\n\n……最終，那人落在了緩衝墊上，發出了令人心安的聲音並站了起來。"
       ],
       "failureDesc": [
-        "罪人{0}找到了某物並帶了回來。\n\n是個看上去軟軟的墊子。\n\n但是……\n\n「不是，喂。這也太小了吧。」\n\n那塊墊子勉強只能覆蓋上半身。\n\n「有、有總比沒有好吧！」\n\n沒時間去尋找其他東西了，罪人們盡量圍成了一個圓，一起接住那個人。\n\n……最終，那人落在罪人們身上。\n\n由於分散了重量，那塊小小的墊子也支撐了腰部，使得那人安全落地，但……\n\n有的罪人手臂骨折，有的罪人腰部受傷了。"
+        "罪人{0}似乎找到了什麼。\n\n是個看上去軟軟的墊子。\n\n但是……\n\n「不是，喂。這也太小了吧。」\n\n那是塊連上半身都只能勉強蓋住的小墊子。\n\n「有、有總比沒有好吧！」\n\n沒時間去找其他東西了，罪人們盡量圍成一個圓，決定一起接住那個人。\n\n……終於，那人落到了罪人們身上。\n\n重量被分散，那塊小小的墊子也撐住了腰部，那人安全地落了地，但……\n\n罪人們似乎有人斷了手臂，有人腰骨出現了裂痕。"
       ]
     },
     {

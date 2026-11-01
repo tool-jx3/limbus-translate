@@ -13,7 +13,7 @@
     {
       "id": 863003,
       "name": "召喚靶子",
-      "desc": "At 75%- HP, gain a new pattern\nWhen gaining a new pattern, summon G Corp. Head Manager and Downcast Veteran; then, inflict Stigmatized on the target with the least current HP\n- Change Min & Max Speed values on self to 1.\n- Gain 300 Shield HP."
+      "desc": "現存體力不高於75%時，改變攻擊模式\n攻擊模式改變時，召喚舊G公司部長與變本加厲的殘兵，並對現存體力最低的目標施加標記。\n- 自身的最小與最大速度值變為1。\n- 使自身獲得300點護盾體力。"
     },
     {
       "id": 863004,
@@ -28,12 +28,12 @@
     {
       "id": 863202,
       "name": "深呼吸",
-      "desc": "Multiply Critical Chance from [Breath] effects by x 1.5\n\nOn Crit:\n- At 15+ [Breath] Potency, consume up to ([Breath] Potency on self / 5) [Breath] Potency to deal +([Breath] Potency consumed x 4)% damage on Crit\n- At 15+ [Breath] Count, consume up to ([Breath] Count on self / 5) [Breath] Count to deal +([Breath] Count consumed x 8)% damage on Crit"
+      "desc": "[Breath] 效果的暴擊率×1.5\n\n暴擊時：\n- 若 [Breath] 強度不低於15級，則消耗(自身帶有的 [Breath] 強度/5)級強度，使暴擊時造成的傷害+(消耗的 [Breath] 強度×4)%\n- 若 [Breath] 回數不低於15回，則消耗(自身帶有的 [Breath] 回數/5)回，使暴擊時造成的傷害+(消耗的 [Breath] 回數×8)%"
     },
     {
       "id": 863203,
       "name": "氧氣飽和狀態",
-      "desc": "In the turn this unit uses 'That's... Mine!', fix its Speed to 1. At Turn Start, apply 6 [Breath] Potency and +6 [Breath] Count to all units present on the Stage.\n\nAt the end of the same turn, consume any excess [Breath] Potency and [Breath] Count past 5 Potency and 5 Count; then, at the next Turn Start, apply the same amount of [Breath] Potency and [Breath] Count consumed to the Head Part"
+      "desc": "使用「那是……我的！」的回合內，自身的速度值固定為1，且回合開始時，對場上所有目標施加6級 [Breath] 強度與6回 [Breath]\n\n該回合結束時，消耗所有超過5級的 [Breath] 強度與超過5回的 [Breath]，並於下回合開始時，對頭部施加等量的 [Breath] 強度與 [Breath] 回數"
     },
     {
       "id": 863204,
@@ -63,7 +63,7 @@
     {
       "id": 863301,
       "name": "沉溺的花瓣",
-      "desc": "Turn End: at 20+ [BloodDinner], consume up to 50 [BloodDinner] and heal the Core and the Head Parts equal to [BloodDinner] consumed\n- Does not activate if the Head Part is either Staggered or Destroyed"
+      "desc": "回合結束時，若 [BloodDinner] 層數不低於20層，則消耗最多50層，並使自身本體與頭部恢復等同於消耗的 [BloodDinner] 層數的體力\n- 頭部陷入混亂或被破壞時不會觸發"
     },
     {
       "id": 863302,
@@ -78,7 +78,7 @@
     {
       "id": 863304,
       "name": "殘酷的血香",
-      "desc": "若 [BloodDinner] 層數不低於100層，則使用特殊技能\n回合結束時，若自身的 [BloodDinner_Accumulation] 層數不低於500層，或現存體力不高於體力上限的60%，則改變模式"
+      "desc": "若當前 [BloodDinner] 層數不低於100層，則使用特殊技能\n回合結束時，若自身的 [BloodDinner_Accumulation] 層數不低於500層，或自身現存體力低於體力上限的60%，則改變模式"
     },
     {
       "id": 863305,
@@ -118,7 +118,7 @@
     {
       "id": 863103,
       "name": "不是我",
-      "desc": "If this unit doesn't have Stigmatized at Combat Start, gain 300 Shield."
+      "desc": "戰鬥開始時，若自身未帶有標記，則使自身獲得300點護盾"
     }
   ]
 }

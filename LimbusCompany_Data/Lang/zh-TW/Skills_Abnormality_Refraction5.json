@@ -397,7 +397,7 @@
         {
           "level": 1,
           "name": "執拗致傷",
-          "desc": "If target has 6+ [Laceration] Potency, +1 to [Laceration] Potency and Count inflicted by this Skill",
+          "desc": "若目標的 [Laceration] 強度不低於6級，則令本技能增加的 [Laceration] 強度與施加的回數額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -429,7 +429,7 @@
         {
           "level": 1,
           "name": "致傷",
-          "desc": "If target has 6+ [Laceration] Potency, +1 to [Laceration] Potency and Count inflicted by this Skill",
+          "desc": "若目標的 [Laceration] 強度不低於6級，則令本技能增加的 [Laceration] 強度與施加的回數額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -663,7 +663,7 @@
         {
           "level": 1,
           "name": "渴望的棘蔓",
-          "desc": "[WhenUse] 消耗最多100層 [BloodDinner] 並觸發以下效果\n- 使自身本體與軀幹部位恢復等同於消耗的 [BloodDinner] 層數的體力\n- 每消耗20層 [BloodDinner]，下回合使自身獲得1層攻擊等級提升 \n[DefeatDuel] 使本技能的最終威力-5\n[EndSkill] 若本技能消耗的 [BloodDinner] 層數不高於30層，則下回合對自身施加2層 [Vulnerable]",
+          "desc": "[WhenUse] 消耗最多100層 [BloodDinner] 並觸發以下效果\n- 使自身本體與軀幹部位恢復等同於消耗的 [BloodDinner] 層數的體力\n- 每消耗20層 [BloodDinner]，使本技能的最終威力+1\n[DefeatDuel] 使本技能的最終威力-5\n[EndSkill] 若本技能消耗的 [BloodDinner] 層數低於30層，則下回合對自身施加2層 [Vulnerable]",
           "coinlist": [
             {
               "coindescs": [

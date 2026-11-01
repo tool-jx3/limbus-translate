@@ -294,7 +294,7 @@
     {
       "id": 9763,
       "name": "包裝緞帶",
-      "desc": "Turn Start: randomly select 1 out of 'Wrath ~ Envy DMG Up' effects and apply 1 Stack to all allies\n\nTurn Start: randomly select 1 out of 'Wrath ~ Envy Fragility' effects and inflict 1 Stack to all enemies",
+      "desc": "回合開始時，使全體友方單位獲得1層某1種隨機效果，該效果可能為「暴怒～嫉妒傷害強化」\n\n回合開始時，對全體敵方單位施加1層某1種隨機效果，該效果可能為「暴怒～嫉妒易損」",
       "simpleDesc": [
         {
           "abilityID": 9763,
@@ -309,7 +309,7 @@
     {
       "id": 9764,
       "name": "禮物",
-      "desc": "When an ally hits with a Skill, randomly select 2 of the following effects: [Combustion], [Laceration], [Vibration], [Burst], and [Sinking], then inflict 1 Potency of the selected effect (3 times per turn)\n\nWhen an ally hits with a Skill, randomly select one of the following effects: [Breath] Count, [Charge] Count, [Agility], [AttackUp], and [DefenseUp], then inflict 1 of the selected effect to 2 random allies (3 times per turn)\n\nTurn Start: randomly select 2 out of 'Wrath ~ Envy DMG Up' effects and apply 1 Stack to all allies\n\nTurn Start: randomly select 2 out of 'Wrath ~ Envy Fragility' effects and inflict 1 Stack to all enemies",
+      "desc": "友方單位技能命中時，使目標增加1級某2種隨機效果的強度，該效果可能為 [Combustion]、[Laceration]、[Vibration]、[Burst] 或 [Sinking] (每回合最多3次)\n\n友方單位技能命中時，隨機使2名友方單位於下回合獲得1回／1層某1種隨機效果，該效果可能為 [Breath] 回數、[Charge] 回數、[Agility]、[AttackUp] 或 [DefenseUp] (每回合最多3次)\n\n回合開始時，使全體友方單位獲得1層某2種隨機效果，該效果可能為「暴怒～嫉妒傷害強化」\n\n回合開始時，對全體敵方單位施加1層某2種隨機效果，該效果可能為「暴怒～嫉妒易損」",
       "simpleDesc": [
         {
           "abilityID": 9764,
@@ -328,7 +328,7 @@
     {
       "id": 9765,
       "name": "快樂的毛絨玩偶",
-      "desc": "Gain 2 [Breath] Potency next turn based on the number of allied Attack Skills that dealt damage by Turn End\n- In Focused Encounters, gain 4 [Breath] Potency instead.\n\nTurn Start: apply 2 [Breath], +2 [Breath] Count, and 2 [Protection] on the ally with the least HP.\n\nDeal +(absolute value of SP)% damage. (min 0%)\n\nWhen an ally with Plus Coin Skills recovers from Stagger, fully heal SP. (does not activate when Corroded)\n\nFor an ally with all Minus Coin Skills: gain 5 [Paralysis] at Turn Start.",
+      "desc": "回合結束時，友方單位每有1個攻擊技能造成了傷害，下回合使其獲得2級 [Breath] 強度。\n- 若是集中遭遇戰，則改為獲得4級 [Breath] 強度。\n\n回合開始時，使現存體力最低的1名友方單位獲得2級呼吸法強度、2回 [Breath] 與2層 [Protection]。\n\n友方單位造成的傷害+(該單位理智值的絕對值)%(最少+0%)\n\n當擁有加算硬幣技能的友方單位解除混亂時，使其恢復全部理智值(不對侵蝕的單位生效)。\n\n回合開始時，對擁有的技能全部為減算硬幣技能的友方單位施加5層 [Paralysis]",
       "simpleDesc": [
         {
           "abilityID": 9765,
@@ -430,7 +430,7 @@
     {
       "id": 9771,
       "name": "近身格鬥術教材",
-      "desc": "If a Skill that can spend [Bullet] does not spend [Bullet], gain 1 [Enhancement] this turn and next turn (once per turn)\n\nWhen gaining [Bullet], Skill 3 deals +50% damage this turn and next turn when used\n\nWhen using a Skill that spends [Bullet], gain 3 [Breath] and +1 [Breath] Count",
+      "desc": "若可消耗 [Bullet] 的技能未進行消耗，則本回合與下回合使自身獲得1層 [Enhancement] (每回合最多1次)\n\n獲得 [Bullet] 時，本回合與下回合使3技能造成的傷害+50%\n\n使用消耗 [Bullet] 的技能時，使自身獲得3級 [Breath] 強度與1回 [Breath]",
       "simpleDesc": [
         {
           "abilityID": 9771,
@@ -468,7 +468,7 @@
     {
       "id": 9773,
       "name": "荊棘戰鬥靴",
-      "desc": "On Clash Win with a Base Attack Skill that inflicts [Burst] Potency or Count against an enemy, inflict +3 [Burst] Count (2 times per turn per enemy)\n\nOn Hit: if the enemy does not have [Burst], Coin effects that inflict [Burst] Potency inflict [Burst] Count instead (max 4; 2 times per turn per enemy; for Abnormalities, for each Part)\n\nBase Attack Skills that inflict [Burst] Potency or Count: each Skill gains Offense Level equal to the number of copies of each Skill(max 3).\n- If a Skill has 3+ copies, gain 2 additional Offense Level.",
+      "desc": "增加 [Burst] 回數的基礎攻擊技能與敵方單位拚點勝利時，使其增加3回 [Burst] (每回合每名敵方單位最多2次)\n\n命中時，若目標敵方單位未帶有 [Burst]，則增加 [Burst] 強度的硬幣效果不增加 [Burst] 強度，改為增加 [Burst] 回數(最多4回，每回合每名敵方單位最多2次，若是異想體則改為每個部位)\n\n增加 [Burst] 強度或 [Burst] 回數的基礎攻擊技能增加等同於其擁有量的攻擊等級(最多3級)\n- 若該技能擁有量不低於3個，則額外增加2級攻擊等級",
       "simpleDesc": [
         {
           "abilityID": 9773,
@@ -650,7 +650,7 @@
         },
         {
           "abilityID": 97832,
-          "simpleDesc": "第一混亂閾值無效，體力低於一定值時獲得守護，受到傷害時獲得迅捷"
+          "simpleDesc": "第一混亂閾值無效，體力不高於一定值時獲得守護，受到傷害時獲得迅捷"
         }
       ]
     },
@@ -777,7 +777,7 @@
     {
       "id": 9792,
       "name": "永恆的緣分鎖鏈",
-      "desc": "Turn Start: activates when there are 2 or more The Middle Identities (only counts Identities on the field)\n\nWhen hit, all allies in the same faction deal +5% more Blunt damage (15% per turn)\nThe Middle Identities gain 1 [AttackUp] and deal +10% more Blunt damage instead (3 per turn, 30% per turn)\n\nBlunt Skills gain Base Power +1\n- The Middle Identities gain Base Power +1 and Coin Power +1 instead\n- If the target has [RetaliationBook], The Middle Identities gain Base Power +1, Coin Power +1, and deal +30% damage instead\n\nThe Middle Identities gain Min Speed +1 and Max Speed +1 for the Encounter",
+      "desc": "回合開始時，若屬於中指的友方單位不低於2名，則觸發該效果(以參戰人員為基準)\n\n友方單位受到攻擊時，使與該友方單位屬於同一陣營的全體友方單位造成的打擊傷害+5%(每回合最多+15%)\n屬於中指的友方單位改為獲得1層攻擊等級提升並使造成的打擊傷害+10%(每回合最多3次，每回合最多+30%)\n\n打擊技能的基礎威力+1\n- 屬於中指的友方單位改為基礎威力+1、硬幣威力+1\n- 屬於中指的友方單位的主要目標帶有 [RetaliationBook] 時，改為基礎威力+1、硬幣威力+1、造成的傷害+30%\n\n屬於中指的友方單位在本場戰鬥中的最小速度值+1、最大速度值+1",
       "simpleDesc": [
         {
           "abilityID": 9792,
@@ -796,7 +796,7 @@
     {
       "id": 9793,
       "name": "漆字琉璃鈿",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when there are 5 or more Identities that inflict [Burst] Potency or [Burst] Count (except E.G.O Skills; except Backup Units)\n\nWhen defeating a target with [Burst](for Focused Encounters, a Part) with an Attack Skill, inflict the [Burst] Potency on the target between all enemies(for Focused Encounters, all Parts) (max 3 per enemy)\n\nWhen defeating a target with [BurstAgility](for Focused Encounters, a Part) with an Attack Skill, inflict the [Burst] Potency and Count on the target between all enemies(for Focused Encounters, all Parts) (max 6 per enemy)\n\nWhen clashing against targets with [Burst], gain ([Burst] on the target / 20) Clash Power (max 2)\n- When clashing against targets with [BurstAgility], gain ([Burst] on the target / 10) Coin Power instead (max 2)\n\nWhen dealing damage with [BurstAgility] effect, deal fixed damage by ([BurstAgility] damage / 2)",
+      "desc": "回合開始時，若擁有增加 [Burst] 強度或 [Burst] 回數的攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n自身的攻擊技能擊殺帶有 [Burst] 的目標(若是集中遭遇戰，則改為破壞部位)時，將目標的 [Burst] 強度平均施加給全體敵方單位(若是集中遭遇戰，則改為所有部位)(每名敵方單位最多3級)\n\n自身的攻擊技能擊殺帶有 [BurstAgility] 的目標(若是集中遭遇戰，則改為破壞部位)時，將目標的 [Burst] 強度與回數平均施加給全體敵方單位(若是集中遭遇戰，則改為所有部位)(每名敵方單位最多6點)\n\n與帶有 [Burst] 的目標拚點時，使自身的拚點威力+(目標的 [Burst] 強度÷20)(最多+2)\n- 與帶有 [BurstAgility] 的目標拚點時，改為使自身的硬幣威力+(目標的 [Burst] 強度÷10)(最多+2)\n\n透過 [BurstAgility] 效果造成傷害時，對目標造成( [BurstAgility] 傷害量÷2)點固定傷害",
       "simpleDesc": [
         {
           "abilityID": 9793,
@@ -857,7 +857,7 @@
         },
         {
           "abilityID": 20812,
-          "simpleDesc": "第一混亂閾值無效，體力低於一定值時獲得守護 ，受到傷害時獲得迅捷"
+          "simpleDesc": "第一混亂閾值無效，體力不高於一定值時獲得守護，受到傷害時獲得迅捷"
         }
       ]
     },

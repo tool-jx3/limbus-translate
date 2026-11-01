@@ -72,7 +72,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加2層 [NoirNoComply]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回"
                 },
                 {
                   "desc": "[OnSucceedAttack] 消耗自身5回 [ChargeNoir] 並使目標 [VibrationExplosion]。"
@@ -97,7 +97,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加1層 [NoirNoComply]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回"
                 },
                 {
                   "desc": "[OnSucceedAttack] 消耗自身5回 [ChargeNoir] 並使目標 [VibrationExplosion]。"
@@ -122,7 +122,7 @@
                   "desc": "[OnSucceedAttack] 若目標裝備了攻擊技能，則對其施加1層 [NoirNoComply]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回"
                 },
                 {
                   "desc": "[OnSucceedAttack] 消耗自身5回 [ChargeNoir] 並使目標 [VibrationExplosion]。"
@@ -239,7 +239,7 @@
         {
           "level": 1,
           "name": "三重縫合",
-          "desc": "[StartBattle] 若自身現存體力不高於體力上限的50%，則使本技能所有的硬幣轉變為 [SuperCoin]\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[EndSkill] 消耗自身3回 [ChargeRouge] 並使自身恢復30點體力",
+          "desc": "[StartBattle] 若自身現存體力低於體力上限的50%，則使本技能所有的硬幣轉變為 [SuperCoin]\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[EndSkill] 消耗自身3回 [ChargeRouge] 並使自身恢復30點體力",
           "coinlist": [
             {
               "coindescs": [
@@ -290,7 +290,7 @@
         {
           "level": 1,
           "name": "強勢行銷",
-          "desc": "[StartBattle] 若自身現存體力不高於體力上限的50%，則使本技能所有的硬幣轉變為 [SuperCoin]，並對自身施加3層 [DefenseDown] 且使自身獲得6回 [ChargeRouge]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂\n[WhenUse] 自身每帶有1級 [ChargeRouge] 強度，則使本技能造成的傷害+10%(最多+30%)",
+          "desc": "[StartBattle] 若自身現存體力低於體力上限的50%，則使本技能所有的硬幣轉變為 [SuperCoin]，並對自身施加3層 [DefenseDown] 且使自身獲得6回 [ChargeRouge]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂\n[WhenUse] 自身每帶有1級 [ChargeRouge] 強度，則使本技能造成的傷害+10%(最多+30%)",
           "coinlist": [
             {
               "coindescs": [
@@ -1091,7 +1091,7 @@
         {
           "level": 1,
           "name": "刮下來！撕下來！剝下來！",
-          "desc": "[StartBattle] 若自身現存體力不高於體力上限的50%，則使本技能所有的硬幣轉變為 [SuperCoin]\n[WhenUse] 自身每帶有1級 [ChargeRouge] 強度，則使本技能造成的傷害+10%(最多+50%)\n[WhenUse] 自身每帶有1回 [ChargeRouge]，則使本技能造成的傷害+3%(最多+60%)\n\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2",
+          "desc": "[StartBattle] 若自身現存體力低於體力上限的50%，則使本技能所有的硬幣轉變為 [SuperCoin]\n[WhenUse] 自身每帶有1級 [ChargeRouge] 強度，則使本技能造成的傷害+10%(最多+50%)\n[WhenUse] 自身每帶有1回 [ChargeRouge]，則使本技能造成的傷害+3%(最多+60%)\n\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2",
           "coinlist": [
             {
               "coindescs": [
@@ -1192,7 +1192,7 @@
         {
           "level": 1,
           "name": "喀噠喀噠",
-          "desc": "[WhenUse]\n- 目標每帶有4級 [Vibration] 強度，則使本技能的最終威力+1(最多+3)\n- 若自身的 [ChargeNoir] 回數不低於8回，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeNoir] 回數不高於15回，使自身獲得2回 [ChargeNoir]",
+          "desc": "[WhenUse]\n- 目標每帶有4級 [Vibration] 強度，則使本技能的最終威力+1(最多+3)\n- 若自身的 [ChargeNoir] 回數不低於8回，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeNoir] 回數低於15回，則使自身獲得2回 [ChargeNoir]",
           "coinlist": [
             {
               "coindescs": [
@@ -1256,7 +1256,7 @@
         {
           "level": 1,
           "name": "把它切下來！拜託了！",
-          "desc": "可無視速度值與本技能拚點\n[WhenUse]\n- 若自身的 [ChargeNoir] 回數不低於10回，則消耗自身10回 [ChargeNoir] 並使本技能的基礎威力+1、硬幣威力+1\n- 若自身的 [ChargeNoir] 回數不高於10回，則使自身獲得5回 [ChargeNoir]\n- 若自身的 [ChargeNoir] 強度不低於3級，則使本技能的所有硬幣轉變為 [SuperCoin]",
+          "desc": "可無視速度值與本技能拚點\n[WhenUse]\n- 若自身的 [ChargeNoir] 回數不低於10回，則消耗自身10回 [ChargeNoir] 並使本技能的基礎威力+1、硬幣威力+1\n- 若自身的 [ChargeNoir] 回數低於10回，則使自身獲得5回 [ChargeNoir]\n- 若自身的 [ChargeNoir] 強度不低於3級，則使本技能的所有硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [
@@ -1325,7 +1325,7 @@
         {
           "level": 1,
           "name": "汙穢之物！",
-          "desc": "[WhenUse] 若自身的 [NoirSuit] 層數不低於50層，則使自身的防禦等級+1\n[WhenUse] 若自身帶有 [Realisation]，則\n- 使本技能造成的傷害+(自身的 [ChargeNoir] 強度×8)%(最多+40%)\n- 消耗自身4層 [Realisation]\n[WhenUse] 若自身的 [ChargeNoir] 回數不低於12回，\n則消耗2回 [ChargeNoir] 並使本技能的拚點威力+1\n[WhenUse] 若自身的 [ChargeNoir] 回數不高於10回，則使自身獲得2回 [ChargeNoir]",
+          "desc": "[WhenUse] 若自身的 [NoirSuit] 層數不低於50層，則使自身獲得1層防禦等級提升\n[WhenUse] 若自身帶有 [Realisation]，則\n- 使本技能造成的傷害+(自身的 [ChargeNoir] 強度×8)%(最多+40%)\n- 消耗自身4層 [Realisation]\n[WhenUse] 若自身的 [ChargeNoir] 回數不低於12回，\n則消耗2回 [ChargeNoir] 並使本技能的拚點威力+1\n[WhenUse] 若自身的 [ChargeNoir] 回數低於10回，則使自身獲得2回 [ChargeNoir]",
           "coinlist": [
             {
               "coindescs": [
@@ -1357,7 +1357,7 @@
         {
           "level": 1,
           "name": "自己並非單腳不覺得羞恥嗎？",
-          "desc": "[WhenUse] If this unit has [NoirSuit]:\n- Gain 1 [DefenseUp] for every 40 Stack (max 2)\n[WhenUse] If this unit has [Realisation]:\n- Deal +([ChargeNoir] Potency on self x 6)% damage (max 30%)\n- Consume 6 [Realisation]\n[WhenUse] At 12+ [ChargeNoir] Count, consume 2 [ChargeNoir] Count to gain Final Power +1\n[WhenUse] At fewer than 15 [ChargeNoir] Count, gain +3 [ChargeNoir] Count",
+          "desc": "[WhenUse] 若自身帶有 [NoirSuit]，\n則每有40層，使自身獲得1層 [DefenseUp] (最多2層)\n[WhenUse] 若自身帶有 [Realisation]，\n- 使本技能造成的傷害+(自身的 [ChargeNoir] 強度×6)%(最多+30%)\n- 消耗自身6層 [Realisation]\n[WhenUse] 若自身的 [ChargeNoir] 回數不低於12回，\n則消耗2回 [ChargeNoir] 並使本技能的最終威力+1\n[WhenUse] 若自身的 [ChargeNoir] 回數低於15回，則使自身獲得3回 [ChargeNoir]",
           "coinlist": [
             {
               "coindescs": [
@@ -1394,19 +1394,19 @@
           "level": 1,
           "name": "我就大發慈悲替你卸下一腳吧。",
           "flavor": "總有一天見到漆黑派品牌經理時，你不好奇這傢伙會作何反應嗎？",
-          "desc": "Can Clash with this Skill regardless of Speed\n[WhenUse] If this unit has [NoirSuit], Clash Power +1 for every 30 Stack (max 3)\n[WhenUse] If this unit has [Realisation], deal +1% damage for every 2 Stack (max 50%)\n[WhenUse]\n- At 10+ [ChargeNoir] Count, consume 10 [ChargeNoir] Count to gain Coin Power +2\n- At fewer than 10 [ChargeNoir] Count, gain +5 [ChargeNoir] Count\n[DefeatDuel]\n- Deal -50% damage\n- Raise this unit's Stagger Threshold equal to its [DefenseUp] Stack",
+          "desc": "可無視速度值與本技能拚點\n[WhenUse] 若自身帶有 [NoirSuit]，則每有30層，使本技能的拚點威力+1(最多+3)\n[WhenUse] 若自身帶有 [Realisation]，則每有2層，使本技能造成的傷害+1%(最多+50%)\n[WhenUse]\n- 若自身的 [ChargeNoir] 回數不低於10回，則消耗10回 [ChargeNoir] 並使本技能的硬幣威力+2\n- 若自身的 [ChargeNoir] 回數低於10回，則使自身獲得5回 [ChargeNoir]\n[DefeatDuel]\n- 使本技能造成的傷害-50%\n- 使自身的混亂閾值前移(自身的 [DefenseUp] 層數)",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 3 [Vibration]"
+                  "desc": "[OnSucceedAttack] 使目標增加3級震顫強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict +3 [Vibration] Count"
+                  "desc": "[OnSucceedAttack] 使目標增加3回震顫"
                 }
               ]
             },
@@ -1433,7 +1433,7 @@
         {
           "level": 1,
           "name": "單腳踢",
-          "desc": "[WhenUse] If this unit has [NoirSuit]:\n- Deal +1% damage for every 3 Stack (max 30%)\n- Gain 1 [DefenseUp] for every 15 Stack (max 5)\n[WhenUse] At 10+ [ChargeNoir], consume 10 [ChargeNoir] Count to gain Coin Power +2\n- At 50% or lower HP, additionally consume up to 10 remaining [ChargeNoir] Count and deal +(additionally consumed [ChargeNoir] Count x 2.5)% damage (max 25%)\n[WhenUse] At 3+/5+ [ChargeNoir] Potency, Coin Power +1/+2\n[DefeatDuel]\n- Deal -75% damage\n- Damage and effects caused by this Skill cannot Stagger the target",
+          "desc": "[WhenUse] 若自身帶有 [NoirSuit]，則\n- 每有3層，使本技能造成的傷害+1%(最多+30%)\n- 每有15層，使自身獲得1層 [DefenseUp] (最多5層)\n[WhenUse] 若自身的 [ChargeNoir] 回數不低於10回，\n則消耗10回 [ChargeNoir] 並使本技能的硬幣威力+2\n- 若自身現存體力不高於50%，則額外消耗最多10回 [ChargeNoir] 並使本技能造成的傷害+(額外消耗的 [ChargeNoir] 回數×2.5)%(最多+25%)\n[WhenUse] 若自身的 [ChargeNoir] 強度不低於3/5級，則使本技能的硬幣威力+1/+2\n[DefeatDuel]\n- 使本技能造成的傷害-75%\n- 本技能的傷害與效果不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -1467,7 +1467,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身的 [ChargeNoir] 強度不低於3／5級，則使其 [VibrationExplosion] 1次／2次，並使其減少1回／2回 [Vibration]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身的 [ChargeNoir] 強度不低於3/5級，則使目標 [VibrationExplosion] 1/2次，並使目標減少1/2回 [Vibration]"
                 }
               ]
             }
@@ -1481,7 +1481,7 @@
         {
           "level": 1,
           "name": "單腳踢 - 多樣訂製",
-          "desc": "[WhenUse] If this unit has [Realisation]:\n- Deal +1% damage for every 2 Stack (max 50%)\n- Deal +([ChargeNoir] Potency on self x 6)% damage (max 30%)\n- Consume 15 [Realisation]\n[WhenUse] At 10+ [ChargeNoir] Count, consume 10 [ChargeNoir] Count to gain Final Power +2 and Coin Power +1\n[WhenUse] At 3+/5+ [ChargeNoir] Potency, Coin Power +1/+2\n[DefeatDuel]\n- Deal -75% damage\n- Damage and effects caused by this Skill cannot Stagger the target",
+          "desc": "[WhenUse] 若自身帶有 [Realisation]，則\n- 每有2層，使本技能造成的傷害+1%(最多+50%)\n- 使本技能造成的傷害+(自身的 [ChargeNoir] 強度×6)%(最多+30%)\n- 消耗自身15層 [Realisation]\n[WhenUse] 若自身的 [ChargeNoir] 回數不低於10回，\n則消耗10回 [ChargeNoir] 並使本技能的最終威力+2、硬幣威力+1\n[WhenUse] 若自身的 [ChargeNoir] 強度不低於3/5級，則使本技能的硬幣威力+1/+2\n[DefeatDuel]\n- 使本技能造成的傷害-75%\n- 本技能的傷害與效果不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -1519,7 +1519,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身的 [ChargeNoir] 強度不低於3／5級，則使其 [VibrationExplosion] 1次／2次，並使其減少1回／2回 [Vibration]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身的 [ChargeNoir] 強度不低於3/5級，則使目標 [VibrationExplosion] 1/2次，並使目標減少1/2回 [Vibration]"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 對目標造成本硬幣最終傷害量20%的突刺傷害"
@@ -1732,7 +1732,7 @@
         {
           "level": 1,
           "name": "如果從側縫外側看得見兩條縫線的話就是雙針。淘汰！",
-          "desc": "[WhenUse] <color=#ff6000><mark=#ff000040><b><u>Deal +50% damage for every Needlekin[TabExplain] on the field\n • If there are no Needlekin[TabExplain] on the field, cancel this Skill</u></b></mark></color>\n\n[EndSkill] Kill every Needlekin[TabExplain]\n • Gain 1 [Enhancement] next turn for every Needlekin[TabExplain] killed by this effect",
+          "desc": "[WhenUse] <color=#ff6000><mark=#ff000040><b><u>每有1名針靈[TabExplain]在場上，使本技能造成的傷害+50%\n．若場上沒有針靈，則取消本技能</u></b></mark></color>\n\n[EndSkill] 擊殺所有針靈[TabExplain]\n．因本效果所擊殺的針靈[TabExplain]每有1名，則下回合使自身獲得1層 [Enhancement]",
           "coinlist": [
             {
               "coindescs": [
@@ -1916,7 +1916,7 @@
         {
           "level": 1,
           "name": "好……冷……",
-          "desc": "優先指定體力最低的目標\n目標每失去1%體力，則使本技能造成的傷害+5%(最多+250%)\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+2(最多+4)\n[WhenUse] 若目標的現存體力不高於50%，則使本技能的基礎威力+3\n[WinDuel] 隨機解除目標帶有的1種正面效果(不包含充能、呼吸法)，並使自身獲得1層 [Nutrition]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "優先指定體力最低的目標\n目標每失去1%體力，則使本技能造成的傷害+5%(最多+250%)\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+2(最多+4)\n[WhenUse] 若目標的現存體力低於50%，則使本技能的基礎威力+3\n[WinDuel] 隨機解除目標帶有的1種正面效果(不包含充能、呼吸法)，並使自身獲得2層 [Nutrition]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -1944,7 +1944,7 @@
         {
           "level": 1,
           "name": "好痛……！身體……不聽使喚……！！！",
-          "desc": "優先指定體力最低的目標為主要目標\n目標每失去3%體力，則使本技能造成的傷害+5%(最多+50%)\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+2(最多+4)\n[WhenUse] 若目標的現存體力不高於50%，則使本技能的基礎威力+2\n[WinDuel] 隨機解除目標帶有的1種正面效果(不包含充能、呼吸法)，並使自身獲得2層 [Nutrition]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "優先指定體力最低的目標為主要目標\n目標每失去3%體力，則使本技能造成的傷害+5%(最多+50%)\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+2(最多+4)\n[WhenUse] 若主要目標的現存體力低於50%，則使本技能的基礎威力+2\n[WinDuel] 隨機解除主要目標帶有的1種正面效果(不包含充能、呼吸法)，並使自身獲得2層 [Nutrition]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -2004,7 +2004,7 @@
         {
           "level": 1,
           "name": "肚子餓……好冷……好痛……！",
-          "desc": "優先指定體力最低的目標為主要目標\n目標每失去1%體力，則使本技能造成的傷害+1%(最多+30%)\n[WhenUse] 主要目標每帶有6級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 若目標的現存體力不高於50%，則使本技能的基礎威力+2\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗自身所有 [ChargeRouge] 回數並使本技能的硬幣威力+2、攻擊容量+2\n[DefeatDuel] 使本技能造成的傷害-95%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "優先指定體力最低的目標為主要目標\n目標每失去1%體力，則使本技能造成的傷害+1%(最多+30%)\n[WhenUse] 主要目標每帶有6級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 若主要目標的現存體力低於50%，則使本技能的基礎威力+2\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗自身所有 [ChargeRouge] 回數並使本技能的硬幣威力+2、攻擊容量+2\n[DefeatDuel] 使本技能造成的傷害-95%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -2141,7 +2141,7 @@
         {
           "level": 1,
           "name": "聽見聲音了……",
-          "desc": "[WhenUse] Coin Power +1 for every 6 [Laceration] on the main target (max 2)\n[WhenUse] At fewer than 15 [ChargeRouge] Count, gain up to 15 [ChargeRouge] Count and gain 1 [BuffetFailed] next turn for every 5 [ChargeRouge] Count gained from this effect\n[DefeatDuel] Deal -80% damage and damage dealt by this Skill cannot Stagger the target",
+          "desc": "[WhenUse] 主要目標每帶有6級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeRouge] 回數低於15回，則使其增加至15回，每增加5回，下回合使自身獲得1層 [BuffetFailed]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "flavor": "百貨公司裡迴盪著各式各樣的聲音。會是誰的聲音呢。",
           "coinlist": [
             {

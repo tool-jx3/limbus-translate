@@ -4,7 +4,7 @@
       "id": 0,
       "place": "大觀園 特殊教室",
       "model": "자로사복",
-      "content": "按照子貢的要求，已經順利收到大家的課程計劃表了。"
+      "content": "按照子貢的要求，已經順利收到各位的課程計畫表了。"
     },
     {
       "id": 1,
@@ -104,7 +104,7 @@
     },
     {
       "id": 21,
-      "content": "子路以略顯困擾的神情接過那份計劃表。"
+      "content": "子路以略顯困擾的神情接過辛克萊的計畫表。"
     },
     {
       "id": 22,
@@ -536,7 +536,7 @@
     {
       "id": 108,
       "model": "자로사복",
-      "content": "Information Disparity as a Driver of Inequitable Treatment…"
+      "content": "由利益社會構成的共同體……"
     },
     {
       "id": 109,
@@ -588,7 +588,7 @@
     },
     {
       "id": 118,
-      "content": "計劃書的審核大致上結束了……"
+      "content": "計畫書的審核大致上結束了……"
     },
     {
       "id": 119,
@@ -713,11 +713,11 @@
     {
       "id": 144,
       "model": "싱클레어",
-      "content": "呼……子貢小姐和索德小姐。我準備了一份三十日的授課計劃……要看一下嗎？"
+      "content": "呼……子貢小姐、索德小姐，我準備了三十天份的授課計畫表……要不要看一下呢？"
     },
     {
       "id": 145,
-      "content": "But Zigong and Saude weren’t looking at the dozens of lesson plans Sinclair presented so proudly before their eyes.\nThey were looking away."
+      "content": "但是，子貢和索德的視線並沒有停留在辛克萊自豪地遞出的數十張計畫表上。"
     },
     {
       "id": 146,

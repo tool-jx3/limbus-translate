@@ -7,10 +7,10 @@
       "prevDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
       "successDesc": [
-        "\"You're seriously going to wear these old-season castoffs?\"\n\nThe sales associate gave us a quick once-over.\n\n\"Fine, take them. Judging by what you're wearing, you'd probably wrap yourselves in filthy packing paper as long as you could call it clothes.\"\n\nWe gathered up the clothes the Le Rouge sales associate had tossed aside."
+        "「你們要穿著這種過季的衣服到處走？」\n\n店員上下打量了我們一番……\n\n「拿去吧。看你們這身打扮，只要能披在身上，就算是沾著殘渣的包裝紙，你們也會二話不說接過來裹在身上吧。」\n\n我們把丹紅派店員扔過來的衣服一件件收拾起來。"
       ],
       "failureDesc": [
-        "\"You ought to be picking up a part-time job and earning some eyeballs, not standing around begging.\"\n\nThe tentacles on the sales associate's face shot upright and began to twitch.\n\n\"I'm busy enough as it is, and now these beggars are getting on my nerves! You can get the hell—\"\n\n\"...Hm, actually... We're short on material for the new season anyway...\"\n\n\"You people should do nicely.\""
+        "「去打工賺眼球都來不及了，你們居然在這裡乞討？」\n\n店員臉上的觸手全都豎了起來，\n開始微微……顫抖。\n\n「我已經忙得要死了，還來惹我生氣！馬上給我滾……」\n\n「……嗯，不對。正好新一季要用的布料不夠……」\n\n「把你們拿來當布料就行了！」"
       ]
     },
     {
@@ -20,10 +20,10 @@
       "prevDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
       "successDesc": [
-        "\"Ehehe~ Of course! Go on, try some, you hear?\"\n\nEyes squeezed shut, {0} took a sip of the soda...\n\n\"...Huh. That's actually...\"\n\nApparently, it was surprisingly good.\n\nWe offered a few coins in payment, but Sous Chef only returned a confused stare.\n\n\"What... are these supposed to be, you hear? I'm asking if you drank my soda without eyeballs to pay for it, you hear?!\"\n\n\"Then you've gotta at least contribute <i>something</i>, you hear?\"\n\n\"*sniff* *sniff* ... Oh! That buggy-buggy bug arm! Lemme have a lick, you hear?\"\n\nWe had little choice but to let Sous Chef lick Gregor's arm. That seemed to put her in a good mood, because we were given another cup."
+        "「嗯哼哼～當然喔，快喝喝看喔。」\n\n罪人{0}緊閉雙眼喝了一口蘇打，味道是……\n\n「……咦，意外地……」\n\n看來意外地非常好喝。\n\n我們遞出幾枚硬幣，副廚卻一臉無法理解地看著我們。\n\n「這是……什麼東西？明明沒有眼球，還喝了蘇打？」\n\n「那樣的話，總得貢獻點什麼才行喔。」\n\n「嗅嗅……那就那隻蟲蟲的蟲手臂！讓我舔一下喔。」\n\n……我們只好讓她舔了格里高爾的手臂，她似乎心情變好了，我們又多拿到了一杯飲料。"
       ],
       "failureDesc": [
-        "\"Ehehe~ Of course! Go on, try some, you hear?\"\n\nEyes squeezed shut, {0} took a sip of the soda...\n\n\"...!\"\n\n{0} couldn't bring themself to swallow the soda and spat it straight back out.\n\nThe moment it hit the floor, nearby Food Court customers rushed over and began licking up the spill.\n\n\"Such a waste, you hear?! I could've sold each of them a cup and made 30 eyeballs, you hear?\"\n\n\"Get out of the Food Court right now, you hear? Scram, you hear?!\"\n\nWe hurriedly pushed our way through the gathering crowd and made our escape."
+        "「嗯哼哼～來，喝喝看喔。」\n\n罪人{0}緊閉雙眼喝了一口蘇打，味道是……\n\n「……！」\n\n罪人{0}似乎實在嚥不下去，直接吐了出來。\n\n接著，美食廣場的其他顧客一擁而上，開始舔食吐在地上的蘇打。\n\n「浪費成這樣是在幹什麼！就算只賣給那些傢伙一人一杯，也能賺到三十顆眼球喔！」\n\n「馬上給我離開美食廣場喔！」\n\n我們推開蜂擁而來的人群，慌忙逃離了那裡。"
       ]
     },
     {
@@ -33,10 +33,10 @@
       "prevDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
       "successDesc": [
-        "\"Hm... no eyeballs?\"\n\n\"We don't accept that kind of coin here...\"\n\nThe Noir sales associate gave us an unimpressed look. {0} stepped forward and began an impassioned laudation of Le Noir's aesthetic.\n\nThey praised the Noirs' practicality, the devotion to preserving Golden Resin, and the elegance the Noirs maintained without ever compromising those principles—then somehow tied all of it back to the coins we had brought in what narrow intersection there existed.\n\n... It was, frankly, a remarkable oration.\n\n\"... To think a customer outside Le Noir could understand our philosophy and aesthetic this well...\"\n\n\"How many seasons has it been since we had a customer like this...? In fact, you may be the first since the Maison opened.\"\n\n\"Very well. They're not eyeballs... but we'll accept the coins.\"\n\nWe purchased an outfit from Maison du Noir."
+        "「嗯……沒有眼球？」\n\n「百貨公司不收那種硬幣……」\n\n漆黑派店員一臉不悅地看著我們，\n罪人{0}便站了出來，開始滔滔不絕地讚美漆黑派的美學。\n\n漆黑派的實用主義、對黃金松脂的保存意志，以及堅守這些哲學卻不失優雅的風範，再巧妙地連結到與我們手上硬幣的交集——那番讚美，\n\n……堪稱一場名演說。\n\n「……明明不是漆黑派，卻能如此理解漆黑派哲學與美學的顧客……」\n\n「已經幾季沒遇過這樣的顧客了……？不，自從旗艦店開張以來，這好像是第一次。」\n\n「好吧。就算不是眼球……那些硬幣我們就收下了。」\n\n我們在漆黑派 品牌旗艦店買了衣服。"
       ],
       "failureDesc": [
-        "\"Hm... no eyeballs?\"\n\n\"We don't accept that kind of coin here...\"\n\nThe Noir sales associate gave us an unimpressed look. {0} stepped forward and began an impassioned laudation of Le Noir's aesthetic.\n\nThey praised the Noirs' practicality, the devotion to preserving Golden Resin, and the elegance the Noirs maintained without ever compromising those principles. But just as they tried to tie all of it back to the coins we had brought...\n\n\"W-wait. We understand crystal clear that you appreciate Le Noir's philosophy and aesthetic.\"\n\n\"But, regrettably...\"\n\n\"That is but one matter. Payment is another.\"\n\n\"We must charge what is owed. Otherwise, the worth of the garment itself would be diminished.\"\n\nThe Noir sales associates politely declined the offer and escorted us back to the entrance."
+        "「嗯……沒有眼球？」\n\n漆黑派店員一臉不悅地看著我們，\n罪人{0}便站了出來，開始滔滔不絕地講述漆黑派的美學。\n\n宣揚著漆黑派的實用主義、對黃金松脂的保存意志，以及堅守這些哲學卻不失優雅的風範，正要巧妙地連結到與我們手上硬幣的交集時……\n\n「等……等等。你對我們漆黑派美學的讚美，我們已經充分了解了。」\n\n「是啊。明明不是漆黑派，卻能如此理解漆黑派哲學與美學的顧客……」\n\n「但是……」\n\n「一碼歸一碼，眼球就是眼球。」\n\n「很遺憾，但確實如此。該收的就得收。這樣價值才不會褪色。」\n\n漆黑派店員們有禮地拒絕了提議，並將我們送到了入口。"
       ]
     },
     {
@@ -46,10 +46,10 @@
       "prevDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
       "successDesc": [
-        "\"*sigh* It's not enough that I have to feel the day's share of irritation from toe to head, a pack of insignificant Two-legs has to come crawling in. Are creatures born with so many legs simply incapable of recognizing how crude and wretched they are?\"\n\nOne-leg spent quite some time berating us. Apparently satisfied after venting, she eventually hopped away.\n\n\"Thank you... To think you would stand up for someone as lowly as me...\"\n\n\"It isn't much, but... please, take this—a humble token of appreciation for what you did for someone so beneath you...\""
+        "「哈啊……我本來就已經氣得從腳尖往上冒火了，現在連微不足道的兩腳都爬進來了。長著好幾條腿的東西，是天生就意識不到自己的淺薄與卑賤嗎？」\n\n……連我們也被狠狠痛罵了好一陣子，單腳似乎氣消了些，一蹦一蹦地離開了。\n\n「謝謝各位。竟然願意為了卑微的我做到這種地步……」\n\n「雖然只是小東西，但為了報答各位為卑賤至極的我挺身而出，請收下這個……」"
       ],
       "failureDesc": [
-        "\"Exactly what I expect from uncivilized creatures with too many legs.\"\n\n\"Is it your base nature to poke your toes where they don't belong? How vulgar.\"\n\n\"I have no desire to waste another word on you. Turn those graceless feet around and leave. And you, lowly wretch—follow me to the storeroom.\"\n\n... We left Four-legs behind. The black cloth covering his face was slowly growing damp with tears."
+        "「所以說，長著好幾條腿的未開化東西就是這樣。」\n\n「連自己該站在哪裡都不知道，就先把鞋尖伸進來——這種輕浮又粗俗的態度是天性嗎？」\n\n「我連理都不想理你們，把那低俗至極的腳步轉回去吧。還有你這卑微的傢伙。跟我到倉庫來。」\n\n……我們留下包著臉的黑布逐漸被浸濕的四腳，離開了那裡。"
       ]
     },
     {
@@ -57,12 +57,12 @@
       "title": "調色盤與補土",
       "eventDesc": "",
       "prevDesc": "",
-      "behaveDesc": "Which Sinner should go?",
+      "behaveDesc": "讓哪位罪人去一趟？",
       "successDesc": [
-        "\"Back already? Thanks. You're a lot nicer than most customers.\"\n\n\"......\"\n\n\"I'd give you some dye too, but... we're backed up right now, so there's nothing to spare. Take this instead.\"\n\n\"And no, I'm not offloading my garbage, in case that's what you're thinking. It's got no use as a knee part anymore, but the dye soaked into it is rare enough. Some of those colors can't even be made anymore.\"\n\nWe received a piece of cartilage."
+        "「什麼嘛……回來得真快。謝謝。你們跟其他顧客不一樣，真親切呢。」\n\n「……」\n\n「我也想給你們別的染料……但現在排的順序積著，沒有剩的。先拿這個去吧。」\n\n「我可不是拿垃圾給你們。雖然沒辦法當膝蓋零件用了，但流進裡面的染料可是很珍貴的。很多都沒辦法再生產了。」\n\n獲得了軟骨。"
       ],
       "failureDesc": [
-        "Quite some time has passed, but {0} still hasn't returned.\n\n\"It's pretty dark back there... Maybe they wandered into that passage full of Needlekin?\"\n\nWe hurry down the passage and find {0} being carried off somewhere, hoisted overhead by a crowd of Needlekin.\n\n... We should get {0} back. And quickly."
+        "過了好一陣子，罪人還是沒有回來。\n\n「那邊是有點暗啦……該不會是跑到滿是針靈的通道那邊去了吧？」\n\n我們急忙趕到通道深處，只見罪人{0}被針靈們高高拋起，正被抬往某處。\n\n……趕快從針靈手中把罪人救出來吧。"
       ]
     },
     {
@@ -70,12 +70,12 @@
       "title": "安妮特",
       "eventDesc": "",
       "prevDesc": "",
-      "behaveDesc": "Whose head should we show her?",
+      "behaveDesc": "要讓她看哪位罪人的頭？",
       "successDesc": [
-        "\"So... that's what it looks like inside.\"\n\nThe Alterationist muttered, peering into {0}'s open head.\n\n\"Thanks, that made the spare time a little less boring. I've seen enough now. I'll stitch you back up.\n\n\"Here. I don't know what you're planning to cut away, but you can take this for your <i>snip-snip</i>.\""
+        "「原來……長這樣啊。」\n\n修補達人一邊觀察罪人{0}的頭部內側，一邊說道。\n\n「托你的福，零碎的空檔時間沒那麼無聊了。謝謝你讓我看。我幫你縫回去。」\n\n「來。雖然不知道你們要剪斷什麼，不過這個就拿去吧。」"
       ],
       "failureDesc": [
-        "\"Ah... looks like this was something you'd folded away in there. Sorry. I didn't mean to open your secret drawer.\"\n\n\"I don't think I can close it again... take this—consider it an apology.\"\n\n{0} does not move, their head still open."
+        "「這是……摺好收起來的東西啊。抱歉，我不小心把抽屜打開了。」\n\n「看來是關不回去了……就當作賠罪，這個你們直接拿去吧。」\n\n頭被打開的罪人{0}一動也不動。"
       ]
     },
     {
@@ -85,10 +85,10 @@
       "prevDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
       "successDesc": [
-        "{0} began making pointed comparisons to Boutique du Rouge, subtly putting down Le Noir's clothes.\n\nThe sales associates' faces were hidden behind black fabric, but it was easy enough to tell that their expressions were hardening.\n\n\"... You only say that because you've never worn our clothes.\"\n\n\"Leather this... fabric that... How do you know? How do you know without even trying on our clothes?\"\n\n\"You dare... compare us to the trash the Rouges call \"fashion?\"\n\n{0} paid the Noirs' angry retorts no mind and continued, becoming even more blatant with each remark.\n\n\"... Fine. So that's how you want to do this.\"\n\n\"The miserable thing about working in fashion is that even when you know you're being baited, you'll still take the loss just to prove the customer wrong... *groan*\"\n\n\"Put it on... <i>then</i> talk.\"\n\nThe fuming Noir sales associates shoved an outfit into our hands."
+        "罪人{0}暗中拿丹紅派 精品專櫃作比較，貶低起這裡的衣服，\n\n雖然被黑色布料遮住看不見，但能感覺到店員們的表情越來越僵硬。\n\n「……那是因為你們沒穿過我們的衣服。」\n\n「連試穿都沒試過，就說什麼皮革怎樣……布料怎樣……」\n\n「竟敢、竟敢……拿我們跟那些微不足道的東西比較？」\n\n……罪人{0}毫不在意，更加露骨地挑動他們的神經。\n\n「……好，我知道了。你們就是要這樣是吧。」\n\n「做衣服的人最可悲的地方，就是明知對方在耍手段，還是會做出讓自己吃虧的事吧……可惡……」\n\n「穿上……穿了之後……再說……」\n\n我們從氣呼呼的漆黑派店員們手中拿到了衣服。"
       ],
       "failureDesc": [
-        "{0} launched into an enthusiastic laudation of Boutique du Rouge's aesthetic, but... none of it landed.\n\n\"You can't even tell rigid from selvedge?\"\n\n\"You mixed up twill and plain weave... Hah. My ears are rotting just hearing your nonsensical drivel.\"\n\n\"I thought you had an eye for fashion. Turns out you're just obnoxious customers with no eye for beauty.\"\n\n\"I should've known from the way you're dressed. So you're with those hideous Rouge fools, are you?\"\n\n\"*sigh* Leave while we're still asking nicely.\"\n\nThe Noir sales associates seized us by the collar and threw us out."
+        "罪人{0}賣力地講解丹紅派 精品專櫃的美學，但……\n\n「你連硬挺丹寧和布邊都分不清楚吧？」\n\n「居然把斜紋和平紋說反了……哈，我的耳朵都要爛掉了。」\n\n完全不管用。\n\n「還以為你們有眼光，原來是毫無美感的奧客。」\n\n「我就覺得你們身上穿的跟高級感八竿子打不著。原來是那邊的人？」\n\n「哈啊……趁我還好好說話的時候出去。」\n\n我們被漆黑派店員們抓住，趕了出去。"
       ]
     }
   ]

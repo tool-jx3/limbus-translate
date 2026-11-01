@@ -44,7 +44,7 @@
     },
     {
       "key": "I990101",
-      "displayName": "丹紅派 時尚開襟衫",
+      "displayName": "漆黑派 時尚開襟衫",
       "statText": "在象徵界的<color=#00ff9c>體力</color>+2",
       "description": "你還記得百貨公司牆壁第一次出現裂縫的時候嗎？"
     },
@@ -99,7 +99,7 @@
       "key": "I990303",
       "displayName": "改衣坊販售的布料",
       "statText": "在象徵界的<color=#00ff9c>體力</color>+1",
-      "description": "既非丹紅派也非的我尋求著中立的價值。無論哪種品牌只要需要布料，我都很樂意與之交易。"
+      "description": "既非丹紅派也非漆黑派的我，尋求著中立的價值。無論哪種品牌只要需要布料，我都很樂意與之交易。"
     },
     {
       "key": "I990304",
@@ -239,7 +239,7 @@
     {
       "key": "I990801",
       "displayName": "汽水",
-      "statText": "在象徵界的<color=#00ff9c>體力</color>低於5點時，<color=#00ff9c>恢復</color>5點在象徵界的<color=#00ff9c>體力</color>（最多1次）\n- 在泉休息時重新補充",
+      "statText": "在象徵界的<color=#00ff9c>體力</color>不高於5點時，<color=#00ff9c>恢復</color>5點在象徵界的<color=#00ff9c>體力</color>（最多1次）\n- 在泉休息時重新補充",
       "description": "奢侈品館遭受襲擊了！漆黑派佔據的奢侈品館受到丹紅派突襲，正在大肆狂歡！"
     },
     {
@@ -482,13 +482,13 @@
     {
       "key": "I990017",
       "displayName": "奧提斯",
-      "statText": "在象徵界時，若目標的<color=#00ff9c>體力</color>不高於50%，則使自身的攻擊造成的<color=#fe4b48>傷害</color>+1",
+      "statText": "在象徵界時，若目標的<color=#00ff9c>體力</color>低於50%，則使自身的攻擊造成的<color=#fe4b48>傷害</color>+1",
       "description": "策略的象徵。徬徨。"
     },
     {
       "key": "I990018",
       "displayName": "格里高爾",
-      "statText": "在象徵界的體力不高於25%時，使自身<color=#00ff9c>恢復</color>15點在象徵界的<color=#00ff9c>體力</color>，並在10秒內使自身受到的<color=#fe4b48>傷害</color>-20%（冷卻時間19秒）",
+      "statText": "在象徵界的體力低於25%時，使自身<color=#00ff9c>恢復</color>15點在象徵界的<color=#00ff9c>體力</color>，並在10秒內使自身受到的<color=#fe4b48>傷害</color>-20%（冷卻時間19秒）",
       "description": "變身的象徵。攝取。"
     },
     {

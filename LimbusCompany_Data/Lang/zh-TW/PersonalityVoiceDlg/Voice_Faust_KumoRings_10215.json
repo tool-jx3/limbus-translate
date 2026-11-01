@@ -98,12 +98,12 @@
     {
       "id": "choice_success_p_10215_2",
       "desc": "判定成功",
-      "dlg": "Che bello。真是精妙。"
+      "dlg": "真美（Che bello）。真是精妙。"
     },
     {
       "id": "choice_fail_n_10215_1",
       "desc": "判定失敗",
-      "dlg": "Non è bello。真不美麗。"
+      "dlg": "不美（Non è bello）。一點也不美呢。"
     },
     {
       "id": "battle_clear_10215_1",

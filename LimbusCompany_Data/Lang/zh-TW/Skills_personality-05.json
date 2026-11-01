@@ -776,7 +776,7 @@
         {
           "level": 2,
           "name": "學習時間",
-          "desc": "<style=\"highlight\">Deal +3% damage for every [KnowledgeExplored] on self (max 9%)</style>\n[StartBattle] Apply [KnowledgeTraining] equal to [KnowledgeExplored] on self <style=\"highlight\"> to a random ally</style> and on self <style=\"highlight\">(prioritizes allies with [Discard] that has the least [KnowledgeTraining])</style>\n[WhenUse] [Discard] 2 of this unit's Skills in ascending order of ranks from all of its Skill Slots\n<style=\"highlight\">[WhenUse] If target has 6+ [Sinking], Coin Power +1</style>",
+          "desc": "<style=\"highlight\">自身每帶有1層 [KnowledgeExplored]，使本技能造成的傷害+3%(最多+9%)</style>\n<style=\"highlight\">[StartBattle] 隨機使1名友方單位</style>與自身獲得層數等同於自身 [KnowledgeExplored] 層數的 [KnowledgeTraining] <style=\"highlight\">(優先適用於能夠 [Discard] 技能且 [KnowledgeTraining] 層數最低的友方單位)</style>\n[WhenUse] 依技能級別由低到高 [Discard] 自身所有行動槽中級別最低的2個技能\n<style=\"highlight\">[WhenUse] 若目標的 [Sinking] 強度不低於6級，則使本技能的硬幣威力+1</style>",
           "coinlist": [
             {},
             {
@@ -811,14 +811,14 @@
         {
           "level": 3,
           "name": "燃盡知識",
-          "desc": "Deal +3% damage for every [KnowledgeExplored] on self (max 18%)\n[WhenUse] If target has 6+ [Sinking], Coin Power +1\n[BeforeAttack] Consume all [KnowledgeTraining] on self and gain half of that value as additional [KnowledgeExplored] (rounded down)\n[EndSkill] At 4+ [KnowledgeExplored], reset value to 1 (if this Skill defeats an enemy, reset value to 3 instead)",
+          "desc": "自身每帶有1層 [KnowledgeExplored]，使本技能造成的傷害+3%(最多+18%)\n[WhenUse] 若目標的 [Sinking] 強度不低於6級，則使本技能的硬幣威力+1\n[BeforeAttack] 消耗自身所有 [KnowledgeTraining] 並使自身額外獲得層數等同於消耗層數一半的 [KnowledgeExplored] (無條件捨去)\n[EndSkill] 若自身的 [KnowledgeExplored] 層數不低於4層，則使其重置為1層(若本技能擊殺了敵方單位，則改為重置為3層)",
           "coinlist": [
             {},
             {},
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict [Sinking] Potency/Count equal to [KnowledgeExplored] value against the target (how much of that [Sinking] is Potency or Count is randomly determined)"
+                  "desc": "[OnSucceedAttack] 隨機對目標施加 [Sinking] 強度與 [Sinking] 回數，兩者共計(自身的 [KnowledgeExplored] 層數)點"
                 }
               ]
             }
@@ -834,7 +834,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict [Sinking] Potency/Count equal to [KnowledgeExplored] value against the target (how much of that [Sinking] is Potency or Count is randomly determined)<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 隨機對目標施加 [Sinking] 強度與 [Sinking] 回數，兩者共計(自身的 [KnowledgeExplored] 層數)點<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1024,7 +1024,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "<style=\"highlight\">If this unit does not inflict [Burst], +5% Damage on Critical Hit for every [Burst] Potency and Count it would have inflicted</style>"
+                  "desc": "<style=\"highlight\">若不施加 [Burst]，則原本將施加的 [Burst] 強度與回數每有1點，使本硬幣暴擊時造成的傷害+5%</style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加4級 [Burst] 強度<style=\"highlight\"></style>"
@@ -1612,7 +1612,7 @@
         {
           "level": 1,
           "name": "指揮列隊",
-          "desc": "[WhenUse] On self and 1 ally that has the lowest max HP: Consume up to 10 [BloodDinner] and apply 1 [BloodArmorMeursault] for every 5 [BloodDinner] this unit consumed (once per turn; excludes allies that have max Stack)\n- Prioritizes <La Manchaland> and <Bloodfiend>(Higher Kindred) allies\n- If the affected ally is from <La Manchaland>, this unit applies 1 additional [BloodArmorMeursault]\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration]",
+          "desc": "[WhenUse] 消耗最多10層 [BloodDinner]，每消耗5層 [BloodDinner]，使自身與體力上限最低的1名友方單位獲得1層 [BloodArmorMeursault] (每回合最多1次，不包括層數已達最大值的友方單位)\n- 優先使屬於<拉．曼查領>與<血魔>(上位眷屬)的友方單位獲得\n- 若獲得狀態的友方單位屬於<拉．曼查領>，則使其額外獲得1層 [BloodArmorMeursault]\n- 若未消耗 [BloodDinner]，則使自身增加10級 [Laceration] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -1634,7 +1634,7 @@
         {
           "level": 2,
           "name": "指揮列隊",
-          "desc": "[WhenUse] On self and 1 ally that has the lowest max HP: Consume up to 10 [BloodDinner] and apply 1 [BloodArmorMeursault] for every 5 [BloodDinner] this unit consumed (once per turn; excludes allies that have max Stack)\n- Prioritizes <La Manchaland> and <Bloodfiend>(Higher Kindred) allies\n- If the affected ally is from <La Manchaland>, this unit applies 1 additional [BloodArmorMeursault]\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration]\n<style=\"highlight\">[WhenUse] If target has 4+ [Laceration], Coin Power +1</style>",
+          "desc": "[WhenUse] 消耗最多10層 [BloodDinner]，每消耗5層 [BloodDinner]，使自身與體力上限最低的1名友方單位獲得1層 [BloodArmorMeursault] (每回合最多1次，不包括層數已達最大值的友方單位)\n- 優先使屬於<拉．曼查領>與<血魔>(上位眷屬)的友方單位獲得\n- 若獲得狀態的友方單位屬於<拉．曼查領>，則使其額外獲得1層 [BloodArmorMeursault]\n- 若未消耗 [BloodDinner]，則使自身增加10級 [Laceration] 強度\n<style=\"highlight\">[WhenUse] 若目標的 [Laceration] 強度不低於4級，則使本技能的硬幣威力+1</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2378,7 +2378,7 @@
         {
           "level": 4,
           "name": "補充孢子",
-          "desc": "[StartBattle] [MeursaultSporeBulletReloading] (once per turn)\n<style=\"highlight\">[WhenUseEvade] Coin Power +1 for every 6 ([Combustion] + [Laceration]) on the attacker (max 3)</style>\n[OnSucceedEvade] Heal 10 HP (once per turn)\n<style=\"highlight\">- If this unit has [MeursaultWorkerBee], heal an additional 5 HP for every Stack</style>",
+          "desc": "[StartBattle] 使自身 [MeursaultSporeBulletReloading] (每回合最多1次)\n<style=\"highlight\">[WhenUseEvade] 攻擊者的 [Combustion] 強度與 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1(最多+3)</style>\n[OnSucceedEvade] 使自身恢復10點體力(每回合最多1次)\n<style=\"highlight\">- 若自身帶有 [MeursaultWorkerBee]，則每帶有1層，使恢復量額外增加5點</style>",
           "coinlist": [
             {}
           ]

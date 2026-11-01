@@ -4,12 +4,12 @@
       "id": 0,
       "place": "4F 丹紅派 手提包展廳",
       "model": "카르멘",
-      "content": "<color=#E1B643>So nice to meet you, Dante.</color>"
+      "content": "<color=#E1B643>很高興見到你，但丁。</color>"
     },
     {
       "id": 1,
       "model": "카르멘",
-      "content": "<color=#E1B643>This is the first time we've met each other so up close, isn't it?</color>"
+      "content": "<color=#E1B643>這是我們第一次這麼近距離面對面吧？</color>"
     },
     {
       "id": 2,
@@ -18,11 +18,11 @@
     },
     {
       "id": 3,
-      "content": "Unlike the faint murmur I've heard before, the same voice now tickled and warmed my proverbial ear with the clarity of someone whispering right into it. At the same time, it felt as though the voice were speaking from an impossibly far-away place, every word echoing just for me."
+      "content": "與先前隱約聽見時不同，那聲音彷彿從極遠之處傳來……卻又像在耳邊低語般，清晰而溫暖地傳了過來。"
     },
     {
       "id": 4,
-      "content": "As though I've finally been made to discover the resonance... that had been calling out to me for so, so long. Yes, that's how it felt..."
+      "content": "就像我直到現在才發現……那個從很久以前就一直對我低語的聲響……"
     },
     {
       "id": 5,
@@ -32,57 +32,57 @@
     {
       "id": 6,
       "model": "뫼르소",
-      "content": "Please step back. Do not answer the voice."
+      "content": "請不要回答，往後退。"
     },
     {
       "id": 7,
       "model": "뫼르소",
-      "content": "Prolonged exposure... to the sunshine... is inadvisable..."
+      "content": "長時間……暴露在陽光下……並不好……"
     },
     {
       "id": 8,
-      "content": "Meursault's warning was firm and crystal clear—despite that, I found myself unable to take so much as a single step away from the wall."
+      "content": "但即使莫梭斷然警告……我連往後退一步都做不到。"
     },
     {
       "id": 9,
-      "content": "And I wasn't the only one. Hong Lu and Don Quixote stood rooted in their spots as though something pinned them to the ground—in fact, it appeared that they could not move a single muscle or even move to cover their ears and block out the voice."
+      "content": "不只是我，鴻璐……唐吉訶德也……像雙腳被釘住了一樣……既無法動彈，也沒辦法摀住耳朵。"
     },
     {
       "id": 10,
       "model": "카르멘",
-      "content": "<color=#E1B643>Meur... I can see you're not happy to hear from me, as always.</color>"
+      "content": "<color=#E1B643>小莫……你不管是以前還是現在，都不歡迎我呢。</color>"
     },
     {
       "id": 11,
       "model": "카르멘",
-      "content": "<color=#E1B643>But you know... maybe you shouldn't let your personal distaste for me\ndictate whether I should or shouldn't chat with your friends.\nIsn't that the sort of judgmental behavior about right and wrong that you so dislike?</color>"
+      "content": "<color=#E1B643>但是……就因為你不喜歡我……就想把我從你們的同伴身邊也隔開……\\n這不正是摻雜了太多你所不喜歡的是非判斷的行為嗎？</color>"
     },
     {
       "id": 12,
-      "place": "A Living Room, Past",
-      "content": "Surrounded by the silence of the living room, I sat absentmindedly in a patch of sunlight peering through a gap in the windowsill."
+      "place": "過去，某間客廳",
+      "content": "我在寂靜的客廳裡坐了好一陣子，在從窗縫湧入的陽光中發著呆。"
     },
     {
       "id": 13,
-      "content": "The vacuum of what was once there. The warm chill circulating the air. The sun."
+      "content": "空下來的位置。在虛空中縈繞的溫暖寒意。太陽。"
     },
     {
       "id": 14,
-      "content": "Then... suddenly, warm sunshine filled my vision, as though I had opened my eyes in a park at midday."
+      "content": "然後忽然間……我彷彿在正午的公園裡睜開了眼睛，感覺到眼前滿是和煦的陽光。"
     },
     {
       "id": 15,
-      "content": "It was so boundlessly bright... that I raised my hand to shield my eyes."
+      "content": "面對那無比明亮的色彩……我抬起手遮住了眼睛。"
     },
     {
       "id": 16,
       "model": "과거뫼르소",
-      "content": "... It's blinding."
+      "content": "……真刺眼。"
     },
     {
       "id": 17,
       "model": "카르멘",
-      "content": "<color=#E1B643>If my light dazzles you, it's only because you've been in the dark for so long.</color>"
+      "content": "<color=#E1B643>會覺得我的光刺眼，是因為你在黑暗的地方待得太久了。</color>"
     },
     {
       "id": 18,
@@ -97,39 +97,39 @@
     {
       "id": 20,
       "model": "카르멘",
-      "content": "<color=#E1B643>I like to think I've spoken with my fair share of buttoned-up people, Meursault...\n... but you've got to be the most taciturn out of them all.</color>"
+      "content": "<color=#E1B643>我真的跟很多沉默寡言的人聊過，但莫梭，你在他們之中也格外沉默呢。</color>"
     },
     {
       "id": 21,
       "model": "카르멘",
-      "content": "<color=#E1B643>It must've been so suffocating.\nTens of thousands of thoughts howling under that quiet, taciturn demeanor...\n... and no one stopped to listen, did they? \n\nEven if they had, I don't suppose they would have understood how the world reflects in your eyes.</color>"
+      "content": "<color=#E1B643>你一定很煩悶吧。就算你那樣默默地想了千萬件事……人們也不會聽你說話。\\n就算聽了你眼中的世界是什麼模樣，他們大概也無法理解。</color>"
     },
     {
       "id": 22,
-      "content": "The curtain of sunshine talked to me in a beautiful voice. Bright. Uplifting."
+      "content": "從陽光中傳來的聲音……開朗而美麗。"
     },
     {
       "id": 23,
-      "content": "It sympathized with the things in my mind that no one understood. It laid bare the thoughts that I had never shown another soul."
+      "content": "它理解那不曾被理解的心，將不曾讓任何人看見的想法撈了上來。"
     },
     {
       "id": 24,
-      "content": "I knew I must not answer the voice... yet my lips quivered against my will."
+      "content": "明知道不能回應這個聲音……嘴唇卻總是不由自主地翕動。"
     },
     {
       "id": 25,
       "model": "카르멘",
-      "content": "<color=#E1B643>I see. You've chosen to cover your ears and squeeze your eyes shut.</color>"
+      "content": "<color=#E1B643>你摀住了耳朵，連眼睛也緊緊閉上了呢。</color>"
     },
     {
       "id": 26,
       "model": "카르멘",
-      "content": "<color=#E1B643>But Meursault...\nIf it could be unheard by covering your ears, if it could be unseen by closing your eyes...\n... then that was probably never the sunlight to begin with.</color>"
+      "content": "<color=#E1B643>但是莫梭……如果摀住耳朵就聽不見，閉上眼睛就看不見……\\n那……一開始就不會是陽光了。</color>"
     },
     {
       "id": 27,
       "model": "카르멘",
-      "content": "<color=#E1B643>You see, the light that my favorite junior worked so hard to fire up into the sky, to plant...\n... shines down everywhere, on everyone. It doesn't discriminate.</color>"
+      "content": "<color=#E1B643>因為我疼愛的後輩費盡心力高高射出、種下的光……\\n無論何處都公平地照耀著。</color>"
     },
     {
       "id": 28,
@@ -139,64 +139,64 @@
     {
       "id": 29,
       "model": "카르멘",
-      "content": "<color=#E1B643>All I want is to offer you a choice.\nYou can always say no if you don't like what you hear.</color>"
+      "content": "<color=#E1B643>我只是想提個建議而已。不喜歡的話，拒絕也沒關係。</color>"
     },
     {
       "id": 30,
-      "content": "Air leaks from my lungs in uncontrolled bursts of gasps—ecstatic, joyful, thrilled, hoping. With every breath I take, the warm, feel-good emotions enter my nose and pool in the back of my throat."
+      "content": "從肺部……氣息不受控制地洩出。狂喜、喜悅、期待、希望。無比溫暖的情感不斷隨著呼吸湧向喉頭。"
     },
     {
       "id": 31,
-      "content": "Somewhere in my heart, I count to 10, trying to contain them. Then, in my head, 20. I imagine ranks upon ranks of absurdities. Nothing works. My vocal cords, heated to the roots by the inescapable sunlight, start to tingle excitedly."
+      "content": "為了忍住，我在心裡數到十，在腦中數到二十，想像著排成長列的無數荒謬。即便如此仍是徒勞，被陽光烘熱的聲帶開始顫動。"
     },
     {
       "id": 32,
       "model": "과거뫼르소",
-      "content": "... What..."
+      "content": "……什麼。"
     },
     {
       "id": 33,
       "model": "과거뫼르소",
-      "content": "... What do you offer?"
+      "content": "我想問，妳打算提出什麼建議。"
     },
     {
       "id": 34,
       "model": "카르멘",
-      "content": "<color=#E1B643>Can you imagine what it'd be like... to be peeled away from this terrifying world? All by yourself.</color>"
+      "content": "<color=#E1B643>如果能從這個可怕的世界……只讓你一個人剝離出來，你覺得如何？</color>"
     },
     {
       "id": 35,
       "model": "카르멘",
-      "content": "<color=#E1B643>What if you no longer had to wrap those chains around yourself... no longer be nailed beneath anyone's gaze, no longer captured by others or bound by \"common sense\"?</color>"
+      "content": "<color=#E1B643>如果不必再把那條鎖鏈一圈圈纏在身上……\\n你就能不被任何目光釘住，不被任何他人俘虜，不受任何常識束縛……</color>"
     },
     {
       "id": 36,
-      "content": "I am undressed, naked in the light. The sunshine reveals all secrets, and it whispers to me the one thing that I've truly wanted."
+      "content": "一切都被剝得赤裸，連一個秘密都不容許的陽光，低語著我真正想要的東西。"
     },
     {
       "id": 37,
       "model": "카르멘",
-      "content": "<color=#E1B643>No more minding the gaze of others.\nNo more minding the thoughts of others.\nYou could simply <i>be</i> yourself... <i>live</i> as yourself.</color>"
+      "content": "<color=#E1B643>不用看任何人的臉色，不用在意任何人的想法……就能活得像你自己，只作為你自己活下去。</color>"
     },
     {
       "id": 38,
       "model": "과거뫼르소",
-      "content": "That is... impossible."
+      "content": "那是……不可能的。"
     },
     {
       "id": 39,
       "model": "카르멘",
-      "content": "<color=#E1B643>You're right. The City has never allowed such a thing.</color>"
+      "content": "<color=#E1B643>沒錯。在都市裡，那種事是不被容許的。</color>"
     },
     {
       "id": 40,
       "model": "카르멘",
-      "content": "<color=#E1B643>You couldn't possibly have known how. Couldn't find the path.\nTo you, the world remained foreign; however many times you struck against it,\nits only response was silence... rendering you mute.</color>"
+      "content": "<color=#E1B643>因為不知道方法，也不知道道路……\\n世界只是一片陌生，就算撞上去也毫無反應……你大概什麼聲音都發不出來吧。</color>"
     },
     {
       "id": 41,
       "model": "카르멘",
-      "content": "<color=#E1B643>But a new era has come, bearing this sunlight.\nA new age where you can howl as loudly as you wish, and... people <i>will listen</i>.</color>"
+      "content": "<color=#E1B643>但是……現在已經迎來了一個不錯的時代，就算盡情吶喊也會有人回應。和這……陽光一起。</color>"
     },
     {
       "id": 42,
@@ -206,59 +206,59 @@
     {
       "id": 43,
       "model": "카르멘",
-      "content": "<color=#E1B643>Let me help you. \nEven if yours is a color no other person can understand,\neven if that color remains only in your eyes... \nI'll still help you paint the world with it.</color>"
+      "content": "<color=#E1B643>我會幫你的。就算沒有人能理解，就算那是只屬於你的顏色……也能讓你塗滿整個世界……</color>"
     },
     {
       "id": 44,
       "model": "과거뫼르소",
-      "content": "... Did you make the same offer to my mother?"
+      "content": "……妳也向母親提出了同樣的建議嗎。"
     },
     {
       "id": 45,
       "model": "카르멘",
-      "content": "<color=#E1B643>Similar, maybe... but not the same.\nPeople like to think they understand one another, think they're kindred spirits...\nBut in the end, they understand nothing about others—they can't.\nWe're all our own beings, after all.</color>"
+      "content": "<color=#E1B643>不一樣喔，雖然或許很相似。\\n人們總會以為彼此理解、以為彼此相同……但終究什麼都無法理解。因為我們是不同的人。</color>"
     },
     {
       "id": 46,
-      "content": "The cheerful voice seemed to scratch an itch buried deep in my heart, somewhere no hand could ever reach."
+      "content": "那開朗的聲音，彷彿替我搔著心臟深處、搆不到之處的癢。"
     },
     {
       "id": 47,
       "model": "카르멘",
-      "content": "<color=#E1B643>You <i>can</i> get your wish. And that begins by being honest about the feelings bubbling inside you right this moment.</color>"
+      "content": "<color=#E1B643>為此……首先得要能坦率說出你現在的感受才行呢。</color>"
     },
     {
       "id": 48,
       "model": "카르멘",
-      "content": "<color=#E1B643>It's all right, Meur. You're allowed to give voice... to that emotion.</color>"
+      "content": "<color=#E1B643>小莫，現在浮現在你腦中的那份情感……說出來也沒關係喔。</color>"
     },
     {
       "id": 49,
       "model": "과거뫼르소",
-      "content": "The sunshine..."
+      "content": "陽光……"
     },
     {
       "id": 50,
       "model": "카르멘",
-      "content": "<color=#E1B643>.......</color>"
+      "content": "<color=#E1B643>……</color>"
     },
     {
       "id": 51,
       "model": "과거뫼르소",
-      "content": "... is chattier than I expected."
+      "content": "比想像中還吵啊。"
     },
     {
       "id": 52,
       "model": "과거뫼르소",
-      "content": "Irritatingly so."
+      "content": "吵得令人煩躁。"
     },
     {
       "id": 53,
-      "content": "I tried to make my discomfort as evident as possible in my reply..."
+      "content": "即使面對我滿懷不快吐出的回答……"
     },
     {
       "id": 54,
-      "content": "... But still there was a hint of laughter in the sunshine, full of cheer."
+      "content": "陽光卻像是很愉快似的，滿含著笑意。"
     },
     {
       "id": 55,
@@ -269,17 +269,17 @@
     {
       "id": 56,
       "model": "카르멘",
-      "content": "<color=#E1B643>I don't turn my back on anyone.\nBesides... the children in this department store need sunlight.\nThey need warm, gentle sunlight to shine on them.</color>"
+      "content": "<color=#E1B643>我不會對任何人視而不見。而且……這座百貨公司裡的孩子們需要陽光。溫暖灑落的陽光。</color>"
     },
     {
       "id": 57,
       "model": "카르멘",
-      "content": "<color=#E1B643>These children... they derive their existence from the fact that someone is gazing at them.\nThat is their wish, and I simply intend to grant it.</color>"
+      "content": "<color=#E1B643>這些孩子……是從有人注視著自己這件事中，感受到自己真實存在的。\\n我只是想讓他們的願望毫無遺漏地實現而已。</color>"
     },
     {
       "id": 58,
       "model": "카르멘",
-      "content": "<color=#E1B643>Imagine it, Meursault.\nImagine these stuffy ceilings and walls falling away to reveal the world outside.\nEveryone gets to rest together in a warm patch of sunshine, taking in the vast sky above.</color>"
+      "content": "<color=#E1B643>想像一下吧，這座令人窒息的百貨公司的天花板和牆壁崩塌……大家一起在向陽處曬著太陽，仰望天空的樣子。</color>"
     },
     {
       "id": 59,
@@ -289,37 +289,37 @@
     {
       "id": 60,
       "model": "카르멘",
-      "content": "<color=#E1B643>Still so quiet. You haven't changed at all since then.</color>"
+      "content": "<color=#E1B643>還是這麼沉默呢。跟那時候相比一點都沒變。</color>"
     },
     {
       "id": 61,
       "model": "카르멘",
-      "content": "<color=#E1B643>Dante, I suppose you'll have to work a little harder as their Manager.</color>"
+      "content": "<color=#E1B643>但丁。身為經理的你，得再加把勁才行呢。</color>"
     },
     {
       "id": 62,
       "model": "단테",
-      "content": "<... Me?>"
+      "content": "<……我嗎？>"
     },
     {
       "id": 63,
       "model": "뫼르소",
-      "content": "Manager. Do <i>not</i> respond."
+      "content": "經理。您不能回應。"
     },
     {
       "id": 64,
       "model": "단테",
-      "content": "<S-sorry, I don't know why I did...>"
+      "content": "<抱、抱歉，我不自覺就……>"
     },
     {
       "id": 65,
       "model": "카르멘",
-      "content": "<color=#E1B643>As for Meursault... He may change yet... by the end of this round of the journey at your side.</color>"
+      "content": "<color=#E1B643>莫梭也……在與你同行的這趟旅程的終點，或許能有所改變吧。</color>"
     },
     {
       "id": 66,
       "model": "카르멘",
-      "content": "<color=#E1B643>I'm looking forward to it.</color>"
+      "content": "<color=#E1B643>我會期待的。</color>"
     }
   ]
 }

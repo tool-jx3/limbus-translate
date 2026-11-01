@@ -2,87 +2,87 @@
   "dataList": [
     {
       "id": "battleTip_11027_1",
-      "content": "Annette the Alterationist's Shield breaks when she becomes Staggered. Try using Tremor Identities or Identities that hit multiple times to break through Annette's Shield more efficiently."
+      "content": "修補達人安妮特持續獲得的護盾會在她陷入混亂時被破壞。請嘗試使用震顫關鍵字，或編入攻擊次數較多的人格。"
     },
     {
       "id": "battleTip_11027_2",
-      "content": "Defending may be safer than attacking when Annette uses her special Skill against an Alteration Target."
+      "content": "修補達人安妮特對修補目標使用特殊技能時，比起攻擊，進行守備或許是更好的選擇。"
     },
     {
       "id": "battleTip_11028_1",
-      "content": "Keep SP under control to avoid entering Panic."
+      "content": "注意管理理智值，避免陷入恐慌狀態是很重要的。"
     },
     {
       "id": "battleTip_11028_2",
-      "content": "Make good use of allies that have Laurel Wreath of Atonement."
+      "content": "善加利用帶有贖罪的月桂冠效果的友方單位是很重要的。"
     },
     {
       "id": "battleTip_11030_1",
-      "content": "The Overseer consumes its own HP whenever it summons a Tanned Prisoner."
+      "content": "監工召喚被鞣製的罪犯時，會消耗自身的體力。"
     },
     {
       "id": "battleTip_11030_2",
-      "content": "Disobeying the Overseer's prohibitions causes it to retaliate with a powerful attack."
+      "content": "若不遵守監工的管制，監工就會使用強力的攻擊。"
     },
     {
       "id": "battleTip_11031_1",
-      "content": "Distribute \"Apocalyptic Vengeance\" Stacks across your allies instead of letting them pile up on one unit. Used well, they can greatly reduce damage from certain Skills."
+      "content": "請適當地分配並調節友方單位能獲得的「默示之刑罰」層數。如此便能大幅降低受到特定技能造成的傷害。"
     },
     {
       "id": "battleTip_11031_2",
-      "content": "Winning a Clash against the Le Noir Brand Manager's \"Covenant\" Skill can greatly reduce the Shield it gains from \"Revelation\"."
+      "content": "若在與漆黑派 品牌經理使用的技能「誓言」拚點時獲勝，就能大幅削減其透過技能「啟示」獲得的護盾。"
     },
     {
       "id": "battleTip_11032_1",
-      "content": "If you are hit by the \"Pick stitch too obvious, you say?! I'll pick-stitch your ass!\" Skill while you have accumulated many stacks of Naildle, you will enter the \"Taxidermized\" state and receive devastating damage."
+      "content": "若在針釘層數較高的狀態下被技能「你說我是故意把明線縫得這麼顯眼嗎？！那我就照樣把你縫個稀巴爛！」擊中，將會陷入標本狀態並受到大量傷害。"
     },
     {
       "id": "battleTip_11032_2",
-      "content": "If there are surviving Needlekins in the same turn as when the King of Needleworks uses a powerful Skill, they will enhance that Skill's damage."
+      "content": "若在裁縫之王使用強力技能的回合中仍有針靈存活，可能會受到大量傷害。"
     },
     {
       "id": "battleTip_11033_1",
-      "content": "Sous Chef gains \"Chopped Ingredients\" from units she kills. These are consumed at the end of the turn, granting her stacks of \"Eat yummies and perk up, you hear?\".\n\nThe more she gets the stacks, the stronger and more frequent will her powerful move, \"My signature knife work, you hear?\", become."
+      "content": "副廚會從擊殺的目標身上獲得「切塊的食材」，並在回合結束時將其吃掉，累積「吃了好吃的東西就會變得有精神呢」。\n層數累積得越多，強力技能「這可是我的招牌刀法喔」就會越快發動，威力也越強。"
     },
     {
       "id": "battleTip_11033_2",
-      "content": "Leather Wallets are not an exception when it comes to Sous Chef's ingredient-gathering. You cannot stop her culinary activity by playing defensively."
+      "content": "副廚連自己的皮夾也會當成食材，因此只保護罪人是無法阻止她料理的。"
     },
     {
       "id": "battleTip_11033_3",
-      "content": "When Sous Chef fails to kill any targets, she will get stacks of \"Got an appetite, you hear?\". \nAt 3 stacks, she will use <i>another</i> powerful Skill. It may be a good idea to let her continue cooking every once in a while."
+      "content": "副廚在沒能擊殺任何目標的回合會累積「肚子餓了喔」。\n層數達到3層時，她將使用另一個強力技能，因此偶爾放任她料理一次也是一種方法。"
     },
     {
       "id": "battleTip_11034_1",
-      "content": "Sometimes, Clashing against the Floor Manager's certain skill with your Attack Skills could be a bad idea."
+      "content": "面對樓層經理的特定技能時，最好不要使用攻擊技能。"
     },
     {
       "id": "battleTip_11034_2",
-      "content": "Be too wary and let yourself accumulate 10 stacks of \"Guarded Caution\", and you will risk inviting the Floor Manager's powerful Skill.\nPay attention so that \"Guarded Caution\" does not reach 10 stacks. You may also choose to lose a Clash against a certain Skill to remove the stacks."
+      "content": "「戒心」層數達到10層時，樓層經理將使用強力技能。\n請注意別讓戒心累積；此外，與特定技能拚點落敗也能移除戒心。"
     },
     {
       "id": "battleTip_11034_3",
-      "content": "If you have \"Gratitude for Listening\", perhaps you will want to stay your attacks for a short while."
+      "content": "若帶有「感謝傾聽」，暫時不進行攻擊也是一種方法。"
     },
     {
       "id": "battleTip_11038_1",
-      "content": "Higher Stacks of \"Tangling\" increase damage taken and lowers Power. At 15+ Stacks, certain Skills can force Stagger on hit. Use Defense Skills or Clash against \"Cleansing\" to keep \"Tangling\" under control."
+      "content": "糾纏的層數越高，受到的傷害就越多、威力也越低；層數不低於15層時，若被特定技能擊中，將會強制陷入混亂。\n使用守備技能，或與「洗淨」拚點來調節糾纏層數是很重要的。"
     },
     {
       "id": "battleTip_11038_2",
-      "content": "\"Pool of Black Water\" is lost only once per Skill when hit. Skills with high Atk Weight are the most efficient way to remove it in one go."
+      "content": "「黑水窪」受到攻擊時每個技能只會減少1次，因此最好透過攻擊容量較高的技能一次清除。"
     },
     {
       "id": "battleTip_11038_3",
-      "content": "\"Abyssal Maw,\" Blackthread of the Elden Sea's Skill, deals near-lethal damage if the target is Staggered or has 20+ \"Tangling\". It can be Clashed against regardless of Speed, so keep \"Tangling\" Stacks below 20 and always intercept it when a Sinner is at risk."
+      "content": "古老之海的黑線的技能「無底深淵之口」在目標陷入混亂或糾纏不低於20層時，會對目標造成即死級的傷害。\n此技能無論速度如何都能拚點，因此請將罪人們的糾纏層數控制在20層以下，危險時務必以拚點擋下。"
     },
     {
       "id": "battleTip_11040_1",
-      "content": "Keeping Putty's Speed under control is key to this fight."
+      "content": "控制補土的速度是很重要的。"
     },
     {
       "id": "battleTip_11040_2",
-      "content": "Manage Charge Count carefully so that Coins do not become Unbreakable."
+      "content": "請留意別讓技能變成無法被破壞的硬幣，調節好充能回數是很重要的。"
     }
   ]
 }

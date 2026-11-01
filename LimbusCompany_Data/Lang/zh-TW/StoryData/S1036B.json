@@ -2,90 +2,90 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Customer Service, 6F",
-      "content": "Eventually, the boulder began to roll down again."
+      "place": "6F 客服中心",
+      "content": "不久，石頭又開始緩緩地滾落下去。"
     },
     {
       "id": 1,
-      "content": "I turned my gaze to Meursault."
+      "content": "我望向莫梭。"
     },
     {
       "id": 2,
-      "content": "His face, screwed up and straining; his cheek, pressed tight against the boulder; his shoulder, beneath the sediment-covered mass; and his leg, braced to support it. At the end of the outstretched arms were his hands, caked with dirt. And there, in Meursault, I saw a certainty that was wholly human."
+      "content": "抽搐的臉、緊貼岩石的臉頰、撐起覆滿沉積物的石塊的肩膀與頂住它的單腿、重新將石頭抱回的臂端、沾滿泥土的雙手，處處都看得見屬於人類的確實性。"
     },
     {
       "id": 3,
-      "content": "A human drenched in sweat."
+      "content": "莫梭，他如今是個渾身是汗的人。"
     },
     {
       "id": 4,
       "model": "단테",
-      "content": "<Are you all right, Meursault?>"
+      "content": "<還好嗎，莫梭？>"
     },
     {
       "id": 5,
       "model": "뫼르소다침",
-      "content": "........"
+      "content": "……"
     },
     {
       "id": 6,
       "model": "뫼르소다침",
-      "content": "The boulder was heavy. The slightest error in balancing it sent it rolling down again."
+      "content": "石頭很沉重，只要重心稍有偏差，它就會再度滾落。"
     },
     {
       "id": 7,
       "model": "단테",
-      "content": "<... That must've been a hard punishment to bear.>"
+      "content": "<……真是艱辛的刑罰啊。>"
     },
     {
       "id": 8,
       "model": "뫼르소다침",
-      "content": "... It wasn't a punishment, Manager."
+      "content": "……那並不是刑罰，經理。"
     },
     {
       "id": 9,
       "model": "뫼르소다침",
-      "content": "I have never once... regarded the act of rolling that boulder... as punishment."
+      "content": "我從來沒有……把推滾那塊岩石的行為……視為刑罰。"
     },
     {
       "id": 10,
       "model": "단테",
-      "content": "<But... you were hurting.>"
+      "content": "<可是……你很痛苦吧。>"
     },
     {
       "id": 11,
       "model": "뫼르소다침",
-      "content": "Yes."
+      "content": "是的。"
     },
     {
       "id": 12,
       "model": "뫼르소다침",
-      "content": "And yet, ironically... within that continuous pain..."
+      "content": "但是……矛盾的是……痛苦持續了多少……"
     },
     {
       "id": 13,
       "model": "뫼르소다침",
-      "content": "... I found enjoyment."
+      "content": "我就感受到了多少快樂。"
     },
     {
       "id": 14,
       "model": "단테",
-      "content": "<... You enjoyed it?>"
+      "content": "<……你說快樂？>"
     },
     {
       "id": 15,
       "model": "뫼르소다침",
-      "content": "Yes. When I was going downhill again to retrieve the boulder."
+      "content": "是的，在為了找回滾落的石頭而折返下山的時候。"
     },
     {
       "id": 16,
       "model": "뫼르소다침",
-      "content": "I knew I was bound to return for it, that it would invariably fall again, that it would hurt. But at very occasional moments..."
+      "content": "明知它必定會再次滾落、明知會很痛苦，仍要回頭把它找回來的那段時間。就那麼偶爾……"
     },
     {
       "id": 17,
       "model": "뫼르소다침",
-      "content": "I enjoyed it."
+      "content": "會讓我覺得快樂。"
     }
   ]
 }

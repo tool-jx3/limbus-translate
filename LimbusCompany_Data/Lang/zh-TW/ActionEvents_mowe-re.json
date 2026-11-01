@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": 971080,
-      "name": "Hardblood weapon found while resting",
+      "name": "在休息時發現硬血式武器",
       "desc": "與無止境湧來的血袋戰鬥時……\n\n<嗯……？>\n\n我們看見了一個不祥的物體掉落。\n\n那東西與血袋們使用的武器相似，卻又有些不同。\n\n「看起來這東西很強？」\n\n「看起來，此物極其危險。」\n\n「吾看起來，並不是很清楚！」\n\n罪人們七嘴八舌。\n\n……看起來，是否要撿起並使用它，將由我來選擇。",
       "options": [
         {
@@ -23,7 +23,7 @@
     },
     {
       "id": 971081,
-      "name": "There is a useful piece of gear on a W Corp. Cleanup Agent who was turned into a Bloodbag.",
+      "name": "在變成血袋的W公司清掃人員身上發現有用的物品",
       "desc": "變成血袋的W公司員工比其他血袋還要棘手。\n\n打倒他們時，總會掉落奇形怪狀的裝備。\n\n那是在W公司人格中看過的——W公司護手。\n\n「血肉沾黏在一起，就這樣使用有些困難。」                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \n\n要使用這件裝備的話，似乎得花上一些時間……",
       "options": [
         {
@@ -44,7 +44,7 @@
     },
     {
       "id": 971082,
-      "name": "There is a useful piece of gear on the body of a W Corp. Cleanup Agent who was turned into a Bloodbag.",
+      "name": "在變成血袋的W公司清掃人員身上發現有用的物品",
       "desc": "看起來馬上就能修好了。\n\n但是沒必要讓罪人們受傷吧？",
       "options": [
         {
@@ -65,7 +65,7 @@
     },
     {
       "id": 971083,
-      "name": "A merchant passenger",
+      "name": "其中一名乘客在販賣物品",
       "desc": "一處擠滿乘客的區域。\n\n其中有一位格外冷靜的乘客。\n\n「請您看看……」\n\n他的手中握著一片可疑的藥錠。\n\n他說自己還能保持冷靜，都是多虧了這片藥錠的福。\n\n「您要不要試試看呢……？」",
       "options": [
         {
@@ -86,7 +86,7 @@
     },
     {
       "id": 971084,
-      "name": "A W Corp. Cleanup Agent is battling a group of Bloodbags.",
+      "name": "發現正在戰鬥的W公司清掃人員與血袋",
       "desc": "「那裡！有一個人在與血袋戰鬥！」\n\n罪人們指向的地方，有一名身著W公司制服的人在。\n\n雖然身手矯健，奈何血袋數量眾多，他似乎要撐不住了。\n\n<得幫助他……>\n\n話音未落，別的血袋注意到了這裡，蜂擁而至，將我們團團包圍。\n\n「咕……準備戰鬥！」\n\n「但、但是那個人要怎麼辦！」\n\n「那……」",
       "options": [
         {

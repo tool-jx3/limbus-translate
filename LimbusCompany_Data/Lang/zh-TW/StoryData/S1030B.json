@@ -2,145 +2,145 @@
   "dataList": [
     {
       "id": 0,
-      "content": "<color=#916e46>We extend our warmest welcome to the valued guests of Grand Magasin Sisyphe visiting today.</color>"
+      "content": "<color=#916e46>今天也向蒞臨薛西弗斯百貨公司的各位顧客致上真摯的歡迎之意。</color>"
     },
     {
       "id": 1,
-      "content": "<color=#916e46>Grand Magasin Sisyphe is doing its best each and every day, committed to cherishing every experience our customers procure within.</color>"
+      "content": "<color=#916e46>薛西弗斯百貨公司今天也一如每一天，竭盡所能珍惜每位顧客在此所獲得的體驗。</color>"
     },
     {
       "id": 2,
-      "content": "<color=#916e46>To keep abreast of the latest fashions, we actively encourage the wide variety of shops available at the department store to open and close according to trends. Please take care not to lose your way as you repeat your walk through the Grand Magasin.</color>"
+      "content": "<color=#916e46>為配合潮流，薛西弗斯百貨公司鼓勵各式各樣的專櫃進駐或撤櫃。敬請各位顧客留意，無論繞行幾次都不要迷路。</color>"
     },
     {
       "id": 3,
-      "content": "<color=#916e46>As always, restrooms on every floor are currently under repair. Please take note of this when planning your visit. We apologize for the inconvenience.</color>"
+      "content": "<color=#916e46>一如往常，百貨公司內所有樓層的廁所依然在維修中，敬請見諒。</color>"
     },
     {
       "id": 4,
-      "content": "<color=#916e46>To prevent hygiene issues, the underground parking lot has been closed. No one may enter or leave now.</color>"
+      "content": "<color=#916e46>為防止汙染，地下停車場已經封閉。現在任何人都無法出入。</color>"
     },
     {
       "id": 5,
-      "content": "<color=#916e46>Customers are welcome to make physical contact with all mannequins on display. Should you have any inquiries regarding the products worn by the mannequins, please speak to any remaining sales associates, who will be delighted to assist you.</color>"
+      "content": "<color=#916e46>此外，您可以隨意觸摸展出的人台模特兒。如您對人台模特兒所穿的商品有任何疑問，若賣場還有留下的銷售人員，將為您提供協助。</color>"
     },
     {
       "id": 6,
-      "content": "<color=#916e46>We ask everyone to do their best to ensure another day of worthwhile consumer experience for our customers, and extend our heartfelt wishes so you may...</color>"
+      "content": "<color=#916e46>那麼，為了讓顧客今天也能享有有價值的購物體驗，期盼大家都能像今天一樣竭盡所能……</color>"
     },
     {
       "id": 7,
       "model": "잔느",
-      "content": "<color=#a5ab8e>... enjoy your shopping, ma puce.</color>"
+      "content": "<color=#a5ab8e>希望你購物愉快，小甜心。</color>"
     },
     {
       "id": 8,
-      "place": "The Fount, 1F",
+      "place": "1F 泉",
       "model": "이상",
-      "content": "What we experienced just now..."
+      "content": "剛才我們體驗到的，到底是……"
     },
     {
       "id": 9,
       "model": "이스마엘",
-      "content": "I just know it's something I never want to go through again... I mean, I've been killed in many different ways on this team, but to be forced to face death even when it wasn't a combat situation... and on top of that, having to feel the sensation of <i>doing it myself</i> is just... a big no."
+      "content": "真不想再經歷第二次了。雖然我們確實以各種方式死過很多次，但在不是戰鬥的情況下……而且還是自己選擇去死的那種感覺……噁。"
     },
     {
       "id": 10,
       "model": "이스마엘",
-      "content": "Can't believe residents in N Corp. pay <i>money</i> to purchase that nasty experience..."
+      "content": "N公司的人居然是花錢來體驗這種東西……"
     },
     {
       "id": 11,
       "model": "단테",
-      "content": "<Back here... again...>"
+      "content": "<從這裡……重新……>"
     },
     {
       "id": 12,
-      "content": "It was nothing I hadn't anticipated, but that didn't make the disappointment hurt any less."
+      "content": "就算早有預料，失望也不會因此減少。"
     },
     {
       "id": 13,
       "model": "돈키호테",
-      "content": "... Thou hast been muttering to thyself for a while, Manager Esquire! Is aught amiss?"
+      "content": "……經理老爺，汝從剛才就一直在喃喃自語些什麼？"
     },
     {
       "id": 14,
       "model": "돈키호테",
-      "content": "Thy complexion and thy countenance alike seem most unwell, forsooth..."
+      "content": "臉色和表情都顯得非常糟糕啊……"
     },
     {
       "id": 15,
       "model": "로쟈",
-      "content": "Yeah, ya do look off. Feelin' sick, Dante? Even your ticking sounds a little faster than usual..."
+      "content": "就是說啊？但丁，你哪裡不舒服嗎？時鐘的聲音好像也變快了一點……"
     },
     {
       "id": 16,
       "model": "그레고르",
-      "content": "I mean, this was the first time they had to <i>die</i>, wasn't it? No wonder it rattled them, even if it's just an \"experience.\" Let's give Manager Bud some time to get their bearings."
+      "content": "不是啦，雖說是體驗，但這可是第一次真的死掉啊。經理兄受到的衝擊應該也很大……是不是該給他一點時間冷靜下來？"
     },
     {
       "id": 17,
-      "content": "... I can't stop thinking about what Jeanne had said—about how the choices we make here won't do a single thing to change the ending."
+      "content": "……「結局不會改變」，簡說過的話在我腦海中迴盪。"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<I need to check outside. See whether anything's changed...>"
+      "content": "<得去確認一下外面才行。是不是真的什麼都沒有改變……>"
     },
     {
       "id": 19,
       "model": "단테",
-      "content": "<And if it really turns out that it was all for nothing...>"
+      "content": "<之後……如果真的什麼都沒有改變的話……>"
     },
     {
       "id": 20,
       "model": "단테",
-      "content": "<Then I'm done listening to your warnings. I'll tell the Sinners everything and find another way.>"
+      "content": "<我就會無視妳的警告，向罪人們坦白一切，重新尋找方法。>"
     },
     {
       "id": 21,
       "model": "푸른여인",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 22,
-      "content": "Even that benevolent smile now looks strange and alien."
+      "content": "起初看起來只有慈愛的那抹微笑，如今也只顯得陌生。"
     },
     {
       "id": 23,
       "model": "푸른여인",
-      "content": "... All things will appear still... as one believes them to be."
+      "content": "一切依然……只會依照所相信的模樣呈現……"
     },
     {
       "id": 24,
-      "content": "The Sinners kept their distance, keeping an eye on me from afar as though I felt alien to them. Maybe they didn't know what to make of my words or my demeanor."
+      "content": "或許是我的話語和模樣顯得陌生，罪人們遠遠地看著我。"
     },
     {
       "id": 25,
-      "content": "I'd thought it'd be enough if I could change how things turned out, but no."
+      "content": "我原以為只要結果改變就好。"
     },
     {
       "id": 26,
-      "content": "The <i>real</i> outcome didn't change one bit—we were right back where we started."
+      "content": "然而改變的只有過程，結果依然相同。"
     },
     {
       "id": 27,
       "model": "그레고르",
-      "content": "Whoa, hang on, Manager Bud! Where are you going?!"
+      "content": "喂喂……經理兄，你現在要去哪……！？"
     },
     {
       "id": 28,
       "model": "오티스",
-      "content": "Executive Manager! It's dangerous to venture out without any intel!!"
+      "content": "經理？！您那樣貿然跑到外面去很危險！！"
     },
     {
       "id": 29,
-      "content": "Ignoring Outis and Gregor, and the other Sinners who rushed after me, trying to stop me..."
+      "content": "我把奧提斯、格里高爾，以及隨後趕來的其他罪人們的勸阻拋在身後……"
     },
     {
       "id": 30,
-      "place": "Beauty Hall, 1F",
-      "content": "I threw open the door leading outside."
+      "place": "1F 美妝館",
+      "content": "我打開了廁所的門。"
     }
   ]
 }

@@ -2,14 +2,14 @@
   "dataList": [
     {
       "id": 0,
-      "place": "A Bright Room, 7F",
+      "place": "7F 明亮的房間",
       "model": "뫼르소다침",
-      "content": "... It doesn't matter."
+      "content": "……無所謂。"
     },
     {
       "id": 1,
       "model": "뫼르소다침",
-      "content": "I too, am Hell."
+      "content": "畢竟我想必也是如此。"
     }
   ]
 }

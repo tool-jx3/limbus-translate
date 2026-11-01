@@ -730,7 +730,7 @@
           "level": 1,
           "name": "莊嚴哀悼",
           "abName": "亡蝶葬儀",
-          "desc": "[WideAreaRampage]\nWhen inflicting [SinkingWhite] using this Skill's effects: (Chance to flip Heads)% chance to inflict The Departed. If this unit did not inflict The Departed, inflict The Living instead. (calculates every [SinkingWhite] Stack independently)\n\nIf Lobotomy E.G.O::Solemn Lament Yi Sang used this Skill:\n- [BeforeAttack] Gain a random assortment of (Gloom Reson. + 1) [BulletLament] (max 7)\n- [EndSkill] [ReloadLament]",
+          "desc": "[WideAreaRampage]\n透過本技能的效果隨機施加 [SinkingWhite] 時，以硬幣朝向正面的機率施加亡蝶回數。若自身未施加亡蝶回數，則改為增加生蝶強度(每隻蝶分別判定)\n\n若腦葉公司E.G.O::莊嚴哀悼 李箱使用本技能，則\n- [BeforeAttack] 隨機使自身獲得(憂鬱共鳴數+1)點 [BulletLament] (最多7點)\n- [EndSkill] 使自身 [ReloadLament]",
           "coinlist": [
             {
               "coindescs": [
@@ -803,7 +803,7 @@
           "level": 3,
           "name": "莊嚴哀悼",
           "abName": "亡蝶葬儀",
-          "desc": "[WideAreaRampage]\nWhen inflicting [SinkingWhite] using this Skill's effects: (Chance to flip Heads)% chance to inflict The Departed. If this unit did not inflict The Departed, inflict The Living instead. (calculates every [SinkingWhite] Stack independently)\n\nIf Lobotomy E.G.O::Solemn Lament Yi Sang used this Skill:\n- [BeforeAttack] Gain a random assortment of (Gloom Reson. + 1) [BulletLament] (max 7)\n- [EndSkill] [ReloadLament]",
+          "desc": "[WideAreaRampage]\n透過本技能的效果隨機施加 [SinkingWhite] 時，以硬幣朝向正面的機率施加亡蝶回數。若自身未施加亡蝶回數，則改為增加生蝶強度(每隻蝶分別判定)\n\n若腦葉公司E.G.O::莊嚴哀悼 李箱使用本技能，則\n- [BeforeAttack] 隨機使自身獲得(憂鬱共鳴數+1)點 [BulletLament] (最多7點)\n- [EndSkill] 使自身 [ReloadLament]",
           "coinlist": [
             {
               "coindescs": [
@@ -882,7 +882,7 @@
           "level": 4,
           "name": "莊嚴哀悼",
           "abName": "亡蝶葬儀",
-          "desc": "[WideAreaRampage]\nWhen inflicting [SinkingWhite] using this Skill's effects: (Chance to flip Heads)% chance to inflict The Departed. If this unit did not inflict The Departed, inflict The Living instead. (calculates every [SinkingWhite] Stack independently)\n<style=\"highlight\">Clash Power +1 for every 4 ([Sinking] + both [SinkingWhite]) on the main target (max 4)</style>\n\nIf Lobotomy E.G.O::Solemn Lament Yi Sang used this Skill:\n- [BeforeAttack] Gain a random assortment of (Gloom Reson. + 1) [BulletLament] (max 7)\n- [EndSkill] [ReloadLament]",
+          "desc": "[WideAreaRampage]\n透過本技能的效果隨機施加 [SinkingWhite] 時，以硬幣朝向正面的機率施加亡蝶回數。若自身未施加亡蝶回數，則改為增加生蝶強度(每隻蝶分別判定)\n<style=\"highlight\">主要目標的 [Sinking] 強度與所有 [SinkingWhite] 的點數之和每有4點，使本技能的拚點威力+1(最多+4)</style>\n\n若腦葉公司E.G.O::莊嚴哀悼 李箱使用本技能，則\n- [BeforeAttack] 隨機使自身獲得(憂鬱共鳴數+1)點 [BulletLament] (最多7點)\n- [EndSkill] 使自身 [ReloadLament]",
           "coinlist": [
             {
               "coindescs": [

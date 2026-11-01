@@ -17,7 +17,7 @@
     {
       "id": 142203,
       "name": "野獸派 - 野性的色彩",
-      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "desc": "戰鬥結束時，對同時帶有 [BearClawWound]、[EagleClawWound] 與 [BoldBrushstrokes] 的\n罪人<color=#ff6000><mark=#ff000040><b><u>在下回合施加1層 [IntenseColors]</u></b></mark></color>\n- 若目標帶有的 [BearClawWound] 與 [EagleClawWound]\n各不低於3/6/9層，則改為施加2/3/4層",
       "summary": "施加強烈的原色",
       "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
     },
@@ -31,21 +31,21 @@
     {
       "id": 142301,
       "name": "環指 野獸派導覽員 盧峯",
-      "desc": "In the turn this unit uses a powerful attack, Min & Max Speed +15\n\nTake -30% damage from Unopposed Attacks\nDeal +30% damage with Unopposed Attacks\n- If the Slot targeted by this unit's Unopposed Attack has 2+ [Aggro], reduce the increased damage from this effect by 5% per [Aggro] Stack (min 0%)\n\nOn Clash Lose, gain 1 [AttackDmgUp] (5 per turn)\n- At Turn End, or at Attack End of a Skill that hit a Sinner, the [AttackDmgUp] effect gained with this effect expires",
+      "desc": "使用強力攻擊的回合中，使自身的最小與最大速度值+15\n\n受到單方面攻擊的傷害-30%\n單方面攻擊造成的傷害+30%\n- 若該行動槽的 [Aggro] 不低於2點，則每有1點，使此效果增加的傷害減少5%(最低0%)\n\n拚點失敗時，使自身獲得1層 [AttackDmgUp] (每回合最多5層)\n- 回合結束時，或使用技能攻擊命中罪人時，在該技能攻擊結束時，使透過此效果獲得的 [AttackDmgUp] 消失",
       "summary": "受到單方面攻擊的傷害減少、單方面攻擊造成的傷害增加\n拚點失敗時獲得傷害強化 ",
       "flavor": ""
     },
     {
       "id": 142302,
       "name": "野獸派 - 染血狼面：覺醒的野性",
-      "desc": "Turn Start: <color=#ff6000><mark=#ff000040><b><u>Gain 8 [Protection]</u></b></mark></color>\n- Gain 2 fewer [Protection] at Turn Start <color=#ff6000><mark=#ff000040><b><u>for every type of negative effect on this unit</u></b></mark></color>\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, gain 2 [Vulnerable] from this effect instead</u></b></mark></color> for the next turn\n\n<color=#ff6000><mark=#ff000040><b><u>Gain 1 Defense Level each time this unit is hit</u></b></mark></color> by a Skill Coin (max 20 per turn)\n- Turn End: Defense Level gained due to this effect expires\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, lose 1 Defense Level each time this unit is hit by a Skill Coin instead</u></b></mark></color> for the next turn (max 20; expires at Turn End)",
+      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>使自身獲得8層 [Protection]</u></b></mark></color>\n- 自身每帶有<color=#ff6000><mark=#ff000040><b><u>1種負面效果</u></b></mark></color>，回合開始時獲得的層數減少2層\n- 使用「將你膚下那脈動的紅色顏料揮灑開來吧。」<color=#ff6000><mark=#ff000040><b><u>拚點失敗時，</u></b></mark></color>該效果在下回合<color=#ff6000><mark=#ff000040><b><u>改為使自身獲得2層 [Vulnerable]</u></b></mark></color>\n\n<color=#ff6000><mark=#ff000040><b><u>每次受到技能硬幣攻擊時，使自身增加1級防禦等級</u></b></mark></color>(每回合最多20級)\n- 回合結束時，解除該效果增加的防禦等級\n- 使用「將你膚下那脈動的紅色顏料揮灑開來吧。」<color=#ff6000><mark=#ff000040><b><u>拚點失敗時，</u></b></mark></color>該效果在下回合改為每次受到技能硬幣攻擊時，<color=#ff6000><mark=#ff000040><b><u>使自身減少1級防禦等級</u></b></mark></color>(最多20級，回合結束時解除)",
       "summary": "受到攻擊時，增加防禦等級\n上回合特定技能拚點失敗時，改為減少防禦等級",
       "flavor": ""
     },
     {
       "id": 142303,
       "name": "野獸派 - 野性的色彩",
-      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "desc": "戰鬥結束時，對同時帶有 [BearClawWound]、[EagleClawWound] 與 [BoldBrushstrokes] 的\n罪人<color=#ff6000><mark=#ff000040><b><u>在下回合施加1層 [IntenseColors]</u></b></mark></color>\n- 若目標帶有的 [BearClawWound] 與 [EagleClawWound]\n各不低於3/6/9層，則改為施加2/3/4層",
       "summary": "施加強烈的原色",
       "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
     },
@@ -86,7 +86,7 @@
     {
       "id": 500604,
       "name": "野獸派 - 野性的色彩",
-      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "desc": "戰鬥結束時，對同時帶有 [BearClawWound]、[EagleClawWound] 與 [BoldBrushstrokes] 的\n罪人<color=#ff6000><mark=#ff000040><b><u>在下回合施加1層 [IntenseColors]</u></b></mark></color>\n- 若目標帶有的 [BearClawWound] 與 [EagleClawWound]\n各不低於3/6/9層，則改為施加2/3/4層",
       "summary": "施加強烈的原色",
       "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
     },
@@ -106,21 +106,21 @@
     {
       "id": 500702,
       "name": "環指 野獸派導覽員 盧峯",
-      "desc": "In the turn this unit uses a powerful attack, Min & Max Speed +15\n\nTake -50% damage from Unopposed Attacks\nDeal +50% damage with Unopposed Attacks\n- If the Slot targeted by this unit's Unopposed Attack has 2+ [Aggro], reduce the increased damage from this effect by 5% per [Aggro] Stack (min 0%)\n\nOn Clash Lose, gain 1 [AttackDmgUp] (5 per turn)\n- At Turn End, or at Attack End of a Skill that hit a Sinner, the [AttackDmgUp] effect gained with this effect expires",
+      "desc": "使用強力攻擊的回合中，使自身的最小與最大速度值+15\n\n受到單方面攻擊的傷害-50%\n單方面攻擊造成的傷害+50%\n- 若該行動槽的 [Aggro] 不低於2點，則每有1點，使此效果增加的傷害減少5%(最低0%)\n\n拚點失敗時，使自身獲得1層 [AttackDmgUp] (每回合最多5層)\n- 回合結束時，或使用技能攻擊命中罪人時，在該技能攻擊結束時，使透過此效果獲得的 [AttackDmgUp] 消失",
       "summary": "受到單方面攻擊的傷害減少、單方面攻擊造成的傷害增加\n拚點失敗時獲得傷害強化 ",
       "flavor": ""
     },
     {
       "id": 500703,
       "name": "野獸派 - 染血狼面：覺醒的野性",
-      "desc": "Turn Start: <color=#ff6000><mark=#ff000040><b><u>Gain 10 [Protection]</u></b></mark></color>\n- Gain 1 fewer [Protection] at Turn Start <color=#ff6000><mark=#ff000040><b><u>for every type of negative effect on this unit</u></b></mark></color>\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, gain 2 [Vulnerable] from this effect instead</u></b></mark></color> for the next turn\n\n<color=#ff6000><mark=#ff000040><b><u>Gain 1 Defense Level each time this unit is hit</u></b></mark></color> by a Skill Coin (max 20 per turn)\n- Turn End: Defense Level gained due to this effect expires\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose using \"Burst Forth the Pulsing Crimson under Your Skin\" Skill, lose 1 Defense Level each time this unit is hit by a Skill Coin instead</u></b></mark></color> for the next turn (max 20; expires at Turn End)",
+      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>使自身獲得10層 [Protection]</u></b></mark></color>\n- 自身每帶有<color=#ff6000><mark=#ff000040><b><u>1種負面效果</u></b></mark></color>，回合開始時獲得的層數減少1層\n- 使用「將你膚下那脈動的紅色顏料揮灑開來吧。」<color=#ff6000><mark=#ff000040><b><u>拚點失敗時，</u></b></mark></color>該效果在下回合<color=#ff6000><mark=#ff000040><b><u>改為使自身獲得2層 [Vulnerable]</u></b></mark></color>\n\n<color=#ff6000><mark=#ff000040><b><u>每次受到技能硬幣攻擊時，使自身增加1級防禦等級</u></b></mark></color>(每回合最多20級)\n- 回合結束時，解除該效果增加的防禦等級\n- 使用「將你膚下那脈動的紅色顏料揮灑開來吧。」<color=#ff6000><mark=#ff000040><b><u>拚點失敗時，</u></b></mark></color>該效果在下回合改為每次受到技能硬幣攻擊時，<color=#ff6000><mark=#ff000040><b><u>使自身減少1級防禦等級</u></b></mark></color>(最多20級，回合結束時解除)",
       "summary": "受到攻擊時，增加防禦等級\n上回合特定技能拚點失敗時，改為減少防禦等級",
       "flavor": ""
     },
     {
       "id": 500704,
       "name": "野獸派 - 野性的色彩",
-      "desc": "Combat End: <color=#ff6000><mark=#ff000040><b><u>Inflict 1 [IntenseColors] next turn</u></b></mark></color> to Sinners that have [BearClawWound], [EagleClawWound], and [BoldBrushstrokes] simultaneously\n- If target has 3+/6+/9+ [BearClawWound] and [EagleClawWound] each, inflict 2/3/4 [IntenseColors] instead (amount inflicted is based on the effect that has the least Stack)",
+      "desc": "戰鬥結束時，對同時帶有 [BearClawWound]、[EagleClawWound] 與 [BoldBrushstrokes] 的\n罪人<color=#ff6000><mark=#ff000040><b><u>在下回合施加1層 [IntenseColors]</u></b></mark></color>\n- 若目標帶有的 [BearClawWound] 與 [EagleClawWound]\n各不低於3/6/9層，則改為施加2/3/4層",
       "summary": "施加強烈的原色",
       "flavor": "「動物的外貌都各自有其目的。而其中被我等稱為野獸的那些存在，將其所蘊含的野性喚醒並加以表現出來的，正是所謂的野獸派。」"
     },

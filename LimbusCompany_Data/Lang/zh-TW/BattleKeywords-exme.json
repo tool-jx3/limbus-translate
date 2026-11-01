@@ -13,7 +13,7 @@
       "desc": "- 基礎層數：3\n- 本單位的速度值固定為1\n- 本單位基礎技能的硬幣威力固定為0\n- 回合結束時，使本效果層數減少1層\n- 若施加本效果者的增益效果「準備押送」失效，則本效果也將隨之消除",
       "summary": "",
       "undefined": "-",
-      "flavor": "Look how the baseborn hunt the other baseborn to serve them up to the powers that be."
+      "flavor": "下人抓捕下人，呈交給上頭。"
     },
     {
       "id": "TiedWithRope",
@@ -56,7 +56,7 @@
       "desc": "- 基礎攻擊等級 +4\n- 基礎防禦等級 +4\n- 受到的傷害 -20%\n- 使用技能時，下回合將使自身獲得1層迅捷 (每回合最多2次)\n- 戰鬥結束時，使自身獲得2回呼吸法",
       "summary": "",
       "undefined": "-",
-      "flavor": "\"... Dokkaebi Arms? Do you, perchance, speak of Dokkaebis that often appear in tales of old? Hmm...\"\n\"I can scarcely believe it, yet after all I have witnessed while relying on the hospitality of Limbus Company, the existence of Dokkaebis from folklore may well be within reason.\"\n\"Come to think of it... I do recall hearing of a name called 'Dokkaebi Unit'...\""
+      "flavor": "「……鬼怪之臂？是指古老故事裡常出現的那種鬼怪嗎。嗯……」\n「雖然難以置信，但想想身在邊獄公司以來所見過的種種，就算民間故事裡的鬼怪真的存在，也不足為奇。」\n「這麼說來，鬼怪部隊……這個名號，我似乎曾經聽過。」"
     },
     {
       "id": "WindBlade",
@@ -64,7 +64,7 @@
       "desc": "- 最大層數：20\n- 本效果每有1層，使自身的斬擊傷害 +1% (最多+10%)\n- 本效果每有2層，使自身守備技能的拚點威力 -1 (最多-5)\n- 回合結束時，本效果每有5層，則下回合使自身獲得1層迅捷 (最多3層)",
       "summary": "",
       "undefined": "-",
-      "flavor": "\"Hm? You like that model? Ooh, new girl's got an eye for quality! Excuse me~! Can we try this model? Oh, c'mon, relax! I know the deal—'You break it, you buy it.' Thanks! Hehe... See? Told ya I'm a regular here~ Okay, so the sword and the scabbard come as a set, so grab 'em both and feel the weight. How's that? Not as heavy as they look, huh?\"\n\"Oho...\"\n\"So there's this particle? Powder? Thingy in that scabbard under patent by Mook Workshop! Every time you sheathe and unsheathe the sword, for a brief moment, its blade comes out way sharper and lighter! And that model you're holding happens to focus on the <i>sharpness</i>! So it's like, *Ding!* and voila, you get a nice buff on your weapon!\"\n\"I think it's one of the Ye [銳] series models—that's Mook Workshop's classic lineup, by the way. Check out the finish here, it's... What the heck?! Hey, this is the Ye [銳] 'Type II' model that went out of production! You know what, this stuff really isn't easy to come by—we're lucky we found one here!\"\n\"If it's such a rarity, Lady Ezra, perhaps you ought to wield it instead...\"\n\"Hnngh... No, it's fine... Well, I can see it's literally made for you! And it'll work real nice with those boosters on your new prosthetic arms. It'll need some getting used to, but you'll be one heck of a fighter once you get the hang of it! Anyway, consider it a gift from yours truly—you're officially one of us now. Officially our new girl! No more temp ID.\"\n\"Then... I shall accept with gratitude.\"\n\"By the way... Remember that 'classic lineup' part? It's super durable, but there <i>are</i> delicate parts that you should watch out not to break—okay, you know what, let 'em break if it really comes to that. Just...\"\n\"Just don't die on us.\"\n\"... I shall take your words to heart.\""
+      "flavor": "「什麼？難道妳喜歡那個型號？我們家老么眼光不錯嘛？老闆～這個型號可以試用一下嗎？欸～當然囉！弄壞的話我們會買下來的，別擔心！嘻嘻。我說過吧？我是常客，這種事都沒問題的啦～劍和劍鞘是一組的，一起拿拿看。怎麼樣，比看起來還要輕一點吧？」\n「喔……」\n「墨工坊握有專利的粒子？粉末？那類的東西就裝在這個劍鞘裡。所以收刀之後每次拔刀，刀刃都會變得超級鋒利，劍也會在一瞬間變得超輕喔？其中以鋒利度為重點打造的，就是老么現在拿著的這款。總之，就是每次從劍鞘拔劍的時候，都會『叮～』一聲加上增益的感覺啦。」\n「應該是墨工坊經典型號之一，銳系列的其中一款……看這個收尾處理……什麼！？這不是現在已經停產的銳 二式嗎！？這個真的超難弄到手的耶，這裡竟然還剩一把！？」\n「如此珍貴嗎？既然如此，不如由小姐妳來使用……」\n「嗚嗚嗚……不行！一看就知道是老么的東西嘛！跟義手的推進器功能應該也很合拍。雖然要習慣可能得花點時間，但只要能好好駕馭，走到哪裡都不會輸人的啦？總之，為了紀念妳拿掉『臨時』、正式成為老么，這把就由我這個前輩買給妳！」\n「既然如此……我就心懷感激地收下了。」\n「啊。畢竟是經典型號，堅固是真的很堅固，但還是有些精細的部分，小心別弄壞……不，弄壞也沒關係。只是……」\n「千萬別死啊。」\n「……這句話，我會深深銘記在心。」"
     },
     {
       "id": "Collage_LowMorale",
@@ -149,7 +149,7 @@
       "desc": "將使用各種只有<color=#ff6000><mark color=#ff000040><b><u>單枚硬幣</color></mark></b></u>的技能\n\n林慶業的「本國劍術[肉]」層數在<color=#ff6000><mark color=#ff000040><b><u>較高時</color></mark></b></u>將會取得優勢",
       "summary": "",
       "undefined": "-",
-      "flavor": "The mountains of S Corp.'s District 19 are home to all manner of beasts.\nAmongst them, the bear, in particular, boasts strength and force akin to boulders falling from the cliff in a landslide. Giving ground to the creature's charge is ill-advised—one must aim to hew it down with the first slash of the blade."
+      "flavor": "S公司所在的19區山中，棲息著各式各樣的野獸。\n其中，熊的體型與力氣就如同從懸崖滾落的巨石，必須在第一次交鋒時不落下風，一擊將其斬殺。"
     },
     {
       "id": "ChoiSwordsmanshipMany",
@@ -157,7 +157,7 @@
       "desc": "將使用各種帶有<color=#ff6000><mark color=#ff000040><b><u>多枚硬幣</color></mark></b></u>的技能\n\n林慶業的「本國劍術[肉]」層數在<color=#ff6000><mark color=#ff000040><b><u>較低時</color></mark></b></u>將會取得優勢",
       "summary": "",
       "undefined": "-",
-      "flavor": "Tigers are cunning and ferocious.\nOne cannot hope to cut through a tiger's flesh with a single stroke. Only a relentless flurry of chained slashes can overwhelm the creature until it is felled at last.\nFail to do so, and the tiger will escape death—or best its opponent to one day grow into a Sangun, a Lord of the Mountain.\nWhether these beings will grant auspicious fortune on men or return as malevolent calamity is impossible to tell."
+      "flavor": "虎聰慧而兇暴。\n沒有哪頭虎會在一擊之下就獻出血肉。必須以連綿不絕的連擊扼住虎的咽喉，最終斬斷其性命。\n若未能做到而讓虎存活下來，牠終有一天會成為山君。\n屆時牠會為人帶來靈驗的運數，還是化為惡毒的災厄歸來，無從得知。"
     },
     {
       "id": "ChoiSwordsmanshipShield",

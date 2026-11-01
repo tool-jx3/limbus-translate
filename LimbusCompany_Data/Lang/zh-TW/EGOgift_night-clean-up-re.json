@@ -60,7 +60,7 @@
     {
       "id": 9272,
       "name": "暗中活動",
-      "desc": "When a Heishou Pack - Mao Branch Identity enters the Encounter for the first time, cap its min Speed to 10 for 3 turns (at 10+ min Speed, this effect does not activate)\n\nBase Skills gain Clash Power +1 and deal +10% damage for every [LegStrength] Stack\n\nWhen inflicting [BurstAgility], also inflict it on 2 enemies that do not have [BurstAgility] (once per turn; in Focused Encounters, Parts)\n\nIf an ally's Speed is faster than its target's, the ally's Skills inflict (Speed difference / 3) more [Burst] or [Burst] Count (max 3)\n\nTurn End: Heishou Pack - Mao Branch allies gain 2 [Agility] next turn\nIf an ally's Speed is faster than its target's, or when an ally uses an Unopposed Attack, the said ally deals +10% Slash damage for every (Speed difference / 3) (max 30%)\nIf an ally's Speed is faster than its target's, take -10% damage for every (Speed difference / 3) (max 30%)",
+      "desc": "屬於黑獸 - 卯的人格首次登場時，3回合內使其最小速度值固定為10(若最小速度值不低於10，則不會觸發該效果)\n\n自身每帶有1層 [LegStrength]，使自身基礎技能的拚點威力+1、造成的傷害+10%\n\n施加 [BurstAgility] 時，額外對未帶有 [BurstAgility] 的2名敵方單位施加(每回合最多1次，若是集中遭遇戰，則改為以部位判定)\n\n若自身的速度值高於目標，則透過技能對目標施加 [Burst] 強度或 [Burst] 回數時，額外施加(速度值之差÷3)點(最多3點)\n\n回合結束時，使屬於黑獸 - 卯的友方單位在下回合獲得2層 [Agility]\n若自身的速度值高於目標或進行單方面攻擊，則每有1點(速度值之差÷3)，使自身造成的斬擊傷害+10%(最多+30%)\n若自身的速度值高於目標，則每有1點(速度值之差÷3)，使自身受到的傷害-10%(最多-30%)",
       "simpleDesc": [
         {
           "abilityID": 9272,
@@ -76,7 +76,7 @@
         },
         {
           "abilityID": 92723,
-          "simpleDesc": "Skills inflict +1 more [Burst] or [Burst] Count"
+          "simpleDesc": "技能施加 [Burst] 強度或 [Burst] 回數時，額外施加"
         },
         {
           "abilityID": 92724,

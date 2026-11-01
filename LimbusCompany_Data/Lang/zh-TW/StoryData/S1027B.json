@@ -4,22 +4,22 @@
       "id": 0,
       "place": "B2F 線團之巢",
       "model": "뷔페어린이신발",
-      "content": "Everyone has something they want. That's how it is, right?"
+      "content": "每個人都有想要的東西。是這樣吧？"
     },
     {
       "id": 1,
       "model": "뫼르소",
-      "content": "Correct."
+      "content": "沒錯。"
     },
     {
       "id": 2,
       "model": "료슈9장이후노담배",
-      "content": "What is your wish, Pwie?"
+      "content": "普依，你的願望是什麼？"
     },
     {
       "id": 3,
       "model": "뷔페어린이신발",
-      "content": "My wish...? What I want..."
+      "content": "我的願望……我想要的是……"
     },
     {
       "id": 4,
@@ -29,52 +29,52 @@
     {
       "id": 5,
       "model": "뷔페어린이신발",
-      "content": "What I want is... to fill."
+      "content": "我……想要填滿。"
     },
     {
       "id": 6,
       "model": "오티스",
-      "content": "What specifically do you want to fill?"
+      "content": "你想填滿什麼？"
     },
     {
       "id": 7,
       "model": "뷔페어린이신발",
-      "content": "Myself."
+      "content": "我的裡面。"
     },
     {
       "id": 8,
       "model": "뷔페어린이신발",
-      "content": "I was... empty from the beginning. That's why I was always hungry."
+      "content": "我從一開始……就是空的。所以才一直覺得餓。"
     },
     {
       "id": 9,
       "model": "뷔페어린이신발",
-      "content": "But... when I'm with all of you... and Wriggley..."
+      "content": "可是……跟你們還有噗扭在一起的時候……"
     },
     {
       "id": 10,
       "model": "뷔페어린이신발",
-      "content": "I keep forgetting that I'm empty."
+      "content": "就會一直忘記這件事。"
     },
     {
       "id": 11,
       "model": "뷔페어린이신발",
-      "content": "Why does that happen?"
+      "content": "為什麼會這樣呢？"
     },
     {
       "id": 12,
       "model": "단테",
-      "content": "<That's a hard question to answer...>"
+      "content": "<真是個難以回答的問題……>"
     },
     {
       "id": 13,
       "model": "료슈9장이후노담배",
-      "content": "When you're with someone... their shape tends to hide a bit of the negative space."
+      "content": "身邊有人的時候……留白總會被遮蓋。"
     },
     {
       "id": 14,
       "model": "료슈9장이후노담배",
-      "content": "But don't fill yourself too full just because you're empty, Pwie."
+      "content": "但是……就算是空的，也別把自己填得太滿，普依。"
     },
     {
       "id": 15,
@@ -84,7 +84,7 @@
     {
       "id": 16,
       "model": "료슈9장이후노담배",
-      "content": "Because without the negative space... you won't have any room left for others, even if they wanted to stand by your side."
+      "content": "一旦填滿了……就沒有位置了。到時候就算有人想陪在你身邊，也辦不到。"
     },
     {
       "id": 17,
@@ -94,67 +94,67 @@
     {
       "id": 18,
       "model": "료슈9장이후노담배",
-      "content": "What, C.H.?"
+      "content": "有意見嗎？鐘．頭？"
     },
     {
       "id": 19,
       "model": "단테",
-      "content": "<No, just... I was just thinking you've changed a lot from how you used to be. Like the other Sinners did.>"
+      "content": "<沒有，雖然現在才說有點晚……只是覺得妳跟以前比起來變了很多。就像之前的罪人們那樣。>"
     },
     {
       "id": 20,
       "model": "료슈9장이후노담배",
-      "content": "... That smug ticking of yours is getting on my nerves."
+      "content": "……那副得意洋洋的滴答聲真刺耳。"
     },
     {
       "id": 21,
       "model": "단테",
-      "content": "<... I mean, Meursault thinks the same, so...>"
+      "content": "<……莫梭說他也是這麼想的……>"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "I recognize the changes that have occurred in the Sinner concerned."
+      "content": "我認知到了該罪人的變化情況。"
     },
     {
       "id": 23,
       "model": "뫼르소",
-      "content": "However... nothing remains fixed for eternity, Manager."
+      "content": "但是……沒有什麼會永遠固定不變，經理。"
     },
     {
       "id": 24,
       "model": "뫼르소",
-      "content": "Much like this department store, many things may change and be overturned in an instant."
+      "content": "正如這座百貨公司一樣，許多事物都會在轉瞬間改變、顛覆。"
     },
     {
       "id": 25,
       "model": "료슈9장이후노담배",
-      "content": "... Hah... I know."
+      "content": "……哈。我知道。"
     },
     {
       "id": 26,
       "model": "료슈9장이후노담배",
-      "content": "Do I look like I'm going to stay this way forever?"
+      "content": "在你這傢伙眼裡，我會永遠都是這副樣子嗎？"
     },
     {
       "id": 27,
       "model": "료슈9장이후노담배",
-      "content": "I might let blind rage swing my blade again. Might get sick of all of this, or might even start hurting again."
+      "content": "我可能會再次被憤怒蒙蔽雙眼而揮刀，也可能對一切感到厭煩，或是變得痛苦。"
     },
     {
       "id": 28,
       "model": "료슈9장이후노담배",
-      "content": "But..."
+      "content": "但是……"
     },
     {
       "id": 29,
       "model": "료슈9장이후노담배",
-      "content": "Right now, this is where I've chosen to stay."
+      "content": "我決定現在待在這裡。"
     },
     {
       "id": 30,
       "model": "료슈9장이후노담배",
-      "content": "If the clock keeps yapping, I'll clean out my ears. If this damn scabbard gets in my way, I'll just have to keep it pacified. That's all I need to do."
+      "content": "時鐘要是吵個不停，掏掏耳朵就好；這煩人的刀鞘要是礙著我，安撫一下就行了。"
     },
     {
       "id": 31,

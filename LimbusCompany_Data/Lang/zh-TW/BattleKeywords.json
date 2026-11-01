@@ -64,7 +64,7 @@
     {
       "id": "Target",
       "name": "標記",
-      "desc": "被擁有[利刃]的角色指定為攻擊目標。"
+      "desc": "被擁有被動技能[利刃]的角色指定為攻擊目標。"
     },
     {
       "id": "SelfHarm_LowMorale",
@@ -772,7 +772,7 @@
     {
       "id": "Enrage",
       "name": "狂暴",
-      "desc": "本回合內使自身獲得3層強壯 與3層易損 ，並改變自身的行動；自身受到攻擊時不再積蓄本能 層數。"
+      "desc": "本回合內使自身獲得3層強壯與3層易損，並改變自身的行動；自身受到攻擊時不再積蓄本能層數。"
     },
     {
       "id": "DimensionRift",
@@ -837,13 +837,13 @@
       "id": "Resonate",
       "name": "共振",
       "desc": "使目標震顫引爆 或前移混亂閾值時，每層額外造成3點傷害，並使混亂閾值前移3%。",
-      "summary": "使目標震顫引爆 或前移混亂閾值時，額外造成固定傷害並進一步前移混亂閾值。"
+      "summary": "使目標震顫引爆或前移混亂閾值時，額外造成傷害並進一步前移混亂閾值。"
     },
     {
       "id": "VibrationAssimilation",
       "name": "震顫同步",
-      "desc": "拚點目標每帶有5級震顫 強度，其拚點威力便-1。",
-      "summary": "拚點目標每帶有5級震顫 強度，其拚點威力便-1。"
+      "desc": "拚點目標每帶有5級震顫強度，其拚點威力便-1。",
+      "summary": "拚點目標每帶有5級震顫強度，其拚點威力便-1。"
     },
     {
       "id": "CollapseAmpoule",
@@ -860,8 +860,8 @@
     {
       "id": "TimeRental",
       "name": "心像中的時間租賃",
-      "desc": "回合結束時，使自身獲得3層迅捷 與2層傷害強化 。回合結束時，若剩餘層數為1，則在下回合對自身施加4層束縛 ，1層虛弱 。",
-      "summary": "回合結束時，使自身獲得3層迅捷 與2層傷害強化 。回合結束時，若剩餘層數為1，則在下回合對自身施加4層束縛 ，1層虛弱 。"
+      "desc": "回合結束時，使自身獲得3層迅捷與2層傷害強化。回合結束時，若剩餘層數為1，則在下回合對自身施加4層束縛，1層虛弱。",
+      "summary": "回合結束時，使自身獲得3層迅捷與2層傷害強化。回合結束時，若剩餘層數為1，則在下回合對自身施加4層束縛，1層虛弱。"
     },
     {
       "id": "ATL_EndureLaceration",
@@ -878,26 +878,26 @@
     {
       "id": "Bull_BuzzingEmotion",
       "name": "飄忽不定的情緒",
-      "desc": "回合開始時，隨機施加虛弱 、麻痺 、束縛 中的一種效果，其層數與本效果相同，隨後解除本效果",
-      "summary": "回合開始時，隨機施加虛弱 、麻痺 、束縛 中的一種效果，其層數與本效果相同，隨後解除本效果"
+      "desc": "回合開始時，隨機施加虛弱、麻痺、束縛中的一種效果，其層數與本效果相同，隨後解除本效果",
+      "summary": "回合開始時，隨機施加虛弱、麻痺、束縛中的一種效果，其層數與本效果相同，隨後解除本效果"
     },
     {
       "id": "Scared",
       "name": "恐懼",
-      "desc": "回合結束時，若理智值不高於-20點，下回合使自身獲得1層守護 。",
-      "summary": "回合結束時，若理智值不高於-20點，下回合使自身獲得1層守護 。"
+      "desc": "回合結束時，若理智值不高於-20點，下回合使自身獲得1層守護。",
+      "summary": "回合結束時，若理智值不高於-20點，下回合使自身獲得1層守護。"
     },
     {
       "id": "Stressed",
       "name": "壓力",
-      "desc": "回合結束時，若理智值不高於-25點，下回合使自身獲得1層忍耐 。",
-      "summary": "回合結束時，若理智值不高於-25點，下回合使自身獲得1層忍耐 。"
+      "desc": "回合結束時，若理智值不高於-25點，下回合使自身獲得1層忍耐。",
+      "summary": "回合結束時，若理智值不高於-25點，下回合使自身獲得1層忍耐。"
     },
     {
       "id": "Nervous",
       "name": "焦慮",
       "desc": "回合結束時若理智值不高於-15點，下回合使自身獲得5層防禦等級提升 。",
-      "summary": "回合結束時，若理智值不高於-15點，下回合使自身獲得5層防禦等級提升 。"
+      "summary": "回合結束時，若理智值不高於-15點，下回合使自身獲得5層防禦等級提升。"
     },
     {
       "id": "ATL_Agility",
@@ -943,7 +943,7 @@
     {
       "id": "Crazy_Panic",
       "name": "瘋狂",
-      "desc": "- 陷入恐慌\n- 進入無差別攻擊狀態；拚點威力+1，獲得2層傷害強化 ",
+      "desc": "- 陷入恐慌\n- 進入無差別攻擊狀態；拚點威力+1，獲得2層傷害強化",
       "undefined": "-"
     },
     {
@@ -979,7 +979,7 @@
     {
       "id": "Blue_Panic",
       "name": "憂鬱",
-      "desc": "- 士氣低落\n- 若拚點時硬幣擲出過反面，則使本次拚點威力-3",
+      "desc": "- 陷入恐慌\n- 若拚點時硬幣擲出過反面，則使本次拚點威力-3",
       "undefined": "-"
     },
     {
@@ -997,7 +997,7 @@
     {
       "id": "DongbaekFullBloom",
       "name": "盛放",
-      "desc": "無法行動\n回合結束時失去20點理智值。若理智值降為-45，則完全恢復理智值，並在下回合施加恍惚的意識 \n若本效果在2回合內沒有解除，則在回合結束時解除",
+      "desc": "無法行動\n回合結束時失去20點理智值。若理智值降為-45，則完全恢復理智值，並在下回合施加恍惚的意識\n若本效果在2回合內沒有解除，則在回合結束時解除",
       "summary": ""
     },
     {
@@ -1009,7 +1009,7 @@
     {
       "id": "DongbaekShowdown",
       "name": "對決",
-      "desc": "回合開始時，未帶有本效果的單位會進入盛放 狀態。\n若李箱帶有本效果，冬柏將獲得1層強壯 ",
+      "desc": "回合開始時，未帶有本效果的單位會進入盛放狀態。\n若李箱帶有本效果，冬柏將獲得1層強壯",
       "summary": ""
     },
     {
@@ -1027,8 +1027,8 @@
     {
       "id": "Fragile_Mind_LowMorale",
       "name": "岌岌可危的心靈",
-      "desc": "回合開始時，使自身獲得2層強壯 ，3層束縛 。",
-      "summary": "回合開始時，使自身獲得2層強壯 ，3層束縛 。"
+      "desc": "回合開始時，使自身獲得2層強壯，3層束縛。",
+      "summary": "回合開始時，使自身獲得2層強壯，3層束縛。"
     },
     {
       "id": "Fragile_Mind_Panic",
@@ -1039,8 +1039,8 @@
     {
       "id": "ErodingMind",
       "name": "漸被侵蝕的心靈",
-      "desc": "回合開始時，對自身施加2層虛弱 ，2層易損 ，5層束縛 。",
-      "summary": "回合開始時，對自身施加2層虛弱 ，2層易損 ，5層束縛 。"
+      "desc": "回合開始時，對自身施加2層虛弱，2層易損，5層束縛。",
+      "summary": "回合開始時，對自身施加2層虛弱，2層易損，5層束縛。"
     },
     {
       "id": "CrimsonResultUp",
@@ -1055,7 +1055,7 @@
     {
       "id": "DistortedDongrangRadiantVanity",
       "name": "耀眼的虛榮",
-      "desc": "回合開始時，使東朗獲得1層守護 與1層強壯 。"
+      "desc": "回合開始時，使東朗獲得1層守護與1層強壯。"
     },
     {
       "id": "DistortedDongrangEmptyMark",
@@ -1121,7 +1121,7 @@
     {
       "id": "Blue",
       "name": "眼淚",
-      "desc": "回合結束時，自身失去5點理智值\n反面命中時，使目標增加2級沉淪 強度"
+      "desc": "回合結束時，自身失去5點理智值\n反面命中時，使目標增加2級沉淪強度"
     },
     {
       "id": "EgoAwakenDongrangTreeDisplay",
@@ -1131,7 +1131,7 @@
     {
       "id": "DongbaekFullBloomDisplay",
       "name": "盛放",
-      "desc": "無法行動\n回合結束時失去20點理智值。若理智值降為-45，則完全恢復理智值，並在下回合施加恍惚的意識 \n若本效果在2回合內沒有解除，則在回合結束時解除",
+      "desc": "無法行動\n回合結束時失去20點理智值。若理智值降為-45，則完全恢復理智值，並在下回合施加恍惚的意識\n若本效果在2回合內沒有解除，則在回合結束時解除",
       "summary": ""
     },
     {
@@ -1227,7 +1227,7 @@
     {
       "id": "PseudoLastBoss_KingCrap",
       "name": "蟹．憤",
-      "desc": "每回合開始時，使除自身以外的所有螃蟹友方單位獲得1層強壯 ，若外殼未被破壞，則使自身獲得2層守護 。\n使用技能時，使目標失去5點理智值。\n體力不高於50%時，使所有部位獲得2層強壯 ，2層易損 。"
+      "desc": "每回合開始時，使除自身以外的所有螃蟹友方單位獲得1層強壯，若外殼未被破壞，則使自身獲得2層守護。\n使用技能時，使目標失去5點理智值。\n體力低於50%時，使所有部位獲得2層強壯，2層易損。"
     },
     {
       "id": "ChargeForceField",
@@ -1419,7 +1419,7 @@
     {
       "id": "Hunger",
       "name": "飢餓",
-      "desc": "回合結束時，若自身未能擊殺帶有儲備糧 的友方單位，則獲得1層本效果\n若現存體力不高於75%，則改為獲得2層本效果；若現存體力不高於50%，則改為獲得3層本效果。\n回合開始時，若自身擊殺帶有儲備糧 的單位，則失去1層本效果。\n本效果層數為0層時，對自身施加(本回合內擊殺的友方單位數×3)層虛弱 與破綻 ",
+      "desc": "回合結束時，若自身未能擊殺帶有儲備糧的友方單位，則獲得1層本效果\n若現存體力低於75%，則改為獲得2層本效果；若現存體力低於50%，則改為獲得3層本效果。\n回合開始時，若自身擊殺了帶有儲備糧的友方單位，則失去1層本效果。\n本效果層數為0層時，對自身施加(本回合內擊殺的友方單位數×3)層虛弱與破綻",
       "summary": ""
     },
     {
@@ -1648,7 +1648,7 @@
     {
       "id": "WornHeartGreg",
       "name": "磨滅的心",
-      "desc": "- 最大值：10\n- 回合結束時，獲得1層本效果\n- 回合開始時，自身每帶有3層本效果，使自身獲得1層防禦等級提升 \n- 若現存體力不高於體力上限的50%，則每帶有3層本效果，使自身增加1級防禦等級 \n- 若現存體力不高於體力上限的40%，則自身基礎技能命中時，使自身恢復傷害量(本效果層數×5)%的體力(最少1點，無條件捨去，每個技能最多30點)",
+      "desc": "- 最大值：10\n- 回合結束時，獲得1層本效果\n- 回合開始時，自身每帶有3層本效果，使自身獲得1層防禦等級提升\n- 若現存體力低於體力上限的50%，則每帶有3層本效果，使自身防禦等級+1\n- 若現存體力低於體力上限的40%，則自身基礎技能命中時，使自身恢復傷害量(本效果層數×5)%的體力(最少1點，無條件捨去，每個技能最多30點)",
       "summary": "",
       "undefined": "-"
     },
@@ -1683,7 +1683,7 @@
     {
       "id": "VibrationSpring",
       "name": "震顫 - 上弦",
-      "desc": "- 最大速度值+2\n- 透過自身的技能或硬幣效果增加震顫 強度或施加震顫 回數時，消耗自身的1回震顫 並使增加的震顫 強度或施加的震顫 回數+1\n- 受到造成震顫引爆 的攻擊時，混亂閾值前移等同於本效果強度的數值\n- 回合結束時，本效果的層數減少1層\n- (本效果強度與回數的增減同樣受普通震顫影響)",
+      "desc": "- 最大速度值+2\n- 透過自身的技能或硬幣效果增加震顫強度或施加震顫回數時，消耗自身的1回震顫並使增加的震顫強度或施加的震顫回數+1\n- 受到造成震顫引爆的攻擊時，混亂閾值前移等同於本效果強度的數值\n- 回合結束時，本效果的回數減少1回\n- (本效果強度與回數的增減同樣受普通震顫影響)",
       "summary": "",
       "undefined": "-"
     },
@@ -1820,7 +1820,7 @@
       "id": "NebulizerInhale",
       "name": "霧化吸入器β",
       "desc": "- 最大值：5\n- 本效果在本場戰鬥期間維持\n- 戰鬥開始時，使傲慢屬性技能完全共鳴會令自身與(本效果層數)名友方單位增加3級呼吸法 強度並獲得3回呼吸法 (優先使擁有增加呼吸法 強度或獲得呼吸法 回數且呼吸法 強度最低的單位獲得)",
-      "summary": "獲得呼吸法 強度與回數"
+      "summary": "獲得呼吸法強度與回數"
     },
     {
       "id": "Hohenheim_LowMorale",
@@ -2141,7 +2141,7 @@
       "id": "FellBulletPersonality",
       "name": "凶彈",
       "desc": "最大值：1\n自身每帶有1層撕裂的回憶 ，則使自身暴擊時造成的傷害+3%(最多+18%)\n命中時，使目標增加1級流血 強度(每回合最多3級)\n擊殺時，使自身增加3級呼吸法 強度並使自身獲得2回呼吸法 (每回合最多2次)\n回合結束時解除",
-      "summary": "若自身暴擊時造成的傷害增加，則使目標額外增加流血強度",
+      "summary": "暴擊時造成的傷害增加，並額外施加流血",
       "undefined": "-"
     },
     {
@@ -2281,14 +2281,14 @@
     {
       "id": "GazeRyoshu",
       "name": "視線",
-      "desc": "- 最大值：7\n- 自身每帶有1層視線 ，使自身對良秀造成的傷害與受到來自良秀的傷害+10%\n- 自身陣亡時，將本效果施加給未帶有視線 或輕蔑 ，或視線 或輕蔑 層數最低的友方單位(若是集中遭遇戰，則改為部位)(「輕蔑之下，傾灑敬畏的視線」攻擊中陣亡時不會觸發)\n- 回合結束時，若本效果層數為7層，則下回合使本效果變更為輕蔑 ",
+      "desc": "- 最大值：7\n- 自身每帶有1層視線，使自身對良秀造成的傷害與受到來自良秀的傷害+10%\n- 自身陣亡時，將本效果施加給未帶有視線或輕蔑，或視線或輕蔑層數最低的友方單位(若是集中遭遇戰，則改為部位)(「輕蔑之下，傾灑敬畏的視線」攻擊中陣亡時不會觸發)\n- 回合結束時，若本效果層數為7層，則下回合使本效果變更為輕蔑",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": "ContemptRyoshu",
       "name": "輕蔑",
-      "desc": "- 最大值：1\n- 使自身對良秀造成的傷害與受到來自良秀的傷害-50%\n- 帶有輕蔑 的目標不會獲得視線 \n- 陣亡時，將本效果施加給未帶有視線 或輕蔑 ，或視線 或輕蔑 層數最低的友方單位(若是集中遭遇戰，則改為部位)(「輕蔑之下，傾灑敬畏的視線」攻擊中陣亡時不會觸發)\n- 回合結束時，解除本效果，下回合對自身施加7層視線 ",
+      "desc": "- 最大值：1\n- 使自身對良秀造成的傷害與受到來自良秀的傷害-50%\n- 帶有輕蔑的目標不會獲得視線\n- 陣亡時，將本效果施加給未帶有視線或輕蔑，或視線或輕蔑層數最低的友方單位(若是集中遭遇戰，則改為部位)(「輕蔑之下，傾灑敬畏的視線」攻擊中陣亡時不會觸發)\n- 回合結束時，解除本效果，下回合對自身施加7層視線",
       "summary": "",
       "undefined": "-"
     },
@@ -2458,7 +2458,7 @@
     {
       "id": "ChickenFightlust",
       "name": "血戰本能",
-      "desc": "- 最大層數：20\n- 每1層使自身造成的傷害+0.75%\n- 每10層使自身於下回合獲得1層迅捷 ",
+      "desc": "- 最大層數：20\n- 每1層使自身造成的傷害+0.75%\n- 回合結束時，每10層使自身於下回合獲得1層迅捷",
       "summary": "",
       "undefined": "-"
     },
@@ -2918,7 +2918,7 @@
     {
       "id": "LivingSpecimenPersonality",
       "name": "人體觀劇",
-      "desc": "- 基礎值：3\n- 敵方單位的攻擊技能對自身施加流血 時，下回合隨機對自身施加以下1種負面狀態，並使本效果層數減少1層(每個技能最多1次)\n．3級流血 強度\n．1層束縛 \n．1層破綻 ",
+      "desc": "- 基礎值：3\n- 敵方單位的攻擊技能對自身施加流血時，下回合隨機對自身施加以下1種負面狀態，並使本效果層數減少1層(每個技能最多1次)\n．3級流血強度\n．1層束縛\n．1層破綻",
       "summary": "隨機施加流血 強度、束縛 與破綻 中的1種效果",
       "undefined": "-"
     },
@@ -2926,13 +2926,13 @@
       "id": "GoldenOpportunity",
       "name": "眺望",
       "desc": "- 若蜘蛛巢 環指 弟子 浮士德在場，則回合開始時使自身獲得2層守護  \n- 回合結束時，本效果的層數減少2層",
-      "summary": "滿足條件時獲得守護 ",
+      "summary": "滿足條件時獲得守護",
       "undefined": "-"
     },
     {
       "id": "IronMaidenPersonality",
       "name": "鐵處女",
-      "desc": "- 使自身最左側行動槽的挑釁值 +4\n- 回合開始時，使自身獲得1層守護 、5層防禦等級提升 與現存體力5%的護盾\n- 自身受到攻擊者最後一枚硬幣攻擊時，對攻擊者造成等同於該硬幣傷害量20%的突刺傷害，並使攻擊者增加2回流血 (每個技能最多1次，每回合最多3次，每回合最多造成60點傷害) ",
+      "desc": "- 使自身最左側行動槽的挑釁值 +4\n- 回合開始時，使自身獲得1層守護、5層防禦等級提升與現存體力5%的護盾\n- 自身受到攻擊者最後一枚硬幣攻擊時，對攻擊者造成等同於該硬幣傷害量20%的突刺傷害，並使攻擊者增加2回流血 (每個技能最多1次，每回合最多3次，每回合最多造成60點傷害)",
       "summary": "最左側行動槽的挑釁值 增加\n獲得守護 、防禦等級提升 與護盾\n滿足條件時，對攻擊者造成突刺傷害並增加流血 回數",
       "undefined": "-"
     },
@@ -2995,7 +2995,7 @@
     {
       "id": "TestWaitDocentRodion",
       "name": "反思",
-      "desc": "- 最大值：2\n- 帶有本效果的回合內，自身不能使用「批評」\n- 回合開始時，使自身恢復5點理智值\n- 回合結束時，本效果層數減少1層\n- 本效果解除時，下回合使自身獲得層數等同於場上屬於環指 學徒的人格數的敬意 ",
+      "desc": "- 最大值：2\n- 帶有本效果的回合內，自身不能使用「批評」\n- 回合開始時，使自身恢復5點理智值\n- 回合結束時，本效果層數減少1層\n- 本效果解除時，下回合使自身獲得層數等同於場上屬於環指 學徒的人格數的敬意",
       "summary": "",
       "undefined": "-"
     },
@@ -3359,12 +3359,12 @@
       "desc": "- 最大值：3\n- 使增加燒傷強度、燒傷回數或特殊燒傷的基礎技能造成的傷害+10%\n．若該技能為暴怒技能，則改為造成的傷害+15%\n- 使增加燒傷強度、燒傷回數或特殊燒傷的基礎技能的拚點威力+1\n．若為屬於黎明事務所的人格，則改為基礎威力+1\n- 回合結束時，本效果層數減少1層",
       "summary": "",
       "undefined": "-",
-      "flavor": "\"Burn, burn, burn—y'see, Kid, fire's not the be-all, end-all solution to every problem you've got. When it comes to using heat-modulating weapons like these, the deciding factors often come down to <i>when</i> to spark the flame, and <i>how hot</i> you let it burn.\n\"Yeah, that's why I'm always chewing your ear off about how important it is to feel the 'moment' that comes with the territory of using heat-modulating weapons. But on the other hand... when that 'moment' tells you to burn it all down, don't hold back and just let it rip. ... Hm? Oh, you want to know who's the best in the field?\"\n\"Hmm, let's see... Well, the best of the best's got to be the Vermilion Cross, I'd wager.\""
+      "flavor": "「只會一股腦燃燒的火焰，可不是萬能的。揮舞這種操控熱度的武器時，重要的是依照情況，決定在什麼時候、把熱度升到多高。」\n「這就是我每次都說時機很重要的原因。操控熱度的武器，有它獨有的絕妙而細膩的感覺。不過，要用盡所有熱度焚燒的時候，就得使出全力……什麼？最能掌握那種感覺的收尾人是誰？」\n「嗯……這個領域裡最頂尖的，應該是朱紅十字吧？」"
     },
     {
       "id": "RunSinclair",
       "name": "逃脫裝置",
-      "desc": "- 自身受到使自身體力降至10點的傷害時，則本回合自身的體力不會低於10點\n- 以上效果觸發的回合結束時，解除自身的混亂並從戰鬥中撤退(不包括強制混亂；不視作陣亡；無法撤退的戰鬥中不會觸發撤退效果，並在回合結束時解除本效果)\n\n- 連續遭遇戰中，將自身的行動槽賦予即將解除待命的單位並移動到待命人員編隊順序最後面的位置\n(若下回合沒有可交換的待命人員，則完全脫離戰鬥。重返戰鬥時，按照脫離順序重返戰鬥)\n- 重返戰鬥時，解除自身除部分狀態效果外的所有狀態效果，保留撤退時自身的體力與理智值\n(若自身撤退時理智值不高於0點，則使自身的理智值變為0點)",
+      "desc": "- 自身受到使自身體力降至10點的傷害時，則本回合自身的體力不會低於10點\n- 以上效果觸發的回合結束時，解除自身的混亂並從戰鬥中撤退(不包括強制混亂；不視作陣亡；無法撤退的戰鬥中不會觸發撤退效果，並在回合結束時解除本效果)\n\n- 連續遭遇戰中，撤退時將自身的行動槽轉移給待命人員並與其交換，然後移動到待命人員編隊順序最後面的位置\n(若下回合沒有可交換的待命人員，則完全脫離戰鬥。重返戰鬥時，按照撤退順序重返戰鬥)\n- 重返戰鬥時，解除自身除部分狀態效果外的所有狀態效果，保留撤退時自身的體力與理智值\n(若自身撤退時理智值低於0點，則使自身的理智值變為0點)",
       "summary": "",
       "undefined": "-",
       "flavor": "「……活下去。」"
@@ -3375,7 +3375,7 @@
       "desc": "- 最大值：999\n- 儲存在該戰場造成的燒傷傷害\n- 改變戰場時重置本效果\n- 全體單位共享本效果層數",
       "summary": "",
       "undefined": "-",
-      "flavor": "Heat turns air into a breeze, a gust, a firestorm, scorching the forest with abandon as men and beasts alike depart."
+      "flavor": "因熾熱而狂暴的火之風，將毫無顧忌地焚燒森林，使那裡的人與野獸紛紛離去。"
     },
     {
       "id": "DawnGregor",
@@ -3383,7 +3383,7 @@
       "desc": "- 若自身的混亂閾值不低於3條，則移除自身的第一混亂閾值\n- 回合結束時，若自身陷入混亂，則解除自身混亂；若自身的人格同步階段不低於3階，則使1個基礎技能轉變為3技能\n(不包括強制混亂，優先轉變級別最低的技能)\n\n- 回合開始時，使自身恢復5點理智值\n- 被動「不穩定的自我外殼」、基礎技能效果、不穩定的神采效果不會使自身的理智值降至25點以下\n\n- 若自身處於不穩定E.G.O::蠟翼狀態，則額外觸發以下效果\n．回合開始時，使自身獲得體力上限15%的護盾\n．若自身帶有護盾時受到攻擊，則使該攻擊者增加1級燒傷強度(每回合最多2次)\n．觸發本戰場的灼熱地帶 \n\n※ 灼熱地帶效果\n- 儲存在該戰場造成的燒傷傷害\n- 改變戰場時重置本效果\n- 全體單位共享本效果層數",
       "summary": "",
       "undefined": "-",
-      "flavor": "\"Ah... What a pleasant aroma. You're practically a Color Fixer when it comes to brewing ssanghwa-cha, you know that? I hereby anoint you Color Fixer \"The Yellow Ssanghwa...\"\n\"That's settled, then. I'll be tutoring you myself, so you'd better keep up. I see real potential in you, Kid—your ssanghwa-cha brewing skills have this instinctive grasp of the 'moment'... And being able to recognize that 'moment' is the key to just about everything.\""
+      "flavor": "「呵。香氣果然不錯。就泡雙和茶的本事來說，你可是特色級的。特色——黃色雙和……」\n「我會在旁邊手把手教你，你只要好好跟上就行。說到底，一切都看時機……從雙和茶裡感受到的這種絕妙時機，可真不尋常啊。」"
     },
     {
       "id": "DawnFaust",
@@ -3391,7 +3391,7 @@
       "desc": "- 最小速度值+2\n- 使用基礎攻擊技能時，使該技能的基礎威力+2、造成的傷害+(45÷硬幣數)%\n\n- 「霞光劍刃」額外獲得以下效果\n．最後一枚硬幣命中時，若目標的燒傷強度不低於15級，則觸發其燒傷，並使其減少1回燒傷\n\n- 「爆炎一擊」額外獲得以下效果\n．造成的傷害+100%\n．使用時，將所有硬幣轉變為無法被破壞的硬幣\n．命中敵方目標時，觸發其燒傷，並使其減少1回燒傷\n．若不穩定的神采層數不低於3層，則使用時消耗最多100層灼熱地帶\n．每消耗1層灼熱地帶，使本技能造成的傷害+1%(最多+100%)\n\n※ 灼熱地帶效果\n- 儲存在該戰場造成的燒傷傷害\n- 改變戰場時重置本效果\n- 全體單位共享本效果層數",
       "summary": "基礎攻擊技能強化",
       "undefined": "-",
-      "flavor": "\"The request has been resolved ahead of schedule, and the weather conditions are optimal today for a team lunch. Shall we all proceed?\""
+      "flavor": "「委託提早結束了呢。而且天氣很好。大家一起去吃午餐吧。」"
     },
     {
       "id": "DawnGregorDying",
@@ -3399,7 +3399,7 @@
       "desc": "- 若自身的混亂閾值不低於3條，則移除自身的第一混亂閾值\n- 回合結束時，若自身陷入混亂，則解除自身混亂；若自身的人格同步階段不低於3階，則使1個基礎技能轉變為3技能\n(不包括強制混亂，優先轉變級別最低的技能)\n\n- 回合開始時，使自身恢復8點理智值\n- 被動「不穩定的自我外殼」、基礎技能效果、不穩定的神采效果不會使自身的理智值降至45點以下\n\n- 回合開始時，進入不穩定E.G.O::蠟翼狀態，使自身恢復體力上限50%的體力，並使自身的理智值恢復至最大值(每場戰鬥最多1次)\n- 回合開始時，若自身的理智值不高於0點，也會保留不穩定E.G.O::蠟翼狀態\n\n- 若自身處於不穩定E.G.O::蠟翼狀態，則額外觸發以下效果\n．回合開始時，使自身獲得體力上限20%的護盾\n．若自身帶有護盾時受到攻擊，則使該攻擊者增加2級燒傷強度(每回合最多2次)\n．觸發本戰場的灼熱地帶 \n\n※ 灼熱地帶效果\n- 儲存在該戰場造成的燒傷傷害\n- 改變戰場時重置本效果\n- 全體單位共享本效果層數",
       "summary": "",
       "undefined": "-",
-      "flavor": "\"Master, please... I still have so much to learn... You said it yourself...\"\nDawn is a fleeting thing; it soon gives way to morning and fades into daylight, with a promise of sunset that will bring about the evening."
+      "flavor": "「您不是說過，還有很多東西要教我嗎……」\n開啟早晨的黎明不會永遠停留在那裡，它會留下揭開夜晚的黃昏，然後消逝。"
     },
     {
       "id": "DawnFaustDying",
@@ -3407,7 +3407,7 @@
       "desc": "- 最小速度值+2\n- 使用基礎攻擊技能時，使該技能基礎威力+3、造成的傷害+(90÷硬幣數)%\n\n- 「霞光劍刃」額外獲得以下效果\n．最後一枚硬幣命中時，若目標的燒傷強度不低於15級，則觸發其燒傷，並使其減少1回燒傷\n\n- 「爆炎一擊」額外獲得以下效果\n．造成的傷害+150%\n．使用時，使本技能的所有硬幣轉變為無法被破壞的硬幣\n．命中敵方單位時，觸發其燒傷，並使其減少1回燒傷\n．使用時，消耗最多100層灼熱地帶，每消耗1層，使本技能造成的傷害+1.5%(最多+150%)\n\n- 本回合自身受到使體力降至0點的傷害時，解除自身因受到傷害而陷入的混亂，本回合自身體力不會降至1點以下(每場戰鬥最多1次)\n\n※ 灼熱地帶效果\n- 儲存在該戰場造成的燒傷傷害\n- 改變戰場時重置本效果\n- 全體單位共享本效果層數",
       "summary": "基礎攻擊技能強化",
       "undefined": "-",
-      "flavor": "\"Do you understand what 'loneliness' means, Sinclair? Loneliness is being bathed in the light of the sun at high noon, only to realize that the ones you would have shared a luncheon with have departed you. That is how I would put into words the concept of 'loneliness'—for me, at least. I do hope, Sinclair, that you will never have cause to understand that concept.\""
+      "flavor": "「您知道孤獨是什麼嗎？就是在太陽升到最高的時候，再也無法與離去的人一同用餐……對我而言，那就是孤獨。可以的話……辛克萊，希望唯獨您永遠不必理解孤獨為何物。」"
     },
     {
       "id": "DawnTeam",
@@ -3415,42 +3415,42 @@
       "desc": "- 最大值：3\n- 自身每帶有1層本效果，則使攻擊等級+1\n- 若本效果的層數為3層，則回合開始時，使自身恢復5點理智值\n- 回合開始時，若除自身以外屬於「黎明事務所」的友方人格全數陣亡，則解除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "The Dawn Office of this Mirror World, unlike that of others, has yet to completely lose its fervor. One can reasonably conjecture that the two leading Fixers of this Office have sufficient competence to find work as Grade 1 of the vocation.\n\nHowever, it must be stated that the Office and its Fixers' grades do not vary from those of other observed Mirror Worlds, as combat capability is hardly the sole criterion by which the Grades are assigned. Failure to meet the conditions stipulated by the contract clauses to the client's satisfaction, eschewal of high-risk contracts that contribute to the advancement of Fixer Grades—these are all conditions that limit one's mobility along the ladder of Fixer Grades."
+      "flavor": "這個鏡像世界的黎明事務所，與其他鏡像世界相比，熱度尚未完全冷卻。因此據觀測，負責事務所的兩人所具備的戰鬥力，足以勝任1階收尾人的工作。\n\n然而，事務所與收尾人的等級並未因此與其他鏡像世界有所不同。事務所與收尾人的等級，並非只由戰鬥力決定。若無法依照每項委託要求的標準妥善完成工作，或是刻意迴避對等級提升有顯著影響的高風險委託，收尾人的等級就算想提升也提升不了。"
     },
     {
       "id": "StigmaWorkshopCelloCaseOne",
       "name": "炎蝶之棺",
       "desc": "- 最大值：30\n- 每回合最多獲得20層本效果\n- 基礎技能命中時，獲得2層本效果\n- 回合結束時，若自身帶有的本效果層數超過20層，則下回合對自身施加超過的本效果層數減半的燒傷強度(無條件捨去)\n．若本效果的層數為30層，則改為施加5級燒傷強度與2回燒傷",
       "summary": "命中時，獲得本效果\n根據本效果層數，下回合對自身施加相應的燒傷強度",
-      "flavor": "Heated to a smoldering temperature within the coffin are butterflies, the kaleidoscope spilling forth to melt and tear the target apart.\n\n\"This type of weapon is still too premature for you to wield, Sinclair, but it is advisable that you familiarize yourself with its properties.\"\n\n\"The array of blades within the coffin affords considerable convenience in circumstances where time constraints prove solitary handling of requests impossible, or in combat against multiple adversaries.\""
+      "flavor": "棺中被燒熱的蝴蝶如撲擊般飛出，將對象熔化、撕裂。\n「這對辛克萊來說還是太早的武器，不過先了解它的特性比較好。」\n「棺中的多把刀刃，在分秒必爭、通常無法獨自應付的情況下，或是在以寡敵眾的戰鬥中，能提供很高的便利性。」"
     },
     {
       "id": "StigmaWorkshopCelloCaseTwo",
       "name": "炎蝶之棺",
       "desc": "- 最大值：30\n- 每回合最多獲得20層本效果\n- 基礎技能命中時，獲得2層本效果\n- 回合結束時，若自身帶有的本效果層數超過20層，則下回合對自身施加超過的本效果層數減半的燒傷強度(無條件捨去)\n．若本效果的層數為30層，則改為施加5級燒傷強度與2回燒傷",
       "summary": "命中時，獲得本效果\n根據本效果層數，下回合對自身施加相應的燒傷強度",
-      "flavor": "Heated to a smoldering temperature within the coffin are butterflies, the kaleidoscope spilling forth to melt and tear the target apart.\n\n\"This type of weapon is still too premature for you to wield, Sinclair, but it is advisable that you familiarize yourself with its properties.\"\n\n\"The array of blades within the coffin affords considerable convenience in circumstances where time constraints prove solitary handling of requests impossible, or in combat against multiple adversaries.\""
+      "flavor": "棺中被燒熱的蝴蝶如撲擊般飛出，將對象熔化、撕裂。\n「這對辛克萊來說還是太早的武器，不過先了解它的特性比較好。」\n「棺中的多把刀刃，在分秒必爭、通常無法獨自應付的情況下，或是在以寡敵眾的戰鬥中，能提供很高的便利性。」"
     },
     {
       "id": "StigmaWorkshopCelloCaseThree",
       "name": "炎蝶之棺",
       "desc": "- 最大值：30\n- 每回合最多獲得20層本效果\n- 基礎技能命中時，獲得2層本效果\n- 回合結束時，若自身帶有的本效果層數超過20層，則下回合對自身施加超過的本效果層數減半的燒傷強度(無條件捨去)\n．若本效果的層數為30層，則改為施加5級燒傷強度與2回燒傷",
       "summary": "命中時，獲得本效果\n根據本效果層數，下回合對自身施加相應的燒傷強度",
-      "flavor": "Heated to a smoldering temperature within the coffin are butterflies, the kaleidoscope spilling forth to melt and tear the target apart.\n\n\"This type of weapon is still too premature for you to wield, Sinclair, but it is advisable that you familiarize yourself with its properties.\"\n\n\"The array of blades within the coffin affords considerable convenience in circumstances where time constraints prove solitary handling of requests impossible, or in combat against multiple adversaries.\""
+      "flavor": "棺中被燒熱的蝴蝶如撲擊般飛出，將對象熔化、撕裂。\n「這對辛克萊來說還是太早的武器，不過先了解它的特性比較好。」\n「棺中的多把刀刃，在分秒必爭、通常無法獨自應付的情況下，或是在以寡敵眾的戰鬥中，能提供很高的便利性。」"
     },
     {
       "id": "Firstlight",
       "name": "戰鬥直覺",
       "desc": "- 最大值：3\n- 最小與最大速度值+2\n- 透過基礎技能對敵方單位施加的燒傷強度與燒傷回數額外+1\n- 技能「紛射」造成的傷害+(本效果層數×5)%\n- 技能「紛射-正午」、「正午的解體」造成的傷害+(本效果層數×10)%",
       "summary": "技能紛射、紛射-正午、正午的解體造成的傷害增加",
-      "flavor": "\"To resume the subject at hand: aside from Singularities, there exists a means of overcoming the penalties incurred by using this type of weaponry. Namely, effort.\"\n\n\"This may go without saying, but it is recommended that you focus on honing your body and battle instinct whenever time permits—both during downtime and when handling requests.\"\n\n\"Granted, battle instinct, in most cases, can only be properly demonstrated in the heat of battle. One might refer to this process as a \"warm up,\" although that term is perhaps <i>too</i> simple. In any case, a heightened natural battle instinct will help you offset the gear's structural and technical vulnerabilities. This is how you may raise the baseline of your performance threshold. Are you able to comprehend this explanation, Sinclair?\""
+      "flavor": "「回到正題，除了奇點之外，還有一個能克服裝備所帶來之缺陷的確實方法。那就是努力。」\n「聽起來或許老套，但我建議您無論是在休息時，還是在處理委託時，都要鍛鍊基礎體能、磨練對戰鬥的直覺。」\n「當然，戰鬥直覺大多要到戰鬥漸入佳境時，才能完全發揮其能力。也就是所謂的需要預熱。如此高漲的戰鬥直覺，能彌補裝備與技術本身在結構上的漏洞。辛克萊，這就是提高您下限的方法。您能理解嗎？」"
     },
     {
       "id": "CaseOverheating",
       "name": "過熱之棺",
       "desc": "- 最大值：1\n- 回合結束時，下回合對自身施加3級燒傷強度並解除本效果",
       "summary": "",
-      "flavor": "\"Keep in mind, however, that convenience is always accompanied by a trade-off. A weapon of this structure comes with drawbacks that standard Stigma Workshop weapons would not possess—inevitable penalties that can only be mitigated by Singularities, the pinnacle of the myriad technological innovations of the City.\"\n\n\"It would do justice to properly acknowledge the extraordinary qualities of Singulari—ahem. That was tangential to the subject. Let us return to the subject, Sinclair.\""
+      "flavor": "「但便利總是伴隨著代價。這會產生一般形態的烙印工坊武器所沒有的、結構上的缺陷。而能讓人克服這種必然缺陷的，正是位於都市技術頂點的奇點。」\n「您知道奇點有多麼了不起……咳嗯。話題扯遠了呢。」"
     },
     {
       "id": "DriftingDimensionYisang",
@@ -3461,7 +3461,7 @@
     {
       "id": "FourDimensionYisang",
       "name": "四色次元",
-      "desc": "- 最大值：4\n- 每有1層本效果，則獲得以下效果\n．不低於1層：攻擊等級+1\n．不低於2層：防禦等級+2\n．不低於3層：使自身技能獲得的充能回數額外+1\n．不低於4層：使自身技能造成的傷害+(自身的充能強度×4)%(最多+20%)\n\n- 若獲得了超過最大值的本效果，則使超過的層數在下回合獲得\n- 回合結束時，使本效果層數減少1層",
+      "desc": "- 最大值：4\n- 每有1層本效果，則獲得以下效果\n．不低於1層：攻擊等級+1\n．不低於2層：防禦等級+2\n．不低於3層：使自身技能獲得的充能回數額外+1\n．不低於4層：使自身技能造成的傷害+(自身的充能強度×4)%(最多+20%)\n\n- 若獲得本效果後的層數高於最大值，則高於最大值的層數將在下回合獲得\n- 回合結束時，使本效果層數減少1層",
       "summary": ""
     },
     {
@@ -3512,7 +3512,7 @@
       "desc": "- 最大值：2\n- 速度值固定為1點\n- 透過技能而受到的傷害-50%\n- 獲得本效果的當下，立即移除混亂閾值，若自身陷入混亂則解除混亂\n- 回合開始時，使自身的挑釁值+10\n- 受到攻擊時，使自身獲得1回脈動(每回合最多20回)\n- 回合結束時，減少1層本效果\n- 無法撤退\n- 無法進入E.G.O侵蝕狀態，改為進入基礎恐慌狀態(可適用於改變恐慌類型的效果)\n- 帶有本效果時，無法裝備除專用技能「遵循那道聲，喜悅於我身之中」之外的守備技能或E.G.O技能",
       "summary": "",
       "undefined": "-",
-      "flavor": "Though it has become hardier, it has now become passive. When viewed through the lens of Le Rouge, however durable something might have become, what is passive is always fragile.\n\nBut one must first come to a halt in order to usher in change. And that is what makes this process painful."
+      "flavor": "即使變得堅硬，也仍是被動的。被動的東西無論多麼堅硬，從丹紅派的觀點來看都是脆弱的。\n但為了改變，必須暫時停下腳步。所以這個過程很痛苦。"
     },
     {
       "id": "RougeIshmaelEclose",
@@ -3520,7 +3520,7 @@
       "desc": "- 最小與最大速度值+1\n- 體力上限+25%\n- 受到透過技能造成的傷害-10%\n- 透過基礎技能使敵方單位增加的流血強度額外+1級",
       "summary": "",
       "undefined": "-",
-      "flavor": "Though she has emerged from the cocoon, she has failed to truly metamorphose—as that process involves the disintegration of the self. Still, the process has managed to boost her physical abilities."
+      "flavor": "雖然離開了繭，卻沒能在其中真正將自己融化並重組，因此未能達成真正的變化。不過，原有的衣服得到強化，身體能力也隨之提升了。"
     },
     {
       "id": "EmpathicDistressAlly",
@@ -3528,7 +3528,7 @@
       "desc": "- 最大值：5\n- 除自身以外的友方單位受到攻擊時，對自身施加1回震顫並減少1層本效果(每個技能最多1次)\n- 若沒有除自身以外的友方單位存活，則自身受到攻擊時，對自身施加2級震顫強度並減少1層本效果(每個技能最多1次)\n- 受到暴擊攻擊時，使自身受到的傷害+(自身的震顫強度)%(最多+15%)",
       "summary": "",
       "undefined": "-",
-      "flavor": "The fracturing occurs when one first recognizes the incongruity between the forms of the body and the heart."
+      "flavor": "當察覺到心靈的模樣與肉體的模樣並不相同時，龜裂便會產生。"
     },
     {
       "id": "PersonalityVibration",
@@ -3557,7 +3557,7 @@
       "desc": "- 最大回數：20\n- 特殊充能\n- 本效果強度與回數的增減同樣受普通充能影響\n- 回合結束時，本效果的回數減少1回",
       "summary": "",
       "undefined": "-",
-      "flavor": "Those who are carried by the tide like buoys may not be able to change the flow of things, but they can still bolster the tide and commit to their acts within."
+      "flavor": "漂流者即使無法改變流向，也會鞏固流向，並在流向之中完成自己的工作。"
     },
     {
       "id": "NoirScissorAlly",
@@ -3565,7 +3565,7 @@
       "desc": "- 最大值：4\n- 帶有本效果的目標陣亡時，使對其施加本效果的單位恢復5點理智值，並在下回合獲得1層攻擊等級提升(每回合最多3次)",
       "summary": "",
       "undefined": "-",
-      "flavor": "A cutting mark used to trim fabric and other materials to the required measurements."
+      "flavor": "為了將布料或木材等依尺寸裁切而做的標記"
     },
     {
       "id": "NoirScissorCut",
@@ -3573,7 +3573,7 @@
       "desc": "- 最大值：2\n- 每帶有1層本效果，則使自身造成的傷害+7%",
       "summary": "",
       "undefined": "-",
-      "flavor": "The scissors used to sever the primordial materials produced underground are larger and more extraordinary still. These scissors have cut and recut the very first cloth ever woven. That flowers should bloom from them is only natural, for they have always cut things at their very roots."
+      "flavor": "用來剪斷在地下製成之原初材料的剪刀，更加特別而巨大。這把一直裁剪著最初織成之布料的剪刀之所以會綻放花朵，是因為它剪斷的一直是根源，這是自然的現象。"
     },
     {
       "id": "SupportAlly",
@@ -3595,7 +3595,7 @@
       "desc": "- 最大值：1\n- 攻擊等級+3、防禦等級+3\n- 若為充能人格，則使該人格使用技能時恢復5點理智值(每回合最多1次)\n- 基礎技能命中時，對其造成等同於該硬幣最終量5%的斬擊傷害\n- 回合結束時，移除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "A pair of scissors becomes one through two, and makes two of what was one."
+      "flavor": "剪刀以二成一，又將一分為二。"
     },
     {
       "id": "BlackWingHoleFaust",
@@ -3627,7 +3627,7 @@
       "desc": "- 最大值：5\n- 使所有友方人格獲得以下效果\n．使用技能時，使各個友方單位獲得其體力上限(唐吉訶德的保存強度×2)%的護盾(每回合最多1次，最多10%)\n\n- 使屬於漆黑派的所有友方單位獲得以下效果\n．攻擊等級+(唐吉訶德的保存強度÷3)(無條件捨去，最多2級)\n．防禦等級+(唐吉訶德的保存強度÷2)(無條件捨去，最多3級)\n\n- 對所有敵方單位施加以下效果\n．最小與最大速度值-1（本效果不會使最小與最大速度值小於1點）\n．震顫引爆時，使其混亂閾值前移量+10%\n．受到消耗充能回數或特殊充能的技能造成的傷害+10%(若是屬於漆黑派的友方人格的技能，則改為+20%)\n\n- 回合結束時，使本效果的層數減少1層",
       "summary": "",
       "undefined": "-",
-      "flavor": "A sanctuary in which the value of conservation pursued by Le Noir is preserved. Within it, the Noirs' preservative actions are retained to their benefit. It is a realm of eternal conservation—a place that stirs the drive to infinitely approach death."
+      "flavor": "漆黑派所追求的保存之價值得以保存的領域。為了保存所保存之物的一切漆黑派式行動，都會在這個領域中有益地保存下來。這個領域是永恆保存的領域，也是激發無限趨近死亡之衝動的領域。"
     },
     {
       "id": "NoirShieldUpDonQuixote",
@@ -3635,7 +3635,7 @@
       "desc": "- 最大值：100\n- 回合開始時，使自身獲得自身體力上限(本效果層數÷5)%的護盾(無條件捨去)\n- 若本效果的層數不低於25層，則使用基礎攻擊技能時，使其所有的硬幣轉變為無法被破壞的硬幣\n- 若本效果的層數不低於40層，則自身不會陷入混亂(不包含強制混亂)",
       "summary": "",
       "undefined": "-",
-      "flavor": "The Obsidian God. The Obsidian Giant. The Chaplain of the Hammer. The Obsidian God of the Grand Magasin, whose domain is the power of preservation, grants his blessing through direct contact. The hammer is hard, and its black hue absorbs all things and brings them to a halt... much like death itself."
+      "flavor": "漆黑之神。漆黑的巨人。鐵鎚的牧師。掌管保存之權能的百貨公司漆黑之神所給予的最直接的接觸式加護。鐵鎚堅硬，黑色則吸收一切並使之靜止。宛如死亡的屬性。"
     },
     {
       "id": "NoirNailDonQuixote",
@@ -3643,7 +3643,7 @@
       "desc": "- 最大值：30\n- 透過技能效果觸發震顫引爆時，使自身受到等同於本效果層數的1點怠惰傷害(最多10點，每個技能最多1次)\n- 回合結束時，若本效果的層數不低於4層，則下回合對自身施加1層束縛\n- 回合開始時，若戰場上不存在高級訂製服::漆黑派 品牌經理 唐吉訶德，則移除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "The promised hammer is bound by promise to drive in a nail. Therefore, whenever the hammer falls, a nail must exist there... even if there is none."
+      "flavor": "誓約之鎚被約定必定要釘下釘子。因此，只要鐵鎚揮下，即使那裡沒有釘子，也必須有釘子。"
     },
     {
       "id": "PersonalityCombustion",
@@ -3728,7 +3728,7 @@
       "desc": "- 最大值：999\n- 在戰場上恢復體力時，使自身獲得層數等同於(實際恢復體力÷10)的本效果\n(最多100層，無條件進位；不包含透過E.G.O飾品恢復)\n\n- 本效果層數全體單位共同計算\n- 變更戰鬥場所時重置本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "The Buffet of flesh and meat is served. Let this be a feasting hall for all."
+      "flavor": "皮與肉的自助餐已經備好，諸位就在此享用晚宴吧。"
     },
     {
       "id": "BuffetFriendShield",
@@ -3736,7 +3736,7 @@
       "desc": "- 特殊掩護防禦\n- 最大值：1\n\n- 高級訂製服::丹紅派 丹紅之神 辛克萊受到敵方單位單方面攻擊時，消耗1層本效果使敵方單位的攻擊目標變更為自身\n．複製並使用高級訂製服::丹紅派 丹紅之神 辛克萊的「守護（la garde）」\n- 若有多名友方單位帶有掩護防禦，則使帶有掩護防禦層數最高的友方單位優先使用\n- 本效果被視為掩護防禦，並與掩護防禦的層數共同計算\n\n- 回合結束時，移除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "Let us attend to our new God."
+      "flavor": "為了我們的新神。"
     },
     {
       "id": "BuffetThirst",
@@ -3744,7 +3744,7 @@
       "desc": "- 攻擊等級+2\n\n- 對敵方單位使用的基礎攻擊技能開始投擲硬幣時，消耗自身1回充能，使自身造成的傷害+5%\n．若該技能為施加流血強度或回數的技能，則改為使自身造成的傷害+10%(包含特殊流血)\n．若戰場上的自助餐不低於1層，且自身的充能回數未達最大值，則消耗1層自助餐，使自身獲得1回充能\n．若自身未帶有充能回數且戰場上沒有自助餐層數，則改為消耗自身體力上限1%的體力來發動本效果(無條件捨去)\n(本效果不會使自身陷入混亂，且體力不會降至1點以下。若體力為1點仍會發動)\n\n- 回合結束時，移除本效果",
       "summary": "消耗充能回數使造成的傷害增加",
       "undefined": "-",
-      "flavor": "The sharper one hungers, the fiercer the desperation.\nThe further one is driven, the deeper the longing."
+      "flavor": "越是飢餓就越迫切，越是被逼入絕境就越渴切。"
     },
     {
       "id": "RougeFamilySinclair",

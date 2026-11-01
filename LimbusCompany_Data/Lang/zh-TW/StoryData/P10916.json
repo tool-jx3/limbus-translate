@@ -4,55 +4,55 @@
       "id": 0,
       "teller": "???",
       "title": "小指 父輩",
-      "content": "You have not entered an Entanglement. That's... a relief."
+      "content": "幸好……沒有發生糾纏啊。"
     },
     {
       "id": 1,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "\"Relief?\" Fuck that, Ticket! Exactly which part of that is a \"relief\"?"
+      "content": "幸好？媽的，現在妳還說得出「幸好」這種話啊，門票？"
     },
     {
       "id": 2,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "We got nothing. No results, no progress, nothing at all! Not even a half-decent excuse for the Central bastards who wouldn't stop crawling up my ass!"
+      "content": "根本沒有成果啊，成果。光是中央那邊一直來問進度如何，就已經快把我逼瘋了……"
     },
     {
       "id": 3,
       "teller": "???",
       "title": "小指 父輩",
-      "content": "... This isn't what I came back for. I said I would do as I was told, that I wouldn't dare think of leaving again. So why... Why must you people do this to Yoshihide...?"
+      "content": "……我不是想要這種結果才自己回來的。我不是說了不會再離開、會照你們說的去做嗎？可為什麼連良秀也要……"
     },
     {
       "id": 4,
       "model": "이상",
       "title": "食指 父輩",
-      "content": "I understand the sorrow that has condensed within you. Yet now that you have sought refuge under our wings, fleeing the shadow of the Fingers... You know, as I do, that no gentler road remains within the arithmetic of these circumstances."
+      "content": "我能體會妳惋惜的心情。然而，既然是為了躲避手指才回來……妳不也明白，這已是最好的辦法嗎？"
     },
     {
       "id": 4,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Hah. Fine, Ticket. Let's get right down to it. Wanna know why we're doing this, huh? It's your fault. Don't ya know this whole mess is on ya?"
+      "content": "哈。說到底這全都是妳的錯，門票，妳是不知道才這樣嗎？"
     },
     {
       "id": 5,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Wandering out there, chasing some stupid-ass star that wasn't even supposed to be yours... Ya didn't just make a bad call."
+      "content": "在外頭到處亂跑，還跑去找別的星……哈，真讓人傻眼。"
     },
     {
       "id": 6,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Ya made the <i>worst</i> call, choosing the Dihui Star's Blade over the Tiansha Star's... We wouldn't have had to lock that damn brat up in the Time Vault if you'd just listened!"
+      "content": "喂。妳當初要是沒選地慧星刀，而是選了天殺星刀，也就沒理由把那小鬼塞進金庫裡了。"
     },
     {
       "id": 7,
       "model": "홍루",
       "title": "環指 父輩",
-      "content": "That would be enough, Rodion."
+      "content": "請適可而止吧，羅狄翁。"
     },
     {
       "id": 8,
@@ -64,19 +64,19 @@
       "id": 9,
       "model": "홍루",
       "title": "環指 父輩",
-      "content": "And I do hope you will understand as well, dearest daughter of ours. This will be a far better prospect for that child, too."
+      "content": "另外，也希望妳能理解。這麼做對那孩子也比較好。"
     },
     {
       "id": 10,
       "model": "홍루",
       "title": "環指 父輩",
-      "content": "Yoshihide's aptitude to sense the flow of time is impressive indeed. Perhaps even comparable to yours..."
+      "content": "良秀的時間才能雖然和妳一樣出眾……"
     },
     {
       "id": 11,
       "model": "홍루",
       "title": "環指 父輩",
-      "content": "If we'd had enough absolute time, perhaps we could have gradually let the \"perspective\" settle within her. But we do not—which is why we must press the process forward, even if we must induce a Temporal Entanglement."
+      "content": "但要讓觀點慢慢紮根，絕對的時間並不夠。就算要引發時間糾纏，也只能加快觀點紮根的速度了呢。"
     },
     {
       "id": 12,
@@ -88,99 +88,99 @@
       "id": 13,
       "model": "홍루",
       "title": "環指 父輩",
-      "content": "Let us check again in 2 days."
+      "content": "……兩天後再試一次吧。"
     },
     {
       "id": 14,
       "teller": "???",
       "title": "小指 父輩",
-      "content": "You're going to put her through that again? No. No... I'll take her plac—Hrrk!"
+      "content": "還要再做那種事？不行……乾脆由我再……唔！？"
     },
     {
       "id": 15,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Fucking hell. Couldn't listen to another second of that crap. I've had it with this sob story routine."
+      "content": "媽的。實在聽不下去了……鬼話也該有個限度吧。"
     },
     {
       "id": 16,
       "model": "오티스",
       "title": "中指 父輩",
-      "content": "B-Buddy...!"
+      "content": "女、女兒！？"
     },
     {
       "id": 17,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Ugh, can it, will ya? I only knocked her out. Shut your trap and mind your own business."
+      "content": "唉，吵死了。我只是把她打暈而已，別在那邊嘀嘀咕咕，做妳的事去。"
     },
     {
       "id": 19,
       "model": "이상",
       "title": "食指 父輩",
-      "content": "... Rodion. Where are you going?"
+      "content": "……要去哪裡？"
     },
     {
       "id": 18,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "I don't need to tell ya anything. Ya like to wander off without tellin' anyone shit too, don'tcha?"
+      "content": "你自己從來不說要去哪，現在才來問什麼？"
     },
     {
       "id": 19,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Go fuck yourself."
+      "content": "去你的。"
     },
     {
       "id": 20,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Feels like just yesterday you were sobbin' and snivellin' into your mommy's arms..."
+      "content": "窩在妳媽懷裡哇哇大哭，好像才是前幾天的事……"
     },
     {
       "id": 21,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "And now, you're all grown up! Stuff a brat in a Time Vault for a while, and it'll shoot right up like a frickin' weed. Hey, does that Vault come with bedtime milk on tap or something?"
+      "content": "才在金庫裡關了一陣子，還真是長得頭好壯壯啊。在那裡面是怎樣，每天都有牛奶喝嗎？"
     },
     {
       "id": 22,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
       "content": "……"
     },
     {
       "id": 23,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "I've been wondering what you were up to. Booze, huh. Figures."
+      "content": "……還在想妳在做什麼，沒想到竟然在這裡灌酒。"
     },
     {
       "id": 24,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Those bottles look old as hell... Didn't the stuff inside go bad?"
+      "content": "那些酒……放那麼久了，都不會壞嗎？"
     },
     {
       "id": 25,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Hah, still a brat on the inside, huh? Now this is the kind of stupid that pisses me off."
+      "content": "哈。還真是個小鬼……這話倒有點讓人火大。"
     },
     {
       "id": 26,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Booze doesn't go bad. Ever heard of aging?"
+      "content": "酒怎麼會壞？不知道什麼叫熟成嗎？"
     },
     {
       "id": 27,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
       "content": "……"
     },
@@ -188,29 +188,29 @@
       "id": 28,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "*puff* All right, then. Never thought that stuttering retard with her E.G.O and the clankin' tin-girl could stop ya, anyway."
+      "content": "呼……好吧。那個用E.G.O的蠢蛋，還有那身鐵盔甲……嘛，就當是妳贏了。"
     },
     {
       "id": 29,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "But the other Nursefathers... No way in hell ya whacked 'em all and got this far on your own."
+      "content": "可妳不可能一個人砍下父輩們的腦袋，還走到這裡……"
     },
     {
       "id": 30,
-      "content": "Heathcliff carefully chimed in to explain what he'd witnessed."
+      "content": "對於這個疑問，希斯克利夫小心翼翼地說明了自己所見之事。"
     },
     {
       "id": 31,
       "model": "히스클리프",
       "title": "拇指 弟子",
-      "content": "The Pinky Nursefather and Sinclair... They betrayed and turned on us."
+      "content": "小指父輩那位，和辛克萊一起背叛了。"
     },
     {
       "id": 32,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... Is she dead?"
+      "content": "……翹辮子了？"
     },
     {
       "id": 33,
@@ -222,66 +222,66 @@
       "id": 34,
       "model": "히스클리프",
       "title": "拇指 弟子",
-      "content": "Not the last time I saw her, Master. She was still engaged in a battle."
+      "content": "不清楚。在我上來之前，都還在……交戰中。"
     },
     {
       "id": 35,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Yeah? That's whatever, then. The other Nursefathers are all washed-up morons, but they won't lose to Ticket."
+      "content": "是嗎？嘛，那就好。那三個雖然是過氣的老骨頭，也不至於輸給門票。"
     },
     {
       "id": 36,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "... Believe what you want. You'll get to meet the other three in hell soon enough. Ask them what happened then."
+      "content": "……隨妳怎麼想。要不然等死了以後，到地獄去聊聊吧。"
     },
     {
       "id": 37,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Anyhow... \"Pinky Nursefather?\" Did another one join your ranks while I was gone?"
+      "content": "比起那個……小指父輩？這段時間，除了你們以外又有別的父輩加入了嗎？"
     },
     {
       "id": 38,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... What?"
+      "content": "……什麼？"
     },
     {
       "id": 39,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Wait a minute. That sword... Why the hell do you have that sword?"
+      "content": "不對，等等。這麼說來，妳那把刀是怎麼回事。"
     },
     {
       "id": 40,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "... I realized facing you with Palermitan Style would be a losing bet."
+      "content": "……我認為不能用巴勒莫跟妳這傢伙交手。"
     },
     {
       "id": 41,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "So I learned a new swordfighting style. This sword was given to me then."
+      "content": "所以學了新的劍術。這把刀，就是那時候拿到的。"
     },
     {
       "id": 42,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... And <i>who</i> gave it to you?"
+      "content": "……誰給的？"
     },
     {
       "id": 43,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Oh, don't bother hunting them down. I don't... remember well, but they're already dead."
+      "content": "如果打算報復，那也沒用。雖然……記不太清楚了，但那人已經死了。"
     },
     {
       "id": 44,
@@ -291,11 +291,11 @@
     },
     {
       "id": 45,
-      "content": "An errant rage swelled within Rodion. She trembled like she was about to burst, but she didn't know why. She couldn't."
+      "content": "聽到這句話，羅狄翁察覺到一股連自己也說不清的怒火，直衝頭頂。"
     },
     {
       "id": 46,
-      "content": "But rather than asking herself what had set fire to this wrath, or why it burned with such inexorable intensity..."
+      "content": "然而，羅狄翁沒有繼續思考自己為何憤怒、為何渾身顫抖，而是……"
     },
     {
       "id": 47,
@@ -307,41 +307,41 @@
       "id": 48,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Do you even have any idea who you forgot... what you threw away to get this far?"
+      "content": "妳……知道妳現在忘了什麼、犧牲了什麼才走到這裡嗎？"
     },
     {
       "id": 49,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "From the first day her baby hands held a sword, all the way to the day she brought you here, I... You got any idea how I honed that Ticket of mine, day after day...?"
+      "content": "從她第一次握劍的那天，到帶著妳這傢伙回來的那天……我、我是多麼捧在手心裡磨練她的……"
     },
     {
       "id": 50,
-      "content": "... Rodion chose to fire that rage at the one who had dared to speak those words."
+      "content": "將所有的怒火，傾瀉向竟敢說出那句話的人。"
     },
     {
       "id": 51,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Ungrateful little bitch..."
+      "content": "妳這……"
     },
     {
       "id": 52,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "How dare you forget my Ticket!!!"
+      "content": "妳這忘恩負義的混帳東西！！！！"
     },
     {
       "id": 53,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "And next up for the interview... Our very own War Hero, Rodion Bognatelli takes the...!"
+      "content": "那麼下一位受訪的是……我們的英雄，羅狄翁．波納堤利的……！"
     },
     {
       "id": 54,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Hmm? What are you doing hiding in that corner? That's not like you at all."
+      "content": "怎麼了？一反常態地躲在角落幹嘛？"
     },
     {
       "id": 55,
@@ -353,61 +353,61 @@
       "id": 56,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Wow, is that a picture you're looking at? Don't tell me it's your <i>family</i> photo or some shit like that."
+      "content": "妳在看照片啊？拍了家人還是什麼的那種？"
     },
     {
       "id": 57,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "You know what we always say, Rodya. Soldiers looking longingly at their family photos are signing themselves up for a 99% chance of getting killed out there."
+      "content": "羅佳。我們每次不都跟妳說了嗎，上戰場前做那種事，99%會死耶？"
     },
     {
       "id": 58,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... Get the fuck outta here, and take that dumbass superstition with you."
+      "content": "……要是來講那種無聊迷信的，就給我滾。"
     },
     {
       "id": 59,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "People of my caliber don't die over stupid crap like that."
+      "content": "像我這種程度的人，才不會因為那種事死掉。"
     },
     {
       "id": 60,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Oh, wow. That's hella swagger you've got there. Stacked up like a damn skyscraper."
+      "content": "唷。自信心簡直衝上天了嘛。"
     },
     {
       "id": 61,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Well, guess your record speaks for itself. How's your winning streak looking now? Counting formal duels and one-on-one battlefield bouts... 13 <i>and</i> consecutive, huh?"
+      "content": "嘛，也難怪啦。決鬥加上單挑，這次是幾連勝來著？13連勝嗎？"
     },
     {
       "id": 62,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Get the damn number right if you're keeping score. It's 15."
+      "content": "要數就數清楚。是15連勝。"
     },
     {
       "id": 63,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Dang. That's gotta be the highest winning streak on our front line, isn't it? And the poor bastards you offed weren't nobodies either. Every one of them was a big name with big game."
+      "content": "嘖嘖……這不是我們前線的最高紀錄嗎？而且對手還不是什麼阿貓阿狗，贏的全是聽過名號的厲害傢伙。"
     },
     {
       "id": 64,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... *scoff* Like it could've ended any other way."
+      "content": "……哈。理所當然的結果。"
     },
     {
       "id": 65,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "So, who's the kid in the photo? Your daughter?"
+      "content": "所以照片裡的小不點是誰？妳女兒？"
     },
     {
       "id": 66,
@@ -419,49 +419,49 @@
       "id": 67,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Gotta thank your lucky stars she doesn't look anything like her mama, huh?"
+      "content": "幸好長得一點都不像她媽。"
     },
     {
       "id": 68,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "What was that?"
+      "content": "什麼！？"
     },
     {
       "id": 69,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Hey, easy there. That was a compliment. Kid looks like a sweetheart, that's all. Smart and well-behaved, too, I bet. Unlike, well..."
+      "content": "是稱讚啦，稱讚。意思是看起來可愛又乖巧。"
     },
     {
       "id": 70,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Been too damn nice to ya 'cause you're a Class 5 Staff member, haven't I?"
+      "content": "你這傢伙真是……看你是5級員工才對你這麼好。"
     },
     {
       "id": 71,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Sonuvabitch. The old me would've ripped an arm off ya for a good lesson, ya know that? Back in my day, I was an—"
+      "content": "媽的……換作以前，你早就被扯掉一條胳膊了。知道嗎？我當年可是……"
     },
     {
       "id": 72,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Underboss, Sottocapo, yeah, we know. But you're not one now, are you?"
+      "content": "以前當過二老闆這件事我知道啦。可是現在已經不是了嘛。"
     },
     {
       "id": 73,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Tsk... Not for long. Once the war is over..."
+      "content": "嘖……快了。只要這場戰爭結束……"
     },
     {
       "id": 74,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "There it is again. That's enough jinxing to lose us the battle..."
+      "content": "這也是相當不吉利的話啊……"
     },
     {
       "id": 75,
@@ -473,7 +473,7 @@
       "id": 76,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Still, a winning streak this good? You've practically earned the Sottocapo title back already. Don't worry—we'll all be groveling at your feet when that happens, making damn sure to add a \"Miss\" before \"Rodion.\""
+      "content": "也是啦，有這種程度的表現，是該當上二老闆了。到時候我會喊著「羅狄翁大人～」好好伺候的，放心吧。"
     },
     {
       "id": 77,
@@ -485,133 +485,133 @@
       "id": 78,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "\"Miss Rodion?\" Nah, \"Miss Rodya\" will do."
+      "content": "羅狄翁大人就免了，叫羅佳大人就行。"
     },
     {
       "id": 79,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Uh... What's the difference?"
+      "content": "……不都差不多嗎？"
     },
     {
       "id": 80,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "It's got a different <i>echo</i>, apparently. Yeah... \"Miss Rodion\" doesn't exactly roll off the tongue."
+      "content": "聽說唸起來的韻味不一樣。嘛，「羅狄翁大人」確實不怎麼樣。"
     },
     {
       "id": 81,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "Echo?"
+      "content": "韻味？"
     },
     {
       "id": 82,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Yup. Something Ticket... my daughter says sometimes."
+      "content": "有啊。門票……不對，是我女兒偶爾會說的話。"
     },
     {
       "id": 83,
       "teller": "禮貌的士兵",
       "title": "拇指",
-      "content": "Miss Rodion. An enemy was spotted emerging from their camp."
+      "content": "羅狄翁大人。敵陣有一個人出來了。"
     },
     {
       "id": 84,
       "teller": "禮貌的士兵",
       "title": "拇指",
-      "content": "Judging by the broadcast setup, they're probably preparing to air a single combat. Please get ready to—"
+      "content": "看他們在準備宣傳器材，您或許該準備單挑了……"
     },
     {
       "id": 85,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Which motherfucker are ya talkin' about?"
+      "content": "是哪個混帳？"
     },
     {
       "id": 86,
       "teller": "禮貌的士兵",
       "title": "拇指",
-      "content": "An elite employee of L Corp., I hear."
+      "content": "據說是L公司的精英員工。"
     },
     {
       "id": 87,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "*puff* ... Guess that's my cue, then."
+      "content": "呼……得走了。"
     },
     {
       "id": 88,
       "teller": "樂觀的同事",
       "title": "某片翼的員工",
-      "content": "All right, you're up! Our fearless War Hero's obviously about to add another glorious victory under her belt, so I'll just be the cameraman and enjoy the show from the sidelines."
+      "content": "嘛～戰爭英雄大人會贏著回來，那我拿著相機在旁邊看熱鬧就行了吧？"
     },
     {
       "id": 89,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Haha. Ya do that. Make sure ya keep your eyes open—and don'tcha forget to give me a big hand once I'm done."
+      "content": "哈。是啊，給我看清楚，然後用力拍手。"
     },
     {
       "id": 90,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Rodion Bognatelli is gonna strut back with another flashy victory."
+      "content": "因為波納堤利家族的羅狄翁，會華麗地贏得勝利回來。"
     },
     {
       "id": 91,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "*puff* ... Textbook. Ya stay put and keep your eyes open, ya hear me?"
+      "content": "呼……教材。你就在旁邊看著。"
     },
     {
       "id": 92,
       "model": "히스클리프",
       "title": "拇指 弟子",
-      "content": "If I may, Master, I also can—"
+      "content": "可是師父……我也……"
     },
     {
       "id": 93,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "I said eyes, not your damn mouth."
+      "content": "閉上你的嘴……"
     },
     {
       "id": 94,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Don't flap it at me. Don't talk back. Do what I tell ya—<i>exactly</i> as you're told."
+      "content": "別頂嘴，照我說的做就對了。"
     },
     {
       "id": 95,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "I'll have to haul that lil' bitch back and drill the Palermitan Style into her from baby steps. Here we go again, another lifetime of motherfuckin' work."
+      "content": "把那丫頭抓回來，再重新教她巴勒莫的話……又要花上好長一段時間了……"
     },
     {
       "id": 96,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "If you get your ass killed too, then who's left to help me do all that shit, huh? Huh?"
+      "content": "要是連你也翹辮子了，那些事不就得我一個人重來一遍了嗎？嗯？"
     },
     {
       "id": 97,
       "model": "히스클리프",
       "title": "拇指 弟子",
-      "content": "... I wasn't thinking. My sincerest apologies, Master."
+      "content": "……是我想得太淺了。非常抱歉。"
     },
     {
       "id": 98,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "How many times do I have to repeat myself? Don't think hard, don't think easy, don'tcha even <i>think</i> of thinking and just... just do as you're told. Capisce?"
+      "content": "我都說過好幾次了……不管想得深還是淺，就是別去想。懂了沒？"
     },
     {
       "id": 99,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Answer. <i>Capisce?</i>"
+      "content": "回答。我問你懂了沒。"
     },
     {
       "id": 100,
@@ -622,7 +622,7 @@
     {
       "id": 101,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
       "content": "好痛……"
     },
@@ -630,77 +630,77 @@
       "id": 102,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... Ugh, not this crap again. It was Textbook I slapped, not you!"
+      "content": "……又在發什麼神經。我打的是教材的臉，又不是妳的臉？"
     },
     {
       "id": 103,
-      "content": "Yoshihide touched her own cheek, as if Rodion's backhand had landed on her instead."
+      "content": "良秀撫摸著自己的臉頰，彷彿被羅狄翁打中的是她自己。"
     },
     {
       "id": 104,
-      "content": "Her future."
+      "content": "自己的未來。"
     },
     {
       "id": 105,
-      "content": "Her past."
+      "content": "自己的過去。"
     },
     {
       "id": 106,
-      "content": "All the strands of time she might never reach had perhaps flooded into her eyes, leaving their mark in her vision."
+      "content": "因為那些或許永遠無法觸及的所有時間，如洪流般傾瀉而下，刻進了良秀的眼中。"
     },
     {
       "id": 107,
-      "content": "She could no longer tell from which strand that pain had come. Only the stinging sensation remained, vividly and undeniably extant."
+      "content": "連那是何時的疼痛都不知道，良秀身上只剩下鮮明的痛楚。"
     },
     {
       "id": 108,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "I have to scrape out every last trace... Every last trace."
+      "content": "全部……全部都得剜掉。"
     },
     {
       "id": 109,
-      "content": "Trapped within the Entangled strands of time, Yoshihide could no longer recognize the present—the now—for what it was."
+      "content": "在糾纏的時間中，良秀再也無法分辨現在、分辨此刻。"
     },
     {
       "id": 110,
-      "content": "Only pain and agony remained etched in her. Only hatred and resentment for her Nursefathers."
+      "content": "只剩下刻下的痛苦，與對父輩的憎恨。"
     },
     {
       "id": 111,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "I'll cut everything up, sever and burn all of it just because I want to!"
+      "content": "得隨心所欲地把一切，斬斷，燒盡才行！！"
     },
     {
       "id": 112,
-      "content": "And so, she kept swinging her blade in desperation."
+      "content": "只是悽慘地揮舞著刀。"
     },
     {
       "id": 113,
-      "content": "The Palermitan Style is indeed a masterful school of swordsmanship. But why does the House of Spiders need it?"
+      "content": "巴勒莫是出色的劍術，但為什麼蜘蛛巢會需要它呢。"
     },
     {
       "id": 114,
-      "content": "It was not a question Rodion had never asked herself before."
+      "content": "羅狄翁並非沒有想過這個疑問。"
     },
     {
       "id": 115,
-      "content": "Nor had she ever fully rid herself of her doubt about that vaguely phrased purpose of the House—the creation of \"The Blade that Cuts Through All.\""
+      "content": "對「斬斷萬物之刃」這個含糊的目標，她心中的懷疑也從未消散過……"
     },
     {
       "id": 116,
-      "content": "At one point, she had tried to dig down to the root of the matter herself."
+      "content": "過去她也曾試圖親自探究那個目標。"
     },
     {
       "id": 117,
-      "content": "After failure upon failure, however, Rodion chose not to climb back up, but to keep sinking to the endless pit."
+      "content": "然而在無數次失敗中，羅狄翁沒有重新站起來，而是選擇了無止境地墜落。"
     },
     {
       "id": 118,
-      "content": "An endless pit where she didn't have to understand the purpose of all things at the House of Spiders."
+      "content": "羅狄翁最終放棄了理解這一切。"
     },
     {
       "id": 119,
@@ -710,19 +710,19 @@
     },
     {
       "id": 120,
-      "content": "Nevertheless, Rodion never stopped imparting the Palermitan Style to her student."
+      "content": "即使如此，仍持續傳授巴勒莫的理由是……"
     },
     {
       "id": 121,
-      "content": "It began as an outlet for her frustration—a vague hope that if the girl could at least learn the Palermitan Style to perfection, it might make some damned difference."
+      "content": "起初只是因為心煩，覺得至少讓她完全學會巴勒莫的話，或許會有什麼不同。"
     },
     {
       "id": 122,
-      "content": "Then it changed. The girl absorbed everything taught to her like sponge. And Rodion found herself liking the way the child stuck with her, pressing close to a woman everyone else avoided like the plague."
+      "content": "接著是因為她學得比想像中好，而且總想黏在沒有任何人願意靠近的自己身邊，這點讓她很中意。"
     },
     {
       "id": 123,
-      "content": "But by the end... teaching the Palermitan Style was no longer a lesson. It was the last thing left for her to do, and she had run out of all other excuses."
+      "content": "到了最後……則是因為除此之外，她已經沒有其他能做的事了。"
     },
     {
       "id": 124,
@@ -732,41 +732,41 @@
     },
     {
       "id": 125,
-      "content": "At least in those days, when Rodion raised her hand against the girl she'd thought of as her daughter, her Ticket, she had still bothered to dress it up with justifications, however thin they were."
+      "content": "至少在打自己視為女兒的人——自己的門票時，她還會顧及最起碼的名目。"
     },
     {
       "id": 126,
-      "content": "You broke the Thumb's code of conduct. You move too slowly. You are not doing as you're told. You have the nerve to cry when you've done nothing right."
+      "content": "因為違反了拇指的禮儀規範，因為動作慢吞吞，因為交代的事沒好好做，因為明明什麼都沒做好還哭。"
     },
     {
       "id": 127,
-      "content": "However, when she finally learned that even the Ticket she'd put her trust in was not a \"golden\" one she'd dreamed of..."
+      "content": "但是，當她得知就連自己所信任的門票，也不是金色的時候。"
     },
     {
       "id": 128,
-      "content": "She could not contain the rage boiling up inside her."
+      "content": "羅狄翁再也壓抑不住沸騰的怒火。"
     },
     {
       "id": 129,
-      "content": "Justifications—excuses, really—no longer mattered before her anger. She lashed out and struck the new girl without any particular reason."
+      "content": "她連那稱不上名目的名目都拋諸腦後，施加毫無理由的暴力。"
     },
     {
       "id": 130,
-      "content": "Never once did Rodion understand that the one who had set aflame the few scant threads of the spider, the threads that might have led her to the golden chance she'd spent so long craving..."
+      "content": "在無數的機會之中，親手燒毀那或許曾經存在的一根蜘蛛絲的。"
     },
     {
       "id": 131,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "I'm... sorry..."
+      "content": "我錯……了……"
     },
     {
       "id": 132,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Please, tell me why... why you're hitting me... So I can do better..."
+      "content": "拜託……至少告訴我理由……告訴我理由就好……"
     },
     {
       "id": 133,
@@ -778,41 +778,41 @@
       "id": 134,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Weakling."
+      "content": "軟腳蝦。"
     },
     {
       "id": 135,
-      "content": "... was none other than herself."
+      "content": "正是羅狄翁自己。"
     },
     {
       "id": 136,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... Weakling."
+      "content": "……軟腳蝦。"
     },
     {
       "id": 137,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "That's fair. Haha... Just look at me. Can't say I've got much of a comeback... "
+      "content": "都這副德行了……哈。真是無從反駁啊……"
     },
     {
       "id": 138,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "*puff* Still better than the other weaklings who are out cold... or croaked."
+      "content": "呼……不過總比那些累癱了或是翹辮子的傢伙好。"
     },
     {
       "id": 139,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Tell me what happened while you can still think straight."
+      "content": "趁你腦袋還清醒，快說說狀況。"
     },
     {
       "id": 140,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Well, you did manage to burn off the vermin's wings. At least you'd accomplished <i>something</i> before you ended up like this."
+      "content": "看你們把翅膀全燒光了，總不是什麼都沒做就落得這副德行吧？"
     },
     {
       "id": 141,
@@ -820,107 +820,107 @@
     },
     {
       "id": 142,
-      "content": "Reflexes bordering on precognition, with extraordinary combat capability."
+      "content": "近乎預知的反射神經，以及卓越的格鬥能力。"
     },
     {
       "id": 143,
-      "content": "A monstrosity armed with corrosive fluid that can melt anything, and the ability to swoop in and out of battles with airborne hit-and-run tactics."
+      "content": "再加上無從應對的腐蝕液，以及憑藉飛行能力施展的打帶跑戰術——這就是G公司的決戰兵器。"
     },
     {
       "id": 144,
-      "content": "G Corp.'s decisive weapon clearly sat outside the average standards of war weaponry,"
+      "content": "它的強大確實超乎常規……"
     },
     {
       "id": 145,
-      "content": "But other Wings also possessed capabilities that more than matched the Lord of Flies's own."
+      "content": "但擁有那類手段的，並不只有G公司。"
     },
     {
       "id": 146,
-      "content": "The Lord of Flies had already been slain a couple of times."
+      "content": "一次，是R公司無數的傭兵。"
     },
     {
       "id": 147,
-      "content": "First, by the endless waves of R Corp.'s mercenaries."
+      "content": "一次，是T公司違反常理的發明品與聲名遠播的事務所。"
     },
     {
       "id": 148,
-      "content": "And once more, by T Corp.'s unthinkable inventions and other prestigious Fixer Offices."
+      "content": "蒼蠅王都曾因此喪命。"
     },
     {
       "id": 149,
-      "content": "Before long, however, it would appear on the front lines again."
+      "content": "但沒過多久，蒼蠅王又再度出現在前線。"
     },
     {
       "id": 150,
-      "content": "And once Command decided that the loss exchange ratio was no longer within the acceptable range, research attempts began for ways to counter G Corp.'s game changer..."
+      "content": "判斷交換比不划算的指揮部，開始對蒼蠅王展開研究……"
     },
     {
       "id": 151,
-      "content": "And they discovered that in its moment of death, the Lord of Flies would leave behind a unique entity known as the \"Maggot Prince.\""
+      "content": "結果查明了蒼蠅王在即將死亡之際，會留下名為「蛆蟲王子」的特殊個體。"
     },
     {
       "id": 152,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "The higher-ups didn't tell us what it takes for the Maggot Prince to metamorphose into the Lord of Flies..."
+      "content": "至於蛆蟲王子要滿足什麼條件才會變成蒼蠅王……上頭倒是沒告訴我們……"
     },
     {
       "id": 153,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "... But the vermin won't stop spawning back if it's not killed before transforming, is that it?"
+      "content": "放著那個叫蛆蟲王子的東西不管，就可能變成蒼蠅王……大概是這麼回事吧。"
     },
     {
       "id": 154,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "Yeah. To stop that... we had to limit as much of its mobility as possible and remove any chance for the Maggot Prince to hide or escape."
+      "content": "沒錯。而為了阻止這件事……就得盡可能奪走它的機動力，不讓蛆蟲王子有藏身或逃跑的餘地。"
     },
     {
       "id": 155,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "Liu Association's flames burned away one pair of wings and the infestation zone, as planned."
+      "content": "按照作戰計畫，六協會的火焰燒光了一對翅膀與整片汙染地帶。"
     },
     {
       "id": 156,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "Our ranks broke halfway through and things got real ugly for a bit..."
+      "content": "雖然中途隊列潰散，一度陷入危機……"
     },
     {
       "id": 157,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "But I managed to deal with the vermin's remaining wings before you got here. Lucky, huh?"
+      "content": "幸好在你來之前，我把剩下的翅膀也全都解決了。"
     },
     {
       "id": 158,
       "teller": "受傷的收尾人",
       "title": "???",
-      "content": "Well, seems this is as far as luck would take me."
+      "content": "不過……我也就只能做到這裡了……"
     },
     {
       "id": 159,
-      "content": "Half his upper body melted away, the Fixer directed a bitter gaze around him."
+      "content": "上半身融掉了一半的收尾人，自嘲似地環顧四周。"
     },
     {
       "id": 160,
-      "content": "Countless soldiers had fought beyond their limits, but they were nowhere near felling G Corp.'s bioweapon."
+      "content": "儘管無數人超越極限奮戰，依然無法將其討伐。"
     },
     {
       "id": 161,
-      "content": "And the only reinforcement that arrived at that hell... was a single fighter."
+      "content": "在那種情況下，作為援軍抵達的……只有一個人。"
     },
     {
       "id": 162,
-      "content": "Dawn had begun to settle on the battlefield. With eyes full of doubt, the Fixer finally gave voice to the question lodged in his throat."
+      "content": "站在破曉天色下的收尾人，用夾雜著懷疑的眼神拋出了疑問。"
     },
     {
       "id": 163,
       "teller": "黎明時分的收尾人",
       "title": "???",
-      "content": "Do you think... you can finish that monster off?"
+      "content": "那個怪物……你能幫忙……解決掉嗎？"
     },
     {
       "id": 164,
@@ -930,67 +930,67 @@
     },
     {
       "id": 165,
-      "content": "Rodion stepped forward with a savage smirk."
+      "content": "對此，羅狄翁笑著向前走去。"
     },
     {
       "id": 166,
-      "content": "She swept her gaze over the battlefield like she already owned it, standing straight with the arrogance of a hero marching at the head of a triumphal procession."
+      "content": "俯視四周的傲慢眼神，以及彷彿正在參加凱旋式般的厚顏態度。"
     },
     {
       "id": 167,
-      "content": "Each firm step she took spoke of an unshakeable confidence that she would win the fight."
+      "content": "邁向戰場的羅狄翁，步伐威風凜凜。"
     },
     {
       "id": 168,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Don'tcha know who I am?"
+      "content": "你。不知道我是誰嗎？"
     },
     {
       "id": 169,
       "teller": "黎明時分的收尾人",
       "title": "???",
-      "content": "... 'Course I do. I've seen you fight before."
+      "content": "……當然知道。我也見過。"
     },
     {
       "id": 170,
       "teller": "黎明時分的收尾人",
       "title": "???",
-      "content": "Rodion of Famiglia Bognatelli... There isn't anyone on this front who doesn't know your name."
+      "content": "波納堤利家的羅狄翁這個名字……在這條前線上無人不知。"
     },
     {
       "id": 171,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Huh. So you <i>do</i> know."
+      "content": "什麼嘛。這不是很清楚嗎。"
     },
     {
       "id": 172,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Then stop fidgeting like some scared puppy and get your ass to the rear."
+      "content": "那就別在那邊瞎操心，給我滾去後方。"
     },
     {
       "id": 173,
-      "content": "Anyone who had seen Rodion fight a duel, even once, knew better than to dismiss her arrogance for mere bluff..."
+      "content": "只要看過一次羅狄翁的決鬥、看過她的單挑，就不會認為那傲慢的步伐是在虛張聲勢。"
     },
     {
       "id": 174,
-      "content": "... because they knew that every duel she fought would end with a head lopped off, followed by a spectacular flourish of the sword."
+      "content": "因為砍落對手的首級後，以華麗的動作宣告勝利的，"
     },
     {
       "id": 175,
-      "content": "Rodion's sword, always."
+      "content": "永遠都是羅狄翁……"
     },
     {
       "id": 176,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "You know, I'm different from the rest of you cannon fodder. I don't lose duels—never have, never will."
+      "content": "我啊。跟你們不一樣，一對一可從來沒輸過。"
     },
     {
       "id": 177,
-      "content": "Those on the front lines had no choice but to trust in the confidence exuding from the way Rodion's coattails billowed behind her steps."
+      "content": "站在前線的人們，總是只能信賴羅狄翁的步伐。"
     },
     {
       "id": 178,
@@ -1000,120 +1000,120 @@
     },
     {
       "id": 179,
-      "content": "In battle, knowledge bears a weight no fighter can afford to ignore."
+      "content": "在戰鬥中，對對手的了解占有極大的比重。"
     },
     {
       "id": 180,
-      "content": "What kind of opening is the opponent prone to target? Which foot do they withdraw first when dodging a blow?"
+      "content": "主要瞄準的要害在哪裡，閃避攻擊時先往後撤的是哪一隻腳。"
     },
     {
       "id": 181,
-      "content": "What options do they reach for when backed into a corner? Which sword stance comes out when they have to measure each breath in a prolonged duel?"
+      "content": "被逼入絕境時會做出什麼選擇，交手拉長時會使用什麼樣的劍技。"
     },
     {
       "id": 182,
-      "content": "Know how the opponent aims the edge of their blade, and the duel will lean into one's favor."
+      "content": "只要能得知對方持劍的方式，就能在一對一的決鬥中占得上風。"
     },
     {
       "id": 183,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Ah. Her bad habits rubbed off on you. I suppose you really are cut from her cloth."
+      "content": "連這種地方都很像，壞習慣全都一模一樣呢。"
     },
     {
       "id": 184,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "What's with that stupid look, dumbass? Thought you'd have a shot because you're relying on a swordfighting style I didn't teach ya, hmm?"
+      "content": "幹嘛那樣傻傻地盯著看。以為不是跟我學的就沒事了？"
     },
     {
       "id": 185,
-      "content": "Hoping to keep Rodion from predicting her movements, Yoshihide tried sheathing her sword to reassume another stance..."
+      "content": "為了跳脫那份預想、那份預測，良秀收刀納鞘……"
     },
     {
       "id": 186,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "I'm the one who taught your mommy dear her swordfighting style, ya know."
+      "content": "教妳媽劍術的人也是我。"
     },
     {
       "id": 187,
-      "content": "... only for Rodion's rapier to intercept her and cut the attempt short."
+      "content": "那一招也被早一步刺出的羅狄翁的刺劍給擋了下來。"
     },
     {
       "id": 188,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Tsk. I just can't with greenhorns who haven't had a taste of the War..."
+      "content": "哈。所以說連戰爭都沒經歷過的傢伙就是……"
     },
     {
       "id": 189,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Put what you learned to use! Don't just blindly swing that sword. Do it right!"
+      "content": "學到的東西就要好好運用啊。別亂用，要用得好。"
     },
     {
       "id": 190,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Shut up. I don't want any advices from you."
+      "content": "閉嘴……我才不想聽妳這傢伙說那種建議。"
     },
     {
       "id": 191,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "You can't close the distance, and I'm not some thick-skulled idiot like Outis, who prefers eating hits with those augmentation tattoos of hers."
+      "content": "妳又沒辦法靠近……我也不像奧提斯那混蛋一樣，硬得沒腦子……"
     },
     {
       "id": 192,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "What's your damn plan with that long-ass sword draw, hmm? Showin' off? \"Look at me, I can even cut through space!\" Is that it?"
+      "content": "妳那長得要命的預備動作是打算幹嘛？想炫耀一下「我會斬空間喔～」是不是？"
     },
     {
       "id": 193,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "You're hardly in a position to play calm, are you?"
+      "content": "……妳現在不是能這樣游刃有餘的處境吧？"
     },
     {
       "id": 194,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "I know that Eye of yours is close to overheating."
+      "content": "妳……那隻眼睛應該撐不了多久了吧。"
     },
     {
       "id": 195,
-      "content": "The primer strikes, and the Acceleration Round fires."
+      "content": "撞針一擊，加速彈隨之擊發。"
     },
     {
       "id": 196,
-      "content": "It's the opening strike that won Rodion victory in countless duels."
+      "content": "在無數決鬥中為羅狄翁帶來勝利的初擊。"
     },
     {
       "id": 197,
-      "content": "Her rapier shoots forward in a blink, piercing through the erratic movement and straight into the heart of the Lord of Flies."
+      "content": "刺劍轉瞬間朝著不規則移動的蒼蠅王心臟刺去。"
     },
     {
       "id": 198,
-      "content": "A fighter of mediocre skill would have died then and there, unable to defend against the thrust..."
+      "content": "實力半吊子的人都擋不住那一擊而喪命……"
     },
     {
       "id": 199,
-      "content": "... but the same could not be said for the entity she's facing."
+      "content": "卻絲毫碰不到蒼蠅王。"
     },
     {
       "id": 200,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "For fuck's sake... Your wings are burned off. Can't ya at least act like you're wobbling around, asshole?"
+      "content": "他媽的，翅膀都被燒了，好歹也該裝一下虛弱吧？"
     },
     {
       "id": 201,
-      "teller": "The Lord of Flies",
+      "teller": "蒼蠅王",
       "title": "G公司",
       "content": "……"
     },
@@ -1121,13 +1121,13 @@
       "id": 202,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Tsk. I'd have to move at least twice as fast before this rapier can so much as graze that bastard..."
+      "content": "嘖，至少得比現在快上兩倍，刺劍才有可能碰得到……"
     },
     {
       "id": 203,
       "teller": "蒼蠅王",
       "title": "G公司",
-      "content": "You talk too much."
+      "content": "話真多。"
     },
     {
       "id": 204,
@@ -1137,89 +1137,89 @@
     },
     {
       "id": 205,
-      "content": "In that instant, her precognition twists and bends."
+      "content": "預知在一瞬間翻轉。"
     },
     {
       "id": 206,
-      "content": "The prediction she had seen mere seconds ago is overwritten by something entirely different."
+      "content": "與數秒前所見截然不同的預測。"
     },
     {
       "id": 207,
-      "content": "The Eye darts frantically, from one direction to the other."
+      "content": "羅狄翁的眼睛飛快地轉動。"
     },
     {
       "id": 208,
-      "content": "The direction from which the wind blows, the density of the clouding dust, the faint fluttering of her sleeves..."
+      "content": "風的方向、塵埃的密度、衣領的顫動。"
     },
     {
       "id": 209,
-      "content": "The Eye braids every last clue together and derives a single possible outcome from it."
+      "content": "預知眼將所有線索交織起來，推導出一個結果。"
     },
     {
       "id": 210,
-      "content": "It's a computation that has never once betrayed Rodion's expectations."
+      "content": "而那個結果……至今從未辜負過羅狄翁的期待。"
     },
     {
       "id": 211,
       "teller": "蒼蠅王",
       "title": "G公司",
-      "content": "... It dodged."
+      "content": "……反應過來了嗎。"
     },
     {
       "id": 212,
-      "content": "The instant Rodion registered the attack, she snapped her head aside. A single black line sliced past her face."
+      "content": "察覺的同時，羅狄翁猛然偏過頭，一道黑線從她身旁擦過。"
     },
     {
       "id": 213,
-      "content": "Cold brushed across her cheek. A few strands of hair were cut off and scattered into the air as Rodion scoffed in disgust."
+      "content": "伴隨著一陣涼意，幾縷髮絲被削落，羅狄翁不禁失笑。"
     },
     {
       "id": 214,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Hah! Disgusting fucking fly."
+      "content": "哈。噁心的蒼蠅混帳。"
     },
     {
       "id": 215,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "So that's what you're firing? Hocking up half-digested corpses? That's some nasty shit right there."
+      "content": "還想說會射出什麼，他媽的……居然吐出自己溶化來吃的屍體？"
     },
     {
       "id": 216,
-      "content": "Rodion's gaze followed the missed shot to where the corrosive fluid had pooled, hissing as it ate into the ground."
+      "content": "在羅狄翁視線所及之處，積著一灘射偏的腐蝕液。"
     },
     {
       "id": 217,
-      "content": "Several corpses lay half-submerged in it, their forms sloughing apart into shapeless pulp."
+      "content": "腐蝕液之中，幾具屍體失去了形體，軟爛不堪。"
     },
     {
       "id": 218,
-      "content": "The smoke rising from the revolting mass smelled like rotting human flesh—a stench too foul to put into words."
+      "content": "從滲入帶著人味的煙霧的屍體上，飄散出難以言喻的可怕惡臭。"
     },
     {
       "id": 219,
-      "content": "A fist came driving straight toward her. Rodion caught its force on the tip of her blade and diverted it aside."
+      "content": "從正面揮來的拳頭，以劍尖卸開。"
     },
     {
       "id": 220,
-      "content": "She read each erratic flurry of attacks motion by motion, driving her rapier into the openings."
+      "content": "一一預測不規則的動作，將刺劍刺入……"
     },
     {
       "id": 221,
-      "content": "Whenever she realizes the monster has seen through her path, she changes the arc of her attack with the recoil of her bullets."
+      "content": "當自己的路線被看穿時，就藉子彈的後座力加以變化。"
     },
     {
       "id": 222,
-      "content": "The building recoil is all it takes. With each clash, the Palermitan Style accelerates."
+      "content": "光是如此，巴勒莫就逐漸加速。"
     },
     {
       "id": 223,
-      "content": "And eventually..."
+      "content": "結果……"
     },
     {
       "id": 224,
-      "content": "Rodion's footwork, which had been trailing behind one pace at a time, began to catch and lock into the rhythm of the Lord of Flies's assault."
+      "content": "終於，原本總是慢一步的羅狄翁的步伐，漸漸開始與蒼蠅王的攻擊咬合。"
     },
     {
       "id": 225,
@@ -1229,175 +1229,175 @@
     },
     {
       "id": 226,
-      "content": "In one swift turn, the Lord of Flies sweeps around to Rodion's back."
+      "content": "蒼蠅王一口氣迴旋到羅狄翁的背後。"
     },
     {
       "id": 227,
-      "content": "An attack from the dead angle, aimed to break through her advantage."
+      "content": "為打破局面而從死角發動的攻擊。"
     },
     {
       "id": 228,
-      "content": "However..."
+      "content": "然而……"
     },
     {
       "id": 229,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Gotcha right where I want you, prey."
+      "content": "獵物剛好上鉤了呢？"
     },
     {
       "id": 230,
-      "content": "The instant a chilling metallic click rang out, doubt flickers in the entity's eyes."
+      "content": "冰冷的金屬聲響起的瞬間，蒼蠅王的眼中充滿了疑惑。"
     },
     {
       "id": 231,
-      "content": "The Lord of Flies didn't predict wrong."
+      "content": "蒼蠅王的判斷並沒有錯。"
     },
     {
       "id": 232,
-      "content": "It was simply that, for one brief moment, Rodion's Eye had seen farther ahead. The computation predicted the future outcome more perfectly than her opponent's."
+      "content": "只不過在那一瞬間，羅狄翁的眼睛完美預測了更遠的未來。"
     },
     {
       "id": 233,
-      "content": "Rodion fires a lone bullet that had been loaded in place of an Acceleration Round—a fragmenting armor-piercer ammunition."
+      "content": "取代加速彈裝填其中的一發子彈。"
     },
     {
       "id": 234,
-      "content": "The bullet tore forward with a deafening shot. For the first time since the duel began, the Lord of Flies lost its balance and crashed hard into the ground."
+      "content": "伴隨著破片穿甲彈呼嘯而至的轟鳴，蒼蠅王的身軀在決鬥開始後首次重重摔在地上。"
     },
     {
       "id": 235,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "What's wrong, bug? That one got under your shell?"
+      "content": "怎樣？這發有點痛嗎？"
     },
     {
       "id": 236,
       "teller": "蒼蠅王",
       "title": "G公司",
-      "content": "A mere underling of the Thumb... You dare?"
+      "content": "區區拇指的小嘍囉，竟敢……"
     },
     {
       "id": 237,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Bad news for ya. This one's gonna hurt just a little more."
+      "content": "可是怎麼辦呢。接下來會更痛喔。"
     },
     {
       "id": 238,
-      "content": "Jagged metal shrapnel flew in every direction, ripping through everything nearby."
+      "content": "銳利的碎片四散飛濺，將周圍砍得稀爛。"
     },
     {
       "id": 239,
-      "content": "<i>My win.</i>"
+      "content": "完美的勝機。"
     },
     {
       "id": 240,
-      "content": "Convinced of her victory, Rodion moved in at once to collect the insect's head..."
+      "content": "如此認定的羅狄翁立刻上前，準備砍下它的頭……"
     },
     {
       "id": 241,
-      "content": "But in that instant, one of the Lord of Flies's arms ballooned up right in front of her face."
+      "content": "就在那一瞬間，蒼蠅王的一隻手臂在羅狄翁的鼻尖前膨脹起來。"
     },
     {
       "id": 242,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Oh, shit...!"
+      "content": "搞什麼鬼……！"
     },
     {
       "id": 243,
       "teller": "蒼蠅王",
       "title": "G公司",
-      "content": "... Your reaction has slowed."
+      "content": "……反應變慢了啊。"
     },
     {
       "id": 244,
-      "content": "The more variables there were to predict, and the harder those variables became to read, the faster the Eye of Precognition would overheat."
+      "content": "需要預測的事物越多、預測越困難，預知眼的過熱也會越快。"
     },
     {
       "id": 245,
-      "content": "Rodion had already survived many close calls in this duel by drawing answers from its foresight..."
+      "content": "在這場戰鬥中，羅狄翁已經透過無數次預知突破了危機……"
     },
     {
       "id": 246,
-      "content": "But when the overheated Eye failed her for just a heartbeat, corrosive fluid exploded from the Lord of Flies and ate through her leg."
+      "content": "但就在預知因過熱而中斷的空檔，蒼蠅王身上迸出的腐蝕液熔化了羅狄翁的腿。"
     },
     {
       "id": 247,
-      "content": "The acid of the Lord of Flies is no less lethal than the deadliest venoms out there."
+      "content": "蒼蠅王的腐蝕液就如同劇毒一般。"
     },
     {
       "id": 248,
-      "content": "The vicious wound it leaves is the kind no common treatment could mend. The kind that no budget-priced Singularity could patch up."
+      "content": "會留下不只一般的治療藥，就連價格不上不下的奇點都治不好的嚴重傷口。"
     },
     {
       "id": 249,
-      "content": "Still, not every useful soldier chooses the very center of the battlefield as their stage."
+      "content": "然而，有能之人並不一定只在戰場正中央大顯身手。"
     },
     {
       "id": 250,
-      "content": "Even this seemed to have been a development well within Rodion's prediction..."
+      "content": "彷彿早已預料到這一切狀況……"
     },
     {
       "id": 251,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Nngh... Shit. This hurts like hell."
+      "content": "唔呃呃……他媽的痛死了……"
     },
     {
       "id": 252,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "But ya know..."
+      "content": "不過……"
     },
     {
       "id": 253,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "The thing is, I'm actually pretty fucking important. Got a big name and all."
+      "content": "不過我啊……算是個挺重要的人物……"
     },
     {
       "id": 254,
-      "content": "... as she fished out a single special bullet that a certain useful someone from Command had given her prior to the duel."
+      "content": "指揮部的某人交給羅狄翁的一發子彈，扭轉了局勢。"
     },
     {
       "id": 255,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "People of my caliber... we carry one of these... Nngh... just in case."
+      "content": "這種東西……總會隨身……帶個一發嘛？"
     },
     {
       "id": 256,
-      "content": "A sliver of green light flashes across the cylinder, and the bullet burrows straight into Rodion's heart."
+      "content": "轉輪上閃過一道綠光，一發子彈鑽進了羅狄翁的心臟。"
     },
     {
       "id": 257,
-      "content": "From the bullet flows tears shed by a being in another being's stead. And now it courses through Rodion's veins."
+      "content": "從子彈之間流出的、曾代替某人哭泣的淚水，沿著羅狄翁的血管流淌。"
     },
     {
       "id": 258,
-      "content": "Helapoiesis Bullet."
+      "content": "海拉創生彈。"
     },
     {
       "id": 259,
-      "content": "K Corp.'s Singularity, condensed to its most potent form, mends her melted leg in the blink of an eye."
+      "content": "K公司奇點的精髓，轉眼間就修復了熔化的腿。"
     },
     {
       "id": 260,
-      "content": "And it doesn't stop there. The tears also restore the overheated Eye according to the \"original state\" Rodion pictures in her mind."
+      "content": "過熱的預知眼也依照羅狄翁想像中的「原形」，轉眼間恢復了穩定。"
     },
     {
       "id": 261,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Whew. Thought that was the end of me."
+      "content": "呼……還以為要翹辮子了。"
     },
     {
       "id": 262,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Surprised? Didn't expect that, did ya? I'm good as new now."
+      "content": "怎樣？看我突然好端端的，嚇到了？"
     },
     {
       "id": 263,
@@ -1409,34 +1409,34 @@
       "id": 264,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Really gets under your skin, huh. Join the winning side if you're jealous."
+      "content": "不爽的話，你也投靠到這邊來啊。"
     },
     {
       "id": 265,
-      "content": "Although she threw the line out like a victory cry, Rodion wasn't exactly in a position to brag."
+      "content": "雖然她像是炫耀般地喊著，但羅狄翁的處境並不怎麼好。"
     },
     {
       "id": 266,
-      "content": "She had already used every decent high-grade round she had, and without the Soldatos to provide her extra supplies, there was no other crutch she could rely on."
+      "content": "在沒有士兵補給的情況下，像樣的高級彈已經全部用光了。"
     },
     {
       "id": 267,
-      "content": "Her body had been restored to perfect condition, but her chances had not. Using the Helapoiesis Bullet didn't mean she could suddenly come up with a breakthrough plan to defeat her opponent."
+      "content": "就算身體恢復到萬全狀態，也並不代表她想出了戰勝蒼蠅王的妥善對策。"
     },
     {
       "id": 268,
-      "content": "Despite the odds being against her, Rodion's fighting spirit did not so much as waver. She held up her sword again and brandished it in the same spectacular flourish."
+      "content": "即便如此，羅狄翁仍未失去戰意，華麗地揮舞著劍。"
     },
     {
       "id": 269,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Fucking dogshit."
+      "content": "……真他媽狗屎。"
     },
     {
       "id": 270,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
       "content": "……"
     },
@@ -1444,87 +1444,87 @@
       "id": 271,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "Keep swinging that thing, and you're gonna become a retard, ya know?"
+      "content": "妳啊，再這樣揮下去就要變成廢人了。知道嗎？"
     },
     {
       "id": 272,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "There won't be a damn thing left to remember even if ya win!"
+      "content": "他媽的，就算妳贏了也什麼都不會剩下啊！"
     },
     {
       "id": 273,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "I know... That's why... I'm severing it all."
+      "content": "我……知道。所以……才要斬。"
     },
     {
       "id": 274,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Nothing... Nothing must be allowed to remain here."
+      "content": "這裡……什麼都不該留下。"
     },
     {
       "id": 275,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "Not memory, not time, not even the heart to hold them."
+      "content": "無論是記憶、時間，還是心，都不能留下。"
     },
     {
       "id": 276,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
-      "content": "<i>That</i> is the ending you, who have made me into who I am, and I, will meet."
+      "content": "這就是把我養大的你們與我所面臨的結局。"
     },
     {
       "id": 277,
-      "content": "An honest, one-on-one duel."
+      "content": "一對一的決鬥。"
     },
     {
       "id": 278,
-      "content": "The Palermitan Style is known to accelerate the longer a duel lasts."
+      "content": "隨著時間拖長而逐漸加速的動作。"
     },
     {
       "id": 279,
-      "content": "A duel of this kind couldn't be more ideal for a practitioner of that style, but..."
+      "content": "對施展巴勒莫的人來說，這理應是最理想的狀況……"
     },
     {
       "id": 280,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "This goddamn bladetrail..."
+      "content": "該死的劍痕……"
     },
     {
       "id": 281,
-      "content": "The chaotic trajectories of the sword and the myriad bladetrails carved into the very air put the brake on Rodion's acceleration."
+      "content": "雜亂的軌跡，與密不透風地刻進空間的劍痕，煞住了加速。"
     },
     {
       "id": 282,
-      "content": "The more her movements accelerated, the more the severed space around her closed in, leaving her less and less room to stand."
+      "content": "越是加速，羅狄翁能立足的地方就越來越窄。"
     },
     {
       "id": 283,
-      "content": "Despite the odds being against her, Rodion's fighting spirit did not so much as waver. She held up her sword again and brandished it in the same spectacular flourish."
+      "content": "即便如此，羅狄翁仍未失去戰意，華麗地揮舞著劍。"
     },
     {
       "id": 284,
-      "content": "<i>As long as the acceleration could bring me to the future I foresaw...</i>"
+      "content": "只要最終能在那加速的盡頭，抵達用眼睛看見的未來……"
     },
     {
       "id": 285,
-      "content": "Rodion's mind began to race."
+      "content": "羅狄翁心想。"
     },
     {
       "id": 286,
-      "content": "She had no idea what the Lord of Flies had learned while fighting the employees of the other Wings and Fixer Associations..."
+      "content": "雖然不知道蒼蠅王在與翼或協會的職員交手時學到了什麼……"
     },
     {
       "id": 287,
-      "content": "But it was easy to guess that the vermin was blindsided by the fact that a bullet to the heart had actually healed her instead of killing her immediately."
+      "content": "但至少看得出來，它沒少被那些心臟被貫穿後仍能再生的傢伙暗算過。"
     },
     {
       "id": 288,
@@ -1536,19 +1536,19 @@
       "id": 289,
       "teller": "蒼蠅王",
       "title": "G公司",
-      "content": "... You make too much noise. Can you not fight quietly?"
+      "content": "……真吵。就不能安靜點戰鬥嗎？"
     },
     {
       "id": 290,
-      "content": "Rodion did not bother putting that thought into words."
+      "content": "羅狄翁並沒有特意把這件事說出口。"
     },
     {
       "id": 291,
-      "content": "This opponent's killing blows would always come for the head. The brain."
+      "content": "對手的致命一擊，必定會瞄準頭部、瞄準大腦。"
     },
     {
       "id": 292,
-      "content": "Putting that trivial fact into account on her own was enough to slow down the overload on the Eye of Precognition."
+      "content": "光憑這一個微小的事實，羅狄翁就能延緩預知眼的過載。"
     },
     {
       "id": 293,
@@ -1556,27 +1556,27 @@
     },
     {
       "id": 294,
-      "content": "With every clash, the sounds of sword and gunshot began to lag farther behind the motion itself."
+      "content": "越是交鋒碰撞，劍的聲音、子彈的聲音就越是逐漸落後。"
     },
     {
       "id": 295,
-      "content": "The future her Eye had shown her drew closer and closer."
+      "content": "抵達預知眼所見未來的時間逐漸縮短。"
     },
     {
       "id": 296,
-      "content": "The sword movements of the Palermitan Style began to gain speed. The rapier and the blade, and Rodion herself, too."
+      "content": "朝著即將到來的剎那，巴勒莫、劍，以及羅狄翁自身都在加速。"
     },
     {
       "id": 297,
-      "content": "At the end of the next instant..."
+      "content": "而在那盡頭，"
     },
     {
       "id": 298,
-      "content": "The duel was wrapped up once and for all,"
+      "content": "彷彿為漫長的戰鬥畫下句點。"
     },
     {
       "id": 299,
-      "content": "with a singular point drilling into the neck of the Lord of Flies."
+      "content": "一個點朝著蒼蠅王的脖子刺了進去。"
     },
     {
       "id": 300,
@@ -1587,33 +1587,33 @@
     {
       "id": 301,
       "model": "료슈",
-      "teller": "Yoshihide",
+      "teller": "良秀",
       "title": "蜘蛛巢",
       "content": "啊……"
     },
     {
       "id": 302,
-      "content": "A singular point drilling through scores of afterimages."
+      "content": "穿過無數殘像刺入的一個點。"
     },
     {
       "id": 303,
-      "content": "The lightning-fast attack can neither be severed nor avoided, nor parried."
+      "content": "那如閃光般的一擊，既斬不斷，也躲不開，更擋不住。"
     },
     {
       "id": 304,
-      "content": "Rodion believed in the force that directed the arc of Yoshihide's blade—the force of hatred and hostility toward her and the other Nursefathers."
+      "content": "羅狄翁相信良秀對自己、對父輩們的憎恨與敵意。"
     },
     {
       "id": 305,
-      "content": "The decisive blow would be delivered not by the Dihui Star's Blade, but instead by a weapon that would guarantee the utter annihilation of her enemy:"
+      "content": "最後一擊必定不會用地慧星刀，而是用能確實斬斷其存在的刀。"
     },
     {
       "id": 306,
-      "content": "The Tiansha Star's Blade."
+      "content": "深信她必將以天殺星刀瞄準自己。"
     },
     {
       "id": 307,
-      "content": "The precognition born of that belief pierced the waves of time rushing over Yoshihide and corrected the reversed causality once more."
+      "content": "由那份信念所成立的預測，穿透了湧向良秀的時間，將逆轉的因果再次導正。"
     },
     {
       "id": 308,
@@ -1623,19 +1623,19 @@
     },
     {
       "id": 309,
-      "content": "In that split second before death, a flash of insight finds Rodion."
+      "content": "在死亡將至的剎那降臨的靈光一閃。"
     },
     {
       "id": 310,
-      "content": "Her lips curled with a triumphant smile. Victory was within reach."
+      "content": "羅狄翁確信了勝利，揚起嘴角。"
     },
     {
       "id": 311,
-      "content": "But in that same instant, there was another in the Corridor..."
+      "content": "然而就在那剎那，有一個人正等待著由某種信念所形成的破綻。"
     },
     {
       "id": 312,
-      "content": "... who had been waiting for the opening born from that very same precognition."
+      "content": "那人就在這條走廊上。"
     },
     {
       "id": 313,
@@ -1645,39 +1645,39 @@
     },
     {
       "id": 314,
-      "content": "Only a fellow practitioner of the Palermitan Style could have spotted that opportunity."
+      "content": "正因為只磨練巴勒莫才看得見的、唯一的破綻。"
     },
     {
       "id": 315,
-      "content": "It was an attack from a blind spot that could neither be predicted nor blocked unless the Eye had room to compute the variable of another enemy."
+      "content": "只要預知眼不是完好無缺，就無法預測、也無法防禦的巴勒莫的死角。"
     },
     {
       "id": 316,
-      "content": "The arc of the sword, perfected over thousands of repetitions, pierced through Rodion's heart."
+      "content": "一把劃出完美軌跡的劍，貫穿了羅狄翁的心臟。"
     },
     {
       "id": 317,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "You..."
+      "content": "你……"
     },
     {
       "id": 318,
-      "content": "The heartbeat of the Thumb Nursefather began to still into a faint echo."
+      "content": "漸漸停止的心跳聲。"
     },
     {
       "id": 319,
-      "content": "And only then, the eyes of the boy,"
+      "content": "直到聽見那微弱的回響，"
     },
     {
       "id": 320,
-      "content": "whose body still bore the bruises of his master's beatings..."
+      "content": "渾身瘀青的少年眼中，才第一次……"
     },
     {
       "id": 321,
       "model": "로쟈",
       "title": "拇指 父輩",
-      "content": "You... you little...! Heathcliff... You... You dare betray me, after everything...?"
+      "content": "你……！希斯克利夫，你……你竟敢對我……！"
     },
     {
       "id": 322,
@@ -1687,7 +1687,7 @@
     },
     {
       "id": 323,
-      "content": "... finally stirred with a flicker of living light."
+      "content": "泛起了微小的光芒。"
     }
   ]
 }

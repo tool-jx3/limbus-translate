@@ -280,7 +280,7 @@
         {
           "level": 1,
           "name": "處分",
-          "desc": "[CantChangeTarget]\n使用本技能前自身無法陷入混亂\n<color=#ff6000><mark color=#ff000040><b><u>自身每帶有1層 [FutureEyeOn]，則使本技能的基礎威力+1，並且造成的傷害+10%</color></mark></b></u>\n[WhenUse] 若目標的現存體力值低於上限的50%，則使本技能對目標造成的傷害+100%\n[WhenUse] 若自身的理智值不低於0點，生成1望\n- 基礎威力+4\n[WhenUse] 使自身獲得3回 [Breath]\n[WinDuel] 使自身獲得5級 [Breath] 強度\n[DefeatDuel] 使本技能造成的最終傷害-50%；並且無法暴擊\n本技能造成的傷害無法使目標陷入混亂\n[EnemyKill] 下回合對1名隨機罪人施加1層 [TeachersPrey]\n[EndSkill] [FullReload] (每回合最多1次)\n[EndSkill] 若本技能生成了望，則使自身失去10點理智值",
+          "desc": "[CantChangeTarget]\n使用本技能前自身無法陷入混亂\n<color=#ff6000><mark color=#ff000040><b><u>自身每帶有1層 [FutureEyeOn]，則使本技能的基礎威力+1，並且造成的傷害+10%</color></mark></b></u>\n[WhenUse] 若目標的現存體力值不高於上限的50%，則使本技能對目標造成的傷害+100%\n[WhenUse] 若自身的理智值不低於0點，則生成1望\n- 基礎威力+4\n[WhenUse] 使自身獲得3回 [Breath]\n[WinDuel] 使自身獲得5級 [Breath] 強度\n[DefeatDuel] 使本技能造成的最終傷害-50%，並且無法暴擊。\n本技能造成的傷害無法使目標陷入混亂\n[EnemyKill] 下回合對1名隨機罪人施加1層 [TeachersPrey]\n[EndSkill] [FullReload] (每回合最多1次)\n[EndSkill] 若本技能生成了望，則使自身失去10點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -629,13 +629,13 @@
       "levelList": [
         {
           "level": 1,
-          "name": "閉幕 - 裝置藝術1號「您們四處散落的骨與肉將化作客席」",
+          "name": "閉幕 - 裝置藝術1號「你們四處散落的骨與肉將化作客席」",
           "desc": "[CantDuel]\n優先指定等級最高的敵方單位\n本技能不會觸發守備技能\n[WhenUse] 目標每帶有8級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+2)\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若自身的現存體力不高於上限值的60%，則改為造成理智值傷害"
+                  "desc": "[OnSucceedAttack] 若自身的現存體力低於上限值的60%，則改為造成理智值傷害"
                 },
                 {
                   "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>強制令目標陷入混亂，並且在下回合將目標變為 [LivingSpecimenTheRings]</u></b></mark></color>"
@@ -1236,7 +1236,7 @@
         {
           "level": 1,
           "name": "燃起來了嗎？！",
-          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能的硬幣命中時，額外造成5點打擊傷害\n[BeforeAttack] 若自身的現存體力低於上限的50%，則使本技能造成的傷害+40%",
+          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能的硬幣命中時，額外造成10點打擊傷害\n[BeforeAttack] 若自身的現存體力不高於上限的50%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -1287,7 +1287,7 @@
         {
           "level": 1,
           "name": "犯規",
-          "desc": "受到攻擊時，<color=#ff6000><mark=#ff000040><b><u>自身每帶有1層 [ReinforcedTattooSpider] 將重複使用本技能1次</u></b></mark></color>\n[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則本技能的硬幣命中時，使目標增加1回 [Laceration] \n[BeforeAttack] 若自身的現存體力低於上限的50%，則使本技能造成的傷害+40%",
+          "desc": "受到攻擊時，<color=#ff6000><mark=#ff000040><b><u>自身每帶有1層 [ReinforcedTattooSpider] 將重複使用本技能1次</u></b></mark></color>(最多1次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則本技能的硬幣命中時，使目標增加1回 [Laceration]\n[BeforeAttack] 若自身的現存體力不高於上限的50%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -1520,7 +1520,7 @@
         {
           "level": 1,
           "name": "紺紫痛擊！",
-          "desc": "當自身帶有 [HeatingWireOnSpider] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n[WhenUse] 自身帶有 [ReinforcedTattooSpiderDaughter]，則使本技能的硬幣命中時，使目標增加1回 [Laceration]\n[WhenUse] 自身現存體力值低於40%時，使本技能造成的傷害+60%\n[WhenUse] 自身帶有的 [GotACompliment] 層數不低於5層時，本技能的硬幣命中時，將有50%的機率對目標施加1層 [Paralysis]\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[EndSkill] 消耗自身帶有的 [ResentmentSpiderDaughter] 層數並且使自身獲得1層 [GotACompliment]",
+          "desc": "當自身帶有 [HeatingWireOnSpider] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughter]，則本技能的硬幣命中時，使目標增加1回 [Laceration]\n[WhenUse] 若自身的現存體力不高於40%，則使本技能造成的傷害+60%\n[WhenUse] 若自身帶有的 [GotACompliment] 層數不低於5層，則本技能的硬幣命中時，有50%的機率對目標施加1層 [Paralysis]\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[EndSkill] 消耗自身所有的 [ResentmentSpiderDaughter]，並使自身獲得1層 [GotACompliment]",
           "coinlist": [
             {
               "coindescs": [
@@ -1585,7 +1585,7 @@
         {
           "level": 1,
           "name": "可不會這樣就算了",
-          "desc": "當自身帶有 [HeatingWireOnSpider] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n受到攻擊時，<color=#ff6000><mark=#ff000040><b><u>自身每帶有1層 [ReinforcedTattooSpiderDaughter] 將重複使用本技能1次 </u></b></mark></color>(最多2次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughter]，則本技能的硬幣命中時，使目標增加1級 [Laceration] 強度\n[WhenUse] 若自身的現存體力低於上限的40%，則使本技能造成的傷害+40%",
+          "desc": "當自身帶有 [HeatingWireOnSpider] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n受到攻擊時，<color=#ff6000><mark=#ff000040><b><u>自身每帶有1層 [ReinforcedTattooSpiderDaughter] 將重複使用本技能1次</u></b></mark></color>(最多2次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughter]，則本技能的硬幣命中時，使目標增加1級 [Laceration] 強度\n[WhenUse] 若自身的現存體力不高於上限的40%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -1727,7 +1727,7 @@
         {
           "level": 1,
           "name": "差不多是融解殞亡的時候了",
-          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能的硬幣命中時，額外造成10點斬擊傷害\n[BeforeAttack] 若自身的現存體力低於上限的50%，則使本技能造成的傷害+40%",
+          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能的硬幣命中時，額外造成10點斬擊傷害\n[BeforeAttack] 若自身的現存體力不高於上限的50%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -1778,7 +1778,7 @@
         {
           "level": 1,
           "name": "犯規！",
-          "desc": "受到攻擊時，<color=#ff6000><mark=#ff000040><b><u>自身每帶有1層 [ReinforcedTattooSpider] 將重複使用本技能1次</u></b></mark></color>\n[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則本技能的硬幣命中時，使目標增加1回 [Laceration] \n[BeforeAttack] 若自身的現存體力低於上限的50%，則使本技能造成的傷害+40%",
+          "desc": "受到攻擊時，<color=#ff6000><mark=#ff000040><b><u>自身每帶有1層 [ReinforcedTattooSpider] 將重複使用本技能1次</u></b></mark></color>(最多1次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則本技能的硬幣命中時，使目標增加1回 [Laceration]\n[BeforeAttack] 若自身的現存體力不高於上限的50%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -1891,7 +1891,7 @@
         {
           "level": 1,
           "name": "刀殺 [雷瓦汀]",
-          "desc": "[BeforeUse] 使自身失去10點理智值\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身現存體力值低於上限的50%，則本技能造成的傷害+40%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
+          "desc": "[BeforeUse] 使自身失去10點理智值\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身現存體力值不高於上限的50%，則本技能造成的傷害+40%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -1953,7 +1953,7 @@
         {
           "level": 1,
           "name": "……即刻處刑[雷瓦汀]",
-          "desc": "[BeforeUse] 使自身失去10點理智值\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身現存體力值低於上限的50%，則本技能造成的傷害+60%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
+          "desc": "[BeforeUse] 使自身失去10點理智值\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身現存體力值不高於上限的50%，則本技能造成的傷害+60%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -2027,7 +2027,7 @@
         {
           "level": 1,
           "name": "犯規！！",
-          "desc": "受到攻擊時，自身每帶有1層 [ReinforcedTattooSpider] 將重複使用本技能1次(最多1次)\n[BeforeUse] 使自身失去10點理智值\n[BeforeAttack] 若自身現存體力值低於上限的50%，則本技能造成的傷害+40%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度 ",
+          "desc": "受到攻擊時，自身每帶有1層 [ReinforcedTattooSpider] 將重複使用本技能1次(最多1次)\n[BeforeUse] 使自身失去10點理智值\n[BeforeAttack] 若自身現存體力值不高於上限的50%，則本技能造成的傷害+40%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -2549,13 +2549,13 @@
       "levelList": [
         {
           "level": 1,
-          "name": "閉幕 - 裝置藝術1號「您們四處散落的骨與肉將化作客席」",
+          "name": "閉幕 - 裝置藝術1號「你們四處散落的骨與肉將化作客席」",
           "desc": "[CantDuel]\n優先指定等級最高的敵人\n本技能不會觸發守備技能\n[WhenUse]  目標帶有的 [Laceration] 強度每有8級，則使本技能的硬幣威力+1(最多+2)",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若自身的現存體力不高於上限值的60%，則改為造成理智值傷害"
+                  "desc": "[OnSucceedAttack] 若自身的現存體力低於上限值的60%，則改為造成理智值傷害"
                 },
                 {
                   "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>強制令目標陷入混亂，並且將目標變為 [LivingSpecimenTheRings]</u></b></mark></color>"
@@ -2644,7 +2644,7 @@
                   "desc": "本硬幣暴擊時造成的傷害+100%"
                 },
                 {
-                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>Consume all [PhantomIncision] on target</u></b></mark></color> and deal ([PhantomIncision] consumed)% HP damage against each target hit, respectively"
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>消耗目標所有 [PhantomIncision]</u></b></mark></color>，並對各個被命中的目標造成其體力上限(消耗的層數)%的體力傷害"
                 }
               ]
             }
@@ -3897,7 +3897,7 @@
         {
           "level": 1,
           "name": "女兒，妳還記得嗎？這肯定是只有妳才能接得住的招吧",
-          "desc": "<color=#ff6000><mark=#ff000040><b><u>Only Ryōshū can Clash against this Skill</u></b></mark></color>\n- Ryōshū can Clash with this Skill regardless of Speed\nOn Unopposed Attack, Coin Power +2 and deal +50% damage\n\n[DefeatDuel]\n- Coin Power -2 and deal -50% damage\n- Damage dealt by this Skill cannot Stagger the target; On Hit, does not activate [Sinking] on target\n\n[EndBattle] <color=#ff6000><mark=#ff000040><b><u>If this unit lost the Clash, gain 1 [BurningWoundRien]</u></b></mark></color>\n- If all 3 Skills with [BlackNightmare]-related unique effects lost the Clash this turn, gain 2 [BurningWoundRien] instead",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>良秀以外的目標無法與本技能拚點\n- 良秀可無視速度值與本技能拚點</u></b></mark></color>\n進行單方面攻擊時，使本技能的硬幣威力+2、造成的傷害+50%\n[DefeatDuel]\n- 使本技能的硬幣威力-2、造成的傷害-50%\n- 本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標帶有的 [Sinking]\n[EndBattle] <color=#ff6000><mark=#ff000040><b><u>若本技能拚點失敗，則使自身獲得1層 [BurningWoundRien]</u></b></mark></color>\n- 若本回合中帶有 [BlackNightmare] 相關特殊效果的3種技能均拚點失敗，則改為獲得2層",
           "coinlist": [
             {
               "coindescs": [

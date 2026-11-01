@@ -2,19 +2,19 @@
   "dataList": [
     {
       "id": 0,
-      "content": "As I gingerly waded through the gloom of the Public Address room, a complicated jungle network of pipe horns gradually came into view."
+      "content": "錯綜糾纏的喇叭垂掛四處的昏暗廣播室。"
     },
     {
       "id": 1,
-      "content": "The room was nothing short of creepy—eerie sounds could be heard from the depths of the stalks of each pipe and clashed together into an unnerving ambiance, and in the corner of the room, there was a small mound of... <i>things</i> that were no longer individually identifiable, with their shadows melding into one another."
+      "content": "黑色喇叭深處流洩出陰森的聲音，房間一角則堆滿了一大堆難以辨認形體的東西。"
     },
     {
       "id": 2,
-      "content": "It wasn't long before I noticed a stark ray of sunshine that somehow managed to squeeze past the thickets to shine upon the room."
+      "content": "在那片空間裡，有一縷鮮明灑落的陽光。"
     },
     {
       "id": 3,
-      "content": "Though it was only a single sliver of a ray, the light was so blinding that I had to squint to look more closely."
+      "content": "不瞇起眼睛就難以直視……如此鮮明。"
     },
     {
       "id": 4,
@@ -25,141 +25,141 @@
     },
     {
       "id": 5,
-      "content": "The figure caught in the sunlight seemed to be this floor's manager."
+      "content": "被陽光照耀著的，似乎是這層樓的樓層經理。"
     },
     {
       "id": 6,
-      "content": "Nestled under his birdcage, he was quietly watching an object that was fluttering..."
+      "content": "他在鳥籠裡，正對著手中毛毯裡某個撲騰著的東西，"
     },
     {
       "id": 7,
-      "content": "... within the bars of his blanket."
+      "content": "靜靜地凝視著。"
     },
     {
       "id": 8,
       "model": "홍루",
       "title": "???",
-      "content": "Regular, precise footsteps... yet there's palpable hunger beneath the rustle of your cloth."
+      "content": "從毫無破綻的腳步聲，和透著飢餓的衣襟摩擦聲聽來。"
     },
     {
       "id": 9,
       "model": "홍루",
       "title": "???",
-      "content": "You must be the one the rumors were whispering about. The one who seeks to create an outfit not bound by affiliation or trends."
+      "content": "您就是傳聞中，那位製作不受所屬與流行拘束之服裝的人吧。"
     },
     {
       "id": 10,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Uhh... I guess that's me?"
+      "content": "呃……好像是吧。"
     },
     {
       "id": 11,
-      "content": "The Public Address Room's heard about me, too? It almost feels as though I've become some kind of supermodel."
+      "content": "傳聞居然傳到這裡來了，感覺就像成了什麼知名模特兒一樣。"
     },
     {
       "id": 12,
       "model": "홍루",
       "title": "???",
-      "content": "So... why have you come to the Public Address Room, where we don't keep even a single strand of thread? I am curious to hear your reasoning."
+      "content": "製作衣服的人，應該不會毫無理由地光臨連一根線頭都沒有的廣播室吧……"
     },
     {
       "id": 13,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Ah, I'm... looking for Miss Alterationist."
+      "content": "啊……我在找修補達人小姐。"
     },
     {
       "id": 14,
-      "content": "I scoured every corner of the third floor in search of the Alterationist, starting with her shop and working my way through the Boutique and the Maison..."
+      "content": "改衣坊自不用說，從精品專櫃到品牌旗艦店，我把整個3樓都仔細找遍了，"
     },
     {
       "id": 15,
-      "content": "... and hadn't found so much as a hint of where she'd gone."
+      "content": "卻哪裡都找不到任何關於修補達人去向的線索。"
     },
     {
       "id": 16,
-      "content": "And the last remaining spot was here, the Public Address Room."
+      "content": "現在剩下的地方，只有這裡——廣播室。"
     },
     {
       "id": 17,
-      "content": "I had to get my fabric mended before it frayed further... It was already in a rough state from having to deal with the Rouges on the first floor."
+      "content": "得在1樓弄壞的布料進一步脫線之前，找人修補才行……"
     },
     {
       "id": 18,
       "model": "홍루",
       "title": "???",
-      "content": "Miss Alterationist will return in about a season or two, when the balance of 3F is reasonably restored."
+      "content": "修補達人小姐大概一兩季之後就會回來了。等3樓的平衡大致恢復之後呢。"
     },
     {
       "id": 19,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Phew, that's a relief... I was just here too early, huh? I feared the worst when I saw that she wasn't in her shop."
+      "content": "呼……原來是我來得太早了啊。看到她不在，我還以為發生了什麼不好的事。"
     },
     {
       "id": 20,
       "model": "홍루",
       "title": "???",
-      "content": "It was a close call, but the red ones didn't manage to take over the Alteration Shop as they did with the Maison."
+      "content": "雖然驚險，但品牌旗艦店落入丹紅的各位手中的情況，並沒有再次發生呢。"
     },
     {
       "id": 21,
-      "content": "The Floor Manager took a step toward me, emerging from the blinding sunlight as the outline of his outfit slowly came into view with more clarity."
+      "content": "樓層經理向前走近一步，原本因刺眼陽光而只看得見輪廓的那身衣服，這才清楚地映入眼簾。"
     },
     {
       "id": 22,
-      "content": "The first thing I recognized was the multilayered style of the Noir fabric blanketing him like a cloak, appearing quite sturdy and classy even at a glance. At the same time, though, there was something stubborn and stifling about it that seemed to come with the territory."
+      "content": "漆黑派的黑色布料層層疊穿，一眼就能看出堅固又高級，但矛盾的是，也同時讓人感受到其特有的固執與沉悶。"
     },
     {
       "id": 23,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Wow... That's some fabric! It's as fine as what the Brand Manager wears for armor!"
+      "content": "哇……這布料跟品牌經理大人的鎧甲一樣好呢！"
     },
     {
       "id": 24,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "... But I think it could've used a little leather in the lining, with softer materials and a more colorful palette in general... That could've given it a less stiff look."
+      "content": "要是在內襯加點皮革，再混搭些柔軟的材質與多樣的顏色，就不會那麼生硬了……"
     },
     {
       "id": 25,
-      "content": "It seemed a shame that picking a side meant ironing out so much of what made each style of attire unique and different."
+      "content": "大家都選定了自己的立場，因而只能扼殺各自的個性，這讓我覺得有點可惜。"
     },
     {
       "id": 26,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Come to think of it, I heard you'd opened the path for the Rouges..."
+      "content": "這麼說來，我記得聽說您曾為丹紅派開過路……"
     },
     {
       "id": 27,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "So how come you're with Le Noir now?"
+      "content": "樓層經理大人怎麼會站到漆黑派那邊了呢？"
     },
     {
       "id": 28,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "The Rouges, who used to have nothing but the worn-out broadcast to cling to, have stopped lending their ears ever since their new Voice arrived."
+      "content": "自從有了新的聲音，丹紅的各位就不再執著於拉長的廣播……"
     },
     {
       "id": 29,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "On the other hand, the Noirs, frustrated by the uncertainties of the Obsidian God, now seek his Voice from me."
+      "content": "漆黑之神的聲音反倒不肯給出明確的答案，前來尋求的人也越來越多了。"
     },
     {
       "id": 30,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "What can I say? I'm inclined to deliver the Voice to those who would listen."
+      "content": "為丹紅的各位播送的廣播，今天就是最後一次了呢。"
     },
     {
       "id": 31,
-      "content": "... Yeah, that adds up. If what I'd heard down on B2F was true, then the Obsidian God has begun to speak less and less frequently to the Noirs, and it's been making them increasingly anxious."
+      "content": "……對了。照我在地下2樓聽到的，漆黑之神的聲音越來越少，讓漆黑派的員工們很不安。"
     },
     {
       "id": 32,
@@ -171,13 +171,13 @@
       "id": 33,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "I don't suppose a broadcast no customer listens to has any meaning."
+      "content": "也就是說，既然沒有顧客在聽，廣播也就沒有意義了呢。"
     },
     {
       "id": 34,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "... Fuhu. Indeed, it is as meaningful as wearing an extraordinarily beautiful outfit without anyone to admire it."
+      "content": "……呼呼。就像無論穿上多好的衣服，沒有人可以展示也就沒有意義一樣呢。"
     },
     {
       "id": 35,
@@ -187,11 +187,11 @@
     },
     {
       "id": 36,
-      "content": "I don't know if it was simply because my eyes had adjusted to the darkness, or because my perspective had changed,"
+      "content": "不知是眼睛適應了黑暗，還是看待事物的眼光改變了……"
     },
     {
       "id": 37,
-      "content": "but I suddenly realized that the mound in the corner of the room was actually..."
+      "content": "我漸漸看得出堆在房間一角的那些東西是什麼模樣了。"
     },
     {
       "id": 38,
@@ -201,11 +201,11 @@
     },
     {
       "id": 39,
-      "content": "A pile of dead tapes, their voices long lost."
+      "content": "一卷卷失去了聲音、就此死去的錄音帶。"
     },
     {
       "id": 40,
-      "content": "Hearing him speak, I felt the sense of dread that arrested me earlier lift from the Public Address Room... and a forlorn sensation fell around the Public Address Room, like I was looking at the remnants of someone's fading world."
+      "content": "原本昏暗陰森的廣播室，如今和一開始不同，感覺像是個有些寂寥、褪了色的空間。"
     },
     {
       "id": 41,
@@ -217,93 +217,93 @@
       "id": 42,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "... If more people had been willing to listen, those tapes might still have their voices."
+      "content": "……要是有很多人願意聆聽，那些錄音帶應該也還在發出聲音吧。"
     },
     {
       "id": 43,
-      "content": "The Floor Manager answered with a smile that looked lonely in a way I couldn't quite place..."
+      "content": "樓層經理帶著一抹說不出的寂寥笑容回答……"
     },
     {
       "id": 44,
-      "content": "And for a little while, we shared a silence that didn't feel so cold."
+      "content": "就這樣，一陣短暫而溫和的寂靜流逝而過。"
     },
     {
       "id": 45,
-      "content": "A little later..."
+      "content": "過了一會兒……"
     },
     {
       "id": 46,
       "teller": "???",
       "title": "???",
-      "content": "Floor Manager, what are you wearing...?"
+      "content": "樓層經理。那身服裝……"
     },
     {
       "id": 47,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "It's been a while."
+      "content": "好久不見了。"
     },
     {
       "id": 48,
-      "content": "Footsteps, led by a voracious hunger, broke through—and a group of Rouges entered the room."
+      "content": "沒過多久，飢餓的腳步聲蜂擁而至，打破了那片寂靜。"
     },
     {
       "id": 49,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "... I've come too late, haven't I?"
+      "content": "……看來我來拜訪得太遲了呢。"
     },
     {
       "id": 50,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "I'm sorry to say, but yes."
+      "content": "……很遺憾，正是如此呢。"
     },
     {
       "id": 51,
-      "content": "Hesitation and something like regret hung in the air between them. Was that how it was with old business partners who'd ended up on opposite sides?"
+      "content": "他們的對話中流露出遲疑與惋惜，是因為彼此已成了分道揚鑣的昔日生意夥伴嗎。"
     },
     {
       "id": 52,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "Though it is only right that we sever you here, for you have become our enemy... I cannot bring myself to disregard the seasons of contributions you have made to bring peace to us Rouges. So, I would like to make a proposal."
+      "content": "按理說，本該將您剪除才是……但即使如今立場不同，我仍記得您曾為丹紅派的安寧付出的辛勞，所以想向您提個建議。"
     },
     {
       "id": 53,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Hm, and what proposal might that be?"
+      "content": "嗯～是什麼樣的提議呢。"
     },
     {
       "id": 54,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "A new Voice is born. Naturally, we would like to deal with the tapes of the old Voice."
+      "content": "既然新的聲音已經降世，我們想回收寄宿著舊聲音的錄音帶。"
     },
     {
       "id": 55,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "Simply hand over the profane tapes of the old Voice, and we need not resort to violence."
+      "content": "只要您交出手上那些不敬的錄音帶，就能避免不必要的爭鬥了吧。"
     },
     {
       "id": 56,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "That's a rather tall order for something you're calling an offer."
+      "content": "以提議來說，您這份訂單還真是相當強人所難呢。"
     },
     {
       "id": 57,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Don't you feel anything? It was once... the song you listened to. The song you followed."
+      "content": "可那曾經……也是各位聆聽並追隨的鳴囀啊。"
     },
     {
       "id": 58,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "... Please think of it as our final order."
+      "content": "就請您當作是最後一筆訂貨吧。"
     },
     {
       "id": 59,
@@ -313,15 +313,15 @@
     },
     {
       "id": 60,
-      "content": "The Floor Manager appeared to be absorbed in deep thought."
+      "content": "樓層經理似乎陷入了沉思。"
     },
     {
       "id": 61,
-      "content": "Maybe he too, has a specific voice he wishes to broadcast... just as I wish to design a particular outfit."
+      "content": "就像我想做衣服一樣，他也有想要播送的音樂嗎。"
     },
     {
       "id": 62,
-      "content": "A twinkle passed behind his faded jade eye."
+      "content": "他那褪了色的玉色眼瞳中，似乎有一道光芒短暫閃過。"
     },
     {
       "id": 63,
@@ -339,29 +339,29 @@
       "id": 65,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "\"Desire. And to the measure of your desire...\""
+      "content": "慾求吧。並將慾望所求的一切……"
     },
     {
       "id": 66,
-      "content": "The Floor Manager muttered the broadcast I'd heard back in the Boutique du Rouge in a low voice, as though he were speaking to himself."
+      "content": "樓層經理忽然像是自言自語般，低聲念起在丹紅派精品專櫃迴盪的廣播。"
     },
     {
       "id": 67,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "... Blasphemy."
+      "content": "……真是不敬。"
     },
     {
       "id": 68,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "... A broadcast once started cannot be stopped, no."
+      "content": "……雖說已經播出的廣播，是收不回來的。"
     },
     {
       "id": 69,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "But answer my question, and I will gladly return the old Voices to you."
+      "content": "不過只要您回答我的問題，我很樂意把舊的聲音們交給您哦。"
     },
     {
       "id": 70,
@@ -371,175 +371,175 @@
     },
     {
       "id": 71,
-      "content": "The Rouge visitor's tentacles trembled angrily at this ambush of a quiz."
+      "content": "面對突如其來的問題，那人的觸手像在壓抑怒火般顫抖著。"
     },
     {
       "id": 72,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Do you remember the words of the last Voice to speak in today's broadcast? What came after \"Desire. And to the measure of your desire...\"?"
+      "content": "今天廣播的最後一段聲音「慾求吧，並將慾望所求的一切……」，接下來的句子是什麼呢？"
     },
     {
       "id": 73,
-      "content": "I'd heard that line before... It's from the broadcast endlessly playing at the Boutique du Rouge."
+      "content": "在丹紅派精品專櫃每次都會聽到的聲音……"
     },
     {
       "id": 74,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "\"... consume all.\""
+      "content": "……吸食殆盡。"
     },
     {
       "id": 75,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "So determined to air the molt of shame we took such pains to bury. I had not realized you were hiding such a cruel streak, Floor Manager."
+      "content": "竟特地揭開我們費心掩蓋的瘡疤。原來您一直藏著如此冷酷的一面啊。"
     },
     {
       "id": 76,
-      "content": "The cold look that followed was far from pleasing."
+      "content": "丹紅派店長非但沒有高興，反應還十分冷淡。"
     },
     {
       "id": 77,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "I would like nothing more than to wring those profane horns before devouring them whole, but..."
+      "content": "雖然我恨不得現在就連那些不敬的喇叭都一併扭斷吞下，"
     },
     {
       "id": 78,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "... we have other matters to attend to first."
+      "content": "但眼下還有該先做的事。"
     },
     {
       "id": 79,
-      "content": "Just as him and his group of Rouges reached out to grab the tapes from the pipes,"
+      "content": "就在丹紅派們朝錄音帶伸出手的剎那，"
     },
     {
       "id": 80,
-      "content": "the blanket slammed down between him and his prize, a heavy, metallic clang ringing as it landed."
+      "content": "伴隨著金屬相撞的聲響，沉重的毛毯擋在了他們面前。"
     },
     {
       "id": 81,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "That was the wrong answer. I'm sorry, but... please go back the way you came."
+      "content": "很遺憾……請您回去吧。"
     },
     {
       "id": 82,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "Floor Manager... are you implying that I'd forgotten this dark part of our history that <i>I</i> personally placed in your hands?"
+      "content": "樓層經理……您以為我會記不得自己親手交出去的不堪過往嗎？"
     },
     {
       "id": 83,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Well, your memory may exist still... but I don't think you've actually <i>experienced</i> it."
+      "content": "您是記得……但好像從來沒有親身經歷過呢。"
     },
     {
       "id": 84,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "How about you? Why don't you give it a go?"
+      "content": "您要試著回答看看嗎？"
     },
     {
       "id": 85,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "It's an easy question for anyone who'd been paying attention to the broadcast."
+      "content": "只要有仔細傾聽，這是誰都能輕鬆答對的問題哦。"
     },
     {
       "id": 86,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Y-you want me to answer?"
+      "content": "我……我嗎？"
     },
     {
       "id": 87,
-      "content": "... and just like that, the ball was in my court."
+      "content": "不知不覺間，就輪到我回答了。"
     },
     {
       "id": 88,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Um, okay... So... \"Desire, and to the measure of your desire...\" And, uh, next is..."
+      "content": "呃……我想想……慾求吧，接下來是……"
     },
     {
       "id": 89,
-      "content": "But the Rouge visitor answered correctly."
+      "content": "那人的答案並沒有錯。"
     },
     {
       "id": 90,
-      "content": "There were other lines in the broadcast too, but this was one of the more frequently repeated ones. I'd be surprised if anyone in Le Rouge got it wrong."
+      "content": "雖然還有很多其他台詞，但那是廣播中特別常出現的句子，只要是丹紅派，不可能不知道。"
     },
     {
       "id": 91,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "\"The more shall your self become...\"? No, \"consume all\" should be it..."
+      "content": "終將成汝……？不對，應該是「吸食殆盡」才對……"
     },
     {
       "id": 92,
-      "content": "Even I could easily remember what followed, and I could count the times I'd heard the whole thing on one hand. It was always \"consume all,\" just like the Rouge visitor said."
+      "content": "就連完整聽完的次數屈指可數的我，記得接下來的句子也總是「吸食殆盡」。"
     },
     {
       "id": 93,
-      "content": "Though, in today's broadcast, the tape wore out before the Voice could finish—"
+      "content": "雖然今天的廣播因為錄音帶被拉長，在中途斷掉了……"
     },
     {
       "id": 94,
-      "content": "... Wait a minute."
+      "content": "……今天的廣播？"
     },
     {
       "id": 95,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "In today's broadcast, what came after that line..."
+      "content": "今天……"
     },
     {
       "id": 96,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "... was nothing."
+      "content": "今天沒有。"
     },
     {
       "id": 97,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "The tape stretched out at the end, and we didn't get to hear what came next."
+      "content": "因為最後錄音帶被拉長，後面的內容沒有播出來。"
     },
     {
       "id": 98,
-      "content": "Hearing my answer, the Floor Manager beamed, striking the kind of smile I hadn't seen since I'd entered this department store."
+      "content": "聽到這個回答，樓層經理朝我露出了燦爛如陽光的笑容，那是我進入百貨公司以來第一次看到的笑容。"
     },
     {
       "id": 99,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Bingo."
+      "content": "答對了呢。"
     },
     {
       "id": 100,
       "teller": "丹紅派 店長",
       "title": "丹紅派",
-      "content": "Enough of this ridiculous riddle..."
+      "content": "這根本是強詞奪理……"
     },
     {
       "id": 101,
-      "content": "At that, like a chorus responding, the black pipe horns of the room began to quiver violently,"
+      "content": "彷彿在呼應那句話般，無數黑色喇叭扭動掙扎起來，"
     },
     {
       "id": 102,
-      "content": "and out poured screams, frustration, laughter... the noises that had been slumbering within the Grand Magasin."
+      "content": "尖叫、憤懣、笑聲……沉睡在百貨公司裡的各種聲音傾瀉而出。"
     },
     {
       "id": 103,
-      "content": "The shrieking din ripped the Rouges to shreds before the blanket crushed them,"
+      "content": "被尖叫聲抓傷的丹紅派們，隨即被毛毯壓得稀爛，"
     },
     {
       "id": 104,
-      "content": "and if any of them managed to survive that pandemonium, the black hands reaching out from the Floor Manager's draping sleeves made quick work of them."
+      "content": "從厚重衣袖中伸出的黑色手臂，將還沒斷氣的丹紅派們捏碎、撕裂。"
     },
     {
       "id": 105,
@@ -549,75 +549,75 @@
     },
     {
       "id": 106,
-      "content": "Silence returned only after the long, screaming echoes dissipated."
+      "content": "迴盪的尖叫聲消失，寂靜再次降臨。"
     },
     {
       "id": 107,
-      "content": "And in that silence, I..."
+      "content": "在那片寂靜之中，我……"
     },
     {
       "id": 108,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Hmm... Are there any intact eyeballs to gather after that whole fiasco?"
+      "content": "嗯……在這種混亂之中，還有剩下能撿的完好眼球嗎？"
     },
     {
       "id": 109,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Yeah, some... The rest have exploded, though..."
+      "content": "嗯，算是吧……雖然大部分都爆掉了……"
     },
     {
       "id": 110,
-      "content": "... I rummaged around the crushed flesh and crimson leather, searching for eyeballs to salvage."
+      "content": "我從被碾爛的肉塊與紅色皮革之間撿拾眼球。"
     },
     {
       "id": 111,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "10... 20... looks like I've picked up about 60. It's not a lot, but even scrap cloth can make a birdcage if there's enough of it. Every little bit helps, right?"
+      "content": "十……二十……大概撿到六十顆左右了吧？雖然不多，但碎布集起來也能做出一個鳥籠，所以得努力收集才行。"
     },
     {
       "id": 112,
-      "content": "The Floor Manager watched me for a moment before letting out a brief chuckle."
+      "content": "樓層經理看著我這副模樣一會兒，隨即噗哧一笑。"
     },
     {
       "id": 113,
       "model": "홍루",
       "title": "漆黑派 廣播室",
-      "content": "Then perhaps... I ought to give you a reward for listening as well."
+      "content": "那麼，我也……該為您的傾聽送上獎勵了呢。"
     },
     {
       "id": 114,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "Whoa, thanks. I think this is the first time anyone's given me a gift in the Grand Magasin."
+      "content": "哇。這好像是我第一次在百貨公司收到禮物。謝謝您。"
     },
     {
       "id": 115,
-      "content": "With the Floor Manager seeing me off, I made it through the hallway around the roaming Mobile-Go-Spins, and opened my hand to check out his gift."
+      "content": "告別了樓層經理的送行，我穿過旋轉吊飾四處遊蕩的走廊，攤開手一看，"
     },
     {
       "id": 116,
-      "content": "It was a gold-feathered tape from inside his blanket, napping soundly in my palm."
+      "content": "原本在毛毯裡的黃金色錄音帶，正發出輕淺的呼吸聲，睡得香甜。"
     },
     {
       "id": 117,
-      "content": "I reached out with my other hand and stroked it carefully. Its cozy warmth gently traveled up my fingers."
+      "content": "我小心翼翼地撫摸它，淡淡的溫暖便傳到了手上。"
     },
     {
       "id": 118,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "It's so warm... And shiny, too..."
+      "content": "好溫暖啊……還亮晶晶的……"
     },
     {
       "id": 119,
-      "content": "While I was happy to have a new companion, I wasn't sure if I could care for it when I'd just barely learned how to take care of myself..."
+      "content": "有了同伴固然很好，但我現在連自己都照顧不好，"
     },
     {
       "id": 120,
-      "content": "Heck, I didn't even know the first thing about raising a tape, either. Whatever gladness it made me feel was preceded by concerns about whether I had what it takes to look after it."
+      "content": "也不知道怎麼養錄音帶，擔心自己能不能好好帶著它的心情搶先湧了上來。"
     },
     {
       "id": 121,
@@ -627,7 +627,7 @@
     },
     {
       "id": 122,
-      "content": "But it didn't take long before I was able to decide on what to do with it."
+      "content": "但很快地，我沒過多久就決定好該怎麼處置這個小東西了。"
     },
     {
       "id": 123,
@@ -639,13 +639,13 @@
       "id": 124,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "I think I'll..."
+      "content": "這個……"
     },
     {
       "id": 125,
       "teller": "杜布瓦",
       "title": "卡其派",
-      "content": "... use it to make a folding fan."
+      "content": "拿來做扇子就好了。"
     }
   ]
 }

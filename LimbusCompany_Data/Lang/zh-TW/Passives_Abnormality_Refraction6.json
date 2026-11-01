@@ -98,12 +98,12 @@
     {
       "id": 956704,
       "name": "三世因果",
-      "desc": "若與同一目標拚點的次數不低於10次，則隨機使本技能的拚點威力\n增加或減少(拚點次數÷10)(無條件捨去)\n\n關卡開始時，\n- 以與第1區間登場的羅生蝶::繭相同的體力開始戰鬥(不包含護盾)\n- 使自身分別獲得10層 [StackPastActivate] ／ [StackPresentActivate] ／ [StackFutureActivate]\n\n若自身現存體力不高於66%／33%，則改變自身模式\n- 本場戰鬥中，自身的現存體力首次<color=#ff6000><mark=#ff000040><b><u>不高於66%／33%</u></b></mark></color>時，\n下回合<color=#ff6000><mark=#ff000040><b><u>使自身分別獲得10層 [StackPastActivate]、[StackPresentActivate]、[StackFutureActivate]</u></b></mark></color>"
+      "desc": "若與同一目標拚點的次數不低於10次，則使拚點威力隨機\n增加或減少(拚點次數/10)(無條件捨去)\n\n關卡開始時，\n- 以與第1區間登場的羅生蝶::繭相同的體力開始戰鬥(不包含護盾)\n- 使自身分別獲得10層 [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate]\n\n若自身現存體力低於66%/33%，則改變行動槽模式\n- 本場戰鬥中，自身的現存體力首次<color=#ff6000><mark=#ff000040><b><u>低於66%/33%</u></b></mark></color>時，\n下回合<color=#ff6000><mark=#ff000040><b><u>使自身分別獲得10層 [StackPastActivate]、[StackPresentActivate]、[StackFutureActivate]</u></b></mark></color>"
     },
     {
       "id": 956705,
       "name": "羅生時間",
-      "desc": "Turn Start: <color=#ff6000><mark=#ff000040><b><u>Activate the highest-Stacked state of time</u></b></mark></color> between [StackPastActivate], [StackPresentActivate], and [StackFutureActivate] and use a special Skill\n- If multiple states of time share the highest Stack, the currently active state of time does not change\n- Inactive states of time become [StackPast], [StackPresent], or [StackFuture], respectively\n- When the <color=#ff6000><mark=#ff000040><b><u>currently active state of time changes</u></b></mark></color>, gain 1 [TimeGap]\n\n<color=#ff6000><mark=#ff000040><b><u>Every time Illusory Butterfly[TabExplain] of Entangled Lives::The Past / The Present / The Future are hit as main targets</u></b></mark></color>, Butterfly[TabExplain] of Entangled Lives::Imago loses [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] Stack\n\n<color=#ff6000><mark=#ff000040><b><u>Higher [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] Stacks</u></b></mark></color> lead to Butterfly[TabExplain] of Entangled Lives::Imago's Skill Power and damage output becoming <color=#ff6000><mark=#ff000040><b><u>greatly enhanced</u></b></mark></color>, and <color=#ff6000><mark=#ff000040><b><u>greatly increase the amount of status effects it inflicts or gains</u></b></mark></color>"
+      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>觸發層數最高的狀態</u></b></mark></color>並使用特殊技能\n- 若狀態層數相同，則自身維持當前狀態\n- 未觸發的狀態分別轉變為 [StackPast] / [StackPresent] / [StackFuture]\n- <color=#ff6000><mark=#ff000040><b><u>自身狀態改變時</u></b></mark></color>，對自身施加1層 [TimeGap]\n\n每當<color=#ff6000><mark=#ff000040><b><u>羅生蝶 幻影::過去/現在/未來作為主要目標受到攻擊時</u></b></mark></color>，\n使羅生蝶::蝶帶有的 [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數減少\n\n<color=#ff6000><mark=#ff000040><b><u>[StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數越高，</u></b></mark></color>\n羅生蝶::蝶的技能威力與造成的傷害會<color=#ff6000><mark=#ff000040><b><u>大幅增加</u></b></mark></color>\n且對自身與其他單位施加的<color=#ff6000><mark=#ff000040><b><u>異常狀態也會大幅增加</u></b></mark></color>"
     },
     {
       "id": 956801,
@@ -194,7 +194,7 @@
     {
       "id": 955102,
       "name": "神諭終端 [商神杖]",
-      "desc": "<color=#ff9000><mark=#ff000040>自身每枚硬幣的武器均會隨機決定且帶有特殊效果<b><u></u></b></mark></color>\n- [RienWeapon01Hatchet]\n- [RienWeapon02Stiletto]\n- [RienWeapon03Greatsword]\n- [RienWeapon04Rapier]\n- [RienWeapon05Sledgehammer]\n- [RienWeapon06Ultragreatsword]\n- [RienWeapon07Lance]\n- [RienWeapon08Chain]\n- [RienWeapon09Scythe]\n\n- 使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法從相同的技能獲得2次)\n\n<color=#ff9000><mark=#ff000040><b>回合開始時，若自身帶有的 [StackRienSpecialSkill] 層數為9層，則使用強力技能<u></u></b></mark></color>\n- 本場戰鬥首次使用強力技能後，自身將獲得 [Shin_Rien]\n- 重置每種技能獲得 [StackRienSpecialSkill] 的上限\n- 自身最小與最大速度值+15\n- 回合結束時，下回合對自身施加1層 [Vulnerable] 與2層 [ResultReduction]\n\n自身登場後的第4回合開始時，若自身的 [StackRienSpecialSkill] 層數不高於9層，則強制增加至9層並對自身施加(增加的層數×3)層 [KarmaOfIndexRien]\n- 此後，每4回合觸發一次該效果",
+      "desc": "<color=#ff9000><mark=#ff000040><b><u>自身每枚硬幣的武器均會隨機決定且帶有特殊效果</u></b></mark></color>\n- [RienWeapon01Hatchet]\n- [RienWeapon02Stiletto]\n- [RienWeapon03Greatsword]\n- [RienWeapon04Rapier]\n- [RienWeapon05Sledgehammer]\n- [RienWeapon06Ultragreatsword]\n- [RienWeapon07Lance]\n- [RienWeapon08Chain]\n- [RienWeapon09Scythe]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法以相同的技能獲得高於2層)\n\n<color=#ff9000><mark=#ff000040><b><u>回合開始時，若自身帶有的 [StackRienSpecialSkill] 層數為9層，則使用強力技能</u></b></mark></color>\n- 首次使用強力技能後，攻擊結束時使自身獲得 [Shin_Rien]\n- 重置各技能是否已獲得 [StackRienSpecialSkill] 的紀錄\n- 自身最小與最大速度值+15\n- 回合結束時，下回合使自身獲得1層 [Vulnerable] 與2層 [ResultReduction]\n\n自身登場後的第4回合開始時，若自身的 [StackRienSpecialSkill] 層數低於9層，則增加至9層並使自身獲得(增加的層數×3)層 [KarmaOfIndexRien]\n- 此後，每4回合觸發一次該效果",
       "flavor": "終端裡收納著運用類似奇點，可以改變形狀與質量如同金屬的液體。\n這種液體會根據終端所接收的指令變換姿態，配合殺害目標的情報與限制時間來轉換武器。\n某一日，我配發到過於短小的匕首，本來想等待它轉變成其他武器，結果直到殺害期限逼近都仍未出現像樣的武器。最終，等到最後出現的是叉子，所以不得不用那把叉子殺害目標。"
     },
     {
@@ -212,7 +212,7 @@
     {
       "id": 955105,
       "name": "解放",
-      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 95%-/85%-/75%- HP,- Gain [UnlockBuff_Rien1]/[UnlockBuff_Rien2]/[UnlockBuff_Rien3]\n\nTurn 1 End after entering the field: At lower than [UnlockBuff_Base] stage 1, gain [UnlockBuff_Rien1]\nTurn 3 End after entering the field: At lower than [UnlockBuff_Base] stage 2, gain [UnlockBuff_Rien2]\n\nWhen [UnlockBuff_Base] is activated due to HP or Turn conditionals:\n- At less than 3/6/9 [BlessingOfIndexPrescriptEnemy] Stack, raise them to 3/6/9\nGain 5 [KarmaOfIndexRien] at the next Turn Start for every Stack gained",
+      "desc": "回合結束時，若自身帶有3/6/9層 [BlessingOfIndexPrescriptEnemy] 或自身現存體力不高於95%/85%/75%，\n- 使自身獲得 [UnlockBuff_Rien1] / [UnlockBuff_Rien2] / [UnlockBuff_Rien3]\n\n自身登場後第1個回合結束時，若自身的 [UnlockBuff_Base] 階段低於1階，則使自身獲得 [UnlockBuff_Rien1]\n自身登場後第3個回合結束時，若自身的 [UnlockBuff_Base] 階段低於2階，則使自身獲得 [UnlockBuff_Rien2]\n\n若自身的 [UnlockBuff_Base] 是透過體力條件或回合條件而獲得時，\n- 若自身帶有的 [BlessingOfIndexPrescriptEnemy] 層數低於3/6/9層，則使其層數變為3/6/9層，\n每增加1層，下回合開始時對自身施加5層 [KarmaOfIndexRien]",
       "flavor": "「遵從指令前行，那些閉關的事物理所當然就會解開。」"
     },
     {
@@ -229,13 +229,13 @@
     {
       "id": 955202,
       "name": "神諭終端 [商神杖] - 完全解放",
-      "desc": "<color=#ff9000><mark=#ff000040>自身每枚硬幣的武器均會隨機決定且帶有特殊效果<b><u></u></b></mark></color>\n- [RienWeapon01Hatchet2phase]\n- [RienWeapon02Stiletto2phase]\n- [RienWeapon03Greatsword2phase]\n- [RienWeapon04Rapier2phase]\n- [RienWeapon05Sledgehammer2phase]\n- [RienWeapon06Ultragreatsword2phase]\n- [RienWeapon07Lance2phase]\n- [RienWeapon08Chain2phase]\n- [RienWeapon09Scythe2phase]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法從相同的技能獲得2次)\n- 僅在特殊模式使用的技能不會獲得\n\n回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能\n- 重置每種技能獲得 [StackRienSpecialSkill] 的上限\n- 自身最小與最大速度值+15\n- 回合結束時，下回合對自身施加2層 [Vulnerable] 與3層 [ResultReduction]\n\n從改變模式的回合起觸發效果\n- 每經過3回合，若自身的 [StackRienSpecialSkill] 層數不高於9層，\n則強制增加至9層並對自身施加(增加的層數×5)層 [KarmaOfIndexRien_2Phase]",
+      "desc": "<color=#ff9000><mark=#ff000040><b><u>自身每枚硬幣的武器均會隨機決定且帶有特殊效果</u></b></mark></color>\n- [RienWeapon01Hatchet2phase]\n- [RienWeapon02Stiletto2phase]\n- [RienWeapon03Greatsword2phase]\n- [RienWeapon04Rapier2phase]\n- [RienWeapon05Sledgehammer2phase]\n- [RienWeapon06Ultragreatsword2phase]\n- [RienWeapon07Lance2phase]\n- [RienWeapon08Chain2phase]\n- [RienWeapon09Scythe2phase]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法以相同的技能獲得高於2層)\n- 僅在特殊模式使用的技能不會獲得\n\n回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能\n- 重置各技能是否已獲得 [StackRienSpecialSkill] 的紀錄\n- 自身最小與最大速度值+15\n- 回合結束時，下回合使自身獲得2層 [Vulnerable] 與3層 [ResultReduction]\n\n從階段變更的回合起觸發以下效果\n- 每3回合，若自身的 [StackRienSpecialSkill] 層數低於9層，\n則增加至9層並使自身獲得(增加的層數×5)層 [KarmaOfIndexRien_2Phase]",
       "flavor": "透過電波傳送指令的都市之神荷米斯所賜予的最強武器，同時也是詛咒。"
     },
     {
       "id": 955203,
       "name": "指令之意",
-      "desc": "Turn Start:\n- Apply [IndexPrescriptTargetToPersonality] against a random Sinner, and prioritize attacking them\n<color=#ff9000><mark=#ff000040><b><u>- When using a Skill against [IndexPrescriptTargetToPersonality], convert all Coins on that Skill to [SuperCoin]s</u></b></mark></color>\n- Gain [Protection] equal to [BlessingOfIndexPrescriptEnemy] (max 9)\n<color=#ff9000><mark=#ff000040><b><u>\n- Lose 1 Stack for every 20 [KarmaOfIndexRien_2Phase]</u></b></mark></color>\n\nWhen attacking, if [IndexPrescriptTargetToPersonality] is killed, or if this unit can no longer attack that target, <color=#ff9000><mark=#ff000040><b><u>use the remaining Skills against a random other Sinner\n- Prioritizes targets with the lowest current HP, unless they have 1 HP\n- When the randomly chosen Sinner is killed, or if the said Sinner's HP is brought down to 1, repeat this effect on another Sinner</u></b></mark></color>\n\nDeal +5% damage against [IndexPrescriptTargetToPersonality] for every [BlessingOfIndexPrescriptEnemy] (max 40%)\n- At 9 [BlessingOfIndexPrescriptEnemy], deal +50% damage against all targets\n\nStarting from the first turn after the phase change, activate the following effects:\n- Turn Start: Gain [BlackNightmare]\n· If this unit used a powerful attack in the previous turn, lose [BlackNightmare] for that turn",
+      "desc": "回合開始時，\n- 隨機對1名罪人施加 [IndexPrescriptTargetToPersonality] 並優先攻擊該罪人\n<color=#ff9000><mark=#ff000040><b><u>- 自身對 [IndexPrescriptTargetToPersonality] 使用的技能硬幣將全數轉變為 [SuperCoin]</u></b></mark></color>\n- 根據自身帶有的 [BlessingOfIndexPrescriptEnemy] 層數，使自身獲得等量的 [Protection] 層數 (最多9層)\n<color=#ff9000><mark=#ff000040><b><u>- 自身每帶有20層 [KarmaOfIndexRien_2Phase]，獲得的層數減少1層</u></b></mark></color>\n\n攻擊時 [IndexPrescriptTargetToPersonality] 陣亡或自身無法攻擊目標時，<color=#ff9000><mark=#ff000040><b><u>隨機對另1名罪人使用剩餘未使用的技能\n- 優先指定現存體力最低的目標(不包括體力為1點的單位)\n- 隨機指定的罪人陣亡或體力降至1點時，對其他罪人重複該效果</u></b></mark></color>\n\n自身每帶有1層 [BlessingOfIndexPrescriptEnemy]，則使自身對 [IndexPrescriptTargetToPersonality] 造成的傷害+5%(最多+40%)\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數為9層時，則改為對所有目標造成的傷害+50%\n\n從階段改變後的第2回合起觸發效果\n- 回合開始時，使自身獲得 [BlackNightmare]\n．若上回合自身使用了強力技能，則本回合 [BlackNightmare] 消失",
       "flavor": "我組建了家庭。\n\n「你現在不應該出現在這裡。」\n「工作還在進行中。而且正在精細且美麗地裝飾著。」\n「……你，該不會想要違抗指令吧。」"
     },
     {
@@ -257,7 +257,7 @@
     {
       "id": 955601,
       "name": "開始鬼抓人囉",
-      "desc": "回合開始時，若沒有 [TagGameBuff]，則使除自身以外等級最低的1／2／3名友方單位在3回合內成為成為 [TagGameBuff] (根據觸發本效果的次數相應追加人數)\n\n<color=#ff9000><mark=#ff000040><b><u>若 [TagGameBuff] 存活時解除了 [TagGameBuff]</u></b></mark></color>，則觸發以下效果\n- 所有罪人受到其體力上限40%的固定體力傷害\n- 隨機強制使可侵蝕或陷入恐慌的1名罪人理智值變為-45點\n\n若罪人擊殺了 [TagGameBuff]，則使該罪人在本場戰鬥期間獲得1層 [ResultEnhancement] (該效果可疊加)"
+      "desc": "回合開始時，若沒有 [TagGameBuff]，則使除自身以外等級最低的1/2/3名友方單位在3回合內成為 [TagGameBuff] (人數隨本效果的觸發次數增加)\n\n<color=#ff9000><mark=#ff000040><b><u>若在 [TagGameBuff] 存活的狀態下 [TagGameBuff] 結束了</u></b></mark></color>，則觸發以下效果\n- 所有罪人各自受到等同於體力上限40%的固定體力傷害\n- 隨機強制使1名可侵蝕/恐慌的罪人理智值變為-45點\n\n若罪人擊殺了 [TagGameBuff]，則使該罪人在本場戰鬥期間獲得1層 [ResultEnhancement] (該效果可疊加)"
     },
     {
       "id": 955602,

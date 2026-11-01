@@ -82,7 +82,7 @@
     {
       "id": 9737,
       "name": "心臟反應模塊",
-      "desc": "When an ally with [Charge] Count or 'Unique Charge' loses a Clash, gain Shield equal to ([Charge] Count + 'Unique Charge'). (once per turn)\n\nWhen at 50%- HP, gain (([Charge] Count + 'Unique Charge') x 2) Shield instead. (once per turn)\n\nIf a MultiCrack Office Identity received HP damage during this Encounter: next turn, they heal 33% of the HP lost last turn. (rounded down)",
+      "desc": "帶有 [Charge] 回數或特殊充能的友方單位拚點失敗時，使其獲得等同於其 [Charge] 回數與特殊充能之和的護盾。(每回合最多1次)\n\n若該友方單位現存體力不高於50%，則改為獲得(其充能回數與特殊充能之和×2)點護盾。(每回合最多1次)\n\n本場戰鬥中，屬於多裂紋事務所的友方單位受到體力傷害時，下回合使其恢復上回合失去體力33%的體力(無條件捨去)",
       "simpleDesc": [
         {
           "abilityID": 9737,
@@ -161,7 +161,7 @@
     {
       "id": 9742,
       "name": "永動伺服電機",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that gain [Charge] Count or 'Unique Charge' effects. (except E.G.O Skills; except Backup Units)\n\nPlus Coin Base Attack Skills that consume [Charge] Count or 'Unique Charge'(fixed Potency): gain Coin Power +1 and deal +(sum of [Charge] Count and 'Unique Charge'(fixed Potency) consumed by that Skill x 4)% damage (max 40%)\n- Minus Coin Base Attack Skills: Instead of gaining Coin Power, gain Base Power +(4 / # of Coins) (min 1; rounded down)\n\nWhen allies with [Charge] Count or 'Unique Charge' engage in a Clash with Base Attack Skills: Clash Power +1; gain 2 [AttackUp] at Turn Start for every instance of Clash Win in that Clash during this Encounter. (max 6)\n\nIn this Encounter, when an ally takes damage that would kill them, consume all [Charge] Count and 'Unique Charge'(fixed Potency) on self; then, immediately heal (10 + sum of [Charge] Count and 'Unique Charge'(fixed Potency) consumed)% HP (once per Encounter); then, gain 3 [Protection] until the ally is defeated.\n\n※ For 'Unique Charge' that has both Potency and Count, its Count will be used for above calculations",
+      "desc": "回合開始時，若帶有獲得 [Charge] 回數或特殊充能攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n消耗 [Charge] 回數或特殊充能(固定強度)的加算硬幣基礎攻擊技能獲得硬幣威力+1、造成的傷害+(該技能消耗的 [Charge] 回數與特殊充能(固定強度)之和×4)%(最多+40%)\n- 若為減算硬幣的基礎攻擊技能，則使硬幣威力改為基礎威力+(4÷技能硬幣數)(最少+1，無條件捨去)\n\n帶有 [Charge] 回數或特殊充能的友方單位基礎攻擊技能拚點時，使其拚點威力+1。回合開始時，本場戰鬥中每拚點勝利1次，使其獲得2層 [AttackUp]。(最多6層)\n\n本場戰鬥中，友方單位受到致死傷害時，消耗其所有 [Charge] 回數與特殊充能(固定強度)並使其立即恢復體力上限(10+消耗的充能回數與特殊充能(固定強度)之和)%的體力(每場戰鬥最多1次)。使該友方單位獲得3層 [Protection] 直到其陣亡。\n\n※ 擁有強度與回數的特殊充能以其回數計算",
       "simpleDesc": [
         {
           "abilityID": 9742,
@@ -180,7 +180,7 @@
     {
       "id": 9743,
       "name": "心動力寶石",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that gain [Charge] Count or 'Unique Charge' effects. (except E.G.O Skills; except Backup Units)\n\nPlus Coin Base Attack Skills that consume [Charge] Count or 'Unique Charge': gain Coin Power +1 and deal +(sum of [Charge] Count and 'Unique Charge' consumed by that Skill x 4)% damage (max 40%)\n- Minus Coin Base Attack Skills: Instead of gaining Coin Power, gain Base Power +(4 / # of Coins) (min 1; rounded down)\n\nWhen allies have 15+ ([Charge] Count + 'Unique Charge'): when they use a Skill 3 that consumes [Charge] Count or 'Unique Charge', and if there are remaining [Charge] Count or 'Unique Charge' at Attack End, consume all remaining [Charge] Count and 'Unique Charge' to deal (sum of [Charge] Count and 'Unique Charge' consumed x 7.5)% fixed bonus damage. (max 75%)\n\nMax [Charge] Count +5.",
+      "desc": "回合開始時，若帶有獲得 [Charge] 回數或特殊充能的攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n消耗 [Charge] 回數或特殊充能的加算硬幣基礎攻擊技能硬幣威力+1、造成的傷害+(該技能消耗的 [Charge] 回數與特殊充能之和×4)% (最多+40%)\n- 若為減算硬幣的基礎攻擊技能，則使硬幣威力改為基礎威力+(4÷該技能硬幣數)(最少+1，無條件捨去)\n\n[Charge] 回數與特殊充能之和不低於15點的友方單位使用消耗 [Charge] 回數或特殊充能的3技能時，若攻擊後有剩餘的 [Charge] 回數或特殊充能，則消耗所有剩餘的回數與特殊充能並對目標額外造成(消耗的 [Charge] 回數與特殊充能之和×7.5)%的固定傷害。(最多75%)\n\n[Charge] 回數的最大值+5。",
       "simpleDesc": [
         {
           "abilityID": 9743,

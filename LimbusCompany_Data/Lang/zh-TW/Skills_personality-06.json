@@ -1041,7 +1041,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Burst] 強度不低於15級，或目標現存體力不高於30%，則重複使用本硬幣(每個技能最多1次)"
+                  "desc": "[OnSucceedAttack] 若目標的 [Burst] 強度不低於15級，或目標現存體力低於30%，則重複使用本硬幣(每個技能最多1次)"
                 }
               ]
             }
@@ -2296,7 +2296,7 @@
         {
           "level": 1,
           "name": "開闢君主之道",
-          "desc": "[WhenUse] If this unit activated combo with a Heishou Pack Adept Identity: Base Power +1, Coin Power +1\n\n[WhenUse] At 6+ ([Burst] on target + [Breath] on self), Coin Power +1\n[WhenUse] Deal +5% damage for every [HeishouComboCountHonglu]\n[EndSkill] Gain [HeishouComboCountHonglu] depending on which Heishou Pack Identity activated [HeishouCombo]",
+          "desc": "[WhenUse] 若自身與屬於黑獸 筆頭的人格觸發連攜，則使本技能的基礎威力+1、硬幣威力+1\n\n[WhenUse] 若目標的 [Burst] 強度與自身的呼吸法強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 自身每帶有1層 [HeishouComboCountHonglu]，則使本技能造成的傷害+5%\n[EndSkill] 根據觸發 [HeishouCombo] 的黑獸人格，使自身獲得 [HeishouComboCountHonglu]",
           "coinlist": [
             {
               "coindescs": [
@@ -2320,7 +2320,7 @@
         {
           "level": 4,
           "name": "開闢君主之道",
-          "desc": "[WhenUse] If this unit activated combo with a Heishou Pack Adept Identity: Base Power +1, Coin Power +1\n\n<style=\"highlight\">Deal +1% damage for every 1% (missing HP percentage on target + missing HP percentage on self) (max 50%)</style>\n[WhenUse] <style=\"highlight\">Coin Power +1 for every 6 ([Burst] on target + Poise on self) (max 3)</style>\n<style=\"highlight\">[WhenUse] Deal +10% damage for every 2 types of negative effects on target (max 30%)</style>\n[WhenUse] Deal <style=\"highlight\">+10%</style> damage for every [HeishouComboCountHonglu]\n[EndSkill] Gain [HeishouComboCountHonglu] depending on which Heishou Identity activated [HeishouCombo]",
+          "desc": "[WhenUse] 若自身與屬於黑獸 筆頭的人格觸發連攜，則使本技能的基礎威力+1、硬幣威力+1\n\n<style=\"highlight\">目標與自身已失去體力比例之和每有1%，則使本技能造成的傷害+1%(最多+50%)</style>\n<style=\"highlight\">[WhenUse] 目標的 [Burst] 強度與自身的呼吸法強度之和每有6級，則使本技能的硬幣威力+1(最多+3)</style>\n<style=\"highlight\">[WhenUse] 目標每帶有2種負面狀態，則使本技能造成的傷害+10%(最多+30%)</style>\n[WhenUse] 自身每帶有1層 [HeishouComboCountHonglu]，則使本技能造成的傷害<style=\"highlight\">+10%</style>\n[EndSkill] 根據觸發 [HeishouCombo] 的黑獸人格，使自身獲得 [HeishouComboCountHonglu]",
           "coinlist": [
             {
               "coindescs": [
@@ -2355,7 +2355,7 @@
         {
           "level": 1,
           "name": "孑孑單身，捨生取園",
-          "desc": "Deal +10% damage for every [HeishouDeathCount] on self\nDeal +1% damage for every 1% (missing HP percentage on target + missing HP percentage on self) (max 50%)\n[WhenUse] At 3+ [HeishouDeathCount], gain +1 Atk Weight\n[WhenUse] At 6+ ([Burst] on target + [Breath] on self), Coin Power +1\n[WhenUse] Deal +5% damage for every [HeishouComboCountHonglu]",
+          "desc": "自身每帶有1層 [HeishouDeathCount]，則使本技能造成的傷害+10%\n目標與自身已失去體力比例之和每有1%，則使本技能造成的傷害+1%(最多+50%)\n[WhenUse] 若自身的 [HeishouDeathCount] 不低於3層，則使本技能的攻擊容量+1\n[WhenUse] 若目標的 [Burst] 強度與自身的呼吸法強度之和不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 自身每帶有1層 [HeishouComboCountHonglu]，則使本技能造成的傷害+5%",
           "coinlist": [
             {
               "coindescs": [
@@ -2392,7 +2392,7 @@
         {
           "level": 4,
           "name": "孑孑單身，捨生取園",
-          "desc": "Deal +10% damage for every [HeishouDeathCount] on self\nDeal +1% damage for every 1% (missing HP percentage on target + missing HP percentage on self) (max 50%)\n[WhenUse] At 3+ [HeishouDeathCount], gain +1 Atk Weight\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 6 ([Burst] on target + [Breath] on self) (max 3)</style>\n<style=\"highlight\">[WhenUse] Deal +10% damage for every 2 types of negative effects on target (max 30%)</style>\n[WhenUse] Deal <style=\"highlight\">+10%</style> damage for every [HeishouComboCountHonglu]",
+          "desc": "自身每帶有1層 [HeishouDeathCount]，則使本技能造成的傷害+10%\n目標與自身已失去體力比例之和每有1%，則使本技能造成的傷害+1%(最多+50%)\n[WhenUse] 若自身的 [HeishouDeathCount] 不低於3層，則使本技能的攻擊容量+1\n<style=\"highlight\">[WhenUse] 目標的 [Burst] 強度與自身的呼吸法強度之和每有6級，則使本技能的硬幣威力+1(最多+3)</style>\n<style=\"highlight\">[WhenUse] 目標每帶有2種負面狀態，則使本技能造成的傷害+10%(最多+30%)</style>\n[WhenUse] 自身每帶有1層 [HeishouComboCountHonglu]，則使本技能造成的傷害<style=\"highlight\">+10%</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2636,7 +2636,7 @@
         {
           "level": 3,
           "name": "緹比雅之律 - 解體之物解體未解體之物",
-          "desc": "[WhenUse] Deal +30% damage for every excess Atk Weight beyond the # of actual targets (in Focused Encounters, the Part)\n[WhenUse] Final Power +1 for every 4 [Laceration] on the main target (max 2)\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count and gain the following effects:\n- Final Power +2\n- Deal +1% damage for every [ChargeBodyArt] Count consumed\n- At 3+/5+ [ChargeBodyArt], gain +1/+2 Atk Weight\n- Convert all Coins on this Skill to [SuperCoin]s",
+          "desc": "[WhenUse] 本技能的攻擊容量高於攻擊目標數時，每高於1點，使本技能造成的傷害+30%(若是集中遭遇戰，則改為以部位判定)\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+1%\n- 若自身的 [ChargeBodyArt] 強度不低於3/5級，則使本技能的攻擊容量+1/+2\n- 使本技能的所有硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [
@@ -2680,7 +2680,7 @@
         {
           "level": 4,
           "name": "緹比雅之律 - 解體之物解體未解體之物",
-          "desc": "[WhenUse] Deal +30% damage for every excess Atk Weight beyond the # of actual targets (in Focused Encounters, the Part)\n[WhenUse] Final Power +1 for every 4 [Laceration] on the main target (max <style=\"highlight\">3</style>)\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count and gain the following effects:\n- Final Power +2\n- Deal +1% damage for every [ChargeBodyArt] Count consumed\n- At 3+/5+ [ChargeBodyArt], gain +1/+2 Atk Weight\n- Convert all Coins on this Skill to [SuperCoin]s",
+          "desc": "[WhenUse] 本技能的攻擊容量高於攻擊目標數時，每高於1點，使本技能造成的傷害+30%(若是集中遭遇戰，則改為以部位判定)\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+<style=\"highlight\">3</style>)\n[WhenUse] 若自身的 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+1%\n- 若自身的 [ChargeBodyArt] 強度不低於3/5級，則使本技能的攻擊容量+1/+2\n- 使本技能的所有硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [
@@ -2770,8 +2770,8 @@
       "levelList": [
         {
           "level": 3,
-          "name": "閉幕 - 裝置藝術1號「大家四處散落的骨與肉將化作客席」",
-          "desc": "[WhenUse] Deal +30% damage for every excess Atk Weight beyond the # of actual targets (in Focused Encounters, the Part)\n- When attacking just 1 target, deal +100% additional damage\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count and gain the following effects:\n- Final Power +2\n- Deal +1% damage for every [ChargeBodyArt] Count consumed\n- At 3+/5+ [ChargeBodyArt], gain +1/+2 Atk Weight\n[EndSkill] For all Identities in The Ring faction, heal 10 SP and apply [MelodyBodyArt]",
+          "name": "閉幕 - 裝置藝術1號「各位四處散落的骨與肉將化作客席」",
+          "desc": "[WhenUse] 本技能的攻擊容量高於攻擊目標數時，每高於1點，使本技能造成的傷害+30%(若是集中遭遇戰，則改為以部位判定)\n- 若攻擊目標僅有1名，則使本技能造成的傷害額外+100%\n[WhenUse] 若自身的 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+1%\n- 若自身的 [ChargeBodyArt] 強度不低於3/5級，則使本技能的攻擊容量+1/+2\n[EndSkill] 使屬於環指的人格恢復10點理智值，並對其施加 [MelodyBodyArt]",
           "coinlist": [
             {
               "coindescs": [
@@ -2839,8 +2839,8 @@
         },
         {
           "level": 4,
-          "name": "閉幕 - 裝置藝術1號「大家四處散落的骨與肉將化作客席」",
-          "desc": "[WhenUse] Deal +30% damage for every excess Atk Weight beyond the # of actual targets (in Focused Encounters, the Part)\n- When attacking just 1 target, deal +100% additional damage\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count and gain the following effects:\n- Final Power +2\n- Deal +1% damage for every [ChargeBodyArt] Count consumed\n- At 3+/5+ [ChargeBodyArt], gain +1/+2 Atk Weight\n[EndSkill] For all Identities in The Ring faction, heal 10 SP and apply [MelodyBodyArt]",
+          "name": "閉幕 - 裝置藝術1號「各位四處散落的骨與肉將化作客席」",
+          "desc": "[WhenUse] 本技能的攻擊容量高於攻擊目標數時，每高於1點，使本技能造成的傷害+30%(若是集中遭遇戰，則改為以部位判定)\n- 若攻擊目標僅有1名，則使本技能造成的傷害額外+100%\n[WhenUse] 若自身的 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+1%\n- 若自身的 [ChargeBodyArt] 強度不低於3/5級，則使本技能的攻擊容量+1/+2\n[EndSkill] 使屬於環指的人格恢復10點理智值，並對其施加 [MelodyBodyArt]",
           "coinlist": [
             {
               "coindescs": [
@@ -3695,7 +3695,7 @@
         {
           "level": 4,
           "name": "請您傾聽",
-          "desc": "<style=\"highlight\">自身每帶有2級 [ChargeNoirAlly] 強度，則使本技能造成的傷害+5%(最多+10%)</style>\n[WhenUse] 消耗自身3回 [ChargeNoirAlly] 並使本技能的硬幣威力+1(最多+2)\n<style=\"highlight\">[EndSkillAll] 若自身的 [ChargeNoirAlly] 回數不高於10回，則使自身獲得3回 [ChargeNoirAlly]</style>",
+          "desc": "<style=\"highlight\">自身每帶有2級 [ChargeNoirAlly] 強度，則使本技能造成的傷害+5%(最多+10%)</style>\n[WhenUse] 消耗自身3回 [ChargeNoirAlly] 並使本技能的硬幣威力+1(最多+2)\n<style=\"highlight\">[EndSkillAll] 若自身的 [ChargeNoirAlly] 回數低於10回，則使自身獲得3回 [ChargeNoirAlly]</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -3934,7 +3934,7 @@
         {
           "level": 4,
           "name": "廣播",
-          "desc": "[DuelCounter]\n<style=\"highlight\">Deal +25% damage for every 2 [ChargeNoirAlly] Potency on self (max 75%)</style>\n[StartBattle] If this unit does not have [SupportProtect], gain 1 [SupportProtect]\n<style=\"highlight\">[BeforeUse] If this unit has [TimeToListenHonglu], activate \"Horribly Infinite Replay\" instead (once per Encounter)\n[WhenUse] Coin Power +1 for every 3 [ChargeNoirAlly] Potency on self (max 2)</style>\n[WhenUse] <style=\"highlight\">Gain ([ChargeNoirAlly] Potency on self x 3) [NoirBindArmorAlly]</style> (max <style=\"highlight\">15</style> per Skill)\n[WhenUse] Gain +<style=\"highlight\">4</style> [ChargeNoirAlly] Count",
+          "desc": "[DuelCounter]\n<style=\"highlight\">自身每帶有2級 [ChargeNoirAlly] 強度，則使本技能造成的傷害+25%(最多+75%)</style>\n[StartBattle] 若自身未帶有 [SupportProtect]，則使自身獲得1層 [SupportProtect]\n<style=\"highlight\">[BeforeUse] 若自身帶有 [TimeToListenHonglu]，則改為以「恐怖的重播」發動(每場戰鬥最多1次)\n[WhenUse] 自身每帶有3級 [ChargeNoirAlly] 強度，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 使自身獲得<style=\"highlight\">(自身的 [ChargeNoirAlly] 強度×3)</style>層 [NoirBindArmorAlly] (每個技能最多<style=\"highlight\">15</style>層)\n[WhenUse] 使自身的 [ChargeNoirAlly] 回數增加<style=\"highlight\">4</style>",
           "coinlist": [
             {
               "coindescs": [

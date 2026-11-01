@@ -59,19 +59,19 @@
       "id": 501201,
       "name": "本國劍術 - 大環刀",
       "desc": "關卡開始時，獲得5層 [ChoiSwordsmanship]\n\n<color=#ff6000><mark color=#ff000040><b><u>每經過3回合，改變自身的本國架勢</color></mark></b></u>\n\n回合結束時，若自身帶有護盾，則下回合使自身獲得5級 [Breath] 強度以及2回 [Breath]\n\n當下列條件遭到觸發時，林慶業將改變自身行動模式，並使用技能「本國弓術[肉] - 有的放矢」\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時",
-      "flavor": "The Sword of the Homeland, S Corp.'s traditional art of swordsmanship, is also divided into three branches: Sal, Pi, and Ppyeo.\nWithin their teachings exist techniques to hew and cleave through creatures of colossal stature such as Sanguns.\nTo perform them in full, a swordsman must wield a great hwando capable of bearing the strain of the techniques."
+      "flavor": "S公司傳承的本國劍，同樣分為肉、血、骨三個分支。\n其中也流傳著為斬殺山君這般巨大存在而生的劍術。\n若要完整施展這樣的劍術，就需要與之相稱的巨大環刀。"
     },
     {
       "id": 501202,
       "name": "頭釘甲[肉] - 鐵壁",
       "desc": "受到 [Laceration]、[Burst]、[Sinking] 效果造成的傷害 -30% (無條件捨去)\n\n使自身獲得 [PanicChangeLock]；回合結束時，若自身處於恐慌狀態，則使自身的理智值恢復至45點\n\n自身首次於關卡中進入戰場時，使自身獲得5層 [ChoiSwordsmanshipShield]\n\n<color=#ff6000><mark color=#ff000040><b><u>當 [ChoiSwordsmanshipShield] 遭到解除時，下回合使自身陷入混亂\n自身因上述效果而陷入混亂的回合結束時，使戰鬥進入下一階段</color></mark></b></u>\n- 階段1期間，自身的體力值不會減少至<color=#ff6000><mark color=#ff000040><b><u>70%以下</color></mark></b></u>\n- 自身的體力值減少至70%以下時，使回合<color=#ff6000><mark color=#ff000040><b><u>立即強制結束</color></mark></b></u>，並進入下一階段\n- 進入新的戰鬥階段時，使自身的理智值恢復至45點",
-      "flavor": "The Eastern Warstride Armors are not so much \"equipped\" as they are \"piloted.\" S Corp.'s Dujeong Brigandine is one example of such armor.\nMuch like R Corp.'s Powered Armor Suit and the Full Plate Armor used by the Knights of the West, the Dujeong Brigandine greatly augments the user's offensive and defensive combat capabilities.\nYet these advantages do not mean that armors of such potency are readily supplied for combat personnel. Each unit has its own unique controls and comes with the limitation of requiring separate fuels.\nWhat remains certain, however, is that, as with all the aforementioned armors, once a rider has familiarized himself with the Dujeong Brigandine's extended reach and heightened power output, he becomes a machine of war that strides across battlefields with the promise of slaughter."
+      "flavor": "東部的騎乘甲與其說是「穿戴」，更接近「搭乘」的概念，S公司的頭釘甲也是這種騎乘甲的一種。\n如同R公司的動力裝甲服或西部騎士們的全身板甲，頭釘甲能讓使用者的攻防能力飛躍性地提升。\n只不過，性能如此優異的甲冑並不容易配發。此外，每種甲冑的操作方式各不相同，運作時還需要另外的燃料，這些限制也隨之而來。\n儘管如此，可以確定的是，正如動力裝甲服、全身板甲以及其他騎乘甲那樣，當搭乘者習慣了頭釘甲所提供的延伸攻擊距離與強化出力的那一刻，其在戰場上的殺傷力便會飛躍性地上升。"
     },
     {
       "id": 501203,
       "name": "淬鍊武藝",
       "desc": "拚點勝利時，使自身獲得2回 [Breath] (每回合最多2次)\n\n自身攻擊技能命中時，若目標帶有的 [Laceration] 強度低於5級，則於攻擊結束時使目標增加1級 [Laceration] 強度與2回 [Laceration] (每技能最多1次；每回合最多2次；優先指定主要目標)",
-      "flavor": "'There are those who persevere in training for lack of talent. Then there are those blessed with talent, only to let it rust.'\n'All men say that the title of Apex Blade can only be seized by the gifted.'\n'It matters not. Until the day comes for this blade of mine to rise high enough to meet the clouds, I shall persevere in honing my prowess.'"
+      "flavor": "「有人因為沒有才能而努力。也有人明明有才能卻不努力。」\n「所有人都說，最終能獲得第一劍之名的，是天生有才能的人。」\n「但那無所謂。直到這把劍觸及雲端的那天為止，我只會不斷鍛鍊。」"
     },
     {
       "id": 501204,
@@ -98,7 +98,7 @@
       "id": 501301,
       "name": "本國劍術[肉] - 撕裂血肉",
       "desc": "關卡開始時，使自身獲得5層 [ChoiSwordsmanship]\n\n每經過3回合，改變自身的本國架勢\n\n自身的斬擊技能命中時，使自身獲得1級 [Breath] 強度 (每技能最多1次)\n\n當下列條件遭到觸發時，使自身改變至包含技能「本國弓術[肉] - 有的放矢」的行動模式\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時\n\n回合開始時，若自身的 [ChoiSwordsmanship] 層數為最小值或最大值，則發動強力技能\n若自身於上回合使用了技能「本國弓術[肉] - 有的放矢」，則無視自身 [ChoiSwordsmanship] 層數，發動強力技能\n自身體力值減少至60%以下時，將無視自身 [ChoiSwordsmanship] 層數，發動強力技能",
-      "flavor": "The Sword of the Homeland passed down in the Sal Court Circle is not, at its heart, an art of killing.\nTo cut and cut again until blood runs dry and the bone is laid bare—that is the essence of this art that strips the opponent's flesh into ribbons.\nThat is the Sword of the Homeland practiced by \"Sal.\""
+      "flavor": "肉黨派所使用的本國劍，其本質並不在於殺戮。\n斬了又斬，直到血流不止、白骨外露，將對手的血肉一片片削落。這就是「肉」的本國劍。"
     },
     {
       "id": 501304,
@@ -108,8 +108,8 @@
     {
       "id": 501305,
       "name": "頭釘甲[肉] - 泰山",
-      "desc": "Take -30% damage from [Combustion], [Laceration], [Vibration], [Burst], [Sinking] (rounded down, excluding Stagger Threshold raised by [VibrationExplosion])\n\nGain the effects of [PanicChangeLock]; If this unit is Panicked at Turn End, reset SP to 45\n\nTurn Start: Gain the following effects:\n- When in [ChoiSwordsmanshipOne]: At less than 5 [ChoiSwordsmanship] Stack, gain (5 - [ChoiSwordsmanship] Stack) <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n- When in [ChoiSwordsmanshipMany]: At more than 5 [ChoiSwordsmanship] Stack, gain <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u> equal to surplus [ChoiSwordsmanship] Stack past 5",
-      "flavor": "The three Court Circles of Sal, Pi, and Ppyeo each remade the standard Dujeong Brigandine of S Corp. into forms suited to their own doctrines.\nThe olden tales say that the \"Sal\" has ever been the first to spearhead a slaughter, eager to cleave the enemy's flesh before any other.\nThe \"Pi\" harvests the blood that spills forth from each opened flesh wound and turns it into endurance on the battlefield.\nThe \"Ppyeo\" takes the close of a slaughter. They part one joint from the other, bringing the enemy to their knees. Then, a blade through the neckbone finishes the collective act of killing."
+      "desc": "受到 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 造成的傷害-30%(無條件捨去[TabExplain]；[VibrationExplosion] 造成的混亂閾值前移除外)\n\n使自身獲得 [PanicChangeLock]；回合結束時，若自身處於恐慌狀態，則使自身的理智值變為45點\n\n回合開始時，使以下效果生效：\n- 自身處於 [ChoiSwordsmanshipOne] 時，若自身的 [ChoiSwordsmanship] 層數低於5層，則獲得(5 - [ChoiSwordsmanship] 層數)層<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n- 自身處於 [ChoiSwordsmanshipMany] 時，若自身的 [ChoiSwordsmanship] 層數高於5層，則獲得與超出層數等量的<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>",
+      "flavor": "以S公司基本的頭釘甲為基礎，肉、血、骨三個黨派各自打造出符合自身思想的頭釘甲。\n根據古老的傳說，「肉」總是開啟殺生的序幕。他們比任何人都更早剖開敵人的血肉。\n「血」承接每當血肉被剖開時流出的鮮血，並利用那些血來補足戰鬥的持續力。\n「骨」負責殺生的收尾。斬斷一節又一節的關節，使敵人屈膝跪地，最後斬斷敵人的頸骨，終結其性命。"
     },
     {
       "id": 501501,
@@ -120,7 +120,7 @@
     {
       "id": 501911,
       "name": "映射戰鬥",
-      "desc": "At 10+ Clashes against the same enemy, randomly gain or lose Clash Power by (Clash Count/10) in a Clash (max 10)\n\nMax Potency cap for [Combustion], [Laceration], [Vibration], [Burst], and [Sinking]: 30\nMax Count cap for the above effects: 10\n\nTeam 1 Encounter Start:\n- This unit and all Sinners on the field: Change SP to 30 (for Minus Coin Identities, -30)\n- Gain +3 E.G.O Resource for all Affinities\n\nUpon activating the Passive effects of \"Tiantui Star\",\nEnd the turn and enter Phase 2 next turn\n- Entering the new phase does not reset effects on this unit\n\nTeam 2 & 3 Encounter Start:\nBased on this unit's current HP percentage, the Passive effects below are considered to have activated in the order listed\n- More than 85% HP: Tigermark Round[TabExplain] Reload[TabExplain]\n- 85% or lower: Tigermark Round[TabExplain] Reload[TabExplain]; Lei Heng\n- 66% or lower: Tigermark Round[TabExplain] Reload[TabExplain]; Lei Heng; Tiantui Star\n- 50% or lower: Tigermark Round[TabExplain] Reload[TabExplain]; Lei Heng; Tiantui Star; Lei Heng, The Pinky's Tiantui Star"
+      "desc": "若與同一目標進行拚點不低於10次，\n則隨機使自身的拚點威力增加或減少(拚點次數/10)(最多10)\n\n[Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 強度最多累積到30級，\n回數最多累積到10回\n\n第1編隊入場且關卡開始時，\n- 使自身與戰場上所有罪人的理智值變為30點\n(若是減算硬幣人格，則改為-30點)\n- 獲得所有屬性的罪孽碎片各3個\n\n被動技能天退星的效果觸發時，\n結束本回合並在下回合變為第2階段\n- 自身帶有的狀態效果不會因改變階段而重置\n\n第2與第3編隊入場且關卡開始時，\n根據現存體力比例，相應使以下被動技能依順序視作已觸發\n- 高於85%：裝填<noparse>虎標彈</noparse>\n- 不高於85%：裝填<noparse>虎標彈</noparse>、雷橫\n- 不高於66%：裝填<noparse>虎標彈</noparse>、雷橫、天退星\n- 不高於50%：裝填<noparse>虎標彈</noparse>、雷橫、天退星、小指 天退星 雷橫"
     },
     {
       "id": 501901,
@@ -150,7 +150,7 @@
     {
       "id": 501910,
       "name": "插翅虎",
-      "desc": "戰鬥開始時，<color=#ff6000><mark=#ff000040><b><u>根據自身的速度值</u></b></mark></color>\n- 使自身恢復等同於自身速度值的理智值。若自身的理智值不高於0點，則使恢復的理智值變為2倍\n- 使自身獲得(自身的速度值÷3)層 [SlashDamageUp] (最多5層)\n\n戰鬥開始時，<color=#ff6000><mark=#ff000040><b><u>若自身的 [Binding] 層數不低於3層，則不會觸發以上效果</u></b></mark></color>並對自身施加層數等同於自身 [Binding] 層數的 [DefenseDown] (最多9層)"
+      "desc": "戰鬥開始時，<color=#ff6000><mark=#ff000040><b><u>根據自身的速度值</u></b></mark></color>\n- 使自身恢復等同於自身速度值的理智值。若自身的理智值低於0點，則使恢復的理智值變為2倍\n- 使自身獲得(自身的速度值÷3)層 [SlashDamageUp] (最多5層)\n\n戰鬥開始時，<color=#ff6000><mark=#ff000040><b><u>若自身的 [Binding] 層數不低於3層，則不會觸發以上效果</u></b></mark></color>並對自身施加層數等同於自身 [Binding] 層數的 [DefenseDown] (最多9層)"
     },
     {
       "id": 501905,

@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": "item_count_basic",
-      "content": "{1} x{0}"
+      "content": "{1} {0}個"
     },
     {
       "id": "item_count_page",

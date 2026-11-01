@@ -59,7 +59,7 @@
       "eventDesc": "",
       "behaveDesc": "讓誰去學習CQB呢？",
       "successDesc": [
-        "{0} paid attention to the class.\n\nWe knew most of it, of course, but there were some techniques we weren't aware of before.\n\nPerhaps they found {0}'s dedication admirable.\n\nSomeone who looked like a drill instructor walked up to {0} and handed them an instruction manual of sorts."
+        "罪人{0}專注聽課。\n\n雖然大部分內容都已經知道了，但似乎也有一些不太了解的概念。\n\n也許是很高興對方能好好跟上課程吧。\n\n看上去像是教官的人給了罪人{0}一本教材。"
       ],
       "failureDesc": [
         "也許是因為內容比想像中難。\n\n罪人{0}不知不覺間睡熟了。"

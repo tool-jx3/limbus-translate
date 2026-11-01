@@ -3,47 +3,47 @@
     {
       "id": "get_10717_1",
       "desc": "獲得時",
-      "dlg": "Ohh, is that right, mate...? No soul in machine stitching, eh...?\nRight, I'll give you your bloody handmade! HANDMADE! BESPOKE! HAND-SEWN!!"
+      "dlg": "啊，是喔……？說什麼機器處理的縫製品沒有靈魂……？\n好啊……就如你所願！純手工！量身訂製！手工縫製！！！"
     },
     {
       "id": "lobby_morning_10717_1",
       "desc": "早晨問候",
-      "dlg": "New season... I'm stitchin' up whatever I fancy, whatever I can get my hands on. Just like the Voice said... never had to put up with all that shite quietly in the first place..."
+      "dlg": "這次的新一季，我要隨心所欲，見什麼就縫什麼……就像那個聲音說的，本來就沒必要忍著……"
     },
     {
       "id": "lobby_noon_10717_1",
       "desc": "午時問候",
-      "dlg": "... Oi, hear that blubberin'? Sounds proper desperate, ain't it? And... a bit sweet, too...!\n*snicker* I'm starvin'... Gonna get my teeth into that... chew it right up!"
+      "dlg": "……有什麼在哭的聲音。聽到了吧？好淒厲……又有種，甜膩的聲音……！\n嘻嘻，好餓……我要把那個……嚼碎吃掉！"
     },
     {
       "id": "lobby_night_10717_1",
       "desc": "晚間問候",
-      "dlg": "Looms... heh. Loopwheels. Sewing machines... heh, heheh... 43200G... No, no, bugger that! Shift the lot! It's \"handmade\" they're after, innit? \"HANDMADE\"... Khh... Why do they keep bangin' on about \"handmade\" when what they're <i>actually</i> after are bleedin' machines... EH?!"
+      "dlg": "織布機……嘻嘻。吊輪機。縫紉機……呵、呵呵……43200g……不對，不對……全部收走！不是說要「手工」嗎，「手工」……嗚呃呃……到底為什麼想要的明明是機器，嘴上卻說要手工啊……啊？！"
     },
     {
       "id": "smalltalk_10717_1",
       "desc": "對話 1",
-      "dlg": "Look... if you know sod all about somethin', you keep your gob shut, don't you? But there's always some smart-arsed git, innit? Knows a fingernail's worth, reckons he's got the whole bleedin' hand sussed.\n... And, oh, can't those buggers stop gabbin'... No! Gabbin' ain't even the problem! Why do they come out with nothin' but shite... and act like every bleedin' word's some big truth...?!"
+      "dlg": "照理說啊……碰到自己不太懂的事，就會少說兩句吧？可是……偏偏就是有。明明只懂指甲那麼一丁點，卻誤以為自己懂了整個手掌的傢伙。\n……啊……這種傢伙偏偏……話都特別多……不對？！話多也就算了！為什麼要理直氣壯地……說一堆錯得離譜的話啊……？！"
     },
     {
       "id": "smalltalk_10717_2",
       "desc": "對話 2",
-      "dlg": "That's how they did it dozens of seasons back... Hang on. Them lot used to kick up a stink 'cause their clobber shrank in the wash. Had to be pre-shrunk, they said. Now they're after the stuff that ain't been treated? Can't they make up their mind?"
+      "dlg": "那種做法是幾十季以前才在用的……不是，以前說洗了會縮水，要人做防縮處理，為什麼最近反而都在找沒做防縮處理的啊？"
     },
     {
       "id": "smalltalk_10717_3",
       "desc": "對話 3",
-      "dlg": "Selvedge... and rigid denim... ain't the same thing..."
+      "dlg": "就說了赤耳……跟原色丹寧是兩回事……"
     },
     {
       "id": "smalltalk_10717_4",
       "desc": "同步後對話 1",
-      "dlg": "I sewed it by hand, just like you bloody asked!! What?! The stitches are too even, so a machine must've done it?! Get back here, you c$#%! I'll show you 18 premium stitches! Shit-ten and bugger-eight, straight into your skin! WITH THIS NEEDLE!!!"
+      "dlg": "不是照你要的手縫了嗎！！！什麼？！太均勻了，看起來像機器縫的？！你這狗#%@!！還不給我過來？！我就直接在你這傢伙的皮膚上重現18針！用這根針！！！"
     },
     {
       "id": "smalltalk_10717_5",
       "desc": "同步後對話 2",
-      "dlg": "\"Proper leather's got to show its teacore, hasn't it?!\" \"Chrome-tanned and full aniline, 'course it is?!\" \"Wouldn't touch it if it ain't full-grain?!\" Oh, now that I've converted to Le Rouge, bloody leather's fair game to b**** and m*** over too, that it...?!"
+      "dlg": "會透出茶芯的皮革才是真貨吧？！當然是鉻鞣加全苯胺吧？！不是全粒面就不收？！現在說什麼丹紅派，連皮革都拿來瞎&%?#……！"
     },
     {
       "id": "neglect_10717_1",
@@ -53,22 +53,22 @@
     {
       "id": "gacksung_10717_1",
       "desc": "進行同步",
-      "dlg": "Pick stitch too obvious, you say?! I'll pick-stitch your bum!!!"
+      "dlg": "問我是不是故意把挑針縫得那麼顯眼？！那我就照樣狠狠給你縫進去！！！"
     },
     {
       "id": "formation_10717_1",
       "desc": "人格出戰",
-      "dlg": "What now?! Another mardy sod with a complaint?! Give it here!"
+      "dlg": "又來？！客訴？！拿過來！"
     },
     {
       "id": "battleentry_10717_1",
       "desc": "進入戰鬥",
-      "dlg": "Difficult customers in black... I KILL!"
+      "dlg": "奧客……就宰了！"
     },
     {
       "id": "battle_select_10717_1",
       "desc": "戰鬥中選中人格",
-      "dlg": "That racket's doin' my head in... What're you gonna start blatherin' about now?!"
+      "dlg": "吵死了……又想講什麼鬼話！"
     },
     {
       "id": "battle_endcommand_10717_1",
@@ -78,7 +78,7 @@
     {
       "id": "battle_enemy_break_10717_1",
       "desc": "敵方混亂",
-      "dlg": "You ain't even got a clue about what you're yappin'..."
+      "dlg": "明明什麼都不懂……"
     },
     {
       "id": "battle_break_10717_1",
@@ -88,37 +88,37 @@
     {
       "id": "battle_kill_10717_1",
       "desc": "擊殺敵方",
-      "dlg": "Don't you give me lip about my work!"
+      "dlg": "我的作品輪不到你頂嘴！"
     },
     {
       "id": "battle_dead_10717_1",
       "desc": "自身陣亡",
-      "dlg": "It's... the wrong way round...?! Now you're just... tryin' to piss me off, aren't you..."
+      "dlg": "反、反了……！你、你是故意……的吧……"
     },
     {
       "id": "choice_success_p_10717_2",
       "desc": "判定成功",
-      "dlg": "Not a single complaint? Pull the other one! It's got bells on!"
+      "dlg": "沒有客訴？少唬爛了！"
     },
     {
       "id": "choice_fail_n_10717_1",
       "desc": "判定失敗",
-      "dlg": "H-heheheh! Oh, give over! Stop talkin' out your arse!!!"
+      "dlg": "咿、咿嘻嘻！少給我硬拗了！！！"
     },
     {
       "id": "battle_clear_10717_1",
       "desc": "戰鬥勝利",
-      "dlg": "More... more...! That ain't... near enough...!! Those bastards... the whole bleedin' lot...!"
+      "dlg": "還要……還要……！還……不夠……！！！把那群混蛋……全部……！"
     },
     {
       "id": "battle_clear_ex_10717_1",
       "desc": "EX CLEAR戰鬥勝利",
-      "dlg": "Even? Neat as a pin! Stitched your traps right shut! Heh, heheheh...! Still reckon that's a machine job, you cheeky sods?!"
+      "dlg": "均勻？精巧！把那張嘴給縫起來了！嘻、嘻嘻……！現在還覺得這是機器車縫的嗎？！"
     },
     {
       "id": "battle_defeat_10717_1",
       "desc": "戰鬥失敗",
-      "dlg": "One bite... If I could just get my teeth in... one bleedin' bite...!!! Again... again...!"
+      "dlg": "一口就好……只要能嚼上一口……！！！再一次、再一次……！"
     }
   ]
 }

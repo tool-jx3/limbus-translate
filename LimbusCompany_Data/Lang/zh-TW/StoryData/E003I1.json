@@ -4,21 +4,21 @@
       "id": 0,
       "place": "邊獄幼稚園？",
       "model": "단테",
-      "content": "<Huh, we can get stuff other than meat from them?>"
+      "content": "<不只能得到肉，還會冒出各種配料啊？>"
     },
     {
       "id": 1,
       "model": "유리",
       "title": "營養師",
-      "content": "그럼요. 봉이는 서식지 근처에 있는 다른 재료들을 저 아랫몸에 저장하는 습성이 있거든요."
+      "content": "當然囉。小鳳有把棲息地附近的其他食材儲存在那個下半身裡的習性呢。"
     },
     {
       "id": 2,
-      "content": "<i>What</i> lower body...? The limbs?"
+      "content": "她是把那個長著手腳的東西叫作下半身嗎……？"
     },
     {
       "id": 3,
-      "content": "I looked up toward the Perky Penguins, once again diving deep into my well of memories to see if these Bongy things even had a lower body..."
+      "content": "我一邊苦思自己是否有過這樣的記憶，一邊望向企鵝班所在的方向……"
     },
     {
       "id": 4,
@@ -27,31 +27,31 @@
     },
     {
       "id": 5,
-      "content": "... and saw Gregor, poking at a Bongy's carcass stripped of flesh."
+      "content": "格里高爾正一下一下地戳著小鳳被拆解後剩下的部分。"
     },
     {
       "id": 6,
-      "content": "At a glance, it may have appeared as nothing more than an everyday childish curiosity, but there was a solemn look on the kid's face that gave me pause."
+      "content": "原以為只是小孩子特有的好奇心，但那表情不知怎地，又帶著一股不像孩子的超然。"
     },
     {
       "id": 7,
       "model": "로쟈만우",
-      "content": "Hey, Greg~ Don't touch that! Yucky, yucky."
+      "content": "喂，格雷格～不要摸那個，髒髒，那是髒髒啦。"
     },
     {
       "id": 8,
       "model": "단테",
-      "content": "<\"Yucky\"? You're about to make food from that, you know...?>"
+      "content": "<那裡不是到剛剛為止都還連著你們食材的地方嗎……？>"
     },
     {
       "id": 9,
       "model": "로쟈만우",
-      "content": "Huh? Uh, uhm... Bongy looks fat and juicy, but..."
+      "content": "欸？呃，那當然……小鳳肉嘟嘟的，看起來很好吃嘛～"
     },
     {
       "id": 10,
       "model": "로쟈만우",
-      "content": "... after you get all the meat off, it looks like... ewie, looks like a buggy! Yuck!"
+      "content": "剩下的空殼殼……嗚，太像蟲子了啦～噁。"
     },
     {
       "id": 11,
@@ -60,26 +60,26 @@
     },
     {
       "id": 12,
-      "content": "And so, Gregor began bawling."
+      "content": "……格里高爾終究還是放聲大哭了。"
     },
     {
       "id": 13,
       "model": "단테",
-      "content": "<Rodya! You're being mean! Apologize to Gregor, now!>"
+      "content": "<羅佳！怎麼可以那樣說話呢！快向格里高爾道歉。>"
     },
     {
       "id": 14,
-      "content": "... Bugs and Gregor crying... I wasn't sure how these two things were related, but a voice in me urged me to demand that Rodya apologize to Gregor."
+      "content": "……雖然我也不太明白自己為什麼覺得她非道歉不可，但心中湧起了一股非這麼做不可的衝動。"
     },
     {
       "id": 15,
       "model": "로쟈만우",
-      "content": "Huhh? B-but what'd I do...?"
+      "content": "噁欸？偶又沒有做錯事……"
     },
     {
       "id": 16,
       "model": "그레고르만우",
-      "content": "*sob* Appl—apowogize!"
+      "content": "嗚呃，道……歉！"
     },
     {
       "id": 17,
@@ -89,26 +89,26 @@
     {
       "id": 18,
       "model": "로쟈만우",
-      "content": "Sowwy about calling your big, meaty claws \"buggy,\" 'kay~? So quit cryin'—"
+      "content": "以前看到你的夾夾手，說它像蟲子的事也對不起啦～所以不哭不哭……"
     },
     {
       "id": 19,
       "model": "그레고르만우",
-      "content": "Waaaaaah!!! It's n-not b-*hic*bug, It's n-not buggy...!"
+      "content": "嗚哇啊啊啊昂！！！蟲子，嗚！蟲……子，才不是……！"
     },
     {
       "id": 20,
       "model": "로쟈만우",
-      "content": "Sheesh... why won't he quit crying...? Y-you hungry or something? Wan tasty food?"
+      "content": "哎唷真是的……幹嘛一直哭啦……？肚、肚子餓餓了嗎？要不要我分你吃的？"
     },
     {
       "id": 21,
       "model": "단테",
-      "content": "<Do you <i>really</i> not understand why...?>"
+      "content": "<她是真的不知道嗎……？>"
     },
     {
       "id": 22,
-      "content": "As Rodya was struggling to calm Gregor down, light, even footsteps approached me from behind."
+      "content": "就在羅佳手足無措地哄著格里高爾時，身後傳來了輕輕的腳步聲。"
     },
     {
       "id": 23,
@@ -122,48 +122,48 @@
     },
     {
       "id": 25,
-      "content": "Something about the way the low, level voice spoke struck me as oddly familiar, so I whipped around to see who it came from."
+      "content": "那低沉渾厚的嗓音甚至讓我感到一股莫名的欣喜，我回過頭去。"
     },
     {
       "id": 26,
-      "content": "Yeah, there's no way we're running this place with <i>two</i> teachers. This has to be the third teacher who's managing one of the other classes—"
+      "content": "對了，說不定還有負責其他班的老師在。如果大家分工照顧孩子們……"
     },
     {
       "id": 27,
-      "content": "... But I saw no one."
+      "content": "……但視線所及之處卻沒有人。"
     },
     {
       "id": 28,
       "model": "뫼르소만우",
-      "content": "Down here."
+      "content": "在這邊。"
     },
     {
       "id": 29,
-      "content": "The voice was low. In terms of height, that is."
+      "content": "聲音是從稍微更低一點的地方傳來的。"
     },
     {
       "id": 30,
       "model": "단테",
-      "content": "<Oh. Hey, Meursault.>"
+      "content": "<啊，是莫梭啊。>"
     },
     {
       "id": 31,
       "model": "뫼르소만우",
-      "content": "That is me. The meal is now prepared. I have come to fetch you, Principal."
+      "content": "是，料理已準備就緒，特來請園長過去。"
     },
     {
       "id": 32,
       "model": "단테",
-      "content": "<That's uh, ha ha. You've got a pretty baritone voice for a kid...>"
+      "content": "<以小孩來說……聲音還真是結實又沉穩啊……>"
     },
     {
       "id": 33,
-      "content": "This kid doesn't even talk like a toddler..."
+      "content": "說話也畢恭畢敬的……"
     },
     {
       "id": 34,
       "model": "뫼르소만우",
-      "content": "Thank you for the compliment."
+      "content": "感謝您的稱讚。"
     },
     {
       "id": 35,
@@ -173,208 +173,208 @@
     {
       "id": 36,
       "model": "뫼르소만우",
-      "content": "I will lead the Perky Penguins to the venue. Seat yourself at the chaperone's chair in the kitchen and oversee the proceedings."
+      "content": "企鵝班的小朋友由我帶過去，還請您在廚房的監護人席入座，監督我們。"
     },
     {
       "id": 37,
       "model": "뫼르소만우",
-      "content": "Sinnerling Outis, the Class Captain, is already at the venue."
+      "content": "班長奧提斯罪園生已經就座。"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<O-okay... Thanks.>"
+      "content": "<這、這樣啊……謝謝。>"
     },
     {
       "id": 39,
-      "content": "... Flabbergasted, I stared at Meursault walking toward Rodya and Gregor in that steady, even pace, then made my way into the kitchen."
+      "content": "……我一臉茫然地望著莫梭俐落地走向羅佳和格里高爾，然後走進了食堂。"
     },
     {
       "id": 40,
-      "place": "Kindergarten Kitchen?",
+      "place": "幼稚園 廚房？",
       "model": "단테",
-      "content": "<The kitchen's a real mess, huh...>"
+      "content": "<廚房好亂啊……>"
     },
     {
       "id": 41,
       "model": "오티스만우",
-      "content": "A mess?! Executive Teach, errything is where it outta be!"
+      "content": "您說亂嗎？所有東西都在它該在的位置上，園長！"
     },
     {
       "id": 42,
-      "content": "Is it...?"
+      "content": "是這樣嗎……？"
     },
     {
       "id": 43,
-      "content": "Hmm, something about this place feels oddly familiar, too... I guess this is how this place has always looked?"
+      "content": "這麼說來，這裡好像是在哪裡見過的地方……又好像本來就是這副模樣。"
     },
     {
       "id": 44,
       "model": "단테",
-      "content": "<Ahem. So... what kind of dish are you preparing, class?>"
+      "content": "<咳嗯，那麼……你們要做的料理是什麼呢？>"
     },
     {
       "id": 45,
       "model": "뫼르소만우",
-      "content": "We have prepared a Bongy Fwit."
+      "content": "是。我們準備了油砸小鳳。"
     },
     {
       "id": 46,
-      "content": "Oh, so he's still getting used to words that are hard to pronounce."
+      "content": "看來還發不好比較難的音啊。"
     },
     {
       "id": 47,
-      "content": "Hang on, why'd he say that in past tense?"
+      "content": "可是……「準備了」？"
     },
     {
       "id": 48,
       "model": "단테",
-      "content": "<Wait, but Rodya and Gregor <i>just</i> got here, didn't they? Weren't they a part of your team, too? I guess Gregor might be a bit too young to start cooking, but...>"
+      "content": "<你不是才剛把羅佳和格里高爾帶進來嗎？啊，雖然格里高爾要做料理好像還太小了……>"
     },
     {
       "id": 49,
       "model": "뫼르소만우",
-      "content": "Allow me to explain, Principal. Sinnerling Rodya was intentionally excluded from the cooking process under suspicion of causing a repeated loss of ingredients."
+      "content": "是，園長。羅佳罪園生在料理過程中有持續造成食材損失的跡象，因此刻意將她排除在外。"
     },
     {
       "id": 50,
       "model": "로쟈만우",
-      "content": "Whaa?! Whaddaya take me fow?!"
+      "content": "什摸？！你把我……當成什摸了！"
     },
     {
       "id": 51,
       "model": "로쟈만우",
-      "content": "Big Teach! Kick Merr's butt!"
+      "content": "園長！幫我罵罵小莫！"
     },
     {
       "id": 52,
       "model": "뫼르소만우",
-      "content": "She has just consumed another one of the Bongy drumsticks."
+      "content": "就在剛才，又損失了一隻小鳳後腿。"
     },
     {
       "id": 53,
       "model": "오티스만우",
-      "content": "Teach 'er a lesson, Executive Teach!"
+      "content": "園長大銀！請您好好叫訓她！"
     },
     {
       "id": 54,
       "model": "단테",
-      "content": "<... That's it. Rodya, go sit in the corner there. It's the time-out chair for you.>"
+      "content": "<……羅佳，去那邊的反省椅坐著。>"
     },
     {
       "id": 55,
       "model": "로쟈만우",
-      "content": "Whaa?! Why?! But... but if dere's food, I gotta get it into my mauth, or... they'll be all gone! And I'm gonna starve and die!"
+      "content": "什麼？！為什麼？！可素有吃的東西的話……不趕快拿過來，就會餓死了不素嗎！"
     },
     {
       "id": 56,
-      "content": "... Is that really something a child of her age should be saying? Just what kind of awful condition has she been living in?"
+      "content": "……這孩子究竟是在多麼嚴酷的環境下生活的？"
     },
     {
       "id": 57,
       "model": "단테",
-      "content": "<Too bad, but I can't let it slide when I <i>just</i> saw you sneaking away with a drumstick. Off to the corner, now.>"
+      "content": "<雖然很可憐，但現行犯就是沒辦法。去坐好。>"
     },
     {
       "id": 58,
       "model": "로쟈만우",
-      "content": "Hnnngh... But I gave away cwookies! I was a good girl!!!"
+      "content": "嗚嗯……人家剛剛還分了餅乾……明明有當乖小孩的說！！！"
     },
     {
       "id": 59,
       "model": "오티스만우",
-      "content": "Is the diwect orders from the Executive Teach! To the corner now, you-you embawassed the Perky Penguins!"
+      "content": "這是園長大銀的命令！快走，妳這企鵝班的恥辱！"
     },
     {
       "id": 60,
-      "content": "Outis might be going a bit overboard..."
+      "content": "也不必說到那種地步吧……"
     },
     {
       "id": 61,
       "model": "유리",
       "title": "營養師",
-      "content": "후후. 이렇게 싸우면서 성장하는 거겠죠?"
+      "content": "呵呵。孩子們就是這樣邊吵邊長大的吧？"
     },
     {
       "id": 62,
-      "content": "... I looked at Miss Yuri, but she only wore an innocent, kindly smile one might have when watching children play their silly games."
+      "content": "……尤莉老師只是像在看孩子們耍寶似的，露出和善的笑容。"
     },
     {
       "id": 63,
       "model": "유리",
       "title": "營養師",
-      "content": "자, 그럼… 뫼르소 어린이? 이번 요리를 설명해 주겠어요?"
+      "content": "好，那麼……莫梭小朋友？可以為我們介紹這次的料理嗎？"
     },
     {
       "id": 64,
       "model": "뫼르소만우",
-      "content": "Yes. As today's ordorbrr..."
+      "content": "是。這次的歐德噗兒……"
     },
     {
       "id": 65,
-      "content": "The explanation continued for a while with a similar level of incomprehensibility. Did he mean hors d'oeuvres...?"
+      "content": "難以聽懂的說明就這麼一直持續下去。"
     },
     {
       "id": 66,
-      "content": "As I listened, I became increasingly suspicious whether these were the vocabulary and loquaciousness of a toddler, but..."
+      "content": "聽著聽著，我一直懷疑這真的是小孩子能說得出口的說明和技巧嗎……"
     },
     {
       "id": 67,
-      "content": "Once I saw a smugly satisfied Outis return from her \"arrest,\" after having properly \"restained\" the \"perperrator,\" Rodya..."
+      "content": "看著奧提斯說已經把羅佳牢牢拘束在椅子上了，從遠處拍拍手、得意洋洋地走回來。"
     },
     {
       "id": 68,
-      "content": "... only to produce a crayon and a massive sketch pad from who-knows-where and begin a whole lecture on how this dish came to be, well..."
+      "content": "接著又看著她一回來就拿出跟自己身體一樣大的素描本，用一幅幅蠟筆畫來簡報料理的說明……"
     },
     {
       "id": 69,
-      "content": "Eventually, I stopped thinking."
+      "content": "我決定放棄思考。"
     },
     {
       "id": 70,
-      "content": "This is just the kind of world I live in, I guess."
+      "content": "因為這裡，就是那樣的地方。"
     },
     {
       "id": 71,
       "model": "유리",
       "title": "營養師",
-      "content": "네~ 잘 들었어요~ 친구들!"
+      "content": "好～大家說明得很棒喔～小朋友們！"
     },
     {
       "id": 72,
       "model": "유리",
       "title": "營養師",
-      "content": "그러면 맛을…"
+      "content": "那麼就來嚐嚐味道……"
     },
     {
       "id": 73,
       "model": "유리",
       "title": "營養師",
-      "content": "음? 그런데 설명을 안 한 부분이 있네요, 뫼르소 어린이?"
+      "content": "嗯？不過還有沒說明到的部分呢，莫梭小朋友？"
     },
     {
       "id": 74,
       "model": "유리",
       "title": "營養師",
-      "content": "음식 꼭대기에… 이건 뭔가요?"
+      "content": "料理的最上面……這是什麼呢？"
     },
     {
       "id": 75,
-      "content": "Miss Yuri pointed at an unfamiliar object standing upright atop the dish, almost like a birthday candle."
+      "content": "尤莉老師所指之處，有個陌生的物體直挺挺地立著，彷彿插了根裝飾用的蠟燭。"
     },
     {
       "id": 76,
-      "content": "Wait, isn't that what Gregor's been picking up earlier...?"
+      "content": "好像剛才看過……是格里高爾在撿的……"
     },
     {
       "id": 77,
       "model": "그레고르만우",
-      "content": "Now... Heh... They won't be fowgetted."
+      "content": "醬子的話……嘻……就會被記住了。"
     },
     {
       "id": 78,
       "model": "단테",
-      "content": "<It's a lower limb of a Bongybug—>"
+      "content": "<小鳳蟲的前臂——>"
     },
     {
       "id": 79,
@@ -382,7 +382,7 @@
     },
     {
       "id": 80,
-      "content": "In the blink of an eye, Meursault's fist slammed down upon the delectable fried Bongy and turned it into shapeless mush, alongside the unfamiliar object..."
+      "content": "莫梭瞬間一拳砸下，那陌生的物體和看起來很可口的油炸小鳳，都變成了一團看不出原形的爛泥……"
     },
     {
       "id": 81,
@@ -392,27 +392,27 @@
     {
       "id": 82,
       "model": "오티스만우",
-      "content": "Executive Teach! I-I can explain thith! Issa, uhh—!"
+      "content": "園長大銀！這、這全部都可以跟您解四！那個，嗯……！"
     },
     {
       "id": 83,
       "model": "오티스만우",
-      "content": "Sinnerling Meursault! Expwain! Was this desucctive perfornance part of this gasronomical experrance?"
+      "content": "莫梭罪園生！連這種破壞性的演粗，也素這次套餐料理的演粗吧？！"
     },
     {
       "id": 84,
       "model": "오티스만우",
-      "content": "Speak! What is the name of this dish!?"
+      "content": "來，說說看！這道料理的名字素！"
     },
     {
       "id": 85,
       "model": "뫼르소만우",
-      "content": "Le Plat-doo-joor."
+      "content": "今日的組菜。"
     },
     {
       "id": 86,
       "model": "뫼르소만우",
-      "content": "... Mashy Fried Bongy."
+      "content": "……搗泥油砸小鳳。"
     },
     {
       "id": 87,
@@ -422,88 +422,88 @@
     {
       "id": 88,
       "model": "단테",
-      "content": "<It's the time-out chair for all of you, too! Go sit!>"
+      "content": "<你們也全都給我去反省椅坐好！>"
     },
     {
       "id": 89,
-      "content": "The first contestants' food was completely wasted..."
+      "content": "結果第一道料理連試吃都沒能試吃就結束了……"
     },
     {
       "id": 90,
-      "place": "Limbus Kindergarten?",
+      "place": "邊獄幼稚園？",
       "model": "단테",
       "content": "<咻……>"
     },
     {
       "id": 91,
-      "content": "I had walked out of the kitchen to get some fresh air and cool my head when someone tugged at my pants."
+      "content": "我想讓腦袋冷靜一下而走到外面，結果有人扯了扯我的褲管。"
     },
     {
       "id": 92,
-      "content": "I looked down to find..."
+      "content": "低頭一看……"
     },
     {
       "id": 93,
       "model": "단테",
-      "content": "<Oh hi, Yi Sang.>"
+      "content": "<啊，是李箱啊。>"
     },
     {
       "id": 94,
       "model": "이상만우",
-      "content": "Yesh, it is I, Yi Sang. Dante. Big Teesh."
+      "content": "素的，是李箱。但丁園長大銀。"
     },
     {
       "id": 95,
       "model": "단테",
-      "content": "<... Right. Still getting used to calling me by my title, huh?>"
+      "content": "<……也是，你還分不太清楚敬語和平常的說法吧？>"
     },
     {
       "id": 96,
       "model": "이상만우",
-      "content": "Issat odd?"
+      "content": "很奇怪嗎？"
     },
     {
       "id": 97,
       "model": "단테",
-      "content": "<Nah... it's okay. What's up?>"
+      "content": "<沒有啦……沒關係。怎麼了嗎？>"
     },
     {
       "id": 98,
       "model": "이상만우",
-      "content": "Cheery Chickies is reddy for da hans-on class. Will you help, Dante? Uh, Big Teesh?"
+      "content": "小雞班也已完成體驗學習的尊備了。您願意來幫忙嗎，但丁園長大銀？"
     },
     {
       "id": 99,
-      "content": "I can see the other Sinnerlings in the distance, all wearing yellow \"Cheery Chickies\" backpacks."
+      "content": "遠遠望去，可以看見其他罪園生的身影。是一群背著黃色小雞背包的孩子。"
     },
     {
       "id": 100,
       "model": "히스클리프만우",
-      "content": "Hee hee hee! Issa leggy billy! Hee hee hee!"
+      "content": "嘻嘻嘻！雞腿棒棒！嘻嘻嘻！"
     },
     {
       "id": 101,
       "model": "이스마엘만우",
-      "content": "Big T! Big T! Heathcliff—Heathcliff's—! Eeeep! Hey, quit swinging! You're spraying chicken juice evewywhere!"
+      "content": "園長大銀！園長大銀！希斯克利夫他、希斯克利夫他啦！呀啊！喂——！不要亂揮！肉汁都噴出來了！"
     },
     {
       "id": 102,
       "model": "싱클레어만우",
-      "content": "Bwo! Cap! Ishmael and Heathcliff are fighting again!"
+      "content": "大鍋鍋！班長大鍋鍋！以實瑪利跟希斯克利夫又在吵架了！"
     },
     {
       "id": 103,
       "model": "단테",
-      "content": "<... They <i>are</i> ready, right?>"
+      "content": "<……真的準備好了吧？>"
     },
     {
       "id": 104,
       "model": "이상만우",
-      "content": "... This ish as ideal as it gets, Big Teesh Dante."
+      "content": "……一切都很理想，但丁園長大銀。"
     },
     {
       "id": 105,
-      "content": "I feel like my head's about to burst into flames... I mean, more so than usual, I guess."
+      "content": "頭痛得像是要燒起來了……啊，好像本來就在燒了。"
     }
   ]
 }

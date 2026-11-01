@@ -5,7 +5,7 @@
       "panicName": "慾求（le désir）",
       "lowMoraleDescription": "攻擊等級+3、防禦等級+3",
       "panicDescription": "攻擊等級+5、防禦等級+5",
-      "flavor": "I don't know any of these words. They just... came from somewhere.\nThey pop into my head on their own. They get stuck in there on their own. They're all just fancy-sounding words that came from outside. I don't really know what any of them mean.\n\n... But somehow, I get it..."
+      "flavor": "全都是我不認識的話。它們就這樣不知從哪裡來了。\n擅自浮現、擅自刻下的……全都是從外面來的、聽起來煞有其事的話。這些話我完全不懂。\n\n……即便如此，我還是明白。"
     },
     {
       "id": 1116,
@@ -18,14 +18,14 @@
       "panicName": "罪惡感",
       "lowMoraleDescription": "最小與最大速度值-1\n若目標的速度值高於自身，則使自身受到的傷害+10%",
       "panicDescription": "最小與最大速度值-2\n若目標的速度值高於自身，則使自身受到的傷害+15%",
-      "flavor": "\"You feel your sins crawling on your back.\""
+      "flavor": "『你感覺到罪惡正順著背脊攀爬而上。』"
     },
     {
       "id": 1118,
       "panicName": "漆黑之神-漆黑派的巨人-牧師-鎚派",
       "lowMoraleDescription": "無法確認",
       "panicDescription": "無法確認",
-      "flavor": "Time passes at a tremendous pace within the Sisyphe System, unhindered by material resistance. Yet through their respective viewpoints, the Giants can synchronize themselves with the System's internal flow of time and communicate with its customers.\n\nAmong them, the Giant who represents the Hammers holds authority over the System's internal memories and time, with the power to reset portions of its inventory at his own discretion."
+      "flavor": "薛西弗斯系統內部的時間在沒有物質阻力的情況下流逝得非常快，但巨人們能透過各自的觀點與系統內部的時間同步，擁有與顧客們交流的時間。\n\n其中，代表鎚派的巨人能控制系統內部的記憶與時間，並能獨斷地重置部分庫存。"
     },
     {
       "id": 1120,
@@ -38,7 +38,7 @@
       "panicName": "嘔吐（la nausée）",
       "lowMoraleDescription": "造成的傷害-10%",
       "panicDescription": "基礎威力-1、造成的傷害-10%",
-      "flavor": "Revulsion. Nausea before the world. The world simply exists. Nothing in it bears any inherent meaning; everything before our eyes is merely the product of chance.\n\nEverything is a contingency. Everything."
+      "flavor": "對世界的反胃與噁心。這個世界只是存在著。一切都沒有所謂的意義，只是作為偶然的產物擺在眼前罷了。\n\n只是偶然。一切都是。"
     }
   ]
 }

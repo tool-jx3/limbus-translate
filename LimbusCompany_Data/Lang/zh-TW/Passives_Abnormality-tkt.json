@@ -28,7 +28,7 @@
     {
       "id": 827804,
       "name": "拿走那傢伙的時間！",
-      "desc": "體力不高於60%時，使 [EquitableDistribution] 變為 [UnfairDistribution]。"
+      "desc": "體力降至低於60%時，使 [EquitableDistribution] 變為 [UnfairDistribution]。"
     }
   ]
 }

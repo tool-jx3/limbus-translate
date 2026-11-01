@@ -54,7 +54,7 @@
     {
       "id": "FavorBuff5001FirstPhaseForUI",
       "name": "映射 [中指]",
-      "desc": "- 關卡開始時，若登場的<color=#f8c200>屬於中指</color>的人格不低於4名，則<color=#f8c200>改變</color>里卡多第1、2階段的模式，並<color=#f8c200>獲得所有屬性的罪孽碎片各2個</color>\n- <color=#f8c200>裝備了守備技能</color>的人格不會被里卡多的技能效果<color=#f8c200>施加麻痹 </color>\n- 人格施加<color=#f8c200>流血 或特殊流血</color>的攻擊技能或<color=#f8c200>嫉妒</color>攻擊技能造成的傷害+30%(若是E.G.O技能，則改為造成的傷害+100%)\n- 戰鬥開始時，若觸發<color=#f8c200>完全共鳴</color>，則重複4次使我方獲得<color=#f8c200>持有數最少的罪孽碎片1個</color>"
+      "desc": "- 關卡開始時，若登場的<color=#f8c200>屬於中指</color>的人格不低於4名，則<color=#f8c200>改變</color>里卡多第1、2階段的模式，並<color=#f8c200>獲得所有屬性的罪孽碎片各2個</color>\n- <color=#f8c200>裝備了守備技能</color>的人格不會被里卡多的技能效果<color=#f8c200>施加麻痺</color>\n- 人格施加<color=#f8c200>流血或特殊流血</color>的攻擊技能或<color=#f8c200>嫉妒</color>的攻擊技能造成的傷害+30%(若是E.G.O技能，則改為造成的傷害+100%)\n- 戰鬥開始時，若觸發<color=#f8c200>完全共鳴</color>，則重複4次使我方獲得<color=#f8c200>持有數最少的罪孽碎片1個</color>"
     },
     {
       "id": "FavorBuff5001SecondPhaseForUI",
@@ -81,7 +81,7 @@
     {
       "id": "FavorBuff5001AllyTwo",
       "name": "映射 [襲擊]",
-      "desc": "- 人格施加<color=#f8c200>破裂 或特殊破裂</color>的攻擊技能或<color=#f8c200>暴食</color>的攻擊技能造成的傷害+25%(若是E.G.O技能，則改為造成的傷害+100%)\n- <color=#f8c200>屬於H公司</color>的人格對敵方單位造成的傷害+15%、受到的傷害-30%\n- 戰鬥開始時，若觸發<color=#f8c200>完全共鳴</color>，則重複4次使我方獲得<color=#f8c200>持有數最少的罪孽碎片1個</color>",
+      "desc": "- 人格施加<color=#f8c200>破裂</color>的攻擊技能或<color=#f8c200>暴食</color>的攻擊技能造成的傷害+25%(若是E.G.O技能，則改為造成的傷害+100%)\n- <color=#f8c200>屬於H公司</color>的人格對敵方單位造成的傷害+15%、受到的傷害-30%\n- 戰鬥開始時，若觸發<color=#f8c200>完全共鳴</color>，則重複4次使我方獲得<color=#f8c200>持有數最少的罪孽碎片1個</color>",
       "summary": "暴食技能造成的傷害增加"
     },
     {

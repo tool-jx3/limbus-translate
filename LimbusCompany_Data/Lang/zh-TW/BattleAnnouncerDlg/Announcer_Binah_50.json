@@ -2,131 +2,131 @@
   "dataList": [
     {
       "id": "announcer_cheer_50_1",
-      "dlg": "This is a no-man’s land. The place of silence. Most employees who visit and stay here lose their minds and embrace oblivion. It has been a long while since I had a proper conversation with someone."
+      "dlg": "此處是無人到訪的寂寥之地。留下來的員工大多會失去理智，接受遺忘。像這樣好好與人交談，真是久違了。"
     },
     {
       "id": "announcer_cheer_50_2",
-      "dlg": "I have been guarding their coffins for countless years, carrying out consecrations for those who do not even have the privilege to depart for an afterlife. That is one of the few things I do here."
+      "dlg": "在這百無聊賴的歲月裡，我守護著他們的棺木，為那些連冥府都去不了的人獻上供奉。那是我為數不多的工作之一。"
     },
     {
       "id": "announcer_specialcheer_50_1",
-      "dlg": "Still locked in that cramped room, obsessed with an unreachable ideal? I see that has not changed."
+      "dlg": "仍舊執著於遙不可及的理想、把自己關在斗室裡這點，還是沒有改變啊。"
     },
     {
       "id": "announcer_specialcheer_50_2",
-      "dlg": "Thrash and struggle your way as far as your abilities would allow. You have a fascinating knack for finding hope in all this misery, don't you?"
+      "dlg": "儘管奮力掙扎吧。在悽慘之中發現矛盾的希望，不正是你的專長嗎？"
     },
     {
       "id": "announcer_enemy_break_50_1",
-      "dlg": "With enough time, it will come back to wholeness even from such devastation. For that is the nature of Abnormalities."
+      "dlg": "即使變成那副模樣，只要時間一過，也會再度復原。因為那就是名為異想體的存在。"
     },
     {
       "id": "announcer_ally_break_50_1",
-      "dlg": "Their boundary has collapsed; to journey from such ruination shall be perilous."
+      "dlg": "界限崩塌了。恐怕沒那麼容易回來吧。"
     },
     {
       "id": "announcer_killenemy_50_1",
-      "dlg": "Do not tarry overlong, lost in the fervor of ending your foes. Lose not the sight of your purpose: Abnormalities are to be exploited."
+      "dlg": "別在清除上耗費太多時間。可不能忘了此處的目的，不是嗎？"
     },
     {
       "id": "announcer_ally_dead_50_1",
-      "dlg": "A life's early demise... shall become another one of the numerous tombstones of this place."
+      "dlg": "未及盛放便凋零的生命……將化為無數墳墓之一，長眠於此吧。"
     },
     {
       "id": "announcer_enemy_adv_50_1",
-      "dlg": "I eagerly await the moment you fall into despair after realizing that this cycle of pain will never end. I wish to see you kneel and resign before the might of destiny. Go on, slowly; despair and succumb to your fate. Resist to the very end, and ultimately... break yourself."
+      "dlg": "真想早點看到你領悟這痛苦的枷鎖、陷入絕望的模樣。想看你向命運屈膝、就此死心的光景。所以，慢慢地絕望、屈服吧。撐到撐不下去為止……最後就此折斷吧。"
     },
     {
       "id": "announcer_ally_adv_50_1",
-      "dlg": "You have persevered, even in the form of a prisoner—that much I can tell. However... You still aren't qualified to look toward the bottom of the spring. Return when you can look directly toward the path your eyes turn away from."
+      "dlg": "即使是以罪人之形，看來也頗為努力了。但是……即便如此，你仍沒有俯視這口泉的資格。等你能直視自己一直迴避的那條路時，再來吧。"
     },
     {
       "id": "announcer_ally_advex_50_1",
-      "dlg": "Even if you were to break the cycle somehow, it would be a perfectly useless affair. Broken Wings will outstretch anew, and this brief resistance will soon be forgotten."
+      "dlg": "就算你在此斬斷枷鎖，那也是毫無意義的事。破碎的翼會再度重新展開，剎那的抵抗也將再次被遺忘。"
     },
     {
       "id": "announcer_danger_50_1",
-      "dlg": "But I can never dare to look away from it all or to close my eyes, no matter how unbearable it may be."
+      "dlg": "這一切，我都必須注視到最後。即使難以承受，也不能別過頭去，更不能閉上眼睛。"
     },
     {
       "id": "announcer_enemy_specialskill_50_1",
-      "dlg": "How does it feel to stand before the high-cresting wave without her help? Go ahead and try to stop it on your own two feet, with your own power."
+      "dlg": "沒有她的幫助，站在巨浪面前的感覺如何？這次就僅憑你自己的力量擋擋看吧。"
     },
     {
       "id": "announcer_enemy_specialgimmick_50_1",
-      "dlg": "You must have learned by now that within each human lies a world as disparate from one another as people are.\nWhat sort of river flows in you? What world lies in you? *chuckle* Observing them should be rather fun."
+      "dlg": "人各自懷抱著不同的世界，你現在應該知道了吧。\n這次會流淌出怎樣的河，又會出現怎樣的世界呢。呵呵。倒是有值得一看的樂趣。"
     },
     {
       "id": "announcer_advatk_physical_50_1",
-      "dlg": "You have grown quite adept at wielding it in so short a time."
+      "dlg": "轉眼間就用得這麼熟練了啊。"
     },
     {
       "id": "announcer_disadvatk_physical_50_1",
-      "dlg": "It is not surprising that you have no knowledge of that E.G.O. You have never wielded it yourself, after all."
+      "dlg": "畢竟從未親手握過……不知道也是理所當然。"
     },
     {
       "id": "announcer_advatk_attr_50_1",
-      "dlg": "It would seem you have somewhat realized your desire to understand the vision."
+      "dlg": "看來你對那份幻想也有了某種程度的理解。"
     },
     {
       "id": "announcer_disadvatk_attr_50_1",
-      "dlg": "To wield E.G.O is to merely imitate what is borrowed. As exhibited... *chuckle*"
+      "dlg": "雖說借來的自我只會一味急於模仿……呵呵。"
     },
     {
       "id": "announcer_enemy_specialbuff_50_1",
-      "dlg": "The entity has left its Containment Unit. Mayhaps the space was too narrow to hold it?"
+      "dlg": "從收容單元裡出來了啊。是因為要關住它太過狹窄了嗎？"
     },
     {
       "id": "announcer_enemy_specialdebuff_50_1",
-      "dlg": "They are reacting to the Qliphoth Deterrence, thankfully. We may be able to put them to sleep yet."
+      "dlg": "幸好它對抑止力還有反應。能讓它沉睡了。"
     },
     {
       "id": "announcer_ally_specialbuff_50_1",
-      "dlg": "I see you have received a present. Beware, however. See that it does not render your own colors muddled and faded."
+      "dlg": "收到禮物了啊。小心別讓自己的顏色變得太淡。"
     },
     {
       "id": "announcer_ally_specialdebuff_50_1",
-      "dlg": "Do not forget. We are all of us sunken in despair still."
+      "dlg": "別忘了。我們所有人依然沉沒在絕望之中。"
     },
     {
       "id": "announcer_enemy_destroy_50_1",
-      "dlg": "Well done. When cutting through something, chop with enough force, as though you were cutting a chunk of meat."
+      "dlg": "沒錯。要切斷什麼的時候，必須用力劃下去。"
     },
     {
       "id": "announcer_enemy_destroy_50_2",
-      "dlg": "*chuckle* Are there any bottles left for you to pop open?"
+      "dlg": "呵呵。還有能拿來紀念的葡萄酒嗎？"
     },
     {
       "id": "announcer_round_takebigdmg_50_1",
-      "dlg": "Your immaturity is to blame."
+      "dlg": "是你的不成熟。"
     },
     {
       "id": "announcer_round_takebigdmg_50_2",
-      "dlg": "It's an agonizing sight to confront, but it doesn't matter to you, not at all. Or am I wrong? After all, erasing your memories and running away from them as if nothing had happened is your age-old specialty."
+      "dlg": "就算是難以面對的場景，反正對你來說也毫無關係，不是嗎？裝作什麼事都沒發生、抹去記憶後溜之大吉，可是你由來已久的專長。"
     },
     {
       "id": "announcer_round_givebigdmg_50_1",
-      "dlg": "Excellent."
+      "dlg": "真出色啊。"
     },
     {
       "id": "announcer_round_givebigdmg_50_2",
-      "dlg": "The weaker one's mind is, the more it craves refuge behind the shell of another... And yet, this made for a rather entertaining display."
+      "dlg": "雖說越是脆弱的心靈與自我，就越想依附、躲藏在他人打造的自我外殼裡……但這依然是場有趣的好戲。"
     },
     {
       "id": "announcer_multikillenemy_50_1",
-      "dlg": "I cannot help but be astonished by the potential of E.G.O each time I see you go on a rampage."
+      "dlg": "每次看到那樣失控暴走，唯獨對E.G.O的潛力，我不得不讚嘆。"
     },
     {
       "id": "announcer_battle_win_50_1",
-      "dlg": "You've proven yourself. I shall witness you with my eyes."
+      "dlg": "是啊，這種程度的話，倒是值得一看。"
     },
     {
       "id": "announcer_battle_defeat_50_1",
-      "dlg": "Ah, silence, the very best of companions. No one remains... Yes, after one's final breath, only silence lingers."
+      "dlg": "安靜下來了啊。誰也沒留下。是啊。最後一口氣嚥下之後，剩下的大概只有這樣的寂靜吧。"
     },
     {
       "id": "announcer_equip_50_1",
-      "dlg": "Don't ask for my name. \"Binah\" isn't the name of a person. It's a sad name for the place where one finds many graves.\nI am simply the one who draws the water. Why have you come here, and what do you wish for me to draw?"
+      "dlg": "別問我的名字。「Binah」並不是名字。那是此處，這片滿是墳墓之地的悲傷之名。\n我只是汲取井水之人。這次你來到這裡，是想請我替你汲取什麼呢？"
     }
   ]
 }

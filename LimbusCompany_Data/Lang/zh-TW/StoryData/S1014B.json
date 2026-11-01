@@ -6,67 +6,67 @@
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "You want to buy Golden Dye?"
+      "content": "你們想購買黃金染料？"
     },
     {
       "id": 1,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Your tier is... just above the cutoff line. Guess that's good enough."
+      "content": "等級……是有點勉強，但也不是不能賣給你們。"
     },
     {
       "id": 2,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Here. Take a number."
+      "content": "來，這是號碼牌。"
     },
     {
       "id": 3,
       "model": "료슈",
-      "content": "1217... What's this supposed to mean?"
+      "content": "1217……這是什麼意思？"
     },
     {
       "id": 4,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "It means there are 1,216 customers ahead of you. Be patient, and I'll be right with you. <i>Eventually.</i>"
+      "content": "意思是你們前面還有1216個人吧。不然還能是什麼？等下去，數字就會慢慢減少的。"
     },
     {
       "id": 5,
       "model": "단테",
-      "content": "<Ryōshū, wait! Don't S.H.N.C.!>"
+      "content": "<良秀，等一下！不要脖．扭！>"
     },
     {
       "id": 6,
       "model": "단테",
-      "content": "<Ask her how long we're supposed to wait.>"
+      "content": "<那到底要等多久啊？>"
     },
     {
       "id": 7,
       "model": "오티스",
-      "content": "If our number is in the thousands, how long will the wait be?"
+      "content": "既然是一千多號，要多久才會輪到我們？"
     },
     {
       "id": 8,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Not as long as you'd think. Your number should come up after the season changes... about a hundred times?"
+      "content": "沒你們想的那麼久啦。大概再換季個一百次，就輪到你們了吧？"
     },
     {
       "id": 9,
       "model": "오티스",
-      "content": "Hm... We cannot wait that long. Is there anything we can do to convince you otherwise?"
+      "content": "……不可能等那麼久。沒有其他辦法嗎？"
     },
     {
       "id": 10,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Nopers. You should've camped out in front of the Dyehouse or something if you wanted it that badly."
+      "content": "沒有沒有。那麼想要的話，就該來開店搶購啊。"
     },
     {
       "id": 11,
@@ -85,144 +85,144 @@
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Putty! Big sis! I told you not to glare at customers like that."
+      "content": "補土姐，我說過別那樣瞪客人了吧。"
     },
     {
       "id": 14,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "These ones aren't even that obnoxious. Put your leg down."
+      "content": "這種程度連奧客都算不上。把腿放下。"
     },
     {
       "id": 15,
       "model": "단테",
-      "content": "<Ryōshū, can you please stop mulling over where to cut her and help us think of another way to get the dye...?>"
+      "content": "<良秀，妳也別想著要砍哪裡了，幫忙想想取得染料的其他辦法吧……>"
     },
     {
       "id": 16,
-      "content": "Ryōshū slowly removed her hand from the scabbard. \"Putty\" followed suit, lowering her pointed leg."
+      "content": "良秀把手從刀鞘上放下後，被稱作補土的人也放下了那條看似尖銳的腿。"
     },
     {
       "id": 17,
       "model": "료슈",
-      "content": "*puff* What's there to think about?"
+      "content": "呼……有什麼好想的？"
     },
     {
       "id": 18,
       "model": "료슈",
-      "content": "Let's kill everyone ahead of us in line. There's a shortcut for you."
+      "content": "把排在前面的傢伙全砍了，我們就是第一個。"
     },
     {
       "id": 19,
-      "content": "The scabbard rattles as though it were shaking its head."
+      "content": "刀鞘像在搖頭似的嗚嗚作響。"
     },
     {
       "id": 20,
       "model": "오티스",
-      "content": "... You're clearly looking for an excuse to start a bloodbath, as always. Why else would you suggest a massacre like that when it would be more efficient to kill whoever's first in line and take their numbered ticket?"
+      "content": "……這意見充滿了私心啊。與其那樣，砍了排最前面的傢伙，搶走他的號碼牌不就好了？"
     },
     {
       "id": 21,
       "model": "료슈",
-      "content": "Heh. There's aesthetics to be enjoyed in irrationality."
+      "content": "哼。這就叫不合理的美學。"
     },
     {
       "id": 22,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "... Or just buy the dye from whoever's first in line...?"
+      "content": "跟排最前面的人買染料不就好了……？"
     },
     {
       "id": 23,
       "model": "단테",
-      "content": "<... Agreed. Meursault, ask who has the earliest number.>"
+      "content": "<……我同意。莫梭，幫我問問排最前面的人是誰。>"
     },
     {
       "id": 24,
       "model": "뫼르소",
-      "content": "I wish to know the identity of the individual with the earliest number."
+      "content": "我想知道持有最前面號碼的人是誰。"
     },
     {
       "id": 25,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Naked of Le Noir. One of the people who came down early and camped out before opening."
+      "content": "漆黑派的裸體。很早以前就來開店搶購的人之一。"
     },
     {
       "id": 26,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "We're almost done filling up a bucket of dye with the Golden Pus dripping from the Golden Resin. He's probably waiting in the corridor to pick it up."
+      "content": "從黃金松脂凝結滴落的黃金膿液，很快就會裝滿一桶染料……他應該已經算準時間，下樓到走廊等著了吧。"
     },
     {
       "id": 27,
       "model": "오티스",
-      "content": "Under current operational conditions, purchasing the Golden Dye from this... \"Naked\" individual should be the most efficient course of action."
+      "content": "以目前的狀況來看，向那人購入黃金染料應是最佳方案。"
     },
     {
       "id": 28,
       "model": "단테",
-      "content": "<I don't think the eyeballs we have will come anywhere close...>"
+      "content": "<憑我們手上的眼球，好像差得遠了……>"
     },
     {
       "id": 29,
       "model": "뫼르소",
-      "content": "Should our funds prove insufficient, an item of commensurate value may be offered in exchange."
+      "content": "若眼球不足，也可以用價值相近的其他物品交換。"
     },
     {
       "id": 30,
       "model": "단테",
-      "content": "<... Let's check what we have with us at the moment.>"
+      "content": "<……來看看我們現在有什麼東西吧？>"
     },
     {
       "id": 31,
-      "content": "Meursault laid out, one by one, every item we have purchased or obtained thus far."
+      "content": "莫梭把至今買來或得到的物品一一拿出來展示。"
     },
     {
       "id": 32,
       "model": "오티스",
-      "content": "... A considerable assortment."
+      "content": "……東西還真不少。"
     },
     {
       "id": 33,
       "model": "오티스",
-      "content": "Would selling all of this cover the cost of the Golden Dye?"
+      "content": "把這些全賣掉的話，買得起那個什麼黃金染料嗎？"
     },
     {
       "id": 34,
       "model": "B2층염색실주인",
       "teller": "調色盤",
       "title": "染坊",
-      "content": "Not even close. Maybe if you found a real sucker and fleeced them for every last eyeball."
+      "content": "差得遠呢。除非把這些全用敲竹槓的價格賣掉，那就難說了。"
     },
     {
       "id": 35,
       "model": "단테",
-      "content": "<That's a problem... Should we go back to 3F and ask for more eyeballs?>"
+      "content": "<傷腦筋……要去3樓跟他們要點眼球嗎。>"
     },
     {
       "id": 36,
       "model": "오티스",
-      "content": "It is unlikely they'll be willing to make another significant expenditure when they've already given us quite the stipend."
+      "content": "對方已經提供了相當多的資金。在毫無成果的情況下，恐怕很難再獲得新的援助。"
     },
     {
       "id": 37,
       "model": "오티스",
-      "content": "However, if that is your wish, Executive Manager, I, Outis, shall deploy the peerless negotiation techniques I have sharpened through years of service and field-requisition every last eyeball they possess."
+      "content": "當然，若是經理您希望，我奧提斯定會以千錘百鍊的交涉技巧，將他們所有的眼球都搜刮過來給您看。"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<Th-that won't be necessary. Naked is a member of Le Noir... Maybe he'll lower the price if we show him the Authenticity Certificate.>"
+      "content": "<不、不用了……那個叫裸體的人也是漆黑派的……把那份鑑定評價書給他的話，說不定會算我們便宜一點。>"
     },
     {
       "id": 39,
       "model": "단테",
-      "content": "<Let's find Naked and hear what he has to say. If he's Le Noir, his clothes should make him easy to spot.>"
+      "content": "<先去找他談談吧。既然是漆黑派……服裝應該也很顯眼。>"
     }
   ]
 }

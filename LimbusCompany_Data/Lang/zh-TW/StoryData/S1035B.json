@@ -2,238 +2,238 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Restaurant, 5F",
+      "place": "5F 餐廳",
       "model": "뷔페어른",
-      "content": "... I do remember you. The ones who called me Pwie."
+      "content": "……我是記得的。那些曾叫我普依的人。"
     },
     {
       "id": 1,
       "model": "뷔페어른",
-      "content": "And he who never lied—Meursault."
+      "content": "其中，那個從不說謊的人。莫梭。"
     },
     {
       "id": 2,
       "model": "뫼르소",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 3,
       "model": "뷔페어른",
-      "content": "All who claim to be my followers ask things of me, yet none have offered answers."
+      "content": "追隨我的人們，都只會對我有所求，卻從未給出答案。"
     },
     {
       "id": 4,
       "model": "뷔페어른",
-      "content": "You, on the other hand... You may be able to answer. My questions were unending, but you never failed to tell me what you knew, exactly as you knew it."
+      "content": "但是……你應該能回答吧。因為無論我問什麼，你總是把自己知道的事原原本本地告訴我。"
     },
     {
       "id": 5,
       "model": "뷔페어른",
-      "content": "Meursault... Why... am I always so empty? I eat and eat in this restaurant and fill myself, yet still..."
+      "content": "莫梭。為什麼我……永遠無法被填滿？就算把這間餐廳裡的東西吃了又吃……"
     },
     {
       "id": 6,
       "model": "뷔페어른",
-      "content": "I wished for none of this. Wanted none of it."
+      "content": "我什麼也沒有期望過，什麼也沒有想要過。"
     },
     {
       "id": 7,
       "model": "뷔페어른",
-      "content": "So why must I endure... this crushing hunger?"
+      "content": "那為什麼我……非得感受這種可怕的飢餓不可？"
     },
     {
       "id": 8,
       "model": "뫼르소",
-      "content": "Because you were born that way."
+      "content": "因為你生來如此。"
     },
     {
       "id": 9,
       "model": "뷔페어른",
-      "content": "I see..."
+      "content": "是嗎……"
     },
     {
       "id": 10,
       "model": "뫼르소",
-      "content": "But there were times when you forgot that fact."
+      "content": "但你也有忘記這件事的時候。"
     },
     {
       "id": 11,
       "model": "뫼르소",
-      "content": "When you learned something new."
+      "content": "在認識新事物的時候。"
     },
     {
       "id": 12,
       "model": "뫼르소",
-      "content": "When you were with Wriggley."
+      "content": "和噗扭在一起的時候。"
     },
     {
       "id": 13,
       "model": "뫼르소",
-      "content": "When you played games."
+      "content": "在玩遊戲、玩耍的時候。"
     },
     {
       "id": 14,
       "model": "뫼르소",
-      "content": "Those brief moments allowed you to forget the pain."
+      "content": "你暫時忘卻了那份痛苦。"
     },
     {
       "id": 15,
       "model": "뷔페어른",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 16,
       "model": "뷔페어른",
-      "content": "Yes, you're right."
+      "content": "沒錯，是這樣的。"
     },
     {
       "id": 17,
       "model": "뷔페어른",
-      "content": "Your words bring back another vivid memory. This one you didn't mention."
+      "content": "聽你這麼一說，我也清楚地想起了一件你漏掉的事。"
     },
     {
       "id": 18,
       "model": "뷔페어른",
-      "content": "When I followed you, you would sometimes turn to look at me. And when our eyes met..."
+      "content": "跟在你們身後走著，偶爾和回過頭來的你們對上視線的時候……"
     },
     {
       "id": 19,
       "model": "뷔페어른",
-      "content": "There was no pain at all."
+      "content": "那時候，一點也不痛苦。"
     },
     {
       "id": 20,
       "model": "뷔페어른",
-      "content": "It made me... very happy. I enjoyed our adventure so much that I'd even forgotten my hunger."
+      "content": "非常……快樂。快樂到讓我忘記了飢餓。"
     },
     {
       "id": 21,
-      "content": "Buffet's relentless assault came to a brief lull, their gaze resting upon us."
+      "content": "接著，自助餐暫時停下了攻擊，望向我們。"
     },
     {
       "id": 22,
       "model": "이상",
-      "content": "Pwie. We have no wish to take up arms against you."
+      "content": "普依。我們並不想與你交戰。"
     },
     {
       "id": 23,
       "model": "뫼르소",
-      "content": "... But we will have no choice but to do so."
+      "content": "……但我們只能一戰。"
     },
     {
       "id": 24,
       "model": "카르멘",
-      "content": "<color=#E1B643>That's right, Meur.</color>"
+      "content": "<color=#E1B643>說得沒錯，小莫。</color>"
     },
     {
       "id": 25,
       "model": "단테",
-      "content": "<That voice again...>"
+      "content": "<那個聲音又……>"
     },
     {
       "id": 26,
       "model": "카르멘",
-      "content": "<color=#E1B643>Do you know why it's so cruel to be brought into this world without having any say in it?</color>"
+      "content": "<color=#E1B643>你知道嗎？就這麼擅自被生到這個世界上，為什麼會如此殘酷？</color>"
     },
     {
       "id": 27,
       "model": "카르멘",
-      "content": "<color=#E1B643>It's because we're born to be afraid of death... even when we have chosen to die.</color>"
+      "content": "<color=#E1B643>因為我們生來就連隨心所欲地死去……都會感到害怕啊。</color>"
     },
     {
       "id": 28,
       "model": "단테",
-      "content": "<I've felt it since the first floor. This voice... it's getting closer.>"
+      "content": "<從1樓開始我就有感覺了，這個聲音……越來越近了。>"
     },
     {
       "id": 29,
       "model": "이상",
-      "content": "Closer... with each floor we ascend?"
+      "content": "意思是越往上走……就越接近嗎？"
     },
     {
       "id": 30,
       "model": "뫼르소",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 31,
       "model": "카르멘",
-      "content": "<color=#E1B643>The guilt of having sacrificed a child.</color>"
+      "content": "<color=#E1B643>犧牲了孩子的罪惡感。</color>"
     },
     {
       "id": 32,
       "model": "카르멘",
-      "content": "<color=#E1B643>The calling to heal mankind.</color>"
+      "content": "<color=#E1B643>想要治療人類的使命感。</color>"
     },
     {
       "id": 33,
       "model": "카르멘",
-      "content": "<color=#E1B643>The responsibility of not wanting to let your colleagues down.</color>"
+      "content": "<color=#E1B643>不想讓同伴失望的責任感。</color>"
     },
     {
       "id": 34,
       "model": "카르멘",
-      "content": "<color=#E1B643>... None of it means anything in the face of death.</color>"
+      "content": "<color=#E1B643>……這一切，在死亡面前都會失去意義。</color>"
     },
     {
       "id": 35,
       "model": "카르멘",
-      "content": "<color=#E1B643>It will be the same for that child.</color>"
+      "content": "<color=#E1B643>那孩子應該也一樣吧。</color>"
     },
     {
       "id": 36,
       "model": "카르멘",
-      "content": "<color=#E1B643>The memories shared with you, the expectations the Rouges placed upon them,\nand the instinctive, insatiable hunger...</color>"
+      "content": "<color=#E1B643>與你們的回憶、從丹紅派那裡承接的期待、不斷襲來的本能飢餓。</color>"
     },
     {
       "id": 37,
       "model": "카르멘",
-      "content": "<color=#E1B643>Buffet is bearing all that anguish. They won't stop this time.</color>"
+      "content": "<color=#E1B643>正因為懷抱著這所有的苦惱，這次是不會停下來的。</color>"
     },
     {
       "id": 38,
       "model": "카르멘",
-      "content": "<color=#E1B643>And they must know it, too—that for anything to exist... they themselves must first exist.</color>"
+      "content": "<color=#E1B643>因為要先有自己，才會有一切……自助餐那孩子，應該也明白這一點。</color>"
     },
     {
       "id": 39,
       "model": "뷔페어른",
-      "content": "... I could follow you now, but it's too late. This hunger would not disappear."
+      "content": "……事到如今，就算跟著你們走，這份飢餓也不會消失。"
     },
     {
       "id": 40,
       "model": "뷔페어른",
-      "content": "Nor would the hopes and expectations of the Rouges fade away."
+      "content": "丹紅派的願望與期待，也不會就此消逝。"
     },
     {
       "id": 41,
       "model": "뷔페어른",
-      "content": "If this hunger is to be appeased... I must devour everything here. Even the place you seek above, I must devour."
+      "content": "要平息飢餓……就必須把這裡的一切吃個精光。就連你們必須前往的地方，也非得吃掉不可。"
     },
     {
       "id": 42,
       "model": "뷔페어른",
-      "content": "Why don't you remain here with me once more, strangers?"
+      "content": "乾脆……再次留在這裡吧，異鄉人們。"
     },
     {
       "id": 43,
       "model": "단테",
-      "content": "<... We can't.>"
+      "content": "<……我們不能那麼做。>"
     },
     {
       "id": 44,
       "model": "단테",
-      "content": "<Which means... we'll have to make... another choice we'll regret.>"
+      "content": "<所以我們……又得做出會後悔的選擇了吧。>"
     },
     {
       "id": 45,
       "model": "뫼르소",
-      "content": "... We will proceed to the next floor, Buffet."
+      "content": "……我們要往上走，自助餐。"
     },
     {
       "id": 46,
       "model": "뷔페어른",
-      "content": "So you choose not to follow me in the end, strangers..."
+      "content": "說到底，你們這些異鄉人，就是不會追隨我的存在啊。"
     }
   ]
 }

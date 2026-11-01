@@ -2,131 +2,131 @@
   "dataList": [
     {
       "id": "announcer_cheer_49_1",
-      "dlg": "- Your battles never fail to bring fair tidings. I shall watch with great anticipation.\n- Let's see... Why don't you show me a measure of your strength?"
+      "dlg": "諸位的戰鬥總能帶來捷報。我很期待。\n讓我看看……你們的棋力如何？"
     },
     {
       "id": "announcer_cheer_49_2",
-      "dlg": "- It is said, \"fellow travelers in the same boat will aid one another.\" That is to say, Aeng-du will. Not I.\n- You will, too, Mentor. Lady Moses may have turned a blind eye to your idleness, but if you persist, I shall have no choice but to report your conduct to our two other seniors."
+      "dlg": "同舟相救。既然搭上了同一條船，總得幫一把吧。當然，不是我，是櫻桃。\n……頭領也得幫忙才行。您若仗著摩西閣下睜一隻眼閉一隻眼，就一直這樣偷懶，我也只能含淚向另外兩位據實以告了……"
     },
     {
       "id": "announcer_specialcheer_49_1",
-      "dlg": "Blades broken, arrows spent... Don't you think it's about time to consider your next gambit?"
+      "dlg": "刀已折，箭已盡……是不是差不多該考慮下一步了？"
     },
     {
       "id": "announcer_specialcheer_49_2",
-      "dlg": "- It's rather difficult to offer advice here. We have never once stilled our blades, even when cornered—for that is how a Salsu must carry himself.\n- Yet you are no Salsus, of course—retreating would not be a stain on your honor. Surely you have tenets of your own to live by."
+      "dlg": "這可真難給建議啊。我們就算被逼入守勢，也從沒停下手中的刀。因為那就是殺手的本分。\n當然，諸位並非殺手，就此退下也無妨。你們應當有你們自己的本分。"
     },
     {
       "id": "announcer_enemy_break_49_1",
-      "dlg": "Like leaves before the autumn gale. Valiantly though they may strive, leaves cannot forever defy the turn of the season. Their fall is but the proper course of nature."
+      "dlg": "秋風落葉。縱然奮戰，落葉終究會凋零……這想必是理所當然的結果。"
     },
     {
       "id": "announcer_ally_break_49_1",
-      "dlg": "... I know you've got a taste for battles that quickens the blood with thrill... Hmm, even so, you ought not to sacrifice a stone so easily if you wish to win the board."
+      "dlg": "……我知道諸位喜歡驚心動魄的戰鬥……嗯，不過能救活的棋子，還是救活比較好吧。"
     },
     {
       "id": "announcer_killenemy_49_1",
-      "dlg": "- Their lives have come to an end. With this, you have bought yourselves a moment's respite.\n- Yes, that was certainly not a round for lesser hands to play~ Let's see if this has left only the grandmasters on the board."
+      "dlg": "他們的性命已盡。總算爭取到喘息的空檔了吧。\n這可不是低手撐得住的棋局～這下只剩下高手了吧？"
     },
     {
       "id": "announcer_ally_dead_49_1",
-      "dlg": "- ......\n- Looking upon the perished shall not bring our fellows back.\n- ... Aeng-du, your words leave such grievous wounds in me.\n- Yes, I am not unaware of it. And yet... you must suffer and bear them still—and let these words pain you more, Mentor."
+      "dlg": "……\n……您再怎麼看，友人們也不會回來的。\n……櫻桃啊，這話可真傷人。\n是……我知道。但是……您必須更痛、痛得更深才行，頭領。"
     },
     {
       "id": "announcer_enemy_adv_49_1",
-      "dlg": "- Your stones' pathway of survival has been sealed. It may be best to resign this round of the game and return another day.\n- There <i>is</i> a way out... But it's poor form to call out gambits on other people's games.\n- Pray refrain from commenting if you have no intention to help, Mentor."
+      "dlg": "諸位。活路已斷，不如來日再戰吧。\n……活路倒也不是沒有。不，算了。在別人的棋局上指手畫腳，也不太好。\n……若無意指點，就請別起這個頭，頭領。"
     },
     {
       "id": "announcer_ally_adv_49_1",
-      "dlg": "- Aeng-du, I wonder why you have suddenly gone quiet.\n- There is no advice worth adding, Mentor. They already hold the favorable positions. We could exchange rhymes for poetry, if boredom troubles you so.\n- ... Never you mind. I'll just be quiet, too."
+      "dlg": "櫻桃啊。我好奇妳怎麼突然一句話都不說了。\n……因為形勢有利到無須多言。您若無聊，要不要我出個韻，讓您作首詩。\n……不，算了。我安靜待著就是。"
     },
     {
       "id": "announcer_ally_advex_49_1",
-      "dlg": "- The tilted board is now leaning to equilibrium, if only slightly. This is the opportune moment to press the offense.\n- Hmm. Still, a single misplaced stone now could throw the rest into a dead formation. Let's sit back and watch how they'll proceed, shall we?"
+      "dlg": "傾斜的局勢稍稍扳回來了。諸位，若要乘勢進逼，現在正是時機。\n嗯……不過這可是不容易解開的死活，就讓我來瞧瞧吧？"
     },
     {
       "id": "announcer_danger_49_1",
-      "dlg": "- Your stones are hanging by a thread. In times such as this, you must consider your gambit with pruden—\n- Aeng-du, overzealous prudence curdles into poison. This is not the moment for prolonged deliberation, but a swift decision."
+      "dlg": "已到了危急關頭。諸位越是這種時候，越要謹慎……\n櫻桃啊，謹慎過了頭也會成毒。現在不是長考的時候，是該下決斷的時候。"
     },
     {
       "id": "announcer_enemy_specialskill_49_1",
-      "dlg": "The foes' stones are placed to seize your points by force! This is a moment to stand your ground and meet them head-on instead of falling back."
+      "dlg": "攻勢凌厲的布局……諸位，現在難道不是該寸步不讓、正面回擊的時候嗎。"
     },
     {
       "id": "announcer_enemy_specialgimmick_49_1",
-      "dlg": "- Oho!\n- Mentor?!\n- A round of game that shall go down in history! Didn't expect them to show such a brilliant gambit on the board."
+      "dlg": "喔！\n頭領？！\n真可謂名局啊。沒想到他們還留著這麼一手。"
     },
     {
       "id": "announcer_advatk_physical_49_1",
-      "dlg": "A straight, faithful blow. Truly, there was not a speck of excess legwork in that offense."
+      "dlg": "端正的一擊。著實毫無贅餘。"
     },
     {
       "id": "announcer_disadvatk_physical_49_1",
-      "dlg": "Hah! A swordplay most calamitous, contrary, and catastrophic! Well, I suppose there are times when you've got to break away from the orthodox form."
+      "dlg": "嚯！好個破滅、破格又破局的刀法啊。嘛，偶爾也需要破一破規矩吧。"
     },
     {
       "id": "announcer_advatk_attr_49_1",
-      "dlg": "That's it! A sound and proper opening—well-placed stones indeed!"
+      "dlg": "對，這就是定石！"
     },
     {
       "id": "announcer_disadvatk_attr_49_1",
-      "dlg": "One moment. Might I consult the \"Manual for New Employees\" awhile? I had not foreseen a situation quite like this..."
+      "dlg": "稍待……可否讓我翻一下新人手冊？這種情況實在出乎預料……"
     },
     {
       "id": "announcer_enemy_specialbuff_49_1",
-      "dlg": "It would be best to exercise caution here. A sudden change in a foe's bearing seldom comes without purpose—Lady Moses often said as much."
+      "dlg": "還是小心為上吧。摩西閣下也再三說過，要留意突然改變的舉動。"
     },
     {
       "id": "announcer_enemy_specialdebuff_49_1",
-      "dlg": "- The foes... It seems you have breached a layer of their morale.\n- Have they taken to drinking over the board? Their stones now have fallen into disarray."
+      "dlg": "這反應……敵人的氣勢似乎受挫了。\n是喝醉了不成，棋下得一塌糊塗。"
     },
     {
       "id": "announcer_ally_specialbuff_49_1",
-      "dlg": "Such are the failings of a mind addled by regret."
+      "dlg": "想得一多，就會出那種失誤啊。"
     },
     {
       "id": "announcer_ally_specialdebuff_49_1",
-      "dlg": "The pressure upon your party is palpable... I shall seek avenues of escape—pray, watch yourselves in the meantime."
+      "dlg": "壓迫甚重啊。……我會設法化解，諸位也請留意自身的狀態。"
     },
     {
       "id": "announcer_enemy_destroy_49_1",
-      "dlg": "You have shattered its limb. An assault as spirited as that of Lady Ezra's."
+      "dlg": "部位被擊碎了。真是和以斯拉小姐一樣痛快的一擊。"
     },
     {
       "id": "announcer_enemy_destroy_49_2",
-      "dlg": "- An advantage, yet hardly permanent—do remain vigilant. Mentor, have you any wisdom to impart?\n- Wisdom to impart? Hm. Here's an art: The rampart shattered apart, if they're smart, they'll dart; their heart astart, with a <i>whizz</i>, their <i>dome</i> to depart.\n- ... There it is again."
+      "dlg": "形勢雖已轉為有利，仍須密切注意。頭領也別光顧著看，說句話也好……\n說句話？說哪一句？嗯哼。既然已經沒有礙事的東西了，那就一句也不說，像匹馬駒一樣奔馳吧。\n……您又來了。"
     },
     {
       "id": "announcer_round_takebigdmg_49_1",
-      "dlg": "- No, watch out—!\n- Becalm yourself, Mentor. They have their ways of returning from the great beyond, besides... They are not our slain fellows.\n- ......."
+      "dlg": "等、等一下，你們……！\n頭領，請冷靜。他們能用某種方法恢復過來……況且，他們也不是頭領的友人，不是嗎。\n……"
     },
     {
       "id": "announcer_round_takebigdmg_49_2",
-      "dlg": "- ... This is why I detest working, Aeng-du. Our \"work\" naturally carries a risk, and to work is to expose ourselves to that very danger.\n- A forager who steers clear of the mountains in fear of tigers is bound to starve. Mentor... You know this."
+      "dlg": "……所以我才說不想工作啊，櫻桃。只要身在危險的行當，這種事每次都會發生。\n若是怕虎就不上山，最後只會餓死。頭領您也……明白的，不是嗎。"
     },
     {
       "id": "announcer_round_givebigdmg_49_1",
-      "dlg": "- There once was a time when Mentor possessed the same decisiveness to cut down what must be felled.\n- That past has no bearing on the present. Besides, my past is nothing to boast of—I wasn't even the Apex Blade of the Homeland."
+      "dlg": "頭領也曾有過展現那般威容、斬下該斬之物的時候呢。\n過去終究只是過去。我連本國第一劍都不是，哪有什麼值得誇耀的威容。"
     },
     {
       "id": "announcer_round_givebigdmg_49_2",
-      "dlg": "- Hmm~ Perhaps with a new blade like yours, even I—\n- The finest blade on the market for you, even if I must grovel for an advance <i>and</i> take out a loan for it. Anything else, Mentor?\n- ... I'm never certain if you jest, Aeng-du. My sword is fine..."
+      "dlg": "嗯～誰知道呢？要是我也像妳一樣，得到一把新劍的話……\n您需要嗎？那就得買給您了。我去預支薪水、借錢，也給您張羅一把最好的劍，這樣可以嗎？\n……櫻桃啊，這話從妳嘴裡說出來就不像玩笑，倒像是當真的，拜託千萬別這樣。劍有現在這把就夠了……"
     },
     {
       "id": "announcer_multikillenemy_49_1",
-      "dlg": "- Aha. *nom* The placement of their stones is daring. A thrilling watch indeed.\n- Mentor... Where did you get those snacks?\n- Mm? *nom* These?\n- The crumbs are a risk to this expensive equipment."
+      "dlg": "喔呵……行棋爽快俐落，看得真是過癮。\n頭領……那些零嘴是從哪裡拿來的？\n嗯？妳說這個？\n您知道這裡的貴重器物值多少錢嗎……居然把碎屑掉得到處都是……"
     },
     {
       "id": "announcer_battle_win_49_1",
-      "dlg": "- I knew victory would—Mentor? You can't clock out yet. To where do you hie?\n- This board needs no counting of stones. I'll retreat to my chamber and observe the goings-on of the world.\n- ... You're leaving to watch more TV, are you not?"
+      "dlg": "我相信諸位必能取勝……頭領？您這就要去哪裡？\n看來連數目都不必了，我回房裡看看世間百態。\n……不就是要去看電視嗎。"
     },
     {
       "id": "announcer_battle_defeat_49_1",
-      "dlg": "- ... I really must take my own advice, but here's one. Like in a game of Baduk, do not despair over a single bad move; instead, study the board and identify the best path forward from there. Isn't that true, Aeng-du?\n- ... Yes, Mentor."
+      "dlg": "……我自己都做不到，這番指點大概很難讓人信服，不過與其為一步下錯的棋後悔，不如把下一步下好。妳說是吧，櫻桃。\n……是，正是如此。"
     },
     {
       "id": "announcer_equip_49_1",
-      "dlg": "- Aeng-du... What's all this?\n- It is work, as is plain to see. Enough days you have spent eating, idling, and amusing yourself with the TV. The time is nigh to remind you of \"work\"—\n- Hadn't I explained that I was merely engrossed in educating myself on the political climate around S Corp.— *sigh* Never you mind. Fine, what is this \"work,\" then?\n- First, let us have you seated on a chair, not the floor. How do you intend on reaching the microphone from down there?"
+      "dlg": "櫻桃啊……這些又是什麼。\n如您所見，是工作。頭領這段時間游手好閒，光顧著看電視……\n我都說了，那是為了打探S公司周邊的情勢才閉門不出的……唉。算了。好吧，就教教我怎麼工作吧。\n首先，請別坐在地上，坐到椅子上。這樣麥克風搆不到，不是嗎。"
     }
   ]
 }

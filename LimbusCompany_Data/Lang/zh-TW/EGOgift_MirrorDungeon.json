@@ -643,7 +643,7 @@
     {
       "id": 9027,
       "name": "谷底之星",
-      "desc": "使用打擊技能或傲慢技能造成傷害時，對目標造成2點固定理智傷害。\n\n理智值不高於0點的友方單位造成的傷害+10%",
+      "desc": "使用打擊技能或傲慢屬性技能命中敵方單位時，對目標造成2點固定理智傷害。\n\n理智值低於0點的友方單位造成的傷害+10%",
       "simpleDesc": [
         {
           "abilityID": 9027,
@@ -658,7 +658,7 @@
     {
       "id": 19027,
       "name": "谷底之星+",
-      "desc": "使用打擊技能或傲慢技能造成傷害時，對目標造成<style=\"upgradeHighlight\">3點固定理智傷害</style>。\n\n理智值不高於0點的友方單位<style=\"upgradeHighlight\">造成的傷害+15%</style>",
+      "desc": "使用打擊技能或傲慢屬性技能命中敵方單位時，對目標造成<style=\"upgradeHighlight\">3點固定理智傷害。</style>\n\n理智值低於0點的友方單位<style=\"upgradeHighlight\">造成的傷害+15%</style>",
       "simpleDesc": [
         {
           "abilityID": 19027,
@@ -673,7 +673,7 @@
     {
       "id": 29027,
       "name": "谷底之星++",
-      "desc": "使用打擊技能或傲慢技能造成傷害時，對目標造成<style=\"upgradeHighlight\">5點固定理智傷害</style>。\n\n理智值不高於0點的友方單位<style=\"upgradeHighlight\">造成的傷害+25%</style>",
+      "desc": "使用打擊技能或傲慢屬性技能命中敵方單位時，對目標造成<style=\"upgradeHighlight\">5點固定理智傷害。</style>\n\n理智值低於0點的友方單位<style=\"upgradeHighlight\">造成的傷害+25%</style>",
       "simpleDesc": [
         {
           "abilityID": 29027,
@@ -823,7 +823,7 @@
     {
       "id": 9035,
       "name": "巫毒娃娃",
-      "desc": "回合開始時，對全體敵方單位造成3點固定嫉妒傷害。\n\n對現存體力不高於33%的敵方單位施加1層 [ResultReduction] 。",
+      "desc": "回合開始時，對全體敵方單位造成3點嫉妒傷害。\n\n若目標的現存體力低於33%，則對其施加1層 [ResultReduction]。",
       "simpleDesc": [
         {
           "abilityID": 9035,
@@ -838,7 +838,7 @@
     {
       "id": 19035,
       "name": "巫毒娃娃+",
-      "desc": "回合開始時，對全體敵方單位造成<style=\"upgradeHighlight\">4點固定嫉妒傷害</style>。\n\n對<style=\"upgradeHighlight\">現存體力不高於50%</style>的敵方單位施加1層 [ResultReduction] 。",
+      "desc": "回合開始時，對全體敵方單位造成<style=\"upgradeHighlight\">4點嫉妒傷害</style>。\n\n若目標的<style=\"upgradeHighlight\">現存體力低於50%</style>，則對其施加1層 [ResultReduction]。",
       "simpleDesc": [
         {
           "abilityID": 19035,
@@ -853,7 +853,7 @@
     {
       "id": 29035,
       "name": "巫毒娃娃++",
-      "desc": "回合開始時，對全體敵方單位造成<style=\"upgradeHighlight\">5點固定嫉妒傷害</style>。\n\n對現存體力不高於50%的敵方單位<style=\"upgradeHighlight\">施加2層 [ResultReduction] </style>。",
+      "desc": "回合開始時，對全體敵方單位造成<style=\"upgradeHighlight\">5點嫉妒傷害</style>。\n\n若目標的現存體力低於50%，則<style=\"upgradeHighlight\">對其施加2層 [ResultReduction]。</style>",
       "simpleDesc": [
         {
           "abilityID": 29035,
@@ -1113,7 +1113,7 @@
     {
       "id": 9045,
       "name": "炎鱗",
-      "desc": "Turn End: consume half of [Combustion] Count on enemies with [Combustion] to deal ([Combustion] Potency x consumed [Combustion] Count) bonus Wrath damage. (can consume up to 5 [Combustion] Count)\n\nTargets lose ([Combustion] Count consumed by Glimpse of Flames) Defense Levels for the next turn. (max 3)",
+      "desc": "回合結束時，使帶有 [Combustion] 的敵方單位消耗一半 [Combustion] 回數並對其額外造成(其 [Combustion] 強度×消耗的 [Combustion] 回數)點暴怒傷害。(最多消耗5回燒傷)\n\n下回合使其防禦等級減少(炎鱗消耗的 [Combustion] 回數)級(最多減少3級)",
       "simpleDesc": [
         {
           "abilityID": 9045,
@@ -1128,7 +1128,7 @@
     {
       "id": 19045,
       "name": "炎鱗+",
-      "desc": "Turn End: consume half of [Combustion] Count on enemies with [Combustion] to deal ([Combustion] Potency x consumed [Combustion] Count) bonus Wrath damage. <style=\"upgradeHighlight\">(can consume up to 7 [Combustion] Count)</style>\n\nTargets lose ([Combustion] Count consumed by Glimpse of Flames) Defense Levels for the next turn. <style=\"upgradeHighlight\">(max 5)</style>",
+      "desc": "回合結束時，使帶有 [Combustion] 的敵方單位消耗一半 [Combustion] 回數並對其額外造成(其 [Combustion] 強度×消耗的 [Combustion] 回數)點暴怒傷害。<style=\"upgradeHighlight\">(最多消耗7回燒傷)</style>\n\n下回合使其防禦等級減少(炎鱗消耗的 [Combustion] 回數)級<style=\"upgradeHighlight\">(最多減少5級)</style>",
       "simpleDesc": [
         {
           "abilityID": 19045,
@@ -1143,7 +1143,7 @@
     {
       "id": 29045,
       "name": "炎鱗++",
-      "desc": "Turn End: consume half of [Combustion] Count on enemies with [Combustion] to deal ([Combustion] Potency x consumed [Combustion] Count) bonus Wrath damage. <style=\"upgradeHighlight\">(can consume up to 10 [Combustion] Count)</style>\n\nTargets lose ([Combustion] Count consumed by Glimpse of Flames) Defense Levels for the next turn. <style=\"upgradeHighlight\">(max 8)</style>",
+      "desc": "回合結束時，使帶有 [Combustion] 的敵方單位消耗一半 [Combustion] 回數並對其額外造成(其 [Combustion] 強度×消耗的 [Combustion] 回數)點暴怒傷害。<style=\"upgradeHighlight\">(最多消耗10回燒傷)</style>\n\n下回合使其防禦等級減少(炎鱗消耗的 [Combustion] 回數)級<style=\"upgradeHighlight\">(最多減少8級)</style>",
       "simpleDesc": [
         {
           "abilityID": 29045,
@@ -1600,7 +1600,7 @@
     {
       "id": 9060,
       "name": "快感",
-      "desc": "Turn Start: inflict 3 [Burst] Potency and +3 [Burst] Count on all enemies. (or all Abnormality Parts)\n\nTurn End: Inflict ([Burst] Potency x [Burst] Count) Gluttony damage to all enemies. (for Abnormalities, all Parts) (counts up to 5 Rupture Count)",
+      "desc": "回合開始時，使全體敵方單位(若是異想體，則改為所有部位)增加3級 [Burst] 強度與3回 [Burst]。\n\n回合結束時，對全體敵方單位(若是異想體，則改為所有部位)造成(其破裂強度×破裂回數)點暴食傷害。(最多計入5回破裂)",
       "simpleDesc": [
         {
           "abilityID": 9060,
@@ -1615,7 +1615,7 @@
     {
       "id": 19060,
       "name": "快感+",
-      "desc": "Turn Start: inflict <style=\"upgradeHighlight\">4 [Burst] Potency</style> and +3 [Burst] Count on all enemies. (or all Abnormality Parts)\n\nTurn End: Inflict ([Burst] Potency x [Burst] Count) Gluttony damage to all enemies. (for Abnormalities, all Parts) <style=\"upgradeHighlight\">(counts up to 7 Rupture Count)</style>",
+      "desc": "回合開始時，使全體敵方單位(若是異想體，則改為所有部位)<style=\"upgradeHighlight\">增加4級 [Burst] 強度</style>與3回 [Burst]。\n\n回合結束時，對全體敵方單位(若是異想體，則改為所有部位)造成(其破裂強度×破裂回數)點暴食傷害。<style=\"upgradeHighlight\">(最多計入7回破裂)</style>",
       "simpleDesc": [
         {
           "abilityID": 19060,
@@ -1630,7 +1630,7 @@
     {
       "id": 29060,
       "name": "快感++",
-      "desc": "Turn Start: inflict <style=\"upgradeHighlight\">6 [Burst] Potency</style> and +3 [Burst] Count on all enemies. (or all Abnormality Parts)\n\nTurn End: Inflict ([Burst] Potency x [Burst] Count) Gluttony damage to all enemies. (for Abnormalities, all Parts) <style=\"upgradeHighlight\">(counts up to 10 Rupture Count)</style>",
+      "desc": "回合開始時，使全體敵方單位(若是異想體，則改為所有部位)<style=\"upgradeHighlight\">增加6級 [Burst] 強度</style>與3回 [Burst]。\n\n回合結束時，對全體敵方單位(若是異想體，則改為所有部位)造成(其破裂強度×破裂回數)點暴食傷害。<style=\"upgradeHighlight\">(最多計入10回破裂)</style>",
       "simpleDesc": [
         {
           "abilityID": 29060,
@@ -1784,7 +1784,7 @@
     {
       "id": 19065,
       "name": "美感+",
-      "desc": "對<style=\"upgradeHighlight\">理智值不高於0點的敵方單位造成的傷害+40%</style>。\n\n命中上述敵方單位時，若為增加 [Sinking] 強度或回數的技能，將額外使造成的傷害再+10%(包含特殊<noparse>沉淪</noparse>)\n\n對沒有理智值的敵方單位觸發 [Sinking] 效果時，不對其造成憂鬱傷害，而是以所有罪孽屬性中最有效的屬性傷害進行替代。",
+      "desc": "<style=\"upgradeHighlight\">對理智值低於0點的敵方單位造成的傷害增加40%。</style>\n\n命中上述敵方單位時，若為施加 [Sinking] 強度或增加其回數的技能，則造成的傷害額外增加10%(包含特殊<noparse>沉淪</noparse>)\n\n對沒有理智值的敵方單位觸發 [Sinking] 效果時，不對其造成憂鬱屬性傷害，而是改為造成包含憂鬱在內的罪孽屬性中最有效的屬性傷害。",
       "simpleDesc": [
         {
           "abilityID": 19065,
@@ -1799,7 +1799,7 @@
     {
       "id": 29065,
       "name": "美感++",
-      "desc": "對<style=\"upgradeHighlight\">沒有理智值或理智值不高於0點的敵方單位造成的傷害+50%</style>。\n\n命中上述敵方單位時，若為增加 [Sinking] 強度或回數的技能，將額外使造成的傷害再+10%(包含特殊<noparse>沉淪</noparse>)\n\n對沒有理智值的敵方單位觸發 [Sinking] 效果時，不對其造成憂鬱傷害，而是以所有罪孽屬性中最有效的屬性傷害進行替代。",
+      "desc": "<style=\"upgradeHighlight\">對沒有理智值或理智值低於0點的敵方單位造成的傷害增加50%。</style>\n\n命中上述敵方單位時，若為施加 [Sinking] 強度或增加其回數的技能，則造成的傷害額外增加10%(包含特殊<noparse>沉淪</noparse>)\n\n對沒有理智值的敵方單位觸發 [Sinking] 效果時，不對其造成憂鬱屬性傷害，而是改為造成包含憂鬱在內的罪孽屬性中最有效的屬性傷害。",
       "simpleDesc": [
         {
           "abilityID": 29065,
@@ -1967,7 +1967,7 @@
       "simpleDesc": [
         {
           "abilityID": 9071,
-          "simpleDesc": "Inflict ([Combustion] Potency on defeated enemy)/2 [Combustion] Potency"
+          "simpleDesc": "施加等同於陣亡敵方單位剩餘 [Combustion] 強度一半的 [Combustion] 強度"
         },
         {
           "abilityID": 90711,
@@ -2354,7 +2354,7 @@
     {
       "id": 9088,
       "name": "鎮魂",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Combustion] Potency, Count, or 'Unique Burn' (except E.G.O Skills; except Backup Units)\n\nTurn Start: Inflict +6 [Combustion] Count to all enemies and randomly inflict a total of 15 [Combustion] Potency between all enemies (or all Abnormality Parts; once per wave)\n\nPlus Coin Skills that inflict [Combustion] Potency, Count, or 'Unique Burn': Final Power +1, Coin Power +1, inflicted [Combustion] Potency +1, inflicted [Combustion] Count +1\n- Minus Coin Base Attack Skills: Instead of gaining Coin Power, gain Base Power +(4 / # of Coins) (min 1; rounded down)\n\nWhen winning a Clash with a Skill that inflicts [Combustion] Potency, Count, or 'Unique Burn', inflict (# of remaining Coins + 1) [Combustion] Potency to the target enemy.",
+      "desc": "回合開始時，若擁有增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n回合開始時，使全體敵方單位(若是異想體，則改為所有部位)的 [Combustion] 回數增加6回，並隨機分配使其增加共計15級 [Combustion] 強度。(每個波次最多1次)\n\n增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的加算硬幣技能獲得最終威力+1、硬幣威力+1、使目標增加的 [Combustion] 強度額外+1級、對目標施加的 [Combustion] 回數額外+1回。\n- 若是減算硬幣技能，則不獲得硬幣威力，改為獲得基礎威力 +(4/技能硬幣數) (至少+1；無條件捨去)\n\n增加 [Combustion] 強度、回數或施加特殊燒傷的技能拚點勝利時，使目標敵方單位增加(剩餘硬幣數 + 1)級 [Combustion] 強度",
       "simpleDesc": [
         {
           "abilityID": 9088,
@@ -2430,7 +2430,7 @@
         },
         {
           "abilityID": 90902,
-          "simpleDesc": "Skills that inflict [Laceration] Potency, Count, or 'Unique Bleed' gain Coin/Base Power and deal +30% damage"
+          "simpleDesc": "增加 [Laceration] 強度、回數或施加特殊流血的技能的硬幣/基礎威力增加，且造成的傷害+30%"
         },
         {
           "abilityID": 90903,
@@ -2441,7 +2441,7 @@
     {
       "id": 9091,
       "name": "真理之鐘",
-      "desc": "Inflict 1 [Vulnerable] this turn to enemies affected by [VibrationExplosion]. (Activates once per Attack Skill that triggers [VibrationExplosion])",
+      "desc": "使敵方單位 [VibrationExplosion] 時，本回合對其施加1層 [Vulnerable] (使用攻擊技能觸發震顫引爆時，每個技能最多1次)。",
       "simpleDesc": [
         {
           "abilityID": 9091,
@@ -2452,7 +2452,7 @@
     {
       "id": 19091,
       "name": "真理之鐘+",
-      "desc": "Inflict 1 [Vulnerable] <style=\"upgradeHighlight\">this turn and next turn</style> to enemies affected by [VibrationExplosion]. (Activates once per Attack Skill that triggers [VibrationExplosion])",
+      "desc": "使敵方單位 [VibrationExplosion] 時，<style=\"upgradeHighlight\">本回合與下回合</style>對其施加1層 [Vulnerable] (使用攻擊技能觸發震顫引爆時，每個技能最多1次)",
       "simpleDesc": [
         {
           "abilityID": 19091,
@@ -2463,7 +2463,7 @@
     {
       "id": 29091,
       "name": "真理之鐘++",
-      "desc": "<style=\"upgradeHighlight\">Inflict 2 [Vulnerable]</style> this turn and next turn to enemies affected by [VibrationExplosion]. (Activates once per Attack Skill that triggers [VibrationExplosion])",
+      "desc": "使敵方單位 [VibrationExplosion] 時，本回合與下回合對其<style=\"upgradeHighlight\">施加2層 [Vulnerable]</style>(使用攻擊技能觸發震顫引爆時，每個技能最多1次)",
       "simpleDesc": [
         {
           "abilityID": 29091,
@@ -2493,7 +2493,7 @@
     {
       "id": 9093,
       "name": "螢光燈",
-      "desc": "Turn End: If there are enemies or Abnormality parts with [Burst], apply 1 [AttackDmgUp] or 1 [Agility] to a random ally next turn. Repeat (# of enemies(or # of Abnormality Parts) with [Burst] + 1) times.",
+      "desc": "回合結束時，於下回合隨機使1名友方單位獲得1層 [AttackDmgUp] 或1層 [Agility] 其中一種效果，次數等同於(處於 [Burst] 狀態的敵方單位數(若是異想體，則改為所有部位)+1)。",
       "simpleDesc": [
         {
           "abilityID": 9093,
@@ -2504,7 +2504,7 @@
     {
       "id": 19093,
       "name": "螢光燈+",
-      "desc": "Turn End: If there are enemies or Abnormality parts with [Burst], apply 1 [AttackDmgUp] or 1 [Agility] to a random ally next turn. Repeat <style=\"upgradeHighlight\">(# of enemies(or # of Abnormality Parts) with [Burst] + 3)</style> times.",
+      "desc": "回合結束時，於下回合隨機使1名友方單位獲得1層 [AttackDmgUp] 或1層 [Agility] 其中一種效果，次數等同於(處於 [Burst] 狀態的<style=\"upgradeHighlight\">敵方單位數(若是異想體，則改為所有部位)+3</style>)。",
       "simpleDesc": [
         {
           "abilityID": 19093,
@@ -2515,7 +2515,7 @@
     {
       "id": 29093,
       "name": "螢光燈++",
-      "desc": "Turn End: If there are enemies or Abnormality parts with [Burst], apply <style=\"upgradeHighlight\">1 [AttackDmgUp] and 1 [Agility]</style> to a random ally next turn. Repeat (# of enemies(or # of Abnormality Parts) with [Burst] + 3) times.",
+      "desc": "回合結束時，於下回合隨機使1名友方單位<style=\"upgradeHighlight\">獲得1層 [AttackDmgUp] 與1層 [Agility]。</style>次數等同於(處於 [Burst] 狀態的敵方單位數(若是異想體，則改為所有部位)+3)。",
       "simpleDesc": [
         {
           "abilityID": 29093,
@@ -2578,7 +2578,7 @@
     {
       "id": 9096,
       "name": "黑色樂譜",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Sinking] Potency, Count, or 'Unique Sinking'. (except E.G.O Skills; except Backup Units)\n\nOn Hit against an enemy with a Skill: inflict 5 [Sinking] Potency.\n\nTurn Start: enemies or Parts with [Sinking] regain ([Sinking] Count each enemy lost On Hit last turn / 2) [Sinking] Count.\n\nOn Hit with a Base Attack Skill: deal ([Sinking] Potency on target / 10) Gloom damage (min 1 damage)\n\nOn Hit with an Attack Skill: if the target's SP is below 0, Skill deals more damage the further the target's SP is from 0 (+1% damage per SP)\n- If the target is Panicked, deal +50% damage instead\n- For targets that are Non-SP Units: Deal +1% damage for every 2 [Sinking] Potency on target. If target has 90+ [Sinking] Potency, deal +50% damage instead",
+      "desc": "回合開始時，若擁有增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n使用技能命中敵方單位時，使其增加5級 [Sinking] 強度。\n\n回合開始時，對全體敵方單位或所有部位重新施加(上回合受擊而消耗的 [Sinking] 回數÷2)回 [Sinking]。\n\n基礎攻擊技能命中時，對目標造成(其 [Sinking] 強度÷10)點憂鬱傷害(最少1點)\n\n攻擊技能命中時，若目標的理智值低於0點，則每低1點，使該技能造成的傷害+1%。\n- 若目標陷入恐慌，則改為造成的傷害+50%\n- 若目標未帶有理智值，則其每帶有2級 [Sinking] 強度，使該技能造成的傷害+1%。若目標的沉淪強度不低於90級，則改為造成的傷害+50%",
       "simpleDesc": [
         {
           "abilityID": 9096,
@@ -2979,7 +2979,7 @@
     {
       "id": 9111,
       "name": "生物劇毒藥瓶",
-      "desc": "If a target with [Vibration] Potency is defeated, inflict 0.5([Vibration] Potency + Count on target) Sloth damage to a random enemy(or a random Abnormality part) next turn",
+      "desc": "帶有 [Vibration] 強度的敵方單位陣亡時，下回合隨機對1名敵方單位(若是異想體，則改為隨機部位)造成(陣亡單位的 [Vibration] 強度與 [Vibration] 回數之和×0.5)點怠惰傷害",
       "simpleDesc": [
         {
           "abilityID": 9110,
@@ -2990,7 +2990,7 @@
     {
       "id": 19111,
       "name": "生物劇毒藥瓶+",
-      "desc": "If a target with [Vibration] Potency is defeated, inflict <style=\"upgradeHighlight\">0.75</style>([Vibration] Potency + Count on target) Sloth damage to a random enemy(or a random Abnormality part) next turn",
+      "desc": "帶有 [Vibration] 強度的敵方單位陣亡時，下回合隨機對1名敵方單位(若是異想體，則改為隨機部位)造成(陣亡單位的 [Vibration] 強度與 [Vibration] 回數之和×<style=\"upgradeHighlight\">0.75</style>)點怠惰傷害",
       "simpleDesc": [
         {
           "abilityID": 19110,
@@ -3001,7 +3001,7 @@
     {
       "id": 29111,
       "name": "生物劇毒藥瓶++",
-      "desc": "If a target with [Vibration] Potency is defeated, inflict <style=\"upgradeHighlight\">1.25</style>([Vibration] Potency + Count on target) Sloth damage to a random enemy(or a random Abnormality part) next turn",
+      "desc": "帶有 [Vibration] 強度的敵方單位陣亡時，下回合隨機對1名敵方單位(若是異想體，則改為隨機部位)造成(陣亡單位的 [Vibration] 強度與 [Vibration] 回數之和×<style=\"upgradeHighlight\">1.25</style>)點怠惰傷害",
       "simpleDesc": [
         {
           "abilityID": 29110,
@@ -3102,7 +3102,7 @@
     {
       "id": 9114,
       "name": "鏡觸覺通感",
-      "desc": "When an ally Staggers an enemy with an Attack Skill(except E.G.O Skills) that applies(including on self) [Vibration] Potency or Count, randomly apply 1/3 of the [Vibration] Potency on target between other enemies(or a random Abnormality Part) next turn.\n\nIf there are no other enemies to apply the above effect to, multiply [Vibration] Potency on target by 1.5 next turn.",
+      "desc": "友方單位透過增加 [Vibration] 強度或 [Vibration] 回數的攻擊技能(包括以自身或友方單位為對象的情況)使敵方單位陷入混亂時(不包括E.G.O技能)，下回合隨機使其他敵方單位(若是異想體，則改為隨機部位)增加共計該單位 [Vibration] 強度1/3的 [Vibration] 強度\n\n若沒有可施加本效果的其他敵方單位，則效果改為下回合使目標的 [Vibration] 強度變為1.5倍",
       "simpleDesc": [
         {
           "abilityID": 9114,
@@ -3110,7 +3110,7 @@
         },
         {
           "abilityID": 91141,
-          "simpleDesc": "If there are no other enemies to apply the above effect to, multiply [Vibration] Potency on target by 1.5 next turn."
+          "simpleDesc": "若沒有可施加本效果的其他敵方單位，則效果改為下回合使目標的 [Vibration] 強度變為1.5倍"
         }
       ]
     },
@@ -3342,7 +3342,7 @@
     {
       "id": 9124,
       "name": "莊嚴",
-      "desc": "[Effects apply only to #1, #2 Deployed Identities]\n\nWhen dealing damage with an Attack Skill that inflicts [Sinking] Potency, Count, or 'Unique Sinking' against targets with 10+ ([Sinking] Potency + Count), inflict 2 [Sinking] Potency and +2 [Sinking] Count at Attack End (2 times per turn per Identity)\nIn Focused Encounters: inflict 4 [Sinking] Potency and +2 [Sinking] Count instead (once per turn per Identity)",
+      "desc": "[第1、第2順位友方單位專屬]\n\n若目標的 [Sinking] 強度與 [Sinking] 回數之和不低於10，對目標使用增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的攻擊技能造成傷害時，自身攻擊結束後使目標增加2級 [Sinking] 強度與2回 [Sinking] (每回合每名友方單位最多2次)。\n若是集中遭遇戰，則改為增加4級 [Sinking] 強度與2回 [Sinking] (每回合每名友方單位最多1次)。",
       "simpleDesc": [
         {
           "abilityID": 9124,
@@ -3353,7 +3353,7 @@
     {
       "id": 19124,
       "name": "莊嚴+",
-      "desc": "[Effects apply only to #1, #2, and <style=\"upgradeHighlight\">#3</style> Deployed Identities]\n\nWhen dealing damage with an Attack Skill that inflicts [Sinking] Potency, Count, or 'Unique Sinking' against targets with <style=\"upgradeHighlight\">8</style>+ ([Sinking] Potency + Count), inflict <style=\"upgradeHighlight\">3</style> [Sinking] Potency and +2 [Sinking] Count at Attack End (2 times per turn per Identity)\nIn Focused Encounters: inflict <style=\"upgradeHighlight\">5</style> [Sinking] Potency and +2 [Sinking] Count instead (once per turn per Identity)",
+      "desc": "[第1、第2、<style=\"upgradeHighlight\">第3</style>順位友方單位專屬]\n\n若目標的 [Sinking] 強度與 [Sinking] 回數之和不低於<style=\"upgradeHighlight\">8</style>，對目標使用增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的攻擊技能造成傷害時，自身攻擊結束後使目標<style=\"upgradeHighlight\">增加3級 [Sinking] 強度</style>與2回 [Sinking] (每回合每名友方單位最多2次)。\n若是集中遭遇戰，則改為<style=\"upgradeHighlight\">增加5級 [Sinking] 強度</style>與2回 [Sinking] (每回合每名友方單位最多1次)。",
       "simpleDesc": [
         {
           "abilityID": 19124,
@@ -3379,7 +3379,7 @@
       "simpleDesc": [
         {
           "abilityID": 9124,
-          "simpleDesc": "Inflict Sinking Count"
+          "simpleDesc": "增加沉淪回數"
         }
       ]
     },
@@ -3534,7 +3534,7 @@
     {
       "id": 9132,
       "name": "不間斷電源裝置",
-      "desc": "回合結束時，若自身的 [Charge] 回數不高於3回，則下回合開始時使自身獲得3回 [Charge] (包含特殊充能)。\n\n回合結束時，若自身的 [Charge] 回數高於3回，則下回合開始時使自身獲得1層 [AttackDmgUp] (包含特殊充能)。",
+      "desc": "回合結束時，若自身的 [Charge] 回數低於3回，則下回合開始時使自身的 [Charge] 回數增加3回。(包含特殊充能)\n\n回合結束時，若自身的 [Charge] 回數不低於3回，則下回合開始時使自身獲得1層 [AttackDmgUp]。(包含特殊充能)",
       "simpleDesc": [
         {
           "abilityID": 9132,
@@ -3549,7 +3549,7 @@
     {
       "id": 19132,
       "name": "不間斷電源裝置+",
-      "desc": "回合結束時，若自身的 [Charge] 回數不高於<style=\"upgradeHighlight\">4</style>回，則下回合開始時使自身獲得3回 [Charge]。(包含特殊充能)\n\n回合結束時，若自身的 [Charge] 回數高於<style=\"upgradeHighlight\">4</style>回，則下回合開始時使自身獲得1層 [AttackDmgUp]。(包含特殊充能)",
+      "desc": "回合結束時，若自身的 [Charge] 回數低於<style=\"upgradeHighlight\">4</style>回，則下回合開始時使自身的 [Charge] 回數增加3回。(包含特殊充能)\n\n回合結束時，若自身的 [Charge] 回數不低於<style=\"upgradeHighlight\">4</style>回，則下回合開始時使自身獲得1層 [AttackDmgUp]。(包含特殊充能)",
       "simpleDesc": [
         {
           "abilityID": 19132,
@@ -3564,7 +3564,7 @@
     {
       "id": 29132,
       "name": "不間斷電源裝置++",
-      "desc": "回合結束時，若自身的 [Charge] 回數不高於<style=\"upgradeHighlight\">5</style>回，則下回合開始時使自身獲得<style=\"upgradeHighlight\">4</style>回 [Charge]。(包含特殊充能)\n\n回合結束時，若自身的 [Charge] 回數高於<style=\"upgradeHighlight\">5</style>回，則下回合開始時使自身獲得<style=\"upgradeHighlight\">2</style>層 [AttackDmgUp]。(包含特殊充能)",
+      "desc": "回合結束時，若自身的 [Charge] 回數低於<style=\"upgradeHighlight\">5</style>回，則下回合開始時使自身的 [Charge] 回數增加<style=\"upgradeHighlight\">4</style>回。(包含特殊充能)\n\n回合結束時，若自身的 [Charge] 回數不低於<style=\"upgradeHighlight\">5</style>回，則下回合開始時使自身獲得<style=\"upgradeHighlight\">2</style>層 [AttackDmgUp]。(包含特殊充能)",
       "simpleDesc": [
         {
           "abilityID": 29132,
@@ -4374,7 +4374,7 @@
     {
       "id": 9157,
       "name": "烹飪秘訣書",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Combustion] Potency, Count, or 'Unique Burn'. (except E.G.O Skills; except Backup Units)\n\nSkills that inflict [Combustion] Potency, Count, or 'Unique Burn': Final Power +1\n\nOn Clash Win with Skills that inflict [Combustion] Potency, Count, or 'Unique Burn': inflict ((# of remaining Coins / 2) +1) [Combustion] Potency on the target",
+      "desc": "回合開始時，若擁有增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n使增加 [Combustion] 強度、[Combustion] 回數或施加特殊燒傷的技能的最終威力+1\n\n增加 [Combustion] 強度、回數或施加特殊燒傷的技能拚點勝利時，使目標敵方單位增加(剩餘硬幣數/2+1)級 [Combustion] 強度",
       "simpleDesc": [
         {
           "abilityID": 9157,
@@ -4408,7 +4408,7 @@
         },
         {
           "abilityID": 91611,
-          "simpleDesc": "Skills that inflict [Laceration] Potency, Count, or 'Unique Bleed' gain Final Power +1."
+          "simpleDesc": "增加 [Laceration] 強度、回數或施加特殊流血的技能的最終威力+1"
         }
       ]
     },
@@ -4434,11 +4434,11 @@
       "simpleDesc": [
         {
           "abilityID": 9169,
-          "simpleDesc": "Consume Rupture Potency in place of Count"
+          "simpleDesc": "消耗破裂強度以取代破裂回數"
         },
         {
           "abilityID": 91691,
-          "simpleDesc": "Inflict +1 more Rupture Count"
+          "simpleDesc": "施加的破裂回數額外+1回"
         }
       ]
     },
@@ -4460,7 +4460,7 @@
     {
       "id": 9177,
       "name": "某日的記憶",
-      "desc": "Skill 3 for Identities that can gain [Breath] Potency or Count through Skills(except E.G.O Skills): Final Power +2",
+      "desc": "透過使用技能(不包括E.G.O技能)獲得 [Breath] 強度或 [Breath] 回數的人格，其使用的3技能最終威力+2",
       "simpleDesc": [
         {
           "abilityID": 9177,
@@ -4471,7 +4471,7 @@
     {
       "id": 9179,
       "name": "追憶",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply or gain [Breath] Potency or Count. (except E.G.O Skills; except Backup Units)\n\nSkill 3 of Identities with Skills(except E.G.O Skills) that gain [Breath] Potency or Count: Plus Coin Power +1\n- Minus Coin Skills: Instead of gaining Plus Coin Power, gain Base Power +(4 / # of Coins) (min 1; rounded down)\n\nCombat Start: a random ally gains 3 [Breath] Potency. (prioritizes Identities that gain [Breath] Count with their Attack Skills) Prioritizes allies with Gloom Affinity Attack Skills; they gain 3 [Breath] Potency and +2 [Breath] Count instead.",
+      "desc": "回合開始時，若擁有增加 [Breath] 強度或 [Breath] 回數的攻擊技能的友方單位不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n使擁有增加 [Breath] 強度或 [Breath] 回數的技能(不包括E.G.O技能)的友方單位3技能獲得硬幣威力+1。\n- 若是減算硬幣技能：則不獲得硬幣威力，改為獲得基礎威力 +(4 ÷ 技能硬幣數) (至少+1；無條件捨去)\n\n戰鬥開始時，隨機使1名友方單位增加3級 [Breath] 強度(優先選取使用攻擊技能獲得 [Breath] 回數的人格)。優先選取擁有憂鬱攻擊技能的友方單位，且該情況下改為使其增加3級 [Breath] 強度並獲得2回 [Breath]。",
       "simpleDesc": [
         {
           "abilityID": 9179,

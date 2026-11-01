@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": 0,
-      "place": "伊比利亞之眼 入口",
+      "place": "伊比利亞之眼，入口",
       "model": "아이린",
       "content": "我已經沒有子彈了。提燈也燃盡了，再這樣下去……"
     },
@@ -90,7 +90,7 @@
     },
     {
       "id": 20,
-      "place": "伊比利亞之眼 入口",
+      "place": "伊比利亞之眼，入口",
       "model": "단테",
       "content": "<拜託你了，格里高爾。>"
     },
@@ -203,7 +203,7 @@
     {
       "id": 44,
       "model": "마지막기사",
-      "content": "Roci… nante…"
+      "content": "駑騂……難得……"
     },
     {
       "id": 45,
@@ -213,7 +213,7 @@
     {
       "id": 46,
       "model": "돈키호테다침",
-      "content": "Ooooo!!! ‘Tis quite the coincidence, then! Mine noble steed is also named Rocinante!"
+      "content": "哦哦哦！！！這可真是絕妙的巧合！吾的愛馬也名為駑騂難得！"
     },
     {
       "id": 47,
@@ -261,7 +261,7 @@
     },
     {
       "id": 56,
-      "content": "騎士和被稱為羅辛南特的馬……也靜靜地凝視著唐吉訶德。"
+      "content": "騎士與被稱作駑騂難得的馬……默默地凝視著那樣的唐吉訶德。"
     },
     {
       "id": 57,

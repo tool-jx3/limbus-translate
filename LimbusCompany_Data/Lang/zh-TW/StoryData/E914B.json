@@ -2,74 +2,74 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Corridor of the Ring Nursefather",
+      "place": "蜘蛛巢，環指父輩的長廊",
       "model": "앨런",
-      "content": "Ah, welcome back."
+      "content": "啊。各位回來了啊。"
     },
     {
       "id": 1,
       "model": "오티스",
-      "content": "... Question."
+      "content": "……我只問一個問題。"
     },
     {
       "id": 2,
       "model": "오티스",
-      "content": "What exactly was the point of verifying every Backdoor within the House of Spiders?"
+      "content": "特地這樣確認這座蜘蛛巢的後門，用意是什麼？"
     },
     {
       "id": 3,
       "model": "앨런",
-      "content": "Oh, Hohenheim didn't fill you in?"
+      "content": "您沒從霍恩海姆先生那裡聽說嗎？"
     },
     {
       "id": 4,
       "model": "앨런",
-      "content": "Any information regarding these doors holds an enormous value for us. Not to mention the higher-ups requesting us to reorganize the House of Spiders into a base of operations as soon as possible, even if we had to rush our work a little."
+      "content": "因為關於門的情報，對我們來說是非常寶貴的情報。而且上層也有指示，希望這裡的蜘蛛巢就算稍微趕一點，也要完成據點化的作業。"
     },
     {
       "id": 5,
       "model": "앨런",
-      "content": "Only speculating here, but I'm quite convinced that they're preparing for a conflict of sorts. These little pockets of absolute safety are extremely valuable during these \"operations,\" as you already know—"
+      "content": "我想大概是為了防備衝突吧。作戰的時候，這樣的每一塊安全地帶都很重要。各位應該也知……"
     },
     {
       "id": 6,
       "model": "그레고르",
-      "content": "... Wait, stop right there. What? What conflict? What operation? Are you saying that your bosses are preparing for a war or something?"
+      "content": "……等等，你剛剛說什麼？衝突？作戰？難道……是要打仗嗎？"
     },
     {
       "id": 7,
       "model": "이스마엘",
-      "content": "I just feel like there isn't enough alarm in his voice, considering the... considering what he's saying. Preparing for what...?"
+      "content": "以這麼平靜的語氣說出來，內容卻……不是很奇怪嗎？防備到底是……"
     },
     {
       "id": 8,
       "model": "오티스",
-      "content": "Not even trying to hide it anymore, huh."
+      "content": "如今，連隱瞞的打算都沒有了嗎。"
     },
     {
       "id": 9,
       "model": "앨런",
-      "content": "Hm? Did I say something wrong?"
+      "content": "嗯？各位怎麼了？"
     },
     {
       "id": 10,
       "model": "이상",
-      "content": "... Must you ask to know?"
+      "content": "……你當真是因為不知道才問的嗎？"
     },
     {
       "id": 11,
       "model": "앨런",
-      "content": "Aha... I thought everyone already knew. I mean, it's an open secret, at this point."
+      "content": "啊……我還以為各位都知道了。其實我覺得就算不知道，應該也想得到吧。"
     },
     {
       "id": 12,
       "model": "앨런",
-      "content": "L Corp. has already fallen. W Corp. is teetering on the brink of collapse."
+      "content": "已經沒落的L公司。以及正在沒落的W公司。"
     },
     {
       "id": 13,
       "model": "앨런",
-      "content": "You call us the \"aspirant W Corp.\" We call Limbus Company the \"aspirant L Corp.\" Meaning, we have a shared goal."
+      "content": "就像各位稱我們為新W公司一樣，我們也稱邊獄公司為新L公司。也就是說，我們瞄準的位置是一樣的。"
     },
     {
       "id": 14,
@@ -79,117 +79,117 @@
     {
       "id": 15,
       "model": "앨런",
-      "content": "But unlike the dead-and-gone L Corp., the current W Corp.'s still kicking, despite its rapid decline in recent years."
+      "content": "只不過，和L公司不同，W公司只是正在沒落，還沒有完全沒落。"
     },
     {
       "id": 16,
       "model": "앨런",
-      "content": "And as we all know, companies in the City aren't worth much unless they've got the military force to back them, right?"
+      "content": "各位應該也知道，公司要在都市中具有意義，就必須具備足夠的武力……"
     },
     {
       "id": 17,
       "model": "앨런",
-      "content": "It's only natural that a business conflict would lead to a physical one as well."
+      "content": "彼此碰撞時，爆發武力衝突是很自然的發展。"
     },
     {
       "id": 18,
       "model": "앨런",
-      "content": "This is just a mere team leader speaking, though. Who knows what the higher-ups in our companies are thinking?"
+      "content": "嘛。這終究只是一介組長的推測。公司的高層們或許另有想法。"
     },
     {
       "id": 19,
       "model": "앨런마스크",
-      "content": "Either way, much fruitful collaboration was had today. This'll reflect pretty well in our performance metrics, and we didn't even suffer that many losses."
+      "content": "今天的合作很愉快。成果似乎會比預期還高，損失率也很低。"
     },
     {
       "id": 20,
       "model": "앨런마스크",
-      "content": "I can safely say that you should expect a positive review from us regarding this collaboration."
+      "content": "關於貴公司的協力廠商評估報告，我會寫得正面一些。"
     },
     {
       "id": 21,
-      "content": "After saying our farewells to Alan, we returned to the forward base..."
+      "content": "與亞倫分別，回到前哨基地之後。"
     },
     {
       "id": 22,
-      "place": "The House of Spiders Forward Base",
-      "content": "... and shared with Hohenheim everything that's happened so far."
+      "place": "蜘蛛巢 前哨基地",
+      "content": "我們把至今發生的事全都告訴了霍恩海姆。"
     },
     {
       "id": 23,
-      "content": "Hohenheim and Faust both did not seem willing to discuss the subject of the looming \"conflict\"..."
+      "content": "或許是不太想談論衝突的事，霍恩海姆和浮士德都避而不提……"
     },
     {
       "id": 24,
-      "content": "So we instead decided to have Ryōshū's memory and sword re-examined."
+      "content": "取而代之的是，我們決定對良秀失去的記憶和刀進行額外的檢查。"
     },
     {
       "id": 25,
       "model": "히스클리프",
-      "content": "... Oi, Hohenheim. Results out yet?"
+      "content": "……喂。霍恩海姆。那個……檢查結果……"
     },
     {
       "id": 26,
       "model": "호엔하임",
-      "content": "Not yet, Assistant. I clearly remember telling you 3 minutes ago that it would take about 20 more minutes. Have you forgotten already?"
+      "content": "還沒好呢，助手。我說大概要20分鐘才過了3分鐘，看來你這麼快就忘了啊。"
     },
     {
       "id": 27,
       "model": "료슈",
-      "content": "He talks too much."
+      "content": "真吵。"
     },
     {
       "id": 28,
-      "content": "Ryōshū sounded irritated as she scolded Heathcliff, but I could sense a definite undercurrent of anxiety from the way she kept puffing her cigarettes to a stub at increasingly shorter intervals."
+      "content": "良秀用一副受不了的語氣數落希斯克利夫，但她自己似乎也很焦躁，抽完一根菸再點上新菸的速度比平常更快了。"
     },
     {
       "id": 29,
       "model": "호엔하임",
-      "content": "*cough* This room might be more smoke than oxygen at this point... Mind slowing down a tad? You're practically fumigating the room with cigarette smoke."
+      "content": "咳咳……二手菸的濃度完全沒有要降低的意思啊……能不能抽慢一點？我都快被燻蒸了。"
     },
     {
       "id": 30,
       "model": "료슈2",
-      "content": "Then speed up, Glasses. Gonna bounce as soon as I hear the results."
+      "content": "趕快說結果就好，四眼田雞。聽完我就走。"
     },
     {
       "id": 31,
       "model": "호엔하임",
-      "content": "... Both of you need to learn to respect that things take time. Yes, \"time\" is indeed relative, but the fact that I have managed to complete an in-depth analysis of an item of such mystery in a single day is an incredibly fast turnaround and therefore deserves your appreciation."
+      "content": "……你們全都不懂得尊重時間啊。就算時間再怎麼相對，不到一天就完成這種東西的深層分析，可是極為驚人的處理速度。"
     },
     {
       "id": 32,
       "model": "호엔하임",
-      "content": "I have been attempting to rein in the more self-indulgent part of myself as of late, but I believe this achievement deserves to be elaborated upon; it is an evident truth that such a result could not have been replicable had it not been for my genius brain. Go out to the hallways and grab any passing researcher and tell them about my incredible turnaround time, and you will hear them say, \"Whoa, done already?\" And to that, I will answer—"
+      "content": "我最近試著自我克制，但這次就坦白說吧。這種成果，要不是有我天才的頭腦是不可能達成的。隨便抓一個路過的研究員來問，都會驚呼「咦，您已經做完了嗎？」的……"
     },
     {
       "id": 33,
       "model": "료슈2",
-      "content": "S.T.F.U."
+      "content": "閉．嘴。"
     },
     {
       "id": 34,
-      "content": "Evidently tired of the two Sinners alternating turns hounding him for results, Hohenheim seemed to speed up the analysis... and managed to hit the finish line much earlier than 20 minutes."
+      "content": "或許是不想再被兩人催促了吧。比霍恩海姆說的時間快得多，「叮」的一聲，檢查完成的提示音響了起來。"
     },
     {
       "id": 35,
       "model": "히스클리프",
-      "content": "Whoa, done already?!"
+      "content": "什麼，結束了？！"
     },
     {
       "id": 36,
       "model": "호엔하임",
-      "content": "Yes, there are times when test results are extracted earlier than the predicted timeframe. Many of those instances are easily attributable to my genius at work."
+      "content": "偶爾也會有比預期更快完成的時候。大致上都是多虧了天才的我吧。"
     },
     {
       "id": 37,
       "model": "료슈2",
-      "content": "... Then why aren't you saying anything? Gimme the T.R., now."
+      "content": "……那你幹嘛杵在那裡不動？快說檢．結。"
     },
     {
       "id": 38,
       "model": "호엔하임",
-      "content": "You did tell me to \"shut the fuck up,\" so I am attempting to observe the exact merits of doing precisely that."
+      "content": "妳叫我閉上嘴，所以我正在照做啊。"
     },
     {
       "id": 39,
@@ -199,60 +199,60 @@
     {
       "id": 40,
       "model": "뉴키라",
-      "content": "Ha! Ya think Yoshihide would <i>ever</i> use known acronyms straight?"
+      "content": "哈。良秀怎麼可能那麼正經地縮寫嘛。"
     },
     {
       "id": 41,
       "model": "뉴키라",
-      "content": "What if it's something like, uhm. \"Sheesh, That's a Full-day. Unwind after work, though\"?"
+      "content": "不就是那樣嗎？「閉門苦幹辛苦你了，嘴上先別說，先把眼前的事做完」……之類的意思？"
     },
     {
       "id": 42,
       "model": "호엔하임",
-      "content": "... And your verdict on her interpretation?"
+      "content": "……告訴我，妳對她那番話怎麼看。"
     },
     {
       "id": 43,
       "model": "료슈",
-      "content": "*puff* ... That is <i>exactly</i> what I meant. She's better than M.T.L. in some ways."
+      "content": "呼……就跟那傢伙說的一樣，是那個意思。比辛．翻還有可取之處。"
     },
     {
       "id": 44,
       "model": "단테",
-      "content": "<... How she lies as she breathes.>"
+      "content": "<……臉皮真厚啊。>"
     },
     {
       "id": 45,
-      "content": "At that moment, I might've caught a glimpse of the scabbard rattling slightly atop the examination device."
+      "content": "放在檢測儀上的刀鞘，似乎喀啦喀啦地動了一下。"
     },
     {
       "id": 46,
-      "content": "Almost as though it were giggling."
+      "content": "就像是在笑一樣。"
     },
     {
       "id": 47,
       "model": "호엔하임",
-      "content": "Very well, then I'll get right into it. First, the memory of the time she was complimented for her cooking has been erased."
+      "content": "嘛。我來說明吧。第一，過去曾因廚藝好而被稱讚的記憶消失了。"
     },
     {
       "id": 48,
       "model": "뉴키라",
-      "content": "Huh? That's it?!"
+      "content": "欸？就這樣？！"
     },
     {
       "id": 49,
       "model": "호엔하임",
-      "content": "Hardly."
+      "content": "當然還有。"
     },
     {
       "id": 50,
       "model": "호엔하임",
-      "content": "Second... a name has been erased from her memory."
+      "content": "第二……她忘了某個人的名字。"
     },
     {
       "id": 51,
       "model": "호엔하임",
-      "content": "Do you recall the name of the man who works with Manager Saude?"
+      "content": "妳。還記得和索德科長一起工作的人叫什麼名字嗎？"
     },
     {
       "id": 52,
@@ -262,153 +262,153 @@
     {
       "id": 53,
       "model": "호엔하임",
-      "content": "I would have asked in the past tense, had it been him whom I was referring to."
+      "content": "如果是那個人，我就不會問「一起工作」，而會問「曾經一起工作」了。"
     },
     {
       "id": 54,
       "model": "싱클레어",
-      "content": "Glad Miss Saude wasn't here for that..."
+      "content": "幸好索德小姐不在這裡……"
     },
     {
       "id": 55,
       "model": "료슈2",
-      "content": "... That kid. Right, I don't remember his name."
+      "content": "……那個毛頭小子。我確實想不起他的名字了。"
     },
     {
       "id": 56,
       "model": "단테",
-      "content": "<She forgot... Pilot's name?>"
+      "content": "<把皮利托的名字……忘了？>"
     },
     {
       "id": 57,
       "model": "호엔하임",
-      "content": "Among other miscellaneously deleted memories are 172 hours of Don Quixote's tales of adventures and the types of food she fed to a seagull."
+      "content": "除此之外，在巴士上聽過的唐吉訶德小姐172小時份的冒險故事，以及餵給海鷗的食物種類的記憶也消失了。"
     },
     {
       "id": 58,
       "model": "돈키호테",
-      "content": "F-fie upon it! Dost thou say that the memories most precious to young Ryōshū and me... have been thrown into utter destruction...?"
+      "content": "怎、怎麼會……吾與良秀珍貴的回憶……全都消失了嗎……"
     },
     {
       "id": 59,
       "model": "로쟈",
-      "content": "Look, Donqui, I'm not tryna be mean here, but..."
+      "content": "那個……雖然對小唐真～的很抱歉……"
     },
     {
       "id": 60,
       "model": "로쟈",
-      "content": "... that seems pretty acceptable, doesn't it...? For the price of unsheathing a sword like that..."
+      "content": "不是還滿……划算的嗎？以拔出那把超厲害的刀的代價來說……？"
     },
     {
       "id": 61,
       "model": "이스마엘",
-      "content": "If we're going by sheer volume, I wouldn't quite say its mileage is \"acceptable.\" It erased several days' worth of memories just for a single swing, didn't it?"
+      "content": "就失去的量本身來看……性價比好像挺差的。只不過揮了一次，就失去了好幾天份的記憶不是嗎？"
     },
     {
       "id": 62,
       "model": "로쟈",
-      "content": "I mean, yeah. But they kinda sound like inconsequential memories, don't they? Greg and Heath forget stuff all the time, how's this any different?"
+      "content": "是這樣沒錯啦，該怎麼說呢……忘了也沒關係的那種？跟格雷格或希斯平常說忘記了、想不起來的那些東西沒兩樣嘛。"
     },
     {
       "id": 63,
       "model": "호엔하임",
-      "content": "The seemingly \"inconsequential\" nature of these particular memories weren't achieved by sheer luck."
+      "content": "這並不是單純運氣好才出現的結果。"
     },
     {
       "id": 64,
       "model": "호엔하임",
-      "content": "... In fact, it seems to have been impacted by the scabbard of the Arayashiki—or, to be more precise, the power of Araya's E.G.O."
+      "content": "阿賴耶識的刀鞘。準確來說，說成是源自阿賴耶的E.G.O的力量會比較好解釋吧。"
     },
     {
       "id": 65,
       "model": "료슈2",
-      "content": "... That so."
+      "content": "……是嗎。"
     },
     {
       "id": 66,
-      "content": "Ryōshū looked down at the scabbard with an uncertain, hollow look in her eyes."
+      "content": "良秀依舊用彷彿不太明白的空虛眼神，低頭看著刀鞘。"
     },
     {
       "id": 67,
-      "content": "All that remains of Araya in Ryōshū's recollection is a blank space where the fragments of her existence used to be, severed and removed again..."
+      "content": "阿賴耶是誰，對自己而言是怎樣的存在……雖然填進那片空白的碎片，又再一次全被斬去了。"
     },
     {
       "id": 68,
       "model": "호엔하임",
-      "content": "While it takes a rather significant amount of time, the scabbard seems to be... yes, capable of selecting which of Sinner Ryōshū's memories are to be erased as a cost of using Arayashiki."
+      "content": "雖然似乎得花上不少時間……但已確認它會挑選作為阿賴耶識的代價而被消耗的罪人良秀的記憶。"
     },
     {
       "id": 69,
       "model": "료슈9장",
-      "content": "Sounds like... I should be grateful, then."
+      "content": "那還……真是值得感謝。"
     },
     {
       "id": 70,
-      "content": "... but Ryōshū regards the scabbard with a conflicted look,"
+      "content": "彷彿想從只剩空白的輪廓中，推測出那段記憶。"
     },
     {
       "id": 71,
-      "content": "as though to approximate the outlines of the void she left behind."
+      "content": "良秀用複雜的眼神望著刀鞘。"
     },
     {
       "id": 72,
       "model": "뉴키라",
-      "content": "Ooh, so it's got like, a cooldown timer? She can use it whenevs as long as she gives it time to select the trivial memories?"
+      "content": "那只要等冷卻時間，就能只消耗沒什麼用的記憶來用囉？"
     },
     {
       "id": 73,
       "model": "호엔하임",
-      "content": "I wouldn't be so quick to dismiss them as \"trivial.\" The memory of the time when you were complimented for your cooking—it was quite a precious memory, wasn't it?"
+      "content": "並非如此。光是今天消失的「關於料理的稱讚」……不也是相當珍貴的記憶嗎？"
     },
     {
       "id": 74,
       "model": "파우스트",
-      "content": "... You've performed an inverse calculation of the Relic's cost."
+      "content": "……你逆推出了遺物的代價呢。"
     },
     {
       "id": 75,
       "model": "호엔하임",
-      "content": "Yes. According to our measurements, the sword seems to factor in the \"weight\" of each memory when calculating the cost of wielding it."
+      "content": "沒錯。測量之後發現，支付代價時每段記憶的重量都不同。"
     },
     {
       "id": 76,
       "model": "호엔하임",
-      "content": "It's become rather clear that it takes more than \"light\" memories to properly wield it."
+      "content": "光靠輕的記憶，大概是斬不了的吧。"
     },
     {
       "id": 77,
       "model": "호엔하임",
-      "content": "So, have her memories been restored?"
+      "content": "所以，記憶有恢復一些嗎？"
     },
     {
       "id": 78,
       "model": "파우스트",
-      "content": "As presumed, attempts to recall the erased being's existence have resulted in... failure."
+      "content": "如同預期，重新想起已經消失的存在……失敗了。"
     },
     {
       "id": 79,
       "model": "호엔하임",
-      "content": "That is... quite discouraging."
+      "content": "那還真是……令人遺憾的結果。"
     },
     {
       "id": 80,
       "model": "단테",
-      "content": "<... But not all is lost.>"
+      "content": "<也不完全是令人遺憾的結果。>"
     },
     {
       "id": 81,
       "model": "단테",
-      "content": "<Simply by knowing that something used to be in that negative space...>"
+      "content": "<光是知道記憶中那個空缺曾經有過什麼……>"
     },
     {
       "id": 82,
       "model": "단테",
-      "content": "<... many things can still be reminisced upon.>"
+      "content": "<就能回憶起很多事了吧。>"
     },
     {
       "id": 83,
       "model": "단테",
-      "content": "<Like Ryōshū said. Forgotten but not lost.>"
+      "content": "<就像良秀說的，雖然忘記了，但並沒有失去吧。>"
     },
     {
       "id": 84,
@@ -423,58 +423,58 @@
     {
       "id": 86,
       "model": "료슈9장",
-      "content": "You've just stepped foot into the world of S.A.N.G.R.I.A."
+      "content": "你踏入萬．短．至．藝的領域了啊。"
     },
     {
       "id": 87,
-      "content": "She flashes the briefest of smiles, then scatters it away with a plume of cigarette smoke."
+      "content": "短暫的微笑與菸霧一同散去的地方……"
     },
     {
       "id": 88,
       "model": "료슈2",
-      "content": "... Collecting the G.B. will restore it."
+      "content": "反正，只要找到金．枝，就能找回來。"
     },
     {
       "id": 89,
       "model": "료슈",
-      "content": "What used to be here, in the pockets of void in my heart. My one and only..."
+      "content": "……曾經在這片空白中占有一席之地的，最珍貴的東西。"
     },
     {
       "id": 90,
-      "content": "Ryōshū's gaze traced the invisible, the unperceivable."
+      "content": "在那之中，良秀的視線追逐著某種既看不見、也無法察覺的東西。"
     },
     {
       "id": 91,
       "place": -1,
-      "content": "A few more days passed us by."
+      "content": "之後又過了幾天。"
     },
     {
       "id": 92,
-      "content": "We didn't spend those days idling—we visited Saude and Pilot in recovery, did a few odd jobs here and there like helping suppress a Distortion containment breach caused by a new LCE hire..."
+      "content": "這段期間，我們去探望了索德和皮利托，或是幫忙鎮壓因LCE新進研究員的失誤而出逃的扭曲……雖然有過一些小事件……"
     },
     {
       "id": 93,
-      "content": "But with all the loose threads tied up, we managed to finally, after so long..."
+      "content": "最後總算全部告一段落，我們真的是久違地……"
     },
     {
       "id": 94,
       "place": "梅菲斯托費勒斯 內部",
       "model": "단테",
-      "content": "<Kinda feels like... we're home again.>"
+      "content": "<有點……像是回到家的感覺呢。>"
     },
     {
       "id": 95,
-      "content": "... return to the bus."
+      "content": "回到了巴士上。"
     },
     {
       "id": 96,
       "model": "로쟈",
-      "content": "Hah~! Bus sweet bus! The chair could use a little more cushioning, but there isn't anything like it out there! Hnh!"
+      "content": "哈～這椅子的觸感……明明也沒多舒服，偏偏就是找不到能取代它的東西！嘿咻！"
     },
     {
       "id": 97,
       "model": "뉴키라",
-      "content": "Damn, this is your ride? Hella badass..."
+      "content": "你們就是搭這種東西到處跑的？超帥的……"
     },
     {
       "id": 98,
@@ -484,101 +484,101 @@
     {
       "id": 99,
       "model": "카론",
-      "content": "Heh."
+      "content": "呵。"
     },
     {
       "id": 100,
-      "content": "Between the two individuals, who were looking rather pleased at Kira's astonishment, Hohenheim squeezed through to warn us about some things to watch out for."
+      "content": "在因綺羅的感想而莫名得意地聳起肩膀的兩人之間，霍恩海姆開始交代注意事項。"
     },
     {
       "id": 101,
       "model": "호엔하임",
-      "content": "I asked Team Leader Alan to set the coordinates somewhere as close as possible to the Nest. Keep driving through the door, and it will bring you right to an empty spot on a highway."
+      "content": "我拜託亞倫組長把座標調整到巢附近的位置了。設定成只要直直往前開，就能開上車道。"
     },
     {
       "id": 102,
       "model": "호엔하임",
-      "content": "Don't hesitate or hit the brakes, because if by any chance there is a car driving behind you, it will crash into the bus."
+      "content": "要是無謂地猶豫或踩下剎車，可能會跟後頭趕來的車相撞，這點要注意。"
     },
     {
       "id": 103,
       "model": "카론",
-      "content": "Nods."
+      "content": "點頭。"
     },
     {
       "id": 104,
       "model": "히스클리프",
-      "content": "So what're you two doin' here on the bus? Decided to join the better team, did ya?"
+      "content": "話說你們是怎樣，幹嘛坐在這裡？現在乾脆要賴著不走了？啊？"
     },
     {
       "id": 105,
       "model": "호엔하임",
-      "content": "I must admit to a certain degree of interest in hearing of your exploits, but to accompany you through them is an entirely different matter, isn't it? I'm only here to adjust your coordinates."
+      "content": "聽取你們古怪行徑的報告雖然挺有趣，但跟著去又是另一回事了吧。我只是為了設定座標暫時來訪而已。"
     },
     {
       "id": 106,
       "model": "호엔하임",
-      "content": "... Speaking of which, just how did you manage to escape your confinement?"
+      "content": "……妳應該沒辦法自己走出房間才對，我倒想問問妳是怎麼出來的。"
     },
     {
       "id": 107,
       "model": "뉴키라",
-      "content": "I told 'em I had some stuff to help ya with, and they let me out after making me scribble over some docs."
+      "content": "我說要幫你，他們就叫我填了幾份文件，然後就放我出來了啊？"
     },
     {
       "id": 108,
       "model": "뉴키라",
-      "content": "Solitary confinement's hella boring, so I thought I might get some air. Might as well say goodbye too while I'm out and about, right?"
+      "content": "一個人待在單人房超無聊的，所以才來而已。聽說你們要走了……順便打個招呼也不錯啊。"
     },
     {
       "id": 109,
       "model": "호엔하임",
-      "content": "... I see. You exploited the fact that the new hires don't have any grudges against you."
+      "content": "……利用新人們對妳沒什麼成見，還真讓妳溜出來了啊。"
     },
     {
       "id": 110,
       "model": "호엔하임",
-      "content": "I thought I'd told them to impress upon the new hires that prisoners are to be treated as exceptions to the—ah, right. The person in charge of that training is currently checked into the long-term recovery ward. More problems stemming from the shortage of manpower—I'd best include this in the report."
+      "content": "我自認有再三強調，要他們轉告對俘虜必須適用例外條款……啊，負責轉達的人還待在長期治療室裡嗎。人力不足的連鎖反應真是沒完沒了啊。這件事也得寫進報告書裡。"
     },
     {
       "id": 111,
       "model": "단테",
-      "content": "<Sounds like they're both here to see us go.>"
+      "content": "<哈哈……是來送行的啊。>"
     },
     {
       "id": 112,
       "model": "호엔하임",
-      "content": "Well, then... time for a valediction, I suppose."
+      "content": "嘛……那麼，一路順風。"
     },
     {
       "id": 113,
       "model": "호엔하임",
-      "content": "Hm. Perhaps I've grown far too used to seeing your faces—saying goodbye doesn't come out as easily as I expected it to."
+      "content": "嗯。相處得比想像中還久，這樣的道別反而有點彆扭啊。"
     },
     {
       "id": 114,
       "model": "이상",
-      "content": "Another day of reunion must await in the future."
+      "content": "不久之後，總會有再見的一天吧。"
     },
     {
       "id": 115,
       "model": "파우스트",
-      "content": "I would appreciate it if such a reunion had a low probability of occurring."
+      "content": "希望那個機率很低。"
     },
     {
       "id": 116,
       "model": "호엔하임",
-      "content": "While I am not very partial to mathematical statistics like the probability theory, I hope your prediction is dead right."
+      "content": "我雖然討厭機率論，但倒是希望那種機率一定要命中啊。"
     },
     {
       "id": 117,
       "model": "호엔하임",
-      "content": "Well, then."
+      "content": "那麼。"
     },
     {
       "id": 118,
       "model": "뉴키라",
-      "content": "... Hey, Yoshihide."
+      "content": "……良秀。"
     },
     {
       "id": 119,
@@ -588,22 +588,22 @@
     {
       "id": 120,
       "model": "뉴키라",
-      "content": "We're... I wouldn't say we're \"family\" exactly, but..."
+      "content": "雖然說彼此是家人……是有點太誇張啦……"
     },
     {
       "id": 121,
       "model": "뉴키라",
-      "content": "... Listen, there's a lot of stuff I wanna say to you, and a lot of stuff I wanna hear from you. Okay? So..."
+      "content": "但還有很多話沒說，也有很多事想聽妳說。所以……"
     },
     {
       "id": 122,
       "model": "뉴키라",
-      "content": "S.Y.L."
+      "content": "下．次．再．見。"
     },
     {
       "id": 123,
       "model": "뉴키라",
-      "content": "Did I do that right?"
+      "content": "是這樣縮寫的沒錯吧？"
     },
     {
       "id": 124,
@@ -613,67 +613,67 @@
     {
       "id": 125,
       "model": "료슈",
-      "content": "Acronymize it into \"L.\""
+      "content": "那要縮成再．見。"
     },
     {
       "id": 126,
       "model": "료슈",
-      "content": "And call me Ryōshū, not Yoshihide."
+      "content": "還有，別叫我良秀(Yoshihide)，叫我良秀(Ryōshū)。"
     },
     {
       "id": 127,
       "model": "료슈",
-      "content": "Prefer the echoes of that name."
+      "content": "那個名字唸起來比較響亮。"
     },
     {
       "id": 128,
-      "content": "After a round of goodbyes, the two disembarked from the bus, and..."
+      "content": "道別後，兩人走下了梅菲斯托費勒斯……"
     },
     {
       "id": 129,
-      "content": "... no sooner had the machinery clicked into place than the bus’s wheels finally began to turn,"
+      "content": "機械裝置喀噠喀噠咬合的聲音響起，車輪開始緩緩轉動。"
     },
     {
       "id": 130,
-      "content": "bringing us closer and closer toward a blindingly radiant portal massive enough to engulf the bus whole."
+      "content": "前方有一扇大得足以吞下巴士的傳送門，正閃著耀眼的光芒搖曳著。"
     },
     {
       "id": 131,
-      "content": "Well, off to our next destination, I guess..."
+      "content": "現在，朝著下一段旅程……"
     },
     {
       "id": 132,
       "model": "단테",
-      "content": "<... Oh, right. Where are we headed next?>"
+      "content": "<……啊，這麼說來，下一站要去哪裡？>"
     },
     {
       "id": 133,
       "model": "파우스트",
-      "content": "Dante inquires about the next destination, Vergilius."
+      "content": "但丁在詢問下一個目的地呢，維吉里烏斯。"
     },
     {
       "id": 134,
       "model": "히스클리프",
-      "content": "Hah! Now that's more like it. Been too bloody long since I heard that question."
+      "content": "哈，還真有回到巴士上的感覺。連這個問題都有種令人懷念的味道。"
     },
     {
       "id": 135,
       "model": "이스마엘",
-      "content": "Yeah, don't get too excited. When has an answer to that question ever led us to anywhere that's not downright bizarre?"
+      "content": "幹嘛把它包裝得像什麼好問題一樣啊。每次一問這個問題，總是會……去到匪夷所思的地方。"
     },
     {
       "id": 136,
-      "content": "Vergilius gave me a faint, knowing smile as though to confirm Ishmael's pessimistic remark, then delivered a comment that sounded too light-hearted for its gravity."
+      "content": "維吉里烏斯彷彿覺得那句話說得沒錯似地，帶著淡淡的微笑轉頭看向我，輕描淡寫地開了口。"
     },
     {
       "id": 137,
       "model": "베르길리우스",
-      "content": "Hm. \"Downright bizarre,\" is it? ... Well, let me just say that it's high time we faced such a sight."
+      "content": "嗯。匪夷所思嗎……嘛，是時候去面對了。這麼說應該就夠了吧。"
     },
     {
       "id": 138,
       "model": "베르길리우스",
-      "content": "Our next destination is District 14."
+      "content": "下一個目的地是14區。"
     },
     {
       "id": 139,
@@ -689,20 +689,20 @@
     {
       "id": 141,
       "model": "싱클레어",
-      "content": "So we <i>are</i> going there, after all. N Corp."
+      "content": "要去了呢。去N公司。"
     },
     {
       "id": 142,
       "model": "그레고르",
-      "content": "... Plenty of faces there I'd rather not see."
+      "content": "……那裡可有不少我不想碰到的人啊。"
     },
     {
       "id": 143,
-      "content": "As the rest of the Sinners voiced their various gripes and discontent with N Corp.,"
+      "content": "在各自出於不同理由，對N公司流露出不安的罪人們之中。"
     },
     {
       "id": 144,
-      "content": "Meursault, who probably had the most amount of history with the Wing, simply flipped open his newspaper like usual and began reading it with the same, unchanging expression."
+      "content": "與那裡關係應該最深的莫梭，卻和平常一樣，帶著平靜的表情攤開報紙讀了起來。"
     },
     {
       "id": 145,
@@ -711,16 +711,16 @@
     },
     {
       "id": 146,
-      "content": "As though for him, none of this changed anything."
+      "content": "就彷彿，一切都沒有任何不同。"
     },
     {
       "id": 147,
       "model": "카론",
-      "content": "Now departing. Vroom-vroom."
+      "content": "出發囉。布隆布隆。"
     },
     {
       "id": 148,
-      "content": "With that, the bus resumed its journey to a yet another tale."
+      "content": "巴士就這樣，朝著另一個有故事的地方緩緩駛去。"
     }
   ]
 }

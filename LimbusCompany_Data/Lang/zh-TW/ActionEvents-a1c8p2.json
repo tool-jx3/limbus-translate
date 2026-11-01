@@ -287,7 +287,7 @@
       "id": 10806,
       "name": "낭떠러지_도전",
       "subDesc": "",
-      "desc": "<i>No wisdom nor virtue can change the past and the future,\nand human connections and fate make strangers of neighbors.</i>\n\n'Welcome, candidates! Congratulations on making it to the basement!'\n\n'Did you know that there are far more opportunities down here to collect those coins that you all want?'\n\n'In fact, there are so many opportunities that... there's one right under your feet, in that hole!'\n\n'Who will dare make the dark descent to claim the coins?!'\n\nThe hole leads into the pitch-black darkness of the building ruins. We don't need to go down there to know that it's probably a pretty risky trek.\n\nWe do need the coins, but... this might be too big a risk to take. What if we get injured or, even worse, killed?\n\nWhat should we do?",
+      "desc": "<i>過去未來，莫謂智賢能打破；\n前因後果，須知親近不相逢。</i>\n\n「歡迎來到地下的各位候選人！」\n\n「你們知道嗎？在這裡，收集銅錢的機會比在地面上更多。」\n\n「比方說……現在，諸位的腳下也藏著一文銅錢。」\n\n「向下進入險象環生之地，最終奪得銅錢的候選人究竟會是誰呢！」\n\n一看便知是危機四伏的廢墟，又深又暗的下層區域。\n\n雖然確實需要銅錢，但稍有不慎便有可能受重傷乃至死亡。\n\n該怎麼做呢？",
       "options": [
         {
           "message": "接受挑戰。",
@@ -300,7 +300,7 @@
           "message": "不挑戰。",
           "messageDesc": "",
           "result": [
-            "Collecting coins is important, but I don't want to potentially throw the Sinners' lives away for nothing this early in the game. There are just too many variables.\nWe decide to move on without delving into the hole."
+            "銅錢固然重要，但我不想這麼早就開始揮霍罪人的性命，不確定因素實在太多了。\n這次我決定避免這麼做。"
           ]
         }
       ]
@@ -331,7 +331,7 @@
       "id": 10808,
       "name": "항아리_보기_뽀개기",
       "subDesc": "",
-      "desc": "We enter a new room with a collection of jars at its center.\nI wonder if they're Xue Pan's jars he didn't get to use?\n\nI notice that one of the jars is cracked open.\nThere's a sound coming from within...\n\nMaybe someone's trapped in there, but...\n... I don't know if it's a good idea to fiddle with these things.\n\nWhat should we do?",
+      "desc": "房間中央有許多甕放在一起。\n這是薛蟠還沒來得及使用的甕嗎？\n\n其中一個開著口的甕尤其引人注目。\n似乎從裡面傳來了什麼聲音。\n\n也許有人被困在了甕中。\n但感覺這不是可以輕易觸碰的東西。\n\n該如何抉擇？",
       "options": [
         {
           "message": "窺探甕中。",
@@ -353,7 +353,7 @@
       "id": 10809,
       "name": "타임어택_인형_전투",
       "subDesc": "",
-      "desc": "<i>Resentment is an avenging cycle of infinite weight,\nevery meeting and reunion an immutable destiny;\nthus, karma of one’s previous life measures their worldly stay before the final flight.</i>\n\n<i>Wealth in the twilight of life is a fortune most rare;\nthose who understand this leave their home for temples,\nand those who are seduced by it fill their time with empty air.</i>\n\n<i>Birds, their bellies full with feed, flutter away to the forest;\nthe field of white snow remains pristine, nary a footstep marring its immaculacy.</i>\n\n'I see a candidate who just lost a bunch of coins!'\n'Someone among the audience wishes to grant an opportunity to rebound!'\n'Well, seems like... we'll have to send you some wooden dummies to recoup your lost coins!'",
+      "desc": "<i>冤冤相報自非輕，\n分離聚合皆前定。\n欲知命短問前生，</i>\n\n<i>老來富貴也真僥倖。\n看破的，遁入空門；\n癡迷的，枉送了性命。</i>\n\n<i>——好一似食盡鳥投林，\n落了片白茫茫大地真乾淨！</i>\n\n「看到有候選人因丟了銅錢而遺憾？」\n「觀眾們說想給他們一個機會！」\n「那麼……是不是得給諸位送來一些能從中獲得銅錢的木人呢？」",
       "options": [
         {
           "message": "接受挑戰。",
@@ -390,7 +390,7 @@
       "id": 10811,
       "name": "붉은_출입증_사용",
       "subDesc": "",
-      "desc": "<i>Springtime’s dream scatters like clouds in the wind,\nand falling petals float away on the stream;\nthus, to every son and daughter, we pose this question:\nwhy seek and wander for such vain suffering?</i>\n\nThere's another candidate in this room.\nThe moment we enter the threshold, the door shuts behind us, and the host's voice booms from the speakers once again.\n\n'Defeat the opposing candidate, and be granted the opportunity to find yourself a new path with <i>even better</i> opportunities!'\n\n'But... we don't want to make this fight too boring, do we? Let's add some variables.'\n\nWith a heavy thunking noise, suspicious plumes of smoke begin to seep from the ground. The Sinners who inhaled it begin to cough violently.\n... That can't be good.",
+      "desc": "<i>春夢隨雲散，\n飛花逐水流；\n寄言眾兒女：\n何必覓閒愁。</i>\n\n進入房間後，我們看見了另一位候選人。\n就在下一瞬，房門砰然關閉，主持人的聲音隨之響起：\n\n「擊敗對手並獲得勝利的候選人，將有機會前往蘊含更多機遇的房間！」\n\n「不過……如果只是普通地戰鬥，那就和在外面戰鬥沒什麼區別了，對吧？」\n\n伴隨著喀噹聲，奇怪的煙霧從地板縫隙間悄然冒出。\n吸入煙霧的罪人們表情逐漸僵硬，房間四處傳來劇烈的咳嗽聲。\n……情況似乎不妙。",
       "options": [
         {
           "message": "接受挑戰。",
@@ -474,7 +474,7 @@
       "id": 1081302,
       "name": "막바지_보너스_내기_패배",
       "subDesc": "",
-      "desc": "I mean, do we <i>have</i> to hand over our coins?\nWhy don't we just beat them up and take our coins back?\nActually... hey, nothing's stopping us from beating them up and taking <i>their</i> coins, too!\n\nThe question is... should we?",
+      "desc": "真的有拿出銅錢的必要嗎？\n反正只要再將其戰勝，便能拿回銅錢。\n不僅如此，甚至還能得到對方候選人的銅錢。\n\n但是……真的可以這麼做嗎？",
       "options": [
         {
           "message": "戰鬥。",

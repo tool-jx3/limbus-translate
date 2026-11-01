@@ -48,7 +48,7 @@
     {
       "id": "neglect_10113_1",
       "desc": "閒置",
-      "dlg": "Hold the pendant in sight I may, but I shan't ever peer into it. A fellow of mine has once spoken thusly to me—<i>too late, too late</i>..."
+      "dlg": "即使拿出吊墜端詳，我終究不願打開。一位親友曾這麼說過。太遲了，太遲了……"
     },
     {
       "id": "gacksung_10113_1",
@@ -98,7 +98,7 @@
     {
       "id": "choice_success_p_10113_2",
       "desc": "判定成功",
-      "dlg": "看吧，如同我計劃的一般。"
+      "dlg": "看吧，這不正如我計畫的一般嗎。"
     },
     {
       "id": "choice_fail_n_10113_1",

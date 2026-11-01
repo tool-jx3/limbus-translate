@@ -434,7 +434,7 @@
     {
       "id": 9256,
       "name": "不完全的預知眼",
-      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\n[Effects apply only to #1 Deployed Identity]\n- In a Clash, gain 1 [LookingFutureMirror] with every Clash. Inflict 2 [Vibration] and [Combustion] on target (10 times per Skill)\n- On Clash Win, trigger [Switch_Vibration] into [VibrationIgnition] and trigger [VibrationExplosion] on the main target. Target loses 1 [Vibration] Count\n- On Hit with a Skill, if target is Staggered, deal +30% damage\n- On Crit, trigger [VibrationExplosion]. Target loses 1 [Vibration] Count (2 times per Skill)",
+      "desc": "全體友方單位加算硬幣技能的硬幣威力+(8÷硬幣數)、減算硬幣技能的最終威力+(8÷硬幣數)(最少+1，無條件<noparse>捨去</noparse>；包括E.G.O技能)\n\n[第1順位人格專屬]\n- 進行拚點時，每次拚點使自身獲得1層 [LookingFutureMirror]，使目標增加2級 [Vibration] 強度與 [Combustion] 強度(每個技能最多10次)\n- 拚點勝利時，使主要目標 [Switch_Vibration] 為 [VibrationIgnition]，使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回\n- 技能命中時，若目標陷入混亂，則使自身造成的傷害+30%\n- 暴擊命中時，使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回(每個技能最多2次)",
       "simpleDesc": [
         {}
       ]
@@ -442,7 +442,7 @@
     {
       "id": 9257,
       "name": "遺落的神諭",
-      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\nIn a Clash, gain Clash Power +1 for every 30 ([Sinking] on target + [Breath] on self) (max 5)\n\nDeal +25% damage with [SuperCoin]s\nTake -25% damage from [SuperCoin]s\n\n[The Index-faction Exclusive Effect]\n- Upon entering the Encounter for the first time, gain 6 [BlessingOfIndexPrescriptAlly]\n· If the unit is an Identity that can gain [UnlockBuff_Base], gain [UnlockBuffAlly_2] as well\n- Deal +50% damage against [IndexPrescriptTargetToEnemy]",
+      "desc": "全體友方單位加算硬幣技能的硬幣威力+(8÷硬幣數)、減算硬幣技能的最終威力+(8÷硬幣數)(最少+1，無條件<noparse>捨去</noparse>；包括E.G.O技能)\n\n進行拚點時，目標的 [Sinking] 強度與自身的 [Breath] 強度之和每有30級，使自身的拚點威力+1(最多+5)\n\n[SuperCoin] 造成的傷害+25%\n受到 [SuperCoin] 的傷害-25%\n\n[屬於食指的人格專屬]\n- 戰鬥中首次登場時，使自身獲得6層 [BlessingOfIndexPrescriptAlly]\n．若該人格可獲得 [UnlockBuff_Base]，則使其額外獲得 [UnlockBuffAlly_2]\n- 對帶有 [IndexPrescriptTargetToEnemy] 的敵方單位造成的傷害+50%",
       "simpleDesc": [
         {
           "abilityID": 98270,
@@ -465,7 +465,7 @@
     {
       "id": 9258,
       "name": "復仇帳簿：附錄",
-      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\nEncounter Start: All allies gain 50 Shield for every The Middle-faction allied unit on the field (excluding Backup units; Shield gained via this effect does not expire at Turn End)\n\nAttack End with The Middle-faction allied units' Envy or Blunt Base Skills: Heal 10% of Skill damage dealt\n- If this effect is triggered by a Counter Skill, heal 20% of Skill damage dealt instead\n- Excess HP healed is converted into Shield (Shield gained via this effect does not expire at Turn End)\n\nCombat Start: The Middle-faction allied units gain Offense Level for the turn based on the number of Defense Skills equipped (max 12 Offense Level)\n- If 6+ Defense Skills are equipped, deal +30% damage with Envy Base Skills\n- Deal an additional +10% damage for every Defense Skill equipped beyond 6 (max 60%)",
+      "desc": "全體友方單位加算硬幣技能的硬幣威力+(8/硬幣數)、減算硬幣技能的最終威力+(8/硬幣數)(最少+1，無條件<noparse>捨去</noparse>；包括E.G.O技能)\n\n關卡開始時，戰場上每有1名屬於中指的友方單位，使全體友方單位獲得50點護盾(不包括待命人員，透過該效果獲得的護盾不會在回合結束時解除)\n\n屬於中指的友方單位的嫉妒或打擊基礎技能攻擊結束時，使其恢復造成的技能傷害量10%的體力\n- 若該技能為反擊技能，則改為恢復造成的技能傷害量20%的體力\n- 超過體力上限的溢出恢復量，則改為獲得相應的護盾(透過該效果獲得的護盾不會在回合結束時解除)\n\n戰鬥開始時，根據裝備的守備技能數，使屬於中指的友方單位在本回合增加相應的攻擊等級(最多增加12級)\n- 若裝備的守備技能數不低於6，則使嫉妒基礎技能造成的傷害+30%，每額外裝備1個守備技能，使其造成的傷害額外+10%(最多額外+60%)",
       "simpleDesc": [
         {}
       ]
@@ -473,7 +473,7 @@
     {
       "id": 9259,
       "name": "成為作品的大師戒指",
-      "desc": "Allies' Plus Coin Skills: Gain Coin Power +(8 / # of Coins) (gains at least 1 Coin Power, includes E.G.O Skills; rounded down)\n\nAllies' Minus Coin Skills: Gain Final Power +(8 / # of Coins) (gains at least 1 Final Power, includes E.G.O Skills; rounded down)\n\nWhen The Ring-faction Identities use Base Attack Skills, apply the following effects based on the number of negative effect types on the target:\n- 2+: Clash Power +2\n- 4+: Deal +15% damage\n- 6+: Inflict +1 more Potency and Count of negative effects via Coin effects\n- 7+: Base Power +2\n- 8+: Deal +35% damage",
+      "desc": "全體友方單位加算硬幣技能的硬幣威力+(8÷硬幣數)、減算硬幣技能的最終威力+(8÷硬幣數)(最少+1，無條件<noparse>捨去</noparse>；包括E.G.O技能)\n\n屬於環指的人格使用基礎攻擊技能時，根據目標帶有的負面狀態數獲得以下效果\n- 不少於2種：拚點威力+2\n- 不少於4種：造成的傷害+15%\n- 不少於6種：硬幣效果增加的負面狀態強度與施加的負面狀態層數額外+1\n- 不少於7種：基礎威力+2\n- 不少於8種：造成的傷害+35%",
       "simpleDesc": [
         {}
       ]
@@ -497,7 +497,7 @@
     {
       "id": 9252,
       "name": "釘與鎚",
-      "desc": "<noparse>N Corp. Fanatic</noparse> Identities: Base Skills gain Base Power +3\n\nWhen an <noparse>N Corp. Fanatic</noparse> Identity gains [AssemblePersonality], all <noparse>N Corp. Fanatic</noparse> Identities gain the same Stack of [AssemblePersonality] (once per turn including the first unit)\n- If there is a Lust A-Reson., triple the Stack gained\n\nEncounter Start: Inflict 2 [NailPersonality] on all enemies\n\nWhen an <noparse>N Corp. Fanatic</noparse> Identity uses a Base Skill to Clash against a target that has [NailPersonality], inflict 3 [Laceration] (once per Skill)\n\n<noparse>N Corp. Fanatic</noparse> Identities deal +100% damage using Base Skills against targets that have [NailPersonality]",
+      "desc": "若屬於N公司狂信徒，則使基礎技能的基礎威力+3\n\n屬於N公司狂信徒的人格獲得 [AssemblePersonality] 時，使全體屬於N公司狂信徒的人格獲得相應層數的 [AssemblePersonality] (每回合最多1次；包括自身)\n- 若觸發色慾完全共鳴，則獲得量變為3倍\n\n關卡開始時，對全體敵方單位施加2層 [NailPersonality]\n\n屬於N公司狂信徒的人格的基礎技能與帶有 [NailPersonality] 的目標進行拚點時，使該目標增加3級 [Laceration] 強度(每個技能最多1次)\n\n屬於N公司狂信徒的人格的基礎技能對帶有 [NailPersonality] 的目標造成的傷害+100%",
       "simpleDesc": [
         {}
       ]
@@ -513,7 +513,7 @@
     {
       "id": 9254,
       "name": "再來一杯！",
-      "desc": "Base Skills that consume [Vibration] Count or [Charge] Count deal +20% damage (including 'Unique Charge'; excluding 'Unique Charge'(fixed Potency))\n\nWhen consuming [Vibration] Count or [Charge] Count by using Base Skills, regain the half of consumed Count at Skill End (min 1, rounded down; including 'Unique Charge', excluding 'Unique Charge'(fixed Potency))",
+      "desc": "消耗 [Vibration] 回數或 [Charge] 回數的基礎技能造成的傷害+20%(包括特殊<noparse>充能</noparse>，不包括固定強度的特殊<noparse>充能</noparse>)\n\n透過基礎技能消耗 [Vibration] 回數或 [Charge] 回數時，則在技能結束時返還消耗回數的一半(最少1回，無條件<noparse>捨去</noparse>；包括特殊<noparse>充能</noparse>，不包括固定強度的特殊<noparse>充能</noparse>)",
       "simpleDesc": [
         {}
       ]

@@ -73,7 +73,7 @@
     {
       "id": 14,
       "model": "약지아비",
-      "content": "Now, please take this lesson to your heart: Upon the rock of knowledge are beauty and strength built—your study of aesthetics begins now, Yoshihide, so you may one day create a gallery of your own."
+      "content": "請好好跟上我的課程。美麗與力量，皆立於知識的基石上。從現在開始，來學習美學吧。良秀某天不也要建立屬於自己的藝廊嗎？"
     },
     {
       "id": 15,
@@ -490,7 +490,7 @@
       "id": 96,
       "place": "過去，環指的長廊",
       "model": "약지아비",
-      "content": "Yoshihide, I have prepared a little something to celebrate your birthday."
+      "content": "良秀，我為了妳的生日準備了一個小禮物。"
     },
     {
       "id": 97,
@@ -500,7 +500,7 @@
     {
       "id": 98,
       "model": "약지아비",
-      "content": "An adorable size to perfectly fit the grip of your palms."
+      "content": "剛好可以收進良秀的掌心，是個小巧可愛的尺寸吧。"
     },
     {
       "id": 99,
@@ -510,7 +510,7 @@
     {
       "id": 100,
       "model": "약지아비",
-      "content": "One day, Yoshihide, I would like to have a child of my own... A child completed with my flesh and blood."
+      "content": "良秀。總有一天，我也想將自己的孩子……真正以我的血肉打造，完成只屬於我的孩子。"
     },
     {
       "id": 101,
@@ -816,7 +816,7 @@
     {
       "id": 160,
       "model": "뇌횡",
-      "content": "Hey, Yoshihide. You've got talent. You best polish it up real good, y'hear?"
+      "content": "喂，良秀。既然妳有才能，就給我死命地練吧，聽到沒？"
     },
     {
       "id": 161,
@@ -851,7 +851,7 @@
     {
       "id": 167,
       "model": "뇌횡",
-      "content": "說起來。妳那邊的遺物……很要命吧？聽說除了小指那個叫地彗星的，小家子氣的傢伙以外，每個名聲響亮的人想拔都拔不出來，還把自己搞成了廢人是吧。"
+      "content": "說起來。妳那邊的遺物……很要命吧？聽說除了小指那個叫地慧星的，小家子氣的傢伙以外，每個名聲響亮的人想拔都拔不出來，還把自己搞成了廢人是吧。"
     },
     {
       "id": 168,
@@ -1235,7 +1235,7 @@
       "id": 243,
       "place": "過去，環指的長廊",
       "model": "약지아비",
-      "content": "Dearest Yoshihide, that blade..."
+      "content": "良秀，那把刀……"
     },
     {
       "id": 244,
@@ -1245,7 +1245,7 @@
     {
       "id": 245,
       "model": "약지아비",
-      "content": "Soon, I will forge another sword meant only for you... So you may keep it with you at all times."
+      "content": "父輩很快就會再打造只屬於良秀的劍……所以妳要好好帶在身邊。"
     },
     {
       "id": 246,
@@ -1598,7 +1598,7 @@
       "id": 313,
       "place": "過去，環指的長廊",
       "model": "약지아비",
-      "content": "Aah! Please stop this vandalism, Yoshihide. For over 10 years, I have assembled this magnum opus, only for your pleasure..."
+      "content": "啊，請不要再破壞下去了，良秀。那是我為了妳花了十年以上做好的，我的……"
     },
     {
       "id": 314,
@@ -1651,12 +1651,12 @@
       "id": 323,
       "place": "過去，小指的長廊",
       "model": "소지아비2",
-      "content": "... Canno- be f-ee -rom -ere... wi-hou-..."
+      "content": "你唔可仍(你不可能)……得刀茲由(得到自由)……遮裡斯……蜘支朝(蜘蛛巢)……"
     },
     {
       "id": 324,
       "model": "소지아비2",
-      "content": "... wi-hou- -evering... -he spi-er's --read..."
+      "content": "噗撤低斬端(不徹底斬斷)……的花(的話)……"
     },
     {
       "id": 325,

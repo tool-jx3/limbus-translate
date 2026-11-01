@@ -4,57 +4,57 @@
       "id": 0,
       "place": "3F 丹紅派 精品專櫃",
       "model": "뫼르소",
-      "content": "I have personally confirmed her death 3 years ago. They will not hear any new Voice from her again."
+      "content": "三年前，我親自確認了她已經斷氣，因此不會再有新的聲音傳出。"
     },
     {
       "id": 1,
       "model": "싱클레어",
-      "content": "... Did you really do it, Meursault?"
+      "content": "……真的是莫梭先生做的嗎？"
     },
     {
       "id": 2,
       "model": "뫼르소",
-      "content": "As the manager and the rest were all present at the court for the trial and the sentencing, I don't suppose there is any need for further elaboration."
+      "content": "經理和你們已經在審判中聽過那天的事了，應該不需要我再多做補充。"
     },
     {
       "id": 3,
       "model": "오티스",
-      "content": "Hm... I don't feel the need to question him further. I'm sure he must've had a reason for committing such an act."
+      "content": "嗯……我也沒必要再追問了。我想，他應該有他的理由。"
     },
     {
       "id": 4,
       "model": "뫼르소",
-      "content": "Correct."
+      "content": "沒錯。"
     },
     {
       "id": 5,
       "model": "단테",
-      "content": "<But we only heard that through the prosecutor's argument.>"
+      "content": "<可是，我們是從檢察官那裡聽到的。>"
     },
     {
       "id": 6,
       "model": "단테",
-      "content": "<We'd like to hear your side of the story, Meursault.>"
+      "content": "<我們……想聽你親口說。>"
     },
     {
       "id": 7,
       "model": "뫼르소",
-      "content": "Strictly speaking, the prosecutor took no liberty with the truth of the matter."
+      "content": "若只是羅列事實，她並沒有說謊。"
     },
     {
       "id": 8,
       "model": "오티스",
-      "content": "Perhaps, but it was plain to see that she did take quite a bit of liberty with the interpretation of it. She painted a picture of a remorseless murderer who has committed the heinous sin of matricide."
+      "content": "但她照自己的意思加以詮釋了。檢察官把你當成了犯下悖倫之舉、窮凶極惡的罪犯。"
     },
     {
       "id": 9,
       "model": "뫼르소",
-      "content": "If \"matricide\" is to be defined as an act of murdering one's own mother,"
+      "content": "如果是將殺害父母等直系尊親屬的行為定義為悖倫，"
     },
     {
       "id": 10,
       "model": "뫼르소",
-      "content": "then there is no reason to deny her accusations."
+      "content": "那就沒有必要反駁她的話。"
     },
     {
       "id": 11,
@@ -64,62 +64,62 @@
     {
       "id": 12,
       "model": "잔느",
-      "content": "<color=#a5ab8e>An awful incident. Awful.</color>"
+      "content": "<color=#a5ab8e>那是一起可怕的事件。</color>"
     },
     {
       "id": 13,
       "model": "잔느",
-      "content": "<color=#a5ab8e>It was what all N Corp. newspapers talked about for a good while.</color>"
+      "content": "<color=#a5ab8e>畢竟有好一陣子，N公司所有的報紙都被那件事占滿了。</color>"
     },
     {
       "id": 14,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Did you know? That incident even led to a total sales boom in the familicide genre of Canned Experiences.</color>"
+      "content": "<color=#a5ab8e>也多虧如此，弒親類型的經驗罐頭有一陣子大受歡迎。</color>"
     },
     {
       "id": 15,
       "model": "잔느",
-      "content": "<color=#a5ab8e>It was around then that cracks appeared on the Grand Magasin's walls... when the customers stopped rising after they fell and hit rock bottom.</color>"
+      "content": "<color=#a5ab8e>這間百貨公司開始出現裂痕，跌到谷底的顧客們再也站不起來，也都是從那時候開始的。</color>"
     },
     {
       "id": 16,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Though a Giant had disappeared, her appropriate replacement just could not be found.</color>"
+      "content": "<color=#a5ab8e>因為巨人雖然消失了，卻找不到能取代巨人的合適人選。</color>"
     },
     {
       "id": 17,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Do you think any of them has caught on to the fact that, for almost several years now on the outside, the \"Voice\" they've been worshipping and longing for...</color>"
+      "content": "<color=#a5ab8e>啊，這些人知道嗎？他們在這裡崇敬了一生、苦苦思慕的那個人……</color>"
     },
     {
       "id": 18,
       "model": "잔느",
-      "content": "<color=#a5ab8e>... was a corpse all along?</color>"
+      "content": "<color=#a5ab8e>其實是個已經死去好幾年的人。</color>"
     },
     {
       "id": 19,
       "model": "잔느",
-      "content": "<color=#a5ab8e>It's like people can't bear to live without believing in something, even in a place like this where the very idea of faith has next to no significance.</color>"
+      "content": "<color=#a5ab8e>在這裡，沒有比相信某些東西更沒意義的事了，但大多數人若不相信點什麼，就撐不下去。</color>"
     },
     {
       "id": 20,
       "model": "잔느",
-      "content": "<color=#a5ab8e>How about you? Look back on all those years you've lived outside the Grand Magasin, and tell me if you've ever held such faith in anything.</color>"
+      "content": "<color=#a5ab8e>你呢，在外面也曾相信過什麼嗎？</color>"
     },
     {
       "id": 21,
       "model": "뫼르소",
-      "content": "In the past, I had believed myself to be someone who would never take a step outside N Corp."
+      "content": "過去，我曾認為自己會是個一步也不會離開N公司的存在……"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "I once had faith in that idea."
+      "content": "我也曾有過如此相信的時候。"
     },
     {
       "id": 23,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Same here. But that's not exactly \"faith,\" is it? It's just something that's been naturally ingrained in the residents of N Corp.</color>"
+      "content": "<color=#a5ab8e>這點我也一樣。但那稱不上是信仰。因為在N公司生活的所有人，都會自然而然地那樣想。</color>"
     }
   ]
 }

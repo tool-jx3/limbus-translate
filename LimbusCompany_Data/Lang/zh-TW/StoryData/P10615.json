@@ -2,95 +2,95 @@
   "dataList": [
     {
       "id": 0,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "*pant* *pant* It's just up ahead, young man. Soon, we shall find ourselves past the border of the T Corp. Backstreets..."
+      "content": "呼、呼……再撐一下吧。很快……就到T公司的後巷了……"
     },
     {
       "id": 1,
-      "teller": "Youthful Resident",
+      "teller": "年幼的居民",
       "title": "19區",
-      "content": "What... *pant* What happened to everyone else?"
+      "content": "其他、呼……其他人都去哪了？"
     },
     {
       "id": 2,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "All snared by the Ch'unokkuns... those vile wretches..."
+      "content": "呼……全被推奴手，那些狠毒的傢伙抓走了……"
     },
     {
       "id": 3,
-      "teller": "Young Resident",
+      "teller": "年幼的居民",
       "title": "19區",
-      "content": "S-sir, behind you! Look behind you!"
+      "content": "大、大叔，後面！後面！"
     },
     {
       "id": 4,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "Gah...!"
+      "content": "咳呃……！！！"
     },
     {
       "id": 5,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Gotcha."
+      "content": "抓到了。"
     },
     {
       "id": 6,
-      "content": "It is well into the late hours of the night, only a few minutes after the Night of the Backstreets has passed."
+      "content": "後巷深宵才剛結束的深夜時分。"
     },
     {
       "id": 7,
-      "content": "The child, hot on the heels of the two residents who had chosen to use that precarious hour as cover to flee S Corp., threw a heavy lasso at one of them."
+      "content": "孩子趁著這個空檔，追上逃跑的S公司居民，拋出了結實的繩索。"
     },
     {
       "id": 8,
-      "content": "The lasso was made from ropes called <i>Ohra</i>, or Scarlet Bonds."
+      "content": "那是被稱為捕繩，又叫縛繩的紅色繩索。"
     },
     {
       "id": 9,
-      "content": "The fugitive fell to the ground helplessly, and was soon dragged before the child."
+      "content": "被那條繩索綁住的居民毫無反抗之力，只能任由自己被拖到孩子面前。"
     },
     {
       "id": 10,
-      "teller": "Youthful Resident",
+      "teller": "年幼的居民",
       "title": "19區",
-      "content": "No!"
+      "content": "大叔！"
     },
     {
       "id": 11,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "Forget about me and flee! <i>Go!</i>"
+      "content": "快逃！快點！"
     },
     {
       "id": 12,
-      "content": "The fugitive shouted in a desperate attempt to at least get the boy out of there, but..."
+      "content": "居民急忙大喊，想至少讓還沒被抓住的孩子逃走……"
     },
     {
       "id": 13,
-      "content": "... the child was a Ch'unokkun, and Ch'unokkuns <i>never</i> hunt alone."
+      "content": "可孩子，推奴手是不會單獨追捕奴婢的。"
     },
     {
       "id": 14,
-      "content": "Unlike the Royal Censors, who act under royal decree, Ch'unokkuns are Fixers, each serving their own interests."
+      "content": "與奉御命行事的御史們不同，推奴手是為了各自的利益聚集起來的收尾人。"
     },
     {
       "id": 15,
-      "content": "And when the hunt begins, they form packs with those among their ranks who stand to gain from the same pursuit."
+      "content": "自然會和意氣相投的人結成一夥，一起追捕奴婢。"
     },
     {
       "id": 16,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Can I trust you to handle the kid?"
+      "content": "那邊就拜託您了？"
     },
     {
       "id": 17,
       "teller": "同伴",
       "title": "推奴手",
-      "content": "Of course."
+      "content": "好。"
     },
     {
       "id": 18,
@@ -100,79 +100,79 @@
     },
     {
       "id": 19,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "... I thought we had lost you in the maze of alleys. I commend your tenacity, for what it's worth."
+      "content": "……我還以為在巷子裡甩掉你們了，還真是窮追不捨啊。"
     },
     {
       "id": 20,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Hehe, I hate to break it to you, but these parts are a common escape route for you fugitives~"
+      "content": "哈哈。因為逃到這裡來的人實在太多了嘛～"
     },
     {
       "id": 21,
       "model": "홍루",
       "title": "推奴手",
-      "content": "So thanks to you, I can navigate this entire network of alleys with my eyes closed!"
+      "content": "多虧如此，這條巷子我閉著眼睛都摸得一清二楚呢？"
     },
     {
       "id": 22,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "... And you're proud of that?"
+      "content": "……你把這當成值得炫耀的事嗎？"
     },
     {
       "id": 23,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Proud? No, it's got nothing to do with pride—I've just been here enough times that I know it like the back of my hand."
+      "content": "哪是炫耀呀。只是說我很熟悉而已。常走的路自然就記住了，不是嗎？"
     },
     {
       "id": 24,
-      "content": "Those seeking a way out of S Corp. didn't have that many options, which made their routes rather predictable."
+      "content": "想逃離S公司的人會去哪裡，實在是再明顯不過了。"
     },
     {
       "id": 25,
-      "content": "They would often make for the borders between Districts, where their hunters know they are likely to turn up..."
+      "content": "離其他區域多近一點也好的地方。"
     },
     {
       "id": 26,
-      "content": "In the cover of dark alleyways, the narrow spaces between collapsed walls, and within abandoned homes where those with nowhere else to hide go find what little refuge they are afforded..."
+      "content": "其中又以昏暗的巷弄與倒塌的圍牆之間，還有人跡罕至的廢屋為最。"
     },
     {
       "id": 27,
-      "content": "There was no mistaking it: the fugitives fleeing their homeland already knew that these were the places the Ch'unokkun were keen to look."
+      "content": "逃跑的居民們應該也知道，推奴手會把那些地方翻個底朝天。"
     },
     {
       "id": 28,
-      "content": "But it wasn't like they had any alternatives."
+      "content": "但他們大概也別無他法了吧。"
     },
     {
       "id": 29,
-      "content": "There weren't any other places to go, anyway."
+      "content": "因為除此之外，他們連能逃的地方都沒有。"
     },
     {
       "id": 30,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "... I've already given up any hope of seeing S Corp. change for the better."
+      "content": "……我已經不指望S公司會改變了。"
     },
     {
       "id": 31,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "I've given up. I no longer care about its current state of affairs—all we want is to put this place behind us and never look back, yet you still pursue us with such doggedness... Why...?"
+      "content": "你們照舊行事就是了，我們只是看不下去那副模樣，想離開而已。為何要這般窮追不捨……"
     },
     {
       "id": 32,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Because it pays to bring you in. And who knows, maybe I'll land a big fish and climb my way up the ladder."
+      "content": "因為抓到各位是能換錢的呀。雖然機會渺茫，但運氣好的話，說不定還能出人頭地呢。"
     },
     {
       "id": 33,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
       "content": "……"
     },
@@ -180,163 +180,163 @@
       "id": 34,
       "model": "홍루",
       "title": "推奴手",
-      "content": "There's something I've been wondering for a while, actually."
+      "content": "我從以前就一直很好奇一件事。"
     },
     {
       "id": 35,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Why does your kind flee? Do you actually expect something to change? There's nothing for you in the other Districts."
+      "content": "為什麼要逃呢？就算逃走了，也不會有什麼改變吧。"
     },
     {
       "id": 36,
       "model": "홍루",
       "title": "推奴手",
-      "content": "You think your life'll improve once you make it to a different Wing? The Wings are all the same. There's nothing you penniless, powerless people can do to better your lives."
+      "content": "覺得換到別的翼就會比較好嗎？說到底，沒錢又沒權的話，到哪裡都一樣喔。"
     },
     {
       "id": 37,
-      "content": "Thrash and struggle from within, flee to a different Wing without, but nothing will change."
+      "content": "無論是在裡面苦苦掙扎，還是逃到外面去，明明都不會有任何改變。"
     },
     {
       "id": 38,
-      "content": "Why do they flee, knowing the risk to their lives? What could possibly be motivating them?"
+      "content": "不惜賭上性命也要逃跑的理由、動機，究竟是什麼呢？"
     },
     {
       "id": 39,
-      "content": "The child failed to understand the drive behind their desperation to flee."
+      "content": "孩子無法理解那拚死的態度。"
     },
     {
       "id": 40,
-      "content": "And he never will."
+      "content": "而且往後大概也不會理解吧。"
     },
     {
       "id": 41,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "... You think we're fleeing in search of warmth and safety? In search of a home, nay, in <i>search</i> of anything?"
+      "content": "……溫暖安穩的地方。安全的地方。你以為我們是為了追求那種東西才逃的嗎。"
     },
     {
       "id": 42,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "Wrong. We've grown... too weary to hope, too spent to expect even the faintest turn toward better days."
+      "content": "錯了。我們……已經累得無法再懷著那種希望與期待活下去了。"
     },
     {
       "id": 43,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "We only seek to be free of this hell."
+      "content": "我們只是想逃離這座地獄。"
     },
     {
       "id": 44,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "Free of this awful hell that will reave us of our families, our neighbors, and eventually... our lives."
+      "content": "奪走家人、奪走鄰居，不久後連自己的人生也會奪走的……我只想離開這座可怕的地獄。"
     },
     {
       "id": 45,
       "model": "홍루",
       "title": "推奴手",
-      "content": "Be careful what you wish for, because you might find an even worse hell at the end of your journey."
+      "content": "說不定在那份願望的盡頭，等著的是更可怕的地獄呢？"
     },
     {
       "id": 46,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "That may be so. A life more horrid than this may indeed await us."
+      "content": "正如你所說，那一頭或許有更可怕的人生在等著我們。"
     },
     {
       "id": 47,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
-      "content": "But to us, who wish for nothing save liberty, the uncertainty of tomorrow is a peril we would take with willing hearts."
+      "content": "即便如此，還是想離開啊。我希望哪怕多一個人也好，能逃離這裡。"
     },
     {
       "id": 48,
-      "content": "Somewhat unhappy with the resident's cryptic reply, the child stopped chatting with the captured Nobi..."
+      "content": "孩子似乎不喜歡居民那令人費解的回答，閉上了嘴……"
     },
     {
       "id": 49,
-      "content": "... and the captive, too, fell quiet, eyes turned toward the direction where the Nobi boy had fled."
+      "content": "居民也沒有再多說什麼，只是靜靜地望著另一名奴婢逃走的那條路。"
     },
     {
       "id": 50,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
       "content": "……"
     },
     {
       "id": 51,
-      "content": "After an indeterminable amount of time spent in silence..."
+      "content": "在那片沉默中，不知過了多久。"
     },
     {
       "id": 52,
-      "content": "... the other Ch'unokkun returned, but instead of welcoming his return, the child responded with a click of his tongue..."
+      "content": "看到自己的同伴回來，孩子短促地咂了下舌。"
     },
     {
       "id": 53,
-      "content": "... when he noticed that his pair came back empty-handed, evidently having lost the boy."
+      "content": "因為同伴推奴手……一個人也沒帶回來，是獨自回來的。"
     },
     {
       "id": 54,
       "model": "홍루",
       "title": "推奴手",
-      "content": "... Where's the boy?"
+      "content": "……怎麼空著手？"
     },
     {
       "id": 55,
       "teller": "同伴",
       "title": "推奴手",
-      "content": "Got stopped by some new upstart Syndicate. Said I was to cough up a toll if I wanted to get past them."
+      "content": "有個沒見過的組織擋住去路，要我交過路費。"
     },
     {
       "id": 56,
       "model": "홍루",
       "title": "推奴手",
-      "content": "That can't be helped, I guess. We're running a business, after all—no need to incur unnecessary expenses."
+      "content": "做得好。這些也都是生意，沒理由賠本也要追下去嘛。"
     },
     {
       "id": 57,
-      "content": "As they were preparing to return the Nobis, the child noticed something that soured his mood. It was the look on the captured Nobi's face. A smile."
+      "content": "正催促著奴婢們準備撤離時，孩子看見那名居民在笑，皺起了眉頭。"
     },
     {
       "id": 58,
-      "content": "The child frowned, puzzled by the fugitive's strange cheer. Surely he knew that his treatment would only grow harsher once he was dragged back. What could he possibly be smirking about?"
+      "content": "就這樣被帶回去，肯定會受到比逃跑前更糟的待遇，到底有什麼好高興的，笑成那樣呢？"
     },
     {
       "id": 59,
-      "content": "Curious, the child tugged on the Scarlet Bond tied to the fugitive, and asked:"
+      "content": "猜到原因的孩子拉緊捕繩，丟出了疑問。"
     },
     {
       "id": 60,
       "model": "홍루",
       "title": "推奴手",
-      "content": "... That boy who got away, he's just a stranger to you, isn't he? He's not even your kin."
+      "content": "……不過就一個人。逃走的只是個連家人都不是的外人而已啊。"
     },
     {
       "id": 61,
       "model": "홍루",
       "title": "推奴手",
-      "content": "You do know they're going to punish you once you're taken back, right? For all that effort, all you managed was to help just one other person escape. So tell me—whatever are you smiling for?"
+      "content": "回去之後會受到比以往更嚴酷的對待，居然還笑得出來嗎？"
     },
     {
       "id": 62,
-      "teller": "Levelheaded Resident",
+      "teller": "冷靜的居民",
       "title": "19區",
       "content": "……"
     },
     {
       "id": 63,
-      "content": "The child's query was met with another quiet smile."
+      "content": "聽了孩子的話，居民什麼也沒回答，只是一直笑著。"
     },
     {
       "id": 64,
-      "content": "What that smile carried..."
+      "content": "那笑容意味著什麼……"
     },
     {
       "id": 65,
-      "content": "... <i>this</i> child would never understand."
+      "content": "恐怕這裡的孩子一輩子都不會明白吧。"
     },
     {}
   ]

@@ -65,12 +65,12 @@
     {
       "id": 13,
       "model": "이스마엘",
-      "content": "Sigh, I can tell you what's going on. That Fixer's from the Hana Association."
+      "content": "唉，我來代替她跟您說明吧。看來那位是從Hana協會來的收尾人。"
     },
     {
       "id": 14,
       "model": "단테",
-      "content": "<Uhh, the 'Hana Association' is the one that's overseeing all Fixer Association activities, right?>"
+      "content": "<呃，Hana協會是收尾人協會中位居頂端的組織沒錯吧？>"
     },
     {
       "id": 15,
@@ -85,11 +85,11 @@
       "model": "엑스트라해결사1",
       "teller": "自言自語的收尾人",
       "title": "???",
-      "content": "A Fixer from the Hana Association...?"
+      "content": "Hana協會……"
     },
     {
       "id": 18,
-      "content": "That name alone clearly carried a lot of weight among other Fixers. As the Hana Association Fixer, dressed in pure white, walked into the room, they all slowly turned around to gaze upon her."
+      "content": "那個名號對其他收尾人來說似乎也不容小覷，他們同樣議論紛紛，不時偷瞄著那位一身雪白服裝的Hana協會之人。"
     },
     {
       "id": 19,
@@ -112,7 +112,7 @@
     {
       "id": 22,
       "model": "로쟈",
-      "content": "Hey... looks like we've got another superstar here..."
+      "content": "受到矚目的……好像不只有Hana協會嘛？"
     },
     {
       "id": 23,
@@ -154,14 +154,14 @@
       "id": 31,
       "model": "한울",
       "teller": "???",
-      "title": "Hana Assoc. North",
-      "content": "From this point onward, any recording activity, save for official work-related recordings with prior authorization from the Hana Association, will no longer be permitted."
+      "title": "Hana協會 北部",
+      "content": "從現在起，在此會場內，除了Hana協會許可的正式任務紀錄用攝影以外，一切攝影行為一律列為禁忌。"
     },
     {
       "id": 32,
       "model": "한울",
       "teller": "???",
-      "title": "Hana Assoc. North",
+      "title": "Hana協會 北部",
       "content": "一經發現，違者將會被收尾人協會扣分。想必各位都清楚，隨著扣分增多，將會導致收尾人資格凍結甚至是降級處分。"
     },
     {
@@ -186,12 +186,12 @@
       "id": 37,
       "model": "한울",
       "teller": "???",
-      "title": "Hana Assoc. North",
+      "title": "Hana協會 北部",
       "content": "此人看起來像是你們的人。下巴像是脫臼了，沒關係嗎？"
     },
     {
       "id": 38,
-      "content": "The Fixer from the Hana Association asks in our direction, glancing at Don Quixote."
+      "content": "從Hana協會來的收尾人一邊瞥著唐吉訶德，一邊向我們問道。"
     },
     {
       "id": 39,
@@ -410,7 +410,7 @@
     {
       "id": 82,
       "model": "히스클리프",
-      "content": "Blimey. So that Hana Fixer is... almost right up there with the guide, eh? Or at least somewhere right beneath his level?"
+      "content": "所以說，那個Hana協會的收尾人……跟嚮導差不多，或至少是僅次於他的等級？"
     },
     {
       "id": 83,
@@ -763,7 +763,7 @@
     {
       "id": 148,
       "model": "폴라",
-      "content": "Hana, we have something we'd like to confirm."
+      "content": "Hana，有件事需要確認。"
     },
     {
       "id": 149,
@@ -852,7 +852,7 @@
     },
     {
       "id": 166,
-      "content": "The Hana Fixer did not contradict him."
+      "content": "Hana協會的收尾人對那番話也沒有特別否認。"
     },
     {
       "id": 167,

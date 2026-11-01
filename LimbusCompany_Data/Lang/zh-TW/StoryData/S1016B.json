@@ -4,20 +4,20 @@
       "id": 0,
       "place": "3F 丹紅派 精品專櫃",
       "model": "뫼르소",
-      "content": "... You wore it on the day we had margherita pizza at a restaurant in the Donut Alley. You did complain about digestive troubles on account of the discomfort caused by the outfit."
+      "content": "……那是在甜甜圈巷的餐廳吃瑪格麗特披薩的那天。妳抱怨衣服尺寸不合，害妳消化不良。"
     },
     {
       "id": 1,
       "model": "뫼르소",
-      "content": "Though you preferred the window seat, the issue with the reservation system at the restaurant seated us in the middle of the hall—which you also found regrettable."
+      "content": "妳想坐靠窗的位子，但因為餐廳的訂位出了差錯，只好坐到裡面的位子，妳對此也表示了不滿。"
     },
     {
       "id": 2,
-      "content": "<color=#a5ab8e>... Some might see a true romantic in you. A man who brings back to life and color an entire day just from a single word whispered by his ex-lover—as though it happened just yesterday. As though he couldn't forget a single thing done in her company.</color>"
+      "content": "<color=#a5ab8e>……要是有人聽見，一定會說你是個十足的浪漫主義者吧。看到一個男人光憑我提起的一個關鍵字，就能把事情說得像昨天才發生一樣歷歷在目。</color>"
     },
     {
       "id": 3,
-      "content": "<color=#a5ab8e>But your excellent memory is just the logical, mechanical outcome of childhood mnemonic training you were subjected to.</color>"
+      "content": "<color=#a5ab8e>其實那驚人的記憶力，只不過是從小經過反覆、習慣性的訓練所堆砌出來的機械性結果罷了。</color>"
     },
     {
       "id": 4,
@@ -26,58 +26,58 @@
     },
     {
       "id": 5,
-      "content": "<color=#a5ab8e>You've got it wrong, though. It wasn't the window seat I was angry about that day.</color>"
+      "content": "<color=#a5ab8e>但是……你錯了。我並不是因為沒能坐到靠窗的位子而生氣。</color>"
     },
     {
       "id": 6,
-      "content": "<color=#a5ab8e>I was angry because the first thing you said when you saw my new dress was that I should return it and get something a size larger.</color>"
+      "content": "<color=#a5ab8e>反倒是你看到我新買的連身裙，開口第一句就說最好換成大一號的衣服，這才壞了我的心情。</color>"
     },
     {
       "id": 7,
       "model": "뫼르소",
-      "content": "It was true that you needed to go up a size. The tightness of the outfit was presenting various difficulties in mundane activities."
+      "content": "那是事實。因為妳實際上也因為那件衣服，在日常動作上感到不便。"
     },
     {
       "id": 8,
-      "content": "<color=#a5ab8e>Right, but did you <i>have</i> to say that to my face? You could've just complimented my dress and moved on.</color>"
+      "content": "<color=#a5ab8e>那是放在心裡就好的話。只要說一句很好看就夠了。</color>"
     },
     {
       "id": 9,
-      "content": "<color=#a5ab8e>Anyway, the initial discomfort slowly receded to the back of my mind the longer I wore that dress.</color>"
+      "content": "<color=#a5ab8e>你知道嗎？那件連身裙穿久了，最初感受到的那種拘束感，不知不覺間就忘了。</color>"
     },
     {
       "id": 10,
-      "content": "<color=#a5ab8e>But when I changed into something more comfortable... That stifling discomfort rushed in all at once, and I realized that, all along, I had been wrestling with an outfit that wasn't made for my size.</color>"
+      "content": "<color=#a5ab8e>直到換上別的舒適衣服，才會清楚地明白。原來那根本不是合我尺寸的衣服啊。</color>"
     },
     {
       "id": 11,
-      "content": "<color=#a5ab8e>It's a fitting analogy for that Rouge, too... Though, unlike me, she's refused to change into something more comfortable.</color>"
+      "content": "<color=#a5ab8e>那個人也一樣。若說跟我有什麼不同，就只是她連可以換上的其他衣服都拒絕了。</color>"
     },
     {
       "id": 12,
-      "content": "The voice of whom I presume to be Meursault's mother is still playing from somewhere behind the walls—the voice that will never again speak new words."
+      "content": "牆的另一頭，推測是莫梭母親的聲音依然流淌著。那早已止息的嗓音。"
     },
     {
       "id": 13,
       "model": "3층하이도메루주번데기",
       "teller": "不移",
-      "title": "丹紅",
-      "content": "Yes, yes... Everything I did... all of that had to have meant something... A purpose..."
+      "title": "丹紅派",
+      "content": "是啊，我做的並不是無謂的事……"
     },
     {
       "id": 14,
       "model": "3층하이도메루주번데기",
       "teller": "不移",
-      "title": "丹紅",
-      "content": "I've been flaying the Golden Hide off because... yes, that's it."
+      "title": "丹紅派",
+      "content": "我之所以抓住黃金皮革，把它撕下來……沒錯，就是這樣。"
     },
     {
       "id": 15,
-      "content": "<color=#a5ab8e>Hmm, this is unexpected.</color>"
+      "content": "<color=#a5ab8e>這倒有點意外呢？</color>"
     },
     {
       "id": 16,
-      "content": "<color=#a5ab8e>\"Meant something,\" hmm...? What meaning did this one find, I wonder? How puzzling. It's almost as if she's hearing an entirely different Voice.</color>"
+      "content": "<color=#a5ab8e>這個人……找到了什麼樣的意義呢？有點令人費解。簡直就像聽見了全新的聲音一樣。</color>"
     },
     {
       "id": 17,
@@ -86,52 +86,52 @@
     },
     {
       "id": 18,
-      "content": "<color=#a5ab8e>You're going to ignore me this time? That's not a bad choice either, I guess.</color>"
+      "content": "<color=#a5ab8e>這次你決定不回話了啊，那樣也好。</color>"
     },
     {
       "id": 19,
       "model": "3층하이도메루주번데기",
       "teller": "不移",
-      "title": "丹紅",
-      "content": "It's speaking to me... once again... It's coming through so clearly, without breaking, without fading..."
+      "title": "丹紅派",
+      "content": "又在對我……說話了。這聲音再也不會中斷，也不會褪色了。"
     },
     {
       "id": 20,
       "model": "3층하이도메루주번데기",
       "teller": "不移",
-      "title": "丹紅",
-      "content": "Telling me to put my nails to this outfit... to rip it all away... That in my naked body, I'll find my true self..."
+      "title": "丹紅派",
+      "content": "要我抓破這件衣服、撕開它……等全部剝下來之後……真正的我就會在裡面……"
     },
     {
       "id": 21,
       "model": "단테",
-      "content": "<She's turning into a \"Mannequin,\" as they call it in here...>"
+      "content": "<她正在變成這裡被稱為人台模特兒的東西……>"
     },
     {
       "id": 22,
       "model": "단테",
-      "content": "<Though they were all in different stages, all the Rouge and Noir employees we'd encountered in the Grand Magasin were Distorting without exception. But... her case is progressing much quicker...>"
+      "content": "<至今遇到的丹紅派和漆黑派員工……雖然程度不同，但都在逐漸扭曲，可是現在……扭曲正急遽惡化。>"
     },
     {
       "id": 23,
       "model": "3층하이도메루주번데기",
       "teller": "不移",
-      "title": "丹紅",
-      "content": "It's finally... sloughing, sloughing off me. Take these stifling things off of me... I want to be my true self..."
+      "title": "丹紅派",
+      "content": "剝落了……終於，剝落了。只要這些拘束的東西脫落……我就能變回真正的模樣……"
     },
     {
       "id": 24,
       "model": "3층하이도메루주",
       "teller": "不移",
       "title": "丹紅派 人台模特兒",
-      "content": "Has someone draped those lies over you, too?"
+      "content": "你們也穿著別人套在你們身上的謊言嗎？"
     },
     {
       "id": 25,
       "model": "3층하이도메루주",
       "teller": "不移",
       "title": "丹紅派 人台模特兒",
-      "content": "Come, I'll liberate you from those oppressive clothes... And you'll feel... just like I do..."
+      "content": "只要我幫你們把那身拘束的衣服全剝下來……沒錯，你們也能感受到。跟我一樣的東西……"
     }
   ]
 }

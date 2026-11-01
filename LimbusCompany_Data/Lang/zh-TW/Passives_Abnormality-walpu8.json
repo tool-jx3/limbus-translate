@@ -10,7 +10,7 @@
       "id": 136602,
       "name": "直擊味覺",
       "desc": "攻擊命中時，若目標對該攻擊的抗性為脆弱、致命(抗性為1以上時)，下回合對該目標施加1層 [Binding] (每技能最多1次)",
-      "flavor": "\"How could such a flavorful beverage end up being called BongBong?\""
+      "flavor": "「這麼好喝的飲料，為什麼名字要叫作軟QQ？」"
     },
     {
       "id": 136603,
@@ -21,7 +21,7 @@
       "id": 136901,
       "name": "徬徨的考驗",
       "desc": "關卡開始時，獲得3層 [RunHallway]\n回合開始時，若 [RunHallway] 層數為0，則使用技能「群體遷徙」\n(本效果發動時，將使自身解除混亂)\n\n當場上除了「自身召喚的軟QQ」以外，不存在其他「軟QQ」時：\n則使「群體遷徙」的效果失效，並使自身於下回合獲得3層 [RunHallway]",
-      "flavor": "\"These Ordeal things keep popping out from that murky-white smoke... just what is that smoke supposed to be, Captain?!\""
+      "flavor": "「那些叫考驗的東西不斷地從白色的煙霧裡飛出來……那煙霧到底是什麼啊，隊長！」"
     },
     {
       "id": 136902,
@@ -32,7 +32,7 @@
       "id": 136903,
       "name": "脆弱的柑橘泡泡",
       "desc": "自身受到來自單方面攻擊的傷害 +100%\n當自身與<color=#ff6000><mark color=#ff000040><b><u>消耗彈藥的技能</color></mark></b></u>拚點時，使自身的拚點威力 -3，且使自身此次拚點的攻擊技能硬幣轉變為普通硬幣",
-      "flavor": "\"I know those carbonated bubbles are tasty, but be careful around them, okay? They're unprocessed and highly acidic. Sure, a few spatters of little BongBongs' pop bubbles might not be so dangerous, but getting doused in the undiluted fluid of those massive BunBuns'll melt you guys into a puddle.\""
+      "flavor": "「未經加工的碳酸氣泡雖然可口，但也具有很強的酸性，大家要小心點。小隻的軟QQ的碳酸氣泡只會令人覺得有些刺痛，但要是被那麼大隻的軟QQ帶有的原液噴到，恐怕全身都會融化。」"
     },
     {
       "id": 136904,

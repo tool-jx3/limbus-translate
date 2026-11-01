@@ -54,7 +54,7 @@
     },
     {
       "id": 10,
-      "place": "過去，梅菲斯托費勒斯內部",
+      "place": "過去，梅菲斯托費勒斯 內部",
       "model": "이스마엘",
       "content": "雖然我是因為人數不夠才來參加的。"
     },
@@ -108,7 +108,7 @@
     {
       "id": 20,
       "model": "이스마엘",
-      "content": "This is called \"Jianghu Journeys\"(江湖遊覽記), or J&J. It's a popular game among Hongyuan's youths. It's gotten generally positive reviews, too."
+      "content": "其名為「江湖遊覽記」，聽說最近在鴻園的公子們之間很流行。風評也不錯。"
     },
     {
       "id": 21,
@@ -134,12 +134,12 @@
       "id": 25,
       "model": "가시춘",
       "title": "鴻園家主",
-      "content": "... The JM?"
+      "content": "……JM？"
     },
     {
       "id": 26,
       "model": "이스마엘",
-      "content": "Yeah, Journey Master. The Journey Master designs the story around the players' choices, sets the stage for what happens next, and generally helps guide the explorers to safely arrive at their goals. That's why the most experienced player takes that role."
+      "content": "JM，也就是旅行主持人，是負責引導故事、令冒險者們順利抵達目的地，並根據他們的選擇指引方向的人物。"
     },
     {
       "id": 27,

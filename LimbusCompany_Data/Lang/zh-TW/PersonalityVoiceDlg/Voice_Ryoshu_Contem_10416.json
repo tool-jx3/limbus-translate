@@ -3,82 +3,82 @@
     {
       "id": "get_10416_1",
       "desc": "獲得時",
-      "dlg": "The number of legs that touch the ground is a symbol of divine providence in the Footwear Hall.\nSo why should I, a One-leg, stoop to serve ignoble clientele who chase after every à la mode fad that passes by?"
+      "dlg": "觸及地面的腳有幾隻，正是名品鞋室降下的恩寵象徵。\n身為單腳的我，有什麼理由去接待被流行（à la mode）之類的東西牽著走、毫不高潔的顧客？"
     },
     {
       "id": "lobby_morning_10416_1",
       "desc": "早晨問候",
-      "dlg": "... A single season was all it took for the store to get filthy again. Tch... maybe I should've kept anything with too many legs from coming in at all."
+      "dlg": "……才一季，店裡又髒了。嘖。早該讓那些腳多的東西連腳都踏不進來嗎。"
     },
     {
       "id": "lobby_noon_10416_1",
       "desc": "午時問候",
-      "dlg": "Work boots, burnished with the Golden Resin under the sunlight... Looks like I've inadvertently created a work of art far too precious to be sold to customers. This pair of boots... belongs on an exalted Noir like myself."
+      "dlg": "在陽光下，用黃金松脂擦亮的工作靴嗎……一不小心做出了賣給那些顧客都嫌可惜的藝術品啊。這雙……就由高貴的我來穿吧。"
     },
     {
       "id": "lobby_night_10416_1",
       "desc": "晚間問候",
-      "dlg": "Sold out. This season's clientele was not entirely blind to beauty. Hey, F.L.L., we're closing.\nCheck every shoe for the slightest sun fade <i>and</i> clean every disgusting track off the floor before you go. That's the only thing four-legged lowlives like you are good for."
+      "dlg": "售罄。這次上樓的顧客還算有眼光。四．腳．貨。該關店門了。\n確認過有沒有被陽光曬褪色的鞋、地面上有沒有留下噁心的痕跡之後再進去。畢竟這是你們這群卑賤的四腳唯一的用處。"
     },
     {
       "id": "smalltalk_10416_1",
       "desc": "對話 1",
-      "dlg": "Don't you dare lump me in with those wretched Two-legs. I've devoted myself to crafting shoes, selling them, and treading the ground—that places me right on the boundary between two legs and one.\nSo... It's 1.1. Infinitely close to One-leg, and far more exalted than any Two-legs."
+      "dlg": "別把我和低劣的兩腳相提並論。用心製鞋、販售、一路踏過地面的我，已經跨在從兩隻腳走向一隻腳的界線上。\n……所以是一點一。無限接近單腳，又比兩腳高貴得多。"
     },
     {
       "id": "smalltalk_10416_2",
       "desc": "對話 2",
-      "dlg": "The Brand Manager tells me... that the Rouges have begun worshipping a false god. It seems those unexalted creatures have installed themselves in the Luxury Hall as well... This will make for one décadent fashion show. Good. We can finally settle whether black or red belongs on top."
+      "dlg": "品牌經理說……丹紅派開始侍奉虛假的神了。聽說那些談不上高貴的傢伙在奢侈品館占了一席之地……一場頹廢的時裝秀要開始了。黑與紅的優劣，總算能分個清楚了。"
     },
     {
       "id": "smalltalk_10416_3",
       "desc": "對話 3",
-      "dlg": "Rumors started making the rounds on this floor two arboreal seasons ago, about a legendary sword hidden in some store Le Kaki are squatting in. Hmph... doubt there's anything exalted about it next to my blade."
+      "dlg": "從兩棵季前起，這層樓就開始口耳相傳一個傳聞。說是卡其派群居的某間店裡藏著傳說之劍……哼，就算真有，跟我的劍比起來也稱不上高貴吧。"
     },
     {
       "id": "smalltalk_10416_4",
       "desc": "同步後對話 1",
-      "dlg": "The aesthetics of Le Noir are rooted in temperance. The Rouges are so busy trying to flaunt themselves that they can't even begin to understand our fashion philosophy.\nThose plebeians always put far too many highlights into a single look—that lack of focal point only makes me want to S.A.P them."
+      "dlg": "漆黑派的美學始於節制。那是只急著炫耀自己的丹紅派傢伙們永遠無法理解的時尚。\n那些傢伙的時尚亮點太多了。讓人不知道該把視線放在哪裡，所以我老是忍不住想踩．粉。"
     },
     {
       "id": "smalltalk_10416_5",
       "desc": "同步後對話 2",
-      "dlg": "Shoes are works of art made to tread the ground. The less of the sole that touches the ground, the more sublime the work becomes, and the higher its value as fashion.\nRouge designers who reject that common sense and stamp all over the ground without a second thought... deserve nothing less than to be shoved to the E.W."
+      "dlg": "鞋子是為了踏地而生的藝術……接觸地面的面積越小，作品就越高雅，時尚的價值也越高。\n拒絕這種常識、毫無顧忌地踩踏地面的丹紅派設計師們……就算讓他們全．退也不為過吧。"
     },
     {
       "id": "neglect_10416_1",
       "desc": "閒置",
-      "dlg": "... This customer walks on two legs. Hah! Still nowhere near noble, but compared to the disgusting way the Four-legs scuttle around... I suppose it's almost tolerable."
+      "dlg": "……這次的顧客是用兩隻腳走路的嗎。哈，比起四腳那令人極度不快的步伐……倒是好得多了。"
     },
     {
       "id": "gacksung_10416_1",
       "desc": "進行同步",
-      "dlg": "Ever tried holding your entire body up on a single leg? If you can't comprehend the nobility behind this gait, then you're bound to trip and fall."
+      "dlg": "你試過只用一條腿支撐身體嗎？若無法理解這高貴的步伐，墜落就是理所當然的命運。"
     },
     {
       "id": "formation_10416_1",
       "desc": "人格出戰",
-      "dlg": "Time to put an end to the Rouges' U.S."
+      "dlg": "是時候摧毀丹紅派那群傢伙的怪．計了。"
     },
     {
       "id": "battleentry_10416_1",
       "desc": "進入戰鬥",
-      "dlg": "As befits the natural order. As befits the elevated."
+      "dlg": "順應天理，保持高潔。"
     },
     {
       "id": "battle_select_10416_1",
       "desc": "戰鬥中選中人格",
-      "dlg": "Hm... Too many. I don't deal with customers who stand on S.M.L."
+      "dlg": "我不接待像你們這樣腳．多．的顧客。"
     },
     {
       "id": "battle_endcommand_10416_1",
       "desc": "進行攻擊",
-      "dlg": "I'll make an exception and receive you."
+      "dlg": "就破例招待你吧。"
     },
     {
       "id": "battle_enemy_break_10416_1",
       "desc": "敵方混亂",
-      "dlg": "Insole-ent fools."
+      "dlg": "真是不知分寸。"
     },
     {
       "id": "battle_break_10416_1",
@@ -88,37 +88,37 @@
     {
       "id": "battle_kill_10416_1",
       "desc": "擊殺敵方",
-      "dlg": "A <i>fitting</i> end."
+      "dlg": "與你相稱的結局。"
     },
     {
       "id": "battle_dead_10416_1",
       "desc": "自身陣亡",
-      "dlg": "How... imperfect..."
+      "dlg": "這……不夠完美……"
     },
     {
       "id": "choice_success_p_10416_2",
       "desc": "判定成功",
-      "dlg": "Remember T.A.P. The \"when and where\" are the first things to consider when choosing what to wear."
+      "dlg": "依時．地．場合搭配穿著，是最基本的。"
     },
     {
       "id": "choice_fail_n_10416_1",
       "desc": "判定失敗",
-      "dlg": "Spending too long around things of B.E. dulled my eye..."
+      "dlg": "都怪待在賤．物之間，眼光都變鈍了……"
     },
     {
       "id": "battle_clear_10416_1",
       "desc": "戰鬥勝利",
-      "dlg": "Such tough and avaricious hide... Guess these Rouges do have some use. Their flayed skin is perfect for insoles."
+      "dlg": "這張堅韌又貪婪的皮……丹紅派那些傢伙也有點用處嘛。拿來做鞋墊，沒有比這更好的材料了。"
     },
     {
       "id": "battle_clear_ex_10416_1",
       "desc": "EX CLEAR戰鬥勝利",
-      "dlg": "Finally, every last Golden Resin left in the Footwear Hall is now mine. Heh... This should be enough to furnish the atelier the way I've always wanted."
+      "dlg": "名品鞋室剩下的所有黃金松脂，都到我手上了嗎。呵。總算能布置我夢寐以求的工作室了。"
     },
     {
       "id": "battle_defeat_10416_1",
       "desc": "戰鬥失敗",
-      "dlg": "What... a disgrace... To see the exalted Footwear Hall... trampled under the disgusting feet... of the Rouges..."
+      "dlg": "真是……令人不快至極……本該高潔的名品鞋室……竟落在噁心的丹紅派腳下……"
     }
   ]
 }

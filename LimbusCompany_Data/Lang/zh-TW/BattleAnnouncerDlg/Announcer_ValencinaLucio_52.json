@@ -2,131 +2,131 @@
   "dataList": [
     {
       "id": "announcer_cheer_52_1",
-      "dlg": "- *puff* Grab a glass, Lucio.\n- ... Am I to drink as well, Master?\n- You expect me to sit through watching these embarrassing losers <i>and</i> drink alone like some sad sack of shit, too?!\n- Humblest apologies, Master. Of course not. I'll be right back."
+      "dlg": "呼……路秋。再拿個杯子來。\n……我也要喝嗎？\n不然是要老娘他媽的看著這種東西，一個人喝嗎？\n抱歉，我馬上拿來。"
     },
     {
       "id": "announcer_cheer_52_2",
-      "dlg": "- Watching this battle has certainly been enlightening.\n- Enlightening...? What are you, fuckin' blind? You don't have <i>shit</i> to learn from these amateur-hour failures, Lucio. Or you wouldn't have, had you stuck to my instructions like I told you to.\n- ... Apologies, Master."
+      "dlg": "真是場值得一看的戰鬥呢。\n什麼……？哈，你眼睛是瞎了嗎，那種東西……你要是把我教的都好好做到，這種爛仗還入得了你的眼嗎？\n……抱歉。"
     },
     {
       "id": "announcer_specialcheer_52_1",
-      "dlg": "*scoff* What a bunch of fuck-ups. Had your unit been under my command, I would've had you all shot for poor performance! Get that?!"
+      "dlg": "哈，操。爛透了。老娘在的時候要是敢搞成這副德性，你們全都得掉腦袋，懂嗎？"
     },
     {
       "id": "announcer_specialcheer_52_2",
-      "dlg": "- Their injury seems quite severe, Master.\n- Tell 'em to quit bitching. It's just a scratch—leave 'em be, and they'll be right as rain."
+      "dlg": "……傷勢似乎很重。\n全都在裝。那點傷放著不管也會好。"
     },
     {
       "id": "announcer_enemy_break_52_1",
-      "dlg": "*sigh* Really? Can't even land the killing blow yourself? The quality of the Soldatos really went down the gutter in my absence, huh?"
+      "dlg": "哈，這樣都殺不掉？老娘不在的這段時間，士兵的水準掉了不少啊。"
     },
     {
       "id": "announcer_ally_break_52_1",
-      "dlg": "... Your form is broken."
+      "dlg": "……陷入混亂了呢。"
     },
     {
       "id": "announcer_killenemy_52_1",
-      "dlg": "Drive the arm straight through. Straight, goddammit! Ha, there you go. See? Nothing to it—you just need to do <i>exactly</i> as I taught you."
+      "dlg": "就說手臂要伸直……哈，對了。看吧，只要聽老娘的話，就是這麼簡單。"
     },
     {
       "id": "announcer_ally_dead_52_1",
-      "dlg": "Pathetic weakling."
+      "dlg": "弱得要命。"
     },
     {
       "id": "announcer_enemy_adv_52_1",
-      "dlg": "- More greenhorns who haven't had a taste of the War... Listen up. This is <i>nothing</i> compared to the kind of bullshit I saw during the War, got that? Get your shit together—this is your chance to score a big one and make a name!\n- You are admittedly on the back foot, but try to focus on handling them one at a time."
+      "dlg": "所以說沒經歷過戰爭的傢伙就是……喂。戰爭時比這更糟的情況多得是。這種時候就該幹票大的。\n雖然處於劣勢，但還是一個一個對付吧。"
     },
     {
       "id": "announcer_ally_adv_52_1",
-      "dlg": "- *puff* This is boring as shit. *hic* You handle the rest, Lucio. Wake me up when they're done.\n- ... Yes, Master."
+      "dlg": "呼……無聊死了。嗝……路秋，你自己收拾乾淨，結束了再叫醒我。\n……是，師父。"
     },
     {
       "id": "announcer_ally_advex_52_1",
-      "dlg": "- They managed to turn the tide of the battle, Master.\n- Haha... I knew you fuck-ups weren't completely useless... Do I really have to bust your ass every time to get you into gear?"
+      "dlg": "師父，局勢逆轉了。\n哈哈，這群混蛋明明就做得到嘛……對，早該這麼做了。"
     },
     {
       "id": "announcer_danger_52_1",
-      "dlg": "- Tsk, empty already?\n- Allow me to bring you a refill, Master.\n- Forget it. They're all fucked, anyway."
+      "dlg": "嘖。才喝了幾口，就已經……\n我再去拿一杯來。\n不用了。反正都結束了。"
     },
     {
       "id": "announcer_enemy_specialskill_52_1",
-      "dlg": "- See? If you're gonna start trouble like this, you better not show it on your face. You don't want to let your enemies catch on.\n- I will take that lesson to heart, Master."
+      "dlg": "所以才不能表現出來。一旦露出焦急的樣子，你的手段就會像這樣被看得一清二楚。\n我會注意的，師父。"
     },
     {
       "id": "announcer_enemy_specialgimmick_52_1",
-      "dlg": "Haha, let's see what kinda fucked-up stunt we'll see this time."
+      "dlg": "哈哈，又要秀什麼見鬼的把戲？"
     },
     {
       "id": "announcer_advatk_physical_52_1",
-      "dlg": "Admirable precision."
+      "dlg": "分毫不差呢。"
     },
     {
       "id": "announcer_disadvatk_physical_52_1",
-      "dlg": "Are they fuckin' slow or something?"
+      "dlg": "一群沒用的混蛋。"
     },
     {
       "id": "announcer_advatk_attr_52_1",
-      "dlg": "Ha! Clever."
+      "dlg": "哈。還算動了點腦子。"
     },
     {
       "id": "announcer_disadvatk_attr_52_1",
-      "dlg": "- Brainless fucks.\n- Try to reidentify the prey's weak points."
+      "dlg": "一群蠢貨。\n請重新掌握弱點吧。"
     },
     {
       "id": "announcer_enemy_specialbuff_52_1",
-      "dlg": "So the vermin's finally hatching from its shell, is it?"
+      "dlg": "總算脫殼了嗎？"
     },
     {
       "id": "announcer_enemy_specialdebuff_52_1",
-      "dlg": "Look at all that gunk the bugs have caked themselves with."
+      "dlg": "瞧瞧那東貼西黏的德性。"
     },
     {
       "id": "announcer_ally_specialbuff_52_1",
-      "dlg": "Kids these days have gone soft... They haven't got a shred of self-respect. Just look at them, waiting for handouts like this all day with no motivation to earn it themselves."
+      "dlg": "現在的傢伙啊，一點自尊心都沒有。別人給什麼就照單全收。"
     },
     {
       "id": "announcer_ally_specialdebuff_52_1",
-      "dlg": "- *hic* Just what in hell did they get themselves smeared with? Fuckin' disgusting.\n- This should put a damper on their movements."
+      "dlg": "嗝……那是沾了什麼東西？噁心死了。\n動作應該會變遲鈍吧。"
     },
     {
       "id": "announcer_enemy_destroy_52_1",
-      "dlg": "Part dismantled."
+      "dlg": "被解體了呢。"
     },
     {
       "id": "announcer_enemy_destroy_52_2",
-      "dlg": "That's right. Start with the arms and legs first when you're dismantling prey, or it'll forget its place and try to crawl away."
+      "dlg": "對，獵物就要先砍斷手腳。不然牠們會不知好歹地一直想逃。"
     },
     {
       "id": "announcer_round_takebigdmg_52_1",
-      "dlg": "You fuck up, you get buried six feet under."
+      "dlg": "失手就該去死。"
     },
     {
       "id": "announcer_round_takebigdmg_52_2",
-      "dlg": "- Has my standing sunk so low that they expect me to sit through this amateur hour? Hahaha... Fuck it all.\n- The mere display of this disgraceful performance is an affront to my master's honor."
+      "dlg": "老娘的格調已經掉到得看這種德性了嗎？哈哈哈哈……操。\n……讓您看到這副模樣，本身就有失禮數。"
     },
     {
       "id": "announcer_round_givebigdmg_52_1",
-      "dlg": "- ...!\n- What are you gaspin' for? Can’t fire off a round in any direction without hitting some random mongrel who can pull off this much."
+      "dlg": "……！\n大驚小怪什麼？那種程度阿貓阿狗都做得到。"
     },
     {
       "id": "announcer_round_givebigdmg_52_2",
-      "dlg": "- *puff* Yoshihide could do this shit with an arm tied behind her back at 14. <i>Fourteen</i> years old, your hear me? Tsk. More than I can say for a certain sorry excuse of a Textbook. Idiot.\n- My deepest apologies, Master. I will try my utmost to simulate her to the last—\n- Zip it. You're at least 10 years too early to be yapping about that."
+      "dlg": "呼……良秀從十四歲起，做這種事就跟吃飯一樣稀鬆平常。嘖，跟某本蠢教材可不一樣。\n抱歉。我會盡快變得跟那位一樣……\n閉嘴。你還早了十年。"
     },
     {
       "id": "announcer_multikillenemy_52_1",
-      "dlg": "... Yeah, just like how I used to move back in the day... Back when every last soul couldn't help but beg for Valencina of Famiglia Bognatelli to save the day... *puff*"
+      "dlg": "……對。就是那樣的瞬間。所有人都……在找波納堤利家的瓦倫奇娜……呼……"
     },
     {
       "id": "announcer_battle_win_52_1",
-      "dlg": "- ... Well fought.\n- The hunt comes to a close. I'm leavin' ahead—clear the fuck out on your own once you're done."
+      "dlg": "……辛苦了。\n狩獵結束了。老娘先走了，你們差不多就滾吧。"
     },
     {
       "id": "announcer_battle_defeat_52_1",
-      "dlg": "- Even in defeat, this experience will still serve as nourishment for growth.\n- *puff* Nourishment my ass. More like a rank sack of shitty manure."
+      "dlg": "不過，這次的經驗會成為很好的養分。\n呼……什麼養分。只是一坨散發腐臭的肥料吧。"
     },
     {
       "id": "announcer_equip_52_1",
-      "dlg": "- Master, it's time to undertake the task requested by the Consigliere.\n- Showing up after one million years just to dump this worthless busywork on us? Intolerable bastard. Tsk, Lucio! The usual.\n- ... Old Parr served on the rocks. Right away, Master."
+      "dlg": "師父，是時候執行顧問委託的課題了。\n……那混蛋最近連個鬼影都沒有，又丟這種無聊的差事過來？嘖。路秋，把那個拿來。\n……我去準備老伯威加冰塊。"
     }
   ]
 }

@@ -267,7 +267,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 100+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max 10%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於100，則每1點使本硬幣造成的傷害+0.1%(最多+10%)"
                 }
               ]
             },
@@ -277,7 +277,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 200+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max 20%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於200，則每1點使本硬幣造成的傷害+0.1%(最多+20%)"
                 }
               ]
             },
@@ -287,7 +287,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 300+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max 30%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於300，則每1點使本硬幣造成的傷害+0.1%(最多+30%)"
                 },
                 {
                   "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多3層)"
@@ -318,7 +318,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 100+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">15</style>%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於100，則每1點使本硬幣造成的傷害+0.1%(最多<style=\"highlight\">+15</style>%)"
                 }
               ]
             },
@@ -328,7 +328,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 200+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">25</style>%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於200，則每1點使本硬幣造成的傷害+0.1%(最多<style=\"highlight\">+25</style>%)"
                 }
               ]
             },
@@ -338,7 +338,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 300+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">40</style>%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於300，則每1點使本硬幣造成的傷害+0.1%(最多<style=\"highlight\">+40</style>%)"
                 },
                 {
                   "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多3層)"
@@ -369,7 +369,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 100+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">20</style>%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於100，則每1點使本硬幣造成的傷害+0.1%(最多<style=\"highlight\">+20</style>%)"
                 }
               ]
             },
@@ -379,7 +379,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 200+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">30</style>%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於200，則每1點使本硬幣造成的傷害+0.1%(最多<style=\"highlight\">+30</style>%)"
                 }
               ]
             },
@@ -389,7 +389,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "At 300+ [BloodDinner_Common_Accumulation]: deal +0.1% damage for every value (max <style=\"highlight\">50</style>%)"
+                  "desc": "若 [BloodDinner_Common_Accumulation] 不低於300，則每1點使本硬幣造成的傷害+0.1%(最多<style=\"highlight\">+50</style>%)"
                 },
                 {
                   "desc": "[WinDuelAttack] 根據最大色慾完全共鳴數，相應對目標施加 [ThirstyRose] (最多<style=\"highlight\">4</style>層)"

@@ -2,72 +2,72 @@
   "dataList": [
     {
       "id": 0,
-      "place": "A Bright Room, 7F",
+      "place": "7F 明亮的房間",
       "model": "잔느변신",
-      "content": "I see... You're still refusing to judge anything. Even this sunshine, or this department store."
+      "content": "你還是……不打算做出判斷啊。無論是對這片陽光，還是對這座百貨公司。"
     },
     {
       "id": 1,
       "model": "잔느변신",
-      "content": "Don't you understand? <i>This is it</i>. The end of the Grand Magasin. You can struggle to your heart's content, but that won't magically bore a hole in this reality to exit through."
+      "content": "這裡就是百貨公司的盡頭。不管你怎麼掙扎、再怎麼掙扎，都無法離開這裡。"
     },
     {
       "id": 2,
       "model": "잔느변신",
-      "content": "So why... why do you keep trying to make a \"different choice\"? Tell me. I want to know what your endgame is."
+      "content": "但你為什麼總是……想嘗試所謂「其他的選擇」？我很好奇。你的目的究竟是什麼。"
     },
     {
       "id": 3,
-      "content": "Though we could all hear what Jeanne was saying... we knew every word was meant for Meursault alone."
+      "content": "簡的話我們所有人都聽得見……但每一個字都只朝著莫梭而去。"
     },
     {
       "id": 4,
-      "content": "Meursault closed his eyes, as if considering something. When he opened them again, he cast a brief glance toward the Sinners and me."
+      "content": "莫梭像在思考般閉上眼睛片刻，再睜開眼，朝我和罪人們所在之處瞥了一眼。"
     },
     {
       "id": 5,
       "model": "뫼르소",
-      "content": "... It is to let them out of here."
+      "content": "……是為了讓他們離開這裡。"
     },
     {
       "id": 6,
       "model": "잔느변신",
-      "content": "Hah."
+      "content": "哈。"
     },
     {
       "id": 7,
       "model": "잔느변신",
-      "content": "I'd been watching you for a long time before I decided to be a part of your life."
+      "content": "在介入你的日常之前，我已經注視你很久了。"
     },
     {
       "id": 8,
       "model": "잔느변신",
-      "content": "Ma puce, stop kidding yourself. Do you really think I won't notice when you're just letting someone else make the judgment call?"
+      "content": "小甜心。你以為我會不知道，那不是你自己的判斷嗎？"
     },
     {
       "id": 9,
       "model": "뫼르소",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 10,
       "model": "잔느변신",
-      "content": "Suspirations that become wandering breezes; tree branches that dig deep enough to become soil; stones that become landscape; things that were once petals or blades of grass..."
+      "content": "飄盪的氣息也好，鑽入地底的樹根也好，不知何時橫亙在那裡的巨大岩石也好，曾經是花或草的東西也好。"
     },
     {
       "id": 11,
       "model": "잔느변신",
-      "content": "People twisting themselves for expression, for meaning... this City, doing much the same..."
+      "content": "想要表現些什麼、想要找出某種意義而拚命掙扎的人們也好，這座都市也好。"
     },
     {
       "id": 12,
       "model": "잔느변신",
-      "content": "They're all... directionless, drifting movements, nothing more."
+      "content": "全都……只不過是毫無方向地飄盪著罷了。"
     },
     {
       "id": 13,
       "model": "잔느변신",
-      "content": "That day we first met, I thought you were someone who felt and experienced all of that minutiae of existing. That's why I decided to talk to you."
+      "content": "正因為我確信你是感受並經驗著這一切的人……那天，我才會向你搭話。"
     }
   ]
 }

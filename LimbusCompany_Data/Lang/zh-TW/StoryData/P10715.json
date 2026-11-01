@@ -243,7 +243,7 @@
     },
     {
       "id": 42,
-      "content": "The hair looked as though it would flow and wrap gently around the hand when one combs through it with their fingers..."
+      "content": "多了些安定感，彷彿能輕柔地抓住的髮型。"
     },
     {
       "id": 43,
@@ -256,7 +256,7 @@
     {
       "id": 45,
       "model": "싱클레어",
-      "title": "中指 幼妹",
+      "title": "中指 幼弟",
       "content": "你這混蛋！偷了大哥的理髮券還不滿足，還在這段期間用了嗎？"
     },
     {
@@ -280,7 +280,7 @@
     {
       "id": 49,
       "model": "뫼르소",
-      "title": "中指 幼妹",
+      "title": "中指 幼弟",
       "content": "……看來是瘋了。"
     },
     {
@@ -308,13 +308,13 @@
     {
       "id": 55,
       "model": "뫼르소",
-      "title": "中指 幼妹",
+      "title": "中指 幼弟",
       "content": "只處刑一次與收支對不上。只是……"
     },
     {
       "id": 56,
       "model": "뫼르소",
-      "title": "中指 幼妹",
+      "title": "中指 幼弟",
       "content": "嗯。已經確認到犯下類似罪名的人被殺死15次使其神智不清後再執行處刑的事例。"
     },
     {
@@ -326,7 +326,7 @@
     {
       "id": 58,
       "model": "돈키호테",
-      "title": "中指 幼弟",
+      "title": "中指 幼妹",
       "content": "吾、吾認為，這種時候就該盡快把正義糾正……"
     },
     {

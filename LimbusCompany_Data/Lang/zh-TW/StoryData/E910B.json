@@ -2,82 +2,82 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Corridor of the Index Nursefather",
-      "content": "Once we dealt with the Fauvists who invaded the Thumb Nursefather's destroyed Corridor, we left for the Index's..."
+      "place": "蜘蛛巢，食指父輩的長廊",
+      "content": "在崩塌的拇指父輩的長廊解決掉野獸派的成員後，緊接著……"
     },
     {
       "id": 1,
-      "content": "... and ran into a few familiar faces, waiting for us at our destination."
+      "content": "一抵達食指父輩待過的走廊，就遇見了一張張熟悉的面孔。"
     },
     {
       "id": 2,
       "model": "단테",
-      "content": "<Huh...? Don't you guys have today off?>"
+      "content": "<咦……？你們不是在休息嗎？>"
     },
     {
       "id": 3,
       "model": "이스마엘",
-      "content": "Yeah, but... I thought I might as well come along."
+      "content": "就是……覺得還是一起去比較好。"
     },
     {
       "id": 4,
       "model": "싱클레어",
-      "content": "It's... you know... You keep summoning us while we're in the middle of something, so I decided that it might actually be more convenient for us to be with you in person."
+      "content": "啊……那個……因為您太常叫我們了，待在遠處反而不太自在。"
     },
     {
       "id": 5,
       "model": "이상",
-      "content": "Your summoning occurred at the most... unideal moment."
+      "content": "那是一次……不甚理想的召喚。"
     },
     {
       "id": 6,
       "model": "로쟈",
-      "content": "Now, I know you weren't doing it on purpose, but all three times you summoned me, I was leaning over snacks topped with buncha whipped cream."
+      "content": "雖然你應該不是故意的啦～但每次都偏偏挑我在吃堆滿鮮奶油的東西時叫我耶，但丁？"
     },
     {
       "id": 7,
       "model": "로쟈",
-      "content": "Today I learned that blacking out and waking up to a me-shaped indent in a cake I was about to chow down doesn't make for a very relaxing break, ha ha."
+      "content": "每次回來都看到蛋糕上凹了個我臉形狀的大洞，玩的興致一下子就沒了。哈哈。"
     },
     {
       "id": 8,
       "model": "단테",
-      "content": "<S-sorry about that...>"
+      "content": "<抱、抱歉……>"
     },
     {
       "id": 9,
       "model": "단테",
-      "content": "<I should've checked in with you guys before summoning, but... I'm still getting used to it.>"
+      "content": "<叫你們之前應該先看一下狀況的……我還不太習慣……>"
     },
     {
       "id": 10,
       "model": "이스마엘",
-      "content": "Okay, now you're being <i>too</i> sorry. No hard feelings here, you know."
+      "content": "不是，何必還道歉……我也不是說經理您做錯了。"
     },
     {
       "id": 11,
       "model": "이스마엘",
-      "content": "I'm tagging along 'cause I need some exercise, that's all."
+      "content": "只是覺得渾身不舒坦，才出來活動一下而已。"
     },
     {
       "id": 12,
       "model": "앨런",
-      "content": "I appreciate the additional employee assignments. Now, if you could share any information you know about yet another Corridor?"
+      "content": "感謝增派人手。那麼，關於這條走廊，若也有各位知道的情報，還請提供。"
     },
     {
       "id": 13,
       "model": "뉴키라",
-      "content": "I hung out here all the time, so I know this place a lil."
+      "content": "這裡我也超常來來去去的，所以知道一點。"
     },
     {
       "id": 14,
       "model": "뉴키라",
-      "content": "There was this super clingy, annoying little..."
+      "content": "有個有點麻煩又很煩人的……"
     },
     {
       "id": 15,
       "model": "뉴키라",
-      "content": "Uh... No, that wasn't the masked dude. There was this other... um..."
+      "content": "呃……我記得是……不是那個面具大叔……"
     },
     {
       "id": 16,
@@ -87,169 +87,169 @@
     {
       "id": 17,
       "model": "앨런",
-      "content": "Is there something you don't remember?"
+      "content": "是想不太起來嗎？"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<Oh, right... Kira probably doesn't remember Sora.>"
+      "content": "<啊……綺羅……想不起索拉了吧。>"
     },
     {
       "id": 19,
       "model": "싱클레어",
-      "content": "Sora...? I don't think that name rings any bells for us either."
+      "content": "索拉……這位，我們好像也沒聽說過。"
     },
     {
       "id": 20,
       "model": "싱클레어",
-      "content": "Is that someone who used to live here?"
+      "content": "是曾經住在……這裡的人嗎？"
     },
     {
       "id": 21,
       "model": "단테",
-      "content": "<Yeah. Well, Sora was the Index Apprentice, so she probably lived here.>"
+      "content": "<嗯。她是食指的弟子，應該住在這裡吧。>"
     },
     {
       "id": 22,
       "model": "돈키호테",
-      "content": "Forsooth, the Index Apprentice... Hooh... Pray tell, wherefore is it that the Middle, the Thumb, and the Ring each have Apprentices, yet the Index and the Pinky lack them?"
+      "content": "食指的弟子……喔喔……這麼說來，中指、拇指與環指都有弟子，為何食指與小指卻沒有呢？"
     },
     {
       "id": 23,
       "model": "이상",
-      "content": "Hm... It would indeed be quite odd if a mere three of the five Fingers kept an Apprentice each."
+      "content": "嗯……確實，唯有三根手指有弟子，是有些奇怪。"
     },
     {
       "id": 24,
       "model": "이상",
-      "content": "Retrace I might my recollections, yet I find it like following a trail of odorless air—invisible and unreal."
+      "content": "然而無論怎麼回想，都彷彿是在虛空中摸索一般。"
     },
     {
       "id": 25,
       "model": "뉴키라",
-      "content": "... No, no. There <i>was</i> someone. But I can't—"
+      "content": "……明明有弟子的，啊，可惡。那個……"
     },
     {
       "id": 26,
       "model": "파우스트",
-      "content": "The representations of the Pinky and the Index's Apprentices are... missing. No—to be more precise, a merciless blade has shredded and reduced them to intangible formlessness."
+      "content": "小指與食指。關於這兩名弟子的表象……並不存在。不，準確地說，與其說不存在，不如說是被無情地斬斷，以至於無法辨認其形體，這樣說才正確。"
     },
     {
       "id": 27,
       "model": "료슈",
-      "content": "*puff* How refreshing to hear that same impression from someone else rather than myself for once."
+      "content": "呼……從我以外的人口中聽到這種感想，還挺新鮮的。"
     },
     {
       "id": 28,
-      "content": "As it seemed that I was the only one who remembered the two Apprentices, I retraced back to our first meeting and briefly shared what I knew about Sora."
+      "content": "能認知到他們存在的似乎只有我，於是我簡短地講了些索拉的事。"
     },
     {
       "id": 29,
       "model": "뉴키라",
-      "content": "Huh... She doesn't sound like a very forgettable character..."
+      "content": "聽起來是那種忘不掉才奇怪的人啊……"
     },
     {
       "id": 30,
       "model": "단테",
-      "content": "<Well, the Arayashiki cut her into ribbons.>"
+      "content": "<因為她被阿賴耶識斬了。>"
     },
     {
       "id": 31,
       "model": "오티스",
-      "content": "That would explain why it feels as though I'm recalling a sequence of events... with a critical part missing in between."
+      "content": "把情況拼湊起來看……似乎是有這麼一號人物，但就在要接上關鍵之處時，內容就斷掉了……是這種感覺。"
     },
     {
       "id": 32,
       "model": "뉴키라",
-      "content": "I can almost imagine her... giggling to herself like a creepy loner, and... she probably wears glasses too, right? Like one of those gloomy introverts from anime."
+      "content": "我好像大概想像得出來……感覺會畏畏縮縮地笑……還會戴眼鏡什麼的吧？就像漫畫裡的陰沉角色那樣。"
     },
     {
       "id": 33,
       "model": "료슈2",
-      "content": "... I see. So that's why it feels like I'm tearing through each strand of a weave."
+      "content": "……原來如此。難怪我一直覺得有種扯斷絲線的觸感。"
     },
     {
       "id": 34,
       "model": "단테",
-      "content": "<Ryōshū?>"
+      "content": "<良秀？>"
     },
     {
       "id": 35,
       "model": "료슈2",
-      "content": "Let's say the world's made of strings or threads, Clock."
+      "content": "如果世界是由繩子或絲線之類的東西串連起來的……"
     },
     {
       "id": 36,
       "model": "료슈2",
-      "content": "With every slash, this blade would be cutting through the flow of strands that twine to compose one's existence."
+      "content": "這把劍……或許連通往那個存在的脈絡都一併斬斷了。"
     },
     {
       "id": 37,
       "model": "료슈",
-      "content": "When an object is severed forever beyond repair, you'd think neither trace nor shape would be left of it..."
+      "content": "既然斬到再也無法接上，存在與形體應該都不會留下，但……"
     },
     {
       "id": 38,
       "model": "료슈",
-      "content": "But now that you've pieced some of it together, it's almost..."
+      "content": "時鐘，多虧你這傢伙幫忙拼湊起來，雖然模糊，但還是有那麼一點點……"
     },
     {
       "id": 39,
-      "content": "Instead of elaborating further, Ryōshū fell silent again, save for the sound of the tip of her cigarette turning to ash—like she was recalling another incomplete memory."
+      "content": "良秀說到這裡，便像是在回想尚未拼湊完整的記憶一般，再度叼起香菸，閉上了嘴。"
     },
     {
       "id": 40,
-      "content": "... I guess she's trying to avoid overspeculating on what she doesn't know for sure."
+      "content": "……既然連她本人都不確定，大概是想謹慎發言吧。"
     },
     {
       "id": 41,
       "model": "뉴키라",
-      "content": "... Damn, that totally breaks the meta. I had a vague idea of how it works, but this is the first time I'm hearing the deets."
+      "content": "……雖然有聽說過一點，但這規格真的太扯了……"
     },
     {
       "id": 42,
       "model": "뉴키라",
-      "content": "Papa had to go through <i>four</i> ramp-up stages and remove seals to like, even make full use of his sword... Honestly, yours needs a trade-off. Your sword totally powercreeps papa's!"
+      "content": "我把拔的劍……要好好用還得解除4段封印，超麻煩的……總該有點副作用吧？這也太破壞平衡了吧。"
     },
     {
       "id": 43,
       "model": "료슈2",
-      "content": "*puff* T.O.? There's plenty already."
+      "content": "呼……副．作的話，我可是承受得夠多了。"
     },
     {
       "id": 44,
       "model": "뉴키라",
-      "content": "Ohhh, so true. Guess slicing your memories away is one helluva trade-off, sorry."
+      "content": "啊對……聽說會失去記憶來著？抱歉。"
     },
     {
       "id": 45,
       "model": "앨런",
-      "content": "Okay, so... I'm guessing you don't have anything to contribute for this Corridor—"
+      "content": "那麼……這邊的走廊就當作沒有能取得的情報……"
     },
     {
       "id": 46,
       "model": "뉴키라",
-      "content": "Ah, I've got one."
+      "content": "不。有一個。"
     },
     {
       "id": 47,
       "model": "뉴키라",
-      "content": "I dunno where it leads, but... the Index guy used it all the time."
+      "content": "雖然不太清楚那扇門通往哪裡……但他超常進出的。"
     },
     {
       "id": 48,
       "model": "오티스",
-      "content": "Hopefully it doesn't drop us into an army of Indexes."
+      "content": "該不會是通往食指們所在的地方吧？"
     },
     {
       "id": 49,
       "model": "료슈",
-      "content": "T.P.U. They rarely gather in big groups."
+      "content": "那．可．低。食指那群傢伙不可能全擠成一團聚在一起。"
     },
     {
       "id": 50,
       "model": "싱클레어",
-      "content": "She said \"That's Pretty Unlikely.\""
+      "content": "她說那種可能性應該很低。"
     },
     {
       "id": 51,
@@ -259,142 +259,142 @@
     {
       "id": 52,
       "model": "싱클레어",
-      "content": "O-ow! What was that for, Ryōshū?! Wait, did you just hit me with that sword handle?!"
+      "content": "欸，怎、怎麼了，良秀小姐！您為什麼突然用劍柄打我啦！"
     },
     {
       "id": 53,
       "model": "료슈",
-      "content": "...? I didn't do anything."
+      "content": "……不是我做的。"
     },
     {
       "id": 54,
-      "content": "But I saw it."
+      "content": "……我看見了。"
     },
     {
       "id": 55,
-      "content": "I saw Ryōshū's scabbard—Araya—suddenly jerking to the side, prodding Sinclair like it was annoyed by something."
+      "content": "良秀的劍鞘……阿賴耶動了起來，像在使性子般把辛克萊推開。"
     },
     {
       "id": 56,
       "model": "료슈",
-      "content": "I won't S.T.S. I'll S.Y.L.C. until you can barely walk."
+      "content": "想把冤．罪扣到我頭上？就算現在把你盡．折，你也無話可說吧。"
     },
     {
       "id": 57,
       "model": "싱클레어",
-      "content": "I-I swear, this isn't a \"slander\" or whatever! Look, you poked me so hard it left a mark on my arm, here!"
+      "content": "不、不是，您真的用力戳了我一下啦！這裡側腹還留著被壓出來的痕跡耶！"
     },
     {
       "id": 58,
-      "content": "Well... I don't want to read too much into it, but... the scabbard was rattling like it was irritated by something."
+      "content": "該怎麼說呢……雖然無法揣測它每個動作的含意……但看起來也像是在鬧脾氣。"
     },
     {
       "id": 59,
-      "content": "<i><color=#5c53e7>Stop interpreting for her. This is why she won't stop making up these nonsense acronyms...</i></color>"
+      "content": "<i><color=#5c53e7>就是因為你老是那樣幫她翻譯，她的壞習慣才改不掉啊……</i></color>"
     },
     {
       "id": 60,
-      "content": "<i><color=#5c53e7>He's making it worse. I gotta stop him from translating for her, somehow...</i></color>"
+      "content": "<i><color=#5c53e7>想讓她別再用奇怪的縮寫，就得讓他沒辦法翻譯才行……</i></color>"
     },
     {
       "id": 61,
       "model": "단테",
-      "content": "<... Araya?>"
+      "content": "<……阿賴耶？>"
     },
     {
       "id": 62,
-      "content": "Wait, that voice just now... it sounded a lot like Araya's..."
+      "content": "剛才那個聲音……肯定是阿賴耶的……"
     },
     {
       "id": 63,
       "model": "싱클레어",
-      "content": "D-Dante, you saw that too, right?"
+      "content": "經、經理！您剛才看到了吧？"
     },
     {
       "id": 64,
       "model": "단테",
-      "content": "<Uh...>"
+      "content": "<呃……>"
     },
     {
       "id": 65,
       "model": "단테",
-      "content": "<Ryōshū didn't do anything.>"
+      "content": "<良秀什麼都沒做。>"
     },
     {
       "id": 66,
       "model": "싱클레어",
-      "content": "Wait, really...? It really wasn't her...?"
+      "content": "呃……真的嗎？真的不是良秀小姐做的……？"
     },
     {
       "id": 67,
       "model": "단테",
-      "content": "<Nope...>"
+      "content": "<嗯……>"
     },
     {
       "id": 68,
       "model": "료슈",
-      "content": "Heh... then it's decided."
+      "content": "呵……定案了啊。"
     },
     {
       "id": 69,
-      "content": "To be fair to Sinclair, no one else but I saw in full detail how the scabbard came to be."
+      "content": "會動的劍鞘是以什麼樣的方式交到良秀手上的。"
     },
     {
       "id": 70,
-      "content": "Which means that he couldn't imagine in his wildest dreams that the scabbard poked him of its own volition."
+      "content": "由於親眼目睹整個過程的只有我，辛克萊似乎沒能推測到，是劍鞘憑自己的意志戳了他。"
     },
     {
       "id": 71,
-      "content": "It doesn't seem like any of the Sinners heard that voice, either..."
+      "content": "那僅在一瞬間傳來的聲音……其他罪人似乎也沒聽見……"
     },
     {
       "id": 72,
       "model": "뉴키라",
-      "content": "Damn, you guys bully him a lot, huh?"
+      "content": "被欺負得好慘喔。"
     },
     {
       "id": 73,
       "model": "히스클리프",
-      "content": "Well... The lad's been long overdue for a little smack upside his noggin."
+      "content": "嘛……最近確實有時候會想給他一拳。"
     },
     {
       "id": 74,
       "model": "단테",
-      "content": "<We should head inside. Let's not keep Alan waiting.>"
+      "content": "<亞倫先生還在等，快進去吧。>"
     },
     {
       "id": 75,
-      "content": "Kira directed us toward an almost disturbingly normal wooden door, so featureless that I could've mistaken it for any of the dozens of doors we'd walked past in other Nests."
+      "content": "綺羅告訴我們的門，是一扇顏色淺淡、毫無特色的普通木門，像是在巢裡走動時就會看到幾十次的那種。"
     },
     {
       "id": 76,
-      "content": "We were greeted by a whiff of stale, musty air the moment we walked through the door..."
+      "content": "打開那扇門走進去後……一股霉味與潮濕的氣味撲鼻而來。"
     },
     {
       "id": 77,
-      "place": "A Dungeon, Somewhere",
+      "place": "某處的地下室",
       "model": "단테",
-      "content": "<I think this leads to a basement...>"
+      "content": "<這裡是……地下室吧？>"
     },
     {
       "id": 78,
-      "content": "... and emerged to what appeared to be an almost dungeon-like basement area."
+      "content": "門後連接著一間令人聯想到監牢的地下室。"
     },
     {
       "id": 79,
-      "place": "Rien's Dungeon",
+      "place": "禮恩的地下室",
       "model": "뉴키라",
-      "content": "Whenever the masked unc's beeper rang, he'd walk through this door."
+      "content": "那個面具大叔每次只要嗶嗶響起，就常常進來這裡。"
     },
     {
       "id": 80,
       "model": "뉴키라",
-      "content": "So... who are they?"
+      "content": "不過……那些傢伙是誰？"
     },
     {
       "id": 81,
       "model": "료슈",
-      "content": "The Index..."
+      "content": "食指那群傢伙……"
     },
     {
       "id": 82,
@@ -404,60 +404,60 @@
     {
       "id": 83,
       "model": "료슈",
-      "content": "Signs of life... There were people living down here, up until just a few hours ago."
+      "content": "直到幾個小時前……都還有人住過的痕跡啊。"
     },
     {
       "id": 84,
       "model": "료슈",
-      "content": "Why are you here, Paper Slips?"
+      "content": "紙條們，你們在這裡做了什麼？"
     },
     {
       "id": 85,
       "model": "수행자1",
-      "content": "We were only executing the Prescript."
+      "content": "只是履行了指令而已。"
     },
     {
       "id": 86,
       "model": "료슈",
-      "content": "I've had it with these Prescripts. Though at least yours don't make annoying beeps."
+      "content": "光聽就膩了。至少沒有那吵死人的嗶嗶聲，也算萬幸吧。"
     },
     {
       "id": 87,
-      "content": "The basement was stocked up with shelf-stable and non-perishable food..."
+      "content": "地下室裡有能長期存放食用的糧食……"
     },
     {
       "id": 88,
-      "content": "... and the cells were all completely empty save for what looked like a makeshift bathroom in each of them."
+      "content": "牢房內部除了看似簡易廁所的東西之外，是一間空無一物的房間。"
     },
     {
       "id": 89,
       "model": "파우스트",
-      "content": "... It is likely that this dungeon was used to imprison individuals of varying features that may be required to complete a Prescript."
+      "content": "……看來是挑選出可能成為指令對象的人，關在這裡。"
     },
     {
       "id": 90,
       "model": "뉴키라",
-      "content": "Seriously?"
+      "content": "有必要做到那種地步喔？"
     },
     {
       "id": 91,
       "model": "파우스트",
-      "content": "This room seems to have been used for something worse than simple incarceration. Among Faust's conjectures is that the captives were... \"conditioned\" in body and mind in various ways to match the Prescript's liking."
+      "content": "若只是單純的監禁，或許還算好的。因為在浮士德的推測中，也有他們被「飼育」成適合讓指令挑選的樣子這種可能。"
     },
     {
       "id": 92,
       "model": "이스마엘",
-      "content": "Ugh... Sounds like that guy was just as crazy as the rest of 'em."
+      "content": "嗚……那個人也真的不正常耶……"
     },
     {
       "id": 93,
       "model": "뉴키라",
-      "content": "Wait, wait. That staircase right there leads up."
+      "content": "啊，等一下！那邊，不是往上走的樓梯嗎？"
     },
     {
       "id": 94,
       "model": "뉴키라",
-      "content": "Let's check out what's—"
+      "content": "那邊好像還有什麼值得看的……"
     },
     {
       "id": 95,
@@ -467,90 +467,90 @@
     {
       "id": 96,
       "model": "뉴키라",
-      "content": "... Friggin' annoying, man. The heck are you doing?"
+      "content": "……有夠煩。你在幹嘛？"
     },
     {
       "id": 97,
       "model": "수행자1",
-      "content": "You cannot enter through this door."
+      "content": "不能從這裡進去。"
     },
     {
       "id": 98,
       "model": "뉴키라",
-      "content": "Oh, I see. Another griefer bodyblocking in the doorway."
+      "content": "我還想說你幹嘛站在那裡，原來是要擋路啊。"
     },
     {
       "id": 99,
       "model": "료슈",
-      "content": "... Move. I need to see something."
+      "content": "……我有事要確認，讓開。"
     },
     {
       "id": 100,
       "model": "수행자1",
-      "content": "The Will of the Prescript forbids you."
+      "content": "此為指令之意。"
     },
     {
       "id": 101,
       "model": "수행자1",
-      "content": "You cannot enter through this door."
+      "content": "不能從這裡進去。"
     },
     {
       "id": 102,
       "model": "단테",
-      "content": "<What do we do?>"
+      "content": "<該怎麼辦？>"
     },
     {
       "id": 103,
       "model": "그레고르",
-      "content": "Um... Is it worth forcing our way in there? They seem pretty adamant about not letting us in."
+      "content": "嗯……他們都擋成那樣了，非進去不可嗎？"
     },
     {
       "id": 104,
       "model": "오티스",
-      "content": "... I'd prefer if we stayed as far as possible from anything that has to do with the gods—I mean, Prescripts, but... nothing in this basement gives me any indication as to where the door connects to."
+      "content": "……神明們，不，最好別和指令扯上關係才是上策……但光看這地下室，實在無從得知這裡究竟是哪裡。"
     },
     {
       "id": 105,
       "model": "이스마엘",
-      "content": "Outis is right. We're gonna have to get upstairs somehow if we wanna get an idea of where this door leads."
+      "content": "就像奧提斯小姐說的，要知道這裡連到哪裡……還是得上去看看呢。"
     },
     {
       "id": 106,
       "model": "료슈",
-      "content": "If Rien's been using this basement, then..."
+      "content": "如果這裡是禮恩。那傢伙進出的地下室……"
     },
     {
       "id": 107,
       "model": "료슈9장",
-      "content": "... I'd like to see what's upstairs."
+      "content": "我想確認。這上面有什麼。"
     },
     {
       "id": 108,
-      "content": "Honestly, learning that this door connects to some basement is more than enough intel to cross it off the list."
+      "content": "光是知道這裡連接某處的地下室，要結束這扇門的調查也沒什麼大問題。"
     },
     {
       "id": 109,
-      "content": "Still, if this has anything to do with Ryōshū's memories..."
+      "content": "但是……如果可能和良秀的記憶有關……"
     },
     {
       "id": 110,
       "model": "단테",
-      "content": "<Alright, then. Let's push through.>"
+      "content": "<好。上去吧。>"
     },
     {
       "id": 111,
       "model": "오티스",
-      "content": "Executing your command, Executive Manager!"
+      "content": "是！我將執行經理的命令！"
     },
     {
       "id": 112,
       "model": "수행자1",
-      "content": "The Will of the Prescript is absolute."
+      "content": "……指令之意是絕對的。"
     },
     {
       "id": 113,
       "model": "단테",
-      "content": "<... Is it, though?>"
+      "content": "<……那可難說。>"
     }
   ]
 }

@@ -503,7 +503,7 @@
                   "desc": "[OnSucceedAttack] 根據目標帶有的 [Burst] 強度，相應增加恢復的體力(每1級 [Burst] 強度額外恢復1點體力，最多20點)"
                 },
                 {
-                  "desc": "若現存體力不高於體力上限的50%，則重複使用本硬幣1次"
+                  "desc": "若現存體力低於體力上限的50%，則重複使用本硬幣1次"
                 }
               ]
             }
@@ -531,7 +531,7 @@
                   "desc": "[OnSucceedAttack] 根據目標帶有的 [Burst] 強度，相應增加恢復的體力(每1級 [Burst] 強度額外恢復2點體力，最多40點)"
                 },
                 {
-                  "desc": "若現存體力不高於體力上限的50%，則重複使用本硬幣1次"
+                  "desc": "若現存體力低於體力上限的50%，則重複使用本硬幣1次"
                 }
               ]
             }
@@ -1524,7 +1524,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Inflict <style=\"highlight\">8</style> [Laceration] and +4 [Laceration] Count"
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">8</style>級 [Laceration] 強度與4回流血"
                 },
                 {
                   "desc": "[EndSkill] 若擊殺目標，則使全體敵方單位增加5級 [Laceration] 強度並對全體敵方單位施加1回 [Laceration]"
@@ -2288,7 +2288,7 @@
         {
           "level": 4,
           "name": "逆位．心跳跳 / 逆位阿爾卡那．光破斬 ",
-          "desc": "This Skill deals -50% damage against sub-targets\n\n[WhenUse] Consume all [HystericGauge]; <style=\"highlight\">Clash Power +1 for every Stack consumed (max 3)</style>\n[WhenUse] Consume [ThePowerOfLoveAndHate] Count to gain Clash Power (Clash Power +1 for every <style=\"highlight\">5</style> Count consumed, max <style=\"highlight\">4</style>)\nDeal +<style=\"highlight\">30</style>% damage for every [ThePowerOfLoveAndHate] on self (max <style=\"highlight\">150</style>%)\n[BeforeAttack] Consume all [ArcanaQueenOfHate] on self; <style=\"highlight\">gain +1 Atk Weight for every Stack consumed (max 3)\n- If this Skill consumed 3 [HystericGauge], gain +1 Atk Weight</style>\n[BeforeAttack] If this Skill only has a single target(for Focused Encounters, a Part), <style=\"highlight\">deal +(20 x (Atk Weight - 1))% damage (max 80%)</style>\n[BeforeAttack] Base Power -6 for every Cracked Coin (max -18)\n[EndBattle] If this unit isn't at -45 SP, and is at less than 0 SP, heal 10 SP. Heal more SP the further this unit's SP value is from 0 (2 SP healed for every missing SP, max 50 SP)\n[WhenUse] Lose 10 SP",
+          "desc": "使本技能對次要目標造成的傷害-50%\n\n[WhenUse] 消耗所有 [HystericGauge]，<style=\"highlight\">每消耗1層，則使本技能的拚點威力+1(最多+3)</style>\n[WhenUse] 每消耗自身<style=\"highlight\">5</style>回 [ThePowerOfLoveAndHate]，則使本技能的拚點威力+1<style=\"highlight\">(最多+4)</style>\n自身每帶有1級 [ThePowerOfLoveAndHate] 強度，則使本技能造成的傷害+<style=\"highlight\">30</style>%(最多+<style=\"highlight\">150</style>%)\n[BeforeAttack] 消耗自身所有 [ArcanaQueenOfHate]，<style=\"highlight\">每消耗1層，則使本技能的攻擊容量+1(最多+3)\n- 若本技能消耗了3層 [HystericGauge]，則使本技能的攻擊容量+1</style>\n[BeforeAttack] 若本技能僅指定1名目標(若是集中遭遇戰，則改為1個部位)，<style=\"highlight\">則使本技能造成的傷害+(20×(本技能的攻擊容量-1))%(最多+80%)</style>\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-6(最多-18)\n[EndBattle] 若自身的理智值不為-45點且低於0點，則使自身恢復10點理智值。根據自身理智值與0點之差，相應使自身額外恢復理智值(每相差1點，額外恢復2點理智值，最多50點)\n[WhenUse] 使自身失去10點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2478,7 +2478,7 @@
         {
           "level": 4,
           "name": "破竹之勢",
-          "desc": "<style=\"highlight\">Coin Power +1 for every 6 ([Burst] + [Sinking]) on target (max 2)</style>\n[StartBattle] If this unit has [GrownHorns], convert the last Coin of this Skill into [SuperCoin]; <style=\"highlight\">the last Coin deals +5% damage for every [GrownHorns] Stack on this unit (max 15%)</style>",
+          "desc": "若目標帶有的 [Burst] 強度與 [Sinking] 強度之和<style=\"highlight\">每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[StartBattle] 若自身帶有 [GrownHorns]，則使本技能的最後一枚硬幣轉變為 [SuperCoin]，<style=\"highlight\">且每有1層，則使最後一枚硬幣造成的傷害+5%(最多+15%)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2558,7 +2558,7 @@
         {
           "level": 4,
           "name": "破碎角",
-          "desc": "<style=\"highlight\">Coin Power +1 for every 6 ([Burst] + [Sinking]) on target (max 2)</style>\n[StartBattle] If this unit has [GrownHorns], convert all Coins of this Skill into [SuperCoin] and <style=\"highlight\">deal +10% damage for every [GrownHorns] Stack on this unit (max 30%)</style>\n[WhenUse] Gain 3 [GrownHorns]",
+          "desc": "若目標帶有的 [Burst] 強度與 [Sinking] 強度之和<style=\"highlight\">每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[StartBattle] 若自身帶有 [GrownHorns]，則將本技能的所有硬幣轉變為 [SuperCoin]，且<style=\"highlight\">每有1層，則使本技能造成的傷害+10%(最多+30%)</style>\n[WhenUse] 使自身獲得3層 [GrownHorns]",
           "coinlist": [
             {},
             {
@@ -2889,7 +2889,7 @@
         {
           "level": 4,
           "name": "因指令恩賜所織之布",
-          "desc": "Final Power +1 <style=\"highlight\">and deal +15% damage</style> for every [UnlockBuff_Base] stage (max 3; <style=\"highlight\">max 45%</style>)\n[StartBattle] Gain Shield equal to <style=\"highlight\">15</style>% of max HP (once per turn)\n- Reduce Shield gained by <style=\"highlight\">1.5</style>% for every 5 [KarmaOfIndexAlly]; at 50+ [KarmaOfIndexAlly], does not gain Shield\n[WhenUse] Gain +2 [Breath] Count\n[EndBattle] If this unit does not have [UnlockBuff_Base], gain [UnlockBuffAlly_1] (once per turn)\n- Change [BlessingOfIndexPrescriptAlly] Stack to 3\n- Gain 5 [KarmaOfIndexAlly] at next Turn Start for every [BlessingOfIndexPrescriptAlly] gained",
+          "desc": "自身的 [UnlockBuff_Base] 每有1階段，則使本技能的最終威力+1、<style=\"highlight\">造成的傷害+15%</style>(各最多+3、<style=\"highlight\">+45%</style>)\n[StartBattle] 使自身獲得等同於自身體力上限<style=\"highlight\">15%</style>的護盾值(每回合最多1次)\n- 自身每帶有5層 [KarmaOfIndexAlly]，則使本效果獲得的護盾值減少<style=\"highlight\">1.5%</style>；若 [KarmaOfIndexAlly] 不低於50層，則不會獲得護盾\n[WhenUse] 使自身獲得2回 [Breath]\n[EndBattle] 若自身沒有 [UnlockBuff_Base]，則使自身獲得 [UnlockBuffAlly_1] (每回合最多1次)\n- 將自身的 [BlessingOfIndexPrescriptAlly] 變更為3層\n- 每增加1層 [BlessingOfIndexPrescriptAlly]，則在下回合開始時使自身獲得5層 [KarmaOfIndexAlly]",
           "coinlist": [
             {
               "coindescs": [
@@ -3511,7 +3511,7 @@
         {
           "level": 3,
           "name": "默示",
-          "desc": "[StartBattle] 使自身獲得3層 [OathFieldDonQuixote] (每回合最多1次)\n[StartBattle] 使自身與除自身以外理智值最低且屬於漆黑派的1名友方人格恢復<style=\"highlight\">5</style>點理智值(每回合最多1次)\n<style=\"highlight\">[StartBattle] 若自身帶有的 [NoirShieldUpDonQuixote]</style>\n<style=\"highlight\">- 為100層，則改為使用「多次鎚下，否決汝的誕生！」(每回合最多1次，本效果可作為單方面攻擊使用)</style>\n<style=\"highlight\">- 不高於100層，則使自身獲得自身體力上限(自身的 [NoirShieldUpDonQuixote] 層數÷10)%的護盾(每回合最多1次)</style>\n[StartBattle] 使自身獲得<style=\"highlight\">3</style>回 [ChargeNoirAlly] (每回合最多1次)\n<style=\"highlight\">[WhenUse] 若目標的 [Vibration] 強度與目標的 [NoirNailDonQuixote] 層數之和不低於6點，則使本技能的硬幣威力+1</style>\n[WhenUse] 若自身的 [ChargeNoirAlly] 強度不低於3級，則使本技能的硬幣威力+1、<style=\"highlight\">造成的傷害+10%</style>",
+          "desc": "[StartBattle] 使自身獲得3層 [OathFieldDonQuixote] (每回合最多1次)\n[StartBattle] 使自身與除自身以外理智值最低且屬於漆黑派的1名友方人格恢復<style=\"highlight\">5</style>點理智值(每回合最多1次)\n<style=\"highlight\">[StartBattle] 若自身帶有的 [NoirShieldUpDonQuixote]</style>\n<style=\"highlight\">- 為100層，則改為使用「多次鎚下，否決汝的誕生！」(每回合最多1次，本效果在單方面攻擊時也會發動)</style>\n<style=\"highlight\">- 低於100層，則使自身獲得自身體力上限(自身的 [NoirShieldUpDonQuixote] 層數÷10)%的護盾(每回合最多1次)</style>\n[StartBattle] 使自身獲得<style=\"highlight\">3</style>回 [ChargeNoirAlly] (每回合最多1次)\n<style=\"highlight\">[WhenUse] 若目標的 [Vibration] 強度與目標的 [NoirNailDonQuixote] 層數之和不低於6點，則使本技能的硬幣威力+1</style>\n[WhenUse] 若自身的 [ChargeNoirAlly] 強度不低於3級，則使本技能的硬幣威力+1、<style=\"highlight\">造成的傷害+10%</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -3535,7 +3535,7 @@
         {
           "level": 4,
           "name": "默示",
-          "desc": "[StartBattle] 使自身獲得3層 [OathFieldDonQuixote] (每回合最多1次)\n[StartBattle] 使自身與除自身以外理智值最低且屬於漆黑派的1名友方人格恢復<style=\"highlight\">6</style>點理智值(每回合最多1次)\n[StartBattle] 若自身帶有的 [NoirShieldUpDonQuixote]\n- 為100層，則改為使用「多次鎚下，否決汝的誕生！」(每回合最多1次，本效果可作為單方面攻擊使用)\n- 不高於100層，則使自身獲得自身體力上限(自身的 [NoirShieldUpDonQuixote] 層數÷10)%的護盾(每回合最多1次)\n[StartBattle] 使自身獲得<style=\"highlight\">4</style>回 [ChargeNoirAlly] (每回合最多1次)\n[WhenUse] 若目標的 [Vibration] 強度與目標的 [NoirNailDonQuixote] 層數之和<style=\"highlight\">每有6點</style>，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 若自身的 [ChargeNoirAlly] 強度不低於3級，則使本技能的硬幣威力+1、造成的傷害+<style=\"highlight\">20%</style>",
+          "desc": "[StartBattle] 使自身獲得3層 [OathFieldDonQuixote] (每回合最多1次)\n[StartBattle] 使自身與除自身以外理智值最低且屬於漆黑派的1名友方人格恢復<style=\"highlight\">6</style>點理智值(每回合最多1次)\n[StartBattle] 若自身帶有的 [NoirShieldUpDonQuixote]\n- 為100層，則改為使用「多次鎚下，否決汝的誕生！」(每回合最多1次，本效果在單方面攻擊時也會發動)\n- 低於100層，則使自身獲得自身體力上限(自身的 [NoirShieldUpDonQuixote] 層數÷10)%的護盾(每回合最多1次)\n[StartBattle] 使自身獲得<style=\"highlight\">4</style>回 [ChargeNoirAlly] (每回合最多1次)\n[WhenUse] 若目標的 [Vibration] 強度與目標的 [NoirNailDonQuixote] 層數之和<style=\"highlight\">每有6點</style>，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 若自身的 [ChargeNoirAlly] 強度不低於3級，則使本技能的硬幣威力+1、造成的傷害+<style=\"highlight\">20%</style>",
           "coinlist": [
             {
               "coindescs": [

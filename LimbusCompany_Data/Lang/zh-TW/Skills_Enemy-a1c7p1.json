@@ -285,7 +285,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "Don't Rush Me",
+          "name": "別催我",
           "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 自身每帶有1層 [BloodScissor]，使本技能拚點威力+1(最多+3)\n自身每帶有1層 [HardenedBlood]，使本技能造成的傷害+7%(最多+35%)\n[EndSkill] 消耗所有 [HardenedBlood]",
           "coinlist": [
             {
@@ -386,12 +386,12 @@
         {
           "level": 1,
           "name": "如此美味！",
-          "desc": "[WhenUse] Consume up to 50 [BloodDinner]; gain 1 [BloodScissor] for every 10 [BloodDinner] consumed\n[WhenUse] If this unit failed to consume [BloodDinner] with this Skill, gain 5 [Laceration] and 1 [HardenedBlood].\n[WhenUse] If target has 5+ [Laceration], Coin Power +1",
+          "desc": "[WhenUse] 消耗最多50層血宴，每消耗10層血宴，使自身獲得1層 [BloodScissor]\n[WhenUse] 若本技能未消耗 [BloodDinner]，則使自身增加5級 [Laceration] 強度並使自身獲得1層 [HardenedBlood]\n[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 3 [Laceration]"
+                  "desc": "[OnSucceedAttack] 使目標增加3級 [Laceration] 強度"
                 }
               ]
             },

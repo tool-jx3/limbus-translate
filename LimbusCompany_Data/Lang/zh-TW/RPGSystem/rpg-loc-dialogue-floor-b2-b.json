@@ -5,7 +5,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We killed B2F's Floor Manager and took the Colorful Skein from their hands."
+          "text": "我們解決了地下2樓的樓層經理，拿走了對方握在手中的色彩繽紛的線團。"
         }
       ]
     },
@@ -14,12 +14,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Ugh... this line isn't getting shorter. Hasn't budged an inch.",
+          "text": "呼……隊伍都沒有變短。連1公分都沒有變短。",
           "speaker": "排隊的針靈"
         },
         {
           "index": 1,
-          "text": "Needlekin need thread.",
+          "text": "針靈們得拿到線才行啊。",
           "speaker": "排隊的針靈"
         }
       ]
@@ -29,7 +29,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Can't go any farther... the black clothes are standing there and won't let anybody through.",
+          "text": "沒辦法往前走。黑衣服們站在那裡，誰都不讓過。",
           "speaker": "排隊的針靈"
         }
       ]
@@ -39,7 +39,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Have to be quiety-quiet. They said, \"Shut up and just wait, stupid Needlekin!\"",
+          "text": "要ㄤ靜、ㄤ靜才行。他們說了「閉嘴給我等著，你們這些針！」",
           "speaker": "排隊的針靈"
         }
       ]
@@ -49,7 +49,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I smell ciggy smoke... No smokey-smoke here, okay?!",
+          "text": "哪裡有菸味。這裡禁子吸菸耶！",
           "speaker": "排隊的針靈"
         }
       ]
@@ -59,7 +59,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This area is under temporary control. Keep quiet and wait patiently.",
+          "text": "目前暫時管制中。不准喧嘩，乖乖等著。",
           "speaker": "漆黑派 警衛"
         }
       ]
@@ -69,7 +69,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Everyone on this floor is being watched. Don't try anything stupid.",
+          "text": "這層樓目前正在管制中。別想耍什麼花樣。",
           "speaker": "漆黑派 警衛"
         }
       ]
@@ -79,7 +79,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We should deal with the Noirs blocking our path first, Manager.",
+          "text": "必須先解決擋路的漆黑派，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -89,7 +89,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We cannot go through yet, Manager.",
+          "text": "這裡無法通行，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -99,7 +99,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I recommend that we attend to another matter first, Manager. There appears to be something of greater priority remaining.",
+          "text": "先去別的地方如何，經理。似乎還有更重要的事情。",
           "speaker": "莫梭"
         }
       ]
@@ -109,7 +109,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Hi. What's your favorite color?",
+          "text": "你好？你們最喜歡什麼顏色？",
           "speaker": "調色盤"
         }
       ]
@@ -129,7 +129,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "You have brought desire with you, strangers. As the Voice says, be true to your desires.",
+          "text": "是懷抱著渴望前來的異鄉人啊。就照聲音所說的，盡情地坦率吧。",
           "speaker": "B2F 樓層經理"
         }
       ]
@@ -139,7 +139,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Floor Manager is... in the Skein Nest.",
+          "text": "樓層經理……去線團之巢就能見到了。",
           "speaker": "調色盤"
         }
       ]
@@ -149,7 +149,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Need something, strangers?",
+          "text": "看來你們需要些什麼吧，異鄉人們？",
           "speaker": "調色盤"
         }
       ]
@@ -159,7 +159,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "...! So you're the blasphemous strangers who've been skulking around here?",
+          "text": "……！在這一帶四處遊蕩的那群不敬的異鄉人，就是你們這些傢伙嗎？",
           "speaker": "漆黑派 幹部"
         }
       ]
@@ -169,12 +169,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Juuust... a bite...",
+          "text": "……只要一口……",
           "speaker": "裁縫之王"
         },
         {
           "index": 1,
-          "text": "Juuust a bite, chew between the teeth... and again, I can...",
+          "text": "只要能咬上一口……我也能再次……",
           "speaker": "裁縫之王"
         }
       ]
@@ -189,22 +189,22 @@
         },
         {
           "index": 1,
-          "text": "These assignment rules seem irrational, Executive Manager. I am beginning to suspect that the woman in the restroom has made an error regarding the chain of command.",
+          "text": "規則似乎不太合理啊，該不會是在廁所裡的那個人犯了什麼重大的錯誤吧……",
           "speaker": "奧提斯"
         },
         {
           "index": 2,
-          "text": "She keeps this one permanently attached to your service, while keeping an exceptionally competent soldier such as myself either eternally benched or paired with Sinners whose contributions are... questionable...",
+          "text": "讓這傢伙時時刻刻跟在經理身邊，把我這樣有能力的人流放還不夠，就連搭配給我的罪人也實在是……",
           "speaker": "奧提斯"
         },
         {
           "index": 3,
-          "text": "And this entity... remains in tow yet, I see.",
+          "text": "還有這傢伙……居然還跟著我們啊。",
           "speaker": "奧提斯"
         },
         {
           "index": 4,
-          "text": "... A kid.",
+          "text": "……有個小孩啊。",
           "speaker": "良秀"
         }
       ]
@@ -214,7 +214,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Ryoshu studied Pwie in silence, then took the cigarette from her mouth and ground it against the wall."
+          "text": "良秀盯著普依看了一會兒，便把叼在嘴上的菸往牆上捻熄……"
         }
       ]
     },
@@ -223,7 +223,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "She casually flicked the crushed stub at a Needlekin working nearby."
+          "text": "隨手扔向了正在工作的針靈。"
         }
       ]
     },
@@ -232,7 +232,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Agh! No smokey! No smokey!",
+          "text": "啊！禁子吸菸！禁子吸菸！",
           "speaker": "工作中的針靈"
         }
       ]
@@ -242,51 +242,51 @@
       "texts": [
         {
           "index": 0,
-          "text": "Hearing the protest spoken aloud made the entire sight feel even stranger."
+          "text": "話說出口之後，心裡湧上了一股奇怪的感覺。"
         },
         {
           "index": 1,
-          "text": "Heard about you, Pwie.",
+          "text": "我聽說了，普依。",
           "speaker": "良秀"
         },
         {
           "index": 2,
-          "text": "You're trying to get your clothes made.",
+          "text": "聽說你在做衣服。",
           "speaker": "良秀"
         },
         {
           "index": 3,
-          "text": "Mhm.",
+          "text": "對。",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "The idea that having this entity dressed will secure passage to the fifth floor is... I must admit, quite suspect!",
+          "text": "讓這傢伙穿上衣服就能前往5樓深處……老實說，我很懷疑，",
           "speaker": "奧提斯"
         },
         {
           "index": 5,
-          "text": "... However, Gregor reports no viable alternative... I suppose there is no helping it.",
+          "text": "……不過既然從格里高爾那傢伙那裡聽說了沒有其他辦法……也只能這樣了。",
           "speaker": "奧提斯"
         },
         {
           "index": 6,
-          "text": "<Meursault, the farthest we made it last time... was B2 right? This same floor.>",
+          "text": "<莫梭，我們上次來到的地方……是到這裡，地下2樓為止吧。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "<And Pwie's clothes have to be made at the very bottom of the underground levels...>",
+          "text": "<可是，聽說要做衣服的話，就得前往地下的最深處。>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "<... Which means there must be at least one more floor below us.>",
+          "text": "<也就是說，這下面還有更多樓層。>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "... Yes. It is likely so.",
+          "text": "……是的，應該是這樣。",
           "speaker": "莫梭"
         }
       ]
@@ -296,12 +296,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Then I think we can first look around this floor...>",
+          "text": "<那麼，我們一邊在這裡四處看看……>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "<Uh...>",
+          "text": "<四處……看看……>",
           "speaker": "但丁"
         }
       ]
@@ -311,7 +311,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "All right... All of you, form a single line. We're searching each and every one of you from hem to collar!",
+          "text": "好了……所有人排成一列。我們會一個不漏地徹底搜查。",
           "speaker": "漆黑派 警衛"
         }
       ]
@@ -321,22 +321,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "... S.H.I.T.",
+          "text": "……火．大。",
           "speaker": "良秀"
         },
         {
           "index": 1,
-          "text": "Commotion up ahead. Something must've happened, Executive Manager.",
+          "text": "真擁擠。前面似乎發生了什麼事，經理。",
           "speaker": "奧提斯"
         },
         {
           "index": 2,
-          "text": "<... Pretty sure it wasn't like this last time.>",
+          "text": "<……情況跟我知道的差很多啊。>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "I need that Golden Dye... Damn it all. Didn't expect to be stalled here...",
+          "text": "我得拿到黃金染料才行……該死……居然會被困在這種地方。",
           "speaker": "裸體"
         }
       ]
@@ -346,7 +346,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Shh! Quiety-quiet! Make noise, get scolded.",
+          "text": "噓——ㄤ靜、ㄤ靜。吵鬧會被罵的。",
           "speaker": "排隊的針靈"
         }
       ]
@@ -356,7 +356,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Shut up, you basement-crawling lowlife.",
+          "text": "閉嘴！不過是些只會在底層打轉的地下貨色。",
           "speaker": "裸體"
         }
       ]
@@ -366,17 +366,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Isn't that the one who was looking for rare dyes...?>",
+          "text": "<那個人應該是在找染料的……>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "\"Naked\"... of Le Noir, Manager.",
+          "text": "是隸屬漆黑派，名叫裸體……的人。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "<The whole situation could blow up if we let Naked see Pwie.>",
+          "text": "<……要是跟普依碰上，可能會很麻煩。>",
           "speaker": "但丁"
         },
         {
@@ -391,7 +391,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pwie. Do you like games?",
+          "text": "普依，喜歡遊戲嗎？",
           "speaker": "良秀"
         }
       ]
@@ -401,32 +401,32 @@
       "texts": [
         {
           "index": 0,
-          "text": "Games...? I've never played one. What is it?",
+          "text": "遊戲……？沒玩過。那是做什麼的？",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "It's where a group of people set rules and play together.",
+          "text": "就是好幾個人聚在一起，定好規則來玩。",
           "speaker": "良秀"
         },
         {
           "index": 2,
-          "text": "Do you... need rules for that?",
+          "text": "規則……一定要定嗎？",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "Rules are like bones you flesh out with freedom. More fun that way.",
+          "text": "因為在既有的骨架這種限制上，自由地填上血肉，會比較有趣。",
           "speaker": "良秀"
         },
         {
           "index": 4,
-          "text": "I... want to try.",
+          "text": "遊戲……我想玩玩看。",
           "speaker": "普依"
         },
         {
           "index": 5,
-          "text": "Good. It's \"Silent Deathmatch,\" then.",
+          "text": "那就開始沉默的死亡競賽吧。",
           "speaker": "良秀"
         }
       ]
@@ -436,12 +436,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "<You sure it's okay for Pwie to play that game?>",
+          "text": "<那個，真的是普依可以玩的遊戲嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "It's for an A.A.A., obviously.",
+          "text": "那當然是全．齡．的吧？",
           "speaker": "良秀"
         }
       ]
@@ -451,7 +451,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "\"It's for an Audience of All Ages, obviously,\" Manager.",
+          "text": "是全年齡適用……的意思，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -461,32 +461,32 @@
       "texts": [
         {
           "index": 0,
-          "text": "There is only one rule: you talk, you lose.",
+          "text": "規則只有一條。我們兩個之中，先開口說話的人就輸了。",
           "speaker": "良秀"
         },
         {
           "index": 1,
-          "text": "Loser sleeps without lullaby.",
+          "text": "輸的人睡覺時就沒有搖籃曲。",
           "speaker": "良秀"
         },
         {
           "index": 2,
-          "text": "... Only you and me playing?",
+          "text": "……只有我們兩個玩嗎？",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "... The strangers and Wriggley are gonna feel left out.",
+          "text": "……異鄉人們跟噗扭會難過的。",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "Hmm... Then Wriggley can join. That makes three.",
+          "text": "嗯……那就加上噗扭，三個人玩。",
           "speaker": "良秀"
         },
         {
           "index": 5,
-          "text": "The other fools would rather die than stop talking. They'll survive the fear of missing out in their own way.",
+          "text": "那些傢伙本來就很愛嚷嚷，不會難過的。",
           "speaker": "良秀"
         },
         {
@@ -496,17 +496,17 @@
         },
         {
           "index": 7,
-          "text": "Three players... Mhm. That works.",
+          "text": "三個人的話……嗯，好。",
           "speaker": "普依"
         },
         {
           "index": 8,
-          "text": "Good. Then... game starts now, Pwie.",
+          "text": "那麼從現在開始……遊戲開始了，普依。",
           "speaker": "良秀"
         },
         {
           "index": 9,
-          "text": "呼嗯……",
+          "text": "唔……",
           "speaker": "普依"
         }
       ]
@@ -516,22 +516,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oh? You strangers came down from the upper floors, didn't you?",
+          "text": "喔，你們那邊的異鄉人是從地上來的吧，對吧？",
           "speaker": "裸體"
         },
         {
           "index": 1,
-          "text": "... You could say that.",
+          "text": "……算是吧。",
           "speaker": "奧提斯"
         },
         {
           "index": 2,
-          "text": "Another minute trapped beside these pin-holding idiots and I might end up an idiot, too.",
+          "text": "一直跟這些蠢針待在一起，我都快瘋了。",
           "speaker": "裸體"
         },
         {
           "index": 3,
-          "text": "I was never supposed to be held here. I have to get the Golden Dye and head upstairs...",
+          "text": "我本來就不該待在這裡。我得拿到黃金染料，回到地上去才行……",
           "speaker": "裸體"
         },
         {
@@ -541,22 +541,22 @@
         },
         {
           "index": 5,
-          "text": "*sigh* What I'm saying is... Let me explain the situation. We Noirs are on full alert right now. Surely you've noticed, if you're from above ground. Things are... getting tense, like something's about to blow.",
+          "text": "哈。所以說，事情是這樣的……我們漆黑派之間出了緊急狀況。既然你們是從地上來的，應該大概知道吧？氣氛……變得越來越不尋常了。",
           "speaker": "裸體"
         },
         {
           "index": 6,
-          "text": "<He's all buddy-buddy with us now, huh?>",
+          "text": "<為什麼要裝得這麼熟啊……>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "He appears to have inferred our status from the items we have purchased and collected so far.",
+          "text": "看來是因為看到了我們至今買下與撿到的物品。",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": "<So, basically, we look like we've got money to splurge, is it?>",
+          "text": "<意思是我們看起來挺有錢的嗎。>",
           "speaker": "但丁"
         }
       ]
@@ -566,7 +566,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Need to be quiety-quiet! Needles can't stop sewing. King wakey-wake, we'll get scolded...",
+          "text": "要ㄤ靜才行……針不可以停止縫紉的。要是王醒來就會被罵……",
           "speaker": "排隊的針靈"
         }
       ]
@@ -576,7 +576,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Shut up, I said! Fat lot of good it'll do worrying about needlework when there's no telling what the Rouges are up to out there!",
+          "text": "叫你們閉嘴了，連丹紅派現在在搞什麼名堂都不知道，還有閒工夫擔心那種事嗎？",
           "speaker": "裸體"
         }
       ]
@@ -586,67 +586,67 @@
       "texts": [
         {
           "index": 0,
-          "text": "See? For idiots who know nothing about what's going on beyond this floor, they sure like to run their mouth. It's enough to drive a man crazy.",
+          "text": "看到了吧？這些傢伙連外面是什麼情況都不知道，還一刻不停地嘰嘰喳喳……總之，所以我才說快被逼瘋了。",
           "speaker": "裸體"
         },
         {
           "index": 1,
-          "text": "I'll secure the Golden Dye, present it to our big boss, and prove my loyalty to Le Noir beyond dispute. Once that's done, I'll probably be given the right to open my very own Noir store, too. I already have the designs for my own label in my mind!",
+          "text": "我要拿到黃金染料獻給隊長大人，證明我對漆黑派獻上的忠誠。那樣一來，我也能開一間氣派的漆黑派店鋪了吧。要做什麼樣的衣服，我都已經構思好了。",
           "speaker": "裸體"
         },
         {
           "index": 2,
-          "text": "But first... I must locate the False Voice.",
+          "text": "不過在那之前，得先找出虛偽之聲就是了……",
           "speaker": "裸體"
         },
         {
           "index": 3,
-          "text": "... Is that why the entire corridor is under lockdown?",
+          "text": "……這條走廊就是因為那個才被管制的嗎？",
           "speaker": "奧提斯"
         },
         {
           "index": 4,
-          "text": "Yeah. Word came down from the very top. Some people snuck in here to hide and protect the abomination that speaks the False Voice.",
+          "text": "沒錯，聽說隊長大人傳話下來了。說有人為了保護會發出虛偽之聲的怪物，潛入了這裡。",
           "speaker": "裸體"
         },
         {
           "index": 5,
-          "text": "I asked to be left off the search list, but it looks like I'm to be checked along with everyone else, just in case. That's Le Noir for you—stalwartly thorough, no exceptions. We exist for the department store, and it is the department store that permits us to exist, after all.",
+          "text": "我請他們把我從搜查對象裡剔除，但他們說以防萬一，也得把我列入搜查對象。真有漆黑派的作風。耿直，沒有例外。因為我們是為了百貨公司而存在，也是因百貨公司而存在的。",
           "speaker": "裸體"
         },
         {
           "index": 6,
-          "text": "Hm... So they intend to search every last person here? That will take a considerable amount of time.",
+          "text": "嗯……意思是要搜查這裡的所有人嗎？那應該會花上相當多的時間。",
           "speaker": "奧提斯"
         },
         {
           "index": 7,
-          "text": "Yeah. Until we catch those bastards, none of us are getting so much as a single step out of here. Look at what those lunatics are putting decent people like us through. As if failing to devote every ounce of themselves to preserving the Grand Magasin weren't bad enough... Shame on them, right?",
+          "text": "沒錯，在抓到那些傢伙之前，我們連一步都別想離開這裡。都是那些瘋子害得我們這種人吃這種苦頭。不竭盡全力保存百貨公司也就算了……還這麼厚顏無恥……你說是吧？",
           "speaker": "裸體"
         },
         {
           "index": 8,
-          "text": "... Right. Shame on them indeed.",
+          "text": "……是啊，真是一群厚顏無恥至極的傢伙。",
           "speaker": "奧提斯"
         },
         {
           "index": 9,
-          "text": "Still, at least I've had the good fortune of meeting some cultured above-ground customers I can actually hold a conversation with. Well, you people and I are both stuck here, so... why don't we take the chance to talk about some refined subjects? Let us begin with the history of Le Noir—",
+          "text": "不過，能遇到可以一起聊天、有教養的地上人真是太好了。我們就在這裡聊個痛快吧。來，就從漆黑派的歷史開始……",
           "speaker": "裸體"
         },
         {
           "index": 10,
-          "text": "Before we get to that... are there any more floors beneath this one?",
+          "text": "話說回來，這裡……是否還有更下面的樓層？",
           "speaker": "奧提斯"
         },
         {
           "index": 11,
-          "text": "... Even if there were, they'd be no place for people like us. Why do you ask?",
+          "text": "……就算有，也不是我們該去的地方。為什麼這麼問？",
           "speaker": "裸體"
         },
         {
           "index": 12,
-          "text": "If those lunatics truly infiltrated this place... they may attempt to evade the search by heading farther underground. In which case, the first priority should be sealing off the route down.",
+          "text": "如果那些瘋子潛入了這裡……難道不會為了躲避搜查而往地下去嗎？那樣的話，就得先堵住那條通道才行。",
           "speaker": "奧提斯"
         },
         {
@@ -656,47 +656,47 @@
         },
         {
           "index": 14,
-          "text": "<Times like this, I'm just so relieved that Outis isn't our enemy.>",
+          "text": "<有時候，我會為奧提斯是站在我們這邊而感到安心。>",
           "speaker": "但丁"
         },
         {
           "index": 15,
-          "text": "Is that so.",
+          "text": "是嗎。",
           "speaker": "莫梭"
         },
         {
           "index": 16,
-          "text": "... You people really are...",
+          "text": "……你們真是……",
           "speaker": "裸體"
         },
         {
           "index": 17,
-          "text": "... frighteningly clever. I actually got chills just now!",
+          "text": "聰明的異鄉人啊。我剛剛可是全身都起雞皮疙瘩了呢？",
           "speaker": "裸體"
         },
         {
           "index": 18,
-          "text": "But don't you worry. You won't find any way farther underground. I heard the route was sealed off a long time ago.",
+          "text": "不過放心吧。你們找不到通往地下的通道的。聽說很久以前就被封住了。",
           "speaker": "裸體"
         },
         {
           "index": 19,
-          "text": "... Is that so.",
+          "text": "……原來如此。",
           "speaker": "奧提斯"
         },
         {
           "index": 20,
-          "text": "By the way... that thing you've been carrying around. Don't tell me that's a Golden Cocoon?",
+          "text": "話說，你們帶在身上的這個，難不成是黃金之繭？",
           "speaker": "裸體"
         },
         {
           "index": 21,
-          "text": "... It's...",
+          "text": "……那是……",
           "speaker": "奧提斯"
         },
         {
           "index": 22,
-          "text": "Ooh... now that's a nice feel.",
+          "text": "喔喔，手感真好。",
           "speaker": "裸體"
         },
         {
@@ -706,12 +706,12 @@
         },
         {
           "index": 24,
-          "text": "... Cut it out. You're hurting Wriggley.",
+          "text": "……不要這樣。都在喊痛了。",
           "speaker": "普依"
         },
         {
           "index": 25,
-          "text": "Enough. Touch it again, and I'll S.Y.N.—",
+          "text": "住手。再繼續的話，就直接脖．扭……",
           "speaker": "良秀"
         }
       ]
@@ -721,7 +721,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... C.-ed. Not bad at all. Well done, Pwie.",
+          "text": "……轟飛了嗎。這樣也不錯。幹得好，普依。",
           "speaker": "良秀"
         },
         {
@@ -731,12 +731,12 @@
         },
         {
           "index": 2,
-          "text": "That voice... that form... You're the False One...!",
+          "text": "這聲音……那模樣……虛偽者就是你……",
           "speaker": "裸體"
         },
         {
           "index": 3,
-          "text": "The noisy-noisy got bested!",
+          "text": "不ㄤ靜的傢伙被推出去了！",
           "speaker": "排隊的針靈"
         }
       ]
@@ -746,7 +746,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "W-wait! Where do you think you're taking me, you inferior—s-stop!",
+          "text": "等、等等！你們這些低劣的傢伙要把我帶去哪……給我等等！",
           "speaker": "裸體"
         }
       ]
@@ -756,7 +756,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Quiety-quiet! You want prickly-prickle?!",
+          "text": "ㄤ靜、ㄤ靜！你也想被刺嗎？",
           "speaker": "排隊的針靈"
         }
       ]
@@ -766,7 +766,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Let's make ourselves scarce. The Noirs will be swarming this corridor any second.>",
+          "text": "<先離開這裡吧……漆黑派的員工馬上就會蜂擁而來。>",
           "speaker": "但丁"
         },
         {
@@ -776,51 +776,51 @@
         },
         {
           "index": 2,
-          "text": "Did I... lose?",
+          "text": "遊戲……是我輸了嗎？",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "No. It's a draw.",
+          "text": "不，是平手。",
           "speaker": "良秀"
         },
         {
           "index": 4,
-          "text": "Wriggley and I broke silence at nearly the same instant.",
+          "text": "因為噗扭跟我差不多同時開了口。",
           "speaker": "良秀"
         },
         {
           "index": 5,
-          "text": "We have confirmed that more basement levels exist...",
+          "text": "雖然確認了地下還有更多樓層……",
           "speaker": "奧提斯"
         },
         {
           "index": 6,
-          "text": "But we have no way to reach them, and we do not know how long the Noirs will keep pursuing us...",
+          "text": "卻沒有合適的方法能找到。也不知道漆黑派會追我們追到什麼時候……",
           "speaker": "奧提斯"
         },
         {
           "index": 7,
-          "text": "<... I know someone who might be willing to help us.>",
+          "text": "<……我倒是知道一個可能會幫我們的人。>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "Can they be trusted...?",
+          "text": "是可以信任的人嗎……？",
           "speaker": "奧提斯"
         },
         {
           "index": 9,
-          "text": "<Hmm... I don't know about <i>trusted</i>, but she probably isn't on the Noirs' side.>",
+          "text": "<嗯……這我不知道，但大概不是漆黑派那邊的。>",
           "speaker": "但丁"
         },
         {
           "index": 10,
-          "text": "Palette, whom we had met in the Dyehouse... belonged to no faction and had shown no hostility toward us."
+          "text": "在染坊的調色盤……那個人不隸屬於任何勢力，也不曾對我們表現出敵意。"
         },
         {
           "index": 11,
-          "text": "<She seemed like the sort who simply... went with the flow.>",
+          "text": "<因為那個人看起來就只是……隨波逐流地活著……>",
           "speaker": "但丁"
         }
       ]
@@ -835,7 +835,7 @@
         },
         {
           "index": 1,
-          "text": "No, Big sis. These people are not here to steal my tears.",
+          "text": "不是的，姊姊。這些人不是來偷我眼淚的。",
           "speaker": "調色盤"
         },
         {
@@ -845,57 +845,57 @@
         },
         {
           "index": 3,
-          "text": "M.Q.?",
+          "text": "人．模．嗎。",
           "speaker": "良秀"
         },
         {
           "index": 4,
-          "text": "My sister isn't a Mannequin. She's just always been overprotective of me.",
+          "text": "我姊姊不是人台模特兒。她只是從以前就有過度保護我的習慣而已。",
           "speaker": "調色盤"
         },
         {
           "index": 5,
-          "text": "Wait, are you guys sweating? Try not to get any on my palette. The salt makes the colors murky.",
+          "text": "話說，你們在流汗嗎？小心別讓汗混進我的調色盤裡。混進鹹味的話，顏色會變得混濁。",
           "speaker": "調色盤"
         },
         {
           "index": 6,
-          "text": "... We just escaped a rather urgent situation. Fortunately, it seems that the Noirs are yet to set foot in here.",
+          "text": "……我們剛經歷了相當緊迫的狀況。幸好這裡看不到漆黑派的人。",
           "speaker": "奧提斯"
         },
         {
           "index": 7,
-          "text": "What exactly is going on outside? The customers have suddenly stopped visiting as well...",
+          "text": "外面發生什麼事了？客人們也突然都不來了。",
           "speaker": "調色盤"
         },
         {
           "index": 8,
-          "text": "You need to burst those tears in time. Holding them in for too long can make things go bad.",
+          "text": "淚水得及時打破才行。一直憋著的話，狀態會變差的。",
           "speaker": "調色盤"
         },
         {
           "index": 9,
-          "text": "We are looking for a way to B3. Can you give us any information on how to get there?",
+          "text": "我們正在尋找前往地下3樓的方法。是否掌握了什麼情報？",
           "speaker": "奧提斯"
         },
         {
           "index": 10,
-          "text": "There used to be a way, but I blocked it.",
+          "text": "原本是有路的。不過現在已經堵上了。",
           "speaker": "調色盤"
         },
         {
           "index": 11,
-          "text": "Why do you want to go deeper anyway? Wherever you came down from must be a much better place to live than down here...",
+          "text": "不過，你們為什麼想下去？你們下來之前待的地方應該好住多了。比這種地下好多了。",
           "speaker": "調色盤"
         },
         {
           "index": 12,
-          "text": "We want to clothe Pwie.",
+          "text": "為了給普依穿上衣服。",
           "speaker": "莫梭"
         },
         {
           "index": 13,
-          "text": "Pwie? You mean this kid?",
+          "text": "普依？你是說這孩子嗎？",
           "speaker": "調色盤"
         },
         {
@@ -905,87 +905,87 @@
         },
         {
           "index": 15,
-          "text": "Let me get this straight... You mean the clothes are for the kid, not you?",
+          "text": "不是你們要穿，而是要給這孩子穿？",
           "speaker": "調色盤"
         },
         {
           "index": 16,
-          "text": "Mhm. I need clothes. Clothes made of Golden Hide.",
+          "text": "嗯，我得穿上衣服。用黃金皮革做成的衣服。",
           "speaker": "普依"
         },
         {
           "index": 17,
-          "text": "... I've seen plenty of people desperate to dress themselves, but there's hardly anyone who wants to dress someone else...",
+          "text": "……為了穿上衣服而殺紅了眼的人多得是，想給別人穿上衣服的人倒是很少見呢。",
           "speaker": "調色盤"
         },
         {
           "index": 18,
-          "text": "Guess you really are strangers.",
+          "text": "所以說，果然是異鄉人啊。",
           "speaker": "調色盤"
         },
         {
           "index": 19,
-          "text": "All right, then... Let's make a deal.",
+          "text": "好。那麼……我們就這樣交易吧。",
           "speaker": "調色盤"
         },
         {
           "index": 20,
-          "text": "The truth is, I need clothes for my sister, too.",
+          "text": "其實我也需要做一件衣服給姊姊。",
           "speaker": "調色盤"
         },
         {
           "index": 21,
-          "text": "Good clothes need good thread... but I don't want a Golden Skein. Gold isn't my taste.",
+          "text": "要做好衣服就需要好的線團……但我不要黃金線團。那不合我的喜好。",
           "speaker": "調色盤"
         },
         {
           "index": 22,
-          "text": "What I want is... something more colorful. A skein that can soak up tears well.",
+          "text": "我想要的是……更加五彩繽紛、能讓淚水好好滲進去的線團。",
           "speaker": "調色盤"
         },
         {
           "index": 23,
-          "text": "And under this floor's rules, only the Floor Manager can have a skein that pure. A few strands are handed out to the Noirs now and then. Only the Noirs.",
+          "text": "而那樣……純粹的線團，按照這層樓的規則，只有樓層經理才能擁有。偶爾只會分幾縷給漆黑派。",
           "speaker": "調色盤"
         },
         {
           "index": 24,
-          "text": "... Annoying rule.",
+          "text": "……真是煩人的規則。",
           "speaker": "良秀"
         },
         {
           "index": 25,
-          "text": "What's so annoying about it? Down here... that's just common sense.",
+          "text": "煩人？在這裡……這是理所當然的常識啊。",
           "speaker": "調色盤"
         },
         {
           "index": 26,
-          "text": "And yet, it is hardly common sense to us \"strangers.\" Which means that if we take—excuse me—<i>bring back</i> the skein from that Floor Manager...",
+          "text": "但是……對我們來說，這並不是那麼理所當然的常識。假如我們從那傢伙手上搶……不，拿來線團的話……",
           "speaker": "奧提斯"
         },
         {
           "index": 27,
-          "text": "Then you will open the way down in exchange, is that correct?",
+          "text": "也就是說，作為交易的代價，就會替我們開路——可以這樣理解嗎？",
           "speaker": "奧提斯"
         },
         {
           "index": 28,
-          "text": "... You'd really do that for me, strangers?",
+          "text": "……你們真的願意這麼做嗎，異鄉人們？",
           "speaker": "調色盤"
         },
         {
           "index": 29,
-          "text": "Well, I suppose... If you can bring me the skein... then yes. I promise.",
+          "text": "如果……你們能把線團帶來的話……嗯，我答應你們。",
           "speaker": "調色盤"
         },
         {
           "index": 30,
-          "text": "The Floor Manager is... in the Skein Nest.",
+          "text": "樓層經理……去線團之巢就能見到了。",
           "speaker": "調色盤"
         },
         {
           "index": 31,
-          "text": "<The Noirs will be blocking the route. We'll have to punch through them first.>",
+          "text": "<漆黑派應該會擋住去路……總之先突破看看吧。>",
           "speaker": "但丁"
         }
       ]
@@ -995,12 +995,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "[미사용] <… 르누아르들이 길을 막고 있어>",
+          "text": "[未使用] <……漆黑派擋住了去路>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "[미사용] <돌파하는 것 밖엔 답이 없겠네>",
+          "text": "[未使用] <看來只能突破了>",
           "speaker": "但丁"
         }
       ]
@@ -1010,72 +1010,72 @@
       "texts": [
         {
           "index": 0,
-          "text": "Want has tugged your thread here.",
+          "text": "你們是有所渴望，才找上門來的呢。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 1,
-          "text": "The Voice of Fate always whispers. \"Be honest with yourself. Indulge in your desires.\"",
+          "text": "命運之聲總是低語著：要坦率，要更加盡情地坦率。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 2,
-          "text": "And so, we will lay our desire bare first. Then you shall let us hear of yours.",
+          "text": "所以我們會先說出我們的渴望，接下來，就讓我們聽聽你們的話吧。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 3,
-          "text": "... At least you cut to the chase. Good. What are your demands?",
+          "text": "……開門見山，很好。你們想要什麼？",
           "speaker": "奧提斯"
         },
         {
           "index": 4,
-          "text": "More golden thread... rounder skeins... ripe gold, fat with promise.",
+          "text": "更多的黃金絲線……更圓的線團……更誘人的黃金……",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 5,
-          "text": "Everything that would ooze and spill from that cocoon... once our fingers closed and wrung it dry...",
+          "text": "若是緊握那個繭用力擰絞……就會滴滴答答滿溢而出的一切……",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 6,
-          "text": "We know. Oh, we know what beauty would bleed from it... How splendidly it would feed the birth of a magnificent fabric.",
+          "text": "我們知道，我們都知道。那個繭將會滲出的美……將有助於化為偉大的布料。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 7,
-          "text": "The Voice of Fate cut our old duty loose. No longer shall we spin for other backs. Now the thread will warm our own.",
+          "text": "命運之聲已經允許了。從今以後，不再為他人紡線，而要紡出覆蓋我們自己的線。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 8,
-          "text": "<They were greedy last time too... but something has turned the dial all the way up. Is it because we didn't get the Noirs' Authenticity Certificate?>",
+          "text": "<上次也露出了貪念……是因為沒有漆黑派給的鑑定評價書嗎？反應好像差了很多。>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "... The increased intensity of the sunlight may be causing their altered behavior, Manager.",
+          "text": "……也可能是因為陽光照射得格外強烈。",
           "speaker": "莫梭"
         },
         {
           "index": 10,
-          "text": "Now... lay your own desires bare.",
+          "text": "來……現在輪到你們說出渴望了。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 11,
-          "text": "Our objectives collide, regrettably. We want... the skein in your possession.",
+          "text": "真遺憾，我們……想要你們持有的那個線團。",
           "speaker": "奧提斯"
         },
         {
           "index": 12,
-          "text": "Ahh. Our wants have crossed threads. There is only one way to make two wants lie as one.",
+          "text": "啊啊，渴望起衝突了呢。要讓它們合而為一，方法只有一個。",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 13,
-          "text": "One desire must be swallowed so the other may have room.",
+          "text": "只能讓某一方的渴望被吞噬了。",
           "speaker": "B2F 樓層經理"
         }
       ]
@@ -1085,22 +1085,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "You brought the skein.",
+          "text": "你們把線團帶來了啊。",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": "You really did it... You refused to accept \"common sense\" just because everyone calls it common sense...",
+          "text": "真的……能不把常識當成常識……",
           "speaker": "調色盤"
         },
         {
           "index": 2,
-          "text": "Honestly, I half-doubted you. Most people here on the basement floor... can't unlearn what they were taught to call obvious.",
+          "text": "其實我半信半疑。要把理所當然的事變得不再理所當然……對地下的顧客們來說是件難事。",
           "speaker": "調色盤"
         },
         {
           "index": 3,
-          "text": "If I make clothing from this thread... maybe my sister will find her voice and speak to me again.",
+          "text": "用這個線團做衣服的話，姊姊會不會再跟我說話呢。",
           "speaker": "調色盤"
         },
         {
@@ -1110,27 +1110,27 @@
         },
         {
           "index": 5,
-          "text": "Now, time to uphold your end of the bargain...",
+          "text": "那麼，就按照約定……",
           "speaker": "奧提斯"
         },
         {
           "index": 6,
-          "text": "Take it easy. I said I'd do it, and I will.",
+          "text": "別著急。我會遵守約定的。",
           "speaker": "調色盤"
         },
         {
           "index": 7,
-          "text": "The way down isn't far. It was right under your noses all along.",
+          "text": "下去的路不遠。其實就在附近。",
           "speaker": "調色盤"
         },
         {
           "index": 8,
-          "text": "Now, go on... Down you go.",
+          "text": "來……下去吧。",
           "speaker": "調色盤"
         },
         {
           "index": 9,
-          "text": "I hope you get to make the clothes the kid wants.",
+          "text": "希望你們也能做出想要的衣服，讓那孩子穿上。",
           "speaker": "調色盤"
         }
       ]
@@ -1140,7 +1140,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "More business to take care of here."
+          "text": "這裡似乎還有事情沒辦完。"
         }
       ]
     },
@@ -1149,7 +1149,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Don't you have something to give us?",
+          "text": "你們不是有東西要交給我們嗎？",
           "speaker": "B2F 樓層經理"
         }
       ]
@@ -1159,7 +1159,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Back off. This floor is currently restricted.",
+          "text": "退下。這層樓目前處於管制中。",
           "speaker": "漆黑派 警衛"
         }
       ]
@@ -1169,7 +1169,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Back off. This floor is currently restricted.",
+          "text": "退下。這層樓目前處於管制中。",
           "speaker": "漆黑派 警衛"
         }
       ]
@@ -1179,12 +1179,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Needlekin need thread! Needlekin need thread!",
+          "text": "針靈需要線！針靈需要線！",
           "speaker": "排隊的針靈"
         },
         {
           "index": 1,
-          "text": "Need waity-wait if want thread! Have to quiety-quiet!",
+          "text": "需要線就得等！要ㄤ靜地等！",
           "speaker": "排隊的針靈"
         }
       ]
@@ -1194,7 +1194,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Back off. This floor is currently restricted.",
+          "text": "退下。這層樓目前處於管制中。",
           "speaker": "漆黑派 警衛"
         }
       ]
@@ -1204,27 +1204,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Uh, who are these people...?>",
+          "text": "<這些人是……>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Identity checkpoint. We have information that there are strangers who are sheltering an unholy abomination. State your name and affiliation.",
+          "text": "現在要進行身分檢查。據說有一群異鄉人正在藏匿丹紅派造出的不敬之物。報上名字和所屬。",
           "speaker": "漆黑派 警衛"
         },
         {
           "index": 2,
-          "text": "I'm Pwie! And my affili... What's affiliation?",
+          "text": "名字是普依。所屬是……所屬是什麼？",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "...! Get them!",
+          "text": "……！抓住他們！",
           "speaker": "漆黑派 警衛"
         },
         {
           "index": 4,
-          "text": "... Stick close, Pwie.",
+          "text": "……緊跟在我身後，普依。",
           "speaker": "莫梭"
         },
         {
@@ -1239,12 +1239,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Busy-busy! Need to keep winding the thread.",
+          "text": "好忙，好忙！得一直捲線才行。",
           "speaker": "工作中的針靈"
         },
         {
           "index": 1,
-          "text": "Needlekin can't rest! Can't rest while queueing...",
+          "text": "針靈們不能休息。除了排隊的時候以外……",
           "speaker": "工作中的針靈"
         }
       ]
@@ -1254,31 +1254,31 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Needlekin are chattering seriously."
+          "text": "針靈們正一臉嚴肅地嘰嘰喳喳。"
         },
         {
           "index": 1,
-          "text": "Needlekin to the front wants pass word! Keep waiting.",
+          "text": "前面的針靈叫我轉告，要繼續等。",
           "speaker": "排隊的針靈"
         },
         {
           "index": 2,
-          "text": "Needlekin to the front's front wants pass word! Keep waiting.",
+          "text": "前前面的針靈叫我轉告，要繼續等。",
           "speaker": "排隊的針靈"
         },
         {
           "index": 3,
-          "text": "What are you waiting for?",
+          "text": "你們在等什麼？",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "Stranger to the front asks! What are we waiting for?",
+          "text": "前面的異鄉人叫我幫忙問，在等什麼。",
           "speaker": "排隊的針靈"
         },
         {
           "index": 5,
-          "text": "Stranger to the front's front asks! What are we waiting for?",
+          "text": "前前面的異鄉人們叫我幫忙問，在等什麼。",
           "speaker": "排隊的針靈"
         },
         {
@@ -1298,91 +1298,91 @@
         },
         {
           "index": 1,
-          "text": "There they are! The shameless wretches escorting the False Voice spawn...!",
+          "text": "就在那裡！帶著虛假之聲的孽種四處走動的無恥之徒……！",
           "speaker": "裸體"
         },
         {
           "index": 2,
-          "text": "... That conniving little rat...!",
+          "text": "……那個狡猾的傢伙，什麼時候……！",
           "speaker": "奧提斯"
         },
         {
           "index": 3,
-          "text": "So these are the offenders. Your service is noted.",
+          "text": "就是那些人啊。辛苦了。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 4,
-          "text": "I knew it the moment I saw them. I'd have grabbed them by the collar and dragged them over at once, but that False Voice, true to its Rouge savagery, tried to tear me apart without mercy!",
+          "text": "我一看到他們就知道了。雖然很想馬上揪住他們的衣領拖下來，但那個虛假之聲不愧是丹紅派造出來的，竟然想毫不留情地把我撕碎。",
           "speaker": "裸體"
         },
         {
           "index": 5,
-          "text": "And after a grueling and heroic struggle, I courageously kept them pinned there until...",
+          "text": "於是我艱辛地殊死搏鬥，英勇地牽制住他們……",
           "speaker": "裸體"
         },
         {
           "index": 6,
-          "text": "Good work. We'll take it from here.",
+          "text": "好，接下來就由我們來擋。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 7,
-          "text": "You strangers are profoundly ignorant. Nevertheless, mercy is among our virtues, so we shall offer you one last chance.",
+          "text": "異鄉人們無知至極，但我們是慈悲的，就給你們一次機會吧。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 8,
-          "text": "Hand over the Rouge's False Voice, and we will call your conduct a wrong turn and permit you to walk away unscathed.",
+          "text": "只要把丹紅派的虛假之聲交給我們……我們就當異鄉人們只是誤入歧途，放你們走。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 9,
-          "text": "... Unless the False Voice of the Rouges has taken you hostage? An impurity wrought by Le Rouge... would be more than capable of doing so.",
+          "text": "……還是說，你們被丹紅派的虛假之聲挾持為人質了？若是丹紅派造出的不純之物……絕對做得出這種事。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 10,
-          "text": "A.Y.B.D.?",
+          "text": "眼．瞎。",
           "speaker": "良秀"
         },
         {
           "index": 11,
-          "text": "Why beady...?",
+          "text": "眼瞎……？",
           "speaker": "普依"
         },
         {
           "index": 12,
-          "text": "It means \"are you blind, dumbass?\"",
+          "text": "是「眼珠子瞎了啊」……的意思。",
           "speaker": "良秀"
         },
         {
           "index": 13,
-          "text": "<Um, Ryōshū... I don't think you need to teach Pwie the, uh, art.>",
+          "text": "<那種東西……應該不用教吧。>",
           "speaker": "但丁"
         },
         {
           "index": 14,
-          "text": "The scabbard gave a faint, approving sway. For a moment, it felt as though Araya and I were exchanging a look."
+          "text": "刀鞘彷彿表示同意般微微晃動……感覺像是和阿賴耶對上了眼。"
         },
         {
           "index": 15,
-          "text": "Can't even tell guardians from hostages? Lemme pluck out those useless eyes—I think you'll be fine without them.",
+          "text": "連人質和監護人都分不清，看來那雙眼睛沒什麼用。挖掉也無妨。",
           "speaker": "良秀"
         },
         {
           "index": 16,
-          "text": "That being will bring ruin not only to us, but to the entire department store.",
+          "text": "那是不只會為我們，也即將為整座百貨公司招致沒落的存在。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 17,
-          "text": "I cannot fathom why those who are not even of the Rouge would march behind the voice of a false god.",
+          "text": "明明不是丹紅派的人……真不明白你們為何要追隨那偽神的聲音。",
           "speaker": "漆黑派 人事主管"
         },
         {
           "index": 18,
-          "text": "Had you joined hands with us, we might have watched the Grand Magasin prosper together... A road not taken. Truly, a pity.",
+          "text": "若是與我們聯手，就能一同見證百貨公司的繁榮了……真遺憾。實在是太遺憾了。",
           "speaker": "漆黑派 人事主管"
         }
       ]
@@ -1392,7 +1392,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Collected the Golden Hide from Palette's body."
+          "text": "從倒下的調色盤身上採集了黃金皮革。"
         }
       ]
     },
@@ -1401,16 +1401,16 @@
       "texts": [
         {
           "index": 0,
-          "text": "B2F Floor Manager's corpse."
+          "text": "看見了倒在地上的地下2樓樓層經理。"
         },
         {
           "index": 1,
-          "text": "Let us take the Golden Hide from this one.",
+          "text": "只要從此人身上取走黃金皮革就行了吧。",
           "speaker": "奧提斯"
         },
         {
           "index": 2,
-          "text": "Collected the Golden Hide from B2F's Floor Manager."
+          "text": "從地下2樓樓層經理身上採集了黃金皮革。"
         }
       ]
     },
@@ -1419,11 +1419,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Red-tinged dye trickles through hair stained in a multitude of colors."
+          "text": "從染著斑斕色彩的髮絲間，流出了混著紅色的染料。"
         },
         {
           "index": 1,
-          "text": "It gushes out in heavy streams, just like the tears we burst before."
+          "text": "就像我們之前打破的淚水一樣，不停地湧流著。"
         }
       ]
     },
@@ -1432,11 +1432,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Only silence remains in the once-crowded Nest."
+          "text": "曾經熙熙攘攘的巢中，只剩下一片死寂。"
         },
         {
           "index": 1,
-          "text": "Loose threads fray free from the worn skein, fluttering through the air."
+          "text": "線頭從磨損的線團中迸出，四處飄散。"
         }
       ]
     },
@@ -1445,7 +1445,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Their body, creaking in agony, crumbled apart and collapsed."
+          "text": "痛苦地嘎吱作響的身軀，像碎裂般崩塌了。"
         }
       ]
     },
@@ -1459,7 +1459,7 @@
         },
         {
           "index": 1,
-          "text": "I'm sorry... I wanted so badly to make you those favorite clothes...",
+          "text": "對不起……姊姊喜歡的衣服……我真的好想讓妳穿上……",
           "speaker": "調色盤"
         }
       ]
@@ -1483,37 +1483,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "I hear... weeping...",
+          "text": "有哭聲……傳來……",
           "speaker": "裁縫之王"
         },
         {
           "index": 1,
-          "text": "Take it from them... I have to... eat it...",
+          "text": "搶過來……我……要吃掉……",
           "speaker": "裁縫之王"
         },
         {
           "index": 2,
-          "text": "It will be... so, so tasty...",
+          "text": "因為一定……超級超級好吃……",
           "speaker": "裁縫之王"
         },
         {
           "index": 3,
-          "text": "Quiety-quiet! Our king is wakey-wake!",
+          "text": "ㄤ靜，ㄤ靜！我們的王醒來了！",
           "speaker": "吵鬧的針靈"
         },
         {
           "index": 4,
-          "text": "Our king'll start stabby-stabbing!",
+          "text": "王要開始戳刺了！",
           "speaker": "挑剔的針靈"
         },
         {
           "index": 5,
-          "text": "Stabby-stabby is tasty-tasty! And we lap it up quiety-quiet!",
+          "text": "戳下去就好吃！要ㄤ靜地舔！",
           "speaker": "貪婪的針靈"
         },
         {
           "index": 6,
-          "text": "Goody-good! Then let's give the king what he wants!",
+          "text": "豪，豪！那就得完成王的請求！",
           "speaker": "吵鬧的針靈"
         }
       ]
@@ -1523,12 +1523,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Not Sinclair? We must be on the B2, then. What are we doing here, Executive Manager...?",
+          "text": "……既然不是辛克萊，看來這裡是地下2樓吧。又是為了什麼事回到這裡……",
           "speaker": "奧提斯"
         },
         {
           "index": 1,
-          "text": "<We need more ingredients.>",
+          "text": "<需要更多材料了。>",
           "speaker": "但丁"
         }
       ]
@@ -1538,7 +1538,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There's nothing else to collect from this one."
+          "text": "這傢伙身上似乎已經沒有東西可拿了。"
         }
       ]
     },
@@ -1547,7 +1547,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There's nothing else to collect from this one."
+          "text": "這傢伙身上似乎已經沒有東西可拿了。"
         }
       ]
     },
@@ -1561,7 +1561,7 @@
         },
         {
           "index": 1,
-          "text": "Putty stepped forward, blocking our way."
+          "text": "名叫補土的人擋在了前方。"
         }
       ]
     },
@@ -1570,12 +1570,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "It will hurt, but it cannot be helped. What you desire and what we desire can never meet...",
+          "text": "就算痛苦也沒辦法呢。因為你們的渴望與我們的渴望無法交會……",
           "speaker": "B2F 樓層經理"
         },
         {
           "index": 1,
-          "text": "Let us do all we can to sink each other's desires to an end."
+          "text": "就讓我們竭盡全力，令彼此的渴望沉落吧。"
         }
       ]
     },
@@ -1584,12 +1584,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Things seeping from flesh...",
+          "text": "從肉裡汩汩滲出的東西……",
           "speaker": "裁縫之王"
         },
         {
           "index": 1,
-          "text": "Lick them all... leave none behiiind...",
+          "text": "一點不剩地……舔個精光。",
           "speaker": "裁縫之王"
         }
       ]
@@ -1599,7 +1599,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Why are you hurting us?",
+          "text": "為什麼要打我們？",
           "speaker": "調色盤"
         },
         {
@@ -1609,7 +1609,7 @@
         },
         {
           "index": 2,
-          "text": "Putty approaches us threateningly."
+          "text": "補土來勢洶洶地逼近。"
         }
       ]
     },
@@ -1618,7 +1618,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Large dye vats are blocking the way. Meursault tries pushing them aside, but they won't budge."
+          "text": "巨大的染料桶擋住了去路。莫梭試著推了推，但它們紋絲不動。"
         }
       ]
     },
@@ -1627,7 +1627,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Spools of pure white thread are wound here."
+          "text": "纏繞著雪白的線。"
         }
       ]
     },
@@ -1636,7 +1636,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It seems to be a spinning machine of sorts. The contraption is spewing strands of threads at a constant, even pace."
+          "text": "看起來像是製線的機器。正以固定的速度製造出絲線。"
         }
       ]
     },
@@ -1645,7 +1645,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Strands of thread spill forth, winding themselves around the spool. Still no clue as to where it's coming from."
+          "text": "絲線不斷從某處冒出並被捲起來。依然不知道是從哪裡來的。"
         }
       ]
     },
@@ -1654,26 +1654,26 @@
       "texts": [
         {
           "index": 0,
-          "text": "This is the wall Kromer \"walked into.\" It's not an illusion or anything—she really just phased into a solid wall."
+          "text": "是克羅默消失的那面牆。真的完全封死了。"
         },
         {
           "index": 1,
-          "text": "Worthless B.S. on the floor. Did that woman drop it?",
+          "text": "……地上掉了個無．用．噗哈哈。是那傢伙掉的嗎？",
           "speaker": "良秀"
         },
         {
           "index": 2,
-          "text": "<Well, judging on how she's been interacting with us.. she probably left it here on purpose.>",
+          "text": "<以那個人的個性，應該是故意丟下的吧……>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "<Meursault, take it for now. It might come in handy.>",
+          "text": "<莫梭，先收下吧。說不定會派上用場。>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "As you wish.",
+          "text": "明白了。",
           "speaker": "莫梭"
         }
       ]
@@ -1683,25 +1683,25 @@
       "texts": [
         {
           "index": 0,
-          "text": "The machine looks complicated to operate."
+          "text": "是台看起來很複雜的機器。是怎麼運作的呢？"
         },
         {
           "index": 1,
-          "text": "<Meursault, do you know how to operate this?>",
+          "text": "<莫梭，你會操作這個嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "I am not familiar with the work procedures of Sisyphe's lower floors.",
+          "text": "我不太清楚地下樓層的作業方式。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "Meanwhile, Outis began manipulating the machine's complex display."
+          "text": "這段期間，奧提斯開始東按西按地操作起看似複雜的畫面。"
         },
         {
           "index": 4,
-          "text": "Hm... I do not yet understand the operating principle, but I have a general grasp of the structure.",
+          "text": "嗯……雖然不懂原理，但結構大致明白了。",
           "speaker": "奧提斯"
         },
         {
@@ -1711,12 +1711,12 @@
         },
         {
           "index": 6,
-          "text": "The interface presents three functions: extraction, spinning, and dyeing. Your orders, Executive Manager?",
+          "text": "似乎有三種功能。提取、紡織、染色……您要試哪一個？",
           "speaker": "奧提斯"
         },
         {
           "index": 7,
-          "text": "Three buttons appear on the display Outis indicates."
+          "text": "奧提斯所指的畫面上浮現著三個按鈕。"
         }
       ]
     },
@@ -1725,7 +1725,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are three buttons on the screen."
+          "text": "浮現著三個按鈕。"
         }
       ]
     },
@@ -1734,7 +1734,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's the machine that drew thread out of Meursault. There doesn't seem to be any reason to try it again."
+          "text": "是從莫梭身上抽出線的機器。似乎沒有理由再試一次。"
         }
       ]
     },
@@ -1743,11 +1743,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "With a disconcerting whir, the machine sucked a patch of Meursault's skin onto its surface."
+          "text": "伴隨著一陣可疑的震動，莫梭的一部分皮膚被吸到了機器上。"
         },
         {
           "index": 1,
-          "text": "Huh. These threads are O. of a K.",
+          "text": "哈。看來不是普．線啊。",
           "speaker": "良秀"
         }
       ]
@@ -1757,7 +1757,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "With a disconcerting whir, the machine sucked a patch of Meursault's skin onto its surface."
+          "text": "伴隨著一陣可疑的震動，莫梭的一部分皮膚被吸到了機器上。"
         }
       ]
     },
@@ -1766,11 +1766,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "With a disconcerting whir, the machine sucked a patch of Meursault's skin onto its surface."
+          "text": "伴隨著一陣可疑的震動，莫梭的一部分皮膚被吸到了機器上。"
         },
         {
           "index": 1,
-          "text": "... Are... you going to press it again, Executive Manager?",
+          "text": "……您還打算繼續按嗎？",
           "speaker": "奧提斯"
         }
       ]
@@ -1780,31 +1780,31 @@
       "texts": [
         {
           "index": 0,
-          "text": "With a disconcerting whir, the machine sucked a patch of Meursault's skin onto its surface."
+          "text": "伴隨著一陣可疑的震動，莫梭的一部分皮膚被吸到了機器上。"
         },
         {
           "index": 1,
-          "text": "You want it S.I.T.?",
+          "text": "是想要分．線嗎？",
           "speaker": "良秀"
         },
         {
           "index": 2,
-          "text": "She is asking whether your objective is to have the skin \"split into threads,\" Manager.",
+          "text": "她在問您，是不是想讓它分解成線，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "<N-no, that's not what I'm doing... But has Sinclair ever interpreted that one before?>",
+          "text": "<不、不是那樣啦……不過辛克萊有翻譯過那種東西嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "He has interpreted \"S.E.N.I.T.\" before on the bus. It stands for \"split every nerve into threads.\"",
+          "text": "神．分．線。「把你的神經一根根像線一樣分解掉」……他曾在巴士上說過這樣的翻譯。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "<I really don't remember what the context was when she said it.>",
+          "text": "<完全想不出那是在什麼情況下冒出來的縮寫。>",
           "speaker": "但丁"
         }
       ]
@@ -1814,11 +1814,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "A spool of thread plopped out of the contraption."
+          "text": "機器裡「咚」地掉出了一團線。"
         },
         {
           "index": 1,
-          "text": "It appears to be thread made from... Meursault's skin."
+          "text": "看來是以莫梭……為材料的線。"
         }
       ]
     },
@@ -1827,7 +1827,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There shouldn't be any reason to press this button again."
+          "text": "似乎沒有理由再按下去了。"
         }
       ]
     },
@@ -1836,25 +1836,25 @@
       "texts": [
         {
           "index": 0,
-          "text": "The threads twang lightly as the machine pulls them tight."
+          "text": "傳來線被拉得緊繃的聲音。"
         },
         {
           "index": 1,
-          "text": "They're starting to multiply..."
+          "text": "眼前的線越來越多了。"
         },
         {
           "index": 2,
-          "text": "... Uh, we weren't told anything about increased production volume.",
+          "text": "……沒聽說布料要增加啊。",
           "speaker": "勞工針靈"
         },
         {
           "index": 3,
-          "text": "Slowly-slow! Gently-gentle! You'll break it!",
+          "text": "慢點！慢點！那樣會壞掉的！",
           "speaker": "勞工針靈2"
         },
         {
           "index": 4,
-          "text": "... The customers working nearby are glaring daggers at us."
+          "text": "……遭到周圍正在工作的顧客們狠狠瞪視。"
         }
       ]
     },
@@ -1863,7 +1863,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... The accusatory glares around me are too sharp to risk pressing it again."
+          "text": "周圍的視線太刺人，實在不好再按下去了。"
         }
       ]
     },
@@ -1872,11 +1872,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "A warning states that no dye is available."
+          "text": "跳出了沒有染料的警告訊息。"
         },
         {
           "index": 1,
-          "text": "Nothing happened."
+          "text": "什麼事也沒發生。"
         }
       ]
     },
@@ -1885,12 +1885,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "With all due respect, Executive Manager... may I ask what exactly it is that you intend to accomplish?",
+          "text": "……可否請教您的用意。",
           "speaker": "奧提斯"
         },
         {
           "index": 1,
-          "text": "<... I mean... Sometimes you just want to mash some buttons, right?>",
+          "text": "<……有時候就是會想把這種東西全部按一遍嘛。>",
           "speaker": "但丁"
         }
       ]
@@ -1900,15 +1900,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "As I try to hammer the button once more, something taps my elbow."
+          "text": "我正想再連按一次時，有什麼東西輕輕碰了一下我的手肘。"
         },
         {
           "index": 1,
-          "text": "I turned to find Ryōshū's scabbard, Araya."
+          "text": "轉過視線……看見了良秀的刀鞘，阿賴耶。"
         },
         {
           "index": 2,
-          "text": "For a moment, I could swear I heard it say, \"You really should stop acting like a kid...\""
+          "text": "「又不是小孩子，別鬧了……」我好像聽見了這樣的聲音。"
         }
       ]
     },
@@ -1917,7 +1917,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Yeah, I should stop. This is getting ridiculous."
+          "text": "算了吧。這種事。"
         }
       ]
     },
@@ -1926,7 +1926,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Dyed fabrics are piled high."
+          "text": "堆著染好的布料。"
         }
       ]
     },
@@ -1935,11 +1935,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Dyed fabrics hang here."
+          "text": "掛著染好的布料。"
         },
         {
           "index": 1,
-          "text": "Hurried footsteps come racing from somewhere as I inspect the fabric."
+          "text": "正在查看時，上方傳來急忙跑來的聲音。"
         }
       ]
     },
@@ -1948,11 +1948,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Dyed fabrics hang here."
+          "text": "掛著染好的布料。"
         },
         {
           "index": 1,
-          "text": "Hurried footsteps come racing from somewhere as I inspect the fabric."
+          "text": "正在查看時，上方傳來急忙跑來的聲音。"
         }
       ]
     },
@@ -1961,7 +1961,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Dyed fabrics hang here."
+          "text": "掛著染好的布料。"
         }
       ]
     },
@@ -1970,16 +1970,16 @@
       "texts": [
         {
           "index": 0,
-          "text": "<I heard something like the rumble of a train last time coming from here...>",
+          "text": "<上次這裡傳來過像是列車的聲音……>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "A sound resembling the rumble of a train comes from beyond the door. I move closer to investigate, but unlike before, I can't see any light."
+          "text": "門的另一頭傳來類似列車的聲音。我走近查看，但和上次不同，看不到任何光。"
         },
         {
           "index": 2,
-          "text": "<I can hear the sound, but...>",
+          "text": "<好像是有聲音……>",
           "speaker": "但丁"
         },
         {
@@ -1989,7 +1989,7 @@
         },
         {
           "index": 4,
-          "text": "Curious, Pwie approached me as I inspected the door..."
+          "text": "我正探頭探腦時，普依大概是好奇，走了過來……"
         },
         {
           "index": 5,
@@ -1998,35 +1998,35 @@
         },
         {
           "index": 6,
-          "text": "... and disappeared into the crevice."
+          "text": "普依從縫隙間消失了。"
         },
         {
           "index": 7,
-          "text": "... They will return soon, Manager.",
+          "text": "……很快就會回來的，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": "Meursault was right. Pwie returned in less than a minute."
+          "text": "正如莫梭所說，不到1分鐘普依就回來了。"
         },
         {
           "index": 9,
-          "text": "Threads are running inside. And then they stopped, and then ran again. Why are they doing that?",
+          "text": "裡面有線在跑。跑著跑著停下來，然後又跑。為什麼會這樣？",
           "speaker": "普依"
         },
         {
           "index": 10,
-          "text": "<... I wanna know, too.>",
+          "text": "<……這我也很好奇。>",
           "speaker": "但丁"
         },
         {
           "index": 11,
-          "text": "... It seems this child can enter places we cannot, just like the other customers in the department store.",
+          "text": "……普依那孩子似乎和這裡的其他顧客一樣，能進入我們無法通行的通道。",
           "speaker": "奧提斯"
         },
         {
           "index": 12,
-          "text": "<We'll need to pay special attention to our back and make sure they're following us.>",
+          "text": "<得更常留意身後才行。>",
           "speaker": "但丁"
         }
       ]
@@ -2036,7 +2036,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The intermittent sounds of train horns and people murmuring are coming through the gap."
+          "text": "縫隙的另一頭不時傳來鳴笛聲和說話聲。"
         }
       ]
     },
@@ -2045,30 +2045,30 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's a sky-blue dye with a particularly pure hue."
+          "text": "是色澤格外清透的空色染料。"
         },
         {
           "index": 1,
-          "text": "A note beside it reads, \"Dye under testing. If you intend to use it, take only a little...\""
+          "text": "旁邊像告示般寫著「測試中的染料。要試用的話，只能舀一點走……」。"
         },
         {
           "index": 2,
-          "text": "... Not bad. It has some aesthetic value.",
+          "text": "……還不錯嘛。在美學上有欣賞的價值。",
           "speaker": "良秀"
         },
         {
           "index": 3,
-          "text": "No eyeball payment appears to be required. It should be okay to requisition a small sample.",
+          "text": "看來不需要支付眼球，舀一點走也沒什麼不好。",
           "speaker": "奧提斯"
         },
         {
           "index": 4,
-          "text": "<Let's fill just one container, Meursault.>",
+          "text": "<莫梭，我們舀一桶就好。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "Obtained a sample of sky-blue dye."
+          "text": "獲得了空色染料樣本。"
         }
       ]
     },
@@ -2077,11 +2077,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Nothing but pitch-black darkness. Meursault reaches toward a tiny twinkle of light so faint that it is almost impossible to notice."
+          "text": "在伸手不見五指的地方，莫梭朝著微弱得難以察覺的小小光芒伸出了手。"
         },
         {
           "index": 1,
-          "text": "Meursault obtained Sawdust."
+          "text": "莫梭收下了木頭鋸屑。"
         }
       ]
     },
@@ -2090,11 +2090,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Green dye."
+          "text": "是綠色的染料。"
         },
         {
           "index": 1,
-          "text": "Like last time, looking at it brings a sense of serenity."
+          "text": "再看一次，心情還是會平靜下來。"
         }
       ]
     },
@@ -2103,11 +2103,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "A dye with a yellow hue. At a glance, it almost appears golden."
+          "text": "是帶有黃色光澤的染料。乍看之下也像是金色。"
         },
         {
           "index": 1,
-          "text": "Strangers. That's not the Golden Dye, so stop hovering around it.",
+          "text": "異鄉人們。那不是黃金染料，別在那邊探頭探腦。",
           "speaker": "調色盤"
         }
       ]
@@ -2117,11 +2117,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Blue dye. Ryōshū turns her head away, looking displeased. Perhaps the azure hue reminded her of the blue glow of the Pinky Nursefather's Corridor."
+          "text": "是藍色的染料。或許是因為和在小指的房間看到的光很像，良秀似乎不太喜歡，把頭撇開了。"
         },
         {
           "index": 1,
-          "text": "Araya, on the other hand, is rattling happily as we approach the blue dye. Maybe blue is her favorite color."
+          "text": "阿賴耶似乎很喜歡這個顏色，每次靠近藍色染料都會發出喀啦喀啦的聲響。是喜歡藍色嗎？"
         }
       ]
     },
@@ -2130,36 +2130,36 @@
       "texts": [
         {
           "index": 0,
-          "text": "A container filled with red dye. \"TO BE DELIVERED TO B3\" is written along its side."
+          "text": "是裝滿紅色染料的桶子。側面寫著「需配送至地下3樓」。"
         },
         {
           "index": 1,
-          "text": "I like this color.",
+          "text": "我喜歡這個顏色。",
           "speaker": "普依"
         },
         {
           "index": 2,
-          "text": "嗬哦。",
+          "text": "呵。",
           "speaker": "良秀"
         },
         {
           "index": 3,
-          "text": "T.A.R.T.?",
+          "text": "偏好強．熱嗎？",
           "speaker": "良秀"
         },
         {
           "index": 4,
-          "text": "<... Tart? What's dessert got to do with this?>",
+          "text": "<……強熱又是什麼？>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "\"Torrid and rhapsodic taste,\" Manager.",
+          "text": "意思是「偏好強烈而熱情的嗎？」。經理。",
           "speaker": "莫梭"
         },
         {
           "index": 6,
-          "text": "I dunno. Seeing this color just makes me feel calm.",
+          "text": "那個我不太懂。只是看著這個顏色，心裡就會很平靜。",
           "speaker": "普依"
         }
       ]
@@ -2169,21 +2169,21 @@
       "texts": [
         {
           "index": 0,
-          "text": "My legs hurt. I wanna sit down.",
+          "text": "腿好痛。想坐下。",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "Pwie points to a sofa splashed with all sorts of colors."
+          "text": "普依指著一張塗得五顏六色的沙發。"
         },
         {
           "index": 2,
-          "text": "If you want to sit, then you need only sit.",
+          "text": "想坐的話，坐下就是了。",
           "speaker": "良秀"
         },
         {
           "index": 3,
-          "text": "Ryōshū picked Pwie up and set them down on the sofa."
+          "text": "良秀抱起普依，放到了沙發上坐好。"
         },
         {
           "index": 4,
@@ -2192,40 +2192,40 @@
         },
         {
           "index": 5,
-          "text": "Putty quietly glared back and forth between the sofa and Ryōshū, then turned her attention to the dyes without a word."
+          "text": "補土默默地輪流瞪著沙發和良秀，隨即靜靜地把視線轉向了染料。"
         },
         {
           "index": 6,
-          "text": "<So it was okay to sit here...? Then Iet me take a break too...>",
+          "text": "<原來可以坐嗎……？那我也……>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "As I move to sit down, Putty raises one of her awl-sharp legs."
+          "text": "我正要坐下，補土就舉起了像錐子一樣尖銳的腳。"
         },
         {
           "index": 8,
-          "text": "<... Yeah, never mind. I'll just stand.>",
+          "text": "<……我還是站著好了。>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "This sofa's nice and squishy, but it's not exactly sturdy. The kid's fine, but it'll probably cave right in if one of you sits on it.",
+          "text": "這張沙發軟綿綿的，但不怎麼牢固。小孩就算了，你們坐上去的話，它會整個塌掉喔？",
           "speaker": "調色盤"
         },
         {
           "index": 10,
-          "text": "Hm. Perhaps we should purchase a sofa for your exclusive use from the Furniture Hall on 4F, Executive Manager.",
+          "text": "嗯。不如到據說位於4樓的家具展廳，為經理您購買一張專用沙發如何？",
           "speaker": "奧提斯"
         },
         {
           "index": 11,
-          "text": "A sofa that follows you around, allowing you to sit whenever and wherever necessary so your legs do not tire...",
+          "text": "為了不讓經理您的雙腿疲累，至少該備一張會跟著您走、讓您隨時隨地都能坐下的沙發……",
           "speaker": "奧提斯"
         },
         {
           "index": 12,
-          "text": "<... It's okay. I think I'm fine on my feet.>",
+          "text": "<……我還是覺得站著就好。>",
           "speaker": "但丁"
         }
       ]
@@ -2235,7 +2235,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What looks like a department-store directory is glued on a drink vending machine. Damage has obscured most of the lettering."
+          "text": "飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。"
         }
       ]
     },
@@ -2244,7 +2244,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What looks like a department-store directory is glued on a drink vending machine. Damage has obscured most of the lettering."
+          "text": "飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。"
         }
       ]
     },
@@ -2253,7 +2253,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's filled with a sky-blue dye with a particularly pure hue."
+          "text": "裡面裝滿了色澤格外清透的空色染料。"
         }
       ]
     },
@@ -2262,7 +2262,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Blue dye. Ryōshū turns her head away, looking displeased. Perhaps the azure hue reminded her of the blue glow of the Pinky Nursefather's Corridor.\nAraya, on the other hand, is rattling happily as we approach the blue dye. Maybe blue is her favorite color."
+          "text": "是藍色的染料。或許是因為和在小指的房間看到的光很像，良秀似乎不太喜歡，把頭撇開了。\n阿賴耶似乎很喜歡這個顏色，每次靠近藍色染料都會發出喀啦喀啦的聲響。是喜歡藍色嗎？"
         }
       ]
     },
@@ -2271,7 +2271,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A bucket full of purple dye. The label on the side says \"PURITY - ADEQUATE\"."
+          "text": "是裝滿紫色染料的桶子。側面寫著「純度良好」。"
         }
       ]
     },
@@ -2280,7 +2280,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A bucket full of blue-ish purple dye. The label on the side says \"PURITY - NOT YET CHECKED\"."
+          "text": "是裝滿略帶藍色調的紫色染料的桶子。側面寫著「需確認純度」。"
         }
       ]
     },
@@ -2289,7 +2289,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A bucket, slowly filling with reddish purple dye. The label on the side says \"PREMIUM GRADE\"."
+          "text": "是正在注入帶紅色調的紫色染料的桶子。側面寫著「優秀等級」。"
         }
       ]
     },
@@ -2298,7 +2298,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Says \"TO BE DISCARDED\". On second look, it does look a bit cloudy."
+          "text": "上面寫著「預定廢棄」。感覺莫名有些混濁。"
         }
       ]
     },
@@ -2307,7 +2307,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Ohh, maybe this is the Golden Dy—ah. There's a label that says \"NOT THIS ONE\" taped on the side of the bucket. Guess this isn't it..."
+          "text": "還以為這是黃金染料，但桶子上寫著「請勿誤認」。看來不是……"
         }
       ]
     },
@@ -2316,7 +2316,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Must get these mixed up all the time."
+          "text": "大概常常有人搞混吧。"
         }
       ]
     },
@@ -2325,7 +2325,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The label reads: \"DISPOSAL\"."
+          "text": "上面寫著「廢棄物」。"
         }
       ]
     },
@@ -2334,7 +2334,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A green dye bucket."
+          "text": "是綠色的染料桶。"
         }
       ]
     },
@@ -2343,7 +2343,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This bucket is sealed tight."
+          "text": "是封得嚴嚴實實的桶子。"
         }
       ]
     },
@@ -2352,12 +2352,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Hey, here's a bucket of transparent liquid. Maybe it's L'Incolore?>",
+          "text": "<這種透明的顏色，不就是無色染料嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "... We cannot say for certain, Manager. It may be a different fluid that is just as transparent.",
+          "text": "……也有可能是其他透明的液體，因此無法斷定。",
           "speaker": "莫梭"
         },
         {
@@ -2367,37 +2367,37 @@
         },
         {
           "index": 3,
-          "text": "No, no. This isn't transparent.",
+          "text": "不對。這不是透明的。",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "Oho, it's not? Then what does it look like to you?",
+          "text": "嗬哦。那看起來是什麼顏色？",
           "speaker": "良秀"
         },
         {
           "index": 5,
-          "text": "It's... quiet... sad... and splish-splashy.",
+          "text": "是安靜……悲傷……又波光蕩漾的顏色。",
           "speaker": "普依"
         },
         {
           "index": 6,
-          "text": "Not the most appropriate collection of adjectives for describing color, are they?",
+          "text": "用來描述顏色，這組詞彙似乎並不恰當。",
           "speaker": "奧提斯"
         },
         {
           "index": 7,
-          "text": "Dilettante. Art isn't just a simple observation and recreation of visible colors.",
+          "text": "真是不懂行。只說出、塗上看得見的顏色，那不是藝術。",
           "speaker": "良秀"
         },
         {
           "index": 8,
-          "text": "<Regardless, Pwie isn't exactly doing art right now, are they?>",
+          "text": "<普依在做的應該也不是藝術吧……>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "Pwie stared into the bucket for a while, then turned away."
+          "text": "普依靜靜地望著桶子裡面，然後轉過身去。"
         }
       ]
     },
@@ -2406,7 +2406,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Back again in one piece. Did you come to say goodbye before leaving?",
+          "text": "你們平安無事地回來了呢。是在離開之前來道別的嗎？",
           "speaker": "調色盤"
         },
         {
@@ -2416,7 +2416,7 @@
         },
         {
           "index": 2,
-          "text": "Oh, Big Sis. I told you—they're not thieves. They didn't come to drain my dye material.",
+          "text": "哎唷，姊姊。我不是說過了嗎。這些人不是來偷我的染色原料的啦。",
           "speaker": "調色盤"
         }
       ]
@@ -2426,12 +2426,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "So... What brings you back? Need another color?",
+          "text": "所以你們來做什麼？有需要的顏色嗎？",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": "We need... the Golden Resin in your possession.",
+          "text": "我們……需要妳持有的黃金松脂。",
           "speaker": "莫梭"
         }
       ]
@@ -2441,12 +2441,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "No can do.",
+          "text": "那可不行。",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": "We need it... regardless.",
+          "text": "就算不行……也需要。",
           "speaker": "莫梭"
         },
         {
@@ -2461,17 +2461,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "... You're going to take it by force, aren't you.",
+          "text": "……意思是就算硬搶也要拿走啊。",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": "But... I trusted you. I even opened the downstairs path for you.",
+          "text": "我連通往地下的路都為你們打開了……",
           "speaker": "調色盤"
         },
         {
           "index": 2,
-          "text": "... I regret the breach of trust. But your Golden Resin is essential to our mission.",
+          "text": "……對不住了。但我們無論如何都需要妳手上的黃金松脂。",
           "speaker": "奧提斯"
         }
       ]
@@ -2481,22 +2481,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "Strangers who can't be trusted. I should never have opened you the path.",
+          "text": "不可信任的異鄉人。我根本不該告訴你們路的。",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": "Battle is inevitable at this rate, Executive Manager. But if that is what you choose, I will not hesitate...",
+          "text": "照這樣下去，武力衝突在所難免。若您希望如此，我並不介意……",
           "speaker": "奧提斯"
         },
         {
           "index": 2,
-          "text": "<... Do we actually have anything we can trade for it?>",
+          "text": "<……可是我們還剩下什麼能拿來交換黃金松脂的東西嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "What transaction do you propose, Manager?",
+          "text": "您要提出什麼樣的交易。",
           "speaker": "莫梭"
         }
       ]
@@ -2506,17 +2506,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "I thought strangers from the Fount... would be different.",
+          "text": "我還以為從泉來的異鄉人們……會有些不同。",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": ".......",
+          "text": "……（威嚇的聲音）",
           "speaker": "補土"
         },
         {
           "index": 2,
-          "text": "You're right, Big Sis. If these cruel people want to hurt us, then we can only...",
+          "text": "姊姊說得對。要是這些惡毒的人要傷害我們，那我們也……",
           "speaker": "調色盤"
         }
       ]
@@ -2526,7 +2526,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I thought you... would be different.",
+          "text": "我還以為你們……會有些不同。",
           "speaker": "調色盤"
         },
         {
@@ -2536,7 +2536,7 @@
         },
         {
           "index": 2,
-          "text": "You're right, Big Sis. If these cruel people want to hurt us, then we can only...",
+          "text": "姊姊說得對。要是這些惡毒的人要傷害我們，那我們也……",
           "speaker": "調色盤"
         }
       ]
@@ -2546,12 +2546,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Don't need it.",
+          "text": "不需要。",
           "speaker": "調色盤"
         },
         {
           "index": 1,
-          "text": "I thought you... would be different.",
+          "text": "我還以為你們……會有些不同。",
           "speaker": "調色盤"
         },
         {
@@ -2561,7 +2561,7 @@
         },
         {
           "index": 3,
-          "text": "You're right, Big Sis. If these cruel people want to hurt us, then we can only...",
+          "text": "姊姊說得對。要是這些惡毒的人要傷害我們，那我們也……",
           "speaker": "調色盤"
         }
       ]
@@ -2571,22 +2571,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "<If Palette wanted clothing made from Golden Fabric, she would have asked for Meursault's gauntlet or Wriggley earlier.>",
+          "text": "<如果調色盤想用黃金之布做衣服，她早就會想要莫梭的護手或噗扭了。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "<But all she had asked from us was the skein...>",
+          "text": "<可是她沒有那麼做，只向我們要了線團，這就表示……>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "<The scissors. Let's offer what she actually needs to make the clothes.>",
+          "text": "<把能做衣服的剪刀給她吧。>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "If you give us the Golden Resin, we will give you scissors you can use to make the clothing you want.",
+          "text": "若妳交出黃金松脂，我們就給妳能做衣服的剪刀。",
           "speaker": "莫梭"
         },
         {
@@ -2596,27 +2596,27 @@
         },
         {
           "index": 5,
-          "text": "Wait, Big Sis! Scissors? What kind of scissors?",
+          "text": "姊姊，等一下。你們說的剪刀，是指什麼剪刀？",
           "speaker": "調色盤"
         },
         {
           "index": 6,
-          "text": "The scissors of Annette the Alterationist... the tailor who made many attire for Le Noir.",
+          "text": "是曾為漆黑派做出無數衣服的……修補達人安妮特的剪刀。",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "Annette the Alterationist... I've heard the Noir customers mention her. They say her scissors can turn any thread into the prettiest fabric...",
+          "text": "修補達人安妮特……我聽漆黑派的顧客們說過。說是不管什麼線，她都能做成最美麗的布料……",
           "speaker": "調色盤"
         },
         {
           "index": 8,
-          "text": "Ugh... I'm still gonna have to refuse... I can't make the Golden Dye without the Golden Resin.",
+          "text": "嗚……可是不行。沒有黃金松脂，就做不出黃金染料。",
           "speaker": "調色盤"
         },
         {
           "index": 9,
-          "text": "You're not making any clothing for your sister without the scissors.",
+          "text": "反過來說，沒有剪刀的話，妳也做不出旁邊那傢伙的衣服吧。",
           "speaker": "良秀"
         },
         {
@@ -2626,17 +2626,17 @@
         },
         {
           "index": 11,
-          "text": "Ever since sunbathing occupied her mind, she's never left the Golden Resin's side, but... Big Sis's favorite color, it was... sky blue.",
+          "text": "姊姊她……喜歡空色。雖然自從喜歡上曬太陽之後，她就一直待在黃金松脂旁邊……",
           "speaker": "調色盤"
         },
         {
           "index": 12,
-          "text": "... You're right. I've no need of the Golden Resin anymore. But those scissors... They are the missing stroke.",
+          "text": "……說得也是。黃金松脂現在對我來說好像已經不需要了。反倒是那把剪刀……我非常需要。",
           "speaker": "調色盤"
         },
         {
           "index": 13,
-          "text": "We placed the dulled scissors into Palette's hands and received the Golden Resin in exchange."
+          "text": "我們把變鈍的剪刀交給調色盤，換來採集黃金松脂。"
         }
       ]
     },
@@ -2655,7 +2655,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Stop that. Why are you hurting her?",
+          "text": "住手，為什麼要打姊姊？",
           "speaker": "調色盤"
         },
         {
@@ -2665,7 +2665,7 @@
         },
         {
           "index": 2,
-          "text": "If there's something you want, you speak to me.",
+          "text": "有想要的東西就跟我說。",
           "speaker": "調色盤"
         }
       ]
@@ -2675,7 +2675,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Putty stumbles, then straightens her knees."
+          "text": "踉蹌的補土伸直彎折的膝蓋，再次站了起來。"
         },
         {
           "index": 1,
@@ -2694,12 +2694,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "... (She fixes us with a threatening glare.)",
+          "text": "……（用威嚇的眼神看著我們）",
           "speaker": "補土"
         },
         {
           "index": 1,
-          "text": "Why are you hurting her?",
+          "text": "為什麼要打姊姊？",
           "speaker": "調色盤"
         }
       ]
@@ -2709,11 +2709,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "With a long creak, the arms begin to sag."
+          "text": "伴隨著嘎吱聲，可以看見一隻隻手臂垂落下來。"
         },
         {
           "index": 1,
-          "text": "Every one of those hands is reaching toward where Palette had been."
+          "text": "那許許多多的手，全都朝著調色盤原本所在的方向。"
         }
       ]
     },
@@ -2722,7 +2722,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Mangled flesh peeks from beneath the tiny scrap of cloth."
+          "text": "巴掌大的布底下，隱約露出壓爛的肉塊。"
         }
       ]
     },
@@ -2731,7 +2731,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pulverized flesh peeks from beneath the tiny scrap of cloth."
+          "text": "巴掌大的布底下，隱約露出被搗爛的肉塊。"
         }
       ]
     },
@@ -2740,7 +2740,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's exploded into a mess of blue dye and flesh. It's difficult to imagine what it could've looked like before."
+          "text": "藍色的染料與肉塊向四面八方迸了出來。難以辨認原本的模樣。"
         }
       ]
     },
@@ -2749,11 +2749,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "What difference is there between tears shed in pain and tears shed in sorrow?"
+          "text": "因痛苦而流下的淚水，與因悲傷哭泣而流下的淚水，有什麼不同呢。"
         },
         {
           "index": 1,
-          "text": "What separates sorrow from pain?"
+          "text": "悲傷與痛苦……有什麼不同呢。"
         }
       ]
     },
@@ -2762,11 +2762,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "What difference is there between tears shed in pain and tears shed in sorrow?"
+          "text": "因痛苦而流下的淚水，與因悲傷哭泣而流下的淚水，有什麼不同呢。"
         },
         {
           "index": 1,
-          "text": "What separates sorrow from pain?"
+          "text": "悲傷與痛苦……有什麼不同呢。"
         }
       ]
     },
@@ -2775,7 +2775,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Lifting the cloth slightly reveals flesh mashed to a pulp, clinging wetly to its underside."
+          "text": "稍微掀開布一看，爛成一團的肉塊黏糊糊地沾了上來。"
         }
       ]
     },
@@ -2784,7 +2784,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A container filled with red dye. \"TO BE DELIVERED TO B3\" is written along its side."
+          "text": "是裝滿紅色染料的桶子。側面寫著「需配送至地下3樓」。"
         }
       ]
     },
@@ -2793,7 +2793,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A sofa painted in a riot of colors."
+          "text": "是張塗得五顏六色的沙發。"
         }
       ]
     },
@@ -2802,17 +2802,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<The threads wrapped around Meursault in an instant... and he was dead.>",
+          "text": "<……線一瞬間就纏了上來，莫梭就死了。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Outpacing it would be difficult... especially with that sticky dye hindering our movement...",
+          "text": "要比那人動得更快……因為黏稠的染料，難度想必很高……",
           "speaker": "奧提斯"
         },
         {
           "index": 2,
-          "text": "Hm... It may be more effective to impede its movement instead.",
+          "text": "嗯……倒不如干擾對方的行動會更有效。",
           "speaker": "奧提斯"
         },
         {
@@ -2822,7 +2822,7 @@
         },
         {
           "index": 4,
-          "text": "<Let's think about it once we're out of here.>",
+          "text": "<剩下的出去再接著想吧。>",
           "speaker": "但丁"
         }
       ]
@@ -2832,22 +2832,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Just hitting whatever we saw wasn't getting us anywhere.>",
+          "text": "<見什麼打什麼是沒有意義的。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "<We need to destroy the threads first.>",
+          "text": "<得先破壞那些線。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "There are far too many threads flying at us... It appears evasion is our only recourse, Executive Manager.",
+          "text": "飛來的線實在太多了……看來除了閃避之外別無他法。",
           "speaker": "奧提斯"
         },
         {
           "index": 3,
-          "text": "*puff* P.T.—",
+          "text": "呼……拳．揍……",
           "speaker": "良秀"
         },
         {
@@ -2857,22 +2857,22 @@
         },
         {
           "index": 5,
-          "text": "She said... \"How about punching them out of the way?\"",
+          "text": "她的意思是……「用拳頭揍，把它們消滅掉如何」。",
           "speaker": "辛克萊"
         },
         {
           "index": 6,
-          "text": "<I don't think she even got to the \"out of the way\" part yet... but thanks.>",
+          "text": "<她好像還沒說到「消．滅」……不過謝了。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "If that is indeed possible... it may serve as one viable method.",
+          "text": "若那也可行……便能成為方法之一。",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": "I will bear it in mind.",
+          "text": "我會列入參考。",
           "speaker": "莫梭"
         }
       ]
@@ -2882,7 +2882,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Skeins of thread lie scattered about."
+          "text": "線團散落一地。"
         }
       ]
     },
@@ -2891,7 +2891,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Already scooped a bit of this dye."
+          "text": "是已經拿到的染料。"
         }
       ]
     },
@@ -2900,7 +2900,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Already scraped a bit of this sawdust."
+          "text": "是已經刮下過的鋸屑。"
         }
       ]
     },
@@ -2909,7 +2909,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There's an abandoned numbered ticket."
+          "text": "有一張被丟掉的號碼牌。"
         },
         {
           "index": 1,
@@ -2918,27 +2918,27 @@
         },
         {
           "index": 2,
-          "text": "A numbered ticket. Something idiots take to secure a place in a queue.",
+          "text": "是號碼牌。排隊等候的傢伙們拿的東西。",
           "speaker": "良秀"
         },
         {
           "index": 3,
-          "text": "... So why do they wait in line? Can't they just go in?",
+          "text": "……可是為什麼要排隊等？直接進去不行嗎？",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "They can't, because everyone in line desires to be the first to enter.\nTherefore, they collectively agree to create a rule called \"first-come, first-served,\" and imbue resultant queue with legitimacy.",
+          "text": "因為所有人都希望自己先進去。所以制定了「先抵達」這條規定，依照那個順序給予等待。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "Mm... I dunno. Do they have to? Just 'cuz everyone says so?",
+          "text": "嗯……我不懂。一定要那樣嗎？大家都說要那樣，就那樣做嗎？",
           "speaker": "普依"
         },
         {
           "index": 6,
-          "text": "Yes. Because everyone in the queue shares the same faith that all worthy goals requires its pursuers to wait, and because they have faith that waiting is fair to all, they abide by it.",
+          "text": "沒錯。有價值的事物需要等待，而人們相信那份等待是公平的，因此遵從。",
           "speaker": "莫梭"
         },
         {
@@ -2948,7 +2948,7 @@
         },
         {
           "index": 8,
-          "text": "... Fairness is an illusion. Though it might seem like they're all waiting in the same queue under the same rules, that's just not the way the world spins.",
+          "text": "……不過是徒勞的認知罷了。即使看起來所有人都在相同的條件下等待，世界也不是那樣運轉的。",
           "speaker": "奧提斯"
         }
       ]
@@ -2958,19 +2958,19 @@
       "texts": [
         {
           "index": 0,
-          "text": "An old barrel. There's something written on the other side..."
+          "text": "是個老舊的桶子。另一面寫著些什麼。"
         },
         {
           "index": 1,
-          "text": "[The higher the sun, the shorter the shadow.]"
+          "text": "[升到最高處的太陽會形成最短的陰影。]"
         },
         {
           "index": 2,
-          "text": "[When the shadow has shrunk beyond sight, the sunlight is blue.]"
+          "text": "[當陰影短到看不見時，陽光便是藍色的。]"
         },
         {
           "index": 3,
-          "text": "[It's a bit overexposed, but this is the color I'll use to paint this place. It's my big sister's favorite color, after all... Noonday Blue.]"
+          "text": "[雖然有點刺眼，但就用這個顏色塗這裡吧。用姊姊喜歡的正午之藍。]"
         }
       ]
     },
@@ -2979,7 +2979,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The lid is still shut. Has Palette forgotten about this batch, or...?"
+          "text": "桶子至今仍未被打開。調色盤是忘了這個桶子的存在嗎。還是……"
         }
       ]
     },
@@ -2988,7 +2988,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A vat filled with transparent liquid. I think it's L'Incolore, but... looks like it's been a while since this batch was made."
+          "text": "是個裝著疑似無色染料的桶子。看起來已經做好很久了。"
         }
       ]
     }

@@ -85,7 +85,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若現存體力不高於體力上限的50%，則重複使用本硬幣1次"
+                  "desc": "[OnSucceedAttack] 若自身現存體力低於體力上限的50%，則重複使用本硬幣1次"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]"
@@ -206,7 +206,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若現存體力不高於體力上限的50%，則重複使用本硬幣1次"
+                  "desc": "[OnSucceedAttack] 若自身現存體力低於體力上限的50%，則重複使用本硬幣1次"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Burst] 強度"

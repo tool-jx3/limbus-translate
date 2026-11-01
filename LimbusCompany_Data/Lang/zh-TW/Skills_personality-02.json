@@ -1628,7 +1628,7 @@
         {
           "level": 3,
           "name": "黑獸 - 卯 奧義 雲解顯現",
-          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+(速度值之差×目標的 [Burst] 強度)%(最多+50%)\n若自身的速度值高於目標至少2點，則使本技能的硬幣威力+1\n[WhenUse] 若目標的 [Burst] 強度不低於15級，則使本技能的硬幣威力+1\n[WhenUse] 若自身速度不低於10，則使自身獲得20級 [Breath] 強度，若自身 [Breath] 回數不高於4回，則使 [Breath] 回數變為4回\n[WhenUse] 使自身獲得3層 [LegStrength]\n[WinDuel] 使目標增加2回 [Burst]\n[EndSkill] 消耗10層 [EnhanceZilu]",
+          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+(速度值之差×目標的 [Burst] 強度)%(最多+50%)\n若自身的速度值高於目標至少2點，則使本技能的硬幣威力+1\n[WhenUse] 若目標的 [Burst] 強度不低於15級，則使本技能的硬幣威力+1\n[WhenUse] 若自身速度不低於10，則使自身獲得20級 [Breath] 強度，若自身 [Breath] 回數低於4回，則使 [Breath] 回數增加至4回\n[WhenUse] 使自身獲得3層 [LegStrength]\n[WinDuel] 使目標增加2回 [Burst]\n[EndSkill] 消耗10層 [EnhanceZilu]",
           "coinlist": [
             {
               "coindescs": [
@@ -1671,7 +1671,7 @@
         {
           "level": 4,
           "name": "黑獸 - 卯 奧義 雲解顯現",
-          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+(速度值之差×目標的 [Burst] 強度)%(最多+50%)\n<style=\"highlight\">若自身的速度值高於目標至少2點，則使本技能的硬幣威力+1(每相差2點速度值，硬幣威力+1。最多+2)</style>\n<style=\"highlight\">[WhenUse] 若目標的 [Burst] 強度不低於10級，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身速度不低於10，則使自身獲得20級 [Breath] 強度，若自身 [Breath] 回數不高於4，則使 [Breath] 回數變為4\n[WhenUse] 使自身獲得3層 [LegStrength]\n[WinDuel] 使目標增加2回 [Burst]\n[EndSkill] 消耗10層 [EnhanceZilu]",
+          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+(速度值之差×目標的 [Burst] 強度)%(最多+50%)\n<style=\"highlight\">自身的速度值比目標越高，本技能的硬幣威力越高(每相差2點速度值，硬幣威力+1。最多+2)</style>\n<style=\"highlight\">[WhenUse] 目標每帶有10級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身速度不低於10，則使自身獲得20級 [Breath] 強度，若自身 [Breath] 回數低於4回，則使 [Breath] 回數增加至4回\n[WhenUse] 使自身獲得3層 [LegStrength]\n[WinDuel] 使目標增加2回 [Burst]\n[EndSkill] 消耗10層 [EnhanceZilu]",
           "coinlist": [
             {
               "coindescs": [
@@ -2312,7 +2312,7 @@
         {
           "level": 4,
           "name": "遵循指令將您處決。",
-          "desc": "If this Skill is marked with [IndexPrescriptTargetMarkToEnemy], <style=\"highlight\">Final Power +1</style> and deal <style=\"highlight\">+30%</style> damage on Critical Hit\n<style=\"highlight\">Coin Power +1 for every 6 ([Breath] on self + [Sinking] on target) (max 2)</style>\n[StartBattle] At 6+ [BlessingOfIndexPrescriptAlly], convert all Coins of this Skill to [SuperCoin]s and <style=\"highlight\">deal +30% damage</style>\n[WhenUse] Gain +3 [Breath] Count\n<style=\"highlight\">- Gain [Breath] equal to ([BlessingOfIndexPrescriptAlly]/3) (rounded down)</style>",
+          "desc": "若本技能被 [IndexPrescriptTargetMarkToEnemy] 標記，則使本技能<style=\"highlight\">的最終威力+1</style>，暴擊時造成的傷害<style=\"highlight\">+30%</style>\n自身的 [Breath] 強度與目標的 [Sinking] 強度之和<style=\"highlight\">每有6級，使本技能的硬幣威力+1(最多+2)</style>\n[StartBattle] 若自身的 [BlessingOfIndexPrescriptAlly] 層數不低於6層，則使本技能的所有硬幣變更為 [SuperCoin]<style=\"highlight\">且造成的傷害+30%</style>\n[WhenUse] 使自身獲得3回 [Breath]\n<style=\"highlight\">- 使自身增加(自身的 [BlessingOfIndexPrescriptAlly] 層數/3)級呼吸法強度(無條件捨去)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2560,7 +2560,7 @@
         {
           "level": 3,
           "name": "受抑的肉體",
-          "desc": "[IronMaidenPersonality] exclusive Skill\n[WhenUse] Final Power +1 for every 4 [Laceration] on target (max 2)\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count to gain the following effects:\n- Final Power +2\n- Deal +3% damage for every [ChargeBodyArt] Count consumed",
+          "desc": "[IronMaidenPersonality] 專用技能\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+3%",
           "coinlist": [
             {
               "coindescs": [
@@ -2598,7 +2598,7 @@
         {
           "level": 4,
           "name": "受抑的肉體",
-          "desc": "[IronMaidenPersonality] exclusive Skill\n[WhenUse] Final Power +1 for every 4 [Laceration] on target (max 3)\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count to gain the following effects:\n- Final Power +2\n- Deal +3% damage for every [ChargeBodyArt] Count consumed",
+          "desc": "[IronMaidenPersonality] 專用技能\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+3%",
           "coinlist": [
             {
               "coindescs": [
@@ -2843,7 +2843,7 @@
         {
           "level": 3,
           "name": "解放受抑的肉體",
-          "desc": "[SilverOpportunity] exclusive Skill\n[WhenUse] Deal +30% damage for every excess Atk Weight beyond the # of actual targets (in Focused Encounters, the Part)\n[WhenUse] Final Power +1 for every 4 [Laceration] on the main target (max 2)\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count and gain the following effects:\n- Final Power +2\n- Deal +1% damage for every [ChargeBodyArt] Count consumed\n- At 3+/5+ [ChargeBodyArt], gain +1/+2 Atk Weight\n- Convert all Coins on this Skill to [SuperCoin]s",
+          "desc": "[SilverOpportunity] 專用技能\n[WhenUse] 本技能的攻擊容量高於攻擊目標數時，每高於1點，使本技能造成的傷害+30%(若是集中遭遇戰，則改為以部位判定)\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+1%\n- 若自身的 [ChargeBodyArt] 強度不低於3/5級，則使本技能的攻擊容量+1/+2\n- 使本技能的所有硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [
@@ -2887,7 +2887,7 @@
         {
           "level": 4,
           "name": "解放受抑的肉體",
-          "desc": "[SilverOpportunity] exclusive Skill\n[WhenUse] Deal +30% damage for every excess Atk Weight beyond the # of actual targets (in Focused Encounters, the Part)\n[WhenUse] Final Power +1 for every 4 [Laceration] on the main target (max 3)\n[WhenUse] At 10+ [ChargeBodyArt] Count, consume up to 20 [ChargeBodyArt] Count and gain the following effects:\n- Final Power +2\n- Deal +1% damage for every [ChargeBodyArt] Count consumed\n- At 3+/5+ [ChargeBodyArt], gain +1/+2 Atk Weight\n- Convert all Coins on this Skill to [SuperCoin]s",
+          "desc": "[SilverOpportunity] 專用技能\n[WhenUse] 本技能的攻擊容量高於攻擊目標數時，每高於1點，使本技能造成的傷害+30%(若是集中遭遇戰，則改為以部位判定)\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身的 [ChargeBodyArt] 回數不低於10回，則消耗最多20回 [ChargeBodyArt] 並觸發以下效果\n- 使本技能的最終威力+2\n- 每消耗1回，使本技能造成的傷害+1%\n- 若自身的 [ChargeBodyArt] 強度不低於3/5級，則使本技能的攻擊容量+1/+2\n- 使本技能的所有硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [
@@ -3323,7 +3323,7 @@
         {
           "level": 4,
           "name": "聯手",
-          "desc": "<style=\"highlight\">[WhenUse] Gain the following effects based on [StigmaWorkshopCelloCaseOne] Stack:\n- Deal +2% damage for every Stack (max 60%)\n- Final Power +1 for every 10 Stacks (max 3)</style>",
+          "desc": "[WhenUse] 根據自身的 [StigmaWorkshopCelloCaseOne] <style=\"highlight\">層數獲得以下效果\n- 每帶有1層，則使本技能造成的傷害+2%(最多+60%)\n- 每帶有10層，則使本技能的最終威力+1(最多+3)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -3374,7 +3374,7 @@
                   "desc": "重複使用本硬幣(最多2次)"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1 (2 times per Skill)"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回 (每個技能最多2次)"
                 }
               ]
             }
@@ -3383,7 +3383,7 @@
         {
           "level": 4,
           "name": "紛射-正午",
-          "desc": "[WideAreaRampage]\n<style=\"highlight\">Deal +([Combustion] on self + [Combustion] on target)% damage (max 20%, counted per target)</style>\nActivate the following effects on target with every hit of this Skill:\n- Inflict 1 [Combustion] or 1 [Vibration]\n- If target has no [VibrationIgnition], trigger [Switch_Vibration] into [VibrationIgnition] (once per target)\n[WhenUse]\n- Clash Power +3\n<style=\"highlight\">- Coin Power +1 and Clash Power +2 for every 6 ([Combustion] + [Vibration]) on the main target (max 2 and 4 respectively)</style>\n- Inflict +<style=\"highlight\">3</style> [Combustion] Count on all targets\n- Inflict +<style=\"highlight\">3</style> [Vibration] Count on all targets\n[EndSkill]\n- Inflict 1 [ResultReduction] next turn on all targets hit (once per turn)\n- Gain 1 [Firstlight]\n- Gain 1 [CaseOverheating]",
+          "desc": "[WideAreaRampage]\n<style=\"highlight\">使本技能造成的傷害+(自身與目標的 [Combustion] 強度之和)%(最多20%，不同目標分別計算)</style>\n本技能每次命中時，對目標施加以下效果\n- 使目標增加1級 [Combustion] 強度或1級 [Vibration] 強度\n- 若目標未帶有 [VibrationIgnition]，使目標 [Switch_Vibration] 為 [VibrationIgnition] (每個目標最多1次)\n[WhenUse]\n- 使本技能的拚點威力+3\n- 若主要目標的 [Combustion] 強度與 [Vibration] 強度之和<style=\"highlight\">每有6級，則使本技能的硬幣威力+1、拚點威力+2(最多分別+2、+4)</style>\n- 使全體目標增加<style=\"highlight\">3</style>回 [Combustion]\n- 使全體目標增加<style=\"highlight\">3</style>回 [Vibration]\n[EndSkill]\n- 下回合對被命中的全體目標施加1層 [ResultReduction] (每回合最多1次)\n- 使自身獲得1層 [Firstlight]\n- 對自身施加1層 [CaseOverheating]",
           "coinlist": [
             {
               "coindescs": [
@@ -3411,7 +3411,7 @@
                   "desc": "<style=\"highlight\">若自身帶有 [Firstlight]，則使本硬幣造成的傷害+(目標的 [Combustion] 強度÷2)%(最多+20%)</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1 (<style=\"highlight\">3</style> times per Skill)"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回 (每個技能最多<style=\"highlight\">3</style>次)"
                 }
               ]
             }
@@ -3450,7 +3450,7 @@
                   "desc": "重複使用本硬幣(最多2次)"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1 (2 times per Skill)"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回 (每個技能最多2次)"
                 }
               ]
             }
@@ -3487,7 +3487,7 @@
                   "desc": "<style=\"highlight\">若自身帶有 [Firstlight]，則使本硬幣造成的傷害+(目標的 [Combustion] 強度)%(最多+20%)</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1 (<style=\"highlight\">3</style> times per Skill)"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其震顫回數減少1回 (每個技能最多<style=\"highlight\">3</style>次)"
                 }
               ]
             }

@@ -226,7 +226,7 @@
         {
           "level": 1,
           "name": "不會放過你的",
-          "desc": "當自身帶有 [HeatingWireOnSpiderTwo] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n受到攻擊時，自身每帶有1層 [ReinforcedTattooSpiderDaughterTwo] 將重複使用本技能1次(最多2次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則本技能的硬幣命中時，使目標增加1級 [Laceration] 強度\n[WhenUse] 若自身的現存體力低於上限的40%或自身的 [ReinforcedTattooSpiderDaughterTwo] 層數不低於2層，則使本技能造成的傷害+40%",
+          "desc": "當自身帶有 [HeatingWireOnSpiderTwo] 時，本技能將附加被動技能「熱線[TabExplain]」的效果\n受到攻擊時，自身每帶有1層 [ReinforcedTattooSpiderDaughterTwo] 將重複使用本技能1次(最多2次)\n[WhenUse] 若自身帶有 [ReinforcedTattooSpiderDaughterTwo]，則本技能的硬幣命中時，使目標增加1級 [Laceration] 強度\n[WhenUse] 若自身的現存體力不高於40%或自身的 [ReinforcedTattooSpiderDaughterTwo] 層數不低於2層，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [

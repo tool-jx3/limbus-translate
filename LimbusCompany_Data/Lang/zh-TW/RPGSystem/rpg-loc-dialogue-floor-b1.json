@@ -5,7 +5,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<color=#515aee>Seasoned... and inquisitive...</color>"
+          "text": "<color=#515aee>要老練……要勇於探究……</color>"
         }
       ]
     },
@@ -14,129 +14,129 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oooof... Aw, man. Been a while since I got to really rest my bones. Guess it's my turn now, huh?",
+          "text": "好久沒這樣好好休息了……這次輪到我了嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "Well, it couldn't have come at a better moment. I was just about out of cigs, and all this sitting around was making me stiff in the joints. Hard to get a smoke in here, anyway. Everybody's been raising hell about me lighting up in such a cramped place.",
+          "text": "菸也差不多快抽完了……身子也正覺得痠懶，來得正好。在擠得要命的地方，大家怨聲載道要我別再抽菸，日子可不好過啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 2,
-          "text": "Besides, the folks who went ahead of us kept coming back with all sorts of stories. Couldn't make heads or tails of half of what they were saying.",
+          "text": "再加上先去過的那幾位老兄說了一堆有的沒的……真不知道在說些什麼。完全聽不懂啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 3,
-          "text": "<What kinda stories?>",
+          "text": "<他們說了些什麼？>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "Well... I just had a word with Frau Faust. She said the second floor was a space painted all over with flesh and bone...",
+          "text": "這個嘛……剛才跟浮士德小姐稍微聊了一下，她說2樓是被血肉和骨頭覆蓋的空間……",
           "speaker": "格里高爾"
         },
         {
           "index": 5,
-          "text": "Yes.",
+          "text": "是。",
           "speaker": "浮士德"
         },
         {
           "index": 6,
-          "text": "Then Don Quixote told me about how you fellas got jumped by a... bunch of walking furnishings, or something like that...",
+          "text": "唐吉訶德她呢，說是被類似會動的家具之類的東西襲擊了……",
           "speaker": "格里高爾"
         },
         {
           "index": 7,
-          "text": "<That one is... also true.>",
+          "text": "<那也……沒說錯。>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "What else, what else... Oh, right. A pair of big metally claws cracked Meursault's cranium open, I hear. Any truth to that?",
+          "text": "然後還有，我想想……嗯……啊啊，對了。莫梭先生，聽說有隻大夾子手把你的腦袋蓋子都打開了？",
           "speaker": "格里高爾"
         },
         {
           "index": 9,
-          "text": "If by \"big metally claws\" you are referring to the entity wielding a pair of oversized scissors, then yes.",
+          "text": "如果你想說的是持有巨大剪刀的人，沒錯。",
           "speaker": "莫梭"
         },
         {
           "index": 10,
-          "text": "Boy, sounds like you had your hands full.",
+          "text": "哎喲……真是辛苦你了……",
           "speaker": "格里高爾"
         },
         {
           "index": 11,
-          "text": "I finally take in the sight of the basement around us—it felt entirely different from the floors above."
+          "text": "映入眼簾的地下景象，又和樓上給人不同的感覺。"
         },
         {
           "index": 12,
-          "text": "<So... what's this place supposed to be? Let's see what the signboard says...>",
+          "text": "<這裡……是做什麼的地方？牌子上……>",
           "speaker": "但丁"
         },
         {
           "index": 13,
-          "text": "\"Fresh Meat Section\".",
+          "text": "上面寫著「新鮮肉類賣場」呢。",
           "speaker": "浮士德"
         },
         {
           "index": 14,
-          "text": "<Are they serious...?>",
+          "text": "<這裡就是……？>",
           "speaker": "但丁"
         },
         {
           "index": 15,
-          "text": "We were surrounded by unidentifiable slabs of flesh, which were unceremoniously packed into displays without any perceivable intent or effort to make any of them look appetizing."
+          "text": "塞滿了來路不明的肉塊，幾乎看不出有任何想傳達「看起來很好吃」的意圖的空間。"
         },
         {
           "index": 16,
-          "text": "Fresh Meat Section, huh. This place would've killed even Rodya or Ezra's appetite, and that was saying something."
+          "text": "這種連羅佳或以斯拉都會說沒食慾的地方，竟然是新鮮肉類賣場……"
         },
         {
           "index": 17,
-          "text": "<We're supposed to find this... cocoon... in here?>",
+          "text": "<要在這裡找這個……繭……？>",
           "speaker": "但丁"
         },
         {
           "index": 18,
-          "text": "Oh, that's what we're here for? Let's see...",
+          "text": "喔，那就是目標嗎？我看看……",
           "speaker": "格里高爾"
         },
         {
           "index": 19,
-          "text": "Well... That's just great. Might as well be looking for a needle in a haystack.",
+          "text": "哎呀……真是的……這跟在沙灘上找一根針沒兩樣嘛。",
           "speaker": "格里高爾"
         },
         {
           "index": 20,
-          "text": "... Did they put me on this team because I'm considered a bug myself?",
+          "text": "……該不會是因為同樣是蟲，才把我安排到這裡來的吧？",
           "speaker": "格里高爾"
         },
         {
           "index": 21,
-          "text": "<I-I doubt it.>",
+          "text": "<應該……不會是那種理由吧？>",
           "speaker": "但丁"
         },
         {
           "index": 22,
-          "text": "The rationale behind the Sinner selection cannot presently be inferred, but that particular explanation is implausible, Herr Gregor.",
+          "text": "雖然很難推測挑選罪人的背景依據，但應該不是那種理由，格里高爾。",
           "speaker": "浮士德"
         },
         {
           "index": 23,
-          "text": "It was a joke. A joke. Can't a guy make a little quip once in a while?",
+          "text": "開玩笑的，開玩笑。幹嘛一個個都這麼認真。",
           "speaker": "格里高爾"
         },
         {
           "index": 24,
-          "text": "<At least try to sound like you're joking next time...>",
+          "text": "<下次至少帶點開玩笑的語氣吧……>",
           "speaker": "但丁"
         },
         {
           "index": 25,
-          "text": "While we were discussing our next move, I heard whispering nearby—two people were talking, both of them customers, most likely."
+          "text": "在和罪人們商量的期間，不遠處傳來了看似顧客的人們竊竊私語的聲音。"
         }
       ]
     },
@@ -145,47 +145,47 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Think they might be Noirs?",
+          "text": "……那些人是漆黑派嗎？",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 1,
-          "text": "No! Look at that wallet—they've got to be the Rouges!",
+          "text": "不是啦！看那個錢包，肯定是丹紅派吧？",
           "speaker": "挨餓的卡其派"
         },
         {
           "index": 2,
-          "text": "Either way, they're clearly in higher tiers than us...",
+          "text": "不管是哪一邊，看起來等級都比我們高……",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 3,
-          "text": "Th-they saw us. Should we run?",
+          "text": "對、對上眼了啦。要逃嗎？",
           "speaker": "挨餓的卡其派"
         },
         {
           "index": 4,
-          "text": "No. They're obviously loaded. Maybe they'd be willing to give us a few eyeballs...",
+          "text": "不要。一看就知道很有錢，跟他們要幾顆眼球也好……",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 5,
-          "text": "<... Why don't we ask them about the cocoon?>",
+          "text": "<……問問那些人吧。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "Sure. I can tell they're locals even at first glance. Let's see what they know.",
+          "text": "好啊。一看就像是這裡的在地人，問問看吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 7,
-          "text": "Hey, fellas! Yeah, you two—the ones in the rags. Both of you!",
+          "text": "那邊披著破草蓆的兩位老兄！對！就是那邊兩個！",
           "speaker": "格里高爾"
         },
         {
           "index": 8,
-          "text": "Y-yessir?",
+          "text": "請、請問是在叫我們嗎？",
           "speaker": "口渴的卡其派"
         }
       ]
@@ -195,100 +195,100 @@
       "texts": [
         {
           "index": 0,
-          "text": "When the two customers approached, Meursault showed them the picture of the cocoon from the recipe."
+          "text": "莫梭向走近的兩名顧客出示了配方上繭的模樣。"
         },
         {
           "index": 1,
-          "text": "Have you ever seen a cocoon resembling this one?",
+          "text": "你們見過這樣的繭嗎？",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "I-I don't think so...",
+          "text": "不、不知道耶……",
           "speaker": "挨餓的卡其派"
         },
         {
           "index": 3,
-          "text": "Sure looks tasty... maybe it's some new menu that's caught on at the Food Court?",
+          "text": "看起來很好吃的樣子……該不會是美食廣場正流行的新吃食吧？",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 4,
-          "text": "Hmm... Doesn't look... very... edible to me...",
+          "text": "嗯……應該不是吃的……吧……",
           "speaker": "格里高爾"
         },
         {
           "index": 5,
-          "text": "Gregor glanced at the condition of the meat chunks strewn around us and let the sentence trail off."
+          "text": "格里高爾看著周圍散落的肉塊狀態，話說到一半就含糊了起來。"
         },
         {
           "index": 6,
-          "text": "... Though the people here might say otherwise.",
+          "text": "……對住在這裡的人來說，也許是能吃的東西吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 7,
-          "text": "<Maybe we should try the Food Court?>",
+          "text": "<那去美食廣場那邊看看吧。>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "Which route leads to the Food Court?",
+          "text": "美食廣場要走哪條路？",
           "speaker": "莫梭"
         },
         {
           "index": 9,
-          "text": "Well, that's...",
+          "text": "那是……",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 10,
-          "text": "10 eyeballs, and we'll tell you right away!",
+          "text": "只要給我們十顆眼球，馬上就能告訴各位！",
           "speaker": "挨餓的卡其派"
         },
         {
           "index": 11,
-          "text": "10? You should've asked for 30! 10 barely buys one cup of soda!",
+          "text": "十、十顆算什麼！至少該開價三十顆啊！那樣只夠喝一杯蘇打耶！",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 12,
-          "text": "Shut up! What if we ask for that much and they refuse?",
+          "text": "安靜點！開價那麼高，人家不給怎麼辦！",
           "speaker": "挨餓的卡其派"
         },
         {
           "index": 13,
-          "text": "<Let's just pay them what they want and get the directions.>",
+          "text": "<給他們，聽聽情報吧。>",
           "speaker": "但丁"
         },
         {
           "index": 14,
-          "text": "Understood, Manager.",
+          "text": "明白了。",
           "speaker": "莫梭"
         },
         {
           "index": 15,
-          "text": "Ahem. Go out into that corridor and follow the spiral shells.",
+          "text": "咳嗯。從那邊的走廊出去，沿著漩渦殼走就行了。",
           "speaker": "挨餓的卡其派"
         },
         {
           "index": 16,
-          "text": "Spiral shells?",
+          "text": "漩渦殼？",
           "speaker": "格里高爾"
         },
         {
           "index": 17,
-          "text": "F-for another 10 eyeballs, we can explain—",
+          "text": "那、那個要再付十顆眼球的話……",
           "speaker": "口渴的卡其派"
         },
         {
           "index": 18,
-          "text": "They are likely... shells of snails.",
+          "text": "大概是……蝸牛殼。",
           "speaker": "莫梭"
         },
         {
           "index": 19,
-          "text": "That area had once been their habitat, most likely.",
+          "text": "因為那裡原本應該是牠們爬行的地方。",
           "speaker": "莫梭"
         },
         {
@@ -298,16 +298,16 @@
         },
         {
           "index": 21,
-          "text": "It appears we have obtained all necessary information. Do we have any further business here?",
+          "text": "需要的情報似乎都已經拿到了。各位還有其他事嗎？",
           "speaker": "浮士德"
         },
         {
           "index": 22,
-          "text": "As soon as Faust finished speaking, the customers' eyes darted about, exchanging glances. Then they scurried away, our eyeballs preciously nestled in their hands."
+          "text": "聽了浮士德的話，顧客們骨碌碌地轉了轉眼珠，便拿著從我們這裡收下的眼球，一溜煙地消失了。"
         },
         {
           "index": 23,
-          "text": "We will proceed to the Food Court next.",
+          "text": "那麼，前往美食廣場。",
           "speaker": "莫梭"
         }
       ]
@@ -322,32 +322,32 @@
         },
         {
           "index": 1,
-          "text": "<So... one of these escalators leads down to B2F... Supposedly...?>",
+          "text": "<要從這些裡面找出通往地下2樓的手扶梯對吧……？>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "With this many escalators, it's gonna take us all day to find it, even if we split up.",
+          "text": "這也太……我們四個人得找上一整天，才勉強看得完吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 3,
-          "text": "We cannot search separately. As I am the subject of this Symbolic realm, the Sinners who are bound to me must not move beyond a certain distance from me.",
+          "text": "無法四人分頭尋找。從屬於我這個象徵界主體的罪人們，無法離我太遠。",
           "speaker": "莫梭"
         },
         {
           "index": 4,
-          "text": "<Right. We can't split up...>",
+          "text": "<也是。既然不能分頭找……>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "Even so... with sufficient luck... the search might end sooner than expected.",
+          "text": "不過……運氣好的話……或許一下子就結束了呢。",
           "speaker": "浮士德"
         },
         {
           "index": 6,
-          "text": "<All right. Let's all find the way down.>",
+          "text": "<好，來找找下去的路吧。>",
           "speaker": "但丁"
         }
       ]
@@ -357,7 +357,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "An ascending escalator with no end in sight. There is no telling where it might lead."
+          "text": "是一眼望不到盡頭的上行手扶梯。連它延伸到哪裡都無從估計。"
         }
       ]
     },
@@ -366,7 +366,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A descending escalator whose depth is impossible to gauge. Perhaps its far end is sealed."
+          "text": "是不知道會下到哪裡的下行手扶梯。說不定，它的盡頭是封死的。"
         }
       ]
     },
@@ -375,7 +375,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The way is blocked. What purpose could an escalator like this possibly serve?"
+          "text": "盡頭被堵住了。這種手扶梯連用途都無從推測。"
         }
       ]
     },
@@ -384,7 +384,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Another day of abundance today. Better huddle around the fountain before someone steals my spot.",
+          "text": "今天蘇打也滿出來了啊。得趁位子被搶走之前趕快喝才行。",
           "speaker": "口渴的卡其派"
         }
       ]
@@ -394,7 +394,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "5 hour rule, man... It's still food... Finders keepers...",
+          "text": "掉下來的也是食物……誰撿到就是誰的……",
           "speaker": "挨餓的卡其派"
         }
       ]
@@ -404,7 +404,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "*glhhrrrk* *glhhrrrk*",
+          "text": "咕嚕……咕嚕……",
           "speaker": "挨餓的卡其派"
         }
       ]
@@ -414,17 +414,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "Huh. A talking doll... Are you another one of those Mannequin things?",
+          "text": "嚯，小小的人偶居然也會說話。這也是那個叫人台模特兒還是什麼的東西嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "I am not a doll, you hear?! I am the Sous Chef, you hear?",
+          "text": "我不是人偶，是副廚喔。",
           "speaker": "副廚"
         },
         {
           "index": 2,
-          "text": "To think I'd be compared to a Mannequin... I'll not be having that sort of cheek, you hear?!",
+          "text": "竟然拿我跟人台模特兒那種東西比，心情非常差喔。",
           "speaker": "副廚"
         },
         {
@@ -434,101 +434,101 @@
         },
         {
           "index": 4,
-          "text": "The second-highest rank in a kitchen, commonly referred to as the deputy or assistant head chef.",
+          "text": "是廚師中的次席，通常稱為副主廚的職位。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "Exactly, you hear? Nobody outranks me except Boucher, you hear?",
+          "text": "沒錯喔。除了屠夫以外，沒有任何人在我之上喔。",
           "speaker": "副廚"
         },
         {
           "index": 6,
-          "text": "<Far more a bigshot than I expected... despite appearances.>",
+          "text": "<地位比看起來還高啊。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "<Then maybe she knows where the Golden Cocoon is?>",
+          "text": "<啊，那會不會也知道黃金之繭在哪裡？>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "Faust nodded and stepped forward."
+          "text": "聽了我的話，浮士德點點頭，向前跨出一步。"
         },
         {
           "index": 9,
-          "text": "... We are searching for the Golden Cocoon.",
+          "text": "……我們正在尋找黃金之繭。",
           "speaker": "浮士德"
         },
         {
           "index": 10,
-          "text": "We were informed that it could be obtained on Floor B1. Do you possess any relevant information?",
+          "text": "聽說可以在地下1樓找到，不知您是否知道些什麼……",
           "speaker": "浮士德"
         },
         {
           "index": 11,
-          "text": "The Golden Cocoon...? I don't know what it is, you hear?",
+          "text": "黃金之繭……？是什麼喔？",
           "speaker": "副廚"
         },
         {
           "index": 12,
-          "text": "It refers to a golden object or an entity that surrounds the pupa.",
+          "text": "意思是金色的、閃閃發光、像蛹一樣的東西。",
           "speaker": "莫梭"
         },
         {
           "index": 13,
-          "text": "I don't know what a \"pupa\" is, you hear?",
+          "text": "不知道蛹是什麼喔。",
           "speaker": "副廚"
         },
         {
           "index": 14,
-          "text": "Ah... I suppose we gotta start explaning from there.",
+          "text": "啊……得從那裡開始解釋嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 15,
-          "text": "<Yeah... The language of this place isn't exactly based on the common sense we're familiar with.>",
+          "text": "<這裡的「常識」這個概念，好像跟我們原本待的地方有點不一樣……>",
           "speaker": "但丁"
         },
         {
           "index": 16,
-          "text": "But I've seen that golden twinkle, you hear? I wonder if you're talking about that specialty ingredient in Boucher's storeroom, you hear?",
+          "text": "不過金色的倒是看過喔。是在說屠夫倉庫裡的特產喔？",
           "speaker": "副廚"
         },
         {
           "index": 17,
-          "text": "Mm, that's probably the one.",
+          "text": "嗯，可能性很高。",
           "speaker": "莫梭"
         },
         {
           "index": 18,
-          "text": "Good. Nice when things move along this quickly.",
+          "text": "這麼快就談到重點，真不錯啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 19,
-          "text": "But ingredients in Boucher's meat storage are not for sale, you hear?",
+          "text": "不過屠夫肉品倉庫裡的東西，全都是非賣品喔。",
           "speaker": "副廚"
         },
         {
           "index": 20,
-          "text": "Every last bit of them have to go into the soda, you hear?",
+          "text": "全都要拿來當作製作蘇打的材料喔。",
           "speaker": "副廚"
         },
         {
           "index": 21,
-          "text": "Tch. We need it pretty badly ourselves... Any way we can work something out?",
+          "text": "嘖。我們也很需要那個……沒有什麼辦法嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 22,
-          "text": "Hmm... Maybe if you bring the right substitute, you can barter for it, you hear?",
+          "text": "唔唔嗯……如果有能替代的材料，說不定會跟你們交換喔。",
           "speaker": "副廚"
         },
         {
           "index": 23,
-          "text": "Let's see if you can be the right substitute, you hear?",
+          "text": "來看看你們能不能拿來替代喔。",
           "speaker": "副廚"
         },
         {
@@ -538,7 +538,7 @@
         },
         {
           "index": 25,
-          "text": "Hmm... Certainly not you, you hear? Squid-ink heads come in all the time; they're dime-a-dozen, you hear?",
+          "text": "嗯……首先妳先讓到旁邊去喔。滿腹墨水的腦袋已經放了很多，多到不稀奇了喔。",
           "speaker": "副廚"
         },
         {
@@ -548,7 +548,7 @@
         },
         {
           "index": 27,
-          "text": "This one looks much too tough to cook, you hear?",
+          "text": "這個看起來是太難嚼的食材喔。",
           "speaker": "副廚"
         },
         {
@@ -558,119 +558,119 @@
         },
         {
           "index": 29,
-          "text": "And this one's... rare, but our brew doesn't need more stretched time, you hear?",
+          "text": "這邊……雖然是罕見的食材，但已經放了一大堆拉長的時間，不需要喔。",
           "speaker": "副廚"
         },
         {
           "index": 30,
-          "text": "<Should I be relieved...?>",
+          "text": "<這該說是幸運嗎……>",
           "speaker": "但丁"
         },
         {
           "index": 31,
-          "text": "The Sous Chef circled us, sniffed the air, then stopped in front of Gregor."
+          "text": "在我們周圍打轉的副廚像在聞氣味似地嗅了嗅，在格里高爾面前停了下來。"
         },
         {
           "index": 32,
-          "text": "She began hopping up and down, unable to contain her excitement."
+          "text": "接著，掩飾不住興奮似地開始蹦蹦跳跳。"
         },
         {
           "index": 33,
-          "text": "So deep, so full-bodied...! Crazy flavor, you hear? I want it, you hear? It's so buggy-buggy, you hear?!",
+          "text": "這深邃濃郁的風味……！太瘋狂了喔！好想要喔！好蟲蟲喔！",
           "speaker": "副廚"
         },
         {
           "index": 34,
-          "text": "W-what do you want? And what's that about \"buggy-buggy?!\"",
+          "text": "幹、幹嘛啊突然？蟲……蟲蟲是什麼啦？！",
           "speaker": "格里高爾"
         },
         {
           "index": 35,
-          "text": "Boucher'll sign off without a peep for that creepy-crawly arm, you hear? Tit-for-tat, you hear?",
+          "text": "那條蟲手臂的話，屠夫也會二話不說跟你們換喔！來交換喔！",
           "speaker": "副廚"
         },
         {
           "index": 36,
-          "text": "Huh...! Is she actually salivating for my arm? I'll be damned, that's a first.",
+          "text": "嚯……活了這麼久，還是頭一次看到有人看著這條手臂舔嘴唇。",
           "speaker": "格里高爾"
         },
         {
           "index": 37,
-          "text": "<I think they want to use Gregor's arm... as an ingredient.>",
+          "text": "<好像是想把格里高爾的手臂……當成材料。>",
           "speaker": "但丁"
         },
         {
           "index": 38,
-          "text": "<But... Uh, is that even an option?>",
+          "text": "<可是……嗯，應該很難吧？>",
           "speaker": "但丁"
         },
         {
           "index": 39,
-          "text": "Cutting off Gregor's arm? Is that even possible in here...?\n"
+          "text": "把格里高爾的手臂切下來交出去，真的有可能嗎……？"
         },
         {
           "index": 40,
-          "text": "Thanks to Meursault, the rest of us can now physically interact with objects within Grand Magasin Sisyphe. We can now pick things up and move them around, but..."
+          "text": "多虧了莫梭，我們也能做到拿起或搬動東西的程度了……"
         },
         {
           "index": 41,
-          "text": "So far, it still seems that Meursault's the only one susceptible to injury and death here... at least from those inflicted by the customers of this place. I wasn't sure if that law extended to the rest of the Sinners."
+          "text": "但受到顧客攻擊而受傷、死亡的依舊只有莫梭，所以沒辦法確定。"
         },
         {
           "index": 42,
-          "text": "More importantly..."
+          "text": "而且最重要的是……"
         },
         {
           "index": 43,
-          "text": "This damned arm always grows back anyway, but...",
+          "text": "這條該死的手臂，反正切了也會再長出來，是沒差啦……",
           "speaker": "格里高爾"
         },
         {
           "index": 44,
-          "text": "<I... don't think we should do anything to your arm. Got a bad feeling about this—we don't know if it'll grow back without any other risks involved.>",
+          "text": "<我……反對。單純想著會再長出來就這麼做的話……總有種不好的預感。>",
           "speaker": "但丁"
         },
         {
           "index": 45,
-          "text": "I couldn't exactly say why,"
+          "text": "雖然說不出確切的理由……"
         },
         {
           "index": 46,
-          "text": "But I had this feeling that the result of cutting off Gregor's arm within the Symbolic wouldn't be as simple as a new bug arm growing back from the stump."
+          "text": "但格里高爾的手臂在象徵界被切下來時……我不覺得單純只會長出新的蟲手臂。"
         },
         {
           "index": 47,
-          "text": "Yeah, this place is supposed to be some kind of mental... uh, a weird space we shouldn't mess around in, right? Guess that kills the deal, then.",
+          "text": "也是，這裡好像說是那個精神的……總之是什麼特殊的空間來著……唉，這樣的話，這場交涉就破局啦。",
           "speaker": "格里高爾"
         },
         {
           "index": 48,
-          "text": "If there's another item you would be willing to accept in exchange—",
+          "text": "即使如此，如果你能說明其他願意交換的品項……",
           "speaker": "莫梭"
         },
         {
           "index": 49,
-          "text": "Nothing else'll do now, you hear? Not after that delicious whiff of your buggy-buggy aroma, you hear?!",
+          "text": "現在非那條蟲手臂不可了喔！我已經聞到那股蟲蟲的香味了喔！",
           "speaker": "副廚"
         },
         {
           "index": 50,
-          "text": "<She's not listening to reason at all...>",
+          "text": "<根本蠻不講理嘛……>",
           "speaker": "但丁"
         },
         {
           "index": 51,
-          "text": "Fine! I'll just have to make sure you contribute whether you want to or not, you hear?!",
+          "text": "事到如今，我就讓你們不得不貢獻喔。",
           "speaker": "副廚"
         },
         {
           "index": 52,
-          "text": "Hand over the bug arm, you hear?!",
+          "text": "把蟲手臂交出來喔！",
           "speaker": "副廚"
         },
         {
           "index": 53,
-          "text": "Oh, great... Straight to robbery she goes.",
+          "text": "哎唷……現在連交換都不是了，直接想用搶的啊。",
           "speaker": "格里高爾"
         }
       ]
@@ -680,42 +680,42 @@
       "texts": [
         {
           "index": 0,
-          "text": "Time... Time out, you hear?! That hurts, you hear?!",
+          "text": "住……住手喔！很痛喔！",
           "speaker": "副廚"
         },
         {
           "index": 1,
-          "text": "Look... you're the one who attacked us first. You know that.",
+          "text": "那個……雖然妳應該也知道，先撲過來的可不是我們，是妳啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 2,
-          "text": "But... I <i>neeeed</i> the bug arm, you hear...? Need that buggy-buggy flavor...",
+          "text": "可是……蟲手臂實在太讓人想要了喔……那蟲蟲的風味……",
           "speaker": "副廚"
         },
         {
           "index": 3,
-          "text": "Alright, that's enough buggy outta you. You're really starting to—",
+          "text": "從剛才開始就蟲啊蟲的。妳這個人真是……",
           "speaker": "格里高爾"
         },
         {
           "index": 4,
-          "text": "Heeeeugh! Y-you better not hit me again, you hear?! I'm gonna skedaddle, you hear?!",
+          "text": "咿咿咿！又、又要打人了喔！得快逃才行喔！",
           "speaker": "副廚"
         },
         {
           "index": 5,
-          "text": "Like I said, we're not the ones who started—hey!? She's getting away!",
+          "text": "所以說，先撲過來要打的可不是我們……欸欸！？還真的逃了！？",
           "speaker": "格里高爾"
         },
         {
           "index": 6,
-          "text": "<... Aaand she's gone. What now?>",
+          "text": "<……逃走了呢。要怎麼辦？>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "We still have more questions to ask. Pursuit would be the optimal course of action.",
+          "text": "還有很多事要問，追上去比較好吧。",
           "speaker": "浮士德"
         }
       ]
@@ -725,7 +725,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I'm not sure I'd call this place a \"Food Court\"...",
+          "text": "美食廣場……原來是這種地方嗎？",
           "speaker": "格里高爾"
         }
       ]
@@ -735,7 +735,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "She scampered off down that way. Come on, let's hurry after her.",
+          "text": "她往那下面一溜煙地逃走了，趕快追上去吧。",
           "speaker": "格里高爾"
         }
       ]
@@ -745,47 +745,47 @@
       "texts": [
         {
           "index": 0,
-          "text": "Whew... You sure ran a long way. Look, let's not make things harder for the both of us.",
+          "text": "呼……逃得還真遠啊。喂，我們彼此都別白費力氣、累死自己了吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "D-don't come any closer, you hear?!",
+          "text": "不……不要過來喔。",
           "speaker": "副廚"
         },
         {
           "index": 2,
-          "text": "Tell us where Boucher is located, and we will cease our pursuit.",
+          "text": "只要告訴我們名叫屠夫的人在哪裡，我們就不再靠近。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "B-Boucher won't give up the specialty ingredient anyway, you hear? It's rare and gourmet, you hear? It's going in the soda, you hear?!",
+          "text": "就、就算去找屠夫，他也不會把特產交出來喔。那是要加進蘇打裡的珍貴材料喔。",
           "speaker": "副廚"
         },
         {
           "index": 4,
-          "text": "You should've cut off the buggy-buggy arm for us, you hear? I'd have put in a good word and helped you barter it, you hear?",
+          "text": "如果你們肯把那條蟲蟲的手臂卸下來給我，我本來會幫你們好好說情的喔。",
           "speaker": "副廚"
         },
         {
           "index": 5,
-          "text": "C'mon~ We'll never know until we talk it over, right? Just introduce us to Boucher and let us handle the rest.",
+          "text": "那個～談一談說不定又不一樣了嘛，對吧？妳就通融一下，幫忙介紹介紹，剩下的我們自己會看著辦……",
           "speaker": "格里高爾"
         },
         {
           "index": 6,
-          "text": "O-okay, but only if you do me a favor, you hear?",
+          "text": "那、那麼……只要答應我一個請求，我就幫你們介紹喔。",
           "speaker": "副廚"
         },
         {
           "index": 7,
-          "text": "<i>Now</i> we're getting somewhere. All right, what do you want?",
+          "text": "現在總算能溝通了。好，什麼請求？",
           "speaker": "格里高爾"
         },
         {
           "index": 8,
-          "text": "Let me lick that buggy-buggy arm, you hear? Just three times, you hear?",
+          "text": "那條蟲手臂，讓我舔三下就好喔。",
           "speaker": "副廚"
         },
         {
@@ -795,26 +795,26 @@
         },
         {
           "index": 10,
-          "text": "Gregor's face contorted as though the skin were about to fall off his face."
+          "text": "聽了副廚的話，格里高爾的表情像是要腐爛般扭曲了起來。"
         },
         {
           "index": 11,
-          "text": "<I mean, if all she wants is a lick or two, then...>",
+          "text": "<只是舔一下的話……>",
           "speaker": "但丁"
         },
         {
           "index": 12,
-          "text": "Easy for you to say, Manager Bud. It's not your arm that's getting licked, is it?",
+          "text": "經理兄，別因為事不關己就說得那麼輕鬆。",
           "speaker": "格里高爾"
         },
         {
           "index": 13,
-          "text": "Try putting yourself in my shoes. Suppose that little fella asked you if she could run her hands through your flame hair 3 times. Wouldn't it feel icky?",
+          "text": "你想想看。要是那傢伙說要摸你那顆燃燒的頭三下，你不也一樣會覺得不舒服嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 14,
-          "text": "<Remember what Bamboo-hatted Kim did to me the other day? Believe me, I know what it's like, but it's nothing you can't take.>",
+          "text": "<想想最近金笠那個人對我做過的事，是可以理解啦，但還算忍得住。>",
           "speaker": "但丁"
         },
         {
@@ -824,71 +824,71 @@
         },
         {
           "index": 16,
-          "text": "The terms are favorable to us.",
+          "text": "這確實是對我們有利的交易。",
           "speaker": "莫梭"
         },
         {
           "index": 17,
-          "text": "... Please say yes, you hear?",
+          "text": "……願意答應我的請求了喔？",
           "speaker": "副廚"
         },
         {
           "index": 18,
-          "text": "<Licking's way less dangerous compared to, well, amputation...>",
+          "text": "<總比切下來的危險性低……>",
           "speaker": "但丁"
         },
         {
           "index": 19,
-          "text": "It's just me against the world, huh...? Fine, do whatever you want.",
+          "text": "一個站在我這邊的都沒有啊……好啦，隨便妳。",
           "speaker": "格里高爾"
         },
         {
           "index": 20,
-          "text": "The Sous Chef pointed to the butcher shop above, then latched onto Gregor's arm."
+          "text": "副廚指著上方的肉舖，一把緊緊黏上了格里高爾的手臂。"
         },
         {
           "index": 21,
-          "text": "Boucher is in that big butcher shop up there, you hear?",
+          "text": "屠夫就在那邊那間很大的肉舖裡喔。",
           "speaker": "副廚"
         },
         {
           "index": 22,
-          "text": "Ughhh... *groan* dammit...!",
+          "text": "啊啊……哈……該……死……",
           "speaker": "格里高爾"
         },
         {
           "index": 23,
-          "text": "<A butcher shop... What exactly does Boucher do, anyway?>",
+          "text": "<肉舖……屠夫是做什麼的人呢。>",
           "speaker": "但丁"
         },
         {
           "index": 24,
-          "text": "The Manager wishes to know what manner of individual Boucher is.",
+          "text": "其想知道屠夫是個什麼樣的人呢。",
           "speaker": "浮士德"
         },
         {
           "index": 25,
-          "text": "Boucher is the Floor Manager, you hear? He handles all sorts of work across B1, you hear?",
+          "text": "屠夫是樓層經理喔。負責地下1樓的各種事務喔。",
           "speaker": "副廚"
         },
         {
           "index": 26,
-          "text": "Then what do <i>you</i> do? Hey, <i>HEY!</i> stop licking! You said three licks only!",
+          "text": "哈……那妳是做什麼的？哎，別舔了。三下已經結束了！",
           "speaker": "格里高爾"
         },
         {
           "index": 27,
-          "text": "That was nowhere near enough, you hear...?",
+          "text": "好可惜喔。",
           "speaker": "副廚"
         },
         {
           "index": 28,
-          "text": "And I'm the Sous Chef, you hear? Of course I'm in charge of flavoring the Food Court soda, you hear?",
+          "text": "嘛，副廚做的事還用問。美食廣場供應的蘇打，味道是由我負責的喔。",
           "speaker": "副廚"
         },
         {
           "index": 29,
-          "text": "Th-that... was a tastebud tickler, you hear? I want more... but all right, let's get going, you hear?",
+          "text": "呼……太美味了喔。那我們出發喔。",
           "speaker": "副廚"
         }
       ]
@@ -898,137 +898,137 @@
       "texts": [
         {
           "index": 0,
-          "text": "... You brought strangers with you. What is it, Head Chef?",
+          "text": "……帶了異鄉人來啊。什麼事，主廚？",
           "speaker": "屠夫"
         },
         {
           "index": 1,
-          "text": "It's Sous Chef; not Head Chef, you hear? I got promoted last time, you hear?",
+          "text": "不是主廚，是副廚喔。我上次升職了喔。",
           "speaker": "副廚"
         },
         {
           "index": 2,
-          "text": "*sigh*... Yes. You were promoted from Sous Chef to Head Chef.",
+          "text": "哈啊……是啊，從副廚升成了主廚。",
           "speaker": "屠夫"
         },
         {
           "index": 3,
-          "text": "But Sous Chef sounds fancier, you hear? Which means I was promoted to Sous Chef, you hear?",
+          "text": "可是副廚聽起來比較高級喔。所以升職之後就是副廚喔。",
           "speaker": "副廚"
         },
         {
           "index": 4,
-          "text": "... Why have you come here, Sous Chef?",
+          "text": "……找我有什麼事，副廚？",
           "speaker": "屠夫"
         },
         {
           "index": 5,
-          "text": "I brought them because they need the specialty ingredient in the storeroom, you hear?",
+          "text": "他們說需要倉庫裡的特產，所以我就帶他們來了喔。",
           "speaker": "副廚"
         },
         {
           "index": 6,
-          "text": "More precisely, we require the Golden Cocoon. We cannot surrender Gregor's arm, but we could offer eyeballs—",
+          "text": "準確來說，我們需要黃金之繭。格里高爾的手臂不能給，但如果是眼球的話……",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "I don't need eyeballs—already got more than I know what to do with.",
+          "text": "眼球就不必了。我手上已經多到滿出來了。",
           "speaker": "屠夫"
         },
         {
           "index": 8,
-          "text": "Besides, I don't know if we even have any left in stock... The season's nearly over, you see.",
+          "text": "說到底……這一季已經接近尾聲，也不知道倉庫裡還有沒有剩。",
           "speaker": "屠夫"
         },
         {
           "index": 9,
-          "text": "Sous Chef, go check how many beached larvae we have in the storeroom.",
+          "text": "副廚，去確認一下倉庫裡被沖上岸的幼蟲還剩幾隻。",
           "speaker": "屠夫"
         },
         {
           "index": 10,
-          "text": "On it, you hear?",
+          "text": "知道了喔！",
           "speaker": "副廚"
         },
         {
           "index": 11,
-          "text": "There's only one still breathing, you hear?",
+          "text": "還在呼吸的只剩一隻了喔！",
           "speaker": "副廚"
         },
         {
           "index": 12,
-          "text": "... Just one? How'd that happen?",
+          "text": "……怎麼只剩一隻？",
           "speaker": "屠夫"
         },
         {
           "index": 13,
-          "text": "Because we've been using larvae to flavor the soda up season after season, you hear?",
+          "text": "因為好幾季以來都只用幼蟲調味喔！",
           "speaker": "副廚"
         },
         {
           "index": 14,
-          "text": "Getting living larvae's become a real toughie these days, you hear?",
+          "text": "現在活的幼蟲已經很難弄到了喔……",
           "speaker": "副廚"
         },
         {
           "index": 15,
-          "text": "So there are no more larvae left to wash ashore. I suppose this is where the last vestiges of the previous age finally vanish without a trace...",
+          "text": "會被沖上岸的幼蟲已經沒了嗎。前一個時代總算要完全消失得無影無蹤了吧……",
           "speaker": "屠夫"
         },
         {
           "index": 16,
-          "text": "... It may be time to start using something else as the base ingredient. What substitutes do we have?",
+          "text": "也差不多是該換基底的時候了……那幼蟲的味道，之前是用什麼代替的？",
           "speaker": "屠夫"
         },
         {
           "index": 17,
-          "text": "Camemblack Scabbardfish... Golden Resin... Ruminations of the Prey... and the buggy-buggy arm, you hear?",
+          "text": "烏黑帶魚……黃金松脂……被食者之思……還有蟲蟲手臂喔！",
           "speaker": "副廚"
         },
         {
           "index": 18,
-          "text": "... My arm's out of the question, you hear? Quit pushing it.",
+          "text": "……都說了我的手臂不能當材料，還一直提。",
           "speaker": "格里高爾"
         },
         {
           "index": 19,
-          "text": "Anyways, that \"larva\" you mentioned—is that the Golden Cocoon?",
+          "text": "比起那個，那個叫幼蟲……的東西，就是黃金之繭嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 20,
-          "text": "Correct. It's only the most flavorful part attached to the larva.",
+          "text": "沒錯。是長在幼蟲身上最美味的部位。",
           "speaker": "屠夫"
         },
         {
           "index": 21,
-          "text": "<So it really was food...>",
+          "text": "<還真的是食物啊……>",
           "speaker": "但丁"
         },
         {
           "index": 22,
-          "text": "Ruminations of the Prey. Yes, that cut of meat will do. We've not been using it much on account of it being difficult to get, so you should be able to get your hands on a fresh cut.",
+          "text": "其中的話……被食者之思，那塊肉應該不錯。最近很難弄到，幾乎沒怎麼用，應該還很新鮮。",
           "speaker": "屠夫"
         },
         {
           "index": 23,
-          "text": "Where can we acquire it?",
+          "text": "那個材料要去哪裡取得？",
           "speaker": "莫梭"
         },
         {
           "index": 24,
-          "text": "So you will bring it here? Very well. Provide us the ingredient, and we will peel a Golden Cocoon off the remaining larva for you.",
+          "text": "你們要去拿嗎？只要幫忙供應材料，我可以從剩下的幼蟲身上把黃金之繭取下來給你們。",
           "speaker": "屠夫"
         },
         {
           "index": 25,
-          "text": "It's dingle-dangling from the ceiling, you hear? Dry-aged in layers of Golden Hide, you hear?!",
+          "text": "就吊在天花板上晃呀晃的喔！貼了一層又一層的黃金皮革來熟成的喔！",
           "speaker": "副廚"
         },
         {
           "index": 26,
-          "text": "Food testers at the Fresh Meat Section are probably having one hell of a time aging it, so procuring it'll probably be a bit more involved than just going down there and plucking it off the hook. Well, I'll leave it to you to deal with the annoying part of the job.",
+          "text": "新鮮肉類賣場的試吃員們應該正費盡心血熟成它，直接拿走可沒那麼容易。嘛，麻煩的部分你們自己會看著辦吧。",
           "speaker": "屠夫"
         }
       ]
@@ -1038,27 +1038,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "Sous Chef. I have a question.",
+          "text": "副廚，我有問題要問。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "W-what is it, you hear?",
+          "text": "什……什麼喔？",
           "speaker": "副廚"
         },
         {
           "index": 2,
-          "text": "I want to know what form the Ruminations of the Prey take and by what criteria they may be identified.",
+          "text": "我想問被食者之思是什麼種類，又該如何辨別。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "I don't know, you hear?",
+          "text": "不知道喔。",
           "speaker": "副廚"
         },
         {
           "index": 4,
-          "text": "We intend to contribute to the Meat Soda. Your guidance would be appreciated.",
+          "text": "我們想為精肉蘇打做出貢獻。還請您不吝指教。",
           "speaker": "浮士德"
         },
         {
@@ -1068,17 +1068,17 @@
         },
         {
           "index": 6,
-          "text": "Hey... Soup Chef.",
+          "text": "喂……菜瓜布小姐。",
           "speaker": "格里高爾"
         },
         {
           "index": 7,
-          "text": "I don't know, you hear?! I don't know!",
+          "text": "不知道就是不知道喔……！",
           "speaker": "副廚"
         },
         {
           "index": 8,
-          "text": "Good grief... *puff* All right, \"Sous Chef.\"",
+          "text": "真是的……呼……好吧，副廚小姐。",
           "speaker": "格里高爾"
         },
         {
@@ -1088,52 +1088,52 @@
         },
         {
           "index": 10,
-          "text": "How're we supposed to get you that Ruminations thing if you won't even tell us what it looks like? Come on, we're trying to make a \"contribution\" here—you're the Sous Chef, aren't you? Act like one.",
+          "text": "妳總得告訴我們那個叫被食者之思還是什麼的東西長什麼樣子，我們才能為那蘇打做貢獻吧？既然是副廚，就希望妳拿出副廚的樣子好好告訴我們。",
           "speaker": "格里高爾"
         },
         {
           "index": 11,
-          "text": "The buggy buggy arm would be perfect... but the Meat Soda matters more for everyone's sake, you hear? I'll answer because I'm a good, responsible Sous Chef, you hear?",
+          "text": "雖然那條蟲手臂最合適……但為了大家，精肉蘇打更重要……我就拿出副廚的樣子告訴你們喔。",
           "speaker": "副廚"
         },
         {
           "index": 12,
-          "text": "The Ruminations of the Prey hang at the far left, you hear? They dangle-dongle, you hear? Something glitters between the ribs, you hear?",
+          "text": "被食者之思就掛在最左邊喔。晃呀晃的喔。肋骨之間閃閃發亮喔。",
           "speaker": "副廚"
         },
         {
           "index": 13,
-          "text": "<... Then we should look for a cut of meat with the Golden Hide attached.>",
+          "text": "<……貼著黃金皮革的肉。>",
           "speaker": "但丁"
         },
         {
           "index": 14,
-          "text": "Oh? You could've told us from the start, you know. Would've saved us both a lot of trouble.",
+          "text": "呵，早點這樣告訴我們該有多好。",
           "speaker": "格里高爾"
         },
         {
           "index": 15,
-          "text": "Wondering if you don't hate that arm, you hear?",
+          "text": "你不是很討厭那條手臂喔？",
           "speaker": "副廚"
         },
         {
           "index": 16,
-          "text": "... I do hate it. Like you wouldn't believe it. I don't go a day without wanting to rip it clean off my body.",
+          "text": "……討厭啊。當然討厭。我每天都想把它扯下來。",
           "speaker": "格里高爾"
         },
         {
           "index": 17,
-          "text": "That you can just contribute, you hear? Wondering why you wouldn't, you hear?",
+          "text": "那貢獻出來就好了喔！為什麼不這麼做喔？",
           "speaker": "副廚"
         },
         {
           "index": 18,
-          "text": "Sometimes, Sous Chef... there are things that stick to you no matter how much you hate them, you hear?",
+          "text": "就算討厭，也有些東西是絕對丟不掉的，副廚。",
           "speaker": "格里高爾"
         },
         {
           "index": 19,
-          "text": "I still want it... But if that's so, cherish it, you hear? Now I must go, you hear? You're not the only one who's busy, you hear?",
+          "text": "雖然很想要……那你就好好珍惜喔。我先走了喔。我也很忙喔。",
           "speaker": "副廚"
         },
         {
@@ -1143,17 +1143,17 @@
         },
         {
           "index": 21,
-          "text": "You transitioned between persuasion and intimidation with notable fluency, Gregor. Faust must admit that Faust has learned something today.",
+          "text": "說服與威脅運用得真熟練呢，格里高爾。我學到了一課。",
           "speaker": "浮士德"
         },
         {
           "index": 22,
-          "text": "It was an exceptionally effective method.",
+          "text": "是非常有效的應對方式。",
           "speaker": "莫梭"
         },
         {
           "index": 23,
-          "text": "Eh... Since when did you start giving me compliments like that, fellas? ... Ahem. Anyhow... Let's get moving.",
+          "text": "哎……你們突然是怎麼了？咳……總之……走吧。",
           "speaker": "格里高爾"
         }
       ]
@@ -1163,7 +1163,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Ruminations of the Prey hang on the far left, you hear? They dangle-dongle, you hear?",
+          "text": "被食者之思就掛在最左邊喔。晃呀晃的喔。",
           "speaker": "副廚"
         }
       ]
@@ -1173,7 +1173,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's goodbye now, you hear?",
+          "text": "慢走喔。",
           "speaker": "副廚"
         }
       ]
@@ -1183,7 +1183,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A desiccated slab of meat, closer to jerky than anything else. The description insists it is exceptionally fresh..."
+          "text": "乾巴巴的肉。比較接近肉乾。說明上卻寫著是非常新鮮的肉。"
         }
       ]
     },
@@ -1192,7 +1192,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A cut of rib eye, the marbling blooming like a flower... quite literally."
+          "text": "花里肌。真的是長成花朵形狀的肉。"
         }
       ]
     },
@@ -1201,7 +1201,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What blooms there is the rot. Is it even edible?"
+          "text": "跟腐肉沒什麼兩樣。這東西能吃嗎。"
         }
       ]
     },
@@ -1210,7 +1210,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Its juice has frozen and turned blue. It <i>is</i> meat juice, right...?"
+          "text": "肉汁凍得發藍了。應該是……肉汁吧。"
         }
       ]
     },
@@ -1219,31 +1219,31 @@
       "texts": [
         {
           "index": 0,
-          "text": "Obtained the \"Ruminations of the Prey.\""
+          "text": "找到了「被食者之思」。"
         },
         {
           "index": 1,
-          "text": "<Whew. That didn't take too long.>",
+          "text": "<比擔心的還要快結束呢。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "The talk-too-much runt is annoying enough, but all those other bastards drooling over the meat are worse. Tch.",
+          "text": "那個只會耍嘴皮子的傢伙也是個問題，但那些覬覦那塊肉的傢伙更讓人火大啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 3,
-          "text": "The meat contains a minute quantity of the Golden Hide. It's reasonable that they want it for themselves.",
+          "text": "既然是混有極少量黃金皮革的肉，大家會覬覦也是理所當然。",
           "speaker": "莫梭"
         },
         {
           "index": 4,
-          "text": "We should now return to Boucher.",
+          "text": "那麼，請回到屠夫那裡吧。",
           "speaker": "浮士德"
         },
         {
           "index": 5,
-          "text": "<Let's go.>",
+          "text": "<就這麼辦吧。>",
           "speaker": "但丁"
         }
       ]
@@ -1253,32 +1253,32 @@
       "texts": [
         {
           "index": 0,
-          "text": "Back in one piece, I see. Thought I'd find at least four arms dangling from meat hooks beside flambé-head.",
+          "text": "四肢健全地回來了啊。我還以為那邊那顆火焰炙燒過的腦袋，會連同四條手臂一起被吊起來呢。",
           "speaker": "屠夫"
         },
         {
           "index": 1,
-          "text": "Where's the Ruminations of the Prey?",
+          "text": "被食者之思帶來了嗎？",
           "speaker": "屠夫"
         },
         {
           "index": 2,
-          "text": "*sniff* *sniff* The smell, you hear? I can smell it, you hear? You got the right one, you hear?",
+          "text": "嗅嗅……有喔，有味道喔！確實帶來了喔。",
           "speaker": "副廚"
         },
         {
           "index": 3,
-          "text": "Put it in the storeroom before it spoils.",
+          "text": "趁新鮮度下降之前，拿去倉庫放好。",
           "speaker": "屠夫"
         },
         {
           "index": 4,
-          "text": "And we'll see that they're given a fair reward for it. Bring a larva here—the one that's still squirming.",
+          "text": "報酬……可得好好付給他們才行。把那隻還在掙扎的幼蟲也帶過來。",
           "speaker": "屠夫"
         },
         {
           "index": 5,
-          "text": "Be right back, you hear?!",
+          "text": "知道了喔！",
           "speaker": "副廚"
         }
       ]
@@ -1288,26 +1288,26 @@
       "texts": [
         {
           "index": 0,
-          "text": "One thing before I hand over the goods. You don't need the larva, do you? You need just the Golden Cocoon?",
+          "text": "有件事我想確認一下……你們需要的不是幼蟲，而是黃金之繭，沒錯吧？",
           "speaker": "屠夫"
         },
         {
           "index": 1,
-          "text": "Correct.",
+          "text": "是的。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Excellent.",
+          "text": "那就好。",
           "speaker": "屠夫"
         },
         {
           "index": 3,
-          "text": "Through the window, we saw Boucher's mouth splitting open into a toothy grin as he began hacking into the ingredients the Sous Chef had brought him."
+          "text": "屠夫聽了這話便露齒一笑，接著在玻璃窗內將副廚拿來的食材亂刀剁碎。"
         },
         {
           "index": 4,
-          "text": "Take it, guests. The Golden Cocoon you requested.",
+          "text": "拿去吧，客人們。這就是你們想要的黃金之繭。",
           "speaker": "屠夫"
         },
         {
@@ -1317,147 +1317,147 @@
         },
         {
           "index": 6,
-          "text": "<... Is it... <i>crying?</i>>",
+          "text": "<它好像在哭……？>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "Ugh... Not the most pleasant sound in the world, is it?",
+          "text": "呃……這聲音聽著真讓人不舒服啊，唉。",
           "speaker": "格里高爾"
         },
         {
           "index": 8,
-          "text": "Why would it be? The dish was only just born. To come into the world is to be swallowed by terror, and terror is such a lonely thing—which is, naturally, accompanied by weeping.",
+          "text": "畢竟是剛誕生的料理，當然會哭。誕生即是恐懼，孤獨之後總會伴隨著哭泣，不是嗎。",
           "speaker": "屠夫"
         },
         {
           "index": 9,
-          "text": "... In any case, I must begin preparing for service. I would prefer that you leave if you have no further business here.",
+          "text": "……比起那個，我差不多該準備烹調了，要是沒別的事，就請你們離開吧。",
           "speaker": "屠夫"
         },
         {
           "index": 10,
-          "text": "Thanks for the win-win deal, you hear?",
+          "text": "謝謝你們這筆好食材的交易喔。",
           "speaker": "副廚"
         },
         {
           "index": 11,
-          "text": "And here's a little something on the house, you hear?",
+          "text": "還有，這個是免費招待的喔。",
           "speaker": "副廚"
         },
         {
           "index": 12,
-          "text": "Huh? On the house?",
+          "text": "咦？免費招待？",
           "speaker": "格里高爾"
         },
         {
           "index": 13,
-          "text": "You can have one cup of soda, you hear? It's from the tail end of this season, so it's not as fizzy... but the flavor's all there, you hear?",
+          "text": "可以喝一杯蘇打喔。因為是本季尾聲的一杯，氣泡沒那麼足……不過還是很好喝喔。",
           "speaker": "副廚"
         },
         {
           "index": 14,
-          "text": "In other words... the equivalent of flat soda pop.",
+          "text": "就像沒氣的可樂……那樣嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 15,
-          "text": "Thank you.",
+          "text": "那就心懷感激地收下了。",
           "speaker": "浮士德"
         },
         {
           "index": 16,
-          "text": "Are there no remaining tasks on this floor?",
+          "text": "這樣一來，這層樓該做的事就都結束了嗎？",
           "speaker": "浮士德"
         },
         {
           "index": 17,
-          "text": "<They said the cocoon could be spun into a skein on B2, so... yeah, we're done here.>",
+          "text": "<他們說用繭做成線團要到地下2樓才行……所以，大概吧。>",
           "speaker": "但丁"
         },
         {
           "index": 18,
-          "text": "I saw a passage farther down the corridor that should take you fellas below.",
+          "text": "要下去的話，走剛才走廊下方那條路應該就行了。",
           "speaker": "格里高爾"
         },
         {
           "index": 19,
-          "text": "We will proceed now to the lower end of the corridor.",
+          "text": "那麼，我們往走廊下方去。",
           "speaker": "莫梭"
         },
         {
           "index": 20,
-          "text": "Wait—can I at least take a small sip of the soda before you head down? I'm thirsty after all this walking...",
+          "text": "啊，不過等一下……這個，不能先嚐一口再走嗎？好久沒這樣到處走動，喉嚨都乾了……",
           "speaker": "格里高爾"
         },
         {
           "index": 21,
-          "text": "Odd. You should not be able to feel thirst as a \"real\" sensation in the Symbolic, Herr Gregor.",
+          "text": "在象徵界，格里高爾先生應該感覺不到實際的口渴才對。",
           "speaker": "浮士德"
         },
         {
           "index": 22,
-          "text": "No, I—come on, I just feel that way, okay?",
+          "text": "不是……哎，真是的……我是說感覺上嘛。",
           "speaker": "格里高爾"
         },
         {
           "index": 23,
-          "text": "Anyway, let's try the free drink before we go.",
+          "text": "總之，招待送的那個，喝喝看再走吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 24,
-          "text": "Faust is also curious about the soda's flavor.",
+          "text": "浮士德也很好奇那蘇打的味道呢。",
           "speaker": "浮士德"
         },
         {
           "index": 25,
-          "text": "<I can't drink it anyway, so the three of you can have it .>",
+          "text": "<反正我也喝不了，你們三個分著喝吧。>",
           "speaker": "但丁"
         },
         {
           "index": 26,
-          "text": "... I will decline, Manager.",
+          "text": "……我就不用了，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 27,
-          "text": "Eh...? But why? Thought we eat the... what was it, the \"feeling\" of it in here...",
+          "text": "咦……？為什麼。不是說在這裡反正只是吃那個……感覺而已嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 28,
-          "text": "Which means you could taste the meal you remember best if you will it. Isn't that worth a try?",
+          "text": "能嚐到記憶中最難忘的食物的味道，試試看也無妨吧？",
           "speaker": "格里高爾"
         },
         {
           "index": 29,
-          "text": "That is precisely why I cannot consume it.",
+          "text": "正因如此，才更不能喝。",
           "speaker": "莫梭"
         },
         {
           "index": 30,
-          "text": "Its flavor might approximate the value of the food preserved in my memory with near-perfect accuracy,",
+          "text": "即使那味道與想像中的價值無限接近。",
           "speaker": "莫梭"
         },
         {
           "index": 31,
-          "text": "but it would not be the same.",
+          "text": "也終究不是那個味道。",
           "speaker": "莫梭"
         },
         {
           "index": 32,
-          "text": "I don't know, not sure the flavor has to retain real \"worth.\"",
+          "text": "不一定非得有真正的價值吧？",
           "speaker": "格里高爾"
         },
         {
           "index": 33,
-          "text": "Something's \"worth\" changes depending on how you feel about it at that moment, right?",
+          "text": "畢竟價值這東西，會隨著當下的感覺而改變。",
           "speaker": "格里高爾"
         },
         {
           "index": 34,
-          "text": "For some folks... that's enough. More than enough, I'd say.",
+          "text": "對某些傢伙來說，光是那樣就已經挺不錯了。",
           "speaker": "格里高爾"
         },
         {
@@ -1467,43 +1467,43 @@
         },
         {
           "index": 36,
-          "text": "I understand your point fully. However...",
+          "text": "我完全理解你想說的。但是……",
           "speaker": "莫梭"
         },
         {
           "index": 37,
-          "text": "I do not believe I am presently capable of it.",
+          "text": "現在的我，恐怕做不到。",
           "speaker": "莫梭"
         },
         {
           "index": 38,
-          "text": "Hey, don't drink it if you don't want to—I'm not trying to press the matter here. Just sharing my thoughts, that's all.",
+          "text": "不是啦……我也不是要你硬喝不想喝的東西，只是隨口說說而已。",
           "speaker": "格里高爾"
         },
         {
           "index": 39,
-          "text": "... It cannot be helped.",
+          "text": "……那也沒辦法呢。",
           "speaker": "浮士德"
         },
         {
           "index": 40,
-          "text": "What surprised me, though, was that Meursault didn't push back with his usual obstinate demeanor in this exchange. At least not as much as he normally would."
+          "text": "意外的是，莫梭稍微放下了他那頑固的態度。"
         },
         {
           "index": 41,
-          "text": "Maybe Gregor's opinion got across to him after all?"
+          "text": "是格里高爾的意見起了作用嗎。"
         },
         {
           "index": 42,
-          "text": "Perhaps Gregor is right. It's not the flavor itself that matters."
+          "text": "或許正如格里高爾所說，味道並不重要。"
         },
         {
           "index": 43,
-          "text": "What we call \"nostalgia\" is probably something reconstructed around the memories we found pleasant."
+          "text": "因為回憶或許是以美好的記憶為主，重新剪輯而成的東西。"
         },
         {
           "index": 44,
-          "text": "Memories fade with time. If they don't—if painful memories linger with clarity at all times... Perhaps \"nostalgia\" is never to be."
+          "text": "如果連痛苦的記憶都能清晰地浮現，那麼「回憶」這個詞或許就沒有必要了。"
         }
       ]
     },
@@ -1512,27 +1512,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "I step onto the first staircase behind Meursault."
+          "text": "我跟著莫梭，踏上手扶梯的第一階。"
         },
         {
           "index": 1,
-          "text": "It's not even that steep, yet I cannot shake the sensation that my body is pitching downward."
+          "text": "明明坡度並不陡，卻總覺得身體不斷往下傾。"
         },
         {
           "index": 2,
-          "text": "I hurriedly grip both sides and descend one careful step at a time."
+          "text": "我急忙抓住兩側，小心翼翼地一步步往下踏。"
         },
         {
           "index": 3,
-          "text": "<color=#ebcaa2>Congratulations, ma puce.</color>"
+          "text": "<color=#ebcaa2>恭喜你，小甜心。</color>"
         },
         {
           "index": 4,
-          "text": "<color=#ebcaa2>You nailed another one.</color>"
+          "text": "<color=#ebcaa2>結果你又把它釘死了呢。</color>"
         },
         {
           "index": 5,
-          "text": "Jeanne's voice recedes, carrying a trace of bitterness. And then..."
+          "text": "簡那帶著幾分苦澀的聲音漸漸遠去。然後……"
         }
       ]
     },
@@ -1541,15 +1541,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "I step onto the first staircase behind Meursault."
+          "text": "我跟著莫梭，踏上手扶梯的第一階。"
         },
         {
           "index": 1,
-          "text": "A faint breeze brushes past, and the light gradually draws nearer."
+          "text": "感覺到一陣微弱的風，光芒一點一點地靠近。"
         },
         {
           "index": 2,
-          "text": "For a moment, it feels as though we are climbing. Then the slope slowly levels, and our steps lead us to a descent."
+          "text": "彷彿逐漸往上的感覺只持續了片刻，腳步很快又緩緩地、平順地往下延伸。"
         }
       ]
     },
@@ -1558,15 +1558,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "I step onto the first staircase behind Meursault."
+          "text": "我跟著莫梭，踏上手扶梯的第一階。"
         },
         {
           "index": 1,
-          "text": "Each of my steps feels impossibly light."
+          "text": "邁出的腳步無比輕盈。"
         },
         {
           "index": 2,
-          "text": "I'm not quite certain whether I am ascending or descending, but I feel the soft sensation of cushioning enveloping the tip of my feet."
+          "text": "連自己是在往上還是往下都不知道，腳尖便滲入一股柔軟的觸感。"
         }
       ]
     },
@@ -1580,26 +1580,26 @@
         },
         {
           "index": 1,
-          "text": "Or a hill—or a shoe.",
+          "text": "或是山坡，或是鞋子。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "How should it be defined, Manager?",
+          "text": "該將它定義為什麼才好呢，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "<……哦？>",
+          "text": "<……咦？>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "<color=#ebcaa2>... So you're going to let them make the final judgment, after everything.</color>"
+          "text": "<color=#ebcaa2>……結果最後的判斷還是交給那個人啊。</color>"
         },
         {
           "index": 5,
-          "text": "<color=#ebcaa2>You know, sometimes I think you are an even worse coward than I am.</color>"
+          "text": "<color=#ebcaa2>你知道嗎？你有時候看起來比我還膽小。</color>"
         },
         {
           "index": 6,
@@ -1608,7 +1608,7 @@
         },
         {
           "index": 7,
-          "text": "Meursault gave Jeanne no reply. He merely looked at me and waited for an answer."
+          "text": "莫梭沒有回應簡的話，只是看著我，等待我的答案。"
         }
       ]
     },
@@ -1617,11 +1617,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "I step onto the first staircase behind Meursault."
+          "text": "莫梭走向其中一座停止運轉的手扶梯。"
         },
         {
           "index": 1,
-          "text": "He touched it, climbed up and down it, and rapped against it to listen to the sound it made."
+          "text": "接著時而摸一摸，時而上上下下，時而敲一敲聽聽聲音。"
         }
       ]
     },
@@ -1630,37 +1630,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "Now, why don't you tell me what this is?",
+          "text": "說說看這是什麼吧？",
           "speaker": "???"
         },
         {
           "index": 1,
-          "text": "Coffee... Coffee from the brand you like, Mother.",
+          "text": "咖啡……是母親喜歡的品牌的咖啡。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "No. You're just telling me what convention has arbitrarily imposed upon it... A memory.",
+          "text": "不對。那是被擅自規定的通念……是記憶喔。",
           "speaker": "???"
         },
         {
           "index": 3,
-          "text": "Don't fall into the familiarity trap, Meursault. Define it anew through your experiences.",
+          "text": "不可以沉溺於熟悉感，莫梭。要用你所經歷的事物重新定義才行。",
           "speaker": "???"
         },
         {
           "index": 4,
-          "text": "It ripples whenever I touch it. It holds the light, yet remains black...",
+          "text": "每次碰觸都會晃動，明明含著光卻是黑的……",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "It is bitter... hot... and it makes everything before my eyes grow wet...",
+          "text": "苦澀……滾燙……讓眼前變得溼潤……",
           "speaker": "莫梭"
         },
         {
           "index": 6,
-          "text": "This is...",
+          "text": "這是……",
           "speaker": "莫梭"
         }
       ]
@@ -1670,7 +1670,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "[미사용] 에스컬레이터가 움직이기 시작했다."
+          "text": "[未使用] 手扶梯開始運作了。"
         }
       ]
     },
@@ -1679,7 +1679,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Moving on to B2."
+          "text": "下到地下2樓。"
         }
       ]
     },
@@ -1688,7 +1688,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The door is open. Should we enter?"
+          "text": "門開著。要進去嗎？"
         }
       ]
     },
@@ -1697,7 +1697,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are eyeballs inside, piled up high. A customer who seems to be the owner lies dead nearby, their belly swollen like a mountain."
+          "text": "裡面堆滿了眼球。看似主人的人肚子像座山一樣隆起，已經死了。"
         }
       ]
     },
@@ -1706,7 +1706,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A house resembling an ordinary private residence. No one responds when we knock."
+          "text": "窗戶另一頭可以看見肚子像座山一樣隆起的屍體。"
         }
       ]
     },
@@ -1715,7 +1715,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The door is open. Should we enter?"
+          "text": "門開著。要進去嗎？"
         }
       ]
     },
@@ -1724,7 +1724,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are eyeballs inside, piled up high. A customer who seems to be the owner lies dead nearby, their belly swollen like a mountain."
+          "text": "裡面堆滿了眼球。看似主人的人肚子像座山一樣隆起，已經死了。"
         }
       ]
     },
@@ -1733,11 +1733,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "A house resembling an ordinary private residence. No one responds when we knock."
+          "text": "是一間看似普通民宅的房子。就算敲門，也感覺不到有人的動靜。"
         },
         {
           "index": 1,
-          "text": "Every so often, an uncanny silhouette passes behind the window."
+          "text": "窗戶另一頭不時有奇異的形體經過。"
         }
       ]
     },
@@ -1746,7 +1746,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The house appears uninhabited. Meat, hides, and similar materials are heaped inside in place of furniture."
+          "text": "這裡似乎沒有人住，屋裡堆著的不是家具，而是肉和皮革之類的東西。"
         }
       ]
     },
@@ -1755,7 +1755,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The door is open. Should we enter?"
+          "text": "門開著。要進去嗎？"
         }
       ]
     },
@@ -1764,7 +1764,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Entered through the open door."
+          "text": "走進了門內。"
         }
       ]
     },
@@ -1773,7 +1773,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The door is open. Should we enter?"
+          "text": "門開著。要進去嗎？"
         }
       ]
     },
@@ -1782,7 +1782,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Entered through the open door."
+          "text": "走進了門內。"
         }
       ]
     },
@@ -1791,7 +1791,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A desiccated slab of meat. It gives off a cold, fishy odor."
+          "text": "是乾巴巴的肉。散發出冰冷的腥味。"
         }
       ]
     },
@@ -1800,7 +1800,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "They appear occupied with arranging the fabric."
+          "text": "似乎正忙著整理布料。"
         }
       ]
     },
@@ -1809,32 +1809,32 @@
       "texts": [
         {
           "index": 0,
-          "text": "... It appears I'll be waiting here for some time.",
+          "text": "……看來得在這裡等上好一陣子了。",
           "speaker": "漆黑派 搬運工"
         },
         {
           "index": 1,
-          "text": "... Hm? Is there something you need?",
+          "text": "……嗯？請問有什麼事。",
           "speaker": "漆黑派 搬運工"
         },
         {
           "index": 2,
-          "text": "We wish to inquire as to the nature of these fabrics.",
+          "text": "想請教一下，這些布料是什麼。",
           "speaker": "浮士德"
         },
         {
           "index": 3,
-          "text": "They are bolts of fabric brought up from B2. The Casualwear Hall placed the order.",
+          "text": "這些是從地下2樓運來的布料。是快時尚服飾館訂的貨。",
           "speaker": "漆黑派 搬運工"
         },
         {
           "index": 4,
-          "text": "Well, there we go. Why don't we just ask this clerk? If they came from B2, they ought to know the way there, shouldn't they?",
+          "text": "什麼嘛，那問這位老兄不就好了？既然是從地下2樓來的，應該也知道怎麼過去吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 5,
-          "text": "Knowing how to return from a given place is not the same as knowing how to get there. The probability that this individual knows both, however, is high.",
+          "text": "知道怎麼來，與知道怎麼去是兩回事。但那人兩者都知道的機率看來很高。",
           "speaker": "莫梭"
         },
         {
@@ -1844,26 +1844,26 @@
         },
         {
           "index": 7,
-          "text": "For some reason, I can feel their gaze fixed upon my head. I should probably show them the item we received on the 3rd floor, just in case."
+          "text": "總覺得有道視線直盯著我的頭。以防萬一，把在3樓拿到的那個拿出來看看吧。"
         },
         {
           "index": 8,
-          "text": "This is... Ah. You are on an errand for those on the third floor, I see. If you wish to descend to the lower floors, simply take the escalator leading downward. Those who know their appointed destination have no cause to lose their way.",
+          "text": "這是……啊哈，原來各位是受了3樓那幾位的委託，正要往下走啊。手扶梯直接往下搭就行了。只要知道該去哪裡，就不會迷路。",
           "speaker": "漆黑派 搬運工"
         },
         {
           "index": 9,
-          "text": "<... That sounds a lot like what we were told about the Corridors.>",
+          "text": "<……說明好像跟走廊差不多啊。>",
           "speaker": "但丁"
         },
         {
           "index": 10,
-          "text": "Darn it... That doesn't help at all.",
+          "text": "真是的……一點忙也幫不上",
           "speaker": "格里高爾"
         },
         {
           "index": 11,
-          "text": "The Noir clerk resumes arranging the fabric."
+          "text": "漆黑派的員工又開始整理布料了。"
         }
       ]
     },
@@ -1872,12 +1872,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oh. You have brought a most precious thing indeed.",
+          "text": "哦。各位帶來了珍貴的東西呢。",
           "speaker": "漆黑派 搬運工"
         },
         {
           "index": 1,
-          "text": "May your descent be untroubled, Strangers.",
+          "text": "祈願各位能平安下去，異鄉人們。",
           "speaker": "漆黑派 搬運工"
         }
       ]
@@ -1887,7 +1887,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "May your descent be untroubled, Strangers.",
+          "text": "祈願各位能平安下去，異鄉人們。",
           "speaker": "漆黑派 搬運工"
         }
       ]
@@ -1897,37 +1897,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "Should've brought another pair of hands...",
+          "text": "早知道就多帶一個人來了……",
           "speaker": "丹紅派 搬運工"
         },
         {
           "index": 1,
-          "text": "... Who the hell are you people?",
+          "text": "你們是什麼人？",
           "speaker": "丹紅派 搬運工"
         },
         {
           "index": 2,
-          "text": "<Are you waiting for something here?>",
+          "text": "<你在這裡等什麼？>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "We are curious as to what you are awaiting here.",
+          "text": "真好奇你在這裡等待著什麼呢。",
           "speaker": "浮士德"
         },
         {
           "index": 4,
-          "text": "Need to strip the Hides from B3 and haul 'em back. Don't know why, but supplies haven't been coming through lately—",
+          "text": "我得從地下3樓把皮革弄過來。不知道為什麼，最近貨源一直不太順……",
           "speaker": "丹紅派 搬運工"
         },
         {
           "index": 5,
-          "text": "...! Wait. Shh... I can hear the Voice again!",
+          "text": "……！等等，安靜點。我現在又聽到聲音了！",
           "speaker": "丹紅派 搬運工"
         },
         {
           "index": 6,
-          "text": "The Rouge porter shoved past us, pressed themself against the wall, and broke into a blissful grin."
+          "text": "丹紅派的搬運工推開我們，貼在牆上開心地笑著。"
         }
       ]
     },
@@ -1936,7 +1936,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "They are pressed against the wall with a blissful grin."
+          "text": "貼在牆上開心地笑著。"
         }
       ]
     },
@@ -1945,7 +1945,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Dyed fabrics are piled high."
+          "text": "堆著染好的布料。"
         }
       ]
     },
@@ -1954,36 +1954,36 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Didn't expect to see a door in a place like this.>",
+          "text": "<這種地方也有門啊。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Given where it faces, opening it has a high probability of connecting us to the Food Hall...",
+          "text": "從方位判斷，打開這扇門的話，很可能會通往……食品賣場。",
           "speaker": "浮士德"
         },
         {
           "index": 2,
-          "text": "... Though the available evidence is insufficient to be absolutely certain.",
+          "text": "……但並不確定。",
           "speaker": "浮士德"
         },
         {
           "index": 3,
-          "text": "The door opens onto an empty space drowned in darkness."
+          "text": "一打開門，空無一物的漆黑空間便映入眼簾。"
         },
         {
           "index": 4,
-          "text": "<哦……>",
+          "text": "<呃……>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "Uh... We're not going in there, are we, Manager Bud?",
+          "text": "經理兄……你不會是想進去吧？",
           "speaker": "格里高爾"
         },
         {
           "index": 6,
-          "text": "<... Let's take the corridor. Might be safer that way.>",
+          "text": "<……走走廊吧。安全點。>",
           "speaker": "但丁"
         }
       ]
@@ -1993,11 +1993,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Nothing but impenetrable darkness lies beyond the door."
+          "text": "門的另一頭只有一片伸手不見五指的黑暗。"
         },
         {
           "index": 1,
-          "text": "... Should we ignore the risk and proceed into the dark?"
+          "text": "……即使如此，還是要往那頭走走看嗎？"
         }
       ]
     },
@@ -2006,7 +2006,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A pristine white table. Various cuts of meat and hides lie arranged across it."
+          "text": "雪白的桌子。上面擺著各式各樣的肉和皮革。"
         }
       ]
     },
@@ -2015,7 +2015,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Among the cuts of meat sits a dish made from eyeballs. We may be able to take it with us."
+          "text": "肉塊之間可以看見一道用眼球做成的料理。或許可以帶走。"
         }
       ]
     },
@@ -2024,7 +2024,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Among the cuts of meat sits a dish made from eyeballs. We may be able to take it with us."
+          "text": "肉塊之間可以看見一道用眼球做成的料理。或許可以帶走。"
         }
       ]
     },
@@ -2033,7 +2033,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Among the cuts of meat sits a dish made from eyeballs. We may be able to take it with us."
+          "text": "肉塊之間可以看見一道用眼球做成的料理。或許可以帶走。"
         }
       ]
     },
@@ -2042,7 +2042,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Several customers have their heads plunged into the fountain."
+          "text": "可以看見好幾位顧客把頭埋在噴泉裡。"
         }
       ]
     },
@@ -2051,7 +2051,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "They are guzzling soda with their faces submerged, right up to the brink of drowning. Some have already gone completely still."
+          "text": "他們把頭埋進去狂灌蘇打，直到快要溺死。有幾個人似乎已經不動了。"
         }
       ]
     },
@@ -2060,7 +2060,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Meat Soda is ready. I doubt I could bring myself to try it even if I were the subject of the Symbolic who could interact with it better than Meursault."
+          "text": "是完成的蘇打。就算象徵界的主體不是莫梭而是我，大概也不敢喝吧。"
         }
       ]
     },
@@ -2069,30 +2069,30 @@
       "texts": [
         {
           "index": 0,
-          "text": "The door is blocked. Pressing an ear against it reveals a jumble of noises beyond—voices, footsteps, and more."
+          "text": "是扇被封住的門。把耳朵湊近，能聽見有人說話、走路等各式各樣的聲音。"
         },
         {
           "index": 1,
-          "text": "Well, we're not getting through here, that's for certain. Thing won't even take a scratch.",
+          "text": "唉，真是的。這裡好像過不去啊？連道刮痕都弄不出來。",
           "speaker": "格里高爾"
         },
         {
           "index": 2,
-          "text": "It likely leads to another area of B1. Access may become possible once a particular condition is satisfied... but information on the prerequisite is not yet accessible.",
+          "text": "那裡應該是地下1樓的另一個空間。只要滿足某種條件或許就能過去……但這還是目前無法存取的資訊呢。",
           "speaker": "浮士德"
         },
         {
           "index": 3,
-          "text": "Huh! Just how huge is this department store...?",
+          "text": "哈，這間百貨公司到底有多大啊……？",
           "speaker": "格里高爾"
         },
         {
           "index": 4,
-          "text": "<color=#ebcaa2>As vast as a Giant's imagination. That's the kind of place it is.</color>"
+          "text": "<color=#ebcaa2>大概就跟巨人的想像一樣廣闊吧。這裡就是那樣的空間。</color>"
         },
         {
           "index": 5,
-          "text": "<A Giant's imagination...>",
+          "text": "<巨人的想像……>",
           "speaker": "但丁"
         }
       ]
@@ -2102,7 +2102,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The door is blocked. Pressing an ear against it reveals a jumble of noises beyond—voices, footsteps, and more."
+          "text": "是扇被封住的門。把耳朵湊近，能聽見有人說話、走路等各式各樣的聲音。"
         }
       ]
     },
@@ -2111,7 +2111,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A briny stench drifts from nearby. The path ahead is packed shut with fabric."
+          "text": "不遠處傳來腥味。道路被布料密密實實地堵住了。"
         }
       ]
     },
@@ -2120,7 +2120,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Food Court area is marked by a spiral symbol on the floor, Manager.",
+          "text": "美食廣場是地板上標有漩渦圖樣的地方，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -2140,7 +2140,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "[미사용] ……."
+          "text": "[未使用] ……"
         }
       ]
     },
@@ -2149,7 +2149,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What should it be defined as?"
+          "text": "該把它定義成什麼呢。"
         }
       ]
     },
@@ -2158,7 +2158,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "They look busy. Better not get too close."
+          "text": "看起來很忙。最好別靠近。"
         }
       ]
     },
@@ -2167,7 +2167,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I'm busy. Work it out yourself.",
+          "text": "我很忙，你們自己看著辦。",
           "speaker": "???"
         }
       ]
@@ -2177,15 +2177,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "Something seems to be lurking beyond the window."
+          "text": "感覺得到窗戶另一頭有股說不上來的動靜。"
         },
         {
           "index": 1,
-          "text": "Knocked on the door.\nHurried footsteps scurry away at the sound, and then the presence vanishes."
+          "text": "敲了敲門，便聽見一陣慌忙的腳步聲，接著那股動靜就消失了。"
         },
         {
           "index": 2,
-          "text": "<I think we're being avoided...>",
+          "text": "<是不想見我們嗎……>",
           "speaker": "但丁"
         }
       ]
@@ -2200,7 +2200,7 @@
         },
         {
           "index": 1,
-          "text": "For a moment, I had the feeling that something was peering through the crack in the door."
+          "text": "總覺得剛才好像有什麼東西從門縫另一頭往外看了一眼。"
         }
       ]
     },
@@ -2209,7 +2209,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The instant Meursault grips the doorknob, an unknown force hurls him backward."
+          "text": "莫梭握住門把的瞬間，便被一股不明的壓力往後震飛了出去。"
         }
       ]
     },
@@ -2223,17 +2223,17 @@
         },
         {
           "index": 1,
-          "text": "<Are you all right?!>",
+          "text": "<沒事吧？！>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "I've sustained dermal lacerations, but they are not severe enough to impede me.",
+          "text": "雖然有些皮膚撕裂傷，但行動上沒有問題。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "As Meursault rises and briskly dusts himself off, I could hear someone—or something—snickering at him."
+          "text": "朝著拍掉灰塵、站起身來的莫梭，似乎傳來了來歷不明的竊笑。"
         }
       ]
     },
@@ -2252,21 +2252,21 @@
         },
         {
           "index": 2,
-          "text": "Whoa... what's this, a mime routine or something?",
+          "text": "喔……突然想表演默劇嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 3,
-          "text": "Meursault had clearly grasped the knob and moved as though wrenching the door open. Yet the door itself remained exactly where it was."
+          "text": "莫梭明明做出了握住門把、把門拉開的動作，但實際上門還在原處。"
         },
         {
           "index": 4,
-          "text": "The tactile sensation of turning the doorknob and pushing the door open was there.",
+          "text": "門把轉動的觸感與開門的觸感，我都感覺到了。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "Uh... Maybe your head never closed all the way after the Alterationist opened it upstairs... Manager Bud, how about giving the clock a spin for him?",
+          "text": "那個……在樓上被打開的腦袋……好像沒關緊啊……經理兄，要不要幫他轉一下時鐘？",
           "speaker": "格里高爾"
         }
       ]
@@ -2276,17 +2276,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "You know, this fella's got a sneaky knack for slapstick.",
+          "text": "這位老兄……其實還挺想搞笑的嘛。",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "Huh? Well, look at that.",
+          "text": "咦？瞧瞧這個。",
           "speaker": "格里高爾"
         },
         {
           "index": 2,
-          "text": "... It would appear that Gregor has just experienced the exact same thing."
+          "text": "……看來格里高爾也遇到了同樣的事。"
         }
       ]
     },
@@ -2295,11 +2295,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "It looks as though a thick blackout curtain has been drawn behind the narrow window."
+          "text": "狹窄的窗戶另一側，似乎拉著厚重的遮光窗簾。"
         },
         {
           "index": 1,
-          "text": "... Every so often, something makes a wet <i>squelch</i> as though something is being wrung out."
+          "text": "……斷斷續續傳來像是在擠出什麼的聲音。"
         }
       ]
     },
@@ -2308,15 +2308,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "Leaned in toward the curtain again to listen some more."
+          "text": "再次側耳傾聽窗簾那邊的動靜。"
         },
         {
           "index": 1,
-          "text": "A wet patter sounded from within. A moment later, the curtain gave a small twitch with a sharp smack."
+          "text": "才剛聽見一陣劈哩啪啦的聲響，窗簾便隨著「啪！」的一聲輕輕晃了一下。"
         },
         {
           "index": 2,
-          "text": "... Something appears to have sprayed out and splattered all over it."
+          "text": "……似乎有什麼東西噴了出來，濺到了窗簾上。"
         }
       ]
     },
@@ -2325,11 +2325,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "No other sounds follow."
+          "text": "再也聽不見其他聲音了。"
         },
         {
           "index": 1,
-          "text": "... Though every so often, I think I hear droplets falling from beneath the curtain."
+          "text": "似乎還能斷斷續續聽見窗簾下方傳來像是水滴落下的聲音。"
         }
       ]
     },
@@ -2338,11 +2338,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Peering through the slightly open door reveals rows of meaty chunks, densely arranged all over the wooden floor."
+          "text": "從微微開啟的門縫往裡看，木地板上密密麻麻地擺滿了肉塊。"
         },
         {
           "index": 1,
-          "text": "... It is difficult to tell where or what that meat came from."
+          "text": "很難輕易推測那些肉是從什麼東西身上來的。"
         }
       ]
     },
@@ -2351,40 +2351,40 @@
       "texts": [
         {
           "index": 0,
-          "text": "Metal clashes against metal with a heavy clanging."
+          "text": "傳來鏗鏘作響、金屬互相碰撞的聲音。"
         },
         {
           "index": 1,
-          "text": "Through the window, a huge, unidentifiable thing is feeding what looks like hide into a hole in the wall."
+          "text": "往窗戶裡一看，一個來歷不明的巨大東西正把像是皮的東西塞進牆上的洞裡。"
         },
         {
           "index": 2,
-          "text": "<What is it doing...?>",
+          "text": "<它在做什麼……？>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "That aperture is the kind commonly employed for waste disposal in multi-unit residences. It is also referred to as \"dust chute.\"",
+          "text": "是多戶住宅等處常用來丟垃圾的洞口呢。也叫作垃圾滑槽。",
           "speaker": "浮士德"
         },
         {
           "index": 4,
-          "text": "But... isn't this just a detached house?",
+          "text": "可是……這裡不就只是棟獨棟住宅嗎？",
           "speaker": "格里高爾"
         },
         {
           "index": 5,
-          "text": "That is common sense as established within the City, Herr Gregor. It is difficult to apply the same standard to the way things are in the Symbolic.",
+          "text": "那是都市裡的常識，格里高爾。在象徵界這裡，恐怕很難談論常識吧。",
           "speaker": "浮士德"
         },
         {
           "index": 6,
-          "text": "Huh... you're saying a dust chute isn't a common-sense concept here then...?",
+          "text": "哈……那妳是說，垃圾滑槽不是常識性的概念囉……？",
           "speaker": "格里高爾"
         },
         {
           "index": 7,
-          "text": "... I pull the two Sinners apart before their squabbling can get worse."
+          "text": "……我把快要拌起嘴來的兩人拉開了。"
         }
       ]
     },
@@ -2393,7 +2393,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Just what was that? Despite the bizarre phenomenon, I seize the doorknob once more and try to pull the door open—but it refuses to budge."
+          "text": "剛才那是什麼？經歷了這奇妙的事後，我再次拉住門把想把門打開，門卻打不開。"
         }
       ]
     },
@@ -2402,15 +2402,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "What looks like a department-store directory is glued on a drink vending machine. Damage has obscured most of the lettering."
+          "text": "飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。"
         },
         {
           "index": 1,
-          "text": "Something is stuck to its edge."
+          "text": "地圖邊緣貼著什麼東西。"
         },
         {
           "index": 2,
-          "text": "Meursault obtained Map Fragment."
+          "text": "莫梭收下了地圖碎片。"
         }
       ]
     },
@@ -2419,7 +2419,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What looks like a department-store directory is glued on a drink vending machine. Damage has obscured most of the lettering."
+          "text": "飲料販賣機上貼著百貨公司的導覽地圖。由於部分地方破損，上面的文字看不太清楚。"
         }
       ]
     },
@@ -2428,7 +2428,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Reddish pieces of meat, hides, and the like have been put on display. They look fresher than the cuts hanging outside."
+          "text": "展示著泛紅的肉和皮之類的東西。看起來比掛在外面的肉新鮮。"
         }
       ]
     },
@@ -2437,11 +2437,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Something lies on the floor before the escalator."
+          "text": "手扶梯前掉著什麼東西。"
         },
         {
           "index": 1,
-          "text": "Meursault obtained 10 eyeballs."
+          "text": "莫梭收下了10顆眼球。"
         }
       ]
     },
@@ -2450,7 +2450,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "An escalator whose origin and terminus alike lie beyond perception."
+          "text": "是看不見起點也看不見終點的手扶梯。"
         }
       ]
     },
@@ -2459,7 +2459,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Something is visible among the corpses that have been gnawed clean."
+          "text": "在被啃食殆盡的屍體之間，能看見什麼東西。"
         }
       ]
     },
@@ -2468,7 +2468,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Call me Sous Chef, you hear?",
+          "text": "要叫我副廚喔。",
           "speaker": "副廚"
         }
       ]
@@ -2478,7 +2478,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Won't be so hungry anymore."
+          "text": "看來再也不會挨餓了。"
         }
       ]
     },
@@ -2487,7 +2487,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "At last, freed from their hunger pangs."
+          "text": "終於擺脫了飢餓。"
         }
       ]
     },
@@ -2496,7 +2496,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Who's going to keep an eye on the soda now...?"
+          "text": "現在蘇打要由誰負責呢……"
         }
       ]
     },
@@ -2505,7 +2505,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "No answer."
+          "text": "沒有任何回應。"
         }
       ]
     },
@@ -2514,7 +2514,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's hard to tell whether the briny smell in the air is coming from the sea or the blood."
+          "text": "飄來的腥味，似乎分辨不出是來自大海還是鮮血。"
         }
       ]
     },
@@ -2523,7 +2523,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The light has completely gone out of their eyes."
+          "text": "眼中的光芒完全消失了。"
         }
       ]
     },
@@ -2532,7 +2532,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Doesn't even so much as twitch. Most likely dead."
+          "text": "似乎已經斷氣，不再一開一合地翕動了。"
         }
       ]
     },
@@ -2559,7 +2559,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Though only a small part of it has been trimmed, it now feels no different from any other cut of meat here."
+          "text": "只是剝下了一部分，感覺卻已經和其他的肉沒什麼兩樣了。"
         }
       ]
     },
@@ -2568,7 +2568,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Take a cup of soda, you hear?",
+          "text": "喝杯蘇打再走喔。",
           "speaker": "副廚"
         }
       ]
@@ -2578,22 +2578,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "Jeez... Almost got chopped down like those meat slabs on hooks.",
+          "text": "真是的……差點就跟那些掛著的肉落得同樣下場了。",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "<... Meursault <i>did</i> get turned into a meat slab on a hook.>",
+          "text": "<莫梭他……已經落得同樣下場了……>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "<Anyway, I think we can look at their appearances to predict what kind of trajectory their throws'll have.>",
+          "text": "<依長相不同……丟東西的方式好像也不一樣。>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "<Let's try to commit their patterns to memory and overcome this threat.>",
+          "text": "<好好分辨，看是要躲開……還是正面迎戰吧。>",
           "speaker": "但丁"
         }
       ]
@@ -2603,17 +2603,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Just like those things on the first floor, huh...>",
+          "text": "<跟1樓那些東西一樣啊……>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Colliding with that enemy immediately dragged us into the Shadowed.",
+          "text": "一旦碰撞，就會立即進入陰影界呢。",
           "speaker": "浮士德"
         },
         {
           "index": 2,
-          "text": "<Is that better than the Mannequins or the first floor... or worse? I don't know.>",
+          "text": "<好像比1樓那些人台模特兒好一點，又好像沒有……>",
           "speaker": "但丁"
         }
       ]
@@ -2623,47 +2623,47 @@
       "texts": [
         {
           "index": 0,
-          "text": "Huh. For all that song and dance about buggy-buggy this, buggy-buggy that...",
+          "text": "哈。明明成天嚷著蟲手臂、蟲手臂的……",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "... she ended up chopping Meursault's arm off.",
+          "text": "結果砍走的卻是莫梭先生的手臂啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 2,
-          "text": "Her butchershop skills live up to her title as the Sous Chef.",
+          "text": "是與副廚這個職稱相符的解體技術。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "... As a being of the Symbolic, it would have been difficult for her, an external force, to interface with the Sinners; the only exception being Meursault.",
+          "text": "……既然她是在象徵界活動，作為外部因素，應該很難干涉莫梭先生以外的罪人。",
           "speaker": "浮士德"
         },
         {
           "index": 4,
-          "text": "Of course, that limitation goes both ways.",
+          "text": "不過反過來應該也是一樣的。",
           "speaker": "浮士德"
         },
         {
           "index": 5,
-          "text": "<So... we <i>can</i> cut Gregor's arm off, technically?>",
+          "text": "<那……如果我們想切，也切得下來嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "Correct. And as long as I am the subject, I can be the medium by which it is transferred to the Sous Chef's hands.",
+          "text": "是。此外，若由我作為主體，轉交也是可能的。",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "<... Hmm. Nah, I've got a bad feeling about cutting off Gregor's arm in here.>",
+          "text": "<……不過，格里高爾的手臂果然還是讓人提不起勁。>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "<Let's head back to the Food Court.>",
+          "text": "<再去美食廣場看看吧。>",
           "speaker": "但丁"
         }
       ]

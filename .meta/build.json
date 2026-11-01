@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261029",
   "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
-  "rules_commit": "563a0bf5b2d7ab2426f09b1eb3566a5beec92bf0",
-  "built_at": "2026-11-01T05:58:51Z",
+  "rules_commit": "3088606eaa001f63510d84b47e4d9344ab8957d5",
+  "built_at": "2026-11-01T11:20:54Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,10 +10,11 @@
   },
   "report": {
     "origins": {
+      "claude": 18019,
       "copy": 90934,
-      "paratranz": 164943
+      "paratranz": 163830
     },
-    "pending": 16906,
+    "pending": 0,
     "needs_review": 3,
     "structural_fallback": 0,
     "frozen_fallback": [
@@ -21,14 +22,14 @@
       "BgmLyrics/BgmLyrics_Cromer2.json|/dataList/23/content",
       "BgmLyrics/BgmLyrics_Cromer2.json|/dataList/45/content"
     ],
-    "unaligned": 259,
+    "unaligned": 0,
     "field_rule_override": 0,
     "warnings": {
       "ascii-ellipsis": 13,
       "curly-quotes": 4,
-      "halfwidth-punct": 328,
-      "kana": 116,
-      "length-ratio": 11
+      "halfwidth-punct": 336,
+      "kana": 115,
+      "length-ratio": 10
     },
     "missing_glyphs": []
   }

@@ -46,11 +46,11 @@
     },
     {
       "key": "Q5004T_C2",
-      "title": "뷔페 개전 신호",
+      "title": "自助餐開戰通知",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "뷔페 개전"
+          "goalDescription1": "自助餐開戰"
         }
       ]
     }

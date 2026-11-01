@@ -26,12 +26,12 @@
     {
       "id": 149401,
       "name": "丹紅派 夾克",
-      "desc": "Turn End: Gain or lose up to 10 [ChargeRouge] Count\n\nWhen hit, if the attacker used Skills that gain [Charge], transfer 1 [ChargeRouge] Count as [Charge] Count to the attacker (once per the attacker's Skill)\nGain 1 [AttackUp] every time the effect above activates\nTurn Start: Consume up to 5 excess [ChargeRouge] Count beyond 15 on self to heal ([ChargeRouge] Count consumed)% HP"
+      "desc": "回合結束時，使自身獲得或失去最多10回 [ChargeRouge]\n\n自身受到攻擊時，若攻擊者使用的技能為獲得 [Charge] 的技能，則使自身的1回 [Charge] 轉移給攻擊者(攻擊者每個技能最多1次)\n該效果每觸發1次，使自身獲得1層 [AttackUp]\n回合開始時，消耗自身超過15回的 [ChargeRouge] 回數(最多5回)，並使自身恢復體力上限(消耗的回數)%的體力"
     },
     {
       "id": 149402,
       "name": "肌肉纖維丹寧布",
-      "desc": "自身每帶有1級 [ChargeRouge] 強度，則使自身技能造成的傷害+1%(最多+10%)\n\n若使用技能時，自身的現存體力不高於50%，則使該技能獲得的 [ChargeRouge] 回數額外+2回\n自身每失去1%的體力，則使自身的技能造成的傷害+1%"
+      "desc": "自身每帶有1級 [ChargeRouge] 強度，則使自身技能造成的傷害+1%(最多+10%)\n\n若使用技能時，自身的現存體力低於50%，則使該技能獲得的 [ChargeRouge] 回數額外+2回\n自身每失去1%的體力，則使自身的技能造成的傷害+1%"
     },
     {
       "id": 149301,
@@ -86,7 +86,7 @@
     {
       "id": 147405,
       "name": "逃跑囉！",
-      "desc": "若副廚的現存體力不高於30%，則結束本場戰鬥",
+      "desc": "若副廚的現存體力低於30%，則結束本場戰鬥",
       "flavor": "我不想死。"
     },
     {
@@ -176,7 +176,7 @@
     {
       "id": 148204,
       "name": "保存轉換的悖論",
-      "desc": "若自身帶有護盾，則受到罪人攻擊時，\n使自身獲得1回 [ChargeNoir] (每個技能最多1次，每回合最多3次)\n- 若自身的 [ChargeNoir] 強度不低於3級／5級，則改為使自身獲得2回／3回 [ChargeNoir]\n\n回合結束時，若自身帶有護盾，\n則自身每帶有1級 [ChargeNoir] 強度，使下回合自身獲得1回 [ChargeNoir] 與1層 [DefenseUp] (分別最多+3)",
+      "desc": "若自身帶有護盾，則受到罪人攻擊時，\n使自身獲得1回 [ChargeNoir] (每個技能最多1次，每回合最多3次)\n- 若自身的 [ChargeNoir] 強度不低於3/5級，則改為使自身獲得2/3回 [ChargeNoir]\n\n回合結束時，若自身仍帶有護盾，\n則自身每帶有1級 [ChargeNoir] 強度，使下回合自身獲得1回 [ChargeNoir] 與1層 [DefenseUp] (分別最多3)",
       "flavor": "將那些想強加在我身上的外力，全部變成我保護自己的力量。\n\n這是一個無論你多麼不渴望改變、多麼想保持靜止，也勢必得改變些什麼的世界。"
     },
     {
@@ -200,7 +200,7 @@
     {
       "id": 148304,
       "name": "保存轉換的悖論的悖論",
-      "desc": "若自身帶有護盾，則受到罪人攻擊時，\n- 使該罪人增加1級 [Vibration] 強度(每個技能最多1次)\n- 使自身獲得1回 [ChargeNoir] (每個技能最多1次，每回合最多3次)\n．若自身的 [ChargeNoir] 強度不低於3級／5級，則改為獲得2回／3回 [ChargeNoir]\n\n回合結束時，若自身帶有護盾，\n則自身每帶有1級 [ChargeNoir] 強度，下回合使自身獲得1回 [ChargeNoir] 與2層 [DefenseUp] (分別最多3回、6層)",
+      "desc": "若自身帶有護盾，則受到罪人攻擊時，\n- 使該罪人增加1級 [Vibration] 強度(每個技能最多1次)\n- 使自身獲得1回 [ChargeNoir] (每個技能最多1次，每回合最多3次)\n．若自身的 [ChargeNoir] 強度不低於3/5級，則改為獲得2/3回 [ChargeNoir]\n\n回合結束時，若自身仍帶有護盾，\n則自身每帶有1級 [ChargeNoir] 強度，下回合使自身獲得1回 [ChargeNoir] 與2層 [DefenseUp] (分別最多3回、6層)",
       "flavor": "越是努力試圖保持不變，存在就越會朝著變化的狀態發展。\n\n只要存在必將推移，既然有所前進，就勢必會伴隨著變化。"
     },
     {
@@ -253,7 +253,7 @@
     {
       "id": 148406,
       "name": "暴力誕生的暴走",
-      "desc": "回合結束時，若命繩部位未被破壞且本體的現存體力不高於50%，則使自身獲得 [Gourmandise]\n在命繩部位被破壞前，自身的 [Gourmandise] 層數不會減少",
+      "desc": "回合結束時，若命繩部位未被破壞且本體的現存體力低於50%，則使自身獲得 [Gourmandise]\n在命繩部位被破壞前，自身的 [Gourmandise] 層數不會減少",
       "flavor": "肉體從溫暖的地方，被拋向寒冷的所在。意識從涼爽的地方，被扔到炙熱的場所。就這樣，一切都這麼粗暴。"
     },
     {

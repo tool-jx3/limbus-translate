@@ -5,7 +5,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The escalator heading upstairs is not moving. It likely won't move until we deal with what's on the dining table."
+          "text": "通往樓上的手扶梯停住了。在收拾好餐桌之前，似乎不會動。"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The terrible noise that had been pursuing us for a while finally came to a stop."
+          "text": "從後方跟來的聲音停止了。"
         }
       ]
     },
@@ -23,7 +23,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We are on the fifth floor once again."
+          "text": "再一次抵達了5樓。"
         }
       ]
     },
@@ -32,7 +32,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<We're... finally here.>",
+          "text": "<終於……走到這裡了。>",
           "speaker": "但丁"
         },
         {
@@ -47,12 +47,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "... I do remember you. The ones who called me Pwie.",
+          "text": "……我還記得。那些叫我普依的人。",
           "speaker": "自助餐"
         },
         {
           "index": 1,
-          "text": "And he who never lied—Meursault.",
+          "text": "其中，從不說謊的那個人。莫梭。",
           "speaker": "自助餐"
         },
         {
@@ -62,62 +62,62 @@
         },
         {
           "index": 3,
-          "text": "All who claim to be my followers ask things of me, yet none have offered answers.",
+          "text": "追隨我的人們全都只會對我有所求，卻從不給出答案。",
           "speaker": "自助餐"
         },
         {
           "index": 4,
-          "text": "You, on the other hand... You may be able to answer. My questions were unending, but you never failed to tell me what you knew, exactly as you knew it.",
+          "text": "但是……你應該能回答吧。因為無論我問什麼，你總是毫無保留地說出你所知道的事。",
           "speaker": "自助餐"
         },
         {
           "index": 5,
-          "text": "Meursault... Why... am I always so empty? I eat and eat in this restaurant and fill myself, yet still...",
+          "text": "莫梭。我為什麼……永遠無法被填滿。即使將這間餐廳裡的東西吃了又吃……",
           "speaker": "自助餐"
         },
         {
           "index": 6,
-          "text": "I wished for none of this. Wanted none of it.",
+          "text": "我什麼都不曾期盼，不曾渴求。",
           "speaker": "自助餐"
         },
         {
           "index": 7,
-          "text": "So why must I endure... this crushing hunger?",
+          "text": "那為什麼我非得感受這種……可怕的飢餓不可。",
           "speaker": "自助餐"
         },
         {
           "index": 8,
-          "text": "Because you were born that way.",
+          "text": "因為你生來如此。",
           "speaker": "莫梭"
         },
         {
           "index": 9,
-          "text": "I see...",
+          "text": "是嗎……",
           "speaker": "自助餐"
         },
         {
           "index": 10,
-          "text": "But there were times when you forgot that fact.",
+          "text": "但你也曾有忘記這件事的時候。",
           "speaker": "莫梭"
         },
         {
           "index": 11,
-          "text": "When you learned something new.",
+          "text": "認識新事物的時候。",
           "speaker": "莫梭"
         },
         {
           "index": 12,
-          "text": "When you were with Wriggley.",
+          "text": "和噗扭在一起的時候。",
           "speaker": "莫梭"
         },
         {
           "index": 13,
-          "text": "When you played games.",
+          "text": "玩遊戲、玩耍的時候。",
           "speaker": "莫梭"
         },
         {
           "index": 14,
-          "text": "Those brief moments allowed you to forget the pain.",
+          "text": "你暫時忘記了那份痛苦。",
           "speaker": "莫梭"
         },
         {
@@ -127,41 +127,41 @@
         },
         {
           "index": 16,
-          "text": "Yes. I did.",
+          "text": "沒錯，是那樣的。",
           "speaker": "自助餐"
         },
         {
           "index": 17,
-          "text": "Your words bring back another vivid memory. This one you didn't mention.",
+          "text": "聽你這麼說，我也清楚想起了一件你漏掉的事。",
           "speaker": "自助餐"
         },
         {
           "index": 18,
-          "text": "When I followed you, you would sometimes turn to look at me. And when our eyes met...",
+          "text": "跟在你們身後走，偶爾與回頭的你們目光相交的時候……",
           "speaker": "自助餐"
         },
         {
           "index": 19,
-          "text": "There was no pain at all.",
+          "text": "那時一點也不痛苦。",
           "speaker": "自助餐"
         },
         {
           "index": 20,
-          "text": "It made me... very happy. I enjoyed our adventure so much that I'd even forgotten my hunger.",
+          "text": "非常……快樂。快樂到忘記了飢餓。",
           "speaker": "自助餐"
         },
         {
           "index": 21,
-          "text": "Buffet stopped attacking us."
+          "text": "說完這句話，自助餐便不再攻擊我們了。"
         },
         {
           "index": 22,
-          "text": "Pwie. We have no wish to take up arms against you.",
+          "text": "普依。我們並不想與你交手。",
           "speaker": "李箱"
         },
         {
           "index": 23,
-          "text": "... But we will have no choice but to do so.",
+          "text": "……但恐怕不得不戰。",
           "speaker": "莫梭"
         }
       ]
@@ -171,29 +171,29 @@
       "texts": [
         {
           "index": 0,
-          "text": "<color=#E1B643>That's right, Meur.</color>"
+          "text": "<color=#E1B643>說得沒錯，小莫。</color>"
         },
         {
           "index": 1,
-          "text": "<That voice again...>",
+          "text": "<那個聲音又……>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "<color=#E1B643>Do you know why it's so cruel to be brought into this world without having any say in it?</color>"
+          "text": "<color=#E1B643>你知道擅自被生到這個世界上，為什麼會如此殘酷嗎？</color>"
         },
         {
           "index": 3,
-          "text": "<color=#E1B643>It's because we're born to be afraid of death... even when we have chosen to die.</color>"
+          "text": "<color=#E1B643>因為我們生來就連隨心所欲地死去……都會感到恐懼。</color>"
         },
         {
           "index": 4,
-          "text": "<I've felt it since the first floor. This voice... it's getting closer.>",
+          "text": "<雖然從1樓就感覺到了，這個聲音……正越來越近。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "Closer... with each floor we ascend?",
+          "text": "越往上走……就越接近嗎？",
           "speaker": "李箱"
         },
         {
@@ -203,35 +203,35 @@
         },
         {
           "index": 7,
-          "text": "<color=#E1B643>The guilt of having sacrificed a child.</color>"
+          "text": "<color=#E1B643>犧牲了孩子的罪惡感。</color>"
         },
         {
           "index": 8,
-          "text": "<color=#E1B643>The calling to heal mankind.</color>"
+          "text": "<color=#E1B643>想要治癒人類的使命感。</color>"
         },
         {
           "index": 9,
-          "text": "<color=#E1B643>The responsibility of not wanting to let your colleagues down.</color>"
+          "text": "<color=#E1B643>不想讓同伴失望的責任感。</color>"
         },
         {
           "index": 10,
-          "text": "<color=#E1B643>... None of it means anything in the face of death.</color>"
+          "text": "<color=#E1B643>……這一切在死亡面前都會失去意義。</color>"
         },
         {
           "index": 11,
-          "text": "<color=#E1B643>It will be the same for that child.</color>"
+          "text": "<color=#E1B643>那孩子應該也一樣。</color>"
         },
         {
           "index": 12,
-          "text": "<color=#E1B643>The memories shared with you, the expectations the Rouges placed upon them, and the instinctive, insatiable hunger...</color>"
+          "text": "<color=#E1B643>與你們之間的回憶、丹紅派寄予的期待、不斷襲來的本能飢餓。</color>"
         },
         {
           "index": 13,
-          "text": "<color=#E1B643>Buffet is bearing all that anguish. They won't stop this time.</color>"
+          "text": "<color=#E1B643>正因為懷抱著這所有的苦惱，這次不會停下了。</color>"
         },
         {
           "index": 14,
-          "text": "<color=#E1B643>And they must know it, too—that for anything to exist... they themselves must first exist.</color>"
+          "text": "<color=#E1B643>有自己在，才有一切……自助餐，那孩子應該也明白這點。</color>"
         }
       ]
     },
@@ -240,42 +240,42 @@
       "texts": [
         {
           "index": 0,
-          "text": "... I could follow you now, but it's too late. This hunger would not disappear.",
+          "text": "……事到如今就算跟著你們走，這份飢餓也不會消失。",
           "speaker": "自助餐"
         },
         {
           "index": 1,
-          "text": "Nor would the hopes and expectations of the Rouges fade away.",
+          "text": "丹紅派的願望與期待也不會就此消逝。",
           "speaker": "自助餐"
         },
         {
           "index": 2,
-          "text": "If this hunger is to be appeased... I must devour everything here. Even the place you seek above, I must devour.",
+          "text": "為了平息飢餓……我必須吃光這裡的一切。就連你們要前往的地方，也必須吃光。",
           "speaker": "自助餐"
         },
         {
           "index": 3,
-          "text": "Why don't you remain here with me once more, strangers?",
+          "text": "倒不如……再次留在這裡吧，異鄉人們。",
           "speaker": "自助餐"
         },
         {
           "index": 4,
-          "text": "<... We can't.>",
+          "text": "<……不行。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "<Which means... we'll have to make... another choice we'll regret.>",
+          "text": "<所以我們……又得做出會後悔的選擇了吧。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "... We will proceed to the next floor, Buffet.",
+          "text": "……我們要往上走，自助餐。",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "So you choose not to follow me in the end, strangers...",
+          "text": "終究，你們這些異鄉人是不追隨我的存在啊。",
           "speaker": "自助餐"
         }
       ]
@@ -295,43 +295,43 @@
       "texts": [
         {
           "index": 0,
-          "text": "Huh... Not quite the reunion I had in mind...",
+          "text": "哈，沒想到會這樣重逢……",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "It would seem our arrival has gone... unperceived. The feast persists still, with nary a pause to mark our presence.",
+          "text": "似乎……並未察覺我們到來。只是不停地……不停地吃著。",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Now that we had broken free of fate and of the predetermined ending, the Sinners had regained their memories in this place. Gregor and Yi Sang regards the sight ahead of us sadly."
+          "text": "擺脫了命運與既定的結局後，找回記憶的格里高爾與李箱神情複雜地望著前方。"
         },
         {
           "index": 3,
-          "text": "At the end of Gregor and Yi Sang's troubled gaze was the being we had once called Pwie—or \"Buffet,\" as they had revealed their name. The being who had devoured the entire department store in the previous loop."
+          "text": "那個曾被我們稱作普依，最後報上自助餐之名，將百貨公司整個啃食殆盡的存在。"
         },
         {
           "index": 4,
-          "text": "<Looks like the Rouges won while the Chaplain had us trapped.>",
+          "text": "<在我們被牧師困住的期間……丹紅派似乎獲勝了。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "<If the Chaplain is indeed the Voice for the Noirs... His absence must have thrown the Noirs into disarray and made things easier for the Rouges.>",
+          "text": "<如果牧師是漆黑派的聲音……那他們應該也一片混亂，說不定反而更輕易就被占領了。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "With the Grand Magasin's rules broken, Pwie had reached the fifth floor and eaten everything in sight, just as before."
+          "text": "在規矩崩壞的百貨公司裡，普依一路上到5樓，和那時一樣將一切吃得一乾二淨。"
         },
         {
           "index": 7,
-          "text": "But unlike the figure we had seen in that earlier ending..."
+          "text": "但那模樣與先前結局中看到的不同……"
         },
         {
           "index": 8,
-          "text": "They had not grown bloated like a termite queen. Instead, their presence felt all the more imposing, as though they had come fully into their own."
+          "text": "並未變得臃腫，反而散發出一股成熟的威壓感。"
         }
       ]
     },
@@ -355,45 +355,45 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pwie slowly turned to look at us."
+          "text": "聽見莫梭的呼喚，普依緩緩抬起頭望向我們。"
         },
         {
           "index": 1,
-          "text": "... That is not my name.",
+          "text": "……那不是我的名字。",
           "speaker": "自助餐"
         },
         {
           "index": 2,
-          "text": "I am Buffet, the new Voice of Le Rouge...",
+          "text": "我是自助餐。丹紅派新的聲音……",
           "speaker": "自助餐"
         },
         {
           "index": 3,
-          "text": "I know.",
+          "text": "我知道。",
           "speaker": "莫梭"
         },
         {
           "index": 4,
-          "text": "However... you were Pwie to us.",
+          "text": "但是……對我們而言，你叫作普依。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "Pwie slowly lowered the food in their hands, as though Meursault's words had stirred an interest in them."
+          "text": "聽了這句話，普依彷彿產生了興趣，緩緩放下了正在進食的手。"
         },
         {
           "index": 6,
-          "text": "... Doesn't look like they remember us, does it?",
+          "text": "……看這樣子，好像不記得了？",
           "speaker": "格里高爾"
         },
         {
           "index": 7,
-          "text": "<Back then, Pwie remembered what happened before the Liquidation—when the Noirs gained the upper hand. Which means they should still remember us...>",
+          "text": "<普依也記得庫存整理之前的事。既然如此，現在應該也還記得我們才對……>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "Unlike ourselves, they may have had to bear witness to every minute, every second that passed within that interval. Perhaps those memories have since been consigned to oblivion... or perhaps the sentiments once bound to them have simply faded in color.",
+          "text": "……若不同於我們，完整地感受了那段時間的一切，或許已經遺忘了。又或是情感已然褪色。",
           "speaker": "李箱"
         },
         {
@@ -408,7 +408,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Strangers, yet... familiar. Faces from my memory...",
+          "text": "是異鄉人啊。但是……很熟悉。記憶中的人們……",
           "speaker": "自助餐"
         }
       ]
@@ -418,7 +418,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pwie... no, Buffet. We must pass through.",
+          "text": "普依……不，自助餐。我們必須通過前面。",
           "speaker": "莫梭"
         }
       ]
@@ -428,22 +428,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "You cannot. This is a place for feasting.",
+          "text": "不行。這裡是享用晚宴的地方。",
           "speaker": "自助餐"
         },
         {
           "index": 1,
-          "text": "You must remain... until all has been consumed.",
+          "text": "在吃完這一切之前……都必須留在這裡。",
           "speaker": "自助餐"
         },
         {
           "index": 2,
-          "text": "We cannot. We must leave this place.",
+          "text": "不行。因為我們必須離開這裡。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "... Then I have no choice but to consume you.",
+          "text": "……既然如此，只好攝取你們了。",
           "speaker": "自助餐"
         }
       ]
@@ -458,17 +458,17 @@
         },
         {
           "index": 1,
-          "text": "Ahh... How... exciting...",
+          "text": "啊，好……期待……",
           "speaker": "自助餐"
         },
         {
           "index": 2,
-          "text": "I don't feel...",
+          "text": "已經不再……",
           "speaker": "自助餐"
         },
         {
           "index": 3,
-          "text": "... so hungry anymore...",
+          "text": "感到飢餓了……",
           "speaker": "自助餐"
         }
       ]
@@ -483,7 +483,7 @@
         },
         {
           "index": 1,
-          "text": "You don't have to be hungry... anymore.",
+          "text": "現在……你已經不必再飢餓了。",
           "speaker": "莫梭"
         }
       ]
@@ -493,12 +493,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "*hums* All right~ Here we are! You've all waited <i>so</i> patiently.",
+          "text": "好～讓各位久等了。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "That goes for me, too, by the way. You've got no idea how long the wait was for me. I was <i>this</i> close to losing my mind.",
+          "text": "這句話也是對我自己說的。我真的等了超久。差一步就要瘋了。",
           "speaker": "克羅默"
         }
       ]
@@ -508,11 +508,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "I had no mouth to dine, but even if I could, eating was the last thing on my mind."
+          "text": "先不說我沒有能吃東西的嘴，我連吃的念頭都沒有。"
         },
         {
           "index": 1,
-          "text": "Meursault, however, neatly picked up his spoon."
+          "text": "但莫梭端正地拿起了湯匙。"
         }
       ]
     },
@@ -521,7 +521,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There is a veritable feast laid out atop the broken dining table. It looks climbable."
+          "text": "毀壞的餐桌上擺著晚宴。似乎可以爬上去。"
         }
       ]
     },
@@ -530,7 +530,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A neatly arranged assortment of dishes on a dining table, waiting for their master to come."
+          "text": "擺設整齊的餐桌正等待著主人。"
         }
       ]
     },
@@ -544,31 +544,31 @@
         },
         {
           "index": 1,
-          "text": "An assortment of dishes is laid out on the table, which is covered with a white tablecloth."
+          "text": "白色桌巾上擺上了各式各樣的盤子。"
         },
         {
           "index": 2,
-          "text": "It's a full-course meal. Bon appétit!",
+          "text": "Bon appétit！這是全套餐點喔。",
           "speaker": "克羅默"
         },
         {
           "index": 3,
-          "text": "The reason those things never made it past the fifth floor...",
+          "text": "那些東西之所以沒能越過5樓……",
           "speaker": "克羅默"
         },
         {
           "index": 4,
-          "text": "... was that they wouldn't mind their manners in the Restaurant of Grand Magasin Sisyphe.",
+          "text": "是因為沒有遵守薛西弗斯百貨公司餐廳的禮儀。",
           "speaker": "克羅默"
         },
         {
           "index": 5,
-          "text": "You know restaurants call for civilized dining, right? Use the right utensil, put on airs, and all that. Dine, not <i>consume</i> like some starved troglodyte.",
+          "text": "你們也知道，在餐廳裡就該文明地用餐吧？而不是野蠻地攝取。",
           "speaker": "克羅默"
         },
         {
           "index": 6,
-          "text": "What not to do when dining... Let's see, not knowing what the next course is, not wanting to wait, stuffing in the next mouthful before you've even had the time to properly taste the last bit... Nope, that's no way to dine!",
+          "text": "不懂順序、不懂等待，味道還沒留下就把下一口硬塞進去，那可不叫用餐！",
           "speaker": "克羅默"
         }
       ]
@@ -578,7 +578,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Now, for starters: the soup. It's been simmering long enough for everything inside to melt together into something wonderfully thick and rich. The surface looks pristine and smooth, but stir your spoon a little, and everything that's been lying at the bottom comes swirling right back up.",
+          "text": "首先是湯。長時間熬煮，濃稠又醇厚。表面平靜無波，但舀起一匙，沉在底部的東西就會沉甸甸地跟著被撈上來。",
           "speaker": "克羅默"
         }
       ]
@@ -588,47 +588,47 @@
       "texts": [
         {
           "index": 0,
-          "text": "You must've met people with all sorts of desires here in the Grand Magasin.",
+          "text": "你們進入百貨公司後，見到了懷抱各種慾望的人吧。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "The Noirs want to preserve the department store. And the Rouges, of course, want to bleed it to depletion. There are the Kakis, interested in nothing but consuming more clothes. Next, for good measure, the Néants, who hide away to bask in the sunlight.",
+          "text": "想守護百貨公司的漆黑派們，與想耗盡百貨公司的丹紅派們。還有只對消費衣服感興趣的卡其派們。另外，還有感受著百貨公司的陽光、躲藏起來的虛無派。",
           "speaker": "克羅默"
         },
         {
           "index": 2,
-          "text": "The Noirs told you about the values they were trying to protect.",
+          "text": "你們從漆黑派們那裡，聽說了他們想守護的價值。",
           "speaker": "克羅默"
         },
         {
           "index": 3,
-          "text": "And you brought them some lovely news—that the Rouge's Voice had been silenced for good.",
+          "text": "然後，傳達了會讓他們高興的消息。丹紅派的聲音再也聽不見了的這件事。",
           "speaker": "克羅默"
         },
         {
           "index": 4,
-          "text": "As for one of you being the culprit of that heinous murder... let's keep that our little secret, shall we?",
+          "text": "至於你們之中就有殺死那聲音之主的本人……就當作我們之間的祕密吧。",
           "speaker": "克羅默"
         },
         {
           "index": 5,
-          "text": "Anyway, that gave the Rouges a huge danger warning, so they've all been \"scheming\" for a long time. The plan was to birth a new Voice, molded with their own hands. They simply can't bear to go without one, after all.",
+          "text": "感受到危機的丹紅派們，很久以前就在計畫一件事。用自己的雙手塑造新的聲音。畢竟他們是沒有聲音就撐不下去的傢伙。",
           "speaker": "克羅默"
         },
         {
           "index": 6,
-          "text": "The Noirs used you to crush that little plan underfoot.",
+          "text": "但漆黑派們透過你們踐踏了那個計畫。",
           "speaker": "克羅默"
         },
         {
           "index": 7,
-          "text": "The cradle of the Rouge's hope was torn apart, and what crawled out there went back to sleep again before it could even learn to get a proper word out.",
+          "text": "丹紅派們的願望被撕裂，從中爬出來的東西連話都還沒好好說出口，就又睡著了。",
           "speaker": "克羅默"
         },
         {
           "index": 8,
-          "text": "That's how the Noirs brought the eternity they so wished for into this department store. Perfect stillness—with nothing ever changing, nothing being born.",
+          "text": "就這樣，漆黑派們守住了他們在百貨公司所期盼的永恆。完美的靜止。什麼都不改變，什麼都不誕生。",
           "speaker": "克羅默"
         }
       ]
@@ -638,12 +638,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Just like this soup. Slowly cooling and forever congealing until it becomes a solid mass.",
+          "text": "就像這碗慢慢冷卻、永遠凝固下去的湯。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "And next:",
+          "text": "然後……",
           "speaker": "克羅默"
         }
       ]
@@ -653,7 +653,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Another dish was set down before us."
+          "text": "接著，下一個盤子被擺了上來。"
         }
       ]
     },
@@ -662,12 +662,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "The appetizer.",
+          "text": "第二道，開胃菜。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "This isn't to fill your stomach, by the way. It's a morsel of food served to remind the customers just how hungry they are.",
+          "text": "這不是用來填飽肚子的，而是讓客人們意識到自己肚子餓了的料理。",
           "speaker": "克羅默"
         }
       ]
@@ -677,37 +677,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "What happened in the aftermath was that the Grand Magasin was reverted to the beginning, and so were you, forced to start over from the first floor. And if I'm to hazard a guess as to what your silly clockhead must've had in its mind...",
+          "text": "百貨公司回溯了。你們也從1樓重新開始。那個笨蛋時鐘頭應該想到了這件事吧。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "... It probably thought that a different choice would bring a different result.",
+          "text": "只要做出不同的選擇，就會有不同的結果。",
           "speaker": "克羅默"
         },
         {
           "index": 2,
-          "text": "So this time, you threw in your lot with the Rouges. Granted their wish. Helped bring the creature they so desperately wanted into their world.",
+          "text": "所以這次，你們牽起了丹紅派的手。實現他們的願望，幫助丹紅派殷切期盼的造物誕生。",
           "speaker": "克羅默"
         },
         {
           "index": 3,
-          "text": "And did you leave it at that? Of course not. You gave the thing a name. Put shoes on its feet and clothes on its back. You even saw it safely up to the fifth floor.",
+          "text": "就這樣而已嗎？還幫它取了名字。替它穿上鞋子、穿上衣服，讓它能平安地上到5樓。",
           "speaker": "克羅默"
         },
         {
           "index": 4,
-          "text": "Thanks to you... it finally earned its place to be here—the restaurant of the fifth floor.",
+          "text": "託你們的福……它取得了資格，終於來到了5樓，來到了這裡。",
           "speaker": "克羅默"
         },
         {
           "index": 5,
-          "text": "Aww, but what you'd placed your hope in for the second time was nothing more than a Rouge in the end. An entity that wanted to consume the Grand Magasin to the point of depletion.",
+          "text": "但它也不過是盼望耗盡百貨公司的丹紅派罷了。",
           "speaker": "克羅默"
         },
         {
           "index": 6,
-          "text": "It ate everything. Left the department store stripped to the bone... only to learn that its hunger will never ever be sated.",
+          "text": "把一切都吃光，百貨公司只剩下骨頭了呢？只領悟到了停不下來的飢餓。",
           "speaker": "克羅默"
         }
       ]
@@ -717,7 +717,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "All right, then...",
+          "text": "好了，接下來……",
           "speaker": "克羅默"
         }
       ]
@@ -727,12 +727,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Time for the main course, of course! No need to dress it up with all the trimmings.",
+          "text": "是主菜。不需要多加點綴。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "It's the dish that takes the longest to cook. The highlight of a full-course meal.",
+          "text": "因為這是最耗時的料理，也是整套餐點的重頭戲。",
           "speaker": "克羅默"
         }
       ]
@@ -742,72 +742,72 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Grand Magasin, unfortunately for you, decided to go through with another Liquidation.",
+          "text": "百貨公司又捉弄人似地再一次整理了庫存。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "And in your infinite wisdom that led you to drill that subhuman prosthetic into your spine, you've figured out... precisely nothing!",
+          "text": "真不愧是裝著義體的蠢貨，你們還是摸不著頭緒呢。",
           "speaker": "克羅默"
         },
         {
           "index": 2,
-          "text": "The big question was, if neither Le Noir nor Le Rouge was the answer, then just what exactly were you supposed to change, and how?",
+          "text": "既不是漆黑派，也不是丹紅派的話，那該改變什麼、又該怎麼改變呢？",
           "speaker": "克羅默"
         },
         {
           "index": 3,
-          "text": "Being a merciful Giant, I couldn't stand to watch your stupidity any longer. So I gave you a hint.",
+          "text": "實在看不下去的這位慈悲巨人，就給了提示。",
           "speaker": "克羅默"
         },
         {
           "index": 4,
-          "text": "To kill... a fellow Giant.",
+          "text": "就是……傷害同為巨人的存在。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "Hey, that's way too harsh, don't you think? It's not as if this world... actually exists.",
+          "text": "說得真難聽！反正這裡……也不是真實存在的世界嘛？",
           "speaker": "克羅默"
         },
         {
           "index": 6,
-          "text": "Unlike the customers, when a Giant's avatar dies here, all it does is put a little strain on us in the real world.",
+          "text": "就算死在這裡，和顧客們不同，巨人的虛擬形象就算死了，也只會讓現實中的身體有點吃不消而已。",
           "speaker": "克羅默"
         },
         {
           "index": 7,
-          "text": "I mean, who'd willingly clock in at a job that couldn't even guarantee the employees would live to clock out, right...? Just a joke with a touch of dark humor, by the way. In case you numbskulls took it seriously.",
+          "text": "有誰會心甘情願到一個連性命都沒保障的職場上下班啊？順帶一提，這是黑色笑話喔。怕你們沒聽出來。",
           "speaker": "克羅默"
         },
         {
           "index": 8,
-          "text": "Besides... I didn't know the Chaplain would push himself that far. N Corp.'s model employee, that one. Honestly.",
+          "text": "更何況……我沒想到牧師會那麼拚命。總之，他可是N公司的菁英……優秀員工呢。",
           "speaker": "克羅默"
         },
         {
           "index": 9,
-          "text": "Anyhow, in the end... you finally managed to get rid of the Warden and unshackled the Grand Magasin from its rules.",
+          "text": "就這樣……你們終於除掉了獄卒，把百貨公司從規則中解放了出來。",
           "speaker": "克羅默"
         },
         {
           "index": 10,
-          "text": "Meanwhile, a very, veeeery long time had passed in the system of the Grand Magasin...",
+          "text": "在那段期間，百貨公司在系統上經過了非常、非～常長的時間……",
           "speaker": "克羅默"
         },
         {
           "index": 11,
-          "text": "Le Noir's Voice had gone quiet during that time, and Le Rouge claimed victory. Their creation... settled on the fifth floor, following its instincts just as before.",
+          "text": "在聽不見漆黑派聲音的期間，丹紅派奪得了勝利。丹紅派的造物……和之前一樣，順著本能在5樓落腳了。",
           "speaker": "克羅默"
         },
         {
           "index": 12,
-          "text": "Artificial or not, it was still a god within this system. Seems it used its memories with you to take over the department store a little more cleverly. Even spared itself that ugly, bloated end form or whatever it is.",
+          "text": "那個造物雖然是人工製造的，但在這個系統裡終究是神，所以它似乎帶著和你們之間的記憶，更聰明地掌控了百貨公司。甚至連自己變得臃腫醜陋的結局都避免了。",
           "speaker": "克羅默"
         },
         {
           "index": 13,
-          "text": "Haha! Here's the funny part: along you came next and snuffed out its life again, just like you did the first time! What a long, clingy path to walk. Wouldn't you agree?",
+          "text": "噗哈。然後隨後趕來的你們，又斷了它的氣？真是條既頑強又艱辛的路。你們不覺得嗎？",
           "speaker": "克羅默"
         }
       ]
@@ -817,7 +817,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "And that leaves us with...",
+          "text": "所以現在剩下的就是……",
           "speaker": "克羅默"
         }
       ]
@@ -827,7 +827,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A small plate was set down on the table."
+          "text": "一個小盤子被擺了上來。"
         }
       ]
     },
@@ -836,72 +836,72 @@
       "texts": [
         {
           "index": 0,
-          "text": "The dessert. The meal's finale. Its full stop.",
+          "text": "甜點。全餐的收尾，也是句點。",
           "speaker": "克羅默"
         },
         {
           "index": 1,
-          "text": "You do know that the memory of a full-course meal is always defined by the finishing dish, right?",
+          "text": "料理都是靠最後的味道被記住的，知道吧？",
           "speaker": "克羅默"
         },
         {
           "index": 2,
-          "text": "You... are a Giant, who is obliged to administer this department store faithfully.",
+          "text": "你是……有義務忠實經營百貨公司的巨人。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "Why are you helping us reach the top floor?",
+          "text": "為什麼要幫助我們登上百貨公司的頂端？",
           "speaker": "莫梭"
         },
         {
           "index": 4,
-          "text": "You're right. I'm a Giant. The hardest-working Giant this place has ever had, in fact.",
+          "text": "沒錯，我是巨人。而且還是在這裡工作最認真的巨人。",
           "speaker": "克羅默"
         },
         {
           "index": 5,
-          "text": "I practically <i>lived</i> across these floors while the other three sat in their rooms clutching microphones. Nobody else put in more overtime than I did. Well, unpaid overtime... that is.",
+          "text": "其他三個人在房間裡抓著麥克風的時候，我幾乎就住在這裡了。論加班比例，我是最高的。加班費……倒是沒拿到就是了。",
           "speaker": "克羅默"
         },
         {
           "index": 6,
-          "text": "You see, we Giants have to hold up the Grand Magasin together... which makes it difficult for us to cause direct harm to one another. We're all keeping an eye on each other.",
+          "text": "必須撐起百貨公司的我們巨人……很難直接傷害彼此。因為大家都在互相監視。",
           "speaker": "克羅默"
         },
         {
           "index": 7,
-          "text": "So what I needed... was a variable from the outside world. I don't mind playing friend or chef as the occasion demands, so long as our purposes align. I'm a people person.",
+          "text": "所以我需要的……是從外界進來的變數。只要目標相同，我隨時都能配合當朋友，也能當廚師。因為我很有親和力嘛。",
           "speaker": "克羅默"
         },
         {
           "index": 8,
-          "text": "You're no different. You didn't get in here entirely on your own, did you? And certainly not via the \"normal\" route.",
+          "text": "你們也是吧。你們應該不是光靠自己的力量、按正規程序進來這裡的。",
           "speaker": "克羅默"
         },
         {
           "index": 9,
-          "text": "Quite a few others have taken an interest in you, you know. That one in the restroom, for a start.",
+          "text": "盯上你們的人，除了我以外還有很多呢？像出現在廁所的那傢伙也是。",
           "speaker": "克羅默"
         },
         {
           "index": 10,
-          "text": "Saved me a great deal of legwork, I'll give them that.",
+          "text": "託他們的福，我需要出手的地方一下子少了很多。",
           "speaker": "克羅默"
         },
         {
           "index": 11,
-          "text": "The Giants... are all people who fear the world.",
+          "text": "巨人們全都是……畏懼世界的人。",
           "speaker": "莫梭"
         },
         {
           "index": 12,
-          "text": "You must be the same.",
+          "text": "你應該也一樣吧。",
           "speaker": "莫梭"
         },
         {
           "index": 13,
-          "text": "Exactly. Scared out of my wits every single day—even now. Can you hear it? See my poor heart trembling?",
+          "text": "沒錯。我現在也每天怕得直發抖。看得到嗎？我的心臟抖個不停的樣子？",
           "speaker": "克羅默"
         }
       ]
@@ -911,7 +911,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Meursault finished his meal."
+          "text": "莫梭吃完了餐點，放下了餐具。"
         }
       ]
     },
@@ -920,21 +920,21 @@
       "texts": [
         {
           "index": 0,
-          "text": "Once he laid down the utensils, a path to the sixth floor opened through the space that had been barring our way."
+          "text": "於是，在堵住的空間之間，通往6樓的路打開了。"
         },
         {
           "index": 1,
-          "text": "Bravo! Can I get a \"compliments to the chef\"?",
+          "text": "Bravo！真是完美的一套全餐。",
           "speaker": "克羅默"
         },
         {
           "index": 2,
-          "text": "Here's hoping we can finally get to the \"off with your head\" stage the next time we meet!",
+          "text": "下次再見的話，希望那時候真的能割下你們的腦袋。",
           "speaker": "克羅默"
         },
         {
           "index": 3,
-          "text": "We left the table to ascend to the sixth floor, with Kromer waving us off as enthusiastically as ever."
+          "text": "在用力揮手的克羅默送別下……我們決定登上6樓。"
         }
       ]
     },
@@ -943,23 +943,23 @@
       "texts": [
         {
           "index": 0,
-          "text": "Buffet... <i>Pwie</i> stopped moving forward because of the memories they shared with us."
+          "text": "自助餐，也就是普依，因為和我們之間的回憶而停止了前進。"
         },
         {
           "index": 1,
-          "text": "And yet, we've decided to move on, despite the memories shared with Pwie."
+          "text": "而我們儘管有著和普依的回憶，仍決定繼續前進。"
         },
         {
           "index": 2,
-          "text": "If Meursault had spoken the truth, if Meursault hadn't lied to Pwie as they lay dying... I wonder if Pwie still would have felt no regret over choosing to stop."
+          "text": "如果莫梭最後說的不是謊言，而是真相……普依那時是否也不會後悔自己停了下來。還是說，終究會後悔呢。"
         },
         {
           "index": 3,
-          "text": "... Perhaps Pwie chose to stop not because of their memories with us, but..."
+          "text": "……也許讓普依停下來的，並不是和我們之間的回憶……"
         },
         {
           "index": 4,
-          "text": "... the anticipation that they might be able to experience those memories again."
+          "text": "而是「或許能再次經歷那段回憶」的期待也說不定。"
         }
       ]
     }

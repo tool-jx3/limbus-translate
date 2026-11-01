@@ -570,7 +570,7 @@
     },
     {
       "id": "tuto_01_09_01_13",
-      "content": "Activating <color=#f8c200><E.G.O Overclock><color=#ebcaa2> without enough resources will trigger <color=#f8c200><Unstable Overclock><color=#ebcaa2> instead.\nUnstable Overclock targets both allies and enemies <color=#f8c200>indiscriminately<color=#ebcaa2>, like E.G.O Corrosion, and any <color=#f8c200>insufficient E.G.O resources will go into the negatives<color=#ebcaa2>."
+      "content": "若使用<color=#f8c200><E.G.O超頻><color=#ebcaa2>時罪孽碎片不足，\n將會發動<color=#f8c200><不穩定超頻><color=#ebcaa2>。\n該狀態下如同侵蝕技能一般，將會<color=#f8c200>無差別地進行攻擊<color=#ebcaa2>，<color=#f8c200>若有不足的罪孽碎片將會以負數處理<color=#ebcaa2>。"
     },
     {
       "id": "tuto_01_11_abbattle_01_01",

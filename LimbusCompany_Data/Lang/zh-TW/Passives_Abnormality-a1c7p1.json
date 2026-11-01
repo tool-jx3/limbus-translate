@@ -28,7 +28,7 @@
     {
       "id": 837202,
       "name": "硬血剪刀",
-      "desc": "On Clash Win, if the target has [Laceration], heal this unit's Part & Core by 40% of the HP damage dealt.\nAttack End: If this unit healed at least 100 HP, heal 10 SP\nThis effect does not activate On Hit with an Unbreakable Coin Skill if it loses the Clash.",
+      "desc": "拚點勝利時，若目標帶有 [Laceration]，則使自身部位與本體恢復造成體力傷害量40%的體力\n攻擊結束時，若自身恢復的體力不低於100點，則使自身恢復10點理智值\n若為無法被破壞的硬幣，拚點失敗後命中時不會觸發該效果。",
       "summary": "攻擊帶有流血 的敵人時使自身恢復體力，累計恢復100點體力時使自身恢復理智值"
     },
     {

@@ -344,7 +344,7 @@
           "level": 1,
           "name": "凶彈",
           "abName": "凶彈射手",
-          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain (highest Reson. + 1) [BoseProjektil] (max 7)\n- If it was an A-Reson., gain (highest Reson. + 2) [BoseProjektil] instead\n[BeforeAttack] Deal +2% damage for every [BoseProjektil] (max 14%)\n[BeforeAttack] Gain 1 [Breath] for every [BoseProjektil] (max 3)\n[BeforeAttack] Deal +3% damage for every 5 [Breath] on self (max 15%)\n[BeforeAttack] Consume 5 [Breath] on self\n[EndSkill] Lose every [BoseProjektil]",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n- 若該共鳴為完全共鳴，則改為獲得(最大共鳴數+2)層 [BoseProjektil]\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使本技能造成的傷害+2%(最多+14%)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級呼吸法強度(最多3級)\n[BeforeAttack] 自身每帶有5級 [Breath] 強度，使本技能造成的傷害+3%(最多+15%)\n[BeforeAttack] 消耗自身的5級 [Breath] 強度\n[EndSkill] 消耗所有 [BoseProjektil]",
           "coinlist": [
             {
               "coindescs": [
@@ -359,7 +359,7 @@
           "level": 3,
           "name": "凶彈",
           "abName": "凶彈射手",
-          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain (highest Reson. + 1) [BoseProjektil] (max 7)\n- If it was an A-Reson., gain (highest Reson. + 2) [BoseProjektil] instead\n<style=\"highlight\">[BeforeAttack] At 3+ [BoseProjektil], gain 1 Atk Weight</style>\n[BeforeAttack] Deal +2% damage for every [BoseProjektil] (max 14%)\n[BeforeAttack] Gain 1 [Breath] for every [BoseProjektil] (max <style=\"highlight\">4</style>)\n[BeforeAttack] Deal +<style=\"highlight\">4</style>% damage for every 5 [Breath] on self (max <style=\"highlight\">20</style>%)\n[BeforeAttack] Consume 5 [Breath] on self\n[EndSkill] Lose every [BoseProjektil]",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n- 若該共鳴為完全共鳴，則改為獲得(最大共鳴數+2)層 [BoseProjektil]\n<style=\"highlight\">[BeforeAttack] 若自身的 [BoseProjektil] 不低於3層，則使本技能的攻擊容量+1</style>\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使本技能造成的傷害+2%(最多+14%)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級呼吸法強度(最多<style=\"highlight\">4</style>級)\n[BeforeAttack] 自身每帶有5級 [Breath] 強度，使本技能造成的傷害+<style=\"highlight\">4</style>%(最多+<style=\"highlight\">20</style>%)\n[BeforeAttack] 消耗自身的5級 [Breath] 強度\n[EndSkill] 消耗所有 [BoseProjektil]",
           "coinlist": [
             {
               "coindescs": [
@@ -374,7 +374,7 @@
           "level": 4,
           "name": "凶彈",
           "abName": "凶彈射手",
-          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain (highest Reson. + 1) [BoseProjektil] (max 7)\n- If it was an A-Reson., gain (highest Reson. + 2) [BoseProjektil] instead\n[BeforeAttack] Gain 1 Atk Weight for <style=\"highlight\">every 3 [BoseProjektil] (max 2)</style>\n[BeforeAttack] Deal +<style=\"highlight\">3</style>% damage for every [BoseProjektil] (max <style=\"highlight\">21</style>%)\n[BeforeAttack] Gain 1 [Breath] for every [BoseProjektil] (max <style=\"highlight\">7</style>)\n[BeforeAttack] Deal +<style=\"highlight\">5</style>% damage for every 5 [Breath] on self (max <style=\"highlight\">25</style>%)\n[BeforeAttack] Consume 5 [Breath] on self\n[EndSkill] Lose every [BoseProjektil]",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n- 若該共鳴為完全共鳴，則改為獲得(最大共鳴數+2)層 [BoseProjektil]\n[BeforeAttack] 自身每帶有<style=\"highlight\">3層</style> [BoseProjektil]，使本技能的攻擊容量+1<style=\"highlight\">(最多+2)</style>\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使本技能造成的傷害+<style=\"highlight\">3</style>%(最多<style=\"highlight\">+21</style>%)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級呼吸法強度(最多<style=\"highlight\">7</style>級)\n[BeforeAttack] 自身每帶有5級 [Breath] 強度，使本技能造成的傷害+<style=\"highlight\">5</style>%(最多<style=\"highlight\">+25</style>%)\n[BeforeAttack] 消耗自身的5級 [Breath] 強度\n[EndSkill] 消耗所有 [BoseProjektil]",
           "coinlist": [
             {
               "coindescs": [
@@ -412,7 +412,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 1 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a 4+ Sloth A-Reson., inflict 1 [AmberTakeDamageUp] next turn as well"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 震顫引爆時，本回合對其施加1層 [AmberTakeDamageUp]\n- 若最大共鳴為共鳴數不低於4的怠惰完全共鳴，則下回合也對其施加1層 [AmberTakeDamageUp]"
                 }
               ]
             }
@@ -440,7 +440,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 1 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">Sloth A-Reson.</style>, inflict 1 [AmberTakeDamageUp] next turn as well"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 震顫引爆時，本回合對其施加1層 [AmberTakeDamageUp]\n- 若最大共鳴為<style=\"highlight\">怠惰完全共鳴</style>，則下回合也對其施加1層 [AmberTakeDamageUp]"
                 }
               ]
             }
@@ -468,7 +468,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 1 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">3+ Sloth Reson.</style>, inflict 1 [AmberTakeDamageUp] next turn as well"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 震顫引爆時，本回合對其施加1層 [AmberTakeDamageUp]\n- 若最大共鳴為共鳴數<style=\"highlight\">不低於3的怠惰共鳴</style>，則下回合也對其施加1層 [AmberTakeDamageUp]"
                 }
               ]
             }
@@ -504,7 +504,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 2 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a 4+ Sloth A-Reson, inflict 2 [AmberTakeDamageUp] next turn as well"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 震顫引爆時，本回合對其施加2層 [AmberTakeDamageUp]\n- 若最大共鳴為共鳴數不低於4的怠惰完全共鳴，則下回合也對其施加2層 [AmberTakeDamageUp]"
                 }
               ]
             }
@@ -535,7 +535,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 2 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">Sloth A-Reson</style>, inflict 2 [AmberTakeDamageUp] next turn as well"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 震顫引爆時，本回合對其施加2層 [AmberTakeDamageUp]\n- 若最大共鳴為<style=\"highlight\">怠惰完全共鳴</style>，則下回合也對其施加2層 [AmberTakeDamageUp]"
                 }
               ]
             }
@@ -566,7 +566,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Trigger [VibrationExplosion]; then, reduce target's [Vibration] Count by 1\n- When triggering Tremor Burst, inflict 2 [AmberTakeDamageUp] this turn\n- If the highest Reson. was a <style=\"highlight\">3+ Sloth Reson.</style>, inflict 2 [AmberTakeDamageUp] next turn as well"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 震顫引爆時，本回合對其施加2層 [AmberTakeDamageUp]\n- 若最大共鳴為共鳴數<style=\"highlight\">不低於3的怠惰共鳴</style>，則下回合也對其施加2層 [AmberTakeDamageUp]"
                 }
               ]
             }
@@ -581,7 +581,7 @@
           "level": 1,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 4+ Envy Reson., gain +7 [Charge] Count instead\n[BeforeAttack] Consume all [Charge] Count on self. Deal +2% damage for every [Charge] Count consumed (max 30%)",
+          "desc": "[BeforeAttack] 使自身獲得(最高共鳴數+1)回的 [Charge] (最多7回)\n- 若嫉妒共鳴數不低於4，則改為使自身獲得7回 [Charge]\n[BeforeAttack] 消耗自身帶有的所有 [Charge] 回數，每消耗1回充能，則使本技能造成的傷害+2%(最多+30%)",
           "coinlist": [
             {
               "coindescs": [
@@ -616,7 +616,7 @@
           "level": 3,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 4+ Envy Reson., gain +7 [Charge] Count instead\n[BeforeAttack] Consume all [Charge] Count on self. Deal +3% damage for every [Charge] Count consumed (max 45%)\n<style=\"highlight\">- If this consumed 5+ [Charge] Count, Base Power +1</style>",
+          "desc": "[BeforeAttack] 使自身獲得(最高共鳴數+1)回的 [Charge] (最多7回)\n- 若嫉妒共鳴數不低於4，則改為使自身獲得7回 [Charge]\n[BeforeAttack] 消耗自身帶有的所有 [Charge] 回數，每消耗1回充能，則使本技能造成的傷害+3%(最多+45%)\n<style=\"highlight\">- 若本效果消耗的 [Charge] 回數不低於5回，則使本技能的基礎威力+1</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -651,7 +651,7 @@
           "level": 4,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "<style=\"highlight\">Coin Power +1 for every 6 [Combustion] on the main target (max 3)</style>\n[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 4+ Envy Reson., gain +7 [Charge] Count instead\n[BeforeAttack] Consume all [Charge] Count on self. Deal +3% damage for every [Charge] Count consumed (max 45%)\n- If this consumed 5+ [Charge] Count, Base Power +1",
+          "desc": "<style=\"highlight\">主要目標每帶有6級 [Combustion] 強度，則使本技能的硬幣威力+1(最多+3)</style>\n[BeforeAttack] 使自身獲得(最高共鳴數+1)回的 [Charge] (最多7回)\n- 若嫉妒共鳴數不低於4，則改為使自身獲得7回 [Charge]\n[BeforeAttack] 消耗自身帶有的所有 [Charge] 回數，每消耗1回充能，則使本技能造成的傷害+3%(最多+45%)\n- 若本效果消耗的 [Charge] 回數不低於5回，則使本技能的基礎威力+1",
           "coinlist": [
             {
               "coindescs": [

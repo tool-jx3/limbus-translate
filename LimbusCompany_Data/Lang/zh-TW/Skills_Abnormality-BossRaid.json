@@ -89,7 +89,7 @@
         {
           "level": 1,
           "name": "注意背後！",
-          "desc": "若目標的理智值不高於0點，則使本技能硬幣威力+3",
+          "desc": "若目標的理智值低於0點，則使本技能硬幣威力+3",
           "coinlist": [
             {
               "coindescs": [
@@ -860,7 +860,7 @@
         {
           "level": 1,
           "name": "快刀亂麻",
-          "desc": "Prioritizes targets that have [Prey_leiheng]\n<color=#ff6000><mark=#ff000040><b><u>Can Clash with this Skill regardless of Speed; this unit does not become Staggered before it uses this Skill</u></b></mark></color>\n[WhenUse] Consume all [BattleSense] Stack on self. If this unit consumed...\n- ... 10+ Stacks, gain Atk Weight +1 for every 10 Stack consumed (max 2)\n- ... 25 Stacks, Final Power +1 for every 4 (sum of [Combustion] and [Vibration] on the main target) (max 5)\n[DefeatDuel] Gain 1 [Paralysis]\n[DefeatDuel] Deal -80% damage; this Skill's damage cannot Stagger the target; <color=#ff6000><mark=#ff000040><b><u>inflict only half the Potency and Count for both [Combustion] and [Vibration] inflicted by this Skill</u></b></mark></color> (unless raised by other effects)\n[EndSkill] [FullReload] (once per turn)\n- If this unit has [BulletPropellantSpecial], [ReloadKeepAmmo] instead (once per turn)\n[EndSkill] Ends this turn",
+          "desc": "優先指定帶有 [Prey_leiheng] 的目標\n<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點。直到使用本技能前，自身不會陷入混亂</u></b></mark></color>\n[WhenUse] 消耗所有 [BattleSense]，若消耗的層數：\n- 不低於10層，則每消耗10層，使本技能的攻擊容量+1(最多+2)\n- 為25層，則主要目標的 [Combustion] 與 [Vibration] 強度之和每有4級，使本技能的最終威力+1(最多+5)\n[DefeatDuel] 對自身施加1層 [Paralysis]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂，<color=#ff6000><mark=#ff000040><b><u>令本技能施加的 [Combustion] 強度與回數、[Vibration] 強度與回數減半</u></b></mark></color>(不包括其他效果增加的施加量)\n[EndSkill] 使自身 [FullReload] (每回合最多1次)\n- 若自身帶有 [BulletPropellantSpecial]，則改為使自身 [ReloadKeepAmmo] (每回合最多1次)\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
@@ -891,7 +891,7 @@
         {
           "level": 1,
           "name": "超絕猛虎殺擊亂斬",
-          "desc": "Prioritizes targets that have [Prey_leiheng]\n<color=#ff6000><mark=#ff000040><b><u>Can Clash with this Skill regardless of Speed; this unit does not become Staggered before it uses this Skill</u></b></mark></color>\n[WhenUse] Consume all [BattleSense] Stack on self. If this unit consumed...\n- ... 10+ Stacks, gain Atk Weight +1 for every 10 Stack consumed (max 4)\n- ... 25+ Stacks, Final Power +1 for every 4 (sum of [Combustion] and [Vibration] on the main target) (max 6)\n- ... 50 Stacks, Coin Power +1 and deal +50% damage\n[DefeatDuel] Gain 6 [Paralysis]\n[DefeatDuel] Deal -80% damage; this Skill's damage cannot Stagger the target; <color=#ff6000><mark=#ff000040><b><u>inflict only half the Potency and Count for both [Combustion] and [Vibration] inflicted by this Skill</u></b></mark></color> (unless raised by other effects)\n[EndSkill] [FullReload] (once per turn)\n- If this unit has [BulletPropellantSpecial], [ReloadKeepAmmo] instead (once per turn)\n[EndSkill] Ends this turn",
+          "desc": "優先指定帶有 [Prey_leiheng] 的目標\n<color=#ff6000><mark=#ff000040><b><u>可無視速度值與本技能拚點。直到使用本技能前，自身不會陷入混亂</u></b></mark></color>\n[WhenUse] 消耗所有 [BattleSense]，若消耗的層數：\n- 不低於10層，則每消耗10層，使本技能的攻擊容量+1(最多+4)\n- 不低於25層，則主要目標的 [Combustion] 與 [Vibration] 強度之和每有4級，使本技能的最終威力+1(最多+6)\n- 為50層，則使本技能的硬幣威力+1、造成的傷害+50%\n[DefeatDuel] 對自身施加6層 [Paralysis]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂，<color=#ff6000><mark=#ff000040><b><u>令本技能施加的 [Combustion] 強度與回數、[Vibration] 強度與回數減半</u></b></mark></color>(不包括其他效果增加的施加量)\n[EndSkill] 使自身 [FullReload] (每回合最多1次)\n- 若自身帶有 [BulletPropellantSpecial]，則改為使自身 [ReloadKeepAmmo] (每回合最多1次)\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [

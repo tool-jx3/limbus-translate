@@ -220,7 +220,7 @@
           "level": 3,
           "name": "執行",
           "abName": "天之執行官的輔佐",
-          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若現存體力低於50%，則使本技能的攻擊容量+1",
           "coinlist": [
             {
               "coindescs": [
@@ -241,7 +241,7 @@
           "level": 4,
           "name": "執行",
           "abName": "天之執行官的輔佐",
-          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+2",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若現存體力低於50%，則使本技能的攻擊容量+2",
           "coinlist": [
             {
               "coindescs": [
@@ -272,7 +272,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict Lust Affinity damage equal to [Laceration] Potency on target.\n- At 4+ Lust Reson., inflict Lust Affinity damage equal to ([Laceration] Potency on target x 1.2).\n([Laceration] Potency up to only 99 will be used to calculate for this Skill.)",
+                  "desc": "[OnSucceedAttack] 對目標造成等同於其 [Laceration] 強度點色慾傷害\n- 若色慾共鳴數不低於4，則改為以1.2倍計算\n(本技能最多計入99級 [Laceration] 強度)",
                   "summary": "[OnSucceedAttack] 根據目標的 [Laceration] 強度，相應對其造成色慾傷害"
                 },
                 {
@@ -292,7 +292,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict Lust Affinity damage equal to <style=\"highlight\">([Laceration] Potency on target x 1.2)</style>.\n- At 4+ Lust Reson., inflict Lust Affinity damage equal to ([Laceration] Potency on target x <style=\"highlight\">1.5</style>).\n<style=\"highlight\">- At 4+ Lust A-Reson., inflict Lust Affinity damage equal to ([Laceration] Potency on target x 1.8).</style>\n([Laceration] Potency up to only 99 will be used to calculate for this Skill.)",
+                  "desc": "[OnSucceedAttack] 對目標造成等同於<style=\"highlight\">(其 [Laceration] 強度×1.2)</style>點色慾傷害\n- 若色慾共鳴數不低於4，則改為以×<style=\"highlight\">1.5</style>計算\n<style=\"highlight\">- 若最大色慾完全共鳴數不低於4，則改為以×1.8計算</style>\n(本技能最多計入99級 [Laceration] 強度)",
                   "summary": "[OnSucceedAttack] 根據目標的 [Laceration] 強度，相應對其造成色慾傷害"
                 },
                 {
@@ -312,7 +312,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict Lust Affinity damage equal to ([Laceration] Potency on target x <style=\"highlight\">1.5</style>)\n- At 4+ Lust Reson., inflict Lust Affinity damage equal to ([Laceration] Potency on target x <style=\"highlight\">1.8</style>).\n- At 4+ Lust A-Reson., inflict Lust Affinity damage equal to ([Laceration] Potency on target x <style=\"highlight\">2</style>).\n([Laceration] Potency up to only 99 will be used to calculate for this Skill.)",
+                  "desc": "[OnSucceedAttack] 對目標造成等同於(其 [Laceration] 強度×<style=\"highlight\">1.5</style>)點色慾傷害\n- 若色慾共鳴數不低於4，則改為以×<style=\"highlight\">1.8</style>計算\n- 若最大色慾完全共鳴數不低於4，則改為以×<style=\"highlight\">2</style>計算\n(本技能最多計入99級 [Laceration] 強度)",
                   "summary": "[OnSucceedAttack] 根據目標的 [Laceration] 強度，相應對其造成色慾傷害"
                 },
                 {
@@ -337,7 +337,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict (2 + (Lust Reson.)) [Laceration]\n(Maximum Lust Reson. taken into account : 4)",
+                  "desc": "[OnSucceedAttack] 使目標增加(2+色慾共鳴數)級 [Laceration] 強度\n(依共鳴數增加的 [Laceration] 強度最多為4級)",
                   "summary": "[OnSucceedAttack] 使目標增加(2+色慾共鳴數)級 [Laceration] 強度)"
                 }
               ]
@@ -353,7 +353,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict (<style=\"highlight\">3</style> + (Lust Reson.)) [Laceration]\n(Maximum Lust Reson. taken into account : <style=\"highlight\">5</style>)",
+                  "desc": "[OnSucceedAttack] 使目標增加(<style=\"highlight\">3</style>+色慾共鳴數)級 [Laceration] 強度\n(依共鳴數增加的 [Laceration] 強度最多為<style=\"highlight\">5</style>級)",
                   "summary": "[OnSucceedAttack] 使目標增加(3+色慾共鳴數)級 [Laceration] 強度"
                 },
                 {
@@ -372,7 +372,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict (<style=\"highlight\">4</style> + (Lust Reson.)) [Laceration]\n(Maximum Lust Reson. taken into account : <style=\"highlight\">6</style>)",
+                  "desc": "[OnSucceedAttack] 使目標增加(<style=\"highlight\">4</style>+色慾共鳴數)級 [Laceration] 強度\n(依共鳴數增加的 [Laceration] 強度最多為<style=\"highlight\">6</style>級)",
                   "summary": "[OnSucceedAttack] 使目標增加(4+色慾共鳴數)級 [Laceration] 強度"
                 },
                 {

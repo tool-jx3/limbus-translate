@@ -3,133 +3,133 @@
     {
       "id": "TangleBlackYarn",
       "name": "糾纏",
-      "desc": "- Max Stack: 30\n- Take +1% damage for every Stack\n- Base Power -1 for every 10 Stacks\n- Turn End: Gain 1 Bind next turn for every 3 Stacks (max 10)\n- <color=#ff6000><mark color=#ff000040><b><u>On Defense Skill Use,</color></mark></b></u> lose half of the Stacks (rounded up)",
+      "desc": "- 最大值：30\n- 每帶有1層本效果，使自身受到的傷害+1%\n- 每帶有10層本效果，使自身的基礎威力-1\n- 回合結束時，每帶有3層本效果，下回合使自身獲得1層束縛(最多10層)\n- <color=#ff6000><mark color=#ff000040><b><u>使用守備技能時</color></mark></b></u>，本效果層數減少一半(無條件進位)",
       "summary": "",
-      "flavor": "The department store is a world of sewing, bound together by thread and needle. Even that which came from the sea now finds its body turned to thread, black water tangling into black yarn."
+      "flavor": "百貨公司是以線與針交織而成的縫製世界。如今即便是來自大海之物，身軀也會化為線，黑色的水漸漸糾纏成黑色的線。"
     },
     {
       "id": "SickBlackYarn",
-      "name": "Bursting Blackstitch",
-      "desc": "- Max Stack: 50\n- Take +1% damage for every Stack\n- Turn Start: Gain 1 Fragile for every 25 Stacks",
+      "name": "被扯落的黑線頭",
+      "desc": "- 最大值：50\n- 每帶有1層本效果，使自身受到的傷害+1%\n- 回合開始時，每帶有25層本效果，使自身獲得1層易損",
       "summary": "",
-      "flavor": "Each time a loose strand bursts from the black yarn, it carries the briny scent of tears... strangely nostalgic despite itself."
+      "flavor": "每當黑線迸出的線頭綻開，便會傳來一股帶著腥味、卻又莫名令人懷念的淚水氣味。"
     },
     {
       "id": "HeavyBlackYarn",
-      "name": "Clumped Black Threads",
-      "desc": "- Max Stack: 5\n- Gain Slot Weight equal to Stack (per Part)\n- Take +10% damage for every Stack",
+      "name": "結成黑團的線",
+      "desc": "- 最大值：5\n- 使各部位的行動槽容量增加等同於本效果層數的數值\n- 每帶有1層本效果，使自身受到的傷害+10%",
       "summary": "",
-      "flavor": "Black is an image of death and mass. Just as what holds black seawater grows heavy, black thread gains weight as it clumps together. It gathers everything into itself, knots tight, sinks, and stops."
+      "flavor": "黑色是死亡與質量的圖像。正如吸飽黑色海水的東西會變得沉重，黑線結成一團也會帶來同樣的結果。擁抱一切，凝結成塊，沉落，然後停止。"
     },
     {
       "id": "HideBlackYarn",
-      "name": "Pool of Black Water",
-      "desc": "- Max Potency: 6\n- Max Count: 2\n- <color=#ff6000><mark color=#ff000040><b><u>When hit, lose 1 Potency</color></mark></b></u> (once per Skill)\n- Turn End: Lose 1 Count\n- <color=#ff6000><mark color=#ff000040><b><u>Expires if Potency or Count reaches 0</color></mark></b></u>\n- Cannot be Staggered\n- On Unopposed Attack, deal +100% damage\n- Take -100% damage",
+      "name": "黑水窪",
+      "desc": "- 強度最大值：6\n- 回數最大值：2\n- <color=#ff6000><mark color=#ff000040><b><u>受到攻擊時，本效果強度減少1級</color></mark></b></u>(每個技能最多1次)\n- 回合結束時，本效果回數減少1回\n- <color=#ff6000><mark color=#ff000040><b><u>本效果強度或回數變為0時解除</color></mark></b></u>\n- 不會陷入混亂\n- 單方面攻擊時，造成的傷害+100%\n- 受到的傷害-100%",
       "summary": "",
-      "flavor": "It is neither sea nor aquarium now, only a stagnant pond. Yet the great longing that has settled there holds enough sorrow to momentarily hide the body."
+      "flavor": "如今既非大海。也非水族箱。雖然只是一灘積水，但那裡懷抱著深切的思念，因此積聚著足以讓人暫時藏身的豐沛悲傷。"
     },
     {
       "id": "AngryBlackYarn",
-      "name": "Instinct of the Predator of Eld",
-      "desc": "- All Parts gain Clash Power +2 for every Part that has this effect\n- Deal +5% damage for every 3 Tangling Stacks on target (max 50%)\n- Expires at Turn End",
+      "name": "古老捕食者的本能",
+      "desc": "- 每有1個部位帶有本效果，使所有部位的拚點威力+2\n- 目標每帶有3層糾纏，使自身造成的傷害+5%(最多+50%)\n- 回合結束時解除本效果",
       "summary": "",
-      "flavor": "Every aquarium had its predator, much like a Floor Manager in the department store. The predator now wears the shape of a fish, but in an earlier Sisyphe System, there were no fish-shaped beings in the Aquarium. The minds of those who lived there may have been fish, but their forms were human."
+      "flavor": "每個水族箱都有捕食者。就像百貨公司的樓層經理一樣。如今的捕食者是魚的模樣，但在過去的薛西弗斯系統中，水族館裡並沒有魚的模樣。住在水族館裡的人們，精神雖是魚，模樣卻是人。"
     },
     {
       "id": "BlackYarn_LowMorale",
       "name": "喪子之物",
-      "desc": "- Low Morale\n- On Skill Use, if Pwie is the main target, Clash Power +3, Base Power +2\n- When hit, inflict 1 Tangling (3 times per Skill)",
+      "desc": "- 士氣低落\n- 使用技能時，若主要目標為普依，則拚點威力+3、基礎威力+2\n- 受到攻擊時，對目標施加1層糾纏(每個技能最多3次)",
       "summary": ""
     },
     {
       "id": "BlackYarn_Panic",
       "name": "喪子之物",
-      "desc": "- Panic\n- All Attacks target Pwie\n- On Skill Use, if Pwie is the main target, Clash Power +6, Base Power +4\n- Combat Start: Convert all Skill Coins into Unbreakable Coins\n- When hit, inflict 1 Tangling (6 times per Skill)",
+      "desc": "- 陷入恐慌\n- 所有攻擊的目標都指定為普依\n- 使用技能時，若主要目標為普依，則拚點威力+6、基礎威力+4\n- 戰鬥開始時，使技能的所有硬幣轉變為無法被破壞的硬幣\n- 受到攻擊時，對目標施加1層糾纏(每個技能最多6次)",
       "summary": ""
     },
     {
       "id": "FlowerLaurelWreath",
       "name": "贖罪的月桂冠",
-      "desc": "- Remove all Stagger Thresholds\n- Clash Power +2\n- Take -50% SP damage from Sinking (rounded down)\n- Turn End: Heal 10 SP and gain 5 Haste next turn\n- <color=#ff6000><mark color=#ff000040><b><u>Clash Win: Heal 5 SP for all allies including this unit and Assist Units</color></mark></b></u>",
+      "desc": "- 移除自身所有混亂閾值\n- 拚點威力+2\n- 因沉淪受到的理智傷害-50%(無條件捨去)\n- 回合結束時，恢復10點理智值，並於下回合獲得5層迅捷\n- <color=#ff6000><mark color=#ff000040><b><u>拚點勝利時，使包括自身與支援單位在內的全體友方單位恢復5點理智值</color></mark></b></u>",
       "summary": "",
-      "flavor": "Let the confession of its sins bloom beneath the fragrance of flowers."
+      "flavor": "那告解罪孽的身姿，於花香之下綻放吧"
     },
     {
       "id": "AlriuneSillage",
       "name": "餘香",
-      "desc": "- Max Stack: 30\n- Turn End: Take SP damage equal to Stack\n- If this unit took Sinking damage, gain 1 Stack\n- On Tremor Burst, apply 1 ~ 2 Faint Aroma on 3 other random allies\n- At max Stack:\n · Gain 2 Tremor and trigger Tremor Burst on self\n · Take Gloom damage equal to Sinking on self\n · Faint Aroma expires\n · Cannot gain for the rest of the turn\n- On death, apply half of this unit's Faint Aroma Stack randomly between this unit's allies (rounded down)",
+      "desc": "- 最大值：30\n- 回合結束時，受到等同於本效果層數的理智傷害\n- 受到沉淪傷害時，本效果層數增加1層\n- 震顫引爆時，對自身以外的隨機3名友方單位施加1～2層餘香\n- 本效果層數達到最大值時，獲得2級震顫強度並觸發震顫引爆，受到等同於自身沉淪強度的憂鬱傷害，並解除餘香。本回合內無法獲得餘香\n- 陣亡時，將自身餘香層數的一半隨機分配施加給友方單位(無條件捨去)",
       "summary": "",
-      "flavor": "Fragrance begets longing. Longing, in turn, becomes yearning."
+      "flavor": "香氣喚起思念。思念化作刻骨的想望。"
     },
     {
       "id": "AlriunePetal",
       "name": "花瓣",
-      "desc": "Max Stack: 3\n- <color=#ff6000><mark color=#ff000040><b><u>At 3 Stacks, use a powerful Skill that turn</color></mark></b></u>\n- Deal +(Petals Stack on self x 10)% damage to Staggered targets\n- Turn End: Gain 1 Stack",
+      "desc": "- 最大值：3\n- <color=#ff6000><mark color=#ff000040><b><u>本效果層數為3時，該回合使用強力技能</color></mark></b></u>\n- 對陷入混亂的目標造成的傷害增加(自身的花瓣層數×10)%\n- 回合結束時，本效果層數增加1層",
       "summary": "",
-      "flavor": "一枚花瓣、兩枚花瓣。然後三枚。"
+      "flavor": "一片花瓣，兩片花瓣。然後是三片。"
     },
     {
       "id": "ThreadDye",
       "name": "染紗",
-      "desc": "- Max Stack: 3\n- Cannot gain Haste while having this effect\n- Turn End: Remove Haste that will be applied next turn\n- Turn End: Gain Bind next turn equal to Potency and lose 1 Stack\n- <color=#ff6000><mark color=#ff000040><b><u>At max Stack, gain Immobilize this turn and next turn; then, this effect expires</color></mark></b></u>",
+      "desc": "- 最大值：3\n- 帶有本效果時無法獲得迅捷\n- 回合結束時，移除下回合將獲得的迅捷\n- 回合結束時，下回合對自身施加等同於本效果強度的束縛，隨後本效果減少1層\n- <color=#ff6000><mark color=#ff000040><b><u>本效果達到最大值時，本回合與下回合獲得無法行動，隨後解除本效果</color></mark></b></u>",
       "summary": "",
-      "flavor": "Like nails, threads will hold you fast, the color of its binds predetermined."
+      "flavor": "線也和釘子一樣，會將你牢牢固定住。以既定的顏色。"
     },
     {
       "id": "SpreadingDye",
-      "name": "Gloss Medium",
-      "desc": "- If target has Bind, inflict 1 more Bleed Potency and Bleed Count\n- On Skill Use, if the main target has Dyed Thread or Tar Dye, the said Skill gains Final Power +1 and deals +20% damage",
+      "name": "亮光媒劑",
+      "desc": "- 若目標帶有束縛，則施加的流血強度與回數+1\n- 使用技能時，若主要目標帶有染紗或焦油色素，則該技能的最終威力+1、造成的傷害+20%",
       "summary": "",
-      "flavor": "Most dyes are meant to have a color.\nBut this one's dye has none.\n\nApplied in rough, uneven strokes, it reveals a spectrum of colors through nothing but the reflection and refraction of pure light."
+      "flavor": "大部分染料的顏色都是固定的。\n但此人的染料沒有固定的顏色。\n經過粗獷的塗抹，僅憑純粹光線的反射、折射便映出多樣的色彩。"
     },
     {
       "id": "StickyDye",
       "name": "焦油色素",
-      "desc": "- Max Stack: 1\n- Min & Max Speed -1 (min 1)",
+      "desc": "- 最大值：1\n- 最小與最大速度值-1(最低1)",
       "summary": "",
-      "flavor": "The dye clings, making every step harder to take."
+      "flavor": "染料黏在身上，連腳都難以抬起。"
     },
     {
       "id": "ChargeKhaki",
       "name": "漂流慣性",
       "desc": "- 特殊充能\n- 最大回數：20\n- 本效果強度與回數的增減同樣受普通充能影響\n- 回合結束時，本效果的回數減少1回",
       "summary": "",
-      "flavor": "Those who are carried by the tide like buoys may not be able to change the flow of things, but they can still bolster the tide and commit to their acts within."
+      "flavor": "漂流者即使無法改變流向，也會鞏固流向，並在流向之中完成自己的工作。"
     },
     {
       "id": "FinishedFabric",
-      "name": "Cut Fabric",
-      "desc": "- Max Stack: 30\n- Skills that gain or consume Charge Count (including Unique Charge) deal +(Stack)% damage (max 30%)\n- Turn End: Lose 5 Stacks\n  · If Shield was broken this turn, lose 10 Stacks instead",
+      "name": "裁剪好的布料",
+      "desc": "- 最大值：30\n- 獲得或消耗充能回數(包括特殊充能)的技能造成的傷害+(本效果層數)%(最多+30%)\n- 回合結束時，本效果層數減少5層\n．若本回合護盾被破壞，則改為減少10層",
       "summary": "",
-      "flavor": "Fabrics with functions of their own can only serve their purpose when properly cut."
+      "flavor": "各具功能的布料，唯有經過恰當的裁剪，才能發揮應有的功能。"
     },
     {
       "id": "LargeTailoringShears",
       "name": "花藝剪",
-      "desc": "- Max Stack: 3\n- Deal +(5 + Stack x 5)% damage against Sinners (max 20%)\n- On Skill Use against Alteration Target Sinners, gain Clash Power equal to Stack",
+      "desc": "- 最大值：3\n- 對罪人造成的傷害+(5+本效果層數×5)%(最多+20%)\n- 對帶有修補目標的罪人使用技能時，拚點威力增加等同於本效果層數的數值",
       "summary": "",
-      "flavor": "The scissors used to sever the primordial materials produced underground are larger and more extraordinary still. These scissors have cut and recut the very first cloth ever woven. That flowers should bloom from them is only natural, for they have always cut things at their very roots."
+      "flavor": "用來剪斷在地下製成之原初材料的剪刀，更加特別而巨大。這把一直裁剪著最初織成之布料的剪刀之所以會綻放花朵，是因為它剪斷的一直是根源，這是自然的現象。"
     },
     {
       "id": "TailoringTarget",
       "name": "修補目標",
-      "desc": "- Min & Max Speed +5\n- This turn's first-used Skill gains Clash Power +3\n- Combat Start: If this unit has an equipped Defense Skill, take -80% damage from Annette the Alterationist\n- Turn End: Lose 1 Stack",
+      "desc": "- 最小與最大速度值+5\n- 本回合首次使用的技能拚點威力+3\n- 戰鬥開始時，若裝備了守備技能，則受到修補達人 安妮特的傷害減少80%\n- 回合結束時，本效果減少1層",
       "summary": "",
-      "flavor": "Rather than altering the clothes to fit the person, she alters the person to fit the clothes. Here, clothes are what define the wearer; preserving the garment and altering the person is how worth is protected and how the customer is served."
+      "flavor": "不是配合人來修補衣服，而是配合衣服來修補人。在這裡，衣服決定了人，因此保存衣服、改為修補人，才是守護價值、為顧客著想的做法。"
     },
     {
       "id": "ScissorsMark",
       "name": "裁縫標記",
       "desc": "- 最大值：9\n- 使自身減少等同於本效果層數的防禦等級",
       "summary": "",
-      "flavor": "A cutting mark used to trim fabric and other materials to the required measurements."
+      "flavor": "為了將布料或木材等依尺寸裁切而做的標記"
     },
     {
       "id": "DamagedFabric",
-      "name": "Sheared Apart",
-      "desc": "- Max Stack: 30\n- Turn Start : Gain 1 HP Healing Down for every 6 Stacks (max 5)\n- Upon Clashing against \"Patterning\" or \"Surfile à la Chaîne\", lose Clash Power equal to Stack",
+      "name": "已被裁剪",
+      "desc": "- 最大值：30\n- 回合開始時，每帶有6層本效果，使自身獲得1層體力恢復降低(最多5層)\n- 與「製作版型」、「鏈式包縫」技能拚點時，拚點威力減少等同於本效果層數的數值",
       "summary": "",
-      "flavor": "Once the fabric has been cut apart, sewing the scraps back together only makes patchwork. It can never return to a single fabric woven from its original threads."
+      "flavor": "裁剪過的布即使再縫起來也只是拼布，無法回到原本由許多絲線相連的那塊布。"
     },
     {
       "id": "ThirdTailor_LowMorale",
@@ -149,113 +149,113 @@
     },
     {
       "id": "GoldenLeatherEnhance",
-      "name": "Shower of Stinging Sunshine [King of Needleworks]",
+      "name": "灼熱照射的陽光[裁縫之王]",
       "desc": "目標每帶有3層針釘，使自身技能的最終威力+1(最多+3)",
       "summary": "",
-      "flavor": "\"You don't have to listen anymore. You only have to make it so you cannot hear them. Simply do what you want. Don't deny yourself.\""
+      "flavor": "「不聽也沒關係。只要讓自己聽不見就好。只要是你想要的，就那樣去做。不必否定也沒關係。」"
     },
     {
       "id": "NoirShieldUp",
       "name": "漆黑之神的加護",
-      "desc": "- Max Potency: 999\n- Base Count: 2\n- Cannot be Staggered\n- Turn Start: The Part gains Shield equal to Stack\n- This effect counts as a \"Shield Management\" effect\n- Lose Stack when losing Shield\n- Turn End: Lose 1 Count",
+      "desc": "- 強度最大值：999\n- 回數基礎值：2\n- 免疫混亂\n- 回合開始時，使部位獲得等同於本效果強度的護盾\n- 本效果視作「護盾管理」效果\n- 護盾減少時，相應使本效果強度減少\n- 回合結束時，本效果的回數減少1回",
       "summary": "",
-      "flavor": "The Obsidian God. The Obsidian Giant. The Chaplain of the Hammer. The Obsidian God of the Grand Magasin, whose domain is the power of preservation, grants his blessing through direct contact. The hammer is hard, and its black hue absorbs all things and brings them to a halt... much like death itself."
+      "flavor": "漆黑之神。漆黑的巨人。鐵鎚的牧師。掌管保存之權能的百貨公司漆黑之神所給予的最直接的接觸式加護。鐵鎚堅硬，黑色則吸收一切並使之靜止。宛如死亡的屬性。"
     },
     {
       "id": "NoirShieldPiece",
       "name": "默示之刑罰",
-      "desc": "- 最大值：2\n- 受到的傷害-10%\n- 每有2層本效果，最終威力-2",
+      "desc": "- 最大值：2\n- 受到的傷害-10%\n- 本效果為2層時，最終威力-2",
       "summary": "",
-      "flavor": "It feels as though a fragment of imaginary mass is pressing down upon the body—a crude imitation of a Giant's punishment. According to the covenant, ascending to a higher place is akin to bearing a heavy boulder and climbing in silence."
+      "flavor": "虛擬的質量碎片彷彿正壓迫著身體。這是對巨人刑罰的近似重現。根據誓約，前往高處就如同扛著沉重的石頭默默攀登的刑罰。"
     },
     {
       "id": "VibrationResonance",
-      "name": "Negation of Conservation",
+      "name": "保存抵銷",
       "desc": "- 最大值：2\n- 受到震顫引爆造成的傷害-90%、混亂閾值前移量-90%\n- 造成的傷害+20%\n- 回合結束時，減少1層本效果",
       "summary": "",
-      "flavor": "A counterwave set against every motion that seeks preservation shakes preservation itself apart, preventing it from taking hold."
+      "flavor": "以相反的波長震盪一切試圖保存的動作，使保存無法成立。"
     },
     {
       "id": "NoirField",
       "name": "保存神域",
-      "desc": "- 最大值：2\n- 回合開始時，每失去20%體力，使自身獲得1層威力提升與1層傷害強化(分別最多3層)\n- 回合開始時，使屬於漆黑派的所有友方單位其技能增加等同於本效果層數的最終威力\n\n- 若本效果不低於1層，則回合開始時，包含自身屬於漆黑派的所有目標適用以下效果\n．理智值+10\n．攻擊威力+2\n．防禦等級+2\n\n- 若本效果不低於2層，則回合開始時，屬於漆黑派的所有敵方單位適用以下效果\n．最大速度值-1\n．攻擊等級-6\n．防禦等級-2",
+      "desc": "- 最大值：2\n- 回合開始時，每失去20%體力，使自身獲得1層威力提升與1層傷害強化(分別最多3層)\n- 回合開始時，使所有屬於漆黑派的友方單位技能的最終威力增加等同於本效果層數的數值\n\n- 若本效果不低於1層，則回合開始時，對包含自身在內屬於漆黑派的所有目標適用以下效果\n．理智值+10\n．攻擊威力+2\n．防禦等級+2\n\n- 若本效果不低於2層，則回合開始時，對不屬於漆黑派的所有敵方單位適用以下效果\n．最大速度值-1\n．攻擊等級-6\n．防禦等級-2",
       "summary": "",
-      "flavor": "A sanctuary in which the value of conservation pursued by Le Noir is preserved. Within it, the Noirs' preservative actions are retained to their benefit. It is a realm of eternal conservation—a place that stirs the drive to infinitely approach death."
+      "flavor": "漆黑派所追求的保存之價值得以保存的領域。為了保存所保存之物的一切漆黑派式行動，都會在這個領域中有益地保存下來。這個領域是永恆保存的領域，也是激發無限趨近死亡之衝動的領域。"
     },
     {
       "id": "NoirSquareCollapse",
-      "name": "Formation Collapse",
+      "name": "陣型崩潰",
       "desc": "- 最大值：10\n- 使自身減少等同於本效果層數的防禦等級",
       "summary": "",
-      "flavor": "When faith—the faith that each will dutifully carry out their assigned role—begins to crumble, doubt takes root in the cracks."
+      "flavor": "當「每個人都會在崗位上忠實履行職責」的信任崩塌時，懷疑便從裂縫中萌芽。"
     },
     {
       "id": "NoirNail",
       "name": "誓約之釘",
-      "desc": "- Max Stack: 3\n- When Tremor Burst is triggered on this unit,\n · Take Sloth damage equal to Tremor Potency on self\n · Gain 1 Fragile\n · Lose 1 Stack",
+      "desc": "- 最大值：3\n- 自身發生震顫引爆時，\n．受到等同於自身震顫強度的怠惰傷害\n．對自身施加1層易損\n．本效果的層數減少1層",
       "summary": "",
-      "flavor": "The promised hammer is bound by promise to drive in a nail. Therefore, whenever the hammer falls, a nail must exist there... even if there is none."
+      "flavor": "誓約之鎚被約定必定要釘下釘子。因此，只要鐵鎚揮下，即使那裡沒有釘子，也必須有釘子。"
     },
     {
       "id": "BuffetField",
       "name": "嘔吐物（Le Vomissement）",
-      "desc": "- After entering the Encounter, Le Vomissement's influence expands at Turn Start every 2 turns\n· Stage 1: Pwie\n· Stage 2: All allied Sinners\n· Stage 3: All targets",
-      "flavor": "What is devoured for survival, for growth, incorporates what was outside into what is mine. Then it is expelled once more, and what was mine becomes part of the outside.\n\nIt is cyclical, expansive, and consumptive.",
+      "desc": "- 於戰鬥中登場後，每2回合於回合開始時擴大嘔吐物的影響範圍\n．第1階段：普依\n．第2階段：適用於所有友方罪人\n．第3階段：適用於所有目標",
+      "flavor": "為了生存、為了成長而吞食殆盡之物——外在之物成了我的東西，又再次噴出，使我的東西變成了外在之物。這是反覆的、擴張的，也是枯竭的。",
       "summary": ""
     },
     {
       "id": "BuffetField_0",
       "name": "嘔吐物（Le Vomissement）",
-      "desc": "- After entering the Encounter, Le Vomissement's influence expands at Turn Start every 2 turns",
-      "flavor": "What is devoured for survival, for growth, incorporates what was outside into what is mine. Then it is expelled once more, and what was mine becomes part of the outside.\n\nIt is cyclical, expansive, and consumptive.",
+      "desc": "- 於戰鬥中登場後，每2回合於回合開始時擴大嘔吐物的影響範圍",
+      "flavor": "為了生存、為了成長而吞食殆盡之物——外在之物成了我的東西，又再次噴出，使我的東西變成了外在之物。這是反覆的、擴張的，也是枯竭的。",
       "summary": ""
     },
     {
       "id": "BuffetField_1",
       "name": "嘔吐物（Le Vomissement）",
-      "desc": "- After entering the Encounter, Le Vomissement's influence expands at Turn Start every 2 turns",
-      "flavor": "What is devoured for survival, for growth, incorporates what was outside into what is mine. Then it is expelled once more, and what was mine becomes part of the outside.\n\nIt is cyclical, expansive, and consumptive.",
+      "desc": "- 於戰鬥中登場後，每2回合於回合開始時擴大嘔吐物的影響範圍",
+      "flavor": "為了生存、為了成長而吞食殆盡之物——外在之物成了我的東西，又再次噴出，使我的東西變成了外在之物。這是反覆的、擴張的，也是枯竭的。",
       "summary": ""
     },
     {
       "id": "BuffetField_2",
       "name": "嘔吐物（Le Vomissement）",
-      "desc": "- After entering the Encounter, Le Vomissement's influence expands at Turn Start every 2 turns",
-      "flavor": "What is devoured for survival, for growth, incorporates what was outside into what is mine. Then it is expelled once more, and what was mine becomes part of the outside.\n\nIt is cyclical, expansive, and consumptive.",
+      "desc": "- 於戰鬥中登場後，每2回合於回合開始時擴大嘔吐物的影響範圍",
+      "flavor": "為了生存、為了成長而吞食殆盡之物——外在之物成了我的東西，又再次噴出，使我的東西變成了外在之物。這是反覆的、擴張的，也是枯竭的。",
       "summary": ""
     },
     {
       "id": "GourmandiseAlly",
       "name": "暴走",
-      "desc": "- Base Power +1, convert all Coins on all Skills into Unbreakable Coins\n- Deal +5% damage for every 3 Bleed on self (max 30%); heal +10% more HP on target (max 100%, rounded down)\n- Cannot be Staggered; take -90% damage from Bleed (excluding forced Staggers)\n- Turn End: Lose 1 Stack",
+      "desc": "- 基礎威力+1，將技能的所有硬幣轉變為無法被破壞的硬幣\n- 自身每帶有3級流血強度，使自身造成的傷害+5%(最多30%)、目標的體力恢復量+10%(最多100%，無條件捨去)\n- 不會陷入混亂，且受到的流血傷害-90%(不包括強制混亂)\n- 回合結束時，本效果的層數減少1層",
       "summary": "強化技能"
     },
     {
       "id": "BloodyMucusAlly",
       "name": "洗禮[丹紅]",
-      "desc": "- Max Stack: 3\n- On Attack Skill Use, gain Bleed Count equal to Stack (once per Skill)\n- On Defense Skill Use, lose 1 Stack\n- Turn End: Lose 1 Stack",
+      "desc": "- 最大值：3\n- 使用攻擊技能時，使自身增加等同於本效果層數的流血回數(每個技能最多1次)\n- 使用守備技能時，本效果的層數減少1層\n- 回合結束時，本效果的層數減少1層",
       "summary": ""
     },
     {
       "id": "BuffetGold",
       "name": "黃金啟示",
-      "desc": "- Max Speed: 5\n- Take +5% damage for every Stack\n- At max Stack, take +10% damage if this unit has Bleed",
+      "desc": "- 最大值：5\n- 本效果每有1層，受到的傷害+5%\n- 本效果達到最大值時，若自身帶有流血，則受到的傷害+10%",
       "summary": "",
-      "flavor": "The golden light guides the child toward whom they should harm next. Even under that guidance, the child believes the judgment to be entirely their own."
+      "flavor": "金光引導著孩子。下一個該加害的是誰。即使受到那般引導，孩子仍會認為那個判斷是自己的選擇。"
     },
     {
       "id": "BuffetShoes",
       "name": "粉色瑪麗珍鞋",
       "desc": "- 最小與最大速度值+3",
       "summary": "",
-      "flavor": "Thanks... for the shoes. Can I go anywhere if I put these on? I wanna... travel with you."
+      "flavor": "鞋子……謝謝。穿上這個就能去任何地方嗎？想要一起……去旅行。"
     },
     {
       "id": "BuffetGoldenClothes",
       "name": "黃金壽衣",
-      "desc": "- Defense Level +10\n- Turn End: If this unit is Staggered, recover from Stagger and heal 50% HP (once per Encounter)",
+      "desc": "- 防禦等級+10\n- 回合結束時若陷入混亂，則解除混亂並恢復體力上限50%的體力(每場戰鬥最多1次)",
       "summary": "",
-      "flavor": "The child has donned the clothes of an adult. Not just any clothes, but a hide garment made from another's death. And so, the child takes one step closer to adulthood."
+      "flavor": "孩子披上了大人的衣服。正因為那不是別的衣服，而是以某人的死亡製成的皮衣，才能朝大人邁進一步。"
     },
     {
       "id": "Buffet_LowMorale",
@@ -271,48 +271,48 @@
     },
     {
       "id": "RestrictMob",
-      "name": "Rule: Raw Hide Damage Prohibited",
-      "desc": "- Combat Start: When Tanned Prisoner is targeted with an Attack Skill, this effect expires, and the attacker gains 1 Tannery Rule Violation\n- Turn End: This effect expires",
+      "name": "規範：禁止損傷原皮",
+      "desc": "對被鞣製的罪犯指定攻擊技能並開始戰鬥時，移除本效果，並獲得1層違反製革規範\n回合結束時，移除本效果",
       "summary": ""
     },
     {
       "id": "RestrictBoss",
-      "name": "Rule: Tanning Rush Prohibited",
-      "desc": "- Combat Start: When the Overseer is targeted with an Attack Skill, this effect expires, and the attacker gains 1 Tannery Rule Violation\n- Turn End: This effect expires",
+      "name": "規範：禁止催促鞣製",
+      "desc": "對監工指定攻擊技能並開始戰鬥時，移除本效果，並獲得1層違反製革規範\n回合結束時，移除本效果",
       "summary": ""
     },
     {
       "id": "RestrictTier1",
-      "name": "Rule: Offensive Behavior Prohibited",
-      "desc": "- Combat Start: When an Attack Skill is equipped, this effect expires and gain 1 Tannery Rule Violation (excluding E.G.O Skills)\n- Turn End: This effect expires",
+      "name": "規範：禁止攻擊性態度",
+      "desc": "裝備攻擊技能並開始戰鬥時，移除本效果，並獲得1層違反製革規範(E.G.O技能除外)\n回合結束時，移除本效果",
       "summary": ""
     },
     {
       "id": "RestrictDef",
-      "name": "Rule: Defensive Behavior Prohibited",
-      "desc": "- Combat Start: When a Defense Skill is equipped, this effect expires and gain 1 Tannery Rule Violation\n- Turn End: This effect expires",
+      "name": "規範：禁止防禦性態度",
+      "desc": "裝備守備技能並開始戰鬥時，移除本效果，並獲得1層違反製革規範\n回合結束時，移除本效果",
       "summary": ""
     },
     {
       "id": "RestrictDenied",
       "name": "違反製革規範",
-      "desc": "- Max Stack: 1\n- Take +30% damage from the Overseer\n- At this unit's Attack End, the Overseer uses the \"Punishing Burnishing Finishing\" Skill on this unit; then, this effect expires",
+      "desc": "最大值：1\n受到監工的傷害+30%\n自身攻擊結束時，監工對自身使用「拋光、塗漆、精密加工」技能，並移除本效果",
       "summary": "",
-      "flavor": "The target is a transgressor who has violated the rules by which this world is bound."
+      "flavor": "目標是違反了這個世界所定義之規則的罪人"
     },
     {
       "id": "B3FreshMob",
-      "name": "Uncreased Hide",
-      "desc": "- Max Stack: 1\n- Turn Start: Gain 20 Shield\n- Turn End: Gain 2 Protection\n- Expires at Turn End",
+      "name": "沒有皺褶的皮革",
+      "desc": "最大值：1\n回合開始時，獲得20點護盾\n回合開始時，獲得2層守護\n回合結束時，移除本效果",
       "summary": "",
-      "flavor": "Please handle with care. If you try on a hide garment and bend too much, it will crease... and that lowers its worth."
+      "flavor": "處理時請小心。試穿皮衣時若彎曲身體，就會產生皺褶，價值也會隨之下降。"
     },
     {
       "id": "RestrictFailed",
-      "name": "Rule Collapse",
+      "name": "規則的崩壞",
       "desc": "攻擊等級+3\n防禦等級-3",
       "summary": "",
-      "flavor": "Do you know the difference between a rule and a law?"
+      "flavor": "你知道規則與法則的區別嗎？"
     },
     {
       "id": "targetDye_LowMorale",
@@ -338,40 +338,40 @@
     },
     {
       "id": "SapsareeGold",
-      "name": "Shower of Stinging Sunshine [Sous Chef]",
-      "desc": "- On Skill Use, Final Power +1 for every \"Fiery, Tongue-scorching Sauce\" on target (max 3)\n- Gain 15 SP upon killing an ally with this unit's Skill",
+      "name": "灼熱照射的陽光[副廚]",
+      "desc": "- 使用技能時，目標每帶有1層超級辣醬，使自身的最終威力+1(最多+3)\n- 以自身的技能擊殺友方單位時，使自身理智值增加15點",
       "summary": "",
-      "flavor": "\"Sous-chef has a warm, hearty heart, you hear? Sous-chef is stuffed full of confidence, you hear?!\""
+      "flavor": "「副廚的心可是暖呼呼的喔。自信滿滿到肚子都飽了喔！」"
     },
     {
       "id": "GoldenManager",
-      "name": "Shower of Stinging Sunshine [3F Floor Manager]",
-      "desc": "- Deal +5% damage for every Guarded Caution on target (max 50%)\n- Base Power +3 On Skill Use against target that has 0 or less SP",
+      "name": "灼熱照射的陽光[3F 樓層經理]",
+      "desc": "- 目標每帶有1層戒心，使自身造成的傷害+5%(最多+50%)\n- 對理智值不高於0點的目標使用技能時，使自身的基礎威力+3",
       "summary": "",
-      "flavor": "The sunshine burns hot, yet the cloth cannot be cast aside, and the heart retreats beneath the blankets... deeper beneath the blankets..."
+      "flavor": "陽光雖然炙熱，卻甩不開這些布料，心躲進被窩裡……躲進被窩裡……"
     },
     {
       "id": "SisyphusSapphire",
       "name": "藍寶石",
-      "desc": "- Skills inflict 1 more Burn, Bleed, Tremor, Rupture, and Sinking Potency against enemies\n- Gain +2 more Count when gaining Charge Count and Poise Count\n- Gain +10 Charge Count when gaining this effect (once per Encounter)\n- Clash Power +1\n- Final Power +1",
+      "desc": "- 透過使用技能令敵方單位增加的燒傷、流血、震顫、破裂、沉淪強度額外+1級\n- 獲得的充能與呼吸法回數額外+2回\n- 獲得本效果時，使自身獲得10回充能 (每場戰鬥最多1次)\n- 拚點威力+1\n- 最終威力+1",
       "summary": ""
     },
     {
       "id": "SisyphusOnyx",
       "name": "縞瑪瑙",
-      "desc": "- Skills inflict 1 more Burn, Bleed, Tremor, Rupture, and Sinking Potency against enemies\n- Gain +2 more Count when gaining Charge Count and Poise Count\n- Gain +10 Charge Count when gaining this effect (once per Encounter)\n- Clash Power +2\n- Final Power +1",
+      "desc": "- 透過使用技能令敵方單位增加的燒傷、流血、震顫、破裂、沉淪強度額外+1級\n- 獲得的充能與呼吸法回數額外+2回\n- 獲得本效果時，使自身獲得10回充能 (每場戰鬥最多1次)\n- 拚點威力+2\n- 最終威力+1",
       "summary": ""
     },
     {
       "id": "SisyphusDiamond",
       "name": "鑽石",
-      "desc": "- Skills inflict 1 more Burn, Bleed, Tremor, Rupture, and Sinking Potency against enemies\n- Gain +2 more Count when gaining Charge Count and Poise Count\n- Gain +10 Charge Count when gaining this effect (once per Encounter)\n- Clash Power +2\n- Final Power +1\n- Deal +10% damage",
+      "desc": "- 透過使用技能令敵方單位增加的燒傷、流血、震顫、破裂、沉淪強度額外+1級\n- 獲得的充能與呼吸法回數額外+2回\n- 獲得本效果時，使自身獲得10回充能 (每場戰鬥最多1次)\n- 拚點威力+2\n- 最終威力+1\n- 造成的傷害+10%",
       "summary": ""
     },
     {
       "id": "OutOfControl_LowMorale",
       "name": "無法控制",
-      "desc": "- Low Morale\n- Skill Final Power +1\n- Turn Start: Apply 1 Attack Power Down to all other allies",
+      "desc": "- 士氣低落\n技能最終威力+1\n回合開始時，對除自身以外的所有友方單位施加1層虛弱",
       "summary": "",
       "undefined": "-",
       "flavor": ""
@@ -379,7 +379,7 @@
     {
       "id": "OutOfControl_Panic",
       "name": "無法控制",
-      "desc": "- Panic\n- Skill Final Power +1\n- Turn Start: Apply 1 Attack Power Down and 1 Damage Down to all other allies",
+      "desc": "- 陷入恐慌\n技能最終威力+1\n回合開始時，對除自身以外的所有友方單位施加1層虛弱與1層傷害弱化",
       "summary": "",
       "undefined": "-",
       "flavor": ""
@@ -387,14 +387,14 @@
     {
       "id": "LaNoirSuperior_LowMorale",
       "name": "回到最初的殼中……",
-      "desc": "- 士氣低落\n防禦等級-2\n攻擊等級+2",
+      "desc": "- 士氣低落\n攻擊等級 -2\n防禦等級 +2",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": "LaNoirSuperior_Panic",
       "name": "回到最初的殼中……",
-      "desc": "- 陷入恐慌\n防禦等級-3\n攻擊等級+4",
+      "desc": "- 陷入恐慌\n攻擊等級 -3\n防禦等級 +4",
       "summary": "",
       "undefined": "-"
     }

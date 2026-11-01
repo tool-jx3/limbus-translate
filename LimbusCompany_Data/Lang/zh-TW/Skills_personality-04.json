@@ -87,7 +87,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標現存體力不高於30%，則使本硬幣造成的傷害+15%"
+                  "desc": "[OnSucceedAttack] 若目標現存體力低於30%，則使本硬幣造成的傷害+15%"
                 }
               ]
             }
@@ -109,7 +109,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標現存體力不高於30%，則使本硬幣造成的傷害+20%"
+                  "desc": "[OnSucceedAttack] 若目標現存體力低於30%，則使本硬幣造成的傷害+20%"
                 },
                 {
                   "desc": "[EnemyKill] 下回合使自身獲得1層迅捷 "
@@ -134,7 +134,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標現存體力不高於30%，則使本硬幣造成的傷害+30%"
+                  "desc": "[OnSucceedAttack] 若目標現存體力低於30%，則使本硬幣造成的傷害+30%"
                 },
                 {
                   "desc": "[EnemyKill] 下回合使自身獲得3層迅捷 "
@@ -1084,7 +1084,7 @@
         {
           "level": 4,
           "name": "壓力發條扳手",
-          "desc": "[WhenUse] Gain +2 [Vibration] Count\n<style=\"highlight\">[WhenUse] At 4+ [Vibration] Count, Clash Power +1</style>\nAt <style=\"highlight\">4</style>+ [Vibration] Count, Coin Power +1",
+          "desc": "[WhenUse] 對自身施加2回 [Vibration]\n<style=\"highlight\">[WhenUse] 若自身的震顫回數不低於4回，則使本技能的拚點威力+1</style>\n若自身的 [Vibration] 回數不低於<style=\"highlight\">4</style>回，則使本技能的硬幣威力+1",
           "coinlist": [
             {},
             {
@@ -1987,7 +1987,7 @@
         {
           "level": 3,
           "name": "敬畏，輕蔑",
-          "desc": "If target has [GazeRyoshu], this Skill inflicts +2 more [Laceration] and [Vibration] potency\n[BeforeUse] At 7+ (sum of [GazeRyoshu] on all enemies), or at 1+ (sum of [ContemptRyoshu] on all enemies), activates 'Cascading <noparse>Gaze</noparse> of <noparse>Awe</noparse> Underneath <noparse>Contempt</noparse>' instead\n[WhenUse] At 8+ ([Laceration] + [Vibration]) on target, Coin Power +1\n[WhenUse] Deal +1% damage for every ([Laceration] + [Vibration]) on target (max 20%)",
+          "desc": "若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級\n[BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的視線」\n[WhenUse] 若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於8級，則使本技能的硬幣威力+1\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+20%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2033,7 +2033,7 @@
         {
           "level": 4,
           "name": "敬畏，輕蔑",
-          "desc": "If target has [GazeRyoshu], this Skill inflicts +2 more [Laceration] and [Vibration] potency<style=\"highlight\"></style>\n[BeforeUse] At 7+ (sum of [GazeRyoshu] on all enemies), or at 1+ (sum of [ContemptRyoshu] on all enemies), activates 'Cascading <noparse>Gaze</noparse> of <noparse>Awe</noparse> Underneath <noparse>Contempt</noparse>' instead\n[WhenUse] <style=\"highlight\">Coin Power +1 for every 8 ([Laceration] + [Vibration]) on target (max 2)</style>\n[WhenUse] Deal +1% damage for every ([Laceration] + [Vibration]) on target (max <style=\"highlight\">40</style>%)",
+          "desc": "若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級<style=\"highlight\"></style>\n[BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的視線」\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和<style=\"highlight\">每有8級</style>，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+<style=\"highlight\">40</style>%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2168,7 +2168,7 @@
         {
           "level": 3,
           "name": "開火 / 隨時可以",
-          "desc": "[StartBattle] Prioritizes N Corp. E.G.O::<noparse>Contempt</noparse>, Awe Ryōshū\n[StartBattle] Gain +1 Atk Weight for every 3 [BoseProjektil] on self (max 2)\n[WhenUse] At 5+ [Breath], Coin Power +1\n[WhenUse] At 3+ [Breath] Count, Base Power +1\n[WhenUse] Gain 1 [Breath] for every [BoseProjektil] on self (max 7)\n[EndSkill] Lose ([BoseProjektil] on self x 2) SP (max 14)\n[EndSkill] If this unit has 7 [BoseProjektil] at Combat Start, lose them all and heal 20 SP on self",
+          "desc": "[StartBattle] 優先指定N公司 E.G.O::<noparse>輕蔑</noparse>，敬畏 良秀\n[StartBattle] 自身每帶有3層 [BoseProjektil]，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若自身的 [Breath] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Breath] 回數不低於3回，則使本技能的基礎威力+1\n[WhenUse] 自身每帶有1層 [BoseProjektil]，則使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 使自身失去(自身的 [BoseProjektil] 層數×2)點理智值(最多失去14點)\n[EndSkill] 若戰鬥開始時自身的 [BoseProjektil] 層數為7層，則將其全部消耗並使自身恢復20點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2213,7 +2213,7 @@
         {
           "level": 4,
           "name": "開火 / 隨時可以",
-          "desc": "[StartBattle] Prioritizes N Corp. E.G.O::<noparse>Contempt</noparse>, Awe Ryōshū\n[StartBattle] Gain +1 Atk Weight for every 3 [BoseProjektil] on self (max 2)\n[WhenUse] <style=\"highlight\">Coin Power +1 for every 5 [Breath] on self (max 2)</style>\n[WhenUse] <style=\"highlight\">Base Power +1 for every 3 [Breath] Count on self (max 2)</style>\n[WhenUse] Gain 1 [Breath] for every [BoseProjektil] on self (max 7)\n[EndSkill] Lose ([BoseProjektil] on self x 2) SP (max 14)\n[EndSkill] If this unit has 7 [BoseProjektil] at Combat Start, lose them all and heal 20 SP on self",
+          "desc": "[StartBattle] 優先指定N公司 E.G.O::<noparse>輕蔑</noparse>，敬畏 良秀\n[StartBattle] 自身每帶有3層 [BoseProjektil]，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 自身<style=\"highlight\">每帶有</style>5級 [Breath] 強度，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 自身<style=\"highlight\">每帶有</style>3回 [Breath]，則使本技能的基礎威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 自身每帶有1層 [BoseProjektil]，則使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 使自身失去(自身的 [BoseProjektil] 層數×2)點理智值(最多失去14點)\n[EndSkill] 若戰鬥開始時自身的 [BoseProjektil] 層數為7層，則將其全部消耗並使自身恢復20點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2866,7 +2866,7 @@
         {
           "level": 1,
           "name": "無止盡的故事",
-          "desc": "[CantDuel]\n[WideAreaRampage]\nWhen this Skill inflicts [GodokPanicType], if the target already has [GodokPanicType] this turn, or will be inflicted with [GodokPanicType] next turn, trigger [VibrationExplosion] instead; then, reduce target's [Vibration] Count by 1",
+          "desc": "[CantDuel]\n[WideAreaRampage]\n本技能施加 [GodokPanicType] 時，若目標本回合帶有或下回合將被施加 [GodokPanicType]，則改為使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回",
           "coinlist": [
             {
               "coindescs": [
@@ -3319,7 +3319,7 @@
           "level": 1,
           "name": "必然殺",
           "desc": "[CantDuel]\n本技能不會觸發守備技能，且不會因為外部效果而重複使用\n[WhenUse] 使自身獲得1回 [Breath]\n[BeforeAttack] 若本技能因3技能而觸發\n- 使本技能的攻擊容量變更為等同於帶有 [SojiRyoshuEchoFuture] 的敵方單位數(最少1)\n- 優先指定帶有 [SojiRyoshuEchoFuture] 的敵方單位\n[EndSkill] 解除目標的 [SojiRyoshuEchoFuture]",
-          "flavor": "「嗬哦……能留下些什麼的地彗星刀，還能拿來這樣使用嗎。雖然難免有點卑鄙，不過假如是必定命中的攻擊……哈！這把刀，我喜歡！」",
+          "flavor": "「嗬哦……能留下些什麼的地慧星刀，還能拿來這樣使用嗎。雖然難免有點卑鄙，不過假如是必定命中的攻擊……哈！這把刀，我喜歡！」",
           "coinlist": [
             {
               "coindescs": [
@@ -3372,7 +3372,7 @@
                   "desc": "使本硬幣暴擊時造成的傷害+30%"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Consume all [PhantomIncisionID] on target and deal Slash damage equal to ([PhantomIncisionID] consumed / 10)% of this Coin's final damage"
+                  "desc": "[OnSucceedAttack] 消耗目標所有的 [PhantomIncisionID]，並對其造成本硬幣最終傷害量(消耗的層數/10)%的斬擊傷害"
                 },
                 {
                   "desc": "[CriticalOnSucceedAttack] 對目標造成本硬幣最終傷害量(自身的 [SojiRyoshuEchoPast] 層數×4)%的斬擊傷害"
@@ -3425,7 +3425,7 @@
         {
           "level": 1,
           "name": "真是不潔",
-          "desc": "[StartBattle] 若自身的 [ChargeNoirAlly] 強度不低於3級、[ChargeNoirAlly] 回數不低於12回，\n則消耗6回 [ChargeNoirAlly] 並使自身獲得體力上限5%的護盾(每回合最多2次)\n[WhenUse] 若自身的 [ChargeNoirAlly] 回數不高於10回，則使自身獲得1回 [ChargeNoirAlly]\n[WhenUse] 消耗最多15層 [RealisationAlly]\n- 使本技能的拚點威力+1\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數×3)%(最多+45%)",
+          "desc": "[StartBattle] 若自身的 [ChargeNoirAlly] 強度不低於3級、[ChargeNoirAlly] 回數不低於12回，\n則消耗6回 [ChargeNoirAlly] 並使自身獲得體力上限5%的護盾(每回合最多2次)\n[WhenUse] 若自身的 [ChargeNoirAlly] 回數低於10回，則使自身獲得1回 [ChargeNoirAlly]\n[WhenUse] 消耗最多15層 [RealisationAlly]\n- 使本技能的拚點威力+1\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數×3)%(最多+45%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3446,7 +3446,7 @@
         {
           "level": 2,
           "name": "真是不潔",
-          "desc": "[StartBattle] 若自身的 [ChargeNoirAlly] 強度不低於3級、[ChargeNoirAlly] 回數不低於12回，\n則消耗6回 [ChargeNoirAlly] 並使自身獲得體力上限5%的護盾(每回合最多2次)\n[WhenUse] 若自身的 [ChargeNoirAlly] 回數不高於10回，則使自身獲得<style=\"highlight\">2</style>回 [ChargeNoirAlly]\n[WhenUse] 消耗最多15層 [RealisationAlly]\n- 使本技能的拚點威力+1\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數×3)%(最多+45%)",
+          "desc": "[StartBattle] 若自身的 [ChargeNoirAlly] 強度不低於3級、[ChargeNoirAlly] 回數不低於12回，\n則消耗6回 [ChargeNoirAlly] 並使自身獲得體力上限5%的護盾(每回合最多2次)\n[WhenUse] 若自身的 [ChargeNoirAlly] 回數低於10回，則使自身獲得<style=\"highlight\">2</style>回 [ChargeNoirAlly]\n[WhenUse] 消耗最多15層 [RealisationAlly]\n- 使本技能的拚點威力+1\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數×3)%(最多+45%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3467,7 +3467,7 @@
         {
           "level": 4,
           "name": "真是不潔",
-          "desc": "[StartBattle] 若自身的 [ChargeNoirAlly] 強度不低於3級、[ChargeNoirAlly] 回數不低於12回，\n則消耗6回 [ChargeNoirAlly] 並使自身獲得體力上限5%的護盾(每回合最多2次)\n[WhenUse] 若自身的 [ChargeNoirAlly] 回數不高於<style=\"highlight\">12</style>回，則使自身獲得2回 [ChargeNoirAlly]\n<style=\"highlight\">[WhenUse] 若自身的 [NoirSuitAlly] 層數不低於50層，\n則使本技能的拚點威力+1、造成的傷害+30%</style>\n[WhenUse] 消耗最多15層 [RealisationAlly]\n<style=\"highlight\">- 使本技能的最終威力+1</style> \n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數×3)%(最多+45%)",
+          "desc": "[StartBattle] 若自身的 [ChargeNoirAlly] 強度不低於3級、[ChargeNoirAlly] 回數不低於12回，\n則消耗6回 [ChargeNoirAlly] 並使自身獲得體力上限5%的護盾(每回合最多2次)\n[WhenUse] 若自身的 [ChargeNoirAlly] 回數低於<style=\"highlight\">12</style>回，則使自身獲得2回 [ChargeNoirAlly]\n<style=\"highlight\">[WhenUse] 若自身的 [NoirSuitAlly] 層數不低於50層，\n則使本技能的拚點威力+1、造成的傷害+30%</style>\n[WhenUse] 消耗最多15層 [RealisationAlly]\n<style=\"highlight\">- 使本技能的最終威力+1</style>\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數×3)%(最多+45%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3493,7 +3493,7 @@
         {
           "level": 1,
           "name": "試穿看看吧",
-          "desc": "[WhenUse]\n- At 12+ [ChargeNoirAlly] Count, consume 6 [ChargeNoirAlly] Count to gain Clash Power +1 and deal +10% damage\n- Gain +2 [ChargeNoirAlly] Count\n[WhenUse] Consume up to 20 [RealisationAlly] to apply the following:\n- Clash Power +1\n- Deal +([RealisationAlly] consumed)% damage (max 20%)",
+          "desc": "[WhenUse]\n- 若自身的 [ChargeNoirAlly] 回數不低於12回，則消耗6回並使本技能的拚點威力+1、造成的傷害+10%\n- 使自身獲得2回 [ChargeNoirAlly]\n[WhenUse] 消耗最多20層 [RealisationAlly]\n- 使本技能的拚點威力+1\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數)%(最多+20%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3515,7 +3515,7 @@
         {
           "level": 2,
           "name": "試穿看看吧",
-          "desc": "[WhenUse]\n- At 12+ [ChargeNoirAlly] Count, consume 6 [ChargeNoirAlly] Count to gain Clash Power +1 and deal +10% damage\n- Gain +2 [ChargeNoirAlly] Count\n[WhenUse] Consume up to 20 [RealisationAlly] to apply the following:\n- Clash Power +1\n- Deal +([RealisationAlly] consumed)% damage (max 20%)<style=\"highlight\"></style>",
+          "desc": "[WhenUse]\n- 若自身的 [ChargeNoirAlly] 回數不低於12回，則消耗6回並使本技能的拚點威力+1、造成的傷害+10%\n- 使自身獲得2回 [ChargeNoirAlly]\n[WhenUse] 消耗最多20層 [RealisationAlly]\n- 使本技能的拚點威力+1\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數)%(最多+20%)<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -3543,7 +3543,7 @@
         {
           "level": 4,
           "name": "試穿看看吧",
-          "desc": "[WhenUse]\n- At 12+ [ChargeNoirAlly] Count, consume 6 [ChargeNoirAlly] Count to gain <style=\"highlight\">Final Power +1</style> and deal <style=\"highlight\">+20%</style> damage\n- Gain +<style=\"highlight\">4</style> [ChargeNoirAlly] Count\n<style=\"highlight\">[WhenUse] At 50+ [NoirSuitAlly], deal +15% damage</style>\n[WhenUse] Consume up to 20 [RealisationAlly] to apply the following:\n- <style=\"highlight\">Final Power +1</style>\n- Deal +([RealisationAlly] consumed)% damage (max 20%)",
+          "desc": "[WhenUse]\n- 若自身的 [ChargeNoirAlly] 回數不低於12回，\n則消耗6回並使本技能的<style=\"highlight\">最終威力+1</style>、造成的傷害<style=\"highlight\">+20%</style>\n- 使自身獲得<style=\"highlight\">4</style>回 [ChargeNoirAlly]\n<style=\"highlight\">[WhenUse] 若自身的 [NoirSuitAlly] 層數不低於50層，則使本技能造成的傷害+15%</style>\n[WhenUse] 消耗最多20層 [RealisationAlly]\n<style=\"highlight\">- 使本技能的最終威力+1</style>\n- 使本技能造成的傷害+(消耗的 [RealisationAlly] 層數)%(最多+20%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3576,7 +3576,7 @@
         {
           "level": 3,
           "name": "三重印花縫合",
-          "desc": "[WhenUse]\n- At 10+ [ChargeNoirAlly] Count, consume up to 20 [ChargeNoirAlly] Count to deal +([ChargeNoirAlly] Count consumed)% damage (max 20%)\n- Gain +3 [ChargeNoirAlly] Count\n[WhenUse] For every 40 [NoirSuitAlly], Clash Power +1 and deal +10% damage (max 2 and 20% respectively)",
+          "desc": "[WhenUse]\n- 若自身的 [ChargeNoirAlly] 回數不低於10回，則最多消耗20回，\n使本技能造成的傷害+(消耗的 [ChargeNoirAlly] 回數)%(最多+20%)\n- 使自身獲得3回 [ChargeNoirAlly]\n[WhenUse] 自身每帶有40層 [NoirSuitAlly]，使本技能的拚點威力+1、造成的傷害+10%(分別最多+2、+20%)",
           "coinlist": [
             {
               "coindescs": [
@@ -3610,7 +3610,7 @@
         {
           "level": 4,
           "name": "三重印花縫合",
-          "desc": "<style=\"highlight\">[StartBattle] Gain 20 [NoirSuitAlly] (once per turn)</style>\n[WhenUse]\n- At 10+ [ChargeNoirAlly] Count, consume up to 20 [ChargeNoirAlly] Count to deal +([ChargeNoirAlly] Count consumed)% damage (max 20%)\n- Gain +<style=\"highlight\">5</style> [ChargeNoirAlly] Count\n[WhenUse] For every <style=\"highlight\">30</style> [NoirSuitAlly], Clash Power +1 and deal +<style=\"highlight\">20%</style> damage <style=\"highlight\">(max 3 and 60% respectively)</style>",
+          "desc": "<style=\"highlight\">[StartBattle] 使自身獲得20層 [NoirSuitAlly] (每回合最多1次)</style>\n[WhenUse]\n- 若自身的 [ChargeNoirAlly] 回數不低於10回，則最多消耗20回，\n使本技能造成的傷害+(消耗的 [ChargeNoirAlly] 回數)%(最多+20%)\n- 使自身獲得<style=\"highlight\">5</style>回 [ChargeNoirAlly]\n[WhenUse] 自身每帶有<style=\"highlight\">30</style>層 [NoirSuitAlly]，使本技能的拚點威力+1、造成的傷害<style=\"highlight\">+20%</style><style=\"highlight\">(分別最多+3、+60%)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -3649,7 +3649,7 @@
         {
           "level": 1,
           "name": "混帳奧客！商品都弄皺了！",
-          "desc": "[DuelCounter]\n[StartBattle]\n- 若自身的 [NoirSuitAlly] 層數不低於60層，則下回合使該效果轉變為 [RealisationAlly]\n- 若自身的 [RealisationAlly] 層數不高於60層，則下回合使該效果轉變為 [NoirSuitAlly]\n[WhenUse] 使自身獲得2回 [ChargeNoirAlly] (每回合最多2次)",
+          "desc": "[DuelCounter]\n[StartBattle]\n- 若自身的 [NoirSuitAlly] 層數不低於60層，則下回合使該效果轉變為 [RealisationAlly]\n- 若自身的 [RealisationAlly] 層數低於60層，則下回合使該效果轉變為 [NoirSuitAlly]\n[WhenUse] 使自身獲得2回 [ChargeNoirAlly] (每回合最多2次)",
           "coinlist": [
             {},
             {
@@ -3667,7 +3667,7 @@
         {
           "level": 3,
           "name": "混帳奧客！商品都弄皺了！",
-          "desc": "[DuelCounter]\n[StartBattle]\n- 若自身的 [NoirSuitAlly] 層數不低於60層，\n則下回合使該效果轉變為 [RealisationAlly]\n- 若自身的 [RealisationAlly] 層數不高於60層，\n則下回合使該效果轉變為 [NoirSuitAlly]\n<style=\"highlight\">[BeforeUse] 若自身的 [RealisationAlly] 層數不低於60層，\n則改為使用「單腳踢 - 多樣訂製」(每回合最多1次)\n- 觸發該效果後，攻擊結束時消耗所有 [RealisationAlly]</style>\n[WhenUse] 使自身獲得2回 [ChargeNoirAlly] (每回合最多2次)",
+          "desc": "[DuelCounter]\n[StartBattle]\n- 若自身的 [NoirSuitAlly] 層數不低於60層，\n則下回合使該效果轉變為 [RealisationAlly]\n- 若自身的 [RealisationAlly] 層數低於60層，\n則下回合使該效果轉變為 [NoirSuitAlly]\n<style=\"highlight\">[BeforeUse] 若自身的 [RealisationAlly] 層數不低於60層，\n則改為使用「單腳踢 - 多樣訂製」(每回合最多1次)\n- 觸發該效果後，攻擊結束時消耗所有 [RealisationAlly]</style>\n[WhenUse] 使自身獲得2回 [ChargeNoirAlly] (每回合最多2次)",
           "coinlist": [
             {},
             {
@@ -3685,7 +3685,7 @@
         {
           "level": 4,
           "name": "混帳奧客！商品都弄皺了！",
-          "desc": "[DuelCounter]\n[StartBattle]\n- 若自身的 [NoirSuitAlly] 層數不低於60層，\n則下回合使該效果轉變為 [RealisationAlly]\n- 若自身的 [RealisationAlly] 層數不高於60層，\n則下回合使該效果轉變為 [NoirSuitAlly]\n[BeforeUse] 若自身的 [RealisationAlly] 層數不低於60層，\n則改為使用「單腳踢 - 多樣訂製」(每回合最多1次)\n- 觸發該效果後，攻擊結束時消耗所有 [RealisationAlly]\n<style=\"highlight\">[WhenUse] 若自身的 [ChargeNoirAlly] 強度不低於3級／5級，則使本技能的硬幣威力+1／+2</style>\n[WhenUse] 使自身獲得2回 [ChargeNoirAlly] (每回合最多2次)",
+          "desc": "[DuelCounter]\n[StartBattle]\n- 若自身的 [NoirSuitAlly] 層數不低於60層，\n則下回合使該效果轉變為 [RealisationAlly]\n- 若自身的 [RealisationAlly] 層數低於60層，\n則下回合使該效果轉變為 [NoirSuitAlly]\n[BeforeUse] 若自身的 [RealisationAlly] 層數不低於60層，\n則改為使用「單腳踢 - 多樣訂製」(每回合最多1次)\n- 觸發該效果後，攻擊結束時消耗所有 [RealisationAlly]\n<style=\"highlight\">[WhenUse] 若自身的 [ChargeNoirAlly] 強度不低於3/5級，則使本技能的硬幣威力+1/+2</style>\n[WhenUse] 使自身獲得2回 [ChargeNoirAlly] (每回合最多2次)",
           "coinlist": [
             {},
             {

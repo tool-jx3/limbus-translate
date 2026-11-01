@@ -2,453 +2,453 @@
   "dataList": [
     {
       "id": 0,
-      "content": "After the battle..."
+      "content": "結束戰鬥之後……"
     },
     {
       "id": 1,
       "place": "14區，扭曲的奶油街",
       "model": "뉴앵두",
-      "content": "... Something sits ill with me."
+      "content": "現在看來……這東西有些古怪。"
     },
     {
       "id": 2,
-      "content": "Amid the sprawl of S Corp.'s Backstreets Distorted with the flash, Aeng-du had her gaze fixed somewhere high overhead."
+      "content": "在隨著閃光一同改變……變得處處醜陋扭曲的S公司後巷中，櫻桃正望著某個高處。"
     },
     {
       "id": 3,
-      "content": "And at the end of her gaze..."
+      "content": "我也朝同一處抬頭望去……"
     },
     {
       "id": 4,
       "model": "단테",
-      "content": "<Are those... photographs?>"
+      "content": "<那些……不是照片嗎？>"
     },
     {
       "id": 5,
-      "content": "... a long line stretched across the open air, photographs hanging from it like laundry clipped to a clothesline."
+      "content": "橫越天空的長繩下，一張張沖洗好的照片用夾子掛在上頭。"
     },
     {
       "id": 6,
       "model": "뉴앵두",
-      "content": "I mistook it for a <ruby=warding rope>kŭmjul</ruby> at first and gave it little attention..."
+      "content": "起初我還以為那是禁繩，便未曾留意……"
     },
     {
       "id": 7,
       "model": "뉴앵두",
-      "content": "Yet upon closer look, I saw those pictures hanging from the line. Perhaps they had been strung within the darkroom and remained thus when the Distortion took hold."
+      "content": "仔細一看，原來上頭掛著那樣的東西。我在想，或許是扭曲現象發生之前掛在顯影室裡的東西，就這麼原封不動地留了下來……"
     },
     {
       "id": 8,
       "model": "파우스트",
-      "content": "Bizarre. Observation of unaffected elements in the space occupied by a Location-type Distortion is most irregular."
+      "content": "真是奇妙。空間的扭曲之中，竟然有被例外處理的部分。"
     },
     {
       "id": 9,
       "model": "뉴앵두",
-      "content": "Indeed. The items we bore from the studio have already changed into images of various sights of S Corp., yet these alone remain as they were."
+      "content": "我也這麼想。從照相館帶出來的東西，都已經變成拍攝S公司各處的照片了……為何唯獨那些沒變？"
     },
     {
       "id": 10,
       "model": "단테",
-      "content": "<Hmm... Let's take them down and check them ourselves.>"
+      "content": "<嗯……還是直接確認一下比較好吧。>"
     },
     {
       "id": 11,
-      "content": "Just as I was wondering if the line was perhaps too high for me to reach, Meursault stepped forward and plucked a few photos off it. And the instant he brought them to me..."
+      "content": "正當我想著「掛得比想像中還高啊……」的時候，莫梭大步走了過去，扯下幾張照片拿來給我……"
     },
     {
       "id": 12,
-      "place": "Darkroom, District 14",
-      "content": "We heard another \"pop,\" and again, a bright white flash blinded my vision for a moment."
+      "place": "14區，顯影室",
+      "content": "那一瞬間，又傳來「啪！」的一聲，視野一片雪白後又恢復過來。"
     },
     {
       "id": 13,
       "model": "그레고르",
-      "content": "Good grief. This Distortion likes to change its mind, huh? It keeps switching between S Corp. and N Corp."
+      "content": "真是的，一下跑去S公司、一下跑去N公司，還真是隨心所欲啊？"
     },
     {
       "id": 14,
       "model": "오티스",
-      "content": "This feels like getting caught in a flashbang detonation. My whole body tenses up, then goes slack right after..."
+      "content": "感覺像是挨了一發閃光彈，全身一下子繃緊，又一下子洩了力……"
     },
     {
       "id": 15,
-      "content": "The other Sinners were busy grumbling about the Distortion and its sudden jumps, except for Meursault, who stood right in front of me with the photos still held out in his hand."
+      "content": "罪人們對仍舊不習慣的扭曲現象你一言我一語的時候，莫梭依然拿著照片站在我面前。"
     },
     {
       "id": 16,
       "model": "단테",
-      "content": "<Oh. You didn't drop them.>"
+      "content": "<啊，謝謝。>"
     },
     {
       "id": 17,
       "model": "뫼르소",
-      "content": "No."
+      "content": "是。"
     },
     {
       "id": 18,
-      "content": "He gave his usual short answer, then returned his attention to the cylinder he had been shaking. He took the film out of the container and flicked the liquid off it with clean, controlled motions."
+      "content": "莫梭默默應了一聲，便從剛才一直在搖晃的圓筒裡取出底片，甩掉了上面的水。"
     },
     {
       "id": 19,
-      "content": "Is the processing finally done?"
+      "content": "現在顯影結束了嗎？"
     },
     {
       "id": 20,
       "model": "단테",
-      "content": "<Wait... We're back here with the lights on now. Is it okay to take the film out?>"
+      "content": "<啊……這麼說來，我們回來的時候燈是亮著的，把底片拿出來沒關係嗎？>"
     },
     {
       "id": 21,
       "model": "뫼르소",
-      "content": "Yes. Exposure to light will not damage the film once development is complete and the image is fixed. There is no cause for concern."
+      "content": "是。若顯影已經完成，影像也已經定影，就沒有問題。"
     },
     {
       "id": 22,
       "model": "단테",
-      "content": "<That's a relief...>"
+      "content": "<太好了……>"
     },
     {
       "id": 23,
-      "content": "I couldn't say I followed all the technical details, but \"no cause for concern\" was all I needed to hear. Sighing in relief, I held up the photographs so I could take a proper look."
+      "content": "雖然他說的話我有一半聽不懂，但既然說沒問題，我便鬆了一口氣，攤開接過來的照片看了看。"
     },
     {
       "id": 24,
       "model": "그레고르",
-      "content": "So... See anything odd in there, Manager Bud?"
+      "content": "我看看……有拍到什麼特別的東西嗎，經理兄？"
     },
     {
       "id": 25,
       "model": "단테",
-      "content": "<Uh... There are people in them...>"
+      "content": "<呃……上面拍了一些人……>"
     },
     {
       "id": 26,
-      "content": "The people in the photographs all looked different from one another."
+      "content": "照片中的人們彼此毫無共通之處。"
     },
     {
       "id": 27,
-      "content": "If I had to pick one similarity between them, though... They all looked cold and indifferent."
+      "content": "硬要說的話，大概是每個人都透著一股為生活所苦的感覺吧……"
     },
     {
       "id": 28,
       "model": "그레고르",
-      "content": "Yeah, that's the City, all right. Ordinary folks you'd see anywhere."
+      "content": "真有都市的味道啊……都是走到哪裡都可能見上一面的人。"
     },
     {
       "id": 29,
       "model": "단테",
-      "content": "<These aren't like the photos we picked up at the studio earlier.>"
+      "content": "<跟剛才在照相館拿的照片不一樣呢。>"
     },
     {
       "id": 30,
       "model": "단테",
-      "content": "<Are these the kind of photographs they use to make Canned Experiences?>"
+      "content": "<這種照片會被拿來當作經驗罐頭的材料嗎？>"
     },
     {
       "id": 31,
-      "content": "...? What was that...? The scenery around us seemed to ripple just now..."
+      "content": "……？怎麼了？周圍好像突然晃蕩了起來……"
     },
     {
       "id": 32,
-      "content": "I was about to ask Faust if she'd also felt the strange sensation... but it faded away soon enough. Perhaps it's nothing serious..."
+      "content": "我覺得有些不對勁，本想問問浮士德……但那奇妙的感覺很快就消退了。"
     },
     {
       "id": 33,
-      "content": "... Maybe it was just a spell of random vertigo? Is it even possible to get dizzy when I've got a clock for a head?"
+      "content": "……就算是時鐘頭，也會感到頭暈嗎？"
     },
     {
       "id": 34,
       "model": "뫼르소",
-      "content": "No."
+      "content": "不是。"
     },
     {
       "id": 35,
-      "content": "Meursault must have noticed that I was out of sorts for a moment, because he seemed to pause on purpose before answering my question."
+      "content": "不知是不是察覺到我剛才一時狀況不太好，莫梭稍等了一會兒，才回答我的問題。"
     },
     {
       "id": 36,
       "model": "단테",
-      "content": "<No? I thought you said Docugraphers take these photos to put into Canned Experiences...>"
+      "content": "<不是嗎？你剛才說記錄員會拍下經驗罐頭要用的資訊……>"
     },
     {
       "id": 37,
       "model": "뫼르소",
-      "content": "Raw ingredients for Canned Experience are handled exclusively by the Grand Magasin Sisyphe. There is no known method for external parties to access them."
+      "content": "因為罐頭的原料只在薛西弗斯百貨公司處理，外部無論用什麼方法都接觸不到。"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<Sisyphe... what?>"
+      "content": "<薛西……弗斯，什麼？>"
     },
     {
       "id": 39,
       "model": "이스마엘",
-      "content": "Oh, I think I've heard of it. Canned Experiences, right? They're in high demand in other Districts too, but the only brand stamped on them is \"Grand Magasin Sisyphe\". Same name every time."
+      "content": "啊，我好像聽說過。那個叫經驗罐頭的東西，在其他區也賣得不錯，但上面印的品牌永遠只有薛西弗斯百貨公司一個。"
     },
     {
       "id": 40,
       "model": "싱클레어",
-      "content": "I remember some of my classmates bragging about trying them whenever exam weeks came around. Never had one myself, though. I can't really explain it, but something about them just feels kind of... wrong."
+      "content": "這麼說來，在學校每到考試期間，好像都會有一兩個同學炫耀說自己吃過。我總覺得有點不舒服……所以沒吃過。"
     },
     {
       "id": 41,
       "model": "단테",
-      "content": "<It's that popular, huh...>"
+      "content": "<看來是比想像中還要有名的地方啊……>"
     },
     {
       "id": 42,
       "model": "뫼르소",
-      "content": "The unprocessed base content of Canned Experience, known as \"Experience Batter,\" is supplied to reprocessing factories, where Docugraphers fine-tune the experience's details. Photographs are primarily used for that purpose."
+      "content": "罐頭的基底……也就是經驗麵團，會交貨給再加工工廠，工廠有時也會透過記錄員等人調整細部的經驗，所以照片大多用在那種地方。"
     },
     {
       "id": 43,
       "model": "그레고르",
-      "content": "They can fine-tune experience?"
+      "content": "調整經驗……？"
     },
     {
       "id": 44,
       "model": "뫼르소",
-      "content": "An easier example for understanding would be to consider why Docugraphers take pictures of subjects such as buildings."
+      "content": "想想記錄員為何會拍攝建築物之類的東西，應該就更容易理解了。"
     },
     {
       "id": 45,
       "model": "뫼르소",
-      "content": "A purchaser may wish to experience living in a luxurious building that they could never afford. Another may wish to vent out impulses of violence by experiencing the burning of an expensive property."
+      "content": "想體驗住進自己到死都住不起的豪華建築是什麼感覺時、想為了宣洩湧現的暴力衝動而體驗焚燒高級建築時……"
     },
     {
       "id": 46,
       "model": "뫼르소",
-      "content": "Demand for haute-couture Canned Experience is increasing by day."
+      "content": "高級訂製經驗罐頭的人氣正日益高漲。"
     },
     {
       "id": 47,
       "model": "단테",
-      "content": "<So that's why the photos from earlier were all fancy buildings...>"
+      "content": "<所以剛才那些照片拍的全都是看起來很高級的建築啊……>"
     },
     {
       "id": 48,
       "model": "뫼르소",
-      "content": "Yes, Manager. Conversely, information concerning ordinary experience that can be easily encountered in reality is in low demand. "
+      "content": "反之，像這種在現實中很容易碰到的事物，其資訊是沒有需求的。"
     },
     {
       "id": 49,
       "model": "오티스",
-      "content": "Then why photograph these residents at all?"
+      "content": "那特地拍下來的理由……是什麼？"
     },
     {
       "id": 50,
       "model": "이상",
-      "content": "Perhaps these were not images harvested for their commodity value, but pure photography in and of itself."
+      "content": "莫非只是拍下了純粹意義上的照片？"
     },
     {
       "id": 51,
       "model": "이상",
-      "content": "Mayhap they have been captured for a desire to seize a vanishing instant through a lens."
+      "content": "或許是想留住某個瞬間。"
     },
     {
       "id": 52,
       "model": "오티스",
-      "content": "There are people who take photographs, knowing that it would cost an exorbitant sum. I have seen some before."
+      "content": "我也曾見過下了很大決心去拍底片照片的人。"
     },
     {
       "id": 53,
       "model": "오티스",
-      "content": "A staggering amount of money... just to take a single photo. That is, <i>if</i> they could even manage to find a photographer who'd take the risk and help take the picture."
+      "content": "下了很大的決心……只拍一張。而且聽說還付了一大筆錢。甚至光是找到願意替他們拍照的人，就花了很長的時間。"
     },
     {
       "id": 54,
       "model": "오티스",
-      "content": "I'm not so crass as to put a price on sentiment and nostalgia, but spending this much money on film rolls... What could have made this investment worth it?"
+      "content": "我雖不至於庸俗到替感性與回憶的領域標上價格，但竟然拍到這麼多張？"
     },
     {
       "id": 55,
       "model": "단테",
-      "content": "<I'd say...>"
+      "content": "<說不定……>"
     },
     {
       "id": 56,
       "model": "단테",
-      "content": "<... maybe this isn't just a matter of sentiments. Or memories, even.>"
+      "content": "<這已經超出那些東西的領域了。>"
     },
     {
       "id": 57,
-      "content": "Leafing through the photographs, I quietly expressed my thoughts."
+      "content": "我一邊翻看手中的照片，一邊低聲說道。"
     },
     {
       "id": 58,
       "model": "오티스",
-      "content": "Executive Manager?"
+      "content": "您是說……領域嗎？"
     },
     {
       "id": 59,
       "model": "단테",
-      "content": "<I'm not exactly an authority on Distortions, but I know they manifest through desires or emotions that become warped in bizarre ways.>"
+      "content": "<雖然我對扭曲不是很了解，但扭曲就是某種慾望或情感以奇怪的方式實體化的東西吧。>"
     },
     {
       "id": 60,
       "model": "단테",
-      "content": "<But everything the Distortion has shown us so far points back to S Corp.—that is, the S Corp. from the past that only Kim and Aeng-du would've seen and remembered. These photos, though? They're completely untouched by the Distortion. Doesn't that feel off?>"
+      "content": "<可是被扭曲的反而是金笠或櫻桃待過的S公司的場景……偏偏這些東西卻沒有改變，不覺得有點奇怪嗎？>"
     },
     {
       "id": 61,
-      "content": "There must be a strong fixation at play here. Strong enough to slip past even a Distortion..."
+      "content": "強烈到足以避開扭曲的執念……"
     },
     {
       "id": 62,
-      "content": "And if that obsession is something that refuses to let these memories be influenced..."
+      "content": "如果有「唯獨這段記憶絕不能變質」的意志在作用的話。"
     },
     {
       "id": 63,
       "model": "단테",
-      "content": "<... I think our next step should be to look for the people in these photos.>"
+      "content": "<……我們最好去找找看照片上的這些人。>"
     },
     {
       "id": 64,
-      "content": "... These photographs are the only un-Distorted, unaltered clues we have."
+      "content": "因為唯有這些東西，應該全都沒有被扭曲或竄改過。"
     },
     {
       "id": 65,
       "model": "파우스트",
-      "content": "Dante says it would be advisable to locate the people shown in these photographs."
+      "content": "但丁說，最好去找出這些照片中人物的下落。"
     },
     {
       "id": 66,
       "model": "에즈라",
-      "content": "Ooh~ Good idea! Team Leader did say that we should accept input from the LCB with open arms."
+      "content": "哦～好啊、好啊。隊長說過，LCB那邊有提出意見的話，也要積極拿來用。"
     },
     {
       "id": 67,
       "model": "에즈라",
-      "content": "Hey, Aeng-du! Can you get me the Office catalog? We'll probably need to commission an Office affiliated with Seven Association. Let's look for one that can take the request right away..."
+      "content": "櫻桃！能幫我拿一下事務所目錄嗎？從Seven協會旗下的事務所中，找現在馬上就能接手委託的……"
     },
     {
       "id": 68,
       "model": "단테",
-      "content": "<... Can someone tell Ezra we're fine? I think I know where to find those people.>"
+      "content": "<……誰能幫我跟以斯拉說不用麻煩了？我好像已經找到了。>"
     },
     {
       "id": 69,
       "model": "파우스트",
-      "content": "Dante says one of the people shown in the photos has already been found."
+      "content": "他說已經找到了。"
     },
     {
       "id": 70,
       "model": "에즈라",
-      "content": "What? When? How?!"
+      "content": "什麼，已經找到了？怎麼找的？！"
     },
     {
       "id": 71,
       "model": "단테",
-      "content": "<Well, guess I'm just having a lucky day.>"
+      "content": "<……看來我今天運氣還不錯。>"
     },
     {
       "id": 72,
-      "content": "I pulled the radio from my waist and switched it on without answering Ezra's question."
+      "content": "我沒有回答以斯拉的問題，而是拔出掛在腰間的對講機，打開了電源。"
     },
     {
       "id": 73,
       "model": "료슈",
-      "content": "D.W.R.C.?"
+      "content": "集．時？"
     },
     {
       "id": 74,
       "model": "싱클레어",
-      "content": "I think she said \"Do we regroup, Clock?\""
+      "content": "她好像是說「要集合嗎，時鐘？」。"
     },
     {
       "id": 75,
       "model": "단테",
-      "content": "<... That one was especially hard to understand, Ryōshū.>"
+      "content": "<……這次的真的很難聽懂，良秀。>"
     },
     {
       "id": 76,
       "model": "료슈",
-      "content": "Heh."
+      "content": "呵。"
     },
     {
       "id": 77,
       "model": "단테",
-      "content": "<Rodya's with you, right? Can you put her on?>"
+      "content": "<羅佳在妳旁邊吧？能換她聽嗎？>"
     },
     {
       "id": 78,
       "model": "료슈",
-      "content": "Okay."
+      "content": "行。"
     },
     {
       "id": 79,
       "model": "단테",
-      "content": "<Rodya, you there?>"
+      "content": "<羅佳，聽得到嗎？>"
     },
     {
       "id": 80,
       "model": "로쟈",
-      "content": "Eh, what? Dante wants to talk?"
+      "content": "欸，什麼？嗯？但丁找我？"
     },
     {
       "id": 81,
       "model": "로쟈",
-      "content": "One sec, one sec... I kinda went overboard with the bread and pastries. My hands are completely full over here."
+      "content": "啊，等一下……我拿了太多麵包，沒有手可以拿對講機啦……"
     },
     {
       "id": 82,
       "model": "에즈라",
-      "content": "Pastries? What kind?"
+      "content": "麵包！？什麼麵包？"
     },
     {
       "id": 83,
       "model": "로쟈",
-      "content": "J-just one of everything."
+      "content": "就、就每種都拿一個啊。"
     },
     {
       "id": 84,
       "model": "에즈라",
-      "content": "Neat! Can you grab extra brioche and baguettes for me, too? Love the ones from that street, they're so good."
+      "content": "那如果布里歐修跟法國麵包還有剩，可以也幫我拿一份嗎？這條街的那兩種真的超好吃！"
     },
     {
       "id": 85,
       "model": "로쟈",
-      "content": "Hold on, I gotta readjust the pile if I wanna—"
+      "content": "等一下……要再多拿的話……"
     },
     {
       "id": 86,
       "model": "료슈",
-      "content": "Just throw them on T.F. They're packaged."
+      "content": "無．妨。直接丟在地上就好。不是有包裝嗎？"
     },
     {
       "id": 87,
       "model": "로쟈",
-      "content": "Ryōshū! You can't treat food like that, 'kay? Bread has—I mean, bakers have feelings, too, ya know. How do you think the baker would feel if they knew someone was treating their precious babies like trash?"
+      "content": "哎呀，良秀！食物要好好珍惜啦！那樣隨便對待的話，做麵包的人會難過的喔？"
     },
     {
       "id": 88,
       "model": "료슈",
-      "content": "... This scabbard is rattling again for no reason."
+      "content": "……這刀鞘又沒來由地晃起來了。"
     },
     {
       "id": 89,
       "model": "로쟈",
-      "content": "A-anyways, Dante, can ya gimme a sec if ya need me to fight? Just need to cram these into my pockets real quick...!"
+      "content": "啊、總之但丁！如果打架也需要我的話，可以稍微等我一下嗎？我、我馬上把它們塞進口袋！"
     },
     {
       "id": 90,
       "model": "단테",
-      "content": "<No, no, it's not a fight.>"
+      "content": "<啊、不是……不是那樣。>"
     },
     {
       "id": 91,
       "model": "로쟈",
-      "content": "<Huh? Then what's this about?>"
+      "content": "嗯嗯……？那是要幹嘛？"
     },
     {
       "id": 92,
-      "content": "I took a closer look at the words written on the wicker basket in the first photograph Meursault had brought me."
+      "content": "我仔細端詳莫梭拿給我的第一張照片中，竹籃上寫著的字，向羅佳問道。"
     },
     {
       "id": 93,
       "model": "단테",
-      "content": "<Where's that bakery you're at?>"
+      "content": "<妳現在所在的那間麵包店，是在哪裡？>"
     }
   ]
 }

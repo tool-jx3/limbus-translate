@@ -2,21 +2,21 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Corridor of the Ring Nursefather",
-      "content": "Only a few days had passed since our last visit, but the place looked markedly different from what we remembered."
+      "place": "蜘蛛巢，環指父輩的長廊",
+      "content": "時隔數日再度造訪的蜘蛛巢，景象看起來與先前截然不同。"
     },
     {
       "id": 1,
-      "content": "The sight of the hollow, frigid atmosphere and the endless stretch of Corridors hadn't changed,"
+      "content": "空蕩冰冷的氛圍與無盡延伸的空間雖然依舊……"
     },
     {
       "id": 2,
-      "content": "but Callisto's so-called \"artworks\" were now covered in white sheets, and unfamiliar devices were affixed all around the Backdoors."
+      "content": "卡利斯托布置的作品都被白布蓋了起來，後門各處則裝上了陌生的裝置。"
     },
     {
       "id": 3,
       "model": "돈키호테",
-      "content": "Prithee, who might those people thither be?"
+      "content": "話說……那些人是何許人也？"
     },
     {
       "id": 4,
@@ -28,195 +28,195 @@
     {
       "id": 5,
       "model": "료슈",
-      "content": "Looks like some shady bastards moved in already."
+      "content": "這段時間可疑的傢伙變多了。"
     },
     {
       "id": 6,
-      "content": "Our guarded reaction prompted Hohenheim to step forward and gesture to one of the oddly-dressed figures."
+      "content": "我們一露出戒備的神色，霍恩海姆便走上前，朝穿著奇特服裝的其中一人招了招手。"
     },
     {
       "id": 7,
       "model": "호엔하임",
-      "content": "It seems introductions are in order for both sides."
+      "content": "看來需要互相介紹一下了。"
     },
     {
       "id": 8,
       "model": "호엔하임",
-      "content": "... This is Team Leader Alan from Wayfarer Company, who will be working with us on the investigation into the House's Backdoors."
+      "content": "……這位是將協助我們調查蜘蛛巢後門的拓途者公司的亞倫組長。"
     },
     {
       "id": 9,
       "model": "단테",
-      "content": "<Wayfarer Company?>"
+      "content": "<拓途者公司？>"
     },
     {
       "id": 10,
       "model": "파우스트",
-      "content": "A corporate entity partnered with Limbus Company, responsible for providing portal technology. It has, on prior occasion, been referred to as the \"new\" or \"aspirant\" W Corp.—though the name is an unofficial one."
+      "content": "是與邊獄公司締結合作關係、為我們提供傳送門技術的公司。雖然是非正式的名稱，但我應該曾以「新W公司」這個名字向您提過。"
     },
     {
       "id": 11,
       "model": "앨런마스크",
-      "title": "Wayfarer Company",
-      "content": "Our employees also have taken to calling you the \"new L Corp.\" Something we have in common, given that we're both chasing after the same horizon."
+      "title": "拓途者公司",
+      "content": "我們公司的員工私下聊天時，也常把邊獄公司稱作新L公司。或許是因為彼此注視的方向相近，才會有這樣的共同點吧。"
     },
     {
       "id": 12,
       "model": "단테",
-      "content": "<Ah...! I remember. That company vying to take W Corp.'s place, right?>"
+      "content": "<啊……！就是想成為新W公司的那家啊。>"
     },
     {
       "id": 13,
-      "content": "\"The same horizon.\" He's probably talking about getting recognized as a Wing."
+      "content": "所謂注視的方向，大概是指翼吧。"
     },
     {
       "id": 14,
-      "content": "After all, the old L Corp. has already fallen, while W Corp., from what I've heard... is free-falling at this point."
+      "content": "畢竟舊L公司已經沒落，而W公司……據說也正在沒落。"
     },
     {
       "id": 15,
       "model": "호엔하임",
-      "content": "And these are the Manager and the Sinners of the LCB Department, our field operations unit. Frequently deployed to deal with on-site matters firsthand."
+      "content": "這邊是……在本公司負責大部分現場業務的LCB部門的經理與罪人們。"
     },
     {
       "id": 16,
       "model": "호엔하임",
-      "content": "They have more personnel, but the rest are tied up with other duties elsewhere. Only a handful will be joining this investigation effort."
+      "content": "原本人數比這更多，但因為要處理其他業務，這次只會有少數人參與。"
     },
     {
       "id": 17,
       "model": "앨런마스크",
-      "title": "Wayfarer Company",
-      "content": "I understand. Field operations units are almost always understaffed, anyway. The support you've provided is more than sufficient."
+      "title": "拓途者公司",
+      "content": "我理解。在現場奔走的部門大多苦於人手不足。光是能支援這麼多人就已經足夠了。"
     },
     {
       "id": 18,
-      "content": "Alan gave an understanding nod. The man slipped off his bulky helmet before extending his hand in greeting."
+      "content": "以和善的態度回應的那位名叫亞倫的人，隨即摘下看起來很沉重的頭盔，伸出了手。"
     },
     {
       "id": 19,
       "model": "앨런",
-      "content": "Pleased to make your acquaintance. The name's Alan, Leader of Doorbreach Team 4."
+      "content": "幸會。我是第4開拓小組的組長，亞倫。"
     },
     {
       "id": 20,
       "model": "단테",
-      "content": "<L-likewise...>"
+      "content": "<幸、幸會……>"
     },
     {
       "id": 21,
-      "content": "Before Faust could even relay my reciprocal greeting, words spilled out of Alan's mouth in a strangely uneven rhythm—as if my ticking didn't bother him at all. Like he was sticking to a script he had rehearsed."
+      "content": "浮士德還沒來得及開口轉達我的話，他就像是不怎麼在意我的滴答聲，又像是要把早已準備好的台詞一股腦說出來似的……以一種微妙而古怪的節奏接著說了下去。"
     },
     {
       "id": 22,
       "model": "앨런",
-      "content": "I've heard great things about you, Manager Dante of Limbus Company, and the Bus Team's performance."
+      "content": "邊獄公司的但丁經理與巴士部門的成果，我早有耳聞。"
     },
     {
       "id": 23,
       "model": "앨런",
-      "content": "You capitalized on the suppression of Distortions at T Corp. as leverage to push your products... and the profits were nothing short of staggering, I heard..."
+      "content": "聽說您以解決扭曲為誘餌，銷售自家公司的商品，在T公司賺取了驚人的收益……"
     },
     {
       "id": 24,
       "model": "단테",
-      "content": "<Oh yeah, we're supposed to be Distortion-resolving specialists to the public... But what's that \"product\" part about?>"
+      "content": "<對外確實說過是要解決扭曲……但自家商品是什麼啊？>"
     },
     {
       "id": 25,
       "model": "파우스트",
-      "content": "... The Manager says it was merely a matter of luck. They also look forward to working with you on this task."
+      "content": "……經理說只是運氣好而已。還補充說，這次的業務也請多多指教。"
     },
     {
       "id": 26,
       "model": "앨런",
-      "content": "Oh, are you the interpreter? In that case, I'll be sure to consult the manager only when both of you are available."
+      "content": "啊，您是負責口譯的人嗎？那麼往後若有需要聽取答覆的事，我會在兩位都在場時再請教。"
     },
     {
       "id": 27,
       "model": "파우스트",
-      "content": "... Sure."
+      "content": "……好的。就請這麼做吧。"
     },
     {
       "id": 28,
-      "content": "Faust didn't seem particularly pleased with the role Alan had pinned on her, but she nodded anyway."
+      "content": "浮士德似乎不太喜歡「負責口譯的人」這個說法，但還是順從地點了點頭。"
     },
     {
       "id": 29,
-      "content": "She quietly came to my side and answered my earlier question while Alan carried on with Hohenheim."
+      "content": "接著，她趁亞倫和霍恩海姆交談時，悄悄來到我身旁，回答了我剛才的疑問。"
     },
     {
       "id": 30,
       "model": "파우스트",
-      "content": "He is referring to the Monolith sales project. The credit was attributed to the LCB, at the express request of Mister Herbert, T Corp.'s Executive Director."
+      "content": "是指獨石的銷售業務。因為T公司代表哈伯特先生的要求，那份功勞被記在了我們LCB的名下……"
     },
     {
       "id": 31,
       "model": "단테",
-      "content": "<Oh... So that's how the rumor spread, huh.>"
+      "content": "<啊……原來傳聞是這樣傳開的啊。>"
     },
     {
       "id": 32,
       "model": "앨런",
-      "content": "We've reviewed the agreements. Now, I understand you'll be assisting in verifying what lies beyond the Backdoors."
+      "content": "協議事項都已確認完畢。據我所知，各位將在確認後門另一端的程序上提供協助……"
     },
     {
       "id": 33,
       "model": "앨런",
-      "content": "I'd appreciate it if you could share any prior knowledge you have about where these Backdoors connect—as detailed as you can make them, if you don't mind."
+      "content": "關於各位事先掌握的後門連接地點，還請盡可能分享相關情報。"
     },
     {
       "id": 34,
-      "content": "Hohenheim fixed Kira with a pointed look."
+      "content": "亞倫話一說完，霍恩海姆便像在使眼色般，直直地盯著綺羅。"
     },
     {
       "id": 35,
-      "content": "Though Kira responded by defiantly cocking her head in a show of irritation, she still gave up a sliver of the information she had."
+      "content": "綺羅似乎對那道視線感到不滿，彆扭地歪著頭，卻還是把自己知道的情報稍微說了出來。"
     },
     {
       "id": 36,
       "model": "뉴키라",
-      "content": "Honestly, I've got pretty much nothing if it's about robo-unc and his room."
+      "content": "義體叔叔的房間，我也不太清楚。"
     },
     {
       "id": 37,
       "model": "뉴키라",
-      "content": "I mean, I've seen Albina hit up that door and the other one over there when she was popping out to farm stuff, but..."
+      "content": "頂多就是看過阿爾比娜說那扇門跟那邊那扇門裡有她需要的材料，跑去刷素材……"
     },
     {
       "id": 38,
       "model": "앨런",
-      "content": "\"Farm\"...?"
+      "content": "刷素材……？"
     },
     {
       "id": 39,
       "model": "뉴키라",
-      "content": "Oh, it's, uh... gathering material."
+      "content": "啊、呃、那個……就是說她去找材料了啦。"
     },
     {
       "id": 40,
       "model": "앨런",
-      "content": "I see. What kind of material?"
+      "content": "原來如此。那麼，所謂的材料是……？"
     },
     {
       "id": 41,
       "model": "뉴키라",
-      "content": "Human guts and all that. She'd come back hauling piles of 'em."
+      "content": "我是說，我看過她帶著一大堆人的內臟之類的東西回來。"
     },
     {
       "id": 42,
       "model": "뉴키라",
-      "content": "So they're prolly connected to some Backstreets area."
+      "content": "大概是連到哪裡的後巷吧。"
     },
     {
       "id": 43,
       "model": "앨런",
-      "content": "The Backstreets... Hmm. Any more details?"
+      "content": "後巷……嗯。沒有更詳細的情報嗎？"
     },
     {
       "id": 44,
       "model": "뉴키라",
-      "content": "Can you stop prying? You're lowkey pissin' me off."
+      "content": "很煩耶，別再追問了。"
     },
     {
       "id": 45,
@@ -226,51 +226,51 @@
     {
       "id": 46,
       "model": "뉴키라",
-      "content": "What? That's literally all I've got, for real."
+      "content": "幹嘛。除了那些我真的不知道好嗎？"
     },
     {
       "id": 47,
-      "content": "For a moment, Alan leveled Kira with a stiff expression..."
+      "content": "亞倫板著臉，盯著綺羅看了一會兒……"
     },
     {
       "id": 48,
-      "content": "... and even before I could register what had happened, Kira's head jerked to the side from a sudden punch by Alan."
+      "content": "不知何時，他的拳頭已經揮了出去，被打中的綺羅頭猛地歪向一邊。"
     },
     {
       "id": 49,
       "model": "뉴키라",
-      "content": "Ungh!"
+      "content": "唔！？"
     },
     {
       "id": 50,
-      "content": "I thought Kira was nimble enough to dodge a surprise attack easily, but this one seemed to have caught her completely off guard. She stood there blinking, eyes round in rude surprise."
+      "content": "我本以為綺羅能輕鬆躲開，她卻似乎完全沒料到……只是驚訝地瞪圓了眼睛，不停眨眼。"
     },
     {
       "id": 51,
-      "content": "Actually, it wasn't that he caught her off guard; it was the motion of the punch itself that somehow felt off. The fist being raised, the arm being extended, the blow making contact... the chain of actions was there, but it just didn't look... normal."
+      "content": "不，與其說是沒料到……拳頭從揮出到擊中的過程，確實有哪裡不太對勁……"
     },
     {
       "id": 52,
       "model": "뉴키라",
-      "content": "D-did you just hit me...?"
+      "content": "你、你剛才……打了我……？"
     },
     {
       "id": 53,
       "model": "뉴키라",
-      "content": "What the hell's wrong with—"
+      "content": "突然搞什麼……"
     },
     {
       "id": 54,
-      "content": "As Kira reeled from the unexpected strike,"
+      "content": "就在綺羅因亞倫出乎意料的舉動而慌亂之際。"
     },
     {
       "id": 55,
-      "content": "Don Quixote spoke up in a cold, sharp tone."
+      "content": "唐吉訶德用冰冷的語氣，像是警告般開口了。"
     },
     {
       "id": 56,
       "model": "돈키호테",
-      "content": "... Thou. What manner of discourtesy is this?"
+      "content": "……汝。這是何等無禮之舉。"
     },
     {
       "id": 57,
@@ -280,12 +280,12 @@
     {
       "id": 58,
       "model": "앨런",
-      "content": "With all that whining, I thought the brat could use a lesson to remind her of her place."
+      "content": "因為同行途中，這個沒長大的孩子不明事理地鬧個不停。"
     },
     {
       "id": 59,
       "model": "앨런",
-      "content": "I had no intention of damaging your company asset, of course. I simply assumed the level of warning would not be inappropriate in this case."
+      "content": "我只是認為這種程度的警告並無不妥，並沒有要傷害貴公司資產的意圖。"
     },
     {
       "id": 60,
@@ -295,110 +295,110 @@
     {
       "id": 61,
       "model": "호엔하임",
-      "content": "Team Leader Alan."
+      "content": "亞倫組長。"
     },
     {
       "id": 62,
       "model": "호엔하임",
-      "content": "That sort of conduct may not be an issue in your organization, but it is here."
+      "content": "在你的公司，那種行為或許沒有問題，但在這裡可能就會成為問題。"
     },
     {
       "id": 63,
       "model": "호엔하임",
-      "content": "Should it happen again..."
+      "content": "所以，要是這種事再發生一次……"
     },
     {
       "id": 64,
       "model": "호엔하임",
-      "content": "Do understand that we may choose to terminate today's joint engagement without delay."
+      "content": "希望你記住，今天預定的合作行程可能會當場終止。"
     },
     {
       "id": 65,
       "model": "앨런",
-      "content": "My apologies. I will keep that in mind going forward."
+      "content": "失禮了。今後我會注意的。"
     },
     {
       "id": 66,
-      "content": "Alan stood down without arguing back, but Kira looked far from satisfied with how Hohenheim handled the situation."
+      "content": "與乖乖退下的亞倫不同，綺羅似乎無法接受霍恩海姆的處理方式……"
     },
     {
       "id": 67,
       "model": "뉴키라",
-      "content": "He gets to sock me in the face and walk off scot free?"
+      "content": "明明是那邊先找碴的，卻要我挨一拳就算了喔……？"
     },
     {
       "id": 68,
       "model": "뉴키라",
-      "content": "So frickin' annoying..."
+      "content": "煩死了……"
     },
     {
       "id": 69,
-      "content": "Fortunately enough, her grumbling didn't escalate into her lashing out at Alan."
+      "content": "她只是對這狀況抱怨個不停，幸好沒有撲向亞倫之類的。"
     },
     {
       "id": 70,
       "model": "단테",
-      "content": "<That punch just now, though... What was that?>"
+      "content": "<剛才那奇怪的一拳……到底是什麼啊。>"
     },
     {
       "id": 71,
       "model": "파우스트",
-      "content": "... It exhibited a behavior that defied the standard laws of physics."
+      "content": "……那是一種彷彿無視常規物理法則的現象。"
     },
     {
       "id": 72,
       "model": "파우스트",
-      "content": "Presumably a form of technology utilized by Wayfarer Company."
+      "content": "想必是拓途者公司所掌握的某種技術之一吧。"
     },
     {
       "id": 73,
       "model": "호엔하임",
-      "content": "... Let us resume the task at hand."
+      "content": "……回到工作上吧。"
     },
     {
       "id": 74,
       "model": "호엔하임",
-      "content": "Sinner Ryōshū. Give Team Leader Alan whatever information you have."
+      "content": "罪人良秀。把你知道的情報也告訴亞倫組長吧。"
     },
     {
       "id": 75,
       "model": "료슈2",
-      "content": "*puff*"
+      "content": "呼……"
     },
     {
       "id": 76,
       "model": "료슈",
-      "content": "That door... should lead to one of the Ring-protected turfs."
+      "content": "那扇門……應該通往環指的保護區。"
     },
     {
       "id": 77,
       "model": "료슈",
-      "content": "The other two on the left... I remember they were marked with an X painted with blood..."
+      "content": "左邊那兩扇門……不知為何，好像被人用血畫上了X……"
     },
     {
       "id": 78,
       "model": "료슈",
-      "content": "... but I H.N.I. where they actually lead. It's all blurry. Tsk."
+      "content": "……至於通往哪裡，不．知．道。記憶很模糊。嘖。"
     },
     {
       "id": 79,
       "model": "호엔하임",
-      "content": "It seems that's all the information we can provide. Will that suffice?"
+      "content": "能提供的情報似乎就只有這些了。這樣也可以嗎？"
     },
     {
       "id": 80,
       "model": "앨런",
-      "content": "We now know that the doors likely connect to a perceivable area. That's already a big improvement in terms of intel for Wayfarer Company's Backdoor mapping progress."
+      "content": "光是知道這些門很可能連接到可辨識的外部，對拓途者公司的地圖繪製就有很大的幫助。"
     },
     {
       "id": 81,
       "model": "앨런",
-      "content": "Which means there's less chance of us encountering a space beyond human perception past those doors."
+      "content": "因為這代表打開時，連接到認知之外的危險空間的可能性很低。"
     },
     {
       "id": 82,
       "model": "앨런",
-      "content": "All right, then... I'll proceed with connection verification. Which door shall we test first?"
+      "content": "那麼……我要開始進行連接確認作業了。要從哪扇門開始測試呢？"
     },
     {
       "id": 83,
@@ -408,41 +408,41 @@
     {
       "id": 84,
       "model": "호엔하임",
-      "content": "We'll start with the one Sinner Ryōshū mentioned."
+      "content": "就從罪人良秀說的那扇門開始吧。"
     },
     {
       "id": 85,
       "model": "뉴키라",
-      "content": "Hah! Ya don't trust me at all, huh?"
+      "content": "哈！什麼啊，意思是不相信我喔……？"
     },
     {
       "id": 86,
       "model": "뉴키라",
-      "content": "Then why even bring me along?"
+      "content": "既然這樣，幹嘛帶我來啊……"
     },
     {
       "id": 87,
-      "content": "Ignoring Kira's jab, Alan began setting up various devices on the door, and soon, an elegant white door opened before us."
+      "content": "亞倫不理會冷嘲熱諷的綺羅，在門上裝了各式各樣的裝置，沒過多久，一扇看起來很高級的白色門便打開了。"
     },
     {
       "id": 88,
       "model": "호엔하임",
-      "content": "Shall we?"
+      "content": "那就進去吧。"
     },
     {
       "id": 89,
       "model": "돈키호테",
-      "content": "Art thou joining us as well, Young Hohenheim?"
+      "content": "霍恩海姆也要一同進去嗎？"
     },
     {
       "id": 90,
       "model": "호엔하임",
-      "content": "Just this once. There are procedures for handing over field operations."
+      "content": "業務方式似乎需要交接，所以只有這次我會同行。"
     },
     {
       "id": 91,
       "model": "단테",
-      "content": "<Okay. Let's see what's in there.>"
+      "content": "<好。進去吧。>"
     },
     {
       "id": 92,
@@ -453,70 +453,70 @@
     {
       "id": 93,
       "model": "단테",
-      "content": "<What the... Is this some kind of wildlife exhibit...?>"
+      "content": "<動物……展覽之類的嗎……？>"
     },
     {
       "id": 94,
-      "content": "The moment we stepped in, the lights hit us all at once, drawing squints and frowns from the Sinners. Thanks to my lack of physical eyes, I could make out a room filled with statues or, perhaps, taxidermied animals."
+      "content": "在罪人們因明亮的燈光而瞇起眼睛時，我先環顧了一下四周，到處都擺滿了分不清是模型還是標本的動物。"
     },
     {
       "id": 95,
-      "content": "It felt like a gallery of sorts... but it was so quiet that the air itself seemed to carry a strange, somber weight."
+      "content": "看起來像是展示著什麼的地方……安靜得連一點雜音都沒有，甚至讓人感到莊嚴。"
     },
     {
       "id": 96,
-      "content": "After a moment, someone shattered the silence—but it wasn't Don Quixote, our usual suspect."
+      "content": "打破那份寂靜的……出乎意料地，並不是唐吉訶德。"
     },
     {
       "id": 97,
       "model": "뉴키라",
-      "content": "Holy shit... The scale is just insane! Th-that's the Whale from \"Eight Association: Great Lake\" special issue!"
+      "content": "哇～靠。這規模也太誇張了吧？這不就是上次Eight協會大湖特輯雜誌上的那頭鯨魚嘛！"
     },
     {
       "id": 98,
-      "content": "Kira, who'd seemed beaten-down all along, exclaimed with a bit more energy in her voice."
+      "content": "從病房開始就一副垂頭喪氣模樣的綺羅，用稍微開朗了些的聲音驚嘆道。"
     },
     {
       "id": 99,
       "model": "뉴키라",
-      "content": "Man, seeing it in real life sure hits different... And the Indigo Elder solo one-shots these monsters with that harpoon of his, huh?"
+      "content": "看到實物真的不是蓋的……靛藍老人只用一發魚叉就能抓到這種東西喔？"
     },
     {
       "id": 100,
       "model": "단테",
-      "content": "<... It's a Great Lake Whale. Doesn't look like the one we've encountered, though.>"
+      "content": "<……是大湖的鯨魚啊。雖然好像不是我們遇過的個體。>"
     },
     {
       "id": 101,
       "model": "파우스트",
-      "content": "Organisms of various sources can be identified here—Singularity-modified, Outskirts-born..."
+      "content": "從經由奇點改造基因的生物，到郊區才看得到的怪物都有呢。"
     },
     {
       "id": 102,
       "model": "단테",
-      "content": "<Th-they look almost alive... They're not, right?>"
+      "content": "<好、好逼真啊……不是活的吧？>"
     },
     {
       "id": 103,
       "model": "파우스트",
-      "content": "No, they're not alive, but—"
+      "content": "不，怎麼可能還活……"
     },
     {
       "id": 104,
       "model": "뉴키라",
-      "content": "Duh. Though robo-unc did say that the Ring has these zoos where they put monsters on display alive..."
+      "content": "著嘛。嘛……想想義體叔叔說過的話，好像也有把活的東西那樣收集起來的環指動物園……"
     },
     {
       "id": 105,
       "model": "뉴키라",
-      "content": "Man, this would've been way more fun if we could see the moving ones. Everything here's dead... meh. Still looks crazy sick, though. The vibe really hits."
+      "content": "嘖。還不如那樣更好玩。這裡的全都是死的……唉。不過有種雄偉的帥氣感，還滿有看頭的。"
     },
     {
       "id": 106,
-      "content": "Even though she was trying to play it cool, Kira kept sneaking glances at the massive horned display off to the side, clearly surprised in a way she couldn't hide."
+      "content": "綺羅嘴上雖這麼說，卻對展示在一旁、長著驚人巨角的動物重新露出了驚訝的表情。"
     },
     {
-      "content": "That said, I felt a distinct shortage of hyperactivity, given the presence of a certain someone in our party..."
+      "content": "……這麼說來，總覺得少了一個會這樣大驚小怪的人。"
     },
     {
       "id": 108,
@@ -531,48 +531,48 @@
     {
       "id": 110,
       "model": "돈키호테",
-      "content": "The eye of a Second Kindred... of House Tepes. What is it doing here...?"
+      "content": "采佩什家族二代眷屬的眼睛……為何會在這裡……"
     },
     {
       "id": 111,
-      "content": "At the mention of the word \"Kindred,\" I couldn't help but follow Don Quixote's gaze."
+      "content": "聽到唐吉訶德說那是血魔的眼睛，我望向巨大鯨魚的另一側。"
     },
     {
       "id": 112,
-      "content": "Opposite the Whale was another kind of exhibit—it contained items leaning on the more gruesome side of things, starting with a crimson eyeball that caught Don Quixote's attention, and body parts like hands and bones that looked as though they had been stripped from the human body."
+      "content": "那裡以唐吉訶德直盯著的紅色眼睛為首，展示著幾件看起來像是人類的手或骨頭之類的東西。"
     },
     {
       "id": 113,
       "model": "료슈",
-      "content": "It's a Gallery..."
+      "content": "藝廊。"
     },
     {
       "id": 114,
-      "place": "Fauvist Gallery, Somewhere",
+      "place": "某處的野獸派藝廊",
       "model": "료슈",
-      "content": "... of the School of Fauvism. Probably a Main Studio, at that... which comes with a Maestro's atelier and an auction house."
+      "content": "是野獸派的藝廊。而且看來還是設有大師畫室與拍賣場的主工作室。"
     },
     {
       "id": 115,
       "model": "호엔하임",
-      "content": "... Alan."
+      "content": "……亞倫組長。"
     },
     {
       "id": 116,
       "model": "호엔하임",
-      "content": "We will be making our exit shortly. Prepare to initiate lockdown sequence."
+      "content": "我們馬上就出去，幫我準備好封鎖程序吧。"
     },
     {
       "id": 117,
-      "content": "Before Hohenheim could even finish his urgent transmission..."
+      "content": "霍恩海姆急促的無線通訊還沒結束。"
     },
     {
       "id": 118,
-      "content": "... numerous footsteps closed in from somewhere nearby."
+      "content": "不遠處便開始響起好幾道喀噠喀噠的腳步聲。"
     },
     {
       "id": 119,
-      "content": "Turning toward the sound of shoes clacking on the floor, we found strange figures wearing animal masks, staring directly at us."
+      "content": "循聲轉頭一看，只見一群戴著奇異動物面具的人正直直盯著我們。"
     },
     {
       "id": 120,
@@ -582,56 +582,56 @@
     {
       "id": 121,
       "model": "뉴키라",
-      "content": "That presence... it's kinda like papa's..."
+      "content": "跟把拔……感覺很像……"
     },
     {
       "id": 122,
       "model": "뉴키라",
-      "content": "Ain't no way... That's <i>not</i> a raid boss we can clear at our level! We gotta get out of here!"
+      "content": "搞什麼鬼……怎麼看都不是現在能通關的BOSS啊！不是該逃了嗎！？"
     },
     {
       "id": 123,
       "model": "호엔하임",
-      "content": "... It's not that simple. Retreating is not a viable solution here."
+      "content": "……這不是直接回去就能解決的問題。"
     },
     {
       "id": 124,
       "model": "호엔하임",
-      "content": "This door is connected to the House of Spiders. Escaping without installing a security system will invite pursuit."
+      "content": "這扇門和蜘蛛巢相連。所以，如果不在這扇門裝好保全系統就回去……他們有可能會開門追過來。"
     },
     {
       "id": 125,
       "model": "호엔하임",
-      "content": "We must stall them until Alan is ready to initiate the lockdown sequence."
+      "content": "意思是，在外面完成封鎖程序的準備之前，我們需要時間。"
     },
     {
       "id": 126,
-      "content": "As tension thickened, one of the strangers, who wore a peculiar bone mask, stepped forward."
+      "content": "就在我們露出戒備之色時，一個戴著奇特骨頭面具的人向我們搭話。"
     },
     {
       "id": 127,
-      "content": "The voice that spoke to us carried equal part curiosity and delight."
+      "content": "那聲音裡，興味與欣喜各占一半。"
     },
     {
       "id": 128,
       "model": "에밀브누아",
       "teller": "???",
       "title": "???",
-      "content": "You came through that door..."
+      "content": "妳從那扇門找上門來，就表示……"
     },
     {
       "id": 129,
       "model": "에밀브누아",
       "teller": "???",
       "title": "???",
-      "content": "Then the House's fall... wasn't just a baseless rumor."
+      "content": "蜘蛛巢垮了的傳聞，看來不是假的啊。"
     },
     {
       "id": 130,
       "model": "에밀브누아",
       "teller": "???",
       "title": "???",
-      "content": "A stray little spiderling, fallen from her parents' web. How many years has it been?"
+      "content": "竟然會在畫廊看到離家出走的小蜘蛛。這是睽違幾年了？"
     },
     {
       "id": 131,
@@ -641,238 +641,238 @@
     {
       "id": 132,
       "model": "료슈",
-      "content": "You... Who are you?"
+      "content": "你這傢伙……是誰？"
     },
     {
       "id": 133,
       "model": "에밀브누아",
       "teller": "???",
       "title": "???",
-      "content": "Ah, right... It makes sense that you would fail to recognize me. I used to wear a different mask back when I used to visit as your tutor, didn't I? A wolf, if memory serves right."
+      "content": "啊。啊啊……是了，妳認不出我也不奇怪。我以外聘講師的身分出入蜘蛛巢的時候，戴的是別的野獸……是狼來著吧？"
     },
     {
       "id": 134,
       "model": "에밀브누아",
       "teller": "???",
       "title": "???",
-      "content": "Yes, that must've been when I was quite captivated by the sensation of tearing into the raw, still-thrashing flesh of living prey... and the predator's ferocious yet cavernously resonant howling."
+      "content": "那時候我正沉迷於活生生撕食獵物的激烈野性，以及那深沉迴盪的猛烈嚎叫。"
     },
     {
       "id": 135,
       "model": "료슈2",
-      "content": "... Rings a bell."
+      "content": "……好像有點印象。"
     },
     {
       "id": 136,
       "model": "료슈2",
-      "content": "You're that Maestro whose whole lesson was a 3-hour sermon praising the intensity of primary colors and the strength of living creatures. Benoît, was it?"
+      "content": "說是要教我原色的強烈與生物的長處，結果滔滔不絕講了3個小時的那個大師。叫貝努瓦……是吧。"
     },
     {
       "id": 137,
       "model": "에밀브누아",
-      "teller": "Benoît",
-      "content": "That's right—Émile Benoît. And they say you can't hatch a phoenix from a chicken's egg... Doesn't always apply, I see."
+      "teller": "貝努瓦",
+      "content": "都說小雞長不成鳳凰，看來倒也未必。"
     },
     {
       "id": 138,
       "model": "에밀브누아",
-      "teller": "Benoît",
-      "content": "Looks like that mind of yours is still sly as a raven... unlike your Nursefather's."
+      "teller": "貝努瓦",
+      "content": "看妳這腦袋跟妳的父輩不同，轉得跟烏鴉一樣聰明。"
     },
     {
       "id": 139,
       "model": "료슈",
-      "content": "Tch. Don't presume."
+      "content": "嘖。別誤會了。"
     },
     {
       "id": 140,
       "model": "료슈",
-      "content": "I only remember you because the tactility of hides and guts... made for a passable A.W."
+      "content": "我只是因為你教的皮膚和內臟的觸感……尚．藝，才記得而已。"
     },
     {
       "id": 141,
-      "content": "At first glance, it looked like Ryōshū was casually taking a trip down memory lane with the Maestro..."
+      "content": "乍看之下，她像是在和大師平淡地敘舊……"
     },
     {
       "id": 142,
-      "content": "But I had a feeling she was, in fact, dragging this out on purpose to buy us time."
+      "content": "但我覺得，良秀應該是為了替我們爭取時間，才刻意把對話拖長。"
     },
     {
       "id": 143,
       "model": "단테",
-      "content": "<That lockdown sequence thing, how much longer 'til it's ready?>"
+      "content": "<那個封鎖程序還沒好嗎？>"
     },
     {
       "id": 144,
       "model": "돈키호테",
-      "content": "Young Hohenheim, the lockdown sequence..."
+      "content": "霍恩海姆。那個封鎖程序還……"
     },
     {
       "id": 145,
-      "content": "Don Quixote, who had been shooting the Ring members an incensed glare sparked by the discovery of a Kindred's eye, swiftly relayed my words to Hohenheim without even a hint of her earlier shenanigans."
+      "content": "或許是看見了同族的眼睛，一直默默瞪著環指成員們的唐吉訶德，平靜地替我轉達了話。"
     },
     {
       "id": 146,
       "model": "호엔하임",
-      "content": "... I'm afraid the progress and speed of the lockdown sequence lies in Alan's hands, not mine. It is, by its nature, a time-consuming work—we cannot expect haste."
+      "content": "……很遺憾，封鎖程序的速度不是取決於我，而是取決於亞倫組長。那是很花時間的作業，不會那麼快結束吧。"
     },
     {
       "id": 147,
       "model": "호엔하임",
-      "content": "Perhaps... that does make this a suitable juncture to trial Plan A."
+      "content": "說不定這次……正是測試A方案的絕佳機會。"
     },
     {
       "id": 148,
       "model": "단테",
-      "content": "<Plan A...?>"
+      "content": "<A方案……？>"
     },
     {
       "id": 149,
       "model": "파우스트",
-      "content": "... Any suggestions that involve Don Quixote removing her shoes will not be dignified with a serious discussion."
+      "content": "……如果是讓唐吉訶德小姐脫鞋的提案，就沒有再提的價值了。"
     },
     {
       "id": 150,
       "model": "파우스트",
-      "content": "Instead..."
+      "content": "比起那個……"
     },
     {
       "id": 151,
-      "content": "Maybe what Hohenheim had in mind had nothing to do with Don Quixote's shoes, because he opened his mouth as though he was about to retort to Faust's categorical rejection."
+      "content": "或許是完全不同的計畫，霍恩海姆想對浮士德的話反駁些什麼……"
     },
     {
       "id": 152,
-      "content": "But the moment he followed Faust's eyes and saw what she was looking at, he quietly shut his mouth and said nothing further."
+      "content": "但他隨即看向浮士德注視的方向，便不再多說，閉上了嘴。"
     },
     {
       "id": 153,
       "model": "호엔하임",
-      "content": "Faith in potentiality is not something I dislike."
+      "content": "我是挺喜歡相信可能性的……"
     },
     {
       "id": 154,
       "model": "호엔하임",
-      "content": "As for this, however... This seems more like grasping at straws."
+      "content": "這可說不準。說穿了，不就只是「有可能」的程度嗎？"
     },
     {
       "id": 155,
-      "content": "At the end of their gaze was Ryōshū's blade—Arayashiki."
+      "content": "兩人視線的盡頭，是良秀的刀。阿賴耶識。"
     },
     {
       "id": 156,
       "model": "료슈",
-      "content": "Hmph. I was going to try using it anyway."
+      "content": "哼。不用催，我本來就打算這麼做。"
     },
     {
       "id": 157,
       "model": "료슈2",
-      "content": "I've long wanted to see if a Maestro's death is any different."
+      "content": "因為我一直想親自比較看看……大師迎來的生命終點，跟其他的死有什麼不同。"
     },
     {
       "id": 158,
       "model": "단테",
-      "content": "<Telling her that we were just leaving... won't work, will it?>"
+      "content": "<就這樣說我們要直接離開，應該是行不通吧？>"
     },
     {
       "id": 159,
       "model": "파우스트",
-      "content": "No, it won't. Every individual present here would be quite the fascinating specimen to the artists of the Ring."
+      "content": "是的。畢竟在這裡的所有人……對環指來說都是有趣的素體。"
     },
     {
       "id": 160,
       "model": "파우스트",
-      "content": "We are practically a windfall of inspiration and material that has so conveniently been delivered to them. Is it improbable that they will allow us to return unharmed."
+      "content": "他們不可能把自己送上門來的靈感與材料就這樣放回去吧。"
     },
     {
       "id": 161,
-      "content": "Faust is right. She and Hohenheim are geniuses, and Ryōshū is the wielder of Arayashiki."
+      "content": "浮士德與霍恩海姆這兩位天才，加上能駕馭阿賴耶識的良秀。"
     },
     {
       "id": 162,
-      "content": "Don Quixote is a Kindred of a higher generation, and I happen to house a Golden Bough in my head."
+      "content": "身為高階眷屬血魔的唐吉訶德，再加上腦袋裡裝著金枝的我。"
     },
     {
       "id": 163,
-      "content": "I have no idea how much information the Ring has on us..."
+      "content": "雖然不知道那些人知道其中的幾項……"
     },
     {
       "id": 164,
-      "content": "But even if they knew nothing, they wouldn't let us go easily."
+      "content": "但就算他們一無所知，眼下也不像是會輕易放我們走的狀況。"
     },
     {
       "id": 165,
       "model": "단테",
-      "content": "<... Are you sure about this, Ryōshū?>"
+      "content": "<……不要緊嗎，良秀？>"
     },
     {
       "id": 166,
       "model": "료슈",
-      "content": "Doesn't matter if I'm S.A.T. or not, Clock."
+      "content": "要．不．要．緊不重要，時鐘。"
     },
     {
       "id": 167,
       "model": "료슈2",
-      "content": "... Think of that woman as Lei Heng, and do as you did in H.C.'s mansion."
+      "content": "……把那傢伙當成雷橫，照你在希．克的宅邸做的那樣做就好。"
     },
     {
       "id": 168,
       "model": "료슈2",
-      "content": "I'll take care of the rest."
+      "content": "剩下的我會自己看著辦。"
     },
     {
       "id": 169,
       "model": "단테",
-      "content": "<... Right. That's probably our best shot.>"
+      "content": "<……好。那應該是最好的辦法了。>"
     },
     {
       "id": 170,
-      "content": "What Ryōshū meant was quite clear."
+      "content": "良秀不著痕跡地傳達的話，意思很明確。"
     },
     {
       "id": 171,
-      "content": "Resonate with the Golden Bough, secure an advantage to fight on equal footing, then catch them off guard by slowing down the flow of time."
+      "content": "用金枝共鳴讓力量對等之後，再出其不意地連時間都放慢。"
     },
     {
       "id": 172,
-      "content": "A cut from the Arayashiki, even if it doesn't give us a real fighting chance, might at least stall the Maestro long enough to give us the time to get away."
+      "content": "只要能用阿賴耶識砍中，就算不知道有沒有勝算，至少逃跑的時間……或許還爭取得到。"
     },
     {
       "id": 173,
       "model": "에밀브누아",
-      "teller": "Benoît",
-      "content": "This floor of the exhibit only houses submissions from Students and Docents..."
+      "teller": "貝努瓦",
+      "content": "這層樓展示的大多是學徒或導覽員的平庸之作……"
     },
     {
       "id": 174,
       "model": "에밀브누아",
-      "teller": "Benoît",
-      "content": "But if you look closely enough, there are some passable ones that show the promise of excellence."
+      "teller": "貝努瓦",
+      "content": "其中也混著幾件稱得上佳作的作品。"
     },
     {
       "id": 175,
       "model": "에밀브누아",
-      "teller": "Benoît",
-      "content": "And above all, this is the gallery of the School of Fauvism..."
+      "teller": "貝努瓦",
+      "content": "更何況這裡是野獸派的畫廊，也是我……"
     },
     {
       "id": 176,
       "model": "에밀브누아",
-      "content": "... and mine. The gallery of Émile Benoît."
+      "content": "埃米爾．貝努瓦的畫廊。"
     },
     {
       "id": 177,
       "model": "에밀브누아",
-      "content": "... Which is why I would've preferred to take you without an unnecessary fight, if possible. A shame."
+      "content": "……所以我本想盡量安安靜靜地把妳帶走，真是可惜。"
     },
     {
       "id": 178,
       "model": "에밀브누아",
-      "content": "Still, we're talking about a unique Relic here, a masterless one at that. Acquiring the Arayashiki makes it worth the cost."
+      "content": "不過，若能得到阿賴耶識，那件失去主人的固有遺物……這也算是值得承受的代價吧。"
     },
     {
       "id": 179,
       "model": "료슈2",
-      "content": "*puff* If you want a taste..."
+      "content": "呼……想試的話就……"
     },
     {
       "id": 180,
@@ -886,37 +886,37 @@
     },
     {
       "id": 182,
-      "content": "Confusion flickered across Ryōshū's face as she tried to unsheathe her blade."
+      "content": "正要奮力拔刀的良秀臉上，浮現出疑惑與慌張。"
     },
     {
       "id": 183,
       "model": "단테",
-      "content": "<What's the matter?>"
+      "content": "<怎麼了？>"
     },
     {
       "id": 184,
       "model": "료슈9장",
-      "content": "How...?"
+      "content": "……為什麼？"
     },
     {
       "id": 185,
       "model": "료슈9장",
-      "content": "The lock the House of Spiders used to bind the Arayashiki no longer exists. So why..."
+      "content": "蜘蛛巢加在阿賴耶識上的鎖已經不存在了。那為什麼……"
     },
     {
       "id": 186,
       "model": "료슈9장",
-      "content": "... why can't I draw the blade?"
+      "content": "刀會拔不出來？"
     },
     {
       "id": 187,
       "model": "에밀브누아",
-      "content": "... Now that's unexpected."
+      "content": "……這倒是出乎意料。"
     },
     {
       "id": 188,
       "model": "에밀브누아",
-      "content": "So the rumors of you mastering that Relic... were they false?"
+      "content": "說妳已經能完全駕馭那件遺物的傳聞，是假的嗎？"
     },
     {
       "id": 189,
@@ -925,126 +925,126 @@
     },
     {
       "id": 190,
-      "content": "The Maestro only gave a loose swing of her arm, but it was enough to make Ryōshū recoil—a shadow of surprise crossed her face."
+      "content": "大師輕輕一揮手臂，良秀便一臉慌張地退開。"
     },
     {
       "id": 191,
-      "content": "The wound looked like nothing more than a light gash, yet the Maestro's contemplative gaze shifted between the blood on Ryōshū's arm and her own as though the attack had been an experiment to prove a hypothesis."
+      "content": "傷口看起來頂多只是擦傷……但大師像是做了什麼實驗似的，交替看著良秀的手臂與自己手臂上沾到的血，陷入沉思。"
     },
     {
       "id": 192,
-      "content": "... It wasn't hard to guess what she was thinking."
+      "content": "……不難猜到那個舉動代表什麼意思。"
     },
     {
       "id": 193,
       "model": "료슈",
-      "content": "... Tch. Noticed, did you?"
+      "content": "……嘖。被發現了嗎。"
     },
     {
       "id": 194,
       "model": "에밀브누아",
-      "content": "I had my doubts from the moment I saw you today."
+      "content": "從今天看到妳的時候起，我就一直半信半疑。"
     },
     {
       "id": 195,
       "model": "에밀브누아",
-      "content": "Was the House of Spiders a success... or a failure?"
+      "content": "蜘蛛巢究竟是成功了，還是失敗了。"
     },
     {
       "id": 196,
       "model": "에밀브누아",
-      "content": "Tell me, Yoshihide. What do you think a serpent's defining strength is?"
+      "content": "良秀。妳覺得蛇的長處是什麼？"
     },
     {
       "id": 197,
       "model": "료슈",
-      "content": "What are you on about now?"
+      "content": "突然在胡扯些什麼？"
     },
     {
       "id": 198,
       "model": "에밀브누아",
-      "content": "Ask any Student, and they'll give the same, predictable answers: the deadly venom, the sleek scales... Why, it's lamentably disappointing."
+      "content": "每次叫學徒們舉出蛇的長處，得到的總是毒液或光滑的鱗片這類老套的答案……這實在讓人遺憾。"
     },
     {
       "id": 199,
-      "content": "The Maestro advanced toward us with an assured certainty..."
+      "content": "大師像是確信了什麼似的，大步朝我們走來。"
     },
     {
       "id": 200,
-      "content": "... then seized a beige thread dangling from the ceiling—no, calling it a mere thread would be wrong. It was something that <i>resembled</i> a thread, yet felt much more disturbing."
+      "content": "從天花板垂下的米色絲線。不，她拉扯的是某種稱作絲線又讓人莫名不舒服的東西。"
     },
     {
       "id": 201,
       "model": "에밀브누아",
-      "content": "I, for one, have a particular liking for the jaw and the spine."
+      "content": "我個人喜歡蛇的下顎與脊椎。"
     },
     {
       "id": 202,
       "model": "에밀브누아",
-      "content": "The flexibility of the spine, linked like a chain; and the jaw, bound not by bone but by ligaments that allow the animal to swallow its prey whole... Perhaps I should've said that I admire their structural refinement."
+      "content": "說得更準確一點，我喜歡的是如鎖鏈般相連咬合的柔韌脊椎，以及為了一口吞下獵物、不以骨頭而以韌帶相連的下顎所展現的結構之美。"
     },
     {
       "id": 203,
-      "content": "The thrice-coiled ring on her ring finger gave off a cold glint, and the walls and the ceiling suddenly began to echo with the sickening squelch and crack of flesh and bones assembling."
+      "content": "那人的環指上纏繞三圈的戒指冷冷一閃，同時牆面與天花板響起了無數彷彿血肉與骨頭正在組裝的聲音。"
     },
     {
       "id": 204,
       "model": "단테",
-      "content": "<W-what the hell is that?!>"
+      "content": "<那、那到底是什麼！？>"
     },
     {
       "id": 205,
       "model": "에밀브누아",
-      "content": "Which brings me to ask... What better way to claim this delivery of promising material with a single bite than a work of art fashioned from a snake?"
+      "content": "正因如此……要把不錯的素材一口吞下，沒有什麼比用蛇製成的作品更合適了，不是嗎？"
     },
     {
       "id": 206,
-      "content": "The Maestro plunged her arm into the long, serpentine body of a monster."
+      "content": "大師將自己的手臂插進那頭如蛇般細長的怪物軀幹之中。"
     },
     {
       "id": 207,
-      "content": "Her sheer presence radiated a pressure as oppressive as that of the Nursefathers, only more primal and untempered."
+      "content": "與從蜘蛛巢的父輩們身上感受到的相似，不，是更加銳利、毫不收斂的壓迫感。"
     },
     {
       "id": 208,
       "model": "에밀브누아",
-      "content": "Consider it a privilege."
+      "content": "你們該感到自豪。"
     },
     {
       "id": 209,
       "model": "에밀브누아",
-      "content": "This is the first time this piece has ever been exhibited to an outsider."
+      "content": "因為這是我第一次向外人展示這件作品。"
     },
     {
       "id": 210,
       "model": "파우스트",
-      "content": "Hohenheim. Is the lockdown sequence still not ready?"
+      "content": "霍恩海姆。封鎖程序還沒好嗎？"
     },
     {
       "id": 211,
       "model": "호엔하임",
-      "content": "1 minute to go! Step aside!"
+      "content": "還剩1分鐘左右，你們先讓開！"
     },
     {
       "id": 212,
-      "content": "The attack from the E.G.O Gear Hohenheim hastily brandished didn't even last a moment—the weapon was knocked from his hand."
+      "content": "霍恩海姆倉促刺出的E.G.O裝備連片刻都沒撐住，就從他手中被彈飛了……"
     },
     {
       "id": 213,
-      "content": "As I scrambled to equip the Sinners with their Identities, something abruptly stopped the beastlike appendage midway through its hurtling motion."
+      "content": "就在我急忙要為罪人們覆寫人格的那一刻，以猛烈之勢逼近的野獸手臂停住了。"
     },
     {
       "id": 214,
-      "content": "And the one who intercepted the blow..."
+      "content": "擋下那一擊的是……"
     },
     {
       "id": 215,
       "model": "뉴키라",
-      "content": "Hah... Shit."
+      "content": "哈……靠。"
     },
     {
       "id": 216,
-      "content": "... was Kira, struggling to push back against the serpertine arm with her still-sealed blades."
+      "content": "是雙手握著還沒出鞘的刀、吃力地擋下攻擊的綺羅。"
     },
     {
       "id": 217,
@@ -1053,73 +1053,73 @@
     },
     {
       "id": 218,
-      "content": "Did she suddenly have a change of heart I wasn't aware of...?"
+      "content": "難道在我不知道的時候，她的心境有了什麼變化嗎？"
     },
     {
       "id": 219,
       "model": "뉴키라",
-      "content": "Shit shit shit... This wasn't the plan at all..."
+      "content": "煩死了……我本來不是想這樣的……"
     },
     {
       "id": 220,
-      "content": "... Obviously not. She couldn't have changed her mind that quickly,"
+      "content": "……應該不是那樣。"
     },
     {
       "id": 221,
-      "content": "because the look on her face couldn't be anything other than that of utter regret."
+      "content": "因為綺羅的表情……流露出搞砸了似的狼狽。"
     },
     {
       "id": 222,
       "model": "에밀브누아",
-      "content": "The Middle, hmm? ... For someone who doesn't seem to be a proper member, you've inked quite the quantity of tattoos onto yourself..."
+      "content": "中指……明明不是正式成員，卻疊刺了這麼多刺青……"
     },
     {
       "id": 223,
       "model": "에밀브누아",
-      "content": "Aha, you must be the new kit Matthias took in."
+      "content": "啊。原來是馬蒂亞斯新養的那隻小狐狸啊。"
     },
     {
       "id": 224,
       "model": "에밀브누아",
-      "content": "Why do you stand in my way?"
+      "content": "為什麼要擋在前面？"
     },
     {
       "id": 225,
       "model": "뉴키라2",
-      "content": "Fucked if I know... I'm already regretting it, alright?"
+      "content": "我也是啊……靠，現在超後悔的好不好？"
     },
     {
       "id": 226,
       "model": "뉴키라2",
-      "content": "Damn it... They're defo gonna ditch me here... Why did I even..."
+      "content": "可惡……他們肯定會丟下我跑掉……我幹嘛要……"
     },
     {
       "id": 227,
       "model": "료슈",
-      "content": "Heh. Must be instinct taking over. Couldn't fully shake off the opponent's killing intent, so the body chose to clash head-on."
+      "content": "哈。因為半吊子地扛住了殺氣，才出於本能衝上去了嗎。"
     },
     {
       "id": 228,
       "model": "호엔하임",
-      "content": "So the behavioral facet of the psyche can be controlled with suitable training. Unexpected data, but useful to be sure."
+      "content": "看來行為心理也可能依訓練狀態受到控制。這可真是得到了意外的數據。"
     },
     {
       "id": 229,
       "model": "뉴키라2",
-      "content": "Nnghh...! Shut it, Mister! Quit yapping and let me use my blades!"
+      "content": "呃……！吵死了……！有空講那種屁話，還不快點解除武器的安全鎖！"
     },
     {
       "id": 230,
       "model": "호엔하임",
-      "content": "Authorized and ready. Lifting locks... Now!"
+      "content": "我早就批准好在待命了……就是現在！"
     },
     {
       "id": 231,
-      "content": "Kira's thermal weapons emerged from their sheaths with a metallic clang. She used the recoil of the motion to skid back and assume a defensive stance."
+      "content": "伴隨「喀鏘」一聲，兩把刀從刀鞘中拔了出來，綺羅藉著那股反作用力瞬間向後退開。"
     },
     {
       "id": 232,
-      "content": "Naturally, that broke Benoît's arm from the deadlock as well. The Maestro lashed out again with that monstrous limb, but..."
+      "content": "當然，手臂上的壓力一消失，大師便再次揮動野獸手臂……"
     },
     {
       "id": 233,
@@ -1129,152 +1129,152 @@
     {
       "id": 234,
       "model": "돈키호테",
-      "content": "'Tis a foul injustice to strike against an unprepared opponent in a duel!"
+      "content": "欲加害尚未準備周全之人，乃是不義。"
     },
     {
       "id": 235,
       "model": "돈키호테",
-      "content": "Behold, for I shall allow thee a glimpse of the badass form that only the most renowned of Fixers have displayed through the ages...!"
+      "content": "好好看著吧。歷來知名的收尾人們所展現的帥氣英姿，正是這樣的……"
     },
     {
       "id": 236,
-      "content": "Seeing an opening, Don Quixote slammed into the arm with her full might, knocking it off its trajectory..."
+      "content": "趁著那個空隙切入的唐吉訶德使盡全力，把野獸手臂的軌道打向了別的方向。"
     },
     {
       "id": 237,
-      "content": "Predictably, however, the sheer force of the Maestro's attack instantly reduced her to a red sludge of flesh and bone, sending her remains crashing into the door."
+      "content": "理所當然地……承受不住大師力量的唐吉訶德瞬間成了一灘肉泥，砸在門上。"
     },
     {
       "id": 238,
       "model": "앨런",
-      "content": "<i>Ready to initiate lockdown sequence. I will seal the door immediately upon your exit.</i>"
+      "content": "完成了。等各位全部出來，我就關門。"
     },
     {
       "id": 239,
       "model": "호엔하임",
-      "content": "Everyone to the door! Faust, retrieve the... organic remnants of Sinner #3!"
+      "content": "大家快進門裡！曾經是3號罪人的……那東西，就交給浮士德妳帶上了！"
     },
     {
       "id": 240,
-      "content": "As Faust made her exit with what was once Don Quixote, the Students of the Ring surrounded Kira, barring her way out. A hollow chuckle slipped out of her lips."
+      "content": "浮士德與唐吉訶德一進入門內，被趁隙撲上來的學徒們絆住腳步的綺羅，像是死了心似的，虛脫地笑著。"
     },
     {
       "id": 241,
       "model": "뉴키라2",
-      "content": "Haha... called it for real. This is exactly why I didn't wanna get involved..."
+      "content": "哈，就是覺得會變成這樣，我才不想出風頭的……"
     },
     {
       "id": 242,
-      "content": "Taking Kira back with us would mean having a sizable force of the Ring trail right behind her through the door."
+      "content": "現在如果要帶著綺羅進去，就得做好會有相當多的環指成員跟著闖過門來的覺悟。"
     },
     {
       "id": 243,
-      "content": "Kira, too, seemed to have realized the risk that no one in their right mind would want to take. She lowered her head in defeat, as though she knew full well the fate that awaited her."
+      "content": "因此，綺羅似乎理所當然地認為，那個判斷的結果就是自己又會被拋棄，深深地垂下了頭。"
     },
     {
       "id": 244,
       "model": "뉴키라2",
-      "content": "I'm such a dumbass... What was I thinking, divin' in like that?"
+      "content": "真是蠢……幹嘛要在那種時候衝出去啊……"
     },
     {
       "id": 245,
       "model": "호엔하임",
-      "content": "You! Don't just stand there! Get over here now!"
+      "content": "還在發什麼呆！妳也快點！"
     },
     {
       "id": 246,
       "model": "뉴키라2",
-      "content": "Huh? B-but... these guys're gonna come floodin' in if I..."
+      "content": "什麼？我、我要是進去了，這些傢伙也會一窩蜂跟進來……"
     },
     {
       "id": 247,
       "model": "료슈",
-      "content": "You T.T.M. Want to get cleaved in half again?"
+      "content": "廢．話．真．多。又想被橫著劈成兩半嗎？"
     },
     {
       "id": 248,
       "model": "뉴키라2",
-      "content": "... You pin this on me later, you're gonna pay."
+      "content": "……之後敢把錯怪到我頭上就試試看。"
     },
     {
       "id": 249,
-      "content": "Blocking the Maestro's arm by a hair as it came down on her again, Kira hurled herself toward the door with every bit of strength she could muster."
+      "content": "綺羅勉強彈開大師再度揮下的手臂，使盡全力衝進了門裡。"
     },
     {
       "id": 250,
-      "content": "More than a few Students rushed in through the doorway, chasing after the Sinners who had gone in ahead, but..."
+      "content": "在那期間……相當多的環指學徒追著先進去的罪人們進了門，但……"
     },
     {
       "id": 251,
-      "place": "Corridor of the Ring Nursefather",
+      "place": "蜘蛛巢，環指父輩的長廊",
       "model": "앨런",
-      "content": "Lockdown sequence complete. All Backdoor links have been cut."
+      "content": "通道封鎖。各扇門的連接已中斷。"
     },
     {
       "id": 252,
-      "content": "... fortunately, Alan managed to sever the connection between the two Backdoors before the Maestro could cross over."
+      "content": "幸好……在大師進來之前，兩扇後門之間的連接就切斷了。"
     },
     {
       "id": 253,
       "model": "료슈",
-      "content": "*puff* ... Bowl cut. Think you can still use your arms?"
+      "content": "呼……西瓜頭。手臂還能用嗎？"
     },
     {
       "id": 254,
       "model": "뉴키라2",
-      "content": "... Am fine."
+      "content": "……能用。"
     },
     {
       "id": 255,
       "model": "료슈2",
-      "content": "So she says."
+      "content": "她是這麼說的。"
     },
     {
       "id": 256,
-      "content": "Kira would be a strong enough addition to fight for us, but the Ring members that have managed to cross formed a rather sizable force."
+      "content": "綺羅應該能成為足夠的戰力，但跟著過來的組織成員數量也相當多。"
     },
     {
       "id": 257,
-      "content": "Fighting them off with just the Sinners I have at my side would not be the best course of action."
+      "content": "只靠現在在場的罪人們來應戰……不會是什麼好辦法吧。"
     },
     {
       "id": 258,
-      "content": "In that case..."
+      "content": "既然如此……"
     },
     {
       "id": 259,
       "model": "단테",
-      "content": "<Guys. I assume you're all available right now?>"
+      "content": "<大家，現在都沒問題吧？>"
     },
     {
       "id": 260,
-      "content": "As soon as I call out to the Sinners, their voices come through Hohenheim's radio one after another."
+      "content": "我一向罪人們搭話，霍恩海姆的對講機就接連傳來了罪人們的聲音。"
     },
     {
       "id": 261,
       "model": "이스마엘",
       "teller": "以實瑪利",
       "title": "對講機",
-      "content": "Huh? Uh... I guess so?"
+      "content": "咦？嗯……是沒什麼問題啦。"
     },
     {
       "id": 262,
       "model": "오티스",
       "teller": "奧提斯",
       "title": "對講機",
-      "content": "Ready for your order, Executive Manager! I, Outis, am prepared to answer your call whenever and wherever—"
+      "content": "沒有問題，經理！只要是經理的召喚，我奧提斯無論在任何情況下都……"
     },
     {
       "id": 263,
       "model": "로쟈",
       "teller": "羅佳",
       "title": "對講機",
-      "content": "Eh?! H-hang on, I just need to finish this bite...!"
+      "content": "什麼——！？等、等一下，讓我先把這個吃完……！"
     },
     {
       "id": 264,
       "model": "단테",
-      "content": "<Everyone to me.>"
+      "content": "<全員到這裡集合。>"
     }
   ]
 }

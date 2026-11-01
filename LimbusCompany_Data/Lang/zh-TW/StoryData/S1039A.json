@@ -2,179 +2,179 @@
   "dataList": [
     {
       "id": 0,
-      "place": "A Bright Room, 7F",
+      "place": "7F 明亮的房間",
       "model": "잔느변신2",
-      "content": "N Corp.'s order, its rules, and its Canned Experience ensure that its feathers can live without much worry."
+      "content": "N公司的秩序、規則與經驗罐頭，讓羽們能夠不必多加煩惱地生活。"
     },
     {
       "id": 1,
       "model": "잔느변신2",
-      "content": "But the world outside provides us no real respite."
+      "content": "但對我們來說，外面並不是真正的安身之處。"
     },
     {
       "id": 2,
       "model": "잔느변신2",
-      "content": "What awaits us out there isn't a place where life is lived. Just a pinning board of humans who are categorized, designated, and nailed on display."
+      "content": "那裡不是活生生的生活之所，只是被分類、被固定之物展示自身的場所罷了。"
     },
     {
       "id": 3,
       "model": "잔느변신2",
-      "content": "But here, people will feel how absurd and discomforting it all is."
+      "content": "從今以後，人們會在這裡……感受到這份荒謬與不快的感覺吧。"
     },
     {
       "id": 4,
       "model": "잔느변신2",
-      "content": "Do you see now?"
+      "content": "懂嗎？"
     },
     {
       "id": 5,
       "model": "잔느변신2",
-      "content": "Finally, <i>finally</i>, people will have to live in the world seen through your eyes."
+      "content": "從今以後，人們就能去配合你眼中的世界了！"
     },
     {
       "id": 6,
       "model": "잔느변신2",
-      "content": "It doesn't even need to be a tool for N Corp. to produce Canned Experiences anymore."
+      "content": "再也不必成為N公司生產經驗罐頭的手段了。"
     },
     {
       "id": 7,
       "model": "잔느변신2",
-      "content": "This whole thing can become a beautiful sailing ship for the two of us, floating, roaming the world. No more rewinding. They can all live here, freely, and in forms of their own choosing... Living in a world whose meaningfulness <i>we</i> define!"
+      "content": "它本身就能成為我們美麗的船……四處漂流。再也不會有回溯了。大家會在這裡面一直自由地生活下去。以自己所期望的模樣，活在我們為他們創造的意義之中！"
     },
     {
       "id": 8,
       "model": "잔느변신2",
-      "content": "We can do this... together. Two lonely, kindred souls who understand each other."
+      "content": "只要你和我在一起……就能做到。我們是彼此唯一能互相理解的伴侶啊。"
     },
     {
       "id": 9,
       "model": "잔느변신2",
-      "content": "Oh, just thinking about it makes my heart rush. Doesn't yours?"
+      "content": "啊，光是想像……不就讓人心跳加速嗎？"
     },
     {
       "id": 10,
       "model": "뫼르소다침",
-      "content": "... But we will still be afraid."
+      "content": "……即便如此，還是會害怕的。"
     },
     {
       "id": 11,
       "model": "잔느변신2",
-      "content": "No, we won't."
+      "content": "不，不會害怕的。"
     },
     {
       "id": 12,
       "model": "잔느변신2",
-      "content": "This Sisyphe would be our creation... and we can do whatever we want with it."
+      "content": "這座薛西弗斯……是我們親手打造的，也是我們辦得到的事。"
     },
     {
       "id": 13,
       "model": "잔느변신2",
-      "content": "And with that freedom, Sisyphe will finally become a world with true raison d'être."
+      "content": "在那份自由之中，薛西弗斯將會重生為一個存在理由明確的世界。"
     },
     {
       "id": 14,
       "model": "잔느변신2",
-      "content": "A world that was once so alienating to us... will no longer be just a superfluous world of random contingencies."
+      "content": "對我們而言始終陌生的世界……將不再毫無理由地擺在那裡。"
     },
     {
       "id": 15,
       "model": "뫼르소다침",
-      "content": "Jeanne... The world does not change. Therefore, it is unreasonable and indifferent to our existences."
+      "content": "簡……世界絕不會改變。正因如此，它並不合理，也對我們漠不關心。"
     },
     {
       "id": 16,
       "model": "뫼르소다침",
-      "content": "That Cinéma Sisyphe, created in your design..."
+      "content": "照妳所說的打造出來的薛西弗斯電影院……"
     },
     {
       "id": 17,
       "model": "뫼르소다침",
-      "content": "... will still be an alienating thing, a place reaved of freedom, only wearing the façade of familiarity."
+      "content": "也不過是被奪去了自由……被替換成熟悉之物的陌生之物罷了。"
     },
     {
       "id": 18,
       "model": "잔느변신2",
-      "content": "... But <i>I</i> will be free. To me, it will be a place of comfort and succor."
+      "content": "……但對我來說會是自由的。會很舒適、很安穩。"
     },
     {
       "id": 19,
       "model": "잔느변신2",
-      "content": "Ma puce, do you think I'm wrong?"
+      "content": "小甜心。你……認為我錯了嗎？"
     },
     {
       "id": 20,
       "model": "뫼르소다침",
-      "content": "I am afraid... to judge what is right and wrong."
+      "content": "我……害怕判斷對錯。"
     },
     {
       "id": 21,
       "model": "잔느변신2",
-      "content": "Not the only thing you're afraid of, is it?"
+      "content": "就只是這樣嗎？"
     },
     {
       "id": 22,
       "model": "잔느변신2",
-      "content": "You know we can't fly, Meursault. Outside Sisyphe, out there, you're going to plummet."
+      "content": "莫梭，我們飛不起來的。到了外面，你會一頭栽下去。"
     },
     {
       "id": 23,
       "model": "뫼르소다침",
-      "content": "Yes. And it will come to me as a slow descent, even as I feel the weight that is attached to me."
+      "content": "是啊，我會一邊感受著重負，一邊緩緩墜落吧。"
     },
     {
       "id": 24,
       "model": "뫼르소다침",
-      "content": "Fear and vertigo will set in as I fall."
+      "content": "在墜落的過程中，我會感到恐懼與暈眩。"
     },
     {
       "id": 25,
       "model": "뫼르소다침",
-      "content": "And the clear meaning of existence will remain opaque to me, even as I draw my last breath."
+      "content": "而直到死去的那天，終究……也絕不會明白存在的明確意義吧。"
     },
     {
       "id": 26,
       "model": "뫼르소다침",
-      "content": "It is my responsibility to steer the direction of my flow, to choose what I can keep and what I must surrender."
+      "content": "我將如何流動、該選擇什麼又該放棄什麼，這份責任同樣在我身上。"
     },
     {
       "id": 27,
       "model": "뫼르소다침",
-      "content": "So, I refuse to follow that Voice. I will not... walk with you."
+      "content": "所以我不會聽從那個聲音。我不會……與妳同行。"
     },
     {
       "id": 28,
       "model": "잔느변신2",
-      "content": "And you're fine with this life, where you're always on a crash course with other people? Feeling that excruciating pain of collision every second of your life?"
+      "content": "你要一直與人們碰撞著活下去？一邊忍受那種痛不欲生的痛苦，直到死去？"
     },
     {
       "id": 29,
       "model": "뫼르소다침",
-      "content": "Yes. Like this waltz, there are inevitable differences between your understanding and mine."
+      "content": "是啊，就像我們跳的華爾滋，妳所理解的與我所理解的，必然會有所不同。"
     },
     {
       "id": 30,
       "model": "뫼르소다침",
-      "content": "But I will keep on colliding, dancing to the rhythm, making adjustments, reciprocating their movements."
+      "content": "但我會感受著節奏，持續碰撞下去。一邊不斷修正，一邊互相配合。"
     },
     {
       "id": 31,
       "model": "잔느변신2",
-      "content": "They'll laugh at you. You'll live a life that is a constant stream of embarrassments because we don't know how or what we need to adjust, or where to even begin."
+      "content": "你根本不知道該修正什麼吧。就算一輩子都在配合，最後也只會落得滑稽可笑的下場。"
     },
     {
       "id": 32,
       "model": "뫼르소다침",
-      "content": "And we never will."
+      "content": "往後也不會知道吧。"
     },
     {
       "id": 33,
       "model": "뫼르소다침",
-      "content": "But not knowing will not stop me from trying."
+      "content": "但我不會因為不知道，就停止去配合。"
     },
     {
       "id": 34,
       "model": "잔느변신2",
-      "content": "... You're leaving me again."
+      "content": "……你又想離開我了啊。"
     }
   ]
 }

@@ -354,7 +354,7 @@
       "model": "레인",
       "teller": "雷恩",
       "title": "臼齒修船廠",
-      "content": "A trash crab appeared, you fashioned a few things around you into a weapon, smashed its head in, turned it into a barbecue, Bob's your uncle."
+      "content": "您說過，<size=110%>廢料蟹</size>冒了出來，您就撿起周圍的東西做成武器，把牠打得粉碎後烤來吃了。"
     },
     {
       "id": 63,
@@ -497,7 +497,7 @@
     {
       "id": 90,
       "model": "이스마엘",
-      "content": "I'll entertain it anyway. Yes. I've had it more than a few times as crab chowder."
+      "content": "不過如果要我回答的話，是的。做成<size=110%>廢料蟹</size>濃湯吃過不少次。"
     },
     {
       "id": 91,
@@ -655,7 +655,7 @@
       "model": "미카",
       "teller": "美香",
       "title": "臼齒修船廠",
-      "content": "Defeat the trash crabs, and you should be able to collect the scrap they're carrying."
+      "content": "只要處理掉<size=110%>廢料蟹</size>們，應該就能收集到廢料。"
     },
     {
       "id": 119,

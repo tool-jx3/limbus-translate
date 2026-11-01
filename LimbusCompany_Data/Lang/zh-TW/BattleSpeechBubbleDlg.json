@@ -673,7 +673,7 @@
     {
       "id": "battle_s3_10905_1_2",
       "desc": "",
-      "dlg": "C'mon, get snagged~!"
+      "dlg": "勾住吧！"
     },
     {
       "id": "battle_s3_10705_1_1",
@@ -698,7 +698,7 @@
     {
       "id": "battle_s3_10806_1_5",
       "desc": "",
-      "dlg": "Hmph. Your ash is all over me."
+      "dlg": "哼……沾到灰了呢。"
     },
     {
       "id": "battle_s3_10506_1_1",
@@ -713,7 +713,7 @@
     {
       "id": "battle_s3_10807_1_2",
       "desc": "",
-      "dlg": "Hah! I'll crack you open!"
+      "dlg": "嘿咻！看我把你砸碎！"
     },
     {
       "id": "battle_s3_11206_1_1_03_1",
@@ -733,7 +733,7 @@
     {
       "id": "battle_s3_10907_1_1",
       "desc": "",
-      "dlg": "Was that illuminating?"
+      "dlg": "領悟了嗎？"
     },
     {
       "id": "battle_s3_10207_1_4-01",
@@ -828,32 +828,32 @@
     {
       "id": "battle_special_10808_1-03",
       "desc": "",
-      "dlg": "Hah, track 'em down!"
+      "dlg": "哼，追蹤那傢伙！"
     },
     {
       "id": "battle_s3_10808_1_1-01",
       "desc": "",
-      "dlg": "Behold...!"
+      "dlg": "這支魚叉裡……！"
     },
     {
       "id": "battle_s3_10808_1_2",
       "desc": "",
-      "dlg": "The fatal determination!"
+      "dlg": "必殺的執念！"
     },
     {
       "id": "battle_s3_10808_1_3-01",
       "desc": "",
-      "dlg": "Fuels this harpoon!"
+      "dlg": "哈，就灌注在其中。"
     },
     {
       "id": "battle_s3_10808_1_2-01",
       "desc": "",
-      "dlg": "The fatal determination!"
+      "dlg": "必殺的執念！"
     },
     {
       "id": "battle_s3_10808_1_3",
       "desc": "",
-      "dlg": "Fuels this harpoon!"
+      "dlg": "哈，就灌注在其中。"
     },
     {
       "id": "battle_s3_10208_1_1",
@@ -888,12 +888,12 @@
     {
       "id": "battle_s3_10908_1_2",
       "desc": "",
-      "dlg": "Wouldn't even realize you've been pierced through."
+      "dlg": "你連自己被貫穿了都察覺不到吧。"
     },
     {
       "id": "battle_s3_10708_1_1",
       "desc": "",
-      "dlg": "This is the Öufi's legitimate exercise of force."
+      "dlg": "這是Öufi的合法武力行使。"
     },
     {
       "id": "battle_s3_11108_1_2-1",
@@ -1008,47 +1008,47 @@
     {
       "id": "battle_s2_10710_1_1_txt-01",
       "desc": "",
-      "dlg": "I shall tear you asunder."
+      "dlg": "我要將你撕得粉碎。"
     },
     {
       "id": "battle_s2_10710_ride_1",
       "desc": "",
-      "dlg": "Tear them asunder, O Dullahan!"
+      "dlg": "撕裂吧，杜拉罕啊！"
     },
     {
       "id": "battle_s3_10710_1_1_txt",
       "desc": "",
-      "dlg": "Perish within the gaol of your regrets!"
+      "dlg": "困死在悔恨之中吧！"
     },
     {
       "id": "battle_s3_10710_1_1_txt-01",
       "desc": "",
-      "dlg": "Perish within the gaol of your regrets!"
+      "dlg": "困死在悔恨之中吧！"
     },
     {
       "id": "battle_s3_10710_ride_4",
       "desc": "",
-      "dlg": "Begone with the storms."
+      "dlg": "與風暴一同消逝吧。"
     },
     {
       "id": "battle_s3_10710_ride_1",
       "desc": "",
-      "dlg": "The storms take you."
+      "dlg": "與風暴一同消逝吧。"
     },
     {
       "id": "battle_s3_10710_large_2",
       "desc": "",
-      "dlg": "If you cannot be caged,"
+      "dlg": "既然囚禁不了，"
     },
     {
       "id": "battle_s3_10710_large_3",
       "desc": "",
-      "dlg": "I shall carve your regrets upon you myself!"
+      "dlg": "那我就親手刻下悔恨！"
     },
     {
       "id": "battle_s3_10710_down_1",
       "desc": "",
-      "dlg": "So be it... I shall take the field myself."
+      "dlg": "就由我親自出馬吧。"
     },
     {
       "id": "battle_s3_10110_1_txt",
@@ -1068,22 +1068,22 @@
     {
       "id": "battle_s3_10910_1_1-01",
       "desc": "",
-      "dlg": "Polu! Back me up a bit!\n[Output increase request acknowledged.]"
+      "dlg": "波魯！再加把勁！\n[已確認輸出功率提升請求。]"
     },
     {
       "id": "battle_special_10910_1",
       "desc": "",
-      "dlg": "Phew. Gotta pull back for now. This trunk's gonna kill me if I push it too hard..."
+      "dlg": "呼，先撤退吧。再這樣一直用公事包，我會死掉的……"
     },
     {
       "id": "battle_special_10910_3",
       "desc": "",
-      "dlg": "Whew. At least I got myself another chance..."
+      "dlg": "呼……總算爭取到一次機會了……"
     },
     {
       "id": "battle_s3_10810_1_4-01",
       "desc": "",
-      "dlg": "The Best Defense!"
+      "dlg": "最佳防守！"
     },
     {
       "id": "battle_s3_10511_1_1",
@@ -1123,7 +1123,7 @@
     {
       "id": "battle_s3_10911_1_6",
       "desc": "",
-      "dlg": "Let the finale commence."
+      "dlg": "開始落幕吧。"
     },
     {
       "id": "battle_s3_11011_1_4",
@@ -1218,12 +1218,12 @@
     {
       "id": "battle_special_10711_1_1",
       "desc": "",
-      "dlg": "Line of sight clear. Taking the shot!"
+      "dlg": "確保視野……開槍！"
     },
     {
       "id": "battle_special_10711_1_2",
       "desc": "",
-      "dlg": "Got your back, Hong Lu."
+      "dlg": "鴻璐，我來支援。"
     },
     {
       "id": "battle_special_10711_3_1-01",
@@ -1238,17 +1238,17 @@
     {
       "id": "battle_special_10711_4_1",
       "desc": "",
-      "dlg": "Tsk. Pulling back first."
+      "dlg": "嘖……我先撤了。"
     },
     {
       "id": "battle_special_10711_5_1",
       "desc": "",
-      "dlg": "All set. Fresh mag loaded."
+      "dlg": "好……彈匣換好了。"
     },
     {
       "id": "battle_special_10711_5_2",
       "desc": "",
-      "dlg": "New firing position secured."
+      "dlg": "狙擊位置重新部署完畢。"
     },
     {
       "id": "battle_s3_10211_1_1",
@@ -1293,7 +1293,7 @@
     {
       "id": "battle_s3_10712_1_4",
       "desc": "",
-      "dlg": "Hah, your throat's wide open!"
+      "dlg": "哈，脖子破綻大開啊！"
     },
     {
       "id": "battle_special_10712_1",
@@ -1303,7 +1303,7 @@
     {
       "id": "battle_special_10712_2",
       "desc": "",
-      "dlg": "Hah... Got a collective death wish, you lot?!"
+      "dlg": "……你們這些傢伙找死啊！"
     },
     {
       "id": "battle_s3_10811_1_1-01",
@@ -1318,7 +1318,7 @@
     {
       "id": "battle_special_10811_1",
       "desc": "",
-      "dlg": "Jump into the fray.\nI've got your back."
+      "dlg": "上前去打。……後面我來照應。"
     },
     {
       "id": "battle_s3_10112_1_1-03",
@@ -1383,7 +1383,7 @@
     {
       "id": "battle_s3_10912_1_3",
       "desc": "",
-      "dlg": "Too far for you? Close enough... for me!"
+      "dlg": "這個距離就夠了。雖然對你來說……有點遠就是了！"
     },
     {
       "id": "battle_s3_11212_1_3",
@@ -1403,12 +1403,12 @@
     {
       "id": "battle_s3_10812_1_001",
       "desc": "",
-      "dlg": "A life of transience."
+      "dlg": "無常的性命。"
     },
     {
       "id": "battle_s3_10812_1_003",
       "desc": "",
-      "dlg": "... Snuffed out like a flame."
+      "dlg": "只需如熄火般抹去。"
     },
     {
       "id": "battle_s3_10512_1_2-02",
@@ -1488,22 +1488,22 @@
     {
       "id": "battle_s2_10913_1_1",
       "desc": "",
-      "dlg": "To protect."
+      "dlg": "為了守護。"
     },
     {
       "id": "battle_s2_10913_1_1-01",
       "desc": "",
-      "dlg": "To protect."
+      "dlg": "為了守護。"
     },
     {
       "id": "battle_s3_10913_1_1",
       "desc": "",
-      "dlg": "Just let..."
+      "dlg": "乾脆……"
     },
     {
       "id": "battle_s3_10913_1_3",
       "desc": "",
-      "dlg": "... Let everything fade away."
+      "dlg": "什麼都別留下。"
     },
     {
       "id": "battle_s2_11113_1_2",
@@ -1843,12 +1843,12 @@
     {
       "id": "battle_s3_10713_1_5",
       "desc": "",
-      "dlg": "I'll split you in half."
+      "dlg": "把你劈成兩半。"
     },
     {
       "id": "battle_special_10713_1",
       "desc": "",
-      "dlg": "C'mon, you sod...! Come get me if you can."
+      "dlg": "有種的話，就放馬過來啊。"
     },
     {
       "id": "battle_s3_10813_1_1",
@@ -1863,7 +1863,7 @@
     {
       "id": "battle_special_10813_1",
       "desc": "",
-      "dlg": "Hah, this round's a bust... Next."
+      "dlg": "哈，這局流局了……下一局。"
     },
     {
       "id": "battle_special_10813_2",
@@ -1973,7 +1973,7 @@
     {
       "id": "battle_special_10714_1",
       "desc": "",
-      "dlg": "Bloody hell, thought I was goin' bonkers keepin' that down... heh heh. Kill 'em all!"
+      "dlg": "忍到脖子都快伸斷了……哈，全都給我宰了！"
     },
     {
       "id": "battle_special_10714_2",
@@ -1993,7 +1993,7 @@
     {
       "id": "battle_special_10714_3",
       "desc": "",
-      "dlg": "Flame Rooster's Death Defiance (炎鳥不死戰)... Hah...! I really thought this was it for me... Ya hear me?!"
+      "dlg": "炎鳥不死戰……咳哈，還以為真要死了……啊？！"
     },
     {
       "id": "battle_s3_10413_1_3",
@@ -2048,7 +2048,7 @@
     {
       "id": "battle_s3_10914_1_4",
       "desc": "",
-      "dlg": "Ahaha... Aren't the fireworks so pretty?"
+      "dlg": "啊哈哈……煙火，很漂亮吧？"
     },
     {
       "id": "battle_s3_11114_1_1-01-1",
@@ -2193,12 +2193,12 @@
     {
       "id": "battle_s3_10814_1_1",
       "desc": "",
-      "dlg": "Ult time, right?"
+      "dlg": "現在是開大的時機沒錯吧？"
     },
     {
       "id": "battle_s3_10814_1_1-01",
       "desc": "",
-      "dlg": "Ult time, right?"
+      "dlg": "現在是開大的時機沒錯吧？"
     },
     {
       "id": "battle_s3_10814_1_2",
@@ -2208,17 +2208,17 @@
     {
       "id": "battle_s3_10814_1_3",
       "desc": "",
-      "dlg": "Eep, wait, maybe not... Oh, well. Anyway, Slam!!!"
+      "dlg": "嗚！好像不是耶，總之痛擊！"
     },
     {
       "id": "battle_special_10814_1",
       "desc": "",
-      "dlg": "Caught ya starin'. Yeah I know, mama's a badass."
+      "dlg": "看什麼看。還挺識貨的嘛，知道我媽很帥。"
     },
     {
       "id": "battle_special_10814_2",
       "desc": "",
-      "dlg": "Mine's not as good as Mama's, but I can also slice and sizzle at the same time."
+      "dlg": "雖然比不上媽媽，但我也能邊熔化邊砍喔？"
     },
     {
       "id": "battle_special_10814_3",
@@ -2228,7 +2228,7 @@
     {
       "id": "battle_special_10814_4",
       "desc": "",
-      "dlg": "Huh? You stayed put at the House of Spiders all day? Okay, then didya check out <i>The Cloudburst Blade</i> I told ya about? Hey, wait! Where are you going?!"
+      "dlg": "咦？今天哪都沒去，待在蜘蛛巢啊。所以說，我之前說的《雨幕之中的劍客》你看了沒？欸，別跑啊……！"
     },
     {
       "id": "battle_special_10814_5",
@@ -2663,7 +2663,7 @@
     {
       "id": "battle_s3_400029_1",
       "desc": "",
-      "dlg": "Mizan... plas."
+      "dlg": "準備……就系。"
     },
     {
       "id": "battle_s3_400030_1",
@@ -2683,7 +2683,7 @@
     {
       "id": "battle_s3_400033_1",
       "desc": "",
-      "dlg": "Ewwie~ Gross!"
+      "dlg": "嗚嗚……下半身好噁心。"
     },
     {
       "id": "battle_s3_400034_1",
@@ -2693,7 +2693,7 @@
     {
       "id": "battle_s3_400035_1",
       "desc": "",
-      "dlg": "Wiwness me, Executive Teach!"
+      "dlg": "請看著偶。園長大銀！"
     },
     {
       "id": "battle_s3_400036_1",
@@ -2838,7 +2838,7 @@
     {
       "id": "battle_special_10915_1_1",
       "desc": "",
-      "dlg": "Fils nerveux."
+      "dlg": "神經（nerf）排列。"
     },
     {
       "id": "battle_special_10915_1_2",
@@ -2848,17 +2848,17 @@
     {
       "id": "battle_special_10915_1_3",
       "desc": "",
-      "dlg": "Raw with primary colors!"
+      "dlg": "用原色！"
     },
     {
       "id": "battle_special_10915_2_1",
       "desc": "",
-      "dlg": "Let's take a look!"
+      "dlg": "讓我瞧瞧吧？"
     },
     {
       "id": "battle_special_10915_2_2",
       "desc": "",
-      "dlg": "Not dense enough. Needs more body."
+      "dlg": "密度有點不夠呢。"
     },
     {
       "id": "battle_special_10915_2_3",
@@ -2868,17 +2868,17 @@
     {
       "id": "battle_special_10915_3",
       "desc": "",
-      "dlg": "My prized needlework—I'll make an exception and give you a look."
+      "dlg": "我費心縫製的珍藏品。特別讓你瞧瞧。"
     },
     {
       "id": "battle_special_10915_4",
       "desc": "",
-      "dlg": "厚塗(Impasto)！"
+      "dlg": "厚塗（Impasto）！"
     },
     {
       "id": "battle_special_10915_5",
       "desc": "",
-      "dlg": "All done. That's long enough for an appraisal session."
+      "dlg": "好了。鑑賞到此結束。"
     },
     {
       "id": "battle_s3_10715_1_5",
@@ -2903,7 +2903,7 @@
     {
       "id": "battle_special_10715_1_2",
       "desc": "",
-      "dlg": "Turn the volume up!"
+      "dlg": "音樂再開大聲點！"
     },
     {
       "id": "battle_special_10715_2",
@@ -2923,17 +2923,17 @@
     {
       "id": "battle_special_10715_3_1",
       "desc": "",
-      "dlg": "Half-pints."
+      "dlg": "這群小不點"
     },
     {
       "id": "battle_special_10715_3_2",
       "desc": "",
-      "dlg": "Sod off, you!"
+      "dlg": "給我……滾開！"
     },
     {
       "id": "battle_special_10715_3_3",
       "desc": "",
-      "dlg": "See if you can take this."
+      "dlg": "擋擋看啊。"
     },
     {
       "id": "battle_special_10715_4",
@@ -3193,7 +3193,7 @@
     {
       "id": "battle_add_10710_3",
       "desc": "",
-      "dlg": "Such grudge you bear... Lament and cry it out, until your wailing drowns the very storms!"
+      "dlg": "很冤屈吧。那就盡情痛哭吧，哭到蓋過暴風聲為止！"
     },
     {
       "id": "battle_special_10613_1",
@@ -3303,12 +3303,12 @@
     {
       "id": "battle_special_10815_1",
       "desc": "",
-      "dlg": "I can't afford to look back. I'll simply raise my blade and carve the path onward."
+      "dlg": "沒有回頭的餘裕，只能一味向前殺出一條路。"
     },
     {
       "id": "battle_special_10815_2",
       "desc": "",
-      "dlg": "I have been watching the stones on the board."
+      "dlg": "我早就預先看清形勢了。"
     },
     {
       "id": "battle_special_10815_3_1",
@@ -3418,17 +3418,17 @@
     {
       "id": "battle_special_10916_6",
       "desc": "",
-      "dlg": "Who's next? C'mon... We all know how this ends anyway."
+      "dlg": "下一個，出來。嘛，結果……大概想也知道就是了。"
     },
     {
       "id": "battle_special_10916_7",
       "desc": "",
-      "dlg": "Like hell I'm kickin' the bucket in this fucking dump."
+      "dlg": "我看起來像是會死在這種鬼地方的人嗎？"
     },
     {
       "id": "battle_special_10916_8",
       "desc": "",
-      "dlg": "Hah. Figured as much. Idiot... Couldn't even tough that out..."
+      "dlg": "哈。我就知道。蠢貨。連那點都撐不住……"
     },
     {
       "id": "battle_special_10916_9",
@@ -3453,27 +3453,27 @@
     {
       "id": "battle_s3_10916_1_1-02",
       "desc": "",
-      "dlg": "I'll make mincemeat out of you all!"
+      "dlg": "全部都給你解體掉。"
     },
     {
       "id": "battle_special_10716_1",
       "desc": "",
-      "dlg": "It's just you and me now. A duel..."
+      "dlg": "這下就是一對一了……"
     },
     {
       "id": "battle_special_10716_2",
       "desc": "",
-      "dlg": "... You ain't gettin' past me."
+      "dlg": "……別想往那邊去。"
     },
     {
       "id": "battle_special_10716_4",
       "desc": "",
-      "dlg": "Enemy dismantled. You ain't pullin' that shite on me twice."
+      "dlg": "解體完畢。同樣的招數，已經對我不管用了。"
     },
     {
       "id": "battle_s3_10716_1_1",
       "desc": "",
-      "dlg": "I'll show you an infinitely close approximation of your angle an' speed."
+      "dlg": "以和你無限相似的角度與速度。"
     },
     {
       "id": "battle_s3_10716_1_1-02",
@@ -3498,7 +3498,7 @@
     {
       "id": "battle_special_11009_3",
       "desc": "",
-      "dlg": "如果能讓前輩和師傅變得幸福的話，如果能再最後跟大家分享喜悅的話……無論是怎樣的恐怖，也不能讓我逃避。"
+      "dlg": "如果能讓前輩、讓師父幸福，如果能在這盡頭和大家一起分享喜悅……那麼無論是怎樣的恐懼，都無法讓我逃跑。"
     },
     {
       "id": "battle_special_11009_4",
@@ -3513,7 +3513,7 @@
     {
       "id": "battle_special_11009_6",
       "desc": "",
-      "dlg": "很痛苦……但我還可以忍耐。我會跨越它，站起來給你看。成為與師傅的黎明相襯的強者……由這刻開始，我不會再失去任何東西了！"
+      "dlg": "雖然很痛苦……但我會忍耐。我會跨越它，重新站起來。成為配得上師父的黎明的強者……讓我今後再也不會失去任何東西！"
     },
     {
       "id": "battle_special_11009_7",
@@ -3728,27 +3728,27 @@
     {
       "id": "battle_s3_10816_1_3",
       "desc": "르루즈 이스마엘 3스킬 3타",
-      "dlg": "Smacked down!"
+      "dlg": "砸下去！"
     },
     {
       "id": "battle_s3_10816_1_3-01",
       "desc": "르루즈 이스마엘 3스킬 3타",
-      "dlg": "Smacked down!"
+      "dlg": "砸下去！"
     },
     {
       "id": "battle_s3_10816_1_3-02",
       "desc": "르루즈 이스마엘 3스킬 3타",
-      "dlg": "Smacked down!"
+      "dlg": "砸下去！"
     },
     {
       "id": "battle_s3_10816_1_4",
       "desc": "르루즈 이스마엘 3스킬 재사용",
-      "dlg": "And nailed!"
+      "dlg": "釘住吧！"
     },
     {
       "id": "battle_s3_10816_1_4-01",
       "desc": "르루즈 이스마엘 3스킬 재사용",
-      "dlg": "And nailed!"
+      "dlg": "釘住吧！"
     },
     {
       "id": "battle_s3_10416_1_1",
@@ -4018,12 +4018,12 @@
     {
       "id": "battle_special_10617_1",
       "desc": "",
-      "dlg": "Thus spake the Obsidian God."
+      "dlg": "漆黑之神如是說。"
     },
     {
       "id": "battle_special_10617_2",
       "desc": "",
-      "dlg": "You'll witness in silence, won't you?"
+      "dlg": "請默默看著吧。"
     },
     {
       "id": "battle_s2_10717_1_1",
@@ -4053,12 +4053,12 @@
     {
       "id": "battle_special_10717_1",
       "desc": "",
-      "dlg": "Sweet... No, nooo?! Bloody rubbish...!"
+      "dlg": "甜美的……不，不對？！這什麼狗屁話……！"
     },
     {
       "id": "battle_special_10717_2",
       "desc": "",
-      "dlg": "\"Single-stitched, is it?!\" \"You used a three-needle coverstitch, didn't ya?!\" \"Sewn-through construction's too cold, isn't it?!\" AAAAAARGH...!"
+      "dlg": "是單針縫製嗎？！是用分縫三本針車的吧？！車縫隔間會冷？！咕啊啊啊啊啊……！"
     },
     {
       "id": "battle_special_10717_3",
@@ -4068,22 +4068,22 @@
     {
       "id": "battle_s2_10617_2_1",
       "desc": "",
-      "dlg": "Reverberate."
+      "dlg": "迴盪吧。"
     },
     {
       "id": "battle_s3_10617_1_1",
       "desc": "",
-      "dlg": "\"Those with ears to hear...\""
+      "dlg": "明明聽得見，"
     },
     {
       "id": "battle_s3_10617_1_2",
       "desc": "",
-      "dlg": "\"... yet care not to listen.\""
+      "dlg": "卻不願去聽。"
     },
     {
       "id": "battle_s3_10617_2_1",
       "desc": "",
-      "dlg": "\"I shalt be your blanket and cleansing water.\""
+      "dlg": "加以覆蓋，洗滌乾淨。"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": 97110401,
-      "title": "LCE Recovers The Ring's Artwork - Corporist Piece",
+      "title": "回收環指作品的LCE組員們 - 人體派作品",
       "eventDesc": "",
       "behaveDesc": "讓哪位罪人去撿？",
       "successDesc": [
@@ -14,10 +14,10 @@
     },
     {
       "id": 97110402,
-      "title": "LCE Recovers The Ring's Artwork - Fauvist Piece",
+      "title": "回收環指作品的LCE組員們 - 野獸派作品",
       "eventDesc": "",
       "prevDesc": "",
-      "behaveDesc": "Who will go and take it?",
+      "behaveDesc": "讓哪位罪人去撿？",
       "successDesc": [
         "罪人{0}從堆積如山的雜物中取出了某種用皮革與獠牙組成的東西。\n\n<這是……>\n\n像個四分五裂的藝術品。大概曾是野獸派的作品？\n\n如果擺在展示台上，或許可以重拾原本的價值。"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": 97110601,
-      "title": "Quiet Corridor of the Middle",
+      "title": "寂靜的中指長廊",
       "eventDesc": "",
       "prevDesc": "",
       "behaveDesc": "讓哪位罪人上前？",

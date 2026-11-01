@@ -818,7 +818,7 @@
                   "desc": "<style=\"highlight\">[OnStartCoin] 所有目標帶有的 [Combustion] 回數與 [Laceration] 回數之和每有10級，則使本硬幣的最終威力+1(最多+5)</style>"
                 },
                 {
-                  "desc": "[OnStartCoin] Consume all [RyoshuEGOPF] on self and deal <style=\"highlight\">+1.25%</style> damage for every 5 [RyoshuEGOPF] consumed <style=\"highlight\">(max 248%)</style>\n- When attacking just a single target, the damage modifying effect above is applied at <style=\"highlight\">2x</style> its value (in Focused Encounters, a Core and its connected Parts count as a single target)",
+                  "desc": "[OnStartCoin] 消耗自身帶有的所有 [RyoshuEGOPF] 層數，每消耗5層則使本硬幣造成的傷害<style=\"highlight\">+1.25%(最多+248%)</style>\n- 若目標僅有1名，則上述的傷害增加效果以<style=\"highlight\">2倍</style>計算 (集中遭遇戰時，則以本體為準)",
                   "summary": "[OnStartCoin] 根據自身的 [RyoshuEGOPF] 層數增加傷害"
                 }
               ]

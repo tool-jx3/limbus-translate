@@ -3,7 +3,7 @@
     {
       "id": 124701,
       "name": "原黑獸 - 午 筆頭",
-      "desc": "Encounter Start: reset this unit's SP to -15 and gain 3 [LegStrengthHorse] and 1 [CrazyWei]\nTake -50% damage from [Combustion], [Laceration], [Vibration], [Burst], and [Sinking] (rounded down)\n\nIf this unit hits with a Cracked [SuperCoin], it does not activate the target's [Burst] effect (does not consume Count either)\n\nDeal +50% damage against Staggered enemies"
+      "desc": "關卡開始時，使自身的理智值減少至-15點，使自身獲得3層 [LegStrengthHorse] 並對自身施加1層 [CrazyWei]\n受到的 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 傷害-50%(無條件捨去)\n\n自身被破壞的 [SuperCoin] 命中時，不會觸發目標的 [Burst] 效果(也不會消耗其回數)\n\n對陷入混亂的敵方單位造成的傷害+50%"
     },
     {
       "id": 124702,
@@ -13,7 +13,7 @@
     {
       "id": 124703,
       "name": "魂飛中天",
-      "desc": "If this unit has [LegStrengthHorse], gain 1 [ReboundWei] when hitting with a Skill that triggers [VibrationExplosion] against targets without [Vibration] (does not gain any [ReboundWei] if its Stack is already maxed)\n\nTurn End: if this unit's [ReboundWei] Stack is maxed, consume all of it; then, lose 1 [LegStrengthHorse] next turn"
+      "desc": "若自身帶有 [LegStrengthHorse]，則以帶有 [VibrationExplosion] 效果的硬幣命中未帶有 [Vibration] 的目標時，使自身獲得1層 [ReboundWei] (若自身的 [ReboundWei] 層數已達最大值，則不會獲得)\n\n回合結束時，若自身的 [ReboundWei] 層數為最大值，則消耗所有層數並在下回合失去1層 [LegStrengthHorse]"
     },
     {
       "id": 124704,
@@ -38,7 +38,7 @@
     {
       "id": 127203,
       "name": "只要有酒就沒什麼好怕的",
-      "desc": "Turn Start: at max [SipOfAlcoholJin] Stack, consume 2 of its Stack and gain [DrunkAwakening]"
+      "desc": "回合開始時，若自身的 [SipOfAlcoholJin] 層數為最大值，則消耗2層並使自身獲得 [DrunkAwakening]"
     },
     {
       "id": 127204,

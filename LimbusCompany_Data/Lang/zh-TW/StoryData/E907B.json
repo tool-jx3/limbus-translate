@@ -2,489 +2,489 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Corridor of the Middle Nursefather",
+      "place": "蜘蛛巢，中指父輩的長廊",
       "model": "뉴키라",
-      "content": "... The heck, they swiped everything that wasn't nailed down, huh?"
+      "content": "……搞什麼。這裡也被搬得一乾二淨了嘛。"
     },
     {
       "id": 1,
       "model": "돈키호테",
-      "content": "Fret not! I espy thither half of thy worldly possessions! Articulated Fixer figurines, videogame cartridges—"
+      "content": "可是不還剩下一半嗎！那邊有會動的收尾人公仔，那邊還有遊戲卡帶……"
     },
     {
       "id": 2,
       "model": "뉴키라",
-      "content": "I'm not talking about my toy box, 'kay? I had hella many of 'em anyway."
+      "content": "不是說玩具箱啦。那種東西本來就超多的。"
     },
     {
       "id": 3,
       "model": "뉴키라",
-      "content": "... My TV's gone. The couch, too."
+      "content": "……我是說電視跟沙發。"
     },
     {
       "id": 4,
-      "content": "As Kira said, only a conspicuous empty space was left where the television and family couch set used to be."
+      "content": "正如綺羅所說，原本在正中央引人注目的電視和沙發已經消失得無影無蹤。"
     },
     {
       "id": 5,
       "model": "앨런마스크",
-      "content": "Oh, those? LCE Researchers hauled them away. From the sound of it, they're going to set them up in their staff lounge."
+      "content": "那些的話，LCE的研究員們說要拿去休息室用，全都搬走了。"
     },
     {
       "id": 6,
       "model": "앨런마스크",
-      "content": "As for the leather and the ornaments—they said they'll be selling them off."
+      "content": "至於那些皮革和裝飾品之類的，據說打算拿去賣掉。"
     },
     {
       "id": 7,
       "model": "뉴키라",
-      "content": "... Yeah?"
+      "content": "……是喔？"
     },
     {
       "id": 8,
-      "content": "Outis seemed to notice something the moment she caught Kira's wistful look. The corners of her lips curled into a faint smile as she spoke with feigned nonchalance."
+      "content": "奧提斯似乎從綺羅那滿是留戀的表情中察覺到了什麼，揚起嘴角，若無其事地補了一句。"
     },
     {
       "id": 9,
       "model": "오티스",
-      "content": "Who knows? With sufficient cooperation, perhaps they'd become more receptive to the idea of returning those items."
+      "content": "看妳配合的程度，說不定還能拿回來。"
     },
     {
       "id": 10,
       "model": "뉴키라",
-      "content": "... Assuming much? I never said I wanted 'em back."
+      "content": "……超扯的。誰說想拿回來了？"
     },
     {
       "id": 11,
       "model": "뉴키라",
-      "content": "Anyway, I'll tell ya all about what I know, so come this way if ya want in."
+      "content": "總之我會把知道的事解釋給你們聽，快點過來就是了。"
     },
     {
       "id": 12,
       "model": "뉴키라",
-      "content": "These two doors here made from paper and wood—they connect to S Corp."
+      "content": "這裡跟這裡這兩扇紙和木頭做的，是通往S公司的門。"
     },
     {
       "id": 13,
       "model": "뉴키라",
-      "content": "And that one reinforced with steel, that one leads to V Corp. Backstreets, where..."
+      "content": "然後那邊用鋼板加固的門，是通往V公司後巷……"
     },
     {
       "id": 14,
-      "content": "Having lived here and made frequent use of the doors herself, Kira was clearly the right person for the job of identifying where each door Wayfarer Company had asked us to explore led."
+      "content": "或許是因為住在這裡時親自用過，綺羅早就知道拓途者公司要求調查的門大多連到哪裡。"
     },
     {
       "id": 15,
       "place": -1,
-      "content": "Directed by Kira and accompanied by Alan, we checked the doors one by one..."
+      "content": "照著綺羅所說的，我們和亞倫一起打開門逐一確認……"
     },
     {
       "id": 16,
       "model": "앨런마스크",
-      "content": "Hm... Good work. All data seems to match—thank you for your cooperation."
+      "content": "嗯……很好。全都一致呢。感謝各位協助紀錄。"
     },
     {
       "id": 17,
-      "place": "Corridor of the Middle Nursefather",
-      "content": "... until there was just one Backdoor left to open."
+      "place": "蜘蛛巢，中指父輩的長廊",
+      "content": "不知不覺間，需要確認的後門只剩下一扇了。"
     },
     {
       "id": 18,
       "model": "히스클리프",
-      "content": "I know this isn't anything new, but I've gotta say, these Backdoors are just too bloody convenient. Them portals, too."
+      "content": "事到如今……才說是有點那個啦，不過這後門也太方便了吧？那個叫傳送門的東西也一樣。"
     },
     {
       "id": 19,
       "model": "히스클리프",
-      "content": "It ain't doin' anything shady like the WARP trains either, is it? Yours is as simple as turning the knob and enterin'. Seems to me you'll outpace your business rival in no time."
+      "content": "又不是像WARP列車那樣用讓人發毛的方式，只要喀嚓一聲打開、咻地走進去就搞定了。這根本……沒得比了吧？"
     },
     {
       "id": 20,
       "model": "앨런마스크",
-      "content": "I'm a bit hard-pressed to agree with the \"too convenient\" sentiment when it comes to using Backdoors and portals, but..."
+      "content": "說後門和傳送門只是方便而已，這點實在難以苟同……"
     },
     {
       "id": 21,
       "model": "앨런마스크",
-      "content": "... since your intent was to claim Wayfarer's superiority over the current W Corp., I'll take that as a compliment."
+      "content": "不過既然您的意思是我們比身為競爭目標的現任W公司更出色，那我就當作是稱讚收下了。"
     },
     {
       "id": 22,
       "model": "히스클리프",
-      "content": "... Did I say somethin' wrong?"
+      "content": "……我說錯什麼了嗎？"
     },
     {
       "id": 23,
       "model": "파우스트",
-      "content": "Every technology comes with a cost, Heathcliff."
+      "content": "沒有不需付出代價的技術。希斯克利夫。"
     },
     {
       "id": 24,
       "model": "앨런마스크",
-      "content": "Aptly said. While this has been a workday relatively free of casualties thanks to the quality information you have provided,"
+      "content": "正是如此。多虧各位提供的優質情報，今天才得以避免流血事件就是了。"
     },
     {
       "id": 25,
       "model": "앨런마스크",
-      "content": "do understand that Wayfarer Company's primary services include pathfinding, path security, and path maintenance."
+      "content": "拓途者公司原本提供的服務，就是尋找道路、開闢道路，並保護、維持道路。"
     },
     {
       "id": 26,
       "model": "앨런마스크",
-      "content": "Each of those services is fraught with life-threatening dangers for our employees. Some never return after embarking on a pathfinding journey, some are killed while battling monstrous entities—whose exact natures haven't even been confirmed yet—that appear in the liminal space between paths..."
+      "content": "在走廊中尋路時折損員工的情況不計其數，視部門而定，和棲息在道路與道路之間、至今仍未查明真面目的怪物戰鬥更是家常便飯。"
     },
     {
       "id": 27,
       "model": "앨런마스크",
-      "content": " It also costs a pretty penny to keep the secured path, well, secure."
+      "content": "再加上為了讓那些傢伙再也無法接近已確保的道路，所需要的維護成本……"
     },
     {
       "id": 28,
       "model": "앨런마스크",
-      "content": "I'd say our operating cost is on the rather steep side, especially considering that we are also trying to prevent our rivals from taking this corner of the market."
+      "content": "我們為了排除競爭對手所付出的代價可是相當可觀的。"
     },
     {
       "id": 29,
-      "content": "Thinking back, I don't think I've ever seen Alan enter a door to a new location with his helmet off. It must be one of his precautions... just in case."
+      "content": "仔細想想，亞倫每次進入新的空間時，都會連頭盔都戴得整整齊齊才行動……就像是不知道何時會出現危險，所以無論如何都要做好準備一樣。"
     },
     {
       "id": 30,
-      "content": "Maybe his dry smile and unsettling lack of reaction to anything are hints that he's simply seen too much to be fazed by most horrors."
+      "content": "無論在什麼狀況下都帶著乾澀的笑容淡然應對，或許代表他是個見識過太多事情的人吧。"
     },
     {
       "id": 31,
       "model": "앨런마스크",
-      "content": "Still, our work's gotten considerably easier for this job thanks to the help from everyone here. Honestly, this partnership is working much better than I'd expected."
+      "content": "嘛，反過來說，能透過與各位的合作把工作做得這麼輕鬆，這點倒是令人振奮。老實說，比預期中還要好。"
     },
     {
       "id": 32,
       "model": "앨런마스크",
-      "content": "Very well then, let's take a look at the last door."
+      "content": "那麼，來看看最後一扇門吧。"
     },
     {
       "id": 33,
       "model": "뉴키라",
-      "content": "Ah, it's the door Papa used to walk through all the time."
+      "content": "啊，這裡是把拔最常進出的門……"
     },
     {
       "id": 34,
       "place": -1,
-      "content": "I followed Kira into the door, and the second I crossed over the threshold, a breeze carrying an oddly familiar, salty smell tickled the tip of my nos—uh, one of my clock hands."
+      "content": "跟著綺羅打開門走進去，一股說熟悉也算熟悉的鹹味，瞬間刺上了我的指針尖端。"
     },
     {
       "id": 35,
-      "place": "Giant Stingray Portship",
+      "place": "魟魚港船",
       "model": "오티스",
-      "content": "This one connects to somewhere in the general Great Lake area, it seems."
+      "content": "是與大湖相鄰的地方嗎。"
     },
     {
       "id": 36,
       "model": "뉴키라",
-      "content": "Welcome to U Corp.'s Giant Stingray Portship."
+      "content": "這是U公司的魟魚港船喔。"
     },
     {
       "id": 37,
       "model": "단테",
-      "content": "<Stingray, huh... Why does that ring a bell...?>"
+      "content": "<魟魚……好像在哪裡聽過……？>"
     },
     {
       "id": 38,
       "model": "히스클리프",
-      "content": "Hang on a minute, it's that... It's that place, innit? That Portship that has Salon du Moelleux... the private hair salon."
+      "content": "這裡……不就是那裡嗎。「柔順沙龍」……就是那家私人美髮店所在的……"
     },
     {
       "id": 39,
-      "content": "Heathcliff chimed in with a shudder, as though the sheer weight behind his words terrified him."
+      "content": "希斯一邊說著，一邊像是起了雞皮疙瘩似地打了個哆嗦。"
     },
     {
       "id": 40,
       "model": "돈키호테",
-      "content": "Ooooh! Doth it signify then, that we shall finally be made audience to Young Heathcliff and his hairdo most <i>luscious</i>?!"
+      "content": "喔喔喔！那麼終於能見識到希斯克利夫先生那蓬鬆的髮型了嗎！？"
     },
     {
       "id": 41,
       "model": "히스클리프",
-      "content": "Ugh... Quit it with that <i>luscious</i> nonsense, lass. Why encourage me now when you were so cavalier about blastin' my \"villainous\" arse back at the Lake?"
+      "content": "呃……蓬鬆個頭啦？在湖那邊還說我墮入邪道，整整唸了我好幾天，現在才來說什麼……"
     },
     {
       "id": 42,
       "model": "돈키호테",
-      "content": "Hmm, indeed... Alas, 'tis true that punishment wrought upon our merry band hath severely outweighed the crime; wouldst thou not agree, Young Heathcliff, that to put the coupons to use would remedy thy pain a smidge...?"
+      "content": "嗯……既然汝付出的代價比吾預想的還要慘重……能用的話就用掉，希斯克利夫先生也不至於那麼可憐吧……"
     },
     {
       "id": 43,
       "model": "히스클리프",
-      "content": "Ah, bugger it."
+      "content": "唉，算了。"
     },
     {
       "id": 44,
       "model": "히스클리프",
-      "content": "... I ain't even got anyone to spruce up for anymore."
+      "content": "……反正現在也沒有要打扮給誰看。"
     },
     {
       "id": 45,
       "model": "뉴키라",
-      "content": "Sweet, then can I use 'em?"
+      "content": "什麼嘛。那我可以拿去用嗎？"
     },
     {
       "id": 46,
       "model": "뉴키라",
-      "content": "We were regulars at that Moelleux place, papa and me."
+      "content": "柔順沙龍那裡，把拔跟我也是常客喔。"
     },
     {
       "id": 47,
       "model": "뉴키라",
-      "content": "Papa would ask the Middle fam for a favor, and he'd bring loads of coupons back home. They give away a hair coupon every 10 visits, y'see, so I—"
+      "content": "那裡每去十次就會送一張理髮券，把拔還會去跟中指的家人們講，拿一大堆券回來。所以我也……"
     },
     {
       "id": 48,
       "model": "뉴키라",
-      "content": "... Ugh. What am I even yapping about all excited?"
+      "content": "……唉喔。我到底在興奮個什麼勁啊，真是的。"
     },
     {
       "id": 49,
-      "content": "Kira, who'd seemed ready to launch into a cheerful rant, came to an abrupt pause like a bike tripping over a ledge. Her face fell as she lowered her gaze and scuffed a pebble away."
+      "content": "綺羅原本像是在聊快樂的回憶般說個不停，卻像是心裡猛地卡住了什麼似的皺起臉，一腳踢開了地上的小石子。"
     },
     {
       "id": 50,
       "model": "뉴키라",
-      "content": "Looking back, I guess papa did... did hella care for me, so why..."
+      "content": "這樣看來……把拔好像也超照顧我的……"
     },
     {
       "id": 51,
       "model": "뉴키라",
-      "content": "... But it's also true these guys went out of their way to get me outta there even though they didn't know me so well..."
+      "content": "……不對，可是這些傢伙才認識我沒多久，就把我從那裡拉出來了……"
     },
     {
       "id": 52,
       "model": "뉴키라",
-      "content": "Ugh, why's it gotta be so complicated?"
+      "content": "啊靠……怎麼會這麼複雜啦？！"
     },
     {
       "id": 53,
       "model": "료슈",
-      "content": "Matthias gave you that unaesthetic B.C.?"
+      "content": "那個沒品味的西．頭，是馬蒂亞斯那傢伙的作品嗎。"
     },
     {
       "id": 54,
       "model": "뉴키라",
-      "content": "The heck's a B.C.?"
+      "content": "西．頭又是什麼啦……"
     },
     {
       "id": 55,
       "model": "료슈",
-      "content": "\"Bowl Cut.\""
+      "content": "是西瓜頭的意思。"
     },
     {
       "id": 56,
       "model": "뉴키라",
-      "content": "Bro, listen... Like I said, that's not how you shorten these things."
+      "content": "不是……就說了不要那樣縮寫啦……"
     },
     {
       "id": 57,
       "model": "료슈2",
-      "content": "*puff*"
+      "content": "呼……"
     },
     {
       "id": 58,
-      "content": "For some reason, Ryōshū seemed almost gleeful to hear Kira correcting her acronym."
+      "content": "對綺羅說縮寫、被她吐槽的良秀……不知為何看起來很開心。"
     },
     {
       "id": 59,
-      "content": "It was reminiscent of that self-satisfied look she'd get after confusing us with these acronyms, especially during the early days of our bus journey."
+      "content": "就像剛搭上巴士沒多久時，她說完縮寫後流露出一臉滿足的神情那樣。"
     },
     {
       "id": 60,
-      "content": "Thinking back, ever since Sinclair's translations became reliable enough..."
+      "content": "仔細想想，自從辛克萊的翻譯功力突飛猛進之後……"
     },
     {
       "id": 61,
-      "content": "... the Sinners had less reason to voice their frustrations with Ryōshū's acronyms, which in turn gave her fewer causes to snicker about."
+      "content": "罪人們吐槽良秀縮寫的次數就變少了，良秀噗哧一笑的次數，似乎也跟著變少了。"
     },
     {
       "id": 62,
       "model": "단테",
-      "content": "<I'm not sure why, but...>"
+      "content": "<該怎麼說呢。>"
     },
     {
       "id": 63,
       "model": "단테",
-      "content": "<... something tells me that she might be making her acronyms ridiculously incomprehensible on purpose.>"
+      "content": "<感覺她好像是……故意那樣縮寫的。>"
     },
     {
       "id": 64,
       "model": "오티스",
-      "content": "If your conjecture is correct, Executive Manager, she has one tasteless sense of humor."
+      "content": "經理您說的若是事實，那就只能用乖僻來形容了呢……"
     },
     {
       "id": 65,
       "model": "료슈",
-      "content": "From what I recall, the toys and games he was into were pretty retro."
+      "content": "那傢伙喜歡的玩具和遊戲。應該挺老派的吧。"
     },
     {
       "id": 66,
       "model": "료슈",
-      "content": "Must've been annoying to play along."
+      "content": "要配合他的喜好，想必也挺費事的。"
     },
     {
       "id": 67,
       "model": "뉴키라",
-      "content": "... At first. But the more I played along, the more I got into it."
+      "content": "……一開始是那樣啦，不過一起玩著玩著，就覺得還滿好玩的。"
     },
     {
       "id": 68,
       "model": "뉴키라",
-      "content": "Still corny and juvenile as shit, though."
+      "content": "雖然老實說是有點俗啦。"
     },
     {
       "id": 69,
       "model": "돈키호테",
-      "content": "I know aught of that conflict within thee."
+      "content": "那是什麼……樣的心情，吾想吾明白。"
     },
     {
       "id": 70,
       "model": "돈키호테",
-      "content": "Trifling and apocryphal they may be, yet we are all compelled to peer hindwards at the interests of the family."
+      "content": "就算是完全無法理解為何會喜歡的東西，只要是家人喜歡的，總會讓人想回頭看上一眼。"
     },
     {
       "id": 71,
       "model": "뉴키라",
-      "content": "... Yeah. I wanted to know what papa was into, to really \"get\" what he was talkin' about. Besides, I needed to know these things if I wanted to chat him up and talk about a mutual subject, so..."
+      "content": "……對。我也想聽懂把拔在說什麼……也需要……一些能主動開口聊的話題。"
     },
     {
       "id": 72,
       "model": "료슈",
-      "content": "*puff*"
+      "content": "呼……"
     },
     {
       "id": 73,
       "model": "뉴키라",
-      "content": "He'd tell me about you all the time, Yoshihide. Proud shit."
+      "content": "良秀，他在我面前超常炫耀妳的耶。"
     },
     {
       "id": 74,
       "model": "뉴키라",
-      "content": "Not a day went by without him sayin' stuff like \"Yoshihide learned this in 2 days\" or \"Yo, this was Yoshihide's fave,\" y'know?"
+      "content": "說什麼良秀兩天就學會了啦、良秀以前很喜歡這個啦之類的。"
     },
     {
       "id": 75,
       "model": "료슈",
-      "content": "Too bad I wasn't here to tell you that his words weren't worth shit."
+      "content": "那些都是不必當真的屁話……沒能早點告訴妳這一點，實在可惜。"
     },
     {
       "id": 76,
       "model": "료슈",
-      "content": "I once thought of him the same as you do now—a good man, at least among the Nursefathers... Caring enough to bring me gifts."
+      "content": "……我也曾經跟妳想的一樣。覺得那個會把我喜歡的東西全都帶來給我的人……在父輩之中還算是個不錯的人。"
     },
     {
       "id": 77,
       "model": "료슈",
-      "content": "But one day, I realized that he'd never understand the things I <i>really</i> cared about, even if his life had depended on it."
+      "content": "但不知從什麼時候起，我就明白了。那傢伙到最後都不會理解我喜歡的是什麼。"
     },
     {
       "id": 78,
       "model": "돈키호테",
-      "content": "One day, thou sayest? Pray tell, was there aught that had changed thy perception of that man?"
+      "content": "汝說不知從何時起……莫非是有過什麼契機？"
     },
     {
       "id": 79,
       "model": "료슈",
-      "content": "That... I don't remember when or why. Just that it happened."
+      "content": "那個……我不記得了。是從什麼時候開始的，原因又是什麼。"
     },
     {
       "id": 80,
       "model": "뉴키라",
-      "content": "Wait, I might know this. Wasn't it something that happened at school?"
+      "content": "喔。那個的話，不就是在學校發生了什麼事嗎？"
     },
     {
       "id": 81,
       "model": "뉴키라",
-      "content": "Papa told me that things started getting awkward between you and him ever since you quit school."
+      "content": "因為把拔跟我說過，自從良秀不上學以後，他跟良秀之間好像就變得有點生疏了。"
     },
     {
       "id": 82,
       "model": "료슈2",
-      "content": "... Bullshit. I've never been to school."
+      "content": "……妳在胡說什麼？我從沒上過學。"
     },
     {
       "id": 83,
       "model": "료슈",
-      "content": "I'd never even thought of wanting to go to school."
+      "content": "連想上學的念頭都沒有過。"
     },
     {
       "id": 84,
       "model": "료슈",
-      "content": "Matthias must've been talking out of his ass again—"
+      "content": "是馬蒂亞斯那傢伙自顧自亂說的謊話……"
     },
     {
       "id": 85,
       "model": "뉴키라",
-      "content": "Huh? No way, bro. I even saw a clip of it."
+      "content": "欸？不是啦，我說真的耶？我還看過影片。"
     },
     {
       "id": 86,
       "model": "료슈",
-      "content": "What...?"
+      "content": "什麼……？"
     },
     {
       "id": 87,
       "model": "뉴키라",
-      "content": "Papa showed me that video when he was teaching me how to use these doors. I even saw baby you goin' \"I'm off to school, Dad!\" in that video, so I'm pretty dang sure!"
+      "content": "那是把拔說要教我怎麼用門的時候給我看的影片，裡面良秀妳超有活力地說了「我去上學了」，我記得清清楚楚耶？"
     },
     {
       "id": 88,
       "model": "료슈2",
-      "content": "But I don't—"
+      "content": "怎麼可能……"
     },
     {
       "id": 89,
-      "content": "As Kira went on, Ryōshū's confidence from her initial retort seemed to slip away. I couldn’t blame her—so much of her memory had been mutilated."
+      "content": "由於許多記憶都被千刀萬剮過，面對綺羅的反駁，良秀似乎越來越沒有自信，話尾也含糊了起來。"
     },
     {
       "id": 90,
-      "content": "Ryōshū didn't sound like she was denying it out of hand, though. She seemed to mean it when she said she'd never been to school and had never even wanted to."
+      "content": "但是……無論是良秀說自己沒上過學，還是說從沒想過要上學，話語中都蘊含著一股微妙的真心。"
     },
     {
       "id": 91,
-      "content": "And I want to glimpse the fragment of memory that made her say that."
+      "content": "我想確認那段記憶的片段。"
     },
     {
       "id": 92,
-      "content": "The moment I willed it, a scene from her past suddenly flashed across my eyes."
+      "content": "就在我下定決心這麼做的瞬間，一段短暫的記憶掠過了腦海。"
     },
     {
       "id": 93,
       "place": "???",
       "teller": "???",
       "title": "???",
-      "content": "Very well, Yoshihide. I will register you in an institution that is... not entirely dissimilar from school."
+      "content": "好吧，良秀。就算不是學校，我也會幫妳去個類似的地方。"
     },
     {
       "id": 94,
       "teller": "???",
       "title": "???",
-      "content": "There is an ■■■■■■■ ■■ ■■■, a subsidiary of the Ring."
+      "content": "我已經物色好環指旗下的一所■■ ■■了。"
     },
     {
       "id": 95,
-      "place": "Giant Stingray Portship",
+      "place": "魟魚港船",
       "model": "단테",
-      "content": "<... Academy.>"
+      "content": "<……學院。>"
     },
     {
       "id": 96,
       "model": "단테",
-      "content": "<You sure it was a school? Not like an art academy or something like it?>"
+      "content": "<是藝術學院吧？不是學校？>"
     },
     {
       "id": 97,
       "model": "돈키호테",
-      "content": "Perchance it be an academy, not a school?"
+      "content": "汝是說，並非學校，而是學院嗎？"
     },
     {
       "id": 98,
       "model": "뉴키라",
-      "content": "Wait, that kinda makes more sense, yeah! Musta been an academy, not a school."
+      "content": "喔？好像沒錯耶？對耶！好像不是學校，是學院？"
     },
     {
       "id": 99,
@@ -494,111 +494,111 @@
     {
       "id": 100,
       "model": "료슈",
-      "content": "Academy of art."
+      "content": "藝術學院。"
     },
     {
       "id": 101,
       "model": "료슈9장",
-      "content": "Hah."
+      "content": "哈。"
     },
     {
       "id": 102,
-      "content": "Ryōshū muttered a few words as though they were pieces of a puzzle she was assembling."
+      "content": "良秀像是在拼湊殘存的記憶般，靜靜地喃喃唸了幾個詞。"
     },
     {
       "id": 103,
-      "content": "Then, after a brief moment, she turned toward me with an astounded scoff and a look of mild irritation..."
+      "content": "過了一會兒，良秀像是傻眼般笑著看向我……"
     },
     {
       "id": 104,
       "model": "료슈",
-      "content": "Clock."
+      "content": "時鐘。"
     },
     {
       "id": 105,
       "model": "료슈9장",
-      "content": "You deserve a smack."
+      "content": "給我挨一下。"
     },
     {
       "id": 106,
       "model": "단테",
-      "content": "<...? Aaugh!?>"
+      "content": "<……？哇啊！？>"
     },
     {
       "id": 107,
-      "content": "... then lightly smacked me upside the head with her scabbard."
+      "content": "良秀用有些悶悶不樂的聲音走到我面前，拿刀鞘往我頭上輕輕一敲。"
     },
     {
       "id": 108,
       "model": "단테",
-      "content": "<Wh-what was that for?!>"
+      "content": "<為……為什麼打我？>"
     },
     {
       "id": 109,
       "model": "료슈9장",
-      "content": "This memory sucks, Clock. I would've been just fine without it."
+      "content": "你讓我想起了還不如不知道的記憶啊，時鐘。"
     },
     {
       "id": 110,
       "model": "료슈",
-      "content": "But at least I got to remember the incident that changed my perspective on Matthias."
+      "content": "不過，為什麼會對馬蒂亞斯那傢伙改觀……我想起來了。"
     },
     {
       "id": 111,
-      "place": "Corridor of the Ring Nursefather, Past",
+      "place": "過去，環指父輩的長廊",
       "model": "과거료슈1",
-      "content": "Dad, how do I go to... a school?"
+      "content": "爸爸。我……要怎麼做才能去上學呢？"
     },
     {
       "id": 112,
       "model": "약지아비",
-      "content": "... School, Yoshihide? Well, I don't see why you would wish, let alone need, to go to such an institution when we Nursefathers are here to provide you with all the education you require."
+      "content": "學校……嗎？嗯。良秀需要的東西，我們父輩們全都會教給妳的。也就是說，妳沒有必要去學校喔。"
     },
     {
       "id": 113,
       "model": "약지아비",
-      "content": "You would later find our unique style of homeschooling to have been much more enlightening than trudging through any of the Nests' formulaic educational systems."
+      "content": "比起死板的巢式教育，我們獨特的在家教育對良秀會更有幫助吧。"
     },
     {
       "id": 114,
       "model": "과거료슈1",
-      "content": "But, but, Dad... I saw 'em in a picture book."
+      "content": "可是童話書裡有出現，我很好奇嘛……"
     },
     {
       "id": 115,
       "model": "과거료슈1",
-      "content": "And... I dun have any friends here..."
+      "content": "而且……這裡也沒有朋友……"
     },
     {
       "id": 116,
       "model": "약지아비",
-      "content": "Oh, Rien and his pointless—"
+      "content": "禮恩那人又灌輸了些無謂的念頭……"
     },
     {
       "id": 117,
       "model": "약지아비",
-      "content": "Hm. But it <i>is</i> true that there are qualities that can be learned only through group erudition that engenders competition."
+      "content": "嗯。不過，確實也有些經驗，是只有和他人一起學習、競爭才能獲得的呢。"
     },
     {
       "id": 118,
       "model": "약지아비",
-      "content": "Very well, Yoshihide. I will register you in an institution that is... not entirely dissimilar from school."
+      "content": "好吧，良秀。雖然不是學校，但我會幫妳去一個類似的地方。"
     },
     {
       "id": 119,
       "model": "과거료슈1",
-      "content": "Really...?"
+      "content": "真的嗎……？"
     },
     {
       "id": 120,
-      "place": "Corridor of the Index Nursefather, Past",
+      "place": "過去，食指父輩的長廊",
       "model": "약지아비",
-      "content": "I intend to send Yoshihide to an academy as part of my educational curriculum."
+      "content": "作為我教育的一環，我打算送良秀去學院。"
     },
     {
       "id": 121,
       "model": "약지아비",
-      "content": "There is an academy of art, a subsidiary of the Ring. Companionship with other talented children of approximately her age will nourish the spirit of inspiration that will guide Yoshihide's growth."
+      "content": "我已經物色好一所環指旗下的藝術學院了。與有才華的同齡孩子們交流、激發靈感的過程，對良秀的成長會大有助益。"
     },
     {
       "id": 122,
@@ -608,80 +608,80 @@
     {
       "id": 123,
       "model": "검지아비",
-      "content": "The Prescript approves."
+      "content": "指令說沒問題呢。"
     },
     {
       "id": 124,
       "model": "검지아비",
-      "content": "But Callisto, I'll tell you now that you might be making a mistake."
+      "content": "不過，卡利斯托。那恐怕不是什麼好選擇。"
     },
     {
       "id": 125,
       "model": "약지아비",
-      "content": "Hm. And how are you so certain of that?"
+      "content": "哈。憑什麼這麼斷言呢？"
     },
     {
       "id": 126,
       "model": "약지아비",
-      "content": "Do elaborate if you can, hand-puppet of the Prescripts by whom every aspect of existence is articulated... What do you even know of choice? Of what is right or wrong?"
+      "content": "區區一個以將指令的意志付諸行動為人生全部的人偶……又怎麼會懂得選擇的好壞。"
     },
     {
       "id": 127,
       "model": "검지아비",
-      "content": "And off they went."
+      "content": "走掉了啊。"
     },
     {
       "id": 128,
       "model": "검지아비",
-      "content": "Perhaps a little more situational awareness would've... prevented what is to come."
+      "content": "明明多看看周遭會比較好的……就是了。"
     },
     {
       "id": 129,
-      "place": "Giant Stingray Portship",
+      "place": "魟魚港船",
       "model": "료슈",
-      "content": "Callisto had found me a rather decent academy."
+      "content": "經卡利斯托介紹進去的地方，還算是個不錯的地方。"
     },
     {
       "id": 130,
       "model": "료슈9장",
-      "content": "The \"artworks\" that used to scare me when I was alone weren't so bad when I was with other kids."
+      "content": "那些曾經那麼可怕的作品，和同齡的孩子們一起看，倒也值得一看。"
     },
     {
       "id": 131,
       "model": "료슈9장",
-      "content": "No, that's not quite it... It'd be more accurate to say that I started to understand people's perspective on \"beauty.\""
+      "content": "不，正確來說……「原來人們把這種東西稱為美啊」，該說我是有了這種想法才對吧。"
     },
     {
       "id": 132,
       "model": "료슈",
-      "content": "Of course I would, when all we ever did was nod along to the lecturers and spout purple prose, all the while making pincushions out of people's bodies like it was nothing."
+      "content": "大多數人一邊點頭，一邊滔滔不絕地堆砌華麗辭藻，理所當然地縫合著人的身體，我也只能這麼想了。"
     },
     {
       "id": 133,
-      "place": "The Ring's Subsidiary Art Academy",
-      "teller": "Instructor",
-      "title": "The Ring",
-      "content": "Our lesson today will focus on Corporist techniques."
+      "place": "環指旗下 藝術學院",
+      "teller": "講師",
+      "title": "環指",
+      "content": "今天大家一起來學習人體派的技法吧。"
     },
     {
       "id": 134,
-      "teller": "Instructor",
-      "title": "The Ring",
-      "content": "Now, take a good look at the diagram here, then the manikins before you. Weave the blood vessels in the same pattern as the diagram, and..."
+      "teller": "講師",
+      "title": "環指",
+      "content": "把發下去的模型上的血管好好編起來，做得跟這裡畫的樣子一模一樣的話……"
     },
     {
       "id": 135,
       "model": "약지아이1",
-      "teller": "Miffed Child",
-      "title": "The Ring",
-      "content": "I dunno why we're even learning about Corporist stuff in this day and age."
+      "teller": "鬧彆扭的孩子",
+      "title": "環指",
+      "content": "真不知道幹嘛要學什麼人體派的技法。"
     },
     {
       "id": 136,
       "model": "약지아이2",
-      "teller": "Picky Child",
-      "title": "The Ring",
-      "content": "Right? I don't get what the point of this slog is, tying and shaping blood vessels to make a color that a drop of ink can do better. I read that in a book."
+      "teller": "挑剔的孩子",
+      "title": "環指",
+      "content": "我在書上看到，現在就算不把血管那樣扭來扭去，只要在裡面加色素，就能做得更漂亮。"
     },
     {
       "id": 137,
@@ -691,332 +691,332 @@
     {
       "id": 138,
       "model": "약지아이1",
-      "teller": "Miffed Child",
-      "title": "The Ring",
-      "content": "*sigh* I'm more excited to learn about Cubist technique than this crap..."
+      "teller": "鬧彆扭的孩子",
+      "title": "環指",
+      "content": "唉……我本來想直接從立體派的技法開始學的……"
     },
     {
       "id": 139,
       "model": "약지아이1",
-      "teller": "Miffed Child",
-      "title": "The Ring",
-      "content": "Honestly, why's this washed-up movement even a part of the curriculum? It's just boring, shallow gore stuff—"
+      "teller": "鬧彆扭的孩子",
+      "title": "環指",
+      "content": "老實說，幹嘛要學過時的藝術啊？只是又殘忍又幼稚……"
     },
     {
       "id": 140,
       "model": "과거료슈1",
-      "content": "No. It's... Ya, it's gory, but... It's boring and shallow only because you guys are bad at it."
+      "content": "才不是。殘忍……是沒錯，但會幼稚，是因為你們只做得出那種東西吧。"
     },
     {
       "id": 141,
       "model": "약지아이2",
-      "teller": "Picky Child",
-      "title": "The Ring",
-      "content": "What? Aw, you mad 'cuz your daddy's a lame Corporist?"
+      "teller": "挑剔的孩子",
+      "title": "環指",
+      "content": "說什麼啊？因為妳爸是人體派，所以現在在幫他說話嗎？"
     },
     {
       "id": 142,
       "model": "약지아이1",
-      "teller": "Miffed Child",
-      "title": "The Ring",
-      "content": "Oh, is he? No wonder her stuff is just as—o-ow!"
+      "teller": "鬧彆扭的孩子",
+      "title": "環指",
+      "content": "難怪她做的東西也有點……嗚、嗚哇！"
     },
     {
       "id": 143,
       "model": "과거료슈1",
-      "content": "... I was taught that people who say bad things about my family deserve to get their butt kicked."
+      "content": "……有人教過我，說家人壞話的人，就要給他教訓。"
     },
     {
       "id": 144,
-      "place": "Giant Stingray Portship",
+      "place": "魟魚港船",
       "model": "료슈9장",
-      "content": "... Them badmouthing Callisto wasn't actually what set me off."
+      "content": "……我並不是因為卡利斯托那傢伙被罵而生氣。"
     },
     {
       "id": 145,
       "model": "료슈",
-      "content": "I didn't have any special reverence or attachment to \"family\" like Matthias did, either."
+      "content": "也不是像馬蒂亞斯那傢伙一樣，對家人賦予了什麼特別的意義。"
     },
     {
       "id": 146,
       "model": "료슈",
-      "content": "It's just what I was taught to dislike, that's all."
+      "content": "只是我被那樣教導，所以看不順眼罷了。"
     },
     {
       "id": 147,
       "model": "료슈",
-      "content": "Just one of those tantrums kids of that age have. Kids'll be kids, and all that."
+      "content": "那是那個年紀的小孩常會鬧的脾氣，也是常有的爭吵。"
     },
     {
       "id": 148,
-      "place": "Corridor of the Middle Nursefather, Past",
+      "place": "過去，中指父輩的長廊",
       "model": "과거료슈1",
-      "content": "I'm home, Dad."
+      "content": "爸爸，我回來了。"
     },
     {
       "id": 149,
       "model": "중지아비",
-      "content": "Hey, Buddy! You're home early! Oh man, must've been playing rough today, huh? You've got dust all over—"
+      "content": "我家丫頭！這麼快就回來啦？今天玩得挺野的嘛？全身都是灰……"
     },
     {
       "id": 150,
       "model": "과거료슈1",
-      "content": "Got into a fight."
+      "content": "這是因為打架。"
     },
     {
       "id": 151,
       "model": "중지아비",
-      "content": "A fight?"
+      "content": "打架？"
     },
     {
       "id": 152,
       "model": "과거료슈1",
-      "content": "Yeah. They kept saying dumb things about class stuff, so I smacked 'em."
+      "content": "嗯。他們一直對我學的東西說三道四，所以我揍了他們。"
     },
     {
       "id": 153,
       "model": "중지아비",
-      "content": "... What about you? They didn't hit you anywhere, did they, Buddy?"
+      "content": "……我家丫頭沒有哪裡被打吧？"
     },
     {
       "id": 154,
       "model": "과거료슈1",
-      "content": "On my cheek, but it's ok. 'cuz I punched them thiiiis many more times. Did I do good?"
+      "content": "臉頰被打了一下，不過沒關係。我打了他們這～麼多下。我很棒吧？"
     },
     {
       "id": 155,
       "model": "중지아비",
-      "content": "... That's my girl."
+      "content": "……真棒。"
     },
     {
       "id": 156,
       "model": "과거료슈1",
-      "content": "Dad?"
+      "content": "爸爸？"
     },
     {
       "id": 157,
       "model": "과거료슈1",
-      "content": "Where are you going?"
+      "content": "你要去哪？"
     },
     {
       "id": 158,
       "model": "중지아비",
-      "content": "Oh, ya know. Just got some business to take care of."
+      "content": "啊，有件事得去辦一下。"
     },
     {
       "id": 159,
       "model": "중지아비",
-      "content": "Why don'tcha sit tight and work on a coloring book? Daddy'll be home 'fore you know it."
+      "content": "我家丫頭就一邊玩塗色一邊等著吧。爸爸馬上就回來。"
     },
     {
       "id": 160,
       "model": "과거료슈1",
-      "content": "Mhm... Mmkay. Is it Bro business?"
+      "content": "嗯……知道啦。是大哥們找你嗎？"
     },
     {
       "id": 161,
       "model": "중지아비",
-      "content": "No, it's..."
+      "content": "不是，嗯……"
     },
     {
       "id": 162,
       "model": "중지아비",
-      "content": "... Family business."
+      "content": "是為了家人的事。"
     },
     {
       "id": 163,
-      "place": "Giant Stingray Portship",
+      "place": "魟魚港船",
       "model": "히스클리프",
-      "content": "I ain't seein' what's so bad about taking care of your own. Them snotty sods don't learn respect 'less you beat it into 'em."
+      "content": "怎樣。幹得好啊。說話討人厭的傢伙本來就該狠狠揍一頓。"
     },
     {
       "id": 164,
       "model": "료슈9장",
-      "content": "... Hah."
+      "content": "……哈。"
     },
     {
       "id": 165,
       "model": "료슈",
-      "content": "If only he'd been a simple-minded fool like you... then the story would've ended right there with a pat on my head."
+      "content": "要是馬蒂亞斯跟你這傢伙一樣是個白痴……大概摸摸我的頭就了事了吧。"
     },
     {
       "id": 166,
       "model": "히스클리프",
-      "content": "What?"
+      "content": "啥？"
     },
     {
       "id": 167,
       "model": "뉴키라",
-      "content": "... Papa—I mean, the Middle doesn't stop there. It never does."
+      "content": "……把拔他，不，中指是不會就這樣滿足的。"
     },
     {
       "id": 168,
       "model": "뉴키라",
-      "content": "You hurt a member of the <i>family</i>... That automatically gets you written up in the Book."
+      "content": "傷害了家人的人……首先名字就會被記到帳簿上吧。"
     },
     {
       "id": 169,
       "model": "료슈",
-      "content": "Yeah. And he did what he did in the end."
+      "content": "沒錯。最後那傢伙還是出手了。"
     },
     {
       "id": 170,
-      "place": "The Ring's Subsidiary Art Academy",
+      "place": "環指旗下 藝術學院",
       "model": "과거료슈1",
-      "content": "Huh...?"
+      "content": "咦……？"
     },
     {
       "id": 171,
       "model": "중지아비",
-      "content": "Ha ha, there you are, Yoshihide! Is class startin' already? My diligent little girl—wonder who she takes after."
+      "content": "哈哈。我家良秀，已經到來學院的時間啦？到底像誰啊，這麼勤快。"
     },
     {
       "id": 172,
       "model": "과거료슈1",
-      "content": "D-dad...?"
+      "content": "爸、爸爸……？"
     },
     {
       "id": 173,
       "model": "중지아비",
-      "content": "I know, I know. I said I'll be back before ya know it, but I got a bit lost tryna find my way through the Ring bastards' tricky mazes. Y'know how they are."
+      "content": "說好馬上就去，結果不愧是那些狡猾的環指傢伙，路繞來繞去的，害我迷路了好一陣子。"
     },
     {
       "id": 174,
       "model": "중지아비",
-      "content": "Oh yeah, and there are so, so many snivellin' brats here."
+      "content": "再說，小鬼也太多了吧。"
     },
     {
       "id": 175,
       "model": "중지아비",
-      "content": "Well, as for their crimes... they slapped my buddy's face hard enough to leave a mark. That's an arm for ya."
+      "content": "在我家丫頭臉上留下手印的罪。這個就是一條手臂。"
     },
     {
       "id": 176,
       "model": "중지아비",
-      "content": "As for the instructors... well, anyone'd agree that they did one sorry job of keeping these tykes under control."
+      "content": "然後是沒好好管教這些傢伙的講師們……"
     },
     {
       "id": 177,
       "model": "중지아비",
-      "content": "In that case, pursuant to Title 2, Section 52 of the Book... \"execution by beheading.\" They clearly don't got much use for what sits on their shoulders, eh?"
+      "content": "這種情況……依照第2條第52項，應該判斬首才對。脖子上面頂著的東西根本沒用嘛。對吧？"
     },
     {
       "id": 178,
       "model": "과거료슈1",
-      "content": "Ah... ahh..."
+      "content": "呃……呃呃……"
     },
     {
       "id": 179,
       "model": "중지아비",
-      "content": "How do ya like it, buddy? Papa's the best, ain't he?"
+      "content": "怎麼樣啊，丫頭？還是只有爸爸最疼妳吧？"
     },
     {
       "id": 180,
-      "place": "Corridor of the Ring Nursefather, Past",
+      "place": "過去，環指父輩的長廊",
       "model": "약지아비",
-      "content": "How dare he...! Such senseless, barbaric violence...!"
+      "content": "這是何等……連禽獸都不如的行徑……"
     },
     {
       "id": 181,
       "model": "약지아비",
-      "content": "Uncultured, uncivilized animal...!"
+      "content": "那個野蠻人似的傢伙……終究還是……！"
     },
     {
       "id": 182,
       "model": "과거료슈1",
-      "content": "*sob*"
+      "content": "嗚……嗚嗚……"
     },
     {
       "id": 183,
       "model": "약지아비",
-      "content": "Do not be discouraged, dearest Yoshihide. I have eyed out yet another academy worthy of your talents—it is a much more significant and prestigious institution this time."
+      "content": "別擔心，良秀。我已經物色好別的學院了。是個傳承深厚又規模宏大的地方。"
     },
     {
       "id": 184,
       "model": "약지아비",
-      "content": "I assure you, even an intemperate berserker like Matthias won't dare force his way into such a place as he did the previous academy."
+      "content": "在那裡的話，就算是馬蒂亞斯那個野蠻人，也沒辦法那樣胡作非為了。"
     },
     {
       "id": 185,
       "model": "과거료슈1",
-      "content": "... dun wanna."
+      "content": "……不要。"
     },
     {
       "id": 186,
       "model": "약지아비",
-      "content": "Yoshihide...?"
+      "content": "良秀……？"
     },
     {
       "id": 187,
       "model": "과거료슈1",
-      "content": "I don't wanna go to an academy. I don't wanna go..."
+      "content": "我不要去學院。不想去……"
     },
     {
       "id": 188,
       "model": "과거료슈1",
-      "content": "I don't... need friends anyway..."
+      "content": "朋友……沒有也沒關係……"
     },
     {
       "id": 189,
-      "place": "Giant Stingray Portship",
+      "place": "魟魚港船",
       "model": "료슈",
-      "content": "For all his posturing, nothing that was ever important to me held any significance to Matthias."
+      "content": "我所珍惜的東西，馬蒂亞斯一點也不珍惜。"
     },
     {
       "id": 190,
       "model": "료슈",
-      "content": "He took a lot away from me just to feel good about himself."
+      "content": "只是為了滿足他自己，從我身邊奪走了無數的東西。"
     },
     {
       "id": 191,
       "model": "료슈2",
-      "content": "*puff*"
+      "content": "呼……"
     },
     {
       "id": 192,
       "model": "료슈",
-      "content": "So I hoped he, more than anyone, would never find out about the things I held dear, because I was afraid he would take them away from me like he did the others."
+      "content": "所以，我唯獨不希望那傢伙知道我所珍惜之物的存在。怕他又在轉眼間把它們打散。"
     },
     {
       "id": 193,
       "model": "료슈",
-      "content": "But... he'd always catch on faster than he had any right to."
+      "content": "但是……他唯獨察覺得總是快得多餘。"
     },
     {
       "id": 194,
       "model": "료슈",
-      "content": "... Every contract that took me away from the House of Spiders made me tremble in anxiety."
+      "content": "……每當因為委託而必須離開蜘蛛巢時……我都惶惶不安。"
     },
     {
       "id": 195,
       "model": "료슈",
-      "content": "Because I was worried about— I don't remember what. But I do know that I could never stop thinking about my room."
+      "content": "原因……我想不起來了，但我記得自己一直放心不下待過的那個房間。"
     },
     {
       "id": 196,
       "model": "료슈",
-      "content": "So... whatever occupied the room in my absence must've been the most precious thing to me in the world."
+      "content": "所以……在我離開後變得空蕩蕩的那個房間裡的，想必是我最珍貴的東西吧。"
     },
     {
       "id": 197,
-      "content": "The scabbard, which had been stirring lightly as Ryōshū recounted her past, soon began to rattle audibly."
+      "content": "每當良秀繼續講下去，就會微微晃動的刀鞘，終於開始發出明顯的喀噠聲。"
     },
     {
       "id": 198,
       "model": "료슈2",
-      "content": "... It's doing that thing again."
+      "content": "……又來了。"
     },
     {
       "id": 199,
-      "content": "Ryōshū patted the scabbard with a gentle, reassuring hand."
+      "content": "只將「那個刀鞘就是阿賴耶」這件事，作為一段失去感受的記憶留存著。"
     },
     {
       "id": 200,
-      "content": "The scabbard that was once Araya. A memory without attachment."
+      "content": "良秀像是要它冷靜下來似的，用掌心輕輕拍了拍刀鞘。"
     },
     {
       "id": 201,
-      "content": "It appeared to me almost as though she was pacifying a crying child."
+      "content": "就像在哄哭泣的孩子一樣。"
     },
     {
       "id": 202,
@@ -1025,89 +1025,89 @@
     },
     {
       "id": 203,
-      "content": "Seeing that gesture, Heathcliff briefly cast a sullen yet faintly expectant gaze between Ryōshū's scabbard and my device."
+      "content": "看到這一幕，希斯克利夫用憂鬱、卻又帶著些許期待的眼神，輪流瞟著良秀的刀鞘和我的終端。"
     },
     {
       "id": 204,
-      "content": "He must be thinking back to his last conversation with Catherine."
+      "content": "他大概是想起了和凱瑟琳最後一次交談的那一刻吧……"
     },
     {
       "id": 205,
-      "content": "But Catherine's existence, unlike Araya's, was erased by the Golden Bough itself."
+      "content": "但和阿賴耶不同，凱瑟琳的存在已經被金枝抹除了。"
     },
     {
       "id": 206,
-      "content": "... I doubt this device could do anything for Heathcliff at this point."
+      "content": "很遺憾，這台終端大概已經沒有能讓希斯克利夫期待的餘地了。"
     },
     {
       "id": 207,
       "model": "오티스",
-      "content": "From everything we know, the Ring Nursefather seems to have been the... least awful parental figure in your childhood."
+      "content": "光聽故事的話，那個環指父輩算是最好的了。"
     },
     {
       "id": 208,
       "model": "뉴키라",
-      "content": "Huh, yeah. Didn't know that robo-unc was such a radical guy. He sent you to an academy like you wanted and even got angry on your behalf?"
+      "content": "就是說啊。義體叔叔超意外的耶。又送妳去學院，又替妳生氣，不是嗎？"
     },
     {
       "id": 209,
       "model": "료슈",
-      "content": "Oh."
+      "content": "啊。"
     },
     {
       "id": 210,
       "model": "료슈",
-      "content": "Hazy memories. Almost forgot to mention."
+      "content": "記憶模糊，差點忘了。"
     },
     {
       "id": 211,
       "model": "료슈",
-      "content": "A few days after that... Callisto left a \"snowman\" by my pillow as a gift. It was made of heads."
+      "content": "那件事過了幾天後……卡利斯托那傢伙說是禮物，在我枕邊放了一個用腦袋做成的雪人。"
     },
     {
       "id": 212,
       "model": "뉴키라",
-      "content": "... Heads?"
+      "content": "……腦袋？"
     },
     {
       "id": 213,
       "model": "료슈",
-      "content": "Yes. Decapitated heads from the incident at the academy, threaded together into a sculpture."
+      "content": "對。是用在學院裡死掉的那些人的頭串起來做給我的。"
     },
     {
       "id": 214,
       "model": "료슈",
-      "content": "Tsk. Thinking back, it was one sorry excuse for an art. He's sorely mistaken if he thought some low-effort bullshit like that could make me feel better."
+      "content": "嘖。現在想想，那作品的品質真是慘不忍睹。他以為那種毫無誠意的藝術能讓我高興嗎？"
     },
     {
       "id": 215,
       "model": "오티스",
-      "content": "Um..."
+      "content": "嗯……"
     },
     {
       "id": 216,
       "model": "히스클리프",
-      "content": "... Ugh. Could've spared us the details, lass."
+      "content": "……啊。真是的，聽得我都反胃了。"
     },
     {
       "id": 217,
       "model": "단테",
-      "content": "<Well, with that covered, do you guys wanna head back?>"
+      "content": "<那既然確認完了，我們回去吧？>"
     },
     {
       "id": 218,
       "model": "히스클리프",
-      "content": "... Hang on."
+      "content": "……等一下。"
     },
     {
       "id": 219,
       "model": "뉴키라",
-      "content": "Whassup? Gonna get that <i>luscious</i> treatment before heading back?"
+      "content": "幹嘛？想用那張美髮券喔？"
     },
     {
       "id": 220,
       "model": "히스클리프",
-      "content": "Shut it, you! That ain't it! Look there, those blokes walkin' out of the salon—"
+      "content": "可惡！才不是咧！不是那個……從那家美髮店出來的那些傢伙……"
     },
     {
       "id": 221,
@@ -1117,134 +1117,134 @@
     {
       "id": 222,
       "model": "히스클리프",
-      "content": "Fauvists, ain't they? They've found us."
+      "content": "不就是那個什麼野獸派的傢伙嗎？好像發現我們了？"
     },
     {
       "id": 223,
       "model": "파우스트",
-      "content": "It would not be odd to find a field branch of the Ring's art movement in different Districts of the City, especially that of the Fauvists' scale. However..."
+      "content": "以野獸派這等規模的派系來說，分散盤踞在都市各處倒也不奇怪。"
     },
     {
       "id": 224,
       "model": "파우스트",
-      "content": "... various evidence, such as their masks and the fact that our group has immediately drawn their attention, suggests that they are in the same pack as the one making regular incursions into the House of Spiders."
+      "content": "但考慮到他們戴著的面具……以及現在投來的目光……他們與持續入侵蜘蛛巢的那群人屬於同一夥的可能性很高呢。"
     },
     {
       "id": 225,
       "model": "오티스",
-      "content": "This is LCB, speaking to Team Leader Alan. Requesting immediate commencement of lockdown sequence."
+      "content": "這裡是LCB。亞倫組長，請求執行封鎖程序。"
     },
     {
       "id": 226,
       "model": "앨런",
-      "content": "Copy that."
+      "content": "收到。"
     },
     {
       "id": 227,
       "model": "단테",
-      "content": "<Then why don't we—>"
+      "content": "<那……馬上……>"
     },
     {
       "id": 228,
       "model": "뉴키라",
-      "content": "Holy shit, guys! Stop!"
+      "content": "不是，喂！等一下啦！"
     },
     {
       "id": 229,
       "model": "히스클리프",
-      "content": "Bloody hell! What?!"
+      "content": "嚇我一跳！幹嘛？"
     },
     {
       "id": 230,
       "model": "뉴키라",
-      "content": "Don't you know where you are? You're... smack-dab in the Middle-protected turf."
+      "content": "這裡……是中指的保護區域。"
     },
     {
       "id": 231,
       "model": "뉴키라",
-      "content": "Cause a scene, and Bros and Sisters of the Middle'll be here any second."
+      "content": "要是鬧起來……中指的大哥大姊們就會過來喔。"
     },
     {
       "id": 232,
       "model": "단테",
-      "content": "<Oh yeah... That's gonna be a problem.>"
+      "content": "<啊……那就麻煩了……>"
     },
     {
       "id": 233,
-      "content": "We've already drawn the Ring's unwanted attention—we certainly don't want the Middle coming after us to the House of Spiders, too."
+      "content": "環指正在入侵的現在，我不想多生事端，連中指的目光都引過來。"
     },
     {
       "id": 234,
       "model": "료슈",
-      "content": "Sounds like you've got a G.I."
+      "content": "說得像是想到了妙．招似的。"
     },
     {
       "id": 235,
       "model": "료슈",
-      "content": "Talk."
+      "content": "說吧。"
     },
     {
       "id": 236,
       "model": "뉴키라",
-      "content": "Ever played whack-a-mole?"
+      "content": "你們玩過打地鼠嗎？"
     },
     {
       "id": 237,
       "model": "뉴키라",
-      "content": "Like, why give ourselves a countdown? Just head back through the door now and beat up whoever thinks it's a great idea to walk in through the door."
+      "content": "與其在這裡鬧事、等門快關上才衝進去，還不如先回去，把從門裡冒出來的傢伙打趴，不是比較輕鬆嗎？"
     },
     {
       "id": 238,
       "model": "오티스",
-      "content": "She puts forth a sound strategy, Executive Manager. As long as there's no high-ranking Officer among them, it would be to our benefit."
+      "content": "只要成員裡沒有高階幹部……這似乎是不錯的戰略，經理。"
     },
     {
       "id": 239,
       "model": "단테",
-      "content": "<Well, then... Let's do as Kira says.>"
+      "content": "<那……就照綺羅說的試試吧。>"
     },
     {
       "id": 240,
-      "place": "Corridor of the Middle Nursefather",
+      "place": "蜘蛛巢，中指父輩的長廊",
       "model": "앨런",
-      "content": "...? That was quick."
+      "content": "……？這麼快就回來了？"
     },
     {
       "id": 241,
-      "content": "Alan blinked, shooting us a puzzled look as our entire squad came pouring through the door long before he finished the lockdown sequence."
+      "content": "我們帶著罪人們與綺羅，在封鎖程序還要好一段時間才能完成時就回來了，亞倫一臉困惑地眨了眨眼。"
     },
     {
       "id": 242,
       "model": "파우스트",
-      "content": "... Due to newly emergent complications past the door, we have concluded that this location is the optimal point to intercept and engage the infiltrators from the Ring."
+      "content": "……門內發生了一些狀況，我們決定在這裡與入侵的環指成員交戰。"
     },
     {
       "id": 243,
       "model": "앨런",
-      "content": "<i>This</i> location, you say?"
+      "content": "在這裡嗎？"
     },
     {
       "id": 244,
       "model": "앨런마스크",
-      "content": "Ah, wait. That door leads to a zone under a Syndicate or a Wing's protection, doesn't it? Better idea to fight here, then."
+      "content": "啊。看來連接點是幫派或翼的保護區域啊。那樣的話，還不如在這裡打比較好。"
     },
     {
       "id": 245,
       "model": "오티스",
-      "content": "... Happy to work with someone quick on the uptake."
+      "content": "……一點就通，很好。"
     },
     {
       "id": 246,
-      "content": "It wasn't long before the Fauvists began rushing in through the open door..."
+      "content": "不久，野獸派的成員們開始越過尚未關上的門湧進來……"
     },
     {
       "id": 247,
       "model": "단테",
-      "content": "<I didn't want to summon them while they're relaxing, but... Welp, it can't be helped.>"
+      "content": "<雖然很抱歉打擾你們休息，但也沒辦法。>"
     },
     {
       "id": 248,
-      "content": "... and I summoned the Sinners back to work."
+      "content": "我把想必又在休息的罪人們召集了過來。"
     }
   ]
 }

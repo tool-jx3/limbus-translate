@@ -18,7 +18,7 @@
     {
       "id": 135503,
       "name": "解放",
-      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 90%-/70%-/50%- HP,\n- Gain [UnlockBuff_1]/[UnlockBuff_2]/[UnlockBuff_3]\n- Heal to 45 SP\n- Consume all [PressureOfPrescript] and recover from Stagger\n- Gain 1 [BlessingOfIndexPrescriptEnemy] in the turn after [UnlockBuff_Base] was gained for the first time\n\nIf [UnlockBuff_Base] was gained based on HP conditional above,\n- Gain [KarmaOfIndexStudent] by (sum of healed SP / 15)\n- Increase [BlessingOfIndexPrescriptEnemy] to 3/6/9 if this unit had less than 3/6/9 [BlessingOfIndexPrescriptEnemy]; gain 1 [DefenseDown] and 2 [KarmaOfIndexStudent] next turn for every [BlessingOfIndexPrescriptEnemy] Stack gained"
+      "desc": "回合結束時，若自身的 [BlessingOfIndexPrescriptEnemy] 層數為3/6/9層或自身的現存體力不高於90%/70%/50%，\n- 使自身獲得 [UnlockBuff_1] / [UnlockBuff_2] / [UnlockBuff_3]\n- 使自身理智值增加至45點\n- 消耗自身所有 [PressureOfPrescript] 並解除自身的混亂\n- 首次獲得 [UnlockBuff_Base] 的下回合，使自身獲得1層 [BlessingOfIndexPrescriptEnemy]\n\n透過體力條件獲得 [UnlockBuff_Base] 時\n- 使自身獲得(增加的理智值/15)層 [KarmaOfIndexStudent]\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數低於3/6/9層，則使其層數變為3/6/9層，\n且每增加1層，在下回合開始時，使自身獲得1層 [DefenseDown] 與2層 [KarmaOfIndexStudent]"
     },
     {
       "id": 135505,
@@ -95,7 +95,7 @@
     {
       "id": 137910,
       "name": "狩獵時間",
-      "desc": "Turn Start: If this unit is Staggered, recover from Stagger\n\nSelect a random Sinner and inflict [TeachersPrey]\n- Activates every 4 turns after the initial activation\n- If this unit kills the target with the Skill \"Disposal,\" activate it again next turn",
+      "desc": "回合開始時，若自身陷入混亂，則解除自身混亂\n\n隨機指定1名罪人並對其施加 [TeachersPrey]\n- 此後，每經過4回合觸發1次該效果\n- 自身使用技能「處分」擊殺目標時，則下回合再次觸發該效果",
       "summary": "",
       "undefined": "-",
       "flavor": "巴勒莫幾乎完全體現了波納堤利家的作風。\n執著地專注於單一獵物，狩獵並肢解。拒絕隱匿行動。懷著名譽與勇氣，在眾目睽睽之下擊殺目標。\n那華麗的劍術締造了無數榮譽，讓波納堤利家躋身為後巷的七大家族。\n完全掌握巴勒莫的瓦倫奇娜在煙霾戰爭斬落了眾多軍官與資深士兵的頭顱，成為煙霾戰爭的英雄之一。\n但是誰能預料得到呢。那名聲竟然會成為她的腳鐐。"
@@ -124,7 +124,7 @@
     {
       "id": 138204,
       "name": "仇怨",
-      "desc": "每當自身被2個技能攻擊時，使自身獲得1層 [ResentmentSpider] 並使自身減少1層 [DaughterEducationSpider] (受擊次數將累積計算)\n\n若自身的 [ResentmentSpider] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力不高於90%、60%、40%，則使自身的 [ResentmentSpider] 層數變為最大值"
+      "desc": "每當自身被技能攻擊2次時，使自身獲得1層 [ResentmentSpider]，並使自身的 [DaughterEducationSpider] 減少1層(受擊次數將累積計算)\n\n若自身的 [ResentmentSpider] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力低於90%、60%、40%，則使自身的 [ResentmentSpider] 層數變為最大值"
     },
     {
       "id": 138205,
@@ -134,7 +134,7 @@
     {
       "id": 138801,
       "name": "這樣做就好了吧，把拔！",
-      "desc": "關卡開始時，使自身帶有 [HeatingWireOffSpider]\n\n回合開始時，若自身的 [GotACompliment] 層數不低於3層，則使自身獲得 [HeatingWireOnSpider] 且使自身施加 [Laceration] 的技能額外施加 [Combustion]\n- 回合結束時，若自身 [GotACompliment] 的層數不高於3層，則使自身的 [HeatingWireOnSpider] 轉變為 [HeatingWireOffSpider]\n\n若中指 父輩 - 馬蒂亞斯帶有 [MiddleFatherSwordFour]，則自身不會進入 [HeatingWireOffSpider] 狀態",
+      "desc": "關卡開始時，使自身帶有 [HeatingWireOffSpider]\n\n回合開始時，若自身的 [GotACompliment] 層數不低於3層，則轉變為 [HeatingWireOnSpider]，且自身施加 [Laceration] 的技能額外施加 [Combustion]\n- 回合結束時，若自身的 [GotACompliment] 層數低於3層，則使自身的 [HeatingWireOnSpider] 轉變為 [HeatingWireOffSpider]\n\n若中指 父輩 - 馬蒂亞斯帶有 [MiddleFatherSwordFour]，則自身不會進入 [HeatingWireOffSpider] 狀態",
       "flavor": "「把拔總是會誇獎我、買漫畫給我，超讚的」"
     },
     {
@@ -155,7 +155,7 @@
     {
       "id": 138804,
       "name": "中指說過絕對會以牙還牙的吧",
-      "desc": "每當自身被2個技能攻擊時，使自身獲得1層 [ResentmentSpiderDaughter] 並使自身減少1層 [GotACompliment] (受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力不高於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值",
+      "desc": "每當自身被技能攻擊2次時，使自身獲得1層 [ResentmentSpiderDaughter]，並使自身的 [GotACompliment] 減少1層(受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力低於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值",
       "summary": "",
       "undefined": "-"
     },
@@ -168,7 +168,7 @@
     {
       "id": 138002,
       "name": "神諭終端 [商神杖]",
-      "desc": "<color=#ff6000><mark=#ff000040>自身每枚硬幣的武器均會隨機決定且帶有特殊效果<b><u></u></b></mark></color>\n- [RienWeapon01Hatchet]\n- [RienWeapon02Stiletto]\n- [RienWeapon03Greatsword]\n- [RienWeapon04Rapier]\n- [RienWeapon05Sledgehammer]\n- [RienWeapon06Ultragreatsword]\n- [RienWeapon07Lance]\n- [RienWeapon08Chain]\n- [RienWeapon09Scythe]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法從相同的技能獲得2次)\n\n<color=#ff6000><mark=#ff000040><b>回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能<u></u></b></mark></color>\n- 本場戰鬥首次使用強力技能後，自身將獲得 [Shin_Rien]\n- 重置每種技能獲得 [StackRienSpecialSkill] 的上限\n- 自身最小與最大速度值+15\n- 回合結束時，下回合對自身施加1層 [Vulnerable] 與2層 [ResultReduction]\n\n第3回合開始時，若自身的 [StackRienSpecialSkill] 層數不高於9層，則強制增加至9層並對自身施加(增加的層數×3)層的 [KarmaOfIndexRien]\n- 此後，每3回合觸發一次該效果",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>自身每枚硬幣的武器均會隨機決定且帶有特殊效果</u></b></mark></color>\n- [RienWeapon01Hatchet]\n- [RienWeapon02Stiletto]\n- [RienWeapon03Greatsword]\n- [RienWeapon04Rapier]\n- [RienWeapon05Sledgehammer]\n- [RienWeapon06Ultragreatsword]\n- [RienWeapon07Lance]\n- [RienWeapon08Chain]\n- [RienWeapon09Scythe]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次(透過同一技能獲得的層數無法高於2層)\n\n<color=#ff6000><mark=#ff000040><b><u>回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能</u></b></mark></color>\n- 首次使用後，攻擊結束時使自身獲得 [Shin_Rien]\n- 重置各技能是否已獲得 [StackRienSpecialSkill] 的紀錄\n- 自身最小與最大速度值+15\n- 回合結束時，下回合使自身獲得1層 [Vulnerable] 與2層 [ResultReduction]\n\n第3回合開始時，若自身的 [StackRienSpecialSkill] 層數低於9層，則增加至9層，並使自身獲得(增加的層數×3)層 [KarmaOfIndexRien]\n- 此後每3回合觸發一次該效果",
       "flavor": "終端裡收納著運用類似奇點，可以改變形狀與質量如同金屬的液體。\n這種液體會根據終端所接收的指令變換姿態，配合殺害目標的情報與限制時間來轉換武器。\n某一日，我配發到過於短小的匕首，本來想等待它轉變成其他武器，結果直到殺害期限逼近都仍未出現像樣的武器。最終，等到最後出現的是叉子，所以不得不用那把叉子殺害目標。"
     },
     {
@@ -186,7 +186,7 @@
     {
       "id": 138005,
       "name": "解放",
-      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 95%-/85%-/75%- HP,\n- Gain [UnlockBuff_Rien1]/[UnlockBuff_Rien2]/[UnlockBuff_Rien3]\n\nTurn 1 End: At lower than [UnlockBuff_Base] stage 1, gain [UnlockBuff_Rien1]\nTurn 2 End: At lower than [UnlockBuff_Base] stage 2, gain [UnlockBuff_Rien2]\n\nWhen gaining [UnlockBuff_Base] for the first time, if this unit's SP is below 15, heal up to 15 SP\n\nWhen [UnlockBuff_Base] is activated due to HP or Turn conditionals:\n- At less than 3/6/9 [BlessingOfIndexPrescriptEnemy] Stack, raise the Stack to 3/6/9 and gain 5 [KarmaOfIndexRien] at the next Turn Start for every Stack gained",
+      "desc": "回合結束時，若自身的 [BlessingOfIndexPrescriptEnemy] 層數為3/6/9層或自身的現存體力不高於95%/85%/75%，\n- 使自身獲得 [UnlockBuff_Rien1] / [UnlockBuff_Rien2] / [UnlockBuff_Rien3]\n\n第1/第2回合結束時，若自身的 [UnlockBuff_Base] 階段低於1/2階，\n則使自身獲得 [UnlockBuff_Rien1] / [UnlockBuff_Rien2]\n\n自身未帶有 [UnlockBuff_Base] 且首次獲得該狀態時，\n若自身的理智值低於15點，則使自身理智值恢復至15點\n\n\n透過體力或回合條件獲得 [UnlockBuff_Base] 時，\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數低於3/6/9層，則使其層數變為3/6/9層，\n每增加1層，在下回合開始時，使自身獲得5層 [KarmaOfIndexRien]",
       "flavor": "「遵從指令前行，那些閉關的事物理所當然就會解開。」"
     },
     {
@@ -198,13 +198,13 @@
     {
       "id": 138102,
       "name": "神諭終端 [商神杖] - 完全解放",
-      "desc": "<color=#ff6000><mark=#ff000040>自身每枚硬幣的武器均會隨機決定且帶有特殊效果<b><u></u></b></mark></color>\n- [RienWeapon01Hatchet2phase]\n- [RienWeapon02Stiletto2phase]\n- [RienWeapon03Greatsword2phase]\n- [RienWeapon04Rapier2phase]\n- [RienWeapon05Sledgehammer2phase]\n- [RienWeapon06Ultragreatsword2phase]\n- [RienWeapon07Lance2phase]\n- [RienWeapon08Chain2phase]\n- [RienWeapon09Scythe2phase]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次 (無法從相同的技能獲得2次)\n- 僅在特殊模式使用的技能不會獲得\n\n回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能\n- 重置每種技能獲得 [StackRienSpecialSkill] 的上限\n- 自身最小與最大速度值+15\n- 回合結束時，下回合對自身施加2層 [Vulnerable] 與3層 [ResultReduction]\n\n從改變模式的回合起觸發效果\n- 每經過3回合，若自身的 [StackRienSpecialSkill] 層數不高於9層，\n則強制增加至9層並對自身施加(增加的層數×5)層 [KarmaOfIndexRien_2Phase]",
+      "desc": "<color=#ff6000><mark=#ff000040><b><u>自身每枚硬幣的武器均會隨機決定且帶有特殊效果</u></b></mark></color>\n- [RienWeapon01Hatchet2phase]\n- [RienWeapon02Stiletto2phase]\n- [RienWeapon03Greatsword2phase]\n- [RienWeapon04Rapier2phase]\n- [RienWeapon05Sledgehammer2phase]\n- [RienWeapon06Ultragreatsword2phase]\n- [RienWeapon07Lance2phase]\n- [RienWeapon08Chain2phase]\n- [RienWeapon09Scythe2phase]\n\n使用攻擊技能時，使自身獲得1層 [StackRienSpecialSkill] (最多9層)\n- 每個技能僅可獲得1次(無法透過同一技能獲得不低於2層)\n- 僅在特殊模式中使用的技能不會使自身獲得此效果\n\n回合開始時，若自身的 [StackRienSpecialSkill] 層數為9層，則使用強力技能\n- 重置各技能是否已獲得 [StackRienSpecialSkill] 的紀錄\n- 自身最小與最大速度值+15\n- 回合結束時，下回合使自身獲得2層 [Vulnerable] 與3層 [ResultReduction]\n\n從階段轉變的回合起觸發以下效果\n- 每3回合，若自身的 [StackRienSpecialSkill] 層數低於9層，\n則增加至9層，並使自身獲得(增加的層數×5)層 [KarmaOfIndexRien_2Phase]",
       "flavor": "透過電波傳送指令的都市之神荷米斯所賜予的最強武器，同時也是詛咒。"
     },
     {
       "id": 138103,
       "name": "指令之意",
-      "desc": "Turn Start:\n- Apply [IndexPrescriptTargetToPersonality] against a random Sinner, and prioritize attacking them\n<color=#ff6000><mark=#ff000040><b><u>- When using a Skill against [IndexPrescriptTargetToPersonality], convert all Coins on that Skill to [SuperCoin]s</u></b></mark></color>\n- Gain [Protection] equal to [BlessingOfIndexPrescriptEnemy] (max 9)\n<color=#ff6000><mark=#ff000040><b><u>\n· Lose 1 Stack for every 20 [KarmaOfIndexRien_2Phase]</u></b></mark></color>\n\nWhen attacking, if [IndexPrescriptTargetToPersonality] is killed, or if this unit can no longer attack that target, <color=#ff6000><mark=#ff000040><b><u>use the remaining Skills against a random other Sinner\n- Prioritizes targets with the least current HP, unless they have 1 HP\n- When the randomly chosen Sinner is killed, or if the said Sinner's HP is brought down to 1, repeat this effect on another Sinner</u></b></mark></color>\n\nDeal +5% damage against [IndexPrescriptTargetToPersonality] for every [BlessingOfIndexPrescriptEnemy] (max 40%)\n- At 9 [BlessingOfIndexPrescriptEnemy], deal +50% damage against all targets\n\nStarting from the first turn after the phase change, activate the following effects:\n- Turn Start: Gain [BlackNightmare]\n· If this unit used a powerful attack in the previous turn, lose [BlackNightmare] for that turn\n- When gaining [BlackNightmare], if this unit has fewer than 9 [StackRienSpecialSkill] Stacks, activate a unique pattern",
+      "desc": "回合開始時，\n- 隨機對1名罪人施加 [IndexPrescriptTargetToPersonality] 並優先攻擊該罪人\n<color=#ff6000><mark=#ff000040><b><u>- 自身對 [IndexPrescriptTargetToPersonality] 使用的技能硬幣將全數轉變為 [SuperCoin]</u></b></mark></color>\n- 根據自身帶有的 [BlessingOfIndexPrescriptEnemy] 層數，使自身獲得等量的 [Protection] 層數 (最多9層)\n<color=#ff6000><mark=#ff000040><b><u>．自身每帶有20層 [KarmaOfIndexRien_2Phase] 時，則使獲得的層數減少1層</u></b></mark></color>\n\n攻擊時 [IndexPrescriptTargetToPersonality] 陣亡或自身無法攻擊目標時，\n<color=#ff6000><mark=#ff000040><b><u>隨機對另1名罪人使用未使用的剩餘技能\n- 優先指定現存體力最低的目標(不包括體力為1點的單位)\n- 隨機指定的罪人陣亡或體力降至1點時，對其他罪人重複該效果</u></b></mark></color>\n\n自身每帶有1層 [BlessingOfIndexPrescriptEnemy]，則使自身對 [IndexPrescriptTargetToPersonality] 造成的傷害+5%(最多+40%)\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數為9層時，則改為對所有目標造成的傷害+50%\n\n從改變模式的回合起觸發效果\n- 回合開始時，使自身獲得 [BlackNightmare]\n．若上回合自身使用了強力技能，則本回合不會獲得 [BlackNightmare]\n- 獲得 [BlackNightmare] 時，若自身帶有的 [StackRienSpecialSkill] 層數低於9層，則觸發特殊模式",
       "flavor": "我組建了家庭。\n\n「你現在不應該出現在這裡。」\n「工作還在進行中。而且正在精細且美麗地裝飾著。」\n「……你，該不會想要違抗指令吧。」"
     },
     {
@@ -231,7 +231,7 @@
     {
       "id": 141706,
       "name": "在大師的面前以作品來證明自己的實力",
-      "desc": "環指 父輩進入戰場時，若自身的理智值不高於20點，則使其恢復至20點"
+      "desc": "環指 父輩登場時，若自身的理智值低於20點，則使其變為20點"
     },
     {
       "id": 138302,

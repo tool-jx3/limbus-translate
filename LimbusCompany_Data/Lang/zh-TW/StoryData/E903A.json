@@ -2,199 +2,199 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Corridor of the Ring Nursefather",
+      "place": "蜘蛛巢，環指父輩的長廊",
       "model": "파우스트",
-      "content": "It's only the first door, and the impediments are already beyond expected levels."
+      "content": "從第一扇門開始，結果就超出預測了呢。"
     },
     {
       "id": 1,
       "model": "뉴키라",
-      "content": "I swear, I thought that was it for me back there..."
+      "content": "真的，我還以為要掛了……"
     },
     {
       "id": 2,
       "model": "호엔하임",
-      "content": "Events of this nature... *sigh* won't be frequent. We were merely beset by ill luck."
+      "content": "這種事……呼……應該不會太常發生。只是運氣不好罷了。"
     },
     {
       "id": 3,
       "model": "뉴키라",
-      "content": "If you'd just listened to me and picked another door, we wouldn't have gotten cooked like that in the first place."
+      "content": "所以說嘛，要是相信我的話去走別扇門，一開始就不用白費這麼多力氣了不是嗎？"
     },
     {
       "id": 4,
       "model": "뉴키라",
-      "content": "Like, why even drag me into this if you weren't gonna trust me? Weirdos..."
+      "content": "不打算相信我的話，幹嘛叫我來啊？真搞不懂……"
     },
     {
       "id": 5,
       "model": "료슈",
-      "content": "We would've opened them all at the end of the day. S.D."
+      "content": "反正最後都會全部打開，此．此。"
     },
     {
       "id": 6,
       "model": "뉴키라",
-      "content": "S.D.? What's that?"
+      "content": "此．此是啥？"
     },
     {
       "id": 7,
       "model": "료슈2",
-      "content": "Same difference."
+      "content": "就是「此處彼處，都一樣」的意思。"
     },
     {
       "id": 8,
       "model": "뉴키라",
-      "content": "Again, why shorten it like that? Just say \"duh\" or something. Or just spell it out and say it was anticipated."
+      "content": "所以說幹嘛要那樣縮寫啊？縮成「都一樣」不就好了。"
     },
     {
       "id": 9,
       "model": "료슈",
-      "content": "That's \"W.A.\""
+      "content": "那是都．樣。"
     },
     {
       "id": 10,
       "model": "뉴키라",
-      "content": "...?"
+      "content": "……？"
     },
     {
       "id": 11,
       "model": "앨런",
-      "content": "Good work, everyone. Wayfarer does have a team dedicated to this sort of task... but the mortality rate is quite high. Honestly, I was bracing myself for the worst."
+      "content": "各位辛苦了。雖然我們公司也有專門負責這類業務的團隊……但死亡率相當高，所以我原本已經做好心理準備了。"
     },
     {
       "id": 12,
       "model": "앨런",
-      "content": "The odds of completing the first door of an expedition without any casualties are under 15%. This, by all measures, counts as a flawless expedition."
+      "content": "在第一扇門的檢查中無人死亡的機率不到15%，所以就結果而言，也可以說是完美的成功。"
     },
     {
       "id": 13,
-      "content": "Tapping away at his device, Alan addressed us with an amicable smile. He seemed totally different from the same man who had manhandled Kira with a fist to her face."
+      "content": "先前對綺羅展現的那副粗暴模樣消失得無影無蹤，亞倫掛著和善的笑容，一下一下地按著小小的終端。"
     },
     {
       "id": 14,
       "model": "단테",
-      "content": "<Those Fauvists won't be able to cross over anymore with the door completely locked down, right?>"
+      "content": "<那些叫野獸派的人。門已經封閉了，他們應該沒辦法再來這裡了吧？>"
     },
     {
       "id": 15,
       "model": "파우스트",
-      "content": "That... cannot be asserted with certainty."
+      "content": "那……是無法斷言的問題。"
     },
     {
       "id": 16,
       "model": "단테",
-      "content": "<... Are you saying more might come?>"
+      "content": "<……意思是他們還有可能再來？>"
     },
     {
       "id": 17,
       "model": "료슈",
-      "content": "The Corridors and Backdoors have always been the Ring's turf, Clock."
+      "content": "走廊和後門本來就是環指的領域，時鐘。"
     },
     {
       "id": 18,
       "model": "료슈",
-      "content": "And those Fauvist beasts... have endured as a long-standing faction within the Ring."
+      "content": "況且野獸派那群畜生……是長久以來一直延續命脈、具有傳統的派系。"
     },
     {
       "id": 19,
       "model": "앨런",
-      "content": "If they've got that much history..."
+      "content": "若是歷史悠久的派系……"
     },
     {
       "id": 20,
       "model": "앨런",
-      "content": "They must know many Backdoors—both the origin and destination points."
+      "content": "他們知道起點與終點的後門應該也很多吧。"
     },
     {
       "id": 21,
-      "content": "Alan clarified what Ryōshū was hinting at."
+      "content": "亞倫像是在補充良秀的話一般，接著說了下去。"
     },
     {
       "id": 22,
       "model": "파우스트",
-      "content": "Yes. Compared to them, we lack sufficient knowledge of alternate routes, which makes it difficult to prevent infiltration."
+      "content": "是的。因此，相對缺乏迂迴路徑情報的我們，恐怕很難完全阻止他們入侵。"
     },
     {
       "id": 23,
       "model": "호엔하임",
-      "content": "Hm. No need to concern yourselves overmuch."
+      "content": "嘛。也不必太過擔心。"
     },
     {
       "id": 24,
       "model": "호엔하임",
-      "content": "Even if that were the case, it is unlikely they would move on the House of Spiders so soon."
+      "content": "就算真是如此，我認為他們大概也不會馬上蜂擁至蜘蛛巢。"
     },
     {
       "id": 25,
       "model": "뉴키라",
-      "content": "Eh? They could always rush for a surprise attack, though."
+      "content": "為什麼？他們也有可能突然一窩蜂衝過來不是嗎？"
     },
     {
       "id": 26,
       "model": "호엔하임",
-      "content": "Even that Fauvist Maestro seemed to lack clear intel on the event that took place at the House of Spiders. "
+      "content": "光看那個叫大師的人就知道，他們並沒有掌握蜘蛛巢現在處於何種狀況的確切情報。"
     },
     {
       "id": 27,
       "model": "호엔하임",
-      "content": "If so, it follows that they will need time to assess and deliberate about the situation."
+      "content": "既然如此，他們也需要時間考慮。"
     },
     {
       "id": 28,
       "model": "돈키호테",
-      "content": "The situation...?"
+      "content": "考慮是指……？"
     },
     {
       "id": 29,
       "model": "파우스트",
-      "content": "The logical scope of their concerns will be identifying the organization that has secured the House of Spiders, the possibility of additional traps beyond the Backdoors, and the like."
+      "content": "現在占據蜘蛛巢的是什麼勢力。後門另一頭是否潛伏著其他陷阱。嗯，大概就是這類的考量吧。"
     },
     {
       "id": 30,
       "model": "앨런",
-      "content": "Once all Backdoor-related procedures tied to the House of Spiders are completed, the resulting security framework should be able to preempt and block any infiltration attempts."
+      "content": "只要在那之前完成所有與蜘蛛巢相連的後門相關作業，就能透過保全措施防止入侵本身。"
     },
     {
       "id": 31,
       "model": "단테",
-      "content": "<This operation is more important than I thought...>"
+      "content": "<這份工作比想像中還要重要呢。>"
     },
     {
       "id": 32,
       "model": "료슈2",
-      "content": "*puff*"
+      "content": "呼……"
     },
     {
       "id": 33,
       "model": "료슈",
-      "content": "That aside, why couldn't I draw the blade?"
+      "content": "話說回來……為什麼刀拔不出來？"
     },
     {
       "id": 34,
       "model": "료슈",
-      "content": "Is it the new scabbard's fault?"
+      "content": "是因為換了刀鞘嗎？"
     },
     {
       "id": 35,
-      "content": "Ryōshū lifted the sheathed sword with an irritated frown..."
+      "content": "就在良秀用不悅的語氣，輕輕舉起刀鞘的瞬間……"
     },
     {
       "id": 36,
-      "content": "... and that's when I felt a faint vibration—the blade was twitching ever so slightly."
+      "content": "伴隨著輕微的震動，刀短暫地抖動了一下。"
     },
     {
       "id": 37,
       "model": "돈키호테",
-      "content": "Th-that quivering most faint... 'Twas seen by all, indeed...?"
+      "content": "剛、剛才那個……看來並非只有吾看見了……"
     },
     {
       "id": 38,
       "model": "뉴키라",
-      "content": "Damn, I saw it too... Is it possessed or something?"
+      "content": "哇靠，我也看到了。該不會是被鬼附身了吧？"
     },
     {
       "id": 39,
-      "content": "... Looks like I wasn't the only one who saw the sword twitching as though it wasn't pleased at all with how Ryōshū was talking about the scabbard."
+      "content": "……看來看到那把刀彷彿在喊冤似地動起來的人，不只有我一個。"
     },
     {
       "id": 40,
@@ -203,26 +203,26 @@
     },
     {
       "id": 41,
-      "content": "Ryōshū's gaze lingered on the sword before slowly shifting toward the Backdoors."
+      "content": "良秀直盯著刀看了一會兒，然後緩緩將視線移向後門。"
     },
     {
       "id": 42,
-      "content": "Could it be... that seeing the scabbard brought back some memory of Araya?"
+      "content": "莫非是看到刀鞘之後，關於阿賴耶的記憶……稍微浮現了一些嗎？"
     },
     {
       "id": 43,
       "model": "단테",
-      "content": "<Ryōshū... Do you—>"
+      "content": "<良秀……難道……>"
     },
     {
       "id": 44,
       "model": "료슈",
-      "content": "Is it an S.S.?"
+      "content": "自．劍嗎？"
     },
     {
       "id": 45,
       "model": "료슈",
-      "content": "A demon edge? An enchanted blade? Which is it?"
+      "content": "不，也可能是魔劍或妖刀嗎。是哪一種？"
     },
     {
       "id": 46,
@@ -232,27 +232,27 @@
     {
       "id": 47,
       "model": "단테",
-      "content": "<It's... probably neither of those. Nor is it a sentient sword.>"
+      "content": "<我想……大概三種都不是吧。>"
     },
     {
       "id": 48,
       "model": "호엔하임",
-      "content": "Hmm. This presents a fine opportunity to conduct another examination of the sword. Excuse us for a moment, Team Leader Alan."
+      "content": "趁這個機會重新調查一下刀也好。亞倫組長，我們先離開一下。"
     },
     {
       "id": 49,
       "model": "앨런",
-      "content": "Please feel free to go ahead. The attack just now damaged some devices, so we're going to have to perform some maintenance before continuing. There's plenty of other work for me to do while you're away, too."
+      "content": "剛才的襲擊弄壞了一些機器，得修理才行……除此之外也還有很多事要做。請各位去吧。"
     },
     {
       "id": 50,
       "model": "돈키호테",
-      "content": "Are we to return to the Headquarters Research Facility, then?"
+      "content": "那麼，再回到公司本部研究所就行了嗎？"
     },
     {
       "id": 51,
       "model": "호엔하임",
-      "content": "No, that won't be necessary. There is a facility here that should prove more than adequate."
+      "content": "不。沒那個必要。這裡也有相當堪用的設施。"
     }
   ]
 }

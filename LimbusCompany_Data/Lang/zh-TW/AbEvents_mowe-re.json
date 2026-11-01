@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": 97108101,
-      "title": "There is a useful piece of gear on a W Corp. Cleanup Agent who was turned into a Bloodbag.",
+      "title": "在變成血袋的W公司清掃人員身上發現有用的物品",
       "prevDesc": "",
       "eventDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
@@ -15,7 +15,7 @@
     },
     {
       "id": 97108201,
-      "title": "There is a useful piece of gear on a W Corp. Cleanup Agent who was turned into a Bloodbag.",
+      "title": "在變成血袋的W公司清掃人員身上發現有用的物品",
       "prevDesc": "",
       "eventDesc": "",
       "behaveDesc": "讓哪位罪人上前？",
@@ -28,7 +28,7 @@
     },
     {
       "id": 97108402,
-      "title": "A W Corp. Cleanup Agent is battling a group of Bloodbags.",
+      "title": "發現正在戰鬥的W公司清掃人員與血袋",
       "prevDesc": "",
       "eventDesc": "",
       "behaveDesc": "讓哪位罪人上前？",

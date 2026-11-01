@@ -3,11 +3,11 @@
     {
       "id": 0,
       "place": "???",
-      "content": "Inch by inch, the Warden's hunched back began to straighten..."
+      "content": "獄卒佝僂的背脊緩緩挺直……"
     },
     {
       "id": 1,
-      "content": "And the ominous, cold light gradually took on a brilliant golden hue."
+      "content": "冰冷的光芒漸漸染上燦爛的金黃色。"
     },
     {
       "id": 2
@@ -15,17 +15,17 @@
     {
       "id": 3,
       "model": "신부거인",
-      "content": "... Can't remember the last time I got to stretch my back in the Grand Magasin."
+      "content": "……真不知道有多久沒在百貨公司裡挺直腰桿了。"
     },
     {
       "id": 4,
       "model": "단테",
-      "content": "<He's... completely changed...>"
+      "content": "<氣氛變了。>"
     },
     {
       "id": 5,
       "model": "신부거인",
-      "content": "*sigh* Meursault, the sinful one... Dante, Executive Manager of Limbus Company... and the rest of the team, I presume."
+      "content": "哈啊……罪人莫梭……邊獄公司的執行經理但丁……還有他們的同伴，是吧。"
     },
     {
       "id": 6,
@@ -35,25 +35,25 @@
     {
       "id": 7,
       "model": "파우스트",
-      "content": "Who... are you?"
+      "content": "您是……哪位？"
     },
     {
       "id": 8,
       "model": "신부거인",
-      "content": "Ah. I should've introduced myself earlier. I am the Voice of the Obsidian God of Le Noir, the Warden who watches over those condemned to the Sisyphe Penalty... and one of the four Giants of Grand Magasin Sisyphe."
+      "content": "啊……自我介紹晚了。我是漆黑派所追隨的漆黑之神的聲音……是監視被判處薛西弗斯之刑的罪人的獄卒……也是薛西弗斯百貨公司的巨人之一。"
     },
     {
       "id": 9,
       "model": "신부거인",
-      "content": "Ah, what am I saying? Let's exchange our business cards and save us the trouble. Here's mine."
+      "content": "不，與其這樣，還不如給你們一張名片。來，收下吧。"
     },
     {
       "id": 10,
-      "content": "The Warden... the man, I mean, gave a casual wave of his hand. A business card fluttered down in front of us."
+      "content": "曾經是獄卒……的那人輕輕一揮手，一張名片便輕飄飄地落在我們面前。"
     },
     {
       "id": 11,
-      "content": "Printed on the disturbingly ordinary business card was the title \"Giant - N Corp. Grand Magasin Sisyphe\"... and a name."
+      "content": "極其普通的名片上，寫著「N公司薛西弗斯百貨公司的巨人」這個頭銜……以及名字。"
     },
     {
       "id": 12,
@@ -63,7 +63,7 @@
     {
       "id": 13,
       "model": "신부거인",
-      "content": "Just call me \"Chaplain.\" Your mother did, too."
+      "content": "叫我牧師就行了。你母親也是這麼叫我的。"
     },
     {
       "id": 14,
@@ -73,72 +73,72 @@
     {
       "id": 15,
       "model": "오티스",
-      "content": "You'd not reveal your true form without cause. Have you come to issue an ultimatum?"
+      "content": "你不會無緣無故現出真面目吧……是來警告我們的嗎？"
     },
     {
       "id": 16,
       "model": "신부거인",
-      "content": "We're rather past the warning stage, wouldn't you say?"
+      "content": "早就過了警告的階段了，不是嗎？"
     },
     {
       "id": 17,
       "model": "신부거인",
-      "content": "I mean, you people certainly don't look like the sort who'd let death and eternal recurrence get in the way of whatever you're after..."
+      "content": "就算殺了你們再送回去，你們看起來也不像會放棄的人……"
     },
     {
       "id": 18,
       "model": "신부거인",
-      "content": "And there's the entire Sisyphe System being on the fritz ever since the White Nights and Dark Days phenomenon—whatever it did to the Grand Magasin, something's letting bothersome headaches like you slip through the rules."
+      "content": "也不知道怎麼回事，或許是薛西弗斯系統從白夜黑晝之後就壞掉了吧……連你們這種脫離規則的麻煩傢伙都冒出來了。"
     },
     {
       "id": 19,
       "model": "신부거인",
-      "content": "So I've come to lock you up forever in some miserable corner."
+      "content": "所以我才來把你們永遠關在某個地方。"
     },
     {
       "id": 20,
       "model": "싱클레어",
-      "content": "Forever...?"
+      "content": "永遠……是嗎？"
     },
     {
       "id": 21,
       "model": "신부거인",
-      "content": "That man, Meursault, has been sentenced to the Sisyphe Penalty. Even a lifetime spent observing the rules of this place and repenting his crime would scarcely suffice..."
+      "content": "既然被判處了薛西弗斯之刑，就算老老實實遵守此處的紀律、懺悔自己的罪過活，都還嫌不夠……"
     },
     {
       "id": 22,
       "model": "신부거인",
-      "content": "... So... when he insists on circumventing the rules, killing essential customers left and right... \"It hath become self-evident that the sincerity of the sinful one is suspect—his penitence, perforce, hath come under the selfsame doubt...!\" ... is what I'm getting at."
+      "content": "卻一再那樣違反紀律、為所欲為的話……那我也只能懷疑罪人的誠意了，不是嗎……！就是這麼回事。"
     },
     {
       "id": 23,
       "model": "홍루",
-      "content": "You're saying you're here because we broke the rules and tried to leave this department store with Meursault."
+      "content": "原來是因為我們違反了紀律，想和莫梭先生一起離開百貨公司啊。"
     },
     {
       "id": 24,
       "model": "신부거인",
-      "content": "*chuckle* Truth be told, I couldn't care less about you leaving this place or taking the convict with you, though I couldn't tell you if that's even possible."
+      "content": "哈。其實，你們和罪人一起離開百貨公司，我倒是無所謂。雖然我也不知道那是否辦得到。"
     },
     {
       "id": 25,
       "model": "신부거인",
-      "content": "But when you start defying fate—that is, the Sisyphe System itself—you create serious problems for both the quality and quantity of the Experience Batter this department store produces."
+      "content": "但是當你們開始違抗命運……甚至違抗薛西弗斯系統的那一刻……薛西弗斯百貨公司所生產的經驗麵團，在品質與產量上都會出現重大的問題。"
     },
     {
       "id": 26,
       "model": "신부거인",
-      "content": "Doesn't the idea terrify you? The collapse of order and the truths as established by N Corp.?"
+      "content": "你們不怕嗎？怕N公司建立起來的紀律與真理就此崩塌。"
     },
     {
       "id": 27,
       "model": "신부거인",
-      "content": "Where order falls, only barbarism will remain."
+      "content": "紀律崩塌之處，只會留下野蠻。"
     },
     {
       "id": 28,
       "model": "신부거인",
-      "content": "N Corp. would revert to its old ways. Scouring every Backstreet and Nest out there, driving nails into people's brains to harvest their experience fresh from the flesh... like savages."
+      "content": "那麼N公司就會再像從前那樣，用釘子鑽進所有後巷、所有巢中人們的大腦，直接獲取經驗吧。"
     },
     {
       "id": 29,
@@ -148,12 +148,12 @@
     {
       "id": 30,
       "model": "신부거인",
-      "content": "... Therefore, in accordance with the rules of the Sisyphe System, I hereby quarantine Meursault, who is guilty of murdering a Giant, into solitary confinement."
+      "content": "因此……我將依照薛西弗斯系統的紀律，隔離殺害巨人的莫梭。"
     },
     {
       "id": 31,
       "model": "신부거인",
-      "content": "... I'll see you when you're ready to repent."
+      "content": "……等你悔改的時候，我們再見吧。"
     },
     {
       "id": 32,
@@ -168,12 +168,12 @@
     {
       "id": 34,
       "model": "뫼르소엄마",
-      "content": "Do you mind closing the door, Meursault? Don't let a single ray of sunlight in—I don't want a single gaze to peer in."
+      "content": "幫我把房門關上，莫梭。別讓一絲陽光照進來。別讓任何一道視線透進來。"
     },
     {
       "id": 35,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>Remember... and reflect upon the sin you committed with those hands.</color>"
+      "content": "<color=#7d7d7d>好好回想……你曾用那雙手犯下了什麼樣的罪。</color>"
     },
     {
       "id": 36,
@@ -188,206 +188,206 @@
     {
       "id": 38,
       "model": "뫼르소",
-      "content": "I killed Mother."
+      "content": "我殺了母親。"
     },
     {
       "id": 39,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>Now, that's not exactly the kind of crime\nthat can be dressed up as the mistake of youthful foolishness, is it?\nEven when viewed through the most sympathetic lens,\nit's a bizarre, nonsensical crime that goes against the very idea of common sense.</color>"
+      "content": "<color=#7d7d7d>年少輕狂的過錯……那可不是能用這種說法粉飾的事件吧？\\n無論再怎麼往好處想都一樣。照常理來說就很不對勁啊。</color>"
     },
     {
       "id": 40,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>What you did left N Corp. facing consequences that could not be undone, to say the least.</color>"
+      "content": "<color=#7d7d7d>因為你做的事，N公司可說是迎來了無可挽回的後果。</color>"
     },
     {
       "id": 41,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>Everyone was shocked. To murder your own mother in such a cruel manner...\nPeople were outraged at the sheer... inhumanity.</color>"
+      "content": "<color=#7d7d7d>大家都很震驚。震驚於用那麼殘忍的方式殺害自己母親的……你那毫無人性的一面。</color>"
     },
     {
       "id": 42,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>It won't be a prison that confines you... nor the Grand Magasin Sisyphe.</color>"
+      "content": "<color=#7d7d7d>囚禁你的，不會是監獄……也不會是薛西弗斯百貨公司。</color>"
     },
     {
       "id": 43,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>A sinner is imprisoned by his sin. It's that simple.\nBy rights, you should remain confined here to face your sins, learning regret and repentance.</color>"
+      "content": "<color=#7d7d7d>罪人只會被罪所囚禁。被關在這裡，毫無遺漏地直視自己的罪，然後後悔、悔改，這才是理所當然的吧？</color>"
     },
     {
       "id": 44,
       "model": "뫼르소",
-      "content": "Mother generally returns from work at approximately 19:10. I arrive home somewhat earlier, at 18:00."
+      "content": "母親通常在19點10分左右回家，我則稍早一些，在18點回家。"
     },
     {
       "id": 45,
       "model": "뫼르소",
-      "content": "The first thing I do is close every window that I've left open to air out the house."
+      "content": "先回到家的我，會把為了通風而打開的所有窗戶關上。"
     },
     {
       "id": 46,
       "model": "뫼르소",
-      "content": "Then I draw the black curtains over them, obscuring the view outside."
+      "content": "接著再用漆黑的窗簾遮住外面的景色。"
     },
     {
       "id": 47,
       "model": "과거뫼르소",
-      "content": "Welcome home, Mother."
+      "content": "您回來了，母親。"
     },
     {
       "id": 48,
       "model": "뫼르소엄마안경",
-      "content": "... The windows and curtains. Have you closed them all?"
+      "content": "……窗戶和窗簾，都關好了嗎？"
     },
     {
       "id": 49,
       "model": "과거뫼르소",
-      "content": "Yes."
+      "content": "是。"
     },
     {
       "id": 50,
       "model": "뫼르소",
-      "content": "Mother was terrified of the world—the gaze of others."
+      "content": "母親害怕這個世界，害怕他人的視線。"
     },
     {
       "id": 51,
       "model": "뫼르소",
-      "content": "She never went out without sunglasses. Even when walking down the street, she kept her head lowered, eyes fixed adamantly on the ground."
+      "content": "她外出時一定會戴上墨鏡，走在街上時也總是深深低著頭，只盯著地面。"
     },
     {
       "id": 52,
       "model": "뫼르소",
-      "content": "At 19:30, Mother and I dine together."
+      "content": "19點30分，與母親共進晚餐。"
     },
     {
       "id": 53,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Commit those looking eyes to memory. Those people may not mean any harm when they look at me, but..."
+      "content": "記住那些眼神。那些人或許並不是懷著惡意在看我……"
     },
     {
       "id": 54,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Once a gaze captures me... the beholder, whether meaning to or not, will nail me in place, fixing me inside their brain."
+      "content": "但只要被視線捕捉一次……我就會原封不動地被釘進那個人的大腦，固定在那裡。"
     },
     {
       "id": 55,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "My very existence, taken away, pinned down, and framed to be remembered however they please."
+      "content": "我這個存在……就是那樣被奪走、被固定，然後被隨意記住的。"
     },
     {
       "id": 56,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Aah, how awful is that...? Just the thought of it is more than I can bear."
+      "content": "啊啊，好可怕……光是想到就可怕得受不了。"
     },
     {
       "id": 57,
       "model": "뫼르소",
-      "content": "Mother recounts the things that distressed her throughout the day. Throughout every part of her daily life."
+      "content": "母親會傾訴日常中的一切、一天之中令她痛苦的事。"
     },
     {
       "id": 58,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "We have no choice... but to stay nailed and fixed... once someone's gaze has hold of us."
+      "content": "一旦被某個人的視線攫住……我們……就只能那樣被固定住。"
     },
     {
       "id": 59,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Think about it... All those people you passed by today, eating their evening Canned Experiences just as we do... And when you—your existence, taxidermied in someone's memory—happens to surface... you have no choice but to exist. To exist in a way you never even wanted..."
+      "content": "今天擦肩而過的那許許多多的人……也會像我們一樣，在家裡吃晚餐的經驗罐頭吧……而當被製成標本留在那人記憶中的你忽然浮現時……你就不得不存在了。以你根本不曾想要的方式……"
     },
     {
       "id": 60,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "I'm afraid, Meursault... But I wish at least you could be free of this fear. Ah... If that's even possible..."
+      "content": "好可怕……莫梭，可是至少你，我希望你不會害怕……啊啊……可是，真的能做到嗎……"
     },
     {
       "id": 61,
       "model": "뫼르소",
-      "content": "As always, the conclusion of mother's despair is a conversation with herself."
+      "content": "一如既往，母親的絕望最終歸結為對她自己說的話。"
     },
     {
       "id": 62,
       "model": "뫼르소",
-      "content": "I listen attentively to every utterance, but I answer none of it."
+      "content": "我傾聽母親說的每一句話，但不回應任何一句。"
     },
     {
       "id": 63,
       "model": "뫼르소",
-      "content": "I merely prepare the meal, as family should, as a son should... and eat Canned Experiences with her."
+      "content": "只是像個家人、像個兒子那樣……準備餐點，一起吃經驗罐頭。"
     },
     {
       "id": 64,
       "model": "뫼르소",
-      "content": "There is neither despair nor fear in the can."
+      "content": "罐頭裡沒有絕望，也沒有恐懼。"
     },
     {
       "id": 65,
       "model": "뫼르소",
-      "content": "Mother and I get to spend a peaceful and pleasant evening together. As a happy, loving family."
+      "content": "我與母親度過平靜、溫馨又和睦的晚間時光。"
     },
     {
       "id": 66,
       "model": "뫼르소",
-      "content": "Mother has a long, heavy chain hanging in the most conspicuous part of the living room."
+      "content": "母親在客廳最顯眼的地方，掛了一條又長又重的鎖鏈。"
     },
     {
       "id": 67,
       "model": "뫼르소",
-      "content": "For us, it was... a symbol, an indicator—something that could alleviate not just her fears but mine as well."
+      "content": "那是能減輕我和母親的……我們的恐懼的象徵，也是指標。"
     },
     {
       "id": 68,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "This chain in our home is a reminder, Meursault. I always look at it to tell myself that I need to be careful."
+      "content": "莫梭，媽媽總是看著家裡的這條鎖鏈，時時提醒自己要小心喔。"
     },
     {
       "id": 69,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "You can feel them out there, can't you? The people who exist. People who are watching us without even realizing that they are watching us."
+      "content": "你感覺得到外面那些人的存在吧？那些連自己是不是正在看這裡都不知道，卻依然看著的人們的存在。"
     },
     {
       "id": 70,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Your maman... I've... always been tethered to that feeling, and it has wrung every part of me... dry."
+      "content": "媽媽……這一輩子都被這種感覺勒緊全身地活著。"
     },
     {
       "id": 71,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "People make me afraid."
+      "content": "所以不管在哪裡，只要有人在，我就會害怕。"
     },
     {
       "id": 72,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "They remember me however they like, then they expect whatever they like. And then, I fail to fit..."
+      "content": "他們擅自記住我、對我抱持期待，然後就出現落差……"
     },
     {
       "id": 73,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "All of it drags me deeper like ponderous weights. Makes me afraid."
+      "content": "這一切都讓我變得沉重，讓我害怕。"
     },
     {
       "id": 74,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Each pair of eyes is a chain that is forced upon my limbs, pulling in all directions until I'm ripped apart into unrecognizable pieces..."
+      "content": "感覺就像每個人各自硬是在我身上綁上鎖鏈，再把我的四肢全都扯走一樣。"
     },
     {
       "id": 75,
       "model": "뫼르소",
-      "content": "Mother was in pain. Her limbs were intact, yet she felt the pain of having her arms and legs torn from her."
+      "content": "母親很痛。她感受著未被扯下的四肢一處不剩地被扯走的痛楚。"
     },
     {
       "id": 76,
@@ -397,83 +397,83 @@
     {
       "id": 77,
       "model": "과거뫼르소",
-      "content": "How do you... endure the pain of being torn apart, Mother?"
+      "content": "那麼……被扯開的痛苦，您是怎麼忍耐的呢，母親。"
     },
     {
       "id": 78,
       "model": "뫼르소",
-      "content": "Perhaps it was something from the question. Relief crossed Mother's face as she directed her gaze toward the ceiling, like a supplicant graced by a holy relic, our salvation..."
+      "content": "聽到這個問題，母親露出了安心的表情，彷彿望著某種唯一能拯救我們的神聖之物……"
     },
     {
       "id": 79,
       "model": "뫼르소",
-      "content": "... the chains hanging in our home."
+      "content": "指向了掛在家中的鎖鏈。"
     },
     {
       "id": 80,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "You chain yourself before the chains of others bind you."
+      "content": "在被別人的鎖鏈綁住之前，先把鎖鏈纏在自己身上。"
     },
     {
       "id": 81,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "The chains will hold you down... but at least you needn't be hurt."
+      "content": "被鎖鏈纏住，雖然動彈不得……但至少可以不痛，不是嗎。"
     },
     {
       "id": 82,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "They'll take the wounds meant for your skin, as armor to deflect the pain..."
+      "content": "因為它會代替你的皮膚，成為擋下痛苦的鎧甲……"
     },
     {
       "id": 83,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "People say only nails and hammers can fix something in place. But for me, chains can bind, too. Chains can affix. So I have faith in the chain."
+      "content": "人們說，只有釘與鎚能固定東西。但對我來說並非如此。用鎖鏈也能綁住、固定。我就是這麼相信的。"
     },
     {
       "id": 84,
       "model": "뫼르소",
-      "content": "It almost sounded as though she were saying, \"I <i>must</i> have faith in the chain.\" Because that is how desperate she looked."
+      "content": "那大概更接近「非相信不可」吧。因為母親看起來就是那麼迫切。"
     },
     {
       "id": 85,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>Continue to look upon it. Face the fear of the sinful one.</color>"
+      "content": "<color=#7d7d7d>……繼續直視下去。直視罪人的畏懼。</color>"
     },
     {
       "id": 86,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "The door..."
+      "content": "房門……"
     },
     {
       "id": 87,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Do you mind closing the door, Meursault? Don't let a single ray of sunlight in—I don't want a single gaze to peer in. Keep them all out; don't let me bear their gazes."
+      "content": "幫我把房門關上，莫梭。別讓一絲陽光照進來。別讓任何一道視線透進來。別讓任何人進來，也別被任何人看見。"
     },
     {
       "id": 88,
       "model": "뫼르소",
-      "content": "Mother would always set some time aside for herself. She would go into her room, alone, and shut the door."
+      "content": "母親有一段必定要有的時間。獨自進入房間、關上房門的時間。"
     },
     {
       "id": 89,
       "model": "뫼르소",
-      "content": "I didn't know what she did inside. But watching that closed door, knowing that she was inside that room all by herself, terrified me."
+      "content": "我不知道她在裡面做什麼。但守著待在裡面的母親，對我而言是件可怕的事。"
     },
     {
       "id": 90,
       "model": "뫼르소",
-      "content": "These periods only grew longer after Father left. Mother said that she needed that time—the time spent alone in that room—to endure living."
+      "content": "父親離開之後，那段時間變得更長了。母親說，一定要有獨自待在房間裡的時間……她才忍受得了活著。"
     },
     {
       "id": 91,
       "model": "뫼르소",
-      "content": "No one was to enter. There were no exceptions."
+      "content": "而且在那段時間裡，她不讓任何人進入房間，毫無例外。"
     },
     {
       "id": 92,
@@ -483,37 +483,37 @@
     {
       "id": 93,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>... Continue to look upon it. Behold the truth that terrifies the sinful one.</color>"
+      "content": "<color=#7d7d7d>……繼續直視下去。直視罪人的恐懼。</color>"
     },
     {
       "id": 94,
       "model": "뫼르소",
-      "content": "What was she doing in there? What keeps her going through the pain?"
+      "content": "母親在裡面做什麼呢。是什麼讓母親在那樣的煎熬之中還能撐下去呢。"
     },
     {
       "id": 95,
       "model": "뫼르소",
-      "content": "Those were not questions born of curiosity."
+      "content": "那不是好奇心。"
     },
     {
       "id": 96,
       "model": "뫼르소",
-      "content": "They were concern."
+      "content": "是擔憂，"
     },
     {
       "id": 97,
       "model": "뫼르소",
-      "content": "They were fear."
+      "content": "是畏懼。"
     },
     {
       "id": 98,
       "model": "뫼르소",
-      "content": "What I needed was certainty—the reassurance that nothing bad was happening to Mother inside that room."
+      "content": "我需要確信母親在裡面並沒有出事，也需要安心。"
     },
     {
       "id": 99,
       "model": "뫼르소",
-      "content": "And so..."
+      "content": "所以……"
     },
     {
       "id": 100,
@@ -525,59 +525,59 @@
       "id": 101,
       "model": "뫼르소엄마아픔",
       "teller": "母親",
-      "content": "I'm afraid... So afraid...!!"
+      "content": "好可怕！太可怕了！！"
     },
     {
       "id": 102,
       "place": "???",
       "model": "뫼르소",
-      "content": "After that day, I decided to never look at my mother again."
+      "content": "那件事之後，我便不再試著去看母親。"
     },
     {
       "id": 103,
       "model": "뫼르소",
-      "content": "I had to continue protecting what little peace she found in solitude."
+      "content": "我必須繼續守護母親那獨自一人的安寧。"
     },
     {
       "id": 104,
       "model": "뫼르소",
-      "content": "Otherwise, I would become the nail, the hammer, and the chains that constrict her and keep her fixed."
+      "content": "否則，我就會成為釘、成為鎚、成為鎖鏈，將母親緊緊束縛，"
     },
     {
       "id": 105,
       "model": "뫼르소",
-      "content": "Regardless of my intent."
+      "content": "因為不論我願不願意，那都是會發生的事。"
     },
     {
       "id": 106,
       "model": "뫼르소엄마",
       "teller": "母親",
-      "content": "Close... the door, Meursault..."
+      "content": "把房門……關上吧……莫梭……"
     },
     {
       "id": 107,
       "model": "뫼르소",
-      "content": "Mother and I were bound together."
+      "content": "我與母親被綁在一起。"
     },
     {
       "id": 108,
       "model": "뫼르소",
-      "content": "As a being conceptually perceived as \"mother,\" Mother gave birth to me, conferring a shared genetic identity between us."
+      "content": "母親以「母親」這個概念生下了我，而那賦予了身體基因的同一性。"
     },
     {
       "id": 109,
       "model": "뫼르소",
-      "content": "And this obliged us to believe and act as though we were connected with an unbreakable, sublime bond—an ethical, moral insistence that this was simply how a parent and son ought to be. We had long since been bound to each other by that insistence."
+      "content": "基於這個理由，便有了「母親和我必須表現得彷彿被某種堅定又崇高的事物連結在一起」的觀念。父母與子女理應如此——我們早在很久以前，就被這套倫理道德互相綁住了。"
     },
     {
       "id": 110,
       "model": "뫼르소",
-      "content": "We were born into a world that required us to feel that way."
+      "content": "我們生在一個必須如此感受的世界，"
     },
     {
       "id": 111,
       "model": "뫼르소",
-      "content": "Or perhaps it was simply a matter of human nature, designed to feel that way."
+      "content": "或許人類的本性，就被設計成會如此感受。"
     },
     {
       "id": 112,
@@ -587,12 +587,12 @@
     {
       "id": 113,
       "model": "뫼르소",
-      "content": "There would be days when I found myself asking why things had to be this way..."
+      "content": "但是某天，若是忽然想到為什麼非得這樣不可……"
     },
     {
       "id": 114,
       "model": "뫼르소",
-      "content": "Days when fear and vertigo would wash over me as well, leaving me stranded with no way back."
+      "content": "從那時起，無可挽回的畏懼與暈眩便也朝我湧來。"
     },
     {
       "id": 115,
@@ -603,17 +603,17 @@
     {
       "id": 116,
       "model": "뫼르소",
-      "content": "I followed Mother's instructions. To protect myself, to save myself, I looked at the chain hanging in our home and reminded myself."
+      "content": "就像母親囑咐的那樣，為了保護自己，我看著掛在家裡的鎖鏈，牢記在心。"
     },
     {
       "id": 117,
       "model": "뫼르소",
-      "content": "And I tried my utmost not to nail \"Mother\" or \"her\" or \"a being\" in place,"
+      "content": "並且努力不將母親、不將她、不將某個存在釘住。"
     },
     {
       "id": 118,
       "model": "뫼르소",
-      "content": "because I understood the terror of being nailed down."
+      "content": "因為我知道被釘住的那種恐懼。"
     },
     {
       "id": 119,
@@ -623,30 +623,30 @@
     {
       "id": 120,
       "model": "신부거인",
-      "content": "O Sinful One, you are afraid."
+      "content": "罪人正感到恐懼。"
     },
     {
       "id": 121,
       "model": "신부거인",
-      "content": "You are in pain. You are suffering."
+      "content": "很痛，很痛苦吧。"
     },
     {
       "id": 122,
       "model": "신부거인",
-      "content": "There is but one way to make it stop. Repent your sins and submit to the law of the Grand Magasin. It is not too late."
+      "content": "讓它停止的方法只有一個。就算是現在也好，悔改你的罪，順從百貨公司的律法吧。"
     },
     {
       "id": 123,
       "model": "신부거인",
-      "content": "Then, contribute to the humanity N Corp. seeks to uphold, as all convicts here do."
+      "content": "就像此處所有的罪人那樣，為N公司所追求的人性做出貢獻。"
     },
     {
       "id": 124,
-      "content": "Yes, I am suffering."
+      "content": "沒錯，我很痛苦。"
     },
     {
       "id": 125,
-      "content": "I want nothing more than to coil the chains around my body, just as my dead mother told me to."
+      "content": "我想照死去的母親所說的，用鎖鏈將全身層層纏繞。"
     },
     {
       "id": 126
@@ -654,22 +654,22 @@
     {
       "id": 127,
       "model": "신부거인",
-      "content": "Let your sins define you within the Grand Magasin."
+      "content": "讓你的罪，在這座百貨公司裡定義你。"
     },
     {
       "id": 128,
       "model": "신부거인",
-      "content": "Here in this place, sinners need only submit to the punishment imposed upon them."
+      "content": "在這裡，罪人只要服從所執行的刑罰就行了。"
     },
     {
       "id": 129,
       "model": "신부거인",
-      "content": "If you feel even the slightest pang of conscience and remorse for killing your mother..."
+      "content": "倘若你對殺害母親一事，哪怕有一絲良心不安、心懷悔恨的話。"
     },
     {
       "id": 130,
       "model": "신부거인",
-      "content": "Then surrender, for that is what you are duty-bound to feel as her son! That is the burden of sin you must bear as a resident of N Corp.!"
+      "content": "因為那是身為子女理所當然應該感受到的情感，是身為N公司市民理應背負的罪業！"
     }
   ]
 }

@@ -2,42 +2,42 @@
   "dataList": [
     {
       "id": 40004101,
-      "name": "The Nascent Crimson God",
+      "name": "年幼的丹紅之神",
       "desc": "自身獲得 [Charge] 時，改為獲得 [ChargeRouge]\n\n關卡開始時，使自身獲得1級 [ChargeRouge] 強度\n\n回合開始時，若自身的 [ChargeRouge] 強度不低於2級，則使自身獲得(自身的 [ChargeRouge] 強度×2)回 [ChargeRouge]",
       "summary": "獲得 [ChargeRouge] 強度",
-      "flavor": "A young god, but a god nonetheless."
+      "flavor": "雖然年幼，但確實擁有神格。"
     },
     {
       "id": 40004102,
-      "name": "Pulsating Nature",
+      "name": "脈動的本性",
       "desc": "戰鬥中，每觸發一次 [Laceration] 效果，使自身獲得1回 [ChargeRouge]",
       "summary": "獲得 [ChargeRouge] 回數",
-      "flavor": "Why... does blood make my heart rush so excitedly?"
+      "flavor": "為什麼每次看到血，我的心臟就一直跳個不停……？"
     },
     {
       "id": 40004103,
       "name": "旅程",
-      "desc": "Gain the following effects based on [ChargeRouge] Potency on self\n- 1+: For every [ChargeRouge] Count, deal +2% damage and heal +10% HP on target (max 20%, 100% respectively; rounded down)\n- 2+: Base Power +1 for every 2 [ChargeRouge] Potency on self\n- 3+: Turn Start: If this unit does not have [GourmandiseAlly], and if this unit has 15+ [ChargeRouge] Count, consume all [ChargeRouge] Count and gain 3 [GourmandiseAlly]\n- 4+: Skill Slot +1\n- 5+: Encounter Start: Gain 3 [GourmandiseAlly] and inflict 3 [BloodyMucusAlly] on all enemies",
-      "summary": "Effect enhanced based on [ChargeRouge] Potency on self",
-      "flavor": "With every step they take, toddling from behind their first guardians, the child learns about the world, about the department store... and themself, for their eyes were the clearest and the most natural part of their body."
+      "desc": "根據自身的 [ChargeRouge] 強度，獲得以下全部效果\n- 不低於1級：自身每帶有1回 [ChargeRouge]，造成的傷害+2% (最多+20%)，目標的體力恢復量+10% (最多+100%，無條件捨去)\n- 不低於2級：自身每帶有2級 [ChargeRouge] 強度，基礎威力+1\n- 不低於3級：回合開始時，若自身未帶有 [GourmandiseAlly] 且自身的 [ChargeRouge] 回數不低於15回，則消耗所有 [ChargeRouge] 回數，並使自身獲得3層 [GourmandiseAlly]\n- 不低於4級：行動槽數量+1\n- 不低於5級：關卡開始時，使自身獲得3層 [GourmandiseAlly]，並對全體敵方單位施加3層 [BloodyMucusAlly]",
+      "summary": "根據自身的 [ChargeRouge] 強度獲得強化",
+      "flavor": "看著他們的背影，一步一步地認識世界、認識百貨公司。也認識自己。因為在自己的肉體之中，只有眼睛最為清晰、自然。"
     },
     {
       "id": 40004104,
-      "name": "A Helping Hand",
-      "desc": "When an ally is Staggered during an Encounter, use \"Grab My Hand\" on the said ally (2 times per turn)"
+      "name": "援助之手",
+      "desc": "戰鬥中友方單位陷入混亂時，對該友方單位使用「抓住我的手」 (每回合最多2次)"
     },
     {
       "id": 40004105,
-      "name": "Body Out of Control",
-      "desc": "If this unit has [GourmandiseAlly], gain the following effects:\n- Heal HP equal to 20% of damage dealt\n- On Skill Use, gain +3 [Laceration] Count\n- On Hit using a Skill, gain 1 [Laceration]",
+      "name": "無法自制的身體",
+      "desc": "若自身帶有 [GourmandiseAlly]，則觸發以下效果\n- 恢復等同於造成傷害量20%的體力\n- 使用技能時，對自身施加3回 [Laceration]\n- 技能命中時，使自身增加1級 [Laceration] 強度",
       "summary": "施加1級 [Laceration] 強度",
-      "flavor": "Though the arms, legs, and everything else about their body feels alien to the child, the faint beating from their core will soon begin its mad pulsation."
+      "flavor": "手臂與腿，一切都很陌生，但從體內開始的微弱鼓動，卻漸漸只想瘋狂地脈動起來。"
     },
     {
       "id": 40004107,
-      "name": "Leather-sewing Nail",
-      "desc": "When this unit fails to defeat an enemy using its Attack Skills, use \"I'll End It for You...\" on the said enemy (once per turn)",
-      "flavor": "They said I needed a thick, sturdy nail to punch through leather for sewing. If that didn't work, I just need to try again...!"
+      "name": "縫皮用的釘子",
+      "desc": "攻擊技能未能擊殺敵方單位時，對該敵方單位使用「我來結束一切……」 (每回合最多1次)",
+      "flavor": "聽說要縫皮革的話，需要的不只是尖，還得是又粗又堅固的釘子。就算這樣還是刺不穿的話，那就再來一次……！"
     },
     {
       "id": 40004108,
@@ -54,14 +54,14 @@
     {
       "id": 40004203,
       "name": "令人厭惡的卑賤之物（le Visqueux-Abject）",
-      "desc": "This unit takes damage only from Skills mainly targeting this unit, and it takes no other damage\n\nUpon entering the Encounter for the first time, generate [BuffetField] on the field\n\nTurn Start: Targets within the [BuffetField] gain the following effects:\n- Allies (including this unit)\n  · Heal 5% HP\n  · Gain +4 [Charge] Count\n  · Gain 1 [Protection]\n  · If the affected ally is a \"Le Rouge\" unit, gain 2 [Enhancement]\n  · E.G.O Skills deal +50% damage\n\n- Enemies\n  · Gain 3 [AttackDown]\n  · Gain 3 [DefenseDown]\n  · Gain 2 [BloodyMucusAlly]",
-      "flavor": "赤紅之神攝取著眼前的事物，一再攝取。其結果就是黏膜性質的地帶擴散開來。那便是攝取後的產物。雖然是從自身誕生之物，既為是否屬於自己的境界曖昧化的賤也有黏膩感物，也是黏著物。在這之上屬於自己的事物正在脈動，而不屬於自己的事物逐漸融化。因為界線之外的事物令人恐懼。"
+      "desc": "本單位只會受到以自身為主要目標的技能造成的傷害，不會受到其他傷害\n\n首次在戰鬥中登場時，在戰場上生成 [BuffetField]\n\n回合開始時，對位於 [BuffetField] 範圍內的目標適用以下效果\n- 友方單位 (包括自身)\n．恢復體力上限5%的體力\n．獲得4回 [Charge]\n．獲得1層 [Protection]\n．若目標友方單位屬於丹紅派，則使其獲得2層 [Enhancement]\n．E.G.O技能造成的傷害+50%\n\n- 敵方單位\n．施加3層 [AttackDown]\n．施加3層 [DefenseDown]\n．施加2層 [BloodyMucusAlly]",
+      "flavor": "丹紅之神攝取眼前的事物，一再攝取。其結果便是黏膜質的地帶擴散開來。那是攝取的產物。雖然出自於我，卻模糊了是否屬於我的界線，既是賤斥體，也是黏膩。在這之上，屬於我的事物脈動著，不屬於我的則融化殆盡。因為界線之外的事物令人恐懼。"
     },
     {
       "id": 40004204,
       "name": "童年的終結（La Fin de l'enfance）",
-      "desc": "Encounter Start: Gain 5 [ChargeRouge] Potency\n\nTurn End: At 15+ [ChargeRouge] Count, equip \"La Nausée\" Skill\nEvery Turn Start: Gain +20 [Aggro]",
-      "flavor": "Who determines the childhood's end?\n\nThe crimson child matured throughout the adventure, shaped by their experiences and sketching their own future at the end of the journey—or so they thought. Their childhood came to a sudden halt, and so too did the adventure; it was never something they could've ended on their own terms.\n\nChildhood's end is a sudden, violent intrusion of reality from the world outside, more a forceful notice than a promised ritual: \"You're not a child anymore.\""
+      "desc": "關卡開始時，使自身獲得5級 [ChargeRouge] 強度\n\n回合結束時，若自身的 [ChargeRouge] 回數不低於15回，則裝備技能「嘔吐（la nausée）」\n每回合開始時，使自身的 [Aggro] +20",
+      "flavor": "由誰來決定幼年期何時結束？丹紅的孩子透過旅程成長了。它想藉由旅程的經驗成為某種存在，也以為自己正在變成那樣，但那個過程卻突然結束了。幼年期並不是能由自己畫下句點的東西。現實突然從外頭硬生生地推到眼前，強硬而又急躁地宣告：已經結束了。"
     }
   ]
 }

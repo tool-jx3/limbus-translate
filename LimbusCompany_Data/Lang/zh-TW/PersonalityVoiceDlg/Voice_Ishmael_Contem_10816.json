@@ -3,122 +3,122 @@
     {
       "id": "get_10816_1",
       "desc": "獲得時",
-      "dlg": "Have you found an outfit to your liking? *chuckle* Go ahead and see how it feels to the touch. They say you can't appreciate the true value of Rouge fashion until you've laid your fingertips on the material."
+      "dlg": "您喜歡那件衣服嗎？呵呵。摸摸看也沒關係喔。丹紅派的時尚，要用指尖親自體驗過，才能明白它真正的價值。"
     },
     {
       "id": "lobby_morning_10816_1",
       "desc": "早晨問候",
-      "dlg": "The Noir side has been enjoying rather warm sunshine as of late. Maybe this is the season to scrape and rip out the Golden Hide those miserable hoarders are keeping to themselves."
+      "dlg": "最近照在漆黑派那邊的陽光格外溫暖呢。現在說不定正是把那些傢伙擅自保存的黃金皮革刮下來、扯下來的最好的一季。"
     },
     {
       "id": "lobby_noon_10816_1",
       "desc": "午時問候",
-      "dlg": "We use most of the flesh and hide taken from our customers for clothing. But every now and then... I like to sample some myself.\nSometimes, the only way to get a better feel for the material... is to personally experience the sensation of having them ground between your teeth... and land on your tongue."
+      "dlg": "顧客們的肉與皮……大多是用來製作衣服的。不過……偶爾我也會直接攝取。\n因為有些材質，只有透過在口中咀嚼的那種感覺與經驗才能掌握。"
     },
     {
       "id": "lobby_night_10816_1",
       "desc": "晚間問候",
-      "dlg": "When I take a quick stroll during the off seasons, I often see pieces of the Golden Hide scattered throughout the department store—in the cracks on the walls, lodged inside mannequins...\nClothes fashioned from the Golden Hide tend to be the trailblazers of each trend, often becoming so influential that they characterize the whole season."
+      "dlg": "在這種清閒的淡季於百貨公司四處閒晃，就能在各式各樣的地方發現黃金皮革。\n有時在牆上，有時在人台模特兒上……把它們搜刮起來做成的衣服，常常能引領潮流、風靡當季呢。"
     },
     {
       "id": "smalltalk_10816_1",
       "desc": "對話 1",
-      "dlg": "There's a limit to how many eyeballs you can rake in with simplistic metrics like high sales volume. The lower floors can scramble to clear out their stock before the season ends and call it a day, but up here... we ask the questions that really matter: <i>who</i> buys our product, and <i>how</i> do they buy it? Those stupid Noirs on the other side of the floor don't seem to get that, so I have that over them."
+      "dlg": "光是賣得多，可沒辦法得到很多眼球。樓下只要在季末前趕快把庫存賣光就好了……\n但對我們來說，賣給誰、怎麼賣才是重點。在這方面，我可比對面那些愚蠢的漆黑派們優秀多了。"
     },
     {
       "id": "smalltalk_10816_2",
       "desc": "對話 2",
-      "dlg": "Dear customer, surely you don't think this dress is overpriced? As it should be obvious to discerning eyes like yours, apparel of my design contains a more generous proportion of the Golden Hide. They're in an entirely different class from the clothes downstairs, which only include paltry dregs just so they can mark up their items with false advertising."
+      "dlg": "客人，您該不會覺得這件禮服很貴吧？如您所見，我設計的衣服，黃金皮革的含量可是這麼高呢。跟樓下那些只放了一點碎屑就誇大其詞的衣服，可不是同一個等級的。"
     },
     {
       "id": "smalltalk_10816_3",
       "desc": "對話 3",
-      "dlg": "It's not that I don't sympathize with those madmen who wander my shop and their plights. The Voice that the sunshine whispered into my ears was... so warm... and kind... I felt as though it could embrace every last one of my pains."
+      "dlg": "我並不是無法理解那些在我專櫃裡徘徊的狂人們的心情。因為從陽光中傳來的那個聲音，溫暖得足以包覆我所有的痛苦……又是那麼溫柔。"
     },
     {
       "id": "smalltalk_10816_4",
       "desc": "同步後對話 1",
-      "dlg": "Though that Voice was my faith, it was never my god. I prayed and prayed, but it only returned the same canned phrases, stretched thin by endless repetition.\nBut our new God, the cherished one... never leaves our prayers unanswered—and never fails to return questions."
+      "dlg": "那個聲音曾是我的信仰，卻不是我的神。儘管我每時每刻都懇切地祈禱，聽到的卻只有拖得冗長不堪……不斷重複的字句。\n相較之下，我們的新神……那位大人從不吝於給予我們答案。同時，也從不吝於向我們提問。"
     },
     {
       "id": "smalltalk_10816_5",
       "desc": "同步後對話 2",
-      "dlg": "When I first heard the Voice whispering in my ears... when the cherished one so graciously accepted the handkerchief I made... I felt like I was about to burst with joy.\nI have faith that the cherished one will lead us, the flock, in our grief... And eventually bring us Rouges to tear off every last bit of the Golden Hide in the Grand Magasin, so that we would be comforted under its cozy blanket."
+      "dlg": "那位大人以聲音向我低語的時候，收下我親手做的手帕的時候……我總是感動得全身都快要炸開了。\n我深信不疑。那位大人會引領悲傷的我們……扯下百貨公司所有的黃金皮革，披覆在丹紅派身上。"
     },
     {
       "id": "gacksung_10816_1",
       "desc": "進行同步",
-      "dlg": "Yearn...! Consume...! The Golden Hide is wasted in the hoarding hands of the Noirs—tear them out of the walls! Every last scrap!"
+      "dlg": "渴望吧！攝取吧！把漆黑派一直以來浪費的黃金皮革全部扯下來，一點也不剩！"
     },
     {
       "id": "neglect_10816_1",
       "desc": "閒置",
-      "dlg": "Don... Desire... The Voice may have faded, but I can't seem to forget it."
+      "dlg": "披覆吧……慾求吧……雖然是已經褪色的聲音，卻還是忘不掉呢。"
     },
     {
       "id": "formation_10816_1",
       "desc": "人格出戰",
-      "dlg": "By my own hand, I will fell anything that dares stand in the cherished one's path."
+      "dlg": "凡是擋在那位大人面前的一切，我都會親手除去。"
     },
     {
       "id": "battleentry_10816_1",
       "desc": "進入戰鬥",
-      "dlg": "If this be my calling...!"
+      "dlg": "遵從召喚！"
     },
     {
       "id": "battle_select_10816_1",
       "desc": "戰鬥中選中人格",
-      "dlg": "Hm... Most places'll turn you away if you show up in that getup. Why don't you stop by my shop sometime?"
+      "dlg": "穿成那樣，您到哪裡都很難受到歡迎吧……要不要來我們的專櫃逛逛呢？"
     },
     {
       "id": "battle_endcommand_10816_1",
       "desc": "進行攻擊",
-      "dlg": "Whisper your Voice to me again!"
+      "dlg": "請再一次賜予我聲音！"
     },
     {
       "id": "battle_enemy_break_10816_1",
       "desc": "敵方混亂",
-      "dlg": "Stupid..."
+      "dlg": "真是愚蠢……"
     },
     {
       "id": "battle_break_10816_1",
       "desc": "自身混亂",
-      "dlg": "Nailed down... once again..."
+      "dlg": "又被釘住了……"
     },
     {
       "id": "battle_kill_10816_1",
       "desc": "擊殺敵方",
-      "dlg": "And... to the exit you go!"
+      "dlg": "請退場吧！"
     },
     {
       "id": "battle_dead_10816_1",
       "desc": "自身陣亡",
-      "dlg": "Ah... I collapse to the ground again..."
+      "dlg": "啊……我又再次向著底層墜落……"
     },
     {
       "id": "choice_success_p_10816_2",
       "desc": "判定成功",
-      "dlg": "The cherished one's awakening at the Cradle has enabled this success."
+      "dlg": "這都要歸功於那位大人在搖籃中甦醒了吧。"
     },
     {
       "id": "choice_fail_n_10816_1",
       "desc": "判定失敗",
-      "dlg": "... My faith isn't so weak as to be shaken by this setback."
+      "dlg": "……這點程度的失敗，不會動搖我的信念。"
     },
     {
       "id": "battle_clear_10816_1",
       "desc": "戰鬥勝利",
-      "dlg": "Le Rouge... has surpassed Le Noir in sales for this season. But this is not nearly enough to satisfy the cherished one. This campaign will never end, not until we've torn away every last piece of the Noirs' Golden Hide and claimed it for ourselves..."
+      "dlg": "本季的銷售量……是我們丹紅派領先了呢。不過那位大人不會滿足於這點程度，也不會就此停下吧。直到扯下他們所有的黃金皮革、全數奪走為止……"
     },
     {
       "id": "battle_clear_ex_10816_1",
       "desc": "EX CLEAR戰鬥勝利",
-      "dlg": "It took many Seasons, but thanks to the cherished one's blessing, the Noirs on this floor will finally be shown to the exit.\nAll right, then. It's high time for a renovation—let's do away with this sad, depressingly Noir interior and replace it all with the flamboyant, Rouge beauty. We'll have even more customers clamoring for the fashion only Le Rouge can offer!"
+      "dlg": "雖然花了漫長的一季又一季，但承蒙那位大人的恩典，漆黑派們終於要從這層樓退場了呢。\n好了，那就把這陰沉的漆黑翻新成華麗的丹紅吧。讓更多的顧客為丹紅派的時尚狂熱！"
     },
     {
       "id": "battle_defeat_10816_1",
       "desc": "戰鬥失敗",
-      "dlg": "Arrgh... The Voice, I—the Voice is gone...! Why have you abandoned me?! No, no, no...! I have to... I have to recite the mantra once again. Remember the Voice... remember the Words...!"
+      "dlg": "啊啊……聲音……又聽不見了……您什麼都沒對我說，到底去了哪裡？不行……！我得再一次、再一次反覆默念。那位大人的聲音，那位大人的話語！"
     }
   ]
 }

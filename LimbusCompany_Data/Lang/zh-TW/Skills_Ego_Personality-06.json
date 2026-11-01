@@ -149,7 +149,7 @@
           "level": 3,
           "name": "沸騰腐蝕",
           "abName": "陸行珍珠",
-          "desc": "[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "desc": "[BeforeAttack] 若現存體力低於50%，則使本技能的攻擊容量+1",
           "coinlist": [
             {
               "coindescs": [
@@ -170,7 +170,7 @@
           "level": 4,
           "name": "沸騰腐蝕",
           "abName": "陸行珍珠",
-          "desc": "[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1\n若現存體力不高於25%，則使本技能的攻擊容量額外+1",
+          "desc": "[BeforeAttack] 若現存體力低於50%，則使本技能的攻擊容量+1\n若現存體力低於25%，則使本技能的攻擊容量額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -217,7 +217,7 @@
           "level": 3,
           "name": "沸騰腐蝕",
           "abName": "陸行珍珠",
-          "desc": "[CantIdentify]\n指定體力最低的單位\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1",
+          "desc": "[CantIdentify]\n指定體力最低的單位\n[BeforeAttack] 若現存體力低於50%，則使本技能的攻擊容量+1",
           "coinlist": [
             {
               "coindescs": [
@@ -238,7 +238,7 @@
           "level": 4,
           "name": "沸騰腐蝕",
           "abName": "陸行珍珠",
-          "desc": "[CantIdentify]\n指定體力最低的單位\n[BeforeAttack] 若現存體力不高於50%，則使本技能的攻擊容量+1\n若現存體力不高於25%，則使本技能的攻擊容量額外+1",
+          "desc": "[CantIdentify]\n指定體力最低的單位\n[BeforeAttack] 若現存體力低於50%，則使本技能的攻擊容量+1\n若現存體力低於25%，則使本技能的攻擊容量額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -724,7 +724,7 @@
           "level": 3,
           "name": "汙血泣淚 - 終",
           "abName": "應龍",
-          "desc": "This Skill does not consume E.G.O Resources\n[CantDuel]\nDeal <style=\"highlight\">+3%</style> damage for every [DragonLance] on self (max <style=\"highlight\">9%</style>)\nDeal <style=\"highlight\">+6%</style> damage for every [CondensedBlood] on self (max <style=\"highlight\">30%</style>)\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 5 [Burst] on main target (max 2)</style>\n[WhenUse] At 3+ [CondensedBlood], Atk Weight +1 and Base Power +1\n<style=\"highlight\">- At 4+ [CondensedBlood], Atk Weight +2 and Base Power +2 instead</style>\n[EndSkill] Remove [DragonLance] and [CondensedBlood] from self, then dies",
+          "desc": "本技能不會消耗罪孽碎片\n[CantDuel]\n自身每帶有1層 [DragonLance]，則使本技能造成的傷害<style=\"highlight\">+3%(最多+9%)</style>\n自身每帶有1層 [CondensedBlood]，則使本技能造成的傷害<style=\"highlight\">+6%(最多+30%)</style>\n<style=\"highlight\">[WhenUse] 主要目標每帶有5級 [Burst] 強度，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身的 [CondensedBlood] 不低於3層，則使本技能的攻擊容量+1、基礎威力+1\n<style=\"highlight\">- 若不低於4層，則改為使本技能的攻擊容量+2、基礎威力+2</style>\n[EndSkill] 解除自身的 [DragonLance] 與 [CondensedBlood]，隨後自身陣亡",
           "coinlist": [
             {
               "coindescs": [
@@ -760,7 +760,7 @@
           "level": 4,
           "name": "汙血泣淚 - 終",
           "abName": "應龍",
-          "desc": "This Skill does not consume E.G.O Resources\n[CantDuel]\nDeal +3% damage for every [DragonLance] on self (max 9%)\nDeal +6% damage for every [CondensedBlood] on self (max 30%)\n[WhenUse] Coin Power +1 for every 5 [Burst] on main target (max <style=\"highlight\">3</style>)\n[WhenUse] At 3+ [CondensedBlood], Atk Weight +1 and Base Power +1\n- At 4+ [CondensedBlood], Atk Weight +2 and Base Power +2 instead\n<style=\"highlight\">- At 5+ [CondensedBlood], Atk Weight +3 and Base Power +3 instead</style>\n[EndSkill] Remove [DragonLance] and [CondensedBlood] from self, then dies",
+          "desc": "本技能不會消耗罪孽碎片\n[CantDuel]\n自身每帶有1層 [DragonLance]，則使本技能造成的傷害+3%(最多+9%)\n自身每帶有1層 [CondensedBlood]，則使本技能造成的傷害+6%(最多+30%)\n[WhenUse] 主要目標每帶有5級 [Burst] 強度，則使本技能的硬幣威力+1(最多<style=\"highlight\">+3</style>)\n[WhenUse] 若自身的 [CondensedBlood] 不低於3層，則使本技能的攻擊容量+1、基礎威力+1\n- 若不低於4層，則改為使本技能的攻擊容量+2、基礎威力+2\n<style=\"highlight\">- 若不低於5層，則改為使本技能的攻擊容量+3、基礎威力+3</style>\n[EndSkill] 解除自身的 [DragonLance] 與 [CondensedBlood]，隨後自身陣亡",
           "coinlist": [
             {
               "coindescs": [
@@ -941,7 +941,7 @@
           "level": 1,
           "name": "寧作吾",
           "abName": "令",
-          "desc": "[WhenUse] Gain 2 [Breath]\n[BeforeAttack] At 5+ ([Breath] Potency + [Breath] Count), Final Power +1\n[BeforeAttack] If this unit has [Cianjing], deal +15% damage\n[BeforeAttack] If this unit has [SeniorCianjing], deal +27% damage\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "desc": "[WhenUse] 使自身增加2級 [Breath] 強度\n[BeforeAttack] 若自身的 [Breath] 強度與 [Breath] 回數之和不低於5點，則使本技能的最終威力+1\n[BeforeAttack] 若自身帶有 [Cianjing]，則使本技能造成的傷害+15%\n[BeforeAttack] 若自身帶有 [SeniorCianjing]，則使本技能造成的傷害+27%\n[EndSkill] 使自身獲得5層 [Cianjing]\n- 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則全部消耗並使自身獲得5層 [SeniorCianjing]",
           "coinlist": [
             {},
             {
@@ -963,7 +963,7 @@
           "level": 3,
           "name": "寧作吾",
           "abName": "令",
-          "desc": "[WhenUse] Gain <style=\"highlight\">3</style> [Breath]\n[BeforeAttack] <style=\"highlight\">Final Power +1 for every 5 ([Breath] Potency + [Breath] Count) (max 2)</style>\n[BeforeAttack] If this unit has [Cianjing], gain <style=\"highlight\">+1 Atk Weight</style> and deal +15% damage\n[BeforeAttack] If this unit has [SeniorCianjing], gain <style=\"highlight\">+2 Atk Weight</style> and deal +27% damage\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "desc": "[WhenUse] 使自身增加<style=\"highlight\">3</style>級 [Breath] 強度\n[BeforeAttack] 自身的 [Breath] 強度與 [Breath] 回數之和<style=\"highlight\">每有5點，則使本技能的最終威力+1(最多+2)</style>\n[BeforeAttack] 若自身帶有 [Cianjing]，則使本技能的<style=\"highlight\">攻擊容量+1</style>、造成的傷害+15%\n[BeforeAttack] 若自身帶有 [SeniorCianjing]，則使本技能的<style=\"highlight\">攻擊容量+2</style>、造成的傷害+27%\n[EndSkill] 使自身獲得5層 [Cianjing]\n- 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則全部消耗並使自身獲得5層 [SeniorCianjing]",
           "coinlist": [
             {},
             {
@@ -985,7 +985,7 @@
           "level": 4,
           "name": "寧作吾",
           "abName": "令",
-          "desc": "[WhenUse] Gain <style=\"highlight\">4</style> [Breath]\n[BeforeAttack] Final Power +1 for every 5 ([Breath] Potency + [Breath] Count) (max <style=\"highlight\">3</style>)\n<style=\"highlight\">[BeforeAttack] If this unit does not have [Cianjing] or [SeniorCianjing], recuperate half of E.G.O resources and SP consumed by this Skill (rounded down; this effect applies to Corrosion Skill as well if it activated due to the \"To Corrode\" probability when using the Awakening Skill)</style>\n[BeforeAttack] If this unit has [Cianjing], gain +1 Atk Weight and deal +<style=\"highlight\">25</style>% damage\n[BeforeAttack] If this unit has [SeniorCianjing], gain +2 Atk Weight and deal +<style=\"highlight\">45</style>% damage\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "desc": "[WhenUse] 使自身增加<style=\"highlight\">4</style>級 [Breath] 強度\n[BeforeAttack] 自身的 [Breath] 強度與 [Breath] 回數之和每有5點，則使本技能的最終威力+1(最多<style=\"highlight\">+3</style>)\n<style=\"highlight\">[BeforeAttack] 若自身未帶有 [Cianjing] 與 [SeniorCianjing]，則返還本技能所消耗罪孽碎片與理智值的一半(小數點以下<noparse>捨去</noparse>；使用覺醒技能時發生侵蝕的情況下也適用本效果)</style>\n[BeforeAttack] 若自身帶有 [Cianjing]，則使本技能的攻擊容量+1、造成的傷害<style=\"highlight\">+25%</style>\n[BeforeAttack] 若自身帶有 [SeniorCianjing]，則使本技能的攻擊容量+2、造成的傷害<style=\"highlight\">+45%</style>\n[EndSkill] 使自身獲得5層 [Cianjing]\n- 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則全部消耗並使自身獲得5層 [SeniorCianjing]",
           "coinlist": [
             {},
             {
@@ -1012,7 +1012,7 @@
           "level": 1,
           "name": "寧作吾",
           "abName": "令",
-          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Gain 2 [Breath] and +2 [Breath] Count\n[BeforeAttack] If this unit has [Cianjing] or [SeniorCianjing], Coin Power +1\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "desc": "[CantIdentify]\n隨機指定目標\n[WhenUse] 使自身增加2級 [Breath] 強度並使自身獲得2回 [Breath]\n[BeforeAttack] 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則使本技能的硬幣威力+1\n[EndSkill] 使自身獲得5層 [Cianjing]\n- 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則全部消耗並使自身獲得5層 [SeniorCianjing]",
           "coinlist": [
             {
               "coindescs": [
@@ -1059,7 +1059,7 @@
           "level": 3,
           "name": "寧作吾",
           "abName": "令",
-          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Gain <style=\"highlight\">3</style> [Breath] and +<style=\"highlight\">3</style> [Breath] Count\n[BeforeAttack] If this unit has [Cianjing] or [SeniorCianjing], <style=\"highlight\">gain +1 Atk Weight, Base Power +1</style>, and Coin Power +1\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "desc": "[CantIdentify]\n隨機指定目標\n[WhenUse] 使自身增加<style=\"highlight\">3</style>級 [Breath] 強度並使自身獲得<style=\"highlight\">3</style>回 [Breath]\n[BeforeAttack] 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則使本技能的<style=\"highlight\">攻擊容量+1、基礎威力+1</style>、硬幣威力+1\n[EndSkill] 使自身獲得5層 [Cianjing]\n- 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則全部消耗並使自身獲得5層 [SeniorCianjing]",
           "coinlist": [
             {
               "coindescs": [
@@ -1106,7 +1106,7 @@
           "level": 4,
           "name": "寧作吾",
           "abName": "令",
-          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Gain <style=\"highlight\">4</style> [Breath] and +<style=\"highlight\">4</style> [Breath] Count\n[BeforeAttack] If this unit has [Cianjing] or [SeniorCianjing], gain +<style=\"highlight\">2</style> Atk Weight, Base Power +<style=\"highlight\">2</style>, and Coin Power +<style=\"highlight\">2</style>\n[EndSkill] Gain 5 [Cianjing]\n- If this unit has [Cianjing] or [SeniorCianjing], consume all of it and gain 5 [SeniorCianjing]",
+          "desc": "[CantIdentify]\n隨機指定目標\n[WhenUse] 使自身增加<style=\"highlight\">4</style>級 [Breath] 強度並使自身獲得<style=\"highlight\">4</style>回 [Breath]\n[BeforeAttack] 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則使本技能的攻擊容量<style=\"highlight\">+2</style>、基礎威力<style=\"highlight\">+2</style>、硬幣威力<style=\"highlight\">+2</style>\n[EndSkill] 使自身獲得5層 [Cianjing]\n- 若自身帶有 [Cianjing] 或 [SeniorCianjing]，則全部消耗並使自身獲得5層 [SeniorCianjing]",
           "coinlist": [
             {
               "coindescs": [

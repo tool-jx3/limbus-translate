@@ -3,483 +3,483 @@
     {
       "id": 0,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "How fareth the recall upon the fourth floor?"
+      "title": "漆黑派 品牌經理",
+      "content": "4樓的召回情況如何。"
     },
     {
       "id": 1,
-      "teller": "Sales Associate",
-      "title": "Maison du Noir",
-      "content": "The Footwear Hall has completed its mass recall and begun inspections. The Handbags Hall, however... says it will need a little more time."
+      "teller": "專櫃人員",
+      "title": "漆黑派 品牌旗艦店",
+      "content": "名品鞋室已經完成大規模召回，開始進行檢查了。手提包展廳那邊……說是還需要一些時日。"
     },
     {
       "id": 2,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Dispatch a few sales associates to the Handbags Hall. Should we tarry much longer, the Rouges shall drive us from the fourth floor as well."
+      "title": "漆黑派 品牌經理",
+      "content": "派幾名專櫃人員前往手提包展廳吧。若再拖延下去，恐怕連4樓也要被丹紅派逼退了。"
     },
     {
       "id": 3,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "As for the third floor... Was Two-piece not hired to bar the corridor? Yet our foes have broken through still."
+      "title": "漆黑派 品牌經理",
+      "content": "3樓……吾記得應已僱用兩件套封鎖了走廊，竟還是被突破了啊。"
     },
     {
       "id": 4,
-      "teller": "Sales Associate",
-      "title": "Maison du Noir",
-      "content": "There was an incident involving a stranger who assisted the Rouges, but most of the trouble came from those who infiltrated through the Public Address Room route."
+      "teller": "專櫃人員",
+      "title": "漆黑派 品牌旗艦店",
+      "content": "雖然確實有一名異鄉人曾經幫助過丹紅派，但問題大多出在繞道廣播室的丹紅派身上。"
     },
     {
       "id": 5,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... This new Voice hath turned the Rouges' ears from the broadcasts. Convey this to the third floor's Floor Manager: I would have them pledge allegiance to Le Noir, and bar those intruders from our stores."
+      "title": "漆黑派 品牌經理",
+      "content": "……由於新的聲音，丹紅派已不再傾聽廣播，故要其轉投漆黑派，阻止他們前來漆黑派的專櫃……將此轉告3樓的樓層經理。"
     },
     {
       "id": 6,
-      "teller": "Sales Associate",
-      "title": "Maison du Noir",
-      "content": "Understood."
+      "teller": "專櫃人員",
+      "title": "漆黑派 品牌旗艦店",
+      "content": "是。"
     },
     {
       "id": 7,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Hmm. And what tidings of the first floor?"
+      "title": "漆黑派 品牌經理",
+      "content": "嗯。1樓情況如何？"
     },
     {
       "id": 8,
-      "content": "Plans for running each store, plans for taking back the Luxury Hall..."
+      "content": "從各個專櫃的營運計畫，到奪回奢侈品館的計畫。"
     },
     {
       "id": 9,
-      "content": "The conversation beside me just kept going, filling my ears with all sorts of rumors that were all equally beyond my league."
+      "content": "對我來說太過沉重的傳聞，不斷從身旁傳進耳裡。"
     },
     {
       "id": 10,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "Um... You seem pretty busy. Would it be okay if I went on ahead by myself?"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "那個……您好像很忙……我們可以分開走嗎？"
     },
     {
       "id": 11,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "I really only came to pass on that rumor from Miss Alterationist. That's all..."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "我真的只是為了散播修補達人小姐說的傳聞才來的……"
     },
     {
       "id": 12,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... Aye. The Voice hath already revealed that to me."
+      "title": "漆黑派 品牌經理",
+      "content": "……此事，聲音早已告知於吾。"
     },
     {
       "id": 13,
-      "content": "I'd waited for the season to change so I could make my way down to the first floor, then head for the basement floors..."
+      "content": "為了前往地下，我等待換季，一路下到了1樓……"
     },
     {
       "id": 14,
-      "content": "... only to get stopped by Le Noir's Brand Manager. Now I was stuck tagging along with her."
+      "content": "卻被漆黑派的品牌經理逮住，現在正與她同行。"
     },
     {
       "id": 15,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Yet thou art a Kaki, art thou not? Adrift, with no devotion to the exalted Obsidian God to guide thy path."
+      "title": "漆黑派 品牌經理",
+      "content": "然而，汝不追隨高貴的漆黑之神，不過是隨波漂流的卡其派，不是嗎。"
     },
     {
       "id": 16,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Until thou departest this floor, thou shalt remain at my side, where I may keep watch over thee; for I know not the definition of thy justice."
+      "title": "漆黑派 品牌經理",
+      "content": "吾揣度不出汝的正義為何，故在汝離開此樓層之前，吾都將把汝留在身旁觀察。"
     },
     {
       "id": 17,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "My definition of... justice?"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "正義……嗎？"
     },
     {
       "id": 18,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "There is naught in the Grand Magasin of which one may be certain."
+      "title": "漆黑派 品牌經理",
+      "content": "這座百貨公司裡，沒有一件事是確定的。"
     },
     {
       "id": 19,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Once, the names of Le Noir and Le Rouge upheld values of their own. Yet even these were dismantled by those profane souls known as Le Néant."
+      "title": "漆黑派 品牌經理",
+      "content": "曾經，漆黑派與丹紅派之名各自保存著某種價值，然而這些都已被名為虛無派的邪佞之徒所瓦解。"
     },
     {
       "id": 20,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Even if thou dost take the disorder of Le Kaki as thine order and live by it, the scales upon which chaos balances itself are uneven.\n"
+      "title": "漆黑派 品牌經理",
+      "content": "縱使汝將卡其派這份無序奉為秩序而遵從，天秤也不會因此平衡吧。"
     },
     {
       "id": 21,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "You mean... like how Miss Alterationist helps the Noirs?"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "就像修補達人小姐……幫助漆黑派那樣嗎？"
     },
     {
       "id": 22,
-      "content": "Ever since word got around that the Rouges had a new god..."
+      "content": "自從丹紅派誕生了新神的傳聞傳開之後。"
     },
     {
       "id": 23,
-      "content": "... people in this department store started caring less and less about keeping up with the latest trends. Instead, they'd pick either Le Rouge or Le Noir, then throw themselves into that brand's fashion—and that brand's alone."
+      "content": "百貨公司逐漸不再追逐流行，而是開始沉迷於丹紅派或漆黑派其中一方的時尚，並加以追求。"
     },
     {
       "id": 24,
-      "content": "But... that wasn't what I wanted."
+      "content": "可是……我並不想那樣。"
     },
     {
       "id": 25,
-      "content": "Red or black. I'd never be able to make the clothes I had in mind by limiting myself to only one of them."
+      "content": "紅與黑，只靠其中一種顏色，做不出我想要的衣服。"
     },
     {
       "id": 26,
-      "content": "The two colors might clash in the same outfit. They might not blend well together, but I'd still take the chance and mix them up to make something out of both."
+      "content": "即使兩者會在其中相互對立，我還是認為必須把兩者混合起來一起使用。"
     },
     {
       "id": 27,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "I..."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "我……"
     },
     {
       "id": 28,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "I just wanna see all sorts of things that exist here—hear about them, try them for myself... and use all that to make beautiful clothes."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "我只是想看、想聽、想體驗許多事物……然後做出美麗的衣服。"
     },
     {
       "id": 29,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Much as thy present attire maketh no distinction between Noir and Rouge?"
+      "title": "漆黑派 品牌經理",
+      "content": "就像汝那身不分漆黑與丹紅的打扮一樣嗎？"
     },
     {
       "id": 30,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "... Yeah."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "……是的。"
     },
     {
       "id": 31,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "......."
+      "title": "漆黑派 品牌經理",
+      "content": "……"
     },
     {
       "id": 32,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "The more thou dost shop, and shop again for all eternity within the Grand Magasin, the finer a designer thou shalt become."
+      "title": "漆黑派 品牌經理",
+      "content": "在百貨公司中永遠購物，購物得越多，汝便會成為越出色的設計師吧。"
     },
     {
       "id": 33,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "I... I think so too. I could become a really great one someday."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "我、我覺得自己以後說不定真的能成為很厲害的設計師。"
     },
     {
       "id": 34,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "And I mean... good enough that even the models on 6F would ask for my brand!"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "就是說……厲害到連6樓的模特兒都會來找我的衣服！"
     },
     {
       "id": 35,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "You know, I was something of an artist outside."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "我在外面的時候，在美術方面也算有點天分。"
     },
     {
       "id": 36,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... \"Outside\"? How distant a word that hath become."
+      "title": "漆黑派 品牌經理",
+      "content": "……外面啊。真是遙遠的詞彙。"
     },
     {
       "id": 37,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Tell me, what manner of person wert thou in that world?"
+      "title": "漆黑派 品牌經理",
+      "content": "汝在外面時，曾是何等的存在。"
     },
     {
       "id": 38,
-      "content": "Walking through a corridor where the sunshine was especially stinging, the Brand Manager asked the question without so much as looking my way."
+      "content": "漫步在陽光格外強烈的走廊上，經理大人沒有看向我，就這麼問道。"
     },
     {
       "id": 39,
-      "content": "\"Outside.\" I could barely remember what it'd been like anymore."
+      "content": "外面……關於那裡的記憶太過模糊了。"
     },
     {
       "id": 40,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "... A pretty sorry one, I guess."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "……大概很差勁吧。"
     },
     {
       "id": 41,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "All I could ever create out there... were fakes."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "因為在外面，我……只做得出假貨。"
     },
     {
       "id": 42,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "I can offer thee no comforting words, for I have never led so wretched a life myself."
+      "title": "漆黑派 品牌經理",
+      "content": "吾從未活過那般糟糕的人生，恐怕無法給予汝慰藉。"
     },
     {
       "id": 43,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Nor shall I ever know such a life, so long as I heed the Obsidian God's words and abide by the order our Lord hath proclaimed—the one true order of this department store."
+      "title": "漆黑派 品牌經理",
+      "content": "只要遵從漆黑之神的話語，順應百貨公司的秩序……吾今後想必也不會過上那種人生。"
     },
     {
       "id": 44,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "However... I wish thee a better lot here."
+      "title": "漆黑派 品牌經理",
+      "content": "但吾仍盼汝在此處，不再那般糟糕。"
     },
     {
       "id": 45,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "This, uh, \"Obsidian God\"... What's he like? I've heard his Voice in the Noir stores a few times, but..."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "那位漆黑之神……是怎樣的一位呢？我在漆黑派的專櫃倒是常常聽到聲音……"
     },
     {
       "id": 46,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Shh."
+      "title": "漆黑派 品牌經理",
+      "content": "噓。"
     },
     {
       "id": 47,
-      "content": "As we were heading to the escalator, the Manager suddenly came to a halt before the storefront of Le Rouge Contemporary Hall."
+      "content": "正朝手扶梯走去時，經理大人在丹紅派時尚展廳前停下了腳步。"
     },
     {
       "id": 48,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Witness ye in silence,"
+      "title": "漆黑派 品牌經理",
+      "content": "默示吧。"
     },
     {
       "id": 49,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "for the Obsidian God to me speaketh."
+      "title": "漆黑派 品牌經理",
+      "content": "此刻，漆黑之神正向吾降下話語……"
     },
     {
       "id": 50,
-      "content": "Just when the Manager closed her eyes and knelt down as though to pray..."
+      "content": "就在經理大人閉上雙眼，如祈禱般低下頭時。"
     },
     {
       "id": 51,
-      "content": "... a familiar silhouette came into view, past the dormant wallets littering the corridor."
+      "content": "一道曾經見過、熟悉的身影，出現在走廊另一頭的皮夾之間。"
     },
     {
       "id": 52,
       "model": "싱클레어",
       "teller": "???",
       "title": "???",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 53,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "...!"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "……！"
     },
     {
       "id": 54,
-      "content": "Last season, I had no idea who he was—but I've had the time to learn more about him since then."
+      "content": "上一季時我還不知道，但現在我已經知道那個人是誰、是什麼樣的存在了。"
     },
     {
       "id": 55,
-      "content": "The false god of Le Rouge, their new \"Voice.\""
+      "content": "丹紅派的偽神。他們新的聲音。"
     },
     {
       "id": 56,
-      "content": "I didn't realize it then, but back at the Alteration Shop, his appearance was what indicated that the Rouges' assault was imminent."
+      "content": "在改衣坊時也是，那個人出現之後，丹紅派的襲擊就開始了。"
     },
     {
       "id": 57,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "Manager...! Open your eyes! They're here...!"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "經理大人，前面……！"
     },
     {
       "id": 58,
-      "content": "And wouldn't you know it—Le Rouge sales associates, wearing pincer-like bracelets, began marching across the corridor toward us..."
+      "content": "果不其然，戴著鉗子般手環的丹紅派專櫃人員們開始橫越走廊。"
     },
     {
       "id": 59,
-      "content": "... but the Manager's eyes remained shut, focused entirely on hearing the Voice."
+      "content": "經理大人仍像在祈禱般，專注於聲音。"
     },
     {
       "id": 60,
-      "content": "I cursed under my breath. I really didn't want to use it here, but there wasn't much else I could do... So I swallowed back the tears and brought out the fabric I'd picked up on the third floor."
+      "content": "在別無他法的情況下，我最終只能含淚拿出在3樓弄到的布料。"
     },
     {
       "id": 61,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "......."
+      "title": "漆黑派 品牌經理",
+      "content": "……"
     },
     {
       "id": 62,
-      "content": "As my fabric managed to briefly repel the first wave of the Rouges..."
+      "content": "就在布料暫時推開撲上來的丹紅派的那一刻。"
     },
     {
       "id": 63,
-      "content": "The Brand Manager slowly opened her eyes and raised her greathammer, her audience with the Voice concluded. "
+      "content": "彷彿已經聽完了聲音一般，緩緩睜開雙眼的經理大人高高舉起了錘子。"
     },
     {
       "id": 64,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "I proclaim this land a hallowed sanctum."
+      "title": "漆黑派 品牌經理",
+      "content": "宣示神域。"
     },
     {
       "id": 65,
-      "content": "I shut my eyes, momentarily stunned by a burst of light. It was unlike the sunshine of this department store, but it was still blinding."
+      "content": "與陽光不同，卻同樣燦爛的光芒迸發而出。"
     },
     {
       "id": 66,
-      "content": "Strange symbols began creeping along my clothes—the parts that were woven from Le Noir fabric, to be specific."
+      "content": "奇異的紋樣開始沿著我身上的衣服，順著漆黑派的布料流動。"
     },
     {
       "id": 67,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... The Obsidian God hath already promised me eternity and preservation."
+      "title": "漆黑派 品牌經理",
+      "content": "……吾之永恆與保存，早已由漆黑之神許諾。"
     },
     {
       "id": 68,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Thou needst not have stood in my defense. Alas..."
+      "title": "漆黑派 品牌經理",
+      "content": "所以，本無須冒昧擋在吾之身前……"
     },
     {
       "id": 69,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Just what be that... thing?"
+      "title": "漆黑派 品牌經理",
+      "content": "那是……何物……？"
     },
     {
       "id": 70,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "I-it's a Mannequin in my storage."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "是、是我保管的人台模特兒。"
     },
     {
       "id": 71,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "I've dressed it up with clothes I designed, what with it being fabric and all..."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "因為它是布料……我就把自己設計的衣服……給它穿上了……"
     },
     {
       "id": 72,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... I cannot say that thy design is much to my liking, yet the quality is quite adequate."
+      "title": "漆黑派 品牌經理",
+      "content": "……設計雖不合吾之喜好，做工倒是不差。"
     },
     {
       "id": 73,
-      "content": "With each wave of the Manager's hand, brilliant nails of light materialize from thin air."
+      "content": "經理大人每揮一次手，就會出現散發著燦爛光芒的釘子。"
     },
     {
       "id": 74,
-      "content": "The way they came into being almost looked as though threads of light were weaving them into existence, each grain falling into an orderly pattern of warps and wefts. And just as I realized every nailpoint was angled toward a different Rouge assailant..."
+      "content": "宛如編織絲線一般，井然有序地成形的釘子豎立起來，對準了丹紅派……"
     },
     {
       "id": 75,
-      "content": "... there was a blur, followed by a powerful gust, as the hammer struck the head of each nail as though drawn by some gravity."
+      "content": "錘子理所當然似地緊隨其後，敲下了釘子。"
     },
     {
       "id": 76,
-      "content": "After a veritable storm of nails and hammers reduced the onslaught of Rouges into red paste... the false god could not be seen anywhere."
+      "content": "當無數的丹紅派全被砸爛時，偽神的身影已不知何時消失無蹤。"
     },
     {
       "id": 77,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... We must lay siege upon the second floor anon."
+      "title": "漆黑派 品牌經理",
+      "content": "……必須盡快奪回2樓了。"
     },
     {
       "id": 78,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Though I had intended to descend to B2F abreast thee, one of Le Kaki..."
+      "title": "漆黑派 品牌經理",
+      "content": "原本吾打算與汝這位卡其派一同前往地下2樓……"
     },
     {
       "id": 79,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "'tis evident to me that now is the time to rise."
+      "title": "漆黑派 品牌經理",
+      "content": "但如今看來，是該往上走的時候了。"
     },
     {
       "id": 80,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "Did the Obsidian God tell you to... climb?"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "是漆黑之神那麼說的嗎？"
     },
     {
       "id": 81,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... Nay."
+      "title": "漆黑派 品牌經理",
+      "content": "……並非如此。"
     },
     {
       "id": 82,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Concerning the false god... the Lord has said that..."
+      "title": "漆黑派 品牌經理",
+      "content": "漆黑之神……對偽神……"
     },
     {
       "id": 83,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "... Tut, I shan't let doubt taint my lips, for this ordeal be but a test of my faith."
+      "title": "漆黑派 品牌經理",
+      "content": "不，這亦是神所降下的試煉。不該將懷疑宣之於口吧。"
     },
     {
       "id": 84,
       "model": "돈키호테",
-      "title": "Le Noir Brand Manager",
-      "content": "Prithee, let this rumor spread far and wide."
+      "title": "漆黑派 品牌經理",
+      "content": "那則傳聞，還望汝好生傳開。"
     },
     {
       "id": 85,
-      "content": "Well, now that I've seen the Brand Manager up the escalator..."
+      "content": "目送搭著手扶梯往上的經理大人離開後，"
     },
     {
       "id": 86,
-      "content": "... it's time to head downsta—"
+      "content": "我也往下……"
     },
     {
       "id": 87,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "... Huh, was this always here?"
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "……原本有這種東西嗎？"
     },
     {
       "id": 88,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "\"The human forms... converge again and again... upon the structure of a... tree...\""
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "人的形體……收束於樹的結構……並不斷重複……"
     },
     {
       "id": 89,
-      "teller": "Dubois",
-      "title": "Le Kaki",
-      "content": "\"Past life.\" Past life, in a past life, I..."
+      "teller": "杜布瓦",
+      "title": "卡其派",
+      "content": "前世……我在前世……"
     }
   ]
 }

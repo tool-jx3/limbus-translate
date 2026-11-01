@@ -165,7 +165,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 [AzureTakeDamageUp]. At 3+ Gloom Reson., inflict 1 additional [AzureTakeDamageUp]"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [AzureTakeDamageUp]。若憂鬱共鳴數不低於3，則額外施加1層"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
@@ -186,7 +186,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 [AzureTakeDamageUp]. Inflict 1 additional [AzureTakeDamageUp] for every 3 Gloom Reson. (max 2)"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [AzureTakeDamageUp]。每有3點憂鬱共鳴數，則額外施加1層(最多2層)"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
@@ -207,7 +207,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 [AzureTakeDamageUp]. Inflict 1 additional [AzureTakeDamageUp] for every 2 Gloom Reson. (max 2)"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [AzureTakeDamageUp]。每有2點憂鬱共鳴數，則額外施加1層(最多2層)"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]"
@@ -596,7 +596,7 @@
           "level": 1,
           "name": "未照耀的榮光 - 流水",
           "abName": "瑪恩納",
-          "desc": "[CantDuel]\nWhen used for the first time in an Encounter, consume 1 fewer Wrath, 2 fewer Sloth, and 1 fewer Pride E.G.O resources.\nAt 1+ [MlynarWaiting], activate <noparse>Unbrilliant Glory - Incandescence</noparse> instead\nThis Skill does not hit an enemy, does not trigger Defense Skills, and external effects cannot trigger this Skill to be Reused\n[EndSkill] Gain 1 [MlynarWaiting]\n[EndSkill] Heal 25 SP\n[EndSkill] Gain 1 [AttackUp] next turn",
+          "desc": "[CantDuel]\n本場戰鬥中首次使用時，消耗的罪孽碎片減少1個暴怒、2個怠惰與1個傲慢\n若自身的 [MlynarWaiting] 層數不低於1層，則改為發動未照耀的榮光 - 光輝\n本技能不會命中敵方單位、不會觸發守備技能，且不會因外部效果而重複使用\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndSkill] 使自身恢復25點理智值\n[EndSkill] 下回合使自身獲得1層 [AttackUp]",
           "coinlist": [
             {
               "coindescs": [
@@ -611,7 +611,7 @@
           "level": 3,
           "name": "未照耀的榮光 - 流水",
           "abName": "瑪恩納",
-          "desc": "[CantDuel]\nWhen used for the first time in an Encounter, consume 1 fewer Wrath, 2 fewer Sloth, and 1 fewer Pride E.G.O resources.\nAt 1+ [MlynarWaiting], activate <noparse>Unbrilliant Glory - Incandescence</noparse> instead\nThis Skill does not hit an enemy, does not trigger Defense Skills, and external effects cannot trigger this Skill to be Reused\n[EndSkill] Gain 1 [MlynarWaiting]\n[EndSkill] Heal 25 SP\n[EndSkill] Gain <style=\"highlight\">2</style> [AttackUp] next turn",
+          "desc": "[CantDuel]\n本場戰鬥中首次使用時，消耗的罪孽碎片減少1個暴怒、2個怠惰與1個傲慢\n若自身的 [MlynarWaiting] 層數不低於1層，則改為發動未照耀的榮光 - 光輝\n本技能不會命中敵方單位、不會觸發守備技能，且不會因外部效果而重複使用\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndSkill] 使自身恢復25點理智值\n[EndSkill] 下回合使自身獲得<style=\"highlight\">2</style>層 [AttackUp]",
           "coinlist": [
             {
               "coindescs": [
@@ -626,7 +626,7 @@
           "level": 4,
           "name": "未照耀的榮光 - 流水",
           "abName": "瑪恩納",
-          "desc": "[CantDuel]\nWhen used for the first time in an Encounter, consume 1 fewer Wrath, 2 fewer Sloth, and 1 fewer Pride E.G.O resources.\nAt 1+ [MlynarWaiting], activate <noparse>Unbrilliant Glory - Incandescence</noparse> instead\nThis Skill does not hit an enemy, does not trigger Defense Skills, and external effects cannot trigger this Skill to be Reused\n[EndSkill] Gain 1 [MlynarWaiting]\n[EndSkill] Heal 25 SP\n[EndSkill] Gain 2 [AttackUp] <style=\"highlight\">and 1 [AttackDmgUp]</style> next turn",
+          "desc": "[CantDuel]\n本場戰鬥中首次使用時，消耗的罪孽碎片減少1個暴怒、2個怠惰與1個傲慢\n若自身的 [MlynarWaiting] 層數不低於1層，則改為發動未照耀的榮光 - 光輝\n本技能不會命中敵方單位、不會觸發守備技能，且不會因外部效果而重複使用\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndSkill] 使自身恢復25點理智值\n[EndSkill] 下回合使自身獲得2層 [AttackUp] 與<style=\"highlight\">1層 [AttackDmgUp]</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -646,7 +646,7 @@
           "level": 1,
           "name": "未照耀的榮光 - 光輝",
           "abName": "瑪恩納",
-          "desc": "[CantDuel]\n本技能不會因外部效果而重複使用\n若自身的 [MlynarWaiting] 層數為40層，則使本技能變為可拚點\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則直到本技能結束，自身不會因受到傷害而陷入混亂，使本技能的拚點威力+20\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有效果均無條件捨去)\n- 每消耗(消耗的層數/20)層，則返還1個罪孽碎片(依傲慢、暴怒的順序返還)\n- 每消耗(消耗的層數/10)層，則使本技能的攻擊容量+1(最多+4)\n- 每消耗(消耗的層數/10)層，則使自身獲得1層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使第4枚硬幣造成的傷害+50%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有8級，則使本技能造成的傷害+5%(最多+25%)\n[EndSkill] 每有1個目標因本技能傷害而陷入混亂或陣亡，使自身恢復5點理智值(最多25點)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能未消耗40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側行動槽的 [Aggro] +4(每回合最多1次)",
+          "desc": "[CantDuel]\n本技能不會因外部效果而重複使用\n若自身的 [MlynarWaiting] 層數為40層，則使本技能變為可拚點\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則直到本技能結束，自身不會因受到傷害而陷入混亂，使本技能的拚點威力+20\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有數值均無條件捨去小數)\n- 返還(消耗的層數/20)個已使用的罪孽碎片(每次1個，依傲慢、暴怒的順序返還)\n- 使本技能的攻擊容量增加(消耗的層數/10)(最多4)\n- 使自身獲得(消耗的層數/10)層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使第4枚硬幣造成的傷害+50%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有8級，則使本技能造成的傷害+5%(最多+25%)\n[EndSkill] 每有1個目標因本技能傷害而陷入混亂或陣亡，使自身恢復5點理智值(最多25點)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能未消耗40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側行動槽的 [Aggro] +4(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -676,7 +676,7 @@
           "level": 3,
           "name": "未照耀的榮光 - 光輝",
           "abName": "瑪恩納",
-          "desc": "[CantDuel]\n本技能不會因外部效果而重複使用\n若自身的 [MlynarWaiting] 層數為40層，則使本技能變為可拚點\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則直到本技能結束，自身不會因受到傷害而陷入混亂，使本技能的拚點威力+20\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有效果均無條件捨去)\n- 每消耗(消耗的層數/20)層，則返還1個罪孽碎片(依傲慢、暴怒的順序返還)\n- 每消耗(消耗的層數/10)層，則使本技能的攻擊容量+1(最多+4)\n- 每消耗(消耗的層數/10)層，則使自身獲得1層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使第4枚硬幣造成的傷害+<style=\"highlight\">80</style>%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有8級，則使本技能造成的傷害+5%(最多+25%)\n[EndSkill] 每有1個目標因本技能傷害而陷入混亂或陣亡，使自身恢復5點理智值(最多25點)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能未消耗40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側行動槽的 [Aggro] +4(每回合最多1次)",
+          "desc": "[CantDuel]\n本技能不會因外部效果而重複使用\n若自身的 [MlynarWaiting] 層數為40層，則使本技能變為可拚點\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則直到本技能結束，自身不會因受到傷害而陷入混亂，使本技能的拚點威力+20\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有數值均無條件捨去小數)\n- 返還(消耗的層數/20)個已使用的罪孽碎片(每次1個，依傲慢、暴怒的順序返還)\n- 使本技能的攻擊容量增加(消耗的層數/10)(最多4)\n- 使自身獲得(消耗的層數/10)層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使第4枚硬幣造成的傷害+<style=\"highlight\">80</style>%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有8級，則使本技能造成的傷害+5%(最多+25%)\n[EndSkill] 每有1個目標因本技能傷害而陷入混亂或陣亡，使自身恢復5點理智值(最多25點)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能未消耗40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側行動槽的 [Aggro] +4(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -709,7 +709,7 @@
           "level": 4,
           "name": "未照耀的榮光 - 光輝",
           "abName": "瑪恩納",
-          "desc": "[CantDuel]\n本技能不會因外部效果而重複使用\n若自身的 [MlynarWaiting] 層數為40層，則使本技能變為可拚點\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則直到本技能結束，自身不會因受到傷害而陷入混亂，使本技能的拚點威力+20\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有效果均無條件捨去)\n- 每消耗(消耗的層數/20)層，則返還1個罪孽碎片(依傲慢、暴怒的順序返還)\n- 每消耗(消耗的層數/10)層，則使本技能的攻擊容量+1(最多+4)\n- 每消耗(消耗的層數/10)層，則使自身獲得1層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使第4枚硬幣造成的傷害+<style=\"highlight\">100</style>%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有8級，則使本技能造成的傷害+5%(最多+25%)\n[EndSkill] 每有1個目標因本技能傷害而陷入混亂或陣亡，使自身恢復5點理智值(最多25點)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能未消耗40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側行動槽的 [Aggro] +4(每回合最多1次)",
+          "desc": "[CantDuel]\n本技能不會因外部效果而重複使用\n若自身的 [MlynarWaiting] 層數為40層，則使本技能變為可拚點\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則直到本技能結束，自身不會因受到傷害而陷入混亂，使本技能的拚點威力+20\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有數值均無條件捨去小數)\n- 返還(消耗的層數/20)個已使用的罪孽碎片(每次1個，依傲慢、暴怒的順序返還)\n- 使本技能的攻擊容量增加(消耗的層數/10)(最多4)\n- 使自身獲得(消耗的層數/10)層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使第4枚硬幣造成的傷害+<style=\"highlight\">100</style>%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有8級，則使本技能造成的傷害+5%(最多+25%)\n[EndSkill] 每有1個目標因本技能傷害而陷入混亂或陣亡，使自身恢復5點理智值(最多25點)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能未消耗40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側行動槽的 [Aggro] +4(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -747,7 +747,7 @@
           "level": 1,
           "name": "未照耀的榮光 - 流水",
           "abName": "瑪恩納",
-          "desc": "[CantIdentify]\n隨機指定目標\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則使本技能的基礎威力+1\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有效果均無條件捨去)\n- 每消耗(消耗的層數/10)層，使自身獲得1層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使最後一枚硬幣造成的傷害+110%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能造成的傷害+3%(最多+15%)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-4(最多-16)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能消耗了40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側的行動槽的 [Aggro] +8(每回合最多1次)",
+          "desc": "[CantIdentify]\n隨機指定目標\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則使本技能的基礎威力+1\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有數值均無條件捨去小數)\n- 使自身獲得(消耗的層數/10)層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使最後一枚硬幣造成的傷害+110%，並使自身獲得2層 [Protection] (每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能造成的傷害+3%(最多+15%)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-4(最多-16)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能消耗了40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側的行動槽的 [Aggro] +8(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -792,7 +792,7 @@
           "level": 3,
           "name": "未照耀的榮光 - 流水",
           "abName": "瑪恩納",
-          "desc": "[CantIdentify]\nTargets randomly\n<style=\"highlight\">When attacking 3+ targets: If the Coins 1~3 hit without Cracking, the final Coin deals +25% damage (once per Coin; in Focused Encounters, each Part counts as 1 target)</style>\n[WhenUse] At 40 [MlynarWaiting], Base Power +1\n\n[BeforeAttack] Consume all [MlynarWaiting] and gain the following effects(all of them rounded down):\n- Gain (Stack consumed / 10) [DefenseUp] (once per turn)\n- If 40 Stack was consumed, the final Coin deals +<style=\"highlight\">130</style>% damage and this unit gains 2 [Protection] (once per turn)\n\n[BeforeAttack] Deal +3% damage for every 6 ([Combustion] + [Vibration]) on the main target (max 15%)\n[BeforeAttack] Base Power -4 for every Cracked Coin (max -16)\n[EndSkill] Gain 1 [MlynarWaiting]\n[EndBattle] If 40 [MlynarWaiting] was consumed by this Skill, the leftmost Skill Slot on the Dashboard gains +8 [Aggro] next turn (once per turn)",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">指定不低於3名目標時，若第1~3枚硬幣未被破壞並命中，則使最後一枚硬幣造成的傷害+25%(每枚硬幣最多1次，若於集中遭遇戰，則每個部位各視為1名目標)</style>\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則使本技能的基礎威力+1\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有數值均無條件捨去小數)\n- 使自身獲得(消耗的層數/10)層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使最後一枚硬幣造成的傷害+<style=\"highlight\">130</style>%，並使自身獲得2層守護(每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能造成的傷害+3%(最多+15%)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-4(最多-16)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能消耗了40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側的行動槽的 [Aggro] +8(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -837,7 +837,7 @@
           "level": 4,
           "name": "未照耀的榮光 - 流水",
           "abName": "瑪恩納",
-          "desc": "[CantIdentify]\nTargets randomly\nIf there are 3+ targets: If the Coins 1~3 hit without Cracking, the final Coin deals +<style=\"highlight\">30</style>% damage (once per Coin; in Focused Encounters, each Part counts as 1 target)\n[WhenUse] At 40 [MlynarWaiting], Base Power +1\n\n[BeforeAttack] Consume all [MlynarWaiting] and gain the following effects(all of them rounded down):\n- Gain (Stack consumed / 10) [DefenseUp] (once per turn)\n- If 40 Stack was consumed, the final Coin deals +<style=\"highlight\">160</style>% damage and this unit gains 2 [Protection] (once per turn)\n\n[BeforeAttack] Deal +3% damage for every 6 ([Combustion] + [Vibration]) on the main target (max 15%)\n[BeforeAttack] Base Power -4 for every Cracked Coin (max -16)\n[EndSkill] Gain 1 [MlynarWaiting]\n[EndBattle] If 40 [MlynarWaiting] was consumed by this Skill, the leftmost Skill Slot on the Dashboard gains +8 [Aggro] next turn (once per turn)",
+          "desc": "[CantIdentify]\n隨機指定目標\n指定不低於3名目標時，若第1~3枚硬幣未被破壞並命中，則使最後一枚硬幣造成的傷害+<style=\"highlight\">30</style>%(每枚硬幣最多1次，若於集中遭遇戰，則每個部位各視為1名目標)\n[WhenUse] 若自身的 [MlynarWaiting] 層數為40層，則使本技能的基礎威力+1\n\n[BeforeAttack] 消耗所有 [MlynarWaiting] 並獲得以下效果(所有數值均無條件捨去小數)\n- 使自身獲得(消耗的層數/10)層 [DefenseUp] (每回合最多1次)\n- 若消耗了40層，則使最後一枚硬幣造成的傷害+<style=\"highlight\">160</style>%，並使自身獲得2層守護(每回合最多1次)\n\n[BeforeAttack] 主要目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能造成的傷害+3%(最多+15%)\n[BeforeAttack] 本技能每有1枚硬幣被破壞，使本技能的基礎威力-4(最多-16)\n[EndSkill] 使自身獲得1層 [MlynarWaiting]\n[EndBattle] 若本技能消耗了40層 [MlynarWaiting]，則下回合使儀錶盤上自身位於最左側的行動槽的 [Aggro] +8(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -887,7 +887,7 @@
           "level": 1,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "Gain Coin Power based on the following conditions (max 3):\n- Coin Power +1 for every 6 [Combustion] Potency on the main target\n- Gain Coin Power equal to ([Charge] Potency on self - 1)\n[BeforeAttack] This Skill inflicts +([Charge] Potency on self - 1) more [Combustion] Potency (max 2)\n[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n[BeforeAttack] Consume up to 15 [Charge] Count and deal +1% damage for every [Charge] Count consumed (max 15%)",
+          "desc": "滿足以下條件時，使本技能的硬幣威力增加(最多+3)\n- 主要目標每帶有6級 [Combustion] 強度，使本技能的硬幣威力+1\n- 使本技能的硬幣威力+(自身的 [Charge] 強度-1)\n[BeforeAttack] 使本技能施加的 [Combustion] <noparse>強度增加</noparse>(自身的 [Charge] 強度-1)級(最多2級)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)回 [Charge] (最多7回)\n[BeforeAttack] 消耗自身最多15回 [Charge]，每消耗1回，使本技能造成的傷害+1%(最多+15%)",
           "coinlist": [
             {
               "coindescs": [
@@ -915,7 +915,7 @@
           "level": 3,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "Gain Coin Power based on the following conditions (max 3):\n- Coin Power +1 for every 6 [Combustion] Potency on the main target\n- Gain Coin Power equal to ([Charge] Potency on self - 1)\n[BeforeAttack] This Skill inflicts +([Charge] Potency on self - 1) more [Combustion] Potency (max 2)\n[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n<style=\"highlight\">- At 3 or fewer [Charge] Count, gain 3 more [Charge] Count</style>\n[BeforeAttack] Consume up to 15 [Charge] Count and deal +<style=\"highlight\">2</style>% damage for every [Charge] Count consumed (max <style=\"highlight\">30</style>%)\n<style=\"highlight\">[EndSkill] If the Before Attack effects consumed 15 [Charge] Count, gain +5 [Charge] Count</style>",
+          "desc": "滿足以下條件時，使本技能的硬幣威力增加(最多+3)\n- 主要目標每帶有6級 [Combustion] 強度，使本技能的硬幣威力+1\n- 使本技能的硬幣威力+(自身的 [Charge] 強度-1)\n[BeforeAttack] 使本技能施加的 [Combustion] <noparse>強度增加</noparse>(自身的 [Charge] 強度-1)級(最多2級)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)回 [Charge] (最多7回)\n<style=\"highlight\">- 若自身的 [Charge] 回數不高於3回，則額外增加3回</style>\n[BeforeAttack] 消耗自身最多15回 [Charge]，每消耗1回，使本技能造成的傷害+<style=\"highlight\">2</style>%(最多+<style=\"highlight\">30</style>%)\n<style=\"highlight\">[EndSkill] 若本技能的攻擊前效果消耗了15回 [Charge]，則使自身獲得5回 [Charge]</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -946,7 +946,7 @@
           "level": 4,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "Gain Coin Power based on the following conditions (max 3):\n- Coin Power +1 for every 6 [Combustion] Potency on the main target\n- Gain Coin Power equal to ([Charge] Potency on self - 1)\n[BeforeAttack] This Skill inflicts +([Charge] Potency on self - 1) more [Combustion] Potency (max 2)\n[BeforeAttack] Gain +(highest Reson. + 1) [Charge] Count (max 7)\n- At 3 or fewer [Charge] Count, gain 3 more [Charge] Count\n[BeforeAttack] Consume up to 15 [Charge] Count and deal +<style=\"highlight\">3</style>% damage for every [Charge] Count consumed (max <style=\"highlight\">45</style>%)\n[EndSkill] If the Before Attack effects consumed 15 [Charge] Count, gain +5 [Charge] Count",
+          "desc": "滿足以下條件時，使本技能的硬幣威力增加(最多+3)\n- 主要目標每帶有6級 [Combustion] 強度，使本技能的硬幣威力+1\n- 使本技能的硬幣威力+(自身的 [Charge] 強度-1)\n[BeforeAttack] 使本技能施加的 [Combustion] <noparse>強度增加</noparse>(自身的 [Charge] 強度-1)級(最多2級)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)回 [Charge] (最多7回)\n- 若自身的 [Charge] 回數不高於3回，則額外增加3回\n[BeforeAttack] 消耗自身最多15回 [Charge]，每消耗1回，使本技能造成的傷害+<style=\"highlight\">3</style>%(最多+<style=\"highlight\">45</style>%)\n[EndSkill] 若本技能的攻擊前效果消耗了15回 [Charge]，則使自身獲得5回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -982,7 +982,7 @@
           "level": 1,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "[CantIdentify]\nTargets randomly\nGain Coin Power based on the following conditions (max 3):\n- Coin Power +1 for every 6 [Combustion] Potency on the main target\n- Gain Coin Power equal to ([Charge] Potency on self - 1)\n[BeforeAttack] Gain +(highest Reson. + 3) [Charge] Count (max 10)\n[BeforeAttack] Deal +([Charge] Potency + Count - 1)% damage (max 20%)\n[EnemyKill] Gain +4 [Charge] Count",
+          "desc": "[CantIdentify]\n隨機指定目標\n滿足以下條件時，使本技能的硬幣威力增加(最多+3)\n- 主要目標每帶有6級 [Combustion] 強度，使本技能的硬幣威力+1\n- 使本技能的硬幣威力+(自身的 [Charge] 強度-1)\n[BeforeAttack] 使自身獲得(最大共鳴數+3)回 [Charge] (最多10回)\n[BeforeAttack] 使本技能造成的傷害+(自身的 [Charge] 強度+回數-1)%(最多+20%)\n[EnemyKill] 使自身獲得4回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -1010,7 +1010,7 @@
           "level": 3,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "[CantIdentify]\nTargets randomly\nGain Coin Power based on the following conditions (max 3):\n- Coin Power +1 for every 6 [Combustion] Potency on the main target\n- Gain Coin Power equal to ([Charge] Potency on self - 1)\n[BeforeAttack] Gain +(highest Reson. + 3) [Charge] Count (max 10)\n[BeforeAttack] Deal +(([Charge] Potency + Count - 1) x <style=\"highlight\">2</style>)% damage (max <style=\"highlight\">40</style>%)\n[EnemyKill]\n- Gain +4 [Charge] Count\n<style=\"highlight\">- Gain 1 [AttackDmgUp] next turn (once per turn)</style>",
+          "desc": "[CantIdentify]\n隨機指定目標\n滿足以下條件時，使本技能的硬幣威力增加(最多+3)\n- 主要目標每帶有6級 [Combustion] 強度，使本技能的硬幣威力+1\n- 使本技能的硬幣威力+(自身的 [Charge] 強度-1)\n[BeforeAttack] 使自身獲得(最大共鳴數+3)回 [Charge] (最多10回)\n[BeforeAttack] 使本技能造成的傷害+(自身的 [Charge] 強度+回數-1)×<style=\"highlight\">2</style>%(最多+<style=\"highlight\">40</style>%)\n[EnemyKill]\n- 使自身獲得4回 [Charge]\n<style=\"highlight\">- 下回合使自身獲得1層 [AttackDmgUp] (每回合最多1次)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -1031,7 +1031,7 @@
                   "desc": "<style=\"highlight\">[OnStartCoin] 消耗自身最多8回 [Charge]</style>"
                 },
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] If this Coin consumed [Charge] Count, deal Envy damage equal to ([Charge] Count consumed x 5)% of this Coin's final damage (min 5%, max 40%)</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本硬幣消耗了 [Charge] 回數，則對目標造成本硬幣最終傷害量(消耗的充能回數×5)%的嫉妒傷害(最少5%，最多40%)</style>"
                 }
               ]
             }
@@ -1041,7 +1041,7 @@
           "level": 4,
           "name": "移居申請",
           "abName": "Kqe-1j-23",
-          "desc": "[CantIdentify]\nTargets randomly\nGain Coin Power based on the following conditions (max 3):\n- Coin Power +1 for every 6 [Combustion] Potency on the main target\n- Gain Coin Power equal to ([Charge] Potency on self - 1)\n[BeforeAttack] Gain +(highest Reson. + 3) [Charge] Count (max 10)\n[BeforeAttack] Deal +(([Charge] Potency + Count - 1) x <style=\"highlight\">3</style>)% damage (max <style=\"highlight\">60</style>%)\n[EnemyKill]\n- Gain +4 [Charge] Count\n- Gain 1 [AttackDmgUp] next turn (once per turn)",
+          "desc": "[CantIdentify]\n隨機指定目標\n滿足以下條件時，使本技能的硬幣威力增加(最多+3)\n- 主要目標每帶有6級 [Combustion] 強度，使本技能的硬幣威力+1\n- 使本技能的硬幣威力+(自身的 [Charge] 強度-1)\n[BeforeAttack] 使自身獲得(最大共鳴數+3)回 [Charge] (最多10回)\n[BeforeAttack] 使本技能造成的傷害+(自身的 [Charge] 強度+回數-1)×<style=\"highlight\">3</style>%(最多+<style=\"highlight\">60</style>%)\n[EnemyKill]\n- 使自身獲得4回 [Charge]\n- 下回合使自身獲得1層 [AttackDmgUp] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -1062,7 +1062,7 @@
                   "desc": "[OnStartCoin] 消耗自身最多8回 [Charge]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If this Coin consumed [Charge] Count, deal Envy damage equal to ([Charge] Count consumed x 5)% of this Coin's final damage (min 5%, max 40%)<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若本硬幣消耗了 [Charge] 回數，則對目標造成本硬幣最終傷害量(消耗的充能回數×5)%的嫉妒傷害(最少5%，最多40%)<style=\"highlight\"></style>"
                 }
               ]
             }

@@ -2,26 +2,26 @@
   "dataList": [
     {
       "id": 0,
-      "content": "<color=#ffffff><i>\"... No. It can't be. My life is— The experiences, the memories I had recorded are different.\"</color></i>"
+      "content": "<color=#ffffff><i>「……不對。不可能。我的人生。我一路拍下的經驗和記憶，是不一樣的。」</color></i>"
     },
     {
       "id": 1,
       "place": "心像鏡像迷宮",
       "model": "뉴김삿갓",
-      "content": "Alas."
+      "content": "終究。"
     },
     {
       "id": 2,
-      "content": "Kim came to a stop with a grim look on his face."
+      "content": "金笠的表情與腳步都僵住了。"
     },
     {
       "id": 3,
       "model": "뉴김삿갓",
-      "content": "Again, I am returned to this day..."
+      "content": "終究還是要再次看見這一天嗎。"
     },
     {
       "id": 4,
-      "content": "His voice had dropped to the same, morose pitch we had heard before."
+      "content": "同時，我也察覺到他的聲音變成了某天曾聽過的那種陰鬱而沉重的聲音。"
     },
     {
       "id": 5,
@@ -31,49 +31,49 @@
     {
       "id": 6,
       "model": "뉴앵두",
-      "content": "... I have been here before."
+      "content": "……我以前見過這個地方。"
     },
     {
       "id": 7,
       "model": "뉴김삿갓",
-      "content": "Ah, have you? Had a peek into my memories when I had Distorted, did you?"
+      "content": "啊。妳說過，在我扭曲的時候，稍微窺見了我的內心吧。"
     },
     {
       "id": 8,
       "model": "뉴김삿갓",
-      "content": "Haha... I must say, it's a bit embarrassing to have my deepest and darkest secrets revealed like that."
+      "content": "哈哈……這還真讓人難為情。"
     },
     {
       "id": 9,
-      "content": "Kim grinned sheepishly as though to clear the air, but it was becoming rather clear to me what he was doing."
+      "content": "金笠很快便笑了笑，想抹去沉重的氣氛，但我現在似乎也明白了。"
     },
     {
       "id": 10,
-      "content": "That his flippant demeanor and seemingly devil-may-care attitude were but a mask to hide the true darkness in his heart."
+      "content": "他一直維持著看似輕浮的態度，是為了掩蓋這樣沉重的本心。"
     },
     {
       "id": 11,
       "model": "뉴앵두",
-      "content": "Then this must be..."
+      "content": "那麼，這裡是……"
     },
     {
       "id": 12,
       "model": "뉴김삿갓",
-      "content": "Indeed. The Right State Councilor's estate."
+      "content": "沒錯。是右議政大人的府邸。"
     },
     {
       "id": 13,
       "model": "뉴김삿갓",
-      "content": "Someone whom I had once protected... thought was worth protecting."
+      "content": "是我曾經守護……曾經認為值得守護之人的家。"
     },
     {
       "id": 14,
-      "content": "Kim pushed open the main gates and made his way into the front yard."
+      "content": "金笠緩緩推開大門，朝裡面走了進去。"
     },
     {
       "id": 15,
       "model": "뉴김삿갓",
-      "content": "Watch out, Aeng-du. Take a tall step over, or you might trip."
+      "content": "小心別絆倒了，櫻桃。"
     },
     {
       "id": 16,
@@ -87,31 +87,31 @@
     },
     {
       "id": 18,
-      "content": "There were bodies splayed about the yard, and I couldn't dare start counting them."
+      "content": "那片地上橫陳著多到數不清究竟有幾具的屍體。"
     },
     {
       "id": 19,
-      "content": "I felt faint watching the aftermath of the carnage: some were decapitated, some had their torsos split diagonally, and some of them were so mangled that I could hardly even tell which parts belonged to who."
+      "content": "有的被斬首，有的上半身被斜斜劈開……連各自被分成了幾塊都看不出來，只讓人心亂如麻。"
     },
     {
       "id": 20,
       "model": "뉴앵두",
-      "content": "Are they not... retainers of the Royal Court?"
+      "content": "這些人……不是領朝廷俸祿的人嗎？"
     },
     {
       "id": 21,
       "model": "뉴앵두",
-      "content": "What were they doing at the Councilor's... No, were they killed by assassins?"
+      "content": "為何會在大人府上的院子裡……莫非是有刺客闖入？"
     },
     {
       "id": 22,
       "model": "뉴김삿갓",
-      "content": "Assassins did infiltrate the estate, yes."
+      "content": "刺客是闖進來了沒錯。"
     },
     {
       "id": 23,
       "model": "뉴김삿갓",
-      "content": "... You're looking at what remains of them."
+      "content": "……這些人就是那些刺客。"
     },
     {
       "id": 24,
@@ -120,169 +120,169 @@
     },
     {
       "id": 25,
-      "content": "Though I had but a moment to glimpse it, I clearly remembered what the S Corp. logo I saw in Kim's fathoms looked like."
+      "content": "雖然只是在金笠的心像中短暫看過，但我清楚記得S公司的標誌。"
     },
     {
       "id": 26,
-      "content": "The hats these corpses are—or were—wearing... are adorned with the same logo."
+      "content": "這些人戴著的帽子上……也有同樣的標誌。"
     },
     {
       "id": 27,
-      "content": "So why is Bamboo-hatted Kim calling them \"assassins\"?"
+      "content": "金笠為什麼要叫他們刺客呢？"
     },
     {
       "id": 28,
       "model": "뉴김삿갓",
-      "content": "In this corrupt land, the Right State Councilor's life was always as precarious as a candlelight in a tempest."
+      "content": "右議政大人的性命總是如風中殘燭。"
     },
     {
       "id": 29,
       "model": "뉴김삿갓",
-      "content": "Such is the fate of all those who have the guts to speak the truth in S Corp., where positions of influence are hoarded by corrupt sycophants whose chokehold on power is ironclad."
+      "content": "因為在S公司，敢說真話的人，性命大抵就是如此。權力最大的位子被奸臣之輩佔滿，絲毫不見消失的跡象。"
     },
     {
       "id": 30,
       "model": "뉴김삿갓",
-      "content": "The most prominent among them, the Left State Councilor, with the Chief State Councilor's blessing, sought to wield his own private army to silence forever the tongues of those who would advocate against the corrupt."
+      "content": "其中權勢最強的左議政，仗著有領議政的鼎力支持，想用自己的私兵，千方百計扭斷、砸爛那些說真話的嘴。"
     },
     {
       "id": 31,
       "model": "뉴앵두",
-      "content": "Private army...?! But they are prohibited in our homeland...!"
+      "content": "私兵……？！那可是不被允許的……"
     },
     {
       "id": 32,
       "model": "이스마엘",
-      "content": "So they're kinda like how the Great Houses of H Corp. each had their own armies...?"
+      "content": "就像是H公司的……家族那樣嗎？"
     },
     {
       "id": 33,
       "model": "파우스트",
-      "content": "That is similar to what is happening, but not exactly."
+      "content": "雖然相似，但有些不同。"
     },
     {
       "id": 34,
       "model": "파우스트",
-      "content": "If S Corp.'s circumstances were to be explained in plainer terms, it would be akin to a situation in which a company, whose employees outwardly appear to be all working for the same side, is in fact fractured within, with certain departments pledging allegiance to a different individual than the chief executive."
+      "content": "若以一般的公司來比喻……就是表面上看似所有人都屬於同一邊，但實際上公司內有幾個部門效忠的並非代表，而是其他人，這樣理解就可以了。"
     },
     {
       "id": 35,
       "model": "뉴김삿갓",
-      "content": "What assassins there had been in the past at least wore masks to hide their allegiance; I had thought this no different, though with assassins significantly less invested in maintaining their disguises."
+      "content": "以往偶爾來的那些傢伙好歹還會蒙著面，這天倒是相當敷衍啊……我當時是這麼想的。"
     },
     {
       "id": 36,
       "model": "뉴김삿갓",
-      "content": "... Not realizing that I had just placed my stone inside the tiger's maw."
+      "content": "……完全沒想到自己已經身入虎口。"
     },
     {
       "id": 37,
-      "place": "Right State Councilor Estate, S Corp., Past",
+      "place": "過去，S公司 右議政的宅邸",
       "model": "김삿갓과거부상",
       "content": "哈啊……哈……"
     },
     {
       "id": 38,
       "model": "김삿갓과거부상",
-      "content": "Looking around at the yard teeming with the assassins, I recall thinking it odd just how <i>many</i> of them they had sent."
+      "content": "多到擠滿整個院子蜂擁而來，我當時倒是覺得挺新鮮的。"
     },
     {
       "id": 39,
       "model": "김삿갓과거부상",
-      "content": "Though the Left State Councilor's power had grown to loom over that of the King, I should have realized how ridiculous such a brazen attempt on the life of one of the triumvirate Councilors at the Royal Court would have been. Foolish."
+      "content": "竟然如此明目張膽地企圖弒殺朝廷三政丞之一，我早該想到，就算左議政的權勢已凌駕於王之上，也不可能做到這種地步。"
     },
     {
       "id": 40,
       "model": "김삿갓과거부상",
-      "content": "I can't... I have failed you... Councilor..."
+      "content": "對不……起。大人……"
     },
     {
       "id": 41,
       "model": "김삿갓과거부상",
-      "content": "There were simply too many of them, as though they had decided that tonight was the night they would finally slay the Councilor, or die trying."
+      "content": "我沒辦法擋下從四面八方湧來的所有傢伙。那天晚上，他們彷彿真的是鐵了心要來取大人的性命。"
     },
     {
       "id": 42,
       "model": "김삿갓과거부상",
-      "content": "I was soon overwhelmed, and some of them eventually managed to get around me and reached the Councilor's bedchamber..."
+      "content": "結果無暇顧及身後的我，終究沒能阻止那些傢伙闖進大人的寢室……"
     },
     {
       "id": 43,
       "model": "김삿갓과거부상",
-      "content": "The moment I heard them breach the door, all strength left me, and I fell to my knees."
+      "content": "聽見紙拉門被破壞的聲音那一刻，我雙膝一軟，就這樣癱坐在地。"
     },
     {
       "id": 44,
       "model": "김삿갓과거부상",
-      "content": "I, Kim Lib, am a poor excuse of a bodyguard... and I have failed you."
+      "content": "不肖金笠……未能完成您託付的任務。"
     },
     {
       "id": 45,
       "model": "김삿갓과거부상",
-      "content": "And I knew who the author of the foul scheme was: the Left State Councilor."
+      "content": "策劃這場陰謀的人是誰，不言自明。左議政。"
     },
     {
       "id": 46,
       "model": "김삿갓과거부상",
-      "content": "Let this be my final act of loyalty ere I depart this life—"
+      "content": "所以，如今我能做的就只剩下一件事。"
     },
     {
       "id": 47,
       "model": "김삿갓과거부상",
-      "content": "... Though I am too meager a person to carry on your will, Councilor... What I can do is plant the seeds of terror in the hearts of the unjust, if only to shackle their blackest hearts from committing greater misdeeds."
+      "content": "……雖然我無法延續大人正直的意志，但至少不會讓那些不義之徒肆意橫行。"
     },
     {
       "id": 48,
       "model": "김삿갓과거부상",
-      "content": "I shall go before the villain who contrived this betrayal and see that the favor is repaid with steel."
+      "content": "那就是找上那傢伙的家，把所受的一切原樣奉還。"
     },
     {
       "id": 49,
       "model": "김삿갓과거부상",
-      "content": "Only by such vengeance shall the Councilor at last close his eyes in his grave."
+      "content": "我認為至少要做到那樣，大人才能安心瞑目。"
     },
     {
       "id": 50,
       "model": "김삿갓과거부상",
-      "content": "... Or so I had thought."
+      "content": "但是……"
     },
     {
       "id": 51,
-      "content": "*creak*"
+      "content": "嘎吱——"
     },
     {
       "id": 52,
       "model": "김삿갓과거부상",
-      "content": "... What...?"
+      "content": "……這又是怎麼回事。"
     },
     {
       "id": 53,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Greetings, honored Bodyguard of the Right Councilor. I see that you've been hard at work."
+      "content": "日夜操勞，真是辛苦您啦，護衛武士先生。"
     },
     {
       "id": 54,
       "model": "김삿갓과거부상",
-      "content": "Accursed parasite...! I ought to flay you alive and reveal the wretched soul underneath!"
+      "content": "你這寄生蟲般的混帳……披著人皮，怎敢裝成人樣。"
     },
     {
       "id": 55,
       "model": "김삿갓과거부상",
-      "content": "Some gall you have to show your face here!"
+      "content": "你不知道這是哪位大人的府前嗎？！"
     },
     {
       "id": 56,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Oh, here? You mean the home of the honorable Right State Councilor who toils day and night in service of the Royal Court?"
+      "content": "怎麼會不知道呢。這不正是總為朝廷鞠躬盡瘁的我們右議政大人的府上嗎？"
     },
     {
       "id": 57,
       "model": "김삿갓과거부상",
-      "content": "... I know the assassins were sent by the Left State Councilor."
+      "content": "……我知道是左議政指使的。"
     },
     {
       "id": 58,
@@ -292,40 +292,40 @@
     {
       "id": 59,
       "model": "김삿갓과거부상",
-      "content": "I shall collect your head once my task here is over."
+      "content": "等該做的事做完，我就斬了你。"
     },
     {
       "id": 60,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Alas, alas! This unsightly display of anger shames us all."
+      "content": "哎唷。真凶，真凶哪。"
     },
     {
       "id": 61,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Are all those who live by the sword as uncouth as you? The cruelty of your damning words is an oppression upon decent men like myself."
+      "content": "是因為您是個舞刀弄劍的傢伙嗎？把這麼凶狠的話掛在嘴上，小的我可是直打哆嗦呢。"
     },
     {
       "id": 62,
       "model": "김삿갓과거부상",
-      "content": "Let's see how long you can—"
+      "content": "少在那邊裝腔作勢……"
     },
     {
       "id": 63,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Heed me, soldiers!"
+      "content": "來人啊。"
     },
     {
       "id": 64,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Arrest that mad butcher."
+      "content": "立刻將那個發瘋的狂徒拿下。"
     },
     {
       "id": 65,
@@ -335,179 +335,179 @@
     {
       "id": 66,
       "model": "김삿갓과거부상",
-      "content": "W-what...?"
+      "content": "這、這是……"
     },
     {
       "id": 67,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "The accused shall heed his crimes."
+      "content": "罪人聽好了。"
     },
     {
       "id": 68,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "One moon ago, an anonymous letter, threatening to take the life of the revered Right State Councilor, arrived at the Royal Court."
+      "content": "上個月，一封揚言要弒殺右議政大人的匿名投書送到了朝廷。"
     },
     {
       "id": 69,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "This audacious, contumelious effrontery is an affront not only to the Royal Court, but to the heavens and men alike!"
+      "content": "面對如此大膽放肆又天人共憤的犯罪預告……我們不禁痛心疾首！"
     },
     {
       "id": 70,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "The revered Left State Councilor, who has long been in disagreement with the Right State Councilor on matters of the state, found this offense to be so heinous that..."
+      "content": "就連身為他多年政敵兼宿敵的左議政大人，聽聞此事也深深嘆息！"
     },
     {
       "id": 71,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "... he has personally commanded his men to protect his political enemy on the day writ on the letter!"
+      "content": "還親自囑託手下的部下們，命他們在投書上寫的那天保護右議政！"
     },
     {
       "id": 72,
       "model": "김삿갓과거부상",
-      "content": "... Huh?"
+      "content": "……什麼？"
     },
     {
       "id": 73,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Yet, a tragedy has struck!"
+      "content": "然而，這究竟是怎麼一回事！"
     },
     {
       "id": 74,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "All those lives sent to protect the noble Councilor are slain, the bravery and justice of their honorable hearts trampled upon the ground by this villain!"
+      "content": "懷著善心前來守護他的部下們，竟被不知哪來的傢伙殺了個精光。"
     },
     {
       "id": 75,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "And now the villain promises death to yet another pillar of the Royal Court?!"
+      "content": "如今還威脅要殺害朝廷三大支柱之一！"
     },
     {
       "id": 76,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Thus we are, perforce, to arrest the criminal and restore the rule of law!"
+      "content": "看來只能將罪人捉拿歸案，以正法度了！"
     },
     {
       "id": 77,
       "model": "김삿갓과거부상",
-      "content": "You spout senseless drivel! I saw your men make their way into the Councilor's bedchamber with their blades drawn...!"
+      "content": "你在胡說八道什麼！明明是你們這群傢伙闖進大人的寢室，拿劍……"
     },
     {
       "id": 78,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "The Councilor? Might you be looking for the Right State Councilor here, alive and well?"
+      "content": "您說的大人，是指在這邊的右議政大人嗎？"
     },
     {
       "id": 79,
       "teller": "???",
-      "title": "Right State Councilor - Pi Circle",
+      "title": "右議政 - 血",
       "content": "……"
     },
     {
       "id": 80,
       "model": "김삿갓과거부상",
-      "content": "... My lord...?"
+      "content": "……大人？"
     },
     {
       "id": 81,
-      "content": "The vile wretch leaned down next to my ear, and whispered:"
+      "content": "那個惡毒的傢伙走近被押著跪下的我，陰險地低語道。"
     },
     {
       "id": 82,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Perhaps you should've known where not to stick your nose."
+      "content": "所以說，您當初就該好好想清楚呀。"
     },
     {
       "id": 83,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Did you really think you could overcome the entire private army in the Left State Councilor's service?"
+      "content": "您明明應該知道左議政大人麾下有多少私兵的。"
     },
     {
       "id": 84,
       "model": "김삿갓과거부상",
-      "content": "He sent so many of his men to their deaths... just to lure me into a trap? Why?"
+      "content": "就為了搞這齣……故意把部下們推進死地？讓他們被我砍死？"
     },
     {
       "id": 85,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Now, don't take this as a compliment, as you're not even the Apex Blade of the Homeland, nor are you the <ruby=Cloudblade>Un'geom</ruby>. But you have been a rather egregious obstacle to the execution of my plans."
+      "content": "就算您既不是本國第一劍，也不是雲劍……對我的計畫來說，我們這位護衛武士先生還是太強了呀。"
     },
     {
       "id": 86,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Couldn't get through with the first thing in my plan, with you constantly getting in my way. Let's keep you nicely locked up and out of trouble."
+      "content": "得先把您塞到哪個角落關起來，事情才能順順當當地進行下去，不是嗎？"
     },
     {
       "id": 87,
       "model": "김삿갓과거부상",
-      "content": "Th-this can't be...!"
+      "content": "你這……瘋……"
     },
     {
       "id": 88,
       "teller": "???",
-      "title": "Right State Councilor - Pi Circle",
-      "content": "... For what it's worth, young man... I am sorry."
+      "title": "右議政 - 血",
+      "content": "……對不住你了。"
     },
     {
       "id": 89,
       "teller": "???",
-      "title": "Right State Councilor - Pi Circle",
-      "content": "I've come to realize the error of my ways... The truth is, though S Corp. is indeed a pond of turbid water..."
+      "title": "右議政 - 血",
+      "content": "是我想錯了……並不是S公司是一灘渾水……"
     },
     {
       "id": 90,
       "teller": "???",
-      "title": "Right State Councilor - Pi Circle",
-      "content": "... it was those like us who had stirred the dirt from its bed and turned it cloudy."
+      "title": "右議政 - 血",
+      "content": "而是像我們這樣的泥鰍一直在撲騰攪水，在他們眼中才始終是一灘渾水。"
     },
     {
       "id": 91,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "Fearing the worst, we arrived to protect the revered Right State Councilor...!"
+      "content": "我等為保護右議政大人，率領護衛前來造訪，結果！"
     },
     {
       "id": 92,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "A thousand curses upon the villain! In his quest for the Right State Councilor's life, the butcherous man has already watered the ground with S Corp.'s laborers, the very lifeblood that runs in the veins of this most serene Wing!"
+      "content": "竟在現場發現了企圖弒殺右議政、屠戮了如S公司之血般的勞工們的狂徒！"
     },
     {
       "id": 93,
       "model": "한호배",
       "teller": "???",
       "title": "???",
-      "content": "And that charcoal-hearted villain is none other than the Councilor's Sworn Guard, Kim Lib!"
+      "content": "那名現行犯，正是隱藏骯髒心思、輔佐大人的護衛武士，金笠！"
     },
     {
       "id": 94,
@@ -529,178 +529,178 @@
     {
       "id": 97,
       "model": "한호배",
-      "content": "And let the Ohra bonds take you!"
+      "content": "束手就縛吧！"
     },
     {
       "id": 98,
-      "place": "S Corp. Prison, Past",
+      "place": "過去，S公司 牢獄",
       "model": "임경업과거",
-      "content": "You've fallen far, my friend. You who were once considered a candidate to the honor of Un'geom..."
+      "content": "曾經被討論能否坐上雲劍之位的你……如今真是狼狽不堪啊。"
     },
     {
       "id": 99,
       "model": "임경업과거",
-      "content": "And with that Brand of a Nobi sapping your strength..."
+      "content": "被烙上了奴婢的烙印，那烙印會不斷蠶食你的力量。"
     },
     {
       "id": 100,
       "model": "임경업과거",
-      "content": "... even your mastery with the blade will only dull."
+      "content": "你身為武士的生涯，實際上也將走向下坡。"
     },
     {
       "id": 101,
       "model": "김삿갓죄수",
-      "content": "... Are you to be my executioner, Gyeong-eop?"
+      "content": "……是來砍我腦袋的嗎，慶業？"
     },
     {
       "id": 102,
       "model": "임경업과거",
-      "content": "I hadn't received the orders to behead you, if that is what you're asking. Nor would it befit someone of my station to sully my hands with an executioner’s duty."
+      "content": "上頭沒下那種命令。再說，我也不是需要親自砍人腦袋的位置吧？"
     },
     {
       "id": 103,
       "model": "임경업과거",
-      "content": "How... will you live on, now?"
+      "content": "你……今後想做些什麼過活？"
     },
     {
       "id": 104,
       "model": "김삿갓죄수",
-      "content": "... I don't know. The Councilor has abandoned me. There is no path forward."
+      "content": "……不知道。連大人都拋棄了我，根本看不見什麼活路。"
     },
     {
       "id": 105,
       "model": "김삿갓죄수",
-      "content": "Salpippyeo Agroindustries is... more corrupt than I had thought. Rotten to the core. This is... where the game ends."
+      "content": "肉血骨農牧產業已經腐爛潰膿到超乎想像的地步。如今……連活路都看不見了。"
     },
     {
       "id": 106,
       "model": "김삿갓죄수",
-      "content": "... Time to resign my stone."
+      "content": "……只能投子認輸了。"
     },
     {
       "id": 107,
       "model": "임경업과거",
-      "content": "Indeed it is."
+      "content": "是啊，也只能投子認輸了吧。"
     },
     {
       "id": 108,
       "model": "김삿갓죄수",
-      "content": "...? Why... are you freeing me?"
+      "content": "……？為什麼要放了我？"
     },
     {
       "id": 109,
       "model": "임경업과거",
-      "content": "Once a game has been lost, you start anew and test other gambits in the next round."
+      "content": "既然投子認輸了，就該在新的棋局重新落子。"
     },
     {
       "id": 110,
       "model": "임경업과거",
-      "content": "Why don't you stop playing this unfair game where the opponent always starts with stones placed on all 9 star points on the board..."
+      "content": "既然如此，就別再下那種對棋力毫無幫助的讓九子棋了……"
     },
     {
       "id": 111,
       "model": "임경업과거",
-      "content": "... and find a place where you can begin anew in equal standing?"
+      "content": "去找個能下互先的地方吧。"
     },
     {
       "id": 112,
       "model": "김삿갓죄수",
-      "content": "... As soon as they realize it was you who freed me, they'll come after you."
+      "content": "……要是放走我的事被發現，妳也不會沒事的。"
     },
     {
       "id": 113,
       "model": "임경업과거",
-      "content": "It's okay. Unlike someone who made a fool of himself and fled after passing the Royal Examinations, I have the Royal Court's backing as its Military Commissioner."
+      "content": "沒關係。我跟某個科舉及第之後大鬧一場就跑掉的傢伙不一樣。別看我這樣，我可是以節度使的身分受到朝廷信任的。"
     },
     {
       "id": 114,
       "model": "임경업과거",
-      "content": "My position in the Court isn't so fickle that they would cast me down right away just because I let go of someone like you. You're a Branded criminal... In the eyes of the Royal Court, you're as good as inconsequential. I'll report that even if you were to flee, you would still be nothing more than a plaything in the palm of their hands."
+      "content": "只是放了你一個，我的地位不會馬上動搖。你是已經被烙上烙印的罪人……只要向朝廷報告，說你再怎麼逃也逃不出手掌心就行了。"
     },
     {
       "id": 115,
       "model": "김삿갓죄수",
-      "content": "I didn't think you were the kind to go against your honorable principles."
+      "content": "我還以為妳……不會做違背原則的事。"
     },
     {
       "id": 116,
       "model": "임경업과거",
-      "content": "Some things can't be done without bending a rule or two. And you are needed. S Corp.'s future is in need of those who are less bound by expectations... like yourself."
+      "content": "因為光靠原則能辦成的事很少。因為需要……像你這樣彷彿不受任何束縛般行動的人。"
     },
     {
       "id": 117,
       "model": "임경업과거",
-      "content": "Besides, it's not the rules I stand by, it's my own principles."
+      "content": "而且，這也符合我的原則。"
     },
     {
       "id": 118,
       "model": "임경업과거",
-      "content": "I did say I owe you a token of gratitude, didn't I? Consider this a settlement of that."
+      "content": "……我以前曾向你道過謝吧？這是對那件事的報恩。"
     },
     {
       "id": 119,
       "model": "임경업과거",
-      "content": "Gratitude and vengeance, after all, share a common quality. They are both debts to be repaid."
+      "content": "因為恩情和仇怨都必須償還。"
     },
     {
       "id": 120,
       "model": "김삿갓죄수",
-      "content": "... Gyeong-eop."
+      "content": "……慶業。"
     },
     {
       "id": 121,
       "model": "김삿갓죄수",
-      "content": "... Come with me. There is no hope left for S Corp. You said it yourself, didn't you? We'll never win as long as we're playing their rigged game."
+      "content": "一起……走吧。S公司已經沒有希望了。就像妳說的，待在這裡也只會讓不利的局面一直持續下去不是嗎。"
     },
     {
       "id": 122,
       "model": "임경업과거",
-      "content": "Listen. They might have a 9 stone advantage over you, but to me, it's as small as 3."
+      "content": "在你眼裡或許像是讓九子的棋局，但對我來說不過是讓三子左右罷了。"
     },
     {
       "id": 123,
       "model": "임경업과거",
-      "content": "I'll manage and keep my finger on the pulse. Besides, change doesn't always have to come from the outside."
+      "content": "以我的程度，要看守這個局面並不勉強。而且有些事情，也只有待在裡面才能改變。"
     },
     {
       "id": 124,
       "model": "임경업과거",
-      "content": "The old wisdom says that to catch a tiger, you must enter its den. But... wouldn't it help to have an ally waiting in the tiger's den to back you up when the time comes?"
+      "content": "想抓老虎的話，虎穴裡也有個自己人比較好吧？"
     },
     {
       "id": 125,
       "model": "임경업과거",
-      "content": "There, all done. Your bonds are severed."
+      "content": "好了。這樣就全解開了。"
     },
     {
       "id": 126,
       "model": "임경업과거",
-      "content": "Go now."
+      "content": "走吧。"
     },
     {
       "id": 127,
       "model": "임경업과거",
-      "content": "Go, and build your strength beyond the walls of S Corp. Yet beware of relying overmuch on foreign powers."
+      "content": "去吧，到外頭養精蓄銳再回來。不過，也別太過借助外部勢力。"
     },
     {
       "id": 128,
       "model": "김삿갓죄수",
-      "content": "... I don't have it in me to take up such a grand purpose. I'm done with S Corp."
+      "content": "……我不想背負那種大義。S公司什麼的，我早就受夠了……"
     },
     {
       "id": 129,
       "model": "김삿갓죄수",
-      "content": "You know how I am. I just go with the flow..."
+      "content": "妳也知道的。我只是隨波逐流……"
     },
     {
       "id": 130,
       "model": "임경업과거",
-      "content": "Yes, yes. Do as you will, go with the flow, be whatever you want to be."
+      "content": "隨你高興就好。想隨波逐流，就任它流去吧。"
     },
     {
       "id": 131,
       "model": "임경업과거",
-      "content": "But I'm just hoping that the currents of the river will someday bring you back to S Corp., that's all."
+      "content": "我只是期待著，那條水路會通往S公司罷了。"
     },
     {
       "id": 132,
@@ -711,64 +711,64 @@
       "id": 133,
       "place": "心像鏡像迷宮",
       "model": "뉴김삿갓",
-      "content": "... Though I had left the rigged game, my records afterward weren't stellar. The laying of the stones on my board was always full of holes and mistakes."
+      "content": "……現在回頭復盤，局面從來就沒好過。每塊地都圍得亂七八糟。"
     },
     {
       "id": 134,
       "model": "뉴김삿갓",
-      "content": "I joined the Blade Lineage, became their Mentor, dragged them into the Library... until eventually, I cut down those who had placed their faith in me. Self-defeating move after self-defeating move."
+      "content": "加入劍契組，成了他們的頭領，又陰錯陽差地流落到圖書館，最後甚至走了一步自緊氣的昏著，連追隨自己的人都砍了。"
     },
     {
       "id": 135,
       "model": "뉴김삿갓",
-      "content": "When Gyeong-eop had let me go, I thought I had escaped the tiger's maw."
+      "content": "有那麼一陣子……慶業放了我的時候，我還以為自己脫離虎口了。"
     },
     {
       "id": 136,
       "model": "뉴김삿갓",
-      "content": "But as I let the game progress with the flow, I soon came to the realization that my life was an endless sequence of connect-and-dies."
+      "content": "然而隨波逐流地落子下去……我才終於明白，那是一連串漫長的叫吃。"
     },
     {
       "id": 137,
       "model": "뉴김삿갓",
-      "content": "I was in a losing play from the start."
+      "content": "我從一開始，就從來沒有逃出過虎口。"
     },
     {
       "id": 138,
-      "content": "Shadows dancing by the distant humanoid form begin to grow like wildfire,"
+      "content": "遠方隱約可見一道人影，從那裡升騰而起的黑色氣息逐漸擴大。"
     },
     {
       "id": 139,
-      "content": "and those in the attire of the Blade Lineage one by one leap over the wall and approach us."
+      "content": "與此同時，打扮得像劍契組和推奴手的人們翻過圍牆，朝這裡逼近。"
     },
     {
       "id": 140,
-      "content": "Like the projections of Kim's darkening fathoms..."
+      "content": "彷彿反映出了金笠陰暗的想像……"
     },
     {
       "id": 141,
       "model": "단테",
-      "content": "<They're from his memories.>"
+      "content": "<是記憶。>"
     },
     {
       "id": 142,
       "model": "단테",
-      "content": "<Films and photographs can sometimes remain undoctored, but...>"
+      "content": "<底片、照片或許沒辦法偽造……>"
     },
     {
       "id": 143,
       "model": "단테",
-      "content": "<... the impressions a person gets from viewing the photograph... is malleable.>"
+      "content": "<但看了那張照片的人的感受、記憶……卻完全可能被扭曲。>"
     },
     {
       "id": 144,
       "model": "이상",
-      "content": "... Then they must be after..."
+      "content": "……那麼，那些人攻過來的原因是。"
     },
     {
       "id": 145,
       "model": "단테",
-      "content": "<Yeah. Kim believes that if the Blade Lineage were to come back to life, they would want to kill him."
+      "content": "<是因為他相信那些人會想砍了自己吧。>"
     }
   ]
 }

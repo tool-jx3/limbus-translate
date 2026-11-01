@@ -603,7 +603,7 @@
         {
           "level": 1,
           "name": "浪潮軌跡",
-          "desc": "[WhenUse] At 50+ [AbyssalVitality], consume 5 [AbyssalVitality] to inflict +2 more [NervousImpairment] with this Skill's effects\n[WhenUse] For every 5 [NervousImpairment] on target, consume 1 [AbyssalVitality] to gain Clash Power +1 (max 5)",
+          "desc": "[WhenUse] 若自身帶有不低於50層的 [AbyssalVitality]，則消耗5層並使本技能施加的神經損傷層數額外+2層\n[WhenUse] 目標每帶有5層 [NervousImpairment]，則消耗1層 [AbyssalVitality] 並使本技能的拚點威力+1(最多+5)",
           "coinlist": [
             {
               "coindescs": [
@@ -638,7 +638,7 @@
         {
           "level": 1,
           "name": "激烈亂流",
-          "desc": "[WhenUse] At 50+ [AbyssalVitality], consume 4 [AbyssalVitality] to gain Coin Power +1\n[WhenUse] For every 10 [NervousImpairment] on target, consume 3 [AbyssalVitality] to gain Coin Power +1 (max 2)",
+          "desc": "[WhenUse] 若自身帶有不低於50層的 [AbyssalVitality]，則消耗4層並使本技能的硬幣威力+1\n[WhenUse] 目標每帶有10層 [NervousImpairment]，則消耗3層 [AbyssalVitality] 並使本技能的硬幣威力+1(最多+2)",
           "coinlist": [
             {
               "coindescs": [
@@ -876,7 +876,7 @@
         {
           "level": 1,
           "name": "浪潮軌跡",
-          "desc": "[WhenUse] At 50+ [AbyssalVitality], consume 5 [AbyssalVitality] to inflict +2 more [NervousImpairment] with this Skill's effects\n[WhenUse] For every 10 [NervousImpairment] on target, consume 1 [AbyssalVitality] to gain Clash Power +1 (max 2)",
+          "desc": "[WhenUse] 若自身帶有不低於50層的 [AbyssalVitality]，則消耗5層並使本技能施加的神經損傷層數額外+2層\n[WhenUse] 目標每帶有10層 [NervousImpairment]，則消耗1層 [AbyssalVitality] 並使本技能的拚點威力+1(最多+2)",
           "coinlist": [
             {
               "coindescs": [
@@ -908,7 +908,7 @@
         {
           "level": 1,
           "name": "激烈亂流",
-          "desc": "[WhenUse] At 50+ [AbyssalVitality], consume 4 [AbyssalVitality] to gain Coin Power +1\n[WhenUse] For every 10 [NervousImpairment] on target, consume 3 [AbyssalVitality] to gain Coin Power +1 (max 2)",
+          "desc": "[WhenUse] 若自身帶有不低於50層的 [AbyssalVitality]，則消耗4層並使本技能的硬幣威力+1\n[WhenUse] 目標每帶有10層 [NervousImpairment]，則消耗3層 [AbyssalVitality] 並使本技能的硬幣威力+1(最多+2)",
           "coinlist": [
             {
               "coindescs": [

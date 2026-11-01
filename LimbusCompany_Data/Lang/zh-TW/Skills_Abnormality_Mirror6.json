@@ -132,7 +132,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Deal Lust damage equal to ([Laceration] Potency x Count)"
+                  "desc": "[OnSucceedAttack] 對目標造成(其 [Laceration] 強度×回數)點色慾傷害"
                 }
               ]
             }
@@ -431,7 +431,7 @@
         {
           "level": 1,
           "name": "執拗致傷",
-          "desc": "If target has 6+ [Laceration] Potency, gain Coin Power +1 and gain +1 to [Laceration] Potency and Count inflicted by this Skill",
+          "desc": "若目標的 [Laceration] 強度不低於6級，則使本技能硬幣威力+1，並令本技能施加的 [Laceration] 強度與回數額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -463,7 +463,7 @@
         {
           "level": 1,
           "name": "致傷",
-          "desc": "If target has 6+ [Laceration] Potency, gain Coin Power +1 and gain +1 to [Laceration] Potency and Count inflicted by this Skill",
+          "desc": "若目標的 [Laceration] 強度不低於6級，則使本技能硬幣威力+1，並令本技能施加的 [Laceration] 強度與回數額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -697,7 +697,7 @@
         {
           "level": 1,
           "name": "渴望的棘蔓",
-          "desc": "[WhenUse] 消耗最多100層 [BloodDinner] 並觸發以下效果\n- 使自身本體與軀幹部位恢復等同於消耗的 [BloodDinner] 層數的體力\n- 每消耗20層 [BloodDinner]，下回合使自身獲得1層攻擊等級提升 \n[EndSkill] 若本技能消耗的 [BloodDinner] 層數不高於30層，則下回合對自身施加2層 [Vulnerable]",
+          "desc": "[WhenUse] 消耗最多100層 [BloodDinner] 並觸發以下效果\n- 使自身本體與軀幹部位恢復等同於消耗的 [BloodDinner] 層數的體力\n- 每消耗20層 [BloodDinner]，使本技能的最終威力+1\n[EndSkill] 若本技能消耗的 [BloodDinner] 層數低於30層，則下回合對自身施加2層 [Vulnerable]",
           "coinlist": [
             {
               "coindescs": [
@@ -1013,7 +1013,7 @@
         {
           "level": 1,
           "name": "快刀亂麻",
-          "desc": "Prioritizes targets with [Prey]\nCan Clash with this Skill regardless of Speed; this unit does not become Staggered before it uses this Skill\n[WhenUse] Consume all [BattleSense] Stack on self. If this unit consumed...\n- ... 10+ Stack , gain Atk Weight +1 for every 10 Stack consumed (max 2)\n- ... 25 Stack, Final Power +1 for every 4 (sum of [Combustion] and [Vibration] on the main target) (max 5)\n[DefeatDuel] Deal -80% damage; this Skill's damage cannot Stagger the target; inflict only half the Potency and Count for both [Combustion] and [Vibration] inflicted by this Skill (unless raised by other effects)\n[EndSkill] [FullReload] (once per turn)\n- If this unit has [BulletPropellantSpecial], [ReloadKeepAmmo] instead (once per turn)\n[DefeatDuel] Deal -50% final damage\n[EndSkill] Ends this turn",
+          "desc": "優先指定帶有 [Prey] 的目標\n可無視速度值與本技能拚點。直到使用本技能前，自身不會陷入混亂\n[WhenUse] 消耗所有 [BattleSense]，若消耗的層數：\n- 不低於10層，則每消耗10層，使本技能的攻擊容量+1(最多+2)\n- 為25層，則主要目標的 [Combustion] 與 [Vibration] 強度之和每有4級，使本技能的最終威力+1(最多+5)\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂，令本技能施加的 [Combustion] 強度與回數、[Vibration] 強度與回數減半(不包括其他效果增加的數值)\n[EndSkill] 使自身 [FullReload] (每回合最多1次)\n- 若自身帶有 [BulletPropellantSpecial]，則改為使自身 [ReloadKeepAmmo] (每回合最多1次)\n[DefeatDuel] 使本技能造成的最終傷害-50%\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
@@ -1044,7 +1044,7 @@
         {
           "level": 1,
           "name": "超絕猛虎殺擊亂斬",
-          "desc": "Prioritizes targets with [Prey]\nCan Clash with this Skill regardless of Speed; this unit does not become Staggered before it uses this Skill\n[WhenUse] Consume all [BattleSense] Stack on self. If this unit consumed...\n- ... 10+ Stack , gain Atk Weight +1 for every 10 Stack consumed (max 4)\n- ... 25 Stack, Final Power +1 for every 4 (sum of [Combustion] and [Vibration] on the main target) (max 6)\n- ... 50 Stack, Coin Power +1 and deal +50% damage\n[DefeatDuel] Deal -80% damage; this Skill's damage cannot Stagger the target; inflict only half the Potency and Count for both [Combustion] and [Vibration] inflicted by this Skill (unless raised by other effects)\n[EndSkill] [FullReload] (once per turn)\n- If this unit has [BulletPropellantSpecial], [ReloadKeepAmmo] instead (once per turn)\n[DefeatDuel] Deal -50% final damage\n[EndSkill] Ends this turn",
+          "desc": "優先指定帶有 [Prey] 的目標\n可無視速度值與本技能拚點。直到使用本技能前，自身不會陷入混亂\n[WhenUse] 消耗所有 [BattleSense]，若消耗的層數：\n- 不低於10層，則每消耗10層，使本技能的攻擊容量+1(最多+4)\n- 不低於25層，則主要目標的 [Combustion] 與 [Vibration] 強度之和每有4級，使本技能的最終威力+1(最多+6)\n- 為50層，則使本技能的硬幣威力+1、造成的傷害+50%\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂，令本技能施加的 [Combustion] 強度與回數、[Vibration] 強度與回數減半(不包括其他效果增加的數值)\n[EndSkill] 使自身 [FullReload] (每回合最多1次)\n- 若自身帶有 [BulletPropellantSpecial]，則改為使自身 [ReloadKeepAmmo] (每回合最多1次)\n[DefeatDuel] 使本技能造成的最終傷害-50%\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
@@ -1398,7 +1398,7 @@
         {
           "level": 1,
           "name": "注意背後！",
-          "desc": "若目標的理智值不高於0點，則使本技能的硬幣威力+3",
+          "desc": "若目標的理智值低於0點，則使本技能的硬幣威力+3",
           "coinlist": [
             {
               "coindescs": [

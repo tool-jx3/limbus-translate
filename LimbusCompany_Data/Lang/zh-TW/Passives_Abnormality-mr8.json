@@ -21,13 +21,13 @@
     {
       "id": 156403,
       "name": "陣型保存",
-      "desc": "Boost the level of \"Le Noir\" allies\n\nAll \"Le Noir\" allies take -5% damage for every living \"Le Noir\" ally on the field\nOn death of a \"Le Noir\" ally, all \"Le Noir\" allies gain 1 [NoirSquareCollapse] for the rest of this Encounter (including newly summoned units)",
-      "flavor": "Each stays at their post and faithfully performs the duty entrusted to them. Together, they form a formation, and that formation becomes an image that preserves the whole. Fulfill thy charge faithfully, each in thine appointed place."
+      "desc": "屬於漆黑派的友方單位等級大幅提升\n\n戰場上每有1名存活且屬於漆黑派的友方單位，使所有屬於漆黑派的友方單位受到的傷害-5%\n屬於漆黑派的友方單位陣亡時，本場戰鬥中使所有屬於漆黑派的友方單位獲得1層 [NoirSquareCollapse] (包含新登場的單位)",
+      "flavor": "每個人各守其位、執行業務，這些身影匯聚成一個陣型，而那陣型又成為保存整體的圖像。因此，在各自的崗位上忠實履行職責吧。"
     },
     {
       "id": 156404,
       "name": "戰鬥續行",
-      "desc": "Start this Encounter with 45 SP"
+      "desc": "關卡開始時，以45點理智值開始戰鬥"
     }
   ]
 }

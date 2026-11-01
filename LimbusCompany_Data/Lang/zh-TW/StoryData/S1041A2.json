@@ -2,70 +2,70 @@
   "dataList": [
     {
       "id": 0,
-      "place": "A Bright Room, 7F",
+      "place": "7F 明亮的房間",
       "model": "잔느",
-      "content": "This really is... a complete mess of a dance. You know that, right?"
+      "content": "這真的是……亂七八糟的舞呢。你知道嗎？"
     },
     {
       "id": 1,
       "model": "뫼르소",
-      "content": "... Sure looks like it."
+      "content": "……看來是如此。"
     },
     {
       "id": 2,
       "model": "잔느",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 3,
       "place": -1,
       "model": "잔느",
-      "content": "We'll never stop longing for each other."
+      "content": "我們會永遠思念彼此。"
     },
     {
       "id": 4,
       "model": "잔느",
-      "content": "It'll be hard without each other."
+      "content": "沒有彼此，我們都會難以忍受……"
     },
     {
       "id": 5,
       "model": "잔느",
-      "content": "And without each other, every moment we live will be pain."
+      "content": "往後也會懷著無比巨大的痛苦活下去吧。"
     },
     {
       "id": 6,
       "model": "잔느",
-      "content": "After you leave me, and after time passes... <i>Some of these days, you'll miss me.</i>"
+      "content": "當你離開我身邊的時候……要不了多久，你就會想念我的。"
     },
     {
       "id": 7,
       "model": "뫼르소",
-      "content": "... I suppose I will."
+      "content": "……想必如此。"
     },
     {
       "id": 8,
       "model": "뫼르소",
-      "content": "But that too, I will endure."
+      "content": "但那同樣是我必須承擔的部分。"
     },
     {
       "id": 9,
       "model": "뫼르소",
-      "content": "Jeanne, do you still feel... the nausea?"
+      "content": "簡，妳現在……還感到噁心嗎？"
     },
     {
       "id": 10,
       "model": "잔느",
-      "content": "... No, it's gone. Why is that?"
+      "content": "……不，停了。為什麼呢？"
     },
     {
       "id": 11,
       "model": "뫼르소",
-      "content": "Because we infused beats and rhythm into what is ultimately meaningless..."
+      "content": "在沒有意義的事物上，我們打下節拍、賦予節奏……"
     },
     {
       "id": 12,
       "model": "뫼르소",
-      "content": "... and decided to enjoy this sensation that will soon come to an end. That is why."
+      "content": "想必是因為我們……正享受著這即將消逝的感覺吧。"
     }
   ]
 }

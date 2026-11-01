@@ -18,59 +18,59 @@
     },
     {
       "id": "event_verification_confirm_desc",
-      "content": "Unless this verification process is handled by an on-site staff member, you will not be able to receive the entrance bracelet or enter the concert hall.\nAre you sure you want to proceed?"
+      "content": "未經現場工作人員驗證時，將無法配戴演唱會手環及入場。確定要繼續嗎？"
     },
     {
       "id": "event_verification_retry_btn",
-      "content": "Retry"
+      "content": "再次確認"
     },
     {
       "id": "event_verification_staff_code_placeholder",
-      "content": "Staff Verification Code"
+      "content": "工作人員專用驗證碼"
     },
     {
       "id": "event_verification_input_verified",
-      "content": "Verified Account (Cannot re-verify)"
+      "content": "已完成驗證的帳號 (無法重新驗證)"
     },
     {
       "id": "event_verification_verified",
-      "content": "Account verification completed."
+      "content": "驗證完成。"
     },
     {
       "id": "event_verification_already_verified",
-      "content": "This account has already been verified. (Cannot re-verify)"
+      "content": "此帳號已完成驗證。(無法重新驗證)"
     },
     {
       "id": "event_verification_verified_at",
-      "content": "Verification Date: {0} (KST)"
+      "content": "驗證時間：{0} (KST)"
     },
     {
       "id": "event_verification_level_required",
-      "content": "Only accounts with Manager Level {0} or higher may proceed with the verification."
+      "content": "僅限經理等級達到{0}以上的帳號進行驗證。"
     },
     {
       "id": "event_verification_not_started",
-      "content": "Now is not the verification period."
+      "content": "尚未到驗證期間。"
     },
     {
       "id": "event_verification_ended",
-      "content": "Verification period has passed."
+      "content": "驗證期間已結束。"
     },
     {
       "id": "event_verification_locked",
-      "content": "<b><color=#990000>3 incorrect verification code attempts.</color></b>\nPlease try again after {0} seconds."
+      "content": "<b><color=#990000>驗證碼輸入錯誤3次。</color></b>\n請於{0}秒後再試一次。"
     },
     {
       "id": "event_verification_invalid_code",
-      "content": "<b><color=#990000>Incorrect verification code.</color></b>\nPlease try inputting the code again."
+      "content": "<b><color=#990000>驗證碼不正確。</color></b>\n請重新輸入驗證碼。"
     },
     {
       "id": "event_verification_failed_title",
-      "content": "Verification Failed"
+      "content": "驗證失敗"
     },
     {
       "id": "event_verification_unavailable",
-      "content": "No verifications available."
+      "content": "目前沒有進行中的驗證。"
     }
   ]
 }

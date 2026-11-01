@@ -3,7 +3,7 @@
     {
       "id": 40003801,
       "name": "邊獄公司製特殊試驗義體mk5 - 鬼怪之臂",
-      "desc": "關卡開始時，使自身獲得 [AengduNewArm]\n\n若有除自身以外現存體力不高於體力上限50%的友方單位，則使自身獲得1層 [SupportProtect] (每回合最多1次)",
+      "desc": "關卡開始時，使自身獲得 [AengduNewArm]\n\n若有除自身以外現存體力低於體力上限50%的友方單位，則使自身獲得1層 [SupportProtect] (每回合最多1次)",
       "summary": "獲得 [SupportProtect]",
       "flavor": "「外觀上，乍看跟其他巢或後巷見到的義體沒什麼兩樣……但似乎融入了邊獄公司獨有的技術。邊獄公司獨有的技術啊，究竟會是什麼呢？」\n「畢竟這件試製品是以LCD部門為主導製作的，想必跟扭曲的力量有所關聯……啊。我只是負責運輸業務的人員，並不清楚詳細的狀況。只不過是推測而已。無論如何，應該不單單只是用於強化身體的義體。」"
     },
@@ -22,7 +22,7 @@
     {
       "id": 40003804,
       "name": "歸去之土",
-      "desc": "When 3 or more other Blade Lineage allies are defeated:\n- When gaining [Breath] Potency/Count using this unit's own Skills and Coin effects: Gain 1 more of each\n- When 5 or more other Blade Lineage allies are defeated, gain 2 more of each instead\n- Combat Start: Apply [SwordPlayOfTheHomeland] on self",
+      "desc": "若不低於3名除自身以外屬於劍契組成員的友方單位陣亡\n- 透過自身的技能或硬幣效果使自身增加 [Breath] 強度或回數時，額外使 [Breath] 強度與回數各增加1\n- 若不低於5名屬於劍契組成員的友方單位陣亡，則改為各增加2\n- 戰鬥開始時，使自身獲得 [SwordPlayOfTheHomeland]",
       "summary": ""
     },
     {
@@ -38,12 +38,12 @@
     {
       "id": 40004003,
       "name": "本國劍術",
-      "desc": "Combat Start: If Pride Reson. was activated,\n- Gain (Pride Reson. x 2) [Breath] (max 8)\n- Apply 1 [SlashResultUp] and 1 [CriticalDamageUp] on all Sinners and Assist Units excluding this unit (for Blade Lineage targets, double this effect)\n\nTurn End: Gain ([Breath] on self / 4) [Agility] next turn (max 6, rounded down)"
+      "desc": "戰鬥開始時，若觸發了傲慢共鳴，則\n- 使自身增加(傲慢共鳴數×2)級 [Breath] 強度(最多8級)\n- 使除自身以外的全體罪人與支援單位獲得1層 [SlashResultUp] 與1層 [CriticalDamageUp] (若目標屬於劍契組，則改為給予2倍)\n\n回合結束時，下回合使自身獲得(自身的 [Breath] 強度÷4)層 [Agility] (最多6層，無條件捨去)"
     },
     {
       "id": 40004004,
       "name": "劍契組 頭領",
-      "desc": "When gaining [Breath] Potency/Count using this unit's own Skills and Coin effects: Apply 1 [Breath] Potency and 1 [Breath] Count on the Sinner and 2 Assist Units that do not have [Breath] or have the lowest [Breath] Potency (excluding this unit)\n- For Blade Lineage allies, apply 3 [Breath] Potency and +2 [Breath] Count instead\n\nWhen a Blade Lineage Sinner or Assist Unit is defeated, this unit loses 10 SP"
+      "desc": "透過自身的技能或硬幣效果增加 [Breath] 強度或回數時，使除自身以外的罪人與支援單位中未帶有 [Breath] 或 [Breath] 強度最低的2名單位獲得1級 [Breath] 強度與1回 [Breath]\n- 對於屬於劍契組的友方單位，改為獲得3級 [Breath] 強度與2回 [Breath]\n\n屬於劍契組的罪人或支援單位陣亡時，使自身失去10點理智值"
     },
     {
       "id": 40004005,

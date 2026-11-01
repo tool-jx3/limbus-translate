@@ -4,32 +4,32 @@
       "id": 0,
       "place": "心像鏡像迷宮",
       "model": "뉴김삿갓",
-      "content": "She's not as powerful as I recall—yet weighed down by the Brand, I am not so far ahead or behind."
+      "content": "似乎比我記憶中弱了些，不過我自己也被烙上了烙印，彼此半斤八兩啊。"
     },
     {
       "id": 1,
       "model": "이스마엘다침",
-      "content": "I don't know... I think you're doing pretty well."
+      "content": "看起來……打得挺不錯的啊？"
     },
     {
       "id": 2,
       "model": "돈키호테다침",
-      "content": "Verily, they appear evenly matched. Yet..."
+      "content": "看似……旗鼓相當，然而……"
     },
     {
       "id": 3,
       "model": "뉴료슈담배다침",
-      "content": "*puff* He's wielding that sword like he's trying to get himself killed."
+      "content": "呼……那傢伙。揮刀的樣子就像急著想死一樣。"
     },
     {
       "id": 4,
       "model": "뉴료슈담배다침",
-      "content": "That bladework is far beneath him... Seeking the end here, is he?"
+      "content": "比他自身實力還要鈍的刀法……是想就這樣了結自己嗎？"
     },
     {
       "id": 5,
       "model": "임경업",
-      "content": "Can you afford to look away in a duel?!"
+      "content": "你在東張西望什麼？！"
     },
     {
       "id": 6,
@@ -39,27 +39,27 @@
     {
       "id": 7,
       "model": "임경업",
-      "content": "... What are you doing? You'd rather lock your sword with mine than parry it away?"
+      "content": "……刀鍔相抵，卻不想著把刀撥開，只顧著跟我角力啊。"
     },
     {
       "id": 8,
       "model": "뉴김삿갓",
-      "content": "Can't have a proper sword fight without a blade lock though, huh?"
+      "content": "這樣很帥嘛。"
     },
     {
       "id": 9,
       "model": "뉴김삿갓",
-      "content": "The duel between the mentor of a Syndicate and a Military Commissioner of S Corp. is neck-to-neck—clash after clash, the two warriors eventually lock their blades in a contest of might before it comes to a close in a final, fatal bout... When the dust settles, the mentor lies in the sand, dead."
+      "content": "在最後一合的交鋒之後，被節度使之劍斬殺的某組織頭領。"
     },
     {
       "id": 10,
       "model": "임경업",
-      "content": "... If that is what you want, I will grant it."
+      "content": "……那就如你所願。"
     },
     {
       "id": 11,
       "model": "뉴김삿갓",
-      "content": "... Good. Let's finish this..."
+      "content": "……好。就這樣結束……"
     },
     {
       "id": 12,
@@ -68,7 +68,7 @@
     },
     {
       "id": 14,
-      "content": "Just as Bamboo-hatted Kim and Im Gyeong-eop readied for their final bout, Aeng-du leaped in between them."
+      "content": "就在那一刻，櫻桃擋在了彷彿要做個了斷、正要出劍的金笠與林慶業之間。"
     },
     {
       "id": 13,
@@ -78,12 +78,12 @@
     {
       "id": 15,
       "model": "뉴앵두",
-      "content": "Are you really so ashamed that you would choose death over life, Mentor?"
+      "content": "您究竟是有多羞愧，才想尋死呢，頭領。"
     },
     {
       "id": 16,
       "model": "뉴앵두",
-      "content": "Are you so scared to live that you would rather die?"
+      "content": "您就那麼害怕往後活下去嗎？"
     },
     {
       "id": 17,
@@ -93,22 +93,22 @@
     {
       "id": 18,
       "model": "뉴김삿갓",
-      "content": "... Yes, I am. I am scared. I am terrified of my own audacity to live my days as though I hadn't failed everything and everyone who had the misfortune of placing their faith in me—my mission, my honor, my fellows—as though my path isn't haunted by ghosts, as though I can stand shamelessly before the watching eyes of the heavens."
+      "content": "……是啊，我害怕。任務、名譽、摯友全都失去的我……卻依然不知敬畏蒼天、四處漂流，這才讓我害怕。"
     },
     {
       "id": 19,
       "model": "뉴김삿갓",
-      "content": "What have I even done with the life that was given to me? Blind to the realities of my homeland, I served a master who chose politics over loyalty and justice. I cut down my very fellows who <i>chose</i> to trust a fool like me."
+      "content": "我究竟有哪件事是好好辦成的。捲入政爭，被自己信任侍奉的人拋棄；之後，又親手用刀斬了說要相信我、與我同行的摯友們。"
     },
     {
       "id": 20,
       "model": "뉴김삿갓",
-      "content": "I walked my entire life as the flow carried me, and when I finally had the mind to look back, all I saw were blood-red traces everywhere I had gone. Isn't it about time I admitted that this game cannot be won, that—"
+      "content": "隨波逐流地走著，每一個足跡卻都是血跡。倒不如承認局勢已傾……"
     },
     {
       "id": 21,
       "model": "뉴앵두",
-      "content": "Mentor. The weakness in your strength has failed your mission."
+      "content": "頭領是因為力量弱小，才沒能完成任務。"
     },
     {
       "id": 22,
@@ -118,57 +118,57 @@
     {
       "id": 23,
       "model": "뉴앵두",
-      "content": "The weakness in your position has failed your honor. And the weakness in your heart had become the fiendish blade that cut down your fellows."
+      "content": "因為立足之地薄弱而失去了名譽，因為心志軟弱而斬了摯友。"
     },
     {
       "id": 24,
       "model": "뉴김삿갓",
-      "content": "... Aeng-du? I thought you were here to talk me into keep on living. Yet your words pain me so."
+      "content": "……櫻桃啊。妳不是為了讓我活下去才擋在這裡的嗎？這話也太傷人了。"
     },
     {
       "id": 25,
       "model": "뉴앵두",
-      "content": "What weakness of yours is it this time, that you would cast away your own creed and life?"
+      "content": "這次又是哪裡軟弱了，讓您連信念與性命都想全部捨棄。"
     },
     {
       "id": 26,
       "model": "뉴앵두",
-      "content": "What other weakness will you use as an excuse today?"
+      "content": "明明已經沒有什麼能再更軟弱的了。"
     },
     {
       "id": 27,
       "model": "뉴앵두",
-      "content": "Stop trying to bear responsibilities asked not of you. The Blade Lineage was never about responsibility, nor was it about <i>you</i>, Mentor. Or does your overbearing guilt help you overestimate your importance?"
+      "content": "請不要想著負起責任。劍契組何時曾彼此負責過，又何時成了把那麼大的期望寄託在頭領一人身上的集團，您何必如此傲慢。"
     },
     {
       "id": 28,
       "model": "뉴앵두",
-      "content": "What was that saying again, \"fellow travelers in the same boat will aid one another\"? Not a single soul demanded that of you."
+      "content": "什麼同舟相救之類的，難道有誰懇求過您高舉那份理念嗎？"
     },
     {
       "id": 29,
       "model": "뉴김삿갓",
-      "content": "T-talk about kicking a man when he's down..."
+      "content": "我、我都說很痛了……"
     },
     {
       "id": 30,
       "model": "뉴앵두",
-      "content": "And I have had enough of that flippant larking of yours! We all have! Do you truly believe that not a single one of us had picked up on the fact that all your levity was a means of relieving yourself of the burden you had cast upon your own shoulders?"
+      "content": "說話那麼輕率也請適可而止！您以為部下們不知道，您是為了減輕自己想扛起的責任之重，才故意像隻多嘴鳥一樣饒舌的嗎？"
     },
     {
       "id": 31,
       "model": "뉴앵두",
-      "content": "None of us ever demanded some impossible feat from you. What was it that you've always said to describe yourself?"
+      "content": "也沒有人要求過您做成什麼。您不是總這麼說嗎。"
     },
     {
       "id": 32,
       "model": "뉴앵두",
-      "content": "That you are \"but a butchering blade that wields not itself, a tool wielded by willing hands.\""
+      "content": "我是一把從未自己揮舞過的劍。不過是被人拾起使用罷了。"
     },
     {
       "id": 33,
       "model": "뉴앵두",
-      "content": "Why, Mentor, I know not what kind of shame or responsibilities a mere tool has, do you? Because I fail to see any."
+      "content": "遺留之物也會有羞恥與責任嗎？這是我所不知道的事。"
     },
     {
       "id": 34,
@@ -178,17 +178,17 @@
     {
       "id": 35,
       "model": "뉴앵두",
-      "content": "If the shame does not subside still..."
+      "content": "即便如此，您還是那麼羞愧的話……"
     },
     {
       "id": 36,
       "model": "뉴앵두",
-      "content": "... then shroud your face with that bamboo hat of yours, and live on."
+      "content": "哪怕把斗笠壓低遮住臉，也請活下去。"
     },
     {
       "id": 37,
       "model": "뉴앵두",
-      "content": "Live on, so that you may repay your debts."
+      "content": "活下去，然後償還吧。"
     },
     {
       "id": 38,
@@ -203,12 +203,12 @@
     {
       "id": 40,
       "model": "뉴김삿갓",
-      "content": "Even the heart that sought death lies defeated at your feet; there is no stone left for my next gambit."
+      "content": "連求死之心都輸給了妳，我再也找不到下一手了。"
     },
     {
       "id": 41,
       "model": "뉴김삿갓",
-      "content": "There is... nothing more."
+      "content": "已經……別無他法了啊。"
     },
     {
       "id": 42,
@@ -218,107 +218,107 @@
     {
       "id": 43,
       "model": "뉴김삿갓",
-      "content": "Indeed. Perhaps there was some merit in your words—that I must retreat from this silly game of stones and become a fiend of blades."
+      "content": "是啊。趁此機會投子收局、作為劍鬼活下去——這話或許也有幾分道理。"
     },
     {
       "id": 44,
       "model": "뉴앵두",
-      "content": "Mentor...? That is... not what I said..."
+      "content": "頭領……？我並沒有說過那種話……"
     },
     {
       "id": 45,
       "model": "뉴김삿갓",
-      "content": "... Interesting. Whence did you hear that poem?"
+      "content": "……有意思。那首詩，又是從哪裡聽來的。"
     },
     {
       "id": 46,
       "model": "뉴김삿갓",
-      "content": "Yes, when inverted, a bamboo hat is like an unladen ship."
+      "content": "沒錯。這斗笠本就如同一艘空船。翻過來的形狀簡直一模一樣。"
     },
     {
       "id": 47,
-      "content": "Aeng-du and Im Gyeong-eop were knocked away from Bamboo-hatted Kim as though bounced off by an invisible force."
+      "content": "櫻桃與林慶業彷彿被某種壓力壓迫，像被彈開般遠離了金笠。"
     },
     {
       "id": 48,
-      "content": "Kim raises his gaze to meet the empty air as though someone were there, a hollow laughter escaping his lips."
+      "content": "金笠望著虛空，灑脫地笑著說了些什麼。"
     },
     {
       "id": 49,
-      "content": "We know who he's talking to."
+      "content": "那個對象是什麼，我們都知道。"
     },
     {
       "id": 50,
       "model": "단테",
-      "content": "<It's the voice...>"
+      "content": "<他聽到那個聲音了……>"
     },
     {
       "id": 51,
       "model": "뉴김삿갓",
-      "content": "But your last move was not a good one. Indeed, I did wish to become a blade—and what did you do? Forged me into an indiscriminate one that cleaves blindly into friend and foe both. It seems that, in your excitement, you have cornered yourself with that last move."
+      "content": "然而你下的是一步惡手。就算我曾想過要斬，竟讓我把所有人斬盡殺絕。在惡手之中，更是自取滅亡的一手。"
     },
     {
       "id": 52,
       "model": "뉴김삿갓",
-      "content": "Well, as it seems that I have had an opportunity to retrace our past moves, allow me to try something different this time."
+      "content": "好。既然都悔了幾手棋，這次就換個下法吧。"
     },
     {
       "id": 53,
       "model": "뉴김삿갓",
-      "content": "Ah, be not so vexed by this round—as you say, we never know what the next game shall bring."
+      "content": "不必不快。正如閣下所言，下一局又會怎麼下，誰也不知道。"
     },
     {
       "id": 54,
       "model": "뉴김삿갓",
-      "content": "I appreciate and will treasure the other bits of your advice."
+      "content": "閣下的指點，我也會聽進耳裡。"
     },
     {
       "id": 55,
       "model": "뉴김삿갓",
-      "content": "But... let us play by my rules for tonight's game."
+      "content": "但今日的落子……依我之意。"
     },
     {
       "id": 56,
       "model": "히스클리프다침2",
-      "content": "... Somethin's different this time, innit?"
+      "content": "……不過，是不是有點不太一樣啊。"
     },
     {
       "id": 57,
       "model": "히스클리프다침2",
-      "content": "He ain't Distorting. I think that's..."
+      "content": "與其說是扭曲，那更像是……"
     },
     {
       "id": 58,
       "model": "이상다침",
-      "content": "... An efflorescence, perhaps."
+      "content": "……或許，他會就此綻放吧。"
     },
     {
       "id": 59,
       "model": "뉴김삿갓",
-      "content": "Nothing is for certain, indeed... Yet I trust that the words of my last remaining follower have also reached your ears, hm?"
+      "content": "我沒有……把握。然而，閣下也聽見了吧。我最後僅存的部下所說的話。"
     },
     {
       "id": 60,
       "model": "뉴김삿갓",
-      "content": "I am but a tool wielded by willing hands. Nothing in my life has ever been certain."
+      "content": "我本就是被人拾起使用的刀。我的一生，不可能有過什麼把握。"
     },
     {
       "id": 61,
       "model": "뉴김삿갓",
-      "content": "I know not whether this move is what cements my defeat, but I desire it to be a victorious stone nonetheless."
+      "content": "或許是敗著，但我只盼我這一手能是妙手。"
     },
     {
       "id": 62,
       "model": "뉴김삿갓",
-      "content": "... Thank you. I will take what encouragement I can."
+      "content": "……你的聲援，我就心懷感激地收下了。"
     },
     {
       "id": 63,
-      "content": "The strange, invisible pressure dissipates, and the armored woman, Im Gyeong-eop, readjusts her grip on the sword."
+      "content": "那股令人無法靠近的奇異壓力一消失，名叫林慶業的人便立刻重新握正了劍。"
     },
     {
       "id": 64,
-      "content": "Kim turned around to look at her, and I saw that a weighty shadow seemed to have been lifted from his face, replaced by a mix of relief and determination."
+      "content": "面對林慶業的金笠，表情與至今為止不同，既輕鬆釋然，同時又充滿了決意。"
     },
     {
       "id": 65,
@@ -328,22 +328,22 @@
     {
       "id": 66,
       "model": "뉴김삿갓안광",
-      "content": "... A bit embarrassing to change my stance now, but..."
+      "content": "……雖然出爾反爾令人羞愧。"
     },
     {
       "id": 67,
       "model": "뉴김삿갓안광",
-      "content": "... now, I fight to live."
+      "content": "這次，我要為了活下去而交鋒。"
     },
     {
       "id": 68,
       "model": "뉴김삿갓안광",
-      "content": "And I suppose you will be okay with that?"
+      "content": "妳果然還是會說無妨吧？"
     },
     {
       "id": 69,
       "model": "임경업",
-      "content": "... Of course."
+      "content": "……悉聽尊便。"
     },
     {
       "id": 70
@@ -352,27 +352,27 @@
       "id": 71,
       "place": -1,
       "model": "뉴김삿갓",
-      "content": "To hide from heaven's gaze this hat I wore;"
+      "content": "我那因畏見蒼天而戴上的斗笠。"
     },
     {
       "id": 72,
       "model": "뉴김삿갓",
-      "content": "An empty boat, it bore my friends along."
+      "content": "化作漂泊無定的空船，載過許多人。"
     },
     {
       "id": 73,
       "model": "뉴김삿갓",
-      "content": "In bamboo veiled, we drift from shore to shore;"
+      "content": "就這麼戴著它，相伴漂泊了一生。"
     },
     {
       "id": 74,
       "model": "뉴김삿갓",
-      "content": "With wine, I don my hat to watch blooms throng,"
+      "content": "醉了就掛起它賞花，"
     },
     {
       "id": 75,
       "model": "뉴김삿갓",
-      "content": "In mirth, I doff that shroud to moon adore."
+      "content": "興起便摘下它賞月。"
     },
     {
       "id": 76
@@ -380,12 +380,12 @@
     {
       "id": 77,
       "model": "뉴김삿갓",
-      "content": "So with this bamboo hat to veil my brow,"
+      "content": "是啊，戴著這頂斗笠。"
     },
     {
       "id": 78,
       "model": "뉴김삿갓",
-      "content": "Though winds and rain may rage, I shall not throe."
+      "content": "任它下雨還是颳風，我都無憂無慮啊。"
     },
     {
       "id": 79,
@@ -395,22 +395,22 @@
     {
       "id": 80,
       "model": "임경업",
-      "content": "Hie to me, bamboo-hatted one; speak your name, for I find your outfit dubious of character."
+      "content": "那邊戴斗笠的兄台。容貌可疑，報上名來。"
     },
     {
       "id": 81,
       "model": "뉴김삿갓",
-      "content": "I am he who has mentored the lineage of blades to its premature end;"
+      "content": "我曾率領劍契組，卻未能盡到那份責任。"
     },
     {
       "id": 82,
       "model": "뉴김삿갓",
-      "content": "I am he who has sought to bring salvation to the downtrodden, to no avail."
+      "content": "曾想拯救草民，卻找不到方法。"
     },
     {
       "id": 83,
       "model": "뉴김삿갓",
-      "content": "What to call a man who has failed to disburden himself of the world? How to name a man who has failed to bear the weight of the world? There is none..."
+      "content": "既無法放下一切，也無法扛起一切——這樣的人，別無他詞可稱。"
     },
     {
       "id": 84

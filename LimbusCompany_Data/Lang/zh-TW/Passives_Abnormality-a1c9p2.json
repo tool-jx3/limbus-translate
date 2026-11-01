@@ -60,14 +60,14 @@
     {
       "id": 132001,
       "name": "最後的火種",
-      "desc": "自身殘存體力低於30%時，透過技能效果獲得的 [MRcAiBa] 層數額外+1",
+      "desc": "自身殘存體力不高於30%時，獲得的 [MRcAiBa] 層數額外+1",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": 132002,
       "name": "點燃火種",
-      "desc": "When the Wings Part is broken, inflict [MRcAiBb] equal to [MRcAiBa] Stack to the last attacker; then, all [MRcAiBa] on self expires.\n\nWhen using 'Ardor Blossom Star' at 0 [MRcAiBa], use 'Stoke the Flames' as well",
+      "desc": "當自身的翅膀部位遭到破壞時，對最後攻擊部位的敵方單位施加與自身帶有的 [MRcAiBa] 層數等量的\n[MRcAiBb]；隨後解除自身帶有的所有 [MRcAiBa]\n\n自身使用「紅艷煞」時，若自身帶有的 [MRcAiBa] 層數為0，則額外使用「點燃火種[TabExplain]」",
       "summary": "",
       "undefined": "-"
     },
@@ -116,7 +116,7 @@
     {
       "id": 132503,
       "name": "解放",
-      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptEnemy] or at 90%-/75%-/60%- HP,\n- Gain [UnlockBuff_1]/[UnlockBuff_2]/[UnlockBuff_3]\n- Heal to 45 SP\n- <color=#ff6000><mark=#ff000040><b><u>Consume all [PressureOfPrescript]</u></b></mark></color> and recover from Stagger\n- Gain 1 [BlessingOfIndexPrescriptEnemy] in the turn after [UnlockBuff_Base] was gained for the first time\n\nIf [UnlockBuff_Base] was gained based on HP conditional above,\n- Gain [KarmaOfIndexStudent] by (sum of healed SP / 15)\n- Increase [BlessingOfIndexPrescriptEnemy] to 3/6/9 if this unit had less than 3/6/9 [BlessingOfIndexPrescriptEnemy]; gain 1 [DefenseDown] and 2 [KarmaOfIndexStudent] next turn for every [BlessingOfIndexPrescriptEnemy] Stack gained\n\nMin & Max Speed +10 in the turn this unit uses its powerful attack",
+      "desc": "回合結束時，若自身的 [BlessingOfIndexPrescriptEnemy] 層數為3/6/9層或自身的現存體力不高於90%/75%/60%，\n- 使自身獲得 [UnlockBuff_1] / [UnlockBuff_2] / [UnlockBuff_3]\n- 使自身理智值提升至45點\n- <color=#ff6000><mark=#ff000040><b><u>消耗自身帶有的所有 [PressureOfPrescript]</u></b></mark></color>，並解除自身的混亂\n- 首次獲得 [UnlockBuff_Base] 的下回合，使自身獲得1層 [BlessingOfIndexPrescriptEnemy]\n\n透過體力條件獲得 [UnlockBuff_Base] 時\n- 使自身獲得(提升的理智值÷15)層 [KarmaOfIndexStudent]\n- 若自身的 [BlessingOfIndexPrescriptEnemy] 層數低於3/6/9層，則使其層數變為3/6/9層，\n且每增加1層，在下回合開始時使自身獲得1層 [DefenseDown] 與2層 [KarmaOfIndexStudent]\n\n自身使用強力攻擊的回合中，使自身的最小與最大速度值+10",
       "summary": "",
       "undefined": "-",
       "flavor": "「指令所授予的劍與布，只會在完成指令時解放其力量並顯現。」"

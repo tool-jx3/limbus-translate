@@ -1991,7 +1991,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Consume up to 3 [Vibration] on target\n- Gain +([Vibration] consumed x 2) [Vibration] Count\n- Inflict ([Vibration] consumed - 1) [Binding] next turn"
+                  "desc": "[OnSucceedAttack] 消耗目標最多3級 [Vibration] 強度\n- 使自身的震顫回數增加(消耗的 [Vibration] 強度×2)回\n- 下回合對目標施加(消耗的 [Vibration] 強度-1)層 [Binding]"
                 }
               ]
             },
@@ -2031,7 +2031,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Consume up to 3 [Vibration] on target<style=\"highlight\"></style>\n- Gain +([Vibration] consumed x 2) [Vibration] Count<style=\"highlight\"></style>\n- Inflict ([Vibration] consumed - 1) [Binding] next turn<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 消耗目標最多3級 [Vibration] 強度<style=\"highlight\"></style>\n- 使自身的震顫回數增加(消耗的 [Vibration] 強度×2)回<style=\"highlight\"></style>\n- 下回合對目標施加(消耗的 [Vibration] 強度-1)層 [Binding]<style=\"highlight\"></style>"
                 }
               ]
             },

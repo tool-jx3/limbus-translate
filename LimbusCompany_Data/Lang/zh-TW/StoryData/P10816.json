@@ -8,43 +8,43 @@
       "id": 1,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Welcome, dear customer."
+      "content": "歡迎光臨，顧客。"
     },
     {
       "id": 2,
-      "content": "Grand Magasin Sisyphe. The place I've found myself in after being sentenced to the Sisyphe Penalty."
+      "content": "薛西弗斯百貨公司。被判處薛西弗斯之刑的我，所落入的奇怪地方。"
     },
     {
       "id": 3,
-      "content": "And for the last two whole damn weeks..."
+      "content": "從1樓到3樓。"
     },
     {
       "id": 4,
-      "content": "... I've purchased and hawked clothes, dug through filth to scrounge for what eyeballs I could get my hands on... and only managed to make it two floors up, from the first floor to the third."
+      "content": "買賣衣服、搜刮眼球，光是爬上區區兩層樓，就花了我整整兩週。"
     },
     {
       "id": 5,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Might this be your first time in Boutique du Rouge?"
+      "content": "看來您是第一次來丹紅派精品專櫃吧？"
     },
     {
       "id": 6,
       "teller": "杜布瓦",
       "title": "???",
-      "content": "Yeah, but I wanted to ask—"
+      "content": "是的。不過這裡該不會是……"
     },
     {
       "id": 7,
-      "content": "Throughout that ordeal, I've had but one purpose in mind: to get in touch with my friends on the outside."
+      "content": "我的期望不多也不少……只是想聯絡外面的熟人而已。"
     },
     {
       "id": 8,
-      "content": "So I've made my way upstairs, hoping to see if this \"prison\" does visits or, at the very least, allows its inmates to make calls..."
+      "content": "我想這裡若是某種監獄，或許能會面或打電話，便一路爬了上來，然而……"
     },
     {
       "id": 9,
-      "content": "... but look around as I might, all I see on this floor is <i>more</i> apparel shops."
+      "content": "和1樓一樣，這裡也全是賣衣服的店。"
     },
     {
       "id": 10,
@@ -56,25 +56,25 @@
       "id": 11,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "You look too lost to be a Kaki... yet too eloquent to be a Mannequin..."
+      "content": "說是卡其派……又太過生澀。說是人台模特兒，又太會說話。"
     },
     {
       "id": 12,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Huh. It's been quite a while since I've seen a stranger on the third floor."
+      "content": "哈。在3樓見到異鄉人，還真是久違了呢。"
     },
     {
       "id": 13,
       "teller": "杜布瓦",
       "title": "異鄉人",
-      "content": "I-is it that obvious?"
+      "content": "看、看得出來嗎？"
     },
     {
       "id": 14,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "You've been looking all around the shop since you came in, but hardly giving the clothes a second glance. Thought you seemed surprisingly unconcerned about your incredibly disheveled fashion."
+      "content": "您從剛才就一直在店裡東張西望，可明明穿得這麼邋遢，卻一點也不在意衣服嘛。"
     },
     {
       "id": 15,
@@ -86,7 +86,7 @@
       "id": 16,
       "teller": "杜布瓦",
       "title": "異鄉人",
-      "content": "A-anyways, I wanted to ask if I could borrow your phone? I need to get in touch with my friends outside, but no one on the first floor seems to know where I can make a call."
+      "content": "那個，請問可以借一下電話嗎……？我想聯絡外面，可是1樓的人都不知道……"
     },
     {
       "id": 17,
@@ -98,13 +98,13 @@
       "id": 18,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Can't say I've heard of that style before."
+      "content": "沒有那種名字的款式喔。"
     },
     {
       "id": 19,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Look, you've clearly been wearing nothing but no-name, bargain-bin rags from the Casualwear Hall."
+      "content": "看來您穿的是快時尚服飾館之類的地方賣的、聽都沒聽過的便宜貨……"
     },
     {
       "id": 20,
@@ -112,185 +112,185 @@
     },
     {
       "id": 21,
-      "content": "I can't get through to any of these people. Whatever subject I bring up, they all devolve into gossip or discourse about clothes and fashion."
+      "content": "不管說什麼，最後都會扯到衣服和時尚上。"
     },
     {
       "id": 22,
-      "content": "That isn't to say that all my efforts have been for nothing—I did manage to pick up a rumor about this \"Customer Service Center\" somewhere higher up in this department store."
+      "content": "雖然只是傳聞，但據說薛西弗斯百貨公司也有客服中心。"
     },
     {
       "id": 23,
-      "content": "Trying my luck there seems like my best bet, but how many eyeballs would I have to scrape and spend just to get there? Just thinking about it makes my heart sink."
+      "content": "爬到那裡的話，會有什麼不同嗎……一想到為此得收集、再花掉多少眼球，就覺得茫然。"
     },
     {
       "id": 24,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "You've made it to the third floor anyway. Why don't you do yourself a favor and get a nice style makeover?"
+      "content": "既然都上到3樓了，要不要試著把整身穿搭換一換呢？"
     },
     {
       "id": 25,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "You could consider switching over to a full kit of Rouge-branded apparel while you're at it..."
+      "content": "乾脆趁這個機會，全身換成丹紅派的品牌也……"
     },
     {
       "id": 26,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "How about this leather coat, hm?"
+      "content": "這件皮大衣怎麼樣？"
     },
     {
       "id": 27,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "I think it'll look a bit big on me..."
+      "content": "有點大……"
     },
     {
       "id": 28,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "I promise you, an oversized fit is exactly what customers with a frame as slim as yours need. Here, let me help you put it on..."
+      "content": "像顧客您這樣身材嬌小的人，寬鬆版型是必備的喔。這樣披上去的話……"
     },
     {
       "id": 29,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Aha, how's that? Positively dashing, wouldn't you agree?"
+      "content": "怎麼樣？很帥吧？"
     },
     {
       "id": 30,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "I-it's pretty cool, I guess, but..."
+      "content": "帥、帥是帥啦……"
     },
     {
       "id": 31,
-      "content": "<color=#cf0000>Deplete... all...</color>"
+      "content": "<color=#cf0000>耗盡吧……</color>"
     },
     {
       "id": 32,
-      "content": "I try to give myself a once-over in the mirror, but the only thing that catches my eye is the number on the price tag. 360... Even by quick math, this one coat would swallow up half of all the eyeballs I've saved up since arriving here."
+      "content": "最先映入眼簾的是價格標籤。360……這是我至今賺到的眼球的一半了。"
     },
     {
       "id": 33,
-      "content": "Granted, I don't get hungry or thirsty in here, and I don't have to worry about constantly bleeding money just to keep a roof over my head..."
+      "content": "在這裡既不會餓也不會渴……也不需要付龐大的居住費用……"
     },
     {
       "id": 34,
-      "content": "... but I wasn't keen on spending so much of my savings here."
+      "content": "但我還是不想把手上所有的眼球都花在這裡。"
     },
     {
       "id": 35,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "... It's a bit too pricey for me. Do you offer discounts?"
+      "content": "太貴了。能不能稍微算便宜一點？"
     },
     {
       "id": 36,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "... Are you being serious?"
+      "content": "不是……您是認真的嗎？"
     },
     {
       "id": 37,
-      "content": "The designer's customer-service smile, which was already walking the line between smug and polite, instantly scrunched up into a scowl."
+      "content": "原本從容微笑著的精品專櫃設計師，表情瞬間扭曲了。"
     },
     {
       "id": 38,
-      "content": "I'd seen a coat that looked pretty similar to this back downstairs in one of the Casualwear Hall stores, and that one cost just 120 eyeballs..."
+      "content": "可是……我在快時尚的店裡也看過類似的大衣，只賣120顆眼球……"
     },
     {
       "id": 39,
-      "content": "It's entirely possible that she's ripping me off with marked-up prices because she's clocked me as a stranger—which seems to be the lingo referring to people who are new to the Grand Magasin."
+      "content": "也許因為我是異鄉人，也就是剛進百貨公司沒多久，她才想敲我竹槓。"
     },
     {
       "id": 40,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "*sigh* Fine, I'll admit, it could've used a finer finish."
+      "content": "唉……老實說，收邊處理確實是有點可惜。"
     },
     {
       "id": 41,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "But just look at it. See how the Golden Hide cross-stitched into the material achieves a unique sense of three-dimensionality on a plane? Look at the color, too—you can't undersell the amount of grind that went into attaining it."
+      "content": "但這將黃金皮革交錯縫製而成的立體感……研磨得雪白的色澤……"
     },
     {
       "id": 42,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Honestly, if our boutique cared even one bit for the trends, we would've been justified in charging you three times the asking price. It's the Herringbone season now, you know."
+      "content": "老實說，那是因為我們精品專櫃不太在意流行……考慮到現在是人字紋的季節，就算賣三倍價也不為過吧？"
     },
     {
       "id": 43,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Well, if you don't want it, you don't want it. Your loss—but we'll soon be getting a slew of customers chomping at the bit to buy from my fashion line. Don't come back crawling later and tell me I didn't try to convince you otherwise."
+      "content": "嘛，不想買就算了。不過很快就會有一大堆顧客上門，到時候可別再回來找喔。"
     },
     {
       "id": 44,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "Actually... there's something else I've been meaning to ask. What exactly is that broadcast I've been hearing this whole time?"
+      "content": "不過，那個……從剛才就一直聽到的這段廣播，到底是什麼啊？"
     },
     {
       "id": 45,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "Kinda creepy if you ask me... With how it stutters and stretches..."
+      "content": "一直斷斷續續、又拖得長長的……有點可怕……"
     },
     {
       "id": 46,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Oh, that? It's... the Voice I used to worship."
+      "content": "啊，那個……是我曾經侍奉過的聲音。"
     },
     {
       "id": 47,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "\"Used to\"...?"
+      "content": "曾經……？"
     },
     {
       "id": 48,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Oh yes. I serve a different Voice now."
+      "content": "是的。因為我現在侍奉的是另一個聲音。"
     },
     {
       "id": 49,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "The Voice of the one who freed me from the nails that were driven into me... and mended my blinded eye."
+      "content": "那位大人拔出了釘在我身上的釘子，給予我自由，也修補了我失明的眼睛。"
     },
     {
       "id": 50,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Ever since my conversion... and my dutiful service to this new faith began... I've stopped lending my ear to this broadcast."
+      "content": "所以，在我忠誠地……侍奉那位大人的現在……已經不會專心聽那廣播了。"
     },
     {
       "id": 51,
-      "content": "As the designer spoke, I thought I saw a trace of sadness flicker over her expression. Yet at the same time, she seemed caught up in the memory of something wonderful, something that filled her with exhilaration."
+      "content": "這麼說著的精品專櫃設計師，表情乍看有些悲傷，同時卻又像在回想某種令人陶醉的事物。"
     },
     {
       "id": 52,
-      "content": "I occasionally heard the PA system—a \"Voice\" as they call it here—speak on the first floor too, but that one never cut in and out like this one, or sounded so unnaturally drawn out..."
+      "content": "在1樓也常聽到廣播……那個聲音，但從沒有像這樣斷斷續續、拖得長長的……"
     },
     {
       "id": 53,
-      "content": "Something wrong with the broadcast, I wonder...?"
+      "content": "是發生什麼事了嗎。"
     },
     {
       "id": 54,
-      "content": "I had scarcely begun to amble away from the store when the designer suddenly stopped me in my tracks as though something had occurred in her mind."
+      "content": "我正這麼想著，設計師像是想起了什麼似地，拉住了正要離開的我。"
     },
     {
       "id": 55,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Before you go, dear customer... Have you visited the Maison du Noir? The store just across."
+      "content": "等等。顧客，請問您去過對面的品牌旗艦店嗎？"
     },
     {
       "id": 56,
@@ -302,7 +302,7 @@
       "id": 57,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Maison du Noir. It's one of the shops where those... Noir \"designers\" sell their label."
+      "content": "對，漆黑派……那些傢伙賣衣服的店。"
     },
     {
       "id": 58,
@@ -320,99 +320,99 @@
       "id": 60,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Say, does 200 eyeballs seem like a more... affordable price for your budget?"
+      "content": "剛才那件大衣……如果是200顆眼球，您會買嗎？"
     },
     {
       "id": 61,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "Uh... Yeah, actually! 200 sounds a lot more within reach!"
+      "content": "呃……會，那個價錢我應該買得起！"
     },
     {
       "id": 62,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Good to hear. Lucky us—I was actually looking to hire someone for a gig."
+      "content": "剛好……我正需要個打工的，真是太好了。"
     },
     {
       "id": 63,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "I'll save that coat for you, so why don't you help me out for a discount?"
+      "content": "我先幫您保留一下，可以幫我做一件事嗎？"
     },
     {
       "id": 64,
-      "content": "I watch as a nail made out of bone stabs a Noir sales associate clean through."
+      "content": "骨頭做成的釘子貫穿了漆黑派。"
     },
     {
       "id": 65,
-      "content": "A mass of hands erupts from the boutique designer's body, creaking and shuffling as it pins down the employees of the Noir shop beneath its weight, before wrenching away ragged pieces of flesh."
+      "content": "從精品專櫃設計師身上竄出的無數隻手，壓住漆黑派專櫃的店員們，將他們撕扯開來。"
     },
     {
       "id": 66,
-      "content": "She managed to charge into the shop while I drew the guards—\"Two-piece,\" as they say in here—far away from the entrance."
+      "content": "這都多虧我把守在店門口的警衛……也就是被稱為兩件套的那些傢伙引開，帶到了遠處。"
     },
     {
       "id": 67,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Oh, I'm already so excited to give this dark, dreary room a new paint job in beautiful Rouge..."
+      "content": "一想到要把這黑漆漆的裝潢染成丹紅色，我就已經開心起來了呢。"
     },
     {
       "id": 68,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "... Huh, you've got quick hands, dear customer."
+      "content": "哈。不過顧客您……"
     },
     {
       "id": 69,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "That's quite a pile of eyeballs you managed to scavenge in that mess."
+      "content": "這麼短的時間裡，您還真是搜刮了不少呢。"
     },
     {
       "id": 70,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "Gotta seize the opportunity, right...?"
+      "content": "我想說這是個機會……"
     },
     {
       "id": 71,
-      "content": "Maybe all that gut-harvesting I've tried my hand at in the Backstreets paid off. I didn't have any trouble snatching up the tidy haul of eyeballs the Noirs dropped in all that chaos."
+      "content": "大概是因為在外頭做過幾次收割內臟的活吧……我沒費什麼力氣，就把漆黑派們掉落的眼球撿了一大把。"
     },
     {
       "id": 72,
-      "content": "I've probably found enough eyeballs here to afford that coat without a discount..."
+      "content": "光是在這裡撿到的眼球，好像就夠買剛才那件大衣了。"
     },
     {
       "id": 73,
       "teller": "杜布瓦",
       "title": "顧客",
-      "content": "W-well, I hope that doesn't stop you from giving me that discount!"
+      "content": "不、不過還是會給我打折的吧？"
     },
     {
       "id": 74,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "I'll honor it. Job's a job, you know?"
+      "content": "嘛，畢竟算是打工嘛。"
     },
     {
       "id": 75,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "And you've done fine work, too... Thanks to you, I've had no problems tearing down this shop. These stuck-up Noirs have zero appreciation for how much the Golden Hide is worth."
+      "content": "托您的福……我才能把那些連黃金皮革的價值都不懂的漆黑派，這些傢伙的店給砸了。"
     },
     {
       "id": 76,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "Let's return to my boutique, shall we? Our new Voice will be happy to hear of this news."
+      "content": "差不多該回精品專櫃了。新的聲音一定會很高興的。"
     },
     {
       "id": 77,
       "model": "이스마엘",
       "title": "丹紅派 精品專櫃",
-      "content": "And as for you, dear customer... I promise, once you are wearing your new coat... you'll be every bit as pleased with your purchase."
+      "content": "而且，顧客您穿上新大衣的話……也一定會滿意的。"
     }
   ]
 }

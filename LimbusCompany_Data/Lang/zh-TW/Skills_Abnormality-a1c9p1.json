@@ -606,7 +606,7 @@
         {
           "level": 1,
           "name": "受抑的肉體",
-          "desc": "During the turn this unit has this Skill equipped, gain the following effects:\n- <color=#ff6000><mark=#ff000040><b><u>When hit by Attack Skills</u></b></mark></color> before using this Skill, gain 1 [UnsteadyTheRings] (once per enemy Skill; including E.G.O Skills)\n- Does not trigger the effects of \"Iron Maiden[TabExplain] - Spikes\" Passive\n- This unit cannot be Staggered before using this Skill\n\nOn Kill with this Skill: heal 15 SP\n[WhenUse] Coin Power +1 for every 4 [Laceration] on target (max 4)\n[WhenUse] Deal +10% damage for every 2 [Laceration] on target (max 100%)\n[DefeatDuel] Damage dealt by this Skill cannot Stagger the target\n[EndSkill] Lose [BoneBladeTheRings]",
+          "desc": "裝備本技能的回合，觸發以下效果\n- 使用本技能前，<color=#ff6000><mark=#ff000040><b><u>受到攻擊技能命中時</u></b></mark></color>，使自身獲得1層 [UnsteadyTheRings] (敵方每個技能最多1次；包含E.G.O技能)\n- 「鐵處女[TabExplain] - 棘」效果不會觸發\n- 使用本技能前，自身不會陷入混亂\n\n本技能擊殺目標時，使自身恢復15點理智值\n[WhenUse] 目標每帶有4級 [Laceration] 強度，則使本技能的硬幣威力+1(最多+4)\n[WhenUse] 目標每帶有2級 [Laceration] 強度，則使本技能造成的傷害+10%(最多+100%)\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[EndSkill] 消除自身帶有的 [BoneBladeTheRings]",
           "coinlist": [
             {
               "coindescs": [
@@ -683,7 +683,7 @@
         {
           "level": 1,
           "name": "鐵幕",
-          "desc": "<color=#ff6000><mark=#ff000040><b><u>Multiply the damage from the \"Iron Maiden[TabExplain] - Spikes\" Passive by 20</u></b></mark></color> (this effect cannot be disabled by Offsetting this Skill)\n[StartBattle] When hit by Attack Skills, inflict +1 [Laceration] Count against the attacker (including E.G.O Skills)",
+          "desc": "本回合中，「鐵處女[TabExplain] - 棘」效果<color=#ff6000><mark=#ff000040><b><u>對敵方造成的傷害增加至20倍</u></b></mark></color>(本效果不會因偏轉而解除)\n[StartBattle] 受到攻擊技能命中時，使攻擊者增加1回 [Laceration] (包含E.G.O技能)",
           "coinlist": [
             {}
           ]
@@ -1107,7 +1107,7 @@
         {
           "level": 1,
           "name": "空間撕裂",
-          "desc": "若自身帶有的 [Charge] 回數不低於10回，則消耗自身10回 [Charge]，使本技能的拚點威力+5、造成的傷害量+100%\n若自身帶有的 [Charge] 回數不高於10回，則消耗自身本體100點體力值，使本技能造成的傷害量+80%\n自身的體力值無法因此效果降低至0\n[DefeatDuel] 使自身獲得以下效果：\n- 對自身施加2層 [Paralysis]\n- 使本技能造成的傷害-80%\n- 本技能無法使目標陷入混亂\n- 本技能無法觸發目標的 [Burst] 效果",
+          "desc": "若自身帶有的 [Charge] 回數不低於10回，則消耗自身10回 [Charge]，使本技能的拚點威力+5、造成的傷害量+100%\n若自身帶有的 [Charge] 回數低於10回，則消耗自身本體100點體力值，使本技能造成的傷害量+80%\n自身的體力值無法因此效果降低至0\n[DefeatDuel] 使自身獲得以下效果：\n- 使自身獲得2層 [Paralysis]\n- 使本技能造成的傷害-80%\n- 本技能無法使目標陷入混亂\n- 本技能無法觸發目標的 [Burst] 效果",
           "coinlist": [
             {
               "coindescs": [
@@ -1193,7 +1193,7 @@
         {
           "level": 1,
           "name": "高速空間撕裂",
-          "desc": "Can Clash with this Skill regardless of Speed; cannot be Staggered before using this Skill\n[DefeatDuel]\n- Gain 2 [ResultReduction] and 1 [Paralysis]\n- Deal -90% damage and damage dealt by this Skill cannot Stagger the target\nGain 1 Clash Power for every Dimension effect on self\nDeal +10% for every Dimension effect on self",
+          "desc": "可無視速度差距與本技能拚點，在本技能發動前自身無法陷入混亂\n[DefeatDuel]\n- 對自身施加2層 [ResultReduction] 與1層 [Paralysis]\n- 使本技能造成的傷害-90%，且本技能造成的傷害無法使目標陷入混亂\n根據自身帶有的層數最高的次元效果，相應使本技能的拚點威力增加\n自身每帶有1種次元效果，則使本技能造成的傷害+10%",
           "coinlist": [
             {
               "coindescs": [

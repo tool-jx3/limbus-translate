@@ -5,12 +5,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Phew... we made it here, but... huh. I can't say if we can even get through the entrance.",
+          "text": "呼。來是來了……也不知道這裡到底進不進得去啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "The entrance appears obstructed by something decidedly unusual... I much doubt brute force shall avail us.",
+          "text": "入口被某種不尋常之物堵住了……看來並非物理手段所能突破……",
           "speaker": "李箱"
         },
         {
@@ -25,7 +25,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pwie silently placed a hand against the entrance to the fifth floor,"
+          "text": "普依默默地將手貼在5樓的入口上，靜止了好一會兒……"
         }
       ]
     },
@@ -34,7 +34,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "only to lower it again with a shake of the head."
+          "text": "隨即搖了搖頭，放下了手。"
         }
       ]
     },
@@ -43,12 +43,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "... We can't go in. Both you and me.",
+          "text": "……進不去。我也是，你們也是。",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "We don't have... enough virtue yet...",
+          "text": "現在還……美德不夠……",
           "speaker": "普依"
         },
         {
@@ -63,7 +63,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Bingo. That little runt is just waaay too lacking in virtue... Still nowhere near refined enough for a highbrow place like this.",
+          "text": "沒錯，那個小鬼的美德實在是太太太不足了……還配不上這種有格調的地方。",
           "speaker": "克羅默"
         }
       ]
@@ -101,7 +101,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Laid my hands on the curtain, and it began to ripple as though I'd just touched the surface of water."
+          "text": "一碰觸帷幕，表面便如漣漪般晃動起來。"
         }
       ]
     },
@@ -110,7 +110,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "That's when Pwie pushed past the others and walked up to the curtain."
+          "text": "這時，普依推開眾人，走上前去。"
         }
       ]
     },
@@ -119,7 +119,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Their tiny hand reaches out toward the curtain..."
+          "text": "小小的手朝帷幕伸去。"
         }
       ]
     },
@@ -128,11 +128,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "The curtain ripples gently. The way is now open."
+          "text": "帷幕搖曳著。現在似乎可以進到裡面了。"
         },
         {
           "index": 1,
-          "text": "<I think we can get inside now.>",
+          "text": "<現在好像可以進到帷幕另一頭了。>",
           "speaker": "但丁"
         }
       ]
@@ -142,37 +142,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "I... keep yawning.",
+          "text": "我……一直想打哈欠。",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "I'm sleepy... My eyes feel so heavy...",
+          "text": "好睏……眼皮好重……",
           "speaker": "普依"
         },
         {
           "index": 2,
-          "text": "... like... I'm about to fall asleep again...",
+          "text": "好像……又能睡著了。",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "The battle was arduous indeed. There is no harm in stealing a brief rest.",
+          "text": "那是場艱辛的戰鬥。稍微闔眼小憩一下，應當無妨吧？",
           "speaker": "李箱"
         },
         {
           "index": 4,
-          "text": "Maybe... it won't be too brief after all...",
+          "text": "可能……不只一下下……",
           "speaker": "普依"
         },
         {
           "index": 5,
-          "text": "Be that as it may, it is well.",
+          "text": "即便如此也無妨。",
           "speaker": "李箱"
         },
         {
           "index": 6,
-          "text": "<Yeah... We should take a moment to get a breather, too.>",
+          "text": "<對啊……我們好像也該休息一下再走……>",
           "speaker": "但丁"
         },
         {
@@ -182,27 +182,27 @@
         },
         {
           "index": 8,
-          "text": "I hope you'll still be here...",
+          "text": "等我醒來的時候……",
           "speaker": "普依"
         },
         {
           "index": 9,
-          "text": "... when I wake up.",
+          "text": "希望你們能待在我身邊。",
           "speaker": "普依"
         },
         {
           "index": 10,
-          "text": "Like you were before... Like you are now.",
+          "text": "就像以前那樣。就像這次那樣。",
           "speaker": "普依"
         },
         {
           "index": 11,
-          "text": "... We will do so.",
+          "text": "……會照做的。",
           "speaker": "莫梭"
         },
         {
           "index": 12,
-          "text": "Rest your worries and sleep.",
+          "text": "安心睡吧。",
           "speaker": "莫梭"
         }
       ]
@@ -217,7 +217,7 @@
         },
         {
           "index": 1,
-          "text": "Dream of sweetness, Pwie.",
+          "text": "願你做個好夢，普依。",
           "speaker": "李箱"
         }
       ]
@@ -227,7 +227,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Soon, the soft rhythm of sleeping breath filled the air, and crimson folds began knotting themselves wildly around Pwie."
+          "text": "不久便傳來均勻細微的呼吸聲，普依周圍的紅色皺褶開始雜亂地交纏在一起。"
         }
       ]
     },
@@ -236,7 +236,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Then, just like the cocoon we had encountered before... a red membrane closed over the child."
+          "text": "接著，就像最初見到的繭的形態一樣……紅色的薄膜包覆了那孩子。"
         }
       ]
     },
@@ -245,40 +245,40 @@
       "texts": [
         {
           "index": 0,
-          "text": "They became a cocoon...",
+          "text": "變成繭了耶……？",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "Certain creatures... must shed their former shape through metamorphosis afore they mature. The butterflies of my homeland behaved thus.",
+          "text": "偶爾……也有為了長為成體而蛻變的生物。在故鄉常見的蝴蝶便是如此。",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Like a chrysalis, huh...",
+          "text": "就像……蛹那樣吧。",
           "speaker": "格里高爾"
         },
         {
           "index": 3,
-          "text": "Gregor's face stiffened for a moment as though a bad memory had surfaced..."
+          "text": "格里高爾似乎想起了過去的什麼，表情一時僵住了……"
         },
         {
           "index": 4,
-          "text": "Then he shook his head and returned to his usual composure."
+          "text": "但他隨即搖了搖頭，恢復成平常的樣子。"
         },
         {
           "index": 5,
-          "text": "Boy... We're in deep with this foster-care business now, huh?",
+          "text": "哎呀……這下可真是把保護者的角色當到底了啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 6,
-          "text": "If none remain to protect the slumbering child... they will surely suffer.",
+          "text": "在醒來之前若無人守護……恐怕會很棘手。",
           "speaker": "李箱"
         },
         {
           "index": 7,
-          "text": "Well, Pwie did get us all the way to the fifth floor. Wouldn't sit right to turn a blind eye now.",
+          "text": "嘛，我們能上到5樓也確實是託那孩子的福。裝作不知道也挺過意不去的。",
           "speaker": "格里高爾"
         }
       ]
@@ -288,7 +288,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Soon, tendrils with mouths at their ends suddenly burst out of the cocoon, quickly devouring the food set on the table."
+          "text": "不久，繭中伸出了好幾張嘴，開始狼吞虎嚥地抓起餐桌上的食物來吃。"
         }
       ]
     },
@@ -297,12 +297,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "They appear to be... sating their hunger.",
+          "text": "看起來是在裡面……填飽肚子。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "<... The Noirs will descend on us soon.>",
+          "text": "<……漆黑派的人很快就會蜂擁而來了。>",
           "speaker": "但丁"
         }
       ]
@@ -312,11 +312,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "<color=#7d7d7d>The strangers of the Fount have welcomed flesh and blood into the song. Thus have they made themselves witnesses to depletion.</color>"
+          "text": "<color=#7d7d7d>泉的異鄉人於歌聲中迎來了血肉所成之人，此乃枯竭的見證者。</color>"
         },
         {
           "index": 1,
-          "text": "<color=#7d7d7d>My faithful child, champion of mine. Smite with thy hammer the nascency and deliver it to death, for it is good that all births end in death. Only then shalt thou stand eternal beneath the name of Sisyphe.</color>"
+          "text": "<color=#7d7d7d>信仰吾之子啊。誕生的終點即是死亡，揮下鐵鎚，以死亡阻止誕生吧。如此一來，汝亦終將於薛西弗斯之名下獲得永恆。</color>"
         }
       ]
     },
@@ -325,12 +325,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Thus spake the Voice: verily, here lieth the archenemy, seedbed of avarice and excess, hunger and thirst. Only void shall exist at the uttermost end of its rebirth.",
+          "text": "聲音大人有云，那是貪婪亦是過慾，是飢餓亦是乾渴。重生的盡頭將一無所存。",
           "speaker": "漆黑派 品牌經理"
         },
         {
           "index": 1,
-          "text": "With a great hammer in her hands, the giant figure slowly stomps toward us—toward Pwie's cocoon."
+          "text": "高舉鐵鎚之人緩緩朝我們、朝普依的繭逼近。"
         }
       ]
     },
@@ -339,12 +339,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Just our luck... Cornered at the one time the kid can't even run...",
+          "text": "偏偏在這種時候……被逮個正著啊。",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "Judging by the Voice now resounding... it may have bided its hour until young Pwie fell aslumber.",
+          "text": "傳來的這道聲音……如此說來，似乎是趁普依入睡時伺機而來。",
           "speaker": "李箱"
         }
       ]
@@ -354,27 +354,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Is it over?",
+          "text": "……是結束了嗎。",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "Oof... Fighting all day really takes it out of you. Or am I supposed to say my mind's the part running on fumes? It's a simulated world, after all...",
+          "text": "哎呀……打了一整天，身體都累垮了。不過這裡是模擬世界，是不是該說精神很疲憊才對？",
           "speaker": "格里高爾"
         },
         {
           "index": 2,
-          "text": "<... I don't think any more Le Noirs will make it this far.>",
+          "text": "<……應該不會再有漆黑派的人追到這裡了。>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "<Is Pwie all right...?>",
+          "text": "<普依呢……？>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "Unharmed. And... likely to awaken soon.",
+          "text": "安然無恙。而且……似乎快醒了。",
           "speaker": "莫梭"
         }
       ]
@@ -384,7 +384,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The layered crimson folds swelled and sank like some enormous organ breathing in its sleep..."
+          "text": "層層垂落的紅色皺褶鼓起又消下，反覆了數十次……"
         }
       ]
     },
@@ -393,7 +393,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Whew... Clothes really do make the kid, huh? So, can we get into the restaurant now?",
+          "text": "嘿呀……真是人要衣裝啊。那現在可以進餐廳了嗎？",
           "speaker": "格里高爾"
         },
         {
@@ -403,7 +403,7 @@
         },
         {
           "index": 2,
-          "text": "Hm... Your voice is mellow and your shoulders hang low... Does your mind yet linger with Wriggley?",
+          "text": "嗯……聲音有氣無力，肩膀也垂了下來……你還在想著噗扭嗎？",
           "speaker": "李箱"
         },
         {
@@ -413,22 +413,22 @@
         },
         {
           "index": 4,
-          "text": "Wriggley? Oh... that little screecher floating over Meursault's shoulder going \"scree\" every time?",
+          "text": "噗扭？啊……是那個會「嘰欸」地叫，在莫梭先生肩膀上飄來飄去的東西？",
           "speaker": "格里高爾"
         },
         {
           "index": 5,
-          "text": "What exactly happened down there...?",
+          "text": "樓下是發生了什麼事啊……",
           "speaker": "格里高爾"
         },
         {
           "index": 6,
-          "text": "<Pwie... ate Wriggley. And they'd cared so much for it, too...>",
+          "text": "<普依……把珍惜的噗扭吃掉了。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "A-ate it? Huh... Is that supposed to be normal in the weird common sense of this place? Didn't the kid love that thing to bits?",
+          "text": "吃、吃掉了？嘿……這裡的常識跟外面不同，所以也可能會這樣嗎？可是我記得那孩子還挺寶貝它的啊。",
           "speaker": "格里高爾"
         }
       ]
@@ -438,27 +438,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "... A powerful tremor approaches from behind us... and that wailing, too.",
+          "text": "……後方傳來某種強烈的震動……還有嚎叫聲。",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "This tremor...",
+          "text": "這陣震動是……",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Manager. It seems the \"being of eld...\" will be here shortly.",
+          "text": "被稱作古老存在的東西……似乎即將抵達。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "When...?",
+          "text": "什麼時候……會到……",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "In approximately 3 seconds.",
+          "text": "約3秒後抵達。",
           "speaker": "莫梭"
         },
         {
@@ -483,7 +483,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We must first deal with the being of eld in pursuit, Manager.",
+          "text": "看來得先解決從後方追來的古老存在，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -493,7 +493,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<color=#7d7d7d>The unclothed ones who dare stand unafraid before the gaze... have sown a calamity born of avarice. \nHearken to me, my children! By my divine authority, I banish the obstruction of time to thy rising! Now visit upon the Adversary their due.</color>"
+          "text": "<color=#7d7d7d>膽敢不畏目光的赤裸之人……紡出了貪婪的災禍。吾之子們啊，吾將以吾之權能，准許汝等無須等待便能登上樓層。</color>"
         }
       ]
     },
@@ -502,12 +502,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Hold on. That announcement just now... Am I the only one whose alarm bells are ringing?",
+          "text": "等等，剛才那段廣播……內容是不是超級不妙啊？",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "... We would be wise to prepare for battle at once.",
+          "text": "……看來得立即準備戰鬥了。",
           "speaker": "李箱"
         }
       ]
@@ -517,17 +517,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "There! I see the strangers!",
+          "text": "在那邊！異鄉人在那邊……！",
           "speaker": "漆黑派 警衛"
         },
         {
           "index": 1,
-          "text": "<Meursault. Don't stop—keep moving forward.>",
+          "text": "<莫梭。不要停下，要繼續往前走。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "... Understood, Manager.",
+          "text": "……是。明白了。",
           "speaker": "莫梭"
         }
       ]
@@ -537,11 +537,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Sorrow beyond understanding is leaching out from between the black threads."
+          "text": "黑色的線之間，滲出了遙遠而深沉的悲傷。"
         },
         {
           "index": 1,
-          "text": "Currents of dark, black waves weave around our ankles, trying to sweep us away."
+          "text": "黑色的浪潮纏住腳踝，席捲而來。"
         }
       ]
     },
@@ -550,36 +550,36 @@
       "texts": [
         {
           "index": 0,
-          "text": "<We've climbed this far... Hopefully they won't be able to chase us further.>",
+          "text": "<都爬到這裡了……應該追不上來了吧。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "It seems... we have emerged atop a dining table. I hope our arrival has not unduly intruded upon their meal...",
+          "text": "似乎是……在餐桌上。不知是否打擾了這頓精緻的餐點……",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Well, we're not exactly in a position to mind our table manners. At least now we can finally catch our breath...",
+          "text": "剛才哪有空計較那種事啊。不過現在總算能休息一下……",
           "speaker": "格里高爾"
         },
         {
           "index": 3,
-          "text": "<color=#7d7d7d>O children who know not nobility, I say to thee: thine every fall of foot shall bore a nail; rise thou might, yet thine shall be the lot to halt at every floor.</color>"
+          "text": "<color=#7d7d7d>不夠高貴的吾之子們啊。吾令汝等每一步都釘下釘子，無須跨越，向上攀登吧。</color>"
         },
         {
           "index": 4,
-          "text": "Yup. Me and my fat mouth...",
+          "text": "都怪我這張烏鴉嘴……",
           "speaker": "格里高爾"
         },
         {
           "index": 5,
-          "text": "Why is your mouth fat?",
+          "text": "為什麼嘴巴是烏鴉的？",
           "speaker": "普依"
         },
         {
           "index": 6,
-          "text": "*huff* Let's just say... sometimes you need to keep your mouth shut.",
+          "text": "嘿咻……有時候……有些話還是別說比較好。",
           "speaker": "格里高爾"
         }
       ]
@@ -589,7 +589,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<... We're going to have to protect the cocoon.>",
+          "text": "<……得守住繭才行。>",
           "speaker": "但丁"
         }
       ]
@@ -599,22 +599,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Strangers. Ye of the Fount, whose steps are bound not by the floors... Ye whose footfalls ever point upward.",
+          "text": "……異鄉人。從泉中而出、自由往來於各樓層之人。以及不斷向上邁進之人。",
           "speaker": "漆黑派 品牌經理"
         },
         {
           "index": 1,
-          "text": "Word of ye hath reached me long before your feet did.",
+          "text": "關於你們的傳聞，我早有耳聞。",
           "speaker": "漆黑派 品牌經理"
         },
         {
           "index": 2,
-          "text": "Heard have I that ye have hewn the Alterationist of the present generation, to whom I have trusted the weaving of my fabric.",
+          "text": "聽說你們斬斷了為我製作布料的這一代修補達人。",
           "speaker": "漆黑派 品牌經理"
         },
         {
           "index": 3,
-          "text": "The Alterationist of the previous generation, whose hands created this armor, embarked on a runway venture long ago... And so I must bear with the weaving of fabrics that springeth from the realms below.",
+          "text": "織就這副鎧甲的前任修補達人，早在很久以前就前往6樓走上伸展台了……看來暫時只能用地底下的布料縫製衣服了。",
           "speaker": "漆黑派 品牌經理"
         },
         {
@@ -629,12 +629,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "The abomination ye shelter... shall one day devour this department store down to its very bones.",
+          "text": "你們現在想守護的那個怪物……總有一天會讓這間百貨公司枯竭。",
           "speaker": "漆黑派 品牌經理"
         },
         {
           "index": 1,
-          "text": "Foretold it hath been... 'tis a future as fixed as fate.",
+          "text": "這是早已被預言……如同命運一般的事。",
           "speaker": "漆黑派 品牌經理"
         }
       ]
@@ -644,7 +644,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Know ye not that the very essence of this creature lieth in falsity? Give me the way, and the blame shall not be laid at thy feet.",
+          "text": "那本質上是虛偽的存在……若你們現在讓開道路，我便不予追究。",
           "speaker": "漆黑派 品牌經理"
         }
       ]
@@ -654,17 +654,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "... To my eyes, Pwie is merely a child full of questions, caught between nature and volition.",
+          "text": "……對我而言，普依不過是個疑問很多、在本性與意志之間苦惱的……孩子罷了。",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "And... did we not make a promise? A promise to meet them again at the time of their waking.",
+          "text": "而且……我們不是約好了嗎？在那孩子醒來時，要陪在身旁。",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Yup, we did. This is why you don't throw promises around lightly...",
+          "text": "唉……是啊。所以說不能隨便答應別人啊……",
           "speaker": "格里高爾"
         }
       ]
@@ -674,7 +674,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "In thy folly, thou hast been bewitched by that profane creature.",
+          "text": "愚昧啊，竟被那邪佞之物迷惑了。",
           "speaker": "漆黑派 品牌經理"
         }
       ]
@@ -689,17 +689,17 @@
         },
         {
           "index": 1,
-          "text": "<If she's telling the truth, then Grand Magasin Sisyphe will be depleted... and we'll wind up at the same ending all over again.>",
+          "text": "<如果那人說的是真的，薛西弗斯百貨公司就會枯竭……那樣的話，百貨公司好像會迎來跟之前的選擇沒有兩樣的結局……>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "<Which means... everything we've done will have been for nothing.>",
+          "text": "<那麼……我們至今所做的一切，都不會留下任何意義吧。>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "<... Even still, and... I can't explain why, but I... I want to protect Pwie.>",
+          "text": "<……雖然很難用言語說明……但我還是想保護普依。>",
           "speaker": "但丁"
         }
       ]
@@ -709,7 +709,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Because right now... my gut, my heart—keeps telling me to.>",
+          "text": "<因為現在的我……從我心中湧現的心意，正渴望著這麼做。>",
           "speaker": "但丁"
         }
       ]
@@ -719,7 +719,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The bearer of the hammer charged us at full speed, her blazing halo searing our eyes."
+          "text": "那人背負著燦爛得令人目眩的光環，高高舉起了鐵鎚。"
         }
       ]
     },
@@ -728,7 +728,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "And in that same instant, a question rose to my proverbial mouth."
+          "text": "那一瞬間，我因忽然湧上心頭的疑問，喊了莫梭的名字。"
         }
       ]
     },
@@ -757,7 +757,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Will I... will we come to regret this choice?>",
+          "text": "<這次的選擇，我……我們會後悔嗎？>",
           "speaker": "但丁"
         }
       ]
@@ -777,7 +777,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Yes. There is a high probability that we will.",
+          "text": "是的，大概有很高的機率會如此。",
           "speaker": "莫梭"
         }
       ]
@@ -787,7 +787,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "However... the important thing is—",
+          "text": "但是……重要的是……",
           "speaker": "莫梭"
         }
       ]
@@ -797,7 +797,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A thunderous impact drowned out the rest of Meursault's answer."
+          "text": "莫梭的聲音隨著巨響被淹沒消失。"
         }
       ]
     },
@@ -806,22 +806,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "So... lemme get this straight. I heard the rough version back in the restroom, but we've basically been playing chaperone for this P—uh, Pwie kid all the way up here. Is that about right?",
+          "text": "所以……我在廁所大致聽說了，你們一直在當保護者，把這個叫普……依的傢伙帶到這裡來……是這樣沒錯吧？",
           "speaker": "格里高爾"
         },
         {
           "index": 1,
-          "text": "<That's about right.>",
+          "text": "<沒錯。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "To have guided a lost child upon their way... was a kindly deed. Department stores are places most apt to swallow one's bearings, after all...",
+          "text": "竟為迷路的孩子引路……你們做了件好事。百貨公司本就是極易迷路的地方……",
           "speaker": "李箱"
         },
         {
           "index": 3,
-          "text": "This corridor's pretty damn long, though... Looks like we've still got a hike ahead of us.",
+          "text": "不過……這走廊還真長啊……得走上好一陣子了。",
           "speaker": "格里高爾"
         }
       ]
@@ -831,11 +831,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "Schools of fish are swimming gently through the water beyond the glass window.\nA large crowd is walking between the glass walls, exploring the aquatic life."
+          "text": "透明的玻璃另一頭，可以看見悠游的魚群。許多人在其中漫步，四處參觀。"
         }
       ]
     },
@@ -844,7 +844,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
@@ -857,11 +857,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[A Nail, Hammered]"
+          "text": "[承受鎚擊的釘]"
         }
       ]
     },
@@ -870,11 +870,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Festival]"
+          "text": "[祭典]"
         }
       ]
     },
@@ -883,11 +883,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Oblivion and Hunger]"
+          "text": "[遺忘與飢餓]"
         }
       ]
     },
@@ -896,7 +896,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
@@ -909,11 +909,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Paradoxical Abundance]"
+          "text": "[矛盾的豐饒]"
         }
       ]
     },
@@ -922,11 +922,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Age of Barbarism]"
+          "text": "[野蠻的時代]"
         }
       ]
     },
@@ -935,11 +935,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Emptied Mind to be Mindful of]"
+          "text": "[應留念的無念]"
         }
       ]
     },
@@ -948,11 +948,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The Tree, Serpent, and a Fruit]"
+          "text": "[樹、蛇與果實]"
         }
       ]
     },
@@ -961,7 +961,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
@@ -974,7 +974,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
@@ -987,11 +987,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Gallows]"
+          "text": "[絞刑臺]"
         }
       ]
     },
@@ -1000,11 +1000,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The Black and the Red, the Red and the Black]"
+          "text": "[黑而紅之物，紅而黑之物。]"
         }
       ]
     },
@@ -1013,11 +1013,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Age of Enlightenment]"
+          "text": "[啟蒙的時代]"
         }
       ]
     },
@@ -1026,7 +1026,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
@@ -1044,11 +1044,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The Great Fracturing]"
+          "text": "[大裂隙]"
         }
       ]
     },
@@ -1057,11 +1057,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Age of Severance]"
+          "text": "[斷絕的時代]"
         }
       ]
     },
@@ -1070,7 +1070,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
@@ -1078,7 +1078,7 @@
         },
         {
           "index": 2,
-          "text": "<... These seem to be the history of this department store.>",
+          "text": "<……好像是百貨公司的過去。>",
           "speaker": "但丁"
         }
       ]
@@ -1088,11 +1088,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "Can't see anything."
+          "text": "什麼也看不見。"
         }
       ]
     },
@@ -1101,7 +1101,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Can't see anything."
+          "text": "什麼也看不見。"
         }
       ]
     },
@@ -1110,7 +1110,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Can't see anything."
+          "text": "什麼也看不見。"
         }
       ]
     },
@@ -1119,11 +1119,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "A blurry shape can be seen."
+          "text": "隱約看得見某種東西。"
         },
         {
           "index": 1,
-          "text": "[Those Who Topple]"
+          "text": "[推倒一切的人們]"
         }
       ]
     },
@@ -1132,11 +1132,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[What once rose high are fated to sink.]"
+          "text": "[浮起之物，終將沉落。]"
         }
       ]
     },
@@ -1145,11 +1145,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The deepest basin of the extravagant department store. Nauseating, foul sediments.]"
+          "text": "[華麗百貨公司的最底層。令人作嘔的沉積之物。]"
         }
       ]
     },
@@ -1158,11 +1158,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Though the clew's thread was followed to the exit, only the severed tip of string waited at the end.]"
+          "text": "[循著解開的線走向出口，線的盡頭卻已斷裂。]"
         }
       ]
     },
@@ -1171,11 +1171,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Unable to rise, unable to forfeit, endlessly twining threads.]"
+          "text": "[無法攀升，也無法拋下，只能一圈又一圈地纏繞著線團。]"
         }
       ]
     },
@@ -1184,11 +1184,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[One hand cradles the swollen belly; the other, the hungering mind.]"
+          "text": "[捧著飽脹的肚腹，敲打飢餓的精神。]"
         }
       ]
     },
@@ -1197,11 +1197,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The flavor once reached, yet never to be found again.]"
+          "text": "[曾經觸及，卻再也無法觸及的滋味。]"
         }
       ]
     },
@@ -1210,11 +1210,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[What are fleeting and passing are fragile things.]"
+          "text": "[擦身而過的一切，都輕易地碎裂。]"
         }
       ]
     },
@@ -1223,11 +1223,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[In a faded corner, waiting for the moment to return.]"
+          "text": "[在褪色的角落，只等待著回歸的剎那。]"
         }
       ]
     },
@@ -1236,11 +1236,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Authority follows constriction by equal measure.]"
+          "text": "[束縛得越緊，權威便越是隨之而來。]"
         }
       ]
     },
@@ -1249,11 +1249,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The more the gaze entangles, the more do they follow along.]"
+          "text": "[越是被視線纏繞而無法掙脫，追隨而來的東西就越多。]"
         }
       ]
     },
@@ -1262,11 +1262,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Everyone needs faith.]"
+          "text": "[任何人都需要信仰。]"
         }
       ]
     },
@@ -1275,11 +1275,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The sense of awe is often reserved for those who are dead but living.]"
+          "text": "[敬畏之心，大多來自死去卻仍活著之物。]"
         }
       ]
     },
@@ -1288,11 +1288,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[None shall scorn those who have collapsed.]"
+          "text": "[誰都無法嘲笑倒下之人。]"
         }
       ]
     },
@@ -1301,11 +1301,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[At least, the decision to collapse was theirs.]"
+          "text": "[至少，倒下的選擇是親手做出的。]"
         }
       ]
     },
@@ -1314,11 +1314,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Though one hand may cradle the hungering belly, the mind prospers.]"
+          "text": "[縱使捧著飢餓的肚腹，精神也不會挨餓。]"
         }
       ]
     },
@@ -1327,11 +1327,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Hunger isn't filled; it is what one seeks out to fill.]"
+          "text": "[飢餓不是被填滿的，而是要去填滿的。]"
         }
       ]
     },
@@ -1340,11 +1340,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Nailing oneself with every step.]"
+          "text": "[每走一步，都將自己釘住。]"
         }
       ]
     },
@@ -1353,11 +1353,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[At the pilgrimage's end, only the one who has been pinned by the nails of the multitude remains.]"
+          "text": "[朝聖之路的盡頭，只剩下被眾人釘住的人。]"
         }
       ]
     },
@@ -1366,11 +1366,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[For what does one climb?]"
+          "text": "[究竟為何而攀登。]"
         }
       ]
     },
@@ -1379,11 +1379,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[Knowing that only the fated descent awaits.]"
+          "text": "[明明到頭來只能往下走。]"
         }
       ]
     },
@@ -1392,7 +1392,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         }
       ]
     },
@@ -1401,11 +1401,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "After fixing it in my gaze for a while, the patterns begin to dance and ripple."
+          "text": "凝視了好一陣子後，花紋開始晃動起來。"
         },
         {
           "index": 2,
@@ -1414,7 +1414,7 @@
         },
         {
           "index": 3,
-          "text": "Things that should not be visible begin to unveil themselves."
+          "text": "不可能看得見的東西開始顯現。"
         }
       ]
     },
@@ -1423,7 +1423,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The deacon who once conveyed God's words has absconded the responsibility."
+          "text": "曾代傳神之話語的執事，如今已卸下了那個職位。"
         }
       ]
     },
@@ -1432,12 +1432,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Pwie is alone.",
+          "text": "……普依一個人留在那裡。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "We must return to the restaurant as quickly as our feet would take us, Manager.",
+          "text": "必須盡快回到餐廳，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -1447,17 +1447,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<It came after us. It... came after Pwie, to be precise.>",
+          "text": "<它追著我們來了。正確來說……好像是追著普依來的。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "It must be the Golden Cocoon's—Wriggley, by our designation—parent entity.",
+          "text": "推測是黃金之繭，也就是被稱為噗扭的那個個體的親代個體。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "<I remember... It came after us, having followed its \"snuffling\".>",
+          "text": "<在庫存整理之前……它也是聽到哭聲就找來了。>",
           "speaker": "但丁"
         },
         {
@@ -1467,32 +1467,32 @@
         },
         {
           "index": 4,
-          "text": "<For now, let's focus only on how we can defeat it.>",
+          "text": "<現在只想著要怎麼打倒它吧。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "<Pwie's waiting for us.>",
+          "text": "<畢竟普依也在等著。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "Mm... Its form disappeared traceless in the dark, its presence in both past and present nowhere to be found...",
+          "text": "嗯……每當天色暗下來，它的身影便完全消失了。彷彿從未存在過一般……",
           "speaker": "李箱"
         },
         {
           "index": 7,
-          "text": "Yeah, then it popped right back into existence. And to make matters worse, it was hard to get a hit in with the only reachable part of its body that tail-like thing.",
+          "text": "然後又唰地一下冒出來。雖然塊頭很大，但貼在地上的只有那個像尾巴的東西，連個好打的地方都沒有……",
           "speaker": "格里高爾"
         },
         {
           "index": 8,
-          "text": "Darkness is not so significant a deterrent. Remain calm, and we will outmaneuver it.",
+          "text": "黑暗並不是太大的阻礙。只要冷靜行動，就能不費力地閃避。",
           "speaker": "莫梭"
         },
         {
           "index": 9,
-          "text": "<... Good. Let's take this on with a cool head.>",
+          "text": "<……好，這次就更冷靜地戰鬥吧。>",
           "speaker": "但丁"
         }
       ]
@@ -1502,11 +1502,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The drifters. They allow themselves to be carried by the currents of the flow.]"
+          "text": "[任憑水流擺布，只是漂浮著的人們。]"
         }
       ]
     },
@@ -1515,11 +1515,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The anchored. They have pinned themselves down with black fabric.]"
+          "text": "[以黑色布料將自己固定住的人們。]"
         }
       ]
     },
@@ -1528,11 +1528,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "[The affixed. They have pinned what lies inside on the outside, thereby affixing their outward appearances.]"
+          "text": "[展露內在，以固定外表的人們。]"
         }
       ]
     },
@@ -1541,39 +1541,39 @@
       "texts": [
         {
           "index": 0,
-          "text": "<color=#cf0000>Hear me, all who dwell within the Grand Magasin.</color>"
+          "text": "<color=#cf0000>百貨公司的眾人啊，聽著。</color>"
         },
         {
           "index": 1,
-          "text": "<color=#cf0000>At long last, the Buffet is served. Let none among you ever scrape an empty plate again...</color>"
+          "text": "<color=#cf0000>自助餐終於完成了，為了讓你們之中再也沒有任何人挨餓……</color>"
         },
         {
           "index": 2,
-          "text": "<color=#cf0000>... and we—I—shall devour this department store from foundation to apex.</color>"
+          "text": "<color=#cf0000>我們，我，將會把百貨公司的一切吃個精光。</color>"
         },
         {
           "index": 3,
-          "text": "<color=#cf0000>Wait no longer. Weep no longer. Desire... no longer.</color>"
+          "text": "<color=#cf0000>不要再等待，不要再呼號，不要再……慾求。</color>"
         },
         {
           "index": 4,
-          "text": "<color=#cf0000>Tear and chew. Leave not a morsel before your eyes.</color>"
+          "text": "<color=#cf0000>撕咬吧，吞下吧。把眼前所見之物，一點不剩地。</color>"
         },
         {
           "index": 5,
-          "text": "<color=#cf0000>Come, join me on the fifth floor. The doors will be open for everyone. Let us feast upon every delicacy they kept beyond our reach.</color>"
+          "text": "<color=#cf0000>大家都上到5樓來，飽餐他們藏起來的珍饈吧。</color>"
         },
         {
           "index": 6,
-          "text": "<color=#cf0000>Let the banquet begin!</color>"
+          "text": "<color=#cf0000>把吃的呈上來。</color>"
         },
         {
           "index": 7,
-          "text": "<color=#cf0000>Le Noir, Le Kaki, Le Rouge. The vanities of the Beauty Hall, the marble deco of the Luxury Hall. The trumpets of the Public Address Room and the limelights of the Furniture Hall. Boucher of the Food Court and droplets of pus from the Dyehouse. Beached things of the Shore, discarded hides, and the Golden Hide packed into every crack in the wall...</color>"
+          "text": "<color=#cf0000>漆黑派也好，卡其派也好，丹紅派也好……美妝館的梳妝臺、奢侈品館的大理石、廣播室的喇叭與家具展廳的檯燈也是。美食廣場的屠夫與染坊的膿液。被沖上海邊的幼蟲與被丟棄的皮革也是。還有填補裂縫的黃金皮革也不例外。</color>"
         },
         {
           "index": 8,
-          "text": "<color=#cf0000>Let all of it be laid upon my table. Let us eat and drink together.</color>"
+          "text": "<color=#cf0000>把那一切都呈到我面前，把那一切都吃掉吧。</color>"
         }
       ]
     },
@@ -1582,17 +1582,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Do you not feel the need to move forward anymore?",
+          "text": "……現在不再前進也無所謂了嗎。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "Everything can be filled here. We can eat when we're hungry, and drink when our throats burn with thirst.",
+          "text": "在這裡一切都能填滿。餓了就吃，渴了就喝。",
           "speaker": "自助餐"
         },
         {
           "index": 2,
-          "text": "And in time... we will have filled ourselves to the point where there will be no room left for the wish to move forward.",
+          "text": "這樣下去……想往某處前進的念頭，也就沒有容身的空間了吧。",
           "speaker": "自助餐"
         }
       ]
@@ -1602,11 +1602,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "We searched every reach of the vast tabletop, but found no path to the sixth floor."
+          "text": "我們在巨大的餐桌上環顧四周，最終還是沒能找到上6樓的辦法。"
         },
         {
           "index": 1,
-          "text": "With nowhere left to go, we sat off to one side and watched as Buffet feasted."
+          "text": "因此……我們決定坐在一旁，看著自助餐用餐。"
         }
       ]
     },
@@ -1615,35 +1615,35 @@
       "texts": [
         {
           "index": 0,
-          "text": "*crunch*"
+          "text": "喀滋。"
         },
         {
           "index": 1,
-          "text": "The first thing Buffet swallowed was a single slice of bread from a waiting plate."
+          "text": "自助餐吞下的，是放在盤子上的一片麵包。"
         },
         {
           "index": 2,
-          "text": "Next came a steak slick with running juice..."
+          "text": "接著是流淌著肉汁的牛排……"
         },
         {
           "index": 3,
-          "text": "Then an enormous cake, decorated with immaculate care, vanished into Buffet's mouth without leaving so much as a crumb."
+          "text": "再來，一個裝飾得精緻整齊的巨大蛋糕，消失在自助餐的嘴裡，連一點痕跡都沒留下。"
         },
         {
           "index": 4,
-          "text": "After that... it became impossible to tell what Buffet was chewing, let alone what Buffet had decided was food."
+          "text": "在那之後……我再也分辨不出自助餐在嚼什麼、吃什麼了。"
         },
         {
           "index": 5,
-          "text": "Plates. Spoons and knives. The tablecloth... everything, without distinction, disappear into Buffet's ravenous mouth."
+          "text": "盤子。湯匙與刀子，桌巾……全都不分彼此，被狼吞虎嚥地送進自助餐的嘴裡。"
         },
         {
           "index": 6,
-          "text": "Buffet's hands close around the next thing before they've even finished swallowing whatever was in their mouth before..."
+          "text": "嘴裡嚼著的東西都還來不及嚥下……自助餐的手就已經抓住了下一樣。"
         },
         {
           "index": 7,
-          "text": "... as though even the brief pause required to enjoy the flavor and taste were a luxury their hunger could not afford."
+          "text": "彷彿就連為了品嚐味道而稍作等待的那一剎那，都是種奢侈。"
         }
       ]
     },
@@ -1652,11 +1652,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "There is a large plaza, so vast that its edges can barely be fathomed. At the center of the plaza stands a tall building, and at its base people come and go in busy strides."
+          "text": "能看見一片無邊無際的廣場，以及矗立在其中央的巨大建築。無數的人在其間來來往往。"
         }
       ]
     },
@@ -1665,11 +1665,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "Faint ray of light shimmers through the gloom of the stiflingly narrow tunnel. There are mounds of cans sitting along the walls, constricting the already cramped hallway.\nPeople are crawling through the passage that is more like a cavernous crawl space."
+          "text": "在令人窒息般昏暗的通道之間，微弱的光芒搖曳著。四周堆滿了罐頭，能看見人們在如洞窟般狹窄的通道中來來往往。"
         }
       ]
     },
@@ -1678,11 +1678,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Light cascades in through the tall window."
+          "text": "光線從巨大的窗戶傾瀉而入。"
         },
         {
           "index": 1,
-          "text": "People are shouting and hollering at each other. It is hard to make out what it is they are yelling about, but... the sight is reminiscent of a trial."
+          "text": "人們不停地朝著彼此大喊。雖然不知道在喊些什麼……那副模樣簡直就像一場審判。"
         }
       ]
     }

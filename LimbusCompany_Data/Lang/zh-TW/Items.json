@@ -405,13 +405,13 @@
     {
       "id": 20001,
       "name": "巴士改裝廢料",
-      "desc": "Miscellaneous junk like rusted plates and bolts ripped from the backs of trash crabs.\nCould be used for modifying Mephistopheles.",
+      "desc": "從<size=110%>廢料蟹</size>身上拆下來的生鏽鐵板、螺栓之類的東西。\n似乎可以用來改造梅菲斯托費勒斯",
       "flavor": ""
     },
     {
       "id": 20002,
       "name": "含有稀有馬蹄鐵的巴士改造廢料",
-      "desc": "A large horseshoe-shaped item taken from the king trash crab.\nIt could substitute several pieces of scrap, or so we're told.",
+      "desc": "從帝王<size=110%>廢料蟹</size>身上獲得的巨大廢料。看起來像馬蹄鐵。\n據說它頂得上好幾塊廢料。",
       "flavor": ""
     },
     {

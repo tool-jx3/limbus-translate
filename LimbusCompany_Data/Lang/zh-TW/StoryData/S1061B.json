@@ -14,49 +14,49 @@
     {
       "id": 2,
       "model": "뫼르소엄마",
-      "content": "It doesn't matter where I go—it's always there! It won't leave me. I'm never alone!"
+      "content": "無論在哪裡，我都無法獨自一人！原來我根本就無法獨自一人！"
     },
     {
       "id": 3,
       "model": "뫼르소엄마",
-      "content": "I can't... I can't... Has it finally come for me, the final nothingness...?"
+      "content": "啊啊……我要迎來終結了嗎？"
     },
     {
       "id": 4,
       "model": "뫼르소엄마",
-      "content": "There's no running from this, Meursault... It's choking me..."
+      "content": "既逃不掉，也無法呼吸啊，莫梭……！"
     },
     {
       "id": 5,
       "model": "뫼르소엄마",
-      "content": "Meursault...! That gaze that watches me... it's... it's mine...! It's <i>becoming</i> mine, I'm being watched by my own gaze...!"
+      "content": "莫梭……！我……我正凝視著我自己，我漸漸變成在凝視自己的人了……！"
     },
     {
       "id": 6,
       "model": "뫼르소엄마",
-      "content": "Kill me, Meursault... You're my son... It's the least you can do for your maman... Meursault..."
+      "content": "身為兒子，理所當然……就把媽媽……殺了吧……莫梭……"
     },
     {
       "id": 7,
       "model": "뫼르소엄마",
-      "content": "Stop thinking about it, Meursault—<i>just kill me!</i>"
+      "content": "別想了，莫梭！殺了我！"
     },
     {
       "id": 8,
       "model": "뫼르소엄마",
-      "content": "No more judgments, okay? Just... act. It's the... only way to... save... yourself..."
+      "content": "停止判斷……去行動。那才是，保護你的……"
     },
     {
       "id": 9,
-      "content": "The creature stands awkwardly on its two feet, like an infant that had only just learned how to walk."
+      "content": "它彷彿剛學會走路一般，用兩隻腳站著。"
     },
     {
       "id": 10,
-      "content": "It looked like it was crying, its gaping mouth a basin of crimson dark."
+      "content": "它看起來像是在哭，張開的嘴裡彷彿積滿了赤紅的黑暗。"
     },
     {
       "id": 11,
-      "content": "It was making sounds, but whether those sounds carried any meaning, I could not know."
+      "content": "它能發出聲音，但能否發出有意義的聲音，就不得而知了。"
     },
     {
       "id": 12,
@@ -71,27 +71,27 @@
     {
       "id": 14,
       "model": "단테",
-      "content": "<What... is it saying?>"
+      "content": "<它在說……什麼？>"
     },
     {
       "id": 15,
       "model": "붉은신",
-      "content": "Sleep tight... My baby..."
+      "content": "快快……睡吧……我的孩兒……"
     },
     {
       "id": 16,
       "model": "붉은신",
-      "content": "... Undo... only the silkiest... threads..."
+      "content": "只把美麗的絲線……解開……解開……"
     },
     {
       "id": 17,
       "model": "히스클리프",
-      "content": "It's... it ain't speaking to us, is it...?"
+      "content": "那玩意……在對我們嘀咕些什麼啊……"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<I think it's singing...>"
+      "content": "<好像是歌聲……>"
     },
     {
       "id": 19,
@@ -101,7 +101,7 @@
     {
       "id": 20,
       "model": "뫼르소",
-      "content": "The content and rhythm suggest a high degree of similarity to what those outside the Grand Magasin call a \"lullaby.\""
+      "content": "其形式與外界所謂「搖籃曲」的歌詞相似。"
     }
   ]
 }

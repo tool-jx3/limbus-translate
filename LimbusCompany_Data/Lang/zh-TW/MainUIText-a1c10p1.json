@@ -42,7 +42,7 @@
     },
     {
       "id": "9128_chapter_notice_popup_title",
-      "content": "目前所遊玩的章節為<color=#3246AB>[{0}章 {1}]</color>。"
+      "content": "目前遊玩中的章節為<color=#3246AB>[{0}章 {1}]</color>。"
     },
     {
       "id": "9128_chapter_notice_enter_title",
@@ -50,7 +50,7 @@
     },
     {
       "id": "9128_chapter_notice_popup_desc",
-      "content": "◆ <color=#ff6000><mark color=#ff000040><b><u>Main Story Canto 10 can be played</color></mark></b></u> without clearing previous story chapters.\n◆ <color=#ff6000><mark color=#ff000040><b><u>Canto 10 contains spoilers up to Intervallo VII-2.</color></mark></b></u>\n◆ If you have not cleared the previous chapter by the time you have cleared Canto 10, <color=#ff6000><mark color=#ff000040><b><u>various content that requires Main Story progression (Mirror Dungeon, Refraction Railway, Luxcavation, Reflectrial, etc.) will not be unlocked until each respective prerequisite is cleared.</color></mark></b></u>\n◆ For any future content that requires clearing Canto 10 as the prerequisite, <color=#ff6000><mark color=#ff000040><b><u>please clear both Canto 10 and Stage 9.5-26 to unlock.</color></mark></b></u>\n◆ During Canto 10, <color=#ff6000><mark color=#ff000040><b><u>Meursault will have access to certain Support Identities</color></mark></b></u> and E.G.O (at Uptie/Threadspinning Tier 4).\n◆ During Canto 10, <color=#ff6000><mark color=#ff000040><b><u>all allied Identities, including Meursault, will be guaranteed at least Uptie 3</color></mark></b></u> (E.G.O Threadspinning Tier will not be affected)."
+      "content": "◆ 即使未通過前一章節，亦可<color=#ff6000><mark color=#ff000040><b><u>遊玩主線劇情第十章</color></mark></b></u>。\n◆ 包含<color=#ff6000><mark color=#ff000040><b><u>截至9.5章的劇透內容</color></mark></b></u>。\n◆ 通關第十章時，若尚未通關先前的章節，鏡像迷宮、折射軌道、採光、映射戰鬥等<color=#ff6000><mark color=#ff000040><b><u>需通關先前章節才能解鎖的內容將無法遊玩。</color></mark></b></u>若要遊玩所有內容，請先滿足相應的解鎖條件。\n◆ 若要遊玩以通關第十章為前置條件的內容(預計於後續更新中追加)，<color=#ff6000><mark color=#ff000040><b><u>請先通關第十章及9.5-26關卡</color></mark></b></u>。\n◆ 遊玩第十章時，<color=#ff6000><mark color=#ff000040><b><u>將提供莫梭的部分助戰人格</color></mark></b></u>。(助戰人格及E.G.O將套用同步/異想解析4階段。)\n◆ 遊玩第十章時，<color=#ff6000><mark color=#ff000040><b><u>將支援我方所有人格同步至3階段</color></mark></b></u>。E.G.O則不會額外補正異想解析。"
     },
     {
       "id": "settings_battle_effect_gate",

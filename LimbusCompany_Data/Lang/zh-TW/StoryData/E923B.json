@@ -4,37 +4,37 @@
       "id": 0,
       "place": "14區，奶油街",
       "model": "료슈",
-      "content": "Hardly a challenge. What a W.O.T..."
+      "content": "淨讓人白白浪費力氣啊……蟲．釘．們。"
     },
     {
       "id": 1,
       "model": "그레고르",
-      "content": "Whew... Well, at least they're not much of a fighter one-on-one..."
+      "content": "呼……一個一個來的話嘛，好像還應付得來啦……"
     },
     {
       "id": 2,
       "model": "뫼르소",
-      "content": "Service des Clous is not a combat-specialized department. While they have all undergone basic combat training for exigent circumstances, they are not prepared for head-on conflicts such as this."
+      "content": "固定小隊並非專精戰鬥的部門。因為他們雖然具備應對基本突發狀況的戰鬥能力，卻並非為交戰而準備。"
     },
     {
       "id": 3,
       "model": "그레고르",
-      "content": "Yeah, I noticed. They kept taking pictures of us with their briefcases—I'm guessing that's their primary job description...?"
+      "content": "對、對。我也覺得是這樣。看他們提著公事包一直拍照，本來該做的工作好像就是那個……"
     },
     {
       "id": 4,
       "model": "히스클리프",
-      "content": "*huff* *huff* What are they snappin' away for, then? Whisperin' behind our backs like a load of creeps..."
+      "content": "呼……呼……一直拍照到底是要幹嘛？還自己在後面嘀嘀咕咕的……"
     },
     {
       "id": 5,
       "model": "이스마엘",
-      "content": "Collecting photos to include in the report for their higher-ups, I'd wager."
+      "content": "大概……是在向上頭報告吧。"
     },
     {
       "id": 6,
       "model": "이스마엘",
-      "content": "Hm, I can kinda see how they could think we're involved in this somehow. Every time they followed a lead, they ended up encountering us. It's hardly a surprising rationale."
+      "content": "呼，每次他們去翻查要抓的人可能待的地方，我們都在場……會認為我們是共犯，這個推論也不算牽強吧。"
     },
     {
       "id": 7,
@@ -43,447 +43,447 @@
     },
     {
       "id": 8,
-      "content": "Meursault stood a footstep away from the rest of the Sinners and watched in silence as they tried to come up with an explanation."
+      "content": "莫梭站在一步之外，平靜地看著這樣交談的罪人們。"
     },
     {
       "id": 9,
-      "content": "What is he thinking? What is it that he wishes to say? Or... is he simply contemplating, observing without any preconceived notions in his mind?"
+      "content": "他在想些什麼，想說些什麼……又或者，只是如同靜觀一般，不帶任何想法地觀察著而已。"
     },
     {
       "id": 10,
-      "content": "His silence shouldn't have been any different from his usual reticence, but as though by some chance or whim..."
+      "content": "那應當是和往常一樣的莫梭的沉默，而我從中感覺到某種不同，難道只是偶然嗎。"
     },
     {
       "id": 11,
       "model": "단테",
-      "content": "<Hey, Meursault?>"
+      "content": "<莫梭。>"
     },
     {
       "id": 12,
-      "content": "... I was struck by this sense of brief yet distinct strangeness, and was compelled to speak with him."
+      "content": "我不想錯過那剎那間的感覺，於是向他搭了話。"
     },
     {
       "id": 13,
       "model": "뫼르소",
-      "content": "Yes, Manager."
+      "content": "是，經理。"
     },
     {
       "id": 14,
       "model": "단테",
-      "content": "<Don't hesitate to let me know if there's something you wanna say... but aren't sure if you're supposed to say it.>"
+      "content": "<要是有想說的話卻在猶豫，就說出來吧。>"
     },
     {
       "id": 15,
       "model": "뫼르소",
-      "content": "Yes, Manager. I will do as you ordered should one such circumstance occur."
+      "content": "是，經理。若出現那樣的狀況，我會依照命令執行。"
     },
     {
       "id": 16,
-      "content": "... As always, his reply was as deflatingly concise and direct,"
+      "content": "……莫梭的回答快得令人洩氣，而且簡潔。"
     },
     {
       "id": 17,
-      "content": "as though he had some rule of his own that told him this was the specific response for situations like these."
+      "content": "彷彿是在吐出一條事先定好、規定在這種狀況下一定要如此回答的規則。"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<Um... Okay, but I'm talking about <i>right now</i>, actually. Do you have anything to say, right now?>"
+      "content": "<嗯……我是說現在這一刻。真的沒有什麼想說的嗎？>"
     },
     {
       "id": 19,
       "model": "뫼르소",
-      "content": "No, I do not."
+      "content": "是，沒有。"
     },
     {
       "id": 20,
-      "content": "It did not appear to me that he was trying to hide anything or choosing his words in response to my question. His reply was simply that: an answer, nothing more."
+      "content": "看不出有想隱瞞的意圖。莫梭的回答裡沒有任何苦惱與猶豫。"
     },
     {
       "id": 21,
-      "content": "Yes, a prepared answer written down in a list of responses—that's what it felt like to me. As though this particular answer had always been the only one he had available for situations like this."
+      "content": "感覺就像是那個當下能給出的回答本來就只有那一個，他只是吐出了既定的答案。"
     },
     {
       "id": 22,
-      "content": "Clearly, prodding him for answers wasn't going to get me anywhere, so..."
+      "content": "就算再追根究柢地問下去，他好像也不會告訴我什麼……"
     },
     {
       "id": 23,
-      "content": "... with a curt \"sure, if you say so,\" I turned away from him and took off to join the other Sinners."
+      "content": "我一邊回答「知道了，那應該就是這樣吧」，一邊轉身走向其他罪人。"
     },
     {
       "id": 24,
-      "content": "As I did so, a few words lingered at the tip of my proverbial tongue, asking to be let out... So I did."
+      "content": "然後，任由不自覺流露出的自言自語就這麼流瀉而出。"
     },
     {
       "id": 25,
       "model": "단테",
-      "content": "<Would've been nice to know what you were looking at...>"
+      "content": "<我還很好奇你那樣是在看什麼呢……>"
     },
     {
       "id": 26,
       "model": "뫼르소",
-      "content": "... Of that,"
+      "content": "……那個。"
     },
     {
       "id": 27,
-      "content": "He spoke."
+      "content": "就在那時，莫梭說道。"
     },
     {
       "id": 28,
       "model": "뫼르소",
-      "content": "I cannot form a judgment."
+      "content": "我無法判斷。"
     },
     {
       "id": 29,
       "model": "단테",
-      "content": "<What?>"
+      "content": "<什麼？>"
     },
     {
       "id": 30,
       "model": "뫼르소",
-      "content": "That is because the precise definition and nature of the subject of my gaze are just as unknown to me as to you."
+      "content": "因為連我自己都無法得知，我所注視的確切是什麼。"
     },
     {
       "id": 31,
       "model": "뫼르소",
-      "content": "Should you point to an object or an enemy, I can provide a verbal explanation based on my current knowledge. If you require such information, please rephrase your question accordingly."
+      "content": "若是您指定的物品或敵人，我可以口述所知的情報。如有需要，能否請您那樣重新提問。"
     },
     {
       "id": 32,
-      "content": "Had I asked him again then, had I tried to get to the bottom of that line of questioning, could I have found myself the smallest peek into Meursault's psyche, which had remained entirely shrouded in mystery even after an entire year of traveling together?"
+      "content": "如果那時我再問莫梭一次那是什麼意思，把對話再延續下去一些，是否就能稍微領悟到，相處了一年多卻始終不曾了解的莫梭的內情呢？"
     },
     {
       "id": 33,
-      "content": "... I suppose that's not up for me to judge as well."
+      "content": "……那大概連我也無法判斷吧。"
     },
     {
       "id": 34,
       "model": "뫼르소",
-      "content": "Manager."
+      "content": "經理。"
     },
     {
       "id": 35,
       "model": "단테",
-      "content": "<Uh... Yeah?>"
+      "content": "<呃……嗯？>"
     },
     {
       "id": 36,
       "model": "뫼르소",
-      "content": "Another battle is imminent. As you have previously instructed, I have informed you of an imminent battle."
+      "content": "不久後，將發生新的戰鬥。依照您的吩咐，現在已是戰鬥即將發生的狀況，所以向您報告。"
     },
     {
       "id": 37,
       "model": "에즈라",
-      "content": "Yo! Boss Clock! Are ya just gonna sit there all day while we do all the fighting? They're pouring out of that building over there!"
+      "content": "喂！時鐘老大！你要在那邊一直摸魚嗎？！這些傢伙正從那棟建築裡不斷衝下來耶！"
     },
     {
       "id": 38,
       "model": "오티스",
-      "content": "So they must've been on their way to that building... Our path ahead seems clear, Executive Manager! Let us neutralize those foes and head up there."
+      "content": "看來目標地點就是那棟建築沒錯……只要壓制他們再上去即可，經理！"
     },
     {
       "id": 39,
       "model": "단테",
-      "content": "<Agh, g-gotcha! Be right there!>"
+      "content": "<呃……總、總之我知道了！>"
     },
     {
       "id": 40,
-      "content": "The brief lull of battle came to a close..."
+      "content": "那剎那的時間就這樣結束了。"
     },
     {
       "id": 41,
-      "content": "... and battling enemies who arrived precisely at the time Meursault had predicted, we made our way into the building."
+      "content": "我們一邊對付如莫梭預告般準時遭遇的敵人，一邊踏進了那棟建築。"
     },
     {
       "id": 42,
-      "place": "???, District 14",
+      "place": "14區，？？？",
       "model": "히스클리프",
-      "content": "Bloody hell, them blokes we fought downstairs must've been the weaker ones of the bunch...!"
+      "content": "這……樓下那些傢伙根本只是小菜一碟嘛，該死……"
     },
     {
       "id": 43,
       "model": "로쟈",
-      "content": "How does N Corp. have so many guys on their payroll...?! There's no end to them!"
+      "content": "N公司是錢多到發霉嗎……？！怎麼這麼多人啦！"
     },
     {
       "id": 44,
       "model": "홍루",
-      "content": "Haha... It <i>is</i> a Wing, after all."
+      "content": "哈哈……畢竟是翼嘛。"
     },
     {
       "id": 45,
       "model": "N사해결사1",
-      "content": "Are these the Taboo violators...? I thought the culprit worked alone?"
+      "content": "這些人就是違反禁忌的同夥嗎……？不是說是單獨犯案嗎？"
     },
     {
       "id": 46,
       "model": "N사해결사2",
-      "content": "No, I'm quite certain they're the ones from the subsequent reports..."
+      "content": "不，好像是之後被通報的那些人……"
     },
     {
       "id": 47,
-      "content": "The N Corp. Fixers appeared just as confused as we were."
+      "content": "N公司的人似乎也同樣感到困惑。"
     },
     {
       "id": 48,
-      "content": "It was clear to me that they were expecting to find the Taboo violator here, not a big group of a dozen or so people..."
+      "content": "他們為了抓住觸犯禁忌的人而一同蜂擁而至，結果出現在那裡的卻全是毫不相干的人物……"
     },
     {
       "id": 49,
       "model": "N사해결사1",
-      "content": "What were they thinking, sending fodder like us to deal with an organized Taboo violation? They should've sent Taboo Hunters here instead..."
+      "content": "違反禁忌違反得這麼有組織，卻要我們這種基層來解決？還不如派禁忌獵人……"
     },
     {
       "id": 50,
       "model": "N사해결사2",
-      "content": "Why do you think they told us to consume Canned Experience containing mass-melee combat? They must've thought our current manpower would suffice to deal with this."
+      "content": "不然你以為為什麼要讓我們吃多人戰的經驗罐頭。說到底，還不是因為這種狀況憑這麼多人就能解決？"
     },
     {
       "id": 51,
       "model": "N사해결사1",
-      "content": "I don't know about that..."
+      "content": "看起來不像啊……"
     },
     {
       "id": 52,
       "model": "N사해결사2",
-      "content": "Wait, wasn't there an extra report? That one of them's a—"
+      "content": "不，等一下，又有一份報告上來了……那些人當中……"
     },
     {
       "id": 53,
-      "content": "All of a sudden..."
+      "content": "就在那時。"
     },
     {
       "id": 54,
-      "content": "With a <i>click</i>, the room began to buzz with the metallic whir of some kind of machinery."
+      "content": "喀噠一聲，傳來了像是某種機械裝置咬合的聲音。"
     },
     {
       "id": 55,
-      "content": "And immediately, I could tell what it was."
+      "content": "……我立刻就明白了。"
     },
     {
       "id": 56,
       "model": "단테",
-      "content": "<... Distortion.>"
+      "content": "<……扭曲。>"
     },
     {
       "id": 57,
-      "content": "Standing in the middle of the shabby room was a device I wasn't sure if I had seen before."
+      "content": "破舊空間的中央，立著一台我從沒見過的機器。"
     },
     {
       "id": 58,
-      "content": "Its exterior was plastered with strange shapes that looked similar to what we saw on the Ch'unokkun's faces in our earlier battles, making it difficult to grasp its full shape."
+      "content": "它的表面就像先前那些推奴手的臉上一樣，密密麻麻地貼滿了來路不明的形象，難以推斷出確切的形狀，不過……"
     },
     {
       "id": 59,
-      "content": "The round object affixed to it began to rotate slowly, with the dull, worn-out groan of a thing past its prime..."
+      "content": "安裝在上面的圓形物體發出陳舊的聲響，緩緩轉動……"
     },
     {
       "id": 60,
       "model": "오티스",
-      "content": "Men!"
+      "content": "全員！"
     },
     {
       "id": 61,
       "model": "오에",
-      "teller": "Outis & Ezra",
-      "title": "The LCB & The LCD",
-      "content": "Shield your eyes!!!"
+      "teller": "奧提斯&以斯拉",
+      "title": "LCB&LCD",
+      "content": "閉上眼睛！！！"
     },
     {
       "id": 62,
-      "content": "The moment it began to emit a faint ray of light, Outis thundered in a commanding voice."
+      "content": "就在我心想是不是有什麼光要射出來的瞬間，傳來了奧提斯響亮的吼聲。"
     },
     {
       "id": 63,
       "model": "싱클레어",
-      "content": "Gah...!"
+      "content": "呃……"
     },
     {
       "id": 64,
-      "content": "I quickly turned away as well, making sure not to catch even a glimpse of it."
+      "content": "我也慌忙轉過頭，遮斷了視線。"
     },
     {
       "id": 65,
-      "place": "Projection Room, District 14",
+      "place": "14區，放映室",
       "model": "오티스",
-      "content": "... The device could be playing a recorded video, Executive Manager."
+      "content": "……它可能在播放錄製的影像，經理。"
     },
     {
       "id": 66,
       "model": "오티스",
-      "content": "Even a brief look at it could constitute a Taboo violation."
+      "content": "光是瞥上一眼，恐怕就可能被捲入違反禁忌的事。"
     },
     {
       "id": 67,
       "model": "N사해결사1",
-      "content": "S-shit...!"
+      "content": "可、可惡……"
     },
     {
       "id": 68,
       "model": "N사해결사2",
-      "content": "I-I saw that. I'm so finished..."
+      "content": "我、我已經看到了。這下……"
     },
     {
       "id": 69,
-      "content": "Just as panic began creeping into the voices of several unlucky individuals..."
+      "content": "就在所有人都用陷入不安的聲音說話時。"
     },
     {
       "id": 70,
       "model": "뉴김삿갓",
-      "content": "Oh man, oh man... Folks, this is starting to get a little embarrassing."
+      "content": "哎呀，這可真是……大夥兒全都這麼難看……"
     },
     {
       "id": 71,
-      "content": "... a sleepy voice breaks through the darkness past my (metaphorically speaking) shut eyes."
+      "content": "在只剩一片黑暗的視野中，只有一個人的聲音慵懶地傳來。"
     },
     {
       "id": 72,
       "model": "뉴앵두",
-      "content": "Mentor?!"
+      "content": "頭領？！"
     },
     {
       "id": 73,
       "model": "뉴김삿갓",
-      "content": "Eyes open, Aeng-du. What's wrong with everyone? Got dust in your eyes?"
+      "content": "睜開眼睛吧，櫻桃啊。妳在幹嘛呢。是進了灰塵嗎？"
     },
     {
       "id": 74,
       "model": "이스마엘",
-      "content": "The hell's wrong with you?! Don't you know that anyone who watches even a split second of a recorded video in N Corp. gets—"
+      "content": "你不知道嗎？！只要看了N公司拍攝的錄影，哪怕只有一下下……"
     },
     {
       "id": 75,
       "model": "뉴김삿갓",
-      "content": "... Of course I know. But I watched it anyway."
+      "content": "……知道啊。我是明知故看的。"
     },
     {
       "id": 76,
       "model": "뉴김삿갓",
-      "content": "Open your eyes, esteemed fellows. This motion picture isn't \"recorded.\""
+      "content": "各位看了也沒關係。那不是錄下來的。"
     },
     {
       "id": 77,
       "model": "N사해결사2",
-      "content": "... Hang on, he's right. That video's not a recording."
+      "content": "……等等，那個……不是錄影啊。"
     },
     {
       "id": 78,
-      "content": "Possibly emboldened by Kim's comment, or perhaps believing that seeing the video could be excused as incidental exposure incurred while subduing violators, the N Corp. employees also opened their eyes and began to mutter amongst themselves."
+      "content": "不知是因為聽了那句話，還是因為有了壓制觸犯禁忌者的名分，N公司的員工們也睜開眼睛，開始竊竊私語。"
     },
     {
       "id": 79,
       "model": "N사해결사1",
-      "content": "Is that thing... talking to us?"
+      "content": "那東西……是在對我們說話嗎？"
     },
     {
       "id": 80,
-      "content": "I finally allowed myself a good look at the machine, which was firing a conical beam of light against a side of the wall."
+      "content": "接著，我恢復視線看向那台機器，它正朝牆上投射出某種光。"
     },
     {
       "id": 81,
-      "content": "And this was its message, delivered via white words on a black background:"
+      "content": "黑色背景上，以白色寫成的文字這麼說著。"
     },
     {
       "id": 82,
-      "content": "<color=#ffffff><i>\"So you've tracked me down this far.\"</color></i>"
+      "content": "<color=#ffffff><i>「最後還是找到這裡來了啊。」</color></i>"
     },
     {
       "id": 83,
-      "content": "<color=#ffffff><i>\"After what I went through to take refuge in here... They still ended up finding this place...\"</color></i>"
+      "content": "<color=#ffffff><i>「我逃了又逃才逃到這裡，你們竟然還是找到了這個地方。」</color></i>"
     },
     {
       "id": 84,
-      "content": "<color=#ffffff><i>\"All of you blindly consuming fake experience after fake experience, without even a care about the real thing...\"</color></i>"
+      "content": "<color=#ffffff><i>「只會狼吞虎嚥地猛吃被釘住的經驗，根本不把真實放在眼裡……」</color></i>"
     },
     {
       "id": 85,
       "model": "N사해결사1",
-      "content": "Case number TC3224. You are under suspicion of a Category 3 violation."
+      "content": "報告編號TC3224，你涉嫌違反3級禁忌。"
     },
     {
       "id": 86,
       "model": "N사해결사1",
-      "content": "Reveal yourself now and forfeit your illegal recordings. Should you comply, we will—"
+      "content": "立刻現身，主動繳回違規錄製物。如此一來……"
     },
     {
       "id": 87,
       "model": "뉴김삿갓",
-      "content": "... What is foolery but witless buffoonery in the absence of fools?"
+      "content": "……既然沒有看戲的人，這場小丑戲就到此為止吧。"
     },
     {
       "id": 88,
       "model": "뉴김삿갓",
-      "content": "The hollowed vessel, bereft of all but lingering delusions, grants not even a brool of echo to the dogged excoriation of tools."
+      "content": "對著只剩妄執的容器喊上一百天，也連個回音都不會有。"
     },
     {
       "id": 89,
       "model": "그레고르",
-      "content": "What's this fella on about?"
+      "content": "喂，你突然在說什麼啊？"
     },
     {
       "id": 90,
       "model": "N사해결사1",
-      "content": "If you mean to obstruct our official duties, we won't hesitate to use force—!"
+      "content": "你，若要妨礙業務，我們將立即行使武力……"
     },
     {
       "id": 91,
-      "content": "<i>Clang!</i>"
+      "content": "鏘。"
     },
     {
       "id": 92,
-      "content": "Without even so much as turning around, Bamboo-hatted Kim raised his sword and parried away the N Corp. employee's nail-shaped weapon."
+      "content": "金笠看也不看，用刀輕輕擋下N公司員工拔出的釘狀武器，說道。"
     },
     {
       "id": 93,
       "model": "뉴김삿갓",
-      "content": "I'm only speaking as my whim guides me, my dear fellows. No need to get so huffy."
+      "content": "什麼呀，我只是照感覺說說而已。何必這麼激動呢。"
     },
     {
       "id": 94,
       "model": "뉴김삿갓",
-      "content": "I only aim to say that this abomination... has no consciousness."
+      "content": "字面上的意思，就是說那個怪物……沒有自我之類的東西。"
     },
     {
       "id": 95,
-      "content": "<color=#ffffff><i>\"After what I went through to take refuge in here... They still ended up finding this place...\"</color></i>"
+      "content": "<color=#ffffff><i>「我逃了又逃才逃到這裡，你們竟然還是找到了這個地方。」</color></i>"
     },
     {
       "id": 96,
-      "content": "<color=#ffffff><i>\"All of you blindly consuming fake experience after fake experience, without even a care about the real thing...\"</color></i>"
+      "content": "<color=#ffffff><i>「只會狼吞虎嚥地猛吃被釘住的經驗，根本不把真實放在眼裡……」</color></i>"
     },
     {
       "id": 97,
       "model": "오티스",
-      "content": "It's repeating the same sentences over and over..."
+      "content": "只是在重複同樣的話啊……"
     },
     {
       "id": 98,
       "model": "뉴김삿갓",
-      "content": "Now that does make me wonder. Was I just as far gone when I Distorted? Past all words and reason?"
+      "content": "這我倒有點好奇了。我扭曲的時候，也是這樣說什麼都講不通的狀態嗎？"
     },
     {
       "id": 99,
       "model": "뉴김삿갓",
-      "content": "I mean, if anyone has an answer to that question... it'd be you folks, right?"
+      "content": "你們……知道吧？"
     },
     {
       "id": 100,
-      "content": "Kim said nothing more. He turned a piercing look on us, all the while effortlessly swatting away the N Corp. employees' attacks..."
+      "content": "他依然隨手擋開N公司員工的攻擊，一邊直勾勾地凝視著我們。"
     },
     {
       "id": 101,
-      "content": "... as though he was goading us into telling him the truth."
+      "content": "彷彿要我們說出確切的真相。"
     },
     {
       "id": 102,
       "model": "뉴김삿갓",
-      "content": "Well... Don't suppose there's any point in asking."
+      "content": "嘛……看來也不必問了。"
     },
     {
       "id": 103,
       "model": "뉴김삿갓",
-      "content": "... I am no different from this abomination. Just as it wields that contraption, I must have wielded the only thing I have really known—the blade, transforming into a mindless fiend consumed by a mere tool, cleaving through both friend and foe, unrestrained."
+      "content": "……彼此彼此。我手裡握過的就只有劍，想必是成了劍鬼，不分敵友，見一個砍一個吧。"
     },
     {
       "id": 104,
@@ -493,36 +493,36 @@
     {
       "id": 105,
       "model": "에즈라",
-      "content": "... Hey, Junior. Are you still on about that?"
+      "content": "……後輩。你還在說那件事啊？"
     },
     {
       "id": 106,
       "model": "뉴김삿갓",
-      "content": "I tried to avert my eyes, I truly did. But such disregard is easier said than done."
+      "content": "我也……為了不去回想，一直努力移開視線，但還真不容易啊。"
     },
     {
       "id": 107,
       "model": "뉴김삿갓",
-      "content": "How can I, when that Distorted being has no qualms showing me the— *sigh*"
+      "content": "說到底，那個扭曲的東西一直給我看的那些……呼。"
     },
     {
       "id": 108,
       "model": "뉴김삿갓",
-      "content": "Doesn't he know how rude the unsolicited reflecting of the fathoms of one's heart is? That's got to be illegal or something. Illegal, I say!"
+      "content": "又沒拜託它，那樣隨便照出來給人看怎麼行。那是犯罪啊，犯罪。"
     },
     {
       "id": 109,
       "model": "뉴김삿갓",
-      "content": "Turning a customer into a thug on a protection racket run, a mere ant before a car in motion into a swerving driver..."
+      "content": "做著生意時，突然把善良的客人變成收保護費的流氓，把開車的人面前的螞蟻變成插進來的車……"
     },
     {
       "id": 110,
       "model": "뉴김삿갓",
-      "content": "... conjuring dead followers before the eyes of their mentor—simply unconscionable. Rude as hell, as some might say. My poor heart almost burst out of my chest, courtesy of you."
+      "content": "……把死去的部下們搬到我眼前，這樣做很給人添麻煩耶。心臟都差點炸開了不是嗎？"
     },
     {
       "id": 111,
-      "content": "<color=#ffffff><i>\"All of you blindly consuming fake experience after fake experience, without even a care about the real thing...\"</color></i>"
+      "content": "<color=#ffffff><i>「只會狼吞虎嚥地猛吃被釘住的經驗，根本不把真實放在眼裡……」</color></i>"
     },
     {
       "id": 112,
@@ -531,109 +531,109 @@
     },
     {
       "id": 113,
-      "content": "In that split second, I think I saw Meursault's eyebrows twitch."
+      "content": "剎那間，我似乎看見莫梭的眉毛抽動了一下。"
     },
     {
       "id": 114,
       "model": "뫼르소",
-      "content": "A battle is imminent, Manager."
+      "content": "即將發生戰鬥。經理。"
     },
     {
       "id": 115,
-      "content": "... Just a natural response to sensing an imminent battle, perhaps?"
+      "content": "……只是因為察覺到戰鬥的氣息嗎？"
     },
     {
       "id": 116,
-      "content": "<i>*POP!*</i>"
+      "content": "砰！"
     },
     {
       "id": 117,
       "place": "14區，扭曲的奶油街",
-      "content": "A blinding flash, followed by an explosive bang. My vision immediately went white and decided to take its damn time coming back."
+      "content": "那是比以往任何時候都還要強烈的閃光與爆炸聲。強烈到被染白的視野遲遲無法恢復。"
     },
     {
       "id": 118,
-      "content": "And when it did..."
+      "content": "然後，在恢復的視野裡……"
     },
     {
       "id": 119,
-      "content": "The first thing that came into view was a particularly unsettling landscape of S Corp., followed by Bamboo-hatted Kim surrounded by a small army of Ch'unokkun."
+      "content": "映照出來的，是陰鬱而凶險的S公司景象，以及被無數推奴手團團包圍的金笠。"
     },
     {
       "id": 120,
       "model": "뉴앵두",
-      "content": "MENTOR!"
+      "content": "頭領！"
     },
     {
       "id": 121,
       "model": "뉴김삿갓",
-      "content": "Keep that up and you'll shout me deaf, Aeng-du."
+      "content": "耳朵都要被妳喊聾了，櫻桃啊。"
     },
     {
       "id": 122,
       "model": "뉴김삿갓",
-      "content": "Isn't it about time we both grew accustomed to such sights?"
+      "content": "這種場面又不是只看過一兩次，怎麼每次碰上都要大驚小怪。"
     },
     {
       "id": 123,
       "model": "뉴앵두",
-      "content": "Mentor, still do I wake from these dreams drenched in cold sweat..."
+      "content": "我……至今每次做這場噩夢，冷汗都能流滿一竹簍啊……"
     },
     {
       "id": 124,
       "model": "뉴앵두",
-      "content": "That they might bind and drag you away..."
+      "content": "就怕那些傢伙終究會把頭領押走……"
     },
     {
       "id": 125,
       "model": "뉴김삿갓",
-      "content": "Eh, this isn't so bad, is it? It's just these folks so far. Unlike earlier, when—"
+      "content": "嘛，不過看到冒出來的還是這幫傢伙，反倒還好一點。剛才……"
     },
     {
       "id": 126,
-      "content": "Another flash."
+      "content": "就在那時，閃光毫無預警地再度襲來。"
     },
     {
       "id": 127,
-      "place": "Projection Room, District 14",
+      "place": "14區，放映室",
       "model": "N사해결사2",
-      "content": "What... what was that? Everything went dark..."
+      "content": "那是……什麼？剛才眼前一片漆黑……"
     },
     {
       "id": 128,
       "model": "N사해결사1",
-      "content": "I don't understand what's happening, but first things first: We have to neutralize everyone here and get our mission back on track—"
+      "content": "完全搞不清楚狀況……總之先讓在場的所有人全部失去戰力，再回到鎮壓業務……"
     },
     {
       "id": 129,
-      "content": "<color=#ffffff><i>[Adjusting Projection…]</color></i>"
+      "content": "<color=#ffffff><i>[畫面調整中……]</color></i>"
     },
     {
       "id": 130,
       "model": "뉴김삿갓",
-      "content": "... *sigh* I've been straying far and wandering all day for this exact reason, and..."
+      "content": "……哈。就是怕會這樣，我才拚命往外頭跑的啊。"
     },
     {
       "id": 131,
       "model": "파우스트",
-      "content": "... So that was its mechanism."
+      "content": "……原來是這樣的原理呢。"
     },
     {
       "id": 132,
       "model": "단테",
-      "content": "<Faust?>"
+      "content": "<浮士德？>"
     },
     {
       "id": 133,
-      "content": "The words began to shift rapidly before I had the chance to ask Faust what she had meant."
+      "content": "還沒來得及問浮士德那是什麼意思，文字便飛快地切換，顯示出接下來的句子。"
     },
     {
       "id": 134,
-      "content": "<color=#ffffff><i>\"To the one who finds comfort settling in lies: I give you what most deserved your gaze.\"</color></i>"
+      "content": "<color=#ffffff><i>「給最安於虛假者，其本應注視之物。」</color></i>"
     },
     {
       "id": 135,
-      "content": "<i>*POP!*</i>"
+      "content": "砰！"
     },
     {
       "id": 136,
@@ -644,40 +644,40 @@
     {
       "id": 137,
       "model": "히스클리프",
-      "content": "Bollocks, I'll be blind before today's over at this rate."
+      "content": "嘖，搞得人頭昏眼花的……眼睛痛死了。"
     },
     {
       "id": 138,
       "model": "단테",
-      "content": "<... It changed.>"
+      "content": "<……變了。>"
     },
     {
       "id": 139,
       "model": "히스클리프",
-      "content": "... It did?"
+      "content": "……什麼？"
     },
     {
       "id": 140,
       "model": "뫼르소",
-      "content": "Unlike the earlier instance, one of the Distortions is different from the others."
+      "content": "扭曲之中，有一個的形態和剛才不同。"
     },
     {
       "id": 141,
-      "content": "As Meursault identified, there was something different about the group of Ch'unokkun this time—they were accompanied by someone else."
+      "content": "正如莫梭所說，再次出現在眼前的推奴手之間，站著一個格格不入的人。"
     },
     {
       "id": 142,
-      "content": "A warrior in impressive armor, wielding a sword that was just as tall."
+      "content": "一個手持與自己等高的巨刀、身披厚重甲冑的人。"
     },
     {
       "id": 143,
       "model": "뉴김삿갓",
-      "content": "That armor... and a great hwando of the Sal Circle..."
+      "content": "難不成……那身甲冑……還有那把只有肉黨派才會用的大環刀……"
     },
     {
       "id": 144,
       "model": "뉴김삿갓",
-      "content": "... To be reunited in such a manner..."
+      "content": "……竟會以這種方式再見嗎？"
     },
     {
       "id": 145,
@@ -692,37 +692,37 @@
     },
     {
       "id": 147,
-      "content": "The warrior drew a bow that hung from the waistguard, and nocked an arrow..."
+      "content": "在漆黑的搖曳之中，那人取出腰間的弓，緩緩搭上一支箭。"
     },
     {
       "id": 148,
       "model": "임경업뒤틀림",
       "teller": "???",
-      "content": "... Arrow."
+      "content": "……一發。"
     },
     {
       "id": 149,
       "model": "뉴김삿갓",
-      "content": "I suppose this is how it would've gone down, had you been the one to grab me."
+      "content": "我早料到，這輩子要是再被閣下逮住，大概就是這副光景。"
     },
     {
       "id": 150,
       "model": "뉴김삿갓",
-      "content": "... Military Commissioner Im Gyeong-eop. How do you fare, friend?"
+      "content": "……節度使林慶業。別來無恙啊？"
     },
     {
       "id": 151,
       "model": "임경업뒤틀림",
-      "teller": "Im Gyeong-eop",
-      "content": "At the signal arrow's loosing! Seize the accused!"
+      "teller": "林慶業",
+      "content": "嚆矢一發，奉命拿捕……！"
     },
     {
       "id": 152,
-      "content": "The warrior loosened the nocked arrow, which soared into the sky with a piercing whistle..."
+      "content": "尖銳的聲響隨著射出的箭劃破天空，"
     },
     {
       "id": 153,
-      "content": "... and with that air-splitting sound as their cue, the Ch'unokkun began to swarm us."
+      "content": "以那聲響為信號，無數推奴手朝我們撲了過來。"
     }
   ]
 }

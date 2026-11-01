@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": 0,
-      "place": "法羅．穆埃托 空地",
+      "place": "法羅．穆埃托，空地",
       "model": "히스클리프",
       "content": "咳。不能隨便找艘船追上去嗎？"
     },
@@ -161,7 +161,7 @@
     {
       "id": 32,
       "model": "메이어스",
-      "content": "Faro Muerto, ‘dead lighthouse’. That’s our village name."
+      "content": "法羅．穆埃托，死之燈塔。這是我們村莊的名字。"
     },
     {
       "id": 33,

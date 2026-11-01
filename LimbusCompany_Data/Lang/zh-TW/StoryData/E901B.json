@@ -311,17 +311,17 @@
     {
       "id": 65,
       "model": "알리사",
-      "content": "The higher-ups didn't waste a second green-lighting the project. Which means what I'm telling you is more a notice of investigation than a request for permission..."
+      "content": "嘛，因為上面已經批准了，所以與其說是請求許可，其實更接近通知啦……"
     },
     {
       "id": 66,
       "model": "싱클레어",
-      "content": "Huh...? W-what investigation? What are you—"
+      "content": "咦……？調、調查嗎？什麼……"
     },
     {
       "id": 67,
       "model": "호엔하임",
-      "content": "It's just a rather rudimentary instance of human experimentation. Calm yourself."
+      "content": "只不過是簡單的人體實驗罷了。冷靜點。"
     },
     {
       "id": 68,
@@ -331,123 +331,123 @@
     {
       "id": 69,
       "model": "알리사",
-      "content": "Did you really have to put it like that, Boss...? Not to worry, Sinclair. A swipe or two on your skin and maybe some talk therapy—that's all there is to it."
+      "content": "怎麼把話說成那樣……只是單純檢查一下皮膚、做做諮商而已，請別害怕。"
     },
     {
       "id": 70,
       "model": "알리사",
-      "content": "Of course, if we had your consent, the avenues of research could be vastly—"
+      "content": "當然，如果您允許的話，也可以用其他方式……"
     },
     {
       "id": 71,
       "model": "싱클레어",
-      "content": "No, I'm not giving you my consent!"
+      "content": "我不會允許的！"
     },
     {
       "id": 72,
       "model": "호엔하임",
-      "content": "For your reference, the other departments have also submitted some quite enthusiastic requests for research and observational purposes."
+      "content": "其他部門也相當積極地送來了研究及觀察的申請。"
     },
     {
       "id": 73,
       "model": "알리사",
-      "content": "Oh, you have no idea. We had to get Boss to fend off the LCA's Mirror World Observatorium Department and their hissy fits. They wanted to be the first ones to get their hands on you and spearhead the research, you see. Haha..."
+      "content": "LCA的鏡像世界觀測部門說要由他們先來調查，是組長好不容易才幫忙擋下來的。哈哈……"
     },
     {
       "id": 74,
       "model": "알리사",
-      "content": "And had we allowed them, they'd have kept you for a good few months before letting you go. So the least you could do to thank us is be a good boy and cooperate—Ah! Just in time. Our researchers are here."
+      "content": "要是去了那邊，大概會被扣住好幾個月都不放人吧。所以說，請您配合……啊，部門的同事們剛好出來了呢。"
     },
     {
       "id": 75,
-      "content": "Alyssa waved at the researchers who were filing out of the funeral hall after paying their respects. It wasn't long before Sinclair found himself surrounded on all sides."
+      "content": "看見結束弔唁的研究員們從靈堂裡走出來，阿莉莎揮了幾下手，研究員們便轉眼間像包圍似地將辛克萊團團圍住。"
     },
     {
       "id": 76,
       "model": "싱클레어",
-      "content": "W-wait! I'm... I'm perfectly capable of walking there on my own, so just... just don't run any painful tests on me...!"
+      "content": "等、等一下！我會自己……我會自己走過去的……！只求你們別弄痛我……！"
     },
     {
       "id": 77,
       "model": "알리사",
-      "content": "Of course, of course."
+      "content": "知道了、知道了～"
     },
     {
       "id": 78,
       "model": "단테",
-      "content": "<Stay strong, Sinclair...>"
+      "content": "<加油……辛克萊。>"
     },
     {
       "id": 79,
-      "content": "All I could do was to offer an unspoken encouragement to Sinclair, who sounded ready to collapse into full-blown panic any minute."
+      "content": "……聽著那手足無措的聲音，我在心裡向辛克萊揮了揮手。"
     },
     {
       "id": 80,
       "model": "히스클리프",
-      "content": "What about you? You not goin' with them?"
+      "content": "話說……妳不一起去喔？"
     },
     {
       "id": 81,
       "model": "알리사",
-      "content": "Oh, it's back to the long-term recovery ward for me."
+      "content": "啊，因為我得回長期治療室去了。"
     },
     {
       "id": 82,
       "model": "알리사",
-      "content": "I always thought scientific research was the one thing that flamed my passion, but with the recent events having introduced me to the merits of paid sick leave... I realized that time off beats research projects in my book. Marginally."
+      "content": "我一直以為自己最喜歡的是研究，看來並不是呢。沒想到有薪病假比研究還要再好上那麼一點。"
     },
     {
       "id": 83,
       "model": "호엔하임",
-      "content": "Enjoy it while it lasts. I highly suspect that every request for PTO submitted by our department will be rejected for the rest of the year."
+      "content": "能享受的時候就好好享受吧。今年我們部門提出的年假申請，大概全都會被駁回。"
     },
     {
       "id": 84,
       "model": "이스마엘",
-      "content": "Well, it's true your average corporation doesn't give more than a week off a year."
+      "content": "說得也是，如果是普通的公司，一年要休超過一個禮拜確實很難呢。"
     },
     {
       "id": 85,
-      "content": "As soon as Alyssa trudged off with her dragging steps, the researchers seized Sinclair and whisked—carried, really—him away."
+      "content": "阿莉莎才拖著有氣無力的腳步離開，辛克萊就被研究員們抬走，轉眼間消失得無影無蹤。"
     },
     {
       "id": 86,
       "model": "이스마엘",
-      "content": "All right... we should get going too."
+      "content": "那麼……我們也差不多該走了。"
     },
     {
       "id": 87,
       "model": "단테",
-      "content": "<Oh, do you all have somewhere else to be?>"
+      "content": "<喔，大家都有事要忙嗎？>"
     },
     {
       "id": 88,
       "model": "홍루",
-      "content": "Well~ I thought I'd go visit Gregor. I'm worried about him."
+      "content": "啊～我很擔心格里高爾先生，想去看看他。"
     },
     {
       "id": 89,
       "model": "히스클리프",
-      "content": "Got something I said I'd help with—gotta be there for it."
+      "content": "那個啥。我答應了要幫人做點事，得過去一趟。"
     },
     {
       "id": 90,
       "model": "이스마엘",
-      "content": "I'm going with Sinclair to get some rest. Also to keep an eye on the researchers and stop them if they try anything fishy with the experiments."
+      "content": "我打算跟著辛克萊先生過去休息一下。要是有什麼越界的實驗，也好出面阻止。"
     },
     {
       "id": 91,
       "model": "이스마엘",
-      "content": "Let me know later if you need anything, Dante."
+      "content": "有需要的話請叫我，但丁。"
     },
     {
       "id": 92,
-      "content": "The Sinners fanned out in different directions. They seemed to have their own errands to run during our stay at the LCE."
+      "content": "在LCE停留的這段期間，大概是各自都有要幫忙的事吧，罪人們各說各的理由，就這麼四散而去。"
     },
     {
       "id": 93,
       "model": "단테",
-      "content": "<Everyone's busy with their own thing...>"
+      "content": "<大家都好忙啊……>"
     },
     {
       "id": 94,
@@ -456,134 +456,134 @@
     },
     {
       "id": 95,
-      "content": "The only ones keeping me company now were Ryōshū, who'd been filling the air around thick with cigarette smoke, and Don Quixote, who was sniffing and asking around at every corner for Vespa in a valiant quest for the new Color Fixer's whereabouts."
+      "content": "現在留在身邊的，只剩下一根接一根抽著菸的良秀，以及正四處打聽不知何時消失的韋斯帕下落的唐吉訶德……"
     },
     {
       "id": 96,
-      "content": "Faust was still here, too—staring blankly into the air."
+      "content": "還有呆呆站著、望著半空的浮士德而已。"
     },
     {
       "id": 97,
-      "content": "Is she accessing the Gesellschaft?"
+      "content": "她是在連接Gesellschaft嗎？"
     },
     {
       "id": 98,
       "model": "호엔하임",
-      "content": "You seem to have some time to spare, Manager."
+      "content": "看起來你挺閒的嘛，經理。"
     },
     {
       "id": 99,
-      "content": "As I stood there, wondering what I should do next to pass the time, Hohenheim, who had apparently finished tackling and signing the stack of papers, walked over to me."
+      "content": "正當我煩惱著接下來自己要做什麼……的時候，原本在好幾份文件上簽名的霍恩海姆似乎忙完了，朝我走了過來。"
     },
     {
       "id": 100,
       "model": "호엔하임",
-      "content": "This makes things rather convenient. There is something I had intended to discuss with you and Sinner Ryōshū—a matter that requires your assistance."
+      "content": "我正好有事想拜託你和罪人良秀，來得正好。稍微撥點時間給我吧。"
     },
     {
       "id": 101,
       "model": "단테",
-      "content": "<What kind of assistance?>"
+      "content": "<要拜託的事？>"
     },
     {
       "id": 102,
       "model": "료슈",
-      "content": "W.K.O.A.? says C.H."
+      "content": "拜．事是什麼？時．頭這麼問。"
     },
     {
       "id": 103,
-      "content": "Wait a minute... Did Ryōshū just... step in as my interpreter?"
+      "content": "我的話……良秀幫我翻譯了。"
     },
     {
       "id": 104,
-      "content": "It's not that I don't appreciate her gesture—especially since she'd usually snap at me and tell me to find someone else to interpret whenever the issue came up..."
+      "content": "總是沒好氣地叫我另外找人翻譯的良秀，不知吹的是什麼風，居然主動站了出來，這點我是很感激啦……"
     },
     {
       "id": 105,
-      "content": "But... I can't help but doubt whether her choice method of interpretation actually accomplishes anything."
+      "content": "……這麼做有意義嗎？"
     },
     {
       "id": 106,
       "model": "호엔하임",
-      "content": "... There is, I must admit, a certain novelty in witnessing the reconstitution of that which requires interpretation into yet another linguistic form equally demanding of it."
+      "content": "……把需要翻譯的話，翻譯成另一句需要翻譯的話，倒是挺新鮮的。"
     },
     {
       "id": 107,
       "model": "호엔하임",
-      "content": "It would seem we are in need of more manpower."
+      "content": "看來還需要更多人手啊。"
     },
     {
       "id": 108,
-      "content": "Scratching his head, Hohenheim looked around for a moment before coming to a sudden pause as though an idea had crossed his mind. At the end of his gaze was a certain someone who was busy badgering LCCA employees with her relentless questioning."
+      "content": "霍恩海姆搔著頭東張西望了一會兒，隨即像是想到了好主意似的，叫住了正對著LCCA職員慷慨陳詞的某個人。"
     },
     {
       "id": 109,
       "model": "돈키호테",
-      "content": "Who else, pray, might know where he is if thou knowest not?! Now listen closely! The one I seek is a bearer of hair fashioned in the likeness of a bowl..."
+      "content": "若連汝等都不知道，還有誰會知道！聽好了，那人頂著一頭西瓜頭……"
     },
     {
       "id": 110,
       "model": "호엔하임",
-      "content": "You there. Why don't you join us too?"
+      "content": "那邊的妳。妳也到這邊來。"
     },
     {
       "id": 111,
       "model": "돈키호테",
-      "content": "Hmm? Eh... Dost thou speak of me?"
+      "content": "嗯？哦咦。是在說吾嗎？"
     },
     {
       "id": 112,
-      "content": "The LCCA personnel, who were cornered by Don Quixote and her rather forceful interrogation regarding Vespa's whereabouts, took the opportunity and fled the scene without so much as a backward glance the moment their captor turned her head to answer Hohenheim."
+      "content": "……被唐吉訶德逮住、被逼問韋斯帕下落的LCCA人員們，大概覺得機不可失，頭也不回地溜走了。"
     },
     {
       "id": 113,
       "model": "호엔하임",
-      "content": "Indeed. There is a task that requires your assistance."
+      "content": "沒錯。有件事需要妳幫忙。"
     },
     {
       "id": 114,
       "model": "돈키호테",
-      "content": "B-but I have yet more words to trade with the most noble Yellow Harpoon..."
+      "content": "可、可是吾還有話要和蜜黃蜂槍老爺說，還……"
     },
     {
       "id": 115,
       "model": "호엔하임",
-      "content": "You seek to emulate the virtue of chivalry. Does that entail turning down the earnest plea of those in need?"
+      "content": "重視騎士精神的妳，應該不會拒絕這番懇切的請求吧。"
     },
     {
       "id": 116,
       "model": "돈키호테",
-      "content": "Aah...! I... I..."
+      "content": "還……有……"
     },
     {
       "id": 117,
       "model": "호엔하임",
-      "content": "Hmm... For the sake of clarity and distinction, it would be prudent to assign you a different identifier from that of my assistant. You are to be \"Number 2\"—that is, Assistant no. 2."
+      "content": "嗯。得和助手區分開來，妳就叫2號吧。是助手2號的意思。"
     },
     {
       "id": 118,
       "model": "돈키호테",
-      "content": "... I have not yet concluded mine exchange with the Yellow Harpoon, but no true knight would abandon those who call for aid! Pray, speak thy quest! How may I be of service to thee?"
+      "content": "……是還有話沒說完，但吾豈能對身陷困境之人視而不見！那麼，吾該幫什麼忙呢？"
     },
     {
       "id": 119,
       "model": "호엔하임",
-      "content": "Delegating the interpretation of the Manager's speech to Sinner #4 has proven to be counterproductive. As such, your task will be to report to me what the Manager says."
+      "content": "看來把經理的翻譯交給4號罪人並不合適。所以，請妳把經理說的話轉達給我。"
     },
     {
       "id": 120,
       "model": "돈키호테",
-      "content": "Oho! That is indeed a simple task!"
+      "content": "喔喔……這並非難事！"
     },
     {
       "id": 121,
       "model": "돈키호테",
-      "content": "However, this \"W.K.O.A.\" eludeth mine understanding as well! Prithee, allow me but a liiittle time to uncover its mystery!"
+      "content": "不過吾也不曉得拜．事究竟是何物，所以需要稍～微花點時間。"
     },
     {
       "id": 122,
       "model": "호엔하임",
-      "content": "... Relay the Manager's words, not Sinner Ryōshū's."
+      "content": "……不是罪人良秀，是經理說的話……"
     },
     {
       "id": 123,
@@ -593,85 +593,85 @@
     {
       "id": 124,
       "model": "파우스트",
-      "content": "They are asking you what kind of assistance you need."
+      "content": "其在詢問要拜託的事是什麼。"
     },
     {
       "id": 125,
       "model": "호엔하임",
-      "content": "The request for interpretation was not directed to you, but I cannot deny that your meddling, in the present circumstance, is a welcome one."
+      "content": "我並沒有問妳，不過以眼下的情況來說，這份多管閒事實在是求之不得。"
     },
     {
       "id": 126,
       "model": "파우스트",
-      "content": "It was simply that the irrationality and inefficiency of your suboptimal staffing choice and workflow have become sufficiently unbearable."
+      "content": "只是實在看不下去不合理的人選和沒效率的辦事方式罷了。"
     },
     {
       "id": 127,
       "model": "파우스트",
-      "content": "Faust hopes this was not some guileful scheme devised to elicit Faust's cooperation."
+      "content": "希望這不是為了引出浮士德的協助，而刻意設下的陰險計畫。"
     },
     {
       "id": 128,
       "model": "호엔하임",
-      "content": "... Hah. In any case, Manager, this request of mine concerns an investigation into the \"Backdoors\" located in the House of Spiders."
+      "content": "……哈。總之，經理。我要拜託的事，是請你們協助調查蜘蛛巢的「後門」。"
     },
     {
       "id": 129,
       "model": "호엔하임",
-      "content": "I deemed that the two of you should be the ones most familiar with the structure and layout of the House. After all, you were the one monitoring the entirety of the five-pronged assault operation, and Sinner #4's familiarity does not bear repeating."
+      "content": "畢竟對蜘蛛巢的構造最清楚的，應該就是管理．監督了一切狀況的經理，以及4號罪人了。"
     },
     {
       "id": 130,
       "model": "단테",
-      "content": "<Do we go to the House of Spiders right away?>"
+      "content": "<那是要直接去蜘蛛巢嗎？>"
     },
     {
       "id": 131,
       "model": "료슈",
-      "content": "H.O.S.R.A.?"
+      "content": "那．直．蜘？"
     },
     {
       "id": 132,
       "model": "호엔하임",
-      "content": "... You have assisted enough."
+      "content": "……妳就不必了。"
     },
     {
       "id": 133,
       "model": "호엔하임",
-      "content": "Perhaps you could... help, Faust."
+      "content": "麻煩……妳了。浮士德。"
     },
     {
       "id": 134,
       "model": "파우스트",
-      "content": "... Sure."
+      "content": "……嘛。好吧。"
     },
     {
       "id": 135,
-      "content": "Although not word-for-word, Faust relayed my intention to Hohenheim, who responded by shaking his head."
+      "content": "浮士德好好地翻譯了我的問題之後，霍恩海姆左右搖了搖頭。"
     },
     {
       "id": 136,
       "model": "호엔하임",
-      "content": "Not immediately, no. There is one more member you should bring along."
+      "content": "不是現在馬上。因為還有個得帶上的人。"
     },
     {
       "id": 137,
       "model": "단테",
-      "content": "<One more member?>"
+      "content": "<要帶上的人？>"
     },
     {
       "id": 138,
-      "content": "Seeing me tilting my head, Hohenheim pushed up his glasses."
+      "content": "見我歪著頭，霍恩海姆扶正了眼鏡，這麼說道。"
     },
     {
       "id": 139,
       "model": "호엔하임",
-      "content": "The Apprentice who was captured alive in the House of Spiders..."
+      "content": "在蜘蛛巢活捉的俘虜。"
     },
     {
       "id": 140,
       "model": "호엔하임",
-      "content": "Kira. She has regained consciousness."
+      "content": "綺羅。那人已經恢復意識了。"
     }
   ]
 }

@@ -56,7 +56,7 @@
     {
       "id": 40000805,
       "name": "原來是這雙眼睛一直在守護著整片黑森林啊",
-      "desc": "Turn Start: Apply ([Binding] on self /2) [Agility] to the ally (excluding this unit) with the slowest Speed next turn (max 2, rounded down)\n\nIf this unit has the slowest Speed, deal +10% damage with Base Attack Skills\n- If this unit's Speed is 1, deal +20% damage instead"
+      "desc": "回合開始時，使除自身以外速度值最低的1名友方單位在下回合獲得(自身的 [Binding] 層數÷2)層 [Agility] (最多2層；無條件捨去[TabExplain])\n\n若自身為全體友方單位中速度值最低者，則自身的基礎攻擊技能造成的傷害+10%\n- 若自身的速度值為1，則改為造成的傷害+20%"
     },
     {
       "id": 40000806,

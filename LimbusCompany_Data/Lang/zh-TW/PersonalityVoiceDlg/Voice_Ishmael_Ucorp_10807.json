@@ -28,12 +28,12 @@
     {
       "id": "smalltalk_10807_2",
       "desc": "對話 2",
-      "dlg": "Hey... Be careful with that crab driver. It's got a makeshift mod with scraps, so it could break your bones if you're not careful."
+      "dlg": "嘿……那個<size=110%>鑿蟹機</size>十分危險。那是用廢料匆忙做出來、又另外加裝了東西的，如果不了解就拿來用，說不定會造成骨折喔。"
     },
     {
       "id": "smalltalk_10807_3",
       "desc": "對話 3",
-      "dlg": "Oh, what am I doing? Uh, we have to pull the scraps off the trash crabs first before processing them... That's how we make new stuff with the scrap, run the workshop, and cook us up dinner."
+      "dlg": "啊，您是說我現在在做的事嗎？唔，因為要像這樣把廢料從<size=110%>廢料蟹</size>身上全部拆下來交過去……這樣才能用廢料做出新的零件，修船廠也才能營運下去。料理起來也會比較方便。"
     },
     {
       "id": "smalltalk_10807_4",
@@ -48,7 +48,7 @@
     {
       "id": "gacksung_10807_1",
       "desc": "進行同步",
-      "dlg": "Hup... I made a few modifications to the crab driver. I might try using this one to get the big guy."
+      "dlg": "嘿咻……我把<size=110%>鑿蟹機</size>又改造了一下。果然還是得用這個去抓那個大傢伙試試看。"
     },
     {
       "id": "neglect_10807_1",

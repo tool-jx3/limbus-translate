@@ -2,148 +2,148 @@
   "dataList": [
     {
       "id": 0,
-      "content": "Meanwhile, Heathcliff's team..."
+      "content": "另一邊，希斯克利夫小隊……"
     },
     {
       "id": 1,
       "place": "14區，扭曲的奶油街",
       "model": "히스클리프",
-      "content": "Bloody hell... What's up with these gits? They're showing up out of nowhere!"
+      "content": "啊，靠……這些傢伙突然冒出來是怎樣？！"
     },
     {
       "id": 2,
       "model": "그레고르",
-      "content": "How should I know? But judging by their getup, they seem like S Corp. fellas."
+      "content": "我哪知道……看那模樣，倒像是S公司的老兄們就是了。"
     },
     {
       "id": 3,
       "model": "그레고르",
-      "content": "And things were going so well... We could've talked it out with those fedora guys who were rummaging around the place earlier, you know."
+      "content": "剛才還有一群戴紳士帽的老兄在這裡東翻西找，我本來還想說好好談一談就能解決……"
     },
     {
       "id": 4,
       "model": "그레고르",
-      "content": "But no, you just had to go barking at them first. Would've saved us a whole lot of trouble if you hadn't, right?"
+      "content": "要是你沒去找碴，剛才也不用白費那些力氣了，對吧？"
     },
     {
       "id": 5,
       "model": "히스클리프",
-      "content": "Oh, so it's <i>my</i> fault?"
+      "content": "啥，這也要怪到我頭上？！"
     },
     {
       "id": 6,
       "model": "히스클리프",
-      "content": "Those bastards looked like they were nickin' stuff! This is our contract area, ain't it? If they walked off with something important, we'd be the ones catching hell!"
+      "content": "一看就知道是在偷東西啊！這裡可是我們的委託區域，要是被搶走什麼東西，不就麻煩了嗎！"
     },
     {
       "id": 7,
       "model": "그레고르",
-      "content": "Listen, bud. Not everyone's itching to swipe hair coupons into their pockets the second they get the chance."
+      "content": "我就說嘛，世上又不是每個人都像你一樣，一逮到機會就順手摸走理髮券……"
     },
     {
       "id": 8,
       "model": "히스클리프",
-      "content": "Oh, for—how many bloody months are you lot gonna milk that?!"
+      "content": "啊，那件事你們到底要翻來覆去講幾個月啊！！！"
     },
     {
       "id": 9,
       "model": "홍루",
-      "content": "Um, excuse me~"
+      "content": "那個，請等一下～"
     },
     {
       "id": 10,
       "model": "히스클리프",
-      "content": "What, you got a problem too, mate?!"
+      "content": "你又是怎樣！"
     },
     {
       "id": 11,
       "model": "홍루",
-      "content": "Ahaha... No, not at all."
+      "content": "啊哈哈……我不是那個意思。"
     },
     {
       "id": 12,
       "model": "홍루",
-      "content": "Just wondering whether that gentleman over there... is also one of our enemies."
+      "content": "我是想問，那一位該不會……也是敵人吧。"
     },
     {
       "id": 13,
       "model": "뉴김삿갓",
-      "content": "Hm? Is that the end of your troupe performance?"
+      "content": "嗯？這場好戲落幕了嗎？"
     },
     {
       "id": 14,
       "model": "뉴김삿갓",
-      "content": "Shame. I was really enjoying watching you folks dance! Might've mistaken this place for the Peach Blossom Land of legends had there been a cup of fine <ruby=rice wine>makgeolli</ruby> to go with it."
+      "content": "還挺有意思的……哈，這時候要是再來一杯上好的馬格利，簡直就是武陵桃源了。"
     },
     {
       "id": 15,
       "model": "히스클리프",
-      "content": "... Yeah, that's an enemy all right."
+      "content": "……喂，那傢伙是敵人。"
     },
     {
       "id": 16,
       "model": "홍루",
-      "content": "Hmm... He has a name tag, though. I think it says, um... \"LCD.\""
+      "content": "嗯……仔細一看，那一位有戴名牌呢……上面寫的好像是LCD……"
     },
     {
       "id": 17,
       "model": "히스클리프",
-      "content": "LCD or whatever, who gives a toss?! Am I supposed to put up with every bastard havin' a dig at me?!"
+      "content": "管他什麼LCD還是啥的……難道連二話不說就來找碴的傢伙，我都得忍著嗎？！"
     },
     {
       "id": 18,
       "model": "뉴김삿갓",
-      "content": "Oh, dear!"
+      "content": "哎唷！"
     },
     {
       "id": 19,
       "model": "뉴김삿갓",
-      "content": "Such— bold— swings! Didn't know there was an encore to that performance! Hah!"
+      "content": "動作，是不是，太大了點啊？哈。"
     },
     {
       "id": 20,
       "model": "히스클리프",
-      "content": "You slippery little rat...!"
+      "content": "你這……跟老鼠一樣竄來竄去……！"
     },
     {
       "id": 21,
       "model": "뉴김삿갓",
-      "content": "Well, I do find this amusing enough, but if you intend to play with me... You ought to be more aware of your surroundings!"
+      "content": "唉，我是覺得挺好玩的啦……不過你啊，要跟我玩，是不是也該先提防一下背後？"
     },
     {
       "id": 22,
       "model": "그레고르",
-      "content": "Hey! Behind you! There's...!"
+      "content": "喂！後面，後面！"
     },
     {
       "id": 23,
       "model": "뉴김삿갓",
-      "content": "...!"
+      "content": "……！"
     },
     {
       "id": 24,
       "model": "히스클리프",
-      "content": "*gasp*"
+      "content": "呃……"
     },
     {
       "id": 25,
       "model": "홍루",
-      "content": "Wow~ He took out all those dopo-wearing people with just a single strike!"
+      "content": "哇……只揮了一下，就把那些穿道袍的人全都……"
     },
     {
       "id": 26,
       "model": "뉴김삿갓",
-      "content": "I'd say that about covers the price of admittance for your troupe circus. Wouldn't you?"
+      "content": "這場好戲的觀賞費，付這些應該夠了吧。是吧？"
     },
     {
       "id": 27,
       "model": "뉴김삿갓",
-      "content": "Well, then... I leave the rest to you folks. Wandering blades in murim tales never linger on the stage for long, after all!"
+      "content": "剩下的就請各位自己看著辦吧。畢竟武俠小說我也挺愛看的。"
     },
     {
       "id": 28,
       "model": "히스클리프",
-      "content": "Oi! Where the hell do you think you're going? Ah, damn it—"
+      "content": "喂，你要去哪？！啊，靠……"
     }
   ]
 }

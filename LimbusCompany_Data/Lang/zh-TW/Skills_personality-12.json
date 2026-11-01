@@ -1044,7 +1044,7 @@
         {
           "level": 3,
           "name": "無法洗清的罪",
-          "desc": "On Hit with this Skill: heal 50% of the HP damage dealt (max 100 per Skill)\n[WhenUse] Deal +1% damage for every 1% missing HP on self (max 60%)\n[WhenUse] If target has 6+ [Laceration], Coin Power +1\n[WhenUse] Consume every excess Stack of [BloodyHandGregFirst] past 10 Stack to gain the following effects:\n- Heal (Stacks consumed x 3) HP on self\n- If this unit consumed 10+ Stack, Coin Power +1\n[WhenUse] Gain 10 [Laceration]\n[EndSkill] Heal 10% HP on self",
+          "desc": "本技能命中時，使自身恢復造成體力傷害量50%的體力(每個技能最多100點)\n[WhenUse] 自身每失去體力上限1%的體力，使本技能造成的傷害+1%(最多+60%)\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 消耗所有超出10層的 [BloodyHandGregFirst]，並觸發以下效果：\n- 使自身恢復(消耗的層數×3)點體力\n- 若消耗的層數不低於10層，則使本技能的硬幣威力+1\n[WhenUse] 使自身增加10級 [Laceration] 強度\n[EndSkill] 使自身恢復體力上限10%的體力",
           "coinlist": [
             {
               "coindescs": [
@@ -1078,7 +1078,7 @@
         {
           "level": 4,
           "name": "無法洗清的罪",
-          "desc": "On Hit with this Skill: heal 50% of the HP damage dealt (max 100 per Skill)\n[WhenUse] Deal <style=\"highlight\">+1.5%</style> damage for every 1% missing HP on self <style=\"highlight\">(max 90%)</style>\n[WhenUse] If target has 6+ [Laceration], Coin Power +1\n[WhenUse] Consume every excess Stack of [BloodyHandGregFirst] past 10 Stack to gain the following effects:\n- Heal (Stacks consumed x 3) HP on self\n- If this unit consumed 10+ Stack, Coin Power +1\n<style=\"highlight\">- If this unit consumed 20 Stack, Reuse the final Coin</style>\n[WhenUse] Gain 10 [Laceration]\n[EndSkill] Heal 10% HP on self",
+          "desc": "本技能命中時，使自身恢復造成體力傷害量50%的體力(每個技能最多100點)\n[WhenUse] 自身每失去體力上限1%的體力，使本技能造成的傷害<style=\"highlight\">+1.5%(最多+90%)</style>\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 消耗所有超出10層的 [BloodyHandGregFirst]，並觸發以下效果：\n- 使自身恢復(消耗的層數×3)點體力\n- 若消耗的層數不低於10層，則使本技能的硬幣威力+1\n<style=\"highlight\">- 若消耗了20層，則重複使用本技能的最後一枚硬幣</style>\n[WhenUse] 使自身增加10級 [Laceration] 強度\n[EndSkill] 使自身恢復體力上限10%的體力",
           "coinlist": [
             {
               "coindescs": [
@@ -1131,7 +1131,7 @@
         {
           "level": 4,
           "name": "褪色的忍耐",
-          "desc": "<style=\"highlight\">[StartBattle] At 40%+ HP, gain 5 [Laceration] and activate [Laceration] up to 3 times on self (once per turn; lose [Laceration] Count equal to the number of times it was activated)\n[StartBattle] At less than 40% HP, consume up to 20 [BloodDinner] and heal the same value as HP (once per turn)</style>\n[StartBattle] Gain 3 [WornHeartGreg] (once per turn)",
+          "desc": "<style=\"highlight\">[StartBattle] 若現存體力不低於體力上限的40%，則使自身增加5級 [Laceration] 強度並觸發自身的 [Laceration] 最多3次(每回合最多1次。根據觸發的次數，相應使自身的 [Laceration] 回數減少)\n[StartBattle] 若現存體力低於體力上限的40%，則消耗最多20層 [BloodDinner] 並使自身恢復消耗 [BloodDinner] 層數相應的體力(每回合最多1次)</style>\n[StartBattle] 使自身獲得3層 [WornHeartGreg] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -1799,7 +1799,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若敵方單位(若目標為異想體，則改為本體)帶有的體力低於最大值的20%，則使用「慈悲」",
+                  "desc": "[OnSucceedAttack] 若敵方單位(若目標為異想體，則改為本體)帶有的體力不高於最大值的20%，則使用「慈悲」",
                   "summary": "[OnSucceedAttack] 使用「慈悲」"
                 }
               ]
@@ -1831,7 +1831,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若敵方單位(若目標為異想體，則改為本體)帶有的體力低於最大值的20%，<style=\"highlight\">或是目標帶有 [HorrHurtNightStiletto]，</style>則使用「慈悲」",
+                  "desc": "[OnSucceedAttack] 若敵方單位(若目標為異想體，則改為本體)帶有的體力不高於最大值的20%，<style=\"highlight\">或是目標帶有 [HorrHurtNightStiletto]，</style>則使用「慈悲」",
                   "summary": "[OnSucceedAttack] 使用「慈悲」"
                 }
               ]
@@ -1878,7 +1878,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標陷入混亂、帶有 [HorrHurtNightStiletto] 或體力(若目標為異想體，則以本體為準)低於最大值的20%，則使用「慈悲」",
+                  "desc": "[OnSucceedAttack] 若目標陷入混亂、帶有 [HorrHurtNightStiletto] 或體力(若目標為異想體，則以本體為準)不高於最大值的20%，則使用「慈悲」",
                   "summary": "[OnSucceedAttack] 使用「慈悲」"
                 }
               ]
@@ -1920,7 +1920,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標陷入混亂、帶有 [HorrHurtNightStiletto] 或體力(若目標為異想體，則以本體為準)低於最大值的20%，則使用「慈悲」",
+                  "desc": "[OnSucceedAttack] 若目標陷入混亂、帶有 [HorrHurtNightStiletto] 或體力(若目標為異想體，則以本體為準)不高於最大值的20%，則使用「慈悲」",
                   "summary": "[OnSucceedAttack] 使用「慈悲」"
                 }
               ]
@@ -1982,7 +1982,7 @@
         {
           "level": 4,
           "name": "慈悲",
-          "desc": "[CantDuel]\nThis Skill does not trigger Defense Skills and cannot gain E.G.O resources\nCoin Power +1 for every 20% missing HP on the enemy(Core) (max <style=\"highlight\">4</style>)\n<style=\"highlight\">Deal +1% damage for every 1% missing HP on the enemy(Core)</style>\n- If the enemy(Core) has 20%- HP, <style=\"highlight\">deal +120% damage instead</style>\n<style=\"highlight\">[WhenUse] Gain 1 [Agility] next turn (once per turn)</style>",
+          "desc": "[CantDuel]\n本技能不會觸發目標的守備技能；使用本技能不會獲得罪孽碎片\n目標(若為異想體，則以本體為準)每失去最大體力值的20%，則使本技能硬幣威力+1(最多+<style=\"highlight\">4</style>)\n<style=\"highlight\">目標(若為異想體，則以本體為準)每失去最大體力值的1%，則使本技能<noparse>造成的傷害+1%</noparse></style>\n- 若目標(若為異想體，則以本體為準)帶有的體力不高於最大值的20%，則<style=\"highlight\">改為</style>使本技能造成的傷害+<style=\"highlight\">120</style>%\n<style=\"highlight\">[WhenUse] 下回合使自身獲得1層 [Agility] (每回合最多1次)</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2060,7 +2060,7 @@
         {
           "level": 4,
           "name": "夜錐",
-          "desc": "Deal +<style=\"highlight\">15</style>% damage for every 1 ([Agility] on self + [Binding] on target) (max <style=\"highlight\">60</style>%)\n<style=\"highlight\">If target has Shield, deal +30% damage (in Focused Encounters, the Core or Parts)</style>\n<style=\"highlight\">Deal +1% damage for every 1% missing HP on the enemy(Core)</style>\n- If the enemy(Core) has 20%- HP, <style=\"highlight\">deal +100% damage instead</style>\n<style=\"highlight\">[WhenUse] Inflict 5 [DefenseDown]</style>\n[WhenUse] Coin Power +1 for every 4 ([Laceration] + [Vibration]) on target (max <style=\"highlight\">3</style>)\n[WinDuel] <style=\"highlight\">Inflict 4 [Vibration]</style> and trigger [VibrationExplosion]",
+          "desc": "自身每帶有1層 [Agility] 以及目標每帶有1層 [Binding]，則使本技能造成的傷害+<style=\"highlight\">15</style>%(最多+<style=\"highlight\">60</style>%)\n<style=\"highlight\">若目標帶有護盾，則使本技能造成的傷害+30%(若為集中遭遇戰，則以本體或部位判定)</style>\n<style=\"highlight\">目標(若為異想體，則以本體為準)每失去最大體力值的1%，則使本技能<noparse>造成的傷害+1%</noparse></style>\n- 若目標(若為異想體，則以本體為準)體力值不高於最大值的20%，則<style=\"highlight\">改為</style>造成的傷害+<style=\"highlight\">100</style>%\n<style=\"highlight\">[WhenUse] 對目標施加5層 [DefenseDown]</style>\n[WhenUse] 目標帶有的 [Laceration] 強度與 [Vibration] 強度之和每有4級，則使本技能硬幣威力+1(最多+<style=\"highlight\">3</style>)\n[WinDuel] <style=\"highlight\">使目標增加4級 [Vibration] 強度</style>，然後使其 [VibrationExplosion]",
           "coinlist": [
             {
               "coindescs": [
@@ -2336,7 +2336,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "當目標(本體)的體力值低於25%，或目標帶有 [DelusionGregBigBird] 時，使本硬幣造成的傷害 +60%",
+                  "desc": "當目標(本體)的體力值不高於25%，或目標帶有 [DelusionGregBigBird] 時，使本硬幣造成的傷害 +60%",
                   "summary": "使本硬幣造成的傷害+60%"
                 },
                 {
@@ -2375,7 +2375,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "當目標(本體)的體力值低於25%，或目標帶有 [DelusionGregBigBird] 時，使本硬幣造成的傷害 +60%",
+                  "desc": "當目標(本體)的體力值不高於25%，或目標帶有 [DelusionGregBigBird] 時，使本硬幣造成的傷害 +60%",
                   "summary": "使本硬幣造成的傷害+60%"
                 },
                 {
@@ -3018,7 +3018,7 @@
         {
           "level": 4,
           "name": "撕裂黎明之劍",
-          "desc": "<style=\"highlight\"> Deal +([Combustion] on self + [Combustion] on target)% damage (max 30%)</style>\n[StartBattle] Apply 2 [Protection] on 2 random other allies\n(prioritize allies that do not have [Protection]; among them, prioritize Dawn Office[TabExplain] allies)\n[BeforeUse] At 30 [StigmaWorkshopHandStep1], activate \"Crack of Dawn\" instead (once per turn)\n<style=\"highlight\">[WhenUse] Coin Power +1 for every 6 ([Combustion] + [Vibration]) on target (max 2)</style>\n[WhenUse] At 20+ [StigmaWorkshopHandStep1], activate the following effects:\n- Final Power +1\n- Convert all Coins in this Skill into [SuperCoin]s\n<style=\"highlight\">- On final Coin Hit, activate [Combustion] on target; then, reduce target's [Combustion] Count by 1</style>\n[EndSkill] Apply 1 [DawnLight] next turn on all allies\n- At 20+ [StigmaWorkshopHandStep1], apply 1 additional [DawnLight]",
+          "desc": "<style=\"highlight\">使本技能造成的傷害+(自身與目標帶有的 [Combustion] 強度)%(最多+30%)</style>\n[StartBattle] 隨機使除自身以外的2名友方單位獲得2層 [Protection]\n(優先使未帶有 [Protection] 且屬於黎明事務所[TabExplain]的友方單位獲得。每回合最多1次)\n[BeforeUse] 若自身帶有30層 [StigmaWorkshopHandStep1]，則改為使用「黎明時分」(每回合最多1次)\n<style=\"highlight\">[WhenUse] 目標的 [Combustion] 強度與 [Vibration] 強度之和每有6級，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 若自身的 [StigmaWorkshopHandStep1] 層數不低於20層，則觸發以下效果\n- 使本技能的最終威力+1\n- 使本技能的所有硬幣轉變為 [SuperCoin]\n<style=\"highlight\">- 本技能的最後一枚硬幣命中時，觸發目標的燒傷，並使其燒傷回數減少1回</style>\n[EndSkill] 下回合使全體友方單位獲得1層 [DawnLight]\n- 若自身的 [StigmaWorkshopHandStep1] 層數不低於20層，則額外獲得1層 [DawnLight]",
           "coinlist": [
             {
               "coindescs": [

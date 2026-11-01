@@ -183,10 +183,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Gain +1 [Breath] Count. Gain [Breath] equal to [Burst] on target (max 5)"
+                  "desc": "[OnSucceedAttack] 使自身獲得1回呼吸法，並使自身獲得等同於目標 [Burst] 強度的 [Breath] 強度(最多5級)"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] Gain 3 [Breath] next turn. Gain [Breath] Count equal to [Burst] Count on target next turn (max 2)"
+                  "desc": "[OnSucceedAttackHead] 下回合使自身增加3級呼吸法強度，並於下回合使自身獲得回數等同於目標 [Burst] 回數的 [Breath] (最多2回)"
                 }
               ]
             },
@@ -233,10 +233,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Gain +1 [Breath] Count. Gain [Breath] equal to [Burst] on target (max 5)"
+                  "desc": "[OnSucceedAttack] 使自身獲得1回呼吸法，並使自身獲得等同於目標 [Burst] 強度的 [Breath] 強度(最多5級)"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] Gain 3 [Breath] next turn. Gain [Breath] Count equal to [Burst] Count on target next turn (max 2)"
+                  "desc": "[OnSucceedAttackHead] 下回合使自身增加3級呼吸法強度，並於下回合使自身獲得回數等同於目標 [Burst] 回數的 [Breath] (最多2回)"
                 }
               ]
             },

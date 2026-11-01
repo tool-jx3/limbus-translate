@@ -2,131 +2,131 @@
   "dataList": [
     {
       "id": "announcer_cheer_51_1",
-      "dlg": "- Lessee here... Popcorn, check. Nachos... check.\n- Papa! Coke as usual? No ice?\n- Ya got that right, Kiddo! Well, all seems to be in order... Then let's get this show on the road!"
+      "dlg": "我看看……爆米花？帶了，玉米片……在這裡。\n把拔是可樂對吧？！去冰！\n不愧是我家丫頭！好……那麼，開始吧？"
     },
     {
       "id": "announcer_cheer_51_2",
-      "dlg": "- Ooh~ Loading... Loading... and clash!\n- Hmm~ Papa wouldn't waste time sizin' 'em up. I'd rush right in and <i>BAM!</i> Smash its head to strawberry jam.\n- Huh? The <i>head</i>, Papa? That's the wrong strat! You told me last time to grab a greatsword and donut its \"Body\"—that's the gimmick!"
+      "dlg": "喔～好像要開打了？\n嗯～換作是爸爸，有那種互相試探的時間，早就「砰！」地衝出去先把腦袋砸爛了。\n噢，把拔～什麼腦袋啦！\n嗯……？\n把拔你之前不是說過，這種時候要先用那把超大的大劍在身體上開個洞嗎！"
     },
     {
       "id": "announcer_specialcheer_51_1",
-      "dlg": "- It's here! The crisis arc! \"At last, the long-dreaded doom descends! Will they prevail?!\"\n- Don't get too excited yet, Kiddo. These shows sometimes jump straight from the crisis arc to the downer ending without ever getting to the climax."
+      "dlg": "這是……起承轉合的「轉」！主角終於要面臨危機了……\n哎呀，丫頭。別太期待。這種時候一個不小心，也可能直接掉進壞結局的。"
     },
     {
       "id": "announcer_specialcheer_51_2",
-      "dlg": "Hmm... Weird, the games I played always had healer characters... Don't these guys have one? When shit happens, you gotta spam heal first before anything else."
+      "dlg": "嗯……我玩的遊戲裡都有幫隊友回血的角色，他們沒有嗎……？這種時候應該先補血再來煩惱的。"
     },
     {
       "id": "announcer_enemy_break_51_1",
-      "dlg": "- Ooh! Stagger window! Okay, full burst & ult spam, go!\n- Hold your horses, Kiddo. That's a fighting game strat.\n- Huh? Hang on. Is this supposed to be played like a strategy game or something?\n- Right on. Use this window to beat 'em all down to low HP."
+      "dlg": "喔！暈眩了！現在只要往那裡狂塞必殺技……！\n不對、不對。丫頭。那是一對一的遊戲才那樣。\n嗯……？呃，那……要像策略遊戲那樣玩嗎？\n沒錯。趁出現破綻的時候，其他勢力也要平均地痛扁一頓才行。"
     },
     {
       "id": "announcer_ally_break_51_1",
-      "dlg": "Bruh... zero brain cells. There's always that one frickin' troll in comic books—that guy who should be playing it safe, but keeps yapping and clip farming in front until they get folded."
+      "dlg": "沒救了……漫畫裡一定會有這種人吧？明明該收斂一點，卻老是在前面跳來跳去，結果就落得那種下場的傢伙。"
     },
     {
       "id": "announcer_killenemy_51_1",
-      "dlg": "- Bwahahaha! Got'em! Whaddaya think, Kiddo? Is Papa playin' on a pro-gamer level or what?\n- Hmm? Uh, but you're not the one who's piloting their account, Papa..."
+      "dlg": "哇哈哈！秒了！怎麼樣？爸爸的身手！\n嗯？又不是把拔在操作的吧……？"
     },
     {
       "id": "announcer_ally_dead_51_1",
-      "dlg": "Really? Getting yourselves killed already...? Hey, somebody should go check who's on the controller 'cuz they got no idea what they're doing!"
+      "dlg": "搞什麼。這麼快就死了，真沒意思……這是指揮有問題吧？"
     },
     {
       "id": "announcer_enemy_adv_51_1",
-      "dlg": "Ooh... The tension's aboutta pop off! Time for the hero to show up and pull a badass self-sacrifice move, cuz that'd be absolutely peak!"
+      "dlg": "喔……一觸即發的局面！這時候只要主角來個帥氣的犧牲，就完全是高潮了！"
     },
     {
       "id": "announcer_ally_adv_51_1",
-      "dlg": "- What's wrong? Is this boring you, Kiddo?\n- Well... It gets old when every fight's a curbstomp.\n- Ya don't like OP protags...? That's it! We're marathoning the classics of power fantasy tonight!\n- Uh... But I... sure."
+      "dlg": "嗯……\n怎麼了，丫頭。不好看嗎？\n不是……一直這樣輕鬆贏，不會有點膩嗎……？\n丫頭還不懂無雙作品的樂趣啊……好！從今天起，名作漫畫從頭追到尾！\n呃、呃……知道了啦。"
     },
     {
       "id": "announcer_ally_advex_51_1",
-      "dlg": "- A tap from Papa's OP sword, and they'd all be toast...\n- Still holding strong, even though they're shaking in their boots... That's some commendable grit.\n- There <i>is</i> a trope for chars like 'em—A bit of downtime, and they'll be like \"this is our last shot!!\" and delete the boss."
+      "dlg": "爸爸那把超強劍只要揮一下，看起來就會全部死光……\n腿都在發抖了還在硬撐啊……挺有毅力的嘛。\n那種傢伙只要喊著「這是最後一擊……！」然後集氣，倒是真的會打倒最終BOSS呢。"
     },
     {
       "id": "announcer_danger_51_1",
-      "dlg": "- *crunch* *munch* Oooh...!!\n- *glug* *glug* Phoo...\n- Hey, Papa, d'you think—\n- Shush, Kiddo. Important scene comin' up."
+      "dlg": "喔喔……\n呼……\n把拔，接下來……\n噓。安靜。這是重要的場面，丫頭。"
     },
     {
       "id": "announcer_enemy_specialskill_51_1",
-      "dlg": "Here it comes...! The party-wipe ult phase!"
+      "dlg": "要來了……！超強的超必殺技！！！"
     },
     {
       "id": "announcer_enemy_specialgimmick_51_1",
-      "dlg": "- The hell are they doing back there—tryna lure me out, huh? *huff* I am <i>the</i> Matthias! Did you really think I'd fall for that lousy trap?\n- Like I said, Papa... You're not even the one piloting their account..."
+      "dlg": "在後面磨磨蹭蹭搞什麼……想引我上鉤嗎？呼……以為我馬蒂亞斯會中那種陷阱嗎？\n不是啦，就說不是把拔在操作了……？"
     },
     {
       "id": "announcer_advatk_physical_51_1",
-      "dlg": "Badass! That one deserves a \"well done!\" sticker."
+      "dlg": "做得好！這值得一張獎勵貼紙。"
     },
     {
       "id": "announcer_disadvatk_physical_51_1",
-      "dlg": "- W-what was—what even...? What the heck was that supposed to—ah, well...\n- Some new hybrid genre...? Action comedy...?"
+      "dlg": "那是、那、那……什麼……啊……\n新的混搭類型嗎……？動作搞笑……？"
     },
     {
       "id": "announcer_advatk_attr_51_1",
-      "dlg": "- Hm, well... Good work, I guess.\n- You sound so meh about it. Did you get tired of this new one again, Papa?\n- Papa's not a fan of forced strat fights, y'know~ *sigh* Brute strength versus brute strength! Now that's a real fight!"
+      "dlg": "嗯，還行……挺順利的。\n怎麼突然這麼冷淡？又膩了喔，把拔？\n爸爸最討厭這種要動腦的戰鬥了～呼，戰鬥果然還是要熱血地比力氣。"
     },
     {
       "id": "announcer_disadvatk_attr_51_1",
-      "dlg": "- Eh? You sure that's the right strat...?\n- Right, wrong, who cares? Everything's a DPS check if ya got 'nuff brute force!\n- ......."
+      "dlg": "欸？那樣……對嗎？\n對不對不重要，丫頭。反正用蠻力砸爛解決，結果都一樣。\n……"
     },
     {
       "id": "announcer_enemy_specialbuff_51_1",
-      "dlg": "- Papa! D'you think those guys might be Family, too?\n- Eh...? I don't... think so? Why do ya ask, Kiddo?\n- 'Cause they suddenly look hella juiced up... Like they activated their tats like we do or something. Weird..."
+      "dlg": "把拔！那些傢伙該不會也是家人吧？\n嗯嗯……？應該……不是吧？問這個幹嘛，丫頭？\n因為他們好像跟發動了我們的刺青一樣，變得超猛的……好神奇喔……"
     },
     {
       "id": "announcer_enemy_specialdebuff_51_1",
-      "dlg": "- They're mopin' around like a monster with debuffs stacked up all the way to heaven... Hey, Kiddo. Remember what Papa always tells ya to do when we run raids together?\n- Hehe... Blow the full burst rotation before the buff window wears off!!"
+      "dlg": "看他們那副拖拖拉拉的樣子，就像中了減益效果的怪物……丫頭，跟爸爸一起打團的時候，爸爸是怎麼說的？\n呵呵……趁增益效果消失前，把所有東西全砸下去！！！"
     },
     {
       "id": "announcer_ally_specialbuff_51_1",
-      "dlg": "- These guys are totally sus. Right, Papa?\n- Maybe they're setting up the... whatchamacallit's gun? Hm. I don't know if I like fussy little tricks like that."
+      "dlg": "他們在搞什麼可疑的事，對吧把拔。\n是在埋伏筆嗎？嗯。小把戲很麻煩啊。"
     },
     {
       "id": "announcer_ally_specialdebuff_51_1",
-      "dlg": "- Ya just gotta—\n- Grit! It's all about grit!\n- Hell yeah, that's my girl! Exactly—Ya just gotta grit your teeth and tough it out!"
+      "dlg": "那種時候……\n靠毅力啊，毅力！\n哇～不愧是我家丫頭！沒錯，靠毅力撐住就對了！"
     },
     {
       "id": "announcer_enemy_destroy_51_1",
-      "dlg": "Huh. Unboxed a layer, did they? These ones get weaker the more layers you remove, I guess."
+      "dlg": "哈，剝掉一層包裝紙了嗎？這邊反而是每卸下一層就變得越弱啊。"
     },
     {
       "id": "announcer_enemy_destroy_51_2",
-      "dlg": "- They should've nuked that part ages ago. Man, I hate filler...\n- Remember, Kiddo? It's the boring \"filler episodes\" that make or break the dramatic climax of any story! Setup and payoff, get what I mean?\n- Papa... Aren't filler episodes a bit old-school...?"
+      "dlg": "早就該打爛了，我一直在想到底什麼時候才要推進度，悶到快死了……\n丫頭，爸爸不是常說嗎？為了戲劇效果，總是需要讓人悶的段落啊？\n……老、老實說。我是覺得……那只有老作品才會那樣啦。"
     },
     {
       "id": "announcer_round_takebigdmg_51_1",
-      "dlg": "- Damn... That's one hell of a move!\n- Uh, Papa...? It's our guys who took the hit.\n- Whaddayamean \"our guys,\" Kiddo? There's not even a single \"our guy\" in there! It's just badass, that's all... Damn..."
+      "dlg": "哇……這下幹得漂亮啊？\n把、把拔……？受傷的是我們這邊的人耶？\n那裡又沒有我們這邊的人？場面很帥不就好了。哈……"
     },
     {
       "id": "announcer_round_takebigdmg_51_2",
-      "dlg": "Yeah, sometimes you get cooked, but that's only temporary. Big deal... the heroes take a beating early in the fight—to lock in the next moment and hit the comeback arc! That's, like, a classic!"
+      "dlg": "就算陷入劣勢也只是一時的嘛……戰鬥前期主角這方先吃一次虧再逆轉，本來就是老套路吧？"
     },
     {
       "id": "announcer_round_givebigdmg_51_1",
-      "dlg": "Haha! Bullseye! How's that, Kiddo?!"
+      "dlg": "哈哈！正中紅心！對吧，丫頭？"
     },
     {
       "id": "announcer_round_givebigdmg_51_2",
-      "dlg": "- See that, Kiddo? Now <i>that's</i> what I call a slasher—a real deal thriller! Gimme blood! Gimme gore! Gimme action!\n- I mean, okay, but shouldn't there be more to the story than just hack-and-slash? Badass Fixer lore, maybe... Eeek!!\n- ... We don't need to have more \"media lessons,\" do we?"
+      "dlg": "看看，丫頭。這就是砍殺片，這就是驚悚片！鮮血嘩啦嘩啦地噴，毫不留情地亂砍！\n是啦……好看是好看，可是除了一直打，也要有像收尾人那樣帥氣的故事……呃！\n……我家丫頭的「功課」還做得不夠啊？"
     },
     {
       "id": "announcer_multikillenemy_51_1",
-      "dlg": "This is just like what happened in Season 2, Episode 4 of \"Iron Host: The Animated Series\"...! Just as you're about to give up on the protagonist who you <i>thought</i> could only fight one-on-one duels, he finally awakens his true power, and..."
+      "dlg": "這……跟《鐵之軍勢 動畫版》系列第二季第四集的感覺很像……！本以為只能一對一決勝負的主角，終於覺醒了能力……"
     },
     {
       "id": "announcer_battle_win_51_1",
-      "dlg": "- Oh, man... That was a good watch. It was almost like we rented out a whole movie theater, wasn't it?\n- There were bits I literally couldn't catch 'cause you kept howling right next to me, Papa... Eh, but that's basically every watch party with you."
+      "dlg": "哈～看得真過癮。感覺就像包下整間電影院，大聲嚷嚷地看一樣？\n雖然中間有些地方因為把拔的聲音沒看到……嘖，反正每次都這樣～"
     },
     {
       "id": "announcer_battle_defeat_51_1",
-      "dlg": "- <i>This</i> is this ending they went with? It's so frickin' scuffed...!\n- Listen, Kiddo... There's somethin' about downer endings you can't get from—\n- Hello, Papa? Can you, like, not? We can't let them cook with this! Hey! That wasn't the end of the episode, right? <i>Right?!</i>"
+      "dlg": "居然搞出這種爛結局……\n丫頭……壞結局也有它自己的味道……\n把、把拔你先等一下！這種事不能就這樣算了！這集還沒結束吧，對吧？！"
     },
     {
       "id": "announcer_equip_51_1",
-      "dlg": "- Yo, Kiddo! C'mere, check this shit out!\n- Huh? What is it?\n- Papa's brought home—hup!—an exciting little homework project to work on together!\n- Is that a mic...? No frickin' way... Am I making my pop idol debut?!\n- ... What? No, it's nothing like that..."
+      "dlg": "丫頭～過來看看這個好嗎？\n喔？什麼、什麼？\n爸爸為了跟丫頭一起做……嘿咻！帶了一份有趣的作業回來！\n麥克風……？難、難道是……偶像出道？！\n……不，不是那樣啦……"
     }
   ]
 }

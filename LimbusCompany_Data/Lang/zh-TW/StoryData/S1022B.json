@@ -19,31 +19,31 @@
     {
       "id": 3,
       "model": "돈키호테",
-      "content": "Hoh?! Young Pwie, thou possessed the gift of speech all along?"
+      "content": "哦咦！？普依，汝原來會說話嗎！？"
     },
     {
       "id": 4,
       "model": "뷔페어린이",
-      "content": "... I know... you two..."
+      "content": "……我知道……你們兩個……"
     },
     {
       "id": 5,
-      "content": "Pwie's gaze wavered warily between Meursault and me."
+      "content": "普依這麼說著，輪流看著我和莫梭。"
     },
     {
       "id": 6,
       "model": "뷔페어린이",
-      "content": "I cried... a lot... 'Cuz it hurt a lot... and 'cuz I was sad... And I couldn't get up..."
+      "content": "哭了……好多好多。因為又痛又難過……一直躺在地上……"
     },
     {
       "id": 7,
       "model": "뷔페어린이",
-      "content": " 'Cuz of you two... I was scared... And it only got scarier and scarier..."
+      "content": "因為你們……我一直很害怕……越來越害怕。"
     },
     {
       "id": 8,
       "model": "단테",
-      "content": "<... Pwie remembers what happened before the Liquidation.>"
+      "content": "<……還記得。被庫存整理之前的事。>"
     },
     {
       "id": 9,
@@ -63,7 +63,7 @@
     {
       "id": 12,
       "model": "뫼르소",
-      "content": "Because our actions have led to your suffering."
+      "content": "因為你因我們而受了苦。"
     },
     {
       "id": 13,
@@ -73,91 +73,91 @@
     {
       "id": 14,
       "model": "뷔페어린이",
-      "content": "... But I stopped crying now."
+      "content": "……可是現在已經不會流淚了。"
     },
     {
       "id": 15,
       "model": "뷔페어린이",
-      "content": "... So... I dunno what tears mean anymore."
+      "content": "所以……現在已經不知道哭是什麼了。"
     },
     {
       "id": 16,
       "model": "뷔페어린이",
-      "content": "I wanna forget... but... I shouldn't..."
+      "content": "想忘掉。可是不能忘……"
     },
     {
       "id": 17,
       "model": "홍루",
-      "content": "Somehow... they seem very confused."
+      "content": "總覺得……好像非常混亂的樣子呢。"
     },
     {
       "id": 18,
-      "content": "Pwie muttered for a bit while staring at the ground, then took a tentative step toward us."
+      "content": "盯著地面喃喃自語了一會兒的普依……雖然只有一步，還是朝我們走近，接著說了下去。"
     },
     {
       "id": 19,
       "model": "뷔페어린이",
-      "content": "Why'd you... come to me?"
+      "content": "你們……為什麼要來找我？"
     },
     {
       "id": 20,
       "model": "뫼르소",
-      "content": "Because you called to us."
+      "content": "因為你呼喚了我們。"
     },
     {
       "id": 21,
       "model": "뷔페어린이",
-      "content": "Why... did I?"
+      "content": "我……為什麼在等你們？"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "That's... not a question we have an answer to at the moment. Perhaps something drew us toward you."
+      "content": "那個……目前還無法得知。或許是受到了某種吸引。"
     },
     {
       "id": 23,
       "model": "뷔페어린이",
-      "content": "... I gotta go up to fifth floor."
+      "content": "……我必須上去5樓。"
     },
     {
       "id": 24,
       "model": "뷔페어린이",
-      "content": "When I was sleeping... there were others there with me..."
+      "content": "在我睡著的時候……身邊有一些人……"
     },
     {
       "id": 25,
       "model": "뷔페어린이",
-      "content": "They said... They whispered that... everyone's gonna be so happy to see me and welcome me when I wake up. They even sang a really nice song... too."
+      "content": "他們悄悄對我說，等我醒來，大家都會歡迎我。還唱了……好聽的歌給我聽。"
     },
     {
       "id": 26,
       "model": "뷔페어린이",
-      "content": "Did you sing to me?"
+      "content": "那是你們嗎？"
     },
     {
       "id": 27,
       "model": "뫼르소",
-      "content": "No. We did not sing to you. The one who sang to you is the woman whom you laid your hands on shortly after your awakening."
+      "content": "不，為你唱歌的不是我們。為你唱歌的人……是你醒來後伸手觸碰的那個人。"
     },
     {
       "id": 28,
       "model": "뷔페어린이",
-      "content": "But... she didn't move. Or speak to me."
+      "content": "可是……那個人不會動。也沒有說話。"
     },
     {
       "id": 29,
       "model": "뫼르소",
-      "content": "That's because... she is dead."
+      "content": "那是……因為她已經死了。"
     },
     {
       "id": 30,
       "model": "뷔페어린이",
-      "content": "You can't move... when you're dead?"
+      "content": "死掉的話……就不能動了嗎？"
     },
     {
       "id": 31,
       "model": "뫼르소",
-      "content": "No."
+      "content": "沒錯。"
     },
     {
       "id": 32,
@@ -167,110 +167,110 @@
     {
       "id": 33,
       "model": "뫼르소",
-      "content": "Because the body has ceased to function, and the mind has been extinguished."
+      "content": "因為肉體會毀壞，精神會消亡。"
     },
     {
       "id": 34,
       "model": "뷔페어린이",
-      "content": "Extinguish...? Mind...? Weird words."
+      "content": "消亡……精神……好奇怪的話。"
     },
     {
       "id": 35,
       "model": "뷔페어린이",
-      "content": "I don't like that."
+      "content": "我不喜歡。"
     },
     {
       "id": 36,
       "model": "단테",
-      "content": "<Hmmm... Yeah, they're not the most straightforward of concepts. Especially inside the Grand Magasin.>"
+      "content": "<嗯……這確實是太艱深、太複雜的概念了。在這間百貨公司裡更是如此。>"
     },
     {
       "id": 37,
       "model": "뷔페어린이",
-      "content": "I was lying on the ground... and my eyes were closed..."
+      "content": "我躺著……閉上了眼睛……"
     },
     {
       "id": 38,
       "model": "뷔페어린이",
-      "content": "I think... that was death. But I woke up again. Didn't get extinguished."
+      "content": "那……應該就是死亡吧。可是我又醒過來了。沒有消亡。"
     },
     {
       "id": 39,
       "model": "뫼르소",
-      "content": "... Because dying within the Grand Magasin is a fundamentally different concept from dying outside of it."
+      "content": "……大概是因為百貨公司內部的死亡，在概念上與百貨公司外部不同。"
     },
     {
       "id": 40,
       "model": "뷔페어린이",
-      "content": "... Why is it different...?"
+      "content": "……為什麼不一樣……？"
     },
     {
       "id": 41,
       "model": "뫼르소",
-      "content": "Because..."
+      "content": "那是……"
     },
     {
       "id": 42,
       "model": "뫼르소",
-      "content": "... I don't know. I don't know if there really is any difference."
+      "content": "我不知道。就連是否真的不同也不知道。"
     },
     {
       "id": 43,
       "model": "뷔페어린이",
-      "content": "... I don't... like that."
+      "content": "……我不喜歡。"
     },
     {
       "id": 44,
       "model": "뷔페어린이",
-      "content": "I don't want to... get extinguished."
+      "content": "希望不要……消亡。"
     },
     {
       "id": 45,
       "model": "뷔페어린이",
-      "content": "... And I..."
+      "content": "……還有，我……"
     },
     {
       "id": 46,
       "model": "뷔페어린이",
-      "content": "I'm hungry."
+      "content": "肚子餓了。"
     },
     {
       "id": 47,
       "model": "뷔페어린이",
-      "content": "So I tried to eat something, but... someone took it from me."
+      "content": "所以我想吃點東西……可是被人搶走了。"
     },
     {
       "id": 48,
       "model": "돈키호테",
-      "content": "Fie, to think that there were other souls with young Heathcliff's antics!"
+      "content": "是誰做出了那種希斯克利夫先生才會幹的事……！"
     },
     {
       "id": 49,
       "model": "단테",
-      "content": "<Oddly specific, but... also spot-on.>"
+      "content": "<一下子就猜中了犯人啊……>"
     },
     {
       "id": 50,
       "model": "홍루",
-      "content": "I don't see any restaurants on this floor, but... if this really is a \"department store,\" there has to be places selling food somewhere."
+      "content": "附近雖然沒看到餐廳……不過這裡是百貨公司，總會在哪裡有餐飲店的。"
     },
     {
       "id": 51,
       "model": "홍루",
-      "content": "Let's go find one together, hmm?"
+      "content": "一起去看看吧。"
     },
     {
       "id": 52,
       "model": "뷔페어린이",
-      "content": "... Okay."
+      "content": "……嗯。"
     },
     {
       "id": 53,
-      "content": "Though Pwie seemed to be giving us a somewhat wide berth still, I noticed that they weren't hanging as far back as they were before. They were standing some distance from us with a blank stare in their eyes..."
+      "content": "普依雖然仍和我們保持距離，卻呆呆地站在比之前更近的地方。"
     },
     {
       "id": 54,
-      "content": "... as though they were waiting for us to go somewhere."
+      "content": "彷彿在等我們前往某處。"
     }
   ]
 }

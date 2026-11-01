@@ -57,7 +57,7 @@
     },
     {
       "key": "Q5008",
-      "title": "(내부) 르누아르 길막 대면",
+      "title": "（內部）面對擋路的漆黑派",
       "steps": [
         {
           "index": 0,
@@ -67,15 +67,15 @@
     },
     {
       "key": "Q5006",
-      "title": "(내부) 르누아르 무리 돌파",
+      "title": "（內部）突破漆黑派人群",
       "steps": [
         {
           "index": 0,
           "goalDescription1": "打倒9位漆黑派 專櫃人員[陽光]",
-          "goalDescription2": "르누아르 경비원 7기 처치",
-          "goalDescription3": "르누아르 컨템포러리 점원 3기 처치",
-          "goalDescription4": "르누아르 메종 점원 2기 처치",
-          "goalDescription5": "르누아르 메종 2기 처치"
+          "goalDescription2": "打倒7位漆黑派 警衛",
+          "goalDescription3": "打倒3位漆黑派 時尚展廳 專櫃人員",
+          "goalDescription4": "打倒2位漆黑派 品牌旗艦店專櫃人員",
+          "goalDescription5": "打倒2位漆黑派 品牌旗艦店"
         }
       ]
     },

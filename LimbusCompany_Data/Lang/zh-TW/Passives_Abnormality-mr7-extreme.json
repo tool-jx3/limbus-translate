@@ -48,7 +48,7 @@
     {
       "id": 139305,
       "name": "節拍器",
-      "desc": "If the [AccumulatedPastMirror] is an odd number, gain 3 [Vulnerable] and [AttackDmgUp]\nIf it is an even number, gain 3 [Protection] and [AttackDmgDown]"
+      "desc": "[AccumulatedPastMirror] 層數為奇數時，對自身施加3層 [Vulnerable] 並使自身獲得3層 [AttackDmgUp]\n層數為偶數時，使自身獲得3層 [Protection] 並對自身施加3層 [AttackDmgDown]"
     },
     {
       "id": 139401,

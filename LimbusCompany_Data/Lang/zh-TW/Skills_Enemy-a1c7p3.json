@@ -182,7 +182,7 @@
       "levelList": [
         {
           "level": 1,
-          "name": "Don't Rush Me",
+          "name": "別催我",
           "desc": "[WhenUse] 若目標的 [Laceration] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 自身每帶有1層 [BloodScissor]，使本技能拚點威力+1(最多+3)\n自身每帶有1層 [HardenedBlood]，使本技能造成的傷害+7%(最多+35%)\n[EndSkill] 消耗所有 [HardenedBlood]",
           "coinlist": [
             {
@@ -389,7 +389,7 @@
         {
           "level": 1,
           "name": "加入這歡樂的遊行！",
-          "desc": "[WhenUse] Final Power +1 for every 5 [FestivalFever] on self or every 6 [Laceration] on the target (max 3)\n[WhenUse] At less than 20 [BloodDinner], gain 20 [Laceration] and immediately trigger it once, then reduce [Laceration] Count by 1\n[EndSkill] Consume 20 [BloodDinner]",
+          "desc": "[WhenUse] 自身每帶有5層 [FestivalFever] 或目標每帶有6級 [Laceration] 強度，使本技能的最終威力+1(最多+3)\n[WhenUse] 若 [BloodDinner] 低於20層，則使自身增加20級 [Laceration] 強度並立即觸發1次，隨後使自身的 [Laceration] 回數減少1回\n[EndSkill] 消耗20層 [BloodDinner]",
           "coinlist": [
             {
               "coindescs": [
@@ -448,7 +448,7 @@
         {
           "level": 1,
           "name": "永遠的幸福王國拉．曼查領！",
-          "desc": "[WhenUse] At less than 40 [BloodDinner], gain 20 [Laceration] and +2 [Laceration] Count, immediately trigger it twice, then reduce [Laceration] Count by 2\n[EndSkill] Consume 40 [BloodDinner]\n[EndBattle] Consume all [HardenedBlood] and [FestivalFever]",
+          "desc": "[WhenUse] 若 [BloodDinner] 低於40層，則使自身獲得20級 [Laceration] 強度與2回 [Laceration] 後立即觸發2次，隨後使自身的 [Laceration] 回數減少2回\n[EndSkill] 消耗40層 [BloodDinner]\n[EndBattle] 消耗所有 [HardenedBlood] 和 [FestivalFever]",
           "coinlist": [
             {
               "coindescs": [

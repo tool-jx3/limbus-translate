@@ -29,7 +29,7 @@
     {
       "id": 9286,
       "name": "漆黑派 品牌西裝褲",
-      "desc": "When allies that have 2+ [Charge] Potency trigger [VibrationExplosion], apply the following effects:\n- Deal ([Charge] Potency on self x [Charge] Count) Envy Damage (2 times per skill, max 100 damage per tick)\n- Every 2 times the above effect deals Envy Damage, inflict 3 [Binding] next turn on target\n\nEvery time an ally triggers [VibrationExplosion] using a Skill, gain ([Charge] Potency on self / 3) [AttackUp] next turn (max 5 per turn; rounded down)",
+      "desc": "若友方單位的 [Charge] 強度不低於2級且使目標 [VibrationExplosion] 時，適用以下效果\n- 造成(自身的 [Charge] 強度×回數)點嫉妒傷害(每個技能2次，每次最多100點)\n- 若透過上述效果造成了2次嫉妒傷害，則下回合對目標施加3層 [Binding]\n\n友方單位以技能使目標 [VibrationExplosion] 時，每次 [VibrationExplosion] 使自身於下回合獲得(自身的 [Charge] 強度÷3)層 [AttackUp] (每回合最多5層，無條件<noparse>捨去</noparse>)",
       "simpleDesc": [
         {
           "abilityID": 9286,

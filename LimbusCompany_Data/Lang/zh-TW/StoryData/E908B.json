@@ -2,188 +2,188 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Corridor of the Middle Nursefather",
+      "place": "蜘蛛巢，中指父輩的長廊",
       "model": "앨런",
-      "content": "Okay! And that about wraps up the Middle's Corridor."
+      "content": "這樣一來，中指的長廊也處理完了呢。"
     },
     {
       "id": 1,
       "model": "앨런",
-      "content": "Thanks to you folks, we managed to cut the door cataloging workload by 80%! I really appreciate everyone going the extra mile to check each and every door, too. Made my life a whole lot easier."
+      "content": "多虧了這些情報，篩選作業所需的時間減少了將近80%，各位還親自幫忙確認，真的輕鬆多了。"
     },
     {
       "id": 2,
       "model": "오티스",
-      "content": "It's all thanks to the Manager's excellent strategization."
+      "content": "全靠經理卓越的指揮。"
     },
     {
       "id": 3,
       "model": "앨런",
-      "content": "Next up, the Thumb's Corridor. ... But we actually found a lot of intel lying around there, so we just need you to check some of the doors in its basement."
+      "content": "接下來是拇指的長廊……不過這裡留下的資料比想像中多，只要麻煩各位確認下方的幾扇門就行了。"
     },
     {
       "id": 4,
       "model": "단테",
-      "content": "<Intel...?>"
+      "content": "<資料……？>"
     },
     {
       "id": 5,
       "model": "파우스트",
-      "content": "The manager expresses interest in the aforementioned \"intel.\""
+      "content": "經理說他很好奇是什麼樣的資料。"
     },
     {
       "id": 6,
       "model": "앨런",
-      "content": "Ah, that. In the Thumb's Corridor, we came across a bundle of papers detailing the comings and goings of the Thumb's members and the orders they were carrying. Whoever wrote the logs has been diligently keeping them updated—the last entry was written not so long ago."
+      "content": "啊。有一疊紙記錄著拇指那邊有誰來過、下過什麼命令之類的事。直到最近都還有在寫呢。"
     },
     {
       "id": 7,
       "model": "앨런",
-      "content": "While the contents of the notes weren't all that interesting, they helped us get an idea of where each door in that Corridor leads to."
+      "content": "內容上是沒什麼特別的，不過我們能據此推測出門所連接的大致區域。"
     },
     {
       "id": 8,
       "model": "료슈",
-      "content": "... Valencina's shitty scrap papers."
+      "content": "……是瓦倫奇娜那傢伙收集的紙片嗎。"
     },
     {
       "id": 9,
       "model": "료슈",
-      "content": "She'd been keeping up with that useless shit this whole time? Hah."
+      "content": "居然還在做那種沒意義的事。哈。"
     },
     {
       "id": 10,
       "model": "단테",
-      "content": "<Useless shit?>"
+      "content": "<沒意義的事？>"
     },
     {
       "id": 11,
       "model": "료슈2",
-      "content": "*puff* Remnants of her desperate search for a thread to cling to."
+      "content": "呼……那些紙上寫的東西，是她拚命掙扎、想找出有沒有能抓住的繩索所留下的痕跡。"
     },
     {
       "id": 12,
       "model": "료슈",
-      "content": "You found one of her \"backup ticket\" hoards."
+      "content": "大概是那傢伙眾多備用門票的其中之一吧。"
     },
     {
       "id": 13,
       "model": "앨런",
-      "content": "I've marked any doors that need work with a drone—there should be about three or four of them. While you guys do that, I've got some leftover work to take care of over here, so..."
+      "content": "需要處理的門已經用無人機標示出來了。雖然只有三、四扇，但我在這裡要處理的工作有點多……"
     },
     {
       "id": 14,
-      "content": "I've been noticing this throughout our interactions,"
+      "content": "從剛才我就感覺到了……"
     },
     {
       "id": 15,
-      "content": "but whenever anything irrelevant to his work came up, Alan seemed to have a way of unhearing and maneuvering right past it as though he didn't even register what was said."
+      "content": "只要不是工作上需要的話題，亞倫似乎就會像沒聽到一樣，自然地避開那個話題。"
     },
     {
       "id": 16,
-      "content": "Recalling our conversation with Cesara back at P Corp., that deeply uncurious indifference might just be one of the essential personality traits to go on as a corporate employee in the City."
+      "content": "回想起在P公司和切薩拉的對話，那種毫無好奇心的模樣，或許……是在這座都市裡以公司員工身分活下去所需的美德吧。"
     },
     {
       "id": 17,
       "model": "파우스트",
-      "content": "Understood. We will explore the areas past the marked doors and return here."
+      "content": "好的。那我們過一段時間再來找您。"
     },
     {
       "id": 18,
       "model": "앨런",
-      "content": "Thanks a ton. Well, then..."
+      "content": "謝謝各位。那麼……"
     },
     {
       "id": 19,
-      "content": "With Alan returning to where the other Wayfarer Company employees were huddled around, we decided to follow the Corridor to the left."
+      "content": "亞倫去了其他拓途者公司的員工那裡後，我們也沿著走廊，慢慢地一路往左走。"
     },
     {
       "id": 20,
-      "place": "Crumbling Corridor of the Thumb Nursefather",
+      "place": "蜘蛛巢，崩塌的拇指父輩的長廊",
       "model": "단테",
-      "content": "<Hey, there's someone in there. More of the Ring, maybe...?>"
+      "content": "<有人在那裡？難道又是環指……>"
     },
     {
       "id": 21,
       "model": "오티스",
-      "content": "Going by their silhouettes, they're unlikely to be members of the Ring."
+      "content": "從可辨識的輪廓來看……應該不是環指。"
     },
     {
       "id": 22,
       "model": "뉴키라",
-      "content": "C'mon, lady. Get outta my way so I can see."
+      "content": "嘖。看不清楚啦，讓開一下。"
     },
     {
       "id": 23,
       "model": "뉴키라",
-      "content": "Uh... It's the Detective, some stubbly guy I don't know, and... that annoyingly airy dude."
+      "content": "呃……好像只有偵探……不認識的大叔……還有那個討人厭的傢伙？"
     },
     {
       "id": 24,
-      "content": "Sounds like Moses, Gregor, and Hong Lu, respectively...?"
+      "content": "是摩西、格里高爾和鴻璐……嗎？"
     },
     {
       "id": 25,
-      "content": "The trio's conversation grew clearer the closer I approached them."
+      "content": "再靠近一些後，對話聲開始聽得比較清楚了。"
     },
     {
       "id": 26,
       "model": "그레고르",
-      "content": "You okay, fella? You bumped your head earlier."
+      "content": "頭還好嗎？"
     },
     {
       "id": 27,
       "model": "홍루",
-      "content": "Ha ha... Fine as a fiddle! It was just a minor fall."
+      "content": "哈哈……好得很呢。只是稍微跌了一跤而已嘛？"
     },
     {
       "id": 28,
       "model": "모제스4",
-      "content": "... This is the third time it's occurred."
+      "content": "……這已經是第三次了嗎。"
     },
     {
       "id": 29,
       "model": "모제스4",
-      "content": "We ought to discuss this issue with the manager once this consultation is over."
+      "content": "諮商結束之後，最好先聯絡一下經理。"
     },
     {
       "id": 30,
-      "content": "... I think I'm seeing a bump on the side of Hong Lu's head."
+      "content": "……仔細一看，鴻璐的頭一側好像腫了個包。"
     },
     {
       "id": 31,
       "model": "그레고르",
-      "content": "Anyway, you know what to do, right? If, at any moment, you see signs of—"
+      "content": "總之……那個……你懂吧？萬一……"
     },
     {
       "id": 32,
       "model": "홍루",
-      "content": "Don't worry, Gregor."
+      "content": "您擔心太多了，格里高爾先生。"
     },
     {
       "id": 33,
       "model": "홍루",
-      "content": "You made it through the explanation and the footage both. You're going to be fine again—I believe in you."
+      "content": "您也好好聽完了說明，影片也努力看完了不是嗎？這次一定也不會有事的。"
     },
     {
       "id": 34,
       "model": "홍루",
-      "content": "Look at you now. We're right where it happened, but your arm is stable. See?"
+      "content": "您看，現在也是。我們都來到現場了，格里高爾先生的手臂不也好好的嗎？"
     },
     {
       "id": 35,
       "model": "모제스4",
-      "content": "*puff* Ironically, fear tends to grow most unmitigated when it is distant and unseen."
+      "content": "呼……只遠遠存在的恐懼，總是容易滋長。"
     },
     {
       "id": 36,
       "model": "모제스4",
-      "content": "I understand what you might be worried about, but... I don't see even the earliest portents of it."
+      "content": "我明白你在擔心什麼，但就連那種徵兆……我都沒在你身上看到。"
     },
     {
       "id": 37,
       "model": "모제스4",
-      "content": "So don't hesitate to share the unfiltered thoughts that arise while you're in here."
+      "content": "所以……就照你想到的，把在這裡浮現的念頭說出口吧。"
     },
     {
       "id": 38,
@@ -193,101 +193,101 @@
     {
       "id": 39,
       "model": "그레고르",
-      "content": "I know what I saw in the footage, but I'm still having a hard time believing it. Or, I don't know—maybe I'm just avoiding the truth when it's staring me right in the face."
+      "content": "雖然看了影片，我還是不敢相信。不，或許是我不想相信吧。"
     },
     {
       "id": 40,
       "model": "그레고르",
-      "content": "My case is nothing like Don Quixote's. She just needs to keep her shoes on, and it's all good and dandy for her, isn't it? Things don't work out that way... for me."
+      "content": "唐吉訶德那位的話……只要鞋子沒被脫掉就沒差，但我……不是那樣啊。"
     },
     {
       "id": 41,
       "model": "뉴키라",
-      "content": "... Whatever they're talkin' about sounds hella deep, guys."
+      "content": "……這好像是什麼超沉重的話題耶。"
     },
     {
       "id": 42,
       "model": "뉴키라",
-      "content": "Ya sure about eavesdropping on him like this?"
+      "content": "我們真的可以聽嗎？"
     },
     {
       "id": 43,
       "model": "단테",
-      "content": "<Uhm...>"
+      "content": "<嗯……>"
     },
     {
       "id": 44,
       "model": "히스클리프",
-      "content": "... That geezer's always weirdly cagey about himself. Maybe now's our chance to... learn more about 'im."
+      "content": "……那大叔意外地打死都不肯細說自己的事。趁這種時候……聽一下不是比較好嗎？"
     },
     {
       "id": 45,
       "model": "료슈",
-      "content": "He's sharing such an I.S. about himself for once. Why walk away?"
+      "content": "這種趣．談，我看不出有什麼理由當耳邊風。"
     },
     {
       "id": 46,
-      "content": "Don Quixote gives a nonsensical interpretation of Ryōshū's acronym as Kira rolls her eyes out of exasperation."
+      "content": "對良秀的縮略語露出嫌惡表情的綺羅，以及給出胡亂解釋的唐吉訶德。"
     },
     {
       "id": 47,
-      "content": "Between the bickering Sinners and Kira, however, Outis stands in silence with an inscrutable look on her face. She is listening to the exchange between Moses and Gregor like a woman possessed."
+      "content": "在這之間，奧提斯沒有回應我的話，帶著難以捉摸的表情，像是著了魔似地聽著摩西和格里高爾的對話。"
     },
     {
       "id": 48,
       "model": "단테",
-      "content": "<... Okay. Let's keep listening, then.>"
+      "content": "<……先繼續聽下去吧。>"
     },
     {
       "id": 49,
       "model": "그레고르",
-      "content": "Outis was right. Dammit, she was right all along."
+      "content": "奧提斯說的果然沒錯。"
     },
     {
       "id": 50,
       "model": "그레고르",
-      "content": "The War isn't over. It never was. And it can't ever be over as long as this... fucking joke of a gift stays attached to my arm."
+      "content": "戰爭……還沒有結束。只要這該死的禮物……還在我的手臂上。"
     },
     {
       "id": 51,
       "model": "모제스4",
-      "content": "... Barbed words."
+      "content": "……真是帶刺的話啊。"
     },
     {
       "id": 52,
       "model": "모제스4",
-      "content": "Now, let's revisit a question you couldn't answer while the footage was playing... Hopefully, it's become easier to answer now.\nYou've been using that arm to fight just fine so far. How?"
+      "content": "你到現在為止，應該都用那條手臂好好戰鬥過來了。看影片時你沒能說出的那個理由……我想問問你，現在能不能說了。"
     },
     {
       "id": 53,
       "model": "그레고르",
-      "content": "*puff*"
+      "content": "呼……"
     },
     {
       "id": 54,
       "model": "그레고르",
-      "content": "... I don't mind fighting hostiles or enemies. I'm... not the kind of person who worries about people trying to kill me."
+      "content": "……跟該打的對手打是無所謂。我……可不是什麼善良到會去擔心那種人的大好人。"
     },
     {
       "id": 55,
       "model": "그레고르",
-      "content": "But killing my comrades, that's—that changes things, doesn't it? I can't even control it. There's nothing I can do to even brace for it. It's... unstoppable. Like... some kind of time bomb counting down to unleash a disease you never know when its symptoms'll set off."
+      "content": "但殺死同伴是另一回事吧？而且還不是出於我的意志。不管怎麼小心……都防不了，這東西就是……一種不知道什麼時候會發作的病啊。"
     },
     {
       "id": 56,
-      "content": "Even Heathcliff, who was always the first to step up when people began to spiral into self-hatred..."
+      "content": "就連每當有人說出貶低自己的話時，總會站出來替人發火的希斯克利夫……"
     },
     {
       "id": 57,
-      "content": "... stood in conflicted silence, his lips drawing a hard, straight line."
+      "content": "對於格里高爾的狀態似乎也心情複雜，只是緊閉著嘴在一旁看著。"
     },
     {
       "id": 58,
-      "content": "Besides, Gregor wasn't wrong in that, at present, there wasn't any way to stop his transformation should it occur again."
+      "content": "實際上……我想不出任何能阻止格里高爾那種變化的手段。"
     },
     {
       "id": 59,
-      "content": "We've still got a good chunk of the journey left, and eventually, we'll have to—"
+      "content": "在我們的旅程中，還會遇見許許多多的人，然後……總有一天……"
     },
     {
       "id": 60,
@@ -296,85 +296,85 @@
     },
     {
       "id": 61,
-      "place": "Fathoms of Ego - La Mancha Eye, Past",
+      "place": "過去，自我心道 - 拉．曼查之眼",
       "model": "오티스",
-      "content": "<i>No matter what lurks in the pasts of us Sinners...</i>"
+      "content": "無論罪人們……有著什麼樣的過去。"
     },
     {
       "id": 62,
       "model": "오티스",
-      "content": "<i>Even if they have killed hundreds, thousands—no, tens of thousands of innocent people? Will you still... embrace them?</i>"
+      "content": "哪怕那人殺了數百、成千、上萬的無辜之人……您也會接受嗎？"
     },
     {
       "id": 63,
-      "place": "Crumbling Corridor of the Thumb Nursefather",
-      "content": "... We'll eventually have to confront an even darker, bleaker truth of the War."
+      "place": "蜘蛛巢，崩塌的拇指父輩的長廊",
+      "content": "關於那場戰爭，也終將迎來必須面對更深沉、更黑暗的故事的那一天。"
     },
     {
       "id": 64,
-      "content": "Can I really trust Gregor not to crumble under that inevitable pressure?"
+      "content": "到那時，在那樣的環境中，格里高爾撐得下去嗎。"
     },
     {
       "id": 65,
       "model": "홍루",
-      "content": "I see. You're afraid you'll end up hurting us."
+      "content": "您是害怕會傷害我們了吧。"
     },
     {
       "id": 66,
       "model": "그레고르",
-      "content": "Well, that's... At first, I thought I couldn't give a hoot whether or not I accidentally murdered some of you."
+      "content": "嘛。一開始的時候……嘛，我是覺得就算誰死了也無所謂。"
     },
     {
       "id": 67,
       "model": "홍루",
-      "content": "It's a bit... saddening to hear that."
+      "content": "這話……有點令人難過呢？"
     },
     {
       "id": 68,
       "model": "그레고르",
-      "content": "You know how it is, Hong Lu. We—the bus team—didn't exactly get off to a rocking good start."
+      "content": "鴻璐先生也知道吧。說實話，我們一開始的關係可不怎麼好。"
     },
     {
       "id": 69,
       "model": "그레고르",
-      "content": "But through our journey, I've begun to think of you all as my comrades. And I was okay with that because..."
+      "content": "現在……我把你們當成戰友。儘管如此還能沒事，是因為……"
     },
     {
       "id": 70,
       "model": "그레고르",
-      "content": "Because I had too much faith in my own weakness."
+      "content": "大概是因為我太過相信變得平庸的自己了吧。"
     },
     {
       "id": 71,
       "model": "그레고르",
-      "content": "When I realized that I'd grown so weak that I couldn't even take down some Backstreets thug with this arm, I was... relieved."
+      "content": "當我發現不管怎麼揮這條手臂，都沒辦法輕易殺掉一個普通的後巷幫派成員時……我其實有點安心。"
     },
     {
       "id": 72,
       "model": "그레고르",
-      "content": "Imagine that. The same arm—my arm. A weapon that stabbed the heart out of countless people during the Smoke War."
+      "content": "在煙霾戰爭中貫穿過無數人心臟的我的手臂……"
     },
     {
       "id": 73,
       "model": "그레고르",
-      "content": "I'll be honest, when that Hohenheim fella said that I was an \"exception,\" the thought alone made me hope."
+      "content": "霍恩海姆先生說無法測定的時候，老實說我有點期待。"
     },
     {
       "id": 74,
       "place": -1,
       "model": "그레고르",
-      "content": "\"Exception.\" A potential to be harmless, weaker than even a noncombatant like Yi Sang. It made me hope for a life that... didn't sound so bad."
+      "content": "無法測定。理論上……我有可能變得比李箱先生還弱，我還想說，那還真是……不錯的人生啊。"
     },
     {
       "id": 75,
       "model": "그레고르",
-      "content": "We all know how that went though, don't we? Blew up in the worst possible way."
+      "content": "但最後還是往不好的方向爆發了。"
     },
     {
       "id": 76,
-      "place": "Crumbling Corridor of the Thumb Nursefather",
+      "place": "蜘蛛巢，崩塌的拇指父輩的長廊",
       "model": "그레고르",
-      "content": "And after all that... I just couldn't bring myself to fight again. Because I no longer know when this fear would eat me up again—because I'm constantly afraid of this damn \"gift\" manifesting again."
+      "content": "從那之後……我就完全沒辦法戰鬥了。因為不知道這份恐懼會在什麼時候、以什麼方式吞噬我，讓那該死的禮物現出原形。"
     },
     {
       "id": 77,
@@ -384,12 +384,12 @@
     {
       "id": 78,
       "model": "모제스4",
-      "content": "The same fear you've carried all this time."
+      "content": "那份恐懼應該不是新產生的。"
     },
     {
       "id": 79,
       "model": "모제스4",
-      "content": "How did you endure it before?"
+      "content": "以前你是怎麼撐過來的？"
     },
     {
       "id": 80,
@@ -399,37 +399,37 @@
     {
       "id": 81,
       "model": "그레고르",
-      "content": "Badly. Barely. Holding on to the idea that the living's gotta live on, and nothing else."
+      "content": "抱著「活著的人總得活下去」的想法，才勉強甩開的。"
     },
     {
       "id": 82,
       "model": "그레고르",
-      "content": "Hah. This really brings me back years. The memories are so clear that it's like they all happened yesterday."
+      "content": "哈。聽妳這麼一說，感覺好像回到了好幾年前。那些記憶都清晰地重現了。"
     },
     {
       "id": 83,
       "model": "그레고르",
-      "content": "... *sigh* Best you kick me off the bus before push comes to—"
+      "content": "……哈啊，果然還是在爆發之前，由我下車比較……"
     },
     {
       "id": 84,
       "model": "홍루",
-      "content": "That can't be the answer, Gregor."
+      "content": "那可不是好辦法喔，格里高爾先生。"
     },
     {
       "id": 85,
       "model": "홍루",
-      "content": "You can walk away, but the danger of our journey won't leave with you. Dante and the rest of us will still be facing an endless repeat of peril."
+      "content": "就算格里高爾先生下了巴士，但丁閣下和我們……還是會一次又一次遇上危險的情況呢。"
     },
     {
       "id": 86,
       "model": "홍루",
-      "content": "And it's not like leaving the bus will bring peace to your heart."
+      "content": "話雖如此，下了巴士的格里高爾先生，應該也沒辦法安心地過日子吧。"
     },
     {
       "id": 87,
       "model": "홍루",
-      "content": "Our deaths can be reversed should an accident occur... even if it comes at the cost of Dante's suffering. The same can't be said for most people in the City."
+      "content": "我們……多虧但丁閣下替我們承受痛苦，就算出了意外也能復活，但在都市裡生活的大多數人可沒辦法呢。"
     },
     {
       "id": 88,
@@ -439,243 +439,243 @@
     {
       "id": 89,
       "model": "그레고르",
-      "content": "*chuckle* Now that's something I never expected to hear from you."
+      "content": "呵呵。沒想到也會有聽你說這種話的一天啊。"
     },
     {
       "id": 90,
       "model": "그레고르",
-      "content": "I guess you're right. If we're seeing this through to any kind of end, this would be the place to do so. Not many places in the City have some warmth to them like this one does."
+      "content": "也是。就算要做個了斷，在這裡做也比較好。畢竟都市裡……幾乎沒有像這裡一樣充滿人情味的地方。"
     },
     {
       "id": 91,
       "model": "그레고르",
-      "content": "Boy, this consultation thing's pretty embarrassing."
+      "content": "這個叫諮商的東西，總覺得有點難為情啊。"
     },
     {
       "id": 92,
       "model": "그레고르",
-      "content": "I mean, it's not like I was forced to go through something as traumatizing as yours, Hong Lu."
+      "content": "我又不是……經歷過像鴻璐先生那麼可怕的事……"
     },
     {
       "id": 93,
       "model": "그레고르",
-      "content": "Truth be told... I'm not some special case. Everyone who participated in that war must've gone through more or less the same experience—Miss Moses, Outis, and even Valencina, that piece of work."
+      "content": "老實說……我覺得只要是參與過戰爭的人，誰都……有過跟我差不多的經歷。摩西小姐也好，奧提斯小姐也好，甚至連瓦倫奇娜那傢伙也是。"
     },
     {
       "id": 94,
       "model": "홍루",
-      "content": "We can't attach a number to our misfortunes as if they're something to be measured."
+      "content": "經歷過的不幸，應該是無法衡量輕重的。"
     },
     {
       "id": 95,
       "model": "홍루",
-      "content": "When I fled from my past, I tried my hardest to avert my eyes from it. But you, Gregor... you're not like me. Every few steps that distanced you from the past, you'd come to a pause to spare a look toward the path you had walked."
+      "content": "和不斷移開視線、一路逃避的我不同，我認為格里高爾先生……是即使在逃，也一直停下腳步回頭看的人。"
     },
     {
       "id": 96,
       "model": "홍루",
-      "content": "All those years I let slip by, all those that slipped you by are dotted with fathoms of suffering that are both ineffable and beyond measure."
+      "content": "就像我沒能正視的那些歲月一樣，我想格里高爾先生不得不在外漂泊的那些歲月，也是深不見底的不幸呢。"
     },
     {
       "id": 97,
       "model": "모제스4",
-      "content": "*puff* Different experiences, different pain."
+      "content": "呼……既然彼此的經歷不同，不幸自然也各不相同。"
     },
     {
       "id": 98,
       "model": "모제스4",
-      "content": "Still, if there's one thing common to everyone, it's that trauma leaves aftereffects that linger for a long time."
+      "content": "要說共通點，頂多就是都帶著一個長久無法抹去的後遺症活下去吧。"
     },
     {
       "id": 99,
       "model": "그레고르",
-      "content": "... What're yours?"
+      "content": "……妳也有嗎？"
     },
     {
       "id": 100,
       "model": "모제스4",
-      "content": "I... dislike loud noises and people who talk too much."
+      "content": "我……到現在還是討厭噪音，討厭話多的人。"
     },
     {
       "id": 101,
       "model": "모제스4",
-      "content": "They sound too much like the cacophony of the War, like screaming comrades who resented me even as they lay dying—and the wounds they left in my heart bled me dry."
+      "content": "所有的聲音，聽起來都像戰爭的聲音，像是怨恨我的哀號……大概是因為心在淌血吧。"
     },
     {
       "id": 102,
       "model": "홍루",
-      "content": "Mmm... But I thought you were fond of Miss Ezra, Miss Moses?"
+      "content": "嗯……可是摩西小姐不是很喜歡以斯拉小姐嗎？"
     },
     {
       "id": 103,
       "model": "모제스4",
-      "content": "... I've talked too much."
+      "content": "……我說太多了。"
     },
     {
       "id": 104,
       "model": "모제스4",
-      "content": "That aside..."
+      "content": "話說回來……"
     },
     {
       "id": 105,
       "model": "모제스4",
-      "content": "Haven't you heard your fill? Might as well come out from that corner you're hiding in."
+      "content": "聽到這裡也該聽夠了吧，差不多該出來了吧？"
     },
     {
       "id": 106,
       "model": "뉴키라",
-      "content": "Aw man, they knew we've been dropping eaves this whole time?"
+      "content": "什麼嘛。原來早就知道了。"
     },
     {
       "id": 107,
       "model": "단테",
-      "content": "<Uhh... I was actually waiting for just the right time to come out and say a few words, but I couldn't find an appropriate moment to—>"
+      "content": "<啊……我是覺得好像該在中途出來說些什麼……但一直抓不到時機……>"
     },
     {
       "id": 108,
       "model": "그레고르",
-      "content": "Ah, well... I would've had to share this with Manager Bud or the rest of you fellas sooner or later, so I don't really mind. But..."
+      "content": "哎，也是啦……反正這些話最後還是得跟經理兄和那些人說，是沒關係啦……"
     },
     {
       "id": 109,
       "model": "그레고르",
-      "content": "What's <i>she</i> doing here...?"
+      "content": "那個人是……？"
     },
     {
       "id": 110,
       "model": "료슈",
-      "content": "T.A."
+      "content": "是臨．同。"
     },
     {
       "id": 111,
       "model": "홍루",
-      "content": "Hmm... Temporary... Ally?"
+      "content": "呃……是臨時同盟……嗎？"
     },
     {
       "id": 112,
       "model": "료슈",
-      "content": "No. Temporary Accompaniment."
+      "content": "不。是臨時同行的意思。"
     },
     {
       "id": 113,
       "model": "뉴키라",
-      "content": "Don't be an asshole. I'm working my ass off to help you guys."
+      "content": "……我可是超認真在幫忙耶，別沒事找碴。"
     },
     {
       "id": 114,
       "model": "홍루",
-      "content": "Fuhu... Pleased to make your acquaintance."
+      "content": "呵呵……請多指教呢。"
     },
     {
       "id": 115,
       "model": "모제스4",
-      "content": "*puff* You're right on time."
+      "content": "呼……來得正好。"
     },
     {
       "id": 116,
       "model": "모제스4",
-      "content": "I've been working on a theory, but I don't have all the clues to be absolutely certain. A word from someone in the know may immensely improve my confidence in the theory."
+      "content": "我是有些推測，但線索還沒多到能讓我確信。所以正打算問問知情的人。"
     },
     {
       "id": 117,
       "model": "모제스4",
-      "content": "Kira. Do you know which \"door\" the Thumb's Nursefather was most attached to?"
+      "content": "綺羅。關於拇指父輩所執著的「門」，妳知道些什麼嗎？"
     },
     {
       "id": 118,
       "model": "뉴키라",
-      "content": "Huh? No. Duh."
+      "content": "嗯？不知道啊。當然。"
     },
     {
       "id": 119,
       "model": "히스클리프",
-      "content": "... \"Duh?\" That supposed to be obvious?"
+      "content": "……這是當然的喔？"
     },
     {
       "id": 120,
       "model": "뉴키라",
-      "content": "Didn't you guys all see her? Ya think I'd just chat up a scary lady like that?"
+      "content": "那個大嬸你們不是都見過了嗎？太可怕了，我連話都沒跟她搭過。"
     },
     {
       "id": 121,
       "model": "뉴키라",
-      "content": "Dude, she was beating the everloving shit out of Lucio every time I saw them together."
+      "content": "每次看到路秋那傢伙都在挨她揍……超～恐怖的好嗎。"
     },
     {
       "id": 122,
       "model": "뉴키라",
-      "content": "Oh yeah, he went down fighting you guys to the end, huh?"
+      "content": "話說回來，聽說那傢伙打著打著就死了？"
     },
     {
       "id": 123,
       "model": "그레고르",
-      "content": "*sigh*"
+      "content": "呼……"
     },
     {
       "id": 124,
       "model": "히스클리프",
-      "content": "Yeah. Said stuff about her generosity and all that and fought 'til he died."
+      "content": "嘛，他一邊說著什麼要報恩之類的，一直打到了最後。"
     },
     {
       "id": 125,
       "model": "뉴키라",
-      "content": "Damn, that's unexpected."
+      "content": "真意外欸。"
     },
     {
       "id": 126,
       "model": "뉴키라",
-      "content": "Being real for a sec here, I thought he was totally gonna swap sides."
+      "content": "老實說，我還以為他早就會投靠你們那邊了。"
     },
     {
       "id": 127,
       "model": "히스클리프",
-      "content": "Really? That lad?"
+      "content": "啥？那傢伙？"
     },
     {
       "id": 128,
       "model": "료슈",
-      "content": "And why is that?"
+      "content": "為什麼這麼想。"
     },
     {
       "id": 129,
       "model": "뉴키라",
-      "content": "Y'know, the vibes. You guys don't know 'cuz you haven't seen him long without the scary lady always looming over him."
+      "content": "一看就感覺得出來啊。是因為你們沒看過大嬸不在的時候，他的眼神啦。"
     },
     {
       "id": 130,
-      "place": "Corridor of the Thumb Nursefather, Past",
+      "place": "過去，拇指父輩的長廊",
       "model": "엄지제자",
       "content": "……"
     },
     {
       "id": 131,
       "model": "중지제자",
-      "content": "What's up? Gonna stab 'er right in the spine?"
+      "content": "幹嘛？想從背後一刀捅下去喔？"
     },
     {
       "id": 132,
       "model": "엄지제자",
-      "content": "...! You..."
+      "content": "……！妳是……"
     },
     {
       "id": 133,
       "model": "중지제자",
-      "content": "Look, I think you might be training wrong 'cuz, like, you're not improving as much as you should from all that grind. Lemme show ya what I learned 'bout sword swings from this comic book—"
+      "content": "你練習是練得超認真啦，可是效率也太差了吧？你看，照這本漫畫畫的，應該再這樣揮……"
     },
     {
       "id": 134,
       "model": "엄지제자",
-      "content": "That is not how my master has instructed me."
+      "content": "那和師父教我的不一樣。"
     },
     {
       "id": 135,
       "model": "엄지제자",
-      "content": "The Textbook cannot be permitted to have even a single deviation if it means to repay the debt it owes her."
+      "content": "為了報恩……教材不容許有一絲一毫的誤差。"
     },
     {
       "id": 136,
       "model": "중지제자",
-      "content": "Why're you so obsessed with all that crap anyway? Ya don't even like that old lady."
+      "content": "明明也沒多喜歡那個大嬸，幹嘛做到這種地步。"
     },
     {
       "id": 137,
@@ -685,156 +685,156 @@
     {
       "id": 138,
       "model": "엄지제자",
-      "content": "But... you're not so different from me in that regard, are you?"
+      "content": "妳不也……跟我一樣嗎？"
     },
     {
       "id": 139,
       "model": "중지제자",
-      "content": "B-bro, the heck ya talkin' about? I love my papa."
+      "content": "什、什麼鬼話啊。人家超～愛把拔的好不好？"
     },
     {
       "id": 140,
-      "place": "Crumbling Corridor of the Thumb Nursefather",
+      "place": "蜘蛛巢，崩塌的拇指父輩的長廊",
       "model": "뉴키라",
-      "content": "Seriously, I thought things were gonna crash and burn before Yoshihide even came home."
+      "content": "我還真的以為在良秀回家之前就會出什麼事呢。"
     },
     {
       "id": 141,
       "model": "료슈",
-      "content": "Hah. Suppose \"Textbook\" and I had that in common."
+      "content": "哈。說是教材，在那一點上倒是跟我很像。"
     },
     {
       "id": 142,
       "model": "모제스4",
-      "content": "Hm. If this one doesn't know, let me redirect that question toward you, Sinner Ryōshū."
+      "content": "嗯。看來這邊不知道……那麼，罪人良秀。"
     },
     {
       "id": 143,
       "model": "모제스4",
-      "content": "Hopefully this touches upon one of your more intact memories. Do you know which of these \"doors\" the Thumb Nursefather showed particular attachment to? Or the door she used most often?"
+      "content": "希望在支離破碎的記憶中，這部分已經拼湊完整了，我才問的……妳小時候，知不知道有哪扇拇指父輩特別常進出，或是特別執著的「門」？"
     },
     {
       "id": 144,
       "model": "료슈2",
-      "content": "Why ask me?"
+      "content": "為什麼要問我？"
     },
     {
       "id": 145,
       "model": "료슈",
-      "content": "... Fine. Yes, I do remember. Don't even need Clock's help to piece it back together."
+      "content": "……我是很想這麼說，但，是啊……不需要時鐘把碎片拼起來……我也記得。"
     },
     {
       "id": 146,
       "model": "료슈",
-      "content": "It's that one."
+      "content": "是那扇門。"
     },
     {
       "id": 147,
       "model": "료슈",
-      "content": "The door with metal pieces dangling from it."
+      "content": "掛著一串串鐵塊的那扇門……"
     },
     {
       "id": 148,
-      "place": "Corridor of the Thumb Nursefather, Past",
+      "place": "過去，拇指父輩的長廊",
       "model": "엄지아비",
-      "content": "Holy shit, I almost died out there..."
+      "content": "哈，該死……還以為要掛了……"
     },
     {
       "id": 149,
       "model": "엄지아비",
-      "content": "Son of a bitch, a fucking fly... Where did those G Corp. fucks even drag those gross pests from?"
+      "content": "蒼蠅混帳……G公司那群狗東西，到底是從哪裡弄來那種鬼玩意兒的。"
     },
     {
       "id": 150,
       "model": "과거료슈2",
-      "content": "M-Mom...? Are you okay...?"
+      "content": "媽、媽媽……？妳還好嗎……？"
     },
     {
       "id": 151,
       "model": "엄지아비",
-      "content": "Do I <i>look</i> okay to you, Ticket?"
+      "content": "門票。在妳眼裡，這看起來像沒事嗎？"
     },
     {
       "id": 152,
       "model": "과거료슈2",
-      "content": "N-no, not really..."
+      "content": "看、看起來不像沒事……"
     },
     {
       "id": 153,
       "model": "엄지아비",
-      "content": "Ha... I'm fine. You know I don't break easy."
+      "content": "哈……沒事。怎麼可能因為這點東西就有事？"
     },
     {
       "id": 154,
       "model": "엄지아비",
-      "content": "You should've been there to see me tear the head off that G Corp. vermin, Ticket."
+      "content": "他媽的，門票，妳真該看看我一刀砍下G公司那隻蟲子腦袋的樣子……"
     },
     {
       "id": 155,
       "model": "과거료슈2",
-      "content": "But Mom, you're... your leg's bleeding a lot..."
+      "content": "可是媽媽……妳的腿……流了好多血……"
     },
     {
       "id": 156,
-      "teller": "Radio",
+      "teller": "對講機",
       "title": "???",
-      "content": "*tzzt*"
+      "content": "嗞嗞……"
     },
     {
       "id": 157,
       "model": "엄지아비",
-      "content": "Here comes another mission. Boy, they really can't do shit without me, huh? So much for a break."
+      "content": "真是的。才想休息一下，沒有我果然就轉不動啊。"
     },
     {
       "id": 158,
       "model": "엄지아비",
-      "content": "The fuck is this?"
+      "content": "這是什麼。"
     },
     {
       "id": 159,
       "model": "과거료슈2",
-      "content": "B-bandages... for you..."
+      "content": "繃、繃帶……"
     },
     {
       "id": 160,
       "model": "엄지아비",
-      "content": "... Is this kid serious? They've got truckloads of expensive treatments on the ready to patch me up the moment I get back to the fiel—Well, okay. Never mind that."
+      "content": "……真是無言。反正回去以後，他們就會拿各種昂貴的藥要我治療……不，算了。"
     },
     {
       "id": 161,
       "model": "엄지아비",
-      "content": "Hey, this works."
+      "content": "還不賴嘛。"
     },
     {
       "id": 162,
       "model": "과거료슈2",
-      "content": "Mom...?"
+      "content": "媽媽……？"
     },
     {
       "id": 163,
       "model": "엄지아비",
-      "content": "Sit tight and don't start any trouble. I'll teach you some sword techniques once I'm back."
+      "content": "等我回來就教妳劍術。乖乖待著，別闖禍。"
     },
     {
       "id": 164,
-      "place": "Crumbling Corridor of the Thumb Nursefather",
+      "place": "蜘蛛巢，崩塌的拇指父輩的長廊",
       "model": "모제스4",
-      "content": "... Must've been her years in the Smoke War."
+      "content": "……是她參加煙霾戰爭的時候嗎。"
     },
     {
       "id": 165,
       "model": "료슈",
-      "content": "Yeah. Fighting in the War took a lot out of her and left her perpetually exhausted."
+      "content": "對……是她往返於戰場之間，相當疲憊的時候。"
     },
     {
       "id": 166,
       "model": "료슈",
-      "content": "But she marched to every battle with a smile. Stopped drinking. Stopped beating me, too."
+      "content": "但那傢伙每次都在笑。滴酒不沾，也不再對我動手了。"
     },
     {
       "id": 167,
       "model": "료슈",
-      "content": "Like a blissful idiot who forgot that she was still neck-deep in the inescapable pit called the House of Spiders."
+      "content": "可笑的是，就像個忘了自己正深陷名為蜘蛛巢的泥沼的人一樣。"
     },
     {
       "id": 168,
@@ -844,37 +844,37 @@
     {
       "id": 169,
       "model": "료슈",
-      "content": "Well, the ironic peace didn't last."
+      "content": "嘛。那也沒持續多久。"
     },
     {
       "id": 170,
       "model": "료슈",
-      "content": "Some time after the War ended, someone she called the \"Consigliere\" of the Thumb visited the House of Spiders as a tutor."
+      "content": "應該是從戰爭結束後，一個叫拇指顧問的傢伙以外聘講師的身分來訪的那天開始的。"
     },
     {
       "id": 171,
       "model": "료슈2",
-      "content": "And that's when she went right back to drinking herself into a shit-faced stupor day after day."
+      "content": "連續好幾天都只顧著狂灌酒……"
     },
     {
       "id": 172,
       "model": "료슈2",
-      "content": "The beatings returned, and so did the edge in her profanities."
+      "content": "她又開始揍我，對我的咒罵也變多了。"
     },
     {
       "id": 173,
       "model": "료슈",
-      "content": "It was pathetic."
+      "content": "真是窩囊的模樣。"
     },
     {
       "id": 174,
       "model": "그레고르",
-      "content": "Hold on... Why, though? Sure, I was on the losing side..."
+      "content": "等等……我啊，好，我的話就算了。"
     },
     {
       "id": 175,
       "model": "그레고르",
-      "content": "... but wasn't Valencina on the <i>winning</i> side? A war hero, at that."
+      "content": "瓦倫奇娜那傢伙……不是勝利的一方嗎？甚至還是戰爭英雄啊。"
     },
     {
       "id": 176,
@@ -884,7 +884,7 @@
     {
       "id": 177,
       "model": "모제스4",
-      "content": "Ever heard of the regulation that prevents Smoke War participants from moving into I Corp. and K Corp. Nests?"
+      "content": "你聽說過「參加過煙霾戰爭的人不得居住在I公司與K公司的巢」這條規定嗎？"
     },
     {
       "id": 178,
@@ -894,72 +894,72 @@
     {
       "id": 179,
       "model": "모제스4",
-      "content": "The common thread between these post-war rules is that they make the lives of veterans difficult. Dubious rules that don't discriminate between winners and losers."
+      "content": "除此之外……參戰者身上通常還附帶著一條條相當令人不快的限制。無論是勝者，還是敗者。"
     },
     {
       "id": 180,
       "model": "단테",
-      "content": "<I see... There must've been things going on behind the scenes there, too.>"
+      "content": "<總覺得……背後又牽扯著什麼事啊。>"
     },
     {
       "id": 181,
       "model": "히스클리프",
-      "content": "But... doesn't that mean that Backdoor'll drop us into a trench they dug during the War?"
+      "content": "不過……這樣說的話……那扇後門連接的地方，不就是戰場正中央的其中一條戰壕嗎？"
     },
     {
       "id": 182,
       "model": "모제스4",
-      "content": "Yes, and Gregor will be the one to open it."
+      "content": "……沒錯，我要讓格里高爾親手打開它。"
     },
     {
       "id": 183,
       "model": "그레고르",
-      "content": "Wait, me?"
+      "content": "等等。要我來開這個？"
     },
     {
       "id": 184,
       "model": "모제스4",
-      "content": "Yes. Others can do it for you, but what would be the point?"
+      "content": "對。必須由你親手打開才有意義。"
     },
     {
       "id": 185,
       "model": "히스클리프",
-      "content": "... You sure this won't just end up giving him more nightmares? I don't see how this helps him in any way."
+      "content": "……這真的對治療有幫助嗎？不會只是增加不好的回憶吧？"
     },
     {
       "id": 186,
       "model": "모제스4",
-      "content": "We do not have any means to treat whatever it is that slumbers within his arm."
+      "content": "格里高爾那傢伙手臂裡潛藏的東西，我們沒有任何手段能處理。"
     },
     {
       "id": 187,
       "model": "모제스4",
-      "content": "However, I would surmise that the underlying cause of his sudden transformation wasn't the arm itself."
+      "content": "但問題的根源，原本應該就不是那隻手臂。"
     },
     {
       "id": 188,
       "model": "히스클리프",
-      "content": "Then... what?"
+      "content": "不是那個原因的話……那是什麼？"
     },
     {
       "id": 189,
       "model": "모제스4",
-      "content": "It's trauma. His arm took control <i>after</i> his psyche was crushed by the weight of the unspeakable memories coming back to haunt him."
+      "content": "是心理創傷。說到底，只是因為回想起可怕的記憶、精神崩潰，手臂才會暴走。"
     },
     {
       "id": 190,
       "model": "모제스4",
-      "content": "It's not because the arm went berserk that he started reliving his painful past—it's the other way around. Isn't that so?"
+      "content": "並不是因為手臂暴走，才想起那些可怕的記憶，不是嗎？"
     },
     {
       "id": 191,
       "model": "모제스4",
-      "content": "If you can come to understand that the War is really over, and that what others say, no matter how closely they echo the past, is not necessarily aimed at you..."
+      "content": "只要能理解戰爭已經結束的事實，理解別人口中話語的含意並不是針對自己……"
     },
     {
       "id": 192,
       "model": "모제스4",
-      "content": "... then you may be able to loosen your grip on the fear and anxiety that your arm could metamorphose at any moment."
+      "content": "應該就能從不知道那隻手臂何時會變形的不安中，稍微獲得解脫吧。"
     },
     {
       "id": 193,
@@ -969,73 +969,73 @@
     {
       "id": 194,
       "model": "파우스트",
-      "content": "While her suggestion may seem blunt, it is one of the basic treatment principles of M Corp.'s psychotherapy centers."
+      "content": "雖然看起來很亂來，但這實際上也是M公司的精神治療所採用的原理之一。"
     },
     {
       "id": 195,
       "model": "그레고르",
-      "content": "*puff* Fine. Then..."
+      "content": "呼……好吧。既然這樣……"
     },
     {
       "id": 196,
       "model": "그레고르",
-      "content": "... guess I'll open it up."
+      "content": "就打開看看吧。"
     },
     {
       "id": 197,
-      "content": "Gregor walked up to the door, grabbed its handle, then paused—taking slow, deep breaths."
+      "content": "抓住門的格里高爾……靜靜地調整呼吸，望著那扇鐵門。"
     },
     {
       "id": 198,
-      "content": "And with one arm, he gently opened the door."
+      "content": "然後慢慢地，用一隻手臂推開了那扇門。"
     },
     {
       "id": 199,
       "place": -1,
-      "teller": "Tomah",
-      "title": "Reminisced Soldier",
-      "content": "<i>Why are you running? You should be taking the lead on the front lines with our G Corp. banner held high!</i>"
+      "teller": "托瑪",
+      "title": "記憶中的士兵",
+      "content": "為什麼要逃跑？您應該高舉G公司的旗幟，衝在戰鬥的最前線！"
     },
     {
       "id": 200,
-      "teller": "Kind Citizen",
-      "title": "Reminisced Person",
-      "content": "<i>I-I don’t wanna die!</i>"
+      "teller": "友好的市民",
+      "title": "回憶中的某人",
+      "content": "我、我不想死啊！"
     },
     {
       "id": 201,
       "model": "유리",
-      "teller": "Yuri",
-      "title": "Grade 8 Fixer",
-      "content": "<i>*chuckle* It’s nice to have a place to go back to.</i>"
+      "teller": "尤莉",
+      "title": "8階收尾人",
+      "content": "呼呼，有個能回去的地方感覺真好。"
     },
     {
       "id": 202,
       "model": "헤르만",
       "teller": "赫爾曼",
       "title": "???",
-      "content": "<i>Oh, right. Happy 15th birthday!</i>"
+      "content": "啊，對了。祝你15歲生日快樂！"
     },
     {
       "id": 203,
       "model": "엄지아비",
-      "content": "<i>But you can't possibly have the cheek to call me cruel.</i>"
+      "content": "但是你可別說這就叫殘忍啊。"
     },
     {
       "id": 204,
       "model": "엄지아비",
-      "content": "<i>You G Corp. pests were far more messed up than I ever was! Ripping people apart, cannibalizing them—you were nothing but a swarm of fucked-up monsters!</i>"
+      "content": "畢竟你們這些G公司的混帳蟲子們，才是會更殘忍地撕裂人類、當場吃乾抹盡並繼續前進的怪物啊！"
     },
     {
       "id": 205,
       "place": "???",
       "model": "그레고르",
-      "content": "I thought I'd woken up from the dream,"
+      "content": "即使我以為自己已經從夢中甦醒……"
     },
     {
       "id": 206,
       "model": "그레고르",
-      "content": "but I was still..."
+      "content": "我卻仍然……"
     }
   ]
 }

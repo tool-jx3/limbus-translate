@@ -3,122 +3,122 @@
     {
       "id": "get_10917_1",
       "desc": "獲得時",
-      "dlg": "Shoulder seams hanging a touch too low... hems of the arm a span too short. And that loose thread sticking out of your collar would look much cleaner snipped away.\nFuhu~ Lots of work to be done, this customer. So, which part would you like to have altered first?"
+      "dlg": "肩線有點下垂，袖子大概短了一掌寬。領口冒出來的線頭，剪掉應該會比較俐落。\n呵呵，真是個需要修整的地方很多的客人呢。要從哪裡開始幫你改呢？"
     },
     {
       "id": "lobby_morning_10917_1",
       "desc": "早晨問候",
-      "dlg": "Oh, the light's finally reaching the front door—Two-piece must've cleared out. And that means... every Noir customer who's been waiting forever for me to open is about to rush this place at once.\n... The Noirs are not so fond of strangers. Buy what you need and be on your way while you still can."
+      "dlg": "既然連正門都有光照進來，看來兩件套是到別處去了。這也就是說……那些遙遙無期地等待著的漆黑派顧客們，會爭先恐後地湧到這裡來。\n……他們應該不太會歡迎異鄉人。如果該買的東西已經買好了，就趁現在離開這裡吧。"
     },
     {
       "id": "lobby_noon_10917_1",
       "desc": "午時問候",
-      "dlg": "The sun feels especially gentle at this hour. It warms my hair and shoulders so, so cozily that I can hardly keep my eyes open...\nIf I'm not careful, I may doze off and forget that anyone ever came into the shop."
+      "dlg": "到了這個時間，從頭頂灑落的陽光總是格外和煦。暖洋洋地灑下來，讓人連眼睛都睜不開……\n有時候，我好像都要忘了有客人上門，就這麼打起瞌睡來了。"
     },
     {
       "id": "lobby_night_10917_1",
       "desc": "晚間問候",
-      "dlg": "This season's bookings are already closed. I can still patch a tear or stitch up something simple, but... if you're after quality fabric, you'll have to settle in for a wait.\nThere isn't much left here besides second-rate thread, and no amount of skill can coax fabrics of elegance and style out of that."
+      "dlg": "這一季的預約已經截止了。簡單的補布或縫補倒是可以……但如果想要高水準的布料，就得花點時間等待囉。\n這裡現在只剩下些不像樣的線……做不出典雅又洗鍊的布料嘛。"
     },
     {
       "id": "smalltalk_10917_1",
       "desc": "對話 1",
-      "dlg": "As you can see, this place you've stumbled into is quite unlike the other stores. This isn't a place of exhibition, nor is it a place for finalized pieces. This is where I sell the fabrics I've been sitting here patching up in silence. Want something sturdy with fray-resistant fabric? Or if that doesn't suit your taste, I could find you a lighter checked fabric waiting to be given shape."
+      "dlg": "這裡不像其他專櫃那樣賣華麗的衣服。這裡可不是把成品掛出來炫耀的地方。\n相對地，我賣的是自己默默縫補至今的布料。用粗線織成的結實布料如何？不喜歡的話，也有準備輕薄的格紋布喔。"
     },
     {
       "id": "smalltalk_10917_2",
       "desc": "對話 2",
-      "dlg": "Some threads have knotted themselves past the point of untangling. Others are packed so densely that there isn't room to slip the shears through. This department store is littered with loose ends and lint that nobody has bothered to trim. Every time I spot one, I feel the urge to take my scissors to it... Whatever that loose end happens to be."
+      "dlg": "糾纏到無從下手的東西，厚重到連插進去的縫隙都沒有的東西。百貨公司裡還有太多沒修整好的線頭了。每當那些線頭映入眼簾，我就忍不住想把它們剪掉。不管……那是什麼。"
     },
     {
       "id": "smalltalk_10917_3",
       "desc": "對話 3",
-      "dlg": "The light leaking from the Golden Resin has been drawing more worshippers these days. Did they need more than what the stern Voice of Le Noir could give them...?\nThen again, nothing feels quite as warm or comforting as sunlight when you're feezing your fingers off."
+      "dlg": "最近，仰望從黃金松脂中流瀉出來的光芒的人好像變多了。只靠漆黑派那嚴厲的聲音，是不夠的嗎……？\n也是，在寒冷中發抖的時候，沒有什麼比陽光更溫暖、更舒服的了。"
     },
     {
       "id": "smalltalk_10917_4",
       "desc": "同步後對話 1",
-      "dlg": "Oh, I've heard all about those red ones. *chuckle* The thread they've stitched their innards with is so conspicuously crimson that their intentions are showing through the exterior... and it can't be more obvious.\nSooner or later, they'll visit to see me snipped away—they covet my Golden Fabric, and I'd be a fool not to notice how they fear all the garments my scissors may create."
+      "dlg": "我聽說了那些丹紅之物的傳聞。呵呵。內裡用紅線縫起來，就連表面上看得到的心思都昭然若揭呢。\n他們大概不久就會想把我剪除吧。因為覬覦我擁有的黃金之布，也因為害怕我今後會縫製出的所有衣服。"
     },
     {
       "id": "smalltalk_10917_5",
       "desc": "同步後對話 2",
-      "dlg": "The fabric that goes into every article of clothing within the Grand Magasin, be it desired or abhorred, begins with a single thread. Procure the thread, and we need only a nail to complete the rest. And my scissorblades, of course."
+      "dlg": "百貨公司裡所有的衣服都需要線。無論是人人渴望的衣服，還是人人厭惡的衣服，終究都是從一根線開始的。只要備妥了那根線，剩下的就是我的剪刀刃和釘子的工作了。"
     },
     {
       "id": "neglect_10917_1",
       "desc": "閒置",
-      "dlg": "... There, done and done. I put in a careful whipstitch. The edge won't unravel again for a good long while."
+      "dlg": "……好，完成了。已經用捲邊縫收好邊了，很長一段時間都不會再破破爛爛的。"
     },
     {
       "id": "gacksung_10917_1",
       "desc": "進行同步",
-      "dlg": "Torn or burnt—bring the imperfect to me, and by my fingers they will be made whole. Even the unborn... and those drifting into sleep."
+      "dlg": "我什麼都能縫製。撕破的、燒毀的、尚未誕生的，甚至是即將入眠的。"
     },
     {
       "id": "formation_10917_1",
       "desc": "人格出戰",
-      "dlg": "I can see the desire to go <i>snip-snip!</i> in your eyes. Why don't you tell me what you'd like to put the scissors to?"
+      "dlg": "你的眼神充滿了想剪斷什麼的渴望呢。想剪斷什麼，願意告訴我嗎？"
     },
     {
       "id": "battleentry_10917_1",
       "desc": "進入戰鬥",
-      "dlg": "Are you prepared to be snipped away?"
+      "dlg": "做好被剪斷的覺悟了嗎？"
     },
     {
       "id": "battle_select_10917_1",
       "desc": "戰鬥中選中人格",
-      "dlg": "... Which patch of fabric should I lay over that one to make the stitching easier?"
+      "dlg": "……那個要補上什麼樣的布片，才好縫呢。"
     },
     {
       "id": "battle_endcommand_10917_1",
       "desc": "進行攻擊",
-      "dlg": "From thread to needle."
+      "dlg": "從線，到針。"
     },
     {
       "id": "battle_enemy_break_10917_1",
       "desc": "敵方混亂",
-      "dlg": "Cut away along the grain..."
+      "dlg": "順著布紋……"
     },
     {
       "id": "battle_break_10917_1",
       "desc": "自身混亂",
-      "dlg": "... Life hanging by a thread."
+      "dlg": "……懸於一線的生命。"
     },
     {
       "id": "battle_kill_10917_1",
       "desc": "擊殺敵方",
-      "dlg": "... to finish the seam."
+      "dlg": "……收尾吧。"
     },
     {
       "id": "battle_dead_10917_1",
       "desc": "自身陣亡",
-      "dlg": "So it's all coming apart now... every last thread..."
+      "dlg": "要斷了啊……這所有的線……"
     },
     {
       "id": "choice_success_p_10917_2",
       "desc": "判定成功",
-      "dlg": "Told you, didn't I? Once I've properly folded a piece of fabric, it doesn't fray so easily."
+      "dlg": "我說過了吧？我摺好的布，可沒那麼容易磨破的啦。"
     },
     {
       "id": "choice_fail_n_10917_1",
       "desc": "判定失敗",
-      "dlg": "Looks like the fit was wrong. I'll have to make a few alterations."
+      "dlg": "看來這件衣服不合你的身呢。得稍微修改一下了。"
     },
     {
       "id": "battle_clear_10917_1",
       "desc": "戰鬥勝利",
-      "dlg": "You went quietly without much fuss. I suppose you really were prepared to be snipped away, hmm?\nAs for the pieces you've left behind... Hmm, sure. I'll stitch them together nice and neat.\nThe Noirs ought to love this."
+      "dlg": "聲音乖乖地停下了呢。看來你已經做好被剪斷的覺悟了？\n你剩下的東西……嗯。好吧，我會把它們縫得整整齊齊的。漆黑派的人會喜歡的。"
     },
     {
       "id": "battle_clear_ex_10917_1",
       "desc": "EX CLEAR戰鬥勝利",
-      "dlg": "The fabric's been cut to a flattering shape, and the needle's all threaded... Now all that's left is to stitch it in place, overcast the edges, and conceal the finish with a blind stitch.\nCome find me again if you ever need anything else altered. But next time... I'll be charging more eyeballs, okay?"
+      "dlg": "布料已經漂亮地裁好，針也穿好線了……接下來就該縫合、捲邊，再用藏針縫收尾了吧。\n如果還有要縫補的東西，就再來找我吧。不過……眼球要帶得比這次更多，你知道的吧？"
     },
     {
       "id": "battle_defeat_10917_1",
       "desc": "戰鬥失敗",
-      "dlg": "... You're pretty good. Now that you've snipped me away, you've denied the Noirs any possibility of procuring my fabrics again.\nThose eyes of yours have beheld such a fierce pulse... So I'm sure... you'll make good use of whatever remains of me."
+      "dlg": "……手藝真好呢。既然你們剪斷了我，漆黑派就再也無法拿到我做的布料了。\n不過，若是眼中蘊含著激烈搏動的你們……應該會好好運用我留下的東西吧。"
     }
   ]
 }

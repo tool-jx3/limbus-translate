@@ -593,7 +593,7 @@
                   "desc": "本技能暴擊時造成的傷害+100%"
                 },
                 {
-                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>Consume all [PhantomIncision] on target</u></b></mark></color> and deal ([PhantomIncision] consumed)% HP damage against each target, respectively "
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>消耗目標所有 [PhantomIncision]</u></b></mark></color>，並對各個目標造成其體力上限(消耗的層數)%的體力傷害"
                 }
               ]
             }
@@ -657,7 +657,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>Consume all [PhantomIncision] on target</u></b></mark></color> and deal ([PhantomIncision] consumed)% HP damage "
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>消耗目標所有 [PhantomIncision]</u></b></mark></color>，並對目標造成其體力上限(消耗的層數)%的體力傷害"
                 }
               ]
             }
@@ -683,7 +683,7 @@
                   "desc": "本技能暴擊時造成的傷害+100%"
                 },
                 {
-                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>Consume all [PhantomIncision] on target</u></b></mark></color> and deal ([PhantomIncision] consumed)% HP damage against each target, respectively"
+                  "desc": "[OnSucceedAttack] <color=#ff6000><mark=#ff000040><b><u>消耗目標所有 [PhantomIncision]</u></b></mark></color>，並對各個目標造成其體力上限(消耗的層數)%的體力傷害"
                 },
                 {
                   "desc": "[CriticalOnSucceedAttack] 使自身獲得1級 [Breath] 強度"

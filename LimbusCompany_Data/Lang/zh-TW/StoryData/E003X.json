@@ -2,350 +2,350 @@
   "dataList": [
     {
       "id": 0,
-      "content": "I must remain calm."
+      "content": "我必須保持冷靜。"
     },
     {
       "id": 1,
-      "content": "Whatever happens, no matter what horror materializes before my eyes, I must hold steadfast."
+      "content": "無論發生什麼事，都必須處之泰然。"
     },
     {
       "id": 2,
-      "content": "Because I am..."
+      "content": "因為這裡……"
     },
     {
       "id": 3,
       "teller": "???",
       "title": "???",
-      "content": "Oookay, sooo..."
+      "content": "啊，就是說～"
     },
     {
       "id": 4,
       "teller": "???",
       "title": "???",
-      "content": "Sooo, that one punched thaaat one! Ok?"
+      "content": "那～邊啦，那個人打了那個人嘛！對不對？"
     },
     {
       "id": 5,
-      "content": "... at a place where events that defy human understanding occur like everyday accidents."
+      "content": "是個總會發生遠超預料之事的地方。"
     },
     {
       "id": 6,
-      "place": "Limbus Kindergarten?",
+      "place": "邊獄幼稚園？",
       "model": "단테",
-      "content": "<Uh-huh... So kids, why don't we try doing this one by one? Do you want to go first?>"
+      "content": "<好喔……小朋友們。我們冷靜一點，一個一個說好不好？>"
     },
     {
       "id": 7,
       "teller": "???",
       "title": "???",
-      "content": "W-we said we'll neva tattle! Are ya a tattler? Areyagonna tattle?"
+      "content": "那、那件事不是跟他們說好不講的嗎？你是告狀鬼喔？"
     },
     {
       "id": 8,
       "teller": "???",
       "title": "???",
-      "content": "Am not!"
+      "content": "我才不是告狀鬼！"
     },
     {
       "id": 9,
-      "content": "I don't really remember how my life choices landed me this particular occupation, but..."
+      "content": "雖然我已經記不太清楚自己是怎麼做起這份工作的……"
     },
     {
       "id": 10,
       "teller": "???",
       "title": "???",
-      "content": "Heh. It's totes F.U."
+      "content": "呵呵。完．慘。"
     },
     {
       "id": 11,
       "teller": "???",
       "title": "???",
-      "content": "Uhh-ohh...! But Big Teach said no bad worrs!"
+      "content": "欸……園長說過不可以講那種壞壞的話耶！"
     },
     {
       "id": 12,
       "teller": "???",
       "title": "???",
-      "content": "Ya, ya! Big Teach, kick her butt, too!"
+      "content": "對嘛，對嘛！園長！也要罵罵她啦！"
     },
     {
       "id": 13,
       "model": "단테",
-      "content": "<Riiight... I'm the principal of a kindergarten...>"
+      "content": "<對喔……我是幼稚園的園長嘛……>"
     },
     {
       "id": 14,
-      "content": "Regardless of everything that's happening and has happened, the only thing I know for real is that..."
+      "content": "總之，可以確定的是。"
     },
     {
       "id": 15,
-      "content": "... I'm in hell. Possibly. Probably. By all accounts, at least."
+      "content": "我人在地獄裡，這點應該是沒錯了。"
     },
     {
       "id": 16,
-      "content": "After some time..."
+      "content": "過了一段時間……"
     },
     {
       "id": 17,
-      "content": "According to the Sinnerlings' \"recap,\" it seems that the gist of why they've been fighting is as follows:"
+      "content": "聽他們說完，今天罪園生們吵架的原因似乎是這樣的。"
     },
     {
       "id": 18,
-      "content": "(... <i>Sinnerlings</i>? Is that even a real word...? Well, anyhoo...)"
+      "content": "……罪園生？有這種詞嗎……？總之。"
     },
     {
       "id": 19,
-      "content": "When the teacher doubling as the kindergarten dietitian announced that she was going to hold a hands-on cooking class with the Sinnerlings, the three classrooms—Cheery Chickies, Early Elephants, and Perky Penguins—could not agree on the type of dish they wanted to cook, and started a \"war\" of sorts."
+      "content": "營養師老師這次決定和罪園生們一起上烹飪實作課，結果三個班分成三派，有的說這道菜好、有的說那道菜好，意見談不攏就吵了起來。"
     },
     {
       "id": 20,
-      "content": "While they managed to come to an agreement that recipes using \"Bongy\" as the main ingredient made for the bestest and the tastiest cuisine, the core of the conflict was that none of them could concur on just <i>what</i> kind of dish it was to be."
+      "content": "大家都同意用「小鳳」做的料理是世界上最好吃的，但似乎是在料理方式上起了爭執。"
     },
     {
       "id": 21,
-      "content": "One thing led to another, and it culminated in this ridiculous cooking contest between classrooms with the kindergarten dietitian presiding as the ultimate judge of flavor..."
+      "content": "所以最後就演變成各班來場料理比賽，再由營養師老師試吃決定第一名的樣子……"
     },
     {
       "id": 22,
-      "content": "... Weird, this whole sequence of events feels oddly familiar."
+      "content": "……這種事我好像在哪時經歷過。"
     },
     {
       "id": 23,
       "model": "유리",
       "title": "營養師",
-      "content": "어휴… 원장님도 고생이세요."
+      "content": "唉……園長您也真是辛苦了。"
     },
     {
       "id": 24,
       "model": "카론",
       "title": "司機",
-      "content": "애들, 엉망진창. 카론은 절레절레."
+      "content": "孩子們，亂七八糟。卡戎直搖頭。"
     },
     {
       "id": 25,
       "model": "단테",
-      "content": "<Ah! Miss Yuri, Miss Charon.>"
+      "content": "<啊，尤莉老師、卡戎老師。>"
     },
     {
       "id": 26,
       "model": "유리",
       "title": "營養師",
-      "content": "열둘이나 되는 아이들이 전부 성향이 다르니까 혼자서 인솔하시기 힘드시겠네요."
+      "content": "十二個孩子個性都不一樣，您一個人帶一定很辛苦吧。"
     },
     {
       "id": 27,
       "model": "단테",
-      "content": "<Oh, I can't complain. It's not like I'm doing this all on my own, right? Especially with the two of you handling two classrooms each, too...>"
+      "content": "<哪裡，又不是只有我一個人在做。兩位老師也各自帶著兩個班……>"
     },
     {
       "id": 28,
       "model": "카론",
       "title": "司機",
-      "content": "하나는 밖에 싸돌아 다녀. 카론은 걱정 안해."
+      "content": "有一個在外面到處亂跑。卡戎不擔心。"
     },
     {
       "id": 29,
       "model": "유리",
       "title": "營養師",
-      "content": "아하하… 카론 선생님은 좀 방임 주의시긴 하죠."
+      "content": "啊哈哈……卡戎老師是有點放任主義呢。"
     },
     {
       "id": 30,
       "model": "카론",
       "title": "司機",
-      "content": "그리고, 코끼리는 항상 조용해. 정신 사나운 다른 애들. 아니야."
+      "content": "而且，大象總是很安靜。跟其他吵死人的孩子。不一樣。"
     },
     {
       "id": 31,
       "model": "유리",
       "title": "營養師",
-      "content": "아하하…"
+      "content": "啊哈哈……"
     },
     {
       "id": 32,
       "model": "단테",
-      "content": "<W-wait, I need to talk to you two about something! Listen, the kids've stirred up some more trouble today.>"
+      "content": "<先、先別說這個！我是說今天孩子們闖禍了啦。>"
     },
     {
       "id": 33,
       "model": "유리",
       "title": "營養師",
-      "content": "말썽이라뇨, 후후."
+      "content": "怎麼能說是闖禍呢，呵呵。"
     },
     {
       "id": 34,
       "model": "유리",
       "title": "營養師",
-      "content": "물론 생각했던 건 모두 다 함께 같은 요리를 만드는 것이긴 했지만…"
+      "content": "當然，我原本想的是讓大家一起做同一道菜……"
     },
     {
       "id": 35,
       "model": "유리",
       "title": "營養師",
-      "content": "여러 가지 요리를 해보는 것도 아이들에게 큰 공부가 될 테니까요!"
+      "content": "但嘗試做各種不同的料理，對孩子們來說也是很好的學習嘛！"
     },
     {
       "id": 36,
-      "content": "Miss Yuri... She's a bit different from how I remember her from my, admittedly, hazy memories."
+      "content": "尤莉老師……總覺得跟模糊記憶中的她相比，個性好像有點不一樣了。"
     },
     {
       "id": 37,
-      "content": "Ah, or was she always this passionate?"
+      "content": "啊，還是她本來就是這麼熱心的人？"
     },
     {
       "id": 38,
       "model": "유리",
       "title": "營養師",
-      "content": "이렇게 아이들이 경쟁하면서 투쟁심과 성취도 느끼고…"
+      "content": "像這樣讓孩子們在競爭中感受鬥志與成就感……"
     },
     {
       "id": 39,
       "model": "오티스만우",
-      "content": "Lissen up, Early Elephants!! We Perky Penguins'll totally destwoy you and win the Executive Teach's favor!!!"
+      "content": "大象班！！！透過這次的勝利，園長大銀的愛將由偶們企鵝班獨佔！！！"
     },
     {
       "id": 40,
       "model": "료슈만우",
-      "content": "... Heh. G'luck."
+      "content": "……呵。白費力氣。"
     },
     {
       "id": 41,
       "model": "유리",
       "title": "營養師",
-      "content": "서로 이기려고 머리를 맞대면서 협력심도 생기고…"
+      "content": "為了贏過對方而集思廣益，也能培養合作精神……"
     },
     {
       "id": 42,
       "model": "로쟈만우",
-      "content": "Heya, can ya help me move stuff for Learning by Doing today...?"
+      "content": "欸，幫我一起搬今天體驗學習要用的工具嘛～"
     },
     {
       "id": 43,
       "model": "오티스만우",
-      "content": "I must stwategize. Find some other Sinnerling fow help."
+      "content": "我必須擬定計畫。去找其他罪園生。"
     },
     {
       "id": 44,
-      "content": "This doesn't seem like a safe dosage of competitive spirit at all... And I'm not seeing even a speck of cooperation between them."
+      "content": "鬥志的方向很怪，合作精神更是連一丁點都沒有……"
     },
     {
       "id": 45,
       "model": "유리",
       "title": "營養師",
-      "content": "재료를 조달하면서 체력도 키울 수 있으니 일석삼조인 격이죠!"
+      "content": "還能在籌措食材的過程中鍛鍊體力，可說是一舉三得呢！"
     },
     {
       "id": 46,
-      "content": "Eh? Procuring the what now?"
+      "content": "嗯？籌措食材？"
     },
     {
       "id": 47,
       "model": "단테",
-      "content": "<Are you saying that the kids'll be... out collecting their own ingredients?>"
+      "content": "<孩子們要自己去籌措食材嗎？>"
     },
     {
       "id": 48,
       "model": "유리",
       "title": "營養師",
-      "content": "네, 그럼요."
+      "content": "是啊，當然。"
     },
     {
       "id": 49,
       "model": "유리",
       "title": "營養師",
-      "content": "저기 보세요. 벌써 펭귄 반 아이들은 준비를 다 마친 것 같네요."
+      "content": "您看那邊。企鵝班的孩子們好像已經準備好了呢。"
     },
     {
       "id": 50,
       "model": "단테",
-      "content": "<Ready, huh...?>"
+      "content": "<準備……>"
     },
     {
       "id": 51,
-      "content": "My gaze followed Miss Yuri's and, naturally, caught a row of marching Sinnerlings each with some kind of item in their tiny hands."
+      "content": "我朝營養師老師望著的方向轉過頭，只見罪園生們各自拿著某樣東西，正往某處走去。"
     },
     {
       "id": 52,
-      "content": "... Toys? Am I looking at a toy axe?"
+      "content": "那是……玩具嗎？玩具斧頭？"
     },
     {
       "id": 53,
       "model": "유리",
       "title": "營養師",
-      "content": "요즘엔 기술이 참 좋죠?"
+      "content": "現在的技術真的很厲害吧？"
     },
     {
       "id": 54,
       "model": "유리",
       "title": "營養師",
-      "content": "아이들이 다치지도 않고 체험 학습을 할 수 있게 저렇게 나와주고."
+      "content": "還做出那種東西，讓孩子們不會受傷也能進行體驗學習。"
     },
     {
       "id": 55,
-      "content": "Ohh... I get it now. That's what they'll be using to \"hunt\" the ingredients."
+      "content": "啊……原來是要用那個去抓料理的食材啊。"
     },
     {
       "id": 56,
-      "content": "Yeah no, I don't see anything wrong with that."
+      "content": "好像本來就是這樣的。"
     },
     {
       "id": 57,
-      "content": "As for those things approaching us from the distance... Are they supposed to be the ingredients?"
+      "content": "從對面遠遠走過來的那些……就是料理的食材嗎？"
     },
     {
       "id": 58,
-      "content": "They've got, uh, Bongy on their heads..."
+      "content": "頭上好像黏著小鳳……"
     },
     {
       "id": 59,
       "model": "유리",
       "title": "營養師",
-      "content": "아! 4구에서 서식하는 봉이 벌레네요! 껍질이 바삭바삭한 특성이 있어서 구이와 튀김에 안성맞춤이죠."
+      "content": "啊！是棲息在4區的小鳳蟲呢！牠們的外殼酥酥脆脆的，最適合拿來烤或炸了。"
     },
     {
       "id": 60,
-      "content": "Bongy... bugs...? I'm not sure if I like the specific juxtaposition of those two words. Wait, scratch that. Aren't Bongy supposed to be—"
+      "content": "「小鳳」和「蟲」是可以連在一起的詞嗎……不對，說到底小鳳不是……"
     },
     {
       "id": 61,
       "model": "오티스만우",
-      "content": "Executive Teach! Reporring pogress!"
+      "content": "園長大人！向您報告！"
     },
     {
       "id": 62,
-      "content": "As I stood there searching through my hazy memories in a daze, one of the tiny Sinnerlings marched up to me and stirred me from my trance."
+      "content": "我還在模糊的記憶裡東翻西找，不知不覺間，一名罪園生已經帶著一本正經的表情站到我的膝邊。"
     },
     {
       "id": 63,
       "model": "단테",
-      "content": "<O-Outis, hello.>"
+      "content": "<奧……是奧提斯啊。>"
     },
     {
       "id": 64,
-      "content": "I dunno, something about her feels like she's just an adult who's inexplicably assumed the speech patterns of a toddler."
+      "content": "總覺得像是大人只有說話口氣變成了小孩子……"
     },
     {
       "id": 65,
       "model": "오티스만우",
-      "content": "Yes, Executive Teach! Da four cadets of Perky Penguins, reporring ready for hands-on class!"
+      "content": "是！偶們企鵝班全員四名，體驗學習準備完畢！"
     },
     {
       "id": 66,
-      "content": "Outis looked up expectantly at me, in her hand a \"weapon\" glowing in the full spectrum of the rainbow as it buzzed with all kinds of annoying noises."
+      "content": "奧提斯一手拿著閃閃發光、還發出吵雜聲響的武器，抬頭望著我。"
     },
     {
       "id": 67,
-      "content": "Oh, right. My job was to keep an eye on the Sinnerlings and ensure that today's hands-on class ends safely."
+      "content": "對了……我得負責監督，讓罪園生們安全地進行戶外學習。"
     },
     {
       "id": 68,
       "model": "단테",
-      "content": "<Sounds good. Then shall we?>"
+      "content": "<好，那我們出發吧？>"
     },
     {
       "id": 69,
       "model": "오티스만우",
-      "content": "March fort! We look forwad to your guidace!"
+      "content": "是！請您多多指導偶們！"
     }
   ]
 }

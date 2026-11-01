@@ -2,31 +2,31 @@
   "dataList": [
     {
       "id": 0,
-      "content": "Strictly construed, I could not rightly be described as a person of sociable disposition."
+      "content": "嚴格說來，我大概並非善於交際之人。"
     },
     {
       "id": 1,
-      "content": "Nay... Even should such a strict observation be dispensed with, many would naturally arrive at that judgment, for I myself have long thought the same."
+      "content": "不……就算不那麼嚴格，多數人想必也會這麼認為吧。畢竟連我自己都是這麼想的。"
     },
     {
       "id": 2,
-      "content": "I confess I was beset by concern when I first entered this company's employ."
+      "content": "進入這間公司之初，我也是滿懷憂慮。"
     },
     {
       "id": 3,
-      "content": "For a department so devoted to research... there was an astonishing preponderance of socially disposed individuals here."
+      "content": "因為這間公司雖是研究部門……善於交際的人卻多得驚人。"
     },
     {
       "id": 4,
-      "content": "I had expected to be in the company of those who prefer to remain seated quietly in the research facility, surrounded by books and apparatus, with their fingers wrapped around pens or tapping on keyboards. Yet more often than not, someone would approach me with a precipitous proposal of a dining excursion. Another would invite me to joint experiments on some new prototype..."
+      "content": "我原以為會靜靜坐在研究所裡，擺弄書籍與器具、揮動筆桿、敲敲打字機，不料卻有人冷不防提議外出用餐，又或是請我共同實驗新的試作品……"
     },
     {
       "id": 5,
-      "content": "By conventional definition, the title \"researcher\" refers to those who bear glasses of substantial bulk and liberal refraction, those who so seldom depart their seats that their neck, back, and tongue alike have grown stiff. Here, however, were researchers of unconventional vocational disposition—some boasting the physique of a circus strongman, some who were engrossed in embellishing themselves with the latest cosmetics and clothes..."
+      "content": "所謂研究者，本該是指戴著折射度極高的厚眼鏡、整天坐著不起身，以至於脖子、腰和嘴都僵硬了的人，沒想到竟也會有體格巨大、彷彿要表演大力士特技的研究員，或是熱衷於打扮自己的研究員……"
     },
     {
       "id": 6,
-      "content": "And that led me to realize that the compass of my understanding of the common state of things was narrower than even the tiniest of birdcages."
+      "content": "這才讓我重新體認到，我所謂的常識，連籠中之鳥都不如。"
     },
     {
       "id": 7,
@@ -44,178 +44,178 @@
     },
     {
       "id": 9,
-      "content": "Being hardly sociable myself, I spent my time here wondering whether this would be a suitable workplace for me in the long run."
+      "content": "我自己並不怎麼善於交際，不知能否在此長久工作下去……"
     },
     {
       "id": 10,
-      "content": "I have never been one with much predilection for change."
+      "content": "我度過了一段煩惱甚深的日子。"
     },
     {
       "id": 11,
-      "content": "In those days, I constantly wondered whether the ceaselessly excitable personalities of those around me would send me into bouts of vertigo and nausea... and whether it would be wiser to seek another job while the opportunity still remained."
+      "content": "我這個人本就不太喜歡變化，所以擔心周遭之人劇變的舉止會讓我頭暈目眩，甚至犯起暈來……也煩惱著是否該趁現在趕緊另謀他職。"
     },
     {
       "id": 12,
-      "content": "But it is said that even the flow of the smallest brook may wear away the stone."
+      "content": "然而，不是說滴水能穿石嗎。"
     },
     {
       "id": 13,
-      "content": "Unobtrusive and persistent, their overtures did, in the end, manage to turn me toward them."
+      "content": "他們不動聲色卻持之以恆的舉動，終究讓我回過頭來。"
     },
     {
       "id": 14,
-      "content": "Though I was yet to grow wholly accustomed to the habit of that brawny hand striking my back, that is (and the hearty laughter that came with that breach of personal space)."
+      "content": "雖然對於那伴隨豪爽笑聲、粗魯地拍在我背上的手，我仍需要再多習慣一些……"
     },
     {
       "id": 15,
-      "content": "That being said, were it not for them, I would never have understood that sequestering oneself to the laboratory was not the most ideal answer."
+      "content": "若不是他們，我大概不會明白，一味窩在研究室裡並非正解。"
     },
     {
       "id": 16,
-      "content": "And once I began to examine the E.G.O Gear researched here in the LCE, I also came to understand that the old-fashioned practice of conducting research in the confines of rooms could hardly contribute to the proper study of subjects..."
+      "content": "更何況，在看過這裡——名為LCE的部門所研究的E.G.O裝備之後，我也明白了，若只是食古不化地窩在研究室裡，研究必然無法好好推進。"
     },
     {
       "id": 17,
-      "content": "... Because the notion that human emotion could react so directly to a research subject was not one I had ever entertained before."
+      "content": "因為情感會直接對研究物產生反應這種想法，我過去從未有過。"
     },
     {
       "id": 18,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "Not here, either..."
+      "content": "這裡也……"
     },
     {
       "id": 19,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "And if it's not..."
+      "content": "若連這裡也不是……"
     },
     {
       "id": 20,
-      "content": "My coworkers had taken to providing me with fermented dairy drinks. One appeared upon my desk, and then another. By the time the beverages accumulated beyond the prospect of solitary consumption, and when, eventually, the sole solution was to pass some of them along to other people, the company entrusted me with the exclusive responsibility for researching a particular piece of E.G.O Gear."
+      "content": "當同僚們塞給我的乳酸菌飲料堆積到難以處置、不轉讓給別人就無法解決的地步時，公司將某件E.G.O裝備的研究全權交給了我。"
     },
     {
       "id": 21,
-      "content": "It was denominated \"Dimension Shredder.\" As its name intimated, it possessed the ability to tear through the empty air, opening a passage by which one might traverse another dimension."
+      "content": "它名為「次元撕裂者」，擁有撕裂虛空、移動到另一個次元的能力。"
     },
     {
       "id": 22,
-      "content": "I had thought that the assignment of responsibility, too, was... attentive solicitude on the management's part."
+      "content": "我曾以為這也是管理部門的……一份體貼。"
     },
     {
       "id": 23,
-      "content": "An act of care for an employee who had just begun to exchange words with his coworkers, but had yet to learn the finer points of actively initiating an interaction of his own accord."
+      "content": "我雖然開始和同僚們生澀地搭上話，卻仍未學會主動親近他人的方法。"
     },
     {
       "id": 24,
-      "content": "Aid extended toward one such as I, who would approach others with the intention of sharing a beverage, only to pause and dither bashfully before returning to his seat, the bottle still in his hand."
+      "content": "那是給這樣的我的體貼——想把飲料讓給別人，卻遲疑猶豫，最後總是握著飲料原封不動地回來。"
     },
     {
       "id": 25,
-      "content": "Though all things considered, I now believe it was less an act of care than a cunning expedient."
+      "content": "……不過我認為，與其說是體貼，實際上更接近小伎倆。"
     },
     {
       "id": 26,
-      "content": "A human resource management policy to foster camaraderie and permit me the guise of testing E.G.O Gear's capabilities through which I may, however circuitously, initiate. I might \"test\" passing through a dimensional aperture to surreptitiously place a bottle of beverage on a colleague's desk and return from thence to my own desk, perhaps with a comment or two on the successful use of it—something along the lines of \"Hm. I have arrived at the intended coordinates without deviation.\" An unabashedly blatant loophole, but initiation nonetheless."
+      "content": "以試驗E.G.O裝備為名的小伎倆。穿過次元門，悄悄把飲料放在同僚空著的座位上再回來的小伎倆。然後回到原來的位置，說聲「嗯，順利抵達預定的位置了。」的厚臉皮小伎倆。"
     },
     {
       "id": 27,
-      "content": "Perhaps the expectation was to have me, through the incremental repetition of such acts, grow sociable enough to someday leave a small note of greeting beside the drink. Or mayhap, on another someday, to initiate, however awkwardly, a conversation with a coworker whom I might encounter at the end of the brief dimensional travel."
+      "content": "若能這樣一點一點靠近，或許總有一天能在那裡留下一兩張小紙條，又或許總有一天，會在次元的彼端相遇，雖不自然，卻能試著搭上話。"
     },
     {
       "id": 28,
-      "content": "Until, perhaps, upon a someday more distant still, I might finally converse in comfort with my fellows in the company cafeteria, without requiring any dimensional travel as a means to close the distance between myself and another."
+      "content": "又或許總有一天……根本無需穿梭次元，就能自然地在員工餐廳裡交談了吧。"
     },
     {
       "id": 29,
-      "content": "Until someday, I might approach, by my own volition, a new hire who joins the department to place a bottle of beverage before them and say... \"Pray have one of these. This is for you.\""
+      "content": "對總有一天會進來的後輩，說些這飲料拿去喝吧……之類的話。"
     },
     {
       "id": 30,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "This cannot be..."
+      "content": "怎會如此……"
     },
     {
       "id": 31,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "It ought surely to lie there, waiting for my return betwixt the passing dimensions."
+      "content": "它分明該在我穿行過的次元之間才對。"
     },
     {
       "id": 32,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "I have already torn open hundreds of dimensional pathways to pass through, and the coordinates, too, had to have been correct..."
+      "content": "我已打開數百個次元，座標也分明……"
     },
     {
       "id": 33,
-      "content": "Perhaps I'd been..."
+      "content": "看來，我。"
     },
     {
       "id": 34,
-      "content": "... overly reliant on the convenient ambiguity the word \"someday\" affords, by which I had purchased the permission to postpone every unactioned gesture."
+      "content": "似乎是濫用了「總有一天」這句話。"
     },
     {
       "id": 35,
-      "content": "It seems that those vague, vacillant assurances of the past have finally returned to have me reap the consequences."
+      "content": "所以，此刻想必正是我在為此罪付出代價的時候。"
     },
     {
       "id": 36,
-      "content": "It was just another experiment on the dimensions. A routine test of the E.G.O Gear."
+      "content": "那分明是與平時無異的次元研究。是E.G.O裝備的研究。"
     },
     {
       "id": 37,
-      "content": "As the purpose of this particular experiment was to leap through more dimensions than I had in the prior experiments, I had prepared a greater variety of loopholes."
+      "content": "這次的目標是跨越更多次元再返回，所以我多準備了一些小伎倆。"
     },
     {
       "id": 38,
-      "content": "And as a contingency for unforeseen emergencies, I had identified the absolute dimension from which I could guarantee my return to whence I departed."
+      "content": "為了以防萬一的緊急狀況，我也準備好了必定能回到出發地點的絕對次元。"
     },
     {
       "id": 39,
-      "content": "In spite of my vigilance, in spite of my thoroughness, however, I cannot find my way to my home dimension."
+      "content": "但無論用什麼方法，我都無法抵達原本的次元。"
     },
     {
       "id": 40,
-      "content": "I must scour the path to find the way back..."
+      "content": "回到那和睦溫暖的部門空間……"
     },
     {
       "id": 41,
-      "content": "The path to where the welcoming camaraderie and warmth await..."
+      "content": "明明必須趕快回去才行。"
     },
     {
       "id": 42,
-      "content": "Alas, leap after leap, only the remnants of carnage and its bloodsteeped scent hail my return."
+      "content": "越是反覆穿梭，滿目所見就越只有遍地鮮血與血腥氣味。"
     },
     {
       "id": 43,
-      "content": "In between scenes of carnage, I witnessed repeatedly the effervescent pits of venom, lands in ceaseless tremor, and globes of plasma charged with high-voltage electricity that fried every molecule it struck."
+      "content": "其間，我不斷穿過各種地方：有的充滿劇毒，有的不停搖晃，有的四面八方都有高壓電流迸射。"
     },
     {
       "id": 44,
-      "content": "How much time I have spent searching, I cannot know."
+      "content": "這段期間究竟過了多少時間，我也無從得知。"
     },
     {
       "id": 45,
-      "content": "It may be that, in the liminal spacetimes that exist within and without the multiplicity of dimensions, time has already progressed to such a longitude that it has crossed past the fringes of my capacity to perceive it."
+      "content": "在次元與次元之間穿梭，或許時間早已流逝到超出我自己所能認知的範圍了吧。"
     },
     {
       "id": 46,
-      "content": "Nevertheless, I am left bereft of choice but to still my lungs' trebled respiration and persevere in the search for my colleagues, endlessly longing for their warmth..."
+      "content": "我只能悲切地調整呼吸，繼續前進尋找我那些溫暖的同僚，此外別無他法。"
     },
     {
       "id": 47,
-      "content": "... That I may tell them I am sorry. That I was content to only receive, never give. That I made my bed in the comfort of doing naught to reciprocate."
+      "content": "想告訴他們，對不起我總是只會接受，對不起我總是只會猶豫。"
     },
     {
       "id": 48,
-      "content": "... Until, at last, I came to realize:"
+      "content": "然後，直到某個瞬間，我才真正明白。"
     },
     {
       "id": 49,
@@ -229,37 +229,37 @@
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "As a matter of fact, the alley was an open one."
+      "content": "其實，本來就是暢通的啊。"
     },
     {
       "id": 51,
-      "content": "I hadn't gone astray."
+      "content": "明白我並沒有迷失方向。"
     },
     {
       "id": 52,
-      "content": "That \"an accident\" of sorts had brought scourge to whence I came and wrought such carnage that it was no more recognizable than an alien dimension."
+      "content": "明白我該回去的地方，只是被「某種事故」碾碎了而已。"
     },
     {
       "id": 53,
-      "content": "Had we not been assured that the security systems of our company, comprised of contraptions of peerless worth, made it nigh-impossible to penetrate?"
+      "content": "分明有人說過，我們公司的保全裝滿了各種昂貴的設備，旁人難以侵犯……入侵必然極為困難，不是嗎。"
     },
     {
       "id": 54,
-      "content": "So how—"
+      "content": "然而為何……"
     },
     {
       "id": 55,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "... The security systems were disabled from within...?"
+      "content": "……有從內部解除保全的痕跡……"
     },
     {
       "id": 56,
       "model": "이상",
       "teller": "李箱",
       "title": "LCE",
-      "content": "A... traitor in our midst...?"
+      "content": "內部……有背叛……者？"
     },
     {
       "id": 57,
@@ -267,31 +267,31 @@
     },
     {
       "id": 58,
-      "content": "Thus, I embrace a second realization:"
+      "content": "於是我決定重新領悟。"
     },
     {
       "id": 59,
-      "content": "Of course. In the infinite possibilities afforded by the multitude of dimensions, a world of such preposterous treachery may also exist."
+      "content": "想必也確實會有存在這種荒謬事實的次元吧。"
     },
     {
       "id": 60,
-      "content": "But that cannot possibly be the dimension I call home."
+      "content": "但我原本所在的次元不會是那樣。"
     },
     {
       "id": 61,
-      "content": "Of this, I am certain. I know of no colleague of mine who would dare commit such a—"
+      "content": "一定是如此。因為我的同僚之中沒有會做那種事的人……"
     },
     {
       "id": 62,
-      "content": "... Nay, there is no time to dally on such worthless musing."
+      "content": "……不，連思索這種事的時間都嫌浪費。"
     },
     {
       "id": 63,
-      "content": "Hurry along I must, hurry along..."
+      "content": "快，快……"
     },
     {
       "id": 64,
-      "content": "... to my world where warmth and kindness await."
+      "content": "回到那溫暖又和樂融融的空間……"
     }
   ]
 }

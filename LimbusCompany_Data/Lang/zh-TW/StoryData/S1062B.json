@@ -2,44 +2,44 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Sisyphe Tower, A Giant's Room",
+      "place": "薛西弗斯塔，巨人的房間",
       "model": "잔느",
-      "content": "They're all settled into indolence. <i>Nailed.</i>"
+      "content": "安於現狀，被釘住了呢。"
     },
     {
       "id": 1,
       "model": "잔느",
-      "content": "Almost like... furnishings. Dead, inanimate things, waiting forever and ever for someone to come along and use them, adorn them... like furnishings."
+      "content": "簡直就像……家具。癡癡等著有人來使用、來裝飾的……家具們。"
     },
     {
       "id": 2,
-      "content": "As the words left Jeanne's lips, the shape and form of the people who were slumped on the ground in lethargic surrender began warping before her eyes."
+      "content": "簡的話一說完，那些無力地坐著的人們，模樣開始改變了。"
     },
     {
       "id": 3,
-      "content": "They hadn't yet morphed into inhuman forms as completely as the Furnishings here, but... I recognized the pieces of furniture they were transforming into. Some were turning into lamps... some into bedframes..."
+      "content": "只是還沒像現在這樣完全脫離人類的模樣而已……有人像是電燈，有人像是床。"
     },
     {
       "id": 4,
-      "content": "No, it wasn't their \"forms\" that were changing."
+      "content": "不，正確來說，改變的並不是人們的模樣。"
     },
     {
       "id": 5,
-      "content": "Perhaps, in Jeanne's eyes, they had looked that way from the very instant they resigned themselves to idleness."
+      "content": "或許在簡的眼中，從他們安於現狀的那一刻起……他們就只是看起來是那副樣子罷了。"
     },
     {
       "id": 6,
-      "content": "So unbearably unfamiliar, so scarcely human."
+      "content": "因為對她而言，他們是太過陌生的東西。"
     },
     {
       "id": 7,
       "model": "잔느",
-      "content": "You haven't given me a single call today. Must be having a busy day, ma puce."
+      "content": "看今天連一通聯絡都沒有，小甜心大概很忙吧。"
     },
     {
       "id": 8,
       "model": "잔느",
-      "content": "... Let's see how the first floor is doing. Enough time has passed for the season's trends to have shifted..."
+      "content": "……再去看看1樓吧。這一季的流行好像跟剛才不一樣了……"
     }
   ]
 }

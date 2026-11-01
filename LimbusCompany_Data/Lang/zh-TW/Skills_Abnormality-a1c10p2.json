@@ -473,7 +473,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] Inflict 10 [Sinking]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加10級沉淪強度"
                 }
               ]
             }
@@ -604,7 +604,7 @@
         {
           "level": 1,
           "name": "鎖鏈縫",
-          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+20%\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 消耗自身4回 [ChargeKhaki] 並使本技能的硬幣威力+2\n[WhenUse]<color=#ff6000><mark color=#ff000040><b><u>若自身的速度值高於目標且自身的現存體力不高於體力上限50%，</color></mark></b></u>\n- 則使本技能所有硬幣轉變為 [SuperCoin]\n- 則使本技能造成的傷害+(速度值之差×15)%(最多+40%)[TabExplain]\n<color=#ff6000><mark color=#ff000040><b><u>[DefeatDuel] 下回合對自身施加1層 [Binding]</color></mark></b></u>",
+          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+20%\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 消耗自身4回 [ChargeKhaki] 並使本技能的硬幣威力+2\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若自身的速度值高於目標，或自身的現存體力低於體力上限50%，</color></mark></b></u>\n- 則使本技能所有硬幣轉變為 [SuperCoin]\n- 則使本技能造成的傷害+(與目標的速度值之差×15)%[TabExplain](最多+40%)\n<color=#ff6000><mark color=#ff000040><b><u>[DefeatDuel] 下回合使自身獲得1層 [Binding]</color></mark></b></u>",
           "coinlist": [
             {
               "coindescs": [
@@ -636,7 +636,7 @@
         {
           "level": 1,
           "name": "車縫",
-          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+20%\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 消耗自身4回 [ChargeKhaki] 並使本技能的硬幣威力+2\n[WhenUse]<color=#ff6000><mark color=#ff000040><b><u>若自身的速度值高於目標且自身的現存體力不高於體力上限50%，</color></mark></b></u>\n- 則使本技能所有硬幣轉變為 [SuperCoin]\n- 則使本技能造成的傷害+(速度值之差×15)%(最多+40%)[TabExplain]\n[WinDuel] 下回合使自身獲得1層 [Agility]",
+          "desc": "若自身的速度值高於目標，則使本技能造成的傷害+20%\n自身每帶有2級 [ChargeKhaki] 強度，則使本技能的硬幣威力+1(最多+2)\n[WhenUse] 消耗自身4回 [ChargeKhaki] 並使本技能的硬幣威力+2\n[WhenUse] <color=#ff6000><mark color=#ff000040><b><u>若自身的速度值高於目標，或自身的現存體力低於體力上限50%，</color></mark></b></u>\n- 則使本技能所有硬幣轉變為 [SuperCoin]\n- 則使本技能造成的傷害+(與目標的速度值之差×15)%[TabExplain](最多+40%)\n[WinDuel] 下回合使自身獲得1層 [Agility]",
           "coinlist": [
             {
               "coindescs": [
@@ -744,7 +744,7 @@
         {
           "level": 1,
           "name": "鑲邊",
-          "desc": "[WhenUse]\n- 若自身的 [ChargeKhaki] 回數不低於10回，則使本技能的硬幣威力+1\n- 若自身帶有 [LargeTailoringShears]，則使本技能造成的傷害+(自身 [LargeTailoringShears] 層數×10)%(最多+30%)\n[WhenUse] 若自身的 [ChargeKhaki] 回數不高於15回，則使自身獲得2回 [ChargeKhaki]",
+          "desc": "[WhenUse]\n- 若自身的 [ChargeKhaki] 回數不低於10回，則使本技能的硬幣威力+1\n- 若自身帶有 [LargeTailoringShears]，則使本技能造成的傷害+(自身的 [LargeTailoringShears] 層數×10)%(最多+30%)\n[WhenUse] 若自身的 [ChargeKhaki] 回數低於15回，則使自身的 [ChargeKhaki] 回數增加2回",
           "coinlist": [
             {
               "coindescs": [
@@ -1474,7 +1474,7 @@
         {
           "level": 1,
           "name": "為了保存",
-          "desc": "This Skill is used on allies; damage dealt to allies is fixed to 0\n[WhenUse] Final Power +2 for every 4 [Vibration] on target (max 6)\n[WhenUse] At 3+ [ChargeNoir] Potency, convert all Coins to [SuperCoin]s\n[WhenUse] At fewer than 10 [ChargeNoir] Count, gain up to 10 [ChargeNoir] Count; then, gain 1 [Vulnerable] for every 2 Count gained\n[DefeatDuel] Consume half of [ChargeNoir] Count on self\n[EndSkill] Consume all [ChargeNoir] Count on self",
+          "desc": "本技能只會對友方單位使用，且對友方單位造成的傷害固定為0點\n[WhenUse] 目標每帶有4級 [Vibration] 強度，則使本技能的最終威力+2(最多+6)\n[WhenUse] 若自身的 [ChargeNoir] 強度不低於3級，則使本技能所有的硬幣轉變為 [SuperCoin]\n[WhenUse] 若自身的 [ChargeNoir] 回數低於10回，則使自身的 [ChargeNoir] 增加至10回，且每增加2回，對自身施加1層 [Vulnerable]\n[DefeatDuel] 消耗自身一半 [ChargeNoir] 回數\n[EndSkill] 消耗自身所有 [ChargeNoir] 回數",
           "coinlist": [
             {
               "coindescs": [
@@ -1750,7 +1750,7 @@
         {
           "level": 1,
           "name": "原罪腦脂滾磨處理",
-          "desc": "戰場上<color=#ff6000><mark=#ff000040><b><u>每存活1名被鞣製的罪犯，則使自身造成的傷害+10%</u></b></mark></color>\n[StartBattle] 使除自身以外的所有友方單位獲得2層 [Enhancement]\n[WhenUse] 若自身的現存體力不高於體力上限50%，則戰場上每存活1名被鞣製的罪犯，使本技能的最終威力+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "戰場上<color=#ff6000><mark=#ff000040><b><u>每存活1名被鞣製的罪犯，則使本技能造成的傷害+10%</u></b></mark></color>\n[StartBattle] 使除自身以外的所有友方單位獲得2層 [Enhancement]\n[WhenUse] 若自身的現存體力低於體力上限50%，則戰場上每存在1名被鞣製的罪犯，使本技能的最終威力+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "flavor": "其腦裡罪人的大腦搖晃並交融，與腦脂一同鞣製的皮革四處飛散。",
           "coinlist": [
             {

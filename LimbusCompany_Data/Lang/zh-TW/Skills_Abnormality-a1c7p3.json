@@ -173,7 +173,7 @@
         {
           "level": 1,
           "name": "為家族的犧牲",
-          "desc": "[StartBattle] At 50%+ HP, activate [Laceration] on self (max 3 times; reduce Bleed Count every time it is activated; cannot be Staggered from this damage)\n[StartBattle] All allies heal 5 SP (including self)",
+          "desc": "[StartBattle] 若現存體力不低於體力上限的50%，則觸發自身的 [Laceration] (最多3次；根據觸發的次數，相應使自身的流血回數減少；不會因該傷害而陷入混亂)\n[StartBattle] 使全體友方單位恢復5點理智值(包括自身)",
           "coinlist": [
             {
               "coindescs": [
@@ -666,7 +666,7 @@
         {
           "level": 1,
           "name": "血之歡喜",
-          "desc": "Can Clash with this Skill regardless of Speed\n[StartBattle] If there are enemies with [Laceration], activate [Laceration] on all enemies. All enemies lose 2 [Laceration] Count\n[WhenUse] If this effect did not activate at Combat Start, gain 30 [Laceration].\n[WinDuel] Consume up to 40 [BloodDinner]: for every 10 [BloodDinner] consumed, gain 1 [BloodArmor] and deal +25% damage (max 100%)\n- If this unit failed to consume [BloodDinner], gain 5 [Laceration], and activate [Laceration] immediately. Lose 2 [Laceration] Count\n[EndSkill] Ends this turn",
+          "desc": "可無視速度值與本技能拚點\n[StartBattle] 若有敵方單位帶有 [Laceration]，則立即觸發全體敵方單位的 [Laceration] 並使全體敵方單位的 [Laceration] 回數減少2回\n[WhenUse] 若本技能的戰鬥開始時效果未觸發，則使自身增加30級 [Laceration] 強度。\n[WinDuel] 消耗最多40層 [BloodDinner]，每消耗10層 [BloodDinner]，使自身獲得1層 [BloodArmor] 並使本技能造成的傷害+25% (最多+100%)\n- 若本技能未消耗 [BloodDinner]，則使自身增加5級 [Laceration] 強度並立即觸發，使自身的 [Laceration] 回數減少2回\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
@@ -750,7 +750,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Activate [Laceration] on the target equal to its Count. Use up the target's [Laceration] Count down to 1"
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] (次數等同於其回數)，並使目標的 [Laceration] 回數消耗至1回"
                 }
               ]
             }
@@ -764,7 +764,7 @@
         {
           "level": 1,
           "name": "唐吉訶德派硬血2式 - 硬血",
-          "desc": "Can Clash with this Skill regardless of Speed\n[StartBattle] Consume 200 [BloodDinner], gain 500 Shield HP, 5 [BloodArmor], and 1 [SwirlingBlood]\n- If this unit doesn't have enough [BloodDinner], gain 50 [Laceration], and activate [Laceration] immediately. Lose 2 [Laceration] Count. Gain 500 Shield HP and 1 [SwirlingBlood] (this damage does not reduce this unit's HP to 1)\n[WinDuel] Gain 200 Shield HP\n[DefeatDuel] Gain 3 [Vulnerable] as long as the Shield gained due to this Skill is active\n[DefeatDuel] Deal -50% damage, and the damage from this Skill does not Stagger the target\n[EndSkill] Ends this turn",
+          "desc": "可無視速度值與本技能拚點\n[StartBattle] 消耗200層 [BloodDinner] 並使自身獲得500點護盾體力，5層 [BloodArmor] 與1層 [SwirlingBlood]\n- 若 [BloodDinner] 層數不足，則使自身增加50級 [Laceration] 強度並立即觸發，使自身的 [Laceration] 回數減少2回。隨後使自身獲得500點護盾體力，5層 [BloodArmor] 與1層 [SwirlingBlood] (該傷害不會使自身的體力低於1)\n[WinDuel] 使自身獲得200點護盾體力\n[DefeatDuel] 帶有透過本技能獲得的護盾體力時，對自身施加3層 [Vulnerable]\n[DefeatDuel] 使本技能造成的傷害-50%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
@@ -807,7 +807,7 @@
         {
           "level": 1,
           "name": "唐吉訶德派桑丘變體4式-追蹤",
-          "desc": "Prioritizes targets with the most [Laceration]\n[BeforeAttack] If the target is the one with the most [Laceration], gain Atk Weight +2 and Clash Power +3\n[WhenUse] Consume up to 30 [BloodDinner]: gain 1 [BloodArmor] and Coin Power +1 for every 15 [BloodDinner] consumed (max 2)\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration], and activate [Laceration] immediately. Lose 2 [Laceration] Count\n[EndSkill] Increase [BloodDinner] equal to the damage this Skill dealt",
+          "desc": "優先指定 [Laceration] 最多的目標\n[BeforeAttack] 若目標為 [Laceration] 最多的目標，則使本技能的攻擊容量+2，拚點威力+3\n[WhenUse] 消耗最多30層 [BloodDinner]，每消耗15層 [BloodDinner]，使自身獲得1層 [BloodArmor] 並使本技能的硬幣威力+1(最多+2)\n- 若未消耗 [BloodDinner]，則使自身增加10級 [Laceration] 強度並立即觸發，使自身的 [Laceration] 回數減少1回\n[EndSkill] 獲得層數等同於本技能傷害量的 [BloodDinner]",
           "coinlist": [
             {
               "coindescs": [
@@ -833,7 +833,7 @@
         {
           "level": 1,
           "name": "唐吉訶德派桑丘變體3式-突襲",
-          "desc": "Prioritizes targets with the most [Laceration]\n[BeforeAttack] If the target is the one with the most [Laceration], gain Atk Weight +2 and Clash Power +3\n[WhenUse] Consume up to 50 [BloodDinner]: gain 1 [BloodArmor] and Base Power +1 for every 10 [BloodDinner] consumed (max 5)\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration], and activate [Laceration] immediately. Lose 1 [Laceration] Count\n[EndSkill] Increase [BloodDinner] equal to the damage this Skill dealt",
+          "desc": "優先指定 [Laceration] 最多的目標\n[BeforeAttack] 若目標為 [Laceration] 最多的目標，則使本技能的攻擊容量+2，拚點威力+3\n[WhenUse] 消耗最多50層 [BloodDinner]，每消耗10層 [BloodDinner]，使自身獲得1層 [BloodArmor] 並使本技能的基礎威力+1(最多+5)\n- 若未消耗 [BloodDinner]，則使自身增加10級 [Laceration] 強度並立即觸發，使自身的 [Laceration] 回數減少1回\n[EndSkill] 獲得層數等同於本技能傷害量的 [BloodDinner]",
           "coinlist": [
             {
               "coindescs": [
@@ -1042,14 +1042,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has less than 5 [Burst] Count, inflict +2 [Burst] Count\n- At 5+ [Burst] Count, inflict 2 [Burst] instead"
+                  "desc": "[OnSucceedAttack] 若目標的 [Burst] 回數低於5回，則對其施加2回 [Burst]\n- 若不低於5回，則改為使其增加2級 [Burst] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has less than 5 [Burst] Count, inflict +2 [Burst] Count\n- At 5+ [Burst] Count, inflict 2 [Burst] instead"
+                  "desc": "[OnSucceedAttack] 若目標的 [Burst] 回數低於5回，則對其施加2回 [Burst]\n- 若不低於5回，則改為使其增加2級 [Burst] 強度"
                 }
               ]
             }
@@ -1423,7 +1423,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Deal Lust damage equal to ([Laceration] Potency x Count)"
+                  "desc": "[OnSucceedAttack] 對目標造成(其 [Laceration] 強度×回數)點色慾傷害"
                 }
               ]
             }

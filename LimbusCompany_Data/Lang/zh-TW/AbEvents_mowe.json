@@ -20,10 +20,10 @@
       "prevDesc": "",
       "behaveDesc": "要拜託哪位罪人呢？",
       "successDesc": [
-        "There are a few useful gears lying around the Cleanup Agents' feet.\n\nIf they're W Corp. tech... they could come in useful in future battles.\n\n{0} gingerly crawls up to where the items are.\n\nThe Bloodbags haven't noticed {0} yet."
+        "清掃人員們的腳下散落著看似可以使用的裝備。\n\n如果那些是W公司技術產品的話……接下來就很可能派上用場了。\n\n罪人{0}小心翼翼地爬到了散落著裝備的地方。\n\n似乎還沒有血袋察覺。"
       ],
       "failureDesc": [
-        "There are a few useful gears lying around the Cleanup Agents' feet.\n\nIf they're W Corp. tech... they could come in useful in future battles.\n\n{0} gingerly crawls up to where the items are.\n\nShuffle.\n\n{0}'s clothes got caught on something... the noise of the tightening cloth echoes loudly through the silent train car.\n\nIt's not long before one of the Bloodbags notice {0} and begin swinging its weapon."
+        "清掃人員們的腳下散落著看似可以使用的裝備。\n\n如果這些裝備運用了W公司的技術……在之後的戰鬥中很可能會派上用場。\n\n罪人{0}小心翼翼地爬到了散落著裝備的地方。\n\n沙沙。\n\n衣角鉤到東西的聲音在寂靜的車廂內迴盪。\n\n最終，一個血袋察覺到了罪人{0}，揮起了手中的武器。"
       ]
     },
     {
@@ -49,7 +49,7 @@
         "已經無法再做些什麼了。\n\n罪人{0}檢查義體，然後指出了某個零件。\n\n義體的主人雖已不能動彈，但關節上的零件還在正常工作。\n\n我突然想到，火車到站之後，損壞的義體是否也能正常復原呢？\n\n考慮到乘客們的衣服都能恢復，那麼義體應該也會回到之前的狀態吧。\n\n那樣的話，我們借這義體一用也沒什麼關係對吧？\n\n我讓罪人{0}拆解了義體。"
       ],
       "failureDesc": [
-        "已經無法再做些什麼了。\n\n希望在列車到站之後，可以正常復原吧。"
+        "沒有辦法幫上忙。\n\n但願列車到站之後，能順利復原吧。"
       ]
     }
   ]

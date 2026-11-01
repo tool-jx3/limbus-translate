@@ -4,14 +4,14 @@
       "id": 0,
       "place": "1F 美妝館",
       "model": "로쟈",
-      "content": "Why's everyone so obsessed with this... pile of mangled bodies? And what's with that bright light...? Are those people scavenging for gold these corpses were wearing when they were alive?"
+      "content": "大家為什麼都對這具……連原形都認不出來的屍體這麼執著啊？還有這個怎麼這麼刺眼……？這個人死前是在身上裹了黃金嗎？"
     },
     {
       "id": 1,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Oh? \"When they were alive?\""
+      "content": "啊～死前？"
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "You guys really are always such a riot! \"Before they died\"—so good."
+      "content": "死前這種說法，再聽一次還是好好笑。"
     },
     {
       "id": 4,
@@ -37,19 +37,19 @@
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Look, that one fell from the sixth floor, which means they gave up on reaching the Customer Service Center. Or maybe there was a kerfuffle or a fight over a piece of Golden Hide that didn't end in their favor."
+      "content": "那傢伙是從6樓掉下來的。大概是在往客服中心爬的途中放棄了吧。不然就是為了黃金皮革起了大大小小的爭執。"
     },
     {
       "id": 6,
       "model": "로쟈",
-      "content": "Uh... okay... Gave up on reaching Customer Service... I get that, I guess, but why does giving up make you plummet all the way down to the first floor...?"
+      "content": "嗯、嗯？在去客服中心的路上……放棄了？不是，就算會放棄，為什麼會掉下來啊……？"
     },
     {
       "id": 7,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "My turn to ask! Why do we put one foot in front of the other to walk?"
+      "content": "我也問個問題，走路的時候為什麼要左腳和右腳一起動？"
     },
     {
       "id": 8,
@@ -61,38 +61,38 @@
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "... And now you know how I feel listening to your endless questions. Get it now?"
+      "content": "……你們現在問的，就跟要我回答這種問題是同樣的程度。懂嗎？"
     },
     {
       "id": 10,
       "model": "로쟈",
-      "content": "Not really..."
+      "content": "不懂欸……"
     },
     {
       "id": 11,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "And the customers aren't interested in an empty husk like that, or that \"pile of bodies\" you say were once \"alive\"—they're looking for the eyeballs it had, or... scraps of Golden Hide that <i>might</i> be there if they're lucky."
+      "content": "還有，顧客們執著的不是你們稱為生前肉體的那副空殼。他們是在找那個主體原本擁有的眼球，或是……黃金皮革的殘渣。"
     },
     {
       "id": 12,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Anyway. How is it that you managed to emerge from <i>there</i>?"
+      "content": "話說回來，你們是怎麼從「那個地方」出來的？"
     },
     {
       "id": 13,
       "model": "로쟈",
-      "content": "\"There\"...? The restroom, ya mean?"
+      "content": "「那個地方」是指……洗手間嗎？"
     },
     {
       "id": 14,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Shh...! Do you have to articulate every syllable so loudly like that? Are you trying to piss off the Floor Manager?"
+      "content": "噓……！再怎麼說……也沒必要那樣一字一句地說出聲吧，對不對？妳是想招惹樓層經理的怒火嗎？"
     },
     {
       "id": 15,
@@ -104,22 +104,22 @@
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "I've never seen a customer walk out of the Fount. Not once. In all the seasons I've gone through, I've never seen that door open."
+      "content": "我到現在為止，從沒見過有顧客從泉走出來。過了好幾季，我都沒看過那扇門打開。"
     },
     {
       "id": 17,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "And you guys are... still lamentably shabby and out of fashion. So much for all that shopping, huh?"
+      "content": "話說回來……你們現在也太寒酸了吧。就算拚命購物又有什麼用呢。"
     },
     {
       "id": 18,
-      "content": "Something had almost imperceptibly changed from what I recalled of this exchange. Her replies were different—and so was her attitude. If I wasn't certain before, I was now:"
+      "content": "微妙不同的回答、不同的反應……一開始我還半信半疑，但現在我確定了。"
     },
     {
       "id": 19,
-      "content": "Kromer remembers the \"end\" of the Grand Magasin that sought eternity."
+      "content": "這個人記得。那座渴望永恆的百貨公司的末日。"
     },
     {
       "id": 20,
@@ -129,7 +129,7 @@
     {
       "id": 21,
       "model": "그레고르",
-      "content": "And this is supposed to answer the question of who you are?"
+      "content": "所以……妳到底是誰？"
     },
     {
       "id": 22,
@@ -143,45 +143,45 @@
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Oh, dear. I'm quite bashful about introducing myself out in the open, you know... I'm the \"Hermit,\" you see."
+      "content": "要自我介紹還真有點害羞……我是隱者。"
     },
     {
       "id": 24,
       "model": "히스클리프",
-      "content": "... Lass has that smarmy \"backstabber\" look written all over her mug, clear as day. We can't be arsed figurin' out what nonsense she's on about, so let's just humor her for a bit and get our arses moving."
+      "content": "……怎麼看都是那種油嘴滑舌、回頭就會背叛的面相，問她在說什麼也很麻煩，隨便應付兩句就閃人吧，嗯？"
     },
     {
       "id": 25,
       "model": "이스마엘",
-      "content": "Hey, tell that to the whole team, huh? I'm not the one you've got to convince, you know..."
+      "content": "就說了，光跟我講也沒有用啊……"
     },
     {
       "id": 26,
       "model": "오티스",
-      "content": "You've done nothing but babble nonsense from the moment we ran into you. Clarify your position: are you a friend, or are you a foe?"
+      "content": "從剛才起就只會說些聽不懂的胡話。妳這傢伙……最好表明自己是敵是友。"
     },
     {
       "id": 27,
       "model": "오티스",
-      "content": "State your price if you truly intend to aid us. If you give us some absurd assurance about wanting to help for nothing in return, we'll take that as deception... and you as an enemy."
+      "content": "如果打算幫助我們，就說出妳的目的。千萬別說什麼不求回報的荒唐話。到時候……我就會把妳視為敵人。"
     },
     {
       "id": 28,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "I only want one thing. From the day Sisyphe opened until this very moment, I've wanted one thing alone:"
+      "content": "我想要的只有一個。從百貨公司開幕到現在，我一心只盼望著一件事。"
     },
     {
       "id": 29,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Deconstruct the very existence of the Grand Magasin—every nook and corner of it, so that no one will ever dare to create something like this again!"
+      "content": "就是解體百貨公司的存在。要徹徹底底地，讓這種東西往後再也無法被造出來！"
     },
     {
       "id": 30,
-      "content": "The woman lowered her voice as though confiding a great secret to us."
+      "content": "那人像是在低語什麼祕密似地壓低了聲音。"
     },
     {
       "id": 31,
@@ -193,22 +193,22 @@
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Mmhmm. Blessed are those who suffer in waiting, for there is nothing they cannot do."
+      "content": "嗯，因為只要能忍耐等待的人有心去做，就沒有辦不到的事。"
     },
     {
       "id": 33,
       "model": "크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "See? That's why I'm still... waiting."
+      "content": "所以我現在也……像這樣在等待著嘛。"
     },
     {
       "id": 34,
-      "content": "The fragment of my past experience reminded me that a certain Sinner should be fuming by this point. Sure enough, I turned around to find Sinclair with his fists clenched, as though he were suppressing the urge to retch."
+      "content": "憑著殘留的先前記憶往旁邊一看，辛克萊正緊握拳頭，像在強忍噁心似地渾身發抖。"
     },
     {
       "id": 35,
-      "content": "So he'd already realized who she was at this point."
+      "content": "原來辛克萊從這時候起，就早已察覺她是克羅默的姊姊了啊。"
     },
     {
       "id": 36,
@@ -218,16 +218,16 @@
     {
       "id": 37,
       "model": "싱클레어",
-      "content": "Manager... I think I know who she is."
+      "content": "經理……我好像知道那傢伙是誰了。"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<If that's really who you think she is... Don't tear your eyes away from her, no matter how angry or scared you might be.>"
+      "content": "<如果真是你所想的那個人……就算再生氣、再害怕，也不能移開視線。>"
     },
     {
       "id": 39,
-      "content": "Kromer looks at me with a crooked grin. She must remember us, too..."
+      "content": "克羅默的姊姊看著我咧嘴一笑。說不定那個人也……"
     },
     {
       "id": 40,
@@ -236,54 +236,54 @@
     },
     {
       "id": 41,
-      "content": "The look on Sinclair's face turned to ice, his voice dripping with venom as he said the name."
+      "content": "在喊出那個名字的同時，辛克萊的表情變得冰冷。"
     },
     {
       "id": 42,
       "model": "이상",
-      "content": "Though I could not discern her countenance, there was a certain chill pervading each turn of her speech..."
+      "content": "雖然無法看清她的面容，但她言談間處處透出的那股寒意……"
     },
     {
       "id": 43,
       "model": "맨얼굴크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "So you've finally decided to call me by that name. I was starting to get tired of waiting around the clock."
+      "content": "我可是望眼欲穿地等著呢。等你們到底什麼時候才會叫出那個名字。"
     },
     {
       "id": 44,
       "model": "로쟈",
-      "content": "... Oh."
+      "content": "……真的耶。"
     },
     {
       "id": 45,
       "model": "로쟈",
-      "content": "Yeah... I see the resemblance now..."
+      "content": "好像。跟那傢伙……"
     },
     {
       "id": 46,
-      "content": "Rodya muttered under her breath."
+      "content": "羅佳低聲喃喃道。"
     },
     {
       "id": 47,
       "model": "돈키호테",
-      "content": "Thou..."
+      "content": "汝……"
     },
     {
       "id": 48,
       "model": "돈키호테",
-      "content": "Thou art of the same blood as Kromer. Then, mayhaps..."
+      "content": "是克羅默……那人的血親啊。莫非……"
     },
     {
       "id": 49,
-      "content": "A sharp chill quietly slipped into Don Quixote's gaze."
+      "content": "唐吉訶德的眼神也隨之變得冰冷。"
     },
     {
       "id": 50,
       "model": "맨얼굴크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Oh, I'm her big sister, obviously. Wait, <i>don't</i> tell me you thought I was the little sister."
+      "content": "我當然是姊姊啦。可別跟我說我看起來像她妹妹喔。"
     },
     {
       "id": 51,
@@ -293,45 +293,45 @@
     {
       "id": 52,
       "model": "싱클레어",
-      "content": "That bitch... she killed my family. Dad... Mom... My sister... She took everyone from me!"
+      "content": "那個混蛋……把我的家人全都殺了……父親、母親、姊姊……全部……讓我什麼都不剩了！"
     },
     {
       "id": 53,
       "model": "맨얼굴크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Yeah, that sounds like her all right. Nasty little habit of hers. She'd pick on anyone and anything she was fond of, whether or not they could take it."
+      "content": "是啊，那孩子有個老毛病。看上的東西，就會折磨上好一陣子呢。"
     },
     {
       "id": 54,
       "model": "싱클레어",
-      "content": "Don't you dare trivialize—"
+      "content": "不准妳那樣輕描淡寫地……"
     },
     {
       "id": 55,
       "model": "맨얼굴크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Gosh, fine, fine. I'm done with this ridiculous conversation anyway. Moving on—you know the deal, right? Join me, so on and so forth, together we shall deconstruct the Grand Magasin, yadi yada."
+      "content": "唉唷，這種蠢對話就到此為止吧。總之……就是這樣那樣，要不要跟我一起解體百貨公司？"
     },
     {
       "id": 56,
       "model": "싱클레어",
-      "content": "... Fuck. You."
+      "content": "……閉嘴。"
     },
     {
       "id": 57,
       "model": "맨얼굴크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Not that I didn't see that coming from a mile away, but I'm <i>so</i> heartbroken by that rejection. But don't you worry about me. You're already helping me in ways you can't even imagine!"
+      "content": "雖然是意料中的回答，但真的～好可惜喔。不過沒關係。你們……已經幫了我很多忙了！"
     },
     {
       "id": 58,
       "model": "맨얼굴크로머언니",
       "teller": "???",
       "title": "???",
-      "content": "Great things are beginning once again in Sisyphe, strangers mine and murderers of my sister dear. Great, spectacular, and magnificent. You may look forward to it."
+      "content": "儘管期待吧，殺了我妹妹的異鄉人們。這次也一樣，這間百貨公司裡只會發生超級精彩的事。"
     }
   ]
 }

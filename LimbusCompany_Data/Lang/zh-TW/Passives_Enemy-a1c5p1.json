@@ -8,12 +8,12 @@
     {
       "id": 9008302,
       "name": "連結的痛楚",
-      "desc": "陣亡時對相連的人魚造成10點傷害並在下回合使其獲得2層傷害強化 。\n該效果不會讓相連的人魚的體力低於1。"
+      "desc": "陣亡時對相連的人魚造成10點傷害並在下回合使其獲得2層傷害強化。\n相連的人魚的體力不會因該傷害降至1點以下。"
     },
     {
       "id": 9008401,
       "name": "輕鬆喘息",
-      "desc": "If this unit has <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u>, gain 5 <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u> upon Clash Win."
+      "desc": "若自身帶有<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>，則拚點勝利時使自身增加5級<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度。"
     },
     {
       "id": 9008402,
@@ -23,17 +23,17 @@
     {
       "id": 9008601,
       "name": "那裡不痛嗎？",
-      "desc": "On Hit, if target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, regain SP equal to <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+      "desc": "攻擊命中時，若目標帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>，則根據目標帶有的<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度，使自身恢復相應的理智值"
     },
     {
       "id": 9008701,
       "name": "前往前線！！",
-      "desc": "When gaining Protection, gain 1 additional <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</color></link></u> if this unit's Speed is at 1"
+      "desc": "若本單位速度值為1，則獲得<sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">守護</color></link></u>時，額外獲得1層。"
     },
     {
       "id": 9008702,
       "name": "那裡不痛嗎？",
-      "desc": "On Hit, if target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, regain SP equal to <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+      "desc": "攻擊命中時，若目標帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>，則根據目標帶有的<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度，使自身恢復相應的理智值"
     },
     {
       "id": 9101201,
@@ -58,7 +58,7 @@
     {
       "id": 9101205,
       "name": "那裡不痛嗎？",
-      "desc": "If target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> On Hit, regain SP equal to <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+      "desc": "攻擊命中時，若目標帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>，則根據目標帶有的<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度，使自身恢復相應的理智值"
     },
     {
       "id": 9101101,

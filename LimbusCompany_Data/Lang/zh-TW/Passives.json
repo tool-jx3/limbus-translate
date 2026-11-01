@@ -63,7 +63,7 @@
     {
       "id": 1050101,
       "name": "覺悟",
-      "desc": "戰鬥開始時，若現存體力不高於50%，則使自身獲得1層守護 "
+      "desc": "戰鬥開始時，若現存體力低於50%，則使自身獲得1層守護"
     },
     {
       "id": 1050201,
@@ -108,7 +108,7 @@
     {
       "id": 1080101,
       "name": "最後一搏",
-      "desc": "若現存體力不高於25%，則使自身的拚點威力+1"
+      "desc": "進行拚點時，若現存體力低於25%，則使自身的拚點威力+1"
     },
     {
       "id": 1080201,
@@ -163,12 +163,12 @@
     {
       "id": 1110101,
       "name": "處決",
-      "desc": "目標的理智值不高於0點時，使自身對其造成的傷害+10%"
+      "desc": "目標的理智值低於0點時，使自身對其造成的傷害+10%"
     },
     {
       "id": 1110201,
       "name": "冷靜",
-      "desc": "使自身對體力不高於25%的目標造成的傷害+20%"
+      "desc": "使自身對體力低於25%的目標造成的傷害+20%"
     },
     {
       "id": 1110301,
@@ -188,7 +188,7 @@
     {
       "id": 1120301,
       "name": "應急食糧",
-      "desc": "體力不高於25%時，拚點勝利後恢復體力上限5%的體力"
+      "desc": "體力低於25%時，拚點勝利後恢復體力上限5%的體力"
     },
     {
       "id": 1010121,
@@ -298,7 +298,7 @@
     {
       "id": 1080121,
       "name": "生存決意",
-      "desc": "使現存體力最低且不高於50%的1名友方單位的拚點威力+1"
+      "desc": "進行拚點時，使現存體力最低且體力低於50%的1名友方單位的拚點威力+1"
     },
     {
       "id": 1080221,
@@ -358,7 +358,7 @@
     {
       "id": 1110221,
       "name": "補刀",
-      "desc": "使理智值最高的1名友方單位對體力不高於25%的目標造成的傷害+30%"
+      "desc": "使理智值最高的1名友方單位對體力低於25%的目標造成的傷害+30%"
     },
     {
       "id": 1110321,
@@ -453,7 +453,7 @@
     {
       "id": 1050401,
       "name": "執念之鎚",
-      "desc": "戰鬥開始時，若現存體力不高於50%，則解除1種負面狀態並獲得1層狂信 、1層強壯 與3層守護 "
+      "desc": "戰鬥開始時，若現存體力低於50%，則解除自身1種負面狀態並獲得1層狂信、1層強壯與3層守護"
     },
     {
       "id": 1090401,
@@ -463,7 +463,7 @@
     {
       "id": 1050421,
       "name": "無上榮光",
-      "desc": "使現存體力最低且不高於50%的1名友方單位獲得1層強壯 與1層守護 。若該友方單位屬於N公司狂信徒，則額外使其獲得1層狂信 。"
+      "desc": "使現存體力最低且體力低於50%的1名友方單位獲得1層強壯與1層守護。若該友方單位為N公司狂信徒，則額外使其獲得1層狂信。"
     },
     {
       "id": 1090421,
@@ -538,7 +538,7 @@
     {
       "id": 1100521,
       "name": "無處可逃",
-      "desc": "使理智值最低的1名友方單位造成的打擊傷害+10%\n若該友方單位的理智值不高於0點，則根據其理智值的負面程度進一步提高其造成的打擊傷害(最多再提高10%)"
+      "desc": "使理智值最低的1名友方單位造成的打擊傷害+10%\n若該友方單位的理智值低於0點，則其理智值越低，造成的打擊傷害進一步提高越多(最多再提高10%)"
     },
     {
       "id": 1030401,
@@ -613,7 +613,7 @@
     {
       "id": 1060501,
       "name": "啟動再生安瓿",
-      "desc": "受到攻擊時，若現存體力不高於體力上限的20%，使自身恢復體力上限90%的體力並獲得1層K公司的安瓿 。\n以上效果觸發後，本場戰鬥中每回合對自身施加1層易損 (每場戰鬥最多1次)"
+      "desc": "受到攻擊時，若現存體力低於體力上限的20%，使自身恢復體力上限90%的體力並獲得1層K公司的安瓿。\n以上效果觸發後，本場戰鬥中每回合使自身獲得1層易損(每場戰鬥最多1次)"
     },
     {
       "id": 1060521,
@@ -693,7 +693,7 @@
     {
       "id": 1120601,
       "name": "戰鬥盾牌",
-      "desc": "戰鬥開始時，若自身被2個及以上技能指定為目標，則使自身獲得2層防禦等級提升 。\n戰鬥開始時，若現存體力不高於50%，則使自身獲得3層防禦等級提升 。"
+      "desc": "戰鬥開始時，若自身被不低於2個攻擊指定為目標，則使自身獲得2層防禦等級提升。\n戰鬥開始時，若現存體力低於50%，則使自身獲得3層防禦等級提升。"
     },
     {
       "id": 1120621,
@@ -708,12 +708,12 @@
     {
       "id": 1020511,
       "name": "地區保護",
-      "desc": "戰鬥開始時，使儀錶盤上位於自身兩側的友方單位獲得2層防禦等級提升 \n若該2名友方單位現存體力不高於50%，則使其額外獲得2層防禦等級提升 "
+      "desc": "戰鬥開始時，使儀錶盤上位於自身兩側的友方單位獲得2層防禦等級提升\n若該友方單位現存體力低於50%，則使其額外獲得2層防禦等級提升"
     },
     {
       "id": 1020521,
       "name": "受理保護委託",
-      "desc": "戰鬥開始時，使現存體力比例最低的1名友方單位獲得2層防禦等級提升 \n若該友方單位現存體力不高於50%，則使其額外獲得2層防禦等級提升 "
+      "desc": "戰鬥開始時，使現存體力比例最低的1名友方單位獲得2層防禦等級提升\n若該友方單位現存體力低於50%，則使其額外獲得2層防禦等級提升"
     },
     {
       "id": 1040501,
@@ -762,7 +762,7 @@
     {
       "id": 1020601,
       "name": "在茶冷掉之前……",
-      "desc": "When attacking a target using a damage type the target is \"Weak\" or \"Fatal\" (Resistance>x1) to, gain [Breath] equal to [Burst] on target before the attack (max 20 per turn)",
+      "desc": "使用目標抗性為「脆弱」或「致命」(高於×1)的技能攻擊目標時，目標每帶有1級<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>強度，使自身在攻擊前增加1級<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度(每回合最多20級)",
       "summary": "使用目標抗性為「脆弱」或「致命」的技能攻擊目標時，目標每帶有1級破裂 強度，使自身在攻擊前增加1級呼吸法 強度"
     },
     {
@@ -815,17 +815,17 @@
     {
       "id": 1060721,
       "name": "量產型活體裝備",
-      "desc": "When 1 ally with the fastest Speed defeats an enemy that has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, gain 1 Attack Power Up next turn (Once per turn)"
+      "desc": "速度值最高的1名友方單位擊殺帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>的敵方單位時，下回合使該友方單位獲得1層強壯(每回合最多1次)"
     },
     {
       "id": 1020701,
       "name": "被迫的悔恨",
-      "desc": "- 進行拚點時，若目標帶有的負面狀態不少於3種，則使其拚點威力-1\n- 敵方單位被 [VibrationExplosion] 時，若自身存活，則對該敵方單位施加2層防禦等級降低 。(每名敵方單位，每回合最多1次)\n- 精神汙染：回合結束時若自身的理智值不高於-25點，則下回合對自身施加2層束縛 並獲得1層打擊威力提升 "
+      "desc": "- 進行拚點時，若目標帶有的負面狀態不低於3種，則使其拚點威力-1\n- 敵方單位被 [VibrationExplosion] 時，若自身存活，則對該敵方單位施加2層防禦等級降低。(每名敵方單位，每回合最多1次)\n- 精神汙染：回合結束時若自身的理智值低於-25點，則下回合使自身獲得2層束縛與1層打擊威力提升"
     },
     {
       "id": 1020711,
       "name": "被迫的悔恨",
-      "desc": "- 進行拚點時，目標每帶有3種負面狀態，使其拚點威力-1(最多-2)\n- 敵方單位被 [VibrationExplosion] 時，若自身存活，則對該敵方單位施加2層防禦等級降低 。(每名敵方單位，每回合最多3次)\n- 精神汙染：回合結束時若自身的理智值不高於-25點，則下回合對自身施加2層束縛 並獲得1層打擊威力提升 "
+      "desc": "- 進行拚點時，目標每帶有3種負面狀態，使其拚點威力-1(最多-2)\n- 敵方單位被 [VibrationExplosion] 時，若自身存活，則對該敵方單位施加2層防禦等級降低(每名敵方單位，每回合最多3次)\n- 精神汙染：回合結束時若自身的理智值低於-25點，則下回合使自身獲得2層束縛與1層打擊威力提升"
     },
     {
       "id": 1020721,
@@ -855,17 +855,17 @@
     {
       "id": 1120702,
       "name": "子彈很貴",
-      "desc": "<style=\"highlight\">- Always Active : Begin encounters with 7 Ammo</style>\n- On Heads Hit against targets that have <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, gain <sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">Unjust Enrichment</color></link></u>. (Max 4)\n<style=\"highlight\"> If a Coin that uses Ammo Hits, consume all <sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">Unjust Enrichment</color></link></u> and deal additional (25 x <sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">Unjust Enrichment</color></link></u> consumed)% of damage as bonus damage.</style>\n- If this unit Critical Hits when out of [Bullet], consume all <sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">Unjust Enrichment</color></link></u> and deal additional (5 x <sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">Unjust Enrichment</color></link></u> consumed)% of damage dealt as bonus damage."
+      "desc": "<style=\"highlight\">- 常駐效果：帶有7發彈藥</style>\n- 正面命中帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>的目標時，使自身獲得1層<sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">不義之財</color></link></u>。(最多4層)\n<style=\"highlight\">- 消耗彈藥的硬幣命中時，消耗所有<sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">不義之財</color></link></u>，並追加造成傷害量(25×消耗的<sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">不義之財</color></link></u>層數)%的傷害。</style>\n- 若未帶有 [Bullet]，則改為暴擊命中時消耗所有<sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">不義之財</color></link></u>，並追加造成(5×消耗的<sprite name=\"Unjust_Enrichment\"><color=#f8c200><u><link=\"Unjust_Enrichment\">不義之財</color></link></u>層數)%的傷害"
     },
     {
       "id": 1120721,
       "name": "開個氣孔",
-      "desc": "If 1 ally that has the most <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u> defeats an enemy, gain 1 Pierce DMG Up next turn. (Once per turn)"
+      "desc": "<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度最高的1名友方單位擊殺敵方單位時，下回合使該友方單位獲得1層突刺傷害強化。(每回合最多1次)"
     },
     {
       "id": 1040601,
       "name": "菸．休",
-      "desc": "If this unit has 7+ <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u> at Turn End, heal 8 SP."
+      "desc": "回合結束時，若自身的<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度不低於7級，則使自身恢復8點理智值。"
     },
     {
       "id": 1040602,
@@ -885,7 +885,7 @@
     {
       "id": 1040631,
       "name": "獨頭菸",
-      "desc": "<style=\"highlight\">- If 1 ally with the least [Bullet] uses a Skill that spends [Bullet], gain 3 Poise. (once per turn; does not apply to allies without Ammo)</style>\n- If 1 ally with the least Ammo uses up their last Ammo with a Coin, deal 50% of the damage dealt by that Coin attack against each target as bonus damage against each individual target. (rounded up)"
+      "desc": "<style=\"highlight\">- [Bullet] 數最低的1名友方單位使用消耗 [Bullet] 的技能時，使其增加3級呼吸法強度。(每回合最多1次，不對未帶有彈藥的友方單位生效)</style>\n若 [Bullet] 數最低的1名友方單位透過硬幣消耗了最後的 [Bullet]，則在該硬幣攻擊結束時，對每個目標追加該硬幣攻擊對其造成傷害量50%的傷害。(四捨五入)"
     },
     {
       "id": 1030601,
@@ -926,7 +926,7 @@
     {
       "id": 1070711,
       "name": "殘缺紋身",
-      "desc": "Gain 1 [AttackUp] and 1 [DefenseUp] next turn every time an ally (including this unit) is attacked. Gain 2 of each instead if the ally is from The Pequod. (Max 9)\nDeal more damage the less HP this unit has.\n- Deal +1% damage for every 1% missing HP",
+      "desc": "每當友方單位(包括自身)受到攻擊時，下回合使自身獲得1層 [AttackUp] 與1層 [DefenseUp]。若受到攻擊的友方單位屬於裴廓德號，則改為各獲得2層。(最多9層)\n現存體力越低，造成的傷害越高。\n- 自身每失去1%體力，使造成的傷害+1%",
       "summary": "受到攻擊時，下回合使自身獲得1層 [AttackUp] 與1層 [DefenseUp]。現存體力越低，造成的傷害越高。"
     },
     {
@@ -989,12 +989,12 @@
     {
       "id": 1110701,
       "name": "射手的菸斗",
-      "desc": "If the main target's Defense Level is currently lowered by 4 or more, gain ([Combustion] on main target/2) [Breath] Before Attack (Max 20 per turn)"
+      "desc": "若主要目標的防禦等級被減少至少4級，則在攻擊前使自身增加(主要目標的 [Combustion] 強度/2)級 [Breath] 強度(每回合最多20級)"
     },
     {
       "id": 1110711,
       "name": "射手的菸斗",
-      "desc": "If the main target's Defense Level is currently lowered by 4 or more, gain ([Combustion] on main target) [Breath] Before Attack (Max 20 per turn)"
+      "desc": "若主要目標的防禦等級被減少至少4級，則在攻擊前使自身增加(主要目標的 [Combustion] 強度)級 [Breath] 強度(每回合最多20級)"
     },
     {
       "id": 1110721,
@@ -1089,12 +1089,12 @@
     {
       "id": 1050801,
       "name": "本國劍術",
-      "desc": "In this Encounter, when this unit takes damage that brings their HP down to 0, nullify that damage; then, this unit's HP cannot drop below 1 for the turn (once per Encounter)\n\nWhen this unit gains [Breath] Potency/Count using its own Skill or Coin effects: Give 1 [Breath] Potency and +1 [Breath] Count to 2 other Blade Lineage allies that have no [Breath] or have the least [Breath]\n- If there are 6 or more Blade Lineage allies participating in this Encounter, give 2 [Breath] Potency and +2 [Breath] Count instead"
+      "desc": "本場戰鬥中，受到使自身體力降至0點的傷害時，無視該傷害，本回合自身的體力不會低於1點(每場戰鬥最多1次)。\n\n透過自身的技能或硬幣效果獲得 [Breath] 強度或回數時，使除自身以外未帶有 [Breath] 或其數值最低的2名劍契組人格的 [Breath] 強度與回數各+1\n- 若參戰的劍契組成員不低於6名，則改為各+2"
     },
     {
       "id": 1050811,
       "name": "本國劍術",
-      "desc": "In this Encounter, when this unit takes damage that brings their HP down to 0, nullify that damage; then, this unit's HP cannot drop below 1 for the turn (once per Encounter)\n\nWhen this unit gains [Breath] Potency/Count using its own Skill or Coin effects: Give 1 [Breath] Potency and +1 [Breath] Count to 2 other Blade Lineage allies that have no [Breath] or have the least [Breath]\n- If there are 6 or more Blade Lineage allies participating in this Encounter, give 2 [Breath] Potency and +2 [Breath] Count instead\n\n<style=\"highlight\">Combat Start: Apply [SwordPlayOfTheHomeland] buff to all other Blade Lineage allies</style>"
+      "desc": "本場戰鬥中，受到使自身體力降至0點的傷害時，無視該傷害，本回合自身的體力不會低於1點(每場戰鬥最多1次)。\n\n透過自身的技能或硬幣效果獲得 [Breath] 強度或回數時，使除自身以外未帶有 [Breath] 或其數值最低的2名劍契組人格的 [Breath] 強度與回數各+1\n- 若參戰的劍契組成員不低於6名，則改為各+2\n\n<style=\"highlight\">戰鬥開始時，使除自身以外的劍契組成員獲得 [SwordPlayOfTheHomeland]</style>"
     },
     {
       "id": 1050821,
@@ -1160,13 +1160,13 @@
       "id": 1090801,
       "name": "熾熱激情",
       "desc": "目標每帶有6級 [Combustion] 強度，使自身造成的傷害+5%(最多+15%)\n戰鬥開始時，若全體敵方單位的 [Combustion] 強度均不低於6級，則按編隊順序使(最大暴怒完全共鳴數)名友方單位獲得1層 [CrimsonDamageUp]\n- 若是集中遭遇戰，則改為所有部位",
-      "summary": "Deal +5% damage for every 6 [Combustion] Potency on target (Max 15%)\nUnder certain Burn and Wrath A-Reson. conditions, apply buff to allies"
+      "summary": "目標每帶有6級 [Combustion] 強度，使自身造成的傷害+5%(最多+15%)\n特定燒傷與暴怒完全共鳴條件下使友方單位獲得正面狀態"
     },
     {
       "id": 1090811,
       "name": "熾熱激情",
       "desc": "目標每帶有6級 [Combustion] 強度，使自身造成的傷害+10%(最多+30%)\n戰鬥開始時，若全體敵方單位的 [Combustion] 強度均不低於6級，則按編隊順序使(最大暴怒完全共鳴數)名友方單位獲得1層 [CrimsonDamageUp]\n- 若是集中遭遇戰，則改為所有部位\n- 若該友方單位屬於六協會收尾人，則使其獲得1層強壯 ",
-      "summary": "Deal +10% damage for every 6 [Combustion] Potency on target (Max 30%)\nUnder certain Burn and Wrath A-Reson. conditions, apply buff to allies"
+      "summary": "目標每帶有6級 [Combustion] 強度，使自身造成的傷害+10%(最多+30%)\n特定燒傷與暴怒完全共鳴條件下使友方單位獲得正面狀態"
     },
     {
       "id": 1090821,
@@ -1212,7 +1212,7 @@
     {
       "id": 1070821,
       "name": "確認義務履行",
-      "desc": "To 1 ally with the fastest Speed: Clash Power +1 to Skills that apply [Vibration] Potency or Count",
+      "desc": "使速度值最高的1名友方單位增加 [Vibration] 強度或回數的技能的拚點威力+1",
       "summary": ""
     },
     {
@@ -1272,7 +1272,7 @@
     {
       "id": 1020911,
       "name": "管家式應對",
-      "desc": "- Clash Win: Inflict 1 [Sinking] on target (3 times per turn)\n- If the target has [EchoOfMansion], inflict 3 [Sinking] instead",
+      "desc": "- 拚點勝利時，使目標增加1級 [Sinking] 強度(每回合最多3次)\n- 若目標帶有 [EchoOfMansion]，則改為增加3級",
       "summary": "拚點勝利時使目標增加1級 [Sinking] 強度"
     },
     {
@@ -1338,7 +1338,7 @@
     {
       "id": 999905,
       "name": "■■■■的朋友之眼",
-      "desc": "'The Red Gaze' becomes available",
+      "desc": "可以使用「猩紅凝視」能力",
       "summary": ""
     },
     {
@@ -1404,8 +1404,8 @@
     {
       "id": 1100911,
       "name": "烙印工坊武器 / 激情",
-      "desc": "This unit inflicts +1 more [Combustion] Potency <style=\"highlight\">and Count</style> with its Skills (Activates 6 times per turn)\nWhen in a Volatile E.G.O state, and at 0+ SP, gain Coin Power +(SP/20). At 45 SP, gain Coin Power +3 instead.",
-      "summary": "Inflict +1 more [Combustion] Potency and Count with Skills\nGain Coin Power based on SP"
+      "desc": "自身透過技能施加的 [Combustion] 強度<style=\"highlight\">與回數+1</style>(每回合最多觸發6次)\n若自身處於不穩定E.G.O狀態，且理智值不低於0點，則使自身的硬幣威力+(自身的理智值/20)。若自身的理智值為45點，則改為使自身的硬幣威力+3",
+      "summary": "透過技能施加的 [Combustion] 強度與回數+1\n根據理智值相應使自身硬幣威力增加"
     },
     {
       "id": 1100902,
@@ -1546,7 +1546,7 @@
     {
       "id": 1021011,
       "name": "電流解體",
-      "desc": "本場戰鬥中，每當自身累計消耗10回 [Charge] 時，使自身增加1級 [Charge] 強度\n若自身的 [Charge] 強度不低於2級，則使自身造成的傷害+(自身的 [Charge] 強度×3)%(最多+15%)\n<style=\"highlight\">- 若目標現存體力不高於50%，則使自身造成的傷害額外+(自身的 [Charge] 強度×5)%(最多+25%)</style>\n\n擊殺敵方單位時，使自身與 [Charge] 回數最低的<style=\"highlight\">2</style>名友方單位獲得<style=\"highlight\">(自身的 [Charge] 強度+2)</style>回 [Charge] (最多<style=\"highlight\">5</style>回，優先適用於擁有消耗或獲得 [Charge] 的技能的友方單位)",
+      "desc": "本場戰鬥中，每當自身累計消耗10回 [Charge] 時，使自身增加1級 [Charge] 強度\n若自身的 [Charge] 強度不低於2級，則使自身造成的傷害+(自身的 [Charge] 強度×3)%(最多+15%)\n<style=\"highlight\">- 若目標的體力低於50%，則使自身造成的傷害額外+(自身的 [Charge] 強度×5)%(最多+25%)</style>\n\n擊殺敵方單位時，使自身與 [Charge] 回數最低的<style=\"highlight\">2</style>名友方單位獲得<style=\"highlight\">(自身的 [Charge] 強度+2)</style>回 [Charge] (最多<style=\"highlight\">5</style>回，優先適用於擁有消耗或自行獲得 [Charge] 的技能的友方單位)",
       "summary": "每當自身累計消耗10回 [Charge] 時，使自身增加 [Charge] 強度\n[Charge] 強度不低於2級時，造成的傷害增加\n擊殺敵方單位時，自身與2名友方單位獲得 [Charge] 回數"
     },
     {
@@ -1579,7 +1579,7 @@
     {
       "id": 1071002,
       "name": "杜拉罕",
-      "desc": "- Turn Start: if this unit has [NightPathfinding], mount [NightPathfinding].\n- Lose 5 SP every time this unit mounts [NightPathfinding]\n- If 3+ allies have been defeated in this Encounter, gain [NightPathfinding] next turn. (once per Encounter)\n- If this unit gets Staggered due to damage or raised Stagger Threshold when mounting [NightPathfinding], recover from Stagger. If the Stagger is something that cannot be naturally recovered from, this unit does not mount [NightPathfinding].\n\n- Gain 1 Coffin when killing the target."
+      "desc": "- 回合開始時，若自身帶有 [NightPathfinding]，則騎上 [NightPathfinding]\n- 每當自身騎上 [NightPathfinding] 時，消耗5點理智值\n- 若本場戰鬥中陣亡的友方單位數不低於3名，則下回合使自身獲得 [NightPathfinding]。(每場戰鬥最多1次)\n- 騎上 [NightPathfinding] 時，若自身因受到傷害或混亂閾值前移而陷入混亂，則解除自身的混亂。若該混亂無法解除，則無法騎上 [NightPathfinding]。\n- 擊殺目標時，使自身獲得1層棺"
     },
     {
       "id": 1071001,
@@ -1590,19 +1590,19 @@
     {
       "id": 1071011,
       "name": "魔王的呼喚",
-      "desc": "- Deal +1% damage for every 1 [Sinking] on target (max 15%)\n\n<style=\"highlight\">- When, during combat, 1 ally takes damage that would kill them, consume 2 Coffin to apply [WildHunt] to them (once per turn)\n\n- Apply 2 [AttackDmgUp] next turn to the ally that has [WildHunt]\n- If the said ally is from Wuthering Heights or Edgar Family, apply 1 [Enhancement] next turn as well</style>",
+      "desc": "- 目標每帶有1級 [Sinking] 強度，造成的傷害+1%(最多+15%)\n\n<style=\"highlight\">- 戰鬥中友方單位受到致死傷害時，消耗2層棺並使其獲得 [WildHunt] (每回合最多1次)\n\n- 下回合使獲得 [WildHunt] 的友方單位獲得2層 [AttackDmgUp]\n- 若該友方單位屬於咆哮山莊或埃德加家族，則下回合額外使其獲得1層 [Enhancement]</style>",
       "summary": "根據目標帶有的 [Sinking] 強度相應使自身造成的傷害增加"
     },
     {
       "id": 1071021,
       "name": "無盡悲嘆",
-      "desc": "1 ally that has the highest SP deals +5% damage to targets that have less than 0 SP\nIf the target has less than 0 SP: Deal even more damage the further the target's SP is from 0 (+0.5% damage per SP, max 20%)\nFor targets that are Non-SP Units, the said ally inflicts +1 more [Sinking] Potency and Count using their Skill and Coin Effects of their Attack Skills (2 times per turn)",
-      "summary": "對理智值不高於0點的目標造成的傷害增加"
+      "desc": "使理智值最高的1名友方單位對理智值低於0點的目標造成的傷害+5%\n若目標的理智值低於0點，則根據相差的理智值，相應使該友方單位造成的傷害增加(理智值每相差1點，造成的傷害+0.5%，最多+20%)\n若目標沒有理智值，則改為使該友方單位透過攻擊技能的技能或硬幣效果施加的 [Sinking] 強度與回數額外+1(每回合最多2次)",
+      "summary": "對理智值低於0點的目標造成的傷害增加"
     },
     {
       "id": 1071012,
       "name": "魔王的呼喚",
-      "desc": "- Deal +1% damage for every 1 [Sinking] on target (max 15%)\n\n- When, during combat, 1 ally takes damage that would kill them, consume 2 Coffin to apply [WildHunt] to them (<style=\"highlight\">2 times</style> per turn)\n\n- Apply 2 [AttackDmgUp] next turn to the ally that has [WildHunt]\n- If the said ally is from Wuthering Heights or Edgar Family, apply 1 [Enhancement] next turn as well",
+      "desc": "- 目標每帶有1級 [Sinking] 強度，造成的傷害+1%(最多+15%)\n\n- 戰鬥中友方單位受到致死傷害時，消耗2層棺並使其獲得 [WildHunt] (每回合最多<style=\"highlight\">2</style>次)\n\n- 下回合使獲得 [WildHunt] 的友方單位獲得2層 [AttackDmgUp]\n- 若該友方單位屬於咆哮山莊或埃德加家族，則下回合額外使其獲得1層 [Enhancement]",
       "summary": "根據目標帶有的 [Sinking] 強度相應使自身造成的傷害增加"
     },
     {
@@ -1645,7 +1645,7 @@
       "id": 1011011,
       "name": "射吧。扣下扳機。",
       "desc": "攻擊後，若透過自身的技能擊殺目標，則使自身 [ReloadLament]\n當自身獲得 [BulletLament] 時，下回合使自身獲得2層 [Agility] (每回合最多1次)",
-      "summary": "When this unit gains Ammo, gain [Agility] next turn. On Kill, Reload"
+      "summary": "自身獲得彈藥時，下回合獲得迅捷。擊殺目標時，重新裝填"
     },
     {
       "id": 1011021,
@@ -1674,8 +1674,8 @@
     {
       "id": 1091021,
       "name": "優秀派送員",
-      "desc": "To 1 ally with the fastest Speed: Clash Power +1 to Skills that apply [Burst] Potency or Count",
-      "summary": "Skills that apply [Burst] Potency or Count gain Clash Power +1"
+      "desc": "速度值最高的1名友方單位增加 [Burst] 強度或回數的技能拚點威力+1",
+      "summary": "增加 [Burst] 強度或回數的技能拚點威力+1"
     },
     {
       "id": 1081001,
@@ -1843,12 +1843,12 @@
     {
       "id": 1031001,
       "name": "血宴",
-      "desc": "If this unit is on field, or is one of the units that can appear on this Stage, increase Bloodfeast value by the amount of [Laceration] damage collectively received by every unit.\nWhen this unit enters the field, the sleeping blood drenching the battlefield will fill the surface.\n\nWhen consuming [BloodDinner], if there are <La Manchaland[TabExplain]> Kindreds of the same generation as this unit, this unit takes precedence.\n\nWhen using 'Variant Sancho Hardblood[TabExplain] Arts 6 - Whip', HP cannot drop below 1 due to Bleed damage."
+      "desc": "若自身在戰鬥中登場，或即將登場的單位包括自身，則從第1回合起，根據全體單位受到的 [Laceration] 傷害，相應獲得 [BloodDinner]。\n自身在戰鬥中登場時，更進一步展現灑落在戰場上的潛伏之血。\n\n消耗 [BloodDinner] 時，若有屬於<拉．曼查領[TabExplain]>且與自身同代的眷屬，則自身優先消耗 [BloodDinner]。\n\n使用「桑丘變體硬血[TabExplain]6式 - 鞭」期間，自身的體力不會因流血傷害而低於1點。"
     },
     {
       "id": 1031002,
       "name": "桑丘變體硬血式",
-      "desc": "Turn Start: At 15+ [BloodArmorPersonalityFirst], if each following unit is either defeated or participating in the Encounter, empower this unit's leftmost Slot.\nThe Priest of La Manchaland[TabExplain] Gregor: Empower Skill 1\nThe Barber of La Manchaland[TabExplain] Outis: Empower Skill 2\nThis Unit: Empower Skill 3\nThe Princess of La Manchaland[TabExplain] Rodion: Empower Defense Skill[TabExplain]\n\nWhen other units among allies take [Laceration] damage or consume [BloodDinner], gain 2 [BloodArmorPersonalityFirst] on self (3 times per turn)"
+      "desc": "回合開始時，若自身的 [BloodArmorPersonalityFirst] 層數不低於15層且以下人格參戰中或已陣亡，強化自身最左側行動槽中的相應技能。\n- 拉．曼查領[TabExplain] 神父 格里高爾：強化1技能\n- 拉．曼查領[TabExplain] 理髮師 奧提斯：強化2技能\n- 自身：強化3技能\n- 拉．曼查領[TabExplain] 公主 羅佳：強化守備[TabExplain]技能\n\n除自身以外的友方單位受到流血傷害或消耗 [BloodDinner] 時，使自身獲得2層 [BloodArmorPersonalityFirst] (每回合最多3次)"
     },
     {
       "id": 1031003,
@@ -1858,7 +1858,7 @@
     {
       "id": 1031004,
       "name": "血甲",
-      "desc": "Attack End: If the enemy is defeated, increase [BloodDinner] by 10% of the target's max HP (100 per turn; for Focused Encounters, if the Part is broken)\nGain 1 [AttackDmgUp] next turn for every 15% missing HP at Turn End (max 3)\nIf an ally is about to be defeated from [Laceration] damage, prevent them from being defeated from Bleed damage for the turn (once per Encounter for each Identity)"
+      "desc": "自身攻擊結束後，若擊殺目標，則獲得等同於目標體力上限10%的 [BloodDinner] (每回合最多100層，若是集中遭遇戰，則以部位判定)\n回合結束時，自身每失去15%的體力，下回合使自身獲得1層 [AttackDmgUp]。(最多3層)\n戰鬥中友方單位將因流血傷害而陣亡時，使其在本回合內不會因流血傷害而陣亡。(每場戰鬥每名人格最多1次)"
     },
     {
       "id": 1031021,
@@ -1903,12 +1903,12 @@
     {
       "id": 1071111,
       "name": "精確瞄準",
-      "desc": "Turn End: Gain 1 [Agility] next turn for every 10 [Breath] on self (max 2)\n\n<style=\"highlight\">Combat Start: If this unit is not set to use any Attack Skills (including E.G.O Skills), apply 3 [Breath] to 1 ally that has the least [Breath] Potency</style>\n\nTurn End: If this unit did not use any Attack Skills (including E.G.O Skills, excluding [CoveringFire]), gain 10 [Breath] and 1 [PenetrateResultUp] next turn"
+      "desc": "回合結束時，自身每帶有10級 [Breath] 強度，在下回合使自身獲得1層 [Agility] (最多2層)\n\n<style=\"highlight\">戰鬥開始時，若自身未準備使用攻擊技能(包括E.G.O技能)，則使呼吸法強度最低的1名友方單位增加3級 [Breath] 強度</style>\n\n回合結束時，若本回合自身未使用攻擊技能(包括E.G.O技能，不包括 [CoveringFire] )，則在下回合使自身增加10級 [Breath] 強度並獲得1層 [PenetrateResultUp]"
     },
     {
       "id": 1071121,
       "name": "觀察手",
-      "desc": "1 ally that has the least [Bullet] gains +2 [Breath] Count when using a Skill that consumes [Bullet].\n- If the said ally is a Full-Stop Office Identity, or if they have less than 5 [Breath] Count, gain +4 [Breath] Count instead (once per turn; does not apply to units without [Bullet])"
+      "desc": "[Bullet] 數最低的1名友方單位使用消耗 [Bullet] 的技能時，使其獲得2回 [Breath]\n- 若該單位屬於句點事務所，或其 [Breath] 回數低於5回，則改為獲得4回(每回合最多1次。不對未帶有 [Bullet] 的單位生效)"
     },
     {
       "id": 1011101,
@@ -1933,7 +1933,7 @@
     {
       "id": 1021111,
       "name": "火蛾",
-      "desc": "Combat Start: At 80%+ missing HP, and at less than 30 [Combustion], gain up to 30 [Combustion] (once per Encounter)\n\nTurn End: Gain 1 [AttackUp] next turn for every 6 [Combustion] on self (max 5)\n\nOn death, activate the following:\n- Inflict 2 [Combustion] on all enemies and inflict this unit's [Combustion] between all enemies (max 3 per enemy)\n- Gain 2 E.G.O resource for the 2 least-owned Affinities\n\nIf this unit died due to the A.B.S. Max Attunement 【Degraded Corrosion】 Skill, enhance the effect:\n- Inflict 3 [Combustion] on all enemies and inflict this unit's [Combustion] between all enemies (max 5 per enemy)\n- Gain 2 E.G.O resource for 2 least-owned E.G.O resources\n- If this unit had 30+ [Combustion], apply 3 [AttackUp] to 1 ally that Substitutes in"
+      "desc": "戰鬥開始時，若自身已失去體力不低於80%，且自身的 [Combustion] 強度低於30級，則使自身增加至30級 [Combustion] 強度(每個關卡最多1次)\n\n回合結束時，自身每帶有6級 [Combustion] 強度，下回合使自身獲得1層 [AttackUp] (最多5層)\n\n陣亡時，觸發以下效果：\n- 使全體敵方單位增加2級 [Combustion] 強度，並將自身的 [Combustion] 強度分散施加給敵方單位(每名敵方單位最多3級)\n- 獲得持有量最少的2種屬性罪孽碎片各2個\n\n若自身因技能「紅艷煞 最大感應【劣化侵蝕】」的效果而陣亡，則強化效果：\n- 使全體敵方單位增加3級 [Combustion] 強度，並將自身的 [Combustion] 強度分散施加給敵方單位(每名敵方單位最多5級)\n- 獲得持有量最少的2種屬性罪孽碎片各2個\n- 若自身的 [Combustion] 強度不低於30級，則使解除待命的1名友方單位獲得3層 [AttackUp]"
     },
     {
       "id": 1021121,
@@ -1954,7 +1954,7 @@
     {
       "id": 1071211,
       "name": "黑雲刀",
-      "desc": "包括自身在內參戰且屬於黑雲會的友方單位不低於2名時，使自身獲得1層 [BlackCloudBlade] (最多1層)\n\n對本回合使用了守備技能或攻擊前體力為最大值的敵方單位造成的傷害+10%\n\n若敵方單位攻擊除自身以外的友方單位並造成了傷害，則對攻擊者使用1技能進行單方面攻擊(每回合最多1次)\n\n<style=\"highlight\">若該敵方單位擊殺了除自身以外的友方單位，或攻擊後受到攻擊的友方單位體力不高於25%，則對攻擊者使用<後巷規矩>進行單方面攻擊(每名友方單位最多1次，每回合最多2次，因該效果使用的技能視作攻擊技能)</style>",
+      "desc": "包括自身在內參戰且屬於黑雲會的友方人格不低於2名時，使自身獲得1層 [BlackCloudBlade] (最多1層)\n\n對本回合使用了守備技能或攻擊開始前體力為最大值的敵方單位造成的傷害+10%\n\n若敵方單位使用技能攻擊除自身以外的友方單位並造成了傷害，則對攻擊者使用1技能進行單方面攻擊(每回合最多1次)\n\n<style=\"highlight\">若敵方單位擊殺了除自身以外的友方單位，或攻擊結束後受到攻擊的友方單位體力低於25%，則對攻擊者使用<後巷規矩>進行單方面攻擊(每名友方角色最多1次，每回合最多2次。因該效果發動的技能視為攻擊技能)</style>",
       "summary": "獲得 [BlackCloudBlade]，對本回合使用了守備技能或攻擊前體力為最大值的敵方單位造成的傷害增加，友方單位受到攻擊時進行反擊"
     },
     {
@@ -1982,17 +1982,17 @@
     {
       "id": 1081121,
       "name": "雲工坊之刃",
-      "desc": "1 ally with the fastest Speed inflicts +1 more [Laceration] Potency or Count with Skill and Coin effects against enemies"
+      "desc": "令速度值最高的1名友方單位透過技能效果或硬幣效果對敵方單位施加的 [Laceration] 強度或回數額外+1"
     },
     {
       "id": 1011201,
       "name": "碧血丹心",
-      "desc": "Turn End: Heal 1 ally that has the lowest SP by (5 + highest Reson.) (max 10) (excludes: self and Panicked or E.G.O Corroded allies)\n- If the said ally has Base Skills that inflict [Combustion] Potency or Count, heal 5 additional SP to them"
+      "desc": "回合結束時，使理智值最低的1名友方單位恢復(5+最大共鳴數)點理智值(最多10點)(不包括自身與陷入恐慌或E.G.O侵蝕的友方單位)\n- 若該友方單位擁有施加 [Combustion] 強度或回數的基礎技能，則使其額外恢復5點理智值"
     },
     {
       "id": 1011211,
       "name": "碧血丹心",
-      "desc": "Turn End: Heal 1 ally that has the lowest SP by (5 + highest Reson.) (max 10) (excludes: self and Panicked or E.G.O Corroded allies)\n- If the said ally has Base Skills that inflict [Combustion] Potency or Count, heal 5 additional SP to them\n- At 4+ Wrath Reson., heal 1 additional ally"
+      "desc": "回合結束時，使理智值最低的1名友方單位恢復(5+最大共鳴數)點理智值(最多10點)(不包括自身與陷入恐慌或E.G.O侵蝕的友方單位)\n- 若該友方單位擁有施加 [Combustion] 強度或回數的基礎技能，則使其額外恢復5點理智值\n- 若暴怒共鳴數不低於4，則額外使1名友方單位恢復理智值"
     },
     {
       "id": 1011221,
@@ -2002,7 +2002,7 @@
     {
       "id": 1011231,
       "name": "六協方陣",
-      "desc": "For 2 allies that have the lowest SP: If they lost SP this turn, heal 5 SP at Turn End\n- If the said allies have Base Skills that inflict [Combustion] Potency or Count, heal 5~10 SP instead"
+      "desc": "若理智值最低的2名友方單位在本回合失去了理智值，則回合結束時使其恢復5點理智值\n- 若該友方單位擁有施加 [Combustion] 強度或回數的基礎技能，則改為恢復5～10點理智值"
     },
     {
       "id": 1121102,
@@ -2012,7 +2012,7 @@
     {
       "id": 1121101,
       "name": "只有我活下來了……",
-      "desc": "Deal +0.2% damage for every [FirePunchFuel] and [FirePunchFuelOverheated] this unit consumed in this Encounter (max 40%)\n- If the main target is a <Bloodfiend>, <Bloodbag>, or if they have 30+ ([Combustion] + [Combustion] Count), deal +0.3% damage instead (max 60%)\n\nAt 1+ [FirePunchFuel] or [FirePunchFuelOverheated], if this unit Staggers or defeats enemies that have [Combustion], inflict +2 [Combustion] Count against 2 random enemies that do not have [Combustion] or has the least [Combustion] Count (once per turn)\n- For Focused Encounters, on Parts",
+      "desc": "本場戰鬥中自身每消耗1層 [FirePunchFuel] 或 [FirePunchFuelOverheated]，使自身造成的傷害+0.2%(最多+40%)\n- 若主要目標屬於<血魔>或<血袋>，或目標的 [Combustion] 強度與 [Combustion] 回數之和不低於30，則改為造成的傷害+0.3%(最多+60%)\n\n若自身的 [FirePunchFuel] 或 [FirePunchFuelOverheated] 層數不低於1層，則自身使帶有 [Combustion] 的敵方單位陷入混亂或將其擊殺時，隨機對未帶有 [Combustion] 或 [Combustion] 回數最低的2名敵方單位施加2回 [Combustion] (每回合最多1次)\n- 若是集中遭遇戰，則改為對部位施加",
       "summary": "根據消耗 [FirePunchFuel] 與 [FirePunchFuelOverheated] 的層數，使該單位造成的傷害等量增加[TabExplain]\n使2名敵方單位增加 [Combustion] 回數(每回合最多1次)"
     },
     {
@@ -2038,7 +2038,7 @@
     {
       "id": 1031131,
       "name": "輕功",
-      "desc": "1 ally with the fastest Speed : On Clash Win against enemies with [Combustion] or 'Unique Burn', gain 1 [Agility] next turn (once per turn)\n<style=\"highlight\">- If the target has 20+ [Combustion] Potency, gain 1 additional [Agility]</style>"
+      "desc": "速度值最高的1名友方單位與帶有 [Combustion] 或特殊燒傷的敵方單位拚點勝利時，使該友方單位在下回合獲得1層 [Agility] (每回合最多1次)\n<style=\"highlight\">- 若目標的 [Combustion] 強度不低於20級，則使該友方單位額外獲得1層迅捷</style>"
     },
     {
       "id": 1041101,
@@ -2068,12 +2068,12 @@
     {
       "id": 1101201,
       "name": "中指永不遺忘",
-      "desc": "When hit by an enemy, inflict 3 [VendettaMark] against the attacker(or Part) (once per turn)\n\nWhen another ally is hit by an enemy, inflict 2 [VendettaMark] against the attacker(or Part) (once per turn per Identity)\n\nAttack End with Base Attack Skills or Counter Skills: Consume all [VendettaMark] on the target\n- Every time the target consumes [VendettaMark], gain [VengeanceBookSinclair] equal to the amount consumed"
+      "desc": "自身受到敵方單位攻擊時，對攻擊者(或部位)施加3層 [VendettaMark] (每回合最多1次)\n\n除自身以外的友方單位受到敵方單位攻擊時，對攻擊者(或部位)施加2層 [VendettaMark] (每回合每名人格最多1次)\n\n基礎攻擊技能或反擊技能攻擊結束時，消耗目標所有 [VendettaMark]\n- 每當消耗敵方單位的 [VendettaMark] 時，使自身獲得等同於消耗量的 [VengeanceBookSinclair]"
     },
     {
       "id": 1101211,
       "name": "中指永不遺忘",
-      "desc": "When hit by an enemy, inflict <style=\"highlight\">5</style> [VendettaMark] against the attacker(or Part) (once per turn)\n\nWhen another ally is hit by an enemy, inflict 2 [VendettaMark] against the attacker(or Part) (once per turn per Identity)\n<style=\"highlight\">- If the said ally is from the Middle, inflict 3 additional [VendettaMark]</style>\n\nAttack End with Base Attack Skills or Counter Skills, consume all [VendettaMark] on the target\n- Every time the target consumes [VendettaMark], gain [VengeanceBookSinclair] equal to the amount consumed"
+      "desc": "自身受到敵方單位攻擊時，對攻擊者(或部位)施加<style=\"highlight\">5</style>層 [VendettaMark] (每回合最多1次)\n\n除自身以外的友方單位受到敵方單位攻擊時，對攻擊者(或部位)施加2層 [VendettaMark] (每回合每名人格最多1次)\n<style=\"highlight\">- 若該友方單位屬於中指，則額外施加3層 [VendettaMark]</style>\n\n基礎攻擊技能或反擊技能攻擊結束時，消耗目標所有 [VendettaMark]\n- 每當消耗敵方單位的 [VendettaMark] 時，使自身獲得等同於消耗量的 [VengeanceBookSinclair]"
     },
     {
       "id": 1101221,
@@ -2150,8 +2150,8 @@
     {
       "id": 1081202,
       "name": "始動",
-      "desc": "Upon Retreat: apply 1 Offense Level Up next turn to allies in their Deployment order\n- Number of affected allies = [StartXichun] Stack on self\n- If the affected ally is a \"Jia Family\" unit, apply 2 Offense Level Up next turn instead\n- Does not affect allies that either Return or Substitute next turn\n\nOn the turn this unit Substituted or Returned to the field, gain [WaitingXichun]; then, at Combat Start, as the very first Skill in the Skill order, use 'Crimson Strike - Launcher【始】' against a random target.",
-      "summary": "In the turn this unit entered the battle via Substitution or Return: at Combat Start, as the very first Skill in the Skill order, use 'Crimson Strike - Launcher (始)' against a random target"
+      "desc": "撤退時，依編隊順序在下回合使友方單位獲得1層攻擊等級提升\n- 影響的友方單位數：自身的 [StartXichun] 層數\n- 若該友方單位屬於「賈氏家族」，則改為下回合獲得2層攻擊等級提升\n- 不對下回合重返戰鬥或解除待命的人格生效\n\n自身解除待命或重返戰鬥的回合，使自身獲得 [WaitingXichun]；戰鬥開始時，作為技能順序中最優先的技能，隨機對目標使用「赤擊 - 始」",
+      "summary": "自身解除待命或重返戰鬥之回合的戰鬥開始時，作為技能順序中最優先的技能，對隨機目標使用「赤擊 - 始」"
     },
     {
       "id": 1081221,
@@ -2180,37 +2180,37 @@
     {
       "id": 1101321,
       "name": "再次裝填",
-      "desc": "When the 1 ally Identity with the earliest Deployment order among those using [Bullet] finishes their attack, if their current [Bullet] count is fewer than half (rounded up), regain half of the maximum [Bullet] capacity (rounded up; once per Encounter; max [Bullet] regained: 5)\n\n- If the [Bullet] receiving Identity has separate values for Potency and Count, they will gain them at random\n- If either Potency or Count of [Bullet] is maxed out, gain whichever is not maxed\n- This effect does not activate if there are no Identities that use [Bullet]",
+      "desc": "使用 [Bullet] 的人格中，編入順序最前的1名友方單位攻擊結束時，若其現存的 [Bullet] 數低於一半，則使其再次獲得最大值一半的 [Bullet] (無條件進位，每場戰鬥最多1次，最大 [Bullet] 獲得量：5)\n\n- 強度與回數分開計算的 [Bullet]，隨機獲得強度或回數\n- 若強度或回數已達最大值，則改為獲得未達最大值一方的 [Bullet]\n- 若沒有使用 [Bullet] 的人格，則該效果不會觸發",
       "summary": ""
     },
     {
       "id": 1051202,
       "name": "插翅虎",
-      "desc": "Always Active: begin Encounters with 12 [BulletPropellantAlly]\n\nWhen flipping a Coin that consumes [BulletPropellantAlly] or [BulletPropellantSpecialAlly]: while not having those 'Unique Ammo' does not cancel this unit's attacks, the Coin's On Hit \"inflict [Combustion]\" and \"inflict [Combustion] Count\" effects do not activate\n\nIf this unit equipped Defense Skills for the first time in this Encounter, or if this unit spent all of his [BulletPropellantAlly], or if this unit is Staggered: at the end of that turn, reload 8 [BulletPropellantSpecialAlly] and gain 1 [IrritationAlly] (once per Encounter)\n- If this effect activates while this unit is Staggered, recover from Stagger (excluding forced Staggers)\n- Remove all [BulletPropellantAlly] if this unit has any leftover [BulletPropellantAlly]\n- At 8+ (sum of [BulletPropellantAlly] and [BulletPropellantSpecialAlly] spent), convert [IrritationAlly] to [HugeIrritationAlly]\n\nWhen this unit uses a Base Attack Skill that spends the final Round of [BulletPropellantSpecialAlly]...\n- Gain Atk Weight +2 before attacking\n- Gain 1 [BeastEyesAlly] next turn",
+      "desc": "常駐效果：帶有12發 [BulletPropellantAlly]\n\n擲出消耗 [BulletPropellantAlly] 或 [BulletPropellantSpecialAlly] 的硬幣時，即使自身未帶有該特殊彈藥，攻擊也不會取消，但該硬幣的命中時增加 [Combustion] 強度與施加 [Combustion] 回數的效果不會生效\n\n若本場戰鬥中自身首次裝備了守備技能，或消耗了自身所有 [BulletPropellantAlly]，或自身陷入混亂，則在該回合結束時，使自身裝填8發 [BulletPropellantSpecialAlly] 並獲得1層 [IrritationAlly] (每場戰鬥最多1次)\n- 若在混亂狀態下觸發該效果，則解除自身的混亂(不包括強制混亂)\n- 若自身仍有剩餘的 [BulletPropellantAlly]，則全部消除\n- 若自身消耗的 [BulletPropellantAlly] 與 [BulletPropellantSpecialAlly] 之和不低於8發，則使自身的 [IrritationAlly] 變更為 [HugeIrritationAlly]\n\n使用消耗 [BulletPropellantSpecialAlly] 最後一發彈藥的基礎攻擊技能時，\n- 攻擊開始前，使攻擊容量+2\n- 下回合使自身獲得1層 [BeastEyesAlly]",
       "summary": ""
     },
     {
       "id": 1051201,
       "name": "天退星刀",
-      "desc": "When this unit has [BulletPropellantAlly]:\n- At 1+ [BulletPropellantAlly], convert all Coins of 'Tanglecleaver' into [SuperCoin]s\n- Skill Coins that spend [BulletPropellantAlly] gain +1 Power (activates only as long as the Coin has Rounds left to spend)\n\nWhen this unit has [BulletPropellantSpecialAlly]:\n- At 1+ [BulletPropellantSpecialAlly], convert all Coins of this unit's Base Attack Skills to [SuperCoin]s\n- At 0 [BulletPropellantSpecialAlly], convert all Coins of this unit's Base Attack Skills that spend 'Unique Ammo' to [SuperCoin]s\n- Skill Coins that spend [BulletPropellantSpecialAlly] gain +2 Power (activates only as long as the Coin has Rounds left to spend)",
+      "desc": "自身帶有 [BulletPropellantAlly] 時：\n- 若其數量不低於1，則使「快刀亂麻」中的所有硬幣變更為 [SuperCoin]\n- 使技能中消耗 [BulletPropellantAlly] 的硬幣威力+1(僅在該硬幣有剩餘的彈藥可消耗時生效)\n\n自身帶有 [BulletPropellantSpecialAlly] 時：\n- 若其數量不低於1，則使自身基礎攻擊技能中的所有硬幣變更為 [SuperCoin]\n- 若其數量為0，則使自身基礎攻擊技能中可消耗特殊彈藥的硬幣變更為 [SuperCoin]\n- 使技能中消耗 [BulletPropellantSpecialAlly] 的硬幣威力+2(僅在該硬幣有剩餘的彈藥可消耗時生效)",
       "summary": ""
     },
     {
       "id": 1051211,
       "name": "天退星刀",
-      "desc": "When this unit has [BulletPropellantAlly]:\n- At 1+ [BulletPropellantAlly], convert all Coins of 'Tanglecleaver' into [SuperCoin]s\n- Skill Coins that spend [BulletPropellantAlly] gain +1 Power <style=\"highlight\">and deal +10% damage</style> (activates only as long as the Coin has Rounds left to spend)\n\nWhen this unit has [BulletPropellantSpecialAlly]:\n- At 1+ [BulletPropellantSpecialAlly], convert all Coins of this unit's Base Attack Skills to [SuperCoin]s\n- At 0 [BulletPropellantSpecialAlly], convert all Coins of this unit's Base Attack Skills that spend 'Unique Ammo' to [SuperCoin]s\n- Skill Coins that spend [BulletPropellantSpecialAlly] gain +2 Power, <style=\"highlight\">deal +30% damage, and inflict +2 more [Combustion] Potency and [Combustion] Count On Hit with those Coins</style> (activates only as long as the Coin has Rounds left to spend)",
+      "desc": "自身帶有 [BulletPropellantAlly] 時：\n- 若其數量不低於1，則使「快刀亂麻」中的所有硬幣變更為 [SuperCoin]\n- 使技能中消耗 [BulletPropellantAlly] 的硬幣威力+1，<style=\"highlight\">造成的傷害+10%</style>(僅在該硬幣有剩餘的彈藥可消耗時生效)\n\n自身帶有 [BulletPropellantSpecialAlly] 時：\n- 若其數量不低於1，則使自身基礎攻擊技能中的所有硬幣變更為 [SuperCoin]\n- 若其數量為0，則使自身基礎攻擊技能中可消耗特殊彈藥的硬幣變更為 [SuperCoin]\n- 使技能中消耗 [BulletPropellantSpecialAlly] 的硬幣威力+2，<style=\"highlight\">造成的傷害+30%，並令其在命中時增加的 [Combustion] 強度與施加的 [Combustion] 回數額外+2</style>(僅在該硬幣有剩餘的彈藥可消耗時生效)",
       "summary": ""
     },
     {
       "id": 1051221,
       "name": "猛虎躍進",
-      "desc": "When 1 ally with the fastest Speed uses a Skill that spends [Bullet], if their Speed is faster than the target's by 3 or more, deal +(Speed difference × 2)% more damage (max 10%).\n(This effect does not activate if the affected unit lacks the [Bullet] buff entirely. However, it will activate if they have the [Bullet] buff, even if they have 0 rounds left)",
+      "desc": "速度值最高的1名友方單位使用消耗 [Bullet] 的技能時，若其速度值高於目標至少3點，則使該友方單位造成的傷害+(與目標的速度差×2)%(最多+10%)\n(若不帶有 [Bullet] 則不會生效；但若帶有 [Bullet] 效果而其數值為0，則仍會生效)",
       "summary": ""
     },
     {
       "id": 1051231,
       "name": "猛虎躍進",
-      "desc": "When 1 ally with the fastest Speed uses a Skill that spends [Bullet], if their Speed is faster than the target's by 3 or more, deal +(Speed difference × <style=\"highlight\">3</style>)% more damage (max <style=\"highlight\">15%</style>).\n(This effect does not activate if the affected unit lacks the [Bullet] buff entirely. However, it will activate if they have the [Bullet] buff, even if they have 0 rounds left)",
+      "desc": "速度值最高的1名友方單位使用消耗 [Bullet] 的技能時，若其速度值高於目標至少3點，則使該友方單位造成的傷害+(與目標的速度差×<style=\"highlight\">3</style>)%(最多+<style=\"highlight\">15%</style>)\n(若不帶有 [Bullet] 則不會生效；但若帶有 [Bullet] 效果而其數值為0，則仍會生效)",
       "summary": ""
     },
     {
@@ -2267,7 +2267,7 @@
     {
       "id": 1091304,
       "name": "破滅、撕裂、貫穿",
-      "desc": "If this unit has [PenetratingSword]: before hitting an enemy with a Base Attack Skill, consume 1 [PenetratingSword] to inflict 1 [Sinking]\n- If this unit has 2+ [PenetratingSword] before this turn's final Base Attack Skill's final Coin hits, consume all of it instead to inflict it as [Sinking]\n\nIf this unit has 3 [SwordCutwithTear]: before hitting an enemy with the final Coin of a Base Attack Skill, consume all [SwordCutwithTear] to inflict 3 [Sinking] and +3 [Sinking] Count, and deal +50% damage with that Coin\n- If this effect activated, reset to 0 SP if this unit has less than 0 SP at Turn End. (when in Panic or 'E.G.O Corrosion', recover) Then, heal 30 SP",
+      "desc": "若自身帶有 [PenetratingSword]，則自身的基礎攻擊技能命中敵方單位前，消耗1層 [PenetratingSword] 並使目標增加1級 [Sinking] 強度\n- 本回合自身最後使用的基礎攻擊技能的最後一枚硬幣命中前，若自身剩餘的 [PenetratingSword] 不低於2層，則改為消耗全部層數，並使目標增加等同於消耗量的 [Sinking] 強度\n\n若自身的 [SwordCutwithTear] 層數為3層，則自身的基礎攻擊技能的最後一枚硬幣命中敵方單位前，消耗所有 [SwordCutwithTear]，使目標增加3級 [Sinking] 強度與3回 [Sinking]，並使該硬幣造成的傷害+50%\n- 觸發該效果時，若回合結束時自身的理智值低於0點，則使自身的理智值重置為0點(若處於恐慌或E.G.O侵蝕狀態，則解除)，隨後使自身恢復30點理智值",
       "summary": "消耗自身的 [PenetratingSword] 並使目標增加 [Sinking] 強度\n- [PenetratingSword] 層數為3層時，造成的傷害額外增加，理智值低於0點時，下回合使自身恢復理智值"
     },
     {
@@ -2326,7 +2326,7 @@
     {
       "id": 1101402,
       "name": "鬥雞",
-      "desc": "When activating [HeishouCombo], The Lord of Hongyuan Hong Lu gains the following effect as the [HeishouComboCountHonglu] effect:\n- When using a Skill to inflict [Burst] Potency or Count, inflict 1 [Combustion] (3 times per turn)\n\nCannot be Staggered or fall below 1 HP due to [Combustion] damage.\n\nGain 3 [ChickenStance] in the same turn it Substitutes or Returns in."
+      "desc": "與鴻園君主 鴻璐觸發 [HeishouCombo] 時，鴻園君主 鴻璐獲得以下的 [HeishouComboCountHonglu] 效果\n- 透過技能增加 [Burst] 強度或施加回數時，使目標增加1級 [Combustion] 強度(每回合最多3次)\n\n自身不會因 [Combustion] 傷害而陷入混亂或使體力降至1點以下\n\n自身解除待機或重返戰鬥的回合，使自身獲得3層 [ChickenStance]"
     },
     {
       "id": 1101401,
@@ -2387,7 +2387,7 @@
       "id": 1041221,
       "name": "彼為流動並響徹",
       "desc": "最先編入的1名友方單位攻擊命中敵方單位時，使該敵方單位增加1級 [Laceration] 強度(每回合每名敵方單位最多1次)\n- 若目標帶有 [Laceration]，則額外對其施加1回 [Laceration]\n\n最先編入的1名友方單位受到敵方單位的攻擊時，使攻擊者增加1級 [Vibration] 強度(每回合每名敵方單位最多3次)\n- 若攻擊者帶有 [Vibration]，則額外對其施加1回 [Vibration]",
-      "summary": "On Hit, inflict [Laceration]; inflict Count as well if the target already has the effect\nWhen Hit, inflict [Vibration]; inflict Count as well if the target already has the effect"
+      "summary": "命中敵方單位時，使其增加 [Laceration] 強度，若其已帶有該效果，則額外施加回數\n受到敵方單位攻擊時，使攻擊者增加 [Vibration] 強度，若其已帶有該效果，則額外施加回數"
     },
     {
       "id": 1021301,
@@ -2480,14 +2480,14 @@
     {
       "id": 1121301,
       "name": "家族的肅清者",
-      "desc": "當自身擊殺敵方單位或破壞敵方部位時，使自身獲得1層 [PenetrateResultUp] (每回合最多1次)\n\n使用基礎技能攻擊敵方單位時，若自身速度值高於目標，則每相差2點速度值對敵方單位施加1層 [Disarming] (每回合最多1層)\n\n友方單位使用基礎攻擊技能過後，若有敵方單位、異想體本體的體力低於最大值的20%，使自身對該目標發動「慈悲」(每回合最多1次)",
+      "desc": "當自身擊殺敵方單位或破壞敵方部位時，使自身下回合獲得1層 [PenetrateResultUp] (每回合最多1次)\n\n使用基礎攻擊技能時，若目標的速度比自身慢，則每相差2點速度值對目標施加1層 [Disarming] (每回合最多1層)\n\n友方單位對敵方單位使用的基礎攻擊技能結束時，若敵方單位(本體)的體力不高於20%，則對該目標使用「慈悲」(每回合最多1次)",
       "summary": "使自身獲得 [PenetrateResultUp]\n對敵方施加 [Disarming]\n發動 「慈悲」",
       "undefined": "-"
     },
     {
       "id": 1121311,
       "name": "家族的肅清者",
-      "desc": "當自身擊殺敵方單位或破壞敵方部位時，使自身獲得2層 [PenetrateResultUp] (每回合最多1次)\n\n使用基礎技能攻擊敵方單位時，若自身速度值高於目標，則每相差2點速度值對敵方單位施加1層 [Disarming] (每回合最多2層)\n\n友方單位使用基礎攻擊技能過後，若敵方單位、異想體本體的體力低於最大值的20%，使自身對目標發動「慈悲」(每回合最多1次)\n- 若攻擊結束時存活的敵方單位只有1名，則當敵方陷入混亂時也觸發該效果",
+      "desc": "當自身擊殺敵方單位或破壞敵方部位時，使自身下回合獲得2層 [PenetrateResultUp] (每回合最多1次)\n\n使用基礎攻擊技能時，若目標的速度比自身慢，則每相差2點速度值對目標施加1層 [Disarming] (每回合最多2層)\n\n友方單位對敵方單位使用的基礎攻擊技能結束時，若敵方單位(本體)的體力不高於20%，則對該目標使用「慈悲」(每回合最多1次)\n- 若攻擊結束時存活的敵方單位只有1名，則目標處於混亂狀態時也會觸發",
       "summary": "使自身獲得 [PenetrateResultUp]\n對敵方施加 [Disarming]\n發動 「慈悲」",
       "undefined": "-"
     },
@@ -2525,13 +2525,13 @@
     {
       "id": 1031301,
       "name": "發破角碎",
-      "desc": "目標帶有的 [Burst]、[Sinking] 強度之和每有2級，則使自身對目標造成的傷害+1%(最多+15%)\n- 若目標不帶有理智值，則上述效果及其上限改為2倍\n\n若自身帶有 [GrownHorns]，則使自身的基礎攻擊技能的最後一枚硬幣造成的傷害+10%\n- 若自身攻擊的目標技能槽裝備了防備技能，則改為造成的傷害+20%\n- 當自身與可拚點防備技能拚點時，使自身拚點威力+1",
+      "desc": "目標帶有的 [Burst]、[Sinking] 強度之和每有2級，則使自身對目標造成的傷害+1%(最多+15%)\n- 若目標不帶有理智值，則上述效果及其上限改為2倍\n\n若自身帶有 [GrownHorns]，則使自身攻擊敵方單位時，基礎技能的最後一枚硬幣造成的傷害+10%\n- 若自身攻擊的目標行動槽裝備了守備技能，則改為使最後一枚硬幣造成的傷害+20%\n- 當自身與可拚點守備技能拚點時，額外使自身拚點威力+1",
       "summary": "基於目標帶有的 [Burst] 與 [Sinking] 強度之和使自身造成的傷害增加\n若自身帶有 [GrownHorns]，使自身基礎技能的最後一枚硬幣造成更多傷害"
     },
     {
       "id": 1031311,
       "name": "發破角碎",
-      "desc": "<style=\"highlight\">對理智值少於0的目標造成的傷害+(-目標的理智值/3)%(最多+15%；無條件捨去)</style>\n\n目標帶有的 [Burst]、[Sinking] 強度之和每有2級，則使自身對目標造成的傷害+1%(最多+15%)\n- 若目標不帶有理智值，則上述效果及其上限改為2倍\n\n若自身帶有 [GrownHorns]，則使自身的基礎攻擊技能的最後一枚硬幣造成的傷害<style=\"highlight\">+15%</style>\n- 若自身攻擊的目標技能槽裝備了防備技能，則改為造成的傷害<style=\"highlight\">+30%</style>\n- 當自身與可拚點防備技能拚點時，使自身拚點威力<style=\"highlight\">+3</style>",
+      "desc": "<style=\"highlight\">對理智值低於0的目標造成的傷害+(-目標的理智值/3)%(最多+15%；無條件捨去)</style>\n\n目標帶有的 [Burst]、[Sinking] 強度之和每有2級，則使自身對目標造成的傷害+1%(最多+15%)\n- 若目標不帶有理智值，則上述效果及其上限改為2倍\n\n若自身帶有 [GrownHorns]，則使自身攻擊敵方單位時，基礎技能的最後一枚硬幣造成的傷害<style=\"highlight\">+15%</style>\n- 若自身攻擊的目標行動槽裝備了守備技能，則改為使最後一枚硬幣造成的傷害<style=\"highlight\">+30%</style>\n- 當自身與可拚點守備技能拚點時，額外使自身拚點威力<style=\"highlight\">+3</style>",
       "summary": "基於目標帶有的 [Burst] 與 [Sinking] 強度之和使自身造成的傷害增加\n若自身帶有 [GrownHorns]，使自身基礎技能的最後一枚硬幣造成更多傷害"
     },
     {
@@ -2549,7 +2549,7 @@
     {
       "id": 1041301,
       "name": "俠客",
-      "desc": "If an ally is killed by enemy attack, or if the attacked ally's HP is at less than 25% after the attack: After that Attack, Drifting Blade of Hongyuan Ryōshū uses \"Aiding Strike\" as an Unopposed Attack against that enemy (once per Encounter)\n- The Lord of Hongyuan Hong Lu may activate this effect 1 more time past its usage limit\n\nIf \"Hey, Back Off\" is activated via the Passive 'I.L.T.L.T', the Skill deals +30% damage on Critical Hit and heals 2~4 SP for 1 other ally with the lowest SP (once per turn; excluding allies at -40 or lower SP)",
+      "desc": "當友方單位因敵方單位的攻擊而陣亡或體力降至低於25%時，在該攻擊結束後，鴻園 流浪武士 良秀將使用「加斥我援」對該敵方單位進行單方面攻擊(每場戰鬥最多1次)\n- 當觸發效果的友方單位為鴻園君主 鴻璐時，該效果可無視次數限制額外發動1次\n\n由被動「君．可．保．好」效果觸發的技能「喂，退下」在使用時，使該技能造成的暴擊傷害+30%；使除自身之外理智值最低的1名友方單位恢復2~4點理智值(每回合最多1次；理智值不高於-40的友方單位除外)",
       "summary": "當友方單位遭受致命攻擊傷害時，對攻擊者使用3技能；強化經由被動效果觸發而使用的1技能。"
     },
     {
@@ -2566,13 +2566,13 @@
     {
       "id": 1091401,
       "name": "聖誕鹿角",
-      "desc": "Gain 1 [Charge] every time this unit consumes 10 cumulative [Charge] Count in this Encounter\n\nWhen using a Base Attack Skill that inflicts [Sinking] Potency, if the main target does not have [Sinking], this unit gains 5 [Sinking] and doubles the amount of Sinking Potency the Skill applies (once per turn; in Focused Encounters, the Part)",
+      "desc": "本場戰鬥中，每當自身累計消耗10回 [Charge] 時，使自身增加1級 [Charge] 強度\n\n自身使用使敵方單位增加沉淪強度的基礎攻擊技能時，若主要目標不帶有 [Sinking]，則使自身獲得5級 [Sinking] 強度，並使該技能效果增加的 [Sinking] 強度變為2倍(每回合最多1次；集中遭遇戰時，以部位為準)",
       "summary": "若敵方目標不帶有 [Sinking]，使自身獲得 [Sinking] 且增加攻擊施予的 [Sinking] 強度"
     },
     {
       "id": 1091411,
       "name": "聖誕鹿角",
-      "desc": "Gain 1 [Charge] every time this unit consumes 10 cumulative [Charge] Count in this Encounter\n\nWhen using a Base Attack Skill that inflicts [Sinking] Potency, if the main target does not have [Sinking], this unit gains 5 [Sinking] and doubles the amount of Sinking Potency the Skill applies (once per turn; in Focused Encounters, the Part)\n\n<style=\"highlight\">At less than 35% HP, Base Attack Skills gain Final Power +1</style>",
+      "desc": "本場戰鬥中，每當自身累計消耗10回 [Charge] 時，使自身增加1級 [Charge] 強度\n\n自身使用使敵方單位增加沉淪強度的基礎攻擊技能時，若主要目標不帶有 [Sinking]，則使自身獲得5級 [Sinking] 強度，並使該技能效果增加的 [Sinking] 強度變為2倍(每回合最多1次；集中遭遇戰時，以部位為準)\n\n<style=\"highlight\">自身體力低於35%時，使自身基礎攻擊技能的最終威力+1</style>",
       "summary": "若敵方目標不帶有 [Sinking]，使自身獲得 [Sinking] 且增加攻擊施予的 [Sinking] 強度\n當自身體力低於35%時，自身最終威力+1"
     },
     {
@@ -2595,7 +2595,7 @@
     {
       "id": 1111412,
       "name": "荷魯斯之杖 - 複製品",
-      "desc": "Turn Start: If an enemy has any of the Panic type changing effects, gain 1 [TheUdjatOutis]\n\nIf this unit has [TheUdjatOutis], inflict 1 [SheutFracture] On Hit with a Base Attack Skill (15 per turn)\n<style=\"highlight\">- If [LCA_Bullet] was spent, inflict additional [SheutFracture] per [LCA_Bullet] spent</style>\n\n[Protection] Stack gained from this unit's Base Skills and [TheUdjatOutis] effect is capped at 5 per turn",
+      "desc": "回合開始時，若有敵方單位帶有任何改變恐慌類型的效果，則使自身獲得1層 [TheUdjatOutis]\n\n若自身帶有 [TheUdjatOutis]，則使自身的基礎攻擊技能在命中目標時，對其施加1層 [SheutFracture] (每回合最多15層)\n<style=\"highlight\">- 若消耗了 [LCA_Bullet]，則額外施加等同於所消耗 [LCA_Bullet] 數量的層數</style>\n\n自身在一回合內從基礎技能與 [TheUdjatOutis] 獲得最多5層的 [Protection]",
       "summary": ""
     },
     {
@@ -2614,7 +2614,7 @@
       "id": 1021403,
       "name": "指令之意",
       "desc": "當自身達成 [IndexPrescript_Base] 條件時：\n於回合結束時，使自身恢復4點理智值並獲得1層 [BlessingOfIndexPrescriptAlly] (每回合最多1次)\n- 執行 [IndexPrescript_Base] 時，若主要目標帶有 [IndexPrescriptTargetToEnemy] ，則改為恢復8點理智值並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n回合結束時，若自身未能達成 [IndexPrescript_Base]，則對自身施加5層 [KarmaOfIndexAlly]\n- 自身帶有9層 [BlessingOfIndexPrescriptAlly] 時，不會對自身施加 [KarmaOfIndexAlly]\n- 若自身於戰鬥開始時嘗試執行 [IndexPrescript_Base]，但戰鬥過程中無法指定目標，則不會對自身施加 [KarmaOfIndexAlly]",
-      "summary": "Upon executing Prescript, heal SP and gain Grace of the Prescript\nUpon failing Prescript, gain Karmic Consequence"
+      "summary": "成功執行指令時，恢復理智值並獲得指令加護\n未能執行指令時，獲得業報"
     },
     {
       "id": 1021401,
@@ -2638,12 +2638,12 @@
       "id": 1031403,
       "name": "指令之意",
       "desc": "當本回合自身執行了 [IndexPrescript_Base_2nd] ：\n於回合結束時，使自身恢復4點理智值並獲得1層 [BlessingOfIndexPrescriptAlly] (每回合最多1次)\n- 執行 [IndexPrescript_Base_2nd] 時，若主要目標帶有 [IndexPrescriptTargetToEnemy]\n則改為恢復8點理智值並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n回合結束時，若自身未能執行 [IndexPrescript_Base_2nd]\n則對自身施加5層 [KarmaOfIndexAlly]\n- 自身帶有 [UnlockBuffAlly_3] 階段時，不會對自身施加 [KarmaOfIndexAlly]\n- 若自身在戰鬥開始時嘗試執行 [IndexPrescript_Base_2nd]，但於戰鬥過程中無法指定目標，則不會對自身施加 [KarmaOfIndexAlly]",
-      "summary": "Upon executing Prescript, heal SP and gain Grace of the Prescript\nUpon failing Prescript, gain Karmic Consequence"
+      "summary": "成功執行指令時，恢復理智值並獲得指令加護\n未能執行指令時，獲得業報"
     },
     {
       "id": 1031404,
       "name": "解放/綻放E.G.O:: 代行",
-      "desc": "Turn End: At 3/6/9 [BlessingOfIndexPrescriptAlly], gain [UnlockBuffAlly_1]/[UnlockBuffAlly_2]/[UnlockBuffAlly_3].\n\nIf this unit gained [UnlockBuffAlly_1], consume 15 SP to enter <noparse>Effloresced</noparse> E.G.O::Procuration state:\n- Before consuming SP to enter this state, heal SP to 25 and gain [KarmaOfIndexAlly] equal to (SP healed / 5) (rounded up)\n- At Turn Start after the above checks, if this unit has [UnlockBuff_Base] and is at 25+ SP, consume 15 SP to enter this state\n\n- If this unit gets Staggered when entering <noparse>Effloresced</noparse> E.G.O::Procuration state, recover from Stagger (if this unit's Stagger cannot be naturally recovered from, does not enter <noparse>Effloresced</noparse> E.G.O::Procuration state)\n- Gain [Blandishment] while in <noparse>Effloresced</noparse> EGO::Procuration state\n\nTurn Start: At 0 or less SP, this unit exits <noparse>Effloresced</noparse> E.G.O::Procuration state"
+      "desc": "回合結束時，若自身的 [BlessingOfIndexPrescriptAlly] 層數為3/6/9層，則使自身獲得 [UnlockBuffAlly_1] / [UnlockBuffAlly_2] / [UnlockBuffAlly_3]\n\n自身獲得 [UnlockBuffAlly_1] 時，消耗15點理智值，進入<noparse>綻放</noparse>E.G.O::代行狀態\n- 消耗理智值前，使自身理智值增加至25點，並獲得(增加的理智值÷5)層 [KarmaOfIndexAlly] (無條件進位)\n- 此後回合開始時，若自身帶有 [UnlockBuff_Base] 且理智值不低於25點，\n則消耗15點理智值，進入該狀態\n\n進入<noparse>綻放</noparse>E.G.O::代行狀態時，\n- 解除該回合的混亂\n(若為無法解除的混亂，則無法進入該狀態)\n- 處於該狀態時，獲得 [Blandishment]\n\n回合開始時，若自身理智值不高於0點，則解除該狀態"
     },
     {
       "id": 1031401,
@@ -2721,7 +2721,7 @@
       "id": 1011502,
       "name": "由終端傳達的指令",
       "desc": "回合開始時：\n- 根據自身的 [UnlockBuff_Base] 階段，使自身獲得 [IndexPrescriptYi_0] / [IndexPrescriptYi_1] / [IndexPrescriptYi_2] / [IndexPrescriptYi_3]\n- 對隨機1名敵方單位施加 [IndexPrescriptTargetToEnemy] (集中遭遇戰時，則改為隨機部位)\n- 使自身行動槽中的基礎攻擊技能獲得 [IndexPrescriptTargetMarkToEnemy] (每格最多1個；最多2個技能)\n．自身至少處在 [UnlockBuffAlly_2] 或以上的階段，則使上列效果優先指定3技能 (更優先指定強力技能)\n- 當自身處於混亂、無法行動[TabExplain]、陷入恐慌或E.G.O侵蝕狀態時，使上述所有效果以及 [IndexPrescript_Base_2nd] 達成判定失效",
-      "summary": "Upon executing Prescript, heal SP and gain Grace of the Prescript\nUpon failing Prescript, gain Karmic Consequence"
+      "summary": "成功執行指令時，恢復理智值並獲得指令加護\n未能執行指令時，獲得業報"
     },
     {
       "id": 1011503,
@@ -2773,7 +2773,7 @@
     {
       "id": 1051411,
       "name": "擴散孢子",
-      "desc": "On Kill against targets that have [MeursaultBeeSpore], gain the following effects:\n- Inflict double the [MeursaultBeeSpore] for the next turn\n<style=\"highlight\">- On Kill using a Base Attack Skill, gain (<noparse>Spore</noparse> Round the Skill spends / 2) <noparse>Spore</noparse> Round (rounded up; once per Skill)</style>"
+      "desc": "擊殺帶有 [MeursaultBeeSpore] 的敵方單位時，觸發以下效果\n- 下回合內使自身施加的 [MeursaultBeeSpore] 層數變為2倍\n<style=\"highlight\">- 使用基礎攻擊技能擊殺時，使自身獲得(該技能消耗的孢子彈÷2)發孢子彈(無條件進位，每個技能最多1次)</style>"
     },
     {
       "id": 1051402,
@@ -2818,7 +2818,7 @@
     {
       "id": 1121503,
       "name": "交替放電支援",
-      "desc": "回合開始時，若包含自身在內穿戴E.G.O裝備的友方單位不低於3名時：\n使穿戴E.G.O裝備的友方單位獲得1層 [AttackUp]\n\n格里高爾E.G.O技能AEDD的被動效果消耗 [Charge] 回數時，若自身帶有的 [Charge] 回數低於12回，則正面命中時不消耗 [Charge]，改為消耗2點護盾值或體力值來發動效果\n- 本效果僅於自身剩餘體力值至少25%以上時發動"
+      "desc": "回合開始時，若包含自身在內穿戴E.G.O裝備的友方單位不低於3名，\n則使自身與這些友方單位全部獲得1層 [AttackUp]\n\n因格里高爾的E.G.O「AEDD」的被動效果消耗 [Charge] 回數時，若自身的 [Charge] 回數不高於12回，則正面命中時不消耗自身2回 [Charge]，改為減少4點護盾或體力來發動效果\n- 僅在體力不低於25%時發動"
     },
     {
       "id": 1121501,
@@ -2843,13 +2843,13 @@
     {
       "id": 1061404,
       "name": "畢生之作：緹比雅",
-      "desc": "Upon entering the Encounter for the first time, gain +(# of The Ring allies on the field x 2) [ChargeBodyArt] Count (max 10)\n\nSkill End: If the Skill dealt HP or Shield damage, gain +5 [ChargeBodyArt] Count\n- If target is killed, gain +3 additional [ChargeBodyArt] Count\n\nGain 1 [ChargeBodyArt] every time this unit consumes 10 cumulative [ChargeBodyArt] Count in this Encounter\n- If the above effect brings this unit's [ChargeBodyArt] Potency to 2 or higher, gain [TibiaPersonality]\n\nBase Attack Skills and Clashable Counter Skill count as Skills that gain [Charge] Count",
+      "desc": "戰鬥中首次登場時，使自身獲得(場上屬於環指的友方單位數×2)回 [ChargeBodyArt] (最多10回)\n\n技能結束時，若本技能對體力或護盾造成了傷害，則使自身獲得5回 [ChargeBodyArt]\n- 若目標陣亡，則額外獲得3回\n\n本場戰鬥中，每當自身累計消耗10回 [ChargeBodyArt] 時，使自身增加1級 [ChargeBodyArt] 強度\n- 若以上效果使自身的 [ChargeBodyArt] 強度不低於2級，則使自身獲得 [TibiaPersonality]\n\n自身的基礎攻擊技能與可拚點反擊技能視作獲得 [Charge] 回數的技能",
       "summary": "使自身獲得 [ChargeBodyArt]"
     },
     {
       "id": 1061405,
       "name": "身體克服",
-      "desc": "戰鬥中首次登場時，使自身獲得21層 [GoldenOpportunity]\n\n屬於環指的友方人格使用技能時，使自身的 [GoldenOpportunity] 層數減少1層(每回合每名人格最多1次)\n\n回合結束時，若自身未帶有 [GoldenOpportunity]，則下回合開始時使自身的1個基礎技能轉換為「閉幕 - 裝置藝術1號『大家四處散落的骨與肉將化作客席』」(每場戰鬥最多1次，優先轉換位於儀表盤最左側行動槽下方一行的技能)\n- 若被轉換的技能因轉換為其他技能而無法使用，則再次觸發以上效果\n\n回合結束時，若自身在本場戰鬥中首次陷入混亂，則解除自身的混亂(不包括強制混亂)",
+      "desc": "戰鬥中首次登場時，使自身獲得21層 [GoldenOpportunity]\n\n屬於環指的友方人格使用技能時，使自身的 [GoldenOpportunity] 層數減少1層(每回合每名人格最多1次)\n\n回合結束時，若自身未帶有 [GoldenOpportunity]，則下回合開始時使自身的1個基礎技能轉換為「閉幕 - 裝置藝術1號『各位四處散落的骨與肉將化作客席』」(每場戰鬥最多1次，優先轉換位於儀表盤最左側行動槽下方一行的技能)\n- 若被轉換的技能因轉換為其他技能而無法使用，則再次觸發以上效果\n\n回合結束時，若自身在本場戰鬥中首次陷入混亂，則解除自身的混亂(不包括強制混亂)",
       "summary": "解除混亂"
     },
     {
@@ -2872,7 +2872,7 @@
     {
       "id": 1021504,
       "name": "珍貴的作品：法希雅",
-      "desc": "Upon entering the Encounter for the first time, gain +(# of The Ring-faction allies on the field x 2) [ChargeBodyArt] Count (max 10)\n\nSkill End: If the Skill dealt HP or Shield damage, gain +5 [ChargeBodyArt] Count\n- If target is killed, gain +3 additional [ChargeBodyArt] Count\n\nGain 1 [ChargeBodyArt] every time this unit consumes 10 cumulative [ChargeBodyArt] Count in this Encounter\n- If the above effect brings this unit's [ChargeBodyArt] Potency to 2 or higher, gain [FasciaPersonality]\n\nBase Attack Skills and Clashable Counter Skill count as Skills that gain [Charge] Count",
+      "desc": "戰鬥中首次登場時，使自身獲得(場上屬於環指的友方單位數×2)回 [ChargeBodyArt] (最多10回)\n\n技能結束時，若本技能對體力或護盾造成了傷害，則使自身獲得5回 [ChargeBodyArt]\n- 若目標陣亡，則額外獲得3回\n\n本場戰鬥中，每當自身累計消耗10回 [ChargeBodyArt] 時，使自身增加1級 [ChargeBodyArt] 強度\n- 若以上效果使自身的 [ChargeBodyArt] 強度不低於2級，則使自身獲得 [FasciaPersonality]\n\n自身的基礎攻擊技能與可拚點反擊技能視作獲得 [Charge] 回數的技能",
       "summary": "使自身獲得 [ChargeBodyArt]"
     },
     {
@@ -2971,7 +2971,7 @@
       "name": "地慧星",
       "desc": "若自身的 [PhantomIncisionTotalID] 層數不低於50層，在該回合最後隨機對1名敵方單位使用「空間斬 - 緣」(每場戰鬥最多1次)\n- 透過該效果使用「空間斬 - 緣」後，使自身獲得以下效果\n．本場戰鬥期間無法撤退\n．回合結束時，若自身 [PhantomIncisionTotalID] 層數不低於50層，則下回合開始時使自身的1個基礎技能轉變為「空間斬 - 殘」(優先轉變位於儀錶盤最左側行動槽下方一行的技能)",
       "summary": "",
-      "flavor": "「智慧星刀、天殺星刀。如果連這兩把由星辰鍛造的劍都弄到手了，那你到底算是一顆什麼樣的星呢？」\n「在慾望過強而招來毀滅，或者群星們被斬盡殺絕的下場，你的師父應該也說過才對。在這兩把劍之中，你就只能挑選其中一把。」"
+      "flavor": "「地慧星刀、天殺星刀。如果連這兩把由星辰鍛造的劍都弄到手了，那你到底算是一顆什麼樣的星呢？」\n「有些星辰因過度貪求而毀壞，或是遭到斬落，這點你的父輩應該也告訴過你才對。在這兩把劍之中，你只能挑選其中一把。」"
     },
     {
       "id": 1041504,
@@ -3005,19 +3005,19 @@
     {
       "id": 1111503,
       "name": "被封印之劍 [雷瓦汀]",
-      "desc": "戰鬥中首次登場時，使自身獲得 [MiddleFatherSwordOneOutis]\n\n若自身現存的體力不高於80%，則自身的技能結束後，使用「來拆開包裝吧」進行單方面攻擊並使自身的 [MiddleFatherSwordOneOutis] 轉變為 [MiddleFatherSwordTwoOutis]",
-      "flavor": "\"Buried in the deepest reaches of the City are the Ruins. Delve past a certain depth, and you are no longer in the City. This is a shard of a sword once wielded by one of the endwatchers who inhabited the Ruins, awaiting the coming apocalypse. Only a fragment, but within it their immense power lies slumbering—untouched, unmarred.\n... So you once told me. Yes, my elder Siblings. This legendary sword is indeed quite badass.\""
+      "desc": "關卡中首次登場時，使自身獲得 [MiddleFatherSwordOneOutis]\n\n若自身的體力低於80%，則自身的技能結束時，使用「來拆開包裝吧」進行單方面攻擊並使自身的 [MiddleFatherSwordOneOutis] 轉變為 [MiddleFatherSwordTwoOutis]",
+      "flavor": "「位於都市深處的遺跡。越過某個深度之後，其下便不再屬於都市。這是傳說中，曾在那種遺跡裡等待終末的存在之一所揮舞的劍之碎片，也是其全部力量沉睡其中的殘骸。\n……兩位曾這樣告訴過我呢。正如那傳說所言，真是一把很帥氣的劍。大哥、大姐。」"
     },
     {
       "id": 1111513,
       "name": "被封印之劍 [雷瓦汀]",
-      "desc": "Upon entering the Encounter for the first time, gain [MiddleFatherSwordOneOutis]\n\n<style=\"highlight\">When each Seal is removed from the sword, gain [CountSkillMidOutis] corresponding to the unsealing stage\n- [MiddleFatherSwordOneOutis]: Gain 1 [CountSkillMidOutis]\n- [MiddleFatherSwordTwoOutis]: Gain 2 [CountSkillMidOutis]\n- [MiddleFatherSwordThreeOutis]: Gain 2 [CountSkillMidOutis]\n\nWhen the following conditions are met, lose 1 [CountSkillMidOutis] (once per turn)\n- Upon using the \"Stamp of Vengeance\" Skill, lose 1 Stack (including \"Stamp of Vengeance\" activation via Counter)\n- At 6+ sum of Envy A-Reson, lose 1 Stack at Turn End\n\nAt 0 [CountSkillMidOutis] Stack, use \"Time to Unpack!\" as an Unopposed Attack at Skill End\n- Turn End: At 0 [CountSkillMidOutis] Stack, and if this unit failed to use \"Time to Unpack!\" in that turn, use \"Time to Unpack!\" at the next turn's Combat Start\n- While this unit's sword has [MiddleFatherSwordOneOutis], at less than 80% HP, use \"Time to Unpack!\" regardless of [CountSkillMidOutis] Stack\n\nAt 50%- HP, gain 3 [MiddleFatherGutsOutis] (once per Encounter)\n\nWhen Staggered for the first time in this Encounter, recover from Stagger at Turn End and gain 15 [ResentmentSpiderOutis] (excluding forced Staggers)\n\nTurn Start: At 15 [ResentmentSpiderOutis], replace a Base Skill on this unit's Dashboard with \"Stamp of Vengeance\" or \"Complete and Total Extermination\" (3 times per Encounter)\n- Applies only on the Skill on the leftmost Slot's bottom row on the Dashboard\n- This effect does not activate if either \"Stamp of Vengeance\" or \"Complete and Total Extermination\" is already in the affected Slot</style>",
-      "flavor": "\"Buried in the deepest reaches of the City are the Ruins. Delve past a certain depth, and you are no longer in the City. This is a shard of a sword once wielded by one of the endwatchers who inhabited the Ruins, awaiting the coming apocalypse. Only a fragment, but within it their immense power lies slumbering—untouched, unmarred.\n... So you once told me. Yes, my elder Siblings. This legendary sword is indeed quite badass.\""
+      "desc": "戰鬥中首次登場時，使自身獲得 [MiddleFatherSwordOneOutis]\n\n<style=\"highlight\">獲得劍的各階段效果時，依以下數值使自身獲得 [CountSkillMidOutis]\n- [MiddleFatherSwordOneOutis]：1層\n- [MiddleFatherSwordTwoOutis]：2層\n- [MiddleFatherSwordThreeOutis]：2層\n\n滿足以下條件時，使自身減少1層 [CountSkillMidOutis] (每回合最多1次)\n- 使用技能「<noparse>仇怨</noparse>踏印」時(包含觸發反擊)\n- 回合結束時，嫉妒完全共鳴數合計不低於6點\n\n若自身的 [CountSkillMidOutis] 層數為0層，則自身的技能結束後，使用「來拆開包裝吧」進行單方面攻擊\n- 回合結束時，若自身的 [CountSkillMidOutis] 層數為0層，且本回合未能使用「來拆開包裝吧」，則下回合戰鬥開始時使用該技能\n- 若自身的劍處於 [MiddleFatherSwordOneOutis] 狀態且自身的體力低於80%，則<noparse>無視</noparse> [CountSkillMidOutis] 層數，使用該技能\n\n若自身的體力不高於50%，則使自身獲得3層 [MiddleFatherGutsOutis] (每場戰鬥最多1次)\n\n本場戰鬥中自身首次陷入混亂時，回合結束時解除自身混亂並使自身獲得15層 [ResentmentSpiderOutis] (不包含強制混亂)\n\n回合開始時，若自身的 [ResentmentSpiderOutis] 層數為15層，則使自身行動槽中的1個基礎技能轉變為「<noparse>仇怨</noparse>踏印」或「即刻處刑」(每場戰鬥最多3次)\n- 僅對位於儀錶盤最左側行動槽下方一行的技能生效\n- 若該行動槽已有該技能，則不會觸發本效果</style>",
+      "flavor": "「位於都市深處的遺跡。越過某個深度之後，其下便不再屬於都市。這是傳說中，曾在那種遺跡裡等待終末的存在之一所揮舞的劍之碎片，也是其全部力量沉睡其中的殘骸。\n……兩位曾這樣告訴過我呢。正如那傳說所言，真是一把很帥氣的劍。大哥、大姐。」"
     },
     {
       "id": 1111504,
       "name": "孩子的教育",
-      "desc": "If The House of Spiders: The Middle Apprentice Ishmael is on the field alongside this unit, activate the following effects:\n- On Clash Win, gain 1 [DaughterEducationSpiderOutis] (once per turn; if it was the first Skill this unit used in that turn, gain 1 additional [DaughterEducationSpiderOutis])\n- On Hit using a Skill, gain 1 [DaughterEducationSpiderOutis] (once per turn; does not gain [DaughterEducationSpiderOutis] from using Cracked Coins)\n\n【Effects apply only to The House of Spiders: The Middle Apprentice Ishmael】\n- When Ishmael wins a Clash, Ishmael gains 1 [GotAComplimentIshmael] (once per turn; if it was the first Skill Ishmael used in that turn, Ishmael gains 1 additional [GotAComplimentIshmael])\n- On Hit using Ishmael's Skill, Ishmael gains 1 [GotAComplimentIshmael] (once per turn; does not gain [GotAComplimentIshmael] from using Cracked Coins; if the Skill that hit was Skill 3 activated as a Counter, gain 1 additional [GotAComplimentIshmael])"
+      "desc": "若蜘蛛巢 中指 弟子 以實瑪利與自身一起存在於戰場，則觸發以下效果\n- 自身拚點勝利時，使自身獲得1層 [DaughterEducationSpiderOutis] (每回合最多1次；若為本回合自身使用的第一個技能，則額外獲得1層)\n- 自身的技能命中時，使自身獲得1層 [DaughterEducationSpiderOutis] (每回合最多1次；被破壞的硬幣不會獲得)\n\n【蜘蛛巢 中指 弟子 以實瑪利專用效果】\n- 以實瑪利拚點勝利時，使其獲得1層 [GotAComplimentIshmael] (每回合最多1次；若為本回合以實瑪利使用的第一個技能，則額外獲得1層)\n- 以實瑪利的技能命中時，使其獲得1層 [GotAComplimentIshmael] (每回合最多1次；被破壞的硬幣不會獲得；若該技能是作為反擊使用的3技能，則額外獲得1層)"
     },
     {
       "id": 1111505,
@@ -3027,7 +3027,7 @@
     {
       "id": 1111506,
       "name": "丫頭……謝啦。",
-      "desc": "若自身的劍處於 [MiddleFatherSwordFourOutis] 狀態，則現存體力不高於20%的友方單位與敵方單位拚點失敗時，指定該敵方單位為主要目標、該友方單位為次要目標，使用「不忘了為家人犧牲的女兒償還」(每場戰鬥最多1次)\n- 蜘蛛巢 中指 弟子 以實瑪利判定觸發的體力條件改為30%\n\n該技能擊殺屬於中指的友方單位時，下回合使自身獲得1層 [VioletDamageUp]\n- 擊殺蜘蛛巢 中指 弟子 以實瑪利時，改為在下回合獲得 [MidFamilyOutis]"
+      "desc": "若自身處於 [MiddleFatherSwordFourOutis] 狀態，則體力低於20%的友方單位與敵方單位拚點失敗時，指定該敵方單位為主要目標、該友方單位為次要目標，使用「不忘了為家人犧牲的女兒償還」(每場戰鬥最多1次)\n- 蜘蛛巢 中指 弟子 以實瑪利的體力條件改為以30%判定\n\n以該技能擊殺屬於中指的友方單位時，下回合使自身獲得1層 [VioletDamageUp]\n- 擊殺蜘蛛巢 中指 弟子 以實瑪利時，改為在下回合獲得 [MidFamilyOutis]"
     },
     {
       "id": 1111521,
@@ -3037,8 +3037,8 @@
     {
       "id": 1111507,
       "name": "被封印之劍 [雷瓦汀]",
-      "desc": "Upon entering the Encounter for the first time, gain [MiddleFatherSwordOneOutis]\n\n<style=\"highlight\">Turn Start: At 0 [CountSkillMidOutis], gain [CountSkillMidOutis] corresponding to the unsealing stage\n- [MiddleFatherSwordOneOutis]: Gain 1 [CountSkillMidOutis]\n- [MiddleFatherSwordTwoOutis]: Gain 2 [CountSkillMidOutis]\n- [MiddleFatherSwordThreeOutis]: Gain 2 [CountSkillMidOutis]\n\nWhen the following conditions are met, lose 1 [CountSkillMidOutis] (once per turn)\n- Upon using the \"Stamp of Vengeance\" Skill, lose 1 Stack (including \"Stamp of Vengeance\" activation via Counter)\n- At 6+ sum of Envy A-Reson, lose 1 Stack at Turn End\n\nAt 0 [CountSkillMidOutis] Stack, use \"Time to Unpack!\" as an Unopposed Attack at Skill End\n- Turn End: At 0 [CountSkillMidOutis] Stack, and if this unit failed to use \"Time to Unpack!\" in that turn, use \"Time to Unpack!\" at the next turn's Combat Start\n- While this unit's sword has [MiddleFatherSwordOneOutis], at less than 80% HP, use \"Time to Unpack!\" regardless of [CountSkillMidOutis] Stack\n\nAt 50%- HP, gain 3 [MiddleFatherGutsOutis] (once per Encounter)\n\nWhen Staggered for the first time in this Encounter, recover from Stagger at Turn End and gain 15 [ResentmentSpiderOutis] (excluding forced Staggers)\n\nTurn Start: At 15 [ResentmentSpiderOutis], replace a Base Skill on this unit's Dashboard with \"Stamp of Vengeance\" or \"Complete and Total Extermination\" (3 times per Encounter)\n- Applies only on the Skill on the leftmost Slot's bottom row on the Dashboard\n- This effect does not activate if either \"Stamp of Vengeance\" or \"Complete and Total Extermination\" is already in the affected Slot</style>",
-      "flavor": "\"Buried in the deepest reaches of the City are the Ruins. Delve past a certain depth, and you are no longer in the City. This is a shard of a sword once wielded by one of the endwatchers who inhabited the Ruins, awaiting the coming apocalypse. Only a fragment, but within it their immense power lies slumbering—untouched, unmarred.\n... So you once told me. Yes, my elder Siblings. This legendary sword is indeed quite badass.\""
+      "desc": "戰鬥中首次登場時，使自身獲得 [MiddleFatherSwordOneOutis]\n\n<style=\"highlight\">回合開始時，若自身的 [CountSkillMidOutis] 層數為0層，則依劍的階段，使自身獲得以下數值的 [CountSkillMidOutis]\n- [MiddleFatherSwordOneOutis]：1層\n- [MiddleFatherSwordTwoOutis]：2層\n- [MiddleFatherSwordThreeOutis]：2層\n\n滿足以下條件時，使自身減少1層 [CountSkillMidOutis] (每回合最多1次)\n- 使用技能「<noparse>仇怨</noparse>踏印」時(包含觸發反擊)\n- 回合結束時，嫉妒完全共鳴數合計不低於6點\n\n若自身的 [CountSkillMidOutis] 層數為0層，則自身的技能結束後，使用「來拆開包裝吧」進行單方面攻擊\n- 回合結束時，若自身的 [CountSkillMidOutis] 層數為0層，且本回合未能使用「來拆開包裝吧」，則下回合戰鬥開始時使用該技能\n- 若自身的劍處於 [MiddleFatherSwordOneOutis] 狀態且自身的體力低於80%，則<noparse>無視</noparse> [CountSkillMidOutis] 層數，使用該技能\n\n若自身的體力不高於50%，則使自身獲得3層 [MiddleFatherGutsOutis] (每場戰鬥最多1次)\n\n本場戰鬥中自身首次陷入混亂時，回合結束時解除自身混亂並使自身獲得15層 [ResentmentSpiderOutis] (不包含強制混亂)\n\n回合開始時，若自身的 [ResentmentSpiderOutis] 層數為15層，則使自身行動槽中的1個基礎技能轉變為「<noparse>仇怨</noparse>踏印」或「即刻處刑」(每場戰鬥最多3次)\n- 僅對位於儀錶盤最左側行動槽下方一行的技能生效\n- 若該行動槽已有該技能，則不會觸發本效果</style>",
+      "flavor": "「位於都市深處的遺跡。越過某個深度之後，其下便不再屬於都市。這是傳說中，曾在那種遺跡裡等待終末的存在之一所揮舞的劍之碎片，也是其全部力量沉睡其中的殘骸。\n……兩位曾這樣告訴過我呢。正如那傳說所言，真是一把很帥氣的劍。大哥、大姐。」"
     },
     {
       "id": 1061501,
@@ -3058,13 +3058,13 @@
     {
       "id": 1081501,
       "name": "邊獄公司製特殊試驗義體mk5 - 鬼怪之臂",
-      "desc": "戰鬥開始時，使自身獲得 [AengduNewArmIshmael] 並使除自身以外屬於劍契組的友方人格恢復(傲慢共鳴數)點理智值\n\n戰鬥開始時，若有除自身以外現存體力不高於其體力上限50%的友方人格，則使自身獲得1層 [SupportProtect] (每回合最多1次)\n\n技能結束後，自身每帶有3級 [Breath] 強度，使自身獲得1層 [WindBladeIshmael] (最多5層，每回合最多2次)",
+      "desc": "戰鬥開始時，使自身獲得 [AengduNewArmIshmael] 並使除自身以外屬於劍契組的友方人格恢復(傲慢共鳴數)點理智值\n\n戰鬥開始時，若有除自身以外現存體力低於其體力上限50%的友方人格，則使自身獲得1層 [SupportProtect] (每回合最多1次)\n\n技能結束時，自身每帶有3級 [Breath] 強度，使自身獲得1層 [WindBladeIshmael] (最多5層，每回合最多2次)",
       "summary": "獲得 [AengduNewArmIshmael]"
     },
     {
       "id": 1081502,
       "name": "歸去之土",
-      "desc": "Upon entering the Encounter for the first time, this unit gains [BladelineagePride] for every Blade Lineage Identity on the field excluding this unit (max 3)\n\nIf 3 or more Blade Lineage Identities, excluding this unit, are defeated in this Encounter:\n- Before Skill Use, if this unit did not have [SwordPlayOfTheHomeland], gain [SwordPlayOfTheHomeland]\n- When this unit gains [Breath] Potency and [Breath] Count with its Skill or Coin effects, gain 1 additional [Breath] Potency and [Breath] Count\n- If 5 or more Blade Lineage Identities are defeated, gain 2 additional [Breath] Potency and [Breath] Count instead",
+      "desc": "戰鬥中首次登場時，除自身以外場上每有1名屬於劍契組的友方人格，使自身獲得1層 [BladelineagePride] (最多3層)\n\n本場戰鬥中，若除自身以外屬於劍契組的友方人格已有至少3名陣亡，則觸發以下效果\n- 使用技能前，若自身未帶有 [SwordPlayOfTheHomeland]，則使自身獲得 [SwordPlayOfTheHomeland]\n- 透過自身的技能或硬幣效果獲得 [Breath] 強度或回數時，使 [Breath] 強度或回數額外增加1\n- 若屬於劍契組的友方人格已有至少5名陣亡，則改為額外增加2",
       "summary": ""
     },
     {
@@ -3087,7 +3087,7 @@
     {
       "id": 1071602,
       "name": "絕境死鬥",
-      "desc": "At Base Skill End against an enemy:\n- If the target is defeated while having [DuelEdgeAlly] (on any of its Parts), gain 1 [EvolvingManual]\n- If the main target isn't defeated, inflict 1 [DuelEdgeAlly] on the main target; if there was a Clash against the said main target using the said Base Skill, inflict 2 [DuelEdgeAlly] on the main target instead\n\nAt Clash Start against a target that has [DuelEdgeAlly], heal SP equal to [DuelEdgeAlly] Stack on target (max 5 per turn)",
+      "desc": "目標為敵方單位的基礎技能結束時，\n- 若目標在(包括其他部位)帶有 [DuelEdgeAlly] 的狀態下陣亡，則使自身獲得1層 [EvolvingManual]\n- 若主要目標未陣亡，則對其施加1層 [DuelEdgeAlly]；若該基礎技能與其進行了拚點，則改為施加2層\n\n與帶有 [DuelEdgeAlly] 的目標開始拚點時，\n使自身恢復等同於目標 [DuelEdgeAlly] 層數的理智值(每回合最多5點)",
       "summary": "",
       "flavor": ""
     },
@@ -3154,37 +3154,37 @@
       "name": "晨炎[烙印工坊]",
       "desc": "除自身以外屬於黎明事務所[TabExplain]的人格滿足以下條件時，使黎明事務所[TabExplain] 代表 格里高爾使用「黎明閃光」(每名人格每回合最多1次)\n- 基礎技能攻擊結束時，若命中的敵方單位陷入混亂，則對其使用「黎明閃光」\n(若該技能攻擊前，敵方單位已陷入混亂，則不會觸發)\n- 黎明事務所[TabExplain] 收尾人 浮士德的「紛射」、「紛射-正午」、「正午的解體」或黎明事務所[TabExplain] 收尾人 辛克萊的「烙印」、「爆炎一擊」攻擊結束時，自身對命中的敵方單位使用「黎明閃光」(優先對陷入混亂的目標使用)\n\n若黎明事務所[TabExplain] 收尾人 辛克萊存在於戰場上，則黎明事務所[TabExplain] 代表 格里高爾使用基礎技能的額外硬幣命中時，額外造成等同於目標 [Combustion] 強度的暴怒傷害(最多10點，每回合最多20點)\n- 該效果視作觸發 [Combustion]",
       "summary": "滿足條件時，造成等同於燒傷強度的暴怒傷害",
-      "flavor": "An A+ class Workshop weapon that has remained a constant companion of its wielder, <i>the Fixer at the Crack of Dawn</i>, since his first days as a Fixer through the Smoke War and its fallout. Every contract successfully carried out by the Fixer added to Stigma Workshop's fame, and as a show of gratitude, they repeatedly upgraded and expanded the weapon's capabilities. Just as the Fixer's seasoned renown was built up over time, this blade, too, was forged, remade, and sharpened by the years. \nMorgenfeuer, once regarded as an S-class weapon, inevitably lost its fervor and edge in the twilight years of the Fixer at the Crack of Dawn as he withdrew from the front lines of the Fixer business in favor of teaching the next generation."
+      "flavor": "A+級的工坊武器。從他以收尾人身分初次接案起，經歷煙霾戰爭，乃至其後。這是在黎明時分的收尾人手中揮舞過的劍。每當黎明時分的收尾人累積一份實績，烙印工坊的名聲便隨之高漲，作為回報，烙印工坊一次又一次地為他改良這把劍。正如他日積月累的資歷與威望，這把劍也一再經過鍛造與改良。就這樣，這把劍一度獲得了S級的評價，但在黎明時分的收尾人退出第一線、教導下一代的期間，晨炎的熱度也必然逐漸冷卻，刀鋒也漸漸變鈍。"
     },
     {
       "id": 1121611,
       "name": "晨炎[烙印工坊]",
       "desc": "若自身帶有 [DawnLight]，則自身基礎攻擊技能命中時，使自身獲得2層 [StigmaWorkshopHandStep1]\n\n除自身以外屬於黎明事務所[TabExplain]的人格滿足以下條件時，使黎明事務所[TabExplain] 代表 格里高爾使用「黎明閃光」(每名人格每回合最多1次)\n- 基礎技能攻擊結束時，若命中的敵方單位陷入混亂，則對其使用「黎明閃光」\n(若該技能攻擊前，敵方單位已陷入混亂，則不會觸發)\n- 黎明事務所[TabExplain] 收尾人 浮士德的「紛射」、「紛射-正午」、「正午的解體」或黎明事務所[TabExplain] 收尾人 辛克萊的「烙印」、「爆炎一擊」攻擊結束時，自身對命中的敵方單位使用「黎明閃光」(優先對陷入混亂的目標使用)\n\n若黎明事務所[TabExplain] 收尾人 辛克萊存在於戰場上，則黎明事務所[TabExplain] 代表 格里高爾使用基礎技能的額外硬幣命中時，額外造成等同於目標 [Combustion] 強度的暴怒傷害(最多10點，每回合最多20點)\n- 該效果視作觸發 [Combustion]",
       "summary": "獲得 [StigmaWorkshopHandStep1]\n滿足條件時，造成等同於燒傷強度的暴怒傷害",
-      "flavor": "An A+ class Workshop weapon that has remained a constant companion of its wielder, <i>the Fixer at the Crack of Dawn</i>, since his first days as a Fixer through the Smoke War and its fallout. Every contract successfully carried out by the Fixer added to Stigma Workshop's fame, and as a show of gratitude, they repeatedly upgraded and expanded the weapon's capabilities. Just as the Fixer's seasoned renown was built up over time, this blade, too, was forged, remade, and sharpened by the years. \nMorgenfeuer, once regarded as an S-class weapon, inevitably lost its fervor and edge in the twilight years of the Fixer at the Crack of Dawn as he withdrew from the front lines of the Fixer business in favor of teaching the next generation."
+      "flavor": "A+級的工坊武器。從他以收尾人身分初次接案起，經歷煙霾戰爭，乃至其後。這是在黎明時分的收尾人手中揮舞過的劍。每當黎明時分的收尾人累積一份實績，烙印工坊的名聲便隨之高漲，作為回報，烙印工坊一次又一次地為他改良這把劍。正如他日積月累的資歷與威望，這把劍也一再經過鍛造與改良。就這樣，這把劍一度獲得了S級的評價，但在黎明時分的收尾人退出第一線、教導下一代的期間，晨炎的熱度也必然逐漸冷卻，刀鋒也漸漸變鈍。"
     },
     {
       "id": 1121602,
       "name": "黎明時分的收尾人",
-      "desc": "關卡中首次登場時，使自身獲得0層 [StigmaWorkshopHandStep1]\n\n自身不會因 [Combustion] 造成的傷害陷入混亂或使體力降至1點以下\n自身受到 [Combustion] 效果的傷害-50%(無條件捨去)\n- 若自身的體力不高於50%，則改為受到 [Combustion] 效果的傷害-75%(無條件捨去)"
+      "desc": "關卡中首次登場時，使自身獲得0層 [StigmaWorkshopHandStep1]\n\n自身不會因 [Combustion] 造成的傷害陷入混亂，體力也不會因此低於1點\n自身受到 [Combustion] 效果的傷害-50%(無條件捨去)\n- 若自身的體力低於50%，則效果強化，改為受到 [Combustion] 效果的傷害-75%(無條件捨去)"
     },
     {
       "id": 1121603,
       "name": "黎明事務所",
-      "desc": "Upon entering the Encounter for the first time, if there are 2+ allied Dawn Office[TabExplain] Identities (including this unit) on the field, apply [DawnTeam] Stack on all Dawn Office[TabExplain] Identities equal to the number of Dawn Office[TabExplain] Identities on the field\n\nIf Dawn Office[TabExplain] Fixer Sinclair is on the field, activate the following effects:\n- Dawn Office[TabExplain] Fixer Sinclair gains [DawnGregor]\n- Turn Start: If Dawn Office[TabExplain] Rep Gregor is defeated, convert [DawnGregor] on Dawn Office[TabExplain] Fixer Sinclair into [DawnGregorDying]\n- Turn Start: If Dawn Office[TabExplain] Fixer Sinclair has less than 50% HP, apply [RunSinclair] on that unit (once per Encounter)"
+      "desc": "關卡中首次登場時，若場上包括自身在內屬於黎明事務所[TabExplain]的友方人格不低於2名，則使所有屬於黎明事務所[TabExplain]的人格獲得層數等同於該人數的 [DawnTeam]\n\n若黎明事務所[TabExplain] 收尾人 辛克萊存在於戰場上，則觸發以下效果\n- 使黎明事務所[TabExplain] 收尾人 辛克萊獲得 [DawnGregor]\n- 若黎明事務所[TabExplain] 代表 格里高爾處於陣亡狀態，則回合開始時，使黎明事務所[TabExplain] 收尾人 辛克萊帶有的 [DawnGregor] 轉變為 [DawnGregorDying]\n- 回合開始時，若黎明事務所[TabExplain] 收尾人 辛克萊的體力低於50%，則使其獲得 [RunSinclair] (每場戰鬥最多1次)"
     },
     {
       "id": 1121621,
       "name": "烙印工坊的義體",
       "desc": "現存體力最高的1名友方單位命中帶有 [Combustion] 的敵方單位時，使該敵方單位增加2級 [Vibration] 強度(每回合最多1次)\n- 若目標的 [Combustion] 強度不低於10級，則最後一枚硬幣命中時，使目標 [VibrationExplosion] 並使其減少1回 [Vibration] (每回合最多1次)",
-      "flavor": "A prosthetic gear produced by Stigma Workshop—a Workshop normally specializing in bladed weaponry—designed specifically for the Fixer at the Crack of Dawn to use. Attempting to use this fiery equipment without understanding Stigma Workshop's precise quirks will be met with swift consequences: painful, flesh-melting burn marks seared into the user's body."
+      "flavor": "原本只製作刀刃類武器的烙印工坊，特別為黎明時分的收尾人打造的義體。若是不了解烙印工坊特性的人使用，這條噴發熱氣的手臂甚至會熔化穿戴者的身體。"
     },
     {
       "id": 1021602,
       "name": "隔熱大衣",
-      "desc": "關卡中首次登場時，使自身獲得0層 [StigmaWorkshopCelloCaseOne]\n\n自身不會因 [Combustion] 造成的傷害陷入混亂或使體力降至1點以下\n自身受到 [Combustion] 效果的傷害-50%(無條件捨去)\n- 若自身的體力不高於50%，則改為受到 [Combustion] 效果的傷害-75%(無條件捨去)",
+      "desc": "關卡中首次登場時，使自身獲得0層 [StigmaWorkshopCelloCaseOne]\n\n自身不會因 [Combustion] 造成的傷害陷入混亂，體力也不會因此低於1點\n自身受到 [Combustion] 效果的傷害-50%(無條件捨去)\n- 若自身的體力低於50%，則效果強化，改為受到 [Combustion] 效果的傷害-75%(無條件捨去)",
       "summary": "受到燒傷效果的傷害減少",
-      "flavor": "If you have made up your mind to use Workshop gears that utilize heat, then you had best be prepared to pay a slew of hidden costs. Unlike conventional weapons, whose variables are in the more obviously observable territory, such as sharpness and durability, weapons that radiate heat require all manner of groundwork to ensure that the wielder is not consumed by that very heat. And that requires money.\n\nIt is, of course, a simple enough thing to procure weapons that set things ablaze outright or fabrics that do not catch fire easily. But to obtain a weapon whose heat output can be fine-tuned and controlled at any given moment according to the wielder's every need, or outlier fabrics that ward off heat <i>completely</i>—such exceptional gear costs not only a fortune but also the wielder's constant training to be as exceptional in handling them.\n\nNaturally, if you have invested that much money and time, the returns will come in the form of many more contracts requiring your services."
+      "flavor": "如果你決定使用會操控熱能的工坊裝備，那也得做好支付更多錢的覺悟。與只需要更鋒利、更堅固就好的一般武器不同，會噴發熱能的武器需要許多前置作業，才能讓使用者自己不被捲入那股熱能之中。\n\n當然，單純胡亂放火的武器，或是不易著火的布料之類的東西，都很容易取得。但若想得到能在使用者想要的瞬間、細膩地施加想要的熱量的武器，以及能阻擋熱能本身的布料，通常得付出龐大的代價，也不能疏於努力，好讓自己熟練其使用方法。\n\n若是如此投資了費用與時間，找上你的工作也會相應地增加。"
     },
     {
       "id": 1021603,
@@ -3198,14 +3198,14 @@
       "name": "炎蝶[烙印工坊]",
       "desc": "除自身以外屬於黎明事務所[TabExplain]的人格滿足以下條件時，\n使黎明事務所[TabExplain] 收尾人 浮士德使用「聯手」(每名人格每回合最多1次)\n- 基礎技能攻擊結束時，若命中的敵方單位陷入混亂，則對其使用「聯手」\n(若該技能攻擊前，敵方單位已陷入混亂，則不會觸發)\n- 黎明事務所[TabExplain] 代表 格里高爾的「撕裂黎明之劍」、「黎明時分」或\n黎明事務所[TabExplain] 收尾人 辛克萊的「烙印」、「爆炎一擊」攻擊結束時，自身對命中的敵方單位使用「聯手」(優先對陷入混亂的目標使用)\n\n若黎明事務所[TabExplain] 收尾人 辛克萊存在於戰場上，\n則黎明事務所[TabExplain] 收尾人 浮士德使用基礎技能的重複使用的硬幣命中時，\n額外造成等同於目標 [Combustion] 強度的暴怒傷害(最多10點，每回合最多20點)\n- 該效果視作觸發 [Combustion]",
       "summary": "觸發追加攻擊\n重複使用的硬幣命中時，造成等同於燒傷強度的暴怒傷害",
-      "flavor": "The appeal of a weapon shaped like a suitcase or a musical instrument case is clear enough.\n\nFirst, the user may blend into the cover of daily life without raising alarm. Though arms of this sort are unwieldy and complicated to make use of in battle, that perceived shortcoming makes them less likely to be recognized as tools of killing.\n\nSecondly, weapons fashioned into the form of a case afford storage capacity. Container-shaped arms, for example, are actively used by the Fixers of the Devyat' Association.\n\nSuch convenience, however, does not automatically win favors from those who elect Workshop gear as their weapon of choice. The common opinion is that anyone who invests so much time in mastering this sort of weaponry would be better served by training with something else—in fact, the user would often hear snide remarks from other combatants, ranging from \"Fixers these days\" to \"showy and pretentious.\"\n\nBut should one let this reputation for impracticality drop one's guard when facing an opponent armed with such a finicky piece of equipment, especially if they happen to be a high-ranking Fixer or a Syndicate officer, one will find that the laughable \"containers\" or \"cases\" carry quite a different weight—a weight grave enough for any Workshop worth its name to call them \"coffins.\" And coffins, as a matter of fact, have a way of inviting butterflies."
+      "flavor": "使用這種外型像行李箱或樂器盒的武器，理由很明確。第一是為了融入日常。在戰鬥中難以運用、類型複雜的武器，反而會因為其低效率，而很可能不被視為武器。\n第二是行李箱的形狀本身所帶來的收納能力。因此，Девять協會會積極使用能裝東西的武器。\n\n不過，撇開這些優點不談，這種武器在使用工坊裝備的人之間評價並不好。常常能聽到這種話：要是把為了駕馭這種武器所投入的時間花在其他武器上，早就變得更強了；或者說這是現在那些只顧耍帥的收尾人在用的裝備。\n\n然而，當你遇到帶著這種難搞裝備的人，而對方是高等級收尾人或職位很高的幫派成員時……諷刺的是，這便有了另一層意義。因此在工坊裡，這種裝備不叫行李箱，而是被稱為棺材，也就是Coffin。而棺材總是會招來蝴蝶。"
     },
     {
       "id": 1021611,
       "name": "炎蝶[烙印工坊]",
-      "desc": "<style=\"highlight\">Combat Start: When this unit has [Firstlight], gain (Stack x 3) [StigmaWorkshopCelloCaseOne]</style>\n\nWhen other Dawn Office[TabExplain] Identities meet the following conditions, Dawn Office[TabExplain] Fixer Faust uses the \"Seconded Offensive\" Skill against the targeted enemy (once per turn per Identity)\n- At Base Skill Attack End: If the enemy that was hit is Staggered, use \"Seconded Offensive\" against said enemy\n(Does not activate if the said enemy was already Staggered Before Attack of the said Skill)\n- At Attack End of the following Skills, use \"Seconded Offensive\" on the enemy they hit (prioritizes Staggered targets):\n  · Dawn Office[TabExplain] Rep Gregor's \"Dawnsplitter\" and \"Crack of Dawn\"\n  · Dawn Office[TabExplain] Fixer Sinclair's \"Stigmatize\" and \"Blazing[TabExplain] Strike\"\n\nIf Dawn Office[TabExplain] Fixer Sinclair is on the field: On Hit using Reused Coins of Dawn Office[TabExplain] Fixer Faust's Base Skills, deal additional Wrath damage equal to [Combustion] on the targeted enemy (max 10; max 20 per turn)\n- Counts as activating [Combustion]",
+      "desc": "<style=\"highlight\">若自身帶有 [Firstlight]，則戰鬥開始時，使自身獲得(層數×3)層 [StigmaWorkshopCelloCaseOne]</style>\n\n除自身以外屬於黎明事務所[TabExplain]的人格滿足以下條件時，\n使黎明事務所[TabExplain] 收尾人 浮士德使用「聯手」(每名人格每回合最多1次)\n- 基礎技能攻擊結束時，若命中的敵方單位陷入混亂，則對其使用「聯手」\n(若該技能攻擊前，敵方單位已陷入混亂，則不會觸發)\n- 黎明事務所[TabExplain] 代表 格里高爾的「撕裂黎明之劍」、「黎明時分」或\n黎明事務所[TabExplain] 收尾人 辛克萊的「烙印」、「爆炎一擊」攻擊結束時，自身對命中的敵方單位使用「聯手」(優先對陷入混亂的目標使用)\n\n若黎明事務所[TabExplain] 收尾人 辛克萊存在於戰場上，\n則黎明事務所[TabExplain] 收尾人 浮士德使用基礎技能的重複使用的硬幣命中時，\n額外造成等同於目標 [Combustion] 強度的暴怒傷害(最多10點，每回合最多20點)\n- 該效果視作觸發 [Combustion]",
       "summary": "若帶有戰鬥直覺，則獲得炎蝶之棺\n觸發追加攻擊\n重複使用的硬幣命中時，造成等同於燒傷強度的暴怒傷害",
-      "flavor": "The appeal of a weapon shaped like a suitcase or a musical instrument case is clear enough.\n\nFirst, the user may blend into the cover of daily life without raising alarm. Though arms of this sort are unwieldy and complicated to make use of in battle, that perceived shortcoming makes them less likely to be recognized as tools of killing.\n\nSecondly, weapons fashioned into the form of a case afford storage capacity. Container-shaped arms, for example, are actively used by the Fixers of the Devyat' Association.\n\nSuch convenience, however, does not automatically win favors from those who elect Workshop gear as their weapon of choice. The common opinion is that anyone who invests so much time in mastering this sort of weaponry would be better served by training with something else—in fact, the user would often hear snide remarks from other combatants, ranging from \"Fixers these days\" to \"showy and pretentious.\"\n\nBut should one let this reputation for impracticality drop one's guard when facing an opponent armed with such a finicky piece of equipment, especially if they happen to be a high-ranking Fixer or a Syndicate officer, one will find that the laughable \"containers\" or \"cases\" carry quite a different weight—a weight grave enough for any Workshop worth its name to call them \"coffins.\" And coffins, as a matter of fact, have a way of inviting butterflies."
+      "flavor": "使用這種外型像行李箱或樂器盒的武器，理由很明確。第一是為了融入日常。在戰鬥中難以運用、類型複雜的武器，反而會因為其低效率，而很可能不被視為武器。\n第二是行李箱的形狀本身所帶來的收納能力。因此，Девять協會會積極使用能裝東西的武器。\n\n不過，撇開這些優點不談，這種武器在使用工坊裝備的人之間評價並不好。常常能聽到這種話：要是把為了駕馭這種武器所投入的時間花在其他武器上，早就變得更強了；或者說這是現在那些只顧耍帥的收尾人在用的裝備。\n\n然而，當你遇到帶著這種難搞裝備的人，而對方是高等級收尾人或職位很高的幫派成員時……諷刺的是，這便有了另一層意義。因此在工坊裡，這種裝備不叫行李箱，而是被稱為棺材，也就是Coffin。而棺材總是會招來蝴蝶。"
     },
     {
       "id": 1021621,
@@ -3260,7 +3260,7 @@
       "name": "反饋",
       "desc": "敵方單位 [VibrationExplosion] 時，使 [VibrationExplosion] 造成的混亂閾值前移量+15%\n- 若自身的 [ChargeNoirAlly] 回數不低於12回，則改為敵方單位 [VibrationExplosion] 時，消耗自身1回 [ChargeNoirAlly] 並使 [VibrationExplosion] 造成的混亂閾值前移量+30%(不同目標分別計算)\n\n受到敵方單位攻擊時，若自身帶有護盾，\n則使該敵方單位增加2級 [Vibration] 強度(每個敵方單位每回合最多2次)",
       "summary": "混亂閾值前移量增加",
-      "flavor": "The Noirs believe they can collapse their opponents' worth by subjecting them to violent tremors—the more violently the target vibrates, the more changes it must undergo from moment to moment. The combat techniques of the Noirs were built upon that conviction.\n\nAnd though the Noirs neither remember nor have ever experienced it, beyond the Grand Magasin Sisyphe exist fighting techniques founded upon the very same principle and have since been refined far beyond."
+      "flavor": "漆黑派相信，以強烈的震動撼動對手，就能使對手的價值崩潰。這是因為他們認為震動得越劇烈，每一刻都會經歷越多變化，而漆黑派的戰鬥技術正是建立在這個方向之上。\n\n而且，儘管他們既不記得、也未曾經歷過，但在薛西弗斯百貨公司之外，也存在著以同樣原理運作、並發展而成的戰鬥技術。"
     },
     {
       "id": 1041602,
@@ -3277,7 +3277,7 @@
     {
       "id": 1041604,
       "name": "保存",
-      "desc": "戰鬥中，自身每累計消耗10回 [ChargeNoirAlly]\n則使自身獲得1級 [ChargeNoirAlly] 強度\n\n回合結束時，若自身的 [ChargeNoirAlly] 強度不高於3級，則消耗所有 [ChargeNoirAlly] 回數\n並使自身下回合獲得(消耗回數×5)點護盾\n\n若自身的 [ChargeNoirAlly] 強度不低於3級且自身的 [ChargeNoirAlly] 回數不高於12回\n則使自身從其基礎技能中獲得的 [ChargeNoirAlly] 回數額外+1回\n\n使用基本攻擊技能時，\n- 若目標的 [Vibration] 強度不低於6級，則使其硬幣威力+1\n- 若自身的 [ChargeNoirAlly] 強度不低於3級，則使其硬幣威力+1\n- 使其造成的傷害+(自身的 [ChargeNoirAlly] 強度×2)%(最多+10%)\n．若使用的技能為「三重印花縫合」或「單腳踢 - 多樣訂製」，\n則改為其造成的傷害+(自身的 [ChargeNoirAlly] 強度×4)%(最多+20%)",
+      "desc": "戰鬥中，自身每累計消耗10回 [ChargeNoirAlly]\n時，使自身獲得1級 [ChargeNoirAlly] 強度\n\n回合結束時，若自身的 [ChargeNoirAlly] 強度低於3級，則消耗所有 [ChargeNoirAlly] 回數\n並使自身下回合獲得(消耗的回數×5)點護盾\n\n若自身的 [ChargeNoirAlly] 強度不低於3級，則在 [ChargeNoirAlly] 回數低於12回時\n使自身透過基礎技能獲得的 [ChargeNoirAlly] 回數+1\n\n使用基礎攻擊技能時，\n- 若目標的 [Vibration] 強度不低於6級，則硬幣威力+1\n- 若自身的 [ChargeNoirAlly] 強度不低於3級，則硬幣威力+1\n- 造成的傷害+(自身的 [ChargeNoirAlly] 強度×2)%(最多+10%)\n．若為「三重印花縫合」或「單腳踢 - 多樣訂製」，\n則改為造成的傷害+(自身的 [ChargeNoirAlly] 強度×4)%(最多+20%)",
       "summary": "若保存回數未達一定回數，獲得回數增加\n使用基礎攻擊技能時，使硬幣威力與造成的傷害量增加"
     },
     {
@@ -3289,8 +3289,8 @@
     {
       "id": 1081601,
       "name": "變化的搖籃",
-      "desc": "使用基礎技能時，若自身的 [ChargeRougeAlly] 回數不高於10回，則使其拚點威力+2\n\n若自身帶有 [RougeIshmaelEclose]，則使基礎技能命中時恢復自身其體力上限8%的體力(每回合最多5次)",
-      "flavor": "While some might call this a \"changing room,\" it would be more appropriate for those on the other side to call it a \"pupa\" or an \"egg.\"\nShe melts and tears herself apart, metamorphosing... Until, when the time is right, she will shatter the shells and emerge into the world outside.\nBut if someone from the outside rips into the shell before she is ready... sadly, they will end up breaking her.\nThis is her most vulnerable moment, and therefore must be nurtured and looked after."
+      "desc": "使用基礎技能時，若自身的 [ChargeRougeAlly] 回數低於10回，則使其拚點威力+2\n\n若自身處於 [RougeIshmaelEclose] 狀態，則基礎技能命中時恢復自身體力上限8%的體力(每回合最多5次)",
+      "flavor": "雖然也有人叫它更衣室，但在外頭，把它稱作蛹或卵應該更貼切吧。\n在裡面一邊融化、碾碎自己的身體，一邊產生變化，等時候到了，就會破殼而出吧。\n但如果從外面撕開還沒準備好的東西，很遺憾，它就會壞掉。\n所以這個時期最脆弱，也比任何時候都更需要照料。"
     },
     {
       "id": 1081602,
@@ -3307,7 +3307,7 @@
     {
       "id": 1091701,
       "name": "改衣坊中花藝剪的聲響",
-      "desc": "回合結束時，在下回合使自身獲得等同於自身 [ChargeKhaki] 回數的護盾值\n若自身的 [ChargeKhaki] 強度不低於2級／3級／5級，則使機本技能的最終威力+1／+2／+3",
+      "desc": "回合結束時，在下回合使自身獲得等同於自身 [ChargeKhaki] 回數的護盾值\n若自身的 [ChargeKhaki] 強度不低於2/3/5級，則使基礎技能的最終威力+1/+2/+3",
       "summary": "基礎技能的最終威力提升[TabExplain]"
     },
     {
@@ -3321,71 +3321,71 @@
       "name": "單片剪",
       "desc": "使速度值最高的1名友方單位造成的斬擊基礎技能傷害+10%",
       "summary": "追加斬擊傷害",
-      "flavor": "The single pair dearest to me, above all the rest... will be yours as well."
+      "flavor": "剪刀之中，我最珍惜的那唯一一把，也送給你。"
     },
     {
       "id": 1031501,
       "name": "漆黑誓言",
       "desc": "戰鬥結束時，若自身啟動 [OathFieldDonQuixote]，則下回合使自身獲得1層 [Agility]\n\n使自身的基礎攻擊技能對主要目標造成的傷害+(自身的 [ChargeNoirAlly] 強度×3)%(最多+15%)",
       "summary": "若已啟動 [OathFieldDonQuixote]，則下回合使自身獲得 [Agility]\n基礎攻擊技能對主要目標造成的傷害增加[TabExplain]",
-      "flavor": "I heard His voice, His promise: \"Everything that exists has meaning.\""
+      "flavor": "我聽見了那位的聲音。那位承諾了，這一切都有其意義。"
     },
     {
       "id": 1031502,
       "name": "應許之鎚",
-      "desc": "Upon entering the Encounter for the first time, gain +10 [ChargeNoirAlly] Count and apply +2 [Charge] Count on other \"Le Noir\" allied Identities\n\nWhen inflicting [NoirNailDonQuixote] using Skill effects:\n- At 12+ [ChargeNoirAlly] Count, inflict +1 more [NoirNailDonQuixote] and consume 4 [ChargeNoirAlly] Count\n- At fewer than 12 [ChargeNoirAlly] Count, consume 2 [ChargeNoirAlly] Count\n- At insufficient [ChargeNoirAlly] Count, does not inflict [NoirNailDonQuixote]\n- Skills that inflict [NoirNailDonQuixote] due to this effect count as Skills that consume [Charge] Count\n\nGain 1 [ChargeNoirAlly] Potency every time this unit consumes 10 cumulative [ChargeNoirAlly] Count in this Encounter",
-      "summary": "Gain [ChargeNoirAlly] Count; \"Le Noir\" allies gain [Charge] Count\nConsume [ChargeNoirAlly] Count when inflicting [NoirNailDonQuixote]; inflict more [NoirNailDonQuixote] when at sufficient [ChargeNoirAlly] Count\nGain [ChargeNoirAlly] Potency by consuming [ChargeNoirAlly] Count",
-      "flavor": "A hammer drives nails. This hammer strikes nothing but nails. Whatever it strikes is a nail. That is what was agreed upon."
+      "desc": "關卡中首次登場時，使自身獲得10回 [ChargeNoirAlly]，並使除自身以外屬於漆黑派的友方人格獲得2回 [Charge]\n\n透過技能效果施加 [NoirNailDonQuixote] 時，若自身的 [ChargeNoirAlly] 回數\n- 不低於12回，則施加的 [NoirNailDonQuixote] 層數+1，並消耗自身4回 [ChargeNoirAlly]\n- 低於12回，則消耗自身2回 [ChargeNoirAlly]\n- 不足，則改為不施加 [NoirNailDonQuixote]\n- 因本效果而施加 [NoirNailDonQuixote] 的技能視為消耗 [Charge] 回數的技能\n\n本場戰鬥中，自身每累計消耗10回 [ChargeNoirAlly]，使自身獲得1級 [ChargeNoirAlly] 強度",
+      "summary": "[ChargeNoirAlly] 回數與漆黑派友方單位的 [Charge] 回數增加\n施加 [NoirNailDonQuixote] 時消耗 [ChargeNoirAlly] 回數；[ChargeNoirAlly] 回數不低於一定數值時，施加量增加\n累計消耗 [ChargeNoirAlly] 回數時，獲得 [ChargeNoirAlly] 強度",
+      "flavor": "鐵鎚是用來釘釘子的。鐵鎚敲打的只有釘子。被鐵鎚敲中的就是釘子。一切早已如此約定。"
     },
     {
       "id": 1031503,
       "name": "保存的使命",
-      "desc": "Upon entering the Encounter for the first time, gain 25 [NoirShieldUpDonQuixote]\n\nWhen consuming [ChargeNoirAlly] Count, or when gaining [ChargeNoirAlly] Count past its max cap, gain ([ChargeNoirAlly] Count consumed or surplus [ChargeNoirAlly] Count x 5) [NoirShieldUpDonQuixote] (max 30 per turn)\n\nWhen an allied Identity that has Shield is hit, this unit gains 2 [NoirShieldUpDonQuixote] (max 10 per turn)\n- If the said allied Identity is a [PersonalityCharge], gain 5 [NoirShieldUpDonQuixote] instead",
+      "desc": "關卡中首次登場時，使自身獲得25層 [NoirShieldUpDonQuixote]\n\n自身消耗 [ChargeNoirAlly] 回數，或獲得超過最大值的回數時，使自身獲得(該數值×5)層 [NoirShieldUpDonQuixote] (每回合最多30層)\n\n帶有護盾的友方人格受到攻擊時，使自身獲得2層 [NoirShieldUpDonQuixote] (每回合最多10層)\n- 若該友方人格為 [PersonalityCharge]，則改為獲得5層 [NoirShieldUpDonQuixote]",
       "summary": "獲得 [NoirShieldUpDonQuixote]"
     },
     {
       "id": 1031504,
       "name": "神之旨意和價值與我們同在……",
-      "desc": "Before Attack of another \"Le Noir\" allied Identity on an enemy, this unit uses \"Judgment!\" Skill as an Unopposed Attack against the main target (once per turn)\n\nOn the final Coin Start of a Base Skill, the said Coin gains Final Power +([ChargeNoirAlly] Potency on self + ([NoirNailDonQuixote] on target / 2)) (max 5)\n\nIf this unit has [OathFieldDonQuixote], Base Skill 1/2/3 gains Clash Power +1/+2/+3\n\nWhen [VibrationExplosion] triggers on a target that has [NoirNailDonQuixote], this unit and 1 other allied [PersonalityCharge] that has the lowest [Charge] Count gain +2 [Charge] Count (2 times per turn)",
+      "desc": "除自身以外屬於漆黑派的友方人格攻擊敵方單位前，自身使用「審判！」優先對主要目標進行單方面攻擊(每回合最多1次)\n\n基礎技能的最後一枚硬幣開始投擲時，使該硬幣的最終威力增加(自身的 [ChargeNoirAlly] 強度+目標的 [NoirNailDonQuixote] 層數÷2)(最多+5)\n\n若自身帶有 [OathFieldDonQuixote]，則使基礎技能1/2/3的拚點威力+1/+2/+3\n\n對帶有 [NoirNailDonQuixote] 的目標觸發 [VibrationExplosion] 時，使自身與除自身以外 [Charge] 回數最低的1名友方 [PersonalityCharge] 各獲得2回 [Charge] (每回合最多2次)",
       "summary": "屬於漆黑派的友方單位攻擊前，自身使用「審判！」\n自身基礎技能最後一枚硬幣的最終威力增加[TabExplain]\n若已啟動 [OathFieldDonQuixote]，則使自身基礎技能的拚點威力增加[TabExplain]\n若目標帶有 [NoirNailDonQuixote] 時觸發了 [VibrationExplosion]，則使自身獲得 [Charge] 回數",
-      "flavor": "The Obsidian God's words be our guiding light, our armor and shield in this troubled world of uncertainties; becometh His Voice the shining beam of light upon us, thereby bestowing us with meaning so coveted."
+      "flavor": "在這萬物皆不確定的世上，唯有一者引領並守護我們，那便是漆黑之神的話語。那話語成為道路、成為光芒照耀我們，我們方才被賦予了意義。"
     },
     {
       "id": 1031511,
       "name": "漆黑誓言",
       "desc": "戰鬥結束時，若自身啟動 [OathFieldDonQuixote]，則下回合使自身獲得2層 [Agility]\n\n使自身的基礎攻擊技能對主要目標造成的傷害+(自身的 [ChargeNoirAlly] 強度×6)%(最多+30%)",
       "summary": "若已啟動 [OathFieldDonQuixote]，則下回合使自身獲得 [Agility]\n基礎攻擊技能對主要目標造成的傷害增加[TabExplain]",
-      "flavor": "I heard His voice, His promise: \"Everything that exists has meaning.\""
+      "flavor": "我聽見了那位的聲音。那位承諾了，這一切都有其意義。"
     },
     {
       "id": 1031521,
       "name": "陣型保存",
-      "desc": "All allied [PersonalityCharge] take -2% damage this turn for every allied [PersonalityCharge] on the field at Combat Start (max -10%)",
+      "desc": "戰鬥開始時，戰場上每有1名友方 [PersonalityCharge]，使所有友方 [PersonalityCharge] 本回合受到的傷害-2%(最多-10%)",
       "summary": "使 [PersonalityCharge] 的友方單位受到的傷害減少"
     },
     {
       "id": 1101602,
       "name": "陽具享樂（la jouissance phallique）",
-      "desc": "Gain 1 [ChargeRougeAlly] Count every time [Laceration] is activated in this Encounter (10 times per turn)\n\nCombat End: At 15+ [ChargeRougeAlly] Count, if this unit is not in [BuffetSinclair] state, consume all [ChargeRougeAlly] Count to gain 3 [BuffetSinclair] next turn\n- Heal SP equal to (3 x [ChargeRougeAlly] Count consumed beyond 15) (max 15)\n\nWhen [BuffetSinclair] expires, consume all [ChargeRougeAlly] Count on self to heal HP equal to ([ChargeRougeAlly] Count consumed x 2)\n\nGain 1 [ChargeRougeAlly] Potency for every 10 cumulative [ChargeRougeAlly] Count this unit consumes in this Encounter\n\nThis unit's Base Attack Skills and Clashable Counter Skills are considered as Skills that gain [Charge] Count",
+      "desc": "觸發 [Laceration] 時，使自身獲得1回 [ChargeRougeAlly] (每回合最多10次)\n\n戰鬥結束時，若自身未處於 [BuffetSinclair] 狀態，且自身的 [ChargeRougeAlly] 回數不低於15回，\n則消耗所有 [ChargeRougeAlly] 回數，並使自身於下回合獲得3層 [BuffetSinclair]\n- 恢復(超過15回的消耗回數×3)點理智值(最多15點)\n\n[BuffetSinclair] 解除時，消耗自身所有 [ChargeRougeAlly] 回數，恢復(消耗回數×2)點體力\n\n本場戰鬥中，自身每累計消耗10回 [ChargeRougeAlly]，使自身獲得1級 [ChargeRougeAlly] 強度\n\n基礎攻擊技能與可拚點反擊技能視為獲得 [Charge] 回數的技能",
       "summary": "觸發 [Laceration] 時，使自身的 [ChargeRougeAlly] 回數增加"
     },
     {
       "id": 1101603,
       "name": "童年的終結（la Fin de l'enfance）",
-      "desc": "Gain [HungrySinclair] based on the following conditions (50 per turn):\n- When this unit consumes [ChargeRougeAlly] Count, gain Stack equal to [ChargeRougeAlly] Count consumed\n- When this unit's Base Skills heal other allies' HP, gain Stack equal to actual amount healed\n- Gain 1 Stack for every 10 cumulative HP allies lost\n- On Base Attack Hit by another \"Le Rouge\" allied Identity, gain 2 Stacks\n- Turn End: Gain 5 Stacks for every other \"Le Rouge\" allied Identity on the field\n\nTurn End: At 100+ [HungrySinclair], and if this unit does not have [TransformSinclair], replace the Skill on the leftmost Skill Slot's bottom row with \"La Voracité\" at the next Turn Start\n\nCombat Start: If this unit equipped \"La Voracité\" or \"La Castration\" for the first time in this Encounter, gain [BuffetThirst] and [TransformSinclair]; then, remove this unit's Stagger Threshold\n- Replace equipped Base Skills with [TransformSinclair] exclusive Skills\n- Base Skills that targeted allies activate Unopposed Attack against random enemies\n- At Attack End of the Skill activated by the said effect, consume all [HungrySinclair]\n\nTurn End: At 150 [HungrySinclair], if this unit has [TransformSinclair], and if this unit does not have \"La Voracité\" on its Dashboard at the next Turn Start, replace a Base Skill with \"La Voracité\" (prioritizes the Skill on the leftmost Slot's bottom row)",
+      "desc": "根據以下條件，使自身獲得 [HungrySinclair] (每回合最多50層)\n- 自身消耗 [ChargeRougeAlly] 回數時，獲得等同於消耗回數的層數\n- 自身透過基礎技能恢復除自身以外友方單位的體力時，獲得等同於實際恢復量的層數\n- 友方單位的體力每累計減少10點，獲得1層\n- 除自身以外屬於丹紅派的友方人格基礎攻擊命中時，獲得2層\n- 回合結束時，除自身以外每有1名屬於丹紅派的友方人格，獲得5層\n\n回合結束時，若自身未帶有 [TransformSinclair] 且 [HungrySinclair] 不低於100層，\n則下回合開始時，將最左側行動槽下方的技能變更為「貪求（la voracité）」\n\n本場戰鬥中首次裝備「貪求（la voracité）」或「閹割（la castration）」的戰鬥開始時，使自身獲得 [BuffetThirst] 與 [TransformSinclair]，並移除自身的混亂閾值\n- 將已裝備的基礎技能變更為高貴的品性專用技能\n- 指定友方單位的基礎技能改為對隨機敵方單位進行單方面攻擊\n- 透過本效果發動的技能攻擊結束時，消耗所有 [HungrySinclair]\n\n回合結束時，若自身帶有 [TransformSinclair] 且 [HungrySinclair] 為150層，\n則下回合開始時，若行動槽中沒有「貪求（la voracité）」，則將1個基礎技能變更為「貪求（la voracité）」(優先變更最左側行動槽下方的技能)",
       "summary": "根據條件獲得 [HungrySinclair]",
-      "flavor": "Who decides where childhood ends?\n\nThe crimson child set out on an adventure all on his lonesome.\nTracing memories, longing for what was lost, the child walked on with friendless steps... and in loneliness, bade farewell to childhood."
+      "flavor": "童年的終點由誰決定？\n\n丹紅的孩子獨自踏上了旅程。他追溯著記憶、懷念著過往，獨自走下去，孤零零地送走了童年。"
     },
     {
       "id": 1101604,
       "name": "豐收（la moisson）",
-      "desc": "When this unit's Base Skill effects consume an ally's HP, the ally cannot become Staggered by the said effects, and its HP does not drop below 1.\n\nCombat End: At 3+ Lust Reson., apply [BuffetThirst] next turn on (Lust Reson. / 3) other allies (rounded up)\n- Prioritizes \"Le Rouge\" allies, in Deployment order\n\nWhen using a [SupportAlly] Skill on an ally, apply 1 [BuffetFriendShield] to the non-immobilized \"Le Rouge\" ally with the highest current HP (once per turn)\nAt Base Attack End by another allied [PersonalityCharge], if the said Skill did not defeat its main target, use \"Je vous aide\" against that enemy (once per turn)",
+      "desc": "自身透過基礎技能效果消耗友方單位的體力時，該效果不會使目標陷入混亂，也不會使其體力降至1點以下\n\n色慾共鳴數不低於3時，戰鬥結束時，下回合對除自身以外的(色慾共鳴數÷3)名友方單位施加 [BuffetThirst] (無條件進位)\n- 優先指定屬於丹紅派的友方單位，依編入順序施加\n\n對友方單位使用 [SupportAlly] 技能時，對可以行動且屬於丹紅派的友方單位中當前體力最高的1名單位施加1層 [BuffetFriendShield] (每回合最多1次)\n除自身以外的友方 [PersonalityCharge] 基礎攻擊結束時，若主要目標未陣亡，則對該敵方單位使用「我來幫你（je vous aide）」(每回合最多1次)",
       "summary": "友方單位使用 [SupportAlly] 時，使友方單位獲得 [BuffetFriendShield]\n根據色慾共鳴數相應使友方單位在下回合獲得 [BuffetThirst]"
     },
     {
       "id": 1101614,
       "name": "豐收（la moisson）",
-      "desc": "When this unit's Base Skill effects consume an ally's HP, the ally cannot become Staggered by the said effects, and its HP does not drop below 1.\n\nCombat End: At 3+ Lust Reson., apply [BuffetThirst] next turn on (Lust Reson. / 3) other allies (rounded up)\n- Prioritizes \"Le Rouge\" allies, in Deployment order\n- If this unit has [TransformSinclair], apply this effect to +1 more ally (max 4 allies)\n\nIf this unit does not have [TransformSinclair],\n- When using a [SupportAlly] Skill on an ally, apply 1 [BuffetFriendShield] to the non-immobilized \"Le Rouge\" ally with the highest current HP (once per turn)\n- At Base Attack End by another allied [PersonalityCharge], if the said Skill did not defeat its main target, use \"Je vous aide\" against that enemy (once per turn)\n\nIf this unit has [TransformSinclair],\n- Gain [RougeFamilySinclair]\n- Activate [DinnerField] on the current battlefield\n- Turn End: Gain [BuffetThirst] next turn\n- Combat Start: Apply 1 [BuffetFriendShield] to the non-immobilized \"Le Rouge\" ally with the highest current HP\n- At Attack End of a Base Attack Skill against enemies, if the main target has 5 [BoneNailSinclair], use \"La Demande\" (once per turn)",
+      "desc": "自身透過基礎技能效果消耗友方單位的體力時，該效果不會使目標陷入混亂，也不會使其體力降至1點以下\n\n色慾共鳴數不低於3時，戰鬥結束時，下回合對除自身以外的(色慾共鳴數÷3)名友方單位施加 [BuffetThirst] (無條件進位)\n- 優先指定屬於丹紅派的友方單位，依編入順序施加\n- 若自身帶有 [TransformSinclair]，則施加對象的友方單位數+1(最多4名)\n\n若自身未帶有 [TransformSinclair]，\n- 對友方單位使用 [SupportAlly] 技能時，對可以行動且屬於丹紅派的友方單位中當前體力最高的1名單位施加1層 [BuffetFriendShield] (每回合最多1次)\n- 除自身以外的友方 [PersonalityCharge] 基礎攻擊結束時，若主要目標未陣亡，則對該敵方單位使用「我來幫你（je vous aide）」(每回合最多1次)\n\n若自身帶有 [TransformSinclair]，\n- 獲得 [RougeFamilySinclair]\n- 在當前戰鬥場地啟動 [DinnerField]\n- 回合結束時，使自身於下回合獲得 [BuffetThirst]\n- 戰鬥開始時，對可以行動且屬於丹紅派的友方單位中當前體力最高的1名單位施加 [BuffetFriendShield]\n- 對敵方單位使用的基礎攻擊技能攻擊結束時，若主要目標的 [BoneNailSinclair] 為5層，則使用「要求（la demande）」(每回合最多1次)",
       "summary": "友方單位使用 [SupportAlly] 時，使友方單位獲得 [BuffetFriendShield]\n根據色慾共鳴數相應使友方單位在下回合獲得 [BuffetThirst]"
     },
     {
@@ -3401,17 +3401,17 @@
     {
       "id": 1071702,
       "name": "餘音仍在耳邊的客訴",
-      "desc": "Gain 1 [ChargeRougeAlly] Potency for every 10 cumulative [ChargeRougeAlly] Count this unit consumes in this Encounter\n\nTurn Start: If allied Haute Couture::The Crimson God of Le Rouge Sinclair is on the field, gain 1 [HowlingCocoonAlly]\n\nTurn Start: At max [HowlingCocoonAlly] Stack, or if allied Haute Couture::The Crimson God of Le Rouge Sinclair has [TransformSinclair], convert [HowlingCocoonAlly] into [HowlingCocoonTwoAlly]; then, allied Haute Couture::The Crimson God of Le Rouge Sinclair gains the following effects:\n- Gain 1 [RougeFamilySinclair]\n- On Hit using the \"La Demande\" Skill's Coins, gain +1 [ChargeRougeAlly] Count and heal 5% HP"
+      "desc": "本場戰鬥中，自身每累計消耗10回 [ChargeRougeAlly]，使自身獲得1級 [ChargeRougeAlly] 強度\n\n回合開始時，若戰場上存在友方的高級訂製服::丹紅派 丹紅之神 辛克萊人格，則使自身的 [HowlingCocoonAlly] 增加1層\n\n回合開始時，若自身的 [HowlingCocoonAlly] 為最大值，或友方的高級訂製服::丹紅派 丹紅之神 辛克萊人格帶有 [TransformSinclair]，\n則將 [HowlingCocoonAlly] 轉變為 [HowlingCocoonTwoAlly]，並使友方的高級訂製服::丹紅派 丹紅之神 辛克萊人格獲得以下效果\n- 獲得1層 [RougeFamilySinclair]\n- 「要求（la demande）」技能的硬幣命中時，獲得1回 [ChargeRougeAlly]，並恢復自身體力上限5%的體力"
     },
     {
       "id": 1071703,
       "name": "手工製作 / 叫你手工縫製啊！！！",
-      "desc": "Every time this unit loses 3% HP, gain +1 [ChargeRougeAlly] Count (max 20 per turn)\n\nEvery time this unit loses 1.5% HP, gain 1 [NiddlePinGather]\n\nHP consumption effects from this unit's Base Skills do not Stagger or reduce this unit's HP below 1 (At 1 HP, Base Skill effects that consume HP will be activated for free)"
+      "desc": "自身的體力每減少體力上限的3%，使自身獲得1回 [ChargeRougeAlly] (每回合最多20回)\n\n自身的體力每減少體力上限的1.5%，使自身獲得1層 [NiddlePinGather]\n\n自身基礎技能的體力減少效果不會使自身陷入混亂，也不會使體力降至1點以下(體力為1點時，仍可適用基礎技能效果中因消耗體力而發動的效果)"
     },
     {
       "id": 1071713,
       "name": "手工製作 / 叫你手工縫製啊！！！",
-      "desc": "Every time this unit loses 3% HP, gain +1 [ChargeRougeAlly] Count (max 20 per turn)\n\nEvery time this unit loses 1.5% HP, gain 1 [NiddlePinGather]\n\nHP consumption effects from this unit's Base Skills do not Stagger or reduce this unit's HP below 1 (at 1 HP, Base Skill effects that consume HP will be activated for free)\n\nAt 3 [NeedlekinAlly], use the \"Double stitching past the side seam? Double-needle! Rejected!\" Skill on random enemies at Attack Skill End"
+      "desc": "自身的體力每減少體力上限的3%，使自身獲得1回 [ChargeRougeAlly] (每回合最多20回)\n\n自身的體力每減少體力上限的1.5%，使自身獲得1層 [NiddlePinGather]\n\n自身基礎技能的體力減少效果不會使自身陷入混亂，也不會使體力降至1點以下(體力為1點時，仍可適用基礎技能效果中因消耗體力而發動的效果)\n\n自身的 [NeedlekinAlly] 為3層時，自身的攻擊技能結束時，對隨機敵方單位使用「如果從側縫外側看得見兩條縫線的話就是雙針。淘汰！」技能"
     },
     {
       "id": 1071701,
@@ -3421,22 +3421,22 @@
     {
       "id": 1071721,
       "name": "每英吋要達20針數以上！！！",
-      "desc": "1 ally with the fastest Speed: On Hit using Base Attack Skills, inflict 2 [Laceration] (once per turn)\n- If the said ally is a \"Le Rouge\" Identity, additionally inflict 1 [NiddlePinAlly]"
+      "desc": "速度值最高的1名友方單位的基礎攻擊技能命中時，施加2級 [Laceration] 強度(每回合最多1次)\n- 若該友方單位屬於丹紅派，則額外施加1層 [NiddlePinAlly]"
     },
     {
       "id": 1061701,
       "name": "漆黑派 精紡布料",
-      "desc": "Defense Skill Clash Power +1 for every [ChargeNoirAlly] Potency on self (max 5)\n\nAt 8+ [NoirBindArmorAlly], after this unit consumes [ChargeNoirAlly] Count using the \"Warning Announcement\" Skill, gain +([ChargeNoirAlly] Count consumed by said Skill) [ChargeNoirAlly] Count at Skill End (once per turn)"
+      "desc": "自身每有1級 [ChargeNoirAlly] 強度，使守備技能的拚點威力+1(最多+5)\n\n若 [NoirBindArmorAlly] 不低於8層，則透過「警報廣播」消耗 [ChargeNoirAlly] 回數後，該技能結束時，使自身的 [ChargeNoirAlly] 回數增加等同於消耗的 [ChargeNoirAlly] 回數(每回合最多1次)"
     },
     {
       "id": 1061702,
       "name": "要仔細傾聽才行哦？",
-      "desc": "Gain 1 [ChargeNoirAlly] Potency every time this unit consumes 10 cumulative [ChargeNoirAlly] Count in this Encounter\n\nCan gain up to 1 [ReadyToListenHonglu] per turn\n- If this unit has [TimeToListenHonglu], this unit cannot gain [ReadyToListenHonglu]\n\nTurn End: At 2 [ReadyToListenHonglu], consume all Stacks and apply the following effects next turn:\n- Gain 2 [TimeToListenHonglu]\n- Inflict 2 [WarinessHonglu] on all enemies on the field (once per turn; in Focused Encounters, all Parts)"
+      "desc": "本場戰鬥中，自身每累計消耗10回 [ChargeNoirAlly]，使自身獲得1級 [ChargeNoirAlly] 強度\n\n每回合最多只能獲得1層 [ReadyToListenHonglu]\n- 若自身帶有 [TimeToListenHonglu]，則無法獲得 [ReadyToListenHonglu]\n\n自身的 [ReadyToListenHonglu] 為2層時，回合結束時消耗所有層數，並於下回合適用以下效果\n- 獲得2層 [TimeToListenHonglu]\n- 對戰場上的所有敵方單位施加2層 [WarinessHonglu] (每回合最多1次；集中遭遇戰時，以部位判定)"
     },
     {
       "id": 1061712,
       "name": "要仔細傾聽才行哦？",
-      "desc": "Gain 1 [ChargeNoirAlly] Potency every time this unit consumes 10 cumulative [ChargeNoirAlly] Count in this Encounter\n\nCan gain up to 1 [ReadyToListenHonglu] per turn\n- If this unit has [TimeToListenHonglu], this unit cannot gain [ReadyToListenHonglu]\n\nTurn End: At 2 [ReadyToListenHonglu], consume all Stacks and apply the following effects next turn:\n- Gain 2 [TimeToListenHonglu]\n- Inflict 2 [WarinessHonglu] on all enemies on the field (once per turn; in Focused Encounters, all Parts)\n<style=\"highlight\">- Reset the activation limit on the \"Before Use\" effect on the \"Customer Announcement\" Skill</style>"
+      "desc": "本場戰鬥中，自身每累計消耗10回 [ChargeNoirAlly]，使自身獲得1級 [ChargeNoirAlly] 強度\n\n每回合最多只能獲得1層 [ReadyToListenHonglu]\n- 若自身帶有 [TimeToListenHonglu]，則無法獲得 [ReadyToListenHonglu]\n\n自身的 [ReadyToListenHonglu] 為2層時，回合結束時消耗所有層數，並於下回合適用以下效果\n- 獲得2層 [TimeToListenHonglu]\n- 對戰場上的所有敵方單位施加2層 [WarinessHonglu] (每回合最多1次；集中遭遇戰時，以部位判定)\n<style=\"highlight\">- 重置「廣播」使用前效果的使用次數</style>"
     },
     {
       "id": 1061721,

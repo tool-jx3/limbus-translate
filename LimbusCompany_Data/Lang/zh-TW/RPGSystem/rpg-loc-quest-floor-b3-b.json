@@ -193,81 +193,81 @@
     },
     {
       "key": "Q-3010A",
-      "title": "(내부) 팔레트 가죽 확보 신호",
+      "title": "（內部）取得調色盤皮革通知",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "팔레트의 가죽 확보 (내부 신호)"
+          "goalDescription1": "取得調色盤的皮革（內部通知）"
         }
       ]
     },
     {
       "key": "Q-3010B",
-      "title": "(내부) 플로어 매니저 가죽 확보 신호",
+      "title": "（內部）取得樓層經理皮革通知",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "플로어 매니저 가죽 확보 (내부 신호)"
+          "goalDescription1": "取得樓層經理的皮革（內部通知）"
         }
       ]
     },
     {
       "key": "Q-3010S",
-      "title": "(내부) 보디가드 교대 신호",
+      "title": "（內部）保鏢交班通知",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "보디가드 교대 (내부 신호)"
+          "goalDescription1": "保鏢交班（內部通知）"
         }
       ]
     },
     {
       "key": "Q-3011S",
-      "title": "(내부) 황금가죽 수주 신호",
+      "title": "（內部）黃金皮革接單通知",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "황금가죽 수주 (내부 신호)"
+          "goalDescription1": "黃金皮革接單（內部通知）"
         }
       ]
     },
     {
       "key": "Q-3011T",
-      "title": "(내부) 삽살이 개전 신호",
+      "title": "（內部）長毛狗開戰通知",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "삽살이 개전 (내부 신호)"
+          "goalDescription1": "長毛狗開戰（內部通知）"
         }
       ]
     },
     {
       "key": "Q-3011H1",
-      "title": "(내부) 삽살이 타격 1",
+      "title": "（內部）長毛狗打擊1",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "삽살이 타격 1 (내부)"
+          "goalDescription1": "長毛狗打擊1（內部）"
         }
       ]
     },
     {
       "key": "Q-3011H2",
-      "title": "(내부) 삽살이 타격 2",
+      "title": "（內部）長毛狗打擊2",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "삽살이 타격 2 (내부)"
+          "goalDescription1": "長毛狗打擊2（內部）"
         }
       ]
     },
     {
       "key": "Q-3011H3",
-      "title": "(내부) 삽살이 타격 3",
+      "title": "（內部）長毛狗打擊3",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "삽살이 타격 3 (내부)"
+          "goalDescription1": "長毛狗打擊3（內部）"
         }
       ]
     },

@@ -256,7 +256,7 @@
         {
           "level": 1,
           "name": "6463",
-          "desc": "Deal +10% damage for every 50 [AccumulatedPastMirror]\n[WhenUse] Base Power +1 for every 10 ([Vibration] Potency + Count) on target (max 3)\n[WhenUse] If this unit's [AccumulatedPastMirror] is an odd number, this Skill deals +30% damage",
+          "desc": "自身每帶有50層 [AccumulatedPastMirror]，使本技能造成的傷害+10%\n[WhenUse] 目標的 [Vibration] 強度與回數之和每有10點，使本技能的基礎威力+1(最多+3)\n[WhenUse] 若自身的 [AccumulatedPastMirror] 層數為奇數，則使本技能造成的傷害+30%",
           "coinlist": [
             {
               "coindescs": [
@@ -278,7 +278,7 @@
         {
           "level": 1,
           "name": "6753",
-          "desc": "Deal +10% damage for every 50 [AccumulatedPastMirror]\n[WhenUse] Base Power +1 for every 10 ([Vibration] Potency + Count) on target (max 3)\n[WhenUse] If this unit's [AccumulatedPastMirror] is an even number, gain 3 [Protection] (once per turn)",
+          "desc": "自身每帶有50層 [AccumulatedPastMirror]，使本技能造成的傷害+10%\n[WhenUse] 目標的 [Vibration] 強度與回數之和每有10點，使本技能的基礎威力+1(最多+3)\n[WhenUse] 若自身的 [AccumulatedPastMirror] 層數為偶數，則使自身獲得3層 [Protection] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -755,7 +755,7 @@
         {
           "level": 1,
           "name": "融化之眼",
-          "desc": "[WhenUse] 使目標失去10點理智值\n若目標的理智值不高於0點，則使本技能造成的傷害+50%",
+          "desc": "[WhenUse] 使目標失去10點理智值\n若目標的理智值低於0點，則使本技能造成的傷害+50%",
           "coinlist": [
             {
               "coindescs": [
@@ -781,7 +781,7 @@
         {
           "level": 1,
           "name": "席捲而來的憂鬱",
-          "desc": "[WhenUse] 使目標失去5點理智值\n優先指定 [Sinking] 強度最高的敵方單位\n若目標的理智值不高於0點，則使本技能造成的傷害+30%",
+          "desc": "[WhenUse] 使目標失去5點理智值\n優先指定 [Sinking] 強度最高的敵方單位\n若目標的理智值低於0點，則使本技能造成的傷害+30%",
           "coinlist": [
             {
               "coindescs": [
@@ -814,7 +814,7 @@
         {
           "level": 1,
           "name": "眼球重擺",
-          "desc": "[DefeatDuel] 取消自身所有技能\n[DefeatDuel] 對自身施加3層 [Vulnerable]\n若目標的理智值不高於0點，則使本技能造成的傷害+100%",
+          "desc": "[DefeatDuel] 取消自身所有技能\n[DefeatDuel] 對自身施加3層 [Vulnerable]\n若目標的理智值低於0點，則使本技能造成的傷害+100%",
           "coinlist": [
             {
               "coindescs": [
@@ -882,7 +882,7 @@
         {
           "level": 1,
           "name": "尾鰭抽打",
-          "desc": "[DefeatDuel] 取消自身所有技能\n[DefeatDuel] 對自身施加3層 [Vulnerable]\n若目標的理智值不高於0點，則使本技能造成的傷害+100%",
+          "desc": "[DefeatDuel] 取消自身所有技能\n[DefeatDuel] 對自身施加3層 [Vulnerable]\n若目標的理智值低於0點，則使本技能造成的傷害+100%",
           "coinlist": [
             {
               "coindescs": [
@@ -908,7 +908,7 @@
         {
           "level": 1,
           "name": "擠壓液囊",
-          "desc": "[DefeatDuel] 取消自身所有技能\n[DefeatDuel] 對自身施加3層 [Vulnerable]\n若目標的理智值不高於0點，則使本技能造成的傷害+100%",
+          "desc": "[DefeatDuel] 取消自身所有技能\n[DefeatDuel] 對自身施加3層 [Vulnerable]\n若目標的理智值低於0點，則使本技能造成的傷害+100%",
           "coinlist": [
             {
               "coindescs": [
@@ -1897,7 +1897,7 @@
         {
           "level": 1,
           "name": "義體啟動",
-          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10回，則消耗3回 [Charge]，並使該技能硬幣威力+1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15回，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數低於5回，則失去體力上限10%的體力，並使自身獲得9回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -1919,7 +1919,7 @@
         {
           "level": 1,
           "name": "硬血血液逆流",
-          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10回，則消耗3回 [Charge]，並使該技能硬幣威力+1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15回，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數低於5回，則失去體力上限10%的體力，並使自身獲得9回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -2015,7 +2015,7 @@
         {
           "level": 1,
           "name": "硬血血液轉移",
-          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10回，則消耗3回 [Charge]，並使該技能硬幣威力+1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15回，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數低於5回，則失去體力上限10%的體力，並使自身獲得9回 [Charge]",
           "coinlist": [
             {
               "coindescs": [

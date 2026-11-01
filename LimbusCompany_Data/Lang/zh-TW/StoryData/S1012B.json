@@ -4,27 +4,27 @@
       "id": 0,
       "place": "B1F 美食廣場",
       "model": "그레고르",
-      "content": "... Don't tell me that stuff they're ladling out of the fountain is what those fellas in rags were talking about..."
+      "content": "……難不成他們從那座噴泉裡舀來吃的……就是剛才那些傢伙說的……"
     },
     {
       "id": 1,
       "model": "뫼르소",
-      "content": "It is Meat Soda."
+      "content": "是精肉蘇打。"
     },
     {
       "id": 2,
       "model": "단테",
-      "content": "<Meursault, what's Meat Soda?>"
+      "content": "<莫梭，精肉蘇打是什麼？>"
     },
     {
       "id": 3,
       "model": "뫼르소",
-      "content": "It's a beverage that reproduces flavors preserved in memory."
+      "content": "精肉蘇打是能重現記憶中味道的東西。"
     },
     {
       "id": 4,
       "model": "단테",
-      "content": "<Hmm... Like Canned Experience, you mean?>"
+      "content": "<嗯……跟經驗罐頭差不多嗎？>"
     },
     {
       "id": 5,
@@ -34,17 +34,17 @@
     {
       "id": 6,
       "model": "뫼르소",
-      "content": "Identical, in the respect that neither can ever attain the genuine article."
+      "content": "就永遠無法觸及真品這一點而言，兩者相同。"
     },
     {
       "id": 7,
       "model": "파우스트",
-      "content": "As for the underlying principle, it accumulates the flavors and experiences of its constituent ingredients, then uses those records to reconstruct for the consumer a—"
+      "content": "就原理而言，是累積投入材料的味道與經驗，再以此為基礎，讓攝取者的……"
     },
     {
       "id": 8,
       "model": "수셰프",
-      "content": "What are you people supposed to be, you hear?"
+      "content": "你們是什麼人的說？"
     }
   ]
 }

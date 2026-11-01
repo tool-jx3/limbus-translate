@@ -3,195 +3,195 @@
     {
       "id": 0,
       "place": "N公司 法院",
-      "content": "N Corp.'s courtroom was a stark white chamber drowned in complete silence."
+      "content": "我們移動到了N公司的法庭。那是個雪白而寂靜的地方。"
     },
     {
       "id": 1,
-      "content": "As expected of a place erected for representatives of the law to sit in judgment over criminals, the court of justice was imposing and majestic..."
+      "content": "不愧是為了審判他人而建造的地方，它的外觀莊嚴而雄偉，但……"
     },
     {
       "id": 2,
-      "content": "Yet that very grandeur made it feel every bit as hollow."
+      "content": "另一方面，也同樣空虛。"
     },
     {
       "id": 3,
       "place": "N公司 法庭旁聽席",
       "model": "이스마엘",
-      "content": "*sigh* Well, there's no turning back now. Might as well think about what we can actually do."
+      "content": "呼……既然事已至此，先想想我們眼下能做些什麼吧。"
     },
     {
       "id": 4,
       "model": "이스마엘",
-      "content": "We know next to nothing about Meursault's past in N Corp...."
+      "content": "對莫梭先生住在N公司那段時期的事一無所知的我們……"
     },
     {
       "id": 5,
       "model": "이스마엘",
-      "content": "So I say we pay close attention and carefully listen to every word of the proceedings."
+      "content": "總之，最好還是盡可能仔細地聆聽審判的內容吧。"
     },
     {
       "id": 6,
       "model": "히스클리프",
-      "content": "Should've pulled answers from the bloke before he got hauled off. The sod never says a word unless you question it out of him."
+      "content": "早知道就該在他被抓走之前問個清楚。那傢伙不是不問就什麼都不會說嗎。"
     },
     {
       "id": 7,
       "model": "싱클레어",
-      "content": "Sure, but how were we supposed to know they'd take him away so suddenly?"
+      "content": "誰知道他會那麼突然就被抓走了……"
     },
     {
       "id": 8,
       "model": "이상",
-      "content": "At the very least... we may safely assume his crime was not a violation of <i>the</i> N Corp. Taboo."
+      "content": "至少……可以認為，他的罪還不至於是觸犯了N公司的禁忌。"
     },
     {
       "id": 9,
       "model": "그레고르",
-      "content": "Right... Otherwise, we would've run into N Corp.'s Taboo Hunters left and right since the very first day we met him."
+      "content": "是啊……要是那樣，大概從我們第一次見到他的時候起，就會被N公司的獵人們追捕了……"
     },
     {
       "id": 10,
       "model": "돈키호테",
-      "content": "Had fortune aligned the hours, perchance we might have beheld the Yellow Harpoon in his Taboo Hunter days here in N Corp.... But alas..."
+      "content": "若時機再湊巧一些，或許就能見到還是N公司禁忌獵人時的蜜黃蜂槍老爺了……"
     },
     {
       "id": 11,
       "model": "싱클레어",
-      "content": "Yeah... and get Yellow Harpooned to death more times than we can count?"
+      "content": "……那樣的話，我們大概早就被蜜黃蜂槍殺了好幾次了吧。"
     },
     {
       "id": 12,
-      "content": "Listening to the Sinners' conversation, I tried to imagine what kind of \"crime\" Meursault could've committed during his time at N Corp."
+      "content": "聽著罪人們的對話，我試著推想莫梭在N公司犯下的「罪」究竟會是什麼。"
     },
     {
       "id": 13,
-      "content": "The Meursault we've known so far..."
+      "content": "如果是我們這段時間以來認識的莫梭……"
     },
     {
       "id": 14,
-      "content": "... isn't the sort to pick fights with or use violence against other people without justifiable reason, unlike <i>some of us</i>."
+      "content": "他應該不會主動找誰麻煩，或是對誰動粗。"
     },
     {
       "id": 15,
       "model": "히스클리프",
-      "content": "What're you givin' me that look for, C.H.? You lookin' for a fight?"
+      "content": "幹嘛用那種讓人不爽的眼神看我，時．頭？"
     },
     {
       "id": 16,
       "model": "료슈9장이후반담배",
-      "content": "Yeah, lookin' for a fight, C.H?"
+      "content": "同上。時．頭？"
     },
     {
       "id": 17,
       "model": "싱클레어",
-      "content": "Wait, Heathcliff... have you decided to join in on the abbreviation game too?"
+      "content": "咦，希斯克利夫先生也加入縮寫遊戲了嗎？"
     },
     {
       "id": 18,
       "model": "히스클리프",
-      "content": "Ack, what the— It rubbed off on me, bloody hell...!"
+      "content": "啊，搞什麼？！嘖，被傳染了……"
     },
     {
       "id": 19,
       "model": "료슈9장이후반담배",
-      "content": "*puff* The start of the C.H. era clocks hard."
+      "content": "呼……這就是時代的潮流。"
     },
     {
       "id": 20,
-      "content": "Nor is he prone to erratic behavior with blatant disregard for possible consequences..."
+      "content": "也不會做出不顧前後的突發舉動……"
     },
     {
       "id": 21,
       "model": "돈키호테",
-      "content": "I loathe the notion that Young Meursault could have committed deeds so foul as to warrant a trial...! Though when given orders, he is wont to be the first fist to smite his foes upon their faces, and would fain dislocate their jaw even as, uh, even as they cling to the hem of his breeches, weeping for mercy..."
+      "content": "吾等的莫梭先生不可能做出什麼惡毒之事……當然，若是奉命行事，無論對手是誰，他總是第一個揮拳打上去……即便對方抓著他的褲腳哭著哀求，他也會毫不留情地把對方的下巴打歪就是了……"
     },
     {
       "id": 22,
       "model": "오티스",
-      "content": "Hm. Of all the actions taken by our men during the last operation, his alone merits compliment. It was an efficient method of neutralizing the enemy."
+      "content": "嗯，那是上次作戰中唯一讓我滿意的成果。很有效率的制伏方式。"
     },
     {
       "id": 23,
-      "content": "Nor is he the type to carry a grudge... like someone I know..."
+      "content": "或是對誰懷恨在心……"
     },
     {
       "id": 24,
       "model": "이스마엘",
-      "content": "... Sorry, why are you looking at me? ... Oh."
+      "content": "……為什麼看著我？啊。"
     },
     {
       "id": 25,
       "model": "이스마엘",
-      "content": "Dante, I can almost see the gears turning in your head, but wild guesses won't get us anywhere right now."
+      "content": "哈……但丁，我大概猜得到您現在在想什麼……"
     },
     {
       "id": 26,
       "model": "이스마엘",
-      "content": "Think about it. If his crime were something normal enough to be guessable, then it wouldn't have resulted in a measure as drastic as permanent exile. So let's get out of our own heads, sit down, and focus on the proceedings."
+      "content": "如果是那種隨便猜猜就能想到的事，應該不至於落到被強制驅逐的地步吧？"
     },
     {
       "id": 27,
       "model": "단테",
-      "content": "<That's true...>"
+      "content": "<那倒也是……>"
     },
     {
       "id": 28,
       "model": "이스마엘",
-      "content": "You know what, it still bothers me that you were looking at <i>me</i> while trying to guess what could've sent Meursault to trial... Never mind. Let's just make sure to focus on the proceedings later."
+      "content": "雖然我有點在意自己也被列入了推測的對象……算了，待會兒還請您專心聽審判吧。"
     },
     {
       "id": 29,
-      "content": "... Ishmael let out a long breath and returned to watching the commotion past the bar as people prepared to begin the trial."
+      "content": "……以實瑪利長長地吐了一口氣，再次望向前方正忙著準備審判的空間。"
     },
     {
       "id": 30,
       "model": "홍루",
-      "content": "Something does feel off about him, though. How should I put this..."
+      "content": "不過真奇怪呢，莫梭先生該怎麼說呢……"
     },
     {
       "id": 31,
       "model": "홍루",
-      "content": "It's almost like he's not even present with the rest of us in this courtroom."
+      "content": "就好像不在這喧鬧的法庭裡似的。"
     },
     {
       "id": 32,
       "model": "로쟈",
-      "content": "What are ya talkin' about? Meur's standing right over there."
+      "content": "什麼意思？他不就好端端地站在那邊嗎？"
     },
     {
       "id": 33,
       "model": "홍루",
-      "content": "Um, yes, he is..."
+      "content": "不是的，嗯……他確實是站在那裡沒錯……"
     },
     {
       "id": 34,
       "model": "홍루",
-      "content": "But he feels so distant from everyone, like he's here as a spectator to someone else's trial, not as the defendant..."
+      "content": "與其說是來接受審判的人……更像是在旁觀別人的審判，給人一種置身事外的感覺……"
     },
     {
       "id": 35,
       "model": "홍루",
-      "content": "Like he's looking somewhere <i>else</i> even though his body is standing here..."
+      "content": "雖然身體在這裡，卻好像在望著別的地方呢……"
     },
     {
       "id": 36,
       "model": "단테",
-      "content": "<Really? What's a defendant supposed to look like at a normal trial?>"
+      "content": "<是嗎？那一般的審判會是什麼感覺？>"
     },
     {
       "id": 37,
       "model": "히스클리프",
-      "content": "Normal trials, eh? Here's what:"
+      "content": "啊，你說一般的情況？"
     },
     {
       "id": 38,
       "model": "히스클리프",
-      "content": "Chest puffed, eyes mad-doggin', starin' down the judge like you're sayin' \"What're you gonna do about it, wanker?\""
+      "content": "不能讓人看出你怕了，所以要對著法官那傢伙盡量挺起胸膛，抱著「你想怎樣！」的心情瞪著他……"
     },
     {
       "id": 39,
       "model": "싱클레어",
-      "content": "Are you speaking from experience, Heathcliff...? Oh, never mind, actually. I don't even want to know..."
+      "content": "難道是希斯克利夫先生的經驗談……？啊，算了，我還是別問了……"
     },
     {
       "id": 40,
@@ -201,71 +201,71 @@
     {
       "id": 41,
       "model": "오티스",
-      "content": "For the briefest moment..."
+      "content": "雖然只有短短一瞬……"
     },
     {
       "id": 42,
       "model": "오티스",
-      "content": "I felt so alone, isolated from every other living soul in all the world."
+      "content": "感覺就像天地之間只剩下我一個人。"
     },
     {
       "id": 43,
       "model": "오티스",
-      "content": "Everything I'd done, every choice I'd made that I'd believed at the moment was for the best..."
+      "content": "對於那一刻我深信是最佳選擇的所有行動……"
     },
     {
       "id": 44,
       "model": "오티스",
-      "content": "... was questioned without end. <i>Are you sure that was the best course of action? Can you truly say it wasn't an arbitrary decision on your part?</i>"
+      "content": "周遭會不斷地反問：那是否真是最佳選擇，是否只是你一意孤行的判斷。"
     },
     {
       "id": 45,
       "model": "오티스",
-      "content": "And somewhere along the way, as you keep trying to justify yourself..."
+      "content": "每當那時，若是一再申明自己是對的……"
     },
     {
       "id": 46,
       "model": "오티스",
-      "content": "... you realize that your decisions have come back around as consequences, as chains that bind you."
+      "content": "到頭來，就會發現自己所做選擇的代價，不知何時已經緊緊抓住了腳踝。"
     },
     {
       "id": 47,
-      "content": "Outis spoke in a low voice, gazing into the courtroom."
+      "content": "奧提斯靜靜地望著法庭說道。"
     },
     {
       "id": 48,
       "model": "로쟈",
-      "content": "How do you... How do you cope with something like that?"
+      "content": "那……要怎麼做才撐得下去？"
     },
     {
       "id": 49,
       "model": "오티스",
-      "content": "You tell yourself that you were right. Over and over again."
+      "content": "只能不斷地對自己反覆默念。"
     },
     {
       "id": 50,
       "model": "오티스",
-      "content": "You tell yourself that you had no other choice. There was no other choice. Deceive yourself, if you must."
+      "content": "當時的我……想必沒有別的選擇。即便那會成為自我欺騙也一樣。"
     },
     {
       "id": 51,
       "model": "오티스",
-      "content": "... It's no more than a contrivance to keep oneself from stooping and succumbing in the end."
+      "content": "……但那只不過是讓自己不至於崩潰的方法論罷了。"
     },
     {
       "id": 52,
       "model": "오티스",
-      "content": "But in this trial, what we ought to be more concerned about is not self-justification, but how the man will carry himself before the judge."
+      "content": "反倒是現在令人擔憂的，是那個人在法官面前將會展現的態度。"
     },
     {
       "id": 53,
       "model": "오티스",
-      "content": "What you actually have done... matters less than how convincingly and eloquently you can account for it when you're stood in front of the bench."
+      "content": "因為比起過去究竟做了什麼的事實……如何在法官面前把它解釋得合情合理才是重點。"
     },
     {
       "id": 54,
       "model": "단테",
-      "content": "<*sigh* But he doesn't even have a lawyer to do that for him...>"
+      "content": "<唉……連律師都沒有，真的沒問題嗎……>"
     },
     {
       "id": 55,
@@ -273,178 +273,178 @@
       "model": "법정 경위",
       "teller": "法警",
       "title": "N公司",
-      "content": "Please come to order."
+      "content": "請保持肅靜。"
     },
     {
       "id": 56,
       "model": "법정 경위",
       "teller": "法警",
       "title": "N公司",
-      "content": "All rise. The court is now in session, with the honorable judge presiding."
+      "content": "法官入庭。請全體起立。"
     },
     {
       "id": 57,
-      "content": "The spectators all rose to their feet the instant the bailiff finished speaking."
+      "content": "話音剛落，所有旁聽者便站了起來。"
     },
     {
       "id": 58,
       "place": "N公司 法庭旁聽席",
       "model": "이스마엘",
-      "content": "*groan* Heathcliff... Will you get a move on and get your butt off the chair? They know we're with Meursault. Do you really wanna get on their bad side before the trial even begins?"
+      "content": "唉，希斯克利夫先生。請動作俐落一點站起來。要是一開始就被人看不順眼，那該怎麼辦啊。"
     },
     {
       "id": 59,
       "model": "히스클리프",
-      "content": "Like I said, lookin' cowed is the worst thing you can do in a courtroom... You act like a scared little bird; they'll pick you clean."
+      "content": "就說了在這裡最好別讓人看出你怕了嘛……動作慌慌張張的話，可是會被吃死的。"
     },
     {
       "id": 60,
       "place": "N公司 法院",
-      "content": "It wasn't long before three figures, the collars of their suits starched stiff, entered the courtroom."
+      "content": "緊接著，三名西裝領口筆挺的人物走進了法庭。"
     },
     {
       "id": 61,
       "model": "법정 경위",
       "teller": "法警",
       "title": "N公司",
-      "content": "You may be seated."
+      "content": "請全體就座。"
     },
     {
       "id": 62,
       "model": "판사",
-      "content": "Due to the urgency of the matter, this court has suspended the previously scheduled case hearing to prioritize this emergency session."
+      "content": "本案因事態緊急，故暫緩原定案件之審理，緊急開庭。"
     },
     {
       "id": 63,
       "model": "판사",
-      "content": "This will be a summary trial. Unless the defense can prove facts materially inconsistent with the indicted charges, this court will issue a prompt ruling and finish the proceedings within session."
+      "content": "因此，本案審理將以簡易程序進行。依本案性質，除非能證明存在與公訴事實顯著不同之事實，否則將迅速判決並閉庭。"
     },
     {
       "id": 64,
       "place": "N公司 法庭旁聽席",
       "model": "오티스",
-      "content": "... This bodes ill. They intend to get this fast-tracked."
+      "content": "……不妙啊。這是打算迅速、簡潔地結案的意思。"
     },
     {
       "id": 65,
       "model": "오티스",
-      "content": "It's always bad when the court is unwilling to devote much time to a case."
+      "content": "看來法庭不打算在這起案件上花太多時間。"
     },
     {
       "id": 66,
       "place": "N公司 法院",
       "model": "판사",
-      "content": "Defendant: Meursault. Registered address: Revoked... Former member of the Maintenance and Management Team at Grand Magasin Sisyphe, once counted among the Ones Who Nail."
+      "content": "被告，莫梭。住址已遭註銷……前薛西弗斯百貨公司總部維護管理組成員，亦為刺釘者之一。"
     },
     {
       "id": 67,
       "model": "판사",
-      "content": "Is that correct?"
+      "content": "是否為本人？"
     },
     {
       "id": 68,
       "model": "뫼르소",
-      "content": "Yes, that is correct."
+      "content": "是的，沒錯。"
     },
     {
       "id": 69,
       "model": "판사",
-      "content": "Prosecution and defense counsel—state your appearances for the record."
+      "content": "檢方、辯方是否皆已出席？"
     },
     {
       "id": 70,
       "model": "검사",
-      "content": "For the prosecution, Your Honor."
+      "content": "是，已出席。"
     },
     {
       "id": 71,
       "model": "판사",
-      "content": "... Defense? Is the defense not present?"
+      "content": "……辯護人？沒有人嗎？"
     },
     {
       "id": 72,
       "model": "판사",
-      "content": "Has the defendant made no separate arrangements for counsel?"
+      "content": "被告，是否可以認定你並未另行委任辯護人？"
     },
     {
       "id": 73,
       "place": "N公司 法庭旁聽席",
       "model": "그레고르",
-      "content": "... We're really going ahead with this without a lawyer?"
+      "content": "……真的要就這樣在沒有律師的情況下開庭嗎？"
     },
     {
       "id": 74,
       "model": "그레고르",
-      "content": "And Meursault's expected to... uh, argue his own case?"
+      "content": "反駁的話，就要由那位莫梭先生親自來？"
     },
     {
       "id": 75,
       "model": "히스클리프",
-      "content": "... The sod barely gets three words out in a day, even with us. Honestly, mate, we'll be lucky if he doesn't just go gruntin', \"Mm. Mm.\" through the whole thing."
+      "content": "……那傢伙跟我們待在巴士上的時候，一天說超過三句話的日子都很少，嗯。嗯。他別只靠這兩聲撐到結束就謝天謝地了……"
     },
     {
       "id": 76,
       "model": "홍루",
-      "content": "Still... remember our cooking contest at K Corp.? Something about that chicken dish seemed to have inspired Meursault to become a veritable orator back then."
+      "content": "啊～可是呢，在K公司的時候，他吃了雞肉料理之後，不是變得超級能言善道嗎？"
     },
     {
       "id": 77,
       "model": "히스클리프",
-      "content": "I s'pose you're right... One mouthful of that botched slop, and out came every word he'd been saving his whole bloody life..."
+      "content": "那……倒也是？那時候也不知道是吃了什麼不合胃口的東西，把一輩子要說的話都倒出來了。"
     },
     {
       "id": 78,
       "model": "히스클리프",
-      "content": "Ain't there anything here we can ram down his gob?"
+      "content": "……有沒有什麼吃的能塞進那小子嘴裡？"
     },
     {
       "id": 79,
-      "content": "Heathcliff's eyes swiftly scan the room as though he were actually looking for a plate of \"botched slop\" to feed to Meursault."
+      "content": "或許是心急了，希斯克利夫東張西望地環顧四周。"
     },
     {
       "id": 80,
       "model": "이스마엘",
-      "content": "Where exactly do you expect to find food in a courtroom...? And suppose we do—what're you gonna do, lob it into his mouth from here? C'mon, this isn't a cartoon..."
+      "content": "在這裡要怎麼突然弄到食物啊……而且就算弄到了，又要怎麼丟過去？又不是在演漫畫……"
     },
     {
       "id": 81,
       "model": "단테",
-      "content": "<Wait, where did Faust go?>"
+      "content": "<這麼說來，浮士德跑哪去了……>"
     },
     {
       "id": 82,
       "model": "로쟈",
-      "content": "Fau? Oh, she's right here—hang on, she was here with me a second ago... Where'd she run off to?"
+      "content": "小浮？小浮的話就在這……咦，剛才明明還在我旁邊……怎麼不見了。"
     },
     {
       "id": 83,
       "model": "이상",
-      "content": "... Could it be that, with the appointed hour arriving, she has gone forth in search of an advocate?"
+      "content": "……莫非，她是趁現在去找律師了？"
     },
     {
       "id": 84,
       "model": "그레고르",
-      "content": "Would she even have enough time...? I mean, applying for observation alone took forever, so..."
+      "content": "哪有時間找啊……？光是我們的旁聽申請就花了老半天。"
     },
     {
       "id": 85,
       "model": "그레고르",
-      "content": "At this rate, one of us will have to go up there and pretend to be a lawyer."
+      "content": "唉唷，照這樣下去，我們之中都得有人去假扮律師了。"
     },
     {
       "id": 86,
       "model": "이스마엘",
-      "content": "How could any of us possibly pretend to be a lawyer...? For the last time, this isn't a cartoon..."
+      "content": "說到最後竟然要我們當律師……那要怎麼當啊，又不是在演漫畫……"
     },
     {
       "id": 87,
       "model": "히스클리프",
-      "content": "What's with you and cartoons today?"
+      "content": "這傢伙幹嘛從剛才就一直漫畫漫畫的？"
     },
     {
       "id": 88,
       "model": "돈키호테",
-      "content": "Hm? If Young Faust be the one thou seekest, why, doth she not stand yonder?"
+      "content": "嗯？若是在找浮士德小姐，她不就在那裡嗎？"
     },
     {
       "id": 89,
@@ -454,100 +454,100 @@
     {
       "id": 90,
       "model": "돈키호테",
-      "content": "Dost thou not see her? There, beside Young Meursault! She standeth proudly beneath the undivided gaze of the courtroom!"
+      "content": "汝等看不見嗎？就在那兒，莫梭先生的身旁！集眾人的目光於一身……"
     },
     {
       "id": 91,
       "model": "이스마엘",
-      "content": "What are you talking about? Why would Faust be..."
+      "content": "您在說什麼呢，浮士德小姐怎麼會在莫梭先生旁邊……"
     },
     {
       "id": 92,
       "model": "이스마엘",
-      "content": "... standing..."
+      "content": "旁邊……"
     },
     {
       "id": 93,
       "model": "이스마엘",
-      "content": "... next to Meursault...?"
+      "content": "為什麼會在旁邊？"
     },
     {
       "id": 94,
       "place": "N公司 法院",
-      "content": "I looked back toward the defendant's seat..."
+      "content": "我將視線轉向被告席……"
     },
     {
       "id": 95,
-      "content": "... and sure enough, just as Don Quixote had said, Faust was standing beside Meursault..."
+      "content": "正如唐吉訶德所說，我真的看見了我們在找的浮士德。"
     },
     {
       "id": 96,
-      "content": "... right where it said \"Counsel Table.\""
+      "content": "就在莫梭身旁……寫著「辯護人席」的牌子前。"
     },
     {
       "id": 97,
       "model": "파우스트",
-      "content": "Apologies for the tardiness."
+      "content": "抱歉，回答遲了。"
     },
     {
       "id": 98,
       "model": "파우스트",
-      "content": "Counsel for the defense, Your Honor."
+      "content": "辯方，已出席。"
     },
     {
       "id": 99,
       "place": "N公司 法庭旁聽席",
       "model": "단테",
-      "content": "<She really is going to be his lawyer...?>"
+      "content": "<她真的……要擔任律師？>"
     },
     {
       "id": 100,
       "model": "히스클리프",
-      "content": "See? Told you the lass had somethin' brewing in that big head of hers."
+      "content": "我就說吧，我就知道那傢伙一定有什麼打算。"
     },
     {
       "id": 101,
       "model": "이스마엘",
-      "content": "No, you didn't."
+      "content": "明明就沒說過那種話吧。"
     },
     {
       "id": 102,
       "model": "이상",
-      "content": "I had not thought such a means was within our reach. Perhaps... we may relieve our shoulders of some weight."
+      "content": "未曾想過這種方法也會被允許……但若能獲得認可，暫且鬆一口氣也未嘗不可。"
     },
     {
       "id": 103,
       "model": "이상",
-      "content": "For in matters of perspicacity... there exists none among us who may eclipse Miss Faust."
+      "content": "若是浮士德女士……論聰穎，她可是我們之中的翹楚。"
     },
     {
       "id": 104,
       "model": "그레고르",
-      "content": "Yeah... Having her up there is reassuring, I'll give you that."
+      "content": "是啊……她確實是個可靠的夥伴。"
     },
     {
       "id": 105,
       "model": "히스클리프",
-      "content": "You got this, lass! That prosecutor's got nothin' on you! Lay into that woman 'till she's bleedin'! Metaphorically!"
+      "content": "很好，去把旁邊那個檢察官混蛋狠狠打趴吧。不是用拳頭，是用嘴。"
     },
     {
       "id": 106,
       "model": "오티스",
-      "content": "... There remains one concern."
+      "content": "……不過。"
     },
     {
       "id": 107,
       "model": "오티스",
-      "content": "What is <i>he</i> doing up there with her?"
+      "content": "為什麼旁邊還多站了一個像是借來湊數的罪人？"
     },
     {
       "id": 108,
       "place": "N公司 法院",
-      "content": "True to Outis's observation,"
+      "content": "正如她所言。"
     },
     {
       "id": 109,
-      "content": "That was when we saw Sinclair, poking his head out from Faust's side."
+      "content": "浮士德的身旁，辛克萊也怯生生地探出了頭。"
     },
     {
       "id": 110,
@@ -558,18 +558,18 @@
       "id": 111,
       "place": "N公司 法庭旁聽席",
       "model": "단테",
-      "content": "<... I'm not sure if he knows that himself?>"
+      "content": "<……看他的表情，好像連他自己都不知道為什麼會在那裡？>"
     },
     {
       "id": 112,
       "model": "돈키호테",
-      "content": "What treachery is this?! Why should Young Sinclair alone be granted the privilege of commanding the gaze of the entire courtroom?! Aah, it stirreth the bitterest envy within me!"
+      "content": "什麼！為何只讓辛克萊獨佔眾人的目光！真教吾嫉妒！"
     },
     {
       "id": 113,
       "place": "N公司 法院",
       "model": "판사",
-      "content": "The defense counsel consists of just the two of you, correct?"
+      "content": "辯護團是否確定為以上兩名。"
     },
     {
       "id": 114,
@@ -584,25 +584,25 @@
     {
       "id": 116,
       "model": "판사",
-      "content": "... Counsel acknowledged."
+      "content": "……確認。"
     },
     {
       "id": 117,
-      "content": "... I guess \"Err, yes?\" counts as an acknowledgment?"
+      "content": "那樣也算回答啊。"
     },
     {
       "id": 118,
       "model": "판사",
-      "content": "Prosecution, you may read the indictment."
+      "content": "檢方，宣讀公訴事實。"
     },
     {
       "id": 119,
-      "content": "The prosecutor opened the case file and began to speak with practiced ease."
+      "content": "被稱為檢察官的人翻開卷宗，流暢地接著說了下去。"
     },
     {
       "id": 120,
       "model": "검사",
-      "content": "Your Honor. The prosecution shows that the defendant, Meursault, has already stood before this court for causing severe criminal property damage to N Corp."
+      "content": "被告莫梭曾因涉嫌對N公司造成嚴重的財物毀損，已站上過本法庭。"
     },
     {
       "id": 121,
@@ -613,136 +613,136 @@
     {
       "id": 122,
       "model": "로쟈",
-      "content": "Y'know... like pickin' a lock to sneak into the backdoor of a shop..."
+      "content": "說到財物毀損，一般就是……撬開店家的後門偷偷溜進去之類的……"
     },
     {
       "id": 123,
       "model": "히스클리프",
-      "content": "There's also nickin' carriage wheels. Better if they belong to posh tossers."
+      "content": "或是在看不順眼的有錢人家的馬車輪子上刮幾道痕之類的。"
     },
     {
       "id": 124,
       "model": "이상",
-      "content": "\"Gra-ffi-ti\" upon a wall would also fall within that category..."
+      "content": "格拉菲提……是這麼叫的吧。在牆上塗鴉，也該算是毀損。"
     },
     {
       "id": 125,
       "model": "로쟈",
-      "content": "Back home, you'd get off with a lecture or a lil' fine—if it's something small enough to let slide. So it was pretty important to know the neighborhood patrolmen by face."
+      "content": "輕微的話，在我老家說教幾句或罰點小錢就了事了。所以啊，記住街坊治安負責人的臉很重要。"
     },
     {
       "id": 126,
       "model": "로쟈",
-      "content": "'Course, yours truly was never the one to get caught~ ... <size=70%>Most of the time</size>. The clumsiest and the slowest ones usually ended up holdin' the bag, though. Unfortunate, I know, but that's just how it goes. There's no sense in everyone getting pinched tryina' save that one guy, right?"
+      "content": "當然啦，我幾乎沒被抓走過～通常都是最遲鈍、腿最慢的那幾個孩子背黑鍋。雖然很對不起他們，但這也是沒辦法的事嘛，總不能全部都被抓吧？"
     },
     {
       "id": 127,
       "model": "히스클리프",
-      "content": "Damn right, lass! You leg it without lookin' back no matter who gets left in the dust. Backstreets rule number one."
+      "content": "那當然，不管誰摔倒了都頭也不回地開溜，這可是後巷的鐵則。"
     },
     {
       "id": 128,
-      "content": "The way Heathcliff and Rodya told their stories reminded us, once again, of the large overlap in their past experiences."
+      "content": "希斯克利夫和羅佳一搭一唱地聊起了各自的經驗。"
     },
     {
       "id": 129,
       "model": "이상",
-      "content": "Be that as it may, I should think that to forsake a lagging fellow in such a manner is to forsake one's fellowship..."
+      "content": "……縱然如此，我仍以為照應落後的朋友、與之一同奔跑，才是身為夥伴應盡的道理……"
     },
     {
       "id": 130,
       "model": "이상",
-      "content": "... Because the body's want of swiftness can hardly be laid at the feet of one's resolve."
+      "content": "身體不夠敏捷，又豈是只與意志直接相關之事……"
     },
     {
       "id": 131,
       "model": "이스마엘",
-      "content": "Yi Sang, you... uh, been busted before or something?"
+      "content": "李箱先生……那個……你被抓到過嗎？"
     },
     {
       "id": 132,
       "model": "이상",
-      "content": "But once. It was a day during the years of my reckless youth... when my fellows and I limned a painting on a wall, with the purpose of it being a portrayal of the anguish of difficult times. Little did I know that doing so on private property would prove such a grave offense..."
+      "content": "僅僅一次。那是我不懂事的孩提時代……那幅畫承載著時代的苦惱，豈料畫在未經許可的私有地牆上，竟會成為如此嚴重的問題……"
     },
     {
       "id": 133,
       "model": "이스마엘",
-      "content": "What...? But isn't offending the law the whole point of doing graffiti? You know, being a rebel and all that stuff?"
+      "content": "什麼……？塗鴉不就是明知不對，還出於反抗精神去做的藝術嗎？"
     },
     {
       "id": 134,
       "model": "이상",
-      "content": "Nay... I did not know that it was such a thing. Not a single face was marred by guilt as my fellows committed the act. I had thought I was alone in my ignorance of new culture, but..."
+      "content": "不……我並不知曉……朋友們一副若無其事的神情，我便以為必定是只有我一人不知道那樣的文化……"
     },
     {
       "id": 135,
       "model": "히스클리프",
-      "content": "Mate... That's what loyalty is. You get caught, you be proud of yourself, 'coz only <i>true</i> friends are willing to take the fall."
+      "content": "喂……那種事全都是講義氣啊。要抱著『我代替同伴被抓』的心態，抬頭挺胸地去才對。"
     },
     {
       "id": 136,
       "model": "이상",
-      "content": "Perhaps, yet I find it wholly unnecessary that they giggled so merrily as they bolted, leaving me a mournful, fallen form on the ground..."
+      "content": "即便如此，他們也犯不著一邊看著跌倒的我，一邊調皮地笑著跑開吧……"
     },
     {
       "id": 137,
       "model": "로쟈",
-      "content": "Anyways, I'd say Meur still has a chance to skate by with a light sentence if all he did was damage some property~"
+      "content": "嗯……如果是毀損財物之類的，說不定意外地會輕判喔～"
     },
     {
       "id": 138,
       "model": "이스마엘",
-      "content": "I don't know how many times I've got to make this point, but if all he did was just \"damage some property,\" N Corp. wouldn't have sentenced him to a permanent exile, would they?"
+      "content": "所以我的意思是，如果只是那樣，有必要到驅逐的地步嗎？"
     },
     {
       "id": 139,
       "model": "로쟈",
-      "content": "Oh, ya have a point. Yeah, I wonder why..."
+      "content": "啊～對喔對喔。那會是什麼呢……？"
     },
     {
       "id": 140,
       "model": "히스클리프",
-      "content": "Oi, mate! Just what dodgy shite were you mixed up in before joinin' us?!"
+      "content": "喂！你到底在外面幹了什麼見不得人的事啊！"
     },
     {
       "id": 141,
       "model": "오티스",
-      "content": "We're in a courtroom! Lower your voice, imbecile!"
+      "content": "別在法庭上大吼大叫！蠢貨……！"
     },
     {
       "id": 142,
       "model": "이스마엘",
-      "content": "Please, can't you keep it down for even one second?! You'll get us all kicked out!"
+      "content": "拜託……你想害大家一起被趕出法庭嗎？"
     },
     {
       "id": 143,
-      "content": "... There was little else we could do than watch Meursault's trial unfold."
+      "content": "……我們繼續旁觀莫梭的審判。"
     },
     {
       "id": 144,
       "place": "N公司 法院",
       "model": "검사",
-      "content": "As the court may already be aware, Your Honor, the incident caused harm, both immense and grievous, to N Corp.'s interests."
+      "content": "尊敬的審判長。正如您所熟知的，當時的事件對N公司造成了莫大且嚴重的損害。"
     },
     {
       "id": 145,
       "model": "판사",
-      "content": "I am aware."
+      "content": "我知道。"
     },
     {
       "id": 146,
       "model": "판사",
-      "content": "The defense may speak regarding the incident."
+      "content": "關於該事件，辯護團是否有話要補充。"
     },
     {
       "id": 147,
       "model": "파우스트",
-      "content": "Yes, Your Honor. First, a confirmation of facts."
+      "content": "明白了。首先，將從確認事實開始進行。"
     },
     {
       "id": 148,
       "model": "파우스트",
-      "content": "Could you tell us about the incident, Mister Sinclair?"
+      "content": "可以請您說明一下那起事件嗎，辛克萊先生。"
     },
     {
       "id": 149,
@@ -757,44 +757,44 @@
     {
       "id": 151,
       "model": "판사",
-      "content": "Am I to understand that the defense counsel appeared before this court without even reviewing the case file?"
+      "content": "……辯護人連卷宗都沒仔細看過就出庭了嗎？"
     },
     {
       "id": 152,
       "model": "싱클레어",
-      "content": "I... I didn't really have the time to read it..."
+      "content": "那種東西……我沒時間看啊……"
     },
     {
       "id": 153,
       "place": "N公司 法庭旁聽席",
       "model": "히스클리프",
-      "content": "Why's the lad makin' such a bloody mess of it?!"
+      "content": "那小子幹嘛那麼慌張啊？"
     },
     {
       "id": 154,
       "model": "그레고르",
-      "content": "Well, she's really going out of her way to ask him things he obviously knows nothing about... I doubt you'd have fared any better up there."
+      "content": "那麼理直氣壯地問他根本不知道的事，他哪可能答得出來……換你上去也一樣吧？"
     },
     {
       "id": 155,
       "model": "로쟈",
-      "content": "Why the heck would Fau bring Sinclair with her in the first place?"
+      "content": "嗯……不過小浮為什麼要帶小辛過去啊？"
     },
     {
       "id": 156,
       "place": "N公司 法院",
       "model": "파우스트",
-      "content": "... Allow me to answer instead."
+      "content": "……由我來回答。"
     },
     {
       "id": 157,
       "model": "파우스트",
-      "content": "3 years ago, the defendant, Meursault, was charged with the murder of a Sisyphean Giant in N Corp.'s employ. As this crime broke N Corp.'s Taboo, it was deemed an offense of aggravated criminal damage, for which he was formally indicted."
+      "content": "被告莫梭於3年前涉嫌殺害N公司的薛西弗斯巨人，依據N公司的禁忌，該行為最終以重大毀損財物罪遭到起訴。"
     },
     {
       "id": 158,
       "model": "파우스트",
-      "content": "The employee in question was also the defendant's biological mother."
+      "content": "而其同時也是被告生物學上的母親。"
     },
     {
       "id": 159,
@@ -804,12 +804,12 @@
     {
       "id": 160,
       "model": "파우스트",
-      "content": "The defendant stood before this court 3 days after the incident,"
+      "content": "事件發生後遭到羈押的被告，於3日後在本法庭接受審判。"
     },
     {
       "id": 161,
       "model": "파우스트",
-      "content": "pleaded guilty to every fact charged by the prosecution, and was sentenced to permanent exile from N Corp."
+      "content": "並全數承認檢方的起訴事實，遭宣判自N公司永久驅逐之刑。"
     },
     {
       "id": 162,
@@ -820,7 +820,7 @@
     {
       "id": 163,
       "model": "이스마엘",
-      "content": "D-did she just say \"murder\"?"
+      "content": "殺……剛才是說殺人嗎？"
     },
     {
       "id": 164,
@@ -830,41 +830,41 @@
     {
       "id": 165,
       "place": "N公司 法院",
-      "content": "Faust spoke without a hint of emotion. Her words rang in my ears as though they were spoken in a dream."
+      "content": "浮士德平靜地說出這一切。對我而言，這些話全都像夢中的話語般嗡嗡作響。"
     },
     {
       "id": 166,
-      "place": "Aboard Mephistopheles, Past",
-      "content": "Murdering his mother, getting exiled, the risk of trial—Meursault never told us about any of this when Vergilius announced that the Bus was bound for District 14. He could have chosen to; there were ears that would've listened, but he never did."
+      "place": "過去，梅菲斯托費勒斯 內部",
+      "content": "維吉里烏斯說要前往14區時，莫梭完全沒有告訴我們這些事。"
     },
     {
       "id": 167,
-      "content": "Was it because nobody asked him anything? Obviously. But..."
+      "content": "因為沒人問他？那倒也是，但……"
     },
     {
       "id": 168,
       "model": "베르길리우스",
-      "content": "<i>Sinner #5... was never meant to return to this District.</i>"
+      "content": "5號罪人……本來是不該再回到這裡的人。"
     },
     {
       "id": 169,
-      "content": "So this was what he was pointing to..."
+      "content": "那時的那句話……"
     },
     {
       "id": 170,
       "place": "N公司 法院",
       "model": "검사",
-      "content": "... Case in point."
+      "content": "……正是如此。"
     },
     {
       "id": 171,
       "model": "검사",
-      "content": "The defendant explicitly admitted to being aware of these facts—both during the fact-finding questioning and during the interrogation conducted after N Corp.'s assets secured his custody."
+      "content": "無論是在確認事實的簡易訊問中，還是在N公司的資產將他拘提到案時所做的訊問中，被告都承認自己完全知悉這些事實。"
     },
     {
       "id": 172,
       "model": "검사",
-      "content": "And yet, here he is, at this very moment, standing in a courtroom located in none other than N Corp.'s Nest. Nothing could be better proof of his breaking the Taboo."
+      "content": "儘管如此，他仍身在這座巢中。光憑這點，違反禁忌的事實便已成立。"
     },
     {
       "id": 173,
@@ -874,37 +874,37 @@
     {
       "id": 174,
       "model": "판사",
-      "content": "... Does the defense wish to add any statements regarding this?"
+      "content": "……辯方，有要補充的嗎？"
     },
     {
       "id": 175,
       "place": "N公司 法庭旁聽席",
       "model": "오티스",
-      "content": "... This is going to be tough."
+      "content": "……棘手了。"
     },
     {
       "id": 176,
       "model": "로쟈",
-      "content": "She'll... get through it somehow."
+      "content": "就算這樣……不過……她一定能順利撐過去的。"
     },
     {
       "id": 177,
       "model": "로쟈",
-      "content": "This is Fau we're talkin' about."
+      "content": "畢竟不是別人，是小浮嘛。"
     },
     {
       "id": 178,
-      "content": "Rodion muttered the words like she desperately needed to believe them."
+      "content": "羅佳懇切地喃喃自語。"
     },
     {
       "id": 179,
       "place": "N公司 法院",
       "model": "파우스트",
-      "content": "... Your Honor."
+      "content": "……尊敬的審判長。"
     },
     {
       "id": 180,
-      "content": "Faust answered immediately. That's our Faust. I knew she had prepared a brilliant, perfectly logical strategy to save Meursault from certain legal ruin..."
+      "content": "浮士德立刻回應。我們的浮士德，必定會用合乎邏輯又出人意料的方法，將莫梭從那樣的逆境中救出來吧……"
     },
     {
       "id": 181,
@@ -914,12 +914,12 @@
     {
       "id": 182,
       "model": "파우스트",
-      "content": "... has entered N Corp. without adhering to the required immigration process."
+      "content": "無視入境所需的手續，進入了N公司。"
     },
     {
       "id": 183,
       "model": "파우스트",
-      "content": "Strictly speaking, his actions may be construed as an attempted illegal entry."
+      "content": "嚴格來說……可以視為企圖偷渡入境的行為。"
     },
     {
       "id": 184,
@@ -929,26 +929,26 @@
     {
       "id": 185,
       "model": "판사",
-      "content": "... I see."
+      "content": "……原來如此。"
     },
     {
       "id": 186,
       "model": "판사",
-      "content": "Was the prosecution aware of this?"
+      "content": "檢方也知道這件事嗎？"
     },
     {
       "id": 187,
       "model": "검사",
-      "content": "N-no, Your Honor."
+      "content": "不……不知情。"
     },
     {
       "id": 188,
       "model": "검사",
-      "content": "The prosecution moves to append that charge to the indictment..."
+      "content": "檢方將於起訴書中追加該項罪嫌……"
     },
     {
       "id": 189,
-      "content": "The prosecutor shot a perplexed glance in Faust's way, confronted with an argument she could never have anticipated from the <i>opposing</i> counsel. We followed suit."
+      "content": "面對預料之外的反駁……？檢察官慌了手腳。"
     },
     {
       "id": 190,
@@ -958,7 +958,7 @@
     {
       "id": 191,
       "model": "싱클레어",
-      "content": "You know we're on Meursault's side, not N Corp.'s, right...?"
+      "content": "我們要辯護的是莫梭先生，您知道吧？"
     },
     {
       "id": 192,
@@ -968,21 +968,21 @@
     {
       "id": 193,
       "model": "검사",
-      "content": "To summarize, Your Honor... The defendant not only destroyed N Corp.'s most critical asset for its core business—the production of Canned Experience; but also violated the court's order of permanent exile, traveled through District 14, and attempted to enter N Corp. unlawfully."
+      "content": "因此，審判長，總結來說，被告在犯下毀損N公司主要事業——經驗罐頭生產相關之最重要資產的罪行後，更違反永久驅逐令，經由14區企圖偷渡進入N公司。"
     },
     {
       "id": 194,
       "model": "검사",
-      "content": "The defendant's heinous acts have damaged N Corp.'s sustainability and competitiveness among the Wings, Your Honor. To this day, the Canned Experience output has not yet recovered to its former productivity levels. The prosecution submits further details regarding the case:"
+      "content": "被告的欺瞞行為已損及N公司的存續與競爭力，經驗罐頭的產量也因此至今仍未恢復。在此，一併向您報告過去事件發生當時的紀錄。"
     },
     {
       "id": 195,
       "model": "검사",
-      "content": "Records indicate that he visited a cinema the day after he murdered his own mother in cold blood. How could a human being..."
+      "content": "紀錄顯示，被告在殺害母親的隔天，還去了戲院。怎麼能……"
     },
     {
       "id": 196,
-      "content": "Faust raised her hand."
+      "content": "浮士德舉起了手。"
     },
     {
       "id": 197,
@@ -992,12 +992,12 @@
     {
       "id": 198,
       "model": "싱클레어",
-      "content": "Whew... I knew you'd stand up for him! That was just a mistake earlier, right, Faust?"
+      "content": "呼，太好了……剛才是不小心說錯了吧，浮士德小姐？"
     },
     {
       "id": 199,
       "model": "파우스트",
-      "content": "The defendant visited the cinema not on the following day, but on the very day of the incident."
+      "content": "被告去戲院並非隔天，而是事件當天。"
     },
     {
       "id": 200,
@@ -1007,87 +1007,87 @@
     {
       "id": 201,
       "model": "싱클레어",
-      "content": "W-wait... wait! B-b-but...!"
+      "content": "等……請等一下！可……可……可是……"
     },
     {
       "id": 202,
       "model": "싱클레어",
-      "content": "Mister Meursault... I mean, Mister Defendant... had reasons he couldn't control. That's why he had to... and after what happened to his mother, he... he needed to deal with the grief, so... yeah, he couldn't help coming back... so..."
+      "content": "莫梭先生也……我是說被告先生也……有不得已的苦衷……對母親……出於不得已的理由……那樣做之後……為了平復心情……"
     },
     {
       "id": 203,
-      "content": "Face drained pale, Sinclair tried his best to present his case."
+      "content": "辛克萊面如死灰，艱難地繼續說下去。"
     },
     {
       "id": 204,
       "place": "N公司 法庭旁聽席",
       "model": "돈키호테",
-      "content": "Woe, much like tears they are, the beads of sweat upon Young Sinclair's cheeks... "
+      "content": "辛克萊……汗流得如同淚水一般哪……"
     },
     {
       "id": 205,
       "model": "이상",
-      "content": "Mayhaps that is the reality, not a metaphor... For the beads may indeed be formed of tears..."
+      "content": "那或許……並非比喻，而真的是淚水……"
     },
     {
       "id": 206,
       "model": "단테",
-      "content": "<... Maybe Faust... was never trying to save Meursault to begin with.>"
+      "content": "<……說不定浮士德從一開始，目的就不是要救莫梭。>"
     },
     {
       "id": 207,
       "place": "N公司 法院",
       "model": "파우스트",
-      "content": "Objection."
+      "content": "提出異議。"
     },
     {
       "id": 208,
-      "content": "Faust ruthlessly presented objection after objection in spite of Sinclair's pitifully moist attempts at defense."
+      "content": "即使看見可憐地流著淚……或是汗的辛克萊，浮士德依然毫不留情地說道。"
     },
     {
       "id": 209,
       "model": "판사",
-      "content": "You may speak."
+      "content": "准許發言。"
     },
     {
       "id": 210,
       "model": "파우스트",
-      "content": "The conditions attached to the defendant's permanent exile include provisions designed to accommodate extenuating circumstances."
+      "content": "當初宣判給被告的永久驅逐刑，其條件留有一定程度的寬容空間。"
     },
     {
       "id": 211,
       "model": "파우스트",
-      "content": "Should any unavoidable circumstances force him to enter District 14, the defendant is to submit a detailed purpose of visit and a written pledge that he will not enter N Corp. itself, at least 14 days in advance."
+      "content": "若因不可避免的情況必須來到14區，可以在至少14天前，提交包含不進入N公司之切結書在內、詳細載明造訪理由的文件。"
     },
     {
       "id": 212,
       "model": "파우스트",
-      "content": "In addition, should the defendant enter District 14 without prior authorization, he is to depart, of his own volition, within a 6-hour grace period."
+      "content": "此外，規定中也載明，若未經事前核准擅自停留於14區，須在6小時的寬限時間內自行離開。"
     },
     {
       "id": 213,
       "model": "파우스트",
-      "content": "Despite these conditions, the defendant neither submitted the necessary documents nor departed voluntarily."
+      "content": "然而，被告既沒有提交文件，也沒有自行離開。"
     },
     {
       "id": 214,
       "model": "싱클레어",
-      "content": "... Why are you doing this? Why are you objecting <i>me</i>?!"
+      "content": "……您為什麼一直反駁我……？"
     },
     {
       "id": 215,
       "model": "검사",
-      "content": "A-as the counsel states, Your Honor."
+      "content": "如……如辯方所言。"
     },
     {
       "id": 216,
       "place": "N公司 法庭旁聽席",
       "model": "히스클리프",
-      "content": "... What's wrong with White Hair? She got some grudge against the bloke we don't know about?"
+      "content": "……白毛是跟那傢伙有什麼仇嗎？"
     },
     {
       "model": "로쟈",
-      "content": "Things were already lookin' bad... And now the whole courtroom is glaring at Meur."
+      "content": "本來氣氛就已經夠糟了，感覺越來越差了……"
     },
     {
       "id": 218,
@@ -1097,12 +1097,12 @@
     },
     {
       "id": 219,
-      "content": "Sinclair still refused to give up."
+      "content": "辛克萊沒有放棄。"
     },
     {
       "id": 220,
       "model": "싱클레어",
-      "content": "The defendant... has shown... signs of remorse. He..."
+      "content": "被告……即使如此……也有表現出反省之意……"
     },
     {
       "id": 221,
@@ -1112,7 +1112,7 @@
     {
       "id": 222,
       "model": "파우스트",
-      "content": "The defense objects, Your Honor. The defendant has displayed no attitude indicative of contrition."
+      "content": "提出。被告並未特別表現出反省的態度。"
     },
     {
       "id": 223,
@@ -1121,24 +1121,24 @@
     },
     {
       "id": 224,
-      "content": "Meursault remained silent, even under Faust's relentless attack."
+      "content": "莫梭什麼也沒說。"
     },
     {
       "id": 225,
-      "content": "The prosecutor likewise seemed to find little need to speak. Faust was competently doing her job for her, after all. If anything, she was probably grateful."
+      "content": "檢察官也沒有多說什麼。畢竟連那份工作都由浮士德代勞了……站在檢察官的立場，想必很感激吧。"
     },
     {
       "id": 226,
       "place": "N公司 法庭旁聽席",
-      "content": "I looked toward the spectators. Every one of them was staring at Meursault."
+      "content": "我看向周圍的旁聽者。他們也全都注視著莫梭。"
     },
     {
       "id": 227,
-      "content": "To put it more precisely—they were staring at Meursault as defined by this court of law."
+      "content": "正確來說，不是莫梭，而是法庭所定義的莫梭。"
     },
     {
       "id": 228,
-      "content": "And it defined him as a shameless criminal who, after murdering his own mother, had unrepentantly violated the terms of his permanent exile and returned to N Corp."
+      "content": "一個犯下重罪，卻還違抗永久驅逐令回到N公司，厚顏無恥又毫無悔意的罪人。"
     },
     {
       "id": 229,
@@ -1147,42 +1147,42 @@
     },
     {
       "id": 230,
-      "content": "For the briefest moment, I caught sight of a woman seated among the crowded gallery of spectators,"
+      "content": "接著，在那眾多的人群之中，我一瞬間……"
     },
     {
       "id": 231,
-      "content": "her silent gaze fixed on Meursault."
+      "content": "看見了一位靜靜凝望著莫梭的女人。"
     },
     {
       "id": 232,
-      "content": "I had no way of explaining why she alone stood out so clearly among all those spectators."
+      "content": "為什麼在那麼多圍觀的人之中……唯獨那個人的臉清晰地映入我的眼簾，我也無從解釋。"
     },
     {
       "id": 233,
-      "content": "Somehow, I thought... her gaze was not directed at a despicable matricide, but at a human being who was isolated from the rest of the world."
+      "content": "我想，我是覺得唯有那道視線，看著的不是法庭塑造出來的莫梭，而是孤立的莫梭。"
     },
     {
       "id": 234,
       "model": "히스클리프",
-      "content": "Bloody hell... Why's it suddenly so damned bright?"
+      "content": "可惡，怎麼突然……這麼刺眼啊。"
     },
     {
       "id": 235,
-      "content": "But then a violent torrent of sunlight poured into the courtroom, swallowing the contours of her face until she vanished from my sight."
+      "content": "然而，在湧入法庭的強烈陽光下，那張臉很快便黯淡下去，再也看不見了。"
     },
     {
       "id": 236,
       "model": "그레고르",
-      "content": "... So... the crime they're accusing Meursault of right now..."
+      "content": "……所以說……現在法庭上講的莫梭先生的罪嫌是……"
     },
     {
       "id": 237,
-      "content": "Gregor opened his mouth with a raspy sigh. He sounded as though his throat had suddenly gone dry."
+      "content": "格里高爾吐出一口沉悶的嘆息，好不容易才開了口。"
     },
     {
       "id": 238,
       "model": "그레고르",
-      "content": "... Correct me if I'm wrong... The court's saying he killed his own mother, is that it?"
+      "content": "也就是說……莫梭先生以前殺了自己的母親……是這個意思嗎？"
     },
     {
       "id": 239,
@@ -1192,27 +1192,27 @@
     {
       "id": 240,
       "model": "오티스",
-      "content": "... That seems to be the case, given the context."
+      "content": "……從前後脈絡來看，似乎是如此。"
     },
     {
       "id": 241,
-      "content": "And that was all we could say on the matter. As none of us had been informed on the details of the incident, anything we said about Meursault would be no more than pure speculation."
+      "content": "不清楚詳情的我們，無法貿然接話。"
     },
     {
       "id": 242,
       "place": "N公司 法院",
       "model": "파우스트",
-      "content": "In light of these facts, the defense counsel... requests that the maximum sentence available be imposed on the defendant."
+      "content": "因此，辯護團……要求對被告處以最高刑罰。"
     },
     {
       "id": 243,
       "model": "판사",
-      "content": "Counsel. The defense does not make sentencing requests in this court."
+      "content": "辯護人，本法庭並沒有由辯護人求刑的程序。"
     },
     {
       "id": 244,
       "model": "파우스트",
-      "content": "... is what we would ask the prosecution to state."
+      "content": "……我們是希望檢方能這麼表示。"
     },
     {
       "id": 245,
@@ -1222,40 +1222,40 @@
     {
       "id": 246,
       "model": "싱클레어",
-      "content": "... I get it now. You never meant to defend him in the first place, did you, Faust?"
+      "content": "……我懂了。打從一開始，就不是要辯護什麼的吧，浮士德小姐。"
     },
     {
       "id": 247,
       "model": "파우스트",
-      "content": "... The defense rests, Your Honor."
+      "content": "……以上，辯論完畢。"
     },
     {
       "id": 248,
-      "content": "Faust concluded her statement with an air of finality."
+      "content": "浮士德結束了發言。"
     },
     {
       "id": 249,
       "place": "N公司 法庭旁聽席",
-      "content": "Silence fell over us. At some point, even Heathcliff's incessant complaining about the heat had stopped."
+      "content": "我們之間隨即陷入一片寂靜。不停抱怨好熱的希斯克利夫，不知從何時起也沒了聲音。"
     },
     {
       "id": 250,
-      "content": "The spectators were fanning themselves in near unison."
+      "content": "旁聽者們也朝著同一個方向搧著扇子。"
     },
     {
       "id": 251,
       "place": "N公司 法院",
       "model": "판사",
-      "content": "... Defendant, do you wish to add a closing argument?"
+      "content": "……被告，是否還有話要補充。"
     },
     {
       "id": 252,
       "model": "뫼르소",
-      "content": "No."
+      "content": "沒有。"
     },
     {
       "id": 253,
-      "content": "Neither Faust's unexpected behavior nor the words \"maximum sentence\" seemed to affect Meursault in the slightest."
+      "content": "無論是浮士德出人意表的舉動，還是「最高刑罰」這個詞……似乎都無法讓他產生任何感觸。"
     },
     {
       "id": 254,
@@ -1265,81 +1265,81 @@
     },
     {
       "id": 255,
-      "content": "And the moment that thought occurred to my mind, a momentary vision of what he was experiencing began to unfold before me..."
+      "content": "就在我這麼想的瞬間，就像以前和其他罪人之間發生過的那樣……"
     },
     {
       "id": 256,
-      "content": "... as had happened with the other Sinners in the past."
+      "content": "我開始看見莫梭此刻所感受到的瞬間景象。"
     },
     {
       "id": 257,
-      "content": "I have to admit, with no other way to know what he's thinking, I could not help but sigh with a rarely-felt appreciation for this phenomenon."
+      "content": "而我此刻無從得知他在想什麼，所以難得地，只能慶幸這個現象的出現。"
     },
     {
       "id": 258,
-      "content": "So far, the visions I'd seen about the other Sinners all took different forms depending on their past experience and the circumstances surrounding it."
+      "content": "至今看過的罪人們的景象……雖然會因各自的情況而有所不同……"
     },
     {
       "id": 259,
-      "content": "Some would show me memories of the past etched on their minds..."
+      "content": "有時是讓我看見過去強烈的記憶……"
     },
     {
       "id": 260,
-      "content": "Some, visions of the future they desperately yearn for..."
+      "content": "有時是共享了他們迫切渴望的景象……"
     },
     {
       "id": 261,
-      "content": "And others showed the emotions brimming over the threshold they could tolerate."
+      "content": "有時則是讓我看見他們無法自抑的情感是什麼。"
     },
     {
       "id": 262,
-      "content": "But what I'm seeing right now is..."
+      "content": "但現在我所看見的……"
     },
     {
       "id": 263,
-      "content": "Meursault standing at the very center of the courtroom, yet he doesn't seem to occupy the same space as us."
+      "content": "莫梭確實站在這座法庭的正中央，卻彷彿不和我們處在同一個空間。"
     },
     {
       "id": 264,
-      "content": "He seems as though he's been set down alone in some immeasurably distant place,"
+      "content": "他彷彿獨自一人被留在遙遠的某處，"
     },
     {
       "id": 265,
-      "content": "or as though he was utterly bored of everything happening in the courtroom."
+      "content": "又像是對法庭裡的一切都感到厭倦，"
     },
     {
       "id": 266,
-      "content": "All things ripple dizzily in his line of sight, like the surface of colorless water that can't stay still for a single moment."
+      "content": "顯得極為格格不入，一切都如同無色的水一般紛亂地搖曳著……"
     },
     {
       "id": 267,
-      "content": "Everything seems so far removed from his own being, futile and meaningless."
+      "content": "一切在他看來都既無用又遙遠。"
     },
     {
       "id": 268,
-      "content": "It's a strange and unfamiliar sight—the kind that I've never seen before."
+      "content": "也就是說，那對我而言是初次見到的陌生光景。"
     },
     {
       "id": 269,
-      "content": "None of us had a clue about what to do next."
+      "content": "我們不知道該怎麼做才好。"
     },
     {
       "id": 270,
       "model": "오티스",
-      "content": "... The trial is nearing its conclusion."
+      "content": "……審判快要結束了。"
     },
     {
       "id": 271,
       "model": "오티스",
-      "content": "The prosecution and the defense have left their respective tables, Executive Manager. We will have a verdict soon."
+      "content": "檢察官與律師都已退席，很快就會宣布結果了，經理。"
     },
     {
       "id": 272,
-      "content": "Just as Outis said, Faust returned to us; her part in the proceedings ended."
+      "content": "正如奧提斯所說，浮士德隨即朝我們走了過來。"
     },
     {
       "id": 273,
-      "content": "Sinclair trudged miserably behind her, every step looking like a ball of lead had been tied to his feet."
+      "content": "拖著沉重腳步跟在她身後的辛克萊，步伐顯得無比悲慘。"
     },
     {
       "id": 274,
@@ -1363,43 +1363,43 @@
     },
     {
       "id": 278,
-      "content": "Before the bristling Sinners could say anything, Faust cut them off with a weary expression."
+      "content": "看著憋了一肚子話要說的罪人們，浮士德帶著疲憊的神色搶先打斷了他們。"
     },
     {
       "id": 279,
       "model": "파우스트",
-      "content": "This will be explained succinctly, as what each of you intends to say is very much predictable."
+      "content": "我知道各位想說什麼，就讓我長話短說吧。"
     },
     {
       "id": 280,
       "model": "파우스트",
-      "content": "No heat-related neurological dysfunction is involved. Faust harbors no private hostility toward Meursault, nor has there been a covert corporate arrangement with N Corp."
+      "content": "我既不是被熱昏了頭，也不是對莫梭先生懷有不為人知的敵意，更沒有和N公司做什麼私下交易。"
     },
     {
       "id": 281,
       "model": "로쟈",
-      "content": "Then what the heck was that? Why didya ask them to give Meursault the maximum—"
+      "content": "那到底是為什麼？為什麼要對莫梭……"
     },
     {
       "id": 282,
       "model": "오티스",
-      "content": "Wait. They're announcing the verdict."
+      "content": "等等，似乎快要宣判了。"
     },
     {
       "id": 283,
       "place": "N公司 法院",
       "model": "판사",
-      "content": "This court will now pronounce final judgment in the matter of the defendant Meursault."
+      "content": "現在宣告對被告人莫梭的最終判決。"
     },
     {
       "id": 284,
       "model": "판사",
-      "content": "... It is the judgment of this court..."
+      "content": "……主文。"
     },
     {
       "id": 285,
       "model": "판사",
-      "content": "... that the defendant be sentenced to the Sisyphe Penalty, N Corp.'s highest possible punishment permitted by law."
+      "content": "對被告人處以N公司的最高刑罰，薛西弗斯刑。"
     },
     {
       "id": 286,
@@ -1408,99 +1408,99 @@
     },
     {
       "id": 287,
-      "content": "Come to think of it, Meursault had not looked our way even once throughout that merciless ordeal they called a trial."
+      "content": "這麼說來，在審判進行的整段時間裡，莫梭連一次都沒有朝我們這邊看過。"
     },
     {
       "id": 288,
-      "content": "Never once did he cry out for our help, or ask us to save him."
+      "content": "像是大喊求助，或是請求我們救他……"
     },
     {
       "id": 289,
-      "content": "He neglected to explain anything about the matter and offered us no reassurance, either. Didn't tell us that he's gonna be okay. Nothing."
+      "content": "又或是說自己沒事、叫我們別擔心之類的，就連那樣細微的反應，他都一個也沒有……"
     },
     {
       "id": 290,
-      "content": "Then again, looking back on Meursault's reactions throughout the proceeding of the trial..."
+      "content": "不，說到底，莫梭在這個法庭上表現出的行為之中……"
     },
     {
       "id": 291,
-      "content": "... had he ever shown what people would call a \"normal\" response?"
+      "content": "有任何一個是正常的嗎？"
     },
     {
       "id": 292,
       "model": "판사",
-      "content": "The sentence is to be carried out immediately, without possibility of appeal or overturning."
+      "content": "……薛西弗斯刑立即執行，此後不得有任何翻案。"
     },
     {
       "id": 293,
       "model": "판사",
-      "content": "This trial is concluded."
+      "content": "以上，本案審判到此結束。"
     },
     {
       "id": 294,
-      "content": "The sound of the gavel echoes through the courtroom."
+      "content": "法官手中的法槌聲響徹法庭。"
     },
     {
       "id": 295,
-      "content": "N Corp.'s agents had already taken their places on either side of Meursault to march him away."
+      "content": "N公司的執行者們已經在莫梭兩側，將他押走。"
     },
     {
       "id": 296,
       "place": "N公司 法庭旁聽席",
       "model": "이스마엘",
-      "content": "The Sisyphe Penalty...? Does anybody know what that is?"
+      "content": "薛西弗斯刑……是什麼？"
     },
     {
       "id": 297,
       "model": "이스마엘",
-      "content": "The judge said it's N Corp.'s maximum possible punishment. Is it another name for... the death penalty?"
+      "content": "說是最高刑罰，那終究是……死刑的意思嗎？"
     },
     {
       "id": 298,
       "place": -1,
-      "content": "We'd witnessed something similar back in T Corp."
+      "content": "我們在T公司也曾見過與此相似的光景。"
     },
     {
       "id": 299,
-      "content": "Meursault had climbed a Temporal Scale Gallows just because he was told to. It was one of those absurd little memories the Sinners and I would occasionally joke about for a good laugh."
+      "content": "莫梭曾被吊在絞刑台形狀的時間測量機器上，那是我們之間時常拿出來回味的一段滑稽回憶。"
     },
     {
       "id": 300,
       "place": "N公司 法庭旁聽席",
       "model": "로쟈",
-      "content": "I know death isn't a big deal for us, whether by hanging or whatever, but..."
+      "content": "對我們來說，死亡不算什麼問題……就算被處以絞刑也一樣……可是……"
     },
     {
       "id": 301,
-      "content": "... But is this seriously something we should just watch happen without even trying to save him?"
+      "content": "這真的是我們只要這樣看著就好的事嗎？"
     },
     {
       "id": 302,
-      "content": "Meursault climbs up the scaffold at an even, unhurried pace."
+      "content": "莫梭以不快也不慢的步伐，緩緩走上絞刑台。"
     },
     {
       "id": 303,
-      "content": "Beads of sweat formed on his forehead from the heat of the sun casting its light on him. Perspiration was probably the only kind of reaction the hot, prickling beams of sunshine could manage to pull from him, as he didn't seem particularly nervous or afraid."
+      "content": "他的額頭也因陽光而沁出閃亮的汗珠。但與其說那是出於緊張，倒不如說，那只是陽光唯一能觸及他的現象。"
     },
     {
       "id": 304,
       "model": "파우스트",
-      "content": "... The mission's plan and objective remain unchanged."
+      "content": "……作戰依然沒有變動。"
     },
     {
       "id": 305,
       "model": "오티스",
-      "content": "... Very well. I expect this obstacle will not deter us. This is not the first time we have faced such an unforeseen, senseless development. There must be a reason for this..."
+      "content": "……也罷，這次也總能設法闖過去吧。經歷這種荒唐事，已經不是一兩次了……"
     },
     {
       "id": 306,
       "model": "이스마엘",
-      "content": "Still, this <i>is</i> the first time we've been made to watch one of us getting hanged..."
+      "content": "可是……親眼看著有人被處以絞刑還是第一次……"
     },
     {
       "id": 307,
       "place": "N公司 法院",
-      "content": "Once the noose was around Meursault's neck, the executioners stepped away. A good distance away."
+      "content": "執行者們從脖子套上繩索的莫梭身邊遠遠退開。"
     },
     {
       "id": 308,
@@ -1509,23 +1509,23 @@
     },
     {
       "id": 309,
-      "content": "Only an instant before the hanging did Meursault's gaze meet mine."
+      "content": "直到繩索即將勒緊莫梭脖子的前一刻，我才終於與站在台上的莫梭對上了視線。"
     },
     {
       "id": 310,
-      "content": "Perhaps I had imagined it. Or perhaps his gaze simply chanced to rest upon a fragment of an impossibly unfamiliar sight that could only be seen from the scaffold where he was standing."
+      "content": "又或許只是錯覺。莫梭也可能只是偶然將視線停留在陌生至極的風景中的某個碎片上。"
     },
     {
       "id": 311,
-      "content": "Meursault's face remained stoic and expressionless to the very last moment."
+      "content": "直到最後，他都沒有露出任何表情。"
     },
     {
       "id": 312,
-      "content": "He merely closed his eyes, like a man shielding his vision from the blinding sunlight."
+      "content": "只是像個覺得刺眼的人那樣，閉上了雙眼。"
     },
     {
       "id": 313,
-      "content": "The rope didn't wait. With a loud click, the machine whirred into motion. The noose pulled Meursault up into the air..."
+      "content": "絞刑台的繩索毫無等待、毫不猶豫地將莫梭拉上半空……"
     },
     {
       "id": 314,
@@ -1534,23 +1534,23 @@
     },
     {
       "id": 315,
-      "content": "And then, it was over."
+      "content": "就這樣結束了。"
     },
     {
       "id": 316,
       "place": "N公司 法庭旁聽席",
       "model": "료슈9장이후반담배",
-      "content": "It's over."
+      "content": "結束了啊。"
     },
     {
       "id": 317,
       "model": "그레고르",
-      "content": "So... What now? Do we lie in cover somewhere nearby until Manager Bud can bring him back?"
+      "content": "那現在……該怎麼辦？先躲在附近，等時機合適再讓經理兄把他復活就行了嗎？"
     },
     {
       "id": 318,
       "model": "파우스트",
-      "content": "No. This is the point where the mission will officially commence."
+      "content": "不，從現在起才是真正作戰的開始。"
     },
     {
       "id": 319,
@@ -1560,66 +1560,66 @@
     {
       "id": 320,
       "model": "파우스트",
-      "content": "First, the sentencing of Meursault to the Sisyphe Penalty, then his being sent to the gallows."
+      "content": "被宣判薛西弗斯刑，到莫梭先生被送上絞刑台為止。"
     },
     {
       "id": 321,
       "model": "파우스트",
-      "content": "This was the prerequisite order of events for this mission."
+      "content": "這就是本次作戰的前置作業。"
     },
     {
       "id": 322,
       "model": "그레고르",
-      "content": "... So that's why you sabotaged his case, huh?"
+      "content": "……所以妳才故意讓莫梭先生陷入不利的處境？"
     },
     {
       "id": 323,
-      "content": "Faust gave a light nod. She didn't seem to think it was necessary to even defend herself."
+      "content": "浮士德似乎連否認的打算都沒有，輕輕點了點頭。"
     },
     {
       "id": 324,
       "model": "싱클레어",
-      "content": "... I get that part, but why did you have to bring me along? I seriously thought I was going to burst into tears up there, Faust..."
+      "content": "……可是您為什麼要帶我上去呢？我真的差點就哭出來了，浮士德小姐……"
     },
     {
       "id": 325,
       "model": "파우스트",
-      "content": "Regarding that... an apology is in order. This step of the preparation required an individual whose presence could... \"downgrade\" Faust's competence. The exigencies of the situation permitted no alternative."
+      "content": "那件事……我在此致歉。因為需要一個能把浮士德的能幹……「下修」的人，這是不得已的。"
     },
     {
       "id": 326,
       "model": "히스클리프",
-      "content": "What the hell is that supposed to mean...?"
+      "content": "……那是什麼意思啊……"
     },
     {
       "id": 327,
       "model": "파우스트",
-      "content": "The idea may prove difficult for you to understand, but the deliberate concealment of Faust's unparalleled logical precision and perspicacity is far more arduous than you might think."
+      "content": "各位或許難以理解……但要刻意隱藏浮士德獨有的出色邏輯能力與聰穎……是比想像中更困難的事。"
     },
     {
       "id": 328,
       "model": "싱클레어",
-      "content": "Are you saying... you dragged me out there because me standing next to you would make you seem... less smart?"
+      "content": "所以我是負責讓浮士德小姐看起來沒那麼聰明的角色……是那樣嗎？"
     },
     {
       "id": 329,
       "model": "파우스트",
-      "content": "Heathcliff might have been a serviceable candidate for this purpose; however, his instinctive faculties have developed to a rather remarkable degree of late. In extremely rare cases, he has displayed a capability to arrive at insights that even I did not anticipate."
+      "content": "希斯克利夫先生原本也可能是不錯的人選，但最近的希斯克利夫先生直覺發達得驚人，有時甚至會展現出連我都料想不到的洞察力。"
     },
     {
       "id": 330,
       "model": "파우스트",
-      "content": "There was also the option of bringing along a Sinner prone to spontaneous and unpredictable actions... But that would have introduced the risk of contempt of court in the worst-case scenario, not only delaying the court proceedings but also subjecting the company to a punitive fine..."
+      "content": "話雖如此，若帶上可能做出突發舉動的罪人……運氣不好的話，可能會被判藐視法庭。那樣一來，不僅審判會延宕，我們甚至可能被處以罰金……"
     },
     {
       "id": 331,
       "model": "파우스트",
-      "content": "Your sacrifice was an indispensable one."
+      "content": "這是必要且不可或缺的犧牲。"
     },
     {
       "id": 332,
       "model": "싱클레어",
-      "content": "... I'll G.Y.B. for this..."
+      "content": "……記．完。"
     },
     {
       "id": 333,
@@ -1629,23 +1629,23 @@
     {
       "id": 334,
       "model": "로쟈",
-      "content": "For what it's worth, Sinc... Ya really took one for the team..."
+      "content": "總之辛苦你啦，小辛……"
     },
     {
       "id": 335,
-      "content": "The courtroom was cleared as soon as the execution was completed."
+      "content": "行刑一結束，所有人就被下令退場。"
     },
     {
       "id": 336,
       "place": "N公司 法院走廊",
       "model": "로쟈",
-      "content": "Fau, do ya know where they're taking Meur's... Taking Meur?"
+      "content": "那小浮，妳知道嗎？那邊的莫……會被帶去哪裡？"
     },
     {
       "id": 337,
       "teller": "???",
       "title": "???",
-      "content": "That... would be a question for me to answer."
+      "content": "這件事……我知道。"
     }
   ]
 }

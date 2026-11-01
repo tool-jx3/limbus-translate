@@ -32,7 +32,7 @@
         {
           "level": 1,
           "name": "懺悔吧",
-          "desc": "[WhenUse]\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field</u></b></mark></color> (max 8)\n- At 15+ [ChargeNoir] Count, consume 5 [ChargeNoir] Count to gain Final Power +2\n[WhenUse] Gain +5 [ChargeNoir] Count\n[DefeatDuel] Damage dealt by this Skill cannot Stagger the target",
+          "desc": "[WhenUse]\n- 戰場上<color=#ff6000><mark=#ff000040><b><u>每有1支刑罰的燭台存活，則使本技能的最終威力+2(最多+8)</u></b></mark></color>\n- 若自身的 [ChargeNoir] 回數不低於15回，則消耗5回並使本技能的最終威力+2\n[WhenUse] 使自身獲得5回 [ChargeNoir]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -64,7 +64,7 @@
         {
           "level": 1,
           "name": "判罪",
-          "desc": "Can Clash with this Skill regardless of Speed\n[BeforeAttack] <color=#ff6000><mark=#ff000040><b><u>Gain +(# of Candle of Retribution on the field) Atk Weight (max 2)</u></b></mark></color>\n[WhenUse]\n- If the main target <color=#ff6000><mark=#ff000040><b><u>has 1 Speed</u></b></mark></color>, deal +50% damage\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field (max 8)</u></b></mark></color>\n- At 15+ [ChargeNoir] Count, consume 10 [ChargeNoir] Count to gain Coin Power +1\n[DefeatDuel] Gain 3 [Paralysis], deal -50% damage and damage dealt by this Skill cannot Stagger the target",
+          "desc": "可無視速度值與本技能拚點\n[BeforeAttack] 根據戰場上<color=#ff6000><mark=#ff000040><b><u>存活的刑罰的燭台支數，相應使本技能的攻擊容量增加(最多+2)</u></b></mark></color>\n[WhenUse]\n- 若主要目標的<color=#ff6000><mark=#ff000040><b><u>速度值為1點</u></b></mark></color>，則使本技能造成的傷害+50%\n- 戰場上<color=#ff6000><mark=#ff000040><b><u>每有1支刑罰的燭台存活，則使本技能的最終威力+2(最多+8)</u></b></mark></color>\n- 若自身的 [ChargeNoir] 回數不低於15回，則消耗10回並使本技能的硬幣威力+1\n[DefeatDuel] 對自身施加3層 [Paralysis]。使本技能造成的傷害-50%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -87,7 +87,7 @@
                 },
                 {
                   "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加2層 [Binding]</u></b></mark></color>\n- 若為主要目標，則改為<color=#ff6000><mark=#ff000040><b><u>對其施加4層 [Binding]</u></b></mark></color>",
-                  "summary": "Inflict 2 [Binding] next turn; 4 instead on the main target"
+                  "summary": "下回合對目標施加2層 [Binding]，若為主要目標則改為施加4層"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Sinking] 強度與3回 [Sinking]"
@@ -104,7 +104,7 @@
         {
           "level": 1,
           "name": "罪惡感緊勒著你",
-          "desc": "Can Clash with this Skill regardless of Speed\n[BeforeAttack] Gain +(# of Candle of Retribution on the field) Atk Weight (max 4)\n[WhenUse]\n- If the main target <color=#ff6000><mark=#ff000040><b><u>has 1 Speed</u></b></mark></color>, deal +100% damage\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field (max 8)</u></b></mark></color>\n- If there are no Candle of Retribution on the field, Clash Power -3\n- At 15+ [ChargeNoir] Count, consume 10 [ChargeNoir] Count to gain Final Power +1 and Coin Power +1\n[DefeatDuel] Gain 4 [Paralysis], deal -50% damage, and damage dealt by this Skill cannot Stagger the target",
+          "desc": "可無視速度值與本技能拚點\n[BeforeAttack] 根據戰場上存活的刑罰的燭台支數，相應使本技能的攻擊容量增加(最多+4)\n[WhenUse]\n- 若主要目標的<color=#ff6000><mark=#ff000040><b><u>速度值為1點</u></b></mark></color>，則使本技能造成的傷害+100%\n- 戰場上<color=#ff6000><mark=#ff000040><b><u>每有1支刑罰的燭台存活，則使本技能的最終威力+2(最多+8)</u></b></mark></color>\n- 若戰場上沒有刑罰的燭台，則使本技能的拚點威力-3\n- 若自身的 [ChargeNoir] 回數不低於15回，則消耗10回並使本技能的最終威力+1、硬幣威力+1\n[DefeatDuel] 對自身施加4層 [Paralysis]。使本技能造成的傷害-50%，且本技能造成的傷害不會使目標陷入混亂",
           "flavor": "「人台模特兒們正唱著歌……」",
           "coinlist": [
             {
@@ -114,7 +114,7 @@
                 },
                 {
                   "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [Binding]</u></b></mark></color>\n- 若目標為主要目標，則改為<color=#ff6000><mark=#ff000040><b><u>對其施加3層 [Binding]</u></b></mark></color>",
-                  "summary": "Inflict 1 [Binding] next turn; 3 instead on the main target"
+                  "summary": "下回合對目標施加1層 [Binding]，若目標為主要目標則改為施加3層"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Sinking]"
@@ -128,7 +128,7 @@
                 },
                 {
                   "desc": "[OnSucceedAttack] 下回合<color=#ff6000><mark=#ff000040><b><u>對目標施加1層 [Binding]</u></b></mark></color>\n- 若目標為主要目標，則改為<color=#ff6000><mark=#ff000040><b><u>對其施加3層 [Binding]</u></b></mark></color>",
-                  "summary": "Inflict 1 [Binding] next turn; 3 instead on the main target"
+                  "summary": "下回合對目標施加1層 [Binding]，若目標為主要目標則改為施加3層"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2級 [Sinking] 強度"
@@ -165,7 +165,7 @@
         {
           "level": 1,
           "name": "懲罰",
-          "desc": "Can Clash with this Skill regardless of Speed\n[WhenUse]\n- If the main target has <color=#ff6000><mark=#ff000040><b><u>1 Speed</u></b></mark></color>, deal +100% damage\n- <color=#ff6000><mark=#ff000040><b><u>Final Power +2 for every Candle of Retribution on the field (max 8)</u></b></mark></color>\n- If there are no Candle of Retribution on the field, Clash Power -5\n- If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 4 [Paralysis], deal -50% damage, and damage dealt by this Skill cannot Stagger the target",
+          "desc": "可無視速度值與本技能拚點\n[WhenUse]\n- 若主要目標的<color=#ff6000><mark=#ff000040><b><u>速度值為1點</u></b></mark></color>，則使本技能造成的傷害+100%\n- 戰場上<color=#ff6000><mark=#ff000040><b><u>每有1支刑罰的燭台存活，則使本技能的最終威力+2(最多+8)</u></b></mark></color>\n- 若戰場上沒有刑罰的燭台，則使本技能的拚點威力-5\n- 若自身帶有 [ChargeNoir] 回數，則全部消耗並使本技能的硬幣威力+2\n[DefeatDuel] 對自身施加4層 [Paralysis]。使本技能造成的傷害-50%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -247,7 +247,7 @@
         {
           "level": 1,
           "name": "刑罰之釘",
-          "desc": "若<color=#ff6000><mark=#ff000040><b><u>獄卒的體力不高於50%</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第1枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於6層／9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2／+3</u></b></mark></color>\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "desc": "若<color=#ff6000><mark=#ff000040><b><u>獄卒的體力不高於50%</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第1枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3</u></b></mark></color>\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -282,7 +282,7 @@
         {
           "level": 1,
           "name": "審判",
-          "desc": "Can Clash with this Skill regardless of Speed\nIf the main target has <color=#ff6000><mark=#ff000040><b><u>3+/6+/9+ [ConfessionSecondPhase], Final Power +2/+3/+5</u></b></mark></color>\n[BeforeAttack] <color=#ff6000><mark=#ff000040><b><u>If the main target has 5+/9+ [ConfessionSecondPhase], gain +1/+3 Atk Weight</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 3 [Paralysis], deal -50% damage, and damage dealt by this Skill cannot Stagger the target",
+          "desc": "可無視速度值與本技能拚點\n若主要目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於3/6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3/+5</u></b></mark></color>\n[BeforeAttack] 若主要目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於5/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的攻擊容量+1/+3</u></b></mark></color>\n[WhenUse] 若自身帶有 [ChargeNoir] 回數，則全部消耗並使本技能的硬幣威力+2\n[DefeatDuel] 對自身施加3層 [Paralysis]。使本技能造成的傷害-50%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -324,7 +324,7 @@
         {
           "level": 1,
           "name": "在神的面前懺悔",
-          "desc": "<color=#ff6000><mark=#ff000040><b><u>When the Sinner that has [GoldenFabricWarderSecondPhase]</u></b></mark></color> attacks the Slot equipped with this Skill as its main target in the Chaining Phase, the said Skill used by the Sinner deals +100% damage (for E.G.O Skills, +200% damage)\n[EndBattle] At fewer than 100 [EncompassingVoiceSecondPhase] Stack, gain up to 100 Stack\n- The Warden loses SP equal to Stack gained (max 45)",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>若帶有 [GoldenFabricWarderSecondPhase] 的罪人</u></b></mark></color>在指揮階段指定裝備本技能的行動槽為主要目標進行攻擊，則使該罪人技能造成的傷害+100%(若為E.G.O技能，則改為+200%)\n[EndBattle] 若自身的 [EncompassingVoiceSecondPhase] 低於100層，則增加至100層\n- 使獄卒失去等同於增加層數的理智值(最多45點)",
           "coinlist": [
             {
               "coindescs": []
@@ -378,7 +378,7 @@
         {
           "level": 1,
           "name": "接受刑罰吧",
-          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數為6／9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2／+3</u></b></mark></color>\n[WhenUse] 消耗自身最多15層 [SpreadingVoiceSecondPhase]\n- 使本技能的最終威力+2、造成的傷害+30%\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3</u></b></mark></color>\n[WhenUse] 消耗自身最多15層 [SpreadingVoiceSecondPhase]\n- 使本技能的最終威力+2、造成的傷害+30%\n[WhenUse] 使自身獲得4回 [ChargeNoir]\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -417,7 +417,7 @@
         {
           "level": 1,
           "name": "審判……！宣告……！判罪……！",
-          "desc": "Can Clash with this Skill regardless of Speed\nThis Skill does not trigger the target's Defense Skill\nCannot be Staggered before using this Skill\nIf the main target has <color=#ff6000><mark=#ff000040><b><u>3+/6+/9+ [ConfessionSecondPhase], Final Power +2/+3/+5</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>If the main target has [GoldenFabricWarderSecondPhase]:</u></b></mark></color>\n<color=#ff6000><mark=#ff000040><b><u>- Final Power -5, Clash Power -5</u></b></mark></color>\n[WhenUse] Consume up to 40 [SpreadingVoiceSecondPhase] to:\n- Gain Final Power +3\n- Deal +50% damage\n[WhenUse] Deal +([SpreadingVoiceSecondPhase] Stack)% damage; at Attack End, consume all [SpreadingVoiceSecondPhase] on self\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose, this effect does not activate</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 5 [Paralysis], deal -75% damage, and damage dealt by this Skill cannot Stagger the target\n[EndSkill]\n- Gain 2 [Vulnerable] next turn\n- End this turn",
+          "desc": "可無視速度值與本技能拚點\n不會觸發目標的守備技能\n自身使用本技能前不會陷入混亂\n若主要目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionSecondPhase] 層數不低於3/6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3/+5</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [GoldenFabricWarderSecondPhase]，</u></b></mark></color>\n<color=#ff6000><mark=#ff000040><b><u>- 使本技能的最終威力-5、拚點威力-5</u></b></mark></color>\n[WhenUse] 消耗自身最多40層 [SpreadingVoiceSecondPhase]\n- 使本技能的最終威力+3、造成的傷害+50%\n[WhenUse] 使本技能造成的傷害+(自身的 [SpreadingVoiceSecondPhase] 層數)%。攻擊結束時，消耗自身所有 [SpreadingVoiceSecondPhase]\n- <color=#ff6000><mark=#ff000040><b><u>拚點失敗時，不會觸發本效果</u></b></mark></color>\n[WhenUse] 若自身帶有 [ChargeNoir] 回數，則全部消耗並使本技能的硬幣威力+2\n[DefeatDuel] 對自身施加5層 [Paralysis] 並使本技能造成的傷害-75%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill]\n- 下回合使自身獲得2層 [Vulnerable]\n- 結束本回合",
           "coinlist": [
             {
               "coindescs": []
@@ -555,7 +555,7 @@
         {
           "level": 1,
           "name": "讓我下班吧。",
-          "desc": "若<color=#ff6000><mark=#ff000040><b><u>目標的 [ConfessionThirdPhase] 層數不低於5層</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第一枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於6層／9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2／+3</u></b></mark></color>\n[WhenUse] 使自身獲得5回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]",
+          "desc": "若<color=#ff6000><mark=#ff000040><b><u>目標的 [ConfessionThirdPhase] 層數不低於5層</u></b></mark></color>，\n則使本技能的<color=#ff6000><mark=#ff000040><b><u>第一枚硬幣轉變為 [SuperCoin]</u></b></mark></color>\n若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3</u></b></mark></color>\n[WhenUse] 使自身獲得5回 [ChargeNoir]\n[WhenUse] 使自身獲得2級 [Breath] 強度與2回 [Breath]",
           "coinlist": [
             {
               "coindescs": [
@@ -590,7 +590,7 @@
         {
           "level": 1,
           "name": "「審判」",
-          "desc": "Can Clash with this Skill regardless of Speed\nIf the main target has <color=#ff6000><mark=#ff000040><b><u>3+/6+/9+ [ConfessionThirdPhase], Final Power +2/+3/+5</u></b></mark></color>\n[BeforeAttack] <color=#ff6000><mark=#ff000040><b><u>If the main target has 5+/9+ [ConfessionThirdPhase], gain +1/+3 Atk Weight</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 3 [Paralysis], deal -75% damage, and damage dealt by this Skill cannot Stagger the target",
+          "desc": "可無視速度值與本技能拚點\n若主要目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於3/6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3/+5</u></b></mark></color>\n[BeforeAttack] 若主要目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於5/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的攻擊容量+1/+3</u></b></mark></color>\n[WhenUse] 若自身帶有 [ChargeNoir] 回數，則全部消耗並使本技能的硬幣威力+2\n[DefeatDuel] 對自身施加3層 [Paralysis]。使本技能造成的傷害-75%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -632,7 +632,7 @@
         {
           "level": 1,
           "name": "「在神的面前懺悔」是這樣說吧？",
-          "desc": "<color=#ff6000><mark=#ff000040><b><u>When the Sinner that has [GoldenFabricWarderThirdPhase]</u></b></mark></color> attacks the Slot equipped with this Skill as its main target in the Chaining Phase, the said Skill used by the Sinner deals +100% damage (for E.G.O Skills, +200% damage)\n[EndBattle] At fewer than 100 [EncompassingVoiceThirdPhase] Stack, gain up to 100 Stack\n- The Chaplain loses SP equal to Stack gained (max 45)",
+          "desc": "<color=#ff6000><mark=#ff000040><b><u>若帶有 [GoldenFabricWarderThirdPhase] 的罪人</u></b></mark></color>在指揮階段指定裝備本技能的行動槽為主要目標進行攻擊，則使該罪人技能造成的傷害+100%(若為E.G.O技能，則改為+200%)\n[EndBattle] 若自身的 [EncompassingVoiceThirdPhase] 低於100層，則增加至100層\n- 使牧師失去等同於增加層數的理智值(最多45點)",
           "coinlist": [
             {
               "coindescs": []
@@ -689,7 +689,7 @@
         {
           "level": 1,
           "name": "「接受刑罰吧」",
-          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於6層／9層</u></b></mark></color>，則使本技能的<color=#ff6000><mark=#ff000040><b><u>最終威力+2／+3</u></b></mark></color>\n[WhenUse] 消耗最多15層 [SpreadingVoiceThirdPhase]\n- 使本技能的最終威力+2、造成的傷害+30%\n[WhenUse] 使自身獲得6回 [ChargeNoir]",
+          "desc": "若目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於6/9層</u></b></mark></color>，則使本技能的<color=#ff6000><mark=#ff000040><b><u>最終威力+2/+3</u></b></mark></color>\n[WhenUse] 消耗最多15層 [SpreadingVoiceThirdPhase]\n- 使本技能的最終威力+2、造成的傷害+30%\n[WhenUse] 使自身獲得6回 [ChargeNoir]",
           "coinlist": [
             {
               "coindescs": [
@@ -731,7 +731,7 @@
         {
           "level": 1,
           "name": "你打算真的毀掉薛西弗斯系統嗎？",
-          "desc": "Can Clash with this Skill regardless of Speed\nThis Skill does not trigger the target's Defense Skill\nCannot be Staggered before using this Skill\nDeal +5% damage for every [ConfessionThirdPhase] on target (against each target separately)\n<color=#ff6000><mark=#ff000040><b><u>If the main target has 3+/6+/9+ [ConfessionThirdPhase], Final Power +2/+3/+5</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>If the main target has [GoldenFabricWarderThirdPhase]:\n- Final Power -5\n- Clash Power -5</u></b></mark></color>\n- All targets of this Skill <color=#ff6000><mark=#ff000040><b><u>gain Shield equal to 50% of their max HP, respectively</u></b></mark></color>; Shield gained from this effect is removed from the Sinner's total Shield at Attack End\n[WhenUse] Consume up to 40 [SpreadingVoiceThirdPhase] to:\n- Gain Final Power +3\n- Deal +50% damage\n[WhenUse] Deal +([SpreadingVoiceThirdPhase] Stack)% damage; at Attack End, consume all [SpreadingVoiceThirdPhase] on self\n- <color=#ff6000><mark=#ff000040><b><u>On Clash Lose, this effect does not activate</u></b></mark></color>\n[WhenUse] If this unit has [ChargeNoir] Count, consume all [ChargeNoir] Count on self to gain Coin Power +2\n[DefeatDuel] Gain 5 [Paralysis], deal -90% damage, and damage dealt by this Skill cannot Stagger the target\n[EndSkill]\n- Gain 2 [Vulnerable] next turn\n- End this turn",
+          "desc": "可無視速度值與本技能拚點\n不會觸發目標的守備技能\n自身使用本技能前不會陷入混亂\n目標<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [ConfessionThirdPhase]，則使本技能造成的傷害+5%</u></b></mark></color>(每個目標分別計算)\n若主要目標的 <color=#ff6000><mark=#ff000040><b><u>[ConfessionThirdPhase] 層數不低於3/6/9層</u></b></mark></color>，<color=#ff6000><mark=#ff000040><b><u>則使本技能的最終威力+2/+3/+5</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [GoldenFabricWarderThirdPhase]，則\n- 使本技能的最終威力-5、拚點威力-5</u></b></mark></color>\n- 使本技能所指定的所有目標<color=#ff6000><mark=#ff000040><b><u>獲得其體力上限50%的護盾。</u></b></mark></color>攻擊結束時，使罪人持有的護盾減少因本效果所獲得的護盾\n[WhenUse] 消耗自身最多40層 [SpreadingVoiceThirdPhase]\n- 使本技能的最終威力+3、造成的傷害+50%\n[WhenUse] 使本技能造成的傷害+(自身的 [SpreadingVoiceThirdPhase] 層數)%。攻擊結束時，消耗自身所有 [SpreadingVoiceThirdPhase]\n- <color=#ff6000><mark=#ff000040><b><u>拚點失敗時，不會觸發本效果</u></b></mark></color>\n[WhenUse] 若自身帶有 [ChargeNoir] 回數，則全部消耗並使本技能的硬幣威力+2\n[DefeatDuel] 對自身施加5層 [Paralysis] 並使本技能造成的傷害-90%，且本技能造成的傷害不會使目標陷入混亂\n[EndSkill]\n- 下回合使自身獲得2層 [Vulnerable]\n- 結束本回合",
           "coinlist": [
             {
               "coindescs": []
@@ -1120,7 +1120,7 @@
           "level": 1,
           "name": "權限：隔離",
           "desc": "<color=#ff6000><mark color=#ff000040><b><u>[EndSkill] 下回合對目標施加1層 [JeanneCheat]</color></mark></b></u>",
-          "flavor": "Meur. If you want, you don't have to keep binding yourself in those chains anymore. You're allowed to judge for yourself. You should be allowed to speak. No more worrying about anyone's gaze, no more letting anyone else's thoughts weigh on you... Just <i>be</i> yourself.",
+          "flavor": "小莫。如果你願意，就不必再用那條鎖鏈纏住自己了。去判斷、去說出口也沒關係。不必看任何人的臉色，也不必在意任何人的想法，做你自己就好。",
           "coinlist": [
             {
               "coindescs": [
@@ -1218,8 +1218,8 @@
         {
           "level": 1,
           "name": "權限：視線",
-          "desc": "[WhenUse] Final Power +1 for every 4 Unique [Charge] (Potency + Count) on self (max 3)\n[WhenUse] Deal +10% damage for every 2 types of negative effects on all targets (max 50%; overlapping effects between units are counted separately)\n<color=#ff6000><mark color=#ff000040><b><u>[WinDuel] Inflict 1 [JeanneCheat] next turn</color></mark></b></u>\n[DefeatDuel] Deal -80% damage and damage dealt by this Skill cannot Stagger the target",
-          "flavor": "You must've understood the anxiety your mother felt better than anyone. But, Meur... simply sharing the same space with someone means becoming aware of their gaze. As long as you were there together, you must've had to bear your mother's gaze. You could hardly help but gaze her in return.\n\nIs that why you feel guilty?\nIt seems to me you're still trying to make what happened to your mother into something that was your fault.",
+          "desc": "[WhenUse] 自身的特殊 [Charge] (強度+回數)之和每有4點，則使本技能的最終威力+1(最多+3)\n[WhenUse] 所有目標帶有的負面效果種類之和每有2種，則使本技能造成的傷害+10%(最多+50%，不同目標上重複的效果分別計算)\n<color=#ff6000><mark color=#ff000040><b><u>[WinDuel] 下回合對目標施加1層 [JeanneCheat]</color></mark></b></u>\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "flavor": "你應該比任何人都清楚你母親當時感受到的那份不安。\n但是小莫，光是和某人身處同一個空間，就不可能感受不到視線。只要存在於同一個空間，你就會被你母親注視，也只能注視著她吧。\n\n是因為那份罪惡感嗎？\n你似乎總是把發生在你母親身上的事歸咎於自己。",
           "coinlist": [
             {
               "coindescs": [
@@ -1359,7 +1359,7 @@
         {
           "level": 1,
           "name": "裁斷：保存吧",
-          "desc": "[WhenUse] Gain +5 [ChargeNoir] Count\n- If target has [Vibration], gain +5 additional [ChargeNoir] Count",
+          "desc": "[WhenUse] 使自身獲得5回 [ChargeNoir]\n- 若目標帶有 [Vibration]，則額外增加5回",
           "coinlist": [
             {
               "coindescs": [
@@ -1378,7 +1378,7 @@
         {
           "level": 1,
           "name": "裁斷：默示吧",
-          "desc": "[WhenUse] Gain 5 [ChargeNoir] Count\n- If target has [Vibration], gain 5 additional [ChargeNoir] Count\n[WhenUse] Final Power +1 for every 2 [ChargeNoir] Count on self (max 2)\n[WhenUse] At 10+ [ChargeNoir] Count, inflict 5 [Vibration] Potency on Coin Hit",
+          "desc": "[WhenUse] 使自身獲得5回 [ChargeNoir]\n- 若目標帶有 [Vibration]，則額外增加5回\n[WhenUse] 自身每帶有2回 [ChargeNoir]，則使本技能的最終威力+1(最多+2)\n[WhenUse] 若自身的 [ChargeNoir] 回數不低於10回，則每枚硬幣命中時，使目標增加5級 [Vibration] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -1704,7 +1704,7 @@
         {
           "level": 1,
           "name": "閹割（la castration）",
-          "desc": "可無視速度值與本技能拚點\n使用本技能前自身不會陷入混亂\n\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若自身帶有的 [BuffetDream] 層數不高於5層，則使本技能的所有硬幣轉變為 [SuperCoin]</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>主要目標若帶有 [BuffetScruple]</u></b></mark></color>，則使本技能的硬幣威力-3\n[WhenUse] 若主要目標每帶有4級 [Laceration] 強度，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-95%，且本技能造成的傷害不會使目標陷入混亂，<color=#ff6000><mark=#ff000040><b><u>並對自身施加1層 [BuffetDream]</u></b></mark></color>",
+          "desc": "可無視速度值與本技能拚點\n使用本技能前自身不會陷入混亂\n\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>若自身帶有的 [BuffetDream] 層數低於5層，則使本技能的所有硬幣轉變為 [SuperCoin]</u></b></mark></color>\n[WhenUse] <color=#ff6000><mark=#ff000040><b><u>主要目標若帶有 [BuffetScruple]</u></b></mark></color>，則使本技能的硬幣威力-3\n[WhenUse] 主要目標每帶有4級 [Laceration] 強度，使本技能的最終威力+1(最多+3)\n[DefeatDuel] 使本技能造成的傷害-95%，且本技能造成的傷害不會使目標陷入混亂，<color=#ff6000><mark=#ff000040><b><u>並使自身獲得1層 [BuffetDream]</u></b></mark></color>",
           "coinlist": [
             {
               "coindescs": [
@@ -2025,7 +2025,7 @@
         {
           "level": 1,
           "name": "懷抱胸前，雙手奉上！",
-          "desc": "[StartBattle] 若自身的現存體力不高於自身體力上限的50%，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
+          "desc": "[StartBattle] 若自身的現存體力低於自身體力上限的50%，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1\n[DefeatDuel] 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -2067,7 +2067,7 @@
         {
           "level": 1,
           "name": "不留分毫地吞食殆盡！",
-          "desc": "[StartBattle] 若自身的現存體力不高於自身體力上限的50%，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1\n[WinDuel] 使自身獲得10回 [ChargeRouge]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "[StartBattle] 若自身的現存體力低於自身體力上限的50%，則使本技能的所有硬幣轉變為 [SuperCoin]\n[WhenUse] 若目標的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [ChargeRouge] 回數不低於10回，則消耗10回 [ChargeRouge] 並使本技能的硬幣威力+1\n[WinDuel] 使自身獲得10回 [ChargeRouge]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -2075,7 +2075,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] Consume up to 5 [ChargeRouge] Count to deal Slash damage equal to ([ChargeRouge] Count consumed x 3)% of this Coin's final damage (max 15%)\n- Heal ([ChargeRouge] Count consumed)% HP"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗自身最多5回 [ChargeRouge]，並對目標造成最終傷害量(消耗的回數×3)%的斬擊傷害(最多15%)\n- 使自身恢復體力上限(消耗的回數)%的體力"
                 }
               ]
             },
@@ -2085,7 +2085,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] Consume up to 5 [ChargeRouge] Count to deal Slash damage equal to ([ChargeRouge] Count consumed x 3)% of this Coin's final damage (max 15%)\n- Heal ([ChargeRouge] Count consumed)% HP"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗自身最多5回 [ChargeRouge]，並對目標造成最終傷害量(消耗的回數×3)%的斬擊傷害(最多15%)\n- 使自身恢復體力上限(消耗的回數)%的體力"
                 }
               ]
             },
@@ -2095,7 +2095,7 @@
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1級 [Laceration] 強度"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] Consume up to 5 [ChargeRouge] Count to deal Slash damage equal to ([ChargeRouge] Count consumed x 3)% of this Coin's final damage (max 15%)\n- Heal ([ChargeRouge] Count consumed)% HP"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 消耗自身最多5回 [ChargeRouge]，並對目標造成最終傷害量(消耗的回數×3)%的斬擊傷害(最多15%)\n- 使自身恢復體力上限(消耗的回數)%的體力"
                 }
               ]
             },

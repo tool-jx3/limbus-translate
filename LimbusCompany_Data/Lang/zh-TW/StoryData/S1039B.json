@@ -2,120 +2,120 @@
   "dataList": [
     {
       "id": 0,
-      "place": "A Bright Room, 7F",
+      "place": "7F 明亮的房間",
       "model": "뫼르소다침",
-      "content": "A waltz... is a dance of two different but interlocking movements. The dancers must keep a close eye on their partner's moves, and step accordingly."
+      "content": "華爾茲……是兩個不同的人一邊確認彼此的動作、一邊持續配合下去的舞蹈。"
     },
     {
       "id": 1,
       "model": "뫼르소다침",
-      "content": "Full synchronization isn't a waltz. It's a line dance."
+      "content": "彼此跳著完全相同的舞，那就不是華爾茲了。"
     },
     {
       "id": 2,
       "model": "뫼르소다침",
-      "content": "In a waltz, the dancers must twirl in opposite directions from their partners and let their movements express contrasting sensations."
+      "content": "所以我們必須朝不同的方向旋轉，以不同的感覺起舞。"
     },
     {
       "id": 3,
       "model": "뫼르소다침",
-      "content": "... Jeanne."
+      "content": "……簡。"
     },
     {
       "id": 4,
       "model": "뫼르소다침",
-      "content": "With 300 million customers who see the same red as you do, and shadow your dance exactly as you waltz..."
+      "content": "撇下那3億名把妳的紅色稱為紅色、隨著妳的華爾茲起舞的顧客……"
     },
     {
       "id": 5,
       "model": "뫼르소다침",
-      "content": "There should have been no reason to turn from them and long for someone who understands you as I do."
+      "content": "妳本來沒有理由渴求我這樣一個理解者。"
     },
     {
       "id": 6,
       "model": "뫼르소다침",
-      "content": "What you want is not a carbon copy of yourself... but an \"other\" who can understand you."
+      "content": "妳想要的不是完全相同的存在……而是能夠理解自己的、不同的存在。"
     },
     {
       "id": 7,
       "model": "뫼르소다침",
-      "content": "And the only ones who can be understood, or understand, are the strange, unfamiliar beings with an alien gaze."
+      "content": "終究，能被理解、也能去理解的，只有凝望著不同事物的陌生存在。"
     },
     {
       "id": 8,
       "model": "뫼르소다침",
-      "content": "That is why... no one, as long as they remain a resident of this world, will understand you."
+      "content": "在這個世界裡……沒有任何人能理解妳吧。"
     },
     {
       "id": 9,
       "model": "뫼르소다침",
-      "content": "Because, like someone once said, they are but buoys floating along the currents of your waltz."
+      "content": "因為正如某人所說，他們只會像浮標一樣……隨著妳跳的華爾茲漂流而去。"
     },
     {
       "id": 10,
       "model": "잔느변신2",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 11,
       "model": "잔느변신2",
-      "content": "Then let's think about it this way, ma puce."
+      "content": "那麼，這樣如何呢，小甜心。"
     },
     {
       "id": 12,
       "model": "잔느변신2",
-      "content": "Think about a world that belongs to you, the only one who understands me."
+      "content": "如果是理解我的你的世界……"
     },
     {
       "id": 13,
       "model": "잔느변신2",
-      "content": "A Sisyphe built from a blueprint you drew yourself... wouldn't that be different?"
+      "content": "如果是用你親手繪製的藍圖打造的薛西弗斯……不就不一樣了嗎？"
     },
     {
       "id": 14,
       "model": "뫼르소다침",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 15,
       "model": "잔느변신2",
-      "content": "Close your eyes, cover your ears... but neither can stop your mind from forming an image."
+      "content": "就算像那樣閉上眼睛、摀住耳朵，也不可能不去想像吧。"
     },
     {
       "id": 16,
       "model": "잔느변신2",
-      "content": "This room is so empty that even the smallest perception can fill it whole."
+      "content": "因為這間空蕩蕩的房間，只要一丁點認知就會被填滿了。"
     },
     {
       "id": 17,
-      "place": "Cinéma Sisyphe",
+      "place": "薛西弗斯電影院",
       "model": "잔느변신2",
-      "content": "A cinema."
+      "content": "電影院。"
     },
     {
       "id": 18,
       "model": "잔느변신2",
-      "content": "\"Cinéma... Sisyphe.\" It's a nice place. Dark, cozy, yet refined, just like you."
+      "content": "薛西弗斯……電影院。真是個適合你，舒適又雅緻的地方呢。"
     },
     {
       "id": 19,
       "model": "잔느변신2",
-      "content": "So, care to share your thoughts?"
+      "content": "看著這個地方，感覺如何呢？"
     },
     {
       "id": 20,
       "model": "뫼르소다침",
-      "content": "When the movie begins, the countless people who fill the cinema immediately become indifferent to me."
+      "content": "電影開始後……無數坐在座位上的人們便不再關注我。"
     },
     {
       "id": 21,
       "model": "뫼르소다침",
-      "content": "That spellbinding moment on the screen captures their gaze, like... chains."
+      "content": "那個瞬間會牢牢抓住所有人的視線。就像……鎖鏈一樣。"
     },
     {
       "id": 22,
       "model": "뫼르소다침",
-      "content": "... It is quiet. And therefore relaxing."
+      "content": "……非常安靜。因而輕鬆自在。"
     }
   ]
 }

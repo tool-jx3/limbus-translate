@@ -639,7 +639,7 @@
         {
           "level": 1,
           "name": "魚叉標記",
-          "desc": "[StartBattle] 若自身的 [Charge] 回數不高於5回，則使自身獲得5回 [Charge] 並對自身施加3回 [Laceration] 與1層 [Vulnerable]\n[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗5回 [Charge] 並使自身獲得3層 [AttackUp]",
+          "desc": "[StartBattle] 若自身的 [Charge] 回數低於5回，則使自身的 [Charge] 回數增加5回、[Laceration] 回數增加3回，並使自身獲得1層 [Vulnerable]\n[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗5回 [Charge] 並使自身獲得3層 [AttackUp]",
           "coinlist": [
             {
               "coindescs": [
@@ -719,7 +719,7 @@
         {
           "level": 1,
           "name": "義體啟動",
-          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數不高於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數低於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -741,7 +741,7 @@
         {
           "level": 1,
           "name": "硬血血液逆流",
-          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數不高於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數低於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -837,7 +837,7 @@
         {
           "level": 1,
           "name": "硬血血液轉移",
-          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數不高於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
+          "desc": "[WhenUse] 若自身的 [Charge] 回數不低於10回，則消耗3回 [Charge] 並使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Charge] 回數不低於15回，則額外消耗3回 [Charge] 並使本技能造成的傷害+20%\n[WhenUse] 若自身的 [Charge] 回數低於5回，則失去體力上限10%的體力並使自身獲得5回 [Charge]",
           "coinlist": [
             {
               "coindescs": [

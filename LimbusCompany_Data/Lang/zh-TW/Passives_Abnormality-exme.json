@@ -9,13 +9,13 @@
       "id": 144804,
       "name": "推奴手",
       "desc": "若自身對目標施加 [TiedRope]，則使自身獲得 [TiedWithRope]",
-      "flavor": "S Corp. commands two sorts of Taboo Hunters: The Royal Censors and the Ch'unokkuns.\nAgents of the Royal Court, the Royal Censors generally operate alone, moving undercover to pursue those who have dared to break the Taboo of Salpippyeo.\nCh'unokkuns, much like Fixer Offices, form bands within their own ranks. Once an order or a contract to hunt down a Branded is bestowed upon them, each band hunts its mark in the manner preferred by the band. The hunt for Nobi knows neither honor nor dignity."
+      "flavor": "S公司的禁忌獵人大致分為御史與推奴手。\n御史隸屬於朝廷，大多單獨行動。他們隱藏身分暗中巡察，追蹤違反禁忌之人。\n推奴手則和收尾人事務所一樣，各自結成團夥。當他們接獲命令或委託，得知該追捕哪個奴婢、哪個烙印時，便會以各團夥的方式展開推刷。那樣的推奴，既無禮數，也無格調可言。"
     },
     {
       "id": 144801,
       "name": "推刷巾",
       "desc": "目標每帶有1層 [Binding]，則使自身造成的傷害+5%(最多+15%)",
-      "flavor": "To cover the eyes is not to be blind.\nThese fabrics, created using Q Corp.'s Singularity, are fashioned into many forms, such as blindfolds and headbands, and are commonly used throughout the East. It is not unusual to see Fixers and employees of corporate entities in the East covering their heads and faces with these products.\nThe fabrics serve the same function as sunglasses, visors, and combat prosthetic eyes found elsewhere in the City. They scan the target's information in real time, augment the wearer's vision, and provide tactical analysis. At times, they can also serve as a means of communication with distant allies."
+      "flavor": "遮住雙眼，不代表就看不見。\n這種以Q公司的奇點製成的布，被加工成眼罩、頭帶等各種形式，廣泛流通於整個東部。因此在東部，常能看到頭上或臉上纏著布的收尾人或公司職員。\n它的作用與都市的墨鏡、護目鏡和戰鬥用義眼相同。能即時讀取對方的資訊、輔助視野，並分析狀況。有時還能與遠方的同伴通訊。"
     },
     {
       "id": 144802,
@@ -40,7 +40,7 @@
     {
       "id": 145202,
       "name": "牢固釘擊",
-      "desc": "On triggering [VibrationExplosion] on an enemy, raise target's Stagger Threshold by [LensmanNail] Stack"
+      "desc": "對敵方單位觸發 [VibrationExplosion] 時，使目標的混亂閾值前移與其 [LensmanNail] 層數相同的數值"
     },
     {
       "id": 145204,
@@ -50,53 +50,53 @@
     {
       "id": 145001,
       "name": "本國劍術 - 大環刀",
-      "desc": "Encounter Start: Gain 5 [ChoiSwordsmanship]\n\n<color=#ff6000><mark color=#ff000040><b><u>Assume a different Battleform of the Homeland every 3 turns</color></mark></b></u>\n\nTurn End: If this unit has Shield, gain 5 [Breath] and +2 [Breath] Count next turn\n\nWhen the following conditions are met, use a pattern that includes the \"Bow of the Homeland - Arrowloose\" Skill\n- When this unit lost all Clashes for 2 turns in a row (does not check for Unopposed Attacks)\n- In the turn after the turn in which this unit spent in Stagger\n- When in Low Morale or Panic",
-      "flavor": "The Sword of the Homeland, S Corp.'s traditional art of swordsmanship, is also divided into three branches: Sal, Pi, and Ppyeo.\nWithin their teachings exist techniques to hew and cleave through creatures of colossal stature such as Sanguns.\nTo perform them in full, a swordsman must wield a great hwando capable of bearing the strain of the techniques."
+      "desc": "關卡開始時，獲得5層 [ChoiSwordsmanship]\n\n<color=#ff6000><mark color=#ff000040><b><u>每經過3回合，改變自身的本國架勢</color></mark></b></u>\n\n回合結束時，若自身帶有護盾，則下回合使自身獲得5級 [Breath] 強度以及2回 [Breath]\n\n當下列條件遭到觸發時，使自身改變至包含技能「本國弓術[肉] - 有的放矢」的行動模式\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時",
+      "flavor": "S公司傳承的本國劍，同樣分為肉、血、骨三個分支。\n其中也流傳著為斬殺山君這般巨大存在而生的劍術。\n若要完整施展這樣的劍術，就需要與之相稱的巨大環刀。"
     },
     {
       "id": 145002,
       "name": "頭釘甲[肉] - 鐵壁",
-      "desc": "Take -30% damage from [Combustion], [Laceration], [Vibration], [Burst], [Sinking] (rounded down)\n\nGain the effects of [PanicChangeLock]; If this unit is Panicked at Turn End, reset SP to 45\n\nUpon entering the Encounter for the first time, gain 5 [ChoiSwordsmanshipShield]\n\n<color=#ff6000><mark color=#ff000040><b><u>When [ChoiSwordsmanshipShield] expires, end Encounter</color></mark></b></u>",
-      "flavor": "The Eastern Warstride Armors are not so much \"equipped\" as they are \"piloted.\" S Corp.'s Dujeong Brigandine is one example of such armor.\nMuch like R Corp.'s Powered Armor Suit and the Full Plate Armor used by the Knights of the West, the Dujeong Brigandine greatly augments the user's offensive and defensive combat capabilities.\nYet these advantages do not mean that armors of such potency are readily supplied for combat personnel. Each unit has its own unique controls and comes with the limitation of requiring separate fuels.\nWhat remains certain, however, is that, as with all the aforementioned armors, once a rider has familiarized himself with the Dujeong Brigandine's extended reach and heightened power output, he becomes a machine of war that strides across battlefields with the promise of slaughter."
+      "desc": "受到 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 造成的傷害-30%(無條件捨去)\n\n使自身獲得 [PanicChangeLock]；回合結束時，若自身處於恐慌狀態，則使自身的理智值變為45點\n\n自身首次於關卡中進入戰場時，使自身獲得5層 [ChoiSwordsmanshipShield]\n\n<color=#ff6000><mark color=#ff000040><b><u>當 [ChoiSwordsmanshipShield] 遭到解除時，戰鬥結束</color></mark></b></u>",
+      "flavor": "東部的騎乘甲與其說是「穿戴」，更接近「搭乘」的概念，S公司的頭釘甲也是這種騎乘甲的一種。\n如同R公司的動力裝甲服或西部騎士們的全身板甲，頭釘甲能讓使用者的攻防能力飛躍性地提升。\n只不過，性能如此優異的甲冑並不容易配發。此外，每種甲冑的操作方式各不相同，運作時還需要另外的燃料，這些限制也隨之而來。\n儘管如此，可以確定的是，正如動力裝甲服、全身板甲以及其他騎乘甲那樣，當搭乘者習慣了頭釘甲所提供的延伸攻擊距離與強化出力的那一刻，其在戰場上的殺傷力便會飛躍性地上升。"
     },
     {
       "id": 145003,
       "name": "淬鍊武藝",
       "desc": "拚點勝利時，使自身獲得2回 [Breath] (每回合最多2次)\n\n自身攻擊技能命中時，若目標帶有的 [Laceration] 強度低於5級，則於攻擊結束時使目標增加1級 [Laceration] 強度與2回 [Laceration] (每技能最多1次；每回合最多2次；優先指定主要目標)",
-      "flavor": "'There are those who persevere in training for lack of talent. Then there are those blessed with talent, only to let it rust.'\n'All men say that the title of Apex Blade can only be seized by the gifted.'\n'It matters not. Until the day comes for this blade of mine to rise high enough to meet the clouds, I shall persevere in honing my prowess.'"
+      "flavor": "「有人因為沒有才能而努力。也有人明明有才能卻不努力。」\n「所有人都說，最終能獲得第一劍之名的，是天生有才能的人。」\n「但那無所謂。直到這把劍觸及雲端的那天為止，我只會不斷鍛鍊。」"
     },
     {
       "id": 145005,
       "name": "肉斬",
-      "desc": "Deal and take +20% damage on Critical Hit against and from Bamboo-hatted Kim",
-      "flavor": "\"This flesh, I claim.\""
+      "desc": "暴擊時對金笠造成的傷害+20%，受到金笠暴擊時的傷害+20%",
+      "flavor": "「我來取你的肉。」"
     },
     {
       "id": 145006,
       "name": "顯影的記憶",
-      "desc": "Upon entering the Encounter, gain 3 [PhotoTransitionChoi]\n\n<color=#ff6000><mark color=#ff000040><b><u>Turn Start: At 0 [PhotoTransitionChoi] Stack, Retreat and transition into a different location</color></mark></b></u>\n\nWhen Returning to the field, based on current Battleform of the Homeland, gain or lose [ChoiSwordsmanship]\n- When in [ChoiSwordsmanshipOne]: Gain Stack\n- When in [ChoiSwordsmanshipMany]: Lose Stack"
+      "desc": "關卡中登場後，獲得3層 [PhotoTransitionChoi]\n\n<color=#ff6000><mark color=#ff000040><b><u>回合開始時，若自身的 [PhotoTransitionChoi] 層數為0，則自身將撤退並切換戰場地點</color></mark></b></u>\n\n重返戰場時，根據自身撤退的回合數以及本國架勢型態，使自身獲得或失去 [ChoiSwordsmanship] 層數\n- [ChoiSwordsmanshipOne]：獲得層數\n- [ChoiSwordsmanshipMany]：失去層數"
     },
     {
       "id": 145007,
       "name": "錯位的記憶",
-      "desc": "Turn Start: Gain the following effects:\n- When in [ChoiSwordsmanshipOne]: At less than 5 [ChoiSwordsmanship] Stack, gain (5 - [ChoiSwordsmanship] Stack) <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n- When in [ChoiSwordsmanshipMany]: At more than 5 [ChoiSwordsmanship] Stack, gain <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u> equal to surplus [ChoiSwordsmanship] Stack past 5 "
+      "desc": "回合開始時，使以下效果生效：\n- 自身處於 [ChoiSwordsmanshipOne] 時，若自身的 [ChoiSwordsmanship] 層數低於5層：\n對自身施加(5 - [ChoiSwordsmanship] 層數)層的<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n- 自身處於 [ChoiSwordsmanshipMany] 時，若自身的 [ChoiSwordsmanship] 層數高於5層：\n根據超出的層數，對自身施加等數的<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>層數"
     },
     {
       "id": 145101,
       "name": "本國劍術[肉] - 撕裂血肉",
-      "desc": "Encounter Start: Gain 5 [ChoiSwordsmanship]\n\nAssume a different Battleform of the Homeland every 3 turns\n\nOn Hit using a Slash Skill, gain 1 [Breath] Potency (once per Skill)\n\nWhen the following conditions are met, use a pattern that includes the \"Bow of the Homeland - Arrowloose\" Skill\n- When this unit lost all Clashes for 2 turns in a row (does not check for Unopposed Attacks)\n- Turn after Stagger\n- When in Low Morale or Panic\n\nTurn Start: At Min or Max [ChoiSwordsmanship] Stacks, use a powerful Skill\nIf this unit used the \"Bow of the Homeland - Arrowloose\" Skill in the last turn, use a powerful Skill regardless of [ChoiSwordsmanship] Stack on self\nAt 55% or lower HP, use a powerful Skill regardless of [ChoiSwordsmanship] Stack on self",
-      "flavor": "The Sword of the Homeland passed down in the Sal Court Circle is not, at its heart, an art of killing.\nTo cut and cut again until blood runs dry and the bone is laid bare—that is the essence of this art that strips the opponent's flesh into ribbons.\nThat is the Sword of the Homeland practiced by \"Sal.\""
+      "desc": "關卡開始時，使自身獲得5層 [ChoiSwordsmanship]\n\n每經過3回合，改變自身的本國架勢\n\n自身的斬擊技能命中時，使自身獲得1級 [Breath] 強度 (每技能最多1次)\n\n當下列條件遭到觸發時，使自身改變至包含技能「本國弓術[肉] - 有的放矢」的行動模式\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時\n\n回合開始時，若自身的 [ChoiSwordsmanship] 層數為最小值或最大值，則發動強力技能\n若自身於上回合使用了技能「本國弓術[肉] - 有的放矢」，則無視自身 [ChoiSwordsmanship] 層數，發動強力技能\n自身體力值減少至55%以下時，將無視自身 [ChoiSwordsmanship] 層數，發動強力技能(每場戰鬥最多1次)",
+      "flavor": "肉黨派所使用的本國劍，其本質並不在於殺戮。\n斬了又斬，直到血流不止、白骨外露，將對手的血肉一片片削落。這就是「肉」的本國劍。"
     },
     {
       "id": 145104,
       "name": "本國劍術[肉] - 更換架勢",
-      "desc": "<color=#ff6000><mark color=#ff000040><b><u>Turn Start: Gain or lose 2 [ChoiSwordsmanship] Stack based on Battleform of the Homeland on self (does not activate in the first turn of the Encounter)</color></mark></b></u>\n- [ChoiSwordsmanshipOne]: Gain Stack\n- [ChoiSwordsmanshipMany]: Lose Stack\n\nIn the turn where this unit equipped Envy Skills, this unit will not be affected by [ChoiSwordsmanship] Stack adjustment effects, and will <color=#ff6000><mark color=#ff000040><b><u>reset [ChoiSwordsmanship] Stack to 5 next turn</color></mark></b></u>"
+      "desc": "<color=#ff6000><mark color=#ff000040><b><u>回合開始時，根據自身的本國架勢，使自身的 [ChoiSwordsmanship] 層數增加或減少2層 (關卡開始即第1回合不會發動)</color></mark></b></u>\n- [ChoiSwordsmanshipOne]：增加\n- [ChoiSwordsmanshipMany]：減少\n\n自身裝備了嫉妒技能的回合中，自身的 [ChoiSwordsmanship] 層數將不受任何效果影響，並且<color=#ff6000><mark color=#ff000040><b><u>將於下回合使 [ChoiSwordsmanship] 重置至5層</color></mark></b></u>"
     },
     {
       "id": 145105,
       "name": "頭釘甲[肉] - 泰山",
-      "desc": "Take -30% damage from [Combustion], [Laceration], [Vibration], [Burst], [Sinking] (rounded down)\n\nGain the effects of [PanicChangeLock]; If this unit is Panicked at Turn End, reset SP to 45\n\nTurn Start: Gain the following effects:\n\n- When in [ChoiSwordsmanshipOne]: At less than 5 [ChoiSwordsmanship] Stack, gain (5 - [ChoiSwordsmanship] Stack) <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n\n- When in [ChoiSwordsmanshipMany]: At more than 5 [ChoiSwordsmanship] Stack, gain <color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u> equal to surplus [ChoiSwordsmanship] Stack past 5",
-      "flavor": "The three Court Circles of Sal, Pi, and Ppyeo each remade the standard Dujeong Brigandine of S Corp. into forms suited to their own doctrines.\nThe olden tales say that the \"Sal\" has ever been the first to spearhead a slaughter, eager to cleave the enemy's flesh before any other.\nThe \"Pi\" harvests the blood that spills forth from each opened flesh wound and turns it into endurance on the battlefield.\nThe \"Ppyeo\" takes the close of a slaughter. They part one joint from the other, bringing the enemy to their knees. Then, a blade through the neckbone finishes the collective act of killing."
+      "desc": "受到 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 造成的傷害-30%(無條件捨去)\n\n使自身獲得 [PanicChangeLock]；回合結束時，若自身處於恐慌狀態，則使自身的理智值變為45點\n\n回合開始時，使以下效果生效：\n\n- 自身處於 [ChoiSwordsmanshipOne] 時，若自身的 [ChoiSwordsmanship] 層數低於5層，\n則獲得(5 - [ChoiSwordsmanship] 層數)層<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>\n\n- 自身處於 [ChoiSwordsmanshipMany] 時，若自身的 [ChoiSwordsmanship] 層數高於5層，\n則獲得與超出層數等量的<color=#ff6000><mark color=#ff000040><b><u>[Vulnerable]</color></mark></b></u>",
+      "flavor": "以S公司基本的頭釘甲為基礎，肉、血、骨三個黨派各自打造出符合自身思想的頭釘甲。\n根據古老的傳說，「肉」總是開啟殺生的序幕。他們比任何人都更早剖開敵人的血肉。\n「血」承接每當血肉被剖開時流出的鮮血，並利用那些血來補足戰鬥的持續力。\n「骨」負責殺生的收尾。斬斷一節又一節的關節，使敵人屈膝跪地，最後斬斷敵人的頸骨，終結其性命。"
     },
     {
       "id": 146101,

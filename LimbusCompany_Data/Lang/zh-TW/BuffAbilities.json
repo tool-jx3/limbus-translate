@@ -198,7 +198,7 @@
     },
     {
       "id": "LacerationStackAndTurnAdder",
-      "desc": "+{0} to {1} Potency and Count inflicted with Skill & Coin effects"
+      "desc": "透過技能或硬幣效果增加的 {1} 強度與施加的回數額外{0}"
     },
     {
       "id": "MRR536",
@@ -314,7 +314,7 @@
     },
     {
       "id": "MRR551",
-      "desc": "Turn Start: At max HP, gain {1} {0} Potency and +{2} Count (once per enemy per Part per Encounter)"
+      "desc": "回合開始時，若體力為最大值，則獲得{1}級 {0} 強度，且回數增加{2}(每場戰鬥每名敵方單位每個部位最多1次)"
     },
     {
       "id": "MRR552",
@@ -334,7 +334,7 @@
     },
     {
       "id": "LacerationStackAndTurnAdderIfNotZero",
-      "desc": "+{0} to {1} Potency and Count inflicted with Skill & Coin effects"
+      "desc": "透過技能或硬幣效果增加的 {1} 強度與施加的回數額外{0}"
     },
     {
       "id": "AttackDmgMultiplierSpecificType",

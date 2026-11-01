@@ -6,7 +6,7 @@
         {
           "level": 1,
           "name": "啟動義體",
-          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10回，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15回，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數低於5回，則使自身減少體力上限10%的體力，並使自身獲得9回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -28,7 +28,7 @@
         {
           "level": 1,
           "name": "硬血血液逆流",
-          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10回，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15回，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數低於5回，則使自身減少體力上限10%的體力，並使自身獲得9回 [Charge]",
           "coinlist": [
             {
               "coindescs": [
@@ -124,7 +124,7 @@
         {
           "level": 1,
           "name": "硬血血液轉移",
-          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數不高於5，則消耗自身最大體力值的10%體力，並使自身獲得9回 [Charge]",
+          "desc": "[WhenUse] 若自身帶有的 [Charge] 回數不低於10回，則消耗3回 [Charge]，並使該技能硬幣威力 +1\n[WhenUse] 若自身帶有的 [Charge] 回數不低於15回，則再額外消耗3回 [Charge]，並使該技能造成的傷害+20%\n[WhenUse] 若自身帶有的 [Charge] 回數低於5回，則使自身減少體力上限10%的體力，並使自身獲得9回 [Charge]",
           "coinlist": [
             {
               "coindescs": [

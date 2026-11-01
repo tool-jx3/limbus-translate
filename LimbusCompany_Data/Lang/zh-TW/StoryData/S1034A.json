@@ -3,37 +3,37 @@
     {
       "id": 0,
       "place": "???",
-      "content": "Meanwhile, vast stretches of time passed within the department store."
+      "content": "這段期間，百貨公司裡流逝了無數的時間。"
     },
     {
       "id": 1,
-      "content": "I was certain that the Chaplain intended to keep Meursault here until he submitted to the Grand Magasin."
+      "content": "牧師打算把莫梭關在這裡，直到他順從百貨公司為止。"
     },
     {
       "id": 2,
-      "content": "He would lock him up in the corner of that lightless room. The room where his ailing mother had hidden herself away, once."
+      "content": "照不進光的房間一角。就在痛苦的母親藏身的那個房間裡。"
     },
     {
       "id": 3,
-      "content": "He must be desperate to leave."
+      "content": "他想必很想離開房間。"
     },
     {
       "id": 4,
-      "content": "He must be desperate to make the pain stop."
+      "content": "想必很想讓痛苦停下來。"
     },
     {
       "id": 5,
-      "content": "I could see how exhausted Meursault was—how he was hurting."
+      "content": "眼前的莫梭看起來既疲憊又痛苦。"
     },
     {
       "id": 6,
       "model": "신부거인",
-      "content": "Meursault, O Sinful One. There is an easy way to end that pain."
+      "content": "罪人莫梭，要停止痛苦的方法很簡單。"
     },
     {
       "id": 7,
       "model": "신부거인",
-      "content": "Regret. Repent."
+      "content": "那便是後悔，並且懺悔。"
     },
     {
       "id": 8,
@@ -43,203 +43,203 @@
     {
       "id": 9,
       "model": "신부거인",
-      "content": "Your mother is enjoying a fleeting respite in that room."
+      "content": "你的母親正在那個房間裡享受片刻的安寧。"
     },
     {
       "id": 10,
       "model": "신부거인",
-      "content": "Open that door again, and your sin will repeat."
+      "content": "倘若你再次打開那扇門，罪孽便會重演。"
     },
     {
       "id": 11,
       "model": "신부거인",
-      "content": "Leave the door shut if you have even a trace of regret in your heart. Stop where you are. Repent."
+      "content": "若你心懷悔意，就別打開門，就此停下，然後悔改吧。"
     },
     {
       "id": 12,
       "place": -1,
-      "content": "The voice is overbearing,"
+      "content": "即便如此。"
     },
     {
       "id": 13,
-      "content": "but Meursault opens the door anyway."
+      "content": "莫梭還是打開了門。"
     },
     {
       "id": 14,
-      "content": "Screaming is all that ever comes from inside the room."
+      "content": "門內傳來的，永遠只有慘叫。"
     },
     {
       "id": 15,
-      "content": "I can feel that Meursault is steeped head to toe in fatigue and fear, but his face is as expressionless as a blank slate."
+      "content": "滿是疲憊與恐懼，卻又面無表情的莫梭……"
     },
     {
       "id": 16,
-      "content": "Yet he opens the door still, living through the pain again."
+      "content": "打開門，重複著痛苦。"
     },
     {
       "id": 17,
       "model": "과거뫼르소",
-      "content": "They are... always hard to understand."
+      "content": "那些人……總是難以理解。"
     },
     {
       "id": 18,
       "model": "과거뫼르소",
-      "content": "They try to assign their own meanings to the world. Different meanings through arbitrary means."
+      "content": "他們試圖為世界賦予各自的意義，彼此不同的意義，以毫無章法的方式。"
     },
     {
       "id": 19,
       "model": "뫼르소",
-      "content": "... No. The fact is..."
+      "content": "不，其實……"
     },
     {
       "id": 20,
       "model": "뫼르소",
-      "content": "The fact is that I do understand them. That is the precise reason that I am consumed by this unending vertigo."
+      "content": "正因為能夠理解……我才會被無盡的暈眩侵蝕。"
     },
     {
       "id": 21,
       "model": "뫼르소",
-      "content": "Mother told me that assigning meanings is the only way for human beings to endure this world."
+      "content": "母親告訴過我，那些人，也就是人類，是必須賦予意義才能撐下去的存在。"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "One, however, cannot hope to assign meanings to everything, as the world is too vast and formidable to allow such a thing."
+      "content": "但要為一切賦予意義，這個世界太過沉重，也太過巨大。"
     },
     {
       "id": 23,
       "model": "뫼르소",
-      "content": "And so they entrust themselves to the inertia that the City has created in the name of civilization and culture. Some drift like buoys on waves, without even knowing where the current flows."
+      "content": "因此，他們要不是將自己託付給都市以文明與文化之名造就的慣性，就是像浮標一樣，不辨方向地隨波漂流。"
     },
     {
       "id": 24,
       "model": "뫼르소",
-      "content": "Nailed in place with no one but myself, I keep on watching them, my vision swimming with dizziness."
+      "content": "我獨自被釘在原地，注視著他們。感受著深不見底的暈眩。"
     },
     {
       "id": 25,
       "model": "뫼르소",
-      "content": "They will continue to change and waver even amid those waves."
+      "content": "往後，他們也會在那片波濤之中不斷改變、不斷動搖。"
     },
     {
       "id": 26,
       "model": "뫼르소",
-      "content": "What was once believed to be a revelation, an enlightenment, is overturned in an instant. What is believed to be right will change with the passing of time."
+      "content": "自以為領悟的事物會在一瞬間顛覆，自以為正確的事物也會隨著歲月流逝而改變。"
     },
     {
       "id": 27,
       "place": "過去，B2F 線團之巢",
       "model": "료슈9장이후노담배",
-      "content": "... I know."
+      "content": "……我知道。"
     },
     {
       "id": 28,
       "model": "료슈9장이후노담배",
-      "content": "Do I look like I'm going to stay this way forever?"
+      "content": "在你這傢伙眼裡，我會永遠都是這副樣子嗎？"
     },
     {
       "id": 29,
       "model": "료슈9장이후노담배",
-      "content": "I might let blind rage swing my blade again. Might get sick of all of this, or might even start hurting again."
+      "content": "我可能會再次被憤怒蒙蔽雙眼而揮刀，也可能對一切感到厭煩，或是變得痛苦。"
     },
     {
       "id": 30,
       "model": "료슈9장이후노담배",
-      "content": "But..."
+      "content": "但是……"
     },
     {
       "id": 31,
       "model": "료슈9장이후노담배",
-      "content": "Right now, this is where I've chosen to stay."
+      "content": "我決定現在待在這裡。"
     },
     {
       "id": 32,
       "model": "료슈9장이후노담배",
-      "content": "If the clock keeps yapping, I'll clean out my ears. If this damn scabbard gets in my way, I'll just have to keep it pacified. That's all I need to do."
+      "content": "時鐘要是吵個不停，掏掏耳朵就好；這煩人的刀鞘要是礙著我，安撫一下就行了。"
     },
     {
       "id": 33,
       "place": -1,
       "model": "뫼르소",
-      "content": "I do not understand."
+      "content": "無法理解。"
     },
     {
       "id": 34,
       "model": "뫼르소",
-      "content": "The countless gazes, the meanings that fall apart, the possibility of being wrong, the existence of this world..."
+      "content": "無數的視線、崩塌的意義、或許會出錯的念頭、這個世界的存在……"
     },
     {
       "id": 35,
       "model": "뫼르소",
-      "content": "... they all frighten me."
+      "content": "我感到恐懼。"
     },
     {
       "id": 36,
       "model": "뫼르소",
-      "content": "How do they endure this fear?"
+      "content": "他們究竟是如何承受那份恐懼的。"
     },
     {
       "id": 37,
       "place": "過去，3F 走廊",
       "model": "단테",
-      "content": "<... I'll be honest, I'm feeling a bit lost. I don't have any clues... let alone any hope of finding one.>"
+      "content": "<……不知道該怎麼辦，也看不到希望。>"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<I'm sure it won't be our last, either.>"
+      "content": "<而且……以後也會是這樣吧。>"
     },
     {
       "id": 39,
       "model": "단테",
-      "content": "<I know we might just end up proving Jeanne right, with nothing changing from our last attempt. But we can cross that bridge when we get to it.>"
+      "content": "<如果結局沒有不同……到時候再想吧。>"
     },
     {
       "id": 40,
       "place": "過去，B1F 手扶梯大廳",
       "model": "단테",
-      "content": "<I know. I just thought having a choice might make the whole thing more fun for Pwie.>"
+      "content": "<我知道。不過我想，這樣說不定會更好玩一點。>"
     },
     {
       "id": 41,
       "place": -1,
       "model": "뫼르소",
-      "content": "These people also lack certainty in their own judgment."
+      "content": "這些人同樣無法對自己的判斷抱持確信。"
     },
     {
       "id": 42,
       "model": "뫼르소",
-      "content": "Why, then, do they repeat actions that even they themselves fail to understand?"
+      "content": "即便如此，他們仍反覆做出連自己都無法理解的行為，理由又是什麼。"
     },
     {
       "id": 43,
       "model": "뫼르소",
-      "content": "I am in a world in which one must fathom the unfathomable to endure one's existence."
+      "content": "必須理解無法理解之事，才能撐下去的世界。"
     },
     {
       "id": 44,
       "model": "뫼르소",
-      "content": "It is a world that, for that very reason, tortured Mother all her life."
+      "content": "所以母親才不得不痛苦一生的世界。"
     },
     {
       "id": 45,
       "model": "뫼르소",
-      "content": "And her suffering was passed down to me, like an inheritance."
+      "content": "還有原封不動延續到我身上，那如同世代相傳般的痛苦。"
     },
     {
       "id": 46,
       "model": "뫼르소",
-      "content": "I put all of that behind."
+      "content": "將這一切拋在身後，"
     },
     {
       "id": 47,
       "model": "뫼르소",
-      "content": "Without even fully understanding what is pushing me to act..."
+      "content": "我依然無法完全理解自己的行為……"
     },
     {
       "id": 48,
       "model": "뫼르소",
-      "content": "I open the door to Mother's room."
+      "content": "打開了母親緊閉的房門。"
     },
     {
       "id": 49,
@@ -249,7 +249,7 @@
     {
       "id": 50,
       "model": "신부거인",
-      "content": "<color=#7d7d7d>So, in the end... You choose that interminable suffering once again.</color>"
+      "content": "<color=#7d7d7d>終究，你又一次選擇了那永無止境的痛苦嗎。</color>"
     },
     {
       "id": 51

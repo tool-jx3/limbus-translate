@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": 0,
-      "place": "法羅．穆埃托 海岸",
+      "place": "法羅．穆埃托，海岸",
       "model": "단테",
       "content": "<這也……太大了吧？！>"
     },
@@ -14,7 +14,7 @@
     {
       "id": 2,
       "model": "돈키호테",
-      "content": "Aha, I espy her name here! ‘Tis called by the name Rebelión de las Masas."
+      "content": "這裡寫著船名呢！看來是叫「大眾的反叛號」！"
     },
     {
       "id": 3,
@@ -128,7 +128,7 @@
     },
     {
       "id": 26,
-      "place": "大眾號 艦橋內部",
+      "place": "大眾號，艦橋 內部",
       "content": "艦橋的內部也相當華麗，和外觀不相上下。"
     },
     {

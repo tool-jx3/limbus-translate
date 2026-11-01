@@ -23,7 +23,7 @@
     {
       "id": "smalltalk_10812_1",
       "desc": "對話 1",
-      "dlg": "I am Ishmael of the Jia family, candidate for the seat of Family Hierarch of Hongyuan. I have found my clue, and I have returned to Hongyuan. Uh... what... what do you mean, that's weird...?\n... Yeah, no. There isn't anything weird about that. Of course I'm a Jia, I was born and raised by the Jia family."
+      "dlg": "我是鴻園的家主候選人，賈家的以實瑪利。為了尋找線索而回到了鴻園。呃……問我是不是有哪裡怪怪的……？\n……有什麼好奇怪的呢。我從出生起便在賈氏家族生活，姓賈不是理所當然的嘛。"
     },
     {
       "id": "smalltalk_10812_2",
@@ -113,12 +113,12 @@
     {
       "id": "battle_clear_ex_10812_1",
       "desc": "EX CLEAR戰鬥勝利",
-      "dlg": "嗬，沒想到這麼輕鬆就解決了……得給手下們一點銀子了。這種值得歡慶的日子，稍微放鬆一點也沒關係吧。"
+      "dlg": "嗬，沒想到這麼輕鬆就過關了……得給勢力的人們發點銀子了。這種值得歡慶的日子，稍微大方一點也沒關係吧。"
     },
     {
       "id": "battle_defeat_10812_1",
       "desc": "戰鬥失敗",
-      "dlg": "... My clan... destroyed...? They didn't... even stand a chance... Haah, it's... ngh, it's nothing. This is all my fault. I... should've been better prepared."
+      "dlg": "……毫無還手之力地被打敗了……？我的……勢力……？……呼……那個，沒……沒什麼。是我的準備……不夠周全的緣故……吧。"
     }
   ]
 }

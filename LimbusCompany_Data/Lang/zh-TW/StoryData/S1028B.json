@@ -3,25 +3,25 @@
     {
       "id": 0,
       "place": "B3F 鞣皮室",
-      "content": "Pwie still seemed lost in deep thought."
+      "content": "普依似乎一直陷在深深的思緒之中。"
     },
     {
       "id": 1,
       "model": "단테",
-      "content": "<It... It really suits you...>"
+      "content": "<很……很適合你呢……>"
     },
     {
       "id": 2,
       "model": "이스마엘",
-      "content": "It really does... At least all that work wasn't for nothing..."
+      "content": "就是說啊……費盡千辛萬苦弄到手，總算值得了……"
     },
     {
       "id": 3,
-      "content": "The garment Pwie had wanted now rested perfectly against their body, every measurement exact..."
+      "content": "普依穿上了一直想要的衣服，那件衣服也完全合普依的身，但……"
     },
     {
       "id": 4,
-      "content": "Yet Pwie showed neither excitement nor joy—I could not see even the smallest spark of satisfaction."
+      "content": "普依對此卻沒有表現出什麼特別的感觸，也沒有喜悅。"
     },
     {
       "id": 5,
@@ -31,32 +31,32 @@
     {
       "id": 6,
       "model": "뷔페어린이옷",
-      "content": "Wriggley... I didn't want to hurt... Wriggley."
+      "content": "噗扭……我不想……弄痛它。"
     },
     {
       "id": 7,
       "model": "뷔페어린이옷",
-      "content": "But... the moment I thought it might be all right to stop here... something burst open inside my head."
+      "content": "可是……就在我覺得停在這裡也沒關係的那一刻……腦袋裡有什麼東西爆了出來。"
     },
     {
       "id": 8,
       "model": "뷔페어린이옷",
-      "content": "It said I had to keep moving... that I had to fill every empty space..."
+      "content": "說我必須往前走……說我必須毫無空隙地填滿……"
     },
     {
       "id": 9,
       "model": "뷔페어린이옷",
-      "content": "... Is this my nature?"
+      "content": "……這就是所謂我的本性嗎？"
     },
     {
       "id": 10,
       "model": "이스마엘",
-      "content": "I think everyone can fall into madness at some point in their lives. One that they can hardly believe themselves."
+      "content": "我覺得任何人都會有那麼一次……陷入連自己都難以置信的瘋狂之中。"
     },
     {
       "id": 11,
       "model": "이스마엘",
-      "content": "... It may have been an instinct you were born with, as you said. Or perhaps, in that moment, reaching the fifth floor mattered more to you than Wriggley."
+      "content": "……也許正如剛才說的，那是與生俱來就懷有的本能；也可能是因為前往5樓比噗扭更重要，才產生的慾望。"
     },
     {
       "id": 12,
@@ -66,50 +66,50 @@
     {
       "id": 13,
       "model": "이스마엘",
-      "content": "But you know, even if it really was your instinct that caused it, you can't keep blaming it every time..."
+      "content": "就算真的是本能的錯……要是每次都只怪罪本能……"
     },
     {
       "id": 14,
       "model": "이상",
-      "content": "... or however dearly you wish to change, you shall remain rooted where you stand."
+      "content": "就會與想要改變的心意背道而馳，無法向前邁進。"
     },
     {
       "id": 15,
-      "content": "I waited for Pwie to bombard Ishmael with more questions, but none came."
+      "content": "普依對以實瑪利的話沒有提出任何疑問。"
     },
     {
       "id": 16,
-      "content": "They only stared at their own hands... and seemed lost in thought again."
+      "content": "只是……一直望著自己的手……陷入沉思。"
     },
     {
       "id": 17,
       "model": "이스마엘",
-      "content": "... Wait, what was that crash? It sounded like something gave way..."
+      "content": "……這是什麼聲音？好像有什麼東西倒塌的聲音……"
     },
     {
       "id": 18,
       "model": "이상",
-      "content": "I can hear... a monstrous cry as well..."
+      "content": "似乎……還聽得見怪叫聲……"
     },
     {
       "id": 19,
       "model": "뷔페어린이옷",
-      "content": "... It's crying."
+      "content": "……在哭。"
     },
     {
       "id": 20,
       "model": "뷔페어린이옷",
-      "content": "It's hurting for the cocoon... because the cocoon was hurting."
+      "content": "因為繭在痛……好像也跟著一起痛。"
     },
     {
       "id": 21,
       "model": "단테",
-      "content": "<... Meursault, that sound.... It's the same wail we heard in B2, isn't it? The entity that didn't belong to any of the factions here...>"
+      "content": "<……莫梭，這個聲音……是我們在地下2樓聽到的那個哭聲沒錯吧？既不屬於丹紅派，也不屬於漆黑派，不屬於任何勢力……>"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "... Correct."
+      "content": "……確實如此。"
     }
   ]
 }

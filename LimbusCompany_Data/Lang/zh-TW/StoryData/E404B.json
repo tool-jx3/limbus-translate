@@ -7,7 +7,7 @@
     },
     {
       "id": 1,
-      "content": "We were able to defeat a considerable number of trash crabs and collect enough scrap to fill a whole wagon and then some."
+      "content": "我們捕到了不少<size=110%>廢料蟹</size>，也收集到了一整車都裝不下的廢料。"
     },
     {
       "id": 2,
@@ -219,7 +219,7 @@
     {
       "id": 40,
       "model": "히스클리프",
-      "content": "Blimey, what's gotten into you, eh? What, gettin' indigestion from the crab chowder or something?"
+      "content": "喂，妳什麼意思？是妳剛剛吃的<size=110%>廢料蟹</size>濃湯還是什麼的出問題了？"
     },
     {
       "id": 41,

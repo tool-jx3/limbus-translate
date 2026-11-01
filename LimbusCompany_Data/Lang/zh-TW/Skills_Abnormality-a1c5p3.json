@@ -40,7 +40,7 @@
                   "desc": "[OnSucceedAttack] 下回合對目標施加1層暴怒易損 "
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has [Combustion], inflict 4 Burn"
+                  "desc": "[OnSucceedAttack] 若目標帶有 [Combustion]，則使其增加4級燒傷強度"
                 }
               ]
             },

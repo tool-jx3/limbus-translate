@@ -104,7 +104,7 @@
     {
       "id": 838002,
       "name": "若能擺脫這可怖的疾病",
-      "desc": "On Hit, if the target has [Laceration], heal Part and Core by 40% of the damage dealt.\n- This Passive heals +1% more HP for every [Laceration] Potency on self (max 20%)\n- For Unbreakable Coins: this effect does not activate on Hit After Clash Lose.\nEvery Turn Start: heal ([BloodDinner]/10) HP. (max 50)\nEvery Turn Start: at -15 or less SP, consume (20 - current SP) [BloodDinner] to gain SP and gain 2 Clash Power Up\nOn Kill, gain 5 [BloodArmor]",
+      "desc": "攻擊命中時，若目標帶有 [Laceration]，則使自身部位與本體恢復造成傷害量40%的體力。\n- 自身每帶有1級 [Laceration] 強度，則使本被動恢復量增加1%(最多20%)\n- 若為無法被破壞的硬幣，拚點失敗後命中時不會觸發該效果。\n每回合開始時，使自身恢復([BloodDinner] 層數/10)點體力(最多50點)\n每回合開始時，若自身理智值不高於-15，則消耗(20-自身理智值)層 [BloodDinner] 使自身恢復理智值，並使自身獲得2層拚點威力提升\n擊殺敵方單位後，使自身獲得5層 [BloodArmor]",
       "summary": "攻擊命中時，若目標帶有 [Laceration]，則使自身恢復體力"
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": 838007,
       "name": "但我有親族、有家人，不能視而不見",
-      "desc": "Turn End: If Panicked, recover from Panic, and consume 100 [BloodDinner] to gain 3 [Enhancement]\n- If this unit failed to consume [BloodDinner], gain 30 [Laceration], 3 [Enhancement], and 2 Damage Up"
+      "desc": "回合結束時，若自身陷入恐慌，則解除自身的恐慌，消耗100層 [BloodDinner] 並使自身獲得3層 [Enhancement]\n- 若未能消耗 [BloodDinner]，則使自身增加30級 [Laceration] 強度，並獲得3層 [Enhancement] 與2層傷害強化"
     },
     {
       "id": 837701,
@@ -180,7 +180,7 @@
     {
       "id": 841002,
       "name": "唐吉訶德派硬血",
-      "desc": "On Hit, if the target has [Laceration], heal this unit's Part & Core by 30% of the HP damage dealt.\nFor Unbreakable Coins: this effect does not activate on Hit after Clash Lose."
+      "desc": "攻擊命中時，若目標帶有 [Laceration]，則使自身部位與本體恢復造成體力傷害量30%的體力。\n若為無法被破壞的硬幣，拚點失敗後命中時不會觸發該效果。"
     },
     {
       "id": 841003,
@@ -225,7 +225,7 @@
     {
       "id": 841203,
       "name": "從內部開始結晶的血",
-      "desc": "If this unit is not eliminated by the turn after its generation, this unit will be eliminated at Turn End, activating the following effect.\nThe ally who was impaled by this unit takes fixed damage equal to 30% of their max HP, and gains 10 [Laceration] Potency and +5 [Laceration] Count."
+      "desc": "若直到生成後的下回合都未被擊殺，則在該回合結束時去除本單位，並觸發去除時的效果。\n之後，被本單位刺穿的友方單位受到其體力上限30%的固定傷害，並增加10級 [Laceration] 強度與5回流血。"
     },
     {
       "id": 841204,

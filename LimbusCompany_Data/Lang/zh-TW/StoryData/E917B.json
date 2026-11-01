@@ -2,469 +2,469 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Distortion Site - Condemned Building, District 14",
+      "place": "14區，廢棄建築物內，扭曲發生地點",
       "model": "단테",
-      "content": "<Okay. So...>"
+      "content": "<所以說……>"
     },
     {
       "id": 1,
-      "content": "More often than not, first impressions are prone to change."
+      "content": "第一印象與之後的印象有所不同，是很常見的事。"
     },
     {
       "id": 2,
-      "content": "The Bamboo-hatted Kim I remember was a man who'd drowned in his own fathoms, blaming himself for his powerlessness with a listless, heavy voice..."
+      "content": "我記憶中的金笠，是在心像之中用低沉的聲音責怪自己無能為力的人……"
     },
     {
       "id": 3,
-      "content": "That, however, had been while he was Distorted and sunken into himself, so I figured his original personality might be somewhat different."
+      "content": "但那終究是他扭曲後沉入深處時的模樣，所以我也想過，他原本的性格或許會有些不同。"
     },
     {
       "id": 4,
-      "content": "But <i>this</i> is not just \"somewhat.\""
+      "content": "但是……"
     },
     {
       "id": 5,
       "model": "단테",
-      "content": "<His personality isn't even in the same ballpark as my expectations...>"
+      "content": "<跟預想的差得有點多耶……>"
     },
     {
       "id": 6,
       "model": "단테",
-      "content": "<You're telling me, this guy here is Bamboo-hatted Kim?>"
+      "content": "<這個人真的是金笠？>"
     },
     {
       "id": 7,
       "model": "싱클레어",
-      "content": "Yup. We double-checked with Ezra, and she said he really is the same guy."
+      "content": "我們也問過以斯拉小姐了，她說是真的……"
     },
     {
       "id": 8,
       "model": "뉴김삿갓",
-      "content": "Whoa, that fire on your head's not hot at all? Fascinating stuff..."
+      "content": "看起來像在燒，可是真的一點都不燙嘛？真神奇……"
     },
     {
       "id": 9,
       "model": "단테",
-      "content": "<Can you... Okay, can we check again? Just in case...?>"
+      "content": "<真的、真的不能再確認一次嗎……？>"
     },
     {
       "id": 10,
       "model": "단테",
-      "content": "<I really can't wrap my head around the fact that this is the sullen, serious man whom we'd fought! Just look at what he's doing. He's... He's rubbing my face all over like he's checking out some kind of mantelpiece ornament!>"
+      "content": "<那個原本一本正經的人，現在正摸著我的下巴和額頭，像在欣賞裝飾品一樣盯著我看耶……！>"
     },
     {
       "id": 11,
       "model": "뉴김삿갓",
-      "content": "Lotsa ticking and tocking going on...! That's supposed to sound like them talking to you folks, huh?"
+      "content": "滴答滴答響個不停呢……！這個在各位聽來是在說話，對吧？"
     },
     {
       "id": 12,
       "model": "파우스트",
-      "content": "... Further confirmation would be redundant, Dante. This individual is conclusively identical to the one designated as Bamboo-hatted Kim."
+      "content": "……無須再確認，此人明顯就是金笠本人，但丁。"
     },
     {
       "id": 13,
       "model": "뉴김삿갓",
-      "content": "I've got no idea what you folks are so suspicious about..."
+      "content": "真不知道你們在懷疑什麼……"
     },
     {
       "id": 14,
       "model": "뉴김삿갓",
-      "content": "Aeng-du, just what exactly have you been telling people out there about me? They're all staring like they've seen a ghost."
+      "content": "櫻桃啊，妳在外面到底都是怎麼說我的，他們才會那麼驚奇啊？"
     },
     {
       "id": 15,
       "model": "뉴앵두",
-      "content": "I told them you are a gallant and formidable warrior, Mentor."
+      "content": "我說您是位英姿凜凜、強大的人，頭領。"
     },
     {
       "id": 16,
       "model": "뉴김삿갓",
-      "content": "Uh... But they don't look like they've heard the most flattering things about me."
+      "content": "這……不像是聽了肉麻稱讚之後的反應啊？"
     },
     {
       "id": 17,
       "model": "뉴김삿갓",
-      "content": "There, don't you hear it? The faint undercurrent of disappointment in the ticking."
+      "content": "妳看。這時鐘聲裡不是有點透出不信任的感覺嗎。"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<*sigh*>"
+      "content": "<唉……>"
     },
     {
       "id": 19,
       "model": "뉴앵두",
-      "content": "I also told them that you are a man of few words, but with much affection for the followers under your command."
+      "content": "還說您雖然話不多，卻有著在背後照顧部下的性情。"
     },
     {
       "id": 20,
       "model": "뉴김삿갓",
-      "content": "... Aeng-du."
+      "content": "……櫻桃啊。"
     },
     {
       "id": 21,
       "model": "뉴앵두",
-      "content": "Yes, Mentor?"
+      "content": "是，頭領。"
     },
     {
       "id": 22,
       "model": "뉴김삿갓",
-      "content": "That's a complete and utter lie. \"Man of few words\" is definitely not something you can say about a guy who's as talkative as me, don't you think?"
+      "content": "那根本是胡說八道吧……我話應該不少才對？"
     },
     {
       "id": 23,
       "model": "뉴앵두",
-      "content": "Yet I spoke no falsehood. Although your conduct is rather shallow and perhaps less refined for a leader of an organization, you are much more reserved and taciturn when conversing with those unfamiliar to you, are you not?"
+      "content": "我並未說謊。頭領以一個組織的首領而言，雖然舉止輕浮、欠缺品格，但與不熟的人交談時，不是很沉默寡言嗎？"
     },
     {
       "id": 24,
       "model": "뉴앵두",
-      "content": "No matter who one may be, one is bound to inspire either approval or disapproval from those around him, so... I refrained from mentioning any truths that might invite the latter. To even hint at anything that might tarnish the reputation of my master would not be unlike spitting on his name—and mine, by extension."
+      "content": "無論是誰，旁人的好惡總難免有所分歧，所以可能被歸為惡……的部分，我就刻意沒有提了。這豈不是往自己臉上吐口水嗎。"
     },
     {
       "id": 25,
       "model": "뉴김삿갓",
-      "content": "I simply had no reason to put on airs in front of my own folks. In any case... Oho, so you can't see anything if I block this part, hmm? Do tell—how many fingers am I holding up?"
+      "content": "只是沒必要連在自己人面前都耍帥罷了。喔呵。把這裡擋住就看不見前面了嗎？來。看得到幾根手指？"
     },
     {
       "id": 26,
       "model": "단테",
-      "content": "<Those are <i>not</i> my \"eyes,\" you know...>"
+      "content": "<我不是靠那種東西看前面的啦……>"
     },
     {
       "id": 27,
       "model": "오티스",
-      "content": "\"Your own folks,\" huh. Then you have already acknowledged and accepted that you now belong to Limbus Company."
+      "content": "自己人嗎……看來你已經接受自己隸屬於邊獄公司了。"
     },
     {
       "id": 28,
       "model": "돈키호테",
-      "content": "Why didst thou not pay a visit to the LCE? Verily, when one's mind is plagued by the absence of tranquility, venturing forth into the open air and touchable field of grass cleareth the storm of the heart!"
+      "content": "不過汝為何沒有來LCE呢？越是心情無法開朗的時候，本該多出門走走，心情才會開朗些……"
     },
     {
       "id": 29,
       "model": "오티스",
-      "content": "An asset of the company is expected to act in the company's interest. Yet, for whatever reason, I didn't see you fighting on the field of battle during Operation Spider Pyre."
+      "content": "既然隸屬於公司，就該為了公司的利益行動。但不知為何，你在焚燒蜘蛛巢作戰時並沒有現身。"
     },
     {
       "id": 30,
       "model": "오티스",
-      "content": "You will have to account for your absence in the mission."
+      "content": "我想聽聽你缺席作戰的詳細理由。"
     },
     {
       "id": 31,
-      "content": "Outis addressed Kim as though she were conducting a formal investigation, every word flat and hard. It was obvious she was not about to let her guard down anytime soon."
+      "content": "奧提斯似乎還沒有放下戒心，宛如審問一般，用生硬的聲音對他說道。"
     },
     {
       "id": 32,
       "model": "뉴김삿갓",
-      "content": "What mission...? Oh, <i>oh.</i> That one..."
+      "content": "作戰……？啊……那個？"
     },
     {
       "id": 33,
-      "content": "Kim finally seemed inclined to assume a more serious disposition. He stopped peering into my face and turned toward Outis..."
+      "content": "於是，金笠似乎也有意認真回答這個問題，總算不再盯著我的臉看，轉頭面向奧提斯。"
     },
     {
       "id": 34,
-      "content": "... although his hand was still on my head."
+      "content": "……雖然他的手還是沒從我頭上拿開。"
     },
     {
       "id": 35,
       "model": "뉴김삿갓",
-      "content": "All right. Clearly, there's some disconnect in expectations here..."
+      "content": "看來是有什麼誤會，我來解釋一下吧。"
     },
     {
       "id": 36,
       "model": "뉴김삿갓",
-      "content": "Listen here, you..."
+      "content": "我這個人啊，各位……"
     },
     {
       "id": 37,
       "model": "뉴김삿갓",
-      "content": "I'm really not all that about hard, bothersome work... get what I mean?"
+      "content": "不太想做那些又累又辛苦的事情。"
     },
     {
       "id": 38,
-      "content": "... The real disconnect was between his stoic expression and the words coming out of his mouth."
+      "content": "……這個人是用那麼認真的表情在說些什麼啊？"
     },
     {
       "id": 39,
       "model": "오티스",
-      "content": "Wha...?"
+      "content": "什……"
     },
     {
       "id": 40,
       "model": "뉴김삿갓",
-      "content": "So let's talk about the kind of fellow I am. Meet the resident layabout, who's forced to do his job—with a frown, too, I might add—only when he's got absolutely no other choice. I'm really not some big shot Aeng-du's apparently been promoting me as, folks."
+      "content": "基本上，我就是個不到萬不得已就不會皺著眉頭幹活的懶骨頭……可不是櫻桃那丫頭到處宣揚的那種了不起的偉人。"
     },
     {
       "id": 41,
       "model": "뉴김삿갓",
-      "content": "And I'd very much like to stop getting roped into stuff that keeps putting my life on the line...."
+      "content": "而且我也不想再做那種賭命的工作了……"
     },
     {
       "id": 42,
       "model": "이스마엘",
-      "content": "Fine, then why did you join the LCD in the first place if you'd rather be unemployed...? No, never mind. They probably forced you to stay."
+      "content": "既然您不想工作，那為什麼要待在LCD……不對，您也只能被困在那裡吧。"
     },
     {
       "id": 43,
       "model": "뉴김삿갓",
-      "content": "You catch on quick. First they spout this nonsense about Distortions and all, and then force-hired me, calling me a \"company-owned resource\" or whatever."
+      "content": "還真清楚嘛。先是說什麼扭曲不扭曲的，現在又說我是歸屬於公司的資源，擅自就讓我入職……"
     },
     {
       "id": 44,
       "model": "뉴김삿갓",
-      "content": "And the other day, they were again on about, uh, whatsitsname, Golden Bough...? Yes, they invited me on a tour to another department to listen in on some important presentation..."
+      "content": "那天也是，說什麼金枝……？說要發表某個重要的東西，有興趣的話就一起去其他部門參觀聽聽……"
     },
     {
       "id": 45,
       "model": "뉴앵두",
-      "content": "And I accepted. I thought it would be a fine opportunity to broaden my perspective."
+      "content": "我覺得這是增廣見聞的好機會……便說要跟著去了。"
     },
     {
       "id": 46,
       "model": "뉴김삿갓",
-      "content": "Aeng-du, dear, there are times when your commitment to duties shines brighter than the sun. I find that attitude so dazzling that I have to squint when I'm looking at you."
+      "content": "有時候看著妳的認真，我都覺得太過耀眼，眼睛都快睜不開了，櫻桃啊。"
     },
     {
       "id": 47,
       "model": "뉴김삿갓",
-      "content": "Who knows, maybe that's why I'm wearing this bamboo hat. To shade my eyes from your utter brilliance."
+      "content": "說不定我之所以戴著斗笠，就是因為妳太耀眼了……"
     },
     {
       "id": 48,
       "model": "뉴앵두",
-      "content": "Do you mean to say that you are in need of a shield to protect your eyes?"
+      "content": "您覺得刺眼嗎？"
     },
     {
       "id": 49,
       "model": "뉴앵두",
-      "content": "Lady Ezra, might I submit a request for a pair of sunglasses for my Mentor? Only if it's not too much of an imposition on the budget, that is..."
+      "content": "以斯拉小姐，倘若不會太浪費資金的話，可否為頭領申請一副墨鏡作為備品？"
     },
     {
       "id": 50,
       "model": "에즈라",
-      "content": "That. That right there. That's what I keep tellin' ya not to do! You can't just say yes to every silly thing he says and turn it into a supply request. Small expenses add up to a lot, y'know? You gotta save up everything you can in the piggy bank while you still can—or you'll end up broke."
+      "content": "就跟妳說了，不要什麼都順著他嘛？而且，雖然都是些零碎的備品，積少成多也是一大筆開銷。錢就是要趁有的時候省著用。"
     },
     {
       "id": 51,
       "model": "뉴앵두",
-      "content": "Is there truly no room for reconsideration...?"
+      "content": "即便如此，能否……通融一下？"
     },
     {
       "id": 52,
       "model": "에즈라",
-      "content": "No means no."
+      "content": "說不行就是不行。"
     },
     {
       "id": 53,
       "model": "뉴앵두",
-      "content": "Then pray make the purchase for me. I shall cover the cost myself."
+      "content": "既然如此，就勞煩妳代為購買吧。費用由我來付。"
     },
     {
       "id": 54,
       "model": "에즈라",
-      "content": "No can d—wait, what?"
+      "content": "不行……什麼？"
     },
     {
       "id": 55,
       "model": "뉴앵두",
-      "content": "My poor mentor is in a state of great discomfort, yet I possess neither the wisdom nor the knowledge to navigate the silver tongue of merchants and the maze of stalls to locate the very best item... so I must beg this favor of you."
+      "content": "頭領既然感到不便，就不能不準備，但我不太通曉世事行情，不知道該去哪裡買什麼樣的給他才好……所以才這樣拜託妳。"
     },
     {
       "id": 56,
       "model": "에즈라",
-      "content": "... You're giving me a frickin' headache, girl."
+      "content": "……哎喲，頭好痛。"
     },
     {
       "id": 57,
       "model": "뉴앵두",
-      "content": "I am aware that you and yours are no strangers to such dealings. There is no one else I can trust to complete such a procurement with the swiftness of the wind..."
+      "content": "各位辦事如風一般迅速，東西想必也很快就能備齊……"
     },
     {
       "id": 58,
       "model": "에즈라",
-      "content": "*sigh* You know what, never mind what I said. I'll just get you what you want..."
+      "content": "唉，不管了……好啦，我幫妳弄來就是了……"
     },
     {
       "id": 59,
       "model": "뉴앵두",
-      "content": "You heard the gentle lady, Mentor. Your suffering shall soon be alleviated."
+      "content": "好了，這下問題就能解決了。頭領。"
     },
     {
       "id": 60,
       "model": "뉴김삿갓",
-      "content": "... R-right."
+      "content": "……是、是啊。"
     },
     {
       "id": 61,
       "model": "뉴앵두",
-      "content": "My apologies for interrupting you amid conversation. Pray, continue."
+      "content": "打斷了您的話，實在抱歉。請您繼續說吧。"
     },
     {
       "id": 62,
       "model": "뉴앵두",
-      "content": "You had reached the part where they invited you to tour another department."
+      "content": "您說到「說要一起去參觀……」那裡了。"
     },
     {
       "id": 63,
-      "content": "... No sooner Aeng-du's words left her lips than her eyes glinted with something I couldn't really put my finger on—but it was a strange intensity that sent a chill down my spine."
+      "content": "……櫻桃的眼睛閃著奇妙的光芒，讓人隱約有點起雞皮疙瘩。"
     },
     {
       "id": 64,
       "model": "뉴김삿갓",
-      "content": "Uhh... Yeah. So that day, I was just gonna relax here and watch some TV. Hm..."
+      "content": "呃，那個……我只是想看看電視機休息一下而已，嗯……"
     },
     {
       "id": 65,
       "model": "싱클레어",
-      "content": "Well... Good on you for showing up to work today, I guess?"
+      "content": "難得……這次您倒是來工作了呢？"
     },
     {
       "id": 66,
       "model": "뉴김삿갓",
-      "content": "Let's say there's a debt to be repaid."
+      "content": "畢竟欠的債得還嘛。"
     },
     {
       "id": 67,
       "model": "뉴앵두",
-      "content": "... At least you understand that we are indeed indebted to the company."
+      "content": "……看來您還是認為那是筆債呢。"
     },
     {
       "id": 68,
       "model": "뉴김삿갓",
-      "content": "Uhh... Yeah. I suppose I do."
+      "content": "嘛……是啊。怎麼說都是。"
     },
     {
       "id": 69,
-      "content": "Kim's gaze lingered on Aeng-du's prosthetic arms as he answered."
+      "content": "說著這番話的金笠，視線正朝著櫻桃的手臂。"
     },
     {
       "id": 70,
       "model": "싱클레어",
-      "content": "Oh, Miss Aeng-du, your arms..."
+      "content": "啊，這麼說來，櫻桃小姐的手臂……"
     },
     {
       "id": 71,
-      "content": "Only after following Kim's gaze did Sinclair seem to notice Aeng-du's brand-new prosthetic arms."
+      "content": "辛克萊順著那道視線看過去，似乎這才發現櫻桃的手臂換過了，頗為吃驚地說道。"
     },
     {
       "id": 72,
-      "content": "The last time we saw her, Aeng-du had lost both her arms... and I remember Ezra asking her to sit tight and choose what type of prosthesis she wanted. Those arms are probably it."
+      "content": "上次見到她的時候，兩隻手臂都被砍斷了……既然說過要挑選義體，應該就是裝上了那個吧？"
     },
     {
       "id": 73,
       "model": "이스마엘",
-      "content": "It's not just the arms. Even her clothes are different now. And that sword..."
+      "content": "不只是手臂換了吧？服裝也是，還有劍也……"
     },
     {
       "id": 74,
       "model": "뉴앵두",
-      "content": "Mm. I had these arms fitted anew as soon as the operation was concluded. The gracious hosts in one of the LCD's teams had prepared them in advance."
+      "content": "嗯。作戰一結束回去，就換上了新的。是LCD部門的其他小組事先替我準備好的。"
     },
     {
       "id": 75,
-      "content": "With evident satisfaction, Aeng-du held up her dark metallic wrists as if to showcase them."
+      "content": "櫻桃似乎頗為中意，喀啦喀啦地轉動泛著黑光的手腕給我們看。"
     },
     {
       "id": 76,
-      "content": "The components fixed along her arm clicked and rattled, unfolding for a moment before neatly folding back into place."
+      "content": "接著，手臂上的各個零件喀啦作響，展開後又闔上。"
     },
     {
       "id": 77,
       "model": "돈키호테",
-      "content": "Oho!! Such graceful smoothness, wed to machine articulation! 'Tis as though I am beholding the marvelous prosthesis of the illustrious Siegfried himself!"
+      "content": "喔吼喔！！！流暢滑順的同時，竟又是如此機械化的動作！簡直像是在看收尾人齊格飛大人的義體一樣啊！！"
     },
     {
       "id": 78,
-      "content": "... Yup. The showcase would've gone lackluster without that trademark reaction."
+      "content": "……是啊。要是沒有這種反應，反而會有點失落。"
     },
     {
       "id": 79,
       "model": "싱클레어",
-      "content": "Those are strikingly similar to Schwarz Industries's N7 lineup... But I thought that model was discontinued..."
+      "content": "這和施瓦茨工業的N7系列款式設計很像呢……？那應該是現在已經停產的型號才對……"
     },
     {
       "id": 80,
       "model": "에즈라",
-      "content": "Nah, not theirs. It's one of the prototypes developed by LCD's Phenomena Deciphering Team, and they put 'em on her for trial!"
+      "content": "啊，不是那邊的啦。是LCD的現象解析小組新開發的，順便當作測試裝上去的。"
     },
     {
       "id": 81,
       "model": "에즈라",
-      "content": "Doubt you'll find another like them. They're based on technology spun from Distortions."
+      "content": "因為融合了從扭曲身上解析出來的技術，在別的地方應該很難看到喔。"
     },
     {
       "id": 82,
       "model": "싱클레어",
-      "content": "Oh! I..."
+      "content": "啊！啊、啊……"
     },
     {
       "id": 83,
       "model": "싱클레어",
-      "content": "I see..."
+      "content": "原來如此……"
     },
     {
       "id": 84,
-      "content": "For a brief moment, Sinclair's eyes lit up as if he had glimpsed something that brought him back to a memory... Then just as quickly, he fell silent, whatever he'd wanted to say next catching in his chest."
+      "content": "辛克萊像是看見了什麼令人懷念的東西般，眼睛一時亮了起來，接著又像是忽然想到什麼掛心的事，話停了一下。"
     },
     {
       "id": 85,
       "model": "뉴앵두",
-      "content": "Does something trouble you, Master Sinclair?"
+      "content": "辛克萊少爺？是有什麼問題嗎……"
     },
     {
       "id": 86,
-      "content": "It wasn't hard to understand what struck the tender memory for Sinclair. And why it cast a shadow over his face."
+      "content": "辛克萊會感到懷念的理由再明顯不過，表情會黯淡下來也是可以理解的。"
     },
     {
       "id": 87,
-      "content": "But..."
+      "content": "但是……"
     },
     {
       "id": 88,
       "model": "싱클레어",
-      "content": "... Sorry. Just reminded me of something from a long time ago."
+      "content": "啊，對不起。只是突然想起了以前的事。"
     },
     {
       "id": 89,
       "model": "싱클레어",
-      "content": "My dad used to work with prosthetics before he passed away—I thought this was the exact same model I saw back then."
+      "content": "我過世的父親是從事義體相關工作的。那是我以前偶然看過的東西……"
     },
     {
       "id": 90,
       "model": "뉴앵두",
-      "content": "... It appears I lacked tact. These arms have stirred a painful memory within you. For that, I apologize."
+      "content": "哎呀，想必是痛苦的回憶吧……是我考慮不周了。"
     },
     {
       "id": 91,
       "model": "싱클레어",
-      "content": "Haha... It's all right. I'm fine now."
+      "content": "哈哈。不會啦。現在已經沒事了。"
     },
     {
       "id": 92,
-      "content": "Sinclair's voice still carried a faint tremor, but beneath it, there was a firmness that had not been there before."
+      "content": "他的聲音裡仍帶著些微顫抖，但比起從前，多了一份堅定。"
     },
     {
       "id": 93,
-      "content": "He really had grown a great deal."
+      "content": "……他真的成長了好多啊，我也不禁這麼想。"
     },
     {
       "id": 94,
       "model": "에즈라",
-      "content": "You can thank yours truly for picking the sword! I was there with her."
+      "content": "劍是我陪她一起挑的。"
     },
     {
       "id": 95,
       "model": "뉴앵두",
-      "content": "I did inform Lady Ezra that any blade that could serve as a weapon would suffice, but she insisted on browsing the goods. I daresay I was given the opportunity to lay my eyes on every type of sword I could ever hope to see in this life, walking through the Workshop street that day."
+      "content": "我說隨便一把能揮的刀就行了……那天逛遍了工坊街，感覺把這輩子要看的劍都看完了。"
     },
     {
       "id": 96,
       "model": "에즈라",
-      "content": "Oh, please. Girl, we walked for just 4 hours. That's nothing."
+      "content": "欸～才走了四個小時就在那邊喊累。"
     },
     {
       "id": 97,
@@ -473,142 +473,142 @@
     },
     {
       "id": 98,
-      "content": "While everyone was distracted taking in Aeng-du's new outfit and equipment, Kim had quietly slipped away from the crowd and crouched down in a corner."
+      "content": "在罪人們看著櫻桃的變化時，金笠悄悄離開原處，蹲到了角落裡。"
     },
     {
       "id": 99,
-      "content": "He was rummaging through things scattered on the floor, picking them up... Is he pocketing them?"
+      "content": "他在地上掉落的東西裡翻來翻去……好像還撿了幾個塞進口袋？"
     },
     {
       "id": 100,
       "model": "단테",
-      "content": "<Anyway... What is this place supposed to be? What are all these things?>"
+      "content": "<話說回來，這裡是……做什麼的地方啊？這些又都是什麼……>"
     },
     {
       "id": 101,
       "model": "이스마엘",
-      "content": "It's basically a wreck now, but... there are strobes and that cloth backdrop over there. Maybe it used to be a photo studio?"
+      "content": "雖然像是廢墟……不過有照明，後面也有布幕，會不會以前是照相館呢？"
     },
     {
       "id": 102,
-      "place": "Abandoned Photo Lab, District 14",
+      "place": "14區，化為廢墟的照相館",
       "model": "단테",
-      "content": "<Oh. That could explain why there are so many photos stuck around the place.>"
+      "content": "<啊，所以周圍才會貼了這麼多照片嗎？>"
     },
     {
       "id": 103,
       "model": "싱클레어",
-      "content": "Uh... Probably? This thing definitely looks like a camera, at least..."
+      "content": "呃……是嗎？這個確實長得很像相機啦……"
     },
     {
       "id": 104,
-      "content": "Sinclair picked up a small cylindrical object and turned it over in his hands, studying it with curiosity."
+      "content": "辛克萊像是看到了新奇的東西，一邊把玩著一個小小的圓筒狀物品，一邊問道。"
     },
     {
       "id": 105,
       "model": "싱클레어",
-      "content": "What do you suppose this is? A battery, maybe..."
+      "content": "這是什麼呢？是電池之類的東西嗎？"
     },
     {
       "id": 106,
       "model": "싱클레어",
-      "content": "Ah! There's some kind of strip inside. Lemme just pull it out—"
+      "content": "啊，這裡有一層像薄膜的東西耶？拉拉看的話……"
     },
     {
       "id": 107,
       "model": "오티스",
-      "content": "No, that's..."
+      "content": "不，那是……"
     },
     {
       "id": 108,
       "model": "뫼르소",
-      "content": "...!"
+      "content": "……！"
     },
     {
       "id": 109,
-      "content": "Outis shouted a sharp warning at Sinclair as if she had realized something..."
+      "content": "奧提斯似乎察覺到了什麼，急忙朝辛克萊大喊，但……"
     },
     {
       "id": 110,
-      "content": "But Meursault's hand shot out before she could even finish, clasping over Sinclair's wrist before the strip could be pulled out."
+      "content": "莫梭的手比那更快，一瞬間就抓住了辛克萊的手。"
     },
     {
       "id": 111,
       "model": "싱클레어",
-      "content": "W-what? What did I do?!"
+      "content": "怎、怎麼了嗎？！"
     },
     {
       "id": 112,
       "model": "뫼르소",
-      "content": "Exposure to sunlight damages these objects."
+      "content": "這些東西一旦曝露在陽光下就會變質。"
     },
     {
       "id": 113,
       "model": "싱클레어",
-      "content": "I... I already pulled a little bit out, though...!"
+      "content": "我、我已經拉出來一點了耶……？"
     },
     {
       "id": 114,
       "model": "뫼르소",
-      "content": "It can be rewound. Carefully rotate the ridged section on the cylinder."
+      "content": "冷靜，轉動圓筒上方的凹凸部位。可以捲回去。"
     },
     {
       "id": 115,
       "model": "뫼르소",
-      "content": "I am currently blocking the sunlight from reaching the exposed section. Damage is of no concern."
+      "content": "我正擋著不讓光線照到，不必擔心會變質。"
     },
     {
       "id": 116,
       "model": "싱클레어",
-      "content": "Oh, okay... You mean this one, right? This is the part that rotates? Yup, it went back in."
+      "content": "啊……是這個可以轉吧？好，應該好了。"
     },
     {
       "id": 117,
       "model": "뫼르소",
-      "content": "Mm."
+      "content": "嗯。"
     },
     {
       "id": 118,
-      "content": "With a quiet nod, Meursault took the object from Sinclair's hand."
+      "content": "莫梭默默點了點頭，拿起了辛克萊手上的東西。"
     },
     {
       "id": 119,
       "model": "오티스",
-      "content": "It seems to be... a film roll."
+      "content": "似乎是……底片。"
     },
     {
       "id": 120,
       "model": "오티스",
-      "content": "There is something written on the outside... \"Experiment #4\"?"
+      "content": "外面也寫了些什麼……「實驗作品……#4」？"
     },
     {
       "id": 121,
       "model": "뫼르소",
-      "content": "It appears to be a compact roll for a film camera."
+      "content": "看來是手動相機用的小型底片。"
     },
     {
       "id": 122,
       "model": "오티스",
-      "content": "You seem to have handled one before."
+      "content": "你以前用過嗎？"
     },
     {
       "id": 124,
       "model": "뫼르소",
-      "content": "Yes."
+      "content": "對。"
     },
     {
       "id": 125,
-      "content": "Meursault's answer came without any further explanation, but the way he adjusted the camera on the table certainly didn't look like that of a first-timer."
+      "content": "他一邊這麼說，一邊熟練地操作起桌上的相機，那模樣確實不像是第一次接觸。"
     },
     {
       "id": 126,
       "model": "오티스",
-      "content": "Hmm. I once received a report containing photographs taken on film cameras during the war."
+      "content": "嗯，戰爭期間，我也曾收到過以底片拍攝的照片報告。"
     },
     {
       "id": 127,
       "model": "오티스",
-      "content": "Film rolls used by N Corp. are particularly difficult to falsify—they were often used to collect intelligence during secret operations. The film fixes light directly onto the medium, from what I've heard."
+      "content": "尤其N公司使用的底片難以偽造，以前主要用於在機密作戰中蒐集情報。聽說光會直接被收進那種底片裡。"
     },
     {
       "id": 128,
@@ -617,217 +617,217 @@
     },
     {
       "id": 129,
-      "content": "A peculiar expression flashed across Ezra's face as she regarded Outis. Perhaps it was the mention of \"war\" that caught her attention..."
+      "content": "以斯拉似乎對「戰爭」這個詞有所反應，用微妙的表情看了奧提斯一眼後……"
     },
     {
       "id": 130,
       "model": "에즈라",
-      "content": "Anyway, we've managed to regroup in one piece! Let's come up with a plan to deal with these Distortions, guys! Hmm. Where should we begin?"
+      "content": "那既然平安會合了，就來討論對付這次扭曲的計畫……嗯。這該從哪裡開始說明才好呢？"
     },
     {
       "id": 131,
-      "content": "... then, in the next breath, she returned to her usual bubbly self and steered the conversation away from the subject."
+      "content": "她很快又恢復成雀躍的語氣，把話題岔開了。"
     },
     {
       "id": 132,
-      "place": "An Office Building, Past",
+      "place": "過去，某處的事務所",
       "model": "모제스4",
-      "content": "<i>Both Ezra and I, we're... we are both still trying to be free of the misconception we inflicted on ourselves.</i>"
+      "content": "我也好，以斯拉也好……都還在花不少時間糾正那個錯覺。"
     },
     {
       "id": 133,
-      "place": "Abandoned Photo Lab, District 14",
-      "content": "For all her unfailingly perky disposition, Ezra, too, may be carrying traumatic memories every bit as devastating as Gregor's..."
+      "place": "14區，化為廢墟的照相館",
+      "content": "看起來總是很開朗的以斯拉，或許也跟格里高爾一樣，有著某種心理創傷……"
     },
     {
       "id": 134,
       "model": "이상",
-      "content": "Hmm...? Does there yet remain aught deserving illumination?"
+      "content": "嗯……？然而，還有什麼需要說明的嗎？"
     },
     {
       "id": 135,
       "model": "단테",
-      "content": "<Huh? Yeah, wait... you're right. Haven't we cleaned up the Distortion already?>"
+      "content": "<咦？說得也是……扭曲不是已經處理掉了嗎？>"
     },
     {
       "id": 136,
-      "content": "I couldn't feel any more traces of Distortions nearby... and it didn't seem like any of the other Sinner teams elsewhere were actively engaged in battle at the moment either."
+      "content": "至少周圍已經感覺不到其他扭曲的氣息了……在別處的罪人們，目前好像也沒有人在戰鬥。"
     },
     {
       "id": 137,
       "model": "파우스트",
-      "content": "Dante is asking whether the Distortion suppression has not, in fact, already been concluded."
+      "content": "但丁在問，扭曲不是已經處理完畢了嗎。"
     },
     {
       "id": 138,
       "model": "에즈라",
-      "content": "Oh, not yet. These people we fought just now? They only got caught up in the Distortion—they didn't actually Distort themselves. We haven't even gotten close to the Distortion's \"Inflection Point\" yet."
+      "content": "這些人只是被捲進扭曲而已，本身並沒有扭曲啦。因為我們連扭曲的「曲折點」都還沒接近呢。"
     },
     {
       "id": 139,
       "model": "단테",
-      "content": "<\"Inflection Point\"...?>"
+      "content": "<曲折點……？>"
     },
     {
       "id": 140,
       "model": "에즈라",
-      "content": "Uh... Anyhoo, finding an \"Inflection Point\" without the Team Leader around's gonna take some time... Maybe it won't be too bad with your help..."
+      "content": "嗯……這種「尋找曲折點」的工作，沒有隊長在的話會花點時間……不過有你們幫忙的話，應該會好一點吧……"
     },
     {
       "id": 141,
-      "content": "Ezra swept her eyes around the room with a look of frustration as though she had just been handed a puzzle box with half the pieces missing."
+      "content": "以斯拉一臉茫然地環顧四周，接著說了下去。"
     },
     {
       "id": 142,
       "model": "오티스",
-      "content": "By \"Inflection Point,\" are you referring to the point on a graph in which the directionality of its curvature changes?"
+      "content": "曲折點……妳是指圖表上曲線彎曲方向改變的位置嗎？"
     },
     {
       "id": 143,
       "model": "이상",
-      "content": "Mm... Calling to mind the present context, it may less be a mathematical term and more a specialized polyseme referring to the point at which Distortion occurs—the motive, intent, or, indeed, the point in which \"inflection\" of the mind occurs."
+      "content": "嗯……比起那個，或許是指人扭曲的轉捩點……動機或意圖之類的東西吧。"
     },
     {
       "id": 144,
       "model": "에즈라",
-      "content": "Yup, that's about right. That's the kind of \"Inflection Point\" I was talkin' about. So in our department, we use that term to mean the \"source\" of a Distortion, the \"Inflector\" or \"cause\" behind it... stuff like that."
+      "content": "是李箱先生說的那種意思的「曲折點」沒錯。扭曲的根源、扭曲的原因……這類東西，在我們部門就叫曲折點。"
     },
     {
       "id": 145,
       "model": "에즈라",
-      "content": "Y'know, Distortion's hard to treat if ya don't know the core cause~ Treat the symptoms you see on the surface all you like, but if ya never find the root cause, the Distortion's never gettin' solved."
+      "content": "扭曲要是不知道核心原因，就很難治療～就算治好表面上看得到的症狀，找不到根源也解決不了。"
     },
     {
       "id": 146,
       "model": "에즈라",
-      "content": "Though I guess you guys never really had to look for that kinda stuff, huh? Your Boss Clock opens a door into their fathoms or whatever, right?"
+      "content": "也是啦，你們應該不需要找那種東西吧。聽說你們的時鐘老大會打開進入心像的門？"
     },
     {
       "id": 147,
       "model": "오티스",
-      "content": "... You mean Dungeon of the Fathoms?"
+      "content": "……妳是想說心像迷宮嗎？"
     },
     {
       "id": 148,
       "model": "에즈라",
-      "content": "Yup, that! That's the one."
+      "content": "對！就是那個那個。"
     },
     {
       "id": 149,
       "model": "에즈라",
-      "content": "From where we're standing, Distortions are really high-maintenance, time-consuming headaches. It's one thing to somehow manage to locate the Inflection Point, but curing it is another thing."
+      "content": "從我們的角度來看，扭曲是超級費工又難搞的對手。就算想方設法找出曲折點，要治療它又是另一回事了。"
     },
     {
       "id": 150,
       "model": "에즈라",
-      "content": "But you guys can just march straight into someone's heart, knock the snot out of everything in there, and then, ta-da~! Patient ready for discharge! That's how it works, right? Ugh... Not gonna lie, I was so jealous when I heard about it, I almost bit my sleeve off."
+      "content": "可是聽說你們只要進到內心深處拚命敲打，就會鏘鏘～治療結束了～扭曲就這樣解除了？嗚嗚……第一次聽到的時候，真的好羨慕喔……"
     },
     {
       "id": 151,
       "model": "돈키호테",
-      "content": "Verily, I had thought your team would set about resolving Distortions once the foe was vanquished, as we are wont to do... Was that not so?"
+      "content": "吾還以為汝等也像吾等一樣，先打過一場再開始……不是嗎？"
     },
     {
       "id": 152,
       "model": "에즈라",
-      "content": "Course not! Why would anyone come to us with a Distortion suppression request if it were that simple in the first place?"
+      "content": "當然不是！要是那樣就能解決，怎麼可能會有委託找上我們？"
     },
     {
       "id": 153,
       "model": "에즈라",
-      "content": "But yeah, most of the time, peeps try brute-force approaches to it first, and when things go south, they send requests to the company or to our Detective's office."
+      "content": "通常是那些一開始想直接用武力鎮壓、結果失敗的人，才會把委託交給我們公司或偵探的事務所。"
     },
     {
       "id": 154,
       "model": "싱클레어",
-      "content": "That means the client this time must've been..."
+      "content": "那麼，這次的委託人也是……"
     },
     {
       "id": 155,
       "model": "에즈라",
-      "content": "Bingo. Apparently, the residents of Butter Street had all chipped in to commission all kinds of agencies like the Zwei and the combat-specialized Fixer Offices... but none of them could actually do things right, and the job got passed on to us."
+      "content": "沒錯。住在這裡、奶油街的居民們湊了錢，去委託Zwei協會啦、戰鬥事務所啦……到處都委託過了，可是都沒用……所以才轉到我們這裡來。"
     },
     {
       "id": 156,
       "model": "오티스",
-      "content": "Meaning... the Distortion phenomenon related to this kind of photograph is still occurring unchecked somewhere on the streets."
+      "content": "也就是說……街上仍然在發生跟這類照片有關的扭曲現象吧。"
     },
     {
       "id": 157,
       "model": "에즈라",
-      "content": "Exactly. That's why... we gotta find something. Anything that might count as a clue..."
+      "content": "沒錯。所以……得找到點什麼線索才行……"
     },
     {
       "id": 158,
-      "content": "Ezra gazed down at the people lying on the floor with a complicated expression."
+      "content": "以斯拉神情複雜地低頭看著倒在地上的人們。"
     },
     {
       "id": 159,
-      "content": "Neat ash-gray suits, and the logo on the collar of their uniform and briefcases..."
+      "content": "整齊穿著灰色西裝的人們……再看看他們衣領和包上的紋樣。"
     },
     {
       "id": 160,
       "model": "단테",
-      "content": "<Hey, Isn't that N Corp.'s logo?>"
+      "content": "<這好像是N公司的標誌……？>"
     },
     {
       "id": 161,
-      "content": "Come to think of it, wasn't Meursault..."
+      "content": "啊，這麼說來，莫梭他……"
     },
     {
       "id": 162,
-      "place": "Calw - Town Square, Past",
+      "place": "過去，卡爾夫鎮 廣場",
       "model": "뫼르소",
-      "content": "<i>... I was once employed by N Corp.</i>"
+      "content": "……因我曾是N公司的員工。"
     },
     {
       "id": 163,
       "model": "그레고르",
-      "content": "<i>Wha…? You used to work with those people?</i>"
+      "content": "欸……？你竟然和他們一起工作過？"
     },
     {
       "id": 164,
-      "place": "Abandoned Photo Lab, District 14",
-      "content": "Yeah, he did mention that he used to work at N Corp. Maybe he can offer us some insight..."
+      "place": "14區，化為廢墟的照相館",
+      "content": "他說過自己曾在N公司工作。或許知道些什麼……"
     },
     {
       "id": 165,
       "model": "단테",
-      "content": "<Do you know who these guys are, Meursault?>"
+      "content": "<莫梭……你知道這些人是做什麼的嗎？>"
     },
     {
       "id": 166,
       "model": "뫼르소",
-      "content": "Yes, Manager."
+      "content": "是，經理。"
     },
     {
       "id": 167,
       "model": "뫼르소",
-      "content": "These are N Corp. Class 2 Staff members. Given the camera briefcases in their possession, they are likely members of the Pinframe Team of Service des Clous."
+      "content": "N公司的2級員工。既然配備了這種攝影式公事包，應該是尖釘部隊的固定小隊，經理。"
     },
     {
       "id": 168,
-      "content": "Meursault recited the information as though he were pulling it from a file he had already sorted and placed in the back of the shelf in his mind."
+      "content": "莫梭像是很熟悉似地，流暢地說出他們的資訊。"
     },
     {
       "id": 169,
       "model": "단테",
-      "content": "<Okay, \"Pinframe Team,\" huh. Anything you can tell us about them?>"
+      "content": "<你也知道那個叫固定小隊的部門是做什麼的嗎？>"
     },
     {
       "id": 170,
       "model": "뫼르소",
-      "content": "Yes."
+      "content": "是。"
     },
     {
       "id": 171,
       "model": "뫼르소",
-      "content": "It is one of N Corp.'s many field departments related to information gathering and processing. Their primary duties include the handling of N Corp.'s internal information, analysis of N Corp.'s internal intelligence, the sorting and arranging of N Corp.'s internal information, and inter-sector—"
+      "content": "N公司多個情報取得及處理相關外勤部門之一，主要業務為N公司內部的情報處理、N公司內部的情報分析、N公司內部的情報整理、區劃與區劃之間的……"
     },
     {
       "id": 172,
       "model": "단테",
-      "content": "<Th-that'd be enough...>"
+      "content": "<夠、夠了……>"
     },
     {
       "id": 173,
@@ -837,26 +837,26 @@
     {
       "id": 174,
       "model": "에즈라",
-      "content": "Whoa~ Is he a talking encyclopedia or something? Yeah, another thing to be jealous of... You think it'll be okay if we borrow him sometimes?"
+      "content": "哇～是會說話的百科全書嗎？這也有點讓人羨慕耶……偶爾借我們用一下不行嗎？"
     },
     {
       "id": 175,
       "model": "이스마엘",
-      "content": "Might be an issue for us if you just went and borrowed our team's encyclopedia..."
+      "content": "您要是擅自把別人部門的百科全書搶走，我們會很困擾的……"
     },
     {
       "id": 176,
-      "content": "Looks like everyone agrees that he's an encyclopedia..."
+      "content": "看來百科全書這部分，大家都不否認啊。"
     },
     {
       "id": 177,
       "model": "에즈라",
-      "content": "Anyway, your encyclopedia's right. They're from N Corp.'s Pinframe Team. Seen them a few times before in N Corp.'s Nest."
+      "content": "總之，就像百科全書說的，是N公司的固定小隊沒錯。我在N公司的巢裡見過幾次。"
     },
     {
       "id": 178,
       "model": "에즈라",
-      "content": "But why would people already busy enough dealing with Nest affairs come all the way out to a shabby Backstreet like this? Hm... Got any guesses?"
+      "content": "不過，光在巢裡工作就夠忙的人，為什麼會跑到這種破舊的後巷來呢……？嗯嗯……有想到什麼可能的理由嗎？"
     },
     {
       "id": 179,
@@ -866,130 +866,130 @@
     {
       "id": 180,
       "model": "뫼르소",
-      "content": "I am unable to determine that."
+      "content": "無法判斷。"
     },
     {
       "id": 181,
       "model": "에즈라",
-      "content": "Eh?"
+      "content": "欸？"
     },
     {
       "id": 182,
       "model": "뫼르소",
-      "content": "The possible range of connection between the two pieces of information is exceedingly broad. Listing every relevant reason as to why they may have come here would require a considerable amount of time."
+      "content": "與兩項情報相關的範圍過廣。若要列出他們可能來到此處的所有相關理由，需要不短的時間。"
     },
     {
       "id": 183,
       "model": "뫼르소",
-      "content": "Therefore, I will not present a determinative answer to that question."
+      "content": "因此，我不會對此做出判斷。"
     },
     {
       "id": 184,
       "model": "에즈라",
-      "content": "...?"
+      "content": "……？"
     },
     {
       "id": 185,
-      "content": "Ezra, staring holes into me with an unspoken \"Is this dude always like this?\" wouldn't pull any answers from me, you know..."
+      "content": "以斯拉用一副「他本來就這樣嗎？」的表情直盯著我，但我也給不出任何答案……"
     },
     {
       "id": 186,
-      "content": "Because aside from combat situations, I've still got no way to figure out what's going on in his head."
+      "content": "因為除了戰鬥之外，我至今仍不知道莫梭平時都在想些什麼。"
     },
     {
       "id": 187,
-      "content": "Okay, then..."
+      "content": "那麼……"
     },
     {
       "id": 188,
       "model": "단테",
-      "content": "<Okay, then, Meursault, maybe this'll be easier to answer? From an objective point of view—>"
+      "content": "<那，莫梭。客觀來看的話……>"
     },
     {
       "id": 189,
-      "content": "And that was when I noticed something I'd never imagined would happen."
+      "content": "就在那時，我看見了。"
     },
     {
       "id": 190,
-      "content": "Meursault's eyes widened, his gaze fixing me with such force that I could almost feel the faint tremor in it."
+      "content": "莫梭睜得格外大的雙眼，以及強烈到讓人感覺得到些微顫抖、直盯著我的瞳孔。"
     },
     {
       "id": 191,
-      "content": "A leveling stare that came with..."
+      "content": "彷彿……在斥責我一般。"
     },
     {
       "id": 192,
       "model": "뫼르소",
-      "content": "There is no such thing as an objective point of view,"
+      "content": "並不存在所謂的客觀。"
     },
     {
       "id": 193,
       "model": "뫼르소",
-      "content": "Manager."
+      "content": "……經理。"
     },
     {
       "id": 194,
-      "content": "... a clipped tone and a look almost bordering on rebuke."
+      "content": "還有那番話語與表情。"
     },
     {
       "id": 195,
       "model": "단테",
-      "content": "<Uh...>"
+      "content": "<呃……>"
     },
     {
       "id": 196,
       "model": "뫼르소",
-      "content": "A given judgment may seem infinitely close to objectivity, but ultimately, all things are subjective, without exception."
+      "content": "就算能無限接近客觀，一切都是主觀的判斷。這點沒有例外。"
     },
     {
       "id": 197,
-      "content": "I fell silent for a moment, lost in thought."
+      "content": "我暫時停下話語，陷入沉思。"
     },
     {
       "id": 198,
-      "content": "Part of it was because Meursault's reaction had caught me off guard, but I also wondered whether this response might be connected to why he would always refuse to make judgments for himself."
+      "content": "雖然也是因為對意外的反應感到驚訝，但更是因為我覺得，莫梭不願自己做判斷的理由，或許就藏在這個反應之中。"
     },
     {
       "id": 199,
-      "content": "And if this has something to do with his turn, which I know is just around the corner..."
+      "content": "如果這和即將輪到莫梭的時刻有關……"
     },
     {
       "id": 200,
       "model": "단테",
-      "content": "<Got it. Then tell me three subjective reasons you think are most likely for why these people had to come all the way into the Backstreets.>"
+      "content": "<我知道了。那就照你的想法，說出這些人為什麼會跑到後巷來，可能性最高的三個理由。>"
     },
     {
       "id": 201,
-      "content": "... I need to understand who he actually is as much as I can."
+      "content": "在那之前，我必須盡可能地了解他。"
     },
     {
       "id": 202,
-      "content": "Because I'll never know when I'll get another chance to really get to know him if I brush this off with a simple \"Oh. I see, my bad.\" as usual."
+      "content": "……如果在這裡又像以前一樣，用「啊。這樣啊，抱歉。」之類的話帶過，就不知道什麼時候才會再有這樣的機會了。"
     },
     {
       "id": 203,
       "model": "뫼르소",
-      "content": "Yes, Manager."
+      "content": "是，經理。"
     },
     {
       "id": 204,
       "model": "뫼르소",
-      "content": "I would presume that their mission was one or all of the following: retrieval of a video recording or recordings in violation of N Corp.'s Taboo; prompt elimination of the violator; contact with an informant in the Backstreets collaborating with N Corp.'s Nest; or identification and arrest of a wanted individual or individuals designated by the Nest."
+      "content": "推測其目的為回收違反禁忌的影像物並處決違反者，或是與後巷內的巢協力者接頭，或是確認巢指定通緝犯的位置並加以逮捕。"
     },
     {
       "id": 205,
       "model": "싱클레어",
-      "content": "Taboo...? You mean these people could be Taboo Hunters?"
+      "content": "禁忌嗎……？那麼，這幾位有可能是禁忌獵人嗎？"
     },
     {
       "id": 206,
       "model": "에즈라",
-      "content": "Nah, no way. They don't send out Taboo Hunters for every single violation, y'know~"
+      "content": "欸，怎麼可能。又不是每次違反翼的禁忌，都會有禁忌獵人出馬～"
     },
     {
       "id": 207,
       "model": "에즈라",
-      "content": "Like, Wings usually leave minor Taboo violations to be handled by subcontracted Fixer Offices or employees of the department in charge. I'd say these guys here are N Corp.'s staff!"
+      "content": "如果是重要度低的禁忌，會由承包翼的委託的收尾人事務所，或負責部門的員工來處理。有時也會像這樣，由相關部門的員工找上門來。"
     },
     {
       "id": 208,
@@ -999,78 +999,78 @@
     {
       "id": 209,
       "model": "싱클레어",
-      "content": "Um, Miss Aeng-du? What are you looking for in their pockets...?"
+      "content": "櫻桃小姐……？您怎麼突然翻起這些人的口袋……"
     },
     {
       "id": 210,
       "model": "뉴앵두",
-      "content": "I am looking through their belongings, for enlightening clues yet be hidden in the sleeve or the fold of their garments. Lady Moses has been gifted with the art of discerning the truth from what lies before her with but a single glance, yet my eyes are foreign to such a feat."
+      "content": "吾正在查看他們懷中之物，看看是否有直接的線索。要像摩西女士那樣僅憑眼前所見便得出答案，終究力有未逮。"
     },
     {
       "id": 211,
       "model": "에즈라",
-      "content": "Lemme take a look too! Hmm, this is an employee card, and... okay, this one's a wallet, so let's put that back. We don't wanna be robbers..."
+      "content": "一起看吧？嗯……這是通行證，這個是……錢包，所以放回去……"
     },
     {
       "id": 212,
       "model": "에즈라",
-      "content": "Aha! This might be it. It's an order missive!"
+      "content": "啊。就是這個。職務命令書！"
     },
     {
       "id": 213,
-      "content": "Ezra pulled a sheet of paper out from an N Corp. staff's coat and read its contents aloud."
+      "content": "以斯拉從N公司員工的懷裡拿起一張紙，大聲地把內容唸給我們所有人聽。"
     },
     {
       "id": 214,
       "model": "에즈라",
-      "content": "\"Work Details: Elimination of the individual of a Category 3 Taboo Violation. Address: Butter Street...\""
+      "content": "業務內容是處決3級禁忌違反者。地址是位於奶油街的……"
     },
     {
       "id": 215,
       "model": "에즈라",
-      "content": "... This is the place!"
+      "content": "……不就是這裡嗎？"
     },
     {
       "id": 216,
       "model": "단테",
-      "content": "<Which means...>"
+      "content": "<也就是說……>"
     },
     {
       "id": 217,
       "model": "이스마엘",
-      "content": "Which means all of this might be pointing to something. Whoever used to work in this studio and the Distortion phenomenon might be connected."
+      "content": "說不定有關聯呢。在這間照相館工作的人，和扭曲。"
     },
     {
       "id": 218,
       "model": "에즈라",
-      "content": "Yeah. Now that you mention it, when that whole pop-and-change thing happened, it did kinda feel like a camera flash..."
+      "content": "也是……那個啪！一下變掉的時候，感覺好像有點像閃光燈閃了一下……"
     },
     {
       "id": 219,
       "model": "에즈라",
-      "content": "All right, let's start by combing through this place. Lemme know if you find anything suspicious!"
+      "content": "好。那就從這裡開始仔細搜查吧。發現可疑的東西要說喔！"
     },
     {
       "id": 220,
       "model": "돈키호테",
-      "content": "Oho...! At long last, hath the hour arrived for my debut as a detective, forsooth!"
+      "content": "哦呵……！既然如此，吾這次終於能以偵探之姿出道！了嗎！"
     },
     {
       "id": 221,
-      "content": "Don Quixote must've been miffed for not getting to play detective back in T Corp.—no idea where she'd been keeping them, but she immediately pulled out the detective props that'd been given to Rodya, Ryōshū, and Hong Lu back then..."
+      "content": "唐吉訶德似乎一直對在T公司沒被選上、沒能扮演偵探的事耿耿於懷，又不知從哪裡拿出了那時分給羅佳、良秀和鴻璐的偵探道具……"
     },
     {
       "id": 222,
       "model": "돈키호테",
-      "content": "Verily, I had foreseen that the day would come!"
+      "content": "吾早料到會有這種時候……！"
     },
     {
       "id": 223,
-      "content": "... Fortunately, Outis wasted no time putting an end to Don Quixote's badly-timed shenanigan. A sharp dressing-down from her was enough to make our dejected chivalric adventurer stuff the costume away."
+      "content": "……在奧提斯一聲「別做蠢事」的喝斥下，唐吉訶德又悄悄把衣服收了回去。"
     },
     {
       "id": 224,
-      "content": "Okay, then... We should get moving, too..."
+      "content": "那麼，我們也開始行動吧……"
     }
   ]
 }

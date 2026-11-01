@@ -385,7 +385,7 @@
         {
           "level": 1,
           "name": "燃起來了嗎？！",
-          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能未被破壞的硬幣命中時，額外造成10點打擊傷害\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身的現存體力低於上限的50%，則使本技能造成的傷害+40%",
+          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能未被破壞的硬幣命中時，額外造成10點打擊傷害\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身的現存體力不高於上限的50%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -575,7 +575,7 @@
         {
           "level": 1,
           "name": "差不多是融解殞亡的時候了",
-          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能未被破壞的硬幣命中時，額外造成10點斬擊傷害\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身的現存體力低於上限的50%，則使本技能造成的傷害+40%",
+          "desc": "[WhenUse] 若自身帶有 [ReinforcedTattooSpider]，則使本技能未被破壞的硬幣命中時，額外造成10點斬擊傷害\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身的現存體力不高於上限的50%，則使本技能造成的傷害+40%",
           "coinlist": [
             {
               "coindescs": [
@@ -678,7 +678,7 @@
         {
           "level": 1,
           "name": "刀殺 [雷瓦汀]",
-          "desc": "[BeforeUse] 使自身失去10點理智值\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身現存體力值低於上限的50%，則本技能造成的傷害+40%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
+          "desc": "[BeforeUse] 使自身失去10點理智值\n[DefeatDuel] 本技能造成的傷害無法使目標陷入混亂\n[BeforeAttack] 若自身現存體力值不高於上限的50%，則本技能造成的傷害+40%\n[BeforeAttack] 對自身施加(本技能的硬幣數×2)級 [Combustion] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -1131,7 +1131,7 @@
         {
           "level": 1,
           "name": "獲得材料 - 浴血的藝術品",
-          "desc": "Prioritizes Corpus Theaters\n[WhenUse] If target has 6+ [Laceration], Coin Power +1\n[DefeatDuel] Deal -80% final damage and damage dealt by this Skill cannot Stagger the target",
+          "desc": "優先指定人體觀劇作為目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[DefeatDuel] 使本技能造成的最終傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [

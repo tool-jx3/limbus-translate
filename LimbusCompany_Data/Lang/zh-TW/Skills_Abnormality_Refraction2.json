@@ -106,7 +106,7 @@
         {
           "level": 1,
           "name": "尋找某物的哭聲",
-          "desc": "Clash Power +2 for every surviving Old Umbrella\nDeal +25% damage for every Old Umbrella\nAt the end of the turn, all Old Umbrella expire\nAt the end of the turn, gain <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u> equal to the number of <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u> gained in the first turn",
+          "desc": "拚點時，每存活1把舊傘，使本技能的拚點威力 +2\n每把舊傘使本技能造成的傷害 +25%\n回合結束時，移除全部舊傘\n回合結束時，根據第1回合獲得的<sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">保護傘</color></link></u>層數，獲得相應層數的<sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">保護傘</color></link></u>",
           "coinlist": [
             {
               "coindescs": [
@@ -144,7 +144,7 @@
         {
           "level": 1,
           "name": "劇烈反應",
-          "desc": "[StartBattle] Gain <sprite name=\"Thorn\"><color=#a16a3b><u><link=\"Thorn\">Thorns</color></link></u>",
+          "desc": "[StartBattle] 使自身獲得<sprite name=\"Thorn\"><color=#a16a3b><u><link=\"Thorn\">荊棘</color></link></u>",
           "coinlist": [
             {
               "coindescs": [
@@ -163,7 +163,7 @@
         {
           "level": 1,
           "name": "劇烈反應",
-          "desc": "[StartBattle] Gain <sprite name=\"Thorn\"><color=#a16a3b><u><link=\"Thorn\">Thorns</color></link></u>",
+          "desc": "[StartBattle] 使自身獲得<sprite name=\"Thorn\"><color=#a16a3b><u><link=\"Thorn\">荊棘</color></link></u>",
           "coinlist": [
             {
               "coindescs": [
@@ -220,7 +220,7 @@
         {
           "level": 1,
           "name": "注入電流",
-          "desc": "[StartBattle] Gain 2 Self-charge\n[DefeatDuel] Lose 2 Self-charge\nDeal +10% damage to targets with <sprite name=\"Paralysis\"><color=#e30000><u><link=\"Paralysis\">Paralyze</color></link></u>",
+          "desc": "[StartBattle] 使自身獲得2層自體發電\n[DefeatDuel] 消耗2層自體發電\n若目標帶有<sprite name=\"Paralysis\"><color=#e30000><u><link=\"Paralysis\">麻痺</color></link></u>，則使本技能造成的傷害+10%",
           "coinlist": [
             {},
             {
@@ -240,7 +240,7 @@
         {
           "level": 1,
           "name": "電氣放電",
-          "desc": "[StartBattle] Gain 2 Self-charge\n[DefeatDuel] Lose 2 Self-charge\nDeal +10% damage to targets with <sprite name=\"Paralysis\"><color=#e30000><u><link=\"Paralysis\">Paralyze</color></link></u>",
+          "desc": "[StartBattle] 使自身獲得2層自體發電\n[DefeatDuel] 消耗2層自體發電\n若目標帶有<sprite name=\"Paralysis\"><color=#e30000><u><link=\"Paralysis\">麻痺</color></link></u>，則使本技能造成的傷害+10%",
           "coinlist": [
             {},
             {},
@@ -261,7 +261,7 @@
         {
           "level": 1,
           "name": "放電",
-          "desc": "[StartBattle] Gain 2 Self-charge\n[DefeatDuel] Lose 2 Self-charge\nDeal +10% damage to targets with <sprite name=\"Paralysis\"><color=#e30000><u><link=\"Paralysis\">Paralyze</color></link></u>",
+          "desc": "[StartBattle] 使自身獲得2層自體發電\n[DefeatDuel] 消耗2層自體發電\n若目標帶有<sprite name=\"Paralysis\"><color=#e30000><u><link=\"Paralysis\">麻痺</color></link></u>，則使本技能造成的傷害+10%",
           "coinlist": [
             {
               "coindescs": [
@@ -290,7 +290,7 @@
         {
           "level": 1,
           "name": "超高壓放電",
-          "desc": "[WhenUse] At 5+ <sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">Self-charge</color></link></u>, deal +20% damage for each Count of <sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">Self-charge</color></link></u> over 5\n[WhenUse] Clash Power +1 for every <sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">Self-charge</color></link></u>\n[WhenUse] Spend all Self-charge",
+          "desc": "[WhenUse] 若自身的<sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">自體發電</color></link></u>層數不低於5層，則超過5層的<sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">自體發電</color></link></u>每有1層，使本技能造成的傷害+20%\n[WhenUse] 自身每帶有1層<sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">自體發電</color></link></u>，使本技能的拚點威力 +1\n[WhenUse] 消耗所有自體發電",
           "coinlist": [
             {
               "coindescs": [
@@ -316,7 +316,7 @@
         {
           "level": 1,
           "name": "盤繞",
-          "desc": "If this Skill is on a slot, head gains 50 Shield HP for every <sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">Self-charge</color></link></u>.\nIf the head is broken, gain 25 Shield HP for every <sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">Self-charge instead.</color></link></u>\nSpend 1 Self-charge for every amount of Shield HP lost equal to the Shield HP gained for every Self-charge",
+          "desc": "行動槽中存在本技能時，每層<sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">自體發電</color></link></u>使頭部獲得50點護盾\n若頭部被破壞，則每層<sprite name=\"SelfCharge\"><color=#a16a3b><u><link=\"SelfCharge\">自體發電</color></link></u>使頭部獲得25點護盾\n每失去等同於1層自體發電獲取量的護盾，使自身消耗1層自體發電",
           "coinlist": [
             {}
           ]
@@ -411,7 +411,7 @@
         {
           "level": 1,
           "name": "只剩這些了！",
-          "desc": "Prioritizes enemies with <sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">Tremor</color></link></u>",
+          "desc": "優先指定帶有<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的單位",
           "coinlist": [
             {
               "coindescs": [
@@ -440,15 +440,15 @@
         {
           "level": 1,
           "name": "這個我吃了！",
-          "desc": "If target has no <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>, Clash Power +8 \n[WhenUse] If target has no <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>, deal +150% damage",
+          "desc": "若目標未帶有<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>，則使本技能的拚點威力+8\n[WhenUse] 若目標未帶有<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>，則使本技能造成的傷害+150%",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has 5+ <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>, deal 0 damage.\nFairy Gentleman will be Staggered next turn."
+                  "desc": "[OnSucceedAttack] 若目標的<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>層數不低於5層，本硬幣造成的傷害變為0。\n下回合使紳士精靈陷入混亂。"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Remove all <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>."
+                  "desc": "[OnSucceedAttack] 消耗目標所有<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>。"
                 }
               ]
             }
@@ -702,7 +702,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3級流血 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, heal 25 HP"
+                  "desc": "[OnSucceedAttack] 若目標帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>，則使自身恢復25點體力"
                 }
               ]
             },
@@ -712,7 +712,7 @@
                   "desc": "[OnSucceedAttack] 若目標的流血 回數不低於2回，則使其增加5級流血 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If target has <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u>, heal 25 HP"
+                  "desc": "[OnSucceedAttack] 若目標帶有<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>，則使自身恢復25點體力"
                 }
               ]
             }
@@ -731,7 +731,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Deal +5% damage for every <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+                  "desc": "[OnSucceedAttack] 目標每帶有1級<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度，使本硬幣造成的傷害+5%"
                 },
                 {
                   "desc": "[OnSucceedAttack] 消耗目標所有流血 強度"
@@ -753,7 +753,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Heal 1% of Max HP for every <sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">Bleed</color></link></u> on target"
+                  "desc": "[OnSucceedAttack] 目標每帶有1級<sprite name=\"Laceration\"><color=#e30000><u><link=\"Laceration\">流血</color></link></u>強度，使自身恢復體力上限1%的體力"
                 },
                 {
                   "desc": "[OnSucceedAttack] 消耗目標1回流血 "
@@ -811,7 +811,7 @@
         {
           "level": 1,
           "name": "只剩這些了！",
-          "desc": "Prioritizes enemies with <sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">Tremor</color></link></u>",
+          "desc": "優先指定帶有<sprite name=\"Vibration\"><color=#e30000><u><link=\"Vibration\">震顫</color></link></u>的單位",
           "coinlist": [
             {
               "coindescs": [
@@ -840,15 +840,15 @@
         {
           "level": 1,
           "name": "這個我吃了！",
-          "desc": "If target has no <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>, Clash Power +8 \n[WhenUse] If target has no <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>, deal +150% damage",
+          "desc": "若目標未帶有<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>，則使本技能的拚點威力+8\n[WhenUse] 若目標未帶有<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>，則使本技能造成的傷害+150%",
           "coinlist": [
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] If target has 5+ <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>, deal 0 damage.\nFairy Gentleman will be Staggered next turn."
+                  "desc": "[OnSucceedAttack] 若目標的<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>層數不低於5層，本硬幣造成的傷害變為0。\n下回合使紳士精靈陷入混亂。"
                 },
                 {
-                  "desc": "[OnSucceedAttack] Remove all <sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">Tipsy</color></link></u>."
+                  "desc": "[OnSucceedAttack] 消耗目標所有<sprite name=\"Tipsiness\"><color=#a16a3b><u><link=\"TipsinessRail\">醉意</color></link></u>。"
                 }
               ]
             }
@@ -916,7 +916,7 @@
         {
           "level": 1,
           "name": "懸掛的誘餌",
-          "desc": "[CantDuel] +1 Atk Weight for every turn Fairy is alive.\nPrioritizes Identities with <sprite name=\"FairyCharm\"><color=#a16a3b><u><link=\"FairyCharm\">Charmed</color></link></u>.",
+          "desc": "[CantDuel] 根據精靈存活的回合數，使本技能的攻擊容量相應增加。\n優先指定被<sprite name=\"FairyCharm\"><color=#a16a3b><u><link=\"FairyCharm\">魅惑</color></link></u>的人格。",
           "coinlist": [
             {
               "coindescs": [
@@ -1004,7 +1004,7 @@
         {
           "level": 1,
           "name": "顯露的深淵",
-          "desc": "Deal +100% damage to targets with 5+ <sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">Rupture</color></link></u>",
+          "desc": "若目標的<sprite name=\"Burst\"><color=#e30000><u><link=\"Burst\">破裂</color></link></u>強度不低於5級，則使本技能造成的傷害+100%",
           "coinlist": [
             {
               "coindescs": [
@@ -1106,7 +1106,7 @@
         {
           "level": 1,
           "name": "空間撕裂",
-          "desc": "若自身的充能 回數不低於10回，則消耗10回充能 並使本技能的拚點威力+5，造成的傷害+100%\n若自身的充能 回數不高於10回，消耗本體100點體力並使本技能造成的傷害+80%\n本技能不會使自身體力變為0。",
+          "desc": "若自身的充能回數不低於10回，則消耗10回充能並使本技能的拚點威力+5，造成的傷害+100%\n若自身的充能回數低於10回，消耗本體100點體力並使本技能造成的傷害+80%\n本技能不會使自身體力變為0。",
           "coinlist": [
             {
               "coindescs": [
@@ -1267,7 +1267,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Gain 3 Borrowed Time next turn"
+                  "desc": "[OnSucceedAttack] 下回合使自身獲得3層時間租賃"
                 },
                 {
                   "desc": "[OnSucceedAttack] 下回合對目標施加3層束縛 "
@@ -1284,7 +1284,7 @@
         {
           "level": 1,
           "name": "加速的瞬間",
-          "desc": "Skill Power +1 for every <sprite name=\"TimeRental\"><color=#f8c200><u><link=\"TimeRental\">Borrowed Time</color></link></u>\n[DefeatDuel] Spend 3 Charge Count",
+          "desc": "自身每帶有1層<sprite name=\"TimeRental\"><color=#f8c200><u><link=\"TimeRental\">時間租賃</color></link></u>，使本技能威力+1\n[DefeatDuel] 消耗自身3回充能",
           "coinlist": [
             {
               "coindescs": [
@@ -1299,7 +1299,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Deal +20% damage for every <sprite name=\"TimeRental\"><color=#f8c200><u><link=\"TimeRental\">Borrowed Time</color></link></u>"
+                  "desc": "[OnSucceedAttack] 自身每帶有1層<sprite name=\"TimeRental\"><color=#f8c200><u><link=\"TimeRental\">時間租賃</color></link></u>，使本硬幣造成的傷害+20%"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使自身獲得4回充能 "
@@ -1472,7 +1472,7 @@
         {
           "level": 1,
           "name": "前往永恆的庭院",
-          "desc": "[CantDuel]\n[WhenUse] 對目標施加冠冕 。解除自身所帶有的所有效果\n若自身本體現存體力不高於40%，下回合將會生成被強化的玫瑰單位",
+          "desc": "[CantDuel]\n[WhenUse] 對目標施加冠冕。解除自身所帶有的所有效果\n若自身本體現存體力低於40%，下回合將會生成被強化的玫瑰單位",
           "coinlist": [
             {}
           ]

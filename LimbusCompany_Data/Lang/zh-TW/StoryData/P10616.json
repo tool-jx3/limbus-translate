@@ -5,264 +5,264 @@
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Ohh, I see, I see~"
+      "content": "啊哈，真的嗎～"
     },
     {
       "id": 1,
       "teller": "記者",
       "title": "???",
-      "content": "Yeah, guess that's the way it is. Things haven't really changed much since then."
+      "content": "是啊，是啊。因為那時候的情況也和現在差不多。"
     },
     {
       "id": 2,
       "teller": "記者",
       "title": "???",
-      "content": "What's more important, though, was finding new material for my next artic—whoa! Watch your head!"
+      "content": "比起那個，找到後續報導的題材更重要啦。啊！頭那邊……"
     },
     {
       "id": 3,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Fuhu, I appreciate your concern, but it really is unnecessary~"
+      "content": "呵呵，您還替我擔心呀……我一點問題都沒有喔～"
     },
     {
       "id": 4,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "You should be watching out for yourself, actually. I sure hope a stray utensil from all the fighting going on around us doesn't come flying straight at you."
+      "content": "我反倒比較擔心採訪我的您會不小心被波及呢。"
     },
     {
       "id": 5,
       "teller": "記者",
       "title": "???",
-      "content": "*cough* I mentioned this in my last article, but growing up, I used to work out a lot at the Association gym, so..."
+      "content": "咳嗯，上次採訪時我也說過，我小時候也曾在協會附設的體育館……"
     },
     {
       "id": 6,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "... Phew! That one almost got you."
+      "content": "……呼，您真的差點就被打中了呢。"
     },
     {
       "id": 7,
       "teller": "記者",
       "title": "???",
-      "content": "Th-thanks."
+      "content": "謝、謝謝您。"
     },
     {
       "id": 8,
-      "content": "It wasn't rare to see utensils, insults, and—with rare but meaningful frequency—bits and bowls of food flying across the hall in this particularly pugnacious kezhan located in the eastern part of the City."
+      "content": "怒吼聲、木製家具，偶爾連飯菜都會滿天飛的東部某間客棧。"
     },
     {
       "id": 9,
-      "content": "Amidst the chaos sat two people with a table between them, both looking quite unbothered by the perpetual chaos that surrounded them."
+      "content": "在這個天天都亂成一團的地方，有兩個人彷彿早已習以為常般坐著交談。"
     },
     {
       "id": 10,
-      "content": "On one side of the table was, an audio recorder in tow, a reporter who had once interviewed a child under the Cinq Association Eastern branch's employ."
+      "content": "一位是拿著錄音機，曾經來採訪過在Cinq協會東部工作的孩子的記者。"
     },
     {
       "id": 11,
-      "content": "On the other was once again a Fixer under the same employer, though it was a different child this time."
+      "content": "另一位則是在同一個地方任職的Cinq協會的另一個孩子。"
     },
     {
       "id": 12,
-      "content": "The two continued to chat, sipping cheap tea between each exchange."
+      "content": "兩人隔著一張木桌，一口一口啜飲著廉價的茶，繼續聊著。"
     },
     {
       "id": 13,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Speaking of, I thought you'd already conducted an interview with a member of the Cinq East? Miss Don Quixote, I believe. Hard to forget, since she'd been shoving that particular issue of the magazine in my face until I read your article in front of her."
+      "content": "不過，您不是已經採訪過唐吉訶德小姐了嗎？之前她說那是刊登了自己的雜誌，一直把它湊到我面前，直到我翻開來讀為止呢。"
     },
     {
       "id": 14,
       "teller": "記者",
       "title": "???",
-      "content": "Oh yeah, I did. Um, the article actually did much better than any of us could have expected, and... well, I'm sure you know what followed, haha."
+      "content": "啊，沒錯。因為那篇報導比預期中還受歡迎……嗯，您應該猜得到吧？哈哈。"
     },
     {
       "id": 15,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Aha... They wanted you to do a follow-up story because of its popularity."
+      "content": "啊哈……因為很受歡迎，所以上頭要您再交出後續報導吧。"
     },
     {
       "id": 16,
-      "content": "With a deep sigh and a shake of the head, the interviewer raised her arms in a gesture of exasperation before taking a long sip from her teacup."
+      "content": "記者揮了一下手臂，嘆著氣搖了搖頭，然後喝了一口茶。"
     },
     {
       "id": 17,
-      "content": "She'd already written a story about this branch in her last article—made it a special feature, even. Everything she thought people might want to know about the Cinq East, she'd crammed into the feature page. But instructions from the higher-ups being what they are, her job today wasn't to write a journalistic masterpiece, but to squeeze this subject dry for anything that could be even remotely interesting to the readers."
+      "content": "記者大概也很苦惱吧。大家可能會好奇的事，她早就全塞進上一篇特別報導裡投稿了，上頭卻蠻不講理地要她再拿點新東西出來……"
     },
     {
       "id": 18,
-      "content": "Now she was mulling over one miserable question: where should she even begin? The tricks of digging for trifling gossip like the cheap tabloid \"reporters\" do... That kind of thing wasn't her style, not to mention that it went against her journalistic integrity."
+      "content": "難道得違背自己身為記者的信念，連無關緊要的八卦都搜刮起來嗎？她的腦中滿是這樣的煩惱。"
     },
     {
       "id": 19,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Hmm... That must be troublesome."
+      "content": "嗯……您一定很煩惱吧。"
     },
     {
       "id": 20,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Well, I've an idea, then."
+      "content": "那麼，這個方法如何呢？"
     },
     {
       "id": 21,
-      "content": "The child didn't appear offended, however. He smiled gently as though he had expected the interviewer's dilemma, and reached into his belongings—and produced a magazine issue."
+      "content": "但孩子彷彿早就料到會這樣，帶著溫和的微笑，從一旁拿出了一本雜誌。"
     },
     {
       "id": 22,
       "teller": "記者",
       "title": "???",
-      "content": "Ah! That's our magazine!"
+      "content": "咦！是我們的雜誌……"
     },
     {
       "id": 23,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "I just thought it was only polite to get an idea of the person who'll be interviewing me."
+      "content": "既然都約好了，我被教導過，事先了解一下對方是什麼樣的人才是禮貌。"
     },
     {
       "id": 24,
       "teller": "記者",
       "title": "???",
-      "content": "That's very considerate of you..."
+      "content": "您真了不起……"
     },
     {
       "id": 25,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "It's... this page here, right? \"The Cinq as the Cultural Lodestone: A Journey Through the East and the West.\""
+      "content": "這裡……是這一頁吧？「從Cinq協會一探究竟！東部與西部的文化差異大剖析。」"
     },
     {
       "id": 26,
       "teller": "記者",
       "title": "???",
-      "content": "... You know, I never thought about it, but it's a little more embarrassing than I thought it'd be to have someone read my title out loud."
+      "content": "……沒想到報導標題被別人唸出來，竟然會這麼難為情……"
     },
     {
       "id": 27,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Your article really went in-depth about us, but... some of these might not be entirely correct."
+      "content": "內容是相當詳細啦……不過還是有幾個地方不太一樣呢。"
     },
     {
       "id": 28,
       "teller": "記者",
       "title": "???",
-      "content": "Really?! Oh, that's not good. We're gonna have to print a retraction—"
+      "content": "咦？！是這樣嗎？得趕快投稿更正……"
     },
     {
       "id": 29,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Oh, no, it's not like that. Just parts that might seem like a bit of a generalization about my Section and colleagues."
+      "content": "啊，不是的～與其說內容有錯，不如說有些地方會讓人以為我們科的所有人都是那樣。"
     },
     {
       "id": 30,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Maybe elaborating on some of those finer points could enrich the article as a whole <i>and</i> satisfy your readers at the same time?"
+      "content": "如果把那些部分寫成後續報導投稿，內容會更充實，反應應該也會不錯吧？"
     },
     {
       "id": 31,
-      "content": "The interviewer barely managed to hold her arms back from propelling forward and vigorously shaking the child's hand."
+      "content": "記者差點就要握住對方的雙手連聲道謝，好不容易才忍住了。"
     },
     {
       "id": 32,
-      "content": "The circumstances of her journalistic career may indeed be dire today, but her pride as a reporter simply would not allow her to rely so shamelessly upon the very interviewee she had come to interview."
+      "content": "再怎麼說，如此依賴受訪者，是她身為記者的自尊所不允許的。"
     },
     {
       "id": 33,
       "teller": "記者",
       "title": "???",
-      "content": "I know this is kind of out of the blue, but... have you ever considered working in journalism? Some way down the line, if you ever want to retire from Association work, we'd be happy to have you."
+      "content": "我只是姑且問問……您以後有沒有考慮辭掉協會的工作，來跟我們一起工作呢？"
     },
     {
       "id": 34,
       "teller": "記者",
       "title": "???",
-      "content": "I've... I've got to admit, you certainly have the talent, haha..."
+      "content": "因為您的能力實在……太讓人想挖角了……哈哈。"
     },
     {
       "id": 35,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Fuhu, I don't know. Maybe. Who knows what the future holds?"
+      "content": "呵呵，這個嘛。以後會怎麼樣，我也不知道呢。"
     },
     {
       "id": 36,
       "teller": "記者",
       "title": "???",
-      "content": "Hey, I'm gonna hold you to that \"maybe,\" when that future comes, okay?"
+      "content": "等到那個「以後」來臨時，請一定要認真考慮喔？"
     },
     {
       "id": 37,
-      "content": "Laughing off her half-joking, half-serious recruitment effort, she hit the record button on her device."
+      "content": "記者就這樣半開玩笑半認真地打著哈哈，按下了錄音機的錄音鍵。"
     },
     {
       "id": 38,
       "teller": "記者",
       "title": "???",
-      "content": "Okay, then. Let's start from the parts you thought weren't entirely correct."
+      "content": "那麼，可以請您說說是哪些部分不一樣嗎？"
     },
     {
       "id": 39,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Sure thing~ Let's see..."
+      "content": "好的～首先……"
     },
     {
       "id": 40,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "So, about the part where you wrote \"Cinq Fixers, the Battle Fiends: Blood Boiling, Body Itching to Duel at the Sight of Violence!\"... It kind of leaves a lot of room for misunderstanding, doesn't it~?"
+      "content": "「Cinq協會的收尾人一看到紛爭就熱血沸騰，迫不及待想要決鬥！」……我覺得這段內容真的很容易讓人誤會呢～"
     },
     {
       "id": 41,
       "teller": "記者",
       "title": "???",
-      "content": "Oh! That's, uhm. The editor's office asked me to give them something eye-catching as the subheading..."
+      "content": "啊！那、那是因為編輯台要我把標題下得聳動一點……"
     },
     {
       "id": 42,
       "teller": "記者",
       "title": "???",
-      "content": "If you read a little further, you can see that I also wrote something about how the Cinq Fixers have the, the soul of the East, burning with the flame of justice... Quenched only by its enactment and so and so...!"
+      "content": "不過您往下看的話，我也有寫「燃燒著正義感、無法容忍不義的東方之魂」喔……！"
     },
     {
       "id": 43,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Ohh~ Of course, I've read that part, too."
+      "content": "啊～我當然知道呀，呵呵。"
     },
     {
       "id": 44,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "But I'd like to clarify that the \"burning with the flame of justice\" part is... uniquely applicable to Miss Don Quixote."
+      "content": "只不過，燃燒著正義感這點，也是唐吉訶德小姐獨有的特徵呢。"
     },
     {
       "id": 45,
@@ -275,13 +275,13 @@
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Let's see... Oh, here it is. \"At the end of each duel, a Cinq Fixer must raise their right arm and strike a victorious pose...\""
+      "content": "還有～啊，這部分。「決鬥結束時一定會高舉右手，擺出勝利的姿勢！」這部分呢～"
     },
     {
       "id": 47,
       "teller": "記者",
       "title": "???",
-      "content": "I'm gonna go out on a limb and guess that's another thing uniquely applicable to—"
+      "content": "那也是唐吉訶德小姐的……"
     },
     {
       "id": 48,
@@ -301,89 +301,89 @@
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Of course, it's basic dueling etiquette to state your name and affiliation at the beginning of each match. That one's universally applicable."
+      "content": "啊，當然，在決鬥開始時報上姓名和所屬是禮貌，所以這是大家都會做的程序喔。"
     },
     {
       "id": 51,
-      "content": "Scratch, scritch."
+      "content": "唰唰。"
     },
     {
       "id": 52,
-      "content": "As the minutes crawled by, more and more strikethroughs began filling the poor reporter's notebook."
+      "content": "隨著時間過去，記者手中的筆記本上只剩下越來越多的刪除線。"
     },
     {
       "id": 53,
-      "content": "Yes, the reporter had suspected that some of Don Quixote's claims might have been a tad exaggerated, given her uncannily overenthusiastic demeanor. But it was also true that the Fixer had showcased a duel nothing short of spectacular, and answered every interview question with unwavering confidence..."
+      "content": "雖然她也曾想過，對方異常地幹勁十足，說不定有些誇大其詞……但看到那出色的戰鬥實力和篤定的語氣，她便以為那些都是真的……"
     },
     {
       "id": 54,
-      "content": "The reporter pressed the tip of her pen into her furrowed brow. Quite the understandable reaction, as she'd just realized that a good chunk of the answers her past interviewee had given were, in fact, mere exaggerations. She pressed down the urge to sigh in frustration—she was a professional, after all, and couldn't be seen getting emotional in the presence of an interviewee."
+      "content": "要不是受訪者就在面前，她真想長長地嘆一口氣。記者只能用筆用力抵著眉心，勉強忍住。"
     },
     {
       "id": 55,
       "teller": "記者",
       "title": "???",
-      "content": "I'm getting a feeling that this won't be a follow-up story so much as an entire special feature for a public apology..."
+      "content": "啊……這與其說是後續報導，感覺更像會變成道歉特輯……"
     },
     {
       "id": 56,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Oh, but technically, you didn't write any lies in your story~"
+      "content": "可是您並沒有寫錯什麼呀～"
     },
     {
       "id": 57,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "You need only add one sentence to the bottom of your article: \"Disclaimer: Some details may apply only to Miss Don Quixote.\" There, problem solved!"
+      "content": "記者小姐只需要做一件事就好了。在文末加上「但僅限於唐吉訶德小姐」，這樣就沒有任何錯誤了。"
     },
     {
       "id": 58,
       "teller": "記者",
       "title": "???",
-      "content": "... Thank you. I'll make sure to do that."
+      "content": "……我一定會那樣寫的。"
     },
     {
       "id": 59,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Um, and regarding the part about our fees..."
+      "content": "啊～還有關於結算方式的部分。"
     },
     {
       "id": 60,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Don Quixote charges twice the usual rate for emergency contracts, doesn't she?"
+      "content": "唐吉訶德小姐會以「緊急委託」的名義收取兩倍費用對吧？"
     },
     {
       "id": 61,
       "teller": "記者",
       "title": "???",
-      "content": "Oh, come on... She's got her own rules about fees, too? I mean, passion for justice notwithstanding, she seemed really strict about \"matters of coin.\" I took that as proof of her professionalism, separating business from personal conviction..."
+      "content": "呃……我還以為那點絕對不會錯呢，看到那樣高喊正義的人在錢的方面也一絲不苟，我還覺得果然是專業人士……"
     },
     {
       "id": 62,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "It puts us in a rather difficult position when she..."
+      "content": "我們也很困擾呢，要是她那樣……"
     },
     {
       "id": 63,
       "teller": "記者",
       "title": "???",
-      "content": "Wait, don't tell me she's been embezzling contract fees with nonexistent surcharges...?"
+      "content": "難道……是擅自加價，中飽私囊……"
     },
     {
       "id": 64,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "... charges the clients so little."
+      "content": "……把價格壓低來收的話～"
     },
     {
       "id": 65,
@@ -396,92 +396,92 @@
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Sometimes, she even handles contracts free of charge just because she feels sorry for the client... And as the stand-in accountant, I'm the one who has to deal with that~"
+      "content": "甚至有時候還會因為覺得委託人很可憐，連免費委託都處理完才回來……兼任代理會計的我就有點為難了～"
     },
     {
       "id": 67,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Ever since your story came out, we've been receiving multiple complaints about overcharging, so... I'd really appreciate it if you could, um, clear that up!"
+      "content": "看了雜誌後，來問為什麼要收自己這麼貴的人變多了，所以還請您務必幫忙！"
     },
     {
       "id": 68,
       "teller": "記者",
       "title": "???",
-      "content": "I'm so sorry about that. I'll amend that part and have the new article published ASAP."
+      "content": "真的很抱歉……這次的報導我會盡快寫好刊登出來的。"
     },
     {
       "id": 69,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Fuhu... There's no need to apologize!"
+      "content": "呵呵，您也不必道歉啦。"
     },
     {
       "id": 70,
-      "content": "The child raised his teacup without a care in the world, then tipped it back and drained it in one easy gulp."
+      "content": "孩子若無其事地端起茶杯，輕輕地一口飲下。"
     },
     {
       "id": 71,
-      "content": "Then he said:"
+      "content": "接著，他開口說道。"
     },
     {
       "id": 72,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Come to think of it... Wouldn't readers wonder exactly how much Section 3 charges for our contracts?"
+      "content": "啊對了，那麼讀者們應該也會好奇，3科到底收多少委託費吧？"
     },
     {
       "id": 73,
-      "content": "And rose from his seat in a graceful motion."
+      "content": "一邊從座位上站起身……這麼說。"
     },
     {
       "id": 74,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "All right, that's quite enough~"
+      "content": "好了，到此為止。"
     },
     {
       "id": 75,
       "teller": "???",
       "title": "???",
-      "content": "Gah...!"
+      "content": "咳呃……"
     },
     {
       "id": 76,
       "teller": "記者",
       "title": "???",
-      "content": "Huh...? You had a contract here?"
+      "content": "咦……？剛才有委託嗎？"
     },
     {
       "id": 77,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Yup~ Look over there. Do you see that person signaling to me with his palm?"
+      "content": "是的～請看那邊，那位用手掌這樣比了個信號對吧？"
     },
     {
       "id": 78,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "For clients who find it difficult to state their requests verbally, Cinq Association's East Section also accepts contracts via hand signals."
+      "content": "為了因應情況不便、難以口頭告知的時候，我們Cinq協會東部也有接受手勢委託喔。"
     },
     {
       "id": 79,
       "teller": "記者",
       "title": "???",
-      "content": "Oh! This'll be an interesting bit of trivia to add to the article. It could prove useful to quite a lot of readers!"
+      "content": "哦……把這個寫進報導裡的話，應該會有很多人用得上呢。"
     },
     {
       "id": 80,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Please don't forget to add that hand-signal commissions incur a surcharge of 1.5 times the usual rate~"
+      "content": "當然，會適用1.5倍的手勢加價～"
     },
     {
       "id": 81,
@@ -493,74 +493,74 @@
       "id": 82,
       "teller": "???",
       "title": "???",
-      "content": "Y-you little... Ngh! What the hell...?! Coward, you can't just start whaling away without even stating your name and affiliation!"
+      "content": "你、呃……突然幹什麼……！竟然連姓名和所屬都不報，真卑鄙……"
     },
     {
       "id": 83,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Oh, do excuse me for that. Hand-signal commissions carry an additional fee, so dueling etiquette can be dispensed with for a single clash~"
+      "content": "因為手勢委託會加價，所以僅限一招，可以不顧決鬥的禮儀喔～"
     },
     {
       "id": 84,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Now that the first blow has been traded... Allow me to introduce myself. Hong Lu of Cinq East Section 3, here to act as proxy for the duel."
+      "content": "所以我現在來報上名號。Cinq協會東部，3科。我是鴻璐。"
     },
     {
       "id": 85,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "I look forward to facing you!"
+      "content": "請多指教囉？"
     },
     {
       "id": 86,
       "teller": "委託人",
       "title": "???",
-      "content": "M-my thanks to you. I'll pay whatever you ask—teach that insolent cur a lesson...!"
+      "content": "多、多謝……錢要多少我都付，請把那個無禮之徒……"
     },
     {
       "id": 87,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Happy to receive the contract~ Rush fee is 3.7 times the base contract fee."
+      "content": "好的～當然沒問題。緊急加價是本委託的3.7倍喔～"
     },
     {
       "id": 88,
       "teller": "委託人",
       "title": "???",
-      "content": "Kgh... F-fine! I came prepared. The pamphlet did mention that rush fees are a standard surcharge."
+      "content": "唔……我、我知道了！那是正規的加價，我已經在宣傳手冊上看過了……"
     },
     {
       "id": 89,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "What else... Right, you called upon me while I was on break, so..."
+      "content": "再加上，我剛才正在個人整備中呢……？"
     },
     {
       "id": 90,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "That's an off-duty commission fee added!"
+      "content": "所以還要追加個人整備期間委託加價！"
     },
     {
       "id": 91,
       "teller": "委託人",
       "title": "???",
-      "content": "Th-there's more...?"
+      "content": "還、還有？！"
     },
     {
       "id": 92,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Mmhmm! And it just so happens, this is a Category-3 Commercial Establishment, so there's a surcharge for compensation. I mean, it's only natural, isn't it? The Cinq Association will compensate the proprietor for anything broken during the fight, and that fund has to come from the client who commissioned the duel in the first place."
+      "content": "是的～另外還有第三類營業場所內決鬥行為加價喔～因為我們得代為賠償營業場所裡被打壞的東西，這也算是理所當然的吧？"
     },
     {
       "id": 93,
@@ -573,81 +573,81 @@
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "It's not as bad as it sounds. First-time clients get a 50% discount!"
+      "content": "請別太擔心，首次惠顧的客人還是有50%折扣的。"
     },
     {
       "id": 95,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Though only up to a maximum of 10,000 Ahn, of course."
+      "content": "不過，最多只能折抵10,000眼就是了。"
     },
     {
       "id": 96,
       "teller": "委託人",
       "title": "???",
-      "content": "Don't call it 50%, then!!"
+      "content": "那根本就不是50%了吧！！！"
     },
     {
       "id": 97,
       "teller": "???",
       "title": "???",
-      "content": "Kehe... Kehehe... Joke's on you for picking a fight in here..."
+      "content": "呵、呵呵……所以說……幹嘛要找碴啊……？"
     },
     {
       "id": 98,
       "teller": "???",
       "title": "???",
-      "content": "Hey, Master Fixer... Emptying that whoreson's pockets is good enough a comeback from me."
+      "content": "我說……收尾人老兄……我心裡已經痛～快得很了喔？"
     },
     {
       "id": 99,
       "teller": "???",
       "title": "???",
-      "content": "I won't fight back, so just make it quick, will you?"
+      "content": "我不會反抗的，就快點了結吧。懂了吧？"
     },
     {
       "id": 100,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Why, thank you! That'll make things so much simpler for the both of us~"
+      "content": "那我可真是感激不盡～"
     },
     {
       "id": 101,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Before we begin, please note that the client may choose to apply a rider to the contract and extend the duration of the duel. That'll, of course, subject you to an additional hour-long beating at max."
+      "content": "當然，如果委託人附加了決鬥時間延長特約，我也只好陪您打上最長一個小時就是了。"
     },
     {
       "id": 102,
       "teller": "委託人",
       "title": "???",
-      "content": "I didn't know there was an option like that..."
+      "content": "還有那種東西嗎……？"
     },
     {
       "id": 103,
       "model": "홍루",
       "teller": "鴻璐",
       "title": "Cinq協會 東部3科",
-      "content": "Are you interested?"
+      "content": "您……有興趣嗎？"
     },
     {
       "id": 104,
-      "content": "This kezhan was quickly becoming a site of cutthroat bargaining with surcharges of positively staggering proportions."
+      "content": "在客棧裡上演的驚人討價還價秀。"
     },
     {
       "id": 105,
-      "content": "The interviewer, who had caught herself watching the spectacle unfold with her mouth agape, sat herself upright at her table and began to write."
+      "content": "坐在桌前目睹這驚人光景、一時說不出話來的記者，重新打起精神，拿起了筆記本。"
     },
     {
       "id": 106,
-      "content": "The rustling of pages, the scribbling of the pen—a fresh note for as many details as possible."
+      "content": "然後下定決心，要盡可能詳細地記錄下來。"
     },
     {
       "id": 107,
-      "content": "This time, she'll note every last detail of how a Fixer of the City goes about \"Fixing\" both his client's contract and the opponent he is to duel."
+      "content": "記錄都市的收尾人……是如何替委託人與決鬥者這兩個人「收尾」的。"
     }
   ]
 }

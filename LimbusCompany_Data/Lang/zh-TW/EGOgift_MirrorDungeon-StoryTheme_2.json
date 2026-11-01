@@ -3,7 +3,7 @@
     {
       "id": 9427,
       "name": "守鎮魚叉",
-      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力不高於體力上限的30%，則下回合使自身獲得1層 [Enhancement]",
+      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力低於體力上限的30%，則下回合使自身獲得1層 [Enhancement]",
       "simpleDesc": [
         {
           "abilityID": 9427,
@@ -14,7 +14,7 @@
     {
       "id": 19427,
       "name": "守鎮魚叉+",
-      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力不高於體力上限的40%，則下回合使自身獲得1層 [Enhancement]\n\n回合結束時，若有友方單位陷入混亂，則下回合使自身的 [Aggro] +6，並使自身獲得4層 [DefenseUp]",
+      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力低於體力上限的40%，則下回合使自身獲得1層 [Enhancement]\n\n回合結束時，若有友方單位陷入混亂，則下回合使自身的 [Aggro] +6，並使自身獲得4層 [DefenseUp]",
       "simpleDesc": [
         {
           "abilityID": 19427,
@@ -29,7 +29,7 @@
     {
       "id": 29427,
       "name": "守鎮魚叉++",
-      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力不高於體力上限的50%，則下回合使自身獲得1層 [Enhancement]\n\n回合結束時，若有友方單位陷入混亂，則下回合使自身的 [Aggro] +6，並使自身獲得4層 [DefenseUp]",
+      "desc": "[第6順位友方單位專屬]\n回合結束時，若現存體力低於體力上限的50%，則下回合使自身獲得1層 [Enhancement]\n\n回合結束時，若有友方單位陷入混亂，則下回合使自身的 [Aggro] +6，並使自身獲得4層 [DefenseUp]",
       "simpleDesc": [
         {
           "abilityID": 29427,
@@ -176,7 +176,7 @@
     {
       "id": 9436,
       "name": "折射玻璃管",
-      "desc": "Regular Encounters) On Hit against enemies with 10+ (sum of [Sinking] Count and Potency):\nif the target is at -45 SP, deal (([Sinking] Potency on target) / 2) Gloom damage (once per Skill)\n\nFocused Encounters) On Hit against enemies with 10+ (sum of [Sinking] Count and Potency):\ndeal (([Sinking] Potency on target) / 2) Gloom damage (once per Skill)\n\nIf the Skill that hit an enemy inflicts [Sinking](including [Sinking] Count and Unique <noparse>Sinking</noparse>), instead of dealing ([Sinking] Potency on target / 2) Gloom damage, deal ([Sinking] Potency on target) Gloom damage\n(Each turn, this applies only to the first Sinking-inflicting Skill that hits)",
+      "desc": "常規遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，若目標的理智值為-45點，\n則對其造成(其 [Sinking] 強度 ÷ 2)點憂鬱傷害 (每個技能最多1次)\n\n集中遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，\n對目標造成(其 [Sinking] 強度 ÷ 2)點憂鬱傷害 (每個技能最多1次)\n\n若命中敵方單位的技能為增加 [Sinking] (包含回數以及特殊<noparse>沉淪</noparse>)的技能，則不造成 (目標帶有的 [Sinking] 強度 ÷ 2) 點憂鬱傷害，改為造成 (目標帶有的 [Sinking] 強度) 點憂鬱傷害\n(每回合僅適用於第1個命中敵方且增加 [Sinking] 的技能)",
       "simpleDesc": [
         {
           "abilityID": 9436,

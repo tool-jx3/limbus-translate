@@ -290,7 +290,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] Activate [Laceration] on the target equal to its Count. Use up the target's [Laceration] Count down to 1"
+                  "desc": "[OnSucceedAttack] 觸發目標的 [Laceration] (次數等同於其回數)，並使目標的 [Laceration] 回數消耗至1回"
                 }
               ]
             }
@@ -304,7 +304,7 @@
         {
           "level": 1,
           "name": "唐吉訶德派桑丘變體4式-追蹤",
-          "desc": "Prioritizes targets with the most [Laceration]\n[BeforeAttack] Atk Weight +1 for every 10 [BloodArmor] on self (max 3)\n[WhenUse] Clash Power +1 for every 5 [Laceration] on the target (max 3)\n[WhenUse] Consume up to 30 [BloodDinner]: gain 1 [BloodArmor] and Coin Power +1 for every 15 [BloodDinner] consumed (max 2)\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration], and activate [Laceration] immediately. Lose 1 [Laceration] Count\n[EndSkill] Increase [BloodDinner] equal to the damage this Skill dealt",
+          "desc": "優先指定 [Laceration] 最多的目標\n[BeforeAttack] 自身每帶有10層 [BloodArmor]，使本技能的攻擊容量+1(最多+3)\n[WhenUse] 目標每帶有5級 [Laceration] 強度，則使本技能的拚點威力+1(最多+3)\n[WhenUse] 消耗最多30層 [BloodDinner]，每消耗15層 [BloodDinner]，使自身獲得1層 [BloodArmor] 並使本技能的硬幣威力+1(最多+2)\n- 若未消耗 [BloodDinner]，則使自身增加10級 [Laceration] 強度並立即觸發，並使自身的 [Laceration] 回數減少1回\n[EndSkill] 獲得層數等同於本技能傷害量的 [BloodDinner]",
           "coinlist": [
             {
               "coindescs": [
@@ -330,7 +330,7 @@
         {
           "level": 1,
           "name": "唐吉訶德派桑丘變體3式-突襲",
-          "desc": "Prioritizes targets with the most [Laceration]\n[BeforeAttack] Atk Weight +1 for every 10 [BloodArmor] on self (max 2)\n[WhenUse] Clash Power +1 for every 5 [Laceration] on the target (max 3)\n[WhenUse] Consume up to 30 [BloodDinner]: gain 1 [BloodArmor] and Coin Power +1 for every 15 [BloodDinner] consumed (max 2)\n- If this unit failed to consume [BloodDinner], gain 10 [Laceration], and activate [Laceration] immediately. Lose 1 [Laceration] Count\n[EndSkill] Increase [BloodDinner] equal to the damage this Skill dealt",
+          "desc": "優先指定 [Laceration] 最多的目標\n[BeforeAttack] 目標每帶有10級 [Laceration] 強度，使本技能的攻擊容量+1(最多+2)\n[WhenUse] 目標每帶有5級 [Laceration] 強度，則使本技能的拚點威力+1(最多+3)\n[WhenUse] 消耗最多30層 [BloodDinner]，每消耗15層 [BloodDinner]，使自身獲得1層 [BloodArmor] 並使本技能的硬幣威力+1(最多+2)\n- 若未消耗 [BloodDinner]，則使自身增加10級 [Laceration] 強度並立即觸發，並使自身的 [Laceration] 回數減少1回\n[EndSkill] 獲得層數等同於本技能傷害量的 [BloodDinner]",
           "coinlist": [
             {
               "coindescs": [
@@ -514,7 +514,7 @@
                   "desc": "[WinDuelAttack] 使目標增加5級 [Vibration] 強度與3回 [Vibration]"
                 },
                 {
-                  "desc": "[CriticalOnSucceedAttack] Trigger [VibrationExplosion] twice. When [VibrationExplosion] is triggered on the target, reduce target's [Vibration] Count by 1 (nullify 1 instance of [Vibration] Count reduction if this unit won the Clash)"
+                  "desc": "[CriticalOnSucceedAttack] 使目標 [VibrationExplosion] 2次。目標觸發 [VibrationExplosion] 時，使其減少1回 [Vibration] (若本技能拚點勝利，則使1次減少效果無效)"
                 }
               ]
             }
@@ -591,7 +591,7 @@
         {
           "level": 1,
           "name": "分解",
-          "desc": "[WhenUse] Final Power +1 for every 3 [Breath] Potency on self (max 5)\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] If the target has 20+ [ObservedPerson], convert all Coins on this Skill to [SuperCoin]s</u></b></mark></color>",
+          "desc": "[WhenUse] 自身帶有的 [Breath] 強度每有3級，則使本技能的最終威力+1(最多+5)\n<color=#ff6000><mark=#ff000040><b><u>[WhenUse] 若目標帶有的 [ObservedPerson] 不低於20層，則本技能的所有硬幣將轉化為 [SuperCoin]</u></b></mark></color>",
           "coinlist": [
             {
               "coindescs": [

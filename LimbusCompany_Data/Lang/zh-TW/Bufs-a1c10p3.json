@@ -3,225 +3,225 @@
     {
       "id": "GoldenHideWarderFirstPhase",
       "name": "鼓動",
-      "desc": "- Turn Start: A random Sinner gains this effect\n- Clash Power +1, take -25% damage\n- Turn End: This effect expires",
-      "summary": "Gain Clash Power, take less damage",
+      "desc": "- 回合開始時，隨機1名罪人獲得本效果\n- 拚點威力+1，受到的傷害-25%\n- 回合結束時解除本效果",
+      "summary": "拚點威力增加、受到的傷害減少",
       "flavor": "生之權能。變化與誕生的意志。"
     },
     {
       "id": "GoldenFabricWarderFirstPhase",
       "name": "停止",
-      "desc": "- Turn Start: A random Sinner gains this effect\n- Final Power +1, deal +15% damage\n- Turn End: This effect expires",
+      "desc": "- 回合開始時，隨機1名罪人獲得本效果\n- 最終威力+1，造成的傷害+15%\n- 回合結束時解除本效果",
       "summary": "最終威力與造成的傷害增加",
       "flavor": "死之權能。保存與停止的衝動。"
     },
     {
       "id": "MeursaultBuffWarderFirstPhase",
       "name": "異鄉人",
-      "desc": "Meursault's HP cannot drop below 1 as long as there is 1 or more surviving allies in this Encounter\n- When Clashing against the Warden:\n · Clash Power +1\n · Deal +(missing HP percentage on self / 2)% damage (max 20%)\n · On Clash Win, gain 1 E.G.O resource for each of the 2 least-owned Affinities\n- When taking damage that would Stagger this unit, does not get Staggered and remove the corresponding Stagger Threshold; and gain 1 Attack Power Up next turn (no activation cap)\n- Cannot Retreat",
-      "summary": "Gain Clash Power and deal more damage when Clashing with the Warden\nCannot be Staggered, cannot be defeated when there are other surviving allies",
+      "desc": "- 本場戰鬥中，若還有至少1名其他友方單位存活，則莫梭的體力無法降至1點以下\n- 與獄卒進行拚點時：\n．拚點威力+1\n．造成的傷害+(自身已損失體力比例/2)%(最多+20%)\n．拚點勝利時，隨機獲得持有數量最少的罪孽碎片各1個，共2個\n- 受到會使自身陷入混亂的傷害時，不會陷入混亂，且移除該混亂閾值。之後在下回合使自身獲得1層強壯(每場戰鬥無次數限制)\n- 無法撤退",
+      "summary": "與獄卒進行拚點時，拚點威力與造成的傷害增加\n不會陷入混亂，其他友方單位存活時不會死亡",
       "flavor": "不論在百貨公司、在都市，我都顯得異質，也就是異物嗎。"
     },
     {
       "id": "UnstableConnection",
       "name": "不穩定的顯現",
-      "desc": "- Max Stack: 2\n- Turn Start: Gain (Stack x 4) Clash Power Down and Fragile\n- Turn End: Heal ((45 - current SP) / 2) SP (rounded down); then, lose 1 Stack",
-      "summary": "Gain Clash Power Down and Fragile at Turn Start\nHeal SP at Turn End",
-      "flavor": "\"*sigh* Bad time for connection issues...\""
+      "desc": "- 最大值：2\n- 回合開始時，對自身施加(本效果層數×4)層拚點威力降低與易損\n- 回合結束時，恢復((45-目前理智值)/2)點理智值(無條件捨去小數)，並使本效果層數減少1層",
+      "summary": "回合開始時對自身施加拚點威力降低與易損\n回合結束時恢復理智值",
+      "flavor": "「唉。偏偏在這種時候連線……」"
     },
     {
       "id": "Dominion",
       "name": "薛西弗斯系統保存",
-      "desc": "- Max Stack: 25\n- Deal +(Stack)% damage (max 25%)\n- Take -(Stack)% damage (max 25%)",
+      "desc": "- 最大值：25\n- 造成的傷害+(本效果層數)%(最多+25%)\n- 受到的傷害-(本效果層數)%(最多-25%)",
       "summary": "造成的傷害增加、受到的傷害減少",
-      "flavor": "\"Is it because you're from another District or something? How do you people still not get it? If Sisyphe Tower goes down, those Malleus Maleficarum or whatever they're called are going to—*sigh*\"\n\n\"Same old strangers and outsiders, I suppose. You people don't give two hoots what happens to N Corp. or what the world is coming to. Ugh... never mind. Now let's see just how far you're willing to take this.\""
+      "flavor": "「是因為從其他區來的嗎？真不懂你們怎麼就是不明白。要是薛西弗斯塔倒了，那些叫什麼女巫之槌的傢伙就會……唉。」\n\n「異鄉人都是這樣啦。對N公司的情況、世道的變化都毫不關心。唉……算了，算了。就奉陪到底吧。」"
     },
     {
       "id": "BlackStigmata",
       "name": "罪惡感",
-      "desc": "- SP Units: Panic Type changes to \"Compunction\"\n- Non-SP Units: Take +10% damage from targets with faster Speed than self\n- Turn End: Lose 1 Stack\n- This effect is not cumulative; inflicting it will replace the current value with the inflicted value\n- Apply the \"Units without SP\" conditional to certain enemies that have SP but cannot change their Panic Types\n\n※ Compunction Panic Effect:\n- Low Morale: Min & Max Speed -1; take +10% damage from targets with faster Speed than this unit's\n- Panic: Min & Max Speed -2; take +15% damage from targets with faster Speed than this unit's",
+      "desc": "- 若目標帶有理智值，則使其恐慌類型轉變為「罪惡感」\n- 若目標沒有理智值，則使其受到來自速度值高於自身之目標的傷害+10%\n- 回合結束時，本效果的層數減少1層\n- 本效果無法疊加，施加時會更新為新的層數\n- 對於部分帶有理智值但無法改變恐慌類型的敵方單位，改為適用沒有理智值之目標的效果\n\n※ 罪惡感恐慌效果\n- 士氣低落：最小與最大速度值-1，受到來自速度值高於自身之目標的傷害+10%\n- 陷入恐慌：最小與最大速度值-2，受到來自速度值高於自身之目標的傷害+15%",
       "summary": "最小與最大速度值減少\n若目標的速度值高於自身，則使自身受到的傷害增加",
-      "flavor": "\"You feel your sins crawling on your back.\""
+      "flavor": "『你感覺到罪惡正順著背脊攀爬而上。』"
     },
     {
       "id": "BlackStigmata_Main",
       "name": "罪惡感",
       "desc": "- 若目標帶有理智值，則使其恐慌類型轉變為「罪惡感」\n- 回合結束時，本效果的層數減少1層",
       "summary": "恐慌類型變為「罪惡感」",
-      "flavor": "\"You feel your sins crawling on your back.\""
+      "flavor": "『你感覺到罪惡正順著背脊攀爬而上。』"
     },
     {
       "id": "BlackStigmata_Sub",
       "name": "罪惡感",
-      "desc": "- Non-SP Units: Take +10% damage from targets with faster Speed than self\n- Turn End: Lose 1 Stack",
+      "desc": "- 若目標沒有理智值，則使其受到來自速度值高於自身之目標的傷害+10%\n- 回合結束時，本效果的層數減少1層",
       "summary": "若目標的速度值高於自身，則使自身受到的傷害增加",
-      "flavor": "\"You feel your sins crawling on your back.\""
+      "flavor": "『你感覺到罪惡正順著背脊攀爬而上。』"
     },
     {
       "id": "BlackStigmata_LowMorale",
       "name": "罪惡感",
       "desc": "- 士氣低落\n- 最小與最大速度值-1，若目標的速度值高於自身，則使自身受到的傷害+10%",
       "summary": "最小與最大速度值減少\n若目標的速度值高於自身，則使自身受到的傷害增加",
-      "flavor": "\"You feel your sins crawling on your back.\""
+      "flavor": "『你感覺到罪惡正順著背脊攀爬而上。』"
     },
     {
       "id": "BlackStigmata_Panic",
       "name": "罪惡感",
       "desc": "- 陷入恐慌\n- 最小與最大速度值-2，若目標的速度值高於自身，則使自身受到的傷害+15%",
       "summary": "最小與最大速度值減少\n若目標的速度值高於自身，則使自身受到的傷害增加",
-      "flavor": "\"You feel your sins crawling on your back.\""
+      "flavor": "『你感覺到罪惡正順著背脊攀爬而上。』"
     },
     {
       "id": "GoldenHideWarderSecondPhase",
       "name": "鼓動",
-      "desc": "- Turn Start: A random Sinner gains this effect\n- On Clash Win, if the Sinner who has this effect <color=#ff6000><mark=#ff000040><b><u>won the Clash</u></b></mark></color> against the Warden's <color=#ff6000><mark=#ff000040><b><u>\"Death Unto the Condemned\"</u></b></mark></color> Skill, gain <color=#ff6000><mark=#ff000040><b><u>Shield equal to 250% of the Sinner's max HP</u></b></mark></color> (Shield gained from this effect is removed from the Sinner's total Shield at Attack End of the Warden's \"Death Unto the Condemned\")\n- Clash Power +2, take -25% damage\n- Turn End: This effect expires",
-      "summary": "Gain Clash Power and take less damage\nOn Clash Win against \"Death Unto the Condemned\", gain Shield",
+      "desc": "- 回合開始時，隨機1名罪人獲得本效果\n- 若帶有本效果的罪人與獄卒的<color=#ff6000><mark=#ff000040><b><u>「執行死刑」</u></b></mark></color>技能<color=#ff6000><mark=#ff000040><b><u>拚點勝利</u></b></mark></color>，則獲得<color=#ff6000><mark=#ff000040><b><u>體力上限250%的護盾</u></b></mark></color>(獄卒的「執行死刑」攻擊結束時，從該罪人持有的護盾中扣除透過本效果獲得的護盾量)\n- 拚點威力+2，受到的傷害-25%\n- 回合結束時解除本效果",
+      "summary": "拚點威力增加、受到的傷害減少\n與「執行死刑」拚點勝利時獲得護盾",
       "flavor": "生之權能。變化與誕生的意志。"
     },
     {
       "id": "GoldenFabricWarderSecondPhase",
       "name": "停止",
-      "desc": "- Turn Start: A random Sinner gains this effect\n- Final Power +2, deal +25% damage\n- Turn End: This effect expires",
+      "desc": "- 回合開始時，隨機1名罪人獲得本效果\n- 最終威力+2，造成的傷害+25%\n- 回合結束時解除本效果",
       "summary": "最終威力與造成的傷害增加",
       "flavor": "死之權能。保存與停止的衝動。"
     },
     {
       "id": "MeursaultBuffWarderSecondPhase",
       "name": "異鄉人",
-      "desc": "- Meursault's HP cannot drop below 1 as long as there is 1 or more surviving allies in this Encounter\n- Min & Max Speed +1\n- When Clashing against the Warden:\n · Clash Power +2\n · Deal +(missing HP percentage on self / 2)% damage (max 40%)\n · On Clash Win, gain 1 E.G.O resource for each of the 3 least-owned Affinities\n- When taking damage that would Stagger this unit, does not get Staggered and remove the corresponding Stagger Threshold; and gain 2 Attack Power Up next turn (no activation cap)\n- Cannot Retreat",
-      "summary": "Gain Clash Power and deal more damage when Clashing with the Warden\nCannot be Staggered, cannot be defeated when there are other surviving allies",
+      "desc": "- 本場戰鬥中，若還有至少1名其他友方單位存活，則莫梭的體力無法降至1點以下\n- 最小與最大速度值+1\n- 與獄卒進行拚點時：\n．拚點威力+2\n．造成的傷害+(自身已損失體力比例/2)%(最多+40%)\n．拚點勝利時，隨機獲得持有數量最少的罪孽碎片各1個，共3個\n- 受到會使自身陷入混亂的傷害時，不會陷入混亂，且移除該混亂閾值。之後在下回合使自身獲得2層強壯(每場戰鬥無次數限制)\n- 無法撤退",
+      "summary": "與獄卒進行拚點時，拚點威力與造成的傷害增加\n不會陷入混亂，其他友方單位存活時不會死亡",
       "flavor": "不論在百貨公司、在都市，我都顯得異質，也就是異物嗎。"
     },
     {
       "id": "EncompassingVoiceSecondPhase",
       "name": "漆黑之神的聲音",
-      "desc": "- Max Stack: 100\n- Turn Start: Gain 1 Offense Level Up for every 20 Stacks (max 4)\n- Gain Stack equal to Preservation Count this unit consumes or gains due to its Skill effects (max 40 per turn; this effect's Stack is gained regardless of Preservation's max Count)\n- Turn End: Gain 10 Stacks\n- At 100 Stacks, convert this effect into \"Divinity of the Obsidian God\" next turn",
-      "summary": "Gain Offense Level based on Stack\nAt max Stack, converted into \"Divinity of the Obsidian God\"",
-      "flavor": "A voice preaching the Rule of Conservation.\nThere can be no return to barbarism."
+      "desc": "- 最大值：100\n- 回合開始時，每帶有20層本效果，使自身獲得1層攻擊等級提升(最多4層)\n- 自身透過技能效果消耗或獲得保存回數時，獲得等量的本效果層數(每回合最多40層，包括超過保存回數最大值而獲得的數值)\n- 回合結束時，本效果層數增加10層\n- 本效果層數達到100層時，下回合轉變為漆黑之神的權能",
+      "summary": "根據層數增加攻擊等級\n層數達到最大值時，轉變為漆黑之神的權能",
+      "flavor": "宣揚保存之規律的聲音。\n絕不能再退回野蠻。"
     },
     {
       "id": "EncompassingVoiceThirdPhase",
       "name": "漆黑之神的聲音",
-      "desc": "- Max Stack: 100\n- Turn Start: Gain 1 Offense Level Up for every 20 Stacks (max 4)\n- Gain Stack equal to Preservation Count this unit consumes or gains due to its Skill effects (max 40 per turn; this effect's Stack is gained regardless of Preservation's max Count)\n- Turn End: Gain 10 Stacks\n- At 100 Stacks, convert this effect into \"Divinity of the Obsidian God\" next turn",
-      "summary": "Gain Offense Level based on Stack\nAt max Stack, converted into \"Divinity of the Obsidian God\"",
-      "flavor": "A voice preaching the Rule of Conservation.\nThere can be no return to barbarism."
+      "desc": "- 最大值：100\n- 回合開始時，每帶有20層本效果，使自身獲得1層攻擊等級提升(最多4層)\n- 自身透過技能效果消耗或獲得保存回數時，獲得等量的本效果層數(每回合最多40層，包括超過保存回數最大值而獲得的數值)\n- 回合結束時，本效果層數增加10層\n- 本效果層數達到100層時，下回合轉變為漆黑之神的權能",
+      "summary": "根據層數增加攻擊等級\n層數達到最大值時，轉變為漆黑之神的權能",
+      "flavor": "宣揚保存之規律的聲音。\n絕不能再退回野蠻。"
     },
     {
       "id": "SpreadingVoiceSecondPhase",
       "name": "漆黑之神的權能",
-      "desc": "- Max Stack: 100\n- Turn Start: Gain 1 Offense Level Up and 1 Defense Level Up for every 20 Stacks (max 4 respectively)\n- Convert all Skill Coins into Unbreakable Coins\n- At 0 Stacks, convert this effect into \"Voice of the Obsidian God\" next turn",
-      "summary": "Convert all Skill Coins into Unbreakable Coins\nGain Offense Level and Defense Level based on Stack",
-      "flavor": "The Obsidian God—He whose domain is creation and time itself within the Sisyphe System."
+      "desc": "- 最大值：100\n- 回合開始時，每帶有20層本效果，使自身獲得1層攻擊等級提升與1層防禦等級提升(各最多4層)\n- 所有技能的硬幣轉變為無法被破壞的硬幣\n- 本效果層數變為0層時，下回合轉變為漆黑之神的聲音",
+      "summary": "所有技能的硬幣轉變為無法被破壞的硬幣\n根據層數增加攻擊等級與防禦等級",
+      "flavor": "漆黑之神。於薛西弗斯系統中掌管創造與時間。"
     },
     {
       "id": "SpreadingVoiceThirdPhase",
       "name": "漆黑之神的權能",
-      "desc": "- Max Stack: 100\n- Turn Start: Gain 1 Offense Level Up and 1 Defense Level Up for every 20 Stacks (max 4 respectively)\n- Convert all Skill Coins into Unbreakable Coins (excluding Excision Coins)\n- At 0 Stacks, convert this effect into \"Voice of the Obsidian God\" next turn",
-      "summary": "Convert all Skill Coins into Unbreakable Coins (excluding Excision Coins)\nGain Offense Level and Defense Level based on Stack",
-      "flavor": "The Obsidian God—He whose domain is creation and time itself within the Sisyphe System."
+      "desc": "- 最大值：100\n- 回合開始時，每帶有20層本效果，使自身獲得1層攻擊等級提升與1層防禦等級提升(各最多4層)\n- 所有技能的硬幣轉變為無法被破壞的硬幣(不包括摘除硬幣)\n- 本效果層數變為0層時，下回合轉變為漆黑之神的聲音",
+      "summary": "所有技能的硬幣轉變為無法被破壞的硬幣(不包括摘除硬幣)\n根據層數增加攻擊等級與防禦等級",
+      "flavor": "漆黑之神。於薛西弗斯系統中掌管創造與時間。"
     },
     {
       "id": "LeaderVoiceSecondPhase",
       "name": "進行薛西弗斯之刑刑罰的獄卒",
-      "desc": "- Max Stack: 5\n- Offense Level +1 and Defense Level +2 for every Stack\n- At 3+ Stacks, inflict +1 more \"Nail [Punishment]\" and \"Nail [Penance]\" using Skills",
-      "summary": "Gain Offense Level and Defense Level based on Stack\nAt 3+ Stack, inflict more \"Nail [Punishment]\" and \"Nail [Penance]\"",
-      "flavor": "The Warden appears before those who refuse to act as intended. For that is how the system works."
+      "desc": "- 最大值：5\n- 本效果每有1層，攻擊等級+1、防禦等級+2\n- 本效果層數不低於3層時，透過技能施加的釘[刑罰]、釘[贖罪]的施加量+1",
+      "summary": "根據層數增加攻擊等級與防禦等級\n層數不低於3層時，釘[刑罰]、釘[贖罪]的施加量增加",
+      "flavor": "獄卒會出現在不按其意行事者的面前。因為這就是系統。"
     },
     {
       "id": "ConfessionSecondPhase",
       "name": "懺悔的證據",
-      "desc": "- The following effects are collectively referred to as \"Proof of Confession\":\n · Hammernail [Condemnation]\n · Hammernail [Judgment]\n · Nail [Punishment]\n · Nail [Penance]",
+      "desc": "- 以下效果統稱為懺悔的證據\n．鎚之釘[判罪]\n．鎚之釘[審判]\n．釘[刑罰]\n．釘[贖罪]",
       "summary": "獄卒施加之釘與鎚之釘的總稱",
-      "flavor": "Drive in as many nails as thy sins demand, and prove thy repentance."
+      "flavor": "按你的業報釘下相應的釘子，以證明你已贖罪。"
     },
     {
       "id": "LeaderVoiceThirdPhase",
       "name": "進行薛西弗斯之刑刑罰的牧師",
-      "desc": "- Max Stack: 5\n- Offense Level +2 and Defense Level +3 for every Stack\n- At 3+ Stacks, inflict +1 more \"Nail [Console]\" using Skills",
-      "summary": "Gain Offense Level and Defense Level based on Stack\nAt 3+ Stack, inflict more \"Nail [Console]\"",
-      "flavor": "The Chaplain appears before those who refuse to act as intended. For that is how the system works."
+      "desc": "- 最大值：5\n- 本效果每有1層，攻擊等級+2、防禦等級+3\n- 本效果層數不低於3層時，透過技能施加的釘 [Console] 的施加量+1",
+      "summary": "根據層數增加攻擊等級與防禦等級\n層數不低於3層時，釘 [Console] 的施加量增加",
+      "flavor": "牧師會出現在不依旨意行動的人面前。因為這就是系統。"
     },
     {
       "id": "ConfessionThirdPhase",
       "name": "～",
-      "desc": "- The following effects are collectively referred to as \"〜\":\n· Nail [Exception]\n· Nail [Breakpoint]\n· Nail [Console]",
+      "desc": "- 以下效果統稱為～\n．釘 [Exception]\n．釘 [Breakpoint]\n．釘 [Console]",
       "summary": "牧師施加之釘的總稱",
-      "flavor": "\"Now I'm sure of it. You're all foreign elements that shouldn't be allowed into this system. I guess it's time I actually checked the manual. There's nothing the laws and rules don't account for.\""
+      "flavor": "「我很確定了，你們是不該存在於這個系統裡的異物。所以……就算現在才看也好，得翻翻手冊了。規律與規則裡可是無所不包的。」"
     },
     {
       "id": "ExecutionNailSecondPhase",
       "name": "鎚之釘[審判]",
-      "desc": "- Max Stack: 9\n- If this effect is triggered by \"Judgment... Sentencing... Condemnation!\", <color=#ff6000><mark=#ff000040><b><u>take fixed damage equal to (Stack x 5%) of max HP</u></b></mark></color> (min 10)\n · Combat Start: If this unit has equipped a Defense Skill, halve damage taken and this unit cannot be killed or Staggered by this effect",
-      "summary": "When activated, take fixed damage\nWhen Defense Skill is equipped, halve damage taken and this unit cannot be killed",
-      "flavor": "For this is a nail, yet no nail. 'Tis a hammer that pronounceth judgment."
+      "desc": "- 最大值：9\n- 透過「審判……！宣告……！判罪……！」觸發本效果時，受到<color=#ff6000><mark=#ff000040><b><u>等同於體力上限(本效果層數×5)%的固定傷害</u></b></mark></color>(最少10點)\n．若戰鬥開始時裝備了守備技能，則受到的傷害減半，且不會因本效果陣亡或陷入混亂",
+      "summary": "觸發時受到固定傷害\n裝備守備技能時傷害減半，且不會陣亡",
+      "flavor": "此乃釘，卻非釘，乃宣告審判之鎚。"
     },
     {
       "id": "RestrainingNailSecondPhase",
       "name": "鎚之釘[判罪]",
-      "desc": "- Max Stack: 9\n- Turn Start: If this unit has this effect, become <color=#ff6000><mark=#ff000040><b><u>Staggered</u></b></mark></color>\n · Turn End: This effect expires if triggered this turn\n · If this unit has \"Thumping Pulse\", it cannot be Staggered via this effect, and this effect expires at Turn End",
-      "summary": "Turn Start: Become Staggered\nIf this unit has \"Thumping Pulse\", does not become Staggered",
-      "flavor": "Each nail thou hast failed to draw forth shall stand as witness to thy sins; and when the Day of Judgment cometh, every nail left within thee shall be driven deeper still into thy flesh and soul."
+      "desc": "- 最大值：9\n- 回合開始時，若帶有本效果，則轉變為<color=#ff6000><mark=#ff000040><b><u>混亂</u></b></mark></color>狀態\n．若本效果已觸發，則於回合結束時移除\n．若帶有鼓動，則不會因本效果陷入混亂，並於該回合結束時移除",
+      "summary": "回合開始時轉變為混亂狀態\n帶有鼓動時不會陷入混亂",
+      "flavor": "汝未能拔出之每一根釘，皆將成為汝業報之證；待審判之日降臨，未被拔出之釘將更深地釘入汝之身心。"
     },
     {
       "id": "CeremonialNail",
       "name": "釘[刑罰]",
       "desc": "- 最大值：9\n- 若透過「審判……！宣告……！判罪……！」觸發本效果時，對自身施加等量的沉淪強度",
       "summary": "觸發時，對自身施加沉淪強度",
-      "flavor": "For punishment is the pang of conscience borne by those who transgress rule and ordinance."
+      "flavor": "刑罰，乃違背規律與規範者的道德苛責。"
     },
     {
       "id": "MarkingNail",
       "name": "釘[贖罪]",
       "desc": "- 最大值：9\n- 若透過「審判……！宣告……！判罪……！」觸發本效果時，使混亂閾值前移（本效果層數×2）",
       "summary": "觸發時，使混亂閾值前移",
-      "flavor": "This is a nail driven into the hearts of the impenitent."
+      "flavor": "釘入未贖罪者胸口的釘子。"
     },
     {
       "id": "GoldenHideWarderThirdPhase",
       "name": "鼓動",
-      "desc": "- Turn Start: A random Sinner gains this effect\n- On Clash Win, if the Sinner who has this effect <color=#ff6000><mark=#ff000040><b><u>won the Clash</u></b></mark></color> against the Chaplain's <color=#ff6000><mark=#ff000040><b><u>\"Systemwide Ban\"</u></b></mark></color> Skill, gain <color=#ff6000><mark=#ff000040><b><u>Shield equal to 250% of the Sinner's max HP</u></b></mark></color> (Shield gained from this effect is removed from the Sinner's total Shield at Attack End of the Chaplain's \"Systemwide Ban\")\n- Clash Power +3, take -50% damage\n- On Hit, inflict 1 Offense Level Down (max 9)\n- Turn End: This effect expires",
-      "summary": "Gain Clash Power and take less damage\nOn Clash Win against \"Systemwide Ban\", gain Shield",
+      "desc": "- 回合開始時，隨機1名罪人獲得本效果\n- 帶有本效果的罪人與牧師的<color=#ff6000><mark=#ff000040><b><u>「強制退場」</u></b></mark></color>技能<color=#ff6000><mark=#ff000040><b><u>拚點勝利</u></b></mark></color>時，獲得<color=#ff6000><mark=#ff000040><b><u>等同於體力上限250%的護盾</u></b></mark></color>(牧師的「強制退場」攻擊結束時，從該罪人帶有的護盾中扣除透過本效果獲得的護盾量)\n- 拚點威力+3，受到的傷害-50%\n- 命中時，施加1層攻擊等級降低(最多9層)\n- 回合結束時移除",
+      "summary": "拚點威力增加，受到的傷害減少\n與「強制退場」拚點勝利時獲得護盾",
       "flavor": "生之權能。變化與誕生的意志。"
     },
     {
       "id": "GoldenFabricWarderThirdPhase",
       "name": "停止",
-      "desc": "- Turn Start: A random Sinner gains this effect\n- Final Power +2, deal +25% damage\n- On Hit, inflict 1 Defense Level Down (max 9)\n- Turn End: This effect expires",
+      "desc": "- 回合開始時，隨機1名罪人獲得本效果\n- 最終威力+2，造成的傷害+25%\n- 命中時，施加1層防禦等級降低(最多9層)\n- 回合結束時移除",
       "summary": "最終威力與造成的傷害增加\n命中時，施加防禦等級降低",
       "flavor": "死之權能。保存與停止的衝動。"
     },
     {
       "id": "MeursaultBuffWarderThirdPhase",
       "name": "異鄉人",
-      "desc": "- Meursault's HP cannot drop below 1 as long as there is 1 or more surviving allies in this Encounter\n- Min & Max Speed +3\n- Final Power +3 and deal +30% damage\n- When Clashing against the Chaplain:\n · Deal +(missing HP percentage on self)% damage (max 90%)\n · On Clash Win, heal 8 SP\n · On Clash Win, gain 1 E.G.O resource for each of the 5 least-owned Affinities\n- When taking damage that would Stagger this unit, does not get Staggered and remove the corresponding Stagger Threshold; and gain 3 Attack Power Up next turn (no activation cap)\n- Cannot Retreat",
-      "summary": "Gain Clash Power and deal more damage when Clashing with the Chaplain\nCannot be Staggered, cannot be defeated when there are other surviving allies",
+      "desc": "- 本場戰鬥中至少還有1名其他友方單位存活時，莫梭的體力無法降至低於1點\n- 最小與最大速度值+3\n- 最終威力+3，傷害+30%\n- 與牧師進行拚點時，\n．傷害+(自身已失去的體力比例)%(最多90%)\n．拚點勝利時，恢復8點理智值\n．拚點勝利時，從持有數量最少的罪孽碎片中隨機獲得5種屬性各1個，共5個\n- 受到會使自身陷入混亂的傷害時，不會陷入混亂且移除該混亂閾值；並在下回合獲得3層強壯(每場戰鬥次數無上限)\n- 無法撤退",
+      "summary": "與牧師進行拚點時，拚點威力與傷害增加\n不會陷入混亂，其他友方單位存活時不會陣亡",
       "flavor": "不論在百貨公司、在都市，我都顯得異質，也就是異物嗎。"
     },
     {
       "id": "GoldenNail",
       "name": "釘 [Console]",
-      "desc": "- Max Stack: 9\n- Combat Start: <color=#ff6000><mark=#ff000040><b><u>At 9 Stacks, On Hit against the Chaplain</u></b></mark></color>, the Sinner who has this effect for this turn <color=#ff6000><mark=#ff000040><b><u>takes fixed damage equal to 2% of max HP</u></b></mark></color> (this effect cannot Stagger this unit)\n- If this effect is triggered by \"Do you seriously mean to break the Sisyphe System?\", gain Sinking equal to Stack and raise Stagger Threshold by (Stack x 2)",
-      "summary": "When activated, gain Sinking and raise Stagger Threshold\nAt max Stack, take fixed damage when hit",
-      "flavor": "\"Let's see, the manual for this nail... 'You feel your sins crawling on your back...' Mm, no, not this one.\"\n\n\"It should be in Drawer 42 over here... I know I put it... ah, there it is! 'Le Noir Administrator's Guide to the Sisyphe System Console Commands'.\""
+      "desc": "- 最大值：9\n- 戰鬥開始時，若<color=#ff6000><mark=#ff000040><b><u>本效果層數為9</u></b></mark></color>，則本回合內帶有本效果的罪人對牧師<color=#ff6000><mark=#ff000040><b><u>攻擊命中時，受到等同於自身體力上限2%的固定體力傷害</u></b></mark></color>(不會因本效果陷入混亂)\n- 透過「你打算真的毀掉薛西弗斯系統嗎？」觸發本效果時，獲得等同於本效果層數的沉淪強度，並使混亂閾值前移(本效果層數×2)",
+      "summary": "觸發時獲得沉淪，並使混亂閾值前移\n層數為最大值時，攻擊命中時受到固定傷害",
+      "flavor": "「我看看，這根釘子的手冊……『你感覺到罪惡正沿著背脊……』嗯，不是這本，」\n\n「應該在這邊第42個抽屜裡……本來有的……啊，在這裡！『給負責漆黑派的薛西弗斯系統管理員的控制台手冊』。」"
     },
     {
       "id": "VibrationFocusing",
       "name": "震顫 - 保存",
-      "desc": "- On Tremor Burst, take Sloth Damage equal to (60 + sum of Charge Potency or Unique Charge on the attacker x 8)% of Tremor Potency, and reduce the Count by 1 (max 120%)\n · When \"Le Noir\" units' Skills and Passives trigger Tremor Burst, the above effect does not reduce the Count\n- When hit by Tremor Burst Skills, raise Stagger Threshold by this effect's Potency\n- Turn End: Lose 1 Count\n(Interacts the same way as normal Tremor does to effects that raise or reduce Tremor Potency/Count)",
-      "summary": "On Tremor Burst, take Sloth Damage\nWhen hit by Skills that trigger Tremor Burst, raise Stagger Threshold"
+      "desc": "- 震顫引爆時，受到等同於震顫強度(60+攻擊者的充能強度或特殊充能×8)%的\n怠惰傷害，並使回數減少1回(最多120%)\n．若為屬於漆黑派的角色以技能、被動效果觸發的震顫引爆，則不會因本效果減少回數\n- 受到震顫引爆技能攻擊時，使混亂閾值前移等同於本效果強度的數值\n- 回合結束時，回數減少1回\n(與震顫同樣受增加、減少震顫強度及回數的效果影響)",
+      "summary": "震顫引爆時受到怠惰傷害\n受到震顫引爆技能攻擊時，混亂閾值前移"
     },
     {
       "id": "ExecutionNailThirdPhase",
       "name": "釘 [Breakpoint]",
-      "desc": "- Max Stack: 9\n- If this effect is triggered by \"Do you seriously mean to break the Sisyphe System?\", <color=#ff6000><mark=#ff000040><b><u>take fixed damage equal to (Stack x 10%) of max HP</u></b></mark></color> (min 10)\n · Combat Start: If this unit has equipped a Defense Skill, halve damage taken and this unit cannot be killed or Staggered by this effect",
-      "summary": "When activated, take fixed damage\nWhen Defense Skill is equipped, halve damage taken and this unit cannot be killed",
-      "flavor": "\"The admin manual says it plain enough. Once this command nails you down inside the system, you can't do a thing.\""
+      "desc": "- 最大值：9\n- 透過「你打算真的毀掉薛西弗斯系統嗎？」觸發本效果時，受到<color=#ff6000><mark=#ff000040><b><u>等同於體力上限(本效果層數×10)%的固定傷害</u></b></mark></color>(最少10點)\n．若戰鬥開始時裝備了守備技能，則受到的傷害減半，且不會因本效果陣亡或陷入混亂",
+      "summary": "觸發時受到固定傷害\n裝備守備技能時傷害減半，且不會陣亡",
+      "flavor": "「管理手冊上寫著。在系統裡被這條指令釘住的話，就什麼也做不了。」"
     },
     {
       "id": "RestrainingNailThirdPhase",
       "name": "釘 [Exception]",
-      "desc": "- Max Stack: 9\n- Turn Start: If this unit has this effect, <color=#ff6000><mark=#ff000040><b><u>take fixed damage equal to 50% current HP</u></b></mark></color> and become <color=#ff6000><mark=#ff000040><b><u>Staggered</u></b></mark></color>\n · Turn End: This effect expires if triggered this turn\n · If this unit has \"Thumping Pulse\", it cannot be Staggered via this effect, halve damage taken, and this effect expires at Turn End",
-      "summary": "Turn Start: Take fixed damage and become Staggered\nIf this unit has \"Thumping Pulse\", does not become Staggered and take only half damage",
-      "flavor": "\"Even the exceptions can't help but get caught on this nail.\""
+      "desc": "- 最大值：9\n- 回合開始時，若帶有本效果，則受到<color=#ff6000><mark=#ff000040><b><u>等同於當前體力50%的固定傷害</u></b></mark></color>，並轉變為<color=#ff6000><mark=#ff000040><b><u>混亂</u></b></mark></color>狀態\n．若本效果已觸發，則於回合結束時移除\n．若帶有鼓動，則不會因本效果陷入混亂，受到的傷害減半，並於該回合結束時移除",
+      "summary": "回合開始時受到固定傷害，並轉變為混亂狀態\n帶有鼓動時不會陷入混亂，且傷害減半",
+      "flavor": "「就算是一切例外，也免不了被這根釘子勾住。」"
     },
     {
       "id": "ConnectionError_LowMorale",
@@ -240,18 +240,18 @@
     {
       "id": "JeanneDesign",
       "name": "釘牢",
-      "desc": "- Max Stack: 3\n- <color=#ff6000><mark color=#ff000040><b><u>This unit has 95% chance to flip Heads</color></mark></b></u>\n- At 2 Stacks, <color=#ff6000><mark color=#ff000040><b><u>Clash Power -2 for targets</color></mark></b></u> Clashing with this unit\n- At 3 Stacks, consume all Stacks and gain <color=#ff6000><mark color=#ff000040><b><u>Engagement</color></mark></b></u> next turn\n- Turn End: Lose 1 Stack (does not lose Stack in the turn this effect is gained)\n- Cannot gain this effect if this unit has Engagement",
+      "desc": "- 最大值：3\n- <color=#ff6000><mark color=#ff000040><b><u>使自身硬幣翻為正面的機率固定為95%</color></mark></b></u>\n- 層數為2層時，與自身拚點的<color=#ff6000><mark color=#ff000040><b><u>目標拚點威力-2</color></mark></b></u>\n- 層數為3層時，消耗所有層數，並於下回合獲得<color=#ff6000><mark color=#ff000040><b><u>介入（engagement）</color></mark></b></u>\n- 回合結束時，減少1層本效果 (獲得本效果的回合不會減少)\n- 帶有介入（engagement）時，無法獲得本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "Existence precedes essence."
+      "flavor": "存在先於本質。"
     },
     {
       "id": "JeanneManager",
-      "name": "許諾（engagement）",
+      "name": "介入（engagement）",
       "desc": "- <color=#ff6000><mark color=#ff000040><b><u>使自身硬幣翻為正面的機率固定為100%</color></mark></b></u>\n- 使與自身拚點和攻擊自身的<color=#ff6000><mark color=#ff000040><b><u>目標其技能的加算硬幣翻為反面的機率固定為100%</color></mark></b></u>\n．若該技能為減算硬幣，則改為翻為正面的機率固定為100%\n- 自身裝備技能捕捉或陷入混亂時，解除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "I designed the department store. And now, I'm a model on its runway, an actress on its stage.\n\nAnd you, ma puce... you'd be the cinéma itself, wouldn't you?"
+      "flavor": "我建立了百貨公司。而現在，我是伸展台上的模特兒，也是舞臺上的演員。\n\n小甜心，你……就是電影院吧？"
     },
     {
       "id": "JeannePartner",
@@ -259,15 +259,15 @@
       "desc": "- 獲得本效果時，移除目標所有負面效果\n- 理智值固定為45點\n．若使用的人格為減算硬幣，則理智值固定為-30點\n- 不會陷入混亂\n- 簡變更階段時移除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "How do you suppose you look to me? The self you see and the you I see must be entirely different.\nMa puce... you've already been nailed into place within me."
+      "flavor": "你覺得在我眼中，你是什麼模樣？\n你看見的自己和我看見的你，一定截然不同。\n小甜心，你已經在我之中被釘牢了。"
     },
     {
       "id": "JeannePartnerTwo",
-      "name": "為他人存在（être-pour-soi）",
+      "name": "自為存在（être-pour-soi）",
       "desc": "- 理智值固定為45點\n- 不會受到傷害\n- 簡變更階段時移除本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "Consciousness is a frightening thing, you know. Somewhere within it, a hollow is bound to open.\n\nWill you fill it for me, ma puce?"
+      "flavor": "擁有意識是件可怕的事。因為總免不了在某處出現空洞。\n\n願意替我填滿嗎，小甜心？"
     },
     {
       "id": "JeannePathos",
@@ -275,7 +275,7 @@
       "desc": "- 最大值：100\n- 拚點勝利時，獲得3層本效果\n- 拚點失敗時，獲得5層本效果\n- 獲得層數等同於拚點次數的本效果\n- 若回合結束時本效果為最大值，則變更階段",
       "summary": "",
       "undefined": "-",
-      "flavor": "I wanted to bloom red... with all that red passion, all that fervor, all that pathos burning within me."
+      "flavor": "熱情與激情。我曾想用鮮紅的情感，綻放出一片赤紅。"
     },
     {
       "id": "JeanneLogos",
@@ -283,7 +283,7 @@
       "desc": "- 最大值：100\n- 拚點勝利時，獲得5層本效果\n- 獲得層數等同於拚點次數的本效果\n- 每有10層本效果，攻擊等級+1\n- 每有20層本效果，拚點威力+1",
       "summary": "",
       "undefined": "-",
-      "flavor": "There's something missing in you—in me, too. We can fill each other."
+      "flavor": "你身上缺少了某樣東西。我也一樣。所以我們能夠填補彼此。"
     },
     {
       "id": "JeanneCheat",
@@ -291,7 +291,7 @@
       "desc": "- 使硬幣翻為背面的機率固定為100%(若為減算硬幣，則翻為正面)\n- 回合結束時，減少1層本效果",
       "summary": "",
       "undefined": "-",
-      "flavor": "... Ma puce, are you running away? From judgment, from this light...?"
+      "flavor": "……小甜心，你要逃避嗎？逃離判斷，逃離這道光……"
     },
     {
       "id": "JeanneBlueprint",
@@ -299,14 +299,14 @@
       "desc": "- 最大值：5\n- 每有1層本效果，拚點威力+1\n- 每有1層本效果，受到技能造成的傷害+10%\n- 回合開始時，若本效果的層數不低於4層，則適用以下效果\n．移除所有混亂閾值\n．若陷入混亂則解除混亂\n．行動槽容量+1",
       "summary": "",
       "undefined": "-",
-      "flavor": "Amid the freedom of despair that promises nothing, Grand Magasin Sisyphe alone offers a blessing: to be cut to measure by design and gaze, and in doing so, be given certainty and continuity."
+      "flavor": "即使身處什麼也不保證的絕望自由之中，唯有在薛西弗斯百貨公司裡，才能享有依循設計與目光被剪裁、被維持的祝福。"
     },
     {
       "id": "BoneNail",
       "name": "卑賤之物（l'abject）",
       "desc": "- 最大值：5\n- 每有1層本效果，則使自身的速度值-1\n- 每有1層本效果，使自身受到流血效果造成的傷害+20%(無條件捨去)\n- 使用基礎攻擊技能時，對自身施加等同於本效果層數的流血回數",
       "summary": "",
-      "flavor": "A cast-off appendage. Buffet pushed it out, spat it forth, spilled it from within.\n\nThough it came from one's own body, once cast outside, it ceased to belong to the self. And even should it be inserted into another, it would never belong to that body either."
+      "flavor": "被拋出的附屬器官。自助餐將它推出、吐出、傾瀉而出。\n\n雖然出自自身的身體，但既然已經離開，就不再屬於自己。然而，即使它刺入了對方，也不屬於對方。"
     },
     {
       "id": "BuffetDream",
@@ -320,70 +320,70 @@
       "name": "普依的記憶",
       "desc": "- 最大值：5\n- 每有1層本效果，則使自身的基礎攻擊等級-5、基礎防禦等級-5、拚點威力-1\n- 回合開始時，使自身恢復(8×本效果層數)點理智值",
       "summary": "",
-      "flavor": "The shoes... made me really happy..."
+      "flavor": "鞋子……好開心……"
     },
     {
       "id": "BuffetDream2",
       "name": "普依的記憶",
       "desc": "- 最大值：5\n- 每有1層本效果，則使自身的基礎攻擊等級-5、基礎防禦等級-5、拚點威力-1\n- 回合開始時，使自身恢復(8×本效果層數)點理智值",
       "summary": "",
-      "flavor": "Thanks... for meeting my eyes...\n\nThe shoes... made me really happy..."
+      "flavor": "謝謝你……願意看著我的眼睛……\n\n鞋子……好開心……"
     },
     {
       "id": "BuffetDream3",
       "name": "普依的記憶",
       "desc": "- 最大值：5\n- 每有1層本效果，則使自身的基礎攻擊等級-5、基礎防禦等級-5、拚點威力-1\n- 回合開始時，使自身恢復(8×本效果層數)點理智值",
       "summary": "",
-      "flavor": "We went on an adventure... It was fun...\n\nThanks... for meeting my eyes...\n\nThe shoes... made me really happy..."
+      "flavor": "我們一起冒險了……好開心……\n\n謝謝你們……願意看著我的眼睛……\n\n鞋子……讓我好高興……"
     },
     {
       "id": "BuffetDream4",
       "name": "普依的記憶",
       "desc": "- 最大值：5\n- 每有1層本效果，則使自身的基礎攻擊等級-5、基礎防禦等級-5、拚點威力-1\n- 回合開始時，使自身恢復(8×本效果層數)點理智值",
       "summary": "",
-      "flavor": "I was hungry... I didn't want to hurt anybody... It hurt so much...\n\nWe went on an adventure... It was fun...\n\nThanks... for meeting my eyes...\n\nThe shoes... made me really happy..."
+      "flavor": "我好餓……我不想弄痛任何人……好痛苦……\n\n我們一起冒險了……好開心……\n\n謝謝你們……願意看著我的眼睛……\n\n鞋子……讓我好高興……"
     },
     {
       "id": "BuffetDream5",
       "name": "普依的記憶",
       "desc": "- 最大值：5\n- 每有1層本效果，則使自身的基礎攻擊等級-5、基礎防禦等級-5、拚點威力-1\n- 回合開始時，使自身恢復(8×本效果層數)點理智值",
       "summary": "",
-      "flavor": "I couldn't stop... I missed you... I was all alone, so... I wanted to come with you...\n\nI was hungry... I didn't want to hurt anybody... It hurt so much...\n\nWe went on an adventure... It was fun...\n\nThanks... for meeting my eyes...\n\nThe shoes... made me really happy..."
+      "flavor": "停不下來……好想見你們……一直都是一個人……所以想跟你們一起走……\n\n我好餓……我不想弄痛任何人……好痛苦……\n\n我們一起冒險了……好開心……\n\n謝謝你們……願意看著我的眼睛……\n\n鞋子……讓我好高興……"
     },
     {
       "id": "BuffetDreamEnd",
       "name": "我是……「普依」",
       "desc": "- 基礎攻擊等級-30\n- 基礎防禦等級-30\n- 受到的傷害+100%",
       "summary": "",
-      "flavor": "Remember me as \"Pwie,\" okay?\nThank you... for everything."
+      "flavor": "要記得我是普依喔。\n謝謝。"
     },
     {
       "id": "BuffetRevival",
       "name": "丹紅之神的聲音",
       "desc": "- 最大值：3\n- 不會使自身陣亡\n- 回合結束時，使本效果的層數減少1層\n- 本效果結束時，自身恢復成原本的姿態（丹紅派 上級工作人員），並根據處於被剝離的丹紅之神肉片狀態時所剩餘的體力，每有10點則使自身恢復5點理智值。使自身獲得2回脈動\n．若自身獲得的脈動回數不低於10回，則消耗所有脈動回數，每消耗5回，則下回合使自身獲得1層暴走[慾求]",
       "summary": "",
-      "flavor": "Live, and live again.\n\nTo experience, to live, is for the mind to dwell not in the present, but already in the future.\n\nBecause one looks forward to what is yet to come, one longs to experience. And because one longs to experience, one chooses to go on living."
+      "flavor": "活下去，再活下去。\n\n所謂經驗，所謂活著。\n\n就是意識不在現在，而是已去到了未來。\n因為期待，所以想要經驗。因為想要經驗，所以想活下去。"
     },
     {
       "id": "BuffetRouge",
       "name": "暴走[慾求]",
       "desc": "- 最大值：3\n- 最小與最大速度值+1\n- 受到流血效果造成的傷害-50%\n- 流血效果造成的傷害不會使自身陣亡\n- 回合結束時，使本效果的層數減少1層",
       "summary": "",
-      "flavor": "I can never be satisfied.\n\nEven though the desire is not truly mine, I mistake it for something that belongs to me.\n\nThis is a desire born of you—a desire that bursts forth from you, because of you."
+      "flavor": "絕對無法滿足。因為那明明不是我的慾望，我卻誤以為是我的。\n\n這是因你而起、從你身上迸發而出的慾望。"
     },
     {
       "id": "BuffetScruple",
       "name": "與普依的經驗",
       "desc": "- 最小與最大速度值+3\n- 回合開始時，恢復15點理智值\n- 受到丹紅之神[成熟]的最終傷害-75%",
       "summary": "",
-      "flavor": "We shared an experience with Pwie. Together. That much is certain.\n\nHesitation begins to surface."
+      "flavor": "我們確實曾與普依在一起。\n\n遲疑，那樣的感覺浮上了心頭。"
     },
     {
       "id": "BuffetResolve",
       "name": "決定",
       "desc": "- 最大值：1\n- 丹紅之神[成熟]造成的傷害+30%\n- 回合開始時，恢復15點理智值",
       "summary": "",
-      "flavor": "\"As Manager... I have to choose, don't I?\"\n\n\"Correct, Manager.\"\n\n\".......\"\n\n\".......\"\n\n\"... I've made my decision.\""
+      "flavor": "「身為經理，我必須做出選擇吧。」\n「是的。」\n「……」\n「……」\n「……我決定了。」"
     },
     {
       "id": "MeursaultBuffetEnd",

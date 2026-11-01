@@ -4,77 +4,77 @@
       "id": 0,
       "place": "B1F 手扶梯大廳",
       "model": "잔느",
-      "content": "<color=#a5ab8e>Still walking in circles, I see.</color>"
+      "content": "<color=#a5ab8e>還在徘徊呢。</color>"
     },
     {
       "id": 1,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Ma puce, do you remember that expensive coq au vin we shared at the Pont Royal?</color>"
+      "content": "<color=#a5ab8e>小甜心，還記得嗎？我們第一個紀念日那天，去皇家橋酒吧一起吃的那道昂貴的紅酒燉雞。</color>"
     },
     {
       "id": 2,
       "model": "뫼르소",
-      "content": "I remember. It was an Experience Cuisine, stewed in wine several times more expensive than the primary ingredient."
+      "content": "我記得。那是加入比主要食材貴上數倍的葡萄酒燉煮而成的經驗料理。"
     },
     {
       "id": 3,
       "model": "뫼르소",
-      "content": "Jeanne, your condition was... poor. You repeatedly complained of headaches and nausea, and had to lean on my shoulder as we walked through the streets. Despite that, you disregarded my suggestion that you return home."
+      "content": "簡，妳那時的狀態……並不好。妳不斷抱怨頭痛與暈眩，走在街上時一直靠在我肩上。而且也沒有聽從回家的勸告。"
     },
     {
       "id": 4,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Well, it was our first anniversary. Fortunately, I felt much better once we sat down at the bar.</color>"
+      "content": "<color=#a5ab8e>那當然，畢竟是第一個紀念日嘛。幸好在那間酒吧坐下之後，就好多了。</color>"
     },
     {
       "id": 5,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Because, by sheer coincidence... the Experience Wine that came with it happened to contain a waltz I adored. Isn't that strange? It wasn't even a particularly famous piece.</color>"
+      "content": "<color=#a5ab8e>因為那天碰巧……他們把我最喜歡的華爾滋加進了經驗葡萄酒裡。很神奇吧？那明明也不是什麼有名的曲子。</color>"
     },
     {
       "id": 6,
       "model": "잔느",
-      "content": "<color=#a5ab8e>As I sat there enchanted by the music... as if they'd agreed to meet, our forks clinked. Over a plate of carrot-flavored Experience Salad I hardly ever ate, too!</color>"
+      "content": "<color=#a5ab8e>我專心聽著那首曲子……不知是不是心有靈犀，我的叉子和你的碰在了一起。就在那盤我平時幾乎不吃的胡蘿蔔口味經驗沙拉上。</color>"
     },
     {
       "id": 7,
       "model": "그레고르",
-      "content": "So the staple in N Corp. is food that lets you experience, uh, the experience of eating different menu...?"
+      "content": "不是，N公司的人都吃那種讓人體驗經驗的料理啊？"
     },
     {
       "id": 8,
       "model": "잔느",
-      "content": "<color=#a5ab8e>What did you expect? Having a real carrot salad and the experience of doing so are one and equal at N Corp. It's considered morally decent, even, to experience the food you want through Experience Cuisines instead of eating the real thing. I knew it all too well, and yet...</color>"
+      "content": "<color=#a5ab8e>不然你以為呢？這裡可是認為吃真正的胡蘿蔔料理和體驗胡蘿蔔的味道並無不同的地方。比起吃胡蘿蔔，用經驗料理去體驗那個味道反而才是美德呢。即使如此……那個……</color>"
     },
     {
       "id": 9,
       "model": "잔느",
-      "content": "<color=#a5ab8e>... It was the strangest thing. The instant that tiny clink of forks died away, my nausea stopped—as though the world had begun turning the other way.</color>"
+      "content": "<color=#a5ab8e>……那真是很神奇的經驗。那細小又喧鬧的金屬聲一停下，暈眩就止住了，彷彿世界倒轉了過來似的。</color>"
     },
     {
       "id": 10,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Was it the beautiful waltz playing at the bar? Or was it... the feeling of my fork touching yours, ma puce?</color>"
+      "content": "<color=#a5ab8e>是多虧了在酒吧聽到的那段美麗的華爾滋經驗嗎？還是說……小甜心，是多虧了和你的叉子相碰的那份感覺呢？</color>"
     },
     {
       "id": 11,
       "model": "뫼르소",
-      "content": "... It was because the bar was quiet and sparsely occupied."
+      "content": "……因為那是一間沒什麼人的安靜酒吧。"
     },
     {
       "id": 12,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Maybe so. But it was an unforgettable experience for me.</color>"
+      "content": "<color=#a5ab8e>是啊，也有可能。我到現在都忘不了那次經驗。</color>"
     },
     {
       "id": 13,
       "model": "잔느",
-      "content": "<color=#a5ab8e>But you... you must remember the nausea instead.</color>"
+      "content": "<color=#a5ab8e>但是……你反而……會忘不了感到暈眩的那個時候吧。</color>"
     },
     {
       "id": 14,
       "model": "잔느",
-      "content": "<color=#a5ab8e>That sort of qualification was trained and drilled into you since you were a child, after all.</color>"
+      "content": "<color=#a5ab8e>畢竟你從小就得接受那種資格的教育。</color>"
     },
     {
       "id": 15,
@@ -84,42 +84,42 @@
     {
       "id": 16,
       "model": "잔느",
-      "content": "<color=#a5ab8e>It's not difficult to make use of this place.</color>"
+      "content": "<color=#a5ab8e>使用這裡的方法並不難。</color>"
     },
     {
       "id": 17,
       "model": "잔느",
-      "content": "<color=#a5ab8e>The only reason it appears so cryptic is that you're all outsiders—strangers.</color>"
+      "content": "<color=#a5ab8e>只是……你們是異鄉人，所以抓不到訣竅罷了。</color>"
     },
     {
       "id": 18,
       "model": "그레고르",
-      "content": "Is there some trick to it? A condition, maybe...? Say, something like skipping all the odd-numbered stairs?"
+      "content": "難道有什麼訣竅嗎？還是說有什麼條件……就是那個，像是下樓時不能踩奇數格之類的……"
     },
     {
       "id": 19,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Nothing so riddling. That would be far too difficult.</color>"
+      "content": "<color=#a5ab8e>不是那種猜謎似的方式。那種的太難了嘛。</color>"
     },
     {
       "id": 20,
       "model": "잔느",
-      "content": "<color=#a5ab8e>You simply have to \"          \" everything you see with care—in the finest possible detail. Surrender yourself to unfamiliar doubts and questions.</color>"
+      "content": "<color=#a5ab8e>只要……把眼前所見的一切都用心且非常細緻地■■就好。把自己交給陌生的疑問。</color>"
     },
     {
       "id": 21,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Can an escalator that does not move still be an escalator?</color>"
+      "content": "<color=#a5ab8e>不會動的手扶梯，也可以算是手扶梯嗎？</color>"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "... It would be closer to the nature of a staircase."
+      "content": "……更接近樓梯吧。"
     },
     {
       "id": 23,
       "model": "잔느",
-      "content": "<color=#a5ab8e>Would it? Can that sealed, impassable structure—one that permits neither ascent nor descent—truly be said to resemble a staircase?</color>"
+      "content": "<color=#a5ab8e>真的嗎？那個既不能往下、也不能往上，完全堵死的結構物，真的能說是接近樓梯嗎？</color>"
     },
     {
       "id": 24,
@@ -129,12 +129,12 @@
     {
       "id": 25,
       "model": "잔느",
-      "content": "<color=#a5ab8e>You must keep looking. Don't stop.</color>"
+      "content": "<color=#a5ab8e>得不停地注視才行。</color>"
     },
     {
       "id": 26,
       "model": "잔느",
-      "content": "<color=#a5ab8e>If you suspend judgment and circle the question again and again, the dizziness will ease.</color>"
+      "content": "<color=#a5ab8e>要一再停下判斷、不斷繞圈，暈眩才會減輕嘛。</color>"
     }
   ]
 }

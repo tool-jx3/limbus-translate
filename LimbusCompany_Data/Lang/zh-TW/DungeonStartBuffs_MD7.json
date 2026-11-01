@@ -126,7 +126,7 @@
     },
     {
       "id": "GiveBuffOnRoundStart",
-      "description": "Gain {2} <color=#627eff>{1}</color>"
+      "description": "獲得{2}<color=#627eff>{1}</color>"
     },
     {
       "id": "MaxSpeedUpAdder_TEXT_HIGHLIGHT",
@@ -134,7 +134,7 @@
     },
     {
       "id": "GiveBuffOnRoundStart_TEXT_HIGHLIGHT",
-      "description": "Gain <color=#f8c200>{2}</color> <color=#627eff>{1}</color>"
+      "description": "獲得<color=#f8c200>{2}</color> <color=#627eff>{1}</color>"
     },
     {
       "id": "ACQUIRE_3_TIER_RANDOM_MATERIAL_EGO_GIFT_ON_ENTER_SHOP",

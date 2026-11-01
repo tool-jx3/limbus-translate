@@ -2,67 +2,67 @@
   "dataList": [
     {
       "id": "battleTip_11039_phase1_1",
-      "content": "Prioritize taking out the Grand Magasin Sisyphe Blueprints before Jeanne can finish them off with her \"Focusing\" Skill."
+      "content": "重要的是搶在簡用「捕捉」技能擊殺薛西弗斯百貨公司的藍圖之前，先將其擊殺。"
     },
     {
       "id": "battleTip_11039_phase1_2",
-      "content": "When Jeanne's \"Engagement\" effect is active, use an E.G.O Skill with high Base Power to Clash against her."
+      "content": "簡的「介入（engagement）」生效時，最好使用基礎威力較高的E.G.O技能進行拚點。"
     },
     {
       "id": "battleTip_11039_phase2_1",
-      "content": "Keep a close eye on Meursault's HP."
+      "content": "管理好莫梭的體力很重要。"
     },
     {
       "id": "battleTip_11039_phase2_2",
-      "content": "Pay attention to Jeanne's intended pattern when assigning Skill targets."
+      "content": "需要配合簡的意圖來指定技能的目標。"
     },
     {
       "id": "battleTip_11039_phase3_1",
-      "content": "Be careful: Sinners hit by Jeanne's Skills cannot roll Heads."
+      "content": "請注意，罪人受到簡的技能攻擊時，將無法擲出硬幣正面。"
     },
     {
       "id": "battleTip_11039_phase3_2",
-      "content": "Taking out the Blueprints reduces Jeanne's HP. Use E.G.O Skills with high Attack Weight to defeat them quickly."
+      "content": "擊殺藍圖會使簡的體力減少，因此使用攻擊容量較高的E.G.O迅速擊殺藍圖很重要。"
     },
     {
       "id": "battleTip_11041_1",
-      "content": "Each time you win a Clash against \"La Jouissance\", The Crimson God [Adulthood] gains \"Pwie's Memories\" and becomes weaker."
+      "content": "每當在與「享樂」的拚點中獲勝，丹紅之神[成熟]就會獲得「普依的記憶」並變弱。"
     },
     {
       "id": "battleTip_11041_2",
-      "content": "Sinners who have \"Shared with Pwie\" take less damage from The Crimson God [Adulthood], and The Crimson God [Adulthood] loses SP each time they use a Skill against the said Sinners."
+      "content": "帶有「與普依的經驗」的罪人受到丹紅之神[成熟]的傷害會減少，且丹紅之神[成熟]每次對該罪人使用技能時都會失去理智值。"
     },
     {
       "id": "battleTip_11041_3",
-      "content": "As L'Abject stacks, Speed decreases and damage taken from Bleed increases. Sinners with 5 or more Stacks become targets for The Crimson God [Adulthood]'s powerful additional attack. Exercise caution."
+      "content": "「卑賤之物（l'abject）」累積後，速度會變慢，受到的流血傷害也會增加。\n請注意，累積達5層以上的罪人會成為丹紅之神[成熟]強力追加攻擊的目標。"
     },
     {
       "id": "battleTip_11036_phase1_1",
-      "content": "If a Sinner with 1 Speed Clashes with the Warden's Skill, its Power and Damage increase greatly. Even winning the Clash will still hurt."
+      "content": "請注意，速度為1的罪人與獄卒的技能拚點時，獄卒技能的威力與傷害會大幅增加，就算贏得拚點也會受到重創。"
     },
     {
       "id": "battleTip_11036_phase1_2",
-      "content": "If a Candle of Retribution survives, it inflicts Bind on all Sinners next turn at Turn End. Prioritize defeating it."
+      "content": "刑罰的燭台存活時，會在回合結束時對所有罪人施加下回合的束縛，因此必須第一優先解決。"
     },
     {
       "id": "battleTip_11036_phase2_1",
-      "content": "Certain Skills of the Warden can be greatly weakened by Clashing with Sinners who have \"Thumping Pulse\" or \"Stillness\"."
+      "content": "獄卒的特定技能，必須以帶有鼓動或停止效果的罪人進行拚點，才能大幅削弱。"
     },
     {
       "id": "battleTip_11036_phase2_2",
-      "content": "When attacking a Sinner, the Warden becomes stronger based on the various Nails (Proof of Confession) that Sinner has. Keep this in mind when responding to his Skills."
+      "content": "獄卒攻擊罪人時，會依該罪人帶有的各種釘(懺悔的證據)而變強。請留意這點來應對技能吧。"
     },
     {
       "id": "battleTip_11036_phase3_1",
-      "content": "Certain Skills of the Chaplain can be greatly weakened by Clashing with Sinners who have \"Thumping Pulse\" or \"Stillness\"."
+      "content": "牧師的特定技能，必須以帶有鼓動或停止效果的罪人進行拚點，才能大幅削弱。"
     },
     {
       "id": "battleTip_11036_phase3_2",
-      "content": "When attacking a Sinner, the Chaplain becomes stronger based on the various Nails (〜) that Sinner has. Keep this in mind when responding to his Skills."
+      "content": "牧師攻擊罪人時，會依該罪人帶有的各種釘(～)而變強。請留意這點來應對技能吧。"
     },
     {
       "id": "battleTip_11036_phase3_3",
-      "content": "During the fight against the Chaplain, certain actions cause Sinners to gain a large amount of Nail [Console] and take a small amount of HP damage. Keep this in mind at all times."
+      "content": "與牧師戰鬥時，若做出特定動作，罪人將累積大量釘 [Console]，並受到少量體力傷害。請隨時留意這點。"
     }
   ]
 }

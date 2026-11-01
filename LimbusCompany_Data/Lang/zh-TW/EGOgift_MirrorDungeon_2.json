@@ -14,7 +14,7 @@
     {
       "id": 9158,
       "name": "盜來的火焰",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Combustion] or 'Unique Burn'. (except E.G.O Skills; except Backup Units)\n\nOn Hit with a Skill(including E.G.O Skills): if the target has 3+ [Combustion] Count, activate [Combustion] once on the target. (target loses 1 [Combustion] Count; activates once per Skill)\n\nTurn End: targets with 3+ [Combustion] Count activates [Combustion] one more time (target loses 1 [Combustion] Count)\n\nIf a target with [Combustion] is defeated(for Abnormalities, when the Core is defeated), inflict its remaining [Combustion] Potency to one of the enemies with the least [Combustion] Potency at the next Turn Start.\n\nTurn Start: for this turn, inflict 4 [AttackDown] to enemies with [Combustion]\n\nIf a target with [Combustion] is defeated, at the next Turn Start, (defeated enemy's [Combustion] Potency / 15) allies with Skills that inflict [Combustion] gain 2 [AttackDmgUp]. (once per turn)",
+      "desc": "回合開始時，若擁有施加 [Combustion] 或特殊燒傷的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n技能命中時(包括E.G.O技能)，若目標的 [Combustion] 回數不低於3回，則觸發目標的 [Combustion] 1次。(使其 [Combustion] 回數減少1回，每個技能最多1次)\n\n回合結束時，[Combustion] 回數不低於3回的敵方單位額外觸發1次 [Combustion] (使其 [Combustion] 回數減少1回)\n\n帶有 [Combustion] 的敵方單位陣亡時(若是異想體，則在本體陣亡時)，下回合開始時將陣亡單位剩餘的 [Combustion] 強度施加給 [Combustion] 強度最低的1名敵方單位。\n\n回合開始時，本回合對帶有 [Combustion] 的敵方單位施加4層 [AttackDown]\n\n帶有 [Combustion] 的敵方單位陣亡時，在下回合開始時使擁有施加 [Combustion] 的技能的(陣亡單位的 [Combustion] 強度/15)名友方單位獲得2層 [AttackDmgUp]。(每回合最多1次)",
       "simpleDesc": [
         {
           "abilityID": 9158,
@@ -52,7 +52,7 @@
     {
       "id": 9162,
       "name": "出血性休克",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Laceration] or 'Unique Bleed'. (except E.G.O Skills; except Backup Units)\n\nOn ally Clash Win: activate the enemy's [Laceration] once and reduce [Laceration] Count by 1 (once per turn for each ally)\n\nEnemies become Staggerable by [Laceration] Damage; if an enemy gets Staggered due to [Laceration] damage mid-Clash, activate [Laceration] (# of remaining enemy Coins) times and reduce [Laceration] Count by (# of [Laceration] activations)\n\nIf all enemies have [Laceration], they lose 2 Defense Levels. At Turn End, inflict (# of [Laceration] activations x 2) [DefenseDown] next turn (max 20)\n\nWhen inflicting [Laceration] Potency or 'Unique Bleed' with Skill effects, inflict 3 [Laceration] Potency and +1 [Laceration] Count on the target",
+      "desc": "回合開始時，若擁有施加 [Laceration] 或特殊流血的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n友方單位拚點勝利時，觸發敵方單位的 [Laceration] 1次，並使敵方單位減少1回 [Laceration] (每回合每名友方單位最多1次)\n\n[Laceration] 傷害可使敵方單位陷入混亂；若敵方單位拚點進行中因 [Laceration] 傷害而陷入混亂，則觸發其 [Laceration] (其技能剩餘硬幣數)次，並使其減少與觸發次數相同回數的 [Laceration]。\n\n若全體敵方單位均帶有 [Laceration]，則使其減少2級防禦等級。回合結束時，下回合對其施加(觸發的 [Laceration] 次數×2)層 [DefenseDown] (最多20層)\n\n透過技能效果增加 [Laceration] 強度或施加特殊流血時，使目標增加3級 [Laceration] 強度與1回 [Laceration]",
       "simpleDesc": [
         {
           "abilityID": 9162,
@@ -124,11 +124,11 @@
     {
       "id": 9167,
       "name": "無振八方鐘",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Vibration] Potency, Count, or 'Unique Tremor'. (except E.G.O Skills; except Backup Units)\n(If an Identity only has Attack Skills that gain [Vibration] Count on self, this E.G.O Gift does not activate for them)\n\nWhen winning a Clash with a Skill that inflicts [Vibration] Potency or Count, or consumes [Vibration] Count on self: inflict (# of remaining Coins) [Vibration] Potency against the target and gain (# of remaining Coins) Tremor Count (max +3 Tremor Count gained per Skill). If the target does not have [Vibration], inflict +3 [Vibration] Count\n\nTurn Start: gain (1 + ([Vibration] Count on self / 5)) [ParryingResultUp]. (max 3)\n\nWhen using a Skill that consumes [Vibration] Count on self: when defeating or Staggering a target, gain ([Vibration] Count consumed / 2) [Vibration] Count (once per Skill)\n\nSkills deal +([Vibration] consumed on self + [Vibration] Potency on the enemy + 5)% damage (except E.G.O Skills; max 50%)\nWhen the target has [VibrationNesting], when triggering either [Switch_Vibration] or [FusionVibration] against the enemy with a type of [Vibration] they don't have in their [VibrationNesting], extend the [VibrationNesting] on target at Turn End to the next turn",
+      "desc": "回合開始時，若擁有增加 [Vibration] 強度、[Vibration] 回數或施加特殊震顫的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員、不包括僅擁有對自身施加 [Vibration] 回數的攻擊技能的人格)\n\n增加 [Vibration] 強度、[Vibration] 回數或消耗自身的 [Vibration] 回數的技能拚點勝利時，使目標增加(剩餘硬幣數)級 [Vibration] 強度，並使自身的震顫回數增加(剩餘硬幣數)回(每個技能最多增加3回)。若目標未帶有 [Vibration]，則對其施加3回 [Vibration]。\n\n回合開始時，使自身獲得(1+(自身的 [Vibration] 回數/5))層 [ParryingResultUp]。(最多3層)\n\n若消耗自身的 [Vibration] 回數的技能擊殺目標或使目標陷入混亂，則對自身施加(消耗的 [Vibration] 回數/2)回 [Vibration] (每個技能最多1次)\n\n技能造成的傷害+(自身消耗的 [Vibration] 回數+目標的 [Vibration] 強度+5)%(不包括E.G.O技能，最多+50%)\n若目標帶有 [VibrationNesting]，則以該目標未疊加類型的 [Vibration] 對其使用 [Switch_Vibration]、[FusionVibration] 時，回合結束時使其 [VibrationNesting] 延長至下回合",
       "simpleDesc": [
         {
           "abilityID": 9167,
-          "simpleDesc": "On Clash Win, inflict Tremor equal to the # of remaining Coins. If the target does not have [Vibration], inflict Tremor Count"
+          "simpleDesc": "拚點勝利時，使目標增加(剩餘硬幣數)級震顫強度，若目標未帶有 [Vibration]，則使其震顫回數增加"
         },
         {
           "abilityID": 91671,
@@ -151,11 +151,11 @@
     {
       "id": 9168,
       "name": "終末的碎片",
-      "desc": "If the target has less than 15 [Burst] Potency, inflict 1 additional Potency when inflicting [Burst] Potency",
+      "desc": "若目標的 [Burst] 強度低於15級，則增加 [Burst] 強度時額外增加1級",
       "simpleDesc": [
         {
           "abilityID": 9168,
-          "simpleDesc": "Inflict 1 additional [Burst] Potency"
+          "simpleDesc": "增加 [Burst] 強度時，額外增加1級"
         }
       ]
     },
@@ -170,7 +170,7 @@
         },
         {
           "abilityID": 91701,
-          "simpleDesc": "Inflict 2 additional [Burst] Potency"
+          "simpleDesc": "增加 [Burst] 強度時，額外增加2級"
         },
         {
           "abilityID": 91702,
@@ -181,7 +181,7 @@
     {
       "id": 9171,
       "name": "破滅",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Burst] Potency or Count. (except E.G.O Skills; except Backup Units)\n\n[Burst] effects deal +150% damage against enemy Shield\n\nTurn Start: enemies or Parts with [Burst] lose (3 + ([Burst] Potency / 2)) Offense Level and Defense Level. (max 6)\n\nWhen inflicting [Burst] Potency or Count with Skill effects, inflict 2 [Burst] Potency and +1 [Burst] Count against the target. If the target has less than 15 [Burst] Potency, inflict 2 additional [Burst] Potency.\n\nCoin Power +1 for Plus Coin Skills that inflict [Burst] Potency, Count, or 'Unique Rupture'\nBase Power +(4 / # of Coins) (min. 1; rounded down) for Minus Coin Skills that inflict [Burst] Potency, Count, or 'Unique Rupture'",
+      "desc": "回合開始時，若擁有增加 [Burst] 強度或 [Burst] 回數的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n[Burst] 效果對敵方單位帶有的護盾造成的傷害+150%\n\n回合開始時，帶有 [Burst] 的敵方單位或部位減少(3+(其 [Burst] 強度÷2))級攻擊等級與防禦等級。(最多6級)\n\n透過技能效果增加 [Burst] 強度、[Burst] 回數時，使目標增加2級 [Burst] 強度與1回 [Burst]。若目標的 [Burst] 強度低於15級，則增加 [Burst] 強度時額外增加2級。\n\n增加 [Burst] 強度、回數或施加特殊破裂的加算硬幣技能的硬幣威力+1\n增加 [Burst] 強度、回數或施加特殊破裂的減算硬幣技能的基礎威力+(4÷硬幣數)(最少+1，無條件捨去)",
       "simpleDesc": [
         {
           "abilityID": 9171,
@@ -241,7 +241,7 @@
     {
       "id": 9176,
       "name": "襲來的浪潮",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply [Sinking] Potency, Count, or 'Unique Sinking'. (except E.G.O Skills; except Backup Units)\n\nTurn Start: inflict 1 [WaveSinking] against a random enemy\n\nWhen an enemy with [WaveSinking] is killed, at the next Turn Start, transfer the [WaveSinking] Stack from the said enemy to an enemy with the highest, but not maxed, [WaveSinking] Stack\n\nWhen hitting and dealing HP damage to an enemy with a Skill that inflicts [Sinking] Potency, Count, or 'Unique Sinking', inflict 4 [Sinking] Potency and +3 [Sinking] Count at Turn End (once per turn for each enemy)\nCombat Start: when activating Gloom or Lust A-Reson., inflict 3 [Sinking] and +3 [Sinking] on all enemies (for Abnormalities, a random Part)\n\nAfter using a base Attack Skill, if the target has 10+ [Sinking] Potency, heal ([Sinking] Potency on the target / 10) SP on self (max 5) and inflict the same amount as [DefenseDown] against the target (max 5; once per turn for each enemy)\n\nTurn End: all allies gain [AttackUp] equal to the number of enemies that have -45 SP or are Non-SP Units next turn (max 6)\n\nCoin Power +1 for Plus Coin Skills that inflict [Sinking] Potency, Count, or 'Unique Sinking'\nBase Power +(4 / # of Coins) (min. 1; rounded down) for Minus Coin Skills that inflict [Sinking] Potency, Count, or 'Unique Sinking'\n\nWhen activating the [Sinking] effect(including 'Unique Sinking') on the target with an On Hit effect from a Base Attack Skill that inflicts or gains [Sinking] Potency, [Sinking] Count, or 'Unique Sinking', heal 5 SP at Turn End (2 times per turn per Identity)\nIf the unit was at 45 SP at Turn Start, the effect changes to the following: when hitting and activating the [Sinking] effect(including 'Unique Sinking') on the target with a base Attack Skill, inflict +3 [Sinking] Count against the targeted enemy (2 times per turn per Identity)",
+      "desc": "回合開始時，若擁有增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n回合開始時，隨機對1名敵方單位施加1層 [WaveSinking]\n\n帶有 [WaveSinking] 的敵方單位陣亡時，下回合開始時，對 [WaveSinking] 層數未達最大值且最高的1名敵方單位施加等同於陣亡單位 [WaveSinking] 層數的 [WaveSinking]。\n\n增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪的技能命中敵方單位並對其造成體力傷害時，在回合結束時使其增加4級 [Sinking] 強度與3回 [Sinking] (每回合每名敵方單位最多1次)\n若觸發了憂鬱或色慾完全共鳴，則戰鬥開始時，使全體敵方單位(若是異想體，則改為隨機1個部位)增加3級 [Sinking] 強度與3回 [Sinking]。\n\n基礎攻擊技能攻擊後，若目標的 [Sinking] 強度不低於10級，則使自身恢復(目標的 [Sinking] 強度÷10)點理智值(最多5點)並對目標施加相應層數的 [DefenseDown] (最多5層，每回合每名敵方單位最多1次)\n\n回合結束時，每有1名敵方單位理智值為-45點或沒有理智值，下回合使全體友方單位獲得1層 [AttackUp] (最多6層)\n\n增加 [Sinking] 強度、回數或施加特殊沉淪的加算硬幣技能的硬幣威力+1\n增加 [Sinking] 強度、回數或施加特殊沉淪的減算硬幣技能的基礎威力+(4÷硬幣數)(最少+1，無條件捨去)\n\n使用增加 [Sinking] 強度、[Sinking] 回數或施加特殊沉淪(包括使自身增加或對自身施加)的基礎攻擊技能命中敵方單位時，每觸發1次目標的 [Sinking] 效果(包括特殊沉淪)，在回合結束時，使自身恢復5點理智值(每回合每名人格最多2次)\n若該人格在回合開始時理智值為45點，則改為使用基礎攻擊技能命中敵方單位並觸發目標的 [Sinking] 效果(包括特殊沉淪)時，使目標增加3回 [Sinking] (每回合每名人格最多2次)",
       "simpleDesc": [
         {
           "abilityID": 9176,
@@ -295,7 +295,7 @@
     {
       "id": 9180,
       "name": "桶裝烈酒",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that apply or gain [Breath] Potency or Count. (except E.G.O Skills; except Backup Units)\n\nTurn End: If an ally has more than 20 [Breath] Potency on self, the ally consumes 1 [Breath] Potency to gain 1 [Breath] Count\n\nTurn End: 1 ally with the highest [Breath] Potency and 1 ally with the highest [Breath] Count gain 2 [Agility] and 1 [AttackUp] next turn (can activate on the same Identity)\n\nWhen gaining [Breath] Potency from Skill effects, gain additional 2 [Breath] Potency and +2 [Breath] Count. If the sum of [Breath] Potency and Count on self is less than 20, gain 3 [Breath] Potency and +3 [Breath] Count instead.\n\nCombat End: at more than 40 [Breath] Potency, consume 15 [Breath] Potency to [Discard] 1 Skill of the lowest rank in all of that unit's Skill Slots (once per turn for each character)",
+      "desc": "回合開始時，若擁有增加或獲得 [Breath] 強度或 [Breath] 回數的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n回合結束時，[Breath] 強度高於20級的友方單位消耗1級 [Breath] 強度並獲得1回 [Breath]\n\n回合結束時，下回合使 [Breath] 強度最高的1名友方單位與 [Breath] 回數最高的1名友方單位獲得2層 [Agility] 與1層 [AttackUp] (若為同一名人格，可重複獲得)\n\n透過技能效果增加 [Breath] 強度時，額外增加2級 [Breath] 強度並獲得2回 [Breath]。若自身的 [Breath] 強度與回數之和低於20，則改為增加3級 [Breath] 強度並獲得3回 [Breath]。\n\n戰鬥結束時，若自身的 [Breath] 強度高於40級，則消耗15級 [Breath] 強度並 [Discard] 自身所有行動槽中等級最低的1個技能(每回合每名角色最多1次)",
       "simpleDesc": [
         {
           "abilityID": 9180,
@@ -329,7 +329,7 @@
     {
       "id": 9183,
       "name": "絕緣子",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that gain [Charge] Count or 'Unique Charge'. (except E.G.O Skills; except Backup Units)\n\nAttack End with a Skill Attack that consumes [Charge] Count on self: If the target is defeated, gain ([Charge] Count consumed by the Skill / 3) [Charge] Count\n\nTurn Start: At less than 3 [Charge] Count, gain +3 [Charge] Count\nTurn Start: At 3+ [Charge] Count, gain 1 [AttackDmgUp]",
+      "desc": "回合開始時，若擁有獲得 [Charge] 回數或特殊充能的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n消耗自身的 [Charge] 回數的技能攻擊後，若擊殺目標，則使自身獲得(該技能消耗的 [Charge] 回數/3)回 [Charge]\n\n回合開始時，若自身的 [Charge] 回數低於3回，則使自身獲得3回 [Charge]。回合開始時，若自身的充能回數不低於3回，則使自身獲得1層 [AttackDmgUp]。",
       "simpleDesc": [
         {
           "abilityID": 9183,
@@ -344,7 +344,7 @@
     {
       "id": 9184,
       "name": "第五類永動機",
-      "desc": "Turn Start: This Gift activates for the whole Encounter when 5 or more Identities have Attack Skills that gain [Charge] Count or 'Unique Charge'. (except E.G.O Skills; except Backup Units)\n\nTurn Start: At less than 3 [Charge] Count, gain +5 [Charge] Count.\nTurn Start: At 5+ [Charge] Count, gain +2 min/max Speed, 1 [Enhancement], and 2 [AttackDmgUp]. (including 'Unique Charge')\n\nAll allies on the field gain [ShareCharge] at Turn Start.\n\nAttack End with a Skill 3 that consumes or gains [Charge] Count on self: If the target is defeated, or if the ally who used the Skill is at 3+ [Charge], they add 1 Skill 3 to the list of Skills for the next upcoming turn. (once per turn for each ally; including 'Unique Charge')",
+      "desc": "回合開始時，若擁有獲得 [Charge] 回數或特殊充能的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果。(不包括E.G.O技能、不包括待命人員)\n\n回合開始時，若自身的 [Charge] 回數低於3回，則使自身獲得5回 [Charge]。回合開始時，若自身的充能回數不低於5回，則使自身的最小與最大速度值+2並獲得1層 [Enhancement] 與2層 [AttackDmgUp]。(包含特殊充能)\n\n參戰的全體友方單位在回合開始時獲得 [ShareCharge]。\n\n消耗或獲得自身 [Charge] 回數的3技能攻擊後，若擊殺目標或自身的 [Charge] 不低於3，則添加1個3技能到下回合將要使用的技能池中。(每回合每名友方單位最多1次；包含特殊充能)",
       "simpleDesc": [
         {
           "abilityID": 9184,

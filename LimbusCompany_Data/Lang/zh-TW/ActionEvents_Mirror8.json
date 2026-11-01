@@ -3,10 +3,10 @@
     {
       "id": 971115,
       "name": "1樓 丹紅派 快時尚服飾館",
-      "desc": "\"Damn it! The trend's changed again!\"\n\nA Rouge sales associate scans a list, yanking clothes from the racks and flinging them onto the floor one after another.\n\n\"Fluorescent plaid only just went out. Now it's polka dots? Hah!\"\n\nLooks like they have no use for any of those clothes now... Maybe we can take them off their hands?",
+      "desc": "「可惡！流行又過去了啦！」\n\n丹紅派的專櫃人員一邊看著清單，一邊煩躁地把掛在展示架上的衣服往地上扔。\n\n「螢光格紋季才剛過沒多久耶。現在又換成波卡圓點？哈！」\n\n看樣子這些衣服已經沒用了……我們拿走的話，說不定會派上用場？",
       "options": [
         {
-          "message": "Ask if we can have the out-of-fashion clothes.",
+          "message": "詢問既然已經退流行，能不能讓我們拿走。",
           "messageDesc": "進行色慾、暴食優勢判定，獲得1件泛用E.G.O飾品（失敗後會觸發遭遇戰）",
           "result": [
             ""
@@ -16,7 +16,7 @@
           "message": "無視。",
           "messageDesc": "沒有效果",
           "result": [
-            "Funny. Now that we know they've gone out of fashion, the clothes that looked perfectly fine a moment ago suddenly seem a little tacky.\n\nProbably not worth taking after all."
+            "聽到已經退流行之後，原本看起來好好的衣服莫名顯得俗氣了起來。\n\n似乎沒必要特地帶走。"
           ]
         }
       ]
@@ -24,20 +24,20 @@
     {
       "id": 971116,
       "name": "副廚",
-      "desc": "\"Come try this season's Meat Soda, you hear?\"\n\nSous Chef stops us beside a fountain bubbling with soda.\n\n\"Camemblack Scabbardfish... fresh larva, even a fisherman's chair... *slurp* I infused it with all kinds of rarity-rare ingredients, you hear?\"\n\n\"First time? Then it's just 3 eyeballs a cup, you hear? It's crazy value, you hear? Special discount, you hear? Once-in-a-lifetime deal, you hear?\"\n\nThat is indeed cheaper than expected... Should we try it?",
+      "desc": "「來喝喝這一季的精肉蘇打喔！」\n\n在湧出蘇打的噴泉前，副廚攔住了路過的我們。\n\n「烏黑帶魚、新鮮的幼蟲，連釣客的椅子都有……吸溜，熬進了一大堆難得的食材喔！」\n\n「第一次喝的話，一杯只要3顆眼球喔。超便宜的喔！特別優惠喔！機不可失喔！」\n\n比想像中便宜……要喝喝看嗎？",
       "options": [
         {
-          "message": "Ask for a cup of soda.",
+          "message": "說要來一杯。",
           "messageDesc": "進行色慾、暴食優勢判定，獲得1件泛用E.G.O飾品",
           "result": [
             ""
           ]
         },
         {
-          "message": "Still, that looks a little... hard to stomach.",
+          "message": "但那個還是有點……喝不下去。",
           "messageDesc": "選擇後，全體友方單位減少體力",
           "result": [
-            "\"You can't just turn down the Meat Soda I worked so hard to make, you hear?!\"\n\nSous Chef grabs a pair of crude cleavers in both of her hands and starts swinging wildly.\n\n\"Looks like I'll have to infuse the flavors into you, you hear? You'll be my next ingredient, you hear?!\"\n\nWe make a run for it, but there was no escaping that tiny whirlwind of cleaver blades unscathed."
+            "「竟然無視精心熬煮的精肉蘇打喔？！」\n\n副廚兩手握起粗獷的菜刀，開始胡亂揮舞。\n\n「那就變成材料，親自嚐嚐蘇打的滋味喔！」\n\n我和罪人們一起慌忙逃竄，但轉眼間從我們身旁掠過的刀刃，終究沒能全部躲開。"
           ]
         }
       ]
@@ -45,24 +45,24 @@
     {
       "id": 971117,
       "name": "漆黑派 3樓",
-      "desc": "\"Interested in this season's new arrivals?\"\n\nWe were browsing the Maison du Noir when a group of sales associates wrapped head to toe in black fabric approached us.\n\n\"You have an eye for quality. This one here—the balance of warp and weft is exquisite.\"\n\n\"A dense weave, yet not a trace of stiffness. It brings out the softness of the fabric beautifully.\"\n\n\"32 stitches to the inch. You could roll across the basement floors and still not wear it through. That ruggedness is woven into the spirit of our signature style.\"\n\n\"Those crude slabs of flesh the Le Rouges stitch together cannot possibly compare to this masterpiece.\"\n\n\"Well? Are you going to make the purchase?\"",
+      "desc": "「對這一季的新品有興趣嗎？」\n\n正在逛漆黑派品牌旗艦店時，幾名全身裹著黑色布料的專櫃人員走了過來。\n\n「很有眼光。這件衣服的緯線與經線搭配得十分精巧。」\n\n「組織細密，卻毫無僵硬之感，充分發揮了柔軟布料的優點。」\n\n「針數足足有32針。就算在地下樓層打滾也不會磨破的布料……正是我們品牌的招牌。」\n\n「那些紅色的傢伙胡亂拼湊的劣質肉塊，根本無法與之相提並論。」\n\n「如何，要購買嗎？」",
       "options": [
         {
-          "message": "Try bargaining by appealing to Le Noir's aesthetic despite our empty eyeball wallet.",
+          "message": "雖然沒有眼球，但以認同漆黑派的美學為由討價還價。",
           "messageDesc": "進行怠惰、嫉妒優勢判定，獲得1件震顫E.G.O飾品",
           "result": [
             ""
           ]
         },
         {
-          "message": "Tell them we don't have any eyeballs.",
+          "message": "說我們沒有眼球。",
           "messageDesc": "選擇後，全體友方單位理智值下降",
           "result": [
-            "\"Hm... no eyeballs?\"\n\nThe Le Noir sales associate barely glances at the coins we offer.\n\n\"What is this, child's play? Some juvenile toy you're seen fit to carry around?\"\n\n\"You are clearly not the sort of clientele the Maison du Noir should be catering to.\"\n\n\"You wasted enough of my time. The exit is that way.\""
+            "「嗯……沒有眼球？」\n\n對我們遞出的硬幣視若無睹的漆黑派專櫃人員說道。\n\n「又不是在扮家家酒……收集這種東西做什麼？」\n\n「看來確實不是配得上我們漆黑派品牌旗艦店格調的顧客。」\n\n「浪費時間。出口在那邊。」"
           ]
         },
         {
-          "message": "Boutique du Rouge's lineup looks more stylish, though...?",
+          "message": "丹紅派精品專櫃看起來更有品味……？",
           "messageDesc": "進行色慾、暴食優勢判定，獲得1件震顫E.G.O飾品",
           "result": [
             ""
@@ -73,20 +73,20 @@
     {
       "id": 971118,
       "name": "單腳、四腳",
-      "desc": "As we enter Le Noir's Footwear Hall, we find One-leg tearing Four-legs a new one.\n\n\"You vile, lowly little thing. The vulgar sound of your appendages clopping against the floor revolts me. The worst part is how disgustingly close together they are.\"\n\n\"Please forgive me... One-leg...\"\n\n\"Quiet. Dragging around all those useless legs was bad enough. Now you're cluttering my ears with useless words too, you hideous thing.\"\n\n\"......\"\n\n\"No excuses this time? Hah! I'd rather hire those Le Rouge wretches next door. Down on their luck, but still better than your kind.\"\n\n\"Between the two of them, they'd have the same number of legs scraping the floor and still get twice as much work done as you!\"\n\nFour-leg trembles in fear under the relentless abuse.\n\n\"S-such cruel treatment, forsooth...\"\n\n\"Bloody hell, I'm gettin' pissed off just listening to this...\"\n\n... This is getting hard to watch.\n\nWhat should we do?\"",
+      "desc": "一走進漆黑派的名品鞋室，就看到單腳正在狠狠地數落四腳。\n\n「卑賤又噁心的傢伙。每當感覺到你踏出的腳步聲、那間隔短得可怕，我就想吐。」\n\n「對不起……單腳大人……」\n\n「閉嘴。拖著一大堆礙事的腿到處走的卑賤東西，還吐出礙耳的話，我真想現在就把耳朵洗乾淨。」\n\n「……」\n\n「連回話都不會嗎？哈！還不如把隔壁那些快倒閉的丹紅派傢伙找來用。」\n\n「就算那兩個人在地上磨蹭的腿數一樣，做起事來也會比卑賤至極的你好上兩倍！」\n\n四腳用全身承受著傾瀉而來的辱罵，瑟瑟發抖……\n\n「這……這也太過分了吧……？」\n\n「在旁邊聽著都火大……」\n\n……聽著聽著，確實覺得有點過分……\n\n該怎麼辦？",
       "options": [
         {
-          "message": "Stand up for Four-legs.",
+          "message": "袒護四腳。",
           "messageDesc": "進行怠惰、嫉妒優勢判定，獲得1件泛用E.G.O飾品",
           "result": [
             ""
           ]
         },
         {
-          "message": "Ignore the situation and move on.",
+          "message": "無視，安靜地走過去。",
           "messageDesc": "沒有效果",
           "result": [
-            "Getting involved would probably keep us here for quite a while.\n\nWe slip past without drawing either of their attention.\n\nEven as we leave, One-leg's berating shows no sign of stopping."
+            "要是不小心被纏上，恐怕會被拖住好一陣子。\n\n我們避開兩人的目光，安靜地走了過去。\n\n直到離開那裡，數落聲仍沒完沒了地持續著。"
           ]
         }
       ]
@@ -94,20 +94,20 @@
     {
       "id": 971119,
       "name": "調色盤與補土",
-      "desc": "Fluorescent dyes in every color stream down into vats around the room.\n\nBetween them, Palette sweeps the floor with her fluffy hair while checking Putty's legs from every angle.\n\n\"You've got dye residue gunking your knee joints. This must've been really uncomfortable, Big Sis.\"\n\n\"......\"\n\n\"I can't even scrape it off... It's already seeped into the gaps and hardened. I think we'll have to replace the whole thing.\"\n\n\"Hey, you there. Got a minute?\"\n\n\"Could you grab a new knee for my sister from the storeroom in the back? I'd go myself, but I'm right in the middle of dyeing. Can't leave it unattended.\"",
+      "desc": "五顏六色、閃閃發光的螢光染料從各處流下，注滿了桶子。\n\n在那之間，調色盤用毛茸茸的頭髮掃著地面四處走動，仔細檢查補土的腿。\n\n「膝蓋裡卡滿了染料渣。姊姊一定很不舒服吧。」\n\n「……」\n\n「刮都刮不下來……已經流進縫隙裡凝固了。看來得換新的了。」\n\n「那邊的你們。現在有空嗎？」\n\n「可以幫我到裡面的倉庫拿我姊姊的膝蓋過來嗎？我是很想自己去……但染色作業正忙，實在離不開。」",
       "options": [
         {
-          "message": "Offer to go get it.",
+          "message": "說會去一趟。",
           "messageDesc": "進行嫉妒優勢判定，獲得1件充能E.G.O飾品（失敗後會觸發遭遇戰）",
           "result": [
             ""
           ]
         },
         {
-          "message": "Tell her we're busy too.",
+          "message": "說我們也很忙。",
           "messageDesc": "沒有效果",
           "result": [
-            "\"... Yeah. I guess there aren't many customers around here with time to spare to help someone else.\"\n\n\"Putty, Big Sis, let's go replace it together once we're done with this batch.\"\n\n\"......\"\n\nWe leave the two behind, the faint creak of Putty's joints echoing in the corridor."
+            "「……也是，這裡哪有閒到能幫助別人的顧客呢。」\n\n「補土姊姊，等這項作業結束，我們一起去換吧。」\n\n「……」\n\n我們把嘎吱聲拋在身後，離開了那裡。"
           ]
         }
       ]
@@ -115,10 +115,10 @@
     {
       "id": 971120,
       "name": "安妮特",
-      "desc": "\"Shoulder seams hanging a touch too low... hems of the arm a span too short. Much work to be done, this one. So, what would you like to have altere—Aha. You came to <i>snip-snip.</i>\"\n\nThe Alterationist looks up from the fabric she is cutting in the middle of the room.\n\n\"Need to borrow scissors to cut something away?\"\n\n\"Hm... Then in return, mind if I split open and dig around in one of your heads a little bit?\"",
+      "desc": "「……肩線稍短，袖子垂了大約一掌寬呢。看來要修改的地方很多。好了，你們是來修補什麼的……啊哈，是來剪斷的啊。」\n\n正在改衣坊中央裁剪布料的修補達人向我們搭話。\n\n「想借剪斷用的工具嗎？」\n\n「嗯……那麼，能讓我打開你們其中一人的腦袋看看嗎？」",
       "options": [
         {
-          "message": "Accept.",
+          "message": "接受。",
           "messageDesc": "進行嫉妒優勢判定，獲得1件充能E.G.O飾品",
           "result": [
             ""
@@ -128,7 +128,7 @@
           "message": "拒絕。",
           "messageDesc": "沒有效果",
           "result": [
-            "\"Too bad. Then I can't give them to you.\"\n\nThe Alterationist immediately turns back to her work. It does not look like she's going to answer us again."
+            "「真可惜。那就很難借給你們了。」\n\n修補達人隨即又埋首於布料的修補。\n就算向她搭話，她似乎也不會回應了。"
           ]
         }
       ]

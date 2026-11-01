@@ -5,22 +5,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "... What's goin' on here?",
+          "text": "……這些是什麼鬼東西？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "Interior design renovation is underway at the Luxury Hall, as you can see.",
+          "text": "如各位所見，奢侈品館目前正在進行室內裝修工程。",
           "speaker": "品牌總監"
         },
         {
           "index": 2,
-          "text": "Please watch your step.",
+          "text": "請小心腳下，別踩空了。",
           "speaker": "品牌總監"
         },
         {
           "index": 3,
-          "text": "Ah, apologies for the noise. This renovation is a rather large-scale construction project.",
+          "text": "啊，噪音還請見諒。因為正在進行大規模的工程。",
           "speaker": "品牌總監"
         },
         {
@@ -30,56 +30,56 @@
         },
         {
           "index": 5,
-          "text": "My old bossman used to say \"grab yer tools, lads! We're headin' out to <i>renovate</i> a whole lotta mugs!\" whenever we went after other Syndicates.",
+          "text": "以前大哥要去砸爛其他組織的時候，也說過「要施工了，把傢伙帶上」。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 6,
-          "text": "That what you mean, lass?",
+          "text": "這也是那種意思嗎？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 7,
-          "text": "Not exactly, no; this is just a very special refitting, quite unlike any before it—more than just switching out a few out-of-fashion displays. This time, the project is to build a cradle... in anticipation of the advent of a very important someone.",
+          "text": "不，只是更換室內裝潢而已。不過，可不只是換掉幾個老舊陳列的程度。畢竟我們正在打造的，是只為那一位準備的……搖籃。",
           "speaker": "品牌總監"
         },
         {
           "index": 8,
-          "text": "I see now. This is when the Rouges attacked the Noirs, taking control of the Luxury Hall."
+          "text": "原來就是這時候，丹紅派襲擊了漆黑派，占領了奢侈品館啊。"
         },
         {
           "index": 9,
-          "text": "So... what're they eatin' back there? Some kinda cannibal feast?",
+          "text": "那些傢伙在……吃什麼啊？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 10,
-          "text": "We are feasting on the Noir. Though this will hardly sate our hunger...",
+          "text": "是那群黑漆漆的東西呢。雖然填不滿我們的飢餓就是了……",
           "speaker": "品牌總監"
         },
         {
           "index": 11,
-          "text": "Please return once the construction work is complete. You will soon see this place reborn into a far grander state of beauty!",
+          "text": "所以請在工程結束後再來吧。這裡將會以更美好的裝潢煥然一新。",
           "speaker": "品牌總監"
         },
         {
           "index": 12,
-          "text": "(She hums a nice tune, seemingly pleased with herself.)",
+          "text": "（似乎心情很好，一直哼著歌）",
           "speaker": "品牌總監"
         },
         {
           "index": 13,
-          "text": "... It would be prudent to revisit the Luxury Hall once their \"construction <i>project</i>\" is completed.",
+          "text": "……這座奢侈品館……看來還是等他們口中的「工程」結束後再來比較好呢。",
           "speaker": "浮士德"
         },
         {
           "index": 14,
-          "text": "... Huh. How'd you know they won't let us in, Clock?",
+          "text": "話說回來，時鐘。你怎麼知道我們進不去？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 15,
-          "text": "<Oh, that’s…>",
+          "text": "<啊……那是……>",
           "speaker": "但丁"
         }
       ]
@@ -89,15 +89,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "I'd been holding back on sharing the details of the loop with the Sinners, as doing so before I even understood how it worked might only plunge them into further uncertainty."
+          "text": "在1樓時，突如其來的狀況讓我腦袋一片混亂，又怕罪人們會無謂地感到不安，所以才沒說出口……"
         },
         {
           "index": 1,
-          "text": "But now that we're this far in, maybe they could provide further insight if I kept them in the loop about... the loop."
+          "text": "把狀況說出來……請他們幫忙會不會比較好呢。"
         },
         {
           "index": 2,
-          "text": "Just as I was about to entertain that thought, a distant voice, breaking through an unfathomable stretch, cut through into my head."
+          "text": "就在那一瞬間，傳來了一道彷彿來自非常遙遠之處的聲音。"
         }
       ]
     },
@@ -106,15 +106,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "<color=#515aee>You mustn't...</color>"
+          "text": "<color=#515aee>那可……不行……</color>"
         },
         {
           "index": 1,
-          "text": "<color=#515aee>Beset by... the gaze of the multitude...</color>"
+          "text": "<color=#515aee>視線……太多了……</color>"
         },
         {
           "index": 2,
-          "text": "<color=#515aee>Lest your fate... be lost...</color>"
+          "text": "<color=#515aee>那樣下去，命運……終將偏離吧……</color>"
         }
       ]
     },
@@ -128,29 +128,29 @@
         },
         {
           "index": 1,
-          "text": "... Has something occurred?",
+          "text": "……您怎麼了？",
           "speaker": "浮士德"
         },
         {
           "index": 2,
-          "text": "I must be the only one who can hear this voice."
+          "text": "除了我以外，似乎沒有人聽得見那道聲音。"
         },
         {
           "index": 3,
-          "text": "<color=#515aee>Disclosing too much... risks... exposure...</color>"
+          "text": "<color=#515aee>說得太多的話……會被察覺……</color>"
         },
         {
           "index": 4,
-          "text": "<color=#515aee>Then... cannot be... free from the... sunshine...</color>"
+          "text": "<color=#515aee>那樣就……無法從陽光中……逃離……</color>"
         },
         {
           "index": 5,
-          "text": "<... Well, I just had this gut feeling that they probably won't let us in.>",
+          "text": "<沒有……只是覺得好像會那樣而已。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "Yeah? Fair enough, mate. I 'spose they didn't look like the friendliest sort even from a distance.",
+          "text": "是喔？也是啦，遠遠看過去就挺嚇人的。",
           "speaker": "希斯克利夫"
         }
       ]
@@ -160,7 +160,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Raise your Prestige Rank first and come knocking again. Then, perhaps, we will reconsider your qualifications.",
+          "text": "至少等各位提高階級再來敲門，屆時我們再重新審查各位的資格吧。",
           "speaker": "品牌總監"
         }
       ]
@@ -170,7 +170,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Hah! That's child's play, lass! Lookee, it ain't no trouble reaching my elbo—",
+          "text": "哈，這種事誰辦不到啊。你看，像這樣就能碰到手肘……",
           "speaker": "希斯克利夫"
         }
       ]
@@ -185,12 +185,12 @@
         },
         {
           "index": 1,
-          "text": "It appears that you have discovered the means of moving between the floors, Dante.",
+          "text": "您找到上樓的方法了呢，但丁。",
           "speaker": "浮士德"
         },
         {
           "index": 2,
-          "text": "*cough* So, what're we doin'?",
+          "text": "咳嗯……所以我們要先從什麼開始？",
           "speaker": "希斯克利夫"
         },
         {
@@ -200,27 +200,27 @@
         },
         {
           "index": 4,
-          "text": "<Well... I don't know. Since we can't enter the second floor proper...>",
+          "text": "<現在應該沒辦法馬上進入2樓裡面。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "<... back to the restroom, you two... I guess?>",
+          "text": "<抱歉……還是先回廁所……>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "Oi, how do ya know that without givin' it a try? Don't go throwin' in the towel already.",
+          "text": "不試試看怎麼會知道？別這麼輕易就放棄啊。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 7,
-          "text": "Heathcliff, what Dante said is less out of despair and more—",
+          "text": "希斯克利夫，但丁應該不是那個意思……",
           "speaker": "浮士德"
         },
         {
           "index": 8,
-          "text": "Yeah, whatever. Let's at least see what's goin' on here.",
+          "text": "哎，總之先去看看嘛？",
           "speaker": "希斯克利夫"
         }
       ]
@@ -230,7 +230,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A wall made of flesh and bone blocks the way. There are bodies of dead Noirs splayed around the floor past the wall."
+          "text": "由骨頭與肉塊構成的牆擋住了去路。牆的另一頭，可以看見倒下的漆黑派的屍體。"
         }
       ]
     },
@@ -239,7 +239,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We cannot go in this direction yet, Manager.",
+          "text": "這裡暫時還無法通行，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -249,17 +249,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "... We should've... been better prepared for our assault...",
+          "text": "……奪回的準備……應該做得更周全的……",
           "speaker": "瀕死的漆黑派"
         },
         {
           "index": 1,
-          "text": "If only... if only we could've... spread the news faster... Didn't have time... to assemble...",
+          "text": "要是消息能……再快一點傳開……讓大家集結起來的話……",
           "speaker": "瀕死的漆黑派"
         },
         {
           "index": 2,
-          "text": "Dammit... Damn it all...! We can't let the Rouges take the hall... They'll—they'll...",
+          "text": "可恨……好不甘心……要是就這樣被搶走……那些傢伙……終究會……",
           "speaker": "瀕死的漆黑派"
         },
         {
@@ -269,7 +269,7 @@
         },
         {
           "index": 4,
-          "text": "<... Let's enter the Cradle.>",
+          "text": "<……進去搖籃裡面看看吧。>",
           "speaker": "但丁"
         }
       ]
@@ -279,7 +279,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "She lies dead still, but is wearing a peaceful smile—the same kind of smile only seen on the faces of those who know they have successfully carried out their duty to the end."
+          "text": "已經斷氣了。然而臉上卻浮現著淡淡的微笑，彷彿終於完成了使命。"
         }
       ]
     },
@@ -288,12 +288,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Aaah... At long last...",
+          "text": "啊……終於……",
           "speaker": "品牌總監"
         },
         {
           "index": 1,
-          "text": "Please... I leave the rest... in your hands...",
+          "text": "還請各位……多多關照……",
           "speaker": "品牌總監"
         }
       ]
@@ -303,17 +303,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<I don't know what'll happen when we get there, but... Let's try to find a way up to the fifth floor.>",
+          "text": "<雖然不知道會變成怎樣……總之先找找去5樓的方法吧。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "<Regardless of what the Rouges want us to do, our goal is to get to the top floor of this building.>",
+          "text": "<丹紅派的請託歸請託……我們本來也得去頂樓啊。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "In other words, you haven't yet reached the fifth floor and beyond.",
+          "text": "這麼說來，意思是您從未去過5樓以上的樓層呢。",
           "speaker": "浮士德"
         },
         {
@@ -323,46 +323,46 @@
         },
         {
           "index": 4,
-          "text": "Then your subsequent course of action should be to visit the fourth floor and seek a passage from there, Dante.",
+          "text": "那麼，您先前往4樓再摸索下一步的方法才是正確的吧，但丁。",
           "speaker": "浮士德"
         },
         {
           "index": 5,
-          "text": "<Hm, yeah... But I should stop by the third floor before we do.>",
+          "text": "<嗯，在那之前……得先去3樓一趟。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "The third floor? Haven't you been there already?",
+          "text": "3樓？去過的地方幹嘛又要去？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 7,
-          "text": "... We've already decided to help the Rouges this time around. Might as well go all in and get on their good side."
+          "text": "……既然這次決定幫助丹紅派，那就朝著對他們有利的方向配合比較好吧。"
         },
         {
           "index": 8,
-          "text": "<One of the employees on that floor really wanted to meet this... child. I thought it might be nice to have them meet.>",
+          "text": "<因為有個員工一直殷切地等待著這個……孩子。我想讓他們見一面應該也不錯。>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "Proceeding to the third floor.",
+          "text": "那就前往3樓。",
           "speaker": "莫梭"
         },
         {
           "index": 10,
-          "text": "Yeah, you do that. ... Oh, yeah. Better teach the kid manners now when you can, Clock! Else you'll never get the chance later, yeah? Remember that!",
+          "text": "好吧……啊，給我記好了，時鐘！現在就要好好管教，以後才不會沒大沒小，懂沒？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 11,
-          "text": "<What are you even talking about...?>",
+          "text": "<你在說什麼啊……>",
           "speaker": "但丁"
         },
         {
           "index": 12,
-          "text": "We proceeded to the third floor as Heathcliff continued to lecture us about the importance of early education."
+          "text": "任由希斯克利夫在一旁不停地放狠話，我們前往了3樓。"
         }
       ]
     },
@@ -371,7 +371,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A corpse."
+          "text": "是屍體。"
         }
       ]
     },
@@ -380,17 +380,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<Let's... uh... do that?>",
+          "text": "<要把這塊碎片……給它看看嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Understood, Manager.",
+          "text": "明白了，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Ugh, I hope this doesn't awaken somethin' horrid in there...",
+          "text": "這樣亂來，該不會蹦出什麼怪東西吧？",
           "speaker": "希斯克利夫"
         },
         {
@@ -400,7 +400,7 @@
         },
         {
           "index": 4,
-          "text": "The Cradle quivers. Translucent blood vessels, radiating like the tendril roots of a plant, tremble in an irregular sway. "
+          "text": "搖籃晃動著。透明卻分成好幾條支脈的血管，不規則地蠕動著。"
         }
       ]
     },
@@ -409,30 +409,30 @@
       "texts": [
         {
           "index": 0,
-          "text": "It almost looked like it was... breathing."
+          "text": "那看起來……就像是在吸氣與吐氣一般。"
         },
         {
           "index": 1,
-          "text": "Meursault fed the piece of flesh into the cocoon. It suddenly jerked alive, jostling as though it had been waiting to receive it."
+          "text": "莫梭把碎片放進去後，繭彷彿等待已久似地大幅蠕動起來。"
         },
         {
           "index": 2,
-          "text": "It appears that the membrane has... grown thinner.",
+          "text": "膜似乎……變薄了一些呢。",
           "speaker": "浮士德"
         },
         {
           "index": 3,
-          "text": "<Something's flailing wildly in there... Is it trying to hatch?>",
+          "text": "<裡面有東西動得好厲害……是想出來嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "Mm... though it has successfully punctured a small part of the membrane, emergence seems highly unlikely at this point.",
+          "text": "唔嗯……雖然膜破了一點，但照這樣下去，要出來似乎還遙遙無期。",
           "speaker": "浮士德"
         },
         {
           "index": 5,
-          "text": "Hang on, don't help it—let nature do its thing. I heard babies got to save themselves—",
+          "text": "先別管它，我聽說這種事本來就得靠自己的力量出來……",
           "speaker": "希斯克利夫"
         }
       ]
@@ -442,7 +442,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Just as Heathcliff suggested that we leave it to fend for itself, the movement within the cocoon slowly began to subside."
+          "text": "就在希斯克利夫說話的時候……繭中的動靜開始一點一點地停了下來。"
         }
       ]
     },
@@ -451,7 +451,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oh, bollocks. Oi, got anything sharp?! We gotta help, kid's startin' to go weak!",
+          "text": "喂。喂喂，有沒有什麼能切開那東西的！？這傢伙好像越來越沒力了！？",
           "speaker": "希斯克利夫"
         }
       ]
@@ -471,12 +471,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Perhaps we could use the pair of scissors obtained at the Alteration Shop.",
+          "text": "試著使用在改衣坊得到的剪刀如何。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "<Oh, you're right. Let's try cutting it open.>",
+          "text": "<啊，對耶。用那個剪剪看吧。>",
           "speaker": "但丁"
         }
       ]
@@ -486,17 +486,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "Manager, the piece of flesh has been emitting a rhythm akin to heartbeat ever since we first entered this floor.",
+          "text": "經理。來到這層樓之後，碎片就一直傳來彷彿心跳般的震動。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "<Has it been getting stronger the closer we've gotten to the Cradle?>",
+          "text": "<難道越靠近搖籃就越強烈？>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "Yes. It appears to be a gradually intensifying resonance phenomenon of sorts.",
+          "text": "是的。如同共鳴一般，強度正逐漸增強。",
           "speaker": "莫梭"
         }
       ]
@@ -506,7 +506,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "That piece of flesh... It's got a similar feel to this cocoon-egg-thing, don't it?",
+          "text": "這個……感覺跟那東西有點像耶？",
           "speaker": "希斯克利夫"
         }
       ]
@@ -516,12 +516,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Look, that's a mouth, innit? I think we're gonna have to feed this thing to that egg.",
+          "text": "從剛才開始那邊就張著像嘴巴一樣的東西……這個是不是得餵給那顆蛋啊？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "Your hypothesis carries merit. Faust concurs with that course of action.",
+          "text": "很有道理的推測呢。浮士德也同意那個做法。",
           "speaker": "浮士德"
         }
       ]
@@ -531,7 +531,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Please... You must... the... cherished one...",
+          "text": "請務必……將那一位……",
           "speaker": "品牌總監"
         }
       ]
@@ -546,122 +546,122 @@
         },
         {
           "index": 1,
-          "text": "Was this the one... who sang to me?",
+          "text": "這個人……就是唱歌給我聽的人嗎？",
           "speaker": "普依"
         },
         {
           "index": 2,
-          "text": "Well... That's what she told us.",
+          "text": "嗯……她是這麼說的啦。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 3,
-          "text": "The face... it's smiling. Why...?",
+          "text": "臉，在笑。為什麼……？",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "Dunno... Maybe she were bloody over the moon, even with one foot in the grave.",
+          "text": "大概……就算快死了，還是覺得超幸福吧。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 5,
-          "text": "... But why?",
+          "text": "……為什麼？",
           "speaker": "普依"
         },
         {
           "index": 6,
-          "text": "She... wished for your birth and waited for it with anticipation.",
+          "text": "那個人……一直期盼著你的誕生，殷切地等待著。",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "Therefore, seeing you likely produced that happy smile, Pwie.",
+          "text": "所以……普依，她應該是因為看見了你，才會開心地笑了。",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": "I don't understand. I didn't know her. She didn't... really know me either...",
+          "text": "我不懂。我不認識這個人。這個人也……不太認識我。",
           "speaker": "普依"
         },
         {
           "index": 9,
-          "text": "And she was still happy?",
+          "text": "即使這樣也很幸福嗎？",
           "speaker": "普依"
         },
         {
           "index": 10,
-          "text": "... You're a right pain in the arse now you've learned how to talk...",
+          "text": "……開始會講話之後就變得更麻煩了啊。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 11,
-          "text": "Some things just are. Grown-up stuff kids don't get.... Yeah, grown-up stuff.",
+          "text": "就是有那種事啦。小孩子不懂的那種……總之就是那樣啦。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 12,
-          "text": "I'm going to grow soon.",
+          "text": "我很快就會長大。",
           "speaker": "普依"
         },
         {
           "index": 13,
-          "text": "Maybe I'll grow even bigger.",
+          "text": "說不定會變得更大。",
           "speaker": "普依"
         },
         {
           "index": 14,
-          "text": "So... I want to know more before I grow.",
+          "text": "所以……在那之前，我想知道更多。",
           "speaker": "普依"
         },
         {
           "index": 15,
-          "text": "When I'm learning new stuff... the cold goes away. I get to completely forget the empty something...",
+          "text": "在了解不懂的事情的時候……就不會冷。那空蕩蕩的某種東西……會從腦海裡被抹得一乾二淨。",
           "speaker": "普依"
         },
         {
           "index": 16,
-          "text": "That's why... I want to know. I want to know why she can smile even after dying...",
+          "text": "所以……我想知道。那個人為什麼死了還在笑……我想知道……",
           "speaker": "普依"
         },
         {
           "index": 17,
-          "text": "... Instinct may lie at the root.",
+          "text": "……或許是本能吧。",
           "speaker": "浮士德"
         },
         {
           "index": 18,
-          "text": "The Rouges possess an instinct through which finding a new voice and following it fills an internal deficit.",
+          "text": "光是尋找新的聲音，並依循那聲音行動，就能感到充實的丹紅派的本能……",
           "speaker": "浮士德"
         },
         {
           "index": 19,
-          "text": "What's... \"instinct\"?",
+          "text": "本能……是什麼？",
           "speaker": "普依"
         },
         {
           "index": 20,
-          "text": "It's a capacity or behavior that does not require instruction.",
+          "text": "不用學也做得到的事。",
           "speaker": "浮士德"
         },
         {
           "index": 21,
-          "text": "An inclination that directs the subject of its own accord from the moment consciousness begins. One's nature, in some ways.",
+          "text": "指的是一睜開眼睛，就會自然而然被引導的事物。",
           "speaker": "浮士德"
         },
         {
           "index": 22,
-          "text": "Then what is... my instinct?",
+          "text": "那我的本能……是什麼？",
           "speaker": "普依"
         },
         {
           "index": 23,
-          "text": "That is... unknown to us as well.",
+          "text": "那個……我們也無從得知。",
           "speaker": "浮士德"
         },
         {
           "index": 24,
-          "text": "Many reach the end of life... without attaining a definitive understanding of their own essential nature...",
+          "text": "因為自己的本性是什麼……許多人即使到了生命的盡頭，也終究無法知曉……",
           "speaker": "浮士德"
         }
       ]
@@ -671,11 +671,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "A faint, contented smile hangs from her lips."
+          "text": "她帶著淡淡的微笑，彷彿心滿意足。"
         },
         {
           "index": 1,
-          "text": "To die in service of others, of another... What kinds of emotions, experiences, and memories are capable of shaping a person into someone who so readily makes such a decision?"
+          "text": "為了他人而放下整個人生……究竟需要什麼樣的情感、經驗與記憶呢。"
         }
       ]
     },
@@ -684,17 +684,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<More Noirs are coming this way...>",
+          "text": "<漆黑派也朝這裡蜂擁而來了……>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "We must bring the Brand Director's Golden Hide.",
+          "text": "在這裡必須拿走品牌總監的黃金皮革。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "<Yeah. Let's get inside.>",
+          "text": "<嗯，進去吧。>",
           "speaker": "但丁"
         }
       ]
@@ -704,30 +704,30 @@
       "texts": [
         {
           "index": 0,
-          "text": "There's a piece of cloth and a Noir's note hidden by the base of the pillar."
+          "text": "柱子下方藏著一塊布，以及某個漆黑派的紀錄。"
         },
         {
           "index": 1,
-          "text": "<Hey, there's something written on this piece of cloth.>",
+          "text": "<布上寫著什麼耶？>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "It says \"The covetous Rouges have finally gone mad. The precious Golden Hide that preserves the Grand Magasin—they've—\"",
+          "text": "上面寫著「丹紅派那些貪婪的傢伙終究還是瘋了。他們竟然對保存著百貨公司的珍貴黃金皮革……」。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "Whoever wrote it didn't get to finish their message. Looks like they had to hide it in a hurry...",
+          "text": "好像寫到一半就急忙藏起來了……",
           "speaker": "希斯克利夫"
         },
         {
           "index": 4,
-          "text": "I stole a quick glance at the carnage being perpetrated on the other side of the wall before looking back at the piece of paper."
+          "text": "我看了一眼牆那頭駭人的景象，便悄悄移開了視線。"
         },
         {
           "index": 5,
-          "text": "<... Let's take this with us, just in case it becomes relevant.>",
+          "text": "<以防萬一，悄悄帶走吧。>",
           "speaker": "但丁"
         }
       ]
@@ -737,22 +737,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "Eh? Back on this floor? Oi, bring in many eyeballs?",
+          "text": "什麼啊，又回到這裡了？我們賺了很多眼球嗎？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "We have earned enough.",
+          "text": "賺到了不至於不夠的量。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Ooh... Not a bad pull, CH!",
+          "text": "喔……賺了不少嘛。挺行的啊。時頭？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 3,
-          "text": "<... She totally rubbed off on you, didn't she?>",
+          "text": "<……現在連縮略語都說上癮了嗎，希斯克利夫？>",
           "speaker": "但丁"
         }
       ]
@@ -762,12 +762,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Mm. The guardian at the gate seems to have left. It is likely that the \"interior design renovation\" has ended.",
+          "text": "嗯。守門的人不見了呢。看來室內裝修工程也結束了。",
           "speaker": "浮士德"
         },
         {
           "index": 1,
-          "text": "<Things seem a little different from last time...>",
+          "text": "<狀況好像跟上次不一樣……>",
           "speaker": "但丁"
         }
       ]
@@ -777,7 +777,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Huh... It's that big lass who was guarding the entrance.",
+          "text": "哦……這不是之前擋路的那傢伙嗎？",
           "speaker": "希斯克利夫"
         }
       ]
@@ -787,7 +787,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It was you... whom the Slumbering One... has asked me to hold out for...",
+          "text": "那位大人……吩咐我等到最後的人……原來就是各位啊……",
           "speaker": "品牌總監"
         }
       ]
@@ -797,42 +797,42 @@
       "texts": [
         {
           "index": 0,
-          "text": "As the Brand Director... I was bestowed with the responsibility... to protect the noble Slumbering One. As the Brand Director... I held down this hall...",
+          "text": "我……肩負守護高貴之人的使命，以品牌總監的身分留在了這裡。",
           "speaker": "品牌總監"
         },
         {
           "index": 1,
-          "text": "The entity behind you must be the source of the Voice.",
+          "text": "背後的那個東西……就是在發出聲音的存在嗎。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Yes. This is the Cradle... the garden of our ceaseless tending. In this place, the Slumbering One stirs to nascency, to blossom their flowers throughout the Grand Magasin... in return for the offering that is all that we are.",
+          "text": "是的。在我們不斷照料至今的搖籃中……以我們的一切作為交換，將在百貨公司綻放的存在正在誕生。",
           "speaker": "品牌總監"
         },
         {
           "index": 3,
-          "text": "Yes... The one who shall tend to the Rouges in the absence of our Voice.",
+          "text": "那位大人將代替再也聽不見的聲音……垂顧我們丹紅派。",
           "speaker": "品牌總監"
         },
         {
           "index": 4,
-          "text": "<They haven't been awakened yet, it seems.>",
+          "text": "<似乎……還沒有醒來呢。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "I've been humming the most wonderful of lullabies in all of the Grand Magasin. Building the Cradle for the noble one—my magnum opus—weaving it thread by thread, my conviction a weapon against this insatiable hunger...",
+          "text": "我……一直坐在這裡，唱著百貨公司裡最動聽的搖籃曲。一心只為高貴之人打造搖籃，一層層紡織堆疊……忍耐著飢餓，做出了我此生最出色的精品。",
           "speaker": "品牌總監"
         },
         {
           "index": 6,
-          "text": "So, you're like... What, that thing's nanny, I assume. And it's about to wake soon anyway, innit? What'd it call us here for?",
+          "text": "也就是說……妳是那個什麼東西的奶媽……是這樣吧……嗯，那它不是馬上就要醒了嗎？幹嘛把我們叫來啊。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 7,
-          "text": "My role was to be a warm blanket for the Slumbering One. Now that my duty has ended... I will soon meet my end.",
+          "text": "我的職責……是溫暖地覆蓋著熟睡的那位大人，不讓祂受寒發抖。如今我已完成了這項使命……打算就在這裡停下了。",
           "speaker": "品牌總監"
         },
         {
@@ -842,22 +842,22 @@
         },
         {
           "index": 9,
-          "text": "They will be weak upon waking. When the Slumbering One awakens, the gentlest breeze of the Grand Magasin will be as harsh as cutting winds to their skin, while the Noirs, driven by their ignorance and fear, will seek to bury the noble one within the fractures.",
+          "text": "剛甦醒的那位大人想必十分脆弱。百貨公司的一切對祂而言都嚴酷得足以刺痛肌膚，而那些無知的黑色之人也會陷入恐懼，企圖將高貴的那位大人永遠埋葬在裂隙之中吧。",
           "speaker": "品牌總監"
         },
         {
           "index": 10,
-          "text": "We need your help, strangers.",
+          "text": "因此，異鄉人們，我們需要各位。",
           "speaker": "品牌總監"
         },
         {
           "index": 11,
-          "text": "Soon, their voice shall resonate between the walls of the Grand Magasin... Stay with them... until they can guide us all, with the whole of their body, on how we are to desire...",
+          "text": "不久之後，那位大人的聲音將響徹整座百貨公司，直到祂以全身告訴我們該如何慾求才是正確的為止……請陪在那位大人身旁。",
           "speaker": "品牌總監"
         },
         {
           "index": 12,
-          "text": "Hang on a bloody second. You're offloadin' that baby on us, ain't ya? And we're just 'sposed to play nannies for a newborn?",
+          "text": "等等，越聽越不對勁，妳這是順勢把麻煩推給我們啊。要我們……帶著那個要在那邊出生的小鬼到處跑？",
           "speaker": "希斯克利夫"
         }
       ]
@@ -867,7 +867,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oi, I don't know about this... We need to get more eyeballs, find our way to the top floor, keep your clock head safe, and escape this hole—we can't take care of a child like that, mate.",
+          "text": "喂……我看這事還是拒絕比較好吧……我們還得賺眼球、還得去頂樓、還得顧著時鐘頭……然後還得離開這裡啊。",
           "speaker": "希斯克利夫"
         }
       ]
@@ -877,27 +877,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "Why have you decided to come here, Dante?",
+          "text": "但丁，您來到這裡的理由是什麼？",
           "speaker": "浮士德"
         },
         {
           "index": 1,
-          "text": "<... To make a different choice.>",
+          "text": "<……為了做出不同的選擇。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "... Is there something I am unaware— ... Are you aware of a piece of knowledge that I am not allowed access?",
+          "text": "……難道您知道什麼我所不知道的……不，是我不應該知道的情報嗎？",
           "speaker": "浮士德"
         },
         {
           "index": 3,
-          "text": "<Yeah... Probably.>",
+          "text": "<大概……是吧。>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "Does the answer lie... at the terminus of the road this choice will pave?",
+          "text": "在這次選擇的盡頭……能夠找到答案嗎。",
           "speaker": "浮士德"
         }
       ]
@@ -907,17 +907,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "<I don't... know.>",
+          "text": "<這個……我不知道。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "... It is quite like how Faust operates, your behavior.",
+          "text": "……簡直像是在看浮士德的做法呢。",
           "speaker": "浮士德"
         },
         {
           "index": 2,
-          "text": "Despite not knowing whether this is the right path, you...",
+          "text": "儘管不知道這條路是否真的正確……您還是……",
           "speaker": "浮士德"
         },
         {
@@ -927,7 +927,7 @@
         },
         {
           "index": 4,
-          "text": "Understood. Faust has no further queries.",
+          "text": "我明白了。浮士德的提問……到此為止。",
           "speaker": "浮士德"
         }
       ]
@@ -937,64 +937,64 @@
       "texts": [
         {
           "index": 0,
-          "text": "Hurry up, what're you bein' so careful for?",
+          "text": "幹嘛剪得那麼仔細？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "<You never know...>",
+          "text": "<不知道裡面會有什麼……>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "Made a clean cut using the Alterationist's pair of scissors."
+          "text": "用修補達人的剪刀將繭俐落地剪開了。"
         },
         {
           "index": 3,
-          "text": "<color=#ebcaa2>You really want to see where this goes, huh? I guess that's one way to kill time. Doesn't matter; whichever option you end up going with, we'll get a steady supply of Experience Batter.</color>"
+          "text": "<color=#ebcaa2>你還特地想試試看啊。好啊，畢竟那也不失為打發時間的好方法。反正不管做出什麼選擇，經驗麵團總是能順利做出來的。</color>"
         },
         {
           "index": 4,
-          "text": "<... Sounds like she's not so happy we're making a different choice.>",
+          "text": "<……看來她不喜歡我們做出不同的選擇呢。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "... \"Sounds like she's not so happy we're making a different choice,\" said the Manager.",
+          "text": "……經理說，看來是不喜歡我們做出不同的選擇。",
           "speaker": "莫梭"
         },
         {
           "index": 6,
-          "text": "<color=#ebcaa2>Well... I do wonder that myself.</color>"
+          "text": "<color=#ebcaa2>這個嘛……會是怎樣呢。</color>"
         },
         {
           "index": 7,
-          "text": "<color=#ebcaa2>I don't know if you recall—who am I kidding? Of course you do—but I often repeat-taste the Canned Stageplay over and over again. I once watched the same Canned Stageplay over 78 times.</color>"
+          "text": "<color=#ebcaa2>你也知道吧……我會反覆品嚐同一個戲劇罐頭。我甚至曾把同一種味道的戲劇罐頭品嚐了78次呢。</color>"
         },
         {
           "index": 8,
-          "text": "<color=#ebcaa2>Same actions, identical line reads, predictable expressions coming in at moments I'd grown intimately acquainted with... and the same ending I'd watched over a dozen times, followed by a curtain call so familiar it felt like home. All of that soothed my heart. So much so that, when an actor inevitably forgets his line for the nth time, I feel like I have to rush up to the stage and read the line for him.</color>"
+          "text": "<color=#ebcaa2>相同的動作、相同的台詞、相同的表情……看著它最後迎來相同的結局，我的心就會平靜下來。所以……演員忘詞的時候，我甚至想代替他上台把台詞說出來呢。</color>"
         },
         {
           "index": 9,
-          "text": "... I know what stageplay you are referring to. Riddled with blatant inconsistencies in all of its aspects, its central theme and authorial intent were just as incomprehensible as its nonsensical plot.",
+          "text": "……我知道是什麼樣的戲劇。劇情毫無說服力，作者的意圖也不明確。",
           "speaker": "莫梭"
         },
         {
           "index": 10,
-          "text": "<color=#ebcaa2>That's the one. It was so low-budget that they couldn't afford even a single professional thespian on stage, and the amateurs they hired predictably put out some of the most awkward performances I'd ever seen. It was a terrible Canned Stageplay, by all accounts.</color>"
+          "text": "<color=#ebcaa2>對，沒錯。而且不知道是不是製作經費不足，演員也全是業餘的，演技也很生硬。是個絕對稱不上製作精良的戲劇罐頭呢。</color>"
         },
         {
           "index": 11,
-          "text": "<color=#ebcaa2>But... strangely enough, I found myself comforted as I experienced that play.</color>"
+          "text": "<color=#ebcaa2>但是……體驗那齣戲的時光，卻讓我感到出奇地安心。</color>"
         },
         {
           "index": 12,
-          "text": "<color=#ebcaa2>No one could understand why I would do such a thing... except you, ma puce.</color>"
+          "text": "<color=#ebcaa2>大家都無法理解那樣的我……但小甜心，你明白的吧？</color>"
         },
         {
           "index": 13,
-          "text": "<color=#ebcaa2>You <i>get</i> me.</color>"
+          "text": "<color=#ebcaa2>我為什麼會那麼做。</color>"
         }
       ]
     },
@@ -1003,11 +1003,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "From where the Voice had disappeared,"
+          "text": "聲音消失之處。"
         },
         {
           "index": 1,
-          "text": "from the Cradle sectioned open... something crawled out... in the form of a child."
+          "text": "從被剪開的搖籃之中……走出來的那個東西，有著孩子的模樣。"
         }
       ]
     },
@@ -1046,11 +1046,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "The child glanced at us in what appeared to be a wary scan. They then carefully lifted themselves, waddled up to the Brand Director, and placed their hand on her body."
+          "text": "蜷縮著的孩子……瞥了我們一眼，隨即站起身，緩緩走向後方閉著雙眼的品牌總監，把手放在她身上……"
         },
         {
           "index": 1,
-          "text": "Ah... the Slumbering One has awakened.",
+          "text": "啊……您醒來了呢。",
           "speaker": "品牌總監"
         },
         {
@@ -1065,15 +1065,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Brand Director spoke, her eyes opening from a deathlike slumber. The child jumped away from her, just as they had from us earlier."
+          "text": "像死去一般閉著雙眼的品牌總監一睜開眼……孩子便嚇了一大跳，連品牌總監身邊也遠遠躲開了。"
         },
         {
           "index": 1,
-          "text": "It seemed we weren't the only ones the child was afraid of; they shrank away from everyone and everything."
+          "text": "看起來……它不只是對我們，似乎對一切都抱持著戒心。"
         },
         {
           "index": 2,
-          "text": "Many have awaited... your advent...",
+          "text": "等待著您的人……真的非常多……",
           "speaker": "品牌總監"
         },
         {
@@ -1088,22 +1088,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "We Rouges have given our all... in anticipation of your arrival. And we offer you... what is... and what will be...",
+          "text": "我們丹紅派所有人……都只為了等待您而獻上了一切。而且……今後也會將我們所擁有的一切，毫無保留地獻給您。",
           "speaker": "品牌總監"
         },
         {
           "index": 1,
-          "text": "Bring them to the Restaurant on the fifth floor, strangers.",
+          "text": "異鄉人們……請將那位大人……帶到5樓的餐廳。",
           "speaker": "品牌總監"
         },
         {
           "index": 2,
-          "text": "To speak the true Voice... to mature... the newborn must reach... that floor...",
+          "text": "為了發出……真正的聲音……為了成熟……必須前往……那裡……",
           "speaker": "品牌總監"
         },
         {
           "index": 3,
-          "text": "Please... for... all of us...",
+          "text": "所以，懇請各位……為了我們……",
           "speaker": "品牌總監"
         },
         {
@@ -1113,7 +1113,7 @@
         },
         {
           "index": 5,
-          "text": "She has drawn her final breath, it seems.",
+          "text": "……她似乎已經斷氣了呢。",
           "speaker": "浮士德"
         }
       ]
@@ -1128,7 +1128,7 @@
         },
         {
           "index": 1,
-          "text": "Kid... I can't understand a word of what you're sayin'.",
+          "text": "這小鬼……一直嘰哩咕嚕在講什麼啊。",
           "speaker": "希斯克利夫"
         },
         {
@@ -1138,7 +1138,7 @@
         },
         {
           "index": 3,
-          "text": "Though the child wasn't really speaking per se, their gestures and the unspoken request gave me a vague sense of what they wanted."
+          "text": "雖然是聽不懂的聲音……但從氣氛和動作中，似乎能隱約明白它在說什麼。"
         },
         {
           "index": 4,
@@ -1147,16 +1147,16 @@
         },
         {
           "index": 5,
-          "text": "The child picked up the piece of the Cradle we had cut off earlier, lifted it to eye level..."
+          "text": "它撿起了掉在地上的搖籃碎片。"
         },
         {
           "index": 6,
-          "text": "Wha... wha' are they doin'? Tryin' to make a weapon out of it?",
+          "text": "幹……幹嘛啊？要做武器嗎？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 7,
-          "text": "Perhaps they are merely drawn to observe it, by a spark of curiosity.",
+          "text": "或許是想要觀察吧。",
           "speaker": "浮士德"
         },
         {
@@ -1166,16 +1166,16 @@
         },
         {
           "index": 9,
-          "text": "... and opened their mouth. It was uncomfortably wide."
+          "text": "……張開了嘴。張得非常大……"
         },
         {
           "index": 10,
-          "text": "<Um, I think they're trying to... eat it?>",
+          "text": "<兩個都不是……好像是想吃掉它？>",
           "speaker": "但丁"
         },
         {
           "index": 11,
-          "text": "O-oi, stop that! Drop it, kid! It's yucky, you got that? Yucky!",
+          "text": "你、你幹嘛啊？！吃那種東西幹嘛！髒髒啦！",
           "speaker": "希斯克利夫"
         }
       ]
@@ -1190,7 +1190,7 @@
         },
         {
           "index": 1,
-          "text": "That's the last random piece of flesh you're pickin' up from the ground! Give it!",
+          "text": "又不是路邊乞丐……拿來，沒收！",
           "speaker": "希斯克利夫"
         }
       ]
@@ -1200,7 +1200,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Heathcliff roughly snatched the cut piece of membrane out of the child's hand."
+          "text": "希斯克利夫毫不留情地搶走了它手中的殘骸。"
         },
         {
           "index": 1,
@@ -1209,22 +1209,22 @@
         },
         {
           "index": 2,
-          "text": "<I think you made the kid angry. And scared them at the same time, somehow.>",
+          "text": "<好像在生氣呢？又好像很害怕。>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "<Doubt they'll follow us like that...>",
+          "text": "<看樣子也不打算跟過來……>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "Perhaps the cause of alarm can be traced directly back to Heathcliff's theft of the child's \"snack.\"",
+          "text": "或許原因是剛才希斯克利夫先生搶走了它的食物。",
           "speaker": "浮士德"
         },
         {
           "index": 5,
-          "text": "What was I supposed to do, just watch the kid take a big bite out of that chunk of raw flesh? Oi, am I right or what?",
+          "text": "不是……難道要我在旁邊看著嗎？喂，不是吧？",
           "speaker": "希斯克利夫"
         },
         {
@@ -1234,22 +1234,22 @@
         },
         {
           "index": 7,
-          "text": "Wooow. Really, mate? It ain't like I <i>want</i> to bring you along.",
+          "text": "哇……喂，我也不想跟你一起走好嗎！？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 8,
-          "text": "<... Heathcliff, why are you arguing with a kid who can't even speak...?>",
+          "text": "<……你對一個連話都不會說的孩子做什麼啊，希斯克利夫……>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "Such behavior is a sign of immaturity manifest in adulthood.",
+          "text": "真像不成熟的大人會做出來的行為呢。",
           "speaker": "浮士德"
         },
         {
           "index": 10,
-          "text": "Wha— *sigh*",
+          "text": "不是……哇……",
           "speaker": "希斯克利夫"
         }
       ]
@@ -1259,16 +1259,16 @@
       "texts": [
         {
           "index": 0,
-          "text": "Heathcliff's eyes went wide with bewilderment. He huffed angrily, glaring back and forth between us and the child."
+          "text": "大概是覺得委屈，希斯克利夫瞪大雙眼，輪流看著我們和孩子，開始氣呼呼地喘起粗氣。"
         },
         {
           "index": 1,
-          "text": "Alright, fine. Whatever. What're we doin', then? Find some sweets to lure the kid into comin' with us?",
+          "text": "所以呢……難不成要去弄點零食來哄它嗎？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 2,
-          "text": "<We did promise to look after the child, so... I don't know about luring them with sweets, but we're going to have to do <i>something</i> to appease them so that they'll follow us willingly.>",
+          "text": "<總之……既然都答應接下來了……零食就先不說，還是得好好哄哄它吧……>",
           "speaker": "但丁"
         }
       ]
@@ -1278,12 +1278,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Appease the kid? Here's somethin' you lot don't seem to understand: if you want stubborn kids like 'em to follow you, appeasement ain't gonna cut it.",
+          "text": "你們就是什麼都不懂才會這樣……像那樣耍賴又死不肯走的小鬼，你再怎麼哄也不會跟過來的。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "Might you be... speaking from your own experiences as a youth?",
+          "text": "那是……經驗之談嗎？",
           "speaker": "浮士德"
         },
         {
@@ -1293,7 +1293,7 @@
         },
         {
           "index": 3,
-          "text": "<I'm gonna go out on a limb and assume that the \"stubborn kid\" was yourself.>",
+          "text": "<是在說自己啊……>",
           "speaker": "但丁"
         }
       ]
@@ -1303,16 +1303,16 @@
       "texts": [
         {
           "index": 0,
-          "text": "Shut it, you two. Point is, you've got to teach 'em a lesson that you can't just whinge your way through the world and expect everything to go your way forever. I say we pretend to leave the kid behind, and they'll know to come with.",
+          "text": "嘖……總之這種時候直接丟下它走掉才是正解。鬧一鬧就什麼都依它，會被寵壞的。只要讓它知道這世上沒那麼好混，它自己就會跟上來了。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "Without Ryōshū, none of those present were particularly experienced in child-rearing. So..."
+          "text": "要是良秀在的話還另當別論，但以現在這組看起來和照顧孩子八竿子打不著的成員……"
         },
         {
           "index": 2,
-          "text": "... the only option we had was to hold our doubts and potential arguments behind our teeth and let Heathcliff try his hand at convincing this child to come with us."
+          "text": "無論是插嘴還是反駁都有點微妙，所以我們決定先看看希斯克利夫怎麼做。"
         }
       ]
     },
@@ -1331,7 +1331,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Right-o, kid. We're about to head out. Stay here or come with—you do whatever you want, I don't care. We're really leavin' now!",
+          "text": "我們要把你丟在這裡走了，你要一個人住在這裡還是怎樣都隨便你。知道了沒？",
           "speaker": "希斯克利夫"
         },
         {
@@ -1346,15 +1346,15 @@
       "texts": [
         {
           "index": 0,
-          "text": "Heathcliff wheeled around and stomped out of the Cradle, much to the child's apparent surprise. The child turned to us—though I couldn't see their eyes, it was unmistakably a look of confused astonishment."
+          "text": "希斯克利夫大步走出搖籃後……孩子彷彿沒料到似地，開始盯著我們看。"
         },
         {
           "index": 1,
-          "text": "It was dark outside the Cradle save for a few rays of sunlight that peeked through. From where we stood, it really looked as though Heathcliff had left us for good."
+          "text": "搖籃之外……或許是因為除了偶爾照進來的陽光之外一片昏暗……看起來就像希斯克利夫真的要消失了一樣。"
         },
         {
           "index": 2,
-          "text": "What're you lot faffin' around for? On the double!",
+          "text": "你們也快出來！",
           "speaker": "希斯克利夫"
         }
       ]
@@ -1364,11 +1364,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "We hurried out of the Cradle as well at Heathcliff's insistence..."
+          "text": "照著希斯克利夫的計畫，連我們也走到了外面……"
         },
         {
           "index": 1,
-          "text": "Once outside, we peeked surreptitiously between the curtains as the child looked around frantically."
+          "text": "從布料的縫隙間，可以看到孩子正四處張望。"
         }
       ]
     },
@@ -1387,12 +1387,12 @@
         },
         {
           "index": 2,
-          "text": "Oi! We're leavin', kid! I ain't playin' around! Cry and throw a tantrum all ya want, I ain't comin' back!",
+          "text": "喂，我們真的要走了喔？我可不會因為你耍賴就回頭……！",
           "speaker": "希斯克利夫"
         },
         {
           "index": 3,
-          "text": "The child babbled fearfully for a moment, as though they were afraid of the creeping darkness..."
+          "text": "最後……原本嘟嘟囔囔、顯露出不安的孩子，似乎是不想被獨自留在黑暗中……"
         },
         {
           "index": 4,
@@ -1406,7 +1406,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... then hurriedly toddled toward us, leaving the Cradle behind."
+          "text": "離開了搖籃，開始朝我們所在的方向跑來。"
         }
       ]
     },
@@ -1415,7 +1415,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "See? That's how you deal with kids.",
+          "text": "看到沒？小鬼就是要這樣對付。",
           "speaker": "希斯克利夫"
         }
       ]
@@ -1435,20 +1435,20 @@
       "texts": [
         {
           "index": 0,
-          "text": "... There is still some distance between us and the child.",
+          "text": "……距離感似乎沒有縮短。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "Doesn't seem like they're feeling safe sticking with us..."
+          "text": "和不想被獨自留下是兩回事……它似乎仍然害怕我們，保持著距離。"
         },
         {
           "index": 2,
-          "text": "... even though it's pretty obvious that they don't want to be left alone."
+          "text": "看來它不想靠得太近。"
         },
         {
           "index": 3,
-          "text": "<... So we're just walking around like this, I guess?>",
+          "text": "<……就這樣帶著它走，真的沒問題嗎？>",
           "speaker": "但丁"
         }
       ]
@@ -1495,7 +1495,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The majority of corpses appear to be of the Noirs, Manager. The battle is most likely winding down in the Rouges' favor.",
+          "text": "屍體大多看起來是漆黑派的員工。戰鬥似乎正以丹紅派佔上風的形勢收尾，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -1505,21 +1505,21 @@
       "texts": [
         {
           "index": 0,
-          "text": "... I ain't seein' what's so \"luxury\" about this place. Sure, it's a bit shiny, but it ain't <i>that</i> posh.",
+          "text": "……說是奢侈品館，除了比較閃亮之外，看起來也差不多嘛。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "These items seem to have a more obvious golden glow to them than the items on the other floors. Even the ones that aren't glowing are meticulously decorated, obviously crafted with great care."
+          "text": "儘管如此，和其他樓層相比，這裡的金色光芒更多，精心裝飾的東西也很引人注目。"
         },
         {
           "index": 2,
-          "text": "... The items here appear to cost significantly more eyeballs than those available on other floors.",
+          "text": "……似乎得支付相當多的眼球才能購買呢。",
           "speaker": "浮士德"
         },
         {
           "index": 3,
-          "text": "Carrying sufficient eyeballs is not enough. The Prestige Tier of the prospective client is also strictly screened before they are permitted to purchase these items.",
+          "text": "不只是眼球，消費階級的限制也很嚴格。",
           "speaker": "莫梭"
         },
         {
@@ -1534,36 +1534,36 @@
         },
         {
           "index": 6,
-          "text": "... Nah. I, hm. I've a bad feelin' about it.",
+          "text": "……算了。總覺得，有點那個啊。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 7,
-          "text": "<What? Bad feeling about what?>",
+          "text": "<為、為什麼話說到一半就不說了……？>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "Well... seein' as we're here anyway, I'm thinkin'—why don't we just take these and sell 'em on other floors? It ain't like there's anyone watchin' us...",
+          "text": "沒啦，只是……想說拿去別的樓層賣掉不就好了。反正也沒人在看……",
           "speaker": "希斯克利夫"
         },
         {
           "index": 9,
-          "text": "That is—",
+          "text": "那是……",
           "speaker": "浮士德"
         },
         {
           "index": 10,
-          "text": "I get it, I get it! I was just floatin' the idea, nothin' more. Don't need another shite like that hair coupon incident happenin' again.",
+          "text": "啊夠了！我只是說說而已！理髮券那次就夠了。不偷，絕對不偷。",
           "speaker": "希斯克利夫"
         },
         {
           "index": 11,
-          "text": "But I was just about to tell him that was a really good idea..."
+          "text": "本來還想說這是個好主意的……"
         },
         {
           "index": 12,
-          "text": "Ah, well. The display cases seem to be made from pretty durable material anyway.\nWe decided to move on."
+          "text": "不過材質看起來也不是能輕易打破的，所以決定不偷了。"
         }
       ]
     },
@@ -1572,7 +1572,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Densely backstitched Golden Hide is visible between layers of fabric."
+          "text": "布料之間密密縫進的黃金皮革相當顯眼。"
         }
       ]
     },
@@ -1581,7 +1581,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A display case. Covered in... what appear to be a curtain of flesh."
+          "text": "大概是被肉塊……覆蓋住的展示台。"
         }
       ]
     },
@@ -1590,17 +1590,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oi, oi... you... is your head alright?!",
+          "text": "喂、喂……你……的頭……沒事吧！？",
           "speaker": "希斯克利夫"
         },
         {
           "index": 1,
-          "text": "It is all right.",
+          "text": "沒事。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "<We've got plenty of stuff that might come in helpful, but... still too early to even try to fight it, I guess.>",
+          "text": "<就算帶著很多派得上用場的東西，現在要對付它似乎還太早了。>",
           "speaker": "但丁"
         }
       ]
@@ -1610,7 +1610,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Thin rays of golden light shine from the cracks of the obsidian pillar."
+          "text": "黑色柱子的裂縫中透出金色的光芒。"
         }
       ]
     },
@@ -1619,7 +1619,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Noirs have stuffed Le Rouge apparel into the gaps where the Rouges have carved out the Golden Hides."
+          "text": "在丹紅派剝走黃金皮革的地方，漆黑派似乎塞進了丹紅派的衣服。"
         }
       ]
     },
@@ -1628,7 +1628,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The pillar is completely swallowed up beneath crimson flesh. Its original shape is difficult to discern."
+          "text": "一根被紅色肉塊完全覆蓋的柱子。完全看不出原本的形狀。"
         }
       ]
     },
@@ -1637,7 +1637,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "[Sélection du Noir - Atelier du Premier Arbre: A collection of six articles, hand-nominated by the Brand Manager herself]"
+          "text": "[漆黑派精選 - 最初之樹工作室 - 品牌經理嚴選的六件精品]"
         }
       ]
     },
@@ -1646,7 +1646,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's a pillar where a piece of cloth and a Noir's note are hidden by its base."
+          "text": "藏著一塊布和某個漆黑派的紀錄的柱子。"
         }
       ]
     }

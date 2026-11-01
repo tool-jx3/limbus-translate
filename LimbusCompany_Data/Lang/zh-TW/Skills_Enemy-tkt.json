@@ -387,7 +387,7 @@
         {
           "level": 1,
           "name": "為了我們的事業",
-          "desc": "[CantDuel]\n[StartBattle] Draw all other allies' [Vibration] Count to self; [Vibration] on all allies expire\n[StartBattle] Gain 1 [AttackUp] for every 3 [Vibration] Count on self\n[WhenUse] Gain 9 [Vibration] Count",
+          "desc": "[CantDuel]\n[StartBattle] 使自身獲得除自身以外全體友方單位的 [Vibration] 回數，並解除全體友方單位的 [Vibration]\n[StartBattle] 自身每帶有3回 [Vibration]，則使自身獲得1層 [AttackUp]\n[WhenUse] 使自身的 [Vibration] 回數增加9",
           "coinlist": [
             {
               "coindescs": [
@@ -496,7 +496,7 @@
         {
           "level": 1,
           "name": "強制執行徵收。",
-          "desc": "[WhenUse] Clash Power +1 for every 5 [Vibration] Count on self (max 2)\n[WhenUse] At 5+ [Vibration] Count, deal +10% damage for every [Vibration] Count. (max 100%)\n[EndSkill] Consume all [Vibration] Count on self",
+          "desc": "[WhenUse] 自身每帶有5回 [Vibration]，則使本技能的拚點威力+1(最多+2)\n[WhenUse] 若自身的 [Vibration] 回數不低於5回，則每有1回，使本技能造成的傷害+10%(最多+100%)\n[EndSkill] 消耗自身所有 [Vibration] 回數",
           "coinlist": [
             {
               "coindescs": [

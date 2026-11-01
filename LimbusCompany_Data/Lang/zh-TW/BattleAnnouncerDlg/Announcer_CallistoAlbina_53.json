@@ -2,131 +2,131 @@
   "dataList": [
     {
       "id": "announcer_cheer_53_1",
-      "dlg": "- We will now observe the depth of your aesthetic sense.\n- Will you show it to me? Your very own brand of art of the exterior."
+      "dlg": "我會好好見證的，你的審美眼光。\n能讓我看看嗎？你所塑造出的外在藝術。"
     },
     {
       "id": "announcer_cheer_53_2",
-      "dlg": "- A true master of the craft knows precisely when to question his tools. Is the edge of the blade keen enough? Has rust dulled the timbre of the blade? Always be sure to inspect your tools with an exacting eye.\n- And that's because precious material shouldn't be ruined by poor handling."
+      "dlg": "優秀的匠人自會挑剔工具。刀刃是否鋒利、有沒有生鏽，請仔細確認。\n畢竟可不能糟蹋了珍貴的材料。"
     },
     {
       "id": "announcer_specialcheer_53_1",
-      "dlg": "Could that have been a bulbus oculi rolling across the floor? I suppose it would be a touch too inappropriate now to say \"keep your eyes open.\""
+      "dlg": "剛才滾過去的……是眼球嗎？這下連「睜大眼睛看清楚」這種話都說不出口了呢。"
     },
     {
       "id": "announcer_specialcheer_53_2",
-      "dlg": "- That last touch completely messed up the proportions.\n- We have reached the point where it is becoming difficult to tell the medium apart from the artist."
+      "dlg": "剛才那一筆讓比例完全崩壞了。\n到了這種地步，都快分不清誰才是素材了呢。"
     },
     {
       "id": "announcer_enemy_break_53_1",
-      "dlg": "- How does it appear to your eyes, Albina? The tableau of the torqued corpus, flowering outward into a bouquet of blooming tendons.\n- Self-similarity within aleatoricism. It's aptly captured, Maestro."
+      "dlg": "阿爾比娜，看見了嗎？扭曲迸裂而出的肌腱綻放成花的景象。\n隨機之中的自相似性，我已經確實捕捉下來了。"
     },
     {
       "id": "announcer_ally_break_53_1",
-      "dlg": "- Abstract art? Are you trying to stage a drama of crisis through the tide of battle?\n- Not daring at all—merely a crude attempt at dramaturgy. Let us see what sort of finishing touch you will apply to salvage this piece."
+      "dlg": "真難懂。在這種走向下突然表現危機嗎？\n與其說大膽，不如說是粗糙的展開呢。真不知道你打算怎麼收尾。"
     },
     {
       "id": "announcer_killenemy_53_1",
-      "dlg": "- I see you've settled on a structural composition to work with.\n- Time to start filling in the details."
+      "dlg": "構圖已經定下來了呢。\n接下來就慢慢填滿吧。"
     },
     {
       "id": "announcer_ally_dead_53_1",
-      "dlg": "Hah. Surely you are not relying on the trite conceit that death applies a posthumous premium on artwork, are you?"
+      "dlg": "哈，該不會是想用死亡來抬高作品價值這種陳腐的想法吧？"
     },
     {
       "id": "announcer_enemy_adv_53_1",
-      "dlg": "- Let's try to regain an objective perspective through distancing and defamiliarization, shall we?\n- Certain facets of art become invisible when you are buried in its details. Take a step away and look again."
+      "dlg": "保持距離，透過陌生化來找回客觀性吧。\n太過沉溺的話，有些東西會看不見。暫時從遠處看看吧。"
     },
     {
       "id": "announcer_ally_adv_53_1",
-      "dlg": "- This artwork is too conventional. You can't hope to get the audience immersed in it.\n- Albina, a truly refined critique begins from sincere appreciation of art.\n- That was foolish of me, Maestro. I'll look again without skipping over anything."
+      "dlg": "這麼四平八穩的作品，讓人沉浸不進去。\n阿爾比娜，出色的批評，可是要從完整的鑑賞開始的喔？\n……是我愚昧了。我會不跳過、重新看一遍。"
     },
     {
       "id": "announcer_ally_advex_53_1",
-      "dlg": "Forced asymmetry, then an inversion of the central axis... Mind you, I am not easily swayed by the so-called \"turnabout\" inherent in underdog narratives. The catharsis this particular iteration offers its audience is, however... more than adequate."
+      "dlg": "從被迫的不對稱，到中軸的反轉……雖然我不是會被弱者崇拜這類題材打動的人，但這份帶給觀眾的宣洩感……倒是相當足夠呢。"
     },
     {
       "id": "announcer_danger_53_1",
-      "dlg": "- The deadline for submission is nearing. Please direct your focus to the final touch before the unveiling of your piece. Be prudent, be delicate.\n- Like Pointillists—I heard they spend the longest time thinking where and how to place the final dot."
+      "dlg": "參展截止日近在眼前了呢。揭幕前的最後一筆至關重要。要慎重、要細膩。\n聽說點描派在點下最後一點時，猶豫得最久。"
     },
     {
       "id": "announcer_enemy_specialskill_53_1",
-      "dlg": "- Intense stimulus, at times, may be an illuminating muse.\n- This way, the approaching pain can be sublimated into proper art."
+      "dlg": "強烈的刺激，有時往往能成為很好的靈感。\n就連即將到來的痛苦，也要昇華為藝術。"
     },
     {
       "id": "announcer_enemy_specialgimmick_53_1",
-      "dlg": "- This is completely new to me, Maestro. Could it be an application of Fauvist technique?\n- Hmm... A classic structure, though wrapped under a gaudy, overly belletristic veneer. Let us focus on examining its osseous framework instead."
+      "dlg": "是我從沒見過的技法呢，大師。是應用了野獸派的技法嗎？\n嗯……只是在古典的結構上，加了一層像樣的包裝罷了。這種情況下，就把焦點放在骨架上吧。"
     },
     {
       "id": "announcer_advatk_physical_53_1",
-      "dlg": "A tried-and-true approach. Follow the length of the erector spinae, where they cling to the thoracic vertebrae. Surgical precision is required here."
+      "dlg": "很教科書呢。沿著附著在胸椎上的豎脊肌，俐落地下刀。"
     },
     {
       "id": "announcer_disadvatk_physical_53_1",
-      "dlg": "...? Why are you searching for the caudal vertebrae when they're merely vestigial in the pure human corpus? Oh, Fascia is asking the same question."
+      "dlg": "……？為什麼要從人體上取得純粹的人體身上找不到的尾巴？法希雅也很好奇。"
     },
     {
       "id": "announcer_advatk_attr_53_1",
-      "dlg": "Your application of the tenderizing agent is as inspiring as it is effective. I'm learning new things every day."
+      "dlg": "配合材料的軟化劑處理方式真令人印象深刻。學到了一招。"
     },
     {
       "id": "announcer_disadvatk_attr_53_1",
-      "dlg": "Might I suggest electing a different kind of solvent? Try trimming the corpus with a more appropriate technique."
+      "dlg": "換個溶劑，用別的技法來修整如何？"
     },
     {
       "id": "announcer_enemy_specialbuff_53_1",
-      "dlg": "- I expect you to have noticed the subtle alteration in the medium. Here's hoping your aesthetic sense is trained enough to perceive the minute variations.\n- May I let them know what exactly has changed, Maestro? Friends should help each other."
+      "dlg": "素材的細微變化，你當然察覺到了吧？希望你具備捕捉微妙差異的美感。\n我可以告訴他們嗎，大師？想變得要好，就要互相幫助才行。"
     },
     {
       "id": "announcer_enemy_specialdebuff_53_1",
-      "dlg": "- Do you now understand why relaxants must come into play, dear Albina?\n- Ah. Relaxed musculature reduces resistance to the scalpel, which allows the artist a smoother expression of texture."
+      "dlg": "阿爾比娜，現在明白為什麼要使用鬆弛劑了嗎？\n啊。鬆弛的肌肉能減少手術刀的阻力，就能描繪出滑順的質感了呢。"
     },
     {
       "id": "announcer_ally_specialbuff_53_1",
-      "dlg": "It would seem I must forgo an objective critique in your case. This is naught but a mockery—an affront to art under the veneer of \"being considerate\" to the material."
+      "dlg": "看來只好放棄客觀的批評了呢。在這包裝成體貼的嘲弄面前。"
     },
     {
       "id": "announcer_ally_specialdebuff_53_1",
-      "dlg": "- I think a piece of flesh just got into your eye. Stings a lot, doesn't it?\n- An unpleasant sensation, to be sure. However, one must accept that art is not always an impeccably organized process—it often involves stray paint and blood flying everywhere. Some like to express this conundrum via such unnecessary jargon as \"Impasto,\" if I am not mistaken... Perhaps you've heard of it before."
+      "dlg": "剛才好像有肉屑濺進眼睛了。看起來很刺痛呢。\n雖然是不愉快的感覺，但搞藝術本來就會濺到顏料、濺到血嘛。這種情形……好像叫厚塗法？是這麼說的嗎？"
     },
     {
       "id": "announcer_enemy_destroy_53_1",
-      "dlg": "Originality between slaughter and anatomization, carefully balanced on the knife-edge of distinction. A sight to behold, indeed."
+      "dlg": "在屠宰與解剖的界線上岌岌可危地維持著的原創性。令人驚嘆呢。"
     },
     {
       "id": "announcer_enemy_destroy_53_2",
-      "dlg": "That's the right approach. Start by harvesting the material that won't cut it. You'll get to harvest better ones eventually."
+      "dlg": "沒錯。從不起眼的部位開始取材。這樣下去，也就能得到更棒的材料了吧。"
     },
     {
       "id": "announcer_round_takebigdmg_53_1",
-      "dlg": "Oh, dear. You have neglected the fundamentals for obsessive emphasis on spectacularism instead. Where is the structural consistency? Where is the balance?"
+      "dlg": "哎呀。只顧著賣弄技巧，連結構與平衡這些基礎都完全忘了嗎？"
     },
     {
       "id": "announcer_round_takebigdmg_53_2",
-      "dlg": "- This sensation... *sigh* It is as though my amygdala is shaking. That just now had nothing to do with the disparity between our preferred tastes. It was simply a matter of complete and utter lack of aesthetic literacy on your part.\n- That couldn't have been intentional. Your hands must've slipped, right...?"
+      "dlg": "這種感覺……哈啊……杏仁核彷彿都在震顫呢。剛才那下已經超出品味差異的範疇，是對美學毫無造詣的程度了。\n是手滑了吧？應該不是故意的。"
     },
     {
       "id": "announcer_round_givebigdmg_53_1",
-      "dlg": "Che bello. The scapula, so cleanly separated, with the cartilage still attached without losing its suppleness... A spark of inspiration."
+      "dlg": "Che bello。精巧分離的肩胛骨，以及仍保有彈性、相連著的軟骨……靈感被喚醒了。"
     },
     {
       "id": "announcer_round_givebigdmg_53_2",
-      "dlg": "- Now <i>that</i> is a perceptive observation—you have managed to identify the core of the theme. Refine the angle of misaligned joints and correct the twisting organs, and you may appeal to my tastes yet.\n- I finally see the artistic intent behind your work. It took longer than necessary, though."
+      "dlg": "這是貫穿主題的銳利視角。只要再修飾一下扭曲關節的角度和臟器散亂的程度，或許就能相當接近我的喜好。\n現在終於清楚看出意圖了。雖然花了點時間。"
     },
     {
       "id": "announcer_multikillenemy_53_1",
-      "dlg": "- Incredibile! The marriage between materialities, and the allegorical divorce of individualities! Aah... a monumental piece indeed!\n- This would invite dozens of bids at a VIP auction. Hear how Fascia's heartbeat quickens? She's also excited."
+      "dlg": "Incredibile！相互衝突的物性之結合，甚至還有蘊含關係斷絕的寓言！啊啊……真是一件里程碑般的作品！\n如果是VIP拍賣會，這肯定是誰都想要的作品。法希雅說她也很興奮。"
     },
     {
       "id": "announcer_battle_win_53_1",
-      "dlg": "- Eccellente. That will be all for today's critique.\n- Let's make some collaborative art next time. Fascia's a bit miffed because we couldn't see more.\n- Fare you well.\n- Fare you well."
+      "dlg": "Eccellente。這次的批評就到此為止。\n下次一起合作吧。法希雅也覺得很可惜。\n那麼，再會了。"
     },
     {
       "id": "announcer_battle_defeat_53_1",
-      "dlg": "- You might want to give the work more time before you can receive a passing grade. Or perhaps you ought to reevaluate your perceived talent.\n- If I'm being honest, Fascia and I are disappointed. I hope you can become someone worthy of befriending next time."
+      "dlg": "看來要達到及格分數，還需要更多時間呢。或者，請重新考慮一下你的才能。\n老實說，今天很讓人失望。我和法希雅都是。希望下次你能變得更值得我們親近。"
     },
     {
       "id": "announcer_equip_53_1",
-      "dlg": "- Welcome, welcome—Maestro Callisto, at your service. I am pleased to critique the aesthetics of your performance art today.\n- Hello. My name is Albina, and this is Fascia. Let's get to know each other so we can become friends once the critique session is over."
+      "dlg": "歡迎光臨。我是今天負責批評你的行為藝術的大師，卡利斯托。\n很高興見到你。我是阿爾比娜。這位是法希雅。希望批評結束後，我們能變得要好。"
     }
   ]
 }

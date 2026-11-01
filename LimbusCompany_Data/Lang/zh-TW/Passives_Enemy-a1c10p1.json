@@ -71,7 +71,7 @@
     {
       "id": 9106302,
       "name": "細小且尖銳的釘子",
-      "desc": "When using Skills to inflict [Laceration] Potency against enemies that have [NiddlePin], inflict +([NiddlePin] Stack on target) more [Laceration] Potency (max 3)",
+      "desc": "使用技能令帶有 [NiddlePin] 的敵方單位增加 [Laceration] 強度時，使增加的強度額外增加(目標的 [NiddlePin] 層數)級(最多3級)",
       "flavor": "是釘是針並沒有區別。"
     },
     {

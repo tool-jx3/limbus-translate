@@ -4,42 +4,42 @@
       "id": 0,
       "place": "14區，奶油街",
       "model": "단테",
-      "content": "<Oh, crap...!>"
+      "content": "<呃……！>"
     },
     {
       "id": 1,
-      "content": "As soon as I registered Meursault's words, my hand reflexively threw the film to the ground."
+      "content": "聽了莫梭的話，我慌忙把手上拿著的底片扔到了地上。"
     },
     {
       "id": 2,
       "model": "단테",
-      "content": "<A-are we gonna be okay...? We might've just broken a Taboo...!>"
+      "content": "<沒、沒問題嗎……？要是觸犯了禁忌……>"
     },
     {
       "id": 3,
-      "content": "My mind began to race, rapidly traveling back through our journey—specifically to the time when Don Quixote had smashed that window at K Corp. and caused the Wing to wipe out our team multiple times over. I felt faint."
+      "content": "一想起以前唐吉訶德在K公司打破玻璃窗之後，罪人們被集體鎮壓的事，眼前就已經一陣發黑。"
     },
     {
       "id": 4,
-      "content": "At least we had Vergilius with us then, and it ended up being not that big of a deal at the end of the day since I could revive the Sinners, but..."
+      "content": "至少那時維吉里烏斯也在身邊，而且只有罪人們被鎮壓，最後靠復活他們就收場了……"
     },
     {
       "id": 5,
       "model": "단테",
-      "content": "<Some Nest Taboos can get us in serious trouble just for <i>carrying</i> anything that has to do with them, can't they...?!>"
+      "content": "<如果是巢的禁忌……視程度而定，光是持有就會出大事吧……？！>"
     },
     {
       "id": 7,
-      "content": "I hurriedly turned toward the Sinners, many of whom looked every bit as troubled as I felt."
+      "content": "我環顧罪人們，其中幾個人面露難色。"
     },
     {
       "id": 8,
-      "content": "Still, a few of them expressed a casual lack of concern, citing all the crazy things we've gone through so far..."
+      "content": "雖然也有另外幾個人說，我們一路上都幹過那麼多事了，事到如今還在怕什麼……"
     },
     {
       "id": 9,
       "model": "싱클레어",
-      "content": "M-M-Miss F-Faust...! W-what'll happen to us if this gets the Manager killed...?"
+      "content": "浮、浮、浮士德小姐……？要是經理就這樣死掉，我們該怎麼辦才好……？"
     },
     {
       "id": 10,
@@ -48,411 +48,411 @@
     },
     {
       "id": 11,
-      "content": "Okay... So this is it, huh?"
+      "content": "我……要死了嗎？"
     },
     {
       "id": 12,
       "model": "에즈라",
-      "content": "Stop freakin' out, guys. They're not dying, and we'll be fine. N Corp.'s not gonna kill you on the spot just for possessing a film roll."
+      "content": "死什麼死啦。不可能只因為拿著那個就被殺吧？"
     },
     {
       "id": 13,
       "model": "싱클레어",
-      "content": "R-really?"
+      "content": "是、是這樣嗎？"
     },
     {
       "id": 14,
       "model": "에즈라",
-      "content": "Well, it <i>might</i> be a problem if the film roll does contain genuine recorded footage, but... it's not like you guys had a hand in filming it, right?"
+      "content": "嘛，如果真的是錄有影像的底片……也不是不會出問題啦，但你們又不是直接協助的人吧？"
     },
     {
       "id": 15,
       "model": "에즈라",
-      "content": "When N Corp. dudes get here to pick it up, just comply with their commands, thank them for their service, and nicely hand it over to the authorities! And everything should be a-ok."
+      "content": "只要等N公司的人來回收時，說聲「哎呀，當然當然！」然後乖乖交出去，應該就不會出什麼事啦。"
     },
     {
       "id": 16,
       "model": "뫼르소",
-      "content": "There is a possibility that everything will not be okay."
+      "content": "有引發問題的可能。"
     },
     {
       "id": 17,
       "model": "에즈라",
-      "content": "... Eh?"
+      "content": "……欸？"
     },
     {
       "id": 18,
       "model": "뫼르소",
-      "content": "Because I have developed the contents of that film roll in that darkroom."
+      "content": "因為是我沖洗了它。"
     },
     {
       "id": 19,
       "model": "에즈라",
-      "content": "Oh..."
+      "content": "啊……"
     },
     {
       "id": 20,
       "model": "뫼르소",
-      "content": "The court will take the lack of intentionality into consideration. However, it is very likely that my actions will be deemed as \"aiding\" the primary violator of the Taboo."
+      "content": "由於並非故意，審判時有酌情考量的餘地，但必定會被視為協助。"
     },
     {
       "id": 21,
       "model": "싱클레어",
-      "content": "R-really?"
+      "content": "是、是這樣嗎……？！"
     },
     {
       "id": 22,
       "model": "에즈라",
-      "content": "B-but, but..."
+      "content": "就、就算是這樣……"
     },
     {
       "id": 23,
       "model": "에즈라",
-      "content": "Team Leader said that N Corp. has their own regulatory standards regarding image quality, which they use to determine the severity of Taboo violation."
+      "content": "隊長說過，N公司會依錄製影像的品質評定等級，來決定禁忌的程度……"
     },
     {
       "id": 24,
       "model": "에즈라",
-      "content": "If the footage's image quality or framerate is within regulations, N Corp. won't be siccing their Fixers on our butts right away. And that could buy us time or give our company some leverage to make a deal, however small it might be."
+      "content": "如果影像的畫質或幀數在標準以下，N公司直屬的收尾人一開始就不會追過來。應該還有爭取時間，或讓公司出面交涉的餘地。"
     },
     {
       "id": 25,
       "model": "에즈라",
-      "content": " 'Cuz what they're really sniffing around for is how close to reality the video is... Or how close of an experience it provides to real life."
+      "content": "反正那些傢伙戒備的，就是影像跟現實有多相像……能不能讓人有如同親歷原本場景的體驗嘛。"
     },
     {
       "id": 26,
       "model": "에즈라",
-      "content": "So, even if we're really, <i>really</i> unlucky, and they actually come after us... it's going to be fine as long as the footage is low fidelity. Probably."
+      "content": "所以說，就算運氣爛透了被找碴……只要是低品質的影像，應該就沒事……大概啦。"
     },
     {
       "id": 27,
       "model": "뫼르소",
-      "content": "Mm."
+      "content": "嗯。"
     },
     {
       "id": 28,
       "model": "오티스",
-      "content": "So, what exactly does \"framerate within regulations\" entail?"
+      "content": "……所謂標準以下的幀數，確切來說是指什麼？"
     },
     {
       "id": 29,
       "model": "에즈라",
-      "content": "Uh... It means that the interval between each frame shouldn't be, like, super brief."
+      "content": "嗯……就是說，幀與幀之間的時間不能太短啦。"
     },
     {
       "id": 30,
       "model": "에즈라",
-      "content": "Think about photo slideshows. They only show you one image every few seconds, so it doesn't feel \"real,\" or \"vivid,\" right? You can technically call them motion pictures, but there's no \"vividness\" required to violate their Taboo."
+      "content": "想想看照片幻燈片那種影片。每一張都慢吞吞的，完全沒有真實感吧？雖然可以叫作影像，但沒有生動感，所以不會構成問題。"
     },
     {
       "id": 31,
       "model": "오티스",
-      "content": "Then... let us analyze this film roll and see how \"vivid\" it really is."
+      "content": "那麼……只要以那份生動感為標準來判讀這捲底片就行了。"
     },
     {
       "id": 32,
       "model": "오티스",
-      "content": "Meursault, I trust that you are knowledgeable in subjects concerning N Corp., yes? Cooperate."
+      "content": "莫梭。你對N公司的知識十分廣博，我要求你協助。"
     },
     {
       "id": 33,
       "model": "오티스",
-      "content": "Could this film roll be considered a violation of the Taboo?"
+      "content": "這捲底片有引發問題的可能嗎？"
     },
     {
       "id": 34,
-      "content": "Outis picked up the film from the ground and showed it to Meursault."
+      "content": "奧提斯撿起地上的底片，遞到莫梭面前說道。"
     },
     {
       "id": 35,
       "model": "뫼르소",
-      "content": "That cannot be determined."
+      "content": "無法判斷到那種程度。"
     },
     {
       "id": 36,
       "model": "뫼르소",
-      "content": "Unless each frame is thoroughly analyzed and compared with adjacent—"
+      "content": "必須把底片一格一格全部仔細檢視……"
     },
     {
       "id": 37,
-      "content": "Without waiting for Meursault to finish, Outis unrolled the film roll and raised it against the sky."
+      "content": "於是奧提斯展開底片，朝天空高高舉起。"
     },
     {
       "id": 38,
       "model": "오티스",
-      "content": "The rest of you, get over here. We must analyze these frames."
+      "content": "你們也過來一起看。看看有沒有什麼不同之處。"
     },
     {
       "id": 39,
       "model": "오티스",
-      "content": "The film canister was labeled \"experiment,\" so I assume the culprit had created this as a test run of sorts."
+      "content": "從那捲底片上還寫著「實驗作品」來看，這應該是想進行某種試驗吧。"
     },
     {
       "id": 40,
       "model": "오티스",
-      "content": "An experiment to see how close they could get to violating a Taboo... and testing the limits of the law. It may even be a mere collection of similar photographs that are <i>pretending</i> to be recorded footage."
+      "content": "試驗到什麼程度會被視為禁忌……說不定它只是在「假裝」成影像。"
     },
     {
       "id": 41,
-      "content": "The Sinners all gather around Outis and look up toward the unrolled film in unison."
+      "content": "罪人們擠在一起，抬頭看著底片。"
     },
     {
       "id": 42,
       "model": "오티스",
-      "content": "Here—the flower pot moves between frames, doesn't it?"
+      "content": "這裡，花瓶是不是稍微動了一下？"
     },
     {
       "id": 43,
       "model": "오티스",
-      "content": "The Docugrapher couldn't possibly have moved the pot while also holding down the shutter button."
+      "content": "如果是連續拍攝的，花瓶應該不可能也跟著移動。"
     },
     {
       "id": 44,
       "model": "싱클레어",
-      "content": "Uhm... I-I don't see any difference..."
+      "content": "呃……我、我是覺得看起來都……一樣……"
     },
     {
       "id": 45,
       "model": "이상",
-      "content": "Hm... See here, the expression risen on the subject's visage appears rather stiff."
+      "content": "嗯……站在中間之人的表情，看來頗為僵硬。"
     },
     {
       "id": 46,
       "model": "히스클리프",
-      "content": "Maybe they're just a gloomy sort."
+      "content": "不就是本來就一臉臭樣的人嗎？"
     },
     {
       "id": 47,
       "model": "이상",
-      "content": "Perhaps, yet observe closer—the stiffness arises not from gloom, but from strain to maintain it."
+      "content": "若說是那樣，這份緊張感倒像是在刻意努力不讓表情變動。"
     },
     {
       "id": 48,
       "model": "홍루",
-      "content": "Ooh~ If that's the case, maybe the subject really is trying to fake an actual footage by moving very, very slowly!"
+      "content": "啊～如果是那樣，說不定真的是在演戲，想假裝成連續的動作呢！"
     },
     {
       "id": 49,
       "model": "이스마엘",
-      "content": "That's a pretty convincing theory, but I'm not sure if that's enough to conclude that we're in the clear just yet..."
+      "content": "是很有說服力啦……但光憑這點就放心的話……"
     },
     {
       "id": 50,
-      "content": "That's when Bamboo-hatted Kim, who had been sprawled on the ground ever since Ezra punched him, stepped into the conversation."
+      "content": "這時，仍在地上打滾的金笠靜靜地低吟道。"
     },
     {
       "id": 51,
       "model": "뉴김삿갓",
-      "content": "... Let's see..."
+      "content": "……我看看。"
     },
     {
       "id": 52,
       "model": "뉴김삿갓",
-      "content": "Look at the shadow cast on the window sill."
+      "content": "窗框附近，畫框的影子。"
     },
     {
       "id": 53,
       "model": "뉴김삿갓",
-      "content": "See how it noticeably shifts between each frame?"
+      "content": "每一張的影子，不是都傾斜得太過頭了嗎？"
     },
     {
       "id": 54,
       "model": "뉴김삿갓",
-      "content": "Whoever made this knows their craft for sure. But I can't imagine a Backstreets dweller would have any way to mess with the sun's trajectory."
+      "content": "其他東西或許能造假，但太陽西沉這件事，區區一個後巷居民是騙不了的。"
     },
     {
       "id": 55,
       "model": "오티스",
-      "content": "Then the likely scenario must be that the creator of this film roll deliberately made its subject move very slowly from frame to frame, creating a series of disconnected photos that, when played sequentially, would look like footage that violates the Taboo..."
+      "content": "那麼，果然只是讓當模特兒的人物慢慢移動，拍得像是錄影一樣而已……"
     },
     {
       "id": 56,
       "model": "오티스",
-      "content": "In which case, this film roll does not violate the Nest's Taboo. Correct?"
+      "content": "這不能視為禁忌。對嗎？"
     },
     {
       "id": 57,
       "model": "뫼르소",
-      "content": "Mm. That is highly probable."
+      "content": "嗯。就機率而言非常高。"
     },
     {
       "id": 58,
       "model": "오티스",
-      "content": "... So he says, Executive Manager. We should be in the clear for now, at least in regards to aiding the violation of a Wing's Taboo."
+      "content": "……他是這麼說的，經理。看來不會因為是否協助觸犯禁忌而鬧出事端了。"
     },
     {
       "id": 59,
       "model": "단테",
-      "content": "<Phew...>"
+      "content": "<哈啊……>"
     },
     {
       "id": 60,
       "model": "오티스",
-      "content": "But if he was willing to go through this much trouble just to test N Corp.'s patience, it's hard to believe that he'd have stopped here."
+      "content": "……但是，若是不惜試探N公司、行事如此執拗的人物，我不認為他會就此停手。"
     },
     {
       "id": 61,
       "model": "오티스",
-      "content": "Based on all available evidence, Executive Manager, it seems reasonable to conclude that the Inflection Point of this case is a Taboo violator on the run."
+      "content": "正如那人一開始提出的最高可能性，將相當於曲折點的人物視為觸犯禁忌而遭到追捕的人，似乎才是正確的判斷。經理。"
     },
     {
       "id": 62,
       "model": "그레고르",
-      "content": "Huh... But what motive would they have to do that?"
+      "content": "為什麼……要自找這種麻煩？"
     },
     {
       "id": 63,
       "model": "그레고르",
-      "content": "Sure, working for a Wing subsidiary has nothing on being an actual Wing employee, but it's still pretty up there when it comes to careers available in the Backstreets."
+      "content": "不是啊，雖說不是在翼工作，但翼旗下的協力廠商，在後巷也算是相當體面的工作了吧。"
     },
     {
       "id": 64,
       "model": "그레고르",
-      "content": "Work for a subsidiary long enough, and you might even get transferred to a factory job in a Nest. That gives you a pretty okay chance at a better life, so..."
+      "content": "只要持續工作下去，還有可能被調到巢內的工廠……有機會過上更好的生活……"
     },
     {
       "id": 65,
       "model": "이스마엘",
-      "content": "... Maybe he was just tired of living that kind of life."
+      "content": "……會不會是厭倦了那樣的生活呢。"
     },
     {
       "id": 66,
       "model": "이스마엘",
-      "content": "Everyone has one of those days, don't they? The sudden feeling that you could be doing more than live the rest of your life in 9-to-5 hell. The drive to do <i>something</i> that takes you away from the pressure of trying to make a life."
+      "content": "每個人都會有……想擺脫無聊日常、去冒險的時候嘛。"
     },
     {
       "id": 67,
-      "content": "Something about what Ishmael said must've tickled Bamboo-hatted Kim, because he suddenly whipped around toward her and shook his head."
+      "content": "聽了以實瑪利的話，金笠突然望向這邊，搖了搖頭。"
     },
     {
       "id": 68,
       "model": "뉴김삿갓",
-      "content": "Maybe. But how many of those people do you think are capable of throwing away everything they've built on a whim?"
+      "content": "話雖如此，真的能把一切說拋就拋的人，應該沒幾個吧。"
     },
     {
       "id": 69,
       "model": "뉴김삿갓",
-      "content": "From what I've seen... Maybe our culprit just likes to play with fire."
+      "content": "光看痕跡的話……反而像是想走鋼絲，不是嗎？"
     },
     {
       "id": 70,
       "model": "에즈라",
-      "content": "Play with fire?"
+      "content": "走鋼絲？"
     },
     {
       "id": 71,
       "model": "뉴김삿갓",
-      "content": "Yeah. Must've started by doing something that <i>technically</i> doesn't count as Taboo—and inched on and on until he brushed thrillingly close to one."
+      "content": "一開始……大概是在不違反禁忌的範圍內一點一點試探吧。"
     },
     {
       "id": 72,
       "model": "뉴김삿갓",
-      "content": "One thrilling shot through this camera, and another with the next..."
+      "content": "用這台相機一次，用另一台相機一次。"
     },
     {
       "id": 73,
       "model": "뉴김삿갓",
-      "content": "... Until eventually, he ended up recording actual \"footage.\""
+      "content": "然後，說不定就這樣做出影像了。"
     },
     {
       "id": 74,
       "model": "에즈라",
-      "content": "Cool, then that leaves the question of \"what the heck was he tryna do with it?\""
+      "content": "問題是，做出影像之後拿去幹嘛了……"
     },
     {
       "id": 75,
       "model": "뉴김삿갓",
-      "content": "Might've been trying to screen it using a projector for all of this part of the Backstreets to see."
+      "content": "大概是想透過投影機在後巷放映吧。"
     },
     {
       "id": 76,
       "model": "싱클레어",
-      "content": "Whaaat? B-but wouldn't that make everyone here, even those who unwittingly came across the projection..."
+      "content": "什麼！？那、那樣的話，住在後巷的人們全都會……"
     },
     {
       "id": 77,
       "model": "뉴김삿갓",
-      "content": "... Right on. It'd have made those folks violators of the Taboo."
+      "content": "沒錯。都會成為禁忌違反者吧。"
     },
     {
       "id": 78,
       "model": "단테",
-      "content": "<But why would anyone...>"
+      "content": "<為什麼要做那種事……>"
     },
     {
       "id": 79,
       "model": "에즈라",
-      "content": "So, would ya care to explain how you know that, Mister Bread-brain?"
+      "content": "話說回來，我們這位麵包蟲大叔怎麼會知道這種事呢？"
     },
     {
       "id": 80,
       "model": "뉴김삿갓",
-      "content": "I asked around on the opposite street, and apparently, some guy's been going around asking the Workshops if they could make him a projector."
+      "content": "我在對面那條街打聽過，聽說有人曾經到處委託，問有沒有人能做投影機。"
     },
     {
       "id": 81,
       "model": "뉴김삿갓",
-      "content": "Seemed like most of them turned him down, but they also said that he stopped showing up after a certain point. Fair to guess that he got his hands on a projector somehow."
+      "content": "大部分的工坊好像都拒絕了……但從他某個時候起就沒再來過看來，會不會是想辦法弄到投影機了？"
     },
     {
       "id": 82,
       "model": "돈키호테",
-      "content": "Alas, is it not a Taboo of N Corp. to view recorded videos? Pray tell, why would any in sane mind..."
+      "content": "在N公司……觀看影像不是禁忌嗎？然而，投影機又是如何……"
     },
     {
       "id": 83,
       "model": "히스클리프",
-      "content": "Well... it ain't Taboo if you only made a <i>projector</i>, innit? Backstreets blokes're down for anything 'long as there's coin."
+      "content": "嘛……做投影機又不是禁忌。只要錢給得夠多，在後巷有什麼東西做不出來？"
     },
     {
       "id": 84,
       "model": "단테",
-      "content": "<Huh... So how do we track this guy down...?>"
+      "content": "<那……該怎麼追蹤比較好呢……>"
     },
     {
       "id": 85,
       "model": "뫼르소",
-      "content": "Multiple individuals in the same garb as the Pinframe Team have just been identified in the vicinity. They are all carrying the same briefcase."
+      "content": "周圍也有好幾個看似固定小隊的人物。全都是同樣的包。"
     },
     {
       "id": 86,
       "model": "로쟈",
-      "content": "Oho~ Well, isn't that convenient? Maybe we can play this like a festival or a convention and just tail people who look like they're involved with what we're looking for, so they'll lead us to wherever we need to go?"
+      "content": "喔呵～太好了！這就是那個嘛，辦什麼慶典或博覽會的時候，只要跟著一看就像要去那裡的人走，就能到達會場的那種！"
     },
     {
       "id": 87,
       "model": "이상",
-      "content": "Indeed. At architecture conventions, there would be those in formal plaid shirts and suspenders milling about, and I could always trust them to lead me to the convention venue."
+      "content": "我似乎明白妳在說什麼。每次去建築博覽會，總是只有穿著格子襯衫和吊帶的人聚在一塊。"
     },
     {
       "id": 88,
       "model": "그레고르",
-      "content": "... Uh-huh. And was it common for those plaid-shirt fellas to look around like they're scanning the area?"
+      "content": "……那些老兄該不會也時不時回頭偷瞄吧？"
     },
     {
       "id": 89,
       "model": "그레고르",
-      "content": "... Did they also... go around checking people against photographs?"
+      "content": "還會從懷裡掏出照片……比對一下？"
     },
     {
       "id": 90,
       "model": "N사해결사1",
-      "content": "...r. Collec... vidence. Please advise for..."
+      "content": "……了。……對……根據……措施……"
     },
     {
       "id": 91,
       "model": "그레고르",
-      "content": "They also radioed each other? Glaring at people like they're glaring at... Huh?"
+      "content": "還會拿出無線電聯絡，還會狠狠瞪人……！咦？！"
     },
     {
       "id": 92,
       "model": "이상",
-      "content": "... Perhaps you could answer that series of queries yourself."
+      "content": "……怎會有那種事。"
     },
     {
       "id": 93,
-      "content": "... Nope. <i>This</i> crowd sure don't look like they're gonna let us follow them."
+      "content": "……看來要到那裡去也不是件容易的事。"
     }
   ]
 }

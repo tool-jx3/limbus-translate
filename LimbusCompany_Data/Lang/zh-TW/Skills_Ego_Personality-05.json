@@ -211,7 +211,7 @@
           "level": 4,
           "name": "電子哀鳴",
           "abName": "夢中的電子羊",
-          "desc": "[CantIdentify]\nTargets Randomly\n[BeforeAttack] Gain Atk Weight equal to (highest Envy Reson. - 2) (max 3)\n<style=\"highlight\">[BeforeAttack] At 10+ [Charge] Count, apply the effects applied from 'On Hit' twice</style>\n[BeforeAttack] If this unit has 10+ [Charge] Count, spend up to 20 [Charge] Count; deal +<style=\"highlight\">3</style>% damage for every [Charge] Count consumed (max <style=\"highlight\">60</style>%)",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+(最大嫉妒共鳴數-2)(最多+3)\n<style=\"highlight\">[BeforeAttack] 若自身的充能回數不低於10回，則使本技能命中時施加的狀態施加2次</style>\n[BeforeAttack] 若自身的 [Charge] 回數不低於10回，則消耗最多20回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+<style=\"highlight\">3</style>%(最多<style=\"highlight\">+60</style>%)",
           "coinlist": [
             {
               "coindescs": [
@@ -320,7 +320,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[WinDuelAttack] Activate the target's [Laceration] <style=\"highlight\">(1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)"
+                  "desc": "[WinDuelAttack] 觸發目標的 [Laceration] <style=\"highlight\">(1+(最大共鳴數/2))次(最多3次；根據觸發的次數，使目標的 [Laceration] 回數相應減少)</style>"
                 }
               ]
             }
@@ -330,7 +330,7 @@
           "level": 4,
           "name": "渴望-蜜卡拉",
           "abName": "四百朵玫瑰",
-          "desc": "<style=\"highlight\">Coin Power +1 for every 6 [Laceration] on target (max 2)</style>\n[EndSkill] For 3 turns, lose 10 SP at Turn End",
+          "desc": "目標的 [Laceration] 強度<style=\"highlight\">每有6級，使本技能的硬幣威力+1(最多+2)</style>\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -371,7 +371,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[WinDuelAttack] Activate the target's [Laceration] (1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)<style=\"highlight\"></style>"
+                  "desc": "[WinDuelAttack] 觸發目標的 [Laceration] (1+(最大共鳴數/2))次(最多3次；根據觸發的次數，使目標的 [Laceration] 回數相應減少)<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[EnemyKill] 對敵方單位造成超過其剩餘體力的溢出傷害時，對全體敵方單位造成共計等同於溢出傷害量的固定傷害(最少1點)</style>"
@@ -389,7 +389,7 @@
           "level": 1,
           "name": "渴望-蜜卡拉",
           "abName": "四百朵玫瑰",
-          "desc": "[CantIdentify]\nTargets randomly\n[WhenUse] Consume up to 10% of this unit's max HP and deal (HP consumed / 2) damage to all enemies and allies\n- At less than 50% of this unit's max HP, inflict and activate 5 [Laceration] on all allies once instead (lose 1 [Laceration] Count). Heal HP equal to the amount of [Laceration] damage dealt to allies",
+          "desc": "[CantIdentify]\n隨機指定目標\n[WhenUse] 消耗自身體力上限10%的體力並對全體敵方與友方單位造成(消耗的體力/2)點傷害\n- 若自身的現存體力低於體力上限的50%，則改為使全體友方單位增加5級 [Laceration] 強度並觸發1次(使其 [Laceration] 回數減少1回)。使自身恢復等同於友方單位受到的 [Laceration] 傷害量的體力",
           "coinlist": [
             {
               "coindescs": [
@@ -437,7 +437,7 @@
           "level": 3,
           "name": "渴望-蜜卡拉",
           "abName": "四百朵玫瑰",
-          "desc": "[CantIdentify]\nTargets randomly\n<style=\"highlight\">At 6+ ([Laceration] on self + [Laceration] on target), Coin Power +1</style>\n[WhenUse] Consume up to 10% of this unit's max HP and deal (HP consumed / 2) damage to all enemies and allies\n- At less than 50% of this unit's max HP, inflict and activate 5 [Laceration] on all allies once instead (lose 1 [Laceration] Count). Heal HP equal to the amount of [Laceration] damage dealt to allies",
+          "desc": "[CantIdentify]\n隨機指定目標\n<style=\"highlight\">若自身與目標的 [Laceration] 強度之和不低於6級，則使本技能的硬幣威力+1</style>\n[WhenUse] 消耗自身體力上限10%的體力並對全體敵方與友方單位造成(消耗的體力/2)點傷害\n- 若自身的現存體力低於體力上限的50%，則改為使全體友方單位增加5級 [Laceration] 強度並觸發1次(使其 [Laceration] 回數減少1回)。使自身恢復等同於友方單位受到的 [Laceration] 傷害量的體力",
           "coinlist": [
             {
               "coindescs": [
@@ -475,7 +475,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[WinDuelAttack] Activate the target's [Laceration] <style=\"highlight\">(1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)</style>"
+                  "desc": "[WinDuelAttack] 觸發目標的 [Laceration] <style=\"highlight\">(1+(最大共鳴數/2))次(最多3次；根據觸發的次數，使目標的 [Laceration] 回數相應減少)</style>"
                 }
               ]
             }
@@ -485,7 +485,7 @@
           "level": 4,
           "name": "渴望-蜜卡拉",
           "abName": "四百朵玫瑰",
-          "desc": "[CantIdentify]\nTargets randomly\nCoin Power +1 for every 6 ([Laceration] on self + [Laceration] on target) <style=\"highlight\">(max 3)</style>\n[WhenUse] Consume up to 10% of this unit's max HP and deal (HP consumed / 2) damage to all enemies and allies\n- At less than 50% of this unit's max HP, inflict and activate 5 [Laceration] on all allies instead (lose 1 [Laceration] Count). Heal HP equal to the amount of [Laceration] damage dealt to allies",
+          "desc": "[CantIdentify]\n隨機指定目標\n自身與目標的 [Laceration] 強度之和每有6級，使本技能的硬幣威力+1<style=\"highlight\">(最多+3)</style>\n[WhenUse] 消耗自身體力上限10%的體力並對全體敵方與友方單位造成(消耗的體力/2)點傷害\n- 若自身的現存體力低於體力上限的50%，則改為使全體友方單位增加5級 [Laceration] 強度並觸發1次(使其 [Laceration] 回數減少1回)。使自身恢復等同於友方單位受到的 [Laceration] 傷害量的體力",
           "coinlist": [
             {
               "coindescs": [
@@ -529,7 +529,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[WinDuelAttack] Activate the target's [Laceration] (1 + (highest Reson./2)) times. (3 times max; target loses [Laceration] Count equal to the number of times it was activated)<style=\"highlight\"></style>"
+                  "desc": "[WinDuelAttack] 觸發目標的 [Laceration] (1+(最大共鳴數/2))次(最多3次；根據觸發的次數，使目標的 [Laceration] 回數相應減少)<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[EnemyKill] 對敵方單位造成超過其剩餘體力的溢出傷害時，對全體敵方單位造成共計等同於溢出傷害量的固定傷害(最少1點)</style>"
@@ -643,7 +643,7 @@
           "level": 4,
           "name": "粉碎的過去",
           "abName": "蒸氣運輸機",
-          "desc": "[BeforeAttack] If the main target has 30+ ([Vibration] + [Vibration] Count), gain +1 Atk Weight\n<style=\"highlight\">- At 100+, gain +3 Atk Weight instead</style>\n<style=\"highlight\">[BeforeAttack] For every 2 highest Reson., inflict 1 [Vibration] against all targets this unit attacks (max 3)</style>\n[EndSkill] For 3 turns, lose 10 SP at Turn End\n<style=\"highlight\">[EndSkill] Heal ([AccumulatedPastSinner] x 2)% HP</style>\n[EndSkill] When activating odd-numbered (Sloth Reson.) in odd-numbered turns, or when activating even-numbered (Sloth Reson.) in even-numbered turns, heal 10 SP",
+          "desc": "[BeforeAttack] 若主要目標的 [Vibration] 強度與 [Vibration] 回數之和不低於30點，則使本技能的攻擊容量+1\n<style=\"highlight\">- 若不低於100點，則改為使本技能的攻擊容量+3</style>\n<style=\"highlight\">[BeforeAttack] 每有2點最大共鳴數，使攻擊的全體目標增加1級震顫強度(最多3級)</style>\n[EndSkill] 3回合內，回合結束時使自身失去10點理智值\n<style=\"highlight\">[EndSkill] 使自身恢復體力上限(自身的 [AccumulatedPastSinner] 層數×2)%的體力</style>\n[EndSkill] 若在奇數回合(怠惰共鳴數)為奇數，或在偶數回合(怠惰共鳴數)為偶數，則使自身恢復10點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -1058,7 +1058,7 @@
                   "desc": "使本硬幣暴擊時造成的傷害+10%"
                 },
                 {
-                  "desc": "If this is the first Coin:\n- Deal +([Charge] Count x 5)% damage (max 100%)\n- Deal +([Breath] Potency x Count)% damage on Critical Hit (max 100%)\n- For this Coin, change target's Pierce Resist. to Fatal"
+                  "desc": "第一次使用本硬幣時，\n- 使本硬幣造成的傷害+(自身的 [Charge] 回數×5)%(最多+100%)\n- 使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度×回數)%(最多+100%)\n- 透過本硬幣使目標的突刺抗性變為致命"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度"
@@ -1104,7 +1104,7 @@
                   "desc": "使本硬幣暴擊時造成的傷害<style=\"highlight\">+15%</style>"
                 },
                 {
-                  "desc": "If this is the first Coin:\n- Deal +([Charge] Count x 5)% damage (max 100%)\n- Deal +([Breath] Potency x Count)% damage on Critical Hit (max 100%)\n- For this Coin, change target's Pierce Resist. to Fatal<style=\"highlight\"></style>"
+                  "desc": "第一次使用本硬幣時，\n- 使本硬幣造成的傷害+(自身的 [Charge] 回數×5)%(最多+100%)\n- 使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度×回數)%(最多+100%)\n- 透過本硬幣使目標的突刺抗性變為致命<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度<style=\"highlight\"></style>"
@@ -1156,7 +1156,7 @@
                   "desc": "使本技能暴擊時造成的傷害<style=\"highlight\">+20%</style>"
                 },
                 {
-                  "desc": "If this is the first Coin:\n- Deal +([Charge] Count x 5)% damage (max 100%)\n- Deal +([Breath] Potency x Count)% damage on Critical Hit (max 100%)\n- For this Coin, change target's Pierce Resist. to Fatal<style=\"highlight\"></style>"
+                  "desc": "第一次使用本硬幣時，\n- 使本硬幣造成的傷害+(自身的 [Charge] 回數×5)%(最多+100%)\n- 使本硬幣暴擊時造成的傷害+(自身的 [Breath] 強度×回數)%(最多+100%)\n- 透過本硬幣使目標的突刺抗性變為致命<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標獲得1層 [PenetrateTakeDamageUp] (每個技能最多1次)</style>"

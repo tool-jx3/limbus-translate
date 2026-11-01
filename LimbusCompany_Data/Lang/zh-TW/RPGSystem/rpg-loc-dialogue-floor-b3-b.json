@@ -5,12 +5,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Arrival by escalator. UNCOMMON PHENOMENON.",
+          "text": "是搭電扶梯下來的呢，不常見的現象。",
           "speaker": "監工"
         },
         {
           "index": 1,
-          "text": "What business? Looking forward to it. WASTE DISPOSAL EXCEPTION FLAGGED.",
+          "text": "會是什麼事呢？真令人期待。需要廢棄物例外處理。",
           "speaker": "監工"
         }
       ]
@@ -20,16 +20,16 @@
       "texts": [
         {
           "index": 0,
-          "text": "The owner of the voice was so enormous that we had to crane our necks to their limit merely to find his face."
+          "text": "聲音的主人……有著龐大的身軀，大到我們必須把脖子仰到極限才看得見。"
         },
         {
           "index": 1,
-          "text": "You are anomalous. Objects reaching this floor don't normally arrive on an escalator. OUT-OF-RANGE ENTITIES.",
+          "text": "各位很異質。因為滾落到這裡的東西是不會搭電扶梯的。範圍外的存在。",
           "speaker": "監工"
         },
         {
           "index": 2,
-          "text": "Not consistent with common sense. IDENTIFICATION REQUIRED.",
+          "text": "真不合常理呢。需要掌握對象。",
           "speaker": "監工"
         }
       ]
@@ -44,11 +44,11 @@
         },
         {
           "index": 1,
-          "text": "I expected Ishmael to come back with something about what counted as common sense and what didn't, but she stayed quiet. I suppose she had seen too much by this point to split hairs over semantics."
+          "text": "要討論常理與非常理，已經發生過太多事了，因此以實瑪利閉上了嘴。"
         },
         {
           "index": 2,
-          "text": "The being suddenly bent his massive body down until it was eye to eye with Ishmael."
+          "text": "它猛地彎下巨大的身軀，與以實瑪利的視線齊高。"
         },
         {
           "index": 3,
@@ -57,7 +57,7 @@
         },
         {
           "index": 4,
-          "text": "Please remain calm. NO HOSTILE INTENT AT PRESENT.",
+          "text": "請冷靜。現階段無攻擊意圖。",
           "speaker": "監工"
         }
       ]
@@ -67,20 +67,20 @@
       "texts": [
         {
           "index": 0,
-          "text": "Its massive carapace was riddled with holes, each one holding something like a round face that stared straight at us."
+          "text": "它那巨大的背甲上開著許多洞，每個洞裡都塞著一個酷似圓臉的東西，正盯著我們看。"
         },
         {
           "index": 1,
-          "text": "The faces swiveled independently within the shell, peering every which way. The sight stirred a dread I could neither name nor shake."
+          "text": "看著它們在洞裡轉來轉去、四處張望，不禁湧起一股莫名的恐懼。"
         },
         {
           "index": 2,
-          "text": "... It reminds me of a Whale.",
+          "text": "……讓我想起了鯨。",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "<... Now that you mention it, the Whale of the Porous Hand had a part that looked like this entity's carapace...>",
+          "text": "<……這麼說來，孔穴鯨好像也是這種感覺。>",
           "speaker": "但丁"
         },
         {
@@ -95,27 +95,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "There seems... little cause to let terror take root just yet.",
+          "text": "似乎……不必如此害怕。",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "It may merely be indulging its curiosity.",
+          "text": "說不定它只是在滿足好奇心罷了。",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Logical cognition taking priority over desire. MANNEQUIN CLASSIFICATION UNLIKELY.",
+          "text": "比起慾望，展開的更多是邏輯思考的領域呢。是人台模特兒的機率部分下降。",
           "speaker": "監工"
         },
         {
           "index": 3,
-          "text": "What's a Whale?",
+          "text": "鯨是什麼？",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "... You want me to explain Whales? There's the 1-hour crash course, or the 12-hour crash lecture if you're feeling brave...",
+          "text": "……要我解釋鯨嗎？有一小時的速成說明，也有十二小時的速成講座……",
           "speaker": "以實瑪利"
         },
         {
@@ -125,57 +125,57 @@
         },
         {
           "index": 6,
-          "text": "That was a joke. I'll give you chapter and verse another time. Another time...",
+          "text": "開玩笑的，下次再說吧，下次……",
           "speaker": "以實瑪利"
         },
         {
           "index": 7,
-          "text": "When is \"another time\"?",
+          "text": "下次是什麼時候？",
           "speaker": "普依"
         },
         {
           "index": 8,
-          "text": "Are there no Whales here in the department store?",
+          "text": "百貨公司裡沒有鯨嗎？",
           "speaker": "普依"
         },
         {
           "index": 9,
-          "text": "Understood. Understanding verified. OBSERVATION CLOSED.",
+          "text": "明白了。明白了呢。觀察完畢。",
           "speaker": "監工"
         },
         {
           "index": 10,
-          "text": "You carry... a fragrance. The scent of a customer of high Prestige...",
+          "text": "您身上……有股香氣。上流階層顧客的香氣……",
           "speaker": "監工"
         },
         {
           "index": 11,
-          "text": "Me...?",
+          "text": "我……？",
           "speaker": "普依"
         },
         {
           "index": 12,
-          "text": "... PRIORITY HOSPITALITY REQUIRED.",
+          "text": "……需要接待優等顧客。",
           "speaker": "監工"
         },
         {
           "index": 13,
-          "text": "<Maybe it just smells a fat wallet...>",
+          "text": "<又好像只是個嗅到錢味的商人……>",
           "speaker": "但丁"
         },
         {
           "index": 14,
-          "text": "Looking for a particular hide? Coming all the way down to the \"bottom\" means you're in a rush, yes? RUSH ORDER. SURCHARGE REQUIRED.",
+          "text": "各位需要什麼樣的皮革呢？居然這樣下到「底層」來，想必是十萬火急的事吧？急件委託，需要加價。",
           "speaker": "監工"
         },
         {
           "index": 15,
-          "text": "We require—",
+          "text": "我們……",
           "speaker": "莫梭"
         },
         {
           "index": 16,
-          "text": "Understood. You require bespoke attire.",
+          "text": "明白了，顧客是想量身訂做衣服呢。",
           "speaker": "監工"
         },
         {
@@ -190,7 +190,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The being bent lower still, bringing its face level not with any of us... but with Pwie."
+          "text": "它深深彎下身子，與之對上臉的……是普依。"
         },
         {
           "index": 1,
@@ -204,67 +204,67 @@
       "texts": [
         {
           "index": 0,
-          "text": "Accompanying customers are temporary entities expected to return upstairs. LONG-TERM RESIDENCY IMPROBABLE. STRANGER CLASSIFICATION CONFIRMED.",
+          "text": "顧客們是很快就會離開前往樓上的存在，不會在這裡久留吧。異鄉人，身分已掌握。",
           "speaker": "監工"
         },
         {
           "index": 1,
-          "text": "I am curious as to the nature of the strangers' existence. To return a lost being to their original position: the strangers' lot? NEW QUERY FORMED.",
+          "text": "我對異鄉人們的存在很好奇。把迷途的存在送回原本位置的角色，那就是異鄉人嗎？產生疑問。",
           "speaker": "監工"
         },
         {
           "index": 2,
-          "text": "Even we who bear our existence cannot say where its compass truly points...",
+          "text": "我們的存在意義，連我們自己也不知曉……",
           "speaker": "李箱"
         },
         {
           "index": 3,
-          "text": "Then... are you the one who can make the outfit? We have a budget, but we are not exactly made of eyeballs, so... we can't pay much.",
+          "text": "那麼……是您……要幫我們做衣服嗎？我們有些難處，沒辦法支付那麼多的眼球……",
           "speaker": "以實瑪利"
         },
         {
           "index": 4,
-          "text": "Eyeballs are incidental. The material is what is important.",
+          "text": "眼球並不重要。重要的是材料。",
           "speaker": "監工"
         },
         {
           "index": 5,
-          "text": "A Golden Hide garment requires a large amount of Golden Hide, but we have none left. STOCK DEPLETED.",
+          "text": "要製作黃金皮革之服，需要大量的黃金皮革。但是我們這裡已經沒有剩了。庫存耗盡。",
           "speaker": "監工"
         },
         {
           "index": 6,
-          "text": "... We used to receive many premium commissions like this. Those were the exciting days. DISAPPOINTMENT EXPRESSED.",
+          "text": "……以前這種高級訂單也很多，每天都很開心呢。表達失望。",
           "speaker": "監工"
         },
         {
           "index": 7,
-          "text": "There used to be a lot?",
+          "text": "以前很多嗎？",
           "speaker": "普依"
         },
         {
           "index": 8,
-          "text": "Indeed. It was so many seasons ago that I barely remember... but this floor once held a great deal of Golden Hide. AGE OF ABUNDANCE.",
+          "text": "當然。那是很久很久以前的季了，現在已經記不太清楚……但那時這裡也有非常多的黃金皮革。豐饒的時期。",
           "speaker": "監工"
         },
         {
           "index": 9,
-          "text": "Where did all of it go?",
+          "text": "那些全都在哪裡？",
           "speaker": "普依"
         },
         {
           "index": 10,
-          "text": "Scattered throughout the department store. Every corner.",
+          "text": "百貨公司的各個地方。每個角落。",
           "speaker": "監工"
         },
         {
           "index": 11,
-          "text": "You can't seriously mean we have to search every nook and cranny of the department store ourselves.",
+          "text": "難道……是說我們得把百貨公司的每個角落都搜過一遍嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 12,
-          "text": "Of course not. No customer could search the entire department store. It is always changing and returning.",
+          "text": "怎麼可能。顧客不可能看遍整座百貨公司。百貨公司總是在變化，然後又回到原狀。",
           "speaker": "監工"
         },
         {
@@ -274,42 +274,42 @@
         },
         {
           "index": 14,
-          "text": "Perhaps... you, too, wish to behold such a work with your own eyes? A Golden Hide garment woven from many sheets of Golden Hide.",
+          "text": "或許……你也……想親眼看看吧？用黃金皮革製成的黃金皮革之服。",
           "speaker": "李箱"
         },
         {
           "index": 15,
-          "text": "For an inquiring soul with a passion for the sartorial arts, such a desire would be only natural...",
+          "text": "若是熱愛衣服的探求者，這應是自然的現象……",
           "speaker": "李箱"
         },
         {
           "index": 16,
-          "text": "Hm. The proposal has merit. Golden Hide garments have been absent for many seasons and may never be available again. REGRET AND ANTICIPATION INTERSECT.",
+          "text": "嗯，有道理的話。黃金皮革之服，已經很久沒見過了，往後或許也見不到了呢。惋惜與期待的交錯。",
           "speaker": "監工"
         },
         {
           "index": 17,
-          "text": "Moreover, one possessing your seasoned eye... should surely know which Golden Hides must be gathered... would you not?",
+          "text": "而且以你的程度……應該知道……該帶來哪些黃金皮革吧？",
           "speaker": "李箱"
         },
         {
           "index": 18,
-          "text": "Are you not a professional who spent a lifetime in this trade, with hide ever beneath your hands?",
+          "text": "你不正是在這裡一輩子只與皮革打交道的專家嗎？",
           "speaker": "李箱"
         },
         {
           "index": 19,
-          "text": "I like how you call me a \"professional.\" AMBITION DRIVE STIMULATED.",
+          "text": "專家這個詞我很中意呢，激發挑戰欲。",
           "speaker": "監工"
         },
         {
           "index": 20,
-          "text": "I will scan the department store's remaining Golden Hides and determine the specimens required for this commission.",
+          "text": "要帶來哪些黃金皮革，就讓我來觀測一下百貨公司裡殘存的黃金皮革吧。",
           "speaker": "監工"
         },
         {
           "index": 21,
-          "text": "That's a relief. For a moment, I thought we had to wander around this whole place forever...",
+          "text": "太好了。一個不小心，我們說不定就得永遠在百貨公司裡打轉了……",
           "speaker": "以實瑪利"
         }
       ]
@@ -329,26 +329,26 @@
       "texts": [
         {
           "index": 0,
-          "text": "At the entity's cry of exertion, several of the faces embedded across the carapace vanished at once."
+          "text": "它一聲大喝，嵌在背甲上的各種臉便一齊消失了。"
         },
         {
           "index": 1,
-          "text": "I can see it... TARGET LOCKED.",
+          "text": "看見了，看見了……捕捉完畢。",
           "speaker": "監工"
         },
         {
           "index": 2,
-          "text": "Golden Hides the customers must gather. Golden Hides we must fashion. Golden Hides that slipped from our hands...",
+          "text": "顧客們必須收集的黃金皮革，我們必須製作的黃金皮革……離開我們手中的黃金皮革……",
           "speaker": "監工"
         },
         {
           "index": 3,
-          "text": "Every one of them is located. TRAIL CONFIRMED.",
+          "text": "全都找到了，確認完畢。",
           "speaker": "監工"
         },
         {
           "index": 4,
-          "text": "Completion requires Golden Hides to intersect the customers' prior routes. PUZZLE PIECED.",
+          "text": "只有帶來與顧客們走過的路途交會的黃金皮革，才能完成。拼圖的完成。",
           "speaker": "監工"
         }
       ]
@@ -358,7 +358,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Their task apparently complete, the vanished faces slid back into their individual sockets across the carapace."
+          "text": "從背甲上消失的那些臉，似乎完成了工作，又回到了各自的位置。"
         }
       ]
     },
@@ -367,56 +367,56 @@
       "texts": [
         {
           "index": 0,
-          "text": "I will tell you the location of the Hides. You can remember things, can't you? DOUBTING STRANGERS' INTELLIGENCE.",
+          "text": "我來告訴各位皮革的位置吧。記得住嗎？懷疑異鄉人的智能。",
           "speaker": "監工"
         },
         {
           "index": 1,
-          "text": "List the locations. I will remember them.",
+          "text": "列出來的話，我會記住。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "In that case...",
+          "text": "那麼……",
           "speaker": "監工"
         },
         {
           "index": 3,
-          "text": "The being recited the complete list of Golden Hides we would have to obtain."
+          "text": "它把我們要找來的黃金皮革清單全都說了出來。"
         },
         {
           "index": 4,
-          "text": "So... the Golden Hide has to come from someone we've already met or passed along the way?",
+          "text": "也就是說……全都得從我們曾經見過或經過的人身上取得，對吧？",
           "speaker": "以實瑪利"
         },
         {
           "index": 5,
-          "text": "Yes, that is the crucial part. A bespoke garment must be made from Hides touched by the customers or marked by their passage.",
+          "text": "是的，那才是重點。必須把顧客們親手碰過、或留有痕跡的黃金皮革編織在一起，才能做出量身訂做的衣服。",
           "speaker": "監工"
         },
         {
           "index": 6,
-          "text": "Some among those listed... seem unlikely to part with their Golden Hide without a struggle.",
+          "text": "有些人恐怕……不會輕易交出自己的黃金皮革……",
           "speaker": "李箱"
         },
         {
           "index": 7,
-          "text": "That problem is for the strangers to overcome. The Golden Hide is a valuable resource obtained through conquest in this department store. ARDUOUS JOURNEY ANTICIPATED.",
+          "text": "那是異鄉人們得克服的問題。因為黃金皮革是百貨公司裡必須靠爭奪才能得到的價值。預計是艱辛的旅程。",
           "speaker": "監工"
         },
         {
           "index": 8,
-          "text": "Bring every Golden Hide I named, and my children will make the garment. WORKLOAD DIVISION.",
+          "text": "只要各位確實找來我說的那些黃金皮革，我們的孩子們就會幫忙縫製衣服。分工合作。",
           "speaker": "監工"
         },
         {
           "index": 9,
-          "text": "In any case, thanks... This is a lot of help without asking for anything. Everyone upstairs was obsessed with eyeballs, you know...",
+          "text": "總之謝謝您……不求回報地這樣幫我們……在地上，大家都只對眼球紅了眼……",
           "speaker": "以實瑪利"
         },
         {
           "index": 10,
-          "text": "Of course, the eyeballs are a separate matter. UPDATE LEDGER.",
+          "text": "啊，當然，眼球另計。更新帳簿。",
           "speaker": "監工"
         }
       ]
@@ -426,22 +426,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "Ledger updated!",
+          "text": "帳簿更新完畢！",
           "speaker": "刮取者"
         },
         {
           "index": 1,
-          "text": "Uh-huh... Right.",
+          "text": "啊哈……好的。",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "Nothing in the world comes without a price tag. Even here, in the confines of <i>this</i> department store...",
+          "text": "世上沒有免費的東西，即使是在百貨公司……",
           "speaker": "李箱"
         },
         {
           "index": 3,
-          "text": "There used to be more hideworkers—more hides to go around. Now only the retired ones are left. Business is so tight that we scrape meat from leftover rawhide and sell it by the scrap.",
+          "text": "以前有更多皮革匠，皮革產量也多，但現在只剩下被退休的傢伙了。只能收集零碎生皮上的肉塊拿去賣，日子變得很拮据。",
           "speaker": "刮取者"
         }
       ]
@@ -451,27 +451,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "It seems a thorny road lies ahead.",
+          "text": "看來將會是艱辛的旅程。",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "*sigh* No way around it, I guess.",
+          "text": "唉……沒辦法了。",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "You're sighing. Sigh is for hard times.",
+          "text": "嘆氣。那是只有辛苦的時候才會做的。",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "Making clothes must be hard, then.",
+          "text": "原來做衣服是很辛苦的事啊。",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "Perhaps it is simply that young Pwie's garment is uniquely difficult to make...",
+          "text": "或許只是普依的衣服特別費工……",
           "speaker": "李箱"
         },
         {
@@ -481,42 +481,42 @@
         },
         {
           "index": 6,
-          "text": "Is it because I'm... both noble and abominable in this department store?",
+          "text": "因為我在百貨公司裡……是既高貴又令人輕蔑的存在嗎？",
           "speaker": "普依"
         },
         {
           "index": 7,
-          "text": "Hmm... more like \"special,\" I'd say.",
+          "text": "嗯……確實是很特別。",
           "speaker": "以實瑪利"
         },
         {
           "index": 8,
-          "text": "You don't worship me, and you don't find me disgusting.",
+          "text": "你們既不崇拜我，也不厭惡我。",
           "speaker": "普依"
         },
         {
           "index": 9,
-          "text": "You don't ask me for eyeballs. Instead, you pay eyeballs to buy me things.",
+          "text": "也不跟我要眼球。反而一直想買東西給我。",
           "speaker": "普依"
         },
         {
           "index": 10,
-          "text": "That's why you're strange.",
+          "text": "所以很奇怪。",
           "speaker": "普依"
         },
         {
           "index": 11,
-          "text": "Even now, you're sighing... But you're still trying to make clothes for me.",
+          "text": "就算現在很辛苦，還是為了我要幫我做衣服。",
           "speaker": "普依"
         },
         {
           "index": 12,
-          "text": "Just as malice is not always born of reason, kindness need not be weighed upon a merchant's scale.",
+          "text": "正如並非所有惡意都有理由……也並非所有善意都伴隨著代價。",
           "speaker": "李箱"
         },
         {
           "index": 13,
-          "text": "Consider this, Pwie: you, too, care for this bug—",
+          "text": "比方說，普依……你也對這裡的蟲……",
           "speaker": "李箱"
         }
       ]
@@ -526,27 +526,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's not \"bug.\" It's \"Wriggley.\"",
+          "text": "不是蟲。是噗扭。",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "M-my apologies. You, too, care for Wriggley enough to spare it from pain, do you not? Yet Wriggley has paid no price for such tenderness.",
+          "text": "失、失禮了。你不也想好好照顧噗扭、不讓噗扭受痛嗎？即使噗扭並沒有付給你任何代價。",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "That's... because...",
+          "text": "那是……就是……",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "... I dunno how to explain it.",
+          "text": "……我不知道該怎麼解釋。",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "Then perhaps we are much the same in that regard. Language often fails where the heart has already chosen.",
+          "text": "我們也是一樣的吧。幫助你的理由，難以用言語好好說明。",
           "speaker": "李箱"
         },
         {
@@ -556,7 +556,7 @@
         },
         {
           "index": 6,
-          "text": "<I'm feeling a bit conflicted.>",
+          "text": "<心情變得好複雜。>",
           "speaker": "但丁"
         }
       ]
@@ -566,62 +566,62 @@
       "texts": [
         {
           "index": 0,
-          "text": "May I ask why, Manager?",
+          "text": "可以問問理由嗎，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 1,
-          "text": "<The truth is, we...>",
+          "text": "<其實我們……>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "<On the surface, it looks as though we're making these clothes entirely for Pwie's sake, but...>",
+          "text": "<雖然看起來像是為了普依在做衣服……>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "Yes. Strictly speaking, our objective is not aimed at altruism, but at producing a different outcome from the previous one.",
+          "text": "是的，嚴格來說，比較接近「為了導出與上次不同的結果值」。",
           "speaker": "莫梭"
         },
         {
           "index": 4,
-          "text": "<Right. But Pwie doesn't know that.>",
+          "text": "<對，可是普依並不知道這件事啊。>",
           "speaker": "但丁"
         },
         {
           "index": 5,
-          "text": "Even if we told Pwie, the entity would not comprehend the full premise.",
+          "text": "就算告訴它，它也無法理解。",
           "speaker": "莫梭"
         },
         {
           "index": 6,
-          "text": "<I know, but... it still feels awful, like we're deceiving Pwie without meaning to.>",
+          "text": "<嗯，可是……感覺就像在無意間騙人一樣，心裡不太好受。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "The entity we call \"Pwie\" can exist only here, as you are already aware. It cannot exist outside the Grand Magasin.",
+          "text": "我們稱為「普依」的東西，就如經理您也知道的，是無法存在於百貨公司外面，只存在於這裡的東西。",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": "<I know... But what about all the talking and time we spent together? We have a real connection with them now.>",
+          "text": "<就算這樣……在交流、一起度過時間之後……也產生感情了啊。>",
           "speaker": "但丁"
         },
         {
           "index": 9,
-          "text": "It's a dilemma that has no answer. Dwelling on such feelings will only worsen your distress, Manager.",
+          "text": "那是不存在解答的煩惱。因此，懷有那種感情，只會讓經理您的心情變得更糟。",
           "speaker": "莫梭"
         },
         {
           "index": 10,
-          "text": "<... Probably. Still... I don't want to look away from what I'm feeling...>",
+          "text": "<……也是吧，可是……我不想裝作不知道……>",
           "speaker": "但丁"
         },
         {
           "index": 11,
-          "text": "... Understood.",
+          "text": "……明白了。",
           "speaker": "莫梭"
         }
       ]
@@ -631,7 +631,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Processing completed.",
+          "text": "工序結束了。",
           "speaker": "監工"
         }
       ]
@@ -641,7 +641,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This is the tannery. It processes various treatments to leather to prevent it from rotting.",
+          "text": "這裡是製革廠。為了不讓皮革腐爛而進行鞣製的地方。",
           "speaker": "製革廠"
         }
       ]
@@ -651,7 +651,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... When, after placing my hand over the leather handrail of an escalator... the speed of the railing exactly matches my own...",
+          "text": "把手放在電扶梯的橡膠扶手上時……扶手與步伐速度完美吻合、順暢滑動的時候……",
           "speaker": "養育者"
         }
       ]
@@ -661,57 +661,57 @@
       "texts": [
         {
           "index": 0,
-          "text": "The upper-tier customers returned with every required Golden Hide. AMAZEMENT AND COMPLIMENTS.",
+          "text": "上流階層的顧客們真的把黃金皮革都收集來了呢。讚嘆與稱讚。",
           "speaker": "監工"
         },
         {
           "index": 1,
-          "text": "I bore no part in the gathering... I shall kindly relay that praise at the feet of those who carried the burden.",
+          "text": "我未能參與收集的過程……這份稱讚，我會轉達給其他人。",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Now you can make the Golden Hide outfit, right?",
+          "text": "那麼，現在您要幫我們做黃金皮革之服了嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "Golden Hide couture cannot be produced at the snap of a finger. CUSTOMER COMMON SENSE DEFICIENT.",
+          "text": "黃金皮革之服不是那樣一眨眼就能做好的。缺乏常識。",
           "speaker": "監工"
         },
         {
           "index": 4,
-          "text": "You mean collecting the materials was not the only errand?",
+          "text": "您是說把材料找來還不是全部嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 5,
-          "text": "Have the customers never commissioned bespoke clothing? INCOMPREHENSION RISING.",
+          "text": "各位至今從來沒有訂做過衣服嗎？無法理解。",
           "speaker": "監工"
         },
         {
           "index": 6,
-          "text": "... No, we haven't. Do you have any idea how much a single bespoke suit costs inside a Nest?",
+          "text": "……沒有啊。在巢裡要訂做一套西裝得花多少錢啊……",
           "speaker": "以實瑪利"
         },
         {
           "index": 7,
-          "text": "... Customers appear less affluent than they initially appeared. STATUS DOWNGRADED.",
+          "text": "……看來並不如想像中是上流階層的顧客呢。評價下調。",
           "speaker": "監工"
         },
         {
           "index": 8,
-          "text": "... He appears to grow more candid with each word traded...",
+          "text": "……感覺它越來越坦率了……",
           "speaker": "李箱"
         },
         {
           "index": 9,
-          "text": "All hides pass through processing stages. Process observation. The first step is to get their size. PRACTICAL MEASUREMENTS PRIORITIZED.",
+          "text": "皮革都要經過工序才能製成。遵守程序。首先得從量尺寸開始。實測優先。",
           "speaker": "監工"
         },
         {
           "index": 10,
-          "text": "Tanner performs the fittings. You can find her in the room over there. KINDLY DIRECTED.",
+          "text": "量尺寸請找鞣皮匠，就在那邊的房間。親切引導。",
           "speaker": "監工"
         }
       ]
@@ -721,22 +721,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "A pleasure to have you, strangers.",
+          "text": "幸會，異鄉人們。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 1,
-          "text": "You have come to commission a bespoke garment of Golden Hide, yes?",
+          "text": "各位是為了製作量身訂做的黃金皮革之服而來的吧。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 2,
-          "text": "May I ask who will be wearing it?",
+          "text": "要穿衣服的是哪一位？",
           "speaker": "鞣皮匠"
         },
         {
           "index": 3,
-          "text": "This child.",
+          "text": "是這孩子。",
           "speaker": "李箱"
         }
       ]
@@ -751,12 +751,12 @@
         },
         {
           "index": 1,
-          "text": "We build the garment around the body itself, correcting every flaw and letting every strength take the stage. Ready-to-wear is merely a compromise cut by the dozen.",
+          "text": "我們會依照身形製作衣服。彌補所有缺點、發揮所有長處的那種。和其他成衣不同。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 2,
-          "text": "Now, which type of lapel suits your preference? Notched? Peak? Semi-peak? Or perhaps fish mouth?",
+          "text": "平駁領、劍領、半劍領、魚嘴領之中，您要選哪一種呢？",
           "speaker": "鞣皮匠"
         },
         {
@@ -766,32 +766,32 @@
         },
         {
           "index": 4,
-          "text": "What are tho—",
+          "text": "那是什麼……",
           "speaker": "普依"
         },
         {
           "index": 5,
-          "text": "<Nope, nope! Time out! It's gonna take all day at this rate. Let's skip the lecture and get to crafting.>",
+          "text": "<不行！這樣下去要花的時間會多到嚇人，快點打斷這個話題。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "Use your judgment. We'll leave it to you.",
+          "text": "你看著辦，好好做。拜託了。",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "...! My judgment...! That means... tailor-made...!",
+          "text": "……！看著辦，好好做……量身訂製……！",
           "speaker": "鞣皮匠"
         },
         {
           "index": 8,
-          "text": "Very well. I will put every talent I possess to the needle and leave no detail wanting.",
+          "text": "明白了。我會燃燒我所有的才能，看著辦，為您把一切都做得完美無缺。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 9,
-          "text": "Now, the measurements. This way, please.",
+          "text": "那麼，我來為您量身。這邊請。",
           "speaker": "鞣皮匠"
         }
       ]
@@ -801,7 +801,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "With a series of dazzling flourishes, the Tanner sent the measuring tape spinning around Pwie and began taking their measurements."
+          "text": "那人拿著隨身的皮尺，以令人眼花撩亂的動作開始測量普依的尺寸。"
         },
         {
           "index": 1,
@@ -810,22 +810,22 @@
         },
         {
           "index": 2,
-          "text": "Measure Wriggley too.",
+          "text": "噗扭也要量。",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "As you wish.",
+          "text": "明白了。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 4,
-          "text": "... I understand now. It would seem, dear customer, all that's left for you...",
+          "text": "……原來如此。顧客您往後……",
           "speaker": "鞣皮匠"
         },
         {
           "index": 5,
-          "text": "... is to grow into the garment... and beyond.",
+          "text": "就只剩下……茁壯成長了呢。",
           "speaker": "鞣皮匠"
         },
         {
@@ -835,17 +835,17 @@
         },
         {
           "index": 7,
-          "text": "You will have your hands full from here on.",
+          "text": "接下來各位會很忙碌的。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 8,
-          "text": "Whenever hide this valuable enters processing... rude scraps gather, hoping to make a quick fortune out of it.",
+          "text": "每當加工這種珍貴的皮革時……總會聚集一些想撈一筆的無禮皮革。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 9,
-          "text": "Offcuts from hides that were never properly tanned...",
+          "text": "那些沒能好好鞣製的皮革殘渣……",
           "speaker": "鞣皮匠"
         }
       ]
@@ -855,17 +855,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "Keep them from laying so much as a finger on the work, please.",
+          "text": "加工期間，還請各位別讓我受到打擾。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 1,
-          "text": "<Meursault! We've got company closing in from every direction!>",
+          "text": "<莫梭！好像馬上就要從四面八方湧過來了！>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "Acknowledged, Manager.",
+          "text": "已知悉，經理。",
           "speaker": "莫梭"
         }
       ]
@@ -875,37 +875,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "There. It is done.",
+          "text": "好，結束了。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 1,
-          "text": "Quite a crowd gathered for today's fitting.",
+          "text": "今天的顧客來得特別多呢。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 2,
-          "text": "Though we did naught but follow behind... the press of bodies seemed to steal the breath from us.",
+          "text": "我們不過是跟在後頭……那隊伍卻也密集得令人窒息。",
           "speaker": "李箱"
         },
         {
           "index": 3,
-          "text": "We don't have to do this for every single stage of the process, do we?",
+          "text": "該不會……每道工序都得這樣搞一次吧？",
           "speaker": "以實瑪利"
         },
         {
           "index": 4,
-          "text": "The pattern is complete. One pass beneath the needle, with some stitching and cutting, and the garment will be finished.",
+          "text": "現在版型已經準備好了，只要再裁剪和縫製，衣服就完成了。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 5,
-          "text": "Head to the Cutting Room and start up the machine. And keep an eye out for customers who are after the hide. They can get... a bit violent.",
+          "text": "請到裁剪室去啟動機器。覬覦皮革的顧客們……也請隨時小心。",
           "speaker": "鞣皮匠"
         },
         {
           "index": 6,
-          "text": "Once all the pieces are cut, take them outside and have the Nurturer stitch them up.",
+          "text": "裁剪全部完成後，到外面把縫製交給養育者就行了。",
           "speaker": "鞣皮匠"
         }
       ]
@@ -915,32 +915,32 @@
       "texts": [
         {
           "index": 0,
-          "text": "<This must be the cutting machine.>",
+          "text": "<這個好像就是裁剪機器。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Activating the device now, Manager.",
+          "text": "我來啟動機器，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "...! Something's coming.",
+          "text": "……！好像有什麼東西湧過來了。",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "Gold... Gold... Golden Hide... Want... the Hide...",
+          "text": "黃金……黃金皮革……我也要……皮革……",
           "speaker": "爬行的皮革"
         },
         {
           "index": 4,
-          "text": "They appear to covet the Golden Hide we are processing...",
+          "text": "看來是衝著我們正在製作的黃金皮革……而來的東西。",
           "speaker": "李箱"
         },
         {
           "index": 5,
-          "text": "<Let's keep them away until the machine's done with the processing.>",
+          "text": "<在機器運作結束前，把這些東西處理掉吧。>",
           "speaker": "但丁"
         }
       ]
@@ -950,17 +950,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "We were told the Golden Hide garment could be sewn here...",
+          "text": "我們需要製作黃金皮革之服，聽說這裡能夠縫製……",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "... The sharp thrilling sound when cloth goes into a hot sewing machine. The feeling of peeling the film off a new purchase in one long riiiiip. The satisfying clean pull when a receipt tears exactly along the dotted line...",
+          "text": "……進到滾燙的縫紉機裡時發出的那種酥麻聲響、買了新東西時把貼著的塑膠膜一口氣嘶啦撕下來的感覺、收據沿著虛線嘶——地俐落撕下時的手感……",
           "speaker": "養育者"
         },
         {
           "index": 2,
-          "text": "... What sort of game are we playing now?",
+          "text": "……這是在玩什麼遊戲？",
           "speaker": "以實瑪利"
         }
       ]
@@ -970,7 +970,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Game? I wanna play, too.",
+          "text": "遊戲。我也要玩。",
           "speaker": "普依"
         }
       ]
@@ -980,12 +980,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "I'm listing thoughts that make the mind purr just by imagining them...",
+          "text": "我在列舉那些想起來就會心情很好的事……",
           "speaker": "養育者"
         },
         {
           "index": 1,
-          "text": "The damp, slippery feeling whenever I touch Wriggley.",
+          "text": "摸噗扭的時候。溼溼的，滑溜溜的。",
           "speaker": "普依"
         }
       ]
@@ -995,7 +995,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Looking ahead and knowing there is someone I can follow.",
+          "text": "往前看的時候，知道有人可以讓我跟在後面。",
           "speaker": "普依"
         }
       ]
@@ -1005,7 +1005,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What I feel when the one whose chains rattle looks back to check that I'm still following.",
+          "text": "發出鎖鏈聲的人回過頭，確認我有沒有好好跟上的時候。",
           "speaker": "普依"
         }
       ]
@@ -1015,7 +1015,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "<... You really did that?>",
+          "text": "<……是這樣嗎？>",
           "speaker": "但丁"
         }
       ]
@@ -1035,7 +1035,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Watching everyone sigh and complain... then still gather materials because the clothes are for me.",
+          "text": "看到大家為了幫我做衣服，一邊嘆氣，一邊還是去把材料找來的時候。",
           "speaker": "普依"
         }
       ]
@@ -1055,7 +1055,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Mmm... yes. All feel-good thoughts, yours.",
+          "text": "嗯嗯嗯……那個好像也不錯。",
           "speaker": "養育者"
         }
       ]
@@ -1065,27 +1065,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "Thinking about them makes me feel good. I'll sew the Golden Hide into your clothes while it lasts.",
+          "text": "想著想著心情就變好了。我就心情愉快地幫你們縫製黃金皮革之服吧。",
           "speaker": "養育者"
         },
         {
           "index": 1,
-          "text": "*slurp* *smack*",
+          "text": "啾嚕嚕……啪唧……",
           "speaker": "養育者"
         },
         {
           "index": 2,
-          "text": "... <i>That's</i> what passes as sewing here?",
+          "text": "……那就是縫製作業？",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "Miss Ishmael, every person... nay, every employee of this department store must have their own technique of sewing...",
+          "text": "以實瑪利女士，每個人……不，每位百貨公司員工都有各自的縫製方式，不是嗎……",
           "speaker": "李箱"
         },
         {
           "index": 4,
-          "text": "*lick* *smack* *slurp*",
+          "text": "啪唧啪唧……啾嚕嚕嚕……",
           "speaker": "養育者"
         }
       ]
@@ -1095,37 +1095,37 @@
       "texts": [
         {
           "index": 0,
-          "text": "More are coming. They want my clothes.",
+          "text": "又來了。那些覬覦我衣服的人。",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "But aren't those... the Rouges?",
+          "text": "那些不是丹紅派的人嗎……？",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "Rouges blinded by the sunlight.",
+          "text": "而且是被陽光蒙蔽雙眼的人。",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": "What has so enthralled them that they would assail even the being they intend to exalt?",
+          "text": "究竟是被什麼迷了心竅，連他們要供奉的對象都要攻擊？",
           "speaker": "李箱"
         },
         {
           "index": 4,
-          "text": "Their blindness keeps them from discerning what must be done.",
+          "text": "正因雙眼被蒙蔽，才無從分辨。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "<All yours again, Meursault.>",
+          "text": "<莫梭，這次也拜託你了。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "好的。",
+          "text": "是。",
           "speaker": "莫梭"
         }
       ]
@@ -1135,7 +1135,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There... almost done. One final material and it will be complete.",
+          "text": "好……好了。現在只差最後一樣材料就完成了。",
           "speaker": "養育者"
         },
         {
@@ -1145,17 +1145,17 @@
         },
         {
           "index": 2,
-          "text": "Do you have any idea how many laps we've made around this department store for materials? I wasn't there for every run, sure, but still...",
+          "text": "您知道我們為了找材料，到現在已經在百貨公司上上下下跑了幾趟嗎？當然，我並不是每一趟都有參與……",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "Aw... My mood's worsened now... But you already have... the material you need...",
+          "text": "心情變差了……不過說到材料……你們已經有了啊……",
           "speaker": "養育者"
         },
         {
           "index": 4,
-          "text": "Oh, we do? Well, why didn't you start with that—",
+          "text": "啊，是嗎？那樣的話早點說嘛……",
           "speaker": "以實瑪利"
         }
       ]
@@ -1165,12 +1165,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "The Golden Cocoon.",
+          "text": "黃金之繭。",
           "speaker": "養育者"
         },
         {
           "index": 1,
-          "text": "The Golden Cocoon must be wrung for its extract, which will be used to paint over the garment. Eight good twists should squeeze out nearly everything inside.",
+          "text": "要把黃金之繭擠一擠，把原液塗上去。扭個八次左右，裡面的東西差不多就會全出來了。",
           "speaker": "養育者"
         }
       ]
@@ -1180,22 +1180,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "Then what becomes of Wrigg—no, the cocoon?",
+          "text": "那麼，噗……不，繭會變得如何？",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "Its work as a cocoon will be finished, and only the husk will remain. Still, an empty shell should feel pleasant to touch, heh heh... Soft and limp...",
+          "text": "只會剩下空殼啊。在盡完繭的職責之後。不過摸摸空掉的殼應該也挺舒服的。軟趴趴的嘛。",
           "speaker": "養育者"
         },
         {
           "index": 2,
-          "text": "There has to be another way. A substitute material, maybe, or another process...",
+          "text": "沒有其他辦法嗎？像是有替代材料之類的……",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "Anything, as long as the Cocoon can be included in the outfit... Becoming one with it should work, too. Meaning, the wearer can simply... gulp it down.",
+          "text": "只要能被含進去……和繭合為一體也行。讓要穿衣服的顧客……把繭咕嘟一口吞下去。",
           "speaker": "養育者"
         },
         {
@@ -1210,27 +1210,27 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Is Wriggley going to die?",
+          "text": "……噗扭。會死？",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "Yes.",
+          "text": "是的。",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Because of my new clothing?",
+          "text": "因為我的衣服？",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "... Correct.",
+          "text": "……是的。",
           "speaker": "莫梭"
         },
         {
           "index": 4,
-          "text": "Then... I don't want it anymore.",
+          "text": "那……衣服，我不做了。",
           "speaker": "普依"
         }
       ]
@@ -1240,7 +1240,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Oh no... We only have the last step to go through, though. No one will feel good if you stop now.",
+          "text": "那可傷腦筋了。只剩最後的作業了。大家的心情都不會好的。",
           "speaker": "養育者"
         }
       ]
@@ -1260,11 +1260,11 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pwie lunged forward and snatched the cocoon floating above Meursault's shoulder."
+          "text": "普依急忙一把抓住在莫梭肩上飄浮的繭。"
         },
         {
           "index": 1,
-          "text": "They cradled Wriggley in both hands and glared at the Nurturer as though he were about to come for the cocoon."
+          "text": "接著小心翼翼地握在手裡，充滿戒心地瞪著養育者。"
         }
       ]
     },
@@ -1273,52 +1273,52 @@
       "texts": [
         {
           "index": 0,
-          "text": "Nobody can force you if you really don't want the clothes... But you need the garment to enter the fifth floor, don't you?",
+          "text": "真的不願意的話也沒辦法……但要去5樓，就得穿上這件衣服啊。",
           "speaker": "以實瑪利"
         },
         {
           "index": 1,
-          "text": "Are you all right with not going up?",
+          "text": "不上去也沒關係嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "That... that can't happen either...",
+          "text": "那……那也不行……",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "If I don't go up... I'll let everyone down. I won't be able to make my voice heard... I won't be able to move forward...",
+          "text": "不上去的話……就無法回應期待。發不出聲音……無法前進……",
           "speaker": "普依"
         },
         {
           "index": 4,
-          "text": "The purpose I was born for... the thing I'm supposed to be... what everyone expects from me... everyone who got extinguished because of me...",
+          "text": "我誕生的理由……大家對我的期待……因我而消逝的人們……",
           "speaker": "普依"
         },
         {
           "index": 5,
-          "text": "... You must be deeply troubled. This fork in the road is far too cruel for any child to choose.",
+          "text": "……心裡想必很複雜吧。要讓孩子來選擇……這決定太過殘酷了。",
           "speaker": "李箱"
         },
         {
           "index": 6,
-          "text": "<... Let's return to B1. Scouring through the Shore may be a needle-in-a-haystack job, but we might be able to find another living larva that still has its cocoon.>",
+          "text": "<……回地下1樓看看吧。再把海邊仔細搜一遍……說不定還有一隻留著繭的幼蟲。>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "The probability is low.",
+          "text": "機率應該很低。",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": "But Pwie cares for it so much. I don't know, asking a child to kill it is just...",
+          "text": "……可是看普依那麼珍惜，要叫人把它殺掉也有點……",
           "speaker": "以實瑪利"
         },
         {
           "index": 9,
-          "text": "It may be rare, but there has to be one more somewhere. We can keep looking.",
+          "text": "嗯，再怎麼珍貴的材料，找一找總還會再有一個吧。",
           "speaker": "以實瑪利"
         },
         {
@@ -1328,17 +1328,17 @@
         },
         {
           "index": 11,
-          "text": "All right, then. Let's head back up, Pwie.",
+          "text": "事情就是這樣……我們上樓吧，普依。",
           "speaker": "以實瑪利"
         },
         {
           "index": 12,
-          "text": "... No, I can't stay downstairs. I'm... I was born because... I'm supposed to... I...",
+          "text": "……不行，停留是不行的。我。我誕生的理由。我。",
           "speaker": "普依"
         },
         {
           "index": 13,
-          "text": "I can't put this off anymore.",
+          "text": "我再也等不下去了。",
           "speaker": "普依"
         },
         {
@@ -1353,12 +1353,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "Have to fill. Empty. Began empty... Not enough. There's nothing. Have to fill.",
+          "text": "得填滿才行。空空的，從一開始就是空的……不夠。什麼都沒有。得填滿才行。",
           "speaker": "普依"
         },
         {
           "index": 1,
-          "text": "Pwie, what are you saying? You're not making sense. Are you not feeling well or...",
+          "text": "你在說什麼啊，普依。難道是身體不舒服……",
           "speaker": "以實瑪利"
         }
       ]
@@ -1368,24 +1368,24 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pwie folded in on themselves, trembling violently against the floor."
+          "text": "普依渾身顫抖，蜷縮在地上。"
         },
         {
           "index": 1,
-          "text": "The voice that escaped them sounded equally terrified and entranced, as though they'd been possessed by something."
+          "text": "那聲音像是嚇壞了，又像是被什麼迷住了。"
         },
         {
           "index": 2,
-          "text": "That reaction, that trembling slick with naked desire... It's a lot like... that raw, unfiltered appetite I'd felt through Don Quixote."
+          "text": "從那反應，以及那油亮而充滿慾望的顫抖中……我忽然想起了透過唐吉訶德傳進我體內的那股衝動。"
         },
         {
           "index": 3,
-          "text": "<Pwie, wait. Give Wriggley back to Meursault first...!>",
+          "text": "<普依，等一下。先把噗扭還給莫梭……！>",
           "speaker": "但丁"
         },
         {
           "index": 4,
-          "text": "Hungry.... I'm so hungry...",
+          "text": "好餓……餓得受不了……",
           "speaker": "普依"
         }
       ]
@@ -1405,7 +1405,7 @@
         },
         {
           "index": 2,
-          "text": "<... It's too late.>",
+          "text": "<……來不及了。>",
           "speaker": "但丁"
         }
       ]
@@ -1415,44 +1415,44 @@
       "texts": [
         {
           "index": 0,
-          "text": "Overtaken by the hunger and greed they must've never felt before,"
+          "text": "普依被想必從未體驗過的飢餓與貪慾攫住……"
         },
         {
           "index": 1,
-          "text": "Pwie tore into the cocoon they had cherished, swallowing it in frantic mouthfuls before anyone could intervene."
+          "text": "狼吞虎嚥地吃掉了自己那般珍惜的繭。"
         },
         {
           "index": 2,
-          "text": "All we could do... was stand there and watch."
+          "text": "我們只能……茫然地看著那一幕。"
         },
         {
           "index": 3,
-          "text": "Hey... We've seen this before, haven't we? It's that same craving for...",
+          "text": "這是……那個吧。某種衝動之類的……",
           "speaker": "以實瑪利"
         },
         {
           "index": 4,
-          "text": "... There might have been warning signs.",
+          "text": "……是有徵兆的。恐怕……",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "The Rouges have been consuming the department store to the point of depletion.",
+          "text": "丹紅派一路耗盡百貨公司，一直在吸食。",
           "speaker": "莫梭"
         },
         {
           "index": 6,
-          "text": "<And Pwie... kept saying they were hungry.>",
+          "text": "<普依也……一直說肚子餓……>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "<Were they fighting it this entire time...?>",
+          "text": "<是一直在忍耐嗎……>",
           "speaker": "但丁"
         },
         {
           "index": 8,
-          "text": "Pwie... Are you all right?",
+          "text": "普依……你還好嗎？",
           "speaker": "以實瑪利"
         }
       ]
@@ -1467,15 +1467,15 @@
         },
         {
           "index": 1,
-          "text": "Pwie stared blankly at the wet pieces of Wriggley dangling between their fingers as if they'd just come back to their senses."
+          "text": "普依像是回過神來，呆呆地望著手中殘留的繭的殘骸。"
         },
         {
           "index": 2,
-          "text": "As though looking back at what they had done and finding regret waiting there."
+          "text": "彷彿……在回想自己剛才的所作所為，並感到後悔一般。"
         },
         {
           "index": 3,
-          "text": "The customer ate the cocoon! Now we can finish making a garment out of the Golden Hide.",
+          "text": "既然顧客親自吃下去了，現在就能完成黃金皮革之服了。",
           "speaker": "養育者"
         },
         {
@@ -1485,17 +1485,17 @@
         },
         {
           "index": 5,
-          "text": "I... I thought I was the one who wouldn't hurt Wriggley.",
+          "text": "我還以為，我不會傷害它的。",
           "speaker": "普依"
         },
         {
           "index": 6,
-          "text": "I never wanted to...",
+          "text": "我也不想傷害它的。",
           "speaker": "普依"
         },
         {
           "index": 7,
-          "text": "... but everything turned red. I was so hungry... and so lonely...",
+          "text": "眼前變得一片通紅。因為太餓，又變得好寂寞。",
           "speaker": "普依"
         },
         {
@@ -1505,17 +1505,17 @@
         },
         {
           "index": 9,
-          "text": "... I'll never see Wriggley again, will I?",
+          "text": "……再也見不到噗扭了吧。",
           "speaker": "普依"
         },
         {
           "index": 10,
-          "text": "... Pwie, should you wish it... We could scour this place for another cocoon identical in form to Wriggley. Yet...",
+          "text": "……普依，若你希望……我們可以再去四處尋找和噗扭一模一樣的繭。但是……",
           "speaker": "李箱"
         },
         {
           "index": 11,
-          "text": "It would not be Wriggley... but merely another cocoon.",
+          "text": "但是，那終究……不是噗扭。只會是另一個繭罷了。",
           "speaker": "李箱"
         },
         {
@@ -1530,12 +1530,12 @@
       "texts": [
         {
           "index": 0,
-          "text": "There... Good to go. The Golden Hide garment is sewn~ Hee hee. Once the Floor Manager gives it a final inspection, it'll finally be completed.",
+          "text": "好……好了。這是縫製完成的黃金皮革之服。只要再拿給樓層經理大人做最後的檢驗就行了。",
           "speaker": "養育者"
         },
         {
           "index": 1,
-          "text": "It turned out well... Another thing to go on my list of pleasant memories.",
+          "text": "做得真好……這也要記成一件讓人心情愉快的事才行。",
           "speaker": "養育者"
         }
       ]
@@ -1545,17 +1545,17 @@
       "texts": [
         {
           "index": 0,
-          "text": "... I see my children have completed the Golden Hide garment. APPEALING SHEEN.",
+          "text": "……我們家的孩子們把黃金皮革之服縫好了呢。誘人的色澤。",
           "speaker": "監工"
         },
         {
           "index": 1,
-          "text": "Yes. What is your price?",
+          "text": "沒錯，酬勞要多少？",
           "speaker": "莫梭"
         },
         {
           "index": 2,
-          "text": "Final inspection must be performed here. Please wait. MOTIVATION RISING.",
+          "text": "得由我這邊進行最後的檢驗。請稍候。幹勁上升。",
           "speaker": "監工"
         }
       ]
@@ -1565,22 +1565,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Ah, so this is what it feels like. The grain is beautifully preserved. Golden haute couture, after so many seasons... my faces are throbbing. STITCHING INSPECTION COMPLETE.",
+          "text": "……啊，原來是這種感覺。紋理保留得很好。睽違已久的黃金高級訂製服……臉都在怦怦跳呢。縫製狀態檢查完畢。",
           "speaker": "監工"
         },
         {
           "index": 1,
-          "text": "Can we have it back if you're done?",
+          "text": "檢驗結束的話……就請交給我們吧。",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "One moment... one final check for loose threads, stains, or contamination...",
+          "text": "請稍等……最後還要看看有沒有勾紗或髒汙……",
           "speaker": "監工"
         },
         {
           "index": 3,
-          "text": "Naturally, no defect will exist. Our process is flawless... GREED EXCEEDING SAFE LEVELS.",
+          "text": "那種東西當然不會有吧……畢竟我們的工序完美無缺……貪念過度上升。",
           "speaker": "監工"
         }
       ]
@@ -1595,22 +1595,22 @@
         },
         {
           "index": 1,
-          "text": "He appears to clutch the garment more tightly with every passing breath...",
+          "text": "那人……似乎越來越不願意交出來了……",
           "speaker": "李箱"
         },
         {
           "index": 2,
-          "text": "Give it back. We'll pay however many eyeballs you want...",
+          "text": "要多少眼球都可以奉上，所以衣服……",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "You know that eyeballs are not enough... to become the owner of Golden Hide. FACT REVISED.",
+          "text": "你們也知道吧，要成為黃金皮革的主人……光靠眼球是沒用的。事實重新檢視。",
           "speaker": "監工"
         },
         {
           "index": 4,
-          "text": "Much too good for strangers. This is the Golden Haute Couture, our finest masterpiece. No one can have it... COMMENCING ATTACK.",
+          "text": "交給異鄉人太可惜的衣服，這是我們不願交出的最高傑作，黃金高級訂製服……開始攻擊。",
           "speaker": "監工"
         }
       ]
@@ -1620,7 +1620,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Oh, for the love of—",
+          "text": "……天啊。",
           "speaker": "以實瑪利"
         }
       ]
@@ -1630,7 +1630,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "No need to activate the machine again."
+          "text": "已經不需要再啟動機器了。"
         }
       ]
     },
@@ -1639,7 +1639,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "We cannot leave before the processing is complete.",
+          "text": "在工序結束之前，無法離開這裡。",
           "speaker": "莫梭"
         }
       ]
@@ -1649,7 +1649,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Only after killing the Overseer could we finally take the completed Golden Hide garment back."
+          "text": "我們總算從監工的屍體上取得了完成的黃金皮革衣服。"
         }
       ]
     },
@@ -1658,7 +1658,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "What a perfectly crafted Haute Couture of gold... Can't let you strangers have it. ALL FACES MAXIMUM GREED LEVEL REACHED.",
+          "text": "如此完美的黃金高級訂製服……不能交給異鄉人。所有臉孔的貪欲上升至最大。",
           "speaker": "監工"
         }
       ]
@@ -1673,17 +1673,17 @@
         },
         {
           "index": 1,
-          "text": "Another person I don't know.",
+          "text": "又多了，不認識的人。",
           "speaker": "普依"
         },
         {
           "index": 2,
-          "text": "What the... What is all this? Heathcliff kept going on and on about babysitting, so I just took it as his usual grumbling, and turns out...",
+          "text": "這是……拖著一大串什麼過來了？希斯克利夫先生說什麼保母來保母去的，我還以為他又在胡說什麼……",
           "speaker": "以實瑪利"
         },
         {
           "index": 3,
-          "text": "<... It's a long story. Meursault, can you explain to her what happened?>",
+          "text": "<……事情就變成這樣了。莫梭，拜託你了。>",
           "speaker": "但丁"
         },
         {
@@ -1693,60 +1693,60 @@
         },
         {
           "index": 5,
-          "text": "Meursault caught Ishmael up to speed."
+          "text": "詳細的說明就交給莫梭了。"
         },
         {
           "index": 6,
-          "text": "This place, meanwhile, was the final underground floor."
+          "text": "而這裡是地下的最底層。"
         },
         {
           "index": 7,
-          "text": "Neither Meursault nor I had reached this place before."
+          "text": "是我和莫梭以前從未抵達過的地方。"
         },
         {
           "index": 8,
-          "text": "This is where we have to fashion Pwie's Golden Shroud—an outfit made from Golden Hide."
+          "text": "我們必須在這裡製作要讓普依穿上的黃金壽衣……也就是黃金皮革衣服。"
         },
         {
           "index": 9,
-          "text": "What would happen if Pwie entered the fifth floor wearing it was anyone's guess."
+          "text": "穿上那件衣服的普依到了5樓會怎麼樣，沒有人知道。"
         },
         {
           "index": 10,
-          "text": "But that uncertainty was the point. We needed the chance to make something, anything, turn out differently."
+          "text": "但重要的是製造出不知道會怎麼樣的事，也就是製造出改變。"
         },
         {
           "index": 11,
-          "text": "Indeed, the key to the fifth floor is that the child be arrayed in clothing fashioned from Golden Hide...",
+          "text": "為了進入5樓，必須為那孩子穿上以黃金皮革製成的衣服……是這麼回事啊。",
           "speaker": "李箱"
         },
         {
           "index": 12,
-          "text": "And since everyone here seems desperate to own Golden Hide, making the outfit is not going to be a walk in the park.",
+          "text": "而且黃金皮革在這裡是人人都想要的珍貴材料，要做出來應該不容易……",
           "speaker": "以實瑪利"
         },
         {
           "index": 13,
-          "text": "Do we still have enough eyeballs? We should do the math before anyone starts asking for prices through the roof...",
+          "text": "眼球夠嗎？也得想想對方會開價多少……",
           "speaker": "以實瑪利"
         },
         {
           "index": 14,
-          "text": "Ishmael looked ready to balance a ledger down to the last eyeball."
+          "text": "以實瑪利一副要替我們收集的眼球記起帳來的樣子。"
         },
         {
           "index": 15,
-          "text": "Wait. We paid through the nose in eyeballs... for this one item? *sigh*",
+          "text": "不是吧，只是買這個……就花了這麼多眼球？唉……",
           "speaker": "以實瑪利"
         },
         {
           "index": 16,
-          "text": "<I mean, it was the best option we had at the time...>",
+          "text": "<那時候那已經是最好的選擇了……>",
           "speaker": "但丁"
         },
         {
           "index": 17,
-          "text": "The price has already been paid. There is little recourse but to put the purchase to good use...",
+          "text": "既然已經買了，除了好好穿著以外，也沒有別的辦法了不是嗎……",
           "speaker": "李箱"
         }
       ]
@@ -1756,7 +1756,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A Rouge's corpse."
+          "text": "是丹紅派的屍體。"
         }
       ]
     },
@@ -1765,7 +1765,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The stitches have all burst, leaving it a shredded mess."
+          "text": "縫合處全都裂開，變得破破爛爛的。"
         }
       ]
     },
@@ -1774,7 +1774,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Several pieces of thinly split leather are hanging on the rack."
+          "text": "掛著像是片成薄片的皮革。"
         }
       ]
     },
@@ -1783,7 +1783,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "They've been split so thinly that the other side is visible."
+          "text": "剝得薄到能透過皮革看見另一頭。"
         }
       ]
     },
@@ -1792,7 +1792,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's still bleeding, soaking the ground beneath it."
+          "text": "血水至今仍滴滴答答地落下，把地板浸得濕漉漉的。"
         }
       ]
     },
@@ -1801,7 +1801,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Thick, full grain leather. Looks pretty weighty."
+          "text": "是切得厚厚的皮革。光看外表就覺得相當沉重。"
         }
       ]
     },
@@ -1810,7 +1810,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This piece of leather is moist to the touch."
+          "text": "是濕漉漉的皮革。"
         }
       ]
     },
@@ -1819,7 +1819,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This piece of leather has been desiccated and shrunk into a wrinkly mess."
+          "text": "是乾得皺巴巴的皮革。"
         }
       ]
     },
@@ -1828,7 +1828,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The cross-section of this cut of leather looks as though it's been cut by an incredibly keen blade."
+          "text": "是像用鋒利的刀切下來的皮革。"
         }
       ]
     },
@@ -1837,7 +1837,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The cross-section of this cut of leather—if it can be called that—clearly communicates that it's been ripped by a dull knife."
+          "text": "是像用鈍刀割下來的皮革。"
         }
       ]
     },
@@ -1846,7 +1846,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are multiple... pustules on this cut of leather. It emits a horrible stench."
+          "text": "到處凝結著像是膿的東西。散發著難聞至極的氣味。"
         }
       ]
     },
@@ -1855,7 +1855,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Human leather that's been laid out to dry."
+          "text": "似乎是把人皮攤開來晾乾。"
         }
       ]
     },
@@ -1864,7 +1864,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are blackened beads of blood with clear signs of discoloration inside."
+          "text": "內側凝結著一顆顆變黑的血珠。"
         }
       ]
     },
@@ -1873,7 +1873,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are strange holes reminiscent of gills on the jaw area."
+          "text": "下巴上可以看到像鰓一樣的奇怪孔洞。"
         }
       ]
     },
@@ -1882,7 +1882,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "These pieces of leather still retain their reddish hue. Must've been flayed recently."
+          "text": "是還泛著紅色的皮革。似乎剛剝下來沒多久。"
         }
       ]
     },
@@ -1891,7 +1891,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Lifting a small corner of it immediately releases a rush of revolting stench."
+          "text": "掀開一看，一股濃烈的惡臭飄了出來。"
         }
       ]
     },
@@ -1900,7 +1900,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are <i>green</i> patches of leather inside. Must be rotten."
+          "text": "內側可以看到變成綠色的皮革。似乎腐爛了。"
         }
       ]
     },
@@ -1909,7 +1909,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Lifting a small corner of it immediately releases a rush of revolting stench."
+          "text": "掀開一看，濃烈的惡臭擴散開來。"
         }
       ]
     },
@@ -1918,7 +1918,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Maybe these are discarded leather, like those piles of clothes discarded in corners of the first floor...?"
+          "text": "是像1樓角落堆積的衣服那樣，不用的皮革嗎……？"
         }
       ]
     },
@@ -1927,7 +1927,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Scraps of leather. Must've been saving these to be used as extra patches."
+          "text": "似乎是收集起來的零碎皮革碎片。"
         }
       ]
     },
@@ -1936,7 +1936,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This one still has fingernails..."
+          "text": "指甲還連在上面……"
         }
       ]
     },
@@ -1945,7 +1945,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Pieces of leather haphazardly strewn about."
+          "text": "零碎的皮革碎片被隨意地堆在一起。"
         }
       ]
     },
@@ -1954,7 +1954,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Dark-red patches of dried blood have caught some strands of hair."
+          "text": "幾根毛黏在暗紅色的血跡上，就這樣凝固了。"
         }
       ]
     },
@@ -1963,7 +1963,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's full of macerated leather."
+          "text": "堆滿了被搗爛的皮革。"
         }
       ]
     },
@@ -1972,7 +1972,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The note reads: [DISPOSAL]."
+          "text": "貼著一張寫有[預定廢棄]的紙條。"
         }
       ]
     },
@@ -1981,7 +1981,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Must've been a while since this was used. Parts of it has rusted."
+          "text": "似乎很長時間沒有使用了。到處都生了鏽。"
         }
       ]
     },
@@ -1990,7 +1990,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "More taxidermy than leather."
+          "text": "與其說是皮革，更接近標本。"
         }
       ]
     },
@@ -1999,7 +1999,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This piece of leather is practically glistening. It looks to be of a higher quality than the ones drying outside."
+          "text": "是富有光澤的皮革。看起來比在外面晾著的那些品質更好。"
         }
       ]
     },
@@ -2008,7 +2008,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's got a pleasant expression, this... patch of face skin."
+          "text": "是氣色看起來很好的……臉皮。"
         }
       ]
     },
@@ -2017,7 +2017,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Doesn't smell like anything. Must've gone through some sort of treatment process."
+          "text": "沒有任何氣味。似乎經過了某種處理程序。"
         }
       ]
     },
@@ -2026,7 +2026,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Each strand of hair is glistening with vitality. Looks lively."
+          "text": "每一根毛都像是活的。"
         }
       ]
     },
@@ -2035,7 +2035,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This piece of leather is still quite moist."
+          "text": "是還濕濕的皮革。"
         }
       ]
     },
@@ -2044,7 +2044,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Where do all these pieces of leather come from?"
+          "text": "這麼多的皮革都是從哪裡來的呢？"
         }
       ]
     },
@@ -2053,30 +2053,30 @@
       "texts": [
         {
           "index": 0,
-          "text": "Human leather that's been laid out to dry."
+          "text": "似乎是把人皮攤開來晾乾。"
         },
         {
           "index": 1,
-          "text": "... This is disgusting.",
+          "text": "……看了真噁心。",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "It is as though they have <i>unfolded</i> the body, akin to the planar figure of a polyhedron, only human...",
+          "text": "簡直像是把人體當成展開圖攤開一般……",
           "speaker": "李箱"
         },
         {
           "index": 3,
-          "text": "This is a sight most inapt for the eyes of children.",
+          "text": "這似乎不是適合孩子看的景象啊。",
           "speaker": "李箱"
         },
         {
           "index": 4,
-          "text": "Yi Sang carefully moved to the side, blocking Pwie from looking at the piece of leather."
+          "text": "李箱小心翼翼地擋在普依面前。"
         },
         {
           "index": 5,
-          "text": "Considering where we are, however... I don't think it'll do much good."
+          "text": "但環顧四周，這似乎不是多有意義的舉動……"
         }
       ]
     },
@@ -2085,7 +2085,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Ugh... That smell... It's even worse than Whale odor.",
+          "text": "唔……這是什麼惡臭……好像比鯨油還嚴重……？",
           "speaker": "以實瑪利"
         },
         {
@@ -2095,32 +2095,32 @@
         },
         {
           "index": 2,
-          "text": "Smells good.",
+          "text": "好香的味道。",
           "speaker": "普依"
         },
         {
           "index": 3,
-          "text": "... Really? <i>This</i> smell?",
+          "text": "……什麼？這個味道嗎？",
           "speaker": "以實瑪利"
         },
         {
           "index": 4,
-          "text": "Mhm. Smells savory and rich.",
+          "text": "嗯。又香又濃的味道……",
           "speaker": "普依"
         },
         {
           "index": 5,
-          "text": "It is not so out of the ordinary for them to perceive it as such.",
+          "text": "會這麼覺得也不奇怪。",
           "speaker": "莫梭"
         },
         {
           "index": 6,
-          "text": "Food dehydration is a process by which the ingredient's unique flavors may be more vividly conveyed.",
+          "text": "因為去除水分的食材，其特有的風味會更鮮明地展現出來。",
           "speaker": "莫梭"
         },
         {
           "index": 7,
-          "text": "Does it smell tasty to you too, Meursault?",
+          "text": "莫梭也覺得是好吃的味道嗎？",
           "speaker": "普依"
         },
         {
@@ -2130,17 +2130,17 @@
         },
         {
           "index": 9,
-          "text": "Had this been jerky rather than leather... I imagine it would have smelled good to me, too.",
+          "text": "如果這不是皮革，而是肉乾……我大概也會那麼覺得吧。",
           "speaker": "莫梭"
         },
         {
           "index": 10,
-          "text": "What's the difference?",
+          "text": "有什麼不一樣……？",
           "speaker": "普依"
         },
         {
           "index": 11,
-          "text": "Meursault patiently answered Pwie's questions as they kept coming."
+          "text": "之後普依接連不斷的提問，莫梭都親切地一一回答了。"
         }
       ]
     },
@@ -2149,38 +2149,38 @@
       "texts": [
         {
           "index": 0,
-          "text": "Air rushes out of the pile of leather with a <i>shhh</i>."
+          "text": "皮革堆之間傳出了漏氣的聲音。"
         },
         {
           "index": 1,
-          "text": "<... What's going on in there? Meursault, let's take a look.>",
+          "text": "<……怎麼回事？莫梭，我們查看一下吧。>",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": "Meursault lifts the pile of leather, and the sound of escaping air slowly turns into wheezing to our ears."
+          "text": "莫梭一掀開皮革堆，快要斷氣般的聲音就越來越大。"
         },
         {
           "index": 3,
-          "text": "After some searching, we managed to find the piece of leather that was making the noise."
+          "text": "不久，找到了發出聲音的皮革。"
         },
         {
           "index": 4,
-          "text": "... The words \"Disgusting turncoat,\" is inscribed here, Manager.",
+          "text": "……上面刻著「噁心的背叛者」，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 5,
-          "text": "Meursault unrolled the piece of leather. Its full form now visible. the... \"mouth\" opened and closed, trying to communicate something."
+          "text": "那個人以全身攤開自己的本來面目，喘著氣，一張一合地動著嘴，試圖傳達些什麼。"
         },
         {
           "index": 6,
-          "text": "<Is it... saying something? What is it saying?>",
+          "text": "<聽得出在說什麼嗎？>",
           "speaker": "但丁"
         },
         {
           "index": 7,
-          "text": "... \"Please rip me.\" Repeatedly.",
+          "text": "……正反覆說著「撕碎我」。",
           "speaker": "莫梭"
         },
         {
@@ -2190,21 +2190,21 @@
         },
         {
           "index": 9,
-          "text": "<Let's do as it asks.>",
+          "text": "<答應這個請求吧。>",
           "speaker": "但丁"
         },
         {
           "index": 10,
-          "text": "Yes, Manager.",
+          "text": "是，經理。",
           "speaker": "莫梭"
         },
         {
           "index": 11,
-          "text": "Meursault pulls on the piece of leather, slowly tearing it in half."
+          "text": "莫梭開始慢慢撕開堅韌的皮革。"
         },
         {
           "index": 12,
-          "text": "The leather smiles ecstatically as its skin is slowly ripped apart."
+          "text": "即使自己的身體正被撕裂，嘴巴仍咧到快裂開般地笑著。"
         }
       ]
     },
@@ -2213,7 +2213,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Looks like an... installation with its skin tissue removed."
+          "text": "似乎是……只剝去了皮膚組織的造型物。"
         }
       ]
     },
@@ -2222,7 +2222,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I can feel the smallest hint of air escaping its mouth. It's still alive."
+          "text": "正淺淺地吐著氣。似乎還活著。"
         }
       ]
     },
@@ -2231,7 +2231,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Flayed leather that has been pulled into the shape of a pair of wings."
+          "text": "剝下皮革，裝飾成了翅膀的樣子。"
         }
       ]
     },
@@ -2240,7 +2240,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Melted skin tissue has merged to the floor."
+          "text": "皮膚組織融化，黏在了地板上。"
         }
       ]
     },
@@ -2249,7 +2249,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This piece of leather must've been just removed from processing. It's still quite warm to the touch."
+          "text": "或許直到剛才都還在作業，能感覺到還沒完全散去的熱氣。"
         }
       ]
     },
@@ -2258,7 +2258,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's hard to see what's inside the dark barrel."
+          "text": "桶子裡面很暗，看不太清楚。"
         }
       ]
     },
@@ -2267,7 +2267,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Almost sounds like it's groaning in pain."
+          "text": "似乎傳出了像是充滿痛苦的呻吟聲。"
         }
       ]
     },
@@ -2276,7 +2276,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's a big vat... or a barrel capable of bulk-processing a large amount of leather."
+          "text": "是看起來一次能處理相當多皮革的桶子。"
         }
       ]
     },
@@ -2285,7 +2285,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It's been split into many, many thin layers, making it difficult to guess its original form."
+          "text": "被往四面八方薄薄地攤開，難以判斷原本是什麼形狀。"
         }
       ]
     },
@@ -2294,7 +2294,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Patches of hair are liquefying and melting off from the chemical-soaked leather."
+          "text": "毛正從濕漉漉的皮革上融化脫落。"
         }
       ]
     },
@@ -2303,7 +2303,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A sharp stench stings the nose."
+          "text": "散發出刺鼻的濃烈氣味。"
         }
       ]
     },
@@ -2312,7 +2312,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Chemical fluid is swishing inside. Touching it will clearly have... adverse effects for the skin."
+          "text": "看似藥劑的液體晃蕩著。不管誰看都會覺得不能碰到皮膚。"
         }
       ]
     },
@@ -2321,7 +2321,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The liquid smells sour."
+          "text": "是散發著酸味的液體。"
         }
       ]
     },
@@ -2330,7 +2330,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "These patches of leather are pulled taut."
+          "text": "掛著拉得格外緊繃的皮革。"
         }
       ]
     },
@@ -2339,7 +2339,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Are they going through some sort of special treatment process?"
+          "text": "是在進行什麼額外的特殊處理嗎？"
         }
       ]
     },
@@ -2348,7 +2348,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A vat of fluid, with various half-melted dregs mixed into blood."
+          "text": "溶著像是血的液體和各種雜質。"
         }
       ]
     },
@@ -2357,7 +2357,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Bubbles lazily float up the viscous fluid before popping."
+          "text": "偶爾會冒出泡泡。"
         }
       ]
     },
@@ -2366,7 +2366,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "I notice a white layer of fat floating among the greasy fluid."
+          "text": "滿是油膩的液體之間，可以看到白色的脂肪。"
         }
       ]
     },
@@ -2375,7 +2375,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Did something melt the floor?"
+          "text": "……是底部融化了嗎？"
         }
       ]
     },
@@ -2384,7 +2384,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This smells disgusting."
+          "text": "冒出令人作嘔的惡臭。"
         }
       ]
     },
@@ -2393,7 +2393,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Unrecognizable bits of flesh are floating about the fluid."
+          "text": "難以辨認形體、類似肉塊的東西漂浮著。"
         }
       ]
     },
@@ -2402,7 +2402,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "This is clearly a cocktail of highly toxic chemicals."
+          "text": "一看就知道是很毒的成分。"
         }
       ]
     },
@@ -2411,7 +2411,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "... Caught the briefest glimpse of a large, white glob with hair growing out of it."
+          "text": "……好像看到了一團插滿像是頭髮之類東西的灰白色塊狀物。"
         }
       ]
     },
@@ -2420,7 +2420,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Are you a customer? Wait here, let me get my ledger.",
+          "text": "是客人嗎？等等，我去拿一下帳簿。",
           "speaker": "刮取者"
         }
       ]
@@ -2430,7 +2430,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Getting a whiff of a high-Prestige customer's fragrance. Loaded strangers are always welcome.",
+          "text": "正在試聞上流階層顧客的氣味。因為富有的異鄉人隨時都受歡迎。",
           "speaker": "監工"
         }
       ]
@@ -2440,7 +2440,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Viscous, black blood wells up in each of its pores."
+          "text": "黏稠的黑血慢慢地注滿背上的孔洞。"
         }
       ]
     },
@@ -2449,7 +2449,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "There are bits of meat sticking out of the haphazardly patched-up leather."
+          "text": "肉塊從胡亂縫補的皮革縫隙間擠了出來。"
         }
       ]
     },
@@ -2458,7 +2458,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A skull smashed in like a watermelon. There are small patches of hair still attached to it."
+          "text": "破碎的頭顱上還黏著幾根頭髮。"
         }
       ]
     },
@@ -2467,22 +2467,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "It was a most unexpected development to fall under the assault of the artisan.",
+          "text": "連製作者都撲上來，實在出乎意料啊。",
           "speaker": "李箱"
         },
         {
           "index": 1,
-          "text": "Okay, so when it shakes its body, uh... <i>people</i> crawl out of its hole. Its behavior is surprisingly similar to the Whale of the Porous hand, just not in its usual habitat of the Great Lake.",
+          "text": "搖晃身體就會從洞裡跑出人來……除了不在大湖以外，做的事情跟穴掌鯨一模一樣嘛……",
           "speaker": "以實瑪利"
         },
         {
           "index": 2,
-          "text": "<At least those tiny Mermaids were bound to the Whale...>",
+          "text": "<不過那頭鯨至少還是彼此相連的……>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "Will you adjust your strategy?",
+          "text": "您要修改戰略嗎？",
           "speaker": "莫梭"
         },
         {
@@ -2492,12 +2492,12 @@
         },
         {
           "index": 5,
-          "text": "<Let's try to watch out when it's getting ready to charge at us.>",
+          "text": "<至少要提防突然朝我們衝過來這點。>",
           "speaker": "但丁"
         },
         {
           "index": 6,
-          "text": "<And... yeah, quickly dispatch its minions that crawled out of its back.>",
+          "text": "<為了不妨礙移動……從背上出來的傢伙也要快點解決。>",
           "speaker": "但丁"
         }
       ]
@@ -2507,7 +2507,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "It was an honor to work on such precious leather after such a long drought of it. Take good care of it.",
+          "text": "這是許久未見的珍貴皮革。還請好好保養。",
           "speaker": "鞣皮匠"
         }
       ]
@@ -2517,7 +2517,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The palm is curled inward, as though still clutching something."
+          "text": "手掌向內蜷曲，彷彿緊握著什麼。"
         }
       ]
     },
@@ -2526,22 +2526,22 @@
       "texts": [
         {
           "index": 0,
-          "text": "<We need to get away. I think it caught the cocoon's death cry... and now it's following the sound straight back to us.>",
+          "text": "<快逃吧。它好像聽到了繭死去時發出的聲音……正在追過來。>",
           "speaker": "但丁"
         },
         {
           "index": 1,
-          "text": "Trying to run? You won't shake the Wailer unless the Voice puts wind at your back.",
+          "text": "想逃？除非有那道聲音幫忙，否則是甩不掉哀號者的喔？",
           "speaker": "刮取者"
         },
         {
           "index": 2,
-          "text": "<It's close. I don't care if we arrive at the restroom or the upper floor—we need to go <i>now</i>. Meursault! Do your thing!>",
+          "text": "<它好像靠近了。不管是廁所還是樓上，快逃，莫梭！>",
           "speaker": "但丁"
         },
         {
           "index": 3,
-          "text": "It will be done.",
+          "text": "明白了。",
           "speaker": "莫梭"
         }
       ]
@@ -2551,7 +2551,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "...A strong oily smell hangs in the air. There's nothing appetizing about it."
+          "text": "……飄來濃烈的油味。並不覺得香。"
         }
       ]
     },
@@ -2560,7 +2560,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The oil-soaked leather is drying out."
+          "text": "浸過油的皮革正逐漸變乾。"
         }
       ]
     },
@@ -2569,7 +2569,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Murky, strange-colored oil crackles and spits as though on the verge of boiling over."
+          "text": "顏色混濁又詭異的油，像是要沸騰般滋滋作響。"
         }
       ]
     },
@@ -2578,36 +2578,36 @@
       "texts": [
         {
           "index": 0,
-          "text": "Voices can be heard among the passing shadows."
+          "text": "從來往的影子之間傳來交談聲。"
         },
         {
           "index": 1,
-          "text": "How far are you gonna go over one lousy hide?",
+          "text": "不過是丟了一張皮革，你打算跑到哪裡去？",
           "speaker": "焦急的顧客"
         },
         {
           "index": 2,
-          "text": "The season's gonna change soon and we're due to move up anyway... can't we just bring any old leather?",
+          "text": "這季差不多該上樓了……隨便帶一張皮革走不行嗎？",
           "speaker": "焦急的顧客"
         },
         {
           "index": 3,
-          "text": "Nope. Definitely not.",
+          "text": "絕對不行。",
           "speaker": "堅決的顧客"
         },
         {
           "index": 4,
-          "text": "The more you break leather in... the more it molds itself to you.",
+          "text": "皮革越是馴化……就越會貼合我。",
           "speaker": "堅決的顧客"
         },
         {
           "index": 5,
-          "text": "The color, the creases, even the way it moves... it all starts to take after me!",
+          "text": "顏色、皺褶、動作，全都會越來越像我！",
           "speaker": "堅決的顧客"
         },
         {
           "index": 6,
-          "text": "Those leathers over there... they haven't been broken in to me.",
+          "text": "那邊的那些皮革……並不是被我馴化的。",
           "speaker": "堅決的顧客"
         }
       ]
@@ -2617,7 +2617,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "A hazy figure of a customer keeps lingering in the same spot."
+          "text": "一名身形模糊的顧客一直在同一個地方徘徊。"
         }
       ]
     },
@@ -2626,7 +2626,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "...A strong oily smell hangs in the air. There's nothing appetizing about it."
+          "text": "……飄來濃烈的油味。並不覺得香。"
         }
       ]
     },
@@ -2635,7 +2635,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Found some eyeballs buried between chunks of meat."
+          "text": "在混雜的肉塊之間發現了眼球。"
         }
       ]
     },
@@ -2644,7 +2644,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The note reads: [DISPOSAL]."
+          "text": "貼著一張寫有[預定廢棄]的紙條。"
         }
       ]
     },
@@ -2653,7 +2653,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "The oil-soaked leather is drying out."
+          "text": "浸過油的皮革正逐漸變乾。"
         }
       ]
     },
@@ -2662,7 +2662,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "Murky, strange-colored oil crackles and spits as though on the verge of boiling over."
+          "text": "顏色混濁又詭異的油，像是要沸騰般滋滋作響。"
         }
       ]
     }

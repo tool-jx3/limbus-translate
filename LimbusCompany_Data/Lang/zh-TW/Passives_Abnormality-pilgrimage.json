@@ -32,7 +32,7 @@
     },
     {
       "id": 128807,
-      "name": "奔馳的羅辛南特",
+      "name": "奔馳的駑騂難得",
       "desc": "回合開始時，若帶有 [ColdAirDOQ] 的敵方單位不低於6名，則使自身獲得2層 [ParryingResultUp]"
     },
     {
@@ -59,7 +59,7 @@
     {
       "id": 129701,
       "name": "向光而行的隊列",
-      "desc": "Take -90% damage from [Combustion], [Laceration], [Vibration], [Burst], [Sinking]\nTurn Start: gain 10 [Protection]\n\nTurn End: consume [AbyssalVitality] to summon Sea Terror horde\n- If there are fewer than 3 Shell Sea Runners or Deep Sea Sliders on the battlefield, randomly summon either of those units until there are a sum of 3 of them next turn and consume (# of summoned units x 4) [AbyssalVitality]\n- If Nethersea Founder isn't on the battlefield, consume 8 [AbyssalVitality] to summon it next turn\n- If Nethersea Spewer isn't on the battlefield, consume 12 [AbyssalVitality] to summon it next turn\n- If Basin Sea Reaper isn't on the battlefield, consume 20 [AbyssalVitality] to summon it next turn",
+      "desc": "受到的 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking] 傷害-90%\n回合開始時，使自身獲得10層 [Protection]\n\n回合結束時，消耗 [AbyssalVitality] 召喚恐魚群至戰場上\n- 若場上的殼海狂奔者或底海滑動者少於3名，則於下回合隨機召喚，直至二者合計3名，並消耗(召喚單位數×4)層\n- 若場上沒有深溟奠基者，則於下回合召喚該單位，並消耗8層\n- 若場上沒有深溟噴濺者，則於下回合召喚該單位，並消耗12層\n- 若場上沒有缽海收割者，則於下回合召喚該單位，並消耗20層",
       "summary": "受到的 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking] 傷害減少"
     },
     {

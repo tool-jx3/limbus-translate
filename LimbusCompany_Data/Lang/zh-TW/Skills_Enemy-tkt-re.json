@@ -185,7 +185,7 @@
         {
           "level": 1,
           "name": "為了我們的事業",
-          "desc": "[CantDuel]\n[StartBattle] Draw all other allies' [Vibration] Count to self; [Vibration] on all allies expire\n[StartBattle] Gain 1 [AttackUp] for every 3 [Vibration] Count on self\n[WhenUse] Gain 10 [Vibration] Count",
+          "desc": "[CantDuel]\n[StartBattle] 自身獲得除自身以外全體友方單位的 [Vibration] 回數，並解除全體友方單位的 [Vibration]\n[StartBattle] 自身每帶有3回 [Vibration]，使自身獲得1層 [AttackUp]\n[WhenUse] 對自身施加10回 [Vibration]",
           "coinlist": [
             {
               "coindescs": [

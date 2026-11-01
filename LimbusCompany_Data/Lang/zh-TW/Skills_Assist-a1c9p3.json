@@ -611,7 +611,7 @@
         {
           "level": 1,
           "name": "納米爾工坊 - 5倍重量！",
-          "desc": "If target has a negative effect, deal +50% damage\n[WhenUse] If this unit does not have [Charge] Count, inflict +1 additional [Vibration] Count on target on Skill Hit\n[WhenUse] At 15+ [Charge] Count, consume all [Charge] Count and apply the following effects:\n- Trigger an additional [VibrationExplosion]\n- [VibrationExplosion] triggered by this Skill does not consume target's [Vibration] Count",
+          "desc": "若目標帶有負面效果，則使本技能造成的傷害+50%\n[WhenUse] 自身不帶有 [Charge] 回數時，技能命中時，使目標額外增加1回 [Vibration]\n[WhenUse] 自身帶有的 [Charge] 回數不低於15回時，全部消耗，並附加以下效果：\n- 額外使目標 [VibrationExplosion] 1次\n- 本技能觸發的 [VibrationExplosion] 不會減少目標的 [Vibration] 回數",
           "coinlist": [
             {
               "coindescs": [

@@ -40,7 +40,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If this unit has [Laceration], inflict ([Laceration] Potency on self / 2) [Laceration] Count on target (max 5; once per turn; rounded down)"
+                  "desc": "[OnSucceedAttack] 若自身帶有 [Laceration]，則使目標增加等同於自身該效果強度一半的 [Laceration] 回數(最多5回，每回合最多1次，無條件捨去)"
                 }
               ]
             }
@@ -68,7 +68,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] If this unit has [Laceration], inflict ([Laceration] Potency on self) [Laceration] Count on target (max 8; once per turn)"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身帶有 [Laceration]，則使目標增加等同於自身該效果強度的 [Laceration] 回數(最多8回，每回合最多1次)"
                 }
               ]
             },
@@ -139,7 +139,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] If this unit has [Laceration], inflict ([Laceration] Potency on self / 2) [Laceration] Count on target (max 5; once per turn; rounded down)"
+                  "desc": "[OnSucceedAttack] 若自身帶有 [Laceration]，則使目標增加等同於自身該效果強度一半的 [Laceration] 回數(最多5回，每回合最多1次，無條件捨去)"
                 }
               ]
             }
@@ -167,7 +167,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] If this unit has [Laceration], inflict ([Laceration] Potency on self) [Laceration] Count on target (max 8; once per turn)"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若自身帶有 [Laceration]，則使目標增加等同於自身該效果強度的 [Laceration] 回數(最多8回，每回合最多1次)"
                 }
               ]
             },
@@ -360,7 +360,7 @@
         {
           "level": 1,
           "name": "找到了！",
-          "desc": "目標每帶有3級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身的體力不高於50%或目標的 [Laceration] 強度不低於10級，則使本技能所有的硬幣轉變為 [SuperCoin]",
+          "desc": "目標每帶有3級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身的體力低於50%或目標的 [Laceration] 強度不低於10級，則使本技能所有的硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [
@@ -468,7 +468,7 @@
         {
           "level": 1,
           "name": "找到了！",
-          "desc": "目標每帶有3級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身的體力不高於50%或目標的 [Laceration] 強度不低於10級，則使本技能所有的硬幣轉變為 [SuperCoin]",
+          "desc": "目標每帶有3級 [Laceration] 強度，則使本技能的最終威力+1(最多+3)\n[WhenUse] 若自身的體力低於50%或目標的 [Laceration] 強度不低於10級，則使本技能所有的硬幣轉變為 [SuperCoin]",
           "coinlist": [
             {
               "coindescs": [

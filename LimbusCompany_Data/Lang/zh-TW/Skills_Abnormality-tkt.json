@@ -6,7 +6,7 @@
         {
           "level": 1,
           "name": "你怕了嗎？",
-          "desc": "若自身帶有 [TimeAcceleration]，則使本技能的拚點威力+1\n[DefeatDuel] 若現存體力不高於75%，則消耗50層 [LimitedTime] 並使自身獲得1層 [Protection] (每回合最多1次)",
+          "desc": "若自身處於 [TimeAcceleration] 狀態，則使本技能的拚點威力+1\n[DefeatDuel] 若現存體力低於75%，則消耗50層 [LimitedTime] 並使自身獲得1層 [Protection] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -32,7 +32,7 @@
         {
           "level": 1,
           "name": "殺死時間的懲罰",
-          "desc": "When in [TimeAcceleration] state, Clash Power +2\n[WhenUse] At 500+ [LimitedTime], inflict +1 [Laceration] Count\n[WhenUse] At 300+ [LimitedTime], consume 25 [LimitedTime] and inflict +1 more [Laceration] Potency and Count with this Skill",
+          "desc": "若自身帶有 [TimeAcceleration]，則使本技能的拚點威力+2\n[WhenUse] 若自身的 [LimitedTime] 層數不低於500層，則使目標的 [Laceration] 回數增加1回\n[WhenUse] 若自身的 [LimitedTime] 層數不低於300層，則消耗25層 [LimitedTime] 並使本技能增加的 [Laceration] 強度與回數額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -65,7 +65,7 @@
         {
           "level": 1,
           "name": "截除",
-          "desc": "若自身帶有 [TimeAcceleration]，則使本技能的硬幣威力+1\n[WhenUse] 若現存體力不高於75%，則消耗50層 [LimitedTime] 並使本技能的拚點威力+2(每回合最多1次)",
+          "desc": "若自身處於 [TimeAcceleration] 狀態，則使本技能的硬幣威力+1\n[WhenUse] 若現存體力低於75%，則消耗50層 [LimitedTime] 並使本技能的拚點威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -105,7 +105,7 @@
         {
           "level": 1,
           "name": "碎屍萬段",
-          "desc": "[WhenUse] 若現存體力不高於75%，則消耗75層 [LimitedTime] 並使本技能的拚點威力+2\n[BeforeAttack] 若自身帶有 [TimeAcceleration]，則使本技能的攻擊容量+1",
+          "desc": "[WhenUse] 若現存體力低於75%，則消耗75層 [LimitedTime] 並使本技能的拚點威力+2\n[BeforeAttack] 若自身處於 [TimeAcceleration] 狀態，則使本技能的攻擊容量+1",
           "coinlist": [
             {
               "coindescs": [
@@ -169,7 +169,7 @@
         {
           "level": 1,
           "name": "你怕了嗎？",
-          "desc": "若自身帶有 [TimeAcceleration]，則使本技能的拚點威力+1\n[DefeatDuel] 若現存體力不高於75%，則消耗50層 [OwnTime] 並使自身獲得1層 [Protection] (每回合最多1次)",
+          "desc": "若自身處於 [TimeAcceleration] 狀態，則使本技能的拚點威力+1\n[DefeatDuel] 若現存體力低於75%，則消耗50層 [OwnTime] 並使自身獲得1層 [Protection] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -195,7 +195,7 @@
         {
           "level": 1,
           "name": "殺死時間的懲罰",
-          "desc": "When in [TimeAcceleration] state, Clash Power +2\n[WhenUse] At 500+ (sum of [OwnTime] on all Parts), inflict +1 [Laceration] Count\n[WhenUse] At 300+ (sum of [OwnTime] on all Parts), consume 25 [OwnTime] and inflict +1 more [Laceration] Potency and Count with this Skill",
+          "desc": "若自身帶有 [TimeAcceleration]，則使本技能的拚點威力+2\n[WhenUse] 若所有部位的 [OwnTime] 層數之和不低於500層，則使目標的 [Laceration] 回數增加1回\n[WhenUse] 若所有部位的 [OwnTime] 層數之和不低於300層，則消耗25層 [OwnTime] 並使本技能增加的 [Laceration] 強度與回數額外+1",
           "coinlist": [
             {
               "coindescs": [
@@ -228,7 +228,7 @@
         {
           "level": 1,
           "name": "截除",
-          "desc": "若自身帶有 [TimeAcceleration]，則使本技能的硬幣威力+1\n[WhenUse] 若現存體力不高於75%，則消耗50層 [OwnTime] 並使本技能的拚點威力+2(每回合最多1次)",
+          "desc": "若自身處於 [TimeAcceleration] 狀態，則使本技能的硬幣威力+1\n[WhenUse] 若現存體力低於75%，則消耗50層 [OwnTime] 並使本技能的拚點威力+2",
           "coinlist": [
             {
               "coindescs": [
@@ -268,7 +268,7 @@
         {
           "level": 1,
           "name": "碎屍萬段",
-          "desc": "[WhenUse] 若現存體力不高於75%，則消耗75層 [OwnTime] 並使本技能的拚點威力+2\n[BeforeAttack] 若自身帶有 [TimeAcceleration]，則使本技能的攻擊容量+1\n[BeforeAttack] 若現存體力不高於60%，則消耗10層 [OwnTime] 並使本技能的攻擊容量+1",
+          "desc": "[WhenUse] 若現存體力低於75%，則消耗75層 [OwnTime] 並使本技能的拚點威力+2\n[BeforeAttack] 若自身處於 [TimeAcceleration] 狀態，則使本技能的攻擊容量+1\n[BeforeAttack] 若現存體力低於60%，則消耗10層 [OwnTime] 並使本技能的攻擊容量+1",
           "coinlist": [
             {
               "coindescs": [

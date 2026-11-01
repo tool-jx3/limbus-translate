@@ -2,265 +2,265 @@
   "dataList": [
     {
       "id": 0,
-      "content": "<color=#293b95>Memory sloshes within a tin bucket bearing a label.</color>"
+      "content": "<color=#293b95>記憶，盛裝在某個貼著標籤的鐵皮罐裡。</color>"
     },
     {
       "id": 1,
-      "content": "<color=#293b95>Experience dissolves into the stinging aftertaste that lingers on someone's tongue.</color>"
+      "content": "<color=#293b95>經驗，化作刺麻的滋味殘留在某人的舌尖，就此融化。</color>"
     },
     {
       "id": 2,
-      "content": "<color=#293b95>I hammer them into packages, obeying the instructions nailed to the wall.</color>"
+      "content": "<color=#293b95>我依照釘在牆上的指示，用鐵鎚敲打著將它們包裝起來，</color>"
     },
     {
       "id": 3,
-      "content": "<color=#293b95>My gaze faces the consistent sway of the liquid in the container.</color>"
+      "content": "<color=#293b95>直視著容器中液體均勻的晃動。</color>"
     },
     {
       "id": 4,
-      "content": "<color=#293b95>What, in this life, could be the proof of \"me\"?</color>"
+      "content": "<color=#293b95>在這人生之中，證明我的又是什麼。</color>"
     },
     {
       "id": 5,
-      "content": "<color=#293b95>Memory? Experience?</color>"
+      "content": "<color=#293b95>是記憶，還是經驗。</color>"
     },
     {
       "id": 6,
-      "content": "<color=#293b95>And if neither...</color>"
+      "content": "<color=#293b95>若兩者皆非……</color>"
     },
     {
       "id": 7,
-      "place": "過去，梅菲斯托費勒斯內部",
+      "place": "過去，梅菲斯托費勒斯 內部",
       "model": "베르길리우스",
-      "content": "Yet another peculiar question, I see."
+      "content": "你這次又丟出了個古怪的問題啊。"
     },
     {
       "id": 8,
       "model": "베르길리우스",
-      "content": "Has a single mission ever gone precisely as you expected, Dante? Why should this one be any different?"
+      "content": "就像以往所有的任務一樣，這次的任務也不會有任何一件事如預期般進行，但丁。"
     },
     {
       "id": 9,
-      "content": "You have a point..."
+      "content": "這話倒是沒錯。"
     },
     {
       "id": 10,
-      "content": "But would it have killed you to at least give us <i>some</i> kind of clue, Vergilius?"
+      "content": "但是，維吉里烏斯。至少這點事你可以先告訴我們吧。"
     },
     {
       "id": 11,
       "model": "베르길리우스",
-      "content": "One might come to wonder why the company keeps throwing its employees into risky situations without letting them in on all available information... Ah, I can practically hear the complaints lodged in the tick-tocks of your winding clockwork."
+      "content": "公司為何不提供所有情報，只是一味將人扔進死地……哎呀，我好像聽見了滿腹牢騷的時鐘上發條的聲音呢。"
     },
     {
       "id": 12,
       "model": "베르길리우스",
-      "content": "Like it or not, this is how a bus operates, Dante:"
+      "content": "不過，所謂的巴士，本來不就是這樣的東西嗎，但丁。"
     },
     {
       "id": 13,
       "model": "베르길리우스",
-      "content": "Transporting its passengers from station to station, but not to their destinations. That last part is the responsibility of each passenger."
+      "content": "它固然樂意載你抵達想去的站點，但走到目的地跟前的那份辛勞，全得由乘客自己承擔。"
     },
     {
       "id": 14,
       "model": "베르길리우스",
-      "content": "*sigh* The ticking of your clockwork is quickening indignantly—very well, I'll dispense with the overwrought metaphors now."
+      "content": "哈，發條聲似乎變快了，這種說笑般的比喻就到此為止吧。"
     },
     {
       "id": 15,
       "model": "베르길리우스",
-      "content": "If I'm to put it more plainly..."
+      "content": "不過，若要再補充一句……"
     },
     {
       "id": 16,
       "model": "베르길리우스",
-      "content": "... The company has already taken into account all constants and variables surrounding the Golden Boughs, yes. Theoretically, should everything go according to plan, you could simply walk in and grab the Golden Bough... But there would be no point to it."
+      "content": "只是撿起整齊擺在公司早已觀測到的所有變數與常數正中央的金枝，是沒有意義的，但丁。"
     },
     {
       "id": 17,
       "model": "베르길리우스",
-      "content": "Try to question yourself why the company forwent the option of choosing a team of professionals who are less prone to... shenanigans."
+      "content": "要是那樣就夠了，公司一開始就會組一支只需身手好又沉默寡言的搜索隊了。"
     },
     {
       "id": 18,
       "model": "카론",
-      "content": "Quiet bus? No fun for Charon."
+      "content": "安靜的巴士。卡戎覺得無聊。"
     },
     {
       "id": 19,
       "model": "베르길리우스",
-      "content": "This much, however, I can tell you:"
+      "content": "不過，這句話我倒是可以先告訴你。"
     },
     {
       "id": 20,
       "model": "베르길리우스",
-      "content": "Sinner #5... was never meant to return to this District."
+      "content": "5號罪人……本來是不該再回到這裡的人。"
     },
     {
       "id": 21,
       "model": "베르길리우스",
-      "content": "Which means that everything here that is to transpire was, from the very beginning..."
+      "content": "所以這次將會發生的一切，同樣從一開始就……"
     },
     {
       "id": 22,
       "model": "베르길리우스",
-      "content": "... entirely beyond prediction."
+      "content": "想必充滿了無法預料的事吧。"
     },
     {
       "id": 23,
-      "content": "Vergilius tends to be cryptic and indirect anyway,"
+      "content": "因為他說的話大多意味深長，又不直截了當。"
     },
     {
       "id": 24,
-      "content": "so I didn't think much of it this time as well."
+      "content": "所以這次我也一樣，決定不把他補充的話放在心上。"
     },
     {
       "id": 25,
-      "content": "If by \"beyond prediction\" he meant something that might get the Sinners killed, that wasn't anything new. It was an everyday occurrence at this point, and I do have the ability to rewind them back to life, after all."
+      "content": "畢竟罪人們出乎意料的死亡早已是家常便飯，而我也擁有讓他們回溯的能力。"
     },
     {
       "id": 26,
       "model": "베르길리우스",
-      "content": "... As always."
+      "content": "就像往常一樣……我是這個意思。"
     },
     {
       "id": 27,
-      "content": "But at the time, never in my wildest dreams did I imagine that..."
+      "content": "但話雖如此，我也沒想到，連我自己都會經歷回溯……"
     },
     {
       "id": 28,
-      "content": "... I would be rewound alongside the Sinners as well."
+      "content": "當時的我完全無從得知。"
     },
     {
       "id": 29,
       "place": "14區，奶油街",
       "model": "단테",
-      "content": "<Did you know this would happen, Meursault?!>"
+      "content": "<你早就知道了嗎，莫梭？！>"
     },
     {
       "id": 30,
-      "content": "Only after hearing the feeble question leave my proverbial mouth does Meursault turn my way."
+      "content": "面對我有氣無力的提問，莫梭淡漠地點了點頭。"
     },
     {
       "id": 31,
       "model": "뫼르소",
-      "content": "I did, Manager."
+      "content": "是的。經理。"
     },
     {
       "id": 32,
-      "content": "As usual, his reply comes brief without a moment's delay."
+      "content": "簡潔的回答立即傳了回來。"
     },
     {
       "id": 33,
-      "content": "Not the slightest sign of surprise at his arrest. Not so much as a token excuse."
+      "content": "沒有絲毫慌張的神色，連一句小小的辯解都沒有補上。"
     },
     {
       "id": 34,
-      "content": "And I have no choice but to admit it—this is who he is. Always has been."
+      "content": "是啊，他就是這樣的罪人……莫梭。"
     },
     {
       "id": 35,
       "model": "파우스트",
-      "content": "In the absence of a reasonably justifiable cause, such as a contract, engaging in battle with the City's corporate entities is strongly discouraged."
+      "content": "除非有委託之類的合理理由，否則輕率的戰鬥應當被視為禁忌。"
     },
     {
       "id": 36,
       "model": "히스클리프",
-      "content": "Yeah?! And we're just supposed to twiddle our thumbs while they drag him away?!"
+      "content": "那又怎樣！那混蛋要被帶走了啊！！！"
     },
     {
       "id": 37,
       "model": "로쟈",
-      "content": "S-so where are ya taking him?"
+      "content": "要、要帶他去哪裡啊？"
     },
     {
       "id": 38,
       "model": "N사해결사1",
-      "content": "A retrial will be scheduled for the execution of the exile's sentence."
+      "content": "為了對被放逐者重新執行處分，即將開庭審判。"
     },
     {
       "id": 39,
       "model": "단테",
-      "content": "<Guys, just... just let's all calm down first.>"
+      "content": "<總之，大家先冷靜……>"
     },
     {
       "id": 40,
       "model": "단테",
-      "content": "<... Can someone ask them to explain in more detail? We need to know what exactly is going on with Meursault's trial and exile order.>"
+      "content": "<……幫我仔細問問那些人，那場審判是怎麼回事，還有放逐令又是什麼意思。>"
     },
     {
       "id": 41,
       "model": "그레고르",
-      "content": "Uh... Hang on... I don't even know where I'd begin to ask..."
+      "content": "那個……等等……該怎麼說才好……原來這就是所謂的啞口無言嗎，真是的……"
     },
     {
       "id": 42,
       "model": "N사해결사1",
-      "content": "We will now take him into custody. Please submit a formal declaration of negotiation rights at a later date should you have any objections."
+      "content": "我們將執行處分。若有問題，請於日後提交交涉權……"
     },
     {
       "id": 43,
-      "content": "Ezra, who at least had some knowledge of N Corp., stepped forward while Gregor was still ransacking his brain to find the appropriate words to ask about Meursault's trial."
+      "content": "就在格里高爾斟酌措辭時，對N公司還算有些了解的以斯拉站了出來。"
     },
     {
       "id": 44,
       "model": "에즈라먼지",
-      "content": "No, we're not objecting to anything <i>yet</i>... It's just that we're completely in the dark about what's going on here."
+      "content": "不是啦，不是說有什麼問題……只是我們完全搞不清楚這件事的來龍去脈。"
     },
     {
       "id": 45,
       "model": "N사해결사1",
-      "content": "Did the man himself tell you nothing?"
+      "content": "……當事人沒有向各位交代任何事嗎？"
     },
     {
       "id": 46,
-      "content": "For the first time, a look of puzzlement flickered across the dispassionate countenance of the N Corp. employee."
+      "content": "N公司職員的臉上這才露出了些許疑惑的神色。"
     },
     {
       "id": 47,
       "model": "에즈라먼지",
-      "content": "Well? Did he?"
+      "content": "你們有聽他說過什麼嗎？"
     },
     {
       "id": 48,
       "model": "이스마엘",
-      "content": "No. Nothing at all—I don't even recall him hinting at it."
+      "content": "完全沒有，連一丁點都沒有。"
     },
     {
       "id": 49,
       "model": "이상",
-      "content": "To our regret... Miss Ishmael speaks true."
+      "content": "很遺憾……正是如此……"
     },
     {
       "id": 50,
       "model": "N사해결사1",
-      "content": "The suspect, Meursault, disobeyed the court's permanent exile order and remained in N Corp.'s District without authorization."
+      "content": "嫌疑人莫梭。儘管目前永久放逐令已經生效，其仍涉嫌擅自滯留於N公司。"
     },
     {
       "id": 51,
       "model": "N사해결사1",
-      "content": "Annex 3 of the Eviction Regulations permits a stay of up to 6 hours to account for the possibility of transit en route to other Districts..."
+      "content": "依據附則第3條，若是為了前往其他區域而臨時滯留，可給予最多6小時的寬限，"
     },
     {
       "id": 52,
       "model": "N사해결사1",
-      "content": "But 6 hours have already passed, and we have concluded that the purpose of the suspect's visit is not a transit stay. Does the defendant have any objections regarding this?"
+      "content": "但目前已超過6小時……經確認，判定此次並非為了臨時滯留而入境。被告對此判定是否有異議？"
     },
     {
       "id": 53,
       "model": "뫼르소",
-      "content": "None."
+      "content": "沒有異議。"
     },
     {
       "id": 54,
       "model": "오티스",
-      "content": "... Wait. How did his status suddenly change from \"suspect\" to \"defendant\"?"
+      "content": "……等等，可剛才不是還是嫌疑人嗎？怎麼一轉眼就成了被告？"
     },
     {
       "id": 55,
       "model": "N사해결사1",
-      "content": "Because the indictment has been filed as we spoke."
+      "content": "因為在說話的期間，公訴程序已經完成了。"
     },
     {
       "id": 56,
@@ -274,118 +274,118 @@
     },
     {
       "id": 58,
-      "content": "Outis, who was glaring at Meursault, looked just one breath away from roaring a stream of reprimands that would probably begin with \"Imbecile! Couldn't you have forewarned us?!\" But, somehow, she managed to hold it in."
+      "content": "尤其是奧提斯，臉上一副隨時就要吐出「你這傢伙到底……！」的表情，但似乎勉強忍住了。"
     },
     {
       "id": 59,
       "model": "뉴김삿갓",
-      "content": "Mind sharing the trial date with us, at least? As we've said, the man's told us nothing, nada, zilch about this predicament."
+      "content": "那個，好歹告訴我們審判什麼時候開庭也不行嗎？你們也看到了，我們可是什～麼都沒從那傢伙嘴裡聽說啊。"
     },
     {
       "id": 60,
       "model": "이상",
-      "content": "We would like to know whether there are any requirements for entering the courtroom as observers."
+      "content": "我也想問問，出席審判是否另有條件。"
     },
     {
       "id": 61,
       "model": "N사해결사1",
-      "content": "The proceedings will convene today, in 3 hours."
+      "content": "……審判將在3小時後進行。"
     },
     {
       "id": 62,
       "model": "N사해결사1",
-      "content": "Although the trial won't be open to the public, you may, as close acquaintances of the defendant, be allowed to attend if you apply for seats in the observer gallery <i>now</i>."
+      "content": "雖然不是公開審判……但各位似乎與被告關係密切，若現在申請旁聽，應該還能到場參觀。"
     },
     {
       "id": 63,
       "model": "오티스",
-      "content": "The observer gallery... I don't assume there is any way for observers to intervene in the proceedings, correct?"
+      "content": "若只是單純參觀……也就是說，在審判過程中我們什麼都做不了。"
     },
     {
       "id": 64,
       "model": "N사해결사1",
-      "content": "Correct, as it is generally the case. I'm... not sure why you would assume otherwise, though my knowledge is limited to trial proceedings at N Corp."
+      "content": "是的，一般來說，旁聽者能做些什麼的情況反而比較少見……至少N公司的審判是如此。"
     },
     {
       "id": 65,
       "model": "로쟈",
-      "content": "W-wait! What about the jury? Can't we enter as part of the jury...?"
+      "content": "那、那個……！對了！陪審團制度呢？我們以陪審員的身分出席……"
     },
     {
       "id": 66,
       "model": "N사해결사1",
-      "content": "That option is not available."
+      "content": "並未實施。"
     },
     {
       "id": 67,
       "model": "그레고르",
-      "content": "Okay, it's a trial, and at trials, they have... Right, a lawyer. You gotta find a lawyer, don't you? Have you found a lawyer yet, Meursault?"
+      "content": "那個……莫梭先生，律師……你找到律師了嗎？"
     },
     {
       "id": 68,
       "model": "뫼르소",
-      "content": "No, I have not."
+      "content": "沒有找到。"
     },
     {
       "id": 69,
       "model": "이스마엘",
-      "content": "Are you serious? Meursault was with us the whole time. When was he supposed to get a lawyer?!"
+      "content": "他一直都跟我們在一起，然後就被抓了，怎麼可能找得到啊……！"
     },
     {
       "id": 70,
-      "content": "A very frustrated Ishmael yelled at a very flustered Gregor, who still seemed to be reeling from the shock of the news."
+      "content": "以實瑪利一臉氣悶地朝著看來腦中仍一團混亂的格里高爾喊道。"
     },
     {
       "id": 71,
       "model": "그레고르",
-      "content": "R-right, right..."
+      "content": "也、也對……是這樣沒錯……"
     },
     {
       "id": 72,
       "model": "로쟈",
-      "content": "Then... who's gonna mount a defense for him? Oh, I know—don'tcha people have something like court-appointed lawyers?"
+      "content": "那……要由誰來辯護啊？不是有那種的嘛，預設指派的律師！"
     },
     {
       "id": 73,
       "model": "N사해결사1",
-      "content": "That option is not available."
+      "content": "並未實施。"
     },
     {
       "id": 74,
       "model": "뫼르소",
-      "content": "... For this particular trial, the defendant may choose to defend himself in the absence of a lawyer."
+      "content": "……在這場審判中，若沒有另行委任律師，被告可以自行辯護。"
     },
     {
       "id": 75,
-      "content": "Meursault replied with calm and dry apathy, as though this entire affair didn't involve him at all."
+      "content": "莫梭彷彿在說別人的事，依舊平淡而沉著。"
     },
     {
       "id": 76,
       "model": "N사해결사1",
-      "content": "I believe that's sufficient explanation on the extraordinary circumstances."
+      "content": "看來關於例外情況的說明，已經相當充分了。"
     },
     {
       "id": 77,
       "model": "이스마엘",
-      "content": "Wait, we still have—"
+      "content": "不，還沒……"
     },
     {
       "id": 78,
       "model": "N사해결사1",
-      "content": "You'll need to secure a formal negotiation document if you have any remaining queries."
+      "content": "若還有其他事項，請依照程序取得核發的正式交涉權後再提出。"
     },
     {
       "id": 79,
-      "content": "The employee cut us off in the indifferent tone of an overworked drone who couldn't be bothered anymore, then began dragging Meursault away."
+      "content": "N公司的職員用疲憊不堪的語氣打斷了對話，開始拖著莫梭離開。"
     },
     {
       "id": 80,
-      "content": "Meursault simply fell into step, surrendered to the momentum of his captors' feet."
+      "content": "莫梭也順著他們牽引的慣性邁開了腳步。"
     },
     {
       "id": 81,
       "model": "돈키호테",
-      "content": "Halt, good people...! Where be this courthouse in which the trial shall take place?!"
+      "content": "且～慢……諸位老爺……！法院究竟在何處啊……！"
     },
     {
       "id": 82,
@@ -394,66 +394,66 @@
     },
     {
       "id": 83,
-      "content": "Directing a thoroughly put-upon look toward us, the employee answered Don Quixote's question with only a sigh and promptly left."
+      "content": "N公司的職員直到最後都一副嫌麻煩的樣子嘆了口氣，連唐吉訶德的話都沒回答就離開了。"
     },
     {
       "id": 84,
       "model": "돈키호테",
-      "content": "P-prithee, give us an answer at the very least!"
+      "content": "好、好歹回答一下再走啊……！"
     },
     {
       "id": 85,
       "model": "이스마엘",
-      "content": "The Collectors in T Corp. were pretty rude, too, but... these people are really something else. It's like they're passive-aggressively trying to let us know that we're being a nuisance to them."
+      "content": "T公司那邊的徵收員雖然也不怎麼親切……但這裡該怎麼說呢……已經不只是冷淡，嫌麻煩的感覺也太露骨了……"
     },
     {
       "id": 86,
       "model": "이상",
-      "content": "In T Corp., time and wealth are one and the same. One could sense the active desperation not to squander so much as a second."
+      "content": "在T公司，時間直接關係到資產，所以那裡有著片刻都不容浪費的急迫。"
     },
     {
       "id": 87,
       "model": "이상",
-      "content": "Here, however... everyone seems to be mired... in ennui."
+      "content": "然而，這裡……看來卻是一片倦怠啊。"
     },
     {
       "id": 88,
       "model": "뉴김삿갓",
-      "content": "I kept my mouth shut, because I thought it wise to watch how the situation would develop first..."
+      "content": "我是覺得與其貿然插嘴，不如在旁邊看著比較好，才一直沒吭聲……"
     },
     {
       "id": 89,
       "model": "뉴김삿갓",
-      "content": "But now I think anything we could've added afterward would've fallen on deaf ears, if it didn't provoke worse reactions. Those men seemed as uncommitted to their work as the corrupt kleptocrats of S Corp."
+      "content": "他們就跟貪官汙吏一樣，對工作看不出半點幹勁，恐怕再多說什麼，也只會多招來些壞結果罷了。"
     },
     {
       "id": 90,
       "model": "돈키호테",
-      "content": "Fie, they could have vouchsafed us an answer, at the least...! 'Tis a matter of courtesy..."
+      "content": "總該給個答覆吧……！此乃禮節問題……"
     },
     {
       "id": 91,
       "model": "에즈라먼지",
-      "content": "Ugh, forget about 'em, they'll never bother telling us. I know where the courthouse is—here, lemme draw you a map."
+      "content": "唉唷，算了！法院在哪裡我知道，我畫張路線圖給你們！"
     },
     {
       "id": 92,
       "model": "뉴앵두",
-      "content": "W-wait awhile, Lady Ezra. Let us leave the drawing of the map to the Mentor. Best you direct your attention to—"
+      "content": "且、且慢，以斯拉小姐。畫路線圖這種事，不如交給頭領……"
     },
     {
       "id": 93,
-      "content": "As the LCD trio was working on drawing a map on a piece of paper, Rodya stomped up to Faust with barely-disguised anger. There was a cold bite in her voice."
+      "content": "在LCD的人畫前往法院的路線圖時，羅佳一臉憤怒地走到浮士德面前，質問般地開口。"
     },
     {
       "id": 94,
       "model": "로쟈",
-      "content": "I have a pretty good idea of what your answer's gonna be, but I'm still gonna ask."
+      "content": "雖然大概猜得到妳會怎麼回答，但我還是得問。"
     },
     {
       "id": 95,
       "model": "로쟈",
-      "content": "Ya knew this was comin', didn'tcha, Fau? Ya knew about this crap the whole time."
+      "content": "小浮，妳早就知道了吧？知道會出這種事……"
     },
     {
       "id": 96,
@@ -463,116 +463,116 @@
     {
       "id": 97,
       "model": "로쟈",
-      "content": "Don'tcha think ya could've at least warned us about it?! Ya know perfectly well that Meur's not the type to dump his baggage on anyone!"
+      "content": "既然知道，就該先跟我們說啊！明明知道小莫不是會主動開口的人……！"
     },
     {
       "id": 98,
       "model": "파우스트",
-      "content": "Faust taking the initiative would have served no purpose."
+      "content": "就算由浮士德這邊先提起，也是沒有用的。"
     },
     {
       "id": 99,
       "model": "파우스트",
-      "content": "It never has. And it never will."
+      "content": "就像至今為止那樣，今後也是。"
     },
     {
       "id": 100,
       "model": "로쟈",
-      "content": "Ya really are... *sigh* forget it."
+      "content": "妳……！哈啊，算了。"
     },
     {
       "id": 101,
-      "content": "A tempest of a sigh tore out of Rodya's lips. She walked away from the subject, as though she had realized that pressing Faust further wouldn't go anywhere."
+      "content": "大概是覺得再追究也沒用，羅佳伴隨著暴風般的嘆息聲結束了話題。"
     },
     {
       "id": 102,
       "model": "이스마엘",
-      "content": "What's gonna happen to Meursault if... if things don't go well?"
+      "content": "……如果審判結果不好，莫梭先生會怎麼樣呢？"
     },
     {
       "id": 103,
       "model": "돈키호테",
-      "content": "Worry thee not, for I have conceived a plan."
+      "content": "吾自有計畫。"
     },
     {
       "id": 104,
       "model": "오티스",
-      "content": "... And what plan is that?"
+      "content": "……什麼計畫？"
     },
     {
       "id": 105,
       "model": "돈키호테",
-      "content": "With combined efforts, we shall defeat the armsmen of the courthouse and secure a path inside. While young Ishmael standeth guard, I alone shall most sneakily venture into the dungeons beneath! We need only young Heathcliff to purloin the key from the warden and—"
+      "content": "大家齊心協力打倒看守的武裝警衛……趁以實瑪利把風時，吾便挺身潛入地牢！只要希斯克利夫先生從警衛身上偷偷摸走鑰匙……"
     },
     {
       "id": 106,
       "model": "싱클레어",
-      "content": "Did you lift that straight from the comic book you were reading on the bus yesterday?"
+      "content": "那個……不是您昨天在巴士上讀的漫畫內容嗎？"
     },
     {
       "id": 107,
       "model": "이스마엘",
-      "content": "... Prison dungeons? In N Corp., huh? Where did you even get that bit from?"
+      "content": "還有，N公司有地牢這件事，是從哪來的情報？"
     },
     {
       "id": 108,
       "model": "돈키호테",
-      "content": "Eeep...! That's... I do conceive that strongholds are furnished with dungeons, so..."
+      "content": "呃……那是……城堡裡通常都會有所謂的地牢……"
     },
     {
       "id": 109,
       "model": "오티스",
-      "content": "And this is what I get for indulging my curiosity."
+      "content": "果然問了也是白問。"
     },
     {
       "id": 110,
       "model": "에즈라먼지",
-      "content": "Bamboo, Aeng-du, start looking for a lawyer who can represent Meursault in court. I'll contact the Team Lead, bring her up to speed, and see if she has any advice for us."
+      "content": "總之……我先聯絡隊長，大叔和櫻桃去打聽一下律師比較好。"
     },
     {
       "id": 111,
       "model": "그레고르",
-      "content": "You fellas'd do that for us? Oh boy, that'd be a great help!"
+      "content": "哦，如果你們願意這麼做，我們當然感激不盡！"
     },
     {
       "id": 112,
       "model": "파우스트",
-      "content": "... No, that'd be quite troublesome, actually."
+      "content": "……不，那樣會讓人為難。"
     },
     {
       "id": 113,
       "model": "파우스트",
-      "content": "Does the LCD team not have a different task that must be completed within the day?"
+      "content": "LCD今天應該還有其他必須處理的業務才對。"
     },
     {
       "id": 114,
       "model": "에즈라먼지",
-      "content": "Geh... I mean, yes, we do, but you're in a real pickle now and need all the help you can get if you want out of the pickle jar."
+      "content": "唔……話是這麼說沒錯……但你們現在的狀況也……"
     },
     {
       "id": 115,
       "model": "뉴김삿갓",
-      "content": "Hmm...? Do they?"
+      "content": "嗯……？是這樣嗎？"
     },
     {
       "id": 116,
       "model": "뉴김삿갓",
-      "content": "The lady said otherwise, though. Let's head back and get ready for our task."
+      "content": "既然人家這麼說，我們就先回去吧。"
     },
     {
       "id": 117,
       "model": "뉴앵두",
-      "content": "But..."
+      "content": "可是……"
     },
     {
       "id": 118,
       "model": "뉴김삿갓",
-      "content": "Didn't you hear, Aeng-du? \"Quite troublesome,\" she said. I'm not entirely certain of the predicament they face, but it seems that the stones on their board must do without our advice."
+      "content": "櫻桃啊，人家不是說會為難嗎？雖然不太清楚，但看來是我們不該在旁邊出主意的情況啊。"
     },
     {
       "id": 119,
       "model": "뉴앵두",
-      "content": "Is that truly the reason that you wish to withhold our advice, Mentor?"
+      "content": "您真的是因為這個緣故嗎，頭領？"
     },
     {
       "id": 120,
@@ -581,80 +581,80 @@
     },
     {
       "id": 121,
-      "content": "Ezra furrowed her brows in consternation at Kim's comment... but eventually, she relented with a sigh. She shook her head in defeat."
+      "content": "聽了金笠的話，以斯拉緊緊皺起眉頭苦惱了一陣……隨即重重嘆了口氣，搖了搖頭。"
     },
     {
       "id": 122,
       "model": "에즈라먼지",
-      "content": "... Fine. You're sayin' this is LCB's responsibility—okay. Then we'll leave it up to you guys, but be sure to call for us when things go south, got it?"
+      "content": "……好吧，意思是從這裡開始就是LCB的領域了吧？我們先走了，但要是遇到麻煩，一定要聯絡我們。"
     },
     {
       "id": 123,
       "model": "파우스트",
-      "content": "... We will."
+      "content": "……好的，我們會的。"
     },
     {
       "id": 124,
-      "content": "With the LCD leaving us for their own task..."
+      "content": "就這樣，在LCD為了執行其他任務而離開後……"
     },
     {
       "id": 125,
-      "content": "Faust slowly opened her mouth amid the piercing glares from the other Sinners."
+      "content": "在罪人們刺人的目光中，浮士德沉著地開了口。"
     },
     {
       "id": 126,
       "model": "파우스트",
-      "content": "Faust is not without a plan."
+      "content": "……浮士德有個計畫。"
     },
     {
       "id": 127,
       "model": "이스마엘",
-      "content": "Sure you aren't. Would be nice if you let us in on it for a change."
+      "content": "就是那個我們完全不知情的計畫吧。"
     },
     {
       "id": 128,
       "model": "이스마엘",
-      "content": "*sigh* But you can't, because of <i>that</i> clause in our contract that says you're forbidden from going out of your way to tell the rest of us about a Sinner's past, right?"
+      "content": "呼……這次也是因為那條條款嗎？就是浮士德小姐不能主動說出罪人們過去的那一條。"
     },
     {
       "id": 129,
       "model": "파우스트",
-      "content": "Yes. That seems to be the case."
+      "content": "是的，似乎是這樣呢。"
     },
     {
       "id": 130,
       "model": "오티스",
-      "content": "Why did you reject the LCD's offer of assistance?"
+      "content": "拒絕LCD協助的理由是什麼？"
     },
     {
       "id": 131,
       "model": "파우스트",
-      "content": "For lack of any meaningful help they could provide, given the nature of this trial. Faust's analysis concludes their presence in the courtroom will only prove to be a deterrent to our mission."
+      "content": "基於此次審判的特性，他們無法提供有意義的幫助。浮士德的判斷是，他們反而很可能會成為阻礙。"
     },
     {
       "id": 132,
       "model": "단테",
-      "content": "<Fine. So just what exactly are you plannin—>"
+      "content": "<那計畫的說明呢……>"
     },
     {
       "id": 133,
       "model": "파우스트",
-      "content": "... The present time constraints will not permit us the luxury of holding a briefing session."
+      "content": "……恐怕沒有時間讓我們在說明上耽擱了。"
     },
     {
       "id": 134,
       "model": "돈키호테",
-      "content": "A mere 3 hours remain until the trial doth convene... Ah, verily, we are in a race against time."
+      "content": "既然說是三小時後……唔呃，時間當真所剩無幾了啊。"
     },
     {
       "id": 135,
       "model": "파우스트",
-      "content": "First... Let us head to the courthouse. The plan will become clear soon after our arrival..."
+      "content": "首先……請各位前往法院吧。至於計畫，就算不加以說明……"
     },
     {
       "id": 136,
       "model": "파우스트",
-      "content": "... without requiring any elaboration."
+      "content": "到了法庭上，馬上就能明白了。"
     }
   ]
 }

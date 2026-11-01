@@ -2,110 +2,110 @@
   "dataList": [
     {
       "id": 0,
-      "place": "유치원 조리실?",
+      "place": "幼稚園 廚房？",
       "model": "유리",
       "title": "營養師",
-      "content": "아, 10구의 봉이 경호단이군요!"
+      "content": "啊，是10區的小鳳警衛隊呢！"
     },
     {
       "id": 1,
       "model": "단테",
-      "content": "<Just what the hell are these things...? Why do they explode into a bunch of what looks like... casino chips?>"
+      "content": "<它們掉了一大堆像賭場籌碼的東西……這些到底是什麼啊……>"
     },
     {
       "id": 2,
       "model": "유리",
       "title": "營養師",
-      "content": "오… 혹시 주워 왔을까요?"
+      "content": "噢……你們有撿回來嗎？"
     },
     {
       "id": 3,
       "model": "이스마엘만우",
-      "content": "Yesh! Thiiiiis much chips!"
+      "content": "有！窩撿了這——麼多回來！"
     },
     {
       "id": 4,
-      "content": "Ishmael confidently unloaded a whole bag of casino chips on the table."
+      "content": "以實瑪利得意洋洋地回答，一邊把籌碼嘩啦啦地倒在餐桌上。"
     },
     {
       "id": 5,
       "model": "히스클리프만우",
-      "content": "Ooooh... Shiny!"
+      "content": "哦哦……亮晶晶！"
     },
     {
       "id": 6,
       "model": "이스마엘만우",
-      "content": "Did I do good, Miss Yuri? Capain din't even get half of half of me!"
+      "content": "老師，我很厲害吧？李箱哥哥說他連我的一半的一半都沒撿到！"
     },
     {
       "id": 7,
       "model": "이상만우",
-      "content": "Mmhm... I am... ashamed, Yur—Miss Yuri."
+      "content": "唔嗯……無顏以對……啦……老師。"
     },
     {
       "id": 8,
       "model": "이스마엘만우",
-      "content": "Yah? Yah?"
+      "content": "果然捏，果然捏。"
     },
     {
       "id": 9,
       "model": "이스마엘만우",
-      "content": "So I'm da reeal Cheery Chickies captain material then him, right~?"
+      "content": "窩比他更適合當小雞班的班長吧～"
     },
     {
       "id": 10,
       "model": "이스마엘만우",
-      "content": "Right right? Sinclair, agree wif me."
+      "content": "對吧、對吧？辛克萊，快縮對啦。"
     },
     {
       "id": 11,
       "model": "싱클레어만우",
-      "content": "Uh... Thas... Huh?!"
+      "content": "呃……那鍋……咦？！"
     },
     {
       "id": 12,
       "model": "히스클리프만우",
-      "content": "Heh heh! Is mine!"
+      "content": "嘿嘿！歸希斯了！"
     },
     {
       "id": 13,
-      "place": "Kindergarten Kitchen?",
-      "content": "Out of nowhere, Heathcliff appeared and, after shoving the chips on the table into his own bag, ran away."
+      "place": "幼稚園 廚房？",
+      "content": "就在辛克萊不知所措的時候，希斯克利夫突然衝了出來，把餐桌上的籌碼一把掃走。"
     },
     {
       "id": 14,
       "model": "이스마엘만우",
-      "content": "Huh!? Hey, staaahp!"
+      "content": "咦？！喂，還不給我站住？！"
     },
     {
       "id": 15,
-      "content": "... And before I could even make an attempt to reconcile them, Ishmael leaped up and chased after Heathcliff, knocking over various knick-knacks in the chaos."
+      "content": "……還來不及阻止，以實瑪利就乒乒乓乓地追著希斯克利夫跑了出去。"
     },
     {
       "id": 16,
-      "place": "Kindergarten Kitchen?",
+      "place": "幼稚園 廚房？",
       "model": "이상만우",
-      "content": "... Still... ashamed, Dant—Big Teesh."
+      "content": "……依然無顏以對……啦。"
     },
     {
       "id": 17,
       "model": "단테",
-      "content": "<Don't be, you're doing your best...>"
+      "content": "<不會啦，你辛苦了……>"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<Speaking of which, what's the point of collecting all these chips? They're not ingredients, are they?>"
+      "content": "<不過，這些籌碼又不是食材，為什麼要收集這麼多？>"
     },
     {
       "id": 19,
       "model": "유리",
       "title": "營養師",
-      "content": "모르셨군요? 이건 포장을 뜯으면…"
+      "content": "您不知道呀？這個只要把包裝撕開……"
     },
     {
       "id": 20,
-      "content": "Miss Yuri flipped the chip one way and the other, and upon finding purchase, pulled the wrapping apart—revealing a small, thin coin of chocolate within."
+      "content": "尤莉老師窸窸窣窣地擺弄籌碼，沒多久，裡面就露出了一片又薄又圓的巧克力。"
     },
     {
       "id": 21,
@@ -115,52 +115,52 @@
     {
       "id": 22,
       "model": "싱클레어만우",
-      "content": "Bwo, you know this befo?"
+      "content": "大鍋，你機道這個嗎？！"
     },
     {
       "id": 23,
       "model": "이상만우",
-      "content": "Ha ha. Indeed. I mean, yah."
+      "content": "呵呵。那是自然。不對，當然囉。"
     },
     {
       "id": 24,
       "model": "유리",
       "title": "營養師",
-      "content": "잘했어요, 병아리 반. 10구 봉이 들의 습성을 잘 파악하고 있었네요!"
+      "content": "做得很好，小雞班。你們把10區小鳳們的習性摸得很清楚呢！"
     },
     {
       "id": 25,
       "model": "유리",
       "title": "營養師",
-      "content": "그런데… 요리할 사람이 둘밖에 남지 않았는데… 우리 어린이들, 괜찮아요?"
+      "content": "不過……要做菜的人只剩下兩個了……小朋友們，沒問題嗎？"
     },
     {
       "id": 26,
       "model": "이상만우",
-      "content": "Trul— Uh, yah."
+      "content": "何須多問……啦。"
     },
     {
       "id": 27,
       "model": "이상만우",
-      "content": "'Cuz I have a super top secret recipeh."
+      "content": "因為窩有祕藏的四——譜。"
     },
     {
       "id": 28,
-      "content": "Super top secret recipe...?"
+      "content": "祕藏的食譜……？"
     },
     {
       "id": 29,
       "model": "이상만우",
-      "content": "Lil' Youth, first, the Bongy is to be..."
+      "content": "賢弟啊，先把小鳳……"
     },
     {
       "id": 30,
-      "content": "Then..."
+      "content": "過了一會兒……"
     },
     {
       "id": 31,
       "model": "이상만우",
-      "content": "Ah, it is done... zo."
+      "content": "好了，大功告成……了啦。"
     },
     {
       "id": 32,
@@ -170,68 +170,68 @@
     {
       "id": 33,
       "model": "단테",
-      "content": "<This is...?>"
+      "content": "<這是……>"
     },
     {
       "id": 34,
       "model": "이상만우",
-      "content": "Diwwide up Bongy, add water, mix in carrots, potates... gronions and garlic..."
+      "content": "把小鳳好好分開放進水裡，再加紅蘿蔔跟馬鈴蘇。蔥蔥跟蒜頭也一起放進去……"
     },
     {
       "id": 35,
       "model": "이상만우",
-      "content": "Gawnish wib lotsa caseeno chips—then iss ready for eats."
+      "content": "最後堆上賭——場籌碼完成的。"
     },
     {
       "id": 36,
       "model": "이상만우",
-      "content": "Heh. Behol—lookie, \"Whole Bongy Stew.\""
+      "content": "呵。這是「整隻小鳳」……喔。"
     },
     {
       "id": 37,
-      "content": "I thought I glimpsed the sorrowful indignation of a Bongy underneath the viscously boiling, bubbling surface of melted chocolate..."
+      "content": "融化的巧克力黏糊糊地咕嘟咕嘟滾著，那模樣之中，似乎隱約閃過小鳳悲傷的表情。"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<Are you sure this is edible?>"
+      "content": "<這個……真的沒問題嗎？>"
     },
     {
       "id": 39,
       "model": "이상만우",
-      "content": "Uhh... Is it... unideal...?"
+      "content": "呃……不……理想嗎……？"
     },
     {
       "id": 40,
-      "content": "... At my blunt assessment, Yi Sang's eyes began to tremble as though he was about to start tearing up."
+      "content": "……李箱像是被我的話打擊到了，一副隨時都會哭出來的表情。"
     },
     {
       "id": 41,
       "model": "단테",
-      "content": "<N-no, it's... I mean...>"
+      "content": "<啊、不是……那、那個……>"
     },
     {
       "id": 42,
       "model": "유리",
       "title": "營養師",
-      "content": "음~ 너무 잘 만들었어요, 이상 어린이!"
+      "content": "嗯～做得太棒了，李箱小朋友！"
     },
     {
       "id": 43,
       "model": "이상만우",
-      "content": "Twuly...?"
+      "content": "此話……當真……？"
     },
     {
       "id": 44,
       "model": "유리",
       "title": "營養師",
-      "content": "그럼요, 끈덕지고 농후한 이 국물, 그리고 완벽하게 익은 이 재료들을 보세요!"
+      "content": "當然囉，看看這黏稠濃郁的湯汁，還有這些煮得恰到好處的食材！"
     },
     {
       "id": 45,
       "model": "유리",
       "title": "營養師",
-      "content": "어린이 친구 둘이서 만들기에는 쉽지 않았을 텐데, 참 잘했어요!"
+      "content": "只有兩位小朋友一起做，應該很不容易，真的很棒喔！"
     },
     {
       "id": 46,
@@ -241,34 +241,34 @@
     {
       "id": 47,
       "model": "이상만우",
-      "content": "Iss ideal..."
+      "content": "可真素理想啊……"
     },
     {
       "id": 48,
-      "content": "Miss Yuri quietly walked up next to me as I watched the two children cheerfully celebrate their culinary success."
+      "content": "我看著孩子們感動地相視而笑時，尤莉老師悄悄走了過來。"
     },
     {
       "id": 49,
       "model": "유리",
       "title": "營養師",
-      "content": "선생님, 아이들이 협력해서 성공했는데 맛이 그렇게 중요하진 않을 거예요."
+      "content": "老師，孩子們同心協力做成功了，味道應該沒那麼重要啦。"
     },
     {
       "id": 50,
       "model": "유리",
       "title": "營養師",
-      "content": "저는 그저 아이들이 다치지 않고, 잘 해냈다는 데에 기쁠 뿐이랍니다."
+      "content": "我只是很高興孩子們沒有受傷，還順利完成了呢。"
     },
     {
       "id": 51,
       "model": "단테",
-      "content": "<Wow, I hadn't thought about it like that... I've still got a lot to learn.>"
+      "content": "<我都沒想到這一點……是我考慮不周了。>"
     },
     {
       "id": 52,
       "model": "유리",
       "title": "營養師",
-      "content": "물론, 초콜릿이 잔뜩 스며든 봉이는 당연히 맛있겠지만요!"
+      "content": "當然，吸飽巧克力的小鳳肯定很好吃就是了！"
     },
     {
       "id": 53,
@@ -279,29 +279,29 @@
       "id": 54,
       "model": "유리",
       "title": "營養師",
-      "content": "그런 말도 있죠. 초콜릿만 있다면 신발도 맛있게 먹을 수 있다."
+      "content": "不是有句話這麼說嗎？只要有巧克力，連鞋子都能吃得津津有味。"
     },
     {
       "id": 55,
       "model": "단테",
-      "content": "<I've heard that one, but pretty sure it was something about deep-frying...>"
+      "content": "<好像跟我知道的那句有點不一樣……>"
     },
     {
       "id": 56,
-      "content": "Well, no point in arguing about quotes and attributions I only remember vaguely."
+      "content": "事到如今，也沒必要拿我模糊的常識來比較了吧。"
     },
     {
       "id": 57,
-      "content": "It's a bit too late to question the way things are in this institution."
+      "content": "在這裡就是這樣吧。"
     },
     {
       "id": 58,
-      "content": "In any case, Miss Yuri will finally get the chance to tast—"
+      "content": "總之，這下尤莉老師也終於能第一次嚐到味……"
     },
     {
       "id": 59,
       "model": "이스마엘만우",
-      "content": "Hey! Stop runnin'!"
+      "content": "啊，叫你站住啦！！！"
     },
     {
       "id": 60,
@@ -310,32 +310,32 @@
     },
     {
       "id": 61,
-      "content": "Just then, the sound of hurried footsteps came rushing in from the distance..."
+      "content": "就在這時，遠處傳來一陣咚咚咚咚的腳步聲……"
     },
     {
       "id": 62,
-      "content": "... with Heathcliff bursting into the cafeteria from the opposite hallway."
+      "content": "希斯克利夫從另一頭的走廊飛也似地衝進了餐廳。"
     },
     {
       "id": 63,
-      "content": "Trailing behind him was a seething Ishmael, her yells ringing out in anger."
+      "content": "後頭則傳來以實瑪利氣喘吁吁、滿是怒火的聲音……"
     },
     {
       "id": 64,
       "model": "이스마엘만우",
-      "content": "Ugh... I said staaahp!"
+      "content": "你這……給我站住！"
     },
     {
       "id": 65,
-      "content": "Without warning, a slipper shot out of the darkness, aimed at Heathcliff, who was still on the run."
+      "content": "大概是想砸中一直逃竄的希斯克利夫吧，一隻拖鞋突然從暗處飛了過來。"
     },
     {
       "id": 66,
-      "content": "And the said slipper happened to land..."
+      "content": "拖鞋的落點是……"
     },
     {
       "id": 67,
-      "content": "*crash* *shatter*"
+      "content": "哐啷啷啷！"
     },
     {
       "id": 68,
@@ -350,53 +350,53 @@
     {
       "id": 70,
       "model": "히스클리프만우",
-      "content": "Heheh! Missed! Missed!"
+      "content": "嘻嘻，打不中！打不中！"
     },
     {
       "id": 71,
-      "content": "... right on the Cheery Chickies' \"Whole Bongy Stew.\""
+      "content": "小雞班的「整隻小鳳」上……"
     },
     {
       "id": 72,
       "model": "이상만우",
-      "content": "... Big Teesh Dante..."
+      "content": "……但丁園長……"
     },
     {
       "id": 73,
-      "content": "Tears welled up in Yi Sang's eyes, threatening to spill over."
+      "content": "李箱的雙眼早已噙滿了淚水。"
     },
     {
       "id": 74,
       "model": "이스마엘만우",
-      "content": "*huff* *huff* You... Huuh...?!"
+      "content": "呼、呼……你……咦？！"
     },
     {
       "id": 75,
       "model": "이상만우",
-      "content": "Nuh-uh... this... is not ideal...!"
+      "content": "這……豈不是不理想嘛……"
     },
     {
       "id": 76,
       "model": "싱클레어만우",
-      "content": "... That wasn nice at all, Ishmael!"
+      "content": "……以斯瑪利。再怎麼說，這樣也不對。"
     },
     {
       "id": 77,
       "model": "싱클레어만우",
-      "content": "Bwo and I did lotsa work on this! Lots and lots..."
+      "content": "大鍋跟我……有多……努力……"
     },
     {
       "id": 78,
       "model": "이상만우",
-      "content": "... Plis... scold her..."
+      "content": "……幫偶……罵罵她……"
     },
     {
       "id": 79,
-      "content": "I let my gaze wander from one mess to the next. Bits of food were strewn all over the place, with Yi Sang on the verge of bursting into tears."
+      "content": "我……望向一片狼藉的菜餚、快要哭出來的李箱。"
     },
     {
       "id": 80,
-      "content": "Stomping his feet, Sinclair advanced toward an extremely flustered Ishmael, while Heathcliff, smirking and giggling, was peeking in from behind the door."
+      "content": "氣呼呼地踏著重重的腳步、朝慌張的以實瑪利走去的辛克萊，還有在走廊門縫後嘻嘻哈哈、偷偷看著我們的希斯克利夫。"
     },
     {
       "id": 81,
@@ -406,16 +406,16 @@
     },
     {
       "id": 82,
-      "content": "And there at the end of my line of sight stood Miss Yuri, who, somehow, still managed to keep a sweet and pleasant smile—though the ominous vein twitching on her forehead was somewhat worrying."
+      "content": "接著，再看了一眼笑容雖然還沒消失、額頭上卻開始浮出青筋的尤莉老師之後……"
     },
     {
       "id": 83,
-      "content": "There was only one thing left to be said:"
+      "content": "這麼說道。"
     },
     {
       "id": 84,
       "model": "단테",
-      "content": "<Time-out chair!>"
+      "content": "<坐反省椅！>"
     },
     {
       "id": 85,
@@ -423,74 +423,74 @@
     },
     {
       "id": 86,
-      "place": "Limbus Kindergarten?",
+      "place": "邊獄幼稚園？",
       "model": "단테",
-      "content": "<Do you still want to continue this cooking contest?>"
+      "content": "<這場料理對決還有必要繼續下去嗎？>"
     },
     {
       "id": 87,
       "model": "단테",
-      "content": "<The other classes are practically finished. And I don't mean that in a good way. At this point, honestly, you'd win even if you served raw, unseasoned chicken just like that.>"
+      "content": "<跟你們競爭的兩個班都已經搞砸了……就算端出生的小鳳也贏定了吧。>"
     },
     {
       "id": 88,
       "model": "파우스트만우",
-      "content": "Paus thinks Big Teach's comment is far fwom appropriate."
+      "content": "浮ㄙ德認為，園長大銀說這種話很不素當。"
     },
     {
       "id": 89,
       "model": "파우스트만우",
-      "content": "This is an important moment of core ability development for childre—"
+      "content": "這種時候，為了涵養兒童的核心素養……"
     },
     {
       "id": 90,
       "model": "파우스트만우",
-      "content": "... Um, kids... havta gwow... gwow up better, and..."
+      "content": "……嗯，呃……讓小朋……友們……可以頭好……壯壯……地長大……"
     },
     {
       "id": 91,
       "model": "단테",
-      "content": "<... Sorry, but why are you suddenly changing the way you talk?>"
+      "content": "<……你怎麼又在改說法了？>"
     },
     {
       "id": 92,
       "model": "파우스트만우",
-      "content": "Paus has realized that Paus's diction is rather too sofisticated to make conversation with those who—as in, other peeple."
+      "content": "因為浮ㄙ德發現，浮ㄙ德想到的詞彙太高層次了，跟他者……跟別銀說話會變得很困難。"
     },
     {
       "id": 93,
       "model": "단테",
-      "content": "<W-well, I like to think I can still get what you're saying... so... just be your usual self.>"
+      "content": "<大、大概還聽得懂啦……放輕鬆說就好。>"
     },
     {
       "id": 94,
       "model": "파우스트만우",
-      "content": "Out of the question. Paus is the Class Captain of Early Elephants."
+      "content": "不行。浮ㄙ德可是大象班的班長。"
     },
     {
       "id": 95,
       "model": "파우스트만우",
-      "content": "The Class Captain is responsible for ensuring that every registered membe—um, kids..."
+      "content": "班長要讓班上的全體成員……嗯，讓大家。"
     },
     {
       "id": 96,
       "model": "파우스트만우",
-      "content": "... can smoothly absorb every given piece of information and receive an experience-based education without obstacl—uh..."
+      "content": "在資訊習得不受阻礙的情況下，順利達成以經驗學習為基礎的教育……啊……"
     },
     {
       "id": 97,
       "model": "단테",
-      "content": "<You mean you wanna use simpler words so other kids can have an easier time understanding you?>"
+      "content": "<意思是要用其他小朋友容易聽懂的話來說，才不會有問題，對吧？>"
     },
     {
       "id": 98,
       "model": "파우스트만우",
-      "content": "That is a cowect summary."
+      "content": "總結起來，素這樣沒錯。"
     },
     {
       "id": 99,
       "model": "단테",
-      "content": "<... Right. Glad to know Early Elephants' Class Captain is so mature and dependable.>"
+      "content": "<……這樣啊。不愧是班長，又懂事又有責任感呢。>"
     },
     {
       "id": 100,
@@ -499,7 +499,7 @@
     },
     {
       "id": 101,
-      "content": "Faust wasn't one to show her feelings openly, but I could sense a subtle hint of satisfaction on her face—and that was good enough for me."
+      "content": "雖然她不是情緒會寫在臉上的孩子，但看起來莫名有些得意，這樣就夠了吧。"
     },
     {
       "id": 102,
@@ -514,54 +514,54 @@
     },
     {
       "id": 104,
-      "content": "Miss Charon is in charge of two classes on top of the children's pick-ups and drop-offs, so I don't get to see her most days."
+      "content": "卡戎老師負責兩個班，還得負責接送孩子們上下學……難怪很少有機會見到她。"
     },
     {
       "id": 105,
       "model": "단테",
-      "content": "<Are the Terror T-rexes not joining today's class?>"
+      "content": "<啊，暴龍班今天好像不參加課程呢。>"
     },
     {
       "id": 106,
       "model": "카론",
       "title": "司機",
-      "content": "응. 티라노 반, 원외 위탁 수업."
+      "content": "嗯。暴龍班，園外委託課程。"
     },
     {
       "id": 107,
       "model": "카론",
       "title": "司機",
-      "content": "지금도, 데려다 주고 오는 길."
+      "content": "現在，也是剛送完回來。"
     },
     {
       "id": 108,
       "model": "단테",
-      "content": "<Always got a lot on your plate, I see.>"
+      "content": "<您辛苦了……>"
     },
     {
       "id": 109,
-      "content": "Which Sinnerlings were in Terror T-rexes again...? I sure hope they don't trip and hurt themselves out there."
+      "content": "暴龍班有哪些罪園生來著？希望他們在外面別受傷才好。"
     },
     {
       "id": 110,
       "model": "카론",
       "title": "司機",
-      "content": "걱정. 필요 없어, 원장님."
+      "content": "擔心。不需要，園長。"
     },
     {
       "id": 111,
       "model": "카론",
       "title": "司機",
-      "content": "공룡. 짱짱 쎄."
+      "content": "恐龍。超級強。"
     },
     {
       "id": 112,
       "model": "단테",
-      "content": "<Oh, you're right. Dinosaurs are really strong.>"
+      "content": "<啊，也對。恐龍很強，所以沒問題吧？>"
     },
     {
       "id": 113,
-      "content": "I was still in the middle of a conversation with Miss Charon when I saw a Sinnerling slowly making her way back, lazily swinging her elephant-shaped bag."
+      "content": "就這樣和卡戎老師聊了一會兒，遠處有個罪園生甩著大象包包，拖著腳步走了回來。"
     },
     {
       "id": 114,
@@ -571,119 +571,119 @@
     {
       "id": 115,
       "model": "료슈만우",
-      "content": "D.A.Y.S. Those District-11 fings are swaming in."
+      "content": "照．說．做．了。11區那些傢伙暈頭轉向地湧過來了。"
     },
     {
       "id": 116,
       "model": "파우스트만우",
-      "content": "Hmm. You did well."
+      "content": "嗯。很好。"
     },
     {
       "id": 117,
       "model": "홍루만우",
-      "content": "Wowzers! That's weally cool, Captain~ Gwanny said Bongy Secuwity Agents never move fwom their spot, not even a step!"
+      "content": "真的好神奇喔，班長～照奶奶縮的，小鳳隊員們連一步都不會離開自己守的地方耶！"
     },
     {
       "id": 118,
       "model": "파우스트만우",
-      "content": "That should have been the case, yes."
+      "content": "照理來說，是這樣沒錯。"
     },
     {
       "id": 119,
       "model": "파우스트만우",
-      "content": "But Paus knows it all."
+      "content": "但是浮ㄙ德全都知道。"
     },
     {
       "id": 120,
       "model": "파우스트만우",
-      "content": "Paus knows the one and only modus that would spur dem into action."
+      "content": "能讓小鳳隊員們行動的唯一機轉。"
     },
     {
       "id": 121,
       "model": "료슈만우",
-      "content": "What's M.O.D.U.S., Captin?"
+      "content": "機．轉．是啥。班長。"
     },
     {
       "id": 122,
       "model": "홍루만우",
-      "content": "I don't think it's an acwonym, Ryōshū~"
+      "content": "那好像不是縮寫喔，良秀～"
     },
     {
       "id": 123,
       "model": "파우스트만우",
-      "content": "... \"the one and only way.\""
+      "content": "……唯一的方法。"
     },
     {
       "id": 124,
       "model": "료슈만우",
-      "content": "Don't make me ask W.Y.M. in the first place, Captin."
+      "content": "一開始就給我講得聽．得．懂．點，班長。"
     },
     {
       "id": 125,
       "model": "단테",
-      "content": "<... And what's that?>"
+      "content": "<……所以，是什麼方法？>"
     },
     {
       "id": 126,
       "model": "파우스트만우",
-      "content": "... Break a Tab—no, um..."
+      "content": "那就是，禁忌……不對……嗯。"
     },
     {
       "id": 127,
       "model": "파우스트만우",
-      "content": "... Bweak promises by doing mean things."
+      "content": "……只要做壞事、不遵守約定就好了。"
     },
     {
       "id": 128,
       "model": "단테",
-      "content": "<Ah. You mean break a Taboo.>"
+      "content": "<啊哈，是說打破禁忌啊。>"
     },
     {
       "id": 129,
       "model": "단테",
-      "content": "<But... are Taboos even meant to be broken in the first place...?>"
+      "content": "<不過……禁忌這種東西，不是不能違反的嗎……？>"
     },
     {
       "id": 130,
       "model": "료슈만우",
-      "content": "No. Ubless you a S.I."
+      "content": "要不是笨．蛋的話，是那樣沒錯。"
     },
     {
       "id": 131,
       "model": "파우스트만우",
-      "content": "Ryōshū. You shouldn't speak to the principal that way. Twy again."
+      "content": "良秀。對園長沒大沒小是不乖的。"
     },
     {
       "id": 132,
       "model": "료슈만우",
-      "content": "... *sigh* No, <i>Pwincipal.</i>"
+      "content": "……哈啊。您說得……是呢？"
     },
     {
       "id": 133,
       "model": "단테",
-      "content": "<D-don't mind me, I'm fine...>"
+      "content": "<啊，不用啦。沒關係……>"
     },
     {
       "id": 134,
-      "content": "Pretty sure this is the first time she's referred to me by my actual title..."
+      "content": "總覺得聽到了平常聽不到的話……"
     },
     {
       "id": 135,
       "model": "단테",
-      "content": "<A-anyway... So how do you think we should break a Taboo...?>"
+      "content": "<總、總之……那要怎麼打破禁忌……>"
     },
     {
       "id": 136,
       "model": "파우스트만우",
-      "content": "Come here, Big Teach."
+      "content": "請過來。園長。"
     },
     {
       "id": 137,
-      "content": "Faust clenched her sponge sword a little tighter, her gaze pinned to a spot."
+      "content": "浮士德望著某處，緊緊握住手中的海綿劍。"
     },
     {
       "id": 138,
-      "content": "Naturally, my eyes followed hers..."
+      "content": "於是，我也朝那邊望去。"
     },
     {
       "id": 139,
@@ -692,49 +692,49 @@
     },
     {
       "id": 140,
-      "content": "... and through the billowing haze of dust rising into the air,"
+      "content": "在漫天飛揚的塵土之間，映入眼簾的是……"
     },
     {
       "id": 141,
       "model": "단테",
-      "content": "<Oh. I think I get it now.>"
+      "content": "<啊，我好像知道是怎麼回事了。>"
     },
     {
       "id": 142,
       "model": "돈키호테만우",
-      "content": "Jussis!!!"
+      "content": "正一！！！！！！！！"
     },
     {
       "id": 143,
-      "content": "I saw Don Quixote, sprinting toward us with her balloon lance held up high,"
+      "content": "是高舉著氣球長槍奔跑而來的唐吉訶德。"
     },
     {
       "id": 144,
-      "content": "with something that looked like a tattered rag flapping from the tip of the spear."
+      "content": "長槍的尖端……有個像破布一樣的東西在飄動。"
     },
     {
       "id": 145,
       "model": "파우스트만우",
-      "content": "Tearing away the tent that serves as the Bongy habita—as in, the tent where they live, would be a Tab... uh, a mean thing to do."
+      "content": "撕破小鳳們的棲息……不對，住的地方的帳篷，是禁……壞事。"
     },
     {
       "id": 146,
       "model": "파우스트만우",
-      "content": "Don Quixote, Paus new you could do it."
+      "content": "就知道唐吉訶德做得到的。"
     },
     {
       "id": 147,
       "model": "돈키호테만우",
-      "content": "Jussis!! Jussis!!"
+      "content": "正一！正一！"
     },
     {
       "id": 148,
       "model": "단테",
-      "content": "<Good grief...>"
+      "content": "<天啊……>"
     },
     {
       "id": 149,
-      "content": "I pressed a hand to my \"forehead\" as I felt all sense of reason leaving me—but it did nothing to keep the coming chaos from crashing in."
+      "content": "就算我啞口無言地扶住額頭，逼近的混亂似乎也不會就此消失。"
     }
   ]
 }

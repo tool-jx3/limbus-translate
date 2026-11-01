@@ -134,7 +134,7 @@
     {
       "id": 9416,
       "name": "完全性",
-      "desc": "If the ally wins a Clash using a Skill that inflicts [Laceration] Potency, Count, or 'Unique Bleed', inflict 2~3 [NailPersonality].\n\n'N Corp. Fanatic' Identities deal +25% damage against enemies and gain 1 Fanatic at Turn Start. If the said ally's SP is maxed, or if a 3+ Lust Reson. was formed last turn, the said ally additionally gains 3 [AttackDmgUp].\n\n'N Corp. Fanatic' Identities gain Final Power +2, Plus Coin Power +1, Minus Coin Power -1, and their Attack Skills inflict +1 more [NailPersonality].\n\n'N Corp. Fanatic' Identities deal +50% damage against <Mechanical Amalgam> enemies with Base Skills",
+      "desc": "友方單位使用增加 [Laceration] 強度、[Laceration] 回數或施加特殊流血的技能與敵方單位拚點勝利時，對目標施加2～3層 [NailPersonality]。\n\n屬於N公司狂信徒的人格攻擊敵方單位時造成的傷害+25%，並在回合開始時獲得1層狂信。若該人格的理智值為最大值，或上回合達成3個以上的色慾共鳴，則額外使其獲得3層 [AttackDmgUp]。\n\n屬於N公司狂信徒的人格獲得最終威力+2、加算硬幣威力+1、減算硬幣威力-1，攻擊技能施加的 [NailPersonality] 層數額外+1層。\n\n屬於N公司狂信徒的人格使用基礎技能對<機械融合生命體>敵方單位造成的傷害+50%",
       "simpleDesc": [
         {
           "abilityID": 9416,
@@ -278,7 +278,7 @@
         },
         {
           "abilityID": 94332,
-          "simpleDesc": "[Vibration] Potency on the Staggered target increases by x2"
+          "simpleDesc": "使陷入混亂的目標所帶有的震顫強度變為2倍"
         }
       ]
     }

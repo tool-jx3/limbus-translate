@@ -18,7 +18,7 @@
     {
       "id": 853904,
       "name": "虛榮心",
-      "desc": "Gain 2 <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u> at the start of Turn 1 (max 6)\nGain additional <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u> equal to the number of \"Cycle Counts\"\nGain <sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">Protection</color></link></u> equal to <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u>\nIf \"Waiting Skill\" is slotted, summon Old Umbrella equal to <sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">Protection Umbrella</color></link></u>"
+      "desc": "首個回合開始時，獲得2層<sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">保護傘</color></link></u>。(最多6層)\n獲得<sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">保護傘</color></link></u>時，額外獲得與「巡迴數」等量的層數。\n根據帶有的<sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">保護傘</color></link></u>層數，獲得相應層數的<sprite name=\"Protection\"><color=#f8c200><u><link=\"Protection\">守護</color></link></u>\n「等待」技能位於行動槽時，根據<sprite name=\"WaveFoxUmbrella\"><color=#f8c200><u><link=\"WaveFoxUmbrella\">保護傘</color></link></u>層數，召喚相應數量的舊傘"
     },
     {
       "id": 853905,
@@ -68,7 +68,7 @@
     {
       "id": 854202,
       "name": "誘人的精靈酒",
-      "desc": "When Fairy Wine is on the field, all Parts gain 5 <sprite name=\"Binding\"><color=#e30000><u><link=\"Binding\">Bind</color></link></u>"
+      "desc": "精靈酒在場時，所有部位獲得5層<sprite name=\"Binding\"><color=#e30000><u><link=\"Binding\">束縛</color></link></u>。"
     },
     {
       "id": 854203,
@@ -128,7 +128,7 @@
     {
       "id": 854702,
       "name": "誘人的精靈酒",
-      "desc": "When Fairy Wine is on the field, all Parts gain 5 <sprite name=\"Binding\"><color=#e30000><u><link=\"Binding\">Bind</color></link></u>"
+      "desc": "精靈酒在場時，獲得5層<sprite name=\"Binding\"><color=#e30000><u><link=\"Binding\">束縛</color></link></u>。"
     },
     {
       "id": 854703,
@@ -158,7 +158,7 @@
     {
       "id": 854903,
       "name": "領先的誘餌",
-      "desc": "Cannot damage Core by damaging the Fairy.\nTargets more slots based on the number of <sprite name=\"FairyCharm\"><color=#a16a3b><u><link=\"FairyCharm\">Charmed</color></link></u> units."
+      "desc": "精靈部位受到攻擊也不會消耗本體的體力。\n根據被<sprite name=\"FairyCharm\"><color=#a16a3b><u><link=\"FairyCharm\">魅惑</color></link></u>的人數，相應增加攻擊行動槽。"
     },
     {
       "id": 854904,
@@ -183,7 +183,7 @@
     {
       "id": 855001,
       "name": "次元逃遁",
-      "desc": "從第二回合開始每隔幾個回合便會躲進次元。\n所有部位陷入混亂時，下回合會躲進次元。\n躲在次元中時，無法陷入混亂。\n本體體力低於30%時，將不再會躲進次元。"
+      "desc": "從第二回合開始每隔幾個回合便會躲進次元。\n所有部位陷入混亂時，下回合會躲進次元。\n躲在次元中時，無法陷入混亂。\n若本體體力不高於體力上限的30%，則不會躲進次元。"
     },
     {
       "id": 855002,
@@ -263,7 +263,7 @@
     {
       "id": 855503,
       "name": "被破壞的排氣口",
-      "desc": "When the Steam Blaster is broken, completely spend all parts' Poise.\nAfter the Steam Blaster is broken, gain <sprite name=\"Vulnerable\"><color=#f8c200><u><link=\"Vulnerable\">Fragile</color></link></u> equal to the number of <sprite name=\"Breath\"><color=#e30000><u><link=\"Breath\">Poise</color></link></u> every time this unit gains <sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">Poise</color></link></u>.\nAfter the Steam Blaster is broken, lose 1 Poise every time this unit uses an Attack Skill."
+      "desc": "蒸氣槍部位被破壞時，消耗所有部位的所有呼吸法強度。\n蒸氣槍部位被破壞後，自身每獲得<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度時，都會對自身施加層數等同於<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度的<sprite name=\"Vulnerable\"><color=#e30000><u><link=\"Vulnerable\">易損</color></link></u>。\n蒸氣槍部位被破壞後，每次使用攻擊技能都會使自身失去1級呼吸法強度。"
     },
     {
       "id": 855504,
@@ -283,12 +283,12 @@
     {
       "id": 855507,
       "name": "重疊的過去",
-      "desc": "Gain 1 Attack Power Up for every 80 Accumulated Past every turn.\nAt 80+ <sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPast\">Accumulated Past</color></link></u>, gain +1 Slot."
+      "desc": "每回合，每帶有80層累積的過去，使自身獲得1層強壯。\n若<sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPast\">累積的過去</color></link></u>超過80層，則額外獲得1個行動槽。"
     },
     {
       "id": 855508,
       "name": "節拍器",
-      "desc": "If the <sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPastMirror\">Accumulated Past</color></link></u> is an odd number, gain 3 [Vulnerable] and [AttackDmgUp]\nIf it is an even number, gain 3 [Protection] and [AttackDmgDown]"
+      "desc": "<sprite name=\"AccumulatedPast\"><color=#a16a3b><u><link=\"AccumulatedPastMirror\">累積的過去</color></link></u>層數為奇數時，使自身獲得3層 [Vulnerable] 與3層 [AttackDmgUp]\n層數為偶數時，使自身獲得3層 [Protection] 與3層 [AttackDmgDown]"
     },
     {
       "id": 855601,
@@ -483,7 +483,7 @@
     {
       "id": 854403,
       "name": "蔓延的火種",
-      "desc": "At the end of the turn, if this unit has <sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">Burn</color></link></u>, inflict the same amount of <sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">Burn</color></link></u> to all units with <sprite name=\"WrappedCurseTagRe\"><color=#a16a3b><u><link=\"WrappedCurseTagRe\">Entangled Curse Talisman</color></link></u> next turn"
+      "desc": "回合結束時，若自身帶有<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>，則下回合根據自身帶有的<sprite name=\"Combustion\"><color=#e30000><u><link=\"Combustion\">燒傷</color></link></u>強度，使帶有<sprite name=\"WrappedCurseTagRe\"><color=#a16a3b><u><link=\"WrappedCurseTagRe\">糾纏的符咒</color></link></u>的全體單位增加相應的燒傷強度"
     },
     {
       "id": 855607,

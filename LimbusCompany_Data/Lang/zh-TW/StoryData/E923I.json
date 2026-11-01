@@ -2,61 +2,61 @@
   "dataList": [
     {
       "id": 0,
-      "place": "Projection Room, District 14",
+      "place": "14區，放映室",
       "model": "에즈라먼지",
-      "content": "*pant* Just a lil' more, and I think we might be able to smash that dang thing to smithereens, but..."
+      "content": "哈……感覺再加把勁，就能把那個麻煩的玩意兒整個砸爛了……"
     },
     {
       "id": 1,
       "model": "이스마엘다침",
-      "content": "Yeah, but it's really hard to focus on one thing with that huge warrior zapping in and out of reality as soon as we make ourselves an opening..."
+      "content": "那個大塊頭劍客也是，每次覺得好不容易製造出破綻，她就突然消失了……"
     },
     {
       "id": 2,
       "model": "이스마엘다침",
-      "content": "*sigh* It'd make our lives a whole lot easier if we could get rid of just <i>one</i> of them."
+      "content": "哈啊……只要能解決掉其中一個，情況應該會好一點。"
     },
     {
       "id": 3,
-      "content": "The battle seemed to be taking a toll on the Sinners, more so than usual."
+      "content": "罪人們看起來比平時疲憊得多。"
     },
     {
       "id": 4,
-      "content": "It wasn't that we were up against an insurmountable foe—not even close. Not to mention how Ezra and Aeng-du were here to help us out."
+      "content": "這並不像是在對付什麼可怕又強大的敵人。何況，不只有我們，還有以斯拉和櫻桃幫忙。"
     },
     {
       "id": 5,
-      "content": "But..."
+      "content": "但是……"
     },
     {
       "id": 6,
       "model": "히스클리프다침2",
-      "content": "Shite! Haven't they had enough? About time they gave up, innit?!"
+      "content": "啊啊……！這玩意兒，哈……到底要到什麼時候才會結束啊？！"
     },
     {
       "id": 7,
       "model": "히스클리프다침2",
-      "content": "Oi, don't you go leggin' it again...!"
+      "content": "就只會溜來溜去地逃跑……！"
     },
     {
       "id": 8,
       "model": "그레고르다침",
-      "content": "That big sword-carrying fella sure is kicking our butts, but... I don't know if they're the key to solving this Distortion...!"
+      "content": "說到底，哈……就算制伏了那個揮著大得離譜的劍的人，這個扭曲真的就能解決嗎……？"
     },
     {
       "id": 9,
       "model": "히스클리프다침2",
-      "content": "We ain't exactly flush with options, are we? Our exit's blocked, and it ain't like we can stop mid-fight to strategize..."
+      "content": "誰知道啊……人家都撲上來了，總不能站著挨打吧？要開溜的門又被那些傢伙堵住了……"
     },
     {
       "id": 10,
       "place": "14區，扭曲的奶油街",
-      "content": "With the battlefield constantly shifting and flashing between N Corp. and S Corp., we simply did not have the breathing room to focus on either the projector or Im Gyeong-eop, who was swinging that greatblade with frightening force."
+      "content": "由於不斷閃現的光芒，以及在N公司與S公司之間來回切換的空間，罪人們既沒能解決那台噴發出光芒的投影機，也沒能了結那個可怕地揮舞著巨劍、名叫林慶業的人，只是愈發疲憊。"
     },
     {
       "id": 11,
-      "place": "Projection Room, District 14",
-      "content": "Besides..."
+      "place": "14區，放映室",
+      "content": "而最重要的是……"
     },
     {
       "id": 12,
@@ -66,68 +66,68 @@
     {
       "id": 13,
       "model": "에즈라먼지",
-      "content": "Aeng-du! Go cover his back, too!"
+      "content": "櫻桃！那邊的後方也要好好守住！"
     },
     {
       "id": 14,
       "model": "뉴앵두",
-      "content": "It shall be done!"
+      "content": "那是自然！"
     },
     {
       "id": 15,
-      "content": "... N Corp. was sending far too many people against us."
+      "content": "N公司的職員數量實在太多了。"
     },
     {
       "id": 16,
-      "content": "There weren't that many at first, but it seemed that the sudden spike in employee casualties in an area so close to the Nest had alerted N Corp. to our location."
+      "content": "一開始好像還沒有這麼多……在緊鄰N公司巢的地方接連出現職員傷亡後，他們似乎就增派了越來越多的人手。"
     },
     {
       "id": 17,
-      "content": "... How do we get out of this?"
+      "content": "……沒有辦法嗎？"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<... Faust, Outis? Help me out here.>"
+      "content": "<……浮士德、奧提斯。我各有一件事要問妳們。>"
     },
     {
       "id": 19,
-      "content": "I decided to stop racking my brain trying to navigate a situation I know so little about, and instead rely on the Sinners with possibly more experience in the field."
+      "content": "我決定老實地向罪人們分別請教我所欠缺的知識。"
     },
     {
       "id": 20,
       "model": "단테",
-      "content": "<First, I need to know if there's any way we can deal with the endless reinforcements N Corp. is sending after us.>"
+      "content": "<第一，那些從N公司不斷增援過來的職員，該怎麼處理。>"
     },
     {
       "id": 21,
       "model": "단테",
-      "content": "<And second... Will defeating Im Gyeong-eop or destroying that projector bring an end to this Distortion phenomenon?>"
+      "content": "<還有……打倒那個叫林慶業的人物，或是砸毀那台投影機，能不能結束這個扭曲現象。>"
     },
     {
       "id": 22,
       "model": "오티스다침",
-      "content": "If I may speak freely, Executive Manager... It is unlikely that our present force will be sufficient to overcome the current rate of enemy reinforcements."
+      "content": "恕我直言，以我方現有的人員，難以突破目前敵方的增援。"
     },
     {
       "id": 23,
       "model": "오티스다침",
-      "content": "Not only is this battlefield situated in close proximity to the enemy stronghold, but there is an unpredictable variable in that strange machine that makes neutralizing even a single wave of enemies difficult."
+      "content": "敵方的大本營近在眼前……而且，那件妖異之物造成的現象，讓我們實際排除一批敵人的速度變得太慢，這也是原因之一。"
     },
     {
       "id": 24,
       "model": "오티스다침",
-      "content": "... I regret to be the bearer of bad news, but we are trapped in a battlefield with but a single exit, which the enemies have already blocked; without reinforcements of our own, there is little hope of prevailing through this current predicament."
+      "content": "……這份報告實在慚愧，但在只有一個入口、連退路都被封住的情況下，除非我方也有增援，否則很難期待局勢好轉。"
     },
     {
       "id": 25,
       "model": "단테",
-      "content": "<... Yeah. Seems that way to me, too.>"
+      "content": "<……是啊，我看也是這樣。>"
     },
     {
       "id": 26,
       "model": "단테",
-      "content": "<But maybe if we can neutralize the Distortion phenomenon, at the very least...>"
+      "content": "<至少要是能先結束扭曲現象的話……>"
     },
     {
       "id": 27,
@@ -137,313 +137,313 @@
     {
       "id": 28,
       "model": "파우스트다침",
-      "content": "... recommends entering the Dungeon of the Fathoms as our exit."
+      "content": "建議藉由心像迷宮突破現狀。但丁。"
     },
     {
       "id": 29,
       "model": "단테",
-      "content": "<Dungeon of the Fathoms...? But how can I enter if we can't even talk to the Distortion—>"
+      "content": "<心像迷宮……？那得要能溝通才……>"
     },
     {
       "id": 30,
       "model": "단테",
-      "content": "<... Wait, maybe...>"
+      "content": "<……啊，等等。>"
     },
     {
       "id": 31,
-      "content": "During the LCB Regular Check-up back at the LCE..."
+      "content": "我忽然想起了在LCE經歷過的事。"
     },
     {
       "id": 32,
-      "place": "LCE Research Team\nLab. Sector, Past",
+      "place": "過去，LCE研究小組 實驗大樓",
       "model": "알리사",
-      "content": "<i>He says that all you have to do is read what's on that note in front of his Distortion. Apparently it's some kind of... a code.</i>"
+      "content": "聽說只要在扭曲後的他面前，把上面寫的東西念出來就行了。他說那是一種……像密碼之類的東西。"
     },
     {
       "id": 33,
-      "place": "Projection Room, District 14",
+      "place": "14區，放映室",
       "model": "단테",
-      "content": "<Right... Keywords!>"
+      "content": "<啊……關鍵字！>"
     },
     {
       "id": 34,
-      "content": "This one seems to be a Location-type Distortion... which means that regardless of where the bright flashes take us, N Corp. or the twisted caricature of S Corp., we're still within its range."
+      "content": "空間型扭曲，就代表這整個空間都是扭曲……即使白色閃光一閃，S公司扭曲的樣貌消失得無影無蹤，我們也依然身處扭曲之中。"
     },
     {
       "id": 35,
-      "content": "In other words... as long as I have the right keywords, I can summon an entrance to its Dungeon of the Fathoms from anywhere within it."
+      "content": "既然如此……無論在哪裡，只要說出關鍵字，應該就能喚出心像迷宮的入口。"
     },
     {
       "id": 36,
       "model": "단테",
-      "content": "<O-okay, so what are the keywords for this Distortion, then?>"
+      "content": "<那、那這次扭曲的關鍵字是什麼？>"
     },
     {
       "id": 37,
-      "content": "Hohenheim had provided us the necessary keywords for his Distortion back then, but this time... we had to figure it out on our own."
+      "content": "問題是，那時候是霍恩海姆事先指定了關鍵字……"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<First things first, one of them has to be \"photograph.\" It's obviously been present throughout the entire phenomenon.>"
+      "content": "<首先……照片一定是其中之一。畢竟它是所有現象的核心。>"
     },
     {
       "id": 39,
       "model": "이상다침",
-      "content": "If I may... Perhaps \"Experience\" may be one of them."
+      "content": "依我之見……「經驗」這個詞如何。"
     },
     {
       "id": 40,
-      "content": "Yi Sang put his two cents in, having briefly retreated from battle to the backlines."
+      "content": "為了稍作喘息而退回我身邊的李箱，也插了一句話。"
     },
     {
       "id": 41,
       "model": "이상다침",
-      "content": "There is an undercurrent of obsession with experiences staining his every trail; it must have aught in relation to what has caused his Distortion."
+      "content": "此人對經驗的執著非比尋常，必定與他扭曲的緣由脫不了干係。"
     },
     {
       "id": 42,
       "model": "파우스트다침",
-      "content": "Experience... The concept alone lacks... substance."
+      "content": "只有經驗……還稍嫌單薄呢。"
     },
     {
       "id": 43,
       "model": "파우스트다침",
-      "content": "It must be something more grounded... Something that is at once synonymous with \"experience,\" while maintaining a throughline to N Corp.'s technology that was the core of his obsession."
+      "content": "他執著的應該是更本質的東西……一個既帶有經驗的含義，同時又能讓人聯想到他所執著的N公司技術的詞。"
     },
     {
       "id": 44,
       "model": "단테",
-      "content": "<Canned Experience?>"
+      "content": "<經驗罐頭？>"
     },
     {
       "id": 45,
       "model": "파우스트다침",
-      "content": "... Most likely, thinks Faust."
+      "content": "……浮士德認為，大概就是那個。"
     },
     {
       "id": 46,
       "model": "단테",
-      "content": "<Alright, then... Photograph, Canned Experience...?>"
+      "content": "<那麼……照片、經驗罐頭……？>"
     },
     {
       "id": 47,
       "model": "이상다침",
-      "content": "... Naught seems to transpire as of yet."
+      "content": "……似乎並未發生什麼特別的事呢。"
     },
     {
       "id": 48,
-      "content": "... It didn't, but I could feel it."
+      "content": "……不，但我感覺得到。"
     },
     {
       "id": 49,
-      "place": "Darkroom, District 14, Past",
+      "place": "過去，14區，顯影室",
       "model": "단테",
-      "content": "<i><Are these the kind of photographs they use to make Canned Experience?></i>"
+      "content": "<這種照片會被拿來當作經驗罐頭的材料嗎？>"
     },
     {
       "id": 50,
       "model": "단테",
-      "content": "<So that's what that strange sensation was... Mentioning that word shook the Distortion and caused that rippling effect.>"
+      "content": "<剛才那個，原來是扭曲被擾亂的感覺啊……>"
     },
     {
       "id": 51,
-      "content": "But it was clearly not enough to force open the Dungeon of the Fathoms... How many other keywords could there be?"
+      "content": "但要打開心像迷宮，力量似乎還差了一點……還需要幾個呢？"
     },
     {
       "id": 52,
-      "place": "Projection Room, District 14",
+      "place": "14區，放映室",
       "model": "뉴김삿갓",
-      "content": "... Scraps."
+      "content": "……陋室。"
     },
     {
       "id": 53,
       "model": "싱클레어다침",
-      "content": "Sorry?"
+      "content": "咦？"
     },
     {
       "id": 54,
       "model": "뉴김삿갓",
-      "content": "Oh, I thought we were all taking turns sharing what might've caused him to Distort."
+      "content": "怎麼，你們不是在推理那傢伙為什麼會扭曲嗎？"
     },
     {
       "id": 55,
       "model": "뉴김삿갓",
-      "content": "And going by the way you folks were saying your piece one after another, I thought this was to be some sort of a zen riddle."
+      "content": "看大家一人一句的，我還以為是在玩什麼禪宗問答呢。"
     },
     {
       "id": 56,
       "model": "싱클레어다침",
-      "content": "Uh... Not a zen riddle, no... But where'd \"scraps\" come from?"
+      "content": "呃……倒也不是那樣啦……不過，為什麼是陋室呢？"
     },
     {
       "id": 57,
       "model": "뉴김삿갓",
-      "content": "See, when enjoying the benefits of slacking off at work, all kinds of mundanities come to possess far more interesting qualities, sometimes even revealing secrets invisible to eyes focused elsewhere."
+      "content": "摸魚摸久了，不想看也都看進眼裡了。"
     },
     {
       "id": 58,
       "model": "뉴김삿갓",
-      "content": "Take our person of interest, to wit: he has been poking around this area of town with an eye-wateringly expensive camera in tow, so conspicuously that every store owner I'd lightly prodded for information had tales to tell about him."
+      "content": "大概是因為那人拿著昂貴的相機，到處東探西探吧。在攤子上拿起一樣東西，順口探問一句，話頭總會指向同一個人。"
     },
     {
       "id": 59,
       "model": "뉴김삿갓",
-      "content": "Each tale added another facet to the long saga of a once-driven man: a man with a can-do attitude, an uncanny ability to pull himself up by his own bootstraps, and a clear path toward Nest residence, who became so bewitched by photography that he eventually squandered his fortune on what was, in the end, nothing more than a pastime."
+      "content": "市井間傳得沸沸揚揚。一個曾經意氣風發、說要在巢裡買房子、白手起家揚名立萬的人，不知是不是著了什麼魔，把錢財全揮霍在拍照上……"
     },
     {
       "id": 60,
       "model": "뉴김삿갓",
-      "content": "And that went on until he found himself reduced to a pauper barely making rent on a scrap heap of an apartment."
+      "content": "最後落得租下一間兩坪半的陋室，整天戰戰兢兢地過日子——大家都是這麼說的。"
     },
     {
       "id": 61,
       "model": "이상다침",
-      "content": "In pursuit of his ideality, the man has lost grip of fortune and reality."
+      "content": "是說他追逐理想，最終散盡了家產嗎。"
     },
     {
       "id": 62,
       "model": "뉴김삿갓",
-      "content": "I sought out his apartment and found a few scraps of his writing."
+      "content": "……我進了那間簡陋的房間，讀了那人寫下的幾行字。"
     },
     {
       "id": 63,
       "model": "뉴김삿갓",
-      "content": "When cold rain drips through the roof, when mold and tepid humidity together encroach from the earth, the mind begins to wander, lost."
+      "content": "上頭漏雨，底下返潮，人的判斷自然就會變得模糊。"
     },
     {
       "id": 64,
       "model": "뉴김삿갓",
-      "content": "Eventually, madness is evoked in a form indistinguishable from drunkenness. The pauper loses himself."
+      "content": "如狂如醉。那房間的主人終究失去了自我。"
     },
     {
       "id": 65,
-      "content": "A shadow darker than any I had seen on Kim's face crept beneath the shade of his eyes."
+      "content": "金笠的表情陰沉得前所未見。"
     },
     {
       "id": 66,
-      "content": "No—I had seen that look once, in the past..."
+      "content": "不，好像也曾見過一次。"
     },
     {
       "id": 67,
-      "content": "... Though it would be more accurate to say that I had <i>heard</i> it in his voice that echoed in his fathoms, distorted by guilt and regret."
+      "content": "因為當時在他吟誦著被罪惡感扭曲的心像時，我彷彿從他的聲音裡看見了陰沉的表情。"
     },
     {
       "id": 68,
-      "content": "Perhaps I shouldn't be surprised by the fact that this Distortion has, among the countless people here, taken a particular interest in Bamboo-hatted Kim."
+      "content": "在這裡的眾多人群之中，這個扭曲偏偏凝視著金笠，或許也是理所當然的吧。"
     },
     {
       "id": 69,
       "model": "단테",
-      "content": "<Photograph, Canned Experience, and... Scraps.>"
+      "content": "<照片、經驗罐頭……陋室。>"
     },
     {
       "id": 70,
-      "content": "Like inserting a final piece of the puzzle, the space before us momentarily warped and flashed..."
+      "content": "彷彿最後缺少的那一塊終於對上了，空間在一瞬間劈哩啪啦地紊亂起來……"
     },
     {
       "id": 71,
-      "content": "... opening a pathway to the Distortion's fathoms."
+      "content": "通往某個扭曲之人心像的道路開啟了。"
     },
     {
       "id": 72,
       "model": "단테",
-      "content": "<Well, then...>"
+      "content": "<那麼……>"
     },
     {
       "id": 73,
       "model": "오티스다침",
-      "content": "We will be right behind you, Executive Manager."
+      "content": "是，我們會跟隨您，經理。"
     },
     {
       "id": 74,
       "model": "뉴앵두",
-      "content": "Miss Ezra, this is what I had seen then: the gateway to one's Fathoms."
+      "content": "以斯拉小姐，這就是我上回說的，通往心像的關口。"
     },
     {
       "id": 75,
       "model": "에즈라먼지",
-      "content": "Hyah... This is it, huh? Neat stuff."
+      "content": "哇……原來這就是那個啊？還真的打開了。"
     },
     {
       "id": 76,
       "model": "에즈라먼지",
-      "content": "But, uh..."
+      "content": "不過……"
     },
     {
       "id": 77,
-      "content": "Before she could finish, Ezra had to redirect her focus from our discussion back to the battle."
+      "content": "以斯拉仍在全力應付從外面撲上來的人，無暇他顧。"
     },
     {
       "id": 78,
-      "content": "Most of the Sinners were caught in the same predicament. Some managed to disengage from the battle and prepare to enter the Dungeon of the Fathoms, but Hong Lu, Gregor, and several others were still busy holding off the N Corp. employees."
+      "content": "罪人們也一樣。有幾個人為了進入迷宮而移到了後方，但鴻璐、格里高爾等罪人仍在奮力對付不斷增援的N公司職員。"
     },
     {
       "id": 79,
       "model": "그레고르다침",
-      "content": "Ngh... They're gonna follow us right in there if we run now, right?"
+      "content": "唔……要是放著這些傢伙不管直接進去，他們也會跟進來吧？"
     },
     {
       "id": 80,
       "model": "홍루다침",
-      "content": "Haha... Probably?"
+      "content": "哈哈……大概會吧？"
     },
     {
       "id": 81,
       "model": "홍루다침",
-      "content": "Even those who aren't chained to Dante like we are can travel through the pathway once it's open, so..."
+      "content": "畢竟不只是和但丁閣下相連的我們，其他人也能進去……"
     },
     {
       "id": 82,
       "model": "그레고르다침",
-      "content": "Yeah... Let's not drive ourselves into an even narrower corner."
+      "content": "搞不好前後都會被敵人塞得滿滿的啊……這下。"
     },
     {
       "id": 83,
       "model": "뉴김삿갓",
-      "content": "... I'll keep them at bay."
+      "content": "……我來擋著吧。"
     },
     {
       "id": 84,
-      "content": "Hearing that, Bamboo-hatted Kim stepped up."
+      "content": "金笠聽了那句話，淡淡地說道。"
     },
     {
       "id": 85,
       "model": "뉴김삿갓",
-      "content": "My sword-arm's not what it once was, but it should be enough for this."
+      "content": "我的劍雖然大不如前，但用在這種程度的事上，還算是把堪用的刀。"
     },
     {
       "id": 86,
       "model": "뉴김삿갓",
-      "content": "Besides, I have little wish to set foot in some ill-omened place and be tangled in such a... bizarre mess. *sigh*"
+      "content": "而且跑到從沒見過的妖異地方，搞得事情平白複雜起來……我也不想嘛？呼。"
     },
     {
       "id": 87,
-      "content": "... Is that really what he thinks?"
+      "content": "……他真的是這麼想才這麼說的嗎？"
     },
     {
       "id": 88,
-      "content": "There was something in his eyes that led me to believe this was about more than just staying behind to protect our rear. He was..."
+      "content": "要說他只是因為需要有人擋住後續的敵人才自願留下，他的表情未免……"
     },
     {
       "id": 89,
       "model": "뉴료슈담배다침",
-      "content": "W.T.F."
+      "content": "無．言。"
     },
     {
       "id": 90,
       "model": "뉴김삿갓",
-      "content": "Eh?"
+      "content": "嗯嗯？"
     },
     {
       "id": 91,
       "model": "뉴료슈담배다침",
-      "content": "What a Terrible Front."
+      "content": "我是說，真教人無言。"
     },
     {
       "id": 92,
       "model": "뉴료슈담배다침",
-      "content": "At least try to pretend to be sincere and make it easy for us to believe you. Did you think that terrible excuse was going to fly?"
+      "content": "就算是違心之論，至少也得裝得像真心話才有人信，你以為那種可笑的說詞行得通嗎。"
     },
     {
       "id": 93,
@@ -453,66 +453,66 @@
     {
       "id": 94,
       "model": "뉴료슈담배다침",
-      "content": "What are you trying to avoid, sword-swinger? You're not some kid trying to get out of doing his homework."
+      "content": "你在逃避什麼。劍客。那眼神就像拖著不想寫作業的小鬼。"
     },
     {
       "id": 95,
       "model": "뉴김삿갓",
-      "content": "I remember hearing that entering a Dungeon of the Fathoms... will bring one to the spiritual Fathoms the Distortion is gazing into."
+      "content": "我記得是說，心像迷宮就是進到扭曲所注視的心像裡頭。"
     },
     {
       "id": 96,
       "model": "뉴김삿갓",
-      "content": "Then what lies within must be my very own, for that is what the abomination is gazing into."
+      "content": "那麼那裡面肯定……和那東西正在窺視的、我的心像一模一樣。"
     },
     {
       "id": 97,
       "model": "히스클리프다침2",
-      "content": "It's decided, then. You're comin' with us."
+      "content": "那你當然得跟來了啊。"
     },
     {
       "id": 98,
       "model": "히스클리프다침2",
-      "content": "We ain't about to walk in blind to a place we know shite about, mate. Guide us in there, yeah?"
+      "content": "你得好好帶路，我們才不會在裡面亂轉吧？"
     },
     {
       "id": 99,
       "model": "뉴김삿갓",
-      "content": "Oh, that's..."
+      "content": "啊，那個……"
     },
     {
       "id": 100,
       "model": "뉴료슈반담다침",
-      "content": "He keeps it simple. You try that, too."
+      "content": "你最好像那傢伙一樣，想得簡單點。"
     },
     {
       "id": 101,
       "model": "뉴료슈반담다침",
-      "content": "Learned the hard way that \"homework\" like summer reading doesn't go away just because you don't look at it. It's still there, even as the summer break comes to an end—ruining the last day of your vacation into an all-nighter."
+      "content": "作業這玩意兒，拖著也不會消失。只會越堆越多，讓暑假剩下的最後一天變得痛苦不堪。"
     },
     {
       "id": 102,
-      "content": "Arayashiki's scabbard vibrated cheerfully in agreement."
+      "content": "彷彿在回應良秀的話，阿賴耶識的刀鞘發出輕快的嗡嗡聲。"
     },
     {
       "id": 103,
       "model": "뉴료슈반담다침",
-      "content": "Stop procrastinating. Go do your \"summer reading.\""
+      "content": "別拖了，親自去面對你的作業。"
     },
     {
       "id": 104,
       "model": "뉴료슈반담다침",
-      "content": "What was it you said? Face the homework, save the G.P.A.?"
+      "content": "直面作業……拯救暑假……是這樣嗎？"
     },
     {
       "id": 105,
       "model": "파우스트다침",
-      "content": "... \"Face the sin, save the E.G.O.\""
+      "content": "……是「直面罪惡，拯救自我。」"
     },
     {
       "id": 106,
       "model": "파우스트다침",
-      "content": "It is, after all, the attitude the company expects of its employees."
+      "content": "這是公司的建議事項。"
     },
     {
       "id": 107,
@@ -522,81 +522,81 @@
     {
       "id": 108,
       "model": "에즈라먼지",
-      "content": "... Go, Junior."
+      "content": "……去吧？"
     },
     {
       "id": 109,
       "model": "에즈라먼지",
-      "content": "You guys too, LCB. I can handle them all on my own."
+      "content": "LCB，你們也全都去吧。這裡我一個人就夠了。"
     },
     {
       "id": 110,
       "model": "뉴김삿갓",
-      "content": "... You will make a lone stand?"
+      "content": "……閣下一個人？"
     },
     {
       "id": 111,
       "model": "에즈라먼지",
-      "content": "Hey, who the heck do ya think I am? Heh, I'll show ya why Team Leader Moses felt safe sending me out alone with you guys."
+      "content": "你把我當成什麼了……哈。你以為摩西隊長是平白無故只派我跟來的嗎？"
     },
     {
       "id": 112,
       "model": "에즈라먼지",
-      "content": "This was basically a monster-of-the-week situation for Team Leader and me back in our duo days~ I can handle 'em on my own no problemo."
+      "content": "以前只有隊長跟我兩個人工作的時候，這種場面差不多每週都會遇上一次～我一個人擋都綽綽有餘。"
     },
     {
       "id": 113,
       "model": "에즈라먼지",
-      "content": "I wanted to see how you guys handle the Inflection Point, but I guess ya can never really have it all."
+      "content": "雖然本來想親眼見識一下你們是用什麼方式找出曲折點的～嘛，可惜囉。"
     },
     {
       "id": 114,
       "model": "에즈라먼지",
-      "content": "Ah well~ Guess I'll just have to trust our two OSIR Team newbies to handle that!"
+      "content": "我們的兩個新人，會代表現場推理小組好好看清楚再回來吧？"
     },
     {
       "id": 115,
       "model": "에즈라먼지",
-      "content": "Now that I think about it, I think I'm setting a pretty solid example as your team senior, aren't I? Hehe."
+      "content": "我想了想，這應該就是前輩該有的美德吧。呵呵。"
     },
     {
       "id": 116,
       "model": "뉴김삿갓",
-      "content": "... I don't like this, but..."
+      "content": "……雖然不太情願。"
     },
     {
       "id": 117,
       "model": "뉴김삿갓",
-      "content": "... it seems that I have no choice in the matter as long as this employee card hangs from my chest..."
+      "content": "但只要還掛著這塊名牌，也只能照做了……"
     },
     {
       "id": 118,
-      "content": "With a sigh, Kim shook his head and joined us, dragging his feet all the while."
+      "content": "金笠嘆了口氣甩了甩頭，一副拿我們沒辦法的樣子，拖著腳步朝我們走了過來。"
     },
     {
       "id": 119,
       "model": "뉴앵두",
-      "content": "I shall take the vanguard."
+      "content": "那麼，就由我先進去了。"
     },
     {
       "id": 120,
       "model": "뉴앵두",
-      "content": "Ah, Mentor—be warned that the entrance is floating. Take a tall step over, or you may trip."
+      "content": "啊，頭領。入口懸在半空中，進來時請您小心腳下，別絆著了。"
     },
     {
       "id": 121,
       "model": "뉴김삿갓",
-      "content": "I can clearly see that, Aeng-du. Bring me a ladder if you're really that worried, why don't you?"
+      "content": "這點事我還知道，櫻桃啊……要是那麼擔心，乾脆搬座樓梯來架著不就好了。"
     },
     {
       "id": 122,
       "model": "뉴앵두",
-      "content": "... Have you need of one?"
+      "content": "……您需要嗎？"
     },
     {
       "id": 123,
       "model": "뉴김삿갓",
-      "content": "... A-a mere jest, you needn't worry."
+      "content": "……失、失言了。"
     }
   ]
 }

@@ -28,7 +28,7 @@
         {
           "level": 1,
           "name": "積累詛咒",
-          "desc": "[WhenUse] Inflict [WrappedCurseTagRe] equal to [WrappedCurseTagRe] on target\n- If target does not have [WrappedCurseTagRe], inflict 3 [WrappedCurseTagRe]",
+          "desc": "[WhenUse] 對目標施加層數等同於其 [WrappedCurseTagRe] 層數的 [WrappedCurseTagRe]\n- 若目標未帶有 [WrappedCurseTagRe]，則施加3層",
           "coinlist": [
             {},
             {
@@ -105,7 +105,7 @@
         {
           "level": 1,
           "name": "轉移符咒",
-          "desc": "[StartBattle] All Parts gain 3 [Protection]\n[WhenUse] All [WrappedCurseTagRe] on target expires\n- Gain [ReattachedCurseTag_Re] equal to the [WrappedCurseTagRe] Stack expired",
+          "desc": "[StartBattle] 使所有部位獲得3層 [Protection]\n[WhenUse] 消除目標所有 [WrappedCurseTagRe]\n- 獲得與消除層數相同的 [ReattachedCurseTag_Re]",
           "coinlist": [
             {
               "coindescs": [
@@ -124,7 +124,7 @@
         {
           "level": 1,
           "name": "複製詛咒",
-          "desc": "[WhenUse] Inflict [WrappedCurseTagRe] equal to [WrappedCurseTagRe] on target\n- If target does not have [WrappedCurseTagRe], inflict 3 [WrappedCurseTagRe]",
+          "desc": "[WhenUse] 對目標施加層數等同於其 [WrappedCurseTagRe] 層數的 [WrappedCurseTagRe]\n- 若目標未帶有 [WrappedCurseTagRe]，則施加3層",
           "coinlist": [
             {
               "coindescs": [
@@ -1419,7 +1419,7 @@
         {
           "level": 1,
           "name": "空間撕裂",
-          "desc": "若自身的 [Charge] 回數不低於10回，則消耗10回 [Charge] 並使本技能的拚點威力+5、造成的傷害+100%\n若自身的 [Charge] 回數不高於10回，則消耗100點本體體力並使本技能造成的傷害+80%(自身體力不會因該效果而低於1點)\n[DefeatDuel] 觸發以下效果\n- 對自身施加2層 [Paralysis]\n- 使本技能造成的傷害-80%\n- 本技能不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst]",
+          "desc": "若自身的 [Charge] 回數不低於10回，則消耗10回 [Charge] 並使本技能的拚點威力+5、造成的傷害+100%\n若自身的 [Charge] 回數低於10回，則消耗100點本體體力並使本技能造成的傷害+80%(自身體力不會因該效果而低於1點)\n[DefeatDuel] 觸發以下效果\n- 對自身施加2層 [Paralysis]\n- 使本技能造成的傷害-80%\n- 本技能不會使目標陷入混亂\n- 本技能不會觸發目標的 [Burst]",
           "coinlist": [
             {
               "coindescs": [
@@ -1617,7 +1617,7 @@
         {
           "level": 1,
           "name": "前往永恆的庭院",
-          "desc": "[CantDuel]\n[WhenUse] 對場上的全體罪人施加 [PrepareSinRose]\n[WhenUse] 若自身本體體力不高於40%，則下回合生成帶有 [EnhanceRose] 的玫瑰",
+          "desc": "[CantDuel]\n[WhenUse] 對場上的全體罪人施加 [PrepareSinRose]\n[WhenUse] 若自身本體體力低於40%，則下回合生成帶有 [EnhanceRose] 的玫瑰",
           "coinlist": [
             {}
           ]

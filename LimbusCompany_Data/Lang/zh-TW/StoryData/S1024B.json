@@ -9,17 +9,17 @@
     {
       "id": 1,
       "model": "뷔페어린이",
-      "content": "... food?"
+      "content": "是吃的嗎？"
     },
     {
       "id": 2,
       "model": "돈키호테",
-      "content": "Ah, Young Pwie... These are shoes, I believe."
+      "content": "啊，普依……這個……似乎是鞋子呢。"
     },
     {
       "id": 3,
       "model": "돈키호테",
-      "content": "They shield thy soles from pain... keep out the snow and rain and bitter wind... and make frolicking about a most joyous thing. Forsooth, every adventurer ought to wear a stout pair of shoes."
+      "content": "此物能讓腳底免於疼痛……即使寒風吹拂、雨雪紛飛，也不會被打濕。而且……奔跑之時，心情也會變得舒暢。故此，冒險家理應穿上一雙好鞋。"
     },
     {
       "id": 4,
@@ -29,7 +29,7 @@
     {
       "id": 5,
       "model": "뷔페어린이",
-      "content": "Will these shoes make the hunger go away?"
+      "content": "穿上之後，就不會餓了嗎？"
     },
     {
       "id": 6,
@@ -39,70 +39,70 @@
     {
       "id": 7,
       "model": "돈키호테",
-      "content": "... Nay, I fear not."
+      "content": "那……恐怕不會吧。"
     },
     {
       "id": 8,
       "model": "돈키호테",
-      "content": "Verily, 'tis a grievous trial to endure the yearning—nay, hunger. Wherefore... I labor to suppress the urge without end."
+      "content": "渴望……不，忍不住飢餓是件難受的事。所以……吾總是不斷地試著忍耐、壓抑衝動。"
     },
     {
       "id": 9,
       "model": "뷔페어린이",
-      "content": "What's good about suppressing the urge?"
+      "content": "忍耐有什麼好處？"
     },
     {
       "id": 10,
       "model": "돈키호테",
-      "content": "For one, thine adventure shall remain unmarred, and become tales thou shan't be ashamed to tell..."
+      "content": "便能繼續一段說出來也不會感到羞愧的冒險……"
     },
     {
       "id": 11,
       "model": "돈키호테",
-      "content": "... through which thou mayest dream of the future self thou seekest to become."
+      "content": "也能夢想自己想成為的模樣。"
     },
     {
       "id": 12,
       "model": "돈키호테",
-      "content": "And someday, thou wilt, without suffering dishonor, tell all about thine adventures to another soul who shall heed thine accounts."
+      "content": "而且有朝一日，還能自豪地向某人訴說這段故事吧。"
     },
     {
       "id": 13,
       "model": "뷔페어린이",
-      "content": "The self I want to become..."
+      "content": "我想成為的模樣……"
     },
     {
       "id": 14,
-      "content": "Pwie stared at the shoes for a long while..."
+      "content": "普依盯著那雙鞋看了好一陣子……"
     },
     {
       "id": 15,
-      "content": "And approached them slowly, before finally slipping them on."
+      "content": "才慢慢走過來，試著穿上了鞋子。"
     },
     {
       "id": 16,
       "model": "뷔페어린이신발",
-      "content": "... Feels... new."
+      "content": "……感覺，好神奇。"
     },
     {
       "id": 17,
       "model": "돈키호테",
-      "content": "Now march onward with greater vigor, astride shoes of thine own!"
+      "content": "現在汝可以更有精神地前進了。因為汝也有鞋子了！"
     },
     {
       "id": 18,
       "model": "단테",
-      "content": "<This might just be me, Meursault...>"
+      "content": "<莫梭，也許是我的錯覺……>"
     },
     {
       "id": 19,
       "model": "단테",
-      "content": "<But don't you think... Pwie's started to follow us more closely than before?>"
+      "content": "<跟過來的時候……是不是靠得更近了一點？>"
     },
     {
       "id": 20,
       "model": "뫼르소",
-      "content": "... They have, Manager."
+      "content": "……確實如此。"
     }
   ]
 }

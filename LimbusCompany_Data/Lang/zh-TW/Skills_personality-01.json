@@ -784,7 +784,7 @@
         {
           "level": 4,
           "name": "知識的加護",
-          "desc": "若本技能被丟棄，則使自身獲得(自身的 [KnowledgeExplored] 層數×體力上限的12%)點護盾\n[WhenUse] 下回合使本技能對應行動槽的挑釁值 +10\n[WhenUse] 若現存體力不高於50%，則使本技能的硬幣威力+1",
+          "desc": "若本技能被丟棄，則使自身獲得(自身的 [KnowledgeExplored] 層數×體力上限的12%)點護盾\n[WhenUse] 下回合使本技能對應行動槽的挑釁值 +10\n[WhenUse] 若現存體力低於50%，則使本技能的硬幣威力+1",
           "coinlist": [
             {},
             {},
@@ -1202,7 +1202,7 @@
         {
           "level": 2,
           "name": "予彌留者以莊嚴哀悼",
-          "desc": "If the sum of the target's [Sinking] and both [SinkingWhite] is 6 or higher, Coin Power +1\n[WinDuel] Inflict +1 [Sinking] Count\n[EndSkill] Gain (highest Reson.) of [BulletLament] (max 6)\n- If the said Reson. was an A-Reson., gain (highest Reson. x 2) of [BulletLament] (max 12)",
+          "desc": "若目標的 [Sinking] 強度與兩種 [SinkingWhite] 的點數之和不低於6點，則使本技能的硬幣威力+1\n[WinDuel] 使目標增加1回 [Sinking]\n[EndSkill] 使自身獲得(最大共鳴數)點 [BulletLament] (最多6點)\n- 若該共鳴為完全共鳴，則改為使自身獲得(最大共鳴數×2)點(最多12點)",
           "coinlist": [
             {
               "coindescs": [
@@ -1513,7 +1513,7 @@
         {
           "level": 4,
           "name": "但比起腦葉時期的E.G.O，其基於異想體的感應度",
-          "desc": "[StartBattle] <style=\"highlight\">On Clash Lose, gain (# of Skills targeting this unit x 2) Final Power (max 6)</style>\n[WhenUse] Gain +4 [Aggro] next turn\n[WhenUse] If target has 15+ [Burst] and 3+ [Burst] Count, this Skill does not inflict [Burst] Count with its effects\n[DefeatDuel] [Burst] Count inflicted by this Skill +2",
+          "desc": "[StartBattle] <style=\"highlight\">拚點失敗時，使本技能的最終威力+(指定自身為目標的技能數×2)(最多+6)</style>\n[WhenUse] 下回合使自身的 [Aggro] +4\n[WhenUse] 若目標的 [Burst] 強度不低於15級且回數不低於3回，則本技能的效果不會施加 [Burst] 回數\n[DefeatDuel] 令本技能施加的 [Burst] 回數額外+2回",
           "coinlist": [
             {
               "coindescs": [
@@ -1535,7 +1535,7 @@
         {
           "level": 3,
           "name": "能夠更為靈活地運用本體特徵",
-          "desc": "Deal +0.5% damage for every 1% missing HP on self\n[StartBattle] Base Power +1 for every Skill that targets this unit (max 2)\n[WhenUse] Gain 2 [GlowingLantern] (once per turn)\n[WhenUse] Gain +6 [Aggro] next turn\n[WhenUse] If target has 15+ [Burst] and 3+ [Burst] Count, this Skill does not inflict [Burst] Potency or Count with its effects; instead, gain Base Power +1\n[EndSkill] Heal 30 SP",
+          "desc": "自身每失去1%體力，使本技能造成的傷害+0.5%\n[StartBattle] 每有1個指定自身為目標的技能，使本技能的基礎威力+1(最多+2)\n[WhenUse] 對自身施加2層 [GlowingLantern] (每回合最多1次)\n[WhenUse] 下回合使自身的 [Aggro] +6\n[WhenUse] 若目標的 [Burst] 強度不低於15級且 [Burst] 回數不低於3回，則本技能的效果不會增加 [Burst] 強度或回數，而改為使本技能的基礎威力+1\n[EndSkill] 使自身恢復30點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -1566,7 +1566,7 @@
         {
           "level": 4,
           "name": "能夠更為靈活地運用本體特徵",
-          "desc": "Deal +0.8% damage for every 1% missing HP on self\n[StartBattle] Base Power +1 for every Skill that targets this unit (max 3)\n[WhenUse] Gain 3 [GlowingLantern] (once per turn)\n[WhenUse] Gain +8 [Aggro] next turn\n[WhenUse] If target has 15+ [Burst] and 3+ [Burst] Count, this Skill does not inflict [Burst] Potency or Count with its effects; instead, gain Base Power +1\n[EndSkill] Heal 30 SP",
+          "desc": "自身每失去1%體力，使本技能造成的傷害+0.8%\n[StartBattle] 每有1個指定自身為目標的技能，使本技能的基礎威力+1(最多+3)\n[WhenUse] 對自身施加3層 [GlowingLantern] (每回合最多1次)\n[WhenUse] 下回合使自身的 [Aggro] +8\n[WhenUse] 若目標的 [Burst] 強度不低於15級且 [Burst] 回數不低於3回，則本技能的效果不會增加 [Burst] 強度或回數，而改為使本技能的基礎威力+1\n[EndSkill] 使自身恢復30點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -1602,7 +1602,7 @@
         {
           "level": 1,
           "name": "然而根據感應度及同步階段，也存在被其吞噬的可能",
-          "desc": "[StartBattle] Gain 2 [GlowingLantern] (once per turn)\n[WhenUse] Gain +6 [Aggro] next turn\n[WhenUse] If target has 15+ [Burst] and 3+ [Burst] Count, this Skill does not inflict [Burst] Count with its effects; instead, gain Base Power +3",
+          "desc": "[StartBattle] 對自身施加2層 [GlowingLantern] (每回合最多1次)\n[WhenUse] 下回合使自身的 [Aggro] +6\n[WhenUse] 若目標的 [Burst] 強度不低於15級且回數不低於3回，則本技能的效果不會施加 [Burst] 回數，而改為使本技能的基礎威力+3",
           "coinlist": [
             {
               "coindescs": [
@@ -1616,7 +1616,7 @@
         {
           "level": 4,
           "name": "然而根據感應度及同步階段，也存在被其吞噬的可能",
-          "desc": "[StartBattle] Gain 3 [GlowingLantern] (once per turn)\n[WhenUse] Gain +8 [Aggro] next turn\n[WhenUse] If target has 15+ [Burst] and 3+ [Burst] Count, this Skill does not inflict [Burst] Count with its effects; instead, gain Base Power +3",
+          "desc": "[StartBattle] 對自身施加3層 [GlowingLantern] (每回合最多1次)\n[WhenUse] 下回合使自身的 [Aggro] +8\n[WhenUse] 若目標的 [Burst] 強度不低於15級且回數不低於3回，則本技能的效果不會施加 [Burst] 回數，而改為使本技能的基礎威力+3",
           "coinlist": [
             {
               "coindescs": [
@@ -2098,7 +2098,7 @@
         {
           "level": 3,
           "name": "調整目標射擊",
-          "desc": "[StartBattle] Targets the unit that has the lowest HP\n- At 7 [BoseProjektil], primarily targets among allies as the main target\n[StartBattle] Gain +1 Atk Weight for every 3 [BoseProjektil] on self (max 2)\n[WhenUse] At 5+ [Breath], Coin Power +1\n[WhenUse] At 3+ [Breath] Count, Base Power +1\n[WhenUse] Gain 1 [Breath] for every [BoseProjektil] on self (max 7)\n[EndSkill] Lose ([BoseProjektil] on self x 2) SP (max 14)\n[EndSkill] If this unit has 7 [BoseProjektil] at Combat Start, lose them all\n- If this unit lost all [BoseProjektil], and if an ally is killed, heal 20 SP on self",
+          "desc": "[StartBattle] 優先指定體力最低的目標\n- 若自身的 [BoseProjektil] 層數為7層，則本技能主要目標優先指定友方單位\n[StartBattle] 自身每帶有3層 [BoseProjektil]，使本技能的攻擊容量+1(最多+2)\n[WhenUse] 若自身的 [Breath] 強度不低於5級，則使本技能的硬幣威力+1\n[WhenUse] 若自身的 [Breath] 回數不低於3回，則使本技能的基礎威力+1\n[WhenUse] 自身每帶有1層 [BoseProjektil]，則使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 使自身失去(自身的 [BoseProjektil] 層數×2)點理智值(最多失去14點)\n[EndSkill] 若戰鬥開始時自身的 [BoseProjektil] 層數為7層，則全部消耗\n- 若已全部消耗且有友方單位陣亡，則使自身恢復20點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2161,7 +2161,7 @@
         {
           "level": 4,
           "name": "調整目標射擊",
-          "desc": "[StartBattle] Targets the unit that has the lowest HP\n- At 7 [BoseProjektil], primarily targets among allies as the main target\n[StartBattle] Gain +1 Atk Weight for every 3 [BoseProjektil] on self (max 2)\n[WhenUse] <style=\"highlight\">Coin Power +1 for every 5 [Breath] on self (max 2)</style>\n[WhenUse] <style=\"highlight\">Base Power +1 for every 3 [Breath] Count on self (max 2)</style>\n[WhenUse] Gain 1 [Breath] for every [BoseProjektil] on self (max 7)\n[EndSkill] Lose ([BoseProjektil] on self x 2) SP (max 14)\n[EndSkill] If this unit has 7 [BoseProjektil] at Combat Start, lose them all\n- If this unit lost all [BoseProjektil], and if an ally is killed, heal 20 SP on self",
+          "desc": "[StartBattle] 優先指定體力最低的目標\n- 若自身的 [BoseProjektil] 層數為7層，則本技能主要目標優先指定友方單位\n[StartBattle] 自身每帶有3層 [BoseProjektil]，則使本技能的攻擊容量+1(最多+2)\n[WhenUse] 自身<style=\"highlight\">每帶有</style>5級 [Breath] 強度，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 自身<style=\"highlight\">每帶有</style>3回 [Breath]，則使本技能的基礎威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 自身每帶有1層 [BoseProjektil]，則使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 使自身失去(自身的 [BoseProjektil] 層數×2)點理智值(最多失去14點)\n[EndSkill] 若戰鬥開始時自身的 [BoseProjektil] 層數為7層，則全部消耗\n- 若已全部消耗且有友方單位陣亡，則使自身恢復20點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -2428,7 +2428,7 @@
         {
           "level": 3,
           "name": "衝鋒陷陣",
-          "desc": "If this unit's Speed is faster than the target's:\n- Final Power +1\n- Deal +([BreakthroughHorse] on self x 10)% damage (max 40%)\n\nDeal +(Shield HP on self x 2)% damage (max 50%)\n\n[BeforeUse] At 5 [BreakthroughHorse], consume all of it to activate \"Obsidian Stormrider's Crescent Decapitator\" instead\n[WhenUse] Gain 3 [LegStrengthHorseYisang]\n[WhenUse] Coin Power +1 for every 5 ([Burst] + [Vibration]) on target (max 2)",
+          "desc": "若自身的速度值高於目標，則\n- 使本技能的最終威力+1\n- 使本技能造成的傷害+(自身的 [BreakthroughHorse] 層數×10)%(最多+40%)\n\n使本技能造成的傷害+(自身的護盾×2)%(最多+50%)\n\n[BeforeUse] 若自身的 [BreakthroughHorse] 層數為5層，則全部消耗並改為使用「黑風馬腳月斬」\n[WhenUse] 使自身獲得3層 [LegStrengthHorseYisang]\n[WhenUse] 目標的 [Burst] 強度與 [Vibration] 強度之和每有5級，使本技能的硬幣威力+1(最多+2)",
           "coinlist": [
             {
               "coindescs": [
@@ -2465,7 +2465,7 @@
         {
           "level": 4,
           "name": "衝鋒陷陣",
-          "desc": "If this unit's Speed is faster than the target's:\n- Final Power +1\n- Deal +([BreakthroughHorse] on self x <style=\"highlight\">20</style>)% damage (max <style=\"highlight\">80</style>%)\n\nDeal +(Shield HP on self x 2)% damage (max 50%)\n\n[BeforeUse] At 5 [BreakthroughHorse], consume all of it to activate \"Obsidian Stormrider's Crescent Decapitator\" instead\n[WhenUse] Gain 3 [LegStrengthHorseYisang]\n[WhenUse] Coin Power +1 for every 5 ([Burst] + [Vibration]) on target (max 2)\n<style=\"highlight\">[WhenUse] At 3+ [BreakthroughHorse], convert all Coins to [SuperCoin]s</style>",
+          "desc": "若自身的速度值高於目標，則\n- 使本技能的最終威力+1\n- 使本技能造成的傷害+(自身的 [BreakthroughHorse] 層數×<style=\"highlight\">20</style>)%(最多+<style=\"highlight\">80</style>%)\n\n使本技能造成的傷害+(自身的護盾×2)%(最多+50%)\n\n[BeforeUse] 若自身的 [BreakthroughHorse] 層數為5層，則全部消耗並改為使用「黑風馬腳月斬」\n[WhenUse] 使自身獲得3層 [LegStrengthHorseYisang]\n[WhenUse] 目標的 [Burst] 強度與 [Vibration] 強度之和每有5級，使本技能的硬幣威力+1(最多+2)\n<style=\"highlight\">[WhenUse] 若自身的 [BreakthroughHorse] 層數不低於3層，則使本技能的所有硬幣變更為 [SuperCoin]</style>",
           "coinlist": [
             {
               "coindescs": [
@@ -2874,7 +2874,7 @@
         {
           "level": 1,
           "name": "無法預測的反覆無常",
-          "desc": "[StartBattle] Gain +2 [Breath] Count (once per turn)\n[OnSucceedEvade] Gain 1 [Breath] (2 times per turn)\n[EndBattle] At below [UnlockBuffAlly_2], activate the following effects (once per Encounter):\n- Gain [UnlockBuffAlly_2]\n- If [BlessingOfIndexPrescriptAlly] Stack is less than 6, raise the Stack to 6\n- Gain 5 [KarmaOfIndexAlly] at the start of the next turn for every [BlessingOfIndexPrescriptAlly] gained via the effect above",
+          "desc": "[StartBattle] 使自身獲得2回 [Breath] (每回合最多1次)\n[OnSucceedEvade] 使自身增加1級 [Breath] 強度(每回合最多2次)\n[EndBattle] 若自身未達 [UnlockBuffAlly_2]，則觸發以下效果(每場戰鬥最多1次)\n- 使自身獲得 [UnlockBuffAlly_2]\n- 若自身的 [BlessingOfIndexPrescriptAlly] 低於6層，則變為6層\n- 每增加1層 [BlessingOfIndexPrescriptAlly]，下回合開始時使自身獲得5層 [KarmaOfIndexAlly]",
           "coinlist": [
             {}
           ]
@@ -2882,7 +2882,7 @@
         {
           "level": 4,
           "name": "無法預測的反覆無常",
-          "desc": "<style=\"highlight\">At [UnlockBuffAlly_3], Coin Power +2</style>\n[StartBattle] Gain +2 [Breath] Count (once per turn)\n[OnSucceedEvade] Gain <style=\"highlight\">2</style> [Breath] (2 times per turn)\n[EndBattle] At below [UnlockBuffAlly_2], activate the following effects (once per Encounter):\n- Gain [UnlockBuffAlly_2]\n- If [BlessingOfIndexPrescriptAlly] Stack is less than 6, raise the Stack to 6\n- Gain 5 [KarmaOfIndexAlly] at the start of the next turn for every [BlessingOfIndexPrescriptAlly] gained via the effect above",
+          "desc": "<style=\"highlight\">若自身帶有 [UnlockBuffAlly_3]，則使本技能的硬幣威力+2</style>\n[StartBattle] 使自身獲得2回 [Breath] (每回合最多1次)\n[OnSucceedEvade] 使自身增加<style=\"highlight\">2</style>級 [Breath] 強度(每回合最多2次)\n[EndBattle] 若自身未達 [UnlockBuffAlly_2]，則觸發以下效果(每場戰鬥最多1次)\n- 使自身獲得 [UnlockBuffAlly_2]\n- 若自身的 [BlessingOfIndexPrescriptAlly] 低於6層，則變為6層\n- 每增加1層 [BlessingOfIndexPrescriptAlly]，下回合開始時使自身獲得5層 [KarmaOfIndexAlly]",
           "coinlist": [
             {}
           ]
@@ -3198,7 +3198,7 @@
         {
           "level": 1,
           "name": "迴避",
-          "desc": "[StartBattle] Gain 1 [DriftingDimensionYisang] and 1 [FourDimensionYisang] (once per turn)\n - At 3+ [Charge] Potency, gain 1 additional Stack of the above effects\n\n[StartBattle] At fewer than 7 [Charge] Count, consume (7 - [Charge] Count on self)% HP to gain up to 7 [Charge] Count (this unit's HP cannot drop to 0 due to this effect; rounded down)\n\n[StartBattle] At more than 15 [Charge] Count, consume up to 10 surplus [Charge] Count and apply the following effects:\n - Heal ([Charge] Count consumed)% HP\n - Gain ([Charge] Count consumed / 3) [Agility] next turn (rounded down)",
+          "desc": "[StartBattle] 使自身獲得1層 [DriftingDimensionYisang] 與1層 [FourDimensionYisang] (每回合最多1次)\n- 若自身的 [Charge] 強度不低於3級，則額外各獲得1層\n\n[StartBattle] 若自身的 [Charge] 回數低於7回，則消耗自身體力上限(不足的 [Charge] 回數)%的體力並使自身獲得 [Charge] 回數至7回 (該效果不會使自身體力降至0點；無條件捨去)\n\n[StartBattle] 若自身的 [Charge] 回數高於15回，則消耗超出的 [Charge] 回數(最多10回)並觸發以下效果\n- 使自身恢復(消耗的回數)%的體力\n- 下回合使自身獲得(消耗的回數/3)層 [Agility] (無條件捨去)",
           "coinlist": [
             {}
           ]
@@ -3206,7 +3206,7 @@
         {
           "level": 4,
           "name": "迴避",
-          "desc": "<style=\"highlight\">[StartBattle] Gain [ChargeForceField] equal to [Charge] Potency on self (once per turn; max 5)</style>\n[StartBattle] Gain 1 [DriftingDimensionYisang] and 1 [FourDimensionYisang] (once per turn)\n - At 3+ [Charge] Potency, gain 1 additional Stack of the above effects\n\n[StartBattle] At fewer than 7 [Charge] Count, consume (7 - [Charge] Count on self)% HP to gain up to 7 [Charge] Count (this unit's HP cannot drop to 0 due to this effect; rounded down)\n\n[StartBattle] At more than 15 [Charge] Count, consume up to 10 surplus [Charge] Count and apply the following effects:\n - Heal ([Charge] Count consumed)% HP\n - Gain ([Charge] Count consumed / 3) [Agility] next turn (rounded down)",
+          "desc": "<style=\"highlight\">[StartBattle] 使自身獲得層數等同於自身 [Charge] 強度的 [ChargeForceField] (每回合最多1次，最多5層)</style>\n[StartBattle] 使自身獲得1層 [DriftingDimensionYisang] 與1層 [FourDimensionYisang] (每回合最多1次)\n- 若自身的 [Charge] 強度不低於3級，則額外各獲得1層\n\n[StartBattle] 若自身的 [Charge] 回數低於7回，則消耗自身體力上限(不足的 [Charge] 回數)%的體力並使自身獲得 [Charge] 回數至7回 (該效果不會使自身體力降至0點；無條件捨去)\n\n[StartBattle] 若自身的 [Charge] 回數高於15回，則消耗超出的 [Charge] 回數(最多10回)並觸發以下效果\n- 使自身恢復(消耗的回數)%的體力\n- 下回合使自身獲得(消耗的回數/3)層 [Agility] (無條件捨去)",
           "coinlist": [
             {}
           ]

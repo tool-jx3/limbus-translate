@@ -389,7 +389,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 擊殺體力比例低於30%的單位"
+                  "desc": "[OnSucceedAttack] 若目標的體力不高於30%，則將其擊殺"
                 },
                 {
                   "desc": "[EnemyKill] 獲得陣亡單位體力上限30%的 [BloodDinner]"

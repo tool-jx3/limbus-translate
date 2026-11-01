@@ -4,201 +4,201 @@
       "id": 0,
       "place": "14區，扭曲的奶油街",
       "model": "뉴앵두",
-      "content": "... Hm. That should be all of them."
+      "content": "……嗯。這就是全部了。"
     },
     {
       "id": 1,
-      "content": "Surveying the area with measured alert, Aeng-du cast the blood from her sword with a few sharp flicks before sliding it back to its sheath."
+      "content": "櫻桃甩了兩三下刀刃上的血，一邊環顧四周，一邊小心翼翼地將劍收回鞘中。"
     },
     {
       "id": 2,
       "model": "에즈라먼지",
-      "content": "Huh, they're not changing back... Doesn't look like beatin' up the Distorted ones reverts them immediately this time around."
+      "content": "這次好像也不會馬上變回來耶……？"
     },
     {
       "id": 3,
       "model": "뉴앵두",
-      "content": "Perhaps a fortunate turn of events, in a way. Let us search for clues while time allows us."
+      "content": "就某方面而言，不也是件幸事嗎。何不趁現在找找線索。"
     },
     {
       "id": 4,
       "model": "에즈라먼지",
-      "content": "Right, right... You take that side, Aeng-du. I'll search here."
+      "content": "啊，對喔……櫻桃妳負責那邊，我負責這裡……"
     },
     {
       "id": 5,
-      "content": "Ezra and Aeng-du moved about as though they were used to this kind of situation. Without even taking a moment to catch their breath after the battle, they began searching the space."
+      "content": "以斯拉和櫻桃彷彿早已習慣這種情況，戰鬥的熱度都還沒散去，就開始四處調查這個空間。"
     },
     {
       "id": 6,
       "model": "돈키호테다침",
-      "content": "P-prithee...!"
+      "content": "那、那個！"
     },
     {
       "id": 7,
-      "content": "Don Quixote was the first one to voice her doubt in the surreal, unfamiliar situation we found ourselves in."
+      "content": "在那莫名異樣的情況中，第一個提出疑問的是唐吉訶德。"
     },
     {
       "id": 8,
       "model": "돈키호테다침",
-      "content": "We battled Distortions upon our arrival hither, yet never before have I beheld our surroundings changed with so sudden a flash!"
+      "content": "雖說來到此處後也與扭曲交過手，但突然「唰！」地一閃、周遭就跟著改變，吾還是頭一回經歷。"
     },
     {
       "id": 9,
       "model": "돈키호테다침",
-      "content": "Prithee, I cannot make sense of this situation. Couldst thou render a detailed account of this Distortion phenomenon?"
+      "content": "這到底、到底是……什麼狀況，可否詳細說明一下這個扭曲？"
     },
     {
       "id": 10,
       "model": "뉴앵두",
-      "content": "Ah... Apologies. It would appear I overlooked the briefing due to the urgency of this predicament."
+      "content": "啊……情況緊急，竟沒顧慮到這一點。"
     },
     {
       "id": 11,
       "model": "뉴앵두",
-      "content": "This is, according to the definition presented by Lady Moses, a \"Location-type Distortion.\""
+      "content": "那是……根據摩西女士整理的定義，稱為「空間型扭曲」。"
     },
     {
       "id": 12,
       "model": "에즈라먼지",
-      "content": "It's basically when a whole space Distorts. And since places and buildings can't move on their own, the Distortion gets fixed in a certain space."
+      "content": "空間型扭曲就是某個地方本身變成了扭曲。它沒辦法移動，會變成固定在那裡的一個場所。"
     },
     {
       "id": 13,
       "model": "에즈라먼지",
-      "content": "As for this one... Looks like the Distortion's already progressed pretty far along. Middle stage, probably? They don't usually get this big, but this one here's covering almost an entire street."
+      "content": "這個扭曲……好像已經進展得相當深了。大概到中期了吧？一般不會變得這麼大，但它現在幾乎蓋住了一整條街。"
     },
     {
       "id": 14,
       "model": "이상다침",
-      "content": "Then those people..."
+      "content": "那麼，那些人……"
     },
     {
       "id": 15,
       "model": "에즈라먼지",
-      "content": "They entered this space and got caught up in it. And our job right now is to get to the bottom of the phenomenon—what exactly gets people caught up, and what happens to them once they're in."
+      "content": "他們是進入這個空間後被捲進去的。做了什麼會被捲入、被捲入時究竟會發生什麼事，現在才要開始調查。"
     },
     {
       "id": 16,
       "model": "에즈라먼지",
-      "content": "Of course, we can't really rule out the possibility of a powerful Distortion that's encroaching upon its environment... Oh, by that I mean when a Distortion bleeds into the space around it and warps it."
+      "content": "當然……也不能排除是強大的扭曲造成的外部侵蝕……啊，外部侵蝕就是那個。扭曲把附近的空間也變成扭曲的樣子。"
     },
     {
       "id": 17,
       "model": "에즈라먼지",
-      "content": "... Oh, man, I'm actually talking like our team leader. Rubbed off on me, I guess. Hehe."
+      "content": "……啊！這本來是隊長的口頭禪，我也講習慣了嗎？嘻嘻。"
     },
     {
       "id": 18,
-      "content": "Ezra continued with a sheepish giggle."
+      "content": "以斯拉難為情地笑了笑，接著說下去。"
     },
     {
       "id": 19,
       "model": "에즈라먼지",
-      "content": "In any case, we won't be able to suppress or cure the Distortion even if we whoop these guys' asses a hundred times."
+      "content": "總之，就算抓了一百個這種人，也沒辦法壓制或治療扭曲。"
     },
     {
       "id": 20,
       "model": "에즈라먼지",
-      "content": "We need more clues to help us locate the Inflection Point... Maybe we should examine these people over here, too?"
+      "content": "還需要更多推測曲折點的線索……要不要也看看這些人？"
     },
     {
       "id": 21,
-      "content": "With a call, Ezra directed our attention to rows of collapsed people all around, all of them clad in dopo robes."
+      "content": "「你們看。」順著這麼說的以斯拉所伸出的手指看去，只見一整排人倒在地上，身上依然穿著道袍。"
     },
     {
       "id": 22,
       "model": "돈키호테다침",
-      "content": "And these are..."
+      "content": "這些人是……"
     },
     {
       "id": 23,
       "model": "이상다침",
-      "content": "The glyph emblazoned upon their headbands—\"Chu (推)\", bespeaks propulsion and pursuit. It marks them as Ch'unokkuns, functionaries charged with scouring and hunting runaway Nobis."
+      "content": "頭帶上那個推移的「推」字……原來是推刷奴婢的推奴手啊。"
     },
     {
       "id": 24,
       "model": "뉴앵두",
-      "content": "You hail from the Homeland as we do. I am unsurprised that you know of them."
+      "content": "閣下也是同鄉，想必對他們早有耳聞吧。"
     },
     {
       "id": 25,
       "model": "이상다침",
-      "content": "... I could hardly fail to know, for I, too, was once enumerated among their quarry. Scientists and technicians were daily being dispossessed of their stations in S Corp., after all..."
+      "content": "……豈能不知。我也曾是被他們追捕之身。畢竟技術人員的處境，就是一天比一天失去立足之地……"
     },
     {
       "id": 26,
       "model": "뉴앵두",
-      "content": "So it was no idle tale... Scientists who ply their craft without fattening S Corp.'s coffers are seized forthwith and made Nobis of the Corporation."
+      "content": "技術人員若做不賺錢的工作，就會被抓去淪為S公司奴婢的傳聞……竟是真的嗎。"
     },
     {
       "id": 27,
       "model": "이상다침",
-      "content": "Indeed. I count myself fortunate to have absconded with my friends afore the Brand of Nobi could be impressed upon us; otherwise..."
+      "content": "正是。幸好在被烙上奴婢的烙印前，我和摯友們逃了出來，否則……"
     },
     {
       "id": 28,
       "model": "뉴앵두",
-      "content": "\"Nobi\"... the wretched appellation conferred upon the people for the convenience of those in power. A vile practice and an excuse of their powermongering—nothing more."
+      "content": "什麼奴婢不奴婢的……全憑掌權者一句話罷了。不過是個藉口。"
     },
     {
       "id": 29,
       "model": "이상다침",
-      "content": "... The so-called \"Taboo Hunters\" of S Corp. operate by much the same anatomy. Does the breaching of Taboo summon the hunter, or does the hunter first seize his prey, to thereafter frame the captured with invented transgression?"
+      "content": "……把他們比作S公司的禁忌獵人也是同理。究竟是先觸犯了禁忌，還是抓了人之後才把禁忌安上去……"
     },
     {
       "id": 30,
       "model": "뉴앵두",
-      "content": "If the powerful so desire to chase a man down, to take possession of his very being and keep him caged, then they need only decree that he should bear the lot of a Nobi. Such is what S Corp. has become today."
+      "content": "只要想追捕、想占有並囚禁，無論是誰都能被定為背負著奴婢之役。這不就是現今的S公司嗎。"
     },
     {
       "id": 31,
       "model": "뉴앵두",
-      "content": "My mentor, too, is one of the victims of that accursed practice..."
+      "content": "頭領也是那些犧牲品之一吧……"
     },
     {
       "id": 32,
       "model": "이스마엘다침",
-      "content": "Then could these people have been sent out to capture your mentor or Yi Sang?"
+      "content": "那麼，這些人原本是追捕金笠先生或李箱先生的人嗎？"
     },
     {
       "id": 33,
       "model": "뉴앵두",
-      "content": "Or me, perhaps. Or none of us."
+      "content": "或許也可能是追捕我的人。也可能三者都不是。"
     },
     {
       "id": 34,
       "model": "파우스트다침",
-      "content": "You mean to state that they may be conceptual forms of Ch'unokkuns generated by Distortion. That is a plausible conjecture."
+      "content": "意思是，他們可能是由扭曲所創造出的、名為推奴手的概念性形象吧。有道理。"
     },
     {
       "id": 35,
       "model": "오티스다침",
-      "content": "We are getting nowhere with this clue-hunting."
+      "content": "完全找不到線索啊。"
     },
     {
       "id": 36,
-      "content": "With a heavy sigh, Outis pressed her fingers against her brow as if her head were starting to pound in frustration."
+      "content": "奧提斯似乎頭痛了起來，只是用力按著眉心，深深嘆了一口氣。"
     },
     {
       "id": 37,
       "model": "파우스트다침",
-      "content": "To delve further into the matter, it is necessary to determine why the S Corp. and its Ch'unokkuns have appeared as the motif of this phenomenon."
+      "content": "若要再深入探究，我認為有必要確認為何偏偏出現了S公司與推奴手這樣的素材。"
     },
     {
       "id": 38,
       "model": "뉴앵두",
-      "content": "... Considering the course of events we have seen so far, would it not stand to reason that the Distortion stains all nearby things with memories most foul?"
+      "content": "……從這一連串事件推斷，認為它是用不好的記憶覆蓋周遭，不是很自然嗎。"
     },
     {
       "id": 39,
       "model": "파우스트다침",
-      "content": "... The presence of Ch'unokkuns suggests a possible correspondence to Yi Sang's memories. Conversely, however, the absence of T Corp.'s Time Collectors weakens that hypothesis."
+      "content": "若是反映了李箱先生的記憶，那麼不只推奴手，T公司的時間徵收人員也應該會出現才自然。"
     },
     {
       "id": 40,
       "model": "파우스트다침",
-      "content": "In which case, the most plausible theory is that this particular Distortion could have stemmed from Bamboo-hatted Kim or Aeng-du's memories."
+      "content": "既然如此，我想這個扭曲的焦點是放在金笠先生，或是櫻桃小姐身上……"
     },
     {
       "id": 41,
@@ -207,99 +207,99 @@
     },
     {
       "id": 42,
-      "content": "Aeng-du furrowed her brow and fell into thought, as though she couldn't grasp the full picture of the problem."
+      "content": "櫻桃似乎不太明白，皺起眉頭陷入了思考。"
     },
     {
       "id": 43,
       "model": "에즈라먼지",
-      "content": "I've seen a few Distortions that show trauma or affect their surroundings..."
+      "content": "會讓人看到創傷、或是侵蝕周遭的那種扭曲，我是看過幾次啦……"
     },
     {
       "id": 44,
       "model": "에즈라먼지",
-      "content": "But this one? I'm not getting that <i>pop!</i> of inspiration. Can't even guess at what this Distortion wants, either."
+      "content": "就是沒有那種「叮！」一下的靈感……也搞不太懂這個扭曲想要什麼。"
     },
     {
       "id": 45,
-      "content": "*POP!*"
+      "content": "啪！"
     },
     {
       "id": 46,
-      "place": "Abandoned Photo Lab, District 14",
-      "content": "The white flash of light suddenly drowned my vision again as Ezra clutched her head and cried out with annoyance."
+      "place": "14區，化為廢墟的照相館",
+      "content": "就在以斯拉雙手抱頭大叫的同時，視野再次被染成一片白。"
     },
     {
       "id": 47,
       "model": "에즈라먼지",
-      "content": "Ugh! If only the Team Leader was here... Cracking this would've been a piece of cake!"
+      "content": "嗚嗚嗚！！要是隊長在的話，這種事根本是小菜一碟啊！！！"
     },
     {
       "id": 48,
       "model": "이스마엘",
-      "content": "And... we're back. So this is why you kept asking whether we'd seen anything bursting with a pop..."
+      "content": "哦……回來了。原來是因為這樣，才一直問我們有沒有看到「啪」地炸開的東西啊。"
     },
     {
       "id": 49,
       "model": "싱클레어",
-      "content": "The N Corp. employees must have it rough, too... getting dragged into the Distortion like this."
+      "content": "被捲入扭曲，N公司的職員們也真是辛苦了。"
     },
     {
       "id": 50,
       "model": "이스마엘",
-      "content": "I mean, what else were we supposed to do? It was self-defense. They were about to attack us."
+      "content": "有什麼辦法呢。放著不管的話，他們差點就要攻擊我們了。"
     },
     {
       "id": 51,
       "model": "싱클레어",
-      "content": "I suppose finding the root cause and taking care of it would be the fastest way forward."
+      "content": "盡快找出這件事的元凶並解決它，應該是最快的方法吧。"
     },
     {
       "id": 52,
       "model": "에즈라먼지",
-      "content": "Let's just do what we can for now..."
+      "content": "先從現在能做的事開始吧……"
     },
     {
       "id": 53,
       "model": "에즈라먼지",
-      "content": "Okay, first, we need to develop the film we found here. We'll head to the nearest darkroom, and..."
+      "content": "得把在這裡撿到的底片洗出來，所以先去最近的顯影室……"
     },
     {
       "id": 54,
       "model": "에즈라먼지",
-      "content": "Nah, actually—let's first drag that slippery, hat-wearing colt back here and get him talking about the Ch'unokkuns. That's probably our best bet."
+      "content": "不對，還是先把那匹小野馬牽回來，問問他跟推奴手有關的記憶，再一起去比較好……"
     },
     {
       "id": 55,
       "model": "에즈라먼지",
-      "content": "Ughhh! Every time we take a job, that slacker just slips off without telling anyone!!!"
+      "content": "嗚嗚嗚！每次出委託，他都一聲不吭地跑去哪裡啊！！！"
     },
     {
       "id": 56,
-      "content": "As one part of me watched Ezra stamp her feet in frustration..."
+      "content": "我一邊看著焦急得直跺腳的以斯拉……"
     },
     {
       "id": 57,
-      "content": "... I was also carefully following Heathcliff's team through the other part of my vision."
+      "content": "一邊在我的另一個視野中，努力追著希斯克利夫，開口說道。"
     },
     {
       "id": 58,
       "model": "단테",
-      "content": "<... Oh, I think I can help with that.>"
+      "content": "<……啊，那個我應該幫得上忙。>"
     },
     {
       "id": 59,
       "model": "파우스트",
-      "content": "... Have you located him?"
+      "content": "……找到了嗎？"
     },
     {
       "id": 60,
       "model": "에즈라먼지",
-      "content": "... Huh? What? Boss Clock found something?"
+      "content": "……欸？什麼？時鐘老大找到什麼了？"
     },
     {
       "id": 61,
       "model": "단테",
-      "content": "<Yep. I found where Bamboo-hatted Kim is right now.>"
+      "content": "<金笠，我找到他在哪裡了。>"
     }
   ]
 }

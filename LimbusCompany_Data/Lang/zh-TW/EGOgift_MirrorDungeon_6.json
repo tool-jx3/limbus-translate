@@ -139,7 +139,7 @@
     {
       "id": 9797,
       "name": "將毀的火砲",
-      "desc": "Turn Start: Gain 2 [GiftCannon] and 2 [GiftGlass] every turn\n\nStarting from the 2nd turn, Stacks of [GiftCannon] and [GiftGlass] gained from the above effect increase by 1 each (up to 8 times)",
+      "desc": "回合開始時，每回合使自身獲得2層 [GiftCannon] 並對自身施加2層 [GiftGlass]\n從第2回合起，每回合獲得的層數各自增加1層(最多增加8次)",
       "simpleDesc": [
         {
           "abilityID": 9797,

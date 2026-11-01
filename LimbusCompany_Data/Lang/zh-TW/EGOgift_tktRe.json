@@ -126,7 +126,7 @@
     {
       "id": 9816,
       "name": "超精密時間加速裝置",
-      "desc": "Effects apply only to #1 Deployed Identity\n\nApplies to Identities with Skills that inflict [Vibration] Potency, Count, or trigger [VibrationExplosion].\nEncounter Start: gain 5 [UltraPrecisionTimeAcceleration]",
+      "desc": "[第1順位友方單位專屬]\n\n適用於擁有施加 [Vibration] 強度、回數或觸發 [VibrationExplosion] 的基礎攻擊技能的友方單位\n關卡開始時，使自身獲得5層 [UltraPrecisionTimeAcceleration]",
       "simpleDesc": [
         {
           "abilityID": 9816,

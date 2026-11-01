@@ -2,25 +2,25 @@
   "dataList": [
     {
       "key": "Q-2000",
-      "title": "가리기 - 지하 2층 도착",
+      "title": "隱藏 - 抵達地下2樓",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "지하 2층 방적장 진입용"
+          "goalDescription1": "進入地下2樓紡紗廠用"
         },
         {
           "index": 1,
-          "goalDescription1": "방직장 컷씬"
+          "goalDescription1": "紡紗廠過場動畫"
         }
       ]
     },
     {
       "key": "Q-2000A",
-      "title": "가리기 - 바늘이 대화 파트",
+      "title": "隱藏 - 針靈對話部分",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "줄 선 바늘이 대화"
+          "goalDescription1": "排隊的針靈對話"
         }
       ]
     },

@@ -209,34 +209,34 @@
     },
     {
       "key": "Q3016T",
-      "title": "(내부) 플로어 매니저 개전 신호",
-      "description": "0901추가",
+      "title": "（內部）樓層經理開戰通知",
+      "description": "0901新增",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "(내부) 플로어 매니저 개전"
+          "goalDescription1": "（內部）樓層經理開戰"
         }
       ]
     },
     {
       "key": "Q3016H1",
-      "title": "(내부) 플로어 매니저 타격 1",
+      "title": "（內部）樓層經理打擊1",
       "description": "0901",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "(내부) 플로어 매니저 타격 1"
+          "goalDescription1": "（內部）樓層經理打擊1"
         }
       ]
     },
     {
       "key": "Q3016H2",
-      "title": "(내부) 플로어 매니저 타격 2",
-      "description": "0901추가",
+      "title": "（內部）樓層經理打擊2",
+      "description": "0901新增",
       "steps": [
         {
           "index": 0,
-          "goalDescription1": "(내부) 플로어 매니저 타격 2"
+          "goalDescription1": "（內部）樓層經理打擊2"
         }
       ]
     }

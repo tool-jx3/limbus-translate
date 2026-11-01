@@ -86,7 +86,7 @@
                   "desc": "[OnSucceedAttack] 使目標震顫引爆 "
                 },
                 {
-                  "desc": "[OnSucceedAttackTail] Inflict 1 Fragility to the Affinity with the highest Resonance count"
+                  "desc": "[OnSucceedAttackTail] 對目標施加1層最大共鳴數罪孽屬性的易損"
                 }
               ]
             }
@@ -107,7 +107,7 @@
                   "desc": "[OnSucceedAttack] 使目標震顫引爆 "
                 },
                 {
-                  "desc": "[OnSucceedAttackTail] Inflict 2 Fragility for the Affinity with the highest Resonance count"
+                  "desc": "[OnSucceedAttackTail] 對目標施加2層最大共鳴數罪孽屬性的易損"
                 },
                 {
                   "desc": "[EndSkillTail] 使自身獲得1層最大共鳴數罪孽屬性的傷害強化 "
@@ -131,7 +131,7 @@
                   "desc": "[OnSucceedAttack] 使目標震顫引爆 "
                 },
                 {
-                  "desc": "[OnSucceedAttack] Inflict 2 Fragility for the Affinity with the highest Resonance count"
+                  "desc": "[OnSucceedAttack] 對目標施加2層最大共鳴數罪孽屬性的易損"
                 },
                 {
                   "desc": "[EndSkillTail] 使自身獲得1層最大共鳴數罪孽屬性的傷害強化 "
@@ -371,7 +371,7 @@
           "level": 1,
           "name": "次元撕裂者",
           "abName": "迷失的乘客",
-          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] At 4+ highest Reson., gain +1 Atk Weight\n[BeforeAttack] At less than maximum [Charge] Count, consume (missing [Charge] Count x 1.5)% HP to gain up to max [Charge] Count (max [Charge] Count obtainable from this effect: 30. This damage does not reduce this unit's HP to 0; rounded down)\n[BeforeAttack] Consume up to 40 [Charge] Count and deal +2% damage for every [Charge] Count consumed (max 20%)",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 若自身擁有的 [Charge] 回數低於最大值，則消耗體力上限(相差的 [Charge] 回數×1.5)%的體力並使自身獲得 [Charge] 回數至最大值(本效果最大 [Charge] 回數獲取量：30。該傷害不會使自身體力降至0點，無條件捨去)\n[BeforeAttack] 消耗最多40回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+2%(最多+20%)",
           "coinlist": [
             {
               "coindescs": [
@@ -392,7 +392,7 @@
           "level": 3,
           "name": "次元撕裂者",
           "abName": "迷失的乘客",
-          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] At 4+ highest Reson., gain +1 Atk Weight\n[BeforeAttack] At less than maximum [Charge] Count, consume (missing [Charge] Count x <style=\"highlight\">1.2</style>)% HP to gain up to max [Charge] Count (max [Charge] Count obtainable from this effect: 30. This damage does not reduce this unit's HP to 0; rounded down)\n[BeforeAttack] Consume up to 40 [Charge] Count and deal +2% damage for every [Charge] Count consumed (max <style=\"highlight\">40</style>%)",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 若自身擁有的 [Charge] 回數低於最大值，則消耗體力上限(相差的 [Charge] 回數×<style=\"highlight\">1.2</style>)%的體力並使自身獲得 [Charge] 回數至最大值(本效果最大 [Charge] 回數獲取量：30。該傷害不會使自身體力降至0點，無條件捨去)\n[BeforeAttack] 消耗最多40回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+2%(最多<style=\"highlight\">+40</style>%)",
           "coinlist": [
             {
               "coindescs": [
@@ -413,7 +413,7 @@
           "level": 4,
           "name": "次元撕裂者",
           "abName": "迷失的乘客",
-          "desc": "[CantIdentify]\nTargets randomly\n[BeforeAttack] Gain <style=\"highlight\">(highest Reson. - 2)</style> Atk Weight <style=\"highlight\">(max 2)</style>\n[BeforeAttack] At less than maximum [Charge] Count, consume <style=\"highlight\">(missing [Charge] Count)%</style> HP to gain up to max [Charge] Count (max [Charge] Count obtainable from this effect: 30. This damage does not reduce this unit's HP to 0; rounded down)\n[BeforeAttack] Consume up to 40 [Charge] Count and deal +2% damage for every [Charge] Count consumed (max <style=\"highlight\">60</style>%)",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 使本技能的攻擊容量+<style=\"highlight\">(最大共鳴數-2)</style><style=\"highlight\">(最多+2)</style>\n[BeforeAttack] 若自身擁有的 [Charge] 回數低於最大值，則消耗體力上限<style=\"highlight\">(相差的 [Charge] 回數)%</style>的體力並使自身獲得 [Charge] 回數至最大值(本效果最大 [Charge] 回數獲取量：30。該傷害不會使自身體力降至0點，無條件捨去)\n[BeforeAttack] 消耗最多40回 [Charge]，每消耗1回 [Charge]，使本技能造成的傷害+2%(最多<style=\"highlight\">+60</style>%)",
           "coinlist": [
             {
               "coindescs": [

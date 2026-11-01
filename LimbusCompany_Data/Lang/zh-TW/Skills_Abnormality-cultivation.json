@@ -611,7 +611,7 @@
         {
           "level": 1,
           "name": "真鎮終斬",
-          "desc": "[StartBattle] 直到本技能結束，自身的體力不會低於1點。\n[WhenUse] 使自身獲得10層 [AttackUp]\n[WhenUse] 使自身獲得5層 [Enhancement]\n[WhenUse] 使自身獲得10層 [AttackDmgUp]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "[StartBattle] 直到本技能結束前，自身的體力不會降至1點以下。\n[WhenUse] 使自身獲得10層 [AttackUp]\n[WhenUse] 使自身獲得5層 [Enhancement]\n[WhenUse] 使自身獲得10層 [AttackDmgUp]\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [

@@ -2,135 +2,135 @@
   "dataList": [
     {
       "id": 0,
-      "place": "N Corp., Suicide Vending Machine Entrance",
+      "place": "N公司 自殺販賣機前",
       "model": "단테",
-      "content": "<Is everyone okay?>"
+      "content": "<大家都還好嗎？>"
     },
     {
       "id": 1,
       "model": "히스클리프",
-      "content": "I'm achin' all over... and I feel like the world's spinnin', but..."
+      "content": "身體是有點痠痛……腦袋也昏昏沉沉的……"
     },
     {
       "id": 2,
       "model": "홍루",
-      "content": "... We're unhurt."
+      "content": "倒是沒有哪裡特別受傷呢。"
     },
     {
       "id": 3,
-      "content": "When we left the Suicide Vending Machine, the sight of the New League of Nine Littérateurs, all in various E.G.O gear, greeted us."
+      "content": "一走出去……就看見新九人會的成員們各自穿戴著E.G.O裝備。"
     },
     {
       "id": 4,
-      "content": "Every now and then, we catch sight of passersby, or people who look like N Corp. employees poking around nearby... but they walk right past us as if we're not even there."
+      "content": "周圍偶爾能看見路人，也有看似N公司員工的人在附近探頭探腦……但他們都像看不見我們似的走了過去。"
     },
     {
       "id": 5,
-      "content": "Is this some effect of a new E.G.O developed by N Corp.? Or..."
+      "content": "這是N公司開發的新E.G.O的效果嗎？還是……"
     },
     {
       "id": 6,
       "model": "에고가환",
-      "content": "*sigh* Finally."
+      "content": "哈，出來了啊。"
     },
     {
       "id": 7,
       "model": "에고가환",
-      "content": "We can put this irritating bodyguard mission behind us."
+      "content": "這煩死人的護衛工作總算要結束了。"
     },
     {
       "id": 8,
       "model": "파우스트",
-      "content": "... The environment outside has... changed significantly."
+      "content": "……周圍的景色，變了不少呢。"
     },
     {
       "id": 9,
       "model": "넬리2",
-      "content": "Much has occurred in the last 3 months."
+      "content": "畢竟這3個月來，發生了很多事。"
     },
     {
       "id": 10,
       "model": "그레고르",
-      "content": "Huh, I see... wait, 3 months?"
+      "content": "哦。這樣啊……等等，什麼……3個月？"
     },
     {
       "id": 11,
       "model": "로쟈",
-      "content": "We've been in there for <i>how long?!</i>"
+      "content": "我們待了那麼久！？"
     },
     {
       "id": 12,
       "model": "에고구보",
-      "content": "Yes, much credit goes to our employees, who worked valiantly to keep you from losing your miserable lives in that box."
+      "content": "為了吊住你們那微不足道的性命，員工們可是費了好大的功夫。"
     },
     {
       "id": 13,
       "model": "단테",
-      "content": "<.......>"
+      "content": "<……>"
     },
     {
       "id": 14,
       "model": "오티스",
-      "content": "... There seems to be some sort of commotion afoot... I hear screaming. And what's that smoke in the distance?"
+      "content": "……周圍一片混亂。不時還能聽見慘叫聲……最重要的是，那陣煙是怎麼回事？"
     },
     {
       "id": 15,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "We've just received a transmission from Director Hermann. That man, the Chaplain... has... pressed the button."
+      "title": "N公司-新九人會",
+      "content": "方才赫爾曼董事來了聯絡。那個牧師，那傢伙終究還是按下了按鈕。"
     },
     {
       "id": 16,
       "model": "돈키호테",
-      "content": "The button—?"
+      "content": "那究竟是何意……"
     },
     {
       "id": 17,
       "model": "에고가환",
-      "content": "I won't stop you if you'd rather stick around looking confused, but I would hurry if I were you—your colleague doesn't have much time left."
+      "content": "你們若想這麼不冷不熱地待著，我也不攔著……不過再這樣下去，你們就只能去看同伴的屍體了。"
     },
     {
       "id": 18,
       "model": "에고가환",
-      "content": "Oh, I suppose death comes lightly to you since you can simply rewind the dead back to life."
+      "content": "啊，反正可以倒轉回來，所以無所謂嗎？"
     },
     {
       "id": 19,
       "model": "단테",
-      "content": "<First things first, we've got to go save Meursault. We can get our bearings about what's been happening outside after that.>"
+      "content": "<先去救莫梭吧。外面發生了什麼事，之後再弄清楚也不遲。>"
     },
     {
       "id": 20,
-      "content": "Some time later..."
+      "content": "片刻之後……"
     },
     {
       "id": 21,
-      "place": "Inside N Corp. Sisyphe Tower",
+      "place": "N公司 薛西弗斯塔 內部",
       "model": "싱클레어",
-      "content": "This is... what Grand Magasin Sisyphe looks like from the outside..."
+      "content": "這裡就是……薛西弗斯百貨公司的外面……"
     },
     {
       "id": 22,
       "model": "이상",
-      "content": "All are aslumber within the vats... prisons."
+      "content": "眾人都在膠囊艙……抑或說牢獄之中沉睡著啊。"
     },
     {
       "id": 23,
-      "content": "A silhouette of a man, carrying someone in his arms, emerged from the factory through the rising wall of smoke. It was Meursault."
+      "content": "在緩緩竄升的煙霧中，莫梭懷裡抱著某人，從工廠裡走了出來。"
     },
     {
       "id": 24,
       "model": "단테",
-      "content": "<Meursault!>"
+      "content": "<莫梭！>"
     },
     {
       "id": 25,
       "model": "뫼르소",
-      "content": "Manager. I have secured the Golden Bough."
+      "content": "經理。我已取得金枝。"
     },
     {
       "id": 26,
-      "content": "A Golden Bough was emitting a faint glow in Meursault's grip."
+      "content": "說著這話的莫梭，一隻手上的金枝正隱隱發著光。"
     },
     {
       "id": 27
@@ -138,731 +138,731 @@
     {
       "id": 28,
       "model": "그레고르",
-      "content": "Is that... Jeanne?"
+      "content": "那個人……不是簡嗎？"
     },
     {
       "id": 29,
       "model": "뫼르소",
-      "content": "Yes. A Giant who has suffered significant psychological damage, caused by events such as the death of their avatar, becomes immobilized for an extended period of time. Therefore, I have decided to carry her outside."
+      "content": "在薛西弗斯系統內部承受了虛擬形象死亡這類巨大精神負荷的巨人，會有很長一段時間無法行動，所以我把她帶出來了。"
     },
     {
       "id": 30,
       "model": "이스마엘",
-      "content": "You can just... barge into a Giant's office and haul them out like a sack of potatoes?"
+      "content": "可以這樣隨隨便便就把巨人……那樣的人帶出來嗎？"
     },
     {
       "id": 31,
       "model": "뫼르소",
-      "content": "Yes. It was not a difficult task, as the password for the office hasn't been changed."
+      "content": "房間的密碼沒有變，所以並不困難。"
     },
     {
       "id": 32,
       "model": "단테",
-      "content": "<That's good, I guess... So, what's up with all the fire? And this smoke...?>"
+      "content": "<先不說這個……這火是怎麼回事？還有這些煙……>"
     },
     {
       "id": 33,
       "model": "단테",
-      "content": "<Wait, this sensation—>"
+      "content": "<等等，這股氣息是……>"
     },
     {
       "id": 34,
-      "content": "Sunlight radiates through the thick plume of smoke,"
+      "content": "陽光從煙霧間傾瀉而下。"
     },
     {
       "id": 35,
-      "content": "and a sudden, splitting headache overwhelms me as an unbearable wall of pressure threatens to crush my chest."
+      "content": "突然，一陣幾乎令人窒息的頭痛與壓迫感襲來。"
     },
     {
       "id": 36,
-      "content": "If my senses—smell, touch, sight, taste, hearing—could scream out in pain, they would have."
+      "content": "從我所能感受到的一切感官上、氣味上、質感上、視覺上、味道上、聲音上，所有感官都彷彿要發出悲鳴的壓迫感。"
     },
     {
       "id": 37,
-      "content": "Familiar yet alien beings begin crawling out of the factory..."
+      "content": "從那裡……熟悉卻又陌生的人們開始爬了出來。"
     },
     {
       "id": 38,
-      "content": "The customers of the Grand Magasin... prisoners from years upon years of serving the Sisyphe Penalty..."
+      "content": "百貨公司的顧客們，被判處薛西弗斯之刑而遭到囚禁的……"
     },
     {
       "id": 39,
-      "content": "I feel it—no, it closes in from all around me, the inconceivably overpowering presence of..."
+      "content": "我感覺得到。數量龐大到驚人、壓倒性的某種東西。"
     },
     {
       "id": 40,
-      "content": "of..."
+      "content": "這是……或許……"
     },
     {
       "id": 41,
-      "content": "... Distortions. Distortions that were contained within the Grand Magasin... all 300 million of them..."
+      "content": "百貨公司裡那3億人的無數扭曲……"
     },
     {
       "id": 42,
       "model": "이스마엘",
-      "content": "The Mannequins are... pouring out of the factory."
+      "content": "人台模特兒們……正不斷湧出來。"
     },
     {
       "id": 43,
       "model": "단테",
-      "content": "<Could it be... that the Distortions within the Grand Magasin are being unleashed upon the City...?>"
+      "content": "<難道……百貨公司裡的扭曲全都要跑到外面來了？>"
     },
     {
       "id": 44,
-      "content": "My mind flashes back to the sights within the Grand Magasin. Dead customers, customers turned into clothing, Mannequins, and everything that comprised that department store..."
+      "content": "那些死在百貨公司某處的、變成衣服的、曾是人台模特兒的、構成了百貨公司的一切……"
     },
     {
       "id": 45,
       "model": "르루주브랜드디렉터",
-      "content": "... What is the meaning of this...? Have we been cast out of our Cradle, into this alien world beyond our veils of memory...?"
+      "content": "……我們的搖籃去了哪裡，為何會來到這毫無記憶的外界……"
     },
     {
       "id": 46,
       "model": "파우스트",
-      "content": "We have seen some of them before. Then that means—"
+      "content": "也看得到眼熟的人呢。這就表示……"
     },
     {
       "id": 47,
       "model": "크로머언니진짜",
-      "content": "That means the party's just getting started, boys and girls."
+      "content": "這表示派對馬上就要開始了。"
     },
     {
       "id": 48,
       "model": "크로머언니진짜",
-      "content": "We will seize our glory once again, as 300 million Distortions wreak havoc through N Corp."
+      "content": "等3億個扭曲把N公司攪得天翻地覆……我們就能再次奪回榮光。"
     },
     {
       "id": 49,
       "model": "크로머언니진짜",
-      "content": "Jacob, ETA for our team?"
+      "content": "雅各。那些孩子還沒到嗎？"
     },
     {
       "id": 50,
       "model": "야코프",
-      "content": "They will be deployed soon. Though tests will be conducted once all Distortions have been subdued... I have authorized summary decisions for those foul prosthetic wearers."
+      "content": "很快就到。雖然會在全數壓制之後進行……檢查，但我已經交代過，那些裝著噁心義體的東西可以就地審判。"
     },
     {
       "id": 51,
       "model": "크로머언니진짜",
-      "content": "Pay special attention to the ones that aren't immediately obvious. They're what the trials are really for."
+      "content": "曖昧不明的孩子才是重點。因為真正的審判，就是為他們準備的。"
     },
     {
       "id": 52,
       "model": "크로머언니진짜",
-      "content": "Wait a minute."
+      "content": "哎呀。"
     },
     {
       "id": 53,
       "model": "크로머언니진짜",
-      "content": "That smoke, it's... it's not just smoke from malfunctioning machines... It's..."
+      "content": "那陣煙……不是單純因為故障冒出來的煙，而是……"
     },
     {
       "id": 54,
       "model": "뫼르소",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 55,
       "model": "뫼르소",
-      "content": "We must evacuate, Manager."
+      "content": "您必須去避難，經理。"
     },
     {
       "id": 56,
       "model": "뫼르소",
-      "content": "Someone has pressed the button and activated the site termination protocol."
+      "content": "有人按下了廢棄處分的按鈕。"
     },
     {
       "id": 57,
-      "content": "At that moment, someone stumbles into view..."
+      "content": "……有人搖搖晃晃地出現在我們面前。"
     },
     {
       "id": 58,
       "model": "신부진짜",
-      "content": "Meursault! Convict Meursault!"
+      "content": "囚犯，囚犯莫梭！"
     },
     {
       "id": 59,
       "model": "단테",
-      "content": "<... The Chaplain!>"
+      "content": "<……牧師！>"
     },
     {
       "id": 60,
       "model": "신부진짜",
-      "content": "It was me. I triggered the Sisyphe Tower's incinerator!"
+      "content": "是我做的。是我啟動了薛西弗斯塔的焚化爐！"
     },
     {
       "id": 61,
       "model": "신부진짜",
-      "content": "You all saw those monsters inside the Grand Magasin too, didn't you? Those things aren't <i>human</i>. If they are unleashed... they will surely destroy our Wing."
+      "content": "百貨公司裡的那些東西，你不也都看到了嗎？那不是人類。要是讓它們出去，N公司將無法收拾，就此崩潰。"
     },
     {
       "id": 62,
       "model": "신부진짜",
-      "content": "I did what I had to! I had to burn all of them to ashes!"
+      "content": "必須在那之前全部燒掉。一個不留！"
     },
     {
       "id": 63,
       "model": "신부진짜",
-      "content": "You there, help me stop the ones who've managed to escape!"
+      "content": "你們也去擋住那些漏出來的東西！"
     },
     {
       "id": 64,
       "model": "신부진짜",
-      "content": "In fact, I'll—Yes, I'll hire you! You're Distortion specialists, aren't you? I'll hire you to—aagh!"
+      "content": "對，僱用……我現在就僱用你們。聽說你們專門處理扭曲……咳……！"
     },
     {
       "id": 65,
       "model": "크로머언니진짜",
-      "content": "How could you?! How could you, you bastard?!!!"
+      "content": "你竟敢！你怎麼敢！！！！"
     },
     {
       "id": 66,
-      "content": "The capsule vats are being consumed by the dancing flames."
+      "content": "膠囊艙開始燃燒。"
     },
     {
       "id": 67,
-      "content": "The air is soon filled with a cacophony of voices. Some scream. Some sing. Some speak in an incoherent, alien language."
+      "content": "四周充斥著尖叫、歌唱、吐出無法理解之語的東西所發出的吼聲。"
     },
     {
       "id": 68,
       "model": "크로머언니진짜",
-      "content": "Ahhhh...!"
+      "content": "啊啊啊！"
     },
     {
       "id": 69,
       "model": "크로머언니진짜",
-      "content": "No... No... This can't be real...!"
+      "content": "怎麼……怎麼會這樣！"
     },
     {
       "id": 70,
       "model": "크로머언니진짜",
-      "content": "All those lives, precious lives... Humans, humans of flesh, humans who bleed... Oh, the tears... they won't stop. All we had to do was cull the ones that looked like prosthetic users...!"
+      "content": "那裡面明明有那麼多生命。明明有那麼多能盡情流淌血肉的人……！眼淚停不下來……明明只要從裡面把那些像義體一樣的東西挑出來就好了……"
     },
     {
       "id": 71,
       "model": "크로머언니진짜",
-      "content": "Damn you, you charlatan of a priest! Damn you!!"
+      "content": "你這該死的冒牌牧師！！！"
     },
     {
       "id": 72,
       "model": "야코프",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 73,
-      "content": "Kromer screams in utter despair, tears of fury and hatred streaming down her cheeks."
+      "content": "克羅默流著滿是憤恨的淚水，扯著嗓子大聲嘶吼。"
     },
     {
       "id": 74,
       "model": "뫼르소",
-      "content": "We have to go, Manager. <i>Now.</i>"
+      "content": "離開這裡是第一優先，經理。"
     },
     {
       "id": 75,
-      "place": "Outside N Corp. Sisyphe Tower",
-      "content": "From a distance, the Sisyphe Tower, this mega prison, appeared like a lighthouse. But now... it looked more like a chimney."
+      "place": "N公司 薛西弗斯塔 外部",
+      "content": "囚禁人們的薛西弗斯塔，起初看起來像座燈塔，現在卻像根煙囪。"
     },
     {
       "id": 76,
-      "content": "Too many people, too many Distortions burned all at once, their number so inconceivably large that I could hardly imagine it. Black smoke rose—no, gushed out of the skyward chimney, smothering the sky above N Corp."
+      "content": "太多的人、太多的扭曲同時燃燒，黑煙從高聳入天的煙囪中源源不絕地噴湧而出。"
     },
     {
       "id": 77,
-      "content": "But the smoke showed no sign of slowing down. It endlessly spewed from the opening, as though it were trying to devour the City whole."
+      "content": "布滿N公司天空的煙霧，彷彿要蔓延到整個都市的天空，無止盡地噴發著。"
     },
     {
       "id": 78,
-      "content": "And soon, it began to rain. Rain that carried ashes, tainted crimson and black by the smoke."
+      "content": "接著，終於下起了雨。夾帶著黑紅煙霧的雨。"
     },
     {
       "id": 79,
       "model": "그레고르",
-      "content": "... The scent... of humans..."
+      "content": "……人的味道。"
     },
     {
       "id": 80,
-      "content": "Gregor began to tremble. The cigarette he'd been smoking slipped out of his fingers."
+      "content": "格里高爾渾身顫抖，手中的菸掉了下來。"
     },
     {
       "id": 81,
       "model": "오티스",
-      "content": "Executive Manager."
+      "content": "經理。"
     },
     {
       "id": 82,
       "model": "오티스",
-      "content": "Please steel yourself. I suspect the events of today have set things in motion that cannot be stopped."
+      "content": "今後，因為今天的事，將會發生許多事情。"
     },
     {
       "id": 83,
-      "content": "Some Sinners mutter helplessly as the foreboding smoke rises and spreads endlessly in the sky."
+      "content": "面對無止盡竄升的不祥煙霧，罪人們各自吐露著感想。"
     },
     {
       "id": 84,
-      "content": "Meursault, too, stands with the other Sinners and looks up toward the rising smoke with an inscrutable expression."
+      "content": "在那之中，莫梭也依舊以讀不出情緒的表情望著煙霧。"
     },
     {
       "id": 85,
       "model": "단테",
-      "content": "<... How do you feel about this, Meursault?>"
+      "content": "<……你怎麼想，莫梭？我是說現在的狀況。>"
     },
     {
       "id": 86,
       "model": "뫼르소",
-      "content": "... I believe I feel horror, devastation... and grief."
+      "content": "……我似乎感受到了慘烈與悽慘，還有悲傷。"
     },
     {
       "id": 87,
-      "content": "I had no way of knowing exactly what was captured in Meursault's gaze, or whether our understanding of the \"horrified\" sentiment was the same feeling he expressed, but..."
+      "content": "莫梭在望著什麼，莫梭所說的慘烈是否與我們的慘烈相同，我仍然不知道……"
     },
     {
       "id": 88,
-      "content": "... I could feel through his words that whatever bound him had loosened tangibly."
+      "content": "但光是那坦率的回答，就能感覺到莫梭身上的某種東西多少變得自由了一些。"
     },
     {
       "id": 89,
       "model": "뫼르소",
-      "content": "The chains... cannot be broken, and they will always constrict around me."
+      "content": "鎖鏈……並非能夠斬斷之物，因此將會持續束縛著我。"
     },
     {
       "id": 90,
-      "content": "The sun sinks into the devouring maw of the smoke."
+      "content": "在煙霧的遮蔽下，太陽被迫逐漸西沉。"
     },
     {
       "id": 91,
-      "content": "Together, we despair."
+      "content": "我們一同感受著絕望。"
     },
     {
       "id": 92,
-      "content": "Together, we are afraid. Together, we watch as the boulder once again teeters at the edge, a portent of its falling."
+      "content": "一同懼怕著，望著即將滾落的巨石。"
     },
     {
       "id": 93,
-      "content": "But Meursault does not look away; he wants his gaze to linger, even as the day comes to an end."
+      "content": "但是，希望注視下去的莫梭，以及知道白晝即將結束的莫梭……"
     },
     {
       "id": 94,
-      "place": "Aboard Mephistopheles",
+      "place": "梅菲斯托費勒斯 內部",
       "model": "베르길리우스",
-      "content": "Sinner #5. The one who was never meant to return."
+      "content": "本不該再回來的5號罪人。"
     },
     {
       "id": 95,
       "model": "베르길리우스",
-      "content": "Welcome back."
+      "content": "歡迎你回來。"
     },
     {
       "id": 96,
       "model": "카론",
-      "content": "Here we go again. Vroom once, vroom twice."
+      "content": "又一次，布隆。然後，布隆。"
     },
     {
       "id": 97,
       "model": "뫼르소",
-      "content": "For now..."
+      "content": "但是現在……"
     },
     {
       "id": 98,
       "model": "뫼르소",
-      "content": "Even as we wait for the terrible night to claim us all..."
+      "content": "即使要等待那將降臨在所有人身上的可怕夜晚……"
     },
     {
       "id": 99,
       "model": "뫼르소",
-      "content": "I think we can watch the sunset together and endure it."
+      "content": "我想也能一同熬過太陽落下的那一刻。"
     },
     {
       "id": 100,
       "place": -1,
-      "content": "He walks forward, wading resolutely into the infinite dark."
+      "content": "朝著看不見盡頭、一片茫然的前方走去。"
     },
     {
       "id": 101
     },
     {
       "id": 102,
-      "place": "Somewhere in N Corp.",
-      "teller": "N Corp. Staff",
-      "title": "N Corp.",
-      "content": "The continuation of the Canned Experience business, the backbone of N Corp.'s economy, has become... unsustainable."
+      "place": "N公司 某處",
+      "teller": "N公司員工",
+      "title": "N公司",
+      "content": "支撐著N公司的產業——經驗罐頭，已經難以再繼續生產了。"
     },
     {
       "id": 103,
       "model": "크로머언니진짜",
-      "content": "Sure, but that's just a supply issue. There's plenty of demand for experiences only the Cans can provide."
+      "content": "可是，大家不是都需要經驗罐頭的經驗嗎？"
     },
     {
       "id": 104,
       "model": "크로머언니진짜",
-      "content": "Not a single N Corp. citizen can go 2 days without gorging on some Canned Experience."
+      "content": "大家都知道，N公司的市民沒有經驗罐頭的話，連兩天都撐不下去。"
     },
     {
       "id": 105,
-      "teller": "N Corp. Staff",
-      "title": "N Corp.",
-      "content": "... Then what are we to—"
+      "teller": "N公司員工",
+      "title": "N公司",
+      "content": "……那要怎麼……"
     },
     {
       "id": 106,
       "model": "크로머언니진짜",
-      "content": "Oh, come on! What's wrong with everyone? The Sisyphe System is hardly the only way to procure Experience Soup. You know, the way things were done in the good ol' days!"
+      "content": "唉唷，大家是怎麼了？忘了嗎？你們都知道的吧。就算沒有薛西弗斯系統，也能拿到經驗湯！就是以前的那個方法！"
     },
     {
       "id": 107,
       "model": "크로머언니진짜",
-      "content": "Yes, that's what I'm talking about—draining the Experience Soup <i>straight</i> from the brain matter."
+      "content": "直接從大腦裡抽出經驗湯。"
     },
     {
       "id": 108,
       "model": "크로머언니진짜",
-      "content": "Experiences of unrivaled freshness! Sensational! <i>Human!</i>"
+      "content": "最新鮮、最刺激的經驗。最像人類的經驗！"
     },
     {
       "id": 109,
-      "teller": "N Corp. Staff",
-      "title": "N Corp.",
-      "content": "Well, yes, but... That method is..."
+      "teller": "N公司員工",
+      "title": "N公司",
+      "content": "再怎麼說……那個方法也……"
     },
     {
       "id": 110,
       "model": "크로머언니진짜",
-      "content": "Is what? What's your problem?"
+      "content": "有什麼問題？"
     },
     {
       "id": 111,
       "model": "크로머언니진짜",
-      "content": "Ohh, are you scared of that stuck-up Chaplain?"
+      "content": "怎麼，難道是怕那個龜毛的牧師傢伙嗎？"
     },
     {
       "id": 112,
       "model": "야코프머리",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 113,
       "model": "크로머언니진짜",
-      "content": "Wow, when'd you go and get him?"
+      "content": "哎呀，什麼時候拿來的？"
     },
     {
       "id": 114,
       "model": "크로머언니진짜",
-      "content": "Anyway, that takes care of that, right? The Inquisition has gripped the nail and smote your \"problem\" away!"
+      "content": "這樣就行了吧？畢竟已經握住釘子，降下審判了嘛！"
     },
     {
       "id": 115,
-      "teller": "N Corp. Staff",
-      "title": "N Corp.",
-      "content": "......."
+      "teller": "N公司職員",
+      "title": "N公司",
+      "content": "……"
     },
     {
       "id": 116,
       "model": "크로머언니진짜",
-      "content": "Wait, wait. A moment of silence for our valued teammate. 1... 2... 3..."
+      "content": "等一下，我們來默哀一下吧。1……2……3。"
     },
     {
       "id": 117,
       "model": "크로머언니진짜",
-      "content": "Now that that's done and over with, let's get siphoning, shall we? The most human experience of them all, from the brain of a Giant..."
+      "content": "好啦，那現在來抽出來看看吧？從巨人的大腦裡，抽出最像人類的經驗……"
     },
     {
       "id": 118,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Have you procured it?"
+      "title": "N公司-新九人會",
+      "content": "那個……帶來了嗎？"
     },
     {
       "id": 119,
       "model": "에고구보",
-      "content": "Yes, and without much difficulty. All I had to do was gently pick up this slow, crawling thing from the ground."
+      "content": "輕而易舉就帶來了。只不過是撿起一個慢吞吞爬著的東西而已。"
     },
     {
       "id": 120,
       "teller": "???",
       "title": "???",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 121,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "A pair of eyes, connected to a brain, hugged by an external membrane. This is it."
+      "title": "N公司-新九人會",
+      "content": "兩隻眼睛。還有與之相連的大腦，以及包覆著那顆大腦的外殼。確實帶回來了啊。"
     },
     {
       "id": 122,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "The dough from Wuthering Heights, Xianhuang Worm from Hongyuan, and now, this <i>human</i> from the Grand Magasin..."
+      "title": "N公司-新九人會",
+      "content": "咆哮山莊的麵糰、鴻園的仙皇蟲，還有從百貨公司取得的這個人類。"
     },
     {
       "id": 123,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "We've certainly gathered many clues, haven't we? For the appearance of the Protoplast... I'd say the fall of N Corp. is a fair trade."
+      "title": "N公司-新九人會",
+      "content": "線索已經收集了不少。最初之人的模樣。和那相比，就連N公司的沒落也算是划算的買賣呢。"
     },
     {
       "id": 124,
-      "place": "Outside N Corp. Sisyphe Tower",
-      "teller": "N Corp. Staff",
-      "title": "N Corp.",
-      "content": "Wait, this one isn't—"
+      "place": "N公司 薛西弗斯塔 外部",
+      "teller": "N公司職員",
+      "title": "N公司",
+      "content": "等等……這位是……"
     },
     {
       "id": 125,
-      "teller": "Inquisitor",
-      "title": "Nagel und Hammer",
-      "content": "Eliminate, purge...!"
+      "teller": "異端審判官",
+      "title": "釘與鎚",
+      "content": "清除。淨化……！"
     },
     {
       "id": 126,
       "model": "르루주브랜드디렉터다침",
-      "content": "How could they... burn the Rouges..."
+      "content": "竟敢……燒毀丹紅派……"
     },
     {
       "id": 127,
-      "teller": "Puzzled Fixer",
+      "teller": "感到疑惑的收尾人",
       "title": "???",
-      "content": "What are these monsters...?"
+      "content": "這些怪物到底是……"
     },
     {
       "id": 128,
-      "teller": "Serious Fixer",
+      "teller": "神情凝重的收尾人",
       "title": "???",
-      "content": "... Distortions."
+      "content": "……是扭曲。"
     },
     {
       "id": 129,
-      "place": "Somewhere in N Corp.",
+      "place": "N公司 某處",
       "model": "넬리2",
-      "content": "It's raining."
+      "content": "下雨了呢。"
     },
     {
       "id": 130,
       "model": "에고가환",
-      "content": "Hah... I can hardly tell them apart. Which are human, and which are Distortions?"
+      "content": "哈……真是分辨不出來啊。誰是人類，誰又是扭曲。"
     },
     {
       "id": 131,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Brief me on the situation, Nelly."
+      "title": "N公司-新九人會",
+      "content": "奈莉，說說現在的情況吧。"
     },
     {
       "id": 132,
       "model": "넬리2",
-      "content": "Distortions that weren't incinerated by the Sisyphe Tower's disposal system have been unleashed, wreaking havoc on the District, Backstreets and Nest alike."
+      "content": "沒能在薛西弗斯塔中完全焚化的扭曲們被釋放了出來，繼後巷之後，連巢都遭到了襲擊。"
     },
     {
       "id": 133,
       "model": "넬리2",
-      "content": "Kromer has... summoned the board of directors again, but the current crisis is unlikely to be resolved in the foreseeable future."
+      "content": "克羅默……那個人雖然重新召集了董事會，但短時間內恐怕難以收拾局面。"
     },
     {
       "id": 134,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "I see. So far, no deviations from the predicted development."
+      "title": "N公司-新九人會",
+      "content": "和預料的沒什麼不同呢。"
     },
     {
       "id": 135,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Hm."
+      "title": "N公司-新九人會",
+      "content": "唔嗯。"
     },
     {
       "id": 136,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "The outward appearances of Distortions vary—some assume a mechanical form, while others are biological, bearing much resemblance to those of beasts."
+      "title": "N公司-新九人會",
+      "content": "扭曲既有機械般的外觀，也有仿照野獸的生物外觀。"
     },
     {
       "id": 137,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "It will become harder to... distinguish prosthesis users from Distortions."
+      "title": "N公司-新九人會",
+      "content": "要和義體使用者區分開來，可不怎麼容易啊。"
     },
     {
       "id": 138,
       "model": "에고구보",
-      "content": "They will be subjected to constant mistrust, living under the endless suspicion of being Distortions."
+      "content": "他們恐怕只能不斷被懷疑是不是扭曲了。"
     },
     {
       "id": 139,
       "model": "넬리2",
-      "content": "Still, it is unlikely that people will indiscriminately persecute all prosthetic users. Too many vested interests are involved to turn on prosthetic users merely because they might be Distortions. It's a huge tangled knot of monetary and political interests..."
+      "content": "但即便如此，也不可能不分青紅皂白地處理掉吧……光憑有扭曲的嫌疑就與義體使用者為敵，牽扯到的利權可不只一兩項。"
     },
     {
       "id": 140,
       "model": "에고가환",
-      "content": "Even if they were to risk going against the countless Fixers and Syndicates, several Wings tap their water into the root of the prosthesis industry. They'd be mad to make enemies of them all..."
+      "content": "收尾人和幫派暫且不論，義體產業的根基裡還深深牽扯著好幾個翼。除非是瘋了，否則不該輕舉妄動地處理，不過……"
     },
     {
       "id": 141,
       "model": "넬리2",
-      "content": "The Malleus Maleficarum has also finished its preparations and is now ready for combat deployment. They need only give the word to have them march into battle."
+      "content": "女巫之槌的投入準備也已經全部完成了。只要一聲令下，隨時都能參與戰鬥吧。"
     },
     {
       "id": 142,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "With three Ones Who Nail who have been holding the Ones Who Grip at the Sisyphe Tower gone... there isn't anyone left in N Corp. to stop them."
+      "title": "N公司-新九人會",
+      "content": "如今把他們綁在薛西弗斯塔上的刺釘者已經消失了三個，能阻止執柄者的方法或辦法……N公司都不會有了。"
     },
     {
       "id": 143,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "... I presume this is developing precisely as the Ones Who Grip have envisioned."
+      "title": "N公司-新九人會",
+      "content": "……倒不如說，他們想要的正是這副光景吧。"
     },
     {
       "id": 144,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "The unleashed Distortions cause violence, instilling fear in people."
+      "title": "N公司-新九人會",
+      "content": "被釋放的扭曲所帶來的無差別暴力與恐懼。"
     },
     {
       "id": 145,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "And it just happens that fear is a very good justification for the enactment of policies that require one to \"prove\" one's humanity."
+      "title": "N公司-新九人會",
+      "content": "這樣一來，就有了「今後為了篩選出扭曲，必須更進一步證明自己的人性」的名目。"
     },
     {
       "id": 146,
       "model": "에고가환",
-      "content": "Kromer and Jacob's influence in N Corp. will burgeon."
+      "content": "克羅默和雅各，那些人的聲音會大到一發不可收拾吧。"
     },
     {
       "id": 147,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Yes, it will. And the Malleus Maleficarum has been waiting with bated breath for those plumes of smoke in the sky to turn into a downpour."
+      "title": "N公司-新九人會",
+      "content": "是啊，因為從那陣煙中落下的雨，正是女巫之槌殷切等待的雨。"
     },
     {
       "id": 148,
       "model": "에고구보",
-      "content": "I have little faith that the incinerator at the Grand Magasin Sisyphe was sufficient. They had quite a number of prisoners, didn't they?"
+      "content": "不知道薛西弗斯百貨公司裡的扭曲們，是否光靠焚化就能處理乾淨。數量看起來相當多啊。"
     },
     {
       "id": 149,
       "model": "아세아",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Well... we can all predict the kind of rain that will fall from that smoke-cloud of crimson black."
+      "title": "N公司-新九人會",
+      "content": "嘛……至少那難以估量的黑紅色煙霧會降下什麼樣的雨，是可以預測的吧？"
     },
     {
       "id": 150,
       "model": "헤르만",
-      "title": "N Corp. - New League of Nine Littérateurs",
-      "content": "Some have already coined the term \"Sisyphean Rain.\" I wonder if the name will stick."
+      "title": "N公司-新九人會",
+      "content": "已經有人把它取名為薛西弗斯之雨了……真好奇今後它會被怎麼稱呼呢。"
     },
     {
       "id": 151,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "That cloud is a smoke of Distortions. When it rains, its essence will seep into the soil... and the Distortions of the Grand Magasin Sisyphe will be reborn from the earth."
+      "title": "N公司-新九人會",
+      "content": "那片雲是混雜著扭曲的煙，等雨落下、那些煙沉入地面時，薛西弗斯百貨公司的扭曲們也會一個接一個重生吧。"
     },
     {
       "id": 152,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Kromer found the incineration genuinely tragic, but to Jacob... that was just another part of the plan."
+      "title": "N公司-新九人會",
+      "content": "克羅默雖然打從心底惋惜在薛西弗斯塔被焚化的扭曲們，但對雅各……那個人來說，就連那都是計畫的一部分。"
     },
     {
       "id": 153,
       "model": "에고가환",
-      "content": "It will be as you predicted, Director. The threat of Distortions will come to the forefront in the City, as a highly observable phenomenon—which will make for the perfect justification to wield power with abandon."
+      "content": "事情會照董事您所說的發展下去吧。扭曲今後將作為一種現象出現在都市裡……而以清晰可見的威脅作為名目，對那個人來說並不是難事。"
     },
     {
       "id": 154,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Yes, it will. This smoke... will start a war."
+      "title": "N公司-新九人會",
+      "content": "是啊，這陣煙……將會引發戰爭。"
     },
     {
       "id": 155,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Let's seize our opportunity while all hell breaks loose."
+      "title": "N公司-新九人會",
+      "content": "我們就在那片地獄中，趁亂抓住機會吧。"
     },
     {
       "id": 156,
       "model": "넬리2",
-      "content": "Ah. Must've been just a brief shower. It's stopped raining."
+      "content": "啊，看來是陣雨呢。很快就停了。"
     },
     {
       "id": 157,
       "model": "넬리2",
-      "content": "... Huh?"
+      "content": "……嗯？"
     },
     {
       "id": 158,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Hm? What is it?"
+      "title": "N公司-新九人會",
+      "content": "怎麼了，看到什麼了嗎？"
     },
     {
       "id": 159,
       "model": "넬리2",
-      "content": "I think I saw a... small child. We only made eye contact for a second, but their eyes just reminded me of another I used to look after. Had the same look to them, and... was about the same height, too."
+      "content": "剛才和對方對上了眼，好像……是個孩子。眼神和我照顧過的孩子很像，身高也差不多……"
     },
     {
       "id": 160,
       "model": "넬리2",
-      "content": "They were limping into the Backstreets, wearing some kind of ragged covering soaked through with rain. I couldn't make it out clearly because it was so worn, but... the color of that cloak reminded me of a Golden Bough's."
+      "content": "那孩子一跛一跛地走進了後巷，身上披著像破布一樣的東西……因為被雨淋濕又破破爛爛的，所以不太確定……但顏色和金枝很相似。"
     },
     {
       "id": 161,
       "model": "헤르만",
-      "title": "N Corp. New League of Nine Littérateurs",
-      "content": "Did you now? Well, I hope that child gets home safely."
+      "title": "N公司-新九人會",
+      "content": "如果是真的，希望那孩子能平安回到家呢。"
     },
     {
       "id": 162,
       "model": "넬리2",
-      "content": "Hmm... With the chaos unfolding within the District... I wonder if that child will even live to see tomorrow."
+      "content": "嗯……在這種亂局之中，也不知道能不能活下來呢。"
     },
     {
       "id": 163,
       "model": "넬리2",
-      "content": "There's probably no one to look after them with everything that's happening."
+      "content": "……明明也不會有人照顧那孩子。"
     },
     {
       "id": 164,
       "place": "???",
       "model": "카르멘진짜",
-      "content": "<color=#E1B643>Thank you for looking after those children.</color>"
+      "content": "<color=#E1B643>謝謝妳照顧那些孩子。</color>"
     },
     {
       "id": 165,
       "model": "카르멘진짜",
-      "content": "<color=#E1B643>I think the Fount was integral in keeping their minds from breaking.</color>"
+      "content": "<color=#E1B643>多虧了泉，百貨公司裡的大家精神似乎都沒有崩潰。</color>"
     },
     {
       "id": 166,
       "model": "푸른여인",
-      "content": "<color=#4457b1>For... the homeward journey... to the star...</color>"
+      "content": "<color=#4457b1>因為……必須回到星星上……</color>"
     },
     {
       "id": 167,
       "model": "카르멘진짜",
-      "content": "<color=#E1B643>I'm sorry about what happened before. I know an apology is hardly enough to make amends...</color>"
+      "content": "<color=#E1B643>之前發生的事，真的很對不起。雖然光是道歉並不足夠……</color>"
     },
     {
       "id": 168,
       "model": "카르멘진짜",
-      "content": "<color=#E1B643>... There's something I'd been meaning to ask. How are you able to stay within the limits of the City?</color>"
+      "content": "<color=#E1B643>不過，你們是怎麼待在都市裡的？</color>"
     },
     {
       "id": 169,
       "model": "카르멘진짜",
-      "content": "<color=#E1B643>You're not... humans.</color>"
+      "content": "<color=#E1B643>你們……並不是人類吧。</color>"
     },
     {
       "id": 170,
       "model": "푸른여인",
-      "content": "<color=#4457b1>.......</color>"
+      "content": "<color=#4457b1>……</color>"
     },
     {
       "id": 171,
       "model": "푸른여인",
-      "content": "<color=#4457b1>... What about you?</color>"
+      "content": "<color=#4457b1>……那妳呢？</color>"
     },
     {
       "id": 172

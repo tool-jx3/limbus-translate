@@ -70,7 +70,7 @@
     },
     {
       "id": "purchase_personality_skill_desc",
-      "content": "Spend <color=#f8c200>{0}</color> Cost to replace this Skill?"
+      "content": "是否消耗<color=#f8c200>{0}</color>經費進行替換？"
     },
     {
       "id": "mirror_dungeon_4_start_buff_name",

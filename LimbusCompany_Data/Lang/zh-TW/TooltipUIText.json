@@ -58,7 +58,7 @@
     },
     {
       "id": "unit_info_tooltip_targetting_count_desc",
-      "content": "本技能可以同時指向的技能槽數。"
+      "content": "本技能可以指定為目標的行動槽數量"
     },
     {
       "id": "unit_info_tooltip_ego_resource",

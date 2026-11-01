@@ -45,7 +45,7 @@
     {
       "id": 971062,
       "name": "腦葉公司 中央本部",
-      "desc": "There's a report on a Central Command Team Clerk's desk.\n\n<DAY ■■, ■■ ■■ Research Service Postmortem Report>\n\nThe report was partially censored, but it seemed to be talking about a newly developed shield bullet of sorts.\n\n'The Trauma Shield can protect its user from psychological damages from external sources for a ■■■■■■■ ■■■■ or ■■■■■■■■■.'\n\n'If Shield bullet ■■■■■■ is needed, request the manager or a ■■■■■■■■ for assistance.'\n\nNext to the heavily redacted report is a box labeled 'Trauma Shield sample & manual'.",
+      "desc": "中央本部的文職辦公桌上放著一份報告書。\n\n<DAY ■■，■■ ■■ 研究業務結果報告書>\n\n雖然有幾個地方經過審查，但內容似乎是有關新型的保護力場子彈。\n\n「創傷防止力場可■■ ■■或■■■防止來自外部的精神傷害。」\n\n「保護力場子彈■■■■時，請諮詢主管或是■■■。」\n\n內容被大量塗改的報告書旁，有一個寫著「創傷防止力場樣品及說明書」的箱子。",
       "options": [
         {
           "message": "拿走它。",

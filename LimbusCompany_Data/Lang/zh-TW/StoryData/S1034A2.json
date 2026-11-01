@@ -3,226 +3,226 @@
     {
       "id": 0,
       "model": "뫼르소엄마",
-      "teller": "Mother",
-      "title": "Giant",
-      "content": "<i>AAAAAHHHHH!</i>"
+      "teller": "母親",
+      "title": "巨人",
+      "content": "啊啊啊啊啊！"
     },
     {
       "id": 1,
       "model": "뫼르소",
-      "content": "In my hand is a link of a chain, broken off when I ended the life of the thing I called Mother."
+      "content": "我的手中握著一截鎖鏈碎片，是在讓名為母親之物的生命停止時斷落下來的。"
     },
     {
       "id": 2,
       "model": "뫼르소",
-      "content": "This is a symbol."
+      "content": "這是象徵。"
     },
     {
       "id": 3,
       "model": "뫼르소",
-      "content": "A symbol that protects me and allows me to remain on my feet."
+      "content": "守護我、讓我能夠站立的象徵。"
     },
     {
       "id": 4,
       "model": "뫼르소",
-      "content": "People may capture me in their gaze as they please, but with these chains, I may remain standing, bound in place."
+      "content": "讓我即使被人們擅自收入目光之中，也能在束縛之下站立。"
     },
     {
       "id": 5,
       "model": "뫼르소",
-      "content": "If I choose to exist by binding myself..."
+      "content": "只要在束縛著自己的狀態下存在……"
     },
     {
       "id": 6,
       "model": "뫼르소",
-      "content": "Then I may endure this terrifying, dizzying world..."
+      "content": "即使這世間令人恐懼，即使這世界令人頭暈目眩、噁心欲嘔……"
     },
     {
       "id": 7,
       "model": "뫼르소",
-      "content": "... through all the nausea that comes with it."
+      "content": "我也撐得下去。"
     },
     {
       "id": 8,
       "model": "뫼르소",
-      "content": "Surrounded by the silence of the living room, I sat absentmindedly in a patch of sunlight peering through a gap in the windowsill."
+      "content": "有好一陣子，我坐在寂靜的客廳裡，在從窗縫湧入的陽光中出神。"
     },
     {
       "id": 9,
       "model": "뫼르소",
-      "content": "The vacuum of what was once there. The warm chill circulating the air. The sun."
+      "content": "空下來的位子。縈繞在虛空中的溫暖寒意。太陽。"
     },
     {
       "id": 10,
       "model": "뫼르소",
-      "content": "I come to a stop, bound in place."
+      "content": "就這樣，我被束縛，停了下來。"
     },
     {
       "id": 11,
       "place": "???",
       "model": "신부거인",
-      "content": "To remain bound and still... that was the burden you were meant to bear."
+      "content": "在束縛之中靜止不動……那曾是你應當守住的業。"
     },
     {
       "id": 12,
       "model": "신부거인",
-      "content": "Do you realize... what you are about to do?"
+      "content": "現在……你知道自己打算做出什麼事嗎？"
     },
     {
       "id": 13,
       "model": "신부거인",
-      "content": "Departing from the Grand Magasin's appointed ending will unleash a chain of events that can neither be predicted nor managed. Are you aware of what that future holds?"
+      "content": "一旦偏離百貨公司既定的結局，就會發生無法預料、無力承擔的事。你想過那樣的未來嗎？"
     },
     {
       "id": 14,
       "model": "뫼르소",
-      "content": "I do not know. Nevertheless, I will leave this place."
+      "content": "不知道。但是，我要離開這裡。"
     },
     {
       "id": 15,
       "model": "신부거인",
-      "content": "... How irresponsible."
+      "content": "……真是不負責任。"
     },
     {
       "id": 16,
       "model": "뫼르소",
-      "content": "I do not want the Manager and the others to remain trapped here."
+      "content": "經理和其他人就這樣被困在這裡，我，並不希望如此。"
     },
     {
       "id": 17,
-      "content": "The Chaplain grows steadily more weary and decrepit."
+      "content": "牧師逐漸衰老下去。"
     },
     {
       "id": 18,
-      "content": "It seems that even he cannot endure the eternity he had imposed upon this place."
+      "content": "牧師在此賦予的永劫時光，以及承受它這件事，似乎連對他而言也漸漸成了難以負荷的重擔。"
     },
     {
       "id": 19,
-      "content": "... Time flowed... and there was nothing to do but endure it."
+      "content": "面對時間……除了忍受之外，別無解答。"
     },
     {
       "id": 20,
       "model": "신부거인",
-      "content": "If Grand Magasin Sisyphe collapses, every inhuman monstrosity contained in here will spill out into the streets. Yes, the monsters you may know as Mannequins here—and as Distortions outside—will be let loose in N Corp., free to wreak havoc."
+      "content": "要是薛西弗斯百貨公司就這樣崩塌……這裡所有不具人形的東西都會跑進都市。那些在這裡被稱為人台模特兒、在外面被稱為扭曲的怪物，將會在N公司四處肆虐吧。"
     },
     {
       "id": 21,
       "model": "신부거인",
-      "content": "This department store... must have only two endings."
+      "content": "這間百貨公司……必須只有兩種結局。"
     },
     {
       "id": 22,
       "model": "뫼르소",
-      "content": "Why must it?"
+      "content": "為什麼非得如此？"
     },
     {
       "id": 23,
       "model": "신부거인",
-      "content": "Because human beings... are capable of suppressing their desires."
+      "content": "因為人類……是能夠壓抑慾望的存在……"
     },
     {
       "id": 24,
       "model": "신부거인",
-      "content": "Human beings do not eat one another simply because they are hungry, or burn down a house just because they are consumed by anger."
+      "content": "不會因為肚子餓就吃人，不會因為生氣就放火燒房子。"
     },
     {
       "id": 25,
       "model": "신부거인",
-      "content": "Beasts fall upon their food and gorge. Humans sit at the table, master the hunger clawing inside them, and raise a fork to their mouths. That restraint is the mark of humanity—not tearing into whatever is within reach and shoveling it into their ravenous gullets!"
+      "content": "野獸只是攝取，人類則是用餐。壓抑慾望，坐在餐桌前使用餐具……這才是人之所以為人。而不是用手抓著吃！"
     },
     {
       "id": 26,
       "model": "신부거인",
-      "content": "And that... is what makes the Sisyphe System the most \"human\" place in the City."
+      "content": "所以……這個薛西弗斯系統，才是這座都市中最有人性的地方。"
     },
     {
       "id": 27,
       "model": "신부거인",
-      "content": "If barbarism is allowed to return... N Corp. will not hesitate to dive into conflicts against the other Wings. There will be war."
+      "content": "若是野蠻再度降臨……N公司就會與其他翼相爭，掀起戰爭吧。"
     },
     {
       "id": 28,
       "model": "신부거인",
-      "content": "Its advocates will crack people's heads open and scrape out their experiences raw... Is that the future you want?"
+      "content": "那些傢伙會打開人的腦袋，想把經驗刮出來……你希望的是那樣的未來嗎？"
     },
     {
       "id": 29,
       "model": "신부거인",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 30,
       "model": "신부거인",
-      "content": "I cannot... expend any more effort on the sinful one. I must withdraw here... for the continued existence of the Grand Magasin... the Sisyphe System."
+      "content": "不能再……把力量耗在罪人身上了。為了讓百貨公司……讓這個薛西弗斯系統存續下去……現在只能就此退下了吧。"
     },
     {
       "id": 31,
       "model": "신부거인",
-      "content": "By the time you realize you chose wrong, it will be too late. You will have plenty of time for regrets when surrounded by the ruins of your error..."
+      "content": "不久之後，當你察覺這個選擇是錯的時候，早已為時已晚。到那時再後悔，一切也都已經結束了……"
     },
     {
       "id": 32,
       "model": "뫼르소",
-      "content": "... You are correct."
+      "content": "……你說得沒錯。"
     },
     {
       "id": 33,
       "model": "뫼르소",
-      "content": "I may regret it someday. What I considered the best choice at the time may later prove to have been the worst. My decision may be wrong. All meaning is subject to change, after all."
+      "content": "或許有一天我會後悔，當時認為最好的選擇，日後也可能變成最壞的。因為我決定的事可能有錯，而所有的意義終究會改變。"
     },
     {
       "id": 34,
       "model": "뫼르소",
-      "content": "However..."
+      "content": "……但是。"
     },
     {
       "id": 35,
       "model": "뫼르소",
-      "content": "I want to try bearing the responsibility for my own judgments."
+      "content": "我想試著承擔。承擔我為自己所下的判斷，該負起的責任。"
     },
     {
       "id": 36,
-      "content": "Once more, Meursault opened the door."
+      "content": "莫梭又一次打開了門。"
     },
     {
       "id": 37,
       "model": "신부거인",
-      "content": "The Grand Magasin... must be eternally preserved... This department store... must be sustained..."
+      "content": "百貨公司……必須保存下去……百貨公司……必須……維持下去……"
     },
     {
       "id": 38,
       "model": "단테",
-      "content": "<.......>"
+      "content": "<……>"
     },
     {
       "id": 39,
       "model": "단테",
-      "content": "<Do you really mean it?>"
+      "content": "<你說要試著承擔，是認真的嗎？>"
     },
     {
       "id": 40,
       "model": "뫼르소",
-      "content": "I do, Manager."
+      "content": "是的，經理。"
     },
     {
       "id": 41,
       "model": "단테",
-      "content": "<What made you feel that way?>"
+      "content": "<為什麼會那麼想？>"
     },
     {
       "id": 42,
       "model": "뫼르소",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 43,
       "model": "뫼르소",
-      "content": "I do not yet know what the reason is,"
+      "content": "關於理由，我還不太清楚。"
     },
     {
       "id": 44,
       "model": "뫼르소",
-      "content": "But I know it is here."
+      "content": "但是，理由確實就在這裡。"
     }
   ]
 }

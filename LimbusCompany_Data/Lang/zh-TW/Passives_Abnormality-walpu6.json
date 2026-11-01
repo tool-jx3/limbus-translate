@@ -3,7 +3,7 @@
     {
       "id": 122301,
       "name": "絕望騎士",
-      "desc": "Takes -50% damage from [Combustion], [Laceration], [Vibration], [Burst], and [Sinking] (rounded down)\nIf this unit hits with a Cracked [SuperCoin], it does not activate the target's [Sinking] effect (does not consume Count either)"
+      "desc": "受到的 [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 傷害-50%(無條件捨去)\n自身被破壞的 [SuperCoin] 命中時，不會觸發目標的 [Sinking] 效果(也不會消耗回數)"
     },
     {
       "id": 122302,
