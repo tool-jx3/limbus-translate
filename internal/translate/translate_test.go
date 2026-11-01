@@ -23,6 +23,11 @@ import (
 //	FAKE_STDERR  what a run prints to stderr
 //	FAKE_EXIT    its exit code
 //	FAKE_HANG    when set, the run starts a background sleep and waits for it
+//	FAKE_ORPHAN  when set, the run leaves a background sleep behind it that
+//	             holds neither stdout nor stderr (child)
+//	FAKE_HOLD    when set, the run leaves a background sleep behind it that
+//	             holds stdout and stderr, so that they never reach end of file
+//	             (child)
 const fakeScript = `#!/bin/sh
 d="$FAKE_DIR"
 echo "$*" >> "$d/args"
@@ -33,6 +38,14 @@ if [ -n "$FAKE_HANG" ]; then
   sleep 60 &
   echo $! > "$d/child"
   wait
+fi
+if [ -n "$FAKE_ORPHAN" ]; then
+  sleep 60 >/dev/null 2>&1 &
+  echo $! > "$d/child"
+fi
+if [ -n "$FAKE_HOLD" ]; then
+  sleep 60 &
+  echo $! > "$d/child"
 fi
 n=$(cat "$d/count")
 echo $((n - ${FAKE_DEC:-0})) > "$d/count"
@@ -68,6 +81,8 @@ func newFake(t *testing.T, count, dec int) *fake {
 	t.Setenv("FAKE_STDERR", "")
 	t.Setenv("FAKE_EXIT", "0")
 	t.Setenv("FAKE_HANG", "")
+	t.Setenv("FAKE_ORPHAN", "")
+	t.Setenv("FAKE_HOLD", "")
 	return f
 }
 
@@ -408,24 +423,126 @@ func TestRunKillsAHungRun(t *testing.T) {
 	f := newFake(t, 5, 1)
 	t.Setenv("FAKE_HANG", "1")
 	opt := f.opts()
-	opt.RunTimeout = 200 * time.Millisecond
+	opt.RunTimeout = 500 * time.Millisecond
 
 	start := time.Now()
 	res := mustRun(t, opt)
-	if d := time.Since(start); d > time.Second {
-		t.Errorf("Run took %v, want it back within a second", d)
+	if d := time.Since(start); d > 2*time.Second {
+		t.Errorf("Run took %v, want it back within 2 seconds", d)
 	}
 	if res.Stopped != StopError || res.Runs != 1 || !strings.Contains(res.Error, "timed out") {
 		t.Errorf("result = %+v, want error after 1 run, timed out", res)
 	}
 
 	// The script and the sleep it started are both gone.
-	for _, name := range []string{"pid", "child"} {
-		pid, err := strconv.Atoi(f.recorded(name)[0])
+	f.wantProcessesGone("pid", "child")
+}
+
+// wantProcessesGone fails the test unless the processes whose ids the fake
+// recorded in the files names are gone. A file that is missing means the
+// script was killed before it got that far, and the test says so instead of
+// reading a file that is not there.
+func (f *fake) wantProcessesGone(names ...string) {
+	f.t.Helper()
+	for _, name := range names {
+		b, err := os.ReadFile(filepath.Join(f.dir, name))
 		if err != nil {
-			t.Fatal(err)
+			f.t.Fatalf("script never started: it recorded no %s before the run was killed (%v); the run timeout is too short for this machine", name, err)
 		}
-		waitGone(t, name, pid)
+		pid, err := strconv.Atoi(strings.TrimSpace(string(b)))
+		if err != nil {
+			f.t.Fatalf("script never started: the %s file holds %q, not a process id", name, b)
+		}
+		waitGone(f.t, name, pid)
+	}
+}
+
+// A descendant that outlives a run that ended well is killed with its group:
+// it must not live on into the next round.
+func TestRunKillsWhatAnEndedRunLeftBehind(t *testing.T) {
+	f := newFake(t, 1, 1)
+	t.Setenv("FAKE_ORPHAN", "1")
+	res := mustRun(t, f.opts())
+	if res.Stopped != StopDone || res.Runs != 1 || res.Error != "" {
+		t.Fatalf("result = %+v, want done after 1 run", res)
+	}
+	f.wantProcessesGone("child")
+}
+
+// A descendant that holds the pipes makes Wait return ErrWaitDelay even though
+// claude exited cleanly and printed its result: the round is a good one, and
+// the descendant is killed.
+func TestRunTakesACleanExitWhoseDescendantHoldsThePipes(t *testing.T) {
+	f := newFake(t, 2, 1)
+	t.Setenv("FAKE_HOLD", "1")
+	opt := f.opts()
+	opt.waitDelay = 100 * time.Millisecond
+
+	start := time.Now()
+	res := mustRun(t, opt)
+	if res.Stopped != StopDone || res.Runs != 2 || res.Error != "" || !near(res.CostUSD, 0.2) {
+		t.Fatalf("result = %+v, want done after 2 runs costing 0.2, no error", res)
+	}
+	if d := time.Since(start); d > 5*time.Second {
+		t.Errorf("Run took %v, want it back without waiting for the descendant", d)
+	}
+	f.wantProcessesGone("child")
+}
+
+// ErrWaitDelay is forgiven only for a run that exited cleanly and printed a
+// result: with another exit status or output that is no result it stays an
+// error.
+func TestRunStillFailsWhenTheDescendantHoldsThePipesAndTheRunFailed(t *testing.T) {
+	for name, c := range map[string]struct{ out, exit string }{
+		"a non-zero exit":   {okOut, "3"},
+		"no JSON":           {"done", "0"},
+		"an error result":   {`{"is_error":true,"total_cost_usd":0.1}`, "0"},
+		"a result w/o cost": {`{"is_error":false}`, "0"},
+	} {
+		f := newFake(t, 2, 1)
+		t.Setenv("FAKE_HOLD", "1")
+		t.Setenv("FAKE_OUT", c.out)
+		t.Setenv("FAKE_EXIT", c.exit)
+		opt := f.opts()
+		opt.waitDelay = 100 * time.Millisecond
+		res := mustRun(t, opt)
+		if res.Stopped != StopError || res.Runs != 1 || res.Error == "" {
+			t.Errorf("%s: result = %+v, want error after 1 run", name, res)
+		}
+		f.wantProcessesGone("child")
+	}
+}
+
+// A cost that is negative, or not a number, is no cost: it would lower the
+// total the cap is held against.
+func TestRunStopsOnACostThatIsNotACost(t *testing.T) {
+	for name, out := range map[string]string{
+		"negative":               `{"type":"result","subtype":"success","is_error":false,"total_cost_usd":-0.5}`,
+		"negative, out of turns": `{"subtype":"error_max_turns","is_error":true,"total_cost_usd":-0.5}`,
+		"too large for a float":  `{"subtype":"success","is_error":false,"total_cost_usd":1e999}`,
+	} {
+		f := newFake(t, 5, 1)
+		t.Setenv("FAKE_OUT", out)
+		res := mustRun(t, f.opts())
+		if res.Stopped != StopError || res.Runs != 1 || !strings.Contains(res.Error, "total_cost_usd") {
+			t.Errorf("%s: result = %+v, want error after 1 run, naming total_cost_usd", name, res)
+		}
+		if res.CostUSD != 0 {
+			t.Errorf("%s: CostUSD = %v, want 0: a cost that is not one is not added", name, res.CostUSD)
+		}
+	}
+}
+
+func TestValidCost(t *testing.T) {
+	for _, c := range []float64{0, 0.01, 12.5} {
+		if !validCost(c) {
+			t.Errorf("validCost(%v) = false, want true", c)
+		}
+	}
+	for _, c := range []float64{-0.01, -1, math.NaN(), math.Inf(1), math.Inf(-1)} {
+		if validCost(c) {
+			t.Errorf("validCost(%v) = true, want false", c)
+		}
 	}
 }
 

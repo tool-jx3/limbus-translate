@@ -17,6 +17,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"os/exec"
 	"strconv"
@@ -52,10 +53,10 @@ const (
 	// stallLimit is how many runs in a row may leave the count of available
 	// units where it was before Run gives up.
 	stallLimit = 2
-	// waitDelay is how long Wait waits for the output of a process that is
-	// killed or has exited, in case a descendant that left the process group
-	// still holds the pipes.
-	waitDelay = 5 * time.Second
+	// defaultWaitDelay is how long Wait waits for the output of a process that
+	// is killed or has exited, in case a descendant that left the process
+	// group still holds the pipes.
+	defaultWaitDelay = 5 * time.Second
 	// stderrKept is how much of the end of a run's stderr an error carries.
 	stderrKept = 1024
 	// subtypeMaxTurns is the subtype of the result of a run that stopped at its
@@ -95,6 +96,10 @@ type Options struct {
 	Available func() (int, error)
 	// Log gets one line a round. Nil means no log.
 	Log io.Writer
+
+	// waitDelay is how long Wait waits for the output of a run that has
+	// exited; zero means defaultWaitDelay. Only the tests set it.
+	waitDelay time.Duration
 }
 
 // Result is what a Run did.
@@ -164,8 +169,11 @@ func (o Options) check() error {
 // run of the skill. A run that fails ends Run with StopError.
 //
 // A run fails when it cannot be started, exits non-zero, prints something
-// that is not a JSON object or reports is_error, and when it takes longer
-// than RunTimeout (it is killed). The one exception is a run that stopped at
+// that is not a JSON object or reports is_error, when its total_cost_usd is
+// missing or is not a cost (negative), and when it takes longer than
+// RunTimeout (it is killed). A run that exits cleanly and prints its result
+// is not failed by a descendant that keeps the pipes open, and whatever a
+// run left running is killed when it is over. The one exception is a run that stopped at
 // its --max-turns limit (subtype "error_max_turns"): the skill hands out batch
 // after batch, so running out of turns is how a run normally ends. Whatever
 // is_error and the exit status say, such a round counts as a normal one: its
@@ -290,7 +298,10 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 		}
 		return nil
 	}
-	cmd.WaitDelay = waitDelay
+	cmd.WaitDelay = defaultWaitDelay
+	if opt.waitDelay > 0 {
+		cmd.WaitDelay = opt.waitDelay
+	}
 	var stdout bytes.Buffer
 	stderr := &tail{max: stderrKept}
 	cmd.Stdout, cmd.Stderr = &stdout, stderr
@@ -300,14 +311,30 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	}
 	waitErr := cmd.Wait()
 	timedOut := errors.Is(ctx.Err(), context.DeadlineExceeded)
+	// Whatever the run left running dies with it, so that no descendant lives
+	// on into the next round. The group may be gone already: best effort.
+	_ = syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
 
 	out, decodeErr := decodeOutput(stdout.Bytes())
+	badCost := false
 	if decodeErr == nil && out.TotalCostUSD != nil {
-		cost = *out.TotalCostUSD
+		if validCost(*out.TotalCostUSD) {
+			cost = *out.TotalCostUSD
+		} else {
+			badCost = true
+		}
+	}
+	// A descendant that held the pipes makes Wait give up on the output after
+	// WaitDelay and say so, although claude exited cleanly and printed its
+	// result: such a run is as good as one without the descendant.
+	if errors.Is(waitErr, exec.ErrWaitDelay) && cmd.ProcessState != nil && cmd.ProcessState.Success() && decodeErr == nil {
+		waitErr = nil
 	}
 	switch {
 	case timedOut:
 		return cost, true, fmt.Errorf("claude timed out after %v and was killed", opt.RunTimeout)
+	case badCost:
+		return 0, true, fmt.Errorf("claude printed total_cost_usd %v, which is not a cost: the cost of the run is unknown", *out.TotalCostUSD)
 	case decodeErr == nil && out.Subtype == subtypeMaxTurns:
 		// The normal end of a long run; see Run.
 		if out.TotalCostUSD == nil {
@@ -328,6 +355,11 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	}
 	return cost, true, nil
 }
+
+// validCost reports whether c can be the cost of a run: not negative, not a
+// number that is not a number, not infinite. A cost that is none would lower
+// the total the cap is held against.
+func validCost(c float64) bool { return c >= 0 && !math.IsInf(c, 0) }
 
 // snippet shortens s to one line for an error message.
 func snippet(s string) string {
