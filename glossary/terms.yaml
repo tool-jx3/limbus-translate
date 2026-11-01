@@ -565,3 +565,16 @@
   status: approved
   category: [city]
   notes: 見「주홍십자」
+
+- kr: 스킬 슬롯
+  zh: 行動槽
+  forbidden: [技能槽]
+  status: approved
+  category: [system, combat]
+  notes: 既有 178 處；「스킬 슬롯 수 +1」→ 行動槽數量+1
+
+- kr: 따갑게 내리쬐는 햇살
+  zh: 灼熱照射的陽光
+  status: approved
+  category: [combat]
+  notes: Passives_Abnormality-a1c10p2 的被動名與狀態名（Bufs／BattleKeywords-a1c10p2）
