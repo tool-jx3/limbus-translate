@@ -4,12 +4,12 @@
       "id": 0,
       "place": "LCE研究小組 走廊",
       "model": "중지제자",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 1,
       "model": "중지제자",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 2,
@@ -184,7 +184,7 @@
       "model": "LCA대원벼락",
       "teller": "LCA偵察隊？",
       "title": "???",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 36,
@@ -296,7 +296,7 @@
       "model": "LCA대원벼락",
       "teller": "閃電人",
       "title": "扭曲",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 58,
@@ -356,7 +356,7 @@
     {
       "id": 69,
       "model": "모제스3",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 70,

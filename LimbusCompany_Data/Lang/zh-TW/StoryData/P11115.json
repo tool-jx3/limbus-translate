@@ -51,13 +51,13 @@
     {
       "id": 8,
       "teller": "研究員小組 組長",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "合作對象都疏散完畢了嗎？"
     },
     {
       "id": 9,
       "teller": "焦慮的研究員",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "是。已經依照計畫移動到預定地點了。"
     },
     {
@@ -79,13 +79,13 @@
     {
       "id": 14,
       "teller": "研究員小組 組長",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "火種呢？"
     },
     {
       "id": 15,
       "teller": "冷靜的研究員",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "已確認兩名侵入者進入了走廊。這樣就五位了。"
     },
     {
@@ -222,7 +222,7 @@
       "id": 39,
       "model": "오티스",
       "title": "中指 幼姐",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 40,
@@ -338,7 +338,7 @@
       "id": 60,
       "model": "이상",
       "title": "食指 父輩",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 61,
@@ -373,19 +373,19 @@
     {
       "id": 66,
       "teller": "焦慮的研究員",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "……O-01-20-07個體的翅膀。已遭到破壞。"
     },
     {
       "id": 67,
       "teller": "研究員小組 組長",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "原本以為利用異想體……就足以爭取到合作對象要求的時間……"
     },
     {
       "id": 68,
       "teller": "研究員小組 組長",
-      "title": "The LCE",
+      "title": "LCE",
       "content": "恐怕撐不了太久了。"
     },
     {
@@ -458,7 +458,7 @@
       "id": 80,
       "model": "오티스",
       "title": "中指 幼姐",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 81,
@@ -890,7 +890,7 @@
       "id": 163,
       "model": "오티스",
       "title": "中指 父輩",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 164,
@@ -952,7 +952,7 @@
       "id": 176,
       "model": "오티스",
       "title": "中指 父輩",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 177,
@@ -1053,7 +1053,7 @@
       "model": "료슈",
       "teller": "Yoshihide",
       "title": "蜘蛛巢",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 195,

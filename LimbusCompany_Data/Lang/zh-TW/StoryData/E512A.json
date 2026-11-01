@@ -10,7 +10,7 @@
       "model": "카이만",
       "teller": "???",
       "title": "???",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 2,
@@ -43,7 +43,7 @@
     {
       "id": 8,
       "model": "단테",
-      "content": "<Are you from the LCCB...?>"
+      "content": "<LCCB……？>"
     },
     {
       "id": 9,
@@ -412,7 +412,7 @@
     {
       "id": 70,
       "model": "단테",
-      "content": "<…….>"
+      "content": "<……>"
     },
     {
       "id": 71,

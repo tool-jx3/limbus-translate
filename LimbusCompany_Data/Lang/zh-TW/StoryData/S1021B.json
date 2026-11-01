@@ -12,17 +12,17 @@
     {
       "id": 2,
       "model": "파우스트",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 3,
       "model": "단테",
-      "content": "<.......>"
+      "content": "<……>"
     },
     {
       "id": 4,
       "model": "뫼르소",
-      "content": "......."
+      "content": "……"
     },
     {
       "id": 5,
@@ -64,7 +64,7 @@
       "model": "뷔페어린이",
       "teller": "???",
       "title": "???",
-      "content": "......."
+      "content": "……"
     }
   ]
 }

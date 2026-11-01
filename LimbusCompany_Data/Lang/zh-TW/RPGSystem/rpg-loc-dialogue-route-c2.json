@@ -92,21 +92,21 @@
       "texts": [
         {
           "index": 0,
-          "text": "....."
+          "text": "……"
         },
         {
           "index": 1,
-          "text": ".....",
+          "text": "……",
           "speaker": "但丁"
         },
         {
           "index": 2,
-          "text": ".....",
+          "text": "……",
           "speaker": "莫梭"
         },
         {
           "index": 3,
-          "text": ".....",
+          "text": "……",
           "speaker": "莫梭"
         }
       ]
@@ -131,7 +131,7 @@
         },
         {
           "index": 3,
-          "text": "…….",
+          "text": "……",
           "speaker": "莫梭"
         },
         {
@@ -276,7 +276,7 @@
         },
         {
           "index": 1,
-          "text": "…….",
+          "text": "……",
           "speaker": "莫梭"
         },
         {
@@ -354,12 +354,12 @@
         },
         {
           "index": 7,
-          "text": ".......",
+          "text": "……",
           "speaker": "莫梭"
         },
         {
           "index": 8,
-          "text": ".......",
+          "text": "……",
           "speaker": "簡"
         },
         {
@@ -422,7 +422,7 @@
         },
         {
           "index": 2,
-          "text": "<…….>",
+          "text": "<……>",
           "speaker": "但丁"
         }
       ]
@@ -650,7 +650,7 @@
       "texts": [
         {
           "index": 0,
-          "text": "…….",
+          "text": "……",
           "speaker": "莫梭"
         },
         {
@@ -893,7 +893,7 @@
       "texts": [
         {
           "index": 0,
-          "text": ".......",
+          "text": "……",
           "speaker": "???"
         }
       ]

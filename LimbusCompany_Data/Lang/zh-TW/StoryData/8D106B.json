@@ -36,18 +36,18 @@
       "model": "죄수",
       "teller": "???",
       "title": "???",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 7,
       "place": "會場內部 1樓",
       "model": "이스마엘",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 8,
       "model": "단테",
-      "content": "<…….>"
+      "content": "<……>"
     },
     {
       "id": 9,
@@ -186,7 +186,7 @@
     {
       "id": 36,
       "model": "임대옥",
-      "content": "……."
+      "content": "……"
     },
     {
       "id": 37,
