@@ -731,3 +731,10 @@
   status: approved
   category: [general]
   notes: 蜘蛛巢的弟子稱師父（既有 58 行）；師父是武藝的師長，不是工匠
+
+- kr: 수비 스킬
+  zh: 守備技能
+  forbidden: [防備技能]
+  status: approved
+  category: [system, combat]
+  notes: 既有 172 處
