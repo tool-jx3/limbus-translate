@@ -357,6 +357,10 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 		return err
 	}
 	res, err := batch.Submit(env, &b, out, *model, ctx.Config.Batch.MaxAttempts)
+	if errors.Is(err, batch.ErrBadKey) {
+		// The translator's file is wrong, not the system; nothing was written.
+		return cli.UserError(fmt.Sprintf("batch submit: work/batches/%s.out.json: %v", id, err))
+	}
 	if err != nil {
 		return err
 	}

@@ -18,6 +18,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
@@ -157,6 +158,12 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	if strings.HasSuffix(info.RulesCommit, dirtySuffix) {
 		return nil, fmt.Errorf("%w (rules_commit %q); commit the rules and run lct build again", ErrDirtyRules, info.RulesCommit)
 	}
+	// What the snapshot changed, for the notes; a plan of another snapshot
+	// says nothing about this build.
+	sum, err := build.ReadPlan(twRoot, info.RawTag)
+	if err != nil {
+		return nil, err
+	}
 	existing, err := gitx.Tags(root, TagPrefix)
 	if err != nil {
 		return nil, err
@@ -199,7 +206,7 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	}
 
 	notesPath := filepath.Join(outDir, notesName)
-	if err := os.WriteFile(notesPath, Notes(info, tag), 0o644); err != nil {
+	if err := os.WriteFile(notesPath, Notes(info, sum, tag), 0o644); err != nil {
 		return nil, err
 	}
 	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: releaseNeeded}, nil
@@ -229,14 +236,26 @@ func checkZip(name string, zips map[string]string) error {
 	return nil
 }
 
-// Notes renders the release notes of the Release called tag, built from info,
-// in Markdown. The tag is the title: the Release name must not hold the name
-// of the product that translated the pack, which the text below it may.
+// originLabels say in a few words what each origin of the records is.
+var originLabels = map[string]string{
+	store.OriginParatranz: "第一階段匯入的社群譯文",
+	store.OriginClaude:    "Claude 翻譯",
+	store.OriginHuman:     "人工調整",
+	store.OriginCopy:      "不需翻譯，保留原文",
+	store.OriginFallback:  "翻譯失敗，暫用英文",
+}
+
+// Notes renders the release notes of the Release called tag, built from info
+// and from sum, the plan of the snapshot (nil when there is none), in
+// Markdown. The tag is the title: the Release name must not hold the name of
+// the product that translated the pack, which the text below it may.
 //
-// The parts come in this order: the title; what the pack is; how to install
-// it; the raw version; the rules version; a summary of the build report; the
-// licence and the sources.
-func Notes(info build.Info, tag string) []byte {
+// The notes are short (spec 14.1): the parts come in this order: the title;
+// what the pack is; how to install it; the raw version and what changed in it;
+// the rules version; the share of each source of the translations and how many
+// units still show English; the licence and the sources. The report of the
+// build, with its tables and lists, is not repeated.
+func Notes(info build.Info, sum *plan.Summary, tag string) []byte {
 	var b strings.Builder
 	rep := info.Report
 
@@ -248,35 +267,41 @@ func Notes(info build.Info, tag string) []byte {
 	b.WriteString("zip 有兩種：text 只有文字；complete 另含字型。\n\n")
 
 	b.WriteString("## 原文版本\n\n")
-	fmt.Fprintf(&b, "- raw tag：`%s`\n- token：`%s`\n\n", info.RawTag, info.RawToken)
+	fmt.Fprintf(&b, "- raw tag：`%s`\n- token：`%s`\n", info.RawTag, info.RawToken)
+	if sum != nil && sum.RawTag == info.RawTag && sum.PrevRawTag != sum.RawTag {
+		c := sum.Changes
+		fmt.Fprintf(&b, "- 與上一版 `%s` 相比：新增 %d、修改 %d、刪除 %d 個單位\n", sum.PrevRawTag, c.New, c.Changed, c.Deleted)
+	}
+	b.WriteString("\n")
 
 	b.WriteString("## 規則版本\n\n")
 	fmt.Fprintf(&b, "- rules commit：`%s`\n\n", info.RulesCommit)
 
-	b.WriteString("## 報表摘要\n\n")
-	if len(rep.Origins) == 0 {
-		b.WriteString("譯文來源（origins）：無。\n\n")
-	} else {
-		b.WriteString("| origins（譯文來源） | 單位數 |\n|---|---|\n")
+	b.WriteString("## 譯文來源\n\n")
+	total := rep.Pending
+	for _, n := range rep.Origins {
+		total += n
+	}
+	if total > 0 {
+		fmt.Fprintf(&b, "各來源占全部 %d 個單位的比例：\n\n", total)
 		for _, origin := range slices.Sorted(maps.Keys(rep.Origins)) {
-			fmt.Fprintf(&b, "| %s | %d |\n", origin, rep.Origins[origin])
+			n := rep.Origins[origin]
+			fmt.Fprintf(&b, "- %s %.1f%%", origin, 100*float64(n)/float64(total))
+			if label, ok := originLabels[origin]; ok {
+				fmt.Fprintf(&b, "：%s（%d 個單位）", label, n)
+			}
+			b.WriteString("\n")
 		}
 		b.WriteString("\n")
 	}
-	b.WriteString("| 項目 | 單位數 |\n|---|---|\n")
-	for _, row := range []struct {
-		label string
-		n     int
-	}{
-		{"pending：尚無譯文，暫時顯示英文（沒有英文則顯示韓文）", rep.Pending},
-		{"needs_review：待人工審核", rep.NeedsReview},
-		{"structural_fallback：譯文破壞原文結構，已改用原文", rep.StructuralFallback},
-		{"frozen_fallback：凍結檔需人工處理（同樣破壞原文結構，不重新翻譯）", len(rep.FrozenFallback)},
-		{"missing glyphs：字型缺字（字元數）", len(rep.MissingGlyphs)},
-	} {
-		fmt.Fprintf(&b, "| %s | %d |\n", row.label, row.n)
+	// An older build record did not count the stand-ins; the pending units are
+	// the least that show English.
+	english := max(rep.StandIn, rep.Pending)
+	fmt.Fprintf(&b, "仍顯示英文：%d 個單位", english)
+	if english > 0 {
+		fmt.Fprintf(&b, "（尚未翻譯 %d；翻譯失敗或破壞原文結構而暫用英文 %d）", rep.Pending, english-rep.Pending)
 	}
-	b.WriteString("\n")
+	b.WriteString("\n\n")
 
 	b.WriteString("## 授權與來源\n\n")
 	// Sources are credited only when records of them went into the pack.

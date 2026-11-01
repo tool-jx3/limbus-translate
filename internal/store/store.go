@@ -82,8 +82,13 @@ type PendingItem struct {
 	Hint     string            `json:"hint,omitempty"`
 	Refs     map[string]string `json:"refs,omitempty"`
 	Attempts int               `json:"attempts,omitempty"`
-	Flags    []string          `json:"flags,omitempty"`
-	Lease    *Lease            `json:"lease,omitempty"`
+	// LastError is what the check said about the last translation of the unit
+	// that was turned away, as "code: message" for each hard issue, joined by
+	// "; ". A person who looks at a unit flagged needs_review sees why it ran
+	// out of attempts.
+	LastError string   `json:"last_error,omitempty"`
+	Flags     []string `json:"flags,omitempty"`
+	Lease     *Lease   `json:"lease,omitempty"`
 }
 
 // Lease reserves a pending item for a batch until Until.

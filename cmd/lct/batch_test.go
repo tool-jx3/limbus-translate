@@ -578,6 +578,9 @@ func TestBatchSubmitUserErrors(t *testing.T) {
 		{"out is not JSON", []string{id}, func() {
 			writeTestFile(t, root, "work/batches/"+id+".out.json", `[{"key":`)
 		}, "not valid"},
+		{"a key that is no unit key", []string{id}, func() {
+			writeOut(t, root, id, batch.OutUnit{Key: "no-separator", ZH: "x", Note: "a note on it"})
+		}, "invalid key"},
 		{"batch file of another id", []string{id}, func() {
 			writeTestFile(t, root, "work/batches/"+id+".out.json", `[]`)
 			data, _ := os.ReadFile(filepath.Join(root, "work", "batches", id+".json"))

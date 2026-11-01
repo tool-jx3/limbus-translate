@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -13,10 +14,14 @@ import (
 	"strings"
 	"testing"
 	"time"
+	"unicode/utf16"
 
 	"golang.org/x/image/font/gofont/goregular"
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
+	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 // buildYAML is the lct.yaml of the bootstrap tests with the language directory.
@@ -51,6 +56,8 @@ type buildOut struct {
 	CompleteZip string        `json:"complete_zip"`
 	Report      *build.Report `json:"report"`
 	ReportPath  string        `json:"report_path"`
+
+	ReviewIssueParts int `json:"review_issue_parts"`
 }
 
 func runBuildJSON(t *testing.T, root string, args ...string) (buildOut, error) {
@@ -189,7 +196,7 @@ func TestBuildCommandJSONHasTheReportObject(t *testing.T) {
 		keys = append(keys, k)
 	}
 	slices.Sort(keys)
-	if want := []string{"complete_zip", "raw_tag", "report", "report_path", "text_zip"}; !slices.Equal(keys, want) {
+	if want := []string{"complete_zip", "raw_tag", "report", "report_path", "review_issue_parts", "text_zip"}; !slices.Equal(keys, want) {
 		t.Errorf("output keys = %v, want %v", keys, want)
 	}
 
@@ -307,5 +314,224 @@ func TestBuildCommandTextOutput(t *testing.T) {
 		if !strings.Contains(out.String(), want) {
 			t.Errorf("output does not mention %q:\n%s", want, out)
 		}
+	}
+}
+
+// markNeedsReview adds n pending items that wait for a person to the tw store
+// of root, as batch submit leaves them after the last attempt.
+func markNeedsReview(t *testing.T, root string, n int) []store.PendingItem {
+	t.Helper()
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	var added []store.PendingItem
+	for i := range n {
+		added = append(added, store.PendingItem{
+			Key:       fmt.Sprintf("Stuck%02d.json|/dataList/%d/content", i%40, i),
+			Reason:    "new",
+			Attempts:  3,
+			Flags:     []string{store.FlagNeedsReview},
+			LastError: fmt.Sprintf("id-mismatch: 缺少 [Bleed] 😀 %d", i),
+		})
+	}
+	if err := st.SavePending(append(pending, added...)); err != nil {
+		t.Fatal(err)
+	}
+	return added
+}
+
+func reviewIssueDir(root string) string { return filepath.Join(root, "out", "review-issue") }
+
+// The full report is the summary of the run. It goes to out/summary.md.
+func TestBuildCommandWritesTheSummary(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	got, err := runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	summary, err := os.ReadFile(filepath.Join(root, "out", "summary.md"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	report, err := os.ReadFile(got.ReportPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(summary) != string(report) {
+		t.Errorf("out/summary.md is not the report:\n%s", summary)
+	}
+	if !strings.Contains(string(summary), "## 需要你處理") || !strings.Contains(string(summary), "## 資訊") {
+		t.Errorf("the summary lacks the two parts:\n%s", summary)
+	}
+}
+
+// With nothing that needs a person there is no issue: the files of an earlier
+// build are gone, all of them.
+func TestReviewIssueOnlyWithItems(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	dir := reviewIssueDir(root)
+	for _, name := range []string{"title.txt", "01.md", "02.md", "03.md"} {
+		writeTestFile(t, dir, name, "stale\n")
+	}
+	got, err := runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.ReviewIssueParts != 0 {
+		t.Errorf("review_issue_parts = %d, want 0", got.ReviewIssueParts)
+	}
+	if _, err := os.Stat(dir); !os.IsNotExist(err) {
+		t.Errorf("out/review-issue is still there (%v)", err)
+	}
+
+	// A build with no stale directory works the same.
+	if _, err := runBuildJSON(t, root); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// Units that need a person make the issue: the title, and a file for each
+// part, as many as the parts the output says.
+func TestBuildCommandWritesTheReviewIssue(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	stuck := markNeedsReview(t, root, 3000)
+	dir := reviewIssueDir(root)
+	writeTestFile(t, dir, "09.md", "stale\n") // of an earlier build with more parts
+
+	got, err := runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.ReviewIssueParts < 2 {
+		t.Fatalf("review_issue_parts = %d, want several parts for 3000 units", got.ReviewIssueParts)
+	}
+	title, err := os.ReadFile(filepath.Join(dir, "title.txt"))
+	if err != nil || strings.TrimSpace(string(title)) != "審核：2026-10-29 更新" {
+		t.Errorf("title.txt = %q, %v", title, err)
+	}
+
+	// One file per part, in order, and nothing else.
+	var names []string
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range entries {
+		names = append(names, e.Name())
+	}
+	var want []string // ReadDir sorts: the numbers come before the title
+	for i := 1; i <= got.ReviewIssueParts; i++ {
+		want = append(want, fmt.Sprintf("%02d.md", i))
+	}
+	want = append(want, "title.txt")
+	if !slices.Equal(names, want) {
+		t.Fatalf("files = %v, want %v", names, want)
+	}
+
+	items := 0
+	for i := 1; i <= got.ReviewIssueParts; i++ {
+		b, err := os.ReadFile(filepath.Join(dir, fmt.Sprintf("%02d.md", i)))
+		if err != nil {
+			t.Fatal(err)
+		}
+		text := string(b)
+		if n := len(utf16.Encode([]rune(text))); n > 60000 {
+			t.Errorf("part %d has %d UTF-16 code units", i, n)
+		}
+		if head := fmt.Sprintf("（第 %d／%d 段）", i, got.ReviewIssueParts); !strings.HasPrefix(text, head) {
+			t.Errorf("part %d starts %q, want %q", i, text[:min(30, len(text))], head)
+		}
+		items += strings.Count(text, "- [ ] ")
+	}
+	if items != len(stuck) {
+		t.Errorf("%d items in the parts, want %d", items, len(stuck))
+	}
+
+	// The report lists them too, for the summary of the run.
+	summary, _ := os.ReadFile(filepath.Join(root, "out", "summary.md"))
+	if !strings.Contains(string(summary), stuck[0].Key) || !strings.Contains(string(summary), "id-mismatch") {
+		t.Errorf("the summary does not list the units that need a person")
+	}
+
+	// Fewer units fit in one part: no header, one file, and the stale ones go.
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	pending = slices.DeleteFunc(pending, func(it store.PendingItem) bool { return slices.Contains(it.Flags, store.FlagNeedsReview) })
+	if err := st.SavePending(append(pending, stuck[:3]...)); err != nil {
+		t.Fatal(err)
+	}
+	got, err = runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.ReviewIssueParts != 1 {
+		t.Fatalf("review_issue_parts = %d, want 1", got.ReviewIssueParts)
+	}
+	entries, _ = os.ReadDir(dir)
+	if len(entries) != 2 {
+		t.Errorf("%d files, want title.txt and 01.md only", len(entries))
+	}
+}
+
+// The compare pages of the report come from the repo the workflow runs in and
+// from the tw commit the build starts at.
+func TestBuildCommandLinksTheComparePages(t *testing.T) {
+	root := buildRepo(t)
+	t.Setenv(sourceDateEpoch, "")
+	t.Setenv("GITHUB_SERVER_URL", "https://github.com")
+	t.Setenv("GITHUB_REPOSITORY", "tool-jx3/limbus-translate")
+	tw := filepath.Join(root, ".work", "tw")
+	head, _, err := gitx.CommitAll(tw, "before")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if head == "" {
+		t.Fatal("tw has no commit")
+	}
+	// A plan of this snapshot that follows an older one.
+	if err := store.Open(tw).WriteMetaJSON(plan.File, map[string]any{
+		"raw_tag": "raw-20261029", "prev_raw_tag": "raw-20261022", "rules_commit": "x",
+		"changes": map[string]any{"unchanged": 0, "moved": 0, "changed": 0, "new": 0, "deleted": 0},
+		"copy":    0, "reused": 0,
+		"adjustments":     map[string]any{"applied": 0, "moved": []any{}, "expired": []any{}},
+		"requeue_applied": []any{}, "rewrite_applied": []any{}, "frozen_changed": []any{}, "new_speakers": []any{},
+		"field_changes": []any{}, "new_files_default_family": []any{}, "pending": 0,
+	}); err != nil {
+		t.Fatal(err)
+	}
+	got, err := runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	report, err := os.ReadFile(got.ReportPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{
+		"https://github.com/tool-jx3/limbus-translate/compare/raw-20261022...raw-20261029",
+		"https://github.com/tool-jx3/limbus-translate/compare/" + head + "...tw",
+	} {
+		if !strings.Contains(string(report), want) {
+			t.Errorf("the report lacks %q:\n%s", want, report)
+		}
+	}
+
+	// Outside GitHub Actions there is no repo to link.
+	t.Setenv("GITHUB_SERVER_URL", "")
+	t.Setenv("GITHUB_REPOSITORY", "")
+	got, err = runBuildJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if report, _ := os.ReadFile(got.ReportPath); strings.Contains(string(report), "/compare/") {
+		t.Errorf("the report has compare links without a repo:\n%s", report)
 	}
 }

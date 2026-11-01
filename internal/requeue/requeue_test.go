@@ -325,7 +325,7 @@ func TestRequeueNeedsReview(t *testing.T) {
 	fallback.Flags = []string{store.FlagNeedsReview}
 	saveRecords(t, st, fallback)
 	savePending(t, st,
-		store.PendingItem{Key: k0, Reason: "new", Attempts: 3, Flags: []string{store.FlagNeedsReview, "other"},
+		store.PendingItem{Key: k0, Reason: "new", Attempts: 3, Flags: []string{store.FlagNeedsReview, "other"}, LastError: "id-mismatch: x",
 			Lease: &store.Lease{Batch: "20261101T000000-aaaaaaaa", Until: time.Date(2099, 1, 1, 0, 0, 0, 0, time.UTC)}},
 		store.PendingItem{Key: k1, Reason: "new", Attempts: 1},
 		store.PendingItem{Key: k2, Reason: "kr-changed", PrevKR: "old", PrevZH: "舊", Attempts: 3, Flags: []string{store.FlagNeedsReview}},

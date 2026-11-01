@@ -15,6 +15,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
 )
 
 const (
@@ -57,6 +58,7 @@ var testBuildJSON = `{
       "paratranz": 30
     },
     "pending": 1234,
+    "stand_in": 1300,
     "needs_review": 56,
     "structural_fallback": 789,
     "frozen_fallback": [
@@ -172,7 +174,7 @@ func testInfo(t *testing.T) build.Info {
 
 func TestNotes(t *testing.T) {
 	info := testInfo(t)
-	notes := string(Notes(info, testReleaseA))
+	notes := string(Notes(info, nil, testReleaseA))
 
 	for _, want := range []string{
 		testReleaseA, testRawTag, testToken, testRules,
@@ -205,8 +207,8 @@ func TestNotes(t *testing.T) {
 		}
 	}
 
-	// The seven parts come in the order of the brief.
-	order := []string{testReleaseA, "使用 Claude Code 翻譯", "LimbusCompany_Data/", testToken, testRules, "pending", "CC BY-NC-SA 4.0"}
+	// The parts come in the order of the brief.
+	order := []string{testReleaseA, "使用 Claude Code 翻譯", "LimbusCompany_Data/", testToken, testRules, "仍顯示英文", "CC BY-NC-SA 4.0"}
 	last := -1
 	for _, part := range order {
 		i := strings.Index(notes, part)
@@ -215,18 +217,6 @@ func TestNotes(t *testing.T) {
 		}
 		last = max(last, i)
 	}
-}
-
-// tableRow returns the first table row of notes that names item.
-func tableRow(t *testing.T, notes, item string) string {
-	t.Helper()
-	for _, line := range strings.Split(notes, "\n") {
-		if strings.HasPrefix(line, "|") && strings.Contains(line, item) {
-			return line
-		}
-	}
-	t.Errorf("no table row names %q:\n%s", item, notes)
-	return ""
 }
 
 // The notes tell the sources that went into the pack from those that were only
@@ -244,7 +234,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 	if info.Report.Origins["paratranz"] == 0 {
 		t.Fatal("the fixture has no paratranz records")
 	}
-	notes := string(Notes(info, testReleaseA))
+	notes := string(Notes(info, nil, testReleaseA))
 
 	licence := strings.Index(notes, "## 授權與來源")
 	imported := strings.Index(notes, "匯入：paratranz: owner/pz@11\n")
@@ -268,7 +258,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 
 	// The same bytes however the map was filled.
 	for range 20 {
-		if again := string(Notes(info, testReleaseA)); again != notes {
+		if again := string(Notes(info, nil, testReleaseA)); again != notes {
 			t.Fatalf("Notes is not deterministic:\n%s\n%s", notes, again)
 		}
 	}
@@ -278,7 +268,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 	info.Report.Origins = map[string]int{"claude": 7}
 	for _, upstream := range []map[string]string{info.Upstream, nil, {}} {
 		info.Upstream = upstream
-		without := string(Notes(info, testReleaseA))
+		without := string(Notes(info, nil, testReleaseA))
 		for _, banned := range []string{"匯入", "參考譯文", "@", "上游", "paratranz", "ltm", "llc", "Paratranz"} {
 			if strings.Contains(without, banned) {
 				t.Errorf("notes of a build with no imported records (upstream %#v) mention %q:\n%s", upstream, banned, without)
@@ -290,36 +280,82 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 	}
 }
 
-// A frozen file's record that breaks the structure of KR is one problem, and
-// has one row: the one for a person to handle. It is not also a record to
-// review.
-func TestNotesCountsEachProblemOnce(t *testing.T) {
+// The notes are short: what changed, the share of each source, how much is
+// still in English, and the licence. The whole report is not repeated.
+func TestNotesAreConcise(t *testing.T) {
 	info := testInfo(t)
-	info.Report.NeedsReview = 0
-	info.Report.FrozenFallback = []string{"BgmLyrics/L.json|/dataList/0/content", "BgmLyrics/L.json|/dataList/1/content", "BgmLyrics/L.json|/dataList/2/content"}
-	notes := string(Notes(info, testReleaseA))
-	if r := tableRow(t, notes, "待人工審核"); !strings.HasSuffix(r, "| 0 |") {
-		t.Errorf("row for the records to review = %q, want the count 0", r)
+	info.Report.Origins = map[string]int{"paratranz": 60, "claude": 30, "fallback": 2, "copy": 8}
+	info.Report.Pending, info.Report.StandIn = 0, 2
+	sum := &plan.Summary{
+		RawTag: testRawTag, PrevRawTag: "raw-20261022",
+		Changes: plan.Changes{New: 5, Changed: 4, Deleted: 6, Unchanged: 900},
 	}
-	if r := tableRow(t, notes, "凍結檔需人工處理"); !strings.HasSuffix(r, "| 3 |") {
-		t.Errorf("row for the frozen fallbacks = %q, want the count 3", r)
+	notes := string(Notes(info, sum, testReleaseA))
+
+	for _, want := range []string{
+		"paratranz 60.0%", "claude 30.0%", "fallback 2.0%", "copy 8.0%", // each source, to one decimal
+		"仍顯示英文：2 個單位",
+		"新增 5", "修改 4", "刪除 6", "raw-20261022", // what changed in the KR text, and since when
+		testRawTag, testToken,
+	} {
+		if !strings.Contains(notes, want) {
+			t.Errorf("notes lack %q:\n%s", want, notes)
+		}
+	}
+	// No table of the report, and none of its counts.
+	for _, line := range strings.Split(notes, "\n") {
+		if strings.HasPrefix(line, "|") {
+			t.Errorf("notes hold a table row: %q", line)
+		}
+	}
+	for _, not := range []string{"needs_review", "structural_fallback", "frozen_fallback", "missing glyphs", "origins"} {
+		if strings.Contains(notes, not) {
+			t.Errorf("notes still hold %q of the report:\n%s", not, notes)
+		}
+	}
+
+	// Units that wait for a translation count in the whole the shares are of.
+	info.Report.Origins = map[string]int{"paratranz": 45, "claude": 45}
+	info.Report.Pending, info.Report.StandIn = 10, 10
+	notes = string(Notes(info, sum, testReleaseA))
+	for _, want := range []string{"paratranz 45.0%", "claude 45.0%", "仍顯示英文：10 個單位"} {
+		if !strings.Contains(notes, want) {
+			t.Errorf("notes lack %q:\n%s", want, notes)
+		}
+	}
+
+	// A third of a unit shows as one decimal, rounded.
+	info.Report.Origins = map[string]int{"paratranz": 1, "claude": 2}
+	info.Report.Pending, info.Report.StandIn = 0, 0
+	if notes := string(Notes(info, sum, testReleaseA)); !strings.Contains(notes, "paratranz 33.3%") || !strings.Contains(notes, "claude 66.7%") {
+		t.Errorf("shares are not rounded to one decimal:\n%s", notes)
+	}
+
+	// Without a plan, or with a plan that found no older snapshot, the notes
+	// say nothing of changes.
+	for name, s := range map[string]*plan.Summary{
+		"no plan":        nil,
+		"first snapshot": {RawTag: testRawTag, PrevRawTag: testRawTag, Changes: plan.Changes{New: 5}},
+	} {
+		if notes := string(Notes(info, s, testReleaseA)); strings.Contains(notes, "新增") || strings.Contains(notes, "修改") {
+			t.Errorf("%s: notes tell of changes:\n%s", name, notes)
+		}
 	}
 }
 
-func TestNotesSummarizesTheReport(t *testing.T) {
-	notes := string(Notes(testInfo(t), testReleaseA))
-	for item, count := range map[string]string{
-		"claude": "7", "copy": "3", "paratranz": "30",
-		"pending": "1234", "needs_review": "56", "structural_fallback": "789",
-		"frozen_fallback": "2", "missing glyphs": "3",
-	} {
-		if r := tableRow(t, notes, item); !strings.HasSuffix(r, "| "+count+" |") {
-			t.Errorf("row for %q = %q, want the count %s", item, r, count)
-		}
+// Every unit that shows English counts once: the stand-ins the build counted,
+// not pending plus the records that fell back. A build record from before the
+// stand-ins were counted still gives at least the pending units.
+func TestNotesCountEnglishOnce(t *testing.T) {
+	info := testInfo(t)
+	info.Report.Pending, info.Report.StandIn = 5, 12
+	if notes := string(Notes(info, nil, testReleaseA)); !strings.Contains(notes, "仍顯示英文：12 個單位") ||
+		!strings.Contains(notes, "尚未翻譯 5") {
+		t.Errorf("notes do not count the stand-ins once:\n%s", notes)
 	}
-	// The origins come in alphabetical order, whatever the map order.
-	if c, p := strings.Index(notes, "| claude "), strings.Index(notes, "| paratranz "); c < 0 || p < 0 || c > p {
-		t.Errorf("origins are not sorted: claude at %d, paratranz at %d", c, p)
+	info.Report.StandIn = 0
+	if notes := string(Notes(info, nil, testReleaseA)); !strings.Contains(notes, "仍顯示英文：5 個單位") {
+		t.Errorf("notes of an old build record lack the pending units:\n%s", notes)
 	}
 }
 
@@ -327,19 +363,51 @@ func TestNotesSummarizesTheReport(t *testing.T) {
 // notes, and the same bytes every time.
 func TestNotesOfAnEmptyReport(t *testing.T) {
 	info := build.Info{RawTag: testRawTag, RawToken: testToken, RulesCommit: "abc"}
-	notes := string(Notes(info, testReleaseA))
-	for _, want := range []string{"# " + testReleaseA, testToken, "abc", "CC BY-NC-SA 4.0"} {
+	notes := string(Notes(info, nil, testReleaseA))
+	for _, want := range []string{"# " + testReleaseA, testToken, "abc", "CC BY-NC-SA 4.0", "仍顯示英文：0 個單位"} {
 		if !strings.Contains(notes, want) {
 			t.Errorf("notes lack %q:\n%s", want, notes)
 		}
 	}
-	for _, item := range []string{"pending", "needs_review", "structural_fallback", "frozen_fallback", "missing glyphs"} {
-		if r := tableRow(t, notes, item); !strings.HasSuffix(r, "| 0 |") {
-			t.Errorf("row for %q = %q, want the count 0", item, r)
-		}
+	if strings.Contains(notes, "NaN") || strings.Contains(notes, "%") {
+		t.Errorf("notes of an empty report hold a share:\n%s", notes)
 	}
-	if string(Notes(info, testReleaseA)) != notes {
+	if string(Notes(info, nil, testReleaseA)) != notes {
 		t.Error("Notes is not deterministic")
+	}
+}
+
+// publish reads the plan of the snapshot that was built for the notes; the
+// plan of another snapshot is not read as its own.
+func TestPublishNotesCarryThePlan(t *testing.T) {
+	f := newFixture(t)
+	writePlan := func(sum plan.Summary) {
+		b, err := json.MarshalIndent(sum, "", "  ")
+		if err != nil {
+			t.Fatal(err)
+		}
+		write(t, f.tw, ".meta/plan.json", string(b)+"\n")
+	}
+	writePlan(plan.Summary{
+		RawTag: testRawTag, PrevRawTag: "raw-20261022",
+		Changes: plan.Changes{New: 15, Changed: 14, Deleted: 16},
+	})
+	res, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	notes, err := os.ReadFile(res.NotesPath)
+	if err != nil || !strings.Contains(string(notes), "新增 15") || !strings.Contains(string(notes), "刪除 16") {
+		t.Errorf("notes = %q, %v, want the changes of the plan", notes, err)
+	}
+
+	writePlan(plan.Summary{RawTag: "raw-20260101", PrevRawTag: "raw-20251225", Changes: plan.Changes{New: 77}})
+	res, err = Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if notes, err := os.ReadFile(res.NotesPath); err != nil || strings.Contains(string(notes), "77") || strings.Contains(string(notes), "新增") {
+		t.Errorf("notes = %q, %v, want nothing of the plan of another snapshot", notes, err)
 	}
 }
 
@@ -526,6 +594,7 @@ func TestPublishReadsTheRealFormat(t *testing.T) {
 		Report: build.Report{
 			Origins:            map[string]int{"claude": 7, "copy": 3, "paratranz": 30},
 			Pending:            1234,
+			StandIn:            1300,
 			NeedsReview:        56,
 			StructuralFallback: 789,
 			FrozenFallback:     []string{"BgmLyrics/L.json|/dataList/0/content", "BgmLyrics/L.json|/dataList/1/content"},

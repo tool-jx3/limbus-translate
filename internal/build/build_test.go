@@ -2,6 +2,7 @@ package build
 
 import (
 	"archive/zip"
+	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -17,6 +18,7 @@ import (
 	"strings"
 	"testing"
 	"time"
+	"unicode/utf8"
 
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/font/sfnt"
@@ -24,6 +26,8 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -295,7 +299,7 @@ func TestBuildFieldRulesBeatRecords(t *testing.T) {
 	if rep.FieldRuleOverride != 2 {
 		t.Errorf("FieldRuleOverride = %d, want 2", rep.FieldRuleOverride)
 	}
-	if md := string(Markdown(e.opt, rep)); !strings.Contains(md, "| Field rule override | 2 |") {
+	if md := e.readReport(); !strings.Contains(md, "| Field rule override | 2 |") {
 		t.Errorf("report lacks the field rule override row:\n%s", md)
 	}
 }
@@ -512,7 +516,7 @@ func TestBuildFrozenRecords(t *testing.T) {
 	if got := e.pending(); !reflect.DeepEqual(got, want) {
 		t.Errorf("pending = %+v, want only %+v: a frozen record is never queued", got, want)
 	}
-	md := string(Markdown(e.opt, rep))
+	md := e.readReport()
 	for _, want := range []string{"| Frozen fallback | 2 |", "- `" + lyric.Key + "`\n- `" + title.Key + "`\n"} {
 		if !strings.Contains(md, want) {
 			t.Errorf("report lacks %q:\n%s", want, md)
@@ -1125,7 +1129,8 @@ func TestReportMarkdown(t *testing.T) {
 		MissingGlyphs:      []rune{'`', 0xE000, '字'},
 	}
 	opt := Options{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: testBuiltAt}
-	got := string(Markdown(opt, rep))
+	info := Info{RawTag: testTag, RawToken: testToken, RulesCommit: "abc1234", BuiltAt: "2026-10-31T12:30:45Z", Report: *rep}
+	got := string(Markdown(opt, info, nil, nil))
 	for _, want := range []string{
 		"# Build report raw-20261029\n",
 		"| claude | 3 |\n| paratranz | 12 |\n", // sorted by name
@@ -1144,7 +1149,7 @@ func TestReportMarkdown(t *testing.T) {
 	if strings.Contains(got, "```") {
 		t.Errorf("a backtick must not be put in a code span:\n%s", got)
 	}
-	if again := string(Markdown(opt, rep)); again != got {
+	if again := string(Markdown(opt, info, nil, nil)); again != got {
 		t.Error("Markdown is not deterministic")
 	}
 	if !strings.HasSuffix(got, "\n") || strings.HasSuffix(got, "\n\n") {
@@ -1187,5 +1192,476 @@ func TestPinnedFont(t *testing.T) {
 	}
 	if idx, _ := f.GlyphIndex(&b, 0xE000); idx != 0 {
 		t.Error("the pinned font has a glyph for U+E000: MissingGlyphs would be meaningless")
+	}
+}
+
+// writePlan leaves a plan summary in the tw worktree, as lct plan does.
+func writePlan(t *testing.T, e *testEnv, sum plan.Summary) {
+	t.Helper()
+	if err := store.Open(e.opt.TWRoot).WriteMetaJSON(plan.File, sum); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// readReport reads the markdown report of the last build.
+func (e *testEnv) readReport() string {
+	e.t.Helper()
+	b, err := os.ReadFile(ReportPath(e.opt))
+	if err != nil {
+		e.t.Fatal(err)
+	}
+	return string(b)
+}
+
+// section returns the part of md between the heading and the next heading of
+// the same level, heading included.
+func section(t *testing.T, md, heading string) string {
+	t.Helper()
+	i := strings.Index(md, "\n"+heading+"\n")
+	if i < 0 {
+		t.Fatalf("report lacks the heading %q:\n%s", heading, md)
+	}
+	rest := md[i+1:]
+	if j := strings.Index(rest[len(heading):], "\n## "); j >= 0 {
+		return rest[:len(heading)+j]
+	}
+	return rest
+}
+
+const twoUnitsKR = `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"나"}]}`
+
+// The report has the two parts of spec 14, in this order: what needs a person,
+// then the information, with the two compare pages.
+func TestReportHasBothSections(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.opt.RepoURL = "https://github.com/tool-jx3/limbus-translate"
+	e.opt.PrevTWCommit = "0123abc"
+	stuck := rec("A.json", "/dataList/1/content", "나", "B")
+	stuck.Origin, stuck.Flags = store.OriginFallback, []string{store.FlagNeedsReview}
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"), stuck)
+	if err := store.Open(e.opt.TWRoot).SavePending([]store.PendingItem{{
+		Key: "A.json|/dataList/1/content", Reason: "new", Attempts: 3, Flags: []string{store.FlagNeedsReview},
+		LastError: "id-mismatch: [Bleed] is missing",
+	}}); err != nil {
+		t.Fatal(err)
+	}
+	writePlan(t, e, plan.Summary{
+		RawTag: testTag, PrevRawTag: "raw-20261022", RulesCommit: "abc1234",
+		Changes: plan.Changes{Unchanged: 90, Moved: 3, Changed: 4, New: 5, Deleted: 6, FilesAdded: []string{"New.json"}, FilesShifted: []string{"A.json"}},
+		Adjustments: plan.AdjustmentSummary{
+			Moved:   []plan.MovedKey{{From: "A.json|/dataList/5/content", To: "A.json|/dataList/6/content"}},
+			Expired: []string{"A.json|/dataList/9/content"},
+		},
+	})
+	e.run()
+
+	md := e.readReport()
+	needs, info := strings.Index(md, "\n## 需要你處理\n"), strings.Index(md, "\n## 資訊\n")
+	if needs < 0 || info < 0 || needs > info {
+		t.Fatalf("sections: 需要你處理 at %d, 資訊 at %d, want both, in this order:\n%s", needs, info, md)
+	}
+	todo, rest := section(t, md, "## 需要你處理"), section(t, md, "## 資訊")
+	for _, want := range []string{
+		"A.json|/dataList/1/content", "id-mismatch: [Bleed] is missing", // the unit that ran out of attempts and why
+		"A.json|/dataList/9/content", // the adjustment that expired
+	} {
+		if !strings.Contains(todo, want) {
+			t.Errorf("the part that needs a person lacks %q:\n%s", want, todo)
+		}
+	}
+	for _, want := range []string{
+		"https://github.com/tool-jx3/limbus-translate/compare/raw-20261022...raw-20261029",
+		"https://github.com/tool-jx3/limbus-translate/compare/0123abc...tw",
+		"新增 5、修改 4、刪除 6", "New.json", // what the new snapshot changed
+		"沿用原本的譯文：3 個單位",                                            // the units that only moved
+		"A.json|/dataList/5/content", "A.json|/dataList/6/content", // the adjustment whose key moved
+		testToken,
+	} {
+		if !strings.Contains(rest, want) {
+			t.Errorf("the information lacks %q:\n%s", want, rest)
+		}
+	}
+	// What is information is not in the part for the person.
+	for _, not := range []string{"compare/", "A.json|/dataList/5/content"} {
+		if strings.Contains(todo, not) {
+			t.Errorf("the part that needs a person holds %q:\n%s", not, todo)
+		}
+	}
+
+	// Without a repo URL there are no links; without a previous tw commit only
+	// the one of the KR text.
+	e.opt.RepoURL = ""
+	e.run()
+	if md := e.readReport(); strings.Contains(md, "/compare/") {
+		t.Errorf("a report without a repo URL has compare links:\n%s", md)
+	}
+	e.opt.RepoURL, e.opt.PrevTWCommit = "https://github.com/tool-jx3/limbus-translate/", ""
+	e.run()
+	md = e.readReport()
+	if !strings.Contains(md, "limbus-translate/compare/raw-20261022...raw-20261029") || strings.Contains(md, "...tw") {
+		t.Errorf("a report without a previous tw commit has only the link of the KR text:\n%s", md)
+	}
+}
+
+// With nothing for a person to do, the part says so.
+func TestReportWithNothingToDo(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"), rec("A.json", "/dataList/1/content", "나", "乙"))
+	e.run()
+	md := e.readReport()
+	todo := section(t, md, "## 需要你處理")
+	if !strings.Contains(todo, "沒有") || strings.Contains(todo, "- ") {
+		t.Errorf("the part that needs a person should say there is nothing:\n%s", todo)
+	}
+	if strings.Index(md, "## 需要你處理") > strings.Index(md, "## 資訊") {
+		t.Errorf("sections out of order:\n%s", md)
+	}
+}
+
+// A plan of another snapshot says nothing about this build.
+func TestReportIgnoresAPlanOfAnotherSnapshot(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	e.opt.RepoURL = "https://github.com/tool-jx3/limbus-translate"
+	writePlan(t, e, plan.Summary{
+		RawTag: "raw-20260101", PrevRawTag: "raw-20251225",
+		Adjustments: plan.AdjustmentSummary{Expired: []string{"A.json|/dataList/9/content"}},
+		NewSpeakers: []string{"someone"},
+	})
+	e.run()
+	md := e.readReport()
+	for _, not := range []string{"A.json|/dataList/9/content", "someone", "raw-20251225"} {
+		if strings.Contains(md, not) {
+			t.Errorf("the report holds %q of another snapshot's plan:\n%s", not, md)
+		}
+	}
+}
+
+// The inputs of the build and of the translation are information.
+func TestReportShowsInputsAndTranslation(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	writeTranslation(t, e, translate.Result{
+		Model: "model-x", Runs: 3, CostUSD: 1.25, Stopped: translate.StopCost,
+		RawTag: testTag, RulesCommit: "abc1234",
+	})
+	e.run()
+	rest := section(t, e.readReport(), "## 資訊")
+	for _, want := range []string{testTag, testToken, "abc1234", "model-x", "$1.25", "cost", "owner/pz@11"} {
+		if !strings.Contains(rest, want) {
+			t.Errorf("the information lacks %q:\n%s", want, rest)
+		}
+	}
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if info.Stopped != translate.StopCost || info.StopError != "" {
+		t.Errorf("Info.Stopped, StopError = %q, %q, want %q, empty", info.Stopped, info.StopError, translate.StopCost)
+	}
+
+	// A translation that failed: its error is in build.json and in the report.
+	writeTranslation(t, e, translate.Result{
+		Model: "model-x", CostUSD: 0.5, Stopped: translate.StopError, Error: "exit status 1: boom",
+		RawTag: testTag, RulesCommit: "abc1234",
+	})
+	e.run()
+	if info, err := ReadInfo(e.opt.TWRoot); err != nil || info.Stopped != translate.StopError || info.StopError != "exit status 1: boom" {
+		t.Errorf("Info = %+v, %v, want the error of the translation", info, err)
+	}
+	if rest := section(t, e.readReport(), "## 資訊"); !strings.Contains(rest, "exit status 1: boom") {
+		t.Errorf("the information lacks the error of the translation:\n%s", rest)
+	}
+
+	// A translation of other inputs says nothing about this build.
+	writeTranslation(t, e, translate.Result{
+		Model: "model-x", Stopped: translate.StopError, Error: "old failure", RawTag: "raw-20260101", RulesCommit: "abc1234",
+	})
+	e.run()
+	if info, _ := ReadInfo(e.opt.TWRoot); info.Stopped != "" || info.StopError != "" {
+		t.Errorf("Info = %+v, want no stop reason of a translation of another snapshot", info)
+	}
+	if strings.Contains(e.readReport(), "old failure") {
+		t.Error("the report holds the failure of another snapshot's translation")
+	}
+}
+
+func appendNotes(t *testing.T, e *testEnv, texts ...string) {
+	t.Helper()
+	var notes []store.Note
+	for _, text := range texts {
+		notes = append(notes, store.Note{Key: "A.json|/dataList/0/content", Batch: "b1", KRSha: units.KRSha("가"), Model: "m", Note: text})
+	}
+	if _, err := store.Open(e.opt.TWRoot).AppendNotes(notes); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// The notes of the translator are in the report once: a build reports those
+// that came after the last build.
+func TestReportListsNewNotesOnce(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	appendNotes(t, e, "note one", "note two")
+
+	rep := e.run()
+	if len(rep.Notes) != 2 || rep.Notes[0].Note != "note one" || rep.Notes[1].Note != "note two" {
+		t.Fatalf("Notes = %+v, want the two notes", rep.Notes)
+	}
+	if info, err := ReadInfo(e.opt.TWRoot); err != nil || info.NotesSeen != 2 {
+		t.Fatalf("NotesSeen = %d, %v, want 2", info.NotesSeen, err)
+	}
+	md := e.readReport()
+	for _, want := range []string{"note one", "note two", "A.json|/dataList/0/content"} {
+		if !strings.Contains(md, want) {
+			t.Errorf("the first report lacks %q:\n%s", want, md)
+		}
+	}
+
+	appendNotes(t, e, "note three")
+	rep = e.run()
+	if len(rep.Notes) != 1 || rep.Notes[0].Note != "note three" {
+		t.Fatalf("Notes = %+v, want only the new note", rep.Notes)
+	}
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil || info.NotesSeen != 3 {
+		t.Fatalf("NotesSeen = %d, %v, want 3", info.NotesSeen, err)
+	}
+	if !reflect.DeepEqual(info.Report.Notes, rep.Notes) {
+		t.Errorf("build.json notes = %+v, want %+v", info.Report.Notes, rep.Notes)
+	}
+	md = e.readReport()
+	if !strings.Contains(md, "note three") || strings.Contains(md, "note one") || strings.Contains(md, "note two") {
+		t.Errorf("the second report should list only the new note:\n%s", md)
+	}
+
+	// Nothing new: no notes, the count stays.
+	rep = e.run()
+	if len(rep.Notes) != 0 {
+		t.Errorf("Notes = %+v, want none", rep.Notes)
+	}
+	if info, _ := ReadInfo(e.opt.TWRoot); info.NotesSeen != 3 {
+		t.Errorf("NotesSeen = %d, want 3", info.NotesSeen)
+	}
+
+	// A build record that counts more notes than there are (the file was
+	// replaced) starts again from the first note.
+	if err := os.Remove(filepath.Join(e.opt.TWRoot, ".meta", "notes.jsonl")); err != nil {
+		t.Fatal(err)
+	}
+	appendNotes(t, e, "fresh")
+	if rep = e.run(); len(rep.Notes) != 1 || rep.Notes[0].Note != "fresh" {
+		t.Errorf("Notes = %+v, want the one note of the new file", rep.Notes)
+	}
+}
+
+// Twelve units warn of kana: the report keeps the first ten keys of them,
+// sorted, and the count of them all.
+func TestReportWarningSamples(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	for i := range 12 {
+		kr := "가" + string(rune('가'+i))
+		entries = append(entries, `{"id":`+strconv.Itoa(i)+`,"content":"`+kr+`"}`)
+		recs = append(recs, rec("A.json", "/dataList/"+strconv.Itoa(i)+"/content", kr, "甲か"))
+	}
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.save(recs...)
+	rep := e.run()
+
+	if rep.Warnings["kana"] != 12 {
+		t.Fatalf("Warnings = %v, want 12 kana", rep.Warnings)
+	}
+	var all []string
+	for _, r := range recs {
+		all = append(all, r.Key)
+	}
+	slices.Sort(all)
+	got := rep.WarningSamples["kana"]
+	if !slices.Equal(got, all[:10]) {
+		t.Errorf("WarningSamples[kana] = %v, want the first 10 of the sorted keys %v", got, all[:10])
+	}
+	if len(rep.WarningSamples) != 1 {
+		t.Errorf("WarningSamples = %v, want only kana", rep.WarningSamples)
+	}
+	warnings := section(t, e.readReport(), "## 資訊")
+	if !strings.Contains(warnings, "kana") || !strings.Contains(warnings, "12") || !strings.Contains(warnings, got[0]) {
+		t.Errorf("the report does not show the count and the samples of the kana warnings:\n%s", warnings)
+	}
+
+	// Fewer than ten: all of them. A unit with two issues of one code is one
+	// sample.
+	e2 := newEnv(t, map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"}]}`}, nil)
+	e2.save(rec("A.json", "/dataList/0/content", "가", "甲か乙か"))
+	rep = e2.run()
+	if got := rep.WarningSamples["kana"]; !slices.Equal(got, []string{"A.json|/dataList/0/content"}) {
+		t.Errorf("WarningSamples[kana] = %v, want the one key once", got)
+	}
+}
+
+func routingRules() *rules.Rules {
+	return &rules.Rules{Routing: rules.Routing{
+		Families: []rules.FamilyRule{{ID: "alpha", Match: []string{"A*"}}, {ID: "other"}},
+		Priority: []string{"alpha", "other"},
+	}}
+}
+
+// The same KR text in one family and field with different translations is one
+// group; the same text in another family, or with one translation, is not.
+func TestReportInconsistentRenderings(t *testing.T) {
+	e := newEnv(t, map[string]string{
+		"A.json": `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"가"},{"id":3,"content":"가"},{"id":4,"content":"나"},{"id":5,"content":"나"}]}`,
+		"B.json": `{"dataList":[{"id":1,"content":"가"}]}`,
+	}, nil)
+	e.opt.Rules = routingRules()
+	other := rec("A.json", "/dataList/4/content", "나", "丙")
+	other.Origin = store.OriginParatranz
+	e.save(
+		rec("A.json", "/dataList/0/content", "가", "甲"),
+		rec("A.json", "/dataList/1/content", "가", "乙"),
+		rec("A.json", "/dataList/2/content", "가", "甲"),
+		rec("A.json", "/dataList/3/content", "나", "丙"), // one translation twice: consistent
+		other,
+		rec("B.json", "/dataList/0/content", "가", "丁"), // another family: a group of its own
+	)
+	rep := e.run()
+
+	want := []Inconsistency{{
+		Family: "alpha", Field: "content", KR: "가",
+		ZH:    []string{"甲", "乙"},
+		Keys:  []string{"A.json|/dataList/0/content", "A.json|/dataList/1/content"},
+		Units: 3,
+	}}
+	if !reflect.DeepEqual(rep.Inconsistent, want) {
+		t.Errorf("Inconsistent = %+v, want %+v", rep.Inconsistent, want)
+	}
+	md := section(t, e.readReport(), "## 資訊")
+	for _, w := range []string{"甲", "乙", "A.json|/dataList/1/content"} {
+		if !strings.Contains(md, w) {
+			t.Errorf("the report lacks %q in the list of different renderings:\n%s", w, md)
+		}
+	}
+
+	// Without the rules every file is one family: B.json joins the group.
+	e.opt.Rules = nil
+	rep = e.run()
+	if len(rep.Inconsistent) != 1 || rep.Inconsistent[0].Units != 4 || len(rep.Inconsistent[0].ZH) != 3 || rep.Inconsistent[0].Family != "" {
+		t.Errorf("Inconsistent without rules = %+v, want one group of 4 units and 3 renderings", rep.Inconsistent)
+	}
+}
+
+// Copies, stand-ins and units that are pending are not translations of the
+// text: they make no inconsistency. The biggest groups come first and there
+// are at most twenty.
+func TestReportInconsistentIsBounded(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	add := func(kr, zh string, origin string) {
+		i := len(entries)
+		entries = append(entries, `{"id":`+strconv.Itoa(i)+`,"content":"`+kr+`"}`)
+		r := rec("A.json", "/dataList/"+strconv.Itoa(i)+"/content", kr, zh)
+		r.Origin = origin
+		recs = append(recs, r)
+	}
+	for i := range 25 { // 25 groups of two, in KR order
+		kr := "가" + string(rune('가'+i))
+		add(kr, "甲"+strconv.Itoa(i), store.OriginClaude)
+		add(kr, "乙"+strconv.Itoa(i), store.OriginClaude)
+	}
+	big := "다다"
+	add(big, "x1", store.OriginClaude)
+	add(big, "x2", store.OriginHuman)
+	add(big, "x3", store.OriginParatranz)
+	add("라라", "라라", store.OriginCopy) // a copy and a stand-in
+	add("라라", "stand-in", store.OriginFallback)
+	add("라라", "real", store.OriginClaude)
+
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.save(recs...)
+	rep := e.run()
+	if len(rep.Inconsistent) != 20 {
+		t.Fatalf("%d groups, want 20", len(rep.Inconsistent))
+	}
+	if g := rep.Inconsistent[0]; g.KR != big || g.Units != 3 || len(g.ZH) != 3 || len(g.Keys) != 3 {
+		t.Errorf("first group = %+v, want the biggest", g)
+	}
+	for i, g := range rep.Inconsistent[1:] {
+		if want := "가" + string(rune('가'+i)); g.KR != want || g.Units != 2 {
+			t.Errorf("group %d = %+v, want the text %q with 2 units", i+1, g, want)
+		}
+	}
+	for _, g := range rep.Inconsistent {
+		if g.KR == "라라" {
+			t.Errorf("a copy and a stand-in made a group: %+v", g)
+		}
+	}
+}
+
+// The counts the notes need: how many units show a stand-in and how many
+// units the translator did for this snapshot.
+func TestBuildCountsStandInsAndNewTranslations(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"나"},{"id":3,"content":"다"},{"id":4,"content":"라"},{"id":5,"content":"마"},{"id":6,"content":"[Bleed] 바"}]}`
+	en := `{"dataList":[{"id":1,"content":"A"},{"id":2,"content":"B"},{"id":3,"content":"C"},{"id":4,"content":"D"},{"id":5,"content":"E"},{"id":6,"content":"[Bleed] F"}]}`
+	e := newEnv(t, map[string]string{"A.json": kr}, map[string]string{"A.json": en})
+	fresh := rec("A.json", "/dataList/0/content", "가", "甲") // this snapshot's translation
+	old := rec("A.json", "/dataList/1/content", "나", "乙")   // an earlier one
+	old.Since = "raw-20260101"
+	fallback := rec("A.json", "/dataList/2/content", "다", "C") // a stand-in
+	fallback.Origin = store.OriginFallback
+	fallback.Flags = []string{store.FlagNeedsReview}
+	human := rec("A.json", "/dataList/3/content", "라", "丁") // not the translator's
+	human.Origin = store.OriginHuman
+	broken := rec("A.json", "/dataList/5/content", "[Bleed] 바", "流血") // breaks the structure: EN stands in
+	e.save(fresh, old, fallback, human, broken)
+	rep := e.run()
+
+	// Pending: unit 5 (no record). Stand-ins: that, the fallback record, the broken one.
+	if rep.Pending != 1 || rep.StructuralFallback != 1 {
+		t.Fatalf("Pending=%d StructuralFallback=%d, want 1 1", rep.Pending, rep.StructuralFallback)
+	}
+	if rep.StandIn != 3 {
+		t.Errorf("StandIn = %d, want 3: one pending, one fallback record, one structural fallback", rep.StandIn)
+	}
+	if rep.NewTranslated != 2 { // fresh and the broken one are claude records of this snapshot
+		t.Errorf("NewTranslated = %d, want 2", rep.NewTranslated)
+	}
+}
+
+// out/summary.md is the report; one that is too long is cut at a line.
+func TestSummaryMarkdownIsCut(t *testing.T) {
+	small := []byte("# Build report\n\nshort\n")
+	if got := SummaryMarkdown(small, ".meta/reports/raw-20261105.md"); string(got) != string(small) {
+		t.Errorf("a short report changed: %q", got)
+	}
+
+	line := "- 一行很長的報表內容 😀 " + strings.Repeat("字", 40) + "\n"
+	big := []byte(strings.Repeat(line, 2*SummaryLimit/len(line)))
+	got := SummaryMarkdown(big, ".meta/reports/raw-20261105.md")
+	if len(got) > SummaryLimit {
+		t.Errorf("the summary is %d bytes, over %d", len(got), SummaryLimit)
+	}
+	if !utf8.Valid(got) {
+		t.Error("the summary is cut inside a character")
+	}
+	if !strings.Contains(string(got), ".meta/reports/raw-20261105.md") || !strings.Contains(string(got), "截斷") {
+		t.Errorf("the cut summary does not say it is cut and where the whole report is:\n...%s", got[len(got)-300:])
+	}
+	// Whole lines: what comes before the notice is a number of full lines.
+	body := string(got[:strings.LastIndex(string(got), "\n\n")])
+	if !strings.HasSuffix(body, strings.TrimSuffix(line, "\n")) {
+		t.Errorf("the summary is cut inside a line: ...%q", body[len(body)-40:])
+	}
+	// One line that never ends is not cut inside a character either.
+	oneLine := []byte(strings.Repeat("字", SummaryLimit/3+10))
+	for range 3 { // however the limit falls on the three bytes of a character
+		oneLine = append([]byte("a"), oneLine...)
+		if got := SummaryMarkdown(oneLine, "x.md"); !utf8.Valid(got) || len(got) > SummaryLimit {
+			t.Errorf("a cut line: valid UTF-8 %v, %d bytes", utf8.Valid(got), len(got))
+		}
+	}
+	// Exactly at the limit is not cut.
+	exact := bytes.Repeat([]byte("a"), SummaryLimit)
+	if got := SummaryMarkdown(exact, "x.md"); len(got) != SummaryLimit {
+		t.Errorf("a report of exactly %d bytes was cut to %d", SummaryLimit, len(got))
 	}
 }

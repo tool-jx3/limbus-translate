@@ -9,6 +9,7 @@
 package build
 
 import (
+	"cmp"
 	"errors"
 	"fmt"
 	"path/filepath"
@@ -21,6 +22,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
@@ -64,7 +66,29 @@ type Options struct {
 	// Frozen lists the files (see config.MatchAny) whose records are used
 	// although KR changed since they were made.
 	Frozen []string
+	// Rules gives the family of a file (guides/routing.yaml), which groups the
+	// units whose different translations of one text the report lists. With
+	// nil every file is of one family.
+	Rules *rules.Rules
+	// RepoURL is the URL of the repo on GitHub, such as
+	// https://github.com/tool-jx3/limbus-translate; the report links its
+	// compare pages. With "" it has no links.
+	RepoURL string
+	// PrevTWCommit is the HEAD of tw before this build, the start of the
+	// compare page of the translations; "" when tw had no commit.
+	PrevTWCommit string
 }
+
+const (
+	// maxWarningSamples is how many keys of each warning the report keeps.
+	maxWarningSamples = 10
+	// maxInconsistent is how many groups of units that translate one text
+	// differently the report keeps, the biggest first.
+	maxInconsistent = 20
+	// maxRenderings is how many different translations of one text a group
+	// of Inconsistent lists.
+	maxRenderings = 10
+)
 
 // Report counts what a build did.
 type Report struct {
@@ -99,6 +123,37 @@ type Report struct {
 	// MissingGlyphs lists, sorted, the characters of the output that the font
 	// cannot show. It does not stop the build.
 	MissingGlyphs []rune `json:"missing_glyphs"`
+	// StandIn counts the units that show a stand-in text, EN or else KR: the
+	// pending units, the used records of origin fallback, and the used
+	// records that were replaced because they break the structure of KR
+	// (structural and frozen fallbacks). Each unit counts once.
+	StandIn int `json:"stand_in"`
+	// WarningSamples holds, for each code of Warnings, the first 10 of the
+	// keys of the units that warn, in sorted order.
+	WarningSamples map[string][]string `json:"warning_samples"`
+	// Inconsistent lists the groups of units of one family and field with
+	// the same KR text and different translations, the biggest 20 by their
+	// number of units. Only used translations count: not copies, not stand-ins.
+	Inconsistent []Inconsistency `json:"inconsistent"`
+	// Notes are the translator's notes added since the previous build (see
+	// Info.NotesSeen).
+	Notes []store.Note `json:"notes"`
+	// NewTranslated counts the records of origin claude written for this raw
+	// tag (their Since is the raw tag).
+	NewTranslated int `json:"new_translated"`
+}
+
+// Inconsistency is a group of units with the same KR text, in one family and
+// field, that do not all have the same translation. ZH holds the different
+// translations in the order the units are met (at most 10), and Keys[i] is the
+// first unit that has ZH[i]. Units counts the units of the group.
+type Inconsistency struct {
+	Family string   `json:"family"`
+	Field  string   `json:"field"`
+	KR     string   `json:"kr"`
+	ZH     []string `json:"zh"`
+	Keys   []string `json:"keys"`
+	Units  int      `json:"units"`
 }
 
 // builder is the state of one Run.
@@ -111,6 +166,11 @@ type builder struct {
 	added   []store.PendingItem
 	rep     *Report
 	glyphs  runeSet
+	// warnKeys are the keys of the units that warn, by code, in the order
+	// they were met; renders groups the translations by the text they render.
+	warnKeys map[string][]string
+	renders  map[renderKey]*rendering
+	families map[string]string // the family of each file, once asked
 }
 
 // Run builds the language pack for src (the raw KR, EN and JP packs) from the
@@ -125,7 +185,10 @@ type builder struct {
 // The store may hold .meta/translate.json, the record of the last translation
 // run (see package translate). When that run was made for opt.RawTag and
 // opt.RulesCommit, its model and cost go into Info/version.json and the build
-// record.
+// record, and how it ended into the build record and the report. It may hold
+// .meta/plan.json too (see package plan); when that is the plan of
+// opt.RawTag, the report tells what it did. The report lists the translator's
+// notes that came after the last build (Info.NotesSeen).
 func Run(opt Options, src pack.Set, fr *fields.Rules) (*Report, error) {
 	if err := checkOptions(opt); err != nil {
 		return nil, err
@@ -189,11 +252,25 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
+	sum, err := readPlan(st, opt.RawTag)
+	if err != nil {
+		return nil, err
+	}
+	notes, seen, err := newNotes(st)
+	if err != nil {
+		return nil, err
+	}
 	b := &builder{
 		opt: opt, src: src, fr: fr,
 		records: records,
 		queued:  make(map[string]bool, len(pending)),
-		rep:     &Report{Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{}},
+		rep: &Report{
+			Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{},
+			WarningSamples: map[string][]string{}, Inconsistent: []Inconsistency{}, Notes: notes,
+		},
+		warnKeys: map[string][]string{},
+		renders:  map[renderKey]*rendering{},
+		families: map[string]string{},
 	}
 	for _, it := range pending {
 		b.queued[it.Key] = true
@@ -210,11 +287,13 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		}
 	}
 	if len(b.added) > 0 {
-		if err := st.SavePending(append(pending, b.added...)); err != nil {
+		pending = append(pending, b.added...)
+		if err := st.SavePending(pending); err != nil {
 			return nil, err
 		}
 	}
 	slices.Sort(b.rep.FrozenFallback)
+	b.finish()
 	if b.rep.MissingGlyphs, err = in.missingGlyphs(&b.glyphs); err != nil {
 		return nil, err
 	}
@@ -244,7 +323,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
-	if err := writeMeta(st, opt, version, zips, b.rep); err != nil {
+	if err := writeMeta(st, opt, newInfo(version, tr, zips, b.rep, seen), sum, pending); err != nil {
 		return nil, err
 	}
 	return b.rep, nil
@@ -308,6 +387,7 @@ func (b *builder) fill(u units.Unit, frozen bool, al *align.FileAligner) (string
 		return b.useRecord(u, key, rec, frozen, al)
 	}
 	b.rep.Pending++
+	b.rep.StandIn++
 	if en == nil || en.Value == "" {
 		b.rep.Unaligned++
 	}
@@ -338,12 +418,22 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	for _, is := range issues {
 		if is.Severity == validate.SeverityWarn {
 			b.rep.Warnings[is.Code]++
+			// One unit can warn twice of one code; its key is one sample.
+			if keys := b.warnKeys[is.Code]; len(keys) == 0 || keys[len(keys)-1] != key {
+				b.warnKeys[is.Code] = append(keys, key)
+			}
 		}
 	}
 	if !validate.HasHard(issues) {
 		b.countUsed(rec, true)
+		if rec.Origin == store.OriginFallback {
+			b.rep.StandIn++ // the stand-in text is the record's text
+		} else {
+			b.addRendering(u, key, rec.ZH)
+		}
 		return rec.ZH, nil
 	}
+	b.rep.StandIn++
 
 	if frozen {
 		// Not translated again, so not queued: a person fixes it. It is
@@ -373,4 +463,112 @@ func standIn(u units.Unit, en *align.LangAligned) string {
 		return en.Value
 	}
 	return u.KR
+}
+
+// renderKey is what makes two units the same text to translate: the family
+// and the field they are in, and the KR text.
+type renderKey struct{ family, field, kr string }
+
+// rendering is what the units of one renderKey were translated to: the
+// first translation and its first unit, and the others that differ.
+type rendering struct {
+	zh, key string
+	units   int
+	more    []variant // other translations, at most maxRenderings-1
+}
+
+type variant struct{ zh, key string }
+
+// addRendering notes that unit u (key) shows zh, the translation of a person,
+// of the translator or of Paratranz.
+func (b *builder) addRendering(u units.Unit, key, zh string) {
+	k := renderKey{b.familyOf(u.File), u.Field, u.KR}
+	g, ok := b.renders[k]
+	if !ok {
+		b.renders[k] = &rendering{zh: zh, key: key, units: 1}
+		return
+	}
+	g.units++
+	if zh == g.zh || len(g.more) >= maxRenderings-1 {
+		return
+	}
+	for _, v := range g.more {
+		if v.zh == zh {
+			return
+		}
+	}
+	g.more = append(g.more, variant{zh, key})
+}
+
+// familyOf is the family of file; every file is of one family without rules.
+func (b *builder) familyOf(file string) string {
+	if b.opt.Rules == nil {
+		return ""
+	}
+	family, ok := b.families[file]
+	if !ok {
+		family = b.opt.Rules.Family(file)
+		b.families[file] = family
+	}
+	return family
+}
+
+// finish completes the report with what it can only know once every unit has
+// been met: the samples of each warning, the texts with different
+// translations, and the records written for this raw tag.
+func (b *builder) finish() {
+	for code, keys := range b.warnKeys {
+		slices.Sort(keys)
+		b.rep.WarningSamples[code] = keys[:min(len(keys), maxWarningSamples)]
+	}
+
+	var groups []Inconsistency
+	for k, g := range b.renders {
+		if len(g.more) == 0 {
+			continue
+		}
+		inc := Inconsistency{
+			Family: k.family, Field: k.field, KR: k.kr, Units: g.units,
+			ZH: []string{g.zh}, Keys: []string{g.key},
+		}
+		for _, v := range g.more {
+			inc.ZH, inc.Keys = append(inc.ZH, v.zh), append(inc.Keys, v.key)
+		}
+		groups = append(groups, inc)
+	}
+	slices.SortFunc(groups, func(x, y Inconsistency) int {
+		return cmp.Or(
+			cmp.Compare(y.Units, x.Units), // the biggest first
+			cmp.Compare(x.Family, y.Family),
+			cmp.Compare(x.Field, y.Field),
+			cmp.Compare(x.KR, y.KR),
+		)
+	})
+	b.rep.Inconsistent = append(b.rep.Inconsistent, groups[:min(len(groups), maxInconsistent)]...)
+
+	for _, rec := range b.records {
+		if rec.Origin == store.OriginClaude && rec.Since == b.opt.RawTag {
+			b.rep.NewTranslated++
+		}
+	}
+}
+
+// newNotes returns the notes added since the previous build, and the number of
+// notes there are in all. The previous build counted the notes it reported in
+// .meta/build.json; a count above the number of notes (the file was replaced)
+// starts over from the first note.
+func newNotes(st *store.Store) (notes []store.Note, seen int, err error) {
+	var prev Info
+	if _, err := st.ReadMetaJSON(infoName, &prev); err != nil {
+		return nil, 0, err
+	}
+	all, err := st.LoadNotes()
+	if err != nil {
+		return nil, 0, err
+	}
+	from := prev.NotesSeen
+	if from < 0 || from > len(all) {
+		from = 0
+	}
+	return append([]store.Note{}, all[from:]...), len(all), nil
 }

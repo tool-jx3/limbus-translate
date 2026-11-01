@@ -32,6 +32,11 @@ const (
 	CodeNeedsReview = "needs-review"
 )
 
+// ErrBadKey is returned by Submit when the batch or its out file holds a key
+// that is not a unit key. Such a file is not the translator's answer to the
+// batch; Submit has written nothing.
+var ErrBadKey = errors.New("batch: invalid key")
+
 // SubmitResult says what Submit did with the units it was given. The lists
 // are never nil.
 type SubmitResult struct {
@@ -120,6 +125,9 @@ func foreignNameIssues(zh string, names, ignore []string) []validate.Issue {
 // .meta/notes.jsonl with the batch, the sha of the KR text b was cut with and
 // the model (see store.AppendNotes); notes on keys outside b are dropped.
 //
+// Every key of the batch and of out must be a unit key (ErrBadKey), checked
+// before anything is written.
+//
 // Everything happens in one store lock. maxAttempts 0 means DefaultMaxAttempts.
 func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*SubmitResult, error) {
 	if err := env.check(); err != nil {
@@ -133,6 +141,12 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 	}
 	if maxAttempts == 0 {
 		maxAttempts = DefaultMaxAttempts
+	}
+
+	// Every key is checked before anything is written, notes included: a file
+	// with a key that is no key is refused whole.
+	if err := checkKeys(b, out); err != nil {
+		return nil, err
 	}
 
 	res := &SubmitResult{
@@ -194,6 +208,22 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 		return nil, err
 	}
 	return res, nil
+}
+
+// checkKeys returns an ErrBadKey error for the first key of the batch or of
+// its out file that is not a unit key.
+func checkKeys(b *Batch, out []OutUnit) error {
+	for _, u := range b.Units {
+		if _, _, err := units.SplitKey(u.Key); err != nil {
+			return fmt.Errorf("%w in batch %s: %w", ErrBadKey, b.ID, err)
+		}
+	}
+	for _, o := range out {
+		if _, _, err := units.SplitKey(o.Key); err != nil {
+			return fmt.Errorf("%w in the out file of batch %s: %w", ErrBadKey, b.ID, err)
+		}
+	}
+	return nil
 }
 
 // submission is the state of one Submit call.
@@ -314,6 +344,7 @@ func (s *submission) unit(o OutUnit) error {
 	if validate.HasHard(issues) {
 		s.reject(o.Key, issues...)
 		item.Attempts++
+		item.LastError = hardIssues(issues)
 		if item.Attempts < s.maxAttempts {
 			return nil // the lease stays, for the fix
 		}
@@ -351,6 +382,18 @@ func (s *submission) unit(o OutUnit) error {
 		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
 	}
 	return nil
+}
+
+// hardIssues is the text PendingItem.LastError holds for issues: the code and
+// the message of each hard issue, on one line.
+func hardIssues(issues []validate.Issue) string {
+	var parts []string
+	for _, is := range issues {
+		if is.Severity == validate.SeverityHard {
+			parts = append(parts, is.Code+": "+strings.Join(strings.Fields(is.Message), " "))
+		}
+	}
+	return strings.Join(parts, "; ")
 }
 
 // since is the raw tag a record written for key now starts at: that of the

@@ -297,6 +297,7 @@ func (r *run) stuckItems() {
 				it.Flags = nil
 			}
 			it.Attempts = 0
+			it.LastError = ""
 			it.Lease = nil
 			it.Hint = r.hint
 			r.res.Reset++

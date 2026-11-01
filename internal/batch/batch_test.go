@@ -19,11 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"golang.org/x/image/font/gofont/goregular"
-
 	"github.com/tool-jx3/limbus-translate/internal/align"
-	"github.com/tool-jx3/limbus-translate/internal/build"
-	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -1360,6 +1356,71 @@ func TestSubmitKeepsNotes(t *testing.T) {
 	}
 }
 
+// A key that is not a unit key makes the whole out file unusable: it is an
+// error, and nothing is written, not the notes of the other units and not
+// their records either.
+func TestSubmitNoteWithABadKeyWritesNothing(t *testing.T) {
+	kr := map[string]string{"Other.json": `{"dataList":[
+ {"id":0,"content":"[Bleed] 위력 5 부여"},
+ {"id":1,"content":"그냥"}
+]}`}
+	tw := filepath.Join(t.TempDir(), "tw")
+	env := newEnvIn(t, tw, kr, nil, nil)
+	seed(t, env, items("Other.json", 0, 2)...)
+	b := mustNext(t, env, NextOptions{})
+	notesFile := filepath.Join(tw, ".meta", "notes.jsonl")
+
+	for name, bad := range map[string]string{
+		"no separator": "Other.json",
+		"empty file":   "|/dataList/0/content",
+		"bad pointer":  "Other.json|dataList/0",
+		"bad escape":   "Other.json|/dataList/~2/content",
+		"empty key":    "",
+	} {
+		out := []OutUnit{
+			{Key: key("Other.json", 0), ZH: "賦予5級[Bleed]威力", Note: "「威力」依詞彙表"},
+			{Key: bad, ZH: "x", Note: "a note on a key that is not a key"},
+		}
+		_, err := Submit(env, b, out, "test-model", 3)
+		if err == nil {
+			t.Errorf("%s: Submit with the key %q succeeded, want an error", name, bad)
+			continue
+		}
+		if !errors.Is(err, ErrBadKey) || !strings.Contains(err.Error(), strconv.Quote(bad)) {
+			t.Errorf("%s: err = %v, want ErrBadKey naming the key %q", name, err, bad)
+		}
+		if _, err := os.Stat(notesFile); !errors.Is(err, os.ErrNotExist) {
+			t.Errorf("%s: notes.jsonl exists after the failed submit (%v)", name, err)
+		}
+		if got := records(t, env); len(got) != 0 {
+			t.Errorf("%s: records = %v, want none", name, got)
+		}
+		if got := pendingMap(t, env); len(got) != 2 {
+			t.Errorf("%s: pending = %v, want both units still there", name, got)
+		}
+	}
+
+	// With notes stored already, they stay as they are.
+	good := []OutUnit{{Key: key("Other.json", 1), ZH: "就這樣", Note: "first"}}
+	if _, err := Submit(env, b, good, "test-model", 3); err != nil {
+		t.Fatal(err)
+	}
+	before, err := os.ReadFile(notesFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	out := []OutUnit{
+		{Key: key("Other.json", 0), ZH: "賦予5級[Bleed]威力", Note: "second"},
+		{Key: "no-separator", ZH: "x"},
+	}
+	if _, err := Submit(env, b, out, "test-model", 3); !errors.Is(err, ErrBadKey) {
+		t.Fatalf("err = %v, want ErrBadKey", err)
+	}
+	if after, err := os.ReadFile(notesFile); err != nil || string(after) != string(before) {
+		t.Errorf("notes.jsonl changed: %q, %v, want %q", after, err, before)
+	}
+}
+
 func hasCode(issues []validate.Issue, code string) bool {
 	return slices.ContainsFunc(issues, func(is validate.Issue) bool { return is.Code == code })
 }
@@ -1469,6 +1530,11 @@ func TestSubmitNeedsReview(t *testing.T) {
 		}
 		if item.Attempts != attempt {
 			t.Errorf("attempt %d: attempts = %d", attempt, item.Attempts)
+		}
+		// What was wrong with the last attempt, for the person who looks at
+		// the unit once it waits for review.
+		if !strings.HasPrefix(item.LastError, "id-mismatch: ") || strings.Contains(item.LastError, "\n") {
+			t.Errorf("attempt %d: last error = %q, want the code and the message of the hard issue on one line", attempt, item.LastError)
 		}
 		if last {
 			if item.Lease != nil || !slices.Equal(item.Flags, []string{store.FlagNeedsReview}) {
@@ -1587,68 +1653,6 @@ func TestSubmitKeepsGoodRecordWhenRequeueFails(t *testing.T) {
 			t.Errorf("record = %+v, want the fresh fallback with the EN text", got)
 		}
 	})
-}
-
-// A requeued unit that cannot be translated again keeps its good record; the
-// record is flagged needs_review, so that the build reports it: a unit stuck in
-// the queue is not left unseen.
-func TestSubmitFlagsAKeptRecordNeedsReview(t *testing.T) {
-	const kr = "[Bleed] 위력"
-	krFiles := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] 위력"}]}`}
-	enFiles := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] Potency"}]}`}
-	k := key("Other.json", 0)
-	tw := filepath.Join(t.TempDir(), "tw")
-	env := newEnvIn(t, tw, krFiles, enFiles, nil)
-	good := store.Record{Key: k, KRSha: units.KRSha(kr), ZH: "賦予[Bleed]威力", Origin: store.OriginClaude, Since: "raw-20261001", Batch: "old-batch"}
-	if err := env.Store.SaveRecords(map[string]store.Record{k: good}); err != nil {
-		t.Fatal(err)
-	}
-	seed(t, env, store.PendingItem{Key: k, Reason: "requeue", PrevZH: good.ZH, Hint: "稱呼改用「您」"})
-	b := mustNext(t, env, NextOptions{})
-	for range 3 {
-		if _, err := Submit(env, b, []OutUnit{{Key: k, ZH: "賦予流血"}}, "m", 3); err != nil { // [Bleed] is missing
-			t.Fatal(err)
-		}
-	}
-
-	got := records(t, env)[k]
-	if got.ZH != good.ZH || got.Origin != good.Origin || !slices.Equal(got.Flags, []string{store.FlagNeedsReview}) {
-		t.Fatalf("record = %+v, want the good translation kept and flagged needs_review", got)
-	}
-
-	rep, err := build.Run(buildOptions(t, tw), env.Src, mustFieldRules(t))
-	if err != nil {
-		t.Fatal(err)
-	}
-	if rep.NeedsReview != 1 {
-		t.Errorf("NeedsReview = %d, want 1: the kept record is reported", rep.NeedsReview)
-	}
-}
-
-// buildOptions are the options of a build into the tw worktree at tw. The
-// font is Go Regular: small, with Latin letters and no Han.
-func buildOptions(t *testing.T, tw string) build.Options {
-	t.Helper()
-	dir := t.TempDir()
-	font := filepath.Join(dir, "font.ttf")
-	writeFile(t, font, string(goregular.TTF))
-	writeFile(t, filepath.Join(dir, "OFL.txt"), "OFL text\n")
-	writeFile(t, filepath.Join(dir, "LICENSE-CONTENT"), "content license\n")
-	sum := sha256.Sum256(goregular.TTF)
-	return build.Options{
-		TWRoot: tw, OutDir: filepath.Join(dir, "out"), LangDir: "zh-TW",
-		FontPath: font, FontSHA256: hex.EncodeToString(sum[:]), LicensePath: filepath.Join(dir, "LICENSE-CONTENT"),
-		RawTag: testTag, RawToken: "token", RulesCommit: "0123abc", BuiltAt: testNow,
-	}
-}
-
-func mustFieldRules(t *testing.T) *fields.Rules {
-	t.Helper()
-	fr, err := fields.Load("../..")
-	if err != nil {
-		t.Fatal(err)
-	}
-	return fr
 }
 
 func TestSubmitFallbackWithoutEN(t *testing.T) {
