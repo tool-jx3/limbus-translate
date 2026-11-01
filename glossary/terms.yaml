@@ -471,4 +471,97 @@
   forbidden: [膠捲]
   status: approved
   category: [general]
-  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）
+  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有
+
+- kr: 어제의 약속
+  zh: 昨天的約定
+  forbidden: [昨日之約, 昨日的約定]
+  status: approved
+  category: [city]
+  notes: 黎明事務所劇情中的人物／組織名（Voice_Faust_Dawn_10216 既有）
+
+- kr: 천의 바늘
+  zh: 千根針
+  status: approved
+  category: [city]
+  notes: 黎明事務所的委託、都市傳說名（Voice_Faust_Dawn_10216 既有）
+
+- kr: 내장 담기
+  zh: 收割內臟
+  forbidden: [收內臟]
+  status: approved
+  category: [city]
+  notes: 後巷犯罪組織從屍體扒走值錢器官的行為（P10216）
+
+- kr: 리벨리온 드 라스 마사스
+  zh: 大眾的反叛號
+  forbidden: [Rebelión, Masas]
+  status: approved
+  category: [city]
+  notes: 船名，簡稱「마사스호」大眾號（PC07A#6 既有：「大眾的反叛號。簡稱成大眾號」）
+
+- kr: 마사스호
+  zh: 大眾號
+  status: approved
+  category: [city]
+  notes: 「리벨리온 드 라스 마사스호」的簡稱；地點欄位「마사스호, 갑판」→ 大眾號，甲板
+
+- kr: 로시난테
+  zh: 駑騂難得
+  forbidden: [羅辛南特]
+  status: approved
+  category: [city]
+  notes: 唐吉訶德的馬／E.G.O（既有約 40 個檔案）
+
+- kr: 심상
+  zh: 心像
+  forbidden: [心象]
+  status: approved
+  category: [general]
+  notes: 既有 98 行
+
+- kr: 영사기
+  zh: 投影機
+  forbidden: [放映機]
+  status: approved
+  category: [general]
+  notes: 既有 Assist-exme「閃光現象 - 投影機」、E922B
+
+- kr: 상영기
+  zh: 投影機
+  forbidden: [放映機]
+  status: approved
+  category: [general]
+  notes: 與「영사기」同譯
+
+- kr: 거짓신
+  zh: 偽神
+  forbidden: [假神]
+  status: approved
+  category: [city]
+  notes: 百貨公司（Contem）劇情，丹紅派的神；也寫作「거짓 신」
+
+- kr: 거짓 신
+  zh: 偽神
+  forbidden: [假神]
+  status: approved
+  category: [city]
+  notes: 見「거짓신」
+
+- kr: 걸쳐라
+  zh: 披覆吧
+  status: approved
+  category: [city]
+  notes: 百貨公司的咒語（RPG 旁白既有「披覆吧，而後毫不吝惜地吞食殆盡」）；技能名「패턴：걸쳐라」（KR 為半形冒號）沿用既有「圖樣：纏繞吧」
+
+- kr: 주홍십자
+  zh: 朱紅十字
+  status: approved
+  category: [city]
+  notes: 特色收尾人 Vermilion Cross；也寫作「주홍 십자」
+
+- kr: 주홍 십자
+  zh: 朱紅十字
+  status: approved
+  category: [city]
+  notes: 見「주홍십자」
