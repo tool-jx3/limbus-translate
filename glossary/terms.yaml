@@ -836,3 +836,61 @@
   status: approved
   category: [city]
   notes: 百貨公司（既有 78 行）
+
+- kr: 가방관
+  zh: 手提包展廳
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 92 行）
+
+- kr: 가구관
+  zh: 家具展廳
+  status: approved
+  category: [city]
+  notes: 百貨公司4F
+
+- kr: 미아 보호소
+  zh: 走失兒童保護中心
+  forbidden: [走失保護中心]
+  status: approved
+  category: [city]
+  notes: 也寫作「미아보호소」「미아보호실」
+
+- kr: 미아보호실
+  zh: 走失兒童保護中心
+  forbidden: [走失保護中心]
+  status: approved
+  category: [city]
+  notes: 見「미아 보호소」
+
+- kr: 심장 조각
+  zh: 心臟的碎片
+  status: approved
+  category: [city]
+  notes: 百貨公司4F（任務與對話既有 9 處）
+
+- kr: 이방인
+  zh: 異鄉人
+  forbidden: [外來者]
+  status: approved
+  category: [city]
+  notes: 百貨公司與第十章（既有 74 處）
+
+- kr: 뿌이
+  zh: 普依
+  status: approved
+  category: [city]
+  notes: 百貨公司；性別不明，不用他／她（base.md）
+
+- kr: 황금원단
+  zh: 黃金之布
+  status: approved
+  category: [city]
+  notes: 百貨公司道具
+
+- kr: 머금은 피
+  zh: 浸染的血液
+  forbidden: [寄宿之血]
+  status: approved
+  category: [city]
+  notes: 狀態名（Bufs-mowe、Passives_Abnormality-mowe）
