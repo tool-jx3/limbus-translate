@@ -193,8 +193,8 @@ func repoURL() string {
 	return strings.TrimRight(server, "/") + "/" + repo
 }
 
-// writeReviewFiles writes what the workflow posts, to opt.OutDir: the report
-// as summary.md, and the review issue as review-issue/title.txt (the title and
+// writeReviewFiles writes what the workflow posts, to opt.OutDir: the summary
+// of the run (the report) as summary.md, and the review issue as review-issue/title.txt (the title and
 // a newline) and the parts 01.md, 02.md, … in order (the number has two digits
 // at least). The directory of the issue is removed first and stays removed
 // when nothing needs a person, so that the issue of an earlier build is not
@@ -213,11 +213,9 @@ func writeReviewFiles(opt build.Options) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	report, err := os.ReadFile(build.ReportPath(opt))
-	if err != nil {
-		return 0, err
-	}
-	summary := build.SummaryMarkdown(report, build.ReportRel(info.RawTag))
+	// Not the archived report: the summary of the run also links the compare
+	// page of tw, which the archive must not hold (see build.Markdown).
+	summary := build.JobSummary(opt, info, sum, pending)
 	if err := os.WriteFile(filepath.Join(opt.OutDir, summaryFile), summary, 0o644); err != nil {
 		return 0, err
 	}

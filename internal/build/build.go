@@ -75,7 +75,9 @@ type Options struct {
 	// compare pages. With "" it has no links.
 	RepoURL string
 	// PrevTWCommit is the HEAD of tw before this build, the start of the
-	// compare page of the translations; "" when tw had no commit.
+	// compare page of the translations; "" when tw had no commit. Only
+	// JobSummary uses it: nothing Run commits to tw depends on it, because it
+	// changes with every publish.
 	PrevTWCommit string
 }
 

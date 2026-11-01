@@ -1230,8 +1230,25 @@ func section(t *testing.T, md, heading string) string {
 
 const twoUnitsKR = `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"나"}]}`
 
+// jobSummary renders the report for the summary page of a run from what the
+// last build left in the store.
+func (e *testEnv) jobSummary() string {
+	e.t.Helper()
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		e.t.Fatal(err)
+	}
+	sum, err := ReadPlan(e.opt.TWRoot, info.RawTag)
+	if err != nil {
+		e.t.Fatal(err)
+	}
+	return string(JobSummary(e.opt, info, sum, e.pending()))
+}
+
 // The report has the two parts of spec 14, in this order: what needs a person,
-// then the information, with the two compare pages.
+// then the information. The archived report links the compare page of the KR
+// text; the compare page of tw is for the summary of the run only (see
+// TestArchivedReportDoesNotDependOnTW).
 func TestReportHasBothSections(t *testing.T) {
 	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
 	e.opt.RepoURL = "https://github.com/tool-jx3/limbus-translate"
@@ -1271,7 +1288,6 @@ func TestReportHasBothSections(t *testing.T) {
 	}
 	for _, want := range []string{
 		"https://github.com/tool-jx3/limbus-translate/compare/raw-20261022...raw-20261029",
-		"https://github.com/tool-jx3/limbus-translate/compare/0123abc...tw",
 		"新增 5、修改 4、刪除 6", "New.json", // what the new snapshot changed
 		"沿用原本的譯文：3 個單位",                                            // the units that only moved
 		"A.json|/dataList/5/content", "A.json|/dataList/6/content", // the adjustment whose key moved
@@ -1288,6 +1304,26 @@ func TestReportHasBothSections(t *testing.T) {
 		}
 	}
 
+	// The compare page of tw is not in the archived report: where tw stands
+	// before a build changes with every publish.
+	for _, not := range []string{"...tw", "0123abc"} {
+		if strings.Contains(md, not) {
+			t.Errorf("the archived report holds %q:\n%s", not, md)
+		}
+	}
+
+	// The summary of the run is that report and the compare page of tw.
+	js := e.jobSummary()
+	for _, want := range []string{
+		"https://github.com/tool-jx3/limbus-translate/compare/raw-20261022...raw-20261029",
+		"https://github.com/tool-jx3/limbus-translate/compare/0123abc...tw",
+		"## 需要你處理", "## 資訊", "A.json|/dataList/9/content",
+	} {
+		if !strings.Contains(js, want) {
+			t.Errorf("the summary lacks %q:\n%s", want, js)
+		}
+	}
+
 	// Without a repo URL there are no links; without a previous tw commit only
 	// the one of the KR text.
 	e.opt.RepoURL = ""
@@ -1295,11 +1331,58 @@ func TestReportHasBothSections(t *testing.T) {
 	if md := e.readReport(); strings.Contains(md, "/compare/") {
 		t.Errorf("a report without a repo URL has compare links:\n%s", md)
 	}
+	if js := e.jobSummary(); strings.Contains(js, "/compare/") {
+		t.Errorf("a summary without a repo URL has compare links:\n%s", js)
+	}
 	e.opt.RepoURL, e.opt.PrevTWCommit = "https://github.com/tool-jx3/limbus-translate/", ""
 	e.run()
-	md = e.readReport()
-	if !strings.Contains(md, "limbus-translate/compare/raw-20261022...raw-20261029") || strings.Contains(md, "...tw") {
-		t.Errorf("a report without a previous tw commit has only the link of the KR text:\n%s", md)
+	if md := e.readReport(); !strings.Contains(md, "limbus-translate/compare/raw-20261022...raw-20261029") {
+		t.Errorf("a report lacks the link of the KR text:\n%s", md)
+	}
+	if js := e.jobSummary(); !strings.Contains(js, "limbus-translate/compare/raw-20261022...raw-20261029") || strings.Contains(js, "...tw") {
+		t.Errorf("a summary without a previous tw commit has only the link of the KR text:\n%s", js)
+	}
+}
+
+// What is committed to tw does not depend on where tw stands before the build:
+// that moves with every publish, and a report that followed it would change the
+// branch on every build, so a Release would follow even when the pack did not
+// change. Only the summary of the run links the compare page of tw.
+func TestArchivedReportDoesNotDependOnTW(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	e.opt.RepoURL = "https://github.com/tool-jx3/limbus-translate"
+	writePlan(t, e, plan.Summary{RawTag: testTag, PrevRawTag: "raw-20261022", Changes: plan.Changes{New: 1}})
+
+	// The pack, the report, build.json and the zips.
+	committed := func() map[string]string { return treeFiles(t, e.opt) }
+
+	e.opt.PrevTWCommit = ""
+	e.run()
+	first, firstSummary := committed(), e.jobSummary()
+	e.opt.PrevTWCommit = "1111111"
+	e.run()
+	second, secondSummary := committed(), e.jobSummary()
+	e.opt.PrevTWCommit = "2222222"
+	e.run()
+	third, thirdSummary := committed(), e.jobSummary()
+
+	if d := diffKeys(first, second); len(d) > 0 {
+		t.Errorf("a build after another tw commit changed %v", d)
+	}
+	if d := diffKeys(second, third); len(d) > 0 {
+		t.Errorf("a build after yet another tw commit changed %v", d)
+	}
+	for name, content := range third {
+		if strings.Contains(content, "1111111") || strings.Contains(content, "2222222") || strings.Contains(content, "...tw") {
+			t.Errorf("%s holds the state of tw before the build", name)
+		}
+	}
+	// The summary does follow it.
+	if strings.Contains(firstSummary, "...tw") ||
+		!strings.Contains(secondSummary, "/compare/1111111...tw") || strings.Contains(secondSummary, "2222222") ||
+		!strings.Contains(thirdSummary, "/compare/2222222...tw") || strings.Contains(thirdSummary, "1111111") {
+		t.Errorf("the summaries do not link the compare page of tw from where it stood:\n%s\n%s\n%s", firstSummary, secondSummary, thirdSummary)
 	}
 }
 

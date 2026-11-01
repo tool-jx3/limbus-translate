@@ -214,8 +214,28 @@ const maxListedFiles = 30
 // Markdown renders the report of a build (spec 14): the part for a person,
 // then the information. info is the build record, sum the plan of the
 // snapshot (nil when there is none) and pending the queue after the build;
-// opt says where the repo is, for the links of the compare pages.
+// opt says where the repo is, for the link of the compare page of the KR text.
+//
+// This is the report Run archives in the tw branch, so it must be the same for
+// the same inputs: it does not hold where tw stood before the build
+// (Options.PrevTWCommit), which moves with every publish. A report that
+// followed it would change the branch on every build, and a Release would
+// follow for a pack that did not change. JobSummary has that link.
 func Markdown(opt Options, info Info, sum *plan.Summary, pending []store.PendingItem) []byte {
+	return markdown(opt, info, sum, pending, false)
+}
+
+// JobSummary is the report for the summary page of a workflow run (cut at
+// SummaryLimit): the archived report and, in the information about the
+// translations, the compare page of tw from where it stood before the build.
+// It is not committed anywhere.
+func JobSummary(opt Options, info Info, sum *plan.Summary, pending []store.PendingItem) []byte {
+	return SummaryMarkdown(markdown(opt, info, sum, pending, true), ReportRel(info.RawTag))
+}
+
+// markdown renders the report; twLink says whether it links the compare page
+// of tw.
+func markdown(opt Options, info Info, sum *plan.Summary, pending []store.PendingItem, twLink bool) []byte {
 	var b strings.Builder
 	fmt.Fprintf(&b, "# Build report %s\n", info.RawTag)
 
@@ -237,7 +257,7 @@ func Markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	b.WriteString("\n## 資訊\n")
 	infoInputs(&b, info)
 	infoSource(&b, opt, info, sum)
-	infoTranslations(&b, opt, info, sum)
+	infoTranslations(&b, opt, info, sum, twLink)
 	infoAutomatic(&b, sum)
 	infoUnits(&b, info.Report)
 	infoWarnings(&b, info.Report)
@@ -326,7 +346,7 @@ func infoSource(b *strings.Builder, opt Options, info Info, sum *plan.Summary) {
 }
 
 // infoTranslations tells where the translations come from and what changed.
-func infoTranslations(b *strings.Builder, opt Options, info Info, sum *plan.Summary) {
+func infoTranslations(b *strings.Builder, opt Options, info Info, sum *plan.Summary, twLink bool) {
 	rep := info.Report
 	b.WriteString("\n### 譯文變化\n\n")
 	if len(rep.Origins) == 0 {
@@ -344,7 +364,7 @@ func infoTranslations(b *strings.Builder, opt Options, info Info, sum *plan.Summ
 		}
 		fmt.Fprintf(b, "- 沿用相同文字的譯文：%d 個單位；不需翻譯而複製原文：%d 個單位\n", sum.Reused, sum.Copy)
 	}
-	if u := compareURL(opt.RepoURL, opt.PrevTWCommit, "tw"); u != "" {
+	if u := compareURL(opt.RepoURL, opt.PrevTWCommit, "tw"); twLink && u != "" {
 		fmt.Fprintf(b, "- 譯文（`tw`）的差異：%s\n", u)
 	}
 }

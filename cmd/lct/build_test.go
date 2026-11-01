@@ -515,12 +515,20 @@ func TestBuildCommandLinksTheComparePages(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{
-		"https://github.com/tool-jx3/limbus-translate/compare/raw-20261022...raw-20261029",
-		"https://github.com/tool-jx3/limbus-translate/compare/" + head + "...tw",
-	} {
-		if !strings.Contains(string(report), want) {
-			t.Errorf("the report lacks %q:\n%s", want, report)
+	summary, err := os.ReadFile(filepath.Join(root, "out", "summary.md"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	rawLink := "https://github.com/tool-jx3/limbus-translate/compare/raw-20261022...raw-20261029"
+	twLink := "https://github.com/tool-jx3/limbus-translate/compare/" + head + "...tw"
+	// The archived report, which is committed to tw, links the KR text only;
+	// the summary of the run has the compare page of tw too.
+	if !strings.Contains(string(report), rawLink) || strings.Contains(string(report), "...tw") || strings.Contains(string(report), head) {
+		t.Errorf("the archived report should link the KR text and nothing of tw's state:\n%s", report)
+	}
+	for _, want := range []string{rawLink, twLink} {
+		if !strings.Contains(string(summary), want) {
+			t.Errorf("the summary lacks %q:\n%s", want, summary)
 		}
 	}
 
@@ -531,7 +539,52 @@ func TestBuildCommandLinksTheComparePages(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if report, _ := os.ReadFile(got.ReportPath); strings.Contains(string(report), "/compare/") {
-		t.Errorf("the report has compare links without a repo:\n%s", report)
+	for _, name := range []string{got.ReportPath, filepath.Join(root, "out", "summary.md")} {
+		if b, _ := os.ReadFile(name); strings.Contains(string(b), "/compare/") {
+			t.Errorf("%s has compare links without a repo:\n%s", name, b)
+		}
+	}
+}
+
+// A build of what was published is no change: tw settles. In CI the report
+// links the repo, and tw stands somewhere else after every publish; nothing
+// committed may follow that, or a rebuild would commit and release a pack that
+// did not change.
+func TestBuildAfterPublishLeavesTWAlone(t *testing.T) {
+	t.Setenv("GITHUB_SERVER_URL", "https://github.com")
+	t.Setenv("GITHUB_REPOSITORY", "tool-jx3/limbus-translate")
+	root := publishRepo(t)
+	tw := filepath.Join(root, ".work", "tw")
+
+	res, _, err := runPublishJSON(t, root)
+	if err != nil || !res.Changed {
+		t.Fatalf("first publish = %+v, %v, want a commit", res, err)
+	}
+	for round, advance := range []func(){
+		func() {}, // tw stands at the commit of the publish
+		func() { runGitIn(t, tw, "commit", "-q", "--allow-empty", "-m", "elsewhere") }, // and now somewhere else
+		func() { runGitIn(t, tw, "commit", "-q", "--allow-empty", "-m", "and again") },
+	} {
+		advance()
+		head := runGitIn(t, tw, "rev-parse", "HEAD")
+		got, err := runBuildJSON(t, root)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if status := runGitIn(t, tw, "status", "--porcelain"); status != "" {
+			t.Errorf("round %d: a build of the published inputs changed tw:\n%s", round, status)
+		}
+		res, _, err := runPublishJSON(t, root)
+		if err != nil || res.Changed || res.TWCommit != head {
+			t.Errorf("round %d: publish = %+v, %v, want no new commit (tw at %s)", round, res, err, head)
+		}
+		// The summary of the run does say where tw stood.
+		summary, err := os.ReadFile(filepath.Join(root, "out", "summary.md"))
+		if err != nil || !strings.Contains(string(summary), "/compare/"+head+"...tw") {
+			t.Errorf("round %d: the summary lacks the compare page from %s (%v)", round, head, err)
+		}
+		if report, err := os.ReadFile(got.ReportPath); err != nil || strings.Contains(string(report), "...tw") || strings.Contains(string(report), head) {
+			t.Errorf("round %d: the archived report holds the state of tw (%v)", round, err)
+		}
 	}
 }
