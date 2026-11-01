@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bin/lct *)",
+      "Bash(go build -o bin/lct ./cmd/lct)",
+      "Read",
+      "Edit(./work/**)"
+    ]
+  }
+}
