@@ -20,7 +20,7 @@ import (
 )
 
 // buildYAML is the lct.yaml of the bootstrap tests with the language directory.
-const buildYAML = "lang_dir: zh-TW\n" + bootstrapYAML
+var buildYAML = "lang_dir: zh-TW\n" + bootstrapYAML
 
 // buildRepo makes the repo of the bootstrap tests with a font (Go Regular, a
 // small stand-in for the pinned one), its licence and the content licence,

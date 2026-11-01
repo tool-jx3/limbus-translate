@@ -3,10 +3,15 @@ package main
 import (
 	"archive/zip"
 	"bytes"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
+	"errors"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"strings"
 	"testing"
 
@@ -19,13 +24,75 @@ import (
 // bootstrapFixture is the small data set shared with internal/bootstrap.
 const bootstrapFixture = "../../testdata/bootstrap"
 
-const bootstrapYAML = `worktrees: { raw: .work/raw, tw: .work/tw }
+// bootstrapYAML pins three fake releases. Their sha256s are placeholders;
+// a test that fetches them pins the real ones with pinReleases.
+var bootstrapYAML = bootstrapConfig(map[string]string{})
+
+// The fake releases, by upstream name: where pinReleases finds them below the
+// fake GitHub directory.
+var fakeReleases = map[string]string{
+	"paratranz": "owner/pz/releases/download/11/localize_files.zip",
+	"ltm":       "owner/ltm/releases/download/22/Hant.zip",
+	"llc":       "owner/llc/releases/download/33/LimbusLocalize_33.zip",
+}
+
+// bootstrapConfig is an lct.yaml for the fake releases with the given sha256s
+// by upstream name; a missing one is a placeholder of zeros.
+func bootstrapConfig(sums map[string]string) string {
+	sum := func(name string) string {
+		if s, ok := sums[name]; ok {
+			return s
+		}
+		return strings.Repeat("0", 64)
+	}
+	return `worktrees: { raw: .work/raw, tw: .work/tw }
 frozen: ["BgmLyrics/**"]
 bootstrap:
-  paratranz: { repo: owner/pz, tag: "11", asset: localize_files.zip }
-  ltm: { repo: owner/ltm, tag: "22", asset: Hant.zip }
-  llc: { repo: owner/llc, tag: "33", asset: LimbusLocalize_33.zip }
+  paratranz: { repo: owner/pz, tag: "11", asset: localize_files.zip, sha256: "` + sum("paratranz") + `" }
+  ltm: { repo: owner/ltm, tag: "22", asset: Hant.zip, sha256: "` + sum("ltm") + `" }
+  llc: { repo: owner/llc, tag: "33", asset: LimbusLocalize_33.zip, sha256: "` + sum("llc") + `" }
 `
+}
+
+// pinReleases writes root's lct.yaml with the sha256 of each fake release
+// found below the fake GitHub directory gh, except those in skip.
+func pinReleases(t *testing.T, root, gh string, skip ...string) {
+	t.Helper()
+	sums := map[string]string{}
+	for name, rel := range fakeReleases {
+		if slices.Contains(skip, name) {
+			continue
+		}
+		data, err := os.ReadFile(filepath.Join(gh, filepath.FromSlash(rel)))
+		if errors.Is(err, fs.ErrNotExist) {
+			continue
+		}
+		if err != nil {
+			t.Fatal(err)
+		}
+		sum := sha256.Sum256(data)
+		sums[name] = hex.EncodeToString(sum[:])
+	}
+	writeTestFile(t, root, "lct.yaml", bootstrapConfig(sums))
+}
+
+// writeFakeReleases writes the three fake releases below gh, made from the
+// fixture.
+func writeFakeReleases(t *testing.T, gh string) {
+	t.Helper()
+	writeZipFile(t, filepath.Join(gh, fakeReleases["paratranz"]), map[string]string{
+		"Sample.json": readFixtureFile(t, "paratranz/Sample.json"),
+		"Bufs.json":   readFixtureFile(t, "paratranz/Bufs.json"),
+
+		"BgmLyrics/Lyrics.json": bgmLyricsParatranz,
+	})
+	writeZipFile(t, filepath.Join(gh, fakeReleases["ltm"]), map[string]string{
+		"Sample.json": readFixtureFile(t, "ltm/Sample.json"),
+	})
+	writeZipFile(t, filepath.Join(gh, fakeReleases["llc"]), map[string]string{
+		"LimbusCompany_Data/Lang/LLC_zh-CN/Sample.json": readFixtureFile(t, "llc/Sample.json"),
+	})
+}
 
 func copyDir(t *testing.T, src, dst string) {
 	t.Helper()
@@ -446,18 +513,8 @@ func TestBootstrapFetchDownloadsAndExtractsThePinnedAssets(t *testing.T) {
 
 	// A fake GitHub: <base>/<repo>/releases/download/<tag>/<asset>.
 	gh := t.TempDir()
-	writeZipFile(t, filepath.Join(gh, "owner/pz/releases/download/11/localize_files.zip"), map[string]string{
-		"Sample.json": readFixtureFile(t, "paratranz/Sample.json"),
-		"Bufs.json":   readFixtureFile(t, "paratranz/Bufs.json"),
-
-		"BgmLyrics/Lyrics.json": bgmLyricsParatranz,
-	})
-	writeZipFile(t, filepath.Join(gh, "owner/ltm/releases/download/22/Hant.zip"), map[string]string{
-		"Sample.json": readFixtureFile(t, "ltm/Sample.json"),
-	})
-	writeZipFile(t, filepath.Join(gh, "owner/llc/releases/download/33/LimbusLocalize_33.zip"), map[string]string{
-		"LimbusCompany_Data/Lang/LLC_zh-CN/Sample.json": readFixtureFile(t, "llc/Sample.json"),
-	})
+	writeFakeReleases(t, gh)
+	pinReleases(t, root, gh)
 	useUpstreamBase(t, "file://"+gh)
 
 	// What an earlier fetch left behind must not survive.
@@ -488,6 +545,53 @@ func TestBootstrapFetchFailureIsASystemError(t *testing.T) {
 	if err == nil || isUserError(err) {
 		t.Errorf("err = %v, want a system error for a failed download", err)
 	}
+}
+
+// Every asset is checked against its pinned sha256 before anything is
+// extracted: a mismatch is a user error naming the asset, and it leaves the
+// upstream directory as it was.
+func TestBootstrapFetchVerifiesTheChecksums(t *testing.T) {
+	root, upstream := bootstrapRepo(t, false)
+	writeTestFile(t, upstream, "ltm.zip", "the zip of an earlier fetch")
+	before := listTree(t, upstream)
+
+	gh := t.TempDir()
+	writeFakeReleases(t, gh)
+	pinReleases(t, root, gh, "ltm") // ltm keeps the placeholder
+	useUpstreamBase(t, "file://"+gh)
+
+	_, err := runBootstrapJSON(t, root, "--fetch", "--upstream", upstream)
+	if !isUserError(err) || !strings.Contains(err.Error(), "Hant.zip") || !strings.Contains(err.Error(), "sha256") {
+		t.Fatalf("err = %v (%T), want a user error about the sha256 of Hant.zip", err, err)
+	}
+	if after := listTree(t, upstream); !reflect.DeepEqual(after, before) {
+		t.Errorf("the upstream directory changed:\n%v\nwas\n%v", after, before)
+	}
+
+	// An asset without a pin is not downloaded at all.
+	writeTestFile(t, root, "lct.yaml", strings.Replace(bootstrapYAML, `, sha256: "`+strings.Repeat("0", 64)+`" }`, " }", 1))
+	_, err = runBootstrapJSON(t, root, "--fetch", "--upstream", upstream)
+	if !isUserError(err) || !strings.Contains(err.Error(), "sha256") {
+		t.Errorf("no pin: err = %v (%T), want a user error naming sha256", err, err)
+	}
+}
+
+// listTree maps every file below dir to its content.
+func listTree(t *testing.T, dir string) map[string]string {
+	t.Helper()
+	files := map[string]string{}
+	err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() {
+			return err
+		}
+		data, err := os.ReadFile(p)
+		files[p] = string(data)
+		return err
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	return files
 }
 
 func TestBootstrapIsRegistered(t *testing.T) {
@@ -567,7 +671,9 @@ func zipWithBadChecksum(t *testing.T, p string) {
 func TestBootstrapFetchFailureKeepsThePreviousDirectories(t *testing.T) {
 	root, upstream := bootstrapRepo(t, false)
 	gh := t.TempDir()
-	zipWithBadChecksum(t, filepath.Join(gh, "owner/pz/releases/download/11/localize_files.zip"))
+	writeFakeReleases(t, gh)
+	zipWithBadChecksum(t, filepath.Join(gh, fakeReleases["paratranz"]))
+	pinReleases(t, root, gh)
 	useUpstreamBase(t, "file://"+gh)
 
 	_, err := runBootstrapJSON(t, root, "--fetch", "--upstream", upstream)
@@ -589,15 +695,8 @@ func TestBootstrapFetchFailureKeepsThePreviousDirectories(t *testing.T) {
 func TestBootstrapFetchLeavesNoStagingDirectory(t *testing.T) {
 	root, upstream := bootstrapRepo(t, true)
 	gh := t.TempDir()
-	writeZipFile(t, filepath.Join(gh, "owner/pz/releases/download/11/localize_files.zip"), map[string]string{
-		"Sample.json":           readFixtureFile(t, "paratranz/Sample.json"),
-		"Bufs.json":             readFixtureFile(t, "paratranz/Bufs.json"),
-		"BgmLyrics/Lyrics.json": bgmLyricsParatranz,
-	})
-	writeZipFile(t, filepath.Join(gh, "owner/ltm/releases/download/22/Hant.zip"), map[string]string{"Sample.json": readFixtureFile(t, "ltm/Sample.json")})
-	writeZipFile(t, filepath.Join(gh, "owner/llc/releases/download/33/LimbusLocalize_33.zip"), map[string]string{
-		"LimbusCompany_Data/Lang/LLC_zh-CN/Sample.json": readFixtureFile(t, "llc/Sample.json"),
-	})
+	writeFakeReleases(t, gh)
+	pinReleases(t, root, gh)
 	useUpstreamBase(t, "file://"+gh)
 
 	// A staging directory left by a crashed fetch must not leak into the result.

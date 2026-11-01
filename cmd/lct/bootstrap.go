@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
 	"flag"
 	"fmt"
 	"io"
@@ -246,21 +248,48 @@ func openUpstreamPacks(upDir string, in *bootstrap.Inputs) error {
 }
 
 // fetchUpstreams downloads the three pinned release assets to
-// <upDir>/<name>.zip and extracts each into <upDir>/<name>. The archive is
-// extracted into <upDir>/<name>.tmp first and only then replaces the old
-// directory, so a failed fetch leaves what was there.
+// <upDir>/<name>.zip and extracts each into <upDir>/<name>. Every asset is
+// downloaded and checked against its pinned sha256 before any is extracted,
+// so an asset that does not match replaces nothing: it is a user error naming
+// the asset. The archive is extracted into <upDir>/<name>.tmp first and only
+// then replaces the old directory, so a failed fetch leaves what was there.
 func fetchUpstreams(ctx context.Context, cfg *config.Config, upDir string) error {
 	list := upstreams(cfg)
 	for _, u := range list {
-		if u.up.Repo == "" || u.up.Tag == "" || u.up.Asset == "" {
-			return cli.UserError(fmt.Sprintf("bootstrap: bootstrap.%s in lct.yaml needs repo, tag and asset", u.name))
+		if u.up.Repo == "" || u.up.Tag == "" || u.up.Asset == "" || u.up.SHA256 == "" {
+			return cli.UserError(fmt.Sprintf("bootstrap: bootstrap.%s in lct.yaml needs repo, tag, asset and sha256", u.name))
 		}
 	}
-	for _, u := range list {
-		zipPath := filepath.Join(upDir, u.name+".zip")
-		if err := fetch.Download(ctx, upstreamURL(upstreamBase, u.up), zipPath); err != nil {
+	// The downloads wait at <name>.zip.new until all of them are checked.
+	fresh := make([]string, len(list))
+	defer func() {
+		for _, p := range fresh {
+			if p != "" {
+				os.Remove(p)
+			}
+		}
+	}()
+	for i, u := range list {
+		p := filepath.Join(upDir, u.name+".zip.new")
+		if err := fetch.Download(ctx, upstreamURL(upstreamBase, u.up), p); err != nil {
 			return err
 		}
+		fresh[i] = p
+		got, err := fileSHA256(p)
+		if err != nil {
+			return err
+		}
+		if !strings.EqualFold(got, u.up.SHA256) {
+			return cli.UserError(fmt.Sprintf("bootstrap: %s of %s@%s has sha256 %s, but bootstrap.%s.sha256 in lct.yaml pins %s; nothing was replaced",
+				u.up.Asset, u.up.Repo, u.up.Tag, got, u.name, u.up.SHA256))
+		}
+	}
+	for i, u := range list {
+		zipPath := filepath.Join(upDir, u.name+".zip")
+		if err := os.Rename(fresh[i], zipPath); err != nil {
+			return err
+		}
+		fresh[i] = ""
 		dest := filepath.Join(upDir, u.name)
 		staging := dest + ".tmp"
 		if err := os.RemoveAll(staging); err != nil { // left by a crashed fetch
@@ -278,4 +307,18 @@ func fetchUpstreams(ctx context.Context, cfg *config.Config, upDir string) error
 		}
 	}
 	return nil
+}
+
+// fileSHA256 is the lowercase hex sha256 of the file at p.
+func fileSHA256(p string) (string, error) {
+	f, err := os.Open(p)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+	h := sha256.New()
+	if _, err := io.Copy(h, f); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(h.Sum(nil)), nil
 }

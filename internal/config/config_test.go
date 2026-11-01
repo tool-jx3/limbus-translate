@@ -46,9 +46,18 @@ func TestLoadDefaults(t *testing.T) {
 		t.Errorf("Bootstrap.RawCreatedAt = %q", b.RawCreatedAt)
 	}
 	wantUpstreams := map[string]struct{ got, want Upstream }{
-		"paratranz": {b.Paratranz, Upstream{Repo: "user-unknown-0711/ParatranzUploader", Tag: "1793285016", Asset: "localize_files.zip"}},
-		"ltm":       {b.LTM, Upstream{Repo: "LimbusTraditionalMandarin/storyline", Tag: "1792667238", Asset: "Hant.zip"}},
-		"llc":       {b.LLC, Upstream{Repo: "LocalizeLimbusCompany/LocalizeLimbusCompany", Tag: "2026103002", Asset: "LimbusLocalize_2026103002.zip"}},
+		"paratranz": {b.Paratranz, Upstream{
+			Repo: "user-unknown-0711/ParatranzUploader", Tag: "1793285016", Asset: "localize_files.zip",
+			SHA256: "d1af42152a93ea5eb6b7dad75a0646592d8e6e1df1e1e63c13681ef5106528ea",
+		}},
+		"ltm": {b.LTM, Upstream{
+			Repo: "LimbusTraditionalMandarin/storyline", Tag: "1792667238", Asset: "Hant.zip",
+			SHA256: "7a918ba656716f4a8a8f296d517d6bae26ae35326589b60ea8ef6dc7e5677217",
+		}},
+		"llc": {b.LLC, Upstream{
+			Repo: "LocalizeLimbusCompany/LocalizeLimbusCompany", Tag: "2026103002", Asset: "LimbusLocalize_2026103002.zip",
+			SHA256: "59d7af16870c2de3f1b6ebb42387e738771ba75e0141ac6f6c46893d347e3ca9",
+		}},
 	}
 	for name, u := range wantUpstreams {
 		if u.got != u.want {

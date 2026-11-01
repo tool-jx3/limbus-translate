@@ -59,11 +59,13 @@ type Bootstrap struct {
 	LLC          Upstream `yaml:"llc"`
 }
 
-// Upstream names a release asset of a GitHub repository.
+// Upstream names a release asset of a GitHub repository and pins its
+// content: SHA256 is the hex sha256 of the asset file.
 type Upstream struct {
-	Repo  string `yaml:"repo"`
-	Tag   string `yaml:"tag"`
-	Asset string `yaml:"asset"`
+	Repo   string `yaml:"repo"`
+	Tag    string `yaml:"tag"`
+	Asset  string `yaml:"asset"`
+	SHA256 string `yaml:"sha256"`
 }
 
 // Load reads and parses the lct.yaml in root. Unknown keys are an error so
