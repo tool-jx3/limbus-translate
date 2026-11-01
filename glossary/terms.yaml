@@ -290,3 +290,21 @@
   status: approved
   category: [city]
   notes: RPG 道具「漆黑派的鑑定評價書」等既有譯名
+
+- kr: 독백
+  zh: 獨白
+  status: approved
+  category: [general]
+  notes: 劇情 teller 欄位常見（既有 9 處）；這是一般詞，不是外來譯名
+
+- kr: 하나협회
+  zh: Hana協會
+  status: approved
+  category: [city]
+  notes: 同「하나 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）
+
+- kr: 신부
+  zh: 神父
+  status: approved
+  category: [general]
+  notes: 第十章（莫梭的劇情、Enemies-a1c10*、S1034B 等）的「신부」是牧師莫里斯，譯「牧師」；其他章節與人格譯「神父」
