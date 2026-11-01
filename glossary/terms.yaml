@@ -135,3 +135,83 @@
     例：시즌 8 동기화 · 환상해석 전용 파편 (공용) → 第8賽季同步・異想解析專用碎片（共通）。
     KR／JP／EN 都沒有「人格」，既有譯文的「專用人格碎片」多加了字，又與「자아 파편」的禁用譯法相同。
     既有譯文的連接符號「&」「＆」混用，KR 為「·」，需另定一種
+
+- kr: 보스
+  en: Boss
+  zh: BOSS
+  status: approved
+  category: [system, combat]
+  evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
+  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）
+
+- kr: E.G.O 자원
+  en: E.G.O Resource
+  zh: 罪孽碎片
+  forbidden: [E.G.O資源, E.G.O 資源]
+  status: approved
+  category: [system, mechanic]
+  evidence: { kr_lines: 378, approved: 361, forbidden: 0 }
+
+- kr: 르루주
+  zh: 丹紅派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 621, approved: 404, forbidden: 0 }
+
+- kr: 말쿠트
+  en: Malkuth
+  zh: Malkuth
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+- kr: 예소드
+  en: Yesod
+  zh: Yesod
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+
+- kr: 네짜흐
+  en: Netzach
+  zh: Netzach
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+- kr: 티페리트
+  en: Tiphereth
+  zh: Tiphereth
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+- kr: 게부라
+  en: Gebura
+  zh: Gebura
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+- kr: 헤세드
+  en: Chesed
+  zh: Chesed
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+
+- kr: 호크마
+  en: Hokma
+  zh: Hokma
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+- kr: 세피라
+  en: Sephirah
+  zh: Sephirah
+  status: approved
+  category: [city]
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的

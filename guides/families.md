@@ -47,6 +47,7 @@
 - `BattleSpeechBubbleDlg`（817 條）沿用原指引的編號：`battle_<類型>_1XXYY_<序號>`，類型有 `s1`～`s3`、`s3-2`、`react`、`special`、`eE` 等。例：`battle_s3_10617_1_1` = 鴻璐（06）第 17 號人格
 - 各賽季另有分檔：`BattleSpeechBubbleDlg-a1c9p1`～`-a1c10p3`、`-exme`、`-twth`、`_Cultivation`、`_mowe`。章節分檔改用 `10SV-051_1` 這種編號（`<章>SV-<序號>`）
 - 戰鬥泡泡的 `desc` 是觸發標籤，三語幾乎相同，**不翻**；台詞在 `dlg`
+- 戰鬥泡泡的批次沒有說話者：看 KR 的 `desc`（觸發標籤常含角色名）與 `id`（`1XXYY` = 罪人代碼 XX、人格 YY）判斷是誰在說話
 
 **原指引「未列出」的族群**（檔數）：
 
@@ -62,6 +63,8 @@
 | 折射軌道 | 檔名含 `Refraction`、`Railway`（如 `RailwayDungeonUI_5`） | 81 |
 | RPG 探索 | `RPGSystem/rpg-loc-*`（對話、NPC、選項、旁白） | 189 |
 | 協助者 | `Skills_Assist*`、`Passives_Assist*` | 14 |
+
+**RPG 探索的對話**：`RPGSystem/rpg-loc-dialogue-*` 是對話，每句的說話者在 `speaker`（KR 名稱，與角色檔的 `models` 相同）；`rpg-loc-dialogue-choice-*` 是選項
 
 **檔案集合**：輸出以 KR 為準（已決定）。KR 比 EN 多 53 個檔（例如 `Passives-a1c9p1～p3`），這些檔沒有 EN／JP 可參考，只依 KR 翻譯。只有 EN 有的 10 個檔不輸出。
 
