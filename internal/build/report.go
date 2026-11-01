@@ -360,7 +360,8 @@ func infoTranslations(b *strings.Builder, opt Options, info Info, sum *plan.Summ
 	fmt.Fprintf(b, "\n- 這次新翻（origin claude，Since 為 `%s`）：%d 個單位\n", info.RawTag, rep.NewTranslated)
 	if sum != nil {
 		if sum.PrevRawTag != sum.RawTag {
-			fmt.Fprintf(b, "- 因 KR 變更需要重翻：%d 個單位\n", sum.Changes.Changed)
+			// A frozen unit whose KR changed keeps its translation.
+			fmt.Fprintf(b, "- 因 KR 變更需要重翻：%d 個單位\n", max(0, sum.Changes.Changed-len(sum.FrozenChanged)))
 		}
 		fmt.Fprintf(b, "- 沿用相同文字的譯文：%d 個單位；不需翻譯而複製原文：%d 個單位\n", sum.Reused, sum.Copy)
 	}

@@ -1421,6 +1421,33 @@ func TestReportIgnoresAPlanOfAnotherSnapshot(t *testing.T) {
 }
 
 // The inputs of the build and of the translation are information.
+// A frozen file whose KR changed keeps its translation, so it is not among the
+// units that need translating again; the count never goes below zero.
+func TestReportCountsOnlyTheUnitsThatAreRetranslated(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	for _, tc := range []struct {
+		name    string
+		changed int
+		frozen  []string
+		want    string
+	}{
+		{"none frozen", 4, nil, "因 KR 變更需要重翻：4 個單位"},
+		{"some frozen", 5, []string{"BgmLyrics/L1.json|/dataList/0/content", "BgmLyrics/L1.json|/dataList/1/content"}, "因 KR 變更需要重翻：3 個單位"},
+		{"all frozen", 2, []string{"BgmLyrics/L1.json|/dataList/0/content", "BgmLyrics/L1.json|/dataList/1/content"}, "因 KR 變更需要重翻：0 個單位"},
+		{"more frozen than changed", 1, []string{"a|/x", "b|/y"}, "因 KR 變更需要重翻：0 個單位"},
+	} {
+		writePlan(t, e, plan.Summary{
+			RawTag: testTag, PrevRawTag: "raw-20261022", RulesCommit: "abc1234",
+			Changes: plan.Changes{Changed: tc.changed}, FrozenChanged: tc.frozen,
+		})
+		e.run()
+		if rest := section(t, e.readReport(), "## 資訊"); !strings.Contains(rest, tc.want) {
+			t.Errorf("%s: the information lacks %q:\n%s", tc.name, tc.want, rest)
+		}
+	}
+}
+
 func TestReportShowsInputsAndTranslation(t *testing.T) {
 	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
 	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))

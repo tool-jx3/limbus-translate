@@ -21,6 +21,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 // The contract between the skills, the shared prompts and the rest of the
@@ -506,6 +507,23 @@ func TestBatchSchemaDeclaresHint(t *testing.T) {
 	}
 	if _, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md")); !strings.Contains(prompt, "`hint`") {
 		t.Error("prompts/translate.md does not tell the translator what to do with `hint`")
+	}
+}
+
+// A unit whose adjustment expired carries the person's old text in
+// refs.adjustment (store.RefAdjustment): the shared prompt tells the translator
+// what that is and what to do with it, in the section of the refs.
+func TestTranslatePromptExplainsTheAdjustmentRef(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	_, refs, ok := strings.Cut(prompt, "## 參考譯文 `refs`")
+	if !ok {
+		t.Fatal("prompts/translate.md has no section 參考譯文 `refs`")
+	}
+	refs, _, _ = strings.Cut(refs, "\n## ")
+	for _, want := range []string{"`" + store.RefAdjustment + "`", "adjustment-expired"} {
+		if !strings.Contains(refs, want) {
+			t.Errorf("the refs section of prompts/translate.md does not mention %s", want)
+		}
 	}
 }
 
