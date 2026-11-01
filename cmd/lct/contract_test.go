@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/fs"
 	"os"
@@ -19,7 +20,9 @@ import (
 // The contract between the skills, the shared prompts and the rest of the
 // repo: a skill's frontmatter names it, what its body refers to exists, and
 // no skill or prompt names a model (the model comes from --model or
-// LCT_MODEL).
+// LCT_MODEL). The permissions the repo grants (.claude/settings.json) and
+// the tools the translate-pending skill may use are scoped too: Claude Code
+// adds the two up, so a broad entry in either undoes the scoping of both.
 
 var (
 	// repoPathRe matches a repo-relative path in a skill's body.
@@ -38,8 +41,63 @@ var (
 
 // skillFrontmatter is the part of a SKILL.md frontmatter the contract checks.
 type skillFrontmatter struct {
-	Name        string `yaml:"name"`
-	Description string `yaml:"description"`
+	Name         string   `yaml:"name"`
+	Description  string   `yaml:"description"`
+	AllowedTools []string `yaml:"allowed-tools"`
+}
+
+// translatePendingTools are the tools of the translate-pending skill (R35):
+// batch text is untrusted, so it may write nothing outside work/ and run no
+// lct command beyond batch and pending.
+var translatePendingTools = []string{
+	"Bash(bin/lct batch *)",
+	"Bash(bin/lct pending *)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./work/**)",
+}
+
+// lctWordRe is one word of an lct command name.
+var lctWordRe = regexp.MustCompile(`^[a-z][a-z-]*$`)
+
+// checkPermissions reports the entries of a permission list (the allow list
+// of a settings file, or a skill's allowed-tools) that grant too much:
+//   - a bare Read, Edit, Write or Bash, or one whose specifier is only * or
+//     **, which allows every file or command;
+//   - a Bash(bin/lct ...) that names no registered command: the words before
+//     the closing * must be a command (two words, else the first, as
+//     checkLctCommands reads them) or, as a single word, the group of
+//     two-word commands it starts (batch for batch next and batch submit).
+//     Bash(bin/lct *) allows every command and is refused.
+func checkPermissions(file string, entries, commands []string) []string {
+	var problems []string
+	for _, e := range entries {
+		tool, spec, scoped := strings.Cut(e, "(")
+		spec = strings.TrimSuffix(spec, ")")
+		if slices.Contains([]string{"Read", "Edit", "Write", "Bash"}, tool) && (!scoped || spec == "*" || spec == "**") {
+			problems = append(problems, fmt.Sprintf("%s: %q grants %s without a scope", file, e, tool))
+			continue
+		}
+		rest, isLct := strings.CutPrefix(spec, "bin/lct")
+		if tool != "Bash" || !isLct {
+			continue
+		}
+		words := strings.Fields(strings.TrimSuffix(strings.TrimSpace(rest), "*"))
+		if len(words) == 0 {
+			problems = append(problems, fmt.Sprintf("%s: %q allows every lct command", file, e))
+			continue
+		}
+		if slices.ContainsFunc(words, func(w string) bool { return !lctWordRe.MatchString(w) }) {
+			problems = append(problems, fmt.Sprintf("%s: %q does not start with an lct command", file, e))
+			continue
+		}
+		group := len(words) == 1 && slices.ContainsFunc(commands, func(c string) bool { return strings.HasPrefix(c, words[0]+" ") })
+		if (len(words) > 1 && slices.Contains(commands, words[0]+" "+words[1])) || slices.Contains(commands, words[0]) || group {
+			continue
+		}
+		problems = append(problems, fmt.Sprintf("%s: %q names no registered lct command", file, e))
+	}
+	return problems
 }
 
 // splitFrontmatter returns the YAML between the leading "---" lines of a
@@ -181,6 +239,78 @@ func TestSkillContract(t *testing.T) {
 	}
 	for _, problem := range checkModelNames(repoRoot, ".claude/skills", "prompts") {
 		t.Error(problem)
+	}
+}
+
+// The repo's .claude/settings.json grants what the skills run and nothing
+// broader: other lct commands, and files outside the repo, ask a person.
+func TestSettingsContract(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "settings.json"))
+	var settings struct {
+		Permissions struct {
+			Allow []string `json:"allow"`
+		} `json:"permissions"`
+	}
+	if err := json.Unmarshal([]byte(content), &settings); err != nil {
+		t.Fatalf(".claude/settings.json does not parse: %v", err)
+	}
+	if len(settings.Permissions.Allow) == 0 {
+		t.Fatal(".claude/settings.json allows nothing: permissions.allow is missing")
+	}
+	for _, problem := range checkPermissions(".claude/settings.json", settings.Permissions.Allow, cli.Commands()) {
+		t.Error(problem)
+	}
+}
+
+// The translate-pending skill may use exactly the R35 tools.
+func TestTranslatePendingTools(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
+	front, _, ok := splitFrontmatter(content)
+	if !ok {
+		t.Fatal("translate-pending/SKILL.md has no frontmatter")
+	}
+	var fm skillFrontmatter
+	if err := yaml.Unmarshal([]byte(front), &fm); err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(fm.AllowedTools, translatePendingTools) {
+		t.Errorf("allowed-tools = %q, want %q", fm.AllowedTools, translatePendingTools)
+	}
+	for _, problem := range checkPermissions("translate-pending/SKILL.md", fm.AllowedTools, cli.Commands()) {
+		t.Error(problem)
+	}
+}
+
+func TestCheckPermissions(t *testing.T) {
+	commands := []string{"batch next", "batch submit", "bootstrap", "pending", "rules lint", "validate"}
+	good := []string{
+		"Bash(bin/lct batch *)", "Bash(bin/lct pending *)", "Bash(bin/lct validate *)", "Bash(bin/lct rules lint*)",
+		"Bash(bin/lct batch submit *)", "Bash(go build -o bin/lct ./cmd/lct)", "Read(./**)", "Edit(./work/**)",
+		"Write(./work/**)", "WebFetch(domain:example.com)", "Glob",
+	}
+	if problems := checkPermissions("settings.json", good, commands); len(problems) > 0 {
+		t.Errorf("problems in a good list:\n%s", strings.Join(problems, "\n"))
+	}
+	for _, tc := range []struct{ entry, want string }{
+		{"Bash(bin/lct *)", "every lct command"},
+		{"Bash(bin/lct)", "every lct command"},
+		{"Bash(bin/lct --json *)", "does not start with an lct command"},
+		{"Bash(bin/lct frobnicate *)", "no registered"},
+		{"Bash(bin/lct batch nxt *)", "no registered"},
+		{"Bash(bin/lct fields *)", "no registered"}, // no fields command in this list
+		{"Read", "without a scope"},
+		{"Edit", "without a scope"},
+		{"Write", "without a scope"},
+		{"Bash", "without a scope"},
+		{"Bash(*)", "without a scope"},
+		{"Read(**)", "without a scope"},
+	} {
+		t.Run(tc.entry, func(t *testing.T) {
+			problems := checkPermissions("settings.json", []string{tc.entry}, commands)
+			if len(problems) != 1 || !strings.Contains(problems[0], tc.want) || !strings.Contains(problems[0], "settings.json") {
+				t.Errorf("problems = %q, want one naming settings.json and %q", problems, tc.want)
+			}
+		})
 	}
 }
 

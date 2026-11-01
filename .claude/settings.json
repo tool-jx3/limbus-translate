@@ -1,9 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bin/lct *)",
+      "Bash(bin/lct batch *)",
+      "Bash(bin/lct pending *)",
+      "Bash(bin/lct validate *)",
+      "Bash(bin/lct rules lint*)",
+      "Bash(bin/lct guide resolve *)",
       "Bash(go build -o bin/lct ./cmd/lct)",
-      "Read",
+      "Read(./**)",
       "Edit(./work/**)"
     ]
   }
