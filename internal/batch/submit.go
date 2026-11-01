@@ -15,8 +15,8 @@ const (
 	// CodeForeignName is a warning: the translation uses a name that only
 	// the LTM translation uses.
 	CodeForeignName = "foreign-name"
-	// CodeLeaseLost: the unit is no longer pending, or its lease now belongs
-	// to another batch.
+	// CodeLeaseLost: the unit is no longer pending, or it is not leased to
+	// the batch (its lease was released or belongs to another batch now).
 	CodeLeaseLost = "lease-lost"
 	// CodeNotInBatch: the key is not one of the batch's units.
 	CodeNotInBatch = "not-in-batch"
@@ -88,8 +88,9 @@ func foreignNameIssues(zh string, names []string) []validate.Issue {
 // Submit takes the translations out for batch b.
 //
 // Only units of b are processed, each once; the others are rejected. A unit
-// is processed while it is still pending, its lease is free or b's, it is not
-// flagged needs_review, and its KR text is the one b was cut with. Its text is
+// is processed while it is still pending, it is not flagged needs_review, it
+// is leased to b (the lease may have run out, but no other batch may hold
+// it), and its KR text is the one b was cut with. Its text is
 // normalized and checked as a new translation. Without a hard issue it becomes
 // a record (origin claude) and leaves the queue. With one, its attempts grow
 // and it keeps its lease, so the owner of b can send the fix; at maxAttempts
@@ -201,10 +202,12 @@ func (s *submission) reject(key string, issues ...validate.Issue) {
 	s.res.Rejected = append(s.res.Rejected, Rejection{Key: key, Issues: issues})
 }
 
-// owns reports whether the lease of pending item i is free or the batch's.
+// owns reports whether pending item i is leased to the batch, whether or not
+// the lease has run out. A unit without a lease was never handed to the batch,
+// or has been released; the batch file cannot make it the batch's.
 func (s *submission) owns(i int) bool {
 	l := s.pending[i].Lease
-	return l == nil || l.Batch == s.batch.ID
+	return l != nil && l.Batch == s.batch.ID
 }
 
 // release ends the lease of pending item i if it is the batch's.
@@ -245,13 +248,18 @@ func (s *submission) unit(o OutUnit) error {
 		s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is no longer pending; it was translated or requeued since batch %s was cut", o.Key, s.batch.ID))
 		return nil
 	}
-	if !s.owns(i) {
-		s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is leased to another batch now, not to %s", o.Key, s.batch.ID))
-		return nil
-	}
 	item := &s.pending[i]
+	// Before the lease: a unit that waits for a person has none.
 	if hasFlag(item.Flags, store.FlagNeedsReview) {
 		s.reject(o.Key, protocolIssue(CodeNeedsReview, "%s ran out of attempts and waits for a person; it takes no more translations", o.Key))
+		return nil
+	}
+	if !s.owns(i) {
+		if item.Lease == nil {
+			s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is not leased to batch %s: its lease was released, or the batch never held it", o.Key, s.batch.ID))
+		} else {
+			s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is leased to another batch now, not to %s", o.Key, s.batch.ID))
+		}
 		return nil
 	}
 

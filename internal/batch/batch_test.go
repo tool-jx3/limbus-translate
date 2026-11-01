@@ -1067,6 +1067,34 @@ func TestSubmitLeaseAndBatchMembership(t *testing.T) {
 	}
 }
 
+// A batch file can be edited: only the units a batch holds a lease on are its
+// own. A free unit, never handed out to it, is no unit of the batch.
+func TestSubmitRefusesUnitsTheBatchDoesNotHold(t *testing.T) {
+	kr := map[string]string{"Other.json": dataList(t, 2, "", line)}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, items("Other.json", 0, 2)...)
+	b := mustNext(t, env, NextOptions{MaxUnits: 1}) // unit 0 only
+	// The file is edited to claim unit 1 as well, which is still free.
+	b.Units = append(b.Units, BatchUnit{Key: key("Other.json", 1), KR: line(1)})
+
+	res, err := Submit(env, b, translate(b), "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{key("Other.json", 0)}; !slices.Equal(res.Accepted, want) {
+		t.Errorf("accepted = %v, want %v", res.Accepted, want)
+	}
+	if len(res.Rejected) != 1 || res.Rejected[0].Key != key("Other.json", 1) || !hasCode(res.Rejected[0].Issues, CodeLeaseLost) {
+		t.Fatalf("rejected = %+v, want unit 1 with lease-lost", res.Rejected)
+	}
+	if _, has := records(t, env)[key("Other.json", 1)]; has {
+		t.Error("a unit the batch does not hold got a record")
+	}
+	if it := pendingMap(t, env)[key("Other.json", 1)]; it.Attempts != 0 || it.Lease != nil {
+		t.Errorf("unit 1 = %+v, want it untouched", it)
+	}
+}
+
 func TestSubmitReleasesOmittedUnits(t *testing.T) {
 	kr := map[string]string{"Other.json": dataList(t, 3, "", line)}
 	env := newEnv(t, kr, nil, nil)
