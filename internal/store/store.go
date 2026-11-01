@@ -38,6 +38,10 @@ const (
 // Origins lists every value Record.Origin can take.
 var Origins = []string{OriginParatranz, OriginClaude, OriginHuman, OriginCopy, OriginFallback}
 
+// RefAdjustment is the key, in PendingItem.Refs, of the human text of an
+// adjustment that expired: the unit is translated again with it as a reference.
+const RefAdjustment = "adjustment"
+
 // FlagNeedsReview marks a unit a person should look at.
 const FlagNeedsReview = "needs_review"
 

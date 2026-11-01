@@ -13,10 +13,11 @@ import (
 // of them at a time, and Submit gives the others the translation it accepted.
 //
 // A group that is FileBound only holds twins of one file; twinKey adds the
-// file to such a group. A unit that a person sent back with a Hint is a case
-// of its own: it is never held back for a twin and never filled in by one,
-// since the hint was written for that unit and the twin's translator has not
-// seen it. Its twins may still wait for it and take its translation.
+// file to such a group. A unit that carries what a person wrote for it (see
+// carriesInput) is a case of its own: it is never held back for a twin and
+// never filled in by one, since what the person wrote was meant for that unit
+// and the twin's translator has not seen it. Its twins may still wait for it
+// and take its translation.
 
 // twinKey is what two pending units have in common when they are twins.
 type twinKey struct {
@@ -33,8 +34,13 @@ func twinKeyOf(g TextGroup, file string) twinKey {
 	return twinKey{TextGroup: g, File: file}
 }
 
-// hasHint reports whether a person wrote a hint for the pending item.
-func hasHint(it store.PendingItem) bool { return it.Hint != "" }
+// carriesInput reports whether the pending item carries what a person wrote
+// for that unit: the hint of a request for another translation, or the human
+// text of an adjustment that expired (store.RefAdjustment), which the unit is
+// translated again with as a reference.
+func carriesInput(it store.PendingItem) bool {
+	return it.Hint != "" || it.Refs[store.RefAdjustment] != ""
+}
 
 // busyTwins returns the twinKeys of the pending units that are leased to a
 // batch at now, which are being translated. It opens the files of those units
@@ -86,7 +92,7 @@ func newTwinFilter(env Env, fd *fileData, busy map[twinKey]bool) *twinFilter {
 // eligible, goes into the batch, and if it does notes its text as taken.
 func (f *twinFilter) pick(pos int, item store.PendingItem) bool {
 	k := twinKeyOf(TextGroupOf(f.env.Rules, f.fd.doc, f.fd.units[pos]), f.fd.file)
-	if !hasHint(item) && (f.busy[k] || f.taken[k]) {
+	if !carriesInput(item) && (f.busy[k] || f.taken[k]) {
 		return false
 	}
 	f.taken[k] = true
@@ -107,7 +113,7 @@ type acceptedUnit struct {
 // queue, when
 //   - it is a unit of the batch, which its out file answers;
 //   - it is leased to another batch that has not run out, flagged needs_review,
-//     or has a person's Hint (see hasHint);
+//     or carries what a person wrote for it (see carriesInput);
 //   - the translation fails CheckNew in the twin's file: the glossary may name
 //     terms for some files only.
 //
@@ -137,7 +143,7 @@ func (s *submission) reuseForTwins() error {
 
 	now := s.env.now()
 	for i, it := range s.pending {
-		if s.removed[i] || hasFlag(it.Flags, store.FlagNeedsReview) || hasHint(it) || !store.LeaseFree(it, now) {
+		if s.removed[i] || hasFlag(it.Flags, store.FlagNeedsReview) || carriesInput(it) || !store.LeaseFree(it, now) {
 			continue
 		}
 		if _, inBatch := s.batchKR[it.Key]; inBatch {

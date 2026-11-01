@@ -32,10 +32,11 @@ const File = "plan.json"
 
 // ReasonAdjustmentExpired is the Reason of the pending item of a unit whose
 // human adjustment no longer applies; its Refs hold the adjustment under
-// RefAdjustment, for the translator to look at.
+// RefAdjustment (store.RefAdjustment, where batch can see it), for the
+// translator to look at.
 const (
 	ReasonAdjustmentExpired = "adjustment-expired"
-	RefAdjustment           = "adjustment"
+	RefAdjustment           = store.RefAdjustment
 )
 
 // The prefixes of the Batch of the records Run writes: the adjustment file

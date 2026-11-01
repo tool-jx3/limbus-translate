@@ -2375,6 +2375,10 @@ func TestSubmitReusesOnlyForTwinsInTheSameGroup(t *testing.T) {
 			mutate: func(it *store.PendingItem) { it.Flags = []string{store.FlagNeedsReview} }},
 		{name: "a person asked for another translation", file: "Hint.json", content: oneLine(t, twinText),
 			mutate: func(it *store.PendingItem) { it.Reason, it.Hint = "requeue", "稱呼改用您" }},
+		{name: "a human adjustment expired", file: "Adjusted.json", content: oneLine(t, twinText),
+			mutate: func(it *store.PendingItem) {
+				it.Reason, it.Refs = "adjustment-expired", map[string]string{store.RefAdjustment: "人工寫的舊譯文"}
+			}},
 	}
 	kr := map[string]string{"A.json": oneLine(t, twinText)}
 	pending := items("A.json", 0, 1)
@@ -2444,17 +2448,41 @@ func TestSubmitReusesForTwinsOfTheSameSpeaker(t *testing.T) {
 	}
 }
 
-// A person's request for another translation of a unit is for that unit: it is
-// not held back for a twin.
+// What a person wrote for a unit (a hint with a request for another
+// translation, the human text of an adjustment that expired) is for that unit:
+// it is not held back for a twin, and goes out with what the person wrote.
 func TestNextDoesNotDeferAUnitWithAHint(t *testing.T) {
-	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText)}
-	env := newEnv(t, kr, nil, nil)
-	pending := append(items("A.json", 0, 1), items("B.json", 0, 1)...)
-	pending[0].Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(time.Hour)}
-	pending[1].Reason, pending[1].Hint = "requeue", "稱呼改用您"
-	seed(t, env, pending...)
-	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "B.json" || b.Units[0].Hint != "稱呼改用您" {
-		t.Errorf("batch = %+v, want B.json with its hint", b)
+	for _, tc := range []struct {
+		name   string
+		mutate func(*store.PendingItem)
+		check  func(*testing.T, BatchUnit)
+	}{
+		{"hint", func(it *store.PendingItem) { it.Reason, it.Hint = "requeue", "稱呼改用您" }, func(t *testing.T, u BatchUnit) {
+			if u.Hint != "稱呼改用您" {
+				t.Errorf("hint = %q, want the person's hint", u.Hint)
+			}
+		}},
+		{"expired adjustment", func(it *store.PendingItem) {
+			it.Reason, it.Refs = "adjustment-expired", map[string]string{store.RefAdjustment: "人工寫的舊譯文"}
+		}, func(t *testing.T, u BatchUnit) {
+			if u.Refs[store.RefAdjustment] != "人工寫的舊譯文" {
+				t.Errorf("refs = %v, want the old adjustment", u.Refs)
+			}
+		}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText)}
+			env := newEnv(t, kr, nil, nil)
+			pending := append(items("A.json", 0, 1), items("B.json", 0, 1)...)
+			pending[0].Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(time.Hour)}
+			tc.mutate(&pending[1])
+			seed(t, env, pending...)
+			b := mustNext(t, env, NextOptions{})
+			if b == nil || b.File != "B.json" {
+				t.Fatalf("batch = %+v, want B.json: its twin is leased, but the unit has what a person wrote", b)
+			}
+			tc.check(t, b.Units[0])
+		})
 	}
 }
 
