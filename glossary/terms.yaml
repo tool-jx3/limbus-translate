@@ -757,7 +757,7 @@
   forbidden: [看守]
   status: approved
   category: [city]
-  notes: 既有 49 行（「進行薛西弗斯之刑刑罰的獄卒」）
+  notes: 既有 49 行（「進行薛西弗斯之刑刑罰的獄卒」）；「간수하다」（保管、收好）不是這個詞
 
 - kr: 붉은 신[미생]
   zh: 丹紅之神[尚未誕生]
@@ -810,3 +810,15 @@
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 뀽뀽이
+  zh: 軟QQ
+  status: approved
+  category: [city]
+  notes: 既有譯文；「큥큥이」也寫軟QQ
+
+- kr: 큥큥이
+  zh: 軟QQ
+  status: approved
+  category: [city]
+  notes: 見「뀽뀽이」
