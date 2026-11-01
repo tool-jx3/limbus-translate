@@ -483,7 +483,8 @@ func checkE2EBatches(t *testing.T, batches []batch.Batch) {
 }
 
 // checkE2ERecords checks the store after the translation: the four units went
-// in as claude records with the model and the batch that made them.
+// in as claude records with the model and the batch that made them, and every
+// record names the commit of the rules, which are committed.
 func checkE2ERecords(t *testing.T, root string) {
 	t.Helper()
 	records, err := store.Open(filepath.Join(root, ".work", "tw")).LoadRecords()
@@ -493,8 +494,12 @@ func checkE2ERecords(t *testing.T, root string) {
 	if len(records) != 20 {
 		t.Errorf("the store holds %d records, want 20", len(records))
 	}
+	head := runGitIn(t, root, "rev-parse", "HEAD")
 	claude := 0
 	for key, rec := range records {
+		if rec.Rules != head {
+			t.Errorf("record %s: rules = %q, want HEAD %s", key, rec.Rules, head)
+		}
 		if rec.Origin != store.OriginClaude {
 			continue
 		}

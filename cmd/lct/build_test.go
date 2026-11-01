@@ -138,8 +138,9 @@ func TestBuildCommandBuildsThePack(t *testing.T) {
 		t.Fatal(err)
 	}
 	wantTime := time.Unix(sec, 0).UTC().Format(time.RFC3339)
-	if meta.RawTag != "raw-20261029" || meta.RawToken != testToken || meta.RulesCommit != runGitIn(t, root, "rev-parse", "HEAD") || meta.BuiltAt != wantTime {
-		t.Errorf("version.json = %+v, want the commit time %s", meta, wantTime)
+	// The rules were copied in after the repo's only commit: they are dirty.
+	if meta.RawTag != "raw-20261029" || meta.RawToken != testToken || meta.RulesCommit != runGitIn(t, root, "rev-parse", "HEAD")+"+dirty" || meta.BuiltAt != wantTime {
+		t.Errorf("version.json = %+v, want the commit time %s and HEAD+dirty", meta, wantTime)
 	}
 	if meta.Upstream["paratranz"] != "owner/pz@11" || meta.Upstream["ltm"] != "owner/ltm@22" || meta.Upstream["llc"] != "owner/llc@33" {
 		t.Errorf("upstream = %v", meta.Upstream)
@@ -155,6 +156,20 @@ func TestBuildCommandBuildsThePack(t *testing.T) {
 	}
 	if after, err := os.ReadFile(got.CompleteZip); err != nil || string(after) != string(before) {
 		t.Errorf("a second build changed the complete zip (%v)", err)
+	}
+
+	// Once the rules are committed, the build names the bare commit, in
+	// version.json and in build.json.
+	runGitIn(t, root, "add", "-A")
+	runGitIn(t, root, "commit", "-q", "-m", "rules")
+	if _, err := runBuildJSON(t, root); err != nil {
+		t.Fatal(err)
+	}
+	head := runGitIn(t, root, "rev-parse", "HEAD")
+	for _, f := range []string{filepath.Join(lang, "zh-TW", "Info", "version.json"), filepath.Join(tw, ".meta", "build.json")} {
+		if b, err := os.ReadFile(f); err != nil || !strings.Contains(string(b), `"rules_commit": "`+head+`"`) {
+			t.Errorf("%s = %s, %v, want rules_commit %s", f, b, err, head)
+		}
 	}
 }
 

@@ -18,7 +18,7 @@ allowed-tools:
 
 - 只寫 `work/` 底下的檔案，也就是 `work/batches/<id>.out.json`。不改 `.meta/`、指引、詞彙表、規則（`guides/`、`glossary/`、`rules/`）或其他任何檔案；狀態只經由 `bin/lct` 改變
 - 規則有問題、不清楚或互相矛盾時，照最合理的方式翻，並寫在該單位的 `note`
-- 執行 `bin/lct` 時不加 `--model`：模型由環境提供
+- 執行 `bin/lct` 時不加 `--model`：模型由環境變數 `LCT_MODEL` 提供；沒有設定時 `batch submit` 會失敗，就停止並回報
 
 ## 流程
 

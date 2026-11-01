@@ -143,6 +143,13 @@ func TestBootstrapImportsFixture(t *testing.T) {
 	if r := recs["Sample.json|/dataList/1/content"]; r.ZH != "增加5級 [Laceration] 強度" || r.Origin != store.OriginParatranz || r.Since != "raw-20261029" {
 		t.Errorf("adopted record = %+v", r)
 	}
+	// The rules were copied in after the repo's only commit: they are dirty.
+	wantRules := runGitIn(t, root, "rev-parse", "HEAD") + "+dirty"
+	for key, r := range recs {
+		if r.Rules != wantRules {
+			t.Errorf("record %s: rules = %q, want %q", key, r.Rules, wantRules)
+		}
+	}
 	if r := recs[bgmLyricsKey]; r.ZH != "La la la" || r.Origin != store.OriginParatranz || len(r.Flags) != 0 {
 		t.Errorf("frozen record = %+v, want the Paratranz text verbatim", r)
 	}
@@ -284,6 +291,8 @@ func TestBootstrapUsageErrors(t *testing.T) {
 		t.Fatal(err)
 	}
 	missingUpstream, _ := bootstrapRepo(t, true)
+	unborn, upstream4 := bootstrapRepo(t, false)
+	runGitIn(t, unborn, "checkout", "-q", "--orphan", "unborn")
 	noLLC, upstream3 := bootstrapRepo(t, false)
 	if err := os.RemoveAll(filepath.Join(upstream3, "llc")); err != nil {
 		t.Fatal(err)
@@ -300,6 +309,7 @@ func TestBootstrapUsageErrors(t *testing.T) {
 		{"no raw snapshot", noSnapshot, []string{"--upstream", upstream2}, "snapshot"},
 		{"no upstream directory", missingUpstream, []string{"--upstream", filepath.Join(missingUpstream, "nowhere")}, "--fetch"},
 		{"no LLC directory", noLLC, []string{"--upstream", upstream3}, "llc"},
+		{"repo without commits", unborn, []string{"--upstream", upstream4}, "no commit"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {

@@ -239,6 +239,24 @@ func fixtureInputs(t *testing.T) Inputs {
 	return in
 }
 
+// Every record says which rules it was made under.
+func TestRunRecordsTheRulesCommit(t *testing.T) {
+	in := fixtureInputs(t)
+	in.RulesCommit = "0123abc+dirty"
+	res, err := Run(in, testFieldRules(t), &rules.Rules{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Records) == 0 {
+		t.Fatal("no records")
+	}
+	for key, rec := range res.Records {
+		if rec.Rules != in.RulesCommit {
+			t.Errorf("record %s: Rules = %q, want %q", key, rec.Rules, in.RulesCommit)
+		}
+	}
+}
+
 func TestBootstrapFixture(t *testing.T) {
 	res, err := Run(fixtureInputs(t), testFieldRules(t), &rules.Rules{})
 	if err != nil {

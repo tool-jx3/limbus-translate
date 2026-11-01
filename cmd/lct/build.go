@@ -101,12 +101,9 @@ func runBuild(ctx *cli.Context, args []string) error {
 	}
 	// The commit comes before the build time, which is read from it unless
 	// SOURCE_DATE_EPOCH is set: a repo without commits is a user error.
-	rulesCommit, err := gitx.Head(ctx.Root)
+	rules, err := rulesCommit(ctx, "build")
 	if err != nil {
 		return err
-	}
-	if rulesCommit == "" {
-		return cli.UserError("build: the repo has no commit to record as the rules commit")
 	}
 	builtAt, err := buildTime(ctx.Root)
 	if err != nil {
@@ -132,7 +129,7 @@ func runBuild(ctx *cli.Context, args []string) error {
 		LicensePath: licensePath,
 		RawTag:      src.Tag,
 		RawToken:    src.Token,
-		RulesCommit: rulesCommit,
+		RulesCommit: rules,
 		Upstream:    upstream,
 		BuiltAt:     builtAt,
 		Frozen:      cfg.Frozen,

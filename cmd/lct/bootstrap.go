@@ -120,6 +120,9 @@ func runBootstrap(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	if in.RulesCommit, err = rulesCommit(ctx, "bootstrap"); err != nil {
+		return err
+	}
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
 	st := store.Open(twRoot)
 	if !*force {

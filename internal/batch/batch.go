@@ -47,6 +47,10 @@ type Env struct {
 	Rules *rules.Rules
 	// RawTag is the tag of that snapshot; a new record's Since.
 	RawTag string
+	// RulesCommit names the commit of the rules the translations are made
+	// under (see gitx.Describe); every record Submit writes carries it as
+	// Rules.
+	RulesCommit string
 	// ForeignNames are names the translation must not use (see
 	// bootstrap.ForeignNames).
 	ForeignNames []string

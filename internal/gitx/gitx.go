@@ -287,6 +287,24 @@ func Head(dir string) (string, error) {
 	return "", err
 }
 
+// Describe returns the commit HEAD points to, followed by "+dirty" when any of
+// paths (pathspecs relative to dir) has changes that are not committed:
+// staged, unstaged or untracked. It returns "" if the branch has no commits.
+func Describe(dir string, paths ...string) (string, error) {
+	head, err := Head(dir)
+	if err != nil || head == "" {
+		return "", err
+	}
+	status, err := git(dir, append([]string{"status", "--porcelain", "--"}, paths...)...)
+	if err != nil {
+		return "", err
+	}
+	if strings.TrimSpace(status) != "" {
+		head += "+dirty"
+	}
+	return head, nil
+}
+
 // CommitTime returns the committer time of HEAD in UTC, to whole seconds. It
 // is an error if the branch has no commits.
 func CommitTime(dir string) (time.Time, error) {

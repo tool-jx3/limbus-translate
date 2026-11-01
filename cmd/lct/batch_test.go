@@ -43,9 +43,10 @@ var (
 	batchKey1 = "Sample.json|/dataList/1/content"
 )
 
-// batchRepo makes an lct repo root ready for the batch commands: the real
-// rules, a raw worktree with one file and its snapshot record, and two pending
-// units. The foreign name 默爾索 is registered.
+// batchRepo makes an lct repo root ready for the batch commands: a git repo
+// with the real rules committed, a raw worktree with one file and its
+// snapshot record, and two pending units. The foreign name 默爾索 is
+// registered, and LCT_MODEL is test-model.
 func batchRepo(t *testing.T) (root string, st *store.Store) {
 	t.Helper()
 	// A fixed clock: batch ids and lease times do not depend on when the
@@ -53,13 +54,17 @@ func batchRepo(t *testing.T) (root string, st *store.Store) {
 	oldNow := batchNow
 	batchNow = func() time.Time { return cliNow }
 	t.Cleanup(func() { batchNow = oldNow })
+	t.Setenv("LCT_MODEL", "test-model")
 
-	root = t.TempDir()
+	root = snapshotRepo(t)
 	writeTestFile(t, root, "lct.yaml", batchYAML)
+	writeTestFile(t, root, ".gitignore", "/.work/\n/work/\n")
 	for _, f := range []string{"glossary/terms.yaml", "guides/routing.yaml"} {
 		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
 	}
 	copyDir(t, filepath.Join(repoRoot, "guides/characters"), filepath.Join(root, "guides/characters"))
+	runGitIn(t, root, "add", "-A")
+	runGitIn(t, root, "commit", "-q", "-m", "rules")
 
 	rawWT := filepath.Join(root, ".work", "raw")
 	writeTestFile(t, rawWT, "kr/KR_Sample.json", batchKR)
@@ -283,6 +288,9 @@ func TestBatchSubmit(t *testing.T) {
 	if rec.Origin != store.OriginClaude || rec.Model != "env-model" || rec.Batch != id || rec.Since != "raw-20261029" {
 		t.Errorf("record = %+v, want claude, LCT_MODEL, the batch and the raw tag", rec)
 	}
+	if head := runGitIn(t, root, "rev-parse", "HEAD"); rec.Rules != head {
+		t.Errorf("record rules = %q, want HEAD %s: the rules are committed", rec.Rules, head)
+	}
 	if rec.ZH != "賦予5級 [Laceration] 威力" {
 		t.Errorf("record ZH = %q, want it normalized", rec.ZH)
 	}
@@ -453,6 +461,27 @@ func TestBatchNextFailsWhenBatchFilesCannotBeChecked(t *testing.T) {
 	}
 }
 
+// A record made while the rules have changes that are not committed says so.
+func TestBatchSubmitMarksDirtyRules(t *testing.T) {
+	root, st := batchRepo(t)
+	next, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "guides/base.md", "# 未提交的指引\n")
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: batchKey1, ZH: "有人說了話"})
+	if _, raw, err := runSubmitJSON(t, root, *next.Batch); err != nil {
+		t.Fatalf("submit: %v\n%s", err, raw)
+	}
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := runGitIn(t, root, "rev-parse", "HEAD") + "+dirty"; recs[batchKey1].Rules != want {
+		t.Errorf("record rules = %q, want %q", recs[batchKey1].Rules, want)
+	}
+}
+
 func pendingItem(t *testing.T, st *store.Store, key string) (store.PendingItem, bool) {
 	t.Helper()
 	items, err := st.LoadPending()
@@ -501,6 +530,8 @@ func TestBatchSubmitUserErrors(t *testing.T) {
 			other := "20250101T000000-00000000"
 			writeTestFile(t, root, "work/batches/"+id+".json", strings.Replace(string(data), id, other, 1))
 		}, "another batch"},
+		// Last: it unsets LCT_MODEL for the rest of the test.
+		{"no model", []string{id}, func() { t.Setenv("LCT_MODEL", "") }, "LCT_MODEL"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

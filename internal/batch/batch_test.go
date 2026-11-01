@@ -745,6 +745,7 @@ func TestSubmitAcceptReject(t *testing.T) {
  {"id":1,"content":"[Burn] 부여"}
 ]}`}
 	env := newEnv(t, kr, nil, nil)
+	env.RulesCommit = "0123abc+dirty"
 	seed(t, env, items("Other.json", 0, 2)...)
 	b := mustNext(t, env, NextOptions{})
 
@@ -778,6 +779,7 @@ func TestSubmitAcceptReject(t *testing.T) {
 		ZH:     "賦予5級 [Bleed] 威力", // normalized
 		Origin: store.OriginClaude,
 		Since:  testTag,
+		Rules:  "0123abc+dirty",
 		Model:  "test-model",
 		Batch:  b.ID,
 	}
@@ -959,6 +961,7 @@ func TestSubmitNeedsReview(t *testing.T) {
 	kr := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] 위력"}]}`}
 	en := map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] Potency"}]}`}
 	env := newEnv(t, kr, en, nil)
+	env.RulesCommit = "0123abc"
 	k := key("Other.json", 0)
 	seed(t, env, items("Other.json", 0, 1)...)
 	b := mustNext(t, env, NextOptions{})
@@ -998,8 +1001,8 @@ func TestSubmitNeedsReview(t *testing.T) {
 	if rec.Origin != store.OriginFallback || rec.ZH != "[Bleed] Potency" || !slices.Equal(rec.Flags, []string{store.FlagNeedsReview}) {
 		t.Errorf("record = %+v, want fallback with the EN text and needs_review", rec)
 	}
-	if rec.KRSha != units.KRSha("[Bleed] 위력") || rec.Since != testTag || rec.Model != "" || rec.Batch != "" {
-		t.Errorf("record = %+v, want the KR sha and since, no model or batch", rec)
+	if rec.KRSha != units.KRSha("[Bleed] 위력") || rec.Since != testTag || rec.Rules != "0123abc" || rec.Model != "" || rec.Batch != "" {
+		t.Errorf("record = %+v, want the KR sha, since and rules, no model or batch", rec)
 	}
 
 	// A fourth submission of the same batch changes nothing, even with a

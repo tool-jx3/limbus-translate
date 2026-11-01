@@ -498,3 +498,70 @@ func TestTagsAt(t *testing.T) {
 		t.Errorf("TagsAt = %v, %v; want only raw-20261029", got, err)
 	}
 }
+
+func TestDescribe(t *testing.T) {
+	repo := newRepo(t)
+	write(t, repo, "guides/base.md", "base\n")
+	write(t, repo, "prompts/p.md", "p\n")
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "rules")
+	head := runGit(t, repo, "rev-parse", "HEAD")
+	paths := []string{"guides", "glossary", "rules", "prompts"}
+
+	describe := func() string {
+		t.Helper()
+		got, err := Describe(repo, paths...)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return got
+	}
+	if got := describe(); got != head {
+		t.Errorf("clean: Describe = %q, want %q", got, head)
+	}
+
+	// Changes elsewhere do not count.
+	write(t, repo, "a.txt", "changed\n")
+	write(t, repo, "notes.txt", "untracked\n")
+	if got := describe(); got != head {
+		t.Errorf("changes outside the paths: Describe = %q, want %q", got, head)
+	}
+
+	for _, tc := range []struct {
+		name string
+		edit func()
+		undo func()
+	}{
+		{"unstaged change", func() { write(t, repo, "guides/base.md", "edited\n") }, func() { runGit(t, repo, "checkout", "--", "guides/base.md") }},
+		{"staged change", func() { write(t, repo, "prompts/p.md", "edited\n"); runGit(t, repo, "add", "prompts/p.md") }, func() {
+			runGit(t, repo, "reset", "-q", "--", "prompts/p.md")
+			runGit(t, repo, "checkout", "--", "prompts/p.md")
+		}},
+		{"untracked file", func() { write(t, repo, "rules/new.yaml", "x\n") }, func() { os.Remove(filepath.Join(repo, "rules", "new.yaml")) }},
+		{"deleted file", func() { os.Remove(filepath.Join(repo, "guides", "base.md")) }, func() { runGit(t, repo, "checkout", "--", "guides/base.md") }},
+	} {
+		tc.edit()
+		if got := describe(); got != head+"+dirty" {
+			t.Errorf("%s: Describe = %q, want %q", tc.name, got, head+"+dirty")
+		}
+		tc.undo()
+		if got := describe(); got != head {
+			t.Errorf("after undoing the %s: Describe = %q, want %q", tc.name, got, head)
+		}
+	}
+}
+
+func TestDescribeUnbornBranch(t *testing.T) {
+	repo := filepath.Join(t.TempDir(), "repo")
+	if err := os.MkdirAll(repo, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	runGit(t, repo, "init", "-q", "-b", "main")
+	write(t, repo, "guides/base.md", "base\n")
+	if got, err := Describe(repo, "guides"); err != nil || got != "" {
+		t.Errorf("Describe = %q, %v, want \"\" on a branch with no commits", got, err)
+	}
+	if _, err := Describe(filepath.Join(t.TempDir(), "nowhere"), "guides"); err == nil {
+		t.Error("Describe outside a repo = nil error")
+	}
+}

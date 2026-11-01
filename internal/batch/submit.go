@@ -312,6 +312,7 @@ func (s *submission) unit(o OutUnit) error {
 			ZH:     text,
 			Origin: store.OriginFallback,
 			Since:  since,
+			Rules:  s.env.RulesCommit,
 			Flags:  withFlag(existing.Flags, store.FlagNeedsReview),
 		}
 		item.Flags = withFlag(item.Flags, store.FlagNeedsReview)
@@ -325,6 +326,7 @@ func (s *submission) unit(o OutUnit) error {
 		ZH:     zh,
 		Origin: store.OriginClaude,
 		Since:  since,
+		Rules:  s.env.RulesCommit,
 		Model:  s.model,
 		Batch:  s.batch.ID,
 		Flags:  withoutFlag(existing.Flags, store.FlagNeedsReview),

@@ -62,6 +62,9 @@ type Inputs struct {
 	// RawTag is the raw snapshot tag the packs of Raw come from. It becomes
 	// the Since of every record.
 	RawTag string
+	// RulesCommit names the commit of the rules the import is made under
+	// (see gitx.Describe). It becomes the Rules of every record.
+	RulesCommit string
 	// Frozen lists the file patterns of lct.yaml's frozen list (see
 	// config.MatchAny).
 	Frozen []string
@@ -341,6 +344,7 @@ func (b *builder) settle(u units.Unit, zh, origin string, flags []string) {
 		ZH:     zh,
 		Origin: origin,
 		Since:  b.in.RawTag,
+		Rules:  b.in.RulesCommit,
 		Flags:  flags,
 	}
 }

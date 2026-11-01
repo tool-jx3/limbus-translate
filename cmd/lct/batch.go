@@ -317,6 +317,9 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 	if *model == "" {
 		*model = os.Getenv("LCT_MODEL")
 	}
+	if *model == "" {
+		return cli.UserError("batch submit: no model to record: set LCT_MODEL (or give --model)")
+	}
 
 	var b batch.Batch
 	if err := readStrictJSON(ctx, batchPath(ctx, id, ".json"), &b); err != nil {
@@ -332,6 +335,9 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 
 	env, _, err := openBatchEnv(ctx, "batch submit")
 	if err != nil {
+		return err
+	}
+	if env.RulesCommit, err = rulesCommit(ctx, "batch submit"); err != nil {
 		return err
 	}
 	res, err := batch.Submit(env, &b, out, *model, ctx.Config.Batch.MaxAttempts)
