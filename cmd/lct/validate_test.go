@@ -71,6 +71,27 @@ func TestValidateEnforcesGlossary(t *testing.T) {
 	}
 }
 
+// 신부 is 牧師 in the files of chapter 10 and 神父 in the others (the glossary's
+// files); --file says which file the text is from.
+func TestValidateEnforcesTermsByFile(t *testing.T) {
+	out, err := validateOut(t, false, "--kr", "신부가 왔다", "--zh", "神父來了", "--file", "StoryData/S1034B.json")
+	if !errors.Is(err, cli.ErrFindings) || !strings.Contains(out, "forbidden-term") {
+		t.Errorf("神父 in a file of chapter 10: err = %v, want a forbidden-term\n%s", err, out)
+	}
+	if out, err := validateOut(t, false, "--kr", "신부가 왔다", "--zh", "牧師來了", "--file", "StoryData/S1034B.json"); err != nil {
+		t.Errorf("牧師 in a file of chapter 10: %v\n%s", err, out)
+	}
+	for _, args := range [][]string{
+		{"--file", "StoryData/S725B.json"},
+		{}, // no file: only the terms for every file
+	} {
+		args = append([]string{"--kr", "신부가 왔다", "--zh", "神父來了"}, args...)
+		if out, err := validateOut(t, false, args...); err != nil {
+			t.Errorf("神父 with %q: %v\n%s", args[4:], err, out)
+		}
+	}
+}
+
 func TestValidateIgnoresCandidateTerms(t *testing.T) {
 	// A glossary of its own, so that approving a candidate in the real one
 	// does not break this: 전용 파편 is only a candidate, and 人格碎片 is on its

@@ -196,12 +196,19 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | 族群指引 | `guides/families.md`，之後可拆成 `guides/families/<族群>.md` | 依檔名套用 |
 | 角色指引 | `guides/characters/<id>.md`（YAML 開頭含 `models`、`file_names`、`gender`…） | 依說話者套用 |
 | 人格指引 | `guides/identities/<人格編號>.md`（需要時才建） | 依檔名中的人格編號套用 |
-| 詞彙表 | `glossary/terms.yaml`（`status: approved／candidate`） | 硬性；只注入命中的條目 |
+| 詞彙表 | `glossary/terms.yaml`（`status: approved／candidate`） | 硬性；只注入命中的條目；條目可用 `files` 限定適用的檔（見下） |
 | 欄位規則 | `rules/fields*.yaml` | 硬性 |
 | 人工調整 | `rules/adjustments/*.yaml` | 見 §11 |
 | 重翻要求 | `rules/requeue/*.yaml` | 見 §11.1；每個檔由 CI 套用一次 |
 | 改寫檔 | `rules/rewrite/*.yaml` | 見 §11.1；以正規表示式機械改寫現有譯文，每個檔由 CI 套用一次 |
 | 路由 | `guides/routing.yaml`（檔名樣式 → 族群指引；人格編號規則） | 程式用 |
+| 外來名稱忽略清單 | `rules/foreign-names.ignore.yaml`（YAML 字串清單，可省略） | 「他源名稱」警告略過清單中的詞 |
+
+**詞彙條目的適用範圍**：
+
+- 條目可加 `files`：檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`（`StoryData/S10*`、`RPGSystem/**`）；省略 = 所有檔。只有批次的檔名符合時，條目才注入批次，也才檢查它的禁用譯法；`lct validate` 與 `lct adjust add` 同樣依單位所在的檔判斷（`lct validate` 以 `--file` 指定檔名）
+- 同一個 `kr` 可以有多個條目，其中至多一個不設 `files`（`rules lint` 檢查，`files` 的樣式也在這裡檢查）。某個檔符合有 `files` 的條目時，由這些條目代表這個詞，沒設 `files` 的那一條不適用；沒有任何條目符合時，用沒設 `files` 的那一條
+- 例：「신부」在第十章的檔（`*a1c10*`、`StoryData/S10*`、`RPGSystem/**`、`Enemies-a1c10*`）譯「牧師」並禁用「神父」，其他檔譯「神父」
 
 **疊加順序**：base → 族群 → 角色 → 人格 → 單檔備註。詞彙表、欄位規則與 `base.md` 的格式規則是硬性規定，風格指引不能推翻。
 
@@ -214,6 +221,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 - 這兩張表反映語言包自己的現行譯名，所以不需要逐條審核就能約束翻譯；要改名走 `term-decision`。第一階段時它們來自 Paratranz 的譯名
 - Claude 在 `note` 提出的新詞只是候選，不具約束力，審核通過才寫進 `glossary/terms.yaml`
 - LTM／LLC 的名稱只作參考。從兩者的 `ScenarioModelCodes` 與本專案不同的名稱（例如「默爾索」）產生「他源名稱」清單；譯文出現時列為警告
+- 他源名稱裡有些只是常用詞（LTM 把某個說話者譯成「媽媽」），譯文用到並不是用錯名稱。這類詞列在 `rules/foreign-names.ignore.yaml`（YAML 字串清單，初始為「媽媽」「獨白」），譯文含有清單中的詞時不警告。比對的是整個他源名稱
 
 ## 8. 每次建置的決策邏輯
 
@@ -310,6 +318,9 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
   - 批次依 `guides/families.md` 的翻譯優先序發放
 - Claude 寫 `work/batches/<id>.out.json`（`[{key, zh, note?}]`），再執行 `lct batch submit <id>`
 - `submit` 逐單位驗證，回傳 JSON：`{accepted: [...], rejected: [{key, errors}]}`。Claude 修正後重送；同一單位失敗 3 次（可設定）就標 `needs_review`，暫用 EN 原文（`fallback`），留在待譯清單
+- 相同的待譯行只翻一次：同族群、同欄位、（對話則）同說話者、KR 完全相同的待譯單位互為兄弟句；短字串（門檻同 §8.1）只限同檔
+  - `batch next`：某單位的兄弟句正被另一個未過期的批次租用時，這次不發放它；同一批也不會放進兩個兄弟句
+  - `submit`：收下一個單位後，把同一份譯文寫給它的兄弟句，寫入的紀錄與一般收下的單位相同（`Batch` 為這一批的 id，`Model` 為送出者）。兄弟句有租約且未過期、標了 `needs_review`、帶有人工要求重翻的說明（`hint`），或是這一批的單位，就不寫；譯文先以兄弟句所在檔的詞彙條目檢查，沒通過的不沿用，仍留在待譯清單。沿用的 key 列在結果的 `reused`
 - `note` 用來回報疑問或新詞，進報表，不自動變成規則
 
 ### 9.2 CI 執行

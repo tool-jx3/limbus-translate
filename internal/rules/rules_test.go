@@ -17,6 +17,9 @@ import (
 // repoRoot is the repo itself: these tests read the real guides and glossary.
 const repoRoot = "../.."
 
+// anyFile is a file no scoped glossary term of the repo applies to.
+const anyFile = "Other.json"
+
 func loadRepo(t *testing.T) *rules.Rules {
 	t.Helper()
 	r, err := rules.Load(repoRoot)
@@ -284,7 +287,7 @@ func hitFor(hits []rules.Term, kr string) *rules.Term {
 // well occur in the same sentence.
 func TestGlossaryHits(t *testing.T) {
 	r := loadRepo(t)
-	hit := hitFor(r.GlossaryHits("이 패키지는 한정 판매입니다."), "패키지")
+	hit := hitFor(r.GlossaryHits(anyFile, "이 패키지는 한정 판매입니다."), "패키지")
 	if hit == nil {
 		t.Fatal("the text contains 패키지, but it is not among the hits")
 	}
@@ -296,18 +299,18 @@ func TestGlossaryHits(t *testing.T) {
 	// in the text. (That a text without a term has no hit is checked on a
 	// glossary of its own, in TestGlossaryHitsSkipCandidates.)
 	for _, text := range []string{"이 패키지는 한정 판매입니다.", "아무 용어도 없는 문장", "시즌 보상: 도약 모듈"} {
-		for _, h := range r.GlossaryHits(text) {
+		for _, h := range r.GlossaryHits(anyFile, text) {
 			if !strings.Contains(text, h.KR) || h.Status != "approved" {
 				t.Errorf("GlossaryHits(%q) returned %+v: not an approved term of the text", text, h)
 			}
 		}
 	}
-	if hits := r.GlossaryHits(""); len(hits) != 0 {
+	if hits := r.GlossaryHits(anyFile, ""); len(hits) != 0 {
 		t.Errorf("empty KR, but hits = %+v", hits)
 	}
 
 	// several hits come back in glossary order, not text order
-	hits := r.GlossaryHits("시즌 보상: 도약 모듈")
+	hits := r.GlossaryHits(anyFile, "시즌 보상: 도약 모듈")
 	var got []string
 	for _, h := range hits {
 		if h.KR == "도약 모듈" || h.KR == "시즌" {
@@ -350,34 +353,156 @@ func TestGlossaryHitsSkipCandidates(t *testing.T) {
 		t.Fatalf("the glossary should hold 전용 파편 as a candidate, got %+v", candidate)
 	}
 	// Loading keeps the candidate; only the hits leave it out.
-	if hits := r.GlossaryHits("시즌 8 동기화 · 환상해석 전용 파편 (공용)"); len(hits) != 1 || hits[0].KR != "시즌" {
+	if hits := r.GlossaryHits(anyFile, "시즌 8 동기화 · 환상해석 전용 파편 (공용)"); len(hits) != 1 || hits[0].KR != "시즌" {
 		t.Errorf("hits = %+v, want only the approved 시즌", hits)
 	}
-	if hits := r.GlossaryHits("전용 파편"); len(hits) != 0 {
+	if hits := r.GlossaryHits(anyFile, "전용 파편"); len(hits) != 0 {
 		t.Errorf("a candidate term must not be returned, got %+v", hits)
 	}
 	// an approved term in the same text is still returned
-	hits := r.GlossaryHits("자아 파편과 전용 파편")
+	hits := r.GlossaryHits(anyFile, "자아 파편과 전용 파편")
 	if len(hits) != 1 || hits[0].KR != "자아 파편" || hits[0].Status != "approved" {
 		t.Errorf("hits = %+v, want only the approved 자아 파편", hits)
 	}
 	// a Korean text with none of the terms has no hit
-	if hits := r.GlossaryHits("아무 용어도 없는 문장"); len(hits) != 0 {
+	if hits := r.GlossaryHits(anyFile, "아무 용어도 없는 문장"); len(hits) != 0 {
 		t.Errorf("no term in the text, but hits = %+v", hits)
 	}
 
 	// and in the real glossary, whatever candidates it holds at the moment
 	live := loadRepo(t)
 	for _, term := range live.Glossary {
-		if term.Status == "candidate" && hitFor(live.GlossaryHits(term.KR), term.KR) != nil {
+		if term.Status == "candidate" && hitFor(live.GlossaryHits(anyFile, term.KR), term.KR) != nil {
 			t.Errorf("the candidate %s is among the hits of its own text", term.KR)
 		}
 	}
 }
 
+// rulesWithGlossary loads the rules of the repo with the glossary replaced by
+// glossary.
+func rulesWithGlossary(t *testing.T, glossary string) *rules.Rules {
+	t.Helper()
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(string) string { return glossary })
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return r
+}
+
+func zhOf(hits []rules.Term) []string {
+	var out []string
+	for _, h := range hits {
+		out = append(out, h.ZH)
+	}
+	return out
+}
+
+// A term with files applies to the files that match; a term without files to
+// all of them. Where both are given for one KR text, the term that matches
+// the file stands for it alone, so each file has one rendering.
+func TestGlossaryHitsByFile(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 위력
+  zh: 威力
+  status: approved
+  files: ["StoryData/S10*", "Enemies-a1c10*", "RPGSystem/**"]
+- kr: 신부
+  zh: 牧師
+  forbidden: [神父]
+  status: approved
+  files: ["StoryData/S10*", "*a1c10*"]
+- kr: 신부
+  zh: 神父
+  status: approved
+- kr: 시즌
+  zh: 賽季
+  status: approved
+- kr: 후보
+  zh: 候選
+  status: approved
+  files: ["StoryData/S10*"]
+- kr: 후보
+  zh: 候補
+  status: candidate
+  files: ["Other.json"]
+`)
+	const text = "위력 신부 시즌 후보"
+	for _, tc := range []struct {
+		file string
+		want []string
+	}{
+		{"StoryData/S1001A.json", []string{"威力", "牧師", "賽季", "候選"}},
+		{"StoryData/S2001A.json", []string{"神父", "賽季"}}, // only the terms without files
+		{"Enemies-a1c10p1.json", []string{"威力", "牧師", "賽季"}},
+		{"Skills-a1c10p2.json", []string{"牧師", "賽季"}},
+		{"RPGSystem/rpg-loc-dialogue-floor-1.json", []string{"威力", "神父", "賽季"}},
+		{"RPGSystem/deeper/x.json", []string{"威力", "神父", "賽季"}}, // "/**" takes the whole directory
+		{"Other.json", []string{"神父", "賽季"}},                    // a candidate scoped to the file binds nothing
+		{"", []string{"神父", "賽季"}},                              // no file: only the terms for every file
+	} {
+		if got := zhOf(r.GlossaryHits(tc.file, text)); !slices.Equal(got, tc.want) {
+			t.Errorf("GlossaryHits(%q) = %v, want %v", tc.file, got, tc.want)
+		}
+	}
+
+	// The terms validation enforces are the same terms.
+	forbidden := func(file string) []string {
+		var out []string
+		for _, term := range r.ValidateTerms(file, "신부") {
+			out = append(out, term.Forbidden...)
+		}
+		return out
+	}
+	if got := forbidden("StoryData/S1001A.json"); !slices.Equal(got, []string{"神父"}) {
+		t.Errorf("forbidden in a file of the term = %v, want 神父", got)
+	}
+	if got := forbidden("StoryData/S2001A.json"); len(got) != 0 {
+		t.Errorf("forbidden in another file = %v, want none", got)
+	}
+}
+
+// Both renderings of 신부 are in the glossary: 牧師 for the files of chapter
+// 10, 神父 for the rest.
+func TestGlossaryHoldsBothRenderingsOfSinbu(t *testing.T) {
+	r := loadRepo(t)
+	for _, tc := range []struct{ file, zh string }{
+		{"StoryData/S1034B.json", "牧師"},
+		{"StoryData/S1037B.json", "牧師"},
+		{"Enemies-a1c10p1.json", "牧師"},
+		{"Bufs-a1c10p3.json", "牧師"},
+		{"Skills_Abnormality-a1c10p3.json", "牧師"},
+		{"RPGSystem/rpg-loc-dialogue-floor-1-c2.json", "牧師"},
+		{"StoryData/S725B.json", "神父"},
+		{"Personality_Get_Condition.json", "神父"},
+		{"PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json", "神父"},
+		{"Enemies_Refraction5.json", "神父"},
+	} {
+		var got []string
+		for _, h := range r.GlossaryHits(tc.file, "신부님") {
+			if h.KR == "신부" {
+				got = append(got, h.ZH)
+			}
+		}
+		if !slices.Equal(got, []string{tc.zh}) {
+			t.Errorf("신부 in %s = %v, want only %s", tc.file, got, tc.zh)
+		}
+	}
+	// 牧師 forbids 神父, 神父 forbids nothing.
+	var forbidden = map[string][]string{}
+	for _, term := range r.Glossary {
+		if term.KR == "신부" {
+			forbidden[term.ZH] = term.Forbidden
+		}
+	}
+	if !slices.Equal(forbidden["牧師"], []string{"神父"}) || len(forbidden["神父"]) != 0 {
+		t.Errorf("forbidden = %v, want 牧師 to forbid 神父 and 神父 to forbid nothing", forbidden)
+	}
+}
+
 func TestToValidate(t *testing.T) {
 	r := loadRepo(t)
-	hit := hitFor(r.GlossaryHits("시즌"), "시즌")
+	hit := hitFor(r.GlossaryHits(anyFile, "시즌"), "시즌")
 	if hit == nil {
 		t.Fatal("시즌 should be an approved term")
 	}
@@ -563,6 +688,115 @@ func TestLint(t *testing.T) {
 			}
 		}
 	})
+}
+
+// The files of a term are patterns of file names, and a KR text may have
+// several entries as long as at most one is for every file.
+func TestLintGlossaryFiles(t *testing.T) {
+	const term = "- kr: 패키지\n"
+	const second = "\n- kr: 패키지\n  zh: 包裹\n  status: approved\n"
+	lint := func(t *testing.T, fn func(string) string) string {
+		t.Helper()
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", fn)
+		return lintMessages(rules.Lint(root))
+	}
+
+	t.Run("bad pattern", func(t *testing.T) {
+		msg := lint(t, replaceOnce(term, term+"  files: [\"[\"]\n"))
+		for _, want := range []string{"glossary/terms.yaml", "패키지", "files", `"["`} {
+			if !strings.Contains(msg, want) {
+				t.Errorf("lint output does not mention %q:\n%s", want, msg)
+			}
+		}
+	})
+	t.Run("empty pattern", func(t *testing.T) {
+		if msg := lint(t, replaceOnce(term, term+"  files: [\"\"]\n")); !strings.Contains(msg, "files") {
+			t.Errorf("lint output does not mention files:\n%s", msg)
+		}
+	})
+	t.Run("two entries without files", func(t *testing.T) {
+		msg := lint(t, func(s string) string { return s + second })
+		for _, want := range []string{"glossary/terms.yaml", "패키지", "files"} {
+			if !strings.Contains(msg, want) {
+				t.Errorf("lint output does not mention %q:\n%s", want, msg)
+			}
+		}
+	})
+	t.Run("one of two entries has files", func(t *testing.T) {
+		if msg := lint(t, func(s string) string { return s + second + "  files: [\"StoryData/S10*\"]\n" }); msg != "" {
+			t.Errorf("lint found problems in a term with a second entry for some files:\n%s", msg)
+		}
+	})
+	t.Run("two entries with files", func(t *testing.T) {
+		more := second + "  files: [\"StoryData/S10*\"]\n" + second + "  files: [\"Enemies*\"]\n"
+		if msg := lint(t, func(s string) string { return s + more }); msg != "" {
+			t.Errorf("lint found problems in a term with entries for some files only:\n%s", msg)
+		}
+	})
+	t.Run("directory pattern", func(t *testing.T) {
+		if msg := lint(t, replaceOnce(term, term+"  files: [\"RPGSystem/**\"]\n")); msg != "" {
+			t.Errorf("lint rejects a directory pattern:\n%s", msg)
+		}
+	})
+}
+
+// Words that the foreign-name warning leaves alone are a YAML list.
+func TestForeignIgnore(t *testing.T) {
+	r := loadRepo(t)
+	for _, word := range []string{"媽媽", "獨白"} {
+		if !slices.Contains(r.ForeignIgnore, word) {
+			t.Errorf("ForeignIgnore = %q, want it to hold %s", r.ForeignIgnore, word)
+		}
+	}
+
+	root := copyRules(t)
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(r.ForeignIgnore) != 0 {
+		t.Errorf("without a rules/foreign-names.ignore.yaml ForeignIgnore = %q, want none", r.ForeignIgnore)
+	}
+	if errs := rules.Lint(root); len(errs) != 0 {
+		t.Errorf("lint of rules without the file: %v", errs)
+	}
+
+	write := func(content string) {
+		t.Helper()
+		p := filepath.Join(root, "rules", "foreign-names.ignore.yaml")
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	write("# 常用詞\n- 媽媽\n- 老師\n")
+	if r, err := rules.Load(root); err != nil || !slices.Equal(r.ForeignIgnore, []string{"媽媽", "老師"}) {
+		t.Errorf("ForeignIgnore = %q, %v, want [媽媽 老師]", r.ForeignIgnore, err)
+	}
+	if errs := rules.Lint(root); len(errs) != 0 {
+		t.Errorf("lint of a good file: %v", errs)
+	}
+
+	for _, tc := range []struct {
+		name, content, want string
+		loadFails           bool
+	}{
+		{"not a list", "媽媽: 1\n", "foreign-names.ignore.yaml", true},
+		{"not text", "- [媽媽]\n", "foreign-names.ignore.yaml", true},
+		{"empty word", "- 媽媽\n- \"\"\n", "empty", false},
+		{"word twice", "- 媽媽\n- 媽媽\n", "twice", false},
+	} {
+		write(tc.content)
+		if _, err := rules.Load(root); (err != nil) != tc.loadFails {
+			t.Errorf("%s: Load error = %v, want an error: %v", tc.name, err, tc.loadFails)
+		}
+		if msg := lintMessages(rules.Lint(root)); !strings.Contains(msg, tc.want) {
+			t.Errorf("%s: lint output does not mention %q:\n%s", tc.name, tc.want, msg)
+		}
+	}
 }
 
 // adjustmentYAML is one entry of an adjustment file.

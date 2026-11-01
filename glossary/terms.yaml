@@ -5,6 +5,9 @@
 #   zh            採用譯名
 #   status        approved（已採用）／candidate（候選，待人工確認）
 #   forbidden     禁用譯法（驗證時以子字串比對；以 re: 開頭者為正規表示式）
+#   files         只適用於這些檔（檔名樣式，寫法同 lct.yaml 的 frozen；省略 = 所有檔）。
+#                 同一個 kr 可以有多個條目，其中至多一個不設 files；某個檔符合的條目會取代
+#                 沒設 files 的那一條
 #   category      分類，見 glossary/README.md
 #   evidence      2026-10-29 既有繁中的使用情況（KR 含此詞的行數 / 使用採用譯名的行數 / 使用禁用譯法的行數）
 #   notes         補充
@@ -305,10 +308,18 @@
   notes: 同「하나 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）
 
 - kr: 신부
+  zh: 牧師
+  forbidden: [神父]
+  files: ["*a1c10*", "StoryData/S10*", "RPGSystem/**", "Enemies-a1c10*"]
+  status: approved
+  category: [general]
+  notes: 第十章（莫梭的劇情、Enemies-a1c10*、S1034B、RPGSystem 百貨公司、*-a1c10* 狀態與技能）的「신부」是牧師莫里斯，譯「牧師」；其他檔譯「神父」（見下一條）
+
+- kr: 신부
   zh: 神父
   status: approved
   category: [general]
-  notes: 第十章（莫梭的劇情、Enemies-a1c10*、S1034B、RPGSystem 百貨公司、*-a1c10* 狀態與技能）的「신부」是牧師莫里斯，譯「牧師」；其他章節與人格譯「神父」
+  notes: 其他章節與人格的「신부」。第十章的檔（見上一條的 files）譯「牧師」，以那一條為準
 
 - kr: 누나
   zh: 姊姊

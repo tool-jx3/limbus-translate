@@ -55,7 +55,8 @@ type Env struct {
 	// Rules.
 	RulesCommit string
 	// ForeignNames are names the translation must not use (see
-	// bootstrap.ForeignNames).
+	// bootstrap.ForeignNames); Submit warns about them, except the words of
+	// Rules.ForeignIgnore.
 	ForeignNames []string
 	// Now is the clock: the time of the batch id and the base of lease expiry.
 	// The zero value means the current time.
@@ -336,15 +337,18 @@ func nonNil(s []string) []string {
 	return s
 }
 
-// glossaryFor is the union of the approved terms the texts contain, once per
-// KR term, in order of first appearance.
-func glossaryFor(r *rules.Rules, krs []string) []rules.Term {
+// glossaryFor is the union of the approved terms the texts contain in file,
+// once per KR term and rendering, in order of first appearance. They are the
+// terms CheckNew enforces on the units of file: a text that is shown with a
+// term is held to it, and the other way round.
+func glossaryFor(r *rules.Rules, file string, krs []string) []rules.Term {
 	terms := []rules.Term{}
-	seen := map[string]bool{}
+	type termKey struct{ kr, zh string }
+	seen := map[termKey]bool{}
 	for _, kr := range krs {
-		for _, t := range r.GlossaryHits(kr) {
-			if !seen[t.KR] {
-				seen[t.KR] = true
+		for _, t := range r.GlossaryHits(file, kr) {
+			if k := (termKey{t.KR, t.ZH}); !seen[k] {
+				seen[k] = true
 				terms = append(terms, t)
 			}
 		}
@@ -352,22 +356,13 @@ func glossaryFor(r *rules.Rules, krs []string) []rules.Term {
 	return terms
 }
 
-// validateTerms is the part of the glossary hits of kr that validation
-// enforces.
-func validateTerms(r *rules.Rules, kr string) []validate.Term {
-	var terms []validate.Term
-	for _, t := range r.GlossaryHits(kr) {
-		terms = append(terms, t.ToValidate())
-	}
-	return terms
-}
-
-// CheckNew checks zh as a new translation of the KR text kr, which is what
-// Submit holds a translation to: the structure of kr, and the wording rules
-// with the glossary terms kr contains, content issues being hard. zh is
-// checked as it is; Submit normalizes a translation first.
-func CheckNew(r *rules.Rules, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: validateTerms(r, kr)})
+// CheckNew checks zh as a new translation of the KR text kr of file, which is
+// what Submit holds a translation to: the structure of kr, and the wording
+// rules with the glossary terms kr contains in file (see
+// rules.Rules.GlossaryHits), content issues being hard. zh is checked as it
+// is; Submit normalizes a translation first.
+func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
+	return validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr)})
 }
 
 // ShortTextRunes is the length, in runes of the KR text, under which a text

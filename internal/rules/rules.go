@@ -5,25 +5,38 @@
 package rules
 
 import (
+	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"slices"
 	"strings"
+
+	"gopkg.in/yaml.v3"
 )
 
 // BaseGuide applies to every batch.
 const BaseGuide = "guides/base.md"
+
+// ForeignIgnoreFile is the list of words the foreign-name warning leaves
+// alone, relative to the repo root: a YAML list of strings. It is optional.
+const ForeignIgnoreFile = "rules/foreign-names.ignore.yaml"
 
 // Rules is everything Load reads.
 type Rules struct {
 	Glossary   []Term
 	Characters []Character
 	Routing    Routing
+	// ForeignIgnore are the words that are never warned about as foreign
+	// names (names only the LTM translation uses): common words that LTM
+	// happens to give a speaker, such as 媽媽.
+	ForeignIgnore []string
 }
 
 // Load reads the rules under root, the repo root. It fails when a file is
-// missing or cannot be parsed; Lint checks the content as well.
+// missing (the list of ignored foreign names may be) or cannot be parsed;
+// Lint checks the content as well.
 func Load(root string) (*Rules, error) {
 	r := &Rules{}
 
@@ -63,7 +76,27 @@ func Load(root string) (*Rules, error) {
 	if errs := globErrors(r.Routing); len(errs) > 0 {
 		return nil, fmt.Errorf("%s: %w", RoutingFile, errs[0])
 	}
+
+	data, err = os.ReadFile(filepath.Join(root, filepath.FromSlash(ForeignIgnoreFile)))
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return nil, err
+	}
+	if err == nil {
+		if r.ForeignIgnore, err = parseForeignIgnore(data); err != nil {
+			return nil, fmt.Errorf("%s: %w", ForeignIgnoreFile, err)
+		}
+	}
 	return r, nil
+}
+
+// parseForeignIgnore decodes the ignore list: a list of strings, or an empty
+// file.
+func parseForeignIgnore(data []byte) ([]string, error) {
+	var words []string
+	if err := yaml.Unmarshal(data, &words); err != nil {
+		return nil, err
+	}
+	return words, nil
 }
 
 // characterFiles lists the character guides, as paths relative to root with

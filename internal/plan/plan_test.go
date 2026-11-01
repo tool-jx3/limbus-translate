@@ -659,6 +659,61 @@ func TestPlanReusesTheSameText(t *testing.T) {
 	}
 }
 
+// A glossary term that is for some files is enforced on a reused translation
+// in the file the translation goes to, not in the file it comes from.
+func TestPlanChecksReuseUnderTheTermsOfTheTargetFile(t *testing.T) {
+	e := newPlanEnv(t)
+	e.rule(rules.GlossaryFile, "- kr: 마법\n  zh: 魔法\n  forbidden: [法術]\n  status: approved\n  files: [\"Skills_B*\"]\n")
+	const text = "마법으로 적을 공격합니다"
+	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": text})})
+	// Skills_A is not a file of the term, so its translation may say 法術.
+	e.seed([]store.Record{translated(descKey("Skills_A.json", 0), text, "用法術攻擊敵人")}, nil)
+	e.snapshot(map[string]string{
+		"Skills_A.json": dataList(obj{"id": 1, "desc": text}),
+		"Skills_B.json": dataList(obj{"id": 1, "desc": text}),
+		"Skills_C.json": dataList(obj{"id": 1, "desc": text}),
+	})
+
+	sum := e.run(tag1)
+
+	recs, pending := e.records(), e.pending()
+	if got := recs[descKey("Skills_C.json", 0)]; got.ZH != "用法術攻擊敵人" || got.Batch != "reuse:"+descKey("Skills_A.json", 0) {
+		t.Errorf("record in a file the term is not for = %+v, want the translation reused", got)
+	}
+	if it, ok := pending[descKey("Skills_B.json", 0)]; !ok || it.Reason != ReasonNew {
+		t.Errorf("Skills_B pending = %+v, %v, want a new item: the term forbids 法術 there", it, ok)
+	}
+	if _, has := recs[descKey("Skills_B.json", 0)]; has || sum.Reused != 1 {
+		t.Errorf("Skills_B has a record %+v, Reused = %d; want no record and 1 reuse", recs[descKey("Skills_B.json", 0)], sum.Reused)
+	}
+}
+
+// A rewrite is held to the terms of the file of each unit it changes.
+func TestPlanChecksRewritesUnderTheTermsOfTheFileOfTheUnit(t *testing.T) {
+	e := newPlanEnv(t)
+	e.rule(rules.GlossaryFile, "- kr: 마법\n  zh: 魔法\n  forbidden: [法術]\n  status: approved\n  files: [\"Skills_B*\"]\n")
+	const text = "마법 피해"
+	e.snapshot(map[string]string{
+		"Skills_A.json": dataList(obj{"id": 1, "desc": text}),
+		"Skills_B.json": dataList(obj{"id": 1, "desc": text}),
+	})
+	e.seed([]store.Record{
+		translated(descKey("Skills_A.json", 0), text, "魔法傷害"),
+		translated(descKey("Skills_B.json", 0), text, "魔法傷害"),
+	}, nil)
+	e.rule("rules/rewrite/2026-11-01-wording.yaml", "reason: 改用法術\nfiles: [\"Skills*\"]\npattern: '魔法'\nreplace: '法術'\n")
+
+	e.run("")
+
+	recs := e.records()
+	if got := recs[descKey("Skills_A.json", 0)].ZH; got != "法術傷害" {
+		t.Errorf("Skills_A zh = %q, want 法術傷害: the term is not for this file", got)
+	}
+	if got := recs[descKey("Skills_B.json", 0)].ZH; got != "魔法傷害" {
+		t.Errorf("Skills_B zh = %q, want 魔法傷害 kept: the term forbids 法術 here", got)
+	}
+}
+
 func TestPlanReusesADeletedUnit(t *testing.T) {
 	e := newPlanEnv(t)
 	const text = "번호가 바뀐 항목의 설명입니다"

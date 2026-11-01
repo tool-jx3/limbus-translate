@@ -2,10 +2,12 @@ package rules
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	"gopkg.in/yaml.v3"
 
+	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
@@ -25,6 +27,9 @@ type Term struct {
 	// starting with "re:" is a regular expression.
 	Forbidden []string `yaml:"forbidden" json:"forbidden,omitempty"`
 	Category  []string `yaml:"category" json:"category,omitempty"`
+	// Files are the files the term applies to (see config.MatchAny); empty
+	// means every file.
+	Files []string `yaml:"files" json:"files,omitempty"`
 }
 
 // ToValidate returns the part of the term that validate.Check enforces.
@@ -36,7 +41,7 @@ func (t Term) ToValidate() validate.Term {
 // people and is not loaded.
 var termFields = map[string]bool{
 	"kr": true, "jp": true, "en": true, "zh": true, "status": true,
-	"forbidden": true, "category": true, "evidence": true, "notes": true,
+	"forbidden": true, "category": true, "evidence": true, "notes": true, "files": true,
 }
 
 // parseGlossary decodes the glossary. unknown[i] lists the keys of entry i
@@ -69,16 +74,39 @@ func parseGlossary(data []byte) (terms []Term, unknown [][]string, err error) {
 // only a proposal and binds nothing until a person approves it.
 const StatusApproved = "approved"
 
-// GlossaryHits returns the approved terms whose KR text occurs in kr, in
-// glossary order. Candidate terms stay in Rules.Glossary but are never
-// returned, so they are neither injected into a batch nor enforced by
+// GlossaryHits returns the approved terms whose KR text occurs in kr, a text
+// of file, in glossary order. Candidate terms stay in Rules.Glossary but are
+// never returned, so they are neither injected into a batch nor enforced by
 // validation.
-func (r *Rules) GlossaryHits(kr string) []Term {
+//
+// A term with Files applies to the files that match one of them (see
+// config.MatchAny), a term without to every file. Of several entries for one
+// KR text, those that match file stand for it alone: the entry without Files
+// is the one for the files no other entry takes.
+func (r *Rules) GlossaryHits(file, kr string) []Term {
 	var hits []Term
+	scoped := map[string]bool{} // the KR texts with an entry for file
 	for _, t := range r.Glossary {
-		if t.Status == StatusApproved && t.KR != "" && strings.Contains(kr, t.KR) {
-			hits = append(hits, t)
+		if t.Status != StatusApproved || t.KR == "" || !strings.Contains(kr, t.KR) {
+			continue
 		}
+		if len(t.Files) > 0 {
+			if !config.MatchAny(t.Files, file) {
+				continue
+			}
+			scoped[t.KR] = true
+		}
+		hits = append(hits, t)
 	}
-	return hits
+	return slices.DeleteFunc(hits, func(t Term) bool { return len(t.Files) == 0 && scoped[t.KR] })
+}
+
+// ValidateTerms returns the part of the glossary hits of kr in file that
+// validation enforces.
+func (r *Rules) ValidateTerms(file, kr string) []validate.Term {
+	var terms []validate.Term
+	for _, t := range r.GlossaryHits(file, kr) {
+		terms = append(terms, t.ToValidate())
+	}
+	return terms
 }

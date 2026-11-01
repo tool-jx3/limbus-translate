@@ -143,6 +143,10 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 	})
 
 	ld := newLoader(env)
+	busy, err := busyTwins(env, ld, pending, now)
+	if err != nil {
+		return nil, nil, err
+	}
 	var recs map[string]store.Record
 	records := func() (map[string]store.Record, error) {
 		if recs == nil {
@@ -173,7 +177,10 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		if IsStory(c.file) {
 			limit = opt.StoryMaxUnits
 		}
-		chosen := firstEligible(slots, func(s slot) bool { return eligible(pending[s.idx], now) }, limit)
+		twins := newTwinFilter(env, fd, busy)
+		chosen := firstEligible(slots, func(s slot) bool {
+			return eligible(pending[s.idx], now) && twins.pick(s.pos, pending[s.idx])
+		}, limit)
 		if len(chosen) == 0 {
 			continue
 		}
@@ -298,7 +305,7 @@ func assemble(
 		needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 	}
 	b.Guides = env.Rules.GuidesFor(fd.file, speakers)
-	b.Glossary = glossaryFor(env.Rules, krs)
+	b.Glossary = glossaryFor(env.Rules, fd.file, krs)
 
 	b.Keywords = map[string]string{}
 	if !needRecords {

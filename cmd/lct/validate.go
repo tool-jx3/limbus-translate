@@ -14,7 +14,7 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name:  "validate",
-		Usage: "normalize and check one translation against the glossary: --kr S --zh S",
+		Usage: "normalize and check one translation against the glossary: --kr S --zh S [--file F]",
 		Run:   runValidate,
 	})
 }
@@ -52,6 +52,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 	flags.SetOutput(io.Discard)
 	kr := flags.String("kr", "", "the Korean text")
 	zh := flags.String("zh", "", "the translation")
+	file := flags.String("file", "", "the pack file the text is from, such as StoryData/S1001B.json: glossary terms that apply to some files only are enforced when it matches")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("validate: " + err.Error())
 	}
@@ -61,7 +62,7 @@ func runValidate(ctx *cli.Context, args []string) error {
 	given := map[string]bool{}
 	flags.Visit(func(f *flag.Flag) { given[f.Name] = true })
 	if !given["kr"] || !given["zh"] {
-		return cli.UserError("validate: usage: lct validate --kr TEXT --zh TEXT")
+		return cli.UserError("validate: usage: lct validate --kr TEXT --zh TEXT [--file FILE]")
 	}
 
 	// The glossary terms the KR text contains are enforced on the translation.
@@ -69,13 +70,8 @@ func runValidate(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	var terms []validate.Term
-	for _, t := range r.GlossaryHits(*kr) {
-		terms = append(terms, t.ToValidate())
-	}
-
 	normalized := validate.Normalize(*kr, *zh)
-	issues := validate.Check(*kr, normalized, validate.Context{Terms: terms})
+	issues := validate.Check(*kr, normalized, validate.Context{Terms: r.ValidateTerms(*file, *kr)})
 	if issues == nil {
 		issues = []validate.Issue{}
 	}

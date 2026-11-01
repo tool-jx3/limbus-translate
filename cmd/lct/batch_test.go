@@ -107,6 +107,7 @@ func runNextJSON(t *testing.T, root string, args ...string) (nextOut, string, er
 type submitOut struct {
 	Batch    string `json:"batch"`
 	Accepted []string
+	Reused   []string
 	Rejected []struct {
 		Key    string
 		Errors []struct{ Code, Message string }
@@ -245,6 +246,58 @@ func TestBatchNextUserErrors(t *testing.T) {
 	}
 }
 
+// A line that another file says the same way is translated once: the second
+// file's line waits while the first is out, and takes its translation.
+func TestBatchSubmitReusesTheTranslationOfTwins(t *testing.T) {
+	root, st := batchRepo(t)
+	const twinKey = "Twin.json|/dataList/0/content"
+	writeTestFile(t, filepath.Join(root, ".work", "raw"), "kr/KR_Twin.json", `{"dataList":[{"id":1,"content":"[Laceration] 위력 5 부여"}]}`)
+	pending, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := st.SavePending(append(pending, store.PendingItem{Key: twinKey, Reason: "new"})); err != nil {
+		t.Fatal(err)
+	}
+
+	next, _, err := runNextJSON(t, root)
+	if err != nil || next.Batch == nil || next.Units != 2 {
+		t.Fatalf("batch next = %+v, %v, want the two units of Sample.json", next, err)
+	}
+	if again, raw, err := runNextJSON(t, root); err != nil || again.Batch != nil {
+		t.Fatalf("second batch next = %s, %v, want no batch: only the twin is left", raw, err)
+	}
+
+	id := *next.Batch
+	writeOut(t, root, id,
+		batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"},
+		batch.OutUnit{Key: batchKey1, ZH: "說了話"},
+	)
+	got, raw, err := runSubmitJSON(t, root, id)
+	if err != nil {
+		t.Fatalf("submit: %v\n%s", err, raw)
+	}
+	if !slices.Equal(got.Reused, []string{twinKey}) || len(got.Accepted) != 2 {
+		t.Errorf("output = %s, want %s reused", raw, twinKey)
+	}
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if rec := recs[twinKey]; rec.ZH != "賦予5級 [Laceration] 威力" || rec.Origin != store.OriginClaude || rec.Batch != id || rec.Model != "test-model" {
+		t.Errorf("record of the twin = %+v, want the translation of %s from batch %s", rec, batchKey0, id)
+	}
+	if left, _ := st.LoadPending(); len(left) != 0 {
+		t.Errorf("pending = %+v, want empty", left)
+	}
+
+	// The text report counts them.
+	text := submitReport{Batch: id, SubmitResult: batch.SubmitResult{Reused: []string{twinKey}}}.String()
+	if !strings.Contains(text, "1 reused") || !strings.Contains(text, twinKey) {
+		t.Errorf("text report = %q, want the reused count and key", text)
+	}
+}
+
 func TestBatchSubmit(t *testing.T) {
 	root, st := batchRepo(t)
 	next, _, err := runNextJSON(t, root)
@@ -274,7 +327,7 @@ func TestBatchSubmit(t *testing.T) {
 	if notes, err := st.LoadNotes(); err != nil || len(notes) != 1 || notes[0].Key != batchKey0 || notes[0].Model != "env-model" || notes[0].Batch != id {
 		t.Errorf("stored notes = %+v, %v, want the note of %s by env-model", notes, err, batchKey0)
 	}
-	for _, field := range []string{`"accepted"`, `"rejected"`, `"warnings"`, `"needs_review"`, `"released"`, `"notes"`} {
+	for _, field := range []string{`"accepted"`, `"reused"`, `"rejected"`, `"warnings"`, `"needs_review"`, `"released"`, `"notes"`} {
 		if !strings.Contains(raw, field) {
 			t.Errorf("output lacks %s:\n%s", field, raw)
 		}

@@ -33,6 +33,15 @@
 | `sin` / `physical` / `mechanic` | 罪孽屬性／物理屬性／機制 |
 | `system` | 系統類譯名（「翻譯名稱統一列表」） |
 
+## `files`：只適用於部分檔案
+
+同一個詞在不同的檔案要有不同譯法時（例如「신부」在第十章是牧師、其他章節是神父），用 `files` 限定條目適用的檔：
+
+- `files` 是檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`：`StoryData/S10*`、`*a1c10*`；以 `/**` 結尾的樣式涵蓋該目錄底下所有檔（`RPGSystem/**`）。省略 `files` = 所有檔
+- 只有批次的檔名符合時，條目才會注入批次，驗證時才檢查它的 `forbidden`
+- 同一個 `kr` 可以有多個條目，其中至多一個不設 `files`（`lct rules lint` 檢查）。某個檔符合有 `files` 的條目時，由那些條目代表這個詞，沒設 `files` 的那一條在這個檔不適用；沒有條目符合就用沒設 `files` 的那一條
+- 沒設 `files` 的那一條要在 `notes` 指向其他條目，讓人知道哪些檔有例外
+
 ## 之後要補的
 
 - 狀態效果與關鍵字：從 `BattleKeywords*`、`Bufs*` 以 id 對齊 KR／EN／JP 與既有繁中自動產生（例如 `[Laceration]` = 流血、`[Combustion]` = 燒傷）

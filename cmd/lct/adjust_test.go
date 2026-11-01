@@ -117,6 +117,25 @@ func TestAdjustAddEnforcesTheGlossaryOfTheUnit(t *testing.T) {
 	}
 }
 
+// The glossary terms of the unit's file are enforced: 신부 is 牧師 in the files
+// of chapter 10 and 神父 in the others.
+func TestAdjustAddEnforcesTheTermsOfTheFileOfTheUnit(t *testing.T) {
+	root := adjustRepo(t)
+	rawWT := filepath.Join(root, ".work", "raw")
+	const kr = `{"dataList":[{"id":1,"content":"신부가 왔다"}]}`
+	writeTestFile(t, rawWT, "kr/StoryData/KR_S1034B.json", kr)
+	writeTestFile(t, rawWT, "kr/StoryData/KR_S725B.json", kr)
+	args := adjustWith(adjustArgs(), "--zh", "神父來了")
+
+	code, stdout, stderr := lct(t, adjustWith(args, "--key", "StoryData/S1034B.json|/dataList/0/content")...)
+	if code != 1 || !strings.Contains(stdout, "forbidden-term") {
+		t.Errorf("神父 in S1034B: exit code = %d, want 1 with a forbidden-term\nstdout: %s\nstderr: %s", code, stdout, stderr)
+	}
+	if code, stdout, stderr := lct(t, adjustWith(args, "--key", "StoryData/S725B.json|/dataList/0/content")...); code != 0 {
+		t.Errorf("神父 in S725B: exit code = %d, want 0\nstdout: %s\nstderr: %s", code, stdout, stderr)
+	}
+}
+
 func TestAdjustAddWritesTheRawTagAndShaOfTheCurrentKR(t *testing.T) {
 	root := adjustRepo(t)
 	rawWT := filepath.Join(root, ".work", "raw")

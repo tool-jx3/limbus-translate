@@ -824,7 +824,7 @@ func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (
 			if (c.file == file) != sameFile {
 				continue
 			}
-			if !validate.HasHard(batch.CheckNew(p.in.Rules, kr, c.rec.ZH)) {
+			if !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, c.rec.ZH)) {
 				return c, true
 			}
 		}
@@ -842,7 +842,7 @@ func (p *planner) held(key string) bool { return p.settled[key] }
 func (p *planner) applyRewrites(applied *store.Applied, files []rewrite.File) {
 	ok := func(key, kr, zh string) bool {
 		file, _, _ := strings.Cut(key, "|")
-		return !p.held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, kr, zh))
+		return !p.held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, zh))
 	}
 	for _, f := range files {
 		if slices.Contains(applied.Rewrite, f.ID) {

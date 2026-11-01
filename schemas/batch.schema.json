@@ -43,7 +43,12 @@
             "type": "array",
             "items": { "type": "string" }
           },
-          "category": { "type": "array", "items": { "type": "string" } }
+          "category": { "type": "array", "items": { "type": "string" } },
+          "files": {
+            "description": "The file patterns the term is written for; absent, it is for every file. Every term of a batch applies to the batch's file, so this is for information.",
+            "type": "array",
+            "items": { "type": "string" }
+          }
         }
       }
     },

@@ -3,6 +3,7 @@ package batch
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -36,6 +37,9 @@ const (
 type SubmitResult struct {
 	// Accepted are the keys whose translation was recorded.
 	Accepted []string `json:"accepted"`
+	// Reused are the keys of pending units that were not submitted and got
+	// the translation of an accepted unit with the same text (twins).
+	Reused []string `json:"reused"`
 	// Rejected are the units that were not recorded, with the reasons.
 	Rejected []Rejection `json:"rejected"`
 	// Warnings are issues of accepted units.
@@ -71,11 +75,12 @@ func protocolIssue(code, format string, args ...any) validate.Issue {
 	}
 }
 
-// foreignNameIssues warns about each of names that zh contains.
-func foreignNameIssues(zh string, names []string) []validate.Issue {
+// foreignNameIssues warns about each of names that zh contains, except the
+// names on the ignore list.
+func foreignNameIssues(zh string, names, ignore []string) []validate.Issue {
 	var issues []validate.Issue
 	for _, name := range names {
-		if name != "" && strings.Contains(zh, name) {
+		if name != "" && strings.Contains(zh, name) && !slices.Contains(ignore, name) {
 			issues = append(issues, validate.Issue{
 				Code:     CodeForeignName,
 				Severity: validate.SeverityWarn,
@@ -102,6 +107,9 @@ func foreignNameIssues(zh string, names []string) []validate.Issue {
 // the fallback: its text stays as it is, and the record and the queue item are
 // flagged needs_review.
 //
+// A unit that is accepted passes its translation on to its twins, the pending
+// units of the same text (see reuseForTwins); they are listed in Reused.
+//
 // A unit that b already got accepted is accepted again without being written
 // again, so the whole out file can be sent once more. Units of b that are not
 // in out lose b's lease. A unit that left KR, or whose KR changed, is
@@ -127,7 +135,7 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 	}
 
 	res := &SubmitResult{
-		Accepted: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{},
+		Accepted: []string{}, Reused: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{},
 	}
 	err := env.Store.WithLock(func() error {
 		records, err := env.Store.LoadRecords()
@@ -157,6 +165,9 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 			if err := s.unit(o); err != nil {
 				return err
 			}
+		}
+		if err := s.reuseForTwins(); err != nil {
+			return err
 		}
 		s.releaseOmitted()
 
@@ -201,6 +212,8 @@ type submission struct {
 	removed map[int]bool      // pending indexes to drop
 	ld      *loader
 	notes   []store.Note // the notes of the batch's units, in out order
+
+	accepted []acceptedUnit // the units accepted, in out order
 }
 
 func (s *submission) reject(key string, issues ...validate.Issue) {
@@ -293,12 +306,9 @@ func (s *submission) unit(o OutUnit) error {
 	}
 
 	zh := validate.Normalize(kr, o.ZH)
-	issues := CheckNew(s.env.Rules, kr, zh)
+	issues := CheckNew(s.env.Rules, file, kr, zh)
 	existing, hasRecord := s.records[o.Key]
-	since := s.env.RawTag
-	if hasRecord && existing.Since != "" {
-		since = existing.Since
-	}
+	since := s.since(o.Key)
 
 	if validate.HasHard(issues) {
 		s.reject(o.Key, issues...)
@@ -332,23 +342,40 @@ func (s *submission) unit(o OutUnit) error {
 		return nil
 	}
 
-	s.records[o.Key] = store.Record{
-		Key:    o.Key,
-		KRSha:  units.KRSha(kr),
-		ZH:     zh,
-		Origin: store.OriginClaude,
-		Since:  since,
-		Rules:  s.env.RulesCommit,
-		Model:  s.model,
-		Batch:  s.batch.ID,
-		Flags:  withoutFlag(existing.Flags, store.FlagNeedsReview),
-	}
+	s.records[o.Key] = s.claudeRecord(o.Key, kr, zh)
 	s.removed[i] = true
 	s.res.Accepted = append(s.res.Accepted, o.Key)
-	if warnings := append(issues, foreignNameIssues(zh, s.env.ForeignNames)...); len(warnings) > 0 {
+	s.accepted = append(s.accepted, acceptedUnit{file: file, group: TextGroupOf(s.env.Rules, fd.doc, fd.units[pos]), zh: zh})
+	if warnings := append(issues, foreignNameIssues(zh, s.env.ForeignNames, s.env.Rules.ForeignIgnore)...); len(warnings) > 0 {
 		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
 	}
 	return nil
+}
+
+// since is the raw tag a record written for key now starts at: that of the
+// record it replaces, else that of the snapshot.
+func (s *submission) since(key string) string {
+	if rec, ok := s.records[key]; ok && rec.Since != "" {
+		return rec.Since
+	}
+	return s.env.RawTag
+}
+
+// claudeRecord is the record of a translation accepted for key, a unit whose
+// KR text is kr: the record of a new translation under the rules of now,
+// made by the submitter's model in this batch.
+func (s *submission) claudeRecord(key, kr, zh string) store.Record {
+	return store.Record{
+		Key:    key,
+		KRSha:  units.KRSha(kr),
+		ZH:     zh,
+		Origin: store.OriginClaude,
+		Since:  s.since(key),
+		Rules:  s.env.RulesCommit,
+		Model:  s.model,
+		Batch:  s.batch.ID,
+		Flags:  withoutFlag(s.records[key].Flags, store.FlagNeedsReview),
+	}
 }
 
 // keepsRecord reports whether a unit that ran out of attempts keeps the record

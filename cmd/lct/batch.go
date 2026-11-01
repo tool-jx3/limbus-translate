@@ -267,8 +267,8 @@ type submitReport struct {
 
 func (r submitReport) String() string {
 	var b strings.Builder
-	fmt.Fprintf(&b, "batch %s: %d accepted, %d rejected, %d with warnings, %d need review, %d not submitted, %d notes kept\n",
-		r.Batch, len(r.Accepted), len(r.Rejected), len(r.Warnings), len(r.NeedsReview), len(r.Released), r.Notes)
+	fmt.Fprintf(&b, "batch %s: %d accepted, %d reused, %d rejected, %d with warnings, %d need review, %d not submitted, %d notes kept\n",
+		r.Batch, len(r.Accepted), len(r.Reused), len(r.Rejected), len(r.Warnings), len(r.NeedsReview), len(r.Released), r.Notes)
 	list := func(title string, items []batch.Rejection) {
 		if len(items) == 0 {
 			return
@@ -292,6 +292,7 @@ func (r submitReport) String() string {
 			fmt.Fprintf(&b, "  %s\n", k)
 		}
 	}
+	keys("reused (the same text as an accepted unit, translated once)", r.Reused)
 	keys("needs review (the fallback text, or the earlier translation, stands in)", r.NeedsReview)
 	keys("not submitted (free again)", r.Released)
 	return b.String()

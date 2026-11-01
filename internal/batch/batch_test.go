@@ -90,11 +90,14 @@ func writeFile(t *testing.T, p, content string) {
 	}
 }
 
-func testRules(t *testing.T) *rules.Rules {
+func testRules(t *testing.T) *rules.Rules { return testRulesWith(t, testGlossary) }
+
+// testRulesWith is testRules with the glossary replaced.
+func testRulesWith(t *testing.T, glossary string) *rules.Rules {
 	t.Helper()
 	root := t.TempDir()
 	writeFile(t, filepath.Join(root, "guides/routing.yaml"), testRouting)
-	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), testGlossary)
+	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), glossary)
 	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
 	writeFile(t, filepath.Join(root, "guides/characters/sinclair.md"), testSinclair)
 	r, err := rules.Load(root)
@@ -1142,13 +1145,13 @@ func TestTextGroupOf(t *testing.T) {
 // text are enforced, content issues are hard.
 func TestCheckNew(t *testing.T) {
 	r := testRules(t)
-	if issues := CheckNew(r, "위력 5", "威力5"); validate.HasHard(issues) {
+	if issues := CheckNew(r, "Other.json", "위력 5", "威力5"); validate.HasHard(issues) {
 		t.Errorf("CheckNew of a good text = %+v, want no hard issue", issues)
 	}
-	if issues := CheckNew(r, "위력 5", "力量5"); !validate.HasHard(issues) {
+	if issues := CheckNew(r, "Other.json", "위력 5", "力量5"); !validate.HasHard(issues) {
 		t.Errorf("CheckNew of a forbidden rendering = %+v, want a hard issue", issues)
 	}
-	if issues := CheckNew(r, "위력 5", "威力5 위"); !validate.HasHard(issues) {
+	if issues := CheckNew(r, "Other.json", "위력 5", "威力5 위"); !validate.HasHard(issues) {
 		t.Errorf("CheckNew of a text with Hangul = %+v, want a hard issue", issues)
 	}
 }
@@ -1896,7 +1899,7 @@ func TestResultJSONShape(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if want := `{"accepted":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0}`; string(data) != want {
+	if want := `{"accepted":[],"reused":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0}`; string(data) != want {
 		t.Errorf("result JSON = %s, want %s", data, want)
 	}
 
@@ -2070,6 +2073,8 @@ func TestSchemasMatchTheTypes(t *testing.T) {
  {"id":2,"model":"파우스트","content":"終"}
 ]}`}
 	env := newEnv(t, kr, en, jp)
+	// A term for some files, so that the term's files are in the batch.
+	env.Rules = testRulesWith(t, "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n  files: [\"StoryData/S*\"]\n")
 	pending := items(file, 0, 2)
 	pending[0].Refs = map[string]string{"llc": "a", "ltm": "b"}
 	pending[0].PrevKR, pending[0].PrevZH, pending[0].Draft = "p", "q", "r"
@@ -2139,8 +2144,15 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	for _, c := range top["context"].([]any) {
 		checkObject(t, "context", c.(map[string]any), ctxSchema)
 	}
+	if len(top["glossary"].([]any)) == 0 {
+		t.Fatal("the fixture should produce a glossary term")
+	}
 	for _, g := range top["glossary"].([]any) {
-		checkObject(t, "glossary", g.(map[string]any), glossSchema)
+		term := g.(map[string]any)
+		checkObject(t, "glossary", term, glossSchema)
+		if _, ok := term["files"]; !ok {
+			t.Errorf("the fixture's term has no files, so the schema's property is not checked: %v", term)
+		}
 	}
 
 	// A batch survives the trip through its file.
@@ -2174,5 +2186,479 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	}
 	if len(outProps) != len(om) {
 		t.Errorf("batch-out declares %d properties, OutUnit has %d", len(outProps), len(om))
+	}
+}
+
+// The tests of twins (identical pending lines) and of the glossary by file.
+
+// twinText is a line long enough to be shared between files (ShortTextRunes).
+const twinText = "같은 문장이 두 군데에 있다"
+
+// oneLine is a file with one line, id 0, saying text.
+func oneLine(t *testing.T, text string) string {
+	t.Helper()
+	return dataList(t, 1, "", func(int) string { return text })
+}
+
+func TestNextDefersTwinsOfLeasedUnits(t *testing.T) {
+	kr := map[string]string{
+		"A.json": oneLine(t, twinText),
+		"B.json": `{"dataList":[{"id":0,"content":` + q(t, twinText) + `},{"id":1,"content":"다른 문장"}]}`,
+	}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 2)...)...)
+
+	b1 := mustNext(t, env, NextOptions{Family: "other"})
+	if b1 == nil || b1.File != "A.json" {
+		t.Fatalf("first batch = %+v, want A.json", b1)
+	}
+	// B's first line says what A's line says, and A's line is out for translation.
+	b2 := mustNext(t, env, NextOptions{Family: "other"})
+	if b2 == nil || !slices.Equal(keysOf(b2), []string{key("B.json", 1)}) {
+		t.Fatalf("second batch = %+v, want only the other line of B.json", b2)
+	}
+	if it := pendingMap(t, env)[key("B.json", 0)]; it.Lease != nil {
+		t.Errorf("the twin is leased: %+v", it.Lease)
+	}
+	if b3 := mustNext(t, env, NextOptions{Family: "other"}); b3 != nil {
+		t.Errorf("third batch = %+v, want nil: only the twin is left", b3)
+	}
+
+	// Once the lease of the first batch has run out, its line is handed out
+	// again and the twin goes on waiting for it.
+	later := env
+	later.Now = testNow.Add(3 * time.Hour)
+	if b4 := mustNext(t, later, NextOptions{Family: "other"}); b4 == nil || b4.File != "A.json" {
+		t.Errorf("batch after expiry = %+v, want A.json again", b4)
+	}
+}
+
+// A lease that has run out does not hold the twin back.
+func TestNextIgnoresExpiredLeasesOfTwins(t *testing.T) {
+	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText)}
+	env := newEnv(t, kr, nil, nil)
+	pending := append(items("A.json", 0, 1), items("B.json", 0, 1)...)
+	pending[1].Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(-time.Minute)}
+	seed(t, env, pending...)
+	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "A.json" {
+		t.Fatalf("batch = %+v, want A.json: the lease of its twin has run out", b)
+	}
+
+	// The same twin with a lease that is still good holds A.json's line back.
+	env = newEnv(t, kr, nil, nil)
+	pending[1].Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(time.Minute)}
+	seed(t, env, pending...)
+	if b := mustNext(t, env, NextOptions{}); b != nil {
+		t.Errorf("batch = %+v, want nil: the twin is leased to another batch", b)
+	}
+}
+
+// Texts under ShortTextRunes are twins only within a file, so a short line is
+// handed out although the same line is out for translation in another file.
+func TestNextDoesNotDeferShortTextsOfOtherFiles(t *testing.T) {
+	kr := map[string]string{"A.json": oneLine(t, "확인"), "B.json": oneLine(t, "확인")}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "A.json" {
+		t.Fatalf("first batch = %+v, want A.json", b)
+	}
+	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "B.json" {
+		t.Errorf("second batch = %+v, want B.json", b)
+	}
+}
+
+// Of identical lines in one file only one goes into a batch; the others are
+// filled in when it is translated.
+func TestNextHandsOutOneLineOfIdenticalLinesOfAFile(t *testing.T) {
+	kr := map[string]string{"A.json": `{"dataList":[
+ {"id":0,"content":"확인"},
+ {"id":1,"content":"다른 말"},
+ {"id":2,"content":"확인"},
+ {"id":3,"content":"확인"}
+]}`}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, items("A.json", 0, 4)...)
+	b := mustNext(t, env, NextOptions{})
+	if want := []string{key("A.json", 0), key("A.json", 1)}; b == nil || !slices.Equal(keysOf(b), want) {
+		t.Fatalf("batch = %+v, want the keys %v", b, want)
+	}
+	pending := pendingMap(t, env)
+	for _, i := range []int{2, 3} {
+		if pending[key("A.json", i)].Lease != nil {
+			t.Errorf("line %d is leased", i)
+		}
+	}
+
+	res, err := Submit(env, b, translate(b), "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{key("A.json", 2), key("A.json", 3)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want %v", res.Reused, want)
+	}
+	if recs := records(t, env); recs[key("A.json", 2)].ZH != "譯文 0" || recs[key("A.json", 3)].ZH != "譯文 0" {
+		t.Errorf("records of the twins = %+v, want the translation of line 0", recs)
+	}
+}
+
+func TestSubmitReusesForPendingTwins(t *testing.T) {
+	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText), "C.json": oneLine(t, twinText)}
+	env := newEnv(t, kr, nil, nil)
+	env.RulesCommit = "0123abc"
+	seed(t, env, append(append(items("A.json", 0, 1), items("B.json", 0, 1)...), items("C.json", 0, 1)...)...)
+	// C was translated from another text once, in an earlier raw snapshot.
+	oldC := store.Record{Key: key("C.json", 0), KRSha: units.KRSha("옛 문장"), ZH: "舊句", Origin: store.OriginParatranz, Since: "raw-20260101"}
+	if err := env.Store.SaveRecords(map[string]store.Record{oldC.Key: oldC}); err != nil {
+		t.Fatal(err)
+	}
+
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+	if b == nil || b.File != "A.json" || len(b.Units) != 1 {
+		t.Fatalf("batch = %+v, want A.json's line", b)
+	}
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "同一句話"}}, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(res.Accepted, []string{key("A.json", 0)}) {
+		t.Errorf("accepted = %v, want only the submitted line", res.Accepted)
+	}
+	if want := []string{key("B.json", 0), key("C.json", 0)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want %v", res.Reused, want)
+	}
+
+	recs := records(t, env)
+	for _, k := range []string{key("B.json", 0), key("C.json", 0)} {
+		since := testTag
+		if k == oldC.Key {
+			since = "raw-20260101" // the unit keeps the tag it was first translated under
+		}
+		want := store.Record{
+			Key: k, KRSha: units.KRSha(twinText), ZH: "同一句話", Origin: store.OriginClaude,
+			Since: since, Rules: "0123abc", Model: "test-model", Batch: b.ID,
+		}
+		if !reflect.DeepEqual(recs[k], want) {
+			t.Errorf("record of %s = %+v, want %+v", k, recs[k], want)
+		}
+	}
+	if left := pendingMap(t, env); len(left) != 0 {
+		t.Errorf("pending = %v, want empty", left)
+	}
+	if _, err := json.Marshal(res); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// What makes two units twins is their TextGroup (and the file, for a short
+// text); even then a unit is filled only when nothing speaks against it.
+func TestSubmitReusesOnlyForTwinsInTheSameGroup(t *testing.T) {
+	soon := testNow.Add(time.Minute)
+	cases := []struct {
+		name    string
+		file    string
+		content string
+		mutate  func(*store.PendingItem)
+		reused  bool
+	}{
+		{name: "same family, field and speaker", file: "Twin.json", content: oneLine(t, twinText), reused: true},
+		{name: "another family", file: "StoryData/S001A.json", content: oneLine(t, twinText)},
+		{name: "another field", file: "Field.json", content: `{"dataList":[{"id":0,"desc":` + q(t, twinText) + `}]}`},
+		{name: "another speaker", file: "Speaker.json", content: dataList(t, 1, "낯선이", func(int) string { return twinText })},
+		{name: "another text", file: "Text.json", content: oneLine(t, twinText+" 아니다")},
+		{name: "leased to another batch", file: "Leased.json", content: oneLine(t, twinText),
+			mutate: func(it *store.PendingItem) { it.Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: soon} }},
+		{name: "lease that has run out", file: "Expired.json", content: oneLine(t, twinText),
+			mutate: func(it *store.PendingItem) {
+				it.Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(-time.Minute)}
+			}, reused: true},
+		{name: "waits for a person", file: "Review.json", content: oneLine(t, twinText),
+			mutate: func(it *store.PendingItem) { it.Flags = []string{store.FlagNeedsReview} }},
+		{name: "a person asked for another translation", file: "Hint.json", content: oneLine(t, twinText),
+			mutate: func(it *store.PendingItem) { it.Reason, it.Hint = "requeue", "稱呼改用您" }},
+	}
+	kr := map[string]string{"A.json": oneLine(t, twinText)}
+	pending := items("A.json", 0, 1)
+	for _, tc := range cases {
+		kr[tc.file] = tc.content
+		it := store.PendingItem{Key: units.Key(tc.file, "/dataList/0/content"), Reason: "new"}
+		if tc.name == "another field" {
+			it.Key = units.Key(tc.file, "/dataList/0/desc")
+		}
+		if tc.mutate != nil {
+			tc.mutate(&it)
+		}
+		pending = append(pending, it)
+	}
+	// A's line is out for translation in a batch of its own.
+	lease := &store.Lease{Batch: "20261101T030405-aaaaaaaa", Until: testNow.Add(time.Hour)}
+	pending[0].Lease = lease
+	b := &Batch{ID: lease.Batch, Units: []BatchUnit{{Key: key("A.json", 0), KR: twinText}}}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, pending...)
+
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "同一句話"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := pendingMap(t, env)
+	for i, tc := range cases {
+		k := pending[i+1].Key
+		_, stillPending := got[k]
+		if reused := slices.Contains(res.Reused, k); reused != tc.reused || stillPending == tc.reused {
+			t.Errorf("%s: reused = %v, pending = %v, want reused = %v", tc.name, reused, stillPending, tc.reused)
+		}
+		if _, has := records(t, env)[k]; has != tc.reused {
+			t.Errorf("%s: has a record = %v, want %v", tc.name, has, tc.reused)
+		}
+	}
+}
+
+// The lines of a story are twins when the same character says them.
+func TestSubmitReusesForTwinsOfTheSameSpeaker(t *testing.T) {
+	const s1, s2, s3 = "StoryData/S001A.json", "StoryData/S002A.json", "StoryData/S003A.json"
+	kr := map[string]string{
+		s1: dataList(t, 1, "파우스트", func(int) string { return twinText }),
+		s2: dataList(t, 1, "파우스트", func(int) string { return twinText }),
+		s3: dataList(t, 1, "싱클레어", func(int) string { return twinText }),
+	}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, append(append(items(s1, 0, 1), items(s2, 0, 1)...), items(s3, 0, 1)...)...)
+
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || b.File != s1 {
+		t.Fatalf("batch = %+v, want %s", b, s1)
+	}
+	// Faust's other line waits for the first; Sinclair's does not.
+	if b2 := mustNext(t, env, NextOptions{}); b2 == nil || b2.File != s3 {
+		t.Fatalf("second batch = %+v, want %s: Sinclair says the same words", b2, s3)
+	}
+	res, err := Submit(env, b, []OutUnit{{Key: key(s1, 0), ZH: "同一句話"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{key(s2, 0)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want %v", res.Reused, want)
+	}
+	if _, queued := pendingMap(t, env)[key(s3, 0)]; !queued {
+		t.Error("Sinclair's line was filled in with Faust's")
+	}
+}
+
+// A person's request for another translation of a unit is for that unit: it is
+// not held back for a twin.
+func TestNextDoesNotDeferAUnitWithAHint(t *testing.T) {
+	kr := map[string]string{"A.json": oneLine(t, twinText), "B.json": oneLine(t, twinText)}
+	env := newEnv(t, kr, nil, nil)
+	pending := append(items("A.json", 0, 1), items("B.json", 0, 1)...)
+	pending[0].Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(time.Hour)}
+	pending[1].Reason, pending[1].Hint = "requeue", "稱呼改用您"
+	seed(t, env, pending...)
+	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "B.json" || b.Units[0].Hint != "稱呼改用您" {
+		t.Errorf("batch = %+v, want B.json with its hint", b)
+	}
+}
+
+// A short text is shared within its file only.
+func TestSubmitReusesShortTextsWithinTheFileOnly(t *testing.T) {
+	kr := map[string]string{
+		"A.json": `{"dataList":[{"id":0,"content":"확인"},{"id":1,"content":"확인"}]}`,
+		"B.json": oneLine(t, "확인"),
+	}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, append(items("A.json", 0, 2), items("B.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+	if b == nil || b.File != "A.json" {
+		t.Fatalf("batch = %+v, want A.json", b)
+	}
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "確認"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{key("A.json", 1)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want %v", res.Reused, want)
+	}
+	if _, queued := pendingMap(t, env)[key("B.json", 0)]; !queued {
+		t.Error("the short line of another file was filled in")
+	}
+}
+
+// The units of the batch itself are answered by its out file, never by a twin:
+// a unit it left out is released, not reused, even when the lease of the batch
+// has run out by the time it is submitted.
+func TestSubmitDoesNotReuseForUnitsOfItsOwnBatch(t *testing.T) {
+	kr := map[string]string{"A.json": `{"dataList":[{"id":0,"content":` + q(t, twinText) + `},{"id":1,"content":` + q(t, twinText) + `}]}`}
+	env := newEnv(t, kr, nil, nil)
+	lease := &store.Lease{Batch: "20261101T030405-aaaaaaaa", Until: testNow.Add(-time.Minute)}
+	p := items("A.json", 0, 2)
+	p[0].Lease, p[1].Lease = lease, lease
+	seed(t, env, p...)
+	b := &Batch{ID: lease.Batch, Units: []BatchUnit{{Key: p[0].Key, KR: twinText}, {Key: p[1].Key, KR: twinText}}}
+
+	res, err := Submit(env, b, []OutUnit{{Key: p[0].Key, ZH: "同一句話"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Reused) != 0 || !slices.Equal(res.Released, []string{p[1].Key}) {
+		t.Errorf("reused = %v, released = %v, want the omitted line released and not reused", res.Reused, res.Released)
+	}
+	if _, has := records(t, env)[p[1].Key]; has {
+		t.Error("the omitted line got a record")
+	}
+}
+
+func TestSubmitSkipsATwinThatFailsTheCheck(t *testing.T) {
+	const text = "같은 위력 문장이 두 군데에 있다"
+	kr := map[string]string{"A.json": oneLine(t, text), "B.json": oneLine(t, text), "C.json": oneLine(t, text)}
+	env := newEnv(t, kr, nil, nil)
+	// B's glossary forbids the rendering that A, which the term does not
+	// reach, may use.
+	env.Rules = testRulesWith(t, `- kr: 위력
+  zh: 威力
+  status: approved
+  forbidden: [力量]
+  files: ["B.json"]
+`)
+	seed(t, env, append(append(items("A.json", 0, 1), items("B.json", 0, 1)...), items("C.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+	if b == nil || b.File != "A.json" {
+		t.Fatalf("batch = %+v, want A.json", b)
+	}
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "同樣的力量句子"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+		t.Fatalf("accepted %v rejected %v, want A accepted", res.Accepted, res.Rejected)
+	}
+	if want := []string{key("C.json", 0)}; !slices.Equal(res.Reused, want) {
+		t.Errorf("reused = %v, want only %v", res.Reused, want)
+	}
+	pending := pendingMap(t, env)
+	it, ok := pending[key("B.json", 0)]
+	if !ok || it.Lease != nil || it.Attempts != 0 || len(it.Flags) != 0 {
+		t.Errorf("B's pending item = %+v, %v, want it pending as it was", it, ok)
+	}
+	if _, has := records(t, env)[key("B.json", 0)]; has {
+		t.Error("B got a record although the translation breaks its glossary")
+	}
+}
+
+func TestGlossaryFileScope(t *testing.T) {
+	const glossary = `- kr: 위력
+  zh: 威力
+  status: approved
+  forbidden: [力量]
+  files: ["StoryData/S10*"]
+`
+	const s1, s2 = "StoryData/S1001A.json", "StoryData/S2001A.json"
+	kr := map[string]string{
+		s1: dataList(t, 1, "파우스트", func(int) string { return "위력 5" }),
+		s2: dataList(t, 1, "파우스트", func(int) string { return "위력 7" }),
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, glossary)
+	seed(t, env, append(items(s1, 0, 1), items(s2, 0, 1)...)...)
+
+	b1 := mustNext(t, env, NextOptions{})
+	b2 := mustNext(t, env, NextOptions{})
+	if b1 == nil || b1.File != s1 || b2 == nil || b2.File != s2 {
+		t.Fatalf("batches = %+v, %+v, want S1001A.json and S2001A.json", b1, b2)
+	}
+	if len(b1.Glossary) != 1 || b1.Glossary[0].KR != "위력" || !slices.Equal(b1.Glossary[0].Files, []string{"StoryData/S10*"}) {
+		t.Errorf("glossary of %s = %+v, want the term for the files S10*", s1, b1.Glossary)
+	}
+	if len(b2.Glossary) != 0 {
+		t.Errorf("glossary of %s = %+v, want none: the term is for other files", s2, b2.Glossary)
+	}
+
+	// The forbidden rendering is refused where the term applies, and passes
+	// where it does not.
+	res, err := Submit(env, b1, []OutUnit{{Key: key(s1, 0), ZH: "力量5"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, "forbidden-term") {
+		t.Errorf("rejected = %+v, want forbidden-term for %s", res.Rejected, s1)
+	}
+	res, err = Submit(env, b2, []OutUnit{{Key: key(s2, 0), ZH: "力量7"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+		t.Errorf("accepted %v rejected %v, want %s accepted: the term does not apply there", res.Accepted, res.Rejected, s2)
+	}
+}
+
+// Of two entries for one KR text, the one for the file stands for the term in
+// it, and the one without files in all the others.
+func TestGlossaryFileScopeReplacesTheGeneralTerm(t *testing.T) {
+	const glossary = `- kr: 신부
+  zh: 牧師
+  status: approved
+  forbidden: [神父]
+  files: ["StoryData/S10*"]
+- kr: 신부
+  zh: 神父
+  status: approved
+`
+	const s1, s2 = "StoryData/S1001A.json", "StoryData/S2001A.json"
+	kr := map[string]string{
+		s1: dataList(t, 1, "파우스트", func(int) string { return "신부가 왔다" }),
+		s2: dataList(t, 1, "파우스트", func(int) string { return "신부를 만났다" }),
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, glossary)
+	seed(t, env, append(items(s1, 0, 1), items(s2, 0, 1)...)...)
+
+	zh := func(b *Batch) []string {
+		var out []string
+		for _, g := range b.Glossary {
+			out = append(out, g.ZH)
+		}
+		return out
+	}
+	b1 := mustNext(t, env, NextOptions{})
+	b2 := mustNext(t, env, NextOptions{})
+	if b1 == nil || b2 == nil || !slices.Equal(zh(b1), []string{"牧師"}) || !slices.Equal(zh(b2), []string{"神父"}) {
+		t.Fatalf("glossaries = %v and %v, want 牧師 for %s and 神父 for %s", b1.Glossary, b2.Glossary, s1, s2)
+	}
+	res, err := Submit(env, b1, []OutUnit{{Key: key(s1, 0), ZH: "神父來了"}}, "m", 3)
+	if err != nil || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, "forbidden-term") {
+		t.Errorf("神父 in %s: %+v, %v, want forbidden-term", s1, res, err)
+	}
+	res, err = Submit(env, b2, []OutUnit{{Key: key(s2, 0), ZH: "遇見神父"}}, "m", 3)
+	if err != nil || len(res.Accepted) != 1 {
+		t.Errorf("神父 in %s: %+v, %v, want it accepted", s2, res, err)
+	}
+}
+
+func TestForeignNameIgnoreList(t *testing.T) {
+	kr := map[string]string{"Other.json": dataList(t, 2, "", func(i int) string { return fmt.Sprintf("엄마와 뫼르소 %d", i) })}
+	env := newEnv(t, kr, nil, nil)
+	env.ForeignNames = []string{"默爾索", "媽媽"}
+	env.Rules.ForeignIgnore = []string{"媽媽"}
+	seed(t, env, items("Other.json", 0, 2)...)
+	b := mustNext(t, env, NextOptions{})
+
+	res, err := Submit(env, b, []OutUnit{
+		{Key: key("Other.json", 0), ZH: "媽媽"},
+		{Key: key("Other.json", 1), ZH: "媽媽和默爾索"},
+	}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 2 {
+		t.Fatalf("accepted %v rejected %v, want both accepted", res.Accepted, res.Rejected)
+	}
+	if len(res.Warnings) != 1 || res.Warnings[0].Key != key("Other.json", 1) {
+		t.Fatalf("warnings = %+v, want only the line with 默爾索", res.Warnings)
+	}
+	for _, is := range res.Warnings[0].Issues {
+		if is.Code == "foreign-name" && strings.Contains(is.Message, "媽媽") {
+			t.Errorf("warning %+v is about the word on the ignore list", is)
+		}
+	}
+	if !hasCode(res.Warnings[0].Issues, "foreign-name") {
+		t.Errorf("warnings = %+v, want a foreign-name for 默爾索", res.Warnings)
 	}
 }

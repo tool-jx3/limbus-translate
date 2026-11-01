@@ -1,0 +1,9 @@
+# 外來名稱警告略過的詞
+#
+# `lct bootstrap` 把 LTM 與本專案在 ScenarioModelCodes 的譯名不同之處列成「外來名稱」，
+# `lct batch submit` 的譯文含有外來名稱時發出 foreign-name 警告。其中有些只是常用詞
+# （例如 LTM 把某個說話者譯成「媽媽」），出現在譯文中並不是用錯名稱，列在這裡就不警告。
+#
+# 格式：YAML 字串清單。比對的是整個外來名稱，要與 `.meta/foreign-names.json` 的項目完全相同。
+- 媽媽
+- 獨白

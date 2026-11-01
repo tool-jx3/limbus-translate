@@ -14,6 +14,7 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
+	"github.com/tool-jx3/limbus-translate/internal/config"
 )
 
 // LintError is one problem Lint found. File is relative to the repo root.
@@ -38,6 +39,7 @@ func Lint(root string) []error {
 	l.baseGuide()
 	l.characters()
 	l.routing()
+	l.foreignIgnore()
 	l.adjustments()
 	return l.errs
 }
@@ -93,6 +95,7 @@ func (l *linter) glossary() {
 		l.report(GlossaryFile, "%v", err)
 		return
 	}
+	general := map[string]int{} // KR text -> entries that apply to every file
 	for i, t := range terms {
 		label := fmt.Sprintf("entry %d", i+1)
 		if t.KR != "" {
@@ -114,9 +117,49 @@ func (l *linter) glossary() {
 				}
 			}
 		}
+		for _, pattern := range t.Files {
+			if pattern == "" {
+				l.report(GlossaryFile, "%s: files holds an empty pattern", label)
+			} else if err := config.ValidPattern(pattern); err != nil {
+				l.report(GlossaryFile, "%s: files pattern %q is not valid: %v", label, pattern, err)
+			}
+		}
+		if t.KR != "" && len(t.Files) == 0 {
+			general[t.KR]++
+			if general[t.KR] > 1 {
+				l.report(GlossaryFile, "%s: more than one entry has no files; at most one entry of a KR text may apply to every file, the others need files", label)
+			}
+		}
 		for _, key := range unknown[i] {
 			l.report(GlossaryFile, "%s: unknown field %q", label, key)
 		}
+	}
+}
+
+// foreignIgnore checks the list of words the foreign-name warning leaves
+// alone. The file is optional.
+func (l *linter) foreignIgnore() {
+	if !l.fileExists(ForeignIgnoreFile) {
+		return
+	}
+	data, ok := l.read(ForeignIgnoreFile)
+	if !ok {
+		return
+	}
+	words, err := parseForeignIgnore(data)
+	if err != nil {
+		l.report(ForeignIgnoreFile, "must be a list of words: %v", err)
+		return
+	}
+	seen := map[string]bool{}
+	for i, w := range words {
+		switch {
+		case strings.TrimSpace(w) == "":
+			l.report(ForeignIgnoreFile, "entry %d is empty", i+1)
+		case seen[w]:
+			l.report(ForeignIgnoreFile, "%q is listed twice", w)
+		}
+		seen[w] = true
 	}
 }
 

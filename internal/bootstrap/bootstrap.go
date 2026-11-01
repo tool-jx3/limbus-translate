@@ -331,7 +331,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 
 	if frozen && strings.TrimSpace(pz.Value) != "" && !hasHangul(pz.Value) {
 		var flags []string
-		if validate.HasHard(b.check(u.KR, pz.Value)) {
+		if validate.HasHard(b.check(u.File, u.KR, pz.Value)) {
 			flags = []string{store.FlagNeedsReview}
 		}
 		b.settle(u, pz.Value, store.OriginParatranz, flags)
@@ -345,7 +345,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 		return
 	}
 	zh := validate.Normalize(u.KR, RestoreIDs(u.KR, pz.Value, b.keywords))
-	if validate.HasHard(b.check(u.KR, zh)) {
+	if validate.HasHard(b.check(u.File, u.KR, zh)) {
 		b.queue(u, a, reasonParatranzRepair, zh)
 		return
 	}
@@ -353,14 +353,10 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 	b.res.Stats[StatParatranz]++
 }
 
-// check validates zh as a new translation of kr under the approved glossary
-// terms kr contains.
-func (b *builder) check(kr, zh string) []validate.Issue {
-	var terms []validate.Term
-	for _, t := range b.rules.GlossaryHits(kr) {
-		terms = append(terms, t.ToValidate())
-	}
-	return validate.Check(kr, zh, validate.Context{Terms: terms})
+// check validates zh as a new translation of kr, a text of file, under the
+// approved glossary terms kr contains in that file.
+func (b *builder) check(file, kr, zh string) []validate.Issue {
+	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr)})
 }
 
 // settle records zh as the translation of u.
