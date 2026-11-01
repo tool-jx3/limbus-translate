@@ -1,0 +1,14 @@
+{
+  "dataList": [
+    {
+      "id": 1001,
+      "name": "Iron Will",
+      "desc": "Take less damage."
+    },
+    {
+      "id": 1002,
+      "name": "Running Instinct",
+      "desc": "Speed goes up."
+    }
+  ]
+}

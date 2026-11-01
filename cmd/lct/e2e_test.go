@@ -161,13 +161,13 @@ func e2eRepo(t *testing.T) string {
 	return root
 }
 
-// e2eCDN writes the three pack zips the way the CDN serves them and returns
-// the file:// template that points at them. The packs get what the real ones
-// have: a UTF-8 BOM and CRLF line ends.
-func e2eCDN(t *testing.T, fixture string) (template string) {
+// e2eCDN writes the three pack zips of fixture the way the CDN serves them
+// for token and returns the file:// template that points at them. The packs
+// get what the real ones have: a UTF-8 BOM and CRLF line ends.
+func e2eCDN(t *testing.T, fixture, token string) (template string) {
 	t.Helper()
 	cdn := t.TempDir()
-	dir := filepath.Join(cdn, testToken)
+	dir := filepath.Join(cdn, token)
 	if err := os.MkdirAll(dir, 0o755); err != nil {
 		t.Fatal(err)
 	}
@@ -245,7 +245,7 @@ func TestPhase1DryRun(t *testing.T) {
 		t.Fatal(err)
 	}
 	root := e2eRepo(t)
-	template := e2eCDN(t, fixture)
+	template := e2eCDN(t, fixture, testToken)
 	t.Chdir(root)
 	t.Setenv("LCT_MODEL", "e2e") // not a real model name
 	t.Setenv(sourceDateEpoch, "1793000000")

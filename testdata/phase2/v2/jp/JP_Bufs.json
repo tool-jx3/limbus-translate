@@ -1,0 +1,9 @@
+{
+  "dataList": [
+    {
+      "id": "Laceration",
+      "name": "裂傷",
+      "desc": "ターン終了時、体力が減少する。"
+    }
+  ]
+}

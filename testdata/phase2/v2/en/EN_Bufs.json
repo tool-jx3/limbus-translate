@@ -1,0 +1,9 @@
+{
+  "dataList": [
+    {
+      "id": "Laceration",
+      "name": "Laceration",
+      "desc": "Lose HP at Turn End."
+    }
+  ]
+}
