@@ -292,6 +292,32 @@ func TestGlossaryHits(t *testing.T) {
 	}
 }
 
+// Candidate terms do not bind until they are approved.
+func TestGlossaryHitsSkipCandidates(t *testing.T) {
+	r := loadRepo(t)
+	var candidate *rules.Term
+	for i := range r.Glossary {
+		if r.Glossary[i].KR == "전용 파편" {
+			candidate = &r.Glossary[i]
+		}
+	}
+	if candidate == nil || candidate.Status != "candidate" {
+		t.Fatalf("the glossary should hold 전용 파편 as a candidate, got %+v", candidate)
+	}
+	// Loading keeps the candidate; only the hits leave it out.
+	if hits := r.GlossaryHits("시즌 8 동기화 · 환상해석 전용 파편 (공용)"); len(hits) != 1 || hits[0].KR != "시즌" {
+		t.Errorf("hits = %+v, want only the approved 시즌", hits)
+	}
+	if hits := r.GlossaryHits("전용 파편"); len(hits) != 0 {
+		t.Errorf("a candidate term must not be returned, got %+v", hits)
+	}
+	// an approved term in the same text is still returned
+	hits := r.GlossaryHits("자아 파편과 전용 파편")
+	if len(hits) != 1 || hits[0].KR != "자아 파편" || hits[0].Status != "approved" {
+		t.Errorf("hits = %+v, want only the approved 자아 파편", hits)
+	}
+}
+
 func TestToValidate(t *testing.T) {
 	r := loadRepo(t)
 	hits := r.GlossaryHits("시즌")

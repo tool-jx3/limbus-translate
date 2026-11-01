@@ -65,6 +65,18 @@ func TestValidateEnforcesGlossary(t *testing.T) {
 	}
 }
 
+func TestValidateIgnoresCandidateTerms(t *testing.T) {
+	// 전용 파편 is only a candidate in the glossary, and 人格碎片 is on its
+	// forbidden list, so it must not be enforced yet.
+	if out, err := validateOut(t, false, "--kr", "전용 파편", "--zh", "專用人格碎片"); err != nil {
+		t.Errorf("a candidate term must not bind: %v\n%s", err, out)
+	}
+	// the approved 자아 파편 forbids the same rendering, and does bind
+	if _, err := validateOut(t, false, "--kr", "자아 파편", "--zh", "人格碎片"); !errors.Is(err, cli.ErrFindings) {
+		t.Errorf("an approved term must bind: err = %v", err)
+	}
+}
+
 func TestValidateNeedsRules(t *testing.T) {
 	var out bytes.Buffer
 	err := runValidate(&cli.Context{Root: t.TempDir(), Out: &out}, []string{"--kr", "가", "--zh", "好"})

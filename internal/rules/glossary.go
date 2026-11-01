@@ -65,12 +65,18 @@ func parseGlossary(data []byte) (terms []Term, unknown [][]string, err error) {
 	return terms, unknown, nil
 }
 
-// GlossaryHits returns the terms whose KR text occurs in kr, in glossary
-// order. Candidate terms are included; Status tells them apart.
+// StatusApproved is the Status of a term that binds. A "candidate" term is
+// only a proposal and binds nothing until a person approves it.
+const StatusApproved = "approved"
+
+// GlossaryHits returns the approved terms whose KR text occurs in kr, in
+// glossary order. Candidate terms stay in Rules.Glossary but are never
+// returned, so they are neither injected into a batch nor enforced by
+// validation.
 func (r *Rules) GlossaryHits(kr string) []Term {
 	var hits []Term
 	for _, t := range r.Glossary {
-		if t.KR != "" && strings.Contains(kr, t.KR) {
+		if t.Status == StatusApproved && t.KR != "" && strings.Contains(kr, t.KR) {
 			hits = append(hits, t)
 		}
 	}
