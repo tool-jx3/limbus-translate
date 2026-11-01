@@ -9,7 +9,6 @@ package requeue
 import (
 	"errors"
 	"fmt"
-	"path"
 	"slices"
 	"strings"
 
@@ -118,10 +117,7 @@ func (s Selector) Validate() error {
 		}
 	}
 	for _, p := range s.Files {
-		if strings.HasSuffix(p, "/**") {
-			continue // config.MatchAny reads these as a directory
-		}
-		if _, err := path.Match(p, ""); err != nil {
+		if err := config.ValidPattern(p); err != nil {
 			return fmt.Errorf("file pattern %q: %w", p, err)
 		}
 	}

@@ -1030,3 +1030,59 @@ func TestAppendNotes(t *testing.T) {
 		t.Errorf("LoadRecords = %v, %v, want no records", recs, err)
 	}
 }
+
+func TestAppliedRoundTrip(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+
+	// No file: nothing applied yet, and no error.
+	if got, err := s.LoadApplied(); err != nil || !reflect.DeepEqual(got, Applied{}) {
+		t.Fatalf("LoadApplied without a file = %+v, %v; want empty, nil", got, err)
+	}
+
+	// The ids keep the order they were applied in.
+	in := Applied{Requeue: []string{"2026-11-05-honglu", "2026-11-02-bufs"}, Rewrite: []string{"2026-11-03-space"}}
+	if err := s.SaveApplied(in); err != nil {
+		t.Fatal(err)
+	}
+	want := "{\n  \"requeue\": [\n    \"2026-11-05-honglu\",\n    \"2026-11-02-bufs\"\n  ],\n  \"rewrite\": [\n    \"2026-11-03-space\"\n  ]\n}\n"
+	if got := readFile(t, filepath.Join(root, ".meta", "applied.json")); got != want {
+		t.Errorf("applied.json = %q, want %q", got, want)
+	}
+	if got, err := s.LoadApplied(); err != nil || !reflect.DeepEqual(got, in) {
+		t.Errorf("LoadApplied = %+v, %v; want %+v", got, err, in)
+	}
+
+	// An empty list is written as [] (not null) and read back as nothing.
+	if err := s.SaveApplied(Applied{Rewrite: []string{"x"}}); err != nil {
+		t.Fatal(err)
+	}
+	if got := readFile(t, filepath.Join(root, ".meta", "applied.json")); !strings.Contains(got, `"requeue": []`) {
+		t.Errorf("applied.json = %q, want requeue as []", got)
+	}
+	if got, err := s.LoadApplied(); err != nil || !reflect.DeepEqual(got, Applied{Rewrite: []string{"x"}}) {
+		t.Errorf("LoadApplied = %+v, %v; want only the rewrite id", got, err)
+	}
+}
+
+func TestAppliedRejectsCorruptFiles(t *testing.T) {
+	for name, content := range map[string]string{
+		"not json":      "requeue",
+		"unknown field": `{"requeue":[],"rewrite":[],"extra":[]}`,
+		"wrong type":    `{"requeue":"a"}`,
+		"trailing data": `{"requeue":[]} {}`,
+	} {
+		t.Run(name, func(t *testing.T) {
+			root := t.TempDir()
+			if err := os.MkdirAll(filepath.Join(root, ".meta"), 0o755); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(filepath.Join(root, ".meta", "applied.json"), []byte(content), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			if _, err := Open(root).LoadApplied(); err == nil || !strings.Contains(err.Error(), "applied.json") {
+				t.Errorf("LoadApplied = %v, want an error naming applied.json", err)
+			}
+		})
+	}
+}

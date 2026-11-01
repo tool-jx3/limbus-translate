@@ -18,12 +18,11 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"time"
-	"unicode"
 
 	"gopkg.in/yaml.v3"
 
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rulefile"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
@@ -38,10 +37,8 @@ const OneOff = "one-off"
 // written.
 var Fields = []string{"key", "raw", "kr_sha", "zh", "reason", "rule"}
 
-const fileExt = ".yaml"
-
 // IsFile reports whether a file of Dir with this name is an adjustment file.
-func IsFile(name string) bool { return strings.HasSuffix(name, fileExt) }
+func IsFile(name string) bool { return rulefile.IsFile(name) }
 
 // ErrInvalid marks an adjustment (or file name) that Add refuses because of
 // what it says, before anything is written. Other errors are system errors.
@@ -268,15 +265,8 @@ func ruleProblem(root, rule string) string {
 // letters (Chinese too), digits, "-" and "_" and does not start with "-".
 // The error wraps ErrInvalid.
 func ValidateName(date, topic string) error {
-	if t, err := time.Parse("2006-01-02", date); err != nil || t.Format("2006-01-02") != date {
-		return invalid("date %q is not YYYY-MM-DD", date)
-	}
-	ok := topic != "" && !strings.HasPrefix(topic, "-")
-	for _, r := range topic {
-		ok = ok && (unicode.IsLetter(r) || unicode.IsDigit(r) || r == '-' || r == '_')
-	}
-	if !ok {
-		return invalid("topic %q must be made of letters, digits, - and _, and not start with -", topic)
+	if err := rulefile.ValidateName(date, topic); err != nil {
+		return invalid("%v", err)
 	}
 	return nil
 }
@@ -313,7 +303,7 @@ func Add(root string, a Adjustment, date, topic string) (string, error) {
 		}
 	}
 
-	rel := Dir + "/" + date + "-" + topic + fileExt
+	rel := Dir + "/" + date + "-" + topic + rulefile.Ext
 	path := filepath.Join(root, filepath.FromSlash(rel))
 	content, err := os.ReadFile(path)
 	if err != nil && !errors.Is(err, fs.ErrNotExist) {
@@ -326,7 +316,7 @@ func Add(root string, a Adjustment, date, topic string) (string, error) {
 	if len(content) > 0 && !bytes.HasSuffix(content, []byte("\n")) {
 		content = append(content, '\n')
 	}
-	if err := writeFileAtomic(path, append(content, entry...)); err != nil {
+	if err := rulefile.WriteAtomic(path, append(content, entry...)); err != nil {
 		return "", err
 	}
 	return rel, nil
@@ -358,33 +348,4 @@ func encode(a Adjustment) ([]byte, error) {
 		}
 	}
 	return nil, fmt.Errorf("adjust: the adjustment of %s cannot be written as YAML", a.Key)
-}
-
-// writeFileAtomic writes data to path through a temporary file in the same
-// directory, so that a crash cannot leave half of an adjustment file behind.
-// The temporary file's name does not end in .yaml, so Load never reads it.
-func writeFileAtomic(path string, data []byte) error {
-	dir := filepath.Dir(path)
-	if err := os.MkdirAll(dir, 0o755); err != nil {
-		return err
-	}
-	tmp, err := os.CreateTemp(dir, ".adjust-*.tmp")
-	if err != nil {
-		return err
-	}
-	_, err = tmp.Write(data)
-	if cerr := tmp.Close(); err == nil {
-		err = cerr
-	}
-	if err == nil {
-		err = os.Chmod(tmp.Name(), 0o644)
-	}
-	if err == nil {
-		err = os.Rename(tmp.Name(), path)
-	}
-	if err != nil {
-		os.Remove(tmp.Name())
-		return err
-	}
-	return nil
 }

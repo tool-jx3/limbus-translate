@@ -199,6 +199,8 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 | 詞彙表 | `glossary/terms.yaml`（`status: approved／candidate`） | 硬性；只注入命中的條目 |
 | 欄位規則 | `rules/fields*.yaml` | 硬性 |
 | 人工調整 | `rules/adjustments/*.yaml` | 見 §11 |
+| 重翻要求 | `rules/requeue/*.yaml` | 見 §11.1；每個檔由 CI 套用一次 |
+| 改寫檔 | `rules/rewrite/*.yaml` | 見 §11.1；以正規表示式機械改寫現有譯文，每個檔由 CI 套用一次 |
 | 路由 | `guides/routing.yaml`（檔名樣式 → 族群指引；人格編號規則） | 程式用 |
 
 **疊加順序**：base → 族群 → 角色 → 人格 → 單檔備註。詞彙表、欄位規則與 `base.md` 的格式規則是硬性規定，風格指引不能推翻。
@@ -394,9 +396,12 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
    ```
 
 4. **把調整歸納進規則**：Claude 提出對應的指引或詞彙修改，人同意後寫入
-5. 依新規則找出其他違反的 Claude 譯文，人同意後 `lct requeue` 寫入 `rules/requeue/<日期>-<主題>.yaml`（範圍與理由）
-   - 第一階段沒有 CI 的 `plan`，`lct requeue` 直接寫入本機待譯清單；寫 `rules/requeue/*.yaml` 由 CI 套用的方式在第二階段加入
-6. commit 到 `main` → 觸發重建（§12），CI 依調整與重翻要求更新 `tw`
+5. 依新規則找出其他違反的 Claude 譯文，人同意後：
+   - 要重翻：`lct requeue --to-file <主題>` 寫入 `rules/requeue/<日期>-<主題>.yaml`（`reason`、`keys`、`files`、`origins`；範圍與理由，至少一個 key 或 file）
+   - 只是機械式的字串修正（例如關鍵字名稱後補半形空格）：寫 `rules/rewrite/<日期>-<主題>.yaml`（`reason`、`files`、`origins`、`pattern`、`replace`，選填 `kr_pattern`），由 CI 以正規表示式改寫現有譯文，不經過翻譯
+   - 兩種檔都是一次性的：`plan` 套用後把檔名（去掉 `.yaml`）記在 `tw` 的 `.meta/applied.json`，之後不再套用；改檔名等於新的要求
+   - 第一階段沒有 CI 的 `plan`，`lct requeue` 不加 `--to-file` 時直接寫入本機待譯清單
+6. commit 到 `main` → 觸發重建（§12），CI 依調整、重翻要求與改寫檔更新 `tw`
 
 人工調整只在它所根據的 KR 版本有效。KR 變了就依目前規則重翻；調整背後的道理已經寫進規則，會反映在重翻結果。
 

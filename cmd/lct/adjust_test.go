@@ -23,9 +23,9 @@ const (
 func adjustRepo(t *testing.T) string {
 	t.Helper()
 	root, _ := batchRepo(t)
-	oldNow := adjustNow
-	adjustNow = func() time.Time { return cliNow }
-	t.Cleanup(func() { adjustNow = oldNow })
+	oldNow := ruleFileNow
+	ruleFileNow = func() time.Time { return cliNow }
+	t.Cleanup(func() { ruleFileNow = oldNow })
 	t.Chdir(root)
 	return root
 }

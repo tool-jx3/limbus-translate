@@ -28,8 +28,9 @@ func init() {
 	})
 }
 
-// adjustNow is the clock of "adjust add"; the tests replace it.
-var adjustNow = time.Now
+// ruleFileNow is the clock of the commands that name a file under rules/ after
+// the day ("adjust add", "requeue --to-file"); the tests replace it.
+var ruleFileNow = time.Now
 
 // adjustAdded is what "adjust add" prints when the adjustment is written.
 type adjustAdded struct {
@@ -72,7 +73,7 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 		}
 	}
 	if *date == "" {
-		*date = adjustNow().Format("2006-01-02")
+		*date = ruleFileNow().Format("2006-01-02")
 	}
 	if err := adjust.ValidateName(*date, *topic); err != nil {
 		return cli.UserError("adjust add: " + err.Error())

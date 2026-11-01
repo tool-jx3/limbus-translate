@@ -32,8 +32,8 @@ func TestRulesLintCleanRepo(t *testing.T) {
 	}
 }
 
-// brokenRules is a root whose ryoshu.md lacks name_kr.
-func brokenRules(t *testing.T) string {
+// cleanRules is a root with a copy of the repo's rule files.
+func cleanRules(t *testing.T) string {
 	t.Helper()
 	root := t.TempDir()
 	for _, f := range []string{"glossary/terms.yaml", "guides/base.md", "guides/families.md", "guides/routing.yaml"} {
@@ -48,6 +48,13 @@ func brokenRules(t *testing.T) string {
 		dst := filepath.Join(root, "guides/characters", e.Name())
 		copyFile(t, src, dst)
 	}
+	return root
+}
+
+// brokenRules is a root whose ryoshu.md lacks name_kr.
+func brokenRules(t *testing.T) string {
+	t.Helper()
+	root := cleanRules(t)
 	p := filepath.Join(root, "guides/characters/ryoshu.md")
 	data, err := os.ReadFile(p)
 	if err != nil {
@@ -168,6 +175,50 @@ func TestCommandsAreRegistered(t *testing.T) {
 	for _, want := range []string{"rules lint", "guide resolve", "adjust add"} {
 		if !strings.Contains(names, want) {
 			t.Errorf("command %q is not registered (have: %s)", want, names)
+		}
+	}
+}
+
+// The requeue and rewrite files are checked by "rules lint" too, next to the
+// guides, the glossary and the adjustments.
+func TestRulesLintChecksRequeueAndRewriteFiles(t *testing.T) {
+	root := cleanRules(t)
+	writeTestFile(t, root, "rules/requeue/.gitkeep", "")
+	writeTestFile(t, root, "rules/rewrite/.gitkeep", "")
+	writeTestFile(t, root, "rules/requeue/2026-11-05-good.yaml", "reason: r\nfiles: [Bufs*.json]\n")
+	writeTestFile(t, root, "rules/rewrite/2026-11-05-good.yaml", "reason: r\nfiles: [StoryData/**]\npattern: '(a)(b)'\nreplace: '$1 $2'\n")
+	if out, err := runIn(t, runRulesLint, root, false); err != nil {
+		t.Fatalf("lint of good files: %v\n%s", err, out)
+	}
+
+	writeTestFile(t, root, "rules/requeue/2026-11-06-bad.yaml", "reason: ''\nfoo: 1\n")
+	writeTestFile(t, root, "rules/rewrite/2026-11-06-bad.yaml", "reason: r\nfiles: [StoryData/**]\npattern: '('\nreplace: ''\n")
+	out, err := runIn(t, runRulesLint, root, true)
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings\n%s", err, out)
+	}
+	var report struct {
+		OK     bool
+		Errors []struct{ File, Message string }
+	}
+	if err := json.Unmarshal([]byte(out), &report); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	byFile := map[string]string{}
+	for _, e := range report.Errors {
+		byFile[e.File] += e.Message + "\n"
+	}
+	if report.OK || len(byFile) != 2 {
+		t.Fatalf("report = %+v, want findings in exactly the two bad files", report)
+	}
+	for file, wants := range map[string][]string{
+		"rules/requeue/2026-11-06-bad.yaml": {"reason", "foo", "key or file"},
+		"rules/rewrite/2026-11-06-bad.yaml": {"pattern"},
+	} {
+		for _, want := range wants {
+			if !strings.Contains(byFile[file], want) {
+				t.Errorf("findings in %s = %q, want one mentioning %q", file, byFile[file], want)
+			}
 		}
 	}
 }

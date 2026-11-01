@@ -141,3 +141,16 @@ func TestMatchAny(t *testing.T) {
 		})
 	}
 }
+
+func TestValidPattern(t *testing.T) {
+	for _, p := range []string{"BgmLyrics/**", "StoryData/S1*", "Bufs*.json", "MainUIText.json", "[a-c]x", "/**"} {
+		if err := ValidPattern(p); err != nil {
+			t.Errorf("ValidPattern(%q) = %v, want nil", p, err)
+		}
+	}
+	for _, p := range []string{"[a", "StoryData/[", `a\`, "[]"} {
+		if err := ValidPattern(p); err == nil {
+			t.Errorf("ValidPattern(%q) = nil, want an error (MatchAny would match nothing)", p)
+		}
+	}
+}

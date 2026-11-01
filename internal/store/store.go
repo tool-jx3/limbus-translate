@@ -35,6 +35,9 @@ const (
 	OriginFallback  = "fallback"  // translation failed; EN (or KR) text stands in
 )
 
+// Origins lists every value Record.Origin can take.
+var Origins = []string{OriginParatranz, OriginClaude, OriginHuman, OriginCopy, OriginFallback}
+
 // FlagNeedsReview marks a unit a person should look at.
 const FlagNeedsReview = "needs_review"
 
