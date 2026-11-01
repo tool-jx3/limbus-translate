@@ -458,6 +458,68 @@ func TestPlanRerunKeepsWhatTheSnapshotBrought(t *testing.T) {
 	}
 }
 
+// A request for a unit that is queued already, and that same-text reuse can
+// fill, still reaches the translator: the unit takes the translation and is
+// sent back with it as the previous one and the request's hint. A record a
+// request sends back serves no reuse. Neither changes on the next plan.
+func TestPlanRequestFilesAndReuse(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		oldKR, newKR = "적을 공격합니다 아주 길게 옛날", "적을 공격합니다 아주 길게 새것"
+		guard        = "방어 자세를 취하고 반격합니다"
+	)
+	a, b, d, newE := descKey("Skills_A.json", 0), descKey("Skills_B.json", 0), descKey("Skills_D.json", 0), descKey("Skills_E.json", 0)
+	e.snapshot(map[string]string{
+		"Skills_A.json": dataList(obj{"id": 1, "desc": newKR}),
+		"Skills_B.json": dataList(obj{"id": 1, "desc": oldKR}),
+		"Skills_D.json": dataList(obj{"id": 1, "desc": guard}),
+	})
+	e.seed([]store.Record{
+		translated(a, newKR, "攻擊敵人，非常長，新"),
+		translated(b, oldKR, "攻擊敵人，非常長，舊"),
+		translated(d, guard, "擺出防禦姿勢並反擊"),
+	}, nil)
+	e.snapshot(map[string]string{
+		"Skills_A.json": dataList(obj{"id": 1, "desc": newKR}),
+		"Skills_B.json": dataList(obj{"id": 1, "desc": newKR}), // now A's text: kr-changed, and A has it
+		"Skills_D.json": dataList(obj{"id": 1, "desc": guard}),
+		"Skills_E.json": dataList(obj{"id": 1, "desc": guard}), // D's text, in a new file
+	})
+	e.rule("rules/requeue/2026-11-05-b.yaml", "reason: 用您\nkeys: [\""+b+"\"]\n")
+	e.rule("rules/requeue/2026-11-05-d.yaml", "reason: 重翻\nfiles: [\"Skills_D*\"]\n")
+
+	first := e.run(tag1)
+	recs1, pending1 := e.records(), e.pending()
+
+	if it, queued := pending1[b]; !queued || it.Reason != "requeue" || it.Hint != "用您" || it.PrevZH != "攻擊敵人，非常長，新" {
+		t.Errorf("B pending = %+v (queued %v), want it requeued with the hint and the reused text as the old translation", it, queued)
+	}
+	if got := recs1[b]; got.ZH != "攻擊敵人，非常長，新" || got.Batch != "reuse:"+a {
+		t.Errorf("B record = %+v, want A's translation until B is translated again", got)
+	}
+	if it := pending1[newE]; it.Reason != ReasonNew {
+		t.Errorf("E pending = %+v, want it new: the translation of D is sent back", it)
+	}
+	if got, has := recs1[newE]; has {
+		t.Errorf("E has the record %+v, want none", got)
+	}
+	if want := []Applied{{ID: "2026-11-05-b", Units: 1}, {ID: "2026-11-05-d", Units: 1}}; !reflect.DeepEqual(first.RequeueApplied, want) || first.Reused != 1 {
+		t.Errorf("RequeueApplied = %+v, Reused = %d; want %+v and 1", first.RequeueApplied, first.Reused, want)
+	}
+
+	second := e.run("")
+
+	if got := e.records(); !reflect.DeepEqual(got, recs1) {
+		t.Errorf("second run changed the records:\n got %v\nwant %v", got, recs1)
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, pending1) {
+		t.Errorf("second run changed the pending items:\n got %v\nwant %v", got, pending1)
+	}
+	if len(second.RequeueApplied) != 0 || second.Reused != 0 {
+		t.Errorf("second run applied %+v and reused %d, want nothing", second.RequeueApplied, second.Reused)
+	}
+}
+
 func TestPlanCopiesUnitsTheFieldRulesSkip(t *testing.T) {
 	e := newPlanEnv(t)
 	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "name": "베기"})})

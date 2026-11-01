@@ -236,16 +236,19 @@ func (in Inputs) check() error {
 //     once, and no more once it is translated again.
 //
 // Steps 1 to 4 and 6 come first, and the adjustments that expired are queued.
-// Then the rewrite files and the request files of rules/rewrite and
-// rules/requeue that .meta/applied.json does not list are applied, each in
-// file name order, rewrites first (so that a requeued unit shows the
-// rewritten text as its previous translation), and their ids are added to
-// applied.json. Neither touches a unit that steps 1 to 3 decided: the next
-// plan would set it back. A rewrite changes no record of a frozen file and no
-// text it would leave with a hard issue of a new translation; a request
-// leaves out frozen files and copies too (see requeue.Apply). Step 5 comes
-// last, so that the translations it copies are rewritten already, and a unit
-// that was just requeued serves no other.
+// The rewrite files and the request files of rules/rewrite and rules/requeue
+// that .meta/applied.json does not list are applied, each in file name order,
+// and their ids are added to applied.json: the rewrites, then step 5, then the
+// requests. So the translations step 5 copies are rewritten already; a record
+// a request sends back serves no reuse (what the requests will queue is
+// worked out before step 5 and counts as queued); and a requested unit that
+// step 5 fills is sent back with the copied text as its previous
+// translation, its request kept. A requeued unit shows the rewritten text as
+// its previous translation too. Neither kind of file touches a unit that
+// steps 1 to 3 decided: the next plan would set it back. A rewrite changes no
+// record of a frozen file and no text it would leave with a hard issue of a
+// new translation; a request leaves out frozen files and copies too (see
+// requeue.Apply).
 //
 // The whole run is one store lock, and the store is written at its end: the
 // records, the queue, applied.json, then plan.json. The ids of the applied
@@ -321,15 +324,30 @@ func Run(in Inputs) (*Summary, error) {
 		if err != nil {
 			return err
 		}
-		pending, err := p.applyRuleFiles(&applied, rewrites, requeues, p.pendingList())
+		p.applyRewrites(&applied, rewrites)
+		var todo []requeue.File // the request files to apply
+		for _, f := range requeues {
+			if !slices.Contains(applied.Requeue, f.ID) {
+				todo = append(todo, f)
+			}
+		}
+		// What the requests will queue counts as queued for step 5: a record
+		// they send back serves no reuse.
+		preview, _, err := p.requeue(todo)
 		if err != nil {
 			return err
 		}
-		p.setPending(pending)
-		if err := p.reuse(); err != nil {
+		if err := p.reuse(keySet(preview)); err != nil {
 			return err
 		}
-		pending = p.pendingList()
+		pending, done, err := p.requeue(todo)
+		if err != nil {
+			return err
+		}
+		for _, a := range done {
+			applied.Requeue = append(applied.Requeue, a.ID)
+		}
+		p.sum.RequeueApplied = append(p.sum.RequeueApplied, done...)
 		p.report(pending)
 
 		// In this order; see the doc of Run.
@@ -386,7 +404,7 @@ type planner struct {
 	sum *Summary
 
 	records map[string]store.Record
-	pending map[string]store.PendingItem // by key; up to the rule files
+	pending map[string]store.PendingItem // by key; the request files make the final queue from it
 
 	// After a transition: the KR pack of the previous snapshot and the units
 	// it had that the current one has not.
@@ -720,8 +738,8 @@ func reusable(rec store.Record, sha string) bool {
 	return rec.KRSha == sha && !slices.Contains(rec.Flags, store.FlagNeedsReview)
 }
 
-// reuse is step 5 of Run.
-func (p *planner) reuse() error {
+// reuse is step 5 of Run. A unit in queued, or pending, serves no other.
+func (p *planner) reuse(queued map[string]bool) error {
 	var targets []string
 	want := map[string]bool{} // the KR texts of the targets
 	for key, it := range p.pending {
@@ -748,7 +766,7 @@ func (p *planner) reuse() error {
 			}
 			key := units.Key(f.name, u.Pointer)
 			rec, has := p.records[key]
-			if _, queued := p.pending[key]; !has || queued || !reusable(rec, p.cur[key].sha) {
+			if _, pending := p.pending[key]; !has || pending || queued[key] || !reusable(rec, p.cur[key].sha) {
 				continue
 			}
 			g := batch.TextGroupOf(p.in.Rules, f.doc, u)
@@ -814,17 +832,19 @@ func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (
 	return source{}, false
 }
 
-// applyRuleFiles applies the rewrite and request files that applied does not
-// list, adding their ids to it, and returns the queue they leave. Neither
-// kind touches a unit whose source steps 1 to 3 decided (a copy, a frozen
-// unit with a record, an adjusted unit): the next plan would only set it back.
-func (p *planner) applyRuleFiles(applied *store.Applied, rewrites []rewrite.File, requeues []requeue.File, pending []store.PendingItem) ([]store.PendingItem, error) {
-	held := func(key string) bool { return p.settled[key] }
+// held reports whether steps 1 to 3 decided the source of the unit of key (a
+// copy, a frozen unit with a record, an adjusted unit). No rewrite or request
+// file touches such a unit: the next plan would only set it back.
+func (p *planner) held(key string) bool { return p.settled[key] }
+
+// applyRewrites applies the rewrite files that applied does not list, and
+// adds their ids to it.
+func (p *planner) applyRewrites(applied *store.Applied, files []rewrite.File) {
 	ok := func(key, kr, zh string) bool {
 		file, _, _ := strings.Cut(key, "|")
-		return !held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, kr, zh))
+		return !p.held(key) && !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, kr, zh))
 	}
-	for _, f := range rewrites {
+	for _, f := range files {
 		if slices.Contains(applied.Rewrite, f.ID) {
 			continue
 		}
@@ -832,19 +852,32 @@ func (p *planner) applyRuleFiles(applied *store.Applied, rewrites []rewrite.File
 		applied.Rewrite = append(applied.Rewrite, f.ID)
 		p.sum.RewriteApplied = append(p.sum.RewriteApplied, Applied{ID: f.ID, Units: len(changed)})
 	}
-	for _, f := range requeues {
-		if slices.Contains(applied.Requeue, f.ID) {
-			continue
-		}
-		out, res, err := requeue.ApplyTo(p.records, pending, p.in.Src.KR, p.in.Frozen, f.Selector, strings.TrimSpace(f.Reason), held)
+}
+
+// requeue applies the request files, in order, to the records and the queue
+// there are now, and returns the queue they leave with what each did. It
+// changes neither the records nor the queue of p.
+func (p *planner) requeue(files []requeue.File) ([]store.PendingItem, []Applied, error) {
+	pending := p.pendingList()
+	var done []Applied
+	for _, f := range files {
+		out, res, err := requeue.ApplyTo(p.records, pending, p.in.Src.KR, p.in.Frozen, f.Selector, strings.TrimSpace(f.Reason), p.held)
 		if err != nil {
-			return nil, fmt.Errorf("plan: %s/%s.yaml: %w", requeue.Dir, f.ID, err)
+			return nil, nil, fmt.Errorf("plan: %s/%s.yaml: %w", requeue.Dir, f.ID, err)
 		}
 		pending = out
-		applied.Requeue = append(applied.Requeue, f.ID)
-		p.sum.RequeueApplied = append(p.sum.RequeueApplied, Applied{ID: f.ID, Units: res.Requeued + res.AlreadyPending})
+		done = append(done, Applied{ID: f.ID, Units: res.Requeued + res.AlreadyPending})
 	}
-	return pending, nil
+	return pending, done, nil
+}
+
+// keySet is the set of the keys of items.
+func keySet(items []store.PendingItem) map[string]bool {
+	set := make(map[string]bool, len(items))
+	for _, it := range items {
+		set[it.Key] = true
+	}
+	return set
 }
 
 // report counts the units a batch can take now.
