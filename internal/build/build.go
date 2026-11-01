@@ -77,9 +77,15 @@ type Report struct {
 	// NeedsReview counts the used records that are flagged needs_review.
 	NeedsReview int `json:"needs_review"`
 	// StructuralFallback counts the used records that broke the structure of
-	// KR (tags, [ID]s, placeholders) and were replaced by EN, or KR. A frozen
-	// file's records are never replaced.
+	// KR (tags, [ID]s, placeholders) and were replaced by EN, or KR, and
+	// queued for translation again. Records of frozen files are not counted
+	// here but in FrozenFallback.
 	StructuralFallback int `json:"structural_fallback"`
+	// FrozenFallback lists, sorted, the keys of the used records of frozen
+	// files that broke the structure of KR. They were replaced by EN, or KR,
+	// like structural fallbacks, but not queued: a frozen file is not
+	// translated again, so a person must fix them.
+	FrozenFallback []string `json:"frozen_fallback"`
 	// Unaligned counts the pending units that have no EN text either.
 	Unaligned int `json:"unaligned"`
 	// FieldRuleOverride counts the records, other than copies, that the
@@ -176,7 +182,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		opt: opt, src: src, fr: fr,
 		records: records,
 		queued:  make(map[string]bool, len(pending)),
-		rep:     &Report{Origins: map[string]int{}, Warnings: map[string]int{}, MissingGlyphs: []rune{}},
+		rep:     &Report{Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{}},
 	}
 	for _, it := range pending {
 		b.queued[it.Key] = true
@@ -197,6 +203,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 			return nil, err
 		}
 	}
+	slices.Sort(b.rep.FrozenFallback)
 	if b.rep.MissingGlyphs, err = in.missingGlyphs(&b.glyphs); err != nil {
 		return nil, err
 	}
@@ -263,8 +270,9 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 // from the KR text there is now, or when the file is frozen. A used record
 // that breaks the structure of KR is replaced by EN (or KR) and queued for
 // translation again, with the broken text as the draft; a frozen file's record
-// is written as it is and never queued, since a frozen file is not translated
-// again. A unit with no usable record shows EN (or KR) and counts as pending.
+// is replaced the same way but never queued, since a frozen file is not
+// translated again (it is listed in FrozenFallback). A unit with no usable
+// record shows EN (or KR) and counts as pending.
 func (b *builder) fill(u units.Unit, frozen bool, al *aligner) (string, error) {
 	key := units.Key(u.File, u.Pointer)
 	rec, ok := b.records[key]
@@ -318,14 +326,19 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 			b.rep.Warnings[is.Code]++
 		}
 	}
-	if !validate.HasHard(issues) || frozen {
+	if !validate.HasHard(issues) {
 		return rec.ZH, nil
 	}
 
-	b.rep.StructuralFallback++
-	if !b.queued[key] {
-		b.queued[key] = true
-		b.added = append(b.added, store.PendingItem{Key: key, Reason: ReasonStructuralFail, Draft: rec.ZH})
+	if frozen {
+		// Not translated again, so not queued: a person fixes it.
+		b.rep.FrozenFallback = append(b.rep.FrozenFallback, key)
+	} else {
+		b.rep.StructuralFallback++
+		if !b.queued[key] {
+			b.queued[key] = true
+			b.added = append(b.added, store.PendingItem{Key: key, Reason: ReasonStructuralFail, Draft: rec.ZH})
+		}
 	}
 	en, _, err := al.get(u.Pointer)
 	if err != nil {

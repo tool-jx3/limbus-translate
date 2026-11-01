@@ -458,24 +458,35 @@ func TestBuildCountsWarningsOfRecordsThatFallBack(t *testing.T) {
 	}
 }
 
-// A frozen file keeps its record as it is, whatever the structure check says:
-// no EN stands in, nothing is counted as a fallback and nothing is queued.
-func TestBuildFrozenRecordIsUsedVerbatim(t *testing.T) {
-	kr := `{"dataList":[{"id":1,"content":"[Bleed] 중첩"},{"id":2,"content":"나"}]}`
-	en := `{"dataList":[{"id":1,"content":"[Bleed] stack"},{"id":2,"content":"B"}]}`
+// A frozen file is not translated again, so its records stand even when KR
+// changed. A record that breaks the structure of KR would break the game:
+// EN (or KR) stands in, the key is listed as a frozen fallback, and nothing is
+// queued or counted as a structural fallback.
+func TestBuildFrozenRecords(t *testing.T) {
+	kr := `{"dataList":[{"id":1,"title":"[Bleed] 가","content":"[Bleed] 중첩"},{"id":2,"content":"나"}]}`
+	en := `{"dataList":[{"id":1,"title":"[Bleed] A","content":"[Bleed] stack"},{"id":2,"content":"B"}]}`
 	e := newEnv(t,
 		map[string]string{"BgmLyrics/L.json": kr, "A.json": kr},
 		map[string]string{"BgmLyrics/L.json": en, "A.json": en})
 	// Lost [Bleed] (hard), kept Hangul (warning), flagged, and made from other KR text.
 	lyric := rec("BgmLyrics/L.json", "/dataList/0/content", "옛날", "中疊가")
 	lyric.Origin, lyric.Flags = store.OriginParatranz, []string{store.FlagNeedsReview}
-	// The same record in a file that is not frozen does fall back.
+	title := rec("BgmLyrics/L.json", "/dataList/0/title", "[Bleed] 가", "甲") // lost [Bleed]
+	// Made from other KR text but keeps the structure: used as it is.
+	kept := rec("BgmLyrics/L.json", "/dataList/1/content", "옛날", "乙나")
+	// The same broken record in a file that is not frozen falls back and is queued.
 	plain := rec("A.json", "/dataList/0/content", "[Bleed] 중첩", "中疊가")
-	e.save(lyric, plain)
+	e.save(lyric, title, kept, plain)
 
 	rep := e.run()
-	if got := e.out("BgmLyrics/L.json"); !strings.Contains(got, `"中疊가"`) || strings.Contains(got, "stack") {
-		t.Errorf("frozen file =\n%s\nwant the record verbatim", got)
+	got := e.out("BgmLyrics/L.json")
+	for _, want := range []string{`"[Bleed] stack"`, `"[Bleed] A"`, `"乙나"`} {
+		if !strings.Contains(got, want) {
+			t.Errorf("frozen file lacks %s:\n%s", want, got)
+		}
+	}
+	if strings.Contains(got, "中疊") || strings.Contains(got, "甲") {
+		t.Errorf("frozen file ships a record that breaks the structure:\n%s", got)
 	}
 	if got := e.out("A.json"); !strings.Contains(got, `"[Bleed] stack"`) {
 		t.Errorf("a file that is not frozen must still fall back:\n%s", got)
@@ -483,18 +494,35 @@ func TestBuildFrozenRecordIsUsedVerbatim(t *testing.T) {
 	if rep.StructuralFallback != 1 {
 		t.Errorf("StructuralFallback = %d, want 1: only the file that is not frozen", rep.StructuralFallback)
 	}
-	if want := map[string]int{"paratranz": 1, "claude": 1}; !reflect.DeepEqual(rep.Origins, want) {
+	// Sorted keys, not document order (title comes first in the file).
+	if want := []string{lyric.Key, title.Key}; !slices.Equal(rep.FrozenFallback, want) {
+		t.Errorf("FrozenFallback = %v, want %v", rep.FrozenFallback, want)
+	}
+	if want := map[string]int{"paratranz": 1, "claude": 3}; !reflect.DeepEqual(rep.Origins, want) {
 		t.Errorf("Origins = %v, want %v", rep.Origins, want)
 	}
 	if rep.NeedsReview != 1 {
 		t.Errorf("NeedsReview = %d, want 1: the frozen record is flagged", rep.NeedsReview)
 	}
-	if rep.Warnings["hangul"] != 2 {
-		t.Errorf("Warnings = %v, want hangul 2: the frozen record's warning counts", rep.Warnings)
+	if rep.Warnings["hangul"] != 3 {
+		t.Errorf("Warnings = %v, want hangul 3: the frozen records' warnings count", rep.Warnings)
 	}
 	want := []store.PendingItem{{Key: plain.Key, Reason: "structural-fail", Draft: "中疊가"}}
 	if got := e.pending(); !reflect.DeepEqual(got, want) {
 		t.Errorf("pending = %+v, want only %+v: a frozen record is never queued", got, want)
+	}
+	md := string(Markdown(e.opt, rep))
+	for _, want := range []string{"| Frozen fallback | 2 |", "- `" + lyric.Key + "`\n- `" + title.Key + "`\n"} {
+		if !strings.Contains(md, want) {
+			t.Errorf("report lacks %q:\n%s", want, md)
+		}
+	}
+
+	// Without any, the list is empty, not null.
+	e2 := newEnv(t, map[string]string{"A.json": `{"dataList":[]}`}, nil)
+	data, err := json.Marshal(e2.run())
+	if err != nil || !strings.Contains(string(data), `"frozen_fallback":[]`) {
+		t.Errorf("report JSON = %s, %v, want an empty frozen_fallback list", data, err)
 	}
 }
 

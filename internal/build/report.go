@@ -84,6 +84,7 @@ func Markdown(opt Options, rep *Report) []byte {
 		{"Pending", rep.Pending},
 		{"Needs review", rep.NeedsReview},
 		{"Structural fallback", rep.StructuralFallback},
+		{"Frozen fallback", len(rep.FrozenFallback)},
 		{"Unaligned", rep.Unaligned},
 		{"Field rule override", rep.FieldRuleOverride},
 	} {
@@ -92,6 +93,7 @@ func Markdown(opt Options, rep *Report) []byte {
 	b.WriteString("\n" +
 		"Pending units have no translation made from the current KR text; their EN text, or KR, is shown.\n" +
 		"Structural fallbacks are translations that break the structure of KR (tags, [ID]s, placeholders) and were replaced the same way.\n" +
+		"Frozen fallbacks are such translations in frozen files: they are not translated again, so each needs a person (listed below).\n" +
 		"Unaligned units are pending units with no EN text either.\n" +
 		"Field rule overrides are records of units the field rules do not translate; KR is shown instead.\n")
 
@@ -108,6 +110,14 @@ func Markdown(opt Options, rep *Report) []byte {
 	}
 	counts("Origins", "Origin", rep.Origins)
 	counts("Warnings", "Code", rep.Warnings)
+
+	b.WriteString("\n## Frozen fallbacks\n\n")
+	if len(rep.FrozenFallback) == 0 {
+		b.WriteString("None.\n")
+	}
+	for _, key := range rep.FrozenFallback {
+		fmt.Fprintf(&b, "- `%s`\n", key)
+	}
 
 	b.WriteString("\n## Missing glyphs\n\n")
 	if len(rep.MissingGlyphs) == 0 {

@@ -358,9 +358,10 @@ func TestPhase1DryRun(t *testing.T) {
 			t.Errorf("build left no zip: %v", err)
 		}
 	}
-	if r := built.Report; r == nil || r.Pending != 0 || r.StructuralFallback != 0 || r.NeedsReview != 0 || len(r.MissingGlyphs) != 0 ||
+	if r := built.Report; r == nil || r.Pending != 0 || r.StructuralFallback != 0 || len(r.FrozenFallback) != 0 || r.FieldRuleOverride != 0 ||
+		r.NeedsReview != 0 || len(r.MissingGlyphs) != 0 || r.Warnings["hangul"] != 0 ||
 		r.Origins["claude"] != 4 || r.Origins["paratranz"] != 11 || r.Origins["copy"] != 5 {
-		t.Errorf("build report = %+v, want nothing pending, no fallback, 4 claude, 11 paratranz and 5 copy records", built.Report)
+		t.Errorf("build report = %+v, want nothing pending, no fallback or override, no hangul warning (the copies keep KR), 4 claude, 11 paratranz and 5 copy records", built.Report)
 	}
 	checkE2EOutput(t, filepath.Join(root, ".work", "tw", "LimbusCompany_Data", "Lang"))
 
