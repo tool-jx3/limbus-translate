@@ -894,3 +894,11 @@
   status: approved
   category: [city]
   notes: 狀態名（Bufs-mowe、Passives_Abnormality-mowe）
+
+- kr: 쪼용
+  zh: ㄤ靜
+  forbidden: [小森]
+  status: approved
+  category: [city]
+  notes: 針靈等的臭奶呆「조용」（安靜），既有 paratranz 5 處
+
