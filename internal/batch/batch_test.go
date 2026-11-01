@@ -24,6 +24,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -761,8 +762,8 @@ func TestIsStory(t *testing.T) {
 		{"Other.json", false},
 	}
 	for _, tt := range tests {
-		if got := isStory(tt.file); got != tt.want {
-			t.Errorf("isStory(%q) = %v, want %v", tt.file, got, tt.want)
+		if got := IsStory(tt.file); got != tt.want {
+			t.Errorf("IsStory(%q) = %v, want %v", tt.file, got, tt.want)
 		}
 	}
 }
@@ -1082,6 +1083,73 @@ func TestSpeakerOfVoiceFile(t *testing.T) {
 	}
 	if !slices.Contains(b.Guides, "guides/characters/faust.md") {
 		t.Errorf("guides = %v, want faust's", b.Guides)
+	}
+}
+
+// Two units are the same text when family, field, speaker and KR all agree;
+// a text under ShortTextRunes runes is shared only within its file.
+func TestTextGroupOf(t *testing.T) {
+	r := testRules(t)
+	doc, err := jsonx.Parse([]byte(`{"dataList":[
+ {"id":0,"model":"파우스트","content":"같은 말"},
+ {"id":1,"model":"낯선이","content":"같은 말"},
+ {"id":2,"texts":[{"speaker":"싱클레어","content":"같은 말"}]}
+]}`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	list := units.Extract("StoryData/S1.json", doc)
+	byPointer := map[string]units.Unit{}
+	for _, u := range list {
+		byPointer[u.Pointer] = u
+	}
+	group := func(pointer string) TextGroup {
+		t.Helper()
+		u, ok := byPointer[pointer]
+		if !ok {
+			t.Fatalf("no unit at %s", pointer)
+		}
+		return TextGroupOf(r, doc, u)
+	}
+
+	if got, want := group("/dataList/0/content"), (TextGroup{Family: "story-main", Field: "content", Speaker: "faust", KR: "같은 말"}); got != want {
+		t.Errorf("group of a known speaker = %+v, want %+v", got, want)
+	}
+	if got := group("/dataList/1/content").Speaker; got != "낯선이" {
+		t.Errorf("speaker of an unknown model = %q, want the model itself", got)
+	}
+	if got := group("/dataList/2/texts/0/content").Speaker; got != "sinclair" {
+		t.Errorf("speaker of an RPG line = %q, want sinclair", got)
+	}
+	if SpeakerOf(r, doc, byPointer["/dataList/0/content"]) != "faust" {
+		t.Errorf("SpeakerOf differs from the group's speaker")
+	}
+	if group("/dataList/0/content") == group("/dataList/1/content") {
+		t.Errorf("lines of two speakers are in one group")
+	}
+
+	for _, tt := range []struct {
+		kr   string
+		want bool
+	}{{"123456789", true}, {"1234567890", false}, {"아홉 글자의 문장", true}, {"열 글자가 되는 문장", false}} {
+		if got := (TextGroup{KR: tt.kr}).FileBound(); got != tt.want {
+			t.Errorf("FileBound(%q) = %v, want %v", tt.kr, got, tt.want)
+		}
+	}
+}
+
+// CheckNew holds a text to what Submit accepts: the glossary terms of the KR
+// text are enforced, content issues are hard.
+func TestCheckNew(t *testing.T) {
+	r := testRules(t)
+	if issues := CheckNew(r, "위력 5", "威力5"); validate.HasHard(issues) {
+		t.Errorf("CheckNew of a good text = %+v, want no hard issue", issues)
+	}
+	if issues := CheckNew(r, "위력 5", "力量5"); !validate.HasHard(issues) {
+		t.Errorf("CheckNew of a forbidden rendering = %+v, want a hard issue", issues)
+	}
+	if issues := CheckNew(r, "위력 5", "威力5 위"); !validate.HasHard(issues) {
+		t.Errorf("CheckNew of a text with Hangul = %+v, want a hard issue", issues)
 	}
 }
 

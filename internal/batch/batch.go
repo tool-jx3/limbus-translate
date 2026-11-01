@@ -16,6 +16,7 @@ import (
 	"strings"
 	"time"
 	"unicode"
+	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
@@ -158,9 +159,10 @@ const (
 	rpgChoiceGlob   = "RPGSystem/rpg-loc-dialogue-choice-*"
 )
 
-// isStory reports whether file is a story script: a StoryData/ file or an RPG
-// dialogue file. Its units are batched by the whole file, with context.
-func isStory(file string) bool {
+// IsStory reports whether file is a story script: a StoryData/ file or an RPG
+// dialogue file. Its units are batched by the whole file, with context, and
+// its lines are said by speakers (see SpeakerKey).
+func IsStory(file string) bool {
 	if strings.HasPrefix(file, align.StoryPrefix) {
 		return true
 	}
@@ -271,10 +273,17 @@ func (fd *fileData) aligned(lang int, pointer string) (*align.LangAligned, error
 // named in the file name.
 var voiceFilePrefixes = []string{"PersonalityVoiceDlg/", "EGOVoiceDig/", "BattleAnnouncerDlg/", "AbDlg_"}
 
-// speaker names the speaker of a unit: the character id when the character is
-// known, otherwise the raw key (possibly empty). Voice and AbDlg files belong
-// to the character in the file name; the lines of other files to the character
-// of their model or speaker (see speakerKey).
+// SpeakerOf names the speaker of u, a unit of doc: the character id when the
+// character is known, otherwise the raw model or speaker string (possibly
+// empty). Voice and AbDlg files belong to the character in the file name; the
+// lines of other files to the character of their model or speaker (see
+// SpeakerKey).
+func SpeakerOf(r *rules.Rules, doc *jsonx.Node, u units.Unit) string {
+	id, _ := speaker(r, doc, u)
+	return id
+}
+
+// speaker is SpeakerOf, and whether the speaker is a known character.
 func speaker(r *rules.Rules, doc *jsonx.Node, u units.Unit) (id string, known bool) {
 	if slices.ContainsFunc(voiceFilePrefixes, func(p string) bool { return strings.HasPrefix(u.File, p) }) {
 		if c, ok := r.CharacterByFile(u.File); ok {
@@ -282,19 +291,19 @@ func speaker(r *rules.Rules, doc *jsonx.Node, u units.Unit) (id string, known bo
 		}
 		return u.Model, false
 	}
-	key := speakerKey(doc, u)
+	key := SpeakerKey(doc, u)
 	if c, _, ok := r.CharacterByModel(key); ok {
 		return c.ID, true
 	}
 	return key, false
 }
 
-// speakerKey is the string that names who says a unit in KR: the model of the
+// SpeakerKey is the string that names who says a unit in KR: the model of the
 // dataList element it is in or, when that is empty, the "speaker" string of the
 // object the unit itself is in (the RPG dialogue files keep it there:
 // dataList[].texts[].speaker). doc is the file the unit is from. It is "" when
 // there is neither.
-func speakerKey(doc *jsonx.Node, u units.Unit) string {
+func SpeakerKey(doc *jsonx.Node, u units.Unit) string {
 	if u.Model != "" {
 		return u.Model
 	}
@@ -351,6 +360,47 @@ func validateTerms(r *rules.Rules, kr string) []validate.Term {
 		terms = append(terms, t.ToValidate())
 	}
 	return terms
+}
+
+// CheckNew checks zh as a new translation of the KR text kr, which is what
+// Submit holds a translation to: the structure of kr, and the wording rules
+// with the glossary terms kr contains, content issues being hard. zh is
+// checked as it is; Submit normalizes a translation first.
+func CheckNew(r *rules.Rules, kr, zh string) []validate.Issue {
+	return validate.Check(kr, zh, validate.Context{Terms: validateTerms(r, kr)})
+}
+
+// ShortTextRunes is the length, in runes of the KR text, under which a text
+// is too short to be taken for the same text in another file: "확인" or a
+// lone name means different things in different places. See
+// TextGroup.FileBound.
+const ShortTextRunes = 10
+
+// TextGroup is what makes two units "the same text" (spec 8.1): the family
+// of their files (rules.Rules.Family), the field name, the speaker (SpeakerOf;
+// "" for a unit nobody says) and the exact KR text. Units of one group can
+// share one translation. The plan copies the translation of a unit to a new
+// unit of its group instead of queueing it (same-text reuse), and the
+// translation of a pending unit serves the other pending units of its group
+// (twins). Either way, a text that is FileBound is shared only within its file.
+//
+// TextGroup is comparable, so it can key a map.
+type TextGroup struct {
+	Family  string
+	Field   string
+	Speaker string
+	KR      string
+}
+
+// TextGroupOf returns the group of u, a unit of doc.
+func TextGroupOf(r *rules.Rules, doc *jsonx.Node, u units.Unit) TextGroup {
+	return TextGroup{Family: r.Family(u.File), Field: u.Field, Speaker: SpeakerOf(r, doc, u), KR: u.KR}
+}
+
+// FileBound reports whether the text of g is shorter than ShortTextRunes
+// runes, so that only units of one file share a translation.
+func (g TextGroup) FileBound() bool {
+	return utf8.RuneCountInString(g.KR) < ShortTextRunes
 }
 
 // keywordNames builds the names this translation gives the [ID]s that occur

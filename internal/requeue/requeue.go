@@ -143,7 +143,7 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 		return nil, fmt.Errorf("requeue: %w", err)
 	}
 
-	res := &Result{MissingKeys: []string{}}
+	var res *Result
 	err := st.WithLock(func() error {
 		pending, err := st.LoadPending()
 		if err != nil {
@@ -157,12 +157,11 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 				return err
 			}
 		}
-		r := newRun(kr, frozen, sel, hint, records, pending, res)
-		if sel.stuckMode() {
-			r.stuckItems()
-		} else if err := r.requeueRecords(); err != nil {
+		r, err := apply(kr, frozen, sel, hint, records, pending)
+		if err != nil {
 			return err
 		}
+		res = r.res
 		if !r.changed {
 			return nil
 		}
@@ -172,6 +171,41 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 		return nil, err
 	}
 	return res, nil
+}
+
+// ApplyTo is Apply on state that the caller has read and will write itself,
+// inside the store lock it holds: records and pending are the whole record
+// state and pending queue. It returns the queue as Apply would leave it, with
+// what it did. Neither records nor pending is changed.
+//
+// It is how a caller makes a requeue part of a larger change that is saved
+// at once, such as the plan, which records the request file as applied in the
+// same lock.
+func ApplyTo(records map[string]store.Record, pending []store.PendingItem, kr *pack.Pack, frozen []string, sel Selector, hint string) ([]store.PendingItem, *Result, error) {
+	if kr == nil {
+		return nil, nil, errors.New("requeue: no KR pack")
+	}
+	if err := sel.Validate(); err != nil {
+		return nil, nil, fmt.Errorf("requeue: %w", err)
+	}
+	r, err := apply(kr, frozen, sel, hint, records, slices.Clone(pending))
+	if err != nil {
+		return nil, nil, err
+	}
+	return r.pending, r.res, nil
+}
+
+// apply carries out sel on records and pending, which it changes in place,
+// and returns the run with the result. records may be nil when sel only acts
+// on the pending queue and names no Origins.
+func apply(kr *pack.Pack, frozen []string, sel Selector, hint string, records map[string]store.Record, pending []store.PendingItem) (*run, error) {
+	r := newRun(kr, frozen, sel, hint, records, pending, &Result{MissingKeys: []string{}})
+	if sel.stuckMode() {
+		r.stuckItems()
+	} else if err := r.requeueRecords(); err != nil {
+		return nil, err
+	}
+	return r, nil
 }
 
 // run is the state of one Apply call.

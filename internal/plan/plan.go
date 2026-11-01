@@ -1,0 +1,884 @@
+package plan
+
+import (
+	"errors"
+	"fmt"
+	"maps"
+	"os"
+	"slices"
+	"sort"
+	"strings"
+	"time"
+
+	"github.com/tool-jx3/limbus-translate/internal/adjust"
+	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/jsonx"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/requeue"
+	"github.com/tool-jx3/limbus-translate/internal/rewrite"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
+)
+
+// File is the file of the tw worktree's .meta that holds the Summary of the
+// last plan. Its raw tag is the snapshot the translation state belongs to.
+const File = "plan.json"
+
+// ReasonAdjustmentExpired is the Reason of the pending item of a unit whose
+// human adjustment no longer applies; its Refs hold the adjustment under
+// RefAdjustment, for the translator to look at.
+const (
+	ReasonAdjustmentExpired = "adjustment-expired"
+	RefAdjustment           = "adjustment"
+)
+
+// The prefixes of the Batch of the records Run writes: the adjustment file
+// (its name in rules/adjustments) and the key of the unit whose translation
+// was reused.
+const (
+	batchAdjustment = "adjustment:"
+	batchReuse      = "reuse:"
+)
+
+// Inputs is what Run works with.
+type Inputs struct {
+	// Root is the repo root: the rules, and the adjustment, requeue and
+	// rewrite files under rules/.
+	Root string
+	// RawWorktree is the raw worktree, at the current snapshot; its tags hold
+	// the earlier ones.
+	RawWorktree string
+	// TWRoot is the tw worktree, whose store Run changes.
+	TWRoot string
+	// RulesCommit names the commit of the rules (see gitx.Describe); every
+	// record Run writes carries it as Rules.
+	RulesCommit string
+	// BuildRawTag is the raw tag of the last build (.meta/build.json), the
+	// snapshot the state belongs to when no plan has run yet; "" when nothing
+	// was built either.
+	BuildRawTag string
+	// Src holds the official KR, EN and JP packs of the current snapshot.
+	Src pack.Set
+	// Frozen are the patterns of the frozen files (lct.yaml).
+	Frozen []string
+	Fields *fields.Rules
+	Rules  *rules.Rules
+	// TmpDir is where the KR pack of the previous snapshot is exported for
+	// the time of the run; "" is the system's temporary directory.
+	TmpDir string
+}
+
+// Summary is what Run did; .meta/plan.json holds it. The lists are never nil.
+type Summary struct {
+	// RawTag is the current snapshot, PrevRawTag the one the state belonged
+	// to before. They are equal when there was no new snapshot.
+	RawTag      string `json:"raw_tag"`
+	PrevRawTag  string `json:"prev_raw_tag"`
+	RulesCommit string `json:"rules_commit"`
+	// Changes are what became of the strings between the two snapshots; all
+	// zero without a new one.
+	Changes Changes `json:"changes"`
+	// Copy counts the copy records written: units the field rules do not
+	// translate that had no copy of their KR text yet.
+	Copy int `json:"copy"`
+	// Reused counts the units that took the translation of the same text.
+	Reused      int               `json:"reused"`
+	Adjustments AdjustmentSummary `json:"adjustments"`
+	// RequeueApplied and RewriteApplied are the request and rewrite files
+	// applied this time (each file is applied once), in the order they were.
+	RequeueApplied []Applied `json:"requeue_applied"`
+	RewriteApplied []Applied `json:"rewrite_applied"`
+	// FrozenChanged are the keys of the units of frozen files whose KR text
+	// changed; they kept their translation (see Moved.FrozenChanged).
+	FrozenChanged []string `json:"frozen_changed"`
+	// NewSpeakers are the model and speaker strings, as KR writes them, of the
+	// stories and RPG dialogues (batch.IsStory) of the current snapshot that
+	// the previous one did not have, sorted.
+	NewSpeakers []string `json:"new_speakers"`
+	// FieldChanges is what the field rules learned from the current packs
+	// add to or remove from rules/fields.yaml (see lct fields learn).
+	FieldChanges []fields.Change `json:"field_changes"`
+	// NewFilesDefaultFamily are the files added in this snapshot that fall in
+	// the catch-all family of guides/routing.yaml: no family was made for them.
+	NewFilesDefaultFamily []string `json:"new_files_default_family"`
+	// Pending counts the pending units a batch can take now: in KR, not
+	// leased and not waiting for a person.
+	Pending int `json:"pending"`
+}
+
+// AdjustmentSummary says what became of the adjustments of rules/adjustments.
+type AdjustmentSummary struct {
+	// Applied counts the adjustments in effect at their own key.
+	Applied int `json:"applied"`
+	// Moved are the adjustments in effect at another key, by key, sorted.
+	Moved []MovedKey `json:"moved"`
+	// Expired are the keys of the adjustments not in effect, sorted: the KR
+	// text they were made for is gone (the unit is translated again, with the
+	// adjustment as a reference), the unit is copied or is in a frozen file
+	// that has a translation, or another adjustment of the unit won.
+	Expired []string `json:"expired"`
+}
+
+// MovedKey is an adjustment whose key is out of date: the text it was made
+// for is at To now.
+type MovedKey struct {
+	From string `json:"from"`
+	To   string `json:"to"`
+}
+
+// Applied is one requeue or rewrite file that was applied: Units counts the
+// units it sent back to the translator (requeued, or already pending and
+// given its reason) or the records it rewrote.
+type Applied struct {
+	ID    string `json:"id"`
+	Units int    `json:"units"`
+}
+
+// String is the report of the CLI.
+func (s *Summary) String() string {
+	var b strings.Builder
+	if s.PrevRawTag == s.RawTag {
+		fmt.Fprintf(&b, "plan of %s (no new snapshot), rules %s\n", s.RawTag, s.RulesCommit)
+	} else {
+		c := s.Changes
+		fmt.Fprintf(&b, "plan of %s after %s, rules %s\n", s.RawTag, s.PrevRawTag, s.RulesCommit)
+		fmt.Fprintf(&b, "strings: %d unchanged (%d moved), %d changed, %d new, %d deleted\n", c.Unchanged, c.Moved, c.Changed, c.New, c.Deleted)
+		fmt.Fprintf(&b, "files: %d added, %d deleted, %d changed, %d shifted\n", len(c.FilesAdded), len(c.FilesDeleted), len(c.FilesChanged), len(c.FilesShifted))
+	}
+	a := s.Adjustments
+	fmt.Fprintf(&b, "copied %d, reused %d\n", s.Copy, s.Reused)
+	fmt.Fprintf(&b, "adjustments: %d applied, %d moved, %d expired\n", a.Applied, len(a.Moved), len(a.Expired))
+	for _, m := range a.Moved {
+		fmt.Fprintf(&b, "  moved: %s -> %s\n", m.From, m.To)
+	}
+	for _, k := range a.Expired {
+		fmt.Fprintf(&b, "  expired: %s\n", k)
+	}
+	for _, f := range s.RequeueApplied {
+		fmt.Fprintf(&b, "requeue %s: %d units\n", f.ID, f.Units)
+	}
+	for _, f := range s.RewriteApplied {
+		fmt.Fprintf(&b, "rewrite %s: %d units\n", f.ID, f.Units)
+	}
+	for _, l := range []struct {
+		what  string
+		items []string
+	}{
+		{"frozen KR changed", s.FrozenChanged},
+		{"new speaker", s.NewSpeakers},
+		{"new file of the default family", s.NewFilesDefaultFamily},
+	} {
+		for _, it := range l.items {
+			fmt.Fprintf(&b, "%s: %s\n", l.what, it)
+		}
+	}
+	for _, c := range s.FieldChanges {
+		fmt.Fprintf(&b, "field rule: %s\n", c)
+	}
+	fmt.Fprintf(&b, "pending: %d", s.Pending)
+	return b.String()
+}
+
+func (in Inputs) check() error {
+	switch {
+	case in.Root == "" || in.RawWorktree == "" || in.TWRoot == "":
+		return errors.New("plan: the repo root, the raw worktree and the tw worktree are all needed")
+	case in.Src.KR == nil || in.Src.EN == nil || in.Src.JP == nil:
+		return errors.New("plan: the KR, EN and JP packs are all needed")
+	case in.Fields == nil || in.Rules == nil:
+		return errors.New("plan: no field rules or no rules")
+	}
+	return nil
+}
+
+// Run decides, for every unit of the current snapshot, where its translation
+// comes from (spec 8.2), changes the state of the tw store to match, and
+// writes the Summary to .meta/plan.json.
+//
+// The state belongs to the snapshot of the last plan (the raw tag of
+// .meta/plan.json), or else to that of the last build (BuildRawTag), or else
+// to the current one. When that is not the current snapshot, the state is
+// first carried over to it (Transition). Then every unit of the current KR
+// gets the first source that holds:
+//
+//  1. the field rules do not translate it: a copy record (its KR text), and
+//     it leaves the queue;
+//  2. it is in a frozen file and has a record: the record stays as it is;
+//  3. a human adjustment applies to it (adjust.Resolve, at its key or moved
+//     to it): a human record with the adjustment's text, and it leaves the
+//     queue. Of two adjustments of one unit, the one at its own key wins over
+//     one that moved, and of equals the later one in file order. An
+//     adjustment of a unit that steps 1 or 2 decide is not applied;
+//  4. it has a record of its KR text (not a copy): the record stays;
+//  5. it is queued as new or changed, and a unit of the same text
+//     (batch.TextGroup) has a translation of it, the current record of a unit
+//     that is not queued itself, or the record of a unit the new snapshot
+//     deleted: that translation is copied, if it passes the checks of a new
+//     translation (batch.CheckNew); a text that is FileBound only takes one
+//     from its own file;
+//  6. otherwise it is queued: a unit that is not queued yet is queued as
+//     new, and a copy record it has goes (a copy is no translation). A unit
+//     whose adjustment expired (its KR text changed) is queued as
+//     adjustment-expired, with the adjustment as a reference, unless it has a
+//     record of its KR text already that is not human: the unit is queued
+//     once, and no more once it is translated again.
+//
+// Then the rewrite files and the request files of rules/rewrite and
+// rules/requeue that .meta/applied.json does not list are applied, each in
+// file name order, rewrites first (so that a requeued unit shows the
+// rewritten text as its previous translation), and their ids are added to
+// applied.json. A rewrite changes no record of a frozen file and no text it
+// would leave with a hard issue of a new translation; a request leaves out
+// frozen files and copies (see requeue.Apply).
+//
+// The whole run is one store lock, and the store is written at its end: the
+// records, the queue, applied.json, then plan.json. The ids of the applied
+// files go in after the changes they made, so a file is never listed as
+// applied without them. Each file is replaced atomically, but not the four
+// together: a run that dies while writing them leaves a store to reset to its
+// last commit (CI commits the tw worktree only after a plan that went
+// through).
+func Run(in Inputs) (*Summary, error) {
+	if err := in.check(); err != nil {
+		return nil, err
+	}
+	src, err := raw.LastSource(in.RawWorktree)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	if src == nil {
+		return nil, fmt.Errorf("plan: %s has no snapshot", in.RawWorktree)
+	}
+
+	// What does not depend on the state is read before the lock is taken.
+	adjustments, err := adjust.Load(in.Root)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	requeues, err := requeue.LoadFiles(in.Root)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	rewrites, err := rewrite.LoadFiles(in.Root)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	fieldChanges, err := learnFieldChanges(in)
+	if err != nil {
+		return nil, err
+	}
+
+	st := store.Open(in.TWRoot)
+	var sum *Summary
+	err = st.WithLock(func() error {
+		p := &planner{
+			in: in,
+			sum: &Summary{
+				RawTag: src.Tag, RulesCommit: in.RulesCommit,
+				Adjustments:    AdjustmentSummary{Moved: []MovedKey{}, Expired: []string{}},
+				RequeueApplied: []Applied{}, RewriteApplied: []Applied{},
+				FrozenChanged: []string{}, NewSpeakers: []string{},
+				FieldChanges: fieldChanges, NewFilesDefaultFamily: []string{},
+			},
+			cur:     map[string]unitRef{},
+			settled: map[string]bool{},
+		}
+		if err := p.load(st); err != nil {
+			return err
+		}
+		if p.sum.PrevRawTag != p.sum.RawTag {
+			tmp, err := os.MkdirTemp(in.TmpDir, "lct-plan-")
+			if err != nil {
+				return fmt.Errorf("plan: %w", err)
+			}
+			defer os.RemoveAll(tmp)
+			if err := p.transition(tmp); err != nil {
+				return err
+			}
+		}
+		adjusted := resolveAdjustments(adjustments, in.Src.KR)
+		if err := p.settle(adjusted.claims); err != nil {
+			return err
+		}
+		p.expire(adjusted)
+		if err := p.reuse(); err != nil {
+			return err
+		}
+		pending := p.pendingList()
+		applied, err := st.LoadApplied()
+		if err != nil {
+			return err
+		}
+		if pending, err = p.applyRuleFiles(&applied, rewrites, requeues, pending); err != nil {
+			return err
+		}
+		p.report(pending)
+
+		// In this order; see the doc of Run.
+		if err := st.SaveRecords(p.records); err != nil {
+			return err
+		}
+		if err := st.SavePending(pending); err != nil {
+			return err
+		}
+		if err := st.SaveApplied(applied); err != nil {
+			return err
+		}
+		if err := st.WriteMetaJSON(File, p.sum); err != nil {
+			return err
+		}
+		sum = p.sum
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return sum, nil
+}
+
+// learnFieldChanges learns the field rules from the packs (as lct fields
+// learn does) and returns what they would change in rules/fields.yaml. Packs
+// from which nothing is learned hold no evidence and change nothing.
+func learnFieldChanges(in Inputs) ([]fields.Change, error) {
+	learned, err := fields.Learn(in.Src.KR, in.Src.EN, in.Src.JP)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	if learned.Counted == 0 {
+		return []fields.Change{}, nil
+	}
+	manual, err := fields.LoadManual(in.Root)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	old, err := fields.LoadLearned(in.Root)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	changes := learned.Without(manual).Diff(old)
+	if changes == nil {
+		changes = []fields.Change{}
+	}
+	return changes, nil
+}
+
+// planner is the state of one Run.
+type planner struct {
+	in  Inputs
+	sum *Summary
+
+	records map[string]store.Record
+	pending map[string]store.PendingItem // by key; up to the rule files
+
+	// After a transition: the KR pack of the previous snapshot and the units
+	// it had that the current one has not.
+	oldKR   *pack.Pack
+	deleted []DeletedUnit
+
+	files   []*krFile          // the current KR files, in name order
+	cur     map[string]unitRef // the current units, by key
+	settled map[string]bool    // keys whose source steps 1 to 3 decided
+}
+
+// krFile is one file of the current KR pack.
+type krFile struct {
+	name   string
+	doc    *jsonx.Node
+	units  []units.Unit
+	frozen bool
+}
+
+// unitRef is a unit of the current KR pack with the sha of its KR text.
+type unitRef struct {
+	file *krFile
+	i    int
+	sha  string
+}
+
+func (r unitRef) unit() units.Unit { return r.file.units[r.i] }
+
+// load reads the state and the snapshot it belongs to.
+func (p *planner) load(st *store.Store) error {
+	var last Summary
+	found, err := st.ReadMetaJSON(File, &last)
+	if err != nil {
+		return err
+	}
+	switch {
+	case found && last.RawTag != "":
+		p.sum.PrevRawTag = last.RawTag
+	case p.in.BuildRawTag != "":
+		p.sum.PrevRawTag = p.in.BuildRawTag
+	default:
+		p.sum.PrevRawTag = p.sum.RawTag
+	}
+	if p.records, err = st.LoadRecords(); err != nil {
+		return err
+	}
+	pending, err := st.LoadPending()
+	if err != nil {
+		return err
+	}
+	p.setPending(pending)
+	return nil
+}
+
+func (p *planner) setPending(items []store.PendingItem) {
+	p.pending = make(map[string]store.PendingItem, len(items))
+	for _, it := range items {
+		p.pending[it.Key] = it
+	}
+}
+
+// pendingList is the queue sorted by key.
+func (p *planner) pendingList() []store.PendingItem {
+	items := slices.Collect(maps.Values(p.pending))
+	sort.Slice(items, func(i, j int) bool { return items[i].Key < items[j].Key })
+	return items
+}
+
+// transition carries the state from the previous snapshot to the current one,
+// exporting the previous KR pack into dir.
+func (p *planner) transition(dir string) error {
+	old, err := raw.OpenKRAt(p.in.RawWorktree, p.sum.PrevRawTag, dir)
+	if err != nil {
+		return fmt.Errorf("plan: %w", err)
+	}
+	moved, err := Transition(old, p.in.Src.KR, p.records, p.pendingList(), p.in.Frozen)
+	if err != nil {
+		return err
+	}
+	p.oldKR, p.deleted, p.records = old, moved.Deleted, moved.Records
+	p.setPending(moved.Pending)
+	p.sum.Changes, p.sum.FrozenChanged = moved.Changes, moved.FrozenChanged
+	if p.sum.FrozenChanged == nil {
+		p.sum.FrozenChanged = []string{}
+	}
+	before, err := storySpeakers(old)
+	if err != nil {
+		return err
+	}
+	after, err := storySpeakers(p.in.Src.KR)
+	if err != nil {
+		return err
+	}
+	for s := range after {
+		if !before[s] {
+			p.sum.NewSpeakers = append(p.sum.NewSpeakers, s)
+		}
+	}
+	slices.Sort(p.sum.NewSpeakers)
+	return nil
+}
+
+// storySpeakers is the set of model and speaker strings (batch.SpeakerKey) of
+// the stories and RPG dialogues of kr.
+func storySpeakers(kr *pack.Pack) (map[string]bool, error) {
+	set := map[string]bool{}
+	for _, file := range kr.Files() {
+		if !batch.IsStory(file) {
+			continue
+		}
+		doc, err := kr.Doc(file)
+		if err != nil {
+			return nil, fmt.Errorf("plan: %w", err)
+		}
+		for _, u := range units.Extract(file, doc) {
+			if s := batch.SpeakerKey(doc, u); s != "" {
+				set[s] = true
+			}
+		}
+	}
+	return set, nil
+}
+
+// claim is an adjustment that applies to a unit of the current KR.
+type claim struct {
+	a      adjust.Adjustment
+	status adjust.Status // Applied or Moved
+	// blocked: the unit's source is decided before the adjustments (steps 1
+	// and 2), so the adjustment is not in effect.
+	blocked bool
+}
+
+// resolved is where the adjustments apply.
+type resolved struct {
+	claims  map[string]*claim   // the claim that won each unit, by key
+	expired []adjust.Adjustment // the KR text is gone
+	beaten  []adjust.Adjustment // another adjustment won the unit
+}
+
+// resolveAdjustments finds the unit of every adjustment of list, which is in
+// load order. Of two that apply to one unit, the one at its own key beats one
+// that moved there, and of equals the later one wins.
+func resolveAdjustments(list []adjust.Adjustment, kr *pack.Pack) resolved {
+	r := resolved{claims: map[string]*claim{}}
+	for _, a := range list {
+		res := adjust.Resolve(a, kr)
+		if res.Status == adjust.Expired {
+			r.expired = append(r.expired, a)
+			continue
+		}
+		c := &claim{a: a, status: res.Status}
+		w, taken := r.claims[res.Key]
+		switch {
+		case !taken:
+		case w.status == adjust.Applied && c.status == adjust.Moved:
+			r.beaten = append(r.beaten, a)
+			continue
+		default:
+			r.beaten = append(r.beaten, w.a)
+		}
+		r.claims[res.Key] = c
+	}
+	return r
+}
+
+// humanRecord is the record the adjustment of c writes at key.
+func (p *planner) humanRecord(key string, c *claim) store.Record {
+	return store.Record{
+		Key: key, KRSha: c.a.KRSha, ZH: c.a.ZH, Origin: store.OriginHuman,
+		Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: batchAdjustment + c.a.File,
+	}
+}
+
+// sameRecord reports whether a and b say the same, whenever and under whatever
+// rules they were written (Since and Rules).
+func sameRecord(a, b store.Record) bool {
+	a.Since, a.Rules, b.Since, b.Rules = "", "", "", ""
+	return a.Key == b.Key && a.KRSha == b.KRSha && a.ZH == b.ZH && a.Origin == b.Origin &&
+		a.Model == b.Model && a.Batch == b.Batch && slices.Equal(a.Flags, b.Flags)
+}
+
+// settle goes through every unit of the current KR and settles steps 1 to 4
+// and 6 of Run; claims are the adjustments by the key they apply to.
+func (p *planner) settle(claims map[string]*claim) error {
+	kr := p.in.Src.KR
+	for _, name := range kr.Files() {
+		doc, err := kr.Doc(name)
+		if err != nil {
+			return fmt.Errorf("plan: %w", err)
+		}
+		f := &krFile{name: name, doc: doc, units: units.Extract(name, doc), frozen: config.MatchAny(p.in.Frozen, name)}
+		p.files = append(p.files, f)
+		al := &aligner{set: p.in.Src, file: name, kr: doc}
+		for i, u := range f.units {
+			key := units.Key(name, u.Pointer)
+			ref := unitRef{file: f, i: i, sha: units.KRSha(u.KR)}
+			p.cur[key] = ref
+			en, jp, err := al.get(u.Pointer)
+			if err != nil {
+				return err
+			}
+			p.unit(key, ref, p.in.Fields.Classify(u, en, jp).Translate, claims[key])
+		}
+	}
+	return nil
+}
+
+// unit settles one unit: translate is what the field rules say, c the
+// adjustment that applies to it (nil if none).
+func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
+	u := ref.unit()
+	rec, hasRec := p.records[key]
+	switch {
+	case !translate: // 1
+		p.settled[key] = true
+		copyRec := store.Record{Key: key, KRSha: ref.sha, ZH: u.KR, Origin: store.OriginCopy, Since: p.sum.RawTag, Rules: p.in.RulesCommit}
+		if !hasRec || !sameRecord(rec, copyRec) {
+			p.records[key] = copyRec
+			p.sum.Copy++
+		}
+		delete(p.pending, key)
+		if c != nil {
+			c.blocked = true
+		}
+		return
+	case ref.file.frozen && hasRec: // 2
+		p.settled[key] = true
+		if c != nil && !sameRecord(rec, p.humanRecord(key, c)) {
+			c.blocked = true // the record is not the adjustment's own
+		}
+		return
+	case c != nil: // 3
+		p.settled[key] = true
+		if want := p.humanRecord(key, c); !hasRec || !sameRecord(rec, want) {
+			p.records[key] = want
+		}
+		delete(p.pending, key)
+		return
+	case hasRec && rec.KRSha == ref.sha && rec.Origin != store.OriginCopy: // 4
+		return
+	}
+	// 6, unless step 5 finds the same text later.
+	if hasRec && rec.Origin == store.OriginCopy {
+		delete(p.records, key)
+	}
+	if _, queued := p.pending[key]; !queued {
+		p.pending[key] = store.PendingItem{Key: key, Reason: ReasonNew}
+	}
+}
+
+// expire reports what became of the adjustments, and queues the units of
+// those that expired (step 6).
+func (p *planner) expire(r resolved) {
+	adj := &p.sum.Adjustments
+	for key, c := range r.claims {
+		switch {
+		case c.blocked:
+			adj.Expired = append(adj.Expired, c.a.Key)
+		case c.status == adjust.Applied:
+			adj.Applied++
+		default:
+			adj.Moved = append(adj.Moved, MovedKey{From: c.a.Key, To: key})
+		}
+	}
+	for _, a := range r.beaten {
+		adj.Expired = append(adj.Expired, a.Key) // the unit has the winner's record
+	}
+	for _, a := range r.expired {
+		adj.Expired = append(adj.Expired, a.Key)
+		// A unit that steps 1 to 3 settled (another adjustment may have
+		// moved to it) has its source.
+		ref, ok := p.cur[a.Key]
+		if !ok || p.settled[a.Key] {
+			continue
+		}
+		if rec, has := p.records[a.Key]; has && rec.KRSha == ref.sha && rec.Origin != store.OriginHuman {
+			continue // translated again already
+		}
+		item, queued := p.pending[a.Key]
+		if !queued {
+			item = store.PendingItem{Key: a.Key}
+		}
+		item.Reason = ReasonAdjustmentExpired
+		item.Refs = maps.Clone(item.Refs)
+		if item.Refs == nil {
+			item.Refs = map[string]string{}
+		}
+		item.Refs[RefAdjustment] = a.ZH
+		p.pending[a.Key] = item
+	}
+	slices.Sort(adj.Expired)
+	sort.Slice(adj.Moved, func(i, j int) bool { return adj.Moved[i].From < adj.Moved[j].From })
+}
+
+// source is a translation that a unit of the same text may take.
+type source struct {
+	key  string // the unit's key; for a deleted unit, in the previous snapshot
+	file string
+	rec  store.Record
+}
+
+// reusable reports whether rec, the record of a unit whose KR text has sha,
+// may serve another unit: it is a translation of that text that nobody has
+// to look at.
+func reusable(rec store.Record, sha string) bool {
+	switch rec.Origin {
+	case store.OriginParatranz, store.OriginClaude, store.OriginHuman:
+	default:
+		return false
+	}
+	return rec.KRSha == sha && !slices.Contains(rec.Flags, store.FlagNeedsReview)
+}
+
+// reuse is step 5 of Run.
+func (p *planner) reuse() error {
+	var targets []string
+	want := map[string]bool{} // the KR texts of the targets
+	for key, it := range p.pending {
+		if it.Reason != ReasonNew && it.Reason != ReasonKRChanged {
+			continue
+		}
+		if ref, ok := p.cur[key]; ok {
+			targets = append(targets, key)
+			want[ref.unit().KR] = true
+		}
+	}
+	if len(targets) == 0 {
+		return nil
+	}
+	slices.Sort(targets)
+
+	// The candidates of every group: the current units first, in file and
+	// document order, then the deleted ones in their order.
+	sources := map[batch.TextGroup][]source{}
+	for _, f := range p.files {
+		for _, u := range f.units {
+			if !want[u.KR] {
+				continue
+			}
+			key := units.Key(f.name, u.Pointer)
+			rec, has := p.records[key]
+			if _, queued := p.pending[key]; !has || queued || !reusable(rec, p.cur[key].sha) {
+				continue
+			}
+			g := batch.TextGroupOf(p.in.Rules, f.doc, u)
+			sources[g] = append(sources[g], source{key: key, file: f.name, rec: rec})
+		}
+	}
+	oldUnits := map[string]map[string]units.Unit{} // file -> pointer -> unit
+	for _, d := range p.deleted {
+		if d.Record == nil || !want[d.KR] || !reusable(*d.Record, units.KRSha(d.KR)) {
+			continue
+		}
+		doc, err := p.oldKR.Doc(d.File)
+		if err != nil {
+			return fmt.Errorf("plan: %w", err)
+		}
+		byPointer, ok := oldUnits[d.File]
+		if !ok {
+			byPointer = map[string]units.Unit{}
+			for _, u := range units.Extract(d.File, doc) {
+				byPointer[u.Pointer] = u
+			}
+			oldUnits[d.File] = byPointer
+		}
+		g := batch.TextGroupOf(p.in.Rules, doc, byPointer[d.Pointer])
+		sources[g] = append(sources[g], source{key: units.Key(d.File, d.Pointer), file: d.File, rec: *d.Record})
+	}
+
+	for _, key := range targets {
+		ref := p.cur[key]
+		u := ref.unit()
+		g := batch.TextGroupOf(p.in.Rules, ref.file.doc, u)
+		s, ok := p.pick(sources[g], ref.file.name, g.FileBound(), u.KR)
+		if !ok {
+			continue
+		}
+		p.records[key] = store.Record{
+			Key: key, KRSha: ref.sha, ZH: s.rec.ZH, Origin: s.rec.Origin, Model: s.rec.Model,
+			Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: batchReuse + s.key,
+		}
+		delete(p.pending, key)
+		p.sum.Reused++
+	}
+	return nil
+}
+
+// pick chooses the translation a unit of file with the KR text kr takes from
+// cands: the first that passes the checks of a new translation, from the same
+// file first, and from no other file when fileBound.
+func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (source, bool) {
+	for _, sameFile := range []bool{true, false} {
+		if !sameFile && fileBound {
+			break
+		}
+		for _, c := range cands {
+			if (c.file == file) != sameFile {
+				continue
+			}
+			if !validate.HasHard(batch.CheckNew(p.in.Rules, kr, c.rec.ZH)) {
+				return c, true
+			}
+		}
+	}
+	return source{}, false
+}
+
+// applyRuleFiles applies the rewrite and request files that applied does not
+// list, adding their ids to it, and returns the queue they leave.
+func (p *planner) applyRuleFiles(applied *store.Applied, rewrites []rewrite.File, requeues []requeue.File, pending []store.PendingItem) ([]store.PendingItem, error) {
+	ok := func(key, kr, zh string) bool {
+		file, _, _ := strings.Cut(key, "|")
+		return !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, kr, zh))
+	}
+	for _, f := range rewrites {
+		if slices.Contains(applied.Rewrite, f.ID) {
+			continue
+		}
+		changed := rewrite.Apply(f, p.records, p.in.Src.KR, ok)
+		applied.Rewrite = append(applied.Rewrite, f.ID)
+		p.sum.RewriteApplied = append(p.sum.RewriteApplied, Applied{ID: f.ID, Units: len(changed)})
+	}
+	for _, f := range requeues {
+		if slices.Contains(applied.Requeue, f.ID) {
+			continue
+		}
+		out, res, err := requeue.ApplyTo(p.records, pending, p.in.Src.KR, p.in.Frozen, f.Selector, strings.TrimSpace(f.Reason))
+		if err != nil {
+			return nil, fmt.Errorf("plan: %s/%s.yaml: %w", requeue.Dir, f.ID, err)
+		}
+		pending = out
+		applied.Requeue = append(applied.Requeue, f.ID)
+		p.sum.RequeueApplied = append(p.sum.RequeueApplied, Applied{ID: f.ID, Units: res.Requeued + res.AlreadyPending})
+	}
+	return pending, nil
+}
+
+// report fills in the parts of the summary that look at the result: the new
+// files of the catch-all family and the units a batch can take now.
+func (p *planner) report(pending []store.PendingItem) {
+	if def := defaultFamily(p.in.Rules); def != "" {
+		for _, f := range p.sum.Changes.FilesAdded {
+			if p.in.Rules.Family(f) == def {
+				p.sum.NewFilesDefaultFamily = append(p.sum.NewFilesDefaultFamily, f)
+			}
+		}
+	}
+	now := time.Now()
+	for _, it := range pending {
+		if _, inKR := p.cur[it.Key]; inKR && store.LeaseFree(it, now) && !slices.Contains(it.Flags, store.FlagNeedsReview) {
+			p.sum.Pending++
+		}
+	}
+}
+
+// defaultFamily is the id of the catch-all family of the routing, the one
+// without patterns, or "" if there is none.
+func defaultFamily(r *rules.Rules) string {
+	for _, f := range r.Routing.Families {
+		if len(f.Match) == 0 {
+			return f.ID
+		}
+	}
+	return ""
+}
+
+// aligner aligns the EN and JP texts of one file to its KR units, once, on
+// first use.
+type aligner struct {
+	set    pack.Set
+	file   string
+	kr     *jsonx.Node
+	loaded bool
+	en, jp map[string]align.LangAligned
+}
+
+// get returns the EN and JP texts aligned to the unit at pointer; nil means
+// there is none.
+func (a *aligner) get(pointer string) (en, jp *align.LangAligned, err error) {
+	if !a.loaded {
+		if a.en, err = a.align(a.set.EN); err != nil {
+			return nil, nil, err
+		}
+		if a.jp, err = a.align(a.set.JP); err != nil {
+			return nil, nil, err
+		}
+		a.loaded = true
+	}
+	pick := func(m map[string]align.LangAligned) *align.LangAligned {
+		if v, ok := m[pointer]; ok {
+			return &v
+		}
+		return nil
+	}
+	return pick(a.en), pick(a.jp), nil
+}
+
+func (a *aligner) align(other *pack.Pack) (map[string]align.LangAligned, error) {
+	if !other.Has(a.file) {
+		return nil, nil
+	}
+	doc, err := other.Doc(a.file)
+	if err != nil {
+		return nil, fmt.Errorf("plan: %w", err)
+	}
+	return align.AlignLang(a.file, a.kr, doc), nil
+}

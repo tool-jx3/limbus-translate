@@ -715,3 +715,39 @@ func TestRequeueResultJSONAndText(t *testing.T) {
 		}
 	}
 }
+
+// ApplyTo does what Apply does to state the caller holds, and leaves that
+// state as it was: the caller writes the queue it returns.
+func TestApplyToWorksOnTheCallersState(t *testing.T) {
+	set := openRaw(t, map[string]string{storyFile: dataList(3), bgmFile: dataList(1)})
+	records := map[string]store.Record{
+		key(storyFile, 0): rec(key(storyFile, 0), "譯 0", store.OriginClaude),
+		key(storyFile, 1): rec(key(storyFile, 1), "譯 1", store.OriginClaude),
+		key(bgmFile, 0):   rec(key(bgmFile, 0), "歌", store.OriginParatranz),
+	}
+	// The unit already pending comes first, so its hint is set before the
+	// queue grows.
+	pending := []store.PendingItem{{Key: key(storyFile, 0), Reason: "new"}}
+	before := slices.Clone(pending)
+
+	out, res, err := ApplyTo(records, pending, set.KR, frozen, Selector{Files: []string{"StoryData/**", "BgmLyrics/**"}}, hint)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := []store.PendingItem{
+		{Key: key(storyFile, 0), Reason: "new", Hint: hint},
+		{Key: key(storyFile, 1), Reason: Reason, PrevZH: "譯 1", Hint: hint},
+	}
+	if !reflect.DeepEqual(out, want) {
+		t.Errorf("queue = %+v, want %+v", out, want)
+	}
+	if res.Requeued != 1 || res.AlreadyPending != 1 || res.SkippedFrozen != 1 {
+		t.Errorf("result = %+v, want 1 requeued, 1 already pending, 1 frozen", res)
+	}
+	if !reflect.DeepEqual(pending, before) {
+		t.Errorf("the caller's queue changed: %+v", pending)
+	}
+	if _, _, err := ApplyTo(records, pending, set.KR, frozen, Selector{}, hint); err == nil {
+		t.Errorf("ApplyTo with a selector that selects nothing: no error")
+	}
+}

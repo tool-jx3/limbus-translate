@@ -58,7 +58,7 @@ func (o NextOptions) withDefaults() (NextOptions, error) {
 //
 // A batch holds units of one file: the first MaxUnits eligible units of the
 // file in document order, or for a story file (StoryData/ and the RPG
-// dialogue, see isStory) the first StoryMaxUnits. The units need not be next
+// dialogue, see IsStory) the first StoryMaxUnits. The units need not be next
 // to each other, and a pending line that is not eligible is skipped. The next
 // batch of the file starts at the first eligible unit left. A story batch comes
 // with Context, translated lines near its units.
@@ -170,7 +170,7 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		slices.SortFunc(slots, func(a, b slot) int { return a.pos - b.pos })
 
 		limit := opt.MaxUnits
-		if isStory(c.file) {
+		if IsStory(c.file) {
 			limit = opt.StoryMaxUnits
 		}
 		chosen := firstEligible(slots, func(s slot) bool { return eligible(pending[s.idx], now) }, limit)
@@ -264,7 +264,7 @@ func assemble(
 		Context: []ContextLine{},
 	}
 	var krs, speakers []string
-	needRecords := isStory(fd.file)
+	needRecords := IsStory(fd.file)
 	for _, s := range chosen {
 		item, u := pending[s.idx], fd.units[s.pos]
 		who, known := speaker(env.Rules, fd.doc, u)
@@ -311,7 +311,7 @@ func assemble(
 	if b.Keywords, err = keywordNames(env, recs, krs); err != nil {
 		return nil, err
 	}
-	if isStory(fd.file) {
+	if IsStory(fd.file) {
 		pendingByKey := make(map[string]store.PendingItem, len(filePending))
 		for _, i := range filePending {
 			pendingByKey[pending[i].Key] = pending[i]

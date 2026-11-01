@@ -293,7 +293,7 @@ func (s *submission) unit(o OutUnit) error {
 	}
 
 	zh := validate.Normalize(kr, o.ZH)
-	issues := validate.Check(kr, zh, validate.Context{Terms: validateTerms(s.env.Rules, kr)})
+	issues := CheckNew(s.env.Rules, kr, zh)
 	existing, hasRecord := s.records[o.Key]
 	since := s.env.RawTag
 	if hasRecord && existing.Since != "" {
