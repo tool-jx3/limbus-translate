@@ -310,7 +310,8 @@ func validateTerms(r *rules.Rules, kr string) []validate.Term {
 // keywordNames builds the names this translation gives the [ID]s that occur
 // in krs. The table is read from the KR keyword files with every translated
 // name written over its KR text; a name that is still Korean is no name of
-// ours and is left out.
+// ours and is left out. Only a record made from the KR text there is now
+// counts as a translation.
 func keywordNames(env Env, records map[string]store.Record, krs []string) (map[string]string, error) {
 	want := map[string]bool{}
 	for _, kr := range krs {
@@ -334,7 +335,8 @@ func keywordNames(env Env, records map[string]store.Record, krs []string) (map[s
 		}
 		doc = doc.Clone() // the pack's tree is shared and read-only
 		for _, f := range doc.Strings() {
-			if rec, ok := records[units.Key(file, f.Pointer)]; ok && !hasFlag(rec.Flags, store.FlagNeedsReview) {
+			rec, ok := records[units.Key(file, f.Pointer)]
+			if ok && rec.KRSha == units.KRSha(f.Value) && !hasFlag(rec.Flags, store.FlagNeedsReview) {
 				if err := doc.SetString(f.Pointer, rec.ZH); err != nil {
 					return nil, fmt.Errorf("batch: %w", err)
 				}

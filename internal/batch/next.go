@@ -347,7 +347,7 @@ const (
 // right next to the batch beyond it. A line that needs review does not wait
 // for the translation that is being made now, so it is skipped like the lines
 // that are not translations (copied identifiers, the fallback text of a
-// pending unit).
+// pending unit, a record made from another KR text).
 func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingByKey map[string]store.PendingItem, chosen []slot) []ContextLine {
 	classify := func(pos int) (ContextLine, int) {
 		u := fd.units[pos]
@@ -359,7 +359,7 @@ func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingBy
 			return ContextLine{}, lineBlocked
 		}
 		rec, ok := recs[key]
-		if !ok || rec.Origin == store.OriginCopy || rec.ZH == "" {
+		if !ok || rec.Origin == store.OriginCopy || rec.ZH == "" || rec.KRSha != units.KRSha(u.KR) {
 			return ContextLine{}, lineSkip
 		}
 		id, _ := speaker(env.Rules, u)

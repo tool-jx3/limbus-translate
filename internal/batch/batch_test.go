@@ -469,7 +469,7 @@ func TestStoryRunAndContext(t *testing.T) {
 	seed(t, env, pending...)
 	recs := map[string]store.Record{}
 	for _, i := range []int{0, 1, 5, 6, 11} {
-		recs[key(file, i)] = store.Record{Key: key(file, i), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
+		recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
 	}
 	// A copy record is no translation, and the fallback text of line 3 is not
 	// one either.
@@ -519,7 +519,7 @@ func TestStoryContextLimit(t *testing.T) {
 	recs := map[string]store.Record{}
 	for i := 0; i < 30; i++ {
 		if i != 10 && i != 11 {
-			recs[key(file, i)] = store.Record{Key: key(file, i), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
+			recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
 		}
 	}
 	if err := env.Store.SaveRecords(recs); err != nil {
@@ -554,10 +554,10 @@ func TestStoryContextSkipsNeedsReviewLines(t *testing.T) {
 	seed(t, env, pending...)
 	recs := map[string]store.Record{}
 	for _, i := range []int{0, 1, 2, 3, 8} {
-		recs[key(file, i)] = store.Record{Key: key(file, i), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
+		recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
 	}
 	for _, i := range []int{4, 7} {
-		recs[key(file, i)] = store.Record{Key: key(file, i), ZH: "line", Origin: store.OriginFallback, Since: testTag, Flags: []string{store.FlagNeedsReview}}
+		recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: "line", Origin: store.OriginFallback, Since: testTag, Flags: []string{store.FlagNeedsReview}}
 	}
 	if err := env.Store.SaveRecords(recs); err != nil {
 		t.Fatal(err)
@@ -580,7 +580,7 @@ func TestOtherBatchesHaveNoContext(t *testing.T) {
 	env := newEnv(t, map[string]string{"Other.json": dataList(t, 4, "", line)}, nil, nil)
 	seed(t, env, items("Other.json", 1, 2)...)
 	if err := env.Store.SaveRecords(map[string]store.Record{
-		key("Other.json", 0): {Key: key("Other.json", 0), ZH: "舊", Origin: store.OriginParatranz, Since: testTag},
+		key("Other.json", 0): {Key: key("Other.json", 0), KRSha: units.KRSha(line(0)), ZH: "舊", Origin: store.OriginParatranz, Since: testTag},
 	}); err != nil {
 		t.Fatal(err)
 	}
@@ -616,7 +616,7 @@ func TestBatchUnitContent(t *testing.T) {
 	pending[0].Refs = map[string]string{"llc": "赋予 5 级流血", "ltm": ""}
 	seed(t, env, pending...)
 	if err := env.Store.SaveRecords(map[string]store.Record{
-		"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
+		"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", KRSha: units.KRSha("출혈"), ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
 	}); err != nil {
 		t.Fatal(err)
 	}
@@ -679,6 +679,49 @@ func TestBatchUnitContent(t *testing.T) {
 		!slices.Equal(m.Keep.IDs, []string{"[Burn]"}) {
 		t.Errorf("unit 2 keep = %+v", m.Keep)
 	}
+}
+
+// A translation made from another KR text is no translation of the text there
+// is now: it names no keyword and is no line of context.
+func TestStaleRecordsAreNotUsed(t *testing.T) {
+	t.Run("keyword names", func(t *testing.T) {
+		kr := map[string]string{
+			"Other.json": `{"dataList":[{"id":0,"content":"[Bleed] [Burn] 부여"}]}`,
+			"Bufs.json":  `{"dataList":[{"id":"Bleed","name":"출혈"},{"id":"Burn","name":"화상"}]}`,
+		}
+		env := newEnv(t, kr, nil, nil)
+		seed(t, env, items("Other.json", 0, 1)...)
+		if err := env.Store.SaveRecords(map[string]store.Record{
+			"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", KRSha: units.KRSha("출혈"), ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
+			// Made when Burn was called something else.
+			"Bufs.json|/dataList/1/name": {Key: "Bufs.json|/dataList/1/name", KRSha: units.KRSha("옛 이름"), ZH: "舊名", Origin: store.OriginParatranz, Since: testTag},
+		}); err != nil {
+			t.Fatal(err)
+		}
+		b := mustNext(t, env, NextOptions{})
+		if want := map[string]string{"Bleed": "流血"}; !reflect.DeepEqual(b.Keywords, want) {
+			t.Errorf("keywords = %v, want %v: the name of Burn was made from another KR text", b.Keywords, want)
+		}
+	})
+	t.Run("story context", func(t *testing.T) {
+		const file = "StoryData/S001A.json"
+		env := newEnv(t, map[string]string{file: dataList(t, 4, "파우스트", line)}, nil, nil)
+		seed(t, env, items(file, 3, 4)...)
+		recs := map[string]store.Record{}
+		for i := 0; i < 3; i++ {
+			recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
+		}
+		stale := recs[key(file, 1)]
+		stale.KRSha = units.KRSha("옛 대사")
+		recs[stale.Key] = stale
+		if err := env.Store.SaveRecords(recs); err != nil {
+			t.Fatal(err)
+		}
+		b := mustNext(t, env, NextOptions{})
+		if got, want := ctxKeys(b), []string{key(file, 0), key(file, 2)}; !slices.Equal(got, want) {
+			t.Errorf("context = %v, want %v: line 1 was translated from another KR text", got, want)
+		}
+	})
 }
 
 func TestSpeakerOfVoiceFile(t *testing.T) {
@@ -1432,8 +1475,8 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	pending[0].PrevKR, pending[0].PrevZH, pending[0].Draft = "p", "q", "r"
 	seed(t, env, pending...)
 	if err := env.Store.SaveRecords(map[string]store.Record{
-		"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
-		key(file, 2):                 {Key: key(file, 2), ZH: "終", Origin: store.OriginParatranz, Since: testTag},
+		"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", KRSha: units.KRSha("출혈"), ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
+		key(file, 2):                 {Key: key(file, 2), KRSha: units.KRSha("끝"), ZH: "終", Origin: store.OriginParatranz, Since: testTag},
 	}); err != nil {
 		t.Fatal(err)
 	}
