@@ -386,13 +386,13 @@ func TestCheckSkillFindsProblems(t *testing.T) {
 func TestCheckModelNames(t *testing.T) {
 	root := t.TempDir()
 	writeTestFile(t, root, ".claude/skills/demo/SKILL.md", "由 Claude 翻譯；不要寫死 Opus。\n")
-	writeTestFile(t, root, "prompts/model.md", "預設：claude-sonnet-4-5。\n")
+	writeTestFile(t, root, "prompts/model.md", "預設：claude-example-9。\n")
 	writeTestFile(t, root, "prompts/clean.md", "Claude 與 claude 可以單獨出現；opuses、haikus 不是模型名稱。\n")
 
 	problems := checkModelNames(root, ".claude/skills", "prompts")
 	want := [][2]string{
 		{".claude/skills/demo/SKILL.md", `"Opus"`},
-		{"prompts/model.md", `"claude-sonnet-4-5"`},
+		{"prompts/model.md", `"claude-example-9"`},
 	}
 	if len(problems) != len(want) {
 		t.Fatalf("got %d problems, want %d:\n%s", len(problems), len(want), strings.Join(problems, "\n"))

@@ -264,6 +264,10 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
 2. 以 2026-10-29 的官方語言包（token `l20261029_n2rX1Jku6_9sBiu9Np24`）建立 `raw` 的第一個 commit
 3. `lct bootstrap` 匯入固定版本的上游：ParatranzUploader release `1793285016` 的 `localize_files.zip`、LTM release `1792667238` 的 `Hant.zip`、LLC release `2026103002`（2026-10-30）的 `LimbusLocalize_2026103002.zip`。依下面的條件決定每個單位是直接採用 Paratranz，還是進待譯清單
 4. 在這個工作階段中，以 `translate-pending` skill 翻完待譯清單。走的是與 CI 相同的 `lct batch next／submit` 與驗證；可以多個子代理並行。這一步的花費算在 Claude Code 工作階段，不用 Console API key
+   - 第一階段的存檔點：
+     - `raw` 在 snapshot 後即 push，供中斷後接續
+     - 每一波翻譯結束、沒有批次在跑時，commit `tw` 的 `.meta` 並 push `tw`
+     - 第一階段紀錄的 `model` 記 `phase1-session`
 5. 過程中發現的規則問題，直接改進 `guides/`、`glossary/`
 6. `lct build` 產生第一版 `tw`，與 `raw` 一起 push 到 repo；第一階段結束
 7. 手動觸發一次 `rebuild.yml`，由 CI 打包並發布第一個 Release（這個工作階段無法呼叫建立 Release 的 API）
@@ -316,7 +320,7 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
   - 直到 `lct pending --count` 為 0、累計 `total_cost_usd` 達到 `LCT_MAX_USD`，或時間快到上限
   - 沒翻完的留在待譯清單，下次建置繼續；已翻完的照常打包，未翻部分用 `fallback`
 - `.claude/settings.json` 限制工具：只允許執行 `lct`、讀取 repo、寫入 `work/`
-- 模型由 variable `LCT_MODEL` 指定（預設 `claude-opus-5-5`），skill 不寫死模型
+- 模型由 repo variable `LCT_MODEL` 指定，預設值設在 variable，不寫在檔案；skill 不寫死模型
 - 每次的花費、模型、批次數寫入 `.meta/build.json` 與 job summary
 
 ### 9.3 Skills（`.claude/skills/`）
@@ -391,6 +395,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 4. **把調整歸納進規則**：Claude 提出對應的指引或詞彙修改，人同意後寫入
 5. 依新規則找出其他違反的 Claude 譯文，人同意後 `lct requeue` 寫入 `rules/requeue/<日期>-<主題>.yaml`（範圍與理由）
+   - 第一階段沒有 CI 的 `plan`，`lct requeue` 直接寫入本機待譯清單；寫 `rules/requeue/*.yaml` 由 CI 套用的方式在第二階段加入
 6. commit 到 `main` → 觸發重建（§12），CI 依調整與重翻要求更新 `tw`
 
 人工調整只在它所根據的 KR 版本有效。KR 變了就依目前規則重翻；調整背後的道理已經寫進規則，會反映在重翻結果。
@@ -572,7 +577,7 @@ docs/
 - 結構類驗證一律強制；內容類驗證對規則改變後的既有單位只警告（§10）
 - 凍結（`BgmLyrics/**`）＝既有譯文不被取代，KR 變了也不動、只報告；新加入的歌詞照一般流程翻譯
 - 規則 PR 用官方的 `anthropics/claude-code-action`；翻譯迴圈用 Claude Code CLI 的 headless 模式（§9.2）
-- 第二階段預設模型 `claude-opus-5-5`、每次建置花費上限 `LCT_MAX_USD` 預設 30 美元，都可隨時改 variable
+- 第二階段的模型由 repo variable `LCT_MODEL` 指定，預設值設在 variable，不寫在檔案；每次建置花費上限 `LCT_MAX_USD` 預設 30 美元，都可隨時改 variable
 
 ## 19. 交給實作者決定
 
