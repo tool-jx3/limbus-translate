@@ -765,3 +765,48 @@
   status: approved
   category: [city]
   notes: Enemies-a1c10p1 既有
+
+- kr: 뜯겨져 나가는 검은실밥
+  zh: 被扯落的黑線頭
+  forbidden: [黑色線頭]
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 검게 뭉친 실
+  zh: 結成黑團的線
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 검은 물 웅덩이
+  zh: 黑水窪
+  forbidden: [黑色水窪, 黑水水窪]
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 옛 포식자의 본능
+  zh: 古老捕食者的本能
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 글로스 미디엄
+  zh: 亮光媒劑
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 재단된 원단
+  zh: 裁剪好的布料
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+
+- kr: 재단되어버린
+  zh: 已被裁剪
+  forbidden: [被裁斷]
+  status: approved
+  category: [combat]
+  notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
