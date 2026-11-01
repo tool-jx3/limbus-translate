@@ -72,14 +72,16 @@ func runSnapshot(ctx *cli.Context, args []string) error {
 	}
 
 	worktree := filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw))
-	if err := gitx.EnsureWorktree(ctx.Root, rawBranch, worktree); err != nil {
+	src := raw.Source{Token: *token, CreatedAt: *createdAt}
+	// Refuse bad input before the worktree and the raw branch are created.
+	if err := userError(raw.Validate(worktree, packs, src)); err != nil {
 		return err
 	}
-	tag, changed, err := raw.Snapshot(worktree, packs, raw.Source{Token: *token, CreatedAt: *createdAt})
-	if errors.Is(err, raw.ErrInvalidInput) {
-		return cli.UserError("snapshot: " + err.Error())
+	if err := gitx.EnsureWorktree(ctx.Root, rawBranch, worktree, raw.TagPrefix); err != nil {
+		return err
 	}
-	if err != nil {
+	tag, changed, err := raw.Snapshot(worktree, packs, src)
+	if err := userError(err); err != nil {
 		return err
 	}
 	commit, err := gitx.Head(worktree)
@@ -87,4 +89,13 @@ func runSnapshot(ctx *cli.Context, args []string) error {
 		return err
 	}
 	return ctx.Emit(snapshotResult{Tag: tag, Commit: commit, Changed: changed})
+}
+
+// userError turns an invalid-input error of the raw package into a user error
+// (exit code 1) and leaves every other error as it is.
+func userError(err error) error {
+	if errors.Is(err, raw.ErrInvalidInput) {
+		return cli.UserError("snapshot: " + err.Error())
+	}
+	return err
 }

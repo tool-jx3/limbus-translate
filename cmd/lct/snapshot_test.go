@@ -128,6 +128,13 @@ func TestSnapshotUsageErrors(t *testing.T) {
 	if err := os.RemoveAll(filepath.Join(noEN, "en")); err != nil {
 		t.Fatal(err)
 	}
+	emptyKR := extractedDir(t, "{}\n")
+	if err := os.RemoveAll(filepath.Join(emptyKR, "kr")); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Mkdir(filepath.Join(emptyKR, "kr"), 0o755); err != nil {
+		t.Fatal(err)
+	}
 	tests := []struct {
 		name string
 		args []string
@@ -140,6 +147,7 @@ func TestSnapshotUsageErrors(t *testing.T) {
 		{"bad created-at", []string{"--from", from, "--token", testToken, "--created-at", "yesterday"}, "created_at"},
 		{"missing en directory", []string{"--from", noEN, "--token", testToken, "--created-at", testCreatedAt}, "en"},
 		{"missing --from directory", []string{"--from", filepath.Join(t.TempDir(), "nope"), "--token", testToken, "--created-at", testCreatedAt}, "kr"},
+		{"empty kr directory", []string{"--from", emptyKR, "--token", testToken, "--created-at", testCreatedAt}, "kr"},
 		{"extra argument", []string{"--from", from, "--token", testToken, "--created-at", testCreatedAt, "stray"}, "stray"},
 	}
 	for _, tc := range tests {
@@ -151,6 +159,40 @@ func TestSnapshotUsageErrors(t *testing.T) {
 			if !strings.Contains(err.Error(), tc.want) {
 				t.Errorf("err = %q, want it to mention %q", err, tc.want)
 			}
+			// A refused call must leave no raw worktree or orphan branch behind.
+			if _, err := os.Stat(filepath.Join(root, ".work", "raw")); !os.IsNotExist(err) {
+				t.Errorf("a user error left the raw worktree behind, stat err = %v", err)
+			}
+			if got := runGitIn(t, root, "worktree", "list", "--porcelain"); strings.Count(got, "worktree ") != 1 {
+				t.Errorf("a user error left a worktree registered:\n%s", got)
+			}
 		})
+	}
+}
+
+func TestSnapshotInFreshCloneContinuesTagNumbering(t *testing.T) {
+	upstream := snapshotRepo(t)
+	first, err := runSnapshotJSON(t, upstream, "--from", extractedDir(t, "{}\n"), "--token", testToken, "--created-at", testCreatedAt)
+	if err != nil || first.Tag != "raw-20261029" {
+		t.Fatalf("first snapshot = %+v, %v", first, err)
+	}
+
+	// The CI case: a fresh clone that has origin/raw but none of the tags.
+	clone := filepath.Join(t.TempDir(), "clone")
+	runGitIn(t, filepath.Dir(clone), "clone", "-q", "--no-tags", upstream, clone)
+	runGitIn(t, clone, "config", "user.name", "Test")
+	runGitIn(t, clone, "config", "user.email", "test@example.com")
+	runGitIn(t, clone, "config", "commit.gpgsign", "false")
+	runGitIn(t, clone, "config", "tag.gpgsign", "false")
+	if got := runGitIn(t, clone, "tag", "--list"); got != "" {
+		t.Fatalf("the clone should have no tags, has %q", got)
+	}
+
+	second, err := runSnapshotJSON(t, clone, "--from", extractedDir(t, "{\"v\":2}\n"), "--token", "l20261029_second", "--created-at", "2026-10-29 20:00:00")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !second.Changed || second.Tag != "raw-20261029.2" {
+		t.Errorf("second snapshot = %+v, want changed raw-20261029.2 (raw-20261029 exists upstream)", second)
 	}
 }

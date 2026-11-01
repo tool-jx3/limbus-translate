@@ -107,10 +107,21 @@ func realPath(p string) string {
 //   - origin has it: it is fetched and a local branch tracking it is checked out;
 //   - otherwise an orphan branch with no files is created.
 //
+// When the branch comes from origin, the tags of origin that start with any of
+// tagPrefixes are fetched too (a clone made with --no-tags, or by a CI
+// checkout, has none), so that callers who number tags by what exists see
+// them. Prefixes are literal: they may not hold glob characters. A local tag
+// that differs from origin's is an error, and is not moved.
+//
 // A dir that is non-empty and not a worktree, or a worktree on another branch,
 // is an error. An unreachable origin is an error too, because making a new
 // orphan branch then would fork the history origin already has.
-func EnsureWorktree(repo, branch, dir string) error {
+func EnsureWorktree(repo, branch, dir string, tagPrefixes ...string) error {
+	for _, prefix := range tagPrefixes {
+		if strings.ContainsAny(prefix, "*?[\\") {
+			return fmt.Errorf("gitx: tag prefix %q must not hold glob characters", prefix)
+		}
+	}
 	dir, err := filepath.Abs(dir)
 	if err != nil {
 		return err
@@ -152,7 +163,7 @@ func EnsureWorktree(repo, branch, dir string) error {
 		_, err := git(repo, "worktree", "add", "--quiet", dir, branch)
 		return err
 	}
-	onOrigin, err := fetchFromOrigin(repo, branch)
+	onOrigin, err := fetchFromOrigin(repo, branch, tagPrefixes)
 	if err != nil {
 		return err
 	}
@@ -163,10 +174,12 @@ func EnsureWorktree(repo, branch, dir string) error {
 	return addOrphanWorktree(repo, branch, dir)
 }
 
-// fetchFromOrigin brings origin's branch into refs/remotes/origin/<branch> and
-// reports whether origin has it. A repo without an origin remote has none. If
-// origin cannot be asked but the branch was fetched earlier, that copy is used.
-func fetchFromOrigin(repo, branch string) (bool, error) {
+// fetchFromOrigin brings origin's branch into refs/remotes/origin/<branch>,
+// along with origin's tags that start with any of tagPrefixes, and reports
+// whether origin has the branch. A repo without an origin remote has none. If
+// origin cannot be asked but the branch was fetched earlier, that copy is used
+// and no tags are fetched.
+func fetchFromOrigin(repo, branch string, tagPrefixes []string) (bool, error) {
 	remotes, err := git(repo, "remote")
 	if err != nil {
 		return false, err
@@ -192,7 +205,13 @@ func fetchFromOrigin(repo, branch string) (bool, error) {
 	if !found {
 		return false, nil
 	}
-	if _, err := git(repo, "fetch", "--quiet", "origin", "+"+head+":"+remoteRef); err != nil {
+	// Tag refspecs have no "+": a tag that already exists locally with other
+	// contents makes the fetch fail instead of being moved.
+	refspecs := []string{"+" + head + ":" + remoteRef}
+	for _, prefix := range tagPrefixes {
+		refspecs = append(refspecs, "refs/tags/"+prefix+"*:refs/tags/"+prefix+"*")
+	}
+	if _, err := git(repo, append([]string{"fetch", "--quiet", "origin"}, refspecs...)...); err != nil {
 		return false, err
 	}
 	return true, nil
@@ -221,26 +240,37 @@ func emptyOrphan(branch, dir string) error {
 }
 
 // CommitAll stages everything in the worktree at dir (git add -A) and commits
-// it with msg. It returns the new HEAD. If nothing changed no commit is made,
+// it with msg, unsigned whatever commit.gpgSign says (like Tag, it must run
+// unattended). It returns the new HEAD. If nothing changed no commit is made,
 // changed is false and sha is the current HEAD, or "" on a branch with no
 // commits.
 func CommitAll(dir, msg string) (sha string, changed bool, err error) {
 	if _, err := git(dir, "add", "-A"); err != nil {
 		return "", false, err
 	}
-	status, err := git(dir, "status", "--porcelain")
+	clean, err := IsClean(dir)
 	if err != nil {
 		return "", false, err
 	}
-	if strings.TrimSpace(status) == "" {
+	if clean {
 		sha, err := Head(dir)
 		return sha, false, err
 	}
-	if _, err := git(dir, "commit", "--quiet", "-m", msg); err != nil {
+	if _, err := git(dir, "commit", "--quiet", "--no-gpg-sign", "-m", msg); err != nil {
 		return "", false, err
 	}
 	sha, err = Head(dir)
 	return sha, true, err
+}
+
+// IsClean reports whether the worktree at dir has no staged, unstaged or
+// untracked changes.
+func IsClean(dir string) (bool, error) {
+	status, err := git(dir, "status", "--porcelain")
+	if err != nil {
+		return false, err
+	}
+	return strings.TrimSpace(status) == "", nil
 }
 
 // Head returns the commit HEAD points to, or "" if the branch has no commits.
@@ -269,11 +299,26 @@ func Tags(dir, prefix string) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	tags := []string{}
+	return withPrefix(out, prefix), nil
+}
+
+// TagsAt lists the tags on HEAD whose names start with prefix, sorted by name.
+func TagsAt(dir, prefix string) ([]string, error) {
+	out, err := git(dir, "tag", "--list", "--points-at", "HEAD")
+	if err != nil {
+		return nil, err
+	}
+	return withPrefix(out, prefix), nil
+}
+
+// withPrefix splits git's one-name-per-line output and keeps the names that
+// start with prefix.
+func withPrefix(out, prefix string) []string {
+	names := []string{}
 	for _, name := range strings.Split(out, "\n") {
 		if name != "" && strings.HasPrefix(name, prefix) {
-			tags = append(tags, name)
+			names = append(names, name)
 		}
 	}
-	return tags, nil
+	return names
 }

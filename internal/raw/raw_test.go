@@ -416,3 +416,97 @@ func TestSnapshotFilesMapIsComplete(t *testing.T) {
 		t.Errorf("files = %v, want %v", keys, want)
 	}
 }
+
+func TestSnapshotTagsACommitThatLostItsTag(t *testing.T) {
+	wt := rawWorktree(t)
+	packs := firstPacks(t)
+	src := Source{Token: token1, CreatedAt: created1}
+	if _, _, err := Snapshot(wt, packs, src); err != nil {
+		t.Fatal(err)
+	}
+	head := runGit(t, wt, "rev-parse", "HEAD")
+
+	// A run that committed the snapshot but died before it could tag it.
+	runGit(t, wt, "tag", "-d", "raw-20261029")
+
+	tag, changed, err := Snapshot(wt, packs, src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if tag != "raw-20261029" || !changed {
+		t.Errorf("Snapshot = %q, %v; want raw-20261029, true (the snapshot is complete only now)", tag, changed)
+	}
+	if got := runGit(t, wt, "rev-parse", "raw-20261029^{commit}"); got != head {
+		t.Errorf("the tag points to %s, want the existing commit %s", got, head)
+	}
+	if got := runGit(t, wt, "rev-list", "--count", "HEAD"); got != "1" {
+		t.Errorf("%s commits, want still 1", got)
+	}
+
+	// With the tag back in place the next run has nothing to do.
+	tag, changed, err = Snapshot(wt, packs, src)
+	if err != nil || changed || tag != "raw-20261029" {
+		t.Errorf("third Snapshot = %q, %v, %v; want raw-20261029, false, nil", tag, changed, err)
+	}
+}
+
+func TestSnapshotRedoesAnUnfinishedSnapshot(t *testing.T) {
+	wt := rawWorktree(t)
+	if _, _, err := Snapshot(wt, firstPacks(t), Source{Token: token1, CreatedAt: created1}); err != nil {
+		t.Fatal(err)
+	}
+	// A run for token2 that wrote meta/source.json and then died, before it
+	// committed anything.
+	write(t, wt, "meta/source.json", `{"tag":"raw-20261105","token":"`+token2+`","created_at":"`+created2+`","fetched_at":"2026-11-06T00:00:00Z","files":{}}`)
+
+	second := extracted(t,
+		map[string]string{"KR_A.json": "{\"changed\":true}\n"},
+		map[string]string{"EN_A.json": "{}\n"},
+		map[string]string{"JP_A.json": "{}\n"})
+	tag, changed, err := Snapshot(wt, second, Source{Token: token2, CreatedAt: created2})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !changed || tag != "raw-20261105" {
+		t.Fatalf("Snapshot = %q, %v; want raw-20261105, true (not skipped as unchanged)", tag, changed)
+	}
+	if got := runGit(t, wt, "rev-list", "--count", "HEAD"); got != "2" {
+		t.Errorf("%s commits, want 2", got)
+	}
+	if got := runGit(t, wt, "rev-parse", "raw-20261105^{commit}"); got != runGit(t, wt, "rev-parse", "HEAD") {
+		t.Errorf("tag raw-20261105 is not on HEAD")
+	}
+	if got := runGit(t, wt, "status", "--porcelain"); got != "" {
+		t.Errorf("worktree is dirty:\n%s", got)
+	}
+	last, err := LastSource(wt)
+	if err != nil || len(last.Files) != 3 {
+		t.Errorf("meta/source.json after the redo = %+v, %v; want 3 files", last, err)
+	}
+}
+
+func TestValidate(t *testing.T) {
+	packs := firstPacks(t)
+	// Validate reads the packs only: the worktree need not exist yet.
+	missingWorktree := filepath.Join(t.TempDir(), ".work", "raw")
+	if err := Validate(missingWorktree, packs, Source{Token: token1, CreatedAt: created1}); err != nil {
+		t.Errorf("valid input: %v", err)
+	}
+	for name, src := range map[string]Source{
+		"no token": {CreatedAt: created1},
+		"bad date": {Token: token1, CreatedAt: "yesterday"},
+		"no date":  {Token: token1},
+	} {
+		if err := Validate(missingWorktree, packs, src); !errors.Is(err, ErrInvalidInput) {
+			t.Errorf("%s: err = %v, want ErrInvalidInput", name, err)
+		}
+	}
+	bad := firstPacks(t)
+	bad["kr"] = t.TempDir() // no files
+	if err := Validate(missingWorktree, bad, Source{Token: token1, CreatedAt: created1}); !errors.Is(err, ErrInvalidInput) {
+		t.Errorf("empty pack: err = %v, want ErrInvalidInput", err)
+	}
+	if _, err := os.Stat(missingWorktree); !os.IsNotExist(err) {
+		t.Errorf("Validate created the worktree path, stat err = %v", err)
+	}
+}

@@ -117,21 +117,21 @@ func NextTag(existing []string, createdAt string) string {
 //
 // Each of kr/, en/ and jp/ becomes a byte-exact copy of its pack, so files
 // that are gone from the pack are removed. The commit message is
-// "raw: <token> (<created_at>)". If the worktree's meta/source.json already
-// has src.Token nothing is written: changed is false and tag is the existing
-// snapshot's tag.
+// "raw: <token> (<created_at>)".
+//
+// If the worktree's meta/source.json already has src.Token and the worktree is
+// clean, the snapshot exists and nothing is written: changed is false and tag
+// is its tag. Two leftovers of an earlier run that died are repaired instead:
+// a clean worktree whose HEAD has no tag gets the tag from meta/source.json
+// (changed is true, as the snapshot only completes now), and a dirty worktree
+// is overwritten and committed again as a new snapshot.
 //
 // Bad arguments are reported before the worktree is touched and wrap
-// ErrInvalidInput. The worktree must be a clean checkout of the raw branch
-// (gitx.EnsureWorktree); a failure while writing leaves it for git to reset.
+// ErrInvalidInput (see Validate). The worktree must be a checkout of the raw
+// branch (gitx.EnsureWorktree); a failure while writing leaves it dirty, which
+// the next call repairs.
 func Snapshot(worktree string, packs map[string]string, src Source) (tag string, changed bool, err error) {
-	if src.Token == "" {
-		return "", false, invalid("no token")
-	}
-	if _, err := tagDay(src.CreatedAt); err != nil {
-		return "", false, invalid("%v", err)
-	}
-	lists, err := listPacks(worktree, packs)
+	lists, err := validate(worktree, packs, src)
 	if err != nil {
 		return "", false, err
 	}
@@ -141,7 +141,13 @@ func Snapshot(worktree string, packs map[string]string, src Source) (tag string,
 		return "", false, err
 	}
 	if last != nil && last.Token == src.Token {
-		return last.Tag, false, nil
+		clean, err := gitx.IsClean(worktree)
+		if err != nil {
+			return "", false, err
+		}
+		if clean {
+			return completeSnapshot(worktree, last)
+		}
 	}
 
 	existing, err := gitx.Tags(worktree, TagPrefix)
@@ -187,6 +193,44 @@ func Snapshot(worktree string, packs map[string]string, src Source) (tag string,
 		return tag, true, fmt.Errorf("raw: the snapshot is committed but not tagged: %w", err)
 	}
 	return tag, true, nil
+}
+
+// completeSnapshot handles a clean worktree whose meta/source.json is for the
+// token being snapshotted again: the snapshot is done once HEAD has a tag.
+func completeSnapshot(worktree string, last *Source) (tag string, changed bool, err error) {
+	tags, err := gitx.TagsAt(worktree, TagPrefix)
+	if err != nil {
+		return "", false, err
+	}
+	if len(tags) > 0 {
+		return last.Tag, false, nil
+	}
+	// The earlier run committed but died before it could tag.
+	if err := gitx.Tag(worktree, last.Tag); err != nil {
+		return "", false, fmt.Errorf("raw: tag the committed snapshot: %w", err)
+	}
+	return last.Tag, true, nil
+}
+
+// Validate checks what Snapshot would check before it writes anything: the
+// token, created_at, and the three pack directories (all present, with files,
+// holding only regular files, and not overlapping worktree). The worktree need
+// not exist yet, so a caller can refuse bad input before creating it. Problems
+// wrap ErrInvalidInput.
+func Validate(worktree string, packs map[string]string, src Source) error {
+	_, err := validate(worktree, packs, src)
+	return err
+}
+
+// validate is Validate that also returns the file list of each pack.
+func validate(worktree string, packs map[string]string, src Source) (map[string][]string, error) {
+	if src.Token == "" {
+		return nil, invalid("no token")
+	}
+	if _, err := tagDay(src.CreatedAt); err != nil {
+		return nil, invalid("%v", err)
+	}
+	return listPacks(worktree, packs)
 }
 
 // listPacks checks the arguments of Snapshot and lists the files of each pack

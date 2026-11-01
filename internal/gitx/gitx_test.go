@@ -166,6 +166,96 @@ func TestEnsureWorktreeFromOrigin(t *testing.T) {
 	}
 }
 
+// upstreamWithTags is a repo whose raw branch has one commit tagged
+// raw-20261029 and raw-20261029.2, and whose main branch carries the unrelated
+// tag v1.
+func upstreamWithTags(t *testing.T) string {
+	t.Helper()
+	upstream := newRepo(t)
+	if err := Tag(upstream, "v1"); err != nil {
+		t.Fatal(err)
+	}
+	rawDir := filepath.Join(t.TempDir(), "raw")
+	if err := EnsureWorktree(upstream, "raw", rawDir); err != nil {
+		t.Fatal(err)
+	}
+	write(t, rawDir, "kr/KR_A.json", "{}\n")
+	if _, _, err := CommitAll(rawDir, "raw: tok"); err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"raw-20261029", "raw-20261029.2"} {
+		if err := Tag(rawDir, name); err != nil {
+			t.Fatal(err)
+		}
+	}
+	return upstream
+}
+
+func TestEnsureWorktreeFetchesTagsOfThePrefix(t *testing.T) {
+	upstream := upstreamWithTags(t)
+	// --no-tags: the clone has origin/raw but none of upstream's tags.
+	clone := filepath.Join(t.TempDir(), "clone")
+	runGit(t, filepath.Dir(clone), "clone", "-q", "--no-tags", upstream, clone)
+	configure(t, clone)
+	if runGit(t, clone, "rev-parse", "--verify", "refs/remotes/origin/raw") == "" {
+		t.Fatal("the clone should already have origin/raw")
+	}
+	if got, err := Tags(clone, ""); err != nil || len(got) != 0 {
+		t.Fatalf("the --no-tags clone has tags %v (%v)", got, err)
+	}
+
+	dir := filepath.Join(clone, ".work", "raw")
+	if err := EnsureWorktree(clone, "raw", dir, "raw-"); err != nil {
+		t.Fatal(err)
+	}
+	got, err := Tags(clone, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{"raw-20261029", "raw-20261029.2"}; !slices.Equal(got, want) {
+		t.Errorf("tags after EnsureWorktree = %v, want %v (the prefix only, not v1)", got, want)
+	}
+}
+
+func TestEnsureWorktreeFetchesNoTagsWithoutAPrefix(t *testing.T) {
+	upstream := upstreamWithTags(t)
+	clone := filepath.Join(t.TempDir(), "clone")
+	runGit(t, filepath.Dir(clone), "clone", "-q", "--no-tags", upstream, clone)
+	configure(t, clone)
+	if err := EnsureWorktree(clone, "raw", filepath.Join(clone, ".work", "raw")); err != nil {
+		t.Fatal(err)
+	}
+	if got, err := Tags(clone, ""); err != nil || len(got) != 0 {
+		t.Errorf("tags = %v (%v), want none", got, err)
+	}
+}
+
+func TestEnsureWorktreeKeepsLocalTagsOnConflict(t *testing.T) {
+	// A local tag of the same name on another commit is not moved to
+	// upstream's; the mismatch is reported.
+	upstream := upstreamWithTags(t)
+	clone := filepath.Join(t.TempDir(), "clone")
+	runGit(t, filepath.Dir(clone), "clone", "-q", "--no-tags", upstream, clone)
+	configure(t, clone)
+	runGit(t, clone, "tag", "raw-20261029", "main")
+	err := EnsureWorktree(clone, "raw", filepath.Join(clone, ".work", "raw"), "raw-")
+	if err == nil {
+		t.Fatal("a tag that differs from upstream's must be an error")
+	}
+	if got := runGit(t, clone, "rev-parse", "raw-20261029^{commit}"); got != runGit(t, clone, "rev-parse", "main") {
+		t.Errorf("the local tag was moved to %s", got)
+	}
+}
+
+func TestEnsureWorktreeRejectsGlobInTagPrefix(t *testing.T) {
+	upstream := upstreamWithTags(t)
+	clone := filepath.Join(t.TempDir(), "clone")
+	runGit(t, filepath.Dir(clone), "clone", "-q", "--no-tags", upstream, clone)
+	if err := EnsureWorktree(clone, "raw", filepath.Join(clone, ".work", "raw"), "raw-*"); err == nil {
+		t.Error("a glob character in the tag prefix must be an error")
+	}
+}
+
 func TestEnsureWorktreeOriginWithoutBranch(t *testing.T) {
 	upstream := newRepo(t)
 	clone := filepath.Join(t.TempDir(), "clone")
@@ -272,6 +362,18 @@ func TestCommitAllUnbornBranch(t *testing.T) {
 	}
 }
 
+func TestCommitAllIgnoresSigningConfig(t *testing.T) {
+	repo := newRepo(t)
+	// Signing must fail if it is attempted, whatever the global gpg.format.
+	runGit(t, repo, "config", "commit.gpgsign", "true")
+	runGit(t, repo, "config", "gpg.format", "openpgp")
+	runGit(t, repo, "config", "gpg.program", "false")
+	write(t, repo, "new.txt", "n\n")
+	if _, changed, err := CommitAll(repo, "unsigned"); err != nil || !changed {
+		t.Errorf("commit.gpgsign must not make CommitAll fail: changed = %v, err = %v", changed, err)
+	}
+}
+
 func TestCommitAllErrorCarriesGitStderr(t *testing.T) {
 	_, _, err := CommitAll(filepath.Join(t.TempDir(), "missing"), "x")
 	if err == nil {
@@ -310,6 +412,7 @@ func TestTagAndTags(t *testing.T) {
 func TestTagIgnoresSigningConfig(t *testing.T) {
 	repo := newRepo(t)
 	runGit(t, repo, "config", "tag.gpgsign", "true")
+	runGit(t, repo, "config", "gpg.format", "openpgp")
 	runGit(t, repo, "config", "gpg.program", "false")
 	if err := Tag(repo, "raw-20261029"); err != nil {
 		t.Errorf("tag.gpgsign must not make tagging fail or need an editor: %v", err)
@@ -321,5 +424,48 @@ func TestHead(t *testing.T) {
 	got, err := Head(repo)
 	if err != nil || got != runGit(t, repo, "rev-parse", "HEAD") {
 		t.Errorf("Head = %q, %v", got, err)
+	}
+}
+
+func TestIsClean(t *testing.T) {
+	repo := newRepo(t)
+	if clean, err := IsClean(repo); err != nil || !clean {
+		t.Errorf("fresh repo: IsClean = %v, %v", clean, err)
+	}
+	write(t, repo, "untracked.txt", "u\n")
+	if clean, err := IsClean(repo); err != nil || clean {
+		t.Errorf("untracked file: IsClean = %v, %v; want false", clean, err)
+	}
+	runGit(t, repo, "add", "-A")
+	if clean, err := IsClean(repo); err != nil || clean {
+		t.Errorf("staged file: IsClean = %v, %v; want false", clean, err)
+	}
+	runGit(t, repo, "commit", "-q", "-m", "more")
+	write(t, repo, "a.txt", "changed\n")
+	if clean, err := IsClean(repo); err != nil || clean {
+		t.Errorf("modified file: IsClean = %v, %v; want false", clean, err)
+	}
+}
+
+func TestTagsAt(t *testing.T) {
+	repo := newRepo(t)
+	if err := Tag(repo, "raw-20261022"); err != nil { // an older commit
+		t.Fatal(err)
+	}
+	write(t, repo, "new.txt", "n\n")
+	if _, _, err := CommitAll(repo, "second"); err != nil {
+		t.Fatal(err)
+	}
+	if got, err := TagsAt(repo, "raw-"); err != nil || len(got) != 0 {
+		t.Errorf("HEAD without tags: TagsAt = %v, %v", got, err)
+	}
+	for _, name := range []string{"raw-20261029", "v2"} {
+		if err := Tag(repo, name); err != nil {
+			t.Fatal(err)
+		}
+	}
+	got, err := TagsAt(repo, "raw-")
+	if err != nil || !slices.Equal(got, []string{"raw-20261029"}) {
+		t.Errorf("TagsAt = %v, %v; want only raw-20261029", got, err)
 	}
 }
