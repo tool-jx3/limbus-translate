@@ -465,3 +465,10 @@
   status: approved
   category: [city]
   notes: 自稱「老娘」（S930B 既有 5 處）
+
+- kr: 필름
+  zh: 底片
+  forbidden: [膠捲]
+  status: approved
+  category: [general]
+  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）
