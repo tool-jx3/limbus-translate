@@ -24,10 +24,14 @@ import (
 var (
 	// repoPathRe matches a repo-relative path in a skill's body.
 	repoPathRe = regexp.MustCompile(`\b(?:prompts|guides|schemas)/[A-Za-z0-9_./-]+`)
-	// lctRefRe matches a run of bin/lct and the one or two words after it
-	// that can name a command. "Bash(bin/lct *)" and
-	// "go build -o bin/lct ./cmd/lct" run no command.
-	lctRefRe = regexp.MustCompile(`bin/lct ([a-z][a-z-]*)(?: ([a-z][a-z-]*))?`)
+	// lctRefRe matches a run of bin/lct: the flags before the command word,
+	// then the one or two words that can name a command. "Bash(bin/lct *)"
+	// and "go build -o bin/lct ./cmd/lct" run no command.
+	lctRefRe = regexp.MustCompile(`bin/lct((?: --?[a-z][a-z-]*)*) ([a-z][a-z-]*)(?: ([a-z][a-z-]*))?`)
+	// lctGlobalFlags are the flags that may come before the command word:
+	// cli.Main takes --json anywhere, while any other flag there leaves it
+	// without a command.
+	lctGlobalFlags = []string{"--json"}
 	// modelNameRe matches a model name.
 	modelNameRe = regexp.MustCompile(`(?i)\b(opus|sonnet|haiku|fable|claude-[a-z0-9.-]+)\b`)
 )
@@ -100,12 +104,19 @@ func checkRepoPaths(root, file, body string) []string {
 }
 
 // checkLctCommands reports the runs of bin/lct in body that name no
-// registered command: neither the two words after bin/lct nor the first one
-// is a command.
+// registered command: a flag other than a global one comes before the
+// command word, or neither the two words there nor the first one is a
+// command.
 func checkLctCommands(file, body string, commands []string) []string {
 	var problems []string
 	for _, m := range lctRefRe.FindAllStringSubmatch(body, -1) {
-		if (m[2] != "" && slices.Contains(commands, m[1]+" "+m[2])) || slices.Contains(commands, m[1]) {
+		flags, first, second := strings.Fields(m[1]), m[2], m[3]
+		if i := slices.IndexFunc(flags, func(f string) bool { return !slices.Contains(lctGlobalFlags, f) }); i >= 0 {
+			problems = append(problems, fmt.Sprintf("%s: %q puts %s before the command, where only %s may come",
+				file, m[0], flags[i], strings.Join(lctGlobalFlags, ", ")))
+			continue
+		}
+		if (second != "" && slices.Contains(commands, first+" "+second)) || slices.Contains(commands, first) {
 			continue
 		}
 		problems = append(problems, fmt.Sprintf("%s: %q runs no registered lct command", file, m[0]))
@@ -152,21 +163,40 @@ func TestSkillContract(t *testing.T) {
 	}
 	commands := cli.Commands()
 	for _, p := range skills {
-		data, err := os.ReadFile(p)
-		if err != nil {
-			t.Fatal(err)
+		rel, content := readRepoFile(t, p)
+		for _, problem := range checkSkill(repoRoot, rel, content, commands) {
+			t.Error(problem)
 		}
-		rel, err := filepath.Rel(repoRoot, p)
-		if err != nil {
-			t.Fatal(err)
-		}
-		for _, problem := range checkSkill(repoRoot, filepath.ToSlash(rel), string(data), commands) {
+	}
+	// The shared prompts point at guides and schemas too.
+	prompts, err := filepath.Glob(filepath.Join(repoRoot, "prompts", "*.md"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, p := range prompts {
+		rel, content := readRepoFile(t, p)
+		for _, problem := range checkRepoPaths(repoRoot, rel, content) {
 			t.Error(problem)
 		}
 	}
 	for _, problem := range checkModelNames(repoRoot, ".claude/skills", "prompts") {
 		t.Error(problem)
 	}
+}
+
+// readRepoFile returns the slash path relative to repoRoot of the file at p,
+// and its text.
+func readRepoFile(t *testing.T, p string) (rel, content string) {
+	t.Helper()
+	data, err := os.ReadFile(p)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rel, err = filepath.Rel(repoRoot, p)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return filepath.ToSlash(rel), string(data)
 }
 
 // contractCommands stand in for the registered commands in the tests of the
@@ -181,6 +211,7 @@ func TestCheckSkillAcceptsGoodSkill(t *testing.T) {
 		"讀 `prompts/translate.md`，格式見 schemas/batch.schema.json。\n" +
 		"若 `bin/lct` 不存在，執行 `go build -o bin/lct ./cmd/lct`；允許 `Bash(bin/lct *)`。\n" +
 		"執行 `bin/lct batch next --json`、`bin/lct batch submit <id> --json` 與 `bin/lct pending --count`。\n" +
+		"`bin/lct --json batch next` 也可以。\n" +
 		"不改 `guides/`。\n"
 	if problems := checkSkill(root, ".claude/skills/demo/SKILL.md", content, contractCommands); len(problems) > 0 {
 		t.Errorf("problems in a good skill:\n%s", strings.Join(problems, "\n"))
@@ -207,6 +238,8 @@ func TestCheckSkillFindsProblems(t *testing.T) {
 		{"unknown command", front + "執行 `bin/lct frobnicate --json`\n", `"bin/lct frobnicate"`},
 		{"unknown subcommand", front + "執行 `bin/lct batch nxt <id>`\n", `"bin/lct batch nxt"`},
 		{"command group only", front + "執行 bin/lct batch <id>\n", `"bin/lct batch"`},
+		{"unknown command after a global flag", front + "執行 `bin/lct --json batch nxt`\n", `"bin/lct --json batch nxt"`},
+		{"flag that is not global before the command", front + "執行 `bin/lct --count pending`\n", "--count"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			problems := checkSkill(root, file, tc.content, contractCommands)
