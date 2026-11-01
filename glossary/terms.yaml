@@ -84,7 +84,7 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。劇情中指故事內的季節週期（例如百貨公司的季）時可譯「季」
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -215,3 +215,71 @@
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+
+- kr: 마 퓌스
+  zh: 小甜心
+  forbidden: [小可愛, 我的小跳蚤]
+  status: approved
+  category: [general]
+  notes: 法語 ma puce 的暱稱；既有繁中 7 處皆為「小甜心」
+
+- kr: 시.대.
+  zh: 時．頭
+  forbidden: [鐘．頭]
+  status: approved
+  category: [general]
+  notes: 良秀的縮略語（既有 時．頭 5 處、鐘．頭 2 處）
+
+- kr: 시. 대.
+  zh: 時．頭
+  forbidden: [鐘．頭]
+  status: approved
+  category: [general]
+  notes: 同「시.대.」，KR 有空格的寫法
+
+- kr: 참관인
+  zh: 旁聽者
+  forbidden: [參觀者]
+  status: approved
+  category: [city]
+  notes: 法庭用語
+
+- kr: 잔느
+  en: Jeanne
+  zh: 簡
+  forbidden: [讓娜, 珍妮]
+  status: approved
+  category: [city]
+  notes: 既有繁中 93 處、ScenarioModelCodes 皆為「簡」；「讓娜」是 LTM 的譯名
+
+- kr: 뷰티관
+  zh: 美妝館
+  forbidden: [美妝樓層]
+  status: approved
+  category: [city]
+  notes: 薛西弗斯百貨公司的樓層名（既有 6 處）
+
+- kr: 눈알
+  zh: 眼球
+  status: approved
+  category: [general]
+  notes: 既有繁中 77 處用「眼球」
+
+- kr: 은둔자
+  zh: 隱者
+  status: approved
+  category: [general]
+
+- kr: 수선사
+  zh: 修補達人
+  forbidden: [改衣師]
+  status: approved
+  category: [city]
+  notes: 既有 58 處
+
+- kr: 하나 협회
+  en: Hana Association
+  zh: Hana協會
+  status: approved
+  category: [city]
+  notes: 協會名沿用拉丁字母（同 Zwei協會、Cinq協會）；不可保留韓文
