@@ -43,9 +43,10 @@ var (
 
 // skillFrontmatter is the part of a SKILL.md frontmatter the contract checks.
 type skillFrontmatter struct {
-	Name         string   `yaml:"name"`
-	Description  string   `yaml:"description"`
-	AllowedTools []string `yaml:"allowed-tools"`
+	Name                   string   `yaml:"name"`
+	Description            string   `yaml:"description"`
+	DisableModelInvocation bool     `yaml:"disable-model-invocation"`
+	AllowedTools           []string `yaml:"allowed-tools"`
 }
 
 // translatePendingTools are the tools of the translate-pending skill (R35):
@@ -59,6 +60,50 @@ var translatePendingTools = []string{
 	"Edit(./work/**)",
 }
 
+// adjustTools are the tools of the adjust skill: it searches, writes an
+// adjustment or a request file through lct, lints the rules, and edits the
+// guides, the glossary and the rules (a change to a guide or a term only after
+// the person agrees). It runs requeue only in the form that writes a request
+// file, which touches no state.
+var adjustTools = []string{
+	"Bash(bin/lct search *)",
+	"Bash(bin/lct adjust add *)",
+	"Bash(bin/lct requeue --to-file *)",
+	"Bash(bin/lct rules lint*)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./guides/**)",
+	"Edit(./glossary/**)",
+	"Edit(./rules/**)",
+}
+
+// weeklyUpdateTools are the tools of the weekly-update skill: the steps of the
+// weekly pipeline up to the build, and the translation loop of translate-pending.
+// Nothing here publishes or pushes: no publish, and no git.
+var weeklyUpdateTools = []string{
+	"Bash(bin/lct fetch *)",
+	"Bash(bin/lct snapshot *)",
+	"Bash(bin/lct plan *)",
+	"Bash(bin/lct batch *)",
+	"Bash(bin/lct pending *)",
+	"Bash(bin/lct build *)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./work/**)",
+}
+
+// requiredSkills are the skills this repo must have, and the tools of each.
+// Each is run on purpose by a person or by CI, so none may be started by the
+// model on its own.
+var requiredSkills = map[string][]string{
+	"translate-pending": translatePendingTools,
+	"adjust":            adjustTools,
+	"weekly-update":     weeklyUpdateTools,
+}
+
+// goBuildTool is the one go command a skill may run: it builds bin/lct.
+const goBuildTool = "Bash(go build -o bin/lct ./cmd/lct)"
+
 // lctWordRe is one word of an lct command name.
 var lctWordRe = regexp.MustCompile(`^[a-z][a-z-]*$`)
 
@@ -69,7 +114,8 @@ var lctWordRe = regexp.MustCompile(`^[a-z][a-z-]*$`)
 //   - a Bash(bin/lct ...) that names no registered command: the words before
 //     the closing * must be a command (two words, else the first, as
 //     checkLctCommands reads them) or, as a single word, the group of
-//     two-word commands it starts (batch for batch next and batch submit).
+//     two-word commands it starts (batch for batch next and batch submit),
+//     optionally followed by flags (requeue --to-file).
 //     Bash(bin/lct *) allows every command and is refused.
 func checkPermissions(file string, entries, commands []string) []string {
 	var problems []string
@@ -89,10 +135,22 @@ func checkPermissions(file string, entries, commands []string) []string {
 			problems = append(problems, fmt.Sprintf("%s: %q allows every lct command", file, e))
 			continue
 		}
-		if slices.ContainsFunc(words, func(w string) bool { return !lctWordRe.MatchString(w) }) {
+		// The command comes first. Flags may follow it and narrow the entry
+		// ("requeue --to-file" allows the form of requeue that writes a request
+		// file and no other).
+		n := 0
+		for n < len(words) && lctWordRe.MatchString(words[n]) {
+			n++
+		}
+		if n == 0 {
 			problems = append(problems, fmt.Sprintf("%s: %q does not start with an lct command", file, e))
 			continue
 		}
+		if slices.ContainsFunc(words[n:], func(w string) bool { return !strings.HasPrefix(w, "-") }) {
+			problems = append(problems, fmt.Sprintf("%s: %q has more than a command and flags before the *", file, e))
+			continue
+		}
+		words = words[:n]
 		group := len(words) == 1 && slices.ContainsFunc(commands, func(c string) bool { return strings.HasPrefix(c, words[0]+" ") })
 		if (len(words) > 1 && slices.Contains(commands, words[0]+" "+words[1])) || slices.Contains(commands, words[0]) || group {
 			continue
@@ -184,6 +242,78 @@ func checkLctCommands(file, body string, commands []string) []string {
 	return problems
 }
 
+// checkSkillTools reports the allowed-tools of the skill at file that are not
+// of the four kinds a skill may use (bin/lct commands, the go build of bin/lct,
+// Read and Edit) and those checkPermissions refuses.
+func checkSkillTools(file string, tools, commands []string) []string {
+	var problems []string
+	for _, e := range tools {
+		tool, spec, _ := strings.Cut(e, "(")
+		switch {
+		case tool == "Read" || tool == "Edit":
+		case e == goBuildTool:
+		case tool == "Bash" && strings.HasPrefix(spec, "bin/lct "):
+		default:
+			problems = append(problems, fmt.Sprintf("%s: allowed-tools has %q; a skill may use only bin/lct commands, the go build of bin/lct, Read and Edit", file, e))
+		}
+	}
+	return append(problems, checkPermissions(file, tools, commands)...)
+}
+
+// settingsAllow is the whole allow list of .claude/settings.json: what
+// translate-pending runs, plus lct validate and lct rules lint for the person
+// who works in the repo. A skill carries its own tools, so the other skills add
+// nothing here; an entry is added to this list on purpose, in the same change as
+// the entry of the file.
+var settingsAllow = []string{
+	"Bash(bin/lct batch *)",
+	"Bash(bin/lct pending *)",
+	"Bash(bin/lct validate *)",
+	"Bash(bin/lct rules lint*)",
+	"Bash(bin/lct guide resolve *)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./work/**)",
+}
+
+// checkSettings checks the text of .claude/settings.json: that it parses, that
+// its allow list is exactly settingsAllow (as a set of entries, none twice),
+// and that no entry grants too much.
+func checkSettings(file, content string, commands []string) []string {
+	var settings struct {
+		Permissions struct {
+			Allow []string `json:"allow"`
+		} `json:"permissions"`
+	}
+	if err := json.Unmarshal([]byte(content), &settings); err != nil {
+		return []string{fmt.Sprintf("%s: does not parse: %v", file, err)}
+	}
+	allow := settings.Permissions.Allow
+	if len(allow) == 0 {
+		return []string{file + ": allows nothing: permissions.allow is missing"}
+	}
+	var problems []string
+	got := slices.Sorted(slices.Values(allow))
+	want := slices.Sorted(slices.Values(settingsAllow))
+	for i := 1; i < len(got); i++ {
+		if got[i] == got[i-1] {
+			problems = append(problems, fmt.Sprintf("%s: allows %q twice", file, got[i]))
+		}
+	}
+	got = slices.Compact(got)
+	for _, e := range got {
+		if !slices.Contains(want, e) {
+			problems = append(problems, fmt.Sprintf("%s: allows %q, which is not in the fixed list of the contract (settingsAllow)", file, e))
+		}
+	}
+	for _, e := range want {
+		if !slices.Contains(got, e) {
+			problems = append(problems, fmt.Sprintf("%s: does not allow %q, which the fixed list of the contract (settingsAllow) has", file, e))
+		}
+	}
+	return append(problems, checkPermissions(file, allow, commands)...)
+}
+
 // checkModelNames reports every model name in the files under dirs (slash
 // paths relative to root), and a directory that cannot be walked.
 func checkModelNames(root string, dirs ...string) []string {
@@ -218,14 +348,33 @@ func TestSkillContract(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !slices.Contains(skills, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md")) {
-		t.Error(".claude/skills/translate-pending/SKILL.md does not exist")
+	for name := range requiredSkills {
+		if !slices.Contains(skills, filepath.Join(repoRoot, ".claude", "skills", name, "SKILL.md")) {
+			t.Errorf(".claude/skills/%s/SKILL.md does not exist", name)
+		}
 	}
 	commands := cli.Commands()
 	for _, p := range skills {
 		rel, content := readRepoFile(t, p)
 		for _, problem := range checkSkill(repoRoot, rel, content, commands) {
 			t.Error(problem)
+		}
+		front, _, ok := splitFrontmatter(content)
+		if !ok {
+			continue // checkSkill said so
+		}
+		var fm skillFrontmatter
+		if err := yaml.Unmarshal([]byte(front), &fm); err != nil {
+			continue // checkSkill said so
+		}
+		for _, problem := range checkSkillTools(rel, fm.AllowedTools, commands) {
+			t.Error(problem)
+		}
+		if _, required := requiredSkills[fm.Name]; required && !fm.DisableModelInvocation {
+			t.Errorf("%s: no disable-model-invocation: true; only a person or CI starts this skill", rel)
+		}
+		if lines := strings.Count(content, "\n"); lines > skillMaxLines {
+			t.Errorf("%s: %d lines, want at most %d: a skill is the flow, the rules are in guides/ and glossary/", rel, lines, skillMaxLines)
 		}
 	}
 	// The shared prompts point at guides and schemas too.
@@ -244,24 +393,84 @@ func TestSkillContract(t *testing.T) {
 	}
 }
 
+// skillMaxLines is the length of a SKILL.md the repo allows (the spec allows
+// 500; the flow of a skill here fits in 200).
+const skillMaxLines = 200
+
 // The repo's .claude/settings.json grants what the skills run and nothing
 // broader: other lct commands, and files outside the repo, ask a person.
 func TestSettingsContract(t *testing.T) {
-	_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "settings.json"))
-	var settings struct {
-		Permissions struct {
-			Allow []string `json:"allow"`
-		} `json:"permissions"`
-	}
-	if err := json.Unmarshal([]byte(content), &settings); err != nil {
-		t.Fatalf(".claude/settings.json does not parse: %v", err)
-	}
-	if len(settings.Permissions.Allow) == 0 {
-		t.Fatal(".claude/settings.json allows nothing: permissions.allow is missing")
-	}
-	for _, problem := range checkPermissions(".claude/settings.json", settings.Permissions.Allow, cli.Commands()) {
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "settings.json"))
+	for _, problem := range checkSettings(file, content, cli.Commands()) {
 		t.Error(problem)
 	}
+}
+
+// The allow list is exact: an entry that is added, removed or doubled fails,
+// even one checkPermissions finds nothing wrong with (bin/lct build is a
+// registered command and scoped), because it is a grant nobody decided on.
+func TestSettingsContractIsExact(t *testing.T) {
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "settings.json"))
+	commands := cli.Commands()
+	if problems := checkSettings(file, content, commands); len(problems) > 0 {
+		t.Fatalf("the settings of the repo already fail:\n%s", strings.Join(problems, "\n"))
+	}
+	// withAllow returns the settings with the allow list changed by change.
+	withAllow := func(t *testing.T, change func([]string) []string) string {
+		t.Helper()
+		var settings map[string]any
+		if err := json.Unmarshal([]byte(content), &settings); err != nil {
+			t.Fatal(err)
+		}
+		perms := settings["permissions"].(map[string]any)
+		var allow []string
+		for _, e := range perms["allow"].([]any) {
+			allow = append(allow, e.(string))
+		}
+		perms["allow"] = change(allow)
+		data, err := json.Marshal(settings)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return string(data)
+	}
+
+	for _, tc := range []struct {
+		name   string
+		change func([]string) []string
+		want   string
+	}{
+		{"an entry added", func(a []string) []string { return append(a, "Bash(bin/lct build *)") }, `allows "Bash(bin/lct build *)"`},
+		{"an entry removed", func(a []string) []string {
+			return slices.DeleteFunc(a, func(e string) bool { return e == "Read(./**)" })
+		}, `does not allow "Read(./**)"`},
+		{"an entry twice", func(a []string) []string { return append(a, a[0]) }, "twice"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			problems := checkSettings(file, withAllow(t, tc.change), commands)
+			if !slices.ContainsFunc(problems, func(p string) bool { return strings.Contains(p, tc.want) && strings.Contains(p, file) }) {
+				t.Errorf("problems = %q, want one naming %s and %s", problems, file, tc.want)
+			}
+		})
+	}
+	t.Run("an added entry is the only problem", func(t *testing.T) {
+		problems := checkSettings(file, withAllow(t, func(a []string) []string { return append(a, "Bash(bin/lct build *)") }), commands)
+		if len(problems) != 1 {
+			t.Errorf("problems = %q, want exactly one", problems)
+		}
+	})
+	t.Run("the order does not matter", func(t *testing.T) {
+		problems := checkSettings(file, withAllow(t, func(a []string) []string { slices.Reverse(a); return a }), commands)
+		if len(problems) > 0 {
+			t.Errorf("problems in a reordered list = %q, want none", problems)
+		}
+	})
+	t.Run("no allow list", func(t *testing.T) {
+		problems := checkSettings(file, `{"permissions":{}}`, commands)
+		if len(problems) != 1 || !strings.Contains(problems[0], "allows nothing") {
+			t.Errorf("problems = %q, want one saying nothing is allowed", problems)
+		}
+	})
 }
 
 // A unit can carry a hint (lct requeue): the schema declares it and the
@@ -290,29 +499,112 @@ func TestBatchSchemaDeclaresHint(t *testing.T) {
 	}
 }
 
-// The translate-pending skill may use exactly the R35 tools.
-func TestTranslatePendingTools(t *testing.T) {
-	_, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
+// checkExactTools fails the test unless the skill's allowed-tools are exactly
+// want, in that order.
+func checkExactTools(t *testing.T, skill string, want []string) {
+	t.Helper()
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", skill, "SKILL.md"))
 	front, _, ok := splitFrontmatter(content)
 	if !ok {
-		t.Fatal("translate-pending/SKILL.md has no frontmatter")
+		t.Fatalf("%s has no frontmatter", file)
 	}
 	var fm skillFrontmatter
 	if err := yaml.Unmarshal([]byte(front), &fm); err != nil {
 		t.Fatal(err)
 	}
-	if !slices.Equal(fm.AllowedTools, translatePendingTools) {
-		t.Errorf("allowed-tools = %q, want %q", fm.AllowedTools, translatePendingTools)
+	if !slices.Equal(fm.AllowedTools, want) {
+		t.Errorf("%s: allowed-tools = %q, want %q", file, fm.AllowedTools, want)
 	}
-	for _, problem := range checkPermissions("translate-pending/SKILL.md", fm.AllowedTools, cli.Commands()) {
+	for _, problem := range checkSkillTools(file, fm.AllowedTools, cli.Commands()) {
 		t.Error(problem)
 	}
 }
 
+// The translate-pending skill may use exactly the R35 tools.
+func TestTranslatePendingTools(t *testing.T) {
+	checkExactTools(t, "translate-pending", translatePendingTools)
+}
+
+// The adjust skill writes rules for a person to commit to main; it may not
+// reach the pending list, the records or the branches that only CI writes.
+func TestAdjustTools(t *testing.T) {
+	checkExactTools(t, "adjust", adjustTools)
+}
+
+// The weekly-update skill is a rehearsal: it may build the pack on this
+// machine and nothing else.
+func TestWeeklyUpdateTools(t *testing.T) {
+	checkExactTools(t, "weekly-update", weeklyUpdateTools)
+}
+
+// weekly-update says plainly that nothing leaves the machine: it pushes
+// neither raw, tw nor main, and never publishes. The tools it has cannot do
+// either (see TestWeeklyUpdateTools); its text says so to the person and to
+// the model.
+func TestWeeklyUpdateSaysItStaysLocal(t *testing.T) {
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "weekly-update", "SKILL.md"))
+	_, body, ok := splitFrontmatter(content)
+	if !ok {
+		t.Fatalf("%s has no frontmatter", file)
+	}
+	for _, part := range []string{"git push", "lct publish", "`raw`", "`tw`", "`main`", "`out/`"} {
+		if !strings.Contains(body, part) {
+			t.Errorf("%s does not mention %s", file, part)
+		}
+	}
+	if strings.Contains(body, "bin/lct publish") {
+		t.Errorf("%s writes bin/lct publish as a command to run", file)
+	}
+}
+
+// The adjust skill reaches main only through the person: it says to commit and
+// not to push raw or tw.
+func TestAdjustSaysWhereItEnds(t *testing.T) {
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "adjust", "SKILL.md"))
+	_, body, ok := splitFrontmatter(content)
+	if !ok {
+		t.Fatalf("%s has no frontmatter", file)
+	}
+	for _, part := range []string{"commit", "`main`", "`raw`", "`tw`"} {
+		if !strings.Contains(body, part) {
+			t.Errorf("%s does not mention %s", file, part)
+		}
+	}
+}
+
+func TestCheckSkillTools(t *testing.T) {
+	commands := []string{"batch next", "batch submit", "requeue", "search"}
+	good := []string{"Bash(bin/lct search *)", "Bash(bin/lct requeue --to-file *)", goBuildTool, "Read(./**)", "Edit(./rules/**)"}
+	if problems := checkSkillTools("SKILL.md", good, commands); len(problems) > 0 {
+		t.Errorf("problems in a good list:\n%s", strings.Join(problems, "\n"))
+	}
+	for _, tc := range []struct{ entry, want string }{
+		{"Bash(git push *)", "only bin/lct"},
+		{"Bash(rm -rf *)", "only bin/lct"},
+		{"Bash(go build ./...)", "only bin/lct"},
+		{"Bash(go test *)", "only bin/lct"},
+		{"Write(./rules/**)", "only bin/lct"},
+		{"WebFetch(domain:example.com)", "only bin/lct"},
+		{"Glob", "only bin/lct"},
+		{"Bash(bin/lct *)", "every lct command"},
+		{"Bash(bin/lct publish *)", "no registered"},
+		{"Read", "without a scope"},
+		{"Edit(**)", "without a scope"},
+	} {
+		t.Run(tc.entry, func(t *testing.T) {
+			problems := checkSkillTools("SKILL.md", []string{tc.entry}, commands)
+			if len(problems) == 0 || !strings.Contains(strings.Join(problems, "\n"), tc.want) || !strings.Contains(problems[0], "SKILL.md") {
+				t.Errorf("problems = %q, want one naming SKILL.md and %q", problems, tc.want)
+			}
+		})
+	}
+}
+
 func TestCheckPermissions(t *testing.T) {
-	commands := []string{"batch next", "batch submit", "bootstrap", "pending", "rules lint", "validate"}
+	commands := []string{"batch next", "batch submit", "bootstrap", "pending", "requeue", "rules lint", "validate"}
 	good := []string{
 		"Bash(bin/lct batch *)", "Bash(bin/lct pending *)", "Bash(bin/lct validate *)", "Bash(bin/lct rules lint*)",
+		"Bash(bin/lct requeue --to-file *)", "Bash(bin/lct batch --json *)",
 		"Bash(bin/lct batch submit *)", "Bash(go build -o bin/lct ./cmd/lct)", "Read(./**)", "Edit(./work/**)",
 		"Write(./work/**)", "WebFetch(domain:example.com)", "Glob",
 	}
@@ -323,6 +615,9 @@ func TestCheckPermissions(t *testing.T) {
 		{"Bash(bin/lct *)", "every lct command"},
 		{"Bash(bin/lct)", "every lct command"},
 		{"Bash(bin/lct --json *)", "does not start with an lct command"},
+		{"Bash(bin/lct requeue ./x *)", "more than a command and flags"},
+		{"Bash(bin/lct requeue --to-file x *)", "more than a command and flags"},
+		{"Bash(bin/lct publish --to-file *)", "no registered"},
 		{"Bash(bin/lct frobnicate *)", "no registered"},
 		{"Bash(bin/lct batch nxt *)", "no registered"},
 		{"Bash(bin/lct fields *)", "no registered"}, // no fields command in this list
