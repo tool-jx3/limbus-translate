@@ -67,15 +67,24 @@ func langStyle(tok string) (quote, prefix, suffix string, ok bool) {
 	return m[1], m[2], m[3], true
 }
 
+// rubyOpenKey is the comparison form of every opening <ruby=…> tag.
+const rubyOpenKey = "\x00ruby"
+
 // comparableTag returns the form of tag token tok, which Tags returned, in
 // which tags compare equal when they mean the same: a closing tag is its
-// name, and a per-language style tag has its language code left out and its
-// suffix lower-cased. The result is only for comparing, and a per-language
-// style tag's form starts with a NUL, which no tag token does, so no tag in a
-// text can be equal to it.
+// name, an opening <ruby=…> tag is its name only (its value is the reading
+// shown above the text, which KR writes in Korean and a translation must
+// replace), and a per-language style tag has its language code left out and
+// its suffix lower-cased. The result is only for comparing, and the form of a
+// ruby or per-language style tag starts with a NUL, which no tag token does,
+// so no tag in a text can be equal to it.
 func comparableTag(tok string) string {
-	if name, closing := tagName(tok); closing {
+	name, closing := tagName(tok)
+	switch {
+	case closing:
 		return "</" + name + ">"
+	case name == "ruby":
+		return rubyOpenKey
 	}
 	if quote, _, suffix, ok := langStyle(tok); ok {
 		return langStyleKey + quote + strings.ToLower(suffix) + quote

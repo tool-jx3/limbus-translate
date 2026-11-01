@@ -106,18 +106,25 @@ func HasHard(issues []Issue) bool {
 }
 
 var (
-	// danteRe matches a whole line of Dante's dialogue, which is wrapped in
-	// <…>. The second character excludes tags such as <color=#fff> and </b>.
-	danteRe = regexp.MustCompile(`(?s)^<[^A-Za-z0-9/].*>$`)
-
 	hangulRe   = regexp.MustCompile(`[\x{AC00}-\x{D7A3}\x{1100}-\x{11FF}\x{3130}-\x{318F}]`)
 	asciiEllRe = regexp.MustCompile(`\.{3,}`)
 )
 
 // IsDanteLine reports whether s, ignoring blanks at both ends, is a whole line
-// of Dante's dialogue: wrapped in <…> that is not a tag.
+// of Dante's dialogue: wrapped in <…> without starting with a tag or a <0>
+// placeholder. Any other character can follow the <, a letter or a digit
+// included (<N사에서 …>, <0.06%면 …>).
 func IsDanteLine(s string) bool {
-	return danteRe.MatchString(strings.TrimSpace(s))
+	s = strings.TrimSpace(s)
+	if !strings.HasPrefix(s, "<") || !strings.HasSuffix(s, ">") {
+		return false
+	}
+	for _, re := range []*regexp.Regexp{tagRe, placeholderRe} {
+		if loc := re.FindStringIndex(s); loc != nil && loc[0] == 0 {
+			return false // <color=#fff>文字</color>, </b>, <0>
+		}
+	}
+	return true
 }
 
 // Check validates translation zh of the Korean text kr. It does not change zh;
@@ -170,9 +177,9 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 
 // tagDiff compares the tags of kr and zh: opening tags by their full text,
 // closing tags by name. Closing tags are written as </name> in the result.
-// The language of a per-language style tag does not count (see comparableTag),
-// but the result names the tags as written: the KR tag for a missing one, the
-// zh tag for an extra one.
+// The language of a per-language style tag and the value of a <ruby=…> tag do
+// not count (see comparableTag), but the result names the tags as written: the
+// KR tag for a missing one, the zh tag for an extra one.
 //
 // zh may close a tag that KR opens and never closes (the lyric <style="dkr">,
 // which the official EN text closes at the end of the line): per tag name, as

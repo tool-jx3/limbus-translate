@@ -418,6 +418,109 @@ func TestIsDanteLine(t *testing.T) {
 	}
 }
 
+// A line of Dante's dialogue may start with a letter or a digit after the <:
+// only a whole tag (or a placeholder such as <0>) at the start rules it out.
+func TestIsDanteLineLatinStart(t *testing.T) {
+	tests := []struct {
+		s    string
+		want bool
+	}{
+		{"<N사에서 살아온, 그러다 추방된… 내게 조언을 아끼지 않고 기억력이 좋은…>", true},
+		{"<T사 기술청 직원들이 여기까지 쫓아온 거야?>", true},
+		{"<0.06%면, 괜찮지 않을까?>", true},
+		{"<A안…?>", true},
+		{"<LCCB…?>", true},
+		{"<8급?>", true},
+		{"<…?!>", true},
+		{" <N사…> ", true},
+		{"<N사…\n그렇지?>", true},
+		{"<color=#fff>文字</color>", false},
+		{"<b>粗體</b>", false},
+		{"<b>粗體</b>를 <i>쓴다</i>", false},
+		{"<style=\"dkr\">별", false},
+		{"<sprite=3> 별이라>", false},
+		{"<br>", false},
+		{"<0>", false},
+		{"<1> 별이라 <2>", false},
+		{"<color=#fff>N사</color>", false},
+		{"N사에서 살아온", false},
+		{"별이라… 아픈 건 아니지?", false},
+		{"<N사에서 살아온", false},
+		{"N사에서 살아온>", false},
+	}
+	for _, tt := range tests {
+		if got := IsDanteLine(tt.s); got != tt.want {
+			t.Errorf("IsDanteLine(%q) = %v, want %v", tt.s, got, tt.want)
+		}
+	}
+}
+
+// The reading in <ruby=…> is shown above the text, so it is translated with
+// it. Only the tag name counts for the opening tag; </ruby> and every other
+// tag are compared as before.
+func TestRubyValueIsTranslatable(t *testing.T) {
+	const kr = `베라, <ruby=천퇴성>삽시호</ruby>.`
+	if issues := Check(kr, `貝拉，<ruby=天退星>插翅虎</ruby>。`, Context{}); HasHard(issues) {
+		t.Errorf("a translated ruby value is rejected: %+v", issues)
+	}
+	// Keeping the Korean reading is not tag-mismatch either; hangul reports it.
+	issues := Check(kr, `貝拉，<ruby=천퇴성>插翅虎</ruby>。`, Context{})
+	if _, ok := find(issues, CodeTagMismatch); ok {
+		t.Errorf("an untranslated ruby value is reported as tag-mismatch: %+v", issues)
+	}
+	if _, ok := find(issues, CodeHangul); !ok {
+		t.Errorf("a Korean ruby value is not reported as hangul: %+v", issues)
+	}
+	tests := []struct {
+		name, kr, zh, diff string
+	}{
+		{"opening ruby missing", kr, `貝拉，插翅虎</ruby>。`, ": missing <ruby=천퇴성>"},
+		{"closing ruby missing", kr, `貝拉，<ruby=天退星>插翅虎。`, ": missing </ruby>"},
+		{"both missing", kr, `貝拉，插翅虎。`, ": missing </ruby> <ruby=천퇴성>"},
+		{"ruby replaced by b", kr, `貝拉，<b>插翅虎</ruby>。`, ": missing <ruby=천퇴성>; unexpected <b>"},
+		{"ruby replaced by b pair", kr, `貝拉，<b>插翅虎</b>。`, ": missing </ruby> <ruby=천퇴성>; unexpected </b> <b>"},
+		{"ruby added where KR has none", `베라, 삽시호.`, `貝拉，<ruby=天退星>插翅虎</ruby>。`, ": unexpected </ruby> <ruby=天退星>"},
+		{"one of two rubies missing", `<ruby=가>나</ruby> <ruby=다>라</ruby>`, `<ruby=甲>乙</ruby> 丙</ruby>`, ": missing <ruby=가>"},
+		{"closing name still counts", kr, `貝拉，<ruby=天退星>插翅虎</b>。`, ": missing </ruby>; unexpected </b>"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch)
+			if !ok {
+				t.Fatalf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+			if want := "tags differ from KR" + tc.diff + "; opening tags"; !strings.Contains(is.Message, want) {
+				t.Errorf("message %q does not contain %q", is.Message, want)
+			}
+		})
+	}
+}
+
+// Only <ruby> is exempt from the attribute comparison.
+func TestRubyExemptionIsOnlyForRuby(t *testing.T) {
+	tests := []struct{ name, kr, zh string }{
+		{"color value", `<color=#f00>가</color>`, `<color=#0f0>甲</color>`},
+		{"size value", `<size=20>가</size>`, `<size=30>甲</size>`},
+		{"look-alike name", `<rubyx=가>나</rubyx>`, `<rubyx=甲>乙</rubyx>`},
+		{"ruby name inside a prefix", `<xruby=가>나</xruby>`, `<xruby=甲>乙</xruby>`},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			if _, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); !ok {
+				t.Errorf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+		})
+	}
+}
+
+// The comparison form of an opening ruby tag must not be writable in a
+// translation.
+func TestRubyComparisonKeyCannotBeForged(t *testing.T) {
+	if _, ok := find(Check(`<ruby=가>나</ruby>`, "\x00ruby</ruby>", Context{}), CodeTagMismatch); !ok {
+		t.Error("a NUL-prefixed text stands in for an opening ruby tag")
+	}
+}
+
 // The language code of a lyric style tag differs between KR, EN and JP, and the
 // Chinese community packs write djp, so the three count as the same tag.
 func TestLanguageStyleTagsAreEquivalent(t *testing.T) {
