@@ -969,3 +969,64 @@ func TestWriteMetaFileRejectsBadNames(t *testing.T) {
 		t.Error("a rejected name wrote a file")
 	}
 }
+
+func TestAppendNotes(t *testing.T) {
+	root := t.TempDir()
+	s := Open(root)
+	if notes, err := s.LoadNotes(); err != nil || len(notes) != 0 {
+		t.Fatalf("LoadNotes of a store without notes = %v, %v, want none", notes, err)
+	}
+	first := []Note{
+		{Key: "StoryData/S1.json|/dataList/1/content", Batch: "b-1", KRSha: "c1", Model: "m", Note: "「船長」譯法待定 <b> & 其他"},
+		{Key: "A.json|/dataList/0/name", Batch: "b-1", KRSha: "c2", Model: "m", Note: "新詞：가 → 甲"},
+	}
+	added, err := s.AppendNotes(first)
+	if err != nil || added != 2 {
+		t.Fatalf("AppendNotes = %d, %v, want 2", added, err)
+	}
+	// One JSON object per line, in the order given, without HTML escaping.
+	want := `{"key":"StoryData/S1.json|/dataList/1/content","batch":"b-1","kr_sha":"c1","model":"m","note":"「船長」譯法待定 <b> & 其他"}` + "\n" +
+		`{"key":"A.json|/dataList/0/name","batch":"b-1","kr_sha":"c2","model":"m","note":"新詞：가 → 甲"}` + "\n"
+	path := filepath.Join(root, ".meta", "notes.jsonl")
+	if got := readFile(t, path); got != want {
+		t.Errorf("notes.jsonl =\n%s\nwant\n%s", got, want)
+	}
+
+	// The same key, batch and text again is not stored twice; another text,
+	// or the same text from another batch, is.
+	again := []Note{
+		first[0],
+		{Key: first[0].Key, Batch: "b-1", KRSha: "c1", Model: "other model", Note: first[0].Note}, // same note, other model
+		{Key: first[0].Key, Batch: "b-1", KRSha: "c1", Model: "m", Note: "改用「船長」"},
+		{Key: first[0].Key, Batch: "b-2", KRSha: "c1", Model: "m", Note: first[0].Note},
+		{Key: first[0].Key, Batch: "b-1", KRSha: "c1", Model: "m", Note: "改用「船長」"}, // twice in one call
+	}
+	added, err = s.AppendNotes(again)
+	if err != nil || added != 2 {
+		t.Fatalf("AppendNotes again = %d, %v, want 2", added, err)
+	}
+	got, err := s.LoadNotes()
+	if err != nil {
+		t.Fatal(err)
+	}
+	wantNotes := append(append([]Note(nil), first...), again[2], again[3])
+	if !reflect.DeepEqual(got, wantNotes) {
+		t.Errorf("notes = %+v, want %+v", got, wantNotes)
+	}
+	if added, err := s.AppendNotes(nil); err != nil || added != 0 {
+		t.Errorf("AppendNotes(nil) = %d, %v", added, err)
+	}
+
+	// A bad key is refused and nothing is written.
+	before := readFile(t, path)
+	if _, err := s.AppendNotes([]Note{{Key: "no pointer", Batch: "b", Note: "x"}}); err == nil {
+		t.Error("AppendNotes with an invalid key = nil error")
+	}
+	if readFile(t, path) != before {
+		t.Error("a refused AppendNotes changed notes.jsonl")
+	}
+	// The notes file is no record file.
+	if recs, err := s.LoadRecords(); err != nil || len(recs) != 0 {
+		t.Errorf("LoadRecords = %v, %v, want no records", recs, err)
+	}
+}

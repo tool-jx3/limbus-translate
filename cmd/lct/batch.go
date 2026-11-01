@@ -256,8 +256,8 @@ type submitReport struct {
 
 func (r submitReport) String() string {
 	var b strings.Builder
-	fmt.Fprintf(&b, "batch %s: %d accepted, %d rejected, %d with warnings, %d need review, %d not submitted\n",
-		r.Batch, len(r.Accepted), len(r.Rejected), len(r.Warnings), len(r.NeedsReview), len(r.Released))
+	fmt.Fprintf(&b, "batch %s: %d accepted, %d rejected, %d with warnings, %d need review, %d not submitted, %d notes kept\n",
+		r.Batch, len(r.Accepted), len(r.Rejected), len(r.Warnings), len(r.NeedsReview), len(r.Released), r.Notes)
 	list := func(title string, items []batch.Rejection) {
 		if len(items) == 0 {
 			return

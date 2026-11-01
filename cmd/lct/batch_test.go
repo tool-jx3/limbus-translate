@@ -112,6 +112,7 @@ type submitOut struct {
 	}
 	NeedsReview []string `json:"needs_review"`
 	Released    []string
+	Notes       int
 }
 
 func runSubmitJSON(t *testing.T, root string, args ...string) (submitOut, string, error) {
@@ -247,7 +248,7 @@ func TestBatchSubmit(t *testing.T) {
 	}
 	id := *next.Batch
 	writeOut(t, root, id,
-		batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"},
+		batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力", Note: "裂傷改用流血？"},
 		batch.OutUnit{Key: batchKey1, ZH: "默爾索說了話"}, // a foreign name: accepted with a warning
 	)
 
@@ -262,7 +263,13 @@ func TestBatchSubmit(t *testing.T) {
 	if len(got.Warnings) != 1 || got.Warnings[0].Key != batchKey1 || got.Warnings[0].Errors[0].Code != "foreign-name" {
 		t.Errorf("warnings = %+v, want foreign-name on %s", got.Warnings, batchKey1)
 	}
-	for _, field := range []string{`"accepted"`, `"rejected"`, `"warnings"`, `"needs_review"`, `"released"`} {
+	if got.Notes != 1 {
+		t.Errorf("notes = %d, want 1", got.Notes)
+	}
+	if notes, err := st.LoadNotes(); err != nil || len(notes) != 1 || notes[0].Key != batchKey0 || notes[0].Model != "env-model" || notes[0].Batch != id {
+		t.Errorf("stored notes = %+v, %v, want the note of %s by env-model", notes, err, batchKey0)
+	}
+	for _, field := range []string{`"accepted"`, `"rejected"`, `"warnings"`, `"needs_review"`, `"released"`, `"notes"`} {
 		if !strings.Contains(raw, field) {
 			t.Errorf("output lacks %s:\n%s", field, raw)
 		}
@@ -351,7 +358,7 @@ func TestBatchSubmitRejectionIsAFinding(t *testing.T) {
 	if !errors.Is(err, cli.ErrFindings) {
 		t.Fatalf("text run: err = %v, want cli.ErrFindings", err)
 	}
-	for _, want := range []string{"1 rejected", batchKey0, "id-mismatch"} {
+	for _, want := range []string{"1 rejected", batchKey0, "id-mismatch", "0 notes"} {
 		if !strings.Contains(out.String(), want) {
 			t.Errorf("text output lacks %q:\n%s", want, out)
 		}

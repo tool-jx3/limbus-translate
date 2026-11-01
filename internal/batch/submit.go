@@ -46,6 +46,9 @@ type SubmitResult struct {
 	// Released are the units of the batch that were not submitted and were
 	// still leased to it: their lease ended and they are free again.
 	Released []string `json:"released"`
+	// Notes is how many translator notes were added to .meta/notes.jsonl.
+	// A note already stored for the same unit and batch is not counted again.
+	Notes int `json:"notes"`
 }
 
 // Rejection is a unit with the issues found in it. It is written as
@@ -98,6 +101,10 @@ func foreignNameIssues(zh string, names []string) []validate.Issue {
 // in out lose b's lease. A unit that left KR, or whose KR changed, is
 // rejected without counting an attempt and loses b's lease.
 //
+// The note of every unit of b in out, accepted or not, is kept in
+// .meta/notes.jsonl with the batch, the sha of the KR text b was cut with and
+// the model (see store.AppendNotes); notes on keys outside b are dropped.
+//
 // Everything happens in one store lock. maxAttempts 0 means DefaultMaxAttempts.
 func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*SubmitResult, error) {
 	if err := env.check(); err != nil {
@@ -147,6 +154,11 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 		}
 		s.releaseOmitted()
 
+		// Notes first: storing one twice is harmless, and a failure here
+		// leaves the rest unchanged.
+		if res.Notes, err = env.Store.AppendNotes(s.notes); err != nil {
+			return err
+		}
 		kept := make([]store.PendingItem, 0, len(pending))
 		for i, it := range pending {
 			if !s.removed[i] {
@@ -182,6 +194,7 @@ type submission struct {
 	seen    map[string]bool   // keys of the batch's units already answered
 	removed map[int]bool      // pending indexes to drop
 	ld      *loader
+	notes   []store.Note // the notes of the batch's units, in out order
 }
 
 func (s *submission) reject(key string, issues ...validate.Issue) {
@@ -209,6 +222,11 @@ func (s *submission) unit(o OutUnit) error {
 	if !inBatch {
 		s.reject(o.Key, protocolIssue(CodeNotInBatch, "%s is not a unit of batch %s", o.Key, s.batch.ID))
 		return nil
+	}
+	if o.Note != "" {
+		s.notes = append(s.notes, store.Note{
+			Key: o.Key, Batch: s.batch.ID, KRSha: units.KRSha(batchKR), Model: s.model, Note: o.Note,
+		})
 	}
 	if s.seen[o.Key] {
 		s.reject(o.Key, protocolIssue(CodeDuplicateKey, "%s was submitted more than once; only the first is used", o.Key))

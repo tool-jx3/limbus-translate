@@ -768,6 +768,67 @@ func TestSubmitAcceptReject(t *testing.T) {
 	}
 }
 
+// Notes reach the store, those of rejected units too, once per key, batch
+// and text.
+func TestSubmitKeepsNotes(t *testing.T) {
+	kr := map[string]string{"Other.json": `{"dataList":[
+ {"id":0,"content":"[Bleed] 위력 5 부여"},
+ {"id":1,"content":"[Burn] 부여"},
+ {"id":2,"content":"그냥"}
+]}`}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, items("Other.json", 0, 3)...)
+	b := mustNext(t, env, NextOptions{})
+	out := []OutUnit{
+		{Key: key("Other.json", 0), ZH: "賦予5級[Bleed]威力", Note: "「威力」依詞彙表"},
+		{Key: key("Other.json", 1), ZH: "賦予燒傷", Note: "[Burn] 不知道放哪裡"}, // rejected: [Burn] is missing
+		{Key: key("Other.json", 2), ZH: "就這樣"},                         // no note
+		{Key: "Nowhere.json|/dataList/0/content", ZH: "x", Note: "not a unit of the batch"},
+	}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 2 || len(res.Rejected) != 2 {
+		t.Fatalf("result = %+v, want 2 accepted and 2 rejected", res)
+	}
+	if res.Notes != 2 {
+		t.Errorf("notes = %d, want 2", res.Notes)
+	}
+	want := []store.Note{
+		{Key: key("Other.json", 0), Batch: b.ID, KRSha: units.KRSha("[Bleed] 위력 5 부여"), Model: "test-model", Note: "「威力」依詞彙表"},
+		{Key: key("Other.json", 1), Batch: b.ID, KRSha: units.KRSha("[Burn] 부여"), Model: "test-model", Note: "[Burn] 不知道放哪裡"},
+	}
+	notes, err := env.Store.LoadNotes()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(notes, want) {
+		t.Errorf("notes = %+v, want %+v", notes, want)
+	}
+
+	// The whole file again: the notes already stored are not added twice.
+	res, err = Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.Notes != 0 {
+		t.Errorf("notes of the resubmission = %d, want 0", res.Notes)
+	}
+	if notes, err := env.Store.LoadNotes(); err != nil || !reflect.DeepEqual(notes, want) {
+		t.Errorf("notes after resubmitting = %+v, %v, want %+v", notes, err, want)
+	}
+
+	// The fix of the rejected unit comes with a new note: it is added.
+	res, err = Submit(env, b, []OutUnit{{Key: key("Other.json", 1), ZH: "賦予[Burn]", Note: "補上 [Burn]"}}, "test-model", 3)
+	if err != nil || len(res.Accepted) != 1 || res.Notes != 1 {
+		t.Fatalf("fix: %+v, %v, want accepted with 1 note", res, err)
+	}
+	if notes, _ := env.Store.LoadNotes(); len(notes) != 3 || notes[2].Note != "補上 [Burn]" {
+		t.Errorf("notes = %+v, want the new note last", notes)
+	}
+}
+
 func hasCode(issues []validate.Issue, code string) bool {
 	return slices.ContainsFunc(issues, func(is validate.Issue) bool { return is.Code == code })
 }
@@ -1206,7 +1267,7 @@ func TestResultJSONShape(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if want := `{"accepted":[],"rejected":[],"warnings":[],"needs_review":[],"released":[]}`; string(data) != want {
+	if want := `{"accepted":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0}`; string(data) != want {
 		t.Errorf("result JSON = %s, want %s", data, want)
 	}
 
