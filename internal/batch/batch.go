@@ -11,7 +11,6 @@ package batch
 import (
 	"errors"
 	"fmt"
-	"path"
 	"slices"
 	"strings"
 	"time"
@@ -35,10 +34,6 @@ const (
 	DefaultMaxAttempts   = 3
 	DefaultLeaseTTL      = 120 * time.Minute
 )
-
-// storyPrefix starts the files of story scripts, which are cut into runs of
-// consecutive lines and come with context.
-const storyPrefix = "StoryData/"
 
 // contextLines is how many translated lines of context a story batch gets on
 // each side.
@@ -148,7 +143,7 @@ func (e Env) now() time.Time {
 }
 
 // isStory reports whether file is a story script.
-func isStory(file string) bool { return strings.HasPrefix(file, storyPrefix) }
+func isStory(file string) bool { return strings.HasPrefix(file, align.StoryPrefix) }
 
 // hasFlag reports whether flags holds flag.
 func hasFlag(flags []string, flag string) bool { return slices.Contains(flags, flag) }
@@ -312,10 +307,6 @@ func validateTerms(r *rules.Rules, kr string) []validate.Term {
 	return terms
 }
 
-// keywordFilePrefixes are the files whose dataList holds keyword names (the
-// same families names.KeywordTable reads).
-var keywordFilePrefixes = []string{"BattleKeywords", "Bufs"}
-
 // keywordNames builds the names this translation gives the [ID]s that occur
 // in krs. The table is read from the KR keyword files with every translated
 // name written over its KR text; a name that is still Korean is no name of
@@ -334,8 +325,7 @@ func keywordNames(env Env, records map[string]store.Record, krs []string) (map[s
 
 	docs := map[string]*jsonx.Node{}
 	for _, file := range env.Src.KR.Files() {
-		base := path.Base(file)
-		if !slices.ContainsFunc(keywordFilePrefixes, func(p string) bool { return strings.HasPrefix(base, p) }) {
+		if !names.IsKeywordFile(file) {
 			continue
 		}
 		doc, err := env.Src.KR.Doc(file)

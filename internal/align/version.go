@@ -104,7 +104,7 @@ func AlignVersions(file string, old, new *jsonx.Node) []VersionMatch {
 // entriesHaveIDs reports whether the dataList strings of file's two versions
 // match by entry id, as described on AlignVersions.
 func entriesHaveIDs(file string, old, new *jsonx.Node) bool {
-	if strings.HasPrefix(file, storyPrefix) {
+	if strings.HasPrefix(file, StoryPrefix) {
 		return false
 	}
 	for _, doc := range []*jsonx.Node{old, new} {

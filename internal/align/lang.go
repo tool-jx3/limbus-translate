@@ -26,10 +26,10 @@ type LangAligned struct {
 	Method Method `json:"method"`
 }
 
-// storyPrefix starts the file names of story scripts. Their ids are line
+// StoryPrefix starts the file names of story scripts. Their ids are line
 // numbers, so they never select id mode; sequence mode still uses them, but
 // only to break ties between equally long matches.
-const storyPrefix = "StoryData/"
+const StoryPrefix = "StoryData/"
 
 // AlignLang matches the strings of kr to the strings of other, another
 // language's version of file. The result is keyed by KR pointer; a KR string
@@ -149,7 +149,7 @@ func idOf(n *jsonx.Node) (string, bool) {
 // pairEntries pairs the dataList elements of KR and the other file, as
 // described on AlignLang.
 func pairEntries(file string, kr, other []*jsonx.Node, krEntries, otherEntries []entry) ([][2]int, Method) {
-	if !strings.HasPrefix(file, storyPrefix) {
+	if !strings.HasPrefix(file, StoryPrefix) {
 		if pairs, ok := pairByID(kr, other); ok && len(pairs)*10 >= len(kr)*9 {
 			return pairs, MethodID
 		}

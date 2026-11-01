@@ -7,9 +7,9 @@
   "required": ["id", "family", "file", "guides", "glossary", "keywords", "units", "context"],
   "properties": {
     "id": {
-      "description": "Batch id: the UTC time (yyyymmddThhmmss) and the first 8 hex digits of the sha256 of the first unit's key.",
+      "description": "Batch id: the UTC time (yyyymmddThhmmss) and the first 8 hex digits of the sha256 of the first unit's key, with -2, -3... appended when that id was already in use.",
       "type": "string",
-      "pattern": "^[0-9]{8}T[0-9]{6}-[0-9a-f]{8}$"
+      "pattern": "^[0-9]{8}T[0-9]{6}-[0-9a-f]{8}(-[1-9][0-9]*)?$"
     },
     "family": {
       "description": "File family of the batch's file (guides/routing.yaml).",

@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"maps"
 	"slices"
+	"strconv"
 	"strings"
 	"time"
 
@@ -16,28 +16,26 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name:  "pending",
-		Usage: "list the units waiting for translation [--count]",
+		Usage: "list the units waiting for translation, or with --count how many are not waiting for a person",
 		Run:   runPending,
 	})
 }
 
-// pendingCount is what "pending --count" prints.
+// pendingCount is what "pending --count" prints. As text it is one number,
+// the units that translation can still finish: the pending ones that do not
+// wait for a person. Leased units count, since they are being translated.
 type pendingCount struct {
 	Total       int            `json:"total"`
 	ByReason    map[string]int `json:"by_reason"`
 	Leased      int            `json:"leased"`
 	NeedsReview int            `json:"needs_review"`
+	// Available are the units Next can hand out now: not leased and not
+	// flagged needs_review.
+	Available int `json:"available"`
 }
 
 func (c pendingCount) String() string {
-	var b strings.Builder
-	fmt.Fprintf(&b, "pending: %d\n", c.Total)
-	for _, reason := range slices.Sorted(maps.Keys(c.ByReason)) {
-		fmt.Fprintf(&b, "  %-20s %d\n", reason, c.ByReason[reason])
-	}
-	fmt.Fprintf(&b, "leased: %d\n", c.Leased)
-	fmt.Fprintf(&b, "needs_review: %d\n", c.NeedsReview)
-	return b.String()
+	return strconv.Itoa(c.Total - c.NeedsReview)
 }
 
 // pendingList is what "pending" prints: the items, a line each as text.
@@ -89,11 +87,16 @@ func runPending(ctx *cli.Context, args []string) error {
 	c := pendingCount{Total: len(items), ByReason: map[string]int{}}
 	for _, it := range items {
 		c.ByReason[it.Reason]++
-		if !store.LeaseFree(it, now) {
+		leased := !store.LeaseFree(it, now)
+		review := slices.Contains(it.Flags, store.FlagNeedsReview)
+		if leased {
 			c.Leased++
 		}
-		if slices.Contains(it.Flags, store.FlagNeedsReview) {
+		if review {
 			c.NeedsReview++
+		}
+		if !leased && !review {
+			c.Available++
 		}
 	}
 	return ctx.Emit(c)

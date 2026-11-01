@@ -24,6 +24,11 @@ const (
 	CodeDuplicateKey = "duplicate-key"
 	// CodeKRMissing: the unit has left KR since the batch was cut.
 	CodeKRMissing = "kr-missing"
+	// CodeKRChanged: the KR text of the unit is not the one the batch was
+	// cut with, so the translation answers an old text.
+	CodeKRChanged = "kr-changed"
+	// CodeNeedsReview: the unit ran out of attempts and waits for a person.
+	CodeNeedsReview = "needs-review"
 )
 
 // SubmitResult says what Submit did with the units it was given. The lists
@@ -38,12 +43,16 @@ type SubmitResult struct {
 	// NeedsReview are the rejected units that ran out of attempts and now
 	// stand in with their fallback text.
 	NeedsReview []string `json:"needs_review"`
+	// Released are the units of the batch that were not submitted and were
+	// still leased to it: their lease ended and they are free again.
+	Released []string `json:"released"`
 }
 
-// Rejection is a unit with the issues found in it.
+// Rejection is a unit with the issues found in it. It is written as
+// {key, errors} (spec 9.1); the warnings of accepted units have the same form.
 type Rejection struct {
 	Key    string           `json:"key"`
-	Issues []validate.Issue `json:"issues"`
+	Issues []validate.Issue `json:"errors"`
 }
 
 // protocolIssue is a hard issue about how a unit was submitted, not about its
@@ -76,19 +85,25 @@ func foreignNameIssues(zh string, names []string) []validate.Issue {
 // Submit takes the translations out for batch b.
 //
 // Only units of b are processed, each once; the others are rejected. A unit
-// is processed while it is still pending and its lease is free or b's.
-// Its text is normalized and checked as a new translation. Without a hard
-// issue it becomes a record (origin claude) and leaves the queue. With one,
-// its attempts grow and its lease ends; at maxAttempts the unit gets a
-// fallback record (the EN text, else KR) flagged needs_review and stays in
-// the queue flagged. Units of b that are not in out only lose b's lease.
+// is processed while it is still pending, its lease is free or b's, it is not
+// flagged needs_review, and its KR text is the one b was cut with. Its text is
+// normalized and checked as a new translation. Without a hard issue it becomes
+// a record (origin claude) and leaves the queue. With one, its attempts grow
+// and it keeps its lease, so the owner of b can send the fix; at maxAttempts
+// the lease ends and the unit gets a fallback record (the EN text, else KR)
+// flagged needs_review and stays in the queue flagged.
+//
+// A unit that b already got accepted is accepted again without being written
+// again, so the whole out file can be sent once more. Units of b that are not
+// in out lose b's lease. A unit that left KR, or whose KR changed, is
+// rejected without counting an attempt and loses b's lease.
 //
 // Everything happens in one store lock. maxAttempts 0 means DefaultMaxAttempts.
 func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*SubmitResult, error) {
 	if err := env.check(); err != nil {
 		return nil, err
 	}
-	if b == nil {
+	if b == nil || b.ID == "" {
 		return nil, errors.New("batch: no batch to submit")
 	}
 	if maxAttempts < 0 {
@@ -99,7 +114,7 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 	}
 
 	res := &SubmitResult{
-		Accepted: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{},
+		Accepted: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{},
 	}
 	err := env.Store.WithLock(func() error {
 		records, err := env.Store.LoadRecords()
@@ -114,7 +129,7 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 			env: env, batch: b, model: model, maxAttempts: maxAttempts,
 			records: records, pending: pending, res: res,
 			index:   make(map[string]int, len(pending)),
-			inBatch: make(map[string]bool, len(b.Units)),
+			batchKR: make(map[string]string, len(b.Units)),
 			seen:    map[string]bool{},
 			removed: map[int]bool{},
 			ld:      newLoader(env),
@@ -123,7 +138,7 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 			s.index[it.Key] = i
 		}
 		for _, u := range b.Units {
-			s.inBatch[u.Key] = true
+			s.batchKR[u.Key] = u.KR
 		}
 		for _, o := range out {
 			if err := s.unit(o); err != nil {
@@ -162,10 +177,10 @@ type submission struct {
 	pending []store.PendingItem
 	res     *SubmitResult
 
-	index   map[string]int  // key -> index in pending
-	inBatch map[string]bool // keys of the batch's units
-	seen    map[string]bool // keys of the batch's units already answered
-	removed map[int]bool    // pending indexes to drop
+	index   map[string]int    // key -> index in pending
+	batchKR map[string]string // keys of the batch's units -> the KR text they were cut with
+	seen    map[string]bool   // keys of the batch's units already answered
+	removed map[int]bool      // pending indexes to drop
 	ld      *loader
 }
 
@@ -179,9 +194,19 @@ func (s *submission) owns(i int) bool {
 	return l == nil || l.Batch == s.batch.ID
 }
 
+// release ends the lease of pending item i if it is the batch's.
+func (s *submission) release(i int) bool {
+	if l := s.pending[i].Lease; l != nil && l.Batch == s.batch.ID {
+		s.pending[i].Lease = nil
+		return true
+	}
+	return false
+}
+
 // unit handles one translation.
 func (s *submission) unit(o OutUnit) error {
-	if !s.inBatch[o.Key] {
+	batchKR, inBatch := s.batchKR[o.Key]
+	if !inBatch {
 		s.reject(o.Key, protocolIssue(CodeNotInBatch, "%s is not a unit of batch %s", o.Key, s.batch.ID))
 		return nil
 	}
@@ -192,8 +217,23 @@ func (s *submission) unit(o OutUnit) error {
 	s.seen[o.Key] = true
 
 	i, pending := s.index[o.Key]
-	if !pending || !s.owns(i) {
-		s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is no longer leased to batch %s; it was translated, requeued or handed to another batch", o.Key, s.batch.ID))
+	if !pending {
+		// Sending the whole out file again must not fail on what was
+		// accepted the first time.
+		if rec, ok := s.records[o.Key]; ok && rec.Origin == store.OriginClaude && rec.Batch == s.batch.ID {
+			s.res.Accepted = append(s.res.Accepted, o.Key)
+			return nil
+		}
+		s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is no longer pending; it was translated or requeued since batch %s was cut", o.Key, s.batch.ID))
+		return nil
+	}
+	if !s.owns(i) {
+		s.reject(o.Key, protocolIssue(CodeLeaseLost, "%s is leased to another batch now, not to %s", o.Key, s.batch.ID))
+		return nil
+	}
+	item := &s.pending[i]
+	if hasFlag(item.Flags, store.FlagNeedsReview) {
+		s.reject(o.Key, protocolIssue(CodeNeedsReview, "%s ran out of attempts and waits for a person; it takes no more translations", o.Key))
 		return nil
 	}
 
@@ -210,10 +250,16 @@ func (s *submission) unit(o OutUnit) error {
 		pos, inKR = fd.index[pointer]
 	}
 	if !inKR {
+		s.release(i)
 		s.reject(o.Key, protocolIssue(CodeKRMissing, "%s is no longer in the KR text", o.Key))
 		return nil
 	}
 	kr := fd.units[pos].KR
+	if kr != batchKR {
+		s.release(i)
+		s.reject(o.Key, protocolIssue(CodeKRChanged, "the KR text of %s changed since batch %s was cut; the unit will be handed out again with the new text", o.Key, s.batch.ID))
+		return nil
+	}
 
 	zh := validate.Normalize(kr, o.ZH)
 	issues := validate.Check(kr, zh, validate.Context{Terms: validateTerms(s.env.Rules, kr)})
@@ -223,14 +269,13 @@ func (s *submission) unit(o OutUnit) error {
 		since = existing.Since
 	}
 
-	item := &s.pending[i]
 	if validate.HasHard(issues) {
 		s.reject(o.Key, issues...)
 		item.Attempts++
-		item.Lease = nil
 		if item.Attempts < s.maxAttempts {
-			return nil
+			return nil // the lease stays, for the fix
 		}
+		item.Lease = nil
 		text, err := fallbackText(fd, pointer, kr)
 		if err != nil {
 			return err
@@ -279,15 +324,16 @@ func fallbackText(fd *fileData, pointer, kr string) (string, error) {
 	return kr, nil
 }
 
-// releaseOmitted ends the lease of the batch's units that were not answered.
-// A lease that has passed to another batch is not ours to end.
+// releaseOmitted ends the lease of the batch's units that were not answered
+// and reports them in Released. A lease that has passed to another batch is
+// not ours to end.
 func (s *submission) releaseOmitted() {
 	for _, u := range s.batch.Units {
 		if s.seen[u.Key] {
 			continue
 		}
-		if i, ok := s.index[u.Key]; ok && s.pending[i].Lease != nil && s.pending[i].Lease.Batch == s.batch.ID {
-			s.pending[i].Lease = nil
+		if i, ok := s.index[u.Key]; ok && s.release(i) {
+			s.res.Released = append(s.res.Released, u.Key)
 		}
 	}
 }

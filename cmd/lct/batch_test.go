@@ -35,6 +35,9 @@ const (
 ]}`
 )
 
+// cliNow is the clock of the batch commands in these tests.
+var cliNow = time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC)
+
 var (
 	batchKey0 = "Sample.json|/dataList/0/content"
 	batchKey1 = "Sample.json|/dataList/1/content"
@@ -45,6 +48,12 @@ var (
 // units. The foreign name 默爾索 is registered.
 func batchRepo(t *testing.T) (root string, st *store.Store) {
 	t.Helper()
+	// A fixed clock: batch ids and lease times do not depend on when the
+	// test runs.
+	oldNow := batchNow
+	batchNow = func() time.Time { return cliNow }
+	t.Cleanup(func() { batchNow = oldNow })
+
 	root = t.TempDir()
 	writeTestFile(t, root, "lct.yaml", batchYAML)
 	for _, f := range []string{"glossary/terms.yaml", "guides/routing.yaml"} {
@@ -95,11 +104,11 @@ type submitOut struct {
 	Accepted []string
 	Rejected []struct {
 		Key    string
-		Issues []struct{ Code, Message string }
+		Errors []struct{ Code, Message string }
 	}
 	Warnings []struct {
 		Key    string
-		Issues []struct{ Code string }
+		Errors []struct{ Code string }
 	}
 	NeedsReview []string `json:"needs_review"`
 	Released    []string
@@ -250,7 +259,7 @@ func TestBatchSubmit(t *testing.T) {
 	if got.Batch != id || len(got.Accepted) != 2 || len(got.Rejected) != 0 {
 		t.Fatalf("output = %s", raw)
 	}
-	if len(got.Warnings) != 1 || got.Warnings[0].Key != batchKey1 || got.Warnings[0].Issues[0].Code != "foreign-name" {
+	if len(got.Warnings) != 1 || got.Warnings[0].Key != batchKey1 || got.Warnings[0].Errors[0].Code != "foreign-name" {
 		t.Errorf("warnings = %+v, want foreign-name on %s", got.Warnings, batchKey1)
 	}
 	for _, field := range []string{`"accepted"`, `"rejected"`, `"warnings"`, `"needs_review"`, `"released"`} {
@@ -321,18 +330,24 @@ func TestBatchSubmitRejectionIsAFinding(t *testing.T) {
 	if len(got.Accepted) != 1 || len(got.Rejected) != 1 || got.Rejected[0].Key != batchKey0 {
 		t.Fatalf("output = %s", raw)
 	}
-	if is := got.Rejected[0].Issues; len(is) == 0 || is[0].Code != "id-mismatch" || !strings.Contains(is[0].Message, "[Laceration]") {
-		t.Errorf("rejected issues = %+v, want id-mismatch naming [Laceration]", is)
+	if is := got.Rejected[0].Errors; len(is) == 0 || is[0].Code != "id-mismatch" || !strings.Contains(is[0].Message, "[Laceration]") {
+		t.Errorf("rejected errors = %+v, want id-mismatch naming [Laceration]", is)
+	}
+	// Spec 9.1: {key, errors}.
+	if !strings.Contains(raw, `"errors"`) || strings.Contains(raw, `"issues"`) {
+		t.Errorf("a rejection should be {key, errors}:\n%s", raw)
+	}
+	// The rejected unit keeps its lease: its owner sends the fix.
+	item, _ := pendingItem(t, st, batchKey0)
+	if item.Attempts != 1 || item.Lease == nil || item.Lease.Batch != id {
+		t.Errorf("pending item = %+v, want attempts 1 and the lease of %s", item, id)
 	}
 
-	// The text form tells the translator what to fix.
-	next2, _, err := runNextJSON(t, root)
-	if err != nil {
-		t.Fatal(err)
-	}
-	writeOut(t, root, *next2.Batch, batch.OutUnit{Key: batchKey0, ZH: "還是沒有"})
+	// Again, as text. Unit 1 was accepted and is not in this file; it is not
+	// "not submitted".
+	writeOut(t, root, id, batch.OutUnit{Key: batchKey0, ZH: "還是沒有"})
 	ctx, out := testCtx(t, root, "", false)
-	err = runBatchSubmit(ctx, []string{*next2.Batch})
+	err = runBatchSubmit(ctx, []string{id})
 	if !errors.Is(err, cli.ErrFindings) {
 		t.Fatalf("text run: err = %v, want cli.ErrFindings", err)
 	}
@@ -341,9 +356,73 @@ func TestBatchSubmitRejectionIsAFinding(t *testing.T) {
 			t.Errorf("text output lacks %q:\n%s", want, out)
 		}
 	}
-	item, _ := pendingItem(t, st, batchKey0)
-	if item.Attempts != 2 {
+	if strings.Contains(out.String(), "not submitted (") {
+		t.Errorf("the accepted unit is listed as not submitted:\n%s", out)
+	}
+	if item, _ := pendingItem(t, st, batchKey0); item.Attempts != 2 {
 		t.Errorf("attempts = %d, want 2", item.Attempts)
+	}
+
+	// The whole file again, with the fix: nothing is rejected.
+	writeOut(t, root, id,
+		batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"},
+		batch.OutUnit{Key: batchKey1, ZH: "有人說了話"},
+	)
+	got, raw, err = runSubmitJSON(t, root, id)
+	if err != nil {
+		t.Fatalf("resend: %v\n%s", err, raw)
+	}
+	if len(got.Accepted) != 2 || len(got.Rejected) != 0 || len(got.Released) != 0 {
+		t.Errorf("resend output = %s, want both accepted and nothing released", raw)
+	}
+	if pending, _ := st.LoadPending(); len(pending) != 0 {
+		t.Errorf("pending = %+v, want empty", pending)
+	}
+}
+
+func TestBatchNextKeepsBatchIDsUnique(t *testing.T) {
+	root, _ := batchRepo(t)
+	first, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Submit nothing: both units are free again.
+	writeOut(t, root, *first.Batch)
+	if got, raw, err := runSubmitJSON(t, root, *first.Batch); err != nil || len(got.Released) != 2 {
+		t.Fatalf("empty submit: %v\n%s", err, raw)
+	}
+
+	// Same second, same first unit: the id would be the same, and the file of
+	// the first batch is still there.
+	second, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := *first.Batch + "-2"; *second.Batch != want {
+		t.Fatalf("second id = %s, want %s", *second.Batch, want)
+	}
+	for _, id := range []string{*first.Batch, *second.Batch} {
+		if _, err := os.Stat(filepath.Join(root, "work", "batches", id+".json")); err != nil {
+			t.Errorf("batch file of %s: %v", id, err)
+		}
+	}
+	// The first file was not overwritten.
+	var b batch.Batch
+	data, err := os.ReadFile(filepath.Join(root, "work", "batches", *first.Batch+".json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(data, &b); err != nil || b.ID != *first.Batch {
+		t.Errorf("first batch file holds %q, %v", b.ID, err)
+	}
+
+	// The suffixed id can be submitted.
+	writeOut(t, root, *second.Batch,
+		batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"},
+		batch.OutUnit{Key: batchKey1, ZH: "有人說了話"},
+	)
+	if got, raw, err := runSubmitJSON(t, root, *second.Batch); err != nil || len(got.Accepted) != 2 {
+		t.Errorf("submit %s: %v\n%s", *second.Batch, err, raw)
 	}
 }
 
@@ -434,23 +513,24 @@ func TestPending(t *testing.T) {
 		ByReason    map[string]int `json:"by_reason"`
 		Leased      int            `json:"leased"`
 		NeedsReview int            `json:"needs_review"`
+		Available   int            `json:"available"`
 	}
 	if err := json.Unmarshal(out.Bytes(), &count); err != nil {
 		t.Fatalf("output is not JSON: %v\n%s", err, out)
 	}
-	if count.Total != 5 || count.Leased != 1 || count.NeedsReview != 1 ||
+	if count.Total != 5 || count.Leased != 1 || count.NeedsReview != 1 || count.Available != 3 ||
 		count.ByReason["new"] != 2 || count.ByReason["kr-changed"] != 2 || count.ByReason["paratranz-repair"] != 1 {
-		t.Errorf("count = %+v, want 5 pending, 1 leased (the other lease ran out), 1 needs_review", count)
+		t.Errorf("count = %+v, want 5 pending, 1 leased (the other lease ran out), 1 needs_review, 3 available", count)
 	}
 
 	ctx, out = testCtx(t, root, "", false)
 	if err := runPending(ctx, []string{"--count"}); err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{"pending: 5", "new", "kr-changed", "leased: 1", "needs_review: 1"} {
-		if !strings.Contains(out.String(), want) {
-			t.Errorf("text count lacks %q:\n%s", want, out)
-		}
+	// One number: the pending units that are not waiting for a person (the
+	// leased one counts).
+	if out.String() != "4\n" {
+		t.Errorf("text count = %q, want \"4\\n\"", out)
 	}
 
 	ctx, out = testCtx(t, root, "", true)
@@ -481,7 +561,7 @@ func TestPendingEmptyStore(t *testing.T) {
 	if err := runPending(ctx, []string{"--count"}); err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(out.String(), `"total": 0`) || !strings.Contains(out.String(), `"by_reason": {}`) {
+	if !strings.Contains(out.String(), `"total": 0`) || !strings.Contains(out.String(), `"by_reason": {}`) || !strings.Contains(out.String(), `"available": 0`) {
 		t.Errorf("count of a store without state:\n%s", out)
 	}
 	ctx, out = testCtx(t, root, "", true)

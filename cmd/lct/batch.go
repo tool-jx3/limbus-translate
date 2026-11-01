@@ -41,8 +41,12 @@ func init() {
 	})
 }
 
-// batchIDRe is the shape of a batch id; it keeps the id from naming a path.
-var batchIDRe = regexp.MustCompile(`^\d{8}T\d{6}-[0-9a-f]{8}$`)
+// batchIDRe is the shape of a batch id (batch.Next may append "-2", "-3"...
+// to keep it unique); it keeps the id from naming a path.
+var batchIDRe = regexp.MustCompile(`^\d{8}T\d{6}-[0-9a-f]{8}(-[1-9][0-9]*)?$`)
+
+// batchNow is the clock of the batch commands; the tests replace it.
+var batchNow = time.Now
 
 // openStore opens the store of the tw worktree.
 func openStore(ctx *cli.Context) *store.Store {
@@ -100,7 +104,7 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 		Rules:        r,
 		RawTag:       src.Tag,
 		ForeignNames: foreign,
-		Now:          time.Now(),
+		Now:          batchNow(),
 	}, r, nil
 }
 
@@ -154,6 +158,11 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 		MaxUnits:      cfg.MaxUnits,
 		StoryMaxUnits: cfg.StoryMaxUnits,
 		LeaseTTL:      time.Duration(cfg.LeaseMinutes) * time.Minute,
+		// A batch file of an earlier batch, or its translations, must not be
+		// overwritten or picked up by a new batch with the same id.
+		IDTaken: func(id string) bool {
+			return pathExists(batchPath(ctx, id, ".json")) || pathExists(batchPath(ctx, id, ".out.json"))
+		},
 	}
 	if maxUnitsSet {
 		opt.MaxUnits = *maxUnits
@@ -170,6 +179,13 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 		return err
 	}
 	return ctx.Emit(nextReport{Batch: &b.ID, Path: path, Units: len(b.Units)})
+}
+
+// pathExists reports whether something is at path; an error other than "does
+// not exist" counts as yes, to be on the safe side.
+func pathExists(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil || !errors.Is(err, fs.ErrNotExist)
 }
 
 // writeJSONFile writes v as indented JSON with a final newline, without
@@ -232,12 +248,10 @@ func readStrictJSON(ctx *cli.Context, path string, v any) error {
 	return nil
 }
 
-// submitReport is what "batch submit" prints: the result of Submit, and the
-// units of the batch that were not submitted, which stay pending.
+// submitReport is what "batch submit" prints: the result of Submit.
 type submitReport struct {
 	Batch string `json:"batch"`
 	batch.SubmitResult
-	Released []string `json:"released"`
 }
 
 func (r submitReport) String() string {
@@ -268,7 +282,7 @@ func (r submitReport) String() string {
 		}
 	}
 	keys("needs review (fallback text stands in)", r.NeedsReview)
-	keys("not submitted (still pending)", r.Released)
+	keys("not submitted (free again)", r.Released)
 	return b.String()
 }
 
@@ -314,17 +328,7 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 		return err
 	}
 
-	answered := make(map[string]bool, len(out))
-	for _, o := range out {
-		answered[o.Key] = true
-	}
-	report := submitReport{Batch: id, SubmitResult: *res, Released: []string{}}
-	for _, u := range b.Units {
-		if !answered[u.Key] {
-			report.Released = append(report.Released, u.Key)
-		}
-	}
-	if err := ctx.Emit(report); err != nil {
+	if err := ctx.Emit(submitReport{Batch: id, SubmitResult: *res}); err != nil {
 		return err
 	}
 	if len(res.Rejected) > 0 {

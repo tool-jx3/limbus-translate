@@ -96,3 +96,20 @@ func TestSpeakerTable(t *testing.T) {
 		}
 	}
 }
+
+func TestIsKeywordFile(t *testing.T) {
+	for file, want := range map[string]bool{
+		"Bufs.json":                      true,
+		"Bufs_Enemy.json":                true,
+		"BattleKeywords.json":            true,
+		"Sub/BattleKeywords-extra.json":  true,
+		"Skills.json":                    false,
+		"StoryData/Bufs-story.json":      true, // the file name decides, not the directory
+		"AbnormalityBufs.json":           false,
+		"ScenarioModelCodes-AutoCreated": false,
+	} {
+		if got := names.IsKeywordFile(file); got != want {
+			t.Errorf("IsKeywordFile(%q) = %v, want %v", file, got, want)
+		}
+	}
+}

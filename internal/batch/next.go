@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"slices"
+	"strconv"
 	"strings"
 	"time"
 
@@ -21,6 +22,10 @@ type NextOptions struct {
 	MaxUnits, StoryMaxUnits int
 	// LeaseTTL is how long the units stay reserved for the batch.
 	LeaseTTL time.Duration
+	// IDTaken, when set, tells whether a batch id is already in use outside
+	// the pending queue (such as by a batch file). It is called inside the
+	// store lock, so it must not use the store.
+	IDTaken func(id string) bool
 }
 
 func (o NextOptions) withDefaults() (NextOptions, error) {
@@ -43,6 +48,10 @@ func (o NextOptions) withDefaults() (NextOptions, error) {
 // handed out by the priority of their file family, then file name, then
 // document order. Only units that are not leased and not flagged needs_review
 // are eligible; units whose file or pointer has left KR are left alone.
+//
+// The id of a batch is the UTC time and the start of the hash of its first
+// key (see batchID). If a lease already names that id, or IDTaken says it is
+// in use, "-2", "-3" and so on is appended until the id is unique.
 //
 // A batch holds units of one file. Outside StoryData/ that is the first
 // MaxUnits eligible units of the file. A story batch is a run of consecutive
@@ -166,7 +175,8 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		if len(chosen) == 0 {
 			continue
 		}
-		b, err := assemble(env, fd, c.family, now, pending, byFile[c.file], chosen, records)
+		id := uniqueID(batchID(now, pending[chosen[0].idx].Key), pending, opt.IDTaken)
+		b, err := assemble(env, fd, id, c.family, pending, byFile[c.file], chosen, records)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -219,16 +229,33 @@ func batchID(now time.Time, firstKey string) string {
 	return now.UTC().Format("20060102T150405") + "-" + hex.EncodeToString(sum[:])[:8]
 }
 
+// uniqueID returns id, or id with "-2", "-3"... appended, such that no lease
+// of pending (live or not: a batch that is still working under an old id must
+// not be mistaken for the new one) and no taken(id) holds it.
+func uniqueID(id string, pending []store.PendingItem, taken func(string) bool) string {
+	held := map[string]bool{}
+	for _, it := range pending {
+		if it.Lease != nil {
+			held[it.Lease.Batch] = true
+		}
+	}
+	candidate := id
+	for n := 2; held[candidate] || taken != nil && taken(candidate); n++ {
+		candidate = id + "-" + strconv.Itoa(n)
+	}
+	return candidate
+}
+
 // assemble builds the batch of the chosen slots. filePending holds the
 // pending indexes of the whole file; records loads the stored translations
 // (only story batches and batches with [ID]s need them).
 func assemble(
-	env Env, fd *fileData, family string, now time.Time,
+	env Env, fd *fileData, id, family string,
 	pending []store.PendingItem, filePending []int, chosen []slot,
 	records func() (map[string]store.Record, error),
 ) (*Batch, error) {
 	b := &Batch{
-		ID:      batchID(now, pending[chosen[0].idx].Key),
+		ID:      id,
 		Family:  family,
 		File:    fd.file,
 		Units:   make([]BatchUnit, 0, len(chosen)),
@@ -238,9 +265,9 @@ func assemble(
 	needRecords := isStory(fd.file)
 	for _, s := range chosen {
 		item, u := pending[s.idx], fd.units[s.pos]
-		id, known := speaker(env.Rules, u)
-		if known && !slices.Contains(speakers, id) {
-			speakers = append(speakers, id)
+		who, known := speaker(env.Rules, u)
+		if known && !slices.Contains(speakers, who) {
+			speakers = append(speakers, who)
 		}
 		en, err := fd.aligned(langEN, u.Pointer)
 		if err != nil {
@@ -253,7 +280,7 @@ func assemble(
 		b.Units = append(b.Units, BatchUnit{
 			Key:     item.Key,
 			Field:   u.Field,
-			Speaker: id,
+			Speaker: who,
 			KR:      u.KR,
 			Reason:  item.Reason,
 			PrevKR:  item.PrevKR,
@@ -282,11 +309,11 @@ func assemble(
 		return nil, err
 	}
 	if isStory(fd.file) {
-		pendingKeys := make(map[string]bool, len(filePending))
+		pendingByKey := make(map[string]store.PendingItem, len(filePending))
 		for _, i := range filePending {
-			pendingKeys[pending[i].Key] = true
+			pendingByKey[pending[i].Key] = pending[i]
 		}
-		b.Context = storyContext(env, fd, recs, pendingKeys, chosen)
+		b.Context = storyContext(env, fd, recs, pendingByKey, chosen)
 	}
 	return b, nil
 }
@@ -317,13 +344,18 @@ const (
 // story batch, in document order: up to contextLines before the first unit
 // and after the last, and every one between them. Walking outwards stops at
 // the first line that waits for translation, since nothing translated lies
-// right next to the batch beyond it. Lines that are not translations (copied
-// identifiers, fallback text of a pending unit) are skipped.
-func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingKeys map[string]bool, chosen []slot) []ContextLine {
+// right next to the batch beyond it. A line that needs review does not wait
+// for the translation that is being made now, so it is skipped like the lines
+// that are not translations (copied identifiers, the fallback text of a
+// pending unit).
+func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingByKey map[string]store.PendingItem, chosen []slot) []ContextLine {
 	classify := func(pos int) (ContextLine, int) {
 		u := fd.units[pos]
 		key := units.Key(u.File, u.Pointer)
-		if pendingKeys[key] {
+		if it, waits := pendingByKey[key]; waits {
+			if hasFlag(it.Flags, store.FlagNeedsReview) {
+				return ContextLine{}, lineSkip
+			}
 			return ContextLine{}, lineBlocked
 		}
 		rec, ok := recs[key]

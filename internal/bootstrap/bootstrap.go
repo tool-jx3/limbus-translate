@@ -10,7 +10,6 @@ package bootstrap
 import (
 	"errors"
 	"fmt"
-	"path"
 	"slices"
 	"strings"
 	"unicode"
@@ -144,8 +143,7 @@ func Run(in Inputs, fr *fields.Rules, r *rules.Rules) (*Result, error) {
 func keywordTable(pz *pack.Pack) (map[string]string, error) {
 	docs := map[string]*jsonx.Node{}
 	for _, file := range pz.Files() {
-		base := path.Base(file)
-		if !strings.HasPrefix(base, "Bufs") && !strings.HasPrefix(base, "BattleKeywords") {
+		if !names.IsKeywordFile(file) {
 			continue
 		}
 		doc, err := pz.Doc(file)

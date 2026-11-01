@@ -15,6 +15,19 @@ import (
 // keywordFilePrefixes are the files whose dataList holds keyword names.
 var keywordFilePrefixes = []string{"BattleKeywords", "Bufs"}
 
+// IsKeywordFile reports whether file (a relative path without language
+// prefix) is one of the files whose dataList holds keyword names, the ones
+// KeywordTable reads.
+func IsKeywordFile(file string) bool {
+	base := path.Base(file)
+	for _, prefix := range keywordFilePrefixes {
+		if strings.HasPrefix(base, prefix) {
+			return true
+		}
+	}
+	return false
+}
+
 // KeywordTable maps keyword ids to names, read from the dataList of the
 // BattleKeywords* and Bufs* files in docs (file name to document). Files are
 // read in name order, ignoring ".json", so the base file comes before its
@@ -24,12 +37,8 @@ var keywordFilePrefixes = []string{"BattleKeywords", "Bufs"}
 func KeywordTable(docs map[string]*jsonx.Node) map[string]string {
 	files := make([]string, 0, len(docs))
 	for file := range docs {
-		base := path.Base(file)
-		for _, prefix := range keywordFilePrefixes {
-			if strings.HasPrefix(base, prefix) {
-				files = append(files, file)
-				break
-			}
+		if IsKeywordFile(file) {
+			files = append(files, file)
 		}
 	}
 	slices.SortFunc(files, func(a, b string) int {
