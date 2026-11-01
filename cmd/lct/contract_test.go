@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"slices"
+	"sort"
 	"strings"
 	"testing"
 
@@ -432,4 +433,338 @@ func TestCheckModelNames(t *testing.T) {
 	if problems := checkModelNames(root, "missing"); len(problems) != 1 || !strings.Contains(problems[0], "missing") {
 		t.Errorf("a missing directory: got %q, want one problem naming it", problems)
 	}
+}
+
+// The workflows are part of the contract too: what they run exists, they name
+// no model, hold no secret and give the Release no forbidden name, and the
+// manual rebuild is built so that a fresh clone numbers and publishes the
+// Release right (the raw worktree and every tag are there before it runs).
+
+var (
+	// workflowActions are the only actions a workflow may use, pinned to the
+	// major version.
+	workflowActions = []string{"actions/checkout@v4", "actions/setup-go@v5"}
+	// workflowTitleRe matches the value of a --title flag.
+	workflowTitleRe = regexp.MustCompile(`--title(?:\s+|=)("[^"]*"|'[^']*'|\S+)`)
+	// forbiddenNameRe matches the names a Release must not carry.
+	forbiddenNameRe = regexp.MustCompile(`(?i)claude\s*code|anthropic`)
+	// workflowSecretRe matches a secret, or the status API URL of the game
+	// (the environment variable of lct fetch), which must not be in a
+	// workflow.
+	workflowSecretRe = regexp.MustCompile(`secrets\.|LIMBUS_STATUS_URL`)
+)
+
+// rebuildMarkers are the commands rebuild.yml must run, with the reason.
+var rebuildMarkers = []struct{ text, why string }{
+	{"+refs/heads/raw:refs/remotes/origin/raw", "the raw branch is not fetched"},
+	{"+refs/heads/tw:refs/remotes/origin/tw", "the tw branch is not fetched"},
+	{"+refs/tags/*:refs/tags/*", "the tags are not fetched, so the Release number restarts at 1"},
+	{"git worktree add .work/raw raw", "lct build reads the raw worktree and does not make it"},
+	{"meta/source.json", "the raw tag is not read from the raw worktree"},
+	{"git ls-remote --tags origin", "origin is not asked for the raw tag"},
+	{`git push origin "refs/tags/`, "a raw tag that origin lacks is not pushed"},
+	{"bin/lct build", "the pack is not built"},
+	{"bin/lct publish", "the Release is not prepared"},
+	{"git push origin tw", "the tw commit is not pushed"},
+	{"gh release create", "no Release is created"},
+	{"--target", "the Release tag is not made at the tw commit"},
+	{"--notes-file", "the Release has no notes"},
+}
+
+// rebuildOrder pairs the commands of rebuild.yml that must run in that order:
+// the first before the second, by the first place each is written.
+var rebuildOrder = [][2]string{
+	{"+refs/tags/*:refs/tags/*", "bin/lct publish"}, // the tags number the Release
+	{"git worktree add .work/raw raw", "meta/source.json"},
+	{"meta/source.json", "git ls-remote --tags origin"},
+	{"git worktree add .work/raw raw", "bin/lct build"},
+	{"bin/lct build", "bin/lct publish"},
+	{"bin/lct publish", "git push origin tw"},
+	{"git push origin tw", "gh release create"}, // the Release is made from a pushed commit
+}
+
+// workflowStep is a step of a job, as far as the contract reads it.
+type workflowStep struct {
+	Uses string            `yaml:"uses"`
+	Run  string            `yaml:"run"`
+	With map[string]any    `yaml:"with"`
+	Env  map[string]string `yaml:"env"`
+}
+
+// workflowFile is the part of a workflow file the contract reads.
+type workflowFile struct {
+	On          any               `yaml:"on"`
+	Permissions map[string]string `yaml:"permissions"`
+	Concurrency struct {
+		Group            string `yaml:"group"`
+		CancelInProgress bool   `yaml:"cancel-in-progress"`
+	} `yaml:"concurrency"`
+	Jobs map[string]struct {
+		Steps []workflowStep `yaml:"steps"`
+	} `yaml:"jobs"`
+}
+
+// steps returns the steps of all jobs, the jobs in name order.
+func (w *workflowFile) steps() []workflowStep {
+	names := make([]string, 0, len(w.Jobs))
+	for name := range w.Jobs {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	var steps []workflowStep
+	for _, name := range names {
+		steps = append(steps, w.Jobs[name].Steps...)
+	}
+	return steps
+}
+
+// runs returns the shell text of all steps, in order.
+func (w *workflowFile) runs() string {
+	var b strings.Builder
+	for _, s := range w.steps() {
+		if s.Run != "" {
+			b.WriteString(s.Run)
+			b.WriteString("\n")
+		}
+	}
+	return b.String()
+}
+
+// triggers returns the events the workflow runs on, whether "on" is written
+// as one event, a list or a map.
+func (w *workflowFile) triggers() []string {
+	var events []string
+	switch on := w.On.(type) {
+	case string:
+		events = []string{on}
+	case []any:
+		for _, e := range on {
+			events = append(events, fmt.Sprint(e))
+		}
+	case map[string]any:
+		for e := range on {
+			events = append(events, e)
+		}
+	}
+	sort.Strings(events)
+	return events
+}
+
+// parseWorkflow decodes a workflow file. A file that is not YAML, or has no
+// job with a step, gives the problems and no workflow.
+func parseWorkflow(file, content string) (*workflowFile, []string) {
+	var w workflowFile
+	if err := yaml.Unmarshal([]byte(content), &w); err != nil {
+		return nil, []string{fmt.Sprintf("%s: not valid YAML: %v", file, err)}
+	}
+	if len(w.steps()) == 0 {
+		return nil, []string{file + ": has no job with a step"}
+	}
+	return &w, nil
+}
+
+// checkWorkflow checks a workflow file (a slash path relative to the root)
+// whose text is content: that it parses, that the lct commands it runs are
+// registered, that it uses only the pinned actions, that it holds no secret
+// and that the --title of a Release has no forbidden name.
+func checkWorkflow(file, content string, commands []string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	problems = append(problems, checkLctCommands(file, content, commands)...)
+	for _, s := range w.steps() {
+		if s.Uses != "" && !slices.Contains(workflowActions, s.Uses) {
+			problems = append(problems, fmt.Sprintf("%s: uses %q, which is not one of %s", file, s.Uses, strings.Join(workflowActions, ", ")))
+		}
+	}
+	for _, m := range workflowSecretRe.FindAllString(content, -1) {
+		problems = append(problems, fmt.Sprintf("%s: refers to %q: a workflow uses only the token of the run", file, m))
+	}
+	for _, m := range workflowTitleRe.FindAllStringSubmatch(content, -1) {
+		if forbiddenNameRe.MatchString(m[1]) {
+			problems = append(problems, fmt.Sprintf("%s: --title %s names the Release with a name it must not carry", file, m[1]))
+		}
+	}
+	return problems
+}
+
+// checkRebuildWorkflow checks the manual rebuild: it runs on request, one at
+// a time, may write to the repo, fetches the history and every tag, makes the
+// raw worktree, gives origin the raw tag, and builds, publishes and releases
+// in that order.
+func checkRebuildWorkflow(file, content string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	if !slices.Contains(w.triggers(), "workflow_dispatch") {
+		problems = append(problems, file+": does not run on workflow_dispatch")
+	}
+	if w.Permissions["contents"] != "write" {
+		problems = append(problems, fmt.Sprintf("%s: permissions.contents = %q, want write", file, w.Permissions["contents"]))
+	}
+	if w.Concurrency.Group != "lct-state" || w.Concurrency.CancelInProgress {
+		problems = append(problems, fmt.Sprintf("%s: concurrency = {group: %q, cancel-in-progress: %v}, want {group: \"lct-state\", cancel-in-progress: false}",
+			file, w.Concurrency.Group, w.Concurrency.CancelInProgress))
+	}
+	deep := slices.ContainsFunc(w.steps(), func(s workflowStep) bool {
+		return strings.HasPrefix(s.Uses, "actions/checkout@") && fmt.Sprint(s.With["fetch-depth"]) == "0"
+	})
+	if !deep {
+		problems = append(problems, file+": no actions/checkout step with fetch-depth: 0")
+	}
+
+	runs := w.runs()
+	for _, m := range rebuildMarkers {
+		if !strings.Contains(runs, m.text) {
+			problems = append(problems, fmt.Sprintf("%s: no %q: %s", file, m.text, m.why))
+		}
+	}
+	for _, o := range rebuildOrder {
+		first, second := strings.Index(runs, o[0]), strings.Index(runs, o[1])
+		if first >= 0 && second >= 0 && first > second {
+			problems = append(problems, fmt.Sprintf("%s: %q must come before %q", file, o[0], o[1]))
+		}
+	}
+	// The step that releases takes the token of the run and names the Release.
+	if i := slices.IndexFunc(w.steps(), func(s workflowStep) bool { return strings.Contains(s.Run, "gh release create") }); i >= 0 {
+		step := w.steps()[i]
+		if step.Env["GH_TOKEN"] != "${{ github.token }}" {
+			problems = append(problems, file+": the gh release create step has no GH_TOKEN: ${{ github.token }}")
+		}
+		if !workflowTitleRe.MatchString(step.Run) {
+			problems = append(problems, file+": gh release create has no --title")
+		}
+	}
+	return problems
+}
+
+// mutate returns src with the one copy of old replaced by repl; a workflow
+// that has no copy or many fails the test, so a negative test cannot pass
+// without changing anything.
+func mutate(t *testing.T, src, old, repl string) string {
+	t.Helper()
+	if n := strings.Count(src, old); n != 1 {
+		t.Fatalf("the workflow has %d copies of %q, want 1: update the test", n, old)
+	}
+	return strings.Replace(src, old, repl, 1)
+}
+
+func TestWorkflowContract(t *testing.T) {
+	commands := cli.Commands()
+	// Every workflow is under the contract; the two of this repo must exist.
+	all, err := filepath.Glob(filepath.Join(repoRoot, ".github", "workflows", "*.yml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{"ci.yml", "rebuild.yml"} {
+		if !slices.Contains(all, filepath.Join(repoRoot, ".github", "workflows", want)) {
+			t.Errorf(".github/workflows/%s does not exist", want)
+		}
+	}
+	var ci string
+	for _, p := range all {
+		rel, content := readRepoFile(t, p)
+		for _, problem := range checkWorkflow(rel, content, commands) {
+			t.Error(problem)
+		}
+		if path.Base(rel) == "ci.yml" {
+			ci = content
+		}
+	}
+	for _, problem := range checkModelNames(repoRoot, ".github/workflows") {
+		t.Error(problem)
+	}
+	file, rebuild := readRepoFile(t, filepath.Join(repoRoot, ".github", "workflows", "rebuild.yml"))
+	for _, problem := range checkRebuildWorkflow(file, rebuild) {
+		t.Error(problem)
+	}
+	if t.Failed() {
+		return
+	}
+
+	// 1. Every bin/lct a workflow runs is a registered command.
+	t.Run("an unregistered lct command", func(t *testing.T) {
+		src := mutate(t, rebuild, "bin/lct publish --json", "bin/lct publsh --json")
+		problems := checkWorkflow(file, src, commands)
+		if len(problems) != 1 || !strings.Contains(problems[0], `"bin/lct publsh"`) {
+			t.Errorf("problems = %q, want one naming bin/lct publsh", problems)
+		}
+	})
+	t.Run("a file that is not YAML", func(t *testing.T) {
+		problems := checkWorkflow(".github/workflows/ci.yml", ci+"\n  - [unclosed\n", commands)
+		if len(problems) != 1 || !strings.Contains(problems[0], "not valid YAML") {
+			t.Errorf("problems = %q, want one saying it is not valid YAML", problems)
+		}
+	})
+
+	// 2. No model name.
+	t.Run("a model name", func(t *testing.T) {
+		root := t.TempDir()
+		writeTestFile(t, root, ".github/workflows/rebuild.yml", rebuild+"# claude-example-9\n")
+		problems := checkModelNames(root, ".github/workflows")
+		if len(problems) != 1 || !strings.Contains(problems[0], "rebuild.yml") || !strings.Contains(problems[0], `"claude-example-9"`) {
+			t.Errorf("problems = %q, want one naming rebuild.yml and the model", problems)
+		}
+	})
+	t.Run("a secret", func(t *testing.T) {
+		src := mutate(t, rebuild, "${{ github.token }}", "${{ secrets.RELEASE_TOKEN }}")
+		problems := checkWorkflow(file, src, commands)
+		if len(problems) != 1 || !strings.Contains(problems[0], "secrets.") {
+			t.Errorf("problems = %q, want one naming secrets.", problems)
+		}
+	})
+	t.Run("an action that is not pinned", func(t *testing.T) {
+		src := mutate(t, rebuild, "actions/checkout@v4", "actions/checkout@main")
+		problems := checkWorkflow(file, src, commands)
+		if len(problems) != 1 || !strings.Contains(problems[0], "actions/checkout@main") {
+			t.Errorf("problems = %q, want one naming actions/checkout@main", problems)
+		}
+	})
+
+	// 3. The rebuild is made for a fresh clone.
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"no concurrency group", "group: lct-state", "group: other", "concurrency"},
+		{"a run cancelled by the next", "cancel-in-progress: false", "cancel-in-progress: true", "concurrency"},
+		{"a shallow clone", "fetch-depth: 0", "fetch-depth: 1", "fetch-depth: 0"},
+		{"no tag fetch", "+refs/tags/*:refs/tags/*", "+refs/heads/main:refs/remotes/origin/main", `"+refs/tags/*:refs/tags/*"`},
+		{"no raw worktree", "git worktree add .work/raw raw", "git worktree prune", `"git worktree add .work/raw raw"`},
+		{"no raw tag push", `git push origin "refs/tags/`, `echo "refs/tags/`, `git push origin \"refs/tags/`},
+		{"no tw push", "git push origin tw", "git status", `"git push origin tw"`},
+		{"a push before the build", "bin/lct build --json", "git push origin tw && bin/lct build --json", `"bin/lct publish" must come before "git push origin tw"`},
+		{"a release before the publish", "bin/lct publish --json >", "gh release create x && bin/lct publish --json >", `"git push origin tw" must come before "gh release create"`},
+		{"no token for gh", "GH_TOKEN: ${{ github.token }}", "GH_USER: x", "GH_TOKEN"},
+		{"no manual trigger", "workflow_dispatch", "push", "workflow_dispatch"},
+		{"no write permission", "contents: write", "contents: read", "permissions.contents"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutate(t, rebuild, tc.old, tc.repl)
+			problems := checkRebuildWorkflow(file, src)
+			if len(problems) == 0 {
+				t.Fatalf("no problems, want one naming %q", tc.want)
+			}
+			if !slices.ContainsFunc(problems, func(p string) bool { return strings.Contains(p, tc.want) && strings.Contains(p, file) }) {
+				t.Errorf("problems = %q, want one naming %s and %q", problems, file, tc.want)
+			}
+		})
+	}
+
+	// 4. The name of the Release.
+	for _, title := range []string{`"Claude Code $tag"`, `Anthropic-$tag`, `'zh-TW by claude  code'`} {
+		t.Run("title "+title, func(t *testing.T) {
+			src := mutate(t, rebuild, `--title "$tag"`, "--title "+title)
+			problems := checkWorkflow(file, src, commands)
+			if len(problems) != 1 || !strings.Contains(problems[0], "--title") || !strings.Contains(problems[0], title) {
+				t.Errorf("problems = %q, want one naming --title %s", problems, title)
+			}
+		})
+	}
+	t.Run("no title", func(t *testing.T) {
+		src := mutate(t, rebuild, `--title "$tag"`, "")
+		problems := checkRebuildWorkflow(file, src)
+		if !slices.ContainsFunc(problems, func(p string) bool { return strings.Contains(p, "--title") }) {
+			t.Errorf("problems = %q, want one about --title", problems)
+		}
+	})
 }

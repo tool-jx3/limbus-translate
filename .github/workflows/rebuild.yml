@@ -1,0 +1,72 @@
+name: rebuild
+
+# Rebuilds the language pack from the raw and tw branches that are pushed, and
+# publishes a Release zh-TW-YYYYMMDD.N. It is run by hand from the Actions page.
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+concurrency: { group: lct-state, cancel-in-progress: false }
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main with its history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # lct build makes the tw worktree itself but not the raw one. The Release
+      # number counts the zh-TW-* tags, so every tag is fetched.
+      - name: Fetch the raw and tw branches and every tag, add the raw worktree
+        run: |
+          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw' '+refs/tags/*:refs/tags/*'
+          git worktree add .work/raw raw
+
+      # The raw tag is the date of the Release. Give origin the tag if it lacks it.
+      - name: Make sure origin has the raw tag
+        run: |
+          raw_tag=$(jq -er .tag .work/raw/meta/source.json)
+          if [ -z "$(git ls-remote --tags origin "refs/tags/$raw_tag")" ]; then
+            git tag "$raw_tag" origin/raw
+            git push origin "refs/tags/$raw_tag"
+          fi
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build lct
+        run: go build -o bin/lct ./cmd/lct
+
+      - name: Set the git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Build the pack
+        run: bin/lct build --json
+
+      - name: Prepare the Release
+        run: |
+          mkdir -p out
+          bin/lct publish --json > out/publish.json
+          cat out/publish.json
+
+      - name: Push tw
+        run: git push origin tw
+
+      - name: Create the Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(jq -er .tag out/publish.json)
+          tw_commit=$(jq -er .tw_commit out/publish.json)
+          mapfile -t assets < <(jq -er '.assets[]' out/publish.json)
+          gh release create "$tag" "${assets[@]}" --target "$tw_commit" --title "$tag" --notes-file out/release-notes.md
