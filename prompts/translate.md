@@ -42,7 +42,7 @@
 
 ## 必須保留的內容 `keep`
 
-- `ids`（`[ID]`）、`placeholders`（`{0}`、`<0>`、`{Slot}` 等）、`tags`（TextMeshPro 標籤）要原樣出現在譯文：不翻譯、不改寫，種類與數量都和 KR 相同。位置可以依中文語序調整；標籤要包住對應的文字、成對、正確巢狀，屬性值不改
+- `ids`（`[ID]`）、`placeholders`（`{0}`、`<0>`、`{Slot}` 等）、`tags`（TextMeshPro 標籤）要原樣出現在譯文：不翻譯、不改寫，種類與數量都和 KR 相同。位置可以依中文語序調整；標籤要包住對應的文字、成對、正確巢狀，屬性值不改（例外：`<ruby=…>` 的注音要翻譯，見 `guides/base.md`）
 - `dante_wrapper` 為 true 時，譯文整句包在 `<…>` 裡（見 `guides/characters/dante.md`）
 
 ## 輸出
