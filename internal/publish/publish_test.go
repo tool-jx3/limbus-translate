@@ -19,6 +19,7 @@ const (
 	testToken    = "l20261029_n2rX1Jku6_9sBiu9Np24"
 	testRules    = "0123456789abcdef0123456789abcdef01234567+dirty"
 	testReleaseA = "zh-TW-20261029.1"
+	testLang     = "zh-TW"
 )
 
 // testBuildJSON is .meta/build.json as internal/build writes it.
@@ -167,6 +168,9 @@ func TestNotes(t *testing.T) {
 	if strings.Contains(notes, "Anthropic") {
 		t.Errorf("notes mention Anthropic:\n%s", notes)
 	}
+	if !strings.Contains(notes, "https://creativecommons.org/licenses/by-nc-sa/4.0/") {
+		t.Errorf("notes lack the link to the licence:\n%s", notes)
+	}
 	if !strings.HasSuffix(notes, "\n") || strings.HasSuffix(notes, "\n\n") {
 		t.Errorf("notes must end in exactly one newline: %q", notes[max(0, len(notes)-20):])
 	}
@@ -204,6 +208,50 @@ func tableRow(t *testing.T, notes, item string) string {
 	}
 	t.Errorf("no table row names %q:\n%s", item, notes)
 	return ""
+}
+
+// The upstream sources are credited as "name: repo@tag" under the licence, in
+// a fixed order whatever the map order; a build with none lists none.
+func TestNotesCreditsTheUpstreamSources(t *testing.T) {
+	info := testInfo(t)
+	info.Upstream = map[string]string{
+		"llc":       "owner/llc@33",
+		"zzz":       "owner/zzz@9",
+		"paratranz": "owner/pz@11",
+		"ltm":       "owner/ltm@22",
+	}
+	notes := string(Notes(info, testReleaseA))
+	licence := strings.Index(notes, "## 授權與來源")
+	last := licence
+	if licence < 0 {
+		t.Fatalf("no licence part:\n%s", notes)
+	}
+	// An unknown name is not dropped; it follows the known ones.
+	for _, line := range []string{"paratranz: owner/pz@11", "ltm: owner/ltm@22", "llc: owner/llc@33", "zzz: owner/zzz@9"} {
+		i := strings.Index(notes, "  - "+line+"\n")
+		if i <= last {
+			t.Errorf("%q is at %d, want it after %d, in the licence part; notes:\n%s", line, i, last, notes)
+		}
+		last = max(last, i)
+	}
+
+	// The same bytes however the map was filled.
+	for range 20 {
+		if again := string(Notes(info, testReleaseA)); again != notes {
+			t.Fatalf("Notes is not deterministic:\n%s\n%s", notes, again)
+		}
+	}
+
+	for _, empty := range []map[string]string{nil, {}} {
+		info.Upstream = empty
+		without := string(Notes(info, testReleaseA))
+		if strings.Contains(without, "上游") || strings.Contains(without, "@") {
+			t.Errorf("notes of a build with no upstream (%#v) list sources:\n%s", empty, without)
+		}
+		if !strings.Contains(without, "CC BY-NC-SA 4.0") || !strings.HasSuffix(without, "\n") {
+			t.Errorf("notes of a build with no upstream are incomplete:\n%s", without)
+		}
+	}
 }
 
 func TestNotesSummarizesTheReport(t *testing.T) {
@@ -246,7 +294,7 @@ func TestNotesOfAnEmptyReport(t *testing.T) {
 func TestPublishCommitsAndTags(t *testing.T) {
 	f := newFixture(t)
 
-	res, err := Run(f.root, f.tw, f.out)
+	res, err := Run(f.root, f.tw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -286,7 +334,7 @@ func TestPublishCommitsAndTags(t *testing.T) {
 	// Again: nothing changed, so no commit, and as no Release tag exists yet,
 	// the same tag.
 	commits := runGit(t, f.tw, "rev-list", "--count", "HEAD")
-	again, err := Run(f.root, f.tw, f.out)
+	again, err := Run(f.root, f.tw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -302,7 +350,7 @@ func TestPublishCommitsAndTags(t *testing.T) {
 	if err := gitx.Tag(f.root, testReleaseA); err != nil {
 		t.Fatal(err)
 	}
-	next, err := Run(f.root, f.tw, f.out)
+	next, err := Run(f.root, f.tw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -315,7 +363,7 @@ func TestPublishCommitsAndTags(t *testing.T) {
 
 	// A change in tw is a new commit on top of the first.
 	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Sample.json", "{\"changed\": true}\n")
-	changed, err := Run(f.root, f.tw, f.out)
+	changed, err := Run(f.root, f.tw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -377,7 +425,7 @@ func TestPublishNeedsBuild(t *testing.T) {
 			tc.damage(t, f)
 			before := runGit(t, f.tw, "status", "--porcelain", "-uall")
 
-			res, err := Run(f.root, f.tw, f.out)
+			res, err := Run(f.root, f.tw, f.out, testLang)
 			if !errors.Is(err, ErrNotBuilt) {
 				t.Fatalf("Run = %+v, %v; want ErrNotBuilt", res, err)
 			}
@@ -404,7 +452,7 @@ func TestPublishRejectsAnUnreadableBuildJSON(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			f := newFixture(t)
 			write(t, f.tw, ".meta/build.json", content)
-			res, err := Run(f.root, f.tw, f.out)
+			res, err := Run(f.root, f.tw, f.out, testLang)
 			if err == nil || errors.Is(err, ErrNotBuilt) {
 				t.Errorf("Run = %+v, %v; want a system error that is not ErrNotBuilt", res, err)
 			}
@@ -435,5 +483,52 @@ func TestReadBuildInfoOfTheRealFormat(t *testing.T) {
 	}
 	if !reflect.DeepEqual(info, want) {
 		t.Errorf("info = %+v\nwant %+v", info, want)
+	}
+}
+
+// The zips are named after the language directory the build was given, the
+// same way lct build names them.
+func TestPublishUsesTheLanguageDirectory(t *testing.T) {
+	f := newFixture(t)
+	for _, kind := range []string{"text", "complete"} {
+		if err := os.Rename(
+			filepath.Join(f.out, testLang+"_"+kind+"_"+testRawTag+".zip"),
+			filepath.Join(f.out, "zh-XX_"+kind+"_"+testRawTag+".zip")); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	// The zips of the other language directory are not the build's.
+	if res, err := Run(f.root, f.tw, f.out, testLang); !errors.Is(err, ErrNotBuilt) || !strings.Contains(err.Error(), "zh-TW_text_"+testRawTag+".zip") {
+		t.Fatalf("Run(%q) = %+v, %v; want ErrNotBuilt naming the zip", testLang, res, err)
+	}
+	if head, err := gitx.Head(f.tw); err != nil || head != "" {
+		t.Fatalf("tw has a commit after a refusal: %q, %v", head, err)
+	}
+
+	res, err := Run(f.root, f.tw, f.out, "zh-XX")
+	if err != nil {
+		t.Fatal(err)
+	}
+	text, complete := build.ZipPaths(build.Options{OutDir: f.out, LangDir: "zh-XX", RawTag: testRawTag})
+	if want := []string{text, complete}; !slices.Equal(res.Assets, want) {
+		t.Errorf("Assets = %v, want %v (build.ZipPaths)", res.Assets, want)
+	}
+	// Only the zips follow the language directory; the Release tag does not.
+	if res.Tag != testReleaseA {
+		t.Errorf("Tag = %q, want %q", res.Tag, testReleaseA)
+	}
+}
+
+func TestPublishRejectsALanguageDirectoryThatIsNotAName(t *testing.T) {
+	for _, bad := range []string{"", ".", "..", "a/b", `a\b`, "/zh-TW", "../zh-TW"} {
+		f := newFixture(t)
+		res, err := Run(f.root, f.tw, f.out, bad)
+		if err == nil || errors.Is(err, ErrNotBuilt) {
+			t.Errorf("Run(lang %q) = %+v, %v; want an error that is not ErrNotBuilt", bad, res, err)
+		}
+		if head, err := gitx.Head(f.tw); err != nil || head != "" {
+			t.Errorf("Run(lang %q) committed to tw: %q, %v", bad, head, err)
+		}
 	}
 }

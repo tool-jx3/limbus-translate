@@ -23,17 +23,23 @@ import (
 )
 
 const (
-	// lang is the language of the pack: the directory of the zips (see
-	// build.ZipPaths) and the start of every Release tag.
-	lang = "zh-TW"
-	// TagPrefix starts the name of every Release tag.
-	TagPrefix = lang + "-"
+	// TagPrefix starts the name of every Release tag. It does not follow the
+	// language directory of the pack (lang_dir in lct.yaml): Releases are
+	// named zh-TW-YYYYMMDD.N.
+	TagPrefix = "zh-TW-"
 	// notesName is the file Run writes the release notes to, in outDir.
 	notesName = "release-notes.md"
 
 	buildMetaName = "build.json"
 	dayLayout     = "20060102"
+
+	// licenseURL is the text of the licence of the translations.
+	licenseURL = "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 )
+
+// upstreamOrder is the order the upstream sources are listed in the notes;
+// any other name follows, sorted.
+var upstreamOrder = []string{"paratranz", "ltm", "llc"}
 
 // ErrNotBuilt marks a refusal because there is no usable build to publish: no
 // .meta/build.json, one with no usable raw tag, or a zip of the build that is
@@ -131,8 +137,9 @@ func (r Result) String() string {
 // Run commits the build that lct build left in the tw worktree and prepares
 // the Release of it: the tag, the notes (outDir/release-notes.md) and the list
 // of the zips to attach. root is the repo, whose tags number the Releases;
-// twRoot is the tw worktree and outDir the directory lct build wrote the zips
-// to.
+// twRoot is the tw worktree; outDir is the directory lct build wrote the zips
+// to and langDir the language directory it named them after (lang_dir in
+// lct.yaml), which must be a plain name, as for build.ZipPaths.
 //
 // Everything that can be refused is checked before tw is touched: a worktree
 // that was not built, a raw tag that does not give a Release tag, or a missing
@@ -140,7 +147,10 @@ func (r Result) String() string {
 // committed and TWCommit is the HEAD of tw. The tag is the next free one of
 // the day of the snapshot, so until a Release with it exists (its tag is in
 // the repo), running again gives the same tag.
-func Run(root, twRoot, outDir string) (*Result, error) {
+func Run(root, twRoot, outDir, langDir string) (*Result, error) {
+	if langDir == "" || langDir == "." || strings.ContainsAny(langDir, `/\`) || !filepath.IsLocal(langDir) {
+		return nil, fmt.Errorf("publish: language directory %q is not a plain name", langDir)
+	}
 	info, err := readBuildInfo(twRoot)
 	if err != nil {
 		return nil, err
@@ -154,7 +164,7 @@ func Run(root, twRoot, outDir string) (*Result, error) {
 		return nil, fmt.Errorf("%w: .meta/%s: %v", ErrNotBuilt, buildMetaName, err)
 	}
 	// The raw tag is a plain name now, safe to put in a path.
-	text, complete := build.ZipPaths(build.Options{OutDir: outDir, LangDir: lang, RawTag: info.RawTag})
+	text, complete := build.ZipPaths(build.Options{OutDir: outDir, LangDir: langDir, RawTag: info.RawTag})
 	assets := []string{text, complete}
 	for _, name := range assets {
 		fi, err := os.Stat(name)
@@ -237,8 +247,31 @@ func Notes(info BuildInfo, tag string) []byte {
 	b.WriteString("\n")
 
 	b.WriteString("## 授權與來源\n\n")
-	b.WriteString("- 譯文採用 CC BY-NC-SA 4.0 授權，含 Paratranz 社群譯文（第一階段匯入）。\n")
+	fmt.Fprintf(&b, "- 譯文採用 [CC BY-NC-SA 4.0](%s) 授權，含 Paratranz 社群譯文（第一階段匯入）。\n", licenseURL)
+	if names := upstreamNames(info.Upstream); len(names) > 0 {
+		b.WriteString("- 第一階段匯入的上游來源：\n")
+		for _, name := range names {
+			fmt.Fprintf(&b, "  - %s: %s\n", name, info.Upstream[name])
+		}
+	}
 	b.WriteString("- 遊戲原文的著作權屬 Project Moon。\n")
 	b.WriteString("- 字型 Sarasa Gothic（SIL OFL），在 complete 版內。\n")
 	return []byte(b.String())
+}
+
+// upstreamNames returns the names of the upstream sources in the order the
+// notes list them: upstreamOrder first, then any others sorted.
+func upstreamNames(upstream map[string]string) []string {
+	var names []string
+	for _, name := range upstreamOrder {
+		if _, ok := upstream[name]; ok {
+			names = append(names, name)
+		}
+	}
+	for _, name := range slices.Sorted(maps.Keys(upstream)) {
+		if !slices.Contains(upstreamOrder, name) {
+			names = append(names, name)
+		}
+	}
+	return names
 }

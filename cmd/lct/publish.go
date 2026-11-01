@@ -30,8 +30,8 @@ func runPublish(ctx *cli.Context, args []string) error {
 	if flags.NArg() > 0 {
 		return cli.UserError("publish: unexpected argument " + flags.Arg(0))
 	}
-	if ctx.Config.Worktrees.TW == "" {
-		return cli.UserError("publish: worktrees.tw must be set in lct.yaml")
+	if ctx.Config.Worktrees.TW == "" || ctx.Config.LangDir == "" {
+		return cli.UserError("publish: worktrees.tw and lang_dir must be set in lct.yaml")
 	}
 
 	// The commit is made with git -C <tw>: it must be the worktree of the tw
@@ -42,7 +42,7 @@ func runPublish(ctx *cli.Context, args []string) error {
 	if err := gitx.EnsureWorktree(ctx.Root, twBranch, twRoot, publish.TagPrefix); err != nil {
 		return err
 	}
-	res, err := publish.Run(ctx.Root, twRoot, filepath.Join(ctx.Root, buildOutDir))
+	res, err := publish.Run(ctx.Root, twRoot, filepath.Join(ctx.Root, buildOutDir), ctx.Config.LangDir)
 	if errors.Is(err, publish.ErrNotBuilt) {
 		return cli.UserError(err.Error())
 	}

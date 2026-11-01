@@ -125,9 +125,9 @@ func TestPublishCommandText(t *testing.T) {
 func TestPublishNeedsBuild(t *testing.T) {
 	// A repo that was never built: tw has nothing to publish.
 	root := snapshotRepo(t)
-	ctx, _ := testCtx(t, root, "", true)
-	if err := runPublish(ctx, nil); !isUserError(err) {
-		t.Errorf("publish without a build: err = %v (%T), want a user error", err, err)
+	ctx, _ := testCtx(t, root, "lang_dir: zh-TW\nworktrees: { raw: .work/raw, tw: .work/tw }\n", true)
+	if err := runPublish(ctx, nil); !isUserError(err) || !strings.Contains(err.Error(), "run lct build") {
+		t.Errorf("publish without a build: err = %v (%T), want a user error that says to build", err, err)
 	}
 
 	// A built repo that lost a zip.
@@ -162,5 +162,35 @@ func TestPublishRejectsArguments(t *testing.T) {
 		if err := runPublish(ctx, args); !isUserError(err) {
 			t.Errorf("publish %v: err = %v, want a user error", args, err)
 		}
+	}
+}
+
+// lang_dir names the zips, as it does for lct build.
+func TestPublishUsesTheConfiguredLanguageDirectory(t *testing.T) {
+	root := publishRepo(t)
+
+	// Not set: a user error that says so, before tw is touched.
+	ctx, _ := testCtx(t, root, "worktrees: { raw: .work/raw, tw: .work/tw }\n", true)
+	if err := runPublish(ctx, nil); !isUserError(err) || !strings.Contains(err.Error(), "lang_dir") {
+		t.Errorf("publish without lang_dir: err = %v (%T), want a user error naming lang_dir", err, err)
+	}
+
+	// Another directory: its zips are the ones looked for.
+	ctx, _ = testCtx(t, root, "lang_dir: zh-XX\nworktrees: { raw: .work/raw, tw: .work/tw }\n", true)
+	if err := runPublish(ctx, nil); !isUserError(err) || !strings.Contains(err.Error(), "zh-XX_text_raw-20261029.zip") {
+		t.Errorf("publish with lang_dir zh-XX: err = %v (%T), want a user error naming zh-XX_text_raw-20261029.zip", err, err)
+	}
+	for _, kind := range []string{"text", "complete"} {
+		old := filepath.Join(root, "out", "zh-TW_"+kind+"_raw-20261029.zip")
+		if err := os.Rename(old, filepath.Join(root, "out", "zh-XX_"+kind+"_raw-20261029.zip")); err != nil {
+			t.Fatal(err)
+		}
+	}
+	res, _, err := runPublishJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{filepath.Join(root, "out", "zh-XX_text_raw-20261029.zip"), filepath.Join(root, "out", "zh-XX_complete_raw-20261029.zip")}; !slices.Equal(res.Assets, want) {
+		t.Errorf("Assets = %v, want %v", res.Assets, want)
 	}
 }
