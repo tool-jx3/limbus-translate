@@ -829,3 +829,10 @@
   status: approved
   category: [city]
   notes: 百貨公司的飲料（既有 RPG 16 處）；「정육 소다」→ 精肉蘇打
+
+- kr: 신발관
+  zh: 名品鞋室
+  forbidden: [鞋廈]
+  status: approved
+  category: [city]
+  notes: 百貨公司（既有 78 行）
