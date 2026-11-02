@@ -1,0 +1,10 @@
+# 良秀有兩種唸法：KR 寫 요시히데（本名的唸法，JP 寫 ヨシヒデ）的劇情台詞，
+# 良秀加上 <ruby=ヨシヒデ>良秀</ruby>，已寫成「良秀(Yoshihide)」的也改。
+# 已經在 ruby 裡的良秀（前一個字是 >）不再加，所以要在 story-ruby-1 之後。
+# kr_pattern 要求 요시히데 前後還有別的字，所以只有說話者名稱 요시히데 的
+# teller 不會被改（KR 沒有 ruby 的說話者名稱不加）。
+reason: KR 寫 요시히데 的劇情台詞，良秀照 JP 寫成 <ruby=ヨシヒデ>良秀</ruby>
+files: [StoryData/**]
+pattern: '(^|[^>])良秀(?:\(Yoshihide\))?'
+replace: '${1}<ruby=ヨシヒデ>良秀</ruby>'
+kr_pattern: '요시히데.|.요시히데'

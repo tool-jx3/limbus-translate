@@ -1,0 +1,18 @@
+- key: BgmLyrics/BgmLyrics_Cromer2.json|/dataList/23/content
+  raw: raw-20261029
+  kr_sha: 7685fe9f0f4f8b9a4f4b92c2d56204977606ccdff913897aa79355e8b25640ba
+  zh: <style="djp">在溫暖的<size=20>繭</size>中，我作著<size=20>終化成</size>你的夢</style>
+  reason: KR 只放大 고치（繭）與 존재 兩處：保留 Paratranz 的用字，去掉「夢」的放大，「繭」照 KR、JP 只放大名詞
+  rule: one-off
+- key: BgmLyrics/BgmLyrics_Cromer2.json|/dataList/45/content
+  raw: raw-20261029
+  kr_sha: 0edde7812da69e5830dae78138924f79c76cb13a816cf665adabeb93de6006c1
+  zh: <style="djp"><size=20>生</size><size=20>死</size><size=20>善</size><size=20>惡</size></style>
+  reason: KR 放大 삶、죽음、선、악 四處：保留 Paratranz 的用字「生死善惡」，四個字都放大
+  rule: one-off
+- key: BgmLyrics/BgmLyrics_Cromer2.json|/dataList/20/content
+  raw: raw-20261029
+  kr_sha: ac66105aef444ad07aa94fc0c9748553adfaf5990245d35fdb4f557ca1ee6134
+  zh: <style="djp">團成一個<size=20>小球</size></style>
+  reason: KR 只有沒開頭的 </size>（KR 漏了開頭標籤）：沿用 Paratranz 譯文，照 JP 補上 <size=20>，放大的範圍照 Paratranz
+  rule: guides/base.md

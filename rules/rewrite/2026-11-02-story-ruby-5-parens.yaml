@@ -1,0 +1,8 @@
+# 其他寫成半形括號「Y(X)」的劇情台詞改回 <ruby=X>Y</ruby>（雙關、原意、
+# 外語讀音），見 story-ruby-1。pattern 逐一列出這些句子的 Y（只配對緊接其後
+# 的半形括號）；files 只列這些句子所在的檔案。
+reason: 劇情的 ruby 要保留為標籤：把「Y(X)」改回 <ruby=X>Y</ruby>
+files: [StoryData/2D301B.json, StoryData/4D105B.json, StoryData/4D206A.json, StoryData/4D305I.json, StoryData/E723B.json, StoryData/E924B.json, StoryData/P10812.json, StoryData/S002B.json, StoryData/S611B.json, StoryData/S832B.json, StoryData/S833I6.json, StoryData/S941B.json, StoryData/S947B.json]
+origins: [claude]
+pattern: '(夜良秀苦|笠|異常|異象|奇怪|以上|河戎|研心|鴻璐|自我|你唔可仍|得刀茲由|蜘支朝|噗撤低斬端|的花)\(([^()]+)\)'
+replace: '<ruby=${2}>${1}</ruby>'
