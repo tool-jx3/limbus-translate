@@ -14,7 +14,7 @@ import (
 //
 // A group that is FileBound only holds twins of one file; twinKey adds the
 // file to such a group. A unit that carries what a person wrote for it (see
-// carriesInput) is a case of its own: it is never held back for a twin and
+// CarriesInput) is a case of its own: it is never held back for a twin and
 // never filled in by one, since what the person wrote was meant for that unit
 // and the twin's translator has not seen it. Its twins may still wait for it
 // and take its translation.
@@ -34,11 +34,13 @@ func twinKeyOf(g TextGroup, file string) twinKey {
 	return twinKey{TextGroup: g, File: file}
 }
 
-// carriesInput reports whether the pending item carries what a person wrote
+// CarriesInput reports whether the pending item carries what a person wrote
 // for that unit: the hint of a request for another translation, or the human
 // text of an adjustment that expired (store.RefAdjustment), which the unit is
-// translated again with as a reference.
-func carriesInput(it store.PendingItem) bool {
+// translated again with as a reference. Such a unit is never filled with
+// another unit's translation, by a twin or by the plan's same-text reuse:
+// what the person wrote must reach a translator.
+func CarriesInput(it store.PendingItem) bool {
 	return it.Hint != "" || it.Refs[store.RefAdjustment] != ""
 }
 
@@ -92,7 +94,7 @@ func newTwinFilter(env Env, fd *fileData, busy map[twinKey]bool) *twinFilter {
 // eligible, goes into the batch, and if it does notes its text as taken.
 func (f *twinFilter) pick(pos int, item store.PendingItem) bool {
 	k := twinKeyOf(TextGroupOf(f.env.Rules, f.fd.doc, f.fd.units[pos]), f.fd.file)
-	if !carriesInput(item) && (f.busy[k] || f.taken[k]) {
+	if !CarriesInput(item) && (f.busy[k] || f.taken[k]) {
 		return false
 	}
 	f.taken[k] = true
@@ -113,7 +115,7 @@ type acceptedUnit struct {
 // queue, when
 //   - it is a unit of the batch, which its out file answers;
 //   - it is leased to another batch that has not run out, flagged needs_review,
-//     or carries what a person wrote for it (see carriesInput);
+//     or carries what a person wrote for it (see CarriesInput);
 //   - the translation fails CheckNew in the twin's file: the glossary may name
 //     terms for some files only.
 //
@@ -143,7 +145,7 @@ func (s *submission) reuseForTwins() error {
 
 	now := s.env.now()
 	for i, it := range s.pending {
-		if s.removed[i] || hasFlag(it.Flags, store.FlagNeedsReview) || carriesInput(it) || !store.LeaseFree(it, now) {
+		if s.removed[i] || hasFlag(it.Flags, store.FlagNeedsReview) || CarriesInput(it) || !store.LeaseFree(it, now) {
 			continue
 		}
 		if _, inBatch := s.batchKR[it.Key]; inBatch {

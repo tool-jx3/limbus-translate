@@ -234,7 +234,9 @@ func (in Inputs) check() error {
 //     one that moved, and of equals the later one in file order. An
 //     adjustment of a unit that steps 1 or 2 decide is not applied;
 //  4. it has a record of its KR text (not a copy): the record stays;
-//  5. it is queued as new or changed, and a unit of the same text
+//  5. it is queued as new or changed without what a person wrote for it (a
+//     hint or an expired adjustment as a reference, batch.CarriesInput:
+//     only a translator can act on that), and a unit of the same text
 //     (batch.TextGroup) has a translation of it, the current record of a unit
 //     that is not queued itself, or the record of a unit the new snapshot
 //     deleted: that translation is copied, if it passes the checks of a new
@@ -953,8 +955,11 @@ func reuseTarget(reason string) bool { return reason == ReasonNew || reason == R
 // lease. A target with a request of its own keeps its item, previous texts
 // and all, and carries both hints (joinHints). That is how a request on an
 // entry numbered again reaches the entry, instead of the entry taking the
-// translation sent back. A target that is then queued as a new or changed unit
-// may still take a translation, as any other such target may.
+// translation sent back.
+//
+// A target that carries what a person wrote for it (batch.CarriesInput), of
+// its own or taken over, takes no translation: it stays queued, so that the
+// request reaches a translator, as it does for twins.
 func (p *planner) reuse(queued map[string]bool) error {
 	var targets []string
 	want := map[string]bool{} // the KR texts of the targets
@@ -1028,9 +1033,9 @@ func (p *planner) reuse(queued map[string]bool) error {
 			} else {
 				p.pending[key] = store.PendingItem{Key: key, Reason: it.Reason, Hint: it.Hint, PrevKR: it.PrevKR, PrevZH: it.PrevZH}
 			}
-			if !reuseTarget(p.pending[key].Reason) {
-				continue
-			}
+		}
+		if it := p.pending[key]; !reuseTarget(it.Reason) || batch.CarriesInput(it) {
+			continue
 		}
 		s, ok := p.pick(sources[g], ref.file.name, g.FileBound(), u.KR)
 		if !ok {

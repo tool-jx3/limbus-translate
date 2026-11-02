@@ -1077,8 +1077,8 @@ func TestPlanCarriesARequestAcrossRenumbering(t *testing.T) {
 
 // A hint on a deleted unit that was queued as new or changed (a request found
 // it queued) is handed on too, with the previous texts, though the unit had no
-// record. The unit that takes it over is then a new or changed unit like any
-// other: same-text reuse may still fill it, as the next plan would.
+// record. The unit that takes it over carries the hint, so same-text reuse
+// does not fill it, though another unit of its text has a translation (R18).
 func TestPlanHandsOnTheHintOfAQueuedUnit(t *testing.T) {
 	e := newPlanEnv(t)
 	const (
@@ -1098,12 +1098,42 @@ func TestPlanHandsOnTheHintOfAQueuedUnit(t *testing.T) {
 
 	want := map[string]store.PendingItem{
 		descKey(passives, 0): {Key: descKey(passives, 0), Reason: ReasonKRChanged, PrevKR: "공격을 받으면 반격합니다", PrevZH: "受到攻擊時反擊", Hint: "用您"},
+		descKey(passives, 1): {Key: descKey(passives, 1), Reason: ReasonNew, Hint: "語氣"},
 	}
 	if got := e.pending(); !reflect.DeepEqual(got, want) {
 		t.Errorf("pending = %v\nwant %v", got, want)
 	}
-	if got := e.records()[descKey(passives, 1)]; got.ZH != "提升全體友軍的攻擊力" || got.Batch != "reuse:"+descKey(passives, 2) || sum.Reused != 1 {
-		t.Errorf("the new entry of the shared text = %+v (reused %d), want the translation of id 3", got, sum.Reused)
+	if rec, has := e.records()[descKey(passives, 1)]; has || sum.Reused != 0 {
+		t.Errorf("the new entry of the shared text has the record %+v (reused %d), want none: its hint is for a translator", rec, sum.Reused)
+	}
+
+	e.again()
+}
+
+// Same-text reuse never fills a unit that carries what a person wrote for it
+// (R18, batch.CarriesInput): a hint, here of a request that found the unit
+// queued as new. It stays queued with its hint, so the request reaches a
+// translator, while a unit of the same text without one takes the
+// translation. A second plan changes nothing.
+func TestPlanReuseLeavesAUnitWithAHintQueued(t *testing.T) {
+	e := newPlanEnv(t)
+	const text = "같은 문장은 같은 번역을 씁니다"
+	a, b, c := descKey("Skills_A.json", 0), descKey("Skills_A.json", 1), descKey("Skills_A.json", 2)
+	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": text}, obj{"id": 2, "desc": text}, obj{"id": 3, "desc": text})})
+	asked := store.PendingItem{Key: b, Reason: ReasonNew, Hint: "用您"}
+	e.seed([]store.Record{translated(a, text, "相同的句子用相同的翻譯")}, []store.PendingItem{asked, {Key: c, Reason: ReasonNew}})
+
+	sum := e.run("")
+
+	if got := e.pending(); !reflect.DeepEqual(got, map[string]store.PendingItem{b: asked}) {
+		t.Errorf("pending = %v, want only %+v", got, asked)
+	}
+	recs := e.records()
+	if rec, has := recs[b]; has {
+		t.Errorf("the unit with a hint has the record %+v, want none", rec)
+	}
+	if got := recs[c]; got.Batch != "reuse:"+a || sum.Reused != 1 {
+		t.Errorf("the unit without a hint = %+v (reused %d), want the translation of %s", got, sum.Reused, a)
 	}
 
 	e.again()
@@ -1145,7 +1175,8 @@ func TestPlanHandsARequestOnOnlyWithinItsFile(t *testing.T) {
 
 // A unit that takes over the request of a deleted unit while it has a
 // request of its own keeps its own item, its previous texts with it, and
-// carries both hints (R17): neither request is lost.
+// carries both hints (R17): neither request is lost. Same-text reuse leaves
+// it queued, though another unit of the text has a translation (R18).
 func TestPlanMergesAHandedOnRequestWithTheUnitsOwn(t *testing.T) {
 	e := newPlanEnv(t)
 	const (
@@ -1153,24 +1184,32 @@ func TestPlanMergesAHandedOnRequestWithTheUnitsOwn(t *testing.T) {
 		desc     = "공격을 받으면 바로 반격합니다"
 		other    = "아군 전체의 공격력이 오릅니다"
 	)
-	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc}, obj{"id": 3, "desc": other})})
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc}, obj{"id": 3, "desc": other}, obj{"id": 5, "desc": desc})})
+	source := translated(descKey(passives, 2), desc, "受到攻擊就立刻反擊")
 	e.seed([]store.Record{
 		translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊"),
 		translated(descKey(passives, 1), other, "提升全體友軍的攻擊力"),
+		source,
 	}, []store.PendingItem{
 		{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"},
 		{Key: descKey(passives, 1), Reason: "requeue", PrevZH: "提升全體友軍的攻擊力", Hint: "語氣B"},
 	})
-	// id 1 is gone, and id 3 has the text id 1 had.
-	e.snapshot(map[string]string{passives: dataList(obj{"id": 3, "desc": desc})})
+	// id 1 is gone, id 3 has the text id 1 had, and id 5 keeps it.
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 3, "desc": desc}, obj{"id": 5, "desc": desc})})
 
-	e.run(tag1)
+	sum := e.run(tag1)
 
 	want := map[string]store.PendingItem{
 		descKey(passives, 0): {Key: descKey(passives, 0), Reason: ReasonKRChanged, PrevKR: other, PrevZH: "提升全體友軍的攻擊力", Hint: "語氣B；用您"},
 	}
 	if got := e.pending(); !reflect.DeepEqual(got, want) {
 		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if rec, has := e.records()[descKey(passives, 0)]; has || sum.Reused != 0 {
+		t.Errorf("the merged unit has the record %+v (reused %d), want none: its requests are for a translator", rec, sum.Reused)
+	}
+	if got := e.records()[descKey(passives, 1)]; got.ZH != source.ZH {
+		t.Errorf("id 5 = %+v, want its own record", got)
 	}
 
 	e.again()
