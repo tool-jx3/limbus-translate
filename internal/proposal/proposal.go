@@ -718,18 +718,18 @@ func uniqueSorted(ids []string) []string {
 // It refuses, before it changes anything: a branch that is not
 // rules-proposal/*, a tracked file changed (staged or not) outside the rule
 // folders, a commit of the branch that origin/<Base> does not have and that
-// changes a file outside them (the merges are not looked at: those of Start
-// bring in what origin/<Base> has), no token for gh, no git identity, a body without markers, nothing
-// to propose (no rule file changed, and the body adds no suggestion to the
-// open PR), and, when the branch has an open PR, a body that lacks a
-// suggestion marker the PR has now (the edit replaces the description, and a
-// suggestion that dropped out would be suggested again). Untracked files
-// outside the rule folders are left alone and not committed. The commit is
-// not signed, like the merge of Start: the identity of a workflow has no key.
-// The push names the branch in full on both sides, so that a tag of the same
-// name is not pushed instead, and is never forced. A line of the body that
-// starts like a marker and is not one is refused with its number: its
-// suggestion would not be read, and so not left out.
+// changes a file outside them (merges are not looked at: those of Start
+// bring in what origin/<Base> has), no token for gh, no git identity, a body
+// without markers, a line of the body that starts like a marker and is not
+// one (named by its number: its suggestion would not be read, and so not
+// left out), nothing to propose (no rule file changed, and the body adds no
+// suggestion to the open PR), and, when the branch has an open PR, a body
+// that lacks a suggestion marker the PR has now (the edit replaces the
+// description, and a suggestion that dropped out would be suggested again).
+// Untracked files outside the rule folders are left alone and not committed.
+// The commit is not signed, like the merge of Start: the identity of a
+// workflow has no key. The push names the branch in full on both sides, so
+// that a tag of the same name is not pushed instead, and is never forced.
 func Publish(o Options, bodyFile string) (*Published, error) {
 	s := newSession(o)
 	if err := s.checkBase(); err != nil {

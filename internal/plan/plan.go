@@ -959,9 +959,10 @@ func reuseTarget(reason string) bool { return reason == ReasonNew || reason == R
 // A deleted unit with a request pending (carriesRequest) serves no other
 // either: the first target of its text in its own file (by key) takes the
 // request over, and the last that took one also gets the hints of those that
-// are left when the file has fewer targets of the text than such requests. An entry is numbered again within its file, so a unit of the
-// text in another file never takes it; it is reused from another unit or
-// queued, as it would be anyway. A target without a request of its own takes
+// are left when the file has fewer targets of the text than such requests.
+// An entry is numbered again within its file, so a unit of the text in
+// another file never takes it; it is reused from another unit or queued, as
+// it would be anyway. A target without a request of its own takes
 // the deleted unit's item: its reason, hint and previous texts, without its
 // lease. A target with a request of its own keeps its item, previous texts
 // and all, and carries both hints (joinHints). That is how a request on an

@@ -62,9 +62,9 @@ type Inputs struct {
 // entry's status or files, a KR name whose term suggestion ("term/<kr>") is
 // declined, and a name the translation has not rendered yet, one whose ZH is
 // still Korean. The names are compared without the blanks around them, which
-// the pack has on a few; a candidate has the KR as the pack has it. A name of several ids or files that is rendered the same way
-// is listed once; one that is rendered in several ways is listed once for
-// each.
+// the pack has on a few; a candidate has the KR as the pack has it. A name of
+// several ids or files that is rendered the same way is listed once; one that
+// is rendered in several ways is listed once for each.
 func Derive(in Inputs) ([]Candidate, error) {
 	if in.KR == nil {
 		return nil, errors.New("glossary: no KR pack to derive from")
