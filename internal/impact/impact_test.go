@@ -78,7 +78,7 @@ func newRules() *rules.Rules {
 
 func TestImpactCountsOnlyNewViolations(t *testing.T) {
 	const f = "Other.json"
-	kr := krPack(t, map[string]string{f: story("사제가 왔다", "사제를 만났다", "성배를 찾았다", "사제가 웃었다", "성배의 사제")})
+	kr := krPack(t, map[string]string{f: story("사제가 왔다", "사제를 만났다", "성배를 찾았다", "사제가 웃었다")})
 	recs := records(
 		record(key(f, 0), "사제가 왔다", "神父來了", store.OriginClaude),
 		record(key(f, 1), "사제를 만났다", "遇見了神父", store.OriginParatranz),
@@ -86,20 +86,16 @@ func TestImpactCountsOnlyNewViolations(t *testing.T) {
 		record(key(f, 2), "성배를 찾았다", "找到了聖盃", store.OriginClaude),
 		// Follows the new rule.
 		record(key(f, 3), "사제가 웃었다", "祭司笑了", store.OriginHuman),
-		// Breaks the rule of the old rules and the rule of the new rules: it
-		// had a forbidden term before, and still has one.
-		record(key(f, 4), "성배의 사제", "聖盃的神父", store.OriginClaude),
 	)
 
 	got, err := Run(Inputs{Old: oldRules(), New: newRules(), Records: recs, KR: kr})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if got.Checked != 5 {
-		t.Errorf("Checked = %d, want 5", got.Checked)
+	if got.Checked != 4 {
+		t.Errorf("Checked = %d, want 4", got.Checked)
 	}
-	// The unit of line 4 has the code forbidden-term under both rule sets, so
-	// the comparison of codes does not count it.
+	// The unit of line 2 breaks a rule of the old rules too: not new.
 	if got.Units != 2 {
 		t.Errorf("Units = %d, want 2 (the units of lines 0 and 1)", got.Units)
 	}
@@ -111,6 +107,34 @@ func TestImpactCountsOnlyNewViolations(t *testing.T) {
 	}
 	if want := []string{key(f, 0), key(f, 1)}; !slices.Equal(got.Samples["forbidden-term"], want) {
 		t.Errorf("Samples = %v, want the keys %v", got.Samples, want)
+	}
+}
+
+// A unit that already breaks one forbidden term under the old rules and also
+// breaks a second one that only the new rules forbid is a unit the new rules
+// reject for a new reason: it counts although the code is the same under both.
+func TestImpactCountsASecondForbiddenTerm(t *testing.T) {
+	const f = "Other.json"
+	kr := krPack(t, map[string]string{f: story("성배의 사제", "성배를 든 사제")})
+	recs := records(
+		// 聖盃 is forbidden by the old rules, 神父 only by the new rules.
+		record(key(f, 0), "성배의 사제", "聖盃的神父", store.OriginClaude),
+		// Only the old rule applies to it, and the new rules keep it.
+		record(key(f, 1), "성배를 든 사제", "拿著聖盃的祭司", store.OriginClaude),
+	)
+
+	got, err := Run(Inputs{Old: oldRules(), New: newRules(), Records: recs, KR: kr})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Checked != 2 || got.Units != 1 {
+		t.Errorf("Checked, Units = %d, %d, want 2, 1", got.Checked, got.Units)
+	}
+	if want := map[string]int{"forbidden-term": 1}; !mapsEqual(got.ByCode, want) {
+		t.Errorf("ByCode = %v, want %v", got.ByCode, want)
+	}
+	if want := []string{key(f, 0)}; !slices.Equal(got.Samples["forbidden-term"], want) {
+		t.Errorf("Samples = %v, want %v", got.Samples, want)
 	}
 }
 

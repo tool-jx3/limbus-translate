@@ -70,17 +70,18 @@ func counted(origin string) bool {
 
 // Run holds every translation that counts to the new rules and to the old
 // rules the way a new translation is held (batch.CheckNew), and counts the
-// units that have a hard issue code under the new rules that they do not have
-// under the old.
+// units that have a hard issue under the new rules that they do not have under
+// the old.
 //
 // A translation counts when its origin does (see counted), its record was made
 // from the KR text there is now (kr_sha), and its file is not frozen. The
 // others are not checked: a translation made from an older text is pending
 // again anyway, and a frozen file is not ours to translate.
 //
-// The codes are compared and not the messages: a unit that already breaks one
-// forbidden term and now breaks another has the code forbidden-term under both
-// rule sets and is not counted.
+// An issue is told from another by its code and its message: the message names
+// the forbidden rendering, so a unit that already breaks one forbidden term and
+// now breaks a second, newly forbidden one has an issue the old rules did not
+// give, and is counted. Each code of the new issues counts the unit once.
 func Run(in Inputs) (*Result, error) {
 	if in.Old == nil || in.New == nil || in.KR == nil {
 		return nil, errors.New("impact: the old rules, the new rules and the KR pack are all needed")
@@ -101,18 +102,24 @@ func Run(in Inputs) (*Result, error) {
 			res.Checked++
 			// The old rules are asked only about a unit the new rules reject:
 			// that is almost none, and each question costs as much as the first.
-			added := hardCodes(batch.CheckNew(in.New, file, u.KR, rec.ZH))
+			added := hardIssues(batch.CheckNew(in.New, file, u.KR, rec.ZH))
 			if len(added) == 0 {
 				continue
 			}
-			before := hardCodes(batch.CheckNew(in.Old, file, u.KR, rec.ZH))
-			added = slices.DeleteFunc(added, func(code string) bool { return slices.Contains(before, code) })
+			before := hardIssues(batch.CheckNew(in.Old, file, u.KR, rec.ZH))
+			added = slices.DeleteFunc(added, func(is issue) bool { return slices.Contains(before, is) })
 			if len(added) == 0 {
 				continue
 			}
 			res.Units++
 			res.ByOrigin[rec.Origin]++
-			for _, code := range added {
+			var codes []string // the codes of the new issues, each once
+			for _, is := range added {
+				if !slices.Contains(codes, is.code) {
+					codes = append(codes, is.code)
+				}
+			}
+			for _, code := range codes {
 				res.ByCode[code]++
 				keys[code] = append(keys[code], key)
 			}
@@ -151,16 +158,20 @@ func filesToCheck(in Inputs) []string {
 	return files
 }
 
-// hardCodes returns the distinct codes of the hard issues, in the order they
-// come.
-func hardCodes(issues []validate.Issue) []string {
-	var codes []string
+// issue is a hard issue as far as Run tells one from another: its code and its
+// message.
+type issue struct{ code, message string }
+
+// hardIssues returns the distinct hard issues, in the order they come.
+func hardIssues(issues []validate.Issue) []issue {
+	var out []issue
 	for _, is := range issues {
-		if is.Severity == validate.SeverityHard && !slices.Contains(codes, is.Code) {
-			codes = append(codes, is.Code)
+		h := issue{is.Code, is.Message}
+		if is.Severity == validate.SeverityHard && !slices.Contains(out, h) {
+			out = append(out, h)
 		}
 	}
-	return codes
+	return out
 }
 
 // String is the result for a person at a terminal.
