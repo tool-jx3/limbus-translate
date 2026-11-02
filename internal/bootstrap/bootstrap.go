@@ -230,8 +230,8 @@ func ForeignNames(ours, ltm *jsonx.Node) []string {
 // unit, "" if there is none), has no Hangul and has at least one Han
 // character.
 func ValidParatranz(kr, en, zh string) bool {
-	if !hasHangul(kr) {
-		if strings.TrimSpace(zh) == "" || hasHangul(zh) {
+	if !names.HasHangul(kr) {
+		if strings.TrimSpace(zh) == "" || names.HasHangul(zh) {
 			return false
 		}
 		isENFill := zh == en && en != kr && (strings.Contains(zh, "..") || strings.IndexFunc(zh, isASCIILetter) >= 0)
@@ -240,16 +240,12 @@ func ValidParatranz(kr, en, zh string) bool {
 	if zh == kr || zh == en {
 		return false
 	}
-	return !hasHangul(zh) && strings.IndexFunc(zh, isHan) >= 0
+	return !names.HasHangul(zh) && strings.IndexFunc(zh, isHan) >= 0
 }
 
 func isASCIILetter(r rune) bool { return r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' }
 
 func isHan(r rune) bool { return unicode.Is(unicode.Han, r) }
-
-func hasHangul(s string) bool {
-	return strings.IndexFunc(s, func(r rune) bool { return unicode.Is(unicode.Hangul, r) }) >= 0
-}
 
 // builder holds what Run needs while it walks the KR files.
 type builder struct {
@@ -329,7 +325,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 		return
 	}
 
-	if frozen && strings.TrimSpace(pz.Value) != "" && !hasHangul(pz.Value) {
+	if frozen && strings.TrimSpace(pz.Value) != "" && !names.HasHangul(pz.Value) {
 		var flags []string
 		if validate.HasHard(b.check(u.File, u.KR, pz.Value)) {
 			flags = []string{store.FlagNeedsReview}

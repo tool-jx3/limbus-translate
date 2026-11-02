@@ -113,3 +113,13 @@ func TestIsKeywordFile(t *testing.T) {
 		}
 	}
 }
+
+func TestHasHangul(t *testing.T) {
+	for s, want := range map[string]bool{
+		"파열": true, "破裂": false, "": false, "Burst": false, "[Burst] 한": true, "ㄱ": true, "破裂ㅋ": true,
+	} {
+		if got := names.HasHangul(s); got != want {
+			t.Errorf("HasHangul(%q) = %v, want %v", s, got, want)
+		}
+	}
+}

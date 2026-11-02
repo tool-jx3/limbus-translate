@@ -15,7 +15,6 @@ import (
 	"slices"
 	"strings"
 	"time"
-	"unicode"
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
@@ -446,7 +445,7 @@ func keywordTable(kr *pack.Pack, records map[string]store.Record) (map[string]st
 	}
 	table := map[string]string{}
 	for id, name := range names.KeywordTable(docs) {
-		if !strings.ContainsFunc(name, func(r rune) bool { return unicode.Is(unicode.Hangul, r) }) {
+		if !names.HasHangul(name) {
 			table[id] = name
 		}
 	}

@@ -8,9 +8,17 @@ import (
 	"path"
 	"slices"
 	"strings"
+	"unicode"
 
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 )
+
+// HasHangul reports whether s holds a Hangul character (unicode.Hangul): a
+// name of the translation that does is not rendered yet, and a KR text that
+// does not has nothing to translate.
+func HasHangul(s string) bool {
+	return strings.ContainsFunc(s, func(r rune) bool { return unicode.Is(unicode.Hangul, r) })
+}
 
 // keywordFilePrefixes are the files whose dataList holds keyword names.
 var keywordFilePrefixes = []string{"BattleKeywords", "Bufs"}

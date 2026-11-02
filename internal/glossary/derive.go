@@ -8,7 +8,6 @@ import (
 	"errors"
 	"slices"
 	"strings"
-	"unicode"
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
@@ -84,7 +83,7 @@ func Derive(in Inputs) ([]Candidate, error) {
 	add := func(source string, krNames, zhNames map[string]string) {
 		for id, kr := range krNames {
 			zh, ok := zhNames[id]
-			if ok && !skip[strings.TrimSpace(kr)] && !hasHangul(zh) {
+			if ok && !skip[strings.TrimSpace(kr)] && !names.HasHangul(zh) {
 				found = append(found, Candidate{KR: kr, ZH: zh, Source: source})
 			}
 		}
@@ -128,8 +127,4 @@ func (in Inputs) read(file string, kr, zh map[string]*jsonx.Node) error {
 	}
 	kr[file], zh[file] = doc, over
 	return nil
-}
-
-func hasHangul(s string) bool {
-	return strings.ContainsFunc(s, func(r rune) bool { return unicode.Is(unicode.Hangul, r) })
 }
