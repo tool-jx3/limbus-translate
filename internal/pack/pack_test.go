@@ -224,10 +224,10 @@ func TestOpenRawMissingLanguage(t *testing.T) {
 // The root of a pack may be a symlink (a worktree linked into place); it is
 // followed, not read as an empty pack.
 func TestOpenFollowsASymlinkedRoot(t *testing.T) {
-	real := filepath.Join(t.TempDir(), "real")
-	writeFiles(t, real, "KR_A.json", "StoryData/KR_S1.json")
+	target := filepath.Join(t.TempDir(), "real")
+	writeFiles(t, target, "KR_A.json", "StoryData/KR_S1.json")
 	link := filepath.Join(t.TempDir(), "link")
-	if err := os.Symlink(real, link); err != nil {
+	if err := os.Symlink(target, link); err != nil {
 		t.Skipf("cannot create a symlink: %v", err)
 	}
 	p, err := Open(link, "KR_")

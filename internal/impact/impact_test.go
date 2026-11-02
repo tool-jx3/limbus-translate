@@ -260,6 +260,29 @@ func TestImpactCountsAUnitOncePerCode(t *testing.T) {
 	}
 }
 
+// Two new issues of one code (two newly forbidden renderings in one unit)
+// count the unit once for the code, and once among the samples.
+func TestImpactCountsTwoNewIssuesOfOneCodeOnce(t *testing.T) {
+	const f = "Other.json"
+	kr := krPack(t, map[string]string{f: story("사제와 기사")})
+	recs := records(record(key(f, 0), "사제와 기사", "神父與武士", store.OriginClaude))
+	two := newRules()
+	two.Glossary = append(two.Glossary, rules.Term{KR: "기사", ZH: "騎士", Status: rules.StatusApproved, Forbidden: []string{"武士"}})
+	got, err := Run(Inputs{Old: oldRules(), New: two, Records: recs, KR: kr})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Units != 1 {
+		t.Errorf("Units = %d, want 1", got.Units)
+	}
+	if want := map[string]int{"forbidden-term": 1}; !mapsEqual(got.ByCode, want) {
+		t.Errorf("ByCode = %v, want %v", got.ByCode, want)
+	}
+	if want := []string{key(f, 0)}; !slices.Equal(got.Samples["forbidden-term"], want) {
+		t.Errorf("Samples = %v, want the key once", got.Samples)
+	}
+}
+
 func TestImpactNeedsBothRulesAndKR(t *testing.T) {
 	kr := krPack(t, map[string]string{"Other.json": story("사제")})
 	for name, in := range map[string]Inputs{

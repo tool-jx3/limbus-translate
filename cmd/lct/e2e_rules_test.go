@@ -355,7 +355,8 @@ func sha8Hex(text string) string {
 }
 
 // rulesLoopFixture is testdata/phase2 with the third line of S2 in v2, in
-// every language.
+// every language. The lines and the members of the file it has are kept as
+// they are, whatever their fields.
 func rulesLoopFixture(t *testing.T) string {
 	t.Helper()
 	src, err := filepath.Abs(phase2Fixture)
@@ -371,13 +372,21 @@ func rulesLoopFixture(t *testing.T) string {
 	}
 	for lang, content := range map[string]string{"kr": newSpeakerKR, "en": "Everyone, please get on the bus.", "jp": "皆さん、バスに乗ってください。"} {
 		path := filepath.Join(dst, "v2", lang, "StoryData", strings.ToUpper(lang)+"_S2.json")
-		var doc struct {
-			DataList []line `json:"dataList"`
-		}
+		var doc map[string]json.RawMessage
+		var lines []json.RawMessage
 		if err := json.Unmarshal(readFile(t, path), &doc); err != nil {
 			t.Fatalf("%s: %v", path, err)
 		}
-		doc.DataList = append(doc.DataList, line{ID: len(doc.DataList) + 1, Model: newSpeaker, Content: content})
+		if err := json.Unmarshal(doc["dataList"], &lines); err != nil {
+			t.Fatalf("%s: dataList: %v", path, err)
+		}
+		added, err := json.Marshal(line{ID: len(lines) + 1, Model: newSpeaker, Content: content})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if doc["dataList"], err = json.Marshal(append(lines, added)); err != nil {
+			t.Fatal(err)
+		}
 		data, err := json.MarshalIndent(doc, "", "  ")
 		if err != nil {
 			t.Fatal(err)

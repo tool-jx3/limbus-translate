@@ -323,9 +323,9 @@ func TestEncodeManualNullAndBool(t *testing.T) {
 	if got, want := string(Marshal(back)), "{\n  \"n\": null,\n  \"b\": false,\n  \"t\": true\n}\n"; got != want {
 		t.Errorf("Marshal =\n%s\nwant\n%s", got, want)
 	}
-	for _, n := range []*Node{{Kind: Null}, {Kind: Bool}} {
+	for kind, n := range map[string]*Node{"null": {Kind: Null}, "bool": {Kind: Bool}} {
 		if _, err := Parse(Marshal(n)); err != nil {
-			t.Errorf("a bare %v node is not valid JSON: %v", n.Kind, err)
+			t.Errorf("a bare %s node is not valid JSON: %v", kind, err)
 		}
 	}
 }

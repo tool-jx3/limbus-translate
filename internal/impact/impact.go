@@ -41,7 +41,8 @@ type Inputs struct {
 
 // Result is what Run finds.
 type Result struct {
-	// Checked is the number of translations that were held to both rule sets.
+	// Checked is the number of translations that count (see Run): each was
+	// held to the new rules, and to the old ones when the new ones reject it.
 	Checked int `json:"checked"`
 	// Units is the number of those the new rules reject for a reason the old
 	// rules did not give. A unit counts once, whatever number of codes it has.
@@ -81,7 +82,10 @@ func counted(origin string) bool {
 // An issue is told from another by its code and its message: the message names
 // the forbidden rendering, so a unit that already breaks one forbidden term and
 // now breaks a second, newly forbidden one has an issue the old rules did not
-// give, and is counted. Each code of the new issues counts the unit once.
+// give, and is counted. A forbidden rendering written as a pattern (re:) is
+// named with its pattern too, so a unit the old pattern rejected already counts
+// again when the pattern is edited. Each code of the new issues counts the
+// unit once, however many new issues of that code it has.
 func Run(in Inputs) (*Result, error) {
 	if in.Old == nil || in.New == nil || in.KR == nil {
 		return nil, errors.New("impact: the old rules, the new rules and the KR pack are all needed")
