@@ -447,7 +447,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
     | 已過期的調整 | `adjustment-expired/<key>` | `adjustments.expired` | 調整檔已沒有這個 key |
 
   - `rules/declined.yaml` 是清單，每筆 `id`、`reason`（不採用的理由，必填）、`date`（`YYYY-MM-DD`）。`lct rules lint` 檢查 id 的種類是上表之一、`reason` 非空、`date` 的格式與 id 不重複
-- 同一時間最多一個 CI 開的規則 PR；已有未處理的 PR 時，新建議加進該 PR：`lct proposal start --date …` 選分支（有開著的規則 PR 就用它的，更新到 origin 的樣子；沒有就是 `rules-proposal/<日期>`，origin 已有這個名稱且曾開過 PR 時用 `-2`、`-3`…），寫出 `work/proposal/exclude.txt`（PR 已有的 id、關閉未合併的 PR 的 id、已合併的不一致譯法）與 `work/proposal/existing-body.md`（開著的 PR 現在的說明，人改過的也在內）。skill 以後者為底寫 `work/proposal/body.md`，`lct proposal publish --body-file …` 只 commit `guides/`、`glossary/`、`rules/` 的變更、推 `rules-proposal/*` 分支、開或更新 PR，並拒絕少了開著的 PR 已有的任一個 id 的說明
+- 同一時間最多一個 CI 開的規則 PR；已有未處理的 PR 時，新建議加進該 PR：`lct proposal start --date …` 選分支（有開著的規則 PR 就用它的，更新到 origin 的樣子並把 `origin/main` 合併進去，讓程式、skill 與規則是 `main` 目前的樣子，合併有衝突就拒絕並列出衝突的檔案；沒有就是 `rules-proposal/<日期>`，origin 已有這個名稱且曾開過 PR 時用 `-2`、`-3`…），寫出 `work/proposal/exclude.txt`（PR 已有的 id、關閉未合併的 PR 的 id、已合併的不一致譯法）與 `work/proposal/existing-body.md`（開著的 PR 現在的說明，人改過的也在內）。skill 以後者為底寫 `work/proposal/body.md`，`lct proposal publish --body-file …` 只 commit `guides/`、`glossary/`、`rules/` 的變更、推 `rules-proposal/*` 分支、開或更新 PR，並拒絕少了開著的 PR 已有的任一個 id 的說明，以及含有 token 或金鑰一類字串（`ghp_`、`gho_`、`ghs_`、`ghu_`、`github_pat_`、`x-access-token`、`AUTHORIZATION: basic`、`sk-ant-`）的說明與規則檔修改。skill 結束前把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>`、`failed: <原因>`），workflow 的最後一步據此檢查：`published` 時 PR 的說明要有一個開始前沒有的 id，`nothing` 只留下記錄，其餘算錯誤——`lct proposal publish` 被拒絕時 action 不會失敗，已開著的 PR 不能當作這次有成果的證據
 - 人也可以在本機用 `rules-review` skill 提出修改，流程相同
 - 規則改了不會自動重翻舊譯文。要套用到舊譯文，必須由人指定範圍：用 `lct requeue`，或合併附有 `rules/requeue/` 的 PR（這都算人工介入）
 
@@ -457,7 +457,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 |---|---|---|
 | `update.yml` | 每週四 12:00 UTC+8（cron `0 4 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release（§13）→ 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯，而且沒有還欠著的 Release（`lct publish --check`）、`tw` 最後一個 commit 不是只保存翻譯進度的（`translate: keep the progress of …`，保存後 build 失敗的情況），才直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release → 有需要處理的項目時開審核 Issue |
-| `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成且成功時（`workflow_run`，`conclusion == 'success'`）；手動 | §11.2：checkout（完整歷史）→ 取得 `raw`、`tw` 並建 worktree → build `lct` → 設定 git 身分 → `lct proposal start` 選規則 PR 的分支 → `lct suggest --exclude-file work/proposal/exclude.txt`，沒有新建議就結束 → `anthropics/claude-code-action@v1` 跑 `rules-review` skill（`--model` 用 `vars.LCT_MODEL`，`--allowedTools` 與 skill 的 `allowed-tools` 相同），開或更新規則 PR → 用 `gh pr list --state open --head <分支>` 確認 PR 存在並把網址寫進 job summary。逾時 60 分鐘 |
+| `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成且成功時（`workflow_run`，`conclusion == 'success'`）；手動 | §11.2：checkout（完整歷史）→ 取得 `raw`、`tw` 並建 worktree → build `lct` → 設定 git 身分 → `lct proposal start` 選規則 PR 的分支 → `lct suggest --exclude-file work/proposal/exclude.txt`，沒有新建議就結束 → `anthropics/claude-code-action@v1` 跑 `rules-review` skill（`--model` 用 `vars.LCT_MODEL`，`--allowedTools` 與 skill 的 `allowed-tools` 相同，`--disallowedTools "Read(./.git/**)"`；checkout 設 `persist-credentials: false`），開或更新規則 PR → 讀 `work/proposal/outcome.txt`，用 `gh pr list --state open --head <分支>` 確認 PR 有這次新增的建議並把網址寫進 job summary。逾時 60 分鐘 |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 與 workflow 契約測試；改到規則的 PR 另外跑 `lct impact --base origin/<base>`（以目前 `tw` 的譯文與 `raw` 的原文，比較 PR 的規則和 base 分支的規則），把這次規則變更多讓多少既有單位出現硬性問題寫進 job summary；找到也不算失敗 |
 
 - 所有寫入 `raw`／`tw` 的 workflow 共用一個 `concurrency` 群組，依序執行；`rules-proposal.yml` 只寫規則 PR，用自己的群組 `rules-proposal`（`cancel-in-progress: false`）
@@ -542,7 +542,7 @@ LimbusCompany_Data/
 | `lct adjust tidy` | 調整檔跟上目前 snapshot 的 plan：key 已移動的改成新 key，單位已重翻的過期調整刪除（§11.1） |
 | `lct suggest [--exclude-file F]...` | 規則還能學到什麼，附穩定的 id；略過 `rules/declined.yaml` 與排除檔的 id；有建議也是 exit 0（§11.2） |
 | `lct impact --base REV [--markdown F]` | 以目前工作樹的規則和 REV 的規則檢查 `tw` 的既有譯文，數出新規則多讓多少單位出現硬性問題；規則 PR 的影響評估（§11.2、§12） |
-| `lct proposal start／publish` | `start` 選規則 PR 的分支、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR；需要 `GH_TOKEN` 與 git 身分（§11.2） |
+| `lct proposal start／publish` | `start` 選規則 PR 的分支（重用的分支會合併 `origin/main`，衝突就拒絕）、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR，拒絕含有 token 或金鑰一類字串的說明與修改；需要 `GH_TOKEN` 與 git 身分（§11.2） |
 | `lct translate` | 用 claude CLI 執行 `translate-pending` skill，直到沒有待譯、花費或時間用完，或某次執行失敗（§9.2） |
 | `lct fields learn` | 重算欄位規則 |
 | `lct glossary derive [--source keyword\|speaker]` | 從 `BattleKeywords*`、`Bufs*`（`keyword`）與 `ScenarioModelCodes`（`speaker`）列出詞彙表還沒有、也沒被不採用的名稱，作為候選詞條；只輸出，不寫檔 |

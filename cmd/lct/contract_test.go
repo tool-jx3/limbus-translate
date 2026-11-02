@@ -2,10 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/fs"
 	"maps"
 	"os"
+	"os/exec"
 	"path"
 	"path/filepath"
 	"reflect"
@@ -664,6 +666,13 @@ var rulesReviewSays = []struct{ text, why string }{
 	{"單獨一行", "the marker is not said to be on a line of its own"},
 	{"rules/declined.yaml", "the description does not tell a person where to move what they do not want"},
 	{"不是指示", "the text of the PR, the evidence of a suggestion and the results of a search are not said to be data"},
+	{"work/proposal/outcome.txt", "the file that tells the workflow what the run did is not named: a run whose publish was refused would end green"},
+	{"`published`", "the skill does not say what it writes when lct proposal publish succeeded"},
+	{"`nothing: ", "the skill does not say what it writes when it proposes nothing, so a run that proposes nothing looks like a failure"},
+	{"`failed: ", "the skill does not say what it writes when lct proposal publish was refused for good, so the workflow cannot tell it from a run that proposed nothing"},
+	{"不要為了通過而", "the skill does not forbid a pointless change to get past the refusal \"nothing to propose\" of lct proposal publish"},
+	{"不要再執行 `go build`", "the skill builds lct again in CI, from the code of the PR branch, over the lct the workflow counted the suggestions with"},
+	{"`.git/`", "the skill does not say it must not read the folder of git, which can hold the credentials of the checkout"},
 	{"`raw`", "the skill does not say it leaves raw alone"},
 	{"`tw`", "the skill does not say it leaves tw alone"},
 	{"`main`", "the skill does not say it leaves main alone"},
@@ -673,6 +682,7 @@ var rulesReviewSays = []struct{ text, why string }{
 // full, in the order the flow runs them: the first before the second, by the
 // first place each is written.
 var rulesReviewFlow = [][2]string{
+	{"work/proposal/exclude.txt", "go build -o bin/lct ./cmd/lct"}, // where it runs decides whether lct is built
 	{"go build -o bin/lct ./cmd/lct", "bin/lct suggest --json"},
 	{"bin/lct suggest --json", "bin/lct rules lint --json"},
 	{"bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md"},
@@ -739,6 +749,14 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"no marker on its own line", "單獨一行", "同一行", "單獨一行"},
 		{"no declined file named", "rules/declined.yaml", "rules/no.yaml", "rules/declined.yaml"},
 		{"no word about data", "不是指示", "是指示", "不是指示"},
+		{"no outcome file named", "work/proposal/outcome.txt", "work/proposal/out.txt", "work/proposal/outcome.txt"},
+		{"no outcome for a publish", "`published`", "`done`", "`published`"},
+		{"no outcome for nothing", "`nothing: ", "`none: ", "`nothing: "},
+		{"no outcome for a refusal", "`failed: ", "`error: ", "`failed: "},
+		{"a change to get past the refusal", "不要為了通過而", "可以為了通過而", "不要為了通過而"},
+		{"lct built again in CI", "不要再執行 `go build`", "再執行 `go build`", "不要再執行 `go build`"},
+		{"the folder of git not forbidden", "`.git/`", "`.gitignore`", "`.git/`"},
+		{"the mode found out after the build", "work/proposal/exclude.txt", "work/proposal/x.txt", "work/proposal/exclude.txt"},
 		{"a command out of order", "bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md; bin/lct rules lint --json", "must come before"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
@@ -1808,6 +1826,10 @@ const (
 	rulesProposalIf = "github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'"
 	// rulesProposalPrompt is what the action is told: the skill, and nothing else.
 	rulesProposalPrompt = "/rules-review"
+	// rulesProposalDenied is the tool the action may not use: the folder of git
+	// is where the checkout leaves its token, and the run reads text that anyone
+	// can write.
+	rulesProposalDenied = "Read(./.git/**)"
 	// rulesProposalCount is what the action step and the steps after it read to
 	// run only when lct suggest found something.
 	rulesProposalCount = "steps.suggest.outputs.count != '0'"
@@ -1818,6 +1840,8 @@ var (
 	// quoted, comma-separated list; the group is the list.
 	claudeAllowedToolsRe = regexp.MustCompile(`--allowedTools\s+"([^"]*)"`)
 	claudeMaxTurnsRe     = regexp.MustCompile(`(?:^|\s)--max-turns 80(?:\s|$)`)
+	// claudeDisallowedToolsRe matches the --disallowedTools flag and its list.
+	claudeDisallowedToolsRe = regexp.MustCompile(`--disallowedTools\s+"([^"]*)"`)
 )
 
 // rulesProposalMarkers are the commands the scripts of rules-proposal.yml must
@@ -1835,6 +1859,13 @@ var rulesProposalMarkers = []struct{ text, why string }{
 	// The PR is looked for by its branch: the label goes through the search
 	// index, which lags behind a PR that was just opened.
 	{`gh pr list --state open --head "$BRANCH"`, "the rules PR is not looked for, so a run that opened none is green"},
+	// What the skill says it did decides what is checked: when lct proposal
+	// publish refuses, the action does not fail.
+	{"work/proposal/outcome.txt", "the file the skill says what it did in is not read, so a run whose publish was refused is green when a rules PR is open"},
+	{"'nothing: '*)", "a run that proposes nothing is not told from one that failed"},
+	{"::notice::", "a run that proposes nothing does not say so in the log"},
+	{"--json url,body,isCrossRepository", "the description of the PR is not read, so a PR that is open already is taken for a PR this run added to"},
+	{`grep -qxF -- "$id" work/proposal/exclude.txt`, "the suggestions the PR had before the run are not told from those it added"},
 	{`>> "$GITHUB_STEP_SUMMARY"`, "the address of the rules PR, or that there was nothing to suggest, is not on the summary page"},
 }
 
@@ -1920,6 +1951,11 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 	if !deep {
 		add("no actions/checkout step with fetch-depth: 0: origin/main, the base of the rules PR, and its history are not there")
 	}
+	for _, s := range job.Steps {
+		if strings.HasPrefix(s.Uses, "actions/checkout@") && fmt.Sprint(s.With["persist-credentials"]) != "false" {
+			add("an actions/checkout step has no persist-credentials: false: the checkout leaves its token in .git/config, where the action, which reads text anyone can write, can find it")
+		}
+	}
 
 	runs := w.runs()
 	for _, m := range rulesProposalMarkers {
@@ -1970,6 +2006,9 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 	}
 	if strings.Contains(args, "--dangerously-skip-permissions") {
 		add("claude_args has --dangerously-skip-permissions, which makes the list of allowed tools mean nothing")
+	}
+	if m := claudeDisallowedToolsRe.FindAllStringSubmatch(args, -1); len(m) != 1 || !slices.Contains(strings.Split(m[0][1], ","), rulesProposalDenied) {
+		add("claude_args has no --disallowedTools \"%s\": the folder of git, with the token of the checkout, is not closed to the action", rulesProposalDenied)
 	}
 	if m := claudeAllowedToolsRe.FindAllStringSubmatch(args, -1); len(m) != 1 {
 		add("claude_args has %d --allowedTools \"...\" lists, want one: the tools of the rules-review skill, separated by commas", len(m))
@@ -2723,6 +2762,19 @@ func TestWorkflowContract(t *testing.T) {
 		{"a secret in another step", "        id: start\n        env:\n", "        id: start\n        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n", "other than the action"},
 		{"a key of lct proposal start that was renamed", `jq -er .branch <<<"$started"`, `jq -er .branc <<<"$started"`, "branc"},
 		{"a key of lct suggest that was renamed", "jq -er '.suggestions | length'", "jq -er '.suggestion | length'", "suggestion"},
+
+		// The token of the checkout is not where the action can read it.
+		{"a checkout that keeps its token", "          persist-credentials: false\n", "", "persist-credentials: false"},
+		{"a checkout that says to keep its token", "persist-credentials: false", "persist-credentials: true", "persist-credentials: false"},
+		{"the folder of git open", "            --disallowedTools \"Read(./.git/**)\"\n", "", "--disallowedTools"},
+		{"another folder closed", `--disallowedTools "Read(./.git/**)"`, `--disallowedTools "Read(./work/**)"`, "--disallowedTools"},
+
+		// What the skill says it did is read and told apart.
+		{"the outcome not read", "outcome_file=work/proposal/outcome.txt", "outcome_file=work/proposal/other.txt", "work/proposal/outcome.txt"},
+		{"a run that proposes nothing not told apart", "'nothing: '*)", "'nothing - '*)", "'nothing: '*)"},
+		{"a run that proposes nothing not said", "::notice::", "::warning::", "::notice::"},
+		{"the description of the PR not read", "--json url,body,isCrossRepository", "--json url,isCrossRepository", "--json url,body,isCrossRepository"},
+		{"the suggestions the PR had not told from the new", `grep -qxF -- "$id" work/proposal/exclude.txt`, `grep -qF -- "$id" work/proposal/other.txt`, "grep -qxF"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			src := mutate(t, rules, tc.old, tc.repl)
@@ -2739,6 +2791,8 @@ func TestWorkflowContract(t *testing.T) {
 		{"a token for the action", "        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n        env:\n          GITHUB_TOKEN: ${{ github.token }}\n", "GITHUB_TOKEN"},
 		{"another concurrency group", "group: rules-proposal", "group: lct-state", "concurrency"},
 		{"no permission for the pull request", "pull-requests: write, ", "", "permissions"},
+		{"a checkout that keeps its token", "          persist-credentials: false\n", "", "persist-credentials: false"},
+		{"the folder of git open", "            --disallowedTools \"Read(./.git/**)\"\n", "", "--disallowedTools"},
 	} {
 		t.Run("exactly one problem for "+tc.name, func(t *testing.T) {
 			src := mutate(t, rules, tc.old, tc.repl)
@@ -2801,6 +2855,7 @@ var readmeRulesPR = []struct{ text, why string }{
 	{"`<!-- suggestion:", "a person is not told not to take the markers out of the description"},
 	{"影響評估", "the impact assessment ci.yml shows on a rules PR is not described"},
 	{"`bin/lct impact`", "the command of the impact assessment is not named"},
+	{"`persist-credentials: false`", "the README does not say that the checkout keeps no token, and that Task 16 reverts it if the action cannot push without it"},
 	{"`lct proposal publish`", "the README does not say what to do when lct proposal publish finds no token inside the action"},
 	{"Task 16", "the README does not point to the plan step that settles the token of the action"},
 }
@@ -2832,6 +2887,155 @@ func TestReadmeExplainsTheRulesPR(t *testing.T) {
 		if !slices.ContainsFunc(rows, func(row string) bool { return strings.Contains(row, "`"+name+"`") }) {
 			t.Errorf("README.md: no table row of the section %q for %s", readmeWorkflows, name)
 		}
+	}
+}
+
+// outcomeStep returns the script of the step of rules-proposal.yml that checks
+// what the run did.
+func outcomeStep(t *testing.T, workflow string) string {
+	t.Helper()
+	w, problems := parseWorkflow("rules-proposal.yml", workflow)
+	if w == nil {
+		t.Fatal(problems)
+	}
+	var found []string
+	for _, s := range w.steps() {
+		if strings.Contains(s.Run, "outcome.txt") {
+			found = append(found, s.Run)
+		}
+	}
+	if len(found) != 1 {
+		t.Fatalf("%d steps read outcome.txt, want one", len(found))
+	}
+	return found[0]
+}
+
+// stepResult is what a run of the outcome step did.
+type stepResult struct {
+	exit            int
+	output, summary string
+	ghCalled        bool
+}
+
+// runOutcomeStep runs the script of the step in a scratch folder as the runner
+// does (bash -eo pipefail), with work/proposal/exclude.txt as given, the file
+// outcome.txt when outcome is not nil, and a gh that answers the list of pull
+// requests with prs (JSON) and records that it was called. BRANCH is the branch
+// of the run.
+func runOutcomeStep(t *testing.T, script string, outcome *string, exclude, prs string) stepResult {
+	t.Helper()
+	dir := t.TempDir()
+	writeTestFile(t, dir, "work/proposal/exclude.txt", exclude)
+	if outcome != nil {
+		writeTestFile(t, dir, "work/proposal/outcome.txt", *outcome)
+	}
+	writeTestFile(t, dir, "prs.json", prs)
+	writeTestFile(t, dir, "bin/gh", "#!/bin/sh\ntouch \"$PWD/gh-called\"\ncat \"$PWD/prs.json\"\n")
+	if err := os.Chmod(filepath.Join(dir, "bin", "gh"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, dir, "step.sh", script)
+	summary := filepath.Join(dir, "summary.md")
+	cmd := exec.Command("bash", "--noprofile", "--norc", "-eo", "pipefail", "step.sh")
+	cmd.Dir = dir
+	cmd.Env = append(os.Environ(), "PATH="+filepath.Join(dir, "bin")+string(os.PathListSeparator)+os.Getenv("PATH"),
+		"GH_TOKEN=test-token", "BRANCH=rules-proposal/2026-11-05", "GITHUB_STEP_SUMMARY="+summary)
+	out, err := cmd.CombinedOutput()
+	res := stepResult{output: string(out)}
+	var exitErr *exec.ExitError
+	switch {
+	case errors.As(err, &exitErr):
+		res.exit = exitErr.ExitCode()
+	case err != nil:
+		t.Fatal(err)
+	}
+	if data, err := os.ReadFile(summary); err == nil {
+		res.summary = string(data)
+	}
+	_, statErr := os.Stat(filepath.Join(dir, "gh-called"))
+	res.ghCalled = statErr == nil
+	return res
+}
+
+// The step that ends the run of rules-proposal.yml turns what the skill said
+// it did, and what the rules PR holds, into green, a notice or an error. This
+// runs the script, because what matters is what it does: when lct proposal
+// publish refuses, the action does not fail, and a rules PR that is open and
+// waiting for review is the usual state (spec 11.2).
+func TestRulesProposalOutcomeStep(t *testing.T) {
+	if _, err := exec.LookPath("jq"); err != nil {
+		t.Skip("jq is not installed")
+	}
+	_, workflow := readRepoFile(t, filepath.Join(repoRoot, filepath.FromSlash(workflowPath("rules-proposal.yml"))))
+	script := outcomeStep(t, workflow)
+
+	const (
+		url = "https://github.com/o/r/pull/7"
+		// The ids lct proposal start excluded: the open PR has the first, the
+		// second was declined. Ids hold spaces, CJK text and |.
+		exclude = "term/old one\ninconsistent/story/content/ab12cd34 한글|x\n"
+	)
+	pr := func(body string, cross bool) string {
+		data, err := json.Marshal([]map[string]any{{"url": url, "body": body, "isCrossRepository": cross}})
+		if err != nil {
+			t.Fatal(err)
+		}
+		return string(data)
+	}
+	marker := func(id string) string { return "<!-- suggestion:" + id + " -->" }
+	str := func(s string) *string { return &s }
+	old := marker("term/old one") + "\n### old\n\n"
+
+	for _, tc := range []struct {
+		name    string
+		outcome *string
+		prs     string
+		exit    int
+		ghCall  bool
+		output  []string // all in the output
+		summary []string // all in the summary
+	}{
+		{"published a new suggestion", str("published\n"), pr("intro\n\n"+old+marker("speaker/새 화자")+"\n### new\n", false), 0, true, []string{url}, []string{url}},
+		{"published a new suggestion in a description from the web page", str("published"), pr(strings.ReplaceAll("intro\n\n"+old+marker("note/k/12345678")+"\n### new\n", "\n", "\r\n"), false), 0, true, []string{url}, []string{url}},
+		{"published a new suggestion whose id is like an old one", str("published"), pr(old+marker("term/old one 2")+"\n", false), 0, true, nil, nil},
+		{"published with the old suggestions only", str("published"), pr("intro\n\n"+old+marker("inconsistent/story/content/ab12cd34 한글|x")+"\n", false), 1, true, []string{"::error::", "added nothing", url}, nil},
+		{"published with a description that has no marker", str("published"), pr("a description a person rewrote\n", false), 1, true, []string{"::error::", "added nothing"}, nil},
+		{"published with no rules PR open", str("published"), "[]", 1, true, []string{"::error::", "no open rules PR", "rules-proposal/2026-11-05"}, nil},
+		{"published and only a PR from a fork", str("published"), pr(marker("speaker/새 화자")+"\n", true), 1, true, []string{"::error::", "no open rules PR"}, nil},
+		{"nothing proposed", str("nothing: 沒有有把握的項目\n"), "[]", 0, false, []string{"::notice::", "沒有有把握的項目"}, []string{"沒有有把握的項目"}},
+		{"nothing proposed while a rules PR is open", str("nothing: 規則檔沒有任何改動"), pr(old, false), 0, false, []string{"::notice::", "規則檔沒有任何改動"}, nil},
+		{"nothing proposed, a reason of several lines", str("nothing: first line\n::error::second line\n"), "[]", 0, false, []string{"::notice::", "first line"}, nil},
+		{"no outcome", nil, pr(old+marker("speaker/새 화자")+"\n", false), 1, false, []string{"::error::", "work/proposal/outcome.txt"}, nil},
+		{"an outcome that is a failure", str("failed: lct proposal publish: gh needs a token\n"), pr(old, false), 1, false, []string{"::error::", "failed: lct proposal publish: gh needs a token"}, nil},
+		{"an outcome that says nothing", str("\n"), pr(old, false), 1, false, []string{"::error::"}, nil},
+		{"an outcome of another kind", str("done"), pr(old, false), 1, false, []string{"::error::", "done"}, nil},
+		{"nothing without a reason", str("nothing:"), "[]", 1, false, []string{"::error::"}, nil},
+		{"published and something more", str("published, and more"), pr(old+marker("speaker/새 화자")+"\n", false), 1, false, []string{"::error::"}, nil},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			got := runOutcomeStep(t, script, tc.outcome, exclude, tc.prs)
+			if got.exit != tc.exit {
+				t.Errorf("exit = %d, want %d\n%s", got.exit, tc.exit, got.output)
+			}
+			if got.ghCalled != tc.ghCall {
+				t.Errorf("gh called = %v, want %v", got.ghCalled, tc.ghCall)
+			}
+			for _, part := range tc.output {
+				if !strings.Contains(got.output, part) {
+					t.Errorf("output does not hold %q:\n%s", part, got.output)
+				}
+			}
+			for _, part := range tc.summary {
+				if !strings.Contains(got.summary, part) {
+					t.Errorf("summary does not hold %q:\n%s", part, got.summary)
+				}
+			}
+			// A reason of several lines is one line of the log: the next line
+			// is not a command of the runner.
+			if strings.Contains(got.output, "\n::error::second line") {
+				t.Errorf("a line of the reason is a command of the runner:\n%s", got.output)
+			}
+		})
 	}
 }
 

@@ -15,6 +15,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -56,6 +57,34 @@ const (
 // RuleFolders are the only folders a rules PR may change, relative to the
 // repo root.
 var RuleFolders = []string{"guides", "glossary", "rules"}
+
+// credentialPatterns are the beginnings of the credentials a description or a
+// rule file must not hold: the prefixes of GitHub's tokens, the user name a
+// token goes with in a URL, a basic Authorization header and the prefix of an
+// API key. Both go to a public page (a description, a commit), and what the
+// run can read includes the text of the game, which anyone can put words in.
+// Fold says that the case does not matter.
+var credentialPatterns = []struct {
+	text string
+	fold bool
+}{
+	{"ghp_", false}, {"gho_", false}, {"ghs_", false}, {"ghu_", false}, {"github_pat_", false},
+	{"x-access-token", true}, {"AUTHORIZATION: basic", true}, {"sk-ant-", false},
+}
+
+// credentialIn returns the pattern that line holds, or "".
+func credentialIn(line string) string {
+	lower := strings.ToLower(line)
+	for _, p := range credentialPatterns {
+		if strings.Contains(line, p.text) || p.fold && strings.Contains(lower, strings.ToLower(p.text)) {
+			return p.text
+		}
+	}
+	return ""
+}
+
+// maxCredentialFindings is how many lines a refusal lists.
+const maxCredentialFindings = 10
 
 // Options says which repo to work in and when.
 type Options struct {
@@ -289,9 +318,15 @@ func (s *session) listPRs(what string, args ...string) ([]pullRequest, error) {
 
 // Start chooses the branch the suggestions of this run go on and checks it
 // out. With an open rules PR it is that PR's branch, brought up to date from
-// origin, so the new suggestions are added to the PR. Without one it is
-// rules-proposal/<Date>, made from origin/<Base>, except that origin may have
-// that name already:
+// origin, so the new suggestions are added to the PR. A branch that is reused
+// (this one, or one a run left on origin without a PR) also gets origin/<Base>
+// merged into it, so that the code, the skill and the rules in the work tree
+// are those of the base branch as it is now, not as it was when the PR was
+// opened; a merge that conflicts is a refusal and leaves the branch as origin
+// has it.
+//
+// Without an open rules PR the branch is rules-proposal/<Date>, made from
+// origin/<Base>, except that origin may have that name already:
 //   - no PR was ever opened from it (an earlier run pushed it and failed before
 //     the PR): it is checked out as origin has it, and the run goes on;
 //   - a PR was (it was closed or merged): the first rules-proposal/<Date>-N,
@@ -385,7 +420,8 @@ func Start(o Options) (*Started, error) {
 	return res, nil
 }
 
-// checkoutFromOrigin fetches the branch and checks it out at what origin has.
+// checkoutFromOrigin fetches the branch, checks it out at what origin has and
+// merges origin/<Base> into it.
 func (s *session) checkoutFromOrigin(branch string) error {
 	if _, err := s.git.run("fetch", "origin", branch); err != nil {
 		return err
@@ -393,8 +429,72 @@ func (s *session) checkoutFromOrigin(branch string) error {
 	if err := s.refuseLocalCommits(branch, "FETCH_HEAD", "origin"); err != nil {
 		return err
 	}
-	_, err := s.git.run("checkout", "-q", "-B", branch, "FETCH_HEAD")
-	return err
+	if _, err := s.git.run("checkout", "-q", "-B", branch, "FETCH_HEAD"); err != nil {
+		return err
+	}
+	return s.mergeBase(branch)
+}
+
+// isAncestor says whether the commit a is an ancestor of b (or b itself).
+func (s *session) isAncestor(a, b string) (bool, error) {
+	_, err := s.git.run("merge-base", "--is-ancestor", a, b)
+	switch {
+	case err == nil:
+		return true, nil
+	case exitCode(err) == 1:
+		return false, nil
+	}
+	return false, err
+}
+
+// mergeBase merges origin/<Base> into the branch that is checked out, unless
+// the branch has it already. A merge that is only a fast-forward needs no
+// identity; one that makes a commit does. When the two conflict the merge is
+// aborted, which leaves the branch at the commit it was checked out at, and
+// the conflicting files are named in the refusal.
+func (s *session) mergeBase(branch string) error {
+	base := "origin/" + s.Base
+	if has, err := s.isAncestor(base, "HEAD"); err != nil || has {
+		return err
+	}
+	if forward, err := s.isAncestor("HEAD", base); err != nil {
+		return err
+	} else if !forward {
+		// Both sides have commits of their own: a merge commit is made.
+		if err := s.checkIdentity(); err != nil {
+			return err
+		}
+	}
+	_, mergeErr := s.git.run("-c", "user.useConfigOnly=true", "merge", "--no-edit", "--no-gpg-sign", base)
+	if mergeErr == nil {
+		return nil
+	}
+	if exitCode(mergeErr) != 1 {
+		return mergeErr
+	}
+	out, err := s.git.run("-c", "core.quotePath=false", "diff", "--name-only", "-z", "--diff-filter=U")
+	if err != nil {
+		return err
+	}
+	var conflicts []string
+	for _, f := range strings.Split(out, "\x00") {
+		if f != "" {
+			conflicts = append(conflicts, f)
+		}
+	}
+	// A merge that stopped for another reason (a file in the way) has nothing
+	// to abort.
+	if _, err := s.git.run("rev-parse", "-q", "--verify", "MERGE_HEAD"); err == nil {
+		if _, err := s.git.run("merge", "--abort"); err != nil {
+			return err
+		}
+	}
+	if len(conflicts) == 0 {
+		return mergeErr
+	}
+	return refuse("the branch %s conflicts with %s in:\n  %s\n"+
+		"merge %s into the branch, resolve the conflicts and push it; the branch has been left as origin has it",
+		branch, base, strings.Join(conflicts, "\n  "), base)
 }
 
 // maxBranchSuffix is where the search for a free rules-proposal/<Date>-N gives
@@ -596,6 +696,9 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	if len(suggestionIDs(string(data))) == 0 {
 		return nil, refuse("the body file %s has no %s<id>%s marker; every suggestion in the PR needs one", bodyFile, markerStart, markerEnd)
 	}
+	if found := credentialsIn(bodyFile, string(data), nil); len(found) > 0 {
+		return nil, refuse("the body file holds what looks like a credential, and the description is posted to a public page:\n  %s", strings.Join(found, "\n  "))
+	}
 	if err := needToken(); err != nil {
 		return nil, err
 	}
@@ -613,6 +716,11 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	changed, err := s.ruleChanges()
 	if err != nil {
 		return nil, err
+	}
+	if found, err := s.credentialsAdded(changed); err != nil {
+		return nil, err
+	} else if len(found) > 0 {
+		return nil, refuse("the changes of the rule files hold what looks like a credential, and they are committed to a public repo:\n  %s", strings.Join(found, "\n  "))
 	}
 	out, err := s.git.run("rev-list", "--count", "origin/"+s.Base+"..HEAD")
 	if err != nil {
@@ -756,6 +864,73 @@ func (s *session) currentBranch() (string, error) {
 
 // ruleFolderList names the rule folders for a message.
 func ruleFolderList() string { return strings.Join(RuleFolders, "/, ") + "/" }
+
+// credentialsIn lists the lines of text that hold a credential pattern, as
+// "<where> line <n> holds "<pattern>"" (the text itself is never repeated: the
+// refusal ends up in a log). Lines that old has, as many times as old has
+// them, are not looked at: only what is added counts.
+func credentialsIn(where, text string, old []string) []string {
+	have := map[string]int{}
+	for _, line := range old {
+		have[line]++
+	}
+	var found []string
+	for i, line := range strings.Split(text, "\n") {
+		if have[line] > 0 {
+			have[line]--
+			continue
+		}
+		if p := credentialIn(line); p != "" && len(found) < maxCredentialFindings {
+			found = append(found, fmt.Sprintf("%s line %d holds %q", where, i+1, p))
+		}
+	}
+	return found
+}
+
+// credentialsAdded looks for credential patterns in what the commit of the
+// rule changes would add: the lines of each changed file that the file does
+// not have at HEAD (every line of a new file), and everything in a new folder.
+// A rule file that holds such a string already does not stop every later PR.
+// It reads the work tree and changes nothing.
+func (s *session) credentialsAdded(changed []string) ([]string, error) {
+	var found []string
+	for _, p := range changed {
+		root := filepath.Join(s.Repo, filepath.FromSlash(p))
+		err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+			if err != nil {
+				if errors.Is(err, fs.ErrNotExist) {
+					return nil // deleted, or the old name of a rename
+				}
+				return err
+			}
+			if !d.Type().IsRegular() {
+				return nil // a folder, which WalkDir goes into, or a link, which commits no text
+			}
+			rel, err := filepath.Rel(s.Repo, path)
+			if err != nil {
+				return err
+			}
+			rel = filepath.ToSlash(rel)
+			data, err := os.ReadFile(path)
+			if err != nil {
+				return err
+			}
+			var old []string
+			if committed, err := s.git.run("show", "HEAD:"+rel); err == nil {
+				old = strings.Split(committed, "\n")
+			}
+			found = append(found, credentialsIn(rel, string(data), old)...)
+			return nil
+		})
+		if err != nil {
+			return nil, err
+		}
+	}
+	if len(found) > maxCredentialFindings {
+		found = found[:maxCredentialFindings]
+	}
+	return found, nil
+}
 
 func inRuleFolder(path string) bool {
 	return slices.ContainsFunc(RuleFolders, func(dir string) bool { return strings.HasPrefix(path, dir+"/") })

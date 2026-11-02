@@ -26,11 +26,16 @@ jobs:
         shell: bash
     steps:
       # The whole history: the rules PR is made from origin/main, and
-      # lct impact compares with it.
+      # lct impact compares with it. The token of the checkout is not kept in
+      # .git/config: the action reads text that anyone can write (the game's,
+      # the translator's notes), and must not find a token there. The steps
+      # before the action fetch without one, which a public repo allows; the
+      # action sets up the credentials it pushes with.
       - name: Check out main with its history
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       # lct suggest and lct impact read the raw and tw worktrees.
       - name: Fetch the raw and tw branches, add their worktrees
@@ -85,9 +90,10 @@ jobs:
 
       # The skill edits the rules and publishes the PR with lct proposal
       # publish, so its tools are those of its allowed-tools (the contract test
-      # compares the two). The model comes from the variable. The action brings
-      # its own GitHub credentials (the Claude GitHub App, through id-token), so
-      # it gets no token: a PR opened by github-actions would not start ci.yml.
+      # compares the two); the folder of git is closed to it. The model comes
+      # from the variable. The action brings its own GitHub credentials (the
+      # Claude GitHub App, through id-token), so it gets no token: a PR opened
+      # by github-actions would not start ci.yml.
       - name: Review the suggestions, open or update the rules PR
         if: steps.suggest.outputs.count != '0'
         uses: anthropics/claude-code-action@v1
@@ -98,22 +104,62 @@ jobs:
             --model ${{ vars.LCT_MODEL }}
             --max-turns 80
             --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact *),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
+            --disallowedTools "Read(./.git/**)"
 
-      # The PR is looked for by its branch: the label goes through the search
-      # index, which lags behind a PR that was just opened. A run that opened or
-      # updated none (the skill found nothing it was sure of, or lct proposal
-      # publish refused) is not green.
-      - name: Show the rules PR
+      # What the skill says it did (work/proposal/outcome.txt) decides what is
+      # checked. When lct proposal publish refuses, the action does not fail:
+      # the model sees the exit status and ends. And a rules PR that is open and
+      # waits for review is the usual state, so finding it proves nothing. A run
+      # that says it published must have left a suggestion in the PR that the
+      # PR did not have when the run began (work/proposal/exclude.txt); one that
+      # proposed nothing says so in a notice and stays green; anything else is an
+      # error. The PR is looked up by its branch: the label goes through the
+      # search index, which lags behind a PR that was just opened.
+      - name: Check what the run did and show the rules PR
         if: steps.suggest.outputs.count != '0'
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ steps.start.outputs.branch }}
         run: |
-          prs=$(gh pr list --state open --head "$BRANCH" --json url,isCrossRepository)
-          url=$(jq -r '[.[] | select(.isCrossRepository | not)] | .[0].url // empty' <<<"$prs")
-          if [ -z "$url" ]; then
-            echo "::error::there is no open rules PR from $BRANCH: the rules-review run opened none; see the log of the step before"
+          outcome_file=work/proposal/outcome.txt
+          if [ ! -f "$outcome_file" ]; then
+            echo "::error::the rules-review run left no $outcome_file: it ended without saying what it did; see the log of the step before"
             exit 1
           fi
-          echo "規則 PR：$url"
-          echo "規則 PR：$url" >> "$GITHUB_STEP_SUMMARY"
+          outcome=$(tr -d '\r' < "$outcome_file")
+          case "$outcome" in
+            published) ;;
+            'nothing: '*)
+              reason=$(head -n 1 <<<"${outcome#nothing: }")
+              reason=${reason:0:300}
+              echo "::notice::the rules-review run proposed nothing: $reason"
+              echo "這次沒有提出規則建議：$reason" >> "$GITHUB_STEP_SUMMARY"
+              exit 0 ;;
+            *)
+              echo "::error::$outcome_file says neither published nor nothing: $(head -n 1 <<<"$outcome" | cut -c1-300)"
+              exit 1 ;;
+          esac
+          prs=$(gh pr list --state open --head "$BRANCH" --json url,body,isCrossRepository)
+          url=$(jq -r '[.[] | select(.isCrossRepository | not)] | .[0].url // empty' <<<"$prs")
+          if [ -z "$url" ]; then
+            echo "::error::the run says it published, but there is no open rules PR from $BRANCH"
+            exit 1
+          fi
+          description=$(jq -r '[.[] | select(.isCrossRepository | not)] | .[0].body // empty' <<<"$prs" | tr -d '\r')
+          new=0
+          while IFS= read -r line; do
+            case "$line" in
+              '<!-- suggestion:'*' -->')
+                id=${line#'<!-- suggestion:'}
+                id=${id%' -->'}
+                if [ -n "$id" ] && ! grep -qxF -- "$id" work/proposal/exclude.txt; then
+                  new=$((new + 1))
+                fi ;;
+            esac
+          done <<<"$description"
+          if [ "$new" -eq 0 ]; then
+            echo "::error::the run says it published, but the rules PR $url holds no suggestion that it did not have before the run: this run added nothing"
+            exit 1
+          fi
+          echo "規則 PR：$url（這次新增 $new 個建議）"
+          echo "規則 PR：$url（這次新增 $new 個建議）" >> "$GITHUB_STEP_SUMMARY"

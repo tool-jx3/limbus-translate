@@ -69,6 +69,8 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 2. 設定 `ANTHROPIC_API_KEY` 與 `LCT_MODEL`（見上表）。
 3. `rules-proposal` label 不必先建立：`lct proposal publish` 開第一個規則 PR 時會建立。
 4. action 裡的 skill 以 `lct proposal publish` commit、推分支並開 PR，它需要 GitHub 的 token（環境變數 `GH_TOKEN` 或 `GITHUB_TOKEN`）。如果它回報拿不到 token（`gh needs a token`），修法在實作計畫 `docs/superpowers/plans/2026-11-02-rules-improvement.md` 的 Task 16 第 4 步：由 workflow 把 action 輸出的 `github_token` 傳給那一步，並記在這裡。若改用 workflow 自己的 `GITHUB_TOKEN`，另要在 Settings → Actions → General 勾選「Allow GitHub Actions to create and approve pull requests」。
+5. 擋住 token 外洩：action 讀得到遊戲原文與譯者備註，那些文字誰都能寫進去，所以 checkout 設了 `persist-credentials: false`（token 不留在 `.git/config`），`claude_args` 也用 `--disallowedTools "Read(./.git/**)"` 不讓它讀 `.git/`；`lct proposal publish` 另外拒絕含有 `ghp_`、`gho_`、`ghs_`、`ghu_`、`github_pat_`、`x-access-token`、`AUTHORIZATION: basic`、`sk-ant-` 的說明與規則檔修改。因此 action 之前的步驟以匿名方式 fetch（公開 repo 沒有問題）。如果 action 沒有這個設定就推不了分支，由 Task 16 把 `persist-credentials: false` 改回來，`--disallowedTools` 要留著。
+6. 這次有沒有真的提出建議，由最後一步檢查：skill 把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>` 或 `failed: <原因>`）。`published` 時，規則 PR 的說明要有一個開始前不存在的建議，否則算錯誤（`lct proposal publish` 被拒絕時 action 不會失敗，不檢查的話已經開著的 PR 會讓這次顯示成功）；`nothing: …` 只在記錄與 summary 留下理由，維持成功；沒有這個檔或其他內容都是錯誤。
 
 ### 手動執行的輸入
 
@@ -100,7 +102,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 - 分支 `rules-proposal/<日期>`（同一天用過就接 `-2`、`-3`），label `rules-proposal`，標題「規則建議：YYYY-MM-DD」，目標分支 `main`。
 - 說明逐項列出建議的內容、理由、證據（key、KR、現行譯文、出現次數），最後是影響評估。要重翻的範圍附在 `rules/requeue/*.yaml`。
-- 同一時間最多一個開著的規則 PR。已有的話，新建議加進同一個 PR（分支多一個 commit，說明多幾個項目），不另開。
+- 同一時間最多一個開著的規則 PR。已有的話，新建議加進同一個 PR（分支多一個 commit，說明多幾個項目），不另開。每次加之前，`lct proposal start` 會把 `main` 合併進這個分支（程式、skill 與規則就是 `main` 目前的樣子）；合併有衝突就停下並列出衝突的檔案，到分支上把 `main` 合併進去、解掉衝突再重跑。
 - 每個項目的第一行是 `<!-- suggestion:<id> -->`，`lct` 靠它知道 PR 有哪些建議。編輯說明時不要刪這一行，除非整個項目都不要。
 - 影響評估：PR 改到 `guides/`、`glossary/` 或 `rules/` 時，`ci.yml` 執行 `bin/lct impact`，算出新規則會讓多少既有譯文出現新的硬性問題（舊規則是 `main` 的）。結果在該次 `ci` 執行的 summary（PR 的 Checks 頁籤）。找到有問題的譯文不算失敗，是讓你決定要不要重翻。
 

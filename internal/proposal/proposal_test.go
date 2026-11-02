@@ -1257,3 +1257,305 @@ func TestProposalPublishIgnoresPRsFromForks(t *testing.T) {
 		})
 	}
 }
+
+// mainMoves puts a commit on origin/main that changes file, and leaves the
+// work clone on the branch it was on. The remote-tracking branch moves too,
+// as it does after the fetch of a checkout.
+func (e *env) mainMoves(file, content string) {
+	e.t.Helper()
+	was := e.branch()
+	e.git("checkout", "-q", "main")
+	e.write(file, content)
+	e.git("commit", "-q", "-am", "main moves on")
+	e.git("push", "-q", "origin", "main")
+	e.git("checkout", "-q", was)
+}
+
+func TestProposalStartBringsTheBranchOfTheOpenPRUpToDate(t *testing.T) {
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	sha := e.pushBranch(head, "glossary/terms.yaml", "- {kr: 신규 용어, zh: 新術語, status: approved}\n")
+	// main moved on after the PR was opened: its code and skill are newer.
+	e.mainMoves("internal/x.go", "package x\n\n// newer\n")
+	e.setPRs([]ghPR{{Number: 5, URL: "https://github.com/o/r/pull/5", HeadRefName: head, Labels: rulesLabel, Body: body("term/신규 용어")}}, nil)
+
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != head || got.PR != 5 {
+		t.Errorf("Started = %+v", got)
+	}
+	// The branch has main's new commit, merged, and still its own work.
+	if e.read("internal/x.go") != "package x\n\n// newer\n" {
+		t.Errorf("internal/x.go = %q, want main's", e.read("internal/x.go"))
+	}
+	if e.read("glossary/terms.yaml") != "- {kr: 신규 용어, zh: 新術語, status: approved}\n" {
+		t.Errorf("the work of the branch is gone: %q", e.read("glossary/terms.yaml"))
+	}
+	parents := strings.Fields(e.git("log", "-1", "--format=%P"))
+	if len(parents) != 2 || parents[0] != sha || parents[1] != e.git("rev-parse", "origin/main") {
+		t.Errorf("HEAD has the parents %q, want the branch %s and origin/main", parents, sha)
+	}
+	if st := e.statusLines(); st != "" {
+		t.Errorf("the clone is not clean afterwards:\n%s", st)
+	}
+	// Nothing is pushed: publish does that, with the rest of the changes.
+	if pushed := e.originGit("rev-parse", "refs/heads/"+head); pushed != sha {
+		t.Errorf("origin has %s at %s, want it untouched at %s", head, pushed, sha)
+	}
+	// The files for the run are written after the merge, from the PR.
+	assertIDs(t, "exclude.txt", e.excludeIDs(), "term/신규 용어")
+	if e.read(got.ExistingBody) != body("term/신규 용어") {
+		t.Errorf("existing-body.md = %q", e.read(got.ExistingBody))
+	}
+}
+
+func TestProposalStartBringsAResumedBranchUpToDate(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	sha := e.pushBranch(branch, "guides/README.md", "work of an earlier run\n")
+	e.mainMoves("internal/x.go", "package x\n\n// newer\n")
+
+	if _, err := Start(e.opts("2026-11-05")); err != nil {
+		t.Fatal(err)
+	}
+	if e.read("internal/x.go") != "package x\n\n// newer\n" || e.read("guides/README.md") != "work of an earlier run\n" {
+		t.Errorf("x.go = %q, README = %q, want main's code and the branch's work", e.read("internal/x.go"), e.read("guides/README.md"))
+	}
+	if parents := strings.Fields(e.git("log", "-1", "--format=%P")); len(parents) != 2 || parents[0] != sha {
+		t.Errorf("HEAD has the parents %q, want a merge of main into %s", parents, sha)
+	}
+}
+
+func TestProposalStartMakesNoMergeWhenTheBranchHasMain(t *testing.T) {
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	sha := e.pushBranch(head, "glossary/terms.yaml", "- {kr: 신규 용어, zh: 新術語, status: approved}\n")
+	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: head, Labels: rulesLabel, Body: body("term/a")}}, nil)
+	// No identity is needed when there is nothing to merge.
+	e.git("config", "--unset", "user.name")
+	e.git("config", "--unset", "user.email")
+
+	if _, err := Start(e.opts("2026-11-05")); err != nil {
+		t.Fatal(err)
+	}
+	if h := e.git("rev-parse", "HEAD"); h != sha {
+		t.Errorf("HEAD = %s, want the branch's %s: no merge commit", h, sha)
+	}
+}
+
+func TestProposalStartTakesMainsCommitsOfABranchMainHolds(t *testing.T) {
+	// A branch that main contains already (its PR was merged and the branch
+	// kept) simply takes main's newer commits: no merge commit, no identity.
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	e.pushBranch(head, "guides/README.md", "work\n")
+	e.git("fetch", "-q", "origin", head)
+	e.git("merge", "-q", "--no-edit", "FETCH_HEAD")
+	e.git("push", "-q", "origin", "main")
+	e.mainMoves("internal/x.go", "package x\n\n// newer\n")
+	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: head, Labels: rulesLabel, Body: body("term/a")}}, nil)
+	e.git("config", "--unset", "user.name")
+	e.git("config", "--unset", "user.email")
+
+	if _, err := Start(e.opts("2026-11-05")); err != nil {
+		t.Fatal(err)
+	}
+	if h, m := e.git("rev-parse", "HEAD"), e.git("rev-parse", "origin/main"); h != m {
+		t.Errorf("HEAD = %s, want origin/main = %s", h, m)
+	}
+}
+
+func TestProposalStartRefusesABranchThatConflictsWithMain(t *testing.T) {
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	sha := e.pushBranch(head, "guides/README.md", "the branch's guide\n")
+	e.mainMoves("guides/README.md", "main's guide\n")
+	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: head, Labels: rulesLabel, Body: body("term/a")}}, nil)
+	e.write("work/proposal/exclude.txt", "stale\n")
+	e.write("work/proposal/existing-body.md", "stale\n")
+
+	_, err := Start(e.opts("2026-11-05"))
+	mustRefuse(t, err, head, "guides/README.md", "origin/main")
+	// Left as it was: the branch as origin has it, no merge under way, clean.
+	if h := e.git("rev-parse", "HEAD"); h != sha {
+		t.Errorf("HEAD = %s, want the branch's %s", h, sha)
+	}
+	if st := e.statusLines(); st != "" {
+		t.Errorf("the clone is not clean afterwards:\n%s", st)
+	}
+	if _, err := os.Stat(filepath.Join(e.repo, ".git", "MERGE_HEAD")); err == nil {
+		t.Error("a merge is still under way")
+	}
+	// The files of an earlier run were not rewritten for a run that stopped.
+	if e.read("work/proposal/exclude.txt") != "stale\n" || e.read("work/proposal/existing-body.md") != "stale\n" {
+		t.Error("the files of work/proposal were rewritten")
+	}
+	if e.originGit("rev-parse", "refs/heads/"+head) != sha {
+		t.Error("origin's branch moved")
+	}
+}
+
+func TestProposalStartNeedsAnIdentityToMergeMain(t *testing.T) {
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	sha := e.pushBranch(head, "glossary/terms.yaml", "- {kr: 신규 용어, zh: 新術語, status: approved}\n")
+	e.mainMoves("internal/x.go", "package x\n\n// newer\n")
+	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: head, Labels: rulesLabel, Body: body("term/a")}}, nil)
+	e.git("config", "--unset", "user.name")
+	e.git("config", "--unset", "user.email")
+
+	_, err := Start(e.opts("2026-11-05"))
+	mustRefuse(t, err, "user.name", "user.email")
+	if h := e.git("rev-parse", "HEAD"); h != sha || e.statusLines() != "" {
+		t.Errorf("HEAD = %s, status = %q: want the branch as it was", h, e.statusLines())
+	}
+}
+
+func TestProposalStartDoesNotMergeMainIntoANewBranch(t *testing.T) {
+	e := newEnv(t)
+	e.mainMoves("internal/x.go", "package x\n\n// newer\n")
+	if _, err := Start(e.opts("2026-11-05")); err != nil {
+		t.Fatal(err)
+	}
+	if head, base := e.git("rev-parse", "HEAD"), e.git("rev-parse", "origin/main"); head != base {
+		t.Errorf("HEAD = %s, want origin/main = %s", head, base)
+	}
+}
+
+// tokenLike are strings that look like a credential, each with the pattern
+// that the refusal names. They are written so that no scanner of secrets takes
+// them for a real one.
+var tokenLike = []struct{ name, text, pattern string }{
+	{"a personal access token", "ghp_" + "0123456789abcdef", "ghp_"},
+	{"an OAuth token", "gho_" + "0123456789abcdef", "gho_"},
+	{"a server token", "ghs_" + "0123456789abcdef", "ghs_"},
+	{"a user token", "ghu_" + "0123456789abcdef", "ghu_"},
+	{"a fine-grained token", "github_pat_" + "0123456789abcdef", "github_pat_"},
+	{"a token in a URL", "https://x-access-token:" + "abc@github.com/o/r", "x-access-token"},
+	{"a basic authorization", "AUTHORIZATION: basic " + "YWJjOmRlZg==", "AUTHORIZATION: basic"},
+	{"a lower case authorization", "authorization: Basic " + "YWJjOmRlZg==", "AUTHORIZATION: basic"},
+	{"a key of the API", "sk-ant-" + "api03-abcdef", "sk-ant-"},
+}
+
+func TestProposalPublishRefusesATokenInTheBody(t *testing.T) {
+	for _, tc := range tokenLike {
+		secret := tc.text
+		t.Run(tc.name, func(t *testing.T) {
+			e := newEnv(t)
+			e.onBranch("rules-proposal/2026-11-05")
+			e.write("work/proposal/body.md", body("term/a")+"證據：`"+secret+"`\n")
+			e.write("guides/README.md", "changed\n")
+			headBefore := e.git("rev-parse", "HEAD")
+
+			_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+			// The line is named (body() is six lines, the evidence the seventh),
+			// and so is the pattern, but not the text.
+			mustRefuse(t, err, "body.md", "line 7", tc.pattern)
+			if strings.Contains(err.Error(), secret) {
+				t.Errorf("the refusal repeats the secret: %q", err)
+			}
+			if e.git("rev-parse", "HEAD") != headBefore || len(e.calls()) != 0 {
+				t.Error("something was committed or asked of gh")
+			}
+			if !strings.Contains(e.statusLines(), " M guides/README.md") {
+				t.Errorf("the change was staged:\n%s", e.statusLines())
+			}
+		})
+	}
+}
+
+func TestProposalPublishRefusesATokenInARuleFile(t *testing.T) {
+	for _, tc := range tokenLike {
+		secret := tc.text
+		t.Run(tc.name, func(t *testing.T) {
+			e := newEnv(t)
+			e.onBranch("rules-proposal/2026-11-05")
+			e.write("guides/README.md", "guides\nnot a secret\n"+"# 備註 "+secret+"\n")
+			headBefore := e.git("rev-parse", "HEAD")
+
+			_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+			mustRefuse(t, err, "guides/README.md", "line 3", tc.pattern)
+			if strings.Contains(err.Error(), secret) {
+				t.Errorf("the refusal repeats the secret: %q", err)
+			}
+			if e.git("rev-parse", "HEAD") != headBefore || len(e.calls()) != 0 {
+				t.Error("something was committed or asked of gh")
+			}
+			if strings.Contains(e.originGit("for-each-ref", "refs/heads"), "rules-proposal") {
+				t.Error("the branch was pushed")
+			}
+			if !strings.Contains(e.statusLines(), " M guides/README.md") {
+				t.Errorf("the change was staged:\n%s", e.statusLines())
+			}
+		})
+	}
+}
+
+func TestProposalPublishRefusesATokenInANewRuleFile(t *testing.T) {
+	secret := tokenLike[0].text
+	for name, file := range map[string]string{
+		"a new file":                    "rules/requeue/2026-11-05-a.yaml",
+		"a new file in a new directory": "rules/newdir/deeper/b.yaml",
+		"a new file with a odd name":    "guides/characters/新 角色.md",
+		"a staged file":                 "glossary/extra.yaml",
+	} {
+		t.Run(name, func(t *testing.T) {
+			e := newEnv(t)
+			e.onBranch("rules-proposal/2026-11-05")
+			e.write(file, "reason: x\nnote: "+secret+"\n")
+			if name == "a staged file" {
+				e.git("add", file)
+			}
+			_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+			mustRefuse(t, err, file, "line 2", "ghp_")
+			if strings.Contains(err.Error(), secret) || len(e.calls()) != 0 {
+				t.Errorf("err = %q, gh calls = %q", err, e.calls())
+			}
+		})
+	}
+}
+
+func TestProposalPublishScansOnlyWhatIsAdded(t *testing.T) {
+	// A rule file that holds such a string already does not stop every later
+	// PR, and a line that moves is not a line that is added.
+	e := newEnv(t)
+	secret := tokenLike[0].text
+	e.write("guides/README.md", "guides\n# "+secret+"\nmore\n")
+	e.git("commit", "-q", "-am", "an old line")
+	e.git("push", "-q", "origin", "main")
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("guides/README.md", "guides\nnew first\n# "+secret+"\nmore\n")
+
+	got, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !got.Created {
+		t.Errorf("Published = %+v", got)
+	}
+}
+
+func TestProposalPublishLeavesFilesOutsideTheRulesUnscanned(t *testing.T) {
+	// Only what is committed is scanned; an untracked file outside the rule
+	// folders is left alone (and not committed).
+	e := newEnv(t)
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("guides/README.md", "changed\n")
+	e.write("scratch.txt", tokenLike[0].text+"\n")
+	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestProposalPublishAllowsTextThatOnlyResemblesAToken(t *testing.T) {
+	// A word that merely resembles one of the patterns is not one.
+	e := newEnv(t)
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("work/proposal/body.md", body("term/a")+"ghp 加 sk ant，github pat，x access token，Authorization: Bearer 之類的說明\n")
+	e.write("guides/README.md", "Authorization 與 basic 是兩個詞\n")
+	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
+		t.Fatal(err)
+	}
+}

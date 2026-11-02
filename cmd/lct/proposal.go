@@ -13,7 +13,7 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name: "proposal start",
-		Usage: "check out the branch of the rules PR: that of the open rules PR, brought up to date, or rules-proposal/DATE (the free rules-proposal/DATE-N when a closed PR used that name) from origin/main; " +
+		Usage: "check out the branch of the rules PR: that of the open rules PR, brought up to date and with origin/main merged into it (a conflict is refused and named), or rules-proposal/DATE (the free rules-proposal/DATE-N when a closed PR used that name) from origin/main; " +
 			"writes work/proposal/exclude.txt, the suggestion ids that lct suggest --exclude-file must leave out, " +
 			"and work/proposal/existing-body.md, the description the open PR has now: --date YYYY-MM-DD",
 		Run: runProposalStart,
@@ -21,7 +21,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "proposal publish",
 		Usage: "commit the changes of guides/, glossary/ and rules/ on the rules-proposal/* branch, push it, and open the rules PR or update the open one; " +
-			"refuses any other branch and any other changed file; the description holds a <!-- suggestion:ID --> marker for each suggestion, " +
+			"refuses any other branch and any other changed file, and a description or a change that holds what looks like a credential; the description holds a <!-- suggestion:ID --> marker for each suggestion, " +
 			"and keeps those of the open PR's current description (work/proposal/existing-body.md): " +
 			"--body-file F [--date YYYY-MM-DD]",
 		Run: runProposalPublish,
