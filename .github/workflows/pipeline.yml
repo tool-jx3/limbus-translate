@@ -3,8 +3,9 @@ name: pipeline
 # The whole update, shared by update.yml (every week, with fetch) and by
 # rebuild.yml (new rules on main, without): fetch and snapshot the official
 # packs, plan, translate what is pending, keep the translations on tw, build,
-# push tw, make the Release and open the review issue. raw, tw and the Releases
-# are written only here, one run at a time.
+# push tw, make the Release when the pack is not the one of the last Release,
+# and open the review issue. raw, tw and the Releases are written only here,
+# one run at a time.
 on:
   workflow_call:
     inputs:
@@ -12,7 +13,7 @@ on:
       force: { type: boolean, default: false, description: 'Fetch and snapshot the latest update even if raw has it, and build even if nothing changed' }
       requeue: { type: string, default: '', description: 'A pack file name or glob whose translations go back to the pending list' }
       max_usd: { type: string, default: '', description: 'Spend at most this many US dollars on translating (empty: the variable LCT_MAX_USD, else 30)' }
-      dry_run: { type: boolean, default: false, description: 'Do not translate; plan, build and release what there is' }
+      dry_run: { type: boolean, default: false, description: 'Do not translate; plan, build, and release what there is if the pack changed' }
     secrets:
       ANTHROPIC_API_KEY: { required: false }
       LIMBUS_STATUS_URL: { required: false }

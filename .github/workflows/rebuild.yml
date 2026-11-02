@@ -18,7 +18,7 @@ on:
         type: string
         default: ''
       dry_run:
-        description: 'Do not translate; plan, build and release what there is'
+        description: 'Do not translate; plan, build, and release what there is if the pack changed'
         type: boolean
         default: false
 

@@ -45,5 +45,5 @@ allowed-tools:
 - 其他被退回的單位不再處理：`needs_review` 中的已用完嘗試次數，`lct` 已寫入替代文字；含協定錯誤碼的不能重送
 - **修正方式**：依 `errors` 的 `message` 修正（`severity` 為 `hard` 的一定要改）。保留整個 `work/batches/<id>.out.json`，只就地修改要修正的單位的條目，其他條目與 `note` 都不動，再執行 `bin/lct batch submit <id> --json` 送出整個檔案。用同一個 `<id>`：這些單位的租約仍屬於這個批次。已收下的單位重送不會有影響；不處理的單位會再被退回，不必理會。重複到沒有要修正的單位為止
 - 嘗試次數由 `lct` 計算，到上限的單位會出現在 `needs_review`，不必自己數
-- `warnings` 的單位已經收下，不必處理
+- `warnings` 的單位已經收下，不必處理。沒有 `key` 的一筆 `code: rules-dirty` 是整批的警告：規則有沒 commit 的修改，這批紀錄記下的規則 commit 不含這些修改；照樣繼續，最後的回報中提一句
 - `released` 不是空的，表示 out 檔漏了這些單位。這是錯誤，不可忽略：在最後的回報中列出批次 id 與這些 key（它們已放回待譯清單，之後會再發放）

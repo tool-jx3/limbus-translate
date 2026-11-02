@@ -20,7 +20,8 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.event != 'pull_request')
     runs-on: ubuntu-24.04
     timeout-minutes: 60
-    # One run at a time. A run that waits is never cancelled by the next.
+    # One run at a time: the one that runs is never cancelled, but GitHub
+    # keeps one waiting run only, and a newer one replaces it.
     concurrency: { group: rules-proposal, cancel-in-progress: false }
     permissions: { contents: write, pull-requests: write, issues: write, id-token: write }
     defaults:

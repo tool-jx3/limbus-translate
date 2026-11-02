@@ -6,8 +6,8 @@
 #   status        approved（已採用）／candidate（候選，待人工確認）
 #   forbidden     禁用譯法（驗證時以子字串比對；以 re: 開頭者為正規表示式）
 #   files         只適用於這些檔（檔名樣式，寫法同 lct.yaml 的 frozen；省略 = 所有檔）。
-#                 同一個 kr 可以有多個條目，其中至多一個不設 files；某個檔符合的條目會取代
-#                 沒設 files 的那一條
+#                 同一個 kr 可以有多個條目，其中至多一個 approved 的條目不設 files
+#                 （candidate 不計）；某個檔符合的條目會取代沒設 files 的那一條
 #   category      分類，見 glossary/README.md
 #   evidence      2026-10-29 既有繁中的使用情況（KR 含此詞的行數 / 使用採用譯名的行數 / 使用禁用譯法的行數）
 #   notes         補充

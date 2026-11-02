@@ -207,7 +207,7 @@ Limbus Company 每週四更新官方「Custom Language Translation Support」語
 **詞彙條目的適用範圍**：
 
 - 條目可加 `files`：檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`（`StoryData/S10[0-9][0-9]*`、`RPGSystem/**`）；省略 = 所有檔。只有批次的檔名符合時，條目才注入批次，也才檢查它的禁用譯法；`lct validate` 與 `lct adjust add` 同樣依單位所在的檔判斷（`lct validate` 以 `--file` 指定檔名）
-- 同一個 `kr` 可以有多個條目，其中至多一個不設 `files`（`rules lint` 檢查，`files` 的樣式也在這裡檢查）。某個檔符合有 `files` 的條目時，由這些條目代表這個詞，沒設 `files` 的那一條不適用；沒有任何條目符合時，用沒設 `files` 的那一條
+- 同一個 `kr` 可以有多個條目，其中至多一個 `status: approved` 的條目不設 `files`（`rules lint` 檢查，`candidate` 不生效、不計；`files` 的樣式也在這裡檢查）。某個檔符合有 `files` 的條目時，由這些條目代表這個詞，沒設 `files` 的那一條不適用；沒有任何條目符合時，用沒設 `files` 的那一條
 - 例：「신부」在第十章的檔（`*a1c10*`、`StoryData/S10[0-9][0-9]*`、`RPGSystem/**`、`Enemies-a1c10*`）譯「牧師」並禁用「神父」，其他檔譯「神父」；第十章的劇情檔是 S10xx（四位數），不含第一章的 S101B 等
 
 **疊加順序**：base → 族群 → 角色 → 人格 → 單檔備註。詞彙表、欄位規則與 `base.md` 的格式規則是硬性規定，風格指引不能推翻。
@@ -543,7 +543,7 @@ LimbusCompany_Data/
 | `lct adjust tidy` | 調整檔跟上目前 snapshot 的 plan：key 已移動的改成新 key，單位已重翻的過期調整刪除（§11.1） |
 | `lct suggest [--exclude-file F]...` | 規則還能學到什麼，附穩定的 id；略過 `rules/declined.yaml` 與排除檔的 id；有建議也是 exit 0（§11.2） |
 | `lct impact --base REV [--markdown F]` | 以目前工作樹的規則和 REV 的規則檢查 `tw` 的既有譯文，數出新規則多讓多少單位出現硬性問題；規則 PR 的影響評估（§11.2、§12） |
-| `lct proposal start／publish` | `start` 選規則 PR 的分支（重用的分支會合併 `origin/main`，衝突就拒絕）、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR，拒絕含有 token 或金鑰一類字串的說明與修改；需要 `GH_TOKEN` 與 git 身分（§11.2） |
+| `lct proposal start／publish` | `start` 選規則 PR 的分支（重用的分支會合併 `origin/main`，衝突就拒絕）、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR，拒絕含有 token 或金鑰一類字串的說明與修改；需要 `GH_TOKEN` 或 `GITHUB_TOKEN` 與 git 身分（§11.2） |
 | `lct translate` | 用 claude CLI 執行 `translate-pending` skill，直到沒有待譯、花費或時間用完，或某次執行失敗（§9.2）；`--not-run REASON` 不執行 claude，只在 `.meta/translate.json` 記下翻譯沒有執行與原因（CI 有待譯、但缺 API key 或模型，或 claude CLI 安裝失敗時用，審核 Issue 因此列出「翻譯沒有執行」與原因，§14.2；dry run 不記） |
 | `lct fields learn` | 重算欄位規則 |
 | `lct glossary derive [--source keyword\|speaker] [--limit N] [--offset N]` | 從 `BattleKeywords*`、`Bufs*`（`keyword`）與 `ScenarioModelCodes`（`speaker`）列出詞彙表還沒有、也沒被不採用的名稱，作為候選詞條；只輸出，不寫檔；依 KR 排序，`--limit`／`--offset` 取其中一頁，JSON 為 `{total, candidates}`（`total` 是頁數限制前的總數） |

@@ -45,9 +45,7 @@
 
 ## 之後要補的
 
-- 狀態效果與關鍵字：從 `BattleKeywords*`、`Bufs*` 以 id 對齊 KR／EN／JP 與既有繁中自動產生（例如 `[Laceration]` = 流血、`[Combustion]` = 燒傷）
-- 角色與 NPC 名稱：從 `ScenarioModelCodes-AutoCreated` 自動產生
-- 自動產生的條目標為候選，人工確認後才正式採用（`lct glossary derive` 先列出候選，見下）
+- 狀態效果、關鍵字（`BattleKeywords*`、`Bufs*`）與角色、NPC 名稱（`ScenarioModelCodes-AutoCreated`）：`lct glossary derive` 已能列出譯文用到、詞彙表還沒有的名稱與現行譯名（見下），由人以 `term-decision` skill 逐一決定。還沒做的是以 id 對齊 EN／JP，把條目的 `en`、`jp` 一併填好
 
 ## `lct glossary derive`：找出還沒列進詞彙表的名稱
 
