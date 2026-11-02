@@ -62,6 +62,46 @@ func TestNormalize(t *testing.T) {
 	}
 }
 
+// base.md 6: an [ID] has a half-width space on both sides, and two [ID]s that
+// touch are separated. The space goes beside a keyword ID, not after any "]":
+// a "]" that ends another pair of brackets, such as the "][" of the mirrored
+// event name 射影戰鬥][鬥戰影射, is not asked to take one. A placeholder [{n}]
+// keeps its brackets tight (the guide), but its "]" before an [ID] was spaced
+// before and still is.
+func TestNormalizeSpacesOnlyAfterKeywordIDs(t *testing.T) {
+	tests := []struct {
+		name, in, want string
+	}{
+		{"] of another pair before an ID", "名][Burn]", "名][Burn]"},
+		{"] of another pair, text after the ID", "名][Burn]強度", "名][Burn] 強度"},
+		{"a bracketed word before an ID", "[名][Burn]", "[名][Burn]"},
+		{"a bracketed number before an ID", "第[1][Burn]項", "第[1][Burn] 項"},
+		{"mirrored name next to an ID elsewhere", "射影戰鬥][鬥戰影射增加[Burn]", "射影戰鬥][鬥戰影射增加 [Burn]"},
+		{"an ID before and after another pair", "[Burn]名][Bleed]", "[Burn] 名][Bleed]"},
+		{"IDs that touch are still separated", "[Burn][Bleed]", "[Burn] [Bleed]"},
+		{"IDs that touch, with text around", "增加[Burn][Bleed]強度", "增加 [Burn] [Bleed] 強度"},
+		{"IDs with a tag between them", "[Burn]</b>[Bleed]", "[Burn]</b>[Bleed]"},
+		{"a name followed by an ID", "釘[Console]", "釘 [Console]"},
+		{"an ID at the start", "[Burn]增加", "[Burn] 增加"},
+		{"placeholder brackets stay tight", "罪人[{0}]獲得了", "罪人[{0}]獲得了"},
+		{"placeholder brackets stay tight beside an ID", "罪人[{0}]獲得[Burn]", "罪人[{0}]獲得 [Burn]"},
+		{"an ID after a placeholder is spaced as before", "[{0}][Burn]", "[{0}] [Burn]"},
+		{"an ID before a placeholder", "[Burn][{0}]", "[Burn][{0}]"},
+		{"TabExplain after another pair", "名][TabExplain]說明", "名][TabExplain]說明"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			got := Normalize("", tc.in)
+			if got != tc.want {
+				t.Errorf("Normalize(%q) = %q, want %q", tc.in, got, tc.want)
+			}
+			if again := Normalize("", got); again != got {
+				t.Errorf("Normalize is not idempotent: %q -> %q", got, again)
+			}
+		})
+	}
+}
+
 // Normalize repairs only the translation, so the KR text must not change it.
 func TestNormalizeIgnoresKR(t *testing.T) {
 	zh := "命中[Sinking]強度"
@@ -84,6 +124,7 @@ func TestNormalizeLanguageStyle(t *testing.T) {
 		{"already djp", `<style="dkr">피`, `<style="djp">血`, `<style="djp">血`},
 		{"already DJP with suffix", `<style="DKR_CP9_1">피`, `<style="DJP_CP9_1">血`, `<style="DJP_CP9_1">血`},
 		{"unquoted value", `<style=dkr>피`, `<style=dkr>血`, `<style=djp>血`},
+		{"tag name in upper case", `<STYLE="dkr">피</STYLE>`, `<STYLE="dkr">血</STYLE>`, `<STYLE="djp">血</STYLE>`},
 		{"with closing tag", `<style="dkr">피</style>`, `<style="dkr">血</style>`, `<style="djp">血</style>`},
 		{"several tags", `<style="dkr_CP6_1">가</style> <style="dkr_CP6_2">나</style>`, `<style="dkr_CP6_1">甲</style> <style="DKR_CP6_2">乙</style>`, `<style="djp_CP6_1">甲</style> <style="DJP_CP6_2">乙</style>`},
 		{"KR has no style tag", `피`, `<style="dkr">血`, `<style="djp">血`},

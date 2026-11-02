@@ -633,11 +633,62 @@ func TestRequeueRejectsBadSelectors(t *testing.T) {
 			}
 		})
 	}
-	if _, err := Apply(st, nil, frozen, Selector{Leased: true}, hint); err == nil {
-		t.Error("Apply without a KR pack = nil error")
+	// Requeueing records checks them against KR.
+	if _, err := Apply(st, nil, frozen, Selector{Files: []string{otherFile}}, hint); err == nil {
+		t.Error("Apply of records without a KR pack = nil error")
+	}
+	if _, _, err := ApplyTo(loadRecords(t, st), nil, nil, frozen, Selector{Files: []string{otherFile}}, hint, nil); err == nil {
+		t.Error("ApplyTo of records without a KR pack = nil error")
 	}
 	if got := loadPending(t, st); len(got) != 0 {
 		t.Errorf("a rejected call changed the pending list: %+v", got)
+	}
+}
+
+// Resetting and releasing act on the pending queue and look at no KR, so they
+// need no KR pack (the raw snapshot) either.
+func TestApplyStuckModesNeedNoKR(t *testing.T) {
+	st := newStore(t)
+	saveRecords(t, st, rec(key(otherFile, 0), "a", store.OriginClaude))
+	lease := &store.Lease{Batch: "20261101T020000-aaaaaaaa", Until: time.Now().Add(time.Hour)}
+	savePending(t, st,
+		store.PendingItem{Key: key(otherFile, 0), Reason: "new", Attempts: 3, Flags: []string{store.FlagNeedsReview}},
+		store.PendingItem{Key: key(otherFile, 1), Reason: "new", Lease: lease},
+		// A file that is not in any KR pack: no check is made against KR.
+		store.PendingItem{Key: key("Gone.json", 0), Reason: "new", Attempts: 3, Flags: []string{store.FlagNeedsReview}},
+	)
+
+	res, err := Apply(st, nil, frozen, Selector{NeedsReview: true, Files: []string{otherFile}}, hint)
+	if err != nil {
+		t.Fatalf("Apply --needs-review without a KR pack: %v", err)
+	}
+	checkResult(t, res, Result{Reset: 1})
+	res, err = Apply(st, nil, frozen, Selector{Leased: true, Origins: []string{store.OriginClaude, store.OriginCopy}}, hint)
+	if err != nil {
+		t.Fatalf("Apply --leased without a KR pack: %v", err)
+	}
+	checkResult(t, res, Result{}) // unit 1 has no record: out of the origins
+	res, err = Apply(st, nil, frozen, Selector{NeedsReview: true, Leased: true}, hint)
+	if err != nil {
+		t.Fatalf("Apply both without a KR pack: %v", err)
+	}
+	checkResult(t, res, Result{Reset: 1, Released: 1})
+
+	got := pendingByKey(t, st)
+	for _, k := range []string{key(otherFile, 0), key("Gone.json", 0)} {
+		if it := got[k]; len(it.Flags) != 0 || it.Attempts != 0 || it.Hint != hint {
+			t.Errorf("%s = %+v, want it reset with the hint", k, it)
+		}
+	}
+	if it := got[key(otherFile, 1)]; it.Lease != nil {
+		t.Errorf("%s = %+v, want it released", key(otherFile, 1), it)
+	}
+
+	// ApplyTo is the same on state the caller holds.
+	pending := []store.PendingItem{{Key: key(otherFile, 3), Reason: "new", Flags: []string{store.FlagNeedsReview}}}
+	out, res2, err := ApplyTo(nil, pending, nil, frozen, Selector{NeedsReview: true}, hint, nil)
+	if err != nil || res2.Reset != 1 || len(out) != 1 || len(out[0].Flags) != 0 {
+		t.Errorf("ApplyTo without a KR pack = %+v, %+v, %v, want one reset", out, res2, err)
 	}
 }
 

@@ -196,10 +196,12 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 // KR tag for a missing one, the zh tag for an extra one.
 //
 // zh may close a tag that KR opens and never closes (the lyric <style="dkr">,
-// which the official EN text closes at the end of the line): per tag name, as
-// many extra closing tags are accepted as KR has openings without a closing
-// tag, which is none if KR's tags of that name are balanced. Tags without a
-// closing tag (<br>, <sprite>) never take part.
+// which the official EN text closes at the end of the line), but only at the
+// end of the text (base.md): per tag name, as many extra closing tags are
+// accepted as KR has openings without a closing tag, which is none if KR's
+// tags of that name are balanced, and only those in the run of closing tags
+// that ends zh (see trailingClosings). Tags without a closing tag (<br>,
+// <sprite>) never take part.
 func tagDiff(kr, zh string) (missing, extra []string) {
 	split := func(s string) (keys []string, written map[string]string) {
 		written = map[string]string{}
@@ -220,13 +222,18 @@ func tagDiff(kr, zh string) (missing, extra []string) {
 	zhKeys, zhWritten := split(zh)
 	missing, extra = multisetDiff(krKeys, zhKeys)
 	unclosed := unclosedTags(kr)
+	atEnd := map[string]int{}
+	for _, name := range trailingClosings(zh) {
+		atEnd[name]++
+	}
 	extra = slices.DeleteFunc(extra, func(key string) bool {
 		name, isClosing := strings.CutPrefix(key, "</")
-		name = strings.TrimSuffix(name, ">")
-		if !isClosing || unclosed[name] <= 0 {
+		name = strings.ToLower(strings.TrimSuffix(name, ">"))
+		if !isClosing || unclosed[name] <= 0 || atEnd[name] <= 0 {
 			return false
 		}
 		unclosed[name]--
+		atEnd[name]--
 		return true
 	})
 	for i, key := range missing {
@@ -240,7 +247,27 @@ func tagDiff(kr, zh string) (missing, extra []string) {
 	return missing, extra
 }
 
-// unclosedTags returns, per tag name as written, how many more times s opens
+// trailingClosings returns the lower-case names of the closing tags that end
+// s: the closing tags at the end of s with nothing but blanks between them
+// and after the last. A closing tag followed by text, or by a tag that does
+// not close, is not among them, nor is any tag before it.
+func trailingClosings(s string) []string {
+	locs := tagRe.FindAllStringIndex(s, -1)
+	var names []string
+	end := len(s)
+	for i := len(locs) - 1; i >= 0; i-- {
+		start, stop := locs[i][0], locs[i][1]
+		name, closing := tagName(s[start:stop])
+		if !closing || strings.TrimSpace(s[stop:end]) != "" {
+			break
+		}
+		names = append(names, strings.ToLower(name))
+		end = start
+	}
+	return names
+}
+
+// unclosedTags returns, per lower-case tag name, how many more times s opens
 // the tag than it closes it. The count is zero or negative for a name that s
 // closes as often as it opens or more often, and self-closing tags are left
 // out.
@@ -248,8 +275,9 @@ func unclosedTags(s string) map[string]int {
 	open := map[string]int{}
 	for _, tok := range Tags(s) {
 		name, closing := tagName(tok)
+		name = strings.ToLower(name)
 		switch {
-		case selfClosing[strings.ToLower(name)]:
+		case selfClosing[name]:
 		case closing:
 			open[name]--
 		default:

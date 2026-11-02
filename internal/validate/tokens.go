@@ -16,8 +16,11 @@ var (
 	// tagRe matches a TextMeshPro tag such as <color=#f8c200> or </color>.
 	// Only the names in richTextTags count, in any case: KR also writes <…>
 	// around plain text (the report title <DAY ■■, ■■ ■■ …>), which is not a
-	// tag. It cannot match <0>, which is a placeholder.
-	tagRe = regexp.MustCompile(`(?i)</?(?:` + strings.Join(richTextTags, "|") + `)(=[^>]*)?( [^>]*)?>`)
+	// tag. A name followed by a space needs an attribute (name=value) after
+	// it, as in <sprite name="Bleed">; the start of a line of Dante's
+	// dialogue such as <B 사무소 …> is text. It cannot match <0>, which is a
+	// placeholder.
+	tagRe = regexp.MustCompile(`(?i)</?(?:` + strings.Join(richTextTags, "|") + `)(=[^>]*)?( +(?:[a-z][a-z0-9_-]*=[^>]*)?)?>`)
 	// tagShapeRe matches anything written like a tag, known name or not.
 	// IsDanteLine uses it so that a line starting with such a token is never
 	// taken for a line of Dante's dialogue.
@@ -27,7 +30,7 @@ var (
 	// the lyric lines apart. The groups are the opening quote, the language
 	// prefix (d plus the language code), the suffix and the closing quote;
 	// callers accept a match only when the quotes agree.
-	langStyleRe = regexp.MustCompile(`<style=("?)((?i:d(?:kr|en|jp)))((?:_[A-Za-z0-9_]+)?)("?)>`)
+	langStyleRe = regexp.MustCompile(`<(?i:style)=("?)((?i:d(?:kr|en|jp)))((?:_[A-Za-z0-9_]+)?)("?)>`)
 )
 
 // richTextTags lists the names of the tags Tags recognises: the TextMeshPro
@@ -87,10 +90,12 @@ const rubyOpenKey = "\x00ruby"
 
 // comparableTag returns the form of tag token tok, which Tags returned, in
 // which tags compare equal when they mean the same: a closing tag is its
-// name, an opening <ruby=…> tag is its name only (its value is the reading
-// shown above the text, which KR writes in Korean and a translation must
-// replace), and a per-language style tag has its language code left out and
-// its suffix lower-cased. The result is only for comparing, and the form of a
+// name, an opening <ruby=…> tag, whatever the case of ruby, is its name only
+// (its value is the reading shown above the text, which KR writes in Korean
+// and a translation must replace), and a per-language style tag has its
+// language code left out and its suffix lower-cased. The name of any other tag
+// is compared as written, like the rest of the tag: base.md asks to keep what
+// is inside <> unchanged. The result is only for comparing, and the form of a
 // ruby or per-language style tag starts with a NUL, which no tag token does,
 // so no tag in a text can be equal to it.
 func comparableTag(tok string) string {
@@ -98,7 +103,7 @@ func comparableTag(tok string) string {
 	switch {
 	case closing:
 		return "</" + name + ">"
-	case name == "ruby":
+	case strings.EqualFold(name, "ruby"):
 		return rubyOpenKey
 	}
 	if quote, _, suffix, ok := langStyle(tok); ok {

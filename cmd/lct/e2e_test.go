@@ -452,15 +452,14 @@ func checkE2EBatches(t *testing.T, batches []batch.Batch) {
 			t.Errorf("unit %s = EN %v, JP %v, refs %v, want EN, JP, ltm and llc", u.Key, u.EN, u.JP, u.Refs)
 		}
 	}
-	// The adopted strings of the lines within three lines of the batch's two
-	// units: all of them here, but the models, which are copies.
+	// The adopted strings of the lines within two lines of the batch's two
+	// units (a batch of two units looks at two lines on each side), but the
+	// models, which are copies.
 	var context []string
 	for _, c := range story.Context {
 		context = append(context, c.Key[strings.Index(c.Key, "|")+1:]+"="+c.ZH)
 	}
 	wantContext := []string{
-		"/dataList/0/place=南部12區外圍",
-		"/dataList/0/content=太陽正在下山。",
 		"/dataList/1/teller=以實瑪利",
 		"/dataList/1/content=船長，今天要去哪裡？",
 		"/dataList/2/content=那當然是<color=#f8c200>冒險</color>囉！",

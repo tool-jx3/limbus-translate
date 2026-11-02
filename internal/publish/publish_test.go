@@ -182,7 +182,7 @@ func testInfo(t *testing.T) build.Info {
 
 func TestNotes(t *testing.T) {
 	info := testInfo(t)
-	notes := string(Notes(info, nil, testReleaseA))
+	notes := string(Notes(info, nil, testReleaseA, testLang))
 
 	for _, want := range []string{
 		testReleaseA, testRawTag, testToken, testRules,
@@ -242,7 +242,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 	if info.Report.Origins["paratranz"] == 0 {
 		t.Fatal("the fixture has no paratranz records")
 	}
-	notes := string(Notes(info, nil, testReleaseA))
+	notes := string(Notes(info, nil, testReleaseA, testLang))
 
 	licence := strings.Index(notes, "## 授權與來源")
 	imported := strings.Index(notes, "匯入：paratranz: owner/pz@11\n")
@@ -266,7 +266,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 
 	// The same bytes however the map was filled.
 	for range 20 {
-		if again := string(Notes(info, nil, testReleaseA)); again != notes {
+		if again := string(Notes(info, nil, testReleaseA, testLang)); again != notes {
 			t.Fatalf("Notes is not deterministic:\n%s\n%s", notes, again)
 		}
 	}
@@ -276,7 +276,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 	info.Report.Origins, info.Report.Shown = map[string]int{"claude": 7}, map[string]int{"claude": 7}
 	for _, upstream := range []map[string]string{info.Upstream, nil, {}} {
 		info.Upstream = upstream
-		without := string(Notes(info, nil, testReleaseA))
+		without := string(Notes(info, nil, testReleaseA, testLang))
 		for _, banned := range []string{"匯入", "參考譯文", "@", "上游", "paratranz", "ltm", "llc", "Paratranz"} {
 			if strings.Contains(without, banned) {
 				t.Errorf("notes of a build with no imported records (upstream %#v) mention %q:\n%s", upstream, banned, without)
@@ -299,7 +299,7 @@ func TestNotesAreConcise(t *testing.T) {
 		RawTag: testRawTag, PrevRawTag: "raw-20261022",
 		Changes: plan.Changes{New: 5, Changed: 4, Deleted: 6, Unchanged: 900},
 	}
-	notes := string(Notes(info, sum, testReleaseA))
+	notes := string(Notes(info, sum, testReleaseA, testLang))
 
 	for _, want := range []string{
 		"paratranz 60.0%", "claude 28.0%", "stand-in 4.0%", "copy 8.0%", // each source, to one decimal
@@ -327,7 +327,7 @@ func TestNotesAreConcise(t *testing.T) {
 	// a share of their own.
 	info.Report.Shown = map[string]int{"paratranz": 45, "claude": 45, "stand-in": 10}
 	info.Report.Pending, info.Report.StandIn = 10, 10
-	notes = string(Notes(info, sum, testReleaseA))
+	notes = string(Notes(info, sum, testReleaseA, testLang))
 	for _, want := range []string{"paratranz 45.0%", "claude 45.0%", "stand-in 10.0%", "仍顯示英文：10 個單位"} {
 		if !strings.Contains(notes, want) {
 			t.Errorf("notes lack %q:\n%s", want, notes)
@@ -337,7 +337,7 @@ func TestNotesAreConcise(t *testing.T) {
 	// A third of a unit shows as one decimal, rounded.
 	info.Report.Shown = map[string]int{"paratranz": 1, "claude": 2}
 	info.Report.Pending, info.Report.StandIn = 0, 0
-	if notes := string(Notes(info, sum, testReleaseA)); !strings.Contains(notes, "paratranz 33.3%") || !strings.Contains(notes, "claude 66.7%") {
+	if notes := string(Notes(info, sum, testReleaseA, testLang)); !strings.Contains(notes, "paratranz 33.3%") || !strings.Contains(notes, "claude 66.7%") {
 		t.Errorf("shares are not rounded to one decimal:\n%s", notes)
 	}
 
@@ -347,7 +347,7 @@ func TestNotesAreConcise(t *testing.T) {
 		"no plan":        nil,
 		"first snapshot": {RawTag: testRawTag, PrevRawTag: testRawTag, Changes: plan.Changes{New: 5}},
 	} {
-		if notes := string(Notes(info, s, testReleaseA)); strings.Contains(notes, "新增") || strings.Contains(notes, "修改") {
+		if notes := string(Notes(info, s, testReleaseA, testLang)); strings.Contains(notes, "新增") || strings.Contains(notes, "修改") {
 			t.Errorf("%s: notes tell of changes:\n%s", name, notes)
 		}
 	}
@@ -362,7 +362,7 @@ func TestNotesSharesCountEachUnitOnce(t *testing.T) {
 	info.Report.Origins = map[string]int{"claude": 10, "paratranz": 90} // one of the claude records broke
 	info.Report.Pending, info.Report.StandIn = 0, 1
 	info.Report.Shown = map[string]int{"claude": 9, "paratranz": 90, "stand-in": 1}
-	notes := string(Notes(info, nil, testReleaseA))
+	notes := string(Notes(info, nil, testReleaseA, testLang))
 
 	for _, want := range []string{"- claude 9.0%", "- paratranz 90.0%", "- stand-in 1.0%", "全部 100 個單位"} {
 		if !strings.Contains(notes, want) {
@@ -381,7 +381,7 @@ func TestNotesSharesCountEachUnitOnce(t *testing.T) {
 	info.Report.Origins = map[string]int{"claude": 4, "copy": 3}
 	info.Report.Pending, info.Report.StandIn = 2, 3
 	info.Report.Shown = map[string]int{"claude": 3, "copy": 4, "stand-in": 3}
-	notes = string(Notes(info, nil, testReleaseA))
+	notes = string(Notes(info, nil, testReleaseA, testLang))
 	if got := sharesTotal(t, notes); got < 99.95 || got > 100.05 {
 		t.Errorf("the shares add up to %.1f%%, want 100.0%%:\n%s", got, notes)
 	}
@@ -418,12 +418,12 @@ func sharesTotal(t *testing.T, notes string) float64 {
 func TestNotesCountEnglishOnce(t *testing.T) {
 	info := testInfo(t)
 	info.Report.Pending, info.Report.StandIn = 5, 12
-	if notes := string(Notes(info, nil, testReleaseA)); !strings.Contains(notes, "仍顯示英文：12 個單位") ||
+	if notes := string(Notes(info, nil, testReleaseA, testLang)); !strings.Contains(notes, "仍顯示英文：12 個單位") ||
 		!strings.Contains(notes, "尚未翻譯 5") {
 		t.Errorf("notes do not count the stand-ins once:\n%s", notes)
 	}
 	info.Report.StandIn = 0
-	if notes := string(Notes(info, nil, testReleaseA)); !strings.Contains(notes, "仍顯示英文：5 個單位") {
+	if notes := string(Notes(info, nil, testReleaseA, testLang)); !strings.Contains(notes, "仍顯示英文：5 個單位") {
 		t.Errorf("notes of an old build record lack the pending units:\n%s", notes)
 	}
 }
@@ -432,7 +432,7 @@ func TestNotesCountEnglishOnce(t *testing.T) {
 // notes, and the same bytes every time.
 func TestNotesOfAnEmptyReport(t *testing.T) {
 	info := build.Info{RawTag: testRawTag, RawToken: testToken, RulesCommit: "abc"}
-	notes := string(Notes(info, nil, testReleaseA))
+	notes := string(Notes(info, nil, testReleaseA, testLang))
 	for _, want := range []string{"# " + testReleaseA, testToken, "abc", "CC BY-NC-SA 4.0", "仍顯示英文：0 個單位"} {
 		if !strings.Contains(notes, want) {
 			t.Errorf("notes lack %q:\n%s", want, notes)
@@ -441,8 +441,56 @@ func TestNotesOfAnEmptyReport(t *testing.T) {
 	if strings.Contains(notes, "NaN") || strings.Contains(notes, "%") {
 		t.Errorf("notes of an empty report hold a share:\n%s", notes)
 	}
-	if string(Notes(info, nil, testReleaseA)) != notes {
+	if string(Notes(info, nil, testReleaseA, testLang)) != notes {
 		t.Error("Notes is not deterministic")
+	}
+}
+
+// section returns the part of the notes under the heading, up to the next one.
+func section(t *testing.T, notes, heading string) string {
+	t.Helper()
+	_, rest, ok := strings.Cut(notes, heading+"\n")
+	if !ok {
+		t.Fatalf("notes have no %q:\n%s", heading, notes)
+	}
+	body, _, _ := strings.Cut(rest, "\n## ")
+	return body
+}
+
+// The install text names the language directory lct.yaml gives (lang_dir), the
+// one the build wrote config.json for, not a fixed one.
+func TestNotesUseTheLangDir(t *testing.T) {
+	const lang = "xx-YY"
+	info := testInfo(t)
+
+	install := section(t, string(Notes(info, nil, testReleaseA, lang)), "## 安裝方式")
+	if !strings.Contains(install, "選擇 "+lang+"。") {
+		t.Errorf("the install text does not name %s:\n%s", lang, install)
+	}
+	if strings.Contains(install, testLang) {
+		t.Errorf("the install text still names %s:\n%s", testLang, install)
+	}
+	// The default language directory is named as before.
+	if install := section(t, string(Notes(info, nil, testReleaseA, testLang)), "## 安裝方式"); !strings.Contains(install, "選擇 "+testLang+"。") {
+		t.Errorf("the install text does not name %s:\n%s", testLang, install)
+	}
+
+	// Run writes the notes with the language directory it was given. The zips
+	// are named after it.
+	f := newFixture(t)
+	write(t, f.tw, ".meta/build.json", strings.ReplaceAll(testBuildJSON, testLang+"_", lang+"_"))
+	write(t, f.out, lang+"_text_"+testRawTag+".zip", "text")
+	write(t, f.out, lang+"_complete_"+testRawTag+".zip", "complete")
+	res, err := Run(f.root, f.tw, f.out, lang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	notes, err := os.ReadFile(res.NotesPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if install := section(t, string(notes), "## 安裝方式"); !strings.Contains(install, "選擇 "+lang+"。") || strings.Contains(install, testLang) {
+		t.Errorf("the notes Run wrote do not name only %s in the install text:\n%s", lang, install)
 	}
 }
 

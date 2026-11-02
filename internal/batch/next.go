@@ -385,6 +385,12 @@ func assemble(
 	return b, nil
 }
 
+// contextReach is how many dataList elements on each side of the element of
+// a unit are looked at for the context of a story batch of n units: as many
+// as the batch has units, so that a batch of one unit does not come with more
+// context than text to translate, and at most contextElements.
+func contextReach(n int) int { return min(contextElements, max(1, n)) }
+
 // cleanRefs drops the empty references; nil when none is left.
 func cleanRefs(refs map[string]string) map[string]string {
 	var out map[string]string
@@ -402,17 +408,18 @@ func cleanRefs(refs map[string]string) map[string]string {
 
 // storyContext returns the translated strings near the units of a story batch:
 // those of every dataList element (a line of a story, or a group of texts of an
-// RPG dialogue) up to contextElements before or after the element of any unit
-// of the batch, each once, in document order. A string is shown if it has a
-// record that is not a copy and was made from the KR text it has now, and it
-// does not wait for translation. So the units of the batch are never shown, and
-// neither is a string that needs review. Strings outside the dataList belong to
-// no element and are not looked at.
+// RPG dialogue) up to contextReach(len(chosen)) before or after the element of
+// any unit of the batch, each once, in document order. A string is shown if it
+// has a record that is not a copy and was made from the KR text it has now,
+// and it does not wait for translation. So the units of the batch are never
+// shown, and neither is a string that needs review. Strings outside the
+// dataList belong to no element and are not looked at.
 func storyContext(env Env, fd *fileData, recs map[string]store.Record, pendingByKey map[string]store.PendingItem, chosen []slot) []ContextLine {
+	reach := contextReach(len(chosen))
 	near := map[int]bool{} // the elements in reach
 	for _, s := range chosen {
 		if at := fd.units[s.pos].ItemIndex; at >= 0 {
-			for i := at - contextElements; i <= at+contextElements; i++ {
+			for i := at - reach; i <= at+reach; i++ {
 				near[i] = true
 			}
 		}

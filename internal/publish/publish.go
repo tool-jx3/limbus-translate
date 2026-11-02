@@ -385,7 +385,7 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	}
 
 	notesPath := filepath.Join(outDir, notesName)
-	if err := os.WriteFile(notesPath, Notes(info, sum, tag), 0o644); err != nil {
+	if err := os.WriteFile(notesPath, Notes(info, sum, tag, langDir), 0o644); err != nil {
 		return nil, err
 	}
 	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: d.releaseNeeded, SameAs: d.sameAs}, nil
@@ -427,15 +427,17 @@ var originLabels = map[string]string{
 
 // Notes renders the release notes of the Release called tag, built from info
 // and from sum, the plan of the snapshot (nil when there is none), in
-// Markdown. The tag is the title: the Release name must not hold the name of
-// the product that translated the pack, which the text below it may.
+// Markdown. langDir is the language directory of the pack (lang_dir in
+// lct.yaml), the language the install text tells to choose. The tag is the
+// title: the Release name must not hold the name of the product that
+// translated the pack, which the text below it may.
 //
 // The notes are short (spec 14.1): the parts come in this order: the title;
 // what the pack is; how to install it; the raw version and what changed in it;
 // the rules version; the share of each source of the translations and how many
 // units still show English; the licence and the sources. The report of the
 // build, with its tables and lists, is not repeated.
-func Notes(info build.Info, sum *plan.Summary, tag string) []byte {
+func Notes(info build.Info, sum *plan.Summary, tag, langDir string) []byte {
 	var b strings.Builder
 	rep := info.Report
 
@@ -443,7 +445,7 @@ func Notes(info build.Info, sum *plan.Summary, tag string) []byte {
 	b.WriteString("Limbus Company 臺灣繁體中文語言包，使用 Claude Code 翻譯。\n\n")
 
 	b.WriteString("## 安裝方式\n\n")
-	b.WriteString("把 zip 內的 `LimbusCompany_Data/` 解壓到遊戲資料夾，在遊戲設定選擇 zh-TW。\n\n")
+	fmt.Fprintf(&b, "把 zip 內的 `LimbusCompany_Data/` 解壓到遊戲資料夾，在遊戲設定選擇 %s。\n\n", langDir)
 	b.WriteString("zip 有兩種：text 只有文字；complete 另含字型。\n\n")
 
 	b.WriteString("## 原文版本\n\n")

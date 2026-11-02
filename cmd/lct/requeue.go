@@ -20,7 +20,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "requeue",
 		Usage: "send units back to the pending list: [--key K]... [--file GLOB]... [--origin O]... --reason TEXT (always required); " +
-			"or reset (--needs-review) / release (--leased) pending units, narrowed by --key/--file/--origin, requeueing no record; " +
+			"or reset (--needs-review) / release (--leased) pending units, narrowed by --key/--file/--origin, requeueing no record and needing no raw snapshot; " +
 			"a hint set on a leased unit misses the batch in flight: release it with --leased --key K; " +
 			"or, with --to-file TOPIC [--date YYYY-MM-DD], write the request to rules/requeue/<date>-<topic>.yaml for CI to apply once, and touch no state",
 		Run: runRequeue,
@@ -33,7 +33,8 @@ func init() {
 //
 // --key, --file and --origin select records to requeue. Given with
 // --needs-review or --leased they only narrow which pending units those reset
-// or release (one command, one kind of change). Given with --to-file they are
+// or release (one command, one kind of change; these two look at no KR, so
+// they need no raw snapshot). Given with --to-file they are
 // written to a request file on main instead, and the plan of CI requeues the
 // records once; nothing under tw is touched then.
 func runRequeue(ctx *cli.Context, args []string) error {
@@ -86,27 +87,33 @@ func runRequeue(ctx *cli.Context, args []string) error {
 	}
 
 	cfg := ctx.Config
-	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
-		return cli.UserError("requeue: worktrees.raw and worktrees.tw must be set in lct.yaml")
-	}
-	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
-	src, err := raw.LastSource(rawWorktree)
-	if err != nil {
-		return err
-	}
-	if src == nil {
-		return cli.UserError(fmt.Sprintf("requeue: %s has no snapshot; run lct snapshot first", cfg.Worktrees.Raw))
-	}
-	set, err := pack.OpenRaw(rawWorktree)
-	if err != nil {
-		return err
+	// Requeueing records checks them against the KR of the raw snapshot.
+	// Resetting and releasing change the pending list only: no snapshot needed.
+	var kr *pack.Pack
+	if !sel.NeedsReview && !sel.Leased {
+		if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
+			return cli.UserError("requeue: worktrees.raw and worktrees.tw must be set in lct.yaml")
+		}
+		rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
+		src, err := raw.LastSource(rawWorktree)
+		if err != nil {
+			return err
+		}
+		if src == nil {
+			return cli.UserError(fmt.Sprintf("requeue: %s has no snapshot; run lct snapshot first", cfg.Worktrees.Raw))
+		}
+		set, err := pack.OpenRaw(rawWorktree)
+		if err != nil {
+			return err
+		}
+		kr = set.KR
 	}
 
 	st, err := openTWStore(ctx, "requeue")
 	if err != nil {
 		return err
 	}
-	res, err := requeue.Apply(st, set.KR, cfg.Frozen, sel, hint)
+	res, err := requeue.Apply(st, kr, cfg.Frozen, sel, hint)
 	if err != nil {
 		return err
 	}

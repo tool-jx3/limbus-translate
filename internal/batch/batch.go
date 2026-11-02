@@ -37,9 +37,10 @@ const (
 	DefaultLeaseTTL      = 120 * time.Minute
 )
 
-// contextElements is how many dataList elements (lines of a story, groups of
+// contextElements is the most dataList elements (lines of a story, groups of
 // texts of an RPG dialogue) on each side of the element of a unit of a story
-// batch are looked at for context.
+// batch that are looked at for context; a small batch looks at fewer (see
+// contextReach).
 const contextElements = 3
 
 // Env is what Next and Submit work with.

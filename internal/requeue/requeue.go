@@ -133,10 +133,12 @@ func (s Selector) Validate() error {
 }
 
 // Apply carries out sel on the store of one tw worktree. kr is the KR pack
-// of the raw snapshot, which tells whether a key is still there; frozen are
-// the patterns of the files that must not change (lct.yaml). hint is the
-// reason the translator is shown for every unit that is requeued, reset, or
-// already pending (see Result.AlreadyPending for a unit that is leased).
+// of the raw snapshot, which tells whether a key is still there; it may be nil
+// when sel acts on the pending queue only (NeedsReview or Leased), which looks
+// at no KR. frozen are the patterns of the files that must not change
+// (lct.yaml). hint is the reason the translator is shown for every unit that
+// is requeued, reset, or already pending (see Result.AlreadyPending for a unit
+// that is leased).
 //
 // The whole read-modify-write is one store lock, so Apply can run next to
 // Next and Submit. It changes nothing when it returns an error.
@@ -144,7 +146,7 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 	if st == nil {
 		return nil, errors.New("requeue: no store")
 	}
-	if kr == nil {
+	if kr == nil && !sel.stuckMode() {
 		return nil, errors.New("requeue: no KR pack")
 	}
 	if err := sel.Validate(); err != nil {
@@ -192,9 +194,9 @@ func Apply(st *store.Store, kr *pack.Pack, frozen []string, sel Selector, hint s
 //
 // It is how a caller makes a requeue part of a larger change that is saved
 // at once, such as the plan, which records the request file as applied in the
-// same lock.
+// same lock. kr may be nil as for Apply.
 func ApplyTo(records map[string]store.Record, pending []store.PendingItem, kr *pack.Pack, frozen []string, sel Selector, hint string, held func(key string) bool) ([]store.PendingItem, *Result, error) {
-	if kr == nil {
+	if kr == nil && !sel.stuckMode() {
 		return nil, nil, errors.New("requeue: no KR pack")
 	}
 	if err := sel.Validate(); err != nil {

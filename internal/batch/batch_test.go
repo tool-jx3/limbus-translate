@@ -599,10 +599,12 @@ func TestStoryContextLimit(t *testing.T) {
 	const file = "StoryData/S001A.json"
 	// No model strings: one unit per line.
 	env := newEnv(t, map[string]string{file: dataList(t, 30, "", line)}, nil, nil)
-	seed(t, env, items(file, 10, 12)...)
+	// Three units: a batch of fewer looks at fewer lines (see
+	// TestStoryContextOfASmallBatch).
+	seed(t, env, items(file, 10, 13)...)
 	recs := map[string]store.Record{}
 	for i := 0; i < 30; i++ {
-		if i != 10 && i != 11 {
+		if i < 10 || i > 12 {
 			recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
 		}
 	}
@@ -610,9 +612,9 @@ func TestStoryContextLimit(t *testing.T) {
 		t.Fatal(err)
 	}
 	b := mustNext(t, env, NextOptions{})
-	// Three lines before line 10 and three after line 11.
+	// Three lines before line 10 and three after line 12.
 	var want []string
-	for _, i := range []int{7, 8, 9, 12, 13, 14} {
+	for _, i := range []int{7, 8, 9, 13, 14, 15} {
 		want = append(want, key(file, i))
 	}
 	if got := ctxKeys(b); !slices.Equal(got, want) {
@@ -733,9 +735,9 @@ func TestStoryBatchSplitsAtMax(t *testing.T) {
 	}
 }
 
-// The context reaches three lines on each side, a line being a dataList
-// element: the model and teller strings of a dialogue line do not use up
-// places.
+// The context reaches three lines on each side of a batch of three units, a
+// line being a dataList element: the model and teller strings of a dialogue
+// line do not use up places.
 func TestStoryContextCountsLines(t *testing.T) {
 	const file = "StoryData/S001A.json"
 	var kr strings.Builder
@@ -748,13 +750,13 @@ func TestStoryContextCountsLines(t *testing.T) {
 	}
 	kr.WriteString(`]}`)
 	env := newEnv(t, map[string]string{file: kr.String()}, nil, nil)
-	seed(t, env, store.PendingItem{Key: key(file, 10), Reason: "new"})
+	seed(t, env, items(file, 9, 12)...)
 	recs := map[string]store.Record{}
 	for i := 0; i < 20; i++ {
 		k := func(field string) string { return fmt.Sprintf("%s|/dataList/%d/%s", file, i, field) }
 		recs[k("model")] = store.Record{Key: k("model"), KRSha: units.KRSha("파우스트"), ZH: "파우스트", Origin: store.OriginCopy, Since: testTag}
 		recs[k("teller")] = translated(k("teller"), "파우스트", "浮士德")
-		if i != 10 {
+		if i < 9 || i > 11 {
 			recs[k("content")] = translated(k("content"), line(i), fmt.Sprintf("舊 %d", i))
 		}
 	}
@@ -763,32 +765,32 @@ func TestStoryContextCountsLines(t *testing.T) {
 	}
 
 	b := mustNext(t, env, NextOptions{})
-	if want := []string{key(file, 10)}; !slices.Equal(keysOf(b), want) {
+	if want := []string{key(file, 9), key(file, 10), key(file, 11)}; !slices.Equal(keysOf(b), want) {
 		t.Fatalf("units = %v, want %v", keysOf(b), want)
 	}
-	// Three dialogue lines on each side of line 10.
+	// Three dialogue lines on each side of lines 9 to 11.
 	var dialogue []string
 	fields := map[string]int{}
 	for _, c := range b.Context {
 		fields[units.FieldName(c.Key[strings.Index(c.Key, "|")+1:])]++
 		n, _ := strconv.Atoi(entryRe.FindStringSubmatch(c.Key)[1])
-		if n < 7 || n > 13 {
-			t.Errorf("context line %s is more than three lines from line 10", c.Key)
+		if n < 6 || n > 14 {
+			t.Errorf("context line %s is more than three lines from the batch", c.Key)
 		}
 		if strings.HasSuffix(c.Key, "/content") {
 			dialogue = append(dialogue, c.Key)
 		}
 	}
 	var want []string
-	for _, i := range []int{7, 8, 9, 11, 12, 13} {
+	for _, i := range []int{6, 7, 8, 12, 13, 14} {
 		want = append(want, key(file, i))
 	}
 	if !slices.Equal(dialogue, want) {
 		t.Errorf("dialogue lines in the context = %v, want %v", dialogue, want)
 	}
-	// The tellers are translated strings of those lines (line 10's too); the
+	// The tellers are translated strings of those lines (the batch's too); the
 	// models are copies.
-	if want := map[string]int{"content": 6, "teller": 7}; !reflect.DeepEqual(fields, want) {
+	if want := map[string]int{"content": 6, "teller": 9}; !reflect.DeepEqual(fields, want) {
 		t.Errorf("context lines by field = %v, want %v", fields, want)
 	}
 }
@@ -1121,9 +1123,9 @@ func TestStaleRecordsAreNotUsed(t *testing.T) {
 	t.Run("story context", func(t *testing.T) {
 		const file = "StoryData/S001A.json"
 		env := newEnv(t, map[string]string{file: dataList(t, 4, "", line)}, nil, nil)
-		seed(t, env, items(file, 3, 4)...)
+		seed(t, env, items(file, 2, 3)...)
 		recs := map[string]store.Record{}
-		for i := 0; i < 3; i++ {
+		for _, i := range []int{0, 1, 3} {
 			recs[key(file, i)] = store.Record{Key: key(file, i), KRSha: units.KRSha(line(i)), ZH: fmt.Sprintf("舊 %d", i), Origin: store.OriginParatranz, Since: testTag}
 		}
 		stale := recs[key(file, 1)]
@@ -1133,7 +1135,7 @@ func TestStaleRecordsAreNotUsed(t *testing.T) {
 			t.Fatal(err)
 		}
 		b := mustNext(t, env, NextOptions{})
-		if got, want := ctxKeys(b), []string{key(file, 0), key(file, 2)}; !slices.Equal(got, want) {
+		if got, want := ctxKeys(b), []string{key(file, 3)}; !slices.Equal(got, want) {
 			t.Errorf("context = %v, want %v: line 1 was translated from another KR text", got, want)
 		}
 	})
@@ -2942,5 +2944,114 @@ func TestOverlay(t *testing.T) {
 	}
 	if _, err := Overlay(env.Src.KR, byKey, "Nothing.json"); err == nil {
 		t.Error("Overlay of a file that is not in the pack did not fail")
+	}
+}
+
+// A line that needs review does not end a story batch or stay out of it by
+// accident: the batch takes the pending lines around it, whichever place the
+// line has, and the line itself stays in the queue, flagged and unleased. It
+// is no context either, for it has no translation to show.
+func TestStoryBatchWithANeedsReviewLine(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	for _, review := range []int{2, 5, 8} { // first, middle and last pending line
+		t.Run(fmt.Sprintf("line %d", review), func(t *testing.T) {
+			env := newEnv(t, map[string]string{file: dataList(t, 10, "파우스트", line)}, nil, nil)
+			// Lines 0 and 9 are translated; 2, 5 and 8 wait for translation, one
+			// of them for a person.
+			var pending []store.PendingItem
+			var want []string
+			for _, i := range []int{2, 5, 8} {
+				it := store.PendingItem{Key: key(file, i), Reason: "new"}
+				if i == review {
+					it.Attempts = 3
+					it.Flags = []string{store.FlagNeedsReview}
+				} else {
+					want = append(want, key(file, i))
+				}
+				pending = append(pending, it)
+			}
+			seed(t, env, pending...)
+			recs := map[string]store.Record{
+				key(file, review): {Key: key(file, review), KRSha: units.KRSha(line(review)), ZH: "line", Origin: store.OriginFallback, Since: testTag, Flags: []string{store.FlagNeedsReview}},
+			}
+			for _, i := range []int{0, 1, 3, 4, 6, 7, 9} {
+				recs[key(file, i)] = translated(key(file, i), line(i), fmt.Sprintf("舊 %d", i))
+			}
+			if err := env.Store.SaveRecords(recs); err != nil {
+				t.Fatal(err)
+			}
+
+			b := mustNext(t, env, NextOptions{})
+			if b == nil {
+				t.Fatalf("no batch: the line that needs review stopped the story batch")
+			}
+			if !slices.Equal(keysOf(b), want) {
+				t.Errorf("units = %v, want %v", keysOf(b), want)
+			}
+			if slices.Contains(ctxKeys(b), key(file, review)) {
+				t.Errorf("context %v shows the line that needs review", ctxKeys(b))
+			}
+			held := pendingMap(t, env)[key(file, review)]
+			if held.Lease != nil || held.Attempts != 3 || !slices.Equal(held.Flags, []string{store.FlagNeedsReview}) {
+				t.Errorf("line %d = %+v, want it untouched: unleased, three attempts, needs_review", review, held)
+			}
+			for _, k := range want {
+				if pendingMap(t, env)[k].Lease == nil {
+					t.Errorf("%s is in the batch but not leased", k)
+				}
+			}
+			if next := mustNext(t, env, NextOptions{}); next != nil {
+				t.Errorf("a second batch = %+v, want nil: the line that needs review is not handed out", next)
+			}
+		})
+	}
+}
+
+// A story batch of one unit carries one element of context on each side: more
+// than the unit it is made for would cost more than it helps. A batch of n
+// units carries n on each side of each unit, up to contextElements.
+func TestStoryContextOfASmallBatch(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	tests := []struct {
+		name    string
+		pending []int
+		want    []int // the lines of the context
+	}{
+		{"one unit", []int{10}, []int{9, 11}},
+		{"one unit at the start", []int{0}, []int{1}},
+		{"one unit at the end", []int{29}, []int{28}},
+		{"two units far apart", []int{10, 20}, []int{8, 9, 11, 12, 18, 19, 21, 22}},
+		{"two units next to each other", []int{10, 11}, []int{8, 9, 12, 13}},
+		{"three units", []int{5, 15, 25}, []int{2, 3, 4, 6, 7, 8, 12, 13, 14, 16, 17, 18, 22, 23, 24, 26, 27, 28}},
+		{"four units are capped at three", []int{5, 15, 20, 28}, []int{2, 3, 4, 6, 7, 8, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27, 29}},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			env := newEnv(t, map[string]string{file: dataList(t, 30, "", line)}, nil, nil)
+			var pending []store.PendingItem
+			recs := map[string]store.Record{}
+			for i := 0; i < 30; i++ {
+				if slices.Contains(tc.pending, i) {
+					pending = append(pending, store.PendingItem{Key: key(file, i), Reason: "new"})
+				} else {
+					recs[key(file, i)] = translated(key(file, i), line(i), fmt.Sprintf("舊 %d", i))
+				}
+			}
+			seed(t, env, pending...)
+			if err := env.Store.SaveRecords(recs); err != nil {
+				t.Fatal(err)
+			}
+			b := mustNext(t, env, NextOptions{})
+			if len(b.Units) != len(tc.pending) {
+				t.Fatalf("batch has %d units, want %d", len(b.Units), len(tc.pending))
+			}
+			var want []string
+			for _, i := range tc.want {
+				want = append(want, key(file, i))
+			}
+			if got := ctxKeys(b); !slices.Equal(got, want) {
+				t.Errorf("context = %v, want %v", got, want)
+			}
+		})
 	}
 }

@@ -75,14 +75,63 @@ func TestRequeueCLIUsage(t *testing.T) {
 		t.Errorf("a refused call changed the pending list: %+v, %v", got, err)
 	}
 
-	// Without a snapshot there is no KR to check against.
+	// Requeueing records checks them against KR, so it needs a snapshot.
 	t.Run("no snapshot", func(t *testing.T) {
 		t.Chdir(snapshotRepo(t))
-		code, _, stderr := lct(t, "requeue", "--leased", "--reason", "x")
+		code, _, stderr := lct(t, "requeue", "--file", "Sample.json", "--reason", "x")
 		if code != 1 || !strings.Contains(stderr, "snapshot") {
 			t.Errorf("exit code = %d, stderr = %q, want 1 and a hint to run lct snapshot", code, stderr)
 		}
 	})
+}
+
+// --needs-review and --leased change the pending list only: no KR is looked at,
+// so they need no raw snapshot.
+func TestRequeueNeedsReviewWithoutSnapshot(t *testing.T) {
+	root := snapshotRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	lease := &store.Lease{Batch: "20261101T020000-aaaaaaaa", Until: cliNow.Add(time.Hour)}
+	if err := st.SavePending([]store.PendingItem{
+		{Key: batchKey0, Reason: "new", Attempts: 3, LastError: "boom", Flags: []string{store.FlagNeedsReview}},
+		{Key: batchKey1, Reason: "new", Lease: lease},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	t.Chdir(root)
+	if _, err := os.Stat(filepath.Join(root, ".work", "raw")); err == nil {
+		t.Fatal("the test needs a repo without a raw worktree")
+	}
+
+	var res struct{ Reset, Released, Requeued, Missing int }
+	mustLct(t, &res, "requeue", "--needs-review", "--reason", "別再用「閣下」")
+	if res.Reset != 1 || res.Released != 0 || res.Requeued != 0 || res.Missing != 0 {
+		t.Errorf("--needs-review result = %+v, want one reset", res)
+	}
+	mustLct(t, &res, "requeue", "--leased", "--key", batchKey1, "--reason", "x")
+	if res.Reset != 0 || res.Released != 1 {
+		t.Errorf("--leased result = %+v, want one released", res)
+	}
+
+	got, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(got) != 2 {
+		t.Fatalf("pending = %+v, want both units", got)
+	}
+	reset, released := got[0], got[1]
+	if reset.Key != batchKey0 || len(reset.Flags) != 0 || reset.Attempts != 0 || reset.LastError != "" || reset.Hint != "別再用「閣下」" {
+		t.Errorf("reset unit = %+v, want no flag, no attempts, no error and the hint", reset)
+	}
+	if released.Key != batchKey1 || released.Lease != nil {
+		t.Errorf("released unit = %+v, want no lease", released)
+	}
+
+	// Requeueing records still needs the snapshot, and nothing was written for it.
+	code, _, stderr := lct(t, "requeue", "--file", "Sample.json", "--reason", "x")
+	if code != 1 || !strings.Contains(stderr, "snapshot") {
+		t.Errorf("record mode: exit code = %d, stderr = %q, want 1 and a hint to run lct snapshot", code, stderr)
+	}
 }
 
 func TestRequeueCLIJSON(t *testing.T) {

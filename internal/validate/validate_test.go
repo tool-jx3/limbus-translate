@@ -679,7 +679,7 @@ func TestExtraClosingTagForUnclosedKRTag(t *testing.T) {
 		{"style closed after a sized word", `<style="dkr"><size=20>별</size>`, `<style="djp">一顆<size=20>星星</size></style>`},
 		{"style closed at the end", `<style="dkr">어쩌면 그때가 바로`, `<style="djp">可能就是那個時候</style>`},
 		{"two tags both closed", `<style="dkr"><size=20>잔물결`, `<style="djp"><size=20>層層波浪</size></style>`},
-		{"two unclosed openings, two closings", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲</style> <style="djp">乙</style>`},
+		{"two unclosed openings, two closings", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲 <style="djp">乙</style></style>`},
 		{"other tag", `<b>가`, `<b>甲</b>`},
 		{"the closing tag is optional", `<style="dkr">가`, `<style="djp">甲`},
 		{"fewer closings than the allowance", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲 <style="djp">乙</style>`},
@@ -902,5 +902,120 @@ func TestExtraKeywordID(t *testing.T) {
 		if !ok || is.Severity != SeverityWarn {
 			t.Errorf("existing=%v: extra-keyword-id = %+v, %v, want a warning", existing, is, ok)
 		}
+	}
+}
+
+// The names of the whitelist are tags in any case, ruby included: the value of
+// <RUBY=…> is the reading, which a translation replaces, just as the value of
+// <ruby=…>. A name followed by a space and text that is no attribute
+// (name=value) is not a tag: <B 사무소 …> is the start of a line of Dante's
+// dialogue about the B office. The case of a name stays part of the tag, as
+// base.md asks to keep what is inside <> unchanged.
+func TestTagNamesAndNonTags(t *testing.T) {
+	tokens := []struct {
+		name, s string
+		want    []string
+	}{
+		{"ruby in upper case", `<RUBY=가>나</RUBY>`, []string{`<RUBY=가>`, `</RUBY>`}},
+		{"ruby in mixed case", `<Ruby=가>나</rUBY>`, []string{`<Ruby=가>`, `</rUBY>`}},
+		{"b in upper case", `<B>가</B>`, []string{`<B>`, `</B>`}},
+		{"a name followed by a space and an attribute", `<Sprite name="Bleed"> <sprite name="a" tint=1>`, []string{`<Sprite name="Bleed">`, `<sprite name="a" tint=1>`}},
+		{"a name followed by a value", `<SIZE=80%>가</Size>`, []string{`<SIZE=80%>`, `</Size>`}},
+		{"a name followed by a space and text", `<B 사무소…>`, nil},
+		{"a name followed by a space and text, closed", `<b 사무소의 보고서>가</b>`, []string{`</b>`}},
+		{"a name followed by a space and text, in upper case", `<I 사무소 직원들>`, nil},
+		{"a name followed by a space and a bare word", `<size 20>`, nil},
+		{"a name followed by a space and a placeholder", `<B {0}>`, nil},
+		{"a non-tag does not hide the tags after it", `<B 사무소…> <b>가</b>`, []string{`<b>`, `</b>`}},
+	}
+	for _, tc := range tokens {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := Tags(tc.s); !reflect.DeepEqual(got, tc.want) {
+				t.Errorf("Tags(%q) = %q, want %q", tc.s, got, tc.want)
+			}
+		})
+	}
+
+	same := []struct{ name, kr, zh string }{
+		{"ruby in upper case", `베라, <RUBY=천퇴성>삽시호</RUBY>.`, `貝拉，<RUBY=天退星>插翅虎</RUBY>。`},
+		{"ruby in mixed case", `<Ruby=가>나</Ruby>`, `<Ruby=甲>乙</Ruby>`},
+		{"the same tags in upper case", `<B>가</B>`, `<B>甲</B>`},
+		{"language style in upper case", `<STYLE="dkr">가</STYLE>`, `<STYLE="djp">甲</STYLE>`},
+		{"closing tag KR leaves out, in another case", `<style="dkr">가`, `<style="djp">甲</STYLE>`},
+		{"unclosed tag in upper case", `<B>가`, `<B>甲</B>`},
+		{"a title that is no tag", "<B 사무소 보고서>\n본문", "<B 事務所報告書>\n正文"},
+		{"a title that is no tag, next to a tag", "<I 사무소 보고서> <b>본문</b>", "<I 事務所報告書> <b>正文</b>"},
+	}
+	for _, tc := range same {
+		t.Run("same "+tc.name, func(t *testing.T) {
+			if is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); ok {
+				t.Errorf("Check(%q, %q) reports %s: %s", tc.kr, tc.zh, is.Code, is.Message)
+			}
+		})
+	}
+
+	differ := []struct{ name, kr, zh string }{
+		{"a lost tag next to a non-tag", `<B 사무소 보고서> <b>본문</b>`, `<B 事務所報告書> 正文`},
+		{"a value is still compared", `<COLOR=#f00>가</COLOR>`, `<COLOR=#0f0>甲</COLOR>`},
+		{"a different name", `<b>가</b>`, `<I>甲</I>`},
+		{"a lost ruby", `<RUBY=가>나</RUBY>`, `甲乙`},
+		{"an attribute is still compared", `<SPRITE name="a">`, `<SPRITE name="b">`},
+	}
+	for _, tc := range differ {
+		t.Run("differ "+tc.name, func(t *testing.T) {
+			if _, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); !ok {
+				t.Errorf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+		})
+	}
+}
+
+// A closing tag that KR does not have is allowed for a tag KR leaves open, but
+// only at the end of the translation, where nothing follows it that the tag
+// would have covered (base.md: 譯文可以在句尾補上對應的結束標籤). In the middle
+// of the text it ends the style early.
+func TestExtraClosingTagOnlyAtTheEnd(t *testing.T) {
+	ok := []struct{ name, kr, zh string }{
+		{"at the end", `<style="dkr">어쩌면 그때가 바로`, `<style="djp">可能就是那個時候</style>`},
+		{"blanks after it", `<style="dkr">가`, "<style=\"djp\">甲</style> \n"},
+		{"after a closing tag of KR's", `<style="dkr"><size=20>별</size>`, `<style="djp">一顆<size=20>星星</size></style>`},
+		{"two tags both closed at the end", `<style="dkr"><size=20>잔물결`, `<style="djp"><size=20>層層波浪</size></style>`},
+		{"two openings, two closings at the end", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲 <style="djp">乙</style></style>`},
+		{"blanks between the closing tags", `<style="dkr">가 <style="dkr">나`, "<style=\"djp\">甲 <style=\"djp\">乙</style> </style>"},
+		{"in another case", `<style="dkr">가`, `<style="djp">甲</STYLE>`},
+		{"the closing tag is still optional", `<style="dkr">가 나`, `<style="djp">甲 乙`},
+	}
+	for _, tc := range ok {
+		t.Run("ok "+tc.name, func(t *testing.T) {
+			if is, found := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch); found {
+				t.Errorf("Check(%q, %q) reports %s: %s", tc.kr, tc.zh, is.Code, is.Message)
+			}
+		})
+	}
+
+	bad := []struct {
+		name, kr, zh string
+		diff         string // what the message must say
+	}{
+		{"in the middle of a line", `<style="dkr">가 나`, `<style="djp">甲</style> 乙`, ": unexpected </style>"},
+		{"before the last line", "<style=\"dkr\">가\n나", "<style=\"djp\">甲</style>\n乙", ": unexpected </style>"},
+		{"before the final punctuation", `<style="dkr">가.`, `<style="djp">甲</style>。`, ": unexpected </style>"},
+		{"before a tag that is no closing tag", `<style="dkr">가<br>나`, `<style="djp">甲</style><br>乙`, ": unexpected </style>"},
+		{"before another opening tag", `<style="dkr">가 <b>나</b>`, `<style="djp">甲</style> <b>乙</b>`, ": unexpected </style>"},
+		{"one of two closings is in the middle", `<style="dkr">가 <style="dkr">나`, `<style="djp">甲</style> <style="djp">乙</style>`, ": unexpected </style>"},
+		{"more at the end than the allowance", `<style="dkr">가`, `<style="djp">甲</style></style>`, ": unexpected </style>"},
+		{"in the middle and at the end", `<style="dkr">가 나`, `<style="djp">甲</style> 乙</style>`, ": unexpected </style>"},
+		{"the end belongs to another name", `<style="dkr">가 <b>나</b>`, `<style="djp">甲</style> <b>乙</b></b>`, ": unexpected </b> </style>"},
+	}
+	for _, tc := range bad {
+		t.Run("bad "+tc.name, func(t *testing.T) {
+			is, found := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch)
+			if !found {
+				t.Fatalf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+			if want := "tags differ from KR" + tc.diff + "; opening tags"; !strings.Contains(is.Message, want) {
+				t.Errorf("message %q does not contain %q", is.Message, want)
+			}
+		})
 	}
 }

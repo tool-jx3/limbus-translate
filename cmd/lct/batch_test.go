@@ -515,6 +515,88 @@ func TestBatchNextFailsWhenBatchFilesCannotBeChecked(t *testing.T) {
 	}
 }
 
+// Only "does not exist" says that a batch id is free. Any other error of
+// looking at work/batches (the directory is a file, a link loops, the batch
+// file itself is one that cannot be looked at) is an error of the command, and
+// the search for an id under the lock ends with it instead of going on.
+func TestNextFailsOnUnreadableWork(t *testing.T) {
+	// pathExists on its own.
+	dir := t.TempDir()
+	if err := os.Symlink("loop", filepath.Join(dir, "loop")); err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, dir, "file", "x")
+	for _, tc := range []struct {
+		name, path string
+		want       bool
+		fails      bool
+	}{
+		{"missing", "missing.json", false, false},
+		{"missing below a missing directory", "nodir/missing.json", false, false},
+		{"present", "file", true, false},
+		{"a link that loops", "loop", false, true},
+		{"below a link that loops", "loop/x.json", false, true},
+		{"below a file", "file/x.json", false, true},
+	} {
+		t.Run("pathExists "+tc.name, func(t *testing.T) {
+			got, err := pathExists(filepath.Join(dir, filepath.FromSlash(tc.path)))
+			if (err != nil) != tc.fails || got != tc.want {
+				t.Errorf("pathExists = %v, %v; want %v, fails %v", got, err, tc.want, tc.fails)
+			}
+		})
+	}
+
+	// lct batch next.
+	noLease := func(t *testing.T, st *store.Store) {
+		t.Helper()
+		pending, err := st.LoadPending()
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, it := range pending {
+			if it.Lease != nil {
+				t.Errorf("item %s was leased by a batch that failed: %+v", it.Key, it.Lease)
+			}
+		}
+	}
+	t.Run("work/batches loops", func(t *testing.T) {
+		root, st := batchRepo(t)
+		if err := os.MkdirAll(filepath.Join(root, "work"), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Symlink("batches", filepath.Join(root, "work", "batches")); err != nil {
+			t.Fatal(err)
+		}
+		if _, _, err := runNextJSON(t, root); err == nil || isUserError(err) {
+			t.Fatalf("err = %v, want a system error", err)
+		}
+		noLease(t, st)
+	})
+	t.Run("the batch file of the id cannot be looked at", func(t *testing.T) {
+		root, st := batchRepo(t)
+		first, _, err := runNextJSON(t, root)
+		if err != nil {
+			t.Fatal(err)
+		}
+		// Free the units again, then make the file the next batch would take
+		// the id of one that cannot be looked at.
+		writeOut(t, root, *first.Batch)
+		if got, raw, err := runSubmitJSON(t, root, *first.Batch); err != nil || len(got.Released) != 2 {
+			t.Fatalf("empty submit: %v\n%s", err, raw)
+		}
+		if err := os.Remove(first.Path); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.Symlink(filepath.Base(first.Path), first.Path); err != nil {
+			t.Fatal(err)
+		}
+		if next, _, err := runNextJSON(t, root); err == nil || isUserError(err) {
+			t.Fatalf("batch next = %+v, %v, want a system error", next, err)
+		}
+		noLease(t, st)
+	})
+}
+
 // A record made while the rules have changes that are not committed says so.
 func TestBatchSubmitMarksDirtyRules(t *testing.T) {
 	root, st := batchRepo(t)
