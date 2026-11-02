@@ -259,9 +259,10 @@ func (in Inputs) check() error {
 // The rewrite files and the request files of rules/rewrite and rules/requeue
 // that .meta/applied.json does not list are applied, each in file name order,
 // and their ids are added to applied.json: the rewrites, then step 5, then the
-// requests. So the translations step 5 copies are rewritten already; a record
-// a request sends back serves no reuse (what the requests will queue is
-// worked out before step 5 and counts as queued); and a requested unit that
+// requests. So the translations step 5 copies are rewritten already, those
+// of deleted units too (for this plan only: they are not kept); a record a
+// request sends back serves no reuse (what the requests will queue is worked
+// out before step 5 and counts as queued); and a requested unit that
 // step 5 fills is sent back with the copied text as its previous
 // translation, its request kept. A requeued unit shows the rewritten text as
 // its previous translation too, and so does a unit queued already whose
@@ -1165,25 +1166,27 @@ func (p *planner) applyRewrites(applied *store.Applied, files []rewrite.File) {
 				p.pending[key] = it
 			}
 		}
-		p.rewriteDeletedRequests(f)
+		p.rewriteDeleted(f)
 		applied.Rewrite = append(applied.Rewrite, f.ID)
 		p.sum.RewriteApplied = append(p.sum.RewriteApplied, Applied{ID: f.ID, Units: len(changed)})
 	}
 }
 
-// rewriteDeletedRequests follows the rewrite f in the pending items of the
-// deleted units that show their record's text as the previous translation:
-// reuse hands such a request on to a unit of its text, which then shows the
-// rewritten text, as a unit requeued in this plan does. The deleted unit's
-// record is rewritten as it would have been, against the KR of the snapshot
-// it is of, and is not kept: it is gone.
-func (p *planner) rewriteDeletedRequests(f rewrite.File) {
+// rewriteDeleted applies the rewrite f to the records of the deleted units,
+// as it would have been applied to them, against the KR of the snapshot they
+// are of, and keeps the result for the rest of the plan (the next rewrite file
+// starts from it). The records are gone and are not saved, nor counted among
+// the units of the file, but they serve this plan twice: reuse copies one to a
+// unit of its text (step 5), and hands the request of a deleted unit on to
+// one. A request whose previous translation was the text of its record shows
+// the rewritten text, as a unit requeued in this plan does.
+func (p *planner) rewriteDeleted(f rewrite.File) {
 	gone := map[string]store.Record{}
-	byKey := map[string]*store.PendingItem{}
+	byKey := map[string]DeletedUnit{}
 	for _, d := range p.deleted {
-		if d.Pending != nil && d.Record != nil && d.Pending.PrevZH != "" && d.Pending.PrevZH == d.Record.ZH {
+		if d.Record != nil {
 			key := units.Key(d.File, d.Pointer)
-			gone[key], byKey[key] = *d.Record, d.Pending
+			gone[key], byKey[key] = *d.Record, d
 		}
 	}
 	if len(gone) == 0 {
@@ -1194,7 +1197,11 @@ func (p *planner) rewriteDeletedRequests(f rewrite.File) {
 		return !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, zh))
 	}
 	for _, key := range rewrite.Apply(f, gone, p.oldKR, ok) {
-		byKey[key].PrevZH = gone[key].ZH
+		d := byKey[key]
+		if it := d.Pending; it != nil && it.PrevZH != "" && it.PrevZH == d.Record.ZH {
+			it.PrevZH = gone[key].ZH
+		}
+		*d.Record = gone[key]
 	}
 }
 

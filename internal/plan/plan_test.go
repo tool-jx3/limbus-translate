@@ -1230,18 +1230,66 @@ func TestPlanRewritesThePreviousTextOfAHandedOnRequest(t *testing.T) {
 	e.seed([]store.Record{translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊")},
 		[]store.PendingItem{{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"}})
 	e.snapshot(map[string]string{passives: dataList(obj{"id": 2, "desc": desc})}) // id 1 numbered again
+	// Two files, applied in order: the second rewrites what the first wrote.
 	e.rule("rules/rewrite/2026-11-05-at-once.yaml", "reason: 統一用「就」\nfiles: [\"Passives*\"]\npattern: '時立刻'\nreplace: '就立刻'\n")
+	e.rule("rules/rewrite/2026-11-06-strike-back.yaml", "reason: 反擊改回擊\nfiles: [\"Passives*\"]\npattern: '反擊'\nreplace: '回擊'\n")
 
 	sum := e.run(tag1)
 
 	want := map[string]store.PendingItem{
-		descKey(passives, 0): {Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊就立刻反擊", Hint: "用您"},
+		descKey(passives, 0): {Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊就立刻回擊", Hint: "用您"},
 	}
 	if got := e.pending(); !reflect.DeepEqual(got, want) {
 		t.Errorf("pending = %v\nwant %v", got, want)
 	}
-	if !reflect.DeepEqual(sum.RewriteApplied, []Applied{{ID: "2026-11-05-at-once", Units: 0}}) {
-		t.Errorf("RewriteApplied = %+v, want the file applied to no record: the deleted unit has none", sum.RewriteApplied)
+	if want := []Applied{{ID: "2026-11-05-at-once", Units: 0}, {ID: "2026-11-06-strike-back", Units: 0}}; !reflect.DeepEqual(sum.RewriteApplied, want) {
+		t.Errorf("RewriteApplied = %+v, want %+v: the deleted unit's record is gone and counts in no file", sum.RewriteApplied, want)
+	}
+
+	e.again()
+}
+
+// The same two rewrite files on a unit that was not numbered again give the
+// same previous translation: a deleted unit follows the rewrites as a unit
+// that stays does.
+func TestPlanRewritesThePreviousTextOfARequestedUnitTwice(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives = "Passives.json"
+		desc     = "공격을 받으면 바로 반격합니다"
+	)
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc})})
+	e.seed([]store.Record{translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊")},
+		[]store.PendingItem{{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"}})
+	e.rule("rules/rewrite/2026-11-05-at-once.yaml", "reason: 統一用「就」\nfiles: [\"Passives*\"]\npattern: '時立刻'\nreplace: '就立刻'\n")
+	e.rule("rules/rewrite/2026-11-06-strike-back.yaml", "reason: 反擊改回擊\nfiles: [\"Passives*\"]\npattern: '反擊'\nreplace: '回擊'\n")
+
+	e.run("")
+
+	if got := e.pending()[descKey(passives, 0)].PrevZH; got != "受到攻擊就立刻回擊" {
+		t.Errorf("PrevZH = %q, want 受到攻擊就立刻回擊", got)
+	}
+}
+
+// The record of a deleted unit that a unit of its text takes (step 5) is the
+// translation as the rewrite files of the plan leave it: they come first, and
+// the reused text must not bring back the wording they replaced.
+func TestPlanReusesTheRewrittenTextOfADeletedUnit(t *testing.T) {
+	e := newPlanEnv(t)
+	const text = "번호가 바뀐 항목의 설명입니다"
+	e.snapshot(map[string]string{"Skills_C.json": dataList(obj{"id": 1, "desc": text})})
+	e.seed([]store.Record{translated(descKey("Skills_C.json", 0), text, "編號改了的項目說明")}, nil)
+	e.snapshot(map[string]string{"Skills_C.json": dataList(obj{"id": 5, "desc": "완전히 새로운 항목입니다"}, obj{"id": 2, "desc": text})})
+	e.rule("rules/rewrite/2026-11-05-wording.yaml", "reason: 改用「條目」\nfiles: [\"Skills*\"]\npattern: '項目'\nreplace: '條目'\n")
+
+	sum := e.run(tag1)
+
+	got := e.records()[descKey("Skills_C.json", 1)]
+	if got.ZH != "編號改了的條目說明" || got.Batch != "reuse:"+descKey("Skills_C.json", 0) || sum.Reused != 1 {
+		t.Errorf("record of the renumbered entry = %+v (reused %d), want the deleted unit's translation as rewritten", got, sum.Reused)
+	}
+	if want := []Applied{{ID: "2026-11-05-wording", Units: 0}}; !reflect.DeepEqual(sum.RewriteApplied, want) {
+		t.Errorf("RewriteApplied = %+v, want %+v", sum.RewriteApplied, want)
 	}
 
 	e.again()
