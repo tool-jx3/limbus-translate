@@ -394,6 +394,34 @@ func TestTransitionDeletedUnitWithoutRecord(t *testing.T) {
 	mustEqual(t, "FilesChanged", m.Changes.FilesChanged, []string{storyFile})
 }
 
+// A deleted unit carries the pending item it had, as it was, so that the plan
+// can hand a request on it to the unit that takes its place; no item is left
+// at its key.
+func TestTransitionDeletedUnitCarriesItsPendingItem(t *testing.T) {
+	lease := &store.Lease{Batch: "b-7", Until: time.Date(2026, 11, 1, 12, 0, 0, 0, time.UTC)}
+	item := store.PendingItem{Key: contentKey(storyFile, 1), Reason: "requeue", PrevZH: "要刪的句子", Hint: "改用您", Attempts: 1, Lease: lease}
+	m := transition(t,
+		map[string]string{storyFile: story("그대로", "지워질 줄", "지워질 다른 줄")},
+		map[string]string{storyFile: story("그대로")},
+		recordsOf(translated(contentKey(storyFile, 1), "지워질 줄", "要刪的句子")),
+		[]store.PendingItem{item})
+
+	if len(m.Deleted) != 2 {
+		t.Fatalf("Deleted = %+v, want 2", m.Deleted)
+	}
+	if got := m.Deleted[0].Pending; got == nil || !reflect.DeepEqual(*got, item) {
+		t.Errorf("Deleted[0].Pending = %+v, want %+v", got, item)
+	} else if got.Lease == lease {
+		t.Errorf("Deleted[0].Pending shares the lease of the input item")
+	}
+	if got := m.Deleted[1].Pending; got != nil {
+		t.Errorf("Deleted[1].Pending = %+v, want nil: the unit had no item", got)
+	}
+	if len(m.Pending) != 0 {
+		t.Errorf("pending = %+v, want none", m.Pending)
+	}
+}
+
 func TestTransitionMovesPendingItemsAndClearsLeases(t *testing.T) {
 	oldLines := []string{"첫째 줄", "둘째 줄", "셋째 줄"}
 	newLines := []string{"끼운 줄", "첫째 줄", "둘째 줄", "셋째 줄"}
@@ -511,7 +539,8 @@ func TestTransitionDoesNotChangeItsInputs(t *testing.T) {
 	pending := []store.PendingItem{
 		{Key: contentKey(storyFile, 0), Reason: "new", Flags: []string{"a"}, Refs: map[string]string{"llc": "x"}, Lease: &store.Lease{Batch: "b", Until: time.Date(2026, 11, 1, 0, 0, 0, 0, time.UTC)}},
 		{Key: contentKey(storyFile, 1), Reason: "requeue", Hint: "h"},
-		{Key: contentKey(storyFile, 3), Reason: "new"},
+		// Deleted: carried in Moved.Deleted.
+		{Key: contentKey(storyFile, 3), Reason: "requeue", Hint: "h", Flags: []string{"b"}, Refs: map[string]string{"llc": "y"}, Lease: &store.Lease{Batch: "c", Until: time.Date(2026, 11, 1, 0, 0, 0, 0, time.UTC)}},
 	}
 	snapshot := func() string {
 		a, _ := json.Marshal(recs)
@@ -544,6 +573,20 @@ func TestTransitionDoesNotChangeItsInputs(t *testing.T) {
 		if d.Record != nil && len(d.Record.Flags) > 0 {
 			d.Record.Flags[0] = "changed"
 		}
+		if p := d.Pending; p != nil {
+			if len(p.Flags) > 0 {
+				p.Flags[0] = "changed"
+			}
+			for k := range p.Refs {
+				p.Refs[k] = "changed"
+			}
+			if p.Lease != nil {
+				p.Lease.Batch = "changed"
+			}
+		}
+	}
+	if len(m.Deleted) != 1 || m.Deleted[0].Pending == nil {
+		t.Errorf("Deleted = %+v, want the deleted line with its pending item", m.Deleted)
 	}
 	if snapshot() != before {
 		t.Errorf("the result shares memory with the inputs:\nbefore %s\nafter  %s", before, snapshot())

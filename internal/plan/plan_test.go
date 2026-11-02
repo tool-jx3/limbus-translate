@@ -9,7 +9,9 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"time"
 
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -223,6 +225,21 @@ func (e *planEnv) applied() store.Applied {
 	return a
 }
 
+// again plans once more and fails the test if that changes the records or the
+// queue: a plan of inputs it has planned already changes nothing.
+func (e *planEnv) again() *Summary {
+	e.t.Helper()
+	recs, pending := e.records(), e.pending()
+	sum := e.run("")
+	if got := e.records(); !reflect.DeepEqual(got, recs) {
+		e.t.Errorf("a second plan changed the records:\n got %v\nwant %v", got, recs)
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, pending) {
+		e.t.Errorf("a second plan changed the pending items:\n got %v\nwant %v", got, pending)
+	}
+	return sum
+}
+
 func (e *planEnv) rule(rel, content string) { writeFile(e.t, e.root, rel, content) }
 
 type obj = map[string]any
@@ -296,24 +313,54 @@ func TestPlanWithoutTransitionChangesNothing(t *testing.T) {
 // rewrite file is applied once, and none of them touches a unit whose source
 // steps 1 to 3 decide (a copy, an adjusted unit), which the next plan would
 // only set back. Reuse runs after the rule files, so it sees what they fixed.
+// Nor does what a first plan does to the queue: a rewrite that reaches a
+// pending item's previous translation, a request carried over to an entry
+// numbered again, a frozen copy that the field rules translate now, a record
+// of another KR text queued as changed, a request that resets a unit waiting
+// for a person.
 func TestPlanTwiceIsIdempotent(t *testing.T) {
 	e := newPlanEnv(t)
 	const (
-		s1     = "StoryData/S1.json"
-		skills = "Skills_A.json"
-		magic  = "마법으로 적을 공격합니다"
+		s1       = "StoryData/S1.json"
+		skills   = "Skills_A.json"
+		passives = "Passives.json"
+		bgm      = "BgmLyrics/L.json"
+		magic    = "마법으로 적을 공격합니다"
+		passive  = "공격을 받으면 바로 반격합니다"
 	)
 	adjusted, copyKey := descKey(skills, 1), at(skills, "/dataList/2/key")
+	asked, lyricCode := descKey("Skills_B.json", 0), at(bgm, "/dataList/0/code")
+	stale, stuck := descKey("Skills_S.json", 0), descKey("Skills_R.json", 0)
 	skillsV1 := dataList(obj{"id": 1, "desc": "피해량이 2배 증가한다"}, obj{"id": 2, "desc": "적에게 2배 피해를 준다"}, obj{"id": 3, "key": "2_SLASH"})
-	e.snapshot(map[string]string{
+	unchanged := map[string]string{
+		"Skills_B.json": dataList(obj{"id": 1, "desc": "아군의 피해가 2배가 된다"}),
+		"Skills_S.json": dataList(obj{"id": 1, "desc": "새로 고친 설명입니다"}),
+		"Skills_R.json": dataList(obj{"id": 1, "desc": "아군을 치유하고 보호막을 줍니다"}),
+		bgm:             dataList(obj{"id": 1, "code": "첫 소절 코드"}),
+	}
+	with := func(files map[string]string) map[string]string {
+		for f, text := range unchanged {
+			files[f] = text
+		}
+		return files
+	}
+	// The field rules of the first snapshot do not translate the code field.
+	e.rule("rules/fields.manual.yaml", "identifier_fields: [id, model, key, code]\n")
+	e.snapshot(with(map[string]string{
 		s1: dataList(
 			obj{"id": 0, "model": "이상", "content": "첫 번째 줄입니다."},
 			obj{"id": 1, "model": "파우스트", "content": "두 번째 줄입니다."},
 			obj{"id": 2, "model": "이상", "content": "세 번째 줄입니다."}),
 		skills:          skillsV1,
 		"Skills_M.json": dataList(obj{"id": 1, "desc": magic}),
-	})
+		passives:        dataList(obj{"id": 1, "desc": passive}),
+	}))
+	stuckRec := store.Record{Key: stuck, KRSha: units.KRSha("아군을 치유하고 보호막을 줍니다"), ZH: "Heals allies", Origin: store.OriginFallback, Since: tag1, Flags: []string{store.FlagNeedsReview}}
 	e.seed([]store.Record{
+		translated(asked, "아군의 피해가 2배가 된다", "我方傷害變為2倍"),
+		translated(descKey(passives, 0), passive, "受到攻擊時立刻反擊"),
+		translated(stale, "예전 설명입니다", "舊的說明"), // made from another KR text
+		stuckRec,
 		copied(at(s1, "/dataList/0/model"), "이상"),
 		copied(at(s1, "/dataList/1/model"), "파우스트"),
 		copied(at(s1, "/dataList/2/model"), "이상"),
@@ -324,11 +371,20 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 		translated(adjusted, "적에게 2배 피해를 준다", "對敵人造成兩倍傷害"),
 		copied(copyKey, "2_SLASH"),
 		translated(descKey("Skills_M.json", 0), magic, "用法術攻擊敵人"), // 마법 is 魔法, never 法術
-	}, nil)
+	}, []store.PendingItem{
+		{Key: asked, Reason: "requeue", PrevZH: "我方傷害變為2倍", Hint: "語氣"},
+		{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"},
+		{Key: stuck, Reason: ReasonNew, Attempts: 3, Flags: []string{store.FlagNeedsReview}, LastError: "hangul: 譯文含諺文"},
+	})
 	e.rule("rules/adjustments/2026-11-01-wording.yaml", adjustment(adjusted, "적에게 2배 피해를 준다", "對敵人造成2倍傷害。"))
 	e.run("") // the state belongs to the first snapshot
+	if rec := e.records()[lyricCode]; rec.Origin != store.OriginCopy {
+		t.Fatalf("the code field of the frozen file = %+v, want it copied under the first field rules", rec)
+	}
 
-	e.snapshot(map[string]string{
+	// The field rules translate the code field now.
+	e.rule("rules/fields.manual.yaml", testFieldRules)
+	e.snapshot(with(map[string]string{
 		s1: dataList(
 			obj{"id": 0, "model": "이상", "content": "첫 번째 줄입니다."},
 			obj{"id": 1, "model": "그레고르", "content": "새로 들어온 줄입니다."},
@@ -337,8 +393,11 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 		skills:          skillsV1,
 		"Skills_M.json": dataList(obj{"id": 1, "desc": magic}),
 		"Skills_N.json": dataList(obj{"id": 1, "desc": magic}), // the same text, in a new file
-	})
+		// Numbered again: id 1 is gone, its text is at id 2.
+		passives: dataList(obj{"id": 5, "desc": "완전히 새로운 패시브입니다"}, obj{"id": 2, "desc": passive}),
+	}))
 	e.rule("rules/requeue/2026-11-05-honorific.yaml", "reason: 稱呼改用您\nkeys: [\"StoryData/S1.json|/dataList/2/content\"]\n")
+	e.rule("rules/requeue/2026-11-05-stuck.yaml", "reason: 改用治療\nkeys: [\""+stuck+"\"]\n")
 	// Every origin but copy by default, human too: the adjusted unit is in it.
 	e.rule("rules/requeue/2026-11-06-skills.yaml", "reason: 全部重翻\nfiles: [\"Skills_A*\"]\n")
 	e.rule("rules/rewrite/2026-11-05-space.yaml", "reason: 加空格\nfiles: [\"Skills*\"]\npattern: '(2)(倍)'\nreplace: '$1 $2'\n")
@@ -357,11 +416,35 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 	if first.PrevRawTag != tag1 || first.RawTag != tag2 {
 		t.Errorf("first run: %s from %s, want %s from %s", first.RawTag, first.PrevRawTag, tag2, tag1)
 	}
-	if want := []Applied{{ID: "2026-11-05-honorific", Units: 1}, {ID: "2026-11-06-skills", Units: 1}}; !reflect.DeepEqual(first.RequeueApplied, want) {
+	if want := []Applied{{ID: "2026-11-05-honorific", Units: 1}, {ID: "2026-11-05-stuck", Units: 1}, {ID: "2026-11-06-skills", Units: 1}}; !reflect.DeepEqual(first.RequeueApplied, want) {
 		t.Errorf("first RequeueApplied = %+v, want %+v", first.RequeueApplied, want)
 	}
-	if want := []Applied{{ID: "2026-11-05-space", Units: 1}, {ID: "2026-11-06-held", Units: 0}, {ID: "2026-11-07-magic", Units: 1}}; !reflect.DeepEqual(first.RewriteApplied, want) {
+	if want := []Applied{{ID: "2026-11-05-space", Units: 2}, {ID: "2026-11-06-held", Units: 0}, {ID: "2026-11-07-magic", Units: 1}}; !reflect.DeepEqual(first.RewriteApplied, want) {
 		t.Errorf("first RewriteApplied = %+v, want %+v", first.RewriteApplied, want)
+	}
+	for _, c := range []struct {
+		what string
+		key  string
+		want store.PendingItem
+	}{
+		{"the item whose previous translation was rewritten", asked, store.PendingItem{Key: asked, Reason: "requeue", PrevZH: "我方傷害變為2 倍", Hint: "語氣"}},
+		{"the request carried to the renumbered entry", descKey(passives, 1), store.PendingItem{Key: descKey(passives, 1), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"}},
+		{"the new entry at the old key", descKey(passives, 0), store.PendingItem{Key: descKey(passives, 0), Reason: ReasonNew}},
+		{"the frozen unit the field rules translate now", lyricCode, store.PendingItem{Key: lyricCode, Reason: ReasonNew}},
+		{"the record of another KR text", stale, store.PendingItem{Key: stale, Reason: ReasonKRChanged, PrevZH: "舊的說明"}},
+		{"the unit the request reset", stuck, store.PendingItem{Key: stuck, Reason: ReasonNew, Hint: "改用治療"}},
+	} {
+		if got := pending1[c.key]; !reflect.DeepEqual(got, c.want) {
+			t.Errorf("first run: %s = %+v\nwant %+v", c.what, got, c.want)
+		}
+	}
+	for _, key := range []string{descKey(passives, 1), lyricCode} {
+		if rec, has := recs1[key]; has {
+			t.Errorf("first run: %s has the record %+v, want none", key, rec)
+		}
+	}
+	if got := recs1[asked].ZH; got != "我方傷害變為2 倍" {
+		t.Errorf("rewritten zh of the pending unit = %q, want 我方傷害變為2 倍", got)
 	}
 	if got := recs1[descKey(skills, 0)].ZH; got != "傷害增加2 倍" {
 		t.Errorf("rewritten zh = %q, want 傷害增加2 倍", got)
@@ -388,7 +471,7 @@ func TestPlanTwiceIsIdempotent(t *testing.T) {
 		t.Errorf("Skills_N = %+v (reused %d), want the rewritten translation reused", got, first.Reused)
 	}
 	wantApplied := store.Applied{
-		Requeue: []string{"2026-11-05-honorific", "2026-11-06-skills"},
+		Requeue: []string{"2026-11-05-honorific", "2026-11-05-stuck", "2026-11-06-skills"},
 		Rewrite: []string{"2026-11-05-space", "2026-11-06-held", "2026-11-07-magic"},
 	}
 	if !reflect.DeepEqual(applied1, wantApplied) {
@@ -517,6 +600,46 @@ func TestPlanRequestFilesAndReuse(t *testing.T) {
 	}
 	if len(second.RequeueApplied) != 0 || second.Reused != 0 {
 		t.Errorf("second run applied %+v and reused %d, want nothing", second.RequeueApplied, second.Reused)
+	}
+}
+
+// A request file on main that names a unit waiting for a person (needs_review)
+// resets it, as lct requeue --needs-review does where the state is: people
+// intervene only through main (R15). The unit is handed out again with the
+// request's reason as its hint, and its record stays until then. The file is
+// applied once.
+func TestPlanRequestResetsAUnitWaitingForAPerson(t *testing.T) {
+	e := newPlanEnv(t)
+	const kr = "아군을 치유하고 보호막을 줍니다"
+	key := descKey("Skills_A.json", 0)
+	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": kr})})
+	fallback := store.Record{Key: key, KRSha: units.KRSha(kr), ZH: "Heals allies", Origin: store.OriginFallback, Since: tag1, Flags: []string{store.FlagNeedsReview}}
+	e.seed([]store.Record{fallback}, []store.PendingItem{{
+		Key: key, Reason: ReasonNew, Attempts: 3, Flags: []string{store.FlagNeedsReview}, LastError: "hangul: 譯文含諺文",
+		Lease: &store.Lease{Batch: "b-9", Until: time.Now().Add(time.Hour)},
+	}})
+	if sum := e.run(""); sum.Pending != 0 {
+		t.Fatalf("before the request: Pending = %d, want 0 (the unit waits for a person)", sum.Pending)
+	}
+	e.rule("rules/requeue/2026-11-05-stuck.yaml", "reason: 改用治療\nkeys: [\""+key+"\"]\n")
+
+	sum := e.run("")
+
+	got := e.pending()[key]
+	if want := (store.PendingItem{Key: key, Reason: ReasonNew, Hint: "改用治療"}); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending item = %+v\nwant %+v", got, want)
+	}
+	if !batch.Claimable(got, time.Now()) || sum.Pending != 1 {
+		t.Errorf("Claimable = %v, Pending = %d; want the unit handed out again", batch.Claimable(got, time.Now()), sum.Pending)
+	}
+	if want := []Applied{{ID: "2026-11-05-stuck", Units: 1}}; !reflect.DeepEqual(sum.RequeueApplied, want) {
+		t.Errorf("RequeueApplied = %+v, want %+v", sum.RequeueApplied, want)
+	}
+	if rec := e.records()[key]; !reflect.DeepEqual(rec, fallback) {
+		t.Errorf("record = %+v, want the stand-in kept until the unit is translated: %+v", rec, fallback)
+	}
+	if again := e.again(); len(again.RequeueApplied) != 0 || again.Pending != 1 {
+		t.Errorf("second plan: RequeueApplied = %+v, Pending = %d; want nothing applied and the unit still claimable", again.RequeueApplied, again.Pending)
 	}
 }
 
@@ -899,6 +1022,93 @@ func TestPlanReusesADeletedUnit(t *testing.T) {
 	}
 }
 
+// An entry numbered again (its id changed) is a deleted unit and a new one of
+// the same text (spec 8.1). A request pending on the old unit moves to the new
+// one, with its reason, hint and previous translation, and no lease: the new
+// unit takes no translation in its place, not the old one and not that of
+// another unit of the text, so the request is not lost. A unit of the entry
+// that had no request takes its translation as before. A second plan changes
+// nothing.
+func TestPlanCarriesARequestAcrossRenumbering(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives = "Passives.json"
+		name     = "반격 태세"
+		desc     = "공격을 받으면 바로 반격합니다"
+	)
+	nameKey := func(i int) string { return at(passives, fmt.Sprintf("/dataList/%d/name", i)) }
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "name": name, "desc": desc}, obj{"id": 3, "desc": desc})})
+	other := translated(descKey(passives, 1), desc, "受到攻擊就立刻反擊")
+	e.seed([]store.Record{
+		translated(nameKey(0), name, "反擊態勢"),
+		translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊"),
+		other,
+	}, []store.PendingItem{{
+		Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您",
+		Lease: &store.Lease{Batch: "b-3", Until: time.Now().Add(time.Hour)},
+	}})
+	// id 1 is gone and its entry is id 2 now; id 3 moves up and keeps its text.
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 3, "desc": desc}, obj{"id": 2, "name": name, "desc": desc})})
+
+	sum := e.run(tag1)
+
+	recs, pending := e.records(), e.pending()
+	want := map[string]store.PendingItem{
+		descKey(passives, 1): {Key: descKey(passives, 1), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"},
+	}
+	if !reflect.DeepEqual(pending, want) {
+		t.Errorf("pending = %v\nwant %v", pending, want)
+	}
+	if rec, has := recs[descKey(passives, 1)]; has {
+		t.Errorf("the requested unit has the record %+v, want none: it is to be translated again", rec)
+	}
+	if got := recs[descKey(passives, 0)]; got.ZH != other.ZH || got.Batch != other.Batch {
+		t.Errorf("the entry that moved up = %+v, want its own record", got)
+	}
+	if got := recs[nameKey(1)]; got.ZH != "反擊態勢" || got.Batch != "reuse:"+nameKey(0) {
+		t.Errorf("the name of the renumbered entry = %+v, want the deleted unit's translation", got)
+	}
+	if sum.Reused != 1 {
+		t.Errorf("Reused = %d, want 1 (the name)", sum.Reused)
+	}
+
+	e.again()
+}
+
+// A hint on a deleted unit that was queued as new or changed (a request found
+// it queued) is handed on too, with the previous texts, though the unit had no
+// record. The unit that takes it over is then a new or changed unit like any
+// other: same-text reuse may still fill it, as the next plan would.
+func TestPlanHandsOnTheHintOfAQueuedUnit(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives = "Passives.json"
+		changed  = "공격을 받으면 바로 반격합니다"
+		shared   = "아군 전체의 공격력이 오릅니다"
+	)
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": changed}, obj{"id": 2, "desc": shared}, obj{"id": 3, "desc": shared})})
+	e.seed([]store.Record{translated(descKey(passives, 2), shared, "提升全體友軍的攻擊力")}, []store.PendingItem{
+		{Key: descKey(passives, 0), Reason: ReasonKRChanged, PrevKR: "공격을 받으면 반격합니다", PrevZH: "受到攻擊時反擊", Hint: "用您"},
+		{Key: descKey(passives, 1), Reason: ReasonNew, Hint: "語氣"},
+	})
+	// ids 1 and 2 are gone, their entries are ids 4 and 5 now.
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 4, "desc": changed}, obj{"id": 5, "desc": shared}, obj{"id": 3, "desc": shared})})
+
+	sum := e.run(tag1)
+
+	want := map[string]store.PendingItem{
+		descKey(passives, 0): {Key: descKey(passives, 0), Reason: ReasonKRChanged, PrevKR: "공격을 받으면 반격합니다", PrevZH: "受到攻擊時反擊", Hint: "用您"},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if got := e.records()[descKey(passives, 1)]; got.ZH != "提升全體友軍的攻擊力" || got.Batch != "reuse:"+descKey(passives, 2) || sum.Reused != 1 {
+		t.Errorf("the new entry of the shared text = %+v (reused %d), want the translation of id 3", got, sum.Reused)
+	}
+
+	e.again()
+}
+
 func TestPlanReportsNewSpeakersAndFiles(t *testing.T) {
 	e := newPlanEnv(t)
 	const dialogue = "RPGSystem/rpg-loc-dialogue-floor-1.json"
@@ -997,6 +1207,32 @@ func TestPlanAdjustmentsYieldToFieldRulesAndFrozenFiles(t *testing.T) {
 	}
 }
 
+// A copy is no translation, in a frozen file too (spec 8.2, step 2): a unit
+// the field rules translate now, which has the copy record of when they did
+// not, goes the usual way. With no other source it is queued as new, and the
+// copy goes.
+func TestPlanFrozenCopyIsNotATranslation(t *testing.T) {
+	e := newPlanEnv(t)
+	const bgm = "BgmLyrics/L.json"
+	lyric := at(bgm, "/dataList/0/content")
+	e.snapshot(map[string]string{bgm: dataList(obj{"id": 1, "content": "노래 가사"})})
+	e.seed([]store.Record{copied(lyric, "노래 가사")}, nil)
+
+	sum := e.run("")
+
+	if rec, has := e.records()[lyric]; has {
+		t.Errorf("the frozen unit has the record %+v, want the copy gone", rec)
+	}
+	if want := map[string]store.PendingItem{lyric: {Key: lyric, Reason: ReasonNew}}; !reflect.DeepEqual(e.pending(), want) {
+		t.Errorf("pending = %v, want %v", e.pending(), want)
+	}
+	if sum.Pending != 1 {
+		t.Errorf("Pending = %d, want 1", sum.Pending)
+	}
+
+	e.again()
+}
+
 // A rewrite never changes a frozen file (R14), and a text that would break the
 // rules for a new translation stays as it was.
 func TestPlanRewriteSkipsFrozenFilesAndRefusedText(t *testing.T) {
@@ -1028,6 +1264,43 @@ func TestPlanRewriteSkipsFrozenFilesAndRefusedText(t *testing.T) {
 	}
 }
 
+// A rewrite reaches the queue too: a pending item of a unit whose record it
+// rewrites, and that shows the record's old text as its previous translation,
+// shows the new text, so that the translation made from it keeps the rewrite.
+// An item whose previous translation is another text keeps it.
+func TestPlanRewriteUpdatesPendingPrevZH(t *testing.T) {
+	e := newPlanEnv(t)
+	a, b := descKey("Skills_A.json", 0), descKey("Skills_A.json", 1)
+	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": "피해량이 2배 증가한다"}, obj{"id": 2, "desc": "적에게 2배 피해를 준다"})})
+	e.seed([]store.Record{
+		translated(a, "피해량이 2배 증가한다", "傷害增加2倍"),
+		translated(b, "적에게 2배 피해를 준다", "對敵人造成2倍傷害"),
+	}, []store.PendingItem{
+		{Key: a, Reason: "requeue", PrevZH: "傷害增加2倍", Hint: "語氣"},
+		{Key: b, Reason: "requeue", PrevZH: "對敵人造成兩倍傷害", Hint: "語氣"},
+	})
+	e.rule("rules/rewrite/2026-11-01-space.yaml", "reason: 加空格\nfiles: [\"Skills*\"]\npattern: '(2)(倍)'\nreplace: '$1 $2'\n")
+
+	sum := e.run("")
+
+	recs := e.records()
+	if recs[a].ZH != "傷害增加2 倍" || recs[b].ZH != "對敵人造成2 倍傷害" {
+		t.Errorf("records = %q and %q, want both rewritten", recs[a].ZH, recs[b].ZH)
+	}
+	want := map[string]store.PendingItem{
+		a: {Key: a, Reason: "requeue", PrevZH: "傷害增加2 倍", Hint: "語氣"},
+		b: {Key: b, Reason: "requeue", PrevZH: "對敵人造成兩倍傷害", Hint: "語氣"},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if want := []Applied{{ID: "2026-11-01-space", Units: 2}}; !reflect.DeepEqual(sum.RewriteApplied, want) {
+		t.Errorf("RewriteApplied = %+v, want %+v", sum.RewriteApplied, want)
+	}
+
+	e.again()
+}
+
 // A unit the field rules translate and that has no translation of its KR text
 // is queued (spec 8.2, step 6), and a copy is no translation: it goes.
 func TestPlanQueuesUnitsWithoutASource(t *testing.T) {
@@ -1050,4 +1323,35 @@ func TestPlanQueuesUnitsWithoutASource(t *testing.T) {
 	if sum.Pending != 2 {
 		t.Errorf("Pending = %d, want 2", sum.Pending)
 	}
+}
+
+// Without a transition the plan takes the records as they are (the state may
+// come from a build or a bootstrap of this snapshot). One made from another
+// KR text than its unit has now, with no pending item, is queued as
+// kr-changed with its text as the previous translation, as a transition would
+// have queued it, and not as new. A unit that is queued keeps its item.
+func TestPlanStaleRecordQueuesKRChanged(t *testing.T) {
+	e := newPlanEnv(t)
+	stale, queued := descKey("Skills_A.json", 0), descKey("Skills_A.json", 1)
+	e.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": "적에게 큰 피해를 준다"}, obj{"id": 2, "desc": "아군을 크게 치유한다"})})
+	item := store.PendingItem{Key: queued, Reason: ReasonNew, Hint: "語氣"}
+	e.seed([]store.Record{
+		translated(stale, "적에게 피해를 준다", "對敵人造成傷害"),
+		translated(queued, "아군을 치유한다", "治療友軍"),
+	}, []store.PendingItem{item})
+
+	sum := e.run("")
+
+	if sum.PrevRawTag != sum.RawTag {
+		t.Fatalf("plan of %s from %s, want no transition", sum.RawTag, sum.PrevRawTag)
+	}
+	want := map[string]store.PendingItem{
+		stale:  {Key: stale, Reason: ReasonKRChanged, PrevZH: "對敵人造成傷害"},
+		queued: item,
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+
+	e.again()
 }

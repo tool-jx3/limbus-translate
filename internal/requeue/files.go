@@ -19,9 +19,11 @@ import (
 //
 // A request file is how a person asks, through main, for units to be
 // translated again (spec 11.1): the plan sends the records it selects back to
-// the pending queue, once. The file is told apart by its ID, the name without
-// ".yaml", and the ID is recorded when the file is applied, so renaming an
-// applied file requeues its units again.
+// the pending queue, once. A selected unit that waits for a person (flagged
+// needs_review) is reset, so it is handed out again with the reason as its
+// hint, as lct requeue --needs-review does where the state is. The file is
+// told apart by its ID, the name without ".yaml", and the ID is recorded when
+// the file is applied, so renaming an applied file requeues its units again.
 //
 //	reason: 稱呼改用「您」          # the hint the translator sees; required
 //	keys:    [StoryData/E002X.json|/dataList/14/content]

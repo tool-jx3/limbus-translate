@@ -377,6 +377,73 @@ func TestRequeueNeedsReview(t *testing.T) {
 	}
 }
 
+// A request (Keys, Files, Origins) that selects a pending unit waiting for a
+// person resets it as NeedsReview does: the flag, the attempts, the last error
+// and the lease go, the hint is the request's, the rest of the item stays. It
+// is counted as reset, not as already pending, and the unit is handed out
+// again. A request file on main does the same through ApplyTo (R15); a unit
+// the caller holds is left alone there.
+func TestRequeueResetsTheUnitsWaitingForAPerson(t *testing.T) {
+	set := openRaw(t, map[string]string{otherFile: dataList(3)})
+	twRoot := filepath.Join(t.TempDir(), "tw")
+	st := store.Open(twRoot)
+	k0, k1, k2 := key(otherFile, 0), key(otherFile, 1), key(otherFile, 2)
+	fallback := rec(k0, "대사 0", store.OriginFallback)
+	fallback.Flags = []string{store.FlagNeedsReview}
+	kept := rec(k1, "譯 1", store.OriginClaude) // a requeued unit that kept its record
+	kept.Flags = []string{store.FlagNeedsReview}
+	saveRecords(t, st, fallback, kept, rec(k2, "譯 2", store.OriginClaude))
+	stuck := []store.PendingItem{
+		{Key: k0, Reason: "new", Attempts: 3, Flags: []string{store.FlagNeedsReview, "other"}, LastError: "id-mismatch: x",
+			Lease: &store.Lease{Batch: "20261101T000000-aaaaaaaa", Until: time.Date(2099, 1, 1, 0, 0, 0, 0, time.UTC)}},
+		{Key: k1, Reason: "requeue", PrevZH: "譯 1", Hint: "舊提示", Attempts: 3, Flags: []string{store.FlagNeedsReview}, LastError: "hangul: y"},
+	}
+	savePending(t, st, stuck...)
+
+	res := mustApply(t, st, set.KR, Selector{Files: []string{otherFile}})
+
+	checkResult(t, res, Result{Reset: 2, Requeued: 1})
+	want := map[string]store.PendingItem{
+		k0: {Key: k0, Reason: "new", Hint: hint, Flags: []string{"other"}},
+		k1: {Key: k1, Reason: "requeue", PrevZH: "譯 1", Hint: hint},
+		k2: {Key: k2, Reason: Reason, PrevZH: "譯 2", Hint: hint},
+	}
+	if got := pendingByKey(t, st); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %+v\nwant %+v", got, want)
+	}
+	if recs := loadRecords(t, st); !reflect.DeepEqual(recs[k0], fallback) || !reflect.DeepEqual(recs[k1], kept) {
+		t.Errorf("records changed: %+v and %+v", recs[k0], recs[k1])
+	}
+	env := batch.Env{Store: store.Open(twRoot), Src: set, Rules: testRules(t), RawTag: rawTag, Now: time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC)}
+	if b, err := batch.Next(env, batch.NextOptions{}); err != nil || b == nil || len(b.Units) != 3 {
+		t.Errorf("batch = %+v, %v; want the 3 units handed out", b, err)
+	}
+
+	// ApplyTo: the same reset on the caller's state, which stays as it was.
+	records := map[string]store.Record{k0: fallback, k1: kept}
+	snapshot := func() string {
+		data, err := json.Marshal(stuck)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return string(data)
+	}
+	before := snapshot()
+	out, res, err := ApplyTo(records, stuck, set.KR, frozen, Selector{Keys: []string{k0, k1}}, hint, func(k string) bool { return k == k1 })
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.Reset != 1 || res.SkippedHeld != 1 || res.AlreadyPending != 0 {
+		t.Errorf("ApplyTo result = %+v, want 1 reset and 1 held", res)
+	}
+	if want := []store.PendingItem{{Key: k0, Reason: "new", Hint: hint, Flags: []string{"other"}}, stuck[1]}; !reflect.DeepEqual(out, want) {
+		t.Errorf("ApplyTo queue = %+v\nwant %+v", out, want)
+	}
+	if snapshot() != before {
+		t.Errorf("the caller's queue changed:\n%s\nwas\n%s", snapshot(), before)
+	}
+}
+
 func TestRequeueLeased(t *testing.T) {
 	set := openRaw(t, map[string]string{otherFile: dataList(4), storyFile: dataList(1)})
 	st := newStore(t)

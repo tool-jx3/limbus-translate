@@ -146,8 +146,8 @@ type MovedKey struct {
 }
 
 // Applied is one requeue or rewrite file that was applied: Units counts the
-// units it sent back to the translator (requeued, or already pending and
-// given its reason) or the records it rewrote.
+// units it sent back to the translator (requeued, already pending and given
+// its reason, or waiting for a person and reset) or the records it rewrote.
 type Applied struct {
 	ID    string `json:"id"`
 	Units int    `json:"units"`
@@ -226,7 +226,8 @@ func (in Inputs) check() error {
 //
 //  1. the field rules do not translate it: a copy record (its KR text), and
 //     it leaves the queue;
-//  2. it is in a frozen file and has a record: the record stays as it is;
+//  2. it is in a frozen file and has a record that is not a copy (a copy is
+//     no translation): the record stays as it is;
 //  3. a human adjustment applies to it (adjust.Resolve, at its key or moved
 //     to it): a human record with the adjustment's text, and it leaves the
 //     queue. Of two adjustments of one unit, the one at its own key wins over
@@ -238,14 +239,18 @@ func (in Inputs) check() error {
 //     that is not queued itself, or the record of a unit the new snapshot
 //     deleted: that translation is copied, if it passes the checks of a new
 //     translation (batch.CheckNew); a text that is FileBound only takes one
-//     from its own file;
+//     from its own file. A deleted unit that had a request pending serves no
+//     reuse: a unit of its text takes the request over instead (see
+//     planner.reuse), so an entry numbered again is translated again as asked;
 //  6. otherwise it is queued: a unit that is not queued yet is queued as
-//     new, and a copy record it has goes (a copy is no translation). A unit
-//     whose adjustment expired (its KR text changed; see expiredUnit for how
-//     the unit is found) is queued as adjustment-expired, with the adjustment
-//     as a reference, unless it has a record of its KR text already that is
-//     not human: the unit is queued once, and no more once it is translated
-//     again.
+//     new, or, when it has a record of another KR text, as kr-changed with
+//     that record's text as the previous translation (as a transition would
+//     have queued it), and a copy record it has goes (a copy is no
+//     translation). A unit whose adjustment expired (its KR text changed; see
+//     expiredUnit for how the unit is found) is queued as adjustment-expired,
+//     with the adjustment as a reference, unless it has a record of its KR
+//     text already that is not human: the unit is queued once, and no more
+//     once it is translated again.
 //
 // Steps 1 to 4 and 6 come first, and the adjustments that expired are queued.
 // The rewrite files and the request files of rules/rewrite and rules/requeue
@@ -256,10 +261,13 @@ func (in Inputs) check() error {
 // worked out before step 5 and counts as queued); and a requested unit that
 // step 5 fills is sent back with the copied text as its previous
 // translation, its request kept. A requeued unit shows the rewritten text as
-// its previous translation too. Neither kind of file touches a unit that
-// steps 1 to 3 decided: the next plan would set it back. A rewrite changes no
-// record of a frozen file and no text it would leave with a hard issue of a
-// new translation; a request leaves out frozen files and copies too (see
+// its previous translation too, and so does a unit queued already whose
+// previous translation was the text of the record rewritten. A request that
+// names a unit waiting for a person (needs_review) resets it, so that it is
+// handed out again. Neither kind of file touches a unit that steps 1 to 3
+// decided: the next plan would set it back. A rewrite changes no record of a
+// frozen file and no text it would leave with a hard issue of a new
+// translation; a request leaves out frozen files and copies too (see
 // requeue.Apply).
 //
 // The whole run is one store lock, and the store is written at its end: the
@@ -676,7 +684,7 @@ func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
 			c.blocked = true
 		}
 		return
-	case ref.file.frozen && hasRec: // 2
+	case ref.file.frozen && hasRec && rec.Origin != store.OriginCopy: // 2
 		p.settled[key] = true
 		if c != nil && !sameRecord(rec, p.humanRecord(key, c)) {
 			c.blocked = true // the record is not the adjustment's own
@@ -695,9 +703,16 @@ func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
 	// 6, unless step 5 finds the same text later.
 	if hasRec && rec.Origin == store.OriginCopy {
 		delete(p.records, key)
+		hasRec = false
 	}
 	if _, queued := p.pending[key]; !queued {
-		p.pending[key] = store.PendingItem{Key: key, Reason: ReasonNew}
+		item := store.PendingItem{Key: key, Reason: ReasonNew}
+		if hasRec {
+			// A record of another KR text, which no transition queued: as
+			// one would have, its text is the previous translation.
+			item = store.PendingItem{Key: key, Reason: ReasonKRChanged, PrevZH: rec.ZH}
+		}
+		p.pending[key] = item
 	}
 }
 
@@ -907,12 +922,40 @@ func reusable(rec store.Record, sha string) bool {
 	return rec.KRSha == sha && !slices.Contains(rec.Flags, store.FlagNeedsReview)
 }
 
+// deletedRequest is the pending item of a deleted unit that holds what a
+// person asked for (carriesRequest), which a unit of its text takes over (see
+// reuse).
+type deletedRequest struct {
+	file   string // the deleted unit's
+	item   store.PendingItem
+	handed bool // a unit took it over already
+}
+
+// carriesRequest reports whether it, the pending item of a unit the new
+// snapshot deleted, holds what a person asked for: a request to translate
+// the unit again, or a hint (a request that found the unit queued already).
+func carriesRequest(it store.PendingItem) bool {
+	return it.Reason == requeue.Reason || it.Hint != ""
+}
+
+// reuseTarget reports whether a unit queued for reason is one step 5 fills.
+func reuseTarget(reason string) bool { return reason == ReasonNew || reason == ReasonKRChanged }
+
 // reuse is step 5 of Run. A unit in queued, or pending, serves no other.
+//
+// A deleted unit with a request pending (carriesRequest) serves no other
+// either: the first target of its text (by key; from the deleted unit's file
+// first, from another file only when the text is not FileBound) takes its
+// pending item over, with its reason, hint and previous texts and without its
+// lease. That is how a request on an entry numbered again reaches the entry,
+// instead of the entry taking the translation sent back. A target that takes
+// over a request for a new or changed unit may then still take a translation,
+// as a target with such an item of its own may.
 func (p *planner) reuse(queued map[string]bool) error {
 	var targets []string
 	want := map[string]bool{} // the KR texts of the targets
 	for key, it := range p.pending {
-		if it.Reason != ReasonNew && it.Reason != ReasonKRChanged {
+		if !reuseTarget(it.Reason) {
 			continue
 		}
 		if ref, ok := p.cur[key]; ok {
@@ -942,9 +985,11 @@ func (p *planner) reuse(queued map[string]bool) error {
 			sources[g] = append(sources[g], source{key: key, file: f.name, rec: rec})
 		}
 	}
+	requests := map[batch.TextGroup][]*deletedRequest{}
 	oldUnits := map[string]map[string]units.Unit{} // file -> pointer -> unit
 	for _, d := range p.deleted {
-		if d.Record == nil || !want[d.KR] || !reusable(*d.Record, units.KRSha(d.KR)) {
+		asked := d.Pending != nil && carriesRequest(*d.Pending)
+		if !want[d.KR] || !asked && (d.Record == nil || !reusable(*d.Record, units.KRSha(d.KR))) {
 			continue
 		}
 		doc, err := p.oldKR.Doc(d.File)
@@ -960,6 +1005,10 @@ func (p *planner) reuse(queued map[string]bool) error {
 			oldUnits[d.File] = byPointer
 		}
 		g := batch.TextGroupOf(p.in.Rules, doc, byPointer[d.Pointer])
+		if asked {
+			requests[g] = append(requests[g], &deletedRequest{file: d.File, item: *d.Pending})
+			continue
+		}
 		sources[g] = append(sources[g], source{key: units.Key(d.File, d.Pointer), file: d.File, rec: *d.Record})
 	}
 
@@ -967,6 +1016,13 @@ func (p *planner) reuse(queued map[string]bool) error {
 		ref := p.cur[key]
 		u := ref.unit()
 		g := batch.TextGroupOf(p.in.Rules, ref.file.doc, u)
+		if r, ok := handOn(requests[g], ref.file.name, g.FileBound()); ok {
+			it := r.item
+			p.pending[key] = store.PendingItem{Key: key, Reason: it.Reason, Hint: it.Hint, PrevKR: it.PrevKR, PrevZH: it.PrevZH}
+			if !reuseTarget(it.Reason) {
+				continue
+			}
+		}
 		s, ok := p.pick(sources[g], ref.file.name, g.FileBound(), u.KR)
 		if !ok {
 			continue
@@ -1001,9 +1057,26 @@ func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (
 	return source{}, false
 }
 
+// handOn returns the first request of reqs that no unit took over yet, and
+// marks it taken: one of file first, and of no other file when fileBound.
+func handOn(reqs []*deletedRequest, file string, fileBound bool) (*deletedRequest, bool) {
+	for _, sameFile := range []bool{true, false} {
+		if !sameFile && fileBound {
+			break
+		}
+		for _, r := range reqs {
+			if !r.handed && (r.file == file) == sameFile {
+				r.handed = true
+				return r, true
+			}
+		}
+	}
+	return nil, false
+}
+
 // held reports whether steps 1 to 3 decided the source of the unit of key (a
-// copy, a frozen unit with a record, an adjusted unit). No rewrite or request
-// file touches such a unit: the next plan would only set it back.
+// copy, a frozen unit with a translation, an adjusted unit). No rewrite or
+// request file touches such a unit: the next plan would only set it back.
 func (p *planner) held(key string) bool { return p.settled[key] }
 
 // applyRewrites applies the rewrite files that applied does not list, and
@@ -1017,7 +1090,23 @@ func (p *planner) applyRewrites(applied *store.Applied, files []rewrite.File) {
 		if slices.Contains(applied.Rewrite, f.ID) {
 			continue
 		}
+		// A pending item that shows the text of its unit's record as the
+		// previous translation shows the rewritten text: the translation made
+		// from it then keeps the rewrite.
+		follow := map[string]bool{}
+		for key, it := range p.pending {
+			if rec, has := p.records[key]; has && it.PrevZH != "" && it.PrevZH == rec.ZH {
+				follow[key] = true
+			}
+		}
 		changed := rewrite.Apply(f, p.records, p.in.Src.KR, ok)
+		for _, key := range changed {
+			if follow[key] {
+				it := p.pending[key]
+				it.PrevZH = p.records[key].ZH
+				p.pending[key] = it
+			}
+		}
 		applied.Rewrite = append(applied.Rewrite, f.ID)
 		p.sum.RewriteApplied = append(p.sum.RewriteApplied, Applied{ID: f.ID, Units: len(changed)})
 	}
@@ -1035,7 +1124,7 @@ func (p *planner) requeue(files []requeue.File) ([]store.PendingItem, []Applied,
 			return nil, nil, fmt.Errorf("plan: %s/%s.yaml: %w", requeue.Dir, f.ID, err)
 		}
 		pending = out
-		done = append(done, Applied{ID: f.ID, Units: res.Requeued + res.AlreadyPending})
+		done = append(done, Applied{ID: f.ID, Units: res.Requeued + res.AlreadyPending + res.Reset})
 	}
 	return pending, done, nil
 }

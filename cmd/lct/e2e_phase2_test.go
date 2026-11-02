@@ -721,9 +721,10 @@ func checkPhase2SecondState(t *testing.T, p *phase2, recs1 map[string]store.Reco
 			Key: p2Content(s1, 2), Reason: plan.ReasonAdjustmentExpired, PrevKR: "비 오는 날의 모험도 나쁘지 않소!", PrevZH: "譯",
 			Hint: toneHint, Refs: map[string]string{plan.RefAdjustment: adjChangedZH},
 		},
-		// The text it was queued with: a rewrite changes the records, not the
-		// queue.
-		p2Content(s1, 5): {Key: p2Content(s1, 5), Reason: "requeue", PrevZH: "譯", Hint: toneHint},
+		// It was queued with the text of its record, which the rewrite
+		// changed: the item shows the rewritten text, so the translation made
+		// from it keeps the rewrite.
+		p2Content(s1, 5): {Key: p2Content(s1, 5), Reason: "requeue", PrevZH: "譯文", Hint: toneHint},
 		p2Content(s2, 1): {Key: p2Content(s2, 1), Reason: "new"},
 	}
 	if !reflect.DeepEqual(pending, want) {
@@ -797,8 +798,8 @@ func checkPhase2Batches(t *testing.T, batches []batch.Batch) {
 		u.Hint != toneHint || u.Refs[plan.RefAdjustment] != adjChangedZH || u.Speaker == "" {
 		t.Errorf("the reworded line = %+v, want its previous version, the hint of its request, the expired adjustment as a reference and its speaker", u)
 	}
-	if u := handed[p2Content(s1, 5)]; u.Reason != "requeue" || u.Hint != toneHint || u.PrevZH != "譯" || u.KR != "감기에 걸려도 난 모른다." {
-		t.Errorf("the requeued last line = %+v, want it at its new key with the hint and its previous translation", u)
+	if u := handed[p2Content(s1, 5)]; u.Reason != "requeue" || u.Hint != toneHint || u.PrevZH != "譯文" || u.KR != "감기에 걸려도 난 모른다." {
+		t.Errorf("the requeued last line = %+v, want it at its new key with the hint and its previous translation, rewritten", u)
 	}
 	if u := handed[p2Content(s1, 1)]; u.Reason != "new" || u.Refs[plan.RefAdjustment] != "" {
 		t.Errorf("the inserted line = %+v, want a new line without the adjustment of another", u)

@@ -4,7 +4,10 @@
 // the records once.
 //
 // A rewrite never sends a unit back to the translator and never changes
-// anything but the text of a record.
+// anything but the text of a record. The plan, which holds the pending queue,
+// carries the new text on to a pending item of the unit that showed the old
+// one as its previous translation, so that the translation made from it keeps
+// the rewrite.
 package rewrite
 
 import (

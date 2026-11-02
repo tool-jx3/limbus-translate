@@ -37,8 +37,11 @@ var knownOrigins = append(slices.Clone(defaultOrigins), store.OriginCopy)
 // Keys or its file matches Files; with neither, every record is. Origins then
 // keep the records of those origins (a key without a record is out); without
 // Origins that is every origin but copy (copies in the selection are counted
-// as skipped, not requeued). A Selector whose Keys, Files and Origins are all
-// empty selects nothing.
+// as skipped, not requeued). A selected unit that is pending already keeps
+// its item and gets the hint; one that waits for a person (flagged
+// needs_review) is reset as well, as NeedsReview resets it, so that a request
+// made through main lets it be handed out again. A Selector whose Keys, Files
+// and Origins are all empty selects nothing.
 //
 // With NeedsReview or Leased (either, or both) it acts on the pending queue
 // only and never requeues a record: units flagged needs_review are reset,
@@ -60,11 +63,14 @@ type Result struct {
 	// translation as PrevZH, the hint).
 	Requeued int `json:"requeued"`
 	// Reset units were flagged needs_review: the flag, the attempts and the
-	// lease are gone and they carry the hint.
+	// lease are gone and they carry the hint. Both modes reset: NeedsReview
+	// the units it narrows to, a request for records the pending units it
+	// selects that wait for a person.
 	Reset int `json:"reset"`
 	// Released units lost their lease; nothing else changed.
 	Released int `json:"released"`
-	// AlreadyPending units were in the queue already; only their hint is new.
+	// AlreadyPending units were in the queue already (and not waiting for a
+	// person: those are Reset); only their hint is new.
 	// A hint set on a leased unit does not reach the batch that holds the
 	// unit (its translator has the batch file already, and the submitted
 	// translation takes the unit off the queue); release the lease with
@@ -292,21 +298,29 @@ func (r *run) stuckItems() {
 			continue
 		}
 		if review {
-			it.Flags = slices.DeleteFunc(slices.Clone(it.Flags), func(f string) bool { return f == store.FlagNeedsReview })
-			if len(it.Flags) == 0 {
-				it.Flags = nil
-			}
-			it.Attempts = 0
-			it.LastError = ""
-			it.Lease = nil
-			it.Hint = r.hint
-			r.res.Reset++
+			r.reset(it)
 		} else {
 			it.Lease = nil
 			r.res.Released++
 		}
 		r.changed = true
 	}
+}
+
+// reset lets a pending unit that waits for a person (flagged needs_review) be
+// handed out again: the flag, the attempts, the last error and the lease go,
+// and it carries the hint. The flags are copied before they change: the item
+// may share them with the caller of ApplyTo.
+func (r *run) reset(it *store.PendingItem) {
+	it.Flags = slices.DeleteFunc(slices.Clone(it.Flags), func(f string) bool { return f == store.FlagNeedsReview })
+	if len(it.Flags) == 0 {
+		it.Flags = nil
+	}
+	it.Attempts = 0
+	it.LastError = ""
+	it.Lease = nil
+	it.Hint = r.hint
+	r.res.Reset++
 }
 
 // candidates are the keys the record selection looks at, sorted and unique:
@@ -350,8 +364,12 @@ func (r *run) requeueRecords() error {
 		case r.held != nil && r.held(key):
 			r.res.SkippedHeld++
 		case queued:
-			r.pending[i].Hint = r.hint
-			r.res.AlreadyPending++
+			if it := &r.pending[i]; slices.Contains(it.Flags, store.FlagNeedsReview) {
+				r.reset(it)
+			} else {
+				it.Hint = r.hint
+				r.res.AlreadyPending++
+			}
 			r.changed = true
 		default:
 			missing := !hasRec // nothing to send back

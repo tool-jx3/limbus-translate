@@ -42,6 +42,9 @@ type DeletedUnit struct {
 	File, Field, KR string
 	Pointer         string        // where the string was in the old version
 	Record          *store.Record // nil when the unit had no record
+	// Pending is the pending item the unit had, as it was (nil when it had
+	// none): the plan hands a request on it to the unit that takes its place.
+	Pending *store.PendingItem
 }
 
 // Changes counts what became of the units. Unchanged includes the units
@@ -85,9 +88,9 @@ type Changes struct {
 //   - new: queued as "new".
 //
 // A string only the old version has is deleted: its record and pending item
-// are dropped and it is listed in Deleted. A file only the old version has
-// is all deleted, and a file only the new version has is all new. State
-// whose key is not a string of the old version has nowhere to go and is
+// leave the state, and it is listed in Deleted with them. A file only the old
+// version has is all deleted, and a file only the new version has is all new.
+// State whose key is not a string of the old version has nowhere to go and is
 // dropped.
 //
 // A moved record keeps its Since, the raw tag its translation was written
@@ -223,6 +226,10 @@ func (m *mover) file(file string, oldDoc, newDoc *jsonx.Node) {
 			if hasRec {
 				r := cloneRecord(rec)
 				d.Record = &r
+			}
+			if hasItem {
+				it := clonePending(item)
+				d.Pending = &it
 			}
 			m.out.Deleted = append(m.out.Deleted, d)
 		}
