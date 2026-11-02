@@ -130,11 +130,12 @@ func TestHasMeta(t *testing.T) {
 		prepare func(tw string)
 		want    bool
 	}{
-		"no worktree":     {func(tw string) {}, false},
-		"an empty folder": {func(tw string) { os.MkdirAll(tw, 0o755) }, false},
-		"a file as .meta": {func(tw string) { os.MkdirAll(tw, 0o755); os.WriteFile(filepath.Join(tw, metaDirName), nil, 0o644) }, false},
-		"an empty .meta":  {func(tw string) { os.MkdirAll(filepath.Join(tw, metaDirName), 0o755) }, true},
-		"state in .meta/": {func(tw string) { Open(tw).SavePending(nil) }, true},
+		"no worktree":            {func(tw string) {}, false},
+		"an empty folder":        {func(tw string) { os.MkdirAll(tw, 0o755) }, false},
+		"a file as .meta":        {func(tw string) { os.MkdirAll(tw, 0o755); os.WriteFile(filepath.Join(tw, metaDirName), nil, 0o644) }, false},
+		"a file as the worktree": {func(tw string) { os.WriteFile(tw, nil, 0o644) }, false},
+		"an empty .meta":         {func(tw string) { os.MkdirAll(filepath.Join(tw, metaDirName), 0o755) }, true},
+		"state in .meta/":        {func(tw string) { Open(tw).SavePending(nil) }, true},
 		"a file in .meta/": {func(tw string) {
 			os.MkdirAll(filepath.Join(tw, metaDirName), 0o755)
 			os.WriteFile(filepath.Join(tw, metaDirName, "x.json"), nil, 0o644)

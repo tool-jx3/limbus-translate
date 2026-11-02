@@ -603,9 +603,10 @@ func TestCommandsNeedTheTWWorktree(t *testing.T) {
 		"glossary derive":        {"glossary", "derive"},
 	} {
 		for variant, prepare := range map[string]func(){
-			"no worktree":     func() { os.RemoveAll(tw) },
-			"no .meta":        func() { os.RemoveAll(tw); os.MkdirAll(tw, 0o755) },
-			"a file as .meta": func() { os.RemoveAll(tw); os.MkdirAll(tw, 0o755); os.WriteFile(filepath.Join(tw, ".meta"), nil, 0o644) },
+			"no worktree":            func() { os.RemoveAll(tw) },
+			"no .meta":               func() { os.RemoveAll(tw); os.MkdirAll(tw, 0o755) },
+			"a file as .meta":        func() { os.RemoveAll(tw); os.MkdirAll(tw, 0o755); os.WriteFile(filepath.Join(tw, ".meta"), nil, 0o644) },
+			"a file as the worktree": func() { os.RemoveAll(tw); os.WriteFile(tw, nil, 0o644) },
 		} {
 			t.Run(name+", "+variant, func(t *testing.T) {
 				prepare()
