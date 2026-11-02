@@ -1869,8 +1869,15 @@ func checkPipelineNotRun(file string, steps []workflowStep) []string {
 	if strings.Contains(s.Run, "git ") {
 		add("the step that runs bin/lct translate --not-run uses git: it commits nothing, the publish commit takes .meta/translate.json to tw")
 	}
+	if !notRunGuardRe.MatchString(s.Run) {
+		add(`the step that runs bin/lct translate --not-run does not go on when it fails (|| echo "::warning::…", as the translation does): a record that cannot be written would stop the build and the Release`)
+	}
 	return problems
 }
+
+// notRunGuardRe matches the call of lct translate --not-run that warns, and
+// does not fail, when the record cannot be written.
+var notRunGuardRe = regexp.MustCompile(`bin/lct translate --not-run "[^"]*" \|\| echo "::warning::`)
 
 // ciPermissions are the permissions of ci.yml: it reads the repo and writes
 // nothing. A pull request from a fork gets no more than this anyway; the
@@ -2849,7 +2856,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"a Release that follows a test that is not the pinned one", "steps.publish.outputs.release_needed == 'true'", "steps.publish.outputs.release_needed != 'false'", "release_needed == 'true'"},
 		{"a Release made when there is nothing to do", "if: steps.decide.outputs.idle == 'false' && steps.publish.outputs.release_needed == 'true'", "if: steps.publish.outputs.release_needed == 'true'", "steps.decide.outputs.idle == 'false'"},
 		{"a translation that stops the build", "|| status=$?", "", "not followed by ||"},
-		{"a translation that fails without a word", "::warning::lct translate", "::notice::lct translate", "::warning::"},
+		{"a translation that fails without a word", "::warning::lct translate stopped", "::notice::lct translate stopped", "::warning::"},
 		{"no fallback of the spending limit", "|| vars.LCT_MAX_USD || '30'", "", "MAX_USD"},
 		{"a build when nothing is to do", "        if: steps.decide.outputs.idle == 'false'\n        run: |\n          build=", "        run: |\n          build=", `"bin/lct build" runs even when there is nothing to do`},
 		{"an issue when nothing is to do", "        if: steps.decide.outputs.idle == 'false'\n        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          if [ ! -f out/review-issue/01.md ]", "        env:\n          GH_TOKEN: ${{ github.token }}\n        run: |\n          if [ ! -f out/review-issue/01.md ]", `"gh issue" runs even when there is nothing to do`},
@@ -2874,14 +2881,15 @@ func TestWorkflowContract(t *testing.T) {
 		// Units that are pending while the key or the model is missing are
 		// recorded as untranslated, for the build and the review issue; a dry
 		// run, which skips translating on purpose, is not.
-		{"no record of a translation that did not run", `run: bin/lct translate --not-run "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, "run: echo skipped", "no step runs bin/lct translate --not-run"},
-		{"a record whatever decide says", "        if: steps.decide.outputs.not_run == 'true'\n        run: bin/lct translate --not-run", "        run: bin/lct translate --not-run", "not_run == 'true'"},
+		{"no record of a translation that did not run", `bin/lct translate --not-run "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, "echo skipped", "no step runs bin/lct translate --not-run"},
+		{"a record whatever decide says", "        if: steps.decide.outputs.not_run == 'true'\n        run: |\n          bin/lct translate --not-run", "        run: |\n          bin/lct translate --not-run", "not_run == 'true'"},
 		{"a record under the if of the translation", "if: steps.decide.outputs.not_run == 'true'", "if: steps.decide.outputs.translate == 'true'", "not_run == 'true'"},
-		{"the API key for the record", "        run: bin/lct translate --not-run", "        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n        run: bin/lct translate --not-run", "ANTHROPIC_API_KEY in its environment"},
+		{"the API key for the record", "        run: |\n          bin/lct translate --not-run", "        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n        run: |\n          bin/lct translate --not-run", "ANTHROPIC_API_KEY in its environment"},
 		{"a record that commits", `待譯的單位沒有翻譯"`, `待譯的單位沒有翻譯" && git -C .work/tw commit -am x`, "uses git"},
-		{"a record after the build", `run: bin/lct translate --not-run "缺少`, `run: bin/lct build --json && bin/lct translate --not-run "缺少`, `"bin/lct translate --not-run" must come before "bin/lct build"`},
+		{"a record after the build", `          bin/lct translate --not-run "缺少`, `          bin/lct build --json && bin/lct translate --not-run "缺少`, `"bin/lct translate --not-run" must come before "bin/lct build"`},
 		{"a reason that names neither the key nor the model", `"缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, `"待譯的單位沒有翻譯"`, "does not name ANTHROPIC_API_KEY"},
 		{"a reason that names no model", "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，", "缺少 ANTHROPIC_API_KEY，", "does not name LCT_MODEL"},
+		{"a record whose failure stops the run", ` || echo "::warning::lct translate --not-run failed`, "", "does not go on when it fails"},
 		{"a missing model not noticed", ` || [ "$HAS_MODEL" != true ]; then`, "; then", `elif [ "$HAS_API_KEY" != true ] || [ "$HAS_MODEL" != true ]; then`},
 		{"a missing key not noticed", `elif [ "$HAS_API_KEY" != true ] || `, "elif ", `elif [ "$HAS_API_KEY" != true ] || [ "$HAS_MODEL" != true ]; then`},
 		{"a model that is not passed on", "          HAS_MODEL: ${{ vars.LCT_MODEL != '' }}\n", "", "HAS_MODEL"},
