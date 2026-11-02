@@ -1014,7 +1014,8 @@ type workflowFile struct {
 	Concurrency struct {
 		Group string `yaml:"group"`
 	} `yaml:"concurrency"`
-	Jobs map[string]workflowJob `yaml:"jobs"`
+	Permissions map[string]string      `yaml:"permissions"`
+	Jobs        map[string]workflowJob `yaml:"jobs"`
 }
 
 // jobNames returns the names of the jobs, sorted.
@@ -1362,6 +1363,112 @@ func checkPipelineWorkflow(file, content string) []string {
 		}
 		if !workflowTitleRe.MatchString(s.Run) {
 			add("gh release create has no --title")
+		}
+	}
+	return problems
+}
+
+// ciPermissions are the permissions of ci.yml: it reads the repo and writes
+// nothing. A pull request from a fork gets no more than this anyway; the
+// workflow does not ask for more.
+var ciPermissions = map[string]string{"contents": "read"}
+
+// ciImpactMarkers are the commands the step of ci.yml that assesses a rule
+// change must run, with the reason.
+var ciImpactMarkers = []struct{ text, why string }{
+	// The three dots compare with the merge base, so that what the base branch
+	// gained since the branch was made does not count as a change of the pull
+	// request. The result is assigned first, so that set -e sees a failing git.
+	{`changed=$(git diff --name-only "origin/$BASE_REF...HEAD" -- guides glossary rules)`, "the pull request is not asked whether it changes guides/, glossary/ or rules/ (compared with the merge base, assigned before it is tested)"},
+	{`[ -z "$changed" ]`, "a pull request that changes no rule is assessed all the same"},
+	{"+refs/heads/raw:refs/remotes/origin/raw", "the raw branch is not fetched"},
+	{"+refs/heads/tw:refs/remotes/origin/tw", "the tw branch is not fetched"},
+	{"git worktree add .work/raw raw", "lct impact reads the raw worktree and it is not made"},
+	{"git worktree add .work/tw tw", "lct impact reads the tw worktree and it is not made"},
+	{`bin/lct impact --base "origin/$BASE_REF"`, "the rules of the base branch are not the ones to compare with"},
+	{"--markdown out/impact.md", "the assessment is not written for the summary page"},
+	{`out/impact.md >> "$GITHUB_STEP_SUMMARY"`, "the assessment is not shown on the summary page"},
+}
+
+// ciImpactOrder pairs the commands of the assessment step that must run in
+// that order: the first before the second, by the first place each is written.
+var ciImpactOrder = [][2]string{
+	{"go build -o bin/lct ./cmd/lct", "bin/lct impact"},
+	{"changed=$(git diff", `[ -z "$changed" ]`},
+	{`[ -z "$changed" ]`, "+refs/heads/raw:refs/remotes/origin/raw"}, // nothing is fetched when no rule changed
+	{"+refs/heads/raw:refs/remotes/origin/raw", "git worktree add .work/raw raw"},
+	{"+refs/heads/tw:refs/remotes/origin/tw", "git worktree add .work/tw tw"},
+	{"git worktree add .work/raw raw", "bin/lct impact"},
+	{"git worktree add .work/tw tw", "bin/lct impact"},
+	{"--markdown out/impact.md", `out/impact.md >> "$GITHUB_STEP_SUMMARY"`},
+}
+
+// checkCIWorkflow checks ci.yml: it runs on a push and on a pull request, with
+// the permission to read and no more, and its checkout has the whole history.
+// One step assesses a rule change (spec 11.2 and 12): it runs on a pull
+// request only, gets the name of the base branch through env (a script that
+// held it would run what a branch name makes of it), finds out whether the
+// pull request changes the rules, and only then fetches raw and tw, makes their
+// worktrees, runs lct impact against the base branch and shows the result on
+// the summary page, after lct is built.
+func checkCIWorkflow(file, content string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
+
+	if events := w.triggers(); !slices.Equal(events, []string{"pull_request", "push"}) {
+		add("runs on %v, want [pull_request push]", events)
+	}
+	if !maps.Equal(w.Permissions, ciPermissions) {
+		add("permissions = %v, want %v: the assessment only reads", w.Permissions, ciPermissions)
+	}
+	for name, job := range w.Jobs {
+		if len(job.Permissions) > 0 {
+			add("job %s has permissions of its own %v; the workflow grants %v", name, job.Permissions, ciPermissions)
+		}
+	}
+	steps := w.steps()
+	deep := slices.ContainsFunc(steps, func(s workflowStep) bool {
+		return strings.HasPrefix(s.Uses, "actions/checkout@") && fmt.Sprint(s.With["fetch-depth"]) == "0"
+	})
+	if !deep {
+		add("no actions/checkout step with fetch-depth: 0: the base branch of a pull request and its merge base are not there to compare with")
+	}
+	for _, s := range steps {
+		if strings.Contains(s.Run, "base_ref") {
+			add("a script names base_ref: pass it through env (BASE_REF: ${{ github.base_ref }}): %q", firstLine(s.Run))
+		}
+	}
+
+	var impact []workflowStep
+	for _, s := range steps {
+		if strings.Contains(s.Run, "bin/lct impact") {
+			impact = append(impact, s)
+		}
+	}
+	if len(impact) != 1 {
+		add("%d steps run bin/lct impact, want one: a pull request that changes the rules must say how many translations the change breaks", len(impact))
+		return problems
+	}
+	step := impact[0]
+	if !strings.Contains(step.If, "github.event_name == 'pull_request'") {
+		add("the if of the step that runs bin/lct impact is %q, which lacks github.event_name == 'pull_request': there is no base branch to compare with on a push", step.If)
+	}
+	if step.Env["BASE_REF"] != "${{ github.base_ref }}" {
+		add("the step that runs bin/lct impact has BASE_REF = %q in its env, want ${{ github.base_ref }}", step.Env["BASE_REF"])
+	}
+	for _, m := range ciImpactMarkers {
+		if !strings.Contains(step.Run, m.text) {
+			add("the step that runs bin/lct impact has no %q: %s", m.text, m.why)
+		}
+	}
+	runs := w.runs()
+	for _, o := range ciImpactOrder {
+		first, second := strings.Index(runs, o[0]), strings.Index(runs, o[1])
+		if first >= 0 && second >= 0 && first > second {
+			add("%q must come before %q", o[0], o[1])
 		}
 	}
 	return problems
@@ -1781,6 +1888,9 @@ func TestWorkflowContract(t *testing.T) {
 	for _, problem := range checkPipelineWorkflow(pipelineFile, pipeline) {
 		t.Error(problem)
 	}
+	for _, problem := range checkCIWorkflow(ciFile, ci) {
+		t.Error(problem)
+	}
 	for _, problem := range checkUpdateWorkflow(updateFile, update, pipeline) {
 		t.Error(problem)
 	}
@@ -2083,6 +2193,73 @@ func TestWorkflowContract(t *testing.T) {
 			wantProblems(t, checkWorkflow(pipelineFile, src, commands), "--title", title)
 		})
 	}
+
+	// 11. ci.yml says on a pull request how many existing translations a change
+	// of the rules would break: the step exists, runs only on a pull request,
+	// takes the name of the base branch from env, and fetches nothing when no
+	// rule changed.
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"a checkout that is shallow", "fetch-depth: 0", "fetch-depth: 1", "fetch-depth: 0"},
+		{"runs on pushes only", "on: [push, pull_request]", "on: [push]", "runs on"},
+		{"runs on every event", "on: [push, pull_request]", "on: [push, pull_request, workflow_dispatch]", "runs on"},
+		{"a token that writes", "contents: read", "contents: write", "permissions"},
+		{"a job with a token of its own", "    runs-on: ubuntu-24.04\n", "    runs-on: ubuntu-24.04\n    permissions: { contents: write }\n", "permissions of its own"},
+
+		// Only on a pull request.
+		{"assessed on a push too", "        if: github.event_name == 'pull_request'\n", "", "github.event_name == 'pull_request'"},
+		{"assessed on a push that is not guarded", "if: github.event_name == 'pull_request'", "if: github.event_name != 'push'", "github.event_name == 'pull_request'"},
+
+		// The name of the base branch goes through env.
+		{"base_ref in a script", `--base "origin/$BASE_REF"`, `--base "origin/${{ github.base_ref }}"`, "base_ref"},
+		{"base_ref in the diff", `"origin/$BASE_REF...HEAD"`, `"origin/${{ github.base_ref }}...HEAD"`, "base_ref"},
+		{"base_ref that env does not carry", "BASE_REF: ${{ github.base_ref }}", "BASE_REF: main", "BASE_REF"},
+		{"another ref in env", "BASE_REF: ${{ github.base_ref }}", "BASE_REF: ${{ github.head_ref }}", "BASE_REF"},
+
+		// A pull request that changes no rule is not assessed.
+		{"no look at what the pull request changes", `changed=$(git diff --name-only "origin/$BASE_REF...HEAD" -- guides glossary rules)`, "changed=x", "git diff"},
+		{"a diff that is not against the merge base", `"origin/$BASE_REF...HEAD"`, `"origin/$BASE_REF..HEAD"`, "merge base"},
+		{"a diff of every path", " -- guides glossary rules", "", "guides/, glossary/ or rules/"},
+		{"a diff that does not name rules", " -- guides glossary rules", " -- guides glossary", "guides/, glossary/ or rules/"},
+		{"a diff that set -e does not see", `changed=$(git diff`, `: $(git diff`, "assigned before it is tested"},
+		{"assessed although no rule changed", `[ -z "$changed" ]`, `[ -n "$changed" ]`, "changes no rule"},
+		{"fetched although no rule changed", `if [ -z "$changed" ]; then`, "git fetch origin '+refs/heads/raw:refs/remotes/origin/raw'\n          if [ -z \"$changed\" ]; then", "must come before"},
+
+		// The worktrees and the command.
+		{"no raw branch", "+refs/heads/raw:refs/remotes/origin/raw", "+refs/heads/main:refs/remotes/origin/main", "raw branch"},
+		{"no tw branch", "+refs/heads/tw:refs/remotes/origin/tw", "+refs/heads/main:refs/remotes/origin/main", "tw branch"},
+		{"no raw worktree for the assessment", "git worktree add .work/raw raw", "git worktree prune", "raw worktree"},
+		{"no tw worktree for the assessment", "git worktree add .work/tw tw", "git worktree prune", "tw worktree"},
+		{"worktrees made after the assessment", "          git fetch origin", "          bin/lct impact --base HEAD\n          git fetch origin", `must come before "bin/lct impact"`},
+		{"the assessment against the working tree", `--base "origin/$BASE_REF"`, `--base HEAD`, "base branch"},
+		{"no file for the summary", "--markdown out/impact.md", "--json", "summary page"},
+		{"not shown on the summary page", `out/impact.md >> "$GITHUB_STEP_SUMMARY"`, "out/impact.md", "summary page"},
+		{"shown before it is written", "          bin/lct impact --base", "          cat out/impact.md >> \"$GITHUB_STEP_SUMMARY\"\n          bin/lct impact --base", "must come before"},
+		{"no step for the assessment", "bin/lct impact", "echo impact", "0 steps run bin/lct impact"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutate(t, ci, tc.old, tc.repl)
+			hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, tc.want)
+		})
+	}
+	t.Run("assessed before lct is built", func(t *testing.T) {
+		// The build step moves behind the assessment, which is the last step.
+		build := "      - name: Build lct\n        run: go build -o bin/lct ./cmd/lct\n"
+		src := mutate(t, ci, build, "") + build
+		hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, `"go build -o bin/lct ./cmd/lct" must come before "bin/lct impact"`)
+	})
+	t.Run("an unregistered lct command in ci.yml", func(t *testing.T) {
+		src := mutate(t, ci, "bin/lct impact", "bin/lct imapct")
+		wantProblems(t, checkWorkflow(ciFile, src, commands), `"bin/lct imapct"`)
+	})
+	t.Run("base_ref in a script is an expression too", func(t *testing.T) {
+		src := mutate(t, ci, `--base "origin/$BASE_REF"`, `--base "origin/${{ github.base_ref }}"`)
+		hasProblem(t, checkWorkflow(ciFile, src, commands), "expression")
+	})
+	t.Run("no model name", func(t *testing.T) {
+		root := t.TempDir()
+		writeTestFile(t, root, workflowDir+"/ci.yml", ci+"# claude-example-9\n")
+		wantProblems(t, checkModelNames(root, workflowDir), "ci.yml", `"claude-example-9"`)
+	})
 }
 
 // The jq commands of pipeline.yml read the keys the lct commands print: a key

@@ -9,7 +9,11 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
+      # The whole history: a pull request that changes the rules is compared
+      # with its base branch and the merge base of the two.
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
@@ -21,3 +25,26 @@ jobs:
         run: go build -o bin/lct ./cmd/lct
       - name: Lint the rule files
         run: bin/lct rules lint
+
+      # A pull request that changes guides/, glossary/ or rules/ says how many
+      # of the translations there are now the new rules would reject and the
+      # rules of the base branch do not (spec 11.2). Finding some is no failure:
+      # a rule that forbids a wording is meant to flag the translations that use
+      # it. The name of the base branch comes through env, not through the
+      # script.
+      - name: Count the translations the rule changes would break
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          changed=$(git diff --name-only "origin/$BASE_REF...HEAD" -- guides glossary rules)
+          if [ -z "$changed" ]; then
+            echo 'This pull request changes no rule: nothing to assess.'
+            exit 0
+          fi
+          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw'
+          git worktree add .work/raw raw
+          git worktree add .work/tw tw
+          mkdir -p out
+          bin/lct impact --base "origin/$BASE_REF" --markdown out/impact.md
+          cat out/impact.md >> "$GITHUB_STEP_SUMMARY"
