@@ -739,6 +739,7 @@ var rulesReviewSays = []skillSays{
 	{"`" + proposal.UndecidedHeading + "`", "the skill does not say where the items it is unsure of go, under the heading lct proposal start reads (an item that is never listed is suggested first again on every run, and the run stalls on it; one under another heading is taken for decided when the PR is merged)"},
 	{"不記進 `rules/declined.yaml`", "the skill does not keep an item it is unsure of out of the declined list: a person would never decide on it"},
 	{"也照樣 publish", "the skill does not publish a description that only adds items for a person to decide: they would never leave the first 8 suggestions"},
+	{"移到 `" + proposal.UndecidedHeading + "` 之上", "the opening of the description does not tell a person to move an item they adopt out of the section for a person to decide: lct proposal start takes an item still under it for undecided, and suggests it again after the merge"},
 	{"不算沒有東西可以提出", "the skill writes nothing: whenever it changed no rule file, though its items for a person to decide are something to propose"},
 	{"不要再執行 `go build`", "the skill builds lct again in CI, from the code of the PR branch, over the lct the workflow counted the suggestions with"},
 	{"`.git/`", "the skill does not say it must not read the folder of git, which can hold the credentials of the checkout"},
@@ -844,6 +845,7 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"unsure items left out", "`## 需要人決定`", "（略過）", "`## 需要人決定`"},
 		{"unsure items declined", "不記進 `rules/declined.yaml`", "記進 `rules/declined.yaml`", "不記進 `rules/declined.yaml`"},
 		{"no publish for unsure items only", "也照樣 publish", "就不 publish", "也照樣 publish"},
+		{"an adopted item left under the heading", "移到 `## 需要人決定` 之上", "留在原處", "移到 `## 需要人決定` 之上"},
 		{"nothing whenever no rule file changed", "不算沒有東西可以提出", "就算沒有東西可以提出", "不算沒有東西可以提出"},
 		{"lct built again in CI", "不要再執行 `go build`", "再執行 `go build`", "不要再執行 `go build`"},
 		{"the folder of git not forbidden", "`.git/`", "`.gitignore`", "`.git/`"},
@@ -3384,6 +3386,7 @@ var readmeRulesPR = []struct{ text, why string }{
 	{"`TestWorkflowContract`", "the README does not say that the contract test holds the workflow to the setting the fallback changes"},
 	{"最多處理 8 個建議", "the README does not say that a run handles at most 8 suggestions and leaves the rest for the next"},
 	{"需要人決定", "the README does not say what a person does with the items the skill was not sure of"},
+	{"移到「需要人決定」標題之上", "the README does not say that an adopted item must leave the section for a person to decide, or lct proposal start suggests it again after the merge"},
 }
 
 // The README tells a person how to set up and handle the rules PR.

@@ -597,7 +597,7 @@ func (r *rulesLoop) readExclude() []string {
 const (
 	proposalOpening = "這是依 `lct suggest` 整理的規則建議。不要的項目請把它的 id 移到 `rules/declined.yaml`（`id`、`reason`、`date`）並還原該項修改，再合併；" +
 		"關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行；" +
-		"`## 需要人決定` 的項目由人決定，採用就在 PR 補上修改，不採用就記進 `rules/declined.yaml`。\n\n"
+		"`## 需要人決定` 的項目由人決定：採用就在 PR 補上修改，並在合併前把該項的一節移到 `## 需要人決定` 之上（留在這一節的項目，`lct proposal start` 不算已處理，會再提出），不採用就記進 `rules/declined.yaml`。\n\n"
 	impactHeading    = "## 規則變更的影響評估"
 	undecidedHeading = proposal.UndecidedHeading + "\n\n"
 )

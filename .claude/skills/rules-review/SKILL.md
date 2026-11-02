@@ -59,7 +59,7 @@ allowed-tools:
    - 執行 `bin/lct rules lint --json`。exit 0 才算過；exit 1 會列出有問題的檔，自己寫的檔修正後再跑，`lct` 寫出的檔有問題就在說明回報，不手改
    - 執行 `bin/lct impact --base origin/main --markdown work/proposal/impact.md --json`，結果寫進說明的影響評估。指令失敗就在那一節寫明訊息，不編造數字
 4. 寫說明 `work/proposal/body.md`：
-   - 結構：開頭說明、各項目、最後一節影響評估。開頭說明寫明：這是依 `bin/lct suggest` 整理的規則建議；不要的項目請把它的 id 移到 `rules/declined.yaml`（`id`、`reason`、`date`）並還原該項修改，再合併；關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行；`## 需要人決定` 的項目由人決定，採用就在 PR 補上修改，不採用就記進 `rules/declined.yaml`
+   - 結構：開頭說明、各項目、最後一節影響評估。開頭說明寫明：這是依 `bin/lct suggest` 整理的規則建議；不要的項目請把它的 id 移到 `rules/declined.yaml`（`id`、`reason`、`date`）並還原該項修改，再合併；關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行；`## 需要人決定` 的項目由人決定：採用就在 PR 補上修改，並在合併前把該項的一節移到 `## 需要人決定` 之上（留在這一節的項目，`lct proposal start` 不算已處理，會再提出），不採用就記進 `rules/declined.yaml`
    - 每個處理過的項目（寫進 `rules/declined.yaml` 的也算）一節，節的第一行是 `<!-- suggestion:<id> -->`，標記單獨一行，id 與 JSON 的 `id` 完全相同。接著是標題、建議內容（改了哪個檔案；只建議採用與否時寫明）、理由、證據（`key`、KR、現行譯文、出現次數）、有重翻要求檔時寫檔名與範圍。證據裡的原文與譯文放在反引號裡（文字含反引號就用兩個反引號包起來），避免 `@` 提及與標記被解讀
    - 沒有把握的項目放在 `## 需要人決定` 一節，在影響評估之前。每項一樣以單獨一行的標記開頭，接著標題、一行理由（為什麼沒有把握、要人決定什麼）與證據
    - 最後一節是 `work/proposal/impact.md` 的內容
