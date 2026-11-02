@@ -432,7 +432,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
   - 若建議要套用到舊譯文，PR 裡另附 `rules/requeue/*.yaml`；合併即代表人同意重翻
 - **人審核**：可以直接改 PR 內容、刪掉不要的項目，再決定合併或關閉。合併後由 `rebuild.yml` 依新規則重建
 - **不重複提出**：每個建議有穩定的 id（同一件事每次產生相同的 id）。人不採用的項目記在 `rules/declined.yaml`（在 PR 中移到這裡再合併）；關閉而未合併的 CI PR 中的項目也視為不採用。CI 會略過這兩者
-  - `lct suggest [--exclude-file F]...` 從 `tw` 的 `.meta/build.json` 與 `.meta/plan.json`（只用 `raw_tag` 與目前 raw tag 相同的那份）、詞彙表與調整檔產生建議，結果依 id 排序；有建議也是 exit 0（建議不是「發現」）。`rules/declined.yaml` 與每個 `--exclude-file`（可重複，一行一個 id，空行與 `#` 開頭的行略過）中的 id 不再提出，輸出 `{suggestions, excluded}`。每個建議附至多 10 列證據，PR 說明以 `<!-- suggestion:<id> -->` 標示
+  - `lct suggest [--exclude-file F]...` 從 `tw` 的 `.meta/build.json` 與 `.meta/plan.json`（只用 `raw_tag` 與目前 raw tag 相同的那份）、詞彙表與調整檔產生建議，結果依 id 排序；有建議也是 exit 0（建議不是「發現」）。`rules/declined.yaml` 與每個 `--exclude-file`（可重複，一行一個 id，空行與 `#` 開頭的行略過）中的 id 不再提出，輸出 `{suggestions, excluded}`。每個建議附至多 10 列證據，PR 說明以單獨一行的 `<!-- suggestion:<id> -->` 標示
   - id 是種類、`/` 與下表的內容；`sha8` 是 KR 或文字的 SHA-256 前 8 個小寫十六進位字元。`plan.json` 的新說話者與新檔案在同一個 snapshot 內不會隨規則重算，所以規則已經回答的項目每次執行都再檢查，已回答就不提：
 
     | 種類 | id | 來源 | 規則已回答，不提 |

@@ -623,28 +623,23 @@ func writeExistingBody(repo string, pr *pullRequest) (string, error) {
 }
 
 // suggestionIDs returns the ids of the markers <!-- suggestion:<id> --> of a
-// PR description, in order and as written. An id is everything between
-// "suggestion:" and the last " -->" of its marker: it may hold spaces, CJK
-// text and "|". A marker ends on its line or before the next marker of that
-// line; one that has no " -->" or an id of blanks is not a marker.
+// PR description, in order and as written. A marker is a line of its own, as
+// the rules-review skill writes it and the last step of rules-proposal.yml
+// reads it: the line, without the carriage return of a description edited on
+// the web page, starts with "<!-- suggestion:" and ends with " -->", and the
+// id is everything between the two: it may hold spaces, CJK text, "|" and
+// " -->". A marker within a line of text is not one (the opening of the
+// description names the marker, and evidence may quote one), nor is a marker
+// whose id is blank.
 func suggestionIDs(body string) []string {
 	var ids []string
 	for _, line := range strings.Split(body, "\n") {
-		for {
-			i := strings.Index(line, markerStart)
-			if i < 0 {
-				break
-			}
-			marker := line[i+len(markerStart):]
-			next := strings.Index(marker, markerStart)
-			if next >= 0 {
-				marker, line = marker[:next], marker[next:]
-			} else {
-				line = ""
-			}
-			if end := strings.LastIndex(marker, markerEnd); end >= 0 && strings.TrimSpace(marker[:end]) != "" {
-				ids = append(ids, marker[:end])
-			}
+		rest, ok := strings.CutPrefix(strings.TrimSuffix(line, "\r"), markerStart)
+		if !ok {
+			continue
+		}
+		if id, ok := strings.CutSuffix(rest, markerEnd); ok && strings.TrimSpace(id) != "" {
+			ids = append(ids, id)
 		}
 	}
 	return ids
@@ -694,7 +689,7 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 		return nil, refuse("cannot read the body file %s: %v", bodyFile, unwrapPathError(err))
 	}
 	if len(suggestionIDs(string(data))) == 0 {
-		return nil, refuse("the body file %s has no %s<id>%s marker; every suggestion in the PR needs one", bodyFile, markerStart, markerEnd)
+		return nil, refuse("the body file %s has no %s<id>%s marker on a line of its own; every suggestion in the PR needs one", bodyFile, markerStart, markerEnd)
 	}
 	if found := credentialsIn(bodyFile, string(data), nil); len(found) > 0 {
 		return nil, refuse("the body file holds what looks like a credential, and the description is posted to a public page:\n  %s", strings.Join(found, "\n  "))

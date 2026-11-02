@@ -103,7 +103,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 - 分支 `rules-proposal/<日期>`（同一天用過就接 `-2`、`-3`），label `rules-proposal`，標題「規則建議：YYYY-MM-DD」，目標分支 `main`。
 - 說明逐項列出建議的內容、理由、證據（key、KR、現行譯文、出現次數），最後是影響評估。要重翻的範圍附在 `rules/requeue/*.yaml`。
 - 同一時間最多一個開著的規則 PR。已有的話，新建議加進同一個 PR（分支多一個 commit，說明多幾個項目），不另開。每次加之前，`lct proposal start` 會把 `main` 合併進這個分支（程式、skill 與規則就是 `main` 目前的樣子）；合併有衝突就停下並列出衝突的檔案，到分支上把 `main` 合併進去、解掉衝突再重跑。
-- 每個項目的第一行是 `<!-- suggestion:<id> -->`，`lct` 靠它知道 PR 有哪些建議。編輯說明時不要刪這一行，除非整個項目都不要。
+- 每個項目的第一行是 `<!-- suggestion:<id> -->`，`lct` 靠它知道 PR 有哪些建議；這一行只放標記，標記夾在其他文字中間就不算。編輯說明時不要刪這一行，也不要在這一行加字，除非整個項目都不要。
 - 影響評估：PR 改到 `guides/`、`glossary/` 或 `rules/` 時，`ci.yml` 執行 `bin/lct impact`，算出新規則會讓多少既有譯文出現新的硬性問題（舊規則是 `main` 的）。結果在該次 `ci` 執行的 summary（PR 的 Checks 頁籤）。找到有問題的譯文不算失敗，是讓你決定要不要重翻。
 
 怎麼處理：

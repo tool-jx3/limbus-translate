@@ -407,7 +407,7 @@ func TestProposalStartKeepsIDsAsFound(t *testing.T) {
 	e := newEnv(t)
 	moved := "adjustment-moved/StoryData/S1.json|/dataList/2/content"
 	name := "speaker/아무개  (두 칸)"
-	open := "<!-- suggestion:" + name + " -->\r\ntext <!-- suggestion:" + moved + " --> trailing -->\r\n" +
+	open := "<!-- suggestion:" + name + " -->\r\n<!-- suggestion:" + moved + " --> trailing -->\r\n" +
 		"<!-- suggestion:" + name + " -->\n<!-- suggestion:broken\n<!-- suggestion: -->\n"
 	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: "rules-proposal/2026-10-29", Body: open}}, nil)
 	e.pushBranch("rules-proposal/2026-10-29", "guides/README.md", "x\n")
@@ -416,7 +416,7 @@ func TestProposalStartKeepsIDsAsFound(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	// The id is everything up to the last " -->" of its marker: the spaces
+	// The id is everything up to the " -->" that ends its line: the spaces
 	// stay, the | stays, and a repeated id is one id.
 	assertIDs(t, "Existing", got.Existing, moved+" --> trailing", name)
 	assertIDs(t, "exclude.txt", e.excludeIDs(), moved+" --> trailing", name)
@@ -627,11 +627,17 @@ func TestProposalSuggestionIDs(t *testing.T) {
 		{"cjk and spaces", "<!-- suggestion:speaker/새 화자 -->\n<!-- suggestion:term/跳躍 成長 -->", []string{"speaker/새 화자", "term/跳躍 成長"}},
 		{"a unit key", "<!-- suggestion:adjustment-expired/StoryData/S1.json|/dataList/2/content -->", []string{"adjustment-expired/StoryData/S1.json|/dataList/2/content"}},
 		{"crlf", "a\r\n<!-- suggestion:term/a -->\r\nb\r\n", []string{"term/a"}},
-		{"text around", "- x <!-- suggestion:term/a --> y\n", []string{"term/a"}},
-		{"the last --> of the marker", "<!-- suggestion:note/k --> z --> w\n", []string{"note/k --> z"}},
+		{"the last --> of the line", "<!-- suggestion:note/k --> z -->\n", []string{"note/k --> z"}},
 		{"no end", "<!-- suggestion:term/a\nnext line -->\n", nil},
 		{"empty", "<!-- suggestion: -->", nil},
-		{"two on a line", "<!-- suggestion:term/a --><!-- suggestion:term/b -->", []string{"term/a", "term/b"}},
+		// A marker is a line of its own, as the skill writes it and the last
+		// step of rules-proposal.yml reads it. The opening of the description
+		// names the marker, and evidence may quote one: neither is a marker.
+		{"text around", "- x <!-- suggestion:term/a --> y\n", nil},
+		{"text before", "- x <!-- suggestion:term/a -->\n", nil},
+		{"text after", "<!-- suggestion:term/a --> y\n", nil},
+		{"the opening of the description", "不要刪掉 `<!-- suggestion:… -->` 那一行。\n\n<!-- suggestion:term/a -->\n### a\n", []string{"term/a"}},
+		{"quoted in the evidence", "<!-- suggestion:note/k/1234abcd -->\n- 備註：`<!-- suggestion:speaker/x -->`\n", []string{"note/k/1234abcd"}},
 		{"in order, repeated", "<!-- suggestion:b -->\n<!-- suggestion:a -->\n<!-- suggestion:b -->", []string{"b", "a", "b"}},
 		{"not a marker", "<!--suggestion:term/a -->\n<!-- suggestions:term/b -->\n", nil},
 	}
@@ -882,6 +888,7 @@ func TestProposalPublishNeedsSuggestionMarkers(t *testing.T) {
 		"no end":    "<!-- suggestion:term/a\n",
 		"empty":     "",
 		"not exact": "<!--suggestion:term/a -->\n",
+		"in a line": "不要刪掉 `<!-- suggestion:term/a -->` 那一行\n",
 	} {
 		t.Run(name, func(t *testing.T) {
 			e := newEnv(t)

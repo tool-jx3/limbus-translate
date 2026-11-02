@@ -21,7 +21,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "proposal publish",
 		Usage: "commit the changes of guides/, glossary/ and rules/ on the rules-proposal/* branch, push it, and open the rules PR or update the open one; " +
-			"refuses any other branch and any other changed file, and a description or a change that holds what looks like a credential; the description holds a <!-- suggestion:ID --> marker for each suggestion, " +
+			"refuses any other branch and any other changed file, and a description or a change that holds what looks like a credential; the description holds a <!-- suggestion:ID --> marker, on a line of its own, for each suggestion, " +
 			"and keeps those of the open PR's current description (work/proposal/existing-body.md): " +
 			"--body-file F [--date YYYY-MM-DD]",
 		Run: runProposalPublish,
@@ -61,7 +61,7 @@ func runProposalStart(ctx *cli.Context, args []string) error {
 func runProposalPublish(ctx *cli.Context, args []string) error {
 	flags := flag.NewFlagSet("proposal publish", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
-	bodyFile := flags.String("body-file", "", "the description of the PR, with a <!-- suggestion:ID --> marker for each suggestion (required)")
+	bodyFile := flags.String("body-file", "", "the description of the PR, with a <!-- suggestion:ID --> marker, on a line of its own, for each suggestion (required)")
 	date := flags.String("date", "", "the day of this run, YYYY-MM-DD, for the commit and the title; the day in the name of the branch by default")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("proposal publish: " + err.Error())
