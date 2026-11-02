@@ -1,0 +1,10 @@
+# 兩句社群譯文在句中關掉了 KR 開著沒關的 <color>，新的結構檢查不再接受
+# 句中的多餘結束標籤（guides/base.md「多出的結束標籤」），重建時會退回英文。
+# 這個檔只改這兩句：把句中的 </color> 移到句尾。pattern 與 kr_pattern 都寫出
+# 整句，其他單位對不上。
+reason: KR 開著沒關的 <color>，句中多出的 </color> 移到句尾，兩句社群譯文才通過結構檢查
+files: [AbEventsResultLog_Refraction4.json, HellsChicken.json]
+origins: [paratranz]
+pattern: '^(<color=#ebcaa2>罪人\{0\})</color>(<color=#e30000>受到\{2\}點</color>\{1\}傷害)$|^(銀鳳家<color=#205925>炸雞酒吧\n)</color>(<color=#ebcaa2>究極跳樓價特惠活動！</color>)$'
+replace: '${1}${2}${3}${4}</color>'
+kr_pattern: '^(?:<color=#ebcaa2>\{0\} 수감자 \{1\} 피해<color=#e30000> \{2\} 입음</color>|은봉이네 <color=#205925>호프치킨<color=#ebcaa2>이 쏩니다!)$'

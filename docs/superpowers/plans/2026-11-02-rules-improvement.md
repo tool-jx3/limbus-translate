@@ -690,7 +690,7 @@ git push -u origin claude/festive-wright-g2k853
 ### Task 16（控制者）：上線
 
 - [ ] **Step 1（使用者）:** 在 repo 安裝 Claude GitHub App（https://github.com/apps/claude），允許 `tool-jx3/limbus-translate`
-- [ ] **Step 2:** 最終全分支審查（SDD 的 final review），修正後 `git checkout main && git merge --ff-only claude/festive-wright-g2k853 && go test ./... && git push origin main`，再 `git checkout claude/festive-wright-g2k853`。這次 push 動到 `rules/` 與 `glossary/`，會觸發 `rebuild.yml`；預期語言包沒變 → 不建立 Release（`same_as` 是 `zh-TW-20261029.2`），job summary 有說明
+- [ ] **Step 2:** 最終全分支審查（SDD 的 final review），修正後 `git checkout main && git merge --ff-only claude/festive-wright-g2k853 && go test ./... && git push origin main`，再 `git checkout claude/festive-wright-g2k853`。這次 push 動到 `rules/`、`glossary/` 與 `guides/`，會觸發 `rebuild.yml`；預期 plan 套用改寫檔 `2026-11-02-closing-tags`（`rewrite_applied` 2 個單位），build 沒有結構性退回（`structural_fallback` 0、`stand_in` 3，與 `zh-TW-20261029.2` 相同；沒有這個改寫檔是 2 與 5，兩句退回英文）。語言包只差這兩句 `</color>` 的位置，所以會建立 Release `zh-TW-20261029.3`；之後的執行在沒有新 token 時結束（`publish --check` 的 `same_as` 是 `zh-TW-20261029.3`）。這個結果已在暫存複本上以 origin 的 `tw`（`zh-TW-20261029.2`）演練過（最終審查的 F5）
 - [ ] **Step 3:** `rebuild` 成功後 `rules-proposal.yml` 會被觸發：確認 `proposal start`、`suggest` 的輸出；有建議時確認 action 執行、PR 以 Claude GitHub App 的身分開出、`ci.yml` 在 PR 上執行並附影響評估；沒有建議時確認在 suggest 之後結束
 - [ ] **Step 4:** 確認 action 中 `lct proposal publish` 拿得到 GitHub token（`GH_TOKEN` 或 `GITHUB_TOKEN`）；拿不到時改由 workflow 傳入 action 的 `github_token` 輸出並記錄在 README
 - [ ] **Step 5:** 在 #1 回報並勾選完成的項目

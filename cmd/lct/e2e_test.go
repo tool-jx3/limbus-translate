@@ -143,6 +143,19 @@ func e2eRepo(t *testing.T) string {
 	for _, d := range []string{"guides", "glossary", "rules"} {
 		copyDir(t, filepath.Join(repoRoot, d), filepath.Join(root, d))
 	}
+	// The request and rewrite files of the repo are made for its tw, and each
+	// is applied there once; the dry run has a tw of its own, and its files.
+	for _, d := range []string{"rules/requeue", "rules/rewrite"} {
+		files, err := filepath.Glob(filepath.Join(root, filepath.FromSlash(d), "*.yaml"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, f := range files {
+			if err := os.Remove(f); err != nil {
+				t.Fatal(err)
+			}
+		}
+	}
 	font, err := filepath.Abs(filepath.Join(repoRoot, e2eFont))
 	if err != nil {
 		t.Fatal(err)
