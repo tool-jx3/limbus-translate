@@ -344,8 +344,8 @@ KR 在檔案中間插入資料很常見。`tool-jx3/Assets` 最近 12 次更新�
 | `weekly-update` | 在本機依序跑 fetch → plan → translate-pending → build，等同 CI 流程，結果只寫到本機的 `out/` 供進遊戲測試 | 人 |
 | `adjust` | 人工調整譯文，並把調整整理進規則（§11） | 人 |
 | `rules-review` | 把 `lct suggest` 的建議（§11.2）整理成指引、詞彙、規則的修改與 PR 說明；CI 以 `lct proposal publish` 開或更新規則 PR，人在本機只留下修改，自己 commit | CI（開 PR）與人 |
-| `term-decision` | 決定詞彙表候選條目 | 人 |
-| `review` | 讀最新的審核 Issue，帶人逐項處理 | 人 |
+| `term-decision` | 決定詞彙表候選條目：候選來自 `lct suggest` 的 `term/…` 與 `lct glossary derive`（分頁）；每個詞由人決定採用（`status: approved`）、改譯法、不採用（`rules/declined.yaml`）或略過，譯法與現行譯文不同時提議重翻要求檔 | 人 |
+| `review` | 依 `lct review`（與審核 Issue 相同的項目，讀本機 `tw` 的狀態）帶人逐項處理（調整譯文、改規則、確認過期的調整、決定是否解除凍結），最後提醒 commit 到 `main` 並勾選 Issue | 人 |
 
 SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都引用 `guides/`、`glossary/` 的檔案。所有狀態變更都經由 `lct`，不手改 JSON／YAML。
 
@@ -353,7 +353,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 - 每個 skill 是 `.claude/skills/<名稱>/SKILL.md`，開頭 YAML 寫 `name`、`description`
 - `allowed-tools` 預先允許該 skill 需要的工具（例如 `Bash(lct *)`），CI 與人工執行都不必逐次確認
-- 只該由人或 CI 明確呼叫的 skill（`translate-pending`、`adjust`、`rules-review`、`review`）設 `disable-model-invocation: true`，避免 Claude 在對話中自行啟動
+- 只該由人或 CI 明確呼叫的 skill（`translate-pending`、`adjust`、`rules-review`、`term-decision`、`review`）設 `disable-model-invocation: true`，避免 Claude 在對話中自行啟動
 - SKILL.md 保持在 500 行以內，其他內容放在引用的檔案；`CLAUDE.md` 保持精簡（每次執行都會讀）
 - headless 模式（`claude -p "/skill-name"`）一次只能呼叫一個 skill
 
@@ -500,7 +500,7 @@ LimbusCompany_Data/
 | **Actions 執行頁的 summary** | 完整報表，另附 `tw` 的比較頁連結（建置前的 `tw` commit 到 `tw`），可直接看這次譯文變了什麼 | 進到該次執行查看；失敗時 GitHub 會寄信 |
 | **`tw` 分支 `.meta/reports/<raw tag>.md`** | 完整報表的存檔，可回頭比較歷次；附 raw 的比較頁連結，不附 `tw` 的 | 需要時查閱 |
 
-沒有需要處理的項目時不開 Issue。`review` skill（§9.3）可以在 Claude Code 裡讀最新的審核 Issue，帶你逐項處理（接受、改譯文、改規則）。
+沒有需要處理的項目時不開 Issue。`lct review` 從本機 `tw` 的狀態印出同樣的項目（`{title, sections: [{kind, title, hint, items}]}`，與 CI 開 Issue 用的是同一份清單），`review` skill（§9.3）據此在 Claude Code 裡帶你逐項處理（接受、改譯文、改規則）。
 
 ### 14.2 需要你處理
 
@@ -545,7 +545,8 @@ LimbusCompany_Data/
 | `lct proposal start／publish` | `start` 選規則 PR 的分支（重用的分支會合併 `origin/main`，衝突就拒絕）、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR，拒絕含有 token 或金鑰一類字串的說明與修改；需要 `GH_TOKEN` 與 git 身分（§11.2） |
 | `lct translate` | 用 claude CLI 執行 `translate-pending` skill，直到沒有待譯、花費或時間用完，或某次執行失敗（§9.2） |
 | `lct fields learn` | 重算欄位規則 |
-| `lct glossary derive [--source keyword\|speaker]` | 從 `BattleKeywords*`、`Bufs*`（`keyword`）與 `ScenarioModelCodes`（`speaker`）列出詞彙表還沒有、也沒被不採用的名稱，作為候選詞條；只輸出，不寫檔 |
+| `lct glossary derive [--source keyword\|speaker] [--limit N] [--offset N]` | 從 `BattleKeywords*`、`Bufs*`（`keyword`）與 `ScenarioModelCodes`（`speaker`）列出詞彙表還沒有、也沒被不採用的名稱，作為候選詞條；只輸出，不寫檔；依 KR 排序，`--limit`／`--offset` 取其中一頁，JSON 為 `{total, candidates}`（`total` 是頁數限制前的總數） |
+| `lct review` | 目前 `tw` 狀態中需要人處理的項目（與審核 Issue 相同）：標題與各節的 `kind`、`title`、`hint`、`items`；沒有 `tw` 的建置紀錄時 exit 1；§14 |
 | `lct rules lint` | 規則檔 schema 檢查 |
 
 所有指令支援 `--json` 輸出；exit code：0 成功、1 有發現或使用者錯誤、2 系統錯誤。`raw`／`tw` 分支以 `git worktree` 操作。

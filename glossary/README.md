@@ -51,10 +51,11 @@
 
 ## `lct glossary derive`：找出還沒列進詞彙表的名稱
 
-`lct glossary derive [--source keyword|speaker] [--json]` 列出本專案目前譯文中的關鍵字名稱（`BattleKeywords*`、`Bufs*`）與說話者名稱（`ScenarioModelCodes-AutoCreated`），作為新增詞條的候選。只輸出，不寫檔。
+`lct glossary derive [--source keyword|speaker] [--limit N] [--offset N] [--json]` 列出本專案目前譯文中的關鍵字名稱（`BattleKeywords*`、`Bufs*`）與說話者名稱（`ScenarioModelCodes-AutoCreated`），作為新增詞條的候選。只輸出，不寫檔。
 
 - KR 名稱已經是任何詞條的 `kr`（不論 `status`、`files`）的不列
 - `rules/declined.yaml` 已有 `term/<kr>` 的不列
 - 譯名仍含韓文（尚未翻譯、KR 原文已改、待審）的不列
 - 同一個 KR 名稱有不同譯法時，每種譯法各列一次
+- 候選依 KR 排序，有一千多個：`--limit N` 與 `--offset N` 取其中一頁，`--json` 的結果是 `{total, candidates}`，`total` 是分頁前的總數。採用與不採用的詞不再列出，所以下一頁的 `--offset` 是略過的候選數
 - 用 `lct glossary derive` 看到的名稱由人決定：採用就寫進 `terms.yaml`（`status: approved`），不採用就記進 `rules/declined.yaml`（`id: term/<kr>`）

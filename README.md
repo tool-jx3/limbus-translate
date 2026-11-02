@@ -59,7 +59,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
   - `tw` 最後一個 commit 的標題是不是以 `translate: keep the progress of` 開頭：保存進度之後 build 失敗，語言包仍和最新的 Release 相同，上一項看不出來，靠這一項補建置。
 - Claude Code CLI 在單獨的一個步驟安裝，那一步沒有 `ANTHROPIC_API_KEY`；key 只在執行 `lct translate` 的那一步。執行時設定 `DISABLE_AUTOUPDATER=1`，CLI 不會在執行中更新自己。
 - 語言包沒變就不發 Release：只有語言包的內容和最新一個 `zh-TW-*` Release 不同時才建立。比較這次的 `tw` commit 與該 Release 的 `LimbusCompany_Data/` 檔案樹（git blob），不含 `Info/version.json`（它記錄規則 commit、建置時間、模型與花費，每次建置都不同）。相同就不建立，`tw` 照常 commit 與推送，該次執行的 summary 會寫「語言包與 `<tag>` 相同，這次不建立 Release」。
-- 審核 Issue 的標題是「審核：YYYY-MM-DD 更新」（日期取 raw tag 的日期）；沒有需要處理的項目時不開。同一個 raw tag 重跑時，內容會留言在還開著的同名 Issue，不另開新的。完整報表在該次執行的 summary。
+- 審核 Issue 的標題是「審核：YYYY-MM-DD 更新」（日期取 raw tag 的日期）；沒有需要處理的項目時不開。同一個 raw tag 重跑時，內容會留言在還開著的同名 Issue，不另開新的。完整報表在該次執行的 summary。本機的 `bin/lct review`（或 `review` skill）從 `.work/tw` 印出同樣的項目。
 - 所有會寫入 `raw`、`tw` 的執行共用 concurrency 群組 `lct-state`，一次只跑一個。GitHub 的群組最多一個執行中、一個等待中，新的等待會取代舊的等待；如果某次被取代，到 Actions 頁面手動執行一次即可。
 - GitHub 只從預設分支執行排程，公開 repo 連續 60 天沒有活動會停用排程（到 Actions 頁面重新啟用）。排程在整點附近可能延遲。
 
@@ -137,7 +137,7 @@ git worktree add .work/tw tw
 之後 `bin/lct search`、`bin/lct pending --count`、`bin/lct build` 等指令（`bin/lct help` 列出全部，都支援 `--json`）就能在本機執行。`.work/`、`bin/`、`out/` 不進版控。
 
 - 提交前執行 `go vet ./... && go test ./...`。
-- 用 Claude Code 開啟本 repo，可以使用 `.claude/skills/` 的 skill：`translate-pending`（翻譯待譯清單）、`adjust`（人工調整）、`weekly-update`（在本機演練每週更新，結果只留在 `out/`）、`rules-review`（把 `lct suggest` 的建議整理成規則修改）。模型由環境變數 `LCT_MODEL` 提供。
+- 用 Claude Code 開啟本 repo，可以使用 `.claude/skills/` 的 skill：`translate-pending`（翻譯待譯清單）、`adjust`（人工調整）、`weekly-update`（在本機演練每週更新，結果只留在 `out/`）、`rules-review`（把 `lct suggest` 的建議整理成規則修改）、`review`（依 `lct review` 帶你逐項處理審核 Issue 的項目）、`term-decision`（逐個決定詞彙表的候選條目）。模型由環境變數 `LCT_MODEL` 提供。
 - 本機的 `.work/` 與 CI 的不是同一份。`raw`、`tw` 分支與 Release 只由 CI 寫入，不要 push；改動一律走 `main`。
 
 設計與實作計畫見 `docs/superpowers/specs/` 與 `docs/superpowers/plans/`。

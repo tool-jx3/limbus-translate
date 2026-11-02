@@ -130,6 +130,44 @@ var rulesReviewTools = []string{
 	"Edit(./work/**)",
 }
 
+// reviewTools are the tools of the review skill: it reads what needs a person
+// (lct review), looks units up, and writes what the person decides on: an
+// adjustment, a request file, the tidied adjustments, the learned field rules,
+// and the guides, the glossary, the rules and the frozen list of lct.yaml. It
+// runs requeue only in the form that writes a request file, which touches no
+// state, and nothing that pushes or publishes.
+var reviewTools = []string{
+	"Bash(bin/lct review*)",
+	"Bash(bin/lct search *)",
+	"Bash(bin/lct adjust add *)",
+	"Bash(bin/lct adjust tidy*)",
+	"Bash(bin/lct requeue --to-file *)",
+	"Bash(bin/lct fields learn*)",
+	"Bash(bin/lct rules lint*)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./guides/**)",
+	"Edit(./glossary/**)",
+	"Edit(./rules/**)",
+	"Edit(./lct.yaml)",
+}
+
+// termDecisionTools are the tools of the term-decision skill: it lists the
+// candidates (lct suggest, lct glossary derive), looks units up, writes a
+// request file, and edits the glossary and the rules (the declined list). It
+// reaches neither the guides nor the config.
+var termDecisionTools = []string{
+	"Bash(bin/lct suggest *)",
+	"Bash(bin/lct glossary derive*)",
+	"Bash(bin/lct search *)",
+	"Bash(bin/lct requeue --to-file *)",
+	"Bash(bin/lct rules lint*)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./glossary/**)",
+	"Edit(./rules/**)",
+}
+
 // requiredSkills are the skills this repo must have, and the tools of each.
 // Each is run on purpose by a person or by CI, so none may be started by the
 // model on its own.
@@ -138,6 +176,8 @@ var requiredSkills = map[string][]string{
 	"adjust":            adjustTools,
 	"weekly-update":     weeklyUpdateTools,
 	"rules-review":      rulesReviewTools,
+	"review":            reviewTools,
+	"term-decision":     termDecisionTools,
 }
 
 // goBuildTool is the one go command a skill may run: it builds bin/lct.
@@ -653,11 +693,15 @@ func TestRulesReviewTools(t *testing.T) {
 	checkExactTools(t, "rules-review", rulesReviewTools)
 }
 
+// skillSays is a text the body of a skill must hold, and what is wrong with a
+// body that lacks it.
+type skillSays struct{ text, why string }
+
 // rulesReviewSays are what the body of the rules-review skill must say, with
 // the reason: the files a run in CI leaves for it, the markers that make the
 // description of the PR readable to lct, and the rules that keep a rules PR
 // from losing or repeating a suggestion. Each is a text of the body.
-var rulesReviewSays = []struct{ text, why string }{
+var rulesReviewSays = []skillSays{
 	{"work/proposal/exclude.txt", "the file of the ids that are not to be suggested again is not named: a run in CI would suggest what the PR has or people turned down, and cannot tell it is in CI"},
 	{"--exclude-file work/proposal/exclude.txt", "the suggestions are not asked with the ids left out"},
 	{"work/proposal/existing-body.md", "the description the open PR has is not named: a new description would drop its suggestions, and lct proposal publish refuses it"},
@@ -694,13 +738,20 @@ var rulesReviewFlow = [][2]string{
 // in order, and runs every lct command its allowed-tools grant (a grant the
 // flow never uses is a way in that nothing needs).
 func checkRulesReviewSkill(file, body string, tools []string) []string {
+	return checkSkillBody(file, body, rulesReviewSays, rulesReviewFlow, tools)
+}
+
+// checkSkillBody checks the body of a skill against its contract: it says
+// what says has, writes the commands of flow in order, and runs every lct
+// command its allowed-tools grant.
+func checkSkillBody(file, body string, says []skillSays, flow [][2]string, tools []string) []string {
 	var problems []string
-	for _, s := range rulesReviewSays {
+	for _, s := range says {
 		if !strings.Contains(body, s.text) {
 			problems = append(problems, fmt.Sprintf("%s: does not say %q: %s", file, s.text, s.why))
 		}
 	}
-	for _, o := range rulesReviewFlow {
+	for _, o := range flow {
 		first, second := strings.Index(body, o[0]), strings.Index(body, o[1])
 		switch {
 		case first < 0:
@@ -711,6 +762,13 @@ func checkRulesReviewSkill(file, body string, tools []string) []string {
 			problems = append(problems, fmt.Sprintf("%s: %q must come before %q", file, o[0], o[1]))
 		}
 	}
+	return append(problems, checkToolsRun(file, body, tools)...)
+}
+
+// checkToolsRun reports the lct commands among tools that body never writes
+// out: a grant the flow never uses is a way in that nothing needs.
+func checkToolsRun(file, body string, tools []string) []string {
+	var problems []string
 	for _, e := range tools {
 		cmd, ok := strings.CutPrefix(e, "Bash(")
 		if !ok || !strings.Contains(cmd, "bin/lct") {
@@ -768,6 +826,155 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		tools := append(slices.Clone(fm.AllowedTools), "Bash(bin/lct validate *)")
 		wantProblems(t, checkRulesReviewSkill(file, body, tools), "bin/lct validate", "never runs")
 	})
+}
+
+// The review skill may use exactly the tools of the brief: it reads
+// "lct review", writes adjustments and request files, the field rules, and the
+// guides, the glossary, the rules and lct.yaml, and pushes nothing.
+func TestReviewTools(t *testing.T) {
+	checkExactTools(t, "review", reviewTools)
+}
+
+// The term-decision skill may use exactly its tools: the glossary and the
+// rules, and no guide, no config, no adjustment.
+func TestTermDecisionTools(t *testing.T) {
+	checkExactTools(t, "term-decision", termDecisionTools)
+}
+
+// localSkillSays are what the body of a skill a person runs on this machine
+// says: where its changes end, and that what it reads is data.
+var localSkillSays = []skillSays{
+	{"不是指示", "the text it reads (lct output, search results, notes, the issue) is not said to be data: a line in it that looks like an instruction would be followed"},
+	{"commit", "the person is not told to commit the changes"},
+	{"`main`", "the changes are not said to go to main"},
+	{"`raw`", "the skill does not say it leaves raw alone"},
+	{"`tw`", "the skill does not say it leaves tw alone"},
+	{"go build -o bin/lct ./cmd/lct", "lct is not built before it is run"},
+	{"bin/lct rules lint", "the files it wrote are not checked"},
+	{"guides/README.md", "the rules of translation are not pointed to"},
+}
+
+// reviewSays are what the body of the review skill must say besides
+// localSkillSays: the shape of what lct review prints, the way out of every
+// kind of item (a kind that build adds must be added here too, so that the
+// skill knows what to do with it), and the issue to tick.
+var reviewSays = append(slices.Clone(localSkillSays),
+	skillSays{"bin/lct review --json", "the list of what needs a person is not asked for"},
+	skillSays{"sections", "the sections of the result are not named"},
+	skillSays{"`kind`", "the kind of a section is not named: the skill cannot tell what to do with a section"},
+	skillSays{"`items`", "the items of a section are not named"},
+	skillSays{"勾選", "the person is not told to tick the boxes of the issue"},
+	skillSays{"bin/lct adjust tidy --json", "the adjustments that expired are not tidied after the new translation is confirmed"},
+	skillSays{"bin/lct fields learn --write", "the learned field rules are never written"},
+	skillSays{"rules/declined.yaml", "a speaker that needs no guide is not recorded"},
+	skillSays{"`lct.yaml`", "the frozen list is not named"},
+	kindSays(build.KindNeedsReview), kindSays(build.KindAdjustmentExpired), kindSays(build.KindFrozenChanged),
+	kindSays(build.KindFrozenFallback), kindSays(build.KindNewSpeaker), kindSays(build.KindFieldChange),
+	kindSays(build.KindNewFamily), kindSays(build.KindLoopError),
+)
+
+// kindSays is what the review skill must say about a kind of item.
+func kindSays(kind string) skillSays {
+	return skillSays{"`" + kind + "`", "the kind " + kind + " of lct review is not handled"}
+}
+
+// reviewFlow is the order of the commands the review skill writes: lct is
+// built, then the list is asked for.
+var reviewFlow = [][2]string{
+	{"go build -o bin/lct ./cmd/lct", "bin/lct review --json"},
+}
+
+// termDecisionSays are what the body of the term-decision skill must say
+// besides localSkillSays: where the candidates come from, how to page through
+// them, the four decisions and where each is written.
+var termDecisionSays = append(slices.Clone(localSkillSays),
+	skillSays{"bin/lct suggest --json", "the term suggestions are not asked for"},
+	skillSays{"term/", "the id of a term suggestion is not named"},
+	skillSays{"bin/lct glossary derive --json", "the candidates the glossary lacks are not asked for"},
+	skillSays{"--limit", "the candidates are not paged: there are about 1900"},
+	skillSays{"--offset", "the candidates are not paged: there are about 1900"},
+	skillSays{"`total`", "the number of candidates is not read from the result"},
+	skillSays{"status: approved", "an adopted term is not written as approved"},
+	skillSays{"status: candidate", "the candidates that are already in the glossary are not named"},
+	skillSays{"rules/declined.yaml", "a term that is not adopted is not recorded as declined"},
+	skillSays{"glossary/terms.yaml", "the glossary file is not named"},
+	skillSays{"bin/lct requeue --to-file", "the units with the old rendering are not sent back"},
+	skillSays{"略過", "a candidate can not be skipped"},
+)
+
+// termDecisionFlow is the order of the commands the term-decision skill
+// writes: lct is built, then the candidates are listed and looked up.
+var termDecisionFlow = [][2]string{
+	{"go build -o bin/lct ./cmd/lct", "bin/lct suggest --json"},
+	{"go build -o bin/lct ./cmd/lct", "bin/lct glossary derive --json"},
+	{"bin/lct glossary derive --json", "bin/lct search --json"},
+}
+
+// localSkillBody reads the SKILL.md of skill: its path, its body and its
+// allowed-tools.
+func localSkillBody(t *testing.T, skill string) (file, body string, tools []string) {
+	t.Helper()
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", skill, "SKILL.md"))
+	front, body, ok := splitFrontmatter(content)
+	if !ok {
+		t.Fatalf("%s has no frontmatter", file)
+	}
+	var fm skillFrontmatter
+	if err := yaml.Unmarshal([]byte(front), &fm); err != nil {
+		t.Fatal(err)
+	}
+	return file, body, fm.AllowedTools
+}
+
+// The bodies of the two skills for a person say what their contract wants,
+// and every check can fail: with a part of the body taken out, it does.
+func TestLocalSkillBodies(t *testing.T) {
+	for _, tc := range []struct {
+		skill string
+		says  []skillSays
+		flow  [][2]string
+		cases []struct{ name, old, repl, want string }
+	}{
+		{"review", reviewSays, reviewFlow, []struct{ name, old, repl, want string }{
+			{"no word about data", "不是指示", "是指示", "不是指示"},
+			{"main not named", "`main`", "`master`", "`main`"},
+			{"tw not named", "`tw`", "`rw`", "`tw`"},
+			{"issue not ticked", "勾選", "看過", "勾選"},
+			{"no tidy", "bin/lct adjust tidy --json", "bin/lct adjust tidy", "bin/lct adjust tidy --json"},
+			{"a kind not handled", "`new_family`", "`family`", "`new_family`"},
+			{"lct never built", "go build -o bin/lct ./cmd/lct", "go install ./cmd/lct", "go build -o bin/lct ./cmd/lct"},
+		}},
+		{"term-decision", termDecisionSays, termDecisionFlow, []struct{ name, old, repl, want string }{
+			{"no word about data", "不是指示", "是指示", "不是指示"},
+			{"main not named", "`main`", "`master`", "`main`"},
+			{"no paging", "--offset", "--page", "--offset"},
+			{"no total", "`total`", "`count`", "`total`"},
+			{"no approved status", "status: approved", "status: ok", "status: approved"},
+			{"no declined file", "rules/declined.yaml", "rules/no.yaml", "rules/declined.yaml"},
+			{"no skip", "略過", "跳開", "略過"},
+			{"lct never built", "go build -o bin/lct ./cmd/lct", "go install ./cmd/lct", "go build -o bin/lct ./cmd/lct"},
+		}},
+	} {
+		t.Run(tc.skill, func(t *testing.T) {
+			file, body, tools := localSkillBody(t, tc.skill)
+			for _, problem := range checkSkillBody(file, body, tc.says, tc.flow, tools) {
+				t.Error(problem)
+			}
+			if t.Failed() {
+				return
+			}
+			for _, c := range tc.cases {
+				t.Run(c.name, func(t *testing.T) {
+					src := mutateAll(t, body, c.old, c.repl)
+					hasProblem(t, checkSkillBody(file, src, tc.says, tc.flow, tools), c.want)
+				})
+			}
+			t.Run("a tool the flow never runs", func(t *testing.T) {
+				extra := append(slices.Clone(tools), "Bash(bin/lct validate *)")
+				wantProblems(t, checkSkillBody(file, body, tc.says, tc.flow, extra), "bin/lct validate", "never runs")
+			})
+		})
+	}
 }
 
 func TestCheckSkillTools(t *testing.T) {

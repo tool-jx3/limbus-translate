@@ -240,7 +240,7 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	fmt.Fprintf(&b, "# Build report %s\n", info.RawTag)
 
 	b.WriteString("\n## 需要你處理\n\n")
-	secs := reviewSections(info, sum, pending)
+	secs := ReviewItems(info, sum, pending)
 	if len(secs) == 0 {
 		b.WriteString("沒有需要處理的項目。\n")
 	}
@@ -248,8 +248,8 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 		if i > 0 {
 			b.WriteString("\n")
 		}
-		fmt.Fprintf(&b, "### %s：%d 項\n\n%s\n\n", sec.title, len(sec.items), sec.hint)
-		for _, item := range sec.items {
+		fmt.Fprintf(&b, "### %s：%d 項\n\n%s\n\n", sec.Title, len(sec.Items), sec.Hint)
+		for _, item := range sec.Items {
 			fmt.Fprintf(&b, "- %s\n", item)
 		}
 	}

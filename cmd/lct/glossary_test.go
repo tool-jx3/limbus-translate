@@ -21,8 +21,10 @@ type deriveCandidate struct {
 	Source string `json:"source"`
 }
 
-// deriveOut is "glossary derive --json".
+// deriveOut is "glossary derive --json": the number of candidates there are
+// (before --limit and --offset) and the page of them that was asked for.
 type deriveOut struct {
+	Total      int               `json:"total"`
 	Candidates []deriveCandidate `json:"candidates"`
 }
 
@@ -95,6 +97,9 @@ func TestGlossaryDeriveCommand(t *testing.T) {
 		if !reflect.DeepEqual(out.Candidates, tc.want) {
 			t.Errorf("glossary derive %v = %+v, want %+v", tc.args, out.Candidates, tc.want)
 		}
+		if out.Total != len(tc.want) {
+			t.Errorf("glossary derive %v: total = %d, want %d", tc.args, out.Total, len(tc.want))
+		}
 	}
 
 	// The text output names each candidate; nothing is written.
@@ -109,6 +114,98 @@ func TestGlossaryDeriveCommand(t *testing.T) {
 	}
 	if after, err := os.ReadFile(filepath.Join(root, "glossary", "terms.yaml")); err != nil || string(after) != string(glossaryBefore) {
 		t.Errorf("glossary derive changed the glossary: %v", err)
+	}
+}
+
+// --limit and --offset take a page of the sorted candidates; total is the
+// number there are, whatever the page.
+func TestGlossaryDeriveCommandPages(t *testing.T) {
+	root := deriveRepo(t)
+	// Three more keyword names, so that there are enough to page through. The
+	// candidates are sorted by KR: 가나, 다라, 료슈 (the speaker), 마바, 파열.
+	writeTestFile(t, root, ".work/raw/kr/KR_"+deriveBufs, `{"dataList":[
+ {"id":"Burst","name":"파열"},
+ {"id":"Known","name":"알려진"},
+ {"id":"Declined","name":"거절됨"},
+ {"id":"Korean","name":"한글 남음"},
+ {"id":"One","name":"가나"},
+ {"id":"Two","name":"다라"},
+ {"id":"Three","name":"마바"}
+]}`)
+	recs, err := store.Open(filepath.Join(root, ".work", "tw")).LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, r := range []struct {
+		pointer, kr, zh string
+	}{{"/dataList/4/name", "가나", "甲"}, {"/dataList/5/name", "다라", "乙"}, {"/dataList/6/name", "마바", "丙"}} {
+		rec := store.Record{Key: units.Key(deriveBufs, r.pointer), KRSha: units.KRSha(r.kr), ZH: r.zh, Origin: store.OriginParatranz, Since: "raw-20261029"}
+		recs[rec.Key] = rec
+	}
+	if err := store.Open(filepath.Join(root, ".work", "tw")).SaveRecords(recs); err != nil {
+		t.Fatal(err)
+	}
+
+	var all deriveOut
+	mustLct(t, &all, "glossary", "derive")
+	wantKR := []string{"가나", "다라", "료슈", "마바", "파열"}
+	var gotKR []string
+	for _, c := range all.Candidates {
+		gotKR = append(gotKR, c.KR)
+	}
+	if !reflect.DeepEqual(gotKR, wantKR) || all.Total != 5 {
+		t.Fatalf("all candidates = %v (total %d), want %v", gotKR, all.Total, wantKR)
+	}
+
+	tests := []struct {
+		args []string
+		want []string
+	}{
+		{[]string{"--limit", "2"}, wantKR[:2]},
+		{[]string{"--limit", "2", "--offset", "2"}, wantKR[2:4]},
+		{[]string{"--limit=2", "--offset=4"}, wantKR[4:]},
+		{[]string{"--offset", "3"}, wantKR[3:]},
+		{[]string{"--limit", "100"}, wantKR},
+		{[]string{"--offset", "5"}, nil},
+		{[]string{"--offset", "99", "--limit", "2"}, nil},
+		{[]string{"--source", "keyword", "--limit", "2", "--offset", "1"}, []string{"다라", "마바"}},
+	}
+	for _, tc := range tests {
+		var out deriveOut
+		mustLct(t, &out, append([]string{"glossary", "derive"}, tc.args...)...)
+		var got []string
+		for _, c := range out.Candidates {
+			got = append(got, c.KR)
+		}
+		if !reflect.DeepEqual(got, tc.want) {
+			t.Errorf("glossary derive %v = %v, want %v", tc.args, got, tc.want)
+		}
+		wantTotal := 5
+		if len(tc.args) > 0 && tc.args[0] == "--source" {
+			wantTotal = 4 // the speaker is not counted
+		}
+		if out.Total != wantTotal {
+			t.Errorf("glossary derive %v: total = %d, want %d", tc.args, out.Total, wantTotal)
+		}
+		if out.Candidates == nil {
+			t.Errorf("glossary derive %v: candidates is null, want a list", tc.args)
+		}
+	}
+
+	// A page past the end is an empty list of candidates, in JSON.
+	if _, stdout, _ := lct(t, "--json", "glossary", "derive", "--offset", "9"); !strings.Contains(stdout, `"candidates": []`) || !strings.Contains(stdout, `"total": 5`) {
+		t.Errorf("a page past the end:\n%s", stdout)
+	}
+
+	// The text says which page of how many.
+	_, stdout, _ := lct(t, "glossary", "derive", "--limit", "2", "--offset", "1")
+	for _, want := range []string{"2 of 5 candidate", "다라", "료슈"} {
+		if !strings.Contains(stdout, want) {
+			t.Errorf("the text of a page does not mention %q:\n%s", want, stdout)
+		}
+	}
+	if strings.Contains(stdout, "가나") || strings.Contains(stdout, "마바") {
+		t.Errorf("the text of a page lists a candidate outside it:\n%s", stdout)
 	}
 }
 
@@ -136,6 +233,11 @@ func TestGlossaryDeriveCommandUserErrors(t *testing.T) {
 		{"empty source", []string{"--source="}, "--source"},
 		{"unexpected argument", []string{"extra"}, "unexpected argument"},
 		{"unknown flag", []string{"--nope"}, "derive"},
+		{"zero limit", []string{"--limit", "0"}, "--limit"},
+		{"negative limit", []string{"--limit=-1"}, "--limit"},
+		{"limit that is not a number", []string{"--limit", "many"}, "limit"},
+		{"negative offset", []string{"--offset", "-1"}, "--offset"},
+		{"offset that is not a number", []string{"--offset=x"}, "offset"},
 	}
 	for _, tc := range tests {
 		code, stdout, stderr := lct(t, append([]string{"glossary", "derive"}, tc.args...)...)

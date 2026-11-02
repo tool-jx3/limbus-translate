@@ -29,26 +29,53 @@ const (
 	unknownReason = "（沒有記錄原因）"
 )
 
-// reviewSection is one kind of thing that needs a person: a heading, what to
-// do about it, and an item for each case.
-type reviewSection struct {
-	title string
-	hint  string
-	items []string
+// The kinds of ReviewSection, in the order ReviewItems lists them.
+const (
+	// KindNeedsReview is the units that ran out of attempts.
+	KindNeedsReview = "needs_review"
+	// KindAdjustmentExpired is the adjustments that are no longer in effect.
+	KindAdjustmentExpired = "adjustment_expired"
+	// KindFrozenChanged is the frozen units whose KR text changed.
+	KindFrozenChanged = "frozen_changed"
+	// KindFrozenFallback is the frozen units whose translation broke the
+	// structure of KR.
+	KindFrozenFallback = "frozen_fallback"
+	// KindNewSpeaker is the speakers the guides do not know.
+	KindNewSpeaker = "new_speaker"
+	// KindFieldChange is the changes to the field rules.
+	KindFieldChange = "field_change"
+	// KindNewFamily is the new files in the catch-all family.
+	KindNewFamily = "new_family"
+	// KindLoopError is the translation loop that stopped on an error.
+	KindLoopError = "loop_error"
+)
+
+// ReviewSection is one kind of thing that needs a person: a heading, what to
+// do about it, and an item for each case. The review issue and "lct review"
+// are both made of these.
+type ReviewSection struct {
+	// Kind names the kind of case, one of the Kind* constants.
+	Kind string `json:"kind"`
+	// Title is the heading, Hint what to do about the cases.
+	Title string `json:"title"`
+	Hint  string `json:"hint"`
+	// Items are the cases, each the text of a line of the checklist.
+	Items []string `json:"items"`
 }
 
-// reviewSections lists what needs a person after a build (spec 14.2): the
-// units that ran out of attempts, the adjustments that expired, the frozen
-// files whose KR changed or whose translation broke the structure of KR, the
+// ReviewItems lists what needs a person after a build (spec 14.2): the units
+// that ran out of attempts, the adjustments that expired, the frozen files
+// whose KR changed or whose translation broke the structure of KR, the
 // speakers and the files the rules do not know, the field rules that changed,
-// and a translation that stopped on an error. A kind with no case is left out.
-// sum is the plan of this snapshot (nil when there is none) and pending the
-// queue after the build; info is the build record.
-func reviewSections(info Info, sum *plan.Summary, pending []store.PendingItem) []reviewSection {
-	var secs []reviewSection
-	add := func(title, hint string, items []string) {
+// and a translation that stopped on an error. A kind with no case is left
+// out, so the list is empty (not nil) when nothing needs a person. sum is the
+// plan of this snapshot (nil when there is none) and pending the queue after
+// the build; info is the build record.
+func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []ReviewSection {
+	secs := []ReviewSection{}
+	add := func(kind, title, hint string, items []string) {
 		if len(items) > 0 {
-			secs = append(secs, reviewSection{title: title, hint: hint, items: items})
+			secs = append(secs, ReviewSection{Kind: kind, Title: title, Hint: hint, Items: items})
 		}
 	}
 
@@ -58,36 +85,36 @@ func reviewSections(info Info, sum *plan.Summary, pending []store.PendingItem) [
 			stuck = append(stuck, code(it.Key)+"："+reason(it.LastError))
 		}
 	}
-	add("翻譯失敗、暫用英文的單位（needs_review）",
+	add(KindNeedsReview, "翻譯失敗、暫用英文的單位（needs_review）",
 		"看原因：用 `lct adjust add` 寫入人工調整，或改規則後用 `lct requeue --needs-review` 要求重翻。", stuck)
 
 	if sum != nil {
-		add("人工調整已過期",
+		add(KindAdjustmentExpired, "人工調整已過期",
 			"KR 改了，該單位已依規則重翻（或這筆調整沒有被採用）；確認新譯文，沒問題就把舊調整從 `rules/adjustments/` 刪掉。",
 			codes(sum.Adjustments.Expired))
-		add("凍結檔的 KR 有變",
+		add(KindFrozenChanged, "凍結檔的 KR 有變",
 			"歌詞等原文被修改，仍沿用舊譯文；決定是否解除凍結（`lct.yaml` 的 `frozen`）並重翻。",
 			codes(sum.FrozenChanged))
 	}
-	add("凍結檔的譯文破壞原文結構",
+	add(KindFrozenFallback, "凍結檔的譯文破壞原文結構",
 		"凍結檔不重新翻譯，這些單位暫用英文；解除凍結（`lct.yaml` 的 `frozen`）後用 `lct requeue --key` 重翻。",
 		codes(info.Report.FrozenFallback))
 	if sum != nil {
-		add("未對應的說話者",
+		add(KindNewSpeaker, "未對應的說話者",
 			"新角色或新 NPC 的 `model`；補上 `guides/characters/` 的角色檔。",
 			codes(sum.NewSpeakers))
 		var changes []string
 		for _, c := range sum.FieldChanges {
 			changes = append(changes, code(c.String()))
 		}
-		add("欄位規則變化",
+		add(KindFieldChange, "欄位規則變化",
 			"遊戲新增或移除了欄位；確認後用 `lct fields learn` 更新 `rules/fields.yaml`。", changes)
-		add("預設族群的新檔",
+		add(KindNewFamily, "預設族群的新檔",
 			"這些新檔沒有對應的檔案族群；到 `guides/routing.yaml` 加上族群。",
 			codes(sum.NewFilesDefaultFamily))
 	}
 	if info.Stopped == translate.StopError {
-		add("翻譯迴圈因錯誤中斷",
+		add(KindLoopError, "翻譯迴圈因錯誤中斷",
 			"看 Actions 的執行紀錄；修正後重跑，還沒翻的單位仍在待譯清單裡。",
 			[]string{reason(info.StopError)})
 	}
@@ -115,23 +142,23 @@ func reason(err string) string {
 // so. When there are several parts each starts with the number of it, and the
 // first names the place of the full report.
 func ReviewIssue(info Info, sum *plan.Summary, pending []store.PendingItem) (title string, parts []string, ok bool) {
-	secs := reviewSections(info, sum, pending)
+	secs := ReviewItems(info, sum, pending)
 	n := 0
 	for _, s := range secs {
-		n += len(s.items)
+		n += len(s.Items)
 	}
 	if n == 0 {
 		return "", nil, false
 	}
 	intro := fmt.Sprintf("本次更新有 %d 項需要你處理，處理完請勾掉。完整報表：`%s`（`tw` 分支）。", n, ReportRel(info.RawTag))
-	return issueTitle(info.RawTag), splitParts(intro, secs, n), true
+	return IssueTitle(info.RawTag), splitParts(intro, secs, n), true
 }
 
 var rawDayRe = regexp.MustCompile(`^raw-(\d{8})(?:\.\d+)?$`)
 
-// issueTitle is "審核：YYYY-MM-DD 更新", the date being the day of the raw
+// IssueTitle is "審核：YYYY-MM-DD 更新", the date being the day of the raw
 // tag; a tag that holds no date is named as it is.
-func issueTitle(rawTag string) string {
+func IssueTitle(rawTag string) string {
 	if m := rawDayRe.FindStringSubmatch(rawTag); m != nil {
 		if day, err := time.Parse("20060102", m[1]); err == nil {
 			return "審核：" + day.Format("2006-01-02") + " 更新"
@@ -147,11 +174,11 @@ func partHeader(i, m int) string { return fmt.Sprintf("（第 %d／%d 段）", i
 // most IssuePartLimit UTF-16 code units, between two items. The first part
 // starts with intro. The numbering of the parts is put on when there are
 // several; room is kept for the longest header there could be.
-func splitParts(intro string, secs []reviewSection, n int) []string {
+func splitParts(intro string, secs []ReviewSection, n int) []string {
 	p := &packer{intro: intro, budget: IssuePartLimit - utf16Len(partHeader(n, n)+"\n\n"), headed: map[int]bool{}}
 	p.begin()
 	for si, sec := range secs {
-		for _, item := range sec.items {
+		for _, item := range sec.Items {
 			p.add(si, sec, item)
 		}
 	}
@@ -199,15 +226,15 @@ func (p *packer) flush() {
 // add puts item of section sec (the si-th) on the checklist: in the current
 // part when it fits, else at the start of the next. A section that goes on in
 // another part gets its heading again, marked as a continuation.
-func (p *packer) add(si int, sec reviewSection, item string) {
+func (p *packer) add(si int, sec ReviewSection, item string) {
 	const bullet = "- [ ] "
 	for {
 		heading := ""
 		if p.section != si {
 			if p.headed[si] {
-				heading = "### " + sec.title + "（續）\n\n"
+				heading = "### " + sec.Title + "（續）\n\n"
 			} else {
-				heading = "### " + sec.title + "\n\n" + sec.hint + "\n\n"
+				heading = "### " + sec.Title + "\n\n" + sec.Hint + "\n\n"
 			}
 			if p.items > 0 {
 				heading = "\n" + heading // a blank line after the section before

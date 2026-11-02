@@ -18,7 +18,6 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
-	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 const (
@@ -200,22 +199,13 @@ func repoURL() string {
 // when nothing needs a person, so that the issue of an earlier build is not
 // posted again. It returns the number of parts.
 func writeReviewFiles(opt build.Options) (int, error) {
-	twRoot := opt.TWRoot
-	info, err := build.ReadInfo(twRoot)
-	if err != nil {
-		return 0, err
-	}
-	sum, err := build.ReadPlan(twRoot, info.RawTag)
-	if err != nil {
-		return 0, err
-	}
-	pending, err := store.Open(twRoot).LoadPending()
+	state, err := readBuildState(opt.TWRoot)
 	if err != nil {
 		return 0, err
 	}
 	// Not the archived report: the summary of the run also links the compare
 	// page of tw, which the archive must not hold (see build.Markdown).
-	summary := build.JobSummary(opt, info, sum, pending)
+	summary := build.JobSummary(opt, state.Info, state.Plan, state.Pending)
 	if err := os.WriteFile(filepath.Join(opt.OutDir, summaryFile), summary, 0o644); err != nil {
 		return 0, err
 	}
@@ -224,7 +214,7 @@ func writeReviewFiles(opt build.Options) (int, error) {
 	if err := os.RemoveAll(dir); err != nil {
 		return 0, err
 	}
-	title, parts, ok := build.ReviewIssue(info, sum, pending)
+	title, parts, ok := build.ReviewIssue(state.Info, state.Plan, state.Pending)
 	if !ok {
 		return 0, nil
 	}
