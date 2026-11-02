@@ -46,6 +46,11 @@ const (
 	// has now, relative to the repo root. Publish replaces the description of
 	// the PR, so the new one is written from the saved one.
 	ExistingBodyFile = "work/proposal/existing-body.md"
+	// StartedFile is where Start writes what it decided, the JSON it returns,
+	// relative to the repo root. It is never empty, unlike ExcludeFile when no
+	// rules PR is open or was closed: the rules-review skill knows it runs in
+	// CI, after Start, by this file.
+	StartedFile = "work/proposal/started.json"
 
 	dateLayout = "2006-01-02"
 
@@ -60,8 +65,9 @@ var RuleFolders = []string{"guides", "glossary", "rules"}
 
 // credentialPatterns are the beginnings of the credentials a description or a
 // rule file must not hold: the prefixes of GitHub's tokens, the user name a
-// token goes with in a URL, a basic Authorization header and the prefix of an
-// API key. Both go to a public page (a description, a commit), and what the
+// token goes with in a URL, and the same with its colon in base64 (how the
+// extraheader of actions/checkout carries it), a basic Authorization header
+// and the prefix of an API key. Both go to a public page (a description, a commit), and what the
 // run can read includes the text of the game, which anyone can put words in.
 // Fold says that the case does not matter.
 var credentialPatterns = []struct {
@@ -69,7 +75,7 @@ var credentialPatterns = []struct {
 	fold bool
 }{
 	{"ghp_", false}, {"gho_", false}, {"ghs_", false}, {"ghu_", false}, {"github_pat_", false},
-	{"x-access-token", true}, {"AUTHORIZATION: basic", true}, {"sk-ant-", false},
+	{"x-access-token", true}, {"eC1hY2Nlc3MtdG9rZW46", false}, {"AUTHORIZATION: basic", true}, {"sk-ant-", false},
 }
 
 // credentialIn returns the pattern that line holds, or "".
@@ -338,8 +344,8 @@ func (s *session) listPRs(what string, args ...string) ([]pullRequest, error) {
 // It also writes ExcludeFile:
 // the ids that lct suggest must leave out, because the open PR has them, people
 // closed a PR with them, or they were merged and still stand (Started.Handled);
-// and ExistingBodyFile, the description of the open PR (the file is removed
-// when there is none). The PRs are listed without gh's --label filter, which
+// ExistingBodyFile, the description of the open PR (the file is removed when
+// there is none); and last StartedFile, the result as JSON. The PRs are listed without gh's --label filter, which
 // goes through the search index and can miss a PR that is new or lost its
 // label; a rules PR is one with the label or with a rules-proposal/* branch.
 // Nothing is changed when it fails before it checks the branch out.
@@ -417,13 +423,17 @@ func Start(o Options) (*Started, error) {
 	if res.ExistingBody, err = writeExistingBody(s.Repo, chosen); err != nil {
 		return nil, err
 	}
+	if err := writeStarted(s.Repo, res); err != nil {
+		return nil, err
+	}
 	return res, nil
 }
 
 // checkoutFromOrigin fetches the branch, checks it out at what origin has and
-// merges origin/<Base> into it.
+// merges origin/<Base> into it. The branch is named in full: a tag of the same
+// name would be fetched instead.
 func (s *session) checkoutFromOrigin(branch string) error {
-	if _, err := s.git.run("fetch", "origin", branch); err != nil {
+	if _, err := s.git.run("fetch", "origin", "refs/heads/"+branch); err != nil {
 		return err
 	}
 	if err := s.refuseLocalCommits(branch, "FETCH_HEAD", "origin"); err != nil {
@@ -605,6 +615,23 @@ func writeExclude(repo string, ids []string) error {
 	return os.WriteFile(path, []byte(b.String()), 0o644)
 }
 
+// writeStarted writes res to StartedFile as the JSON lct proposal start
+// prints: indented, with no HTML escaping, and a line end.
+func writeStarted(repo string, res *Started) error {
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	enc.SetEscapeHTML(false)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(res); err != nil {
+		return err
+	}
+	path := filepath.Join(repo, filepath.FromSlash(StartedFile))
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		return err
+	}
+	return os.WriteFile(path, buf.Bytes(), 0o644)
+}
+
 // writeExistingBody saves the description of the PR to ExistingBodyFile as it
 // is, and returns the path; without a PR it removes a file an earlier run left
 // and returns "".
@@ -666,7 +693,10 @@ func uniqueSorted(ids []string) []string {
 // has an open PR, a body that lacks a suggestion marker the PR has now (the
 // edit replaces the description, and a suggestion that dropped out would be
 // suggested again). Untracked files outside the rule folders are left alone
-// and not committed. The push is never forced.
+// and not committed. The commit is not signed, like the merge of Start: the
+// identity of a workflow has no key. The push names the branch in full on both
+// sides, so that a tag of the same name is not pushed instead, and is never
+// forced.
 func Publish(o Options, bodyFile string) (*Published, error) {
 	s := newSession(o)
 	if err := s.checkBase(); err != nil {
@@ -753,11 +783,11 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 		if _, err := s.git.run(append([]string{"--literal-pathspecs", "add", "-A", "--"}, changed...)...); err != nil {
 			return nil, err
 		}
-		if _, err := s.git.run("-c", "user.useConfigOnly=true", "commit", "-q", "-m", "rules: proposal "+s.Date); err != nil {
+		if _, err := s.git.run("-c", "user.useConfigOnly=true", "commit", "-q", "--no-gpg-sign", "-m", "rules: proposal "+s.Date); err != nil {
 			return nil, err
 		}
 	}
-	if _, err := s.git.run("push", "origin", branch); err != nil {
+	if _, err := s.git.run("push", "origin", "refs/heads/"+branch+":refs/heads/"+branch); err != nil {
 		return nil, err
 	}
 	head, err := s.git.run("rev-parse", "HEAD")
@@ -841,17 +871,22 @@ func unwrapPathError(err error) error {
 }
 
 // currentBranch returns the branch that is checked out, if it is one a rules
-// PR is made on.
+// PR is made on. The full name is asked for: the short one of a branch that a
+// tag shares its name with is "heads/<branch>".
 func (s *session) currentBranch() (string, error) {
-	out, err := s.git.run("symbolic-ref", "--quiet", "--short", "HEAD")
+	out, err := s.git.run("symbolic-ref", "--quiet", "HEAD")
 	if exitCode(err) == 1 {
 		return "", refuse("HEAD is not on a branch; run lct proposal start first, which checks out a %s* branch", BranchPrefix)
 	}
 	if err != nil {
 		return "", err
 	}
-	branch := strings.TrimSpace(out)
-	if !strings.HasPrefix(branch, BranchPrefix) || branch == BranchPrefix {
+	ref := strings.TrimSpace(out)
+	branch, local := strings.CutPrefix(ref, "refs/heads/")
+	if !local {
+		branch = ref
+	}
+	if !local || !strings.HasPrefix(branch, BranchPrefix) || branch == BranchPrefix {
 		return "", refuse("the branch is %s; a rules PR is made only on a %s* branch (run lct proposal start first)", branch, BranchPrefix)
 	}
 	return branch, nil

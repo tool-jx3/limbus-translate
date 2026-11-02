@@ -148,6 +148,10 @@ func TestProposalStartCommand(t *testing.T) {
 	if want := "inconsistent/ally/name/fd93b875\nterm/신규 용어\n"; string(data) != want {
 		t.Errorf("exclude.txt = %q, want %q", data, want)
 	}
+	// work/proposal/started.json is what --json prints, byte for byte.
+	if data, err := os.ReadFile(filepath.Join(root, "work", "proposal", "started.json")); err != nil || string(data) != stdout {
+		t.Errorf("started.json = %q (%v), want the output %q", data, err, stdout)
+	}
 
 	// Without --json it is a sentence.
 	code, stdout, _ = lct(t, "proposal", "start", "--date", "2026-11-05")

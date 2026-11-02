@@ -15,7 +15,8 @@ func init() {
 		Name: "proposal start",
 		Usage: "check out the branch of the rules PR: that of the open rules PR, brought up to date and with origin/main merged into it (a conflict is refused and named), or rules-proposal/DATE (the free rules-proposal/DATE-N when a closed PR used that name) from origin/main; " +
 			"writes work/proposal/exclude.txt, the suggestion ids that lct suggest --exclude-file must leave out, " +
-			"and work/proposal/existing-body.md, the description the open PR has now: --date YYYY-MM-DD",
+			"work/proposal/existing-body.md, the description the open PR has now, " +
+			"and work/proposal/started.json, what it prints with --json: --date YYYY-MM-DD",
 		Run: runProposalStart,
 	})
 	cli.Register(cli.Command{

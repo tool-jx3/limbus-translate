@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"reflect"
 	"slices"
 	"strconv"
 	"strings"
@@ -1382,6 +1383,7 @@ func TestProposalStartRefusesABranchThatConflictsWithMain(t *testing.T) {
 	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: head, Labels: rulesLabel, Body: body("term/a")}}, nil)
 	e.write("work/proposal/exclude.txt", "stale\n")
 	e.write("work/proposal/existing-body.md", "stale\n")
+	e.write("work/proposal/started.json", "stale\n")
 
 	_, err := Start(e.opts("2026-11-05"))
 	mustRefuse(t, err, head, "guides/README.md", "origin/main")
@@ -1396,7 +1398,7 @@ func TestProposalStartRefusesABranchThatConflictsWithMain(t *testing.T) {
 		t.Error("a merge is still under way")
 	}
 	// The files of an earlier run were not rewritten for a run that stopped.
-	if e.read("work/proposal/exclude.txt") != "stale\n" || e.read("work/proposal/existing-body.md") != "stale\n" {
+	if e.read("work/proposal/exclude.txt") != "stale\n" || e.read("work/proposal/existing-body.md") != "stale\n" || e.read("work/proposal/started.json") != "stale\n" {
 		t.Error("the files of work/proposal were rewritten")
 	}
 	if e.originGit("rev-parse", "refs/heads/"+head) != sha {
@@ -1444,6 +1446,9 @@ var tokenLike = []struct{ name, text, pattern string }{
 	{"a basic authorization", "AUTHORIZATION: basic " + "YWJjOmRlZg==", "AUTHORIZATION: basic"},
 	{"a lower case authorization", "authorization: Basic " + "YWJjOmRlZg==", "AUTHORIZATION: basic"},
 	{"a key of the API", "sk-ant-" + "api03-abcdef", "sk-ant-"},
+	// The extraheader git is given by actions/checkout: "x-access-token:<token>"
+	// in base64, which the plain pattern does not see.
+	{"a token in an extraheader", "eC1hY2Nlc3MtdG9rZW46" + "Z2hzXzAxMjM0NTY3ODk=", "eC1hY2Nlc3MtdG9rZW46"},
 }
 
 func TestProposalPublishRefusesATokenInTheBody(t *testing.T) {
@@ -1564,5 +1569,98 @@ func TestProposalPublishAllowsTextThatOnlyResemblesAToken(t *testing.T) {
 	e.write("guides/README.md", "Authorization 與 basic 是兩個詞\n")
 	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
 		t.Fatal(err)
+	}
+}
+
+// startedFile reads work/proposal/started.json as Start wrote it.
+func (e *env) startedFile() (raw string, got Started) {
+	e.t.Helper()
+	raw = e.read("work/proposal/started.json")
+	if err := json.Unmarshal([]byte(raw), &got); err != nil {
+		e.t.Fatalf("started.json is not JSON: %v\n%s", err, raw)
+	}
+	return raw, got
+}
+
+// Start always leaves work/proposal/started.json, its own result as JSON: the
+// rules-review skill tells a run in CI from one on a person's machine by it,
+// and exclude.txt, which is empty when no rules PR is open or was closed, can
+// not tell them apart.
+func TestProposalStartWritesTheStartedFile(t *testing.T) {
+	t.Run("no rules PR", func(t *testing.T) {
+		e := newEnv(t)
+		got, err := Start(e.opts("2026-11-05"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if data := e.read("work/proposal/exclude.txt"); data != "" {
+			t.Fatalf("exclude.txt = %q, want it empty for this case", data)
+		}
+		raw, file := e.startedFile()
+		if strings.TrimSpace(raw) == "" || !strings.Contains(raw, `"branch": "rules-proposal/2026-11-05"`) {
+			t.Errorf("started.json = %q, want the JSON of the result", raw)
+		}
+		if !reflect.DeepEqual(&file, got) {
+			t.Errorf("started.json = %+v, want what Start returned, %+v", file, got)
+		}
+	})
+	t.Run("an open rules PR", func(t *testing.T) {
+		e := newEnv(t)
+		const head = "rules-proposal/2026-10-29"
+		e.pushBranch(head, "guides/README.md", "work of the PR\n")
+		e.setPRs([]ghPR{{Number: 5, URL: "https://github.com/o/r/pull/5", HeadRefName: head, Labels: rulesLabel, Body: body("speaker/새 화자")}}, nil)
+		got, err := Start(e.opts("2026-11-05"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, file := e.startedFile(); !reflect.DeepEqual(&file, got) || file.PR != 5 || file.ExistingBody != ExistingBodyFile {
+			t.Errorf("started.json = %+v, want what Start returned, %+v", file, got)
+		}
+	})
+}
+
+// A run whose commit would ask for a signature makes none: the identity of
+// the workflow has no key, as the merge of origin/main does not.
+func TestProposalPublishDoesNotSign(t *testing.T) {
+	e := newEnv(t)
+	e.git("config", "commit.gpgsign", "true")
+	e.git("config", "gpg.program", "false") // a signature would fail
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("guides/README.md", "guides, changed\n")
+	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
+		t.Fatal(err)
+	}
+	if sig := e.git("log", "-1", "--format=%G?"); sig != "N" {
+		t.Errorf("the commit has the signature status %q, want N (none)", sig)
+	}
+}
+
+// A tag that has the name of the branch is not the branch: the fetch and the
+// push name the branch in full.
+func TestProposalBranchAndTagOfOneName(t *testing.T) {
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	sha := e.pushBranch(head, "guides/README.md", "work of the PR\n")
+	e.git("tag", head, "origin/main") // a tag of the same name, on origin and here
+	e.git("push", "-q", "origin", "refs/tags/"+head)
+	e.setPRs([]ghPR{{Number: 5, URL: "https://github.com/o/r/pull/5", HeadRefName: head, Labels: rulesLabel, Body: body("term/a")}}, nil)
+
+	if _, err := Start(e.opts("2026-11-05")); err != nil {
+		t.Fatal(err)
+	}
+	if h := e.git("rev-parse", "HEAD"); h != sha {
+		t.Fatalf("HEAD = %s, want the branch %s, not the tag", h, sha)
+	}
+	e.write("work/proposal/body.md", body("term/a", "term/b"))
+	e.write("guides/README.md", "work of the PR, and more\n")
+	got, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if pushed := e.originGit("rev-parse", "refs/heads/"+head); pushed != got.Commit {
+		t.Errorf("origin has the branch at %s, want %s", pushed, got.Commit)
+	}
+	if tag := e.originGit("rev-parse", "refs/tags/"+head); tag != e.git("rev-parse", "origin/main") {
+		t.Errorf("origin's tag moved to %s", tag)
 	}
 }
