@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 	"path/filepath"
 	"slices"
@@ -217,5 +218,173 @@ func TestPublishUsesTheConfiguredLanguageDirectory(t *testing.T) {
 	}
 	if want := []string{filepath.Join(root, "out", "zh-XX_text_raw-20261029.zip"), filepath.Join(root, "out", "zh-XX_complete_raw-20261029.zip")}; !slices.Equal(res.Assets, want) {
 		t.Errorf("Assets = %v, want %v", res.Assets, want)
+	}
+}
+
+// runCheckJSON runs lct publish --check --json and returns its output keys and
+// its value.
+func runCheckJSON(t *testing.T, root string) (publish.Check, map[string]json.RawMessage) {
+	t.Helper()
+	ctx, out := testCtx(t, root, "", true)
+	if err := runPublish(ctx, []string{"--check"}); err != nil {
+		t.Fatal(err)
+	}
+	var check publish.Check
+	var fields map[string]json.RawMessage
+	if err := json.Unmarshal(out.Bytes(), &check); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	if err := json.Unmarshal(out.Bytes(), &fields); err != nil {
+		t.Fatal(err)
+	}
+	return check, fields
+}
+
+// --check reads the commits and the tags of tw and nothing else: it commits
+// nothing, writes no notes, and needs neither a build nor the zips.
+func TestPublishCheckCommitsNothing(t *testing.T) {
+	root := publishRepo(t)
+	tw := filepath.Join(root, ".work", "tw")
+	state := func() string {
+		return runGitIn(t, tw, "status", "--porcelain", "-uall") + "\n" + runGitIn(t, tw, "log", "--format=%H", "--all")
+	}
+	wantKeys := []string{"release_needed", "same_as", "tag", "tw_commit"}
+	keysOf := func(fields map[string]json.RawMessage) []string {
+		var keys []string
+		for k := range fields {
+			keys = append(keys, k)
+		}
+		slices.Sort(keys)
+		return keys
+	}
+
+	// The build is not committed yet: tw has no commit, and so no Release is
+	// due for it. The files of the build stay where they are.
+	before := state()
+	check, fields := runCheckJSON(t, root)
+	if keys := keysOf(fields); !slices.Equal(keys, wantKeys) {
+		t.Errorf("output keys = %v, want %v", keys, wantKeys)
+	}
+	if check != (publish.Check{}) {
+		t.Errorf("check of a tw with no commit = %+v, want nothing", check)
+	}
+	if after := state(); after != before {
+		t.Errorf("--check changed tw:\n%s\n->\n%s", before, after)
+	}
+	if _, err := os.Stat(filepath.Join(root, "out", "release-notes.md")); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("--check wrote the release notes: %v", err)
+	}
+
+	// Committed by publish, not tagged: a Release is due.
+	res, _, err := runPublishJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	before = state()
+	check, fields = runCheckJSON(t, root)
+	if keys := keysOf(fields); !slices.Equal(keys, wantKeys) {
+		t.Errorf("output keys = %v, want %v", keys, wantKeys)
+	}
+	if want := (publish.Check{TWCommit: res.TWCommit, ReleaseNeeded: true}); check != want {
+		t.Errorf("check = %+v, want %+v", check, want)
+	}
+
+	// Released: the tag is on the commit, and the pack is the one of that tag.
+	// Neither the zips nor build.json are needed to say so.
+	runGitIn(t, tw, "tag", res.Tag)
+	for _, name := range res.Assets {
+		if err := os.Remove(name); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := os.Remove(filepath.Join(tw, ".meta", "build.json")); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Remove(res.NotesPath); err != nil {
+		t.Fatal(err)
+	}
+	before = state()
+	check, fields = runCheckJSON(t, root)
+	if keys := keysOf(fields); !slices.Equal(keys, wantKeys) {
+		t.Errorf("output keys = %v, want %v", keys, wantKeys)
+	}
+	if want := (publish.Check{TWCommit: res.TWCommit, SameAs: res.Tag, Tag: res.Tag}); check != want {
+		t.Errorf("check of a released commit = %+v, want %+v", check, want)
+	}
+	if after := state(); after != before {
+		t.Errorf("--check changed tw:\n%s\n->\n%s", before, after)
+	}
+	if _, err := os.Stat(res.NotesPath); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("--check wrote the release notes: %v", err)
+	}
+	var sameAs string
+	if err := json.Unmarshal(fields["same_as"], &sameAs); err != nil || sameAs != res.Tag {
+		t.Errorf("same_as = %s, %v, want %q", fields["same_as"], err, res.Tag)
+	}
+}
+
+// The text form says what the JSON says.
+func TestPublishCheckText(t *testing.T) {
+	root := publishRepo(t)
+	res, _, err := runPublishJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx, out := testCtx(t, root, "", false)
+	if err := runPublish(ctx, []string{"--check"}); err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{res.TWCommit, "needed"} {
+		if !strings.Contains(out.String(), want) {
+			t.Errorf("output lacks %q:\n%s", want, out)
+		}
+	}
+}
+
+// --check needs lang_dir, as publish does: the file it leaves out of the
+// comparison is in the language directory.
+func TestPublishCheckNeedsTheLanguageDirectory(t *testing.T) {
+	root := publishRepo(t)
+	ctx, _ := testCtx(t, root, "worktrees: { raw: .work/raw, tw: .work/tw }\n", true)
+	if err := runPublish(ctx, []string{"--check"}); !isUserError(err) || !strings.Contains(err.Error(), "lang_dir") {
+		t.Errorf("--check without lang_dir: err = %v (%T), want a user error naming lang_dir", err, err)
+	}
+	ctx, _ = testCtx(t, root, "", true)
+	if err := runPublish(ctx, []string{"--check", "extra"}); !isUserError(err) {
+		t.Errorf("--check extra: err = %v, want a user error", err)
+	}
+}
+
+// With a real build: a build from another rules commit that translates the
+// same way differs from the Release in Info/version.json alone, so it is
+// committed to tw and not released. This is also where the layout publish
+// assumes of the pack is held to the one lct build writes.
+func TestPublishDoesNotReleaseAPackThatOnlyHasANewVersion(t *testing.T) {
+	root := publishRepo(t)
+	tw := filepath.Join(root, ".work", "tw")
+	first, _, err := runPublishJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	runGitIn(t, tw, "tag", first.Tag)
+
+	runGitIn(t, root, "commit", "--allow-empty", "-q", "-m", "rules: nothing that changes a translation")
+	if _, err := runBuildJSON(t, root); err != nil {
+		t.Fatal(err)
+	}
+	res, _, err := runPublishJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.Changed || res.ReleaseNeeded || res.SameAs != first.Tag || res.TWCommit == first.TWCommit {
+		t.Fatalf("publish = %+v, want a new commit of tw, no Release, the pack of %s", res, first.Tag)
+	}
+	// The one file of the pack that differs is the version file.
+	changed := runGitIn(t, tw, "diff", "--name-only", first.TWCommit, res.TWCommit, "--", "LimbusCompany_Data")
+	if want := "LimbusCompany_Data/Lang/zh-TW/Info/version.json"; changed != want {
+		t.Errorf("files of the pack that differ = %q, want %q", changed, want)
+	}
+	if check, _ := runCheckJSON(t, root); check.ReleaseNeeded || check.SameAs != first.Tag || check.TWCommit != res.TWCommit {
+		t.Errorf("check = %+v, want no Release, the pack of %s at %s", check, first.Tag, res.TWCommit)
 	}
 }

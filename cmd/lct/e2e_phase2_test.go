@@ -471,8 +471,10 @@ func TestPhase2Replay(t *testing.T) {
 		}
 	}
 	p.build()
-	if pub := p.publish(); !pub.Changed || !pub.ReleaseNeeded || pub.Tag != "zh-TW-20261029.2" {
-		t.Errorf("rebuild publish = %+v, want the new queue committed to tw and released as zh-TW-20261029.2", pub)
+	// Only the queue and the rules commit changed: the pack is the one of the
+	// first Release, so tw is committed and nothing is released.
+	if pub := p.publish(); !pub.Changed || pub.ReleaseNeeded || pub.SameAs != "zh-TW-20261029.1" {
+		t.Errorf("rebuild publish = %+v, want the new queue committed to tw and no Release, as the pack is the one of zh-TW-20261029.1", pub)
 	}
 
 	// 3. A person works on main: two adjustments of S1, a request to

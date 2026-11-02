@@ -787,3 +787,363 @@ func TestPublishReleaseNeeded(t *testing.T) {
 		t.Errorf("result JSON = %s, %v, want release_needed", data, err)
 	}
 }
+
+// versionJSON is Info/version.json as a build with the rules commit rules
+// would write it: the only file of the pack that differs between two builds
+// of the same translations.
+func versionJSON(rules string) string {
+	return `{"raw_tag": "` + testRawTag + `", "rules_commit": "` + rules + `"}` + "\n"
+}
+
+const (
+	testRulesB = "89abcdef0123456789abcdef0123456789abcdef"
+	versionRel = "LimbusCompany_Data/Lang/zh-TW/Info/version.json"
+	sampleRel  = "LimbusCompany_Data/Lang/zh-TW/Sample.json"
+)
+
+// rebuild is what lct build does to the worktree for the rules commit rules:
+// Info/version.json and the rules commit of .meta/build.json change, and the
+// translations are those of records (Sample.json).
+func (f fixture) rebuild(t *testing.T, rules, records string) {
+	t.Helper()
+	write(t, f.tw, versionRel, versionJSON(rules))
+	write(t, f.tw, ".meta/build.json", strings.Replace(testBuildJSON, testRules, rules, 1))
+	write(t, f.tw, sampleRel, records)
+}
+
+// releaseWith publishes the worktree and, as the workflow does when a Release
+// is needed, tags the commit of tw with the tag of the result.
+func (f fixture) releaseWith(t *testing.T) *Result {
+	t.Helper()
+	res, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.ReleaseNeeded {
+		t.Fatalf("Run = %+v, want a Release needed", res)
+	}
+	if err := gitx.Tag(f.tw, res.Tag); err != nil {
+		t.Fatal(err)
+	}
+	return res
+}
+
+func TestLastReleaseOrdering(t *testing.T) {
+	repo := newFixture(t).root
+	if got, err := LastRelease(repo); err != nil || got != "" {
+		t.Errorf("LastRelease without Release tags = %q, %v, want \"\"", got, err)
+	}
+
+	// The tags need a commit to point to; they all point to the same one.
+	for _, name := range []string{"zh-TW-20261029.1", "zh-TW-20261029.2", "zh-TW-20261029.10"} {
+		if err := gitx.Tag(repo, name); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if got, err := LastRelease(repo); err != nil || got != "zh-TW-20261029.10" {
+		t.Errorf("LastRelease = %q, %v, want zh-TW-20261029.10 (.10 comes after .9 and .2)", got, err)
+	}
+
+	// A later day wins whatever N the earlier day reached; names that are not
+	// Release tags do not count, however late they sort.
+	for _, name := range []string{"zh-TW-20261105.1", "raw-20261112", "zh-TW-20261112", "zh-TW-20261112.x", "zh-TW-latest"} {
+		if err := gitx.Tag(repo, name); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if got, err := LastRelease(repo); err != nil || got != "zh-TW-20261105.1" {
+		t.Errorf("LastRelease = %q, %v, want zh-TW-20261105.1", got, err)
+	}
+}
+
+func TestLastReleaseIgnoresOtherTags(t *testing.T) {
+	repo := newFixture(t).root
+	for _, name := range []string{"raw-20261112", "v1", "zh-TW-20261112"} {
+		if err := gitx.Tag(repo, name); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if got, err := LastRelease(repo); err != nil || got != "" {
+		t.Errorf("LastRelease = %q, %v, want \"\" when no tag is a Release tag", got, err)
+	}
+}
+
+func TestSamePack(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Info/LICENSE-CONTENT", "licence\n")
+	commit := func(msg string) string {
+		t.Helper()
+		runGit(t, f.tw, "add", "-A")
+		runGit(t, f.tw, "commit", "-q", "-m", msg)
+		return runGit(t, f.tw, "rev-parse", "HEAD")
+	}
+	base := commit("base")
+
+	// Only version.json and what is outside LimbusCompany_Data/ differ.
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	write(t, f.tw, ".meta/plan.json", "{}\n")
+	versionOnly := commit("version only")
+
+	// A translation differs.
+	write(t, f.tw, sampleRel, "{\"a\": 2}\n")
+	edited := commit("edited")
+
+	// A file is added; a file is removed.
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/New.json", "{}\n")
+	added := commit("added")
+	runGit(t, f.tw, "rm", "-q", sampleRel)
+	removed := commit("removed")
+
+	// version.json of another language directory is a file of the pack.
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-XX/Info/version.json", "one\n")
+	other1 := commit("other 1")
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-XX/Info/version.json", "two\n")
+	other2 := commit("other 2")
+
+	for _, tc := range []struct {
+		name     string
+		a, b     string
+		langDir  string
+		want     bool
+		wantFail bool
+	}{
+		{"a commit with itself", base, base, testLang, true, false},
+		{"only version.json differs", base, versionOnly, testLang, true, false},
+		{"only version.json differs, the other way", versionOnly, base, testLang, true, false},
+		{"version.json counts when it is not the one of the language directory", base, versionOnly, "zh-XX", false, false},
+		{"a translation differs", versionOnly, edited, testLang, false, false},
+		{"a file was added", edited, added, testLang, false, false},
+		{"a file was removed", added, removed, testLang, false, false},
+		{"the version.json of another language directory differs", other1, other2, testLang, false, false},
+		{"HEAD is a revision too", base, "HEAD", testLang, false, false},
+		{"no such revision", base, "no-such-rev", testLang, false, true},
+		{"no such revision, first", "no-such-rev", base, testLang, false, true},
+		{"language directory with a slash", base, base, "a/b", false, true},
+		{"empty language directory", base, base, "", false, true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			got, err := SamePack(f.tw, tc.a, tc.b, tc.langDir)
+			if (err != nil) != tc.wantFail || got != tc.want {
+				t.Errorf("SamePack(%s, %s, %q) = %v, %v; want %v (error: %v)", tc.a, tc.b, tc.langDir, got, err, tc.want, tc.wantFail)
+			}
+		})
+	}
+}
+
+// The first Release: no tag of a Release exists, so there is nothing to
+// compare with.
+func TestPublishFirstRelease(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{}\n")
+	res, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.Changed || !res.ReleaseNeeded || res.SameAs != "" || res.Tag != testReleaseA {
+		t.Errorf("first run = %+v, want a Release needed, same as nothing, tagged %s", res, testReleaseA)
+	}
+	// Until the Release is made, the next run says so again.
+	again, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil || !again.ReleaseNeeded || again.SameAs != "" {
+		t.Errorf("second run = %+v, %v, want the Release still needed", again, err)
+	}
+}
+
+// A build whose only difference from the last Release is Info/version.json
+// (the rules commit changed, the translations did not) is committed to tw but
+// not released.
+func TestPublishSkipsAnIdenticalPack(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	first := f.releaseWith(t)
+
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	res, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.Changed || res.ReleaseNeeded || res.SameAs != first.Tag {
+		t.Errorf("run = %+v, want a commit, no Release, same as %s", res, first.Tag)
+	}
+	if res.TWCommit == first.TWCommit || res.TWCommit != runGit(t, f.tw, "rev-parse", "HEAD") {
+		t.Errorf("TWCommit = %s, want a new commit on top of %s", res.TWCommit, first.TWCommit)
+	}
+	// The notes and the tag are those of the build all the same.
+	if res.Tag != "zh-TW-20261029.2" {
+		t.Errorf("Tag = %q, want zh-TW-20261029.2", res.Tag)
+	}
+	if notes, err := os.ReadFile(res.NotesPath); err != nil || !strings.HasPrefix(string(notes), "# zh-TW-20261029.2\n") || !strings.Contains(string(notes), testRulesB) {
+		t.Errorf("notes = %q, %v, want the notes of the build", notes, err)
+	}
+
+	// Running again changes nothing, and still no Release.
+	again, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if again.Changed || again.ReleaseNeeded || again.SameAs != first.Tag || again.TWCommit != res.TWCommit {
+		t.Errorf("run again = %+v, want no change, no Release, same as %s", again, first.Tag)
+	}
+
+	// The JSON the workflow reads says which Release it equals.
+	data, err := json.Marshal(res)
+	if err != nil || !strings.Contains(string(data), `"same_as":"`+first.Tag+`"`) || !strings.Contains(string(data), `"release_needed":false`) {
+		t.Errorf("result JSON = %s, %v", data, err)
+	}
+}
+
+func TestPublishReleasesWhenThePackChanged(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	f.releaseWith(t)
+
+	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
+	res, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.Changed || !res.ReleaseNeeded || res.SameAs != "" {
+		t.Errorf("run = %+v, want a commit and a Release, same as nothing", res)
+	}
+	data, err := json.Marshal(res)
+	if err != nil || strings.Contains(string(data), "same_as") {
+		t.Errorf("result JSON = %s, %v, want no same_as key when the pack is new", data, err)
+	}
+}
+
+// The pack is compared with the last Release, not with the commit before: two
+// builds that differ from each other by version.json only, after a build that
+// changed the pack, are all of that new pack.
+func TestPublishComparesWithTheLastRelease(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	first := f.releaseWith(t)
+
+	// Version only: no Release.
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	if res, err := Run(f.root, f.tw, f.out, testLang); err != nil || res.ReleaseNeeded || res.SameAs != first.Tag {
+		t.Fatalf("version-only build = %+v, %v, want no Release, same as %s", res, err, first.Tag)
+	}
+	// The pack changes: a Release, though the commit before it had none.
+	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
+	second := f.releaseWith(t)
+	if second.SameAs != "" {
+		t.Errorf("changed pack: SameAs = %q", second.SameAs)
+	}
+	// Back to the first Release's translations: not the same as the last one.
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	if res, err := Run(f.root, f.tw, f.out, testLang); err != nil || !res.ReleaseNeeded || res.SameAs != "" {
+		t.Errorf("reverted build = %+v, %v, want a Release (the last one is %s)", res, err, second.Tag)
+	}
+}
+
+// A pack that changed, committed by a run whose Release did not follow, keeps
+// needing its Release on the next run, which commits nothing.
+func TestPublishReleasesAfterAFailedRelease(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	f.releaseWith(t)
+
+	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
+	failed, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !failed.Changed || !failed.ReleaseNeeded {
+		t.Fatalf("run = %+v, want a commit and a Release", failed)
+	}
+	// The Release failed: its tag was not made.
+	again, err := Run(f.root, f.tw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if again.Changed || !again.ReleaseNeeded || again.SameAs != "" || again.TWCommit != failed.TWCommit || again.Tag != failed.Tag {
+		t.Errorf("run again = %+v, want no change, a Release for %s at %s", again, failed.Tag, failed.TWCommit)
+	}
+}
+
+func TestCheckTW(t *testing.T) {
+	f := newFixture(t)
+	check := func() *Check {
+		t.Helper()
+		c, err := CheckTW(f.tw, testLang)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return c
+	}
+
+	// A tw with no commit has no pack to release.
+	if c := check(); *c != (Check{}) {
+		t.Errorf("check of an empty tw = %+v, want nothing", c)
+	}
+
+	// A commit and no Release at all.
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	runGit(t, f.tw, "add", "-A")
+	runGit(t, f.tw, "commit", "-q", "-m", "build 1")
+	head1 := runGit(t, f.tw, "rev-parse", "HEAD")
+	if c := check(); *c != (Check{TWCommit: head1, ReleaseNeeded: true}) {
+		t.Errorf("check before the first Release = %+v, want a Release needed at %s", c, head1)
+	}
+	if err := gitx.Tag(f.tw, testReleaseA); err != nil {
+		t.Fatal(err)
+	}
+	if c := check(); *c != (Check{TWCommit: head1, SameAs: testReleaseA, Tag: testReleaseA}) {
+		t.Errorf("check of a released commit = %+v, want it tagged and the same as %s", c, testReleaseA)
+	}
+
+	// A version-only commit: no Release, the same pack as the last one.
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	runGit(t, f.tw, "add", "-A")
+	runGit(t, f.tw, "commit", "-q", "-m", "build 2")
+	head2 := runGit(t, f.tw, "rev-parse", "HEAD")
+	if c := check(); *c != (Check{TWCommit: head2, SameAs: testReleaseA}) {
+		t.Errorf("check of a version-only commit = %+v, want no Release, same as %s", c, testReleaseA)
+	}
+
+	// A commit with another pack.
+	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
+	runGit(t, f.tw, "add", "-A")
+	runGit(t, f.tw, "commit", "-q", "-m", "build 3")
+	head3 := runGit(t, f.tw, "rev-parse", "HEAD")
+	if c := check(); *c != (Check{TWCommit: head3, ReleaseNeeded: true}) {
+		t.Errorf("check of a new pack = %+v, want a Release needed at %s", c, head3)
+	}
+
+	// Files that are not committed do not count: the check reads commits.
+	write(t, f.tw, sampleRel, "{\"a\": 3}\n")
+	if c := check(); *c != (Check{TWCommit: head3, ReleaseNeeded: true}) {
+		t.Errorf("check with an uncommitted change = %+v", c)
+	}
+	if got := runGit(t, f.tw, "rev-parse", "HEAD"); got != head3 {
+		t.Errorf("HEAD moved to %s", got)
+	}
+
+	if _, err := CheckTW(f.tw, "a/b"); err == nil {
+		t.Error("CheckTW with a language directory that is not a name must be an error")
+	}
+}
+
+// The check says what Run would say of the same commit, without a build.
+func TestCheckTWAgreesWithRun(t *testing.T) {
+	f := newFixture(t)
+	f.rebuild(t, testRules, "{\"a\": 1}\n")
+	f.releaseWith(t)
+	for _, records := range []string{"{\"a\": 1}\n", "{\"a\": 2}\n"} {
+		f.rebuild(t, testRulesB, records)
+		res, err := Run(f.root, f.tw, f.out, testLang)
+		if err != nil {
+			t.Fatal(err)
+		}
+		c, err := CheckTW(f.tw, testLang)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if c.TWCommit != res.TWCommit || c.ReleaseNeeded != res.ReleaseNeeded || c.SameAs != res.SameAs {
+			t.Errorf("records %q: check = %+v, run = %+v", records, c, res)
+		}
+	}
+}

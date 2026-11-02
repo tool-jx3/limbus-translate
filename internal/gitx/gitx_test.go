@@ -3,6 +3,7 @@ package gitx
 import (
 	"archive/tar"
 	"bytes"
+	"maps"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -731,4 +732,81 @@ func read(t *testing.T, dir, rel string) string {
 		t.Fatal(err)
 	}
 	return string(b)
+}
+
+func TestTreeBlobs(t *testing.T) {
+	repo := newRepo(t)
+	write(t, repo, "a/x.json", "{\"x\": 1}\n")
+	write(t, repo, "a/b/y.json", "{\"y\": 2}\n")
+	write(t, repo, "c.txt", "c\n")
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "files")
+
+	got, err := TreeBlobs(repo, "HEAD", "a")
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]string{
+		"a/x.json":   runGit(t, repo, "rev-parse", "HEAD:a/x.json"),
+		"a/b/y.json": runGit(t, repo, "rev-parse", "HEAD:a/b/y.json"),
+	}
+	if !maps.Equal(got, want) {
+		t.Errorf("TreeBlobs(HEAD, a) = %v, want %v", got, want)
+	}
+
+	// The paths are those of the root of the repo, also when dir is a folder
+	// of it; a path that holds nothing gives an empty map, not an error.
+	if got, err := TreeBlobs(filepath.Join(repo, "a", "b"), "HEAD", "a"); err != nil || !maps.Equal(got, want) {
+		t.Errorf("TreeBlobs from a subdirectory = %v, %v, want %v", got, err, want)
+	}
+	if got, err := TreeBlobs(repo, "HEAD", "nothing-here"); err != nil || got == nil || len(got) != 0 {
+		t.Errorf("TreeBlobs of a path that is not there = %v, %v, want an empty map", got, err)
+	}
+}
+
+// The tree is read from the revision, not from the files on disk, and a name
+// that git would quote (such as a Chinese one) comes back as it is.
+func TestTreeBlobsReadsTheRevisionAndUnquotedNames(t *testing.T) {
+	repo := newRepo(t)
+	write(t, repo, "d/譯文.json", "{}\n")
+	write(t, repo, "d/with space.json", "{}\n")
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "names")
+	first := runGit(t, repo, "rev-parse", "HEAD")
+	write(t, repo, "d/譯文.json", "{\"changed\": true}\n")
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "changed")
+
+	got, err := TreeBlobs(repo, first, "d")
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]string{
+		"d/譯文.json":         runGit(t, repo, "rev-parse", first+":d/譯文.json"),
+		"d/with space.json": runGit(t, repo, "rev-parse", first+":d/with space.json"),
+	}
+	if !maps.Equal(got, want) {
+		t.Errorf("TreeBlobs(%s, d) = %v, want %v", first, got, want)
+	}
+	if now, err := TreeBlobs(repo, "HEAD", "d"); err != nil || now["d/譯文.json"] == got["d/譯文.json"] {
+		t.Errorf("the changed file has the same blob in HEAD: %v, %v", now, err)
+	}
+}
+
+func TestTreeBlobsErrors(t *testing.T) {
+	repo := newRepo(t)
+	for _, rev := range []string{"no-such-rev", "zh-TW-20261029.1", "-HEAD", "--all"} {
+		if got, err := TreeBlobs(repo, rev, "sub"); err == nil {
+			t.Errorf("TreeBlobs(%q) = %v, want an error", rev, got)
+		}
+	}
+	// A branch with no commits has no revision either.
+	empty := filepath.Join(t.TempDir(), "empty")
+	if err := os.MkdirAll(empty, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	runGit(t, empty, "init", "-q", "-b", "main")
+	if got, err := TreeBlobs(empty, "HEAD", "."); err == nil {
+		t.Errorf("TreeBlobs on an unborn branch = %v, want an error", got)
+	}
 }

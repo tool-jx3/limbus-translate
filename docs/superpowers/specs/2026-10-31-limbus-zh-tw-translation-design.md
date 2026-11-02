@@ -468,6 +468,7 @@ LimbusCompany_Data/
 - 兩個 zip：只有文字、含字型
 - 字型：Sarasa Gothic TC Bold（SIL OFL），固定版本並驗證 checksum，連同 OFL 授權文字一起打包
 - Release tag `zh-TW-YYYYMMDD.N`；release notes 由報表摘要產生
+- Release 只在語言包與最新一個 `zh-TW-*` Release 不同時才建立：比較兩個 `tw` commit 的 `LimbusCompany_Data/` 檔案樹（git blob），不含 `Info/version.json`（它記錄規則 commit、建置時間、模型與花費，每次建置都不同）。相同就不建立 Release，`tw` 照常 commit 與 push。`lct publish --check` 只讀 `tw` 的 git 狀態（HEAD、tag、檔案樹），回報目前的 `tw` 是否需要 Release、與哪個 tag 相同
 - `version.json` 與 `.meta/build.json` 記錄：raw tag 與 token、`main` commit、模型、花費；第一階段的初始建置另記上游 release tag
 
 ## 14. 報表
@@ -576,6 +577,7 @@ docs/
 - 程式碼授權 GPL-3.0
 - KR 為主、JP／EN 輔助
 - 原文沒變不重翻；KR 變了依變化重翻
+- Release（文字版＋含字型版）只在語言包內容與最新一個 `zh-TW-*` Release 不同時才發（不含 `Info/version.json`，§13）；`tw` 每次建置照常 commit 與 push
 - 人工調整不是最高優先的永久覆寫，而是歸納進規則
 - 依檔案族群與角色建立指引
 - 一律保留 `[英文ID]`；您／你依 KR；你／妳依對象性別（但丁用你／他）；唐吉訶德稱「經理老爺」「浮士德小姐」；全大寫替換變數不加空格；翻譯優先序照列出順序
@@ -586,7 +588,6 @@ docs/
 - 人工調整存在 `main` 的 `rules/adjustments/`，與其他規則一起審核
 - 翻譯失敗暫用 EN 原文
 - 內容授權：`guides/`、`glossary/`、`rules/` 與 `tw` 分支的譯文用 CC BY-NC-SA 4.0；`raw` 分支是 Project Moon 的原文，著作權屬於原作者，只為比對差異而保存
-- 每次建置都發 Release（文字版＋含字型版）
 - `raw`、`tw` 與 Release 只由 CI 寫入；人工介入一律經由 `main`（§9.3）
 - Paratranz 匯入先比對識別欄位骨架，對不上的單位不匯入（§8.3）
 - 名稱表（關鍵字、說話者）取自本專案現行譯文，直接具約束力；Claude 提出的新詞要審核（§7）

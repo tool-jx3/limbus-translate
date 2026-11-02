@@ -1,6 +1,8 @@
 // Package publish prepares a Release of the language pack: it commits the
-// build in the tw worktree, numbers the Release and writes its notes. Pushing
-// the commit and creating the Release are left to the workflow.
+// build in the tw worktree, numbers the Release, writes its notes and says
+// whether a Release is due, which it is only when the pack differs from that
+// of the latest Release. Pushing the commit and creating the Release are left
+// to the workflow.
 package publish
 
 import (
@@ -96,6 +98,177 @@ func ReleaseTag(rawTag string, existing []string) (string, error) {
 	return fmt.Sprintf("%s%s.%d", TagPrefix, day, highest+1), nil
 }
 
+// LastRelease returns the latest Release of the pack: of the Release tags
+// (zh-TW-YYYYMMDD.N) in the repo of twRoot, the one with the latest day and,
+// within the day, the highest N, compared as numbers (.10 is after .9). It
+// returns "" when there is none. Names that are not Release tags are ignored.
+func LastRelease(twRoot string) (string, error) {
+	tags, err := gitx.Tags(twRoot, TagPrefix)
+	if err != nil {
+		return "", err
+	}
+	return latestRelease(tags), nil
+}
+
+// latestRelease returns the latest of the Release tags among names, or "".
+func latestRelease(names []string) string {
+	var last string
+	var lastDay string
+	lastN := -1
+	for _, name := range names {
+		m := releaseTagRe.FindStringSubmatch(name)
+		if m == nil {
+			continue
+		}
+		// A number too large for an int cannot be told from another: skipped,
+		// as ReleaseTag does.
+		n, err := strconv.Atoi(m[2])
+		if err != nil {
+			continue
+		}
+		// The days have eight digits each, so they compare as text.
+		if last == "" || m[1] > lastDay || m[1] == lastDay && n > lastN {
+			last, lastDay, lastN = name, m[1], n
+		}
+	}
+	return last
+}
+
+// packDir is the directory of the pack in tw, the one the zips hold.
+const packDir = "LimbusCompany_Data"
+
+// checkLangDir refuses a language directory that is not a plain name.
+func checkLangDir(langDir string) error {
+	if langDir == "" || langDir == "." || strings.ContainsAny(langDir, `/\`) || !filepath.IsLocal(langDir) {
+		return fmt.Errorf("publish: language directory %q is not a plain name", langDir)
+	}
+	return nil
+}
+
+// SamePack reports whether the revisions a and b of the tw repo hold the same
+// pack: the same files, with the same content, below LimbusCompany_Data/.
+// Info/version.json of the language directory langDir is left out, as it
+// records the rules commit, the time and the cost of the build, which differ
+// between two builds of the same translations; everything else, such as the
+// licence beside it, is part of the pack. Files outside LimbusCompany_Data/,
+// such as .meta/, are not. It is an error if a revision does not exist.
+func SamePack(twRoot, a, b, langDir string) (bool, error) {
+	if err := checkLangDir(langDir); err != nil {
+		return false, err
+	}
+	left, err := packBlobs(twRoot, a, langDir)
+	if err != nil {
+		return false, err
+	}
+	right, err := packBlobs(twRoot, b, langDir)
+	if err != nil {
+		return false, err
+	}
+	return maps.Equal(left, right), nil
+}
+
+// packBlobs lists the files of the pack in rev, without the version file.
+func packBlobs(twRoot, rev, langDir string) (map[string]string, error) {
+	blobs, err := gitx.TreeBlobs(twRoot, rev, packDir)
+	if err != nil {
+		return nil, err
+	}
+	delete(blobs, packDir+"/Lang/"+langDir+"/Info/version.json")
+	return blobs, nil
+}
+
+// verdict is what the Release rule says of the HEAD of tw.
+type verdict struct {
+	// head is the HEAD of tw, "" when it has no commit.
+	head string
+	// releaseNeeded: head has no Release tag, and its pack is not that of the
+	// latest Release (or there is no Release).
+	releaseNeeded bool
+	// sameAs is the latest Release when the pack of head is its pack.
+	sameAs string
+	// tag is the latest Release tag on head, if it has one.
+	tag string
+}
+
+// decide applies the rule to the HEAD of the tw worktree. It reads commits,
+// tags and trees; no file of the worktree.
+func decide(twRoot, langDir string) (verdict, error) {
+	head, err := gitx.Head(twRoot)
+	if err != nil || head == "" {
+		return verdict{}, err
+	}
+	d := verdict{head: head}
+	onHead, err := gitx.TagsAt(twRoot, TagPrefix)
+	if err != nil {
+		return verdict{}, err
+	}
+	d.tag = latestRelease(onHead)
+	last, err := LastRelease(twRoot)
+	if err != nil {
+		return verdict{}, err
+	}
+	if last != "" {
+		same, err := SamePack(twRoot, head, last, langDir)
+		if err != nil {
+			return verdict{}, err
+		}
+		if same {
+			d.sameAs = last
+		}
+	}
+	// A commit with a Release tag has its Release; one without it, that an
+	// earlier run made and whose Release did not follow, is still due it if
+	// the pack is not the one the last Release has.
+	d.releaseNeeded = len(onHead) == 0 && d.sameAs == ""
+	return d, nil
+}
+
+// Check is what CheckTW says of the HEAD of tw. The JSON keys are read by the
+// workflow.
+type Check struct {
+	// TWCommit is the HEAD of tw, "" when it has no commit.
+	TWCommit string `json:"tw_commit"`
+	// ReleaseNeeded is whether a Release must be made from TWCommit, as for
+	// Result.
+	ReleaseNeeded bool `json:"release_needed"`
+	// SameAs is the latest Release when the pack of TWCommit is its pack, "" if
+	// not (always printed).
+	SameAs string `json:"same_as"`
+	// Tag is the latest Release tag on TWCommit: the Release it has; "" if it
+	// has none. It is not the tag of the next Release, which only a build
+	// (Result.Tag) can number.
+	Tag string `json:"tag"`
+}
+
+func (c Check) String() string {
+	switch {
+	case c.TWCommit == "":
+		return "tw has no commit: no Release needed"
+	case c.ReleaseNeeded:
+		return fmt.Sprintf("tw at %s: release needed", c.TWCommit)
+	case c.Tag != "":
+		return fmt.Sprintf("tw at %s: released as %s", c.TWCommit, c.Tag)
+	default:
+		return fmt.Sprintf("tw at %s: release not needed, the pack is the one of %s", c.TWCommit, c.SameAs)
+	}
+}
+
+// CheckTW says whether a Release would be due for the commit tw is at, as Run
+// says it after a build, but reading only what git holds: the HEAD, the tags
+// and the trees of tw. It commits nothing and writes nothing, and needs no
+// build: neither .meta/build.json nor the zips. The files of the worktree,
+// committed or not, are not read. langDir is as for Run.
+func CheckTW(twRoot, langDir string) (*Check, error) {
+	if err := checkLangDir(langDir); err != nil {
+		return nil, err
+	}
+	d, err := decide(twRoot, langDir)
+	if err != nil {
+		return nil, err
+	}
+	return &Check{TWCommit: d.head, ReleaseNeeded: d.releaseNeeded, SameAs: d.sameAs, Tag: d.tag}, nil
+}
+
 // Result is what Run did. The JSON keys are read by the workflow.
 type Result struct {
 	// TWCommit is the HEAD of the tw worktree: the commit the Release is made
@@ -109,10 +282,16 @@ type Result struct {
 	// Assets are the files to attach to the Release: the zip with the text
 	// only, then the zip that also holds the font.
 	Assets []string `json:"assets"`
-	// ReleaseNeeded is whether a Release must be made from TWCommit: this run
-	// committed it (Changed), or it has no Release tag yet, as when an earlier
-	// run committed it and the Release did not follow.
+	// ReleaseNeeded is whether a Release must be made from TWCommit: it has no
+	// Release tag, and the pack in it is not the pack of the latest Release
+	// (see LastRelease), or there is none yet. A commit that has no Release
+	// tag because an earlier run committed it and the Release did not follow
+	// is still due its Release.
 	ReleaseNeeded bool `json:"release_needed"`
+	// SameAs is the latest Release, when the pack of TWCommit is the pack of
+	// that Release (see SamePack); it is empty when the pack differs or there
+	// is no Release yet, and the key is left out then.
+	SameAs string `json:"same_as,omitempty"`
 }
 
 func (r Result) String() string {
@@ -123,6 +302,8 @@ func (r Result) String() string {
 	release := "not needed"
 	if r.ReleaseNeeded {
 		release = "needed"
+	} else if r.SameAs != "" {
+		release += ", the pack is the one of " + r.SameAs
 	}
 	s := fmt.Sprintf("%s: tw %s at %s, release %s\nnotes: %s\nassets:", r.Tag, state, r.TWCommit, release, r.NotesPath)
 	for _, a := range r.Assets {
@@ -146,10 +327,12 @@ func (r Result) String() string {
 // committed and TWCommit is the HEAD of tw. The tag is the next free one of
 // the day of the snapshot, so until a Release with it exists (its tag is in
 // the repo), running again gives the same tag. Result.ReleaseNeeded says
-// whether a Release is due for TWCommit.
+// whether a Release is due for TWCommit: only when its pack differs from that
+// of the latest Release. tw is committed and the notes are written whatever it
+// says.
 func Run(root, twRoot, outDir, langDir string) (*Result, error) {
-	if langDir == "" || langDir == "." || strings.ContainsAny(langDir, `/\`) || !filepath.IsLocal(langDir) {
-		return nil, fmt.Errorf("publish: language directory %q is not a plain name", langDir)
+	if err := checkLangDir(langDir); err != nil {
+		return nil, err
 	}
 	info, err := build.ReadInfo(twRoot)
 	if err != nil {
@@ -194,22 +377,18 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 		return nil, err
 	}
 
-	// A commit that was made before, by a run whose Release did not follow,
-	// still needs its Release.
-	releaseNeeded := changed
-	if !changed {
-		tags, err := gitx.TagsAt(twRoot, TagPrefix)
-		if err != nil {
-			return nil, err
-		}
-		releaseNeeded = len(tags) == 0
+	// Whether the commit, made now or by an earlier run whose Release did not
+	// follow, needs a Release: whether its pack differs from the last one.
+	d, err := decide(twRoot, langDir)
+	if err != nil {
+		return nil, err
 	}
 
 	notesPath := filepath.Join(outDir, notesName)
 	if err := os.WriteFile(notesPath, Notes(info, sum, tag), 0o644); err != nil {
 		return nil, err
 	}
-	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: releaseNeeded}, nil
+	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: d.releaseNeeded, SameAs: d.sameAs}, nil
 }
 
 // checkZip refuses the zip at name unless it is a file with the sha256 that
