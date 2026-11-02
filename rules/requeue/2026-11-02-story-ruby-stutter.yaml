@@ -1,0 +1,4 @@
+# 結巴地唸出良秀本名 요시히데 的兩句，story-ruby-yoshihide 只能處理完整的
+# 「良秀」，片段要譯者補上 ruby（guides/base.md「ruby（劇情與其他檔案）」）。
+reason: 'KR 結巴地唸出良秀的本名 요시히데：依 guides/base.md 的 ruby 規則，每個唸出的片段都加 ruby（例如「<ruby=Yoshi>良</ruby>、<ruby=Yoshihide>良秀</ruby>姊姊」「<ruby=Yoshi>良</ruby>……<ruby=hide>秀</ruby>……」），其餘沿用原譯'
+keys: ['StoryData/S926I1.json|/dataList/6/content', 'StoryData/S951B.json|/dataList/46/content']
