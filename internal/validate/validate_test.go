@@ -390,6 +390,18 @@ func TestStyleWarnings(t *testing.T) {
 	}
 }
 
+// The reading of a ruby may be written in kana (guides/base.md: 良秀 read
+// ヨシヒデ), so kana inside a tag is not reported; kana in the text still is.
+func TestKanaInsideTagsIsNotText(t *testing.T) {
+	const kr = `<ruby=요시히데>료슈</ruby>`
+	if _, ok := find(Check(kr, "別叫我<ruby=ヨシヒデ>良秀</ruby>", Context{}), CodeKana); ok {
+		t.Error("a kana ruby reading is reported as kana")
+	}
+	if _, ok := find(Check(kr, "<ruby=ヨシヒデ>良秀</ruby>です", Context{}), CodeKana); !ok {
+		t.Error("kana in the text next to a ruby is not reported")
+	}
+}
+
 func TestHalfwidthPunctIgnoresMarkup(t *testing.T) {
 	// The tag sits between the Chinese text and the comma, but the reader
 	// sees them touch.
@@ -574,6 +586,10 @@ func TestStoryMayAddRuby(t *testing.T) {
 	if issues := Check(kr, zh, Context{File: story}); HasHard(issues) {
 		t.Errorf("a story line with added ruby is rejected: %+v", issues)
 	}
+	// RPG dialogue is story text too (guides/base.md).
+	if issues := Check(kr, zh, Context{File: "RPGSystem/rpg-loc-dialogue-floor-2.json"}); HasHard(issues) {
+		t.Errorf("an RPG dialogue line with added ruby is rejected: %+v", issues)
+	}
 	const one = `還有，別叫我良秀，叫我<ruby=Ryōshū>良秀</ruby>。`
 	const krRuby = `베라, <ruby=천퇴성>삽시호</ruby>.`
 	if issues := Check(krRuby, `<ruby=貝拉>Vera</ruby>，<ruby=天退星>插翅虎</ruby>。`, Context{File: story}); HasHard(issues) {
@@ -583,6 +599,7 @@ func TestStoryMayAddRuby(t *testing.T) {
 		name, file, kr, zh, diff string
 	}{
 		{"not a story file", "Skills.json", kr, one, ": unexpected </ruby> <ruby=Ryōshū>"},
+		{"an RPG label is not story text", "RPGSystem/rpg-loc-quest-1.json", kr, one, ": unexpected </ruby> <ruby=Ryōshū>"},
 		{"file unknown", "", kr, one, ": unexpected </ruby> <ruby=Ryōshū>"},
 		{"KR's ruby dropped", story, krRuby, `貝拉，插翅虎。`, ": missing </ruby> <ruby=천퇴성>"},
 		{"opening without closing", story, kr, `還有，別叫我<ruby=Yoshihide>良秀。`, ": unexpected <ruby=Yoshihide>"},
@@ -715,6 +732,41 @@ func TestLanguageStyleTagsDoNotHideOtherDifferences(t *testing.T) {
 
 // A tag KR opens and never closes (the lyric <style="dkr">, a lone <size=20>)
 // may be closed in zh: the official EN text does so.
+// KR sometimes closes a tag it never opens (the lyric
+// `<style="dkr">몸을 둥글게</size> 말고`): the translation may open it, as JP
+// does, before that closing tag (guides/base.md), as often as KR leaves it
+// unopened.
+func TestOpeningTagForUnopenedKRClosing(t *testing.T) {
+	const kr = `<style="dkr">몸을 둥글게</size> 말고`
+	for _, zh := range []string{
+		`<style="djp">團成一個<size=20>小球</size></style>`,
+		`<style="djp">團成一個小球</size></style>`,
+	} {
+		if issues := Check(kr, zh, Context{File: "BgmLyrics/BgmLyrics_Cromer2.json"}); HasHard(issues) {
+			t.Errorf("Check(%q, %q) rejects it: %+v", kr, zh, issues)
+		}
+	}
+	tests := []struct {
+		name, kr, zh, diff string
+	}{
+		{"KR's tags are balanced", `<size=20>가</size>`, `<size=20><size=20>甲</size>`, ": unexpected <size=20>"},
+		{"more openings than KR leaves unopened", kr, `<style="djp"><size=20>團成<size=20>一個小球</size></style>`, ": unexpected <size=20>"},
+		{"opened after the closing", kr, `<style="djp">團成一個小球</size><size=20></style>`, ": unexpected <size=20>"},
+		{"another tag opened", kr, `<style="djp">團成一個<b>小球</size></style>`, ": unexpected <b>"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch)
+			if !ok {
+				t.Fatalf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+			if want := "tags differ from KR" + tc.diff + "; opening tags"; !strings.Contains(is.Message, want) {
+				t.Errorf("message %q does not contain %q", is.Message, want)
+			}
+		})
+	}
+}
+
 func TestExtraClosingTagForUnclosedKRTag(t *testing.T) {
 	tests := []struct {
 		name, kr, zh string

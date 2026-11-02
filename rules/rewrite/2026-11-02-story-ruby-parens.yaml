@@ -1,9 +1,0 @@
-# 劇情的 ruby 改為保留（guides/base.md「ruby（劇情與其他檔案）」）。舊規則把
-# 參考譯文的 <ruby=X>Y</ruby> 改寫成半形括號「Y(X)」，這個檔把 17 個劇情檔
-# 裡這樣寫的 30 句改回 ruby。pattern 逐一列出這些句子的 Y（最長的放前面，
-# 例如「夜良秀苦」在「良秀」之前），只配對緊接其後的半形括號。
-reason: 劇情的 ruby 要保留為標籤：把「Y(X)」改回 <ruby=X>Y</ruby>
-files: [StoryData/2D301B.json, StoryData/4D105B.json, StoryData/4D206A.json, StoryData/4D305I.json, StoryData/E723B.json, StoryData/E914B.json, StoryData/E924B.json, StoryData/P10812.json, StoryData/S002B.json, StoryData/S611B.json, StoryData/S832B.json, StoryData/S833I6.json, StoryData/S901B.json, StoryData/S931B.json, StoryData/S941B.json, StoryData/S947B.json, StoryData/S949A.json]
-origins: [claude]
-pattern: '(夜良秀苦|良秀|良|秀|笠|異常|異象|奇怪|以上|河戎|研心|鴻璐|自我|你唔可仍|得刀茲由|蜘支朝|噗撤低斬端|的花)\(([^()]+)\)'
-replace: '<ruby=${2}>${1}</ruby>'

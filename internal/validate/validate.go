@@ -203,7 +203,11 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 // that ends zh (see trailingClosings). Tags without a closing tag (<br>,
 // <sprite>) never take part.
 //
-// With addRuby, the text of a story file, zh may also hold <ruby=…>…</ruby>
+// The other way round, zh may open a tag that KR closes and never opens
+// (base.md): per tag name, as many extra openings as KR has closings without
+// an opening, less the openings zh leaves unclosed.
+//
+// With addRuby, the text of a story file (StoryData/ or RPG dialogue), zh may also hold <ruby=…>…</ruby>
 // pairs KR does not have (base.md: the ruby of a story line is kept even
 // where KR writes no ruby, such as 良秀 read Yoshihide or Ryōshū), as long as
 // the ruby tags of zh, taken alone, open and close in turn. A ruby of KR still
@@ -226,6 +230,12 @@ func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 	}
 	krKeys, krWritten := split(kr)
 	zhKeys, zhWritten := split(zh)
+	zhNames := map[string]string{} // comparison key of an opening tag of zh -> its lower-case name
+	for _, tok := range Tags(zh) {
+		if name, closing := tagName(tok); !closing {
+			zhNames[comparableTag(tok)] = strings.ToLower(name)
+		}
+	}
 	missing, extra = multisetDiff(krKeys, zhKeys)
 	unclosed := unclosedTags(kr)
 	atEnd := map[string]int{}
@@ -242,6 +252,15 @@ func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 		atEnd[name]--
 		return true
 	})
+	// KR may close a tag it never opens (the lyric `몸을 둥글게</size> 말고`):
+	// zh may open it, as JP does, as often as KR leaves it unopened, but only
+	// openings that zh closes again (see openLeft) count.
+	for name, allowed := range unopenedTags(kr) {
+		isOpening := func(key string) bool { return zhNames[key] == name }
+		if n := min(allowed, countKeys(extra, isOpening)-openLeft(zh)[name]); n > 0 {
+			extra = dropKeys(extra, isOpening, n)
+		}
+	}
 	if addRuby && rubyPaired(zh) {
 		added := min(countKeys(extra, isRubyOpen), countKeys(extra, isRubyClose))
 		extra = dropKeys(extra, isRubyOpen, added)
@@ -258,12 +277,17 @@ func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 	return missing, extra
 }
 
-// storyPrefix starts the name of every story file, whose lines may carry a
-// ruby KR does not have (see tagDiff).
-const storyPrefix = "StoryData/"
+// isStory reports whether file, a pack file name, holds story text, whose
+// lines may carry a ruby KR does not have (see tagDiff): a file of StoryData/
+// or the dialogue of the RPG (guides/base.md).
+func isStory(file string) bool { return strings.HasPrefix(file, "StoryData/") || isRPGDialogue(file) }
 
-// isStory reports whether file, a pack file name, is a story file.
-func isStory(file string) bool { return strings.HasPrefix(file, storyPrefix) }
+// isRPGDialogue reports whether file is a dialogue file of the RPG: a file
+// under RPGSystem/ whose name holds "dialogue". The other files of RPGSystem/
+// are labels.
+func isRPGDialogue(file string) bool {
+	return strings.HasPrefix(file, "RPGSystem/") && strings.Contains(path.Base(file), "dialogue")
+}
 
 // isRubyOpen and isRubyClose report whether a comparison key of tagDiff is
 // that of an opening or a closing ruby tag, in any case.
@@ -348,6 +372,38 @@ func unclosedTags(s string) map[string]int {
 		}
 	}
 	return open
+}
+
+// unopenedTags returns, per lower-case tag name, how many more times s closes
+// the tag than it opens it, for the names it closes more often.
+func unopenedTags(s string) map[string]int {
+	unopened := map[string]int{}
+	for name, n := range unclosedTags(s) {
+		if n < 0 {
+			unopened[name] = -n
+		}
+	}
+	return unopened
+}
+
+// openLeft returns, per lower-case tag name, how many openings of s are
+// never closed: a closing tag closes the last opening of its name before it,
+// and one with no such opening closes nothing. Self-closing tags are left
+// out.
+func openLeft(s string) map[string]int {
+	depth := map[string]int{}
+	for _, tok := range Tags(s) {
+		name, closing := tagName(tok)
+		name = strings.ToLower(name)
+		switch {
+		case selfClosing[name]:
+		case !closing:
+			depth[name]++
+		case depth[name] > 0:
+			depth[name]--
+		}
+	}
+	return depth
 }
 
 // nestingProblem returns what is wrong with the nesting of the tags of s, or
@@ -450,7 +506,9 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
 	// ・ (U+30FB) is a middle dot that Chinese text uses, so it is not kana.
 	var kana []string
-	for _, r := range zh {
+	// The reading of a ruby may be kana (base.md: 良秀 read ヨシヒデ); tags
+	// are not text.
+	for _, r := range tagRe.ReplaceAllString(zh, "") {
 		if r >= 0x3040 && r <= 0x30FF && r != 0x30FB {
 			kana = append(kana, string(r))
 		}
@@ -539,7 +597,7 @@ func halfwidthPunct(s string) []string {
 // dialogue. Labels use the full-width （） (see guides/families.md). Tags are
 // not text.
 func halfwidthBrackets(file, zh string) []string {
-	if !strings.HasPrefix(file, "RPGSystem/") || strings.Contains(path.Base(file), "dialogue") {
+	if !strings.HasPrefix(file, "RPGSystem/") || isRPGDialogue(file) {
 		return nil
 	}
 	var found []string
