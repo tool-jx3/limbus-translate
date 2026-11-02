@@ -1,0 +1,8 @@
+# lct suggest：inconsistent/identity/desc/1f31fef0。人格語音的分類標籤
+# `EX CLEAR 전투 승리`，192 個單位寫「EX CLEAR戰鬥勝利」，只有
+# Voice_Sinclair_Contem_11016 一個空格（guides/families.md「人格語音的分類標籤」）。
+reason: 人格語音的分類標籤 EX CLEAR 전투 승리 寫「EX CLEAR戰鬥勝利」
+files: [PersonalityVoiceDlg/**]
+pattern: '^EX CLEAR 戰鬥勝利$'
+replace: 'EX CLEAR戰鬥勝利'
+kr_pattern: '^EX CLEAR 전투 승리$'
