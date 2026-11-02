@@ -122,7 +122,8 @@ jobs:
       # the model sees the exit status and ends. And a rules PR that is open and
       # waits for review is the usual state, so finding it proves nothing. A run
       # that says it published must have left a suggestion in the PR that the
-      # PR did not have when the run began (work/proposal/exclude.txt); one that
+      # PR did not have when the run began (work/proposal/exclude.txt), an item
+      # it lists under 需要人決定 for a person to decide included; one that
       # proposed nothing says so in a notice and stays green, unless it says it
       # ran on a person's machine (it did not find work/proposal/started.json);
       # anything else is an error. The PR is looked up by its branch: the label

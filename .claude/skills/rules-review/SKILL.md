@@ -32,7 +32,7 @@ allowed-tools:
 - 不讀 `.git/` 底下的檔案（那裡可能有 git 的憑證），也不把看起來像 token 或金鑰的字串寫進說明或規則檔；`bin/lct proposal publish` 會拒絕含有這類字串的說明與修改
 - 規則改了不會自動重翻舊譯文。要重翻，只能附一個重翻要求檔，範圍要小而明確；合併 PR 即代表人同意重翻
 - 回合有限：一次最多處理 8 個建議，依 `bin/lct suggest` 給的順序（第 1 步只取這 8 個）。處理完一定接著做第 3 到 5 步（檢查、影響評估、說明、收尾），不因為還有建議就停下；沒輪到的下次執行再處理
-- 沒有把握的項目不改、不列，下次還會再提出；`note` 例外：建置只列上次建置後新增的備註，每則備註只提出一次，這次沒處理就不會再出現
+- 沒有把握的項目（需要詞彙或指引以外的決定、證據不足、規則互相衝突）不改檔、也不記進 `rules/declined.yaml`：列在說明的 `## 需要人決定` 一節，附標記與一行理由，交給人決定。它進了規則 PR 就不會再提出，不會每次都佔住前 8 個的位置。`note` 尤其要列：建置只列上次建置後新增的備註，每則備註只提出一次，沒列就不會再出現
 
 ## 流程
 
@@ -46,7 +46,7 @@ allowed-tools:
    - `suggestions` 是空的：不寫說明檔、不執行 publish；第 5 步寫 `nothing: 沒有新的建議`，結束
    - CI 且讀得到 `work/proposal/existing-body.md`：已有開著的規則 PR，這是它現在的說明。裡面的項目已在 PR，不重做，第 4 步要保留
 2. 逐項處理（依 `kind`）。每項改完，就在說明裡記下檔案、改了什麼、為什麼：
-   - `inconsistent`：看 `evidence` 裡的各種譯法，依 KR 原文、`guides/` 與 `glossary/terms.yaml` 定一種寫法。寫進指引（`guides/base.md`、`guides/characters/<id>.md` 或族群指引 `guides/families.md`）或詞彙表（`glossary/terms.yaml`，格式見 `glossary/README.md`）。要套用到舊譯文：用 `bin/lct requeue --to-file TOPIC --json --reason R --key K …` 寫重翻要求檔，`--to-file` 一定要接在 `requeue` 後面；範圍是不採用寫法的單位，證據至多 10 列，單位數更多時用 `bin/lct search --text RE --origin claude --origin paratranz --json` 找全，`--origin` 明確寫出以免重翻人工調整過的。`--reason` 會原樣交給翻譯者，寫成它能照做的話
+   - `inconsistent`：看 `evidence` 裡的各種譯法（`count` 是用這種譯法的單位數），依 KR 原文、`guides/` 與 `glossary/terms.yaml` 定一種寫法。寫進指引（`guides/base.md`、`guides/characters/<id>.md` 或族群指引 `guides/families.md`）或詞彙表（`glossary/terms.yaml`，格式見 `glossary/README.md`）。要套用到舊譯文：用 `bin/lct requeue --to-file TOPIC --json --reason R --key K …` 寫重翻要求檔，`--to-file` 一定要接在 `requeue` 後面；範圍是不採用寫法的單位，證據至多 10 列，單位數更多時用 `bin/lct search --text RE --origin claude --origin paratranz --json` 找全，`--origin` 明確寫出以免重翻人工調整過的。`--reason` 會原樣交給翻譯者，寫成它能照做的話
    - `speaker`：先用 `bin/lct search --speaker MODEL --json` 看這個 model 的台詞。是既有角色就補進 `guides/characters/<id>.md` 開頭 YAML 的 `models`、`models_other_self` 或 `models_not_this`；是新角色就新增 `guides/characters/<id>.md`（格式見 `guides/README.md`）；路人不需要指引。名稱的譯法可用 `bin/lct glossary derive --source speaker --json` 對照，輸出有數百筆，只找與這個 model 有關的
    - `field`：`add` 是官方資料顯示該欄位不必翻譯（識別欄位，或某檔案群組的欄位）而規則還沒有。看 `evidence` 與 id 裡的欄位，確定它的值不是要翻的文字，才加進 `rules/fields.manual.yaml` 的 `identifier_fields` 或 `group_fields`。`remove` 要重算產生的 `rules/fields.yaml`（不手改）：只在說明建議人執行 `lct fields learn --write`，不改檔
    - `family`：新檔案落在預設族群。在 `guides/routing.yaml` 加族群或擴充某族群的 `match`；順序就是比對順序，較具體的排前面，並依該檔開頭的說明，每個族群也要列進 `priority`。需要專屬指引時寫在 `guides/families.md`
@@ -54,22 +54,23 @@ allowed-tools:
    - `term`：詞彙候選。用 `bin/lct search --text RE --json` 看現有譯文怎麼用，附證據（出現次數、各種譯法）建議採用或不採用。採用就把該條的 `status` 改成 `approved`，必要時補 `forbidden`、`category`
    - `adjustment-moved`、`adjustment-expired`：執行 `bin/lct adjust tidy --json`，它替 key 已移動的調整改 key、刪掉單位已重翻的過期調整；它改的檔列進說明。仍留下的過期調整是 KR 變了、單位還沒重翻，不處理
    - 確定不需要規則的項目（例如只是閒聊的備註、路人說話者）：在 `rules/declined.yaml` 加一筆 `id`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`（今天，`YYYY-MM-DD`），並在說明列出，人可以還原
-   - 需要詞彙或指引以外的決定，或證據不足：不改、不列
+   - 沒有把握（需要詞彙或指引以外的決定、證據不足）：不改檔、不記進 `rules/declined.yaml`，列進說明的 `## 需要人決定`（第 4 步）
 3. 檢查並評估影響：
    - 執行 `bin/lct rules lint --json`。exit 0 才算過；exit 1 會列出有問題的檔，自己寫的檔修正後再跑，`lct` 寫出的檔有問題就在說明回報，不手改
    - 執行 `bin/lct impact --base origin/main --markdown work/proposal/impact.md --json`，結果寫進說明的影響評估。指令失敗就在那一節寫明訊息，不編造數字
 4. 寫說明 `work/proposal/body.md`：
-   - 結構：開頭說明、各項目、最後一節影響評估。開頭說明寫明：這是依 `bin/lct suggest` 整理的規則建議；不要的項目請把它的 id 移到 `rules/declined.yaml`（`id`、`reason`、`date`）並還原該項修改，再合併；關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行
+   - 結構：開頭說明、各項目、最後一節影響評估。開頭說明寫明：這是依 `bin/lct suggest` 整理的規則建議；不要的項目請把它的 id 移到 `rules/declined.yaml`（`id`、`reason`、`date`）並還原該項修改，再合併；關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行；`## 需要人決定` 的項目由人決定，採用就在 PR 補上修改，不採用就記進 `rules/declined.yaml`
    - 每個處理過的項目（寫進 `rules/declined.yaml` 的也算）一節，節的第一行是 `<!-- suggestion:<id> -->`，標記單獨一行，id 與 JSON 的 `id` 完全相同。接著是標題、建議內容（改了哪個檔案；只建議採用與否時寫明）、理由、證據（`key`、KR、現行譯文、出現次數）、有重翻要求檔時寫檔名與範圍。證據裡的原文與譯文放在反引號裡（文字含反引號就用兩個反引號包起來），避免 `@` 提及與標記被解讀
+   - 沒有把握的項目放在 `## 需要人決定` 一節，在影響評估之前。每項一樣以單獨一行的標記開頭，接著標題、一行理由（為什麼沒有把握、要人決定什麼）與證據
    - 最後一節是 `work/proposal/impact.md` 的內容
-   - 有 `work/proposal/existing-body.md` 時，`work/proposal/body.md` 以它的全文為底，原樣保留，不改、不刪任何已有的項目與它的標記；新項目接在影響評估之前；原有的 `## 規則變更的影響評估` 一節換成這次的。`bin/lct proposal publish` 會拒絕少了任何一個已有 id 的說明
+   - 有 `work/proposal/existing-body.md` 時，`work/proposal/body.md` 以它的全文為底，原樣保留，不改、不刪任何已有的項目與它的標記；新的確定項目接在 `## 需要人決定` 之前（沒有這一節就接在影響評估之前），新的需要人決定項目接在這一節最後；原有的 `## 規則變更的影響評估` 一節換成這次的。`bin/lct proposal publish` 會拒絕少了任何一個已有 id 的說明
 5. 收尾。最後一定寫 `work/proposal/outcome.txt`，只有一行，CI 的 workflow 靠它檢查這次做了什麼：
-   - `published`：CI 的 `bin/lct proposal publish` 成功（exit 0）之後才寫
-   - `nothing: <一行理由>`：沒有東西可以提出：沒有有把握的項目、這次沒改任何規則檔，或在本機（不執行 publish）
+   - `published`：CI 的 `bin/lct proposal publish` 成功（exit 0）之後才寫。說明只新增 `## 需要人決定` 的項目、沒改任何規則檔時，也照樣 publish
+   - `nothing: <一行理由>`：只在沒有東西可以提出時寫：沒有有把握的項目，也沒有要列進 `## 需要人決定` 的項目；publish 說沒有可提出的東西；或在本機（不執行 publish）。只是沒改任何規則檔，不算沒有東西可以提出
    - `failed: <一行原因>`：publish 被拒絕或失敗，改正後仍不行
    - CI：執行 `bin/lct proposal publish --body-file work/proposal/body.md --json`，它 commit 規則檔、推分支、開或更新規則 PR，結果有 `url` 與 `created`。不用 git 或 gh
      - exit 1 是被拒絕。訊息說說明少了已有的項目：從 `existing-body.md` 補回；說有 token 或金鑰一類的字串：移掉它（說明與規則檔都不該有）；說沒有標記：補上。改正後再執行，最多重試一次。仍失敗就寫 `failed: …`
-     - 訊息說沒有可提出的修改（這次沒改任何規則檔）：不要為了通過而隨便改一個檔。寫 `nothing: 沒有改任何規則檔`，停止
+     - 訊息說沒有可提出的東西（`nothing to propose`：沒改任何規則檔，說明也沒有開著的 PR 還沒有的項目）：不要為了通過而隨便改一個檔。寫 `nothing: 沒有新的項目`，停止
      - exit 2 寫 `failed: …`，停止並回報
    - 本機：不執行 publish，寫 `nothing: 本機執行，沒有發布`。向人報告改了哪些檔案、`work/proposal/body.md` 的內容，以及哪些建議沒處理。提醒人這些都還沒 commit：請人檢查後自己 commit 到 `main`（或開 PR），CI 會依新規則重建；不要 push `raw`、`tw`
-   - 最後回報：處理了哪些 id、跳過哪些、還有幾個沒輪到（`total` 減去這次取得的數量）、改了哪些檔案；CI 另附 PR 的網址，或沒有發布的原因
+   - 最後回報：處理了哪些 id、列進 `## 需要人決定` 的有哪些、還有幾個沒輪到（`total` 減去這次取得的數量）、改了哪些檔案；CI 另附 PR 的網址，或沒有發布的原因

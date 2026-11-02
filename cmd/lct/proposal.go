@@ -23,7 +23,8 @@ func init() {
 		Name: "proposal publish",
 		Usage: "commit the changes of guides/, glossary/ and rules/ on the rules-proposal/* branch, push it, and open the rules PR or update the open one; " +
 			"refuses any other branch and any other changed file, and a description or a change that holds what looks like a credential; the description holds a <!-- suggestion:ID --> marker, on a line of its own, for each suggestion, " +
-			"and keeps those of the open PR's current description (work/proposal/existing-body.md): " +
+			"and keeps those of the open PR's current description (work/proposal/existing-body.md); with no rule file changed it publishes " +
+			"the suggestions the description adds (a new PR on a commit of no change) and refuses when it adds none: " +
 			"--body-file F [--date YYYY-MM-DD]",
 		Run: runProposalPublish,
 	})

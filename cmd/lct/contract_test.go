@@ -735,6 +735,10 @@ var rulesReviewSays = []skillSays{
 	{"`nothing: ", "the skill does not say what it writes when it proposes nothing, so a run that proposes nothing looks like a failure"},
 	{"`failed: ", "the skill does not say what it writes when lct proposal publish was refused for good, so the workflow cannot tell it from a run that proposed nothing"},
 	{"不要為了通過而", "the skill does not forbid a pointless change to get past the refusal \"nothing to propose\" of lct proposal publish"},
+	{"`## 需要人決定`", "the skill does not say where the items it is unsure of go: an item that is never listed is suggested first again on every run, and the run stalls on it"},
+	{"不記進 `rules/declined.yaml`", "the skill does not keep an item it is unsure of out of the declined list: a person would never decide on it"},
+	{"也照樣 publish", "the skill does not publish a description that only adds items for a person to decide: they would never leave the first 8 suggestions"},
+	{"不算沒有東西可以提出", "the skill writes nothing: whenever it changed no rule file, though its items for a person to decide are something to propose"},
 	{"不要再執行 `go build`", "the skill builds lct again in CI, from the code of the PR branch, over the lct the workflow counted the suggestions with"},
 	{"`.git/`", "the skill does not say it must not read the folder of git, which can hold the credentials of the checkout"},
 	{"`raw`", "the skill does not say it leaves raw alone"},
@@ -836,6 +840,10 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"no outcome for nothing", "`nothing: ", "`none: ", "`nothing: "},
 		{"no outcome for a refusal", "`failed: ", "`error: ", "`failed: "},
 		{"a change to get past the refusal", "不要為了通過而", "可以為了通過而", "不要為了通過而"},
+		{"unsure items left out", "`## 需要人決定`", "（略過）", "`## 需要人決定`"},
+		{"unsure items declined", "不記進 `rules/declined.yaml`", "記進 `rules/declined.yaml`", "不記進 `rules/declined.yaml`"},
+		{"no publish for unsure items only", "也照樣 publish", "就不 publish", "也照樣 publish"},
+		{"nothing whenever no rule file changed", "不算沒有東西可以提出", "就算沒有東西可以提出", "不算沒有東西可以提出"},
 		{"lct built again in CI", "不要再執行 `go build`", "再執行 `go build`", "不要再執行 `go build`"},
 		{"the folder of git not forbidden", "`.git/`", "`.gitignore`", "`.git/`"},
 		{"the mode found out after the build", "work/proposal/started.json", "go build -o bin/lct ./cmd/lct`; work/proposal/started.json", "must come before"},
@@ -3261,6 +3269,7 @@ var readmeRulesPR = []struct{ text, why string }{
 	{"Allow GitHub Actions to create and approve pull requests", "the README does not say that a PR opened with the token of the workflow needs this setting"},
 	{"`TestWorkflowContract`", "the README does not say that the contract test holds the workflow to the setting the fallback changes"},
 	{"最多處理 8 個建議", "the README does not say that a run handles at most 8 suggestions and leaves the rest for the next"},
+	{"需要人決定", "the README does not say what a person does with the items the skill was not sure of"},
 }
 
 // The README tells a person how to set up and handle the rules PR.
@@ -3505,6 +3514,9 @@ func TestRulesProposalOutcomeStep(t *testing.T) {
 		{"published a new suggestion", str("published\n"), pr("intro\n\n"+old+marker("speaker/새 화자")+"\n### new\n", false), 0, true, []string{url}, []string{url}},
 		{"published a new suggestion in a description from the web page", str("published"), pr(strings.ReplaceAll("intro\n\n"+old+marker("note/k/12345678")+"\n### new\n", "\n", "\r\n"), false), 0, true, []string{url}, []string{url}},
 		{"published a new suggestion whose id is like an old one", str("published"), pr(old+marker("term/old one 2")+"\n", false), 0, true, nil, nil},
+		// An item the skill was not sure of has its marker too: a run that
+		// only lists such items has added to the PR.
+		{"published with an item for a person to decide only", str("published"), pr(old+"## 需要人決定\n\n"+marker("term/新 詞")+"\n### 詞彙候選\n\n證據不足。\n", false), 0, true, []string{url}, []string{url, "1 個建議"}},
 		{"published with the old suggestions only", str("published"), pr("intro\n\n"+old+marker("inconsistent/story/content/ab12cd34 한글|x")+"\n", false), 1, true, []string{"::error::", "added nothing", url}, nil},
 		{"published with a description that has no marker", str("published"), pr("a description a person rewrote\n", false), 1, true, []string{"::error::", "added nothing"}, nil},
 		{"published with no rules PR open", str("published"), "[]", 1, true, []string{"::error::", "no open rules PR", "rules-proposal/2026-11-05"}, nil},

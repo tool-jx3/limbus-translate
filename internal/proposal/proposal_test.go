@@ -960,14 +960,83 @@ func TestProposalPublishNeedsAGitIdentity(t *testing.T) {
 	}
 }
 
+// What a run proposes is the rule files it changed or the suggestions its
+// description adds, such as those it lists under 「需要人決定」 for a person to
+// decide: with neither, there is nothing to propose.
 func TestProposalPublishNeedsSomethingToPropose(t *testing.T) {
 	e := newEnv(t)
-	e.onBranch("rules-proposal/2026-11-05")
+	const branch = "rules-proposal/2026-11-05"
+	e.onBranch(branch, "speaker/새 화자")
+	e.git("commit", "-q", "--allow-empty", "-m", "rules: proposal 2026-11-05")
+	e.git("push", "-q", "origin", branch)
+	headBefore := e.git("rev-parse", "HEAD")
+	e.setPRs([]ghPR{{Number: 5, URL: "u5", HeadRefName: branch, Body: body("speaker/새 화자", "term/신규 용어")}}, nil)
+
 	_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
-	mustRefuse(t, err, "origin/main")
-	if strings.Contains(e.originGit("for-each-ref", "refs/heads"), "rules-proposal") || len(e.calls()) != 0 {
-		t.Error("the branch was pushed or gh was called")
+	mustRefuse(t, err, "nothing to propose", "#5")
+	if e.git("rev-parse", "HEAD") != headBefore || len(e.callsOf("pr", "edit")) != 0 {
+		t.Error("something was committed, or the PR was edited")
 	}
+}
+
+// A run whose description only adds suggestions, the items it lists under
+// 「需要人決定」 for one, and changes no rule file still publishes: the open PR
+// gets the new description, and without one a PR is opened on a commit of no
+// change, as a PR needs a commit that main does not have. The suggestions are
+// then in a PR, and the next run leaves them out instead of finding them again.
+func TestProposalPublishOnlyNewSuggestions(t *testing.T) {
+	undecided := "## 需要人決定\n\n<!-- suggestion:speaker/새 화자 -->\n### 新說話者 `새 화자`\n\n台詞太少，看不出是誰。\n"
+
+	t.Run("no PR open", func(t *testing.T) {
+		e := newEnv(t)
+		const branch = "rules-proposal/2026-11-05"
+		e.onBranch(branch)
+		e.write("work/proposal/body.md", undecided)
+		base := e.git("rev-parse", "origin/main")
+
+		got, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+		if err != nil {
+			t.Fatal(err)
+		}
+		head := e.git("rev-parse", "HEAD")
+		if !got.Created || got.Commit != head || e.originGit("rev-parse", "refs/heads/"+branch) != head {
+			t.Errorf("Published = %+v, origin has %s; want a PR opened at HEAD %s", got, e.originGit("rev-parse", "refs/heads/"+branch), head)
+		}
+		if parent := e.git("rev-parse", "HEAD~1"); parent != base {
+			t.Errorf("the commit is on %s, want origin/main %s", parent, base)
+		}
+		if files := e.git("show", "--name-only", "--format=", "HEAD"); files != "" {
+			t.Errorf("the commit changes %q, want no file", files)
+		}
+		if msg := e.git("log", "-1", "--format=%B"); msg != "rules: proposal 2026-11-05" {
+			t.Errorf("commit message = %q", msg)
+		}
+		if len(e.callsOf("pr", "create")) != 1 {
+			t.Errorf("gh calls = %q, want a PR created", e.calls())
+		}
+	})
+
+	t.Run("a PR open", func(t *testing.T) {
+		e := newEnv(t)
+		const branch = "rules-proposal/2026-11-05"
+		e.pushBranch(branch, "guides/README.md", "proposed before\n")
+		e.git("fetch", "-q", "origin")
+		e.git("checkout", "-q", "-B", branch, "origin/"+branch)
+		e.setPRs([]ghPR{{Number: 5, URL: "u5", HeadRefName: branch, Body: body("term/신규 용어")}}, nil)
+		e.write("work/proposal/body.md", body("term/신규 용어")+undecided)
+		headBefore := e.git("rev-parse", "HEAD")
+
+		got, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got.Created || got.URL != "u5" || got.Commit != headBefore {
+			t.Errorf("Published = %+v, want PR 5 updated and no commit", got)
+		}
+		if edit := e.callsOf("pr", "edit"); len(edit) != 1 {
+			t.Errorf("pr edit calls = %q, want one", edit)
+		}
+	})
 }
 
 func TestProposalPublishPushesEarlierCommitsAfterAFailedPush(t *testing.T) {

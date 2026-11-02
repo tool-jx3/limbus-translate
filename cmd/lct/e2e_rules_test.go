@@ -326,6 +326,7 @@ const (
 	busZH           = "巴士會準時發車。"
 	busHint         = "與 StoryData/S2.json 的同一句統一，譯為「巴士會準時發車。」"
 	stopKR          = "정거장"
+	undecidedKR     = "배차"         // a candidate the skill is not sure of
 	rulesDay        = "2026-11-05" // the day of the second update; rules-proposal.yml runs after it
 	rulesBranch     = proposal.BranchPrefix + rulesDay
 	rulesNextDay    = "2026-11-06"
@@ -340,11 +341,12 @@ const (
 // translated in two ways, the new speaker, and the adjustment of S1 that the
 // inserted line moved down one line.
 var (
-	inconsistentID = "inconsistent/story-main/content/" + sha8Hex(busKR)
-	speakerID      = "speaker/" + newSpeaker
-	movedID        = "adjustment-moved/" + p2Content(s1, 2)
-	stopTermID     = "term/" + stopKR
-	loopIDs        = []string{movedID, inconsistentID, speakerID}
+	inconsistentID  = "inconsistent/story-main/content/" + sha8Hex(busKR)
+	speakerID       = "speaker/" + newSpeaker
+	movedID         = "adjustment-moved/" + p2Content(s1, 2)
+	stopTermID      = "term/" + stopKR
+	undecidedTermID = "term/" + undecidedKR
+	loopIDs         = []string{movedID, inconsistentID, speakerID}
 )
 
 func sha8Hex(text string) string {
@@ -585,12 +587,21 @@ func (r *rulesLoop) readExclude() []string {
 // marker, and no suggestion.
 const (
 	proposalOpening = "這是依 `lct suggest` 整理的規則建議。不要的項目請把它的 id 移到 `rules/declined.yaml`（`id`、`reason`、`date`）並還原該項修改，再合併；" +
-		"關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行。\n\n"
-	impactHeading = "## 規則變更的影響評估"
+		"關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行；" +
+		"`## 需要人決定` 的項目由人決定，採用就在 PR 補上修改，不採用就記進 `rules/declined.yaml`。\n\n"
+	impactHeading    = "## 規則變更的影響評估"
+	undecidedHeading = "## 需要人決定\n\n"
 )
 
 func proposalSection(id, title, text string) string {
 	return "<!-- suggestion:" + id + " -->\n### " + title + "\n\n" + text + "\n\n"
+}
+
+// undecidedSection is the section the skill writes for the candidate it is not
+// sure of: under 「需要人決定」, with its marker and one line of reason, and no
+// change to a file.
+func undecidedSection() string {
+	return proposalSection(undecidedTermID, "詞彙候選：`"+undecidedKR+"`", "只有一句台詞用到，看不出要不要統一譯名，請人決定。")
 }
 
 // writeProposalBody writes work/proposal/body.md as the skill does: from the
@@ -748,16 +759,19 @@ func TestRulesLoopReplay(t *testing.T) {
 	}
 	mainBefore := r.originHead("main")
 
-	// 4. A person adds a glossary candidate on main; rebuild.yml builds again
-	// and releases nothing, as the pack has not changed; rules-proposal.yml
-	// runs again. The branch of the open PR is checked out with main merged
-	// into it, and what the PR holds is not suggested again: only the new
-	// candidate is. The skill turns it down in rules/declined.yaml, keeps the
-	// description of the PR and adds its section; publish updates the PR.
+	// 4. A person adds two glossary candidates on main; rebuild.yml builds
+	// again and releases nothing, as the pack has not changed;
+	// rules-proposal.yml runs again. The branch of the open PR is checked out
+	// with main merged into it, and what the PR holds is not suggested again:
+	// only the new candidates are. The skill turns one down in
+	// rules/declined.yaml and lists the other, which it is not sure of, under
+	// 「需要人決定」; it keeps the description of the PR and adds its
+	// sections; publish updates the PR.
 	r.git("checkout", "-q", "main")
-	appendTestFile(t, r.root, "glossary/terms.yaml", "\n- kr: "+stopKR+"\n  zh: 停靠站\n  status: candidate\n  category: [general]\n")
+	appendTestFile(t, r.root, "glossary/terms.yaml", "\n- kr: "+stopKR+"\n  zh: 停靠站\n  status: candidate\n  category: [general]\n"+
+		"\n- kr: "+undecidedKR+"\n  zh: 班次\n  status: candidate\n  category: [general]\n")
 	mustLct(t, nil, "rules", "lint")
-	r.commitMain("glossary: a candidate")
+	r.commitMain("glossary: two candidates")
 	if _, _, pub := r.rebuild(); !pub.Changed || pub.ReleaseNeeded || pub.SameAs != "zh-TW-20261105.2" {
 		t.Errorf("rebuild after a glossary candidate: publish = %+v, want tw committed and no Release, as the pack is the one of zh-TW-20261105.2", pub)
 	}
@@ -781,7 +795,7 @@ func TestRulesLoopReplay(t *testing.T) {
 	// The rules of the branch answer the speaker and the moved adjustment
 	// already; the inconsistent translation is still found, and left out.
 	sug = r.suggestions()
-	if got, want := suggestionIDsOf(sug), sortedIDs([]string{stopTermID}, candidates); !slices.Equal(got, want) || sug.Excluded != base+1 {
+	if got, want := suggestionIDsOf(sug), sortedIDs([]string{stopTermID, undecidedTermID}, candidates); !slices.Equal(got, want) || sug.Excluded != base+1 {
 		t.Errorf("suggest = %q (%d excluded), want %q and the inconsistent translation excluded", got, sug.Excluded, want)
 	}
 	declined := string(readFile(t, filepath.Join(r.root, declinedFile)))
@@ -789,7 +803,8 @@ func TestRulesLoopReplay(t *testing.T) {
 		"- id: \""+stopTermID+"\"\n  reason: 只出現在一句台詞，不需要統一譯名\n  date: "+rulesDay+"\n")
 	mustLct(t, nil, "rules", "lint")
 	calls = len(r.github().Calls)
-	body = r.writeProposalBody(existing, proposalSection(stopTermID, "詞彙候選：`"+stopKR+"`", "不採用，記在 `"+declinedFile+"`。"))
+	body = r.writeProposalBody(existing, proposalSection(stopTermID, "詞彙候選：`"+stopKR+"`", "不採用，記在 `"+declinedFile+"`。"),
+		undecidedHeading, undecidedSection())
 	updated := r.publishProposal()
 	if updated.Branch != rulesBranch || updated.URL != published.URL || updated.Created || updated.Commit != r.git("rev-parse", "HEAD") {
 		t.Errorf("second proposal publish = %+v, want PR 1 updated from HEAD", updated)
@@ -801,7 +816,7 @@ func TestRulesLoopReplay(t *testing.T) {
 	if len(open) != 1 || open[0].Number != 1 || open[0].Body != body {
 		t.Fatalf("open PRs = %+v, want PR 1 with the new description", open)
 	}
-	if got, want := markerIDs(open[0].Body), []string{inconsistentID, speakerID, movedID, stopTermID}; !slices.Equal(got, want) {
+	if got, want := markerIDs(open[0].Body), []string{inconsistentID, speakerID, movedID, stopTermID, undecidedTermID}; !slices.Equal(got, want) {
 		t.Errorf("the PR has the suggestions %q, want %q", got, want)
 	}
 	if got := r.originHead(rulesBranch); got != updated.Commit {
@@ -811,7 +826,19 @@ func TestRulesLoopReplay(t *testing.T) {
 		t.Errorf("the rules PR changes %q, want only the rule files %q", got, want)
 	}
 	if got := r.originHead("main"); got == mainBefore || got != r.git("rev-parse", "main") {
-		t.Errorf("origin's main is at %s, want the commit of the glossary candidate %s and nothing of the PR", got, r.git("rev-parse", "main"))
+		t.Errorf("origin's main is at %s, want the commit of the glossary candidates %s and nothing of the PR", got, r.git("rev-parse", "main"))
+	}
+
+	// rules-proposal.yml runs once more while the PR is open: the candidate
+	// listed under 「需要人決定」 is in the PR and is left out, like the one
+	// that was turned down; nothing of the PR holds a place among the next
+	// suggestions.
+	if third := r.start(rulesDay); !slices.Equal(third.Existing, sortedIDs(loopIDs, []string{stopTermID, undecidedTermID})) {
+		t.Errorf("third proposal start = %+v, want every id of the PR existing", third)
+	}
+	sug = r.suggestions()
+	if got, want := suggestionIDsOf(sug), sortedIDs(candidates); !slices.Equal(got, want) || sug.Excluded != base+3 {
+		t.Errorf("suggest with the PR open = %q (%d excluded), want %q, and the declined, the undecided and the inconsistent ids excluded", got, sug.Excluded, want)
 	}
 
 	// 5. A person closes the PR without merging it. The next run takes the
@@ -819,7 +846,7 @@ func TestRulesLoopReplay(t *testing.T) {
 	// declined: none of them is suggested again.
 	r.editGitHub(func(gh *fakeGitHub) { gh.PRs[0].State = "CLOSED" })
 	closed := r.start(rulesDay)
-	allIDs := sortedIDs(loopIDs, []string{stopTermID})
+	allIDs := sortedIDs(loopIDs, []string{stopTermID, undecidedTermID})
 	if want := (proposal.Started{Branch: rulesBranch + "-2", Existing: []string{}, Declined: allIDs, Handled: []string{}}); !reflect.DeepEqual(closed, want) {
 		t.Errorf("proposal start after the PR was closed = %+v, want %+v", closed, want)
 	}
@@ -876,9 +903,44 @@ func TestRulesLoopReplay(t *testing.T) {
 	if want := (proposal.Started{Branch: proposal.BranchPrefix + rulesNextDay, Existing: []string{}, Declined: []string{}, Handled: []string{inconsistentID}}); !reflect.DeepEqual(final, want) {
 		t.Errorf("proposal start after the merge = %+v, want %+v", final, want)
 	}
+	// The candidate that was left for a person to decide is still a
+	// candidate: the merge did not decide it, so it is suggested again.
 	sug = r.suggestions()
-	if got, want := suggestionIDsOf(sug), sortedIDs(candidates); !slices.Equal(got, want) || sug.Excluded != base+2 {
+	if got, want := suggestionIDsOf(sug), sortedIDs(candidates, []string{undecidedTermID}); !slices.Equal(got, want) || sug.Excluded != base+2 {
 		t.Errorf("suggest after the merge = %q (%d excluded), want %q, the handled and the declined id excluded", got, sug.Excluded, want)
+	}
+
+	// 7. The skill is still not sure of it, and only lists it under
+	// 「需要人決定」: no rule file changes, and publish opens a PR on a commit
+	// of no change, which holds the item. The next run leaves it out.
+	calls = len(r.github().Calls)
+	body = r.writeProposalBody("", undecidedHeading, undecidedSection())
+	second := r.publishProposal()
+	if second.Branch != final.Branch || second.URL != "https://github.com/o/r/pull/2" || !second.Created || second.Commit != r.git("rev-parse", "HEAD") {
+		t.Errorf("proposal publish of an item to decide only = %+v, want PR 2 opened from %s at HEAD", second, final.Branch)
+	}
+	if got, want := r.ghCallsSince(calls), []string{"pr list", "label create", "pr create"}; !slices.Equal(got, want) {
+		t.Errorf("gh calls of publish = %q, want %q", got, want)
+	}
+	if parent := r.git("rev-parse", "HEAD~1"); parent != r.originHead("main") || r.originHead(final.Branch) != second.Commit {
+		t.Errorf("the branch is at %s on %s, origin has %s; want one commit on origin's main %s, pushed", second.Commit, parent, r.originHead(final.Branch), r.originHead("main"))
+	}
+	if got := r.changedOnOrigin(final.Branch); len(got) != 0 {
+		t.Errorf("the PR of an item to decide changes %q, want no file", got)
+	}
+	open = r.openPRs()
+	if len(open) != 1 || open[0].Number != 2 || open[0].Body != body {
+		t.Fatalf("open PRs = %+v, want PR 2 with the description", open)
+	}
+	if added := missingFrom(markerIDs(open[0].Body), r.readExclude()); !slices.Equal(added, []string{undecidedTermID}) {
+		t.Errorf("the PR adds %q, want %q (what the last step of rules-proposal.yml checks)", added, undecidedTermID)
+	}
+	if next := r.start(rulesNextDay); next.PR != 2 || !slices.Equal(next.Existing, []string{undecidedTermID}) {
+		t.Errorf("proposal start with PR 2 open = %+v, want PR 2 and its id", next)
+	}
+	sug = r.suggestions()
+	if got, want := suggestionIDsOf(sug), sortedIDs(candidates); !slices.Equal(got, want) || sug.Excluded != base+3 {
+		t.Errorf("suggest with PR 2 open = %q (%d excluded), want %q and the item to decide excluded", got, sug.Excluded, want)
 	}
 }
 

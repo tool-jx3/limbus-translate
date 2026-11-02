@@ -688,17 +688,24 @@ func uniqueSorted(ids []string) []string {
 // is open for the branch. bodyFile is the description, and it must hold at
 // least one suggestion marker.
 //
+// What a run proposes is the rule files it changed, or the suggestions its
+// description adds to the open PR (all of them when there is none): the
+// rules-review skill lists the items it is not sure of under 「需要人決定」
+// for a person to decide, and changes no file for them. A new PR needs a
+// commit that origin/<Base> does not have, so when nothing changed and the
+// branch has no such commit, a commit of no change is made.
+//
 // It refuses, before it changes anything: a branch that is not
 // rules-proposal/*, a tracked file changed (staged or not) outside the rule
-// folders, no token for gh, no git identity, a body without markers, a branch
-// with nothing in it that origin/<Base> does not have, and, when the branch
-// has an open PR, a body that lacks a suggestion marker the PR has now (the
-// edit replaces the description, and a suggestion that dropped out would be
-// suggested again). Untracked files outside the rule folders are left alone
-// and not committed. The commit is not signed, like the merge of Start: the
-// identity of a workflow has no key. The push names the branch in full on both
-// sides, so that a tag of the same name is not pushed instead, and is never
-// forced.
+// folders, no token for gh, no git identity, a body without markers, nothing
+// to propose (no rule file changed, and the body adds no suggestion to the
+// open PR), and, when the branch has an open PR, a body that lacks a
+// suggestion marker the PR has now (the edit replaces the description, and a
+// suggestion that dropped out would be suggested again). Untracked files
+// outside the rule folders are left alone and not committed. The commit is
+// not signed, like the merge of Start: the identity of a workflow has no key.
+// The push names the branch in full on both sides, so that a tag of the same
+// name is not pushed instead, and is never forced.
 func Publish(o Options, bodyFile string) (*Published, error) {
 	s := newSession(o)
 	if err := s.checkBase(); err != nil {
@@ -720,7 +727,8 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	if err != nil {
 		return nil, refuse("cannot read the body file %s: %v", bodyFile, unwrapPathError(err))
 	}
-	if len(suggestionIDs(string(data))) == 0 {
+	bodyIDs := suggestionIDs(string(data))
+	if len(bodyIDs) == 0 {
 		return nil, refuse("the body file %s has no %s<id>%s marker on a line of its own; every suggestion in the PR needs one", bodyFile, markerStart, markerEnd)
 	}
 	if found := credentialsIn(bodyFile, string(data), nil); len(found) > 0 {
@@ -757,11 +765,9 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	if err != nil {
 		return nil, fmt.Errorf("git rev-list --count: %q is not a number", strings.TrimSpace(out))
 	}
-	if ahead == 0 && len(changed) == 0 {
-		return nil, refuse("nothing to propose: %s has no change in %s compared with origin/%s",
-			branch, ruleFolderList(), s.Base)
-	}
-	if len(changed) > 0 {
+	// A commit is made for the changes, or, when there are none and the
+	// branch has no commit of its own, for a new PR to be opened on.
+	if len(changed) > 0 || ahead == 0 {
 		if err := s.checkIdentity(); err != nil {
 			return nil, err
 		}
@@ -772,20 +778,32 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	if err != nil {
 		return nil, err
 	}
+	var have []string
 	if current != nil {
-		if missing := missingIDs(suggestionIDs(current.Body), suggestionIDs(string(data))); len(missing) > 0 {
+		have = suggestionIDs(current.Body)
+		if missing := missingIDs(have, bodyIDs); len(missing) > 0 {
 			return nil, refuse("the body file %s lacks the suggestions the open PR #%d has, which its description would lose:\n  %s\n"+
 				"write the description from the one the PR has now (%s, saved by lct proposal start) and keep their sections",
 				bodyFile, current.Number, strings.Join(missing, "\n  "), ExistingBodyFile)
 		}
 	}
+	if len(changed) == 0 && len(missingIDs(bodyIDs, have)) == 0 {
+		// Only an open PR has every suggestion of the body.
+		return nil, refuse("nothing to propose: no file of %s changed, and the body file adds no suggestion to the open PR #%d",
+			ruleFolderList(), current.Number)
+	}
 
-	if len(changed) > 0 {
+	switch {
+	case len(changed) > 0:
 		// The names are paths, not patterns: a "[" or a "*" in one is a character.
 		if _, err := s.git.run(append([]string{"--literal-pathspecs", "add", "-A", "--"}, changed...)...); err != nil {
 			return nil, err
 		}
 		if _, err := s.git.run("-c", "user.useConfigOnly=true", "commit", "-q", "--no-gpg-sign", "-m", "rules: proposal "+s.Date); err != nil {
+			return nil, err
+		}
+	case ahead == 0 && current == nil:
+		if _, err := s.git.run("-c", "user.useConfigOnly=true", "commit", "-q", "--no-gpg-sign", "--allow-empty", "-m", "rules: proposal "+s.Date); err != nil {
 			return nil, err
 		}
 	}
