@@ -1109,6 +1109,87 @@ func TestPlanHandsOnTheHintOfAQueuedUnit(t *testing.T) {
 	e.again()
 }
 
+// An entry is numbered again within its file, so a request on a deleted unit
+// goes only to a unit of its text in the same file (R16). A unit of the text
+// in another file does not take it, even when its key comes first; it is
+// queued as it would be anyway (the translation sent back serves no reuse).
+func TestPlanHandsARequestOnOnlyWithinItsFile(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives, abilities = "Passives.json", "Abilities.json"
+		desc                = "공격을 받으면 바로 반격합니다"
+	)
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc})})
+	e.seed([]store.Record{translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊")},
+		[]store.PendingItem{{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"}})
+	e.snapshot(map[string]string{
+		passives:  dataList(obj{"id": 2, "desc": desc}), // id 1 numbered again
+		abilities: dataList(obj{"id": 1, "desc": desc}), // the same text, in a new file
+	})
+
+	e.run(tag1)
+
+	want := map[string]store.PendingItem{
+		descKey(passives, 0):  {Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"},
+		descKey(abilities, 0): {Key: descKey(abilities, 0), Reason: ReasonNew},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if recs := e.records(); len(recs) != 0 {
+		t.Errorf("records = %v, want none", recs)
+	}
+
+	e.again()
+}
+
+// A unit that takes over the request of a deleted unit while it has a
+// request of its own keeps its own item, its previous texts with it, and
+// carries both hints (R17): neither request is lost.
+func TestPlanMergesAHandedOnRequestWithTheUnitsOwn(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives = "Passives.json"
+		desc     = "공격을 받으면 바로 반격합니다"
+		other    = "아군 전체의 공격력이 오릅니다"
+	)
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc}, obj{"id": 3, "desc": other})})
+	e.seed([]store.Record{
+		translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊"),
+		translated(descKey(passives, 1), other, "提升全體友軍的攻擊力"),
+	}, []store.PendingItem{
+		{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"},
+		{Key: descKey(passives, 1), Reason: "requeue", PrevZH: "提升全體友軍的攻擊力", Hint: "語氣B"},
+	})
+	// id 1 is gone, and id 3 has the text id 1 had.
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 3, "desc": desc})})
+
+	e.run(tag1)
+
+	want := map[string]store.PendingItem{
+		descKey(passives, 0): {Key: descKey(passives, 0), Reason: ReasonKRChanged, PrevKR: other, PrevZH: "提升全體友軍的攻擊力", Hint: "語氣B；用您"},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+
+	e.again()
+}
+
+func TestJoinHints(t *testing.T) {
+	for _, c := range []struct{ own, handed, want string }{
+		{"語氣B", "用您", "語氣B；用您"},
+		{"用您", "用您", "用您"},
+		{"", "用您", "用您"},
+		{"語氣B", "", "語氣B"},
+		{"", "", ""},
+	} {
+		if got := joinHints(c.own, c.handed); got != c.want {
+			t.Errorf("joinHints(%q, %q) = %q, want %q", c.own, c.handed, got, c.want)
+		}
+	}
+}
+
 func TestPlanReportsNewSpeakersAndFiles(t *testing.T) {
 	e := newPlanEnv(t)
 	const dialogue = "RPGSystem/rpg-loc-dialogue-floor-1.json"

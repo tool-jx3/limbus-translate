@@ -240,8 +240,9 @@ func (in Inputs) check() error {
 //     deleted: that translation is copied, if it passes the checks of a new
 //     translation (batch.CheckNew); a text that is FileBound only takes one
 //     from its own file. A deleted unit that had a request pending serves no
-//     reuse: a unit of its text takes the request over instead (see
-//     planner.reuse), so an entry numbered again is translated again as asked;
+//     reuse: a unit of its text in its file takes the request over instead
+//     (see planner.reuse), so an entry numbered again is translated again as
+//     asked;
 //  6. otherwise it is queued: a unit that is not queued yet is queued as
 //     new, or, when it has a record of another KR text, as kr-changed with
 //     that record's text as the previous translation (as a transition would
@@ -944,13 +945,16 @@ func reuseTarget(reason string) bool { return reason == ReasonNew || reason == R
 // reuse is step 5 of Run. A unit in queued, or pending, serves no other.
 //
 // A deleted unit with a request pending (carriesRequest) serves no other
-// either: the first target of its text (by key; from the deleted unit's file
-// first, from another file only when the text is not FileBound) takes its
-// pending item over, with its reason, hint and previous texts and without its
-// lease. That is how a request on an entry numbered again reaches the entry,
-// instead of the entry taking the translation sent back. A target that takes
-// over a request for a new or changed unit may then still take a translation,
-// as a target with such an item of its own may.
+// either: the first target of its text in its own file (by key) takes the
+// request over. An entry is numbered again within its file, so a unit of the
+// text in another file never takes it; it is reused from another unit or
+// queued, as it would be anyway. A target without a request of its own takes
+// the deleted unit's item: its reason, hint and previous texts, without its
+// lease. A target with a request of its own keeps its item, previous texts
+// and all, and carries both hints (joinHints). That is how a request on an
+// entry numbered again reaches the entry, instead of the entry taking the
+// translation sent back. A target that is then queued as a new or changed unit
+// may still take a translation, as any other such target may.
 func (p *planner) reuse(queued map[string]bool) error {
 	var targets []string
 	want := map[string]bool{} // the KR texts of the targets
@@ -1016,10 +1020,15 @@ func (p *planner) reuse(queued map[string]bool) error {
 		ref := p.cur[key]
 		u := ref.unit()
 		g := batch.TextGroupOf(p.in.Rules, ref.file.doc, u)
-		if r, ok := handOn(requests[g], ref.file.name, g.FileBound()); ok {
+		if r, ok := handOn(requests[g], ref.file.name); ok {
 			it := r.item
-			p.pending[key] = store.PendingItem{Key: key, Reason: it.Reason, Hint: it.Hint, PrevKR: it.PrevKR, PrevZH: it.PrevZH}
-			if !reuseTarget(it.Reason) {
+			if own := p.pending[key]; carriesRequest(own) {
+				own.Hint = joinHints(own.Hint, it.Hint)
+				p.pending[key] = own
+			} else {
+				p.pending[key] = store.PendingItem{Key: key, Reason: it.Reason, Hint: it.Hint, PrevKR: it.PrevKR, PrevZH: it.PrevZH}
+			}
+			if !reuseTarget(p.pending[key].Reason) {
 				continue
 			}
 		}
@@ -1057,21 +1066,29 @@ func (p *planner) pick(cands []source, file string, fileBound bool, kr string) (
 	return source{}, false
 }
 
-// handOn returns the first request of reqs that no unit took over yet, and
-// marks it taken: one of file first, and of no other file when fileBound.
-func handOn(reqs []*deletedRequest, file string, fileBound bool) (*deletedRequest, bool) {
-	for _, sameFile := range []bool{true, false} {
-		if !sameFile && fileBound {
-			break
-		}
-		for _, r := range reqs {
-			if !r.handed && (r.file == file) == sameFile {
-				r.handed = true
-				return r, true
-			}
+// handOn returns the first request of reqs of a deleted unit of file that no
+// unit took over yet, and marks it taken.
+func handOn(reqs []*deletedRequest, file string) (*deletedRequest, bool) {
+	for _, r := range reqs {
+		if !r.handed && r.file == file {
+			r.handed = true
+			return r, true
 		}
 	}
 	return nil, false
+}
+
+// joinHints is the hint of a unit whose own hint is own when it takes over a
+// request whose hint is handed: both, own first, unless one is empty or they
+// are the same.
+func joinHints(own, handed string) string {
+	switch {
+	case own == "" || own == handed:
+		return handed
+	case handed == "":
+		return own
+	}
+	return own + "；" + handed
 }
 
 // held reports whether steps 1 to 3 decided the source of the unit of key (a
