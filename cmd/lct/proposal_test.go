@@ -113,14 +113,14 @@ func jsonKeys(t *testing.T, raw string) []string {
 
 func TestProposalStartCommand(t *testing.T) {
 	root, _ := proposalRepo(t)
-	t.Setenv("FAKE_GH_CLOSED", `[{"number":4,"body":"<!-- suggestion:term/신규 용어 -->","mergedAt":null},{"number":3,"body":"<!-- suggestion:inconsistent/ally/name/fd93b875 -->","mergedAt":"2026-11-03T00:00:00Z"}]`)
+	t.Setenv("FAKE_GH_CLOSED", `[{"number":4,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:term/신규 용어 -->","mergedAt":null},{"number":3,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:inconsistent/ally/name/fd93b875 -->","mergedAt":"2026-11-03T00:00:00Z"}]`)
 
 	code, stdout, stderr := lct(t, "--json", "proposal", "start", "--date", "2026-11-05")
 	if code != 0 || stderr != "" {
 		t.Fatalf("exit code %d, stderr:\n%s", code, stderr)
 	}
 	// The workflow reads these keys with jq.
-	if got, want := jsonKeys(t, stdout), []string{"branch", "declined", "existing", "handled", "pr", "url"}; !slices.Equal(got, want) {
+	if got, want := jsonKeys(t, stdout), []string{"branch", "declined", "existing", "existing_body", "handled", "pr", "url"}; !slices.Equal(got, want) {
 		t.Errorf("output keys = %v, want %v\n%s", got, want, stdout)
 	}
 	var started struct {
@@ -253,5 +253,29 @@ func TestProposalExitCodes(t *testing.T) {
 	code, _, stderr := lct(t, "proposal", "publish", "--body-file", "work/proposal/body.md")
 	if code != 1 || !strings.Contains(stderr, "internal/x.go") {
 		t.Errorf("exit code %d, stderr %q; want 1 and the file listed", code, stderr)
+	}
+}
+
+func TestProposalPublishRefusesToDropSuggestionsOfTheOpenPR(t *testing.T) {
+	root, ghDir := proposalRepo(t)
+	if code, _, stderr := lct(t, "--json", "proposal", "start", "--date", "2026-11-05"); code != 0 {
+		t.Fatalf("start: exit code %d\n%s", code, stderr)
+	}
+	writeTestFile(t, root, "glossary/terms.yaml", "- {kr: 신규 용어, zh: 新術語, status: approved}\n")
+	writeTestFile(t, root, "work/proposal/body.md", "<!-- suggestion:term/a -->\n")
+	t.Setenv("FAKE_GH_OPEN", `[{"number":5,"url":"https://github.com/o/r/pull/5","headRefName":"rules-proposal/2026-11-05","body":"<!-- suggestion:term/a -->\n<!-- suggestion:speaker/새 화자 -->\n"}]`)
+
+	head := runGitIn(t, root, "rev-parse", "HEAD")
+	code, stdout, stderr := lct(t, "proposal", "publish", "--body-file", "work/proposal/body.md")
+	if code != 1 || stdout != "" || !strings.Contains(stderr, "speaker/새 화자") || strings.Contains(stderr, "term/a") {
+		t.Errorf("exit code %d, stdout %q, stderr %q; want 1 and only the missing id named", code, stdout, stderr)
+	}
+	if runGitIn(t, root, "rev-parse", "HEAD") != head {
+		t.Error("a commit was made")
+	}
+	for _, c := range proposalGHCalls(t, ghDir) {
+		if len(c) > 1 && c[0] == "pr" && (c[1] == "edit" || c[1] == "create") {
+			t.Errorf("gh %q was called", c)
+		}
 	}
 }

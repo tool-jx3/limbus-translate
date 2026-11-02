@@ -47,12 +47,21 @@ const defaultPRURL = "https://github.com/o/r/pull/7"
 
 // ghPR is a pull request as the fake gh prints it.
 type ghPR struct {
-	Number      int     `json:"number"`
-	URL         string  `json:"url,omitempty"`
-	HeadRefName string  `json:"headRefName,omitempty"`
-	Body        string  `json:"body"`
-	MergedAt    *string `json:"mergedAt,omitempty"`
+	Number      int       `json:"number"`
+	URL         string    `json:"url,omitempty"`
+	HeadRefName string    `json:"headRefName,omitempty"`
+	Body        string    `json:"body"`
+	State       string    `json:"state,omitempty"`
+	Labels      []ghLabel `json:"labels"`
+	MergedAt    *string   `json:"mergedAt,omitempty"`
 }
+
+type ghLabel struct {
+	Name string `json:"name"`
+}
+
+// rulesLabel is the label of a rules PR.
+var rulesLabel = []ghLabel{{Name: "rules-proposal"}}
 
 func merged() *string { s := "2026-11-03T04:05:06Z"; return &s }
 
@@ -274,9 +283,18 @@ func assertIDs(t *testing.T, what string, got []string, want ...string) {
 
 func TestProposalStartNewBranch(t *testing.T) {
 	e := newEnv(t)
+	// A description saved by an earlier run is not the description of a PR
+	// that is not there.
+	e.write("work/proposal/existing-body.md", "stale\n")
 	got, err := Start(e.opts("2026-11-05"))
 	if err != nil {
 		t.Fatal(err)
+	}
+	if _, err := os.Stat(filepath.Join(e.repo, "work", "proposal", "existing-body.md")); err == nil {
+		t.Error("the stale existing-body.md is still there")
+	}
+	if got.ExistingBody != "" {
+		t.Errorf("ExistingBody = %q, want none", got.ExistingBody)
 	}
 	if got.Branch != "rules-proposal/2026-11-05" || got.PR != 0 || got.URL != "" {
 		t.Errorf("Started = %+v", got)
@@ -292,14 +310,21 @@ func TestProposalStartNewBranch(t *testing.T) {
 	}
 	assertIDs(t, "exclude.txt", e.excludeIDs())
 
-	// Both lists are asked for with exactly these arguments.
-	open := e.callsOf("pr", "list", "--label", "rules-proposal", "--state", "open")
-	if len(open) != 1 || !slices.Equal(open[0], []string{"pr", "list", "--label", "rules-proposal", "--state", "open", "--json", "number,url,headRefName,body"}) {
+	// Both lists are asked for with exactly these arguments: no --label,
+	// which makes gh use the search index, and so can miss a PR that is
+	// new or lost its label. The rules PRs are picked out here.
+	open := e.callsOf("pr", "list", "--state", "open")
+	if len(open) != 1 || !slices.Equal(open[0], []string{"pr", "list", "--state", "open", "--json", "number,url,headRefName,body,labels", "--limit", "100"}) {
 		t.Errorf("open list calls = %q", open)
 	}
-	closed := e.callsOf("pr", "list", "--label", "rules-proposal", "--state", "closed")
-	if len(closed) != 1 || !slices.Equal(closed[0], []string{"pr", "list", "--label", "rules-proposal", "--state", "closed", "--json", "number,body,mergedAt", "--limit", "200"}) {
+	closed := e.callsOf("pr", "list", "--state", "closed")
+	if len(closed) != 1 || !slices.Equal(closed[0], []string{"pr", "list", "--state", "closed", "--json", "number,body,mergedAt,labels,headRefName", "--limit", "200"}) {
 		t.Errorf("closed list calls = %q", closed)
+	}
+	for _, c := range e.calls() {
+		if slices.Contains(c, "--label") {
+			t.Errorf("gh was called with --label: %q", c)
+		}
 	}
 }
 
@@ -307,8 +332,8 @@ func TestProposalStartReusesTheOpenPR(t *testing.T) {
 	e := newEnv(t)
 	const head = "rules-proposal/2026-10-29"
 	sha := e.pushBranch(head, "glossary/terms.yaml", "- {kr: 신규 용어, zh: 新術語, status: approved}\n")
-	e.setPRs([]ghPR{{Number: 5, URL: "https://github.com/o/r/pull/5", HeadRefName: head,
-		Body: body("speaker/새 화자", "field/add/BattleSpeechBubbleDlg/desc")}}, nil)
+	prBody := strings.ReplaceAll(body("speaker/새 화자", "field/add/BattleSpeechBubbleDlg/desc"), "\n", "\r\n") + "edited in the web page\r\n"
+	e.setPRs([]ghPR{{Number: 5, URL: "https://github.com/o/r/pull/5", HeadRefName: head, Labels: rulesLabel, Body: prBody}}, nil)
 
 	got, err := Start(e.opts("2026-11-05"))
 	if err != nil {
@@ -320,6 +345,11 @@ func TestProposalStartReusesTheOpenPR(t *testing.T) {
 	assertIDs(t, "Existing", got.Existing, "field/add/BattleSpeechBubbleDlg/desc", "speaker/새 화자")
 	assertIDs(t, "Declined", got.Declined)
 	assertIDs(t, "exclude.txt", e.excludeIDs(), "field/add/BattleSpeechBubbleDlg/desc", "speaker/새 화자")
+	// The description the PR has now is saved as it is: publish replaces it,
+	// so the new one has to be written from this one.
+	if got.ExistingBody != "work/proposal/existing-body.md" || e.read(got.ExistingBody) != prBody {
+		t.Errorf("ExistingBody = %q holding %q, want the PR's description %q", got.ExistingBody, e.read("work/proposal/existing-body.md"), prBody)
+	}
 	if b := e.branch(); b != head {
 		t.Errorf("checked out %q, want %q", b, head)
 	}
@@ -331,9 +361,13 @@ func TestProposalStartReusesTheOpenPR(t *testing.T) {
 func TestProposalStartCollectsClosedPRs(t *testing.T) {
 	e := newEnv(t)
 	e.setPRs(nil, []ghPR{
-		{Number: 11, Body: body("speaker/새 화자", "inconsistent/ally/name/fd93b875"), MergedAt: merged()},
-		{Number: 12, Body: body("term/신규 용어", "family/Zzz-twth.json", "inconsistent/ally/name/00000001")},
-		{Number: 13, Body: body("note/StoryData/S001A.json|/dataList/3/content/3713708f"), MergedAt: merged()},
+		{Number: 11, Labels: rulesLabel, Body: body("speaker/새 화자", "inconsistent/ally/name/fd93b875"), MergedAt: merged()},
+		{Number: 12, Labels: rulesLabel, Body: body("term/신규 용어", "family/Zzz-twth.json", "inconsistent/ally/name/00000001")},
+		{Number: 13, Labels: rulesLabel, Body: body("note/StoryData/S001A.json|/dataList/3/content/3713708f"), MergedAt: merged()},
+		// The label was taken off, but the branch says what it is.
+		{Number: 14, HeadRefName: "rules-proposal/2026-10-01", Body: body("family/Yyy.json")},
+		// Not a rules PR: another label, another branch.
+		{Number: 15, HeadRefName: "feature/x", Labels: []ghLabel{{Name: "bug"}}, Body: body("family/Other.json")},
 	})
 	got, err := Start(e.opts("2026-11-05"))
 	if err != nil {
@@ -342,11 +376,11 @@ func TestProposalStartCollectsClosedPRs(t *testing.T) {
 	// Only the PR that was closed without a merge is declined; a merged one
 	// resolves its suggestions by itself, but the inconsistency of what was
 	// translated before stays and would be suggested again.
-	assertIDs(t, "Declined", got.Declined, "family/Zzz-twth.json", "inconsistent/ally/name/00000001", "term/신규 용어")
+	assertIDs(t, "Declined", got.Declined, "family/Yyy.json", "family/Zzz-twth.json", "inconsistent/ally/name/00000001", "term/신규 용어")
 	assertIDs(t, "Handled", got.Handled, "inconsistent/ally/name/fd93b875")
 	assertIDs(t, "Existing", got.Existing)
 	assertIDs(t, "exclude.txt", e.excludeIDs(),
-		"family/Zzz-twth.json", "inconsistent/ally/name/00000001", "inconsistent/ally/name/fd93b875", "term/신규 용어")
+		"family/Yyy.json", "family/Zzz-twth.json", "inconsistent/ally/name/00000001", "inconsistent/ally/name/fd93b875", "term/신규 용어")
 }
 
 func TestProposalStartReadsMergedAtTheWayGHPrintsIt(t *testing.T) {
@@ -354,11 +388,11 @@ func TestProposalStartReadsMergedAtTheWayGHPrintsIt(t *testing.T) {
 	// gh prints null for a PR that was not merged, and older versions the
 	// zero time.
 	t.Setenv("FAKE_GH_CLOSED", `[
-		{"number":1,"body":"<!-- suggestion:term/a -->","mergedAt":null},
-		{"number":2,"body":"<!-- suggestion:term/b -->","mergedAt":"0001-01-01T00:00:00Z"},
-		{"number":3,"body":"<!-- suggestion:term/c -->","mergedAt":""},
-		{"number":4,"body":"<!-- suggestion:term/d -->"},
-		{"number":5,"body":"<!-- suggestion:inconsistent/e -->","mergedAt":"2026-11-03T04:05:06Z"}]`)
+		{"number":1,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:term/a -->","mergedAt":null},
+		{"number":2,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:term/b -->","mergedAt":"0001-01-01T00:00:00Z"},
+		{"number":3,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:term/c -->","mergedAt":""},
+		{"number":4,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:term/d -->"},
+		{"number":5,"labels":[{"name":"rules-proposal"}],"body":"<!-- suggestion:inconsistent/e -->","mergedAt":"2026-11-03T04:05:06Z"}]`)
 	got, err := Start(e.opts("2026-11-05"))
 	if err != nil {
 		t.Fatal(err)
@@ -388,7 +422,7 @@ func TestProposalStartKeepsIDsAsFound(t *testing.T) {
 
 func TestProposalStartRefusesAnOpenPRFromAnotherBranch(t *testing.T) {
 	e := newEnv(t)
-	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: "feature/x", Body: body("term/a")}}, nil)
+	e.setPRs([]ghPR{{Number: 5, URL: "u", HeadRefName: "feature/x", Labels: rulesLabel, Body: body("term/a")}}, nil)
 	_, err := Start(e.opts("2026-11-05"))
 	mustRefuse(t, err, "#5", "feature/x")
 	if b := e.branch(); b != "main" {
@@ -417,7 +451,7 @@ func TestProposalStartResumesABranchNoPRWasOpenedFrom(t *testing.T) {
 	}
 	// The question was asked of every PR, whatever its state and label.
 	asked := e.callsOf("pr", "list", "--state", "all")
-	if len(asked) != 1 || !slices.Equal(asked[0], []string{"pr", "list", "--state", "all", "--head", branch, "--json", "number,headRefName"}) {
+	if len(asked) != 1 || !slices.Equal(asked[0], []string{"pr", "list", "--state", "all", "--head", branch, "--json", "number,url,headRefName,body,state"}) {
 		t.Errorf("calls = %q", asked)
 	}
 	assertIDs(t, "exclude.txt", e.excludeIDs())
@@ -439,7 +473,7 @@ func TestProposalStartTakesAFreeBranchWhenAClosedPRUsedTheName(t *testing.T) {
 	const branch = "rules-proposal/2026-11-05"
 	e.pushBranch(branch, "guides/README.md", "closed PR work\n")
 	// A closed PR was opened from the branch; one that was merged would be the same.
-	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch, Body: body("term/a")})
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch, State: "CLOSED", Body: body("term/a")})
 
 	got, err := Start(e.opts("2026-11-05"))
 	if err != nil {
@@ -465,7 +499,7 @@ func TestProposalStartTakesAFreeBranchWhenAClosedPRUsedTheName(t *testing.T) {
 
 	// A PR from another branch is no reason: only the head counts.
 	e.git("checkout", "-q", "main")
-	e.setAllPRs(ghPR{Number: 9, HeadRefName: "rules-proposal/2026-11-04"})
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: "rules-proposal/2026-11-04", State: "OPEN"})
 	got, err = Start(e.opts("2026-11-05"))
 	if err != nil || got.Branch != branch {
 		t.Errorf("Started = %+v, %v; want to resume %s", got, err, branch)
@@ -475,7 +509,7 @@ func TestProposalStartTakesAFreeBranchWhenAClosedPRUsedTheName(t *testing.T) {
 func TestProposalStartGivesUpWhenEveryBranchIsTaken(t *testing.T) {
 	e := newEnv(t)
 	const branch = "rules-proposal/2026-11-05"
-	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch})
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch, State: "MERGED"})
 	e.git("checkout", "-q", "-B", branch, "origin/main")
 	e.write("guides/README.md", "x\n")
 	e.git("commit", "-q", "-am", "x")
@@ -708,7 +742,7 @@ func TestProposalPublishUpdatesTheOpenPR(t *testing.T) {
 		t.Errorf("origin has %s, want %s", pushed, got.Commit)
 	}
 	list := e.callsOf("pr", "list")
-	if len(list) != 1 || !slices.Equal(list[0], []string{"pr", "list", "--state", "open", "--head", branch, "--json", "number,url,headRefName"}) {
+	if len(list) != 1 || !slices.Equal(list[0], []string{"pr", "list", "--state", "open", "--head", branch, "--json", "number,url,headRefName,body"}) {
 		t.Errorf("pr list calls = %q", list)
 	}
 }
@@ -960,8 +994,8 @@ func TestProposalPublishNeverForcesThePush(t *testing.T) {
 	if got := e.originGit("rev-parse", "refs/heads/"+branch); got != theirs {
 		t.Errorf("origin's branch is %s, want it untouched at %s", got, theirs)
 	}
-	if n := len(e.calls()); n != 0 {
-		t.Errorf("gh was called %d times after a failed push", n)
+	if len(e.callsOf("pr", "create")) != 0 || len(e.callsOf("pr", "edit")) != 0 || len(e.callsOf("label", "create")) != 0 {
+		t.Errorf("a PR was opened or edited after a failed push: %q", e.calls())
 	}
 }
 
@@ -1016,5 +1050,113 @@ func TestProposalBranchDate(t *testing.T) {
 		if got := branchDate(branch); got != want {
 			t.Errorf("branchDate(%q) = %q, want %q", branch, got, want)
 		}
+	}
+}
+
+func TestProposalStartReusesAnOpenPRWhoseLabelWasRemoved(t *testing.T) {
+	e := newEnv(t)
+	const head = "rules-proposal/2026-10-29"
+	sha := e.pushBranch(head, "guides/README.md", "work of the PR\n")
+	// The label is gone, the branch is the rules branch. Two other PRs are
+	// not rules PRs and their markers (a quoted one, say) mean nothing.
+	e.setPRs([]ghPR{
+		{Number: 4, URL: "u4", HeadRefName: "feature/y", Labels: []ghLabel{{Name: "bug"}}, Body: body("term/not-ours")},
+		{Number: 5, URL: "u5", HeadRefName: head, Body: body("speaker/새 화자")},
+		{Number: 6, URL: "u6", HeadRefName: "feature/z", Body: body("term/not-ours-either")},
+	}, nil)
+
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != head || got.PR != 5 || got.URL != "u5" {
+		t.Errorf("Started = %+v", got)
+	}
+	assertIDs(t, "Existing", got.Existing, "speaker/새 화자")
+	assertIDs(t, "exclude.txt", e.excludeIDs(), "speaker/새 화자")
+	if e.branch() != head || e.git("rev-parse", "HEAD") != sha {
+		t.Errorf("checked out %q", e.branch())
+	}
+}
+
+func TestProposalStartReusesAnOpenPRThatOnlyTheHeadQueryFinds(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	sha := e.pushBranch(branch, "guides/README.md", "work of the PR\n")
+	// The listing of the open PRs missed it (the PR is minutes old, or has no
+	// label), but asking for the head finds it, open, next to an older closed one.
+	prBody := body("speaker/새 화자", "term/신규 용어")
+	e.setAllPRs(
+		ghPR{Number: 3, URL: "u3", HeadRefName: branch, State: "CLOSED", Body: body("term/closed")},
+		ghPR{Number: 7, URL: "u7", HeadRefName: branch, State: "OPEN", Body: prBody},
+	)
+
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch || got.PR != 7 || got.URL != "u7" {
+		t.Errorf("Started = %+v, want the open PR #7 on %s and not a second PR on %s-2", got, branch, branch)
+	}
+	assertIDs(t, "Existing", got.Existing, "speaker/새 화자", "term/신규 용어")
+	assertIDs(t, "exclude.txt", e.excludeIDs(), "speaker/새 화자", "term/신규 용어")
+	if e.branch() != branch || e.git("rev-parse", "HEAD") != sha {
+		t.Errorf("checked out %q at %s", e.branch(), e.git("rev-parse", "HEAD"))
+	}
+	if got.ExistingBody != "work/proposal/existing-body.md" || e.read(got.ExistingBody) != prBody {
+		t.Errorf("ExistingBody = %q", got.ExistingBody)
+	}
+
+	// Publish then updates that PR.
+	e.t.Setenv("FAKE_GH_OPEN", `[{"number":7,"url":"u7","headRefName":"`+branch+`","body":`+jsonString(prBody)+`}]`)
+	e.write("work/proposal/body.md", prBody)
+	e.write("guides/README.md", "more\n")
+	pub, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if pub.Created || pub.URL != "u7" {
+		t.Errorf("Published = %+v", pub)
+	}
+}
+
+func jsonString(s string) string {
+	data, _ := json.Marshal(s)
+	return string(data)
+}
+
+func TestProposalPublishKeepsTheSuggestionsTheOpenPRHas(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-10-29"
+	e.onBranch(branch)
+	e.write("guides/README.md", "changed\n")
+	current := body("speaker/새 화자", "adjustment-moved/StoryData/S1.json|/dataList/2/content", "term/신규 용어")
+	e.setPRs([]ghPR{{Number: 5, URL: "u5", HeadRefName: branch, Body: current}}, nil)
+	headBefore := e.git("rev-parse", "HEAD")
+	originBefore := e.originGit("for-each-ref", "--format=%(refname) %(objectname)")
+
+	// gh pr edit replaces the description: one that lacks a suggestion of the
+	// PR would drop it, and the next run would suggest it again.
+	e.write("work/proposal/body.md", body("term/신규 용어", "term/new-one"))
+	_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	mustRefuse(t, err, "#5", "speaker/새 화자", "adjustment-moved/StoryData/S1.json|/dataList/2/content")
+	if strings.Contains(err.Error(), "term/new-one") || strings.Contains(err.Error(), "term/신규 용어") {
+		t.Errorf("the refusal names ids that are kept: %v", err)
+	}
+	if e.git("rev-parse", "HEAD") != headBefore || e.originGit("for-each-ref", "--format=%(refname) %(objectname)") != originBefore {
+		t.Error("something was committed or pushed")
+	}
+	if len(e.callsOf("pr", "edit")) != 0 || !strings.Contains(e.statusLines(), " M guides/README.md") {
+		t.Errorf("the PR was edited or the change staged:\n%s", e.statusLines())
+	}
+
+	// Every id of the PR, in any order and with CRLF, and more: updated.
+	e.write("work/proposal/body.md", strings.ReplaceAll(body("term/new-one", "term/신규 용어", "adjustment-moved/StoryData/S1.json|/dataList/2/content", "speaker/새 화자"), "\n", "\r\n"))
+	got, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Created || len(e.callsOf("pr", "edit")) != 1 {
+		t.Errorf("Published = %+v, calls %q", got, e.calls())
 	}
 }

@@ -41,6 +41,10 @@ const (
 	// ExcludeFile is where Start writes the ids that lct suggest must leave out,
 	// relative to the repo root. The work folder is not under version control.
 	ExcludeFile = "work/proposal/exclude.txt"
+	// ExistingBodyFile is where Start saves the description the open rules PR
+	// has now, relative to the repo root. Publish replaces the description of
+	// the PR, so the new one is written from the saved one.
+	ExistingBodyFile = "work/proposal/existing-body.md"
 
 	dateLayout = "2006-01-02"
 
@@ -86,6 +90,11 @@ type Started struct {
 	// translated before, so the same inconsistency would be suggested again.
 	// The other kinds are answered by the rules they changed.
 	Handled []string `json:"handled"`
+	// ExistingBody is the path, relative to the repo root, of the file that
+	// holds the description of the open PR as it is now (edits by people
+	// included); empty when no rules PR is open. Publish refuses a description
+	// that lacks a suggestion this one has.
+	ExistingBody string `json:"existing_body"`
 }
 
 func (s *Started) String() string {
@@ -233,10 +242,29 @@ type pullRequest struct {
 	URL         string `json:"url"`
 	HeadRefName string `json:"headRefName"`
 	Body        string `json:"body"`
+	// State is OPEN, CLOSED or MERGED.
+	State  string  `json:"state"`
+	Labels []label `json:"labels"`
 	// MergedAt is null for a PR that was closed without a merge; older gh
 	// versions print the zero time instead.
 	MergedAt *string `json:"mergedAt"`
 }
+
+type label struct {
+	Name string `json:"name"`
+}
+
+func (p pullRequest) hasLabel() bool {
+	return slices.ContainsFunc(p.Labels, func(l label) bool { return l.Name == Label })
+}
+
+// isRulesPR says whether the PR belongs to the loop: it has the label, or its
+// branch is a rules-proposal one, whatever a person did to the label.
+func (p pullRequest) isRulesPR() bool {
+	return p.hasLabel() || strings.HasPrefix(p.HeadRefName, BranchPrefix)
+}
+
+func (p pullRequest) isOpen() bool { return strings.EqualFold(p.State, "OPEN") }
 
 func (p pullRequest) merged() bool {
 	return p.MergedAt != nil && *p.MergedAt != "" && !strings.HasPrefix(*p.MergedAt, "0001-")
@@ -265,9 +293,16 @@ func (s *session) listPRs(what string, args ...string) ([]pullRequest, error) {
 //   - a PR was (it was closed or merged): the first rules-proposal/<Date>-N,
 //     N = 2, 3, ..., that origin does not have, made from origin/<Base>.
 //
+// A PR that is open for rules-proposal/<Date>, which the listing of the open
+// PRs missed, is found by the second question and takes the first path.
+//
 // It also writes ExcludeFile:
 // the ids that lct suggest must leave out, because the open PR has them, people
-// closed a PR with them, or they were merged and still stand (Started.Handled).
+// closed a PR with them, or they were merged and still stand (Started.Handled);
+// and ExistingBodyFile, the description of the open PR (the file is removed
+// when there is none). The PRs are listed without gh's --label filter, which
+// goes through the search index and can miss a PR that is new or lost its
+// label; a rules PR is one with the label or with a rules-proposal/* branch.
 // Nothing is changed when it fails before it checks the branch out.
 func Start(o Options) (*Started, error) {
 	s := newSession(o)
@@ -281,27 +316,27 @@ func Start(o Options) (*Started, error) {
 		return nil, err
 	}
 
-	open, err := s.listPRs("open", "--label", Label, "--state", "open", "--json", "number,url,headRefName,body")
+	open, err := s.listPRs("open", "--state", "open", "--json", "number,url,headRefName,body,labels", "--limit", "100")
 	if err != nil {
 		return nil, err
 	}
-	closed, err := s.listPRs("closed", "--label", Label, "--state", "closed", "--json", "number,body,mergedAt", "--limit", "200")
+	closed, err := s.listPRs("closed", "--state", "closed", "--json", "number,body,mergedAt,labels,headRefName", "--limit", "200")
 	if err != nil {
 		return nil, err
 	}
+	notRules := func(p pullRequest) bool { return !p.isRulesPR() }
+	open, closed = slices.DeleteFunc(open, notRules), slices.DeleteFunc(closed, notRules)
 
 	// There should be one open PR at most. If there are more, the oldest
 	// gets the new suggestions, and the ids of all of them are left out.
 	slices.SortFunc(open, func(a, b pullRequest) int { return a.Number - b.Number })
-	res := &Started{}
-	var existing, declined, handled []string
 	for _, p := range open {
 		if !strings.HasPrefix(p.HeadRefName, BranchPrefix) {
 			return nil, refuse("the open PR #%d has the label %s but its branch is %q, not %s*; take the label off or close it",
 				p.Number, Label, p.HeadRefName, BranchPrefix)
 		}
-		existing = append(existing, suggestionIDs(p.Body)...)
 	}
+	var declined, handled []string
 	for _, p := range closed {
 		for _, id := range suggestionIDs(p.Body) {
 			switch {
@@ -312,19 +347,35 @@ func Start(o Options) (*Started, error) {
 			}
 		}
 	}
-	res.Existing, res.Declined, res.Handled = uniqueSorted(existing), uniqueSorted(declined), uniqueSorted(handled)
 
+	res := &Started{}
+	var chosen *pullRequest // the open PR that gets the new suggestions
 	if len(open) > 0 {
-		res.Branch, res.PR, res.URL = open[0].HeadRefName, open[0].Number, open[0].URL
+		chosen = &open[0]
+		res.Branch = chosen.HeadRefName
 		err = s.checkoutFromOrigin(res.Branch)
 	} else {
-		res.Branch, err = s.checkoutNewBranch()
+		res.Branch, chosen, err = s.checkoutNewBranch()
+		if chosen != nil {
+			open = append(open, *chosen)
+		}
 	}
 	if err != nil {
 		return nil, err
 	}
+	var existing []string
+	for _, p := range open {
+		existing = append(existing, suggestionIDs(p.Body)...)
+	}
+	if chosen != nil {
+		res.PR, res.URL = chosen.Number, chosen.URL
+	}
+	res.Existing, res.Declined, res.Handled = uniqueSorted(existing), uniqueSorted(declined), uniqueSorted(handled)
 
 	if err := writeExclude(s.Repo, slices.Concat(res.Existing, res.Declined, res.Handled)); err != nil {
+		return nil, err
+	}
+	if res.ExistingBody, err = writeExistingBody(s.Repo, chosen); err != nil {
 		return nil, err
 	}
 	return res, nil
@@ -347,34 +398,40 @@ func (s *session) checkoutFromOrigin(branch string) error {
 const maxBranchSuffix = 50
 
 // checkoutNewBranch checks out the branch for a run without an open rules PR
-// and returns its name; see Start for which one it is. A name that origin has
-// is dealt with here, and not left to the push: that would be rejected after
-// the suggestions were reviewed.
-func (s *session) checkoutNewBranch() (string, error) {
+// listed and returns its name; see Start for which one it is. When a PR is open
+// for the plain name (the listing missed it), that PR is returned too. A name
+// that origin has is dealt with here, and not left to the push: that would be
+// rejected after the suggestions were reviewed.
+func (s *session) checkoutNewBranch() (string, *pullRequest, error) {
 	branch := BranchPrefix + s.Date
 	onOrigin, err := s.originHas(branch)
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
 	if !onOrigin {
-		return branch, s.checkoutFromBase(branch)
+		return branch, nil, s.checkoutFromBase(branch)
 	}
-	used, err := s.headOfAnyPR(branch)
+	used, err := s.pullRequestsOfHead(branch)
 	if err != nil {
-		return "", err
+		return "", nil, err
 	}
-	if !used {
-		return branch, s.checkoutFromOrigin(branch)
+	if len(used) == 0 {
+		return branch, nil, s.checkoutFromOrigin(branch)
+	}
+	// An open PR, the oldest if there are more, is the PR of this run.
+	slices.SortFunc(used, func(a, b pullRequest) int { return a.Number - b.Number })
+	if i := slices.IndexFunc(used, pullRequest.isOpen); i >= 0 {
+		return branch, &used[i], s.checkoutFromOrigin(branch)
 	}
 	for n := 2; n <= maxBranchSuffix; n++ {
 		next := fmt.Sprintf("%s-%d", branch, n)
 		if onOrigin, err := s.originHas(next); err != nil {
-			return "", err
+			return "", nil, err
 		} else if !onOrigin {
-			return next, s.checkoutFromBase(next)
+			return next, nil, s.checkoutFromBase(next)
 		}
 	}
-	return "", refuse("origin has %s and the branches %s-2 to %s-%d, and a PR was opened from %s; delete some of them", branch, branch, branch, maxBranchSuffix, branch)
+	return "", nil, refuse("origin has %s and the branches %s-2 to %s-%d, and a PR was opened from %s; delete some of them", branch, branch, branch, maxBranchSuffix, branch)
 }
 
 // checkoutFromBase makes the branch from origin/<Base>.
@@ -401,14 +458,14 @@ func (s *session) originHas(branch string) (bool, error) {
 	return false, nil
 }
 
-// headOfAnyPR says whether a PR, in any state and with any label, was opened
-// from the branch.
-func (s *session) headOfAnyPR(branch string) (bool, error) {
-	prs, err := s.listPRs("any state", "--state", "all", "--head", branch, "--json", "number,headRefName")
+// pullRequestsOfHead returns the PRs, in any state and with any label, that
+// were opened from the branch.
+func (s *session) pullRequestsOfHead(branch string) ([]pullRequest, error) {
+	prs, err := s.listPRs("any state", "--state", "all", "--head", branch, "--json", "number,url,headRefName,body,state")
 	if err != nil {
-		return false, err
+		return nil, err
 	}
-	return slices.ContainsFunc(prs, func(p pullRequest) bool { return p.HeadRefName == branch }), nil
+	return slices.DeleteFunc(prs, func(p pullRequest) bool { return p.HeadRefName != branch }), nil
 }
 
 // refuseLocalCommits refuses to reset the local branch, if it exists, to
@@ -442,6 +499,23 @@ func writeExclude(repo string, ids []string) error {
 		b.WriteString(id + "\n")
 	}
 	return os.WriteFile(path, []byte(b.String()), 0o644)
+}
+
+// writeExistingBody saves the description of the PR to ExistingBodyFile as it
+// is, and returns the path; without a PR it removes a file an earlier run left
+// and returns "".
+func writeExistingBody(repo string, pr *pullRequest) (string, error) {
+	path := filepath.Join(repo, filepath.FromSlash(ExistingBodyFile))
+	if pr == nil {
+		if err := os.Remove(path); err != nil && !errors.Is(err, os.ErrNotExist) {
+			return "", err
+		}
+		return "", nil
+	}
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		return "", err
+	}
+	return ExistingBodyFile, os.WriteFile(path, []byte(pr.Body), 0o644)
 }
 
 // suggestionIDs returns the ids of the markers <!-- suggestion:<id> --> of a
@@ -488,10 +562,12 @@ func uniqueSorted(ids []string) []string {
 //
 // It refuses, before it changes anything: a branch that is not
 // rules-proposal/*, a tracked file changed (staged or not) outside the rule
-// folders, no token for gh, no git identity, a body without markers, and a
-// branch with nothing in it that origin/<Base> does not have. Untracked files
-// outside the rule folders are left alone and not committed. The push is never
-// forced.
+// folders, no token for gh, no git identity, a body without markers, a branch
+// with nothing in it that origin/<Base> does not have, and, when the branch
+// has an open PR, a body that lacks a suggestion marker the PR has now (the
+// edit replaces the description, and a suggestion that dropped out would be
+// suggested again). Untracked files outside the rule folders are left alone
+// and not committed. The push is never forced.
 func Publish(o Options, bodyFile string) (*Published, error) {
 	s := newSession(o)
 	if err := s.checkBase(); err != nil {
@@ -534,10 +610,38 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	if err != nil {
 		return nil, err
 	}
+	out, err := s.git.run("rev-list", "--count", "origin/"+s.Base+"..HEAD")
+	if err != nil {
+		return nil, err
+	}
+	ahead, err := strconv.Atoi(strings.TrimSpace(out))
+	if err != nil {
+		return nil, fmt.Errorf("git rev-list --count: %q is not a number", strings.TrimSpace(out))
+	}
+	if ahead == 0 && len(changed) == 0 {
+		return nil, refuse("nothing to propose: %s has no change in %s compared with origin/%s",
+			branch, ruleFolderList(), s.Base)
+	}
 	if len(changed) > 0 {
 		if err := s.checkIdentity(); err != nil {
 			return nil, err
 		}
+	}
+
+	// A PR of this branch that is open is updated, whatever its label.
+	current, err := s.openPROf(branch)
+	if err != nil {
+		return nil, err
+	}
+	if current != nil {
+		if missing := missingIDs(suggestionIDs(current.Body), suggestionIDs(string(data))); len(missing) > 0 {
+			return nil, refuse("the body file %s lacks the suggestions the open PR #%d has, which its description would lose:\n  %s\n"+
+				"write the description from the one the PR has now (%s, saved by lct proposal start) and keep their sections",
+				bodyFile, current.Number, strings.Join(missing, "\n  "), ExistingBodyFile)
+		}
+	}
+
+	if len(changed) > 0 {
 		// The names are paths, not patterns: a "[" or a "*" in one is a character.
 		if _, err := s.git.run(append([]string{"--literal-pathspecs", "add", "-A", "--"}, changed...)...); err != nil {
 			return nil, err
@@ -545,17 +649,6 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 		if _, err := s.git.run("-c", "user.useConfigOnly=true", "commit", "-q", "-m", "rules: proposal "+s.Date); err != nil {
 			return nil, err
 		}
-	}
-
-	out, err := s.git.run("rev-list", "--count", "origin/"+s.Base+"..HEAD")
-	if err != nil {
-		return nil, err
-	}
-	if n, err := strconv.Atoi(strings.TrimSpace(out)); err != nil {
-		return nil, fmt.Errorf("git rev-list --count: %q is not a number", strings.TrimSpace(out))
-	} else if n == 0 {
-		return nil, refuse("nothing to propose: %s has no change in %s compared with origin/%s",
-			branch, ruleFolderList(), s.Base)
 	}
 	if _, err := s.git.run("push", "origin", branch); err != nil {
 		return nil, err
@@ -566,19 +659,11 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	}
 	res := &Published{Branch: branch, Commit: strings.TrimSpace(head)}
 
-	// A PR of this branch that is open is updated, whatever its label.
-	open, err := s.listPRs("branch", "--state", "open", "--head", branch, "--json", "number,url,headRefName")
-	if err != nil {
-		return nil, err
-	}
-	for _, p := range open {
-		if p.HeadRefName != branch {
-			continue
-		}
-		if _, err := s.gh.run("pr", "edit", strconv.Itoa(p.Number), "--body-file", bodyFile); err != nil {
+	if current != nil {
+		if _, err := s.gh.run("pr", "edit", strconv.Itoa(current.Number), "--body-file", bodyFile); err != nil {
 			return nil, err
 		}
-		res.URL = p.URL
+		res.URL = current.URL
 		return res, nil
 	}
 
@@ -596,6 +681,32 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	}
 	res.URL, res.Created = lines[len(lines)-1], true
 	return res, nil
+}
+
+// openPROf returns the open PR whose branch is the given one, whatever its
+// label, or nil.
+func (s *session) openPROf(branch string) (*pullRequest, error) {
+	open, err := s.listPRs("branch", "--state", "open", "--head", branch, "--json", "number,url,headRefName,body")
+	if err != nil {
+		return nil, err
+	}
+	for _, p := range open {
+		if p.HeadRefName == branch {
+			return &p, nil
+		}
+	}
+	return nil, nil
+}
+
+// missingIDs returns the ids of have that want does not have, sorted.
+func missingIDs(have, want []string) []string {
+	var missing []string
+	for _, id := range have {
+		if !slices.Contains(want, id) {
+			missing = append(missing, id)
+		}
+	}
+	return uniqueSorted(missing)
 }
 
 // branchDate returns the date in the name of a rules-proposal/<Date> or
