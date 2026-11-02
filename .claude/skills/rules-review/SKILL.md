@@ -69,7 +69,7 @@ allowed-tools:
    - `nothing: <一行理由>`：只在沒有東西可以提出時寫：沒有有把握的項目，也沒有要列進 `## 需要人決定` 的項目；publish 說沒有可提出的東西；或在本機（不執行 publish）。只是沒改任何規則檔，不算沒有東西可以提出
    - `failed: <一行原因>`：publish 被拒絕或失敗，改正後仍不行
    - CI：執行 `bin/lct proposal publish --body-file work/proposal/body.md --json`，它 commit 規則檔、推分支、開或更新規則 PR，結果有 `url` 與 `created`。不用 git 或 gh
-     - exit 1 是被拒絕。訊息說說明少了已有的項目：從 `existing-body.md` 補回；說有 token 或金鑰一類的字串：移掉它（說明與規則檔都不該有）；說沒有標記：補上。改正後再執行，最多重試一次。仍失敗就寫 `failed: …`
+     - exit 1 是被拒絕。訊息說說明少了已有的項目：從 `existing-body.md` 補回；說有 token 或金鑰一類的字串：移掉它（說明與規則檔都不該有）；說沒有標記：補上；說某一行像標記卻不是（指出第幾行）：把那一行改成單獨一行的 `<!-- suggestion:<id> -->`。改正後再執行，最多重試一次。仍失敗就寫 `failed: …`
      - 訊息說沒有可提出的東西（`nothing to propose`：沒改任何規則檔，說明也沒有開著的 PR 還沒有的項目）：不要為了通過而隨便改一個檔。寫 `nothing: 沒有新的項目`，停止
      - exit 2 寫 `failed: …`，停止並回報
    - 本機：不執行 publish，寫 `nothing: 本機執行，沒有發布`。向人報告改了哪些檔案、`work/proposal/body.md` 的內容，以及哪些建議沒處理。提醒人這些都還沒 commit：請人檢查後自己 commit 到 `main`（或開 PR），CI 會依新規則重建；不要 push `raw`、`tw`

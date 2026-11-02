@@ -35,7 +35,7 @@ allowed-tools:
    - exit 1 照錯誤訊息處理，exit 2 停止並回報。沒有候選就告訴人，結束
 2. 逐個處理候選（一頁最多 50 個）。每個先收集事實，再給人看：
    - `kr`、現行譯名 `zh`、`source`（`keyword` 是戰鬥關鍵字與 BUFF，`speaker` 是角色與 NPC 名稱）
-   - 用法：執行 `bin/lct search --json --text RE --limit 20`，`RE` 是 `kr` 跳脫正規表示式特殊字元後的樣子（說話者另可用 `--speaker`）。看它在幾個單位出現、現行譯文怎麼用這個詞，是否有不同譯法。結果被 `--limit` 截斷時說明這是前幾筆
+   - 用法：執行 `bin/lct search --json --text RE --limit 20`，`RE` 是 `kr` 跳脫正規表示式特殊字元後的樣子（說話者另可用 `--speaker`）。看它在幾個單位出現、現行譯文怎麼用這個詞，是否有不同譯法。結果的筆數剛好等於 `--limit` 時可能被截斷了（JSON 不另外標示），說明這是前幾筆
    - `term` 候選另外給人看詞條的 `notes`、`category` 與 `files`：用 Read 讀 `glossary/terms.yaml`（約千行，讀一次就好）找到該條。同一個 `kr` 可有多個條目（`files` 不同），都要看
 3. 人對每個詞決定一種，並依決定寫入。今天的日期用 `YYYY-MM-DD`：
    - 採用現行譯名：`term` 候選把該條目的 `status` 改成 `approved`；`derive` 的候選在 `glossary/terms.yaml` 新增一條，`kr` 與候選完全相同（含空白，否則下次還會被列出），`zh` 用現行譯名，`status: approved`，`category` 依人的意思（見 `glossary/README.md`）。只在人要求時才加 `forbidden`（驗證時以它擋掉其他譯法）
@@ -43,7 +43,7 @@ allowed-tools:
    - 不採用：在 `rules/declined.yaml` 加一筆，`id` 是 `term/<kr>`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`；`term` 候選在詞彙表裡的 `status: candidate` 條目，問人要不要一併刪掉（留著也不生效）
    - 略過：什麼都不寫，下次還會再列出
 4. 譯名改了（改譯法，或採用的譯名與現行譯文不同）時，找出用舊譯名的單位並由人決定要不要重翻：
-   - 用 `bin/lct search --json --text 舊譯名 --origin claude --origin paratranz` 找（`--origin` 明確寫出，以免重翻人工調整過的），把清單與數量給人看，請人確認範圍
+   - 用 `bin/lct search --json --text RE --origin claude --origin paratranz --limit 500` 找，`RE` 是舊譯名跳脫正規表示式特殊字元（`.`、`(`、`[`、`*`、`?`、`+` 等前面加 `\`）後的樣子；`--origin` 明確寫出，以免重翻人工調整過的。結果剛好 500 筆時可能被截斷，提高 `--limit` 再查一次。把清單與數量給人看，請人確認範圍
    - 要重翻：執行 `bin/lct requeue --to-file TOPIC --json --reason R …`，`--to-file` 一定要接在 `requeue` 後面。範圍用 `--key`、`--file` 指定（至少一個），範圍大時用 `--file` 加 `--origin`，不逐筆列 key。`--reason` 會原樣交給翻譯者，寫成它能照做的話（例如「[Laceration] 的譯名改為流血」）。結果的 `path` 是寫出的 `rules/requeue/<日期>-<主題>.yaml`；這個指令不改任何狀態
    - 規則改了不會自動重翻舊譯文；不要求重翻也可以，之後新翻的單位才用新譯名
 5. 一頁處理完，若還有候選，用 `bin/lct glossary derive --json --limit 50 --offset N` 取下一頁。已採用與不採用的詞不會再列出，所以 `N` 是到目前為止略過的候選數，不是已看過的數量。每頁結束報告進度（採用、改譯法、不採用、略過各幾個，`total` 還剩多少），問人要不要繼續
