@@ -536,6 +536,80 @@ func TestBatchSubmitMarksDirtyRules(t *testing.T) {
 	}
 }
 
+// A submission made while the rules have changes that are not committed goes
+// through: the records are made, as they were. It says so, in the warnings of
+// its result and on stderr, so that the person who runs the batch knows the
+// rules commit of the records does not hold the rules they were made under.
+func TestSubmitWarnsOnDirtyRules(t *testing.T) {
+	root, st := batchRepo(t)
+	t.Chdir(root)
+	next, _, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "guides/base.md", "# 未提交的指引\n")
+	dirty := runGitIn(t, root, "rev-parse", "HEAD") + "+dirty"
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: batchKey1, ZH: "有人說了話"})
+
+	code, stdout, stderr := lct(t, "--json", "batch", "submit", *next.Batch)
+	if code != 0 {
+		t.Fatalf("batch submit: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	var got struct {
+		Accepted []string
+		Warnings []struct {
+			Key    string
+			Errors []struct{ Code, Severity, Message string }
+		}
+	}
+	if err := json.Unmarshal([]byte(stdout), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, stdout)
+	}
+	if !slices.Equal(got.Accepted, []string{batchKey1}) {
+		t.Errorf("accepted = %v, want %s: a dirty rules commit must not stop the submission", got.Accepted, batchKey1)
+	}
+	if len(got.Warnings) != 1 || got.Warnings[0].Key != "" || len(got.Warnings[0].Errors) != 1 {
+		t.Fatalf("warnings = %+v, want one that is about the rules, not a unit", got.Warnings)
+	}
+	warning := got.Warnings[0].Errors[0]
+	if warning.Code != "rules-dirty" || warning.Severity != "warn" || !strings.Contains(warning.Message, dirty) {
+		t.Errorf("warning = %+v, want rules-dirty, warn, naming %s", warning, dirty)
+	}
+	if !strings.Contains(stderr, "warning") || !strings.Contains(stderr, dirty) {
+		t.Errorf("stderr = %q, want the warning with %s", stderr, dirty)
+	}
+	if recs, err := st.LoadRecords(); err != nil || recs[batchKey1].ZH != "有人說了話" || recs[batchKey1].Rules != dirty {
+		t.Errorf("record = %+v, %v, want the translation, made under %s", recs[batchKey1], err, dirty)
+	}
+
+	// As text it is a line of its own, and not one of the units with warnings.
+	next, _, err = runNextJSON(t, root)
+	if err != nil || next.Batch == nil {
+		t.Fatalf("batch next = %+v, %v, want the unit that was left", next, err)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"})
+	code, stdout, stderr = lct(t, "batch", "submit", *next.Batch)
+	if code != 0 || !strings.Contains(stdout, "0 with warnings") || !strings.Contains(stdout, "rules-dirty") || !strings.Contains(stderr, dirty) {
+		t.Errorf("as text: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+
+	// Committed rules: nothing to warn about.
+	runGitIn(t, root, "add", "-A")
+	runGitIn(t, root, "commit", "-q", "-m", "commit the rules")
+	if err := st.SavePending([]store.PendingItem{{Key: batchKey1, Reason: "requeue"}}); err != nil {
+		t.Fatal(err)
+	}
+	next, _, err = runNextJSON(t, root)
+	if err != nil || next.Batch == nil {
+		t.Fatalf("batch next = %+v, %v, want the unit that is pending again", next, err)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: batchKey1, ZH: "有人又說了話"})
+	code, stdout, stderr = lct(t, "--json", "batch", "submit", *next.Batch)
+	if code != 0 || strings.Contains(stdout, "rules-dirty") || strings.Contains(stderr, "dirty") || strings.Contains(stderr, "warning") {
+		t.Errorf("committed rules: exit code %d\nstdout:\n%s\nstderr:\n%s, want no warning", code, stdout, stderr)
+	}
+}
+
 func pendingItem(t *testing.T, st *store.Store, key string) (store.PendingItem, bool) {
 	t.Helper()
 	items, err := st.LoadPending()

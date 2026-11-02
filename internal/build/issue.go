@@ -48,6 +48,9 @@ const (
 	KindNewFamily = "new_family"
 	// KindLoopError is the translation loop that stopped on an error.
 	KindLoopError = "loop_error"
+	// KindNotTranslated is the translation that was not run, with units
+	// still waiting.
+	KindNotTranslated = "not_translated"
 )
 
 // ReviewSection is one kind of thing that needs a person: a heading, what to
@@ -67,7 +70,8 @@ type ReviewSection struct {
 // that ran out of attempts, the adjustments that expired, the frozen files
 // whose KR changed or whose translation broke the structure of KR, the
 // speakers and the files the rules do not know, the field rules that changed,
-// and a translation that stopped on an error. A kind with no case is left
+// a translation that stopped on an error, and a translation that was not run
+// while units wait for it. A kind with no case is left
 // out, so the list is empty (not nil) when nothing needs a person. sum is the
 // plan of this snapshot (nil when there is none) and pending the queue after
 // the build; info is the build record.
@@ -118,7 +122,26 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 			"看 Actions 的執行紀錄；修正後重跑，還沒翻的單位仍在待譯清單裡。",
 			[]string{reason(info.StopError)})
 	}
+	// The record of a translation that was not run is read again by every
+	// build of the same inputs, so it only counts while something waits.
+	if n := waitingForTranslation(pending); info.Stopped == translate.StopNotRun && n > 0 {
+		add(KindNotTranslated, "翻譯沒有執行",
+			"沒有設定 `ANTHROPIC_API_KEY`（secret）或 `LCT_MODEL`（variable）時不會翻譯，待譯的單位暫用英文或原文；補上後到 Actions 手動執行 `rebuild`，待譯清單還在，會接著翻。",
+			[]string{fmt.Sprintf("%s（待譯 %d 個單位）", reason(info.StopError), n)})
+	}
 	return secs
+}
+
+// waitingForTranslation counts the pending units a translation can still
+// take: those that do not wait for a person.
+func waitingForTranslation(pending []store.PendingItem) int {
+	n := 0
+	for _, it := range pending {
+		if !slices.Contains(it.Flags, store.FlagNeedsReview) {
+			n++
+		}
+	}
+	return n
 }
 
 // expiredItems is the item of each adjustment that is not in effect. When the

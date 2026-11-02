@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -93,17 +92,13 @@ func runReview(ctx *cli.Context, args []string) error {
 	if flags.NArg() > 0 {
 		return cli.UserError("review: unexpected argument " + flags.Arg(0))
 	}
-	cfg := ctx.Config
-	if cfg.Worktrees.TW == "" {
-		return cli.UserError("review: worktrees.tw must be set in lct.yaml")
+	if _, err := openTWStore(ctx, "review"); err != nil {
+		return err
 	}
+	cfg := ctx.Config
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
 	state, err := readBuildState(twRoot)
 	if errors.Is(err, build.ErrNotBuilt) {
-		if _, statErr := os.Stat(twRoot); statErr != nil {
-			return cli.UserError(fmt.Sprintf("review: %s does not exist; make the worktree of the tw branch "+
-				"(git fetch origin tw, then git worktree add %s tw)", cfg.Worktrees.TW, cfg.Worktrees.TW))
-		}
 		return cli.UserError(fmt.Sprintf("review: %s has no build record (.meta/build.json); bring the worktree of the tw branch "+
 			"up to date (git fetch origin tw) or run lct build", cfg.Worktrees.TW))
 	}

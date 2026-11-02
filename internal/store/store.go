@@ -139,6 +139,22 @@ func Open(twRoot string) *Store {
 	return &Store{root: twRoot}
 }
 
+// HasMeta reports whether the worktree has a .meta/ folder, which is where the
+// state is: a worktree of the tw branch that lct has bootstrapped or built has
+// one, and a missing worktree or an empty folder does not. Open does not
+// care; this is for a command that must not take the lack of state for an empty
+// one. It touches nothing.
+func (s *Store) HasMeta() (bool, error) {
+	info, err := os.Stat(s.metaDir())
+	switch {
+	case errors.Is(err, fs.ErrNotExist):
+		return false, nil
+	case err != nil:
+		return false, fmt.Errorf("store: %w", err)
+	}
+	return info.IsDir(), nil
+}
+
 func (s *Store) metaDir() string     { return filepath.Join(s.root, metaDirName) }
 func (s *Store) unitsDir() string    { return filepath.Join(s.metaDir(), unitsDirName) }
 func (s *Store) pendingPath() string { return filepath.Join(s.metaDir(), pendingName) }

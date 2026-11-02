@@ -287,6 +287,10 @@ func Head(dir string) (string, error) {
 	return "", err
 }
 
+// DirtySuffix ends the string Describe returns when paths have changes that are
+// not committed.
+const DirtySuffix = "+dirty"
+
 // Describe returns the commit HEAD points to, followed by "+dirty" when any of
 // paths (pathspecs relative to dir) has changes that are not committed:
 // staged, unstaged or untracked. It returns "" if the branch has no commits.
@@ -300,7 +304,7 @@ func Describe(dir string, paths ...string) (string, error) {
 		return "", err
 	}
 	if strings.TrimSpace(status) != "" {
-		head += "+dirty"
+		head += DirtySuffix
 	}
 	return head, nil
 }

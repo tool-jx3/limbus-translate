@@ -49,6 +49,7 @@ CI 每次建置後，若有需要人處理的項目，會開一則「審核：YY
    - `field_change`：遊戲新增或移除了欄位。先執行 `bin/lct fields learn --json`（不加 `--write` 只列出變化），把 `changes` 給人看，人確認這些欄位的值不是要翻的文字，再執行 `bin/lct fields learn --write --json`。學不到、但人要的規則寫進 `rules/fields.manual.yaml`（格式見該檔開頭）
    - `new_family`：新檔落在預設族群。用 `bin/lct search --file GLOB --json --limit 10` 看內容，到 `guides/routing.yaml` 加族群或擴充某族群的 `match`；順序就是比對順序，較具體的排前面，並依該檔開頭的說明把族群列進 `priority`。需要專屬指引時寫在 `guides/families.md`
    - `loop_error`：翻譯迴圈在 CI 上因錯誤中斷，item 是錯誤訊息。向人說明可能的原因（執行環境、認證、額度、claude CLI 的錯誤等）；這個 skill 查不到 Actions 的執行紀錄，請人到該次執行的頁面確認。還沒翻的單位仍在待譯清單，下次執行會繼續；不重跑翻譯，不改 workflow
+   - `not_translated`：CI 有待譯的單位，但沒有設定 `ANTHROPIC_API_KEY`（secret）或 `LCT_MODEL`（variable），翻譯沒有執行；item 是原因與待譯的單位數。向人說明要到 repo 的 Settings 補上這兩項，再到 Actions 手動執行 `rebuild`（待譯清單還在，會接著翻）；這個 skill 查不到也改不了 Actions 的設定，不翻譯、不改 workflow
    - 其他的 `kind`（比這份流程新）：照 `hint` 向人說明，不自行做
 3. 檢查並收尾：
    - 有改規則檔就執行 `bin/lct rules lint --json`。exit 0 才算完成；exit 1 會列出有問題的檔，自己寫的檔（指引、詞彙、`lct.yaml`）修正後再跑，`lct` 寫出的檔有問題就回報，不手改

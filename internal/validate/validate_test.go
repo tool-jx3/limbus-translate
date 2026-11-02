@@ -832,3 +832,75 @@ func TestHalfwidthBracketInRPGLabels(t *testing.T) {
 		t.Errorf("halfwidth-bracket of an existing unit = %+v, want a warning", is)
 	}
 }
+
+// KR names a state in Hangul and the translation writes it as an [ID] (a
+// community draft does): the ID is not in KR, which the structure check
+// already rejects as id-mismatch; the style warning says what to do instead.
+func TestExtraKeywordID(t *testing.T) {
+	tests := []struct {
+		name, kr, zh string
+		want         []string // the IDs the warning names; none: no warning
+	}{
+		{"a Hangul state name written as an ID", "상대에게 화상 2 부여", "給予對方2層[Burn]", []string{"[Burn]"}},
+		{"the ID is in KR", "상대에게 [Burn] 2 부여", "給予對方2層 [Burn]", nil},
+		{"no IDs anywhere", "상대에게 화상 2 부여", "給予對方2層燒傷 ", nil},
+		{"an ID that KR does not have next to one it has", "[Bleed] 위력 2 부여", "增加2級 [Bleed] 強度 [Burn]", []string{"[Burn]"}},
+		{"an ID renamed", "[Bleed] 위력 2 부여", "增加2級 [Burn] 強度", []string{"[Burn]"}},
+		{"two IDs that KR does not have", "화상과 출혈", "[Burn] 與 [Bleed]", []string{"[Bleed]", "[Burn]"}},
+		{"one ID twice is named once", "화상과 화상", "[Burn] 與 [Burn]", []string{"[Burn]"}},
+		{"an ID more often than KR has it is the count of id-mismatch", "[Burn] 그리고 화상", "[Burn] 與 [Burn]", nil},
+		{"an all-caps ID that KR has", "[ATTRIBUTES] 속성", "[ATTRIBUTES] 屬性", nil},
+		{"an ID in a tag-wrapped name", "<color=#f00>[Burn]</color> 부여", "賦予<color=#f00>[Burn]</color>", nil},
+		// [{n}] is a placeholder in brackets, not an ID.
+		{"a bracketed placeholder", "[{0}]이(가) 화상 2 부여", "[{0}]獲得2層燒傷 ", nil},
+		{"a bracketed placeholder that KR does not have", "{0}이(가) 화상 2 부여", "[{0}]獲得2層燒傷 ", nil},
+		{"a bracketed named placeholder", "[{Slot}] 화상", "[{Slot}] 燒傷 ", nil},
+		{"brackets around other text", "[1] 화상", "[1] 燒傷 [註]", nil},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			issues := Check(tc.kr, tc.zh, Context{})
+			var named []Issue
+			for _, is := range issues {
+				if is.Code == "extra-keyword-id" {
+					named = append(named, is)
+				}
+			}
+			if len(tc.want) == 0 {
+				if len(named) != 0 {
+					t.Fatalf("Check(%q, %q) raised %v, want no extra-keyword-id", tc.kr, tc.zh, named)
+				}
+				return
+			}
+			if len(named) != 1 {
+				t.Fatalf("Check(%q, %q) raised %d extra-keyword-id issues (codes %v), want one", tc.kr, tc.zh, len(named), codes(issues))
+			}
+			is := named[0]
+			if is.Severity != SeverityWarn || is.Class != ClassStyle {
+				t.Errorf("extra-keyword-id is %s/%s, want warn/style", is.Severity, is.Class)
+			}
+			for _, id := range tc.want {
+				if !strings.Contains(is.Message, id) {
+					t.Errorf("message %q should name %s", is.Message, id)
+				}
+			}
+			// It comes after the structural and content issues, as style issues do.
+			if last := issues[len(issues)-1]; last.Class != ClassStyle {
+				t.Errorf("the last issue is %s (%s), want the style issues last", last.Code, last.Class)
+			}
+		})
+	}
+
+	// The warning is on top of id-mismatch, which still rejects the text.
+	issues := Check("상대에게 화상 2 부여", "給予對方2層[Burn]", Context{})
+	if got := codes(issues); !reflect.DeepEqual(got, []string{"id-mismatch", "extra-keyword-id"}) || !HasHard(issues) {
+		t.Errorf("codes = %v (hard: %v), want id-mismatch, then extra-keyword-id", got, HasHard(issues))
+	}
+	// A unit that shipped keeps it a warning, and so does a new one.
+	for _, existing := range []bool{false, true} {
+		is, ok := find(Check("상대에게 화상 2 부여", "給予對方2層[Burn]", Context{Existing: existing}), "extra-keyword-id")
+		if !ok || is.Severity != SeverityWarn {
+			t.Errorf("existing=%v: extra-keyword-id = %+v, %v, want a warning", existing, is, ok)
+		}
+	}
+}

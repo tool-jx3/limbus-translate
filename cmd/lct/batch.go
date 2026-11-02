@@ -22,6 +22,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 // batchDir is where batches and their translations are exchanged, relative
@@ -48,9 +49,35 @@ var batchIDRe = regexp.MustCompile(`^\d{8}T\d{6}-[0-9a-f]{8}(-[1-9][0-9]*)?$`)
 // batchNow is the clock of the batch commands; the tests replace it.
 var batchNow = time.Now
 
-// openStore opens the store of the tw worktree.
+// openStore opens the store of the tw worktree. It does not look whether the
+// worktree is there: a missing one reads as a store with nothing in it.
 func openStore(ctx *cli.Context) *store.Store {
 	return store.Open(filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.TW)))
+}
+
+// openTWStore opens the store of the tw worktree for command, which reads or
+// changes the state kept there, and refuses a worktree that is not there: with
+// no .meta/ in it every command would find no translations and no pending units
+// and answer as if there were none. The error is a user error that says how to
+// make the worktree (lct does not make it; CI and a person do, from the tw
+// branch). The commands for looking things up and for working on the rules
+// (search, requeue, adjust, review, impact, suggest, glossary derive) open it
+// here; the batch commands and pending keep openStore.
+func openTWStore(ctx *cli.Context, command string) (*store.Store, error) {
+	tw := ctx.Config.Worktrees.TW
+	if tw == "" {
+		return nil, cli.UserError(command + ": worktrees.tw must be set in lct.yaml")
+	}
+	st := openStore(ctx)
+	has, err := st.HasMeta()
+	if err != nil {
+		return nil, err
+	}
+	if !has {
+		return nil, cli.UserError(fmt.Sprintf("%s: %s has no .meta/, so there is no worktree of the tw branch there; "+
+			"make it (git fetch origin tw, then git worktree add %s tw)", command, tw, tw))
+	}
+	return st, nil
 }
 
 // parseInterspersed parses args, in which flags and positional arguments may
@@ -271,6 +298,24 @@ func readStrictJSON(ctx *cli.Context, path string, v any) error {
 	return nil
 }
 
+// codeRulesDirty is the code of the warning that the rules have changes that
+// are not committed. It is about the whole submission, so the entry of
+// "warnings" that carries it has no key.
+const codeRulesDirty = "rules-dirty"
+
+// rulesDirtyWarning is the entry of "warnings" that says the records of the
+// submission name rulesCommit, which does not hold the rules they were made
+// under.
+func rulesDirtyWarning(rulesCommit string) batch.Rejection {
+	return batch.Rejection{Issues: []validate.Issue{{
+		Code:     codeRulesDirty,
+		Severity: validate.SeverityWarn,
+		Class:    validate.ClassStyle,
+		Message: fmt.Sprintf("the rules have changes that are not committed, so the records of this batch name the rules commit %s, "+
+			"which does not hold them; commit %s/ before the next batch", rulesCommit, strings.Join(rulesPaths, "/, ")),
+	}}}
+}
+
 // submitReport is what "batch submit" prints: the result of Submit.
 type submitReport struct {
 	Batch string `json:"batch"`
@@ -279,8 +324,17 @@ type submitReport struct {
 
 func (r submitReport) String() string {
 	var b strings.Builder
+	// The warning about the rules is no unit's: it has no key.
+	unitWarnings := slices.DeleteFunc(slices.Clone(r.Warnings), func(w batch.Rejection) bool { return w.Key == "" })
 	fmt.Fprintf(&b, "batch %s: %d accepted, %d reused, %d rejected, %d with warnings, %d need review, %d not submitted, %d notes kept\n",
-		r.Batch, len(r.Accepted), len(r.Reused), len(r.Rejected), len(r.Warnings), len(r.NeedsReview), len(r.Released), r.Notes)
+		r.Batch, len(r.Accepted), len(r.Reused), len(r.Rejected), len(unitWarnings), len(r.NeedsReview), len(r.Released), r.Notes)
+	for _, w := range r.Warnings {
+		if w.Key == "" {
+			for _, is := range w.Issues {
+				fmt.Fprintf(&b, "warning, %s: %s\n", is.Code, is.Message)
+			}
+		}
+	}
 	list := func(title string, items []batch.Rejection) {
 		if len(items) == 0 {
 			return
@@ -294,7 +348,7 @@ func (r submitReport) String() string {
 		}
 	}
 	list("rejected", r.Rejected)
-	list("warnings", r.Warnings)
+	list("warnings", unitWarnings)
 	keys := func(title string, items []string) {
 		if len(items) == 0 {
 			return
@@ -353,6 +407,14 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 	if env.RulesCommit, err = rulesCommit(ctx, "batch submit"); err != nil {
 		return err
 	}
+	// The records are made all the same: a person who runs a batch by hand
+	// with rules not yet committed is told, once, and decides.
+	var rulesWarning *batch.Rejection
+	if rulesDirty(env.RulesCommit) {
+		w := rulesDirtyWarning(env.RulesCommit)
+		rulesWarning = &w
+		fmt.Fprintf(os.Stderr, "lct: warning: batch submit: %s\n", w.Issues[0].Message)
+	}
 	if env.KeywordNames, err = keywordNames(env.Store, env.Src); err != nil {
 		return err
 	}
@@ -363,6 +425,9 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 	}
 	if err != nil {
 		return err
+	}
+	if rulesWarning != nil {
+		res.Warnings = append([]batch.Rejection{*rulesWarning}, res.Warnings...)
 	}
 
 	if err := ctx.Emit(submitReport{Batch: id, SubmitResult: *res}); err != nil {

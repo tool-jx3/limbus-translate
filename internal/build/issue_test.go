@@ -480,3 +480,69 @@ func TestReviewNeedsReviewHintPointsToMain(t *testing.T) {
 		t.Errorf("the hint still names lct requeue --needs-review, which never reaches CI: %s", hint)
 	}
 }
+
+// A translation that was not run (no API key or no model) leaves the pending
+// units untranslated: the issue says so, with why, once and only while units
+// are still waiting.
+func TestReviewIssueListsATranslationThatDidNotRun(t *testing.T) {
+	const why = "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL"
+	info := issueInfo()
+	info.Stopped, info.StopError = translate.StopNotRun, why
+	waiting := []store.PendingItem{
+		{Key: "A.json|/dataList/0/content", Reason: "new"},
+		{Key: "A.json|/dataList/1/content", Reason: "kr-changed"},
+		{Key: "A.json|/dataList/2/content", Reason: "new", Flags: []string{store.FlagNeedsReview}, Attempts: 3, LastError: "x: y"},
+	}
+
+	secs := ReviewItems(info, nil, waiting)
+	// The unit that waits for a person is its own section; the two that wait
+	// for a translation are counted in the one about the translation.
+	if len(secs) != 2 || secs[0].Kind != KindNeedsReview || secs[1].Kind != KindNotTranslated {
+		t.Fatalf("sections = %+v, want needs_review and then not_translated", secs)
+	}
+	sec := secs[1]
+	if sec.Title != "翻譯沒有執行" || sec.Hint == "" {
+		t.Errorf("section = %+v, want the title 翻譯沒有執行 and a hint", sec)
+	}
+	if len(sec.Items) != 1 || !strings.Contains(sec.Items[0], "`"+why+"`") || !strings.Contains(sec.Items[0], "2 個單位") {
+		t.Errorf("items = %q, want the reason as a code span and 2 units waiting", sec.Items)
+	}
+	for _, name := range []string{"ANTHROPIC_API_KEY", "LCT_MODEL"} {
+		if !strings.Contains(sec.Hint, name) {
+			t.Errorf("hint %q does not name %s", sec.Hint, name)
+		}
+	}
+
+	_, parts, ok := ReviewIssue(info, nil, waiting)
+	if !ok || len(parts) != 1 || !strings.Contains(parts[0], "### 翻譯沒有執行") || !strings.Contains(parts[0], "- [ ] `"+why+"`（待譯 2 個單位）\n") {
+		t.Errorf("the issue lacks the translation that was not run (%v):\n%v", ok, parts)
+	}
+
+	// Nothing waiting, nothing to say: a later build of the same inputs reads
+	// the same translate.json, and the units have been translated since.
+	for name, pending := range map[string][]store.PendingItem{
+		"no pending units":                    nil,
+		"only a unit that waits for a person": waiting[2:],
+	} {
+		for _, sec := range ReviewItems(info, nil, pending) {
+			if sec.Kind == KindNotTranslated {
+				t.Errorf("%s: %+v", name, sec)
+			}
+		}
+	}
+	// Any other stop is not it, and an error is the loop's own section.
+	for _, stopped := range []string{"", translate.StopDone, translate.StopCost, translate.StopDeadline, translate.StopNoProgress, translate.StopError} {
+		info.Stopped = stopped
+		for _, sec := range ReviewItems(info, nil, waiting) {
+			if sec.Kind == KindNotTranslated {
+				t.Errorf("stopped %q: %+v", stopped, sec)
+			}
+		}
+	}
+	// A reason that was not recorded is said so, not left empty.
+	info.Stopped, info.StopError = translate.StopNotRun, ""
+	secs = ReviewItems(info, nil, waiting[:1])
+	if len(secs) != 1 || !strings.Contains(secs[0].Items[0], unknownReason) {
+		t.Errorf("sections = %+v, want the unknown reason", secs)
+	}
+}

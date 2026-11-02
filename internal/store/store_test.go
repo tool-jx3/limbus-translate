@@ -122,6 +122,36 @@ func TestLoadMissingMetaIsEmpty(t *testing.T) {
 	}
 }
 
+// A worktree has a store once it has a .meta/ folder, whatever is in it.
+func TestHasMeta(t *testing.T) {
+	root := t.TempDir()
+	for name, tc := range map[string]struct {
+		prepare func(tw string)
+		want    bool
+	}{
+		"no worktree":     {func(tw string) {}, false},
+		"an empty folder": {func(tw string) { os.MkdirAll(tw, 0o755) }, false},
+		"a file as .meta": {func(tw string) { os.MkdirAll(tw, 0o755); os.WriteFile(filepath.Join(tw, metaDirName), nil, 0o644) }, false},
+		"an empty .meta":  {func(tw string) { os.MkdirAll(filepath.Join(tw, metaDirName), 0o755) }, true},
+		"state in .meta/": {func(tw string) { Open(tw).SavePending(nil) }, true},
+		"a file in .meta/": {func(tw string) {
+			os.MkdirAll(filepath.Join(tw, metaDirName), 0o755)
+			os.WriteFile(filepath.Join(tw, metaDirName, "x.json"), nil, 0o644)
+		}, true},
+	} {
+		tw := filepath.Join(root, strings.ReplaceAll(name, " ", "-"))
+		tc.prepare(tw)
+		got, err := Open(tw).HasMeta()
+		if err != nil || got != tc.want {
+			t.Errorf("%s: HasMeta = %v, %v; want %v", name, got, err, tc.want)
+		}
+	}
+	// Asking creates nothing.
+	if _, err := os.Stat(filepath.Join(root, "no-worktree")); !os.IsNotExist(err) {
+		t.Errorf("HasMeta made the worktree (%v)", err)
+	}
+}
+
 func TestSaveRecordsRemovesFilesWithoutRecords(t *testing.T) {
 	root := t.TempDir()
 	s := Open(root)

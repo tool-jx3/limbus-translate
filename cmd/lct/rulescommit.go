@@ -1,6 +1,8 @@
 package main
 
 import (
+	"strings"
+
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 )
@@ -23,3 +25,8 @@ func rulesCommit(ctx *cli.Context, command string) (string, error) {
 	}
 	return commit, nil
 }
+
+// rulesDirty reports whether commit, a rules commit as rulesCommit returns it,
+// says the rules had changes that were not committed: what the records made
+// under it name is a commit that does not hold those rules.
+func rulesDirty(commit string) bool { return strings.HasSuffix(commit, gitx.DirtySuffix) }

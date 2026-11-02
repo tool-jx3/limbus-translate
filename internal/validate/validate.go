@@ -40,8 +40,8 @@ const (
 // Issue codes. Structural codes are empty, id-mismatch, placeholder-mismatch,
 // tag-mismatch, tag-nesting and dante-wrapper; content codes are hangul,
 // simplified and forbidden-term; style codes are kana, halfwidth-punct,
-// halfwidth-bracket, placeholder-bracket, ascii-ellipsis, curly-quotes and
-// length-ratio.
+// halfwidth-bracket, placeholder-bracket, extra-keyword-id, ascii-ellipsis,
+// curly-quotes and length-ratio.
 const (
 	CodeEmpty               = "empty"
 	CodeIDMismatch          = "id-mismatch"
@@ -56,6 +56,7 @@ const (
 	CodeHalfwidthPunct      = "halfwidth-punct"
 	CodeHalfwidthBracket    = "halfwidth-bracket"
 	CodePlaceholderBracket  = "placeholder-bracket"
+	CodeExtraKeywordID      = "extra-keyword-id"
 	CodeASCIIEllipsis       = "ascii-ellipsis"
 	CodeCurlyQuotes         = "curly-quotes"
 	CodeLengthRatio         = "length-ratio"
@@ -378,6 +379,10 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodePlaceholderBracket, ClassStyle,
 			"%s is missing its other bracket; keep both brackets of the placeholder as KR does", quoteList(frags)))
 	}
+	if ids := extraKeywordIDs(kr, zh); len(ids) > 0 {
+		issues = append(issues, ctx.issue(CodeExtraKeywordID, ClassStyle,
+			"%s is not in KR; where KR names a state in Hangul, write its Chinese name, not an [ID] (guides/base.md)", quoteList(ids)))
+	}
 	if asciiEllRe.MatchString(zh) {
 		issues = append(issues, ctx.issue(CodeASCIIEllipsis, ClassStyle, `"..." should be "……"`))
 	}
@@ -390,6 +395,22 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 			"the translation has %d characters and KR has %d; the ratio is outside 0.2 to 3", zhLen, krLen))
 	}
 	return issues
+}
+
+// extraKeywordIDs returns the distinct [ID]s of zh that kr does not contain,
+// sorted. How often an ID occurs is id-mismatch's to compare; this is about an
+// ID that KR has nowhere, such as [Burn] for a state KR writes as 화상. A
+// bracketed placeholder like [{0}] is not an ID.
+func extraKeywordIDs(kr, zh string) []string {
+	have := IDs(kr)
+	var extra []string
+	for _, id := range IDs(zh) {
+		if !slices.Contains(have, id) && !slices.Contains(extra, id) {
+			extra = append(extra, id)
+		}
+	}
+	slices.Sort(extra)
+	return extra
 }
 
 // halfwidthPunct returns the distinct half-width , . : in s that touch Chinese

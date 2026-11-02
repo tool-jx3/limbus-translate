@@ -79,7 +79,7 @@ func oneLine(s string) string {
 type searchQuery struct {
 	keys    map[string]bool // unit keys; nil when not given
 	files   []string        // patterns (config.MatchAny); nil when not given
-	origins []string        // origins of the record; nil when not given: any but copy
+	origins []string        // origins of the record; nil when not given: any but copy, unless the unit is named in keys
 	text    *regexp.Regexp  // against the KR text or the translation; nil when not given
 	speaker *string         // against batch.SpeakerOf; nil when not given
 }
@@ -92,7 +92,7 @@ func runSearch(ctx *cli.Context, args []string) error {
 	text := flags.String("text", "", "a Go regular expression that the KR text or the translation matches, such as '(?i)manager' or '^您'")
 	speaker := flags.String("speaker", "", "who says the unit: a character id such as honglu when the rules know the speaker, else the model or speaker string of KR")
 	flags.Var(&files, "file", "a pack file name or a glob such as StoryData/S1* or BgmLyrics/** (repeatable: any of them)")
-	flags.Var(&origins, "origin", "only units whose record has this origin: paratranz, claude, human, copy or fallback (repeatable: any of them; default: every unit but the copies, which are identifiers and texts that are the same in every language; a unit without a record has no origin)")
+	flags.Var(&origins, "origin", "only units whose record has this origin: paratranz, claude, human, copy or fallback (repeatable: any of them; default: every unit but the copies, which are identifiers and texts that are the same in every language, unless the unit is named with --key; a unit without a record has no origin)")
 	limit := flags.Int("limit", defaultSearchLimit, "the most units to return")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("search: " + err.Error())
@@ -153,7 +153,11 @@ func runSearch(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	records, err := openStore(ctx).LoadRecords()
+	st, err := openTWStore(ctx, "search")
+	if err != nil {
+		return err
+	}
+	records, err := st.LoadRecords()
 	if err != nil {
 		return err
 	}
@@ -204,8 +208,10 @@ func searchUnits(kr *pack.Pack, r *rules.Rules, records map[string]store.Record,
 				continue
 			}
 			rec, hasRecord := records[key]
-			if q.origins == nil && hasRecord && rec.Origin == store.OriginCopy {
-				continue // the model and id fields of every line: nothing to find in them
+			// The model and id fields of every line: nothing to find in them,
+			// unless they are asked for by name.
+			if q.origins == nil && q.keys == nil && hasRecord && rec.Origin == store.OriginCopy {
+				continue
 			}
 			if q.origins != nil && (!hasRecord || !slices.Contains(q.origins, rec.Origin)) {
 				continue

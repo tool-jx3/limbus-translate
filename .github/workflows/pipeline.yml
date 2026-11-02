@@ -133,7 +133,11 @@ jobs:
       # that only kept the progress of a translation (the build after it failed,
       # and the pack is still the one of the last Release, so the Release check
       # sees nothing). The steps after this one are skipped and the run ends
-      # green.
+      # green. Units that are pending when there is something to do are
+      # translated (translate), left alone on purpose (a dry run), or left
+      # alone because the API key or the model is missing (not_run: the
+      # pipeline says so in the record the build reads, and the review issue
+      # lists it).
       - name: Stop when there is nothing to do
         id: decide
         env:
@@ -142,6 +146,7 @@ jobs:
           REQUEUE: ${{ inputs.requeue }}
           DRY_RUN: ${{ inputs.dry_run }}
           HAS_API_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+          HAS_MODEL: ${{ vars.LCT_MODEL != '' }}
           NEW: ${{ steps.check.outputs.new }}
           PENDING: ${{ steps.plan.outputs.pending }}
           APPLIED: ${{ steps.plan.outputs.applied }}
@@ -161,11 +166,14 @@ jobs:
             echo '沒有新的遊戲更新，也沒有待譯，沒有重翻要求或改寫檔要套用，tw 也已經建置到目前的 raw，沒有還欠著的 Release，tw 最後一個 commit 也不是只保存翻譯進度：不建置、不發佈。' | tee -a "$GITHUB_STEP_SUMMARY"
           fi
           translate=false
+          not_run=false
           if [ "$idle" = false ] && [ "$PENDING" -gt 0 ]; then
             if [ "$DRY_RUN" = true ]; then
               echo "::notice::dry_run: the $PENDING pending units are not translated"
-            elif [ "$HAS_API_KEY" != true ]; then
-              echo "::warning::ANTHROPIC_API_KEY is not set: the $PENDING pending units are not translated"
+            elif [ "$HAS_API_KEY" != true ] || [ "$HAS_MODEL" != true ]; then
+              [ "$HAS_API_KEY" = true ] || echo "::warning::ANTHROPIC_API_KEY is not set: the $PENDING pending units are not translated"
+              [ "$HAS_MODEL" = true ] || echo "::warning::the variable LCT_MODEL is not set: the $PENDING pending units are not translated"
+              not_run=true
             else
               translate=true
             fi
@@ -173,6 +181,7 @@ jobs:
           {
             echo "idle=$idle"
             echo "translate=$translate"
+            echo "not_run=$not_run"
             echo "raw_tag=$raw_tag"
           } >> "$GITHUB_OUTPUT"
 
@@ -223,6 +232,16 @@ jobs:
             git -C .work/tw commit --quiet -m "translate: keep the progress of $RAW_TAG"
             git -C .work/tw push origin tw
           fi
+
+      # Units are pending and the API key or the model is missing. Nothing is
+      # translated and nothing is committed here: lct writes .meta/translate.json
+      # (a record of this raw tag and these rules), the build reads it, and the
+      # publish commit takes it to tw with the rest. The review issue then says
+      # the translation did not run. A dry run is not recorded: it skips
+      # translating on purpose. No key is needed to write the record.
+      - name: Record that the translation did not run
+        if: steps.decide.outputs.not_run == 'true'
+        run: bin/lct translate --not-run "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"
 
       - name: Build the pack
         if: steps.decide.outputs.idle == 'false'

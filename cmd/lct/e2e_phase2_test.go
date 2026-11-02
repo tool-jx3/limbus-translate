@@ -871,3 +871,73 @@ func checkPhase2SecondBuild(t *testing.T, p *phase2, built buildOut) {
 		t.Error("the pack still holds the deleted S3.json")
 	}
 }
+
+// A pipeline with units to translate and no key or no model records that, and
+// that is all it takes for a person to be told: the build reads the record,
+// the review issue and lct review list the translation that did not run, and
+// the publish commit takes the record to tw.
+func TestNotRunReachesTheReviewIssue(t *testing.T) {
+	fixture, err := filepath.Abs(phase2Fixture)
+	if err != nil {
+		t.Fatal(err)
+	}
+	p := &phase2{t: t, root: e2eRepo(t), fixture: fixture, fakeDir: t.TempDir()}
+	t.Chdir(p.root)
+	t.Setenv("LCT_MODEL", "") // the case: no model, and no key
+	t.Setenv(sourceDateEpoch, "")
+
+	p.update("v1", testToken, testCreatedAt, phase2Raw1)
+	var learned learnReport
+	mustLct(t, &learned, "fields", "learn", "--write")
+	runGitIn(t, p.root, "commit", "-q", "-am", "rules: learn the field rules of the packs")
+	p.plan()
+
+	const why = "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"
+	var res translate.Result
+	mustLct(t, &res, "translate", "--not-run", why)
+	if res.Stopped != translate.StopNotRun || res.Error != why || res.PendingBefore != 14 || res.Runs != 0 {
+		t.Fatalf("translate --not-run = %+v, want the record of 14 units that were not translated", res)
+	}
+	if c := pendingNow(t); c.Total != 14 {
+		t.Errorf("pending after --not-run = %+v, want the 14 units still waiting", c)
+	}
+
+	built := p.build()
+	if built.ReviewIssueParts != 1 {
+		t.Fatalf("build made %d review issue parts, want 1", built.ReviewIssueParts)
+	}
+	issue := string(readFile(t, filepath.Join(p.root, "out", "review-issue", "01.md")))
+	for _, want := range []string{"### 翻譯沒有執行", "`" + why + "`（待譯 14 個單位）"} {
+		if !strings.Contains(issue, want) {
+			t.Errorf("the review issue lacks %q:\n%s", want, issue)
+		}
+	}
+	var review reviewReport
+	mustLct(t, &review, "review")
+	if len(review.Sections) != 1 || review.Sections[0].Kind != build.KindNotTranslated || len(review.Sections[0].Items) != 1 {
+		t.Errorf("lct review = %+v, want the one section %s", review.Sections, build.KindNotTranslated)
+	}
+	info, err := build.ReadInfo(filepath.Join(p.root, ".work", "tw"))
+	if err != nil || info.Stopped != translate.StopNotRun || info.StopError != why || info.Model != "" {
+		t.Errorf("build.json = %+v, %v, want not-run with its reason and no model", info, err)
+	}
+
+	pub := p.publish()
+	if got := runGitIn(t, p.root, "-C", filepath.Join(".work", "tw"), "show", "HEAD:.meta/"+translate.MetaFile); !strings.Contains(got, `"stopped": "not-run"`) {
+		t.Errorf("the tw commit %s holds .meta/translate.json = %q, want the record of the translation that did not run", pub.TWCommit, got)
+	}
+
+	// Once the units are translated the record no longer says anything.
+	t.Setenv("LCT_MODEL", "e2e")
+	t.Setenv(fakeClaudeEnv, p.fakeDir)
+	claude, err := os.Executable()
+	if err != nil {
+		t.Fatal(err)
+	}
+	p.claude = claude
+	p.translate(14)
+	p.build()
+	if _, err := os.Stat(filepath.Join(p.root, "out", "review-issue")); err == nil {
+		t.Error("the review issue is still made after the units were translated")
+	}
+}

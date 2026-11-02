@@ -102,7 +102,11 @@ func runRequeue(ctx *cli.Context, args []string) error {
 		return err
 	}
 
-	res, err := requeue.Apply(openStore(ctx), set.KR, cfg.Frozen, sel, hint)
+	st, err := openTWStore(ctx, "requeue")
+	if err != nil {
+		return err
+	}
+	res, err := requeue.Apply(st, set.KR, cfg.Frozen, sel, hint)
 	if err != nil {
 		return err
 	}

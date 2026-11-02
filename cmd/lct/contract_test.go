@@ -870,7 +870,7 @@ var reviewSays = append(slices.Clone(localSkillSays),
 	skillSays{"`lct.yaml`", "the frozen list is not named"},
 	kindSays(build.KindNeedsReview), kindSays(build.KindAdjustmentExpired), kindSays(build.KindFrozenChanged),
 	kindSays(build.KindFrozenFallback), kindSays(build.KindNewSpeaker), kindSays(build.KindFieldChange),
-	kindSays(build.KindNewFamily), kindSays(build.KindLoopError),
+	kindSays(build.KindNewFamily), kindSays(build.KindLoopError), kindSays(build.KindNotTranslated),
 )
 
 // kindSays is what the review skill must say about a kind of item.
@@ -942,6 +942,7 @@ func TestLocalSkillBodies(t *testing.T) {
 			{"issue not ticked", "勾選", "看過", "勾選"},
 			{"no tidy", "bin/lct adjust tidy --json", "bin/lct adjust tidy", "bin/lct adjust tidy --json"},
 			{"a kind not handled", "`new_family`", "`family`", "`new_family`"},
+			{"the translation that was not run not handled", "`not_translated`", "`translated`", "`not_translated`"},
 			{"lct never built", "go build -o bin/lct ./cmd/lct", "go install ./cmd/lct", "go build -o bin/lct ./cmd/lct"},
 		}},
 		{"term-decision", termDecisionSays, termDecisionFlow, []struct{ name, old, repl, want string }{
@@ -1321,6 +1322,7 @@ var pipelineOrder = [][2]string{
 	{"git -C .work/tw commit", "git -C .work/tw push origin tw"},
 	{"git -C .work/tw push origin tw", "bin/lct build"}, // kept before anything that can fail
 	{"bin/lct translate --max-usd", "bin/lct build"},
+	{"bin/lct translate --not-run", "bin/lct build"}, // the build reads the record
 	// The idle check asks about tw as the last run left it, before this run
 	// commits to it.
 	{"bin/lct publish --check", "git -C .work/tw commit"},
@@ -1687,7 +1689,7 @@ func checkPipelineWorkflow(file, content string) []string {
 	} else {
 		add("no step sets idle=true: the run never ends when there is nothing to do")
 	}
-	if s, ok := find("bin/lct translate"); ok {
+	if s, ok := find("bin/lct translate --max-usd"); ok {
 		if claudeCLIRe.MatchString(s.Run) {
 			add("the translate step installs the claude CLI itself: the API key is in its environment while npm runs the install scripts; install it in a step of its own")
 		}
@@ -1729,6 +1731,7 @@ func checkPipelineWorkflow(file, content string) []string {
 			add("the translate step does not say with ::warning:: after the command that it failed")
 		}
 	}
+	problems = append(problems, checkPipelineNotRun(file, job.Steps)...)
 	// The line about a Release that is not made goes to the summary page, and
 	// only when the publish says no Release is needed and names the Release
 	// whose pack this is.
@@ -1750,6 +1753,95 @@ func checkPipelineWorkflow(file, content string) []string {
 		if !workflowTitleRe.MatchString(s.Run) {
 			add("gh release create has no --title")
 		}
+	}
+	return problems
+}
+
+// notRunReasonNames are what the reason the pipeline gives for a translation it
+// did not run must name: the two things whose absence stops the translation,
+// so that the review issue tells a person what to set.
+var notRunReasonNames = []string{"ANTHROPIC_API_KEY", "LCT_MODEL"}
+
+// checkPipelineNotRun checks how the pipeline treats units that are pending
+// when the API key or the model is missing: the decide step tells that from a
+// dry run (which skips translating on purpose) and from a run that translates,
+// and a step of its own, gated on that, records the translation that did not
+// run with lct translate --not-run, so that the build reads it and the review
+// issue says the units are untranslated and why. That step needs no key, and
+// it commits nothing: the publish commit takes the record to tw.
+func checkPipelineNotRun(file string, steps []workflowStep) []string {
+	var problems []string
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
+
+	decide := slices.IndexFunc(steps, func(s workflowStep) bool { return s.ID == "decide" })
+	if decide < 0 {
+		return append(problems, file+": no step with the id decide")
+	}
+	d := steps[decide]
+	for name, want := range map[string]string{
+		"HAS_API_KEY": "${{ secrets.ANTHROPIC_API_KEY != '' }}",
+		"HAS_MODEL":   "${{ vars.LCT_MODEL != '' }}",
+	} {
+		if d.Env[name] != want {
+			add("the decide step has %s = %q, want %q: it must tell a missing key or model from a set one", name, d.Env[name], want)
+		}
+	}
+	lines := strings.Split(d.Run, "\n")
+	at := func(from int, want string) int {
+		for i := from; i < len(lines); i++ {
+			if strings.TrimSpace(lines[i]) == want {
+				return i
+			}
+		}
+		return -1
+	}
+	const missing = `elif [ "$HAS_API_KEY" != true ] || [ "$HAS_MODEL" != true ]; then`
+	dry := at(0, `if [ "$DRY_RUN" = true ]; then`)
+	elif := at(max(dry, 0), missing)
+	switch {
+	case dry < 0:
+		add(`the decide step does not test if [ "$DRY_RUN" = true ]; then first: a dry run skips translating on purpose and must not count as a translation that did not run`)
+	case elif < 0:
+		add("the decide step lacks %s: a missing key or a missing model, either, after the test of the dry run, is a translation that did not run", missing)
+	default:
+		other := at(elif+1, "else")
+		end := at(max(other, 0), "fi")
+		if other < 0 || end < 0 {
+			add("the decide step has no else after the branch of a missing key or model")
+			break
+		}
+		branch, rest := strings.Join(lines[elif+1:other], "\n"), strings.Join(lines[other+1:end], "\n")
+		if !strings.Contains(branch, "not_run=true") || strings.Contains(branch, "translate=true") {
+			add("the branch of a missing key or model must set not_run=true and not translate=true")
+		}
+		if !strings.Contains(rest, "translate=true") || strings.Contains(rest, "not_run=true") {
+			add("the branch that translates must set translate=true and not not_run=true")
+		}
+	}
+	for _, want := range []string{"not_run=false", `echo "not_run=$not_run"`} {
+		if !strings.Contains(d.Run, want) {
+			add("the decide step lacks %q: the record of a translation that did not run reads steps.decide.outputs.not_run", want)
+		}
+	}
+
+	i := slices.IndexFunc(steps, func(s workflowStep) bool { return strings.Contains(s.Run, "bin/lct translate --not-run") })
+	if i < 0 {
+		return append(problems, file+": no step runs bin/lct translate --not-run: units that are pending while the key or the model is missing are untranslated and nothing says so")
+	}
+	s := steps[i]
+	if s.If != "steps.decide.outputs.not_run == 'true'" {
+		add("the step that runs bin/lct translate --not-run has the if %q, want steps.decide.outputs.not_run == 'true': it records a translation that did not run, only when there is one", s.If)
+	}
+	if _, ok := s.Env["ANTHROPIC_API_KEY"]; ok {
+		add("the step that runs bin/lct translate --not-run has ANTHROPIC_API_KEY in its environment: it runs when the key may be missing, and runs no claude")
+	}
+	for _, name := range notRunReasonNames {
+		if !strings.Contains(s.Run, name) {
+			add("the reason of bin/lct translate --not-run does not name %s: the review issue would not say what to set", name)
+		}
+	}
+	if strings.Contains(s.Run, "git ") {
+		add("the step that runs bin/lct translate --not-run uses git: it commits nothing, the publish commit takes .meta/translate.json to tw")
 	}
 	return problems
 }
@@ -2721,6 +2813,28 @@ func TestWorkflowContract(t *testing.T) {
 		{"translations not pushed", "git -C .work/tw push origin tw", "git -C .work/tw status", `"git -C .work/tw push origin tw"`},
 		{"translations never kept", "          if [ -n \"$(git -C .work/tw status --porcelain)\" ]; then\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n            git -C .work/tw push origin tw\n          fi\n", "          true\n", `"git -C .work/tw commit"`},
 
+		// Units that are pending while the key or the model is missing are
+		// recorded as untranslated, for the build and the review issue; a dry
+		// run, which skips translating on purpose, is not.
+		{"no record of a translation that did not run", `run: bin/lct translate --not-run "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, "run: echo skipped", "no step runs bin/lct translate --not-run"},
+		{"a record whatever decide says", "        if: steps.decide.outputs.not_run == 'true'\n        run: bin/lct translate --not-run", "        run: bin/lct translate --not-run", "not_run == 'true'"},
+		{"a record under the if of the translation", "if: steps.decide.outputs.not_run == 'true'", "if: steps.decide.outputs.translate == 'true'", "not_run == 'true'"},
+		{"the API key for the record", "        run: bin/lct translate --not-run", "        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n        run: bin/lct translate --not-run", "ANTHROPIC_API_KEY in its environment"},
+		{"a record that commits", `待譯的單位沒有翻譯"`, `待譯的單位沒有翻譯" && git -C .work/tw commit -am x`, "uses git"},
+		{"a record after the build", `run: bin/lct translate --not-run "缺少`, `run: bin/lct build --json && bin/lct translate --not-run "缺少`, `"bin/lct translate --not-run" must come before "bin/lct build"`},
+		{"a reason that names neither the key nor the model", `"缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, `"待譯的單位沒有翻譯"`, "does not name ANTHROPIC_API_KEY"},
+		{"a reason that names no model", "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，", "缺少 ANTHROPIC_API_KEY，", "does not name LCT_MODEL"},
+		{"a missing model not noticed", ` || [ "$HAS_MODEL" != true ]; then`, "; then", `elif [ "$HAS_API_KEY" != true ] || [ "$HAS_MODEL" != true ]; then`},
+		{"a missing key not noticed", `elif [ "$HAS_API_KEY" != true ] || `, "elif ", `elif [ "$HAS_API_KEY" != true ] || [ "$HAS_MODEL" != true ]; then`},
+		{"a model that is not passed on", "          HAS_MODEL: ${{ vars.LCT_MODEL != '' }}\n", "", "HAS_MODEL"},
+		{"a model asked of the secrets", "HAS_MODEL: ${{ vars.LCT_MODEL != '' }}", "HAS_MODEL: ${{ secrets.LCT_MODEL != '' }}", "HAS_MODEL"},
+		{"a dry run not told from a missing key", "            if [ \"$DRY_RUN\" = true ]; then\n              echo \"::notice::dry_run: the $PENDING pending units are not translated\"\n            elif", "            if", `"$DRY_RUN" = true`},
+		{"a dry run test that is inverted", `if [ "$DRY_RUN" = true ]; then`, `if [ "$DRY_RUN" = false ]; then`, `"$DRY_RUN" = true`},
+		{"a translation that is also a record", "            else\n              translate=true\n", "            else\n              translate=true\n              not_run=true\n", "must set translate=true and not not_run=true"},
+		{"a missing key that also translates", "              not_run=true\n            else", "              not_run=true\n              translate=true\n            else", "must set not_run=true and not translate=true"},
+		{"a record decide does not report", "            echo \"not_run=$not_run\"\n", "", "not_run=$not_run"},
+		{"a record decide has no default for", "          not_run=false\n", "", `"not_run=false"`},
+
 		// The idle check: every term of it is pinned.
 		{"idle without asking for a fetch", `[ "$FETCH" = true ] && `, "", `[ "$FETCH" = true ]`},
 		{"idle with a new game update", ` && [ "$NEW" != true ]`, "", `[ "$NEW" != true ]`},
@@ -3068,6 +3182,110 @@ var readmeRulesPR = []struct{ text, why string }{
 }
 
 // The README tells a person how to set up and handle the rules PR.
+// decideOutputs runs the script of the decide step of pipeline.yml as the
+// runner does (bash -eo pipefail) with env, in a scratch folder with the files
+// and the commands it reads (a raw worktree and a tw worktree built from the
+// same snapshot, and an lct and a git that say nothing is due), and returns
+// what it wrote to $GITHUB_OUTPUT and what it printed.
+func decideOutputs(t *testing.T, script string, env map[string]string) (outputs map[string]string, printed string) {
+	t.Helper()
+	dir := t.TempDir()
+	writeTestFile(t, dir, ".work/raw/meta/source.json", `{"tag":"raw-20261105"}`)
+	writeTestFile(t, dir, ".work/tw/.meta/build.json", `{"raw_tag":"raw-20261105"}`)
+	writeTestFile(t, dir, "bin/lct", "#!/bin/sh\necho '{\"release_needed\":false}'\n")
+	writeTestFile(t, dir, "stub/git", "#!/bin/sh\necho 'build: raw-20261105'\n")
+	for _, name := range []string{"bin/lct", "stub/git"} {
+		if err := os.Chmod(filepath.Join(dir, name), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	writeTestFile(t, dir, "step.sh", script)
+	out := filepath.Join(dir, "github-output")
+	cmd := exec.Command("bash", "--noprofile", "--norc", "-eo", "pipefail", "step.sh")
+	cmd.Dir = dir
+	cmd.Env = append(os.Environ(), "PATH="+filepath.Join(dir, "stub")+string(os.PathListSeparator)+os.Getenv("PATH"),
+		"GITHUB_OUTPUT="+out, "GITHUB_STEP_SUMMARY="+filepath.Join(dir, "summary.md"))
+	for k, v := range env {
+		cmd.Env = append(cmd.Env, k+"="+v)
+	}
+	printedBytes, err := cmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("the decide step failed: %v\n%s", err, printedBytes)
+	}
+	data, err := os.ReadFile(out)
+	if err != nil {
+		t.Fatal(err)
+	}
+	outputs = map[string]string{}
+	for _, line := range strings.Split(strings.TrimSpace(string(data)), "\n") {
+		k, v, _ := strings.Cut(line, "=")
+		outputs[k] = v
+	}
+	return outputs, string(printedBytes)
+}
+
+// What the decide step does with units that are pending: translates them, or
+// leaves them on purpose (a dry run), or records that the key or the model is
+// missing. It is run for real, because a test of its text cannot tell that a
+// test in it works under the -e of the runner.
+func TestPipelineDecidesWhatToDoWithPendingUnits(t *testing.T) {
+	if _, err := exec.LookPath("jq"); err != nil {
+		t.Skip("jq is not installed")
+	}
+	_, pipeline := readRepoFile(t, filepath.Join(repoRoot, filepath.FromSlash(workflowPath("pipeline.yml"))))
+	w, problems := parseWorkflow("pipeline.yml", pipeline)
+	if w == nil {
+		t.Fatal(problems)
+	}
+	var script string
+	for _, s := range w.steps() {
+		if s.ID == "decide" {
+			script = s.Run
+		}
+	}
+	if script == "" {
+		t.Fatal("no step with the id decide")
+	}
+	// A rebuild asks for no game update, so it is never idle.
+	base := map[string]string{
+		"FETCH": "false", "FORCE": "false", "REQUEUE": "", "DRY_RUN": "false", "NEW": "", "APPLIED": "0",
+		"PENDING": "7", "HAS_API_KEY": "true", "HAS_MODEL": "true",
+	}
+	for _, tc := range []struct {
+		name                    string
+		change                  map[string]string
+		translate, notRun       string
+		warns, doesNotWarnAbout []string
+	}{
+		{"a key and a model", nil, "true", "false", nil, []string{"ANTHROPIC_API_KEY", "LCT_MODEL"}},
+		{"no key", map[string]string{"HAS_API_KEY": "false"}, "false", "true", []string{"::warning::ANTHROPIC_API_KEY is not set"}, []string{"LCT_MODEL"}},
+		{"no model", map[string]string{"HAS_MODEL": "false"}, "false", "true", []string{"::warning::the variable LCT_MODEL is not set"}, []string{"ANTHROPIC_API_KEY"}},
+		{"neither", map[string]string{"HAS_API_KEY": "false", "HAS_MODEL": "false"}, "false", "true", []string{"ANTHROPIC_API_KEY is not set", "LCT_MODEL is not set"}, nil},
+		{"a dry run with a key and a model", map[string]string{"DRY_RUN": "true"}, "false", "false", []string{"::notice::dry_run"}, nil},
+		{"a dry run with neither", map[string]string{"DRY_RUN": "true", "HAS_API_KEY": "false", "HAS_MODEL": "false"}, "false", "false", []string{"::notice::dry_run"}, []string{"::warning::"}},
+		{"nothing pending, no key", map[string]string{"PENDING": "0", "HAS_API_KEY": "false"}, "false", "false", nil, []string{"::warning::"}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			env := maps.Clone(base)
+			maps.Copy(env, tc.change)
+			got, printed := decideOutputs(t, script, env)
+			if got["idle"] != "false" || got["translate"] != tc.translate || got["not_run"] != tc.notRun {
+				t.Errorf("outputs = %v, want idle=false translate=%s not_run=%s", got, tc.translate, tc.notRun)
+			}
+			for _, want := range tc.warns {
+				if !strings.Contains(printed, want) {
+					t.Errorf("the step printed %q, want %q", printed, want)
+				}
+			}
+			for _, no := range tc.doesNotWarnAbout {
+				if strings.Contains(printed, no) {
+					t.Errorf("the step printed %q, which names %q", printed, no)
+				}
+			}
+		})
+	}
+}
+
 func TestReadmeExplainsTheRulesPR(t *testing.T) {
 	_, readme := readRepoFile(t, filepath.Join(repoRoot, "README.md"))
 	for _, s := range readmeRulesPR {

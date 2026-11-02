@@ -275,6 +275,7 @@ var stopReasons = map[string]string{
 	translate.StopDeadline:   "接近時間上限",
 	translate.StopNoProgress: "連續兩輪待譯單位沒有減少",
 	translate.StopError:      "發生錯誤",
+	translate.StopNotRun:     "沒有執行",
 }
 
 // infoInputs lists what the build and the translation were made from.
@@ -291,7 +292,12 @@ func infoInputs(b *strings.Builder, info Info) {
 	if info.Stopped != "" {
 		fmt.Fprintf(b, "- 翻譯迴圈停止原因：%s（%s）\n", info.Stopped, stopReasons[info.Stopped])
 		if info.StopError != "" {
-			fmt.Fprintf(b, "  - 錯誤：%s\n", reason(info.StopError))
+			// A translation that was not run has a reason, not an error.
+			label := "錯誤"
+			if info.Stopped == translate.StopNotRun {
+				label = "原因"
+			}
+			fmt.Fprintf(b, "  - %s：%s\n", label, reason(info.StopError))
 		}
 	}
 	for _, name := range slices.Sorted(maps.Keys(info.Upstream)) {

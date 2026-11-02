@@ -107,7 +107,11 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	keywords, err := keywordNames(openStore(ctx), set)
+	st, err := openTWStore(ctx, "adjust add")
+	if err != nil {
+		return err
+	}
+	keywords, err := keywordNames(st, set)
 	if err != nil {
 		return err
 	}
@@ -243,7 +247,10 @@ func runAdjustTidy(ctx *cli.Context, args []string) error {
 
 	// Only the plan of the current snapshot knows what became of the
 	// adjustments against its KR.
-	st := openStore(ctx)
+	st, err := openTWStore(ctx, "adjust tidy")
+	if err != nil {
+		return err
+	}
 	var sum plan.Summary
 	found, err := st.ReadMetaJSON(plan.File, &sum)
 	if err != nil {

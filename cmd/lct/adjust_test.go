@@ -571,3 +571,63 @@ func TestAdjustTidyErrors(t *testing.T) {
 		t.Errorf("a broken file: exit code = %d, stderr = %q, want 2 naming the file", code, stderr)
 	}
 }
+
+// The commands that read or change the state in the tw worktree refuse to run
+// without it, and say how to make it: with no worktree they would find no
+// translations and no pending units, and answer as if there were none.
+func TestCommandsNeedTheTWWorktree(t *testing.T) {
+	root := adjustRepo(t)
+	tw := filepath.Join(root, ".work", "tw")
+	for name, args := range map[string][]string{
+		"search":                 {"search", "--key", batchKey0},
+		"requeue --key":          {"requeue", "--key", batchKey0, "--reason", "x"},
+		"requeue --file":         {"requeue", "--file", "Sample.json", "--reason", "x"},
+		"requeue --needs-review": {"requeue", "--needs-review", "--reason", "x"},
+		"requeue --leased":       {"requeue", "--leased", "--reason", "x"},
+		"adjust add":             adjustArgs(),
+		"adjust tidy":            {"adjust", "tidy"},
+		"review":                 {"review"},
+		"impact":                 {"impact", "--base", "HEAD"},
+		"suggest":                {"suggest"},
+		"glossary derive":        {"glossary", "derive"},
+	} {
+		for variant, prepare := range map[string]func(){
+			"no worktree":     func() { os.RemoveAll(tw) },
+			"no .meta":        func() { os.RemoveAll(tw); os.MkdirAll(tw, 0o755) },
+			"a file as .meta": func() { os.RemoveAll(tw); os.MkdirAll(tw, 0o755); os.WriteFile(filepath.Join(tw, ".meta"), nil, 0o644) },
+		} {
+			t.Run(name+", "+variant, func(t *testing.T) {
+				prepare()
+				// A command that ignores the missing worktree must not
+				// make the next case fail for its file.
+				for _, dir := range []string{"rules/adjustments", "rules/requeue"} {
+					os.RemoveAll(filepath.Join(root, dir))
+				}
+				code, stdout, stderr := lct(t, args...)
+				if code != 1 || stdout != "" {
+					t.Errorf("exit code %d, stdout %q, want 1 and nothing\nstderr:\n%s", code, stdout, stderr)
+				}
+				if !strings.Contains(stderr, ".work/tw") || !strings.Contains(stderr, "git worktree add .work/tw tw") {
+					t.Errorf("stderr %q should name .work/tw and say how to make it", stderr)
+				}
+				// Nothing was made on the way: not the worktree, not a state in it,
+				// not a file under rules/.
+				if _, err := os.Stat(filepath.Join(tw, ".meta", "units")); err == nil {
+					t.Errorf("%s made state in the tw worktree", name)
+				}
+				for _, dir := range []string{"rules/adjustments", "rules/requeue"} {
+					if _, err := os.Stat(filepath.Join(root, dir)); err == nil {
+						t.Errorf("%s wrote %s", name, dir)
+					}
+				}
+			})
+		}
+	}
+
+	// A request file for CI to apply touches no state: it needs no worktree.
+	os.RemoveAll(tw)
+	code, stdout, stderr := lct(t, "requeue", "--to-file", "honglu", "--key", batchKey0, "--reason", "x", "--date", "2026-11-02")
+	if code != 0 {
+		t.Errorf("requeue --to-file without the tw worktree: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+}

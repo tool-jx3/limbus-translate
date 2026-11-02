@@ -30,9 +30,9 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 
 | 名稱 | 種類 | 用途 | 必填 | 預設值 | 怎麼取得 |
 |---|---|---|---|---|---|
-| `ANTHROPIC_API_KEY` | Secret | Claude 的 API key；只有翻譯那一步（`pipeline.yml`）和 `rules-proposal.yml` 的 action 那一步讀得到 | 要翻譯、要自動開規則 PR 時必填。沒有時仍會 plan、build 與發布，只是不翻譯；`rules-proposal.yml` 有新建議時會失敗 | 無 | 在 Claude Console 建立 API key；費用記在 Console 的帳戶，不是 GitHub |
+| `ANTHROPIC_API_KEY` | Secret | Claude 的 API key；只有翻譯那一步（`pipeline.yml`）和 `rules-proposal.yml` 的 action 那一步讀得到 | 要翻譯、要自動開規則 PR 時必填。沒有時仍會 plan、build 與發布，只是不翻譯，審核 Issue 會列出「翻譯沒有執行」；`rules-proposal.yml` 有新建議時會失敗 | 無 | 在 Claude Console 建立 API key；費用記在 Console 的帳戶，不是 GitHub |
 | `LIMBUS_STATUS_URL` | Secret | 狀態 API 的網址，用來查最新的遊戲更新（token）。網址是第三方服務的，可能更換，所以放 secret；不會出現在記錄裡 | `update.yml` 必填；`rebuild.yml` 用不到 | 無 | 狀態 API 的完整網址（回傳最新的 `latest_token`），向維護者取得 |
-| `LCT_MODEL` | Variable | 翻譯用的模型，傳給 `lct translate`；`rules-proposal.yml` 也用它作 action 的 `--model` | 要翻譯、要自動開規則 PR 時必填 | 無 | 填 Claude 的模型 ID，可用的 ID 見 Claude Console 或官方文件 |
+| `LCT_MODEL` | Variable | 翻譯用的模型，傳給 `lct translate`；`rules-proposal.yml` 也用它作 action 的 `--model` | 要翻譯、要自動開規則 PR 時必填；沒有時與沒有 API key 一樣，不翻譯，審核 Issue 會列出「翻譯沒有執行」 | 無 | 填 Claude 的模型 ID，可用的 ID 見 Claude Console 或官方文件 |
 | `LCT_MAX_USD` | Variable | 每次建置翻譯花費的上限（美元），到了就停止翻譯 | 否 | 30 | 自行決定；手動執行時可用 `max_usd` 輸入蓋過 |
 | `LIMBUS_CDN_TEMPLATE` | Variable | 下載官方語言包的 CDN 網址範本，含 `{token}` 與 `{lang}` | 否 | 同 `lct.yaml` 的 `cdn_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip` | CDN 換了位置才需要設定 |
 

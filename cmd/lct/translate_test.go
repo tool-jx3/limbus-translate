@@ -185,3 +185,69 @@ func TestTranslateCommandUserErrors(t *testing.T) {
 		t.Errorf("translate.json was written although the command was refused (%v)", err)
 	}
 }
+
+// --not-run writes the record of a translation that was never started, for a
+// pipeline that has units to translate and no key or no model: it needs
+// neither, runs nothing and is no failure.
+func TestTranslateNotRun(t *testing.T) {
+	root, fakeDir, script := translateRepo(t)
+	t.Setenv("LCT_MODEL", "") // the reason for the record
+	const why = "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL"
+
+	// A record of an earlier run of the same inputs is replaced.
+	if code, _, stderr := lct(t, translateArgs(script, "--model", "m")[1:]...); code != 0 {
+		t.Fatalf("lct translate: exit code %d\n%s", code, stderr)
+	}
+	if err := os.Remove(filepath.Join(fakeDir, "args")); err != nil {
+		t.Fatal(err)
+	}
+
+	code, stdout, stderr := lct(t, "--json", "translate", "--not-run", why)
+	if code != 0 {
+		t.Fatalf("lct translate --not-run: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	res, stored := readTranslateJSON(t, root)
+	if stdout != stored {
+		t.Errorf("lct translate printed\n%s\nbut .meta/translate.json holds\n%s", stdout, stored)
+	}
+	want := translate.Result{
+		Stopped: translate.StopNotRun, Error: why, PendingBefore: 2, PendingAfter: 2,
+		RawTag: "raw-20261029", RulesCommit: headCommit(t, root),
+	}
+	if res != want {
+		t.Errorf("translate.json = %+v, want %+v", res, want)
+	}
+	if res.Runs != 0 || res.Model != "" || res.CostUSD != 0 {
+		t.Errorf("translate.json = %+v, want no runs, no model and no cost", res)
+	}
+	if _, err := os.Stat(filepath.Join(fakeDir, "args")); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("claude ran for a translation that was not to run (%v)", err)
+	}
+
+	// As text it is a line for people, and the reason is trimmed.
+	code, stdout, stderr = lct(t, "translate", "--not-run", "  "+why+"\n")
+	if code != 0 || !strings.Contains(stdout, "not run") || !strings.Contains(stdout, why) {
+		t.Errorf("lct translate --not-run as text: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	if res, _ := readTranslateJSON(t, root); res.Error != why {
+		t.Errorf("the reason = %q, want it trimmed to %q", res.Error, why)
+	}
+}
+
+func TestTranslateNotRunUserErrors(t *testing.T) {
+	root, _, _ := translateRepo(t)
+	for name, args := range map[string][]string{
+		"an empty reason":      {"translate", "--not-run", ""},
+		"a blank reason":       {"translate", "--not-run", " \t"},
+		"a reason as argument": {"translate", "--not-run"},
+		"an extra argument":    {"translate", "--not-run", "x", "extra"},
+	} {
+		code, stdout, stderr := lct(t, args...)
+		if code != 1 {
+			t.Errorf("%s: exit code %d, want 1\nstdout:\n%s\nstderr:\n%s", name, code, stdout, stderr)
+		}
+	}
+	if _, err := os.Stat(filepath.Join(root, ".work", "tw", ".meta", translate.MetaFile)); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("translate.json was written although the command was refused (%v)", err)
+	}
+}

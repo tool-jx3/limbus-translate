@@ -201,6 +201,50 @@ func TestSearchFilters(t *testing.T) {
 	})
 }
 
+// A copy (the model and id fields) is left out of a search by default: it is
+// an identifier, nothing to find. A key that is asked for by name is a search
+// for exactly that unit, and finds it whatever its record is.
+func TestSearchKeyIncludesCopies(t *testing.T) {
+	searchRepo(t)
+	const copyKey = "StoryData/S1003.json|/dataList/0/model"
+
+	if got := searchKeys(t, "--file", "StoryData/S1003.json"); !slices.Equal(got, []string{searchKeyS1003}) {
+		t.Fatalf("without --key = %v, want the copies left out", got)
+	}
+
+	var hits []searchHit
+	mustLct(t, &hits, "search", "--key", copyKey)
+	if len(hits) != 1 || hits[0].Key != copyKey || hits[0].Origin != store.OriginCopy || hits[0].KR != "엑스트라" {
+		t.Fatalf("--key of a copy = %+v, want the copy with its KR text", hits)
+	}
+
+	got := searchKeys(t, "--key", copyKey, "--key", searchKeyS1003)
+	slices.Sort(got)
+	if want := []string{searchKeyS1003, copyKey}; !slices.Equal(got, want) {
+		t.Errorf("--key of a copy and of a translation = %v, want %v", got, want)
+	}
+	// The voice line's id is a copy too, in a file with a record of each kind.
+	if got := searchKeys(t, "--key", "PersonalityVoiceDlg/Voice_HongLu_10601.json|/dataList/0/id"); len(got) != 1 {
+		t.Errorf("--key of the id of the voice line = %v, want that unit", got)
+	}
+
+	// What else is asked for still holds: a key is no way around --origin,
+	// --file or --text.
+	if got := searchKeys(t, "--key", copyKey, "--origin", "claude"); len(got) != 0 {
+		t.Errorf("--key of a copy with --origin claude = %v, want none", got)
+	}
+	if got := searchKeys(t, "--key", copyKey, "--origin", "copy"); !slices.Equal(got, []string{copyKey}) {
+		t.Errorf("--key of a copy with --origin copy = %v, want the copy", got)
+	}
+	if got := searchKeys(t, "--key", copyKey, "--file", "StoryData/E*"); len(got) != 0 {
+		t.Errorf("--key of a copy with another --file = %v, want none", got)
+	}
+	// Without a key, --file does not bring the copies in.
+	if got := searchKeys(t, "--file", "PersonalityVoiceDlg/**"); !slices.Equal(got, []string{searchKeyVoice}) {
+		t.Errorf("--file of a file with copies = %v, want its translation only", got)
+	}
+}
+
 func TestSearchSpeaker(t *testing.T) {
 	searchRepo(t)
 

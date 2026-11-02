@@ -68,12 +68,16 @@ func runImpact(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	records, err := openStore(ctx).LoadRecords()
+	st, err := openTWStore(ctx, "impact")
+	if err != nil {
+		return err
+	}
+	records, err := st.LoadRecords()
 	if err != nil {
 		return err
 	}
 	if len(records) == 0 {
-		return cli.UserError(fmt.Sprintf("impact: %s has no translations; make the worktree of the tw branch (git worktree add %s tw)", cfg.Worktrees.TW, cfg.Worktrees.TW))
+		return cli.UserError(fmt.Sprintf("impact: %s has no translations (.meta/units/ is empty)", cfg.Worktrees.TW))
 	}
 
 	newRules, err := rules.Load(ctx.Root)

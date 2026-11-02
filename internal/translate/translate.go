@@ -43,6 +43,10 @@ const (
 	StopNoProgress = "no-progress"
 	// StopError: a run failed, or the queue could not be counted.
 	StopError = "error"
+	// StopNotRun: nothing was run, on purpose (lct translate --not-run): the
+	// pipeline had units to translate and no API key or no model. Result.Error
+	// holds the reason.
+	StopNotRun = "not-run"
 )
 
 const (
@@ -128,6 +132,9 @@ type Result struct {
 
 // String is the report of the CLI.
 func (r *Result) String() string {
+	if r.Stopped == StopNotRun {
+		return fmt.Sprintf("translate: not run (%s); available %d", r.Error, r.PendingBefore)
+	}
 	var b strings.Builder
 	fmt.Fprintf(&b, "translate: stopped (%s) after %d runs of %s costing $%.2f; available %d -> %d",
 		r.Stopped, r.Runs, r.Model, r.CostUSD, r.PendingBefore, r.PendingAfter)

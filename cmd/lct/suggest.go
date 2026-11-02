@@ -16,7 +16,6 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
-	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
 
@@ -116,8 +115,13 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	}
 
 	// The build report and the plan are those of the tw worktree; suggest
-	// uses them only if they belong to the current snapshot. Without them
-	// there is less to suggest, which is no error.
+	// uses them only if they belong to the current snapshot. A worktree that
+	// is not there is an error, but one that has not been built or planned
+	// yet only gives less to suggest.
+	st, err := openTWStore(ctx, "suggest")
+	if err != nil {
+		return err
+	}
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
 	in := suggest.Inputs{RawTag: src.Tag, Rules: r, Adjustments: adjustments}
 	switch info, err := build.ReadInfo(twRoot); {
@@ -127,7 +131,7 @@ func runSuggest(ctx *cli.Context, args []string) error {
 		return err
 	}
 	var sum plan.Summary
-	if found, err := store.Open(twRoot).ReadMetaJSON(plan.File, &sum); err != nil {
+	if found, err := st.ReadMetaJSON(plan.File, &sum); err != nil {
 		return err
 	} else if found {
 		in.Plan = &sum

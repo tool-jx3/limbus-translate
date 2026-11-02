@@ -1969,3 +1969,28 @@ func TestBuildShownCountsEachUnitOnce(t *testing.T) {
 		t.Errorf("the build record has Shown = %v, %v, want %v", info.Report.Shown, err, want)
 	}
 }
+
+// A translation that was not run is in the report and in build.json with its
+// reason, not as the error of a run.
+func TestReportShowsATranslationThatDidNotRun(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": twoUnitsKR}, nil)
+	e.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	writeTranslation(t, e, translate.Result{
+		Stopped: translate.StopNotRun, Error: "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL",
+		PendingBefore: 3, PendingAfter: 3, RawTag: testTag, RulesCommit: "abc1234",
+	})
+	e.run()
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil || info.Stopped != translate.StopNotRun || info.StopError != "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL" || info.Model != "" {
+		t.Errorf("Info = %+v, %v, want not-run with its reason and no model", info, err)
+	}
+	rest := section(t, e.readReport(), "## 資訊")
+	for _, want := range []string{"not-run（沒有執行）", "原因：`缺少 ANTHROPIC_API_KEY 或 LCT_MODEL`"} {
+		if !strings.Contains(rest, want) {
+			t.Errorf("the information lacks %q:\n%s", want, rest)
+		}
+	}
+	if strings.Contains(rest, "錯誤") {
+		t.Errorf("a translation that did not run is reported as an error:\n%s", rest)
+	}
+}
