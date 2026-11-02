@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"os"
 	"path"
 	"path/filepath"
 	"strings"
@@ -198,7 +199,7 @@ type adjustTidied struct {
 	Moved   int `json:"moved"`
 	Removed int `json:"removed"`
 	// Note says why nothing was done, when it is for lack of a plan of the
-	// current snapshot. It is for the person who reads the text output.
+	// current snapshot. The text shows it; with --json it goes to stderr.
 	Note string `json:"-"`
 }
 
@@ -260,9 +261,15 @@ func runAdjustTidy(ctx *cli.Context, args []string) error {
 	switch {
 	case !found:
 		report.Note = "there is no plan yet (.meta/plan.json); run lct plan first"
-		return ctx.Emit(report)
 	case sum.RawTag != src.Tag:
 		report.Note = fmt.Sprintf("the plan is of %s, not of the current snapshot %s; run lct plan first", sum.RawTag, src.Tag)
+	}
+	if report.Note != "" {
+		// The JSON has no place for it: whoever reads the JSON, a person or
+		// the log of a run, still learns why nothing was tidied.
+		if ctx.JSON {
+			fmt.Fprintf(os.Stderr, "lct: adjust tidy: %s\n", report.Note)
+		}
 		return ctx.Emit(report)
 	}
 

@@ -509,10 +509,21 @@ func TestAdjustTidyNeedsAPlanOfTheCurrentSnapshot(t *testing.T) {
 		"no plan": func() { os.Remove(filepath.Join(root, ".work", "tw", ".meta", plan.File)) },
 	} {
 		setup()
+		// With --json the note why nothing was done goes to stderr, where a
+		// person or the log of a run sees it.
+		code, stdout, stderr := lct(t, "--json", "adjust", "tidy")
 		var out tidyOut
-		mustLct(t, &out, "adjust", "tidy")
+		if err := json.Unmarshal([]byte(stdout), &out); code != 0 || err != nil {
+			t.Fatalf("%s: exit code %d, output %q (%v)", name, code, stdout, err)
+		}
 		if len(out.Changed) != 0 || out.Moved != 0 || out.Removed != 0 {
 			t.Errorf("%s: output = %+v, want nothing done", name, out)
+		}
+		if !strings.Contains(stderr, "run lct plan first") || strings.Contains(stdout, "run lct plan first") {
+			t.Errorf("%s: stderr = %q, stdout = %q; want the note on stderr only", name, stderr, stdout)
+		}
+		if code, stdout, stderr := lct(t, "adjust", "tidy"); code != 0 || !strings.Contains(stdout, "run lct plan first") || stderr != "" {
+			t.Errorf("%s as text: exit code %d, stdout %q, stderr %q; want the note in the text", name, code, stdout, stderr)
 		}
 		if got, _ := os.ReadFile(filepath.Join(root, tidyAdjustments)); string(got) != files {
 			t.Errorf("%s: the adjustment file changed", name)
