@@ -348,3 +348,29 @@ func TestFileAligner(t *testing.T) {
 		t.Errorf("no packs = %+v, %+v, %v; want nothing", gotEN, gotJP, err)
 	}
 }
+
+// A KR file with no strings has no unit to be unmatched, and Unmatched does not
+// align it: the EN file is not even read (here it would not parse).
+func TestFileAlignerUnmatchedWithoutStrings(t *testing.T) {
+	const file = "Empty.json"
+	dir := t.TempDir()
+	p := filepath.Join(dir, "en", "EN_"+file)
+	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, []byte(`{"dataList": [`), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	en, err := pack.Open(filepath.Join(dir, "en"), "EN_")
+	if err != nil {
+		t.Fatal(err)
+	}
+	empty := NewFileAligner(file, mustParse(t, `{"dataList":[{"id":1}]}`), en, nil)
+	if gotEN, gotJP, err := empty.Unmatched(); gotEN != 0 || gotJP != 0 || err != nil {
+		t.Errorf("Unmatched of a KR file without strings = %d, %d, %v; want 0, 0 and nothing read", gotEN, gotJP, err)
+	}
+	// One with a string reads the EN file, and its error is the answer.
+	if _, _, err := NewFileAligner(file, mustParse(t, `{"dataList":[{"id":1,"name":"베기"}]}`), en, nil).Unmatched(); err == nil {
+		t.Error("Unmatched of a KR file with a string did not read the broken EN file")
+	}
+}

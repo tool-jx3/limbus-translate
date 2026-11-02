@@ -41,12 +41,17 @@ func (a *FileAligner) Get(pointer string) (en, jp *LangAligned, err error) {
 // Unmatched counts the strings of the KR file that have no EN string aligned
 // to them, and those that have no JP string. A language whose pack lacks the
 // file (or is nil) counts none: the file is missing there, which is not a
-// misalignment of its units.
+// misalignment of its units. A KR file with no strings has none to count, and
+// is not aligned.
 func (a *FileAligner) Unmatched() (en, jp int, err error) {
+	strs := a.kr.Strings()
+	if len(strs) == 0 {
+		return 0, 0, nil
+	}
 	if err := a.load(); err != nil {
 		return 0, 0, err
 	}
-	for _, f := range a.kr.Strings() {
+	for _, f := range strs {
 		if _, ok := a.enAt[f.Pointer]; a.hasEN && !ok {
 			en++
 		}
