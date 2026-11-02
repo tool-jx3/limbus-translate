@@ -442,7 +442,11 @@ func infoMisaligned(b *strings.Builder, rep Report) {
 		b.WriteString("None.\n")
 		return
 	}
-	fmt.Fprintf(b, "這些檔有 KR 單位找不到對應的 EN 或 JP 文字（順序或 id 與 KR 不一致），最多列 %d 個，缺得最多的在前：\n\n", maxMisaligned)
+	if rep.MisalignedFiles > 0 { // a build.json of an older lct does not count them
+		fmt.Fprintf(b, "這些檔有 KR 單位找不到對應的 EN 或 JP 文字（順序或 id 與 KR 不一致），共 %d 個，最多列 %d 個，缺得最多的在前：\n\n", rep.MisalignedFiles, maxMisaligned)
+	} else {
+		fmt.Fprintf(b, "這些檔有 KR 單位找不到對應的 EN 或 JP 文字（順序或 id 與 KR 不一致），最多列 %d 個，缺得最多的在前：\n\n", maxMisaligned)
+	}
 	for _, f := range rep.Misaligned {
 		fmt.Fprintf(b, "- %s：EN 缺 %d 個、JP 缺 %d 個\n", code(f.File), f.EN, f.JP)
 	}

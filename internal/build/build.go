@@ -165,6 +165,9 @@ type Report struct {
 	// counterpart for, the worst 20 by the sum of both counts, then by name.
 	// A language that does not have the file at all is not counted for it.
 	Misaligned []FileMisaligned `json:"misaligned"`
+	// MisalignedFiles counts the misaligned files, those past the 20 of
+	// Misaligned included. A build.json of an older lct has 0.
+	MisalignedFiles int `json:"misaligned_files"`
 }
 
 // FileMisaligned says how many units of the KR file have no EN, and no JP,
@@ -618,6 +621,7 @@ func (b *builder) finish() {
 		)
 	})
 	b.rep.Misaligned = append(b.rep.Misaligned, b.misaligned[:min(len(b.misaligned), maxMisaligned)]...)
+	b.rep.MisalignedFiles = len(b.misaligned)
 
 	for _, rec := range b.records {
 		if rec.Origin == store.OriginClaude && rec.Since == b.opt.RawTag {

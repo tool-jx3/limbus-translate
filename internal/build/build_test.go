@@ -1924,8 +1924,8 @@ func TestReportListsMisalignedFiles(t *testing.T) {
 	rep := e.run()
 
 	want := []FileMisaligned{{File: "B.json", EN: 2, JP: 1}, {File: "A.json", EN: 1, JP: 0}}
-	if !reflect.DeepEqual(rep.Misaligned, want) {
-		t.Errorf("Misaligned = %+v, want %+v", rep.Misaligned, want)
+	if !reflect.DeepEqual(rep.Misaligned, want) || rep.MisalignedFiles != 2 {
+		t.Errorf("Misaligned = %+v (%d in all), want %+v and 2", rep.Misaligned, rep.MisalignedFiles, want)
 	}
 
 	// The build record keeps it under the names of the plan.
@@ -1991,6 +1991,13 @@ func TestReportMisalignedIsBounded(t *testing.T) {
 		if want := "F" + strconv.Itoa(10+i) + ".json"; g.File != want || g.EN != 1 {
 			t.Errorf("file %d = %+v, want %s with 1", i+1, g, want)
 		}
+	}
+	// The report says how many there are in all: the list is not all of them.
+	if rep.MisalignedFiles != 26 {
+		t.Errorf("MisalignedFiles = %d, want 26", rep.MisalignedFiles)
+	}
+	if got := subsection(t, e.readReport(), "### 跨語言未對齊的檔"); !strings.Contains(got, "共 26 個") {
+		t.Errorf("the report does not say that 26 files are misaligned:\n%s", got)
 	}
 }
 
