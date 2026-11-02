@@ -62,8 +62,12 @@ const phase2MaxTurns = "300"
 
 // TestMain doubles as the claude CLI of TestPhase2Replay: when fakeClaudeEnv
 // is set, the binary is run by lct translate in place of claude and does what
-// the translate-pending skill does, instead of running the tests.
+// the translate-pending skill does, instead of running the tests. It is also
+// the gh CLI of TestRulesLoopReplay when fakeGHEnv is set (see fakeGH).
 func TestMain(m *testing.M) {
+	if state := os.Getenv(fakeGHEnv); state != "" {
+		os.Exit(fakeGH(state, os.Args[1:]))
+	}
 	if dir := os.Getenv(fakeClaudeEnv); dir != "" {
 		if err := fakeClaude(dir, os.Args[1:]); err != nil {
 			fmt.Fprintln(os.Stderr, "fake claude:", err)
