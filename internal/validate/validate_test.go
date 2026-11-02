@@ -416,10 +416,14 @@ func TestLengthRatio(t *testing.T) {
 		{"under 0.2", kr, "字", true},
 		{"short KR is exempt", "가가가", strings.Repeat("字", 40), false},
 		{"counts characters, not bytes", kr, strings.Repeat("字", 30), false},
+		// Tags are not text: a ruby the story line adds, or a KR made
+		// mostly of tags, does not change the ratio.
+		{"tags of zh do not count", "그리고 요시히데가 아니라.", "別叫我<ruby=Yoshihide>良秀</ruby>，<ruby=Yoshihide>良秀</ruby>。", false},
+		{"tags of KR do not count", `<color=#ffffff>가</color><color=#ffffff>나</color>`, "字字", false},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			_, got := find(Check(tc.kr, tc.zh, Context{}), "length-ratio")
+			_, got := find(Check(tc.kr, tc.zh, Context{File: "StoryData/E914B.json"}), "length-ratio")
 			if got != tc.warn {
 				t.Errorf("length-ratio fired = %v, want %v", got, tc.warn)
 			}
@@ -551,6 +555,45 @@ func TestRubyValueIsTranslatable(t *testing.T) {
 			is, ok := find(Check(tc.kr, tc.zh, Context{}), CodeTagMismatch)
 			if !ok {
 				t.Fatalf("Check(%q, %q) has no %s", tc.kr, tc.zh, CodeTagMismatch)
+			}
+			if want := "tags differ from KR" + tc.diff + "; opening tags"; !strings.Contains(is.Message, want) {
+				t.Errorf("message %q does not contain %q", is.Message, want)
+			}
+		})
+	}
+}
+
+// A line of a story file (StoryData/) may carry a ruby KR does not have
+// (guides/base.md): 良秀 is read Yoshihide or Ryōshū, which KR writes as two
+// words. Only whole <ruby=…>…</ruby> pairs are let through, and only there;
+// a ruby of KR must still be kept.
+func TestStoryMayAddRuby(t *testing.T) {
+	const story = "StoryData/E914B.json"
+	const kr = `그리고 요시히데가 아니라 료슈라고 불러라.`
+	const zh = `還有，別叫我<ruby=Yoshihide>良秀</ruby>，叫我<ruby=Ryōshū>良秀</ruby>。`
+	if issues := Check(kr, zh, Context{File: story}); HasHard(issues) {
+		t.Errorf("a story line with added ruby is rejected: %+v", issues)
+	}
+	const one = `還有，別叫我良秀，叫我<ruby=Ryōshū>良秀</ruby>。`
+	const krRuby = `베라, <ruby=천퇴성>삽시호</ruby>.`
+	if issues := Check(krRuby, `<ruby=貝拉>Vera</ruby>，<ruby=天退星>插翅虎</ruby>。`, Context{File: story}); HasHard(issues) {
+		t.Errorf("a story line with KR's ruby and an added one is rejected: %+v", issues)
+	}
+	tests := []struct {
+		name, file, kr, zh, diff string
+	}{
+		{"not a story file", "Skills.json", kr, one, ": unexpected </ruby> <ruby=Ryōshū>"},
+		{"file unknown", "", kr, one, ": unexpected </ruby> <ruby=Ryōshū>"},
+		{"KR's ruby dropped", story, krRuby, `貝拉，插翅虎。`, ": missing </ruby> <ruby=천퇴성>"},
+		{"opening without closing", story, kr, `還有，別叫我<ruby=Yoshihide>良秀。`, ": unexpected <ruby=Yoshihide>"},
+		{"closing without opening", story, kr, `還有，別叫我良秀</ruby>。`, ": unexpected </ruby>"},
+		{"closing before opening", story, kr, `還有，別叫我良秀</ruby>，<ruby=Ryōshū>良秀。`, ": unexpected </ruby> <ruby=Ryōshū>"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			is, ok := find(Check(tc.kr, tc.zh, Context{File: tc.file}), CodeTagMismatch)
+			if !ok {
+				t.Fatalf("Check(%q, %q) in %q has no %s", tc.kr, tc.zh, tc.file, CodeTagMismatch)
 			}
 			if want := "tags differ from KR" + tc.diff + "; opening tags"; !strings.Contains(is.Message, want) {
 				t.Errorf("message %q does not contain %q", is.Message, want)

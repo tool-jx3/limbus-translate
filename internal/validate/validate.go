@@ -169,7 +169,7 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodePlaceholderMismatch, ClassStructural,
 			"placeholders differ from KR%s", describeDiff(missing, extra)))
 	}
-	if missing, extra := tagDiff(kr, zh); len(missing)+len(extra) > 0 {
+	if missing, extra := tagDiff(kr, zh, isStory(ctx.File)); len(missing)+len(extra) > 0 {
 		issues = append(issues, ctx.issue(CodeTagMismatch, ClassStructural,
 			"tags differ from KR%s; opening tags must keep their attributes", describeDiff(missing, extra)))
 	}
@@ -202,7 +202,13 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 // tags of that name are balanced, and only those in the run of closing tags
 // that ends zh (see trailingClosings). Tags without a closing tag (<br>,
 // <sprite>) never take part.
-func tagDiff(kr, zh string) (missing, extra []string) {
+//
+// With addRuby, the text of a story file, zh may also hold <ruby=…>…</ruby>
+// pairs KR does not have (base.md: the ruby of a story line is kept even
+// where KR writes no ruby, such as 良秀 read Yoshihide or Ryōshū), as long as
+// the ruby tags of zh, taken alone, open and close in turn. A ruby of KR still
+// counts: zh with fewer than KR has is still missing them.
+func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 	split := func(s string) (keys []string, written map[string]string) {
 		written = map[string]string{}
 		for _, tok := range Tags(s) {
@@ -236,6 +242,11 @@ func tagDiff(kr, zh string) (missing, extra []string) {
 		atEnd[name]--
 		return true
 	})
+	if addRuby && rubyPaired(zh) {
+		added := min(countKeys(extra, isRubyOpen), countKeys(extra, isRubyClose))
+		extra = dropKeys(extra, isRubyOpen, added)
+		extra = dropKeys(extra, isRubyClose, added)
+	}
 	for i, key := range missing {
 		missing[i] = krWritten[key]
 	}
@@ -245,6 +256,58 @@ func tagDiff(kr, zh string) (missing, extra []string) {
 	slices.Sort(missing)
 	slices.Sort(extra)
 	return missing, extra
+}
+
+// storyPrefix starts the name of every story file, whose lines may carry a
+// ruby KR does not have (see tagDiff).
+const storyPrefix = "StoryData/"
+
+// isStory reports whether file, a pack file name, is a story file.
+func isStory(file string) bool { return strings.HasPrefix(file, storyPrefix) }
+
+// isRubyOpen and isRubyClose report whether a comparison key of tagDiff is
+// that of an opening or a closing ruby tag, in any case.
+func isRubyOpen(key string) bool  { return key == rubyOpenKey }
+func isRubyClose(key string) bool { return strings.EqualFold(key, "</ruby>") }
+
+// countKeys returns how many of keys match.
+func countKeys(keys []string, match func(string) bool) int {
+	n := 0
+	for _, k := range keys {
+		if match(k) {
+			n++
+		}
+	}
+	return n
+}
+
+// dropKeys returns keys without the first n that match.
+func dropKeys(keys []string, match func(string) bool, n int) []string {
+	return slices.DeleteFunc(keys, func(k string) bool {
+		if n > 0 && match(k) {
+			n--
+			return true
+		}
+		return false
+	})
+}
+
+// rubyPaired reports whether the ruby tags of s, taken alone, open and close
+// in turn: each opening is closed before the next one, and the last is
+// closed. A text with no ruby is paired.
+func rubyPaired(s string) bool {
+	open := false
+	for _, tok := range Tags(s) {
+		name, closing := tagName(tok)
+		if !strings.EqualFold(name, "ruby") {
+			continue
+		}
+		if closing != open {
+			return false
+		}
+		open = !closing
+	}
+	return !open
 }
 
 // trailingClosings returns the lower-case names of the closing tags that end
@@ -417,7 +480,9 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 	if strings.ContainsAny(zh, "“”") {
 		issues = append(issues, ctx.issue(CodeCurlyQuotes, ClassStyle, "curly quotes “” should be 「」 or 『』"))
 	}
-	krLen, zhLen := utf8.RuneCountInString(strings.TrimSpace(kr)), utf8.RuneCountInString(strings.TrimSpace(zh))
+	// Tags are not text: a ruby a story line adds would otherwise count.
+	textLen := func(s string) int { return utf8.RuneCountInString(strings.TrimSpace(tagRe.ReplaceAllString(s, ""))) }
+	krLen, zhLen := textLen(kr), textLen(zh)
 	if krLen >= 10 && (zhLen > 3*krLen || zhLen*5 < krLen) {
 		issues = append(issues, ctx.issue(CodeLengthRatio, ClassStyle,
 			"the translation has %d characters and KR has %d; the ratio is outside 0.2 to 3", zhLen, krLen))
