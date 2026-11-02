@@ -306,3 +306,26 @@ func TestSplitPointerAndEscapeToken(t *testing.T) {
 		t.Error("EscapeToken left a slash")
 	}
 }
+
+// A node built by hand has no source text: an empty Null or Bool must still be
+// written as valid JSON.
+func TestEncodeManualNullAndBool(t *testing.T) {
+	root := &Node{Kind: Object, Members: []Member{
+		{Key: "n", Value: &Node{Kind: Null}},
+		{Key: "b", Value: &Node{Kind: Bool}},
+		{Key: "t", Value: &Node{Kind: Bool, Lit: "true"}},
+	}}
+	out := Marshal(root)
+	back, err := Parse(out)
+	if err != nil {
+		t.Fatalf("Marshal wrote invalid JSON: %v\n%s", err, out)
+	}
+	if got, want := string(Marshal(back)), "{\n  \"n\": null,\n  \"b\": false,\n  \"t\": true\n}\n"; got != want {
+		t.Errorf("Marshal =\n%s\nwant\n%s", got, want)
+	}
+	for _, n := range []*Node{{Kind: Null}, {Kind: Bool}} {
+		if _, err := Parse(Marshal(n)); err != nil {
+			t.Errorf("a bare %v node is not valid JSON: %v", n.Kind, err)
+		}
+	}
+}

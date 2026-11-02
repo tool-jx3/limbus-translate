@@ -40,7 +40,9 @@ type userError string
 func (e userError) Error() string { return string(e) }
 
 // UserError returns an error for bad input or usage (exit code 1). Any other
-// error that is not ErrFindings is a system error (exit code 2).
+// error that is not ErrFindings is a system error (exit code 2), unless it
+// (or an error it wraps) has a method UserError() bool that returns true: a
+// package that owns a file people write can say so without importing cli.
 func UserError(msg string) error { return userError(msg) }
 
 var registry = map[string]Command{}
@@ -155,7 +157,8 @@ func exitCode(err error, stderr io.Writer) int {
 		fmt.Fprintf(stderr, "lct: %v\n", err)
 	}
 	var ue userError
-	if errors.Is(err, ErrFindings) || errors.As(err, &ue) {
+	var uer interface{ UserError() bool }
+	if errors.Is(err, ErrFindings) || errors.As(err, &ue) || (errors.As(err, &uer) && uer.UserError()) {
 		return 1
 	}
 	return 2

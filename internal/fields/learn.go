@@ -54,7 +54,7 @@ func LoadLearned(root string) (*Learned, error) {
 	}
 	for g, names := range l.GroupFields {
 		if g == "" {
-			return nil, fmt.Errorf("fields: %s: group_fields has an empty group name", generatedFile)
+			return nil, ruleErrorf("fields: %s: group_fields has an empty group name", generatedFile)
 		}
 		if err := checkNames(generatedFile, "group_fields."+g, names); err != nil {
 			return nil, err
@@ -65,6 +65,21 @@ func LoadLearned(root string) (*Learned, error) {
 		l.GroupFields = map[string][]string{}
 	}
 	return l, nil
+}
+
+// Empty reports whether l has no rule at all: no identifier field and no
+// group field. A Learn result that is Empty although units were counted means
+// no field passed a threshold.
+func (l *Learned) Empty() bool {
+	if len(l.IdentifierFields) > 0 {
+		return false
+	}
+	for _, names := range l.GroupFields {
+		if len(names) > 0 {
+			return false
+		}
+	}
+	return true
 }
 
 func nonNil(s []string) []string {

@@ -21,7 +21,8 @@ const (
 //
 // Object uses Members, Array uses Items, String uses Str. Number, Bool and
 // Null keep their source text in Lit (for example "0.10", "1e5", "true",
-// "null") so they are written back unchanged.
+// "null") so they are written back unchanged. A Null or Bool node built by
+// hand, with an empty Lit, is written as null or false.
 type Node struct {
 	Kind    Kind
 	Members []Member

@@ -17,6 +17,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"syscall"
@@ -260,8 +261,13 @@ func (s *Store) SaveRecords(recs map[string]Record) error {
 	return nil
 }
 
-// removeStale deletes record files not in keep, then the directories that
-// became empty (the units directory itself stays).
+// tmpName matches the temporary files writeFileAtomic leaves behind when the
+// process dies before the rename: ".<file>.tmp<digits>".
+var tmpName = regexp.MustCompile(`^\..+\.tmp[0-9]+$`)
+
+// removeStale deletes record files not in keep and the leftover temporary files
+// of writeFileAtomic, then the directories that became empty (the units
+// directory itself stays).
 func (s *Store) removeStale(keep map[string]bool) error {
 	var dirs []string
 	err := filepath.WalkDir(s.unitsDir(), func(path string, d fs.DirEntry, err error) error {
@@ -277,7 +283,7 @@ func (s *Store) removeStale(keep map[string]bool) error {
 			}
 			return nil
 		}
-		if strings.HasSuffix(path, recordExt) && !keep[path] {
+		if (strings.HasSuffix(path, recordExt) && !keep[path]) || tmpName.MatchString(d.Name()) {
 			return os.Remove(path)
 		}
 		return nil
@@ -343,7 +349,10 @@ func (s *Store) SavePending(items []PendingItem) error {
 }
 
 // fileOfKey returns the pack file of a unit key, requiring a valid key and a
-// file name that stays inside the units directory.
+// file name that is canonical (as path.Clean writes it, with "/" as the only
+// separator) and stays inside the units directory. Two spellings of one file
+// would be filed apart, and LoadRecords could not find a record where
+// SaveRecords put it.
 func fileOfKey(key string) (string, error) {
 	file, _, err := units.SplitKey(key)
 	if err != nil {
@@ -351,6 +360,9 @@ func fileOfKey(key string) (string, error) {
 	}
 	if !filepath.IsLocal(filepath.FromSlash(file)) {
 		return "", fmt.Errorf("invalid key %q: file name leaves the units directory", key)
+	}
+	if path.Clean(file) != file || strings.Contains(file, `\`) {
+		return "", fmt.Errorf("invalid key %q: file name is not canonical (want a clean path with / as the separator)", key)
 	}
 	return file, nil
 }

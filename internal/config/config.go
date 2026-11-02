@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"path/filepath"
 
@@ -94,8 +95,14 @@ func FindRoot(start string) (string, error) {
 	}
 	for {
 		info, err := os.Stat(filepath.Join(dir, FileName))
-		if err == nil && info.Mode().IsRegular() {
+		switch {
+		case err == nil && info.Mode().IsRegular():
 			return dir, nil
+		case err != nil && !errors.Is(err, fs.ErrNotExist):
+			// Not being allowed to look, or a broken path, is not the same
+			// as there being no lct.yaml here: a parent's file would be the
+			// wrong repo.
+			return "", err
 		}
 		parent := filepath.Dir(dir)
 		if parent == dir {

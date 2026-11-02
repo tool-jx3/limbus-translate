@@ -68,8 +68,24 @@ func (w *writer) value(n *Node, depth int) {
 	case String:
 		w.str(n.Str)
 	default: // Number, Bool, Null keep their source text
-		w.buf.WriteString(n.Lit)
+		w.buf.WriteString(literal(n))
 	}
+}
+
+// literal is the source text of a Number, Bool or Null node. A node built by
+// hand has none; an empty Null and an empty Bool stand for null and false, so
+// that the output is still JSON.
+func literal(n *Node) string {
+	if n.Lit != "" {
+		return n.Lit
+	}
+	switch n.Kind {
+	case Null:
+		return "null"
+	case Bool:
+		return "false"
+	}
+	return n.Lit
 }
 
 func (w *writer) indent(depth int) {

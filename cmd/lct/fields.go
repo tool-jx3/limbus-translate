@@ -34,11 +34,19 @@ type learnReport struct {
 	Existing bool            `json:"existing"`
 	Changes  []fields.Change `json:"changes"`
 	Written  bool            `json:"written"`
+
+	// nothingPassed is set when units were counted but no field passed a
+	// threshold, before the manual rules are taken off.
+	nothingPassed bool
 }
 
 // noUnitsCounted explains an empty result: the packs have no file in common
 // with aligned text.
 const noUnitsCounted = "the raw packs counted no units (no file in all three languages has aligned text)"
+
+// noFieldPassed explains another empty result: units were counted, but no
+// field is the same in all three languages often enough.
+const noFieldPassed = "no field passed a threshold in the units counted"
 
 func (r learnReport) String() string {
 	var b strings.Builder
@@ -46,6 +54,8 @@ func (r learnReport) String() string {
 	b.WriteString("\n")
 	if r.Learned.Counted == 0 {
 		fmt.Fprintf(&b, "warning: %s, so --write is refused\n", noUnitsCounted)
+	} else if r.nothingPassed {
+		fmt.Fprintf(&b, "warning: %s, so --write is refused\n", noFieldPassed)
 	}
 	switch {
 	case r.Written:
@@ -105,10 +115,14 @@ func runFieldsLearn(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	// Asked before the manual rules are taken off: a result the manual rules
+	// cover entirely is a real answer, while one that was empty from the start
+	// holds no evidence.
+	nothingPassed := learned.Counted > 0 && learned.Empty()
 	learned = learned.Without(manual)
 
 	target := filepath.Join(ctx.Root, filepath.FromSlash(generatedRules))
-	report := learnReport{Learned: learned, Changes: []fields.Change{}}
+	report := learnReport{Learned: learned, Changes: []fields.Change{}, nothingPassed: nothingPassed}
 	if _, err := os.Stat(target); err == nil {
 		report.Existing = true
 		old, err := fields.LoadLearned(ctx.Root)
@@ -123,6 +137,9 @@ func runFieldsLearn(ctx *cli.Context, args []string) error {
 	if *write {
 		if learned.Counted == 0 {
 			return cli.UserError("fields learn: " + noUnitsCounted + "; refusing to overwrite " + generatedRules)
+		}
+		if nothingPassed {
+			return cli.UserError("fields learn: " + noFieldPassed + "; refusing to overwrite " + generatedRules)
 		}
 		if err := os.MkdirAll(filepath.Dir(target), 0o755); err != nil {
 			return err

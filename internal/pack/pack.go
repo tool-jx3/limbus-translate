@@ -48,13 +48,19 @@ func Open(root, prefix string) (*Pack, error) {
 	if !info.IsDir() {
 		return nil, fmt.Errorf("pack: open %s: not a directory", root)
 	}
+	// WalkDir does not follow a symlink, not even at the root: a root that is
+	// one would be read as a pack without files. Walk where it points.
+	walkRoot, err := filepath.EvalSymlinks(root)
+	if err != nil {
+		return nil, fmt.Errorf("pack: open %s: %w", root, err)
+	}
 	p := &Pack{
 		root:   root,
 		prefix: prefix,
 		set:    make(map[string]struct{}),
 		docs:   make(map[string]*jsonx.Node),
 	}
-	err = filepath.WalkDir(root, func(full string, d fs.DirEntry, err error) error {
+	err = filepath.WalkDir(walkRoot, func(full string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
@@ -65,7 +71,7 @@ func Open(root, prefix string) (*Pack, error) {
 		if !ok {
 			return nil
 		}
-		rel, err := filepath.Rel(root, filepath.Dir(full))
+		rel, err := filepath.Rel(walkRoot, filepath.Dir(full))
 		if err != nil {
 			return err
 		}

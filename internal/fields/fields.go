@@ -94,6 +94,21 @@ type manualRules struct {
 	NotIncludeSubstring   string              `yaml:"notinclude_substring"`
 }
 
+// RuleError is a mistake in the content of a rule file: an unknown key, an
+// empty name, a pattern that does not compile. It is the author's to fix, so
+// a command reports it as a user error (exit code 1), unlike a rule file that
+// cannot be read.
+type RuleError struct{ Msg string }
+
+func (e *RuleError) Error() string { return e.Msg }
+
+// UserError marks the error as one of the user's making, for the CLI.
+func (e *RuleError) UserError() bool { return true }
+
+func ruleErrorf(format string, a ...any) error {
+	return &RuleError{Msg: fmt.Sprintf(format, a...)}
+}
+
 // Load reads the rules under root: rules/fields.yaml if it exists, then
 // rules/fields.manual.yaml, which must exist.
 func Load(root string) (*Rules, error) {
@@ -135,7 +150,7 @@ func LoadManual(root string) (*Rules, error) {
 	}
 	for g, names := range m.GroupFields {
 		if g == "" {
-			return nil, fmt.Errorf("fields: %s: group_fields has an empty group name", manualFile)
+			return nil, ruleErrorf("fields: %s: group_fields has an empty group name", manualFile)
 		}
 		if err := checkNames(manualFile, "group_fields."+g, names); err != nil {
 			return nil, err
@@ -144,12 +159,12 @@ func LoadManual(root string) (*Rules, error) {
 	}
 	for _, prefix := range m.SourceCommentPrefixes {
 		if strings.TrimSpace(prefix) == "" {
-			return nil, fmt.Errorf("fields: %s: source_comment_prefixes has an empty prefix, which would match every text", manualFile)
+			return nil, ruleErrorf("fields: %s: source_comment_prefixes has an empty prefix, which would match every text", manualFile)
 		}
 	}
 	if m.NameOnly != nil {
 		if err := r.setNameOnly(*m.NameOnly); err != nil {
-			return nil, fmt.Errorf("fields: %s: name_only: %w", manualFile, err)
+			return nil, ruleErrorf("fields: %s: name_only: %v", manualFile, err)
 		}
 	}
 	return r, nil
@@ -185,7 +200,7 @@ func (r *Rules) setNameOnly(n NameOnly) error {
 func checkNames(file, key string, names []string) error {
 	for _, n := range names {
 		if n == "" {
-			return fmt.Errorf("fields: %s: %s has an empty name", file, key)
+			return ruleErrorf("fields: %s: %s has an empty name", file, key)
 		}
 	}
 	return nil
@@ -205,7 +220,7 @@ func decodeFile(p string, v any, optional bool) (found bool, err error) {
 	dec := yaml.NewDecoder(bytes.NewReader(data))
 	dec.KnownFields(true)
 	if err := dec.Decode(v); err != nil && !errors.Is(err, io.EOF) {
-		return true, fmt.Errorf("fields: parse %s: %w", p, err)
+		return true, ruleErrorf("fields: parse %s: %v", p, err)
 	}
 	return true, nil
 }

@@ -267,3 +267,102 @@ func TestFieldsLearnUserErrors(t *testing.T) {
 		})
 	}
 }
+
+// Units were counted, but no field is the same in all three languages, so no
+// layer passes its threshold. The empty result must not replace the rules.
+func TestLearnWriteKeepsRulesWhenNothingPasses(t *testing.T) {
+	root := t.TempDir()
+	writeTestFile(t, root, "lct.yaml", "worktrees: { raw: .work/raw }\n")
+	manual, err := os.ReadFile("../../rules/fields.manual.yaml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "rules/fields.manual.yaml", string(manual))
+	for _, l := range []struct{ dir, prefix, text string }{
+		{"kr", "KR_", "한국어"}, {"en", "EN_", "English"}, {"jp", "JP_", "日本語"},
+	} {
+		writeTestFile(t, root, ".work/raw/"+l.dir+"/"+l.prefix+"Sample-1.json", `{"dataList": [
+			{"id": 1, "text": "`+l.text+`1"}, {"id": 2, "text": "`+l.text+`2"}, {"id": 3, "text": "`+l.text+`3"}
+		]}`)
+	}
+	keep := string((&fields.Learned{IdentifierFields: []string{"usage"}}).YAML())
+	writeTestFile(t, root, "rules/fields.yaml", keep)
+
+	_, err = runLearn(t, root, false, "--write")
+	if err == nil || !strings.Contains(err.Error(), "no field") {
+		t.Fatalf("error = %v, want one saying no field passed", err)
+	}
+	if reflect.TypeOf(err) != reflect.TypeOf(cli.UserError("")) {
+		t.Errorf("error %v (%T) should be a user error (exit 1)", err, err)
+	}
+	if got, _ := os.ReadFile(filepath.Join(root, "rules/fields.yaml")); string(got) != keep {
+		t.Errorf("rules/fields.yaml was modified:\n%s", got)
+	}
+
+	// Without --write it reports, and says why --write would refuse.
+	out, err := runLearn(t, root, false)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(out, "no field") {
+		t.Errorf("the report should warn that nothing passed:\n%s", out)
+	}
+}
+
+// Everything learned is already in the manual rules: that is a real result
+// (the generated file is then empty), not a lack of evidence.
+func TestLearnWriteEmptiesRulesTheManualFileCovers(t *testing.T) {
+	root := learnRepo(t)
+	manual, err := os.ReadFile(filepath.Join(root, "rules/fields.manual.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	covered := strings.Replace(string(manual), "[id, model, codeName]", "[id, model, codeName, key]", 1)
+	if covered == string(manual) {
+		t.Fatal("the manual rules no longer have the identifier list this test extends")
+	}
+	writeTestFile(t, root, "rules/fields.manual.yaml", covered)
+	writeTestFile(t, root, "rules/fields.yaml", string((&fields.Learned{IdentifierFields: []string{"key"}}).YAML()))
+
+	if _, err := runLearn(t, root, false, "--write"); err != nil {
+		t.Fatal(err)
+	}
+	want := (&fields.Learned{}).YAML()
+	if got, _ := os.ReadFile(filepath.Join(root, "rules/fields.yaml")); !bytes.Equal(got, want) {
+		t.Errorf("rules/fields.yaml =\n%s\nwant\n%s", got, want)
+	}
+}
+
+// A typo in a rule file is the author's mistake, not a failure of the system:
+// exit 1 with the message, whichever of the two files holds it.
+func TestFieldsTypoIsAUserError(t *testing.T) {
+	for _, c := range []struct{ name, file, content, want string }{
+		{"unknown key in the manual file", "rules/fields.manual.yaml", "identifer_fields: [id]\n", "identifer_fields"},
+		{"unknown key in the generated file", "rules/fields.yaml", "identifer_fields: [id]\n", "identifer_fields"},
+		{"empty name in the manual file", "rules/fields.manual.yaml", "identifier_fields: [\"\"]\n", "empty name"},
+		{"bad pattern in the manual file", "rules/fields.manual.yaml", "name_only: { file_glob: \"*\", field: desc, pattern: \"(\" }\n", "name_only"},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			root := learnRepo(t)
+			writeTestFile(t, root, c.file, c.content)
+			t.Chdir(root)
+			code, _, stderr := lct(t, "fields", "learn")
+			if code != 1 {
+				t.Errorf("exit code = %d, want 1\nstderr:\n%s", code, stderr)
+			}
+			if !strings.Contains(stderr, c.want) {
+				t.Errorf("stderr should say %q:\n%s", c.want, stderr)
+			}
+		})
+	}
+
+	// A rule file that cannot be read at all is still a system error.
+	root := learnRepo(t)
+	if err := os.Remove(filepath.Join(root, "rules/fields.manual.yaml")); err != nil {
+		t.Fatal(err)
+	}
+	t.Chdir(root)
+	if code, _, stderr := lct(t, "fields", "learn"); code != 2 {
+		t.Errorf("exit code with a missing manual file = %d, want 2\nstderr:\n%s", code, stderr)
+	}
+}

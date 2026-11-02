@@ -1,6 +1,7 @@
 package fields
 
 import (
+	"errors"
 	"fmt"
 	"maps"
 	"os"
@@ -270,6 +271,12 @@ func TestLoadErrors(t *testing.T) {
 			_, err := Load(root)
 			if err == nil || !strings.Contains(err.Error(), c.want) {
 				t.Fatalf("Load error = %v, want one mentioning %q", err, c.want)
+			}
+			// A mistake in a rule file is the author's; a file that is not
+			// there is not a mistake in its content.
+			var re *RuleError
+			if got := errors.As(err, &re); got == c.noManual {
+				t.Errorf("errors.As(%v, *RuleError) = %v, want %v", err, got, !c.noManual)
 			}
 		})
 	}
@@ -637,5 +644,22 @@ func TestLearnedDiff(t *testing.T) {
 	}
 	if s := got[2].String(); s != "- group_fields: Items.code" {
 		t.Errorf("Change.String = %q", s)
+	}
+}
+
+func TestLearnedEmpty(t *testing.T) {
+	for _, c := range []struct {
+		name string
+		l    Learned
+		want bool
+	}{
+		{"zero value", Learned{}, true},
+		{"empty lists", Learned{IdentifierFields: []string{}, GroupFields: map[string][]string{"Items": {}}}, true},
+		{"identifier field", Learned{IdentifierFields: []string{"id"}}, false},
+		{"group field", Learned{GroupFields: map[string][]string{"Items": {"code"}}}, false},
+	} {
+		if got := c.l.Empty(); got != c.want {
+			t.Errorf("%s: Empty() = %v, want %v", c.name, got, c.want)
+		}
 	}
 }

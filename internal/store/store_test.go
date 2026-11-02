@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -1114,5 +1115,77 @@ func TestAppliedRejectsCorruptFiles(t *testing.T) {
 				t.Errorf("LoadApplied = %v, want an error naming applied.json", err)
 			}
 		})
+	}
+}
+
+func TestFileOfKeyRejectsNonCanonical(t *testing.T) {
+	for _, key := range []string{
+		"./a.json|/x",
+		"a/../b.json|/x",
+		"a//b.json|/x",
+		`a\b.json|/x`,
+		"a/./b.json|/x",
+		"a/|/x",
+	} {
+		file, err := fileOfKey(key)
+		if err == nil {
+			t.Errorf("fileOfKey(%q) = %q, want an error", key, file)
+			continue
+		}
+		if !strings.Contains(err.Error(), fmt.Sprintf("%q", key)) {
+			t.Errorf("fileOfKey(%q) error = %v, want one naming the key", key, err)
+		}
+	}
+	for _, key := range []string{"a.json|/x", "StoryData/S1.json|/dataList/0/content", "a b.json|/x"} {
+		if _, err := fileOfKey(key); err != nil {
+			t.Errorf("fileOfKey(%q): %v", key, err)
+		}
+	}
+}
+
+// A crash between creating a temporary file and renaming it leaves
+// ".<name>.tmp<digits>" behind; the next SaveRecords removes it, and nothing
+// that merely looks similar.
+func TestSaveRemovesStaleTemps(t *testing.T) {
+	root := t.TempDir()
+	units := filepath.Join(root, ".meta", "units")
+	stale := []string{
+		filepath.Join(units, ".A.json.jsonl.tmp123456"),
+		filepath.Join(units, "StoryData", ".S1.json.jsonl.tmp7"),
+		filepath.Join(units, "Gone", ".G.json.jsonl.tmp99"),
+	}
+	keep := []string{
+		filepath.Join(units, ".hidden"),
+		filepath.Join(units, "readme.tmp1"),
+		filepath.Join(units, ".A.json.jsonl.tmpfoo"),
+		filepath.Join(units, "StoryData", "notes.txt"),
+	}
+	for _, p := range append(slices.Clone(stale), keep...) {
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte("partial"), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	if err := Open(root).SaveRecords(sampleRecords()); err != nil {
+		t.Fatal(err)
+	}
+	for _, p := range stale {
+		if exists(p) {
+			t.Errorf("stale temporary file %s was not removed", p)
+		}
+	}
+	for _, p := range keep {
+		if !exists(p) {
+			t.Errorf("%s does not match the temporary file names and must stay", p)
+		}
+	}
+	if exists(filepath.Join(units, "Gone")) {
+		t.Error("a directory left empty by removing a temporary file should go too")
+	}
+	if got, err := Open(root).LoadRecords(); err != nil || len(got) != len(sampleRecords()) {
+		t.Errorf("LoadRecords = %d records, err %v", len(got), err)
 	}
 }

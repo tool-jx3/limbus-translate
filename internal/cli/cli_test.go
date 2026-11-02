@@ -38,6 +38,13 @@ func exec(args ...string) (code int, stdout, stderr string) {
 	return code, out.String(), errOut.String()
 }
 
+// ownedError is an error of a package that classifies its own errors with
+// UserError() bool, without importing cli.
+type ownedError struct{ user bool }
+
+func (e ownedError) Error() string   { return "owned" }
+func (e ownedError) UserError() bool { return e.user }
+
 func TestExitCodes(t *testing.T) {
 	inRepo(t)
 	tests := []struct {
@@ -52,6 +59,8 @@ func TestExitCodes(t *testing.T) {
 		{"findings", ErrFindings, 1, ""},
 		{"wrapped findings", fmt.Errorf("3 files: %w", ErrFindings), 1, "3 files"},
 		{"other error", errors.New("disk exploded"), 2, "disk exploded"},
+		{"error that says it is the user's", fmt.Errorf("ctx: %w", ownedError{user: true}), 1, "ctx: owned"},
+		{"error that says it is not", ownedError{user: false}, 2, "owned"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {

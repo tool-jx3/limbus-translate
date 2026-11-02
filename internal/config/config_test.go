@@ -1,9 +1,11 @@
 package config
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"slices"
+	"strings"
 	"testing"
 )
 
@@ -152,5 +154,30 @@ func TestValidPattern(t *testing.T) {
 		if err := ValidPattern(p); err == nil {
 			t.Errorf("ValidPattern(%q) = nil, want an error (MatchAny would match nothing)", p)
 		}
+	}
+}
+
+// Only a missing lct.yaml sends FindRoot up to the parent; any other error
+// (here a symlink loop, which fails for root too) is returned, not skipped.
+func TestFindRootStopsOnOtherErrors(t *testing.T) {
+	root := t.TempDir()
+	writeConfig(t, root, "lang_dir: zh-TW\n")
+	child := filepath.Join(root, "child")
+	if err := os.Mkdir(child, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	loop := filepath.Join(child, FileName)
+	if err := os.Symlink(FileName, loop); err != nil {
+		t.Skipf("cannot create a symlink: %v", err)
+	}
+	got, err := FindRoot(child)
+	if err == nil {
+		t.Fatalf("FindRoot = %q, want the stat error of %s", got, loop)
+	}
+	if errors.Is(err, ErrRootNotFound) {
+		t.Errorf("error = %v, want the underlying error, not %v", err, ErrRootNotFound)
+	}
+	if !strings.Contains(err.Error(), loop) {
+		t.Errorf("error = %v, want one naming %s", err, loop)
 	}
 }
