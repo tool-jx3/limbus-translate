@@ -66,8 +66,8 @@ func TestNormalize(t *testing.T) {
 // touch are separated. The space goes beside a keyword ID, not after any "]":
 // a "]" that ends another pair of brackets, such as the "][" of the mirrored
 // event name 射影戰鬥][鬥戰影射, is not asked to take one. A placeholder [{n}]
-// keeps its brackets tight (the guide), but its "]" before an [ID] was spaced
-// before and still is.
+// is tight on both sides (guides/base.md): no space between it and an [ID]
+// that follows, as none goes between an [ID] and a [{n}] that follows.
 func TestNormalizeSpacesOnlyAfterKeywordIDs(t *testing.T) {
 	tests := []struct {
 		name, in, want string
@@ -85,7 +85,9 @@ func TestNormalizeSpacesOnlyAfterKeywordIDs(t *testing.T) {
 		{"an ID at the start", "[Burn]增加", "[Burn] 增加"},
 		{"placeholder brackets stay tight", "罪人[{0}]獲得了", "罪人[{0}]獲得了"},
 		{"placeholder brackets stay tight beside an ID", "罪人[{0}]獲得[Burn]", "罪人[{0}]獲得 [Burn]"},
-		{"an ID after a placeholder is spaced as before", "[{0}][Burn]", "[{0}] [Burn]"},
+		{"an ID right after a placeholder", "[{0}][Burn]", "[{0}][Burn]"},
+		{"an ID right after a placeholder, text after it", "獲得[{0}][Burn]強度", "獲得[{0}][Burn] 強度"},
+		{"a placeholder between IDs", "[Burn][{0}][Bleed]", "[Burn][{0}][Bleed]"},
 		{"an ID before a placeholder", "[Burn][{0}]", "[Burn][{0}]"},
 		{"TabExplain after another pair", "名][TabExplain]說明", "名][TabExplain]說明"},
 	}

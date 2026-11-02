@@ -21,9 +21,8 @@ var (
 	unescaper  = strings.NewReplacer("&lt;", "<", "&gt;", ">")
 	// keywordCountRe matches the count a keyword name follows: 2級, 3層, 1回.
 	keywordCountRe = regexp.MustCompile(`[0-9]+[級層回]`)
-	// keywordOrPlaceholderEndRe matches a text that ends with an [ID] or with
-	// a bracketed placeholder such as [{0}].
-	keywordOrPlaceholderEndRe = regexp.MustCompile(`(?:\[[A-Za-z][A-Za-z0-9_]*\]|\[\{[^{}]+\}\])$`)
+	// keywordEndRe matches a text that ends with an [ID] (idRe).
+	keywordEndRe = regexp.MustCompile(`(?:` + idRe.String() + `)$`)
 )
 
 // Normalize repairs the mechanical formatting problems of translation zh:
@@ -33,8 +32,9 @@ var (
 //     is a string end, a space or full-width punctuation; before an [ID] the
 //     neighbor may also be > or (, after it < ) or [ (half-width brackets
 //     are punctuation too); a "]" before an [ID] asks for a space only if it
-//     ends an [ID] or a placeholder [{n}], not if it ends another pair of
-//     brackets ("名][Burn]" stays)
+//     ends an [ID], not if it ends a placeholder [{n}], which is tight on both
+//     sides (guides/base.md: "[{0}][Burn]" stays), or another pair of brackets
+//     ("名][Burn]" stays)
 //   - adjacent IDs are separated: "[Burn][Bleed]" becomes "[Burn] [Bleed]",
 //     while a "][" between other brackets is left alone
 //   - all-caps variables such as [ATTRIBUTES] get no added space
@@ -102,8 +102,8 @@ func spaceAroundIDs(s string) string {
 // needsSpaceBefore reports whether an [ID] that follows text needs a space.
 func needsSpaceBefore(text string) bool {
 	r, _ := utf8.DecodeLastRuneInString(text)
-	if r == ']' && !keywordOrPlaceholderEndRe.MatchString(text) {
-		return false // the end of another pair of brackets, such as the "][" of a mirrored name
+	if r == ']' && !keywordEndRe.MatchString(text) {
+		return false // the end of a [{n}], or of another pair of brackets such as the "][" of a mirrored name
 	}
 	return text != "" && !unicode.IsSpace(r) && !strings.ContainsRune(fullwidthPunct, r) && !strings.ContainsRune(">(", r)
 }
