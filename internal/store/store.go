@@ -266,6 +266,28 @@ func (s *Store) SaveRecords(recs map[string]Record) error {
 // process dies before the rename: ".<file>.tmp<digits>".
 var tmpName = regexp.MustCompile(`^\..+\.tmp[0-9]+$`)
 
+// removeTemps deletes the temporary files that earlier writes of path left
+// behind when the process died before the rename (tmpName, for this file:
+// ".<name>.tmp<digits>" next to it). removeStale sweeps the units directory;
+// this is for the queue and the files of .meta/, each when it is written.
+func removeTemps(path string) error {
+	dir, base := filepath.Split(path)
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return err
+	}
+	for _, e := range entries {
+		digits, ok := strings.CutPrefix(e.Name(), "."+base+".tmp")
+		if !ok || digits == "" || strings.Trim(digits, "0123456789") != "" || !e.Type().IsRegular() {
+			continue
+		}
+		if err := os.Remove(filepath.Join(dir, e.Name())); err != nil && !errors.Is(err, fs.ErrNotExist) {
+			return err
+		}
+	}
+	return nil
+}
+
 // removeStale deletes record files not in keep and the leftover temporary files
 // of writeFileAtomic, then the directories that became empty (the units
 // directory itself stays).
@@ -327,7 +349,9 @@ func (s *Store) LoadPending() ([]PendingItem, error) {
 }
 
 // SavePending makes items the whole pending queue, sorted by key. The
-// caller's slice is left as it was. Keys must be valid and unique.
+// caller's slice is left as it was. Keys must be valid and unique. Like the
+// files of .meta/, the queue is replaced atomically, and what earlier writes
+// of it that died left goes (removeTemps).
 func (s *Store) SavePending(items []PendingItem) error {
 	sorted := append([]PendingItem(nil), items...)
 	sort.Slice(sorted, func(i, j int) bool { return sorted[i].Key < sorted[j].Key })
@@ -344,6 +368,9 @@ func (s *Store) SavePending(items []PendingItem) error {
 		}
 	}
 	if err := writeFileAtomic(s.pendingPath(), buf.Bytes()); err != nil {
+		return fmt.Errorf("store: save pending: %w", err)
+	}
+	if err := removeTemps(s.pendingPath()); err != nil {
 		return fmt.Errorf("store: save pending: %w", err)
 	}
 	return nil
@@ -525,7 +552,8 @@ func (s *Store) metaPath(name, ext string) (string, error) {
 // WriteMetaJSON writes v as JSON to .meta/<name> (see metaPath for the
 // names allowed), creating directories as needed: 2-space indent, no HTML
 // escaping, one trailing newline, so the same value always gives the same
-// bytes. The file is replaced atomically. Like the other writers it does not
+// bytes. The file is replaced atomically, and what earlier writes of it that
+// died left goes (removeTemps). Like the other writers it does not
 // take the lock; callers that need one run it inside WithLock.
 func (s *Store) WriteMetaJSON(name string, v any) error {
 	p, err := s.metaPath(name, ".json")
@@ -542,6 +570,9 @@ func (s *Store) WriteMetaJSON(name string, v any) error {
 	if err := writeFileAtomic(p, buf.Bytes()); err != nil {
 		return fmt.Errorf("store: write %s: %w", name, err)
 	}
+	if err := removeTemps(p); err != nil {
+		return fmt.Errorf("store: write %s: %w", name, err)
+	}
 	return nil
 }
 
@@ -556,6 +587,9 @@ func (s *Store) WriteMetaFile(name string, data []byte) error {
 		return err
 	}
 	if err := writeFileAtomic(p, data); err != nil {
+		return fmt.Errorf("store: write %s: %w", name, err)
+	}
+	if err := removeTemps(p); err != nil {
 		return fmt.Errorf("store: write %s: %w", name, err)
 	}
 	return nil

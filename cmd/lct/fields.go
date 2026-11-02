@@ -34,10 +34,9 @@ type learnReport struct {
 	Existing bool            `json:"existing"`
 	Changes  []fields.Change `json:"changes"`
 	Written  bool            `json:"written"`
-
-	// nothingPassed is set when units were counted but no field passed a
-	// threshold, before the manual rules are taken off.
-	nothingPassed bool
+	// NothingPassed is set when units were counted but no field passed a
+	// threshold, before the manual rules are taken off: --write refuses then.
+	NothingPassed bool `json:"nothing_passed"`
 }
 
 // noUnitsCounted explains an empty result: the packs have no file in common
@@ -54,7 +53,7 @@ func (r learnReport) String() string {
 	b.WriteString("\n")
 	if r.Learned.Counted == 0 {
 		fmt.Fprintf(&b, "warning: %s, so --write is refused\n", noUnitsCounted)
-	} else if r.nothingPassed {
+	} else if r.NothingPassed {
 		fmt.Fprintf(&b, "warning: %s, so --write is refused\n", noFieldPassed)
 	}
 	switch {
@@ -122,7 +121,7 @@ func runFieldsLearn(ctx *cli.Context, args []string) error {
 	learned = learned.Without(manual)
 
 	target := filepath.Join(ctx.Root, filepath.FromSlash(generatedRules))
-	report := learnReport{Learned: learned, Changes: []fields.Change{}, nothingPassed: nothingPassed}
+	report := learnReport{Learned: learned, Changes: []fields.Change{}, NothingPassed: nothingPassed}
 	if _, err := os.Stat(target); err == nil {
 		report.Existing = true
 		old, err := fields.LoadLearned(ctx.Root)

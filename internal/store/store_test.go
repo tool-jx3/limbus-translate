@@ -1144,6 +1144,54 @@ func TestFileOfKeyRejectsNonCanonical(t *testing.T) {
 	}
 }
 
+// The queue and the files of .meta/ are written the same way: a write of one
+// removes what an earlier write of it that died left, and nothing else.
+func TestSaveRemovesStaleTempsOfMetaFiles(t *testing.T) {
+	root := t.TempDir()
+	meta := filepath.Join(root, ".meta")
+	stale := []string{
+		filepath.Join(meta, ".pending.jsonl.tmp123"),
+		filepath.Join(meta, ".plan.json.tmp9"),
+		filepath.Join(meta, ".plan.json.tmp10"),
+		filepath.Join(meta, "issue", ".01.md.tmp5"),
+	}
+	keep := []string{
+		filepath.Join(meta, ".plan.json.tmpfoo"),
+		filepath.Join(meta, ".plan.json.tmp"),
+		filepath.Join(meta, ".build.json.tmp7"), // of a file not written here
+		filepath.Join(meta, "plan.json.tmp3"),
+	}
+	for _, p := range append(slices.Clone(stale), keep...) {
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte("partial"), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	s := Open(root)
+	if err := s.SavePending(nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.WriteMetaJSON("plan.json", map[string]int{"pending": 0}); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.WriteMetaFile("issue/01.md", []byte("# 審核\n")); err != nil {
+		t.Fatal(err)
+	}
+	for _, p := range stale {
+		if exists(p) {
+			t.Errorf("stale temporary file %s was not removed", p)
+		}
+	}
+	for _, p := range keep {
+		if !exists(p) {
+			t.Errorf("%s is no temporary file of a file written and must stay", p)
+		}
+	}
+}
+
 // A crash between creating a temporary file and renaming it leaves
 // ".<name>.tmp<digits>" behind; the next SaveRecords removes it, and nothing
 // that merely looks similar.

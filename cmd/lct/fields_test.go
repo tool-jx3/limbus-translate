@@ -307,6 +307,23 @@ func TestLearnWriteKeepsRulesWhenNothingPasses(t *testing.T) {
 	if !strings.Contains(out, "no field") {
 		t.Errorf("the report should warn that nothing passed:\n%s", out)
 	}
+
+	// The JSON says so too, for a reader that does not see the warning.
+	out, err = runLearn(t, root, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got map[string]any
+	if err := json.Unmarshal([]byte(out), &got); err != nil || got["nothing_passed"] != true {
+		t.Errorf("--json = %s (%v), want nothing_passed true", out, err)
+	}
+	out, err = runLearn(t, learnRepo(t), true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil || got["nothing_passed"] != false {
+		t.Errorf("--json of a pack that teaches = %s (%v), want nothing_passed false", out, err)
+	}
 }
 
 // Everything learned is already in the manual rules: that is a real result
