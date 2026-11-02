@@ -46,10 +46,10 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 |---|---|---|
 | `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，`tw` 上次建置用的就是目前的 `raw`，也沒有還欠著的 Release、沒有只保存了進度卻還沒建置的 commit，就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 有需要人處理的項目時開審核 Issue |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 審核 Issue |
-| `rules-proposal.yml` | `update.yml` 或 `rebuild.yml` 成功結束後；手動（沒有輸入） | 選規則 PR 的分支（有開著的規則 PR 就用它的，沒有就用 `rules-proposal/<日期>`）→ `bin/lct suggest` 數出還沒在任何規則 PR、也沒被不採用的建議，沒有就結束 → 有的話以 `anthropics/claude-code-action@v1` 執行 `/rules-review` skill，修改 `guides/`、`glossary/`、`rules/`，開規則 PR 或更新開著的那個 → 確認 PR 存在，把網址寫在 summary |
+| `rules-proposal.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 選規則 PR 的分支（有開著的規則 PR 就用它的，沒有就用 `rules-proposal/<日期>`）→ `bin/lct suggest` 數出還沒在任何規則 PR、也沒被不採用的建議，沒有就結束 → 有的話以 `anthropics/claude-code-action@v1` 執行 `/rules-review` skill，修改 `guides/`、`glossary/`、`rules/`，開規則 PR 或更新開著的那個 → 確認 PR 存在，把網址寫在 summary |
 | `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint`。PR 改到 `guides/`、`glossary/` 或 `rules/` 時另外執行 `bin/lct impact`，把影響評估寫在該次執行的 summary（見「收到規則 PR 怎麼處理」） |
 
-`update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 在它們成功結束後才執行，失敗或被取消的不執行。細節：
+`update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 在它們成功結束後才執行，失敗或被取消的不執行，其他分支上的執行也不算。細節：
 
 - 翻譯最多進行 5 小時。每一輪執行最多 100 個回合，用完回合是正常的結束，接著開下一輪；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
 - 翻譯一結束（包括失敗、被取消或逾時），已翻的內容馬上 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit）。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它後面。
@@ -68,9 +68,13 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 1. **安裝 Claude GitHub App**：到 https://github.com/apps/claude 安裝，授權給這個 repo。action 以這個 App 的身分開 PR（`id-token: write` 讓它換到 App 的 token）。以 App 開的 PR 才會觸發 `ci.yml`，影響評估才會出現在 PR 上；用 workflow 自己的 `GITHUB_TOKEN` 開的 PR 不會觸發其他 workflow。
 2. 設定 `ANTHROPIC_API_KEY` 與 `LCT_MODEL`（見上表）。
 3. `rules-proposal` label 不必先建立：`lct proposal publish` 開第一個規則 PR 時會建立。
-4. action 裡的 skill 以 `lct proposal publish` commit、推分支並開 PR，它需要 GitHub 的 token（環境變數 `GH_TOKEN` 或 `GITHUB_TOKEN`）。如果它回報拿不到 token（`gh needs a token`），修法在實作計畫 `docs/superpowers/plans/2026-11-02-rules-improvement.md` 的 Task 16 第 4 步：由 workflow 把 action 輸出的 `github_token` 傳給那一步，並記在這裡。若改用 workflow 自己的 `GITHUB_TOKEN`，另要在 Settings → Actions → General 勾選「Allow GitHub Actions to create and approve pull requests」。
-5. 擋住 token 外洩：action 讀得到遊戲原文與譯者備註，那些文字誰都能寫進去，所以 checkout 設了 `persist-credentials: false`（token 不留在 `.git/config`），`claude_args` 也用 `--disallowedTools "Read(./.git/**)"` 不讓它讀 `.git/`；`lct proposal publish` 另外拒絕含有 `ghp_`、`gho_`、`ghs_`、`ghu_`、`github_pat_`、`x-access-token`、`AUTHORIZATION: basic`、`sk-ant-` 的說明與規則檔修改。因此 action 之前的步驟以匿名方式 fetch（公開 repo 沒有問題）。如果 action 沒有這個設定就推不了分支，由 Task 16 把 `persist-credentials: false` 改回來，`--disallowedTools` 要留著。
-6. 這次有沒有真的提出建議，由最後一步檢查：skill 把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>` 或 `failed: <原因>`）。`published` 時，規則 PR 的說明要有一個開始前不存在的建議，否則算錯誤（`lct proposal publish` 被拒絕時 action 不會失敗，不檢查的話已經開著的 PR 會讓這次顯示成功）；`nothing: …` 只在記錄與 summary 留下理由，維持成功；沒有這個檔或其他內容都是錯誤。
+4. action 裡的 skill 以 `lct proposal publish` commit、推分支並開 PR，它需要 GitHub 的 token（環境變數 `GH_TOKEN` 或 `GITHUB_TOKEN`）。如果 action 那一步的記錄裡 `lct proposal publish` 回報拿不到 token（`gh needs a token`），改用 workflow 自己的 token：
+   1. 在 `rules-proposal.yml` 執行 `anthropics/claude-code-action@v1` 的那一步加上 `env:`，內容是 `GH_TOKEN: ${{ github.token }}`。
+   2. 到 Settings → Actions → General 勾選「Allow GitHub Actions to create and approve pull requests」。
+   3. 這樣開出或更新的 PR 是 `github-actions` 的，不會觸發 `ci.yml`：每次 PR 開出或更新後，到 PR 頁面按「Close pull request」再按「Reopen pull request」，`ci.yml` 才會執行並附上影響評估。
+   4. `go test ./...` 的 `TestWorkflowContract` 要求 action 那一步沒有 `GH_TOKEN`，同一個 commit 要拿掉 `cmd/lct/contract_test.go` 裡的這項檢查與它的測試案例，並把改了什麼記在這裡。
+5. 擋住 token 外洩：action 讀得到遊戲原文與譯者備註，那些文字誰都能寫進去，所以 checkout 設了 `persist-credentials: false`（token 不留在 `.git/config`），`claude_args` 也用 `--disallowedTools "Read(./.git/**)"` 不讓它讀 `.git/`；`lct proposal publish` 另外拒絕含有 `ghp_`、`gho_`、`ghs_`、`ghu_`、`github_pat_`、`x-access-token`、`eC1hY2Nlc3MtdG9rZW46`（`x-access-token:` 的 base64）、`AUTHORIZATION: basic`、`sk-ant-` 的說明與規則檔修改。因此 action 之前的步驟以匿名方式 fetch（公開 repo 沒有問題）。如果 action 那一步的 `git push` 因為沒有憑證而失敗（記錄裡是 `could not read Username` 或 `Authentication failed`），把 checkout 那一步的 `persist-credentials: false` 刪掉（回到預設，token 留在 `.git/config`），`--disallowedTools "Read(./.git/**)"` 一定要留著；`TestWorkflowContract` 同樣要求 `persist-credentials: false`，同一個 commit 拿掉那項檢查與它的測試案例，並記在這裡。
+6. 這次有沒有真的提出建議，由最後一步檢查：skill 把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>` 或 `failed: <原因>`）。`published` 時，規則 PR 的說明要有一個開始前不存在的建議，否則算錯誤（`lct proposal publish` 被拒絕時 action 不會失敗，不檢查的話已經開著的 PR 會讓這次顯示成功）；`nothing: …` 只在記錄與 summary 留下理由，維持成功，但 `nothing: 本機…` 是錯誤（skill 沒讀到 `lct proposal start` 寫的 `work/proposal/started.json`，以為在本機而沒有發布）；沒有這個檔或其他內容都是錯誤。沒有設定 `LCT_MODEL` 時 action 不執行，記錄有警告，結果記為 `nothing:`，維持成功。
 
 ### 手動執行的輸入
 
@@ -102,6 +106,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 - 分支 `rules-proposal/<日期>`（同一天用過就接 `-2`、`-3`），label `rules-proposal`，標題「規則建議：YYYY-MM-DD」，目標分支 `main`。
 - 說明逐項列出建議的內容、理由、證據（key、KR、現行譯文、出現次數），最後是影響評估。要重翻的範圍附在 `rules/requeue/*.yaml`。
+- 每次執行最多處理 8 個建議（依 `lct suggest` 的順序），其餘的下次執行再處理；譯者備註只在發現它的那次建置之後提出一次。
 - 同一時間最多一個開著的規則 PR。已有的話，新建議加進同一個 PR（分支多一個 commit，說明多幾個項目），不另開。每次加之前，`lct proposal start` 會把 `main` 合併進這個分支（程式、skill 與規則就是 `main` 目前的樣子）；合併有衝突就停下並列出衝突的檔案，到分支上把 `main` 合併進去、解掉衝突再重跑。
 - 每個項目的第一行是 `<!-- suggestion:<id> -->`，`lct` 靠它知道 PR 有哪些建議；這一行只放標記，標記夾在其他文字中間就不算。編輯說明時不要刪這一行，也不要在這一行加字，除非整個項目都不要。
 - 影響評估：PR 改到 `guides/`、`glossary/` 或 `rules/` 時，`ci.yml` 執行 `bin/lct impact`，算出新規則會讓多少既有譯文出現新的硬性問題（舊規則是 `main` 的）。結果在該次 `ci` 執行的 summary（PR 的 Checks 頁籤）。找到有問題的譯文不算失敗，是讓你決定要不要重翻。

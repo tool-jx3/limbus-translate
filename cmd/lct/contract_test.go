@@ -110,7 +110,8 @@ var weeklyUpdateTools = []string{
 // files in work/; every lct command it runs either reads, writes a rule file
 // or request file, or publishes the rules PR, and the only way it reaches
 // origin is lct proposal publish, which pushes a rules-proposal/* branch and
-// touches nothing but guides/, glossary/ and rules/. rules-proposal.yml hands
+// touches nothing but guides/, glossary/ and rules/. lct impact is pinned to
+// the one file it writes (and refuses one outside work/ and out/ anyway). rules-proposal.yml hands
 // the same list to the action (TestWorkflowContract); a tool added to one and
 // not to the other fails there.
 var rulesReviewTools = []string{
@@ -120,7 +121,7 @@ var rulesReviewTools = []string{
 	"Bash(bin/lct adjust tidy*)",
 	"Bash(bin/lct requeue --to-file *)",
 	"Bash(bin/lct rules lint*)",
-	"Bash(bin/lct impact *)",
+	"Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*)",
 	"Bash(bin/lct proposal publish *)",
 	"Bash(go build -o bin/lct ./cmd/lct)",
 	"Read(./**)",
@@ -194,7 +195,9 @@ var lctWordRe = regexp.MustCompile(`^[a-z][a-z-]*$`)
 //     the closing * must be a command (two words, else the first, as
 //     checkLctCommands reads them) or, as a single word, the group of
 //     two-word commands it starts (batch for batch next and batch submit),
-//     optionally followed by flags (requeue --to-file).
+//     optionally followed by flags (requeue --to-file), each of which may
+//     take one value (impact --base origin/main). A word that follows the
+//     command, or a value, without a flag before it is refused.
 //     Bash(bin/lct *) allows every command and is refused.
 func checkPermissions(file string, entries, commands []string) []string {
 	var problems []string
@@ -216,7 +219,9 @@ func checkPermissions(file string, entries, commands []string) []string {
 		}
 		// The command comes first. Flags may follow it and narrow the entry
 		// ("requeue --to-file" allows the form of requeue that writes a request
-		// file and no other).
+		// file and no other), and so may the value of a flag ("impact --base
+		// origin/main --markdown work/proposal/impact.md" allows one comparison
+		// written to one file).
 		n := 0
 		for n < len(words) && lctWordRe.MatchString(words[n]) {
 			n++
@@ -225,7 +230,7 @@ func checkPermissions(file string, entries, commands []string) []string {
 			problems = append(problems, fmt.Sprintf("%s: %q does not start with an lct command", file, e))
 			continue
 		}
-		if slices.ContainsFunc(words[n:], func(w string) bool { return !strings.HasPrefix(w, "-") }) {
+		if !flagsAndValues(words[n:]) {
 			problems = append(problems, fmt.Sprintf("%s: %q has more than a command and flags before the *", file, e))
 			continue
 		}
@@ -237,6 +242,17 @@ func checkPermissions(file string, entries, commands []string) []string {
 		problems = append(problems, fmt.Sprintf("%s: %q names no registered lct command", file, e))
 	}
 	return problems
+}
+
+// flagsAndValues reports whether words are flags, each followed by one value
+// at most: every word that is not a flag follows one.
+func flagsAndValues(words []string) bool {
+	for i, w := range words {
+		if !strings.HasPrefix(w, "-") && (i == 0 || !strings.HasPrefix(words[i-1], "-")) {
+			return false
+		}
+	}
+	return true
 }
 
 // splitFrontmatter returns the YAML between the leading "---" lines of a
@@ -702,7 +718,11 @@ type skillSays struct{ text, why string }
 // description of the PR readable to lct, and the rules that keep a rules PR
 // from losing or repeating a suggestion. Each is a text of the body.
 var rulesReviewSays = []skillSays{
-	{"work/proposal/exclude.txt", "the file of the ids that are not to be suggested again is not named: a run in CI would suggest what the PR has or people turned down, and cannot tell it is in CI"},
+	{"work/proposal/started.json", "the file by which a run knows it is in CI is not named: exclude.txt is empty when no rules PR is open or was closed, and a run that takes an empty file for a missing one thinks it is on a person's machine and publishes nothing"},
+	{"work/proposal/exclude.txt", "the file of the ids that are not to be suggested again is not named: a run in CI would suggest what the PR has or people turned down"},
+	{"--limit 8", "the suggestions are asked for all at once, more than a run of 80 turns handles: it may end before it publishes anything"},
+	{"一定接著做第 3 到 5 步", "the skill does not say that it goes on to the lint, the impact, the description and the publish once its suggestions are handled"},
+	{"只提出一次", "the skill says that a note it skips comes back, while a build lists only the notes since the build before"},
 	{"--exclude-file work/proposal/exclude.txt", "the suggestions are not asked with the ids left out"},
 	{"work/proposal/existing-body.md", "the description the open PR has is not named: a new description would drop its suggestions, and lct proposal publish refuses it"},
 	{"work/proposal/body.md", "the description of the PR is written nowhere"},
@@ -726,7 +746,7 @@ var rulesReviewSays = []skillSays{
 // full, in the order the flow runs them: the first before the second, by the
 // first place each is written.
 var rulesReviewFlow = [][2]string{
-	{"work/proposal/exclude.txt", "go build -o bin/lct ./cmd/lct"}, // where it runs decides whether lct is built
+	{"work/proposal/started.json", "go build -o bin/lct ./cmd/lct"}, // where it runs decides whether lct is built
 	{"go build -o bin/lct ./cmd/lct", "bin/lct suggest --json"},
 	{"bin/lct suggest --json", "bin/lct rules lint --json"},
 	{"bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md"},
@@ -800,7 +820,11 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		return
 	}
 	for _, tc := range []struct{ name, old, repl, want string }{
+		{"no started file named", "work/proposal/started.json", "work/x.json", "work/proposal/started.json"},
 		{"no exclude file named", "work/proposal/exclude.txt", "work/x.txt", "work/proposal/exclude.txt"},
+		{"no limit of suggestions", "--limit 8", "--limit 20", "--limit 8"},
+		{"a run that stops after the suggestions", "一定接著做第 3 到 5 步", "可以停下", "一定接著做第 3 到 5 步"},
+		{"a note said to come back", "只提出一次", "下次還會再提出", "只提出一次"},
 		{"suggestions asked without the exclude file", "--exclude-file work/proposal/exclude.txt", "--json", "--exclude-file work/proposal/exclude.txt"},
 		{"no existing description named", "work/proposal/existing-body.md", "work/proposal/old.md", "work/proposal/existing-body.md"},
 		{"no marker shown", "<!-- suggestion:<id> -->", "<!-- id -->", "<!-- suggestion:<id> -->"},
@@ -814,7 +838,7 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"a change to get past the refusal", "不要為了通過而", "可以為了通過而", "不要為了通過而"},
 		{"lct built again in CI", "不要再執行 `go build`", "再執行 `go build`", "不要再執行 `go build`"},
 		{"the folder of git not forbidden", "`.git/`", "`.gitignore`", "`.git/`"},
-		{"the mode found out after the build", "work/proposal/exclude.txt", "work/proposal/x.txt", "work/proposal/exclude.txt"},
+		{"the mode found out after the build", "work/proposal/started.json", "go build -o bin/lct ./cmd/lct`; work/proposal/started.json", "must come before"},
 		{"a command out of order", "bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md; bin/lct rules lint --json", "must come before"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
@@ -1007,10 +1031,11 @@ func TestCheckSkillTools(t *testing.T) {
 }
 
 func TestCheckPermissions(t *testing.T) {
-	commands := []string{"batch next", "batch submit", "bootstrap", "pending", "requeue", "rules lint", "validate"}
+	commands := []string{"batch next", "batch submit", "bootstrap", "impact", "pending", "requeue", "rules lint", "validate"}
 	good := []string{
 		"Bash(bin/lct batch *)", "Bash(bin/lct pending *)", "Bash(bin/lct validate *)", "Bash(bin/lct rules lint*)",
-		"Bash(bin/lct requeue --to-file *)", "Bash(bin/lct batch --json *)",
+		"Bash(bin/lct requeue --to-file *)", "Bash(bin/lct batch --json *)", "Bash(bin/lct requeue --to-file x *)",
+		"Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*)",
 		"Bash(bin/lct batch submit *)", "Bash(go build -o bin/lct ./cmd/lct)", "Read(./**)", "Edit(./work/**)",
 		"Write(./work/**)", "WebFetch(domain:example.com)", "Glob",
 	}
@@ -1022,7 +1047,8 @@ func TestCheckPermissions(t *testing.T) {
 		{"Bash(bin/lct)", "every lct command"},
 		{"Bash(bin/lct --json *)", "does not start with an lct command"},
 		{"Bash(bin/lct requeue ./x *)", "more than a command and flags"},
-		{"Bash(bin/lct requeue --to-file x *)", "more than a command and flags"},
+		{"Bash(bin/lct requeue --to-file x y *)", "more than a command and flags"},
+		{"Bash(bin/lct impact --base origin/main work/x.md*)", "more than a command and flags"},
 		{"Bash(bin/lct publish --to-file *)", "no registered"},
 		{"Bash(bin/lct frobnicate *)", "no registered"},
 		{"Bash(bin/lct batch nxt *)", "no registered"},
@@ -2120,9 +2146,10 @@ var rulesProposalPermissions = map[string]string{
 
 const (
 	// rulesProposalIf is the condition of the job: a finished run of update or
-	// rebuild triggers the workflow whatever it ended in, and only a green one
-	// has a build to learn from.
-	rulesProposalIf = "github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'"
+	// rebuild triggers the workflow whatever it ended in and on whatever branch
+	// it ran, and only a green one of main has a build to learn from; a run by
+	// hand is not held back.
+	rulesProposalIf = "github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.event != 'pull_request')"
 	// rulesProposalPrompt is what the action is told: the skill, and nothing else.
 	rulesProposalPrompt = "/rules-review"
 	// rulesProposalDenied is the tool the action may not use: the folder of git
@@ -2132,6 +2159,11 @@ const (
 	// rulesProposalCount is what the action step and the steps after it read to
 	// run only when lct suggest found something.
 	rulesProposalCount = "steps.suggest.outputs.count != '0'"
+	// rulesProposalHasModel and rulesProposalNoModel are what the action step
+	// and the step that stands in for it read: without LCT_MODEL there is no
+	// model to run the action with.
+	rulesProposalHasModel = "vars.LCT_MODEL != ''"
+	rulesProposalNoModel  = "vars.LCT_MODEL == ''"
 )
 
 var (
@@ -2160,8 +2192,9 @@ var rulesProposalMarkers = []struct{ text, why string }{
 	{`gh pr list --state open --head "$BRANCH"`, "the rules PR is not looked for, so a run that opened none is green"},
 	// What the skill says it did decides what is checked: when lct proposal
 	// publish refuses, the action does not fail.
-	{"work/proposal/outcome.txt", "the file the skill says what it did in is not read, so a run whose publish was refused is green when a rules PR is open"},
+	{"outcome_file=work/proposal/outcome.txt", "the file the skill says what it did in is not read, so a run whose publish was refused is green when a rules PR is open"},
 	{"'nothing: '*)", "a run that proposes nothing is not told from one that failed"},
+	{"'nothing: 本機'*)", "a run that took itself for one on a person's machine (it found no work/proposal/started.json) and published nothing is green"},
 	{"::notice::", "a run that proposes nothing does not say so in the log"},
 	{"--json url,body,isCrossRepository", "the description of the PR is not read, so a PR that is open already is taken for a PR this run added to"},
 	{`grep -qxF -- "$id" work/proposal/exclude.txt`, "the suggestions the PR had before the run are not told from those it added"},
@@ -2232,7 +2265,7 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 	}
 	job := w.Jobs[w.jobNames()[0]]
 	if job.If != rulesProposalIf {
-		add("the if of the job is %q, want %q: a run of update or rebuild that did not succeed has no build to learn from", job.If, rulesProposalIf)
+		add("the if of the job is %q, want %q: a run of update or rebuild that did not succeed, or not of main, has no build to learn from", job.If, rulesProposalIf)
 	}
 	if job.TimeoutMinutes != 60 {
 		add("timeout-minutes = %d, want 60", job.TimeoutMinutes)
@@ -2337,6 +2370,31 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 	}
 	if !strings.Contains(step.If, rulesProposalCount) {
 		add("the if of the action step is %q, which lacks %s: it would run with nothing to suggest", step.If, rulesProposalCount)
+	}
+	if !strings.Contains(step.If, rulesProposalHasModel) {
+		add("the if of the action step is %q, which lacks %s: it would run without a model", step.If, rulesProposalHasModel)
+	}
+
+	// Without the model a step says so and stands in for the skill: it writes
+	// an outcome of nothing, so that the check of the outcome stays green.
+	noModel := at(func(s workflowStep) bool { return strings.Contains(s.If, rulesProposalNoModel) })
+	switch {
+	case noModel < 0:
+		add("no step runs if %s: a run without LCT_MODEL would end without a word, or red for the missing outcome", rulesProposalNoModel)
+	default:
+		s := job.Steps[noModel]
+		if !strings.Contains(s.If, rulesProposalCount) {
+			add("the if of the step for a missing LCT_MODEL is %q, which lacks %s", s.If, rulesProposalCount)
+		}
+		if !strings.Contains(s.Run, "::warning::") || !strings.Contains(s.Run, "LCT_MODEL") {
+			add("the step for a missing LCT_MODEL does not warn that LCT_MODEL is not set: %q", firstLine(s.Run))
+		}
+		if !strings.Contains(s.Run, "'nothing: ") || !strings.Contains(s.Run, "> work/proposal/outcome.txt") {
+			add("the step for a missing LCT_MODEL does not write an outcome of nothing (echo 'nothing: …' > work/proposal/outcome.txt), so the check of the outcome fails")
+		}
+		if confirm >= 0 && noModel > confirm {
+			add("the step for a missing LCT_MODEL comes after the step that checks the outcome")
+		}
 	}
 
 	// The other steps.
@@ -3035,7 +3093,9 @@ func TestWorkflowContract(t *testing.T) {
 		{"also on a schedule", "on:\n  workflow_run:", "on:\n  schedule:\n    - cron: '0 0 * * *'\n  workflow_run:", "runs on"},
 		{"not by hand", "  workflow_dispatch:\n", "", "runs on"},
 		{"a run that did not succeed", "github.event.workflow_run.conclusion == 'success'", "github.event.workflow_run.conclusion != 'failure'", "the if of the job"},
-		{"a run that is not by hand and not green", " || github.event.workflow_run", " && github.event.workflow_run", "the if of the job"},
+		{"a run that is not by hand and not green", " || (github.event.workflow_run", " && (github.event.workflow_run", "the if of the job"},
+		{"a run of another branch", " && github.event.workflow_run.head_branch == 'main'", "", "the if of the job"},
+		{"a run for a pull request", " && github.event.workflow_run.event != 'pull_request'", "", "the if of the job"},
 
 		// The job.
 		{"a job that may run for hours", "timeout-minutes: 60", "timeout-minutes: 120", "timeout-minutes"},
@@ -3054,11 +3114,19 @@ func TestWorkflowContract(t *testing.T) {
 		{"another limit of turns", "--max-turns 80", "--max-turns 800", "--max-turns 80"},
 		{"permissions skipped", "            --max-turns 80\n", "            --max-turns 80\n            --dangerously-skip-permissions\n", "--dangerously-skip-permissions"},
 		{"a token for the action", "        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n        env:\n          GH_TOKEN: ${{ github.token }}\n", "GH_TOKEN"},
-		{"a run with nothing to suggest", "        if: steps.suggest.outputs.count != '0'\n        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n", "the if of the action step"},
-		{"an action that runs when the count is not read", "steps.suggest.outputs.count != '0'\n        uses: anthropics", "steps.start.outputs.pr != '0'\n        uses: anthropics", "the if of the action step"},
+		{"a run with nothing to suggest", "        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''\n        uses: anthropics/claude-code-action@v1\n", "        if: vars.LCT_MODEL != ''\n        uses: anthropics/claude-code-action@v1\n", "the if of the action step"},
+		{"an action that runs when the count is not read", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''\n        uses: anthropics", "steps.start.outputs.pr != '0' && vars.LCT_MODEL != ''\n        uses: anthropics", "the if of the action step"},
+		{"an action without a model", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''\n        uses: anthropics", "steps.suggest.outputs.count != '0'\n        uses: anthropics", "vars.LCT_MODEL != ''"},
+
+		// Without the model a step says so and writes an outcome of nothing.
+		{"no step for a missing model", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL == ''", "steps.suggest.outputs.count != '0'", "no step runs if vars.LCT_MODEL == ''"},
+		{"a step for a missing model that runs with nothing to suggest", "if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL == ''", "if: vars.LCT_MODEL == ''", "the if of the step for a missing LCT_MODEL"},
+		{"a missing model without a warning", `echo "::warning::the variable LCT_MODEL is not set`, `echo "the variable LCT_MODEL is not set`, "does not warn"},
+		{"a missing model without an outcome", "echo 'nothing: 沒有設定 LCT_MODEL，這次不審查建議' > work/proposal/outcome.txt", "true", "outcome of nothing"},
 
 		// The tools of the action are exactly those of the skill.
-		{"a tool less", "Bash(bin/lct impact *),", "", "Bash(bin/lct impact *)"},
+		{"a tool less", "Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*),", "", "Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*)"},
+		{"an impact that writes anywhere", "Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*)", "Bash(bin/lct impact *)", "Bash(bin/lct impact *)"},
 		{"a tool more", "Read(./**),", "Read(./**),Bash(git push *),", "Bash(git push *)"},
 		{"a tool twice", "Read(./**),", "Read(./**),Read(./**),", "twice"},
 		{"a second list", "            --max-turns 80\n", "            --max-turns 80\n            --allowedTools \"Read(./**)\"\n", "2 --allowedTools"},
@@ -3094,6 +3162,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"the outcome not read", "outcome_file=work/proposal/outcome.txt", "outcome_file=work/proposal/other.txt", "work/proposal/outcome.txt"},
 		{"a run that proposes nothing not told apart", "'nothing: '*)", "'nothing - '*)", "'nothing: '*)"},
 		{"a run that proposes nothing not said", "::notice::", "::warning::", "::notice::"},
+		{"a local run in CI not told apart", "'nothing: 本機'*)", "'nothing: local'*)", "'nothing: 本機'*)"},
 		{"the description of the PR not read", "--json url,body,isCrossRepository", "--json url,isCrossRepository", "--json url,body,isCrossRepository"},
 		{"the suggestions the PR had not told from the new", `grep -qxF -- "$id" work/proposal/exclude.txt`, `grep -qF -- "$id" work/proposal/other.txt`, "grep -qxF"},
 	} {
@@ -3104,7 +3173,7 @@ func TestWorkflowContract(t *testing.T) {
 	}
 	// Each change below is one problem, no more.
 	for _, tc := range []struct{ name, old, repl, want string }{
-		{"a tool less", "Bash(bin/lct impact *),", "", "Bash(bin/lct impact *)"},
+		{"a tool less", "Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*),", "", "Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*)"},
 		{"a tool more", "Read(./**),", "Read(./**),Bash(git push *),", "Bash(git push *)"},
 		{"a tool twice", "Read(./**),", "Read(./**),Read(./**),", "twice"},
 		{"a model written in the file", "--model ${{ vars.LCT_MODEL }}", "--model example", "--model"},
@@ -3121,8 +3190,9 @@ func TestWorkflowContract(t *testing.T) {
 		})
 	}
 	t.Run("a tool the skill lacks", func(t *testing.T) {
-		tools := slices.DeleteFunc(slices.Clone(skillTools), func(tool string) bool { return tool == "Bash(bin/lct impact *)" })
-		wantProblems(t, checkRulesProposalWorkflow(rulesFile, rules, tools), "--allowedTools has", "Bash(bin/lct impact *)", "lacks")
+		const impactTool = "Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*)"
+		tools := slices.DeleteFunc(slices.Clone(skillTools), func(tool string) bool { return tool == impactTool })
+		wantProblems(t, checkRulesProposalWorkflow(rulesFile, rules, tools), "--allowedTools has", impactTool, "lacks")
 	})
 	t.Run("a tool the workflow lacks", func(t *testing.T) {
 		tools := append(slices.Clone(skillTools), "Bash(bin/lct validate *)")
@@ -3144,7 +3214,7 @@ func TestWorkflowContract(t *testing.T) {
 		wantProblems(t, checkWorkflow(rulesFile, src, commands), `"bin/lct sugest"`)
 	})
 	t.Run("an unregistered lct command in the tools of the action", func(t *testing.T) {
-		src := mutate(t, rules, "Bash(bin/lct impact *)", "Bash(bin/lct impct *)")
+		src := mutate(t, rules, "Bash(bin/lct impact --base", "Bash(bin/lct impct --base")
 		wantProblems(t, checkWorkflow(rulesFile, src, commands), `"bin/lct impct"`)
 	})
 	t.Run("an expression in a script", func(t *testing.T) {
@@ -3176,9 +3246,13 @@ var readmeRulesPR = []struct{ text, why string }{
 	{"`<!-- suggestion:", "a person is not told not to take the markers out of the description"},
 	{"影響評估", "the impact assessment ci.yml shows on a rules PR is not described"},
 	{"`bin/lct impact`", "the command of the impact assessment is not named"},
-	{"`persist-credentials: false`", "the README does not say that the checkout keeps no token, and that Task 16 reverts it if the action cannot push without it"},
+	{"`persist-credentials: false`", "the README does not say that the checkout keeps no token, and how to revert it if the action cannot push without it"},
 	{"`lct proposal publish`", "the README does not say what to do when lct proposal publish finds no token inside the action"},
-	{"Task 16", "the README does not point to the plan step that settles the token of the action"},
+	{"`gh needs a token`", "the README does not name the refusal of lct proposal publish that calls for the fallback"},
+	{"`GH_TOKEN: ${{ github.token }}`", "the README does not give the step of the fallback that hands the token of the workflow to the action"},
+	{"Allow GitHub Actions to create and approve pull requests", "the README does not say that a PR opened with the token of the workflow needs this setting"},
+	{"`TestWorkflowContract`", "the README does not say that the contract test holds the workflow to the setting the fallback changes"},
+	{"最多處理 8 個建議", "the README does not say that a run handles at most 8 suggestions and leaves the rest for the next"},
 }
 
 // The README tells a person how to set up and handle the rules PR.
@@ -3316,7 +3390,7 @@ func TestReadmeExplainsTheRulesPR(t *testing.T) {
 }
 
 // outcomeStep returns the script of the step of rules-proposal.yml that checks
-// what the run did.
+// what the run did: it reads outcome.txt and looks for the rules PR.
 func outcomeStep(t *testing.T, workflow string) string {
 	t.Helper()
 	w, problems := parseWorkflow("rules-proposal.yml", workflow)
@@ -3325,12 +3399,12 @@ func outcomeStep(t *testing.T, workflow string) string {
 	}
 	var found []string
 	for _, s := range w.steps() {
-		if strings.Contains(s.Run, "outcome.txt") {
+		if strings.Contains(s.Run, "outcome.txt") && strings.Contains(s.Run, "gh pr list") {
 			found = append(found, s.Run)
 		}
 	}
 	if len(found) != 1 {
-		t.Fatalf("%d steps read outcome.txt, want one", len(found))
+		t.Fatalf("%d steps read outcome.txt and look for the PR, want one", len(found))
 	}
 	return found[0]
 }
@@ -3430,6 +3504,9 @@ func TestRulesProposalOutcomeStep(t *testing.T) {
 		{"nothing proposed", str("nothing: 沒有有把握的項目\n"), "[]", 0, false, []string{"::notice::", "沒有有把握的項目"}, []string{"沒有有把握的項目"}},
 		{"nothing proposed while a rules PR is open", str("nothing: 規則檔沒有任何改動"), pr(old, false), 0, false, []string{"::notice::", "規則檔沒有任何改動"}, nil},
 		{"nothing proposed, a reason of several lines", str("nothing: first line\n::error::second line\n"), "[]", 0, false, []string{"::notice::", "first line"}, nil},
+		// The skill took the run for one on a person's machine: it found no
+		// work/proposal/started.json and published nothing.
+		{"nothing proposed by a run that took itself for a local one", str("nothing: 本機執行，沒有發布\n"), pr(old, false), 1, false, []string{"::error::", "本機執行，沒有發布"}, nil},
 		{"no outcome", nil, pr(old+marker("speaker/새 화자")+"\n", false), 1, false, []string{"::error::", "work/proposal/outcome.txt"}, nil},
 		{"an outcome that is a failure", str("failed: lct proposal publish: gh needs a token\n"), pr(old, false), 1, false, []string{"::error::", "failed: lct proposal publish: gh needs a token"}, nil},
 		{"an outcome that says nothing", str("\n"), pr(old, false), 1, false, []string{"::error::"}, nil},
@@ -3461,6 +3538,44 @@ func TestRulesProposalOutcomeStep(t *testing.T) {
 				t.Errorf("a line of the reason is a command of the runner:\n%s", got.output)
 			}
 		})
+	}
+}
+
+// Without LCT_MODEL the action does not run, and the step that stands in for it
+// warns and writes an outcome of nothing: the check of the outcome, run after
+// it, stays green with a notice and asks gh for nothing.
+func TestRulesProposalWithoutAModel(t *testing.T) {
+	if _, err := exec.LookPath("jq"); err != nil {
+		t.Skip("jq is not installed")
+	}
+	_, workflow := readRepoFile(t, filepath.Join(repoRoot, filepath.FromSlash(workflowPath("rules-proposal.yml"))))
+	w, problems := parseWorkflow("rules-proposal.yml", workflow)
+	if w == nil {
+		t.Fatal(problems)
+	}
+	var script string
+	for _, s := range w.steps() {
+		if strings.Contains(s.If, rulesProposalNoModel) {
+			script = s.Run
+		}
+	}
+	if script == "" {
+		t.Fatalf("no step runs if %s", rulesProposalNoModel)
+	}
+	dir := t.TempDir()
+	writeTestFile(t, dir, "work/proposal/exclude.txt", "")
+	writeTestFile(t, dir, "step.sh", script)
+	cmd := exec.Command("bash", "--noprofile", "--norc", "-eo", "pipefail", "step.sh")
+	cmd.Dir = dir
+	out, err := cmd.CombinedOutput()
+	if err != nil || !strings.Contains(string(out), "::warning::") || !strings.Contains(string(out), "LCT_MODEL") {
+		t.Fatalf("the step: %v\n%s", err, out)
+	}
+	outcome := string(readFile(t, filepath.Join(dir, "work", "proposal", "outcome.txt")))
+
+	got := runOutcomeStep(t, outcomeStep(t, workflow), &outcome, "", "[]")
+	if got.exit != 0 || got.ghCalled || !strings.Contains(got.output, "::notice::") || !strings.Contains(got.summary, "LCT_MODEL") {
+		t.Errorf("the check of the outcome %q: exit %d, gh called %v\n%s\nsummary:\n%s", outcome, got.exit, got.ghCalled, got.output, got.summary)
 	}
 }
 

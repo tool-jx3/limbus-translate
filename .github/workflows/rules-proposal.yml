@@ -13,9 +13,11 @@ on:
 
 jobs:
   propose:
-    # A run of update or rebuild starts this workflow whatever it ended in;
-    # only a green one has a build to learn from.
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    # A run of update or rebuild starts this workflow whatever it ended in, on
+    # whatever branch it ran; only a green one has a build to learn from, and
+    # only one of main: a run dispatched on another branch, or one for a pull
+    # request, built with rules that are not those of main.
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.event != 'pull_request')
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     # One run at a time. A run that waits is never cancelled by the next.
@@ -59,8 +61,9 @@ jobs:
       # Checks out the branch the suggestions go on (that of the open rules PR,
       # brought up to date, or a new one made from origin/main) and writes
       # work/proposal/exclude.txt, the ids that are in a PR already, were
-      # declined or are handled, and work/proposal/existing-body.md, the
-      # description of the open PR.
+      # declined or are handled, work/proposal/existing-body.md, the
+      # description of the open PR, and work/proposal/started.json, by which
+      # the skill knows it runs in CI.
       - name: Choose the branch of the rules PR
         id: start
         env:
@@ -93,9 +96,10 @@ jobs:
       # compares the two); the folder of git is closed to it. The model comes
       # from the variable. The action brings its own GitHub credentials (the
       # Claude GitHub App, through id-token), so it gets no token: a PR opened
-      # by github-actions would not start ci.yml.
+      # by github-actions would not start ci.yml. Without the variable there is
+      # no model to run, and the step after it says so.
       - name: Review the suggestions, open or update the rules PR
-        if: steps.suggest.outputs.count != '0'
+        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -103,8 +107,15 @@ jobs:
           claude_args: >-
             --model ${{ vars.LCT_MODEL }}
             --max-turns 80
-            --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact *),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
+            --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
             --disallowedTools "Read(./.git/**)"
+
+      # The run proposes nothing then, and stays green with a warning.
+      - name: Say that LCT_MODEL is not set
+        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL == ''
+        run: |
+          echo "::warning::the variable LCT_MODEL is not set: the suggestions are not reviewed and no rules PR is opened or updated"
+          echo 'nothing: 沒有設定 LCT_MODEL，這次不審查建議' > work/proposal/outcome.txt
 
       # What the skill says it did (work/proposal/outcome.txt) decides what is
       # checked. When lct proposal publish refuses, the action does not fail:
@@ -112,9 +123,11 @@ jobs:
       # waits for review is the usual state, so finding it proves nothing. A run
       # that says it published must have left a suggestion in the PR that the
       # PR did not have when the run began (work/proposal/exclude.txt); one that
-      # proposed nothing says so in a notice and stays green; anything else is an
-      # error. The PR is looked up by its branch: the label goes through the
-      # search index, which lags behind a PR that was just opened.
+      # proposed nothing says so in a notice and stays green, unless it says it
+      # ran on a person's machine (it did not find work/proposal/started.json);
+      # anything else is an error. The PR is looked up by its branch: the label
+      # goes through the search index, which lags behind a PR that was just
+      # opened.
       - name: Check what the run did and show the rules PR
         if: steps.suggest.outputs.count != '0'
         env:
@@ -129,6 +142,9 @@ jobs:
           outcome=$(tr -d '\r' < "$outcome_file")
           case "$outcome" in
             published) ;;
+            'nothing: 本機'*)
+              echo "::error::the rules-review run took itself for a run on a person's machine and published nothing: $(head -n 1 <<<"$outcome" | cut -c1-300)"
+              exit 1 ;;
             'nothing: '*)
               reason=$(head -n 1 <<<"${outcome#nothing: }")
               reason=${reason:0:300}
