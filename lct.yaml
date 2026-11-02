@@ -1,5 +1,5 @@
 lang_dir: zh-TW
-frozen: ["BgmLyrics/**"]
+frozen: []
 cdn_template: https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip
 worktrees: { raw: .work/raw, tw: .work/tw }
 batch: { max_units: 40, story_max_units: 120, max_attempts: 3, lease_minutes: 120 }

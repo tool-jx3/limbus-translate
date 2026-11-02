@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
 	"slices"
 	"strings"
 	"testing"
@@ -143,9 +144,9 @@ func e2eRepo(t *testing.T) string {
 	for _, d := range []string{"guides", "glossary", "rules"} {
 		copyDir(t, filepath.Join(repoRoot, d), filepath.Join(root, d))
 	}
-	// The request and rewrite files of the repo are made for its tw, and each
-	// is applied there once; the dry run has a tw of its own, and its files.
-	for _, d := range []string{"rules/requeue", "rules/rewrite"} {
+	// The request, rewrite and adjustment files of the repo are made for its
+	// tw and its KR; the dry run has a tw and a KR of its own, and its files.
+	for _, d := range []string{"rules/requeue", "rules/rewrite", "rules/adjustments"} {
 		files, err := filepath.Glob(filepath.Join(root, filepath.FromSlash(d), "*.yaml"))
 		if err != nil {
 			t.Fatal(err)
@@ -155,6 +156,20 @@ func e2eRepo(t *testing.T) string {
 				t.Fatal(err)
 			}
 		}
+	}
+	// The dry run checks the frozen files on BgmLyrics/L.json, whatever the
+	// repo freezes now.
+	cfgPath := filepath.Join(root, "lct.yaml")
+	cfg, err := os.ReadFile(cfgPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+	frozenLine := regexp.MustCompile(`(?m)^frozen: .*$`)
+	if !frozenLine.Match(cfg) {
+		t.Fatal("lct.yaml has no frozen line")
+	}
+	if err := os.WriteFile(cfgPath, frozenLine.ReplaceAll(cfg, []byte(`frozen: ["BgmLyrics/**"]`)), 0o644); err != nil {
+		t.Fatal(err)
 	}
 	font, err := filepath.Abs(filepath.Join(repoRoot, e2eFont))
 	if err != nil {

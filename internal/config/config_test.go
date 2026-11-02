@@ -4,7 +4,6 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
-	"slices"
 	"strings"
 	"testing"
 )
@@ -18,8 +17,9 @@ func TestLoadDefaults(t *testing.T) {
 	if cfg.LangDir != "zh-TW" {
 		t.Errorf("LangDir = %q, want zh-TW", cfg.LangDir)
 	}
-	if want := []string{"BgmLyrics/**"}; !slices.Equal(cfg.Frozen, want) {
-		t.Errorf("Frozen = %v, want %v", cfg.Frozen, want)
+	// BgmLyrics/** was unfrozen on 2026-11-02 (guides/families.md).
+	if len(cfg.Frozen) != 0 {
+		t.Errorf("Frozen = %v, want none", cfg.Frozen)
 	}
 	if want := "https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip"; cfg.CDNTemplate != want {
 		t.Errorf("CDNTemplate = %q, want %q", cfg.CDNTemplate, want)
