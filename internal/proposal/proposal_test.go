@@ -53,7 +53,9 @@ type ghPR struct {
 	Body        string    `json:"body"`
 	State       string    `json:"state,omitempty"`
 	Labels      []ghLabel `json:"labels"`
-	MergedAt    *string   `json:"mergedAt,omitempty"`
+	// IsCrossRepository is true for a PR from a fork.
+	IsCrossRepository bool    `json:"isCrossRepository"`
+	MergedAt          *string `json:"mergedAt,omitempty"`
 }
 
 type ghLabel struct {
@@ -314,11 +316,11 @@ func TestProposalStartNewBranch(t *testing.T) {
 	// which makes gh use the search index, and so can miss a PR that is
 	// new or lost its label. The rules PRs are picked out here.
 	open := e.callsOf("pr", "list", "--state", "open")
-	if len(open) != 1 || !slices.Equal(open[0], []string{"pr", "list", "--state", "open", "--json", "number,url,headRefName,body,labels", "--limit", "100"}) {
+	if len(open) != 1 || !slices.Equal(open[0], []string{"pr", "list", "--state", "open", "--json", "number,url,headRefName,body,labels,isCrossRepository", "--limit", "100"}) {
 		t.Errorf("open list calls = %q", open)
 	}
 	closed := e.callsOf("pr", "list", "--state", "closed")
-	if len(closed) != 1 || !slices.Equal(closed[0], []string{"pr", "list", "--state", "closed", "--json", "number,body,mergedAt,labels,headRefName", "--limit", "200"}) {
+	if len(closed) != 1 || !slices.Equal(closed[0], []string{"pr", "list", "--state", "closed", "--json", "number,body,mergedAt,labels,headRefName,isCrossRepository", "--limit", "200"}) {
 		t.Errorf("closed list calls = %q", closed)
 	}
 	for _, c := range e.calls() {
@@ -451,7 +453,7 @@ func TestProposalStartResumesABranchNoPRWasOpenedFrom(t *testing.T) {
 	}
 	// The question was asked of every PR, whatever its state and label.
 	asked := e.callsOf("pr", "list", "--state", "all")
-	if len(asked) != 1 || !slices.Equal(asked[0], []string{"pr", "list", "--state", "all", "--head", branch, "--json", "number,url,headRefName,body,state"}) {
+	if len(asked) != 1 || !slices.Equal(asked[0], []string{"pr", "list", "--state", "all", "--head", branch, "--json", "number,url,headRefName,body,state,isCrossRepository"}) {
 		t.Errorf("calls = %q", asked)
 	}
 	assertIDs(t, "exclude.txt", e.excludeIDs())
@@ -742,7 +744,7 @@ func TestProposalPublishUpdatesTheOpenPR(t *testing.T) {
 		t.Errorf("origin has %s, want %s", pushed, got.Commit)
 	}
 	list := e.callsOf("pr", "list")
-	if len(list) != 1 || !slices.Equal(list[0], []string{"pr", "list", "--state", "open", "--head", branch, "--json", "number,url,headRefName,body"}) {
+	if len(list) != 1 || !slices.Equal(list[0], []string{"pr", "list", "--state", "open", "--head", branch, "--json", "number,url,headRefName,body,isCrossRepository"}) {
 		t.Errorf("pr list calls = %q", list)
 	}
 }
@@ -1158,5 +1160,100 @@ func TestProposalPublishKeepsTheSuggestionsTheOpenPRHas(t *testing.T) {
 	}
 	if got.Created || len(e.callsOf("pr", "edit")) != 1 {
 		t.Errorf("Published = %+v, calls %q", got, e.calls())
+	}
+}
+
+// A fork PR is no rules PR: anyone can open one from a branch of any name,
+// while the label needs rights on the repo. Labelled or not, it is ignored.
+func TestProposalStartIgnoresPRsFromForks(t *testing.T) {
+	e := newEnv(t)
+	e.setPRs([]ghPR{
+		{Number: 3, URL: "u3", HeadRefName: "rules-proposal/2026-10-29", Labels: rulesLabel, IsCrossRepository: true, Body: body("term/from-a-fork")},
+		{Number: 4, URL: "u4", HeadRefName: "rules-proposal/2026-10-30", IsCrossRepository: true, Body: body("term/from-a-fork-too")},
+	}, []ghPR{
+		{Number: 5, HeadRefName: "rules-proposal/2026-10-01", IsCrossRepository: true, Body: body("term/hidden-by-a-fork")},
+		{Number: 6, HeadRefName: "rules-proposal/2026-10-02", Labels: rulesLabel, IsCrossRepository: true, Body: body("term/hidden-too")},
+		{Number: 7, HeadRefName: "rules-proposal/2026-10-03", IsCrossRepository: true, Body: body("inconsistent/ally/name/00000002"), MergedAt: merged()},
+		{Number: 8, HeadRefName: "rules-proposal/2026-10-04", Labels: rulesLabel, Body: body("term/ours"), State: "CLOSED"},
+	})
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Their branches are not on origin: following one would fail the run.
+	if got.Branch != "rules-proposal/2026-11-05" || got.PR != 0 || got.URL != "" || got.ExistingBody != "" {
+		t.Errorf("Started = %+v, want a new branch and no PR", got)
+	}
+	assertIDs(t, "Existing", got.Existing)
+	assertIDs(t, "Declined", got.Declined, "term/ours")
+	assertIDs(t, "Handled", got.Handled)
+	assertIDs(t, "exclude.txt", e.excludeIDs(), "term/ours")
+	if head, base := e.git("rev-parse", "HEAD"), e.git("rev-parse", "origin/main"); head != base {
+		t.Errorf("HEAD = %s, want origin/main = %s", head, base)
+	}
+	if _, err := os.Stat(filepath.Join(e.repo, "work", "proposal", "existing-body.md")); err == nil {
+		t.Error("the text of a fork was saved as the existing description")
+	}
+}
+
+func TestProposalStartHeadQueryIgnoresPRsFromForks(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	sha := e.pushBranch(branch, "guides/README.md", "work of an earlier run\n")
+
+	// An open PR from a fork with our branch name is not the PR of this run,
+	// and a closed one does not take the name either.
+	e.setAllPRs(
+		ghPR{Number: 3, URL: "u3", HeadRefName: branch, State: "OPEN", IsCrossRepository: true, Body: body("term/from-a-fork")},
+		ghPR{Number: 4, URL: "u4", HeadRefName: branch, State: "CLOSED", IsCrossRepository: true, Body: body("term/from-a-fork-too")},
+	)
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch || got.PR != 0 || got.URL != "" || got.ExistingBody != "" || e.git("rev-parse", "HEAD") != sha {
+		t.Errorf("Started = %+v at %s, want the branch resumed without a PR", got, e.git("rev-parse", "HEAD"))
+	}
+	assertIDs(t, "Existing", got.Existing)
+	assertIDs(t, "exclude.txt", e.excludeIDs())
+
+	// Our own closed PR takes the name, whatever a fork has open.
+	e.git("checkout", "-q", "main")
+	e.setAllPRs(
+		ghPR{Number: 3, URL: "u3", HeadRefName: branch, State: "OPEN", IsCrossRepository: true, Body: body("term/from-a-fork")},
+		ghPR{Number: 5, URL: "u5", HeadRefName: branch, State: "CLOSED", Body: body("term/ours")},
+	)
+	got, err = Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch+"-2" || got.PR != 0 {
+		t.Errorf("Started = %+v, want %s-2", got, branch)
+	}
+}
+
+func TestProposalPublishIgnoresPRsFromForks(t *testing.T) {
+	for name, labels := range map[string][]ghLabel{"unlabelled": nil, "labelled": rulesLabel} {
+		t.Run(name, func(t *testing.T) {
+			e := newEnv(t)
+			const branch = "rules-proposal/2026-11-05"
+			e.onBranch(branch)
+			e.write("guides/README.md", "changed\n")
+			// A fork PR from a branch of our name: not ours to edit, and its
+			// suggestions are no suggestions of ours to keep.
+			e.setPRs([]ghPR{{Number: 5, URL: "https://github.com/o/r/pull/5", HeadRefName: branch, Labels: labels,
+				IsCrossRepository: true, Body: body("term/from-a-fork")}}, nil)
+
+			got, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !got.Created || got.URL != defaultPRURL {
+				t.Errorf("Published = %+v, want our own PR", got)
+			}
+			if len(e.callsOf("pr", "edit")) != 0 || len(e.callsOf("pr", "create")) != 1 {
+				t.Errorf("gh calls = %q, want one create and no edit", e.calls())
+			}
+		})
 	}
 }

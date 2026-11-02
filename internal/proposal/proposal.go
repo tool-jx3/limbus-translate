@@ -245,6 +245,8 @@ type pullRequest struct {
 	// State is OPEN, CLOSED or MERGED.
 	State  string  `json:"state"`
 	Labels []label `json:"labels"`
+	// IsCrossRepository is true for a PR from a fork.
+	IsCrossRepository bool `json:"isCrossRepository"`
 	// MergedAt is null for a PR that was closed without a merge; older gh
 	// versions print the zero time instead.
 	MergedAt *string `json:"mergedAt"`
@@ -259,9 +261,11 @@ func (p pullRequest) hasLabel() bool {
 }
 
 // isRulesPR says whether the PR belongs to the loop: it has the label, or its
-// branch is a rules-proposal one, whatever a person did to the label.
+// branch is a rules-proposal one, whatever a person did to the label. A PR from
+// a fork never does, labelled or not: anyone can open one from a branch of any
+// name, and its text and branch are not ours to read, follow or edit.
 func (p pullRequest) isRulesPR() bool {
-	return p.hasLabel() || strings.HasPrefix(p.HeadRefName, BranchPrefix)
+	return !p.IsCrossRepository && (p.hasLabel() || strings.HasPrefix(p.HeadRefName, BranchPrefix))
 }
 
 func (p pullRequest) isOpen() bool { return strings.EqualFold(p.State, "OPEN") }
@@ -316,11 +320,11 @@ func Start(o Options) (*Started, error) {
 		return nil, err
 	}
 
-	open, err := s.listPRs("open", "--state", "open", "--json", "number,url,headRefName,body,labels", "--limit", "100")
+	open, err := s.listPRs("open", "--state", "open", "--json", "number,url,headRefName,body,labels,isCrossRepository", "--limit", "100")
 	if err != nil {
 		return nil, err
 	}
-	closed, err := s.listPRs("closed", "--state", "closed", "--json", "number,body,mergedAt,labels,headRefName", "--limit", "200")
+	closed, err := s.listPRs("closed", "--state", "closed", "--json", "number,body,mergedAt,labels,headRefName,isCrossRepository", "--limit", "200")
 	if err != nil {
 		return nil, err
 	}
@@ -459,13 +463,13 @@ func (s *session) originHas(branch string) (bool, error) {
 }
 
 // pullRequestsOfHead returns the PRs, in any state and with any label, that
-// were opened from the branch.
+// were opened from the branch of this repo; those from forks do not count.
 func (s *session) pullRequestsOfHead(branch string) ([]pullRequest, error) {
-	prs, err := s.listPRs("any state", "--state", "all", "--head", branch, "--json", "number,url,headRefName,body,state")
+	prs, err := s.listPRs("any state", "--state", "all", "--head", branch, "--json", "number,url,headRefName,body,state,isCrossRepository")
 	if err != nil {
 		return nil, err
 	}
-	return slices.DeleteFunc(prs, func(p pullRequest) bool { return p.HeadRefName != branch }), nil
+	return slices.DeleteFunc(prs, func(p pullRequest) bool { return p.IsCrossRepository || p.HeadRefName != branch }), nil
 }
 
 // refuseLocalCommits refuses to reset the local branch, if it exists, to
@@ -684,14 +688,14 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 }
 
 // openPROf returns the open PR whose branch is the given one, whatever its
-// label, or nil.
+// label, or nil. A PR from a fork is not one.
 func (s *session) openPROf(branch string) (*pullRequest, error) {
-	open, err := s.listPRs("branch", "--state", "open", "--head", branch, "--json", "number,url,headRefName,body")
+	open, err := s.listPRs("branch", "--state", "open", "--head", branch, "--json", "number,url,headRefName,body,isCrossRepository")
 	if err != nil {
 		return nil, err
 	}
 	for _, p := range open {
-		if p.HeadRefName == branch {
+		if p.HeadRefName == branch && !p.IsCrossRepository {
 			return &p, nil
 		}
 	}
