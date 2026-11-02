@@ -168,8 +168,8 @@ func TestSuggestEvidence(t *testing.T) {
 		t.Errorf("term evidence = %+v, want the term", got)
 	}
 	n := byID["note/"+noteKey+"/3713708f"]
-	if !reflect.DeepEqual(n.Evidence, []Evidence{{Key: noteKey}}) || !strings.Contains(n.Title, krNote) {
-		t.Errorf("note = %+v, want the key as evidence and the note in the title", n)
+	if !reflect.DeepEqual(n.Evidence, []Evidence{{Key: noteKey, Note: krNote}}) || !strings.Contains(n.Title, krNote) {
+		t.Errorf("note = %+v, want the key and the note as evidence and the note in the title", n)
 	}
 
 	// The adjustment as written, and where its text is now.
@@ -414,7 +414,8 @@ func TestSuggestTermsAndBoundedEvidence(t *testing.T) {
 }
 
 // A note that is told twice (two batches) is one suggestion with one row of
-// evidence; the title says the whole note on one line.
+// evidence, which holds the whole note as written; the title says it on one
+// line, cut after 120 characters.
 func TestSuggestNotes(t *testing.T) {
 	in := fixture()
 	long := "第一行\n\n   第二行 " + strings.Repeat("長", 200)
@@ -439,8 +440,20 @@ func TestSuggestNotes(t *testing.T) {
 			t.Errorf("%s: the title is not one line: %q", n.ID, n.Title)
 		}
 	}
-	if want := "第一行 第二行 " + strings.Repeat("長", 200); !strings.Contains(notes[0].Title+notes[1].Title, want) {
-		t.Errorf("titles = %q, want one that says the whole note, its blanks folded", []string{notes[0].Title, notes[1].Title})
+	byID := map[string]Suggestion{}
+	for _, n := range notes {
+		byID[n.ID] = n
+	}
+	longNote := byID["note/"+noteKey+"/"+sha8(long)]
+	folded := []rune("第一行 第二行 " + strings.Repeat("長", 200))
+	if want := "譯者備註（" + noteKey + "）：" + string(folded[:120]) + "…"; longNote.Title != want {
+		t.Errorf("title = %q, want %q: the note on one line, cut after 120 characters", longNote.Title, want)
+	}
+	if want := []Evidence{{Key: noteKey, Note: long}}; !reflect.DeepEqual(longNote.Evidence, want) {
+		t.Errorf("evidence = %+v, want the whole note as written", longNote.Evidence)
+	}
+	if short := byID["note/"+noteKey+"/"+sha8("another note on the same unit")]; !strings.HasSuffix(short.Title, "：another note on the same unit") {
+		t.Errorf("title = %q, want the short note whole", short.Title)
 	}
 	for _, id := range []string{"note/" + noteKey + "/" + sha8(long), "note/" + noteKey + "/" + sha8("another note on the same unit")} {
 		if !slices.Contains(ids(notes), id) {
@@ -575,5 +588,47 @@ func TestLintDeclined(t *testing.T) {
 		if len(got) != 1 || got[0].File != DeclinedFile || !strings.Contains(got[0].Message, tc.want) {
 			t.Errorf("%s: issues = %v, want one in %s about %q", name, got, DeclinedFile, tc.want)
 		}
+	}
+}
+
+// The groups of different translations come from the list of the build record
+// that has them all (Info.InconsistentAll), not from the twenty of the report:
+// those that are declined or in a rules PR would otherwise hold their places
+// for ever. A build.json of an older lct has no such list, and its report is
+// read instead.
+func TestSuggestReadsEveryInconsistentGroup(t *testing.T) {
+	group := func(i int) build.Inconsistency {
+		return build.Inconsistency{
+			Family: "ally", Field: "name", KR: fmt.Sprintf("텍스트 %d", i),
+			ZH: []string{"甲", "乙"}, Keys: []string{"a.json|/x", "b.json|/y"}, Units: 30 - i,
+		}
+	}
+	var all []build.Inconsistency
+	for i := range 25 {
+		all = append(all, group(i))
+	}
+	count := func(list []Suggestion) int {
+		n := 0
+		for _, s := range list {
+			if s.Kind == KindInconsistent {
+				n++
+			}
+		}
+		return n
+	}
+
+	in := fixture()
+	in.Build.Report.Inconsistent = all[:20]
+	in.Build.InconsistentAll = all
+	if got := count(run(t, in)); got != 25 {
+		t.Errorf("%d inconsistent suggestions, want the 25 of the build record", got)
+	}
+	in.Build.InconsistentAll = nil // an older build.json
+	if got := count(run(t, in)); got != 20 {
+		t.Errorf("%d inconsistent suggestions from an older build.json, want the 20 of its report", got)
+	}
+	in.Build.InconsistentAll = []build.Inconsistency{} // a build that found none
+	if got := count(run(t, in)); got != 0 {
+		t.Errorf("%d inconsistent suggestions from a build that found none, want 0", got)
 	}
 }

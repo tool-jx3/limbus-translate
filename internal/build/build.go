@@ -91,6 +91,9 @@ const (
 	// maxInconsistent is how many groups of units that translate one text
 	// differently the report keeps, the biggest first.
 	maxInconsistent = 20
+	// maxInconsistentAll is how many of them the build record keeps
+	// (Info.InconsistentAll), in the same order.
+	maxInconsistentAll = 500
 	// maxRenderings is how many different translations of one text a group
 	// of Inconsistent lists.
 	maxRenderings = 10
@@ -201,6 +204,9 @@ type builder struct {
 	renders    map[renderKey]*rendering
 	families   map[string]string // the family of each file, once asked
 	misaligned []FileMisaligned  // every file that has units without EN or JP
+	// inconsistentAll are the groups of Report.Inconsistent and those after
+	// them, up to maxInconsistentAll; see Info.InconsistentAll.
+	inconsistentAll []Inconsistency
 }
 
 // Run builds the language pack for src (the raw KR, EN and JP packs) from the
@@ -354,7 +360,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	if err != nil {
 		return nil, err
 	}
-	if err := writeMeta(st, opt, newInfo(version, tr, zips, b.rep, seen), sum, pending); err != nil {
+	if err := writeMeta(st, opt, newInfo(version, tr, zips, b.rep, b.inconsistentAll, seen), sum, pending); err != nil {
 		return nil, err
 	}
 	return b.rep, nil
@@ -600,6 +606,7 @@ func (b *builder) finish() {
 		)
 	})
 	b.rep.Inconsistent = append(b.rep.Inconsistent, groups[:min(len(groups), maxInconsistent)]...)
+	b.inconsistentAll = append([]Inconsistency{}, groups[:min(len(groups), maxInconsistentAll)]...)
 
 	slices.SortFunc(b.misaligned, func(x, y FileMisaligned) int {
 		return cmp.Or(

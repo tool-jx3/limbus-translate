@@ -8,6 +8,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
@@ -22,24 +23,38 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name: "suggest",
-		Usage: "list what the rules could learn from the last build and plan of the current snapshot, with stable ids; " +
+		Usage: "list what the rules could learn from the last build and plan of the current snapshot, with stable ids, sorted by id; " +
 			"skips rules/declined.yaml and the ids in each exclude file (one id a line; blank lines and # lines are ignored): " +
-			"[--exclude-file F]...",
+			"[--exclude-file F]... [--kind K]... (only these kinds: " + strings.Join(suggest.Kinds, ", ") + ") " +
+			"[--limit N] [--offset N] (a page of what is left; total is how many that is)",
 		Run: runSuggest,
 	})
 }
 
 // suggestReport is what "suggest" prints.
 type suggestReport struct {
+	// Suggestions is the page that --limit and --offset asked for, or all.
 	Suggestions []suggest.Suggestion `json:"suggestions"`
-	// Excluded counts the suggestions that were left out because their id is
-	// declined or in an exclude file.
+	// Excluded counts the suggestions of the kinds asked for that were left
+	// out because their id is declined or in an exclude file.
 	Excluded int `json:"excluded"`
+	// Total is how many suggestions are left after that, before the page is
+	// taken.
+	Total int `json:"total"`
+
+	// offset and paged are for the text: where the page starts, and whether
+	// a page was asked for.
+	offset int
+	paged  bool
 }
 
 func (r suggestReport) String() string {
 	var b strings.Builder
-	fmt.Fprintf(&b, "%d suggestion(s), %d excluded\n", len(r.Suggestions), r.Excluded)
+	if r.paged {
+		fmt.Fprintf(&b, "%d of %d suggestion(s) from offset %d, %d excluded\n", len(r.Suggestions), r.Total, r.offset, r.Excluded)
+	} else {
+		fmt.Fprintf(&b, "%d suggestion(s), %d excluded\n", len(r.Suggestions), r.Excluded)
+	}
 	for _, s := range r.Suggestions {
 		fmt.Fprintf(&b, "\n%s\n  %s\n", s.ID, s.Title)
 		for _, e := range s.Evidence {
@@ -52,6 +67,9 @@ func (r suggestReport) String() string {
 			}
 			if e.ZH != "" {
 				parts = append(parts, "ZH: "+e.ZH)
+			}
+			if e.Note != "" {
+				parts = append(parts, "note: "+strings.Join(strings.Fields(e.Note), " "))
 			}
 			if e.Count > 0 {
 				parts = append(parts, fmt.Sprintf("x%d", e.Count))
@@ -67,13 +85,29 @@ func (r suggestReport) String() string {
 func runSuggest(ctx *cli.Context, args []string) error {
 	flags := flag.NewFlagSet("suggest", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
-	var excludeFiles stringList
+	var excludeFiles, kinds stringList
 	flags.Var(&excludeFiles, "exclude-file", "a file of suggestion ids to leave out, one a line (repeatable)")
+	flags.Var(&kinds, "kind", "only the suggestions of this kind (repeatable): "+strings.Join(suggest.Kinds, ", "))
+	limit := flags.Int("limit", 0, "the most suggestions to list (at least 1; default all)")
+	offset := flags.Int("offset", 0, "the suggestions to skip first (default 0)")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("suggest: " + err.Error())
 	}
 	if flags.NArg() > 0 {
 		return cli.UserError("suggest: unexpected argument " + flags.Arg(0))
+	}
+	given := map[string]bool{}
+	flags.Visit(func(f *flag.Flag) { given[f.Name] = true })
+	for _, k := range kinds {
+		if !slices.Contains(suggest.Kinds, k) {
+			return cli.UserError(fmt.Sprintf("suggest: --kind %q is not one of %s", k, strings.Join(suggest.Kinds, ", ")))
+		}
+	}
+	if given["limit"] && *limit < 1 {
+		return cli.UserError(fmt.Sprintf("suggest: --limit %d: want at least 1", *limit))
+	}
+	if *offset < 0 {
+		return cli.UserError(fmt.Sprintf("suggest: --offset %d: want 0 or more", *offset))
 	}
 	skip := map[string]bool{}
 	for _, f := range excludeFiles {
@@ -141,8 +175,18 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	if len(kinds) > 0 {
+		all = slices.DeleteFunc(all, func(s suggest.Suggestion) bool { return !slices.Contains(kinds, s.Kind) })
+	}
 	kept, excluded := suggest.Exclude(all, skip)
-	return ctx.Emit(suggestReport{Suggestions: kept, Excluded: excluded})
+	// The page is taken from the sorted list, after the kinds were chosen and
+	// the ids left out; a page past the end is an empty list.
+	total := len(kept)
+	page := kept[min(*offset, total):]
+	if given["limit"] {
+		page = page[:min(*limit, len(page))]
+	}
+	return ctx.Emit(suggestReport{Suggestions: page, Excluded: excluded, Total: total, offset: *offset, paged: given["limit"] || given["offset"]})
 }
 
 // utf8BOM is what some editors put at the start of a text file.

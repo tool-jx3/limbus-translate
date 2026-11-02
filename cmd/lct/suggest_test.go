@@ -37,10 +37,12 @@ type suggestOut struct {
 			Key   string `json:"key"`
 			KR    string `json:"kr"`
 			ZH    string `json:"zh"`
+			Note  string `json:"note"`
 			Count int    `json:"count"`
 		} `json:"evidence"`
 	} `json:"suggestions"`
 	Excluded int `json:"excluded"`
+	Total    int `json:"total"`
 }
 
 func (o suggestOut) ids() []string {
@@ -305,6 +307,69 @@ func TestRulesLintDeclined(t *testing.T) {
 	for _, e := range report.Errors {
 		if e.File != "rules/declined.yaml" {
 			t.Errorf("finding %+v is not about rules/declined.yaml", e)
+		}
+	}
+}
+
+// --kind keeps the suggestions of the kinds named, --offset and --limit take a
+// page of the sorted list after the declined and excluded ids are left out, and
+// total is how many there are before the page is taken. The rules-review skill
+// asks for as many as it handles in one run.
+func TestSuggestKindsAndPages(t *testing.T) {
+	root, _ := suggestRepo(t)
+	all := suggestJSON(t).ids()
+	if out := suggestJSON(t); out.Total != len(all) {
+		t.Fatalf("total = %d, want %d without paging", out.Total, len(all))
+	}
+
+	out := suggestJSON(t, "--limit", "3")
+	if !slices.Equal(out.ids(), all[:3]) || out.Total != len(all) {
+		t.Errorf("--limit 3: %v, total %d; want %v and %d", out.ids(), out.Total, all[:3], len(all))
+	}
+	out = suggestJSON(t, "--offset", "2", "--limit", "2")
+	if !slices.Equal(out.ids(), all[2:4]) || out.Total != len(all) {
+		t.Errorf("--offset 2 --limit 2: %v, total %d; want %v", out.ids(), out.Total, all[2:4])
+	}
+	if out = suggestJSON(t, "--offset", "100"); len(out.ids()) != 0 || out.Suggestions == nil || out.Total != len(all) {
+		t.Errorf("a page past the end: %v, total %d; want an empty list", out.ids(), out.Total)
+	}
+
+	out = suggestJSON(t, "--kind", "speaker", "--kind", "term")
+	if want := []string{"speaker/새 화자", "term/신규 용어"}; !slices.Equal(out.ids(), want) || out.Total != 2 {
+		t.Errorf("--kind speaker --kind term: %v, total %d; want %v", out.ids(), out.Total, want)
+	}
+
+	// The page is taken after what is left out; excluded counts the kinds
+	// asked for.
+	writeTestFile(t, root, "skip.txt", "speaker/새 화자\n"+suggestInconsistentID+"\n")
+	out = suggestJSON(t, "--exclude-file", "skip.txt", "--kind", "speaker", "--kind", "term", "--limit", "1")
+	if !slices.Equal(out.ids(), []string{"term/신규 용어"}) || out.Total != 1 || out.Excluded != 1 {
+		t.Errorf("excluded, then a page: %v, total %d, excluded %d; want the term, 1, 1", out.ids(), out.Total, out.Excluded)
+	}
+
+	// The note is quoted in the title, and whole in its evidence.
+	out = suggestJSON(t, "--kind", "note")
+	if len(out.Suggestions) != 1 || len(out.Suggestions[0].Evidence) != 1 || out.Suggestions[0].Evidence[0].Note != "KR 這句有雙關" {
+		t.Errorf("--kind note: %+v, want the note with its text as evidence", out.Suggestions)
+	}
+
+	code, stdout, stderr := lct(t, "suggest", "--limit", "2")
+	if code != 0 || stderr != "" || !strings.Contains(stdout, "2 of 7 suggestion") {
+		t.Errorf("a page as text: exit code %d\n%s%s", code, stdout, stderr)
+	}
+
+	for name, tc := range map[string]struct {
+		args []string
+		want string
+	}{
+		"an unknown kind":      {[]string{"--kind", "speakers"}, "speakers"},
+		"a limit of zero":      {[]string{"--limit", "0"}, "--limit"},
+		"a negative offset":    {[]string{"--offset", "-1"}, "--offset"},
+		"a limit not a number": {[]string{"--limit", "x"}, "limit"},
+	} {
+		code, stdout, stderr := lct(t, append([]string{"suggest"}, tc.args...)...)
+		if code != 1 || stdout != "" || !strings.Contains(stderr, tc.want) {
+			t.Errorf("%s: exit code %d, stdout %q, stderr %q; want 1 and a message with %q", name, code, stdout, stderr, tc.want)
 		}
 	}
 }

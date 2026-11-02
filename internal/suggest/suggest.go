@@ -30,7 +30,7 @@ import (
 // names the thing (sha8 is the first 8 lowercase hex digits of the sha256 of
 // the text):
 //
-//	inconsistent/<family>/<field>/<sha8(KR)>   one group of Report.Inconsistent
+//	inconsistent/<family>/<field>/<sha8(KR)>   one group of Info.InconsistentAll
 //	speaker/<model>                            a new speaker the guides lack
 //	field/<add|remove>/<group or ->/<field>    a change of rules/fields.yaml
 //	family/<file>                              a new file of the default family
@@ -66,6 +66,10 @@ const noGroup = "-"
 // quotes.
 const maxTitleText = 40
 
+// maxNoteTitle is how many characters of a translator's note the title of its
+// suggestion quotes; the evidence has the whole note.
+const maxNoteTitle = 120
+
 // Suggestion is one thing the rules could learn.
 type Suggestion struct {
 	// ID is the same each time the same thing is found (see the kinds).
@@ -85,6 +89,8 @@ type Evidence struct {
 	Key string `json:"key,omitempty"`
 	KR  string `json:"kr,omitempty"`
 	ZH  string `json:"zh,omitempty"`
+	// Note is the whole text of a translator's note, as it was written.
+	Note string `json:"note,omitempty"`
 	// Count says how many times; 0 when the row does not count.
 	Count int `json:"count,omitempty"`
 }
@@ -120,7 +126,7 @@ func Run(in Inputs) ([]Suggestion, error) {
 	}
 	c := collector{byID: map[string]*Suggestion{}}
 	if in.RawTag != "" && in.Build != nil && in.Build.RawTag == in.RawTag {
-		c.fromBuild(in.Build.Report)
+		c.fromBuild(*in.Build)
 	}
 	if in.RawTag != "" && in.Plan != nil && in.Plan.RawTag == in.RawTag {
 		c.fromPlan(in.Plan, in.Rules, in.Adjustments)
@@ -194,10 +200,18 @@ func (c *collector) add(kind, rest, title string, evidence ...Evidence) {
 	}
 }
 
-// fromBuild makes the suggestions of the build report: the groups of units
+// fromBuild makes the suggestions of the build record: the groups of units
 // that one text is translated differently in, and the notes of the translator.
-func (c *collector) fromBuild(rep build.Report) {
-	for _, g := range rep.Inconsistent {
+// The groups are those of info.InconsistentAll, which has more than the
+// twenty of the report, or, in a build.json of an older lct that lacks the
+// list, those of the report.
+func (c *collector) fromBuild(info build.Info) {
+	groups := info.InconsistentAll
+	if groups == nil {
+		groups = info.Report.Inconsistent
+	}
+	rep := info.Report
+	for _, g := range groups {
 		rows := make([]Evidence, len(g.ZH))
 		for i, zh := range g.ZH {
 			rows[i] = Evidence{KR: g.KR, ZH: zh}
@@ -219,8 +233,8 @@ func (c *collector) fromBuild(rep build.Report) {
 			continue
 		}
 		c.add(KindNote, n.Key+"/"+sha8(n.Note),
-			fmt.Sprintf("譯者備註（%s）：%s", n.Key, oneLine(n.Note)),
-			Evidence{Key: n.Key})
+			fmt.Sprintf("譯者備註（%s）：%s", n.Key, clip(n.Note, maxNoteTitle)),
+			Evidence{Key: n.Key, Note: n.Note})
 	}
 }
 

@@ -1720,6 +1720,66 @@ func TestReportInconsistentIsBounded(t *testing.T) {
 			t.Errorf("a copy and a stand-in made a group: %+v", g)
 		}
 	}
+
+	// The build record keeps every group, in the same order, for lct suggest:
+	// a group that a person declined or a rules PR holds must not keep one
+	// of the twenty places of the report for ever.
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(info.InconsistentAll) != 26 || !reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
+		t.Fatalf("InconsistentAll has %d groups, want all 26 with the 20 of the report first", len(info.InconsistentAll))
+	}
+	for i, g := range info.InconsistentAll[20:] {
+		if want := "가" + string(rune('가'+19+i)); g.KR != want || g.Units != 2 {
+			t.Errorf("group %d = %+v, want the text %q with 2 units", 21+i, g, want)
+		}
+	}
+	data, err := os.ReadFile(filepath.Join(e.opt.TWRoot, ".meta", "build.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"inconsistent_all": [`) {
+		t.Errorf("build.json has no inconsistent_all list")
+	}
+}
+
+// The build record keeps at most 500 groups, the biggest first, and a build
+// without any writes an empty list: lct suggest takes a missing list for a
+// build.json of an older lct.
+func TestInfoInconsistentAllIsBounded(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	for i := range 503 {
+		for j, zh := range []string{"甲", "乙"} {
+			n := len(entries)
+			kr := "가" + strconv.Itoa(i)
+			entries = append(entries, `{"id":`+strconv.Itoa(n)+`,"content":"`+kr+`"}`)
+			recs = append(recs, rec("A.json", "/dataList/"+strconv.Itoa(n)+"/content", kr, zh+strconv.Itoa(j)))
+		}
+	}
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.save(recs...)
+	rep := e.run()
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(rep.Inconsistent) != 20 || len(info.InconsistentAll) != 500 || !reflect.DeepEqual(info.InconsistentAll[:20], rep.Inconsistent) {
+		t.Errorf("%d groups in the report and %d in the record, want 20 and 500, the same first", len(rep.Inconsistent), len(info.InconsistentAll))
+	}
+
+	e2 := newEnv(t, map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"}]}`}, nil)
+	e2.save(rec("A.json", "/dataList/0/content", "가", "甲"))
+	e2.run()
+	info, err = ReadInfo(e2.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if info.InconsistentAll == nil || len(info.InconsistentAll) != 0 {
+		t.Errorf("InconsistentAll = %#v, want an empty list", info.InconsistentAll)
+	}
 }
 
 // The counts the notes need: how many units show a stand-in and how many

@@ -122,6 +122,12 @@ type Info struct {
 	// OutDir, by file name. publish checks the zips it releases against it.
 	Zips   map[string]string `json:"zips"`
 	Report Report            `json:"report"`
+	// InconsistentAll are the groups of Report.Inconsistent and the ones
+	// after them, the biggest 500 in the same order; never nil. The report
+	// shows twenty, while lct suggest leaves out the groups that are declined
+	// or in a rules PR, and takes the next ones from here. A build.json of an
+	// older lct has no such list.
+	InconsistentAll []Inconsistency `json:"inconsistent_all"`
 }
 
 // ReadInfo reads .meta/build.json of the tw worktree at twRoot. A worktree
@@ -162,13 +168,13 @@ func ReportPath(opt Options) string {
 func ReportRel(rawTag string) string { return ".meta/reports/" + rawTag + ".md" }
 
 // newInfo is the build record of a build: the inputs v that Info/version.json
-// says, the end of the translation, the checksums of the zips, the report
-// and the number of notes seen.
-func newInfo(v versionInfo, tr translation, zips map[string]string, rep *Report, notesSeen int) Info {
+// says, the end of the translation, the checksums of the zips, the report,
+// all the groups of different translations and the number of notes seen.
+func newInfo(v versionInfo, tr translation, zips map[string]string, rep *Report, inconsistent []Inconsistency, notesSeen int) Info {
 	return Info{
 		RawTag: v.RawTag, RawToken: v.RawToken, RulesCommit: v.RulesCommit, BuiltAt: v.BuiltAt, Upstream: v.Upstream,
 		Model: v.Model, CostUSD: v.CostUSD, Stopped: tr.Stopped, StopError: tr.Error, NotesSeen: notesSeen,
-		Zips: zips, Report: *rep,
+		Zips: zips, Report: *rep, InconsistentAll: inconsistent,
 	}
 }
 
