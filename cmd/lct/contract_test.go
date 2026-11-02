@@ -1357,6 +1357,10 @@ var pipelineOrder = [][2]string{
 	{"git -C .work/tw push origin tw", "bin/lct build"}, // kept before anything that can fail
 	{"bin/lct translate --max-usd", "bin/lct build"},
 	{"bin/lct translate --not-run", "bin/lct build"}, // the build reads the record
+	// The record is made once the plan and a requeue counted what is pending,
+	// and after the install step, whose output its if reads.
+	{"bin/lct pending --count", "bin/lct translate --not-run"},
+	{"npm install -g @anthropic-ai/claude-code", "bin/lct translate --not-run"},
 	// The idle check asks about tw as the last run left it, before this run
 	// commits to it.
 	{"bin/lct publish --check", "git -C .work/tw commit"},
@@ -1796,13 +1800,25 @@ func checkPipelineWorkflow(file, content string) []string {
 // so that the review issue tells a person what to set.
 var notRunReasonNames = []string{"ANTHROPIC_API_KEY", "LCT_MODEL"}
 
+// notRunIf is the if of the step that records a translation that did not run:
+// the key or the model is missing, or the claude CLI did not install. A dry
+// run is neither.
+const notRunIf = "steps.decide.outputs.not_run == 'true' || (steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'false')"
+
+// notRunInstallReason is the reason of the record when the claude CLI did not
+// install, chosen when decide did not say not_run.
+const notRunInstallReason = `if [ "$NOT_RUN" != true ]; then
+  reason="安裝 Claude Code CLI 失敗，待譯的單位沒有翻譯"
+fi`
+
 // checkPipelineNotRun checks how the pipeline treats units that are pending
 // when the API key or the model is missing: the decide step tells that from a
 // dry run (which skips translating on purpose) and from a run that translates,
-// and a step of its own, gated on that, records the translation that did not
-// run with lct translate --not-run, so that the build reads it and the review
-// issue says the units are untranslated and why. That step needs no key, and
-// it commits nothing: the publish commit takes the record to tw.
+// and a step of its own, gated on that or on a claude CLI that did not
+// install, records the translation that did not run with lct translate
+// --not-run, so that the build reads it and the review issue says the units
+// are untranslated and why. That step needs no key, and it commits nothing:
+// the publish commit takes the record to tw.
 func checkPipelineNotRun(file string, steps []workflowStep) []string {
 	var problems []string
 	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
@@ -1863,8 +1879,11 @@ func checkPipelineNotRun(file string, steps []workflowStep) []string {
 		return append(problems, file+": no step runs bin/lct translate --not-run: units that are pending while the key or the model is missing are untranslated and nothing says so")
 	}
 	s := steps[i]
-	if s.If != "steps.decide.outputs.not_run == 'true'" {
-		add("the step that runs bin/lct translate --not-run has the if %q, want steps.decide.outputs.not_run == 'true': it records a translation that did not run, only when there is one", s.If)
+	if s.If != notRunIf {
+		add("the step that runs bin/lct translate --not-run has the if %q, want %s: it records a translation that did not run, only when there is one (a dry run is none)", s.If, notRunIf)
+	}
+	if s.Env["NOT_RUN"] != "${{ steps.decide.outputs.not_run }}" || !strings.Contains(s.Run, notRunInstallReason) {
+		add("the step that runs bin/lct translate --not-run does not give the reason %q when decide did not say not_run (NOT_RUN: ${{ steps.decide.outputs.not_run }}): a claude CLI that did not install would be recorded as a missing key", "安裝 Claude Code CLI 失敗")
 	}
 	if _, ok := s.Env["ANTHROPIC_API_KEY"]; ok {
 		add("the step that runs bin/lct translate --not-run has ANTHROPIC_API_KEY in its environment: it runs when the key may be missing, and runs no claude")
@@ -2889,12 +2908,17 @@ func TestWorkflowContract(t *testing.T) {
 		// Units that are pending while the key or the model is missing are
 		// recorded as untranslated, for the build and the review issue; a dry
 		// run, which skips translating on purpose, is not.
-		{"no record of a translation that did not run", `bin/lct translate --not-run "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, "echo skipped", "no step runs bin/lct translate --not-run"},
-		{"a record whatever decide says", "        if: steps.decide.outputs.not_run == 'true'\n        run: |\n          bin/lct translate --not-run", "        run: |\n          bin/lct translate --not-run", "not_run == 'true'"},
-		{"a record under the if of the translation", "if: steps.decide.outputs.not_run == 'true'", "if: steps.decide.outputs.translate == 'true'", "not_run == 'true'"},
-		{"the API key for the record", "        run: |\n          bin/lct translate --not-run", "        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n        run: |\n          bin/lct translate --not-run", "ANTHROPIC_API_KEY in its environment"},
-		{"a record that commits", `待譯的單位沒有翻譯"`, `待譯的單位沒有翻譯" && git -C .work/tw commit -am x`, "uses git"},
-		{"a record after the build", `          bin/lct translate --not-run "缺少`, `          bin/lct build --json && bin/lct translate --not-run "缺少`, `"bin/lct translate --not-run" must come before "bin/lct build"`},
+		{"no record of a translation that did not run", `bin/lct translate --not-run "$reason"`, "echo skipped", "no step runs bin/lct translate --not-run"},
+		{"a record whatever decide says", "        if: " + notRunIf + "\n", "", "not_run == 'true'"},
+		{"a record under the if of the translation", "if: steps.decide.outputs.not_run == 'true' ||", "if: steps.decide.outputs.translate == 'true' ||", "not_run == 'true'"},
+		{"no record when the claude CLI did not install", " || (steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'false')", "", "installed == 'false'"},
+		{"a record of a dry run", "if: steps.decide.outputs.not_run == 'true' ||", "if: inputs.dry_run || steps.decide.outputs.not_run == 'true' ||", "a dry run is none"},
+		{"a CLI that did not install recorded as a missing key", `            reason="安裝 Claude Code CLI 失敗，待譯的單位沒有翻譯"` + "\n", "", "安裝 Claude Code CLI 失敗"},
+		{"no word from decide for the reason", "          NOT_RUN: ${{ steps.decide.outputs.not_run }}\n", "", "安裝 Claude Code CLI 失敗"},
+		{"the API key for the record", "          NOT_RUN: ${{ steps.decide.outputs.not_run }}\n", "          NOT_RUN: ${{ steps.decide.outputs.not_run }}\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n", "ANTHROPIC_API_KEY in its environment"},
+		{"a record that commits", `bin/lct translate --not-run "$reason"`, `bin/lct translate --not-run "$reason" && git -C .work/tw commit -am x`, "uses git"},
+		{"a record after the build", `          bin/lct translate --not-run "$reason"`, `          bin/lct build --json && bin/lct translate --not-run "$reason"`, `"bin/lct translate --not-run" must come before "bin/lct build"`},
+		{"a record before the requeue is counted", `            count=$(bin/lct pending --count --json)`, `            bin/lct translate --not-run x; count=$(bin/lct pending --count --json)`, `"bin/lct pending --count" must come before "bin/lct translate --not-run"`},
 		{"a reason that names neither the key nor the model", `"缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"`, `"待譯的單位沒有翻譯"`, "does not name ANTHROPIC_API_KEY"},
 		{"a reason that names no model", "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，", "缺少 ANTHROPIC_API_KEY，", "does not name LCT_MODEL"},
 		{"a record whose failure stops the run", ` || echo "::warning::lct translate --not-run failed`, "", "does not go on when it fails"},
@@ -3313,6 +3337,44 @@ func decideOutputs(t *testing.T, script string, env map[string]string) (outputs 
 		outputs[k] = v
 	}
 	return outputs, string(printedBytes)
+}
+
+// The step that records a translation that did not run says why: the key or
+// the model is missing when decide says not_run, and else the claude CLI did
+// not install. This runs its script with a stand-in lct.
+func TestPipelineRecordsWhyTheTranslationDidNotRun(t *testing.T) {
+	_, pipeline := readRepoFile(t, filepath.Join(repoRoot, filepath.FromSlash(workflowPath("pipeline.yml"))))
+	w, problems := parseWorkflow("pipeline.yml", pipeline)
+	if w == nil {
+		t.Fatal(problems)
+	}
+	var script string
+	for _, s := range w.steps() {
+		if s.If == notRunIf {
+			script = s.Run
+		}
+	}
+	if script == "" {
+		t.Fatalf("no step runs if %s", notRunIf)
+	}
+	for notRun, want := range map[string]string{"true": "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL", "false": "安裝 Claude Code CLI 失敗"} {
+		dir := t.TempDir()
+		writeTestFile(t, dir, "bin/lct", "#!/bin/sh\nprintf '%s\\n' \"$@\" > \"$PWD/args\"\n")
+		if err := os.Chmod(filepath.Join(dir, "bin", "lct"), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		writeTestFile(t, dir, "step.sh", script)
+		cmd := exec.Command("bash", "--noprofile", "--norc", "-eo", "pipefail", "step.sh")
+		cmd.Dir = dir
+		cmd.Env = append(os.Environ(), "NOT_RUN="+notRun)
+		if out, err := cmd.CombinedOutput(); err != nil {
+			t.Fatalf("NOT_RUN=%s: %v\n%s", notRun, err, out)
+		}
+		args := strings.Split(strings.TrimSpace(string(readFile(t, filepath.Join(dir, "args")))), "\n")
+		if len(args) != 3 || args[0] != "translate" || args[1] != "--not-run" || !strings.Contains(args[2], want) {
+			t.Errorf("NOT_RUN=%s: lct %q, want translate --not-run and a reason with %q", notRun, args, want)
+		}
+	}
 }
 
 // What the decide step does with units that are pending: translates them, or

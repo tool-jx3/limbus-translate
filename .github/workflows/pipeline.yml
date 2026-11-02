@@ -233,17 +233,24 @@ jobs:
             git -C .work/tw push origin tw
           fi
 
-      # Units are pending and the API key or the model is missing. Nothing is
-      # translated and nothing is committed here: lct writes .meta/translate.json
-      # (a record of this raw tag and these rules), the build reads it, and the
-      # publish commit takes it to tw with the rest. The review issue then says
-      # the translation did not run. A dry run is not recorded: it skips
+      # Units are pending and the API key or the model is missing, or the
+      # claude CLI did not install. Nothing is translated and nothing is
+      # committed here: lct writes .meta/translate.json (a record of this raw
+      # tag and these rules, and why), the build reads it, and the publish
+      # commit takes it to tw with the rest. The review issue then says the
+      # translation did not run. A dry run is not recorded: it skips
       # translating on purpose. No key is needed to write the record. A record
       # that cannot be written stops nothing, as a failed translation does not.
       - name: Record that the translation did not run
-        if: steps.decide.outputs.not_run == 'true'
+        if: steps.decide.outputs.not_run == 'true' || (steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'false')
+        env:
+          NOT_RUN: ${{ steps.decide.outputs.not_run }}
         run: |
-          bin/lct translate --not-run "缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯" || echo "::warning::lct translate --not-run failed: the pack is built and released all the same, but the review issue does not say that the translation did not run"
+          reason="缺少 ANTHROPIC_API_KEY 或 LCT_MODEL，待譯的單位沒有翻譯"
+          if [ "$NOT_RUN" != true ]; then
+            reason="安裝 Claude Code CLI 失敗，待譯的單位沒有翻譯"
+          fi
+          bin/lct translate --not-run "$reason" || echo "::warning::lct translate --not-run failed: the pack is built and released all the same, but the review issue does not say that the translation did not run"
 
       - name: Build the pack
         if: steps.decide.outputs.idle == 'false'

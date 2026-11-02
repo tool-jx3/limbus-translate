@@ -544,7 +544,7 @@ LimbusCompany_Data/
 | `lct suggest [--exclude-file F]...` | 規則還能學到什麼，附穩定的 id；略過 `rules/declined.yaml` 與排除檔的 id；有建議也是 exit 0（§11.2） |
 | `lct impact --base REV [--markdown F]` | 以目前工作樹的規則和 REV 的規則檢查 `tw` 的既有譯文，數出新規則多讓多少單位出現硬性問題；規則 PR 的影響評估（§11.2、§12） |
 | `lct proposal start／publish` | `start` 選規則 PR 的分支（重用的分支會合併 `origin/main`，衝突就拒絕）、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR，拒絕含有 token 或金鑰一類字串的說明與修改；需要 `GH_TOKEN` 與 git 身分（§11.2） |
-| `lct translate` | 用 claude CLI 執行 `translate-pending` skill，直到沒有待譯、花費或時間用完，或某次執行失敗（§9.2）；`--not-run REASON` 不執行 claude，只在 `.meta/translate.json` 記下翻譯沒有執行與原因（CI 有待譯、但缺 API key 或模型時用，審核 Issue 因此列出「翻譯沒有執行」，§14.2） |
+| `lct translate` | 用 claude CLI 執行 `translate-pending` skill，直到沒有待譯、花費或時間用完，或某次執行失敗（§9.2）；`--not-run REASON` 不執行 claude，只在 `.meta/translate.json` 記下翻譯沒有執行與原因（CI 有待譯、但缺 API key 或模型，或 claude CLI 安裝失敗時用，審核 Issue 因此列出「翻譯沒有執行」與原因，§14.2；dry run 不記） |
 | `lct fields learn` | 重算欄位規則 |
 | `lct glossary derive [--source keyword\|speaker] [--limit N] [--offset N]` | 從 `BattleKeywords*`、`Bufs*`（`keyword`）與 `ScenarioModelCodes`（`speaker`）列出詞彙表還沒有、也沒被不採用的名稱，作為候選詞條；只輸出，不寫檔；依 KR 排序，`--limit`／`--offset` 取其中一頁，JSON 為 `{total, candidates}`（`total` 是頁數限制前的總數） |
 | `lct review` | 目前 `tw` 狀態中需要人處理的項目（與審核 Issue 相同）：標題與各節的 `kind`、`title`、`hint`、`items`；沒有 `tw` 的建置紀錄時 exit 1；§14 |
