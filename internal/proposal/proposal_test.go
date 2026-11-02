@@ -855,6 +855,49 @@ func TestProposalPublishRefusesFilesOutsideRules(t *testing.T) {
 	}
 }
 
+// A commit that is on the branch already goes into the PR with the new one:
+// one that changes a file outside the rule folders is refused like a change
+// in the work tree, while the merges of main that Start makes bring in what
+// main has, and are not looked at.
+func TestProposalPublishRefusesCommitsOutsideRules(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	e.onBranch(branch)
+	e.write("guides/README.md", "an earlier run\n")
+	e.git("commit", "-q", "-am", "rules: proposal 2026-11-05")
+	// main moves on, with a change outside the rules, and is merged in.
+	e.git("checkout", "-q", "main")
+	e.write("internal/x.go", "package x // on main\n")
+	e.git("commit", "-q", "-am", "code on main")
+	e.git("push", "-q", "origin", "main")
+	e.git("checkout", "-q", branch)
+	e.git("merge", "-q", "--no-edit", "origin/main")
+	e.write("glossary/terms.yaml", "- {kr: x, zh: y, status: approved}\n")
+	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
+		t.Fatalf("a branch with main merged in: %v", err)
+	}
+
+	// Someone commits a file outside the rules on the branch, and renames one.
+	e.write("docs/說明 文件.md", "changed on the branch\n")
+	e.git("mv", ".github/workflows/ci.yml", "rules/ci.yml")
+	e.git("commit", "-q", "-am", "not a rule")
+	e.write("glossary/terms.yaml", "- {kr: x, zh: z, status: approved}\n")
+	headBefore := e.git("rev-parse", "HEAD")
+	originBefore := e.originGit("rev-parse", "refs/heads/"+branch)
+	calls := len(e.calls())
+
+	_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	mustRefuse(t, err, "docs/說明 文件.md", ".github/workflows/ci.yml")
+	for _, ok := range []string{"internal/x.go", "guides/README.md", "rules/ci.yml"} {
+		if strings.Contains(err.Error(), ok) {
+			t.Errorf("the refusal lists %s: %v", ok, err)
+		}
+	}
+	if e.git("rev-parse", "HEAD") != headBefore || e.originGit("rev-parse", "refs/heads/"+branch) != originBefore || len(e.calls()) != calls {
+		t.Error("something was committed, pushed or asked of gh")
+	}
+}
+
 func TestProposalPublishLeavesUntrackedFilesOutsideRules(t *testing.T) {
 	e := newEnv(t)
 	e.onBranch("rules-proposal/2026-11-05")
@@ -912,6 +955,43 @@ func TestProposalPublishNeedsSuggestionMarkers(t *testing.T) {
 	mustRefuse(t, err, "nope.md")
 	_, err = Publish(e.opts("2026-11-05"), "")
 	mustRefuse(t, err, "body")
+}
+
+// A line that starts like a marker but is not one is a marker that lct, and
+// the last step of rules-proposal.yml, would not read: its suggestion would be
+// suggested again. The refusal names the line.
+func TestProposalPublishRefusesBrokenMarkers(t *testing.T) {
+	for name, line := range map[string]string{
+		"no end":            "<!-- suggestion:term/b",
+		"text after":        "<!-- suggestion:term/b --> 詞彙",
+		"empty id":          "<!-- suggestion: -->",
+		"blank id":          "<!-- suggestion:   -->",
+		"indented":          "  <!-- suggestion:term/b -->",
+		"end without blank": "<!-- suggestion:term/b-->",
+	} {
+		t.Run(name, func(t *testing.T) {
+			e := newEnv(t)
+			e.onBranch("rules-proposal/2026-11-05")
+			e.write("work/proposal/body.md", body("term/a")+"### b\n"+line+"\r\n理由\n")
+			e.write("guides/README.md", "changed\n")
+			headBefore := e.git("rev-parse", "HEAD")
+
+			_, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+			mustRefuse(t, err, "line 8", "<!-- suggestion:")
+			if e.git("rev-parse", "HEAD") != headBefore || len(e.calls()) != 0 {
+				t.Error("something was committed or asked of gh")
+			}
+		})
+	}
+
+	// A marker within a line of text is no marker, and not refused.
+	e := newEnv(t)
+	e.onBranch("rules-proposal/2026-11-05")
+	e.write("work/proposal/body.md", "不要刪掉 `<!-- suggestion:… -->` 那一行\n\n"+body("term/a"))
+	e.write("guides/README.md", "changed\n")
+	if _, err := Publish(e.opts("2026-11-05"), e.bodyFile()); err != nil {
+		t.Fatal(err)
+	}
 }
 
 func TestProposalPublishNeedsAToken(t *testing.T) {

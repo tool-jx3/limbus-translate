@@ -674,6 +674,23 @@ func suggestionIDs(body string) []string {
 	return ids
 }
 
+// brokenMarkers names the lines of body ("line <n>") that start, after
+// blanks, with "<!-- suggestion:" and that suggestionIDs does not read as a
+// marker: one with blanks before it, text after it, no end or a blank id.
+func brokenMarkers(body string) []string {
+	var broken []string
+	for i, line := range strings.Split(body, "\n") {
+		line = strings.TrimSuffix(line, "\r")
+		if !strings.HasPrefix(strings.TrimLeft(line, " \t"), markerStart) {
+			continue
+		}
+		if len(suggestionIDs(line)) == 0 {
+			broken = append(broken, fmt.Sprintf("line %d", i+1))
+		}
+	}
+	return broken
+}
+
 func uniqueSorted(ids []string) []string {
 	out := slices.Clone(ids)
 	if out == nil {
@@ -697,7 +714,9 @@ func uniqueSorted(ids []string) []string {
 //
 // It refuses, before it changes anything: a branch that is not
 // rules-proposal/*, a tracked file changed (staged or not) outside the rule
-// folders, no token for gh, no git identity, a body without markers, nothing
+// folders, a commit of the branch that origin/<Base> does not have and that
+// changes a file outside them (the merges are not looked at: those of Start
+// bring in what origin/<Base> has), no token for gh, no git identity, a body without markers, nothing
 // to propose (no rule file changed, and the body adds no suggestion to the
 // open PR), and, when the branch has an open PR, a body that lacks a
 // suggestion marker the PR has now (the edit replaces the description, and a
@@ -705,7 +724,9 @@ func uniqueSorted(ids []string) []string {
 // outside the rule folders are left alone and not committed. The commit is
 // not signed, like the merge of Start: the identity of a workflow has no key.
 // The push names the branch in full on both sides, so that a tag of the same
-// name is not pushed instead, and is never forced.
+// name is not pushed instead, and is never forced. A line of the body that
+// starts like a marker and is not one is refused with its number: its
+// suggestion would not be read, and so not left out.
 func Publish(o Options, bodyFile string) (*Published, error) {
 	s := newSession(o)
 	if err := s.checkBase(); err != nil {
@@ -726,6 +747,11 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	data, err := os.ReadFile(bodyFile)
 	if err != nil {
 		return nil, refuse("cannot read the body file %s: %v", bodyFile, unwrapPathError(err))
+	}
+	if broken := brokenMarkers(string(data)); len(broken) > 0 {
+		return nil, refuse("the body file %s has lines that start like a marker but are not one, so their suggestions would be lost: %s\n"+
+			"a marker is %s<id>%s alone on its line, with nothing before or after it",
+			bodyFile, strings.Join(broken, ", "), markerStart, markerEnd)
 	}
 	bodyIDs := suggestionIDs(string(data))
 	if len(bodyIDs) == 0 {
@@ -750,6 +776,9 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 
 	changed, err := s.ruleChanges()
 	if err != nil {
+		return nil, err
+	}
+	if err := s.refuseCommitsOutside(); err != nil {
 		return nil, err
 	}
 	if found, err := s.credentialsAdded(changed); err != nil {
@@ -1022,6 +1051,28 @@ func (s *session) ruleChanges() ([]string, error) {
 			ruleFolderList(), strings.Join(outside, "\n  "))
 	}
 	return uniqueSorted(inside), nil
+}
+
+// refuseCommitsOutside refuses the commits of the branch that origin/<Base>
+// does not have, other than merges, when they change a path outside the rule
+// folders: the PR would take them to main. Both names of a rename count.
+func (s *session) refuseCommitsOutside() error {
+	out, err := s.git.run("-c", "core.quotePath=false", "log", "--no-merges", "--no-renames", "--format=", "--name-only", "-z", "origin/"+s.Base+"..HEAD")
+	if err != nil {
+		return err
+	}
+	var outside []string
+	for _, p := range strings.Split(out, "\x00") {
+		if p = strings.TrimLeft(p, "\n"); p != "" && !inRuleFolder(p) {
+			outside = append(outside, p)
+		}
+	}
+	if len(outside) == 0 {
+		return nil
+	}
+	return refuse("the branch has commits that origin/%s does not have and that change files outside %s, which a rules PR must not hold:\n  %s\n"+
+		"take those commits off the branch first",
+		s.Base, ruleFolderList(), strings.Join(uniqueSorted(outside), "\n  "))
 }
 
 // checkIdentity refuses to commit without a git identity from the config or
