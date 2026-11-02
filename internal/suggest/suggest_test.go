@@ -64,9 +64,10 @@ func fixture() Inputs {
 			Report: build.Report{
 				Inconsistent: []build.Inconsistency{{
 					Family: "ally", Field: "name", KR: krInconsist,
-					ZH:    []string{"跳躍成長模組", "跳躍模組"},
-					Keys:  []string{"Skills_personality-01.json|/dataList/0/name", "Skills_personality-02.json|/dataList/3/name"},
-					Units: 12,
+					ZH:     []string{"跳躍成長模組", "跳躍模組"},
+					Keys:   []string{"Skills_personality-01.json|/dataList/0/name", "Skills_personality-02.json|/dataList/3/name"},
+					Counts: []int{9, 3},
+					Units:  12,
 				}},
 				Notes: []store.Note{{Key: noteKey, Batch: "b1", KRSha: "x", Model: "m", Note: krNote}},
 			},
@@ -102,18 +103,18 @@ func run(t *testing.T, in Inputs) []Suggestion {
 }
 
 // The ids are the contract with the rules PRs (<!-- suggestion:<id> -->), so
-// they are pinned to the text.
+// they are pinned to the text. They come in the order of Kinds.
 func TestSuggestKindsAndIDs(t *testing.T) {
 	got := run(t, fixture())
 	want := []string{
-		"adjustment-expired/" + expiredKey,
-		"adjustment-moved/" + movedFrom,
+		"note/" + noteKey + "/3713708f", // sha256("KR 這句有雙關")[:8]
+		"speaker/새 화자",
 		"family/Foo-twth.json",
 		"field/add/BattleSpeechBubbleDlg/desc",
-		"inconsistent/ally/name/fd93b875", // sha256("도약 모듈")[:8]
-		"note/" + noteKey + "/3713708f",   // sha256("KR 這句有雙關")[:8]
-		"speaker/새 화자",
+		"adjustment-moved/" + movedFrom,
+		"adjustment-expired/" + expiredKey,
 		"term/신규 용어",
+		"inconsistent/ally/name/fd93b875", // sha256("도약 모듈")[:8]
 	}
 	if !slices.Equal(ids(got), want) {
 		t.Fatalf("ids =\n  %s\nwant\n  %s", strings.Join(ids(got), "\n  "), strings.Join(want, "\n  "))
@@ -135,8 +136,45 @@ func TestSuggestKindsAndIDs(t *testing.T) {
 			t.Errorf("%s: %d evidence rows, at most %d", s.ID, len(s.Evidence), MaxEvidence)
 		}
 	}
-	if slices.Compare(slices.Sorted(slices.Values(kinds)), slices.Sorted(slices.Values(Kinds))) != 0 {
-		t.Errorf("kinds = %v, want one of each of %v", kinds, Kinds)
+	if !slices.Equal(kinds, Kinds) {
+		t.Errorf("kinds = %v, want one of each of %v, in that order", kinds, Kinds)
+	}
+}
+
+// The suggestions come by kind, in the order of Kinds: those a person answers
+// at once and that are few first, the groups of different translations, of
+// which a build finds hundreds, last; the biggest group first. The id decides
+// between two of the same kind (and two groups of the same size). A page of
+// lct suggest is taken from this order, so a run of the rules-review skill
+// gets the most useful suggestions first.
+func TestSuggestOrder(t *testing.T) {
+	in := fixture()
+	group := func(kr string, units int) build.Inconsistency {
+		return build.Inconsistency{Family: "ally", Field: "name", KR: kr, ZH: []string{"甲", "乙"}, Keys: []string{"a|/x", "b|/y"}, Units: units}
+	}
+	in.Build.InconsistentAll = []build.Inconsistency{
+		group("작은", 2), group(krInconsist, 12), group("큰", 40), group("같은 크기", 12),
+	}
+	in.Build.Report.Notes = append(in.Build.Report.Notes, store.Note{Key: "A.json|/a", Note: "另一則"})
+	in.Plan.NewSpeakers = []string{"새 화자", "가 화자"}
+	got := ids(run(t, in))
+	want := []string{
+		"note/A.json|/a/" + sha8("另一則"),
+		"note/" + noteKey + "/3713708f",
+		"speaker/가 화자",
+		"speaker/새 화자",
+		"family/Foo-twth.json",
+		"field/add/BattleSpeechBubbleDlg/desc",
+		"adjustment-moved/" + movedFrom,
+		"adjustment-expired/" + expiredKey,
+		"term/신규 용어",
+		"inconsistent/ally/name/" + sha8("큰"), // 40 units
+		min("inconsistent/ally/name/"+sha8(krInconsist), "inconsistent/ally/name/"+sha8("같은 크기")), // 12 units each: by id
+		max("inconsistent/ally/name/"+sha8(krInconsist), "inconsistent/ally/name/"+sha8("같은 크기")),
+		"inconsistent/ally/name/" + sha8("작은"), // 2 units
+	}
+	if !slices.Equal(got, want) {
+		t.Errorf("order =\n  %s\nwant\n  %s", strings.Join(got, "\n  "), strings.Join(want, "\n  "))
 	}
 }
 
@@ -147,13 +185,28 @@ func TestSuggestEvidence(t *testing.T) {
 	}
 
 	// The KR with each translation and the first unit that has it.
+	// The KR with each translation, the first unit that has it and how many
+	// units do.
 	inc := byID["inconsistent/ally/name/fd93b875"]
 	wantInc := []Evidence{
-		{Key: "Skills_personality-01.json|/dataList/0/name", KR: krInconsist, ZH: "跳躍成長模組"},
-		{Key: "Skills_personality-02.json|/dataList/3/name", KR: krInconsist, ZH: "跳躍模組"},
+		{Key: "Skills_personality-01.json|/dataList/0/name", KR: krInconsist, ZH: "跳躍成長模組", Count: 9},
+		{Key: "Skills_personality-02.json|/dataList/3/name", KR: krInconsist, ZH: "跳躍模組", Count: 3},
 	}
 	if !reflect.DeepEqual(inc.Evidence, wantInc) {
 		t.Errorf("inconsistent evidence = %+v, want %+v", inc.Evidence, wantInc)
+	}
+	// A build.json of an older lct has no counts.
+	old := fixture()
+	old.Build.Report.Inconsistent[0].Counts = nil
+	for _, s := range run(t, old) {
+		if s.Kind != KindInconsistent {
+			continue
+		}
+		for _, e := range s.Evidence {
+			if e.Count != 0 {
+				t.Errorf("evidence of a group without counts = %+v, want no count", s.Evidence)
+			}
+		}
 	}
 	for _, want := range []string{"ally", "name", krInconsist, "12", "2"} {
 		if !strings.Contains(inc.Title, want) {
@@ -220,6 +273,7 @@ func TestSuggestIDsAreStable(t *testing.T) {
 	inc := &in.Build.Report.Inconsistent[0]
 	slices.Reverse(inc.ZH)
 	slices.Reverse(inc.Keys)
+	slices.Reverse(inc.Counts)
 	in.Build.Report.Notes = append(in.Build.Report.Notes, store.Note{Key: "a.json|/x", Note: "n"})
 	in.Plan.NewSpeakers = []string{"새 화자", "다른 화자"}
 	in.Plan.NewFilesDefaultFamily = []string{"Foo-twth.json", "Bar-twth.json"}
@@ -237,8 +291,13 @@ func TestSuggestIDsAreStable(t *testing.T) {
 	if want, got := "inconsistent/ally/name/fd93b875", ids(reordered)[slices.IndexFunc(reordered, func(s Suggestion) bool { return s.Kind == KindInconsistent })]; got != want {
 		t.Errorf("inconsistent id = %q, want %q", got, want)
 	}
-	if !slices.IsSorted(ids(reordered)) {
-		t.Errorf("ids are not sorted: %v", ids(reordered))
+	// The order is that of the kinds, then of the ids, whatever order the
+	// facts came in.
+	for i := 1; i < len(reordered); i++ {
+		a, b := reordered[i-1], reordered[i]
+		if ka, kb := slices.Index(Kinds, a.Kind), slices.Index(Kinds, b.Kind); ka > kb || ka == kb && a.ID > b.ID {
+			t.Errorf("%s comes before %s", a.ID, b.ID)
+		}
 	}
 }
 

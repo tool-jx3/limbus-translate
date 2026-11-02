@@ -1653,9 +1653,10 @@ func TestReportInconsistentRenderings(t *testing.T) {
 
 	want := []Inconsistency{{
 		Family: "alpha", Field: "content", KR: "가",
-		ZH:    []string{"甲", "乙"},
-		Keys:  []string{"A.json|/dataList/0/content", "A.json|/dataList/1/content"},
-		Units: 3,
+		ZH:     []string{"甲", "乙"},
+		Keys:   []string{"A.json|/dataList/0/content", "A.json|/dataList/1/content"},
+		Counts: []int{2, 1}, // 甲 twice, 乙 once
+		Units:  3,
 	}}
 	if !reflect.DeepEqual(rep.Inconsistent, want) {
 		t.Errorf("Inconsistent = %+v, want %+v", rep.Inconsistent, want)
@@ -1670,8 +1671,33 @@ func TestReportInconsistentRenderings(t *testing.T) {
 	// Without the rules every file is one family: B.json joins the group.
 	e.opt.Rules = nil
 	rep = e.run()
-	if len(rep.Inconsistent) != 1 || rep.Inconsistent[0].Units != 4 || len(rep.Inconsistent[0].ZH) != 3 || rep.Inconsistent[0].Family != "" {
-		t.Errorf("Inconsistent without rules = %+v, want one group of 4 units and 3 renderings", rep.Inconsistent)
+	if len(rep.Inconsistent) != 1 || rep.Inconsistent[0].Units != 4 || len(rep.Inconsistent[0].ZH) != 3 || rep.Inconsistent[0].Family != "" ||
+		!slices.Equal(rep.Inconsistent[0].Counts, []int{2, 1, 1}) {
+		t.Errorf("Inconsistent without rules = %+v, want one group of 4 units and 3 renderings, counted 2, 1 and 1", rep.Inconsistent)
+	}
+}
+
+// A group lists at most ten translations; the units of the others count in
+// Units and in no count of a translation.
+func TestReportInconsistentCountsTheListedRenderings(t *testing.T) {
+	var entries []string
+	var recs []store.Record
+	for i := range 12 {
+		entries = append(entries, `{"id":`+strconv.Itoa(i)+`,"content":"가"}`)
+		recs = append(recs, rec("A.json", "/dataList/"+strconv.Itoa(i)+"/content", "가", "譯"+strconv.Itoa(i)))
+	}
+	entries = append(entries, `{"id":12,"content":"가"}`)
+	recs = append(recs, rec("A.json", "/dataList/12/content", "가", "譯0"))
+	e := newEnv(t, map[string]string{"A.json": `{"dataList":[` + strings.Join(entries, ",") + `]}`}, nil)
+	e.save(recs...)
+	rep := e.run()
+	if len(rep.Inconsistent) != 1 {
+		t.Fatalf("Inconsistent = %+v, want one group", rep.Inconsistent)
+	}
+	g := rep.Inconsistent[0]
+	want := []int{2, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+	if g.Units != 13 || len(g.ZH) != 10 || !slices.Equal(g.Counts, want) {
+		t.Errorf("group = %+v, want 13 units, 10 translations counted %v", g, want)
 	}
 }
 

@@ -125,17 +125,18 @@ func suggestJSON(t *testing.T, args ...string) suggestOut {
 func TestSuggestCommand(t *testing.T) {
 	root, _ := suggestRepo(t)
 
-	// Everything that is left is suggested, and having suggestions is not a
-	// finding: the exit code is 0.
+	// Everything that is left is suggested, by kind (the groups of different
+	// translations last), and having suggestions is not a finding: the exit
+	// code is 0.
 	out := suggestJSON(t)
 	want := []string{
-		"adjustment-expired/" + suggestExpired,
-		"family/Zzz-twth.json",
-		"field/add/BattleSpeechBubbleDlg/desc",
-		suggestInconsistentID,
 		suggestNoteID,
 		"speaker/새 화자",
+		"family/Zzz-twth.json",
+		"field/add/BattleSpeechBubbleDlg/desc",
+		"adjustment-expired/" + suggestExpired,
 		"term/신규 용어",
+		suggestInconsistentID,
 	}
 	if !slices.Equal(out.ids(), want) || out.Excluded != 0 {
 		t.Fatalf("suggestions = %v, excluded %d; want %v and none excluded", out.ids(), out.Excluded, want)
@@ -322,8 +323,9 @@ func TestSuggestKindsAndPages(t *testing.T) {
 		t.Fatalf("total = %d, want %d without paging", out.Total, len(all))
 	}
 
+	// A page is taken from the order of the kinds: a note comes first.
 	out := suggestJSON(t, "--limit", "3")
-	if !slices.Equal(out.ids(), all[:3]) || out.Total != len(all) {
+	if !slices.Equal(out.ids(), all[:3]) || out.Total != len(all) || out.ids()[0] != suggestNoteID {
 		t.Errorf("--limit 3: %v, total %d; want %v and %d", out.ids(), out.Total, all[:3], len(all))
 	}
 	out = suggestJSON(t, "--offset", "2", "--limit", "2")

@@ -689,8 +689,10 @@ func TestRulesLoopReplay(t *testing.T) {
 	if _, err := os.Stat(filepath.Join(r.root, proposal.ExistingBodyFile)); !errors.Is(err, os.ErrNotExist) {
 		t.Errorf("%s is there without an open PR (%v)", proposal.ExistingBodyFile, err)
 	}
+	// They come by kind: the speaker and the moved adjustment, the
+	// candidates, and the group of different translations last.
 	sug := r.suggestions()
-	if got, want := suggestionIDsOf(sug), sortedIDs(loopIDs, candidates); !slices.Equal(got, want) || sug.Excluded != base {
+	if got, want := suggestionIDsOf(sug), slices.Concat([]string{speakerID, movedID}, sortedIDs(candidates), []string{inconsistentID}); !slices.Equal(got, want) || sug.Excluded != base {
 		t.Fatalf("suggest = %q (%d excluded), want %q and none excluded but the %d candidates the repo declined", got, sug.Excluded, want, base)
 	}
 	checkRulesLoopSuggestions(t, sug, inconsistentEvidence)
@@ -925,13 +927,13 @@ func rulesLoopBuildToV2(t *testing.T, r *rulesLoop) []suggest.Evidence {
 	if !pub.ReleaseNeeded || pub.Tag != "zh-TW-20261105.2" {
 		t.Errorf("rebuild publish = %+v, want the Release zh-TW-20261105.2", pub)
 	}
-	want := []suggest.Evidence{{Key: p2Content(s2, 0), KR: busKR, ZH: busZH}, {Key: p2Content(s1, 4), KR: busKR, ZH: "譯"}}
+	want := []suggest.Evidence{{Key: p2Content(s2, 0), KR: busKR, ZH: busZH, Count: 1}, {Key: p2Content(s1, 4), KR: busKR, ZH: "譯", Count: 1}}
 	if built.Report == nil || len(built.Report.Inconsistent) != 1 {
 		t.Fatalf("rebuild report = %+v, want one inconsistent group", built.Report)
 	}
 	g := built.Report.Inconsistent[0]
-	if g.Family != "story-main" || g.Field != "content" || g.KR != busKR || g.Units != 2 || len(g.ZH) != 2 {
-		t.Errorf("inconsistent group = %+v, want %q in story-main content, translated as 譯 and %s", g, busKR, busZH)
+	if g.Family != "story-main" || g.Field != "content" || g.KR != busKR || g.Units != 2 || len(g.ZH) != 2 || !slices.Equal(g.Counts, []int{1, 1}) {
+		t.Errorf("inconsistent group = %+v, want %q in story-main content, translated as 譯 and %s, once each", g, busKR, busZH)
 	}
 	return want
 }

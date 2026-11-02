@@ -23,7 +23,8 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name: "suggest",
-		Usage: "list what the rules could learn from the last build and plan of the current snapshot, with stable ids, sorted by id; " +
+		Usage: "list what the rules could learn from the last build and plan of the current snapshot, with stable ids, " +
+			"by kind in the order of --kind below (the biggest inconsistent group first), then by id; " +
 			"skips rules/declined.yaml and the ids in each exclude file (one id a line; blank lines and # lines are ignored): " +
 			"[--exclude-file F]... [--kind K]... (only these kinds: " + strings.Join(suggest.Kinds, ", ") + ") " +
 			"[--limit N] [--offset N] (a page of what is left; total is how many that is)",
@@ -179,7 +180,8 @@ func runSuggest(ctx *cli.Context, args []string) error {
 		all = slices.DeleteFunc(all, func(s suggest.Suggestion) bool { return !slices.Contains(kinds, s.Kind) })
 	}
 	kept, excluded := suggest.Exclude(all, skip)
-	// The page is taken from the sorted list, after the kinds were chosen and
+	// The page is taken from the list in the order of suggest.Run (by kind,
+	// the biggest group first, then by id), after the kinds were chosen and
 	// the ids left out; a page past the end is an empty list.
 	total := len(kept)
 	page := kept[min(*offset, total):]

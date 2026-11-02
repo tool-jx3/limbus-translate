@@ -177,14 +177,17 @@ type FileMisaligned struct {
 
 // Inconsistency is a group of units with the same KR text, in one family and
 // field, that do not all have the same translation. ZH holds the different
-// translations in the order the units are met (at most 10), and Keys[i] is the
-// first unit that has ZH[i]. Units counts the units of the group.
+// translations in the order the units are met (at most 10), Keys[i] is the
+// first unit that has ZH[i] and Counts[i] how many units have it. Units counts
+// the units of the group, those of a translation past the tenth included. A
+// build.json of an older lct has no Counts.
 type Inconsistency struct {
 	Family string   `json:"family"`
 	Field  string   `json:"field"`
 	KR     string   `json:"kr"`
 	ZH     []string `json:"zh"`
 	Keys   []string `json:"keys"`
+	Counts []int    `json:"counts,omitempty"`
 	Units  int      `json:"units"`
 }
 
@@ -530,14 +533,17 @@ func standIn(u units.Unit, en *align.LangAligned) string {
 type renderKey struct{ family, field, kr string }
 
 // rendering is what the units of one renderKey were translated to: the
-// first translation and its first unit, and the others that differ.
+// translations in the order they were met, at most maxRenderings, each with
+// its first unit and the number of units that show it.
 type rendering struct {
-	zh, key string
-	units   int
-	more    []variant // other translations, at most maxRenderings-1
+	units    int
+	variants []variant
 }
 
-type variant struct{ zh, key string }
+type variant struct {
+	zh, key string
+	units   int
+}
 
 // addRendering notes that unit u (key) shows zh, the translation of a person,
 // of the translator or of Paratranz.
@@ -545,19 +551,19 @@ func (b *builder) addRendering(u units.Unit, key, zh string) {
 	k := renderKey{b.familyOf(u.File), u.Field, u.KR}
 	g, ok := b.renders[k]
 	if !ok {
-		b.renders[k] = &rendering{zh: zh, key: key, units: 1}
-		return
+		g = &rendering{}
+		b.renders[k] = g
 	}
 	g.units++
-	if zh == g.zh || len(g.more) >= maxRenderings-1 {
-		return
-	}
-	for _, v := range g.more {
-		if v.zh == zh {
+	for i := range g.variants {
+		if g.variants[i].zh == zh {
+			g.variants[i].units++
 			return
 		}
 	}
-	g.more = append(g.more, variant{zh, key})
+	if len(g.variants) < maxRenderings {
+		g.variants = append(g.variants, variant{zh, key, 1})
+	}
 }
 
 // familyOf is the family of file; every file is of one family without rules.
@@ -585,15 +591,12 @@ func (b *builder) finish() {
 
 	var groups []Inconsistency
 	for k, g := range b.renders {
-		if len(g.more) == 0 {
+		if len(g.variants) < 2 {
 			continue
 		}
-		inc := Inconsistency{
-			Family: k.family, Field: k.field, KR: k.kr, Units: g.units,
-			ZH: []string{g.zh}, Keys: []string{g.key},
-		}
-		for _, v := range g.more {
-			inc.ZH, inc.Keys = append(inc.ZH, v.zh), append(inc.Keys, v.key)
+		inc := Inconsistency{Family: k.family, Field: k.field, KR: k.kr, Units: g.units}
+		for _, v := range g.variants {
+			inc.ZH, inc.Keys, inc.Counts = append(inc.ZH, v.zh), append(inc.Keys, v.key), append(inc.Counts, v.units)
 		}
 		groups = append(groups, inc)
 	}

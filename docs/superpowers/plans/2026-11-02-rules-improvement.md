@@ -163,7 +163,7 @@ git push -u origin claude/festive-wright-g2k853
     - `adjustment-moved/<舊 key>`：`Adjustments.Moved`；調整檔已改成新 key 就不提
     - `adjustment-expired/<key>`：`Adjustments.Expired`；調整檔已沒有這個 key 就不提
   - §11.2 的「尚未歸納進規則的人工調整」：`adjust` skill 在 §11.1 第 4 步就把調整歸納進規則（`rule` 欄位），這裡只處理 key 移動與過期兩種
-  - `suggest.Run(in suggest.Inputs) ([]suggest.Suggestion, error)`；結果依 id 排序
+  - `suggest.Run(in suggest.Inputs) ([]suggest.Suggestion, error)`；結果依種類排序（見 spec §11.2），同類依 id
   - `rules/declined.yaml`：清單，每筆 `{id, reason, date}`；`suggest.LoadDeclined(root string) ([]suggest.Declined, error)`；lint：id 的種類是上列之一、`reason` 非空、`date` 是 `YYYY-MM-DD`、id 不重複
   - `lct suggest [--exclude-file F]... [--json]`：略過 `declined.yaml` 與每個 `--exclude-file`（一行一個 id）中的 id；輸出 `{suggestions: [...], excluded: N}`
 

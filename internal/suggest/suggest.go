@@ -30,14 +30,14 @@ import (
 // names the thing (sha8 is the first 8 lowercase hex digits of the sha256 of
 // the text):
 //
-//	inconsistent/<family>/<field>/<sha8(KR)>   one group of Info.InconsistentAll
-//	speaker/<model>                            a new speaker the guides lack
-//	field/<add|remove>/<group or ->/<field>    a change of rules/fields.yaml
-//	family/<file>                              a new file of the default family
 //	note/<key>/<sha8(note text)>               a note of the translator
-//	term/<kr>                                  a glossary term that is a candidate
+//	speaker/<model>                            a new speaker the guides lack
+//	family/<file>                              a new file of the default family
+//	field/<add|remove>/<group or ->/<field>    a change of rules/fields.yaml
 //	adjustment-moved/<old key>                 an adjustment whose key moved
 //	adjustment-expired/<key>                   an adjustment that expired
+//	term/<kr>                                  a glossary term that is a candidate
+//	inconsistent/<family>/<field>/<sha8(KR)>   one group of Info.InconsistentAll
 const (
 	KindInconsistent      = "inconsistent"
 	KindSpeaker           = "speaker"
@@ -49,10 +49,13 @@ const (
 	KindAdjustmentExpired = "adjustment-expired"
 )
 
-// Kinds lists the kinds, in the order the doc above shows them.
+// Kinds lists the kinds in the order Run lists their suggestions, the order
+// the doc above shows them: the few that a person answers at once first (a
+// note is made only once, see the rules-review skill), the groups of
+// different translations, of which a build finds hundreds, last.
 var Kinds = []string{
-	KindInconsistent, KindSpeaker, KindField, KindFamily,
-	KindNote, KindTerm, KindAdjustmentMoved, KindAdjustmentExpired,
+	KindNote, KindSpeaker, KindFamily, KindField,
+	KindAdjustmentMoved, KindAdjustmentExpired, KindTerm, KindInconsistent,
 }
 
 // MaxEvidence is the most rows of evidence a suggestion has.
@@ -111,7 +114,11 @@ type Inputs struct {
 	Plan *plan.Summary
 }
 
-// Run lists the suggestions, sorted by id. It leaves out what the rules
+// Run lists the suggestions by kind, in the order of Kinds; the groups of
+// different translations by their number of units, the biggest first; and by
+// id among those that are equal so far, so that the same input gives the same
+// order. A page of lct suggest is taken from this order. It leaves out what
+// the rules
 // answer already: a speaker a guide knows (as the character, as the same
 // person at another time of life, or as not that character), a new file that
 // the routing gives a family of its own now, an adjustment whose file has the
@@ -124,7 +131,7 @@ func Run(in Inputs) ([]Suggestion, error) {
 	if in.Rules == nil {
 		return nil, errors.New("suggest: no rules to suggest against")
 	}
-	c := collector{byID: map[string]*Suggestion{}}
+	c := collector{byID: map[string]*Suggestion{}, units: map[string]int{}}
 	if in.RawTag != "" && in.Build != nil && in.Build.RawTag == in.RawTag {
 		c.fromBuild(*in.Build)
 	}
@@ -140,7 +147,13 @@ func Run(in Inputs) ([]Suggestion, error) {
 		}
 		out = append(out, *s)
 	}
-	slices.SortFunc(out, func(a, b Suggestion) int { return cmp.Compare(a.ID, b.ID) })
+	slices.SortFunc(out, func(a, b Suggestion) int {
+		return cmp.Or(
+			cmp.Compare(slices.Index(Kinds, a.Kind), slices.Index(Kinds, b.Kind)),
+			cmp.Compare(c.units[b.ID], c.units[a.ID]), // the biggest group first
+			cmp.Compare(a.ID, b.ID),
+		)
+	})
 	return out, nil
 }
 
@@ -181,6 +194,9 @@ func clip(text string, max int) string {
 // suggestion.
 type collector struct {
 	byID map[string]*Suggestion
+	// units is the number of units of each group of different translations,
+	// by id; Run lists the biggest first.
+	units map[string]int
 }
 
 // add makes the suggestion of kind and rest (the id is "<kind>/<rest>"). When
@@ -218,15 +234,21 @@ func (c *collector) fromBuild(info build.Info) {
 			if i < len(g.Keys) {
 				rows[i].Key = g.Keys[i]
 			}
+			if i < len(g.Counts) { // a build.json of an older lct has none
+				rows[i].Count = g.Counts[i]
+			}
 		}
 		// The translations come in the order the units were met; the
 		// evidence does not depend on it.
 		slices.SortFunc(rows, func(a, b Evidence) int {
 			return cmp.Or(cmp.Compare(a.ZH, b.ZH), cmp.Compare(a.Key, b.Key))
 		})
-		c.add(KindInconsistent, g.Family+"/"+g.Field+"/"+sha8(g.KR),
+		rest := g.Family + "/" + g.Field + "/" + sha8(g.KR)
+		c.add(KindInconsistent, rest,
 			fmt.Sprintf("不一致的譯法：%s（%s／%s，%d 個單位）", clip(g.KR, maxTitleText), g.Family, g.Field, g.Units),
 			rows...)
+		id := KindInconsistent + "/" + rest
+		c.units[id] = max(c.units[id], g.Units)
 	}
 	for _, n := range rep.Notes {
 		if strings.TrimSpace(n.Note) == "" {
