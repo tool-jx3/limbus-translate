@@ -56,7 +56,7 @@ const minForeignNameRunes = 2
 
 // scenarioModelCodes lists the speakers. Its names are compared between our
 // translation and LTM's (ForeignNames).
-const scenarioModelCodes = "ScenarioModelCodes-AutoCreated.json"
+const scenarioModelCodes = names.SpeakerFile
 
 // Inputs are the packs a bootstrap reads.
 type Inputs struct {

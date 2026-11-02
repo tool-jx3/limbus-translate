@@ -2886,3 +2886,61 @@ func TestKeywordNames(t *testing.T) {
 		t.Errorf("KeywordNames without records = %#v, %v, want an empty list", none, err)
 	}
 }
+
+// Overlay writes the translations over the KR text and leaves the pack's own
+// document as it was.
+func TestOverlay(t *testing.T) {
+	kr := map[string]string{
+		"Bufs.json": `{"dataList":[
+ {"id":"Burst","name":"파열"},
+ {"id":"Bleed","name":"출혈"},
+ {"id":"Review","name":"검토"},
+ {"id":"Plain","name":"그대로"}
+]}`,
+	}
+	env := newEnv(t, kr, nil, nil)
+	rec := func(i int, krText, zh string, flags ...string) store.Record {
+		k := fmt.Sprintf("Bufs.json|/dataList/%d/name", i)
+		return store.Record{Key: k, KRSha: units.KRSha(krText), ZH: zh, Origin: store.OriginParatranz, Since: testTag, Flags: flags}
+	}
+	byKey := map[string]store.Record{}
+	for _, r := range []store.Record{
+		rec(0, "파열", "破裂"),
+		rec(1, "옛 이름", "舊名"), // made from other KR text than today's
+		rec(2, "검토", "待審", store.FlagNeedsReview),
+	} {
+		byKey[r.Key] = r
+	}
+
+	doc, err := Overlay(env.Src.KR, byKey, "Bufs.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	name := func(d *jsonx.Node, i int) string {
+		n, ok := d.Get(fmt.Sprintf("/dataList/%d/name", i))
+		if !ok {
+			t.Fatalf("no /dataList/%d/name", i)
+		}
+		return n.Str
+	}
+	for i, want := range []string{"破裂", "출혈", "검토", "그대로"} {
+		if got := name(doc, i); got != want {
+			t.Errorf("name %d = %q, want %q: only a record of today's KR text that is not flagged needs_review is written", i, got, want)
+		}
+	}
+
+	orig, err := env.Src.KR.Doc("Bufs.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := name(orig, 0); got != "파열" {
+		t.Errorf("the pack's document was changed: name 0 = %q, want 파열", got)
+	}
+
+	if none, err := Overlay(env.Src.KR, nil, "Bufs.json"); err != nil || name(none, 0) != "파열" {
+		t.Errorf("Overlay without records = %v, %v, want the KR document", none, err)
+	}
+	if _, err := Overlay(env.Src.KR, byKey, "Nothing.json"); err == nil {
+		t.Error("Overlay of a file that is not in the pack did not fail")
+	}
+}

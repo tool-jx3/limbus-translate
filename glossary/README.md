@@ -39,11 +39,22 @@
 
 - `files` 是檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`：`StoryData/S10[0-9][0-9]*`、`*a1c10*`；以 `/**` 結尾的樣式涵蓋該目錄底下所有檔（`RPGSystem/**`）。省略 `files` = 所有檔
 - 只有批次的檔名符合時，條目才會注入批次，驗證時才檢查它的 `forbidden`
-- 同一個 `kr` 可以有多個條目，其中至多一個不設 `files`（`lct rules lint` 檢查）。某個檔符合有 `files` 的條目時，由那些條目代表這個詞，沒設 `files` 的那一條在這個檔不適用；沒有條目符合就用沒設 `files` 的那一條
+- 同一個 `kr` 可以有多個條目，其中至多一個 `status: approved` 的條目不設 `files`（`lct rules lint` 檢查；`candidate` 不計，因為它不生效）。某個檔符合有 `files` 的條目時，由那些條目代表這個詞，沒設 `files` 的那一條在這個檔不適用；沒有條目符合就用沒設 `files` 的那一條
+- `files` 重疊的條目會同時生效：一個檔符合同一個 `kr` 的多個有 `files` 的條目時，這些條目全部注入批次、全部檢查 `forbidden`。要讓譯法互斥，`files` 的樣式就不要重疊
 - 沒設 `files` 的那一條要在 `notes` 指向其他條目，讓人知道哪些檔有例外
 
 ## 之後要補的
 
 - 狀態效果與關鍵字：從 `BattleKeywords*`、`Bufs*` 以 id 對齊 KR／EN／JP 與既有繁中自動產生（例如 `[Laceration]` = 流血、`[Combustion]` = 燒傷）
 - 角色與 NPC 名稱：從 `ScenarioModelCodes-AutoCreated` 自動產生
-- 自動產生的條目標為候選，人工確認後才正式採用
+- 自動產生的條目標為候選，人工確認後才正式採用（`lct glossary derive` 先列出候選，見下）
+
+## `lct glossary derive`：找出還沒列進詞彙表的名稱
+
+`lct glossary derive [--source keyword|speaker] [--json]` 列出本專案目前譯文中的關鍵字名稱（`BattleKeywords*`、`Bufs*`）與說話者名稱（`ScenarioModelCodes-AutoCreated`），作為新增詞條的候選。只輸出，不寫檔。
+
+- KR 名稱已經是任何詞條的 `kr`（不論 `status`、`files`）的不列
+- `rules/declined.yaml` 已有 `term/<kr>` 的不列
+- 譯名仍含韓文（尚未翻譯、KR 原文已改、待審）的不列
+- 同一個 KR 名稱有不同譯法時，每種譯法各列一次
+- 用 `lct glossary derive` 看到的名稱由人決定：採用就寫進 `terms.yaml`（`status: approved`），不採用就記進 `rules/declined.yaml`（`id: term/<kr>`）

@@ -402,28 +402,44 @@ func (g TextGroup) FileBound() bool {
 	return utf8.RuneCountInString(g.KR) < ShortTextRunes
 }
 
+// Overlay returns the document of file in kr with the translation written
+// over every string that has one: the string of the record of its unit, when
+// the record was made from the KR text there is now (its kr_sha) and is not
+// flagged needs_review. Strings without such a record keep their KR text.
+//
+// The document is a copy; the pack's own tree, which is shared and read-only,
+// is not changed. It is how the names of this translation are read from KR
+// documents: the keyword names (keywordTable) and the speaker names.
+func Overlay(kr *pack.Pack, records map[string]store.Record, file string) (*jsonx.Node, error) {
+	doc, err := kr.Doc(file)
+	if err != nil {
+		return nil, fmt.Errorf("batch: %w", err)
+	}
+	doc = doc.Clone()
+	for _, f := range doc.Strings() {
+		rec, ok := records[units.Key(file, f.Pointer)]
+		if ok && rec.KRSha == units.KRSha(f.Value) && !hasFlag(rec.Flags, store.FlagNeedsReview) {
+			if err := doc.SetString(f.Pointer, rec.ZH); err != nil {
+				return nil, fmt.Errorf("batch: %w", err)
+			}
+		}
+	}
+	return doc, nil
+}
+
 // keywordTable is the name this translation gives each keyword id: the table
 // read from the KR keyword files with every translated name written over its
-// KR text. A name that is still Korean is no name of ours and is left out.
-// Only a record made from the KR text there is now counts as a translation.
+// KR text (see Overlay). A name that is still Korean is no name of ours and
+// is left out.
 func keywordTable(kr *pack.Pack, records map[string]store.Record) (map[string]string, error) {
 	docs := map[string]*jsonx.Node{}
 	for _, file := range kr.Files() {
 		if !names.IsKeywordFile(file) {
 			continue
 		}
-		doc, err := kr.Doc(file)
+		doc, err := Overlay(kr, records, file)
 		if err != nil {
-			return nil, fmt.Errorf("batch: %w", err)
-		}
-		doc = doc.Clone() // the pack's tree is shared and read-only
-		for _, f := range doc.Strings() {
-			rec, ok := records[units.Key(file, f.Pointer)]
-			if ok && rec.KRSha == units.KRSha(f.Value) && !hasFlag(rec.Flags, store.FlagNeedsReview) {
-				if err := doc.SetString(f.Pointer, rec.ZH); err != nil {
-					return nil, fmt.Errorf("batch: %w", err)
-				}
-			}
+			return nil, err
 		}
 		docs[file] = doc
 	}

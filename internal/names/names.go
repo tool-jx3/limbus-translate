@@ -51,6 +51,10 @@ func KeywordTable(docs map[string]*jsonx.Node) map[string]string {
 	return table
 }
 
+// SpeakerFile is the file whose dataList lists the speakers: SpeakerTable
+// reads it.
+const SpeakerFile = "ScenarioModelCodes-AutoCreated.json"
+
 // SpeakerTable maps the ids of ScenarioModelCodes-AutoCreated's dataList (the
 // model keys of story lines) to their names. When an id occurs twice the
 // first name wins.

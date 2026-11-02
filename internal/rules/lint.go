@@ -96,7 +96,7 @@ func (l *linter) glossary() {
 		l.report(GlossaryFile, "%v", err)
 		return
 	}
-	general := map[string]int{} // KR text -> entries that apply to every file
+	general := map[string]int{} // KR text -> approved entries that apply to every file
 	for i, t := range terms {
 		label := fmt.Sprintf("entry %d", i+1)
 		if t.KR != "" {
@@ -125,10 +125,12 @@ func (l *linter) glossary() {
 				l.report(GlossaryFile, "%s: files pattern %q is not valid: %v", label, pattern, err)
 			}
 		}
-		if t.KR != "" && len(t.Files) == 0 {
+		// A candidate binds nothing (see GlossaryHits), so only the approved
+		// entries count.
+		if t.KR != "" && len(t.Files) == 0 && t.Status == StatusApproved {
 			general[t.KR]++
 			if general[t.KR] > 1 {
-				l.report(GlossaryFile, "%s: more than one entry has no files; at most one entry of a KR text may apply to every file, the others need files", label)
+				l.report(GlossaryFile, "%s: more than one approved entry has no files; at most one approved entry of a KR text may apply to every file, the others need files", label)
 			}
 		}
 		for _, key := range unknown[i] {

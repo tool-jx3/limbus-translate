@@ -964,3 +964,34 @@ func TestLoadToleratesUnknownFields(t *testing.T) {
 		t.Errorf("faust = %+v, %v", c, ok)
 	}
 }
+
+// The rule "at most one entry of a KR text for every file" counts the approved
+// entries: a candidate binds nothing, so it may stand beside the approved one.
+func TestLintGlossaryCountsApprovedOnly(t *testing.T) {
+	entry := func(status string) string {
+		return "\n- kr: 패키지\n  zh: 包裹\n  status: " + status + "\n"
+	}
+	lint := func(t *testing.T, add string) string {
+		t.Helper()
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string { return s + add })
+		return lintMessages(rules.Lint(root))
+	}
+
+	if msg := lint(t, entry("candidate")); msg != "" {
+		t.Errorf("lint found problems in an approved entry with a candidate entry beside it, neither with files:\n%s", msg)
+	}
+	if msg := lint(t, entry("candidate")+entry("candidate")); msg != "" {
+		t.Errorf("lint found problems in two candidate entries beside an approved one:\n%s", msg)
+	}
+	msg := lint(t, entry("approved"))
+	for _, want := range []string{"glossary/terms.yaml", "패키지", "files"} {
+		if !strings.Contains(msg, want) {
+			t.Errorf("lint output for two approved entries without files does not mention %q:\n%s", want, msg)
+		}
+	}
+	// A candidate does not count towards the limit of the approved ones.
+	if msg := lint(t, entry("candidate")+entry("approved")); !strings.Contains(msg, "패키지") {
+		t.Errorf("lint missed the second approved entry without files:\n%s", msg)
+	}
+}
