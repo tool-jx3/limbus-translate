@@ -520,11 +520,11 @@ const maxBranchSuffix = 50
 // rejected after the suggestions were reviewed.
 func (s *session) checkoutNewBranch() (string, *pullRequest, error) {
 	branch := BranchPrefix + s.Date
-	onOrigin, err := s.originHas(branch)
+	onOrigin, err := s.originBranches(branch)
 	if err != nil {
 		return "", nil, err
 	}
-	if !onOrigin {
+	if !onOrigin[branch] {
 		return branch, nil, s.checkoutFromBase(branch)
 	}
 	used, err := s.pullRequestsOfHead(branch)
@@ -540,10 +540,7 @@ func (s *session) checkoutNewBranch() (string, *pullRequest, error) {
 		return branch, &used[i], s.checkoutFromOrigin(branch)
 	}
 	for n := 2; n <= maxBranchSuffix; n++ {
-		next := fmt.Sprintf("%s-%d", branch, n)
-		if onOrigin, err := s.originHas(next); err != nil {
-			return "", nil, err
-		} else if !onOrigin {
+		if next := fmt.Sprintf("%s-%d", branch, n); !onOrigin[next] {
 			return next, nil, s.checkoutFromBase(next)
 		}
 	}
@@ -560,18 +557,24 @@ func (s *session) checkoutFromBase(branch string) error {
 	return err
 }
 
-// originHas asks origin whether it has the branch.
-func (s *session) originHas(branch string) (bool, error) {
-	out, err := s.git.run("ls-remote", "--heads", "origin", "refs/heads/"+branch)
+// originBranches asks origin, once, for its branches whose names start with
+// prefix (the plain rules-proposal/<Date> and every -N of it), and returns
+// their names. The pattern may match more (rules-proposal/<Date>0); the
+// caller asks for the names it wants.
+func (s *session) originBranches(prefix string) (map[string]bool, error) {
+	out, err := s.git.run("ls-remote", "--heads", "origin", "refs/heads/"+prefix+"*")
 	if err != nil {
-		return false, err
+		return nil, err
 	}
+	names := map[string]bool{}
 	for _, line := range strings.Split(out, "\n") {
-		if strings.HasSuffix(line, "\trefs/heads/"+branch) {
-			return true, nil
+		if _, ref, ok := strings.Cut(strings.TrimSpace(line), "\t"); ok {
+			if name, ok := strings.CutPrefix(ref, "refs/heads/"); ok {
+				names[name] = true
+			}
 		}
 	}
-	return false, nil
+	return names, nil
 }
 
 // pullRequestsOfHead returns the PRs, in any state and with any label, that

@@ -509,6 +509,51 @@ func TestProposalStartTakesAFreeBranchWhenAClosedPRUsedTheName(t *testing.T) {
 	}
 }
 
+// The names origin has for the day are asked once, with a pattern, and not
+// once for each -N that is tried.
+func TestProposalStartAsksOriginForTheNamesOnce(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	e.pushBranch(branch, "guides/README.md", "closed PR work\n")
+	for _, n := range []string{"-2", "-3", "-4", "-10"} {
+		e.pushBranch(branch+n, "guides/README.md", "taken"+n+"\n")
+	}
+	e.pushBranch("rules-proposal/2026-11-050", "guides/README.md", "another day's name\n")
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch, State: "CLOSED", Body: body("term/a")})
+	log := filepath.Join(t.TempDir(), "git.log")
+	git := filepath.Join(t.TempDir(), "git")
+	gitPath, err := exec.LookPath("git")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(git, []byte("#!/bin/sh\necho \"$*\" >> '"+log+"'\nexec '"+gitPath+"' \"$@\"\n"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	o := e.opts("2026-11-05")
+	o.Git = git
+
+	got, err := Start(o)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch+"-5" || e.branch() != branch+"-5" {
+		t.Errorf("Started = %+v, checked out %q, want %s-5", got, e.branch(), branch)
+	}
+	data, err := os.ReadFile(log)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var asks []string
+	for _, line := range strings.Split(string(data), "\n") {
+		if strings.HasPrefix(line, "ls-remote") {
+			asks = append(asks, line)
+		}
+	}
+	if want := []string{"ls-remote --heads origin refs/heads/" + branch + "*"}; !slices.Equal(asks, want) {
+		t.Errorf("git ls-remote calls = %q, want %q", asks, want)
+	}
+}
+
 func TestProposalStartGivesUpWhenEveryBranchIsTaken(t *testing.T) {
 	e := newEnv(t)
 	const branch = "rules-proposal/2026-11-05"
