@@ -83,7 +83,7 @@ func (l *linter) baseGuide() {
 	}
 }
 
-var validStatus = []string{StatusApproved, "candidate"}
+var validStatus = []string{StatusApproved, StatusCandidate}
 
 func (l *linter) glossary() {
 	data, ok := l.read(GlossaryFile)

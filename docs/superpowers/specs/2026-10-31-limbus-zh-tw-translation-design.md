@@ -424,14 +424,29 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 ### 11.2 規則改進（`rules-review` skill）
 
-- 來源：週報中的建議（不一致譯法、新說話者、新欄位、新檔案族群、Claude 的 `note`、詞彙候選）、尚未歸納進規則的人工調整
+- 來源：週報中的建議（不一致譯法、新說話者、新欄位、新檔案族群、Claude 的 `note`、詞彙候選）、人工調整的 key 移動與過期。調整背後的道理在 §11.1 第 4 步就歸納進規則（調整的 `rule` 欄位），這裡不再建議
 - **CI 開 PR**：每次建置後，若報表有新的建議，`rules-proposal.yml` 以 `claude -p "/rules-review"` 跑同一份 skill：
   - 在分支 `rules-proposal/<日期>` 修改 `guides/`、`glossary/`、`rules/`，對 `main` 開 PR
   - PR 說明逐項列出：建議內容、理由、證據（檔名#id、KR 與現行譯文、出現次數）
   - PR 說明附上影響評估：以目前 `tw` 跑 `lct validate`，列出合併後有多少既有單位會不符合新規則
   - 若建議要套用到舊譯文，PR 裡另附 `rules/requeue/*.yaml`；合併即代表人同意重翻
 - **人審核**：可以直接改 PR 內容、刪掉不要的項目，再決定合併或關閉。合併後由 `rebuild.yml` 依新規則重建
-- **不重複提出**：每個建議有穩定的 id。人不採用的項目記在 `rules/declined.yaml`（在 PR 中移到這裡再合併）；關閉而未合併的 CI PR 中的項目也視為不採用。CI 會略過這兩者
+- **不重複提出**：每個建議有穩定的 id（同一件事每次產生相同的 id）。人不採用的項目記在 `rules/declined.yaml`（在 PR 中移到這裡再合併）；關閉而未合併的 CI PR 中的項目也視為不採用。CI 會略過這兩者
+  - `lct suggest [--exclude-file F]...` 從 `tw` 的 `.meta/build.json` 與 `.meta/plan.json`（只用 `raw_tag` 與目前 raw tag 相同的那份）、詞彙表與調整檔產生建議，結果依 id 排序；有建議也是 exit 0（建議不是「發現」）。`rules/declined.yaml` 與每個 `--exclude-file`（可重複，一行一個 id，空行與 `#` 開頭的行略過）中的 id 不再提出，輸出 `{suggestions, excluded}`。每個建議附至多 10 列證據，PR 說明以 `<!-- suggestion:<id> -->` 標示
+  - id 是種類、`/` 與下表的內容；`sha8` 是 KR 或文字的 SHA-256 前 8 個小寫十六進位字元。`plan.json` 的新說話者與新檔案在同一個 snapshot 內不會隨規則重算，所以規則已經回答的項目每次執行都再檢查，已回答就不提：
+
+    | 種類 | id | 來源 | 規則已回答，不提 |
+    |---|---|---|---|
+    | 不一致譯法 | `inconsistent/<族群>/<欄位>/<sha8(KR)>` | 報表的不一致譯法，每一組 | |
+    | 新說話者 | `speaker/<model>` | `new_speakers` | `guides/characters/` 已認得這個 model：本人、另一時期的本人（`models_other_self`），或列為不是這個角色（`models_not_this`） |
+    | 新欄位 | `field/<add\|remove>/<群組或 ->/<欄位>` | `field_changes`；識別欄位沒有群組，寫 `-` | |
+    | 新檔案族群 | `family/<檔案>` | `new_files_default_family` | `guides/routing.yaml` 已把該檔歸入預設族群以外的族群 |
+    | 譯者備註 | `note/<key>/<sha8(備註文字)>` | 報表的 `notes` | |
+    | 詞彙候選 | `term/<kr>` | `glossary/terms.yaml` 中 `status: candidate` 的條目 | |
+    | key 已移動的調整 | `adjustment-moved/<舊 key>` | `adjustments.moved` | 調整檔已改成新 key（沒有舊 key） |
+    | 已過期的調整 | `adjustment-expired/<key>` | `adjustments.expired` | 調整檔已沒有這個 key |
+
+  - `rules/declined.yaml` 是清單，每筆 `id`、`reason`（不採用的理由，必填）、`date`（`YYYY-MM-DD`）。`lct rules lint` 檢查 id 的種類是上表之一、`reason` 非空、`date` 的格式與 id 不重複
 - 同一時間最多一個 CI 開的規則 PR；已有未處理的 PR 時，新建議加進該 PR
 - 人也可以在本機用 `rules-review` skill 提出修改，流程相同
 - 規則改了不會自動重翻舊譯文。要套用到舊譯文，必須由人指定範圍：用 `lct requeue`，或合併附有 `rules/requeue/` 的 PR（這都算人工介入）

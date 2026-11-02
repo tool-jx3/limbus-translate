@@ -5,18 +5,20 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/requeue"
 	"github.com/tool-jx3/limbus-translate/internal/rewrite"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
 
 func init() {
 	cli.Register(cli.Command{
 		Name:  "rules lint",
-		Usage: "check the guides, glossary, routing, adjustment, requeue and rewrite files",
+		Usage: "check the guides, glossary, routing, adjustment, requeue, rewrite and declined files",
 		Run:   runRulesLint,
 	})
 	cli.Register(cli.Command{
@@ -56,9 +58,10 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 		}
 		report.Errors = append(report.Errors, le)
 	}
-	// The requeue and rewrite files are checked by their own packages. rules
-	// cannot import requeue, whose tests build on rules (an import cycle).
-	for _, is := range append(requeue.Lint(ctx.Root), rewrite.Lint(ctx.Root)...) {
+	// The requeue, rewrite and declined files are checked by their own
+	// packages. rules cannot import requeue, whose tests build on rules (an
+	// import cycle), nor suggest, which builds on rules.
+	for _, is := range slices.Concat(requeue.Lint(ctx.Root), rewrite.Lint(ctx.Root), suggest.LintDeclined(ctx.Root)) {
 		report.Errors = append(report.Errors, rules.LintError{File: is.File, Message: is.Message})
 	}
 	report.OK = len(report.Errors) == 0

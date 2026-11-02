@@ -70,9 +70,12 @@ func parseGlossary(data []byte) (terms []Term, unknown [][]string, err error) {
 	return terms, unknown, nil
 }
 
-// StatusApproved is the Status of a term that binds. A "candidate" term is
-// only a proposal and binds nothing until a person approves it.
-const StatusApproved = "approved"
+// The two Status values of a term. An approved term binds; a candidate term
+// is only a proposal and binds nothing until a person approves it.
+const (
+	StatusApproved  = "approved"
+	StatusCandidate = "candidate"
+)
 
 // GlossaryHits returns the approved terms whose KR text occurs in kr, a text
 // of file, in glossary order. Candidate terms stay in Rules.Glossary but are

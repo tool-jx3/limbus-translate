@@ -523,7 +523,7 @@ func (p *planner) transition(dir string) error {
 		}
 	}
 	slices.Sort(p.sum.NewSpeakers)
-	if def := defaultFamily(p.in.Rules); def != "" {
+	if def := p.in.Rules.DefaultFamily(); def != "" {
 		for _, f := range p.sum.Changes.FilesAdded {
 			if p.in.Rules.Family(f) == def {
 				p.sum.NewFilesDefaultFamily = append(p.sum.NewFilesDefaultFamily, f)
@@ -1022,15 +1022,4 @@ func nonNil(s []string) []string {
 		return []string{}
 	}
 	return s
-}
-
-// defaultFamily is the id of the catch-all family of the routing, the one
-// without patterns, or "" if there is none.
-func defaultFamily(r *rules.Rules) string {
-	for _, f := range r.Routing.Families {
-		if len(f.Match) == 0 {
-			return f.ID
-		}
-	}
-	return ""
 }

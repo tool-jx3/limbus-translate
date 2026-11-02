@@ -6,6 +6,8 @@ import (
 	"slices"
 	"strings"
 	"testing"
+
+	"gopkg.in/yaml.v3"
 )
 
 func write(t *testing.T, root, rel, content string) {
@@ -155,6 +157,30 @@ func TestDecode(t *testing.T) {
 		if _, err := Decode([]byte(tc.text), fields()); err == nil || !strings.Contains(err.Error(), tc.want) {
 			t.Errorf("%s: Decode = %v, want an error mentioning %q", name, err, tc.want)
 		}
+	}
+}
+
+// A file that is a list of entries (rules/declined.yaml) decodes each entry
+// with DecodeMapping, which reads a mapping the way Decode reads a file.
+func TestDecodeMapping(t *testing.T) {
+	var doc yaml.Node
+	text := "- id: a\n  reason:\n  extra: 1\n- just text\n- id: [x]\n"
+	if err := yaml.Unmarshal([]byte(text), &doc); err != nil {
+		t.Fatal(err)
+	}
+	list := doc.Content[0].Content
+
+	var id, reason string
+	fields := map[string]any{"id": &id, "reason": &reason}
+	keys, err := DecodeMapping(list[0], fields)
+	if err != nil || !slices.Equal(keys, []string{"id", "extra"}) || id != "a" || reason != "" {
+		t.Errorf("DecodeMapping = %v, %v, id %q, reason %q; want id and the unknown extra, a null reason left out", keys, err, id, reason)
+	}
+	if _, err := DecodeMapping(list[1], fields); err == nil || !strings.Contains(err.Error(), "line 4") || !strings.Contains(err.Error(), "mapping") {
+		t.Errorf("DecodeMapping of a text = %v, want an error with its line that asks for a mapping", err)
+	}
+	if _, err := DecodeMapping(list[2], fields); err == nil || !strings.Contains(err.Error(), "id: ") {
+		t.Errorf("DecodeMapping of a list for a text = %v, want an error that names the key", err)
 	}
 }
 

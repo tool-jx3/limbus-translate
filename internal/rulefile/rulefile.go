@@ -142,6 +142,16 @@ func Decode(data []byte, fields map[string]any) (keys []string, err error) {
 	if root.Kind != yaml.MappingNode {
 		return nil, fmt.Errorf("line %d: the file must be a mapping of keys to values", root.Line)
 	}
+	return DecodeMapping(root, fields)
+}
+
+// DecodeMapping reads the mapping node root as Decode reads a file, with the
+// same results. It is for a file that is a list of entries, each entry a
+// mapping: the line of an error is that of the node in the file.
+func DecodeMapping(root *yaml.Node, fields map[string]any) (keys []string, err error) {
+	if root.Kind != yaml.MappingNode {
+		return nil, fmt.Errorf("line %d: expected a mapping of keys to values", root.Line)
+	}
 	seen := map[string]bool{}
 	for i := 0; i+1 < len(root.Content); i += 2 {
 		name, value := root.Content[i], root.Content[i+1]

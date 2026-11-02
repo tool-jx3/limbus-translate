@@ -80,6 +80,18 @@ func (r *Rules) Family(file string) string {
 	return ""
 }
 
+// DefaultFamily is the id of the catch-all family of the routing, the one
+// without patterns that takes every file the other families leave, or "" if
+// there is none (Lint rejects such a routing).
+func (r *Rules) DefaultFamily() string {
+	for _, f := range r.Routing.Families {
+		if len(f.Match) == 0 {
+			return f.ID
+		}
+	}
+	return ""
+}
+
 // Priority is the position of a family in the translation order; a smaller
 // number is translated earlier. An unknown family comes after all others.
 func (r *Rules) Priority(family string) int {
