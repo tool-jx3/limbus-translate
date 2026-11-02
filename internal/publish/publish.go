@@ -55,13 +55,10 @@ var referenceOrder = []string{"ltm", "llc"}
 var ErrNotBuilt = build.ErrNotBuilt
 
 // ErrDirtyRules marks a refusal because the build was made from rules with
-// changes that were not committed (its rules_commit ends in "+dirty"): the
+// changes that were not committed (its rules_commit ends in gitx.DirtySuffix): the
 // Release could not be traced to the rules that made it. The fix is to commit
 // the rules and run lct build again.
 var ErrDirtyRules = errors.New("publish: the build was made from rules that were not committed")
-
-// dirtySuffix ends the rules commit of such a build (see gitx.Describe).
-const dirtySuffix = "+dirty"
 
 var (
 	// rawTagRe matches the tag of a raw snapshot, "raw-YYYYMMDD" or
@@ -127,7 +124,7 @@ func latestRelease(names []string) string {
 			continue
 		}
 		// The days have eight digits each, so they compare as text.
-		if last == "" || m[1] > lastDay || m[1] == lastDay && n > lastN {
+		if last == "" || m[1] > lastDay || (m[1] == lastDay && n > lastN) {
 			last, lastDay, lastN = name, m[1], n
 		}
 	}
@@ -218,8 +215,9 @@ func decide(twRoot, langDir string) (verdict, error) {
 	}
 	// A commit with a Release tag has its Release; one without it, that an
 	// earlier run made and whose Release did not follow, is still due it if
-	// the pack is not the one the last Release has.
-	d.releaseNeeded = len(onHead) == 0 && d.sameAs == ""
+	// the pack is not the one the last Release has. A tag of the prefix that
+	// is not a Release tag (zh-TW-latest) is no Release.
+	d.releaseNeeded = d.tag == "" && d.sameAs == ""
 	return d, nil
 }
 
@@ -338,7 +336,7 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	if err != nil {
 		return nil, err
 	}
-	if strings.HasSuffix(info.RulesCommit, dirtySuffix) {
+	if strings.HasSuffix(info.RulesCommit, gitx.DirtySuffix) {
 		return nil, fmt.Errorf("%w (rules_commit %q); commit the rules and run lct build again", ErrDirtyRules, info.RulesCommit)
 	}
 	// What the snapshot changed, for the notes; a plan of another snapshot

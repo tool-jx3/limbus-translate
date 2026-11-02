@@ -1231,6 +1231,15 @@ func TestCheckTW(t *testing.T) {
 		t.Errorf("check of a new pack = %+v, want a Release needed at %s", c, head3)
 	}
 
+	// A tag that starts like a Release tag and is not one does not count, and
+	// the text says what the check found.
+	if err := gitx.Tag(f.tw, "zh-TW-latest"); err != nil {
+		t.Fatal(err)
+	}
+	if c := check(); *c != (Check{TWCommit: head3, ReleaseNeeded: true}) || c.String() != "tw at "+head3+": release needed" {
+		t.Errorf("check of a new pack with a tag that is no Release tag = %+v (%q), want a Release needed at %s", c, c.String(), head3)
+	}
+
 	// Files that are not committed do not count: the check reads commits.
 	write(t, f.tw, sampleRel, "{\"a\": 3}\n")
 	if c := check(); *c != (Check{TWCommit: head3, ReleaseNeeded: true}) {
@@ -1246,6 +1255,23 @@ func TestCheckTW(t *testing.T) {
 }
 
 // The check says what Run would say of the same commit, without a build.
+// The text of the check says each case in words.
+func TestCheckString(t *testing.T) {
+	for _, tc := range []struct {
+		c    Check
+		want string
+	}{
+		{Check{}, "tw has no commit: no Release needed"},
+		{Check{TWCommit: "abc", ReleaseNeeded: true}, "tw at abc: release needed"},
+		{Check{TWCommit: "abc", Tag: testReleaseA, SameAs: testReleaseA}, "tw at abc: released as " + testReleaseA},
+		{Check{TWCommit: "abc", SameAs: testReleaseA}, "tw at abc: release not needed, the pack is the one of " + testReleaseA},
+	} {
+		if got := tc.c.String(); got != tc.want {
+			t.Errorf("%+v: String() = %q, want %q", tc.c, got, tc.want)
+		}
+	}
+}
+
 func TestCheckTWAgreesWithRun(t *testing.T) {
 	f := newFixture(t)
 	f.rebuild(t, testRules, "{\"a\": 1}\n")
