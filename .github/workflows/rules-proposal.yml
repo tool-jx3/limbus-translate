@@ -1,0 +1,119 @@
+name: rules-proposal
+
+# After an update or a rebuild that ended green, the rules-review skill turns
+# what the build found (lct suggest) into changes to guides/, glossary/ and
+# rules/ and opens the rules PR, or adds the new suggestions to the one that is
+# open (spec 11.2). A person reviews the PR; main is never pushed to. The run
+# ends before the action when there is nothing new to suggest.
+on:
+  workflow_run:
+    workflows: [update, rebuild]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  propose:
+    # A run of update or rebuild starts this workflow whatever it ended in;
+    # only a green one has a build to learn from.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    # One run at a time. A run that waits is never cancelled by the next.
+    concurrency: { group: rules-proposal, cancel-in-progress: false }
+    permissions: { contents: write, pull-requests: write, issues: write, id-token: write }
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # The whole history: the rules PR is made from origin/main, and
+      # lct impact compares with it.
+      - name: Check out main with its history
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # lct suggest and lct impact read the raw and tw worktrees.
+      - name: Fetch the raw and tw branches, add their worktrees
+        run: |
+          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw'
+          git worktree add .work/raw raw
+          git worktree add .work/tw tw
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Build lct
+        run: go build -o bin/lct ./cmd/lct
+
+      - name: Set the git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Checks out the branch the suggestions go on (that of the open rules PR,
+      # brought up to date, or a new one made from origin/main) and writes
+      # work/proposal/exclude.txt, the ids that are in a PR already, were
+      # declined or are handled, and work/proposal/existing-body.md, the
+      # description of the open PR.
+      - name: Choose the branch of the rules PR
+        id: start
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          started=$(bin/lct proposal start --date "$(date -u +%F)" --json)
+          branch=$(jq -er .branch <<<"$started")
+          pr=$(jq -er .pr <<<"$started")
+          if [ "$pr" -eq 0 ]; then
+            echo "$branch: no rules PR is open"
+          else
+            echo "$branch: the open rules PR #$pr gets the new suggestions"
+          fi
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+
+      # The run ends here when every suggestion is in a PR, declined or handled.
+      - name: Count the suggestions that no rules PR has yet
+        id: suggest
+        run: |
+          suggest=$(bin/lct suggest --json --exclude-file work/proposal/exclude.txt)
+          count=$(jq -er '.suggestions | length' <<<"$suggest")
+          echo "$count new suggestion(s)"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          if [ "$count" -eq 0 ]; then
+            echo '沒有新的規則建議，這次不開也不更新規則 PR。' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # The skill edits the rules and publishes the PR with lct proposal
+      # publish, so its tools are those of its allowed-tools (the contract test
+      # compares the two). The model comes from the variable. The action brings
+      # its own GitHub credentials (the Claude GitHub App, through id-token), so
+      # it gets no token: a PR opened by github-actions would not start ci.yml.
+      - name: Review the suggestions, open or update the rules PR
+        if: steps.suggest.outputs.count != '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: "/rules-review"
+          claude_args: >-
+            --model ${{ vars.LCT_MODEL }}
+            --max-turns 80
+            --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact *),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
+
+      # The PR is looked for by its branch: the label goes through the search
+      # index, which lags behind a PR that was just opened. A run that opened or
+      # updated none (the skill found nothing it was sure of, or lct proposal
+      # publish refused) is not green.
+      - name: Show the rules PR
+        if: steps.suggest.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.start.outputs.branch }}
+        run: |
+          prs=$(gh pr list --state open --head "$BRANCH" --json url,isCrossRepository)
+          url=$(jq -r '[.[] | select(.isCrossRepository | not)] | .[0].url // empty' <<<"$prs")
+          if [ -z "$url" ]; then
+            echo "::error::there is no open rules PR from $BRANCH: the rules-review run opened none; see the log of the step before"
+            exit 1
+          fi
+          echo "規則 PR：$url"
+          echo "規則 PR：$url" >> "$GITHUB_STEP_SUMMARY"

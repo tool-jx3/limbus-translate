@@ -20,6 +20,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/proposal"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -46,8 +47,9 @@ var (
 	// modelNameRe matches a model name.
 	modelNameRe = regexp.MustCompile(`(?i)\b(opus|sonnet|haiku|fable|claude-[a-z0-9.-]+)\b`)
 	// notModelNames are what modelNameRe matches that is not a model: the npm
-	// package of the CLI, which the pipeline installs at a fixed version.
-	notModelNames = []string{"claude-code"}
+	// package of the CLI, which the pipeline installs at a fixed version, and
+	// the action rules-proposal.yml runs the rules-review skill with.
+	notModelNames = []string{"claude-code", "claude-code-action"}
 )
 
 // skillFrontmatter is the part of a SKILL.md frontmatter the contract checks.
@@ -101,6 +103,31 @@ var weeklyUpdateTools = []string{
 	"Edit(./work/**)",
 }
 
+// rulesReviewTools are the tools of the rules-review skill. It reads what the
+// build found and edits the rules (guides/, glossary/, rules/) and its own
+// files in work/; every lct command it runs either reads, writes a rule file
+// or request file, or publishes the rules PR, and the only way it reaches
+// origin is lct proposal publish, which pushes a rules-proposal/* branch and
+// touches nothing but guides/, glossary/ and rules/. rules-proposal.yml hands
+// the same list to the action (TestWorkflowContract); a tool added to one and
+// not to the other fails there.
+var rulesReviewTools = []string{
+	"Bash(bin/lct suggest *)",
+	"Bash(bin/lct search *)",
+	"Bash(bin/lct glossary derive*)",
+	"Bash(bin/lct adjust tidy*)",
+	"Bash(bin/lct requeue --to-file *)",
+	"Bash(bin/lct rules lint*)",
+	"Bash(bin/lct impact *)",
+	"Bash(bin/lct proposal publish *)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./guides/**)",
+	"Edit(./glossary/**)",
+	"Edit(./rules/**)",
+	"Edit(./work/**)",
+}
+
 // requiredSkills are the skills this repo must have, and the tools of each.
 // Each is run on purpose by a person or by CI, so none may be started by the
 // model on its own.
@@ -108,6 +135,7 @@ var requiredSkills = map[string][]string{
 	"translate-pending": translatePendingTools,
 	"adjust":            adjustTools,
 	"weekly-update":     weeklyUpdateTools,
+	"rules-review":      rulesReviewTools,
 }
 
 // goBuildTool is the one go command a skill may run: it builds bin/lct.
@@ -549,6 +577,22 @@ func checkExactTools(t *testing.T, skill string, want []string) {
 	}
 }
 
+// skillAllowedTools returns the allowed-tools of the skill; a skill that does
+// not exist, or has no frontmatter, fails the test.
+func skillAllowedTools(t *testing.T, skill string) []string {
+	t.Helper()
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", skill, "SKILL.md"))
+	front, _, ok := splitFrontmatter(content)
+	if !ok {
+		t.Fatalf("%s has no frontmatter", file)
+	}
+	var fm skillFrontmatter
+	if err := yaml.Unmarshal([]byte(front), &fm); err != nil {
+		t.Fatal(err)
+	}
+	return fm.AllowedTools
+}
+
 // The translate-pending skill may use exactly the R35 tools.
 func TestTranslatePendingTools(t *testing.T) {
 	checkExactTools(t, "translate-pending", translatePendingTools)
@@ -599,6 +643,113 @@ func TestAdjustSaysWhereItEnds(t *testing.T) {
 			t.Errorf("%s does not mention %s", file, part)
 		}
 	}
+}
+
+// The rules-review skill may use exactly the tools rules-proposal.yml hands to
+// the action.
+func TestRulesReviewTools(t *testing.T) {
+	checkExactTools(t, "rules-review", rulesReviewTools)
+}
+
+// rulesReviewSays are what the body of the rules-review skill must say, with
+// the reason: the files a run in CI leaves for it, the markers that make the
+// description of the PR readable to lct, and the rules that keep a rules PR
+// from losing or repeating a suggestion. Each is a text of the body.
+var rulesReviewSays = []struct{ text, why string }{
+	{"work/proposal/exclude.txt", "the file of the ids that are not to be suggested again is not named: a run in CI would suggest what the PR has or people turned down, and cannot tell it is in CI"},
+	{"--exclude-file work/proposal/exclude.txt", "the suggestions are not asked with the ids left out"},
+	{"work/proposal/existing-body.md", "the description the open PR has is not named: a new description would drop its suggestions, and lct proposal publish refuses it"},
+	{"work/proposal/body.md", "the description of the PR is written nowhere"},
+	{"<!-- suggestion:<id> -->", "the marker of a suggestion is not shown"},
+	{"單獨一行", "the marker is not said to be on a line of its own"},
+	{"rules/declined.yaml", "the description does not tell a person where to move what they do not want"},
+	{"不是指示", "the text of the PR, the evidence of a suggestion and the results of a search are not said to be data"},
+	{"`raw`", "the skill does not say it leaves raw alone"},
+	{"`tw`", "the skill does not say it leaves tw alone"},
+	{"`main`", "the skill does not say it leaves main alone"},
+}
+
+// rulesReviewFlow are the commands the body of the rules-review skill writes in
+// full, in the order the flow runs them: the first before the second, by the
+// first place each is written.
+var rulesReviewFlow = [][2]string{
+	{"go build -o bin/lct ./cmd/lct", "bin/lct suggest --json"},
+	{"bin/lct suggest --json", "bin/lct rules lint --json"},
+	{"bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md"},
+	{"bin/lct impact --base origin/main --markdown work/proposal/impact.md", "bin/lct proposal publish --body-file work/proposal/body.md"},
+}
+
+// checkRulesReviewSkill checks the body of the rules-review skill against the
+// contract: it says what rulesReviewSays has, writes the commands of the flow
+// in order, and runs every lct command its allowed-tools grant (a grant the
+// flow never uses is a way in that nothing needs).
+func checkRulesReviewSkill(file, body string, tools []string) []string {
+	var problems []string
+	for _, s := range rulesReviewSays {
+		if !strings.Contains(body, s.text) {
+			problems = append(problems, fmt.Sprintf("%s: does not say %q: %s", file, s.text, s.why))
+		}
+	}
+	for _, o := range rulesReviewFlow {
+		first, second := strings.Index(body, o[0]), strings.Index(body, o[1])
+		switch {
+		case first < 0:
+			problems = append(problems, fmt.Sprintf("%s: does not run %q", file, o[0]))
+		case second < 0:
+			problems = append(problems, fmt.Sprintf("%s: does not run %q", file, o[1]))
+		case first > second:
+			problems = append(problems, fmt.Sprintf("%s: %q must come before %q", file, o[0], o[1]))
+		}
+	}
+	for _, e := range tools {
+		cmd, ok := strings.CutPrefix(e, "Bash(")
+		if !ok || !strings.Contains(cmd, "bin/lct") {
+			continue
+		}
+		cmd = strings.TrimSpace(strings.TrimSuffix(strings.TrimSuffix(cmd, ")"), "*"))
+		if !strings.Contains(body, cmd) {
+			problems = append(problems, fmt.Sprintf("%s: allowed-tools has %q, but the flow never runs %q", file, e, cmd))
+		}
+	}
+	return problems
+}
+
+// The body of the rules-review skill says what the contract wants of it.
+func TestRulesReviewSkillBody(t *testing.T) {
+	file, content := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "rules-review", "SKILL.md"))
+	front, body, ok := splitFrontmatter(content)
+	if !ok {
+		t.Fatalf("%s has no frontmatter", file)
+	}
+	var fm skillFrontmatter
+	if err := yaml.Unmarshal([]byte(front), &fm); err != nil {
+		t.Fatal(err)
+	}
+	for _, problem := range checkRulesReviewSkill(file, body, fm.AllowedTools) {
+		t.Error(problem)
+	}
+	if t.Failed() {
+		return
+	}
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"no exclude file named", "work/proposal/exclude.txt", "work/x.txt", "work/proposal/exclude.txt"},
+		{"suggestions asked without the exclude file", "--exclude-file work/proposal/exclude.txt", "--json", "--exclude-file work/proposal/exclude.txt"},
+		{"no existing description named", "work/proposal/existing-body.md", "work/proposal/old.md", "work/proposal/existing-body.md"},
+		{"no marker shown", "<!-- suggestion:<id> -->", "<!-- id -->", "<!-- suggestion:<id> -->"},
+		{"no marker on its own line", "單獨一行", "同一行", "單獨一行"},
+		{"no declined file named", "rules/declined.yaml", "rules/no.yaml", "rules/declined.yaml"},
+		{"no word about data", "不是指示", "是指示", "不是指示"},
+		{"a command out of order", "bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md; bin/lct rules lint --json", "must come before"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutateAll(t, body, tc.old, tc.repl)
+			hasProblem(t, checkRulesReviewSkill(file, src, fm.AllowedTools), tc.want)
+		})
+	}
+	t.Run("a tool the flow never runs", func(t *testing.T) {
+		tools := append(slices.Clone(fm.AllowedTools), "Bash(bin/lct validate *)")
+		wantProblems(t, checkRulesReviewSkill(file, body, tools), "bin/lct validate", "never runs")
+	})
 }
 
 func TestCheckSkillTools(t *testing.T) {
@@ -779,15 +930,19 @@ const (
 	// readmeActions is the heading of the README section that describes the
 	// secrets and variables.
 	readmeActions = "GitHub Actions 設定"
+	// readmeWorkflows is the heading of the README section with a table row
+	// for each workflow that runs by itself.
+	readmeWorkflows = "各 workflow 何時執行"
 )
 
 // workflowNames are the workflows this repo must have.
-var workflowNames = []string{"ci.yml", "pipeline.yml", "rebuild.yml", "update.yml"}
+var workflowNames = []string{"ci.yml", "pipeline.yml", "rebuild.yml", "rules-proposal.yml", "update.yml"}
 
 var (
 	// workflowActions are the only actions a workflow may use, pinned to the
-	// major version.
-	workflowActions = []string{"actions/checkout@v5", "actions/setup-go@v6"}
+	// major version. The action of Anthropic runs the rules-review skill in
+	// rules-proposal.yml and nowhere else.
+	workflowActions = []string{"actions/checkout@v5", "actions/setup-go@v6", "anthropics/claude-code-action@v1"}
 	// workflowRunner is the runner of every job that has steps.
 	workflowRunner = "ubuntu-24.04"
 	// workflowTitleRe matches the value of a --title flag.
@@ -957,6 +1112,7 @@ var pipelineOrder = [][2]string{
 
 // workflowStep is a step of a job, as far as the contract reads it.
 type workflowStep struct {
+	ID   string            `yaml:"id"`
 	If   string            `yaml:"if"`
 	Uses string            `yaml:"uses"`
 	Run  string            `yaml:"run"`
@@ -966,6 +1122,7 @@ type workflowStep struct {
 
 // workflowJob is a job: one with steps, or one that calls a workflow.
 type workflowJob struct {
+	If             string `yaml:"if"`
 	RunsOn         string `yaml:"runs-on"`
 	TimeoutMinutes int    `yaml:"timeout-minutes"`
 	Concurrency    struct {
@@ -1006,6 +1163,10 @@ type workflowEvents struct {
 		Branches []string `yaml:"branches"`
 		Paths    []string `yaml:"paths"`
 	} `yaml:"push"`
+	WorkflowRun struct {
+		Workflows []string `yaml:"workflows"`
+		Types     []string `yaml:"types"`
+	} `yaml:"workflow_run"`
 }
 
 // workflowFile is the part of a workflow file the contract reads.
@@ -1632,6 +1793,241 @@ func checkRebuildWorkflow(file, content, pipeline string) []string {
 	return problems
 }
 
+// rulesProposalPermissions are the permissions of the job of
+// rules-proposal.yml: it pushes a branch (contents), opens or edits a pull
+// request, labels it (pull-requests, issues) and lets the action exchange its
+// OIDC token for the token of the Claude GitHub App (id-token).
+var rulesProposalPermissions = map[string]string{
+	"contents": "write", "pull-requests": "write", "issues": "write", "id-token": "write",
+}
+
+const (
+	// rulesProposalIf is the condition of the job: a finished run of update or
+	// rebuild triggers the workflow whatever it ended in, and only a green one
+	// has a build to learn from.
+	rulesProposalIf = "github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'"
+	// rulesProposalPrompt is what the action is told: the skill, and nothing else.
+	rulesProposalPrompt = "/rules-review"
+	// rulesProposalCount is what the action step and the steps after it read to
+	// run only when lct suggest found something.
+	rulesProposalCount = "steps.suggest.outputs.count != '0'"
+)
+
+var (
+	// claudeAllowedToolsRe matches the --allowedTools flag of claude_args and its
+	// quoted, comma-separated list; the group is the list.
+	claudeAllowedToolsRe = regexp.MustCompile(`--allowedTools\s+"([^"]*)"`)
+	claudeMaxTurnsRe     = regexp.MustCompile(`(?:^|\s)--max-turns 80(?:\s|$)`)
+)
+
+// rulesProposalMarkers are the commands the scripts of rules-proposal.yml must
+// run, with the reason.
+var rulesProposalMarkers = []struct{ text, why string }{
+	{"+refs/heads/raw:refs/remotes/origin/raw", "the raw branch is not fetched"},
+	{"+refs/heads/tw:refs/remotes/origin/tw", "the tw branch is not fetched"},
+	{"git worktree add .work/raw raw", "lct suggest and lct impact read the raw worktree and it is not made"},
+	{"git worktree add .work/tw tw", "lct suggest and lct impact read the tw worktree and it is not made"},
+	{"go build -o bin/lct ./cmd/lct", "lct is not built"},
+	{"git config user.name", "git has no identity to commit the rules with"},
+	{"git config user.email", "git has no identity to commit the rules with"},
+	{`bin/lct proposal start --date "$(date -u +%F)" --json`, "the branch of the rules PR is not chosen, nor the ids left out written"},
+	{"bin/lct suggest --json --exclude-file work/proposal/exclude.txt", "the suggestions are not counted with the ids of the open PR, the declined and the handled left out, so the run would go on for what is in a PR already"},
+	// The PR is looked for by its branch: the label goes through the search
+	// index, which lags behind a PR that was just opened.
+	{`gh pr list --state open --head "$BRANCH"`, "the rules PR is not looked for, so a run that opened none is green"},
+	{`>> "$GITHUB_STEP_SUMMARY"`, "the address of the rules PR, or that there was nothing to suggest, is not on the summary page"},
+}
+
+// rulesProposalOrder pairs the commands of the scripts of rules-proposal.yml
+// that must run in that order: the first before the second, by the first place
+// each is written.
+var rulesProposalOrder = [][2]string{
+	{"+refs/heads/raw:refs/remotes/origin/raw", "git worktree add .work/raw raw"},
+	{"+refs/heads/tw:refs/remotes/origin/tw", "git worktree add .work/tw tw"},
+	{"git worktree add .work/raw raw", "bin/lct suggest"},
+	{"git worktree add .work/tw tw", "bin/lct suggest"},
+	{"go build -o bin/lct ./cmd/lct", "bin/lct proposal start"},
+	{"git config user.name", "bin/lct proposal start"},
+	{"git config user.email", "bin/lct proposal start"},
+	{"bin/lct proposal start", "bin/lct suggest"}, // the ids to leave out are written by start
+	{"bin/lct suggest", "gh pr list"},
+}
+
+// rulesProposalJSONInputs are what rules-proposal.yml feeds to jq: the output
+// of lct proposal start and of lct suggest, and of gh, as pipeline.yml does
+// (see lctJSONInputs).
+func rulesProposalJSONInputs() map[string]any {
+	return map[string]any{
+		"started": proposal.Started{},
+		"suggest": suggestReport{},
+		"prs":     nil, // gh pr list
+	}
+}
+
+// rulesProposalJSONRequired are the keys rules-proposal.yml must read.
+var rulesProposalJSONRequired = map[string][]string{
+	"started": {"branch"},
+	"suggest": {"suggestions"},
+}
+
+// checkRulesProposalWorkflow checks rules-proposal.yml, whose allowed tools
+// must be those of the rules-review skill (skillTools): it runs when update or
+// rebuild finished green, and by hand; one job at a time, with the permissions
+// the rules PR is made with, whose steps fetch the history and the raw and tw
+// branches, build lct, choose the branch of the rules PR, count the suggestions
+// that are not in a PR yet, run the skill with the action only when there are
+// some, and look for the rules PR. The action gets the key, the model and
+// exactly the tools of the skill; no step but it has the key, and it has no
+// token of its own to override that of the app.
+func checkRulesProposalWorkflow(file, content string, skillTools []string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
+
+	if events := w.triggers(); !slices.Equal(events, []string{"workflow_dispatch", "workflow_run"}) {
+		add("runs on %v, want [workflow_dispatch workflow_run]", events)
+	}
+	run := w.events().WorkflowRun
+	if !slices.Equal(slices.Sorted(slices.Values(run.Workflows)), []string{"rebuild", "update"}) {
+		add("workflow_run workflows = %v, want [update rebuild]: the workflows that build the pack", run.Workflows)
+	}
+	if !slices.Equal(run.Types, []string{"completed"}) {
+		add("workflow_run types = %v, want [completed]", run.Types)
+	}
+	if len(w.Jobs) != 1 {
+		add("has %d jobs, want one", len(w.Jobs))
+		return problems
+	}
+	job := w.Jobs[w.jobNames()[0]]
+	if job.If != rulesProposalIf {
+		add("the if of the job is %q, want %q: a run of update or rebuild that did not succeed has no build to learn from", job.If, rulesProposalIf)
+	}
+	if job.TimeoutMinutes != 60 {
+		add("timeout-minutes = %d, want 60", job.TimeoutMinutes)
+	}
+	if job.Concurrency.Group != "rules-proposal" || job.Concurrency.CancelInProgress {
+		add("concurrency = {group: %q, cancel-in-progress: %v}, want {group: \"rules-proposal\", cancel-in-progress: false}",
+			job.Concurrency.Group, job.Concurrency.CancelInProgress)
+	}
+	if !maps.Equal(job.Permissions, rulesProposalPermissions) {
+		add("permissions = %v, want %v", job.Permissions, rulesProposalPermissions)
+	}
+	deep := slices.ContainsFunc(job.Steps, func(s workflowStep) bool {
+		return strings.HasPrefix(s.Uses, "actions/checkout@") && fmt.Sprint(s.With["fetch-depth"]) == "0"
+	})
+	if !deep {
+		add("no actions/checkout step with fetch-depth: 0: origin/main, the base of the rules PR, and its history are not there")
+	}
+
+	runs := w.runs()
+	for _, m := range rulesProposalMarkers {
+		if !strings.Contains(runs, m.text) {
+			add("no %q: %s", m.text, m.why)
+		}
+	}
+	for _, o := range rulesProposalOrder {
+		first, second := strings.Index(runs, o[0]), strings.Index(runs, o[1])
+		if first >= 0 && second >= 0 && first > second {
+			add("%q must come before %q", o[0], o[1])
+		}
+	}
+
+	// The steps, by what they do.
+	at := func(match func(workflowStep) bool) int { return slices.IndexFunc(job.Steps, match) }
+	running := func(sub string) int { return at(func(s workflowStep) bool { return strings.Contains(s.Run, sub) }) }
+	start, count, confirm := running("bin/lct proposal start"), running("bin/lct suggest"), running("gh pr list")
+	var actions []int
+	for i, s := range job.Steps {
+		if strings.HasPrefix(s.Uses, "anthropics/claude-code-action@") {
+			actions = append(actions, i)
+		}
+	}
+	if len(actions) != 1 {
+		add("%d steps use anthropics/claude-code-action, want one", len(actions))
+		return problems
+	}
+	act := actions[0]
+	if start >= 0 && count >= 0 && confirm >= 0 && !(start < count && count < act && act < confirm) {
+		add("the steps must run in this order: proposal start, suggest, the action, the look for the PR")
+	}
+	step := job.Steps[act]
+
+	// The action: the skill, the key, the model, the turns and the tools.
+	if step.With["prompt"] != rulesProposalPrompt {
+		add("the prompt of the action is %q, want %q: it runs the skill and nothing else", step.With["prompt"], rulesProposalPrompt)
+	}
+	if step.With["anthropic_api_key"] != "${{ secrets.ANTHROPIC_API_KEY }}" {
+		add("the action has anthropic_api_key = %v, want ${{ secrets.ANTHROPIC_API_KEY }}", step.With["anthropic_api_key"])
+	}
+	args, _ := step.With["claude_args"].(string)
+	if !strings.Contains(args, "--model ${{ vars.LCT_MODEL }}") {
+		add("claude_args has no --model ${{ vars.LCT_MODEL }}: the model comes from the variable and is not written in the file")
+	}
+	if !claudeMaxTurnsRe.MatchString(args) {
+		add("claude_args has no --max-turns 80: the run is not limited in turns")
+	}
+	if strings.Contains(args, "--dangerously-skip-permissions") {
+		add("claude_args has --dangerously-skip-permissions, which makes the list of allowed tools mean nothing")
+	}
+	if m := claudeAllowedToolsRe.FindAllStringSubmatch(args, -1); len(m) != 1 {
+		add("claude_args has %d --allowedTools \"...\" lists, want one: the tools of the rules-review skill, separated by commas", len(m))
+	} else {
+		var tools []string
+		for _, tool := range strings.Split(m[0][1], ",") {
+			tools = append(tools, strings.TrimSpace(tool))
+		}
+		for _, tool := range skillTools {
+			if !slices.Contains(tools, tool) {
+				add("claude_args --allowedTools lacks %q, which the allowed-tools of the rules-review skill has: the skill would ask for a permission nobody answers", tool)
+			}
+		}
+		for i, tool := range tools {
+			switch {
+			case !slices.Contains(skillTools, tool):
+				add("claude_args --allowedTools has %q, which the allowed-tools of the rules-review skill lacks", tool)
+			case slices.Index(tools, tool) != i:
+				add("claude_args --allowedTools has %q twice", tool)
+			}
+		}
+	}
+	for _, name := range []string{"GH_TOKEN", "GITHUB_TOKEN"} {
+		if _, ok := step.Env[name]; ok {
+			add("the action step has %s in its env: the action brings the token of the Claude GitHub App, and a token of the workflow would open the PR as github-actions, whose pull requests start no workflow", name)
+		}
+	}
+	if !strings.Contains(step.If, rulesProposalCount) {
+		add("the if of the action step is %q, which lacks %s: it would run with nothing to suggest", step.If, rulesProposalCount)
+	}
+
+	// The other steps.
+	if start >= 0 && job.Steps[start].Env["GH_TOKEN"] != "${{ github.token }}" {
+		add("the step that runs bin/lct proposal start has no GH_TOKEN: ${{ github.token }} in its env: it asks gh for the pull requests")
+	}
+	if count >= 0 && job.Steps[count].ID != "suggest" {
+		add("the step that runs bin/lct suggest has no id: suggest, which the if of the steps after it reads")
+	}
+	if confirm >= 0 {
+		s := job.Steps[confirm]
+		if s.Env["GH_TOKEN"] != "${{ github.token }}" {
+			add("the step that looks for the rules PR has no GH_TOKEN: ${{ github.token }} in its env")
+		}
+		if s.Env["BRANCH"] != "${{ steps.start.outputs.branch }}" {
+			add("the step that looks for the rules PR has BRANCH = %q in its env, want ${{ steps.start.outputs.branch }}", s.Env["BRANCH"])
+		}
+		if !strings.Contains(s.If, rulesProposalCount) {
+			add("the if of the step that looks for the rules PR is %q, which lacks %s: with nothing to suggest no PR is due", s.If, rulesProposalCount)
+		}
+	}
+	for i, s := range job.Steps {
+		if i != act && strings.Contains(fmt.Sprint(s.Env), "secrets.") {
+			add("a step other than the action has a secret in its env: %q", firstLine(s.Run))
+		}
+	}
+	return append(problems, checkJQKeys(file, content, rulesProposalJSONInputs(), rulesProposalJSONRequired)...)
+}
+
 // readmeSection returns the text of the section of readme under the heading
 // "## <heading>", up to the next heading of that level.
 func readmeSection(readme, heading string) (string, bool) {
@@ -1871,6 +2267,8 @@ func TestWorkflowContract(t *testing.T) {
 	_, readme := readRepoFile(t, filepath.Join(repoRoot, "README.md"))
 	pipeline, update, rebuild, ci := files["pipeline.yml"], files["update.yml"], files["rebuild.yml"], files["ci.yml"]
 	pipelineFile, updateFile, rebuildFile, ciFile := workflowPath("pipeline.yml"), workflowPath("update.yml"), workflowPath("rebuild.yml"), workflowPath("ci.yml")
+	rules, rulesFile := files["rules-proposal.yml"], workflowPath("rules-proposal.yml")
+	skillTools := skillAllowedTools(t, "rules-review")
 
 	// The four workflows are under the contract; every workflow in the
 	// directory is checked.
@@ -1895,6 +2293,9 @@ func TestWorkflowContract(t *testing.T) {
 		t.Error(problem)
 	}
 	for _, problem := range checkRebuildWorkflow(rebuildFile, rebuild, pipeline) {
+		t.Error(problem)
+	}
+	for _, problem := range checkRulesProposalWorkflow(rulesFile, rules, skillTools) {
 		t.Error(problem)
 	}
 	for _, problem := range checkRefsDocumented(files, readme) {
@@ -2260,6 +2661,178 @@ func TestWorkflowContract(t *testing.T) {
 		writeTestFile(t, root, workflowDir+"/ci.yml", ci+"# claude-example-9\n")
 		wantProblems(t, checkModelNames(root, workflowDir), "ci.yml", `"claude-example-9"`)
 	})
+
+	// 12. rules-proposal.yml runs the rules-review skill after an update or a
+	// rebuild that ended green, and by hand: one job at a time with the
+	// permissions the rules PR is made with; it ends when there is nothing new to
+	// suggest; the action gets the key, the model and the tools of the skill and
+	// no token of its own; and a run that opened no PR is not green.
+	for _, tc := range []struct{ name, old, repl, want string }{
+		// The events.
+		{"not after a rebuild", "workflows: [update, rebuild]", "workflows: [update]", "workflow_run workflows"},
+		{"after another workflow", "workflows: [update, rebuild]", "workflows: [update, rebuild, ci]", "workflow_run workflows"},
+		{"not when the run is completed", "types: [completed]", "types: [requested]", "workflow_run types"},
+		{"also on a schedule", "on:\n  workflow_run:", "on:\n  schedule:\n    - cron: '0 0 * * *'\n  workflow_run:", "runs on"},
+		{"not by hand", "  workflow_dispatch:\n", "", "runs on"},
+		{"a run that did not succeed", "github.event.workflow_run.conclusion == 'success'", "github.event.workflow_run.conclusion != 'failure'", "the if of the job"},
+		{"a run that is not by hand and not green", " || github.event.workflow_run", " && github.event.workflow_run", "the if of the job"},
+
+		// The job.
+		{"a job that may run for hours", "timeout-minutes: 60", "timeout-minutes: 120", "timeout-minutes"},
+		{"another concurrency group", "group: rules-proposal", "group: lct-state", "concurrency"},
+		{"a run cancelled by the next", "cancel-in-progress: false", "cancel-in-progress: true", "concurrency"},
+		{"no permission for the pull request", "pull-requests: write, ", "", "permissions"},
+		{"no permission for the app token", ", id-token: write", "", "permissions"},
+		{"a shallow clone", "fetch-depth: 0", "fetch-depth: 1", "fetch-depth: 0"},
+
+		// The action.
+		{"another prompt", `prompt: "/rules-review"`, `prompt: "/rules-review now"`, "the prompt of the action"},
+		{"no prompt of the skill", `prompt: "/rules-review"`, `prompt: "review the rules"`, "the prompt of the action"},
+		{"a key written in the file", "anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}", "anthropic_api_key: sk-example", "anthropic_api_key"},
+		{"a model written in the file", "--model ${{ vars.LCT_MODEL }}", "--model example", "--model ${{ vars.LCT_MODEL }}"},
+		{"no limit of turns", "            --max-turns 80\n", "", "--max-turns 80"},
+		{"another limit of turns", "--max-turns 80", "--max-turns 800", "--max-turns 80"},
+		{"permissions skipped", "            --max-turns 80\n", "            --max-turns 80\n            --dangerously-skip-permissions\n", "--dangerously-skip-permissions"},
+		{"a token for the action", "        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n        env:\n          GH_TOKEN: ${{ github.token }}\n", "GH_TOKEN"},
+		{"a run with nothing to suggest", "        if: steps.suggest.outputs.count != '0'\n        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n", "the if of the action step"},
+		{"an action that runs when the count is not read", "steps.suggest.outputs.count != '0'\n        uses: anthropics", "steps.start.outputs.pr != '0'\n        uses: anthropics", "the if of the action step"},
+
+		// The tools of the action are exactly those of the skill.
+		{"a tool less", "Bash(bin/lct impact *),", "", "Bash(bin/lct impact *)"},
+		{"a tool more", "Read(./**),", "Read(./**),Bash(git push *),", "Bash(git push *)"},
+		{"a tool twice", "Read(./**),", "Read(./**),Read(./**),", "twice"},
+		{"a second list", "            --max-turns 80\n", "            --max-turns 80\n            --allowedTools \"Read(./**)\"\n", "2 --allowedTools"},
+		{"no list", `--allowedTools "`, `--tools "`, "0 --allowedTools"},
+
+		// What is run, and when.
+		{"no raw branch", "+refs/heads/raw:refs/remotes/origin/raw", "+refs/heads/main:refs/remotes/origin/main", "raw branch"},
+		{"no tw branch", "+refs/heads/tw:refs/remotes/origin/tw", "+refs/heads/main:refs/remotes/origin/main", "tw branch"},
+		{"no raw worktree", "git worktree add .work/raw raw", "git worktree prune", "raw worktree"},
+		{"no tw worktree", "git worktree add .work/tw tw", "git worktree prune", "tw worktree"},
+		{"no git identity", `git config user.email "41898282+github-actions[bot]@users.noreply.github.com"`, "git config --list", "git config user.email"},
+		{"the branch not chosen", "bin/lct proposal start", "bin/lct proposal begin", "proposal start"},
+		{"the branch chosen after the suggestions", "          started=$(bin/lct proposal start", "          bin/lct suggest --json\n          started=$(bin/lct proposal start", `"bin/lct proposal start" must come before "bin/lct suggest"`},
+		{"the branch chosen before lct is built", "        run: go build -o bin/lct ./cmd/lct\n", "        run: go version\n", "go build -o bin/lct ./cmd/lct"},
+		{"suggestions that leave nothing out", " --exclude-file work/proposal/exclude.txt", "", "--exclude-file"},
+		{"no token for the choice of the branch", "        id: start\n        env:\n          GH_TOKEN: ${{ github.token }}\n", "        id: start\n", "bin/lct proposal start has no GH_TOKEN"},
+		{"the suggestions not named", "        id: suggest\n", "        id: count\n", "id: suggest"},
+		{"a look for the PR through the label", `gh pr list --state open --head "$BRANCH"`, "gh pr list --state open --label rules-proposal", "--head"},
+		{"a look for the PR that is not asked", "        if: steps.suggest.outputs.count != '0'\n        env:\n          GH_TOKEN: ${{ github.token }}\n          BRANCH:", "        env:\n          GH_TOKEN: ${{ github.token }}\n          BRANCH:", "the if of the step that looks for the rules PR"},
+		{"no token for the look", "          GH_TOKEN: ${{ github.token }}\n          BRANCH:", "          BRANCH:", "looks for the rules PR has no GH_TOKEN"},
+		{"another branch looked for", "BRANCH: ${{ steps.start.outputs.branch }}", "BRANCH: main", "BRANCH"},
+		{"a secret in another step", "        id: start\n        env:\n", "        id: start\n        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n", "other than the action"},
+		{"a key of lct proposal start that was renamed", `jq -er .branch <<<"$started"`, `jq -er .branc <<<"$started"`, "branc"},
+		{"a key of lct suggest that was renamed", "jq -er '.suggestions | length'", "jq -er '.suggestion | length'", "suggestion"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutate(t, rules, tc.old, tc.repl)
+			hasProblem(t, checkRulesProposalWorkflow(rulesFile, src, skillTools), rulesFile, tc.want)
+		})
+	}
+	// Each change below is one problem, no more.
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"a tool less", "Bash(bin/lct impact *),", "", "Bash(bin/lct impact *)"},
+		{"a tool more", "Read(./**),", "Read(./**),Bash(git push *),", "Bash(git push *)"},
+		{"a tool twice", "Read(./**),", "Read(./**),Read(./**),", "twice"},
+		{"a model written in the file", "--model ${{ vars.LCT_MODEL }}", "--model example", "--model"},
+		{"another prompt", `prompt: "/rules-review"`, `prompt: "/rules-review now"`, "the prompt"},
+		{"a token for the action", "        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n        env:\n          GITHUB_TOKEN: ${{ github.token }}\n", "GITHUB_TOKEN"},
+		{"another concurrency group", "group: rules-proposal", "group: lct-state", "concurrency"},
+		{"no permission for the pull request", "pull-requests: write, ", "", "permissions"},
+	} {
+		t.Run("exactly one problem for "+tc.name, func(t *testing.T) {
+			src := mutate(t, rules, tc.old, tc.repl)
+			wantProblems(t, checkRulesProposalWorkflow(rulesFile, src, skillTools), rulesFile, tc.want)
+		})
+	}
+	t.Run("a tool the skill lacks", func(t *testing.T) {
+		tools := slices.DeleteFunc(slices.Clone(skillTools), func(tool string) bool { return tool == "Bash(bin/lct impact *)" })
+		wantProblems(t, checkRulesProposalWorkflow(rulesFile, rules, tools), "--allowedTools has", "Bash(bin/lct impact *)", "lacks")
+	})
+	t.Run("a tool the workflow lacks", func(t *testing.T) {
+		tools := append(slices.Clone(skillTools), "Bash(bin/lct validate *)")
+		wantProblems(t, checkRulesProposalWorkflow(rulesFile, rules, tools), "--allowedTools lacks", "Bash(bin/lct validate *)")
+	})
+	t.Run("an action that is not pinned", func(t *testing.T) {
+		src := mutate(t, rules, "anthropics/claude-code-action@v1", "anthropics/claude-code-action@main")
+		wantProblems(t, checkWorkflow(rulesFile, src, commands), "anthropics/claude-code-action@main")
+	})
+	t.Run("another action", func(t *testing.T) {
+		src := mutate(t, rules, "anthropics/claude-code-action@v1", "anthropics/other-action@v1")
+		wantProblems(t, checkWorkflow(rulesFile, src, commands), "anthropics/other-action@v1")
+	})
+	t.Run("a runner that is not pinned", func(t *testing.T) {
+		wantProblems(t, checkWorkflow(rulesFile, mutate(t, rules, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
+	})
+	t.Run("an unregistered lct command in rules-proposal.yml", func(t *testing.T) {
+		src := mutate(t, rules, "bin/lct suggest --json --exclude-file", "bin/lct sugest --json --exclude-file")
+		wantProblems(t, checkWorkflow(rulesFile, src, commands), `"bin/lct sugest"`)
+	})
+	t.Run("an unregistered lct command in the tools of the action", func(t *testing.T) {
+		src := mutate(t, rules, "Bash(bin/lct impact *)", "Bash(bin/lct impct *)")
+		wantProblems(t, checkWorkflow(rulesFile, src, commands), `"bin/lct impct"`)
+	})
+	t.Run("an expression in a script", func(t *testing.T) {
+		src := mutate(t, rules, `"$(date -u +%F)"`, `"${{ github.event.repository.pushed_at }}"`)
+		wantProblems(t, checkWorkflow(rulesFile, src, commands), "expression")
+	})
+	t.Run("every secret handed on", func(t *testing.T) {
+		src := mutate(t, rules, "    timeout-minutes: 60\n", "    timeout-minutes: 60\n    secrets: inherit\n")
+		wantProblems(t, checkWorkflow(rulesFile, src, commands), "secrets: inherit")
+	})
+	t.Run("a secret that is not the key", func(t *testing.T) {
+		src := mutate(t, rules, "anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}", "anthropic_api_key: ${{ secrets.OTHER_KEY }}")
+		hasProblem(t, checkWorkflow(rulesFile, src, commands), "secrets.OTHER_KEY")
+	})
+	t.Run("a model name", func(t *testing.T) {
+		root := t.TempDir()
+		writeTestFile(t, root, workflowDir+"/rules-proposal.yml", rules+"# claude-example-9\n")
+		wantProblems(t, checkModelNames(root, workflowDir), "rules-proposal.yml", `"claude-example-9"`)
+	})
+}
+
+// readmeRulesPR are what the README must tell a person about the rules PR, with
+// the reason: how to let the workflow open it, and what to do with one.
+var readmeRulesPR = []struct{ text, why string }{
+	{"https://github.com/apps/claude", "the Claude GitHub App, which opens the PR as itself and so starts ci.yml on it, is not said to be installed"},
+	{"`rules-proposal.yml`", "the workflow that opens the rules PR is not described"},
+	{"`rules-proposal`", "the label and the branches of the rules PR are not named"},
+	{"`rules/declined.yaml`", "a person is not told where to move the suggestion they do not want"},
+	{"`<!-- suggestion:", "a person is not told not to take the markers out of the description"},
+	{"影響評估", "the impact assessment ci.yml shows on a rules PR is not described"},
+	{"`bin/lct impact`", "the command of the impact assessment is not named"},
+	{"`lct proposal publish`", "the README does not say what to do when lct proposal publish finds no token inside the action"},
+	{"Task 16", "the README does not point to the plan step that settles the token of the action"},
+}
+
+// The README tells a person how to set up and handle the rules PR.
+func TestReadmeExplainsTheRulesPR(t *testing.T) {
+	_, readme := readRepoFile(t, filepath.Join(repoRoot, "README.md"))
+	for _, s := range readmeRulesPR {
+		if !strings.Contains(readme, s.text) {
+			t.Errorf("README.md does not say %q: %s", s.text, s.why)
+		}
+	}
+	// The table is under a heading of its own, up to the next heading.
+	lines := strings.Split(readme, "\n")
+	start := slices.Index(lines, "### "+readmeWorkflows)
+	if start < 0 {
+		t.Fatalf("README.md: no section %q", "### "+readmeWorkflows)
+	}
+	var rows []string
+	for _, line := range lines[start+1:] {
+		if strings.HasPrefix(line, "#") {
+			break
+		}
+		if strings.HasPrefix(line, "|") {
+			rows = append(rows, line)
+		}
+	}
+	for _, name := range []string{"update.yml", "rebuild.yml", "rules-proposal.yml", "ci.yml"} {
+		if !slices.ContainsFunc(rows, func(row string) bool { return strings.Contains(row, "`"+name+"`") }) {
+			t.Errorf("README.md: no table row of the section %q for %s", readmeWorkflows, name)
+		}
+	}
 }
 
 // The jq commands of pipeline.yml read the keys the lct commands print: a key
