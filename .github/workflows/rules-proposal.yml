@@ -100,6 +100,7 @@ jobs:
       # by github-actions would not start ci.yml. Without the variable there is
       # no model to run, and the step after it says so.
       - name: Review the suggestions, open or update the rules PR
+        id: review
         if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''
         uses: anthropics/claude-code-action@v1
         with:
@@ -110,6 +111,18 @@ jobs:
             --max-turns 80
             --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
             --disallowedTools "Read(./.git/**)"
+
+      # The action hides what the session said, which may hold what its tools
+      # read, and so a session that failed says nothing of why. Its last
+      # message alone is shown then: the reason it stopped (an API error, a
+      # skill that is not found), or its last words.
+      - name: Say why the review failed
+        if: failure() && steps.review.outputs.execution_file != ''
+        env:
+          EXECUTION_FILE: ${{ steps.review.outputs.execution_file }}
+        run: |
+          execution=$(cat "$EXECUTION_FILE")
+          jq -r '[.[] | select(.type == "result")] | last | if . == null then "the session has no result message" else (.result // (.errors | tostring)) end' <<<"$execution"
 
       # The run proposes nothing then, and stays green with a warning.
       - name: Say that LCT_MODEL is not set

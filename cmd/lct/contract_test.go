@@ -2274,6 +2274,9 @@ var rulesProposalMarkers = []struct{ text, why string }{
 	{"--json url,body,isCrossRepository", "the description of the PR is not read, so a PR that is open already is taken for a PR this run added to"},
 	{`grep -qxF -- "$id" work/proposal/exclude.txt`, "the suggestions the PR had before the run are not told from those it added"},
 	{`>> "$GITHUB_STEP_SUMMARY"`, "the address of the rules PR, or that there was nothing to suggest, is not on the summary page"},
+	// The action hides the session; its last message is all a failed run
+	// shows of why.
+	{`select(.type == "result")`, "a review that failed does not say why"},
 }
 
 // rulesProposalOrder pairs the commands of the scripts of rules-proposal.yml
@@ -2299,6 +2302,9 @@ func rulesProposalJSONInputs() map[string]any {
 		"started": proposal.Started{},
 		"suggest": suggestReport{},
 		"prs":     nil, // gh pr list
+		// The messages of the session of the action (its execution file),
+		// read when the session failed.
+		"execution": nil,
 	}
 }
 
@@ -3224,6 +3230,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"a shallow clone", "fetch-depth: 0", "fetch-depth: 1", "fetch-depth: 0"},
 
 		// The action.
+		{"a failed review that does not say why", `select(.type == "result")`, `select(.type == "assistant")`, "a review that failed does not say why"},
 		{"another prompt", `prompt: "/rules-review"`, `prompt: "/rules-review now"`, "the prompt of the action"},
 		{"no prompt of the skill", `prompt: "/rules-review"`, `prompt: "review the rules"`, "the prompt of the action"},
 		{"a key written in the file", "anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}", "anthropic_api_key: sk-example", "anthropic_api_key"},
