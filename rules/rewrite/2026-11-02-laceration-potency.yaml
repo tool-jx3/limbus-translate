@@ -2,8 +2,8 @@
 # [Laceration] 2 부여`，256 個單位寫「使目標增加2級 [Laceration] 強度」；
 # Skills_Enemy-a1c7p1 與 -a1c7p3 的這兩句漏了「強度」（guides/base.md 第 9 條：
 # 「1級流血強度」）。
-reason: 「N級 [Laceration]」補上「強度」
-files: [Skills_Enemy-a1c7p1.json, Skills_Enemy-a1c7p3.json]
+reason: '「N級 [Laceration]」補上「強度」'
+files: ['Skills_Enemy-a1c7p1.json', 'Skills_Enemy-a1c7p3.json']
 pattern: '^(\[OnSucceedAttack\] 使目標增加2級 \[Laceration\])$'
 replace: '${1} 強度'
 kr_pattern: '^\[OnSucceedAttack\] \[Laceration\] 2 부여$'

@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/story-interlude/content/6e5a9ede。
+# KR …! 的台詞，46 處寫「……！」，E923B /145 照抄成半形的「…!」。
+reason: '…! 寫「……！」'
+files: ['StoryData/**']
+pattern: '^…!$'
+replace: '……！'
+kr_pattern: '^…!$'

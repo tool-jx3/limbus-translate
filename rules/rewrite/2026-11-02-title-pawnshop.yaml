@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/story-main/title/0c84736b。
+# KR J사 전당포 是當鋪，22 處寫「J公司 當鋪」；S209B 有 2 處寫成「J公司 賭場」。
+reason: 'J사 전당포 寫「J公司 當鋪」'
+files: ['StoryData/**']
+pattern: '^J公司 賭場$'
+replace: 'J公司 當鋪'
+kr_pattern: '^J사 전당포$'

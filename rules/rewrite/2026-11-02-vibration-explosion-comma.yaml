@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/enemy/desc/e3e257b0。
+# KR [VibrationExplosion]. 대상의 [Vibration] 횟수 N 감소：句號處寫「，」，統一寫「，並使其減少N回 [Vibration]」。這個檔補逗號，vibration-explosion-order 改語序。
+reason: '震顫引爆後加「，」'
+files: ['Skills*.json']
+pattern: '\[VibrationExplosion\] 並使其減少'
+replace: '[VibrationExplosion]，並使其減少'
+kr_pattern: '\[VibrationExplosion\]\. 대상의 \[Vibration\] 횟수 \d+ 감소'

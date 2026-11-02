@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/identity/title/b0d8abcc。
+# P10414 的貝拉：KR 정보팀（情報部），她自己也說「我是情報部的貝拉」，前 7 句的稱號卻寫「安保部 員工」。
+reason: '정보팀 是情報部'
+files: ['StoryData/**']
+pattern: '^安保部 員工$'
+replace: '情報部 員工'
+kr_pattern: '^정보팀 관리직 직원$'

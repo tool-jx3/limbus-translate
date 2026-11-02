@@ -2,8 +2,8 @@
 # 照 JP 寫假名。story-ruby-1 到 5 依檔名順序套用：先處理良秀的各種讀音，
 # 再處理其他「Y(X)」。這個檔：和 ヨシヒデ 對比的「良秀(Ryōshū)」（E914B，
 # JP 寫 <ruby=りょうしゅう>良秀</ruby>）。
-reason: 劇情的 ruby 要保留為標籤，良秀的讀音照 JP：「良秀(Ryōshū)」改成 <ruby=りょうしゅう>良秀</ruby>
-files: [StoryData/E914B.json]
+reason: '劇情的 ruby 要保留為標籤，良秀的讀音照 JP：「良秀(Ryōshū)」改成 <ruby=りょうしゅう>良秀</ruby>'
+files: ['StoryData/E914B.json']
 origins: [claude]
 pattern: '良秀\(Ryōshū\)'
 replace: '<ruby=りょうしゅう>良秀</ruby>'

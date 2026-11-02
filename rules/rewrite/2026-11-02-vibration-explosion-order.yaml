@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/enemy/desc/e3e257b0。
+# 同 vibration-explosion-comma：「並使其 [Vibration] 回數減少N回」改成「並使其減少N回 [Vibration]」（與「增加N回 [X]」同語序）。
+reason: '「減少N回 [Vibration]」的語序'
+files: ['Skills*.json']
+pattern: '並使其 \[Vibration\] 回數減少(\d+)回'
+replace: '並使其減少${1}回 [Vibration]'
+kr_pattern: '\[VibrationExplosion\]\. 대상의 \[Vibration\] 횟수 \d+ 감소'

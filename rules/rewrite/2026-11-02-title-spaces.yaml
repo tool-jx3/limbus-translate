@@ -1,0 +1,8 @@
+# lct suggest：inconsistent/identity/title/ca18108b、inconsistent/story-main/title/253060ec、inconsistent/identity/title/89bb4cd8。
+# 人格稱號與說話者名稱（只有漢字與數字的稱號；台詞「食指那群傢伙……」不算），組織與職稱、地點之間空一格（guides/base.md「稱號與說話者名稱的空格」）：
+# 검지 的 78 處寫成「食指父輩」等（其他手指 583 處都空格），J公司賭場 7 處，Cinq協會4科 1 處。
+reason: '稱號的組織與職稱之間空一格'
+files: ['StoryData/**']
+pattern: '^(食指|J公司|Cinq協會)([\p{Han}0-9]+)$'
+replace: '${1} ${2}'
+kr_pattern: '^(검지 \S+|J사 카지노|섕크 협회 4과)$'

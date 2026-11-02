@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/other/content/c424962b。
+# 活動介面 이벤트 기간：22 處寫「活動時間」，Walpu6EventText 有 2 處寫「活動期間」。
+reason: '이벤트 기간 寫「活動時間」'
+files: ['*.json']
+pattern: '^活動期間$'
+replace: '活動時間'
+kr_pattern: '^이벤트 기간$'

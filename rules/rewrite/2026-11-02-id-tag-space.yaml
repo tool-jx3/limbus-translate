@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/ally/desc/d6194324、inconsistent/ally/desc/9ce0eeb5。
+# 句尾的空標籤 <style="highlight"></style> 緊接在 [ID] 後面時不空格（KR 在它前面沒有空格；KR 有空格的「[WinDuel] <style…>」不改）（guides/base.md 第 6 條：<> 前後無須空格；既有多數）。
+reason: '[ID] 與 <style> 之間不空格'
+files: ['Skills*.json']
+pattern: '\] (<style="highlight"></style>)$'
+replace: ']${1}'
+kr_pattern: '[^ ]<style="highlight"></style>$'

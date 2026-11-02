@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/story-main/teller/c6e0f098。
+# S216B 的說話者 철공회 보스：20 處寫「鐵工會 老大」，/42 寫成「幫派老大」。
+reason: '철공회 보스 寫「鐵工會 老大」'
+files: ['StoryData/**']
+pattern: '^幫派老大$'
+replace: '鐵工會 老大'
+kr_pattern: '^철공회 보스$'

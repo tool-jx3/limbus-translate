@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/identity/desc/799f5b44。
+# 人格語音的分類標籤 아군 사망（友方陣亡），Voice_Ishmael_LEGO_10805 寫成「自身陣亡」。
+reason: '아군 사망 寫「友方陣亡」'
+files: ['PersonalityVoiceDlg/**']
+pattern: '^自身陣亡$'
+replace: '友方陣亡'
+kr_pattern: '^아군 사망$'

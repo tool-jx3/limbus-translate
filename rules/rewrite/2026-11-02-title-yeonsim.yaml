@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/story-main/title/8b9a94b4。
+# 箱李的稱號 연심：43 處寫「研心」，4D305I 最後 2 句寫「研尋」。研尋 是台詞裡的雙關讀音（<ruby=研尋>研心</ruby>），稱號照 KR 不變。
+reason: '稱號 연심 一律寫「研心」'
+files: ['StoryData/**']
+pattern: '^研尋$'
+replace: '研心'
+kr_pattern: '^연심$'

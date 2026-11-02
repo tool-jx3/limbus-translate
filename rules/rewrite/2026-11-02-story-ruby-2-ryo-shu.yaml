@@ -1,6 +1,6 @@
 # 逐字唸出的「良(Ryō)……秀(shū)」（JP 寫 りょう…しゅう），見 story-ruby-1。
-reason: 劇情的 ruby 要保留為標籤，良秀的讀音照 JP：「良(Ryō)……秀(shū)」改成 <ruby=りょう>良</ruby>……<ruby=しゅう>秀</ruby>
-files: [StoryData/S901B.json, StoryData/S931B.json, StoryData/S949A.json]
+reason: '劇情的 ruby 要保留為標籤，良秀的讀音照 JP：「良(Ryō)……秀(shū)」改成 <ruby=りょう>良</ruby>……<ruby=しゅう>秀</ruby>'
+files: ['StoryData/S901B.json', 'StoryData/S931B.json', 'StoryData/S949A.json']
 origins: [claude]
 pattern: '良\(Ryō\)(……)秀\(shū\)'
 replace: '<ruby=りょう>良</ruby>${1}<ruby=しゅう>秀</ruby>'

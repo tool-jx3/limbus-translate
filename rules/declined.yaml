@@ -15,3 +15,42 @@
 - id: "inconsistent/identity/teller/2b369f13"
   reason: 鴻璐在人格故事 P10613 第 142 句起自稱「紅露」（KR 홍루(紅露)），該檔之後的說話者名稱寫「紅露」是刻意的，見 guides/characters/honglu.md
   date: 2026-11-02
+- id: "inconsistent/story-main/content/9ce1e359"
+  reason: 短台詞（KR「하지만…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-main/content/47dd1707"
+  reason: 短台詞（KR「그래.」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-main/content/a146d5d8"
+  reason: 短台詞（KR「아…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-main/content/f098bf05"
+  reason: 短台詞（KR「그리고…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-interlude/content/9c5caca6"
+  reason: 短台詞（KR「잠시 후…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-main/content/9a12b830"
+  reason: 短台詞（KR「나는…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-main/content/bf95067d"
+  reason: 短台詞（KR「…그래.」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-interlude/content/9ce1e359"
+  reason: 短台詞（KR「하지만…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/identity/content/9ce1e359"
+  reason: 短台詞（KR「하지만…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/identity/dlg/2b72cf03"
+  reason: 短台詞（KR「윽…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-interlude/content/a146d5d8"
+  reason: 短台詞（KR「아…」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/story-main/content/f6d7ce3b"
+  reason: 短台詞（KR「…네.」）的語氣詞依上下文譯法不同，不需要統一
+  date: 2026-11-02
+- id: "inconsistent/identity/title/af7bae96"
+  reason: 稱號 중지 작은 아우 依說話者性別寫「中指 幼弟」或「中指 幼妹」（唐吉訶德），見 guides/characters/donquixote.md
+  date: 2026-11-02

@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/abnormality/content/348894b4。
+# 異想體事件紀錄 체력 -{1}：11 處寫「失去了{1}點體力」，2 處寫「失去{1}點體力」。
+reason: '體力減少的紀錄寫「失去了{1}點體力」'
+files: ['AbEventsResultLog*.json']
+pattern: '失去(\{1\}點體力)'
+replace: '失去了${1}'
+kr_pattern: '체력 -\{1\}'

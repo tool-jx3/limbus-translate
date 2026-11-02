@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/mirror/messageDesc/fe41b507。
+# 選項結果 E.G.O GIFT 획득：KR 沒有數量，7 處寫「獲得E.G.O飾品」，5 處寫「獲得1件E.G.O飾品」。
+reason: 'E.G.O GIFT 획득 寫「獲得E.G.O飾品」'
+files: ['ActionEvents*.json']
+pattern: '^獲得1件E\.G\.O飾品$'
+replace: '獲得E.G.O飾品'
+kr_pattern: '^E\.G\.O GIFT 획득$'

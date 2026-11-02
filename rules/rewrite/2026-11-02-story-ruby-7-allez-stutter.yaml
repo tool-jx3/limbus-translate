@@ -1,7 +1,7 @@
 # story-ruby-6-foreign 之後：P11008 /50 KR 結巴地喊 `아, 알레!`，結巴的片段也
 # 照 guides/base.md「逐字或結巴地唸出時每個片段各加」寫成 ruby。
-reason: 結巴喊出的外語台詞，每個片段各加 ruby：<ruby=A>來</ruby>、<ruby=Allez>來吧</ruby>！
-files: [StoryData/P11008.json]
+reason: '結巴喊出的外語台詞，每個片段各加 ruby：<ruby=A>來</ruby>、<ruby=Allez>來吧</ruby>！'
+files: ['StoryData/P11008.json']
 origins: [paratranz]
 pattern: '^A、(<ruby=Allez>來吧</ruby>)'
 replace: '<ruby=A>來</ruby>、${1}'

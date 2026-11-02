@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/story-interlude/teller/5e8e4f5e。
+# 說話者 보살 치킨 사장：「菩薩雞經理」8、「菩薩雞 店長」5、「菩薩雞 經理」2。照多數寫「經理」，店名與職稱之間空一格。
+reason: '보살 치킨 사장 寫「菩薩雞 經理」'
+files: ['StoryData/**']
+pattern: '^菩薩雞 ?店長$|^菩薩雞經理$'
+replace: '菩薩雞 經理'
+kr_pattern: '^보살 치킨 사장$'

@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/enemy/desc/1c4a6a93。
+# [X] N 소모 寫「消耗N… [X]」，不加「使自身」（guides/base.md「技能文字的動詞」：既有 233 處；22 處加了）。
+reason: '[X] N 소모 寫「消耗」，不加「使自身」'
+files: ['Skills*.json']
+pattern: '^使自身消耗(\d+\S*? \[\w+\])$'
+replace: '消耗${1}'
+kr_pattern: '^\[\w+\] \d+ 소모$'

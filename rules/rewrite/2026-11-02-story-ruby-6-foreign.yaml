@@ -2,8 +2,8 @@
 # 「原文（中文意思）」；依 guides/base.md「外語的詞、台詞與感嘆」改成
 # <ruby=原文>中文意思</ruby>，不另加括號。只有這三句（P11008 /49、/50，
 # P10305 /40）。
-reason: 劇情的外語台詞：本文寫中文意思，原文寫在 ruby，不加括號
-files: [StoryData/P11008.json, StoryData/P10305.json]
+reason: '劇情的外語台詞：本文寫中文意思，原文寫在 ruby，不加括號'
+files: ['StoryData/P11008.json', 'StoryData/P10305.json']
 origins: [paratranz]
 pattern: '(Es-tu prêt|Allez)([？！]?)（([^？！）)]+)[？！]?[）)]'
 replace: '<ruby=${1}>${3}</ruby>${2}'

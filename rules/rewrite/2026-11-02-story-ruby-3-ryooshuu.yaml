@@ -1,6 +1,6 @@
 # 拉長唸的「良秀(Ryō-shū)」（JP 寫 りょーしゅー），見 story-ruby-1。
-reason: 劇情的 ruby 要保留為標籤，良秀的讀音照 JP：「良秀(Ryō-shū)」改成 <ruby=りょーしゅー>良秀</ruby>
-files: [StoryData/S901B.json, StoryData/S931B.json, StoryData/S949A.json]
+reason: '劇情的 ruby 要保留為標籤，良秀的讀音照 JP：「良秀(Ryō-shū)」改成 <ruby=りょーしゅー>良秀</ruby>'
+files: ['StoryData/S901B.json', 'StoryData/S931B.json', 'StoryData/S949A.json']
 origins: [claude]
 pattern: '良秀\(Ryō-shū\)'
 replace: '<ruby=りょーしゅー>良秀</ruby>'

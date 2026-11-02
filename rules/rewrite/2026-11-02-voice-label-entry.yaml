@@ -1,8 +1,8 @@
 # lct suggest：inconsistent/identity/desc/313416dc。人格語音的分類標籤
 # `입장`，190 個單位寫「進入戰鬥」，Voice_Heathcliff_Heishou_10714 寫「入場」、
 # Voice_Sinclair_Contem_11016 寫「進入」（guides/families.md「人格語音的分類標籤」）。
-reason: 人格語音的分類標籤 입장 統一寫「進入戰鬥」
-files: [PersonalityVoiceDlg/**]
+reason: '人格語音的分類標籤 입장 統一寫「進入戰鬥」'
+files: ['PersonalityVoiceDlg/**']
 pattern: '^(入場|進入)$'
 replace: '進入戰鬥'
 kr_pattern: '^입장$'

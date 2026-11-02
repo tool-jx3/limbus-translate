@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/walpu-refraction/desc/42024df5。
+# 敵人說明 적 잡몹：30 處寫「敵方單位」，Enemies-walpu6 有 5 處寫「敵 雜兵」。
+reason: '적 잡몹 寫「敵方單位」'
+files: ['Enemies*.json']
+pattern: '^敵 雜兵$'
+replace: '敵方單位'
+kr_pattern: '^적 잡몹$'

@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/ally/desc/2ded9a98、inconsistent/ally/desc/0b9259e7。
+# KR 的 <style="highlight"> 只包數字（<style="highlight">2</style> 부여），譯文也只包數字，「級」在標籤外（既有多數）。
+reason: 'highlight 只包數字'
+files: ['Skills*.json']
+pattern: '增加<style="highlight">(\d+)級</style>'
+replace: '增加<style="highlight">${1}</style>級'
+kr_pattern: '<style="highlight">\d+</style> 부여'

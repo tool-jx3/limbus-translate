@@ -1,8 +1,8 @@
 # lct suggest：inconsistent/identity/desc/056f9cbb。人格語音的分類標籤
 # `점심 인사` 有 56 個單位寫「午時問候」，多數（137）寫「午間問候」
 # （guides/families.md「人格語音的分類標籤」）。整個標籤相同才改。
-reason: 人格語音的分類標籤 점심 인사 統一寫「午間問候」
-files: [PersonalityVoiceDlg/**]
+reason: '人格語音的分類標籤 점심 인사 統一寫「午間問候」'
+files: ['PersonalityVoiceDlg/**']
 pattern: '^午時問候$'
 replace: '午間問候'
 kr_pattern: '^점심 인사$'

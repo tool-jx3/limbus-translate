@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/other/content/6f68d9ea。
+# 活動介面 이벤트 특화 대상：25 處寫「活動加成角色」，EventMOWEText 有 9 處寫「活動加成對象」。
+reason: '이벤트 특화 대상 寫「活動加成角色」'
+files: ['*.json']
+pattern: '^活動加成對象$'
+replace: '活動加成角色'
+kr_pattern: '^이벤트 특화 대상$'

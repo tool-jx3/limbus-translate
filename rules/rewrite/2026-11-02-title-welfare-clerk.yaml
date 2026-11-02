@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/identity/title/fc4467e9。
+# P10514 的琥珀：同一個稱號前 11 句寫「福利部 文職」，後 8 句寫「福利部 組員」，統一成前者。
+reason: '同一個人的稱號統一寫「福利部 文職」'
+files: ['StoryData/**']
+pattern: '^福利部 組員$'
+replace: '福利部 文職'
+kr_pattern: '^복지팀 사무직 팀원$'

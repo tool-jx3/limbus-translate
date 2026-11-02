@@ -1,7 +1,7 @@
 # lct suggest：inconsistent/identity/content/7e428bfa。KR `…….` 只有省略號的
 # 台詞，194 個單位寫「……」，P10514 /69 寫成兩組「…………」。
-reason: 只有省略號的台詞 KR …….，寫「……」
-files: [StoryData/P10514.json]
+reason: '只有省略號的台詞 KR …….，寫「……」'
+files: ['StoryData/P10514.json']
 pattern: '^…………$'
 replace: '……'
 kr_pattern: '^…….$'

@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/enemy/desc/14759e71。
+# KR 다음 턴에（下回合），Skills_Abnormality-a1c5p3 的一句漏了「下回合」。
+reason: '다음 턴에 寫「下回合」'
+files: ['Skills*.json']
+pattern: '^\[OnSucceedAttack\] 對目標施加1層束縛 $'
+replace: '[OnSucceedAttack] 下回合對目標施加1層束縛 '
+kr_pattern: '^\[OnSucceedAttack\] 다음 턴에 속박 1 부여$'

@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/ally/desc/d3963ef8、inconsistent/ally/desc/1450055a、inconsistent/ally/desc/eb433394。
+# [X] 횟수 N 증가 寫「使目標增加N回 [X]」，不寫「對目標施加」（guides/base.md「技能文字的動詞」）。Skills_personality-08 有 6 處。
+reason: '[X] 횟수 N 증가 寫「使目標增加N回」'
+files: ['Skills*.json']
+pattern: '^(\[\w+\] )對目標施加(\d+回 \[\w+\])'
+replace: '${1}使目標增加${2}'
+kr_pattern: '^\[\w+\] \[\w+\] 횟수 \d+ 증가'

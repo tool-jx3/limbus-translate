@@ -1,0 +1,7 @@
+# lct suggest：inconsistent/other/desc/b5aabc72。
+# [OnSucceedAttackHead] 後面多了一個空格（Skills.json /105）。
+reason: '[ID] 後只空一格'
+files: ['Skills*.json']
+pattern: '^(\[OnSucceedAttackHead\])  +'
+replace: '${1} '
+kr_pattern: '^\[OnSucceedAttackHead\] '

@@ -1,0 +1,8 @@
+# lct suggest：inconsistent/ally/desc/1447ed77、inconsistent/ally/desc/acfb8dd1、inconsistent/ally/desc/72ca3d3c、inconsistent/ally/desc/05ef0825、inconsistent/ally/desc/f3e20050。
+# 硬幣效果 [X] N 얻음 寫「使自身獲得N級 [X] 強度」（guides/base.md「技能文字的動詞」：既有 2,073 處寫獲得、232 處寫增加）。
+# 只改整句就是一個 얻음 的效果。
+reason: '[X] N 얻음 寫「獲得」'
+files: ['Skills*.json']
+pattern: '^(\[\w+\] )使自身增加(\d+級 \[\w+\] 強度)'
+replace: '${1}使自身獲得${2}'
+kr_pattern: '^\[\w+\] \[\w+\] \d+ 얻음(<style="highlight"></style>)?$'
