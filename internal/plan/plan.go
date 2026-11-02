@@ -127,6 +127,15 @@ type AdjustmentSummary struct {
 	// adjustment as a reference), the unit is copied or is in a frozen file
 	// that has a translation, or another adjustment of the unit won.
 	Expired []string `json:"expired"`
+	// ExpiredUnits maps the key of an expired adjustment to the key of the
+	// unit it is about in this snapshot, where that is not its own key: a
+	// line inserted before the unit moved it. It is the unit plan queued as
+	// adjustment-expired. An adjustment whose unit kept its key, or whose
+	// unit the plan cannot tell (see expiredUnit), has no entry. Every run
+	// works it out, but a run of a snapshot that was planned already, which
+	// makes no transition, cannot follow a unit through one: it keeps the
+	// entries of that plan (see Run).
+	ExpiredUnits map[string]string `json:"expired_units,omitempty"`
 }
 
 // MovedKey is an adjustment whose key is out of date: the text it was made
@@ -210,8 +219,9 @@ func (in Inputs) check() error {
 // to the current one. When that is not the current snapshot, the state is
 // first carried over to it (Transition). When it is, and the last plan was of
 // it too, the summary keeps what that plan said the snapshot brought
-// (PrevRawTag, Changes, FrozenChanged, NewSpeakers, NewFilesDefaultFamily);
-// the rest of it is what this run did. Then every unit of the current KR gets
+// (PrevRawTag, Changes, FrozenChanged, NewSpeakers, NewFilesDefaultFamily, and
+// the ExpiredUnits of the adjustments that still are expired); the rest of it
+// is what this run did. Then every unit of the current KR gets
 // the first source that holds:
 //
 //  1. the field rules do not translate it: a copy record (its KR text), and
@@ -419,6 +429,9 @@ type planner struct {
 
 	// from is the snapshot the state belongs to when Run starts.
 	from string
+	// planned holds, when the current snapshot was planned already, the
+	// ExpiredUnits that plan found (see expire).
+	planned map[string]string
 
 	files   []*krFile          // the current KR files, in name order
 	cur     map[string]unitRef // the current units, by key
@@ -464,6 +477,7 @@ func (p *planner) load(st *store.Store) error {
 		s := p.sum
 		s.PrevRawTag, s.Changes = last.PrevRawTag, last.Changes
 		s.FrozenChanged, s.NewSpeakers, s.NewFilesDefaultFamily = nonNil(last.FrozenChanged), nonNil(last.NewSpeakers), nonNil(last.NewFilesDefaultFamily)
+		p.planned = last.Adjustments.ExpiredUnits
 	}
 	if p.records, err = st.LoadRecords(); err != nil {
 		return err
@@ -567,7 +581,13 @@ type claim struct {
 type resolved struct {
 	claims  map[string]*claim   // the claim that won each unit, by key
 	expired []adjust.Adjustment // the KR text is gone
-	beaten  []adjust.Adjustment // another adjustment won the unit
+	beaten  []beaten            // another adjustment won the unit
+}
+
+// beaten is an adjustment that lost its unit to another one.
+type beaten struct {
+	a    adjust.Adjustment
+	unit string // the key of the unit
 }
 
 // resolveAdjustments finds the unit of every adjustment of list, which is in
@@ -586,10 +606,10 @@ func resolveAdjustments(list []adjust.Adjustment, kr *pack.Pack) resolved {
 		switch {
 		case !taken:
 		case w.status == adjust.Applied && c.status == adjust.Moved:
-			r.beaten = append(r.beaten, a)
+			r.beaten = append(r.beaten, beaten{a, res.Key})
 			continue
 		default:
-			r.beaten = append(r.beaten, w.a)
+			r.beaten = append(r.beaten, beaten{w.a, res.Key})
 		}
 		r.claims[res.Key] = c
 	}
@@ -685,18 +705,31 @@ func (p *planner) unit(key string, ref unitRef, translate bool, c *claim) {
 // those that expired (step 6).
 func (p *planner) expire(r resolved) error {
 	adj := &p.sum.Adjustments
+	// unitOf notes the unit an expired adjustment is about, unless it is the
+	// unit of its own key.
+	unitOf := func(a adjust.Adjustment, unit string) {
+		if unit == "" || unit == a.Key {
+			return
+		}
+		if adj.ExpiredUnits == nil {
+			adj.ExpiredUnits = map[string]string{}
+		}
+		adj.ExpiredUnits[a.Key] = unit
+	}
 	for key, c := range r.claims {
 		switch {
 		case c.blocked:
 			adj.Expired = append(adj.Expired, c.a.Key)
+			unitOf(c.a, key)
 		case c.status == adjust.Applied:
 			adj.Applied++
 		default:
 			adj.Moved = append(adj.Moved, MovedKey{From: c.a.Key, To: key})
 		}
 	}
-	for _, a := range r.beaten {
-		adj.Expired = append(adj.Expired, a.Key) // the unit has the winner's record
+	for _, b := range r.beaten {
+		adj.Expired = append(adj.Expired, b.a.Key) // the unit has the winner's record
+		unitOf(b.a, b.unit)
 	}
 	var finder *unitFinder
 	if len(r.expired) > 0 {
@@ -707,6 +740,14 @@ func (p *planner) expire(r resolved) error {
 		key, err := finder.expiredUnit(a)
 		if err != nil {
 			return err
+		}
+		if key != "" {
+			unitOf(a, key)
+		} else {
+			// Without a transition in this run the unit cannot be followed
+			// from the previous snapshot; the run that made the transition
+			// found it, and queued it.
+			unitOf(a, p.planned[a.Key])
 		}
 		// A unit that steps 1 to 3 settled (another adjustment may have
 		// moved to it) has its source.

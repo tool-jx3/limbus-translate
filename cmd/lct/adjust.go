@@ -13,8 +13,10 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
@@ -25,6 +27,12 @@ func init() {
 		Usage: "check a person's translation of one unit and write it to rules/adjustments/<date>-<topic>.yaml: " +
 			"--key K --zh Z --reason R --rule PATH|one-off --topic T [--date YYYY-MM-DD]",
 		Run: runAdjustAdd,
+	})
+	cli.Register(cli.Command{
+		Name: "adjust tidy",
+		Usage: "bring rules/adjustments up to date with the plan of the current snapshot: " +
+			"give a moved adjustment the key of its unit now, and delete an expired one whose unit was translated again",
+		Run: runAdjustTidy,
 	})
 }
 
@@ -174,4 +182,181 @@ func adjustKRText(ctx *cli.Context, command, key string) (*raw.Source, pack.Set,
 		}
 	}
 	return nil, pack.Set{}, "", cli.UserError(fmt.Sprintf("%s: %s has no text at %s in the KR text of %s (is the key from an older version?)", command, file, pointer, src.Tag))
+}
+
+// adjustTidied is what "adjust tidy" prints.
+type adjustTidied struct {
+	// Changed are the adjustment files that were edited or deleted, as
+	// rules/adjustments/<name>.
+	Changed []string `json:"changed"`
+	// Moved counts the adjustments that got the key of their unit now,
+	// Removed those that were deleted.
+	Moved   int `json:"moved"`
+	Removed int `json:"removed"`
+	// Note says why nothing was done, when it is for lack of a plan of the
+	// current snapshot. It is for the person who reads the text output.
+	Note string `json:"-"`
+}
+
+func (r adjustTidied) String() string {
+	var b strings.Builder
+	if r.Note != "" {
+		fmt.Fprintln(&b, r.Note)
+	}
+	if len(r.Changed) == 0 {
+		b.WriteString("nothing to tidy\n")
+		return b.String()
+	}
+	fmt.Fprintf(&b, "tidied: %d moved, %d removed\n", r.Moved, r.Removed)
+	for _, f := range r.Changed {
+		fmt.Fprintf(&b, "  %s\n", f)
+	}
+	return b.String()
+}
+
+// runAdjustTidy keeps the adjustment files current after the plan (spec 11.1,
+// 14.2): what .meta/plan.json says about the adjustments of the current
+// snapshot is applied to the files. It does what the plan found and no more,
+// and checks each adjustment against the current KR again, so a plan that is
+// older than a change to the files never deletes an adjustment that applies.
+func runAdjustTidy(ctx *cli.Context, args []string) error {
+	flags := flag.NewFlagSet("adjust tidy", flag.ContinueOnError)
+	flags.SetOutput(io.Discard)
+	if err := flags.Parse(args); err != nil {
+		return cli.UserError("adjust tidy: " + err.Error())
+	}
+	if flags.NArg() > 0 {
+		return cli.UserError("adjust tidy: unexpected argument " + flags.Arg(0))
+	}
+	cfg := ctx.Config
+	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
+		return cli.UserError("adjust tidy: worktrees.raw and worktrees.tw must be set in lct.yaml")
+	}
+	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
+	src, err := raw.LastSource(rawWorktree)
+	if err != nil {
+		return err
+	}
+	if src == nil {
+		return cli.UserError(fmt.Sprintf("adjust tidy: %s has no snapshot; run lct snapshot first", cfg.Worktrees.Raw))
+	}
+
+	// Only the plan of the current snapshot knows what became of the
+	// adjustments against its KR.
+	st := openStore(ctx)
+	var sum plan.Summary
+	found, err := st.ReadMetaJSON(plan.File, &sum)
+	if err != nil {
+		return err
+	}
+	report := adjustTidied{Changed: []string{}}
+	switch {
+	case !found:
+		report.Note = "there is no plan yet (.meta/plan.json); run lct plan first"
+		return ctx.Emit(report)
+	case sum.RawTag != src.Tag:
+		report.Note = fmt.Sprintf("the plan is of %s, not of the current snapshot %s; run lct plan first", sum.RawTag, src.Tag)
+		return ctx.Emit(report)
+	}
+
+	set, err := pack.OpenRaw(rawWorktree)
+	if err != nil {
+		return err
+	}
+	before, err := adjust.Load(ctx.Root)
+	if err != nil {
+		return err
+	}
+	byKey := map[string]adjust.Adjustment{}
+	for _, a := range before {
+		byKey[a.Key] = a
+	}
+	var moves []adjust.Move
+	for _, m := range sum.Adjustments.Moved {
+		if a, ok := byKey[m.From]; ok {
+			if res := adjust.Resolve(a, set.KR); res.Status == adjust.Moved && res.Key == m.To {
+				moves = append(moves, adjust.Move{From: m.From, To: m.To})
+			}
+		}
+	}
+	var expired []string
+	for _, key := range sum.Adjustments.Expired {
+		if a, ok := byKey[key]; ok && adjust.Resolve(a, set.KR).Status == adjust.Expired {
+			expired = append(expired, key)
+		}
+	}
+
+	// Whether the unit of an expired adjustment was translated again is found
+	// out before anything is written.
+	settledKeys := map[string]bool{}
+	if len(expired) > 0 {
+		settled, err := settledUnits(st, set.KR)
+		if err != nil {
+			return err
+		}
+		for _, key := range expired {
+			unit := key
+			if u, ok := sum.Adjustments.ExpiredUnits[key]; ok {
+				unit = u
+			}
+			if settledKeys[key], err = settled(unit); err != nil {
+				return err
+			}
+		}
+	}
+
+	done, err := adjust.TidyReport(ctx.Root, moves, expired, func(key string) bool { return settledKeys[key] })
+	if errors.Is(err, adjust.ErrInvalid) {
+		return cli.UserError("adjust tidy: " + err.Error())
+	}
+	if err != nil {
+		return err
+	}
+	if len(done.Changed) > 0 {
+		report = adjustTidied{Changed: done.Changed, Moved: done.Moved, Removed: done.Removed}
+	}
+	return ctx.Emit(report)
+}
+
+// settledUnits returns the test of a unit key for lct adjust tidy: the unit
+// has a record of the KR text it has now that is not a human one (the record
+// of an adjustment is human, and it is the adjustment that is being asked
+// about), and it is not waiting in the queue. A unit that KR does not have is
+// not settled.
+func settledUnits(st *store.Store, kr *pack.Pack) (func(unit string) (bool, error), error) {
+	records, err := st.LoadRecords()
+	if err != nil {
+		return nil, err
+	}
+	items, err := st.LoadPending()
+	if err != nil {
+		return nil, err
+	}
+	queued := map[string]bool{}
+	for _, it := range items {
+		queued[it.Key] = true
+	}
+	shas := map[string]map[string]string{} // file -> pointer -> units.KRSha, made as needed
+	return func(unit string) (bool, error) {
+		rec, ok := records[unit]
+		if queued[unit] || !ok || rec.Origin == store.OriginHuman {
+			return false, nil
+		}
+		file, pointer, err := units.SplitKey(unit)
+		if err != nil || !kr.Has(file) {
+			return false, nil
+		}
+		if _, ok := shas[file]; !ok {
+			doc, err := kr.Doc(file)
+			if err != nil {
+				return false, err
+			}
+			shas[file] = map[string]string{}
+			for _, u := range units.Extract(file, doc) {
+				shas[file][u.Pointer] = units.KRSha(u.KR)
+			}
+		}
+		sha, ok := shas[file][pointer]
+		return ok && rec.KRSha == sha, nil
+	}, nil
 }

@@ -650,6 +650,57 @@ func TestPlanQueuesAnExpiredAdjustmentAtTheUnitsNewKey(t *testing.T) {
 	}
 }
 
+// The summary says which unit an expired adjustment is about when that is not
+// the unit its key names (here a line inserted before it moved the unit), so
+// that lct adjust tidy can look at the right unit. An adjustment whose unit
+// kept its key has no entry.
+func TestPlanReportsTheUnitOfAnExpiredAdjustment(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		story    = "StoryData/S1.json"
+		first    = "첫 번째 줄은 그대로입니다"
+		oldKR    = "두 번째 줄은 곧 바뀔 예정입니다"
+		newKR    = "두 번째 줄은 이미 바뀌었습니다"
+		inserted = "새로 끼워 넣은 줄입니다"
+	)
+	content := func(i int) string { return at(story, fmt.Sprintf("/dataList/%d/content", i)) }
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": oldKR})})
+	e.seed([]store.Record{translated(content(0), first, "第一行不變"), translated(content(1), oldKR, "第二行即將改變")}, nil)
+	e.rule("rules/adjustments/2026-11-01-wording.yaml", adjustment(content(1), oldKR, "第二行就要改了。"))
+	e.snapshot(map[string]string{story: dataList(obj{"id": 1, "content": first}, obj{"id": 2, "content": inserted}, obj{"id": 3, "content": newKR})})
+
+	sum := e.run(tag1)
+
+	if want := map[string]string{content(1): content(2)}; !reflect.DeepEqual(sum.Adjustments.ExpiredUnits, want) {
+		t.Errorf("ExpiredUnits = %v, want %v", sum.Adjustments.ExpiredUnits, want)
+	}
+	data, err := json.Marshal(sum.Adjustments)
+	if err != nil || !strings.Contains(string(data), `"expired_units":{`) {
+		t.Errorf("JSON = %s, %v, want expired_units", data, err)
+	}
+	// A second plan of the snapshot cannot follow the unit through the
+	// transition again; it keeps what the first plan found.
+	if again := e.run(tag1); !reflect.DeepEqual(again.Adjustments, sum.Adjustments) {
+		t.Errorf("second plan: Adjustments = %+v, want %+v", again.Adjustments, sum.Adjustments)
+	}
+
+	// An adjustment whose unit kept its key has no entry, and the field is
+	// left out of the JSON.
+	e2 := newPlanEnv(t)
+	key := descKey("Skills_A.json", 0)
+	e2.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": "적에게 피해를 준다"})})
+	e2.seed([]store.Record{translated(key, "적에게 피해를 준다", "對敵人造成傷害")}, nil)
+	e2.rule("rules/adjustments/2026-11-01-wording.yaml", adjustment(key, "적에게 피해를 준다", "對敵人造成傷害。"))
+	e2.snapshot(map[string]string{"Skills_A.json": dataList(obj{"id": 1, "desc": "적에게 큰 피해를 준다"})})
+	sum = e2.run("")
+	if want := []string{key}; !reflect.DeepEqual(sum.Adjustments.Expired, want) || len(sum.Adjustments.ExpiredUnits) != 0 {
+		t.Errorf("Adjustments = %+v, want %q expired and no ExpiredUnits", sum.Adjustments, want)
+	}
+	if data, _ := json.Marshal(sum.Adjustments); strings.Contains(string(data), "expired_units") {
+		t.Errorf("JSON = %s, want no expired_units", data)
+	}
+}
+
 // An adjustment made for the current snapshot names its unit by its key, a
 // transition or not: one whose KR text that unit does not have expired, and
 // the unit is queued with it.
@@ -894,7 +945,11 @@ func TestPlanAdjustmentCollisions(t *testing.T) {
 	if got := recs[descKey("Skills_A.json", 1)]; got.ZH != "丁" || got.Batch != "adjustment:2026-11-03-c.yaml" {
 		t.Errorf("/dataList/1 = %+v, want the later adjustment 丁", got)
 	}
-	want := AdjustmentSummary{Applied: 2, Moved: []MovedKey{}, Expired: []string{descKey("Skills_A.json", 1), descKey("Skills_A.json", 7)}}
+	// 乙 lost the unit it moved to (/dataList/0), so that is its unit.
+	want := AdjustmentSummary{
+		Applied: 2, Moved: []MovedKey{}, Expired: []string{descKey("Skills_A.json", 1), descKey("Skills_A.json", 7)},
+		ExpiredUnits: map[string]string{descKey("Skills_A.json", 7): descKey("Skills_A.json", 0)},
+	}
 	if !reflect.DeepEqual(sum.Adjustments, want) {
 		t.Errorf("Adjustments = %+v, want %+v", sum.Adjustments, want)
 	}

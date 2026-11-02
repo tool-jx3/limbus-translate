@@ -15,6 +15,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/rulefile"
 )
 
 // LintError is one problem Lint found. File is relative to the repo root.
@@ -277,7 +278,8 @@ var adjustmentFields = func() map[string]bool {
 
 // adjustments checks the files of rules/adjustments. Anything in the
 // directory that Load would not read is reported, since a person who names a
-// file x.yml would otherwise find the adjustment silently ignored.
+// file x.yml would otherwise find the adjustment silently ignored; a README.md
+// and a .gitkeep are allowed (rulefile.IsAside).
 func (l *linter) adjustments() {
 	entries, err := os.ReadDir(filepath.Join(l.root, filepath.FromSlash(adjust.Dir)))
 	if errors.Is(err, fs.ErrNotExist) {
@@ -291,7 +293,7 @@ func (l *linter) adjustments() {
 	for _, e := range entries {
 		rel := adjust.Dir + "/" + e.Name()
 		switch {
-		case !e.IsDir() && e.Name() == ".gitkeep":
+		case !e.IsDir() && rulefile.IsAside(e.Name()):
 		case e.IsDir() || !adjust.IsFile(e.Name()):
 			l.report(rel, "not an adjustment file: only .yaml files directly in %s are read", adjust.Dir)
 		default:

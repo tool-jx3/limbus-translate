@@ -437,3 +437,40 @@ func TestAddFailsOnABrokenAdjustmentFile(t *testing.T) {
 		t.Error("the file was written")
 	}
 }
+
+// Add reads the file back after appending, and writes nothing unless the file
+// holds exactly one more entry: a hand-written list that is not a block
+// sequence, or a file that ends its document, would swallow the new entry or
+// make the whole file unreadable.
+func TestAddRefusesAFileItCannotAppendTo(t *testing.T) {
+	const entry = "- key: Story.json|/dataList/0/content\n  raw: raw-20261029\n  kr_sha: 0000000000000000000000000000000000000000000000000000000000000000\n  zh: 您好\n  reason: 敬語\n  rule: one-off\n"
+	for name, content := range map[string]string{
+		"flow sequence": "[{key: Story.json|/dataList/0/content, raw: raw-20261029, kr_sha: '0000000000000000000000000000000000000000000000000000000000000000', zh: 您好, reason: 敬語, rule: one-off}]\n",
+		"document end":  entry + "...\n",
+		"next document": entry + "---\n",
+		"empty list":    "[]\n",
+	} {
+		t.Run(name, func(t *testing.T) {
+			root := t.TempDir()
+			const file = "rules/adjustments/2026-11-02-honglu.yaml"
+			writeFile(t, root, file, content)
+
+			_, err := adjust.Add(root, func() adjust.Adjustment {
+				a := newAdjustment("Story.json|/dataList/5/content")
+				a.Rule = adjust.OneOff
+				return a
+			}(), "2026-11-02", "honglu")
+
+			if !errors.Is(err, adjust.ErrInvalid) || !strings.Contains(err.Error(), "2026-11-02-honglu.yaml") {
+				t.Errorf("Add: err = %v, want ErrInvalid naming 2026-11-02-honglu.yaml", err)
+			}
+			if got := readFile(t, root, file); got != content {
+				t.Errorf("the file changed:\n%s", got)
+			}
+			entries, readErr := os.ReadDir(filepath.Join(root, "rules/adjustments"))
+			if readErr != nil || len(entries) != 1 {
+				t.Errorf("rules/adjustments = %v, %v, want only the one file", entries, readErr)
+			}
+		})
+	}
+}

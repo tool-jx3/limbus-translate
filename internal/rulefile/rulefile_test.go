@@ -187,6 +187,7 @@ func TestDecodeMapping(t *testing.T) {
 func TestLint(t *testing.T) {
 	root := t.TempDir()
 	write(t, root, "rules/x/.gitkeep", "")
+	write(t, root, "rules/x/README.md", "what this folder is for")
 	write(t, root, "rules/x/a.yaml", "ok")
 	write(t, root, "rules/x/b.yaml", "bad")
 	write(t, root, "rules/x/c.yml", "x")

@@ -13,6 +13,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
@@ -541,6 +542,28 @@ func TestPhase2Replay(t *testing.T) {
 	if runs := strings.Fields(string(readFile(t, filepath.Join(p.fakeDir, "runs")))); !slices.Equal(runs, []string{"model=e2e", "model=e2e"}) {
 		t.Errorf("the fake claude ran %q, want twice with LCT_MODEL e2e", runs)
 	}
+
+	// 8. The person tidies the adjustment files with what the second plan
+	// found: the adjustment that moved gets its new key, and the one that
+	// expired goes, as its unit is translated again. The files lint clean, and
+	// a plan after it changes nothing in the state but the adjustments it
+	// reports: the moved one is at its own key now.
+	var tidied tidyOut
+	mustLct(t, &tidied, "adjust", "tidy")
+	if want := []string{"rules/adjustments/2026-11-03-rain.yaml", "rules/adjustments/2026-11-03-umbrella.yaml"}; !slices.Equal(tidied.Changed, want) || tidied.Moved != 1 || tidied.Removed != 1 {
+		t.Errorf("adjust tidy = %+v, want %v changed, 1 moved and 1 removed", tidied, want)
+	}
+	if left, err := adjust.Load(p.root); err != nil || len(left) != 1 || left[0].Key != p2Content(s1, 3) || left[0].ZH != adjKeptZH {
+		t.Errorf("the adjustments left = %+v, %v, want the moved one at %s", left, err, p2Content(s1, 3))
+	}
+	mustLct(t, nil, "rules", "lint")
+	beforeTidyPlan := p.state()
+	if replan := p.plan(); replan.Adjustments.Applied != 1 || len(replan.Adjustments.Moved) != 0 || len(replan.Adjustments.Expired) != 0 {
+		t.Errorf("plan after adjust tidy: Adjustments = %+v, want the one adjustment applied at its own key", replan.Adjustments)
+	}
+	if after := p.state(); !reflect.DeepEqual(after, beforeTidyPlan) {
+		t.Errorf("a plan after adjust tidy changed the state:\nbefore %v\nafter  %v", beforeTidyPlan, after)
+	}
 }
 
 // checkPhase2FirstPlan checks the plan of the first snapshot: there is no
@@ -592,6 +615,9 @@ func checkPhase2SecondPlan(t *testing.T, sum plan.Summary, rules string) {
 		Adjustments: plan.AdjustmentSummary{
 			Moved:   []plan.MovedKey{{From: p2Content(s1, 2), To: p2Content(s1, 3)}},
 			Expired: []string{p2Content(s1, 1)},
+			// The reworded line moved one line down, to the key of the
+			// adjustment that moved on.
+			ExpiredUnits: map[string]string{p2Content(s1, 1): p2Content(s1, 2)},
 		},
 		RequeueApplied: []plan.Applied{{ID: "2026-11-03-bufs", Units: 1}},
 		// The 4 claude lines of S1 that kept their KR, but the adjusted one.

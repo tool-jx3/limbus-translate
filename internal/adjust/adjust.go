@@ -16,6 +16,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -316,10 +317,35 @@ func Add(root string, a Adjustment, date, topic string) (string, error) {
 	if len(content) > 0 && !bytes.HasSuffix(content, []byte("\n")) {
 		content = append(content, '\n')
 	}
-	if err := rulefile.WriteAtomic(path, append(content, entry...)); err != nil {
+	appended := append(slices.Clone(content), entry...)
+	if err := checkAppended(content, appended, a); err != nil {
+		return "", invalid("cannot add to %s: %v (write it as a block list of \"- key: ...\" entries, or use another topic)", rel, err)
+	}
+	if err := rulefile.WriteAtomic(path, appended); err != nil {
 		return "", err
 	}
 	return rel, nil
+}
+
+// checkAppended reads the whole file again as Load would, before it is
+// written: after appending a to the entries of before it must have exactly
+// one more, and a last one that is a. A hand-written file can swallow what is
+// appended (it ends its document with "...", or starts the next one) or turn
+// unreadable (a flow sequence "[...]" ends where the new item begins), and a
+// file that does not load stops the plan.
+func checkAppended(before, after []byte, a Adjustment) error {
+	var old, now []Adjustment
+	if err := yaml.Unmarshal(before, &old); err != nil {
+		return err
+	}
+	if err := yaml.Unmarshal(after, &now); err != nil {
+		return fmt.Errorf("the file would not be readable: %w", err)
+	}
+	a.File = ""
+	if len(now) != len(old)+1 || now[len(now)-1] != a {
+		return fmt.Errorf("the file would hold %d entries instead of %d, with the new one last", len(now), len(old)+1)
+	}
+	return nil
 }
 
 // encode writes a as one YAML list item, in the layout of the spec. The

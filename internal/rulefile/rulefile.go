@@ -28,6 +28,12 @@ const Ext = ".yaml"
 // IsFile reports whether a file of a rule directory with this name is read.
 func IsFile(name string) bool { return strings.HasSuffix(name, Ext) }
 
+// IsAside reports whether a file of a rule directory with this name is one
+// that may be there without being read: the README.md that says what the
+// folder is for, and the .gitkeep that keeps an empty folder in git. Lint does
+// not report them; any other file that is not read is reported.
+func IsAside(name string) bool { return name == "README.md" || name == ".gitkeep" }
+
 // ID is the name of a file without its extension. A file that is applied once
 // is told apart by its ID, so renaming it makes it a new one.
 func ID(name string) string { return strings.TrimSuffix(name, Ext) }
@@ -209,7 +215,7 @@ func Lint(root, dir string, check func(data []byte) []string) []Issue {
 	for _, e := range entries {
 		rel := dir + "/" + e.Name()
 		switch {
-		case !e.IsDir() && e.Name() == ".gitkeep":
+		case !e.IsDir() && IsAside(e.Name()):
 		case e.IsDir() || !IsFile(e.Name()):
 			issues = append(issues, Issue{File: rel, Message: fmt.Sprintf("not a rule file: only %s files directly in %s are read", Ext, dir)})
 		default:

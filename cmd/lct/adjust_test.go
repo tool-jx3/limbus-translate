@@ -10,6 +10,8 @@ import (
 	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
@@ -328,5 +330,244 @@ func TestAdjustAddAddsTheSpaceAfterKeywordNames(t *testing.T) {
 	got, err := adjust.Load(root)
 	if err != nil || len(got) != 1 || got[0].ZH != want {
 		t.Errorf("Load = %+v, %v, want the adjustment with %q", got, err, want)
+	}
+}
+
+// tidyOut is what "adjust tidy" prints.
+type tidyOut struct {
+	Changed []string `json:"changed"`
+	Moved   int      `json:"moved"`
+	Removed int      `json:"removed"`
+}
+
+const tidyAdjustments = "rules/adjustments/2026-11-01-wording.yaml"
+
+// tidyEntry is an adjustment entry for key, made for the first snapshot.
+func tidyEntry(key, kr, zh string) string {
+	return "- key: " + key + "\n  raw: raw-20261029\n  kr_sha: " + units.KRSha(kr) + "\n  zh: " + zh + "\n  reason: 測試\n  rule: one-off\n"
+}
+
+// tidyRepo is adjustRepo with the state of a plan of the current snapshot:
+// the plan moved one adjustment, and four expired. Of these, two are about
+// units that were translated again since (one of them found by the key of the
+// adjustment, one by ExpiredUnits), and two are not: one unit has only the
+// human record of another adjustment, one is not a unit of KR.
+func tidyRepo(t *testing.T) (root string, files string) {
+	t.Helper()
+	root = adjustRepo(t)
+	const gone = "Sample.json|/dataList/%d/content"
+	key := func(n int) string { return strings.Replace(gone, "%d", string(rune('0'+n)), 1) }
+
+	files = tidyEntry(key(7), "뫼르소가 말했다", "移動的一筆") +
+		tidyEntry(key(8), "舊的原文八", "八已重翻") +
+		tidyEntry(key(9), "舊的原文九", "九還沒有重翻") +
+		tidyEntry(batchKey0, "오래된 원문", "同一個位置重翻") +
+		tidyEntry(key(5), "舊的原文五", "五只有人工紀錄")
+	writeTestFile(t, root, tidyAdjustments, files)
+
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	sha0, sha1 := units.KRSha(adjustKR0), units.KRSha("뫼르소가 말했다")
+	if err := st.SaveRecords(map[string]store.Record{
+		// translated again: claude's record of the current text
+		batchKey0: {Key: batchKey0, KRSha: sha0, ZH: "賦予 5 層 [Laceration] 強度", Origin: store.OriginClaude, Since: "raw-20261029"},
+		// the human record of an adjustment is no retranslation
+		batchKey1: {Key: batchKey1, KRSha: sha1, ZH: "莫梭說了話", Origin: store.OriginHuman, Since: "raw-20261029"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := st.SavePending([]store.PendingItem{{Key: key(9), Reason: plan.ReasonAdjustmentExpired}}); err != nil {
+		t.Fatal(err)
+	}
+	writePlan(t, st, plan.Summary{
+		RawTag: "raw-20261029", PrevRawTag: "raw-20261022",
+		Adjustments: plan.AdjustmentSummary{
+			Moved:   []plan.MovedKey{{From: key(7), To: batchKey1}},
+			Expired: []string{batchKey0, key(5), key(8), key(9)},
+			// The unit of the key 8 moved to batchKey0; the unit of 5 is
+			// batchKey1; the others are at their own keys.
+			ExpiredUnits: map[string]string{key(8): batchKey0, key(5): batchKey1},
+		},
+	})
+	return root, files
+}
+
+func writePlan(t *testing.T, st *store.Store, sum plan.Summary) {
+	t.Helper()
+	sum.Changes.FilesAdded, sum.Changes.FilesDeleted, sum.Changes.FilesChanged, sum.Changes.FilesShifted = []string{}, []string{}, []string{}, []string{}
+	if sum.Adjustments.Moved == nil {
+		sum.Adjustments.Moved = []plan.MovedKey{}
+	}
+	if sum.Adjustments.Expired == nil {
+		sum.Adjustments.Expired = []string{}
+	}
+	sum.RequeueApplied, sum.RewriteApplied, sum.FrozenChanged, sum.NewSpeakers = []plan.Applied{}, []plan.Applied{}, []string{}, []string{}
+	sum.NewFilesDefaultFamily = []string{}
+	if err := st.WriteMetaJSON(plan.File, sum); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestAdjustTidyMovesKeysAndRemovesRetranslatedAdjustments(t *testing.T) {
+	root, files := tidyRepo(t)
+
+	var out tidyOut
+	mustLct(t, &out, "adjust", "tidy")
+
+	if want := (tidyOut{Changed: []string{tidyAdjustments}, Moved: 1, Removed: 2}); !slices.Equal(out.Changed, want.Changed) || out.Moved != want.Moved || out.Removed != want.Removed {
+		t.Errorf("output = %+v, want %+v", out, want)
+	}
+	// Only the key of the first entry changed, and the two entries of the
+	// unit that has claude's translation of the current text are gone.
+	want := strings.Replace(files, "key: Sample.json|/dataList/7/content", "key: "+batchKey1, 1)
+	want = strings.Replace(want, tidyEntry("Sample.json|/dataList/8/content", "舊的原文八", "八已重翻"), "", 1)
+	want = strings.Replace(want, tidyEntry(batchKey0, "오래된 원문", "同一個位置重翻"), "", 1)
+	if got, err := os.ReadFile(filepath.Join(root, tidyAdjustments)); err != nil || string(got) != want {
+		t.Errorf("file =\n%s\nwant\n%s\n(%v)", got, want, err)
+	}
+
+	// The second run has nothing left to do.
+	mustLct(t, &out, "adjust", "tidy")
+	if len(out.Changed) != 0 || out.Moved != 0 || out.Removed != 0 {
+		t.Errorf("second run = %+v, want nothing", out)
+	}
+}
+
+// A unit that is translated again but queued again (a requeue) is not settled.
+func TestAdjustTidyKeepsAdjustmentsOfUnitsThatAreQueued(t *testing.T) {
+	root, files := tidyRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	if err := st.SavePending([]store.PendingItem{{Key: batchKey0, Reason: "requeue"}}); err != nil {
+		t.Fatal(err)
+	}
+	var out tidyOut
+	mustLct(t, &out, "adjust", "tidy")
+	if out.Removed != 0 {
+		t.Errorf("removed = %d, want the adjustment kept while its unit is in the queue", out.Removed)
+	}
+	want := strings.Replace(files, "key: Sample.json|/dataList/7/content", "key: "+batchKey1, 1)
+	if got, _ := os.ReadFile(filepath.Join(root, tidyAdjustments)); string(got) != want {
+		t.Errorf("file =\n%s\nwant only the moved key changed", got)
+	}
+}
+
+// A record of an older KR text is not a retranslation either.
+func TestAdjustTidyKeepsAdjustmentsOfUnitsWithAStaleRecord(t *testing.T) {
+	root, _ := tidyRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	if err := st.SaveRecords(map[string]store.Record{
+		batchKey0: {Key: batchKey0, KRSha: units.KRSha("older text"), ZH: "舊譯文", Origin: store.OriginClaude, Since: "raw-20261022"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	var out tidyOut
+	mustLct(t, &out, "adjust", "tidy")
+	if out.Removed != 0 || out.Moved != 1 {
+		t.Errorf("output = %+v, want one move and nothing removed", out)
+	}
+}
+
+// The plan can be older than the files: an adjustment it called expired may
+// have been written again since. Tidy asks the KR again and keeps one that
+// applies, and does not move one to a place the KR does not show.
+func TestAdjustTidyChecksTheAdjustmentsAgainstTheKR(t *testing.T) {
+	root, _ := tidyRepo(t)
+	// Settled units, but the adjustments apply to them (the first at its key,
+	// the second would be moved to batchKey1, not to the key the plan says).
+	files := tidyEntry(batchKey0, adjustKR0, "仍然有效") + tidyEntry("Sample.json|/dataList/7/content", "뫼르소가 말했다", "移到別處")
+	writeTestFile(t, root, tidyAdjustments, files)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	writePlan(t, st, plan.Summary{
+		RawTag: "raw-20261029", PrevRawTag: "raw-20261022",
+		Adjustments: plan.AdjustmentSummary{
+			Moved:   []plan.MovedKey{{From: "Sample.json|/dataList/7/content", To: "Sample.json|/dataList/3/content"}},
+			Expired: []string{batchKey0},
+		},
+	})
+
+	var out tidyOut
+	mustLct(t, &out, "adjust", "tidy")
+
+	if len(out.Changed) != 0 || out.Moved != 0 || out.Removed != 0 {
+		t.Errorf("output = %+v, want nothing done", out)
+	}
+	if got, _ := os.ReadFile(filepath.Join(root, tidyAdjustments)); string(got) != files {
+		t.Errorf("the adjustment file changed:\n%s", got)
+	}
+}
+
+func TestAdjustTidyNeedsAPlanOfTheCurrentSnapshot(t *testing.T) {
+	root, files := tidyRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+
+	for name, setup := range map[string]func(){
+		"a plan of an older snapshot": func() {
+			writePlan(t, st, plan.Summary{
+				RawTag: "raw-20261022", PrevRawTag: "raw-20261022",
+				Adjustments: plan.AdjustmentSummary{Moved: []plan.MovedKey{{From: "Sample.json|/dataList/7/content", To: batchKey1}}},
+			})
+		},
+		"no plan": func() { os.Remove(filepath.Join(root, ".work", "tw", ".meta", plan.File)) },
+	} {
+		setup()
+		var out tidyOut
+		mustLct(t, &out, "adjust", "tidy")
+		if len(out.Changed) != 0 || out.Moved != 0 || out.Removed != 0 {
+			t.Errorf("%s: output = %+v, want nothing done", name, out)
+		}
+		if got, _ := os.ReadFile(filepath.Join(root, tidyAdjustments)); string(got) != files {
+			t.Errorf("%s: the adjustment file changed", name)
+		}
+	}
+}
+
+func TestAdjustTidyOutput(t *testing.T) {
+	tidyRepo(t)
+
+	code, stdout, stderr := lct(t, "adjust", "tidy")
+	if code != 0 || stderr != "" {
+		t.Fatalf("exit code = %d, stderr = %q, want 0", code, stderr)
+	}
+	for _, want := range []string{tidyAdjustments, "1 moved", "2 removed"} {
+		if !strings.Contains(stdout, want) {
+			t.Errorf("output lacks %q:\n%s", want, stdout)
+		}
+	}
+
+	code, stdout, _ = lct(t, "adjust", "tidy")
+	if code != 0 || !strings.Contains(stdout, "nothing") {
+		t.Errorf("second run: exit code = %d, output %q, want 0 and a word that nothing was done", code, stdout)
+	}
+	var raw map[string]json.RawMessage
+	mustLct(t, &raw, "adjust", "tidy")
+	if got := string(raw["changed"]); got != "[]" || string(raw["moved"]) != "0" || string(raw["removed"]) != "0" {
+		t.Errorf("JSON of nothing to do = %v, want changed [] and zero counts", raw)
+	}
+}
+
+func TestAdjustTidyErrors(t *testing.T) {
+	root, _ := tidyRepo(t)
+	if code, _, stderr := lct(t, "adjust", "tidy", "extra"); code != 1 || !strings.Contains(stderr, "extra") {
+		t.Errorf("an argument: exit code = %d, stderr = %q, want 1", code, stderr)
+	}
+	if code, _, _ := lct(t, "adjust", "tidy", "--bogus"); code != 1 {
+		t.Errorf("an unknown flag: exit code = %d, want 1", code)
+	}
+
+	// A file that cannot be edited safely is the person's to edit: exit 1,
+	// and nothing changes.
+	flow := "[{key: Sample.json|/dataList/7/content, raw: raw-20261029, kr_sha: " + units.KRSha("뫼르소가 말했다") + ", zh: 甲, reason: r, rule: one-off}]\n"
+	writeTestFile(t, root, tidyAdjustments, flow)
+	code, _, stderr := lct(t, "adjust", "tidy")
+	if code != 1 || !strings.Contains(stderr, "2026-11-01-wording.yaml") {
+		t.Errorf("a flow list: exit code = %d, stderr = %q, want 1 naming the file", code, stderr)
+	}
+	if got, _ := os.ReadFile(filepath.Join(root, tidyAdjustments)); string(got) != flow {
+		t.Errorf("the file changed:\n%s", got)
+	}
+
+	// An adjustment file that does not load is a system error, as for plan.
+	writeTestFile(t, root, tidyAdjustments, "key: not a list\n")
+	if code, _, stderr := lct(t, "adjust", "tidy"); code != 2 || !strings.Contains(stderr, "2026-11-01-wording.yaml") {
+		t.Errorf("a broken file: exit code = %d, stderr = %q, want 2 naming the file", code, stderr)
 	}
 }

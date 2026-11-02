@@ -172,7 +172,7 @@ func TestGuideResolveUsageErrors(t *testing.T) {
 
 func TestCommandsAreRegistered(t *testing.T) {
 	names := strings.Join(cli.Commands(), " ")
-	for _, want := range []string{"rules lint", "guide resolve", "adjust add"} {
+	for _, want := range []string{"rules lint", "guide resolve", "adjust add", "adjust tidy"} {
 		if !strings.Contains(names, want) {
 			t.Errorf("command %q is not registered (have: %s)", want, names)
 		}
@@ -219,6 +219,52 @@ func TestRulesLintChecksRequeueAndRewriteFiles(t *testing.T) {
 			if !strings.Contains(byFile[file], want) {
 				t.Errorf("findings in %s = %q, want one mentioning %q", file, byFile[file], want)
 			}
+		}
+	}
+}
+
+// A person can leave a README.md (and the empty .gitkeep that keeps the
+// folder in git) in each folder of rule files; any other file that is not
+// .yaml is still reported, since it would be silently ignored.
+func TestLintAllowsAReadme(t *testing.T) {
+	root := cleanRules(t)
+	dirs := []string{"rules/adjustments", "rules/requeue", "rules/rewrite"}
+	for _, dir := range dirs {
+		writeTestFile(t, root, dir+"/.gitkeep", "")
+		writeTestFile(t, root, dir+"/README.md", "# 這個資料夾放什麼\n")
+	}
+	if out, err := runIn(t, runRulesLint, root, false); err != nil {
+		t.Fatalf("lint with a README.md in each folder: %v\n%s", err, out)
+	}
+
+	for _, dir := range dirs {
+		writeTestFile(t, root, dir+"/x.yml", "reason: r\n")
+		writeTestFile(t, root, dir+"/notes.md", "# 不是說明檔\n")
+	}
+	out, err := runIn(t, runRulesLint, root, true)
+	if !errors.Is(err, cli.ErrFindings) {
+		t.Fatalf("err = %v, want cli.ErrFindings\n%s", err, out)
+	}
+	var report struct {
+		Errors []struct{ File, Message string }
+	}
+	if err := json.Unmarshal([]byte(out), &report); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	got := map[string]bool{}
+	for _, e := range report.Errors {
+		got[e.File] = true
+	}
+	want := map[string]bool{}
+	for _, dir := range dirs {
+		want[dir+"/x.yml"], want[dir+"/notes.md"] = true, true
+	}
+	if len(got) != len(want) {
+		t.Errorf("findings in %v, want exactly %v (no finding for a README.md)", got, want)
+	}
+	for file := range want {
+		if !got[file] {
+			t.Errorf("no finding for %s", file)
 		}
 	}
 }
