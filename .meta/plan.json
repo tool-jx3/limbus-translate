@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261029",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "acd4e0e5ad871a20ab38ff0e218adc6a45356c21",
+  "rules_commit": "a4d0a884d5742af1a2a809f0fe074d7db7f9b26f",
   "changes": {
     "unchanged": 0,
     "moved": 0,
@@ -12,20 +12,49 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 0,
+    "applied": 3,
     "moved": [],
     "expired": []
   },
-  "requeue_applied": [],
+  "requeue_applied": [
+    {
+      "id": "2026-11-02-story-ruby-stutter",
+      "units": 2
+    }
+  ],
   "rewrite_applied": [
     {
-      "id": "2026-11-02-closing-tags",
-      "units": 2
+      "id": "2026-11-02-story-ruby-1-ryoshu",
+      "units": 1
+    },
+    {
+      "id": "2026-11-02-story-ruby-2-ryo-shu",
+      "units": 3
+    },
+    {
+      "id": "2026-11-02-story-ruby-3-ryooshuu",
+      "units": 4
+    },
+    {
+      "id": "2026-11-02-story-ruby-4-yoshihide",
+      "units": 99
+    },
+    {
+      "id": "2026-11-02-story-ruby-5-parens",
+      "units": 19
+    },
+    {
+      "id": "2026-11-02-story-ruby-6-foreign",
+      "units": 3
+    },
+    {
+      "id": "2026-11-02-story-ruby-7-allez-stutter",
+      "units": 1
     }
   ],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],
   "new_files_default_family": [],
-  "pending": 0
+  "pending": 2
 }

@@ -1,6 +1,15 @@
 {
-  "requeue": [],
+  "requeue": [
+    "2026-11-02-story-ruby-stutter"
+  ],
   "rewrite": [
-    "2026-11-02-closing-tags"
+    "2026-11-02-closing-tags",
+    "2026-11-02-story-ruby-1-ryoshu",
+    "2026-11-02-story-ruby-2-ryo-shu",
+    "2026-11-02-story-ruby-3-ryooshuu",
+    "2026-11-02-story-ruby-4-yoshihide",
+    "2026-11-02-story-ruby-5-parens",
+    "2026-11-02-story-ruby-6-foreign",
+    "2026-11-02-story-ruby-7-allez-stutter"
   ]
 }
