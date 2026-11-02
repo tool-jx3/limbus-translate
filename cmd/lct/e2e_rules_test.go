@@ -599,7 +599,7 @@ const (
 		"關閉而未合併，裡面的項目全部視為不採用；不要刪掉 `<!-- suggestion:… -->` 那一行；" +
 		"`## 需要人決定` 的項目由人決定，採用就在 PR 補上修改，不採用就記進 `rules/declined.yaml`。\n\n"
 	impactHeading    = "## 規則變更的影響評估"
-	undecidedHeading = "## 需要人決定\n\n"
+	undecidedHeading = proposal.UndecidedHeading + "\n\n"
 )
 
 func proposalSection(id, title, text string) string {

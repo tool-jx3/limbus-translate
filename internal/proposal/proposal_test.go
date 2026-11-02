@@ -386,6 +386,53 @@ func TestProposalStartCollectsClosedPRs(t *testing.T) {
 		"family/Yyy.json", "family/Zzz-twth.json", "inconsistent/ally/name/00000001", "inconsistent/ally/name/fd93b875", "term/신규 용어")
 }
 
+// An item the rules-review skill listed under 「需要人決定」 was not decided
+// by the merge of its PR: an inconsistent translation there is not handled,
+// and is suggested again. The section ends at the next heading of its level
+// or above. A PR closed without a merge declines all of its items.
+func TestProposalStartDoesNotHandleUndecidedItems(t *testing.T) {
+	e := newEnv(t)
+	mergedBody := "這是規則建議。\n\n" +
+		"<!-- suggestion:inconsistent/a/x/00000001 -->\n### 確定的項目\n\n" +
+		UndecidedHeading + "\r\n\n" +
+		"<!-- suggestion:inconsistent/a/x/00000002 -->\n### 需要人決定的項目\n\n理由\n\n" +
+		"<!-- suggestion:term/新 詞 -->\n### 詞彙\n\n" +
+		"## 規則變更的影響評估\n\n" +
+		"<!-- suggestion:inconsistent/a/x/00000003 -->\n"
+	e.setPRs(nil, []ghPR{
+		{Number: 11, Labels: rulesLabel, Body: mergedBody, MergedAt: merged()},
+		{Number: 12, Labels: rulesLabel, Body: UndecidedHeading + "\n\n<!-- suggestion:inconsistent/a/x/00000004 -->\n"},
+	})
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	assertIDs(t, "Handled", got.Handled, "inconsistent/a/x/00000001", "inconsistent/a/x/00000003")
+	assertIDs(t, "Declined", got.Declined, "inconsistent/a/x/00000004")
+	if slices.Contains(e.excludeIDs(), "inconsistent/a/x/00000002") {
+		t.Errorf("exclude.txt = %q, want the undecided inconsistent translation left out of it", e.excludeIDs())
+	}
+}
+
+func TestProposalUndecidedIDs(t *testing.T) {
+	body := "intro <!-- suggestion:term/in-text -->\n" +
+		"<!-- suggestion:term/a -->\n" +
+		"## 需要人決定（2 項）\n" +
+		"<!-- suggestion:term/b -->\n" +
+		"### 一項\n" +
+		"<!-- suggestion:term/c -->\n" +
+		"# 另一章\n" +
+		"<!-- suggestion:term/d -->\n" +
+		UndecidedHeading + "\n" +
+		"<!-- suggestion:term/e -->\n"
+	if got, want := undecidedIDs(body), []string{"term/b", "term/c", "term/e"}; !slices.Equal(got, want) {
+		t.Errorf("undecidedIDs = %q, want %q", got, want)
+	}
+	if got := undecidedIDs("<!-- suggestion:term/a -->\n"); len(got) != 0 {
+		t.Errorf("undecidedIDs without the section = %q, want none", got)
+	}
+}
+
 func TestProposalStartReadsMergedAtTheWayGHPrintsIt(t *testing.T) {
 	e := newEnv(t)
 	// gh prints null for a PR that was not merged, and older versions the

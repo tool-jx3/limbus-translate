@@ -57,6 +57,11 @@ const (
 	// The marker of a suggestion in the description of a PR.
 	markerStart = "<!-- suggestion:"
 	markerEnd   = " -->"
+
+	// UndecidedHeading starts the section of a PR description where the
+	// rules-review skill lists the items it was not sure of, for a person to
+	// decide. The merge of the PR decides none of them (see Start).
+	UndecidedHeading = "## 需要人決定"
 )
 
 // RuleFolders are the only folders a rules PR may change, relative to the
@@ -123,7 +128,9 @@ type Started struct {
 	// Handled are the ids of the merged PRs that still have to be left out: the
 	// inconsistent translations. A merged rule does not change what was
 	// translated before, so the same inconsistency would be suggested again.
-	// The other kinds are answered by the rules they changed.
+	// The other kinds are answered by the rules they changed. An item of the
+	// UndecidedHeading section was not decided by the merge, and is not
+	// handled: it is suggested again.
 	Handled []string `json:"handled"`
 	// ExistingBody is the path, relative to the repo root, of the file that
 	// holds the description of the open PR as it is now (edits by people
@@ -385,11 +392,12 @@ func Start(o Options) (*Started, error) {
 	}
 	var declined, handled []string
 	for _, p := range closed {
+		undecided := undecidedIDs(p.Body)
 		for _, id := range suggestionIDs(p.Body) {
 			switch {
 			case !p.merged():
 				declined = append(declined, id)
-			case strings.HasPrefix(id, suggest.KindInconsistent+"/"):
+			case strings.HasPrefix(id, suggest.KindInconsistent+"/") && !slices.Contains(undecided, id):
 				handled = append(handled, id)
 			}
 		}
@@ -692,6 +700,26 @@ func brokenMarkers(body string) []string {
 		}
 	}
 	return broken
+}
+
+// undecidedIDs returns the ids of the markers in the UndecidedHeading section
+// of body, in order: from a line that starts with the heading to the next
+// heading of level 1 or 2. Its items have headings of level 3.
+func undecidedIDs(body string) []string {
+	var ids []string
+	in := false
+	for _, line := range strings.Split(body, "\n") {
+		line = strings.TrimSuffix(line, "\r")
+		switch {
+		case strings.HasPrefix(line, UndecidedHeading):
+			in = true
+		case strings.HasPrefix(line, "# ") || strings.HasPrefix(line, "## "):
+			in = false
+		case in:
+			ids = append(ids, suggestionIDs(line)...)
+		}
+	}
+	return ids
 }
 
 func uniqueSorted(ids []string) []string {

@@ -736,7 +736,7 @@ var rulesReviewSays = []skillSays{
 	{"`nothing: ", "the skill does not say what it writes when it proposes nothing, so a run that proposes nothing looks like a failure"},
 	{"`failed: ", "the skill does not say what it writes when lct proposal publish was refused for good, so the workflow cannot tell it from a run that proposed nothing"},
 	{"不要為了通過而", "the skill does not forbid a pointless change to get past the refusal \"nothing to propose\" of lct proposal publish"},
-	{"`## 需要人決定`", "the skill does not say where the items it is unsure of go: an item that is never listed is suggested first again on every run, and the run stalls on it"},
+	{"`" + proposal.UndecidedHeading + "`", "the skill does not say where the items it is unsure of go, under the heading lct proposal start reads (an item that is never listed is suggested first again on every run, and the run stalls on it; one under another heading is taken for decided when the PR is merged)"},
 	{"不記進 `rules/declined.yaml`", "the skill does not keep an item it is unsure of out of the declined list: a person would never decide on it"},
 	{"也照樣 publish", "the skill does not publish a description that only adds items for a person to decide: they would never leave the first 8 suggestions"},
 	{"不算沒有東西可以提出", "the skill writes nothing: whenever it changed no rule file, though its items for a person to decide are something to propose"},
