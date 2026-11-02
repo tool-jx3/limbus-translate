@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cmp"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -1436,7 +1437,8 @@ type workflowEvents struct {
 
 // workflowFile is the part of a workflow file the contract reads.
 type workflowFile struct {
-	On          any `yaml:"on"`
+	Name        string `yaml:"name"`
+	On          any    `yaml:"on"`
 	Concurrency struct {
 		Group string `yaml:"group"`
 	} `yaml:"concurrency"`
@@ -1515,6 +1517,31 @@ func parseWorkflow(file, content string) (*workflowFile, []string) {
 }
 
 func workflowPath(name string) string { return workflowDir + "/" + name }
+
+// checkWorkflowRunNames checks that the workflows rules-proposal.yml waits for
+// (workflow_run.workflows, which GitHub matches against the name: of a
+// workflow, not its file) are update.yml and rebuild.yml by their names: a
+// workflow renamed would never start it again, and no test of one file sees
+// that. files holds the workflows by file name.
+func checkWorkflowRunNames(files map[string]string) []string {
+	var problems []string
+	var want []string
+	for _, name := range []string{"update.yml", "rebuild.yml"} {
+		w, p := parseWorkflow(workflowPath(name), files[name])
+		if w == nil {
+			return append(problems, p...)
+		}
+		want = append(want, w.Name)
+	}
+	rules, p := parseWorkflow(workflowPath("rules-proposal.yml"), files["rules-proposal.yml"])
+	if rules == nil {
+		return append(problems, p...)
+	}
+	if got := rules.events().WorkflowRun.Workflows; !slices.Equal(slices.Sorted(slices.Values(got)), slices.Sorted(slices.Values(want))) {
+		problems = append(problems, fmt.Sprintf("%s: workflow_run workflows = %v, want the names of update.yml and rebuild.yml %v", workflowPath("rules-proposal.yml"), got, want))
+	}
+	return problems
+}
 
 // checkWorkflowSet reports the workflows of workflowNames that are not among
 // have (file names).
@@ -1872,6 +1899,11 @@ func checkPipelineNotRun(file string, steps []workflowStep) []string {
 		if !strings.Contains(d.Run, want) {
 			add("the decide step lacks %q: the record of a translation that did not run reads steps.decide.outputs.not_run", want)
 		}
+	}
+	// A pipeline that does not ask at all is a problem of pipelineMarkers.
+	asked := slices.ContainsFunc(steps, func(s workflowStep) bool { return strings.Contains(s.Run, "bin/lct publish --check --json") })
+	if asked && !strings.Contains(d.Run, "release_check=$(bin/lct publish --check --json)") {
+		add("the decide step does not ask release_check=$(bin/lct publish --check --json): whether a Release is still due is part of the idle check, and asked of tw as the last run left it")
 	}
 
 	i := slices.IndexFunc(steps, func(s workflowStep) bool { return strings.Contains(s.Run, "bin/lct translate --not-run") })
@@ -2454,6 +2486,9 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 		if i != act && strings.Contains(fmt.Sprint(s.Env), "secrets.") {
 			add("a step other than the action has a secret in its env: %q", firstLine(s.Run))
 		}
+		if i != act && strings.Contains(fmt.Sprint(s.With), "secrets.") {
+			add("a step other than the action has a secret in its with: %q", cmp.Or(s.Uses, firstLine(s.Run)))
+		}
 	}
 	return append(problems, checkJQKeys(file, content, rulesProposalJSONInputs(), rulesProposalJSONRequired)...)
 }
@@ -2544,6 +2579,31 @@ func jsonFields(v any) map[string]reflect.Kind {
 		fields[name] = ft.Kind()
 	}
 	return fields
+}
+
+// lctJSONForbidden are the keys of an lct output that pipeline.yml must not
+// read, with the reason.
+var lctJSONForbidden = map[string]map[string]string{
+	// Check.Tag is the Release the HEAD of tw has, not the tag of the next
+	// Release, which only a build numbers (out/publish.json).
+	"release_check": {"tag": "the tag of the check is the Release HEAD has, not the next one: the next tag is the build's (out/publish.json)"},
+}
+
+// checkJQForbidden reports the keys of forbidden that a jq of the workflow
+// reads from their input.
+func checkJQForbidden(file, content string, forbidden map[string]map[string]string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	for _, call := range jqCalls(w.runs()) {
+		for _, m := range jqKeyRe.FindAllStringSubmatch(call.filter, -1) {
+			if why, ok := forbidden[call.input][m[1]]; ok {
+				problems = append(problems, fmt.Sprintf("%s: reads %q from %s: %s", file, m[1], call.input, why))
+			}
+		}
+	}
+	return problems
 }
 
 // lctJSONInputs are what pipeline.yml feeds to jq: each is the output of an
@@ -2726,6 +2786,9 @@ func TestWorkflowContract(t *testing.T) {
 		t.Error(problem)
 	}
 	for _, problem := range checkRulesProposalWorkflow(rulesFile, rules, skillTools) {
+		t.Error(problem)
+	}
+	for _, problem := range checkWorkflowRunNames(files) {
 		t.Error(problem)
 	}
 	for _, problem := range checkRefsDocumented(files, readme) {
@@ -2945,6 +3008,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"idle terms joined by ||", `[ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ]`, `[ "$PENDING" -eq 0 ] || [ "$APPLIED" -eq 0 ]`, "joined by &&"},
 		{"the raw tag tw was built from is not read", "jq -r '.raw_tag // empty' .work/tw/.meta/build.json 2>/dev/null", "echo ''", `".work/tw/.meta/build.json"`},
 		{"the Release still due is asked after tw is committed to", "release_check=$(bin/lct publish --check --json)", "release_check=$(git -C .work/tw commit --allow-empty -m x; bin/lct publish --check --json)", `"bin/lct publish --check" must come before "git -C .work/tw commit"`},
+		{"the subject of tw asked after tw is committed to", "tw_subject=$(git -C .work/tw log -1 --format=%s)", "tw_subject=$(git -C .work/tw commit --allow-empty -m x; git -C .work/tw log -1 --format=%s)", `"git -C .work/tw log -1 --format=%s" must come before "git -C .work/tw commit"`},
 
 		// The status answer is checked before it is written to the outputs.
 		{"a status answer written unchecked", `[!A-Za-z0-9_:.+\ -]`, `[!A-Za-z0-9_:.+-]`, "unchecked"},
@@ -2980,6 +3044,11 @@ func TestWorkflowContract(t *testing.T) {
 		src := mutate(t, pipeline, "bin/lct build --json", "bin/lct build --json; git -C .work/tw push origin tw")
 		src = mutate(t, src, "            git -C .work/tw push origin tw\n          fi", "            git -C .work/tw status\n          fi")
 		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), `"git -C .work/tw push origin tw" must come before "bin/lct build"`)
+	})
+	t.Run("the Release still due asked outside the decide step", func(t *testing.T) {
+		src := mutate(t, pipeline, "release_check=$(bin/lct publish --check --json)", "release_check=$(cat release.json)")
+		src = mutate(t, src, "          plan=$(bin/lct plan --json)\n", "          bin/lct publish --check --json > release.json\n          plan=$(bin/lct plan --json)\n")
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), "the decide step does not ask release_check=$(bin/lct publish --check --json)")
 	})
 	t.Run("the claude CLI installed where the API key is", func(t *testing.T) {
 		src := mutate(t, pipeline, "          status=0\n          bin/lct translate", "          npm install -g @anthropic-ai/claude-code@2.1.316\n          status=0\n          bin/lct translate")
@@ -3268,6 +3337,20 @@ func TestWorkflowContract(t *testing.T) {
 	t.Run("a secret that is not the key", func(t *testing.T) {
 		src := mutate(t, rules, "anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}", "anthropic_api_key: ${{ secrets.OTHER_KEY }}")
 		hasProblem(t, checkWorkflow(rulesFile, src, commands), "secrets.OTHER_KEY")
+	})
+	t.Run("the key in the with of another step", func(t *testing.T) {
+		src := mutate(t, rules, "          go-version-file: go.mod\n", "          go-version-file: go.mod\n          token: ${{ secrets.ANTHROPIC_API_KEY }}\n")
+		wantProblems(t, checkRulesProposalWorkflow(rulesFile, src, skillTools), "a secret in its with", "actions/setup-go@v6")
+	})
+	t.Run("a workflow it waits for renamed", func(t *testing.T) {
+		for _, name := range []string{"update.yml", "rebuild.yml"} {
+			renamed := maps.Clone(files)
+			renamed[name] = mutate(t, files[name], "name: "+strings.TrimSuffix(name, ".yml")+"\n", "name: "+strings.TrimSuffix(name, ".yml")+" pack\n")
+			wantProblems(t, checkWorkflowRunNames(renamed), "workflow_run workflows", strings.TrimSuffix(name, ".yml")+" pack")
+		}
+		other := maps.Clone(files)
+		other["rules-proposal.yml"] = mutate(t, rules, "workflows: [update, rebuild]", "workflows: [update, rebuild, ci]")
+		wantProblems(t, checkWorkflowRunNames(other), "workflow_run workflows")
 	})
 	t.Run("a model name", func(t *testing.T) {
 		root := t.TempDir()
@@ -3670,9 +3753,17 @@ func TestWorkflowReadsLctJSON(t *testing.T) {
 	for _, problem := range checkJQKeys(file, pipeline, inputs, lctJSONRequired) {
 		t.Error(problem)
 	}
+	for _, problem := range checkJQForbidden(file, pipeline, lctJSONForbidden) {
+		t.Error(problem)
+	}
 	if t.Failed() {
 		return
 	}
+	t.Run("the tag of the Release check read", func(t *testing.T) {
+		src := mutate(t, pipeline, "          release_needed=$(jq -er '.release_needed | tostring' <<<\"$release_check\")\n",
+			"          release_needed=$(jq -er '.release_needed | tostring' <<<\"$release_check\")\n          tag=$(jq -r .tag <<<\"$release_check\")\n")
+		wantProblems(t, checkJQForbidden(file, src, lctJSONForbidden), `reads "tag" from release_check`)
+	})
 
 	for _, tc := range []struct{ name, old, repl string }{
 		{"a key of publish", "jq -er .tw_commit", "jq -er .tw_sha"},
