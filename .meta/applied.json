@@ -1,4 +1,6 @@
 {
   "requeue": [],
-  "rewrite": []
+  "rewrite": [
+    "2026-11-02-closing-tags"
+  ]
 }
