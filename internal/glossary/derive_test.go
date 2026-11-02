@@ -180,3 +180,32 @@ func TestGlossaryDeriveWithoutFiles(t *testing.T) {
 		t.Error("Derive without a KR pack did not fail")
 	}
 }
+
+// A name the pack writes with blanks around it is the name the glossary or a
+// declined term has without them: it is left out. One that is not known is
+// listed as the pack has it.
+func TestGlossaryDeriveComparesNamesWithoutBlanks(t *testing.T) {
+	kr := krPack(t, map[string]string{
+		bufsFile: `{"dataList":[
+ {"id":"Lead","name":" 앞 공백"},
+ {"id":"Trail","name":"뒤 공백 "},
+ {"id":"New","name":" 새 이름"}
+]}`,
+	})
+	records := recordsOf(
+		translate(bufsFile, "/dataList/0/name", " 앞 공백", "前空白"),
+		translate(bufsFile, "/dataList/1/name", "뒤 공백 ", "後空白"),
+		translate(bufsFile, "/dataList/2/name", " 새 이름", "新名"),
+	)
+	got, err := glossary.Derive(glossary.Inputs{
+		KR: kr, Records: records,
+		Terms:    []rules.Term{{KR: "앞 공백", ZH: "前空白", Status: rules.StatusApproved}},
+		Declined: []suggest.Declined{{ID: "term/뒤 공백", Reason: "不需要", Date: "2026-11-05"}},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []glossary.Candidate{{KR: " 새 이름", ZH: "新名", Source: "keyword"}}; !reflect.DeepEqual(got, want) {
+		t.Errorf("Derive = %+v, want %+v: the known names left out whatever their blanks, the new one as the pack has it", got, want)
+	}
+}

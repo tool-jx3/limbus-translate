@@ -62,7 +62,8 @@ type Inputs struct {
 // It leaves out a KR name that any glossary entry has as its kr, whatever the
 // entry's status or files, a KR name whose term suggestion ("term/<kr>") is
 // declined, and a name the translation has not rendered yet, one whose ZH is
-// still Korean. A name of several ids or files that is rendered the same way
+// still Korean. The names are compared without the blanks around them, which
+// the pack has on a few; a candidate has the KR as the pack has it. A name of several ids or files that is rendered the same way
 // is listed once; one that is rendered in several ways is listed once for
 // each.
 func Derive(in Inputs) ([]Candidate, error) {
@@ -71,11 +72,11 @@ func Derive(in Inputs) ([]Candidate, error) {
 	}
 	skip := map[string]bool{}
 	for _, t := range in.Terms {
-		skip[t.KR] = true
+		skip[strings.TrimSpace(t.KR)] = true
 	}
 	for _, d := range in.Declined {
 		if kr, ok := strings.CutPrefix(d.ID, suggest.KindTerm+"/"); ok {
-			skip[kr] = true
+			skip[strings.TrimSpace(kr)] = true
 		}
 	}
 
@@ -83,7 +84,7 @@ func Derive(in Inputs) ([]Candidate, error) {
 	add := func(source string, krNames, zhNames map[string]string) {
 		for id, kr := range krNames {
 			zh, ok := zhNames[id]
-			if ok && !skip[kr] && !hasHangul(zh) {
+			if ok && !skip[strings.TrimSpace(kr)] && !hasHangul(zh) {
 				found = append(found, Candidate{KR: kr, ZH: zh, Source: source})
 			}
 		}
