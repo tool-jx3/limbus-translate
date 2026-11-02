@@ -38,7 +38,7 @@ allowed-tools:
    - 用法：執行 `bin/lct search --json --text RE --limit 20`，`RE` 是 `kr` 跳脫正規表示式特殊字元後的樣子（說話者另可用 `--speaker`）。看它在幾個單位出現、現行譯文怎麼用這個詞，是否有不同譯法。結果的筆數剛好等於 `--limit` 時可能被截斷了（JSON 不另外標示），說明這是前幾筆
    - `term` 候選另外給人看詞條的 `notes`、`category` 與 `files`：用 Read 讀 `glossary/terms.yaml`（約千行，讀一次就好）找到該條。同一個 `kr` 可有多個條目（`files` 不同），都要看
 3. 人對每個詞決定一種，並依決定寫入。今天的日期用 `YYYY-MM-DD`：
-   - 採用現行譯名：`term` 候選把該條目的 `status` 改成 `approved`；`derive` 的候選在 `glossary/terms.yaml` 新增一條，`kr` 與候選完全相同（含空白，否則下次還會被列出），`zh` 用現行譯名，`status: approved`，`category` 依人的意思（見 `glossary/README.md`）。只在人要求時才加 `forbidden`（驗證時以它擋掉其他譯法）
+   - 採用現行譯名：`term` 候選把該條目的 `status` 改成 `approved`；`derive` 的候選在 `glossary/terms.yaml` 新增一條，`kr` 寫候選的 KR，去掉前後的空白（`bin/lct glossary derive` 比對時不看前後的空白，所以這樣寫下次就不會再列出），`zh` 用現行譯名，`status: approved`，`category` 依人的意思（見 `glossary/README.md`）。只在人要求時才加 `forbidden`（驗證時以它擋掉其他譯法）
    - 改譯法：同上，但 `zh` 用人給的譯法。與現行譯文不同，所以要處理舊譯文（見第 4 步）；舊譯法可在人同意後加進 `forbidden`
    - 不採用：在 `rules/declined.yaml` 加一筆，`id` 是 `term/<kr>`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`；`term` 候選在詞彙表裡的 `status: candidate` 條目，問人要不要一併刪掉（留著也不生效）
    - 略過：什麼都不寫，下次還會再列出

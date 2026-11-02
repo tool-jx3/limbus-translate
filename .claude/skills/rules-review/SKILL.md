@@ -54,7 +54,7 @@ allowed-tools:
    - `term`：詞彙候選。用 `bin/lct search --text RE --json` 看現有譯文怎麼用，附證據（出現次數、各種譯法）建議採用或不採用。採用就把該條的 `status` 改成 `approved`，必要時補 `forbidden`、`category`
    - `adjustment-moved`、`adjustment-expired`：執行 `bin/lct adjust tidy --json`，它替 key 已移動的調整改 key、刪掉單位已重翻的過期調整；它改的檔列進說明。仍留下的過期調整是 KR 變了、單位還沒重翻，不處理
    - 確定不需要規則的項目（例如只是閒聊的備註、路人說話者）：在 `rules/declined.yaml` 加一筆 `id`（原樣、用雙引號包起來）、`reason`（寫成別人看得懂的理由）、`date`（今天，`YYYY-MM-DD`），並在說明列出，人可以還原
-   - 沒有把握（需要詞彙或指引以外的決定、證據不足）：不改檔、不記進 `rules/declined.yaml`，列進說明的 `## 需要人決定`（第 4 步）
+   - 沒有把握（需要詞彙或指引以外的決定、證據不足、規則互相衝突）：不改檔、不記進 `rules/declined.yaml`，列進說明的 `## 需要人決定`（第 4 步）
 3. 檢查並評估影響：
    - 執行 `bin/lct rules lint --json`。exit 0 才算過；exit 1 會列出有問題的檔，自己寫的檔修正後再跑，`lct` 寫出的檔有問題就在說明回報，不手改
    - 執行 `bin/lct impact --base origin/main --markdown work/proposal/impact.md --json`，結果寫進說明的影響評估。指令失敗就在那一節寫明訊息，不編造數字
