@@ -415,13 +415,14 @@ func checkZip(name string, zips map[string]string) error {
 	return nil
 }
 
-// originLabels say in a few words what each origin of the records is.
+// originLabels say in a few words what each source of the shown text is: the
+// origins of the translations, and the stand-in text (build.Report.Shown).
 var originLabels = map[string]string{
 	store.OriginParatranz: "第一階段匯入的社群譯文",
 	store.OriginClaude:    "Claude 翻譯",
 	store.OriginHuman:     "人工調整",
 	store.OriginCopy:      "不需翻譯，保留原文",
-	store.OriginFallback:  "翻譯失敗，暫用英文",
+	build.ShownStandIn:    "尚未翻譯、翻譯失敗或破壞原文結構，暫用英文",
 }
 
 // Notes renders the release notes of the Release called tag, built from info
@@ -457,14 +458,16 @@ func Notes(info build.Info, sum *plan.Summary, tag string) []byte {
 	fmt.Fprintf(&b, "- rules commit：`%s`\n\n", info.RulesCommit)
 
 	b.WriteString("## 譯文來源\n\n")
-	total := rep.Pending
-	for _, n := range rep.Origins {
+	// Each unit counts once, in what it shows (build.Report.Shown), so the
+	// shares add up to the whole.
+	total := 0
+	for _, n := range rep.Shown {
 		total += n
 	}
 	if total > 0 {
 		fmt.Fprintf(&b, "各來源占全部 %d 個單位的比例：\n\n", total)
-		for _, origin := range slices.Sorted(maps.Keys(rep.Origins)) {
-			n := rep.Origins[origin]
+		for _, origin := range slices.Sorted(maps.Keys(rep.Shown)) {
+			n := rep.Shown[origin]
 			fmt.Fprintf(&b, "- %s %.1f%%", origin, 100*float64(n)/float64(total))
 			if label, ok := originLabels[origin]; ok {
 				fmt.Fprintf(&b, "：%s（%d 個單位）", label, n)

@@ -837,7 +837,8 @@ func checkPhase2SecondBuild(t *testing.T, p *phase2, built buildOut) {
 	body := string(readFile(t, filepath.Join(p.root, "out", "review-issue", "01.md")))
 	for _, want := range []string{
 		"本次更新有 2 項需要你處理",
-		"### 人工調整已過期", "- [ ] `" + p2Content(s1, 1) + "`",
+		// The reworded line moved one line down: the item names both keys.
+		"### 人工調整已過期", "- [ ] 調整 `" + p2Content(s1, 1) + "`（這一版的單位：`" + p2Content(s1, 2) + "`）",
 		"### 凍結檔的 KR 有變", "- [ ] `" + p2Content(lyrics, 1) + "`",
 	} {
 		if !strings.Contains(body, want) {

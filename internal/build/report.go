@@ -260,6 +260,7 @@ func markdown(opt Options, info Info, sum *plan.Summary, pending []store.Pending
 	infoTranslations(&b, opt, info, sum, twLink)
 	infoAutomatic(&b, sum)
 	infoUnits(&b, info.Report)
+	infoMisaligned(&b, info.Report)
 	infoWarnings(&b, info.Report)
 	infoInconsistent(&b, info.Report)
 	infoNotes(&b, info.Report)
@@ -419,6 +420,20 @@ func infoUnits(b *strings.Builder, rep Report) {
 		"- Unaligned units are pending units with no EN text either (the order or the ids of the languages do not match).\n" +
 		"- Field rule overrides are records of units the field rules do not translate; KR is shown instead.\n" +
 		"- Stand-in shown counts every unit that shows EN (or KR) in place of a translation: pending, fallback and structural or frozen fallback.\n")
+}
+
+// infoMisaligned lists the files whose order or ids differ between the
+// languages, so that units of KR have no EN or JP text to go with.
+func infoMisaligned(b *strings.Builder, rep Report) {
+	b.WriteString("\n### 跨語言未對齊的檔\n\n")
+	if len(rep.Misaligned) == 0 {
+		b.WriteString("None.\n")
+		return
+	}
+	fmt.Fprintf(b, "這些檔有 KR 單位找不到對應的 EN 或 JP 文字（順序或 id 與 KR 不一致），最多列 %d 個，缺得最多的在前：\n\n", maxMisaligned)
+	for _, f := range rep.Misaligned {
+		fmt.Fprintf(b, "- %s：EN 缺 %d 個、JP 缺 %d 個\n", code(f.File), f.EN, f.JP)
+	}
 }
 
 // infoWarnings lists the warnings of the checks and a few units of each.

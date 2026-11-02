@@ -1228,6 +1228,21 @@ func section(t *testing.T, md, heading string) string {
 	return rest
 }
 
+// subsection returns the part of md from the level-three heading to the next
+// heading of level three or two, heading included.
+func subsection(t *testing.T, md, heading string) string {
+	t.Helper()
+	i := strings.Index(md, "\n"+heading+"\n")
+	if i < 0 {
+		t.Fatalf("report lacks the heading %q:\n%s", heading, md)
+	}
+	rest := md[i+1+len(heading):]
+	if j := strings.Index(rest, "\n##"); j >= 0 {
+		rest = rest[:j]
+	}
+	return heading + rest
+}
+
 const twoUnitsKR = `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"나"}]}`
 
 // jobSummary renders the report for the summary page of a run from what the
@@ -1773,5 +1788,184 @@ func TestSummaryMarkdownIsCut(t *testing.T) {
 	exact := bytes.Repeat([]byte("a"), SummaryLimit)
 	if got := SummaryMarkdown(exact, "x.md"); len(got) != SummaryLimit {
 		t.Errorf("a report of exactly %d bytes was cut to %d", SummaryLimit, len(got))
+	}
+}
+
+// misalignedEntries is a dataList of n entries with an id and a title each,
+// without the entries whose ids are in drop.
+func misalignedEntries(n int, drop ...int) string {
+	var entries []string
+	for id := 1; id <= n; id++ {
+		if slices.Contains(drop, id) {
+			continue
+		}
+		entries = append(entries, `{"id":`+strconv.Itoa(id)+`,"title":"T`+strconv.Itoa(id)+`"}`)
+	}
+	return `{"dataList":[` + strings.Join(entries, ",") + `]}`
+}
+
+// withJP gives the environment a JP pack made of files (newEnv makes none).
+func (e *testEnv) withJP(files map[string]string) {
+	e.t.Helper()
+	raw := filepath.Join(filepath.Dir(e.opt.TWRoot), "raw")
+	writeLang(e.t, raw, "jp", "JP_", files)
+	src, err := pack.OpenRaw(raw)
+	if err != nil {
+		e.t.Fatal(err)
+	}
+	e.src = src
+}
+
+// The files whose EN or JP lack units of KR are listed with how many, the
+// worst first. A file the other language does not have at all is not
+// misaligned but missing; a file that lines up is not listed.
+func TestReportListsMisalignedFiles(t *testing.T) {
+	kr := map[string]string{
+		"A.json": misalignedEntries(12), "B.json": misalignedEntries(12), "C.json": misalignedEntries(12),
+		"OnlyKR.json": misalignedEntries(12),
+	}
+	en := map[string]string{
+		"A.json": misalignedEntries(12, 5),    // one line less
+		"B.json": misalignedEntries(12, 3, 4), // two lines less
+		"C.json": misalignedEntries(12),
+	}
+	e := newEnv(t, kr, en)
+	e.withJP(map[string]string{
+		"A.json": misalignedEntries(12),
+		"B.json": misalignedEntries(12, 9), // and JP lacks one more
+		"C.json": misalignedEntries(12),
+	})
+	rep := e.run()
+
+	want := []FileMisaligned{{File: "B.json", EN: 2, JP: 1}, {File: "A.json", EN: 1, JP: 0}}
+	if !reflect.DeepEqual(rep.Misaligned, want) {
+		t.Errorf("Misaligned = %+v, want %+v", rep.Misaligned, want)
+	}
+
+	// The build record keeps it under the names of the plan.
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(info.Report.Misaligned, want) {
+		t.Errorf("the build record has Misaligned = %+v, want %+v", info.Report.Misaligned, want)
+	}
+	raw, err := json.Marshal(want[0])
+	if err != nil || string(raw) != `{"file":"B.json","en":2,"jp":1}` {
+		t.Errorf("a misaligned file encodes as %s, %v", raw, err)
+	}
+
+	// The report names them in the information.
+	misaligned := subsection(t, e.readReport(), "### 跨語言未對齊的檔")
+	for _, line := range []string{"- `B.json`：EN 缺 2 個、JP 缺 1 個", "- `A.json`：EN 缺 1 個、JP 缺 0 個"} {
+		if !strings.Contains(misaligned, line) {
+			t.Errorf("the report lacks %q:\n%s", line, misaligned)
+		}
+	}
+	if strings.Contains(misaligned, "C.json") || strings.Contains(misaligned, "OnlyKR.json") {
+		t.Errorf("the report lists a file that lines up, or one that is missing in the other languages:\n%s", misaligned)
+	}
+}
+
+// Nothing misaligned is an empty list that encodes as [], and the report
+// says so.
+func TestReportWithoutMisalignedFiles(t *testing.T) {
+	e := newEnv(t, map[string]string{"A.json": misalignedEntries(3)}, map[string]string{"A.json": misalignedEntries(3)})
+	rep := e.run()
+	if rep.Misaligned == nil || len(rep.Misaligned) != 0 {
+		t.Errorf("Misaligned = %#v, want an empty list that is not nil", rep.Misaligned)
+	}
+	if b, err := json.Marshal(rep); err != nil || !strings.Contains(string(b), `"misaligned":[]`) {
+		t.Errorf("the report encodes without misaligned:[]: %s, %v", b, err)
+	}
+	if got := subsection(t, e.readReport(), "### 跨語言未對齊的檔"); !strings.Contains(got, "None.") {
+		t.Errorf("the report does not say none is misaligned:\n%s", got)
+	}
+}
+
+// Only the 20 worst files are kept; files with the same count go by name.
+func TestReportMisalignedIsBounded(t *testing.T) {
+	kr, en := map[string]string{}, map[string]string{}
+	for i := range 25 {
+		name := "F" + strconv.Itoa(10+i) + ".json"
+		kr[name] = misalignedEntries(12)
+		en[name] = misalignedEntries(12, 1) // one line less in each
+	}
+	kr["Worst.json"], en["Worst.json"] = misalignedEntries(12), misalignedEntries(12, 1, 2)
+	e := newEnv(t, kr, en)
+	rep := e.run()
+
+	if len(rep.Misaligned) != 20 {
+		t.Fatalf("%d files, want 20", len(rep.Misaligned))
+	}
+	if g := rep.Misaligned[0]; g.File != "Worst.json" || g.EN != 2 {
+		t.Errorf("first = %+v, want Worst.json with 2", g)
+	}
+	for i, g := range rep.Misaligned[1:] {
+		if want := "F" + strconv.Itoa(10+i) + ".json"; g.File != want || g.EN != 1 {
+			t.Errorf("file %d = %+v, want %s with 1", i+1, g, want)
+		}
+	}
+}
+
+// Every unit counts once in what it finally shows: a translation by its
+// origin, a stand-in text (EN, or else KR) as a stand-in, and a unit that is
+// not translated as a copy of KR. A record that broke the structure is shown
+// as the stand-in only, although Origins counts the record as used.
+func TestBuildShownCountsEachUnitOnce(t *testing.T) {
+	kr := `{"dataList":[` +
+		`{"id":0,"content":"가"},{"id":1,"content":"나"},{"id":2,"content":"다"},` +
+		`{"id":3,"content":"[Bleed] 라"},{"id":4,"content":"마"},{"id":5,"content":"바"},` +
+		`{"id":6,"model":"뫼르소"},{"id":7,"model":"이상"},{"id":8,"model":"로쟈"}]}`
+	en := `{"dataList":[` +
+		`{"id":0,"content":"A"},{"id":1,"content":"B"},{"id":2,"content":"C"},` +
+		`{"id":3,"content":"[Bleed] D"},{"id":4,"content":"E"},{"id":5,"content":"F"},` +
+		`{"id":6,"model":"Meursault"},{"id":7,"model":"Ishmael"},{"id":8,"model":"Rodion"}]}`
+	lyrics := `{"dataList":[{"id":0,"content":"[Bleed] 사"}]}`
+	e := newEnv(t,
+		map[string]string{"A.json": kr, "BgmLyrics/L.json": lyrics},
+		map[string]string{"A.json": en, "BgmLyrics/L.json": `{"dataList":[{"id":0,"content":"[Bleed] G"}]}`})
+
+	pz := rec("A.json", "/dataList/0/content", "가", "甲")
+	pz.Origin = store.OriginParatranz
+	claude := rec("A.json", "/dataList/1/content", "나", "乙")
+	human := rec("A.json", "/dataList/2/content", "다", "丙")
+	human.Origin = store.OriginHuman
+	broken := rec("A.json", "/dataList/3/content", "[Bleed] 라", "流血") // claude, but EN is shown
+	fallback := rec("A.json", "/dataList/4/content", "마", "E")
+	fallback.Origin = store.OriginFallback
+	// Unit 5 has no record: pending. Unit 6 is not translated and has a copy;
+	// 7 has a record the field rules override; 8 has none: all show KR.
+	copied := rec("A.json", "/dataList/6/model", "뫼르소", "뫼르소")
+	copied.Origin = store.OriginCopy
+	overridden := rec("A.json", "/dataList/7/model", "이상", "伊")
+	overridden.Origin = store.OriginHuman
+	frozenBroken := rec("BgmLyrics/L.json", "/dataList/0/content", "[Bleed] 사", "流血") // a frozen file
+	e.save(pz, claude, human, broken, fallback, copied, overridden, frozenBroken)
+	rep := e.run()
+
+	want := map[string]int{"paratranz": 1, "claude": 1, "human": 1, "copy": 3, "stand-in": 4}
+	if !reflect.DeepEqual(rep.Shown, want) {
+		t.Errorf("Shown = %v, want %v", rep.Shown, want)
+	}
+	total := 0
+	for _, n := range rep.Shown {
+		total += n
+	}
+	if total != 10 { // 6 contents and 3 models of A.json, and the lyric
+		t.Errorf("Shown counts %d units in all, want each of the 10 once", total)
+	}
+	if rep.Shown[ShownStandIn] != rep.StandIn {
+		t.Errorf("Shown[stand-in] = %d, StandIn = %d: they count the same units", rep.Shown[ShownStandIn], rep.StandIn)
+	}
+	// Origins counts the records used, the broken ones included: three claude
+	// records, but only one of them is shown.
+	if rep.Origins["claude"] != 3 {
+		t.Errorf("Origins = %v, want 3 claude records used, the two broken ones too", rep.Origins)
+	}
+
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil || !reflect.DeepEqual(info.Report.Shown, want) {
+		t.Errorf("the build record has Shown = %v, %v, want %v", info.Report.Shown, err, want)
 	}
 }

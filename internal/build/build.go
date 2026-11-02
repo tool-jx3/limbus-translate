@@ -32,6 +32,10 @@ import (
 // whose translation breaks the structure of its KR text.
 const ReasonStructuralFail = "structural-fail"
 
+// ShownStandIn is the key of Report.Shown that counts the units showing a
+// stand-in text; the other keys are the origins of the translations shown.
+const ShownStandIn = "stand-in"
+
 // minBuiltYear is the first year a zip file can store.
 const minBuiltYear = 1980
 
@@ -90,6 +94,9 @@ const (
 	// maxRenderings is how many different translations of one text a group
 	// of Inconsistent lists.
 	maxRenderings = 10
+	// maxMisaligned is how many files the report lists as misaligned, the
+	// worst first.
+	maxMisaligned = 20
 )
 
 // Report counts what a build did.
@@ -143,6 +150,26 @@ type Report struct {
 	// NewTranslated counts the records of origin claude written for this raw
 	// tag (their Since is the raw tag).
 	NewTranslated int `json:"new_translated"`
+	// Shown counts the units by what they finally show, each unit once: the
+	// origin of the translation (paratranz, claude, human), copy for the text
+	// of KR kept as it is (a unit that is not translated), and ShownStandIn
+	// for the EN, or else KR, text that stands in for a translation. Unlike
+	// Origins, which counts the records used, a record that broke the
+	// structure of KR and was replaced counts as a stand-in only. The values
+	// add up to the number of units.
+	Shown map[string]int `json:"shown"`
+	// Misaligned lists the files with units of KR that EN or JP has no
+	// counterpart for, the worst 20 by the sum of both counts, then by name.
+	// A language that does not have the file at all is not counted for it.
+	Misaligned []FileMisaligned `json:"misaligned"`
+}
+
+// FileMisaligned says how many units of the KR file have no EN, and no JP,
+// string aligned to them (see package align).
+type FileMisaligned struct {
+	File string `json:"file"`
+	EN   int    `json:"en"`
+	JP   int    `json:"jp"`
 }
 
 // Inconsistency is a group of units with the same KR text, in one family and
@@ -170,9 +197,10 @@ type builder struct {
 	glyphs  runeSet
 	// warnKeys are the keys of the units that warn, by code, in the order
 	// they were met; renders groups the translations by the text they render.
-	warnKeys map[string][]string
-	renders  map[renderKey]*rendering
-	families map[string]string // the family of each file, once asked
+	warnKeys   map[string][]string
+	renders    map[renderKey]*rendering
+	families   map[string]string // the family of each file, once asked
+	misaligned []FileMisaligned  // every file that has units without EN or JP
 }
 
 // Run builds the language pack for src (the raw KR, EN and JP packs) from the
@@ -269,6 +297,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 		rep: &Report{
 			Origins: map[string]int{}, Warnings: map[string]int{}, FrozenFallback: []string{}, MissingGlyphs: []rune{},
 			WarningSamples: map[string][]string{}, Inconsistent: []Inconsistency{}, Notes: notes,
+			Shown: map[string]int{}, Misaligned: []FileMisaligned{},
 		},
 		warnKeys: map[string][]string{},
 		renders:  map[renderKey]*rendering{},
@@ -354,10 +383,17 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 			return nil, fmt.Errorf("build: %s: %w", file, err)
 		}
 	}
+	en, jp, err := al.Unmatched()
+	if err != nil {
+		return nil, fmt.Errorf("build: %s: %w", file, err)
+	}
+	if en+jp > 0 {
+		b.misaligned = append(b.misaligned, FileMisaligned{File: file, EN: en, JP: jp})
+	}
 	return jsonx.Marshal(out), nil
 }
 
-// fill decides the text of one unit.
+// fill decides the text of one unit and counts what it shows (Report.Shown).
 //
 // The field rules come first (spec 8.2): a unit they do not translate keeps
 // KR, whatever its record says. Otherwise a record is used when it was made
@@ -368,13 +404,24 @@ func (b *builder) buildFile(file string) ([]byte, error) {
 // translated again (it is listed in FrozenFallback). A unit with no usable
 // record shows EN (or KR) and counts as pending.
 func (b *builder) fill(u units.Unit, frozen bool, al *align.FileAligner) (string, error) {
+	text, shown, err := b.decide(u, frozen, al)
+	if err != nil {
+		return "", err
+	}
+	b.rep.Shown[shown]++
+	return text, nil
+}
+
+// decide is fill without the count of Shown: it returns the text of the unit
+// and what it shows, a key of Report.Shown.
+func (b *builder) decide(u units.Unit, frozen bool, al *align.FileAligner) (text, shown string, err error) {
 	key := units.Key(u.File, u.Pointer)
 	rec, ok := b.records[key]
 	usable := ok && (frozen || rec.KRSha == units.KRSha(u.KR))
 
 	en, jp, err := al.Get(u.Pointer)
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
 	if !b.fr.Classify(u, en, jp).Translate {
 		switch {
@@ -383,7 +430,8 @@ func (b *builder) fill(u units.Unit, frozen bool, al *align.FileAligner) (string
 		case usable:
 			b.rep.FieldRuleOverride++
 		}
-		return u.KR, nil
+		// KR as it is, with or without a record: nothing is translated.
+		return u.KR, store.OriginCopy, nil
 	}
 	if usable {
 		return b.useRecord(u, key, rec, frozen, al)
@@ -393,7 +441,7 @@ func (b *builder) fill(u units.Unit, frozen bool, al *align.FileAligner) (string
 	if en == nil || en.Value == "" {
 		b.rep.Unaligned++
 	}
-	return standIn(u, en), nil
+	return standIn(u, en), ShownStandIn, nil
 }
 
 // countUsed counts rec among the records used. review says whether its
@@ -405,12 +453,16 @@ func (b *builder) countUsed(rec store.Record, review bool) {
 	}
 }
 
-func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *align.FileAligner) (string, error) {
+// useRecord returns the text a used record gives the unit, and what that
+// shows: the origin of the record, or ShownStandIn when the text is a
+// stand-in (a record of origin fallback, or a record replaced for breaking
+// the structure of KR).
+func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen bool, al *align.FileAligner) (text, shown string, err error) {
 	// A copy is the KR text itself: there is nothing to check, and the Hangul
 	// it keeps would only flood the warnings.
 	if rec.Origin == store.OriginCopy {
 		b.countUsed(rec, true)
-		return rec.ZH, nil
+		return rec.ZH, store.OriginCopy, nil
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
@@ -430,10 +482,10 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 		b.countUsed(rec, true)
 		if rec.Origin == store.OriginFallback {
 			b.rep.StandIn++ // the stand-in text is the record's text
-		} else {
-			b.addRendering(u, key, rec.ZH)
+			return rec.ZH, ShownStandIn, nil
 		}
-		return rec.ZH, nil
+		b.addRendering(u, key, rec.ZH)
+		return rec.ZH, rec.Origin, nil
 	}
 	b.rep.StandIn++
 
@@ -453,9 +505,9 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	en, _, err := al.Get(u.Pointer)
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
-	return standIn(u, en), nil
+	return standIn(u, en), ShownStandIn, nil
 }
 
 // standIn is the text shown for a unit that has no translation: the EN text
@@ -517,7 +569,8 @@ func (b *builder) familyOf(file string) string {
 
 // finish completes the report with what it can only know once every unit has
 // been met: the samples of each warning, the texts with different
-// translations, and the records written for this raw tag.
+// translations, the worst misaligned files, and the records written for this
+// raw tag.
 func (b *builder) finish() {
 	for code, keys := range b.warnKeys {
 		slices.Sort(keys)
@@ -547,6 +600,14 @@ func (b *builder) finish() {
 		)
 	})
 	b.rep.Inconsistent = append(b.rep.Inconsistent, groups[:min(len(groups), maxInconsistent)]...)
+
+	slices.SortFunc(b.misaligned, func(x, y FileMisaligned) int {
+		return cmp.Or(
+			cmp.Compare(y.EN+y.JP, x.EN+x.JP), // the worst first
+			cmp.Compare(x.File, y.File),
+		)
+	})
+	b.rep.Misaligned = append(b.rep.Misaligned, b.misaligned[:min(len(b.misaligned), maxMisaligned)]...)
 
 	for _, rec := range b.records {
 		if rec.Origin == store.OriginClaude && rec.Since == b.opt.RawTag {

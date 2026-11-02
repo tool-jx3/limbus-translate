@@ -9,7 +9,9 @@ import (
 	"os/exec"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -56,6 +58,12 @@ var testBuildJSON = `{
       "claude": 7,
       "copy": 3,
       "paratranz": 30
+    },
+    "shown": {
+      "claude": 7,
+      "copy": 3,
+      "paratranz": 30,
+      "stand-in": 1300
     },
     "pending": 1234,
     "stand_in": 1300,
@@ -265,7 +273,7 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 
 	// Nothing was imported: no upstream is listed, whatever the build knows
 	// about, and Paratranz is not credited.
-	info.Report.Origins = map[string]int{"claude": 7}
+	info.Report.Origins, info.Report.Shown = map[string]int{"claude": 7}, map[string]int{"claude": 7}
 	for _, upstream := range []map[string]string{info.Upstream, nil, {}} {
 		info.Upstream = upstream
 		without := string(Notes(info, nil, testReleaseA))
@@ -285,7 +293,8 @@ func TestNotesSeparatesImportedAndReferenceSources(t *testing.T) {
 func TestNotesAreConcise(t *testing.T) {
 	info := testInfo(t)
 	info.Report.Origins = map[string]int{"paratranz": 60, "claude": 30, "fallback": 2, "copy": 8}
-	info.Report.Pending, info.Report.StandIn = 0, 2
+	info.Report.Shown = map[string]int{"paratranz": 60, "claude": 28, "stand-in": 4, "copy": 8}
+	info.Report.Pending, info.Report.StandIn = 2, 4
 	sum := &plan.Summary{
 		RawTag: testRawTag, PrevRawTag: "raw-20261022",
 		Changes: plan.Changes{New: 5, Changed: 4, Deleted: 6, Unchanged: 900},
@@ -293,8 +302,8 @@ func TestNotesAreConcise(t *testing.T) {
 	notes := string(Notes(info, sum, testReleaseA))
 
 	for _, want := range []string{
-		"paratranz 60.0%", "claude 30.0%", "fallback 2.0%", "copy 8.0%", // each source, to one decimal
-		"仍顯示英文：2 個單位",
+		"paratranz 60.0%", "claude 28.0%", "stand-in 4.0%", "copy 8.0%", // each source, to one decimal
+		"仍顯示英文：4 個單位",
 		"新增 5", "修改 4", "刪除 6", "raw-20261022", // what changed in the KR text, and since when
 		testRawTag, testToken,
 	} {
@@ -308,24 +317,25 @@ func TestNotesAreConcise(t *testing.T) {
 			t.Errorf("notes hold a table row: %q", line)
 		}
 	}
-	for _, not := range []string{"needs_review", "structural_fallback", "frozen_fallback", "missing glyphs", "origins"} {
+	for _, not := range []string{"needs_review", "structural_fallback", "frozen_fallback", "missing glyphs", "origins", "fallback"} {
 		if strings.Contains(notes, not) {
 			t.Errorf("notes still hold %q of the report:\n%s", not, notes)
 		}
 	}
 
-	// Units that wait for a translation count in the whole the shares are of.
-	info.Report.Origins = map[string]int{"paratranz": 45, "claude": 45}
+	// Units that show English are in the whole the shares are of, and have
+	// a share of their own.
+	info.Report.Shown = map[string]int{"paratranz": 45, "claude": 45, "stand-in": 10}
 	info.Report.Pending, info.Report.StandIn = 10, 10
 	notes = string(Notes(info, sum, testReleaseA))
-	for _, want := range []string{"paratranz 45.0%", "claude 45.0%", "仍顯示英文：10 個單位"} {
+	for _, want := range []string{"paratranz 45.0%", "claude 45.0%", "stand-in 10.0%", "仍顯示英文：10 個單位"} {
 		if !strings.Contains(notes, want) {
 			t.Errorf("notes lack %q:\n%s", want, notes)
 		}
 	}
 
 	// A third of a unit shows as one decimal, rounded.
-	info.Report.Origins = map[string]int{"paratranz": 1, "claude": 2}
+	info.Report.Shown = map[string]int{"paratranz": 1, "claude": 2}
 	info.Report.Pending, info.Report.StandIn = 0, 0
 	if notes := string(Notes(info, sum, testReleaseA)); !strings.Contains(notes, "paratranz 33.3%") || !strings.Contains(notes, "claude 66.7%") {
 		t.Errorf("shares are not rounded to one decimal:\n%s", notes)
@@ -341,6 +351,65 @@ func TestNotesAreConcise(t *testing.T) {
 			t.Errorf("%s: notes tell of changes:\n%s", name, notes)
 		}
 	}
+}
+
+// A record that was used and then replaced by EN because it breaks the
+// structure of KR is counted by Origins and by StandIn. The shares count each
+// unit once, in what it shows: the unit is a stand-in only, and the shares add
+// up to the whole.
+func TestNotesSharesCountEachUnitOnce(t *testing.T) {
+	info := testInfo(t)
+	info.Report.Origins = map[string]int{"claude": 10, "paratranz": 90} // one of the claude records broke
+	info.Report.Pending, info.Report.StandIn = 0, 1
+	info.Report.Shown = map[string]int{"claude": 9, "paratranz": 90, "stand-in": 1}
+	notes := string(Notes(info, nil, testReleaseA))
+
+	for _, want := range []string{"- claude 9.0%", "- paratranz 90.0%", "- stand-in 1.0%", "全部 100 個單位"} {
+		if !strings.Contains(notes, want) {
+			t.Errorf("notes lack %q:\n%s", want, notes)
+		}
+	}
+	if strings.Contains(notes, "claude 10.0%") {
+		t.Errorf("the replaced record is also counted as claude:\n%s", notes)
+	}
+	if got := sharesTotal(t, notes); got < 99.95 || got > 100.05 {
+		t.Errorf("the shares add up to %.1f%%, want 100.0%%:\n%s", got, notes)
+	}
+
+	// The same when units wait for a translation or show KR, and the pending
+	// ones have no record in Origins at all.
+	info.Report.Origins = map[string]int{"claude": 4, "copy": 3}
+	info.Report.Pending, info.Report.StandIn = 2, 3
+	info.Report.Shown = map[string]int{"claude": 3, "copy": 4, "stand-in": 3}
+	notes = string(Notes(info, nil, testReleaseA))
+	if got := sharesTotal(t, notes); got < 99.95 || got > 100.05 {
+		t.Errorf("the shares add up to %.1f%%, want 100.0%%:\n%s", got, notes)
+	}
+	for _, want := range []string{"- claude 30.0%", "- copy 40.0%", "- stand-in 30.0%", "全部 10 個單位"} {
+		if !strings.Contains(notes, want) {
+			t.Errorf("notes lack %q:\n%s", want, notes)
+		}
+	}
+}
+
+// sharesTotal adds up the percentages of the lines of the notes that give the
+// share of a source ("- name 12.3%").
+func sharesTotal(t *testing.T, notes string) float64 {
+	t.Helper()
+	re := regexp.MustCompile(`(?m)^- [a-z-]+ (\d+\.\d)%`)
+	matches := re.FindAllStringSubmatch(notes, -1)
+	if len(matches) == 0 {
+		t.Fatalf("notes give no share:\n%s", notes)
+	}
+	total := 0.0
+	for _, m := range matches {
+		v, err := strconv.ParseFloat(m[1], 64)
+		if err != nil {
+			t.Fatal(err)
+		}
+		total += v
+	}
+	return total
 }
 
 // Every unit that shows English counts once: the stand-ins the build counted,
@@ -593,6 +662,7 @@ func TestPublishReadsTheRealFormat(t *testing.T) {
 		Zips:     map[string]string{testTextZip: zipSum("text"), testCompleteZip: zipSum("complete")},
 		Report: build.Report{
 			Origins:            map[string]int{"claude": 7, "copy": 3, "paratranz": 30},
+			Shown:              map[string]int{"claude": 7, "copy": 3, "paratranz": 30, "stand-in": 1300},
 			Pending:            1234,
 			StandIn:            1300,
 			NeedsReview:        56,

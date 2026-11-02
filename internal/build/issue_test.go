@@ -3,6 +3,7 @@ package build
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strings"
 	"testing"
 	"unicode/utf16"
@@ -420,5 +421,62 @@ func TestIssueTitle(t *testing.T) {
 		if got := IssueTitle(tag); got != want {
 			t.Errorf("IssueTitle(%q) = %q, want %q", tag, got, want)
 		}
+	}
+}
+
+// An adjustment whose unit moved when a line was inserted before it names
+// both keys, the adjustment's and the unit of this snapshot, so that a person
+// finds the retranslated text; one whose unit kept its key is the key alone.
+func TestReviewIssueNamesTheUnitOfAnExpiredAdjustment(t *testing.T) {
+	info := issueInfo()
+	moved := "StoryData/S1.json|/dataList/4/content"
+	unit := "StoryData/S1.json|/dataList/5/content"
+	stayed := "StoryData/S1.json|/dataList/7/content"
+	sum := &plan.Summary{
+		RawTag: "raw-20261105", PrevRawTag: "raw-20261029",
+		Adjustments: plan.AdjustmentSummary{
+			Expired:      []string{moved, stayed, "StoryData/S2.json|/dataList/1/content"},
+			ExpiredUnits: map[string]string{moved: unit, "StoryData/S2.json|/dataList/1/content": "StoryData/S2.json|/dataList/1/content"},
+		},
+	}
+	secs := ReviewItems(info, sum, nil)
+	if len(secs) != 1 || secs[0].Kind != KindAdjustmentExpired {
+		t.Fatalf("sections = %+v, want the expired adjustments", secs)
+	}
+	want := []string{
+		"調整 `" + moved + "`（這一版的單位：`" + unit + "`）",
+		"`" + stayed + "`",
+		"`StoryData/S2.json|/dataList/1/content`", // an entry that names its own key adds nothing
+	}
+	if !reflect.DeepEqual(secs[0].Items, want) {
+		t.Errorf("items = %q, want %q", secs[0].Items, want)
+	}
+
+	_, parts, ok := ReviewIssue(info, sum, nil)
+	if !ok || len(parts) != 1 {
+		t.Fatalf("ReviewIssue made %d parts, %v", len(parts), ok)
+	}
+	for _, line := range want {
+		if !strings.Contains(parts[0], "- [ ] "+line+"\n") {
+			t.Errorf("the issue lacks the item %q:\n%s", line, parts[0])
+		}
+	}
+}
+
+// The hint of needs_review does not send a person to a command that only
+// changes a local worktree: the fix has to reach main.
+func TestReviewNeedsReviewHintPointsToMain(t *testing.T) {
+	secs := ReviewItems(issueInfo(), nil, reviewPending(1, func(int) string { return "boom" }))
+	if len(secs) != 1 || secs[0].Kind != KindNeedsReview {
+		t.Fatalf("sections = %+v", secs)
+	}
+	hint := secs[0].Hint
+	for _, want := range []string{"lct adjust add", "main", "lct requeue --to-file"} {
+		if !strings.Contains(hint, want) {
+			t.Errorf("the hint lacks %q: %s", want, hint)
+		}
+	}
+	if strings.Contains(hint, "--needs-review") {
+		t.Errorf("the hint still names lct requeue --needs-review, which never reaches CI: %s", hint)
 	}
 }

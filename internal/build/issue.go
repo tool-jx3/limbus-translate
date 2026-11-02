@@ -86,12 +86,12 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 		}
 	}
 	add(KindNeedsReview, "翻譯失敗、暫用英文的單位（needs_review）",
-		"看原因：用 `lct adjust add` 寫入人工調整，或改規則後用 `lct requeue --needs-review` 要求重翻。", stuck)
+		"看原因：用 `lct adjust add` 寫入人工調整，或在 `main` 改規則、用 `lct requeue --to-file …` 指名這些 key 加一份重翻要求檔。", stuck)
 
 	if sum != nil {
 		add(KindAdjustmentExpired, "人工調整已過期",
 			"KR 改了，該單位已依規則重翻（或這筆調整沒有被採用）；確認新譯文，沒問題就把舊調整從 `rules/adjustments/` 刪掉。",
-			codes(sum.Adjustments.Expired))
+			expiredItems(sum.Adjustments))
 		add(KindFrozenChanged, "凍結檔的 KR 有變",
 			"歌詞等原文被修改，仍沿用舊譯文；決定是否解除凍結（`lct.yaml` 的 `frozen`）並重翻。",
 			codes(sum.FrozenChanged))
@@ -119,6 +119,21 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 			[]string{reason(info.StopError)})
 	}
 	return secs
+}
+
+// expiredItems is the item of each adjustment that is not in effect. When the
+// unit the adjustment is about has another key in this snapshot (a line was
+// inserted before it), the item names that key too: the retranslated text is
+// there, not at the key of the adjustment.
+func expiredItems(a plan.AdjustmentSummary) []string {
+	items := make([]string, len(a.Expired))
+	for i, key := range a.Expired {
+		items[i] = code(key)
+		if unit, ok := a.ExpiredUnits[key]; ok && unit != "" && unit != key {
+			items[i] = "調整 " + code(key) + "（這一版的單位：" + code(unit) + "）"
+		}
+	}
+	return items
 }
 
 // reason is the text of an item that says why: an error, on one line and cut
