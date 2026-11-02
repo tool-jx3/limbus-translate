@@ -10,8 +10,6 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
-	"github.com/tool-jx3/limbus-translate/internal/plan"
-	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 func init() {
@@ -21,34 +19,6 @@ func init() {
 			"(a title, and sections of kind, title, hint and items); writes nothing",
 		Run: runReview,
 	})
-}
-
-// buildState is what the last build left in the tw worktree and the review
-// issue is made of: the build record, the plan of that snapshot (nil when the
-// worktree has none, or one of another snapshot) and the pending list.
-type buildState struct {
-	Info    build.Info
-	Plan    *plan.Summary
-	Pending []store.PendingItem
-}
-
-// readBuildState reads the build state of the tw worktree at twRoot. "lct
-// build" and "lct review" both read it here, so that the issue and the review
-// are made of the same inputs.
-func readBuildState(twRoot string) (buildState, error) {
-	info, err := build.ReadInfo(twRoot)
-	if err != nil {
-		return buildState{}, err
-	}
-	sum, err := build.ReadPlan(twRoot, info.RawTag)
-	if err != nil {
-		return buildState{}, err
-	}
-	pending, err := store.Open(twRoot).LoadPending()
-	if err != nil {
-		return buildState{}, err
-	}
-	return buildState{Info: info, Plan: sum, Pending: pending}, nil
 }
 
 // reviewReport is what "review" prints: the title the review issue of this

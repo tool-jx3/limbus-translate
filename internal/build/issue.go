@@ -53,6 +53,14 @@ const (
 	KindNotTranslated = "not_translated"
 )
 
+// ReviewKinds lists the kinds of ReviewSection in the order ReviewItems lists
+// them. A kind added here must be handled by the review skill too: its
+// contract test reads this list.
+var ReviewKinds = []string{
+	KindNeedsReview, KindAdjustmentExpired, KindFrozenChanged, KindFrozenFallback,
+	KindNewSpeaker, KindFieldChange, KindNewFamily, KindLoopError, KindNotTranslated,
+}
+
 // ReviewSection is one kind of thing that needs a person: a heading, what to
 // do about it, and an item for each case. The review issue and "lct review"
 // are both made of these.

@@ -102,7 +102,7 @@ func TestReviewCommand(t *testing.T) {
 	if got, err := runBuildJSON(t, root); err != nil || got.ReviewIssueParts != 1 {
 		t.Fatalf("build: %+v, %v, want one part of the review issue", got, err)
 	}
-	issueTitle, issueHeadings, issueItems := checklist(t, root)
+	wantTitle, issueHeadings, issueItems := checklist(t, root)
 	if len(issueItems) != 3+1+1+1+1+1 {
 		t.Fatalf("the issue has %d items: %q", len(issueItems), issueItems)
 	}
@@ -115,8 +115,8 @@ func TestReviewCommand(t *testing.T) {
 	if err := json.Unmarshal([]byte(stdout), &got); err != nil {
 		t.Fatalf("output is not JSON: %v\n%s", err, stdout)
 	}
-	if got.Title != issueTitle {
-		t.Errorf("title = %q, want that of the issue, %q", got.Title, issueTitle)
+	if got.Title != wantTitle {
+		t.Errorf("title = %q, want that of the issue, %q", got.Title, wantTitle)
 	}
 	var headings, items []string
 	for _, s := range got.Sections {
@@ -141,7 +141,7 @@ func TestReviewCommand(t *testing.T) {
 	if code != 0 || stderr != "" {
 		t.Fatalf("review (text): exit code %d, stderr %q", code, stderr)
 	}
-	for _, want := range append([]string{issueTitle, "8 項"}, append(issueHeadings, issueItems...)...) {
+	for _, want := range append([]string{wantTitle, "8 項"}, append(issueHeadings, issueItems...)...) {
 		if !strings.Contains(stdout, want) {
 			t.Errorf("the text output lacks %q:\n%s", want, stdout)
 		}

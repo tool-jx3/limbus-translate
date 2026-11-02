@@ -889,9 +889,9 @@ var localSkillSays = []skillSays{
 
 // reviewSays are what the body of the review skill must say besides
 // localSkillSays: the shape of what lct review prints, the way out of every
-// kind of item (a kind that build adds must be added here too, so that the
-// skill knows what to do with it), and the issue to tick.
-var reviewSays = append(slices.Clone(localSkillSays),
+// kind of item (build.ReviewKinds: a kind that build adds is asked of the
+// skill at once, so that it knows what to do with it), and the issue to tick.
+var reviewSays = append(append(slices.Clone(localSkillSays),
 	skillSays{"bin/lct review --json", "the list of what needs a person is not asked for"},
 	skillSays{"sections", "the sections of the result are not named"},
 	skillSays{"`kind`", "the kind of a section is not named: the skill cannot tell what to do with a section"},
@@ -901,10 +901,17 @@ var reviewSays = append(slices.Clone(localSkillSays),
 	skillSays{"bin/lct fields learn --write", "the learned field rules are never written"},
 	skillSays{"rules/declined.yaml", "a speaker that needs no guide is not recorded"},
 	skillSays{"`lct.yaml`", "the frozen list is not named"},
-	kindSays(build.KindNeedsReview), kindSays(build.KindAdjustmentExpired), kindSays(build.KindFrozenChanged),
-	kindSays(build.KindFrozenFallback), kindSays(build.KindNewSpeaker), kindSays(build.KindFieldChange),
-	kindSays(build.KindNewFamily), kindSays(build.KindLoopError), kindSays(build.KindNotTranslated),
-)
+), reviewKindSays()...)
+
+// reviewKindSays is what the review skill must say about each kind of
+// build.ReviewKinds.
+func reviewKindSays() []skillSays {
+	var says []skillSays
+	for _, kind := range build.ReviewKinds {
+		says = append(says, kindSays(kind))
+	}
+	return says
+}
 
 // kindSays is what the review skill must say about a kind of item.
 func kindSays(kind string) skillSays {

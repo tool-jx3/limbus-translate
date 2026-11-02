@@ -16,8 +16,10 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 const (
@@ -190,6 +192,34 @@ func repoURL() string {
 		return ""
 	}
 	return strings.TrimRight(server, "/") + "/" + repo
+}
+
+// buildState is what the last build left in the tw worktree and the review
+// issue is made of: the build record, the plan of that snapshot (nil when the
+// worktree has none, or one of another snapshot) and the pending list.
+type buildState struct {
+	Info    build.Info
+	Plan    *plan.Summary
+	Pending []store.PendingItem
+}
+
+// readBuildState reads the build state of the tw worktree at twRoot. "lct
+// build" and "lct review" both read it here, so that the issue and the review
+// are made of the same inputs.
+func readBuildState(twRoot string) (buildState, error) {
+	info, err := build.ReadInfo(twRoot)
+	if err != nil {
+		return buildState{}, err
+	}
+	sum, err := build.ReadPlan(twRoot, info.RawTag)
+	if err != nil {
+		return buildState{}, err
+	}
+	pending, err := store.Open(twRoot).LoadPending()
+	if err != nil {
+		return buildState{}, err
+	}
+	return buildState{Info: info, Plan: sum, Pending: pending}, nil
 }
 
 // writeReviewFiles writes what the workflow posts, to opt.OutDir: the summary

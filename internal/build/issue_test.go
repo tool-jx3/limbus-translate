@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"slices"
 	"strings"
 	"testing"
 	"unicode/utf16"
@@ -313,6 +314,11 @@ func TestReviewItemsMatchTheIssue(t *testing.T) {
 		if s.Kind != wantKinds[i] {
 			t.Errorf("section %d is %q, want %q", i, s.Kind, wantKinds[i])
 		}
+	}
+	// ReviewKinds, which the contract of the review skill reads, lists every
+	// kind in this order, not_translated (which leaves out loop_error) last.
+	if want := append(slices.Clone(wantKinds), "not_translated"); !slices.Equal(ReviewKinds, want) {
+		t.Errorf("ReviewKinds = %q, want %q", ReviewKinds, want)
 	}
 
 	_, parts, ok := ReviewIssue(info, sum, pending)
