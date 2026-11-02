@@ -34,6 +34,10 @@ const (
 	BranchPrefix = Label + "/"
 	// DefaultBase is the branch the PR is opened against.
 	DefaultBase = "main"
+	// LabelColor and LabelDescription are given to the label every time it is
+	// created with --force, so that gh does not pick a new colour each time.
+	LabelColor       = "0E8A16"
+	LabelDescription = "規則建議，由 CI 提出"
 	// ExcludeFile is where Start writes the ids that lct suggest must leave out,
 	// relative to the repo root. The work folder is not under version control.
 	ExcludeFile = "work/proposal/exclude.txt"
@@ -54,7 +58,7 @@ type Options struct {
 	// Repo is the root of the repo checkout; the commands run there. Empty
 	// means the current directory.
 	Repo string
-	// Date is YYYY-MM-DD: the day of the run. Start names a new branch after it
+	// Date is YYYY-MM-DD: the day of the run. Start names the branch after it
 	// and requires it; Publish uses it for the commit and the title of a new PR,
 	// and takes the day from the branch when it is empty.
 	Date string
@@ -69,7 +73,7 @@ type Started struct {
 	// Branch is checked out, and is where the changes go.
 	Branch string `json:"branch"`
 	// PR and URL are those of the open rules PR the branch belongs to; they
-	// are 0 and empty when Branch is new.
+	// are 0 and empty when no rules PR is open.
 	PR  int    `json:"pr"`
 	URL string `json:"url"`
 	// Existing are the ids the open PR has already.
@@ -89,7 +93,7 @@ func (s *Started) String() string {
 	if s.PR != 0 {
 		fmt.Fprintf(&b, "%s: the open rules PR #%d, %s\n", s.Branch, s.PR, s.URL)
 	} else {
-		fmt.Fprintf(&b, "%s: a new branch, no rules PR is open\n", s.Branch)
+		fmt.Fprintf(&b, "%s: no rules PR is open\n", s.Branch)
 	}
 	fmt.Fprintf(&b, "%d suggestion(s) in the PR already, %d declined, %d handled; all are left out of %s\n",
 		len(s.Existing), len(s.Declined), len(s.Handled), ExcludeFile)
@@ -253,8 +257,15 @@ func (s *session) listPRs(what string, args ...string) ([]pullRequest, error) {
 
 // Start chooses the branch the suggestions of this run go on and checks it
 // out. With an open rules PR it is that PR's branch, brought up to date from
-// origin, so the new suggestions are added to the PR; without one it is
-// rules-proposal/<Date>, made from origin/<Base>. It also writes ExcludeFile:
+// origin, so the new suggestions are added to the PR. Without one it is
+// rules-proposal/<Date>, made from origin/<Base>, except that origin may have
+// that name already:
+//   - no PR was ever opened from it (an earlier run pushed it and failed before
+//     the PR): it is checked out as origin has it, and the run goes on;
+//   - a PR was (it was closed or merged): the first rules-proposal/<Date>-N,
+//     N = 2, 3, ..., that origin does not have, made from origin/<Base>.
+//
+// It also writes ExcludeFile:
 // the ids that lct suggest must leave out, because the open PR has them, people
 // closed a PR with them, or they were merged and still stand (Started.Handled).
 // Nothing is changed when it fails before it checks the branch out.
@@ -305,10 +316,9 @@ func Start(o Options) (*Started, error) {
 
 	if len(open) > 0 {
 		res.Branch, res.PR, res.URL = open[0].HeadRefName, open[0].Number, open[0].URL
-		err = s.checkoutOpenBranch(res.Branch)
+		err = s.checkoutFromOrigin(res.Branch)
 	} else {
-		res.Branch = BranchPrefix + s.Date
-		err = s.checkoutNewBranch(res.Branch)
+		res.Branch, err = s.checkoutNewBranch()
 	}
 	if err != nil {
 		return nil, err
@@ -320,9 +330,8 @@ func Start(o Options) (*Started, error) {
 	return res, nil
 }
 
-// checkoutOpenBranch fetches the branch of the open PR and checks it out at
-// what origin has.
-func (s *session) checkoutOpenBranch(branch string) error {
+// checkoutFromOrigin fetches the branch and checks it out at what origin has.
+func (s *session) checkoutFromOrigin(branch string) error {
 	if _, err := s.git.run("fetch", "origin", branch); err != nil {
 		return err
 	}
@@ -333,24 +342,73 @@ func (s *session) checkoutOpenBranch(branch string) error {
 	return err
 }
 
-// checkoutNewBranch makes the branch from origin/<Base>. A branch that origin
-// has already (the branch of a PR that was closed, today) is refused here
-// instead of being rejected by the push after the suggestions were reviewed.
-func (s *session) checkoutNewBranch(branch string) error {
+// maxBranchSuffix is where the search for a free rules-proposal/<Date>-N gives
+// up. A day with that many closed rules PRs is not a day to go on.
+const maxBranchSuffix = 50
+
+// checkoutNewBranch checks out the branch for a run without an open rules PR
+// and returns its name; see Start for which one it is. A name that origin has
+// is dealt with here, and not left to the push: that would be rejected after
+// the suggestions were reviewed.
+func (s *session) checkoutNewBranch() (string, error) {
+	branch := BranchPrefix + s.Date
+	onOrigin, err := s.originHas(branch)
+	if err != nil {
+		return "", err
+	}
+	if !onOrigin {
+		return branch, s.checkoutFromBase(branch)
+	}
+	used, err := s.headOfAnyPR(branch)
+	if err != nil {
+		return "", err
+	}
+	if !used {
+		return branch, s.checkoutFromOrigin(branch)
+	}
+	for n := 2; n <= maxBranchSuffix; n++ {
+		next := fmt.Sprintf("%s-%d", branch, n)
+		if onOrigin, err := s.originHas(next); err != nil {
+			return "", err
+		} else if !onOrigin {
+			return next, s.checkoutFromBase(next)
+		}
+	}
+	return "", refuse("origin has %s and the branches %s-2 to %s-%d, and a PR was opened from %s; delete some of them", branch, branch, branch, maxBranchSuffix, branch)
+}
+
+// checkoutFromBase makes the branch from origin/<Base>.
+func (s *session) checkoutFromBase(branch string) error {
+	base := "origin/" + s.Base
+	if err := s.refuseLocalCommits(branch, base, base); err != nil {
+		return err
+	}
+	_, err := s.git.run("checkout", "-q", "-B", branch, base)
+	return err
+}
+
+// originHas asks origin whether it has the branch.
+func (s *session) originHas(branch string) (bool, error) {
 	out, err := s.git.run("ls-remote", "--heads", "origin", "refs/heads/"+branch)
 	if err != nil {
-		return err
+		return false, err
 	}
 	for _, line := range strings.Split(out, "\n") {
 		if strings.HasSuffix(line, "\trefs/heads/"+branch) {
-			return refuse("origin has the branch %s already and no rules PR is open for it; delete the branch on origin, or run again tomorrow", branch)
+			return true, nil
 		}
 	}
-	if err := s.refuseLocalCommits(branch, "origin/"+s.Base, "origin/"+s.Base); err != nil {
-		return err
+	return false, nil
+}
+
+// headOfAnyPR says whether a PR, in any state and with any label, was opened
+// from the branch.
+func (s *session) headOfAnyPR(branch string) (bool, error) {
+	prs, err := s.listPRs("any state", "--state", "all", "--head", branch, "--json", "number,headRefName")
+	if err != nil {
+		return false, err
 	}
-	_, err = s.git.run("checkout", "-q", "-B", branch, "origin/"+s.Base)
-	return err
+	return slices.ContainsFunc(prs, func(p pullRequest) bool { return p.HeadRefName == branch }), nil
 }
 
 // refuseLocalCommits refuses to reset the local branch, if it exists, to
@@ -467,8 +525,7 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 		return nil, err
 	}
 	if s.Date == "" {
-		s.Date = strings.TrimPrefix(branch, BranchPrefix)
-		if checkDate(s.Date) != nil {
+		if s.Date = branchDate(branch); s.Date == "" {
 			return nil, refuse("the branch %s has no date in its name; pass --date YYYY-MM-DD", branch)
 		}
 	}
@@ -525,7 +582,7 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 		return res, nil
 	}
 
-	if _, err := s.gh.run("label", "create", Label, "--force"); err != nil {
+	if _, err := s.gh.run("label", "create", Label, "--force", "--color", LabelColor, "--description", LabelDescription); err != nil {
 		return nil, err
 	}
 	out, err = s.gh.run("pr", "create", "--base", s.Base, "--head", branch,
@@ -539,6 +596,22 @@ func Publish(o Options, bodyFile string) (*Published, error) {
 	}
 	res.URL, res.Created = lines[len(lines)-1], true
 	return res, nil
+}
+
+// branchDate returns the date in the name of a rules-proposal/<Date> or
+// rules-proposal/<Date>-N branch, or "" if there is none.
+func branchDate(branch string) string {
+	tail := strings.TrimPrefix(branch, BranchPrefix)
+	if len(tail) < len(dateLayout) || checkDate(tail[:len(dateLayout)]) != nil {
+		return ""
+	}
+	if suffix := tail[len(dateLayout):]; suffix != "" {
+		n, ok := strings.CutPrefix(suffix, "-")
+		if !ok || n == "" || strings.Trim(n, "0123456789") != "" {
+			return ""
+		}
+	}
+	return tail[:len(dateLayout)]
 }
 
 func unwrapPathError(err error) error {

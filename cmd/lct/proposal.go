@@ -13,7 +13,7 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name: "proposal start",
-		Usage: "check out the branch of the rules PR: that of the open rules PR, brought up to date, or a new rules-proposal/DATE from origin/main; " +
+		Usage: "check out the branch of the rules PR: that of the open rules PR, brought up to date, or rules-proposal/DATE (the free rules-proposal/DATE-N when a closed PR used that name) from origin/main; " +
 			"writes work/proposal/exclude.txt, the suggestion ids that lct suggest --exclude-file must leave out: --date YYYY-MM-DD",
 		Run: runProposalStart,
 	})
@@ -39,7 +39,7 @@ func proposalError(command string, err error) error {
 func runProposalStart(ctx *cli.Context, args []string) error {
 	flags := flag.NewFlagSet("proposal start", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
-	date := flags.String("date", "", "the day of this run, YYYY-MM-DD; a new branch is named after it (required)")
+	date := flags.String("date", "", "the day of this run, YYYY-MM-DD; the branch is named after it (required)")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("proposal start: " + err.Error())
 	}

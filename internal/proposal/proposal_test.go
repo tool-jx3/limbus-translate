@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"slices"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -14,7 +15,8 @@ import (
 // fakeGH stands in for the gh command: it appends the arguments of each call
 // to gh.log next to it (one a line, a "---" line after the call) and answers
 // from the environment: FAKE_GH_OPEN and FAKE_GH_CLOSED are the JSON of
-// "pr list" for the state asked for, FAKE_GH_URL is what "pr create" prints,
+// "pr list" for the state asked for (FAKE_GH_ALL for "all", which is the PRs
+// of one head branch), FAKE_GH_URL is what "pr create" prints,
 // and a call named in FAKE_GH_FAIL (such as "pr create") fails.
 const fakeGH = `#!/bin/sh
 dir=$(dirname "$0")
@@ -34,6 +36,7 @@ case "$1 $2" in
 	case "$state" in
 	open) printf '%s' "${FAKE_GH_OPEN:-[]}" ;;
 	closed) printf '%s' "${FAKE_GH_CLOSED:-[]}" ;;
+	all) printf '%s' "${FAKE_GH_ALL:-[]}" ;;
 	esac
 	;;
 "pr create") printf '%s\n' "${FAKE_GH_URL:-https://github.com/o/r/pull/7}" ;;
@@ -73,7 +76,7 @@ func newEnv(t *testing.T) *env {
 	}
 	t.Setenv("GH_TOKEN", "test-token")
 	t.Setenv("GITHUB_TOKEN", "")
-	for _, k := range []string{"FAKE_GH_OPEN", "FAKE_GH_CLOSED", "FAKE_GH_URL", "FAKE_GH_FAIL"} {
+	for _, k := range []string{"FAKE_GH_OPEN", "FAKE_GH_CLOSED", "FAKE_GH_ALL", "FAKE_GH_URL", "FAKE_GH_FAIL"} {
 		t.Setenv(k, "")
 	}
 
@@ -146,7 +149,19 @@ func (e *env) opts(date string) Options {
 
 func (e *env) setPRs(open, closed []ghPR) {
 	e.t.Helper()
-	for k, list := range map[string][]ghPR{"FAKE_GH_OPEN": open, "FAKE_GH_CLOSED": closed} {
+	e.setPRLists(map[string][]ghPR{"FAKE_GH_OPEN": open, "FAKE_GH_CLOSED": closed})
+}
+
+// setAllPRs sets the answer to the question which PRs, in any state, have a
+// head branch.
+func (e *env) setAllPRs(prs ...ghPR) {
+	e.t.Helper()
+	e.setPRLists(map[string][]ghPR{"FAKE_GH_ALL": prs})
+}
+
+func (e *env) setPRLists(lists map[string][]ghPR) {
+	e.t.Helper()
+	for k, list := range lists {
 		if list == nil {
 			continue
 		}
@@ -384,11 +399,96 @@ func TestProposalStartRefusesAnOpenPRFromAnotherBranch(t *testing.T) {
 	}
 }
 
-func TestProposalStartRefusesABranchThatOriginHasAlready(t *testing.T) {
+func TestProposalStartResumesABranchNoPRWasOpenedFrom(t *testing.T) {
 	e := newEnv(t)
-	e.pushBranch("rules-proposal/2026-11-05", "guides/README.md", "closed PR work\n")
+	const branch = "rules-proposal/2026-11-05"
+	// An earlier run pushed the branch, and its step that opens the PR failed.
+	sha := e.pushBranch(branch, "glossary/terms.yaml", "- {kr: 신규 용어, zh: 新術語, status: approved}\n")
+
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch || got.PR != 0 || got.URL != "" {
+		t.Errorf("Started = %+v", got)
+	}
+	if b, h := e.branch(), e.git("rev-parse", "HEAD"); b != branch || h != sha {
+		t.Errorf("checked out %q at %s, want %q at the pushed %s", b, h, branch, sha)
+	}
+	// The question was asked of every PR, whatever its state and label.
+	asked := e.callsOf("pr", "list", "--state", "all")
+	if len(asked) != 1 || !slices.Equal(asked[0], []string{"pr", "list", "--state", "all", "--head", branch, "--json", "number,headRefName"}) {
+		t.Errorf("calls = %q", asked)
+	}
+	assertIDs(t, "exclude.txt", e.excludeIDs())
+
+	// Publish goes on from there: the branch gets its PR.
+	e.write("work/proposal/body.md", body("term/신규 용어"))
+	e.write("guides/README.md", "more\n")
+	pub, err := Publish(e.opts("2026-11-05"), e.bodyFile())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !pub.Created || pub.Branch != branch || e.originGit("rev-parse", "refs/heads/"+branch) != pub.Commit {
+		t.Errorf("Published = %+v", pub)
+	}
+}
+
+func TestProposalStartTakesAFreeBranchWhenAClosedPRUsedTheName(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	e.pushBranch(branch, "guides/README.md", "closed PR work\n")
+	// A closed PR was opened from the branch; one that was merged would be the same.
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch, Body: body("term/a")})
+
+	got, err := Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch+"-2" || got.PR != 0 {
+		t.Errorf("Started = %+v, want %s-2", got, branch)
+	}
+	if b, h, base := e.branch(), e.git("rev-parse", "HEAD"), e.git("rev-parse", "origin/main"); b != branch+"-2" || h != base {
+		t.Errorf("checked out %q at %s, want %s-2 at origin/main %s", b, h, branch, base)
+	}
+
+	// -2 taken on origin as well: the first one origin does not have.
+	e.pushBranch(branch+"-2", "guides/README.md", "second\n")
+	e.pushBranch(branch+"-4", "guides/README.md", "fourth\n")
+	got, err = Start(e.opts("2026-11-05"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Branch != branch+"-3" || e.branch() != branch+"-3" {
+		t.Errorf("Started = %+v, checked out %q, want %s-3", got, e.branch(), branch)
+	}
+
+	// A PR from another branch is no reason: only the head counts.
+	e.git("checkout", "-q", "main")
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: "rules-proposal/2026-11-04"})
+	got, err = Start(e.opts("2026-11-05"))
+	if err != nil || got.Branch != branch {
+		t.Errorf("Started = %+v, %v; want to resume %s", got, err, branch)
+	}
+}
+
+func TestProposalStartGivesUpWhenEveryBranchIsTaken(t *testing.T) {
+	e := newEnv(t)
+	const branch = "rules-proposal/2026-11-05"
+	e.setAllPRs(ghPR{Number: 9, HeadRefName: branch})
+	e.git("checkout", "-q", "-B", branch, "origin/main")
+	e.write("guides/README.md", "x\n")
+	e.git("commit", "-q", "-am", "x")
+	refspecs := []string{"HEAD:refs/heads/" + branch}
+	for n := 2; n <= maxBranchSuffix; n++ {
+		refspecs = append(refspecs, "HEAD:refs/heads/"+branch+"-"+strconv.Itoa(n))
+	}
+	e.git(append([]string{"push", "-q", "origin"}, refspecs...)...)
+	e.git("checkout", "-q", "main")
+	e.git("branch", "-q", "-D", branch)
+
 	_, err := Start(e.opts("2026-11-05"))
-	mustRefuse(t, err, "rules-proposal/2026-11-05", "origin")
+	mustRefuse(t, err, branch)
 	if b := e.branch(); b != "main" {
 		t.Errorf("checked out %q", b)
 	}
@@ -566,7 +666,7 @@ func TestProposalPublishCreatesPR(t *testing.T) {
 	if want := []string{"pr list", "label create", "pr create"}; !slices.Equal(order, want) {
 		t.Errorf("gh calls = %q, want %q", order, want)
 	}
-	if label := e.callsOf("label", "create"); len(label) != 1 || !slices.Equal(label[0], []string{"label", "create", "rules-proposal", "--force"}) {
+	if label := e.callsOf("label", "create"); len(label) != 1 || !slices.Equal(label[0], []string{"label", "create", "rules-proposal", "--force", "--color", "0E8A16", "--description", "規則建議，由 CI 提出"}) {
 		t.Errorf("label calls = %q", label)
 	}
 	if e.callsOf("pr", "edit") != nil {
@@ -625,6 +725,17 @@ func TestProposalPublishTakesTheDateFromTheBranch(t *testing.T) {
 	}
 	if create := e.callsOf("pr", "create"); len(create) != 1 || !slices.Contains(create[0], "規則建議：2026-11-05") {
 		t.Errorf("pr create calls = %q", create)
+	}
+
+	// The suffix of a branch that Start took because the name was used is no
+	// part of the date.
+	e.onBranch("rules-proposal/2026-11-06-3")
+	e.write("guides/README.md", "changed with a suffix\n")
+	if _, err := Publish(e.opts(""), e.bodyFile()); err != nil {
+		t.Fatal(err)
+	}
+	if msg := e.git("log", "-1", "--format=%s"); msg != "rules: proposal 2026-11-06" {
+		t.Errorf("commit message = %q", msg)
 	}
 
 	// A branch without a date in its name needs the date.
@@ -884,5 +995,26 @@ func TestProposalStartNeedsGit(t *testing.T) {
 	_, err := Start(o)
 	if err == nil || isRefusal(err) {
 		t.Errorf("error = %v, want a system error", err)
+	}
+}
+
+func TestProposalBranchDate(t *testing.T) {
+	tests := map[string]string{
+		"rules-proposal/2026-11-05":    "2026-11-05",
+		"rules-proposal/2026-11-05-2":  "2026-11-05",
+		"rules-proposal/2026-11-05-12": "2026-11-05",
+		"rules-proposal/2026-11-05-":   "",
+		"rules-proposal/2026-11-05-x":  "",
+		"rules-proposal/2026-11-05-+2": "",
+		"rules-proposal/2026-11-05--2": "",
+		"rules-proposal/2026-11-05a":   "",
+		"rules-proposal/2026-13-05":    "",
+		"rules-proposal/manual":        "",
+		"rules-proposal/":              "",
+	}
+	for branch, want := range tests {
+		if got := branchDate(branch); got != want {
+			t.Errorf("branchDate(%q) = %q, want %q", branch, got, want)
+		}
 	}
 }

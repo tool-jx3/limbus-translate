@@ -27,7 +27,11 @@ case "$1 $2" in
 		if [ "$prev" = "--state" ]; then state=$a; fi
 		prev=$a
 	done
-	if [ "$state" = open ]; then printf '%s' "${FAKE_GH_OPEN:-[]}"; else printf '%s' "${FAKE_GH_CLOSED:-[]}"; fi
+	case "$state" in
+	open) printf '%s' "${FAKE_GH_OPEN:-[]}" ;;
+	closed) printf '%s' "${FAKE_GH_CLOSED:-[]}" ;;
+	*) printf '%s' "${FAKE_GH_ALL:-[]}" ;;
+	esac
 	;;
 "pr create") echo "https://github.com/o/r/pull/7" ;;
 esac
@@ -41,7 +45,7 @@ func proposalRepo(t *testing.T) (root, ghDir string) {
 	t.Setenv("HOME", t.TempDir())
 	t.Setenv("GIT_CONFIG_GLOBAL", os.DevNull)
 	t.Setenv("GIT_CONFIG_NOSYSTEM", "1")
-	for _, k := range []string{"GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL", "EMAIL", "FAKE_GH_FAIL", "FAKE_GH_OPEN", "FAKE_GH_CLOSED", "GITHUB_TOKEN"} {
+	for _, k := range []string{"GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL", "EMAIL", "FAKE_GH_FAIL", "FAKE_GH_OPEN", "FAKE_GH_CLOSED", "FAKE_GH_ALL", "GITHUB_TOKEN"} {
 		t.Setenv(k, "")
 		os.Unsetenv(k)
 	}
