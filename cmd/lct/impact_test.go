@@ -203,3 +203,74 @@ func TestImpactCommandJSONHasNoNull(t *testing.T) {
 		}
 	}
 }
+
+// --markdown writes only inside the work/ or out/ folder of the repo: the
+// rules-review skill runs lct impact with text anyone can write in its
+// context, and a path elsewhere (a rule file, .git/, a file outside the repo)
+// is refused before anything is written, ".." and symbolic links resolved.
+func TestImpactCommandMarkdownStaysInWorkOrOut(t *testing.T) {
+	root := impactRepo(t)
+	outside := t.TempDir()
+	mkdir := func(rel string) {
+		if err := os.MkdirAll(filepath.Join(root, filepath.FromSlash(rel)), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	link := func(target, rel string) {
+		if err := os.Symlink(target, filepath.Join(root, filepath.FromSlash(rel))); err != nil {
+			t.Fatal(err)
+		}
+	}
+	mkdir("work/proposal")
+	writeTestFile(t, root, "guides/existing.md", "a guide\n")
+	link(filepath.Join(root, "guides", "existing.md"), "work/proposal/to-a-guide.md")
+	link(filepath.Join(root, "guides"), "work/guides-dir")
+	link(filepath.Join(outside, "new.md"), "work/dangling.md")
+
+	for _, p := range []string{"work/proposal/impact.md", "out/impact.md", filepath.Join(root, "work", "abs.md"), "work/new/deeper/impact.md"} {
+		t.Run("writes "+p, func(t *testing.T) {
+			if code, stdout, stderr := lct(t, "--json", "impact", "--base", "HEAD", "--markdown", p); code != 0 {
+				t.Fatalf("exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+			}
+			if _, err := os.Stat(p); err != nil {
+				t.Errorf("%s was not written: %v", p, err)
+			}
+		})
+	}
+	t.Run("writes from a subdirectory", func(t *testing.T) {
+		t.Chdir(filepath.Join(root, "guides"))
+		if code, _, stderr := lct(t, "--json", "impact", "--base", "HEAD", "--markdown", "../work/from-guides.md"); code != 0 {
+			t.Fatalf("exit code %d\n%s", code, stderr)
+		}
+		if _, err := os.Stat(filepath.Join(root, "work", "from-guides.md")); err != nil {
+			t.Error(err)
+		}
+	})
+
+	for name, tc := range map[string]struct{ path, check string }{
+		"outside the repo":           {filepath.Join(outside, "impact.md"), filepath.Join(outside, "impact.md")},
+		"a rule folder":              {"guides/impact.md", filepath.Join(root, "guides", "impact.md")},
+		"the git folder":             {".git/impact.md", filepath.Join(root, ".git", "impact.md")},
+		"out of work/ through ..":    {"work/../guides/up.md", filepath.Join(root, "guides", "up.md")},
+		"the work folder itself":     {"work", ""},
+		"a link to a guide":          {"work/proposal/to-a-guide.md", ""},
+		"through a linked directory": {"work/guides-dir/via-link.md", filepath.Join(root, "guides", "via-link.md")},
+		"a link that points nowhere": {"work/dangling.md", filepath.Join(outside, "new.md")},
+		"a folder named like work":   {"workshop/impact.md", filepath.Join(root, "workshop", "impact.md")},
+	} {
+		t.Run("refuses "+name, func(t *testing.T) {
+			code, stdout, stderr := lct(t, "impact", "--base", "HEAD", "--markdown", tc.path)
+			if code != 1 || stdout != "" || !strings.Contains(stderr, "--markdown") || !strings.Contains(stderr, "work/") || !strings.Contains(stderr, "out/") {
+				t.Errorf("exit code %d, stdout %q, stderr %q; want 1 and a message that names --markdown, work/ and out/", code, stdout, stderr)
+			}
+			if tc.check != "" {
+				if _, err := os.Lstat(tc.check); err == nil {
+					t.Errorf("%s was written", tc.check)
+				}
+			}
+		})
+	}
+	if data := readFile(t, filepath.Join(root, "guides", "existing.md")); string(data) != "a guide\n" {
+		t.Errorf("the guide behind the link was overwritten: %q", data)
+	}
+}
