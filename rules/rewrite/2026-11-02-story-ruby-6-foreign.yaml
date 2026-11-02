@@ -1,0 +1,9 @@
+# 劇情裡 KR 用韓文拼寫的法語擊劍用語（에쥬, 프레? / 알레!），社群譯文寫成
+# 「原文（中文意思）」；依 guides/base.md「外語的詞、台詞與感嘆」改成
+# <ruby=中文意思>原文</ruby>，不另加括號。只有這三句（P11008 /49、/50，
+# P10305 /40）。
+reason: 劇情的外語台詞：原文照寫，中文意思寫在 ruby，不加括號
+files: [StoryData/P11008.json, StoryData/P10305.json]
+origins: [paratranz]
+pattern: '(Es-tu prêt|Allez)([？！]?)（([^？！）)]+)[？！]?[）)]'
+replace: '<ruby=${3}>${1}</ruby>${2}'
