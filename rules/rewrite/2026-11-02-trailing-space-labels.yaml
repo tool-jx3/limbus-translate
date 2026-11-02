@@ -1,8 +1,0 @@
-# lct suggest：inconsistent/story-main/teller/7314cdb3（동랑）與
-# inconsistent/identity/desc/549f8a0d（저녁 인사）。這兩個標籤各有一個單位
-# 結尾多了空格（S448B 的說話者「東朗 」、Voice_Rodion_Kcorp_10905 的「晚間問候 」）。
-reason: 標籤結尾多出的空格刪掉
-files: [StoryData/S448B.json, PersonalityVoiceDlg/Voice_Rodion_Kcorp_10905.json]
-pattern: '^(東朗|晚間問候) +$'
-replace: '${1}'
-kr_pattern: '^(동랑|저녁 인사)$'

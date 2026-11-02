@@ -1,0 +1,10 @@
+# lct suggest：inconsistent/story-main/teller/7314cdb3（동랑）、
+# inconsistent/identity/desc/549f8a0d（저녁 인사）、
+# inconsistent/story-main/teller/25b591a9（삼조）。這三個標籤各有一個單位
+# 多了空格：S448B 的說話者「東朗 」、Voice_Rodion_Kcorp_10905 的「晚間問候 」
+# 結尾多一個，S409B 的說話者「 三朝」開頭多一個。
+reason: 標籤開頭或結尾多出的空格刪掉
+files: [StoryData/S448B.json, StoryData/S409B.json, PersonalityVoiceDlg/Voice_Rodion_Kcorp_10905.json]
+pattern: '^ +(三朝)$|^(東朗|晚間問候) +$'
+replace: '${1}${2}'
+kr_pattern: '^(동랑|저녁 인사|삼조)$'

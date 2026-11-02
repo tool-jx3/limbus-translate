@@ -1,0 +1,9 @@
+reason: 전용 파편 寫「專用碎片」，不加「人格」（glossary/terms.yaml）；KR 的 · 依 guides/base.md「句中的 ·」寫「、」；其餘沿用原譯
+keys:
+  - Items-a1c10p1.json|/dataList/16/name
+  - Items-a1c7p1.json|/dataList/16/name
+  - Items-a1c8p1.json|/dataList/15/name
+  - Items-a1c9p1.json|/dataList/16/name
+  - Items.json|/dataList/82/name
+  - SeasonTitle-a1c7.json|/dataList/2/content
+  - SeasonTitle-a1c7.json|/dataList/3/content

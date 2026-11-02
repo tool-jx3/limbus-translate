@@ -1,0 +1,8 @@
+# lct suggest：inconsistent/identity/desc/e1c8e90e。人格語音的分類標籤
+# `아침 인사` 有 55 個單位寫「早晨問候」，多數（138）寫「晨間問候」，與
+# 午間問候、晚間問候對稱（guides/families.md「人格語音的分類標籤」）。
+reason: 人格語音的分類標籤 아침 인사 統一寫「晨間問候」
+files: [PersonalityVoiceDlg/**]
+pattern: '^早晨問候$'
+replace: '晨間問候'
+kr_pattern: '^아침 인사$'

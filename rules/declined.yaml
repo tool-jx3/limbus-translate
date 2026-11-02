@@ -12,4 +12,6 @@
 #   - id: speaker/아무개
 #     reason: 路人，不需要指引
 #     date: 2026-11-05
-[]
+- id: "inconsistent/identity/teller/2b369f13"
+  reason: 鴻璐在人格故事 P10613 第 142 句起自稱「紅露」（KR 홍루(紅露)），該檔之後的說話者名稱寫「紅露」是刻意的，見 guides/characters/honglu.md
+  date: 2026-11-02
