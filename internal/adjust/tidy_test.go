@@ -102,6 +102,48 @@ func TestTidyWritesAKeyThatNeedsQuotes(t *testing.T) {
 	}
 }
 
+// A key written in single quotes, in a list indented under the margin, is
+// edited in place like any other: the quotes go when the new key needs none,
+// the comment after it stays, and an entry of the list goes with its lines.
+func TestTidyEditsSingleQuotedAndIndentedKeys(t *testing.T) {
+	root := t.TempDir()
+	indent := func(entry string) string {
+		return "  " + strings.ReplaceAll(strings.TrimSuffix(entry, "\n"), "\n", "\n  ") + "\n"
+	}
+	quoted := strings.Replace(tidyEntry(tidyKey(2), "您好"), "key: "+tidyKey(2), "key: '"+tidyKey(2)+"' # 單引號", 1)
+	body := "# 縮排的清單\n" + indent(tidyEntry(tidyKey(1), "留著")) + indent(quoted) + indent(tidyEntry(tidyKey(3), "重翻了"))
+	writeFile(t, root, tidyDir+"2026-11-01-a.yaml", body)
+
+	changed, err := adjust.Tidy(root, []adjust.Move{{From: tidyKey(2), To: tidyKey(7)}}, []string{tidyKey(3)}, always)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(changed, []string{tidyDir + "2026-11-01-a.yaml"}) {
+		t.Errorf("changed = %v", changed)
+	}
+	want := "# 縮排的清單\n" + indent(tidyEntry(tidyKey(1), "留著")) +
+		indent(strings.Replace(quoted, "'"+tidyKey(2)+"'", tidyKey(7), 1))
+	if got := readFile(t, root, tidyDir+"2026-11-01-a.yaml"); got != want {
+		t.Errorf("file =\n%s\nwant\n%s", got, want)
+	}
+	list, err := adjust.Load(root)
+	if err != nil || len(list) != 2 || list[1].Key != tidyKey(7) || list[1].ZH != "您好" {
+		t.Errorf("Load = %+v, %v, want the first entry and the moved one", list, err)
+	}
+
+	// A key that needs its quotes keeps a quoted form.
+	to := "Story.json|/dataList/8/'x': y"
+	if _, err := adjust.Tidy(root, []adjust.Move{{From: tidyKey(7), To: to}}, nil, never); err != nil {
+		t.Fatal(err)
+	}
+	if list, err := adjust.Load(root); err != nil || len(list) != 2 || list[1].Key != to {
+		t.Errorf("after the move to %q: %+v, %v", to, list, err)
+	}
+	if got := readFile(t, root, tidyDir+"2026-11-01-a.yaml"); !strings.Contains(got, " # 單引號\n") || !strings.HasPrefix(got, "# 縮排的清單\n  - key: ") {
+		t.Errorf("the comment or the indent was lost:\n%s", got)
+	}
+}
+
 func TestTidyRemovesRetranslatedExpired(t *testing.T) {
 	root := t.TempDir()
 	writeFile(t, root, tidyDir+"2026-11-01-a.yaml",

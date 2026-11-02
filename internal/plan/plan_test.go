@@ -1281,6 +1281,27 @@ func TestPlanMergesTheRequestsNoUnitTookOver(t *testing.T) {
 	e.again()
 }
 
+// The unit of an adjustment that expired is translated again when it has a
+// record of its KR text now that no person made; plan and lct adjust tidy
+// both ask this.
+func TestTranslatedAgain(t *testing.T) {
+	const sha = "aaaa"
+	for _, c := range []struct {
+		rec  store.Record
+		want bool
+	}{
+		{store.Record{KRSha: sha, Origin: store.OriginClaude}, true},
+		{store.Record{KRSha: sha, Origin: store.OriginParatranz}, true},
+		{store.Record{KRSha: sha, Origin: store.OriginCopy}, true},
+		{store.Record{KRSha: sha, Origin: store.OriginHuman}, false}, // the adjustment's own
+		{store.Record{KRSha: "bbbb", Origin: store.OriginClaude}, false},
+	} {
+		if got := TranslatedAgain(c.rec, sha); got != c.want {
+			t.Errorf("TranslatedAgain(%+v) = %v, want %v", c.rec, got, c.want)
+		}
+	}
+}
+
 func TestJoinHints(t *testing.T) {
 	for _, c := range []struct{ own, handed, want string }{
 		{"語氣B", "用您", "語氣B；用您"},

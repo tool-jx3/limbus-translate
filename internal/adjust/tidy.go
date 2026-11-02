@@ -51,7 +51,10 @@ func Tidy(root string, moves []Move, expired []string, settled func(key string) 
 // list such as [{key: ...}], a second document, a key written as a block
 // scalar) or the edit does not read back as meant, it fails with an error
 // that wraps ErrInvalid and names the file, and writes nothing, in any file.
-// A file without an entry to change is not looked at that closely.
+// A file without an entry to change is not looked at that closely. Each file
+// is replaced atomically, but the files are not written together: an I/O
+// error while writing them can leave some written and the others not (the
+// files are under version control, and git shows which).
 func TidyReport(root string, moves []Move, expired []string, settled func(key string) bool) (Tidied, error) {
 	entries, err := rulefile.ReadDir(root, Dir)
 	if err != nil {

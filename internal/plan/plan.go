@@ -774,8 +774,8 @@ func (p *planner) expire(r resolved) error {
 		if !ok || p.settled[key] {
 			continue
 		}
-		if rec, has := p.records[key]; has && rec.KRSha == ref.sha && rec.Origin != store.OriginHuman {
-			continue // translated again already
+		if rec, has := p.records[key]; has && TranslatedAgain(rec, ref.sha) {
+			continue
 		}
 		item, queued := p.pending[key]
 		if !queued {
@@ -792,6 +792,15 @@ func (p *planner) expire(r resolved) error {
 	slices.Sort(adj.Expired)
 	sort.Slice(adj.Moved, func(i, j int) bool { return adj.Moved[i].From < adj.Moved[j].From })
 	return nil
+}
+
+// TranslatedAgain reports whether rec, the record of the unit of an adjustment
+// that expired, whose KR text has sha now, means the unit was translated
+// again: it is a record of that text that no person made (a human record is
+// the adjustment's own). Plan queues such a unit no more, and lct adjust tidy
+// deletes its adjustment.
+func TranslatedAgain(rec store.Record, sha string) bool {
+	return rec.KRSha == sha && rec.Origin != store.OriginHuman
 }
 
 // unitFinder finds the units of the adjustments that expired (expiredUnit).

@@ -333,10 +333,9 @@ func runAdjustTidy(ctx *cli.Context, args []string) error {
 }
 
 // settledUnits returns the test of a unit key for lct adjust tidy: the unit
-// has a record of the KR text it has now that is not a human one (the record
-// of an adjustment is human, and it is the adjustment that is being asked
-// about), and it is not waiting in the queue. A unit that KR does not have is
-// not settled.
+// was translated again as the plan tells it (plan.TranslatedAgain: a record of
+// the KR text it has now that is not a human one), and it is not waiting in
+// the queue. A unit that KR does not have is not settled.
 func settledUnits(st *store.Store, kr *pack.Pack) (func(unit string) (bool, error), error) {
 	records, err := st.LoadRecords()
 	if err != nil {
@@ -353,7 +352,7 @@ func settledUnits(st *store.Store, kr *pack.Pack) (func(unit string) (bool, erro
 	shas := map[string]map[string]string{} // file -> pointer -> units.KRSha, made as needed
 	return func(unit string) (bool, error) {
 		rec, ok := records[unit]
-		if queued[unit] || !ok || rec.Origin == store.OriginHuman {
+		if queued[unit] || !ok {
 			return false, nil
 		}
 		file, pointer, err := units.SplitKey(unit)
@@ -371,6 +370,6 @@ func settledUnits(st *store.Store, kr *pack.Pack) (func(unit string) (bool, erro
 			}
 		}
 		sha, ok := shas[file][pointer]
-		return ok && rec.KRSha == sha, nil
+		return ok && plan.TranslatedAgain(rec, sha), nil
 	}, nil
 }
