@@ -440,8 +440,8 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 每週四 12:00 UTC+8（cron `0 4 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯就直接結束 |
-| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → Release → 有需要處理的項目時開審核 Issue |
+| `update.yml` | 每週四 12:00 UTC+8（cron `0 4 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release（§13）→ 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯，而且沒有還欠著的 Release（`lct publish --check`）、`tw` 最後一個 commit 不是只保存翻譯進度的（`translate: keep the progress of …`，保存後 build 失敗的情況），才直接結束 |
+| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release → 有需要處理的項目時開審核 Issue |
 | `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成後，報表有新建議時；手動 | §11.2：跑 `rules-review` skill，開或更新規則 PR |
 | `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 契約測試；改到規則的 PR 另外以目前 `tw` 跑 `lct validate`，列出這次規則變更會讓多少既有單位不符合 |
 
@@ -501,7 +501,7 @@ LimbusCompany_Data/
 
 - 這次的輸入：raw tag 與 token、`main` commit、模型、花費
 - 原文變化：新增／修改／刪除的檔；中間插入的檔；附 GitHub 比較頁連結（`raw-上次...raw-這次`），可直接看 KR 的差異
-- 譯文變化：各來源（`paratranz`／`claude`／`human`／`copy`／`fallback`）的單位數；這次新翻、因 KR 變更重翻的數量；`tw` 的比較頁連結（建置前的 `tw` commit 到 `tw`）只放在 Actions 執行頁的 summary，不放進存檔的報表：它隨每次發佈而變，放進存檔會讓每次建置都改動 `tw`，Release 就沒有「只在 `tw` 有新 commit 時才建立」的意義
+- 譯文變化：各來源（`paratranz`／`claude`／`human`／`copy`／`fallback`）的單位數；這次新翻、因 KR 變更重翻的數量；`tw` 的比較頁連結（建置前的 `tw` commit 到 `tw`）只放在 Actions 執行頁的 summary，不放進存檔的報表：它隨每次發佈而變，放進存檔會讓每次建置都為了報表而改動 `tw`（Release 是否建立只比較 `LimbusCompany_Data/` 的語言包，報表在 `.meta/` 底下，不影響，§13）
 - 自動處理的事：人工調整「key 已移動」、id 重新編號後沿用的譯文
 - 跨語言順序或 id 不一致的檔，「未對齊」的單位數
 - 驗證警告：數量與前幾筆，完整清單在存檔
@@ -520,7 +520,7 @@ LimbusCompany_Data/
 | `lct guide resolve` | 一批要帶的指引與詞彙 |
 | `lct validate` | §10 |
 | `lct build` | 合併、驗證、打包、寫報表 |
-| `lct publish` | commit `tw`、建立 Release |
+| `lct publish [--check]` | commit `tw`、備妥 Release（tag、說明、zip；語言包與最新的 Release 不同才需要建立）；`--check` 只讀 `tw` 的 git 狀態，回報目前的 `tw` 是否需要 Release、與哪個 tag 相同，不 commit |
 | `lct search` | 依 key、文字、說話者、檔名找單位 |
 | `lct adjust add` | 新增人工調整 |
 | `lct requeue` | 指定範圍送回待譯清單 |

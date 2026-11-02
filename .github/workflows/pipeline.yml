@@ -125,10 +125,15 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       # Nothing to do: no new game update, nothing pending, no request or
-      # rewrite file applied, nothing asked by hand, and tw was last built from
-      # the raw snapshot there is now (tw lags raw when an earlier run
-      # translated but did not get to build). The steps after this one are
-      # skipped and the run ends green.
+      # rewrite file applied, nothing asked by hand, tw was last built from the
+      # raw snapshot there is now (tw lags raw when an earlier run translated
+      # but did not get to build), no Release is left to make (an earlier run
+      # committed tw and its Release failed: lct publish --check says so from
+      # the commits, tags and trees of tw), and the last commit of tw is not one
+      # that only kept the progress of a translation (the build after it failed,
+      # and the pack is still the one of the last Release, so the Release check
+      # sees nothing). The steps after this one are skipped and the run ends
+      # green.
       - name: Stop when there is nothing to do
         id: decide
         env:
@@ -145,10 +150,15 @@ jobs:
           # No build.json, or one that cannot be read, is a tw that was not built
           # from this snapshot: not idle.
           built_tag=$(jq -r '.raw_tag // empty' .work/tw/.meta/build.json 2>/dev/null) || built_tag=
+          # Both are asked of tw as the last run left it: this run has not
+          # committed to it yet.
+          release_check=$(bin/lct publish --check --json)
+          release_needed=$(jq -er '.release_needed | tostring' <<<"$release_check")
+          tw_subject=$(git -C .work/tw log -1 --format=%s)
           idle=false
-          if [ "$FETCH" = true ] && [ "$NEW" != true ] && [ "$FORCE" != true ] && [ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ] && [ -z "$REQUEUE" ] && [ "$built_tag" = "$raw_tag" ]; then
+          if [ "$FETCH" = true ] && [ "$NEW" != true ] && [ "$FORCE" != true ] && [ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ] && [ -z "$REQUEUE" ] && [ "$built_tag" = "$raw_tag" ] && [ "$release_needed" = false ] && [[ $tw_subject != 'translate: keep the progress of'* ]]; then
             idle=true
-            echo '沒有新的遊戲更新，也沒有待譯，沒有重翻要求或改寫檔要套用，tw 也已經建置到目前的 raw：不建置、不發佈。' | tee -a "$GITHUB_STEP_SUMMARY"
+            echo '沒有新的遊戲更新，也沒有待譯，沒有重翻要求或改寫檔要套用，tw 也已經建置到目前的 raw，沒有還欠著的 Release，tw 最後一個 commit 也不是只保存翻譯進度：不建置、不發佈。' | tee -a "$GITHUB_STEP_SUMMARY"
           fi
           translate=false
           if [ "$idle" = false ] && [ "$PENDING" -gt 0 ]; then
@@ -223,7 +233,9 @@ jobs:
           cat out/summary.md >> "$GITHUB_STEP_SUMMARY"
 
       # release_needed, not the tag, says whether to release: the tag is the
-      # next free number even when nothing is released.
+      # next free number even when nothing is released. A pack that is the one
+      # of the last Release gets no Release (same_as names that one), and the
+      # summary page says so.
       - name: Prepare the Release
         id: publish
         if: steps.decide.outputs.idle == 'false'
@@ -231,7 +243,14 @@ jobs:
           bin/lct publish --json > out/publish.json
           cat out/publish.json
           release_needed=$(jq -er '.release_needed | tostring' out/publish.json)
+          same_as=$(jq -r '.same_as // empty' out/publish.json)
           echo "release_needed=$release_needed" >> "$GITHUB_OUTPUT"
+          if [ "$release_needed" = false ] && [ -n "$same_as" ]; then
+            {
+              echo
+              echo "語言包與 $same_as 相同，這次不建立 Release"
+            } | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Push tw
         if: steps.decide.outputs.idle == 'false'
@@ -245,10 +264,11 @@ jobs:
           tag=$(jq -er .tag out/publish.json)
           tw_commit=$(jq -er .tw_commit out/publish.json)
           # set -e does not see a failing command inside <( ): capture the assets
-          # first, and refuse to make a Release that has not both zips.
-          assets_json=$(jq -ec '.assets | select(length == 2)' out/publish.json)
+          # first, and refuse, with a word, to make a Release that has not both
+          # zips.
+          assets_json=$(jq -ec '.assets // []' out/publish.json)
           mapfile -t assets < <(jq -r '.[]' <<<"$assets_json")
-          [ "${#assets[@]}" -eq 2 ] || { echo 'publish.json has no assets' >&2; exit 1; }
+          [ "${#assets[@]}" -eq 2 ] || { echo "::error::publish.json has ${#assets[@]} assets, want 2"; exit 1; }
           gh release create "$tag" "${assets[@]}" --target "$tw_commit" --title "$tag" --notes-file out/release-notes.md
 
       # The first part is the issue, the others are comments on it. A run for

@@ -18,11 +18,11 @@
 | `raw` | 每次遊戲更新的官方原文快照，一次更新一個 commit 與 tag（`raw-YYYYMMDD`） | 只有 CI |
 | `tw` | 每個單位的譯文紀錄、待譯清單、報表與建置出來的語言包 | 只有 CI |
 
-Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立。人要改什麼，都經由 `main`（見「人工介入」）。
+Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內容和上一個 Release 不同時才建立（見「GitHub Actions 設定」）。人要改什麼，都經由 `main`（見「人工介入」）。
 
 ## GitHub Actions 設定
 
-fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並確認 workflow 有寫入權限。
+fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並確認 workflow 有寫入權限。每次建置，`tw` 都照常 commit 與推送，但語言包沒變就不發 Release（見下面「細節」）。
 
 ### Secrets 與 variables
 
@@ -44,17 +44,20 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 | workflow | 何時執行 | 做什麼 |
 |---|---|---|
-| `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，而且 `tw` 上次建置用的就是目前的 `raw` 就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 建立 Release → 有需要人處理的項目時開審核 Issue |
-| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 建立 Release → 審核 Issue |
+| `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，`tw` 上次建置用的就是目前的 `raw`，也沒有還欠著的 Release、沒有只保存了進度卻還沒建置的 commit，就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 有需要人處理的項目時開審核 Issue |
+| `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 審核 Issue |
 | `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint` |
 
 `update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。細節：
 
 - 翻譯最多進行 5 小時。每一輪執行最多 100 個回合，用完回合是正常的結束，接著開下一輪；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
 - 翻譯一結束（包括失敗、被取消或逾時），已翻的內容馬上 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit）。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它後面。
-- 「沒事可做」還要看 `tw` 上次建置的 raw tag（`tw` 的 `.meta/build.json` 的 `raw_tag`）是不是目前 `raw` 的 tag；`tw` 落後 `raw`（例如上次翻完卻沒建置成功），或讀不到那個檔，就不算沒事可做，這次會補建置與發布。
+- 「沒事可做」還要看三件事，任何一件不成立就不算沒事可做：
+  - `tw` 上次建置的 raw tag（`tw` 的 `.meta/build.json` 的 `raw_tag`）是不是目前 `raw` 的 tag；`tw` 落後 `raw`（例如上次翻完卻沒建置成功），或讀不到那個檔，這次會補建置與發布。
+  - 有沒有還欠著的 Release：`bin/lct publish --check` 只讀 `tw` 的 git 狀態（HEAD、tag、檔案樹），`tw` 的語言包和最新的 Release 不同、HEAD 又沒有 Release 的 tag（上次 `tw` 推上去了，Release 卻沒建成），這次會補建立。
+  - `tw` 最後一個 commit 的標題是不是以 `translate: keep the progress of` 開頭：保存進度之後 build 失敗，語言包仍和最新的 Release 相同，上一項看不出來，靠這一項補建置。
 - Claude Code CLI 在單獨的一個步驟安裝，那一步沒有 `ANTHROPIC_API_KEY`；key 只在執行 `lct translate` 的那一步。執行時設定 `DISABLE_AUTOUPDATER=1`，CLI 不會在執行中更新自己。
-- 只有 `tw` 有新 commit、或該 commit 還沒有 Release 時才建立 Release。
+- 語言包沒變就不發 Release：只有語言包的內容和最新一個 `zh-TW-*` Release 不同時才建立。比較這次的 `tw` commit 與該 Release 的 `LimbusCompany_Data/` 檔案樹（git blob），不含 `Info/version.json`（它記錄規則 commit、建置時間、模型與花費，每次建置都不同）。相同就不建立，`tw` 照常 commit 與推送，該次執行的 summary 會寫「語言包與 `<tag>` 相同，這次不建立 Release」。
 - 審核 Issue 的標題是「審核：YYYY-MM-DD 更新」（日期取 raw tag 的日期）；沒有需要處理的項目時不開。同一個 raw tag 重跑時，內容會留言在還開著的同名 Issue，不另開新的。完整報表在該次執行的 summary。
 - 所有會寫入 `raw`、`tw` 的執行共用 concurrency 群組 `lct-state`，一次只跑一個。GitHub 的群組最多一個執行中、一個等待中，新的等待會取代舊的等待；如果某次被取代，到 Actions 頁面手動執行一次即可。
 - GitHub 只從預設分支執行排程，公開 repo 連續 60 天沒有活動會停用排程（到 Actions 頁面重新啟用）。排程在整點附近可能延遲。
@@ -65,7 +68,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 | 輸入 | 用在 | 說明 |
 |---|---|---|
-| `force` | `update.yml` | 即使官方原文沒有更新（token 與 `raw` 的快照相同），也重新下載，且不因「沒事可做」而結束，照樣 plan、build、發布 |
+| `force` | `update.yml` | 即使官方原文沒有更新（token 與 `raw` 的快照相同），也重新下載，且不因「沒事可做」而結束，照樣 plan、build、推 `tw`；語言包有變才建立 Release |
 | `requeue` | 兩者 | 一個檔名或 glob（例如 `StoryData/S1*`）：plan 之後把這個範圍的譯文送回待譯清單重翻，提示為「手動執行 workflow 要求重翻」。只能給一個範圍（相當於 `lct requeue --file`） |
 | `max_usd` | 兩者 | 這次翻譯花費的上限（美元）；空白時用 `LCT_MAX_USD`，再沒有就是 30 |
 | `dry_run` | 兩者 | 勾選時不翻譯（不花 API 費用）；plan、build 與發布照常，待譯的部分以 EN 或 KR 暫代 |

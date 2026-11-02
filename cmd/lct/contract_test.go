@@ -829,10 +829,17 @@ var pipelinePermissions = map[string]string{"contents": "write", "issues": "writ
 
 // pipelineGated are the commands of pipeline.yml that must not run when
 // there is nothing to do; the step that runs one reads steps.decide.outputs
-// in its if.
+// in its if. The publish that commits and prepares the Release is gated; the
+// publish --check that the decide step asks is not, as it only reads and is
+// how the run decides.
 var pipelineGated = []string{
-	"npm install", "bin/lct translate", "git -C .work/tw push origin tw", "bin/lct build", "bin/lct publish", "git push origin tw", "gh release create", "gh issue",
+	"npm install", "bin/lct translate", "git -C .work/tw push origin tw", "bin/lct build", "bin/lct publish --json", "git push origin tw", "gh release create", "gh issue",
 }
+
+// keptProgressPrefix is how the subject of the commit that keeps the
+// translations on tw begins; the idle check looks for it in the last commit of
+// tw, so the commit step and the check must agree.
+const keptProgressPrefix = "translate: keep the progress of"
 
 // pipelineIdleTerms are the terms, in this order, of the condition under which
 // the decide step ends the run with nothing to do. Every term keeps a run from
@@ -845,6 +852,14 @@ var pipelineIdleTerms = []struct{ text, why string }{
 	{`[ "$APPLIED" -eq 0 ]`, "a run that applies a request or rewrite file could end as idle"},
 	{`[ -z "$REQUEUE" ]`, "a run asked by hand to requeue could end as idle"},
 	{`[ "$built_tag" = "$raw_tag" ]`, "a tw that was last built from another raw snapshot could end as idle, and would never be built"},
+	// A tw whose last build was committed but whose Release did not follow
+	// (the Release step failed), and which no earlier term sees: nothing is
+	// pending and tw was built from this raw.
+	{`[ "$release_needed" = false ]`, "a Release that is still due (publish --check says so) could end as idle, and would never be made"},
+	// A tw whose progress was kept and whose build then failed: the pack is
+	// still the one of the last Release, so publish --check says no Release is
+	// due, and what was translated would never be built.
+	{`[[ $tw_subject != '` + keptProgressPrefix + `'* ]]`, "a tw whose last commit only keeps the progress of a translation, whose build never came, could end as idle"},
 }
 
 // pipelineMarkers are the commands pipeline.yml must run, with the reason.
@@ -875,15 +890,19 @@ var pipelineMarkers = []struct{ text, why string }{
 	// What was translated is kept before anything can fail.
 	{"git -C .work/tw status --porcelain", "the step that keeps the translations does not look for what changed, so it commits nothing or commits when there is nothing"},
 	{"git -C .work/tw commit", "the translations are not committed to tw right after translating"},
-	{"translate: keep the progress of", "the commit that keeps the translations has no plain message"},
 	{"git -C .work/tw push origin tw", "the translations are not pushed to tw right after translating, so a build, publish or push that fails loses them"},
-	// The idle check looks at what tw was built from.
+	// The idle check looks at what tw was built from, at whether a Release is
+	// still due for it, and at whether its last commit only kept progress.
 	{".work/tw/.meta/build.json", "the raw tag tw was built from is not read, so a tw that lags raw counts as done"},
+	{"bin/lct publish --check --json", "the idle check does not ask whether a Release is still due, so a Release that failed is never made"},
+	{"git -C .work/tw log -1 --format=%s", "the subject of the last commit of tw is not read, so a tw whose progress was kept and never built counts as done"},
 	// created_at goes to $GITHUB_OUTPUT: nothing but a date and a time.
 	{`[!A-Za-z0-9_:.+\ -]`, "the token and the date of the status API are written to the outputs unchecked"},
 	{"bin/lct build", "the pack is not built"},
 	{"$GITHUB_STEP_SUMMARY", "the report is not shown on the summary page"},
-	{"bin/lct publish", "the Release is not prepared"},
+	{"bin/lct publish --json", "the Release is not prepared"},
+	// A Release that is skipped says so on the summary page.
+	{"語言包與 $same_as 相同，這次不建立 Release", "a run that makes no Release because the pack is the one of the last does not say so on the summary page"},
 	{"git push origin tw", "the tw commit is not pushed"},
 	{"gh release create", "no Release is created"},
 	{`--target "$tw_commit"`, "the Release tag is not made at the tw commit"},
@@ -894,6 +913,7 @@ var pipelineMarkers = []struct{ text, why string }{
 	{"assets_json=$(jq -ec", "the assets of publish.json are not captured before they are read"},
 	{"mapfile -t assets", "the assets are not read"},
 	{`"${#assets[@]}" -eq 2`, "the number of assets is not checked before the Release"},
+	{"::error::publish.json has ${#assets[@]} assets, want 2", "a Release step that refuses to run without both zips fails without a word"},
 	// Listed, not searched: the search index lags behind and does not hold
 	// Chinese titles well.
 	{"gh issue list --state open --limit 500 --json number,title,url", "the open issues are not listed, so a rerun opens a second issue"},
@@ -921,8 +941,12 @@ var pipelineOrder = [][2]string{
 	{"git -C .work/tw commit", "git -C .work/tw push origin tw"},
 	{"git -C .work/tw push origin tw", "bin/lct build"}, // kept before anything that can fail
 	{"bin/lct translate --max-usd", "bin/lct build"},
-	{"bin/lct build", "bin/lct publish"},
-	{"bin/lct publish", "git push origin tw"},
+	// The idle check asks about tw as the last run left it, before this run
+	// commits to it.
+	{"bin/lct publish --check", "git -C .work/tw commit"},
+	{"git -C .work/tw log -1 --format=%s", "git -C .work/tw commit"},
+	{"bin/lct build", "bin/lct publish --json"},
+	{"bin/lct publish --json", "git push origin tw"},
 	{"git push origin tw", "gh release create"}, // the Release is made from a pushed commit
 	{"assets_json=$(jq -ec", "mapfile -t assets"},
 	{"mapfile -t assets", `"${#assets[@]}" -eq 2`},
@@ -1293,6 +1317,9 @@ func checkPipelineWorkflow(file, content string) []string {
 			if keep.If != "always() && "+s.If {
 				add("the if of the step that keeps the translations on tw is %q, want always() followed by the if of the translate step: it must run exactly when the translate step does", keep.If)
 			}
+			if !strings.Contains(keep.Run, `-m "`+keptProgressPrefix+` $RAW_TAG"`) {
+				add("the commit of the step that keeps the translations on tw has no message %q followed by the raw tag: the idle check tells a tw whose progress was kept and never built by the subject of its last commit", keptProgressPrefix)
+			}
 		}
 		if s.Env["ANTHROPIC_API_KEY"] != "${{ secrets.ANTHROPIC_API_KEY }}" {
 			add("the translate step has no ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} in its env")
@@ -1313,6 +1340,17 @@ func checkPipelineWorkflow(file, content string) []string {
 		}
 		if !strings.Contains(after, "::warning::") {
 			add("the translate step does not say with ::warning:: after the command that it failed")
+		}
+	}
+	// The line about a Release that is not made goes to the summary page, and
+	// only when the publish says no Release is needed and names the Release
+	// whose pack this is.
+	if s, ok := find("這次不建立 Release"); ok {
+		if !strings.Contains(s.Run, `>> "$GITHUB_STEP_SUMMARY"`) && !strings.Contains(s.Run, `-a "$GITHUB_STEP_SUMMARY"`) {
+			add("the line that says no Release is made is not written to $GITHUB_STEP_SUMMARY")
+		}
+		if !strings.Contains(s.Run, `[ "$release_needed" = false ] && [ -n "$same_as" ]`) {
+			add(`the line that says no Release is made is not under [ "$release_needed" = false ] && [ -n "$same_as" ]: it would name no Release, or be said when one is made`)
 		}
 	}
 	if s, ok := find("gh release create"); ok {
@@ -1587,6 +1625,7 @@ func lctJSONInputs() map[string]any {
 		"count":                      pendingCount{},
 		"build":                      buildOutput{},
 		"out/publish.json":           publish.Result{},
+		"release_check":              publish.Check{},
 		".work/raw/meta/source.json": raw.Source{},
 		".work/tw/.meta/build.json":  build.Info{},
 		"issues":                     nil, // gh issue list
@@ -1601,7 +1640,8 @@ var lctJSONRequired = map[string][]string{
 	"plan":                       {"pending", "requeue_applied", "rewrite_applied"},
 	"count":                      {"available"},
 	"build":                      {"review_issue_parts"},
-	"out/publish.json":           {"tag", "tw_commit", "assets", "release_needed"},
+	"out/publish.json":           {"tag", "tw_commit", "assets", "release_needed", "same_as"},
+	"release_check":              {"release_needed"},
 	".work/raw/meta/source.json": {"tag"},
 	".work/tw/.meta/build.json":  {"raw_tag"},
 }
@@ -1896,7 +1936,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"assets read in a process substitution", "assets_json=$(jq -ec", "assets_json=$(cat out/publish.json; jq -ec", `"assets_json=$(jq -ec"`},
 		{"no check of the assets", `"${#assets[@]}" -eq 2`, `"${#assets[@]}" -ge 0`, "number of assets is not checked"},
 		{"assets read before they are captured", "assets_json=$(jq -ec", "mapfile -t assets </dev/null; assets_json=$(jq -ec", `"assets_json=$(jq -ec" must come before "mapfile -t assets"`},
-		{"a push before the build", "bin/lct build --json", "git push origin tw && bin/lct build --json", `"bin/lct publish" must come before "git push origin tw"`},
+		{"a push before the build", "bin/lct build --json", "git push origin tw && bin/lct build --json", `"bin/lct publish --json" must come before "git push origin tw"`},
 		{"a release before the publish", "bin/lct publish --json >", "gh release create x && bin/lct publish --json >", `"git push origin tw" must come before "gh release create"`},
 		{"a Release made when none is needed", " && steps.publish.outputs.release_needed == 'true'", "", "release_needed"},
 		{"a Release that follows a test that is not the pinned one", "steps.publish.outputs.release_needed == 'true'", "steps.publish.outputs.release_needed != 'false'", "release_needed == 'true'"},
@@ -1919,7 +1959,8 @@ func TestWorkflowContract(t *testing.T) {
 		{"translations kept whatever decide says", "if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "if: always() && steps.cli.outputs.installed == 'true'", "exactly when the translate step does"},
 		{"translations not looked for", "git -C .work/tw status --porcelain", "git -C .work/tw status --short", `"git -C .work/tw status --porcelain"`},
 		{"translations not committed", "git -C .work/tw commit", "git -C .work/tw stash", `"git -C .work/tw commit"`},
-		{"translations committed with a message of no meaning", "translate: keep the progress of", "wip", `"translate: keep the progress of"`},
+		{"translations committed with a message of no meaning", `-m "translate: keep the progress of $RAW_TAG"`, `-m "wip $RAW_TAG"`, `"translate: keep the progress of"`},
+		{"translations committed with a message the idle check does not know", `-m "translate: keep the progress of $RAW_TAG"`, `-m "translate: kept the progress of $RAW_TAG"`, `"translate: keep the progress of"`},
 		{"translations not pushed", "git -C .work/tw push origin tw", "git -C .work/tw status", `"git -C .work/tw push origin tw"`},
 		{"translations never kept", "          if [ -n \"$(git -C .work/tw status --porcelain)\" ]; then\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n            git -C .work/tw push origin tw\n          fi\n", "          true\n", `"git -C .work/tw commit"`},
 
@@ -1934,6 +1975,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"idle when the tags differ", `[ "$built_tag" = "$raw_tag" ]`, `[ "$built_tag" != "$raw_tag" ]`, `[ "$built_tag" = "$raw_tag" ]`},
 		{"idle terms joined by ||", `[ "$PENDING" -eq 0 ] && [ "$APPLIED" -eq 0 ]`, `[ "$PENDING" -eq 0 ] || [ "$APPLIED" -eq 0 ]`, "joined by &&"},
 		{"the raw tag tw was built from is not read", "jq -r '.raw_tag // empty' .work/tw/.meta/build.json 2>/dev/null", "echo ''", `".work/tw/.meta/build.json"`},
+		{"the Release still due is asked after tw is committed to", "release_check=$(bin/lct publish --check --json)", "release_check=$(git -C .work/tw commit --allow-empty -m x; bin/lct publish --check --json)", `"bin/lct publish --check" must come before "git -C .work/tw commit"`},
 
 		// The status answer is checked before it is written to the outputs.
 		{"a status answer written unchecked", `[!A-Za-z0-9_:.+\ -]`, `[!A-Za-z0-9_:.+-]`, "unchecked"},
@@ -1941,6 +1983,28 @@ func TestWorkflowContract(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			src := mutate(t, pipeline, tc.old, tc.repl)
 			hasProblem(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, tc.want)
+		})
+	}
+	// What the run does when nothing is left to do but a Release, or a build
+	// that never came, and what it says of a Release it does not make: each
+	// change is one problem, no more.
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"idle with a Release still due", ` && [ "$release_needed" = false ]`, "", `[ "$release_needed" = false ]`},
+		{"idle when a Release is due", `[ "$built_tag" = "$raw_tag" ] && [ "$release_needed" = false ]`, `[ "$built_tag" = "$raw_tag" ] && [ "$release_needed" = true ]`, `[ "$release_needed" = false ]`},
+		{"idle with a tw whose progress was kept and never built", ` && [[ $tw_subject != 'translate: keep the progress of'* ]]`, "", `[[ $tw_subject != 'translate: keep the progress of'* ]]`},
+		{"idle when the last commit of tw keeps the progress", `[[ $tw_subject != 'translate: keep the progress of'* ]]`, `[[ $tw_subject == 'translate: keep the progress of'* ]]`, `[[ $tw_subject != 'translate: keep the progress of'* ]]`},
+		{"idle for a prefix the commit does not have", `[[ $tw_subject != 'translate: keep the progress of'* ]]`, `[[ $tw_subject != 'translate: keep the progress'* ]]`, `[[ $tw_subject != 'translate: keep the progress of'* ]]`},
+		{"the Release still due is not asked", "bin/lct publish --check --json", `echo '{"release_needed":false}'`, `"bin/lct publish --check --json"`},
+		{"the subject of the last commit of tw is not read", "git -C .work/tw log -1 --format=%s", "git -C .work/tw log -1 --format=%H", `"git -C .work/tw log -1 --format=%s"`},
+		{"a skipped Release not said", "語言包與 $same_as 相同，這次不建立 Release", "語言包沒有變", "這次不建立 Release"},
+		{"a skipped Release said but not on the summary page", `} | tee -a "$GITHUB_STEP_SUMMARY"`, "}", "GITHUB_STEP_SUMMARY"},
+		{"a skipped Release said when none is named", `[ "$release_needed" = false ] && [ -n "$same_as" ]`, `[ "$release_needed" = false ]`, `[ -n "$same_as" ]`},
+		{"a skipped Release said when one is made", `[ "$release_needed" = false ] && [ -n "$same_as" ]`, `[ -n "$same_as" ]`, `[ -n "$same_as" ]`},
+		{"assets refused without a word", "::error::publish.json has ${#assets[@]} assets, want 2", "publish.json has ${#assets[@]} assets, want 2", "::error::"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			src := mutate(t, pipeline, tc.old, tc.repl)
+			wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, tc.want)
 		})
 	}
 	t.Run("translations kept only after the build", func(t *testing.T) {
@@ -2042,6 +2106,8 @@ func TestWorkflowReadsLctJSON(t *testing.T) {
 		{"a key of the pending count", "jq -er .available", "jq -er .free"},
 		{"a key of build", "jq -er .review_issue_parts", "jq -er .issue_parts"},
 		{"a key of the last build", "jq -r '.raw_tag // empty'", "jq -r '.rawtag // empty'"},
+		{"a key of the Release check", "jq -er '.release_needed | tostring' <<<\"$release_check\"", "jq -er '.release_due | tostring' <<<\"$release_check\""},
+		{"the pack a Release is skipped for", "jq -r '.same_as // empty'", "jq -r '.sameas // empty'"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			src := mutate(t, pipeline, tc.old, tc.repl)
@@ -2066,9 +2132,19 @@ func TestWorkflowReadsLctJSON(t *testing.T) {
 		problems := checkJQKeys(file, pipeline, lost, lctJSONRequired)
 		hasProblem(t, problems, `reads "tw_commit"`)
 		hasProblem(t, problems, `reads "release_needed"`)
+		hasProblem(t, problems, `reads "same_as"`)
+	})
+	t.Run("a key of the Release check that was renamed", func(t *testing.T) {
+		lost := maps.Clone(inputs)
+		lost["release_check"] = struct {
+			TWCommit string `json:"tw_commit"`
+		}{}
+		hasProblem(t, checkJQKeys(file, pipeline, lost, lctJSONRequired), `reads "release_needed"`, "release_check")
 	})
 	t.Run("jq -e on a boolean", func(t *testing.T) {
-		src := mutate(t, pipeline, "jq -er '.release_needed | tostring'", "jq -er .release_needed")
+		src := mutate(t, pipeline, "jq -er '.release_needed | tostring' out/publish.json", "jq -er .release_needed out/publish.json")
+		wantProblems(t, checkJQKeys(file, src, inputs, lctJSONRequired), "tostring")
+		src = mutate(t, pipeline, "jq -er '.release_needed | tostring' <<<\"$release_check\"", "jq -er .release_needed <<<\"$release_check\"")
 		wantProblems(t, checkJQKeys(file, src, inputs, lctJSONRequired), "tostring")
 		src = mutate(t, pipeline, "jq -er '.new | tostring'", "jq -er .new")
 		wantProblems(t, checkJQKeys(file, src, inputs, lctJSONRequired), "tostring")
