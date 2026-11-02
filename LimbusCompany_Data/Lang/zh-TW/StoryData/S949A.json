@@ -448,7 +448,7 @@
     {
       "id": 88,
       "model": "료슈딸2",
-      "content": "良(Ryō)……秀(shū)……？"
+      "content": "<ruby=りょう>良</ruby>……<ruby=しゅう>秀</ruby>……？"
     },
     {
       "id": 89,
@@ -458,12 +458,12 @@
     {
       "id": 90,
       "model": "과거료슈3",
-      "content": "要唸作良秀(Yoshihide)才對。"
+      "content": "要唸作<ruby=ヨシヒデ>良秀</ruby>才對。"
     },
     {
       "id": 91,
       "model": "료슈딸2",
-      "content": "良秀(Ryō-shū)！這樣比較好唸又可愛！"
+      "content": "<ruby=りょーしゅー>良秀</ruby>！這樣比較好唸又可愛！"
     },
     {
       "id": 92,
@@ -509,7 +509,7 @@
     {
       "id": 100,
       "model": "료슈딸2",
-      "content": "果然還是更喜歡唸成良秀(Ryō-shū)。"
+      "content": "果然還是更喜歡唸成<ruby=りょーしゅー>良秀</ruby>。"
     },
     {
       "id": 101,

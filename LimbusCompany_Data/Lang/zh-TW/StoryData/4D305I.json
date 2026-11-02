@@ -297,7 +297,7 @@
       "model": "상이",
       "teller": "箱李",
       "title": "研心",
-      "content": "研心(研尋)嗎……"
+      "content": "<ruby=研尋>研心</ruby>嗎……"
     },
     {
       "id": 52,
@@ -329,7 +329,7 @@
     {
       "id": 57,
       "model": "이상",
-      "content": "研心(連心)。"
+      "content": "<ruby=連心>研心</ruby>。"
     },
     {
       "id": 58,

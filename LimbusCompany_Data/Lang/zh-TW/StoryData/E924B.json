@@ -249,7 +249,7 @@
     {
       "id": 50,
       "model": "임경업",
-      "content": "金笠(Lib)。曾立志於文的聰明人，卻在得知連坐之罪後，自行隱居於後巷。"
+      "content": "金<ruby=Lib>笠</ruby>。曾立志於文的聰明人，卻在得知連坐之罪後，自行隱居於後巷。"
     },
     {
       "id": 51,
@@ -284,7 +284,7 @@
     {
       "id": 57,
       "model": "김삿갓과거",
-      "content": "還有，別叫我笠(Lib)。聽起來像在裝模作樣。叫我金笠(Satgat)就好，金笠(Satgat)。"
+      "content": "還有，別叫我<ruby=Lib>笠</ruby>。聽起來像在裝模作樣。叫我金<ruby=Satgat>笠</ruby>就好，金<ruby=Satgat>笠</ruby>。"
     },
     {
       "id": 58,

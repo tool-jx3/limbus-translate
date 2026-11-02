@@ -140,7 +140,7 @@
       "model": "료슈딸",
       "teller": "阿賴耶",
       "title": "女兒",
-      "content": "哦……良(Ryō)……秀(shū)……？"
+      "content": "哦……<ruby=りょう>良</ruby>……<ruby=しゅう>秀</ruby>……？"
     },
     {
       "id": 29,
@@ -150,14 +150,14 @@
     {
       "id": 30,
       "model": "과거료슈3",
-      "content": "要念作良秀(Yoshihide)才對。"
+      "content": "要念作<ruby=ヨシヒデ>良秀</ruby>才對。"
     },
     {
       "id": 31,
       "model": "료슈딸",
       "teller": "阿賴耶",
       "title": "女兒",
-      "content": "良秀(Ryō-shū)！"
+      "content": "<ruby=りょーしゅー>良秀</ruby>！"
     },
     {
       "id": 32,

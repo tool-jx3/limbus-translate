@@ -262,13 +262,13 @@
       "model": "싱클레어",
       "teller": "辛克萊",
       "title": "Cinq協會 4科 科長",
-      "content": "Es-tu prêt？（準備好了嗎？）"
+      "content": "<ruby=Es-tu prêt>準備好了嗎</ruby>？"
     },
     {
       "id": 50,
       "teller": "冷淡的協會員工",
       "title": "Cinq協會 4科",
-      "content": "A、Allez（來吧）！"
+      "content": "<ruby=A>來</ruby>、<ruby=Allez>來吧</ruby>！"
     },
     {
       "id": 51,
