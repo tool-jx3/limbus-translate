@@ -1215,6 +1215,72 @@ func TestPlanMergesAHandedOnRequestWithTheUnitsOwn(t *testing.T) {
 	e.again()
 }
 
+// A request on a deleted unit shows the unit's translation as the previous
+// one. A rewrite file applied in the same plan changes the records, and the
+// translations requested show the rewritten text as their previous one; the
+// request handed on to the entry numbered again does too, though the deleted
+// unit has no record left to rewrite.
+func TestPlanRewritesThePreviousTextOfAHandedOnRequest(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives = "Passives.json"
+		desc     = "공격을 받으면 바로 반격합니다"
+	)
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc})})
+	e.seed([]store.Record{translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊")},
+		[]store.PendingItem{{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"}})
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 2, "desc": desc})}) // id 1 numbered again
+	e.rule("rules/rewrite/2026-11-05-at-once.yaml", "reason: 統一用「就」\nfiles: [\"Passives*\"]\npattern: '時立刻'\nreplace: '就立刻'\n")
+
+	sum := e.run(tag1)
+
+	want := map[string]store.PendingItem{
+		descKey(passives, 0): {Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊就立刻反擊", Hint: "用您"},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+	if !reflect.DeepEqual(sum.RewriteApplied, []Applied{{ID: "2026-11-05-at-once", Units: 0}}) {
+		t.Errorf("RewriteApplied = %+v, want the file applied to no record: the deleted unit has none", sum.RewriteApplied)
+	}
+
+	e.again()
+}
+
+// Two deleted units of one text in one file had requests, and the file has
+// one unit of the text now: it takes the first request over, and the hint of
+// the other is added to its own (joinHints), so that no request is lost.
+func TestPlanMergesTheRequestsNoUnitTookOver(t *testing.T) {
+	e := newPlanEnv(t)
+	const (
+		passives = "Passives.json"
+		desc     = "공격을 받으면 바로 반격합니다"
+	)
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 1, "desc": desc}, obj{"id": 2, "desc": desc}, obj{"id": 3, "desc": desc})})
+	e.seed([]store.Record{
+		translated(descKey(passives, 0), desc, "受到攻擊時立刻反擊"),
+		translated(descKey(passives, 1), desc, "受到攻擊時立刻反擊"),
+		translated(descKey(passives, 2), desc, "受到攻擊時立刻反擊"),
+	}, []store.PendingItem{
+		{Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您"},
+		{Key: descKey(passives, 1), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "語氣B"},
+		{Key: descKey(passives, 2), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "語氣C"},
+	})
+	// The three entries are one now, numbered 4.
+	e.snapshot(map[string]string{passives: dataList(obj{"id": 4, "desc": desc})})
+
+	e.run(tag1)
+
+	want := map[string]store.PendingItem{
+		descKey(passives, 0): {Key: descKey(passives, 0), Reason: "requeue", PrevZH: "受到攻擊時立刻反擊", Hint: "用您；語氣B；語氣C"},
+	}
+	if got := e.pending(); !reflect.DeepEqual(got, want) {
+		t.Errorf("pending = %v\nwant %v", got, want)
+	}
+
+	e.again()
+}
+
 func TestJoinHints(t *testing.T) {
 	for _, c := range []struct{ own, handed, want string }{
 		{"語氣B", "用您", "語氣B；用您"},

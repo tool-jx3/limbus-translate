@@ -265,8 +265,9 @@ func (in Inputs) check() error {
 // step 5 fills is sent back with the copied text as its previous
 // translation, its request kept. A requeued unit shows the rewritten text as
 // its previous translation too, and so does a unit queued already whose
-// previous translation was the text of the record rewritten. A request that
-// names a unit waiting for a person (needs_review) resets it, so that it is
+// previous translation was the text of the record rewritten, and a request
+// that a unit takes over from a deleted one. A request that names a unit
+// waiting for a person (needs_review) resets it, so that it is
 // handed out again. Neither kind of file touches a unit that steps 1 to 3
 // decided: the next plan would set it back. A rewrite changes no record of a
 // frozen file and no text it would leave with a hard issue of a new
@@ -948,7 +949,8 @@ func reuseTarget(reason string) bool { return reason == ReasonNew || reason == R
 //
 // A deleted unit with a request pending (carriesRequest) serves no other
 // either: the first target of its text in its own file (by key) takes the
-// request over. An entry is numbered again within its file, so a unit of the
+// request over, and the last that took one also gets the hints of those that
+// are left when the file has fewer targets of the text than such requests. An entry is numbered again within its file, so a unit of the
 // text in another file never takes it; it is reused from another unit or
 // queued, as it would be anyway. A target without a request of its own takes
 // the deleted unit's item: its reason, hint and previous texts, without its
@@ -1021,6 +1023,11 @@ func (p *planner) reuse(queued map[string]bool) error {
 		sources[g] = append(sources[g], source{key: units.Key(d.File, d.Pointer), file: d.File, rec: *d.Record})
 	}
 
+	type groupFile struct {
+		g    batch.TextGroup
+		file string
+	}
+	lastTaker := map[groupFile]string{} // the last target that took a request over
 	for _, key := range targets {
 		ref := p.cur[key]
 		u := ref.unit()
@@ -1033,6 +1040,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 			} else {
 				p.pending[key] = store.PendingItem{Key: key, Reason: it.Reason, Hint: it.Hint, PrevKR: it.PrevKR, PrevZH: it.PrevZH}
 			}
+			lastTaker[groupFile{g, ref.file.name}] = key
 		}
 		if it := p.pending[key]; !reuseTarget(it.Reason) || batch.CarriesInput(it) {
 			continue
@@ -1047,6 +1055,24 @@ func (p *planner) reuse(queued map[string]bool) error {
 		}
 		delete(p.pending, key)
 		p.sum.Reused++
+	}
+
+	// A file with more deleted units of a text that had requests than units
+	// of the text now: the hints of the requests no unit took over go to the
+	// last unit that took one, so that none is lost (that unit stays queued:
+	// it carries a request). A file with no unit of the text left drops them.
+	for g, reqs := range requests {
+		for _, r := range reqs {
+			key, ok := lastTaker[groupFile{g, r.file}]
+			if r.handed || !ok {
+				continue
+			}
+			if it, queued := p.pending[key]; queued {
+				it.Hint = joinHints(it.Hint, r.item.Hint)
+				p.pending[key] = it
+				r.handed = true
+			}
+		}
 	}
 	return nil
 }
@@ -1129,8 +1155,36 @@ func (p *planner) applyRewrites(applied *store.Applied, files []rewrite.File) {
 				p.pending[key] = it
 			}
 		}
+		p.rewriteDeletedRequests(f)
 		applied.Rewrite = append(applied.Rewrite, f.ID)
 		p.sum.RewriteApplied = append(p.sum.RewriteApplied, Applied{ID: f.ID, Units: len(changed)})
+	}
+}
+
+// rewriteDeletedRequests follows the rewrite f in the pending items of the
+// deleted units that show their record's text as the previous translation:
+// reuse hands such a request on to a unit of its text, which then shows the
+// rewritten text, as a unit requeued in this plan does. The deleted unit's
+// record is rewritten as it would have been, against the KR of the snapshot
+// it is of, and is not kept: it is gone.
+func (p *planner) rewriteDeletedRequests(f rewrite.File) {
+	gone := map[string]store.Record{}
+	byKey := map[string]*store.PendingItem{}
+	for _, d := range p.deleted {
+		if d.Pending != nil && d.Record != nil && d.Pending.PrevZH != "" && d.Pending.PrevZH == d.Record.ZH {
+			key := units.Key(d.File, d.Pointer)
+			gone[key], byKey[key] = *d.Record, d.Pending
+		}
+	}
+	if len(gone) == 0 {
+		return
+	}
+	ok := func(key, kr, zh string) bool {
+		file, _, _ := strings.Cut(key, "|")
+		return !config.MatchAny(p.in.Frozen, file) && !validate.HasHard(batch.CheckNew(p.in.Rules, file, kr, zh))
+	}
+	for _, key := range rewrite.Apply(f, gone, p.oldKR, ok) {
+		byKey[key].PrevZH = gone[key].ZH
 	}
 }
 
