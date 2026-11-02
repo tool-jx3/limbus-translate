@@ -345,10 +345,12 @@ func (s *session) listPRs(what string, args ...string) ([]pullRequest, error) {
 // the ids that lct suggest must leave out, because the open PR has them, people
 // closed a PR with them, or they were merged and still stand (Started.Handled);
 // ExistingBodyFile, the description of the open PR (the file is removed when
-// there is none); and last StartedFile, the result as JSON. The PRs are listed without gh's --label filter, which
-// goes through the search index and can miss a PR that is new or lost its
-// label; a rules PR is one with the label or with a rules-proposal/* branch.
-// Nothing is changed when it fails before it checks the branch out.
+// there is none); and last StartedFile, the result as JSON. The PRs are
+// listed without gh's --label filter, which goes through the search index and
+// can miss a PR that is new or lost its label; a rules PR is one with the
+// label or with a rules-proposal/* branch. Nothing is changed when it fails
+// before it checks the branch out; the three files are written last, once the
+// branch is checked out.
 func Start(o Options) (*Started, error) {
 	s := newSession(o)
 	if err := checkDate(s.Date); err != nil {
