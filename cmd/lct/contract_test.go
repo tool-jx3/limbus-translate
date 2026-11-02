@@ -2239,6 +2239,12 @@ const (
 	// model to run the action with.
 	rulesProposalHasModel = "vars.LCT_MODEL != ''"
 	rulesProposalNoModel  = "vars.LCT_MODEL == ''"
+	// rulesProposalInCI and rulesProposalNotInCI are what the action step and
+	// the step that stands in for it read: the review runs in CI only when the
+	// variable RULES_REVIEW_IN_CI is true, and otherwise waits for a person to
+	// run /rules-review on their machine.
+	rulesProposalInCI    = "vars.RULES_REVIEW_IN_CI == 'true'"
+	rulesProposalNotInCI = "vars.RULES_REVIEW_IN_CI != 'true'"
 )
 
 var (
@@ -2270,7 +2276,7 @@ var rulesProposalMarkers = []struct{ text, why string }{
 	{"outcome_file=work/proposal/outcome.txt", "the file the skill says what it did in is not read, so a run whose publish was refused is green when a rules PR is open"},
 	{"'nothing: '*)", "a run that proposes nothing is not told from one that failed"},
 	{"'nothing: 本機'*)", "a run that took itself for one on a person's machine (it found no work/proposal/started.json) and published nothing is green"},
-	{"::notice::", "a run that proposes nothing does not say so in the log"},
+	{"::notice::the rules-review run proposed nothing", "a run that proposes nothing does not say so in the log"},
 	{"--json url,body,isCrossRepository", "the description of the PR is not read, so a PR that is open already is taken for a PR this run added to"},
 	{`grep -qxF -- "$id" work/proposal/exclude.txt`, "the suggestions the PR had before the run are not told from those it added"},
 	{`>> "$GITHUB_STEP_SUMMARY"`, "the address of the rules PR, or that there was nothing to suggest, is not on the summary page"},
@@ -2454,6 +2460,31 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 	}
 	if !strings.Contains(step.If, rulesProposalHasModel) {
 		add("the if of the action step is %q, which lacks %s: it would run without a model", step.If, rulesProposalHasModel)
+	}
+	if !strings.Contains(step.If, rulesProposalInCI) {
+		add("the if of the action step is %q, which lacks %s: it would review the rules in CI when a person reviews them on their machine", step.If, rulesProposalInCI)
+	}
+
+	// When the rules are reviewed on a person's machine a step says so and
+	// stands in for the skill, as for a missing model.
+	notInCI := at(func(s workflowStep) bool { return strings.Contains(s.If, rulesProposalNotInCI) })
+	switch {
+	case notInCI < 0:
+		add("no step runs if %s: a run that leaves the review to a person would end red for the missing outcome", rulesProposalNotInCI)
+	default:
+		s := job.Steps[notInCI]
+		if !strings.Contains(s.If, rulesProposalCount) || !strings.Contains(s.If, rulesProposalHasModel) {
+			add("the if of the step for a review on a person's machine is %q, which lacks %s or %s", s.If, rulesProposalCount, rulesProposalHasModel)
+		}
+		if !strings.Contains(s.Run, "::notice::") || !strings.Contains(s.Run, "/rules-review") {
+			add("the step for a review on a person's machine does not say that the suggestions wait for /rules-review: %q", firstLine(s.Run))
+		}
+		if !strings.Contains(s.Run, `"nothing: `) || !strings.Contains(s.Run, "> work/proposal/outcome.txt") || strings.Contains(s.Run, "nothing: 本機") {
+			add("the step for a review on a person's machine does not write an outcome of nothing that the check accepts (not nothing: 本機…) to work/proposal/outcome.txt")
+		}
+		if confirm >= 0 && notInCI > confirm {
+			add("the step for a review on a person's machine comes after the step that checks the outcome")
+		}
 	}
 
 	// Without the model a step says so and stands in for the skill: it writes
@@ -3231,6 +3262,9 @@ func TestWorkflowContract(t *testing.T) {
 
 		// The action.
 		{"a failed review that does not say why", `select(.type == "result")`, `select(.type == "assistant")`, "a review that failed does not say why"},
+		{"a review in CI that is not asked for", " && vars.RULES_REVIEW_IN_CI == 'true'", "", "would review the rules in CI"},
+		{"no word of a review left to a person", "if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI != 'true'", "if: false", "no step runs if vars.RULES_REVIEW_IN_CI != 'true'"},
+		{"a review left to a person that ends red", "/rules-review\" > work/proposal/outcome.txt", "/rules-review\" > work/proposal/out.txt", "an outcome of nothing that the check accepts"},
 		{"another prompt", `prompt: "/rules-review"`, `prompt: "/rules-review now"`, "the prompt of the action"},
 		{"no prompt of the skill", `prompt: "/rules-review"`, `prompt: "review the rules"`, "the prompt of the action"},
 		{"a key written in the file", "anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}", "anthropic_api_key: sk-example", "anthropic_api_key"},
@@ -3239,9 +3273,9 @@ func TestWorkflowContract(t *testing.T) {
 		{"another limit of turns", "--max-turns 80", "--max-turns 800", "--max-turns 80"},
 		{"permissions skipped", "            --max-turns 80\n", "            --max-turns 80\n            --dangerously-skip-permissions\n", "--dangerously-skip-permissions"},
 		{"a token for the action", "        uses: anthropics/claude-code-action@v1\n", "        uses: anthropics/claude-code-action@v1\n        env:\n          GH_TOKEN: ${{ github.token }}\n", "GH_TOKEN"},
-		{"a run with nothing to suggest", "        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''\n        uses: anthropics/claude-code-action@v1\n", "        if: vars.LCT_MODEL != ''\n        uses: anthropics/claude-code-action@v1\n", "the if of the action step"},
-		{"an action that runs when the count is not read", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''\n        uses: anthropics", "steps.start.outputs.pr != '0' && vars.LCT_MODEL != ''\n        uses: anthropics", "the if of the action step"},
-		{"an action without a model", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''\n        uses: anthropics", "steps.suggest.outputs.count != '0'\n        uses: anthropics", "vars.LCT_MODEL != ''"},
+		{"a run with nothing to suggest", "        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI == 'true'\n        uses: anthropics/claude-code-action@v1\n", "        if: vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI == 'true'\n        uses: anthropics/claude-code-action@v1\n", "the if of the action step"},
+		{"an action that runs when the count is not read", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI == 'true'\n        uses: anthropics", "steps.start.outputs.pr != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI == 'true'\n        uses: anthropics", "the if of the action step"},
+		{"an action without a model", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI == 'true'\n        uses: anthropics", "steps.suggest.outputs.count != '0' && vars.RULES_REVIEW_IN_CI == 'true'\n        uses: anthropics", "vars.LCT_MODEL != ''"},
 
 		// Without the model a step says so and writes an outcome of nothing.
 		{"no step for a missing model", "steps.suggest.outputs.count != '0' && vars.LCT_MODEL == ''", "steps.suggest.outputs.count != '0'", "no step runs if vars.LCT_MODEL == ''"},
@@ -3286,7 +3320,7 @@ func TestWorkflowContract(t *testing.T) {
 		// What the skill says it did is read and told apart.
 		{"the outcome not read", "outcome_file=work/proposal/outcome.txt", "outcome_file=work/proposal/other.txt", "work/proposal/outcome.txt"},
 		{"a run that proposes nothing not told apart", "'nothing: '*)", "'nothing - '*)", "'nothing: '*)"},
-		{"a run that proposes nothing not said", "::notice::", "::warning::", "::notice::"},
+		{"a run that proposes nothing not said", "echo \"::notice::the rules-review run", "echo \"::warning::the rules-review run", "::notice::"},
 		{"a local run in CI not told apart", "'nothing: 本機'*)", "'nothing: local'*)", "'nothing: 本機'*)"},
 		{"the description of the PR not read", "--json url,body,isCrossRepository", "--json url,isCrossRepository", "--json url,body,isCrossRepository"},
 		{"the suggestions the PR had not told from the new", `grep -qxF -- "$id" work/proposal/exclude.txt`, `grep -qF -- "$id" work/proposal/other.txt`, "grep -qxF"},

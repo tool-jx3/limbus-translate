@@ -98,10 +98,12 @@ jobs:
       # from the variable. The action brings its own GitHub credentials (the
       # Claude GitHub App, through id-token), so it gets no token: a PR opened
       # by github-actions would not start ci.yml. Without the variable there is
-      # no model to run, and the step after it says so.
+      # no model to run, and the step after it says so. The review runs here
+      # only when the variable RULES_REVIEW_IN_CI is true; otherwise a person
+      # runs /rules-review on their machine, and a step below says so.
       - name: Review the suggestions, open or update the rules PR
         id: review
-        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != ''
+        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI == 'true'
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -130,6 +132,17 @@ jobs:
         run: |
           echo "::warning::the variable LCT_MODEL is not set: the suggestions are not reviewed and no rules PR is opened or updated"
           echo 'nothing: 沒有設定 LCT_MODEL，這次不審查建議' > work/proposal/outcome.txt
+
+      # Unless RULES_REVIEW_IN_CI is true, the suggestions wait for a person to
+      # run /rules-review on their machine: the run says how many, and stays
+      # green.
+      - name: Say that the rules are reviewed on a person's machine
+        if: steps.suggest.outputs.count != '0' && vars.LCT_MODEL != '' && vars.RULES_REVIEW_IN_CI != 'true'
+        env:
+          COUNT: ${{ steps.suggest.outputs.count }}
+        run: |
+          echo "::notice::$COUNT suggestion(s) wait for /rules-review on a person's machine: the variable RULES_REVIEW_IN_CI is not true"
+          echo "nothing: CI 不審查規則（RULES_REVIEW_IN_CI 不是 true），$COUNT 個建議等人在本機執行 /rules-review" > work/proposal/outcome.txt
 
       # What the skill says it did (work/proposal/outcome.txt) decides what is
       # checked. When lct proposal publish refuses, the action does not fail:

@@ -33,6 +33,7 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 | `ANTHROPIC_API_KEY` | Secret | Claude 的 API key；只有翻譯那一步（`pipeline.yml`）和 `rules-proposal.yml` 的 action 那一步讀得到 | 要翻譯、要自動開規則 PR 時必填。沒有時仍會 plan、build 與發布，只是不翻譯，審核 Issue 會列出「翻譯沒有執行」；`rules-proposal.yml` 有新建議時會失敗 | 無 | 在 Claude Console 建立 API key；費用記在 Console 的帳戶，不是 GitHub |
 | `LIMBUS_STATUS_URL` | Secret | 狀態 API 的網址，用來查最新的遊戲更新（token）。網址是第三方服務的，可能更換，所以放 secret；不會出現在記錄裡 | `update.yml` 必填；`rebuild.yml` 用不到 | 無 | 狀態 API 的完整網址（回傳最新的 `latest_token`），向維護者取得 |
 | `LCT_MODEL` | Variable | 翻譯用的模型，傳給 `lct translate`；`rules-proposal.yml` 也用它作 action 的 `--model` | 要翻譯、要自動開規則 PR 時必填；沒有時與沒有 API key 一樣，不翻譯，審核 Issue 會列出「翻譯沒有執行」 | 無 | 填 Claude 的模型 ID，可用的 ID 見 Claude Console 或官方文件 |
+| `RULES_REVIEW_IN_CI` | Variable | 設成 `true` 時，`rules-proposal.yml` 在 CI 以 action 審查建議並開規則 PR | 選填；不是 `true` 時 CI 只數出待處理的建議，留給人在本機執行 `/rules-review`，維持成功 | 無（在本機審查） | 填 `true`。action 用的是 GitHub Actions 的用量，只適用 Agent SDK、API 等的促銷額度不能用 |
 | `LCT_MAX_USD` | Variable | 每次建置翻譯花費的上限（美元），到了就停止翻譯 | 否 | 30 | 自行決定；手動執行時可用 `max_usd` 輸入蓋過 |
 | `LIMBUS_CDN_TEMPLATE` | Variable | 下載官方語言包的 CDN 網址範本，含 `{token}` 與 `{lang}` | 否 | 同 `lct.yaml` 的 `cdn_template`：`https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip` | CDN 換了位置才需要設定 |
 
@@ -46,7 +47,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 |---|---|---|
 | `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，`tw` 上次建置用的就是目前的 `raw`，也沒有還欠著的 Release、沒有只保存了進度卻還沒建置的 commit，就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 有需要人處理的項目時開審核 Issue |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 審核 Issue |
-| `rules-proposal.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 選規則 PR 的分支（有開著的規則 PR 就用它的，沒有就用 `rules-proposal/<日期>`）→ `bin/lct suggest` 數出還沒在任何規則 PR、也沒被不採用的建議，沒有就結束 → 有的話以 `anthropics/claude-code-action@v1` 執行 `/rules-review` skill，修改 `guides/`、`glossary/`、`rules/`，開規則 PR 或更新開著的那個 → 確認 PR 存在，把網址寫在 summary |
+| `rules-proposal.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 選規則 PR 的分支（有開著的規則 PR 就用它的，沒有就用 `rules-proposal/<日期>`）→ `bin/lct suggest` 數出還沒在任何規則 PR、也沒被不採用的建議，沒有就結束 → 有的話，`RULES_REVIEW_IN_CI` 是 `true` 才以 `anthropics/claude-code-action@v1` 執行 `/rules-review` skill（否則只在記錄留下待處理的數量，由人在本機執行），修改 `guides/`、`glossary/`、`rules/`，開規則 PR 或更新開著的那個 → 確認 PR 存在，把網址寫在 summary |
 | `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint`。PR 改到 `guides/`、`glossary/` 或 `rules/` 時另外執行 `bin/lct impact`，把影響評估寫在該次執行的 summary（見「收到規則 PR 怎麼處理」） |
 
 `update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 在它們成功結束後才執行，失敗或被取消的不執行，其他分支上的執行也不算。細節：
@@ -74,7 +75,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
    3. 這樣開出或更新的 PR 是 `github-actions` 的，不會觸發 `ci.yml`：每次 PR 開出或更新後，到 PR 頁面按「Close pull request」再按「Reopen pull request」，`ci.yml` 才會執行並附上影響評估。
    4. `go test ./...` 的 `TestWorkflowContract` 要求 action 那一步沒有 `GH_TOKEN`，同一個 commit 要拿掉 `cmd/lct/contract_test.go` 裡的這項檢查與它的測試案例，並把改了什麼記在這裡。
 5. 擋住 token 外洩：action 讀得到遊戲原文與譯者備註，那些文字誰都能寫進去，所以 checkout 設了 `persist-credentials: false`（token 不留在 `.git/config`），`claude_args` 也用 `--disallowedTools "Read(./.git/**)"` 不讓它讀 `.git/`；`lct proposal publish` 另外拒絕含有 `ghp_`、`gho_`、`ghs_`、`ghu_`、`github_pat_`、`x-access-token`、`eC1hY2Nlc3MtdG9rZW46`（`x-access-token:` 的 base64）、`AUTHORIZATION: basic`、`sk-ant-` 的說明與規則檔修改。因此 action 之前的步驟以匿名方式 fetch（公開 repo 沒有問題）。如果 action 那一步的 `git push` 因為沒有憑證而失敗（記錄裡是 `could not read Username` 或 `Authentication failed`），把 checkout 那一步的 `persist-credentials: false` 刪掉（回到預設，token 留在 `.git/config`），`--disallowedTools "Read(./.git/**)"` 一定要留著；`TestWorkflowContract` 同樣要求 `persist-credentials: false`，同一個 commit 拿掉那項檢查與它的測試案例，並記在這裡。
-6. 這次有沒有真的提出建議，由最後一步檢查：skill 把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>` 或 `failed: <原因>`）。`published` 時，規則 PR 的說明要有一個開始前不存在的建議，否則算錯誤（`lct proposal publish` 被拒絕時 action 不會失敗，不檢查的話已經開著的 PR 會讓這次顯示成功）；`nothing: …` 只在記錄與 summary 留下理由，維持成功，但 `nothing: 本機…` 是錯誤（skill 沒讀到 `lct proposal start` 寫的 `work/proposal/started.json`，以為在本機而沒有發布）；沒有這個檔或其他內容都是錯誤。沒有設定 `LCT_MODEL` 時 action 不執行，記錄有警告，結果記為 `nothing:`，維持成功。
+6. 這次有沒有真的提出建議，由最後一步檢查：skill 把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>` 或 `failed: <原因>`）。`published` 時，規則 PR 的說明要有一個開始前不存在的建議，否則算錯誤（`lct proposal publish` 被拒絕時 action 不會失敗，不檢查的話已經開著的 PR 會讓這次顯示成功）；`nothing: …` 只在記錄與 summary 留下理由，維持成功，但 `nothing: 本機…` 是錯誤（skill 沒讀到 `lct proposal start` 寫的 `work/proposal/started.json`，以為在本機而沒有發布）；沒有這個檔或其他內容都是錯誤。沒有設定 `LCT_MODEL` 時 action 不執行，記錄有警告，結果記為 `nothing:`，維持成功；`RULES_REVIEW_IN_CI` 不是 `true` 時也不執行，記錄有 notice 寫明有幾個建議等人在本機執行 `/rules-review`，結果記為 `nothing:`，維持成功。
 
 ### 手動執行的輸入
 
