@@ -263,8 +263,9 @@ export function FileView({ path, ptr, index, settings, onSettings }: FileViewPro
   const { prev, next } = useMemo(() => neighbors(index, path), [index, path])
   useFileKeys(prev, next)
 
-  // Another file starts at its top; a link into a file goes to its unit instead.
-  const shownPath = useRef(path)
+  // A file starts at its top, also the first one shown (the page may be scrolled from the page before, such
+  // as the results of a search); a link into a file goes to its unit instead.
+  const shownPath = useRef<string | undefined>(undefined)
   useEffect(() => {
     if (shownPath.current === path) return
     shownPath.current = path

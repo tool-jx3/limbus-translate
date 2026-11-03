@@ -244,5 +244,62 @@ describe('App', () => {
       act(() => el.querySelector<HTMLInputElement>('.search-view input[name="re"]')?.click())
       expect(location.hash).toBe('#/s?q=%5B%5Cw%2B%5D&lang=en')
     })
+
+    describe('opening a file from the page of the results', () => {
+      const scrollIntoView = vi.fn()
+
+      beforeEach(() => {
+        scrollIntoView.mockReset()
+        Object.defineProperty(Element.prototype, 'scrollIntoView', { value: scrollIntoView, configurable: true, writable: true })
+        document.documentElement.scrollTop = 0
+      })
+
+      afterEach(() => {
+        Reflect.deleteProperty(Element.prototype, 'scrollIntoView')
+        document.documentElement.scrollTop = 0
+      })
+
+      /** The page of the results for 警告, scrolled down as a reader leaves it, and the file of its group already loaded. */
+      async function scrolledResults(): Promise<HTMLElement> {
+        location.hash = '#/s?q=%E8%AD%A6%E5%91%8A&lang=zh'
+        const el = mount()
+        await vi.waitFor(() => expect(el.querySelector('.search-view .hit-group')).not.toBeNull())
+        await vi.waitFor(() => expect(el.querySelector('.hit-line.hit-kr .hit-text')?.textContent).not.toBe('…'))
+        document.documentElement.scrollTop = 1170
+        return el
+      }
+
+      function go(hash: string): void {
+        act(() => {
+          location.hash = hash
+          window.dispatchEvent(new HashChangeEvent('hashchange'))
+        })
+      }
+
+      it('shows the file from its top, not at the place where the results were scrolled to', async () => {
+        const el = await scrolledResults()
+        go(el.querySelector('.group-path')?.getAttribute('href') ?? '')
+        await vi.waitFor(() => expect(el.querySelector('.file-view .script')).not.toBeNull())
+        expect(document.documentElement.scrollTop).toBe(0)
+      })
+
+      it('shows a file from the top when the link names no unit in it, as the links of the directory do', async () => {
+        const el = await scrolledResults()
+        go('#/f/Skills_personality-99.json')
+        await vi.waitFor(() => expect(el.querySelector('.file-view .tbl')).not.toBeNull())
+        expect(document.documentElement.scrollTop).toBe(0)
+      })
+
+      it('goes to the unit of the hit that was clicked, and does not scroll to the top', async () => {
+        const el = await scrolledResults()
+        const link = el.querySelector('.hit-link')
+        expect(link?.getAttribute('href')).toBe('#/f/StoryData/S9999.json?u=%2FdataList%2F3%2Fcontent')
+        go(link?.getAttribute('href') ?? '')
+        await vi.waitFor(() => expect(el.querySelector('.file-view .is-target')).not.toBeNull())
+        await vi.waitFor(() => expect(scrollIntoView).toHaveBeenCalled())
+        expect(scrollIntoView.mock.contexts[0]).toBe(el.querySelector('.is-target'))
+        expect(document.documentElement.scrollTop).toBe(1170)
+      })
+    })
   })
 })
