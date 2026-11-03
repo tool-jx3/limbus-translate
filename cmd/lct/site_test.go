@@ -226,6 +226,7 @@ func TestSiteCommandRefusesOutDir(t *testing.T) {
 	t.Cleanup(func() { os.Remove(filepath.Join(filepath.Dir(root), "keep.txt")) })
 
 	for _, out := range []string{
+		"lct.yaml", // a file
 		".", "./", "..", "../x", "work/../..", "work/..",
 		"/tmp/x", filepath.Join(outside, "x"), root,
 		".git", ".git/x", "work/a/.git", "work/a/.git/b",
@@ -240,6 +241,9 @@ func TestSiteCommandRefusesOutDir(t *testing.T) {
 			if _, err := os.Stat(k); err != nil {
 				t.Errorf("--out %q removed %s", out, k)
 			}
+		}
+		if _, err := os.Stat(filepath.Join(root, "lct.yaml")); err != nil {
+			t.Errorf("--out %q removed lct.yaml", out)
 		}
 	}
 }

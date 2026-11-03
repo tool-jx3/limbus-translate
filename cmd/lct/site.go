@@ -197,6 +197,9 @@ func siteOutDir(root, out string, protected ...string) (string, error) {
 			return "", refuse("is inside .git")
 		}
 	}
+	if info, err := os.Stat(realAbs); err == nil && !info.IsDir() {
+		return "", refuse("is a file, not a directory")
+	}
 	for _, dir := range protected {
 		realDir, err := evalLoosely(dir)
 		if err != nil {
