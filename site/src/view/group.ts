@@ -99,9 +99,10 @@ export function passages(entries: Entry[], s: Settings): Passage[] {
     const own = shown(e.place)
     if (own !== undefined && e.placeChanged) pending = own
     const units = visibleUnits(e.units, s)
-    if (e.units.length > 0 && units.length === 0) continue
     const teller = shown(e.teller)
     const title = shown(e.title)
+    // Lines that are all filtered out hide the passage; with reviewOnly, a place, teller or title that has review items keeps it.
+    if (e.units.length > 0 && units.length === 0 && !(s.reviewOnly && [own, teller, title].some(isReviewed))) continue
     const first = e.units[0] ?? e.teller ?? e.title ?? e.place
     if (first === undefined) continue
     let divider = pending !== undefined && pending.kr !== shownPlace ? pending : undefined

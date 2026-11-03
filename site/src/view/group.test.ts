@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { defaultSettings, type Settings } from '../settings'
 import type { Origin, Unit } from '../types'
-import { groupEntries, isScriptFile, passagePointers, passages, visibleUnits } from './group'
+import { groupEntries, isScriptFile, passagePointers, passages, visibleUnits, type Passage } from './group'
 
 function unit(f: string, i: number, kr: string, o: Origin = 'paratranz'): Unit {
   const p = i < 0 ? `/${f}` : `/dataList/${i}/${f}`
@@ -274,5 +274,27 @@ describe('reviewOnly', () => {
     const out = passages(entries, reviewOnly)
     expect(out).toHaveLength(1)
     expect(out[0]?.teller?.kr).toBe('T')
+  })
+
+  it('shows a passage for its teller, title or place that has review items, though no line of it has', () => {
+    const entries = groupEntries([
+      unit('place', 0, 'P'),
+      rv(unit('teller', 0, 'T0')),
+      unit('content', 0, 'C0'),
+      unit('place', 1, 'P1'),
+      rv(unit('title', 1, 'Ti1')),
+      unit('content', 1, 'C1'),
+      rv(unit('place', 2, 'P2')),
+      unit('content', 2, 'C2'),
+      unit('teller', 3, 'T3'),
+      unit('content', 3, 'C3'),
+    ])
+    const out = passages(entries, reviewOnly)
+    expect(out.map((p) => p.key)).toEqual(['/dataList/0/content', '/dataList/1/content', '/dataList/2/content'])
+    expect(out[0]?.units).toEqual([])
+    expect(out[0]?.teller?.kr).toBe('T0')
+    expect(passagePointers(out[0] as Passage)).toContain('/dataList/0/teller')
+    expect(out[1]?.title?.kr).toBe('Ti1')
+    expect(passagePointers(out[2] as Passage)).toContain('/dataList/2/place')
   })
 })
