@@ -16,6 +16,10 @@
   --tok-fg: #35507a;
   --sprite-fg: #8a5a00;
   --raw-bg: #f1f1ec;
+  --danger-bg: #fdecea;
+  --danger-fg: #8a1c14;
+  --scrim: rgb(0 0 0 / 0.4);
+  --top-h: 3.25rem;
 
   --font-kr: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", "Noto Sans KR", sans-serif;
   --font-jp: system-ui, -apple-system, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
@@ -37,6 +41,9 @@
     --tok-fg: #a9c1ea;
     --sprite-fg: #e0b45a;
     --raw-bg: #2a2c2f;
+    --danger-bg: #3a1f1d;
+    --danger-fg: #f2b8b2;
+    --scrim: rgb(0 0 0 / 0.6);
   }
 }
 
@@ -84,12 +91,6 @@ mark {
   color: inherit;
 }
 
-.boot {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
 /* A game string (TmpText) */
 
 .tmp {
@@ -125,4 +126,363 @@ mark {
   color: var(--sprite-fg);
   font-family: var(--font-mono);
   font-size: 0.9em;
+}
+
+/* Page layout: header, directory beside the main area, footer.
+   Wide (above 900px): the header and the directory stay in view.
+   Narrow: the directory is a drawer from the left. */
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type="search"] {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  min-width: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.top-filter,
+.fulltext {
+  display: flex;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.top-filter {
+  flex: 1 1 14rem;
+  max-width: 24rem;
+}
+
+.top-filter .file-filter {
+  flex: 1;
+}
+
+.fulltext {
+  flex: 1 1 14rem;
+  max-width: 24rem;
+}
+
+.fulltext input {
+  flex: 1;
+}
+
+.top button,
+.dir-head button,
+.notice button,
+button.link {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+}
+
+button.link {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.langs {
+  display: flex;
+  gap: 0.25rem 0.75rem;
+  margin-left: auto;
+}
+
+.langs label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dir-toggle,
+.dir-close,
+.only-narrow,
+.scrim {
+  display: none;
+}
+
+.layout {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.dir {
+  flex: none;
+  width: 20rem;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 0.5rem;
+  overflow-y: auto;
+}
+
+.dir-head {
+  display: none;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dir-head .file-filter {
+  flex: 1;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 1.25rem;
+}
+
+.dir-empty {
+  color: var(--muted);
+  margin: 0.5rem;
+}
+
+.dir-family h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.dir-family h2 button {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.25rem 0.4rem;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.dir-family h2 button:hover {
+  background: var(--raw-bg);
+}
+
+.dir-caret {
+  width: 1em;
+  color: var(--muted);
+}
+
+.dir-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.dir-family ul {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0 0 0 1.25rem;
+}
+
+.dir-family a {
+  display: block;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: var(--fg);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+.dir-family a:hover {
+  background: var(--raw-bg);
+}
+
+.dir-family a[aria-current="page"] {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.dir-path {
+  display: block;
+  font-size: 0.88em;
+}
+
+.dir-label,
+.dir-who {
+  display: block;
+  font-size: 0.8em;
+  opacity: 0.75;
+}
+
+.home h1 {
+  margin-top: 0;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin: 1rem 0;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.stats dt {
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.howto {
+  padding-left: 1.25rem;
+}
+
+.notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+  border: 1px solid var(--danger-fg);
+  border-radius: 6px;
+}
+
+.notice p {
+  margin: 0;
+}
+
+.foot {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.foot p {
+  margin: 0.2rem 0;
+}
+
+@media (min-width: 901px) {
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    flex-wrap: nowrap;
+    height: var(--top-h);
+  }
+
+  .dir {
+    position: sticky;
+    top: var(--top-h);
+    height: calc(100vh - var(--top-h));
+  }
+}
+
+@media (max-width: 900px) {
+  .dir-toggle,
+  .only-narrow {
+    display: inline-block;
+  }
+
+  .top-filter {
+    display: none;
+  }
+
+  .dir-close {
+    display: inline-block;
+  }
+
+  .dir-head {
+    display: flex;
+  }
+
+  .scrim.is-open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    background: var(--scrim);
+  }
+
+  .dir {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 40;
+    width: min(22rem, 88vw);
+    transform: translateX(-102%);
+    visibility: hidden;
+    transition: transform 0.2s, visibility 0s 0.2s;
+  }
+
+  .dir.is-open {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.2s;
+  }
+
+  .main {
+    padding: 0.75rem;
+  }
+
+  .langs {
+    margin-left: 0;
+  }
+
+  .fulltext {
+    flex-basis: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dir,
+  .dir.is-open {
+    transition: none;
+  }
 }
