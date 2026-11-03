@@ -49,9 +49,11 @@ jobs:
           bin/lct impact --base "origin/$BASE_REF" --markdown out/impact.md
           cat out/impact.md >> "$GITHUB_STEP_SUMMARY"
 
-  # The viewer (site/): the type check, the tests and the build, on the small
-  # fixtures of site/ (no raw or tw worktree). pages.yml builds it again with the
-  # real data and deploys it. A step that fails fails the job.
+  # The viewer (site/): the type check, the tests and the build. Only the tests
+  # read data, the small fixtures of site/fixtures (no raw or tw worktree); the
+  # build here has no data and shows only that the code compiles. pages.yml
+  # builds it again with the real data and deploys it. A step that fails fails
+  # the job.
   site:
     runs-on: ubuntu-24.04
     steps:

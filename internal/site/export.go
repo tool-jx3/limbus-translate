@@ -66,13 +66,18 @@ type Result struct {
 	Bytes       int64  `json:"bytes"`
 }
 
-// Export writes the data of the viewer to outDir, after emptying it: meta.json,
-// index.json, files/<path> for each file of the KR pack, search/keys.json and
+// Export writes the data of the viewer to outDir: meta.json, index.json,
+// files/<path> for each file of the KR pack, search/keys.json and
 // search/{kr,jp,en,zh}.json. The corpus holds the units of every file in the
 // order of the index, but not the copies (identifiers and texts that are the
 // same in every language). meta supplies what Export cannot know: RawTag,
 // RulesCommit, TWCommit and Release. The output depends on in alone, so the
 // same inputs give the same bytes.
+//
+// outDir is emptied first: everything in it is removed, and Export does not
+// check where it is, so the caller must. "." would be emptied. `lct site`
+// refuses a directory outside the repo, the repo root, one that holds .git or
+// tracked files, and the raw and tw worktrees.
 func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	if outDir == "" {
 		return Result{}, errors.New("site: no output directory")

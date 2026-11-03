@@ -34,7 +34,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "site",
 		Usage: "write the data of the static viewer (an index, the files with KR, JP, EN and TW side by side, and the search corpus) " +
-			"from the raw and tw worktrees: --out DIR (inside the repo, such as site/public/data; emptied first)",
+			"from the raw and tw worktrees: --out DIR (inside the repo, such as site/public/data; emptied first, so refused if it holds tracked files)",
 		Run: runSite,
 	})
 }

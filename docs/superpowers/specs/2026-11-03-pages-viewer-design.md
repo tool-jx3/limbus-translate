@@ -37,7 +37,7 @@
 - 網站資料只由 CI 產生並部署，**不 commit 到任何分支**（`raw`、`tw` 只由 pipeline 寫，主 spec §3）
 - 網站名稱與頁面不得使用「Claude Code」「Anthropic」或其標誌（主 spec §3）；可以寫「使用 Claude Code 翻譯」
 - 授權標示（每頁頁尾）：KR／JP／EN 原文著作權屬 Project Moon，本站非商業、供翻譯校對使用；TW 譯文採用 CC BY-NC-SA 4.0，含 Paratranz 社群譯文（第一階段匯入）
-- noindex：每頁 `<meta name="robots" content="noindex, nofollow">`，並提供 `robots.txt`（`Disallow: /`）
+- noindex：每頁 `<meta name="robots" content="noindex, nofollow">`，並提供 `robots.txt`（`Disallow: /`）。專案網站（`https://<owner>.github.io/<repo>/`）的爬蟲只讀主機根目錄的 `robots.txt`，所以這份檔案在專案網站上不起作用，有效的是 `<meta>`；檔案照規定保留
 - 不讀、不寫、不依賴 tool-jx3/Assets 與 tool-jx3/ParatranzUploader
 
 ## 4. 架構
@@ -159,12 +159,12 @@ site/（Preact＋Vite 原始碼）───────────────�
 
 - 觸發：`workflow_run`（`update`、`rebuild`，`completed`），job 的 `if` 與 `rules-proposal.yml` 相同（成功、`main`、不是 pull request）；另可手動執行
 - 權限：`contents: read`、`pages: write`、`id-token: write`；`concurrency: { group: pages, cancel-in-progress: false }`；`environment: github-pages`
-- 步驟：checkout `main`（`persist-credentials: false`）→ 取 `raw`、`tw` 分支並建 worktree → setup-go → `go build -o bin/lct ./cmd/lct` → `bin/lct site --out site/public/data --json` → setup-node（版本與 `site/.nvmrc` 相同）→ `npm ci`、`npm run build`（於 `site/`）→ `actions/upload-pages-artifact`（`site/dist`）→ `actions/deploy-pages`
+- 步驟：checkout `main`（`persist-credentials: false`）→ 取 `raw`、`tw` 分支並建 worktree → setup-go → `go build -o bin/lct ./cmd/lct` → `bin/lct site --out site/public/data --json` → setup-node（版本與 `site/.nvmrc` 相同）→ `npm ci`、`npm run build`（於 `site/`）→ `actions/configure-pages` → `actions/upload-pages-artifact`（`site/dist`）→ `actions/deploy-pages`
 - action 版本與其他 workflow 一致（`actions/checkout@v5`、`actions/setup-go@v6`、`runs-on: ubuntu-24.04`），Pages 相關 action 用實作時的最新主版本，合約測試釘住
 
 ### 7.2 `ci.yml`
 
-- 新增一個 job：`site/` 的 `npm ci`、`npm test`、`npm run build`（用一份小型的測試資料，不需要 raw／tw）
+- 新增一個 job：`site/` 的 `npm ci`、`npm run typecheck`、`npm test`、`npm run build`（只有 `npm test` 讀 `site/fixtures` 的小型測試資料；這裡的建置沒有網站資料，只確認程式能編譯；都不需要 raw／tw）
 - Go 的 `lct site` 測試照常在 `go test ./...` 裡
 
 ### 7.3 一次性設定（人做）
