@@ -111,3 +111,14 @@ func TestLintAccepted(t *testing.T) {
 		t.Errorf("a root without the file has issues: %v", issues)
 	}
 }
+
+// A new file starts with the same comment that rules/accepted.yaml has.
+func TestAcceptedHeaderMatchesRepoFile(t *testing.T) {
+	want, err := os.ReadFile("../../rules/accepted.yaml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if acceptedHeader != string(want) {
+		t.Errorf("acceptedHeader differs from rules/accepted.yaml:\n%s", acceptedHeader)
+	}
+}

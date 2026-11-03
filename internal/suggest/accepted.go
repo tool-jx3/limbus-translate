@@ -28,15 +28,16 @@ var acceptedIDPattern = regexp.MustCompile(`^warning/[a-z0-9-]+/[0-9a-f]{8}/[0-9
 // acceptedHeader is the comment that a new AcceptedFile starts with.
 const acceptedHeader = `# 已確認的檢查警告
 #
-# 審閱頁上確認「沒問題」的檢查警告記在這裡，` + "`lct check`" + ` 與審閱頁不再把它當作待處理。
-# 由 ` + "`lct accept`" + ` 附加，也可以手動新增。
+# 審核頁上確認「沒問題」的檢查警告記在這裡，審核頁與建置報告的警告統計
+# （warnings、warning_samples）都會略過它。由 ` + "`lct accept`" + ` 附加，也可以手動新增。
 #
 # 格式：清單，每筆
-#   id      警告的 id：warning/<代碼>/<原文 sha8>/<譯文 sha8>
+#   id      警告的 id：warning/<代碼>/<sha8(KR)>/<sha8(TW)>
 #   reason  確認的理由（必填）
 #   date    YYYY-MM-DD
 #
-# id 含譯文的雜湊：譯文改了，id 就變，警告會再出現，需要重新確認。
+# id 不含檔案或位置：KR 與 TW 都相同的單位共用同一筆確認，新快照讓單位換了指標
+# 也仍然有效；TW 譯文一改，id 就變，確認隨即失效，警告會再出現，需要重新確認。
 #
 #   - id: "warning/kana/0123abcd/89ef4567"
 #     reason: 日文假名是刻意保留的
