@@ -199,6 +199,8 @@ describe('SearchEngine', () => {
     const e = new SearchEngine(flaky)
     const down = await e.run(query('警告', 'zh', false, 1))
     expect(down).toMatchObject({ id: 1, error: expect.stringContaining('下載') })
+    // and says what the reader can do about it
+    expect('error' in down && down.error).toContain('請重新整理後再試')
     up = true
     const back = await e.run(query('警告', 'zh', false, 2))
     expect(back).toMatchObject({ id: 2, total: 1 })
@@ -213,12 +215,12 @@ describe('SearchEngine', () => {
 
   it('answers with an error where the corpus is not as long as the keys', async () => {
     const e = new SearchEngine(async (url) => (url.endsWith('keys.json') ? keys : ['短']))
-    expect(await e.run(query('x', 'zh'))).toMatchObject({ error: expect.stringContaining('格式') })
+    expect(await e.run(query('x', 'zh'))).toMatchObject({ error: expect.stringMatching(/格式.*請重新整理後再試/) })
   })
 
   it('answers with an error where the data is not arrays', async () => {
     const e = new SearchEngine(async () => ({ not: 'an array' }))
-    expect(await e.run(query('x', 'zh'))).toMatchObject({ error: expect.stringContaining('格式') })
+    expect(await e.run(query('x', 'zh'))).toMatchObject({ error: expect.stringMatching(/格式.*請重新整理後再試/) })
   })
   describe('the message that it begins to match', () => {
     it('is sent once the corpus is in, and before the answer', async () => {

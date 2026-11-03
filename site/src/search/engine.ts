@@ -62,7 +62,7 @@ const fetchJson: FetchJson = async (url) => {
 }
 
 function unusable(url: string): Error {
-  return new Error(`${url}：資料格式不符`)
+  return new Error(`${url}：資料格式不符，請重新整理後再試`)
 }
 
 /**
@@ -127,7 +127,7 @@ export class SearchEngine {
       try {
         doc = await this.get(url)
       } catch (e) {
-        throw new Error(`下載 ${url} 失敗：${e instanceof Error ? e.message : String(e)}`)
+        throw new Error(`下載 ${url} 失敗：${e instanceof Error ? e.message : String(e)}，請重新整理後再試`)
       }
       return make(doc)
     })()

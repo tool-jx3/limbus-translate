@@ -234,6 +234,7 @@ describe('SearchView', () => {
     vi.stubGlobal('fetch', async () => new Response('no', { status: 404 }))
     const el = await search('警告')
     expect(text(el.querySelector('.notice[role="alert"]'))).toContain('404')
+    expect(text(el.querySelector('.notice[role="alert"]'))).toContain('請重新整理後再試')
   })
 
   it('searches by regular expression only when it is on', async () => {
