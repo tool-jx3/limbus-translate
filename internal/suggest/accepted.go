@@ -127,3 +127,71 @@ func entryNode(e Declined) *yaml.Node {
 		str(declinedFields[2], 0), date,
 	}}
 }
+
+// RemoveEntries deletes the entries of file (relative to root) whose id is in
+// ids and returns the ids it removed, in the order of the file. Only the lines
+// of the removed entries go: comments, blank lines and the text of the other
+// entries stay as they are. A file that does not exist, or lists none of ids,
+// is left untouched.
+func RemoveEntries(root, file string, ids map[string]bool) (removed []string, err error) {
+	path := filepath.Join(root, filepath.FromSlash(file))
+	data, err := os.ReadFile(path)
+	if errors.Is(err, fs.ErrNotExist) {
+		return nil, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	var doc yaml.Node
+	if err := yaml.Unmarshal(data, &doc); err != nil {
+		return nil, fmt.Errorf("%s: %w", file, err)
+	}
+	if doc.Kind != yaml.DocumentNode || len(doc.Content) != 1 || doc.Content[0].Kind != yaml.SequenceNode {
+		return nil, nil
+	}
+	items := doc.Content[0].Content
+	lines := strings.SplitAfter(string(data), "\n")
+	drop := make([]bool, len(lines))
+	for i, item := range items {
+		id := ""
+		if item.Kind == yaml.MappingNode {
+			for j := 0; j+1 < len(item.Content); j += 2 {
+				if item.Content[j].Value == "id" {
+					id = item.Content[j+1].Value
+				}
+			}
+		}
+		if id == "" || !ids[id] {
+			continue
+		}
+		first := item.Line - 1
+		end := len(lines)
+		if i+1 < len(items) {
+			end = items[i+1].Line - 1
+		}
+		// Blank and comment lines after the entry belong to what follows.
+		for end > first+1 {
+			if t := strings.TrimSpace(lines[end-1]); t != "" && !strings.HasPrefix(t, "#") {
+				break
+			}
+			end--
+		}
+		for l := first; l < end; l++ {
+			drop[l] = true
+		}
+		removed = append(removed, id)
+	}
+	if len(removed) == 0 {
+		return nil, nil
+	}
+	var out strings.Builder
+	for l, text := range lines {
+		if !drop[l] {
+			out.WriteString(text)
+		}
+	}
+	if err := os.WriteFile(path, []byte(out.String()), 0o644); err != nil {
+		return nil, err
+	}
+	return removed, nil
+}

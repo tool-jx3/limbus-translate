@@ -22,6 +22,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
 
@@ -75,60 +76,11 @@ func runSite(ctx *cli.Context, args []string) error {
 		return err
 	}
 
-	src, err := raw.LastSource(rawWorktree)
+	ss, err := openSiteSources(ctx, "site")
 	if err != nil {
 		return err
 	}
-	if src == nil {
-		return cli.UserError(fmt.Sprintf("site: %s has no snapshot; run lct snapshot first", cfg.Worktrees.Raw))
-	}
-	set, err := pack.OpenRaw(rawWorktree)
-	if err != nil {
-		return err
-	}
-	st, err := openTWStore(ctx, "site")
-	if err != nil {
-		return err
-	}
-	info, err := build.ReadInfo(twRoot)
-	if errors.Is(err, build.ErrNotBuilt) {
-		return cli.UserError("site: " + err.Error())
-	}
-	if err != nil {
-		return err
-	}
-	// The KR texts come from raw and the TW texts from the pack: of two
-	// snapshots they would not line up.
-	if info.RawTag != src.Tag {
-		return cli.UserError(fmt.Sprintf("site: the pack in %s was built from %s, but %s is at %s; run lct build first",
-			cfg.Worktrees.TW, info.RawTag, cfg.Worktrees.Raw, src.Tag))
-	}
-	records, err := st.LoadRecords()
-	if err != nil {
-		return err
-	}
-	r, err := rules.Load(ctx.Root)
-	if err != nil {
-		return err
-	}
-	zhDir := filepath.Join(twRoot, siteLangRoot, cfg.LangDir)
-	if _, err := os.Stat(zhDir); errors.Is(err, fs.ErrNotExist) {
-		return cli.UserError(fmt.Sprintf("site: %s has no pack at %s; run lct build first", cfg.Worktrees.TW, filepath.ToSlash(filepath.Join(siteLangRoot, cfg.LangDir))))
-	}
-	zh, err := pack.Open(zhDir, "")
-	if err != nil {
-		return err
-	}
-	var missing []string
-	for _, f := range set.KR.Files() {
-		if !zh.Has(f) {
-			missing = append(missing, f)
-		}
-	}
-	if len(missing) > 0 {
-		return cli.UserError(fmt.Sprintf("site: the built pack lacks %d of the %d files of the KR pack, such as %s; run lct build first",
-			len(missing), len(set.KR.Files()), missing[0]))
-	}
+	src, set, zh, info, records, r := ss.Src, ss.Set, ss.ZH, ss.Info, ss.Records, ss.Rules
 
 	head, err := gitx.Head(twRoot)
 	if err != nil {
@@ -152,6 +104,81 @@ func runSite(ctx *cli.Context, args []string) error {
 		return err
 	}
 	return ctx.Emit(siteOutput{res})
+}
+
+// siteSources are the packs and stores the review items and the viewer data are
+// computed from: the last raw snapshot and its packs, the built zh pack of the
+// tw worktree and the build record it came with, the records and the rules.
+type siteSources struct {
+	Src     *raw.Source
+	Set     pack.Set
+	ZH      *pack.Pack
+	Info    build.Info
+	Records map[string]store.Record
+	Rules   *rules.Rules
+}
+
+// openSiteSources opens what lct site and lct accept compute from. The pack
+// must have been built from the last snapshot and hold every file of KR; if not
+// it is a user error that says to run lct snapshot or lct build. cmd names the
+// command in the errors.
+func openSiteSources(ctx *cli.Context, cmd string) (siteSources, error) {
+	cfg := ctx.Config
+	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" || cfg.LangDir == "" {
+		return siteSources{}, cli.UserError(cmd + ": worktrees.raw, worktrees.tw and lang_dir must be set in lct.yaml")
+	}
+	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
+	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
+	var ss siteSources
+	var err error
+	if ss.Src, err = raw.LastSource(rawWorktree); err != nil {
+		return ss, err
+	}
+	if ss.Src == nil {
+		return ss, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", cmd, cfg.Worktrees.Raw))
+	}
+	if ss.Set, err = pack.OpenRaw(rawWorktree); err != nil {
+		return ss, err
+	}
+	st, err := openTWStore(ctx, cmd)
+	if err != nil {
+		return ss, err
+	}
+	if ss.Info, err = build.ReadInfo(twRoot); errors.Is(err, build.ErrNotBuilt) {
+		return ss, cli.UserError(cmd + ": " + err.Error())
+	} else if err != nil {
+		return ss, err
+	}
+	// The KR texts come from raw and the TW texts from the pack: of two
+	// snapshots they would not line up.
+	if ss.Info.RawTag != ss.Src.Tag {
+		return ss, cli.UserError(fmt.Sprintf("%s: the pack in %s was built from %s, but %s is at %s; run lct build first",
+			cmd, cfg.Worktrees.TW, ss.Info.RawTag, cfg.Worktrees.Raw, ss.Src.Tag))
+	}
+	if ss.Records, err = st.LoadRecords(); err != nil {
+		return ss, err
+	}
+	if ss.Rules, err = rules.Load(ctx.Root); err != nil {
+		return ss, err
+	}
+	zhDir := filepath.Join(twRoot, siteLangRoot, cfg.LangDir)
+	if _, err := os.Stat(zhDir); errors.Is(err, fs.ErrNotExist) {
+		return ss, cli.UserError(fmt.Sprintf("%s: %s has no pack at %s; run lct build first", cmd, cfg.Worktrees.TW, filepath.ToSlash(filepath.Join(siteLangRoot, cfg.LangDir))))
+	}
+	if ss.ZH, err = pack.Open(zhDir, ""); err != nil {
+		return ss, err
+	}
+	var missing []string
+	for _, f := range ss.Set.KR.Files() {
+		if !ss.ZH.Has(f) {
+			missing = append(missing, f)
+		}
+	}
+	if len(missing) > 0 {
+		return ss, cli.UserError(fmt.Sprintf("%s: the built pack lacks %d of the %d files of the KR pack, such as %s; run lct build first",
+			cmd, len(missing), len(ss.Set.KR.Files()), missing[0]))
+	}
+	return ss, nil
 }
 
 // loadReviewInputs reads what the review items are computed from: the raw tag,

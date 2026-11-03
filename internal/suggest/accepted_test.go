@@ -122,3 +122,55 @@ func TestAcceptedHeaderMatchesRepoFile(t *testing.T) {
 		t.Errorf("acceptedHeader differs from rules/accepted.yaml:\n%s", acceptedHeader)
 	}
 }
+
+func TestRemoveEntries(t *testing.T) {
+	root := t.TempDir()
+	const header = "# 已確認的檢查警告\n# 說明\n"
+	const keep1 = "- id: \"warning/kana/00000000/11111111\"\n  reason: first # not a comment\n  date: 2026-11-01\n"
+	const gone = "- id: \"warning/kana/aaaaaaaa/bbbbbbbb\"\n  reason: second\n  date: 2026-11-02\n"
+	const keep2 = "- {id: 'warning/kana/cccccccc/dddddddd', reason: third, date: 2026-11-03}\n"
+	// Comments stay where they are, those above the removed entry too.
+	const note = "# stays\n"
+	writeFile(t, root, AcceptedFile, header+keep1+note+gone+keep2)
+
+	removed, err := RemoveEntries(root, AcceptedFile, map[string]bool{
+		"warning/kana/aaaaaaaa/bbbbbbbb": true, "warning/kana/not/listed": true,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(removed) != 1 || removed[0] != "warning/kana/aaaaaaaa/bbbbbbbb" {
+		t.Errorf("removed = %v, want the one listed id", removed)
+	}
+	data, err := os.ReadFile(filepath.Join(root, AcceptedFile))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(data) != header+keep1+note+keep2 {
+		t.Errorf("file after removal:\n%s\nwant\n%s", data, header+keep1+note+keep2)
+	}
+	if _, err := LoadAccepted(root); err != nil {
+		t.Errorf("the file no longer loads: %v", err)
+	}
+
+	// Nothing to remove leaves the file as it is, and a missing file has
+	// nothing to remove.
+	before := string(data)
+	if removed, err := RemoveEntries(root, AcceptedFile, map[string]bool{"warning/kana/zz/zz": true}); err != nil || len(removed) != 0 {
+		t.Errorf("removing an unlisted id = %v, %v", removed, err)
+	}
+	if after, _ := os.ReadFile(filepath.Join(root, AcceptedFile)); string(after) != before {
+		t.Error("the file changed")
+	}
+	if removed, err := RemoveEntries(t.TempDir(), AcceptedFile, map[string]bool{"x": true}); err != nil || len(removed) != 0 {
+		t.Errorf("missing file = %v, %v", removed, err)
+	}
+
+	// All entries removed: the comments stay.
+	if _, err := RemoveEntries(root, AcceptedFile, map[string]bool{"warning/kana/00000000/11111111": true, "warning/kana/cccccccc/dddddddd": true}); err != nil {
+		t.Fatal(err)
+	}
+	if after, _ := os.ReadFile(filepath.Join(root, AcceptedFile)); string(after) != header+note {
+		t.Errorf("after removing all:\n%s", after)
+	}
+}
