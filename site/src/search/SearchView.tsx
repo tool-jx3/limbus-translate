@@ -102,7 +102,9 @@ interface HitRowProps {
 function HitRow({ path, hit, lang, units, failed }: HitRowProps) {
   const unit = units?.get(hit.ptr)
   const shown: Lang[] = lang === 'kr' || lang === 'zh' ? ['kr', 'zh'] : ['kr', lang, 'zh']
-  const field = hit.ptr.slice(hit.ptr.lastIndexOf('/') + 1)
+  // The field of the unit, once the file is in; until then (and where it cannot be loaded) the last segment of the pointer.
+  // For a string in a list that is a number, which says nothing, and the field is the name of the list.
+  const field = unit?.f ?? hit.ptr.slice(hit.ptr.lastIndexOf('/') + 1)
   return (
     <li class="hit">
       <a class="hit-link" href={fileHref(path, hit.ptr)} data-ptr={hit.ptr}>

@@ -133,6 +133,45 @@ describe('SearchView', () => {
     expect(text(el.querySelector('.hit-kr .hit-text'))).toContain('수치가')
   })
 
+  it('names a hit by the field of its unit once the file is in: the last segment of the pointer of a string in a list is a number', async () => {
+    let release: () => void = () => {}
+    const gate = new Promise<void>((resolve) => (release = resolve))
+    const unit = (n: number) => ({ p: `/dataList/0/tags/${n}`, f: 'tags', i: 0, kr: `태그${n}`, zh: `標籤${n}`, o: 'paratranz' })
+    const fixtures = fixtureFetch({
+      'search/keys.json': [
+        [0, '/dataList/0/tags/0'],
+        [0, '/dataList/0/tags/1'],
+        [0, '/dataList/1/name'],
+      ],
+      'search/zh.json': ['標籤0', '標籤1', '標籤名'],
+      [`files/${STORY}`]: { path: STORY, family: 'story-main', units: [unit(0), unit(1), { ...unit(2), p: '/dataList/1/name', f: 'name' }] },
+    })
+    const base = new URL('data/', document.baseURI).href
+    vi.stubGlobal('fetch', async (url: string) => {
+      if (url.includes('files/')) await gate
+      return fixtures(url.startsWith(base) ? `./data/${url.slice(base.length)}` : url)
+    })
+    const el = await search('標籤')
+    const fields = () => [...el.querySelectorAll('.hit-field')].map((f) => text(f))
+    // until the file is in, the last segment is all there is
+    expect(fields()).toEqual(['0', '1', 'name'])
+    release()
+    await vi.waitFor(() => expect(fields()).toEqual(['tags', 'tags', 'name']))
+    // the pointer is still there, to read
+    expect([...el.querySelectorAll('.hit-field')].map((f) => f.getAttribute('title'))).toEqual(['/dataList/0/tags/0', '/dataList/0/tags/1', '/dataList/1/name'])
+  })
+
+  it('names a hit by the last segment of its pointer where its file cannot be loaded', async () => {
+    const fixtures = fixtureFetch({ 'search/keys.json': [[0, '/dataList/0/tags/0']], 'search/zh.json': ['標籤0'] })
+    const base = new URL('data/', document.baseURI).href
+    vi.stubGlobal('fetch', async (url: string) =>
+      url.includes('files/') ? new Response('gone', { status: 404 }) : fixtures(url.startsWith(base) ? `./data/${url.slice(base.length)}` : url),
+    )
+    const el = await search('標籤')
+    await vi.waitFor(() => expect(el.querySelector('.group-error')).not.toBeNull())
+    expect(text(el.querySelector('.hit-field'))).toBe('0')
+  })
+
   it('loads the file of a group, and no file that has no hit', async () => {
     const el = await search('但丁')
     await vi.waitFor(() => expect(el.querySelector('.hit-wait')).toBeNull())
