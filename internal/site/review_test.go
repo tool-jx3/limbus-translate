@@ -1,6 +1,7 @@
 package site
 
 import (
+	"encoding/json"
 	"reflect"
 	"slices"
 	"strings"
@@ -9,6 +10,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
+	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
@@ -340,6 +342,197 @@ func TestReviewShapeIsStable(t *testing.T) {
 	for key, ids := range r.Refs {
 		if !slices.IsSorted(ids) {
 			t.Errorf("Refs[%s] = %v is not sorted", key, ids)
+		}
+	}
+}
+
+// withBatch sets the batch of the record at key.
+func withBatch(in Inputs, key, batch string) {
+	r := in.Records[key]
+	r.Batch = batch
+	in.Records[key] = r
+}
+
+func noteOf(key, batch, kr, text string) store.Note {
+	return store.Note{Key: key, Batch: batch, KRSha: units.KRSha(kr), Note: text}
+}
+
+func TestReviewNotes(t *testing.T) {
+	t.Run("note on its unit", func(t *testing.T) {
+		in, files := reviewInputs(t)
+		withBatch(in, k(rvA, 0), "b1")
+		in.Review.Notes = []store.Note{noteOf(k(rvA, 0), "b1", rvKR, "意譯")}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(r.Notes) != 1 || r.NotesUnplaced != 0 {
+			t.Fatalf("Notes = %+v, unplaced %d", r.Notes, r.NotesUnplaced)
+		}
+		n := r.Notes[0]
+		want := NoteItem{ID: itemid.Note(k(rvA, 0), "意譯"), Key: k(rvA, 0), Family: "other", Batch: "b1", Note: "意譯", KR: rvKR, ZH: "一", O: "claude"}
+		if !reflect.DeepEqual(n, want) {
+			t.Errorf("note = %+v, want %+v", n, want)
+		}
+		if r.NoteText[k(rvA, 0)] != "意譯" {
+			t.Errorf("NoteText = %v", r.NoteText)
+		}
+		if !slices.Contains(r.Refs[k(rvA, 0)], want.ID) {
+			t.Errorf("Refs = %v lacks the note", r.Refs)
+		}
+	})
+	t.Run("note follows a moved record", func(t *testing.T) {
+		in, files := reviewInputs(t)
+		withBatch(in, k(rvA, 4), "b0")
+		withBatch(in, k(rvA, 2), "b2")
+		in.Review.Notes = []store.Note{noteOf(k(rvA, 4), "b2", rvKana, "雙關")}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(r.Notes) != 1 || r.Notes[0].Key != k(rvA, 2) {
+			t.Fatalf("Notes = %+v", r.Notes)
+		}
+		if want := itemid.Note(k(rvA, 4), "雙關"); r.Notes[0].ID != want {
+			t.Errorf("ID = %s, want %s (the key of notes.jsonl)", r.Notes[0].ID, want)
+		}
+		if r.NoteText[k(rvA, 2)] != "雙關" {
+			t.Errorf("NoteText = %v", r.NoteText)
+		}
+	})
+	t.Run("note with no place", func(t *testing.T) {
+		in, files := reviewInputs(t)
+		withBatch(in, k(rvA, 0), "b3")
+		withBatch(in, k(rvA, 1), "b3")
+		in.Review.Notes = []store.Note{
+			noteOf(k(rvA, 4), "b3", rvKR, "兩個候選"),
+			noteOf(k(rvA, 4), "b7", rvKR, "沒有候選"),
+		}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(r.Notes) != 0 || r.NotesUnplaced != 2 {
+			t.Errorf("Notes = %+v, unplaced %d", r.Notes, r.NotesUnplaced)
+		}
+	})
+	t.Run("note of an older translation", func(t *testing.T) {
+		in, files := reviewInputs(t)
+		withBatch(in, k(rvA, 0), "b2")
+		in.Review.Notes = []store.Note{noteOf(k(rvA, 0), "b1", rvKR, "舊的")}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(r.Notes) != 0 || r.NotesUnplaced != 1 || len(r.NoteText) != 0 {
+			t.Errorf("Notes = %+v, unplaced %d, text %v", r.Notes, r.NotesUnplaced, r.NoteText)
+		}
+	})
+	t.Run("note text kept when declined", func(t *testing.T) {
+		in, files := reviewInputs(t)
+		withBatch(in, k(rvA, 0), "b1")
+		n1, n2 := noteOf(k(rvA, 0), "b1", rvKR, "甲"), noteOf(k(rvA, 0), "b1", rvKR, "乙")
+		in.Review.Notes = []store.Note{n1, n2}
+		in.Review.Declined = []suggest.Declined{{ID: itemid.Note(n1.Key, n1.Note), Reason: "不用改", Date: "2026-11-03"}}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if r.NoteText[k(rvA, 0)] != "甲\n乙" {
+			t.Errorf("NoteText = %q", r.NoteText[k(rvA, 0)])
+		}
+		if r.Notes[0].Declined == nil || r.Notes[1].Declined != nil {
+			t.Errorf("Declined = %+v / %+v", r.Notes[0].Declined, r.Notes[1].Declined)
+		}
+		if refs := r.Refs[k(rvA, 0)]; slices.Contains(refs, r.Notes[0].ID) || !slices.Contains(refs, r.Notes[1].ID) {
+			t.Errorf("Refs = %v", refs)
+		}
+	})
+	t.Run("notes follow file, unit and batch order", func(t *testing.T) {
+		in, files := reviewInputs(t)
+		withBatch(in, k(rvA, 0), "b1")
+		withBatch(in, k(rvB, 0), "b1")
+		withBatch(in, k(rvA, 1), "b1")
+		in.Review.Notes = []store.Note{
+			noteOf(k(rvB, 0), "b1", rvKR, "B0"),
+			noteOf(k(rvA, 1), "b1", rvKR, "A1"),
+			noteOf(k(rvA, 0), "b1", rvKR, "A0"),
+		}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		var got []string
+		for _, n := range r.Notes {
+			got = append(got, n.Note)
+		}
+		if !reflect.DeepEqual(got, []string{"A0", "A1", "B0"}) {
+			t.Errorf("order = %v", got)
+		}
+	})
+}
+
+func TestReviewTodoHasFiveKinds(t *testing.T) {
+	in, files := reviewInputs(t)
+	in.Review.Plan = &plan.Summary{NewSpeakers: []string{"새 화자"}}
+	in.Review.Pending = []store.PendingItem{{Key: k(rvA, 0), Flags: []string{store.FlagNeedsReview}, LastError: "boom"}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(r.Todo) != 1 || r.Todo[0].Kind != build.KindNeedsReview {
+		t.Fatalf("Todo = %+v", r.Todo)
+	}
+	sec := r.Todo[0]
+	if len(sec.Items) != 1 || sec.Items[0].Key != k(rvA, 0) || sec.Title == "" || sec.Hint == "" || sec.Items[0].Text == "" {
+		t.Errorf("section = %+v", sec)
+	}
+	in.Review.Build = nil
+	if r, err = BuildReview(in, files); err != nil || len(r.Todo) != 0 {
+		t.Errorf("without a build: Todo = %+v, err %v", r.Todo, err)
+	}
+}
+
+func TestReviewPendingCounted(t *testing.T) {
+	in, files := reviewInputs(t)
+	in.Review.Pending = []store.PendingItem{{Key: k(rvA, 2)}}
+	withBatch(in, k(rvA, 2), "b2")
+	in.Review.Notes = []store.Note{noteOf(k(rvA, 2), "b2", rvKana, "n")}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !r.Queued[k(rvA, 2)] || len(r.Queued) != 1 {
+		t.Errorf("Queued = %v", r.Queued)
+	}
+	for _, w := range r.Warnings {
+		if w.ID == rvKanaID && w.Pending != 1 {
+			t.Errorf("warning Pending = %d, want 1 of 2 units", w.Pending)
+		}
+	}
+	if len(r.Notes) != 1 || r.Notes[0].Pending != 1 {
+		t.Errorf("Notes = %+v", r.Notes)
+	}
+	if s := findSuggestion(t, r, rvIncID); s.Pending != 0 {
+		t.Errorf("suggestion Pending = %d", s.Pending)
+	}
+	in.Review.Pending = []store.PendingItem{{Key: k(rvA, 0)}, {Key: k(rvB, 0)}}
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	if s := findSuggestion(t, r, rvIncID); s.Pending != 2 {
+		t.Errorf("suggestion Pending = %d, want 2", s.Pending)
+	}
+}
+
+func TestReviewPendingAlwaysMarshalled(t *testing.T) {
+	for _, v := range []any{SuggestionItem{}, WarningItem{}, NoteItem{}} {
+		b, err := json.Marshal(v)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !strings.Contains(string(b), `"pending":0`) {
+			t.Errorf("%T marshals to %s, want \"pending\":0", v, b)
 		}
 	}
 }
