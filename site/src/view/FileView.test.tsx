@@ -819,5 +819,4 @@ describe('FileView: review marks', () => {
     act(() => note?.querySelector('button')?.click())
     expect(latest.reviewOnly).toBe(false)
   })
-
 })
