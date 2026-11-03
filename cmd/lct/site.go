@@ -12,14 +12,17 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
 
 // siteLangRoot is where the built pack lies in the tw worktree, before the
@@ -140,11 +143,68 @@ func runSite(ctx *cli.Context, args []string) error {
 		release = latestReleaseTag(tags)
 	}
 	meta := site.Meta{RawTag: src.Tag, RulesCommit: info.RulesCommit, TWCommit: head, Release: release}
-	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r}, meta, outDir)
+	review, err := loadReviewInputs(ctx, "site")
+	if err != nil {
+		return err
+	}
+	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r, Review: &review}, meta, outDir)
 	if err != nil {
 		return err
 	}
 	return ctx.Emit(siteOutput{res})
+}
+
+// loadReviewInputs reads what the review items are computed from: the raw tag,
+// the build record and plan of the tw worktree (nil when there is none; a
+// plan of another snapshot is no plan), the adjustments, the field rules, the
+// frozen patterns, the notes, the pending list and the declined and accepted
+// entries. cmd names the command in the errors.
+func loadReviewInputs(ctx *cli.Context, cmd string) (site.ReviewInputs, error) {
+	cfg := ctx.Config
+	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
+		return site.ReviewInputs{}, cli.UserError(cmd + ": worktrees.raw and worktrees.tw must be set in lct.yaml")
+	}
+	src, err := raw.LastSource(filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw)))
+	if err != nil {
+		return site.ReviewInputs{}, err
+	}
+	if src == nil {
+		return site.ReviewInputs{}, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", cmd, cfg.Worktrees.Raw))
+	}
+	in := site.ReviewInputs{RawTag: src.Tag, Frozen: cfg.Frozen}
+	if in.Adjustments, err = adjust.Load(ctx.Root); err != nil {
+		return in, err
+	}
+	if in.Fields, err = fields.Load(ctx.Root); err != nil {
+		return in, err
+	}
+	if in.Declined, err = suggest.LoadDeclined(ctx.Root); err != nil {
+		return in, err
+	}
+	if in.Accepted, err = suggest.LoadAccepted(ctx.Root); err != nil {
+		return in, err
+	}
+	st, err := openTWStore(ctx, cmd)
+	if err != nil {
+		return in, err
+	}
+	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
+	switch info, err := build.ReadInfo(twRoot); {
+	case err == nil:
+		in.Build = &info
+	case !errors.Is(err, build.ErrNotBuilt):
+		return in, err
+	}
+	if in.Plan, err = build.ReadPlan(twRoot, src.Tag); err != nil {
+		return in, err
+	}
+	if in.Notes, err = st.LoadNotes(); err != nil {
+		return in, err
+	}
+	if in.Pending, err = st.LoadPending(); err != nil {
+		return in, err
+	}
+	return in, nil
 }
 
 // latestReleaseTag returns the latest of the Release tags (zh-TW-YYYYMMDD.N)

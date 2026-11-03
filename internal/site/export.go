@@ -10,11 +10,12 @@ import (
 	"path/filepath"
 
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 // FormatVersion is Meta.Format: the version of the layout and the JSON keys of
 // the data. The viewer asks for a refresh when it meets another version.
-const FormatVersion = 1
+const FormatVersion = 2
 
 // searchLangs are the languages of the search corpus, in the order of
 // Meta.Langs: search/<lang>.json holds one string per entry of search/keys.json.
@@ -37,6 +38,17 @@ type Meta struct {
 	// Files and Units are the number of files and of units; Export sets them.
 	Files int `json:"files"`
 	Units int `json:"units"`
+	// Review counts the review items nobody confirmed; Export sets it.
+	Review ReviewCounts `json:"review"`
+}
+
+// ReviewCounts is the number of unconfirmed items of each page of the review.
+// Todo counts the lines of the to-do sections.
+type ReviewCounts struct {
+	Suggestions int `json:"suggestions"`
+	Warnings    int `json:"warnings"`
+	Notes       int `json:"notes"`
+	Todo        int `json:"todo"`
 }
 
 // IndexFamily is a family of files in data/index.json: Files are the positions
@@ -64,11 +76,18 @@ type Result struct {
 	Units       int    `json:"units"`
 	SearchUnits int    `json:"search_units"`
 	Bytes       int64  `json:"bytes"`
+	// Review is Meta.Review. ReviewMismatches are the groups of inconsistent
+	// translations whose units do not add up to the evidence of the suggestion,
+	// and NotesUnplaced the notes that sit on no unit.
+	Review           ReviewCounts `json:"review"`
+	ReviewMismatches []string     `json:"review_mismatches"`
+	NotesUnplaced    int          `json:"notes_unplaced"`
 }
 
 // Export writes the data of the viewer to outDir: meta.json, index.json,
 // files/<path> for each file of the KR pack, search/keys.json and
-// search/{kr,jp,en,zh}.json. The corpus holds the units of every file in the
+// search/{kr,jp,en,zh}.json, and review/{suggestions,warnings,notes,todo}.json
+// (empty lists without in.Review). The corpus holds the units of every file in the
 // order of the index, but not the copies (identifiers and texts that are the
 // same in every language). meta supplies what Export cannot know: RawTag,
 // RulesCommit, TWCommit and Release. The output depends on in alone, so the
@@ -93,6 +112,13 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			return Result{}, fmt.Errorf("site: %s is not in the built pack; build the pack again", p)
 		}
 	}
+	var rev Review
+	if in.Review != nil {
+		var err error
+		if rev, err = BuildReview(in, paths); err != nil {
+			return Result{}, err
+		}
+	}
 	w := &writer{dir: outDir}
 	if err := w.clear(); err != nil {
 		return Result{}, err
@@ -101,11 +127,20 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	idx := Index{Families: []IndexFamily{}, Files: make([]FileSummary, 0, len(paths))}
 	var keys [][2]any
 	corpus := make([][]string, len(searchLangs)) // by searchLangs
-	units := 0
+	total := 0
 	for n, p := range paths {
 		file, sum, err := BuildFile(in, p)
 		if err != nil {
 			return Result{}, err
+		}
+		for i := range file.Units {
+			u := &file.Units[i]
+			key := units.Key(p, u.P)
+			u.RV = rev.Refs[key]
+			u.NT = rev.NoteText[key]
+			if rev.Queued[key] {
+				u.PQ = 1
+			}
 		}
 		if err := w.writeJSON("files/"+p, file); err != nil {
 			return Result{}, err
@@ -116,7 +151,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		} else {
 			idx.Families = append(idx.Families, IndexFamily{ID: sum.Family, Files: []int{n}})
 		}
-		units += len(file.Units)
+		total += len(file.Units)
 		for _, u := range file.Units {
 			if u.O == store.OriginCopy {
 				continue
@@ -147,13 +182,70 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	if err := w.writeJSON("index.json", idx); err != nil {
 		return Result{}, err
 	}
+	counts := countReview(rev)
+	if rev.Suggestions == nil {
+		rev.Suggestions, rev.Warnings, rev.Notes, rev.Todo = []SuggestionItem{}, []WarningItem{}, []NoteItem{}, []TodoSection{}
+	}
+	for _, f := range []struct {
+		name string
+		v    any
+	}{
+		{"suggestions", struct {
+			Items []SuggestionItem `json:"items"`
+		}{rev.Suggestions}},
+		{"warnings", struct {
+			Items []WarningItem `json:"items"`
+		}{rev.Warnings}},
+		{"notes", struct {
+			Items []NoteItem `json:"items"`
+		}{rev.Notes}},
+		{"todo", struct {
+			Sections []TodoSection `json:"sections"`
+		}{rev.Todo}},
+	} {
+		if err := w.writeJSON("review/"+f.name+".json", f.v); err != nil {
+			return Result{}, err
+		}
+	}
+	meta.Review = counts
 	meta.Format = FormatVersion
 	meta.Langs = append([]string(nil), searchLangs...)
-	meta.Files, meta.Units = len(paths), units
+	meta.Files, meta.Units = len(paths), total
 	if err := w.writeJSON("meta.json", meta); err != nil {
 		return Result{}, err
 	}
-	return Result{Out: outDir, Files: len(paths), Units: units, SearchUnits: len(keys), Bytes: w.bytes}, nil
+	mismatches := rev.Mismatches
+	if mismatches == nil {
+		mismatches = []string{}
+	}
+	return Result{
+		Out: outDir, Files: len(paths), Units: total, SearchUnits: len(keys), Bytes: w.bytes,
+		Review: counts, ReviewMismatches: mismatches, NotesUnplaced: rev.NotesUnplaced,
+	}, nil
+}
+
+// countReview counts the items of r that nobody confirmed.
+func countReview(r Review) ReviewCounts {
+	var c ReviewCounts
+	for _, s := range r.Suggestions {
+		if s.Declined == nil {
+			c.Suggestions++
+		}
+	}
+	for _, w := range r.Warnings {
+		if w.Accepted == nil {
+			c.Warnings++
+		}
+	}
+	for _, n := range r.Notes {
+		if n.Declined == nil {
+			c.Notes++
+		}
+	}
+	for _, sec := range r.Todo {
+		c.Todo += len(sec.Items)
+	}
+	return c
 }
 
 func deref(s *string) string {

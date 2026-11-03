@@ -75,7 +75,18 @@ func TestSiteCommandJSON(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	var files, units, searchUnits int
+	var files, units, searchUnits, unplaced int
+	var counts site.ReviewCounts
+	var mismatches []string
+	field(t, got, "review", &counts)
+	field(t, got, "review_mismatches", &mismatches)
+	field(t, got, "notes_unplaced", &unplaced)
+	if mismatches == nil || unplaced != 0 {
+		t.Errorf("review_mismatches = %v, notes_unplaced = %d, want a list and 0", mismatches, unplaced)
+	}
+	if meta := readSiteMeta(t, root); meta.Review != counts {
+		t.Errorf("meta.review = %+v, the result says %+v", meta.Review, counts)
+	}
 	var size int64
 	var outDir string
 	field(t, got, "files", &files)
@@ -121,7 +132,8 @@ func TestSiteCommandJSON(t *testing.T) {
 	if onDisk != size {
 		t.Errorf("bytes = %d, the files hold %d", size, onDisk)
 	}
-	for _, want := range []string{"meta.json", "index.json", "search/keys.json", "search/kr.json", "search/jp.json", "search/en.json", "search/zh.json"} {
+	for _, want := range []string{"meta.json", "index.json", "search/keys.json", "search/kr.json", "search/jp.json", "search/en.json", "search/zh.json",
+		"review/suggestions.json", "review/warnings.json", "review/notes.json", "review/todo.json"} {
 		if !slices.Contains(names, want) {
 			t.Errorf("no %s in %v", want, names)
 		}
@@ -138,7 +150,7 @@ func TestSiteCommandJSON(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if meta.Format != 1 || meta.RawTag != "raw-20261029" || meta.RulesCommit != info.RulesCommit || meta.RulesCommit == "" ||
+	if meta.Format != 2 || meta.RawTag != "raw-20261029" || meta.RulesCommit != info.RulesCommit || meta.RulesCommit == "" ||
 		meta.Files != files || meta.Units != units || !slices.Equal(meta.Langs, []string{"kr", "jp", "en", "zh"}) {
 		t.Errorf("meta = %+v, want raw-20261029, rules commit %q, %d files, %d units", meta, info.RulesCommit, files, units)
 	}

@@ -49,6 +49,12 @@ type Unit struct {
 	ZH string   `json:"zh"`           // the string of the built pack
 	O  string   `json:"o"`            // a store origin, or OriginStandIn
 	Fl []string `json:"fl,omitempty"` // flags of the record
+	// RV are the ids of the unconfirmed review items the unit is in, sorted.
+	RV []string `json:"rv,omitempty"`
+	// NT is the translator's notes on the unit, joined by a line feed.
+	NT string `json:"nt,omitempty"`
+	// PQ is 1 when the unit is in the pending list.
+	PQ int `json:"pq,omitempty"`
 }
 
 // File is the data of one file of the pack: its units in the order of KR.

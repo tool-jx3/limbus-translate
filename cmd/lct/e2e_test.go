@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"io/fs"
+	"maps"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -577,5 +578,59 @@ func checkE2EOutput(t *testing.T, langRoot string) {
 		if len(got) != len(want) {
 			t.Errorf("%s has %d strings, want %d: %v", file, len(got), len(want), got)
 		}
+	}
+}
+
+// The warnings of the review page are those of the build: after lct build,
+// lct site finds as many as the report says.
+func TestSiteWarningsMatchBuild(t *testing.T) {
+	fixture, err := filepath.Abs(e2eFixture)
+	if err != nil {
+		t.Fatal(err)
+	}
+	root := e2eRepo(t)
+	template := e2eCDN(t, fixture, testToken)
+	t.Chdir(root)
+	t.Setenv("LCT_MODEL", "e2e")
+	t.Setenv(sourceDateEpoch, "1793000000")
+
+	mustLct(t, nil, "fetch", "--token", testToken, "--created-at", testCreatedAt, "--cdn-template", template, "--out", "work/fetch")
+	mustLct(t, nil, "snapshot", "--from", "work/fetch", "--token", testToken, "--created-at", testCreatedAt)
+	mustLct(t, nil, "bootstrap", "--upstream", filepath.Join(fixture, "upstream"))
+	var built buildOut
+	mustLct(t, &built, "build")
+	if built.Report == nil {
+		t.Fatal("build has no report")
+	}
+	mustLct(t, nil, "site", "--out", "work/site")
+
+	var rep struct {
+		Report struct {
+			Warnings map[string]int `json:"warnings"`
+		} `json:"report"`
+	}
+	if err := json.Unmarshal(readFile(t, filepath.Join(root, ".work", "tw", ".meta", "build.json")), &rep); err != nil {
+		t.Fatal(err)
+	}
+	var wr struct {
+		Items []struct {
+			Code string   `json:"code"`
+			Keys []string `json:"keys"`
+		} `json:"items"`
+	}
+	if err := json.Unmarshal(readFile(t, filepath.Join(root, "work", "site", "review", "warnings.json")), &wr); err != nil {
+		t.Fatal(err)
+	}
+	got := map[string]int{}
+	for _, it := range wr.Items {
+		got[it.Code] += len(it.Keys)
+	}
+	for code, n := range rep.Report.Warnings {
+		if n == 0 {
+			delete(rep.Report.Warnings, code)
+		}
+	}
+	if !maps.Equal(got, rep.Report.Warnings) {
+		t.Errorf("review/warnings.json counts %v, build.json report.warnings %v", got, rep.Report.Warnings)
 	}
 }

@@ -108,6 +108,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 	want := []string{
 		"files/Skills.json", "files/StoryData/S10.json", "files/StoryData/S2.json",
 		"index.json", "meta.json",
+		"review/notes.json", "review/suggestions.json", "review/todo.json", "review/warnings.json",
 		"search/en.json", "search/jp.json", "search/keys.json", "search/kr.json", "search/zh.json",
 	}
 	if got := listFiles(t, out); !slices.Equal(got, want) {
@@ -116,7 +117,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 
 	var meta Meta
 	readJSON(t, out, "meta.json", &meta)
-	wantMeta := Meta{Format: 1, RawTag: "raw-20261029", RulesCommit: "rules1", TWCommit: "tw1", Release: "zh-TW-20261029.1",
+	wantMeta := Meta{Format: 2, RawTag: "raw-20261029", RulesCommit: "rules1", TWCommit: "tw1", Release: "zh-TW-20261029.1",
 		Langs: []string{"kr", "jp", "en", "zh"}, Files: 3, Units: 8}
 	if !reflect.DeepEqual(meta, wantMeta) {
 		t.Errorf("meta = %+v, want %+v", meta, wantMeta)
@@ -128,7 +129,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 		names = append(names, k)
 	}
 	slices.Sort(names)
-	if want := []string{"files", "format", "langs", "raw_tag", "release", "rules_commit", "tw_commit", "units"}; !slices.Equal(names, want) {
+	if want := []string{"files", "format", "langs", "raw_tag", "release", "review", "rules_commit", "tw_commit", "units"}; !slices.Equal(names, want) {
 		t.Errorf("meta.json keys = %v, want %v", names, want)
 	}
 
@@ -175,7 +176,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 		}
 	}
 
-	if want := (Result{Out: out, Files: 3, Units: 8, SearchUnits: 7, Bytes: bytesTotal}); res != want {
+	if want := (Result{Out: out, Files: 3, Units: 8, SearchUnits: 7, Bytes: bytesTotal, ReviewMismatches: []string{}}); !reflect.DeepEqual(res, want) {
 		t.Errorf("result = %+v, want %+v", res, want)
 	}
 	var resKeys map[string]json.RawMessage
@@ -186,7 +187,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 	if err := json.Unmarshal(b, &resKeys); err != nil {
 		t.Fatal(err)
 	}
-	for _, k := range []string{"out", "files", "units", "search_units", "bytes"} {
+	for _, k := range []string{"out", "files", "units", "search_units", "bytes", "review", "review_mismatches", "notes_unplaced"} {
 		if _, ok := resKeys[k]; !ok {
 			t.Errorf("result JSON has no %q: %s", k, b)
 		}
@@ -319,7 +320,7 @@ func TestExportDeterministic(t *testing.T) {
 		}
 	}
 	resA.Out, resB.Out = "", ""
-	if resA != resB {
+	if !reflect.DeepEqual(resA, resB) {
 		t.Errorf("results differ: %+v / %+v", resA, resB)
 	}
 }
@@ -343,8 +344,8 @@ func TestExportClearsOutDir(t *testing.T) {
 			t.Errorf("%s is still there (%v)", rel, err)
 		}
 	}
-	if got := len(listFiles(t, out)); got != 10 {
-		t.Errorf("%d files, want the 10 of the layout", got)
+	if got := len(listFiles(t, out)); got != 14 {
+		t.Errorf("%d files, want the 14 of the layout", got)
 	}
 }
 
@@ -386,4 +387,145 @@ func TestExportRefusesWhatItCannotExport(t *testing.T) {
 			t.Error("Export to a file: want an error")
 		}
 	})
+}
+
+// exportReviewInputs is the fixture of the review tests with the pending list
+// of one unit of A.json.
+func exportReviewInputs(t *testing.T) (Inputs, []string) {
+	t.Helper()
+	in, files := reviewInputs(t)
+	in.Review.Pending = []store.PendingItem{{Key: k(rvA, 1), Reason: "new"}}
+	withBatch(in, k(rvA, 0), "b1")
+	in.Review.Notes = []store.Note{noteOf(k(rvA, 0), "b1", rvKR, "a note")}
+	return in, files
+}
+
+func TestExportWritesReviewData(t *testing.T) {
+	in, _ := exportReviewInputs(t)
+	want, err := BuildReview(in, OrderFiles(in.KR.Files(), in.Rules))
+	if err != nil {
+		t.Fatal(err)
+	}
+	out := filepath.Join(t.TempDir(), "data")
+	res, err := Export(in, Meta{RawTag: "t1"}, out)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var meta Meta
+	readJSON(t, out, "meta.json", &meta)
+	wantCounts := countReview(want)
+	if meta.Format != 2 || meta.Review != wantCounts || res.Review != wantCounts {
+		t.Errorf("format %d, meta.review %+v, result.review %+v, want format 2 and %+v", meta.Format, meta.Review, res.Review, wantCounts)
+	}
+	if wantCounts.Suggestions == 0 || wantCounts.Warnings == 0 || wantCounts.Notes == 0 {
+		t.Fatalf("the fixture has too little to review: %+v", wantCounts)
+	}
+	if !reflect.DeepEqual(res.ReviewMismatches, want.Mismatches) || res.NotesUnplaced != want.NotesUnplaced {
+		t.Errorf("result = %+v, want mismatches %v and %d unplaced notes", res, want.Mismatches, want.NotesUnplaced)
+	}
+
+	var sg struct{ Items []SuggestionItem }
+	var wr struct{ Items []WarningItem }
+	var nt struct{ Items []NoteItem }
+	var td struct{ Sections []TodoSection }
+	readJSON(t, out, "review/suggestions.json", &sg)
+	readJSON(t, out, "review/warnings.json", &wr)
+	readJSON(t, out, "review/notes.json", &nt)
+	readJSON(t, out, "review/todo.json", &td)
+	for name, ok := range map[string]bool{
+		"suggestions": reflect.DeepEqual(sg.Items, want.Suggestions),
+		"warnings":    reflect.DeepEqual(wr.Items, want.Warnings),
+		"notes":       reflect.DeepEqual(nt.Items, want.Notes),
+		"todo":        reflect.DeepEqual(td.Sections, want.Todo),
+	} {
+		if !ok {
+			t.Errorf("review/%s.json differs from BuildReview", name)
+		}
+	}
+	raw, err := os.ReadFile(filepath.Join(out, "review", "todo.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.HasPrefix(string(raw), `{"sections":[`) {
+		t.Errorf("todo.json = %.40s, want the key sections", raw)
+	}
+	raw, err = os.ReadFile(filepath.Join(out, "review", "warnings.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.HasPrefix(string(raw), `{"items":[`) {
+		t.Errorf("warnings.json = %.40s, want the key items", raw)
+	}
+
+	// The units carry what the review says of them.
+	seenRV, seenNT, seenPQ := 0, 0, 0
+	for _, path := range []string{rvA, rvB} {
+		var f File
+		readJSON(t, out, "files/"+path, &f)
+		for _, u := range f.Units {
+			key := rvKey(path, u.P)
+			if !slices.Equal(u.RV, want.Refs[key]) || u.NT != want.NoteText[key] || (u.PQ == 1) != want.Queued[key] {
+				t.Errorf("%s: rv %v nt %q pq %d, want %v %q %v", key, u.RV, u.NT, u.PQ, want.Refs[key], want.NoteText[key], want.Queued[key])
+			}
+			if u.PQ != 0 && u.PQ != 1 {
+				t.Errorf("%s: pq = %d, want 0 or 1", key, u.PQ)
+			}
+			seenRV += len(u.RV)
+			if u.NT != "" {
+				seenNT++
+			}
+			seenPQ += u.PQ
+		}
+	}
+	if seenRV == 0 || seenNT != 1 || seenPQ != 1 {
+		t.Errorf("units show %d refs, %d notes, %d queued, want some, 1 and 1", seenRV, seenNT, seenPQ)
+	}
+
+	// The same inputs give the same bytes.
+	again := filepath.Join(t.TempDir(), "again")
+	if _, err := Export(in, Meta{RawTag: "t1"}, again); err != nil {
+		t.Fatal(err)
+	}
+	for _, rel := range listFiles(t, out) {
+		x, _ := os.ReadFile(filepath.Join(out, filepath.FromSlash(rel)))
+		y, _ := os.ReadFile(filepath.Join(again, filepath.FromSlash(rel)))
+		if !bytes.Equal(x, y) {
+			t.Errorf("%s differs between two exports", rel)
+		}
+	}
+}
+
+func TestExportWithoutReviewInputsWritesEmptyLists(t *testing.T) {
+	in := exportInputs(t)
+	out := filepath.Join(t.TempDir(), "data")
+	if _, err := Export(in, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	for rel, want := range map[string]string{
+		"review/suggestions.json": `{"items":[]}`,
+		"review/warnings.json":    `{"items":[]}`,
+		"review/notes.json":       `{"items":[]}`,
+		"review/todo.json":        `{"sections":[]}`,
+	} {
+		b, err := os.ReadFile(filepath.Join(out, filepath.FromSlash(rel)))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := strings.TrimSpace(string(b)); got != want {
+			t.Errorf("%s = %s, want %s", rel, got, want)
+		}
+	}
+	var meta Meta
+	readJSON(t, out, "meta.json", &meta)
+	if meta.Review != (ReviewCounts{}) {
+		t.Errorf("meta.review = %+v, want zeros", meta.Review)
+	}
+	var f File
+	readJSON(t, out, "files/StoryData/S2.json", &f)
+	for _, u := range f.Units {
+		if u.RV != nil || u.NT != "" || u.PQ != 0 {
+			t.Errorf("unit %s has review marks without review inputs: %+v", u.P, u)
+		}
+	}
 }
