@@ -1,5 +1,6 @@
 // The hand-written data set of site/fixtures/data, served the way the site serves
 // ./data/: for the tests of the pieces that load data.
+import { options } from 'preact'
 
 const modules = import.meta.glob('../fixtures/data/**/*.json', { eager: true, import: 'default' })
 
@@ -26,5 +27,18 @@ export function fixtureFetch(docs: Record<string, unknown> = {}): (input: string
     else if (`../fixtures/data/${path}` in modules) doc = fixture(path)
     else return new Response('not found', { status: 404 })
     return new Response(JSON.stringify(doc), { status: 200, headers: { 'content-type': 'application/json' } })
+  }
+}
+
+/**
+ * Have Preact run the effects it leaves for after the paint (the key handlers,
+ * the listeners) as soon as the render is done, so that a test that has waited
+ * for the DOM has them too. Returns what undoes it.
+ */
+export function runEffectsAtOnce(): () => void {
+  const before = options.requestAnimationFrame
+  options.requestAnimationFrame = (callback) => queueMicrotask(callback)
+  return () => {
+    options.requestAnimationFrame = before
   }
 }

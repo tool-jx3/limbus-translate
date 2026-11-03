@@ -2,7 +2,7 @@ import { render } from 'preact'
 import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { clearDataCache } from '../data'
-import { fixture, fixtureFetch } from '../testdata'
+import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
 import type { Meta } from '../types'
 import { App } from './App'
 
@@ -27,7 +27,10 @@ function type(input: HTMLInputElement, value: string): void {
   })
 }
 
+let undoEffects = () => {}
+
 beforeEach(() => {
+  undoEffects = runEffectsAtOnce()
   clearDataCache()
   localStorage.clear()
   location.hash = ''
@@ -35,6 +38,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  undoEffects()
   for (const container of containers.splice(0)) {
     render(null, container)
     container.remove()
@@ -48,7 +52,7 @@ describe('App', () => {
     expect(el.querySelector('.top .brand')?.textContent).toBe('Limbus 譯文對照')
     await loaded(el)
     expect([...el.querySelectorAll('.dir-family-id')].map((e) => e.textContent)).toEqual(['story-main', 'ally'])
-    expect(el.querySelector('.home')?.textContent).toContain('19')
+    expect(el.querySelector('.home')?.textContent).toContain('單位20')
     expect(el.querySelector('.foot-version')?.textContent).toContain('raw-20261029')
     expect(el.querySelector('.foot-version a')?.getAttribute('href')).toBe(
       'https://github.com/tool-jx3/limbus-translate/releases/tag/zh-TW-20261029.5',
@@ -140,6 +144,39 @@ describe('App', () => {
     })
     expect(el.querySelector('.home')).toBeNull()
     expect(el.querySelector('.directory a[aria-current="page"]')?.getAttribute('href')).toBe('#/f/StoryData/S9999.json')
+  })
+
+  it('shows the file of the address: a story as a script, anything else as a table', async () => {
+    location.hash = '#/f/StoryData/S9999.json'
+    const el = mount()
+    await vi.waitFor(() => expect(el.querySelector('.file-view .script')).not.toBeNull())
+    expect(el.querySelector('.file-title')?.textContent).toBe('StoryData/S9999.json')
+    act(() => {
+      location.hash = '#/f/Skills_personality-99.json'
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    })
+    await vi.waitFor(() => expect(el.querySelector('.file-view .tbl')).not.toBeNull())
+    expect(el.querySelector('.file-view .script')).toBeNull()
+  })
+
+  it('marks the unit of the address in the file', async () => {
+    location.hash = '#/f/Skills_personality-99.json?u=%2FdataList%2F1%2FlevelList%2F0%2Fname'
+    const el = mount()
+    await vi.waitFor(() => expect(el.querySelector('.file-view .is-target')).not.toBeNull())
+    expect(el.querySelector('.is-target')?.getAttribute('data-ptr')).toBe('/dataList/1/levelList/0/name')
+  })
+
+  it('goes to the next file on ] and keeps the origin filter in the settings', async () => {
+    location.hash = '#/f/Passives-empty.json'
+    const el = mount()
+    await vi.waitFor(() => expect(el.querySelector('.file-view .file-note')).not.toBeNull())
+    act(() => {
+      document.body.dispatchEvent(new KeyboardEvent('keydown', { key: ']', bubbles: true }))
+    })
+    await vi.waitFor(() => expect(el.querySelector('.file-title')?.textContent).toBe('Skills_personality-99.json'))
+    act(() => el.querySelector<HTMLInputElement>('input[data-origin="claude"]')?.click())
+    expect(JSON.parse(localStorage.getItem('lct-viewer-settings') ?? '{}').origins.claude).toBe(false)
+    expect(el.querySelector('[data-ptr="/dataList/0/levelList/0/coinlist/0/coindescs/0/desc"]')).toBeNull()
   })
 
   it('opens the directory drawer from the button and closes it on Escape and on a new address', async () => {

@@ -3,6 +3,7 @@ import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
 import { loadSettings, saveSettings, type Settings } from '../settings'
 import type { Index, Meta } from '../types'
+import { FileView } from '../view/FileView'
 import { Directory } from './Directory'
 import { Footer } from './Footer'
 import { FileFilter, Header } from './Header'
@@ -93,7 +94,16 @@ export function App() {
         <main class="main">
           {data.status === 'loading' && <p role="status">資料載入中…</p>}
           {data.status === 'error' && <Notice error={data.error} />}
-          {data.status === 'ready' && <Page route={route} meta={data.meta} index={data.index} onOpenDirectory={() => setDrawer(true)} />}
+          {data.status === 'ready' && (
+            <Page
+              route={route}
+              meta={data.meta}
+              index={data.index}
+              settings={settings}
+              onSettings={changeSettings}
+              onOpenDirectory={() => setDrawer(true)}
+            />
+          )}
         </main>
       </div>
       <Footer meta={data.status === 'ready' ? data.meta : undefined} />
@@ -105,16 +115,18 @@ interface PageProps {
   route: Route
   meta: Meta
   index: Index
+  settings: Settings
+  onSettings: (s: Settings) => void
   onOpenDirectory: () => void
 }
 
-/** The main area for a route. The file view and the search results come in later tasks. */
-function Page({ route, meta, index, onOpenDirectory }: PageProps) {
+/** The main area for a route. The search results come in a later task. */
+function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: PageProps) {
   switch (route.kind) {
     case 'home':
       return <Home meta={meta} index={index} onOpenDirectory={onOpenDirectory} />
     case 'file':
-      return <p class="pending">檔案檢視：{route.path}</p>
+      return <FileView path={route.path} ptr={route.ptr} index={index} settings={settings} onSettings={onSettings} />
     case 'search':
       return <p class="pending">全文搜尋：{route.q}</p>
   }

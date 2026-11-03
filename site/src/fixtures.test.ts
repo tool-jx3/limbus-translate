@@ -93,5 +93,7 @@ describe('fixtures', () => {
     expect(all.some((u) => u.kr.startsWith('<') && u.kr.endsWith('>') && !u.kr.includes('</'))).toBe(true)
     expect(new Set(all.map((u) => u.o))).toEqual(new Set(ORIGINS))
     expect(new Set(all.filter((u) => u.i >= 0).map((u) => u.i)).size).toBeGreaterThanOrEqual(3)
+    // a string outside dataList, which has no element to belong to
+    expect(all.some((u) => u.i === -1)).toBe(true)
   })
 })
