@@ -238,3 +238,41 @@ describe('passages', () => {
     expect(some.every((p) => all.some((q) => q.key === p.key))).toBe(true)
   })
 })
+
+describe('reviewOnly', () => {
+  const rv = (u: Unit): Unit => ({ ...u, rv: ['warning/kana/aaaaaaaa/bbbbbbbb'] })
+  const reviewOnly = settings((s) => {
+    s.reviewOnly = true
+  })
+
+  it('keeps only the units that have review items', () => {
+    const a = rv(unit('name', 0, 'a'))
+    const b = unit('name', 1, 'b')
+    const c: Unit = { ...unit('name', 2, 'c'), nt: 'a note that was confirmed' }
+    expect(visibleUnits([a, b, c], reviewOnly)).toEqual([a])
+    expect(visibleUnits([a, b, c], defaultSettings())).toEqual([a, b, c])
+  })
+
+  it('hides the passages without review items whole, and keeps the divider for the next passage shown', () => {
+    const entries = groupEntries([
+      unit('place', 0, 'P'),
+      unit('teller', 0, 'T'),
+      unit('content', 0, 'C0'),
+      unit('teller', 1, 'T'),
+      rv(unit('content', 1, 'C1')),
+      unit('content', 2, 'C2'),
+    ])
+    const out = passages(entries, reviewOnly)
+    expect(out).toHaveLength(1)
+    expect(out[0]?.units.map((u) => u.kr)).toEqual(['C1'])
+    expect(out[0]?.divider?.kr).toBe('P')
+    expect(out[0]?.teller?.kr).toBe('T')
+  })
+
+  it('shows a passage whose place or teller has the review item, with no lines', () => {
+    const entries = groupEntries([unit('place', 0, 'P'), rv(unit('teller', 0, 'T')), unit('content', 1, 'C')])
+    const out = passages(entries, reviewOnly)
+    expect(out).toHaveLength(1)
+    expect(out[0]?.teller?.kr).toBe('T')
+  })
+})

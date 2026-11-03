@@ -1,5 +1,6 @@
 import { TmpText } from '../tmp/TmpText'
 import { LANG_ATTR, type Lang, type Unit } from '../types'
+import { MarkChips, type MarkState } from './marks'
 import { OriginBadge } from './OriginBadge'
 
 export const LANG_LABEL: Record<Lang, string> = { kr: 'KR', jp: 'JP', en: 'EN', zh: 'TW' }
@@ -29,16 +30,19 @@ export interface CellProps {
   raw: boolean
   /** The ARIA role, where the cell is a cell of a table. */
   role?: 'cell'
+  /** The review chips under the TW text. */
+  marks?: MarkState
 }
 
 /**
  * The text of the units in one language. A unit the language has no string for
  * is a dash. The TW cell carries the origin of its text.
  */
-export function Cell({ lang, units, raw, role }: CellProps) {
+export function Cell({ lang, units, raw, role, marks }: CellProps) {
   const present = units.filter((u) => u[lang] !== undefined)
+  const reviewed = lang === 'zh' && units.some((u) => (u.rv?.length ?? 0) > 0)
   return (
-    <div class={`cell cell-${lang}`} role={role} data-lang={lang} data-tag={LANG_LABEL[lang]} lang={LANG_ATTR[lang]}>
+    <div class={reviewed ? `cell cell-${lang} has-review` : `cell cell-${lang}`} role={role} data-lang={lang} data-tag={LANG_LABEL[lang]} lang={LANG_ATTR[lang]}>
       {present.length === 0 ? (
         <span class="missing" title="沒有對應的字串">
           —
@@ -51,6 +55,7 @@ export function Cell({ lang, units, raw, role }: CellProps) {
         ))
       )}
       {lang === 'zh' && <ZhMeta units={units} />}
+      {lang === 'zh' && marks !== undefined && <MarkChips units={units} marks={marks} />}
     </div>
   )
 }

@@ -49,9 +49,14 @@ export function isVisible(u: Unit, s: Settings): boolean {
   return s.origins[u.o]
 }
 
-/** The units whose origin is ticked, in their order. */
+/** Whether the unit has review items (a confirmed note is not one: it is only in nt). */
+export function isReviewed(u: Unit | undefined): boolean {
+  return (u?.rv?.length ?? 0) > 0
+}
+
+/** The units whose origin is ticked, in their order; with reviewOnly, those that have review items. */
 export function visibleUnits(units: Unit[], s: Settings): Unit[] {
-  return units.filter((u) => isVisible(u, s))
+  return units.filter((u) => isVisible(u, s) && (!s.reviewOnly || isReviewed(u)))
 }
 
 /** Whether a file reads as a script by its kind: StoryData/, or the dialogue files of RPGSystem/. */
@@ -102,6 +107,8 @@ export function passages(entries: Entry[], s: Settings): Passage[] {
     let divider = pending !== undefined && pending.kr !== shownPlace ? pending : undefined
     pending = undefined
     // A passage that is only a place has nothing else to show: it shows the place, repeated or not.
+    // With reviewOnly, a passage is shown for its lines that have review items, or for a place, teller or title that has.
+    if (s.reviewOnly && units.length === 0 && ![own, teller, title].some(isReviewed)) continue
     const bare = units.length === 0 && teller === undefined && title === undefined
     if (bare && divider === undefined && own !== undefined) divider = own
     if (bare && divider === undefined) continue

@@ -1504,3 +1504,99 @@ details.rv-more ul {
     text-align: start;
   }
 }
+
+/* Review marks in the file view */
+.cell-zh.has-review {
+  padding-left: 0.5rem;
+  box-shadow: inset 3px 0 0 var(--warn-fg);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.chip {
+  padding: 0 0.55em;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+button.chip {
+  cursor: pointer;
+}
+
+.chip-sugg {
+  background: var(--sugg-bg);
+  color: var(--sugg-fg);
+}
+
+.chip-warn {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+
+.chip-note {
+  background: var(--note-bg);
+  color: var(--note-fg);
+}
+
+.chip-pq {
+  background: var(--raw-bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.chip[aria-expanded='true'] {
+  outline: 2px solid currentcolor;
+  outline-offset: 1px;
+}
+
+.mark-detail {
+  grid-column: 1 / -1;
+  margin-top: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--raw-bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.mark-detail p {
+  margin: 0 0 0.3rem;
+}
+
+.mark-title {
+  font-weight: 600;
+}
+
+.mark-wait {
+  color: var(--muted);
+}
+
+.mark-note {
+  white-space: pre-wrap;
+}
+
+.mark-variants {
+  margin: 0 0 0.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.mark-variant {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.mark-n {
+  flex: none;
+  min-width: 3.5em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}

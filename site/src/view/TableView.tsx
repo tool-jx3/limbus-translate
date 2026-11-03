@@ -1,6 +1,7 @@
 import type { RefObject } from 'preact'
 import type { Lang, Unit } from '../types'
 import { Cell, LANG_LABEL } from './Cell'
+import { MarkDetail, type MarkState } from './marks'
 
 /** What the table and the script have in common. */
 export interface ViewProps {
@@ -16,6 +17,8 @@ export interface ViewProps {
   after: number
   /** The element that holds the rows. */
   listRef: RefObject<HTMLDivElement>
+  /** The review chips and the one that is open. */
+  marks: MarkState
   /** Copy the deep link of a unit. */
   onCopy: (pointer: string) => void
 }
@@ -26,7 +29,7 @@ export interface TableViewProps extends ViewProps {
 }
 
 /** One unit a row: the field name, then a cell for each language that is on. */
-export function TableView({ units, langs, raw, ptr, start, before, after, listRef, onCopy }: TableViewProps) {
+export function TableView({ units, langs, raw, ptr, start, before, after, listRef, marks, onCopy }: TableViewProps) {
   return (
     <div class="tbl" role="table" aria-label="對照表" style={{ '--cols': langs.length }}>
       <div class="trow thead" role="row">
@@ -57,8 +60,9 @@ export function TableView({ units, langs, raw, ptr, start, before, after, listRe
               </button>
             </div>
             {langs.map((lang) => (
-              <Cell key={lang} lang={lang} units={[u]} raw={raw} role="cell" />
+              <Cell key={lang} lang={lang} units={[u]} raw={raw} role="cell" marks={marks} />
             ))}
+            <MarkDetail units={[u]} marks={marks} />
           </div>
         ))}
         {after > 0 && <div class="vspace vspace-after" aria-hidden="true" style={{ height: `${after}px` }} />}

@@ -724,3 +724,100 @@ describe('FileView: scrolling a large file', () => {
     await vi.waitFor(() => expect(Math.min(...rendered(el))).toBeGreaterThan(200))
   })
 })
+
+describe('FileView: review marks', () => {
+  const NAME = '/dataList/0/levelList/0/name'
+  const KANA = '/dataList/0/levelList/0/coinlist/0/coindescs/1/desc'
+  const NOTE = '/dataList/2/content'
+  const NT_ONLY = '/dataList/3/content'
+
+  function chips(el: ParentNode, ptr: string): string[] {
+    return [...(cell(el, ptr, 'zh')?.querySelectorAll('.chip') ?? [])].map((c) => c.textContent ?? '')
+  }
+
+  it('shows a chip and a colour line on units that have review items', async () => {
+    const el = await open(SKILLS)
+    expect(chips(el, NAME)).toEqual(['不一致'])
+    expect(chips(el, KANA)).toEqual(['警告：假名殘留'])
+    expect(cell(el, NAME, 'zh')?.classList.contains('has-review')).toBe(true)
+    expect(cell(el, KANA, 'zh')?.classList.contains('has-review')).toBe(true)
+    expect(chips(el, '/dataList/1/levelList/0/coinlist/0/coindescs/0/desc')).toEqual([])
+  })
+
+  it('shows a note and a retranslation chip in a script, under the line', async () => {
+    const el = await open(STORY)
+    expect(chips(el, NOTE)).toEqual(['註記', '待重翻'])
+    expect(cell(el, NOTE, 'zh')?.classList.contains('has-review')).toBe(true)
+  })
+
+  it('shows only the note chip, and no colour line, for a note that was confirmed', async () => {
+    const el = await open(STORY)
+    expect(chips(el, NT_ONLY)).toEqual(['註記'])
+    expect(cell(el, NT_ONLY, 'zh')?.classList.contains('has-review')).toBe(false)
+  })
+
+  it('opens the variants of an inconsistent item, and closes them on a second click', async () => {
+    const el = await open(SKILLS)
+    const chip = cell(el, NAME, 'zh')?.querySelector<HTMLButtonElement>('.chip')
+    expect(el.querySelector('.mark-detail')).toBeNull()
+    act(() => chip?.click())
+    await vi.waitFor(() => expect(el.querySelector('.mark-detail .mark-variant')).not.toBeNull())
+    const detail = el.querySelector('.mark-detail')
+    expect(detail?.textContent).toContain('測試斬擊')
+    expect(detail?.textContent).toContain('試驗斬擊')
+    expect(row(el, NAME)?.contains(detail ?? null)).toBe(true)
+    expect(detail?.querySelector('a')?.getAttribute('href')).toBe('#/r/suggestions?id=inconsistent%2Fally%2Fname%2Fc3a1192c')
+    expect(chip?.getAttribute('aria-expanded')).toBe('true')
+    act(() => chip?.click())
+    expect(el.querySelector('.mark-detail')).toBeNull()
+    expect(chip?.getAttribute('aria-expanded')).toBe('false')
+  })
+
+  it('opens the name and the description of a warning, with a link to it', async () => {
+    const el = await open(SKILLS)
+    act(() => cell(el, KANA, 'zh')?.querySelector<HTMLButtonElement>('.chip')?.click())
+    const detail = el.querySelector('.mark-detail')
+    expect(detail?.textContent).toContain('假名殘留')
+    expect(detail?.textContent).toContain('日文假名')
+    expect(detail?.querySelector('a')?.getAttribute('href')).toBe('#/r/warnings?id=warning%2Fkana%2F1315241d%2F2cc3aa54')
+  })
+
+  it('opens the whole note, for a note that was confirmed as well', async () => {
+    const el = await open(STORY)
+    act(() => cell(el, NOTE, 'zh')?.querySelector<HTMLButtonElement>('.chip')?.click())
+    expect(el.querySelector('.mark-detail')?.textContent).toContain('保留 <> 角括號')
+    act(() => cell(el, NT_ONLY, 'zh')?.querySelector<HTMLButtonElement>('.chip')?.click())
+    expect(el.querySelectorAll('.mark-detail')).toHaveLength(1)
+    expect(el.querySelector('.mark-detail')?.textContent).toContain('維持英文標籤')
+  })
+
+  it('has a filter for the units that have review items, in the toolbar', async () => {
+    const el = await open(SKILLS)
+    const box = el.querySelector<HTMLInputElement>('input[data-setting="reviewOnly"]')
+    expect(box?.checked).toBe(false)
+    expect(box?.closest('label')?.textContent).toContain('只看有審核項目的單位')
+    act(() => box?.click())
+    expect(latest.reviewOnly).toBe(true)
+    expect(row(el, NAME)).not.toBeNull()
+    expect(row(el, KANA)).not.toBeNull()
+    expect(row(el, '/dataList/0/levelList/0/coinlist/0/coindescs/0/desc')).toBeNull()
+    expect(el.querySelectorAll('.trow[data-ptr]').length).toBe(4)
+  })
+
+  it('hides a passage without review items whole in a script, and shows the ones that have', async () => {
+    const el = await open(STORY, { settings: { ...defaultSettings(), reviewOnly: true } })
+    expect(el.querySelectorAll('.passage')).toHaveLength(1)
+    expect(row(el, NOTE)).not.toBeNull()
+    expect(row(el, '/dataList/1/content')).toBeNull()
+    expect(row(el, '/dataList/3/content')).toBeNull()
+  })
+
+  it('says why a linked unit is not shown, and turns the filter off on request', async () => {
+    const el = await open(SKILLS, { ptr: '/dataList/0/levelList/0/coinlist/0/coindescs/0/desc', settings: { ...defaultSettings(), reviewOnly: true } })
+    const note = el.querySelector('.target-note')
+    expect(note?.textContent).toContain('只看有審核項目')
+    act(() => note?.querySelector('button')?.click())
+    expect(latest.reviewOnly).toBe(false)
+  })
+
+})

@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
-import { DataError, loadFile } from '../data'
+import { DataError, loadFile, loadReview } from '../data'
 import { Notice } from '../app/Notice'
 import { fileHref } from '../route'
 import { LANGS, ORIGINS, type Settings } from '../settings'
 import type { FileData, FileSummary, Index } from '../types'
-import { groupEntries, isScriptFile, isVisible, passagePointers, passages, visibleUnits } from './group'
+import { groupEntries, isReviewed, isScriptFile, isVisible, passagePointers, passages, visibleUnits } from './group'
+import type { MarkState, SuggestionsState } from './marks'
 import { keyAction, neighbors } from './nav'
 import { OriginBadge } from './OriginBadge'
 import { ScriptView } from './ScriptView'
@@ -123,6 +124,15 @@ function FileTools({ summary, settings, onSettings }: ToolsProps) {
       <label>
         <input
           type="checkbox"
+          data-setting="reviewOnly"
+          checked={settings.reviewOnly}
+          onChange={(e) => onSettings({ ...settings, reviewOnly: e.currentTarget.checked })}
+        />
+        <span>只看有審核項目的單位</span>
+      </label>
+      <label>
+        <input
+          type="checkbox"
           data-setting="rawTags"
           checked={settings.rawTags}
           onChange={(e) => onSettings({ ...settings, rawTags: e.currentTarget.checked })}
@@ -145,12 +155,12 @@ interface BodyProps {
 function FileBody({ path, file, ptr, settings, onSettings }: BodyProps) {
   const script = settings.scriptMode === 'on' || (settings.scriptMode === 'auto' && isScriptFile(path))
   const langs = LANGS.filter((l) => settings.langs[l])
-  const { origins } = settings
+  const { origins, reviewOnly } = settings
 
-  // The filter reads settings.origins and nothing else of the settings.
+  // The filter reads settings.origins and settings.reviewOnly and nothing else of the settings.
   const entries = useMemo(() => groupEntries(file.units), [file])
-  const units = useMemo(() => (script ? [] : visibleUnits(file.units, settings)), [file, script, origins])
-  const shown = useMemo(() => (script ? passages(entries, settings) : []), [entries, script, origins])
+  const units = useMemo(() => (script ? [] : visibleUnits(file.units, settings)), [file, script, origins, reviewOnly])
+  const shown = useMemo(() => (script ? passages(entries, settings) : []), [entries, script, origins, reviewOnly])
   const keys = useMemo(() => (script ? shown.map((p) => p.key) : units.map((u) => u.p)), [script, shown, units])
   const count = keys.length
   const unitsShown = script ? shown.reduce((n, p) => n + passagePointers(p).length, 0) : units.length
@@ -167,6 +177,29 @@ function FileBody({ path, file, ptr, settings, onSettings }: BodyProps) {
     layout: `${script}|${langs.join()}|${settings.rawTags}`,
     target: ptr !== undefined && targetRow >= 0 ? { id: `${path}\n${ptr}`, row: targetRow } : undefined,
   })
+
+  // The chip that is open. Its detail makes its row taller, and so does the suggestion that arrives
+  // for it: both are state of this component, so the rows are measured again after each.
+  const [open, setOpen] = useState<MarkState['open']>()
+  const [suggestions, setSuggestions] = useState<SuggestionsState>()
+  const wantsSuggestions = open?.id.startsWith('inconsistent/') === true
+  useEffect(() => {
+    if (!wantsSuggestions || suggestions?.status === 'ready') return
+    let live = true
+    setSuggestions({ status: 'loading' })
+    loadReview('suggestions').then(
+      (doc) => live && setSuggestions({ status: 'ready', items: doc.items }),
+      () => live && setSuggestions({ status: 'error' }),
+    )
+    return () => {
+      live = false
+    }
+  }, [wantsSuggestions])
+  const marks: MarkState = {
+    open,
+    suggestions,
+    toggle: (p, id) => setOpen((cur) => (cur?.p === p && cur.id === id ? undefined : { p, id })),
+  }
 
   // j and k: the next and the previous row (a passage in a script).
   const rows = useRef({ v, count })
@@ -209,7 +242,7 @@ function FileBody({ path, file, ptr, settings, onSettings }: BodyProps) {
   else if (langs.length === 0) note = '沒有開啟任何語言。請在頁首開啟至少一種語言。'
   else if (count === 0) note = '所有單位都被來源篩選隱藏了。'
 
-  const view = { langs, raw: settings.rawTags, ptr, start: v.start, before: v.before, after: v.after, listRef: v.listRef, onCopy: copy }
+  const view = { langs, raw: settings.rawTags, ptr, start: v.start, before: v.before, after: v.after, listRef: v.listRef, marks, onCopy: copy }
   return (
     <div class="file-body">
       <p class="file-count">
@@ -243,6 +276,16 @@ function TargetNote({ ptr, found, shown, settings, onSettings }: TargetNoteProps
   if (ptr === undefined || shown) return null
   if (found === undefined) return <p class="target-note">找不到連結指向的單位：{ptr}</p>
   const origin = found.o
+  if (isVisible(found, settings) && settings.reviewOnly && !isReviewed(found)) {
+    return (
+      <p class="target-note">
+        連結指向的單位沒有審核項目，被「只看有審核項目的單位」隱藏了。
+        <button type="button" onClick={() => onSettings({ ...settings, reviewOnly: false })}>
+          取消這個篩選
+        </button>
+      </p>
+    )
+  }
   if (!isVisible(found, settings)) {
     return (
       <p class="target-note">
