@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
+import { SearchView } from '../search/SearchView'
 import { loadSettings, saveSettings, type Settings } from '../settings'
 import type { Index, Meta } from '../types'
 import { FileView } from '../view/FileView'
@@ -120,7 +121,7 @@ interface PageProps {
   onOpenDirectory: () => void
 }
 
-/** The main area for a route. The search results come in a later task. */
+/** The main area for a route. */
 function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: PageProps) {
   switch (route.kind) {
     case 'home':
@@ -128,6 +129,6 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
     case 'file':
       return <FileView path={route.path} ptr={route.ptr} index={index} settings={settings} onSettings={onSettings} />
     case 'search':
-      return <p class="pending">全文搜尋：{route.q}</p>
+      return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
   }
 }

@@ -862,3 +862,133 @@ button.link {
     transition: none;
   }
 }
+
+/* Full-text search: the options, the count, and the hits grouped by file. */
+
+.search-view {
+  min-width: 0;
+}
+
+.search-title {
+  margin: 0;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+
+.search-q {
+  font-weight: 600;
+}
+
+.search-opts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.search-opts label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.search-status {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+}
+
+.hit-group {
+  margin: 0 0 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.75rem;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 1rem;
+}
+
+.group-path {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
+.group-label,
+.group-count {
+  color: var(--muted);
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.group-error {
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  color: var(--danger-fg);
+  background: var(--danger-bg);
+}
+
+.hits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hit + .hit {
+  border-top: 1px solid var(--border);
+}
+
+.hit-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hit-link:hover,
+.hit-link:focus-visible {
+  background: var(--raw-bg);
+}
+
+.hit-field {
+  display: block;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.hit-line {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0 0.5rem;
+  padding: 0.1rem 0;
+}
+
+.hit-lang {
+  padding-top: 0.25em;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+
+.hit-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.is-hit .hit-lang {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hit-wait {
+  color: var(--muted);
+}

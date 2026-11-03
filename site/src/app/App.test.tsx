@@ -3,6 +3,7 @@ import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { clearDataCache } from '../data'
 import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
+import { InProcessWorker } from '../search/testworker'
 import type { Meta } from '../types'
 import { App } from './App'
 
@@ -199,5 +200,49 @@ describe('App', () => {
       window.dispatchEvent(new HashChangeEvent('hashchange'))
     })
     expect(drawer?.classList.contains('is-open')).toBe(false)
+  })
+
+  describe('the full-text search of the address', () => {
+    const made: { url: string | URL; options?: WorkerOptions }[] = []
+
+    beforeEach(() => {
+      made.length = 0
+      // A worker that runs the engine in the page; the page asks for the data at an absolute URL.
+      class StandIn extends InProcessWorker {
+        constructor(url: string | URL, options?: WorkerOptions) {
+          super()
+          made.push({ url, options })
+        }
+      }
+      vi.stubGlobal('Worker', StandIn)
+      const base = new URL('data/', document.baseURI).href
+      const fixtures = fixtureFetch()
+      vi.stubGlobal('fetch', vi.fn((url: string) => fixtures(url.startsWith(base) ? `./data/${url.slice(base.length)}` : url)))
+    })
+
+    it('shows the hits, found by a module worker made from worker.ts', async () => {
+      location.hash = '#/s?q=%E8%AD%A6%E5%91%8A&lang=zh'
+      const el = mount()
+      await vi.waitFor(() => expect(el.querySelector('.search-view .hit-group')).not.toBeNull())
+      expect(el.querySelector('.search-status')?.textContent).toContain('共 1 筆')
+      expect(el.querySelector('.search-view mark')?.textContent).toBe('警告')
+      expect(el.querySelector('.hit-link')?.getAttribute('href')).toBe('#/f/StoryData/S9999.json?u=%2FdataList%2F3%2Fcontent')
+      expect(made).toHaveLength(1)
+      expect(made[0]?.options).toEqual({ type: 'module' })
+      expect(String(made[0]?.url)).toMatch(/worker\.ts/)
+    })
+
+    it('keeps the language and the pattern when the box in the header searches again, and lets the reader turn the pattern off', async () => {
+      location.hash = '#/s?q=%5B%5Cw%2B%5D&lang=en&re=1'
+      const el = mount()
+      await vi.waitFor(() => expect(el.querySelector('.search-view .hit-group')).not.toBeNull())
+      type(el.querySelector<HTMLInputElement>('form[role="search"] input') as HTMLInputElement, 'Burn')
+      act(() => {
+        el.querySelector('form[role="search"]')?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      })
+      expect(location.hash).toBe('#/s?q=Burn&lang=en&re=1')
+      act(() => el.querySelector<HTMLInputElement>('.search-view input[name="re"]')?.click())
+      expect(location.hash).toBe('#/s?q=%5B%5Cw%2B%5D&lang=en')
+    })
   })
 })
