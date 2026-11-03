@@ -819,4 +819,21 @@ describe('FileView: review marks', () => {
     act(() => note?.querySelector('button')?.click())
     expect(latest.reviewOnly).toBe(false)
   })
+
+  it('blames the review filter, not the origin filter, for a file with no review items', async () => {
+    const el = await open('Big.json', { index: bigIndex, settings: { ...defaultSettings(), reviewOnly: true } })
+    const note = el.querySelector('.file-note')
+    expect(note?.textContent).toContain('這個檔案沒有審核項目。')
+    expect(note?.textContent).not.toContain('來源篩選')
+    act(() => note?.querySelector('button')?.click())
+    expect(latest.reviewOnly).toBe(false)
+    expect(el.querySelector('.file-note')).toBeNull()
+    expect(el.querySelectorAll('.trow[data-ptr]').length).toBeGreaterThan(0)
+  })
+
+  it('still blames the origin filter when it is what hides every unit', async () => {
+    const origins = { ...defaultSettings().origins, paratranz: false }
+    const el = await open('Big.json', { index: bigIndex, settings: { ...defaultSettings(), origins } })
+    expect(el.querySelector('.file-note')?.textContent).toContain('所有單位都被來源篩選隱藏了。')
+  })
 })

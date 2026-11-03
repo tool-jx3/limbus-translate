@@ -1,3 +1,4 @@
+import type { ComponentChildren } from 'preact'
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import { DataError, loadFile, loadReview } from '../data'
 import { Notice } from '../app/Notice'
@@ -237,10 +238,20 @@ function FileBody({ path, file, ptr, settings, onSettings }: BodyProps) {
     else clipboard.writeText(new URL(href, location.href).href).then(() => say('已複製連結'), inAddressBar)
   }
 
-  let note: string | undefined
+  let note: ComponentChildren | undefined
   if (file.units.length === 0) note = '這個檔案沒有文字。'
   else if (langs.length === 0) note = '沒有開啟任何語言。請在頁首開啟至少一種語言。'
-  else if (count === 0) note = '所有單位都被來源篩選隱藏了。'
+  else if (count === 0 && reviewOnly && file.units.some((u) => isVisible(u, settings))) {
+    // The origin filter leaves units, so the filter for the review items is what leaves nothing.
+    note = (
+      <>
+        這個檔案沒有審核項目。
+        <button type="button" onClick={() => onSettings({ ...settings, reviewOnly: false })}>
+          取消「只看有審核項目的單位」
+        </button>
+      </>
+    )
+  } else if (count === 0) note = '所有單位都被來源篩選隱藏了。'
 
   const view = { langs, raw: settings.rawTags, ptr, start: v.start, before: v.before, after: v.after, listRef: v.listRef, marks, onCopy: copy }
   return (
