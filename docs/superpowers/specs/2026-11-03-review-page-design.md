@@ -57,6 +57,7 @@ ID 一律是純文字、可以直接貼進對話。四類項目：
 
 - 來源：與 `lct suggest` 完全相同（`suggest.Run`，輸入同主 spec §11.2：目前 raw tag 的 `build.json`、`plan.json`、規則、調整檔），ID 也相同（主 spec §11.2 的表：`inconsistent/…`、`speaker/…`、`field/…`、`family/…`、`note/…`、`term/…`、`adjustment-moved/…`、`adjustment-expired/…`）
 - 已在 `rules/declined.yaml` 的建議算「確認過」（§6）
+- `note/…` 建議若同一則註記已放在註記分頁（§5.3），就不再列在規則建議裡（只在註記分頁出現一次，`meta.review` 的計數跟著）；放不到單位的註記建議仍留在規則建議。`lct suggest`（CLI）不變，`lct accept` 仍認得這個 ID（經由註記）
 - 不一致譯法（`inconsistent/<族群>/<欄位>/<sha8(KR)>`）另外列出**每種譯法的全部單位**：匯出時依建置分組的同一個方法（族群、欄位、KR 文字）找出該組的所有單位，依 TW 譯法分組。正常情況下每種譯法的單位數等於建議證據中的 `count`（§10 以 fixture 釘住）；實際資料不相等時（例如建置後 `guides/routing.yaml` 又改了族群），照找到的單位列出，不讓部署失敗，並在 `lct site --json` 的 `review_mismatches` 列出這些 ID
 - 建置紀錄只保留前 500 組不一致譯法（`maxInconsistentAll`）。建置改為**先略過 `rules/declined.yaml` 中的 `inconsistent/…` ID 再取前 500 組**，所以確認過的組讓出位置，後面的組在下次建置補上；網頁與 `lct suggest` 一樣看到這 500 組
 
@@ -77,6 +78,7 @@ ID 一律是純文字、可以直接貼進對話。四類項目：
 - 同一個單位在同一批有多則時全部收
 - ID：`note/<key>/<sha8(註記文字)>`，與主 spec §11.2 的譯者備註建議 ID 相同，所以確認一則註記也就是不採用它的建議
 - 註記另外放進檔案資料（§7.2），供檔案檢視當參考（確認過的也放）
+- 放得到單位的註記只在註記分頁出現，不重複列在規則建議分頁（§5.1）
 
 ### 5.4 待辦清單
 
@@ -107,15 +109,17 @@ ID 一律是純文字、可以直接貼進對話。四類項目：
 lct accept --reason R [--date YYYY-MM-DD] ID...
 lct accept --reason R [--date YYYY-MM-DD] --file F      （一行一個 ID，空行與 # 開頭的行略過）
 lct accept --tidy
+lct accept --dry-run [--file F] [ID...]      （唯讀查詢，不需要 --reason）
 ```
 
 - 從 `.work/raw` 與 `.work/tw` 算出目前的項目（與 `lct site` 同一套程式），逐一檢查 ID：
   - 規則建議的 ID（含 `note/…`）→ 寫進 `rules/declined.yaml`
   - `warning/…` → 寫進 `rules/accepted.yaml`
   - 不是目前項目的 ID（打錯、已經解決、譯文已改）→ 整批拒絕、什麼都不寫，exit 1，列出這些 ID
-  - 已經在清單裡的 ID → 略過並在輸出中列出，不算錯
+  - 已經在清單裡的 ID → 略過並在輸出中列出，不算錯；這一項先於「不是目前項目」判斷，所以已確認的不一致組（下次建置不再列出它，§5.1）重複確認也不會讓整批被拒
 - 新條目接在檔案最後，`id` 以雙引號包起來（與 skill 寫 `declined.yaml` 的方式相同）；`date` 省略時用今天
-- `--json` 輸出 `{declined: [...], accepted: [...], skipped: [...], raw_tag, tw_commit}`；`--tidy` 輸出 `{removed: [...]}`
+- `--json` 輸出 `{declined: [...], accepted: [...], skipped: [...], raw_tag, tw_commit}`；`--tidy` 輸出 `{removed: [...], raw_tag, tw_commit}`
+- `--dry-run`：對每個 ID 印出 `BuildReview` 算出的那一項，什麼都不寫。`--json` 輸出 `{items: [{id, kind, list, confirmed, kr, zh, note 或 message, keys, variants, pending}], unknown: [...], raw_tag, tw_commit}`：`kind` 是建議的種類、`warning` 或 `note`；`list` 是 `declined` 或 `accepted`（確認後會記進的清單）；`confirmed` 是 `{reason, date}`，還沒確認為 `null`；`variants` 只有不一致譯法；`pending` 是待重翻的單位數（另有 `title`，規則建議才有）。已在確認清單、但目前建置沒有的 ID（如下次建置後不再列出的不一致組）只印出清單裡的 `list` 與 `confirmed`。全部 ID 都認得 exit 0；有不認得的 ID 時仍印出認得的，並把其餘列在 `unknown`，exit 1。skill 用它查所有種類的項目
 - 不 commit、不 push；寫完由人或 skill 依一般流程提交到 `main`
 
 ### 6.4 要改的項目
@@ -131,7 +135,7 @@ lct accept --tidy
 
 ### 6.6 確認清單影響哪些地方
 
-- **網頁**：確認過的項目預設不顯示；每個分頁有「顯示已確認的 N 項」開關（預設關），打開時以淡色顯示並標出確認的理由與日期
+- **網頁**：確認過的項目預設不顯示；每個分頁有「顯示已確認的 N 項」開關（預設關），打開時以淡色顯示並標出確認的理由與日期。限制：確認過的不一致組，下次建置後建置紀錄不再有它（§5.1），「顯示已確認」就看不到它了；確認過的 `note/…` 則仍以已確認的註記顯示在註記分頁
 - **`lct suggest`、`/rules-review`**：`declined.yaml` 本來就略過；不變
 - **建置報告**：`warnings` 計數與 `warning_samples` 略過 `accepted.yaml` 的 ID（建置讀 `main` 當時的規則，與讀其他規則檔一樣）；審核 Issue 與 release notes 中的警告數因此跟著變少；挑選前 500 組不一致譯法時略過 `declined.yaml` 的 ID（§5.1）
 - **`lct review`**：待辦項目不受影響（§5.4）
@@ -255,9 +259,10 @@ lct accept --tidy
 - 輸入：使用者貼上的一或多個 ID（可能附「原文摘要」與決定）
 - 先執行 `go build -o bin/lct ./cmd/lct`；需要 `.work/raw` 與 `.work/tw`，沒有時停止並說明；skill 不執行 `git`（§6.5）
 - 允許的工具只有 `bin/lct` 指令、`go build -o bin/lct ./cmd/lct`、`Read` 與 `Edit`（合約測試的既有限制），`disable-model-invocation: true`
-- 依 ID 找到項目內容：規則建議用 `bin/lct suggest --json`（找相同 `id`），警告與註記用 `bin/lct search --key <key> --json` 看單位與 `bin/lct validate --kr … --zh … --file …` 看檢查結果
+- 依 ID 找到項目內容：所有種類都用 `bin/lct accept --dry-run --json 'ID'...`（§6.3；`lct suggest` 只列上次建置之後新增的註記，警告的 ID 沒有 key，不能靠它們查）。需要更多背景時才補用 `bin/lct search`、`bin/lct suggest`、`bin/lct validate`；`lct validate` 以新譯文的標準檢查（內容類代碼是硬性的、詞彙表適用），頁面上的 `hangul`、`simplified` 警告在那裡可能是硬性失敗，這是預期的，以頁面上的項目為準
+- ID 與理由在指令列上都用單引號包起來（`note/…` 的 ID 含 `|`，ID 可能含空格，雙引號會展開 `$` 與反引號）
 - 依使用者的決定：
-  - 沒問題 → `bin/lct accept --reason "<使用者的理由或「人工確認沒問題」>" ID...`
+  - 沒問題 → `bin/lct accept --reason '<使用者的理由或「人工確認沒問題」>' 'ID'...`
   - 要改 → 依項目種類改 `guides/`、`glossary/`、`rules/`（與 `/rules-review`、`/review` 相同的做法：詞彙、指引、調整 `lct adjust add`、重翻要求檔 `lct requeue --to-file`），改動先給人看
   - 不清楚 → 問使用者，不猜
 - 結束前跑 `bin/lct rules lint` 與 `go vet ./... && go test ./...`（只有改到程式時）；列出改了哪些檔、確認了哪些 ID；不 commit（由人或對話中另外要求時才 commit）

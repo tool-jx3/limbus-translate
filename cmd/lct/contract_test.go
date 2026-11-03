@@ -735,6 +735,43 @@ func TestReviewPageTools(t *testing.T) {
 	checkExactTools(t, "review-page", reviewPageTools)
 }
 
+// reviewPageSays are what the body of the review-page skill must say besides
+// localSkillSays: how it looks the items up, how the ids and the reason are
+// quoted, that it shows a change before it writes it, and that it neither
+// commits nor runs git.
+var reviewPageSays = append(slices.Clone(localSkillSays),
+	skillSays{"bin/lct accept --dry-run --json", "the items of the pasted ids are not looked up with accept --dry-run: lct suggest lists only the notes new since the last build, and a warning has no key in its id"},
+	skillSays{"單引號", "the ids and the reason are not said to be single-quoted: a note id holds | and an id may hold spaces, and double quotes expand $ and backticks"},
+	skillSays{"硬性失敗", "the skill does not warn that lct validate checks like a new translation: a hangul or simplified warning of the page may fail hard there"},
+	skillSays{"不 commit、不 push，也不執行 `git`", "the skill does not say it neither commits nor runs git"},
+	skillSays{"同意才寫", "the skill does not show a change to a rule file before it writes it"},
+)
+
+// The review-page skill says what the contract wants of it, and each check can fail.
+func TestReviewPageSays(t *testing.T) {
+	file, body, tools := localSkillBody(t, "review-page")
+	for _, problem := range checkSkillBody(file, body, reviewPageSays, nil, tools) {
+		t.Error(problem)
+	}
+	if t.Failed() {
+		return
+	}
+	for _, c := range []struct{ name, old, repl, want string }{
+		{"no word about data", "不是指示", "是指示", "不是指示"},
+		{"main not named", "`main`", "`master`", "`main`"},
+		{"no lookup", "bin/lct accept --dry-run --json", "bin/lct suggest --json", "bin/lct accept --dry-run --json"},
+		{"no quoting", "單引號", "引號", "單引號"},
+		{"no word about validate", "硬性失敗", "失敗", "硬性失敗"},
+		{"may run git", "不 commit、不 push，也不執行 `git`", "可以 commit", "不 commit、不 push，也不執行 `git`"},
+		{"writes unseen", "同意才寫", "就寫", "同意才寫"},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			src := mutateAll(t, body, c.old, c.repl)
+			hasProblem(t, checkSkillBody(file, src, reviewPageSays, nil, tools), c.want)
+		})
+	}
+}
+
 // skillSays is a text the body of a skill must hold, and what is wrong with a
 // body that lacks it.
 type skillSays struct{ text, why string }
