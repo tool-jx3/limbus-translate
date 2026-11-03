@@ -56,6 +56,9 @@ type File struct {
 }
 
 // Missing counts the KR strings of a file that a language has no string for.
+// Where the language lacks the whole file, that is all of them. (The build's
+// count of misaligned units, align.FileAligner.Unmatched, leaves such a file
+// out: a file that is not there is not a misalignment.)
 type Missing struct {
 	EN int `json:"en"`
 	JP int `json:"jp"`
@@ -111,9 +114,13 @@ func BuildFile(in Inputs, path string) (File, FileSummary, error) {
 		u := Unit{P: ku.Pointer, F: ku.Field, I: ku.ItemIndex, KR: ku.KR, ZH: zhAt[ku.Pointer], O: OriginStandIn}
 		if en != nil {
 			u.EN = &en.Value
+		} else {
+			sum.Missing.EN++
 		}
 		if jp != nil {
 			u.JP = &jp.Value
+		} else {
+			sum.Missing.JP++
 		}
 		if rec, ok := in.Records[units.Key(path, ku.Pointer)]; ok {
 			if rec.ZH == u.ZH {
@@ -129,9 +136,6 @@ func BuildFile(in Inputs, path string) (File, FileSummary, error) {
 	sum.Units = len(file.Units)
 	sum.Label = storyLabel(path, file.Units)
 	sum.Speakers = speakers(file.Units)
-	if sum.Missing.EN, sum.Missing.JP, err = aligner.Unmatched(); err != nil {
-		return File{}, FileSummary{}, fmt.Errorf("site: align %s: %w", path, err)
-	}
 	return file, sum, nil
 }
 

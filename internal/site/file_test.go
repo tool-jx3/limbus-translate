@@ -172,8 +172,43 @@ func TestBuildFileMissingLanguage(t *testing.T) {
 				t.Errorf("%s: JP = nil, want a string", u.P)
 			}
 		}
+		// the file is not there for EN: every unit lacks a string in it (spec 5.2)
+		if sum.Missing != (Missing{EN: 3, JP: 0}) {
+			t.Errorf("Missing = %+v, want {EN:3 JP:0}", sum.Missing)
+		}
+	})
+
+	t.Run("no pack has the file", func(t *testing.T) {
+		in := Inputs{
+			KR:    writePack(t, "KR_", map[string]string{file: kr}),
+			EN:    writePack(t, "EN_", nil),
+			JP:    writePack(t, "JP_", map[string]string{"Other.json": jp}),
+			ZH:    writePack(t, "", map[string]string{file: zh}),
+			Rules: testRules(),
+		}
+		_, sum, err := BuildFile(in, file)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if sum.Missing != (Missing{EN: 3, JP: 3}) {
+			t.Errorf("Missing = %+v, want {EN:3 JP:3}", sum.Missing)
+		}
+	})
+
+	t.Run("a file without strings has nothing missing", func(t *testing.T) {
+		in := Inputs{
+			KR:    writePack(t, "KR_", map[string]string{file: `{"dataList":[{"id":1}]}`}),
+			EN:    writePack(t, "EN_", nil),
+			JP:    writePack(t, "JP_", nil),
+			ZH:    writePack(t, "", map[string]string{file: `{"dataList":[{"id":1}]}`}),
+			Rules: testRules(),
+		}
+		_, sum, err := BuildFile(in, file)
+		if err != nil {
+			t.Fatal(err)
+		}
 		if sum.Missing != (Missing{}) {
-			t.Errorf("Missing = %+v, want none: a missing file is not a misalignment", sum.Missing)
+			t.Errorf("Missing = %+v, want none", sum.Missing)
 		}
 	})
 }

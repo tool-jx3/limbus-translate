@@ -78,7 +78,7 @@ site/（Preact＋Vite 原始碼）───────────────�
 - `files` 的順序就是上一檔／下一檔的順序（族群順序，再依檔名），陣列索引就是檔案編號（§5.4 用）
 - `label`：劇情檔（`StoryData/`）是第一個非空的 `place` 的 TW 譯文（沒有時用 KR），其他檔為空字串
 - `speakers`：檔內 `teller` 的 TW 譯文，去重、依首次出現排序，最多 20 個
-- `missing`：KR 有字串而該語言沒有對應的單位數（`FileAligner.Unmatched`）
+- `missing`：KR 有字串而該語言沒有對應的單位數；該語言的語言包根本沒有這個檔案時，全部單位都算（這一點與建置時 `FileAligner.Unmatched` 的錯位計數不同，那邊把「整個檔案不存在」排除在外）
 
 ### 5.3 `data/files/<檔案路徑>.json`
 
