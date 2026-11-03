@@ -13,6 +13,16 @@ export type Hit = { file: number; ptr: string; text: string; ranges: Ranges }
 /** The answer to the query of the same id. */
 export type Reply = { id: number; hits: Hit[]; total: number } | { id: number; error: string }
 
+/**
+ * Said before the answer: the corpus of the query is in and the matching has
+ * begun. From then on the worker is busy and cannot be told to stop; the page
+ * can only end it.
+ */
+export type Matching = { id: number; matching: true }
+
+/** What the worker posts to the page: a `Matching`, then the `Reply`. */
+export type WorkerMessage = Matching | Reply
+
 /** How many hits an answer carries; the total counts them all. */
 export const LIMIT = 1000
 
@@ -69,8 +79,12 @@ export class SearchEngine {
     this.get = get
   }
 
-  /** The answer to a query. It does not throw: a failure is an `error` reply. */
-  async run(msg: Query): Promise<Reply> {
+  /**
+   * The answer to a query. It does not throw: a failure is an `error` reply.
+   * `matching` is called once the corpus is in and before it is matched, which
+   * is the part that can take long (and, for a bad pattern, forever).
+   */
+  async run(msg: Query, matching: (message: Matching) => void = () => {}): Promise<Reply> {
     // A query that cannot be matched downloads nothing.
     const match = makeMatcher(msg.q, msg.re)
     if (typeof match !== 'function') return { id: msg.id, error: match.error }
@@ -79,6 +93,7 @@ export class SearchEngine {
       const textsUrl = `${msg.base}search/${msg.lang}.json`
       const [keys, texts] = await Promise.all([this.keysOf(keysUrl), this.textsOf(textsUrl)])
       if (texts.length !== keys.length) throw unusable(textsUrl)
+      matching({ id: msg.id, matching: true })
       return { id: msg.id, ...searchCorpus(keys, texts, match) }
     } catch (e) {
       return { id: msg.id, error: e instanceof Error ? e.message : String(e) }

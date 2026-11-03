@@ -1,10 +1,10 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { createSearchClient, type SearchWorker } from './client'
-import type { Query, Reply } from './engine'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { createSearchClient, MATCH_LIMIT_MS, type SearchWorker } from './client'
+import type { Query, WorkerMessage } from './engine'
 
 /** A worker that does nothing by itself: the test sends its replies, in the order it likes. */
 class FakeWorker implements SearchWorker {
-  onmessage: ((event: MessageEvent<Reply>) => void) | null = null
+  onmessage: ((event: MessageEvent<WorkerMessage>) => void) | null = null
   onerror: ((event: Event) => void) | null = null
   sent: Query[] = []
   terminated = false
@@ -17,8 +17,8 @@ class FakeWorker implements SearchWorker {
     this.terminated = true
   }
 
-  reply(reply: Reply): void {
-    this.onmessage?.({ data: reply } as MessageEvent<Reply>)
+  reply(reply: WorkerMessage): void {
+    this.onmessage?.({ data: reply } as MessageEvent<WorkerMessage>)
   }
 
   fail(): void {
@@ -153,5 +153,167 @@ describe('createSearchClient', () => {
       throw new Error('no Worker here')
     })
     expect(await client.search('a', 'zh', false)).toEqual({ error: expect.any(String) })
+  })
+  describe('a search that is matching', () => {
+    it('is ended with its worker when a newer search comes, which goes to a new worker', async () => {
+      const client = createSearchClient(make)
+      const first = client.search('(.*)*x', 'en', true)
+      const one = worker.sent[0] as Query
+      worker.reply({ id: one.id, matching: true })
+      const fresh = new FakeWorker()
+      make.mockReturnValue(fresh)
+      const second = client.search('Sinclair', 'en', false)
+      expect(worker.terminated).toBe(true)
+      expect(await first).toEqual({ superseded: true })
+      expect(make).toHaveBeenCalledTimes(2)
+      expect(worker.sent).toHaveLength(1)
+      expect(fresh.sent).toHaveLength(1)
+      const two = fresh.sent[0] as Query
+      expect(two).toMatchObject({ q: 'Sinclair', lang: 'en', re: false })
+      // the old worker is gone: nothing it says counts any more
+      worker.reply({ id: two.id, hits: [], total: 0 })
+      fresh.reply({ id: two.id, matching: true })
+      fresh.reply({ id: two.id, hits: [hit], total: 1 })
+      expect(await second).toEqual({ hits: [hit], total: 1 })
+    })
+
+    it('forgets the corpora that the ended worker held', async () => {
+      const client = createSearchClient(make)
+      const done = client.search('a', 'en', false)
+      worker.reply({ id: (worker.sent[0] as Query).id, matching: true })
+      worker.reply({ id: (worker.sent[0] as Query).id, hits: [], total: 0 })
+      await done
+      expect(client.has('en')).toBe(true)
+      void client.search('(.*)*x', 'kr', true)
+      worker.reply({ id: (worker.sent[1] as Query).id, matching: true })
+      make.mockReturnValue(new FakeWorker())
+      void client.search('b', 'kr', false)
+      expect(worker.terminated).toBe(true)
+      expect(client.has('en')).toBe(false)
+    })
+
+    it('is not ended by a newer search when it has not begun to match: the worker is still downloading', async () => {
+      const client = createSearchClient(make)
+      const first = client.search('a', 'en', false)
+      const second = client.search('ab', 'en', false)
+      expect(worker.terminated).toBe(false)
+      expect(make).toHaveBeenCalledTimes(1)
+      expect(worker.sent).toHaveLength(2)
+      expect(await first).toEqual({ superseded: true })
+      const [, two] = worker.sent as [Query, Query]
+      worker.reply({ id: two.id, hits: [hit], total: 1 })
+      expect(await second).toEqual({ hits: [hit], total: 1 })
+    })
+
+    it('is not ended by a newer search once it has answered', async () => {
+      const client = createSearchClient(make)
+      const first = client.search('a', 'en', false)
+      const one = worker.sent[0] as Query
+      worker.reply({ id: one.id, matching: true })
+      worker.reply({ id: one.id, hits: [], total: 0 })
+      await first
+      void client.search('b', 'en', false)
+      expect(worker.terminated).toBe(false)
+      expect(make).toHaveBeenCalledTimes(1)
+      expect(worker.sent).toHaveLength(2)
+    })
+  })
+
+  describe('the time a search may take to match', () => {
+    beforeEach(() => {
+      vi.useFakeTimers()
+    })
+    afterEach(() => {
+      vi.useRealTimers()
+    })
+
+    it('is 10 seconds; after that the search ends with an error and its worker is ended', async () => {
+      expect(MATCH_LIMIT_MS).toBe(10_000)
+      const client = createSearchClient(make)
+      const result = client.search('(.*)*x', 'en', true)
+      worker.reply({ id: (worker.sent[0] as Query).id, matching: true })
+      vi.advanceTimersByTime(MATCH_LIMIT_MS - 1)
+      expect(worker.terminated).toBe(false)
+      vi.advanceTimersByTime(1)
+      expect(worker.terminated).toBe(true)
+      const done = await result
+      expect(done).toEqual({ error: expect.stringContaining('太久') })
+      expect('error' in done && done.error).toContain('改寫')
+    })
+
+    it('leaves a worker for the searches after it, and the corpus has to come in again', async () => {
+      const client = createSearchClient(make)
+      const first = client.search('a', 'en', false)
+      worker.reply({ id: (worker.sent[0] as Query).id, matching: true })
+      worker.reply({ id: (worker.sent[0] as Query).id, hits: [], total: 0 })
+      await first
+      const stuck = client.search('(.*)*x', 'en', true)
+      worker.reply({ id: (worker.sent[1] as Query).id, matching: true })
+      vi.advanceTimersByTime(MATCH_LIMIT_MS)
+      await stuck
+      expect(client.has('en')).toBe(false)
+      const fresh = new FakeWorker()
+      make.mockReturnValue(fresh)
+      const next = client.search('Sinclair', 'en', false)
+      expect(make).toHaveBeenCalledTimes(2)
+      const two = fresh.sent[0] as Query
+      fresh.reply({ id: two.id, hits: [hit], total: 1 })
+      expect(await next).toEqual({ hits: [hit], total: 1 })
+      expect(client.has('en')).toBe(true)
+    })
+
+    it('does not run out for a search that answers in time', async () => {
+      const client = createSearchClient(make)
+      const result = client.search('a', 'en', false)
+      const one = worker.sent[0] as Query
+      worker.reply({ id: one.id, matching: true })
+      vi.advanceTimersByTime(MATCH_LIMIT_MS - 1)
+      worker.reply({ id: one.id, hits: [hit], total: 1 })
+      vi.advanceTimersByTime(MATCH_LIMIT_MS * 3)
+      expect(worker.terminated).toBe(false)
+      expect(await result).toEqual({ hits: [hit], total: 1 })
+    })
+
+    it('does not run before the search begins to match: a long download is not a search that ran too long', () => {
+      const client = createSearchClient(make)
+      void client.search('a', 'en', false)
+      vi.advanceTimersByTime(MATCH_LIMIT_MS * 3)
+      expect(worker.terminated).toBe(false)
+    })
+
+    it('starts over a newer search that waited behind an older one that ran too long', async () => {
+      // the older was still downloading when the newer came; then the worker spent its time on the older
+      const client = createSearchClient(make)
+      const first = client.search('(.*)*x', 'en', true)
+      const second = client.search('Sinclair', 'en', false)
+      const [one, two] = worker.sent as [Query, Query]
+      expect(worker.terminated).toBe(false)
+      expect(await first).toEqual({ superseded: true })
+      worker.reply({ id: one.id, matching: true })
+      const fresh = new FakeWorker()
+      make.mockReturnValue(fresh)
+      vi.advanceTimersByTime(MATCH_LIMIT_MS)
+      expect(worker.terminated).toBe(true)
+      expect(fresh.sent).toHaveLength(1)
+      expect(fresh.sent[0]).toMatchObject({ q: 'Sinclair', lang: 'en', re: false })
+      const again = fresh.sent[0] as Query
+      // it is the same search, asked again
+      expect(again.id).toBe(two.id)
+      fresh.reply({ id: again.id, hits: [hit], total: 1 })
+      expect(await second).toEqual({ hits: [hit], total: 1 })
+    })
+
+    it('keeps the time of the newer search when the answer of the older comes after the newer began to match', async () => {
+      const client = createSearchClient(make)
+      void client.search('a', 'en', false)
+      const second = client.search('ab', 'en', false)
+      const [one, two] = worker.sent as [Query, Query]
+      worker.reply({ id: one.id, matching: true })
+      worker.reply({ id: two.id, matching: true })
+      worker.reply({ id: one.id, hits: [], total: 0 })
+      vi.advanceTimersByTime(MATCH_LIMIT_MS)
+      expect(worker.terminated).toBe(true)
+      expect(await second).toEqual({ error: expect.stringContaining('太久') })
+    })
   })
 })

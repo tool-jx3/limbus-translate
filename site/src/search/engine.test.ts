@@ -220,4 +220,36 @@ describe('SearchEngine', () => {
     const e = new SearchEngine(async () => ({ not: 'an array' }))
     expect(await e.run(query('x', 'zh'))).toMatchObject({ error: expect.stringContaining('格式') })
   })
+  describe('the message that it begins to match', () => {
+    it('is sent once the corpus is in, and before the answer', async () => {
+      const events: string[] = []
+      const reply = await engine.run(query('警告', 'zh', false, 4), (m) => {
+        events.push(`matching ${m.id} ${m.matching} after ${fetchJson.mock.calls.length} downloads`)
+      })
+      events.push(`reply ${reply.id}`)
+      expect(events).toEqual(['matching 4 true after 2 downloads', 'reply 4'])
+    })
+
+    it('is sent for each query, also when the corpus is in memory', async () => {
+      await engine.run(query('警告', 'zh'))
+      const said: number[] = []
+      await engine.run(query('測試', 'zh', false, 5), (m) => said.push(m.id))
+      expect(said).toEqual([5])
+      expect(fetchJson).toHaveBeenCalledTimes(2)
+    })
+
+    it('is not sent for a query that is not matched: a pattern that is not valid, a download that fails, data that does not fit', async () => {
+      const said: number[] = []
+      const matching = (m: { id: number }) => said.push(m.id)
+      await engine.run(query('(', 'zh', true, 1), matching)
+      await engine.run(query('', 'zh', false, 2), matching)
+      const down = new SearchEngine(async () => {
+        throw new Error('offline')
+      })
+      await down.run(query('x', 'zh', false, 3), matching)
+      const short = new SearchEngine(async (url) => (url.endsWith('keys.json') ? keys : ['短']))
+      await short.run(query('x', 'zh', false, 4), matching)
+      expect(said).toEqual([])
+    })
+  })
 })
