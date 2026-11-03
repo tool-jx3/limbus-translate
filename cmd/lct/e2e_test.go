@@ -597,10 +597,36 @@ func TestSiteWarningsMatchBuild(t *testing.T) {
 	mustLct(t, nil, "fetch", "--token", testToken, "--created-at", testCreatedAt, "--cdn-template", template, "--out", "work/fetch")
 	mustLct(t, nil, "snapshot", "--from", "work/fetch", "--token", testToken, "--created-at", testCreatedAt)
 	mustLct(t, nil, "bootstrap", "--upstream", filepath.Join(fixture, "upstream"))
+	// The shared fixture is warning-free: this test gives some of its
+	// records an ASCII ellipsis and kana, which the build warns about.
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	records, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	edits := []string{"...", "か"}
+	for _, key := range slices.Sorted(maps.Keys(records)) {
+		rec := records[key]
+		if len(edits) == 0 || rec.Origin != store.OriginParatranz || rec.ZH == "" {
+			continue
+		}
+		rec.ZH += edits[0]
+		records[key] = rec
+		edits = edits[1:]
+	}
+	if len(edits) != 0 {
+		t.Fatal("the fixture has too few paratranz records to break")
+	}
+	if err := st.SaveRecords(records); err != nil {
+		t.Fatal(err)
+	}
 	var built buildOut
 	mustLct(t, &built, "build")
 	if built.Report == nil {
 		t.Fatal("build has no report")
+	}
+	if len(built.Report.Warnings) < 2 {
+		t.Fatalf("build warnings = %v, want at least two codes, or the test pins nothing", built.Report.Warnings)
 	}
 	mustLct(t, nil, "site", "--out", "work/site")
 
