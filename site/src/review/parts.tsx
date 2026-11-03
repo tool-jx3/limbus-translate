@@ -101,10 +101,32 @@ export function DiffText({ pieces }: { pieces: Piece[] }) {
   return <span class="tmp" lang="zh-Hant-TW">{out}</span>
 }
 
+const WHITE_SPACE = /^\s$/u
+const SIGNS: Record<string, { sign: string; name: string }> = {
+  ' ': { sign: '␣', name: '空格' },
+  '\u3000': { sign: '□', name: '全形空格' },
+  '\u00a0': { sign: '⍽', name: '不換行空格' },
+  '\t': { sign: '⇥', name: '定位字元' },
+  '\n': { sign: '↵', name: '換行' },
+  '\r': { sign: '↵', name: '換行' },
+}
+
+/** The visible sign and the name of a white space character. */
+function whiteSpace(ch: string): { sign: string; name: string } {
+  return SIGNS[ch] ?? { sign: '␣', name: '空白' }
+}
+
 function piece(p: Piece, k: number): ComponentChildren {
   let node: ComponentChildren
   if (p.tok) node = <span class="tok">{p.text}</span>
-  else if (p.text === ' ' && !p.same) node = <span class="rv-sp" title="多了一個空格">␣</span>
+  else if (!p.same && WHITE_SPACE.test(p.text)) {
+    const w = whiteSpace(p.text)
+    node = (
+      <span class="rv-sp" title={`${p.missing ? '少了' : '多了'}一個${w.name}`} aria-label={`${p.missing ? '少了' : '多了'}一個${w.name}`}>
+        {w.sign}
+      </span>
+    )
+  }
   else node = p.text
   return p.hl ? <span key={k} class="rv-hl">{node}</span> : <Fragment key={k}>{node}</Fragment>
 }

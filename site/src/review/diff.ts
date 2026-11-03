@@ -1,8 +1,11 @@
 // How a translation differs from another one: the pieces of the other, each
 // told apart from what the two share (longest common subsequence).
 
-/** One unit of a text: an [ID] or one character. */
-export type Piece = { text: string; tok: boolean; hl: boolean; same: boolean }
+/**
+ * One unit of a text: an [ID] or one character. A piece with missing is not in the
+ * text: it stands where the base has a white space that the text lacks.
+ */
+export type Piece = { text: string; tok: boolean; hl: boolean; same: boolean; missing?: true }
 
 type Unit = Omit<Piece, 'same'>
 
@@ -42,6 +45,12 @@ export function variantDiff(base: string, other: string): Piece[] {
   const n = a.length
   const m = b.length
   const same = new Array<boolean>(m).fill(false)
+  // The white space of base that other lacks, by the position in other it would come before.
+  const gaps = new Map<number, Piece[]>()
+  const gap = (u: Unit, at: number) => {
+    if (u.tok || !/^\s$/u.test(u.text)) return
+    gaps.set(at, [...(gaps.get(at) ?? []), { ...u, same: false, missing: true }])
+  }
   if (n * m <= MAX_CELLS) {
     const width = m + 1
     const len = new Uint16Array((n + 1) * width)
@@ -59,9 +68,17 @@ export function variantDiff(base: string, other: string): Piece[] {
         same[j] = true
         i++
         j++
-      } else if (len[(i + 1) * width + j]! >= len[i * width + j + 1]!) i++
-      else j++
+      } else if (len[(i + 1) * width + j]! >= len[i * width + j + 1]!) {
+        gap(a[i]!, j)
+        i++
+      } else j++
     }
+    for (; i < n; i++) gap(a[i]!, m)
   }
-  return b.map((u, k) => ({ ...u, same: same[k] === true }))
+  const out: Piece[] = []
+  b.forEach((u, k) => {
+    out.push(...(gaps.get(k) ?? []), { ...u, same: same[k] === true })
+  })
+  out.push(...(gaps.get(m) ?? []))
+  return out
 }

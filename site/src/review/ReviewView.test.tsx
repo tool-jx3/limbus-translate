@@ -131,6 +131,17 @@ describe('ReviewView', () => {
     expect(el.querySelector('.rv-pending')?.textContent).toBe('待重翻 1')
   })
 
+  it('shows a space the minority translation lacks with a sign', async () => {
+    const base = fixture<{ items: { kind: string; variants: { zh: string; count: number; keys: string[] }[] }[] }>('review/suggestions.json').items.find((i) => i.kind === 'inconsistent')!
+    const item = { ...base, variants: [{ zh: '獲得提升 ', count: 2, keys: base.variants[0]!.keys }, { zh: '獲得提升', count: 1, keys: base.variants[1]!.keys }] }
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [item] } })))
+    clearDataCache()
+    const el = await mount(route('suggestions'))
+    const signs = [...el.querySelectorAll('.rv-var .rv-sp')]
+    expect(signs.map((s) => s.getAttribute('aria-label'))).toEqual(['少了一個空格'])
+    expect(signs[0]?.textContent).toBe('␣')
+  })
+
   it('lists the units of a warning as links, and marks the kana', async () => {
     const el = await mount(route('warnings'))
     expect(cards(el)).toHaveLength(1)

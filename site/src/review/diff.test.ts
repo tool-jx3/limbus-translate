@@ -26,4 +26,20 @@ describe('variantDiff', () => {
   it('marks every piece of an unrelated text', () => {
     expect(variantDiff('abc', 'xyz').every((p) => !p.same)).toBe(true)
   })
+
+  it('shows a space the other lacks as a missing piece at its place', () => {
+    const pieces = variantDiff('獲得攻擊等級提升 ', '獲得攻擊等級提升')
+    expect(pieces.filter((p) => !p.missing).map((p) => p.text).join('')).toBe('獲得攻擊等級提升')
+    expect(pieces.filter((p) => p.same)).toHaveLength(8)
+    const gap = pieces.filter((p) => p.missing)
+    expect(gap).toEqual([{ text: ' ', tok: false, hl: false, same: false, missing: true }])
+    expect(pieces[pieces.length - 1]).toBe(gap[0])
+  })
+
+  it('puts a missing space between its neighbours, and reports other white space too', () => {
+    const pieces = variantDiff('a b\u3000c', 'abc')
+    expect(pieces.map((p) => (p.missing ? `[${p.text}]` : p.text)).join('')).toBe('a[ ]b[\u3000]c')
+    expect(variantDiff('abc', 'abc').some((p) => p.missing)).toBe(false)
+    expect(variantDiff('a\nb', 'ab').find((p) => p.missing)?.text).toBe('\n')
+  })
 })
