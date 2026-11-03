@@ -170,6 +170,26 @@ var termDecisionTools = []string{
 	"Edit(./rules/**)",
 }
 
+// reviewPageTools are the tools of the review-page skill: it handles the item
+// ids a person pastes from the review page. It confirms items (lct accept),
+// looks them up (lct suggest, search, validate), writes adjustments and
+// request files, and edits the guides, the glossary and the rules. It reaches
+// neither the config nor git.
+var reviewPageTools = []string{
+	"Bash(bin/lct accept *)",
+	"Bash(bin/lct suggest*)",
+	"Bash(bin/lct search *)",
+	"Bash(bin/lct validate *)",
+	"Bash(bin/lct adjust add *)",
+	"Bash(bin/lct requeue --to-file *)",
+	"Bash(bin/lct rules lint*)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+	"Edit(./guides/**)",
+	"Edit(./glossary/**)",
+	"Edit(./rules/**)",
+}
+
 // requiredSkills are the skills this repo must have, and the tools of each.
 // Each is run on purpose by a person or by CI, so none may be started by the
 // model on its own.
@@ -180,6 +200,7 @@ var requiredSkills = map[string][]string{
 	"rules-review":      rulesReviewTools,
 	"review":            reviewTools,
 	"term-decision":     termDecisionTools,
+	"review-page":       reviewPageTools,
 }
 
 // goBuildTool is the one go command a skill may run: it builds bin/lct.
@@ -708,6 +729,10 @@ func TestAdjustSaysWhereItEnds(t *testing.T) {
 // the action.
 func TestRulesReviewTools(t *testing.T) {
 	checkExactTools(t, "rules-review", rulesReviewTools)
+}
+
+func TestReviewPageTools(t *testing.T) {
+	checkExactTools(t, "review-page", reviewPageTools)
 }
 
 // skillSays is a text the body of a skill must hold, and what is wrong with a

@@ -24,7 +24,9 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 
 譯文對照網站：https://tool-jx3.github.io/limbus-translate/
 
-網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站用每頁的 `<meta name="robots" content="noindex, nofollow">` 要求搜尋引擎不收錄。`site/public/robots.txt`（`Disallow: /`）也會一起部署，但網站是專案網站（網址帶 `/limbus-translate/`），爬蟲只讀主機根目錄的 `robots.txt`，所以這個檔案在這個網址上不起作用，有效的是 `<meta>`；只有改放在自訂網域的根目錄時它才會被讀到。網站不收集使用者資料，也不使用外部 CDN。KR／JP／EN 原文著作權屬 Project Moon，本站非商業、供翻譯校對使用。
+網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站用每頁的 `<meta name="robots" content="noindex, nofollow">` 要求搜尋引擎不收錄。`site/public/robots.txt`（`Disallow: /`）也會一起部署，但網站是專案網站（網址帶 `/limbus-translate/`），爬蟲只讀主機根目錄的 `robots.txt`，所以這個檔案在這個網址上不起作用，有效的是 `<meta>`；只有改放在自訂網域的根目錄時它才會被讀到。網站不收集使用者資料，也不使用外部 CDN。
+
+網站另有「審核」頁（`#/r/<suggestions|warnings|notes|todo>`），把人需要看的項目集中成四個分頁：規則建議、檢查警告、譯者註記、待辦（待辦與審核 Issue 的項目相同，只放規則建議分頁沒有的種類）。網頁唯讀，用法是：看 → 複製項目的文字（`ID「摘要」→ `，單筆或一組）→ 貼進 Claude Code 的對話，用 `/review-page` 說明決定。沒問題的，skill 執行 `bin/lct accept` 把規則建議與註記記進 `rules/declined.yaml`、檢查警告記進 `rules/accepted.yaml`（確認過的項目預設隱藏，建置報告也不再計入確認過的警告）；要改的，skill 寫調整（`lct adjust add`）或改規則並附重翻要求檔，讓譯文真的改變，新譯文出來前項目標「待重翻」；不清楚的它會先問。修改都留在 `main` 工作樹，由你 commit 並 push `main`，CI 重建後網站更新。需要本機有 `.work/raw` 與 `.work/tw`；ID 不是目前項目時（worktree 比網頁舊，或項目已解決）整批不寫入，更新 worktree 後再試。KR／JP／EN 原文著作權屬 Project Moon，本站非商業、供翻譯校對使用。
 
 `pages.yml` 在 `update.yml` 或 `rebuild.yml` 於 `main` 上成功結束後執行（也可以手動執行）：取得 `raw`、`tw` 與 tag 並建 worktree → `go build` 出 `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → 部署 `site/dist`。`lct site` 失敗時（例如 `raw` 與 `tw` 不是同一個 snapshot）整個執行失敗，不會用缺的或舊的資料部署，網站維持上一次部署的樣子；`TestWorkflowContract` 要求 `pages.yml` 的任何一步都不能被略過或忽略失敗。
 
@@ -158,7 +160,7 @@ git worktree add .work/tw tw
 
 - 提交前執行 `go vet ./... && go test ./...`；動到 `site/` 時另外執行 `cd site && npm ci && npm run typecheck && npm test && npm run build`（Node 版本見 `site/.nvmrc`）。
 - 本機預覽網站：先 `bin/lct site --out site/public/data` 輸出資料（要有 `.work/raw` 與 `.work/tw`），再 `cd site && npm run build && npm run preview`。`site/public/data/`、`site/dist/`、`site/node_modules/` 不進版控。
-- 用 Claude Code 開啟本 repo，可以使用 `.claude/skills/` 的 skill：`translate-pending`（翻譯待譯清單）、`adjust`（人工調整）、`weekly-update`（在本機演練每週更新，結果只留在 `out/`）、`rules-review`（把 `lct suggest` 的建議整理成規則修改）、`review`（依 `lct review` 帶你逐項處理審核 Issue 的項目）、`term-decision`（逐個決定詞彙表的候選條目）。模型由環境變數 `LCT_MODEL` 提供。
+- 用 Claude Code 開啟本 repo，可以使用 `.claude/skills/` 的 skill：`translate-pending`（翻譯待譯清單）、`adjust`（人工調整）、`weekly-update`（在本機演練每週更新，結果只留在 `out/`）、`rules-review`（把 `lct suggest` 的建議整理成規則修改）、`review`（依 `lct review` 帶你逐項處理審核 Issue 的項目）、`review-page`（處理你從審核頁貼上的項目 ID）、`term-decision`（逐個決定詞彙表的候選條目）。模型由環境變數 `LCT_MODEL` 提供。
 - 本機的 `.work/` 與 CI 的不是同一份。`raw`、`tw` 分支與 Release 只由 CI 寫入，不要 push；改動一律走 `main`。
 
 設計與實作計畫見 `docs/superpowers/specs/` 與 `docs/superpowers/plans/`。

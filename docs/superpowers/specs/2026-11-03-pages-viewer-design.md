@@ -60,11 +60,13 @@ site/（Preact＋Vite 原始碼）───────────────�
 ### 5.1 `data/meta.json`
 
 ```json
-{"format": 1, "raw_tag": "raw-20261029", "rules_commit": "…", "tw_commit": "…", "release": "zh-TW-20261029.5",
+{"format": 2, "raw_tag": "raw-20261029", "rules_commit": "…", "tw_commit": "…", "release": "zh-TW-20261029.5",
  "langs": ["kr", "jp", "en", "zh"], "files": 2420, "units": 272783}
 ```
 
 `release` 是 `tw_commit` 上的 `zh-TW-*` tag，沒有時為空字串。
+
+`format` 在審核頁加入時由 1 升為 2；新增 `review`：各審核分頁「未確認」的項目數 `{suggestions, warnings, notes, todo}`（見 `2026-11-03-review-page-design.md` §7.1）。
 
 ### 5.2 `data/index.json`
 
@@ -95,6 +97,11 @@ site/（Preact＋Vite 原始碼）───────────────�
 - `zh`：建置後語言包裡的字串，也就是玩家看到的（可能是暫用的英文）
 - `o`：該單位紀錄的 `origin`（`paratranz`、`claude`、`human`、`copy`、`fallback`）；沒有紀錄，或語言包的字串與紀錄不同（建置時改用英文或 KR）時為 `stand-in`
 - `fl`：紀錄的 `flags`（例如 `needs_review`），沒有時省略
+- `rv`：這個單位涉及的未確認審核項目 ID（不一致譯法、警告、註記），依 ID 排序；沒有時省略
+- `nt`：說明目前譯文的譯者註記，多則以換行連接；確認過的也放；沒有時省略
+- `pq`：單位在待譯清單裡時為 `1`（網頁標「待重翻」）；不在時省略
+
+審核頁另有 `data/review/suggestions.json`、`warnings.json`、`notes.json`、`todo.json`，欄位見 `2026-11-03-review-page-design.md` §7。
 
 ### 5.4 `data/search/keys.json` 與 `data/search/<lang>.json`
 
@@ -114,6 +121,7 @@ site/（Preact＋Vite 原始碼）───────────────�
 - `#/`：首頁（目錄與搜尋）
 - `#/f/<檔案路徑>?u=<指標>`：檔案檢視；`u` 有值時捲到該單位並高亮
 - `#/s?q=<字串>&lang=<kr|jp|en|zh>&re=1`：全文搜尋結果
+- `#/r/<suggestions|warnings|notes|todo>?family=…&kind=…&q=…&all=1&id=…`：審核頁；`#/r` 等於 `#/r/suggestions`，`all=1` 顯示已確認的項目，`id` 捲到並高亮該項（見 `2026-11-03-review-page-design.md` §8）
 
 顯示哪些語言、是否顯示 copy、來源篩選、標籤顯示方式存在 `localStorage`（不放進網址，避免連結過長）。
 
@@ -128,6 +136,7 @@ site/（Preact＋Vite 原始碼）───────────────�
 
 - **表格模式**（預設，非劇情檔）：一個單位一列，第一欄是欄位名（滑過顯示完整指標，點擊複製深連結），接著是開啟的語言欄；TW 欄附來源標記（顏色＋文字，例如 `claude`）
 - **劇本模式**（`StoryData/`、`RPGSystem/*dialogue*` 的預設；其他檔可切換）：同一個 `dataList` 元素合成一段：`place` 改變時插入地點分隔線；說話者行顯示 `teller`（與 `title`）；台詞各語言並排（寬螢幕）或上下堆疊（窄螢幕）
+- **審核標示**：單位有 `rv` 時，TW 欄左側一條色線，下方一排小標籤（「不一致」「警告：<代碼中文名>」「註記」），點標籤在該列下方展開內容並連到審核頁的該項；有 `nt`（不論是否確認過）顯示「註記」標籤；有 `pq` 標「待重翻」。來源篩選旁的「只看有審核項目的單位」只留有 `rv` 的單位（劇本模式中整段沒有就整段隱藏），存在 `localStorage`
 - **來源篩選**：勾選要看的來源；未勾選的單位隱藏（劇本模式中，整段的台詞被篩掉時整段隱藏）；預設不顯示 `copy`
 - **連貫閱讀**：上一檔／下一檔按鈕（依 `index.files` 的順序）；鍵盤 `[`、`]` 切換檔案，`j`、`k` 移到下一段／上一段
 - **大檔**：超過 1,000 列時只渲染可見範圍附近的列（虛擬捲動），深連結仍能捲到正確位置

@@ -449,6 +449,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
   - `rules/declined.yaml` 是清單，每筆 `id`、`reason`（不採用的理由，必填）、`date`（`YYYY-MM-DD`）。`lct rules lint` 檢查 id 的種類是上表之一、`reason` 非空、`date` 的格式與 id 不重複
 - 同一時間最多一個 CI 開的規則 PR；已有未處理的 PR 時，新建議加進該 PR：`lct proposal start --date …` 選分支（有開著的規則 PR 就用它的，更新到 origin 的樣子並把 `origin/main` 合併進去，讓程式、skill 與規則是 `main` 目前的樣子，合併有衝突就拒絕並列出衝突的檔案；沒有就是 `rules-proposal/<日期>`，origin 已有這個名稱且曾開過 PR 時用 `-2`、`-3`…），寫出 `work/proposal/exclude.txt`（PR 已有的 id、關閉未合併的 PR 的 id、已合併的不一致譯法；列在「需要人決定」一節的不算已合併，會再提出）與 `work/proposal/existing-body.md`（開著的 PR 現在的說明，人改過的也在內）。skill 以後者為底寫 `work/proposal/body.md`，`lct proposal publish --body-file …` 只 commit `guides/`、`glossary/`、`rules/` 的變更、推 `rules-proposal/*` 分支、開或更新 PR，並拒絕少了開著的 PR 已有的任一個 id 的說明，以及含有 token 或金鑰一類字串（`ghp_`、`gho_`、`ghs_`、`ghu_`、`github_pat_`、`x-access-token`、`AUTHORIZATION: basic`、`sk-ant-`）的說明與規則檔修改。skill 沒有把握的項目不改檔、不記進 `rules/declined.yaml`，列在說明的「需要人決定」一節（單獨一行的標記與一行理由），讓它進規則 PR、不再每次都排在前面；說明只新增這類項目也照樣發布（沒有開著的 PR 時 `lct proposal publish` 以一個沒有變更的 commit 開 PR），沒改規則檔、說明也沒有新項目時才拒絕（nothing to propose）。skill 結束前把結果寫在 `work/proposal/outcome.txt`（`published`、`nothing: <理由>`、`failed: <原因>`），workflow 的最後一步據此檢查：`published` 時 PR 的說明要有一個開始前沒有的 id，`nothing` 只留下記錄，其餘算錯誤——`lct proposal publish` 被拒絕時 action 不會失敗，已開著的 PR 不能當作這次有成果的證據
 - 人也可以在本機用 `rules-review` skill 提出修改，流程相同
+- **確認過的項目（審核頁，`review-page` skill）**：網站的審核頁（`docs/superpowers/specs/2026-11-03-review-page-design.md`）列出規則建議、檢查警告、譯者註記與待辦，人複製項目 ID 貼進對話，由 `review-page` skill 處理。「沒問題」用 `lct accept --reason R ID...`：規則建議與 `note/…` 記進 `rules/declined.yaml`，檢查警告 `warning/<代碼>/<sha8(KR)>/<sha8(TW)>` 記進新的 `rules/accepted.yaml`（格式與 `declined.yaml` 相同：`id`、`reason` 必填、`date`；`lct rules lint` 檢查；id 不含 key，所以單位換指標後確認仍有效，譯文一改 id 就變、確認失效）。ID 不是目前項目（依本機 `.work/raw`、`.work/tw` 判斷）時整批拒絕、不寫任何檔，exit 1；已在清單的 ID 略過；`--tidy` 刪除不再對應警告的 `accepted.yaml` 條目。「要改」必須讓譯文真的改變：寫調整，或改規則並附重翻要求檔。建置略過確認過的項目：報表的 `warnings` 計數與 `warning_samples` 不含 `accepted.yaml` 的 id，挑選前 500 組不一致譯法時先略過 `declined.yaml` 的 `inconsistent/…`
 - 規則改了不會自動重翻舊譯文。要套用到舊譯文，必須由人指定範圍：用 `lct requeue`，或合併附有 `rules/requeue/` 的 PR（這都算人工介入）
 
 ## 12. GitHub Actions
@@ -543,6 +544,7 @@ LimbusCompany_Data/
 | `lct requeue` | 指定範圍送回待譯清單；`--to-file` 只寫 `rules/requeue/` 的要求檔，不動狀態（§11.1） |
 | `lct adjust tidy` | 調整檔跟上目前 snapshot 的 plan：key 已移動的改成新 key，單位已重翻的過期調整刪除（§11.1） |
 | `lct suggest [--exclude-file F]...` | 規則還能學到什麼，附穩定的 id；略過 `rules/declined.yaml` 與排除檔的 id；有建議也是 exit 0（§11.2） |
+| `lct accept --reason R [--date D] [--file F] [ID...]`、`lct accept --tidy` | 把審核頁上確認過的項目記進 `rules/declined.yaml`（規則建議、`note/…`）或 `rules/accepted.yaml`（`warning/…`）；不是目前項目的 ID 整批拒絕（exit 1）；`--tidy` 刪除已不對應警告的 `accepted.yaml` 條目；讀 `.work/raw`、`.work/tw`（§11.2） |
 | `lct impact --base REV [--markdown F]` | 以目前工作樹的規則和 REV 的規則檢查 `tw` 的既有譯文，數出新規則多讓多少單位出現硬性問題；規則 PR 的影響評估（§11.2、§12） |
 | `lct proposal start／publish` | `start` 選規則 PR 的分支（重用的分支會合併 `origin/main`，衝突就拒絕）、寫出 `work/proposal/exclude.txt` 與 `existing-body.md`；`publish` 只 commit 規則檔、推 `rules-proposal/*` 分支，開或更新規則 PR，拒絕含有 token 或金鑰一類字串的說明與修改；需要 `GH_TOKEN` 或 `GITHUB_TOKEN` 與 git 身分（§11.2） |
 | `lct translate` | 用 claude CLI 執行 `translate-pending` skill，直到沒有待譯、花費或時間用完，或某次執行失敗（§9.2）；`--not-run REASON` 不執行 claude，只在 `.meta/translate.json` 記下翻譯沒有執行與原因（CI 有待譯、但缺 API key 或模型，或 claude CLI 安裝失敗時用，審核 Issue 因此列出「翻譯沒有執行」與原因，§14.2；dry run 不記） |
@@ -559,12 +561,12 @@ LimbusCompany_Data/
 ```text
 cmd/lct/                 CLI 入口
 internal/…               fetch、snapshot、align、units、rules、guide、validate、pack、report…
-guides/  glossary/  rules/
+guides/  glossary/  rules/   （`rules/accepted.yaml`：審核頁確認過的檢查警告，§11.2）
 testdata/                測試用的官方原檔片段
 prompts/                 翻譯指示（skill 與第三階段共用）
 schemas/                 批次輸入／輸出、規則檔的 JSON schema
 lct.yaml                 輸出資料夾名、字型、凍結清單、批次大小、重試次數、第一階段用的上游版本
-.claude/skills/          §9.3
+.claude/skills/          §9.3（含 `review-page`：處理審核頁貼上的項目 ID，§11.2）
 .claude/settings.json    工具權限
 CLAUDE.md                專案說明（AGENTS.md 指向它）
 LICENSE                  程式碼授權（GPL-3.0）
