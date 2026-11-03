@@ -26,10 +26,28 @@ function sizeEm(value: string | undefined): string | undefined {
   return `${Number(em.toFixed(3))}em`
 }
 
-function renderNode(n: TmpNode, key: number): ComponentChildren {
+/** The text with each match of mark wrapped in a <mark>; the text itself where there is none. */
+function markText(s: string, mark: RegExp | undefined): ComponentChildren {
+  if (mark === undefined) return s
+  const out: ComponentChildren[] = []
+  let pos = 0
+  // A new RegExp: matchAll would start at the lastIndex of the one it is given, and it must be global.
+  const re = new RegExp(mark.source, mark.flags.includes('g') ? mark.flags : `${mark.flags}g`)
+  for (const m of s.matchAll(re)) {
+    if (m[0] === '') continue
+    if (m.index > pos) out.push(s.slice(pos, m.index))
+    out.push(<mark>{m[0]}</mark>)
+    pos = m.index + m[0].length
+  }
+  if (pos === 0) return s
+  if (pos < s.length) out.push(s.slice(pos))
+  return out
+}
+
+function renderNode(n: TmpNode, key: number, mark: RegExp | undefined): ComponentChildren {
   switch (n.t) {
     case 'text':
-      return n.s
+      return markText(n.s, mark)
     case 'token':
       return <span key={key} class="tok">{n.s}</span>
     case 'br':
@@ -37,7 +55,7 @@ function renderNode(n: TmpNode, key: number): ComponentChildren {
     case 'sprite':
       return <span key={key} class="sprite">{n.name === '' ? '[sprite]' : `[sprite:${n.name}]`}</span>
     case 'tag': {
-      const kids = renderNodes(n.kids)
+      const kids = renderNodes(n.kids, mark)
       switch (n.name) {
         case 'color':
           return n.value !== undefined && HEX_COLOR.test(n.value) ? <span key={key} style={{ color: n.value }}>{kids}</span> : kids
@@ -62,8 +80,8 @@ function renderNode(n: TmpNode, key: number): ComponentChildren {
   }
 }
 
-function renderNodes(nodes: TmpNode[]): ComponentChildren {
-  return nodes.map(renderNode)
+function renderNodes(nodes: TmpNode[], mark: RegExp | undefined): ComponentChildren {
+  return nodes.map((n, k) => renderNode(n, k, mark))
 }
 
 export interface TmpTextProps {
@@ -72,13 +90,15 @@ export interface TmpTextProps {
   raw: boolean
   /** The language of the text: it sets the lang attribute. */
   lang: Lang
+  /** Wrap each match of it, in the text of the string and not in the tags, in a <mark>. */
+  mark?: RegExp
 }
 
 /** A game string with its TextMeshPro tags shown as what they do. */
-export function TmpText({ text, raw, lang }: TmpTextProps) {
+export function TmpText({ text, raw, lang, mark }: TmpTextProps) {
   const nodes = useMemo(() => (raw ? [] : parseTMP(text)), [raw, text])
   if (raw) {
     return <span class="tmp tmp-raw" lang={LANG_ATTR[lang]}>{text}</span>
   }
-  return <span class="tmp" lang={LANG_ATTR[lang]}>{renderNodes(nodes)}</span>
+  return <span class="tmp" lang={LANG_ATTR[lang]}>{renderNodes(nodes, mark)}</span>
 }

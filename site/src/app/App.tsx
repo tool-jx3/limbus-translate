@@ -2,6 +2,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
 import { SearchView } from '../search/SearchView'
+import { ReviewView } from '../review/ReviewView'
 import { loadSettings, saveSettings, type Settings } from '../settings'
 import type { Index, Meta } from '../types'
 import { FileView } from '../view/FileView'
@@ -132,7 +133,6 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
     case 'search':
       return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
     case 'review':
-      // The review page is Task 8's; until it exists the route has a stand-in.
-      return <p class="review-placeholder" data-tab={route.tab}>審核頁建置中</p>
+      return <ReviewView route={route} index={index} meta={meta} />
   }
 }

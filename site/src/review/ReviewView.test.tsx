@@ -1,0 +1,216 @@
+import { render } from 'preact'
+import { act } from 'preact/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { clearDataCache } from '../data'
+import { fileHref, reviewHref, type Route } from '../route'
+import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
+import type { Index, Meta, NoteItem } from '../types'
+import { ReviewView } from './ReviewView'
+
+const meta = fixture<Meta>('meta.json')
+const index = fixture<Index>('index.json')
+type ReviewRoute = Extract<Route, { kind: 'review' }>
+
+const containers: HTMLElement[] = []
+let undoEffects = () => {}
+
+beforeEach(() => {
+  undoEffects = runEffectsAtOnce()
+  clearDataCache()
+  location.hash = ''
+  vi.stubGlobal('fetch', vi.fn(fixtureFetch()))
+})
+
+afterEach(() => {
+  undoEffects()
+  for (const c of containers.splice(0)) {
+    render(null, c)
+    c.remove()
+  }
+  vi.unstubAllGlobals()
+})
+
+function route(tab: ReviewRoute['tab'], rest: Partial<ReviewRoute> = {}): ReviewRoute {
+  return { kind: 'review', tab, family: '', sub: '', q: '', all: false, ...rest }
+}
+
+async function mount(r: ReviewRoute): Promise<HTMLElement> {
+  const container = document.createElement('div')
+  document.body.append(container)
+  containers.push(container)
+  render(<ReviewView route={r} index={index} meta={meta} />, container)
+  await vi.waitFor(() => expect(container.querySelector('.rv-body, .notice')).not.toBeNull())
+  return container
+}
+
+const cards = (el: HTMLElement) => el.querySelectorAll('article.rv-card')
+
+describe('ReviewView', () => {
+  it('shows the instructions and the unconfirmed count on each of the four tabs', async () => {
+    const el = await mount(route('suggestions'))
+    expect(el.textContent).toContain('按「複製 ID」，貼到對話中再加上你的決定；Claude 會改規則或把項目記為確認過，下次建置後這頁就跟著更新。')
+    const tabs = [...el.querySelectorAll<HTMLAnchorElement>('[role=tab]')]
+    expect(tabs.map((t) => t.textContent)).toEqual(['規則建議3', '檢查警告1', '譯者註記1', '待辦清單1'])
+    expect(tabs.map((t) => t.getAttribute('href'))).toEqual(['#/r/suggestions', '#/r/warnings', '#/r/notes', '#/r/todo'])
+    expect(tabs[0]?.getAttribute('aria-selected')).toBe('true')
+  })
+
+  it('hides the confirmed by default and shows them faded, with the reason and the date, on all=1', async () => {
+    let el = await mount(route('suggestions'))
+    expect(cards(el)).toHaveLength(3)
+    expect(el.textContent).not.toContain('沿用遊戲內詞彙，不另立規則')
+    const toggle = el.querySelector<HTMLInputElement>('input[type=checkbox]')
+    expect(toggle?.parentElement?.textContent).toContain('顯示已確認的 1 項')
+
+    el = await mount(route('suggestions', { all: true }))
+    expect(cards(el)).toHaveLength(4)
+    const faded = el.querySelector('article.rv-card.is-confirmed')
+    expect(faded?.textContent).toContain('沿用遊戲內詞彙，不另立規則')
+    expect(faded?.textContent).toContain('2026-11-02')
+  })
+
+  it('writes the filters to the address', async () => {
+    const el = await mount(route('suggestions'))
+    const toggle = el.querySelector<HTMLInputElement>('input[type=checkbox]')!
+    act(() => toggle.click())
+    expect(location.hash).toBe(reviewHref('suggestions', { all: true }))
+    const family = el.querySelector<HTMLSelectElement>('select[name=family]')!
+    act(() => {
+      family.value = 'ally'
+      family.dispatchEvent(new Event('change', { bubbles: true }))
+    })
+    expect(location.hash).toBe(reviewHref('suggestions', { family: 'ally' }))
+    const q = el.querySelector<HTMLInputElement>('input[type=search]')!
+    act(() => {
+      q.value = '測試'
+      q.dispatchEvent(new Event('input', { bubbles: true }))
+    })
+    expect(location.hash).toBe(reviewHref('suggestions', { q: '測試' }))
+  })
+
+  it('shows an inconsistent group with its translations, the units and a copy button', async () => {
+    const el = await mount(route('suggestions', { family: 'ally' }))
+    const card = el.querySelector('article.rv-card')!
+    expect(card.textContent).toContain('inconsistent/ally/name/c3a1192c')
+    expect(card.textContent).toContain('시험용 베기')
+    expect(card.textContent).toContain('試験用の斬撃')
+    expect(card.textContent).toContain('Test Slash')
+    expect(card.querySelectorAll('.rv-var')).toHaveLength(2)
+    expect(card.textContent).toContain('全部 2 個單位')
+    const hrefs = [...card.querySelectorAll('details a')].map((a) => a.getAttribute('href'))
+    expect(hrefs).toEqual([
+      fileHref('Skills_personality-99.json', '/dataList/0/levelList/0/name'),
+      fileHref('Skills_personality-99.json', '/dataList/1/levelList/0/name'),
+    ])
+    expect(card.querySelector('.rv-copy')?.textContent).toBe('複製 ID')
+    expect(card.querySelector('.rv-var.is-top')).not.toBeNull()
+    expect(card.querySelectorAll('.rv-var .rv-d').length).toBeGreaterThan(0)
+  })
+
+  it('shows evidence rows of the other kinds', async () => {
+    const el = await mount(route('suggestions', { sub: 'speaker' }))
+    expect(cards(el)).toHaveLength(1)
+    expect(el.querySelector('article.rv-card')?.textContent).toContain('新說話者「베아트리체」')
+    expect(el.querySelector('article.rv-card')?.textContent).toContain('베아트리체')
+  })
+
+  it('marks the items waiting for retranslation', async () => {
+    const el = await mount(route('suggestions', { sub: 'note' }))
+    expect(el.querySelector('article.rv-card')?.textContent).toContain('等待重翻')
+    const some = await mount(route('notes', { all: true }))
+    expect(some.querySelectorAll('.rv-pending')).toHaveLength(1)
+  })
+
+  it('says how many of the units wait when only some do', async () => {
+    const suggestions = fixture<{ items: unknown[] }>('review/suggestions.json').items.map((it) => it)
+    const inconsistent = JSON.parse(JSON.stringify(suggestions.find((it) => (it as { kind: string }).kind === 'inconsistent')))
+    inconsistent.pending = 1
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [inconsistent] } })))
+    clearDataCache()
+    const el = await mount(route('suggestions'))
+    expect(el.querySelector('.rv-pending')?.textContent).toBe('待重翻 1')
+  })
+
+  it('lists the units of a warning as links, and marks the kana', async () => {
+    const el = await mount(route('warnings'))
+    expect(cards(el)).toHaveLength(1)
+    const card = el.querySelector('article.rv-card')!
+    const hrefs = [...card.querySelectorAll('.rv-units a')].map((a) => a.getAttribute('href'))
+    expect(hrefs).toEqual([
+      fileHref('Skills_personality-99.json', '/dataList/0/levelList/0/coinlist/0/coindescs/1/desc'),
+      fileHref('Skills_personality-99.json', '/dataList/2/levelList/0/coinlist/0/coindescs/1/desc'),
+    ])
+    expect([...card.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['の'])
+    expect(el.querySelector('.rv-section h2')?.textContent).toContain('假名殘留')
+    expect(card.textContent).toContain('warning/kana/1315241d/2cc3aa54')
+  })
+
+  it('shows the whole note and the unit of a translator note', async () => {
+    const el = await mount(route('notes'))
+    expect(cards(el)).toHaveLength(1)
+    const card = el.querySelector('article.rv-card')!
+    expect(card.querySelector('.rv-note-text')?.textContent).toContain('保留 <> 角括號')
+    expect(card.querySelector('.rv-units a')?.getAttribute('href')).toBe(fileHref('StoryData/S9999.json', '/dataList/2/content'))
+    expect(card.textContent).toContain('2026-11-01')
+  })
+
+  it('fills the text filter from a shortcut', async () => {
+    const el = await mount(route('notes'))
+    const buttons = [...el.querySelectorAll<HTMLButtonElement>('.rv-quick button')]
+    expect(buttons.map((b) => b.textContent)).toEqual(['新詞', '諧音', '俗語', '沿用', '標籤'])
+    act(() => buttons[4]!.click())
+    expect(location.hash).toBe(reviewHref('notes', { q: '標籤' }))
+  })
+
+  it('shows the sections of the to-do list, each item linked to its unit', async () => {
+    const el = await mount(route('todo'))
+    expect(el.textContent).toContain('新說話者、新欄位、新檔案族群與過期的調整列在「規則建議」分頁，可以在那裡確認。')
+    expect(el.querySelector('.rv-section h2')?.textContent).toContain('needs_review')
+    const a = el.querySelector<HTMLAnchorElement>('.rv-todo a')
+    expect(a?.getAttribute('href')).toBe(fileHref('StoryData/S9999.json', '/dataList/2/content'))
+  })
+
+  it('says so when the to-do list is empty', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/todo.json': { sections: [] } })))
+    clearDataCache()
+    const el = await mount(route('todo'))
+    expect(el.textContent).toContain('這次建置沒有待辦項目')
+  })
+
+  it('says so when the item of the id is not there', async () => {
+    const el = await mount(route('suggestions', { id: 'inconsistent/nothing/1' }))
+    expect(el.querySelector('.rv-missing')?.textContent).toContain('inconsistent/nothing/1')
+  })
+
+  describe('long lists', () => {
+    function manyNotes(n: number): NoteItem[] {
+      const base = fixture<{ items: NoteItem[] }>('review/notes.json').items[0]!
+      return Array.from({ length: n }, (_, i) => ({ ...base, id: `note/F.json|/dataList/${i}/content/${String(i).padStart(8, '0')}`, key: `F.json|/dataList/${i}/content`, pending: 0 }))
+    }
+
+    it('long lists render 100 at a time', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/notes.json': { items: manyNotes(250) } })))
+      clearDataCache()
+      const el = await mount(route('notes'))
+      expect(cards(el)).toHaveLength(100)
+      const more = el.querySelector<HTMLButtonElement>('.rv-more')!
+      expect(more.textContent).toBe('再顯示 100 項（共 250）')
+      act(() => more.click())
+      expect(cards(el)).toHaveLength(200)
+      act(() => el.querySelector<HTMLButtonElement>('.rv-more')!.click())
+      expect(cards(el)).toHaveLength(250)
+      expect(el.querySelector('.rv-more')).toBeNull()
+    })
+
+    it('renders and highlights the item of the id even past the first 100', async () => {
+      const items = manyNotes(250)
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/notes.json': { items } })))
+      clearDataCache()
+      const id = items[179]!.id
+      const el = await mount(route('notes', { id }))
+      expect(cards(el).length).toBeGreaterThanOrEqual(180)
+      const target = el.querySelector('article.rv-card.is-target')
+      expect(target?.getAttribute('data-id')).toBe(id)
+    })
+  })
+})

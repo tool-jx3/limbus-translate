@@ -81,11 +81,12 @@ describe('App', () => {
     expect(link?.querySelector('.review-count')?.textContent).toBe(String(total))
   })
 
-  it('hands the review route to a placeholder until the review page exists', async () => {
+  it('shows the review page on the review route', async () => {
     location.hash = '#/r/notes'
     const el = mount()
     await loaded(el)
-    expect(el.querySelector('.review-placeholder')?.getAttribute('data-tab')).toBe('notes')
+    await vi.waitFor(() => expect(el.querySelector('.review .rv-body')).not.toBeNull())
+    expect(el.querySelector('.review [role=tab][aria-selected=true]')?.textContent).toContain('譯者註記')
     expect(el.querySelector('.home')).toBeNull()
   })
 
