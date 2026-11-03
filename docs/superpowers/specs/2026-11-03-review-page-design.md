@@ -197,10 +197,10 @@ lct accept --tidy
 
 ```json
 {"sections": [{"kind": "needs_review", "title": "…", "hint": "…",
-               "items": [{"text": "…", "key": "…"}, {"text": "…", "file": "…"}, {"text": "…", "speaker": "…"}]}]}
+               "items": [{"text": "…", "key": "…"}, {"text": "…"}]}]}
 ```
 
-`key`、`file`、`speaker` 只在項目涉及時出現（§5.4）。
+`key` 只在項目涉及單位時出現（§5.4）。
 
 ### 7.7 大小
 
