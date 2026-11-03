@@ -32,6 +32,9 @@ type Inputs struct {
 	// Records are the stored translations, by unit key.
 	Records map[string]store.Record
 	Rules   *rules.Rules
+	// Review is what BuildReview needs besides the packs; BuildFile and the
+	// export of the files do not look at it.
+	Review *ReviewInputs
 }
 
 // Unit is one string of a file in the four languages. JP and EN are nil, and
@@ -85,6 +88,13 @@ type FileSummary struct {
 // built pack has the record's string, and is a stand-in otherwise (no record,
 // or EN or KR built in its place); its flags are those of its record, if any.
 func BuildFile(in Inputs, path string) (File, FileSummary, error) {
+	return buildFile(in, path, nil)
+}
+
+// buildFile is BuildFile; visit, if set, is called for each unit with the
+// built unit, the KR unit and the aligned EN and JP strings (nil where there is
+// none).
+func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp *align.LangAligned)) (File, FileSummary, error) {
 	krDoc, err := in.KR.Doc(path)
 	if err != nil {
 		return File{}, FileSummary{}, err
@@ -132,6 +142,9 @@ func BuildFile(in Inputs, path string) (File, FileSummary, error) {
 		}
 		sum.Origins[u.O]++
 		file.Units = append(file.Units, u)
+		if visit != nil {
+			visit(u, ku, en, jp)
+		}
 	}
 	sum.Units = len(file.Units)
 	sum.Label = storyLabel(path, file.Units)
