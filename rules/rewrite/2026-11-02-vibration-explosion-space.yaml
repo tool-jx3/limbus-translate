@@ -1,0 +1,9 @@
+# lct suggest：inconsistent/ally/desc/64cc4899、inconsistent/enemy/desc/64cc4899。
+# KR `[OnSucceedAttack] 진동 폭발`，多數（26＋15）寫「使目標震顫引爆 」，名稱後的
+# 空格是「名稱＋空格」的格式（guides/base.md「「名稱＋空格」的空格是格式的一部分」）；
+# 少數（2＋1）沒有這個空格，補上。
+reason: '「震顫引爆」後面保留名稱＋空格的空格'
+files: ['Skills*.json']
+pattern: '^(\[OnSucceedAttack\] 使目標震顫引爆)$'
+replace: '${1} '
+kr_pattern: '^\[OnSucceedAttack\] 진동 폭발$'
