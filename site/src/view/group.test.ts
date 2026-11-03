@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { defaultSettings, type Settings } from '../settings'
 import type { Origin, Unit } from '../types'
-import { groupEntries, isScriptFile, passages, visibleUnits } from './group'
+import { groupEntries, isScriptFile, passagePointers, passages, visibleUnits } from './group'
 
 function unit(f: string, i: number, kr: string, o: Origin = 'paratranz'): Unit {
   const p = i < 0 ? `/${f}` : `/dataList/${i}/${f}`
@@ -170,6 +170,47 @@ describe('passages', () => {
     const units = [unit('place', 0, 'A'), unit('content', 0, 'a'), unit('place', 1, 'B'), unit('content', 1, 'b', 'claude'), unit('place', 2, 'A'), unit('content', 2, 'c')]
     const ps = passages(groupEntries(units), s)
     expect(ps.map((p) => p.divider?.kr)).toEqual(['A', undefined])
+  })
+
+  it('keeps a repeated place on its passage, so that a link to it finds the passage', () => {
+    const units = [unit('place', 0, 'A'), unit('content', 0, 'a'), unit('place', 1, 'A'), unit('content', 1, 'b')]
+    const ps = passages(groupEntries(units), defaultSettings())
+    expect(ps.map((p) => p.divider?.kr)).toEqual(['A', undefined])
+    expect(ps[1]?.place?.p).toBe('/dataList/1/place')
+    expect(passagePointers(ps[1] as (typeof ps)[number])).toContain('/dataList/1/place')
+    // the divider is drawn from the unit that is the divider, not twice
+    expect(ps[0]?.place).toBeUndefined()
+    expect(passagePointers(ps[0] as (typeof ps)[number]).filter((p) => p === '/dataList/0/place')).toHaveLength(1)
+  })
+
+  it('keeps the place of a passage whose divider was dropped as a copy of the one shown', () => {
+    const s = settings((s) => {
+      s.origins.claude = false
+    })
+    const units = [unit('place', 0, 'A'), unit('content', 0, 'a'), unit('place', 1, 'B'), unit('content', 1, 'b', 'claude'), unit('place', 2, 'A'), unit('content', 2, 'c')]
+    const ps = passages(groupEntries(units), s)
+    expect(ps.map((p) => p.divider?.kr)).toEqual(['A', undefined])
+    expect(ps[1]?.place?.p).toBe('/dataList/2/place')
+    expect(passagePointers(ps[1] as (typeof ps)[number])).toContain('/dataList/2/place')
+  })
+
+  it('shows a passage that is only a repeated place, since there is nothing else it could show', () => {
+    const units = [unit('place', 0, 'A'), unit('content', 0, 'a'), unit('place', 1, 'A'), unit('content', 2, 'c')]
+    const ps = passages(groupEntries(units), defaultSettings())
+    expect(ps).toHaveLength(3)
+    expect(ps[1]?.divider?.p).toBe('/dataList/1/place')
+    expect(ps[1]?.place).toBeUndefined()
+    expect(ps[1]?.units).toEqual([])
+  })
+
+  it('still hides a repeated place together with the passage whose lines are filtered out', () => {
+    const s = settings((s) => {
+      s.origins.claude = false
+    })
+    const units = [unit('place', 0, 'A'), unit('content', 0, 'a'), unit('place', 1, 'A'), unit('content', 1, 'b', 'claude')]
+    const ps = passages(groupEntries(units), s)
+    expect(ps).toHaveLength(1)
+    expect(ps.flatMap(passagePointers)).not.toContain('/dataList/1/place')
   })
 
   it('keeps a passage that has no lines in the file at all, if its speaker is shown', () => {

@@ -67,15 +67,17 @@ export type Passage = {
   key: string
   /** The place divider to show in front of the passage. */
   divider?: Unit
+  /** The place of the entry when no divider is drawn for it (it is the place that is already shown): kept so that the passage still owns it. */
+  place?: Unit
   teller?: Unit
   title?: Unit
   /** The lines. */
   units: Unit[]
 }
 
-/** The pointers of the units a passage shows. */
+/** The pointers of the units a passage owns: those it draws, and its place if that is not drawn. */
 export function passagePointers(p: Passage): string[] {
-  return [p.divider, p.teller, p.title, ...p.units].flatMap((u) => (u ? [u.p] : []))
+  return [p.divider, p.place, p.teller, p.title, ...p.units].flatMap((u) => (u ? [u.p] : []))
 }
 
 /**
@@ -89,18 +91,22 @@ export function passages(entries: Entry[], s: Settings): Passage[] {
   let pending: Unit | undefined // a place that has begun and has not been shown yet
   let shownPlace: string | undefined // the KR of the last divider shown
   for (const e of entries) {
-    const place = shown(e.place)
-    if (place !== undefined && e.placeChanged) pending = place
+    const own = shown(e.place)
+    if (own !== undefined && e.placeChanged) pending = own
     const units = visibleUnits(e.units, s)
     if (e.units.length > 0 && units.length === 0) continue
     const teller = shown(e.teller)
     const title = shown(e.title)
     const first = e.units[0] ?? e.teller ?? e.title ?? e.place
-    if (first === undefined || (units.length === 0 && teller === undefined && title === undefined && pending === undefined)) continue
-    const divider = pending !== undefined && pending.kr !== shownPlace ? pending : undefined
-    if (pending !== undefined) shownPlace = pending.kr
+    if (first === undefined) continue
+    let divider = pending !== undefined && pending.kr !== shownPlace ? pending : undefined
     pending = undefined
-    out.push({ key: first.p, divider, teller, title, units })
+    // A passage that is only a place has nothing else to show: it shows the place, repeated or not.
+    const bare = units.length === 0 && teller === undefined && title === undefined
+    if (bare && divider === undefined && own !== undefined) divider = own
+    if (bare && divider === undefined) continue
+    if (divider !== undefined) shownPlace = divider.kr
+    out.push({ key: first.p, divider, place: own !== undefined && own !== divider ? own : undefined, teller, title, units })
   }
   return out
 }

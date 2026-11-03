@@ -52,8 +52,10 @@ export function ScriptView({ passages, langs, raw, ptr, start, before, after, li
         {passages.map((p, k) => {
           const speaker = [p.teller, p.title].filter((u): u is Unit => u !== undefined)
           const common = { langs, raw, ptr, onCopy }
+          // A place that is not drawn as a divider is the passage's own: a link to it marks the passage.
+          const own = p.place !== undefined && p.place.p === ptr
           return (
-            <article key={p.key} class="passage" data-row={start + k} data-key={p.key} tabIndex={-1}>
+            <article key={p.key} class={own ? 'passage is-target' : 'passage'} data-row={start + k} data-key={p.key} tabIndex={-1}>
               {p.divider && <Line kind="place" units={[p.divider]} {...common} />}
               {speaker.length > 0 && <Line kind="speaker" units={speaker} {...common} />}
               {p.units.map((u) => (

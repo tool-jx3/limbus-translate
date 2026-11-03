@@ -6,7 +6,7 @@ import { clearDataCache } from '../data'
 import { fileHref } from '../route'
 import { defaultSettings, type Settings } from '../settings'
 import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
-import type { FileData, Index, Lang, Origin } from '../types'
+import type { FileData, Index, Lang, Origin, Unit } from '../types'
 import { FileView } from './FileView'
 
 const index = fixture<Index>('index.json')
@@ -398,6 +398,71 @@ describe('FileView: deep link', () => {
     expect(row(el, ptr)?.classList.contains('is-target')).toBe(true)
     expect(el.querySelector('.target-note')).toBeNull()
     await vi.waitFor(() => expect(scrollIntoView).toHaveBeenCalled())
+  })
+})
+
+describe('FileView: deep link to a place that is not drawn as a divider', () => {
+  const unit = (p: string, f: string, i: number, kr: string): Unit => ({ p, f, i, kr, jp: kr, en: kr, zh: `zh:${kr}`, o: 'paratranz' })
+  const rep: FileData = {
+    path: 'StoryData/Rep.json',
+    family: 'story-main',
+    units: [
+      unit('/dataList/0/place', 'place', 0, 'A'),
+      unit('/dataList/0/content', 'content', 0, 'a'),
+      unit('/dataList/1/place', 'place', 1, 'A'), // the same place again: no divider
+      unit('/dataList/1/content', 'content', 1, 'b'),
+      unit('/dataList/2/place', 'place', 2, 'A'), // a passage that is only the place
+      unit('/dataList/3/content', 'content', 3, 'c'),
+    ],
+  }
+  const repIndex: Index = {
+    families: [{ id: 'story-main', files: [0] }],
+    files: [{ path: rep.path, family: 'story-main', label: '', speakers: [], units: 6, origins: { paratranz: 6 }, missing: { en: 0, jp: 0 } }],
+  }
+
+  beforeEach(() => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'files/StoryData/Rep.json': rep })))
+  })
+
+  it('marks the passage that owns the repeated place, scrolls to it, and does not say a filter hides it', async () => {
+    const el = await open(rep.path, { index: repIndex, ptr: '/dataList/1/place' })
+    expect(el.querySelector('.target-note')).toBeNull()
+    const marked = [...el.querySelectorAll('.is-target')]
+    expect(marked).toHaveLength(1)
+    expect(marked[0]?.classList.contains('passage')).toBe(true)
+    expect(marked[0]?.querySelector('[data-ptr="/dataList/1/content"]')).not.toBeNull()
+    // there is no divider line for it
+    expect(el.querySelectorAll('.line-place')).toHaveLength(2) // the first place, and the passage that is only a place
+    await vi.waitFor(() => expect(document.activeElement).toBe(marked[0]))
+    expect(scrollIntoView.mock.contexts[0]).toBe(marked[0])
+  })
+
+  it('marks the line of a passage that is only a repeated place', async () => {
+    const el = await open(rep.path, { index: repIndex, ptr: '/dataList/2/place' })
+    expect(el.querySelector('.target-note')).toBeNull()
+    const marked = [...el.querySelectorAll('.is-target')]
+    expect(marked).toHaveLength(1)
+    expect(marked[0]?.classList.contains('line-place')).toBe(true)
+    expect(marked[0]?.getAttribute('data-ptr')).toBe('/dataList/2/place')
+  })
+
+  it('goes on from it with j to the next passage', async () => {
+    const el = await open(rep.path, { index: repIndex, ptr: '/dataList/1/place' })
+    await vi.waitFor(() => expect(document.activeElement?.classList.contains('passage')).toBe(true))
+    press('j')
+    expect(document.activeElement?.getAttribute('data-row')).toBe('2')
+    expect(el.querySelector('.target-note')).toBeNull()
+  })
+
+  it('still says the filter hides a repeated place whose passage is hidden', async () => {
+    // the line of passage 1 is claude: with claude off the passage, and the place in it, go
+    const claudeRep: FileData = { ...rep, units: rep.units.map((u) => (u.p === '/dataList/1/content' ? { ...u, o: 'claude' as const } : u)) }
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'files/StoryData/Rep.json': claudeRep })))
+    const s = defaultSettings()
+    s.origins.claude = false
+    const el = await open(rep.path, { index: repIndex, ptr: '/dataList/1/place', settings: s })
+    expect(el.querySelector('.target-note')?.textContent).toContain('隱藏')
+    expect(el.querySelector('.is-target')).toBeNull()
   })
 })
 
