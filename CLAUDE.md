@@ -6,6 +6,7 @@
 
 - `go build -o bin/lct ./cmd/lct`：產生 CLI `bin/lct`（`bin/` 不進版控）
 - `go vet ./... && go test ./...`：提交前必跑
+- `cd site && npm ci && npm test && npm run build`：網站（`site/`，Preact + Vite）的測試與建置；動到 `site/` 時提交前要跑，`ci.yml` 另跑 `npm run typecheck`。網站資料（`site/public/data/`）由 `pages.yml` 以 `lct site` 產生並部署，不進版控
 - 所有 `lct` 指令支援 `--json`；exit code：0 成功、1 有發現或使用者錯誤、2 系統錯誤
 
 ## 規則與狀態

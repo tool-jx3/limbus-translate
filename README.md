@@ -20,6 +20,18 @@
 
 Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內容和上一個 Release 不同時才建立（見「GitHub Actions 設定」）。人要改什麼，都經由 `main`（見「人工介入」）。CI 對 `main` 不直接 push，只開規則 PR 讓人審核（見「收到規則 PR 怎麼處理」）。
 
+## 網站
+
+譯文對照網站：https://tool-jx3.github.io/limbus-translate/
+
+網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站加了 noindex（`<meta name="robots">` 與 `robots.txt`），不收集使用者資料，也不使用外部 CDN。KR／JP／EN 原文著作權屬 Project Moon，本站非商業、供翻譯校對使用。
+
+`pages.yml` 在 `update.yml` 或 `rebuild.yml` 於 `main` 上成功結束後執行（也可以手動執行）：取得 `raw`、`tw` 與 tag 並建 worktree → `go build` 出 `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → 部署 `site/dist`。`lct site` 失敗時（例如 `raw` 與 `tw` 不是同一個 snapshot）整個執行失敗，不會用缺的或舊的資料部署，網站維持上一次部署的樣子；`TestWorkflowContract` 要求 `pages.yml` 的任何一步都不能被略過或忽略失敗。
+
+### 一次性設定
+
+網址是 `https://<owner>.github.io/<repo>/`，上面是這個 repo 的。fork 或搬到別的 repo 時，部署前要先做一次：到 Settings → Pages，把 Source 選為「GitHub Actions」。沒有這項設定，`pages.yml` 設定 Pages 的那一步會失敗，網站不會部署。`pages.yml` 不使用 secrets 或 variables。手動執行時請選 `main` 分支。
+
 ## GitHub Actions 設定
 
 fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並確認 workflow 有寫入權限。每次建置，`tw` 都照常 commit 與推送，但語言包沒變就不發 Release（見下面「細節」）。
@@ -39,7 +51,7 @@ fork 或搬到別的 repo 時，要設定下面的 secrets 與 variables，並�
 
 ### Workflow permissions
 
-Settings → Actions → General → Workflow permissions 選「Read and write permissions」。各 workflow 也自己宣告了所需的權限：`contents: write`（推 `raw`、`tw`、tag 與建立 Release）與 `issues: write`（開審核 Issue）；`rules-proposal.yml` 另需 `pull-requests: write`（開規則 PR）與 `id-token: write`（action 向 Claude GitHub App 換 token）。
+Settings → Actions → General → Workflow permissions 選「Read and write permissions」。各 workflow 也自己宣告了所需的權限：`contents: write`（推 `raw`、`tw`、tag 與建立 Release）與 `issues: write`（開審核 Issue）；`rules-proposal.yml` 另需 `pull-requests: write`（開規則 PR）與 `id-token: write`（action 向 Claude GitHub App 換 token）。`pages.yml` 只讀 repo，需要的是 `contents: read`、`pages: write` 與 `id-token: write`（部署到 Pages）。
 
 ### 各 workflow 何時執行
 
@@ -48,9 +60,10 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 | `update.yml` | 每週四 12:00（UTC+8）；收到 `repository_dispatch`（類型 `limbus_update`）；手動 | 向狀態 API 查最新的 token。沒有新 token、沒有待譯、沒有要套用的重翻或改寫檔，`tw` 上次建置用的就是目前的 `raw`，也沒有還欠著的 Release、沒有只保存了進度卻還沒建置的 commit，就結束。否則：下載並 snapshot 到 `raw` → plan → 翻譯 → 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 有需要人處理的項目時開審核 Issue |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**` 或 `lct.yaml`；手動 | 不查狀態 API，用目前的 `raw` 重做：plan → 翻譯（規則改動後新增的待譯）→ 把翻譯進度推到 `tw` → build → 推 `tw` → 語言包有變才建立 Release → 審核 Issue |
 | `rules-proposal.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 選規則 PR 的分支（有開著的規則 PR 就用它的，沒有就用 `rules-proposal/<日期>`）→ `bin/lct suggest` 數出還沒在任何規則 PR、也沒被不採用的建議，沒有就結束 → 有的話，`RULES_REVIEW_IN_CI` 是 `true` 才以 `anthropics/claude-code-action@v1` 執行 `/rules-review` skill（否則只在記錄留下待處理的數量，由人在本機執行），修改 `guides/`、`glossary/`、`rules/`，開規則 PR 或更新開著的那個 → 確認 PR 存在，把網址寫在 summary |
-| `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint`。PR 改到 `guides/`、`glossary/` 或 `rules/` 時另外執行 `bin/lct impact`，把影響評估寫在該次執行的 summary（見「收到規則 PR 怎麼處理」） |
+| `pages.yml` | `update.yml` 或 `rebuild.yml` 在 `main` 上成功結束後；手動（沒有輸入） | 取得 `raw`、`tw` 與 tag 並建 worktree → build `lct` → `bin/lct site --out site/public/data` 輸出網站資料 → 在 `site/` 執行 `npm ci`、`npm run build` → `actions/configure-pages`、`actions/upload-pages-artifact`（`site/dist`）、`actions/deploy-pages`。任何一步失敗，整個執行就失敗，不部署。網址與要先做的設定見「網站」 |
+| `ci.yml` | 每次 push 與 PR | `go vet`、`go test`、`lct rules lint`。PR 改到 `guides/`、`glossary/` 或 `rules/` 時另外執行 `bin/lct impact`，把影響評估寫在該次執行的 summary（見「收到規則 PR 怎麼處理」）。另有 `site` job：在 `site/` 執行 `npm ci`、`npm run typecheck`、`npm test`、`npm run build` |
 
-`update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 在它們成功結束後才執行，失敗或被取消的不執行，其他分支上的執行也不算。細節：
+`update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 與 `pages.yml` 在它們成功結束後才執行，失敗或被取消的不執行，其他分支上的執行也不算。細節：
 
 - 翻譯最多進行 5 小時。每一輪執行最多 100 個回合，用完回合是正常的結束，接著開下一輪；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
 - 翻譯一結束（包括失敗、被取消或逾時），已翻的內容馬上 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit）。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它後面。
@@ -61,7 +74,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 - Claude Code CLI 在單獨的一個步驟安裝，那一步沒有 `ANTHROPIC_API_KEY`；key 只在執行 `lct translate` 的那一步。安裝失敗時不翻譯，照常 build 與發布，審核 Issue 列出「翻譯沒有執行」與原因。執行時設定 `DISABLE_AUTOUPDATER=1`，CLI 不會在執行中更新自己。
 - 語言包沒變就不發 Release：只有語言包的內容和最新一個 `zh-TW-*` Release 不同時才建立。比較這次的 `tw` commit 與該 Release 的 `LimbusCompany_Data/` 檔案樹（git blob），不含 `Info/version.json`（它記錄規則 commit、建置時間、模型與花費，每次建置都不同）。相同就不建立，`tw` 照常 commit 與推送，該次執行的 summary 會寫「語言包與 `<tag>` 相同，這次不建立 Release」。
 - 審核 Issue 的標題是「審核：YYYY-MM-DD 更新」（日期取 raw tag 的日期）；沒有需要處理的項目時不開。同一個 raw tag 重跑時，內容會留言在還開著的同名 Issue，不另開新的。完整報表在該次執行的 summary。本機的 `bin/lct review`（或 `review` skill）從 `.work/tw` 印出同樣的項目。
-- 所有會寫入 `raw`、`tw` 的執行共用 concurrency 群組 `lct-state`，一次只跑一個。GitHub 的群組最多一個執行中、一個等待中，新的等待會取代舊的等待；如果某次被取代，到 Actions 頁面手動執行一次即可。
+- 所有會寫入 `raw`、`tw` 的執行共用 concurrency 群組 `lct-state`，一次只跑一個。GitHub 的群組最多一個執行中、一個等待中，新的等待會取代舊的等待；如果某次被取代，到 Actions 頁面手動執行一次即可。`pages.yml` 只讀 `raw`、`tw`，用自己的群組 `pages`（`cancel-in-progress: false`），一次部署一個；每次都用當時的分支建置，被取代的那次不會漏掉什麼。
 - GitHub 只從預設分支執行排程，公開 repo 連續 60 天沒有活動會停用排程（到 Actions 頁面重新啟用）。排程在整點附近可能延遲。
 
 ### 規則 PR 要先設定的事（`rules-proposal.yml`）
@@ -143,7 +156,8 @@ git worktree add .work/tw tw
 
 之後 `bin/lct search`、`bin/lct pending --count`、`bin/lct build` 等指令（`bin/lct help` 列出全部，都支援 `--json`）就能在本機執行。`.work/`、`bin/`、`out/` 不進版控。
 
-- 提交前執行 `go vet ./... && go test ./...`。
+- 提交前執行 `go vet ./... && go test ./...`；動到 `site/` 時另外執行 `cd site && npm ci && npm run typecheck && npm test && npm run build`（Node 版本見 `site/.nvmrc`）。
+- 本機預覽網站：先 `bin/lct site --out site/public/data` 輸出資料（要有 `.work/raw` 與 `.work/tw`），再 `cd site && npm run build && npm run preview`。`site/public/data/`、`site/dist/`、`site/node_modules/` 不進版控。
 - 用 Claude Code 開啟本 repo，可以使用 `.claude/skills/` 的 skill：`translate-pending`（翻譯待譯清單）、`adjust`（人工調整）、`weekly-update`（在本機演練每週更新，結果只留在 `out/`）、`rules-review`（把 `lct suggest` 的建議整理成規則修改）、`review`（依 `lct review` 帶你逐項處理審核 Issue 的項目）、`term-decision`（逐個決定詞彙表的候選條目）。模型由環境變數 `LCT_MODEL` 提供。
 - 本機的 `.work/` 與 CI 的不是同一份。`raw`、`tw` 分支與 Release 只由 CI 寫入，不要 push；改動一律走 `main`。
 

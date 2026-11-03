@@ -1,0 +1,89 @@
+name: pages
+
+# After an update or a rebuild that ended green, builds the static viewer of
+# the translation (site/, spec 2026-11-03-pages-viewer-design.md) from the raw
+# and tw branches as they are pushed, and deploys it to GitHub Pages; it also
+# runs by hand. The data of the site is made here and is in no branch. Before
+# the first deployment, Settings > Pages > Source must be "GitHub Actions"
+# (README); without it the step that configures Pages fails.
+on:
+  workflow_run:
+    workflows: [update, rebuild]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # A run of update or rebuild starts this workflow whatever it ended in, on
+    # whatever branch it ran; only a green one has a pack to show, and only one
+    # of main: a run dispatched on another branch, or one for a pull request,
+    # built with rules that are not those of main. Same as rules-proposal.yml.
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.event != 'pull_request')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    # One deployment at a time: the one that runs is never cancelled, but GitHub
+    # keeps one waiting run only, and a newer one replaces it. Every run builds
+    # from the branches as they are then.
+    concurrency: { group: pages, cancel-in-progress: false }
+    permissions: { contents: read, pages: write, id-token: write }
+    environment: github-pages
+    # A script stops at the first command that fails (bash -e), and so does the
+    # run: no step has an if or continue-on-error, so nothing is deployed when
+    # one failed.
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # The whole history, every branch and every tag: the release the site names
+      # is the newest Release tag (zh-TW-YYYYMMDD.N) on the commit of tw, and
+      # lct site reads it from the tags here. The token of the checkout is not
+      # kept in .git/config: npm ci runs the install scripts of the packages of
+      # the site.
+      - name: Check out main with its history and tags
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # lct site reads the raw and tw worktrees.
+      - name: Fetch the raw and tw branches, add their worktrees
+        run: |
+          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw'
+          git worktree add .work/raw raw
+          git worktree add .work/tw tw
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Build lct
+        run: go build -o bin/lct ./cmd/lct
+
+      # The whole script is the command, and nothing follows it: lct site exits 1
+      # when it refuses (the worktrees are of different snapshots, the folder
+      # holds files that git tracks) and 2 on a system error, and either ends the
+      # run before the site is built with data that is missing or stale.
+      - name: Write the data of the site
+        run: bin/lct site --out site/public/data --json
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: site/.nvmrc
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install the packages of the site
+        run: npm ci
+        working-directory: site
+
+      - name: Build the site
+        run: npm run build
+        working-directory: site
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/dist
+
+      - uses: actions/deploy-pages@v5

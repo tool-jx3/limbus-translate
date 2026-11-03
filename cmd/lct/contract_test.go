@@ -1206,13 +1206,17 @@ const (
 )
 
 // workflowNames are the workflows this repo must have.
-var workflowNames = []string{"ci.yml", "pipeline.yml", "rebuild.yml", "rules-proposal.yml", "update.yml"}
+var workflowNames = []string{"ci.yml", "pages.yml", "pipeline.yml", "rebuild.yml", "rules-proposal.yml", "update.yml"}
 
 var (
 	// workflowActions are the only actions a workflow may use, pinned to the
 	// major version. The action of Anthropic runs the rules-review skill in
-	// rules-proposal.yml and nowhere else.
-	workflowActions = []string{"actions/checkout@v5", "actions/setup-go@v6", "anthropics/claude-code-action@v1"}
+	// rules-proposal.yml and nowhere else; the actions of Node and Pages are
+	// those of ci.yml (setup-node) and pages.yml (see pagesActions).
+	workflowActions = []string{
+		"actions/checkout@v5", "actions/setup-go@v6", "anthropics/claude-code-action@v1",
+		"actions/setup-node@v7", "actions/configure-pages@v6", "actions/upload-pages-artifact@v5", "actions/deploy-pages@v5",
+	}
 	// workflowRunner is the runner of every job that has steps.
 	workflowRunner = "ubuntu-24.04"
 	// workflowTitleRe matches the value of a --title flag.
@@ -1387,23 +1391,33 @@ var pipelineOrder = [][2]string{
 
 // workflowStep is a step of a job, as far as the contract reads it.
 type workflowStep struct {
-	ID   string            `yaml:"id"`
-	If   string            `yaml:"if"`
-	Uses string            `yaml:"uses"`
-	Run  string            `yaml:"run"`
-	With map[string]any    `yaml:"with"`
-	Env  map[string]string `yaml:"env"`
+	ID               string            `yaml:"id"`
+	If               string            `yaml:"if"`
+	Uses             string            `yaml:"uses"`
+	Run              string            `yaml:"run"`
+	Shell            string            `yaml:"shell"`
+	WorkingDirectory string            `yaml:"working-directory"`
+	ContinueOnError  any               `yaml:"continue-on-error"`
+	With             map[string]any    `yaml:"with"`
+	Env              map[string]string `yaml:"env"`
 }
 
 // workflowJob is a job: one with steps, or one that calls a workflow.
 type workflowJob struct {
-	If             string `yaml:"if"`
-	RunsOn         string `yaml:"runs-on"`
-	TimeoutMinutes int    `yaml:"timeout-minutes"`
-	Concurrency    struct {
+	If              string `yaml:"if"`
+	RunsOn          string `yaml:"runs-on"`
+	TimeoutMinutes  int    `yaml:"timeout-minutes"`
+	ContinueOnError any    `yaml:"continue-on-error"`
+	Environment     any    `yaml:"environment"` // a name, or a map with a name and a url
+	Concurrency     struct {
 		Group            string `yaml:"group"`
 		CancelInProgress bool   `yaml:"cancel-in-progress"`
 	} `yaml:"concurrency"`
+	Defaults struct {
+		Run struct {
+			Shell string `yaml:"shell"`
+		} `yaml:"run"`
+	} `yaml:"defaults"`
 	Permissions map[string]string `yaml:"permissions"`
 	Uses        string            `yaml:"uses"`
 	With        map[string]any    `yaml:"with"`
@@ -1989,7 +2003,8 @@ var ciImpactOrder = [][2]string{
 // held it would run what a branch name makes of it), finds out whether the
 // pull request changes the rules, and only then fetches raw and tw, makes their
 // worktrees, runs lct impact against the base branch and shows the result on
-// the summary page, after lct is built.
+// the summary page, after lct is built. A second job, site, tests and builds
+// the viewer (checkCISiteJob).
 func checkCIWorkflow(file, content string) []string {
 	w, problems := parseWorkflow(file, content)
 	if w == nil {
@@ -2015,6 +2030,7 @@ func checkCIWorkflow(file, content string) []string {
 	if !deep {
 		add("no actions/checkout step with fetch-depth: 0: the base branch of a pull request and its merge base are not there to compare with")
 	}
+	problems = append(problems, checkCISiteJob(file, w)...)
 	for _, s := range steps {
 		if strings.Contains(s.Run, "base_ref") {
 			add("a script names base_ref: pass it through env (BASE_REF: ${{ github.base_ref }}): %q", firstLine(s.Run))
@@ -2539,6 +2555,335 @@ func checkRulesProposalWorkflow(file, content string, skillTools []string) []str
 	return append(problems, checkJQKeys(file, content, rulesProposalJSONInputs(), rulesProposalJSONRequired)...)
 }
 
+// continues reports whether a continue-on-error value lets the run go on after
+// the job or the step failed: anything but false, an expression included.
+func continues(v any) bool { return v != nil && fmt.Sprint(v) != "false" }
+
+// stepLabel names a step in a message.
+func stepLabel(s workflowStep) string { return cmp.Or(s.Uses, firstLine(s.Run)) }
+
+const (
+	// siteDir is the folder of the viewer; its npm steps run there.
+	siteDir = "site"
+	// siteNodeAction is the setup-node of ci.yml and pages.yml.
+	siteNodeAction = "actions/setup-node@v7"
+)
+
+// siteNodeWith is the with of the setup-node step of ci.yml and pages.yml: the
+// Node version of .nvmrc and the cache of npm, keyed by the lock file. No
+// other key: a node-version would take the place of the .nvmrc.
+var siteNodeWith = map[string]string{
+	"node-version-file": "site/.nvmrc", "cache": "npm", "cache-dependency-path": "site/package-lock.json",
+}
+
+// checkSetupNode reports what is wrong with the setup-node step s.
+func checkSetupNode(s workflowStep) []string {
+	var problems []string
+	if s.Uses != siteNodeAction {
+		problems = append(problems, fmt.Sprintf("the setup-node step uses %q, want %s", s.Uses, siteNodeAction))
+	}
+	for _, key := range slices.Sorted(maps.Keys(siteNodeWith)) {
+		if got, ok := s.With[key]; !ok || fmt.Sprint(got) != siteNodeWith[key] {
+			problems = append(problems, fmt.Sprintf("the setup-node step has %s = %v, want %s", key, s.With[key], siteNodeWith[key]))
+		}
+	}
+	for _, key := range slices.Sorted(maps.Keys(s.With)) {
+		if _, ok := siteNodeWith[key]; !ok {
+			problems = append(problems, fmt.Sprintf("the setup-node step has %s, which is not one of %s: the Node version is that of site/.nvmrc", key, strings.Join(slices.Sorted(maps.Keys(siteNodeWith)), ", ")))
+		}
+	}
+	return problems
+}
+
+// npmStep returns the index in steps of the step whose script is exactly the
+// npm command run, or -1.
+func npmStep(steps []workflowStep, run string) int {
+	return slices.IndexFunc(steps, func(s workflowStep) bool { return strings.TrimSpace(s.Run) == run })
+}
+
+// checkNpmStep reports the step that runs the npm command run when it is not
+// in the folder of the viewer.
+func checkNpmStep(steps []workflowStep, i int, run string) []string {
+	if i >= 0 && steps[i].WorkingDirectory != siteDir {
+		return []string{fmt.Sprintf("the step that runs %s has working-directory = %q, want %s: package.json is there", run, steps[i].WorkingDirectory, siteDir)}
+	}
+	return nil
+}
+
+// checkKeepsGoing reports the job and the steps of job that let the run go on
+// after a step failed: a continue-on-error, a step with an if (the if of the
+// job alone says when it runs), a shell that does not stop at the first
+// failure (only bash, whose -e the runner adds, is allowed).
+func checkKeepsGoing(job workflowJob) []string {
+	var problems []string
+	if continues(job.ContinueOnError) {
+		problems = append(problems, "the job has continue-on-error: its failure would not fail the run")
+	}
+	if job.Defaults.Run.Shell != "" && job.Defaults.Run.Shell != "bash" {
+		problems = append(problems, fmt.Sprintf("the job runs scripts with the shell %q, want bash, which stops at the first command that fails", job.Defaults.Run.Shell))
+	}
+	for _, s := range job.Steps {
+		if continues(s.ContinueOnError) {
+			problems = append(problems, fmt.Sprintf("the step %q has continue-on-error: a step that fails would not fail the run", stepLabel(s)))
+		}
+		if s.If != "" {
+			problems = append(problems, fmt.Sprintf("the step %q has an if (%s): a step that is skipped, or one that runs after a failure, lets the run go on with what is missing", stepLabel(s), s.If))
+		}
+		if s.Shell != "" && s.Shell != "bash" {
+			problems = append(problems, fmt.Sprintf("the step %q runs with the shell %q, want bash, which stops at the first command that fails", stepLabel(s), s.Shell))
+		}
+	}
+	return problems
+}
+
+// pagesPermissions are the permissions of the job of pages.yml: it reads the
+// repo, publishes the site to Pages (pages) and proves to the deployment who
+// it is with its OIDC token (id-token).
+var pagesPermissions = map[string]string{"contents": "read", "pages": "write", "id-token": "write"}
+
+// pagesActions are the only actions pages.yml uses, pinned to the major
+// version. None of them is the action of Anthropic: the site is made without a
+// model.
+var pagesActions = []string{
+	"actions/checkout@v5", "actions/setup-go@v6", siteNodeAction,
+	"actions/configure-pages@v6", "actions/upload-pages-artifact@v5", "actions/deploy-pages@v5",
+}
+
+const (
+	// pagesEnvironment is the environment the Pages deployment needs.
+	pagesEnvironment = "github-pages"
+	// pagesSiteCommand is the whole script of the step that writes the data of
+	// the site. Anything around it (|| true, a pipe, a second command) can hide
+	// that lct site failed, which exits 1 for a refusal and 2 for a system error.
+	pagesSiteCommand = "bin/lct site --out site/public/data --json"
+	// pagesArtifactPath is what the build makes and the artifact holds.
+	pagesArtifactPath = "site/dist"
+)
+
+// pagesSteps are the steps pages.yml must have, in the order of pagesOrder: by
+// key, what each does and how to find it.
+var pagesSteps = []struct {
+	key, what string
+	match     func(workflowStep) bool
+}{
+	{"checkout", "checks out main", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/checkout@") }},
+	{"fetch", "fetches raw and tw and makes their worktrees", func(s workflowStep) bool { return strings.Contains(s.Run, "git fetch origin") }},
+	{"setup-go", "sets up Go", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/setup-go@") }},
+	{"build", "builds lct", func(s workflowStep) bool { return strings.TrimSpace(s.Run) == "go build -o bin/lct ./cmd/lct" }},
+	{"site", "runs bin/lct site", func(s workflowStep) bool { return strings.Contains(s.Run, "bin/lct site") }},
+	{"setup-node", "sets up Node", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/setup-node@") }},
+	{"npm-ci", "runs npm ci", func(s workflowStep) bool { return strings.TrimSpace(s.Run) == "npm ci" }},
+	{"npm-build", "runs npm run build", func(s workflowStep) bool { return strings.TrimSpace(s.Run) == "npm run build" }},
+	{"configure", "configures Pages", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/configure-pages@") }},
+	{"upload", "uploads the artifact", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/upload-pages-artifact@") }},
+	{"deploy", "deploys the artifact", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/deploy-pages@") }},
+}
+
+// pagesOrder pairs the steps of pagesSteps that must run in that order: the
+// first before the second.
+var pagesOrder = []struct{ first, second, why string }{
+	{"checkout", "fetch", "there is no repo to fetch into"},
+	{"fetch", "site", "lct site reads the raw and tw worktrees"},
+	{"setup-go", "build", "the Go of go.mod is not there to build lct"},
+	{"build", "site", "lct is not built to write the data"},
+	{"site", "npm-build", "the build copies site/public into site/dist, and the data is not there yet: the site would be deployed without it"},
+	{"setup-node", "npm-ci", "the Node of site/.nvmrc is not there to install the packages"},
+	{"npm-ci", "npm-build", "the packages are not installed to build the site"},
+	{"npm-build", "upload", "the artifact would hold a site/dist the build did not make"},
+	{"configure", "upload", "Pages is not configured before the artifact is made"},
+	{"upload", "deploy", "there is no artifact to deploy"},
+}
+
+// pagesFetchMarkers are what the step of pages.yml that fetches must do, with
+// the reason.
+var pagesFetchMarkers = []struct{ text, why string }{
+	{"+refs/heads/raw:refs/remotes/origin/raw", "the raw branch is not fetched"},
+	{"+refs/heads/tw:refs/remotes/origin/tw", "the tw branch is not fetched"},
+	{"git worktree add .work/raw raw", "lct site reads the raw worktree and it is not made"},
+	{"git worktree add .work/tw tw", "lct site reads the tw worktree and it is not made"},
+}
+
+// checkPagesWorkflow checks pages.yml: it runs when update or rebuild finished
+// green on main, and by hand; one job at a time (a deployment that runs is
+// never cancelled), with the permissions of a Pages deployment and no more, in
+// the environment github-pages, and with no secret. Its steps check out main
+// with the whole history and the tags (the Release the site names is a tag of
+// tw), fetch raw and tw and make their worktrees, build lct, write the data of
+// the site, set up Node as ci.yml does, install the packages and build the
+// site, configure Pages, upload site/dist and deploy it, in that order. Nothing
+// lets the deploy go on when a step failed: lct site, which exits non-zero on
+// a refusal or a system error, is the whole script of its step, and no step
+// has an if or a continue-on-error.
+func checkPagesWorkflow(file, content string) []string {
+	w, problems := parseWorkflow(file, content)
+	if w == nil {
+		return problems
+	}
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
+
+	problems = append(problems, checkEvents(file, w, "workflow_dispatch", "workflow_run")...)
+	ev := w.events()
+	problems = append(problems, checkDispatchInputs(file, ev, map[string]string{})...)
+	if !slices.Equal(slices.Sorted(slices.Values(ev.WorkflowRun.Workflows)), []string{"rebuild", "update"}) {
+		add("workflow_run workflows = %v, want [update rebuild]: the workflows that build the pack", ev.WorkflowRun.Workflows)
+	}
+	if !slices.Equal(ev.WorkflowRun.Types, []string{"completed"}) {
+		add("workflow_run types = %v, want [completed]", ev.WorkflowRun.Types)
+	}
+	if strings.Contains(content, "secrets.") {
+		add("refers to a secret: the site is made from the branches of the repo and needs none")
+	}
+	if len(w.Jobs) != 1 {
+		add("has %d jobs, want one", len(w.Jobs))
+		return problems
+	}
+	job := w.Jobs[w.jobNames()[0]]
+	if job.If != rulesProposalIf {
+		add("the if of the job is %q, want %q: a run of update or rebuild that did not succeed, or not of main, has no build to show", job.If, rulesProposalIf)
+	}
+	if job.TimeoutMinutes != 30 {
+		add("timeout-minutes = %d, want 30", job.TimeoutMinutes)
+	}
+	if job.Concurrency.Group != "pages" || job.Concurrency.CancelInProgress {
+		add("concurrency = {group: %q, cancel-in-progress: %v}, want {group: \"pages\", cancel-in-progress: false}: a deployment that runs is not cancelled",
+			job.Concurrency.Group, job.Concurrency.CancelInProgress)
+	}
+	if !maps.Equal(job.Permissions, pagesPermissions) {
+		add("permissions = %v, want %v", job.Permissions, pagesPermissions)
+	}
+	switch env := job.Environment.(type) {
+	case string:
+		if env != pagesEnvironment {
+			add("environment = %q, want %s", env, pagesEnvironment)
+		}
+	case map[string]any:
+		if env["name"] != pagesEnvironment {
+			add("environment name = %v, want %s", env["name"], pagesEnvironment)
+		}
+	default:
+		add("environment = %v, want %s: the deployment to Pages needs it", job.Environment, pagesEnvironment)
+	}
+	for _, problem := range checkKeepsGoing(job) {
+		add("%s", problem)
+	}
+
+	// The actions are those of pagesActions, and the checkout has the whole
+	// history and every tag, and keeps no token.
+	for _, s := range job.Steps {
+		if s.Uses != "" && !slices.Contains(pagesActions, s.Uses) {
+			add("uses %q, which is not one of %s", s.Uses, strings.Join(pagesActions, ", "))
+		}
+		if strings.HasPrefix(s.Uses, "actions/checkout@") {
+			if fmt.Sprint(s.With["fetch-depth"]) != "0" {
+				add("an actions/checkout step has no fetch-depth: 0: the tags, and with them the Release of tw that the site names, are not there")
+			}
+			if fmt.Sprint(s.With["persist-credentials"]) != "false" {
+				add("an actions/checkout step has no persist-credentials: false: the checkout leaves its token in .git/config, where the install scripts of the packages of the site can read it")
+			}
+		}
+	}
+
+	// The steps and their order.
+	index := map[string]int{}
+	what := map[string]string{}
+	for _, kind := range pagesSteps {
+		what[kind.key] = kind.what
+		index[kind.key] = slices.IndexFunc(job.Steps, kind.match)
+		if index[kind.key] < 0 {
+			add("no step that %s", kind.what)
+		}
+	}
+	for _, o := range pagesOrder {
+		if first, second := index[o.first], index[o.second]; first >= 0 && second >= 0 && first > second {
+			add("the step that %s must come before the step that %s: %s", what[o.first], what[o.second], o.why)
+		}
+	}
+	if i := index["fetch"]; i >= 0 {
+		for _, m := range pagesFetchMarkers {
+			if !strings.Contains(job.Steps[i].Run, m.text) {
+				add("the step that fetches has no %q: %s", m.text, m.why)
+			}
+		}
+		if fetch, worktree := strings.Index(job.Steps[i].Run, "git fetch origin"), strings.Index(job.Steps[i].Run, "git worktree add"); fetch > worktree && worktree >= 0 {
+			add("the step that fetches adds a worktree before it fetches the branch")
+		}
+	}
+
+	// What the steps do.
+	for _, s := range job.Steps {
+		if got := strings.TrimSpace(s.Run); strings.Contains(got, "bin/lct site") && got != pagesSiteCommand {
+			add("a step that runs bin/lct site runs %q, want exactly %q: anything around it (|| true, a pipe, another command) can hide that lct site failed, and the deploy would go on with missing or stale data", got, pagesSiteCommand)
+		}
+	}
+	if i := index["setup-node"]; i >= 0 {
+		for _, problem := range checkSetupNode(job.Steps[i]) {
+			add("%s", problem)
+		}
+	}
+	for _, run := range []string{"npm ci", "npm run build"} {
+		for _, problem := range checkNpmStep(job.Steps, npmStep(job.Steps, run), run) {
+			add("%s", problem)
+		}
+	}
+	if i := index["upload"]; i >= 0 {
+		if got := job.Steps[i].With["path"]; got != pagesArtifactPath {
+			add("the upload has path = %v, want %s: the artifact is the site that the build made", got, pagesArtifactPath)
+		}
+	}
+	return problems
+}
+
+// ciSiteRuns are the npm commands the site job of ci.yml runs, in this order.
+var ciSiteRuns = []string{"npm ci", "npm run typecheck", "npm test", "npm run build"}
+
+// checkCISiteJob checks the job site of ci.yml: it checks out the repo, sets up
+// Node as pages.yml does, and runs, in the folder site, npm ci, the type check,
+// the tests and the build, in that order (the build here is the test that the
+// site builds before pages.yml has to). Nothing lets a failure pass.
+func checkCISiteJob(file string, w *workflowFile) []string {
+	var problems []string
+	add := func(format string, args ...any) { problems = append(problems, file+": "+fmt.Sprintf(format, args...)) }
+
+	job, ok := w.Jobs["site"]
+	if !ok {
+		add("has no job site: the tests and the build of the viewer do not run on a push or a pull request")
+		return problems
+	}
+	if job.If != "" {
+		add("the job site has an if (%s): it would be skipped, which is no failure", job.If)
+	}
+	for _, problem := range checkKeepsGoing(job) {
+		add("%s", problem)
+	}
+	if !slices.ContainsFunc(job.Steps, func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/checkout@") }) {
+		add("the job site has no actions/checkout step")
+	}
+	node := slices.IndexFunc(job.Steps, func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/setup-node@") })
+	if node < 0 {
+		add("the job site has no actions/setup-node step: the Node of site/.nvmrc is not set up")
+	} else {
+		for _, problem := range checkSetupNode(job.Steps[node]) {
+			add("%s", problem)
+		}
+	}
+	last := node
+	for _, run := range ciSiteRuns {
+		i := npmStep(job.Steps, run)
+		if i < 0 {
+			add("the job site has no step that runs %s", run)
+			continue
+		}
+		for _, problem := range checkNpmStep(job.Steps, i, run) {
+			add("%s", problem)
+		}
+		if i < last {
+			add("the steps of the job site must run in this order: the setup of Node, then %s", strings.Join(ciSiteRuns, ", "))
+		}
+		last = max(last, i)
+	}
+	return problems
+}
+
 // readmeSection returns the text of the section of readme under the heading
 // "## <heading>", up to the next heading of that level.
 func readmeSection(readme, heading string) (string, bool) {
@@ -2804,10 +3149,11 @@ func TestWorkflowContract(t *testing.T) {
 	pipeline, update, rebuild, ci := files["pipeline.yml"], files["update.yml"], files["rebuild.yml"], files["ci.yml"]
 	pipelineFile, updateFile, rebuildFile, ciFile := workflowPath("pipeline.yml"), workflowPath("update.yml"), workflowPath("rebuild.yml"), workflowPath("ci.yml")
 	rules, rulesFile := files["rules-proposal.yml"], workflowPath("rules-proposal.yml")
+	pages, pagesFile := files["pages.yml"], workflowPath("pages.yml")
 	skillTools := skillAllowedTools(t, "rules-review")
 
-	// The four workflows are under the contract; every workflow in the
-	// directory is checked.
+	// The workflows of workflowNames are under the contract; every workflow in
+	// the directory is checked.
 	for _, problem := range checkWorkflowSet(names) {
 		t.Error(problem)
 	}
@@ -2834,6 +3180,9 @@ func TestWorkflowContract(t *testing.T) {
 	for _, problem := range checkRulesProposalWorkflow(rulesFile, rules, skillTools) {
 		t.Error(problem)
 	}
+	for _, problem := range checkPagesWorkflow(pagesFile, pages) {
+		t.Error(problem)
+	}
 	for _, problem := range checkWorkflowRunNames(files) {
 		t.Error(problem)
 	}
@@ -2847,7 +3196,7 @@ func TestWorkflowContract(t *testing.T) {
 		return
 	}
 
-	// 1. The four workflows exist.
+	// 1. The workflows exist.
 	t.Run("a workflow that is missing", func(t *testing.T) {
 		for _, gone := range workflowNames {
 			have := slices.DeleteFunc(slices.Clone(names), func(n string) bool { return n == gone })
@@ -2912,10 +3261,12 @@ func TestWorkflowContract(t *testing.T) {
 	t.Run("an action that is not pinned", func(t *testing.T) {
 		wantProblems(t, checkWorkflow(pipelineFile, mutate(t, pipeline, "actions/checkout@v5", "actions/checkout@main"), commands), "actions/checkout@main")
 		wantProblems(t, checkWorkflow(pipelineFile, mutate(t, pipeline, "actions/setup-go@v6", "actions/setup-go@v5"), commands), "actions/setup-go@v5")
-		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "actions/checkout@v5", "actions/checkout@v4"), commands), "actions/checkout@v4")
+		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "actions/checkout@v5\n        with:\n          fetch-depth: 0", "actions/checkout@v4\n        with:\n          fetch-depth: 0"), commands), "actions/checkout@v4")
+		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "actions/setup-node@v7", "actions/setup-node@v6"), commands), "actions/setup-node@v6")
 	})
 	t.Run("a runner that is not pinned", func(t *testing.T) {
-		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
+		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "  test:\n    runs-on: ubuntu-24.04", "  test:\n    runs-on: ubuntu-latest"), commands), "ubuntu-latest")
+		wantProblems(t, checkWorkflow(ciFile, mutate(t, ci, "  site:\n    runs-on: ubuntu-24.04", "  site:\n    runs-on: ubuntu-latest"), commands), "ubuntu-latest")
 		wantProblems(t, checkWorkflow(pipelineFile, mutate(t, pipeline, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
 	})
 
@@ -3177,7 +3528,8 @@ func TestWorkflowContract(t *testing.T) {
 		{"runs on pushes only", "on: [push, pull_request]", "on: [push]", "runs on"},
 		{"runs on every event", "on: [push, pull_request]", "on: [push, pull_request, workflow_dispatch]", "runs on"},
 		{"a token that writes", "contents: read", "contents: write", "permissions"},
-		{"a job with a token of its own", "    runs-on: ubuntu-24.04\n", "    runs-on: ubuntu-24.04\n    permissions: { contents: write }\n", "permissions of its own"},
+		{"a job with a token of its own", "  test:\n    runs-on: ubuntu-24.04\n", "  test:\n    runs-on: ubuntu-24.04\n    permissions: { contents: write }\n", "permissions of its own"},
+		{"the job of the viewer with a token of its own", "  site:\n    runs-on: ubuntu-24.04\n", "  site:\n    runs-on: ubuntu-24.04\n    permissions: { contents: write }\n", "permissions of its own"},
 
 		// Only on a pull request.
 		{"assessed on a push too", "        if: github.event_name == 'pull_request'\n", "", "github.event_name == 'pull_request'"},
@@ -3216,9 +3568,10 @@ func TestWorkflowContract(t *testing.T) {
 		})
 	}
 	t.Run("assessed before lct is built", func(t *testing.T) {
-		// The build step moves behind the assessment, which is the last step.
+		// The build step moves to the end of the job test, behind the assessment,
+		// which is the last step of the job.
 		build := "      - name: Build lct\n        run: go build -o bin/lct ./cmd/lct\n"
-		src := mutate(t, ci, build, "") + build
+		src := strings.Replace(mutate(t, ci, build, ""), "\n  # The viewer", build+"\n  # The viewer", 1)
 		hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, `"go build -o bin/lct ./cmd/lct" must come before "bin/lct impact"`)
 	})
 	t.Run("an unregistered lct command in ci.yml", func(t *testing.T) {
@@ -3406,6 +3759,225 @@ func TestWorkflowContract(t *testing.T) {
 		root := t.TempDir()
 		writeTestFile(t, root, workflowDir+"/rules-proposal.yml", rules+"# claude-example-9\n")
 		wantProblems(t, checkModelNames(root, workflowDir), "rules-proposal.yml", `"claude-example-9"`)
+	})
+
+	// 13. pages.yml builds the site and deploys it to Pages after an update or
+	// a rebuild that ended green, and by hand: one deployment at a time, with the
+	// permissions of a Pages deployment and no secret; the data of the site is
+	// written before the build, and a step that fails fails the run, so that
+	// nothing is deployed with missing or stale data.
+	const (
+		pagesSiteStep   = "      - name: Write the data of the site\n        run: bin/lct site --out site/public/data --json\n"
+		pagesBuildStep  = "        run: npm run build\n        working-directory: site\n"
+		pagesUploadStep = "      - uses: actions/upload-pages-artifact@v5\n        with:\n          path: site/dist\n"
+		pagesDeployStep = "      - uses: actions/deploy-pages@v5\n"
+		siteNodeStep    = "      - uses: actions/setup-node@v7\n        with:\n          node-version-file: site/.nvmrc\n          cache: npm\n          cache-dependency-path: site/package-lock.json\n"
+	)
+	for _, tc := range []struct{ name, old, repl, want string }{
+		// The events.
+		{"not after a rebuild", "workflows: [update, rebuild]", "workflows: [update]", "workflow_run workflows"},
+		{"after another workflow", "workflows: [update, rebuild]", "workflows: [update, rebuild, ci]", "workflow_run workflows"},
+		{"not when the run is completed", "types: [completed]", "types: [requested]", "workflow_run types"},
+		{"also on a schedule", "on:\n  workflow_run:", "on:\n  schedule:\n    - cron: '0 0 * * *'\n  workflow_run:", "runs on"},
+		{"also on every push", "on:\n  workflow_run:", "on:\n  push:\n  workflow_run:", "runs on"},
+		{"not by hand", "  workflow_dispatch:\n", "", "runs on"},
+		{"an input by hand", "  workflow_dispatch:\n", "  workflow_dispatch:\n    inputs:\n      force: { type: boolean }\n", `input "force"`},
+
+		// The condition: only a green run of main, as for the rules PR.
+		{"a run that did not succeed", "github.event.workflow_run.conclusion == 'success'", "github.event.workflow_run.conclusion != 'failure'", "the if of the job"},
+		{"a run that is not by hand and not green", " || (github.event.workflow_run", " && (github.event.workflow_run", "the if of the job"},
+		{"a run of another branch", " && github.event.workflow_run.head_branch == 'main'", "", "the if of the job"},
+		{"a run for a pull request", " && github.event.workflow_run.event != 'pull_request'", "", "the if of the job"},
+
+		// The job.
+		{"a job that may run for hours", "timeout-minutes: 30", "timeout-minutes: 360", "timeout-minutes"},
+		{"another concurrency group", "group: pages", "group: lct-state", "concurrency"},
+		{"a deployment cancelled by the next", "cancel-in-progress: false", "cancel-in-progress: true", "concurrency"},
+		{"no permission for the id token", ", id-token: write", "", "permissions"},
+		{"no permission for pages", "pages: write, ", "", "permissions"},
+		{"a token that writes the repo", "contents: read", "contents: write", "permissions"},
+		{"a permission more", "id-token: write }", "id-token: write, issues: write }", "permissions"},
+		{"no environment", "    environment: github-pages\n", "", "environment"},
+		{"another environment", "environment: github-pages", "environment: production", "environment"},
+
+		// The checkout has every tag and keeps no token.
+		{"a shallow clone", "fetch-depth: 0", "fetch-depth: 1", "fetch-depth: 0"},
+		{"a checkout that keeps its token", "          persist-credentials: false\n", "", "persist-credentials: false"},
+		{"a checkout that says to keep its token", "persist-credentials: false", "persist-credentials: true", "persist-credentials: false"},
+
+		// The branches, the worktrees and lct.
+		{"no raw branch", "+refs/heads/raw:refs/remotes/origin/raw", "+refs/heads/main:refs/remotes/origin/main", "raw branch"},
+		{"no tw branch", "+refs/heads/tw:refs/remotes/origin/tw", "+refs/heads/main:refs/remotes/origin/main", "tw branch"},
+		{"no raw worktree", "git worktree add .work/raw raw", "git worktree prune", "raw worktree"},
+		{"no tw worktree", "git worktree add .work/tw tw", "git worktree prune", "tw worktree"},
+		{"worktrees made before the fetch", "          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw'\n          git worktree add .work/raw raw\n",
+			"          git worktree add .work/raw raw\n          git fetch origin '+refs/heads/raw:refs/remotes/origin/raw' '+refs/heads/tw:refs/remotes/origin/tw'\n", "adds a worktree before it fetches"},
+		{"lct not built", "run: go build -o bin/lct ./cmd/lct", "run: go version", "no step that builds lct"},
+		{"no Go", "      - uses: actions/setup-go@v6\n        with:\n          go-version-file: go.mod\n\n", "", "no step that sets up Go"},
+
+		// A step that fails fails the run, and lct site is the whole of its step.
+		{"a failure of lct site that is ignored", "run: bin/lct site --out site/public/data --json\n", "run: bin/lct site --out site/public/data --json || true\n", "bin/lct site"},
+		{"a failure of lct site that a pipe hides", "run: bin/lct site --out site/public/data --json\n", "run: bin/lct site --out site/public/data --json | tee site.log\n", "bin/lct site"},
+		{"a second command after lct site", "run: bin/lct site --out site/public/data --json\n", "run: |\n          bin/lct site --out site/public/data --json\n          true\n", "bin/lct site"},
+		{"another output folder", "--out site/public/data", "--out site/public/other", "bin/lct site"},
+		{"no json from lct site", " --json\n", "\n", "bin/lct site"},
+		{"no lct site", "bin/lct site --out site/public/data --json", "echo site", "no step that runs bin/lct site"},
+		{"a step of lct site that continues on error", pagesSiteStep, pagesSiteStep + "        continue-on-error: true\n", "continue-on-error"},
+		{"a step that is allowed to fail", pagesDeployStep, pagesDeployStep + "        continue-on-error: ${{ true }}\n", "continue-on-error"},
+		{"a deploy that runs after a failure", pagesDeployStep, pagesDeployStep + "        if: always()\n", "has an if"},
+		{"a step of lct site that can be skipped", pagesSiteStep, pagesSiteStep + "        if: github.event_name != 'workflow_dispatch'\n", "has an if"},
+		{"a job that continues on error", "    timeout-minutes: 30\n", "    timeout-minutes: 30\n    continue-on-error: true\n", "the job has continue-on-error"},
+		{"a shell that does not stop", "        shell: bash\n", "        shell: sh {0}\n", "stops at the first command that fails"},
+		{"a step with a shell that does not stop", pagesSiteStep, pagesSiteStep + "        shell: python {0}\n", "stops at the first command that fails"},
+
+		// Node and the build, as in ci.yml.
+		{"no Node", siteNodeStep, "", "no step that sets up Node"},
+		{"no node version file", "node-version-file: site/.nvmrc", "node-version-file: .nvmrc", "node-version-file"},
+		{"a node version beside the file", "          cache: npm\n", "          cache: npm\n          node-version: 22\n", "node-version"},
+		{"no cache of npm", "          cache: npm\n", "", "cache"},
+		{"another cache", "cache: npm\n", "cache: yarn\n", "cache"},
+		{"another lock file", "cache-dependency-path: site/package-lock.json", "cache-dependency-path: package-lock.json", "cache-dependency-path"},
+		{"no install of the packages", "run: npm ci", "run: npm install", "no step that runs npm ci"},
+		{"the install outside the site", "        run: npm ci\n        working-directory: site\n", "        run: npm ci\n", "working-directory"},
+		{"the build outside the site", pagesBuildStep, "        run: npm run build\n", "working-directory"},
+		{"no build of the site", "run: npm run build", "run: npm run dev", "no step that runs npm run build"},
+
+		// Pages: configure, upload what the build made, deploy.
+		{"another artifact", "path: site/dist", "path: site", "path"},
+		{"no configuration of Pages", "      - uses: actions/configure-pages@v6\n", "", "no step that configures Pages"},
+		{"no upload", pagesUploadStep, "", "no step that uploads the artifact"},
+		{"no deploy", pagesDeployStep, "", "no step that deploys the artifact"},
+		{"an action that is not pinned", "actions/deploy-pages@v5", "actions/deploy-pages@v4", "actions/deploy-pages@v4"},
+		{"another action", "actions/setup-go@v6", "anthropics/claude-code-action@v1", "anthropics/claude-code-action@v1"},
+	} {
+		t.Run("pages.yml: "+tc.name, func(t *testing.T) {
+			src := mutate(t, pages, tc.old, tc.repl)
+			hasProblem(t, checkPagesWorkflow(pagesFile, src), pagesFile, tc.want)
+		})
+	}
+	// Each change below is one problem, no more. The first four, with the
+	// subtest for data that comes after the build, are the ways the deployment
+	// goes wrong that matter most: the id token, a run that is cancelled, an
+	// artifact that is not the site, and a secret.
+	for _, tc := range []struct {
+		name, old, repl string
+		want            []string
+	}{
+		{"no id-token write", ", id-token: write", "", []string{"permissions"}},
+		{"a deployment that is cancelled", "cancel-in-progress: false", "cancel-in-progress: true", []string{"concurrency", "cancel-in-progress: true"}},
+		{"an artifact that is not the site", "path: site/dist", "path: site", []string{"upload has path = site", "site/dist"}},
+		{"a secret", "      - name: Build lct\n        run: go build -o bin/lct ./cmd/lct\n", "      - name: Build lct\n        run: go build -o bin/lct ./cmd/lct\n        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n", []string{"secret"}},
+		{"a failure of lct site that is ignored", "run: bin/lct site --out site/public/data --json\n", "run: bin/lct site --out site/public/data --json || true\n", []string{"bin/lct site", "|| true"}},
+		{"a step of lct site that continues on error", pagesSiteStep, pagesSiteStep + "        continue-on-error: true\n", []string{"continue-on-error"}},
+		{"a checkout that keeps its token", "          persist-credentials: false\n", "", []string{"persist-credentials: false"}},
+		{"another environment", "environment: github-pages", "environment: production", []string{"environment"}},
+	} {
+		t.Run("pages.yml: exactly one problem for "+tc.name, func(t *testing.T) {
+			src := mutate(t, pages, tc.old, tc.repl)
+			wantProblems(t, checkPagesWorkflow(pagesFile, src), append([]string{pagesFile}, tc.want...)...)
+		})
+	}
+	t.Run("pages.yml: exactly one problem for data written after the build", func(t *testing.T) {
+		// The step of the data moves from before the setup of Node to behind the
+		// build of the site.
+		src := mutate(t, mutate(t, pages, pagesSiteStep, ""), pagesBuildStep, pagesBuildStep+"\n"+pagesSiteStep)
+		wantProblems(t, checkPagesWorkflow(pagesFile, src), pagesFile,
+			"the step that runs bin/lct site must come before the step that runs npm run build")
+	})
+	t.Run("pages.yml: exactly one problem for an upload after the deploy", func(t *testing.T) {
+		src := mutate(t, mutate(t, pages, pagesUploadStep, ""), pagesDeployStep, pagesDeployStep+pagesUploadStep)
+		wantProblems(t, checkPagesWorkflow(pagesFile, src), pagesFile,
+			"the step that uploads the artifact must come before the step that deploys the artifact")
+	})
+	t.Run("pages.yml: exactly one problem for a build after the upload", func(t *testing.T) {
+		src := mutate(t, mutate(t, pages, "      - name: Build the site\n"+pagesBuildStep, ""), pagesUploadStep, pagesUploadStep+"\n      - name: Build the site\n"+pagesBuildStep)
+		wantProblems(t, checkPagesWorkflow(pagesFile, src), pagesFile,
+			"the step that runs npm run build must come before the step that uploads the artifact")
+	})
+	t.Run("a workflow with the wrong shape", func(t *testing.T) {
+		wantProblems(t, checkPagesWorkflow(pagesFile, "name: pages\non: [workflow_dispatch]\n"), "has no job")
+	})
+	t.Run("a second job", func(t *testing.T) {
+		src := pages + "  other:\n    runs-on: ubuntu-24.04\n    steps:\n      - run: echo other\n"
+		hasProblem(t, checkPagesWorkflow(pagesFile, src), pagesFile, "2 jobs, want one")
+	})
+	t.Run("an action that is not pinned in pages.yml", func(t *testing.T) {
+		for _, tc := range []struct{ old, repl string }{
+			{"actions/checkout@v5", "actions/checkout@main"},
+			{"actions/setup-go@v6", "actions/setup-go@v5"},
+			{"actions/setup-node@v7", "actions/setup-node@v6"},
+			{"actions/configure-pages@v6", "actions/configure-pages@v5"},
+			{"actions/upload-pages-artifact@v5", "actions/upload-pages-artifact@v4"},
+			{"actions/deploy-pages@v5", "actions/deploy-pages@v4"},
+		} {
+			src := mutate(t, pages, tc.old, tc.repl)
+			wantProblems(t, checkWorkflow(pagesFile, src, commands), tc.repl)
+			hasProblem(t, checkPagesWorkflow(pagesFile, src), pagesFile, tc.repl)
+		}
+	})
+	t.Run("a runner that is not pinned in pages.yml", func(t *testing.T) {
+		wantProblems(t, checkWorkflow(pagesFile, mutate(t, pages, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
+	})
+	t.Run("an unregistered lct command in pages.yml", func(t *testing.T) {
+		src := mutate(t, pages, "bin/lct site --out", "bin/lct sitee --out")
+		hasProblem(t, checkWorkflow(pagesFile, src, commands), `"bin/lct sitee"`)
+	})
+	t.Run("an expression in a script of pages.yml", func(t *testing.T) {
+		src := mutate(t, pages, "run: npm ci\n", "run: npm ci --prefix ${{ github.workspace }}\n")
+		hasProblem(t, checkWorkflow(pagesFile, src, commands), "expression")
+	})
+	t.Run("a model name in pages.yml", func(t *testing.T) {
+		root := t.TempDir()
+		writeTestFile(t, root, workflowDir+"/pages.yml", pages+"# claude-example-9\n")
+		wantProblems(t, checkModelNames(root, workflowDir), "pages.yml", `"claude-example-9"`)
+	})
+	t.Run("an environment with a name and an address", func(t *testing.T) {
+		src := mutate(t, pages, "environment: github-pages", "environment:\n      name: github-pages\n      url: ${{ steps.deployment.outputs.page_url }}")
+		if problems := checkPagesWorkflow(pagesFile, src); len(problems) != 0 {
+			t.Errorf("an environment that names github-pages and has an address is a problem: %v", problems)
+		}
+	})
+
+	// 14. ci.yml tests and builds the viewer in a job of its own, with Node as
+	// pages.yml sets it up, and no failure passes.
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"no job for the viewer", "\n  site:\n", "\n  viewer:\n", "no job site"},
+		{"a job for the viewer that can be skipped", "  site:\n    runs-on: ubuntu-24.04\n", "  site:\n    if: github.event_name == 'push'\n    runs-on: ubuntu-24.04\n", "the job site has an if"},
+		{"no checkout", "  site:\n    runs-on: ubuntu-24.04\n    steps:\n      - uses: actions/checkout@v5\n", "  site:\n    runs-on: ubuntu-24.04\n    steps:\n      - run: echo site\n", "no actions/checkout"},
+		{"no Node", siteNodeStep, "", "no actions/setup-node step"},
+		{"another Node version file", "node-version-file: site/.nvmrc", "node-version-file: .nvmrc", "node-version-file"},
+		{"a Node version beside the file", "          cache: npm\n", "          cache: npm\n          node-version: 22\n", "node-version"},
+		{"another cache", "cache: npm\n", "cache: yarn\n", "cache"},
+		{"another lock file", "cache-dependency-path: site/package-lock.json", "cache-dependency-path: package-lock.json", "cache-dependency-path"},
+		{"no install of the packages", "run: npm ci\n", "run: npm install\n", "no step that runs npm ci"},
+		{"no type check", "run: npm run typecheck\n", "run: npm run lint\n", "no step that runs npm run typecheck"},
+		{"no tests", "run: npm test\n", "run: npm run test:watch\n", "no step that runs npm test"},
+		{"no build", "run: npm run build\n", "run: npm run dev\n", "no step that runs npm run build"},
+		{"tests outside the site", "        run: npm test\n        working-directory: site\n", "        run: npm test\n", "working-directory"},
+		{"a build outside the site", "        run: npm run build\n        working-directory: site\n", "        run: npm run build\n", "working-directory"},
+		{"tests whose failure passes", "        run: npm test\n", "        run: npm test\n        continue-on-error: true\n", "continue-on-error"},
+		{"a build that can be skipped", "        run: npm run build\n", "        run: npm run build\n        if: github.event_name == 'push'\n", "has an if"},
+		{"a job that continues on error", "  site:\n    runs-on: ubuntu-24.04\n", "  site:\n    runs-on: ubuntu-24.04\n    continue-on-error: true\n", "the job has continue-on-error"},
+	} {
+		t.Run("ci.yml site job: "+tc.name, func(t *testing.T) {
+			src := mutate(t, ci, tc.old, tc.repl)
+			hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, tc.want)
+		})
+	}
+	t.Run("the tests behind the build", func(t *testing.T) {
+		// The tests move from before the build to behind it, the last step.
+		test := "      - name: Test\n        run: npm test\n        working-directory: site\n"
+		src := mutate(t, ci, test, "") + test
+		hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, "must run in this order")
+	})
+	t.Run("the install behind the tests", func(t *testing.T) {
+		install := "      - name: Install the packages\n        run: npm ci\n        working-directory: site\n"
+		src := mutate(t, ci, install, "") + install
+		hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, "must run in this order")
+	})
+	t.Run("a setup of Node behind the install", func(t *testing.T) {
+		src := mutate(t, ci, siteNodeStep, "") + siteNodeStep
+		hasProblem(t, checkCIWorkflow(ciFile, src), ciFile, "must run in this order")
 	})
 }
 
@@ -3595,11 +4167,71 @@ func TestReadmeExplainsTheRulesPR(t *testing.T) {
 			rows = append(rows, line)
 		}
 	}
-	for _, name := range []string{"update.yml", "rebuild.yml", "rules-proposal.yml", "ci.yml"} {
+	for _, name := range []string{"update.yml", "rebuild.yml", "rules-proposal.yml", "pages.yml", "ci.yml"} {
 		if !slices.ContainsFunc(rows, func(row string) bool { return strings.Contains(row, "`"+name+"`") }) {
 			t.Errorf("README.md: no table row of the section %q for %s", readmeWorkflows, name)
 		}
 	}
+}
+
+// readmeSite is the heading of the README section about the site.
+const readmeSite = "網站"
+
+// readmeSiteDoc are what the section must tell a person, with the reason: where
+// the site is, and the setting that nothing in the repo can make for them.
+var readmeSiteDoc = []struct{ text, why string }{
+	{"https://tool-jx3.github.io/limbus-translate/", "the address of the site is not given"},
+	{"Settings → Pages", "the one-time setting of Pages is not placed in the settings of the repo"},
+	{"「GitHub Actions」", "the Source of Pages is not said to be GitHub Actions: without it pages.yml cannot configure Pages or deploy"},
+	{"`pages.yml`", "the workflow that deploys the site is not named"},
+}
+
+// checkReadmeSite reports what the section "## 網站" of readme does not say.
+func checkReadmeSite(readme string) []string {
+	section, ok := readmeSection(readme, readmeSite)
+	if !ok {
+		return []string{fmt.Sprintf("README.md: no section %q", "## "+readmeSite)}
+	}
+	var problems []string
+	for _, s := range readmeSiteDoc {
+		if !strings.Contains(section, s.text) {
+			problems = append(problems, fmt.Sprintf("the section %q of README.md does not say %q: %s", readmeSite, s.text, s.why))
+		}
+	}
+	return problems
+}
+
+// The README tells a person where the site is and the setting of Pages to make
+// once.
+func TestWorkflowContractDocumentsTheSite(t *testing.T) {
+	_, readme := readRepoFile(t, filepath.Join(repoRoot, "README.md"))
+	for _, problem := range checkReadmeSite(readme) {
+		t.Error(problem)
+	}
+	if t.Failed() {
+		return
+	}
+	for _, tc := range []struct{ name, old, repl, want string }{
+		{"no address", "https://tool-jx3.github.io/limbus-translate/", "", "the address of the site"},
+		{"no place for the setting", "Settings → Pages", "Settings", "Settings → Pages"},
+		{"no Source of GitHub Actions", "「GitHub Actions」", "「Actions」", "「GitHub Actions」"},
+		{"no workflow", "`pages.yml`", "pages", "`pages.yml`"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			section, _ := readmeSection(readme, readmeSite)
+			// Every copy goes, in the section only: the rest of the README may say the same.
+			problems := checkReadmeSite(strings.Replace(readme, section, strings.ReplaceAll(section, tc.old, tc.repl), 1))
+			if len(problems) != 1 || !strings.Contains(problems[0], tc.want) {
+				t.Errorf("problems = %q, want one that holds %q", problems, tc.want)
+			}
+		})
+	}
+	t.Run("no section", func(t *testing.T) {
+		problems := checkReadmeSite(strings.Replace(readme, "## "+readmeSite+"\n", "## 其他\n", 1))
+		if len(problems) != 1 || !strings.Contains(problems[0], "no section") {
+			t.Errorf("problems = %q, want one that says there is no section", problems)
+		}
+	})
 }
 
 // outcomeStep returns the script of the step of rules-proposal.yml that checks

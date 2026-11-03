@@ -458,12 +458,13 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 | `update.yml` | 每週四 12:00 UTC+8（cron `0 4 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release（§13）→ 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯，而且沒有還欠著的 Release（`lct publish --check`）、`tw` 最後一個 commit 不是只保存翻譯進度的（`translate: keep the progress of …`，保存後 build 失敗的情況），才直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release → 有需要處理的項目時開審核 Issue |
 | `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成且成功時（`workflow_run`，`conclusion == 'success'`）；手動 | §11.2：checkout（完整歷史）→ 取得 `raw`、`tw` 並建 worktree → build `lct` → 設定 git 身分 → `lct proposal start` 選規則 PR 的分支 → `lct suggest --exclude-file work/proposal/exclude.txt`，沒有新建議就結束 → `anthropics/claude-code-action@v1` 跑 `rules-review` skill（`--model` 用 `vars.LCT_MODEL`，`--allowedTools` 與 skill 的 `allowed-tools` 相同，`--disallowedTools "Read(./.git/**)"`；checkout 設 `persist-credentials: false`），開或更新規則 PR → 讀 `work/proposal/outcome.txt`，用 `gh pr list --state open --head <分支>` 確認 PR 有這次新增的建議並把網址寫進 job summary。逾時 60 分鐘 |
-| `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 與 workflow 契約測試；改到規則的 PR 另外跑 `lct impact --base origin/<base>`（以目前 `tw` 的譯文與 `raw` 的原文，比較 PR 的規則和 base 分支的規則），把這次規則變更多讓多少既有單位出現硬性問題寫進 job summary；找到也不算失敗 |
+| `pages.yml` | `update.yml`／`rebuild.yml` 完成且成功、在 `main` 上、不是 PR 時（`workflow_run`，條件與 `rules-proposal.yml` 相同）；手動（沒有輸入） | 譯文對照網站（`site/`，設計見 `docs/superpowers/specs/2026-11-03-pages-viewer-design.md`）：checkout（完整歷史與 tag，`persist-credentials: false`）→ 取得 `raw`、`tw` 並建 worktree → build `lct` → `lct site --out site/public/data`（非 0 就整個執行失敗，不部署）→ setup-node（版本取自 `site/.nvmrc`）→ `npm ci`、`npm run build`（於 `site/`）→ `configure-pages` → `upload-pages-artifact`（`site/dist`）→ `deploy-pages`。`environment: github-pages`，逾時 30 分鐘。第一次部署前，人要到 Settings → Pages 把 Source 選為「GitHub Actions」（README） |
+| `ci.yml` | PR 與 push | `go test`；`lct rules lint`（指引開頭 YAML、詞彙表、調整檔的 schema）；skill 與 workflow 契約測試；改到規則的 PR 另外跑 `lct impact --base origin/<base>`（以目前 `tw` 的譯文與 `raw` 的原文，比較 PR 的規則和 base 分支的規則），把這次規則變更多讓多少既有單位出現硬性問題寫進 job summary；找到也不算失敗。另有 `site` job：於 `site/` 跑 `npm ci`、`npm run typecheck`、`npm test`、`npm run build`（用 `site/fixtures` 的小型測試資料，不需要 `raw`／`tw`） |
 
-- 所有寫入 `raw`／`tw` 的 workflow 共用一個 `concurrency` 群組，依序執行；`rules-proposal.yml` 只寫規則 PR，用自己的群組 `rules-proposal`（`cancel-in-progress: false`）
+- 所有寫入 `raw`／`tw` 的 workflow 共用一個 `concurrency` 群組，依序執行；`rules-proposal.yml` 只寫規則 PR，用自己的群組 `rules-proposal`（`cancel-in-progress: false`）；`pages.yml` 只讀 `raw`／`tw`，用自己的群組 `pages`（`cancel-in-progress: false`）
 - secrets：`ANTHROPIC_API_KEY`、`LIMBUS_STATUS_URL`
 - variables：`LIMBUS_CDN_TEMPLATE`（預設 `https://downloadcommon.limbuscompanycdn.org/{token}/Assets/LocalizePatch/localize_{lang}.zip`）、`LCT_MODEL`、`LCT_MAX_USD`
-- `GITHUB_TOKEN` 需要 `contents: write`；`rules-proposal.yml` 另需 `pull-requests: write`、`issues: write`（建立 label）與 `id-token: write`（action 向 Claude GitHub App 換 token）；`update.yml`／`rebuild.yml` 開審核 Issue 需要 `issues: write`
+- `GITHUB_TOKEN` 需要 `contents: write`；`rules-proposal.yml` 另需 `pull-requests: write`、`issues: write`（建立 label）與 `id-token: write`（action 向 Claude GitHub App 換 token）；`update.yml`／`rebuild.yml` 開審核 Issue 需要 `issues: write`；`pages.yml` 只需要 `contents: read`、`pages: write`、`id-token: write`，不使用 secrets
 - `rules-proposal.yml` 以 Claude GitHub App 的身分開 PR（§9.2），所以 `ci.yml` 會在規則 PR 上執行，影響評估也會出現在 PR 的 Checks（job summary）。`proposal start` 與確認 PR 的步驟用 `github.token` 讀 PR；action 內 `lct proposal publish` 需要的 token 由 action 提供，取不到時的處理見 README
 - GitHub 只從預設分支執行排程；公開 repo 連續 60 天沒有活動時會停用排程。每週寫入 `raw`／`tw` 應能維持活動；若被停用，到 Actions 頁面重新啟用即可
 - 排程在整點附近可能延遲數分鐘到數十分鐘
@@ -568,6 +569,7 @@ lct.yaml                 輸出資料夾名、字型、凍結清單、批次大�
 CLAUDE.md                專案說明（AGENTS.md 指向它）
 LICENSE                  程式碼授權（GPL-3.0）
 LICENSE-CONTENT          內容授權（CC BY-NC-SA 4.0），說明適用範圍
+site/                    譯文對照網站（Preact＋Vite；`lct site` 輸出的資料在 `site/public/data/`，與 `site/dist/`、`site/node_modules/` 都不進版控）
 .github/workflows/       §12
 docs/
 ```
