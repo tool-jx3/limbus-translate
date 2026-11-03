@@ -106,10 +106,11 @@ export function passages(entries: Entry[], s: Settings): Passage[] {
     const first = e.units[0] ?? e.teller ?? e.title ?? e.place
     if (first === undefined) continue
     let divider = pending !== undefined && pending.kr !== shownPlace ? pending : undefined
-    pending = undefined
     // A passage that is only a place has nothing else to show: it shows the place, repeated or not.
     // With reviewOnly, a passage is shown for its lines that have review items, or for a place, teller or title that has.
+    // A passage skipped here leaves its place for the next one shown.
     if (s.reviewOnly && units.length === 0 && ![own, teller, title].some(isReviewed)) continue
+    pending = undefined
     const bare = units.length === 0 && teller === undefined && title === undefined
     if (bare && divider === undefined && own !== undefined) divider = own
     if (bare && divider === undefined) continue

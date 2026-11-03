@@ -1,5 +1,6 @@
 import { reviewHref } from '../route'
 import { warningInfo } from '../review/names'
+import { TmpText } from '../tmp/TmpText'
 import type { SuggestionItem, Unit } from '../types'
 
 /** One chip under a TW text: what the unit has to look at. */
@@ -79,7 +80,9 @@ function Inconsistent({ id, suggestions }: { id: string; suggestions: Suggestion
         {variants.map((v) => (
           <li key={v.zh} class="mark-variant">
             <span class="mark-n">{v.count} 個</span>
-            <span lang="zh-Hant-TW">{v.zh}</span>
+            <span lang="zh-Hant-TW">
+              <TmpText text={v.zh} raw={false} lang="zh" />
+            </span>
           </li>
         ))}
       </ul>

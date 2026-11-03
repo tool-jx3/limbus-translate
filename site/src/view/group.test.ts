@@ -269,6 +269,14 @@ describe('reviewOnly', () => {
     expect(out[0]?.teller?.kr).toBe('T')
   })
 
+  it('keeps the divider of a place-only entry that review-only skips for the next passage shown', () => {
+    const entries = groupEntries([unit('place', 0, 'P'), rv(unit('content', 1, 'C1'))])
+    const out = passages(entries, reviewOnly)
+    expect(out).toHaveLength(1)
+    expect(out[0]?.units.map((u) => u.kr)).toEqual(['C1'])
+    expect(out[0]?.divider?.kr).toBe('P')
+  })
+
   it('shows a passage whose place or teller has the review item, with no lines', () => {
     const entries = groupEntries([unit('place', 0, 'P'), rv(unit('teller', 0, 'T')), unit('content', 1, 'C')])
     const out = passages(entries, reviewOnly)

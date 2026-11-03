@@ -773,6 +773,19 @@ describe('FileView: review marks', () => {
     expect(chip?.getAttribute('aria-expanded')).toBe('false')
   })
 
+  it('shows the tags of a variant as text styles, not as raw tags', async () => {
+    const base = fixture<{ items: { kind: string; variants: { zh: string; count: number; keys: string[] }[] }[] }>('review/suggestions.json').items.find((i) => i.kind === 'inconsistent')!
+    const item = { ...base, variants: [{ ...base.variants[0]!, zh: '測試<style="highlight">斬擊</style>' }, ...base.variants.slice(1)] }
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [item] } })))
+    clearDataCache()
+    const el = await open(SKILLS)
+    act(() => cell(el, NAME, 'zh')?.querySelector<HTMLButtonElement>('.chip')?.click())
+    await vi.waitFor(() => expect(el.querySelector('.mark-detail .mark-variant')).not.toBeNull())
+    const text = el.querySelector('.mark-detail .mark-variants')?.textContent ?? ''
+    expect(text).toContain('測試斬擊')
+    expect(text).not.toContain('<style')
+  })
+
   it('opens the name and the description of a warning, with a link to it', async () => {
     const el = await open(SKILLS)
     act(() => cell(el, KANA, 'zh')?.querySelector<HTMLButtonElement>('.chip')?.click())

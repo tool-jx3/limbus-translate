@@ -1,5 +1,5 @@
 // The JSON the viewer reads. Keys and shapes are those of internal/site
-// (file.go and export.go) and of the site spec, section 5; format 1.
+// (file.go and export.go) and of the site spec, section 5; format 2.
 
 /** data/meta.json: where the data comes from and how much there is. */
 export interface Meta {
