@@ -53,7 +53,7 @@ describe('App', () => {
     expect(el.querySelector('.top .brand')?.textContent).toBe('Limbus 譯文對照')
     await loaded(el)
     expect([...el.querySelectorAll('.dir-family-id')].map((e) => e.textContent)).toEqual(['story-main', 'ally'])
-    expect(el.querySelector('.home')?.textContent).toContain('單位20')
+    expect(el.querySelector('.home')?.textContent).toContain('單位21')
     expect(el.querySelector('.foot-version')?.textContent).toContain('raw-20261029')
     expect(el.querySelector('.foot-version a')?.getAttribute('href')).toBe(
       'https://github.com/tool-jx3/limbus-translate/releases/tag/zh-TW-20261029.5',

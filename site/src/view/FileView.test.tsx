@@ -145,13 +145,14 @@ describe('FileView: table', () => {
   it('has one row for each unit that is shown, the field name first', async () => {
     const el = await open(SKILLS)
     const rows = [...el.querySelectorAll<HTMLElement>('.tbl [data-row]')]
-    // five units: the copy one is hidden
+    // six units: the copy one is hidden
     expect(rows.map((r) => r.dataset.ptr)).toEqual([
       '/dataList/0/levelList/0/name',
       '/dataList/0/levelList/0/coinlist/0/coindescs/0/desc',
       '/dataList/0/levelList/0/coinlist/0/coindescs/1/desc',
       '/dataList/1/levelList/0/name',
       '/dataList/1/levelList/0/desc',
+      '/dataList/2/levelList/0/coinlist/0/coindescs/1/desc',
     ])
     const field = rows[0]?.querySelector<HTMLElement>('.field')
     expect(field?.textContent).toBe('name')
@@ -282,13 +283,13 @@ describe('FileView: origin filter', () => {
     const el = await open(SKILLS)
     const boxes = [...el.querySelectorAll<HTMLInputElement>('input[data-origin]')].map((b) => b.dataset.origin)
     expect(boxes).toEqual(['paratranz', 'claude', 'copy', 'fallback', 'stand-in'])
-    expect(el.querySelector('input[data-origin="paratranz"]')?.closest('label')?.textContent).toContain('2')
+    expect(el.querySelector('input[data-origin="paratranz"]')?.closest('label')?.textContent).toContain('3')
   })
 
   it('shows the count of the units that are shown', async () => {
     const el = await open(SKILLS)
-    expect(el.querySelector('.file-count')?.textContent).toContain('5')
     expect(el.querySelector('.file-count')?.textContent).toContain('6')
+    expect(el.querySelector('.file-count')?.textContent).toContain('7')
   })
 })
 

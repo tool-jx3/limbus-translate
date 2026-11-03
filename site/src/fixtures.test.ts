@@ -208,7 +208,7 @@ describe('review fixtures', () => {
     expect(inconsistent.some((s) => !s.declined && (s.variants ?? []).length === 2)).toBe(true)
     expect(suggestions.some((s) => s.kind !== 'inconsistent' && !s.declined)).toBe(true)
     expect(suggestions.some((s) => s.declined)).toBe(true)
-    expect(warnings.filter((w) => w.code === 'kana' && !w.accepted).flatMap((w) => w.keys).length).toBeGreaterThanOrEqual(2)
+    expect(warnings.some((w) => w.code === 'kana' && !w.accepted && w.keys.length === 2)).toBe(true)
     expect(warnings.some((w) => w.accepted)).toBe(true)
     expect(notes).toHaveLength(2)
     expect(notes.filter((n) => n.declined)).toHaveLength(1)

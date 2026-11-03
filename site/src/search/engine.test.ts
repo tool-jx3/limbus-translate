@@ -79,9 +79,9 @@ describe('searchCorpus', () => {
   })
 
   it('does not count a string that has no text', () => {
-    // two of the 16 strings of the jp corpus are empty: the language has no string for them
+    // two of the 17 strings of the jp corpus are empty: the language has no string for them
     const { hits, total } = searchCorpus(keys, stripped('jp'), matcher('.*', true))
-    expect(total).toBe(14)
+    expect(total).toBe(15)
     const ptrs = hits.map((h) => h.ptr)
     expect(ptrs).not.toContain('/dataList/2/content')
     expect(ptrs).not.toContain('/dataList/1/levelList/0/desc')
