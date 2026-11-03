@@ -536,3 +536,30 @@ func TestReviewPendingAlwaysMarshalled(t *testing.T) {
 		}
 	}
 }
+
+func TestReviewNoteSuggestionNotListedTwice(t *testing.T) {
+	placed := noteOf(k(rvA, 0), "b1", rvKR, "意譯")
+	unplaced := noteOf(k(rvA, 0), "b9", rvKR, "找不到位置")
+	in, files := reviewInputs(t)
+	withBatch(in, k(rvA, 0), "b1")
+	in.Review.Notes = []store.Note{placed}
+	in.Review.Build.Report.Notes = []store.Note{placed, unplaced}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	placedID, unplacedID := itemid.Note(placed.Key, placed.Note), itemid.Note(unplaced.Key, unplaced.Note)
+	if len(r.Notes) != 1 || r.Notes[0].ID != placedID {
+		t.Fatalf("Notes = %+v", r.Notes)
+	}
+	var ids []string
+	for _, s := range r.Suggestions {
+		ids = append(ids, s.ID)
+	}
+	if slices.Contains(ids, placedID) {
+		t.Errorf("the note %s is on the notes tab and in the suggestions too: %v", placedID, ids)
+	}
+	if !slices.Contains(ids, unplacedID) {
+		t.Errorf("the unplaced note %s is gone from the suggestions: %v", unplacedID, ids)
+	}
+}

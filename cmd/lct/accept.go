@@ -20,6 +20,7 @@ func init() {
 		Usage: "record the review items a person confirmed, so the review page, lct suggest and the build report skip them: " +
 			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml; " +
 			"--file holds ids one a line, blank lines and lines that start with # ignored; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing); " +
+			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants) and the ids that are no item of the last build (exit code 1 if any); " +
 			"or --tidy: delete the entries of rules/accepted.yaml that are no warning of the last build any more",
 		Run: runAccept,
 	})
@@ -42,16 +43,82 @@ func (r acceptReport) String() string {
 		len(r.Declined), suggest.DeclinedFile, len(r.Accepted), suggest.AcceptedFile, len(r.Skipped), r.RawTag, r.TWCommit)
 }
 
-// tidyReport is what "accept --tidy" prints.
+// tidyReport is what "accept --tidy" prints: the entries removed, and the
+// build they were checked against.
 type tidyReport struct {
-	Removed []string `json:"removed"`
+	Removed  []string `json:"removed"`
+	RawTag   string   `json:"raw_tag"`
+	TWCommit string   `json:"tw_commit"`
 }
 
 func (r tidyReport) String() string {
+	build := fmt.Sprintf("(build %s, tw %s)", r.RawTag, r.TWCommit)
 	if len(r.Removed) == 0 {
-		return "nothing to remove from " + suggest.AcceptedFile
+		return "nothing to remove from " + suggest.AcceptedFile + " " + build
 	}
-	return fmt.Sprintf("removed %d from %s:\n  %s", len(r.Removed), suggest.AcceptedFile, strings.Join(r.Removed, "\n  "))
+	return fmt.Sprintf("removed %d from %s %s:\n  %s", len(r.Removed), suggest.AcceptedFile, build, strings.Join(r.Removed, "\n  "))
+}
+
+// The values of lookupItem.List.
+const (
+	listDeclined = "declined"
+	listAccepted = "accepted"
+)
+
+// lookupItem is one id of "accept --dry-run": the item as the review page has
+// it. List is the file the id goes to, "declined" or "accepted"; Confirmed is
+// set when it is in that file already. KR and ZH are the texts the item is
+// about, Note a translator's note, Message the check's description of a
+// warning; Variants are those of a group of inconsistent translations only.
+type lookupItem struct {
+	ID        string          `json:"id"`
+	Kind      string          `json:"kind"`
+	List      string          `json:"list"`
+	Confirmed *site.Confirmed `json:"confirmed"`
+	Title     string          `json:"title,omitempty"`
+	KR        string          `json:"kr,omitempty"`
+	ZH        string          `json:"zh,omitempty"`
+	Note      string          `json:"note,omitempty"`
+	Message   string          `json:"message,omitempty"`
+	Keys      []string        `json:"keys"`
+	Variants  []site.Variant  `json:"variants,omitempty"`
+	Pending   int             `json:"pending"`
+}
+
+// lookupReport is what "accept --dry-run" prints: the items in the order of the
+// ids, the ids that are no item of the last build, and that build.
+type lookupReport struct {
+	Items    []lookupItem `json:"items"`
+	Unknown  []string     `json:"unknown"`
+	RawTag   string       `json:"raw_tag"`
+	TWCommit string       `json:"tw_commit"`
+}
+
+func (r lookupReport) String() string {
+	var b strings.Builder
+	fmt.Fprintf(&b, "%d items, %d unknown (build %s, tw %s)\n", len(r.Items), len(r.Unknown), r.RawTag, r.TWCommit)
+	for _, it := range r.Items {
+		fmt.Fprintf(&b, "\n%s\n  kind: %s, goes to: %s", it.ID, it.Kind, it.List)
+		if it.Confirmed != nil {
+			fmt.Fprintf(&b, ", confirmed %s: %s", it.Confirmed.Date, it.Confirmed.Reason)
+		}
+		b.WriteString("\n")
+		for _, f := range []struct{ label, text string }{{"title", it.Title}, {"KR", it.KR}, {"TW", it.ZH}, {"note", it.Note}, {"message", it.Message}} {
+			if f.text != "" {
+				fmt.Fprintf(&b, "  %s: %s\n", f.label, f.text)
+			}
+		}
+		for _, v := range it.Variants {
+			fmt.Fprintf(&b, "  variant (%d): %s\n", v.Count, v.ZH)
+		}
+		if len(it.Keys) > 0 {
+			fmt.Fprintf(&b, "  units (%d, %d waiting for retranslation):\n    %s\n", len(it.Keys), it.Pending, strings.Join(it.Keys, "\n    "))
+		}
+	}
+	if len(r.Unknown) > 0 {
+		fmt.Fprintf(&b, "\nno item of the last build:\n  %s\n", strings.Join(r.Unknown, "\n  "))
+	}
+	return b.String()
 }
 
 func runAccept(ctx *cli.Context, args []string) error {
@@ -60,14 +127,15 @@ func runAccept(ctx *cli.Context, args []string) error {
 	reason := flags.String("reason", "", "why the items are confirmed (required)")
 	date := flags.String("date", "", "the date to write, YYYY-MM-DD (default: today)")
 	idFile := flags.String("file", "", "a file of ids, one a line")
+	dryRun := flags.Bool("dry-run", false, "write nothing; print the items of the ids")
 	tidy := flags.Bool("tidy", false, "delete the entries of "+suggest.AcceptedFile+" that are no warning of the last build")
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("accept: " + err.Error())
 	}
 
 	if *tidy {
-		if flags.NArg() > 0 || *idFile != "" || *reason != "" || *date != "" {
-			return cli.UserError("accept: --tidy takes no ids, --file, --reason or --date")
+		if flags.NArg() > 0 || *idFile != "" || *reason != "" || *date != "" || *dryRun {
+			return cli.UserError("accept: --tidy takes no ids, --file, --reason, --date or --dry-run")
 		}
 		return acceptTidy(ctx)
 	}
@@ -96,6 +164,9 @@ func runAccept(ctx *cli.Context, args []string) error {
 	}
 	if len(ids) == 0 {
 		return cli.UserError("accept: give at least one ID (as arguments or with --file), or --tidy")
+	}
+	if *dryRun {
+		return acceptLookup(ctx, ids)
 	}
 	if strings.TrimSpace(*reason) == "" {
 		return cli.UserError("accept: --reason is required and must not be empty")
@@ -135,10 +206,12 @@ func runAccept(ctx *cli.Context, args []string) error {
 	var declined, accepted []suggest.Declined
 	for _, id := range ids {
 		switch {
+		case known[id]:
+			// Already in a list: the build may no longer have the item (it drops
+			// a declined group of inconsistent translations), so this goes first.
+			rep.Skipped = append(rep.Skipped, id)
 		case !toDeclined[id] && !toAccepted[id]:
 			unknown = append(unknown, id)
-		case known[id]:
-			rep.Skipped = append(rep.Skipped, id)
 		case toDeclined[id]:
 			rep.Declined = append(rep.Declined, id)
 			declined = append(declined, suggest.Declined{ID: id, Reason: *reason, Date: day})
@@ -163,7 +236,7 @@ func runAccept(ctx *cli.Context, args []string) error {
 // acceptTidy deletes the entries of rules/accepted.yaml that are no warning of
 // the last build.
 func acceptTidy(ctx *cli.Context) error {
-	rev, in, _, err := acceptReview(ctx)
+	rev, in, head, err := acceptReview(ctx)
 	if err != nil {
 		return err
 	}
@@ -184,7 +257,66 @@ func acceptTidy(ctx *cli.Context) error {
 	if removed == nil {
 		removed = []string{}
 	}
-	return ctx.Emit(tidyReport{Removed: removed})
+	return ctx.Emit(tidyReport{Removed: removed, RawTag: in.RawTag, TWCommit: head})
+}
+
+// acceptLookup prints the items of ids as the review page has them and writes
+// nothing. An id that is in a confirmation list but no item of the last build
+// (the build drops a declined group of inconsistent translations) is printed
+// with what the list says; the other ids that are no item are unknown, which
+// is exit code 1.
+func acceptLookup(ctx *cli.Context, ids []string) error {
+	rev, in, head, err := acceptReview(ctx)
+	if err != nil {
+		return err
+	}
+	items := map[string]lookupItem{}
+	for _, sg := range rev.Suggestions {
+		it := lookupItem{ID: sg.ID, Kind: sg.Kind, List: listDeclined, Confirmed: sg.Declined, Title: sg.Title, KR: sg.KR, Variants: sg.Variants, Pending: sg.Pending, Keys: []string{}}
+		for _, v := range sg.Variants {
+			it.Keys = append(it.Keys, v.Keys...)
+		}
+		if sg.Kind == suggest.KindNote && len(sg.Evidence) > 0 {
+			it.Note = sg.Evidence[0].Note
+			if sg.Evidence[0].Key != "" {
+				it.Keys = []string{sg.Evidence[0].Key}
+			}
+		}
+		items[sg.ID] = it
+	}
+	for _, n := range rev.Notes {
+		items[n.ID] = lookupItem{ID: n.ID, Kind: suggest.KindNote, List: listDeclined, Confirmed: n.Declined, KR: n.KR, ZH: n.ZH, Note: n.Note, Keys: []string{n.Key}, Pending: n.Pending}
+	}
+	for _, w := range rev.Warnings {
+		items[w.ID] = lookupItem{ID: w.ID, Kind: "warning", List: listAccepted, Confirmed: w.Accepted, KR: w.KR, ZH: w.ZH, Message: w.Message, Keys: w.Keys, Pending: w.Pending}
+	}
+	listed := map[string]lookupItem{}
+	for _, f := range []struct {
+		list    string
+		entries []suggest.Declined
+	}{{listAccepted, in.Accepted}, {listDeclined, in.Declined}} {
+		for _, e := range f.entries {
+			kind, _, _ := strings.Cut(e.ID, "/")
+			listed[e.ID] = lookupItem{ID: e.ID, Kind: kind, List: f.list, Confirmed: &site.Confirmed{Reason: e.Reason, Date: e.Date}, Keys: []string{}}
+		}
+	}
+	rep := lookupReport{Items: []lookupItem{}, Unknown: []string{}, RawTag: in.RawTag, TWCommit: head}
+	for _, id := range ids {
+		if it, ok := items[id]; ok {
+			rep.Items = append(rep.Items, it)
+		} else if it, ok := listed[id]; ok {
+			rep.Items = append(rep.Items, it)
+		} else {
+			rep.Unknown = append(rep.Unknown, id)
+		}
+	}
+	if err := ctx.Emit(rep); err != nil {
+		return err
+	}
+	if len(rep.Unknown) > 0 {
+		return cli.ErrFindings
+	}
+	return nil
 }
 
 // acceptReview computes the review items of the last build, the way lct site

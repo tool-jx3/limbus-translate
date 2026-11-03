@@ -317,7 +317,15 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		}
 	}
 
+	onNotesTab := make(map[string]bool, len(noteItems))
+	for _, n := range noteItems {
+		onNotesTab[n.ID] = true
+	}
 	for _, s := range suggestions {
+		// A note placed on the notes tab is not listed a second time as a suggestion.
+		if s.Kind == suggest.KindNote && onNotesTab[s.ID] {
+			continue
+		}
 		item := SuggestionItem{ID: s.ID, Kind: s.Kind, Title: s.Title, Evidence: s.Evidence, Declined: declined[s.ID]}
 		if s.Kind == suggest.KindInconsistent {
 			g := groups[s.ID]

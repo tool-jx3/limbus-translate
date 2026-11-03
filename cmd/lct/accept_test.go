@@ -115,6 +115,33 @@ type acceptOut struct {
 	Removed  []string `json:"removed"`
 }
 
+// lookupOut is "accept --dry-run --json".
+type lookupOut struct {
+	Items []struct {
+		ID        string `json:"id"`
+		Kind      string `json:"kind"`
+		List      string `json:"list"`
+		Confirmed *struct {
+			Reason string `json:"reason"`
+			Date   string `json:"date"`
+		} `json:"confirmed"`
+		KR       string   `json:"kr"`
+		ZH       string   `json:"zh"`
+		Note     string   `json:"note"`
+		Message  string   `json:"message"`
+		Keys     []string `json:"keys"`
+		Variants []struct {
+			ZH    string   `json:"zh"`
+			Count int      `json:"count"`
+			Keys  []string `json:"keys"`
+		} `json:"variants"`
+		Pending int `json:"pending"`
+	} `json:"items"`
+	Unknown  []string `json:"unknown"`
+	RawTag   string   `json:"raw_tag"`
+	TWCommit string   `json:"tw_commit"`
+}
+
 func readOptional(t *testing.T, root, rel string) string {
 	t.Helper()
 	b, err := os.ReadFile(filepath.Join(root, rel))
@@ -246,5 +273,102 @@ func TestAcceptUsage(t *testing.T) {
 	}
 	if got := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml"); got != was {
 		t.Error("a failed accept wrote a list")
+	}
+}
+
+func TestAcceptDryRunLooksItemsUp(t *testing.T) {
+	s := acceptRepo(t)
+	mustLct(t, nil, "accept", "--reason", "兩種都可以", "--date", "2026-11-03", s.warnings[1])
+	listsBefore := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml")
+
+	var out lookupOut
+	mustLct(t, &out, "accept", "--dry-run", s.suggestion, s.note, s.warnings[0], s.warnings[1])
+	if len(out.Items) != 4 || len(out.Unknown) != 0 || out.RawTag != "raw-20261029" {
+		t.Fatalf("lookup = %+v", out)
+	}
+	by := map[string]int{}
+	for i, it := range out.Items {
+		by[it.ID] = i
+	}
+	sg, nt, w0, w1 := out.Items[by[s.suggestion]], out.Items[by[s.note]], out.Items[by[s.warnings[0]]], out.Items[by[s.warnings[1]]]
+	if sg.Kind != "speaker" || sg.List != "declined" || sg.Confirmed != nil || sg.Keys == nil {
+		t.Errorf("suggestion = %+v", sg)
+	}
+	if nt.Kind != "note" || nt.List != "declined" || nt.Note != "KR 這句有雙關" || len(nt.Keys) != 1 || nt.KR == "" || nt.ZH == "" {
+		t.Errorf("note = %+v", nt)
+	}
+	if w0.Kind != "warning" || w0.List != "accepted" || w0.Confirmed != nil || w0.Message == "" || w0.KR == "" || w0.ZH == "" || len(w0.Keys) == 0 {
+		t.Errorf("warning = %+v", w0)
+	}
+	if w1.Confirmed == nil || w1.Confirmed.Reason != "兩種都可以" || w1.Confirmed.Date != "2026-11-03" {
+		t.Errorf("confirmed warning = %+v", w1)
+	}
+	if got := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml"); got != listsBefore {
+		t.Errorf("--dry-run wrote a list:\n%s", got)
+	}
+
+	// An unknown id is listed and makes the exit code 1; the known one is still printed.
+	const unknown = "warning/kana/00000000/00000000"
+	code, stdout, stderr := lct(t, "--json", "accept", "--dry-run", s.warnings[0], unknown)
+	if code != 1 {
+		t.Fatalf("exit code %d, want 1\n%s%s", code, stdout, stderr)
+	}
+	var partial lookupOut
+	if err := json.Unmarshal([]byte(stdout), &partial); err != nil {
+		t.Fatalf("%v\n%s", err, stdout)
+	}
+	if len(partial.Items) != 1 || partial.Items[0].ID != s.warnings[0] || !slices.Equal(partial.Unknown, []string{unknown}) {
+		t.Errorf("lookup = %+v", partial)
+	}
+
+	// The text output names the same ids.
+	code, stdout, _ = lct(t, "accept", "--dry-run", s.warnings[0], s.note)
+	if code != 0 || !strings.Contains(stdout, s.warnings[0]) || !strings.Contains(stdout, s.note) {
+		t.Errorf("text output (exit %d):\n%s", code, stdout)
+	}
+}
+
+func TestAcceptDryRunFile(t *testing.T) {
+	s := acceptRepo(t)
+	writeTestFile(t, s.root, "work/ids.txt", s.warnings[0]+"\n")
+	var out lookupOut
+	mustLct(t, &out, "accept", "--dry-run", "--file", "work/ids.txt", s.note)
+	if len(out.Items) != 2 {
+		t.Errorf("lookup = %+v", out)
+	}
+	if code, _, _ := lct(t, "accept", "--dry-run"); code != 1 {
+		t.Errorf("--dry-run with no id: exit code %d, want 1", code)
+	}
+	if code, _, _ := lct(t, "accept", "--dry-run", "--tidy"); code != 1 {
+		t.Errorf("--dry-run with --tidy: exit code %d, want 1", code)
+	}
+}
+
+func TestAcceptSkipsAnIDTheBuildNoLongerHas(t *testing.T) {
+	s := acceptRepo(t)
+	// The build drops a declined group of inconsistent translations, so the id is in the list only.
+	const dropped = "inconsistent/other/name/00000000"
+	writeTestFile(t, s.root, "rules/declined.yaml", "- id: \""+dropped+"\"\n  reason: 都可以\n  date: 2026-11-01\n")
+	var out acceptOut
+	mustLct(t, &out, "accept", "--reason", "r", "--date", "2026-11-03", dropped, s.warnings[0])
+	if !slices.Equal(out.Skipped, []string{dropped}) || !slices.Equal(out.Accepted, []string{s.warnings[0]}) {
+		t.Errorf("accept = %+v", out)
+	}
+	var look lookupOut
+	mustLct(t, &look, "accept", "--dry-run", dropped)
+	if len(look.Unknown) != 0 || len(look.Items) != 1 || look.Items[0].List != "declined" || look.Items[0].Confirmed == nil || look.Items[0].Confirmed.Reason != "都可以" {
+		t.Errorf("lookup = %+v", look)
+	}
+}
+
+func TestAcceptTidyNamesTheBuild(t *testing.T) {
+	acceptRepo(t)
+	code, stdout, stderr := lct(t, "--json", "accept", "--tidy")
+	if code != 0 {
+		t.Fatalf("exit code %d\n%s%s", code, stdout, stderr)
+	}
+	// The test repo has no commit in the tw worktree, so tw_commit is empty but present.
+	if !strings.Contains(stdout, `"raw_tag": "raw-20261029"`) || !strings.Contains(stdout, `"tw_commit"`) {
+		t.Errorf("tidy output lacks the build it was checked against:\n%s", stdout)
 	}
 }
