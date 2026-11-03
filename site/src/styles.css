@@ -1600,3 +1600,9 @@ button.chip {
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
+
+.rv-msg {
+  margin: 0.25rem 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}

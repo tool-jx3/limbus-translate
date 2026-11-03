@@ -41,6 +41,32 @@ describe('WARNING_MARKS', () => {
     expect(show('好,壞', mark).querySelectorAll('mark')).toHaveLength(1)
   })
 
+  const marked = (code: string, text: string) => [...show(text, WARNING_MARKS[code]).querySelectorAll('mark')].map((m) => m.textContent)
+
+  it('marks what halfwidthPunct flags: , . : next to Chinese text', () => {
+    expect(marked('halfwidth-punct', '好,壞.他:她')).toEqual([',', '.', ':'])
+    expect(marked('halfwidth-punct', '結束.')).toEqual(['.'])
+    expect(marked('halfwidth-punct', '壞!好?對;')).toEqual([])
+    expect(marked('halfwidth-punct', 'Hello, world. A:B')).toEqual([])
+    expect(marked('halfwidth-punct', '好...壞')).toEqual([])
+    expect(marked('halfwidth-punct', '好::壞')).toEqual([])
+  })
+
+  it('marks what asciiEllRe flags: three dots or more', () => {
+    expect(marked('ascii-ellipsis', '好...壞')).toEqual(['...'])
+    expect(marked('ascii-ellipsis', '好....壞')).toEqual(['....'])
+    expect(marked('ascii-ellipsis', '好..壞')).toEqual([])
+  })
+
+  it('marks what the curly-quotes check flags: “ and ” only', () => {
+    expect(marked('curly-quotes', '“好”‘壞’')).toEqual(['“', '”'])
+  })
+
+  it('marks the kana of the kana check, the prolonged sound mark and the iteration marks included', () => {
+    expect(marked('kana', 'ーゝゞヽヾ゛゜あ')).toEqual(['ー', 'ゝ', 'ゞ', 'ヽ', 'ヾ', '゛', '゜', 'あ'])
+    expect(marked('kana', '・好')).toEqual([])
+  })
+
   it('has a mark for the codes of the spec and none for length-ratio', () => {
     expect(Object.keys(WARNING_MARKS).sort()).toEqual(['ascii-ellipsis', 'curly-quotes', 'halfwidth-bracket', 'halfwidth-punct', 'kana'])
   })

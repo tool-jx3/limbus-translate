@@ -25,6 +25,7 @@ export function WarningCard({ item, target }: { item: WarningItem; target: boole
         <Pending pending={item.pending} units={item.keys.length} />
         <IdCopy id={item.id} source={item.zh} />
       </div>
+      <p class="rv-msg">{item.message}</p>
       <ConfirmedLine confirmed={item.accepted} />
       <dl class="rv-src">
         <Row label="KR" lang="kr" text={item.kr} />

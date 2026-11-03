@@ -154,6 +154,7 @@ describe('ReviewView', () => {
     expect([...card.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['の'])
     expect(el.querySelector('.rv-section h2')?.textContent).toContain('假名殘留')
     expect(card.textContent).toContain('warning/kana/1315241d/2cc3aa54')
+    expect(card.querySelector('.rv-msg')?.textContent).toBe('the translation contains kana: "の"')
   })
 
   it('shows the whole note and the unit of a translator note', async () => {
