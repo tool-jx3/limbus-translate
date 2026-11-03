@@ -549,6 +549,7 @@ LimbusCompany_Data/
 | `lct glossary derive [--source keyword\|speaker] [--limit N] [--offset N]` | 從 `BattleKeywords*`、`Bufs*`（`keyword`）與 `ScenarioModelCodes`（`speaker`）列出詞彙表還沒有、也沒被不採用的名稱，作為候選詞條；只輸出，不寫檔；依 KR 排序，`--limit`／`--offset` 取其中一頁，JSON 為 `{total, candidates}`（`total` 是頁數限制前的總數） |
 | `lct review` | 目前 `tw` 狀態中需要人處理的項目（與審核 Issue 相同）：標題與各節的 `kind`、`title`、`hint`、`items`；沒有 `tw` 的建置紀錄時 exit 1；§14 |
 | `lct rules lint` | 規則檔 schema 檢查 |
+| `lct site --out DIR` | 輸出譯文對照網站要的資料（索引、各檔的 KR／JP／EN／TW 對照、全文搜尋用 corpus，格式見 `docs/superpowers/specs/2026-11-03-pages-viewer-design.md` §5）；讀 `raw`、`tw` 兩個 worktree，`DIR` 相對於 repo 根目錄，會先清空；`DIR` 在 repo 之外、是 repo 根目錄、含 `.git`、或包含／位於 `raw`、`tw` worktree 時拒絕；`tw` 沒有建置紀錄、或建置的 snapshot 不是 `raw` 目前的 snapshot 時 exit 1 |
 
 所有指令支援 `--json` 輸出；exit code：0 成功、1 有發現或使用者錯誤、2 系統錯誤。`raw`／`tw` 分支以 `git worktree` 操作。
 

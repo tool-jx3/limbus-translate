@@ -21,7 +21,9 @@ const OriginStandIn = "stand-in"
 // maxSpeakers caps FileSummary.Speakers.
 const maxSpeakers = 20
 
-// Inputs are the packs and the state a file's units are built from.
+// Inputs are the packs and the state a file's units are built from. KR, ZH and
+// Rules must be set; EN and JP may be nil, and then no unit has a string in that
+// language.
 type Inputs struct {
 	KR, EN, JP *pack.Pack
 	// ZH is the built pack, <tw>/LimbusCompany_Data/Lang/<lang_dir>, opened

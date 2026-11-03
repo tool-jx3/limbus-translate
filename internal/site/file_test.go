@@ -182,10 +182,10 @@ func TestBuildFileOrigin(t *testing.T) {
 	const file = "Sample.json"
 	krDoc := `{"dataList":[
 		{"id":1,"content":"가"},{"id":2,"content":"나"},{"id":3,"content":"다"},
-		{"id":4,"content":"라"},{"id":5,"content":"마"}]}`
+		{"id":4,"content":"라"},{"id":5,"content":"마"},{"id":6,"content":"바"}]}`
 	zhDoc := `{"dataList":[
 		{"id":1,"content":"甲"},{"id":2,"content":"乙"},{"id":3,"content":"丙"},
-		{"id":4,"content":"丁"},{"id":5,"content":"戊"}]}`
+		{"id":4,"content":"丁"},{"id":5,"content":"戊"},{"id":6,"content":"己"}]}`
 	in := Inputs{
 		KR: writePack(t, "KR_", map[string]string{file: krDoc}),
 		EN: writePack(t, "EN_", nil),
@@ -197,6 +197,9 @@ func TestBuildFileOrigin(t *testing.T) {
 			// /dataList/2: no record
 			record(file, "/dataList/3/content", "丁", store.OriginClaude, store.FlagNeedsReview),
 			record(file, "/dataList/4/content", "戊", store.OriginParatranz),
+			// A flagged record whose string the pack does not show: a stand-in
+			// that still carries the flag.
+			record(file, "/dataList/5/content", "不符", store.OriginClaude, store.FlagNeedsReview),
 		),
 		Rules: testRules(),
 	}
@@ -210,6 +213,7 @@ func TestBuildFileOrigin(t *testing.T) {
 		"/dataList/2/content": OriginStandIn,
 		"/dataList/3/content": store.OriginClaude,
 		"/dataList/4/content": store.OriginParatranz,
+		"/dataList/5/content": OriginStandIn,
 	} {
 		if got := unitAt(t, f, ptr).O; got != want {
 			t.Errorf("%s: O = %q, want %q", ptr, got, want)
@@ -218,10 +222,13 @@ func TestBuildFileOrigin(t *testing.T) {
 	if fl := unitAt(t, f, "/dataList/3/content").Fl; !slices.Equal(fl, []string{store.FlagNeedsReview}) {
 		t.Errorf("Fl = %v, want [needs_review]", fl)
 	}
+	if fl := unitAt(t, f, "/dataList/5/content").Fl; !slices.Equal(fl, []string{store.FlagNeedsReview}) {
+		t.Errorf("Fl of a stand-in with a flagged record = %v, want [needs_review]", fl)
+	}
 	if fl := unitAt(t, f, "/dataList/0/content").Fl; fl != nil {
 		t.Errorf("Fl of a record without flags = %v, want nil", fl)
 	}
-	wantOrigins := map[string]int{store.OriginParatranz: 2, store.OriginClaude: 1, OriginStandIn: 2}
+	wantOrigins := map[string]int{store.OriginParatranz: 2, store.OriginClaude: 1, OriginStandIn: 3}
 	if len(sum.Origins) != len(wantOrigins) {
 		t.Errorf("Origins = %v, want %v", sum.Origins, wantOrigins)
 	}
@@ -230,8 +237,8 @@ func TestBuildFileOrigin(t *testing.T) {
 			t.Errorf("Origins[%s] = %d, want %d", o, sum.Origins[o], n)
 		}
 	}
-	if sum.Units != 5 {
-		t.Errorf("Units = %d, want 5", sum.Units)
+	if sum.Units != 6 {
+		t.Errorf("Units = %d, want 6", sum.Units)
 	}
 }
 
