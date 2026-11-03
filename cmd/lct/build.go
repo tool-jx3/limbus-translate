@@ -20,6 +20,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
 
 const (
@@ -145,6 +146,14 @@ func runBuild(ctx *cli.Context, args []string) error {
 			upstream[u.name] = u.up.Repo + "@" + u.up.Tag
 		}
 	}
+	declined, err := suggest.LoadDeclined(ctx.Root)
+	if err != nil {
+		return err
+	}
+	accepted, err := suggest.LoadAccepted(ctx.Root)
+	if err != nil {
+		return err
+	}
 	opt := build.Options{
 		TWRoot:       twRoot,
 		OutDir:       filepath.Join(ctx.Root, buildOutDir),
@@ -161,6 +170,8 @@ func runBuild(ctx *cli.Context, args []string) error {
 		Rules:        r,
 		RepoURL:      repoURL(),
 		PrevTWCommit: prevTW,
+		Declined:     idSet(declined),
+		Accepted:     idSet(accepted),
 	}
 	rep, err := build.Run(opt, set, fr)
 	if errors.Is(err, build.ErrFontChecksum) {
@@ -281,4 +292,13 @@ func buildTime(root string) (time.Time, error) {
 		return t, nil
 	}
 	return gitx.CommitTime(root)
+}
+
+// idSet is the set of the ids of entries.
+func idSet(entries []suggest.Declined) map[string]bool {
+	set := make(map[string]bool, len(entries))
+	for _, e := range entries {
+		set[e.ID] = true
+	}
+	return set
 }

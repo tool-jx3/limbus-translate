@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"io"
 	"io/fs"
 	"os"
@@ -2085,5 +2086,67 @@ func TestReportShowsATranslationThatDidNotRun(t *testing.T) {
 	}
 	if strings.Contains(rest, "錯誤") {
 		t.Errorf("a translation that did not run is reported as an error:\n%s", rest)
+	}
+}
+
+// A warning a person accepted (by the id of its KR and translation) is not
+// counted and not sampled; the same unit with another translation still is.
+func TestBuildAcceptedWarningNotCounted(t *testing.T) {
+	kr := map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"나"}]}`}
+	recs := []store.Record{
+		rec("A.json", "/dataList/0/content", "가", "甲か"),
+		rec("A.json", "/dataList/1/content", "나", "乙か"),
+	}
+	e := newEnv(t, kr, nil)
+	e.save(recs...)
+	if rep := e.run(); rep.Warnings["kana"] != 2 {
+		t.Fatalf("Warnings = %v, want 2 kana without an accepted list", rep.Warnings)
+	}
+
+	e = newEnv(t, kr, nil)
+	e.save(recs...)
+	e.opt.Accepted = map[string]bool{itemid.Warning("kana", "가", "甲か"): true}
+	rep := e.run()
+	if rep.Warnings["kana"] != 1 {
+		t.Errorf("Warnings = %v, want 1 kana", rep.Warnings)
+	}
+	if got := rep.WarningSamples["kana"]; !slices.Equal(got, []string{recs[1].Key}) {
+		t.Errorf("WarningSamples[kana] = %v, want only %q", got, recs[1].Key)
+	}
+
+	// Another translation of the same KR has another id: counted as usual.
+	e = newEnv(t, kr, nil)
+	e.save(recs...)
+	e.opt.Accepted = map[string]bool{itemid.Warning("kana", "가", "別か"): true}
+	if rep := e.run(); rep.Warnings["kana"] != 2 {
+		t.Errorf("Warnings = %v, want 2 kana: the accepted id is of another translation", rep.Warnings)
+	}
+}
+
+// A declined group of inconsistent renderings leaves the report and the build
+// record, and the next group takes its place.
+func TestBuildDeclinedGroupGivesUpItsPlace(t *testing.T) {
+	e := newEnv(t, map[string]string{
+		"A.json": `{"dataList":[{"id":1,"content":"가"},{"id":2,"content":"가"},{"id":3,"content":"가"},{"id":4,"content":"나"},{"id":5,"content":"나"}]}`,
+	}, nil)
+	e.opt.Rules = routingRules()
+	e.opt.Declined = map[string]bool{itemid.Inconsistent("alpha", "content", "가"): true}
+	e.save(
+		rec("A.json", "/dataList/0/content", "가", "甲"),
+		rec("A.json", "/dataList/1/content", "가", "乙"),
+		rec("A.json", "/dataList/2/content", "가", "甲"),
+		rec("A.json", "/dataList/3/content", "나", "丙"),
+		rec("A.json", "/dataList/4/content", "나", "丁"),
+	)
+	rep := e.run()
+	if len(rep.Inconsistent) != 1 || rep.Inconsistent[0].KR != "나" {
+		t.Errorf("Inconsistent = %+v, want only the group of 나", rep.Inconsistent)
+	}
+	info, err := ReadInfo(e.opt.TWRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(info.InconsistentAll) != 1 || info.InconsistentAll[0].KR != "나" {
+		t.Errorf("InconsistentAll = %+v, want only the group of 나", info.InconsistentAll)
 	}
 }

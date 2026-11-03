@@ -72,6 +72,9 @@ type ReviewSection struct {
 	Hint  string `json:"hint"`
 	// Items are the cases, each the text of a line of the checklist.
 	Items []string `json:"items"`
+	// Keys is parallel to Items: the key of the unit an item is about, ""
+	// when it is about none. Only the kinds about units fill it.
+	Keys []string `json:"keys,omitempty"`
 }
 
 // ReviewItems lists what needs a person after a build (spec 14.2): the units
@@ -85,20 +88,21 @@ type ReviewSection struct {
 // the build; info is the build record.
 func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []ReviewSection {
 	secs := []ReviewSection{}
-	add := func(kind, title, hint string, items []string) {
+	add := func(kind, title, hint string, items []string, keys ...string) {
 		if len(items) > 0 {
-			secs = append(secs, ReviewSection{Kind: kind, Title: title, Hint: hint, Items: items})
+			secs = append(secs, ReviewSection{Kind: kind, Title: title, Hint: hint, Items: items, Keys: keys})
 		}
 	}
 
-	var stuck []string
+	var stuck, stuckKeys []string
 	for _, it := range pending {
 		if slices.Contains(it.Flags, store.FlagNeedsReview) {
 			stuck = append(stuck, code(it.Key)+"："+reason(it.LastError))
+			stuckKeys = append(stuckKeys, it.Key)
 		}
 	}
 	add(KindNeedsReview, "翻譯失敗、暫用英文的單位（needs_review）",
-		"看原因：用 `lct adjust add` 寫入人工調整，或在 `main` 改規則、用 `lct requeue --to-file …` 指名這些 key 加一份重翻要求檔。", stuck)
+		"看原因：用 `lct adjust add` 寫入人工調整，或在 `main` 改規則、用 `lct requeue --to-file …` 指名這些 key 加一份重翻要求檔。", stuck, stuckKeys...)
 
 	if sum != nil {
 		add(KindAdjustmentExpired, "人工調整已過期",
@@ -106,11 +110,11 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 			expiredItems(sum.Adjustments))
 		add(KindFrozenChanged, "凍結檔的 KR 有變",
 			"歌詞等原文被修改，仍沿用舊譯文；決定是否解除凍結（`lct.yaml` 的 `frozen`）並重翻。",
-			codes(sum.FrozenChanged))
+			codes(sum.FrozenChanged), sum.FrozenChanged...)
 	}
 	add(KindFrozenFallback, "凍結檔的譯文破壞原文結構",
 		"凍結檔不重新翻譯，這些單位暫用英文；解除凍結（`lct.yaml` 的 `frozen`）後用 `lct requeue --key` 重翻。",
-		codes(info.Report.FrozenFallback))
+		codes(info.Report.FrozenFallback), info.Report.FrozenFallback...)
 	if sum != nil {
 		add(KindNewSpeaker, "未對應的說話者",
 			"新角色或新 NPC 的 `model`；補上 `guides/characters/` 的角色檔。",

@@ -407,13 +407,13 @@ func TestReviewItemsJSON(t *testing.T) {
 	if err := json.Unmarshal(b, &got); err != nil || len(got) != 1 {
 		t.Fatalf("json = %s, %v", b, err)
 	}
-	for _, name := range []string{"kind", "title", "hint", "items"} {
+	for _, name := range []string{"kind", "title", "hint", "items", "keys"} {
 		if _, ok := got[0][name]; !ok {
 			t.Errorf("json %s lacks %q", b, name)
 		}
 	}
-	if len(got[0]) != 4 {
-		t.Errorf("json %s has fields other than kind, title, hint, items", b)
+	if len(got[0]) != 5 {
+		t.Errorf("json %s has fields other than kind, title, hint, items, keys", b)
 	}
 }
 
@@ -550,5 +550,42 @@ func TestReviewIssueListsATranslationThatDidNotRun(t *testing.T) {
 	secs = ReviewItems(info, nil, waiting[:1])
 	if len(secs) != 1 || !strings.Contains(secs[0].Items[0], unknownReason) {
 		t.Errorf("sections = %+v, want the unknown reason", secs)
+	}
+}
+
+// The sections about units carry their keys, parallel to the items; the
+// others have none.
+func TestReviewSectionsCarryKeys(t *testing.T) {
+	info := issueInfo()
+	info.Stopped = translate.StopError
+	info.StopError = "boom"
+	info.Report.FrozenFallback = []string{"F.json|/a"}
+	sum := &plan.Summary{FrozenChanged: []string{"G.json|/b", "G.json|/c"}}
+	pending := reviewPending(2, func(int) string { return "boom" })
+	for _, sec := range ReviewItems(info, sum, pending) {
+		switch sec.Kind {
+		case KindNeedsReview:
+			if want := []string{pending[0].Key, pending[1].Key}; !slices.Equal(sec.Keys, want) {
+				t.Errorf("needs_review Keys = %v, want %v", sec.Keys, want)
+			}
+		case KindFrozenChanged:
+			if !slices.Equal(sec.Keys, sum.FrozenChanged) {
+				t.Errorf("frozen_changed Keys = %v", sec.Keys)
+			}
+		case KindFrozenFallback:
+			if !slices.Equal(sec.Keys, info.Report.FrozenFallback) {
+				t.Errorf("frozen_fallback Keys = %v", sec.Keys)
+			}
+		case KindLoopError:
+			if sec.Keys != nil {
+				t.Errorf("loop_error has Keys %v", sec.Keys)
+			}
+			if b, _ := json.Marshal(sec); strings.Contains(string(b), `"keys"`) {
+				t.Errorf("loop_error json has keys: %s", b)
+			}
+		}
+		if sec.Keys != nil && len(sec.Keys) != len(sec.Items) {
+			t.Errorf("%s: %d keys for %d items", sec.Kind, len(sec.Keys), len(sec.Items))
+		}
 	}
 }

@@ -12,6 +12,7 @@ import (
 	"cmp"
 	"errors"
 	"fmt"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"path/filepath"
 	"slices"
 	"strings"
@@ -83,6 +84,11 @@ type Options struct {
 	// JobSummary uses it: nothing Run commits to tw depends on it, because it
 	// changes with every publish.
 	PrevTWCommit string
+	// Declined and Accepted are the sets of ids (internal/itemid) of the
+	// suggestions a person confirmed: a declined group of inconsistent
+	// renderings is left out of the report, an accepted warning is not
+	// counted. nil is empty.
+	Declined, Accepted map[string]bool
 }
 
 const (
@@ -483,6 +489,9 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {
 		if is.Severity == validate.SeverityWarn {
+			if b.opt.Accepted[itemid.Warning(is.Code, u.KR, rec.ZH)] {
+				continue
+			}
 			b.rep.Warnings[is.Code]++
 			// One unit can warn twice of one code; its key is one sample.
 			if keys := b.warnKeys[is.Code]; len(keys) == 0 || keys[len(keys)-1] != key {
@@ -595,6 +604,9 @@ func (b *builder) finish() {
 	var groups []Inconsistency
 	for k, g := range b.renders {
 		if len(g.variants) < 2 {
+			continue
+		}
+		if b.opt.Declined[itemid.Inconsistent(k.family, k.field, k.kr)] {
 			continue
 		}
 		inc := Inconsistency{Family: k.family, Field: k.field, KR: k.kr, Units: g.units}

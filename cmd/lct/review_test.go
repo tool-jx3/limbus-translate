@@ -23,6 +23,7 @@ type reviewJSONSection struct {
 	Title string   `json:"title"`
 	Hint  string   `json:"hint"`
 	Items []string `json:"items"`
+	Keys  []string `json:"keys"`
 }
 
 // writeReviewPlan writes sum as the plan of the tw worktree of root, as it is.
@@ -134,6 +135,9 @@ func TestReviewCommand(t *testing.T) {
 	}
 	if got.Sections[0].Kind != "needs_review" || len(got.Sections[0].Items) != 3 || !strings.Contains(got.Sections[0].Items[0], stuck[0].Key) {
 		t.Errorf("first section = %+v, want the 3 units that need review", got.Sections[0])
+	}
+	if k := got.Sections[0].Keys; len(k) != 3 || k[0] != stuck[0].Key {
+		t.Errorf("first section keys = %q, want the keys of the 3 units, the first %q", k, stuck[0].Key)
 	}
 
 	// The text is for a person: the title, each section with its hint, each item.
