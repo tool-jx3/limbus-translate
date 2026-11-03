@@ -162,10 +162,12 @@ func latestReleaseTag(names []string) string {
 
 // siteOutDir returns the absolute path of out, the directory "site" empties and
 // writes to. out is relative to root, the repo root, or an absolute path; it
-// must lie inside root without being root, hold no .git, and neither be nor
-// hold nor lie in one of the protected directories (the worktrees the data is
-// read from). Symbolic links are followed, so a link cannot lead out. Anything
-// else is a user error, and nothing has been touched.
+// must lie inside root without being root, hold no .git, hold no file that git
+// tracks (committed or staged; untracked and ignored files are the data of an
+// earlier run), and neither be nor hold nor lie in one of the protected
+// directories (the worktrees the data is read from). Symbolic links are
+// followed, so a link cannot lead out. Anything else is a user error, and
+// nothing has been touched.
 func siteOutDir(root, out string, protected ...string) (string, error) {
 	refuse := func(why string) error {
 		return cli.UserError(fmt.Sprintf("site: --out %q %s", out, why))
@@ -207,6 +209,23 @@ func siteOutDir(root, out string, protected ...string) (string, error) {
 		}
 		if within(realAbs, realDir) || within(realDir, realAbs) {
 			return "", refuse("holds or lies in the raw or tw worktree, which the data is made from")
+		}
+	}
+	// The directory is emptied: not one that holds the source of the repo. Git
+	// is asked about the path as written and, when a link makes it another, about
+	// the place it leads to.
+	places := [][2]string{{root, abs}}
+	if realRoot != root || realAbs != abs {
+		places = append(places, [2]string{realRoot, realAbs})
+	}
+	for _, p := range places {
+		rel, _ := filepath.Rel(p[0], p[1])
+		tracked, err := gitx.Tracked(p[0], filepath.ToSlash(rel))
+		if err != nil {
+			return "", err
+		}
+		if len(tracked) > 0 {
+			return "", refuse(fmt.Sprintf("holds tracked files, such as %s, and is emptied before the data is written; name a directory the repo does not track", tracked[0]))
 		}
 	}
 	return abs, nil

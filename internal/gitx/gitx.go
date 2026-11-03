@@ -275,6 +275,25 @@ func IsClean(dir string) (bool, error) {
 	return strings.TrimSpace(status) == "", nil
 }
 
+// Tracked lists the files of the repo at dir that git tracks (that are in its
+// index, committed or staged) and that are path or lie under it, as paths
+// relative to dir, sorted; never nil. path is relative to dir, a file or a
+// directory, and is taken literally: "*" is a file name, not a pattern. Files
+// that are untracked or ignored are not listed.
+func Tracked(dir, path string) ([]string, error) {
+	out, err := git(dir, "--literal-pathspecs", "ls-files", "-z", "--", path)
+	if err != nil {
+		return nil, err
+	}
+	names := []string{}
+	for _, name := range strings.Split(out, "\x00") {
+		if name != "" {
+			names = append(names, name)
+		}
+	}
+	return names, nil
+}
+
 // Head returns the commit HEAD points to, or "" if the branch has no commits.
 func Head(dir string) (string, error) {
 	out, err := git(dir, "rev-parse", "--verify", "--quiet", "HEAD")

@@ -325,3 +325,48 @@ func TestSiteCommandAcceptsAnAbsolutePathInsideTheRepo(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+// Export empties the directory, so a directory that holds a file git tracks is
+// refused: the frontend source, the rules. One that holds only untracked or
+// ignored files (the data of an earlier run) is the directory to write to.
+func TestSiteCommandRefusesADirectoryWithTrackedFiles(t *testing.T) {
+	root := siteRepo(t)
+	writeTestFile(t, root, ".gitignore", "/.work/\n/frontend/public/data/\n")
+	writeTestFile(t, root, "frontend/src/app.ts", "tracked")
+	writeTestFile(t, root, "docs/notes.md", "tracked")
+	writeTestFile(t, root, "staged/x.txt", "staged, not committed")
+	runGitIn(t, root, "add", ".gitignore", "frontend", "docs")
+	runGitIn(t, root, "commit", "-q", "-m", "frontend")
+	runGitIn(t, root, "add", "staged")
+	// Untracked and ignored files of the directories that are allowed.
+	writeTestFile(t, root, "frontend/public/data/old.json", "ignored")
+	writeTestFile(t, root, "scratch/old.json", "untracked")
+
+	for _, out := range []string{"frontend", "frontend/src", "./frontend/", "staged", "docs", filepath.Join(root, "frontend")} {
+		_, err := runSiteJSON(t, root, "--out", out)
+		if !isUserError(err) || !strings.Contains(err.Error(), "tracked") {
+			t.Errorf("--out %q: err = %v, want a user error that says the directory holds tracked files", out, err)
+		}
+	}
+	for _, kept := range []string{"frontend/src/app.ts", "staged/x.txt", "docs/notes.md"} {
+		if b, err := os.ReadFile(filepath.Join(root, kept)); err != nil || len(b) == 0 {
+			t.Errorf("%s was removed (%v)", kept, err)
+		}
+	}
+
+	for _, out := range []string{"frontend/public/data", "scratch", "new/dir", "frontend/new"} {
+		if _, err := runSiteJSON(t, root, "--out", out); err != nil {
+			t.Errorf("--out %q: %v, want it allowed: no tracked file in it", out, err)
+			continue
+		}
+		if _, err := os.Stat(filepath.Join(root, filepath.FromSlash(out), "meta.json")); err != nil {
+			t.Errorf("--out %q: %v", out, err)
+		}
+		if _, err := os.Stat(filepath.Join(root, filepath.FromSlash(out), "old.json")); !os.IsNotExist(err) {
+			t.Errorf("--out %q: old.json is still there (%v)", out, err)
+		}
+	}
+	if b, err := os.ReadFile(filepath.Join(root, "frontend", "src", "app.ts")); err != nil || string(b) != "tracked" {
+		t.Errorf("frontend/src/app.ts = %q, %v", b, err)
+	}
+}

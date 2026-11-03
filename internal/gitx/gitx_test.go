@@ -479,6 +479,51 @@ func TestIsClean(t *testing.T) {
 	}
 }
 
+func TestTracked(t *testing.T) {
+	repo := newRepo(t)
+	write(t, repo, "sub/untracked.txt", "u\n")
+	write(t, repo, "staged/s.txt", "s\n")
+	runGit(t, repo, "add", "staged")
+	write(t, repo, ".gitignore", "/ignored/\n")
+	write(t, repo, "ignored/i.txt", "i\n")
+	write(t, repo, "s*/glob.txt", "g\n") // a directory called "s*"
+	runGit(t, repo, "add", ".gitignore")
+
+	for _, tt := range []struct {
+		path string
+		want []string
+	}{
+		{"sub", []string{"sub/b.txt"}}, // not the untracked file beside it
+		{"sub/", []string{"sub/b.txt"}},
+		{"a.txt", []string{"a.txt"}}, // a file
+		{"sub/b.txt", []string{"sub/b.txt"}},
+		{"staged", []string{"staged/s.txt"}}, // in the index, not committed
+		{"sub/untracked.txt", []string{}},
+		{"ignored", []string{}}, // only ignored files
+		{"missing/dir", []string{}},
+		{"s*", []string{}}, // a path, not a pattern: it matches neither sub nor staged
+		{".", []string{".gitignore", "a.txt", "staged/s.txt", "sub/b.txt"}},
+	} {
+		got, err := Tracked(repo, tt.path)
+		if err != nil {
+			t.Errorf("Tracked(%q): %v", tt.path, err)
+			continue
+		}
+		if got == nil || !slices.Equal(got, tt.want) {
+			t.Errorf("Tracked(%q) = %#v, want %#v", tt.path, got, tt.want)
+		}
+	}
+	// A name with characters that are not ASCII comes back as written.
+	write(t, repo, "資料/檔案.txt", "x\n")
+	runGit(t, repo, "add", "資料")
+	if got, err := Tracked(repo, "資料"); err != nil || !slices.Equal(got, []string{"資料/檔案.txt"}) {
+		t.Errorf("Tracked(資料) = %v, %v", got, err)
+	}
+	if _, err := Tracked(t.TempDir(), "x"); err == nil {
+		t.Error("Tracked outside a repo: want an error")
+	}
+}
+
 func TestTagsAt(t *testing.T) {
 	repo := newRepo(t)
 	if err := Tag(repo, "raw-20261022"); err != nil { // an older commit
