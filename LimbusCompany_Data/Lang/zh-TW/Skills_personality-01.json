@@ -2760,7 +2760,7 @@
                   "desc": "[OnSucceedAttack] 使自身獲得1回 [Breath]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -2785,7 +2785,7 @@
                   "desc": "[OnSucceedAttack] 使自身獲得1回 [Breath]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -2825,7 +2825,7 @@
                   "desc": "[CriticalOnSucceedAttack] 使自身獲得1回 [Breath]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 對目標施加2回 [Sinking]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加2回 [Sinking]"
                 }
               ]
             }

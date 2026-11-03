@@ -290,10 +290,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -412,13 +412,13 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 消耗自身的3回 [Vibration] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 消耗自身的3回 [Vibration] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 消耗自身的3回 [Vibration] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 消耗自身的3回 [Vibration] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 消耗自身的3回 [Vibration] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 消耗自身的3回 [Vibration] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }

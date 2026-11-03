@@ -77,7 +77,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度與2回 [Combustion]"
@@ -109,7 +109,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度與2回 [Combustion]"
@@ -122,7 +122,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度與2回 [Combustion]"
@@ -150,7 +150,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
@@ -169,7 +169,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3回 [Combustion]"
@@ -188,7 +188,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "若本硬幣的效果消耗了 [BulletPropellant]，則使本硬幣造成的傷害+50%"
@@ -250,7 +250,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加6級 [Combustion] 強度"
@@ -263,7 +263,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加6回 [Combustion]"
@@ -276,7 +276,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加6級 [Vibration] 強度"
@@ -289,7 +289,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加6回 [Vibration]"
@@ -302,7 +302,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationIgnition]"
@@ -315,7 +315,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 5次，並使其 [Vibration] 回數減少5回"
@@ -344,7 +344,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "使自身消耗1發 [BulletPropellant]"
+                  "desc": "消耗1發 [BulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Combustion] 強度"
@@ -844,7 +844,7 @@
                   "desc": "[OnSucceedAttack] 下回合對目標施加2層 [DefenseDown]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加5級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得5級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加5級 [Laceration] 強度"
@@ -949,7 +949,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加5級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得5級 [Breath] 強度"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加3級 [Laceration] 強度"

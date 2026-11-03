@@ -1687,7 +1687,7 @@
                   "desc": "[OnSucceedAttackHead] 對目標施加1層蒼白的噪音 "
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1層束縛 "
+                  "desc": "[OnSucceedAttack] 下回合對目標施加1層束縛 "
                 }
               ]
             }

@@ -1544,7 +1544,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於6級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於6級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1571,7 +1571,7 @@
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 若目標的 [VibrationIgnition] 強度不低於10級，則使其增加1回 [Combustion] </style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於6級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於6級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1598,7 +1598,7 @@
                   "desc": "[OnSucceedAttack] 若目標的 [VibrationIgnition] 強度不低於10級，則對其施加<style=\"highlight\">2</style>回 [Combustion]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於6級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於6級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1667,7 +1667,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若本硬幣消耗了 [FireBulletPropellant]，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若本硬幣消耗了 [FireBulletPropellant]，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1731,10 +1731,10 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若本硬幣消耗了 [FireBulletPropellant]，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若本硬幣消耗了 [FireBulletPropellant]，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本硬幣消耗了3發 [FireBulletPropellant]，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本硬幣消耗了3發 [FireBulletPropellant]，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]</style>"
                 }
               ]
             }

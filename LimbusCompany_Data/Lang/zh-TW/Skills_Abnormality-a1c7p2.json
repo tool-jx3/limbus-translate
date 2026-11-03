@@ -30,7 +30,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加3回 [Laceration]\n- 若指定友方單位，則改為下回合使其獲得3層 [DefenseUp]  "
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Laceration]\n- 若指定友方單位，則改為下回合使其獲得3層 [DefenseUp]  "
                 }
               ]
             }

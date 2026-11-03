@@ -583,14 +583,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -604,14 +604,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -625,14 +625,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -651,7 +651,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -672,7 +672,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -693,7 +693,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -714,7 +714,7 @@
         {
           "level": 3,
           "name": "永別了！",
-          "desc": "[WhenUse] 使自身增加5級 [Breath] 強度",
+          "desc": "[WhenUse] 使自身獲得5級 [Breath] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -915,7 +915,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本技能的硬幣效果消耗了目標的 [Vibration] 強度，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本技能的硬幣效果消耗了目標的 [Vibration] 強度，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]</style>"
                 }
               ]
             }
@@ -943,7 +943,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若本技能的硬幣效果消耗了目標的 [Vibration] 強度，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若本技能的硬幣效果消耗了目標的 [Vibration] 強度，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -2663,7 +2663,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -2813,7 +2813,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -2872,7 +2872,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
@@ -3433,7 +3433,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -3473,7 +3473,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -3640,7 +3640,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 根據目標帶有的 [NoirNailDonQuixote] 層數相應適用於以下效果\n- 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]\n- 對目標造成本硬幣最終傷害量(目標的 [NoirNailDonQuixote] 層數×1.5)%的怠惰傷害(最多45%)\n- 消耗目標所有 [NoirNailDonQuixote]"
+                  "desc": "[OnSucceedAttack] 根據目標帶有的 [NoirNailDonQuixote] 層數相應適用於以下效果\n- 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 對目標造成本硬幣最終傷害量(目標的 [NoirNailDonQuixote] 層數×1.5)%的怠惰傷害(最多45%)\n- 消耗目標所有 [NoirNailDonQuixote]"
                 }
               ]
             }
@@ -3686,7 +3686,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 根據目標帶有的 [NoirNailDonQuixote] 層數相應適用於以下效果\n- 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]\n- 對目標造成本硬幣最終傷害量(目標的 [NoirNailDonQuixote] 層數×<style=\"highlight\">3</style>)%的怠惰傷害(最多<style=\"highlight\">90</style>%)\n- 消耗目標所有 [NoirNailDonQuixote]"
+                  "desc": "[OnSucceedAttack] 根據目標帶有的 [NoirNailDonQuixote] 層數相應適用於以下效果\n- 若目標的 [NoirNailDonQuixote] 層數不低於3層，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 對目標造成本硬幣最終傷害量(目標的 [NoirNailDonQuixote] 層數×<style=\"highlight\">3</style>)%的怠惰傷害(最多<style=\"highlight\">90</style>%)\n- 消耗目標所有 [NoirNailDonQuixote]"
                 }
               ]
             }

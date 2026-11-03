@@ -428,10 +428,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] 對目標施加2層 [NailPersonality] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackHead] 對目標施加2層 [NailPersonality]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -514,10 +514,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Curse]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackTail] 對目標施加2層 [NailPersonality] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackTail] 對目標施加2層 [NailPersonality]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -603,7 +603,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 施加8級 [Combustion] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 施加8級 [Combustion]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 若目標為主要目標，則下回合對其施加(1+(暴怒共鳴數/3))層 [BirdCage] (最多3層，無條件捨去)<style=\"highlight\"></style>"
@@ -1034,7 +1034,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             },
@@ -1047,7 +1047,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             },
@@ -1084,7 +1084,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             },
@@ -1097,7 +1097,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             },
@@ -1137,7 +1137,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             },
@@ -1150,7 +1150,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於4回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             },

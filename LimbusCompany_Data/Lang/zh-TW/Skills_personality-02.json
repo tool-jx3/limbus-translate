@@ -447,7 +447,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
@@ -469,7 +469,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
@@ -1020,7 +1020,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度"
                 }
               ]
             },
@@ -1030,7 +1030,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度"
                 }
               ]
             }
@@ -1047,7 +1047,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度"
                 }
               ]
             },
@@ -1060,7 +1060,7 @@
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 若自身的 [Combustion] 強度不低於10級，則使目標額外增加1級 [Combustion] 強度</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1077,7 +1077,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度"
                 }
               ]
             },
@@ -1090,7 +1090,7 @@
                   "desc": "[OnSucceedAttack] 若自身的 [Combustion] 強度不低於10級，則使目標額外增加<style=\"highlight\">3</style>級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -2147,7 +2147,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -2168,7 +2168,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -2219,7 +2219,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -2317,7 +2317,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },

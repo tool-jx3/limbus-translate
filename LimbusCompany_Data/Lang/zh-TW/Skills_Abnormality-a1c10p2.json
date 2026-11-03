@@ -432,7 +432,7 @@
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標增加等同於其 [AlriuneSillage] 層數的 [Sinking] 強度 (每個目標分別計算)"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -550,7 +550,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] <color=#ff6000><mark color=#ff000040><b><u>使目標受到等同於 [Sinking] 強度的理智傷害</color></mark></b></u>"
@@ -865,7 +865,7 @@
                   "desc": "<color=#ff6000><mark=#ff000040><b><u>[UnBrokenCoinOnSucceedAttack] 下回合使自身獲得3層 [FinishedFabric]</u></b></mark></color>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1582,10 +1582,10 @@
                   "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationCollapse]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若自身消耗的 [ChargeNoir] 回數不低於10回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若自身消耗的 [ChargeNoir] 回數不低於10回，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }

@@ -282,7 +282,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 隨機對目標施加1～2點 [SinkingWhite] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 隨機對目標施加1～2點 [SinkingWhite]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使自身失去2～6點理智值<style=\"highlight\"></style>"
@@ -317,7 +317,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 隨機對目標施加1～2點 [SinkingWhite] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 隨機對目標施加1～2點 [SinkingWhite]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使自身失去2～6點理智值<style=\"highlight\"></style>"
@@ -388,7 +388,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加5回 [SinkingWhite] (亡蝶)<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 若目標現存體力不高於50%，則對目標造成等同於其所有 [SinkingWhite] 點數的憂鬱傷害\n- 以生蝶與亡蝶之和計算</style>"
@@ -455,7 +455,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標陷入混亂、士氣低落或陷入恐慌，則在下回合對其施加1層 [Reduction] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若目標陷入混亂、士氣低落或陷入恐慌，則在下回合對其施加1層 [Reduction]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -465,7 +465,7 @@
           "level": 4,
           "name": "聖誕夢魘",
           "abName": "舒適臥床",
-          "desc": "若目標的理智值低於0點，則每相差1點，使本技能造成的傷害+1%(最多+45%)\n[EndSkill] 若自身體力為最大值，則在回合結束時使自身恢復<style=\"highlight\">15</style>點理智值並在下回合使自身獲得1層 [Enhancement] <style=\"highlight\"></style>",
+          "desc": "若目標的理智值低於0點，則每相差1點，使本技能造成的傷害+1%(最多+45%)\n[EndSkill] 若自身體力為最大值，則在回合結束時使自身恢復<style=\"highlight\">15</style>點理智值並在下回合使自身獲得1層 [Enhancement]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -550,7 +550,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加4級 [Sinking] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標陷入混亂、士氣低落或陷入恐慌，則在下回合對其施加1層 [Reduction] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若目標陷入混亂、士氣低落或陷入恐慌，則在下回合對其施加1層 [Reduction]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -663,7 +663,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣為最後一枚硬幣，且目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣為最後一枚硬幣，且目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣使用了4次，則對目標造成等同於其 [Vibration] 強度的怠惰傷害(最多5點)"
@@ -696,7 +696,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣為最後一枚硬幣，且目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣為最後一枚硬幣，且目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣使用了4次，則對目標造成等同於其 [Vibration] 強度的怠惰傷害(最多5點)<style=\"highlight\"></style>"
@@ -729,7 +729,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Vibration] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣為最後一枚硬幣，且目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣為最後一枚硬幣，且目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[UnBrokenCoinOnSucceedAttack] 若本硬幣使用了4次，則對目標造成等同於其 [Vibration] 強度的怠惰傷害(最多<style=\"highlight\">10</style>點)"
@@ -782,7 +782,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -827,7 +827,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -872,7 +872,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 若目標的 [Vibration] 強度不低於15級，則使其 [VibrationExplosion] 並使其減少1回 [Vibration]"
                 }
               ]
             }

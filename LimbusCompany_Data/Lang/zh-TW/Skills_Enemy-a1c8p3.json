@@ -274,7 +274,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BudgetBulletPropellant]"
+                  "desc": "消耗1發 [BudgetBulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加4級 [Vibration] 強度"
@@ -296,7 +296,7 @@
                   "desc": "使自身消耗1發 [BudgetBulletPropellant]。"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -389,7 +389,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "使自身消耗1發 [BudgetBulletPropellant]"
+                  "desc": "消耗1發 [BudgetBulletPropellant]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Vibration] 強度與2回 [Vibration]，"
@@ -411,7 +411,7 @@
                   "desc": "使自身消耗1發 [BudgetBulletPropellant]。"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }

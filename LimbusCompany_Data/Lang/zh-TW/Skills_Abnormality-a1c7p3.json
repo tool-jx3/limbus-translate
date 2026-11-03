@@ -497,14 +497,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "[CriticalOnSucceedAttack] 下回合對目標施加1層 [Vulnerable]"
@@ -521,7 +521,7 @@
         {
           "level": 1,
           "name": "碾碎",
-          "desc": "[WhenUse] 使自身增加5級 [Breath] 強度",
+          "desc": "[WhenUse] 使自身獲得5級 [Breath] 強度",
           "coinlist": [
             {},
             {

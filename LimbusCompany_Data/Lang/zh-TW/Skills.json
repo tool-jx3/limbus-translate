@@ -4326,7 +4326,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttackHead]  使目標增加1級流血 強度"
+                  "desc": "[OnSucceedAttackHead] 使目標增加1級流血 強度"
                 }
               ]
             },
@@ -7536,7 +7536,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Combustion]。若自身的理智值不低於30點，則對其額外施加1回燒傷；若自身的理智值不低於45點，則對其額外施加2回燒傷"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Combustion]。若自身的理智值不低於30點，則對其額外施加1回燒傷；若自身的理智值不低於45點，則對其額外施加2回燒傷"
                 }
               ]
             }
@@ -7557,7 +7557,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Combustion]。若自身的理智值不低於30點，則對其額外施加1回燒傷；若自身的理智值不低於45點，則對其額外施加2回燒傷"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Combustion]。若自身的理智值不低於30點，則對其額外施加1回燒傷；若自身的理智值不低於45點，則對其額外施加2回燒傷"
                 }
               ]
             }

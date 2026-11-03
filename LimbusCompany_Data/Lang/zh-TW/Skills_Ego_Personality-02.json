@@ -226,7 +226,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加5級 [Vibration] 強度與5回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -268,7 +268,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">10</style>級 [Vibration] 強度與<style=\"highlight\">10</style>回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]</style>"
@@ -345,7 +345,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與3回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
@@ -372,7 +372,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">5</style>級 [Vibration] 強度與<style=\"highlight\">5</style>回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標以 [VibrationContinue] [FusionVibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
@@ -633,7 +633,7 @@
           "level": 4,
           "name": "胸痛",
           "abName": "往昔的睡袋",
-          "desc": "[BeforeAttack] 使全體友方單位增加(最大共鳴數)級 [Breath] 強度(最多6級)\n- 若傲慢共鳴數不低於3，則額外使其獲得1回 [Breath]，並在下回合獲得1層 [ReleaseBreath] <style=\"highlight\"></style>",
+          "desc": "[BeforeAttack] 使全體友方單位增加(最大共鳴數)級 [Breath] 強度(最多6級)\n- 若傲慢共鳴數不低於3，則額外使其獲得1回 [Breath]，並在下回合獲得1層 [ReleaseBreath]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -704,7 +704,7 @@
           "level": 4,
           "name": "胸痛",
           "abName": "往昔的睡袋",
-          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若自身的 [Breath] 強度低於20級，則使自身增加至20級 [Breath] 強度並消耗自身體力上限(獲得的 [Breath] 強度×2)%的體力\n- 自身不會因該效果而陷入混亂或陣亡\n[BeforeAttack] 使全體友方單位增加(最大共鳴數)級 [Breath] 強度(最多6級)\n- 若傲慢共鳴數不低於3，則額外使其獲得1回 [Breath]，並在下回合獲得1層 [ReleaseBreath] 與1層 [IndigoDamageUp] <style=\"highlight\"></style>",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若自身的 [Breath] 強度低於20級，則使自身增加至20級 [Breath] 強度並消耗自身體力上限(獲得的 [Breath] 強度×2)%的體力\n- 自身不會因該效果而陷入混亂或陣亡\n[BeforeAttack] 使全體友方單位增加(最大共鳴數)級 [Breath] 強度(最多6級)\n- 若傲慢共鳴數不低於3，則額外使其獲得1回 [Breath]，並在下回合獲得1層 [ReleaseBreath] 與1層 [IndigoDamageUp]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [

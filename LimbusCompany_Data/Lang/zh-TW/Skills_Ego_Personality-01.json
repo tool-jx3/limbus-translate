@@ -130,7 +130,7 @@
                   "desc": "[AllyKill] 使自身與隨機2名友方單位增加2級 [Breath] 強度"
                 },
                 {
-                  "desc": "[AllyKillFail] 使自身增加1級 [Breath] 強度"
+                  "desc": "[AllyKillFail] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
@@ -153,7 +153,7 @@
           "level": 3,
           "name": "凶彈",
           "abName": "凶彈射手",
-          "desc": "指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil] <style=\"highlight\"></style>",
+          "desc": "指定體力最低的目標(優先友方單位)\n[BeforeAttack] 使自身獲得(最大共鳴數+1)層 [BoseProjektil] (最多7層)\n[BeforeAttack] 自身每帶有1層 [BoseProjektil]，使自身增加1級 [Breath] 強度(最多7級)\n[EndSkill] 消耗所有 [BoseProjektil]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -261,7 +261,7 @@
                   "desc": "[AllyKill] 獲得被擊殺友方單位的1、2技能對應的罪孽碎片各1個"
                 },
                 {
-                  "desc": "[AllyKillFail] 使自身增加1級 [Breath] 強度"
+                  "desc": "[AllyKillFail] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },

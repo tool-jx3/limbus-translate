@@ -11,14 +11,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加4級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 使自身獲得1回 [Breath]"
@@ -43,7 +43,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加4級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 使自身獲得1回 [Breath]"
@@ -71,7 +71,7 @@
                   "desc": "使本硬幣暴擊時造成的傷害+30%"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },
@@ -107,7 +107,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 使自身獲得1回 [Breath]"
@@ -180,7 +180,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttackHead] 使自身獲得1回 [Breath]"
@@ -208,7 +208,7 @@
                   "desc": "[OnSucceedAttack] 使自身獲得2回 [Breath]"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttackHead] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "使本硬幣暴擊時造成的傷害+40%"
@@ -249,7 +249,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "[CriticalOnSucceedAttack] 下回合對目標施加2層 [Binding]"
@@ -298,7 +298,7 @@
         {
           "level": 1,
           "name": "產地直達諾姆！",
-          "desc": "[WinDuel] 使自身增加3級 [Breath] 強度",
+          "desc": "[WinDuel] 使自身獲得3級 [Breath] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -306,7 +306,7 @@
                   "desc": "[CriticalOnSucceedAttack] 最後一枚硬幣造成的傷害+20%"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },

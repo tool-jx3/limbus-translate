@@ -767,7 +767,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身獲得1層 [DevyatDimensionalSack]\n- 若自身的 [DevyatDimensionalSack] 層數低於15層，則使自身額外獲得1層 [DevyatDimensionalSack] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1層 [DevyatDimensionalSack]\n- 若自身的 [DevyatDimensionalSack] 層數低於15層，則使自身額外獲得1層 [DevyatDimensionalSack]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1164,10 +1164,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1234,7 +1234,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1429,7 +1429,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1439,7 +1439,7 @@
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 當自身帶有不低於30級 [Breath] 強度時，則消耗10級 [Breath] 強度使本技能硬幣重複使用1次(最多1次)</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1460,7 +1460,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1470,7 +1470,7 @@
                   "desc": "[OnSucceedAttack] 當自身帶有不低於30級 [Breath] 強度時，則消耗10級 [Breath] 強度使本技能硬幣重複使用1次(最多1次)<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [SnakeStance]</style>"
@@ -1526,7 +1526,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Breath] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2回 [Breath]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1540,10 +1540,10 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Burst]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[CriticalOnSucceedAttack] 使目標減少1層 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[CriticalOnSucceedAttack] 使目標減少1層 [BurstPoison]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[CriticalOnSucceedAttack] 重複使用本硬幣1次(每個技能最多2次)<style=\"highlight\"></style>"
@@ -2416,7 +2416,7 @@
                   "desc": "<style=\"highlight\">若目標帶有的負面狀態不少於4種，則重複使用本硬幣(最多1次)</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Laceration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Sinking] 強度<style=\"highlight\"></style>"

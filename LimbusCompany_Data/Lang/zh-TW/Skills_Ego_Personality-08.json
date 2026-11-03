@@ -341,13 +341,13 @@
                   "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1層 [Curse] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加1層 [Curse]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 若憂鬱共鳴數不低於4，則對目標施加1層 [AzureTakeDamageUp] </style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2層 [UninvitedGuestPersonality] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [UninvitedGuestPersonality]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -368,10 +368,10 @@
                   "desc": "[OnSucceedAttack] 對目標施加<style=\"highlight\">2</style>層 [Curse]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若憂鬱共鳴數不低於4，則對目標施加1層 [AzureTakeDamageUp] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若憂鬱共鳴數不低於4，則對目標施加1層 [AzureTakeDamageUp]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2層 [UninvitedGuestPersonality] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [UninvitedGuestPersonality]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -502,7 +502,7 @@
                   "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其增加5級 [Sinking] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少2回"
+                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其減少2回 [Vibration]"
                 }
               ]
             },
@@ -603,7 +603,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
@@ -631,7 +631,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
@@ -641,7 +641,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 若目標未陷入混亂、士氣低落或陷入恐慌，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"

@@ -322,7 +322,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }

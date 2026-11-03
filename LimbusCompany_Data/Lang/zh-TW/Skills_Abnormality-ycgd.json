@@ -181,7 +181,7 @@
         {
           "level": 1,
           "name": "出鞘",
-          "desc": "[WhenUse] 使自身增加2級 [Breath] 強度",
+          "desc": "[WhenUse] 使自身獲得2級 [Breath] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -207,7 +207,7 @@
         {
           "level": 1,
           "name": "止動",
-          "desc": "[WhenUse] 使自身增加2級 [Breath] 強度",
+          "desc": "[WhenUse] 使自身獲得2級 [Breath] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -362,7 +362,7 @@
         {
           "level": 1,
           "name": "閃避",
-          "desc": "[OnSucceedEvade] 使自身增加4級 [Breath] 強度",
+          "desc": "[OnSucceedEvade] 使自身獲得4級 [Breath] 強度",
           "coinlist": [
             {
               "coindescs": [

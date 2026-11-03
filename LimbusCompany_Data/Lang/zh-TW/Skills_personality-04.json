@@ -802,7 +802,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -823,7 +823,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },
@@ -844,7 +844,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 },
                 {
                   "desc": "[CriticalOnSucceedAttack] 對目標施加1層 [MarkOfButler]"
@@ -873,7 +873,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加5級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得5級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
@@ -903,7 +903,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加5級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得5級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Binding]"
@@ -1130,7 +1130,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少2回"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少2回 [Vibration]"
                 }
               ]
             }
@@ -1937,7 +1937,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加1層 [GazeRyoshu]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1973,7 +1973,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加<style=\"highlight\">2</style>層 [GazeRyoshu]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -2866,7 +2866,7 @@
         {
           "level": 1,
           "name": "無止盡的故事",
-          "desc": "[CantDuel]\n[WideAreaRampage]\n本技能施加 [GodokPanicType] 時，若目標本回合帶有或下回合將被施加 [GodokPanicType]，則改為使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回",
+          "desc": "[CantDuel]\n[WideAreaRampage]\n本技能施加 [GodokPanicType] 時，若目標本回合帶有或下回合將被施加 [GodokPanicType]，則改為使目標 [VibrationExplosion] 並使其減少1回 [Vibration]",
           "coinlist": [
             {
               "coindescs": [

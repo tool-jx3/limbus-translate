@@ -258,7 +258,7 @@
                   "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -285,10 +285,10 @@
                   "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]"
                 },
                 {
-                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackTail] 使目標 [VibrationExplosion]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]<style=\"highlight\"></style>"
                 }
               ]
             }

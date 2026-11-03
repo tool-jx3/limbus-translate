@@ -689,7 +689,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於9級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於9級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -745,7 +745,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於<style=\"highlight\">6</style>級，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 強度不低於<style=\"highlight\">6</style>級，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -807,14 +807,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本技能使用時消耗了不低於10回 [Vibration]，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本技能使用時消耗了不低於10回 [Vibration]，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]</style>"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本技能使用時消耗了不低於10回 [Vibration]，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回\n- 若自身消耗的 [Vibration] 回數低於15回，則以上效果生效後使自身 [VibrationExplosion]</style>"
+                  "desc": "<style=\"highlight\">[OnSucceedAttack] 若本技能使用時消耗了不低於10回 [Vibration]，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n- 若自身消耗的 [Vibration] 回數低於15回，則以上效果生效後使自身 [VibrationExplosion]</style>"
                 }
               ]
             }
@@ -1103,7 +1103,7 @@
                   "desc": "消耗1發 [Bullet]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
@@ -1113,7 +1113,7 @@
                   "desc": "消耗1發 [Bullet]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -1171,7 +1171,7 @@
                   "desc": "消耗1發 [Bullet]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1181,7 +1181,7 @@
                   "desc": "消耗1發 [Bullet]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1200,7 +1200,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -1231,7 +1231,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1265,7 +1265,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1440,7 +1440,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -1484,7 +1484,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1662,14 +1662,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -1683,14 +1683,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1709,14 +1709,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度"
                 }
               ]
             }
@@ -1730,14 +1730,14 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -3153,7 +3153,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
@@ -3186,7 +3186,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"

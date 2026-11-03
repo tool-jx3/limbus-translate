@@ -311,7 +311,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Vibration] 強度與<style=\"highlight\">3</style>回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
@@ -379,7 +379,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">6</style>級 [Vibration] 強度與<style=\"highlight\">6</style>回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標 [Switch_Vibration] 為 [VibrationEcho]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
@@ -451,7 +451,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -478,7 +478,7 @@
           "level": 4,
           "name": "套索",
           "abName": "玫瑰獵人",
-          "desc": "若自身與目標的速度值之和不低於6，則使本技能的硬幣威力+1\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 下回合使自身獲得2層 [Agility] <style=\"highlight\"></style>",
+          "desc": "若自身與目標的速度值之和不低於6，則使本技能的硬幣威力+1\n目標每帶有7級 [Burst] 強度，使本技能的硬幣威力+1(最多+2)\n[BeforeAttack] 下回合使自身獲得2層 [Agility]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -490,7 +490,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加2層 [Snare]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -565,7 +565,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -600,7 +600,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加3層 [Snare]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -653,7 +653,7 @@
           "level": 3,
           "name": "汙血泣淚 - 始",
           "abName": "應龍",
-          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance] <style=\"highlight\"></style>",
+          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -668,7 +668,7 @@
           "level": 4,
           "name": "汙血泣淚 - 始",
           "abName": "應龍",
-          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance] <style=\"highlight\"></style>",
+          "desc": "[CantDuel]\n無視目標的守備技能\n本技能不會命中敵方單位\n[EndSkill] 使自身獲得 [DragonLance]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -729,7 +729,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -765,7 +765,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -809,7 +809,7 @@
                   "desc": "[SuperCoin]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -840,7 +840,7 @@
           "level": 3,
           "name": "汙血泣淚 - 始",
           "abName": "應龍",
-          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-8)\n[EndSkill] 使自身獲得 [DragonLance] <style=\"highlight\"></style>",
+          "desc": "[CantIdentify]\n隨機指定目標\n[BeforeAttack] 若最大共鳴數不低於4，則使本技能的攻擊容量+1\n[BeforeAttack] 本技能每有1枚硬幣被破壞，則使本技能的基礎威力-2(最多-8)\n[EndSkill] 使自身獲得 [DragonLance]<style=\"highlight\"></style>",
           "coinlist": [
             {
               "coindescs": [
@@ -848,7 +848,7 @@
                   "desc": "[SuperCoin]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -896,7 +896,7 @@
                   "desc": "[SuperCoin]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },

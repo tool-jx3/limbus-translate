@@ -348,7 +348,7 @@
                   "desc": "[OnSucceedAttack] 下回合使自身獲得1層 [DefenseUp]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             }
@@ -370,7 +370,7 @@
                   "desc": "[OnSucceedAttack] 下回合對目標施加1層 [Paralysis]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },
@@ -489,7 +489,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },
@@ -563,7 +563,7 @@
                   "desc": "[OnSucceedAttack] 對目標施加1層 [Vulnerable]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度"
                 }
               ]
             },
@@ -647,7 +647,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加3回 [Sinking] 並使其增加3級 [Sinking] 強度"
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking] 並使其增加3級 [Sinking] 強度"
                 }
               ]
             }
@@ -666,7 +666,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加3回 [Sinking] 並使其增加3級 [Sinking] 強度"
+                  "desc": "[OnSucceedAttack] 使目標增加3回 [Sinking] 並使其增加3級 [Sinking] 強度"
                 }
               ]
             },

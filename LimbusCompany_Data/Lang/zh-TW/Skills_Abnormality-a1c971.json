@@ -624,7 +624,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於5回，則使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+                  "desc": "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於5回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
                 },
                 {
                   "desc": "[WinDuelAttack] 使目標增加5級 [Vibration] 強度與3回 [Vibration]"

@@ -465,7 +465,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -486,7 +486,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -507,7 +507,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -611,7 +611,7 @@
         {
           "level": 3,
           "name": "軀體束縛法",
-          "desc": "[WhenUse] 使自身增加6級 [Breath] 強度",
+          "desc": "[WhenUse] 使自身獲得6級 [Breath] 強度",
           "coinlist": [
             {
               "coindescs": [
@@ -1134,7 +1134,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead]  對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackHead] 對目標施加1層 [SlashTakeDamageUp] (每回合最多1次)<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">- 若包括自身在內屬於黑雲會的友方單位不低於6名，則改為對目標施加2層 [Vulnerable]</style>"
@@ -1632,7 +1632,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Sinking]"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]"
                 }
               ]
             },
@@ -1653,7 +1653,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttackHead] 對目標施加1回 [Sinking]</style>"
@@ -1663,7 +1663,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttackHead] 對目標施加1回 [Vibration]</style>"
@@ -1680,20 +1680,20 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackHead] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
                 }
               ]
             },
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackHead] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1847,7 +1847,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2回 [Sinking]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackHead] 使目標增加1回 [Sinking]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1860,7 +1860,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加3級 [Sinking] 強度<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttackHead] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttackHead] 使目標增加1回 [Vibration]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1999,7 +1999,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Laceration] 強度"
                 }
               ]
             },
@@ -2075,7 +2075,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Laceration] 強度"
                 }
               ]
             },
@@ -2171,7 +2171,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
+                  "desc": "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Laceration] 強度"
                 }
               ]
             },
@@ -2255,7 +2255,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -2279,7 +2279,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -2303,7 +2303,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -2335,7 +2335,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
@@ -2345,7 +2345,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
@@ -2372,7 +2372,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
@@ -2382,7 +2382,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
@@ -2409,7 +2409,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
@@ -2419,7 +2419,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Laceration] 強度"
@@ -2461,7 +2461,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 }
               ]
             },
@@ -2498,7 +2498,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
+                  "desc": "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
                 },
                 {
                   "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [WindBladeIshmael]</style>"

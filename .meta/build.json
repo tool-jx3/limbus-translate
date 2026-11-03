@@ -1,27 +1,27 @@
 {
   "raw_tag": "raw-20261029",
   "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
-  "rules_commit": "a4d0a884d5742af1a2a809f0fe074d7db7f9b26f",
-  "built_at": "2026-11-02T13:33:36Z",
+  "rules_commit": "6ef421b58b6b5635444d10ec456525843c9c1df0",
+  "built_at": "2026-11-03T00:11:56Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
     "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
   },
   "model": "claude-opus-5-5",
-  "cost_usd": 0.26290260000000004,
+  "cost_usd": 0.37961059999999996,
   "stopped": "done",
   "notes_seen": 991,
   "zips": {
-    "zh-TW_complete_raw-20261029.zip": "c84ea442d4e8e11d2f195621889ff8decdcbd4e433566a43c592131dae283ba7",
-    "zh-TW_text_raw-20261029.zip": "155c845b08239ce69b4750493574fc1bf0cdcccf045a002c545a44dc2c68d7d0"
+    "zh-TW_complete_raw-20261029.zip": "117e59e4ea63ea4a9fd1991d71ff414028776d3a66cabdc3a72699e025100754",
+    "zh-TW_text_raw-20261029.zip": "d246351df737e73ad3396d2a3b90cc3cb39eacde6d3ce286f44f43b535add1a5"
   },
   "report": {
     "origins": {
-      "claude": 18019,
+      "claude": 18027,
       "copy": 90934,
       "human": 3,
-      "paratranz": 163827
+      "paratranz": 163819
     },
     "pending": 0,
     "needs_review": 0,
@@ -104,243 +104,6 @@
     },
     "inconsistent": [
       {
-        "family": "story-main",
-        "field": "teller",
-        "kr": "동랑",
-        "zh": [
-          "東朗",
-          "東朗 "
-        ],
-        "keys": [
-          "StoryData/4D103B.json|/dataList/15/teller",
-          "StoryData/S448B.json|/dataList/108/teller"
-        ],
-        "counts": [
-          415,
-          1
-        ],
-        "units": 416
-      },
-      {
-        "family": "identity",
-        "field": "content",
-        "kr": "…….",
-        "zh": [
-          "……",
-          "…………"
-        ],
-        "keys": [
-          "StoryData/P10104.json|/dataList/35/content",
-          "StoryData/P10514.json|/dataList/69/content"
-        ],
-        "counts": [
-          194,
-          1
-        ],
-        "units": 195
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "EX CLEAR 전투 승리",
-        "zh": [
-          "EX CLEAR戰鬥勝利",
-          "EX CLEAR 戰鬥勝利"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/22/desc",
-          "PersonalityVoiceDlg/Voice_Sinclair_Contem_11016.json|/dataList/28/desc"
-        ],
-        "counts": [
-          192,
-          1
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "대화 1",
-        "zh": [
-          "對話 1",
-          "對話1"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/4/desc",
-          "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/4/desc"
-        ],
-        "counts": [
-          188,
-          5
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "대화 2",
-        "zh": [
-          "對話 2",
-          "對話2"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/5/desc",
-          "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/5/desc"
-        ],
-        "counts": [
-          188,
-          5
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "대화 3",
-        "zh": [
-          "對話 3",
-          "對話3"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/6/desc",
-          "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/6/desc"
-        ],
-        "counts": [
-          188,
-          5
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "아침 인사",
-        "zh": [
-          "晨間問候",
-          "早晨問候"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/1/desc",
-          "PersonalityVoiceDlg/Voice_DonQuixote_Contem_10315.json|/dataList/1/desc"
-        ],
-        "counts": [
-          138,
-          55
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "저녁 인사",
-        "zh": [
-          "晚間問候",
-          "晚間問候 "
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/3/desc",
-          "PersonalityVoiceDlg/Voice_Rodion_Kcorp_10905.json|/dataList/3/desc"
-        ],
-        "counts": [
-          192,
-          1
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "점심 인사",
-        "zh": [
-          "午間問候",
-          "午時問候"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/2/desc",
-          "PersonalityVoiceDlg/Voice_DonQuixote_Contem_10315.json|/dataList/2/desc"
-        ],
-        "counts": [
-          137,
-          56
-        ],
-        "units": 193
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "입장",
-        "zh": [
-          "進入戰鬥",
-          "入場",
-          "進入"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/12/desc",
-          "PersonalityVoiceDlg/Voice_Heathcliff_Heishou_10714.json|/dataList/12/desc",
-          "PersonalityVoiceDlg/Voice_Sinclair_Contem_11016.json|/dataList/12/desc"
-        ],
-        "counts": [
-          190,
-          1,
-          1
-        ],
-        "units": 192
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "동기화 후 대화 1",
-        "zh": [
-          "同步後對話 1",
-          "同步後對話1"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/7/desc",
-          "PersonalityVoiceDlg/Voice_Ishmael_KumoMiddle_10814.json|/dataList/7/desc"
-        ],
-        "counts": [
-          179,
-          2
-        ],
-        "units": 181
-      },
-      {
-        "family": "identity",
-        "field": "desc",
-        "kr": "동기화 후 대화 2",
-        "zh": [
-          "同步後對話 2",
-          "同步後對話2"
-        ],
-        "keys": [
-          "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/8/desc",
-          "PersonalityVoiceDlg/Voice_Ishmael_KumoMiddle_10814.json|/dataList/8/desc"
-        ],
-        "counts": [
-          179,
-          2
-        ],
-        "units": 181
-      },
-      {
-        "family": "enemy",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] [Laceration] 2 부여",
-        "zh": [
-          "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度",
-          "[OnSucceedAttack] 使目標增加2級 [Laceration]"
-        ],
-        "keys": [
-          "Skills_Abnormality-BossRaid.json|/dataList/25/levelList/0/coinlist/0/coindescs/1/desc",
-          "Skills_Enemy-a1c7p1.json|/dataList/1/levelList/0/coinlist/2/coindescs/0/desc"
-        ],
-        "counts": [
-          136,
-          2
-        ],
-        "units": 138
-      },
-      {
         "family": "identity",
         "field": "teller",
         "kr": "홍루",
@@ -357,96 +120,6 @@
           6
         ],
         "units": 129
-      },
-      {
-        "family": "story-main",
-        "field": "teller",
-        "kr": "삼조",
-        "zh": [
-          "三朝",
-          " 三朝"
-        ],
-        "keys": [
-          "StoryData/S407B.json|/dataList/8/teller",
-          "StoryData/S409B.json|/dataList/35/teller"
-        ],
-        "counts": [
-          111,
-          1
-        ],
-        "units": 112
-      },
-      {
-        "family": "identity",
-        "field": "title",
-        "kr": "검지 아비",
-        "zh": [
-          "食指父輩",
-          "食指 父輩"
-        ],
-        "keys": [
-          "StoryData/P10115.json|/dataList/2/title",
-          "StoryData/P10314.json|/dataList/23/title"
-        ],
-        "counts": [
-          78,
-          22
-        ],
-        "units": 100
-      },
-      {
-        "family": "story-interlude",
-        "field": "content",
-        "kr": "…!",
-        "zh": [
-          "……！",
-          "…!"
-        ],
-        "keys": [
-          "StoryData/E003I3.json|/dataList/21/content",
-          "StoryData/E923B.json|/dataList/145/content"
-        ],
-        "counts": [
-          46,
-          1
-        ],
-        "units": 47
-      },
-      {
-        "family": "story-main",
-        "field": "title",
-        "kr": "연심",
-        "zh": [
-          "研心",
-          "研尋"
-        ],
-        "keys": [
-          "StoryData/4D105B.json|/dataList/5/title",
-          "StoryData/4D305I.json|/dataList/71/title"
-        ],
-        "counts": [
-          43,
-          2
-        ],
-        "units": 45
-      },
-      {
-        "family": "ally",
-        "field": "desc",
-        "kr": "[OnSucceedAttack] [Breath] 2 얻음",
-        "zh": [
-          "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度",
-          "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
-        ],
-        "keys": [
-          "Skills_Assist-exme.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
-          "Skills_personality-03.json|/dataList/10/levelList/1/coinlist/0/coindescs/0/desc"
-        ],
-        "counts": [
-          15,
-          29
-        ],
-        "units": 44
       },
       {
         "family": "story-main",
@@ -474,15 +147,441 @@
           4
         ],
         "units": 43
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "그래.",
+        "zh": [
+          "沒錯。",
+          "是的。",
+          "是啊。",
+          "這樣啊。",
+          "對了。",
+          "如她所言。",
+          "沒事。",
+          "嗯。",
+          "有的。"
+        ],
+        "keys": [
+          "StoryData/2D306B.json|/dataList/64/content",
+          "StoryData/5D205B.json|/dataList/16/content",
+          "StoryData/7D111A.json|/dataList/38/content",
+          "StoryData/S301B.json|/dataList/11/content",
+          "StoryData/S737B.json|/dataList/57/content",
+          "StoryData/S801B.json|/dataList/36/content",
+          "StoryData/S919B.json|/dataList/17/content",
+          "StoryData/S940B.json|/dataList/37/content",
+          "StoryData/S943B.json|/dataList/77/content"
+        ],
+        "counts": [
+          11,
+          4,
+          3,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "units": 26
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "그리고…",
+        "zh": [
+          "以及……",
+          "然後……",
+          "而且……",
+          "另外……",
+          "還有……",
+          "此外……",
+          "而且啊……"
+        ],
+        "keys": [
+          "StoryData/4D206A.json|/dataList/17/content",
+          "StoryData/4D305I.json|/dataList/33/content",
+          "StoryData/5D103B.json|/dataList/45/content",
+          "StoryData/S502B.json|/dataList/126/content",
+          "StoryData/S510A.json|/dataList/78/content",
+          "StoryData/S606B.json|/dataList/54/content",
+          "StoryData/S949A.json|/dataList/49/content"
+        ],
+        "counts": [
+          2,
+          4,
+          6,
+          1,
+          5,
+          1,
+          1
+        ],
+        "units": 20
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "아…",
+        "zh": [
+          "啊……",
+          "哦……"
+        ],
+        "keys": [
+          "StoryData/3D309I2.json|/dataList/34/content",
+          "StoryData/S513B.json|/dataList/33/content"
+        ],
+        "counts": [
+          19,
+          1
+        ],
+        "units": 20
+      },
+      {
+        "family": "identity",
+        "field": "title",
+        "kr": "중지 작은 아우",
+        "zh": [
+          "中指 幼弟",
+          "中指 幼妹"
+        ],
+        "keys": [
+          "StoryData/P10715.json|/dataList/18/title",
+          "StoryData/P10715.json|/dataList/37/title"
+        ],
+        "counts": [
+          13,
+          4
+        ],
+        "units": 17
+      },
+      {
+        "family": "story-interlude",
+        "field": "content",
+        "kr": "잠시 후…",
+        "zh": [
+          "不久之後……",
+          "過了一會兒……",
+          "一段時間後……"
+        ],
+        "keys": [
+          "StoryData/E001X.json|/dataList/166/content",
+          "StoryData/E003I2.json|/dataList/30/content",
+          "StoryData/ES013B.json|/dataList/17/content"
+        ],
+        "counts": [
+          15,
+          1,
+          1
+        ],
+        "units": 17
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "나는…",
+        "zh": [
+          "我……",
+          "我的話……"
+        ],
+        "keys": [
+          "StoryData/4D206B.json|/dataList/3/content",
+          "StoryData/S605B.json|/dataList/52/content"
+        ],
+        "counts": [
+          14,
+          1
+        ],
+        "units": 15
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "…그래.",
+        "zh": [
+          "……是啊。",
+          "……是嗎。",
+          "……我知道了。",
+          "……嗯。",
+          "……對。",
+          "……這樣啊。",
+          "……是的。",
+          "……沒錯。",
+          "……當然。"
+        ],
+        "keys": [
+          "StoryData/7D101B.json|/dataList/34/content",
+          "StoryData/7D109B.json|/dataList/14/content",
+          "StoryData/8D202A.json|/dataList/66/content",
+          "StoryData/S1022B.json|/dataList/52/content",
+          "StoryData/S1039I.json|/dataList/14/content",
+          "StoryData/S216B.json|/dataList/60/content",
+          "StoryData/S643B.json|/dataList/7/content",
+          "StoryData/S919B.json|/dataList/73/content",
+          "StoryData/S941B.json|/dataList/50/content"
+        ],
+        "counts": [
+          2,
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "units": 14
+      },
+      {
+        "family": "story-interlude",
+        "field": "content",
+        "kr": "하지만…",
+        "zh": [
+          "但是……",
+          "然而……",
+          "但是呀……",
+          "霎時間……",
+          "不過……"
+        ],
+        "keys": [
+          "StoryData/E053X.json|/dataList/86/content",
+          "StoryData/E625A.json|/dataList/47/content",
+          "StoryData/E811I1.json|/dataList/26/content",
+          "StoryData/ES030A.json|/dataList/36/content",
+          "StoryData/PC14I.json|/dataList/26/content"
+        ],
+        "counts": [
+          9,
+          1,
+          1,
+          1,
+          1
+        ],
+        "units": 13
+      },
+      {
+        "family": "identity",
+        "field": "content",
+        "kr": "하지만…",
+        "zh": [
+          "但……",
+          "但是……",
+          "然而……"
+        ],
+        "keys": [
+          "StoryData/P10109.json|/dataList/25/content",
+          "StoryData/P10110.json|/dataList/26/content",
+          "StoryData/P10515.json|/dataList/25/content"
+        ],
+        "counts": [
+          1,
+          10,
+          1
+        ],
+        "units": 12
+      },
+      {
+        "family": "identity",
+        "field": "dlg",
+        "kr": "윽…",
+        "zh": [
+          "嗚……",
+          "唔……",
+          "呃……"
+        ],
+        "keys": [
+          "PersonalityVoiceDlg/Voice_Faust_Zwei_10205.json|/dataList/16/dlg",
+          "PersonalityVoiceDlg/Voice_Gregor_GCorp_11203.json|/dataList/16/dlg",
+          "PersonalityVoiceDlg/Voice_Gregor_Zwei_11206.json|/dataList/16/dlg"
+        ],
+        "counts": [
+          6,
+          3,
+          3
+        ],
+        "units": 12
+      },
+      {
+        "family": "story-interlude",
+        "field": "content",
+        "kr": "아…",
+        "zh": [
+          "啊……",
+          "啊啊……"
+        ],
+        "keys": [
+          "StoryData/E051X.json|/dataList/11/content",
+          "StoryData/E301A.json|/dataList/72/content"
+        ],
+        "counts": [
+          11,
+          1
+        ],
+        "units": 12
+      },
+      {
+        "family": "story-main",
+        "field": "content",
+        "kr": "…네.",
+        "zh": [
+          "……好的。",
+          "……是的。",
+          "……沒錯。",
+          "……對。",
+          "……啊。",
+          "……是。"
+        ],
+        "keys": [
+          "StoryData/1D105B.json|/dataList/34/content",
+          "StoryData/8D105B.json|/dataList/36/content",
+          "StoryData/S527B.json|/dataList/7/content",
+          "StoryData/S941B.json|/dataList/29/content",
+          "StoryData/S941B.json|/dataList/47/content",
+          "StoryData/S943A.json|/dataList/16/content"
+        ],
+        "counts": [
+          5,
+          3,
+          1,
+          1,
+          1,
+          1
+        ],
+        "units": 12
+      },
+      {
+        "family": "ally",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] [Laceration] 횟수 <style=\"highlight\">2</style> 증가",
+        "zh": [
+          "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>回 [Laceration]",
+          "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Laceration] 強度",
+          "[OnSucceedAttack] 使目標增加<style=\"highlight\">2回</style> [Laceration]"
+        ],
+        "keys": [
+          "Skills_Ego_Personality-09.json|/dataList/11/levelList/2/coinlist/1/coindescs/2/desc",
+          "Skills_personality-02.json|/dataList/33/levelList/1/coinlist/1/coindescs/0/desc",
+          "Skills_personality-08.json|/dataList/32/levelList/1/coinlist/1/coindescs/0/desc"
+        ],
+        "counts": [
+          9,
+          1,
+          1
+        ],
+        "units": 11
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] [OminousTalisman] 10 부여",
+        "zh": [
+          "[OnSucceedAttack] 對目標施加10層 [OminousTalisman]",
+          "[OnSucceedAttack] 對目標施加10層 [OminousTalisman] "
+        ],
+        "keys": [
+          "Skills_Abnormality-a1c8p2.json|/dataList/36/levelList/0/coinlist/0/coindescs/1/desc",
+          "Skills_Enemy-a1c8p2.json|/dataList/24/levelList/0/coinlist/0/coindescs/1/desc"
+        ],
+        "counts": [
+          6,
+          5
+        ],
+        "units": 11
+      },
+      {
+        "family": "enemy",
+        "field": "desc",
+        "kr": "[WhenUse] 자신의 [Charge] 횟수 5 증가",
+        "zh": [
+          "[WhenUse] 使自身增加5回 [Charge]",
+          "[WhenUse] 使自身獲得5回 [Charge]"
+        ],
+        "keys": [
+          "Skills_Abnormality-a1c8p2.json|/dataList/49/levelList/0/desc",
+          "Skills_Enemy-a1c8p2.json|/dataList/1/levelList/0/desc"
+        ],
+        "counts": [
+          2,
+          9
+        ],
+        "units": 11
+      },
+      {
+        "family": "mirror",
+        "field": "desc",
+        "kr": "[OnSucceedAttack] [Laceration] 2 부여",
+        "zh": [
+          "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度",
+          "[OnSucceedAttack] 使目標獲得2級 [Laceration] 強度"
+        ],
+        "keys": [
+          "Skills_Abnormality_Mirror6.json|/dataList/4/levelList/0/coinlist/1/coindescs/0/desc",
+          "Skills_Abnormality_Mirror7.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc"
+        ],
+        "counts": [
+          9,
+          2
+        ],
+        "units": 11
+      },
+      {
+        "family": "story-interlude",
+        "field": "content",
+        "kr": "…흠.",
+        "zh": [
+          "……哼。",
+          "……嗯。",
+          "……呼嗯。"
+        ],
+        "keys": [
+          "StoryData/E002X.json|/dataList/23/content",
+          "StoryData/E501B.json|/dataList/29/content",
+          "StoryData/E722A.json|/dataList/39/content"
+        ],
+        "counts": [
+          5,
+          3,
+          3
+        ],
+        "units": 11
+      },
+      {
+        "family": "story-interlude",
+        "field": "content",
+        "kr": "그리고…",
+        "zh": [
+          "還有……",
+          "此外……",
+          "而且……",
+          "然後……",
+          "隨後……"
+        ],
+        "keys": [
+          "StoryData/E030X.json|/dataList/88/content",
+          "StoryData/E304A.json|/dataList/37/content",
+          "StoryData/E618B.json|/dataList/59/content",
+          "StoryData/E626B.json|/dataList/70/content",
+          "StoryData/PC01B.json|/dataList/132/content"
+        ],
+        "counts": [
+          5,
+          1,
+          2,
+          2,
+          1
+        ],
+        "units": 11
       }
     ],
     "notes": [],
-    "new_translated": 18019,
+    "new_translated": 18027,
     "shown": {
-      "claude": 18019,
+      "claude": 18027,
       "copy": 90934,
       "human": 3,
-      "paratranz": 163827
+      "paratranz": 163819
     },
     "misaligned": [
       {
@@ -590,243 +689,6 @@
   },
   "inconsistent_all": [
     {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "동랑",
-      "zh": [
-        "東朗",
-        "東朗 "
-      ],
-      "keys": [
-        "StoryData/4D103B.json|/dataList/15/teller",
-        "StoryData/S448B.json|/dataList/108/teller"
-      ],
-      "counts": [
-        415,
-        1
-      ],
-      "units": 416
-    },
-    {
-      "family": "identity",
-      "field": "content",
-      "kr": "…….",
-      "zh": [
-        "……",
-        "…………"
-      ],
-      "keys": [
-        "StoryData/P10104.json|/dataList/35/content",
-        "StoryData/P10514.json|/dataList/69/content"
-      ],
-      "counts": [
-        194,
-        1
-      ],
-      "units": 195
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "EX CLEAR 전투 승리",
-      "zh": [
-        "EX CLEAR戰鬥勝利",
-        "EX CLEAR 戰鬥勝利"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/22/desc",
-        "PersonalityVoiceDlg/Voice_Sinclair_Contem_11016.json|/dataList/28/desc"
-      ],
-      "counts": [
-        192,
-        1
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "대화 1",
-      "zh": [
-        "對話 1",
-        "對話1"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/4/desc",
-        "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/4/desc"
-      ],
-      "counts": [
-        188,
-        5
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "대화 2",
-      "zh": [
-        "對話 2",
-        "對話2"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/5/desc",
-        "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/5/desc"
-      ],
-      "counts": [
-        188,
-        5
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "대화 3",
-      "zh": [
-        "對話 3",
-        "對話3"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/6/desc",
-        "PersonalityVoiceDlg/Voice_Gregor_Capitano_11213.json|/dataList/6/desc"
-      ],
-      "counts": [
-        188,
-        5
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "아침 인사",
-      "zh": [
-        "晨間問候",
-        "早晨問候"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/1/desc",
-        "PersonalityVoiceDlg/Voice_DonQuixote_Contem_10315.json|/dataList/1/desc"
-      ],
-      "counts": [
-        138,
-        55
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "저녁 인사",
-      "zh": [
-        "晚間問候",
-        "晚間問候 "
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/3/desc",
-        "PersonalityVoiceDlg/Voice_Rodion_Kcorp_10905.json|/dataList/3/desc"
-      ],
-      "counts": [
-        192,
-        1
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "점심 인사",
-      "zh": [
-        "午間問候",
-        "午時問候"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/2/desc",
-        "PersonalityVoiceDlg/Voice_DonQuixote_Contem_10315.json|/dataList/2/desc"
-      ],
-      "counts": [
-        137,
-        56
-      ],
-      "units": 193
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "입장",
-      "zh": [
-        "進入戰鬥",
-        "入場",
-        "進入"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/12/desc",
-        "PersonalityVoiceDlg/Voice_Heathcliff_Heishou_10714.json|/dataList/12/desc",
-        "PersonalityVoiceDlg/Voice_Sinclair_Contem_11016.json|/dataList/12/desc"
-      ],
-      "counts": [
-        190,
-        1,
-        1
-      ],
-      "units": 192
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "동기화 후 대화 1",
-      "zh": [
-        "同步後對話 1",
-        "同步後對話1"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/7/desc",
-        "PersonalityVoiceDlg/Voice_Ishmael_KumoMiddle_10814.json|/dataList/7/desc"
-      ],
-      "counts": [
-        179,
-        2
-      ],
-      "units": 181
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "동기화 후 대화 2",
-      "zh": [
-        "同步後對話 2",
-        "同步後對話2"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json|/dataList/8/desc",
-        "PersonalityVoiceDlg/Voice_Ishmael_KumoMiddle_10814.json|/dataList/8/desc"
-      ],
-      "counts": [
-        179,
-        2
-      ],
-      "units": 181
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Laceration] 2 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度",
-        "[OnSucceedAttack] 使目標增加2級 [Laceration]"
-      ],
-      "keys": [
-        "Skills_Abnormality-BossRaid.json|/dataList/25/levelList/0/coinlist/0/coindescs/1/desc",
-        "Skills_Enemy-a1c7p1.json|/dataList/1/levelList/0/coinlist/2/coindescs/0/desc"
-      ],
-      "counts": [
-        136,
-        2
-      ],
-      "units": 138
-    },
-    {
       "family": "identity",
       "field": "teller",
       "kr": "홍루",
@@ -843,96 +705,6 @@
         6
       ],
       "units": 129
-    },
-    {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "삼조",
-      "zh": [
-        "三朝",
-        " 三朝"
-      ],
-      "keys": [
-        "StoryData/S407B.json|/dataList/8/teller",
-        "StoryData/S409B.json|/dataList/35/teller"
-      ],
-      "counts": [
-        111,
-        1
-      ],
-      "units": 112
-    },
-    {
-      "family": "identity",
-      "field": "title",
-      "kr": "검지 아비",
-      "zh": [
-        "食指父輩",
-        "食指 父輩"
-      ],
-      "keys": [
-        "StoryData/P10115.json|/dataList/2/title",
-        "StoryData/P10314.json|/dataList/23/title"
-      ],
-      "counts": [
-        78,
-        22
-      ],
-      "units": 100
-    },
-    {
-      "family": "story-interlude",
-      "field": "content",
-      "kr": "…!",
-      "zh": [
-        "……！",
-        "…!"
-      ],
-      "keys": [
-        "StoryData/E003I3.json|/dataList/21/content",
-        "StoryData/E923B.json|/dataList/145/content"
-      ],
-      "counts": [
-        46,
-        1
-      ],
-      "units": 47
-    },
-    {
-      "family": "story-main",
-      "field": "title",
-      "kr": "연심",
-      "zh": [
-        "研心",
-        "研尋"
-      ],
-      "keys": [
-        "StoryData/4D105B.json|/dataList/5/title",
-        "StoryData/4D305I.json|/dataList/71/title"
-      ],
-      "counts": [
-        43,
-        2
-      ],
-      "units": 45
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 2 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身增加2級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_Assist-exme.json|/dataList/1/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_personality-03.json|/dataList/10/levelList/1/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        15,
-        29
-      ],
-      "units": 44
     },
     {
       "family": "story-main",
@@ -960,168 +732,6 @@
         4
       ],
       "units": 43
-    },
-    {
-      "family": "identity",
-      "field": "desc",
-      "kr": "아군 사망",
-      "zh": [
-        "友方陣亡",
-        "自身陣亡"
-      ],
-      "keys": [
-        "PersonalityVoiceDlg/Voice_Donquixote_LCB_10301.json|/dataList/15/desc",
-        "PersonalityVoiceDlg/Voice_Ishmael_LEGO_10805.json|/dataList/18/desc"
-      ],
-      "counts": [
-        38,
-        1
-      ],
-      "units": 39
-    },
-    {
-      "family": "story-main",
-      "field": "place",
-      "kr": "메피스토펠레스 내부",
-      "zh": [
-        "梅菲斯托費勒斯 內部",
-        "梅菲斯托費勒斯 內部 "
-      ],
-      "keys": [
-        "StoryData/1D306A.json|/dataList/71/place",
-        "StoryData/S406A.json|/dataList/4/place"
-      ],
-      "counts": [
-        35,
-        1
-      ],
-      "units": 36
-    },
-    {
-      "family": "walpu-refraction",
-      "field": "desc",
-      "kr": "적 잡몹",
-      "zh": [
-        "敵方單位",
-        "敵 雜兵"
-      ],
-      "keys": [
-        "Enemies-walpu2.json|/dataList/0/desc",
-        "Enemies-walpu6.json|/dataList/0/desc"
-      ],
-      "counts": [
-        30,
-        5
-      ],
-      "units": 35
-    },
-    {
-      "family": "other",
-      "field": "content",
-      "kr": "이벤트 특화 대상",
-      "zh": [
-        "活動加成角色",
-        "活動加成對象"
-      ],
-      "keys": [
-        "CultivationEvent.json|/dataList/8/content",
-        "EventMOWEText.json|/dataList/14/content"
-      ],
-      "counts": [
-        25,
-        9
-      ],
-      "units": 34
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Burst] 횟수 1 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加1回 [Burst] <style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使目標增加1回 [Burst]<style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-10.json|/dataList/8/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_personality-01.json|/dataList/36/levelList/2/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        8,
-        23
-      ],
-      "units": 31
-    },
-    {
-      "family": "identity",
-      "field": "title",
-      "kr": "섕크 협회 4과",
-      "zh": [
-        "Cinq協會 4科",
-        "Cinq協會4科"
-      ],
-      "keys": [
-        "StoryData/P11008.json|/dataList/3/title",
-        "StoryData/P11106.json|/dataList/21/title"
-      ],
-      "counts": [
-        28,
-        1
-      ],
-      "units": 29
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 진동 폭발",
-      "zh": [
-        "[OnSucceedAttack] 使目標震顫引爆 ",
-        "[OnSucceedAttack] 使目標震顫引爆"
-      ],
-      "keys": [
-        "Skills_Ego.json|/dataList/11/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_personality-x1p1c1.json|/dataList/17/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        26,
-        2
-      ],
-      "units": 28
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 1 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身增加1級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_personality-02.json|/dataList/32/levelList/0/coinlist/1/coindescs/0/desc",
-        "Skills_personality-03.json|/dataList/9/levelList/2/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        10,
-        16
-      ],
-      "units": 26
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[BulletPropellant] 1 소모",
-      "zh": [
-        "消耗1發 [BulletPropellant]",
-        "使自身消耗1發 [BulletPropellant]"
-      ],
-      "keys": [
-        "Skills_Abnormality-BossRaid.json|/dataList/30/levelList/0/coinlist/1/coindescs/0/desc",
-        "Skills_Abnormality-a1c8p3.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        13,
-        13
-      ],
-      "units": 26
     },
     {
       "family": "story-main",
@@ -1161,96 +771,6 @@
         1
       ],
       "units": 26
-    },
-    {
-      "family": "other",
-      "field": "content",
-      "kr": "이벤트 기간",
-      "zh": [
-        "活動時間",
-        "活動期間"
-      ],
-      "keys": [
-        "TutorialMainUIText.json|/dataList/281/content",
-        "Walpu6EventText.json|/dataList/31/content"
-      ],
-      "counts": [
-        22,
-        2
-      ],
-      "units": 24
-    },
-    {
-      "family": "story-main",
-      "field": "title",
-      "kr": "J사 전당포",
-      "zh": [
-        "J公司 當鋪",
-        "J公司 賭場"
-      ],
-      "keys": [
-        "StoryData/S202A.json|/dataList/0/title",
-        "StoryData/S209B.json|/dataList/17/title"
-      ],
-      "counts": [
-        22,
-        2
-      ],
-      "units": 24
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 2 얻음<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使自身增加2級 [Breath] 強度<style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_personality-01.json|/dataList/33/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_personality-06.json|/dataList/20/levelList/2/coinlist/1/coindescs/1/desc"
-      ],
-      "counts": [
-        18,
-        5
-      ],
-      "units": 23
-    },
-    {
-      "family": "story-main",
-      "field": "title",
-      "kr": "J사 카지노",
-      "zh": [
-        "J公司 賭場",
-        "J公司賭場"
-      ],
-      "keys": [
-        "StoryData/2D102B.json|/dataList/5/title",
-        "StoryData/S208B.json|/dataList/36/title"
-      ],
-      "counts": [
-        16,
-        7
-      ],
-      "units": 23
-    },
-    {
-      "family": "story-main",
-      "field": "teller",
-      "kr": "철공회 보스",
-      "zh": [
-        "鐵工會 老大",
-        "幫派老大"
-      ],
-      "keys": [
-        "StoryData/S216B.json|/dataList/22/teller",
-        "StoryData/S216B.json|/dataList/42/teller"
-      ],
-      "counts": [
-        20,
-        1
-      ],
-      "units": 21
     },
     {
       "family": "story-main",
@@ -1304,63 +824,6 @@
       "units": 20
     },
     {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Combustion] <style=\"highlight\">2</style> 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Combustion] 強度",
-        "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Combustion] 強度"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-01.json|/dataList/4/levelList/1/coinlist/0/coindescs/1/desc",
-        "Skills_Ego_Personality-07.json|/dataList/8/levelList/2/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        15,
-        4
-      ],
-      "units": 19
-    },
-    {
-      "family": "identity",
-      "field": "title",
-      "kr": "복지팀 사무직 팀원",
-      "zh": [
-        "福利部 文職",
-        "福利部 組員"
-      ],
-      "keys": [
-        "StoryData/P10514.json|/dataList/1/title",
-        "StoryData/P10514.json|/dataList/28/title"
-      ],
-      "counts": [
-        11,
-        8
-      ],
-      "units": 19
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "크리티컬 피해량 +30%",
-      "zh": [
-        "使本硬幣暴擊時造成的傷害+30%",
-        "暴擊時造成的傷害+30%",
-        "使本技能暴擊時造成的傷害+30%"
-      ],
-      "keys": [
-        "Skills_Assist-a1c8p2.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_Ego_Personality-04.json|/dataList/8/levelList/0/coinlist/2/coindescs/1/desc",
-        "Skills_personality-05.json|/dataList/19/levelList/1/coinlist/2/coindescs/1/desc"
-      ],
-      "counts": [
-        14,
-        2,
-        1
-      ],
-      "units": 17
-    },
-    {
       "family": "identity",
       "field": "title",
       "kr": "중지 작은 아우",
@@ -1373,8 +836,8 @@
         "StoryData/P10715.json|/dataList/37/title"
       ],
       "counts": [
-        14,
-        3
+        13,
+        4
       ],
       "units": 17
     },
@@ -1400,135 +863,6 @@
       "units": 17
     },
     {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 3 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身獲得3級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身增加3級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_Assist-exme.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_personality-04.json|/dataList/13/levelList/1/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        11,
-        5
-      ],
-      "units": 16
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Laceration] 횟수 2 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使目標增加2回 [Laceration] <style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-06.json|/dataList/7/levelList/1/coinlist/1/coindescs/0/desc",
-        "Skills_personality-12.json|/dataList/17/levelList/2/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        15,
-        1
-      ],
-      "units": 16
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 진동 폭발",
-      "zh": [
-        "[OnSucceedAttack] 使目標震顫引爆 ",
-        "[OnSucceedAttack] 使目標震顫引爆"
-      ],
-      "keys": [
-        "Skills_Abnormality.json|/dataList/142/levelList/0/coinlist/3/coindescs/0/desc",
-        "Skills_Enemy-x1p1c1.json|/dataList/7/levelList/0/coinlist/2/coindescs/0/desc"
-      ],
-      "counts": [
-        15,
-        1
-      ],
-      "units": 16
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Vibration] 횟수 1 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加1回 [Vibration]<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 對目標施加1回 [Vibration]<style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_personality-01.json|/dataList/38/levelList/1/coinlist/1/coindescs/2/desc",
-        "Skills_personality-08.json|/dataList/25/levelList/1/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        13,
-        2
-      ],
-      "units": 15
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] 다음 턴에 속박 1 부여",
-      "zh": [
-        "[OnSucceedAttack] 對目標施加1層束縛 ",
-        "[OnSucceedAttack] 下回合對目標施加1層束縛 "
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c5p3.json|/dataList/64/levelList/0/coinlist/1/coindescs/1/desc",
-        "Skills_Abnormality.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        1,
-        14
-      ],
-      "units": 15
-    },
-    {
-      "family": "story-interlude",
-      "field": "teller",
-      "kr": "보살 치킨 사장",
-      "zh": [
-        "菩薩雞 店長",
-        "菩薩雞 經理",
-        "菩薩雞經理"
-      ],
-      "keys": [
-        "StoryData/E301A.json|/dataList/19/teller",
-        "StoryData/E301A.json|/dataList/40/teller",
-        "StoryData/E306A.json|/dataList/59/teller"
-      ],
-      "counts": [
-        5,
-        2,
-        8
-      ],
-      "units": 15
-    },
-    {
-      "family": "story-interlude",
-      "field": "title",
-      "kr": "보살 치킨",
-      "zh": [
-        "菩薩雞",
-        "菩薩雞 "
-      ],
-      "keys": [
-        "StoryData/E301A.json|/dataList/19/title",
-        "StoryData/E301A.json|/dataList/40/title"
-      ],
-      "counts": [
-        14,
-        1
-      ],
-      "units": 15
-    },
-    {
       "family": "story-main",
       "field": "content",
       "kr": "나는…",
@@ -1545,42 +879,6 @@
         1
       ],
       "units": 15
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Laceration] <style=\"highlight\">2</style> 부여",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加<style=\"highlight\">2</style>級 [Laceration] 強度",
-        "[OnSucceedAttack] 使目標增加<style=\"highlight\">2級</style> [Laceration] 強度"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-09.json|/dataList/11/levelList/1/coinlist/1/coindescs/1/desc",
-        "Skills_personality-08.json|/dataList/30/levelList/1/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        11,
-        3
-      ],
-      "units": 14
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Sinking] 횟수 1 증가",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加1回 [Sinking]",
-        "[OnSucceedAttack] 對目標施加1回 [Sinking]"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-01.json|/dataList/4/levelList/0/coinlist/0/coindescs/2/desc",
-        "Skills_personality-08.json|/dataList/25/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        12,
-        2
-      ],
-      "units": 14
     },
     {
       "family": "story-main",
@@ -1622,60 +920,6 @@
       "units": 14
     },
     {
-      "family": "abnormality",
-      "field": "content",
-      "kr": "<color=#ebcaa2>[{0}]의</color> <color=#e30000>체력 -{1}</color>",
-      "zh": [
-        "<color=#ebcaa2>[{0}]</color><color=#e30000>失去了{1}點體力</color>",
-        "<color=#ebcaa2>[{0}]</color><color=#e30000>失去{1}點體力</color>"
-      ],
-      "keys": [
-        "AbEventsResultLog.json|/dataList/12/content",
-        "AbEventsResultLog.json|/dataList/127/content"
-      ],
-      "counts": [
-        11,
-        2
-      ],
-      "units": 13
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 1 얻음<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使自身增加1級 [Breath] 強度<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使自身獲得1級 [Breath] 強度<style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_personality-02.json|/dataList/37/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills_personality-03.json|/dataList/40/levelList/1/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        8,
-        5
-      ],
-      "units": 13
-    },
-    {
-      "family": "identity",
-      "field": "title",
-      "kr": "정보팀 관리직 직원",
-      "zh": [
-        "安保部 員工",
-        "情報部 員工"
-      ],
-      "keys": [
-        "StoryData/P10414.json|/dataList/57/title",
-        "StoryData/P10414.json|/dataList/70/title"
-      ],
-      "counts": [
-        7,
-        6
-      ],
-      "units": 13
-    },
-    {
       "family": "story-interlude",
       "field": "content",
       "kr": "하지만…",
@@ -1701,45 +945,6 @@
         1
       ],
       "units": 13
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Sinking] 횟수 1 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加1回 [Sinking]<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 對目標施加1回 [Sinking]<style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_personality-03.json|/dataList/36/levelList/1/coinlist/0/coindescs/1/desc",
-        "Skills_personality-08.json|/dataList/25/levelList/1/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        10,
-        2
-      ],
-      "units": 12
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[UnBrokenCoinOnSucceedAttack] [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
-      "zh": [
-        "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]",
-        "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]",
-        "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c10p1.json|/dataList/49/levelList/0/coinlist/2/coindescs/1/desc",
-        "Skills_Abnormality-a1c10p2.json|/dataList/13/levelList/0/coinlist/0/coindescs/3/desc",
-        "Skills_Enemy-a1c8p3.json|/dataList/10/levelList/0/coinlist/1/coindescs/2/desc"
-      ],
-      "counts": [
-        3,
-        4,
-        5
-      ],
-      "units": 12
     },
     {
       "family": "identity",
@@ -1780,42 +985,6 @@
         6,
         3,
         3
-      ],
-      "units": 12
-    },
-    {
-      "family": "mirror",
-      "field": "messageDesc",
-      "kr": "E.G.O GIFT 획득",
-      "zh": [
-        "獲得1件E.G.O飾品",
-        "獲得E.G.O飾品"
-      ],
-      "keys": [
-        "ActionEvents.json|/dataList/4/options/0/messageDesc",
-        "ActionEvents.json|/dataList/17/options/0/messageDesc"
-      ],
-      "counts": [
-        5,
-        7
-      ],
-      "units": 12
-    },
-    {
-      "family": "other",
-      "field": "desc",
-      "kr": "[OnSucceedAttackHead] 출혈 1 부여",
-      "zh": [
-        "[OnSucceedAttackHead] 使目標增加1級流血 強度",
-        "[OnSucceedAttackHead]  使目標增加1級流血 強度"
-      ],
-      "keys": [
-        "Skills.json|/dataList/29/levelList/1/coinlist/0/coindescs/0/desc",
-        "Skills.json|/dataList/105/levelList/1/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        11,
-        1
       ],
       "units": 12
     },
@@ -1866,27 +1035,6 @@
         1
       ],
       "units": 12
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Burst] 횟수 2 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使目標增加2回 [Burst] <style=\"highlight\"></style>",
-        "[OnSucceedAttack] 對目標施加2回 [Burst]<style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-06.json|/dataList/7/levelList/1/coinlist/1/coindescs/1/desc",
-        "Skills_Ego_Personality-06.json|/dataList/10/levelList/0/coinlist/0/coindescs/1/desc",
-        "Skills_personality-12.json|/dataList/42/levelList/1/coinlist/0/coindescs/1/desc"
-      ],
-      "counts": [
-        7,
-        3,
-        1
-      ],
-      "units": 11
     },
     {
       "family": "ally",
@@ -2275,24 +1423,6 @@
       "counts": [
         7,
         2
-      ],
-      "units": 9
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 2 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身增加2級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身獲得2級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c6p3.json|/dataList/11/levelList/0/coinlist/1/coindescs/1/desc",
-        "Skills_Abnormality-a1c8p3.json|/dataList/22/levelList/0/coinlist/1/coindescs/0/desc"
-      ],
-      "counts": [
-        2,
-        7
       ],
       "units": 9
     },
@@ -2901,42 +2031,6 @@
     },
     {
       "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 5 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身獲得5級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身增加5級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_Assist-exme.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_personality-04.json|/dataList/14/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        5,
-        2
-      ],
-      "units": 7
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Laceration] 횟수 1 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加1回 [Laceration]<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使目標增加1回 [Laceration] <style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_personality-05.json|/dataList/26/levelList/2/coinlist/1/coindescs/0/desc",
-        "Skills_personality-09.json|/dataList/19/levelList/1/coinlist/0/coindescs/1/desc"
-      ],
-      "counts": [
-        4,
-        3
-      ],
-      "units": 7
-    },
-    {
-      "family": "ally",
       "field": "name",
       "kr": "적안(開)",
       "zh": [
@@ -2992,24 +2086,6 @@
     {
       "family": "enemy",
       "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 4 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身增加4級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身獲得4級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_Enemy-a1c951.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_Enemy-cultivation.json|/dataList/0/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        2,
-        5
-      ],
-      "units": 7
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
       "kr": "[UnBrokenCoinOnSucceedAttack] [VibrationExplosion] 2회. 대상의 [Vibration] 횟수 2 감소",
       "zh": [
         "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 2次，並使其減少2回 [Vibration]",
@@ -3053,20 +2129,17 @@
       "zh": [
         "使本硬幣暴擊時造成的傷害+30%",
         "本技能暴擊時造成的傷害+30%",
-        "本硬幣暴擊時造成的傷害+30%",
-        "暴擊時造成的傷害+30%"
+        "本硬幣暴擊時造成的傷害+30%"
       ],
       "keys": [
         "Skills_Abnormality-a1c9p1.json|/dataList/32/levelList/0/coinlist/2/coindescs/0/desc",
         "Skills_Abnormality-a1c9p2.json|/dataList/19/levelList/0/coinlist/0/coindescs/1/desc",
-        "Skills_Abnormality-a1c9p3.json|/dataList/84/levelList/0/coinlist/2/coindescs/0/desc",
-        "Skills_Enemy-a1c10p1.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc"
+        "Skills_Abnormality-a1c9p3.json|/dataList/84/levelList/0/coinlist/2/coindescs/0/desc"
       ],
       "counts": [
-        3,
+        5,
         1,
-        1,
-        2
+        1
       ],
       "units": 7
     },
@@ -3376,24 +2449,6 @@
       "counts": [
         4,
         2
-      ],
-      "units": 6
-    },
-    {
-      "family": "ally",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Sinking] 횟수 3 증가<style=\"highlight\"></style>",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加3回 [Sinking]<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 使目標增加3回 [Sinking] <style=\"highlight\"></style>"
-      ],
-      "keys": [
-        "Skills_Ego_Personality-05.json|/dataList/10/levelList/1/coinlist/1/coindescs/3/desc",
-        "Skills_Ego_Personality-12.json|/dataList/5/levelList/2/coinlist/0/coindescs/2/desc"
-      ],
-      "counts": [
-        5,
-        1
       ],
       "units": 6
     },
@@ -4399,7 +3454,7 @@
       "kr": "[OnSucceedAttack] [Combustion] 2 얻음",
       "zh": [
         "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度",
-        "[OnSucceedAttack] 使自身增加2級 [Combustion] 強度"
+        "[OnSucceedAttack] 使自身獲得2級 [Combustion] 強度"
       ],
       "keys": [
         "Skills_Assist-a1c9p3.json|/dataList/27/levelList/0/coinlist/2/coindescs/1/desc",
@@ -5551,24 +4606,6 @@
       "counts": [
         1,
         3
-      ],
-      "units": 4
-    },
-    {
-      "family": "enemy",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Breath] 5 얻음",
-      "zh": [
-        "[OnSucceedAttack] 使自身增加5級 [Breath] 強度",
-        "[OnSucceedAttack] 使自身獲得5級 [Breath] 強度"
-      ],
-      "keys": [
-        "Skills_Abnormality-a1c8p3.json|/dataList/24/levelList/0/coinlist/0/coindescs/1/desc",
-        "Skills_Enemy-exme.json|/dataList/3/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        2,
-        2
       ],
       "units": 4
     },
@@ -7182,8 +6219,8 @@
       "field": "desc",
       "kr": "[OnSucceedAttack] 대상의 [Vibration] 횟수가 3 이상이면, [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
       "zh": [
-        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回",
-        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回"
+        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]",
+        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
       ],
       "keys": [
         "Skills_personality-04.json|/dataList/30/levelList/1/coinlist/1/coindescs/4/desc",
@@ -9321,24 +8358,6 @@
     },
     {
       "family": "walpu-refraction",
-      "field": "desc",
-      "kr": "[OnSucceedAttack] [Combustion] 횟수 2 증가",
-      "zh": [
-        "[OnSucceedAttack] 使目標增加2回 [Combustion]",
-        "[OnSucceedAttack] 對目標施加2回 [Combustion]"
-      ],
-      "keys": [
-        "Skills_Abnormality_Refraction2_bokgak.json|/dataList/76/levelList/0/coinlist/0/coindescs/0/desc",
-        "Skills_Abnormality_Refraction6.json|/dataList/13/levelList/0/coinlist/0/coindescs/0/desc"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "walpu-refraction",
       "field": "name",
       "kr": "날렵하게~",
       "zh": [
@@ -9576,8 +8595,8 @@
       "field": "desc",
       "kr": "[OnSucceedAttack] 대상의 [Vibration] 횟수가 3 이상이면, [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소<style=\"highlight\"></style>",
       "zh": [
-        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>",
-        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使目標 [VibrationExplosion]，並使其 [Vibration] 回數減少1回<style=\"highlight\"></style>"
+        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使其 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>",
+        "[OnSucceedAttack] 若目標的 [Vibration] 回數不低於3回，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]<style=\"highlight\"></style>"
       ],
       "keys": [
         "Skills_personality-05.json|/dataList/22/levelList/2/coinlist/2/coindescs/3/desc",
@@ -10081,7 +9100,7 @@
       "kr": "[OnSucceedAttack] 자신의 [Vibration] 횟수가 10 이상이면, [VibrationExplosion]. 대상의 [Vibration] 횟수 1 감소",
       "zh": [
         "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使目標的 [Vibration] 回數減少1回",
-        "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使其 [Vibration] 回數減少1回"
+        "[OnSucceedAttack] 若自身的 [Vibration] 回數不低於10回，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
       ],
       "keys": [
         "Skills_Enemy-tkt-re.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
@@ -10104,6 +9123,1068 @@
       "keys": [
         "Skills_Abnormality.json|/dataList/209/levelList/0/coinlist/0/coindescs/0/desc",
         "Skills_Enemy91-4.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[StartBattle] [Vibration] 횟수 4를 소모하여, 자신의 [TimeRentalTwo] 횟수 3 증가\n[StartBattle] 자신의 [Vibration] 횟수 2 증가",
+      "zh": [
+        "[StartBattle] 消耗4回 [Vibration] 並使自身獲得3回 [TimeRentalTwo]\n[StartBattle] 對自身施加2回 [Vibration]",
+        "[StartBattle] 消耗4回 [Vibration] 並使自身獲得3層 [TimeRentalTwo]\n[StartBattle] 對自身施加2回 [Vibration]"
+      ],
+      "keys": [
+        "Skills_Enemy-tkt.json|/dataList/23/levelList/0/desc",
+        "Skills_Enemy-tkt.json|/dataList/28/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[UnBrokenCoinOnSucceedAttack] [VibrationExplosion] 3회. 대상의 [Vibration] 횟수 3 감소",
+      "zh": [
+        "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 3次，並使其 [Vibration] 回數減少3回",
+        "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion] 3次；隨後使目標的 [Vibration] 回數減少3回"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c8p3.json|/dataList/5/levelList/0/coinlist/0/coindescs/4/desc",
+        "Skills_Abnormality-a1c9p3.json|/dataList/6/levelList/0/coinlist/4/coindescs/2/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 [Burst] 위력이 3이상이면, 기본 위력 +1",
+      "zh": [
+        "[WhenUse] 若目標的 [Burst] 強度不低於3級，則使本技能的基礎威力+1",
+        "[WhenUse] 若目標的 [Burst] 強度不低於3，則使本技能的基礎威力+1"
+      ],
+      "keys": [
+        "Skills_Enemy-a1c6p1.json|/dataList/7/levelList/0/desc",
+        "Skills_Enemy-a1c6p1.json|/dataList/15/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 대상의 정신력이 10이하라면, [AttackDown] 2 부여\n[WinDuel] [Vulnerable] 1 부여",
+      "zh": [
+        "[WhenUse] 若目標的理智值不高於10點，則對其施加2層 [AttackDown] \n[WinDuel] 對目標施加1層 [Vulnerable]",
+        "[WhenUse] 若目標的理智值不高於10點，則對其施加2層 [AttackDown]\n[WinDuel] 對目標施加1層 [Vulnerable]"
+      ],
+      "keys": [
+        "Skills_Enemy-a1c6p1.json|/dataList/54/levelList/0/desc",
+        "Skills_Enemy-a1c6p3.json|/dataList/1/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[WhenUse] 자신의 속도가 공격자보다 높을수록 코인 위력 +1 (속도 차이 2 당 코인 위력 +1. 최대 3)",
+      "zh": [
+        "[WhenUse] 若自身的速度值高於攻擊者，則使本技能的硬幣威力+1(速度值每相差2點，使本技能的硬幣威力+1。最多+3)",
+        "[WhenUse] 若自身的速度值高於目標，則使本技能的硬幣威力+1(速度值每相差2點，使本技能的硬幣威力+1；最多+3)"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c7p1.json|/dataList/3/levelList/0/desc",
+        "Skills_Abnormality-a1c7p3.json|/dataList/67/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "공격 스킬 종료시, 각 대상에게 (크리티컬로 적중한 참격 코인 개수 x 10)만큼 참격 피해 (해당 피해로는 흐트러지지 않음)",
+      "zh": [
+        "自身在攻擊結束後，對各個攻擊對象造成(造成暴擊的斬擊硬幣數量×10)的斬擊傷害 (此被動造成的傷害無法使目標陷入混亂)",
+        "攻擊技能結束時，對所有目標造成(暴擊命中的硬幣數×10)點的斬擊傷害(本效果造成的傷害不會使目標陷入混亂)"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p1.json|/dataList/14/desc",
+        "Passives_Abnormality-a1c9p3.json|/dataList/62/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "대상의 정신력이 0 미만인 경우, 코인 위력 +3",
+      "zh": [
+        "若目標的理智值低於0點，則使本技能硬幣威力+3",
+        "若目標的理智值低於0點，則使本技能的硬幣威力+3"
+      ],
+      "keys": [
+        "Skills_Abnormality-BossRaid.json|/dataList/3/levelList/0/desc",
+        "Skills_Abnormality-a1c5p2.json|/dataList/5/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "메인 타겟의 화상 1당, 보호막에 입히는 피해량 15% 증가 (최대 300%)\n스킬 사용 시 대상의 공격 스킬이 참격 혹은 관통 속성이면, 합 위력 +1\n자신의 스킬 효과로 [VibrationExplosion]이 발동되었다면, 다음 턴 [AttackDmgUp] 2 얻음 (턴당 3회)\n자신의 스킬 효과로 크리티컬이 발동되었다면, 정신력 5 회복",
+      "zh": [
+        "主要目標每帶有1級燒傷強度，使自身對其護盾造成的傷害+15%(最多+300%)\n使用技能時，若目標使用的攻擊技能為斬擊或突刺技能，則使自身的拚點威力+1\n若自身的技能效果觸發 [VibrationExplosion]，則下回合使自身獲得2層 [AttackDmgUp] (每回合最多3次)\n若自身的技能效果觸發暴擊，使自身恢復5點理智值",
+        "主要目標每帶有1級燒傷 強度，使自身對護盾造成的傷害+15%(最多+300%)\n使用技能時，若目標的攻擊技能為斬擊技能或突刺技能，則使自身的拚點威力+1\n自身的技能效果觸發 [VibrationExplosion] 時，下回合使自身獲得2層 [AttackDmgUp] (每回合最多3次)\n自身的技能效果觸發暴擊時，使自身恢復5點理智值"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/38/desc",
+        "Passives_Abnormality-mr7.json|/dataList/10/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "본체 체력이 10% 남았을 때, 패턴이 변경됨.",
+      "zh": [
+        "現存體力不高於10%時，改變自身模式。",
+        "剩餘10%體力時，改變自身模式。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c5p3.json|/dataList/5/desc",
+        "Passives_Abnormality-a1c5p3.json|/dataList/39/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "스킬 2회 피격 시 [ResentmentSpiderDaughter] 1 얻음, [GotACompliment] 1 감소 (피격 횟수는 누적됨)\n\n자신의 [ResentmentSpiderDaughter]이 최댓값이면 강력한 공격을 사용함\n\n턴 종료시 자신의 체력이 80%, 60%, 40% 미만이면, [ResentmentSpiderDaughter] 최댓값으로 얻음",
+      "zh": [
+        "每當自身被2個技能攻擊時，使自身獲得1層 [ResentmentSpiderDaughter] 並使自身減少1層 [GotACompliment] (受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力低於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值",
+        "每當自身被技能攻擊2次時，使自身獲得1層 [ResentmentSpiderDaughter]，並使自身的 [GotACompliment] 減少1層(受擊次數將累積計算)\n\n若自身的 [ResentmentSpiderDaughter] 層數為最大值，則使用強力攻擊\n\n回合結束時，若自身的現存體力低於80%、60%、40%，則使自身的 [ResentmentSpiderDaughter] 層數變為最大值"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/27/desc",
+        "Passives_Abnormality-mr7.json|/dataList/23/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "스테이지 시작시 [HeatingWireOffSpider]를 가지고 시작함\n\n턴 시작 시 자신이 보유한 [GotACompliment]가 3 이상이면 해당 턴 동안 [HeatingWireOnSpider]으로 바뀌고, [Laceration]을 부여하는 스킬로 [Combustion]을 추가로 부여함\n\n턴 종료시 자신이 보유한 [GotACompliment]가 3 미만이면 [HeatingWireOnSpider]이 [HeatingWireOffSpider]로 전환됨",
+      "zh": [
+        "關卡開始時，使自身帶有 [HeatingWireOffSpider]\n\n回合開始時，若自身的 [GotACompliment] 層數不低於3層，則本回合使自身獲得 [HeatingWireOnSpider] 且使自身施加 [Laceration] 的技能額外施加 [Combustion]\n\n回合結束時，若自身 [GotACompliment] 的層數低於3層，則使自身的 [HeatingWireOnSpider] 轉變為 [HeatingWireOffSpider]",
+        "關卡開始時，使自身獲得 [HeatingWireOffSpider]\n\n回合開始時，若自身 [GotACompliment] 的層數不低於3層，則本回合內使自身獲得 [HeatingWireOnSpider]；使自身施加 [Laceration] 的攻擊技能額外施加 [Combustion]\n\n回合結束時，若自身 [GotACompliment] 的層數少於3，則使自身的 [HeatingWireOnSpider] 效果改為 [HeatingWireOffSpider]"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/24/desc",
+        "Passives_Abnormality-a1c9p3.json|/dataList/28/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "약지 아비 등장 시 자신의 정신력이 20미만이면, 정신력이 20이 됨",
+      "zh": [
+        "環指 父輩進入戰場時，若自身的理智值低於20點，則使其恢復至20點",
+        "環指 父輩登場時，若自身的理智值低於20點，則使其變為20點"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/17/desc",
+        "Passives_Abnormality-mr7.json|/dataList/36/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "자신의 [Breath]과 대상의 [Sinking]의 합 6당, 최종 위력 +1 (최대 2)\n[WhenUse] 자신의 [Breath] 횟수 2 증가\n[EndSkill] 정신력 3 감소",
+      "zh": [
+        "自身帶有的 [Breath] 強度與目標帶有的 [Sinking] 強度之和每有6級，則使本技能的最終威力+1(最多+2)\n[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 使自身失去3點理智值",
+        "自身帶有的 [Breath] 強度與目標帶有的 [Sinking] 強度之和每有6級，則使本技能的最終威力+1 (最多+2)\n[WhenUse] 使自身獲得2回 [Breath]\n[EndSkill] 使自身失去3點理智值"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/30/levelList/0/desc",
+        "Skills_Abnormality-a1c9p3.json|/dataList/73/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "자신의 잃은 체력 1%당 가하는 피해량 +2% (최대 100%)",
+      "zh": [
+        "自身每失去1%的體力，使自身造成的傷害+2%(最多+100%)",
+        "自身每失去1%體力，則使自身造成的傷害+2%(最多100%)"
+      ],
+      "keys": [
+        "Passives_Abnormality-cultivation.json|/dataList/6/desc",
+        "Passives_Enemy-a1c8p1.json|/dataList/18/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "적 처치 시, 본체 및 부위 체력을 200 회복.\n다음 턴에 [Agility] 1, [DefenseUp] 3, [AttackUp] 2 얻음.",
+      "zh": [
+        "擊殺敵方單位時，使自身本體與部位恢復200點體力。\n下回合使自身獲得1層 [Agility]、3層 [DefenseUp] 與2層 [AttackUp]。",
+        "擊殺敵方單位時，使自身本體與部位恢復200點體力，並在下回合使自身獲得1層 [Agility]、3層 [DefenseUp] 與2層 [AttackUp]。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c6p2.json|/dataList/4/desc",
+        "Passives_Enemy-a1c6p3.json|/dataList/12/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "체력이 가장 낮은 대상 우선 공격\n[WhenUse] 대상의 현재 체력 비율이 70% 미만이면, 합 위력 +2",
+      "zh": [
+        "優先攻擊體力最低的目標\n[WhenUse] 若目標現存體力比例低於70%，則使本技能的拚點威力+2",
+        "優先指定體力最低的目標\n[WhenUse] 若目標現存體力低於70%，則使本技能的拚點威力+2"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c6p2.json|/dataList/17/levelList/0/desc",
+        "Skills_Abnormality-a1c6p3.json|/dataList/51/levelList/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "촛불이 꺼지고 촛불 체력이 전부 회복된 상태면, 모든 촛불이 켜지기전까지 내성이 올라감.\n모든 촛불이 켜져있을 때, 내성이 내려감.",
+      "zh": [
+        "若所有蠟燭都被熄滅且體力全滿，則在所有蠟燭再次被點燃之前獲得抗性提升。\n當所有蠟燭都被點燃時，抗性降低。",
+        "若所有蠟燭都被熄滅且體力全滿，則在所有蠟燭再次被點燃之前抗性提升。\n當所有蠟燭都被點燃時，抗性降低。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c5p3.json|/dataList/0/desc",
+        "Passives_Abnormality-a1c5p3.json|/dataList/34/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시, 자신의 정신력 5 감소",
+      "zh": [
+        "回合結束時，自身理智值減少5點",
+        "回合結束時，自身失去5點理智值"
+      ],
+      "keys": [
+        "Passives_Enemy-mr7-extreme.json|/dataList/7/desc",
+        "Passives_Enemy.json|/dataList/37/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시점에 체력이 60% 이하가 되었거나 다음 턴에 강력한 공격('쾌도난마')을 이번 전투에서 두 번째로 사용할 예정이면, 다음 턴에 패턴이 변경됨\n- 해당 턴 시작 시, [Irritation] 1 얻음\n- 해당 턴 시작 시, [BulletPropellantSpecial] 18 얻고 즉시 장전\n· [BulletPropellantSpecial]을 전부 소모할 경우, 해당 효과가 [BulletPropellant]으로 변경되고 다음 턴에 엄격한 엄지 솔다토 2명을 소환하여 [BulletPropellantSpecial]을 보급받음\n- 흐트러짐 상태면, 흐트러짐 해제",
+      "zh": [
+        "若回合結束時現存體力不高於60%或下回合將使用本場戰鬥的第2次強力攻擊(「快刀亂麻 」)，則下回合改變自身模式\n- 該回合開始時，使自身獲得1層 [Irritation]\n- 該回合開始時，使自身獲得18發 [BulletPropellantSpecial] 並立刻裝填\n．若自身消耗了所有 [BulletPropellantSpecial]，則將其轉換為 [BulletPropellant] 並在下回合召喚2名嚴厲的拇指 士兵為自身補給 [BulletPropellantSpecial]\n- 若自身陷入混亂，則解除自身的混亂",
+        "回合結束且現存體力不高於60%或下回合將使用本場戰鬥的第2次強力攻擊(「快刀亂麻」)時，下回合改變自身模式\n- 該回合開始時，使自身獲得1層 [Irritation]\n- 該回合開始時，使自身獲得18發 [BulletPropellantSpecial] 並立刻裝填\n．若自身消耗了所有 [BulletPropellantSpecial]，則使其變更為 [BulletPropellant] 並在下回合召喚2名嚴厲的拇指 士兵為自身補給 [BulletPropellantSpecial]\n- 若自身陷入混亂，則解除自身的混亂"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c8p3.json|/dataList/6/desc",
+        "Passives_Abnormality-mr6.json|/dataList/5/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시점에 체력이 80% 이하가 되었거나 4번째 턴 종료 시, 다음 턴에 패턴이 변경됨\n- 강력한 공격('쾌도난마')을 사용하며, 3번째 턴마다 반복함. 이 스킬을 사용하는 턴의 속도 최솟값, 최댓값 +10\n- 해당 턴 시작 시, [BattleSense] 25 얻음\n- 흐트러짐 상태면, 흐트러짐 해제",
+      "zh": [
+        "回合結束時現存體力不高於80%或第4回合結束時，下回合改變自身模式\n- 使用強力攻擊(「快刀亂麻 」)，每3回合重複該效果。使用該技能的回合自身最小與最大速度值+10\n- 該回合開始時，使自身獲得25層 [BattleSense]\n- 若自身陷入混亂，則解除自身的混亂",
+        "回合結束且現存體力不高於80%或第4回合結束時，下回合改變自身模式\n- 使用強力攻擊(「快刀亂麻」)，每3回合重複該技能。使用該技能的回合使自身的最小與最大速度值+10\n- 該回合開始時，使自身獲得25層 [BattleSense]\n- 若自身陷入混亂，則解除自身的混亂"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c8p3.json|/dataList/5/desc",
+        "Passives_Abnormality-mr6.json|/dataList/4/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료 시점에 체력이 90% 이하가 되었거나 2번째 턴 종료 시, [BulletPropellant]을 장전하고 다음 턴에 패턴이 변경됨\n- 흐트러짐 상태면, 흐트러짐 해제",
+      "zh": [
+        "回合結束時現存體力不高於90%或第2回合結束時，使自身再次裝填 [BulletPropellant] 並在下回合改變自身模式\n- 若自身陷入混亂，則解除自身的混亂",
+        "回合結束且現存體力不高於90%或第2回合結束時，使自身裝填 [BulletPropellant] 並在下回合改變自身模式\n- 若自身陷入混亂，則解除自身的混亂"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c8p3.json|/dataList/4/desc",
+        "Passives_Abnormality-mr6.json|/dataList/3/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "턴 종료시 [HumanBoneTheRings]가 206이고 [HumanBloodTheRings]가 5면 각각 수치만큼 감소하고 [MineTheRings] 1 얻음\n\n턴 시작시 [MineTheRings]가 있으면, 이번 턴에 강력한 공격 사용\n\n강력한 공격 사용 전에 <color=#ff6000><mark=#ff000040><b><u>공격 스킬로 피격 시, [PlusCoinValueDown] 1, [ResultReduction] 1 얻음</u></b></mark></color> (스킬당 1회. 턴당 최대 3회)",
+      "zh": [
+        "回合結束時，若自身帶有206層的 [HumanBoneTheRings] 以及5層的 [HumanBloodTheRings]，則消耗所有層數並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合將發動強力攻擊\n\n<color=#ff6000><mark=#ff000040><b><u>自身準備使用強力攻擊時，每被技能攻擊一次，則對自身施加1層 [PlusCoinValueDown] 以及1層 [ResultReduction]</u></b></mark></color>(每個技能最多觸發1次；每回合最多3次)",
+        "回合結束時，若自身的 [HumanBoneTheRings] 層數為206層且自身的 [HumanBloodTheRings] 為5層，則將其全部消耗並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合使用強力攻擊\n\n使用強力攻擊前，<color=#ff6000><mark=#ff000040><b><u>自身受到攻擊技能傷害時，對自身施加1層 [PlusCoinValueDown] 與1層 [ResultReduction]</u></b></mark></color>(每個技能最多1次，每回合最多3次)"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/4/desc",
+        "Passives_Abnormality-a1c9p3.json|/dataList/47/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "패닉 상태가 되면, 다음 턴 시작 시 패닉 상태를 해제하고, 정신력이 0으로 초기화 됨.",
+      "zh": [
+        "陷入恐慌時，下回合開始時解除恐慌，理智值恢復為0點",
+        "陷入恐慌時，下回合開始時解除恐慌，理智值恢復為0點。"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9116.json|/dataList/9/desc",
+        "Passives_Enemy-a1c5p2.json|/dataList/19/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "고통 새기기",
+      "zh": [
+        "銘刻痛苦",
+        "刻骨銘心之痛"
+      ],
+      "keys": [
+        "Skills_Abnormality-BossRaid.json|/dataList/7/levelList/0/name",
+        "Skills_Abnormality-a1c9116.json|/dataList/1/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "기억속 어긋난 패잔병",
+      "zh": [
+        "記憶中歪曲的殘兵",
+        "記憶中扭曲的殘兵"
+      ],
+      "keys": [
+        "Enemies.json|/dataList/18/name",
+        "Enemies.json|/dataList/164/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "끄그극",
+      "zh": [
+        "嘰咕咕",
+        "咕咕"
+      ],
+      "keys": [
+        "Skills_Abnormality-x1p1c1.json|/dataList/11/levelList/0/name",
+        "Skills_Abnormality.json|/dataList/128/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "다들 집합",
+      "zh": [
+        "全員集合",
+        "全體集合"
+      ],
+      "keys": [
+        "Skills_Abnormality-BossRaid.json|/dataList/4/levelList/0/name",
+        "Skills_Abnormality-a1c5p2.json|/dataList/6/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "돌진",
+      "zh": [
+        "突進",
+        "猛撞"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c10p1.json|/dataList/30/levelList/0/name",
+        "Skills_Abnormality.json|/dataList/148/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "만취 수행",
+      "zh": [
+        "泥醉修行",
+        "爛醉修行"
+      ],
+      "keys": [
+        "Passives_Abnormality-cultivation.json|/dataList/6/name",
+        "Passives_Enemy-a1c8p1.json|/dataList/18/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "머리 털기",
+      "zh": [
+        "梳理秀髮",
+        "梳理髮型"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9116.json|/dataList/9/name",
+        "Passives_Enemy-a1c5p2.json|/dataList/19/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "불신",
+      "zh": [
+        "猜忌",
+        "懷疑猜忌"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p1.json|/dataList/9/levelList/0/name",
+        "Skills_Abnormality.json|/dataList/4/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "살점 뜯기",
+      "zh": [
+        "撕扯血肉",
+        "撕裂血肉"
+      ],
+      "keys": [
+        "Skills_Enemy-a1c8p1.json|/dataList/32/levelList/0/name",
+        "Skills_Enemy-a1c8p3.json|/dataList/6/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "신부",
+      "zh": [
+        "牧師",
+        "神父"
+      ],
+      "keys": [
+        "Enemies-a1c10p3.json|/dataList/4/name",
+        "Enemies-a1c7p3.json|/dataList/10/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "신탁 단말기 [카두세우스]",
+      "zh": [
+        "神諭終端 [商神杖] ",
+        "神諭終端 [商神杖]"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/73/name",
+        "Passives_Abnormality-mr7.json|/dataList/25/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "원한",
+      "zh": [
+        "怨恨",
+        "仇怨"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c9p3.json|/dataList/21/name",
+        "Passives_Abnormality-mr7.json|/dataList/18/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "이 손으로 대신…",
+      "zh": [
+        "以此手代為……",
+        "以這雙手代為……"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/30/levelList/0/name",
+        "Skills_Abnormality-a1c9p3.json|/dataList/73/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "주입된 증오와 미움",
+      "zh": [
+        "被灌輸的憎惡與仇恨",
+        "被注入的憎惡和怨恨"
+      ],
+      "keys": [
+        "Passives_Abnormality-a1c5p3.json|/dataList/19/name",
+        "Passives_Enemy-a1c5p3.json|/dataList/2/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "찍어누르기",
+      "zh": [
+        "刺穿",
+        "壓倒"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c7p3.json|/dataList/15/levelList/0/name",
+        "Skills_Abnormality.json|/dataList/147/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "찢어베기",
+      "zh": [
+        "大卸八塊",
+        "撕裂"
+      ],
+      "keys": [
+        "Skills_Abnormality-exme.json|/dataList/2/levelList/0/name",
+        "Skills_Abnormality-pilgrimage.json|/dataList/7/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "파헤치고, 파헤치겠어요",
+      "zh": [
+        "剖開，再剖開",
+        "刨出來、刨出來"
+      ],
+      "keys": [
+        "Skills_Abnormality-a1c9p2.json|/dataList/31/levelList/0/name",
+        "Skills_Abnormality-a1c9p3.json|/dataList/74/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "name",
+      "kr": "휘두르기",
+      "zh": [
+        "揮臂橫掃",
+        "橫掃"
+      ],
+      "keys": [
+        "Skills_Abnormality.json|/dataList/122/levelList/0/name",
+        "Skills_Enemy.json|/dataList/50/levelList/0/name"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "…그래.",
+      "zh": [
+        "……是吧。",
+        "……記得。"
+      ],
+      "keys": [
+        "StoryData/P10310.json|/dataList/148/content",
+        "StoryData/P11210.json|/dataList/48/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "…그렇군요.",
+      "zh": [
+        "……這樣啊。",
+        "……明白了。"
+      ],
+      "keys": [
+        "StoryData/P11008.json|/dataList/32/content",
+        "StoryData/P11108.json|/dataList/46/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "…약해 빠진 놈.",
+      "zh": [
+        "……軟腳蝦。",
+        "……不堪一擊的傢伙。"
+      ],
+      "keys": [
+        "StoryData/P10916.json|/dataList/138/content",
+        "StoryData/P11216.json|/dataList/146/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "그래, 지금처럼.",
+      "zh": [
+        "沒錯，就像現在這樣。",
+        "沒錯，就像此時此刻。"
+      ],
+      "keys": [
+        "StoryData/P10812.json|/dataList/31/content",
+        "StoryData/P11114.json|/dataList/59/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "그래.",
+      "zh": [
+        "沒。",
+        "沒關係。"
+      ],
+      "keys": [
+        "StoryData/P10708.json|/dataList/28/content",
+        "StoryData/P11203.json|/dataList/12/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "그렇진 않을 거야.",
+      "zh": [
+        "不是那樣吧。",
+        "也不是那樣吧。"
+      ],
+      "keys": [
+        "StoryData/P11006.json|/dataList/5/content",
+        "StoryData/P11006.json|/dataList/7/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "끄악!",
+      "zh": [
+        "咕啊！",
+        "啊！"
+      ],
+      "keys": [
+        "StoryData/P10413.json|/dataList/20/content",
+        "StoryData/P10806.json|/dataList/28/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "네…",
+      "zh": [
+        "好的……",
+        "是……"
+      ],
+      "keys": [
+        "StoryData/P10210.json|/dataList/3/content",
+        "StoryData/P10714.json|/dataList/94/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "아, 넵!",
+      "zh": [
+        "啊，是！",
+        "啊，好的。"
+      ],
+      "keys": [
+        "StoryData/P10917.json|/dataList/25/content",
+        "StoryData/P11215.json|/dataList/11/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "어?",
+      "zh": [
+        "哈？",
+        "哦？"
+      ],
+      "keys": [
+        "StoryData/P10704.json|/dataList/22/content",
+        "StoryData/P11115.json|/dataList/131/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "어…",
+      "zh": [
+        "哦……",
+        "唔……"
+      ],
+      "keys": [
+        "StoryData/P10213.json|/dataList/41/content",
+        "StoryData/P10502.json|/dataList/8/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "엇챠!",
+      "zh": [
+        "哎呀！",
+        "哈呀！"
+      ],
+      "keys": [
+        "StoryData/P10608.json|/dataList/22/content",
+        "StoryData/P11206.json|/dataList/34/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "오늘의 일기는, 여기까지!",
+      "zh": [
+        "今天的日記，到此為止！",
+        "今日的日記，到此為止！"
+      ],
+      "keys": [
+        "StoryData/P10307.json|/dataList/27/content",
+        "StoryData/P10312.json|/dataList/59/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "으으…",
+      "zh": [
+        "唔……",
+        "嗚嗚……"
+      ],
+      "keys": [
+        "StoryData/P10805.json|/dataList/21/content",
+        "StoryData/P10912.json|/dataList/45/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "으윽…",
+      "zh": [
+        "嗚唔……",
+        "唔……"
+      ],
+      "keys": [
+        "StoryData/P10612.json|/dataList/54/content",
+        "StoryData/P11205.json|/dataList/2/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "윽!",
+      "zh": [
+        "呃！",
+        "嗚！"
+      ],
+      "keys": [
+        "StoryData/P10504.json|/dataList/23/content",
+        "StoryData/P11213.json|/dataList/97/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "이건…",
+      "zh": [
+        "這是……",
+        "這個……"
+      ],
+      "keys": [
+        "StoryData/P10412.json|/dataList/66/content",
+        "StoryData/P10617.json|/dataList/124/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "identity",
+      "field": "content",
+      "kr": "죄송합니다…",
+      "zh": [
+        "非常抱歉……",
+        "抱歉……"
+      ],
+      "keys": [
+        "StoryData/P10716.json|/dataList/57/content",
+        "StoryData/P11215.json|/dataList/22/content"
       ],
       "counts": [
         1,

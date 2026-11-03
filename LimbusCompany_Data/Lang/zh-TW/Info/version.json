@@ -1,13 +1,13 @@
 {
   "raw_tag": "raw-20261029",
   "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
-  "rules_commit": "a4d0a884d5742af1a2a809f0fe074d7db7f9b26f",
-  "built_at": "2026-11-02T13:33:36Z",
+  "rules_commit": "6ef421b58b6b5635444d10ec456525843c9c1df0",
+  "built_at": "2026-11-03T00:11:56Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
     "paratranz": "user-unknown-0711/ParatranzUploader@1793285016"
   },
   "model": "claude-opus-5-5",
-  "cost_usd": 0.26290260000000004
+  "cost_usd": 0.37961059999999996
 }

@@ -47,7 +47,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration]"
+                  "desc": "[OnSucceedAttack] 使目標增加2級 [Laceration] 強度"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使自身增加8級 [Laceration] 強度並使自身獲得1層 [BloodScissor]"

@@ -1242,7 +1242,7 @@
                   "desc": "[OnSucceedAttack] 使自身獲得2回 [ChargeNoir]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若自身的 [ChargeNoir] 回數不低於15回，則消耗自身3回 [ChargeNoir] 使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若自身的 [ChargeNoir] 回數不低於15回，則消耗自身3回 [ChargeNoir] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1278,7 +1278,7 @@
                   "desc": "[OnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若本技能消耗了 [ChargeNoir] 回數，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若本技能消耗了 [ChargeNoir] 回數，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1292,7 +1292,7 @@
         {
           "level": 1,
           "name": "迴響的喀噠喀噠聲，好可怕……",
-          "desc": "[WideAreaRampage]\n自身每帶有1級 [ChargeNoir] 強度，則使本技能造成的傷害+3%(最多+15%)\n本技能命中時，使目標 [VibrationExplosion] 並使其減少1回 [Vibration]\n[StartBattle] 使自身獲得(自身的 [ChargeNoir] 強度-2)層 [NoirBindArmor] (最多3層)\n[WhenUse]\n- 使全體目標增加3級 [Vibration] 強度與3回 [Vibration]\n- 若自身的 [ChargeNoir] 回數不低於10回，則消耗10回 [ChargeNoir] 並使本技能的基礎威力+2、硬幣威力+2\n[DefeatDuel]\n- 使本技能造成的傷害-50%\n- 本技能造成的傷害不會使目標陷入混亂",
+          "desc": "[WideAreaRampage]\n自身每帶有1級 [ChargeNoir] 強度，則使本技能造成的傷害+3%(最多+15%)\n本技能命中時，使目標 [VibrationExplosion]，並使其減少1回 [Vibration]\n[StartBattle] 使自身獲得(自身的 [ChargeNoir] 強度-2)層 [NoirBindArmor] (最多3層)\n[WhenUse]\n- 使全體目標增加3級 [Vibration] 強度與3回 [Vibration]\n- 若自身的 [ChargeNoir] 回數不低於10回，則消耗10回 [ChargeNoir] 並使本技能的基礎威力+2、硬幣威力+2\n[DefeatDuel]\n- 使本技能造成的傷害-50%\n- 本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -1379,7 +1379,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 若自身的 [ChargeNoir] 強度不低於3級，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若自身的 [ChargeNoir] 強度不低於3級，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }
@@ -1419,7 +1419,7 @@
                   "desc": "[UnBrokenCoinOnSucceedAttack] 使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若本技能消耗了 [ChargeNoir] 回數，則使目標 [VibrationExplosion] 並使其減少1回 [Vibration]"
+                  "desc": "[OnSucceedAttack] 若本技能消耗了 [ChargeNoir] 回數，則使目標 [VibrationExplosion]，並使其減少1回 [Vibration]"
                 }
               ]
             }

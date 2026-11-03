@@ -1020,7 +1020,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Laceration]<style=\"highlight\"></style>"
                 }
               ]
             },
@@ -1528,7 +1528,7 @@
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 當自身帶有不低於30級 [Breath] 強度時，則消耗10級 [Breath] 強度使本技能硬幣重複使用1次(最多1次)</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -1562,7 +1562,7 @@
                   "desc": "[OnSucceedAttack] 當自身帶有不低於30級 [Breath] 強度時，則消耗10級 [Breath] 強度使本技能硬幣重複使用1次(最多1次)<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使自身獲得1層 [SnakeStance] </style>"
@@ -1616,16 +1616,16 @@
                   "desc": "若自身帶有 [SnakeStance]，則使暴擊時造成的傷害<style=\"highlight\">+100%</style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 消耗目標2層 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 消耗目標2層 [BurstPoison]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[CriticalOnSucceedAttack] 消耗目標3層 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[CriticalOnSucceedAttack] 消耗目標3層 [BurstPoison]<style=\"highlight\"></style>"
                 },
                 {
                   "desc": "<style=\"highlight\">[CriticalOnSucceedAttack] 使目標增加2回 [Burst] </style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison] <style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 對目標施加 [BurstPoison]<style=\"highlight\"></style>"
                 }
               ]
             }
@@ -2756,7 +2756,7 @@
                   "desc": "[SuperCoin]<style=\"highlight\"></style>"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 對目標施加2回 [Burst]<style=\"highlight\"></style>"
+                  "desc": "[OnSucceedAttack] 使目標增加2回 [Burst]<style=\"highlight\"></style>"
                 }
               ]
             },
