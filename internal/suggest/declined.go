@@ -45,8 +45,21 @@ type Declined struct {
 // silence would let a declined suggestion come back. An entry with a bad
 // value (an id of no kind, an empty reason, a date that is no date) is
 // returned as written; LintDeclined reports it.
-func LoadDeclined(root string) ([]Declined, error) {
-	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(DeclinedFile)))
+func LoadDeclined(root string) ([]Declined, error) { return loadEntries(root, DeclinedFile) }
+
+// LintDeclined checks the declined list of root and returns every problem it
+// finds: what LoadDeclined refuses, an id whose kind is not one of Kinds or
+// that has nothing after the kind, an empty reason, a date that is not
+// YYYY-MM-DD, and an id that is listed twice. A root without the file has no
+// issues.
+func LintDeclined(root string) []rulefile.Issue {
+	return lintEntries(root, DeclinedFile, declinedProblems)
+}
+
+// loadEntries reads the entries of a file of the declined format (DeclinedFile,
+// AcceptedFile) under root. A root without the file has none.
+func loadEntries(root, file string) ([]Declined, error) {
+	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(file)))
 	if errors.Is(err, fs.ErrNotExist) {
 		return nil, nil
 	}
@@ -55,18 +68,15 @@ func LoadDeclined(root string) ([]Declined, error) {
 	}
 	list, problems := parseDeclined(data)
 	if len(problems) > 0 {
-		return nil, fmt.Errorf("%s: %s", DeclinedFile, strings.Join(problems, "; "))
+		return nil, fmt.Errorf("%s: %s", file, strings.Join(problems, "; "))
 	}
 	return list, nil
 }
 
-// LintDeclined checks the declined list of root and returns every problem it
-// finds: what LoadDeclined refuses, an id whose kind is not one of Kinds or
-// that has nothing after the kind, an empty reason, a date that is not
-// YYYY-MM-DD, and an id that is listed twice. A root without the file has no
-// issues.
-func LintDeclined(root string) []rulefile.Issue {
-	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(DeclinedFile)))
+// lintEntries returns the problems of a file of the declined format: what
+// loadEntries refuses, then what valueProblems finds in the entries.
+func lintEntries(root, file string, valueProblems func([]Declined) []string) []rulefile.Issue {
+	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(file)))
 	if errors.Is(err, fs.ErrNotExist) {
 		return nil
 	}
@@ -76,15 +86,15 @@ func LintDeclined(root string) []rulefile.Issue {
 		if errors.As(err, &pe) {
 			msg = pe.Err.Error() // without the absolute path
 		}
-		return []rulefile.Issue{{File: DeclinedFile, Message: msg}}
+		return []rulefile.Issue{{File: file, Message: msg}}
 	}
 	list, problems := parseDeclined(data)
 	if len(problems) == 0 {
-		problems = declinedProblems(list)
+		problems = valueProblems(list)
 	}
 	issues := make([]rulefile.Issue, len(problems))
 	for i, msg := range problems {
-		issues[i] = rulefile.Issue{File: DeclinedFile, Message: msg}
+		issues[i] = rulefile.Issue{File: file, Message: msg}
 	}
 	return issues
 }
@@ -129,6 +139,24 @@ func parseDeclined(data []byte) (list []Declined, problems []string) {
 // declinedProblems lists what is wrong with the values of the entries, in the
 // order of the entries.
 func declinedProblems(list []Declined) []string {
+	return entryProblems(list, func(id string) string {
+		kind, rest, hasRest := strings.Cut(id, "/")
+		switch {
+		case id == "":
+			return "id is missing or empty; it is the id of a suggestion, such as speaker/<model>"
+		case !slices.Contains(Kinds, kind):
+			return fmt.Sprintf("unknown kind %q (the kinds are %s)", kind, strings.Join(Kinds, ", "))
+		case !hasRest || rest == "":
+			return fmt.Sprintf("nothing after the kind %q; the id is <kind>/<what the suggestion is about>", kind)
+		}
+		return ""
+	})
+}
+
+// entryProblems lists what is wrong with the entries, in their order: what
+// idProblem says of the id (nothing for a good one), an empty reason, a date
+// that is not YYYY-MM-DD and an id that is listed twice.
+func entryProblems(list []Declined, idProblem func(id string) string) []string {
 	var ps []string
 	first := map[string]int{} // id -> the entry that has it first
 	for i, d := range list {
@@ -138,14 +166,8 @@ func declinedProblems(list []Declined) []string {
 		}
 		add := func(format string, args ...any) { ps = append(ps, label+": "+fmt.Sprintf(format, args...)) }
 
-		kind, rest, hasRest := strings.Cut(d.ID, "/")
-		switch {
-		case d.ID == "":
-			add("id is missing or empty; it is the id of a suggestion, such as speaker/<model>")
-		case !slices.Contains(Kinds, kind):
-			add("unknown kind %q (the kinds are %s)", kind, strings.Join(Kinds, ", "))
-		case !hasRest || rest == "":
-			add("nothing after the kind %q; the id is <kind>/<what the suggestion is about>", kind)
+		if msg := idProblem(d.ID); msg != "" {
+			add("%s", msg)
 		}
 		if strings.TrimSpace(d.Reason) == "" {
 			add("reason is missing or empty; say why the suggestion is not adopted")

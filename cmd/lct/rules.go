@@ -18,7 +18,7 @@ import (
 func init() {
 	cli.Register(cli.Command{
 		Name:  "rules lint",
-		Usage: "check the guides, glossary, routing, adjustment, requeue, rewrite and declined files",
+		Usage: "check the guides, glossary, routing, adjustment, requeue, rewrite, declined and accepted files",
 		Run:   runRulesLint,
 	})
 	cli.Register(cli.Command{
@@ -58,10 +58,10 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 		}
 		report.Errors = append(report.Errors, le)
 	}
-	// The requeue, rewrite and declined files are checked by their own
+	// The requeue, rewrite, declined and accepted files are checked by their own
 	// packages. rules cannot import requeue, whose tests build on rules (an
 	// import cycle), nor suggest, which builds on rules.
-	for _, is := range slices.Concat(requeue.Lint(ctx.Root), rewrite.Lint(ctx.Root), suggest.LintDeclined(ctx.Root)) {
+	for _, is := range slices.Concat(requeue.Lint(ctx.Root), rewrite.Lint(ctx.Root), suggest.LintDeclined(ctx.Root), suggest.LintAccepted(ctx.Root)) {
 		report.Errors = append(report.Errors, rules.LintError{File: is.File, Message: is.Message})
 	}
 	report.OK = len(report.Errors) == 0

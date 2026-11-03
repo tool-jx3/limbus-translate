@@ -268,3 +268,16 @@ func TestLintAllowsAReadme(t *testing.T) {
 		}
 	}
 }
+
+func TestRulesLintChecksAcceptedFile(t *testing.T) {
+	root := cleanRules(t)
+	writeTestFile(t, root, "rules/accepted.yaml", "- id: \"warning/kana/0123abcd/89ef4567\"\n  reason: ok\n  date: 2026-11-03\n")
+	if out, err := runIn(t, runRulesLint, root, false); err != nil {
+		t.Fatalf("lint of a good accepted.yaml: %v\n%s", err, out)
+	}
+	writeTestFile(t, root, "rules/accepted.yaml", "- id: warning/kana/xyz\n  reason: ''\n  date: x\n")
+	out, err := runIn(t, runRulesLint, root, false)
+	if !errors.Is(err, cli.ErrFindings) || !strings.Contains(out, "rules/accepted.yaml") {
+		t.Fatalf("err = %v, want cli.ErrFindings naming rules/accepted.yaml\n%s", err, out)
+	}
+}

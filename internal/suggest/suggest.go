@@ -12,8 +12,6 @@ package suggest
 
 import (
 	"cmp"
-	"crypto/sha256"
-	"encoding/hex"
 	"errors"
 	"fmt"
 	"slices"
@@ -22,6 +20,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 )
@@ -172,11 +171,8 @@ func Exclude(list []Suggestion, ids map[string]bool) (kept []Suggestion, exclude
 	return kept, excluded
 }
 
-// sha8 is the first 8 lowercase hex digits of the sha256 of text.
-func sha8(text string) string {
-	sum := sha256.Sum256([]byte(text))
-	return hex.EncodeToString(sum[:4])
-}
+// sha8 is itemid.Sha8: the first 8 lowercase hex digits of the sha256 of text.
+func sha8(text string) string { return itemid.Sha8(text) }
 
 // oneLine folds the blanks of text, line ends included, into single spaces.
 func oneLine(text string) string { return strings.Join(strings.Fields(text), " ") }
@@ -243,18 +239,18 @@ func (c *collector) fromBuild(info build.Info) {
 		slices.SortFunc(rows, func(a, b Evidence) int {
 			return cmp.Or(cmp.Compare(a.ZH, b.ZH), cmp.Compare(a.Key, b.Key))
 		})
-		rest := g.Family + "/" + g.Field + "/" + sha8(g.KR)
+		id := itemid.Inconsistent(g.Family, g.Field, g.KR)
+		rest := strings.TrimPrefix(id, KindInconsistent+"/")
 		c.add(KindInconsistent, rest,
 			fmt.Sprintf("不一致的譯法：%s（%s／%s，%d 個單位）", clip(g.KR, maxTitleText), g.Family, g.Field, g.Units),
 			rows...)
-		id := KindInconsistent + "/" + rest
 		c.units[id] = max(c.units[id], g.Units)
 	}
 	for _, n := range rep.Notes {
 		if strings.TrimSpace(n.Note) == "" {
 			continue
 		}
-		c.add(KindNote, n.Key+"/"+sha8(n.Note),
+		c.add(KindNote, strings.TrimPrefix(itemid.Note(n.Key, n.Note), KindNote+"/"),
 			fmt.Sprintf("譯者備註（%s）：%s", n.Key, clip(n.Note, maxNoteTitle)),
 			Evidence{Key: n.Key, Note: n.Note})
 	}
