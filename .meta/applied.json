@@ -1,6 +1,8 @@
 {
   "requeue": [
-    "2026-11-02-story-ruby-stutter"
+    "2026-11-02-story-ruby-stutter",
+    "2026-11-02-donquixote-title",
+    "2026-11-02-shard-term"
   ],
   "rewrite": [
     "2026-11-02-closing-tags",
@@ -10,6 +12,39 @@
     "2026-11-02-story-ruby-4-yoshihide",
     "2026-11-02-story-ruby-5-parens",
     "2026-11-02-story-ruby-6-foreign",
-    "2026-11-02-story-ruby-7-allez-stutter"
+    "2026-11-02-story-ruby-7-allez-stutter",
+    "2026-11-02-coin-crit-damage",
+    "2026-11-02-double-space-head",
+    "2026-11-02-ego-gift-gain",
+    "2026-11-02-ellipsis-p10514",
+    "2026-11-02-event-period",
+    "2026-11-02-event-target",
+    "2026-11-02-exclaim-e923b",
+    "2026-11-02-highlight-number",
+    "2026-11-02-hp-loss-log",
+    "2026-11-02-id-tag-space",
+    "2026-11-02-laceration-potency",
+    "2026-11-02-next-turn-bind",
+    "2026-11-02-skill-consume-verb",
+    "2026-11-02-skill-count-increase-verb",
+    "2026-11-02-skill-gain-verb",
+    "2026-11-02-stray-space-labels",
+    "2026-11-02-teller-bodhisattva-chicken",
+    "2026-11-02-teller-ironworks-boss",
+    "2026-11-02-title-intel-team",
+    "2026-11-02-title-pawnshop",
+    "2026-11-02-title-spaces",
+    "2026-11-02-title-welfare-clerk",
+    "2026-11-02-title-yeonsim",
+    "2026-11-02-vibration-explosion-comma",
+    "2026-11-02-vibration-explosion-order",
+    "2026-11-02-vibration-explosion-space",
+    "2026-11-02-voice-label-ally-death",
+    "2026-11-02-voice-label-dialogue",
+    "2026-11-02-voice-label-entry",
+    "2026-11-02-voice-label-ex-clear",
+    "2026-11-02-voice-label-morning",
+    "2026-11-02-voice-label-noon",
+    "2026-11-02-walpu-mob"
   ]
 }

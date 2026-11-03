@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261029",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "a4d0a884d5742af1a2a809f0fe074d7db7f9b26f",
+  "rules_commit": "6ef421b58b6b5635444d10ec456525843c9c1df0",
   "changes": {
     "unchanged": 0,
     "moved": 0,
@@ -18,43 +18,151 @@
   },
   "requeue_applied": [
     {
-      "id": "2026-11-02-story-ruby-stutter",
-      "units": 2
+      "id": "2026-11-02-donquixote-title",
+      "units": 1
+    },
+    {
+      "id": "2026-11-02-shard-term",
+      "units": 7
     }
   ],
   "rewrite_applied": [
     {
-      "id": "2026-11-02-story-ruby-1-ryoshu",
+      "id": "2026-11-02-coin-crit-damage",
+      "units": 5
+    },
+    {
+      "id": "2026-11-02-double-space-head",
+      "units": 2
+    },
+    {
+      "id": "2026-11-02-ego-gift-gain",
+      "units": 5
+    },
+    {
+      "id": "2026-11-02-ellipsis-p10514",
       "units": 1
     },
     {
-      "id": "2026-11-02-story-ruby-2-ryo-shu",
+      "id": "2026-11-02-event-period",
+      "units": 2
+    },
+    {
+      "id": "2026-11-02-event-target",
+      "units": 9
+    },
+    {
+      "id": "2026-11-02-exclaim-e923b",
+      "units": 1
+    },
+    {
+      "id": "2026-11-02-highlight-number",
+      "units": 7
+    },
+    {
+      "id": "2026-11-02-hp-loss-log",
+      "units": 2
+    },
+    {
+      "id": "2026-11-02-id-tag-space",
+      "units": 66
+    },
+    {
+      "id": "2026-11-02-laceration-potency",
+      "units": 2
+    },
+    {
+      "id": "2026-11-02-next-turn-bind",
+      "units": 1
+    },
+    {
+      "id": "2026-11-02-skill-consume-verb",
+      "units": 16
+    },
+    {
+      "id": "2026-11-02-skill-count-increase-verb",
+      "units": 25
+    },
+    {
+      "id": "2026-11-02-skill-gain-verb",
+      "units": 113
+    },
+    {
+      "id": "2026-11-02-stray-space-labels",
+      "units": 5
+    },
+    {
+      "id": "2026-11-02-teller-bodhisattva-chicken",
+      "units": 13
+    },
+    {
+      "id": "2026-11-02-teller-ironworks-boss",
+      "units": 1
+    },
+    {
+      "id": "2026-11-02-title-intel-team",
+      "units": 7
+    },
+    {
+      "id": "2026-11-02-title-pawnshop",
+      "units": 2
+    },
+    {
+      "id": "2026-11-02-title-spaces",
+      "units": 86
+    },
+    {
+      "id": "2026-11-02-title-welfare-clerk",
+      "units": 8
+    },
+    {
+      "id": "2026-11-02-title-yeonsim",
+      "units": 2
+    },
+    {
+      "id": "2026-11-02-vibration-explosion-comma",
+      "units": 20
+    },
+    {
+      "id": "2026-11-02-vibration-explosion-order",
+      "units": 45
+    },
+    {
+      "id": "2026-11-02-vibration-explosion-space",
       "units": 3
     },
     {
-      "id": "2026-11-02-story-ruby-3-ryooshuu",
-      "units": 4
+      "id": "2026-11-02-voice-label-ally-death",
+      "units": 1
     },
     {
-      "id": "2026-11-02-story-ruby-4-yoshihide",
-      "units": 99
-    },
-    {
-      "id": "2026-11-02-story-ruby-5-parens",
+      "id": "2026-11-02-voice-label-dialogue",
       "units": 19
     },
     {
-      "id": "2026-11-02-story-ruby-6-foreign",
-      "units": 3
+      "id": "2026-11-02-voice-label-entry",
+      "units": 2
     },
     {
-      "id": "2026-11-02-story-ruby-7-allez-stutter",
+      "id": "2026-11-02-voice-label-ex-clear",
       "units": 1
+    },
+    {
+      "id": "2026-11-02-voice-label-morning",
+      "units": 55
+    },
+    {
+      "id": "2026-11-02-voice-label-noon",
+      "units": 56
+    },
+    {
+      "id": "2026-11-02-walpu-mob",
+      "units": 5
     }
   ],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],
   "new_files_default_family": [],
-  "pending": 2
+  "pending": 8
 }
