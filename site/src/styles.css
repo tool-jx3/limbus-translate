@@ -1,0 +1,128 @@
+/* Colors are variables; the dark set replaces them when the system asks for it.
+   Fonts are the system's: nothing is bundled. */
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --fg: #1d1d1b;
+  --muted: #6a6a64;
+  --border: #d9d9d2;
+  --accent: #0b5cad;
+  --accent-fg: #ffffff;
+  --mark: #fff0a8;
+  --tok-bg: #e7ebf3;
+  --tok-fg: #35507a;
+  --sprite-fg: #8a5a00;
+  --raw-bg: #f1f1ec;
+
+  --font-kr: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", "Noto Sans KR", sans-serif;
+  --font-jp: system-ui, -apple-system, "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  --font-tw: system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", "Noto Sans TC", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17181a;
+    --surface: #202225;
+    --fg: #e6e6e1;
+    --muted: #a0a099;
+    --border: #3a3d41;
+    --accent: #6cb0f5;
+    --accent-fg: #0d1217;
+    --mark: #6b5a00;
+    --tok-bg: #2a3446;
+    --tok-fg: #a9c1ea;
+    --sprite-fg: #e0b45a;
+    --raw-bg: #2a2c2f;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-tw);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* The font follows the lang attribute of the element (and its children), so
+   that the browser does not draw Korean or Japanese text with the glyphs of
+   another language. English text has no rule: system-ui draws it. */
+[lang|="ko"] {
+  font-family: var(--font-kr);
+}
+
+[lang|="ja"] {
+  font-family: var(--font-jp);
+}
+
+[lang|="zh"] {
+  font-family: var(--font-tw);
+}
+
+a {
+  color: var(--accent);
+}
+
+mark {
+  background: var(--mark);
+  color: inherit;
+}
+
+.boot {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* A game string (TmpText) */
+
+.tmp {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.tmp-raw {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--raw-bg);
+  border-radius: 3px;
+}
+
+.tmp ruby {
+  ruby-position: over;
+}
+
+.tmp rt {
+  font-size: 0.55em;
+  line-height: 1;
+}
+
+/* [ID] and {0}: the parts the game fills in */
+.tok {
+  background: var(--tok-bg);
+  color: var(--tok-fg);
+  border-radius: 3px;
+  padding: 0 0.15em;
+}
+
+.sprite {
+  color: var(--sprite-fg);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
