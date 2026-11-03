@@ -2,7 +2,7 @@
 // and are what the tests of the viewer read. This keeps them true to types.ts
 // and to themselves: the index, the files and the search corpus agree.
 import { describe, expect, it } from 'vitest'
-import type { FileData, Index, Meta, Origin, Unit } from './types'
+import type { FileData, Index, Meta, NoteItem, Origin, SuggestionItem, TodoSection, Unit, WarningItem } from './types'
 
 const modules = import.meta.glob('../fixtures/data/**/*.json', { eager: true, import: 'default' })
 const at = (rel: string): unknown => modules[`../fixtures/data/${rel}`]
@@ -15,11 +15,17 @@ const corpus = Object.fromEntries(
 )
 const files = index.files.map((f) => at(`files/${f.path}`) as FileData)
 
+const suggestions = (at('review/suggestions.json') as { items: SuggestionItem[] }).items
+const warnings = (at('review/warnings.json') as { items: WarningItem[] }).items
+const notes = (at('review/notes.json') as { items: NoteItem[] }).items
+const todo = (at('review/todo.json') as { sections: TodoSection[] }).sections
+
 const ORIGINS: Origin[] = ['paratranz', 'claude', 'human', 'copy', 'fallback', 'stand-in']
 
 describe('fixtures', () => {
   it('has the keys of the Go types, and no others', () => {
-    expect(Object.keys(meta)).toEqual(['format', 'raw_tag', 'rules_commit', 'tw_commit', 'release', 'langs', 'files', 'units'])
+    expect(Object.keys(meta)).toEqual(['format', 'raw_tag', 'rules_commit', 'tw_commit', 'release', 'langs', 'files', 'units', 'review'])
+    expect(Object.keys(meta.review)).toEqual(['suggestions', 'warnings', 'notes', 'todo'])
     expect(Object.keys(index)).toEqual(['families', 'files'])
     for (const fam of index.families) expect(Object.keys(fam)).toEqual(['id', 'files'])
     for (const f of index.files) {
@@ -30,7 +36,7 @@ describe('fixtures', () => {
       expect(Object.keys(f)).toEqual(['path', 'family', 'units'])
       for (const u of f.units) {
         const keysOf = Object.keys(u)
-        expect(keysOf.filter((k) => !['p', 'f', 'i', 'kr', 'jp', 'en', 'zh', 'o', 'fl'].includes(k))).toEqual([])
+        expect(keysOf.filter((k) => !['p', 'f', 'i', 'kr', 'jp', 'en', 'zh', 'o', 'fl', 'rv', 'nt', 'pq'].includes(k))).toEqual([])
         for (const k of ['p', 'f', 'i', 'kr', 'zh', 'o']) expect(keysOf).toContain(k)
         expect(ORIGINS).toContain(u.o)
       }
@@ -38,7 +44,7 @@ describe('fixtures', () => {
   })
 
   it('counts its files and units in the meta', () => {
-    expect(meta.format).toBe(1)
+    expect(meta.format).toBe(2)
     expect(meta.langs).toEqual(['kr', 'jp', 'en', 'zh'])
     expect(meta.files).toBe(index.files.length)
     expect(meta.units).toBe(files.reduce((n, f) => n + f.units.length, 0))
@@ -95,5 +101,121 @@ describe('fixtures', () => {
     expect(new Set(all.filter((u) => u.i >= 0).map((u) => u.i)).size).toBeGreaterThanOrEqual(3)
     // a string outside dataList, which has no element to belong to
     expect(all.some((u) => u.i === -1)).toBe(true)
+  })
+})
+
+describe('review fixtures', () => {
+  const unitOf = new Map<string, Unit>(files.flatMap((f) => f.units.map((u): [string, Unit] => [`${f.path}|${u.p}`, u])))
+  const ids = (): string[] => [...suggestions.map((s) => s.id), ...warnings.map((w) => w.id), ...notes.map((n) => n.id)]
+
+  it('has the keys of the Go types, in their order, leaving out what is empty', () => {
+    for (const s of suggestions) {
+      const keysOf = Object.keys(s)
+      expect(keysOf.slice(0, 3)).toEqual(['id', 'kind', 'title'])
+      expect(keysOf.slice(-2 - (s.declined ? 1 : 0))).toEqual(s.declined ? ['evidence', 'pending', 'declined'] : ['evidence', 'pending'])
+      if (s.kind !== 'inconsistent') expect(keysOf).toEqual(['id', 'kind', 'title', 'evidence', 'pending', ...(s.declined ? ['declined'] : [])])
+    }
+    for (const w of warnings) {
+      expect(Object.keys(w)).toEqual(['id', 'code', 'kr', 'zh', 'message', 'keys', 'families', 'origins', 'pending', ...(w.accepted ? ['accepted'] : [])])
+    }
+    for (const n of notes) {
+      expect(Object.keys(n)).toEqual(['id', 'key', 'family', 'batch', 'note', 'kr', 'zh', 'o', 'pending', ...(n.declined ? ['declined'] : [])])
+    }
+    expect(Object.keys(at('review/suggestions.json') as object)).toEqual(['items'])
+    expect(Object.keys(at('review/todo.json') as object)).toEqual(['sections'])
+    for (const sec of todo) {
+      expect(Object.keys(sec)).toEqual(['kind', 'title', 'hint', 'items'])
+      for (const it of sec.items) expect(Object.keys(it)).toEqual(it.key === undefined ? ['text'] : ['text', 'key'])
+    }
+  })
+
+  it('counts the unconfirmed items of each file in the meta', () => {
+    expect(meta.review).toEqual({
+      suggestions: suggestions.filter((s) => !s.declined).length,
+      warnings: warnings.filter((w) => !w.accepted).length,
+      notes: notes.filter((n) => !n.declined).length,
+      todo: todo.reduce((n, sec) => n + sec.items.length, 0),
+    })
+  })
+
+  it('has every rv id in a review file, never a confirmed one, and every unconfirmed one on a unit', () => {
+    const open = new Set([
+      ...suggestions.filter((s) => !s.declined).map((s) => s.id),
+      ...warnings.filter((w) => !w.accepted).map((w) => w.id),
+      ...notes.filter((n) => !n.declined).map((n) => n.id),
+    ])
+    const all = new Set(ids())
+    const seen = new Set<string>()
+    for (const u of unitOf.values()) {
+      expect(u.rv === undefined || u.rv.length > 0).toBe(true)
+      expect([...(u.rv ?? [])].sort()).toEqual(u.rv ?? [])
+      for (const id of u.rv ?? []) {
+        expect(all.has(id), id).toBe(true)
+        expect(open.has(id), id).toBe(true)
+        seen.add(id)
+      }
+    }
+    // the unconfirmed items of units: inconsistent groups, warnings and notes
+    const onUnits = [...open].filter((id) => !id.startsWith('speaker/') && !(id.startsWith('note/') && !notes.some((n) => n.id === id)))
+    expect([...seen].sort()).toEqual(onUnits.sort())
+  })
+
+  it('puts each item on units that exist, with the rv it says', () => {
+    for (const s of suggestions) {
+      for (const v of s.variants ?? []) {
+        expect(v.keys).toHaveLength(v.count)
+        for (const k of v.keys) expect(unitOf.get(k)?.rv ?? [], k).toContain(s.id)
+      }
+      for (const e of s.evidence) if (e.key !== undefined) expect(unitOf.has(e.key), e.key).toBe(true)
+      const units = s.variants ? s.variants.flatMap((v) => v.keys) : s.evidence.flatMap((e) => (e.key ? [e.key] : []))
+      expect(s.pending).toBe(units.filter((k) => unitOf.get(k)?.pq === 1).length)
+    }
+    for (const w of warnings) {
+      for (const k of w.keys) {
+        const u = unitOf.get(k)
+        expect(u?.kr, k).toBe(w.kr)
+        expect(u?.zh, k).toBe(w.zh)
+        if (!w.accepted) expect(u?.rv ?? [], k).toContain(w.id)
+        else expect(u?.rv ?? [], k).not.toContain(w.id)
+      }
+      expect(w.pending).toBe(w.keys.filter((k) => unitOf.get(k)?.pq === 1).length)
+    }
+  })
+
+  it('has the unit of each note, with its text in nt, confirmed or not', () => {
+    for (const n of notes) {
+      const u = unitOf.get(n.key)
+      expect(u?.nt?.split('\n'), n.key).toContain(n.note)
+      expect(u?.kr).toBe(n.kr)
+      expect(u?.zh).toBe(n.zh)
+      expect(u?.o).toBe(n.o)
+      expect(n.id.startsWith(`note/${n.key}/`)).toBe(true)
+      expect(n.pending).toBe(u?.pq === 1 ? 1 : 0)
+    }
+    for (const [key, u] of unitOf) if (u.nt !== undefined) expect(notes.some((n) => n.key === key), key).toBe(true)
+  })
+
+  it('has the notes also as rule suggestions, confirmed together', () => {
+    for (const n of notes) {
+      const s = suggestions.find((x) => x.id === n.id)
+      expect(s?.kind).toBe('note')
+      expect(Boolean(s?.declined)).toBe(Boolean(n.declined))
+    }
+  })
+
+  it('covers what the review page has to show', () => {
+    const inconsistent = suggestions.filter((s) => s.kind === 'inconsistent')
+    expect(inconsistent.some((s) => !s.declined && (s.variants ?? []).length === 2)).toBe(true)
+    expect(suggestions.some((s) => s.kind !== 'inconsistent' && !s.declined)).toBe(true)
+    expect(suggestions.some((s) => s.declined)).toBe(true)
+    expect(warnings.filter((w) => w.code === 'kana' && !w.accepted).flatMap((w) => w.keys).length).toBeGreaterThanOrEqual(2)
+    expect(warnings.some((w) => w.accepted)).toBe(true)
+    expect(notes).toHaveLength(2)
+    expect(notes.filter((n) => n.declined)).toHaveLength(1)
+    expect(todo.map((s) => s.kind)).toContain('needs_review')
+    expect(todo.some((s) => s.items.some((i) => i.key !== undefined && unitOf.has(i.key)))).toBe(true)
+    expect([...unitOf.values()].some((u) => u.pq === 1)).toBe(true)
+    // the units that the todo section calls needs_review carry the flag
+    for (const it of todo.find((s) => s.kind === 'needs_review')?.items ?? []) expect(unitOf.get(it.key ?? '')?.fl).toContain('needs_review')
   })
 })

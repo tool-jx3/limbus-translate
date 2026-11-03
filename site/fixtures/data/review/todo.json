@@ -1,0 +1,1 @@
+{"sections":[{"kind":"needs_review","title":"翻譯失敗、暫用英文的單位（needs_review）","hint":"看原因：用 `lct adjust add` 寫入人工調整，或在 `main` 改規則、用 `lct requeue --to-file …` 指名這些 key 加一份重翻要求檔。","items":[{"text":"`StoryData/S9999.json|/dataList/2/content`：重試次數用盡","key":"StoryData/S9999.json|/dataList/2/content"}]}]}

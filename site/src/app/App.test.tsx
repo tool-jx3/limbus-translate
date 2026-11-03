@@ -61,12 +61,41 @@ describe('App', () => {
   })
 
   it('shows the reload notice, and no directory, when the data is of another format', async () => {
-    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'meta.json': { ...fixture<Meta>('meta.json'), format: 2 } })))
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'meta.json': { ...fixture<Meta>('meta.json'), format: 3 } })))
     const el = mount()
     await loaded(el)
     expect(el.querySelector('.notice')?.textContent).toContain('資料已更新，請重新整理')
     expect(el.querySelector('.directory')).toBeNull()
     expect(el.querySelector('footer')?.textContent).toContain('Project Moon')
+  })
+
+  it('header shows the review count', async () => {
+    const el = mount()
+    await loaded(el)
+    const { suggestions, warnings, notes, todo } = fixture<Meta>('meta.json').review
+    const total = suggestions + warnings + notes + todo
+    expect(total).toBeGreaterThan(0)
+    const link = el.querySelector<HTMLAnchorElement>('.top a.review-link')
+    expect(link?.getAttribute('href')).toBe('#/r/suggestions')
+    expect(link?.textContent).toContain('審核')
+    expect(link?.querySelector('.review-count')?.textContent).toBe(String(total))
+  })
+
+  it('hands the review route to a placeholder until the review page exists', async () => {
+    location.hash = '#/r/notes'
+    const el = mount()
+    await loaded(el)
+    expect(el.querySelector('.review-placeholder')?.getAttribute('data-tab')).toBe('notes')
+    expect(el.querySelector('.home')).toBeNull()
+  })
+
+  it('shows no number beside the review link when nothing is left to review', async () => {
+    const meta = fixture<Meta>('meta.json')
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'meta.json': { ...meta, review: { suggestions: 0, warnings: 0, notes: 0, todo: 0 } } })))
+    const el = mount()
+    await loaded(el)
+    expect(el.querySelector('.top a.review-link')?.textContent).toBe('審核')
+    expect(el.querySelector('.review-count')).toBeNull()
   })
 
   it('has a language switch for each of KR, JP, EN and TW, all on, that writes the settings', async () => {

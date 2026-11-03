@@ -1,12 +1,17 @@
-import type { Lang } from './types'
+import type { Lang, ReviewTab } from './types'
 
-/** Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/s?q=…&lang=…&re=1. */
+/**
+ * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/s?q=…&lang=…&re=1,
+ * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning).
+ */
 export type Route =
   | { kind: 'home' }
   | { kind: 'file'; path: string; ptr?: string }
   | { kind: 'search'; q: string; lang: Lang; re: boolean }
+  | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; id?: string }
 
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
+const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo']
 
 /** decodeURIComponent that keeps the text as it is where the escape is not valid. */
 function decode(s: string): string {
@@ -55,6 +60,20 @@ export function parseHash(hash: string): Route {
       re: query.get('re') === '1',
     }
   }
+  if (pathname === '/r' || pathname.startsWith('/r/')) {
+    const tab = pathname === '/r' ? 'suggestions' : pathname.slice(3)
+    if (!REVIEW_TABS.includes(tab)) return { kind: 'home' }
+    const id = query.get('id')
+    return {
+      kind: 'review',
+      tab: tab as ReviewTab,
+      family: query.get('family') ?? '',
+      sub: query.get('kind') ?? '',
+      q: query.get('q') ?? '',
+      all: query.get('all') === '1',
+      ...(id ? { id } : {}),
+    }
+  }
   return { kind: 'home' }
 }
 
@@ -67,4 +86,16 @@ export function fileHref(path: string, ptr?: string): string {
 /** The hash of a full-text search. */
 export function searchHref(q: string, lang: Lang, re: boolean): string {
   return `#/s?q=${encodeURIComponent(q)}&lang=${lang}${re ? '&re=1' : ''}`
+}
+
+/** The hash of a page of the review, with the filters and the item to scroll to that are given. */
+export function reviewHref(tab: ReviewTab, opts: { family?: string; sub?: string; q?: string; all?: boolean; id?: string } = {}): string {
+  const pairs: [string, string][] = []
+  if (opts.family) pairs.push(['family', opts.family])
+  if (opts.sub) pairs.push(['kind', opts.sub])
+  if (opts.q) pairs.push(['q', opts.q])
+  if (opts.all) pairs.push(['all', '1'])
+  if (opts.id) pairs.push(['id', opts.id])
+  const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
+  return `#/r/${tab}${query ? `?${query}` : ''}`
 }

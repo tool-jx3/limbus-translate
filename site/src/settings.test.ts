@@ -13,6 +13,7 @@ describe('settings', () => {
       origins: { paratranz: true, claude: true, human: true, copy: false, fallback: true, 'stand-in': true },
       rawTags: false,
       scriptMode: 'auto',
+      reviewOnly: false,
     })
     expect(loadSettings()).toEqual(defaultSettings())
   })
@@ -35,6 +36,7 @@ describe('settings', () => {
       origins: { paratranz: true, claude: false, human: true, copy: true, fallback: false, 'stand-in': true },
       rawTags: true,
       scriptMode: 'on',
+      reviewOnly: true,
     }
     saveSettings(s)
     expect(loadSettings()).toEqual(s)
@@ -44,13 +46,14 @@ describe('settings', () => {
   it('keeps the valid fields of a partly valid save and defaults the rest', () => {
     localStorage.setItem(
       KEY,
-      JSON.stringify({ langs: { kr: false, jp: 'yes', fr: false }, origins: [], rawTags: 1, scriptMode: 'sometimes' }),
+      JSON.stringify({ langs: { kr: false, jp: 'yes', fr: false }, origins: [], rawTags: 1, scriptMode: 'sometimes', reviewOnly: 'yes' }),
     )
     const s = loadSettings()
     expect(s.langs).toEqual({ kr: false, jp: true, en: true, zh: true })
     expect(s.origins).toEqual(defaultSettings().origins)
     expect(s.rawTags).toBe(false)
     expect(s.scriptMode).toBe('auto')
+    expect(s.reviewOnly).toBe(false)
   })
 
   it('does not share its default between calls', () => {

@@ -207,6 +207,21 @@ input[type="search"] {
   white-space: nowrap;
 }
 
+.review-link {
+  color: var(--fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.review-count {
+  margin-inline-start: 0.35em;
+  padding: 0 0.45em;
+  border-radius: 1em;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.85em;
+}
+
 .top-filter,
 .fulltext {
   display: flex;

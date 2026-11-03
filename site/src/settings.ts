@@ -10,6 +10,8 @@ export type Settings = {
   rawTags: boolean
   /** Script layout (one passage per dataList element): by the kind of file, always, or never. */
   scriptMode: 'auto' | 'on' | 'off'
+  /** Show only the units that have a review item (rv). */
+  reviewOnly: boolean
 }
 
 export const LANGS: readonly Lang[] = ['kr', 'jp', 'en', 'zh']
@@ -24,6 +26,7 @@ export function defaultSettings(): Settings {
     origins: { paratranz: true, claude: true, human: true, copy: false, fallback: true, 'stand-in': true },
     rawTags: false,
     scriptMode: 'auto',
+    reviewOnly: false,
   }
 }
 
@@ -59,6 +62,7 @@ export function loadSettings(): Settings {
     origins: flags(ORIGINS, saved.origins, s.origins),
     rawTags: typeof saved.rawTags === 'boolean' ? saved.rawTags : s.rawTags,
     scriptMode: typeof saved.scriptMode === 'string' && SCRIPT_MODES.includes(saved.scriptMode) ? (saved.scriptMode as Settings['scriptMode']) : s.scriptMode,
+    reviewOnly: typeof saved.reviewOnly === 'boolean' ? saved.reviewOnly : s.reviewOnly,
   }
 }
 

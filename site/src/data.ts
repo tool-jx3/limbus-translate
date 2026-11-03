@@ -1,7 +1,7 @@
-import type { FileData, Index, Meta } from './types'
+import type { FileData, Index, Meta, ReviewData, ReviewTab } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
-const FORMAT = 1
+const FORMAT = 2
 
 /** Where the data is: next to the page, under ./data/. */
 const ROOT = './data/'
@@ -86,6 +86,23 @@ export function loadFile(path: string): Promise<FileData> {
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', `${rel}: no units`)
     return doc as unknown as FileData
+  })
+}
+
+/** The key under which each review document holds its list. */
+const REVIEW_LIST: Record<ReviewTab, string> = {
+  suggestions: 'items',
+  warnings: 'items',
+  notes: 'items',
+  todo: 'sections',
+}
+
+/** A page of data/review/: the items of one tab. */
+export function loadReview<T extends ReviewTab>(tab: T): Promise<ReviewData[T]> {
+  const rel = `review/${tab}.json`
+  return load(rel, (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc[REVIEW_LIST[tab]])) throw new DataError('format', `${rel}: no ${REVIEW_LIST[tab]}`)
+    return doc as unknown as ReviewData[T]
   })
 }
 

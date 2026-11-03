@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DataError, clearDataCache, loadFile, loadIndex, loadMeta } from './data'
+import { DataError, clearDataCache, loadFile, loadIndex, loadMeta, loadReview } from './data'
 import { fixture, fixtureFetch } from './testdata'
-import type { FileData, Index, Meta } from './types'
+import type { FileData, Index, Meta, ReviewData } from './types'
 
 function serve(docs: Record<string, unknown> = {}) {
   const fetchMock = vi.fn(fixtureFetch(docs))
@@ -43,8 +43,41 @@ describe('data loading', () => {
   })
 
   it('format mismatch shows reload notice', async () => {
-    serve({ 'meta.json': { ...fixture<Meta>('meta.json'), format: 2 } })
+    serve({ 'meta.json': { ...fixture<Meta>('meta.json'), format: 3 } })
     expect(await kindOf(loadMeta())).toBe('format')
+  })
+
+  it('format 1 asks for reload', async () => {
+    serve({ 'meta.json': { ...fixture<Meta>('meta.json'), format: 1 } })
+    expect(await kindOf(loadMeta())).toBe('format')
+  })
+
+  it('reads the four review files from ./data/review/', async () => {
+    const fetchMock = serve()
+    for (const tab of ['suggestions', 'warnings', 'notes', 'todo'] as const) {
+      expect(await loadReview(tab)).toEqual(fixture<ReviewData[typeof tab]>(`review/${tab}.json`))
+    }
+    expect(fetchMock.mock.calls.map((c) => c[0])).toEqual([
+      './data/review/suggestions.json',
+      './data/review/warnings.json',
+      './data/review/notes.json',
+      './data/review/todo.json',
+    ])
+  })
+
+  it('fetches a review file once, and reports a bad one as a format error', async () => {
+    const fetchMock = serve()
+    await loadReview('notes')
+    await loadReview('notes')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    clearDataCache()
+    serve({ 'review/todo.json': { items: [] }, 'review/notes.json': { sections: [] } })
+    expect(await kindOf(loadReview('todo'))).toBe('format')
+    expect(await kindOf(loadReview('notes'))).toBe('format')
+    serve({ 'review/warnings.json': 'x' })
+    expect(await kindOf(loadReview('warnings'))).toBe('format')
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('', { status: 404 })))
+    expect(await kindOf(loadReview('suggestions'))).toBe('missing')
   })
 
   it('fetch 404 shows reload notice', async () => {
@@ -87,7 +120,7 @@ describe('data loading', () => {
     vi.stubGlobal('fetch', fetchMock)
     expect(await kindOf(loadMeta())).toBe('network')
     vi.stubGlobal('fetch', vi.fn(fixtureFetch()))
-    expect((await loadMeta()).format).toBe(1)
+    expect((await loadMeta()).format).toBe(2)
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
-import { searchHref, type Route } from '../route'
+import { reviewHref, searchHref, type Route } from '../route'
 import { LANGS, type Settings } from '../settings'
-import type { Lang } from '../types'
+import type { Lang, ReviewCounts } from '../types'
 
 const LANG_LABEL: Record<Lang, string> = { kr: 'KR', jp: 'JP', en: 'EN', zh: 'TW' }
 
@@ -26,6 +26,8 @@ export function FileFilter({ value, onInput }: FileFilterProps) {
 
 export interface HeaderProps {
   route: Route
+  /** The unconfirmed review items; unknown until meta.json is loaded. */
+  review?: ReviewCounts
   settings: Settings
   onSettings: (s: Settings) => void
   fileQuery: string
@@ -34,11 +36,13 @@ export interface HeaderProps {
   onToggleDrawer: () => void
 }
 
-export function Header({ route, settings, onSettings, fileQuery, onFileQuery, drawerOpen, onToggleDrawer }: HeaderProps) {
+export function Header({ route, review, settings, onSettings, fileQuery, onFileQuery, drawerOpen, onToggleDrawer }: HeaderProps) {
   const [q, setQ] = useState(route.kind === 'search' ? route.q : '')
   useEffect(() => {
     if (route.kind === 'search') setQ(route.q)
   }, [route])
+
+  const open = review ? review.suggestions + review.warnings + review.notes + review.todo : 0
 
   function search(e: Event) {
     e.preventDefault()
@@ -60,6 +64,10 @@ export function Header({ route, settings, onSettings, fileQuery, onFileQuery, dr
       </button>
       <a class="brand" href="#/">
         Limbus 譯文對照
+      </a>
+      <a class="review-link" href={reviewHref('suggestions')}>
+        審核
+        {open > 0 && <span class="review-count">{open}</span>}
       </a>
       <div class="top-filter">
         <FileFilter value={fileQuery} onInput={onFileQuery} />

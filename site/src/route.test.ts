@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHref, parseHash, searchHref } from './route'
+import { fileHref, parseHash, reviewHref, searchHref } from './route'
 
 describe('parseHash', () => {
   it('reads the empty hash and #/ as home', () => {
@@ -78,5 +78,40 @@ describe('searchHref', () => {
         expect(parseHash(searchHref(q, 'jp', re)), q).toEqual({ kind: 'search', q, lang: 'jp', re })
       }
     }
+  })
+})
+
+describe('review route', () => {
+  it('round-trips odd ids', () => {
+    const id = 'note/StoryData/S1.json|/dataList/0/content/1a2b3c4d'
+    expect(parseHash(reviewHref('notes', { id, q: '協會 & ?' }))).toEqual({
+      kind: 'review',
+      tab: 'notes',
+      family: '',
+      sub: '',
+      q: '協會 & ?',
+      all: false,
+      id,
+    })
+  })
+
+  it('round-trips every filter', () => {
+    const route = parseHash(reviewHref('warnings', { family: 'story-main', sub: 'kana', q: 'a=b', all: true }))
+    expect(route).toEqual({ kind: 'review', tab: 'warnings', family: 'story-main', sub: 'kana', q: 'a=b', all: true })
+  })
+
+  it('reads #/r as the suggestions tab with no filter', () => {
+    expect(parseHash('#/r')).toEqual({ kind: 'review', tab: 'suggestions', family: '', sub: '', q: '', all: false })
+    expect(parseHash('#/r/todo?all=1')).toEqual({ kind: 'review', tab: 'todo', family: '', sub: '', q: '', all: true })
+  })
+
+  it('reads an unknown tab as home', () => {
+    expect(parseHash('#/r/bogus')).toEqual({ kind: 'home' })
+    expect(parseHash('#/review')).toEqual({ kind: 'home' })
+  })
+
+  it('leaves out what is empty', () => {
+    expect(reviewHref('suggestions')).toBe('#/r/suggestions')
+    expect(reviewHref('todo', { all: true })).toBe('#/r/todo?all=1')
   })
 })

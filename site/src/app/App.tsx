@@ -73,6 +73,7 @@ export function App() {
     <div class="app">
       <Header
         route={route}
+        review={data.status === 'ready' ? data.meta.review : undefined}
         settings={settings}
         onSettings={changeSettings}
         fileQuery={fileQuery}
@@ -130,5 +131,8 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
       return <FileView path={route.path} ptr={route.ptr} index={index} settings={settings} onSettings={onSettings} />
     case 'search':
       return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
+    case 'review':
+      // The review page is Task 8's; until it exists the route has a stand-in.
+      return <p class="review-placeholder" data-tab={route.tab}>審核頁建置中</p>
   }
 }
