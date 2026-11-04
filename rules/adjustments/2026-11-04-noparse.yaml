@@ -1,0 +1,19 @@
+- key: EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/40/desc
+  raw: raw-20261029
+  kr_sha: 36a05d2075cb9224ae2263149e11716db267d1d851f15de514b79df1397572e4
+  zh: |-
+    屬於邊獄公司的友方單位的2技能<noparse>攻擊等級+</noparse>1、造成的傷害+15%；3技能的<noparse>攻擊等級+</noparse>2、造成的傷害+30%
+
+    若待命人員中屬於邊獄公司的友方單位不低於4名，則回合開始時隨機使2名友方單位獲得2層 [AttackUp]
+  reason: 「攻擊等級+」是 [AttackLevelAdder] 的名稱，遊戲會把「攻擊等級+1」「攻擊等級+2」讀成該關鍵字（已在遊戲中確認），用 <noparse> 包住（人工確認）
+  rule: guides/base.md
+- key: Passives.json|/dataList/477/desc
+  raw: raw-20261029
+  kr_sha: c30e01a1fe1167437f41b93039ec9732b12a4fd87f3f3273f3e2de5b65458e91
+  zh: |-
+    當友方單位因敵方單位的攻擊而陣亡或體力降至低於25%時，在該攻擊結束後，鴻園 流浪武士 良秀將使用「加斥我<noparse>援</noparse>」對該敵方單位進行單方面攻擊(每場戰鬥最多1次)
+    - 當觸發效果的友方單位為鴻園君主 鴻璐時，該效果可無視次數限制額外發動1次
+
+    由被動「君．可．保．好」效果觸發的技能「喂，退下」在使用時，使該技能造成的暴擊傷害+30%；使除自身之外理智值最低的1名友方單位恢復2~4點理智值(每回合最多1次；理智值不高於-40的友方單位除外)
+  reason: 「援」是 [CheerUpXichun] 的名稱：還原草稿（Paratranz）「加斥我<noparse>援</noparse>」的 <noparse>，修正時被刪掉了（人工確認）
+  rule: guides/base.md
