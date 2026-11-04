@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261029",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "6f76a18c025ebd56c1c37d803c381a1754de758a",
+  "rules_commit": "2270118c587747302e42d04380627ef370cbf59b",
   "changes": {
     "unchanged": 0,
     "moved": 0,
@@ -17,12 +17,7 @@
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [
-    {
-      "id": "2026-11-04-hana-association",
-      "units": 31
-    }
-  ],
+  "rewrite_applied": [],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],
