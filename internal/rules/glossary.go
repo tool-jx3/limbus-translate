@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"slices"
 	"strings"
+	"unicode/utf8"
 
 	"gopkg.in/yaml.v3"
 
@@ -30,6 +31,68 @@ type Term struct {
 	// Files are the files the term applies to (see config.MatchAny); empty
 	// means every file.
 	Files []string `yaml:"files" json:"files,omitempty"`
+	// Match is MatchWord for a term that hits only where its KR stands as a
+	// word (see standsAsWord); empty for one that hits wherever its KR occurs,
+	// inside a longer word too.
+	Match string `yaml:"match" json:"match,omitempty"`
+}
+
+// MatchWord is the one value of Term.Match: the term hits only where its KR
+// stands as a word, so 백화 does not hit 백화점 nor 버스 림버스.
+const MatchWord = "word"
+
+// occursIn reports whether the KR text of t occurs in kr, as a word where t
+// asks for it.
+func (t Term) occursIn(kr string) bool {
+	if t.Match == MatchWord {
+		return standsAsWord(kr, t.KR)
+	}
+	return strings.Contains(kr, t.KR)
+}
+
+// wordFollowers are what may follow a word in KR and keep it that word: the
+// particles, the copula and the endings of 하다 and 되다. A Hangul syllable
+// after the term that starts none of them makes it part of a longer word.
+var wordFollowers = []string{
+	"이", "가", "을", "를", "은", "는", "의", "에", "께", "로", "으로", "와", "과", "도", "만", "까지", "부터",
+	"처럼", "보다", "한테", "랑", "나", "고", "며", "다", "입니다", "야", "요", "들", "란", "라", "마저", "조차",
+	"밖에", "뿐", "대로", "만큼", "마다", "면", "엔", "님", "씨", "지", "죠", "여", "아", "였", "었", "인", "일", "임",
+	"하", "했", "한", "할", "해", "함", "합", "히", "되", "된", "될", "돼", "됨", "됩",
+}
+
+func isHangulSyllable(r rune) bool { return r >= 0xAC00 && r <= 0xD7A3 }
+
+// standsAsWord reports whether term occurs in text as a word of its own: not
+// right after a Hangul syllable, and followed by no Hangul syllable, or by
+// one that starts a particle or an ending (wordFollowers).
+func standsAsWord(text, term string) bool {
+	if term == "" {
+		return false
+	}
+	first, _ := utf8.DecodeRuneInString(term)
+	last, _ := utf8.DecodeLastRuneInString(term)
+	for from := 0; from < len(text); {
+		i := strings.Index(text[from:], term)
+		if i < 0 {
+			return false
+		}
+		at := from + i
+		_, size := utf8.DecodeRuneInString(text[at:])
+		from = at + size
+		if before, _ := utf8.DecodeLastRuneInString(text[:at]); at > 0 && isHangulSyllable(before) && isHangulSyllable(first) {
+			continue
+		}
+		rest := text[at+len(term):]
+		if next, _ := utf8.DecodeRuneInString(rest); rest == "" || !isHangulSyllable(next) || !isHangulSyllable(last) {
+			return true
+		}
+		for _, f := range wordFollowers {
+			if strings.HasPrefix(rest, f) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 // ToValidate returns the part of the term that validate.Check enforces.
@@ -41,7 +104,7 @@ func (t Term) ToValidate() validate.Term {
 // people and is not loaded.
 var termFields = map[string]bool{
 	"kr": true, "jp": true, "en": true, "zh": true, "status": true,
-	"forbidden": true, "category": true, "evidence": true, "notes": true, "files": true,
+	"forbidden": true, "category": true, "evidence": true, "notes": true, "files": true, "match": true,
 }
 
 // parseGlossary decodes the glossary. unknown[i] lists the keys of entry i
@@ -90,7 +153,7 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 	var hits []Term
 	scoped := map[string]bool{} // the KR texts with an entry for file
 	for _, t := range r.Glossary {
-		if t.Status != StatusApproved || t.KR == "" || !strings.Contains(kr, t.KR) {
+		if t.Status != StatusApproved || t.KR == "" || !t.occursIn(kr) {
 			continue
 		}
 		if len(t.Files) > 0 {

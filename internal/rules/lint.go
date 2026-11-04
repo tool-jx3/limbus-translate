@@ -118,6 +118,9 @@ func (l *linter) glossary() {
 				}
 			}
 		}
+		if t.Match != "" && t.Match != MatchWord {
+			l.report(GlossaryFile, "%s: match is %q, want %q (hit only where the KR stands as a word) or no match", label, t.Match, MatchWord)
+		}
 		for _, pattern := range t.Files {
 			if pattern == "" {
 				l.report(GlossaryFile, "%s: files holds an empty pattern", label)

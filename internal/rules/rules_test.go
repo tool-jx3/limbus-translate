@@ -399,6 +399,60 @@ func zhOf(hits []rules.Term) []string {
 	return out
 }
 
+// An entry with match: word hits only where its KR stands as a word: not right
+// after a Hangul syllable, and followed by no Hangul or by a particle or an
+// ending (이/가/을/를/의/에서, 하다/되다…), so 백화 does not hit 백화점, nor
+// 버스 림버스. An entry without match still hits inside a longer word.
+func TestGlossaryHitsWholeWord(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 백화
+  zh: 白化
+  status: approved
+  match: word
+
+- kr: 버스
+  zh: 巴士
+  status: approved
+  match: word
+
+- kr: 사무소
+  zh: 事務所
+  status: approved
+`)
+	for _, tc := range []struct {
+		text string
+		want []string
+	}{
+		{"백화 현상이 일어났다", []string{"白化"}},
+		{"백화가 시작되었다", []string{"白化"}},
+		{"백화를 막아라", []string{"白化"}},
+		{"백화된 몸", []string{"白化"}},
+		{"‘백화’라고 부른다", []string{"白化"}},
+		{"백화점에 가자", nil},
+		{"백화점의 직원이 본 백화", []string{"白化"}},
+		{"림버스 컴퍼니", nil},
+		{"림버스 컴퍼니의 버스에 탄다", []string{"巴士"}},
+		{"정사무소 대표", []string{"事務所"}},
+	} {
+		if got := zhOf(r.GlossaryHits(anyFile, tc.text)); !slices.Equal(got, tc.want) {
+			t.Errorf("GlossaryHits(%q) = %v, want %v", tc.text, got, tc.want)
+		}
+	}
+}
+
+// match takes one value, word; anything else is a mistake lint reports.
+func TestLintGlossaryMatch(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  match: words\n"
+	})
+	msg := lintMessages(rules.Lint(root))
+	for _, want := range []string{"glossary/terms.yaml", "백화점", "match", `"words"`} {
+		if !strings.Contains(msg, want) {
+			t.Errorf("lint output does not mention %q:\n%s", want, msg)
+		}
+	}
+}
+
 // A term with files applies to the files that match; a term without files to
 // all of them. Where both are given for one KR text, the term that matches
 // the file stands for it alone, so each file has one rendering.
