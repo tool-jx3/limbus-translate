@@ -2,6 +2,15 @@ import { describe, expect, it } from 'vitest'
 import { variantDiff } from './diff'
 
 describe('variantDiff', () => {
+  it('keeps the tags as pieces in raw mode, and marks a tag only the other has', () => {
+    const pieces = variantDiff('使用「加斥我援」', '使用「加斥我<noparse>援</noparse>」', { raw: true })
+    expect(pieces.map((p) => p.text).join('')).toBe('使用「加斥我<noparse>援</noparse>」')
+    expect(pieces.filter((p) => !p.same).map((p) => p.text)).toEqual(['<noparse>', '</noparse>'])
+    expect(pieces.find((p) => p.text === '<noparse>')?.tok).toBe(true)
+    // Without raw the tags are no pieces, so the two read the same.
+    expect(variantDiff('使用「加斥我援」', '使用「加斥我<noparse>援</noparse>」').every((p) => p.same)).toBe(true)
+  })
+
   it('marks only what differs, and the highlight style counts', () => {
     const pieces = variantDiff('使目標增加<style="highlight">2</style>回 [Laceration]', '使目標增加<style="highlight">2回</style> [Laceration]')
     expect(pieces.filter((p) => !p.same).map((p) => p.text)).toEqual(['回'])

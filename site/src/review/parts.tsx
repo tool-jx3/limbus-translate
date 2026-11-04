@@ -93,11 +93,12 @@ export function ConfirmedLine({ confirmed }: { confirmed: Confirmed | undefined 
 }
 
 /** The pieces of a translation: [ID]s as tokens, the highlight style as colour, what differs on a background, an extra space as a sign. */
-export function DiffText({ pieces }: { pieces: Piece[] }) {
+export function DiffText({ pieces, raw = false }: { pieces: Piece[]; raw?: boolean }) {
   const out: ComponentChildren[] = []
   let run: ComponentChildren[] | undefined
   const flush = (k: number) => {
-    if (run) out.push(<span key={k} class="rv-d">{run}</span>)
+    // A run and a piece are keyed apart: the same number for both would confuse a redraw.
+    if (run) out.push(<span key={`d${k}`} class="rv-d">{run}</span>)
     run = undefined
   }
   pieces.forEach((p, k) => {
@@ -108,7 +109,7 @@ export function DiffText({ pieces }: { pieces: Piece[] }) {
     } else (run ??= []).push(node)
   })
   flush(pieces.length)
-  return <span class="tmp" lang="zh-Hant-TW">{out}</span>
+  return <span class={raw ? 'tmp tmp-raw' : 'tmp'} lang="zh-Hant-TW">{out}</span>
 }
 
 const WHITE_SPACE = /^\s$/u
@@ -138,5 +139,5 @@ function piece(p: Piece, k: number): ComponentChildren {
     )
   }
   else node = p.text
-  return p.hl ? <span key={k} class="rv-hl">{node}</span> : <Fragment key={k}>{node}</Fragment>
+  return p.hl ? <span key={`p${k}`} class="rv-hl">{node}</span> : <Fragment key={`p${k}`}>{node}</Fragment>
 }

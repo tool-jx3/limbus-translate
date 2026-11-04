@@ -13,8 +13,11 @@ const SEGMENT = /<\/?[a-z][a-z-]*(?:=[^<>]*)?>|\[[A-Za-z][A-Za-z0-9_]*\]/gi
 const HIGHLIGHT = /^<style="?highlight"?>$/i
 const CLOSE_STYLE = /^<\/style>$/i
 
-/** The units of a text; the tags are not units, but a highlight style marks the units inside it. */
-function units(s: string): Unit[] {
+/**
+ * The units of a text; the tags are not units, but a highlight style marks the units inside it.
+ * With raw, the tags are units too (as [ID]s are), so a tag one text has and the other lacks shows.
+ */
+function units(s: string, raw: boolean): Unit[] {
   const out: Unit[] = []
   let depth = 0
   let pos = 0
@@ -25,8 +28,9 @@ function units(s: string): Unit[] {
     chars(s.slice(pos, m.index))
     pos = m.index + m[0].length
     const tag = m[0]
-    if (tag.startsWith('[')) out.push({ text: tag, tok: true, hl: depth > 0 })
-    else if (HIGHLIGHT.test(tag)) depth++
+    if (tag.startsWith('[') || raw) out.push({ text: tag, tok: true, hl: depth > 0 })
+    if (tag.startsWith('[')) continue
+    if (HIGHLIGHT.test(tag)) depth++
     else if (CLOSE_STYLE.test(tag) && depth > 0) depth--
   }
   chars(s.slice(pos))
@@ -38,10 +42,10 @@ const equal = (a: Unit, b: Unit) => a.text === b.text && a.hl === b.hl
 /** Too long for the table of the subsequence: nothing is told to be shared. */
 const MAX_CELLS = 4_000_000
 
-/** The units of other; same is false where base has no such unit in the same order. */
-export function variantDiff(base: string, other: string): Piece[] {
-  const a = units(base)
-  const b = units(other)
+/** The units of other; same is false where base has no such unit in the same order. With raw, the tags are units too. */
+export function variantDiff(base: string, other: string, opts: { raw?: boolean } = {}): Piece[] {
+  const a = units(base, opts.raw ?? false)
+  const b = units(other, opts.raw ?? false)
   const n = a.length
   const m = b.length
   const same = new Array<boolean>(m).fill(false)

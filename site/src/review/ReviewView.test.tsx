@@ -322,6 +322,35 @@ describe('the review page follows the language and raw-tag switches of the heade
     expect(el.querySelector('.rv-badge')).not.toBeNull()
   })
 
+  it('shows the tags of the translations of an inconsistent group as they are when raw tags are on', async () => {
+    const it = JSON.parse(JSON.stringify(fixture<{ items: { kind: string; variants: { zh: string }[] }[] }>('review/suggestions.json').items.find((i) => i.kind === 'inconsistent')))
+    it.variants[1].zh = '<color=#ff6000>試驗</color>斬擊'
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [it] } })))
+    clearDataCache()
+    let el = await mount(route('suggestions'))
+    const zh = (e: HTMLElement) => [...e.querySelectorAll('.rv-var .rv-zh')].map((z) => z.textContent)
+    expect(zh(el)).not.toContain('<color=#ff6000>試驗</color>斬擊')
+    el = await mount(route('suggestions'), shown({}, { rawTags: true }))
+    expect(zh(el)).toContain('<color=#ff6000>試驗</color>斬擊')
+    expect(el.querySelector('.rv-var .rv-zh .tmp-raw')).not.toBeNull()
+  })
+
+  it('redraws every translation of an inconsistent group when raw tags are switched on and off', async () => {
+    const it = JSON.parse(JSON.stringify(fixture<{ items: { kind: string; variants: { zh: string }[] }[] }>('review/suggestions.json').items.find((i) => i.kind === 'inconsistent')))
+    it.variants[0].zh = '[OnSucceedAttack] 使目標增加<style="highlight">2</style>回 [Laceration]'
+    it.variants[1].zh = '[OnSucceedAttack] 使目標增加2級 [Laceration] 強度'
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [it] } })))
+    clearDataCache()
+    const el = await mount(route('suggestions'))
+    const zh = () => [...el.querySelectorAll('.rv-var .rv-zh')].map((z) => z.textContent)
+    const drawn = zh()
+    render(<ReviewView route={route('suggestions')} index={index} meta={meta} settings={shown({}, { rawTags: true })} />, el)
+    // A space only one translation has shows as ␣.
+    expect(zh()).toEqual(['[OnSucceedAttack] 使目標增加<style="highlight">2</style>回 [Laceration]', '[OnSucceedAttack] 使目標增加2級 [Laceration]␣強度'])
+    render(<ReviewView route={route('suggestions')} index={index} meta={meta} settings={shown({})} />, el)
+    expect(zh()).toEqual(drawn)
+  })
+
   it('shows the tags as they are when raw tags are on, still marking the problem', async () => {
     let el = await mount(route('warnings'))
     expect(el.querySelector('article.rv-card dd .tmp-raw')).toBeNull()

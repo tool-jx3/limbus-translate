@@ -57,6 +57,7 @@ function JPENRows({ groups, shared }: { groups: JPENGroup[]; shared: Set<string>
 }
 
 function Inconsistent({ item, jpen }: { item: SuggestionItem; jpen: boolean }) {
+  const { raw } = useContext(ShownText)
   const variants = [...(item.variants ?? [])].sort((a, b) => b.count - a.count)
   const top = variants[0]
   if (!top) return null
@@ -81,7 +82,8 @@ function Inconsistent({ item, jpen }: { item: SuggestionItem; jpen: boolean }) {
               {v.count} 個
             </div>
             <div class="rv-zh">
-              <DiffText pieces={variantDiff(top.zh, v.zh)} />
+              {/* Drawn anew when raw tags switch: the pieces differ, and moving keyed pieces around confuses a redraw. */}
+              <DiffText key={raw ? 'raw' : 'drawn'} pieces={variantDiff(top.zh, v.zh, { raw })} raw={raw} />
             </div>
             <div class="rv-example">
               {v.keys[0] !== undefined && (
