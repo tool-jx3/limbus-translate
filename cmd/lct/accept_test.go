@@ -403,3 +403,59 @@ func TestAcceptDryRunShowsJPEN(t *testing.T) {
 		}
 	}
 }
+
+// --file is read and its lines that are no item are printed back, so it names
+// only a file of the repo outside .git, links resolved: the skill that runs
+// lct accept --dry-run unattended in CI may read nothing its tools keep closed.
+func TestAcceptFileStaysInTheRepo(t *testing.T) {
+	s := acceptRepo(t)
+	const secret = "ghs_notarealtoken0123456789abcdef"
+	outside := filepath.Join(t.TempDir(), "environ")
+	if err := os.WriteFile(outside, []byte(secret+"\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, s.root, ".git/lct-secret", secret+"\n")
+	if err := os.Symlink(outside, filepath.Join(s.root, "work", "link.txt")); err != nil {
+		t.Fatal(err)
+	}
+	up, err := filepath.Rel(s.root, outside)
+	if err != nil {
+		t.Fatal(err)
+	}
+	was := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml")
+	for name, file := range map[string]string{
+		"an absolute path outside": outside,
+		"a relative path outside":  up,
+		"a link that leads out":    "work/link.txt",
+		"the folder of git":        ".git/lct-secret",
+	} {
+		for _, mode := range [][]string{{"--dry-run"}, {"--reason", "r"}} {
+			args := append(append([]string{"accept"}, mode...), "--file", file, s.warnings[0])
+			code, stdout, stderr := lct(t, args...)
+			if code != 1 || strings.Contains(stdout+stderr, secret) || !strings.Contains(stderr, "--file") {
+				t.Errorf("%s %v: exit code %d, want 1 refusing --file without its lines\n%s%s", name, mode, code, stdout, stderr)
+			}
+		}
+	}
+	if got := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml"); got != was {
+		t.Error("a refused --file wrote a list")
+	}
+}
+
+// --dry-run turned off again is refused: the grant of lct accept --dry-run to
+// a skill reads, and must not write.
+func TestAcceptDryRunCannotBeTurnedOff(t *testing.T) {
+	s := acceptRepo(t)
+	was := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml")
+	for _, args := range [][]string{
+		{"accept", "--dry-run=false", "--reason", "r", s.warnings[0]},
+		{"accept", "--dry-run", "--reason", "r", "--dry-run=0", s.warnings[0]},
+	} {
+		if code, stdout, stderr := lct(t, args...); code != 1 {
+			t.Errorf("%v: exit code %d, want 1\n%s%s", args, code, stdout, stderr)
+		}
+	}
+	if got := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml"); got != was {
+		t.Error("lct accept with --dry-run turned off wrote a list")
+	}
+}

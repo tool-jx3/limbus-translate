@@ -114,8 +114,11 @@ var weeklyUpdateTools = []string{
 // touches nothing but guides/, glossary/ and rules/. lct impact is pinned to
 // the one file it writes (and refuses one outside work/ and out/ anyway). lct
 // accept is granted only with --dry-run, which reads (the JP/EN of the variants
-// of an inconsistent group); a later --dry-run=false could write only
-// rules/declined.yaml and rules/accepted.yaml, which it may edit anyway. rules-proposal.yml hands
+// of an inconsistent group): it refuses --dry-run turned off again
+// (TestAcceptDryRunCannotBeTurnedOff), and reads a --file, whose lines it
+// prints back, only inside the repo and outside .git
+// (TestAcceptFileStaysInTheRepo), so the grant writes nothing and reads
+// nothing that Read(./**) without .git/ does not. rules-proposal.yml hands
 // the same list to the action (TestWorkflowContract); a tool added to one and
 // not to the other fails there.
 var rulesReviewTools = []string{
@@ -819,6 +822,8 @@ var rulesReviewSays = []skillSays{
 	{"bin/lct accept --dry-run --json", "the JP/EN of the variants of an inconsistent group are not looked up: lct suggest gives only the KR and the translations"},
 	{"`jpen_class`", "the evidence of an inconsistent group does not list the JP/EN of its variants and its class: a person cannot tell a right difference from a real inconsistency"},
 	{"不因 JP/EN 分類", "the skill does not say that the class of JP/EN decides nothing: it would decline or unify a group for a person because of its JP/EN"},
+	{"JP/EN 的分類或內容", "the skill forbids only the class as a reason: it would decline or unify a group by citing what its JP and EN say, the same reason in other words"},
+	{"不要統一成一種寫法", "the skill does not keep apart the translations that follow JP/EN: told to settle on one rendering, it would merge a right difference such as brother and sister"},
 }
 
 // rulesReviewFlow are the commands the body of the rules-review skill writes in
@@ -925,6 +930,8 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"no JP/EN looked up", "bin/lct accept --dry-run --json", "bin/lct suggest --json --limit 1", "bin/lct accept --dry-run --json"},
 		{"no JP/EN in the evidence", "`jpen_class`", "`kind`", "`jpen_class`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
+		{"decides by what JP/EN say", "JP/EN 的分類或內容", "JP/EN 的分類", "JP/EN 的分類或內容"},
+		{"unifies what follows JP/EN", "不要統一成一種寫法", "統一成一種寫法", "不要統一成一種寫法"},
 		{"the mode found out after the build", "work/proposal/started.json", "go build -o bin/lct ./cmd/lct`; work/proposal/started.json", "must come before"},
 		{"a command out of order", "bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md; bin/lct rules lint --json", "must come before"},
 	} {

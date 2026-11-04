@@ -1,9 +1,11 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"io"
+	"io/fs"
 	"path/filepath"
 	"strings"
 	"time"
@@ -19,7 +21,7 @@ func init() {
 		Name: "accept",
 		Usage: "record the review items a person confirmed, so the review page, lct suggest and the build report skip them: " +
 			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml; " +
-			"--file holds ids one a line, blank lines and lines that start with # ignored; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing); " +
+			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing); " +
 			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants) and the ids that are no item of the last build (exit code 1 if any); " +
 			"or --tidy: delete the entries of rules/accepted.yaml that are no warning of the last build any more",
 		Run: runAccept,
@@ -149,6 +151,13 @@ func runAccept(ctx *cli.Context, args []string) error {
 	if err := flags.Parse(args); err != nil {
 		return cli.UserError("accept: " + err.Error())
 	}
+	// A skill is granted lct accept --dry-run to look items up: turned off
+	// again, it would write.
+	turnedOff := false
+	flags.Visit(func(f *flag.Flag) { turnedOff = turnedOff || (f.Name == "dry-run" && !*dryRun) })
+	if turnedOff {
+		return cli.UserError("accept: --dry-run takes no false value; leave it out to write")
+	}
 
 	if *tidy {
 		if flags.NArg() > 0 || *idFile != "" || *reason != "" || *date != "" || *dryRun {
@@ -171,7 +180,11 @@ func runAccept(ctx *cli.Context, args []string) error {
 		}
 	}
 	if *idFile != "" {
-		fromFile, err := readExcludeFile(*idFile)
+		path, err := repoFile(ctx.Root, *idFile)
+		if err != nil {
+			return cli.UserError(fmt.Sprintf("accept: --file %s", err))
+		}
+		fromFile, err := readExcludeFile(path)
 		if err != nil {
 			return cli.UserError(fmt.Sprintf("accept: --file %s", err))
 		}
@@ -275,6 +288,39 @@ func acceptTidy(ctx *cli.Context) error {
 		removed = []string{}
 	}
 	return ctx.Emit(tidyReport{Removed: removed, RawTag: in.RawTag, TWCommit: head})
+}
+
+// repoFile resolves path, links and all, and refuses a file outside the repo
+// at root or inside a folder named .git: lct accept prints back the lines of
+// --file that are no item, so --file may read only what the tools of a skill
+// may (the repo, never .git/), not a file of the system or of git.
+func repoFile(root, path string) (string, error) {
+	abs, err := filepath.Abs(path)
+	if err != nil {
+		return "", fmt.Errorf("%s: %v", path, err)
+	}
+	real, err := filepath.EvalSymlinks(abs)
+	if err != nil {
+		var pe *fs.PathError
+		if errors.As(err, &pe) {
+			err = pe.Err // the path is said once
+		}
+		return "", fmt.Errorf("%s: %v", path, err)
+	}
+	realRoot, err := filepath.EvalSymlinks(root)
+	if err != nil {
+		return "", err
+	}
+	rel, err := filepath.Rel(realRoot, real)
+	if err != nil || !within(realRoot, real) {
+		return "", fmt.Errorf("%s: not a file of the repo; name one inside it", path)
+	}
+	for _, part := range strings.Split(rel, string(filepath.Separator)) {
+		if part == ".git" {
+			return "", fmt.Errorf("%s: inside .git, which lct accept does not read", path)
+		}
+	}
+	return real, nil
 }
 
 // acceptLookup prints the items of ids as the review page has them and writes
