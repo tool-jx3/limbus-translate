@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261029",
   "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
-  "rules_commit": "67f5c2d093d729c2867bd300a2450238d97aed4e",
-  "built_at": "2026-11-03T09:36:05Z",
+  "rules_commit": "745d05b1965ed4461ff23edc294917ee0279afa7",
+  "built_at": "2026-11-04T08:35:28Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 991,
   "zips": {
-    "zh-TW_complete_raw-20261029.zip": "4c3b8482b3ed9dbbe0d7215d5424e0776ba73b8d18d244516fb04e80a89446b9",
-    "zh-TW_text_raw-20261029.zip": "c0ce2a3bcebeb930bdb67b525b69c224334ff1bc982344116da4f31ac8b07c79"
+    "zh-TW_complete_raw-20261029.zip": "79e8fde84a7e3c655c426099af4eb8149f4846c6f57a17bd62a9ce24d2400616",
+    "zh-TW_text_raw-20261029.zip": "7dd8a0c815bd44649788319d7a461f08ce0ba14729d38dabbb6176d52301d67d"
   },
   "report": {
     "origins": {
@@ -30,8 +30,8 @@
       "ascii-ellipsis": 13,
       "curly-quotes": 4,
       "halfwidth-bracket": 5,
-      "halfwidth-punct": 35,
-      "kana": 115,
+      "halfwidth-punct": 9,
+      "kana": 7,
       "length-ratio": 10
     },
     "missing_glyphs": [],
@@ -64,27 +64,23 @@
       ],
       "halfwidth-punct": [
         "AbEventsResultLog-a1c7p3.json|/dataList/1/content",
-        "ActionEvents_Mirror4.json|/dataList/8/desc",
-        "ActionEvents_tkt.json|/dataList/0/desc",
-        "BattleKeywords-a1c9p3.json|/dataList/125/flavor",
-        "BattleKeywords-a1c9p3.json|/dataList/126/flavor",
         "BattleKeywords.json|/dataList/355/desc",
         "BattleUIText.json|/dataList/49/content",
-        "Bufs-a1c9p3.json|/dataList/125/flavor",
-        "Bufs-a1c9p3.json|/dataList/126/flavor",
-        "Bufs.json|/dataList/431/desc"
+        "Bufs.json|/dataList/431/desc",
+        "EGOgift_MirrorDungeon_2.json|/dataList/12/desc",
+        "FAQ.json|/dataList/35/content",
+        "HellsChicken.json|/dataList/0/content",
+        "RailwayDungeonUI.json|/dataList/18/content",
+        "RailwayDungeonUI.json|/dataList/6/content"
       ],
       "kana": [
-        "AbDlg_Heathcliff.json|/dataList/0/teller",
-        "AbDlg_Heathcliff.json|/dataList/1/teller",
-        "AbDlg_Heathcliff.json|/dataList/2/teller",
-        "AbDlg_Heathcliff.json|/dataList/3/teller",
-        "AbDlg_Heathcliff.json|/dataList/4/teller",
-        "AbDlg_Heathcliff.json|/dataList/5/teller",
-        "AbDlg_Heathcliff.json|/dataList/6/teller",
         "AbnormalityGuides_Refraction6.json|/dataList/0/storyList/1/story",
         "BattleKeywords-a1c9p3.json|/dataList/125/name",
-        "BattleKeywords-a1c9p3.json|/dataList/126/name"
+        "BattleKeywords-a1c9p3.json|/dataList/126/name",
+        "Bufs-a1c9p3.json|/dataList/125/name",
+        "Bufs-a1c9p3.json|/dataList/126/name",
+        "Skills_Abnormality-a1c10p3.json|/dataList/55/levelList/0/desc",
+        "TutorialRenewalDesc.json|/dataList/70/content"
       ],
       "length-ratio": [
         "ActionEvents_mowe-re.json|/dataList/1/desc",
