@@ -80,3 +80,9 @@
 - id: "warning/halfwidth-punct/4f690b92/5320777c"
   reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
   date: 2026-11-04
+- id: "warning/length-ratio/53bcc52b/6147a2a4"
+  reason: 人工確認沒問題
+  date: 2026-11-04
+- id: "warning/length-ratio/0a362a7e/785f3624"
+  reason: 人工確認沒問題
+  date: 2026-11-04
