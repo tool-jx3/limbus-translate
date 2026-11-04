@@ -9,6 +9,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
 )
 
@@ -131,6 +133,47 @@ func TestTranslateGoesOnWhenThePushFails(t *testing.T) {
 	}
 }
 
+// The batches a run took and did not submit are settled: one whose out file
+// is there is submitted, the others are released at once, not left leased for
+// two hours. lct translate settles before the first round too, for the
+// batches of a run that was lost.
+func TestTranslateSettlesTheBatchesARunLeft(t *testing.T) {
+	root, _, script := translateRepo(t)
+	first, raw, err := runNextJSON(t, root, "--max-units", "1")
+	if err != nil || first.Batch == nil {
+		t.Fatalf("batch next: %v\n%s", err, raw)
+	}
+	writeOut(t, root, *first.Batch, batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"})
+	second, raw, err := runNextJSON(t, root, "--max-units", "1")
+	if err != nil || second.Batch == nil {
+		t.Fatalf("batch next: %v\n%s", err, raw)
+	}
+
+	t.Setenv("FAKE_EMPTY", filepath.Join(root, ".work", "tw", ".meta", "pending.jsonl"))
+	code, stdout, stderr := lct(t, translateArgs(script)...)
+	if code != 0 {
+		t.Fatalf("lct translate: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	for _, want := range []string{"submitted the batch " + *first.Batch, "released the batch " + *second.Batch} {
+		if !strings.Contains(stderr, want) {
+			t.Errorf("stderr lacks %q:\n%s", want, stderr)
+		}
+	}
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if rec, ok := recs[batchKey0]; !ok || rec.Batch != *first.Batch || !strings.Contains(rec.ZH, "[Laceration]") {
+		t.Errorf("the record of %s = %+v, want the translation of the out file of %s", batchKey0, rec, *first.Batch)
+	}
+	// The released unit was free for the round: the run was started (and
+	// emptied the queue).
+	if res, _ := readTranslateJSON(t, root); res.Runs != 1 {
+		t.Errorf("translate.json says %d runs, want 1", res.Runs)
+	}
+}
+
 func TestTranslateCommandRecordsTheRun(t *testing.T) {
 	root, fakeDir, script := translateRepo(t)
 	t.Setenv("FAKE_EMPTY", filepath.Join(root, ".work", "tw", ".meta", "pending.jsonl"))
@@ -152,7 +195,7 @@ func TestTranslateCommandRecordsTheRun(t *testing.T) {
 		t.Errorf("translate.json = %+v, want %+v", res, want)
 	}
 
-	if got := strings.TrimSpace(string(readFile(t, filepath.Join(fakeDir, "args")))); got != "-p /translate-pending --output-format json --model from-the-flag --max-turns 9 --disallowedTools Read(./.git/**)" {
+	if got := strings.TrimSpace(string(readFile(t, filepath.Join(fakeDir, "args")))); got != "-p /translate-pending --output-format stream-json --verbose --model from-the-flag --max-turns 9 --disallowedTools Read(./.git/**)" {
 		t.Errorf("claude was run with %q", got)
 	}
 	if got := strings.TrimSpace(string(readFile(t, filepath.Join(fakeDir, "model")))); got != "from-the-flag" {
@@ -226,19 +269,21 @@ func TestTranslateCommandUserErrors(t *testing.T) {
 		return append(args, more...)
 	}
 	for name, args := range map[string][]string{
-		"no max-usd":      flags("--max-usd"),
-		"no deadline":     flags("--deadline"),
-		"no max-turns":    flags("--max-turns"),
-		"no run-timeout":  flags("--run-timeout"),
-		"no model":        flags("--model"),
-		"zero max-usd":    flags("--max-usd", "--max-usd", "0"),
-		"negative usd":    flags("--max-usd", "--max-usd", "-1"),
-		"bad deadline":    flags("--deadline", "--deadline", "soon"),
-		"zero deadline":   flags("--deadline", "--deadline", "0s"),
-		"zero turns":      flags("--max-turns", "--max-turns", "0"),
-		"bad run-timeout": flags("--run-timeout", "--run-timeout", "-5m"),
-		"extra argument":  flags("", "extra"),
-		"unknown flag":    flags("", "--nope"),
+		"no max-usd":                   flags("--max-usd"),
+		"no deadline":                  flags("--deadline"),
+		"no max-turns":                 flags("--max-turns"),
+		"no run-timeout":               flags("--run-timeout"),
+		"no model":                     flags("--model"),
+		"zero max-usd":                 flags("--max-usd", "--max-usd", "0"),
+		"negative usd":                 flags("--max-usd", "--max-usd", "-1"),
+		"bad deadline":                 flags("--deadline", "--deadline", "soon"),
+		"zero deadline":                flags("--deadline", "--deadline", "0s"),
+		"zero turns":                   flags("--max-turns", "--max-turns", "0"),
+		"bad run-timeout":              flags("--run-timeout", "--run-timeout", "-5m"),
+		"extra argument":               flags("", "extra"),
+		"unknown flag":                 flags("", "--nope"),
+		"soft turns at the hard limit": flags("", "--soft-turns", "9"),
+		"negative soft turns":          flags("", "--soft-turns", "-1"),
 	} {
 		code, stdout, stderr := lct(t, args...)
 		if code != 1 {

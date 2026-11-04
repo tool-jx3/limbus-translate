@@ -24,7 +24,8 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "translate",
 		Usage: "run the translate-pending skill with the claude CLI until nothing is pending, the money or the time is out, " +
-			"or a run fails: --max-usd F --deadline D --max-turns N --run-timeout D [--claude PATH] [--model M] [--push-each-run] " +
+			"or a run fails: --max-usd F --deadline D --max-turns N --run-timeout D [--soft-turns N] [--claude PATH] [--model M] [--push-each-run] " +
+			"(--soft-turns: after this many turns a run gets no new batch and ends once its batch is submitted; the batches a run leaves unsubmitted are submitted when their out file is there and released otherwise) " +
 			"(--push-each-run: after every run, commit the tw worktree as \"" + progressSubject + " <raw tag>\" and push it to the tw of origin); " +
 			"or, with --not-run REASON, run nothing and record in .meta/translate.json that the translation was not run",
 		Run: runTranslate,
@@ -42,6 +43,7 @@ func runTranslate(ctx *cli.Context, args []string) error {
 	deadline := flags.Duration("deadline", 0, "stop starting runs this long from now, such as 5h")
 	maxTurns := flags.Int("max-turns", 0, "the --max-turns of every run")
 	runTimeout := flags.Duration("run-timeout", 0, "kill a run that takes longer than this, such as 90m")
+	softTurns := flags.Int("soft-turns", 0, "after this many turns a run gets no new batch, and ends once the batch it has is submitted (0: only --max-turns)")
 	claude := flags.String("claude", "", "the claude command (default: claude, from PATH)")
 	model := flags.String("model", "", "the model of the runs (default: $LCT_MODEL)")
 	pushEachRun := flags.Bool("push-each-run", false, "after every run, commit the tw worktree and push it to the tw of origin, so that a runner that is lost loses one run at most")
@@ -69,6 +71,8 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		return cli.UserError("translate: --max-turns must be at least 1")
 	case *runTimeout <= 0:
 		return cli.UserError("translate: --run-timeout must be a positive duration, such as 90m")
+	case *softTurns < 0 || *softTurns >= *maxTurns:
+		return cli.UserError("translate: --soft-turns must be 0, or less than --max-turns")
 	}
 	if *model == "" {
 		*model = os.Getenv("LCT_MODEL")
@@ -97,6 +101,13 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		return err
 	}
 
+	// Batches a run left: the run that took them is over. One lost earlier
+	// (a runner that died) holds its units too, so they are settled before
+	// the first round as well.
+	settle := settleBatches(ctx, env, *model)
+	if err := settle(0); err != nil {
+		fmt.Fprintf(os.Stderr, "before round 1: settling the batches left: %v\n", err)
+	}
 	var afterRun func(int) error
 	if *pushEachRun {
 		afterRun = keepProgress(env, filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.TW)), progressSubject+" "+env.RawTag)
@@ -112,6 +123,9 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		// The queue is read anew each time; KR does not change meanwhile.
 		Available: func() (int, error) { return batch.Available(env, batchNow()) },
 		Log:       os.Stderr,
+		SoftTurns: *softTurns,
+		StopFile:  filepath.Join(ctx.Root, filepath.FromSlash(batchStopFile)),
+		Settle:    settle,
 		AfterRun:  afterRun,
 	})
 	if err != nil {
@@ -125,6 +139,46 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		return fmt.Errorf("translate: %s", res.Error)
 	}
 	return nil
+}
+
+// settleBatches returns what lct translate does with the batches still leased
+// after a run (round 0: before the first): a run that is over will not submit
+// them. One whose out file is there is submitted as lct batch submit does; the
+// others, and one whose out file is refused, are released, so that the next
+// round can take their units at once rather than when the lease runs out.
+func settleBatches(ctx *cli.Context, env batch.Env, model string) func(int) error {
+	return func(round int) error {
+		when := fmt.Sprintf("round %d", round)
+		if round == 0 {
+			when = "before round 1"
+		}
+		ids, err := batch.LeasedBatches(env, batchNow())
+		if err != nil {
+			return err
+		}
+		for _, id := range ids {
+			if has, err := pathExists(batchPath(ctx, id, ".out.json")); err != nil {
+				return err
+			} else if has {
+				rep, err := submitBatch(ctx, id, model)
+				if err == nil {
+					fmt.Fprintf(os.Stderr, "%s: submitted the batch %s the run left: %d accepted, %d rejected\n", when, id, len(rep.Accepted), len(rep.Rejected))
+					// Units it did not cover are still leased: free them too.
+					if _, err := batch.Release(env, id); err != nil {
+						return err
+					}
+					continue
+				}
+				fmt.Fprintf(os.Stderr, "%s: the batch %s the run left could not be submitted: %v\n", when, id, err)
+			}
+			n, err := batch.Release(env, id)
+			if err != nil {
+				return err
+			}
+			fmt.Fprintf(os.Stderr, "%s: released the batch %s the run left (%d units)\n", when, id, n)
+		}
+		return nil
+	}
 }
 
 // keepProgress returns what lct translate --push-each-run does after a run:

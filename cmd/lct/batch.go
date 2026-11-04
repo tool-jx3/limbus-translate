@@ -29,6 +29,11 @@ import (
 // to the repo root (it is not under version control).
 const batchDir = "work/batches"
 
+// batchStopFile is made by lct translate once a run has used its soft turns:
+// while it is there, lct batch next hands out no batch, so the skill ends the
+// run once the batch it has is submitted (see translate.Options.SoftTurns).
+const batchStopFile = batchDir + "/.stop"
+
 func init() {
 	cli.Register(cli.Command{
 		Name:  "batch next",
@@ -158,9 +163,15 @@ type nextReport struct {
 	Batch *string `json:"batch"`
 	Path  string  `json:"path,omitempty"`
 	Units int     `json:"units,omitempty"`
+	// Stopped says why no batch was handed out though units may be free: the
+	// run of lct translate has used its turns.
+	Stopped string `json:"stopped,omitempty"`
 }
 
 func (r nextReport) String() string {
+	if r.Batch == nil && r.Stopped != "" {
+		return "nothing to hand out: " + r.Stopped
+	}
 	if r.Batch == nil {
 		return "nothing to hand out: no pending unit is free"
 	}
@@ -184,6 +195,11 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 		return cli.UserError("batch next: --max-units must be at least 1")
 	}
 
+	if stopped, err := pathExists(filepath.Join(ctx.Root, filepath.FromSlash(batchStopFile))); err != nil {
+		return err
+	} else if stopped {
+		return ctx.Emit(nextReport{Stopped: "this run of lct translate has used its turns; end the run, and the next run takes the next batch"})
+	}
 	env, r, err := openBatchEnv(ctx, "batch next")
 	if err != nil {
 		return err
@@ -388,24 +404,41 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 		return cli.UserError("batch submit: no model to record: set LCT_MODEL (or give --model)")
 	}
 
-	var b batch.Batch
-	if err := readStrictJSON(ctx, batchPath(ctx, id, ".json"), &b); err != nil {
+	rep, err := submitBatch(ctx, id, *model)
+	if err != nil {
 		return err
 	}
+	res := &rep.SubmitResult
+	if err := ctx.Emit(submitReport{Batch: id, SubmitResult: *res}); err != nil {
+		return err
+	}
+	if len(res.Rejected) > 0 {
+		return cli.ErrFindings
+	}
+	return nil
+}
+
+// submitBatch submits work/batches/<id>.out.json as the translations of the
+// batch id by model, as lct batch submit does, and returns what it printed.
+func submitBatch(ctx *cli.Context, id, model string) (*submitReport, error) {
+	var b batch.Batch
+	if err := readStrictJSON(ctx, batchPath(ctx, id, ".json"), &b); err != nil {
+		return nil, err
+	}
 	if b.ID != id {
-		return cli.UserError(fmt.Sprintf("batch submit: work/batches/%s.json holds another batch (%s)", id, b.ID))
+		return nil, cli.UserError(fmt.Sprintf("batch submit: work/batches/%s.json holds another batch (%s)", id, b.ID))
 	}
 	var out []batch.OutUnit
 	if err := readStrictJSON(ctx, batchPath(ctx, id, ".out.json"), &out); err != nil {
-		return err
+		return nil, err
 	}
 
 	env, _, err := openBatchEnv(ctx, "batch submit")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	if env.RulesCommit, err = rulesCommit(ctx, "batch submit"); err != nil {
-		return err
+		return nil, err
 	}
 	// The records are made all the same: a person who runs a batch by hand
 	// with rules not yet committed is told, once, and decides.
@@ -416,25 +449,19 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 		fmt.Fprintf(os.Stderr, "lct: warning: batch submit: %s\n", w.Issues[0].Message)
 	}
 	if env.KeywordNames, err = keywordNames(env.Store, env.Src); err != nil {
-		return err
+		return nil, err
 	}
-	res, err := batch.Submit(env, &b, out, *model, ctx.Config.Batch.MaxAttempts)
+	res, err := batch.Submit(env, &b, out, model, ctx.Config.Batch.MaxAttempts)
 	if errors.Is(err, batch.ErrBadKey) {
 		// The translator's file is wrong, not the system; nothing was written.
-		return cli.UserError(fmt.Sprintf("batch submit: work/batches/%s.out.json: %v", id, err))
+		return nil, cli.UserError(fmt.Sprintf("batch submit: work/batches/%s.out.json: %v", id, err))
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 	if rulesWarning != nil {
 		res.Warnings = append([]batch.Rejection{*rulesWarning}, res.Warnings...)
 	}
 
-	if err := ctx.Emit(submitReport{Batch: id, SubmitResult: *res}); err != nil {
-		return err
-	}
-	if len(res.Rejected) > 0 {
-		return cli.ErrFindings
-	}
-	return nil
+	return &submitReport{Batch: id, SubmitResult: *res}, nil
 }

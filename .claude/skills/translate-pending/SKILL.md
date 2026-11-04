@@ -25,7 +25,7 @@ allowed-tools:
 0. 執行 `go build -o bin/lct ./cmd/lct`。每次開始都執行（增量建置，很快）；失敗就停止並回報
 1. 執行 `bin/lct batch next --json`
    - exit code 不是 0：停止，回報錯誤訊息
-   - 結果為 `{"batch": null}`：沒有批次可領。執行 `bin/lct pending --count --json`，回報它的結果、這次送出的批次數，以及 `released` 不是空的批次與其中的 key（見「退回」），然後結束
+   - 結果為 `{"batch": null}`：沒有批次可領（有 `stopped` 時是這次執行的回合已用完，一樣照下面結束，下次執行再領）。執行 `bin/lct pending --count --json`，回報它的結果、這次送出的批次數，以及 `released` 不是空的批次與其中的 key（見「退回」），然後結束
    - 否則記下 `batch`（批次 id，以下寫作 `<id>`）、`path`（批次檔）與 `units`（單位數）
 2. 讀批次檔，格式見 `schemas/batch.schema.json`。檔案長時分段讀，確定讀到全部 `units`。讀 `prompts/translate.md`，再依序讀批次 `guides` 列出的檔案。讀過的檔案只有在內容仍完整留在上下文中時才可以不重讀；不確定就重讀
 3. 依 `prompts/translate.md` 翻譯全部單位，寫成 `work/batches/<id>.out.json`，格式見 `schemas/batch-out.schema.json`；物件數要等於 `units`

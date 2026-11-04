@@ -202,9 +202,11 @@ jobs:
 
       # A translation that fails stops nothing: what was translated is built
       # and released, and the rest stays pending for the next run. Only this
-      # step has the API key. A run of the CLI normally ends at its turn limit
-      # (100 turns, well inside 90 minutes); the 90 minutes only guard against
-      # a run that hangs.
+      # step has the API key. After 100 turns a run of the CLI gets no new batch
+      # and ends once its batch is submitted; 130 turns is the hard limit, well
+      # inside 90 minutes, and a batch a run leaves is submitted (its out file
+      # there) or released at once. The 90 minutes only guard against a run
+      # that hangs.
       - name: Translate what is pending
         if: steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'
         env:
@@ -214,7 +216,7 @@ jobs:
           DISABLE_AUTOUPDATER: '1'
         run: |
           status=0
-          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 100 --run-timeout 90m --push-each-run || status=$?
+          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 130 --soft-turns 100 --run-timeout 90m --push-each-run || status=$?
           if [ "$status" -ne 0 ]; then
             echo "::warning::lct translate stopped with exit code $status; what was translated is built and released"
           fi

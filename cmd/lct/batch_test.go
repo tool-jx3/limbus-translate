@@ -299,6 +299,29 @@ func TestBatchSubmitReusesTheTranslationOfTwins(t *testing.T) {
 	}
 }
 
+// While the stop file of lct translate is there, lct batch next hands out no
+// batch, and says why: the run ends once the batch it has is submitted.
+func TestBatchNextHandsOutNothingAfterTheStop(t *testing.T) {
+	root, st := batchRepo(t)
+	writeTestFile(t, root, batchStopFile, "the run has used its turns\n")
+	next, raw, err := runNextJSON(t, root)
+	if err != nil {
+		t.Fatalf("batch next: %v\n%s", err, raw)
+	}
+	if next.Batch != nil || !strings.Contains(raw, `"stopped"`) {
+		t.Errorf("batch next = %s, want no batch and why", raw)
+	}
+	items, err := st.LoadPending()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, it := range items {
+		if it.Lease != nil {
+			t.Errorf("%s is leased to %s, want no lease after a stop", it.Key, it.Lease.Batch)
+		}
+	}
+}
+
 func TestBatchSubmit(t *testing.T) {
 	root, st := batchRepo(t)
 	next, _, err := runNextJSON(t, root)

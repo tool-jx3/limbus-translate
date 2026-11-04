@@ -29,6 +29,9 @@ import (
 //	FAKE_HOLD    when set, the run leaves a background sleep behind it that
 //	             holds stdout and stderr, so that they never reach end of file
 //	             (child)
+//	FAKE_TURNS   how many assistant events the run streams before FAKE_OUT
+//	FAKE_STOP    a file the run waits for after those events, up to
+//	             FAKE_WAIT seconds; it records seen or absent (stop)
 const fakeScript = `#!/bin/sh
 d="$FAKE_DIR"
 echo "$*" >> "$d/args"
@@ -47,6 +50,16 @@ fi
 if [ -n "$FAKE_HOLD" ]; then
   sleep 60 &
   echo $! > "$d/child"
+fi
+i=0
+while [ "$i" -lt "${FAKE_TURNS:-0}" ]; do
+  printf '%s\n' '{"type":"assistant","message":{"content":[]}}'
+  i=$((i + 1))
+done
+if [ -n "$FAKE_STOP" ]; then
+  w=0
+  while [ ! -e "$FAKE_STOP" ] && [ "$w" -lt "$((${FAKE_WAIT:-1} * 10))" ]; do sleep 0.1; w=$((w + 1)); done
+  if [ -e "$FAKE_STOP" ]; then echo seen >> "$d/stop"; else echo absent >> "$d/stop"; fi
 fi
 n=$(cat "$d/count")
 echo $((n - ${FAKE_DEC:-0})) > "$d/count"
@@ -84,6 +97,9 @@ func newFake(t *testing.T, count, dec int) *fake {
 	t.Setenv("FAKE_HANG", "")
 	t.Setenv("FAKE_ORPHAN", "")
 	t.Setenv("FAKE_HOLD", "")
+	t.Setenv("FAKE_TURNS", "0")
+	t.Setenv("FAKE_STOP", "")
+	t.Setenv("FAKE_WAIT", "1")
 	return f
 }
 
@@ -155,18 +171,22 @@ func TestRunStopsWhenNothingIsPending(t *testing.T) {
 		t.Errorf("Model, RawTag, RulesCommit = %q, %q, %q, want m and the other two left to the caller", res.Model, res.RawTag, res.RulesCommit)
 	}
 
-	// One line a round: the round, the cost so far and the units available.
+	// Two lines a round: the round, the cost so far and the units available;
+	// then how many turns the run took and what it cost.
 	lines := strings.Split(strings.TrimSpace(f.log.String()), "\n")
-	if len(lines) != 3 {
-		t.Fatalf("log has %d lines, want one for each of the 3 rounds:\n%s", len(lines), f.log.String())
+	if len(lines) != 6 {
+		t.Fatalf("log has %d lines, want two for each of the 3 rounds:\n%s", len(lines), f.log.String())
+	}
+	if lines[1] != "round 1: ended after 4 turns, cost $0.10" {
+		t.Errorf("log line 2 = %q, want the 4 turns and the $0.10 of round 1", lines[1])
 	}
 	for i, want := range []string{"round 1", "$0.00", "available 3"} {
 		if !strings.Contains(lines[0], want) {
 			t.Errorf("log line 1 lacks %q (checked %d): %s", want, i, lines[0])
 		}
 	}
-	if !strings.Contains(lines[2], "round 3") || !strings.Contains(lines[2], "$0.20") || !strings.Contains(lines[2], "available 1") {
-		t.Errorf("log line 3 = %q, want round 3, $0.20 so far and 1 available", lines[2])
+	if !strings.Contains(lines[4], "round 3") || !strings.Contains(lines[4], "$0.20") || !strings.Contains(lines[4], "available 1") {
+		t.Errorf("log line 5 = %q, want round 3, $0.20 so far and 1 available", lines[4])
 	}
 }
 
@@ -306,6 +326,117 @@ func TestRunDoesNotCallAfterRunForAFailedRun(t *testing.T) {
 	}
 	if called {
 		t.Error("AfterRun was called after a run that failed")
+	}
+}
+
+// A run streams its events, one JSON object a line (stream-json); its result
+// is the event of type result.
+func TestRunReadsTheResultOfAStream(t *testing.T) {
+	f := newFake(t, 1, 1)
+	t.Setenv("FAKE_OUT", `{"type":"system","subtype":"init"}
+{"type":"assistant","message":{"content":[]}}
+{"type":"result","subtype":"success","is_error":false,"num_turns":2,"total_cost_usd":0.3}`)
+	res := mustRun(t, f.opts())
+	if res.Stopped != StopDone || !near(res.CostUSD, 0.3) {
+		t.Errorf("result = %+v, want done at the 0.3 of the result event", res)
+	}
+	if !strings.Contains(f.log.String(), "round 1: ended after 2 turns, cost $0.30") {
+		t.Errorf("the log does not say how many turns round 1 took:\n%s", f.log.String())
+	}
+}
+
+// A stream without a result event says nothing of what the run cost: an error.
+func TestRunStopsOnAStreamWithoutAResult(t *testing.T) {
+	f := newFake(t, 1, 1)
+	t.Setenv("FAKE_OUT", `{"type":"system","subtype":"init"}
+{"type":"assistant","message":{"content":[]}}`)
+	res := mustRun(t, f.opts())
+	if res.Stopped != StopError || !strings.Contains(res.Error, "no result") {
+		t.Errorf("result = %+v, want an error that the run printed no result", res)
+	}
+}
+
+// Once a run has taken SoftTurns turns, StopFile is made: lct batch next hands
+// out no new batch, so the run ends once its batch is submitted, before the
+// hard limit of MaxTurns cuts a batch in half. The file is gone after Run.
+func TestRunSignalsTheStopAfterSoftTurns(t *testing.T) {
+	for _, tc := range []struct {
+		name  string
+		turns string
+		want  string
+	}{
+		{"soft turns reached", "3", "seen"},
+		{"soft turns not reached", "1", "absent"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			f := newFake(t, 1, 1)
+			stop := filepath.Join(f.root, "stop")
+			t.Setenv("FAKE_TURNS", tc.turns)
+			t.Setenv("FAKE_STOP", stop)
+			t.Setenv("FAKE_WAIT", "3")
+			if tc.want == "absent" {
+				t.Setenv("FAKE_WAIT", "1")
+			}
+			opt := f.opts()
+			opt.SoftTurns, opt.StopFile = 2, stop
+			if res := mustRun(t, opt); res.Stopped != StopDone {
+				t.Fatalf("result = %+v, want done", res)
+			}
+			if got := f.recorded("stop"); len(got) != 1 || got[0] != tc.want {
+				t.Errorf("the run saw the stop file: %q, want %s", got, tc.want)
+			}
+			if _, err := os.Stat(stop); !errors.Is(err, os.ErrNotExist) {
+				t.Errorf("the stop file is still there after Run: %v", err)
+			}
+			if tc.want == "seen" && !strings.Contains(f.log.String(), "round 1: 2 turns, no new batch") {
+				t.Errorf("the log does not say that round 1 stopped taking batches:\n%s", f.log.String())
+			}
+		})
+	}
+}
+
+// A turn is one message of the model: the stream may send it in more than one
+// assistant event, with the same message id, and it counts once.
+func TestRunCountsATurnOnceForEachMessage(t *testing.T) {
+	f := newFake(t, 1, 1)
+	stop := filepath.Join(f.root, "stop")
+	t.Setenv("FAKE_OUT", `{"type":"assistant","message":{"id":"m1","content":[{"type":"text"}]}}
+{"type":"assistant","message":{"id":"m1","content":[{"type":"tool_use"}]}}
+{"type":"assistant","message":{"id":"m2","content":[]}}
+{"type":"result","subtype":"success","is_error":false,"num_turns":2,"total_cost_usd":0.1}`)
+	opt := f.opts()
+	opt.SoftTurns, opt.StopFile = 3, stop
+	mustRun(t, opt)
+	if strings.Contains(f.log.String(), "no new batch") {
+		t.Errorf("two messages in three events were taken for three turns:\n%s", f.log.String())
+	}
+}
+
+// Settle is called after every run that started, one that failed too, before
+// AfterRun: it deals with the batches the run left.
+func TestRunSettlesEveryRun(t *testing.T) {
+	f := newFake(t, 2, 1)
+	opt := f.opts()
+	var settled []int
+	opt.Settle = func(round int) error { settled = append(settled, round); return nil }
+	mustRun(t, opt)
+	if !slices.Equal(settled, []int{1, 2}) {
+		t.Errorf("Settle was called for rounds %v, want 1 and 2", settled)
+	}
+
+	g := newFake(t, 5, 1)
+	t.Setenv("FAKE_OUT", `{"is_error": true}`)
+	opt = g.opts()
+	settled = nil
+	opt.Settle = func(round int) error { settled = append(settled, round); return errors.New("cannot settle") }
+	if res := mustRun(t, opt); res.Stopped != StopError {
+		t.Fatalf("result = %+v, want an error", res)
+	}
+	if !slices.Equal(settled, []int{1}) {
+		t.Errorf("Settle was called for rounds %v after a failed run, want 1", settled)
+	}
+	if !strings.Contains(g.log.String(), "cannot settle") {
+		t.Errorf("the log does not say that Settle failed:\n%s", g.log.String())
 	}
 }
 
@@ -620,8 +751,8 @@ func TestRunPassesModelAndArguments(t *testing.T) {
 	mustRun(t, f.opts())
 
 	// The folder of git is closed to the run: it holds the token of the checkout.
-	if got := f.recorded("args"); len(got) != 1 || got[0] != "-p /translate-pending --output-format json --model m --max-turns 7 --disallowedTools Read(./.git/**)" {
-		t.Errorf("arguments = %q, want -p /translate-pending --output-format json --model m --max-turns 7 --disallowedTools Read(./.git/**)", got)
+	if got := f.recorded("args"); len(got) != 1 || got[0] != "-p /translate-pending --output-format stream-json --verbose --model m --max-turns 7 --disallowedTools Read(./.git/**)" {
+		t.Errorf("arguments = %q, want -p /translate-pending --output-format stream-json --verbose --model m --max-turns 7 --disallowedTools Read(./.git/**)", got)
 	}
 	if got := f.recorded("model"); len(got) != 1 || got[0] != "m" {
 		t.Errorf("LCT_MODEL = %q, want m", got)

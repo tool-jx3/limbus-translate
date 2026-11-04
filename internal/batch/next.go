@@ -282,6 +282,47 @@ func batchID(now time.Time, firstKey string) string {
 // maxIDSuffixes is how many suffixes uniqueID tries after the plain id.
 const maxIDSuffixes = 1000
 
+// LeasedBatches returns the ids of the batches that hold a lease at now, in
+// order: the batches handed out and not submitted yet.
+func LeasedBatches(env Env, now time.Time) ([]string, error) {
+	pending, err := env.Store.LoadPending()
+	if err != nil {
+		return nil, err
+	}
+	var ids []string
+	for _, it := range pending {
+		if !store.LeaseFree(it, now) && !slices.Contains(ids, it.Lease.Batch) {
+			ids = append(ids, it.Lease.Batch)
+		}
+	}
+	slices.Sort(ids)
+	return ids, nil
+}
+
+// Release frees the units leased to the batch id, at once rather than when
+// the lease runs out: the run that took the batch is over and will not submit
+// it. It returns how many units it freed.
+func Release(env Env, id string) (int, error) {
+	n := 0
+	err := env.Store.WithLock(func() error {
+		pending, err := env.Store.LoadPending()
+		if err != nil {
+			return err
+		}
+		for i := range pending {
+			if pending[i].Lease != nil && pending[i].Lease.Batch == id {
+				pending[i].Lease = nil
+				n++
+			}
+		}
+		if n == 0 {
+			return nil
+		}
+		return env.Store.SavePending(pending)
+	})
+	return n, err
+}
+
 // uniqueID returns id, or id with "-2", "-3"... appended, such that no lease
 // of pending (live or not: a batch that is still working under an old id must
 // not be mistaken for the new one) and no taken(id) holds it. It fails when

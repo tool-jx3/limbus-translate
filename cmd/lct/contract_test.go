@@ -1406,8 +1406,10 @@ var pipelineMarkers = []struct{ text, why string }{
 	{"bin/lct translate --max-usd", "nothing is translated"},
 	// A run of the CLI has to end at its turn limit, which is a normal end of
 	// a round; with more turns than fit in 90 minutes it would be killed and
-	// counted as an error, which ends the whole loop.
-	{"--deadline 5h --max-turns 100 --run-timeout 90m", "the translation has no time limits, or a turn limit that does not end a run before the 90 minutes do"},
+	// counted as an error, which ends the whole loop. After 100 turns a run
+	// gets no new batch and ends once its batch is submitted; 130 is the hard
+	// limit, for the batch it has.
+	{"--deadline 5h --max-turns 130 --soft-turns 100 --run-timeout 90m", "the translation has no time limits, a turn limit that does not end a run before the 90 minutes do, or no soft turn limit, so that the hard one cuts a batch in half"},
 	// Each run is kept on tw as it ends, not only once the step is over.
 	{"--run-timeout 90m --push-each-run", "the translations are pushed only once the translate step is over: a runner that is lost takes every run of the step with it"},
 	// What was translated is kept before anything can fail.
@@ -3446,7 +3448,8 @@ func TestWorkflowContract(t *testing.T) {
 		{"no title for the Release", `--title "$tag"`, "", "--title"},
 
 		// The turn limit ends a run before the time limit does.
-		{"a turn limit above the time limit", "--max-turns 100", "--max-turns 300", `--max-turns 100 --run-timeout 90m`},
+		{"a turn limit above the time limit", "--max-turns 130", "--max-turns 300", `--max-turns 130 --soft-turns 100 --run-timeout 90m`},
+		{"no soft turn limit", "--soft-turns 100 ", "", `--soft-turns 100`},
 		{"translations pushed only at the end", "--run-timeout 90m --push-each-run", "--run-timeout 90m", "--push-each-run"},
 
 		// The translations are kept right after translating.

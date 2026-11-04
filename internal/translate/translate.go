@@ -105,6 +105,17 @@ type Options struct {
 	Available func() (int, error)
 	// Log gets one line a round. Nil means no log.
 	Log io.Writer
+	// SoftTurns, when not zero, is the turn after which a run takes no new
+	// batch: once the run has streamed that many assistant turns, StopFile is
+	// made, lct batch next hands out nothing, and the skill ends the run once
+	// its batch is submitted, before MaxTurns cuts a batch in half. StopFile
+	// is removed before every run and when Run returns.
+	SoftTurns int
+	StopFile  string
+	// Settle, when set, is called after every run that started, one that
+	// failed too, before AfterRun, with its round: it deals with the batches
+	// the run took and did not submit. Its error is logged.
+	Settle func(round int) error
 	// AfterRun, when set, is called after every run that ends normally, with
 	// its round, so that the caller can keep what the run translated (commit
 	// and push it) before the next one. Its error is logged and the loop goes
@@ -165,6 +176,8 @@ func (o Options) check() error {
 		bad = "Model is empty"
 	case !(o.MaxUSD > 0):
 		bad = "MaxUSD must be positive"
+	case o.SoftTurns < 0 || (o.SoftTurns > 0 && (o.SoftTurns >= o.MaxTurns || o.StopFile == "")):
+		bad = "SoftTurns must be 0, or less than MaxTurns with a StopFile"
 	case o.Deadline.IsZero():
 		bad = "Deadline is not set"
 	case o.MaxTurns <= 0:
@@ -214,6 +227,14 @@ func Run(opt Options) (*Result, error) {
 	}
 
 	res := &Result{Model: opt.Model}
+	removeStop := func() {
+		if opt.StopFile != "" {
+			if err := os.Remove(opt.StopFile); err != nil && !errors.Is(err, os.ErrNotExist) {
+				fmt.Fprintf(log, "removing %s: %v\n", opt.StopFile, err)
+			}
+		}
+	}
+	defer removeStop()
 	finish := func(reason string) (*Result, error) {
 		res.Stopped = reason
 		return res, nil
@@ -251,11 +272,20 @@ func Run(opt Options) (*Result, error) {
 		}
 
 		fmt.Fprintf(log, "round %d: cost so far $%.2f, available %d\n", round, res.CostUSD, avail)
-		cost, started, err := runOnce(opt)
+		removeStop()
+		cost, turns, started, err := runOnce(opt, round, log)
 		if started {
 			res.Runs++
 		}
 		res.CostUSD += cost
+		if started && opt.Settle != nil {
+			if serr := opt.Settle(round); serr != nil {
+				fmt.Fprintf(log, "round %d: settling the batches of the run: %v\n", round, serr)
+			}
+		}
+		if err == nil {
+			fmt.Fprintf(log, "round %d: ended after %d turns, cost $%.2f\n", round, turns, cost)
+		}
 		if err != nil {
 			// The run may have translated some units before it failed.
 			if n, aerr := opt.Available(); aerr == nil {
@@ -277,6 +307,8 @@ var errNoCost = errors.New("claude printed no total_cost_usd: the cost of the ru
 // output is the JSON object a run prints with --output-format json; only the
 // fields Run uses are named.
 type output struct {
+	// Type is the type of a stream-json event; the result is "result".
+	Type         string   `json:"type"`
 	TotalCostUSD *float64 `json:"total_cost_usd"`
 	IsError      bool     `json:"is_error"`
 	Subtype      string   `json:"subtype"`
@@ -284,30 +316,116 @@ type output struct {
 	Result       string   `json:"result"`
 }
 
-// decodeOutput reads the object a run printed. Anything else is an error.
+// decodeOutput reads the result a run printed: the last event of type result
+// of its stream, or the one object it printed. Anything that is not a JSON
+// object a line is an error.
 func decodeOutput(b []byte) (output, error) {
-	var out output
-	b = bytes.TrimSpace(b)
-	if len(b) == 0 || b[0] != '{' {
-		return out, errors.New("not a JSON object")
+	// stream-json: one JSON object a line, the last of type result. A single
+	// object without a type (an error the CLI printed before streaming) is
+	// taken as the result.
+	var last *output
+	objects := 0
+	var only output
+	for _, line := range bytes.Split(b, []byte("\n")) {
+		line = bytes.TrimSpace(line)
+		if len(line) == 0 {
+			continue
+		}
+		if line[0] != '{' {
+			return output{}, errors.New("not a JSON object")
+		}
+		var o output
+		if err := json.Unmarshal(line, &o); err != nil {
+			return output{}, err
+		}
+		objects++
+		only = o
+		if o.Type == "result" {
+			o := o
+			last = &o
+		}
 	}
-	if err := json.NewDecoder(bytes.NewReader(b)).Decode(&out); err != nil {
-		return output{}, err
+	switch {
+	case last != nil:
+		return *last, nil
+	case objects == 1 && only.Type == "":
+		return only, nil
+	case objects == 0:
+		return output{}, errors.New("not a JSON object")
 	}
-	return out, nil
+	return output{}, errors.New("no result event in the stream")
+}
+
+// streamWatch keeps what a run prints, and counts its assistant turns as they
+// stream: at SoftTurns it makes StopFile, once.
+type streamWatch struct {
+	buf      bytes.Buffer
+	scanned  int
+	turns    int
+	soft     int
+	stopFile string
+	signaled bool
+	round    int
+	log      io.Writer
+	// seen are the ids of the messages counted: one message of the model may
+	// come in more than one assistant event, and it is one turn.
+	seen map[string]bool
+}
+
+func (w *streamWatch) Write(p []byte) (int, error) {
+	w.buf.Write(p)
+	for {
+		rest := w.buf.Bytes()[w.scanned:]
+		nl := bytes.IndexByte(rest, '\n')
+		if nl < 0 {
+			return len(p), nil
+		}
+		w.line(rest[:nl])
+		w.scanned += nl + 1
+	}
+}
+
+func (w *streamWatch) line(line []byte) {
+	var ev struct {
+		Type    string `json:"type"`
+		Message struct {
+			ID string `json:"id"`
+		} `json:"message"`
+	}
+	if json.Unmarshal(bytes.TrimSpace(line), &ev) != nil || ev.Type != "assistant" {
+		return
+	}
+	if id := ev.Message.ID; id != "" {
+		if w.seen == nil {
+			w.seen = map[string]bool{}
+		}
+		if w.seen[id] {
+			return
+		}
+		w.seen[id] = true
+	}
+	w.turns++
+	if w.soft > 0 && !w.signaled && w.turns >= w.soft {
+		w.signaled = true
+		if err := os.WriteFile(w.stopFile, []byte("lct translate: the run has used its turns\n"), 0o644); err != nil {
+			fmt.Fprintf(w.log, "round %d: %d turns, but the stop file could not be made: %v\n", w.round, w.turns, err)
+			return
+		}
+		fmt.Fprintf(w.log, "round %d: %d turns, no new batch from now on\n", w.round, w.turns)
+	}
 }
 
 // runOnce runs claude once in the process group of its own, so that a run
 // that hangs is killed with everything it started. It returns the cost the
 // run reported (0 when it did not), whether the process was started, and the
 // reason the run failed, if it did.
-func runOnce(opt Options) (cost float64, started bool, err error) {
+func runOnce(opt Options, round int, log io.Writer) (cost float64, turns int, started bool, err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), opt.RunTimeout)
 	defer cancel()
 
 	cmd := exec.CommandContext(ctx, opt.Claude,
 		"-p", skill,
-		"--output-format", "json",
+		"--output-format", "stream-json", "--verbose",
 		"--model", opt.Model,
 		"--max-turns", strconv.Itoa(opt.MaxTurns),
 		"--disallowedTools", gitDenied)
@@ -326,12 +444,12 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	if opt.waitDelay > 0 {
 		cmd.WaitDelay = opt.waitDelay
 	}
-	var stdout bytes.Buffer
+	stdout := &streamWatch{soft: opt.SoftTurns, stopFile: opt.StopFile, round: round, log: log}
 	stderr := &tail{max: stderrKept}
-	cmd.Stdout, cmd.Stderr = &stdout, stderr
+	cmd.Stdout, cmd.Stderr = stdout, stderr
 
 	if err := cmd.Start(); err != nil {
-		return 0, false, err
+		return 0, 0, false, err
 	}
 	waitErr := cmd.Wait()
 	timedOut := errors.Is(ctx.Err(), context.DeadlineExceeded)
@@ -339,7 +457,8 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	// on into the next round. The group may be gone already: best effort.
 	_ = syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
 
-	out, decodeErr := decodeOutput(stdout.Bytes())
+	out, decodeErr := decodeOutput(stdout.buf.Bytes())
+	turns = out.NumTurns
 	badCost := false
 	if decodeErr == nil && out.TotalCostUSD != nil {
 		if validCost(*out.TotalCostUSD) {
@@ -356,28 +475,28 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 	}
 	switch {
 	case timedOut:
-		return cost, true, fmt.Errorf("claude timed out after %v and was killed", opt.RunTimeout)
+		return cost, turns, true, fmt.Errorf("claude timed out after %v and was killed", opt.RunTimeout)
 	case badCost:
-		return 0, true, fmt.Errorf("claude printed total_cost_usd %v, which is not a cost: the cost of the run is unknown", *out.TotalCostUSD)
+		return 0, turns, true, fmt.Errorf("claude printed total_cost_usd %v, which is not a cost: the cost of the run is unknown", *out.TotalCostUSD)
 	case decodeErr == nil && out.Subtype == subtypeMaxTurns:
 		// The normal end of a long run; see Run.
 		if out.TotalCostUSD == nil {
-			return 0, true, errNoCost
+			return 0, turns, true, errNoCost
 		}
 	case waitErr != nil:
 		msg := waitErr.Error()
 		if s := stderr.String(); s != "" {
 			msg += ": " + s
 		}
-		return cost, true, fmt.Errorf("claude: %s", msg)
+		return cost, turns, true, fmt.Errorf("claude: %s", msg)
 	case decodeErr != nil:
-		return cost, true, fmt.Errorf("claude printed %s: %s", decodeErr, snippet(stdout.String()))
+		return cost, turns, true, fmt.Errorf("claude printed %s: %s", decodeErr, snippet(stdout.buf.String()))
 	case out.IsError:
-		return cost, true, fmt.Errorf("claude reported an error (subtype %q, %d turns): %s", out.Subtype, out.NumTurns, snippet(out.Result))
+		return cost, turns, true, fmt.Errorf("claude reported an error (subtype %q, %d turns): %s", out.Subtype, out.NumTurns, snippet(out.Result))
 	case out.TotalCostUSD == nil:
-		return 0, true, errNoCost
+		return 0, turns, true, errNoCost
 	}
-	return cost, true, nil
+	return cost, turns, true, nil
 }
 
 // validCost reports whether c can be the cost of a run: not negative, not a
