@@ -1,0 +1,7 @@
+# 使用者確認（2026-11-04）：E.G.O 寫成「E.G.O」，結尾不加「.」。
+# KR 句末的「E.G.O.」最後一點是句號，中文已有「。」：「阿賴耶的E.G.O.。」→「阿賴耶的E.G.O。」；句中直接接後面的字。
+# 現有 6 個單位（都是 Paratranz）：BattleKeywords/Bufs-a1c9p3 的 125、126 flavor，StoryData/P11214 的 15，StoryData/S912B 的 136。
+reason: 'E.G.O 結尾不加「.」（guides/base.md 第 8 條）'
+files: ['BattleKeywords-a1c9p3.json', 'Bufs-a1c9p3.json', 'StoryData/P11214.json', 'StoryData/S912B.json']
+pattern: 'E\.G\.O\.'
+replace: 'E.G.O'
