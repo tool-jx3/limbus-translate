@@ -87,7 +87,7 @@ func TestMain(m *testing.M) {
 // was handed in batches.jsonl.
 func fakeClaude(dir string, args []string) error {
 	model := os.Getenv("LCT_MODEL")
-	want := []string{"-p", "/translate-pending", "--output-format", "json", "--model", model, "--max-turns", phase2MaxTurns}
+	want := []string{"-p", "/translate-pending", "--output-format", "json", "--model", model, "--max-turns", phase2MaxTurns, "--disallowedTools", "Read(./.git/**)"}
 	if model == "" || !slices.Equal(args, want) {
 		return fmt.Errorf("run with %q and LCT_MODEL=%q, want %q", args, model, want)
 	}

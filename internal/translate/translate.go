@@ -54,6 +54,11 @@ const (
 	defaultClaude = "claude"
 	// skill is the prompt of a run: the skill that translates the queue.
 	skill = "/translate-pending"
+	// gitDenied closes the folder of git to a run, whatever the skill's
+	// Read(./**) allows: it holds the token of the checkout in CI, and a run
+	// reads game text and notes anyone can write (rules-proposal.yml closes it
+	// to its action the same way).
+	gitDenied = "Read(./.git/**)"
 	// stallLimit is how many runs in a row may leave the count of available
 	// units where it was before Run gives up.
 	stallLimit = 2
@@ -304,7 +309,8 @@ func runOnce(opt Options) (cost float64, started bool, err error) {
 		"-p", skill,
 		"--output-format", "json",
 		"--model", opt.Model,
-		"--max-turns", strconv.Itoa(opt.MaxTurns))
+		"--max-turns", strconv.Itoa(opt.MaxTurns),
+		"--disallowedTools", gitDenied)
 	cmd.Dir = opt.Root
 	cmd.Env = append(os.Environ(), "LCT_MODEL="+opt.Model)
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}

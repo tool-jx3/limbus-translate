@@ -73,7 +73,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
   - `tw` 上次建置的 raw tag（`tw` 的 `.meta/build.json` 的 `raw_tag`）是不是目前 `raw` 的 tag；`tw` 落後 `raw`（例如上次翻完卻沒建置成功），或讀不到那個檔，這次會補建置與發布。
   - 有沒有還欠著的 Release：`bin/lct publish --check` 只讀 `tw` 的 git 狀態（HEAD、tag、檔案樹），`tw` 的語言包和最新的 Release 不同、HEAD 又沒有 Release 的 tag（上次 `tw` 推上去了，Release 卻沒建成），這次會補建立。
   - `tw` 最後一個 commit 的標題是不是以 `translate: keep the progress of` 開頭：保存進度之後 build 失敗，語言包仍和最新的 Release 相同，上一項看不出來，靠這一項補建置。
-- Claude Code CLI 在單獨的一個步驟安裝，那一步沒有 `ANTHROPIC_API_KEY`；key 只在執行 `lct translate` 的那一步。安裝失敗時不翻譯，照常 build 與發布，審核 Issue 列出「翻譯沒有執行」與原因。執行時設定 `DISABLE_AUTOUPDATER=1`，CLI 不會在執行中更新自己。
+- Claude Code CLI 在單獨的一個步驟安裝，那一步沒有 `ANTHROPIC_API_KEY`；key 只在執行 `lct translate` 的那一步。安裝失敗時不翻譯，照常 build 與發布，審核 Issue 列出「翻譯沒有執行」與原因。執行時設定 `DISABLE_AUTOUPDATER=1`，CLI 不會在執行中更新自己。每次執行都帶 `--disallowedTools "Read(./.git/**)"`：翻譯讀得到遊戲原文與譯者備註，那些文字誰都能寫進去，而 checkout 的 token 在 `.git/config`，所以 `.git/` 不讓它讀（同 `rules-proposal.yml`）。
 - 語言包沒變就不發 Release：只有語言包的內容和最新一個 `zh-TW-*` Release 不同時才建立。比較這次的 `tw` commit 與該 Release 的 `LimbusCompany_Data/` 檔案樹（git blob），不含 `Info/version.json`（它記錄規則 commit、建置時間、模型與花費，每次建置都不同）。相同就不建立，`tw` 照常 commit 與推送，該次執行的 summary 會寫「語言包與 `<tag>` 相同，這次不建立 Release」。
 - 審核 Issue 的標題是「審核：YYYY-MM-DD 更新」（日期取 raw tag 的日期）；沒有需要處理的項目時不開。同一個 raw tag 重跑時，內容會留言在還開著的同名 Issue，不另開新的。完整報表在該次執行的 summary。本機的 `bin/lct review`（或 `review` skill）從 `.work/tw` 印出同樣的項目。
 - 所有會寫入 `raw`、`tw` 的執行共用 concurrency 群組 `lct-state`，一次只跑一個。GitHub 的群組最多一個執行中、一個等待中，新的等待會取代舊的等待；如果某次被取代，到 Actions 頁面手動執行一次即可。`pages.yml` 只讀 `raw`、`tw`，用自己的群組 `pages`（`cancel-in-progress: false`），一次部署一個；每次都用當時的分支建置，被取代的那次不會漏掉什麼。

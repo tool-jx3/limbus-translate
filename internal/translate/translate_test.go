@@ -619,8 +619,9 @@ func TestRunPassesModelAndArguments(t *testing.T) {
 	t.Setenv("LCT_MODEL", "from-the-environment") // the run's own model wins
 	mustRun(t, f.opts())
 
-	if got := f.recorded("args"); len(got) != 1 || got[0] != "-p /translate-pending --output-format json --model m --max-turns 7" {
-		t.Errorf("arguments = %q, want -p /translate-pending --output-format json --model m --max-turns 7", got)
+	// The folder of git is closed to the run: it holds the token of the checkout.
+	if got := f.recorded("args"); len(got) != 1 || got[0] != "-p /translate-pending --output-format json --model m --max-turns 7 --disallowedTools Read(./.git/**)" {
+		t.Errorf("arguments = %q, want -p /translate-pending --output-format json --model m --max-turns 7 --disallowedTools Read(./.git/**)", got)
 	}
 	if got := f.recorded("model"); len(got) != 1 || got[0] != "m" {
 		t.Errorf("LCT_MODEL = %q, want m", got)

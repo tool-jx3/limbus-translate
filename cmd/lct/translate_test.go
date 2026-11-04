@@ -152,7 +152,7 @@ func TestTranslateCommandRecordsTheRun(t *testing.T) {
 		t.Errorf("translate.json = %+v, want %+v", res, want)
 	}
 
-	if got := strings.TrimSpace(string(readFile(t, filepath.Join(fakeDir, "args")))); got != "-p /translate-pending --output-format json --model from-the-flag --max-turns 9" {
+	if got := strings.TrimSpace(string(readFile(t, filepath.Join(fakeDir, "args")))); got != "-p /translate-pending --output-format json --model from-the-flag --max-turns 9 --disallowedTools Read(./.git/**)" {
 		t.Errorf("claude was run with %q", got)
 	}
 	if got := strings.TrimSpace(string(readFile(t, filepath.Join(fakeDir, "model")))); got != "from-the-flag" {
