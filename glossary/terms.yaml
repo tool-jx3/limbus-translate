@@ -976,7 +976,7 @@
   category: [city]
   notes: 見「현장추리팀」
 
-# 以下 422 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞（倒數 21 條中，前 12 條是不計 copy 單位後、後 9 條是只算單獨成詞後才達到九成的）。
+# 以下 455 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞；最後 33 條是八成以上（人工確認加入）。倒數第 54 到 34 條中，前 12 條是不計 copy 單位後、後 9 條是只算單獨成詞後才達到九成的。
 # evidence 是 2026-11-04 tw 的使用情況（不計 copy 單位）；notes 保留 Paratranz 的備註。
 
 - kr: 대상
@@ -3814,3 +3814,225 @@
   status: approved
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：A（evidence 只算單獨成詞的用法；KR 的「이베리아인과 에、이베리아인들을、이베리아인들은」等長詞裡也有這個字串）
+
+- kr: 속도
+  zh: 速度值
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1242, approved: 1050, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 공격 시작
+  zh: 進行攻擊
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 239, approved: 195, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 스킬당 1회
+  zh: 每個技能最多1次
+  status: approved
+  evidence: { kr_lines: 221, approved: 197, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 자판기
+  zh: 自動販賣機
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 189, approved: 162, forbidden: 0 }
+  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 이번 턴 동안
+  zh: 本回合內
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 187, approved: 151, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本使用（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 이 스킬의 피해로 대상이 흐트러지지 않음
+  zh: 本技能造成的傷害不會使目標陷入混亂
+  status: approved
+  evidence: { kr_lines: 181, approved: 148, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 광기
+  zh: 狂氣
+  status: approved
+  evidence: { kr_lines: 130, approved: 107, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 다음 턴 시작 시
+  zh: 下回合開始時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 117, approved: 104, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 키워드
+  zh: 關鍵字
+  status: approved
+  evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 유리창
+  zh: 玻璃窗
+  status: approved
+  evidence: { kr_lines: 84, approved: 74, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 피해량이 80%만큼 감소하고
+  zh: 使本技能造成的傷害-80%
+  status: approved
+  evidence: { kr_lines: 78, approved: 69, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 엔케팔린 모듈
+  zh: 腦啡肽模塊
+  status: approved
+  evidence: { kr_lines: 60, approved: 52, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 쉼터
+  zh: 休息點
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 35, approved: 30, forbidden: 0 }
+  notes: Paratranz 詞彙表：多用於鏡像迷宮機制（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 전투 보상 카드
+  zh: 遭遇戰獎勵卡
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 29, approved: 26, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡像迷宮機制（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 정신 피해
+  zh: 理智傷害
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 29, approved: 26, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 레미니센스
+  zh: 追憶
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 29, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：第2賽季名稱（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 묶인 왕
+  zh: 受縛之王
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 29, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 속도와 상관없이 이 스킬과 합을 할 수 있음
+  zh: 可無視速度值與本技能拚點
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 20, approved: 17, forbidden: 0 }
+  notes: Paratranz 詞彙表：技能輔助文本（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 출격 인원을 기준으로 함
+  zh: 以參戰人員為基準
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 20, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 전투 패시브
+  zh: 戰鬥被動
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 19, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 버스의 뒷문
+  zh: 巴士的後門
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 16, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 전투당 1회 발동
+  zh: 每場戰鬥最多1次
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 10, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 카르밀라
+  zh: 卡蜜拉
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 10, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 클리어 부서
+  zh: 清理部門
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 9, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指LCC（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 대리 결투
+  zh: 決鬥代理
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 8, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指Cinq協會的主要業務（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 미적 감각
+  zh: 美感
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 8, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 장엄
+  zh: 莊嚴
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 8, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 거울 투영
+  zh: 鏡像投影
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 7, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡牢成就（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 뒷면 적중 시
+  zh: 反面命中時
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 7, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 부위파괴
+  zh: 部位破壞
+  status: approved
+  evidence: { kr_lines: 7, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 외부 효과로 재사용할 수 없음
+  zh: 不會因外部效果而重複使用
+  status: approved
+  evidence: { kr_lines: 7, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 해진 우산
+  zh: 破損的雨傘
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+
+- kr: 흰 목화
+  zh: 白棉花
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
