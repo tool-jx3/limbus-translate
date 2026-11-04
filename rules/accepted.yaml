@@ -14,18 +14,6 @@
 #   - id: "warning/kana/0123abcd/89ef4567"
 #     reason: 日文假名是刻意保留的
 #     date: 2026-11-05
-- id: "warning/kana/395bbd7d/cb894a84"
-  reason: 協會名稱可以用外語，各協會剛好取自不同語言；시 협회 譯作「し協會」的假名是刻意的
-  date: 2026-11-04
-- id: "warning/kana/bfa42cf6/55103270"
-  reason: 協會名稱可以用外語，各協會剛好取自不同語言；시 협회 譯作「し協會」的假名是刻意的
-  date: 2026-11-04
-- id: "warning/halfwidth-punct/428481f1/52b697a7"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
-- id: "warning/halfwidth-punct/f18e1dca/5beda706"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
 - id: "warning/halfwidth-punct/2e037f6e/3cfa8fec"
   reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
   date: 2026-11-04
@@ -36,12 +24,6 @@
   reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
   date: 2026-11-04
 - id: "warning/halfwidth-punct/af877463/e19e44d1"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
-- id: "warning/halfwidth-punct/163a386d/d0839ec6"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
-- id: "warning/halfwidth-punct/99b35424/ad0aa985"
   reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
   date: 2026-11-04
 - id: "warning/halfwidth-punct/acac97e4/9a341081"
