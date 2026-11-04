@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
@@ -370,5 +371,35 @@ func TestAcceptTidyNamesTheBuild(t *testing.T) {
 	// The test repo has no commit in the tw worktree, so tw_commit is empty but present.
 	if !strings.Contains(stdout, `"raw_tag": "raw-20261029"`) || !strings.Contains(stdout, `"tw_commit"`) {
 		t.Errorf("tidy output lacks the build it was checked against:\n%s", stdout)
+	}
+}
+
+// The dry run shows each variant's JP/EN groups and the class of the group,
+// in the JSON and in the text, so the review skills see them.
+func TestAcceptDryRunShowsJPEN(t *testing.T) {
+	jp, en := "末弟", "Little Brother"
+	en2 := "Little Sister"
+	rep := lookupReport{Items: []lookupItem{{
+		ID: "inconsistent/identity/title/af7bae96", Kind: "inconsistent", List: "declined", KR: "중지 작은 아우", Keys: []string{"A.json|/a", "A.json|/b"},
+		JPENClass: site.JPENExplained,
+		Variants: []site.Variant{
+			{ZH: "中指 幼弟", Count: 1, Keys: []string{"A.json|/a"}, JPEN: []site.JPENGroup{{JP: &jp, EN: &en, Count: 1, Keys: []string{"A.json|/a"}}}},
+			{ZH: "中指 幼妹", Count: 1, Keys: []string{"A.json|/b"}, JPEN: []site.JPENGroup{{EN: &en2, Count: 1, Keys: []string{"A.json|/b"}}}},
+		},
+	}}, Unknown: []string{}}
+	data, err := json.Marshal(rep)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{`"jpen_class":"explained"`, `"jpen":[{"jp":"末弟","en":"Little Brother","count":1`, `"jpen":[{"en":"Little Sister"`} {
+		if !strings.Contains(string(data), want) {
+			t.Errorf("JSON lacks %s:\n%s", want, data)
+		}
+	}
+	text := rep.String()
+	for _, want := range []string{"JP/EN: explained", "JP 末弟／EN Little Brother（1）", "JP —／EN Little Sister（1）"} {
+		if !strings.Contains(text, want) {
+			t.Errorf("text lacks %q:\n%s", want, text)
+		}
 	}
 }

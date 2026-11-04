@@ -144,8 +144,13 @@ func TestReviewInconsistentListsEveryUnit(t *testing.T) {
 		{ZH: "一", Count: 2, Keys: []string{k(rvA, 0), k(rvB, 0)}},
 		{ZH: "壹", Count: 1, Keys: []string{k(rvA, 1)}},
 	}
-	if !reflect.DeepEqual(s.Variants, want) {
-		t.Errorf("Variants = %+v, want %+v", s.Variants, want)
+	// The JP/EN groups of the variants are TestReviewJPENGroups' business.
+	got := make([]Variant, len(s.Variants))
+	for i, v := range s.Variants {
+		got[i] = Variant{ZH: v.ZH, Count: v.Count, Keys: v.Keys}
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("Variants = %+v, want %+v", got, want)
 	}
 	if s.Family != "other" || s.Field != "content" || s.KR != rvKR {
 		t.Errorf("family/field/kr = %q %q %q", s.Family, s.Field, s.KR)
@@ -561,5 +566,88 @@ func TestReviewNoteSuggestionNotListedTwice(t *testing.T) {
 	}
 	if !slices.Contains(ids, unplacedID) {
 		t.Errorf("the unplaced note %s is gone from the suggestions: %v", unplacedID, ids)
+	}
+}
+
+func jpenOf(t *testing.T, r Review, zh string) []JPENGroup {
+	t.Helper()
+	for _, v := range findSuggestion(t, r, rvIncID).Variants {
+		if v.ZH == zh {
+			return v.JPEN
+		}
+	}
+	t.Fatalf("no variant %s", zh)
+	return nil
+}
+
+// Each variant lists its units by their JP and EN; equal counts keep the
+// order of the first unit.
+func TestReviewJPENGroups(t *testing.T) {
+	in, files := reviewInputs(t)
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	one := jpenOf(t, r, "一")
+	if len(one) != 2 || !same(one[0].JP, "いち") || !same(one[0].EN, "one") || one[0].Count != 1 ||
+		!slices.Equal(one[0].Keys, []string{k(rvA, 0)}) || one[1].JP != nil || !same(one[1].EN, "one") ||
+		!slices.Equal(one[1].Keys, []string{k(rvB, 0)}) {
+		t.Errorf("一 JPEN = %+v, want (いち, one) [A0] then (—, one) [B0]", one)
+	}
+	if two := jpenOf(t, r, "壹"); len(two) != 1 || !same(two[0].JP, "いち") || two[0].Count != 1 {
+		t.Errorf("壹 JPEN = %+v, want one group (いち, one)", two)
+	}
+}
+
+// The class says whether JP and EN tell the translations apart: same (every
+// unit has one JP/EN pair), explained (each pair has one translation),
+// partial (some pair has two). A missing JP is a value of its own.
+func TestReviewJPENClass(t *testing.T) {
+	cases := []struct {
+		name string
+		jpB  string // the JP of file B ("" for none)
+		enA1 string // the EN of /dataList/1 of file A, the unit of 壹
+		want string
+	}{
+		{"a missing JP is a pair of its own", "", "one", "partial"},
+		{"every unit has the same JP and EN", "いち", "one", "same"},
+		{"each JP/EN pair has one translation", "いち", "One!", "explained"},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			in, files := reviewInputs(t)
+			in.EN = writePack(t, "EN_", map[string]string{
+				rvA: `{"dataList":[{"id":1,"content":"one"},{"id":2,"content":"` + c.enA1 + `"},{"id":3,"content":"Heathcliff"},{"id":4,"content":"ka"},{"id":5,"content":"five"}]}`,
+				rvB: `{"dataList":[{"id":1,"content":"one"},{"id":2,"content":"Heathcliff"}]}`,
+			})
+			jp := map[string]string{rvA: `{"dataList":[{"id":1,"content":"いち"},{"id":2,"content":"いち"},{"id":3,"content":"ヒース"},{"id":4,"content":"か"},{"id":5,"content":"ご"}]}`}
+			if c.jpB != "" {
+				jp[rvB] = `{"dataList":[{"id":1,"content":"` + c.jpB + `"},{"id":2,"content":"ヒース"}]}`
+			}
+			in.JP = writePack(t, "JP_", jp)
+			r, err := BuildReview(in, files)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if got := findSuggestion(t, r, rvIncID).JPENClass; got != c.want {
+				t.Errorf("JPENClass = %q, want %q", got, c.want)
+			}
+		})
+	}
+}
+
+// A JP/EN group leaves out the language the units have no string in.
+func TestReviewJPENMissingLanguage(t *testing.T) {
+	in, files := reviewInputs(t)
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	data, err := json.Marshal(jpenOf(t, r, "一")[1])
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(data), `"jp"`) || !strings.Contains(string(data), `"en":"one"`) {
+		t.Errorf("JSON = %s, want no jp key and en one", data)
 	}
 }

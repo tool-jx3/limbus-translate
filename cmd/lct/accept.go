@@ -82,7 +82,10 @@ type lookupItem struct {
 	Message   string          `json:"message,omitempty"`
 	Keys      []string        `json:"keys"`
 	Variants  []site.Variant  `json:"variants,omitempty"`
-	Pending   int             `json:"pending"`
+	// JPENClass says whether JP and EN tell the variants apart (site.JPENSame,
+	// site.JPENExplained, site.JPENPartial); inconsistent groups only.
+	JPENClass string `json:"jpen_class,omitempty"`
+	Pending   int    `json:"pending"`
 }
 
 // lookupReport is what "accept --dry-run" prints: the items in the order of the
@@ -108,8 +111,14 @@ func (r lookupReport) String() string {
 				fmt.Fprintf(&b, "  %s: %s\n", f.label, f.text)
 			}
 		}
+		if it.JPENClass != "" {
+			fmt.Fprintf(&b, "  JP/EN: %s\n", it.JPENClass)
+		}
 		for _, v := range it.Variants {
 			fmt.Fprintf(&b, "  variant (%d): %s\n", v.Count, v.ZH)
+			for _, j := range v.JPEN {
+				fmt.Fprintf(&b, "    JP %s／EN %s（%d）\n", orDash(j.JP), orDash(j.EN), j.Count)
+			}
 		}
 		if len(it.Keys) > 0 {
 			fmt.Fprintf(&b, "  units (%d, %d waiting for retranslation):\n    %s\n", len(it.Keys), it.Pending, strings.Join(it.Keys, "\n    "))
@@ -119,6 +128,14 @@ func (r lookupReport) String() string {
 		fmt.Fprintf(&b, "\nno item of the last build:\n  %s\n", strings.Join(r.Unknown, "\n  "))
 	}
 	return b.String()
+}
+
+// orDash is the text of p, or 「—」 when the unit has no string in that language.
+func orDash(p *string) string {
+	if p == nil {
+		return "—"
+	}
+	return *p
 }
 
 func runAccept(ctx *cli.Context, args []string) error {
@@ -272,7 +289,7 @@ func acceptLookup(ctx *cli.Context, ids []string) error {
 	}
 	items := map[string]lookupItem{}
 	for _, sg := range rev.Suggestions {
-		it := lookupItem{ID: sg.ID, Kind: sg.Kind, List: listDeclined, Confirmed: sg.Declined, Title: sg.Title, KR: sg.KR, Variants: sg.Variants, Pending: sg.Pending, Keys: []string{}}
+		it := lookupItem{ID: sg.ID, Kind: sg.Kind, List: listDeclined, Confirmed: sg.Declined, Title: sg.Title, KR: sg.KR, Variants: sg.Variants, JPENClass: sg.JPENClass, Pending: sg.Pending, Keys: []string{}}
 		for _, v := range sg.Variants {
 			it.Keys = append(it.Keys, v.Keys...)
 		}

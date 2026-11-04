@@ -51,23 +51,49 @@ type Variant struct {
 	ZH    string   `json:"zh"`
 	Count int      `json:"count"`
 	Keys  []string `json:"keys"`
+	// JPEN are the units of the variant by their JP and EN, the most units
+	// first; equal counts keep the order of the first key.
+	JPEN []JPENGroup `json:"jpen"`
 }
+
+// JPENGroup is the units of a variant that have one JP and one EN string; JP
+// or EN is nil where the units have no string in that language.
+type JPENGroup struct {
+	JP    *string  `json:"jp,omitempty"`
+	EN    *string  `json:"en,omitempty"`
+	Count int      `json:"count"`
+	Keys  []string `json:"keys"`
+}
+
+// The classes of a group of inconsistent translations by its JP and EN
+// (SuggestionItem.JPENClass).
+const (
+	// JPENSame: every unit has the same JP and EN.
+	JPENSame = "same"
+	// JPENExplained: more than one JP/EN pair, each with one translation.
+	JPENExplained = "explained"
+	// JPENPartial: some JP/EN pair has two translations or more.
+	JPENPartial = "partial"
+)
 
 // SuggestionItem is one rule suggestion. Family, Field, KR, JP, EN and
 // Variants are those of a group of inconsistent translations only.
 type SuggestionItem struct {
-	ID       string             `json:"id"`
-	Kind     string             `json:"kind"`
-	Title    string             `json:"title"`
-	Family   string             `json:"family,omitempty"`
-	Field    string             `json:"field,omitempty"`
-	KR       string             `json:"kr,omitempty"`
-	JP       *string            `json:"jp,omitempty"`
-	EN       *string            `json:"en,omitempty"`
-	Variants []Variant          `json:"variants,omitempty"`
-	Evidence []suggest.Evidence `json:"evidence"`
-	Pending  int                `json:"pending"`
-	Declined *Confirmed         `json:"declined,omitempty"`
+	ID       string    `json:"id"`
+	Kind     string    `json:"kind"`
+	Title    string    `json:"title"`
+	Family   string    `json:"family,omitempty"`
+	Field    string    `json:"field,omitempty"`
+	KR       string    `json:"kr,omitempty"`
+	JP       *string   `json:"jp,omitempty"`
+	EN       *string   `json:"en,omitempty"`
+	Variants []Variant `json:"variants,omitempty"`
+	// JPENClass says whether JP and EN tell the variants apart: JPENSame,
+	// JPENExplained or JPENPartial; inconsistent groups only.
+	JPENClass string             `json:"jpen_class,omitempty"`
+	Evidence  []suggest.Evidence `json:"evidence"`
+	Pending   int                `json:"pending"`
+	Declined  *Confirmed         `json:"declined,omitempty"`
 }
 
 // WarningItem is one check warning: a code about one KR text and its
@@ -162,6 +188,7 @@ type group struct {
 	first             map[string][2]*string // zh -> JP, EN of its first unit
 	order             []string              // zh in order of first unit
 	keys              map[string][]string
+	jpen              map[string][2]*string // unit key -> its JP, EN
 }
 
 type warnAcc struct {
@@ -220,7 +247,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				id := itemid.Inconsistent(family, ku.Field, ku.KR)
 				g := groups[id]
 				if g == nil {
-					g = &group{family: family, field: ku.Field, kr: ku.KR, first: map[string][2]*string{}, keys: map[string][]string{}}
+					g = &group{family: family, field: ku.Field, kr: ku.KR, first: map[string][2]*string{}, keys: map[string][]string{}, jpen: map[string][2]*string{}}
 					groups[id] = g
 				}
 				if _, ok := g.keys[u.ZH]; !ok {
@@ -228,6 +255,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 					g.first[u.ZH] = [2]*string{u.JP, u.EN}
 				}
 				g.keys[u.ZH] = append(g.keys[u.ZH], key)
+				g.jpen[key] = [2]*string{u.JP, u.EN}
 			}
 			// The warnings are chosen as the build chooses what to check.
 			rec, ok := in.Records[key]
@@ -333,6 +361,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			if g != nil {
 				item.Family, item.Field, item.KR = g.family, g.field, g.kr
 				item.Variants = variantsOf(g)
+				item.JPENClass = jpenClass(item.Variants)
 				for _, v := range item.Variants {
 					item.Pending += pendingOf(v.Keys)
 				}
@@ -409,11 +438,69 @@ func sortedKeys(m map[string]bool) []string {
 func variantsOf(g *group) []Variant {
 	out := make([]Variant, 0, len(g.order))
 	for _, zh := range g.order {
-		out = append(out, Variant{ZH: zh, Count: len(g.keys[zh]), Keys: g.keys[zh]})
+		out = append(out, Variant{ZH: zh, Count: len(g.keys[zh]), Keys: g.keys[zh], JPEN: jpenGroups(g, g.keys[zh])})
 	}
 	// g.order is already the order of the first unit.
 	slices.SortStableFunc(out, func(a, b Variant) int { return cmp.Compare(b.Count, a.Count) })
 	return out
+}
+
+// jpenGroups groups keys, the units of one variant of g, by their JP and EN,
+// the most units first; equal counts keep the order of the first key.
+func jpenGroups(g *group, keys []string) []JPENGroup {
+	var out []JPENGroup
+	at := map[string]int{}
+	for _, key := range keys {
+		je := g.jpen[key]
+		p := pairKey(je)
+		i, ok := at[p]
+		if !ok {
+			i = len(out)
+			at[p] = i
+			out = append(out, JPENGroup{JP: je[0], EN: je[1]})
+		}
+		out[i].Count++
+		out[i].Keys = append(out[i].Keys, key)
+	}
+	slices.SortStableFunc(out, func(a, b JPENGroup) int { return cmp.Compare(b.Count, a.Count) })
+	return out
+}
+
+// pairKey is a JP/EN pair as a map key; a missing language is a value of its
+// own, apart from an empty string.
+func pairKey(je [2]*string) string {
+	part := func(p *string) string {
+		if p == nil {
+			return "-"
+		}
+		return "+" + *p
+	}
+	return part(je[0]) + "\x00" + part(je[1])
+}
+
+// jpenClass says whether JP and EN tell variants apart (spec of the JP/EN
+// view): same when every unit has one JP/EN pair, explained when each pair
+// has one translation, partial otherwise.
+func jpenClass(variants []Variant) string {
+	trans := map[string]map[string]bool{} // JP/EN pair -> its translations
+	for _, v := range variants {
+		for _, j := range v.JPEN {
+			p := pairKey([2]*string{j.JP, j.EN})
+			if trans[p] == nil {
+				trans[p] = map[string]bool{}
+			}
+			trans[p][v.ZH] = true
+		}
+	}
+	if len(trans) <= 1 {
+		return JPENSame
+	}
+	for _, zh := range trans {
+		if len(zh) > 1 {
+			return JPENPartial
+		}
+	}
+	return JPENExplained
 }
 
 // evidenceAdds reports whether every counted row of the evidence has a variant
