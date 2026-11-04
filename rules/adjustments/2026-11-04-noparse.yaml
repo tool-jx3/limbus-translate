@@ -17,3 +17,173 @@
     由被動「君．可．保．好」效果觸發的技能「喂，退下」在使用時，使該技能造成的暴擊傷害+30%；使除自身之外理智值最低的1名友方單位恢復2~4點理智值(每回合最多1次；理智值不高於-40的友方單位除外)
   reason: 「援」是 [CheerUpXichun] 的名稱：還原草稿（Paratranz）「加斥我<noparse>援</noparse>」的 <noparse>，修正時被刪掉了（人工確認）
   rule: guides/base.md
+- key: Passives_Abnormality-mr8.json|/dataList/4/desc
+  raw: raw-20261029
+  kr_sha: b8c76ab294c01120990f12e6c0664658026b7b33b7eab90dfee0bec1f1ed722d
+  zh: 關卡開始時，以45點理智值開<noparse>始</noparse>戰鬥
+  reason: 還原草稿（Paratranz）在「始」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives_Abnormality-a1c10p2.json|/dataList/32/desc
+  raw: raw-20261029
+  kr_sha: 3e91d75ae38472b626622e61059a46c51235b261098319413a1c9b588de26674
+  zh: 關卡開始時，以80%的體力與45點理智值開<noparse>始</noparse>戰鬥
+  reason: 還原草稿（Paratranz）在「始」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives_Abnormality-a1c10p2.json|/dataList/37/desc
+  raw: raw-20261029
+  kr_sha: 5139fb278e4bcb52569b354fe075db346d8fc7e41fb6cbbb6a4876bf98c2cf87
+  zh: 關卡開始時，以90%的體力與45點理智值開<noparse>始</noparse>戰鬥
+  reason: 還原草稿（Paratranz）在「始」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives_Abnormality_Refraction2BokGak.json|/dataList/44/desc
+  raw: raw-20261029
+  kr_sha: f2e00b49d325eceac6b8b32e510d823d59a27c082f3bc6d1bc5077e7f8a2c3bc
+  zh: |-
+    若本體的體力不高於60%，則結束該回合並改變行動模式
+    - 使被動「次元<noparse>逃遁</noparse>[TabExplain]」失效
+    - 使被動「被困的次元逃遁」失效
+    - 若雙臂都沒有遭到破壞，則每經過一定回合數，令自身使用強力技能
+  reason: 還原草稿（Paratranz）在「逃遁」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives_Abnormality-a1c9p1.json|/dataList/29/desc
+  raw: raw-20261029
+  kr_sha: 49a064b30771b84acefbca1417b6436a694e3d70bff6156a374d07fe24bde23b
+  zh: |-
+    當自身的本體體力值降低至60%以下時，強制結束回合並且改變行動型態
+    - 使被動技能「次元<noparse>逃遁</noparse>」失效
+    - 使被動技能「被困的次元逃遁」失效
+    - 若雙臂都沒有遭到破壞，則每過一定回合數，使自身發動強力技能
+  reason: 還原草稿（Paratranz）在「逃遁」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/25/desc
+  raw: raw-20261029
+  kr_sha: c934fdd2300f4ebb0a19970520fde32bcb3f5d988fac44ff51e0872c65980cf8
+  zh: |-
+    回合開始時，使全體友方單位獲得1層某1種隨機效果，該效果可能為「暴怒<noparse>～</noparse>嫉妒傷害強化」
+
+    回合開始時，對全體敵方單位施加1層某1種隨機效果，該效果可能為「暴怒<noparse>～</noparse>嫉妒易損」
+  reason: 還原草稿（Paratranz）在「～」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: EGOgift_MirrorDungeon-EventTheme_2.json|/dataList/26/desc
+  raw: raw-20261029
+  kr_sha: d3d2472f9c708a912ff4e19a988c53ce40f15d6f755096a79b148447bc48ed42
+  zh: |-
+    友方單位技能命中時，使目標增加1級某2種隨機效果的強度，該效果可能為 [Combustion]、[Laceration]、[Vibration]、[Burst] 或 [Sinking] (每回合最多3次)
+
+    友方單位技能命中時，隨機使2名友方單位於下回合獲得1回／1層某1種隨機效果，該效果可能為 [Breath] 回數、[Charge] 回數、[Agility]、[AttackUp] 或 [DefenseUp] (每回合最多3次)
+
+    回合開始時，使全體友方單位獲得1層某2種隨機效果，該效果可能為「暴怒<noparse>～</noparse>嫉妒傷害強化」
+
+    回合開始時，對全體敵方單位施加1層某2種隨機效果，該效果可能為「暴怒<noparse>～</noparse>嫉妒易損」
+  reason: 還原草稿（Paratranz）在「～」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives-BossRaid.json|/dataList/22/desc
+  raw: raw-20261029
+  kr_sha: cd469826b785fcd0116fe56182a3fa35570a9f784e0d17c5cd96c0ebd864ee92
+  zh: |-
+    若與同一目標進行拚點不低於10次，
+    則隨機使自身的拚點威力增加或減少(拚點次數/10)(最多10)
+
+    [Combustion]、[Laceration]、[Vibration]、[Burst] 與 [Sinking] 強度最多累積到30級，
+    回數最多累積到10回
+
+    第1編隊入場且關卡開始時，
+    - 使自身與戰場上所有罪人的理智值變為30點
+    (若是減算硬幣人格，則改為-30點)
+    - 獲得所有屬性的罪孽碎片各3個
+
+    被動技能天退星的效果觸發時，
+    結束本回合並在下回合變為第2階段
+    - 自身帶有的狀態效果不會因改變階段而重置
+
+    第2與第3編隊入場且關卡開始時，
+    根據現存體力比例，相應使以下被動技能依順序視作已觸發
+    - 高於85%：裝填<noparse>虎標彈</noparse>
+    - 不高於85%：裝填<noparse>虎標彈</noparse>、雷橫
+    - 不高於66%：裝填<noparse>虎標彈</noparse>、雷橫、<noparse>天退星</noparse>
+    - 不高於50%：裝填<noparse>虎標彈</noparse>、雷橫、<noparse>天退星</noparse>、小指 <noparse>天退星</noparse> 雷橫
+  reason: 還原草稿（Paratranz）在「天退星」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives.json|/dataList/259/desc
+  raw: raw-20261029
+  kr_sha: eace1f85a15d84a5af5e1ab59386f70fd37f241491f1ef5e4ca0c9549284063d
+  zh: 可以使用「猩紅<noparse>凝視</noparse>」能力
+  reason: 還原草稿（Paratranz）在「凝視」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives.json|/dataList/517/desc
+  raw: raw-20261029
+  kr_sha: a8ccbab7c13804b5d8ebafd57764298d4afce57d7f60a97e7ed75083ecadefcf
+  zh: |-
+    擊殺帶有 [MeursaultBeeSpore] 的敵方單位時，觸發以下效果
+    - 下回合內使自身施加的 [MeursaultBeeSpore] 層數變為2倍
+    <style="highlight">- 使用基礎攻擊技能擊殺時，使自身獲得(該技能消耗的<noparse>孢子</noparse>彈÷2)發<noparse>孢子</noparse>彈(無條件進位，每個技能最多1次)</style>
+  reason: 還原草稿（Paratranz）在「孢子」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Skills_personality-08.json|/dataList/33/levelList/1/desc
+  raw: raw-20261029
+  kr_sha: f3ca5937cf10334e99d1fb99bae827fd85e0a6165ff4135be075c7845619c957
+  zh: |-
+    <style="highlight">[StartBattle] 若嫉妒完全共鳴數的總和不低於6，則反擊時使用「紺紫<noparse>痛擊</noparse>」
+    (優先從位於儀錶盤左側的行動槽觸發，每回合最多2次)</style>
+    [StartBattle] 使自身獲得失去體力值25%的護盾 (每回合最多1次)
+  reason: 還原草稿（Paratranz）在「痛擊」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Skills_Abnormality_Mirror7.json|/dataList/26/levelList/0/desc
+  raw: raw-20261029
+  kr_sha: db04fd17cbbbbb6f2d76fddc7b43003c2297754c3de563b5f361f1a54548caad
+  zh: |-
+    優先指定<noparse>人體觀劇</noparse>作為目標
+    [WhenUse] 若目標帶有的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1
+    [DefeatDuel] 使本技能造成的最終傷害-80%，且本技能造成的傷害不會使目標陷入混亂
+  reason: 還原草稿（Paratranz）在「人體觀劇」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Passives_Abnormality_Refraction6.json|/dataList/20/desc
+  raw: raw-20261029
+  kr_sha: 996044d355eb356d64e686dafff29e3eb97f9bd8781b6ad58a65b6e5e2dd18d6
+  zh: |-
+    回合開始時，<color=#ff6000><mark=#ff000040><b><u>觸發層數最高的狀態</u></b></mark></color>並使用特殊技能
+    - 若狀態層數相同，則自身維持當前狀態
+    - 未觸發的狀態分別轉變為 [StackPast] / [StackPresent] / [StackFuture]
+    - <color=#ff6000><mark=#ff000040><b><u>自身狀態改變時</u></b></mark></color>，對自身施加1層 [TimeGap]
+
+    每當<color=#ff6000><mark=#ff000040><b><u>羅生<noparse>蝶</noparse> 幻影::過去/現在/未來作為主要目標受到攻擊時</u></b></mark></color>，
+    使羅生蝶::蝶帶有的 [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數減少
+
+    <color=#ff6000><mark=#ff000040><b><u>[StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數越高，</u></b></mark></color>
+    羅生蝶::蝶的技能威力與造成的傷害會<color=#ff6000><mark=#ff000040><b><u>大幅增加</u></b></mark></color>
+    且對自身與其他單位施加的<color=#ff6000><mark=#ff000040><b><u>異常狀態也會大幅增加</u></b></mark></color>
+  reason: 還原草稿（Paratranz）在「蝶」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Skills_personality-04.json|/dataList/31/levelList/0/desc
+  raw: raw-20261029
+  kr_sha: 5a8c9c47e2604534ae8fabe25448f36d48c6eb08b0919db0c6b6709b08d2c1a0
+  zh: |-
+    若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級
+    [BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的<noparse>視線</noparse>」
+    [WhenUse] 若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於8級，則使本技能的硬幣威力+1
+    [WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+20%)
+  reason: 還原草稿（Paratranz）在「視線」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Skills_personality-04.json|/dataList/31/levelList/1/desc
+  raw: raw-20261029
+  kr_sha: c923db1b01154890c33cc8c02daba8040252b897c92a768e9540d6c9b6fcd550
+  zh: |-
+    若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級<style="highlight"></style>
+    [BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的<noparse>視線</noparse>」
+    [WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和<style="highlight">每有8級</style>，則使本技能的硬幣威力+1<style="highlight">(最多+2)</style>
+    [WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+<style="highlight">40</style>%)
+  reason: 還原草稿（Paratranz）在「視線」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
+- key: Skills_personality-06.json|/dataList/58/levelList/1/desc
+  raw: raw-20261029
+  kr_sha: 1167ede26e2716b04c48f0d213cde7f26371836bb5f3f78dc222f53fe3b91b0b
+  zh: |-
+    [DuelCounter]
+    <style="highlight">自身每帶有2級 [ChargeNoirAlly] 強度，則使本技能造成的傷害+25%(最多+75%)</style>
+    [StartBattle] 若自身未帶有 [SupportProtect]，則使自身獲得1層 [SupportProtect]
+    <style="highlight">[BeforeUse] 若自身帶有 [TimeToListenHonglu]，則改為以「<noparse>恐怖的重播</noparse>」發動(每場戰鬥最多1次)
+    [WhenUse] 自身每帶有3級 [ChargeNoirAlly] 強度，則使本技能的硬幣威力+1(最多+2)</style>
+    [WhenUse] 使自身獲得<style="highlight">(自身的 [ChargeNoirAlly] 強度×3)</style>層 [NoirBindArmorAlly] (每個技能最多<style="highlight">15</style>層)
+    [WhenUse] 使自身的 [ChargeNoirAlly] 回數增加<style="highlight">4</style>
+  reason: 還原草稿（Paratranz）在「恐怖的重播」上的 <noparse>：修正時依 KR 被刪掉了，但中文的關鍵字名稱與 KR 不同（使用者確認還原）
+  rule: guides/base.md
