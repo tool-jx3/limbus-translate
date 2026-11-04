@@ -91,18 +91,20 @@ describe('review route', () => {
       sub: '',
       q: '協會 & ?',
       all: false,
+      mode: 'kr',
+      jpen: '',
       id,
     })
   })
 
   it('round-trips every filter', () => {
     const route = parseHash(reviewHref('warnings', { family: 'story-main', sub: 'kana', q: 'a=b', all: true }))
-    expect(route).toEqual({ kind: 'review', tab: 'warnings', family: 'story-main', sub: 'kana', q: 'a=b', all: true })
+    expect(route).toEqual({ kind: 'review', tab: 'warnings', family: 'story-main', sub: 'kana', q: 'a=b', all: true, mode: 'kr', jpen: '' })
   })
 
   it('reads #/r as the suggestions tab with no filter', () => {
-    expect(parseHash('#/r')).toEqual({ kind: 'review', tab: 'suggestions', family: '', sub: '', q: '', all: false })
-    expect(parseHash('#/r/todo?all=1')).toEqual({ kind: 'review', tab: 'todo', family: '', sub: '', q: '', all: true })
+    expect(parseHash('#/r')).toEqual({ kind: 'review', tab: 'suggestions', family: '', sub: '', q: '', all: false, mode: 'kr', jpen: '' })
+    expect(parseHash('#/r/todo?all=1')).toEqual({ kind: 'review', tab: 'todo', family: '', sub: '', q: '', all: true, mode: 'kr', jpen: '' })
   })
 
   it('reads an unknown tab as home', () => {
@@ -113,5 +115,20 @@ describe('review route', () => {
   it('leaves out what is empty', () => {
     expect(reviewHref('suggestions')).toBe('#/r/suggestions')
     expect(reviewHref('todo', { all: true })).toBe('#/r/todo?all=1')
+  })
+})
+
+describe('review route modes', () => {
+  it('review route keeps mode and jpen', () => {
+    expect(parseHash(reviewHref('suggestions', { mode: 'jpen', jpen: 'partial', id: 'x' }))).toMatchObject({
+      kind: 'review',
+      tab: 'suggestions',
+      mode: 'jpen',
+      jpen: 'partial',
+      id: 'x',
+    })
+    expect(parseHash('#/r/suggestions')).toMatchObject({ mode: 'kr', jpen: '' })
+    expect(parseHash('#/r/suggestions?mode=bogus&jpen=bogus')).toMatchObject({ mode: 'kr', jpen: '' })
+    expect(reviewHref('suggestions', { mode: 'kr' })).toBe('#/r/suggestions')
   })
 })

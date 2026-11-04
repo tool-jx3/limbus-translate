@@ -8,6 +8,8 @@ export interface ReviewFilter {
   q: string
   /** Show the confirmed items too. */
   all: boolean
+  /** Only the inconsistent groups of this JP/EN class ('' or left out: all); other kinds stay. */
+  jpen?: string
 }
 
 /** Whether any of the texts has the needle in it (any case); an empty needle is in all. */
@@ -30,6 +32,7 @@ export function filterSuggestions(items: SuggestionItem[], f: ReviewFilter, targ
       !hidden(s.declined, f, s.id, target) &&
       (f.family === '' || s.family === f.family) &&
       (f.sub === '' || s.kind === f.sub) &&
+      (!f.jpen || s.kind !== 'inconsistent' || s.jpen_class === f.jpen) &&
       has(needle, [
         s.id,
         s.title,
@@ -40,6 +43,15 @@ export function filterSuggestions(items: SuggestionItem[], f: ReviewFilter, targ
         ...s.evidence.flatMap((e) => [e.key, fileOf(e.key), e.kr, e.zh, e.note]),
       ]),
   )
+}
+
+/** How many inconsistent groups of each JP/EN class the other filters leave (the JP/EN filter itself aside). */
+export function jpenCounts(items: SuggestionItem[], f: ReviewFilter, target?: string): Record<'explained' | 'partial' | 'same', number> {
+  const counts = { explained: 0, partial: 0, same: 0 }
+  for (const s of filterSuggestions(items, { ...f, jpen: '' }, target)) {
+    if (s.kind === 'inconsistent' && s.jpen_class) counts[s.jpen_class]++
+  }
+  return counts
 }
 
 export function filterWarnings(items: WarningItem[], f: ReviewFilter, target?: string): WarningItem[] {

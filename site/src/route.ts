@@ -1,4 +1,4 @@
-import type { Lang, ReviewTab } from './types'
+import type { JPENClass, Lang, ReviewTab } from './types'
 
 /**
  * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/s?q=…&lang=…&re=1,
@@ -8,7 +8,14 @@ export type Route =
   | { kind: 'home' }
   | { kind: 'file'; path: string; ptr?: string }
   | { kind: 'search'; q: string; lang: Lang; re: boolean }
-  | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; id?: string }
+  | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
+
+/** How the inconsistent translations are shown: by KR alone, or with each variant's JP and EN. */
+export type ReviewMode = 'kr' | 'jpen'
+/** The JP/EN class the inconsistent translations are filtered by; '' for all. */
+export type JPENFilter = '' | JPENClass
+
+const JPEN_CLASSES: readonly string[] = ['explained', 'partial', 'same']
 
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
 const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo']
@@ -71,6 +78,8 @@ export function parseHash(hash: string): Route {
       sub: query.get('kind') ?? '',
       q: query.get('q') ?? '',
       all: query.get('all') === '1',
+      mode: query.get('mode') === 'jpen' ? 'jpen' : 'kr',
+      jpen: JPEN_CLASSES.includes(query.get('jpen') ?? '') ? (query.get('jpen') as JPENClass) : '',
       ...(id ? { id } : {}),
     }
   }
@@ -89,12 +98,17 @@ export function searchHref(q: string, lang: Lang, re: boolean): string {
 }
 
 /** The hash of a page of the review, with the filters and the item to scroll to that are given. */
-export function reviewHref(tab: ReviewTab, opts: { family?: string; sub?: string; q?: string; all?: boolean; id?: string } = {}): string {
+export function reviewHref(
+  tab: ReviewTab,
+  opts: { family?: string; sub?: string; q?: string; all?: boolean; mode?: ReviewMode; jpen?: JPENFilter; id?: string } = {},
+): string {
   const pairs: [string, string][] = []
   if (opts.family) pairs.push(['family', opts.family])
   if (opts.sub) pairs.push(['kind', opts.sub])
   if (opts.q) pairs.push(['q', opts.q])
   if (opts.all) pairs.push(['all', '1'])
+  if (opts.mode === 'jpen') pairs.push(['mode', 'jpen'])
+  if (opts.jpen) pairs.push(['jpen', opts.jpen])
   if (opts.id) pairs.push(['id', opts.id])
   const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
   return `#/r/${tab}${query ? `?${query}` : ''}`

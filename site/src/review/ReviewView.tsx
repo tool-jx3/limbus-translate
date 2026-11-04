@@ -3,7 +3,7 @@ import { Notice } from '../app/Notice'
 import { DataError, loadReview } from '../data'
 import { reviewHref, type Route } from '../route'
 import type { Index, Meta, NoteItem, ReviewData, ReviewTab, SuggestionItem, WarningItem } from '../types'
-import { filterNotes, filterSuggestions, filterWarnings, sortSuggestions, type ReviewFilter } from './filter'
+import { filterNotes, filterSuggestions, filterWarnings, jpenCounts, sortSuggestions, type ReviewFilter } from './filter'
 import { warningInfo } from './names'
 import { NoteCard } from './NoteCard'
 import { SuggestionCard } from './SuggestionCard'
@@ -44,8 +44,8 @@ function useReview(tab: ReviewTab): Loaded | undefined {
 }
 
 /** Goes to the page with other filters; a change of the text replaces the entry so that typing leaves one step in the history. */
-function go(route: ReviewRoute, change: Partial<Pick<ReviewRoute, 'family' | 'sub' | 'q' | 'all'>>, replace = false): void {
-  const next = { family: route.family, sub: route.sub, q: route.q, all: route.all, ...change }
+function go(route: ReviewRoute, change: Partial<Pick<ReviewRoute, 'family' | 'sub' | 'q' | 'all' | 'mode' | 'jpen'>>, replace = false): void {
+  const next = { family: route.family, sub: route.sub, q: route.q, all: route.all, mode: route.mode, jpen: route.jpen, ...change }
   const href = reviewHref(route.tab, next)
   if (replace) location.replace(href)
   else location.hash = href
@@ -138,11 +138,35 @@ interface ToolsProps {
   kindLabel?: string
   sort?: { value: 'units' | 'variants'; onChange: (v: 'units' | 'variants') => void }
   quick?: boolean
+  /** The 只看 KR／連同 JP/EN switch, and in the JP/EN view the class filter with its counts. */
+  jpen?: Record<'explained' | 'partial' | 'same', number>
 }
 
-function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quick }: ToolsProps) {
+function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quick, jpen }: ToolsProps) {
   return (
     <div class="rv-tools">
+      {jpen && (
+        <label>
+          檢視
+          <select name="mode" value={route.mode} onChange={(e) => go(route, { mode: e.currentTarget.value === 'jpen' ? 'jpen' : 'kr', jpen: '' })}>
+            <option value="kr">只看 KR</option>
+            <option value="jpen">連同 JP/EN</option>
+          </select>
+        </label>
+      )}
+      {jpen && route.mode === 'jpen' && (
+        <Select
+          name="jpen"
+          label="JP/EN"
+          value={route.jpen}
+          options={[
+            { value: 'explained', label: `可解釋（${jpen.explained}）` },
+            { value: 'partial', label: `部分可解釋（${jpen.partial}）` },
+            { value: 'same', label: `相同（${jpen.same}）` },
+          ]}
+          onChange={(v) => go(route, { jpen: v === 'explained' || v === 'partial' || v === 'same' ? v : '' })}
+        />
+      )}
       {families.length > 0 && (
         <Select name="family" label="族群" value={route.family} options={families.map((f) => ({ value: f, label: f }))} onChange={(family) => go(route, { family })} />
       )}
@@ -184,8 +208,13 @@ function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quic
 
 function Suggestions({ route, items }: { route: ReviewRoute; items: SuggestionItem[] }) {
   const [sort, setSort] = useState<'units' | 'variants'>('units')
-  const filter: ReviewFilter = route
-  const shown = useMemo(() => sortSuggestions(filterSuggestions(items, filter, route.id), sort), [items, route.family, route.sub, route.q, route.all, route.id, sort])
+  const byJPEN = route.mode === 'jpen'
+  const filter: ReviewFilter = { ...route, jpen: byJPEN ? route.jpen : '' }
+  const shown = useMemo(
+    () => sortSuggestions(filterSuggestions(items, filter, route.id), sort),
+    [items, route.family, route.sub, route.q, route.all, route.id, sort, byJPEN, route.jpen],
+  )
+  const counts = useMemo(() => jpenCounts(items, filter, route.id), [items, route.family, route.sub, route.q, route.all, route.id])
   const kinds = unique(items.map((s) => s.kind)).map((k) => ({ value: k, label: k }))
   return (
     <>
@@ -197,10 +226,17 @@ function Suggestions({ route, items }: { route: ReviewRoute; items: SuggestionIt
         kinds={kinds}
         kindLabel="種類"
         sort={{ value: sort, onChange: setSort }}
+        jpen={counts}
       />
       <div class="rv-body">
         {route.id !== undefined && !shown.some((s) => s.id === route.id) && <Missing id={route.id} />}
-        <ItemList key={`${route.family}|${route.sub}|${route.q}|${route.all}|${sort}`} items={shown} id={route.id} idOf={(s) => s.id} render={(s, target) => <SuggestionCard key={s.id} item={s} target={target} />} />
+        <ItemList
+          key={`${route.family}|${route.sub}|${route.q}|${route.all}|${sort}|${route.mode}|${route.jpen}`}
+          items={shown}
+          id={route.id}
+          idOf={(s) => s.id}
+          render={(s, target) => <SuggestionCard key={s.id} item={s} target={target} jpen={byJPEN} />}
+        />
       </div>
     </>
   )

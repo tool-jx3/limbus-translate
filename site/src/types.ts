@@ -120,7 +120,20 @@ export interface Variant {
   count: number
   /** Unit keys ("<file path>|<pointer>"), in file order and then unit order. */
   keys: string[]
+  /** The units of the variant by their JP and EN, the most units first. */
+  jpen?: JPENGroup[]
 }
+
+/** Units of a variant with one JP and one EN string; jp or en is left out where the units have none. */
+export interface JPENGroup {
+  jp?: string
+  en?: string
+  count: number
+  keys: string[]
+}
+
+/** Whether JP and EN tell the translations of an inconsistent group apart. */
+export type JPENClass = 'same' | 'explained' | 'partial'
 
 /**
  * One rule suggestion of review/suggestions.json. family, field, kr, jp, en and
@@ -137,6 +150,7 @@ export interface SuggestionItem {
   jp?: string
   en?: string
   variants?: Variant[]
+  jpen_class?: JPENClass
   evidence: Evidence[]
   /** How many of the units of the item are in the pending list. */
   pending: number

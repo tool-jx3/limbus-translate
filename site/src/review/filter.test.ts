@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { fixture } from '../testdata'
 import type { NoteItem, SuggestionItem, WarningItem } from '../types'
-import { filterNotes, filterSuggestions, filterWarnings, sortSuggestions } from './filter'
+import { filterNotes, filterSuggestions, filterWarnings, jpenCounts, sortSuggestions } from './filter'
 
 const suggestions = fixture<{ items: SuggestionItem[] }>('review/suggestions.json').items
 const warnings = fixture<{ items: WarningItem[] }>('review/warnings.json').items
@@ -71,5 +71,27 @@ describe('filterNotes', () => {
     expect(filterNotes(notes, { ...all, family: 'ally' })).toHaveLength(0)
     expect(filterNotes(notes, { ...all, q: '角括號' })).toHaveLength(1)
     expect(filterNotes(notes, { ...all, q: '[burn]' })).toHaveLength(1)
+  })
+})
+
+describe('the JP/EN class filter', () => {
+  const inc = suggestions.find((s) => s.kind === 'inconsistent')!
+  const mk = (id: string, cls: 'same' | 'explained' | 'partial', declined = false): SuggestionItem => ({
+    ...inc,
+    id,
+    jpen_class: cls,
+    ...(declined ? { declined: { reason: 'r', date: '2026-11-04' } } : { declined: undefined }),
+  })
+  const items: SuggestionItem[] = [mk('a', 'same'), mk('b', 'explained'), mk('c', 'partial'), mk('d', 'same', true), ...suggestions.filter((s) => s.kind !== 'inconsistent')]
+
+  it('keeps only the inconsistent groups of the class, and every other kind', () => {
+    const got = ids(filterSuggestions(items, { ...none, jpen: 'same' }))
+    expect(got.filter((i) => i.length === 1)).toEqual(['a'])
+    expect(got.filter((i) => i.length > 1)).toEqual(ids(suggestions.filter((s) => s.kind !== 'inconsistent' && !s.declined)))
+  })
+
+  it('jpen filter counts follow show-confirmed', () => {
+    expect(jpenCounts(items, none)).toEqual({ explained: 1, partial: 1, same: 1 })
+    expect(jpenCounts(items, { ...none, all: true })).toEqual({ explained: 1, partial: 1, same: 2 })
   })
 })

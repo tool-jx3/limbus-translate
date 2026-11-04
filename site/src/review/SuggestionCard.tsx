@@ -1,5 +1,6 @@
 import { stripTags } from '../search/match'
-import type { SuggestionItem } from '../types'
+import { TmpText } from '../tmp/TmpText'
+import { LANG_ATTR, type JPENClass, type JPENGroup, type SuggestionItem } from '../types'
 import { variantDiff } from './diff'
 import { suggestionUnits } from './filter'
 import { suggestionKindName } from './names'
@@ -10,11 +11,49 @@ function clip(s: string, n: number): string {
   return chars.length > n ? `${chars.slice(0, n).join('')}…` : chars.join('')
 }
 
-function Inconsistent({ item }: { item: SuggestionItem }) {
+/** The badge of a group in the JP/EN view. */
+export const JPEN_BADGES: Record<JPENClass, string> = {
+  explained: 'JP/EN 可解釋',
+  partial: '部分可解釋',
+  same: 'JP/EN 相同',
+}
+
+const pairOf = (j: JPENGroup) => `${j.jp === undefined ? '-' : `+${j.jp}`}\u0000${j.en === undefined ? '-' : `+${j.en}`}`
+
+/** The JP/EN groups of a variant; a pair that other translations have too is marked. */
+function JPENRows({ groups, shared }: { groups: JPENGroup[]; shared: Set<string> }) {
+  return (
+    <ul class="rv-jpens">
+      {groups.map((j) => {
+        const isShared = shared.has(pairOf(j))
+        return (
+          <li key={pairOf(j)} class={isShared ? 'rv-jpen is-shared' : 'rv-jpen'}>
+            <span class="rv-jpen-label">JP</span>
+            <span class="rv-jpen-jp" lang={LANG_ATTR.jp}>
+              {j.jp === undefined ? '—' : <TmpText text={j.jp} raw={false} lang="jp" />}
+            </span>
+            <span class="rv-jpen-label">EN</span>
+            <span class="rv-jpen-en" lang={LANG_ATTR.en}>
+              {j.en === undefined ? '—' : <TmpText text={j.en} raw={false} lang="en" />}
+            </span>
+            <span class="rv-jpen-n">{j.count} 個</span>
+            {isShared && <span class="rv-jpen-shared">同樣的 JP/EN 有其他譯法</span>}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+function Inconsistent({ item, jpen }: { item: SuggestionItem; jpen: boolean }) {
   const variants = [...(item.variants ?? [])].sort((a, b) => b.count - a.count)
   const top = variants[0]
   if (!top) return null
   const total = suggestionUnits(item)
+  // The JP/EN pairs that more than one translation has: where the group really differs.
+  const seen = new Map<string, number>()
+  for (const v of variants) for (const p of new Set((v.jpen ?? []).map(pairOf))) seen.set(p, (seen.get(p) ?? 0) + 1)
+  const shared = new Set([...seen].filter(([, n]) => n > 1).map(([p]) => p))
   return (
     <>
       <dl class="rv-src">
@@ -41,6 +80,7 @@ function Inconsistent({ item }: { item: SuggestionItem }) {
                 </>
               )}
             </div>
+            {jpen && v.jpen && v.jpen.length > 0 && <JPENRows groups={v.jpen} shared={shared} />}
           </div>
         ))}
       </div>
@@ -80,7 +120,7 @@ function Evidence({ item }: { item: SuggestionItem }) {
   )
 }
 
-export function SuggestionCard({ item, target }: { item: SuggestionItem; target: boolean }) {
+export function SuggestionCard({ item, target, jpen = false }: { item: SuggestionItem; target: boolean; jpen?: boolean }) {
   const inconsistent = item.kind === 'inconsistent'
   const units = suggestionUnits(item)
   const source = item.kr ?? item.evidence.find((e) => e.kr !== undefined)?.kr ?? item.evidence.find((e) => e.zh !== undefined)?.zh ?? item.title
@@ -94,11 +134,12 @@ export function SuggestionCard({ item, target }: { item: SuggestionItem; target:
             ? `${item.family ?? ''}／${item.field ?? ''}・${units} 個單位・${item.variants?.length ?? 0} 種譯法`
             : item.title}
         </span>
+        {jpen && inconsistent && item.jpen_class && <span class={`rv-badge rv-badge-${item.jpen_class}`}>{JPEN_BADGES[item.jpen_class]}</span>}
         <Pending pending={item.pending} units={units} />
         <IdCopy id={item.id} source={source} />
       </div>
       <ConfirmedLine confirmed={item.declined} />
-      {inconsistent ? <Inconsistent item={item} /> : <Evidence item={item} />}
+      {inconsistent ? <Inconsistent item={item} jpen={jpen} /> : <Evidence item={item} />}
     </article>
   )
 }

@@ -1350,6 +1350,73 @@ button.link {
   white-space: nowrap;
 }
 
+/* The JP/EN view: each variant's units by their JP and EN, under the variant's row. */
+.rv-jpens {
+  grid-column: 2 / -1;
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.88rem;
+}
+
+.rv-jpen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+  min-width: 0;
+  padding: 0.15rem 0.4rem;
+  border-left: 2px solid var(--border);
+}
+
+.rv-jpen-jp,
+.rv-jpen-en {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.rv-jpen-label,
+.rv-jpen-n {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.rv-jpen.is-shared {
+  border-left-color: var(--diff-fg);
+  background: var(--diff-bg);
+}
+
+.rv-jpen-shared {
+  color: var(--diff-fg);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.rv-badge {
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rv-badge-explained {
+  background: var(--note-bg);
+  color: var(--note-fg);
+}
+
+.rv-badge-partial {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+
+.rv-badge-same {
+  background: var(--diff-bg);
+  color: var(--diff-fg);
+}
+
 .rv-d {
   padding: 0 1px;
   border-radius: 3px;

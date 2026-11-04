@@ -108,6 +108,27 @@ describe('review fixtures', () => {
   const unitOf = new Map<string, Unit>(files.flatMap((f) => f.units.map((u): [string, Unit] => [`${f.path}|${u.p}`, u])))
   const ids = (): string[] => [...suggestions.map((s) => s.id), ...warnings.map((w) => w.id), ...notes.map((n) => n.id)]
 
+  it('splits each variant of an inconsistent group by the JP and EN of its units, and classes the group', () => {
+    for (const s of suggestions.filter((x) => x.kind === 'inconsistent')) {
+      const pairs = new Map<string, Set<string>>()
+      for (const v of s.variants ?? []) {
+        expect(v.jpen).toBeDefined()
+        expect((v.jpen ?? []).flatMap((j) => j.keys).sort()).toEqual([...v.keys].sort())
+        for (const j of v.jpen ?? []) {
+          expect(j.count).toBe(j.keys.length)
+          for (const key of j.keys) {
+            const u = unitOf.get(key)!
+            expect([u.jp, u.en]).toEqual([j.jp, j.en])
+          }
+          const p = `${j.jp ?? '-'}\u0000${j.en ?? '-'}`
+          pairs.set(p, (pairs.get(p) ?? new Set()).add(v.zh))
+        }
+      }
+      const want = pairs.size <= 1 ? 'same' : [...pairs.values()].some((z) => z.size > 1) ? 'partial' : 'explained'
+      expect(s.jpen_class).toBe(want)
+    }
+  })
+
   it('has the keys of the Go types, in their order, leaving out what is empty', () => {
     for (const s of suggestions) {
       const keysOf = Object.keys(s)

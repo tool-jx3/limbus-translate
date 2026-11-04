@@ -31,7 +31,7 @@ afterEach(() => {
 })
 
 function route(tab: ReviewRoute['tab'], rest: Partial<ReviewRoute> = {}): ReviewRoute {
-  return { kind: 'review', tab, family: '', sub: '', q: '', all: false, ...rest }
+  return { kind: 'review', tab, family: '', sub: '', q: '', all: false, mode: 'kr', jpen: '', ...rest }
 }
 
 async function mount(r: ReviewRoute): Promise<HTMLElement> {
@@ -224,5 +224,72 @@ describe('ReviewView', () => {
       const target = el.querySelector('article.rv-card.is-target')
       expect(target?.getAttribute('data-id')).toBe(id)
     })
+  })
+})
+
+describe('the JP/EN view of the inconsistent translations', () => {
+  type V = { zh: string; count: number; keys: string[]; jpen?: unknown[] }
+  const base = () => JSON.parse(JSON.stringify(fixture<{ items: { kind: string; variants: V[] }[] }>('review/suggestions.json').items.find((i) => i.kind === 'inconsistent')))
+  // 一 is used for (A, a) and (B, —), 壹 for (A, a): the pair (A, a) has two translations.
+  function partial() {
+    const it = base()
+    const [k1, k2] = [it.variants[0].keys[0], it.variants[1].keys[0]]
+    it.id = 'inconsistent/ally/name/partial01'
+    it.jpen_class = 'partial'
+    it.variants = [
+      { zh: '一', count: 2, keys: [k1, 'X.json|/dataList/9/name'], jpen: [{ jp: 'A', en: 'a', count: 1, keys: [k1] }, { jp: 'B', count: 1, keys: ['X.json|/dataList/9/name'] }] },
+      { zh: '壹', count: 1, keys: [k2], jpen: [{ jp: 'A', en: 'a', count: 1, keys: [k2] }] },
+    ]
+    return it
+  }
+
+  it("JP/EN view shows each variant's JP and EN", async () => {
+    let el = await mount(route('suggestions', { mode: 'jpen' }))
+    const card = [...cards(el)].find((c) => c.getAttribute('data-id')?.startsWith('inconsistent/'))!
+    expect(card.querySelector('.rv-badge')?.textContent).toBe('JP/EN 可解釋')
+    const rows = [...card.querySelectorAll('.rv-jpen')].map((r) => r.textContent)
+    expect(rows.some((t) => t?.includes('試験用の防御') && t.includes('Test Guard'))).toBe(true)
+    expect(card.querySelector('.rv-jpen [lang="ja"]')).not.toBeNull()
+    el = await mount(route('suggestions'))
+    expect(el.querySelector('.rv-badge')).toBeNull()
+    expect(el.querySelector('.rv-jpen')).toBeNull()
+  })
+
+  it('jpen row shows a dash', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [partial()] } })))
+    clearDataCache()
+    const el = await mount(route('suggestions', { mode: 'jpen' }))
+    const row = [...el.querySelectorAll('.rv-jpen')].find((r) => r.textContent?.includes('B'))!
+    expect(row.querySelector('.rv-jpen-en')?.textContent).toBe('—')
+  })
+
+  it('marks the JP/EN pair shared by two translations', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [partial()] } })))
+    clearDataCache()
+    const el = await mount(route('suggestions', { mode: 'jpen' }))
+    expect(el.querySelector('.rv-badge')?.textContent).toBe('部分可解釋')
+    const shared = [...el.querySelectorAll('.rv-jpen.is-shared')]
+    expect(shared).toHaveLength(2)
+    expect(shared.every((r) => r.textContent?.includes('同樣的 JP/EN 有其他譯法'))).toBe(true)
+  })
+
+  it('badges and filter', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/suggestions.json': { items: [base(), partial(), ...fixture<{ items: { kind: string }[] }>('review/suggestions.json').items.filter((i) => i.kind !== 'inconsistent')] } })))
+    clearDataCache()
+    let el = await mount(route('suggestions', { mode: 'jpen' }))
+    const options = [...el.querySelectorAll<HTMLOptionElement>('select[name="jpen"] option')].map((o) => o.textContent)
+    expect(options).toEqual(['全部', '可解釋（1）', '部分可解釋（1）', '相同（0）'])
+    el = await mount(route('suggestions', { mode: 'jpen', jpen: 'partial' }))
+    const shownIds = [...cards(el)].map((c) => c.getAttribute('data-id'))
+    expect(shownIds.filter((i) => i?.startsWith('inconsistent/'))).toEqual(['inconsistent/ally/name/partial01'])
+    expect(shownIds.some((i) => i?.startsWith('speaker/'))).toBe(true)
+    el = await mount(route('suggestions'))
+    expect(el.querySelector('select[name="jpen"]')).toBeNull()
+  })
+
+  it('deep link keeps working in the JP/EN view', async () => {
+    const id = base().id as string
+    const el = await mount(route('suggestions', { mode: 'jpen', id }))
+    await vi.waitFor(() => expect(el.querySelector(`article.is-target[data-id="${id}"]`)).not.toBeNull())
   })
 })
