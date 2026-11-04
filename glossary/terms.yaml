@@ -976,7 +976,7 @@
   category: [city]
   notes: 見「현장추리팀」
 
-# 以下 401 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞。
+# 以下 413 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞（最後 12 條是不計 copy 單位後才達到九成的）。
 # evidence 是 2026-11-04 tw 的使用情況（不計 copy 單位）；notes 保留 Paratranz 的備註。
 
 - kr: 대상
@@ -3677,3 +3677,82 @@
   category: [general, combat]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 아비
+  zh: 父輩
+  status: approved
+  evidence: { kr_lines: 786, approved: 754, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 엄지
+  zh: 拇指
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 440, approved: 440, forbidden: 0 }
+  notes: Paratranz 詞彙表：手指幫派之一
+
+- kr: 유로지비
+  zh: 聖愚
+  status: approved
+  evidence: { kr_lines: 300, approved: 299, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 버틀러
+  zh: 管家
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 204, approved: 204, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 데드레빗츠
+  zh: 死兔幫
+  status: approved
+  evidence: { kr_lines: 112, approved: 112, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 스테이지 시작 시
+  zh: 關卡開始時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 88, approved: 86, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 청소부
+  zh: 清道夫
+  status: approved
+  evidence: { kr_lines: 70, approved: 68, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 수행자
+  zh: 修行者
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 63, approved: 63, forbidden: 0 }
+  notes: Paratranz 詞彙表：食指職位之一
+
+- kr: 솔다토
+  zh: 士兵
+  status: approved
+  category: [general, city]
+  evidence: { kr_lines: 31, approved: 31, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指職稱，輔助文本描述
+
+- kr: 증오의 여왕
+  zh: 憎惡女王
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 21, approved: 20, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 시간 살인 시간
+  zh: 時間殺人時間
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
+  notes: Paratranz 詞彙表：間章 第6.5.1章
+
+- kr: 산군도
+  zh: 山君
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表
