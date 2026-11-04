@@ -976,7 +976,7 @@
   category: [city]
   notes: 見「현장추리팀」
 
-# 以下 413 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞（最後 12 條是不計 copy 單位後才達到九成的）。
+# 以下 422 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞（倒數 21 條中，前 12 條是不計 copy 單位後、後 9 條是只算單獨成詞後才達到九成的）。
 # evidence 是 2026-11-04 tw 的使用情況（不計 copy 單位）；notes 保留 Paratranz 的備註。
 
 - kr: 대상
@@ -3756,3 +3756,61 @@
   status: approved
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表
+
+- kr: 버스
+  zh: 巴士
+  status: approved
+  evidence: { kr_lines: 389, approved: 374, forbidden: 0 }
+  notes: Paratranz 詞彙表（evidence 只算單獨成詞的用法；KR 的「림버스 컴퍼、, 림버스 컴퍼、… 림버스 컴퍼」等長詞裡也有這個字串）
+
+- kr: 제자
+  zh: 弟子
+  status: approved
+  evidence: { kr_lines: 376, approved: 368, forbidden: 0 }
+  notes: Paratranz 詞彙表（evidence 只算單獨成詞的用法；KR 的「통제자、제자리에、통제자에게」等長詞裡也有這個字串）
+
+- kr: 오만
+  zh: 傲慢
+  status: approved
+  category: [general, combat, sin]
+  evidence: { kr_lines: 306, approved: 298, forbidden: 0 }
+  notes: Paratranz 詞彙表：傲慢，輔助文本描述，輔助戰鬥相關文本描述（evidence 只算單獨成詞的用法；KR 的「까 하오만.、보이오만…、공간이오만.」等長詞裡也有這個字串）
+
+- kr: 지부
+  zh: 分部
+  status: approved
+  evidence: { kr_lines: 259, approved: 253, forbidden: 0 }
+  notes: Paratranz 詞彙表（evidence 只算單獨成詞的用法；KR 的「스테이지부터 다、는 요지부동인、에 종지부를 찍」等長詞裡也有這個字串）
+
+- kr: 방치
+  zh: 閒置
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 216, approved: 195, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述（evidence 只算單獨成詞的用法；KR 的「방치시켜」等長詞裡也有這個字串）
+
+- kr: 카포
+  zh: 指揮官
+  status: approved
+  category: [general, city]
+  evidence: { kr_lines: 78, approved: 78, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指職稱，輔助文本描述（evidence 只算單獨成詞的用法；KR 的「카포테」等長詞裡也有這個字串）
+
+- kr: 백화
+  zh: 白化
+  status: approved
+  evidence: { kr_lines: 33, approved: 31, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指白化現象（evidence 只算單獨成詞的用法；KR 的「백화점의、백화점、백화점을」等長詞裡也有這個字串）
+
+- kr: 마름
+  zh: 司田
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表：東朗的E.G.O名稱（evidence 只算單獨成詞的用法；KR 的「마름질、마름질된、는 목마름도 어」等長詞裡也有這個字串）
+
+- kr: 아인
+  zh: Ayin
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：A（evidence 只算單獨成詞的用法；KR 的「이베리아인과 에、이베리아인들을、이베리아인들은」等長詞裡也有這個字串）
