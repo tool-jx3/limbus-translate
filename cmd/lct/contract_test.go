@@ -112,12 +112,16 @@ var weeklyUpdateTools = []string{
 // or request file, or publishes the rules PR, and the only way it reaches
 // origin is lct proposal publish, which pushes a rules-proposal/* branch and
 // touches nothing but guides/, glossary/ and rules/. lct impact is pinned to
-// the one file it writes (and refuses one outside work/ and out/ anyway). rules-proposal.yml hands
+// the one file it writes (and refuses one outside work/ and out/ anyway). lct
+// accept is granted only with --dry-run, which reads (the JP/EN of the variants
+// of an inconsistent group); a later --dry-run=false could write only
+// rules/declined.yaml and rules/accepted.yaml, which it may edit anyway. rules-proposal.yml hands
 // the same list to the action (TestWorkflowContract); a tool added to one and
 // not to the other fails there.
 var rulesReviewTools = []string{
 	"Bash(bin/lct suggest *)",
 	"Bash(bin/lct search *)",
+	"Bash(bin/lct accept --dry-run *)",
 	"Bash(bin/lct glossary derive*)",
 	"Bash(bin/lct adjust tidy*)",
 	"Bash(bin/lct requeue --to-file *)",
@@ -745,6 +749,8 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"硬性失敗", "the skill does not warn that lct validate checks like a new translation: a hangul or simplified warning of the page may fail hard there"},
 	skillSays{"不 commit、不 push，也不執行 `git`", "the skill does not say it neither commits nor runs git"},
 	skillSays{"同意才寫", "the skill does not show a change to a rule file before it writes it"},
+	skillSays{"`jpen_class`", "the skill does not show the JP/EN of the variants of an inconsistent group and its class: KR is often less specific than JP and EN, and a person cannot tell a right difference from a real inconsistency"},
+	skillSays{"不因 JP/EN 分類", "the skill does not say that the class of JP/EN decides nothing: it would confirm a group for a person because its JP/EN explains it"},
 )
 
 // The review-page skill says what the contract wants of it, and each check can fail.
@@ -764,6 +770,8 @@ func TestReviewPageSays(t *testing.T) {
 		{"no word about validate", "硬性失敗", "失敗", "硬性失敗"},
 		{"may run git", "不 commit、不 push，也不執行 `git`", "可以 commit", "不 commit、不 push，也不執行 `git`"},
 		{"writes unseen", "同意才寫", "就寫", "同意才寫"},
+		{"no JP/EN shown", "`jpen_class`", "`kind`", "`jpen_class`"},
+		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			src := mutateAll(t, body, c.old, c.repl)
@@ -808,6 +816,9 @@ var rulesReviewSays = []skillSays{
 	{"`raw`", "the skill does not say it leaves raw alone"},
 	{"`tw`", "the skill does not say it leaves tw alone"},
 	{"`main`", "the skill does not say it leaves main alone"},
+	{"bin/lct accept --dry-run --json", "the JP/EN of the variants of an inconsistent group are not looked up: lct suggest gives only the KR and the translations"},
+	{"`jpen_class`", "the evidence of an inconsistent group does not list the JP/EN of its variants and its class: a person cannot tell a right difference from a real inconsistency"},
+	{"不因 JP/EN 分類", "the skill does not say that the class of JP/EN decides nothing: it would decline or unify a group for a person because of its JP/EN"},
 }
 
 // rulesReviewFlow are the commands the body of the rules-review skill writes in
@@ -911,6 +922,9 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"nothing whenever no rule file changed", "不算沒有東西可以提出", "就算沒有東西可以提出", "不算沒有東西可以提出"},
 		{"lct built again in CI", "不要再執行 `go build`", "再執行 `go build`", "不要再執行 `go build`"},
 		{"the folder of git not forbidden", "`.git/`", "`.gitignore`", "`.git/`"},
+		{"no JP/EN looked up", "bin/lct accept --dry-run --json", "bin/lct suggest --json --limit 1", "bin/lct accept --dry-run --json"},
+		{"no JP/EN in the evidence", "`jpen_class`", "`kind`", "`jpen_class`"},
+		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
 		{"the mode found out after the build", "work/proposal/started.json", "go build -o bin/lct ./cmd/lct`; work/proposal/started.json", "must come before"},
 		{"a command out of order", "bin/lct rules lint --json", "bin/lct impact --base origin/main --markdown work/proposal/impact.md; bin/lct rules lint --json", "must come before"},
 	} {

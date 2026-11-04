@@ -111,7 +111,7 @@ jobs:
           claude_args: >-
             --model ${{ vars.LCT_MODEL }}
             --max-turns 80
-            --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
+            --allowedTools "Bash(bin/lct suggest *),Bash(bin/lct search *),Bash(bin/lct accept --dry-run *),Bash(bin/lct glossary derive*),Bash(bin/lct adjust tidy*),Bash(bin/lct requeue --to-file *),Bash(bin/lct rules lint*),Bash(bin/lct impact --base origin/main --markdown work/proposal/impact.md*),Bash(bin/lct proposal publish *),Bash(go build -o bin/lct ./cmd/lct),Read(./**),Edit(./guides/**),Edit(./glossary/**),Edit(./rules/**),Edit(./work/**)"
             --disallowedTools "Read(./.git/**)"
 
       # The action hides what the session said, which may hold what its tools
