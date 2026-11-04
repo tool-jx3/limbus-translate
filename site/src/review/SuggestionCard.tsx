@@ -1,10 +1,11 @@
+import { useContext } from 'preact/hooks'
 import { stripTags } from '../search/match'
 import { TmpText } from '../tmp/TmpText'
 import { LANG_ATTR, type JPENClass, type JPENGroup, type SuggestionItem } from '../types'
 import { variantDiff } from './diff'
 import { suggestionUnits } from './filter'
 import { suggestionKindName } from './names'
-import { ConfirmedLine, DiffText, IdCopy, Pending, Row, UnitLink, UnitLinks, splitKey } from './parts'
+import { ConfirmedLine, DiffText, IdCopy, Pending, Row, ShownText, UnitLink, UnitLinks, splitKey } from './parts'
 
 function clip(s: string, n: number): string {
   const chars = Array.from(stripTags(s).replace(/\s+/g, ' ').trim())
@@ -22,20 +23,30 @@ const pairOf = (j: JPENGroup) => `${j.jp === undefined ? '-' : `+${j.jp}`}\u0000
 
 /** The JP/EN groups of a variant; a pair that other translations have too is marked. */
 function JPENRows({ groups, shared }: { groups: JPENGroup[]; shared: Set<string> }) {
+  const { langs, raw } = useContext(ShownText)
+  if (!langs.jp && !langs.en) return null
   return (
     <ul class="rv-jpens">
       {groups.map((j) => {
         const isShared = shared.has(pairOf(j))
         return (
           <li key={pairOf(j)} class={isShared ? 'rv-jpen is-shared' : 'rv-jpen'}>
-            <span class="rv-jpen-label">JP</span>
-            <span class="rv-jpen-jp" lang={LANG_ATTR.jp}>
-              {j.jp === undefined ? '—' : <TmpText text={j.jp} raw={false} lang="jp" />}
-            </span>
-            <span class="rv-jpen-label">EN</span>
-            <span class="rv-jpen-en" lang={LANG_ATTR.en}>
-              {j.en === undefined ? '—' : <TmpText text={j.en} raw={false} lang="en" />}
-            </span>
+            {langs.jp && (
+              <>
+                <span class="rv-jpen-label">JP</span>
+                <span class="rv-jpen-jp" lang={LANG_ATTR.jp}>
+                  {j.jp === undefined ? '—' : <TmpText text={j.jp} raw={raw} lang="jp" />}
+                </span>
+              </>
+            )}
+            {langs.en && (
+              <>
+                <span class="rv-jpen-label">EN</span>
+                <span class="rv-jpen-en" lang={LANG_ATTR.en}>
+                  {j.en === undefined ? '—' : <TmpText text={j.en} raw={raw} lang="en" />}
+                </span>
+              </>
+            )}
             <span class="rv-jpen-n">{j.count} 個</span>
             {isShared && <span class="rv-jpen-shared">同樣的 JP/EN 有其他譯法</span>}
           </li>

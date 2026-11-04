@@ -131,15 +131,6 @@ function FileTools({ summary, settings, onSettings }: ToolsProps) {
         />
         <span>只看有審核項目的單位</span>
       </label>
-      <label>
-        <input
-          type="checkbox"
-          data-setting="rawTags"
-          checked={settings.rawTags}
-          onChange={(e) => onSettings({ ...settings, rawTags: e.currentTarget.checked })}
-        />
-        <span>顯示原始標籤</span>
-      </label>
     </div>
   )
 }

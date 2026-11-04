@@ -2,10 +2,12 @@ import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { DataError, loadReview } from '../data'
 import { reviewHref, type Route } from '../route'
+import type { Settings } from '../settings'
 import type { Index, Meta, NoteItem, ReviewData, ReviewTab, SuggestionItem, WarningItem } from '../types'
 import { filterNotes, filterSuggestions, filterWarnings, jpenCounts, sortSuggestions, type ReviewFilter } from './filter'
 import { warningInfo } from './names'
 import { NoteCard } from './NoteCard'
+import { ShownText } from './parts'
 import { SuggestionCard } from './SuggestionCard'
 import { TodoView } from './TodoView'
 import { WarningCard } from './WarningCard'
@@ -295,34 +297,39 @@ export interface ReviewViewProps {
   route: ReviewRoute
   index: Index
   meta: Meta
+  /** The languages and the raw tags of the header: the cards show the game text by them. */
+  settings: Settings
 }
 
 /** The review page: the items that need a person, by tab. */
-export function ReviewView({ route, meta }: ReviewViewProps) {
+export function ReviewView({ route, meta, settings }: ReviewViewProps) {
   const loaded = useReview(route.tab)
+  const shown = useMemo(() => ({ langs: settings.langs, raw: settings.rawTags }), [settings.langs, settings.rawTags])
   return (
-    <div class="review">
-      <h1>審核</h1>
-      <p class="rv-lede">這次建置需要人看的地方。每一項都連到所在檔案的那一列；看完後在對話中貼上項目 ID，說你要怎麼改。</p>
-      <p class="rv-howto">按「複製 ID」，貼到對話中再加上你的決定；Claude 會改規則或把項目記為確認過，下次建置後這頁就跟著更新。</p>
-      <nav class="rv-tabs" role="tablist" aria-label="審核項目類別">
-        {TABS.map(({ tab, name }) => (
-          <a key={tab} role="tab" class="rv-tab" href={reviewHref(tab)} aria-selected={tab === route.tab ? 'true' : 'false'}>
-            {name}
-            <span class="rv-n">{meta.review[tab]}</span>
-          </a>
-        ))}
-      </nav>
-      {loaded === undefined && <p role="status">載入中…</p>}
-      {loaded?.status === 'error' && <Notice error={loaded.error} />}
-      {loaded?.status === 'ready' && route.tab === 'suggestions' && <Suggestions route={route} items={(loaded.data as ReviewData['suggestions']).items} />}
-      {loaded?.status === 'ready' && route.tab === 'warnings' && <Warnings route={route} items={(loaded.data as ReviewData['warnings']).items} />}
-      {loaded?.status === 'ready' && route.tab === 'notes' && <Notes route={route} items={(loaded.data as ReviewData['notes']).items} />}
-      {loaded?.status === 'ready' && route.tab === 'todo' && (
-        <div class="rv-body">
-          <TodoView sections={(loaded.data as ReviewData['todo']).sections} />
-        </div>
-      )}
-    </div>
+    <ShownText.Provider value={shown}>
+      <div class="review">
+        <h1>審核</h1>
+        <p class="rv-lede">這次建置需要人看的地方。每一項都連到所在檔案的那一列；看完後在對話中貼上項目 ID，說你要怎麼改。</p>
+        <p class="rv-howto">按「複製 ID」，貼到對話中再加上你的決定；Claude 會改規則或把項目記為確認過，下次建置後這頁就跟著更新。</p>
+        <nav class="rv-tabs" role="tablist" aria-label="審核項目類別">
+          {TABS.map(({ tab, name }) => (
+            <a key={tab} role="tab" class="rv-tab" href={reviewHref(tab)} aria-selected={tab === route.tab ? 'true' : 'false'}>
+              {name}
+              <span class="rv-n">{meta.review[tab]}</span>
+            </a>
+          ))}
+        </nav>
+        {loaded === undefined && <p role="status">載入中…</p>}
+        {loaded?.status === 'error' && <Notice error={loaded.error} />}
+        {loaded?.status === 'ready' && route.tab === 'suggestions' && <Suggestions route={route} items={(loaded.data as ReviewData['suggestions']).items} />}
+        {loaded?.status === 'ready' && route.tab === 'warnings' && <Warnings route={route} items={(loaded.data as ReviewData['warnings']).items} />}
+        {loaded?.status === 'ready' && route.tab === 'notes' && <Notes route={route} items={(loaded.data as ReviewData['notes']).items} />}
+        {loaded?.status === 'ready' && route.tab === 'todo' && (
+          <div class="rv-body">
+            <TodoView sections={(loaded.data as ReviewData['todo']).sections} />
+          </div>
+        )}
+      </div>
+    </ShownText.Provider>
   )
 }

@@ -56,6 +56,11 @@ describe('settings', () => {
     expect(s.reviewOnly).toBe(false)
   })
 
+  it('always shows TW: a saved TW switched off is on', () => {
+    localStorage.setItem(KEY, JSON.stringify({ langs: { kr: true, jp: false, en: true, zh: false } }))
+    expect(loadSettings().langs).toEqual({ kr: true, jp: false, en: true, zh: true })
+  })
+
   it('does not share its default between calls', () => {
     const a = loadSettings()
     a.langs.kr = false

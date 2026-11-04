@@ -293,12 +293,18 @@ button.link {
   margin-left: auto;
 }
 
-.langs label {
+.langs label,
+.raw-tags {
   display: flex;
   align-items: center;
   gap: 0.25rem;
   cursor: pointer;
   white-space: nowrap;
+}
+
+/* TW is always shown: its switch is on and cannot be turned off. */
+.langs input:disabled {
+  cursor: default;
 }
 
 .dir-toggle,

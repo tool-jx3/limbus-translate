@@ -2,7 +2,7 @@ import type { Lang, Origin } from './types'
 
 /** What the reader chose to see. It lives in localStorage, not in the URL. */
 export type Settings = {
-  /** The language columns shown. */
+  /** The language columns shown. TW is always shown: a review item is about its TW text. */
   langs: Record<Lang, boolean>
   /** The origins of the TW text whose units are shown. Copy units are shown iff origins.copy. */
   origins: Record<Origin, boolean>
@@ -58,7 +58,7 @@ export function loadSettings(): Settings {
   }
   if (!isRecord(saved)) return s
   return {
-    langs: flags(LANGS, saved.langs, s.langs),
+    langs: { ...flags(LANGS, saved.langs, s.langs), zh: true },
     origins: flags(ORIGINS, saved.origins, s.origins),
     rawTags: typeof saved.rawTags === 'boolean' ? saved.rawTags : s.rawTags,
     scriptMode: typeof saved.scriptMode === 'string' && SCRIPT_MODES.includes(saved.scriptMode) ? (saved.scriptMode as Settings['scriptMode']) : s.scriptMode,

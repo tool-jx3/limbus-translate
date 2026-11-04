@@ -222,13 +222,9 @@ describe('FileView: table', () => {
     expect(raw.querySelector('.tmp-raw')?.textContent).toBeTruthy()
   })
 
-  it('turns raw tags on from the toolbar', async () => {
+  it('has no raw-tag switch of its own: it is in the header, next to the languages', async () => {
     const el = await open(STORY)
-    const box = el.querySelector<HTMLInputElement>('input[data-setting="rawTags"]')
-    expect(box?.checked).toBe(false)
-    act(() => box?.click())
-    expect(latest.rawTags).toBe(true)
-    expect(el.querySelector('ruby')).toBeNull()
+    expect(el.querySelector('input[data-setting="rawTags"]')).toBeNull()
   })
 
   it('renders a file with no strings without an error', async () => {

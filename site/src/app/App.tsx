@@ -133,6 +133,6 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
     case 'search':
       return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
     case 'review':
-      return <ReviewView route={route} index={index} meta={meta} />
+      return <ReviewView route={route} index={index} meta={meta} settings={settings} />
   }
 }

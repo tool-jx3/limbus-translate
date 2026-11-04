@@ -108,6 +108,20 @@ describe('App', () => {
     act(() => boxes[1]?.click())
     expect(boxes[1]?.checked).toBe(false)
     expect(JSON.parse(localStorage.getItem('lct-viewer-settings') ?? '{}').langs).toEqual({ kr: true, jp: false, en: true, zh: true })
+    // TW is always shown: its switch is on and cannot be turned off.
+    expect(boxes[3]?.disabled).toBe(true)
+    act(() => boxes[3]?.click())
+    expect(boxes[3]?.checked).toBe(true)
+  })
+
+  it('has the raw-tag switch next to the languages, off, that writes the settings', async () => {
+    const el = mount()
+    await loaded(el)
+    const box = el.querySelector<HTMLInputElement>('header.top input[data-setting="rawTags"]')
+    expect(box?.parentElement?.textContent).toBe('顯示原始標籤')
+    expect(box?.checked).toBe(false)
+    act(() => box?.click())
+    expect(JSON.parse(localStorage.getItem('lct-viewer-settings') ?? '{}').rawTags).toBe(true)
   })
 
   it('starts from the saved settings', async () => {

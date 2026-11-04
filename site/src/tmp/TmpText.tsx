@@ -90,7 +90,7 @@ export interface TmpTextProps {
   raw: boolean
   /** The language of the text: it sets the lang attribute. */
   lang: Lang
-  /** Wrap each match of it, in the text of the string and not in the tags, in a <mark>. */
+  /** Wrap each match of it, in the text of the string and not in the tags, in a <mark>; in raw mode, in the string as it is. */
   mark?: RegExp
 }
 
@@ -98,7 +98,7 @@ export interface TmpTextProps {
 export function TmpText({ text, raw, lang, mark }: TmpTextProps) {
   const nodes = useMemo(() => (raw ? [] : parseTMP(text)), [raw, text])
   if (raw) {
-    return <span class="tmp tmp-raw" lang={LANG_ATTR[lang]}>{text}</span>
+    return <span class="tmp tmp-raw" lang={LANG_ATTR[lang]}>{markText(text, mark)}</span>
   }
   return <span class="tmp" lang={LANG_ATTR[lang]}>{renderNodes(nodes, mark)}</span>
 }

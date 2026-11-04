@@ -1,5 +1,5 @@
-import { Fragment, type ComponentChildren } from 'preact'
-import { useRef, useState } from 'preact/hooks'
+import { createContext, Fragment, type ComponentChildren } from 'preact'
+import { useContext, useRef, useState } from 'preact/hooks'
 import { fileHref } from '../route'
 import { LANG_ATTR, type Lang, type Confirmed } from '../types'
 import { TmpText } from '../tmp/TmpText'
@@ -60,13 +60,23 @@ export function IdCopy({ id, source }: { id: string; source: string }) {
   )
 }
 
-/** The game text of one language, with its tags shown as what they do. */
+/** What the switches of the header show of the game text: the languages, and the tags as they are or as they draw. */
+export interface Shown {
+  langs: Record<Lang, boolean>
+  raw: boolean
+}
+
+export const ShownText = createContext<Shown>({ langs: { kr: true, jp: true, en: true, zh: true }, raw: false })
+
+/** The game text of one language, with its tags shown as what they do (or as they are); nothing for a language switched off. */
 export function Row({ label, lang, text, mark }: { label: string; lang: Lang; text: string; mark?: RegExp }) {
+  const shown = useContext(ShownText)
+  if (!shown.langs[lang]) return null
   return (
     <>
       <dt>{label}</dt>
       <dd lang={LANG_ATTR[lang]}>
-        <TmpText text={text} raw={false} lang={lang} {...(mark ? { mark } : {})} />
+        <TmpText text={text} raw={shown.raw} lang={lang} {...(mark ? { mark } : {})} />
       </dd>
     </>
   )

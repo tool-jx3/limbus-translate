@@ -120,6 +120,16 @@ describe('TmpText', () => {
     expect(show('x', { lang: 'zh' }).firstElementChild?.getAttribute('lang')).toBe('zh-Hant-TW')
   })
 
+  it('marks the matches in raw mode too, with the tags shown as they are', () => {
+    const container = document.createElement('div')
+    document.body.append(container)
+    render(<TmpText text={'<sprite name="Burn"> 達5次以上の時'} raw lang="zh" mark={/の/g} />, container)
+    expect(container.querySelector('.tmp-raw')?.textContent).toBe('<sprite name="Burn"> 達5次以上の時')
+    expect([...container.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['の'])
+    render(null, container)
+    container.remove()
+  })
+
   it('shows a new text when it changes', () => {
     const el = show('<b>甲</b>')
     render(<TmpText text="乙" raw={false} lang="zh" />, el)

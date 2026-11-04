@@ -85,16 +85,26 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
       </form>
       <div class="langs" role="group" aria-label="顯示語言">
         {LANGS.map((lang) => (
-          <label key={lang}>
+          <label key={lang} {...(lang === 'zh' ? { title: 'TW 一律顯示' } : {})}>
             <input
               type="checkbox"
-              checked={settings.langs[lang]}
+              checked={lang === 'zh' || settings.langs[lang]}
+              disabled={lang === 'zh'}
               onChange={(e) => onSettings({ ...settings, langs: { ...settings.langs, [lang]: e.currentTarget.checked } })}
             />
             {LANG_LABEL[lang]}
           </label>
         ))}
       </div>
+      <label class="raw-tags">
+        <input
+          type="checkbox"
+          data-setting="rawTags"
+          checked={settings.rawTags}
+          onChange={(e) => onSettings({ ...settings, rawTags: e.currentTarget.checked })}
+        />
+        顯示原始標籤
+      </label>
     </header>
   )
 }

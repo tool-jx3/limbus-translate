@@ -3,6 +3,7 @@ import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { clearDataCache } from '../data'
 import { fileHref, reviewHref, type Route } from '../route'
+import { defaultSettings, type Settings } from '../settings'
 import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
 import type { Index, Meta, NoteItem } from '../types'
 import { ReviewView } from './ReviewView'
@@ -34,11 +35,11 @@ function route(tab: ReviewRoute['tab'], rest: Partial<ReviewRoute> = {}): Review
   return { kind: 'review', tab, family: '', sub: '', q: '', all: false, mode: 'kr', jpen: '', ...rest }
 }
 
-async function mount(r: ReviewRoute): Promise<HTMLElement> {
+async function mount(r: ReviewRoute, settings: Settings = defaultSettings()): Promise<HTMLElement> {
   const container = document.createElement('div')
   document.body.append(container)
   containers.push(container)
-  render(<ReviewView route={r} index={index} meta={meta} />, container)
+  render(<ReviewView route={r} index={index} meta={meta} settings={settings} />, container)
   await vi.waitFor(() => expect(container.querySelector('.rv-body, .notice')).not.toBeNull())
   return container
 }
@@ -291,5 +292,42 @@ describe('the JP/EN view of the inconsistent translations', () => {
     const id = base().id as string
     const el = await mount(route('suggestions', { mode: 'jpen', id }))
     await vi.waitFor(() => expect(el.querySelector(`article.is-target[data-id="${id}"]`)).not.toBeNull())
+  })
+})
+
+describe('the review page follows the language and raw-tag switches of the header', () => {
+  const shown = (langs: Partial<Settings['langs']>, rest: Partial<Settings> = {}): Settings => ({
+    ...defaultSettings(),
+    ...rest,
+    langs: { ...defaultSettings().langs, ...langs },
+  })
+  const labels = (el: HTMLElement) => [...el.querySelectorAll('article.rv-card dt')].map((d) => d.textContent)
+
+  it('hides KR, JP and EN when they are switched off, and keeps TW', async () => {
+    let el = await mount(route('suggestions'))
+    expect(labels(el)).toEqual(expect.arrayContaining(['KR', 'JP', 'EN']))
+    el = await mount(route('suggestions'), shown({ kr: false, jp: false, en: false }))
+    expect(labels(el).filter((l) => l === 'KR' || l === 'JP' || l === 'EN')).toEqual([])
+    el = await mount(route('warnings'), shown({ kr: false }))
+    expect(labels(el)).not.toContain('KR')
+    expect(labels(el)).toContain('TW')
+  })
+
+  it('hides the JP or the EN of the JP/EN view when switched off, and keeps the class', async () => {
+    let el = await mount(route('suggestions', { mode: 'jpen' }), shown({ jp: false }))
+    expect(el.querySelector('.rv-jpen-jp')).toBeNull()
+    expect(el.querySelector('.rv-jpen-en')).not.toBeNull()
+    el = await mount(route('suggestions', { mode: 'jpen' }), shown({ jp: false, en: false }))
+    expect(el.querySelector('.rv-jpen')).toBeNull()
+    expect(el.querySelector('.rv-badge')).not.toBeNull()
+  })
+
+  it('shows the tags as they are when raw tags are on, still marking the problem', async () => {
+    let el = await mount(route('warnings'))
+    expect(el.querySelector('article.rv-card dd .tmp-raw')).toBeNull()
+    el = await mount(route('warnings'), shown({}, { rawTags: true }))
+    const raw = [...el.querySelectorAll('article.rv-card dd .tmp-raw')].map((r) => r.textContent)
+    expect(raw).toContain('<sprite name="Burn"> 達 5 次以上の時，攻擊威力 +1')
+    expect([...el.querySelectorAll('article.rv-card dd mark')].map((m) => m.textContent)).toContain('の')
   })
 })
