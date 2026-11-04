@@ -976,3 +976,2704 @@
   category: [city]
   notes: 見「현장추리팀」
 
+# 以下 401 條取自 Paratranz 詞彙表（project 14788），2026-11-04 匯入：目前譯文已有九成以上照這個譯法的詞。
+# evidence 是 2026-11-04 tw 的使用情況（不計 copy 單位）；notes 保留 Paratranz 的備註。
+
+- kr: 대상
+  zh: 目標
+  status: approved
+  evidence: { kr_lines: 6419, approved: 5825, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 다음 턴
+  zh: 下回合
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 4290, approved: 4239, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 수감자
+  zh: 罪人
+  status: approved
+  evidence: { kr_lines: 2709, approved: 2668, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 정신력
+  zh: 理智值
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 2334, approved: 2120, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 소모
+  zh: 消耗
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 2324, approved: 2209, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 코인 위력
+  zh: 硬幣威力
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1675, approved: 1647, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 턴 시작 시
+  zh: 回合開始時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1431, approved: 1409, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 합 위력
+  zh: 拚點威力
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1358, approved: 1353, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 턴 종료 시
+  zh: 回合結束時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1281, approved: 1268, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 협회
+  zh: 協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 1246, approved: 1245, forbidden: 0 }
+  notes: Paratranz 詞彙表：管理收尾人的協會
+
+- kr: 부위
+  zh: 部位
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 1152, approved: 1114, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述，多用於集中遭遇戰使用
+
+- kr: 해결사
+  zh: 收尾人
+  status: approved
+  evidence: { kr_lines: 1116, approved: 1113, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 최종 위력
+  zh: 最終威力
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1090, approved: 1089, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 공격 레벨
+  zh: 攻擊等級
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1035, approved: 1035, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 동기화
+  zh: 同步
+  status: approved
+  evidence: { kr_lines: 914, approved: 913, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 방어 레벨
+  zh: 防禦等級
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 908, approved: 908, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 가주
+  zh: 家主
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 893, approved: 876, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 공격 스킬
+  zh: 攻擊技能
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 847, approved: 791, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 사무소
+  zh: 事務所
+  status: approved
+  category: [general, city]
+  evidence: { kr_lines: 783, approved: 779, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，多指收尾人事務所
+
+- kr: 기본 위력
+  zh: 基礎威力
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 776, approved: 776, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 흑수
+  zh: 黑獸
+  status: approved
+  evidence: { kr_lines: 671, approved: 670, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 기프트
+  zh: 飾品
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 663, approved: 661, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指E.G.O飾品，請根據上下文翻譯
+
+- kr: 도시
+  zh: 都市
+  status: approved
+  evidence: { kr_lines: 558, approved: 536, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 당 피해량
+  zh: 造成的傷害
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 541, approved: 505, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 보호막
+  zh: 護盾
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 526, approved: 526, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: E.G.O 기프트
+  zh: E.G.O飾品
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 506, approved: 506, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 황금가지
+  zh: 金枝
+  status: approved
+  evidence: { kr_lines: 476, approved: 476, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 전투 승리
+  zh: 戰鬥勝利
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 454, approved: 449, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 뒷골목
+  zh: 後巷
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 450, approved: 447, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 타격
+  zh: 打擊
+  status: approved
+  category: [general, combat, physical]
+  evidence: { kr_lines: 433, approved: 411, forbidden: 0 }
+  notes: Paratranz 詞彙表：打擊，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 슬롯
+  zh: 行動槽
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 429, approved: 395, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 참격
+  zh: 斬擊
+  status: approved
+  category: [combat, physical]
+  evidence: { kr_lines: 413, approved: 412, forbidden: 0 }
+  notes: Paratranz 詞彙表：斬擊，輔助戰鬥相關文本描述
+
+- kr: 패닉
+  zh: 恐慌
+  status: approved
+  category: [buff]
+  evidence: { kr_lines: 396, approved: 392, forbidden: 0 }
+  notes: Paratranz 詞彙表：BUFF/DEBUFF
+
+- kr: 거울 던전
+  zh: 鏡像迷宮
+  status: approved
+  evidence: { kr_lines: 390, approved: 370, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 구인회
+  zh: 九人會
+  status: approved
+  evidence: { kr_lines: 378, approved: 377, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 로보토미
+  zh: 腦葉公司
+  status: approved
+  evidence: { kr_lines: 378, approved: 370, forbidden: 0 }
+  notes: Paratranz 詞彙表：Project Moon旗下作品之一，多指該公司本體
+
+- kr: 질투
+  zh: 嫉妒
+  status: approved
+  category: [combat, sin]
+  evidence: { kr_lines: 370, approved: 369, forbidden: 0 }
+  notes: Paratranz 詞彙表：嫉妒，輔助戰鬥相關文本描述
+
+- kr: 흑운회
+  zh: 黑雲會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 363, approved: 363, forbidden: 0 }
+  notes: Paratranz 詞彙表：幫派之一
+
+- kr: 검계
+  zh: 劍契組
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 361, approved: 359, forbidden: 0 }
+  notes: Paratranz 詞彙表：幫派之一
+
+- kr: 내성
+  zh: 抗性
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 349, approved: 339, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 턴 종료시
+  zh: 回合結束時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 345, approved: 342, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 크리티컬 피해량
+  zh: 暴擊時造成的傷害
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 322, approved: 314, forbidden: 0 }
+  notes: Paratranz 詞彙表：暴擊，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 적 처치
+  zh: 擊殺敵方
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 310, approved: 280, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 관통
+  zh: 突刺
+  status: approved
+  category: [general, combat, physical]
+  evidence: { kr_lines: 306, approved: 276, forbidden: 0 }
+  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 색욕
+  zh: 色慾
+  status: approved
+  category: [general, combat, sin]
+  evidence: { kr_lines: 303, approved: 303, forbidden: 0 }
+  notes: Paratranz 詞彙表：色慾，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 공방
+  zh: 工坊
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 292, approved: 287, forbidden: 0 }
+  notes: Paratranz 詞彙表：都市術語
+
+- kr: 전투 시작 시
+  zh: 戰鬥開始時
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 291, approved: 283, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 공격 가중치
+  zh: 攻擊容量
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 290, approved: 290, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥文本描述
+
+- kr: 탐식
+  zh: 暴食
+  status: approved
+  category: [general, combat, sin]
+  evidence: { kr_lines: 286, approved: 277, forbidden: 0 }
+  notes: Paratranz 詞彙表：暴食，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 나태
+  zh: 怠惰
+  status: approved
+  category: [general, combat, sin]
+  evidence: { kr_lines: 283, approved: 281, forbidden: 0 }
+  notes: Paratranz 詞彙表：怠惰，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 둥지
+  zh: 巢
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 271, approved: 266, forbidden: 0 }
+  notes: Paratranz 詞彙表：多為都市用語，請根據情況翻譯
+
+- kr: (턴 당 1회)
+  zh: (每回合最多1次)
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 268, approved: 261, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 시지프
+  zh: 薛西弗斯
+  status: approved
+  evidence: { kr_lines: 260, approved: 260, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 무작위 대상 공격
+  zh: 隨機指定目標
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 250, approved: 250, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 메피스토펠레스
+  zh: 梅菲斯托費勒斯
+  status: approved
+  evidence: { kr_lines: 245, approved: 245, forbidden: 0 }
+  notes: Paratranz 詞彙表：《浮士德》中的惡魔，在遊戲中為LCB的巴士
+
+- kr: 섕크 협회
+  zh: Cinq協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 242, approved: 242, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 흐트러짐 손상
+  zh: 混亂閾值前移
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 241, approved: 237, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 합 승리 시
+  zh: 拚點勝利時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 217, approved: 206, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 전투 패배
+  zh: 戰鬥失敗
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 상점
+  zh: 商店
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 214, approved: 212, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 집중 전투
+  zh: 集中遭遇戰
+  status: approved
+  evidence: { kr_lines: 211, approved: 210, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 인격 편성
+  zh: 人格出戰
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 204, approved: 197, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 림버스 컴퍼니
+  zh: 邊獄公司
+  status: approved
+  evidence: { kr_lines: 202, approved: 200, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 굴절된
+  zh: 折射的
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 201, approved: 200, forbidden: 0 }
+  notes: Paratranz 詞彙表：折射軌道相關的前綴
+
+- kr: 전투 중 인격 선택
+  zh: 戰鬥中選中人格
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 200, approved: 200, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 야수파
+  zh: 野獸派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 198, approved: 198, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指派系之一
+
+- kr: 인격 획득
+  zh: 獲得時
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 195, approved: 193, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 적 흐트러질 시 대사
+  zh: 敵方混亂
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 195, approved: 194, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 죄종
+  zh: 罪種
+  status: approved
+  evidence: { kr_lines: 195, approved: 194, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 선택지 성공
+  zh: 判定成功
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 193, approved: 193, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 선택지 실패
+  zh: 判定失敗
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 193, approved: 193, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 저녁 인사
+  zh: 晚間問候
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 193, approved: 193, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 거울굴절철도
+  zh: 折射軌道
+  status: approved
+  evidence: { kr_lines: 190, approved: 186, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 복지팀
+  zh: 福利部
+  status: approved
+  evidence: { kr_lines: 187, approved: 187, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 츠바이 협회
+  zh: Zwei協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 185, approved: 185, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 동기화 진행
+  zh: 進行同步
+  status: approved
+  evidence: { kr_lines: 184, approved: 183, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 엔케팔린
+  zh: 腦啡肽
+  status: approved
+  evidence: { kr_lines: 183, approved: 171, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 동기화 3단계 달성
+  zh: 人格同步階段3 完成
+  status: approved
+  evidence: { kr_lines: 180, approved: 178, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: E.G.O 침식
+  zh: E.G.O侵蝕
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 178, approved: 177, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 완전 공명
+  zh: 完全共鳴
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 175, approved: 174, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: E.G.O 발동
+  zh: E.G.O覺醒
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 169, approved: 169, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 배너
+  zh: 橫幅
+  status: approved
+  evidence: { kr_lines: 166, approved: 164, forbidden: 0 }
+  notes: Paratranz 詞彙表：獎勵之一
+
+- kr: 사기 저하
+  zh: 士氣低落
+  status: approved
+  evidence: { kr_lines: 165, approved: 161, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 앰플
+  zh: 安瓿
+  status: approved
+  evidence: { kr_lines: 164, approved: 163, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 주군
+  zh: 主公
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 164, approved: 160, forbidden: 0 }
+  notes: Paratranz 詞彙表：僅限黑獸(暫定?) 輔助文本描述
+
+- kr: 발푸르기스의 밤
+  zh: 瓦爾普吉斯之夜
+  status: approved
+  evidence: { kr_lines: 163, approved: 161, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 별빛
+  zh: 星芒
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 163, approved: 154, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡像迷宮機制
+
+- kr: 반격
+  zh: 反擊
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 162, approved: 161, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥文本相關描述，多指反擊技能
+
+- kr: 리우 협회
+  zh: 六協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 161, approved: 161, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 본인 사망
+  zh: 自身陣亡
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 158, approved: 158, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 어금니 보트 센터
+  zh: 臼齒修船廠
+  status: approved
+  evidence: { kr_lines: 155, approved: 155, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 테마팩
+  zh: 主題卡包
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 138, approved: 138, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡像迷宮術語
+
+- kr: 합성
+  zh: 合成
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 137, approved: 137, forbidden: 0 }
+  notes: Paratranz 詞彙表：多用於鏡像合成術語
+
+- kr: 순록팀
+  zh: 馴鹿隊
+  status: approved
+  evidence: { kr_lines: 134, approved: 134, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 상징계
+  zh: 象徵界
+  status: approved
+  evidence: { kr_lines: 133, approved: 133, forbidden: 0 }
+  notes: Paratranz 詞彙表：十章RPG名詞
+
+- kr: 권속
+  zh: 眷屬
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 126, approved: 126, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指血魔眷屬。
+
+- kr: 뒷문
+  zh: 後門
+  status: approved
+  evidence: { kr_lines: 124, approved: 123, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指巴士後方走廊的神祕空間
+
+- kr: 특이점
+  zh: 奇點
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 122, approved: 121, forbidden: 0 }
+  notes: Paratranz 詞彙表：都市術語
+
+- kr: 멀티크랙 사무소
+  zh: 多裂紋事務所
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 121, approved: 121, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人事務所之一
+
+- kr: 장미스패너
+  zh: 玫瑰扳手
+  status: approved
+  evidence: { kr_lines: 120, approved: 120, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 특정 스킬
+  zh: 特定技能
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 120, approved: 117, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 도슨트
+  zh: 導覽員
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 110, approved: 105, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指位階之一
+
+- kr: 크흠
+  zh: 咳
+  status: approved
+  evidence: { kr_lines: 109, approved: 102, forbidden: 0 }
+  notes: Paratranz 詞彙表：清喉嚨的狀聲詞
+
+- kr: 안전팀
+  zh: 安保部
+  status: approved
+  evidence: { kr_lines: 108, approved: 107, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 워프 열차
+  zh: WARP列車
+  status: approved
+  evidence: { kr_lines: 108, approved: 108, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 세븐 협회
+  zh: Seven協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 107, approved: 107, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之
+
+- kr: 디에치 협회
+  zh: Dieci協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 105, approved: 105, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 스튜던트
+  zh: 學徒
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 102, approved: 102, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指位階之一
+
+- kr: 격리실
+  zh: 收容單元
+  status: approved
+  evidence: { kr_lines: 95, approved: 94, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: E.G.O 스킬 제외
+  zh: 不包括E.G.O技能
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 94, approved: 85, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 범용 E.G.O GIFT
+  zh: 泛用E.G.O飾品
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 94, approved: 94, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 지휘팀
+  zh: 控制部
+  status: approved
+  evidence: { kr_lines: 94, approved: 93, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 화장실
+  zh: 廁所
+  status: approved
+  evidence: { kr_lines: 93, approved: 87, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 보상 교환
+  zh: 獎勵兌換
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 92, approved: 92, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 대호수
+  zh: 大湖
+  status: approved
+  evidence: { kr_lines: 91, approved: 91, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 채광
+  zh: 採光
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 90, approved: 88, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 외곽
+  zh: 郊區
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 86, approved: 81, forbidden: 0 }
+  notes: Paratranz 詞彙表：都市術語
+
+- kr: 개화 E.G.O
+  zh: 綻放E.G.O
+  status: approved
+  evidence: { kr_lines: 82, approved: 82, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 마침표 사무소
+  zh: 句點事務所
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 82, approved: 82, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人事務所之一
+
+- kr: 초롱
+  zh: 提燈
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 80, approved: 78, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 쥐는 자
+  zh: 執柄者
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 79, approved: 77, forbidden: 0 }
+  notes: Paratranz 詞彙表：N公司釘與錘職位
+
+- kr: 흐트러짐 구간
+  zh: 混亂閾值
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 79, approved: 73, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 창백한 고래
+  zh: 白鯨
+  status: approved
+  evidence: { kr_lines: 77, approved: 76, forbidden: 0 }
+  notes: Paratranz 詞彙表：特指第5章的白鯨
+
+- kr: 조작 패널
+  zh: 儀錶盤
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 76, approved: 74, forbidden: 0 }
+  notes: Paratranz 詞彙表：戰鬥介面
+
+- kr: 파시아
+  zh: 法希雅
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 74, approved: 74, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指弟子的大劍武器
+
+- kr: 환상 해석
+  zh: 異想解析
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 74, approved: 72, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O階段的名稱
+
+- kr: 추출 10회 티켓
+  zh: 十連提取券
+  status: approved
+  evidence: { kr_lines: 73, approved: 73, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 마에스트로
+  zh: 大師
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 69, approved: 69, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指位階之一
+
+- kr: 사기저하
+  zh: 士氣低落
+  status: approved
+  evidence: { kr_lines: 69, approved: 67, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 아르카나
+  zh: 阿爾卡那
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 69, approved: 68, forbidden: 0 }
+  notes: Paratranz 詞彙表：魔法少女/憎惡女王相關術語，輔助文本描述
+
+- kr: 외우피 협회
+  zh: Öufi協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 69, approved: 69, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 오트쿠튀르
+  zh: 高級訂製服
+  status: approved
+  evidence: { kr_lines: 66, approved: 66, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 획득 기록 없음
+  zh: 暫無獲取紀錄
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 65, approved: 64, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 게젤샤프트
+  zh: Gesellschaft
+  status: approved
+  evidence: { kr_lines: 64, approved: 64, forbidden: 0 }
+  notes: Paratranz 詞彙表：浮士德網路，目前使用英文
+
+- kr: 경멸의 나선
+  zh: 輕蔑螺旋
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 64, approved: 64, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 속도에 상관없이 이 스킬과 합을 할 수 있음
+  zh: 可無視速度值與本技能拚點
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 63, approved: 63, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 전령
+  zh: 傳令者
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 55, approved: 53, forbidden: 0 }
+  notes: Paratranz 詞彙表：食指職位之一
+
+- kr: 아나운서
+  zh: 播報員
+  status: approved
+  evidence: { kr_lines: 52, approved: 51, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 가주 심사
+  zh: 家主審查
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 51, approved: 51, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 일반 전투
+  zh: 常規遭遇戰
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 51, approved: 50, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本使用
+
+- kr: 의뢰인
+  zh: 委託人
+  status: approved
+  evidence: { kr_lines: 50, approved: 45, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: (턴 당 2회)
+  zh: (每回合最多2次)
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 48, approved: 48, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 점묘파
+  zh: 點描派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 48, approved: 48, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指派系之一
+
+- kr: 경혈식
+  zh: 硬血
+  status: approved
+  evidence: { kr_lines: 47, approved: 47, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 별의 가호
+  zh: 星之恩惠
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 46, approved: 43, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡像迷宮機制
+
+- kr: 붉은시선
+  zh: 猩紅凝視
+  status: approved
+  evidence: { kr_lines: 46, approved: 45, forbidden: 0 }
+  notes: Paratranz 詞彙表：維吉里烏斯的特色
+
+- kr: 죄악 속성
+  zh: 罪孽屬性
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 46, approved: 45, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥文本描述
+
+- kr: (턴 당 3회)
+  zh: (每回合最多3次)
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 45, approved: 42, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 육참골단
+  zh: 肉斬骨斷
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 45, approved: 45, forbidden: 0 }
+  notes: Paratranz 詞彙表：間章 第5.5.2章
+
+- kr: 평행중첩
+  zh: 平行疊加
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 45, approved: 45, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡像迷宮術語
+
+- kr: 모노리스
+  zh: 獨石
+  status: approved
+  evidence: { kr_lines: 44, approved: 44, forbidden: 0 }
+  notes: Paratranz 詞彙表：造成扭曲現象的物品之一
+
+- kr: 홍염나방
+  zh: 紅焰蛾
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 44, approved: 44, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 중간 망치
+  zh: 中鎚
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 43, approved: 43, forbidden: 0 }
+  notes: Paratranz 詞彙表：N公司釘與鎚職位
+
+- kr: 지난 날
+  zh: 往昔
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 43, approved: 40, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 상영관
+  zh: 放映室
+  status: approved
+  evidence: { kr_lines: 42, approved: 42, forbidden: 0 }
+  notes: Paratranz 詞彙表：查看回放的功能
+
+- kr: 워프특급 살인사건
+  zh: WARP列車謀殺案
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 41, approved: 41, forbidden: 0 }
+  notes: Paratranz 詞彙表：間章 第6.5.2章
+
+- kr: 탐사
+  zh: 探索
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 40, approved: 37, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡像迷宮/折射軌道專用動詞
+
+- kr: 투영도
+  zh: 折射率
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 39, approved: 39, forbidden: 0 }
+  notes: Paratranz 詞彙表：鏡牢成就進度
+
+- kr: 그림자계
+  zh: 陰影界
+  status: approved
+  evidence: { kr_lines: 38, approved: 37, forbidden: 0 }
+  notes: Paratranz 詞彙表：十章RPG名詞
+
+- kr: 물리 내성
+  zh: 物理抗性
+  status: approved
+  category: [buff]
+  evidence: { kr_lines: 38, approved: 37, forbidden: 0 }
+  notes: Paratranz 詞彙表：BUFF/DEBUFF
+
+- kr: 새로고침
+  zh: 刷新
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 38, approved: 35, forbidden: 0 }
+  notes: Paratranz 詞彙表：多用於鏡像迷宮機制
+
+- kr: 이홍원
+  zh: 怡紅院
+  status: approved
+  evidence: { kr_lines: 37, approved: 37, forbidden: 0 }
+  notes: Paratranz 詞彙表：第八章場景之一
+
+- kr: 20번구의 기적
+  zh: 20區的奇蹟
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 36, approved: 34, forbidden: 0 }
+  notes: Paratranz 詞彙表：間章 第5.5.1章
+
+- kr: 경험기억
+  zh: 經歷記憶
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 36, approved: 36, forbidden: 0 }
+  notes: Paratranz 詞彙表：9.5.2章節名
+
+- kr: 가스하푼
+  zh: 燃氣捕鯨叉
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 35, approved: 35, forbidden: 0 }
+  notes: Paratranz 詞彙表：亞哈的E.G.O名稱
+
+- kr: 어금니 사무소
+  zh: 臼齒事務所
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 35, approved: 35, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人事務所之一
+
+- kr: 이상으로 보고를 마칩니다.
+  zh: 報告結束。
+  status: approved
+  category: [only:faust]
+  evidence: { kr_lines: 34, approved: 34, forbidden: 0 }
+  notes: Paratranz 詞彙表：僅限浮士德─觀察報告
+
+- kr: 코인당 1회
+  zh: 每枚硬幣最多1次
+  status: approved
+  evidence: { kr_lines: 34, approved: 34, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 골목파수견
+  zh: 巷弄惡犬
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 33, approved: 33, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 종말 달력
+  zh: 終末日曆
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 33, approved: 33, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 타래 엮기
+  zh: 搓揉撚合
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 32, approved: 32, forbidden: 0 }
+  notes: Paratranz 詞彙表：9.5章名稱
+
+- kr: 혈액바
+  zh: 血棒
+  status: approved
+  evidence: { kr_lines: 32, approved: 32, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 정보팀
+  zh: 情報部
+  status: approved
+  evidence: { kr_lines: 31, approved: 31, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 큰 망치
+  zh: 大鎚
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 31, approved: 31, forbidden: 0 }
+  notes: Paratranz 詞彙表：N公司釘與鎚職位
+
+- kr: 분홍신
+  zh: 粉紅鞋
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 30, approved: 29, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 산나비
+  zh: 生蝶
+  status: approved
+  category: [buff]
+  evidence: { kr_lines: 30, approved: 30, forbidden: 0 }
+  notes: Paratranz 詞彙表：BUFF/DEBUFF
+
+- kr: 재적일
+  zh: 再積日
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 30, approved: 30, forbidden: 0 }
+  notes: Paratranz 詞彙表：H巢定期根據財產變更房地面積的日子
+
+- kr: 죽은나비
+  zh: 亡蝶
+  status: approved
+  category: [buff]
+  evidence: { kr_lines: 30, approved: 30, forbidden: 0 }
+  notes: Paratranz 詞彙表：BUFF/DEBUFF
+
+- kr: <혈귀>
+  zh: <血魔>
+  status: approved
+  evidence: { kr_lines: 29, approved: 28, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 분실물 보관소
+  zh: 失物招領處
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 29, approved: 28, forbidden: 0 }
+  notes: Paratranz 詞彙表：多用於折射軌道
+
+- kr: 이 스킬은 수비 스킬을 발동시키지 않음
+  zh: 本技能不會觸發守備技能
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 29, approved: 27, forbidden: 0 }
+  notes: Paratranz 詞彙表：技能文本輔助
+
+- kr: 이름과 거미의 거울
+  zh: 名與蛛之鏡
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 29, approved: 29, forbidden: 0 }
+  notes: Paratranz 詞彙表：第7賽季鏡像迷宮
+
+- kr: 4번째 성냥불
+  zh: 第四根火柴
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 28, approved: 28, forbidden: 0 }
+  notes: Paratranz 詞彙表：EGO被動
+
+- kr: 가주 후보
+  zh: 家主候選人
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 28, approved: 28, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 단수어
+  zh: 斷首魚
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 27, approved: 27, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 치명타
+  zh: 暴擊
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 27, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：暴擊，輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 대상의 수비 스킬을 발동시키지 않음
+  zh: 不會觸發目標的守備技能
+  status: approved
+  evidence: { kr_lines: 26, approved: 24, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 서포트 패시브
+  zh: 支援被動
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 26, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 신체파
+  zh: 人體派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 26, approved: 26, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指派系之一
+
+- kr: 웨이브 첫 턴 시작 시
+  zh: 波次的首個回合開始時
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 26, approved: 26, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 장미 사냥꾼
+  zh: 玫瑰獵人
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 26, approved: 26, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 누구도 울지 않도록
+  zh: 因而無人哭泣
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 25, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 떠돌이 여우
+  zh: 流浪狐狸
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 25, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 클리포트
+  zh: 逆卡巴拉
+  status: approved
+  evidence: { kr_lines: 25, approved: 25, forbidden: 0 }
+  notes: Paratranz 詞彙表：腦葉公司相關術語
+
+- kr: HP탄
+  zh: HP彈
+  status: approved
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 길 잃은 승객
+  zh: 迷失的乘客
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 르네앙
+  zh: 虛無派
+  status: approved
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表：第十章派別之一
+
+- kr: 오블리비언
+  zh: 忘卻
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表：第5賽季名稱
+
+- kr: 우.미.다
+  zh: 去．海．邊
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表：間章 第4.5章
+
+- kr: 푼크툼
+  zh: 刺點
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表：第8賽季名稱
+
+- kr: 헬스 치킨
+  zh: 地獄雞
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
+  notes: Paratranz 詞彙表：間章 第3.5章
+
+- kr: 기술 해방 연합
+  zh: 技術解放聯盟
+  status: approved
+  evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 아군 전체
+  zh: 全體友方單位
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 아파하는 테디
+  zh: 痛苦泰迪
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 장미 표지판
+  zh: 玫瑰告示牌
+  status: approved
+  evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 추가적인 관찰이 이뤄지면 새롭게 서술하겠다
+  zh: 如果有任何新的發現，我會在未來的報告中提及
+  status: approved
+  category: [only:meursault]
+  evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
+  notes: Paratranz 詞彙表：僅限莫梭─觀察報告
+
+- kr: 시작 버프
+  zh: 開局增益
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 21, approved: 21, forbidden: 0 }
+  notes: Paratranz 詞彙表：多用於鏡像迷宮機制
+
+- kr: 정예 전투
+  zh: 菁英遭遇戰
+  status: approved
+  evidence: { kr_lines: 21, approved: 21, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 클리어 올 캐시
+  zh: 清除凱茜
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 21, approved: 20, forbidden: 0 }
+  notes: Paratranz 詞彙表：第4賽季名稱
+
+- kr: 본 보야지
+  zh: 一路順風
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 20, approved: 19, forbidden: 0 }
+  notes: Paratranz 詞彙表：第3三季名稱
+
+- kr: 위험등급
+  zh: 危險等級
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體分類法之一
+
+- kr: 일방공격
+  zh: 單方面攻擊
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 충격 지네
+  zh: 電擊蜈蚣
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 홍적
+  zh: 朱符
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 버스배
+  zh: 巴士船
+  status: approved
+  evidence: { kr_lines: 19, approved: 19, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 보냐텔리
+  zh: 波納堤利
+  status: approved
+  evidence: { kr_lines: 19, approved: 19, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 비포팀
+  zh: 先遣部隊
+  status: approved
+  evidence: { kr_lines: 19, approved: 19, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指LCCB
+
+- kr: 울음 두꺼비
+  zh: 悲泣蟾蜍
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 19, approved: 19, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 꿈먹는 탁류
+  zh: 噬夢的濁流
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 지난 날의 침낭
+  zh: 往昔的睡袋
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 평생 스튜
+  zh: 一生燉菜
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 흉탄의
+  zh: 凶彈
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 흉탄의 사수
+  zh: 凶彈射手
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 이 스킬은 대상의 수비 스킬을 발동시키지 않음
+  zh: 本技能不會觸發目標的守備技能
+  status: approved
+  evidence: { kr_lines: 17, approved: 17, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 절망의 기사
+  zh: 絕望騎士
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 17, approved: 17, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 황금빛의 사과
+  zh: 金蘋果
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 17, approved: 17, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: <라만차랜드>
+  zh: <拉．曼查領>
+  status: approved
+  evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 거울 세계
+  zh: 鏡像世界
+  status: approved
+  evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 삼도끼 사무소
+  zh: 三斧事務所
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人事務所之一
+
+- kr: 일반 전투 한정
+  zh: 僅限常規遭遇戰
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本使用
+
+- kr: 전기울음
+  zh: 電子哀鳴
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 공멸일
+  zh: 孔家滅門之日
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 15, approved: 15, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 애프터 팀
+  zh: 收尾部隊
+  status: approved
+  evidence: { kr_lines: 15, approved: 15, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指LCCA
+
+- kr: 집중 전투의 경우, 부위로 판정
+  zh: 若為集中遭遇戰，則改為以部位判定
+  status: approved
+  evidence: { kr_lines: 15, approved: 15, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 휴식 보너스
+  zh: 休息獎勵
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 15, approved: 15, forbidden: 0 }
+  notes: Paratranz 詞彙表：多用於鏡像迷宮術語
+
+- kr: 마에스트로님
+  zh: 大師
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指的階級 大師
+
+- kr: 미르칼라
+  zh: 蜜卡拉
+  status: approved
+  evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 바바야가
+  zh: 芭芭雅嘎
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 언더보스
+  zh: 二老闆
+  status: approved
+  category: [general, city]
+  evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指職稱，輔助文本描述
+
+- kr: 흑단여왕의 사과
+  zh: 黑檀女王的蘋果
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 로직 아틀리에
+  zh: 邏輯工作室
+  status: approved
+  evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 빼기 코인 인격
+  zh: 減算硬幣人格
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 앤젤라
+  zh: Angela
+  status: approved
+  evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 죄악 공명
+  zh: 罪孽共鳴
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 13, approved: 12, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 죽은 나비들의 장례
+  zh: 亡蝶葬儀
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 쥐어들 자
+  zh: 準執柄者
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表：N公司釘與錘職位
+
+- kr: 증기 운반 기계
+  zh: 蒸氣運輸機
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 아늑한 침대
+  zh: 舒適臥床
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 12, approved: 12, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 낭술회
+  zh: 朗術會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表：九人會的技術分享會議
+
+- kr: 동부십검
+  zh: 東部十劍
+  status: approved
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 메이스
+  zh: 鎚矛
+  status: approved
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表：以實瑪利的武器
+
+- kr: 부서진 칼날
+  zh: 損壞的刀刃
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 작은 망치
+  zh: 小鎚
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表：N公司釘與鎚職位
+
+- kr: 청소부 액체 연료통
+  zh: 清道夫液態燃料罐
+  status: approved
+  category: [buff]
+  evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
+  notes: Paratranz 詞彙表：BUFF/DEBUFF
+
+- kr: 검은 장부
+  zh: 黑色帳簿
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹슨 칼자루
+  zh: 生鏽的刀柄
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 의리 사슬
+  zh: 情義鎖鏈
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 초염옥구
+  zh: 翠炎玉器
+  status: approved
+  evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
+  notes: Paratranz 詞彙表：目前特指東五唐手上的玉器
+
+- kr: 감상실
+  zh: 放映室
+  status: approved
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表：劇情中的放映室
+
+- kr: 물리 간섭 보호장
+  zh: 反物理力場盾
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 수비 스킬을 장착했으면
+  zh: 裝備了守備技能
+  status: approved
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 이 스킬을 사용하기 전까지 흐트러지지 않음
+  zh: 自身使用本技能前不會陷入混亂
+  status: approved
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 자신의 고유 효과 외 나머지 효과 전부 소멸
+  zh: 解除除自身固有狀態以外的所有狀態
+  status: approved
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 트레스 협회
+  zh: Tres協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 행동 불가 상태가 됨
+  zh: 處於無法行動的狀態
+  status: approved
+  evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 거짓 사과
+  zh: 假蘋果
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 경외심
+  zh: 敬畏
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 날개 전쟁
+  zh: 翼際戰爭
+  status: approved
+  category: [general, city]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：翼與翼之間的戰爭，輔助文本描述
+
+- kr: 단일 코인 스킬
+  zh: 單硬幣技能
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 라이브러리 오브 루이나
+  zh: 廢墟圖書館
+  status: approved
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：Project Moon旗下作品之一，多指該圖書館本體
+
+- kr: 맘브리노
+  zh: 曼布里諾
+  status: approved
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 손가락 걸기
+  zh: 拉勾
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：手指幫派之間的會議
+
+- kr: 출렁임
+  zh: 蕩漾
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 피뢰침
+  zh: 避雷針
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: E.G.O 오버클록
+  zh: E.G.O超頻
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 눈물 흘리는 것
+  zh: 落淚之物
+  status: approved
+  evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 빛의 묘목
+  zh: 光之樹苗
+  status: approved
+  evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：但丁的金枝能力
+
+- kr: 입체파
+  zh: 立體派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指派系之一；立體主義
+
+- kr: 자아 심도
+  zh: 自我心道
+  status: approved
+  evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 핏빛욕망
+  zh: 血慾
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 가주 선발
+  zh: 家主選拔
+  status: approved
+  category: [general]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述
+
+- kr: 개념소각기
+  zh: 概念焚化爐
+  status: approved
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 그것의 변화 양상을 전부 관찰하였습니다
+  zh: 觀測到該實體的全部變化
+  status: approved
+  category: [only:faust]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：僅限浮士德─觀察報告
+
+- kr: 글라디우스
+  zh: 羅馬短劍
+  status: approved
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：維吉里烏斯的武器
+
+- kr: 낡은 칼자루
+  zh: 陳舊的刀柄
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 놋쇠 황소 - 눈물 흘리는
+  zh: 黃銅公牛 - 流淚
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 버스 부서
+  zh: 巴士部門
+  status: approved
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：即Limbus Company Bus, LCB
+
+- kr: 산쵸
+  zh: 桑丘
+  status: approved
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 연기 전쟁
+  zh: 煙霾戰爭
+  status: approved
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 장미 면류관
+  zh: 玫瑰王冠
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 제한 풀린 제세동기
+  zh: 解除限制的去顫器
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 지옥나비의 꿈
+  zh: 煉獄炎蝶之夢
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 초록빛 결실
+  zh: 綠光果實
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 해진 삿갓
+  zh: 破損的斗笠
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 공격이 적중하지 않음
+  zh: 該攻擊不會命中目標
+  status: approved
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 낡은 목각 인형
+  zh: 陳舊的木雕人偶
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 니콜리나
+  zh: 尼古莉娜
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：多指三代血魔理髮師
+
+- kr: 닉시 다이버전스
+  zh: 輝光變動儀
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 마법의 탄환
+  zh: 魔彈
+  status: approved
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：魔彈射手的特殊彈藥
+
+- kr: 작열우모
+  zh: 熾熱的羽毛
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 프리모
+  zh: 一階
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指階級，通常以槓(I)來表示
+
+- kr: 합 가능 수비 포함
+  zh: 包括可拚點的守備技能
+  status: approved
+  evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 감사합니다. 지금부터 변동 가능성을 가진 최대 12시간의 수면 및 휴식을 시작합니다. 좋은
+  zh: 謝謝。從現在開始，你們最多有12個小時可供睡眠和休息，時間可能會有所變動。祝各位有個美好的夜晚。
+  status: approved
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：但丁宣布可以休息後，浮士德的固定台詞
+
+- kr: 고목 함정
+  zh: 古木陷阱
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 극독성 외피
+  zh: 劇毒外皮
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 낡은 도포
+  zh: 陳舊的道袍
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹빛 겉날개
+  zh: 綠色鞘翅
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹슨 시계침
+  zh: 生鏽的指針
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 데블스 셰어
+  zh: 魔鬼所享
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 마음이 어긋나는
+  zh: 心意相悖
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：主線第6章
+
+- kr: 맘브리노 투구를
+  zh: 曼布里諾頭盔
+  status: approved
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 블러디 가젯
+  zh: 鮮血裝飾
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 생체 맹독 바이알
+  zh: 生物劇毒藥瓶
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 세칸도
+  zh: 二階
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指階級，通常以槓(I)來表示
+
+- kr: 순찰용 손전등
+  zh: 巡邏用手電筒
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 시큼한 주향
+  zh: 酸味的酒香
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 악으로 규정되는
+  zh: 定義為惡
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：主線第5章
+
+- kr: 어두운 숲
+  zh: 幽暗的森林
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：主線序章
+
+- kr: 엔도르핀 키트
+  zh: 內啡肽試劑組
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 옭아맨 타래
+  zh: 糾纏捆束
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 울화통
+  zh: 鬱火
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 재에서 재로
+  zh: 塵歸塵
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 제논의 거북나선
+  zh: 芝諾的龜之螺旋
+  status: approved
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 코인 뒷면 확률 100%로 고정
+  zh: 硬幣翻為背面的機率固定為100%
+  status: approved
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 콰르토
+  zh: 四階
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指階級，通常以槓(I)表示
+
+- kr: 형광색 램프
+  zh: 螢光燈
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O碎片
+
+- kr: (턴 당 4회)
+  zh: (每回合最多4次)
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: E.G.O 폭주 발동
+  zh: E.G.O失控
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 굳게 쥔 상
+  zh: 緊握的雕像
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 근무용 통상 배터리
+  zh: 標準負荷電池
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 끈적거리는 진액
+  zh: 黏性淤漿
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 네잎클로버
+  zh: 四葉草
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹슨 기념 주화
+  zh: 生鏽的紀念幣
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹슨 입마개
+  zh: 生鏽的籠頭
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹슨 커터 나이프
+  zh: 生鏽的美工刀
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 도착증
+  zh: 倒錯症
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 로렌소
+  zh: 羅倫佐
+  status: approved
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：《唐吉訶德》中的角色之一
+
+- kr: 먼지에서 먼지로
+  zh: 土歸土
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 명경지수
+  zh: 明鏡止水
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 바라보아지는
+  zh: 備受注視
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：第十章章節名
+
+- kr: 벼려진 가지
+  zh: 磨尖的樹枝
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 분풀기
+  zh: 洩憤暴打
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：技能譯名
+
+- kr: 선고의 순간
+  zh: 宣判之刻
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 속하지 못하는
+  zh: 身無所屬
+  status: approved
+  category: [system]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：主線第1章
+
+- kr: 손목 보호대
+  zh: 護腕
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 시간 굴레
+  zh: 時間的枷鎖
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 시오미 요루
+  zh: 鹽見夜鷺
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：小指 父輩
+
+- kr: 압박 붕대
+  zh: 加壓繃帶
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 억류된 찬송
+  zh: 被扣留的頌歌
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 연기와 철조망
+  zh: 煙霾與鐵絲網
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 위장된 화평
+  zh: 虛飾的和平
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 유연 화약
+  zh: 有煙火藥
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 이 코인은 메인 타겟에게만 적중함
+  zh: 本硬幣只會命中主要目標
+  status: approved
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 일점타격논리회로
+  zh: 單點打擊邏輯電路
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 자신의 코인 앞면 확률 100% 고정
+  zh: 使自身硬幣翻為正面的機率固定為100%
+  status: approved
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 재단용 가위
+  zh: 裁縫用剪刀
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 진실의 종
+  zh: 真理之鐘
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 쪽빛 지포라이터
+  zh: 藍色Zippo牌打火機
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 찢어진 밴돌리어
+  zh: 撕裂的彈帶
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 축복이었던
+  zh: 曾經的祝福
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 테르조
+  zh: 三階
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：拇指階級，通常以槓(I)來表示
+
+- kr: 편광
+  zh: 偏振光
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 한겨울 밤의 악몽
+  zh: 仲冬夜之噩夢
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O名稱
+
+- kr: 휴대용 전지 소켓
+  zh: 攜帶式電源插座
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: E.G.O 해방
+  zh: E.G.O解放
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 강요된 무게
+  zh: 強壓的重擔
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O.飾品
+
+- kr: 거울 촉각 공감각
+  zh: 鏡觸覺通感
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 단테의 노트
+  zh: 但丁的筆記
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 모든 캐릭터가 수치를 공유함
+  zh: 本效果層數全體單位共同計算
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 문자 석판
+  zh: 石版字符
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 보유 패시브
+  zh: 持有被動
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 불빛꽃
+  zh: 火光花
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 사백 송이 장미
+  zh: 四百朵玫瑰
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體
+
+- kr: 수감자 당 턴 당 1회 발동
+  zh: 每名罪人每回合最多1次
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 수집하는 해골
+  zh: 頭骨收藏
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O收藏
+
+- kr: 움브라
+  zh: 安布拉
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 이 스킬은 항상 크리티컬로 발동됨
+  zh: 本技能必定觸發暴擊
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 절대파
+  zh: 絕對派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指派系之一；絕對主義，又稱至上主義
+
+- kr: 쿠리암브로
+  zh: 庫里安布羅
+  status: approved
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：《唐吉訶德》角色之一
+
+- kr: 톱니바퀴 태엽
+  zh: 齒輪發條
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 휴대용 역장 배터리
+  zh: 攜帶式力場電池
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 공명 패시브
+  zh: 共鳴被動
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 구멍난 기억
+  zh: 洞穿的記憶
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 귀신 들린 신발
+  zh: 鬼附鞋
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 녹아내린 시계태엽
+  zh: 融化的時鐘發條
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 단악수선
+  zh: 一罪百善
+  status: approved
+  category: [abnormality]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：異想體一罪與百善的縮寫
+
+- kr: 단테의 기록
+  zh: 但丁的紀錄
+  status: approved
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 디아스
+  zh: 狄亞斯
+  status: approved
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：扭曲偵探的反派，邊獄公司的代表
+
+- kr: 머나먼 별
+  zh: 彼方之星
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 모조발전기
+  zh: 仿造發電機
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 바스라진 기억
+  zh: 粉碎的記憶
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 부서진 리볼버
+  zh: 損壞的左輪手槍
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 업화 조각
+  zh: 業火殘片
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 에잇 협회
+  zh: Eight協會
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：收尾人協會之一
+
+- kr: 이 스킬은 가장 마지막 순서에 사용
+  zh: 本技能的使用順序固定為最後
+  status: approved
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表
+
+- kr: 인격마다 턴 당 1회 발동
+  zh: 每回合每名友方單位最多1次
+  status: approved
+  category: [combat]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+
+- kr: 죽음바라기
+  zh: 尋死者
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 청기사파
+  zh: 青騎士派
+  status: approved
+  category: [city]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：環指派系之一；又稱藍騎士派
+
+- kr: 휴대용 구급상자
+  zh: 攜帶式急救包
+  status: approved
+  category: [ego]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：E.G.O飾品
+
+- kr: 흐트러짐 구간 상승
+  zh: 混亂閾值前移
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+
+- kr: 흐트러짐 구간 하락
+  zh: 混亂閾值後移
+  status: approved
+  category: [general, combat]
+  evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述

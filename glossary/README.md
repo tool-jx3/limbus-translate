@@ -32,6 +32,7 @@
 | `city` | 都市術語 |
 | `sin` / `physical` / `mechanic` | 罪孽屬性／物理屬性／機制 |
 | `system` | 系統類譯名（「翻譯名稱統一列表」） |
+| `ego` | E.G.O 與 E.G.O 飾品的名稱（Paratranz 備註「E.G.O飾品」「E.G.O名稱」等） |
 
 ## `files`：只適用於部分檔案
 
