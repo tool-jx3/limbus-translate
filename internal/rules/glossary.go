@@ -104,16 +104,29 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 	return slices.DeleteFunc(hits, func(t Term) bool { return len(t.Files) == 0 && scoped[t.KR] })
 }
 
-// ScriptRenderings returns the renderings of the glossary hits of kr in file
-// that hold kana or Hangul, such as し協會 and 하나協會: their kana and Hangul
-// are meant, so the kana and Hangul checks leave them alone
-// (validate.Context.ScriptOK).
-func (r *Rules) ScriptRenderings(file, kr string) []string {
-	var out []string
-	for _, t := range r.GlossaryHits(file, kr) {
-		if strings.ContainsFunc(t.ZH, foreignScript) && !slices.Contains(out, t.ZH) {
-			out = append(out, t.ZH)
+// ScriptRenderings returns the approved renderings for file that hold kana or
+// Hangul, such as し協會 and 하나協會: their kana and Hangul are meant, so the
+// kana and Hangul checks leave them alone (validate.Context.ScriptOK). They
+// count whatever the KR says, since a line may name an association by a short
+// form (하나 for 하나 협회) that its translation writes in full. An entry with
+// files stands for its KR text alone in the files it matches, as in
+// GlossaryHits.
+func (r *Rules) ScriptRenderings(file string) []string {
+	scoped := map[string]bool{} // the KR texts with an entry for file
+	for _, t := range r.Glossary {
+		if t.Status == StatusApproved && len(t.Files) > 0 && config.MatchAny(t.Files, file) {
+			scoped[t.KR] = true
 		}
+	}
+	var out []string
+	for _, t := range r.Glossary {
+		if t.Status != StatusApproved || !strings.ContainsFunc(t.ZH, foreignScript) || slices.Contains(out, t.ZH) {
+			continue
+		}
+		if len(t.Files) > 0 && !config.MatchAny(t.Files, file) || len(t.Files) == 0 && scoped[t.KR] {
+			continue
+		}
+		out = append(out, t.ZH)
 	}
 	return out
 }

@@ -996,21 +996,19 @@ func TestLintGlossaryCountsApprovedOnly(t *testing.T) {
 	}
 }
 
-// ScriptRenderings are the approved renderings with kana or Hangul among the
-// glossary hits of a text: the kana and Hangul checks leave them alone.
+// ScriptRenderings are the approved renderings for a file that hold kana or
+// Hangul, whatever the KR says: a line may name an association by a short form
+// (하나 for 하나 협회) that its translation writes in full, and the kana and
+// Hangul checks leave them alone.
 func TestScriptRenderings(t *testing.T) {
 	r := loadRepo(t)
-	for _, kr := range []string{"동부 시 협회 3과", "옆에 시협회에서"} {
-		if got := r.ScriptRenderings(anyFile, kr); !slices.Equal(got, []string{"し協會"}) {
-			t.Errorf("ScriptRenderings(%q) = %q, want [し協會]", kr, got)
+	got := r.ScriptRenderings(anyFile)
+	for _, want := range []string{"し協會", "하나協會"} {
+		if !slices.Contains(got, want) {
+			t.Errorf("ScriptRenderings = %q, want %s among them", got, want)
 		}
 	}
-	for _, kr := range []string{"초대 하나 협회 해결사", "하나협회의 해결사"} {
-		if got := r.ScriptRenderings(anyFile, kr); !slices.Equal(got, []string{"하나協會"}) {
-			t.Errorf("ScriptRenderings(%q) = %q, want [하나協會]", kr, got)
-		}
-	}
-	if got := r.ScriptRenderings(anyFile, "이 패키지는 한정 판매입니다."); len(got) != 0 {
-		t.Errorf("組合包 has no kana, but ScriptRenderings = %q", got)
+	if slices.Contains(got, "組合包") {
+		t.Errorf("組合包 has no kana or Hangul, but ScriptRenderings = %q", got)
 	}
 }
