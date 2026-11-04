@@ -103,7 +103,7 @@
     {
       "id": 956705,
       "name": "羅生時間",
-      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>觸發層數最高的狀態</u></b></mark></color>並使用特殊技能\n- 若狀態層數相同，則自身維持當前狀態\n- 未觸發的狀態分別轉變為 [StackPast] / [StackPresent] / [StackFuture]\n- <color=#ff6000><mark=#ff000040><b><u>自身狀態改變時</u></b></mark></color>，對自身施加1層 [TimeGap]\n\n每當<color=#ff6000><mark=#ff000040><b><u>羅生蝶 幻影::過去/現在/未來作為主要目標受到攻擊時</u></b></mark></color>，\n使羅生蝶::蝶帶有的 [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數減少\n\n<color=#ff6000><mark=#ff000040><b><u>[StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數越高，</u></b></mark></color>\n羅生蝶::蝶的技能威力與造成的傷害會<color=#ff6000><mark=#ff000040><b><u>大幅增加</u></b></mark></color>\n且對自身與其他單位施加的<color=#ff6000><mark=#ff000040><b><u>異常狀態也會大幅增加</u></b></mark></color>"
+      "desc": "回合開始時，<color=#ff6000><mark=#ff000040><b><u>觸發層數最高的狀態</u></b></mark></color>並使用特殊技能\n- 若狀態層數相同，則自身維持當前狀態\n- 未觸發的狀態分別轉變為 [StackPast] / [StackPresent] / [StackFuture]\n- <color=#ff6000><mark=#ff000040><b><u>自身狀態改變時</u></b></mark></color>，對自身施加1層 [TimeGap]\n\n每當<color=#ff6000><mark=#ff000040><b><u>羅生<noparse>蝶</noparse> 幻影::過去/現在/未來作為主要目標受到攻擊時</u></b></mark></color>，\n使羅生蝶::蝶帶有的 [StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數減少\n\n<color=#ff6000><mark=#ff000040><b><u>[StackPastActivate] / [StackPresentActivate] / [StackFutureActivate] 層數越高，</u></b></mark></color>\n羅生蝶::蝶的技能威力與造成的傷害會<color=#ff6000><mark=#ff000040><b><u>大幅增加</u></b></mark></color>\n且對自身與其他單位施加的<color=#ff6000><mark=#ff000040><b><u>異常狀態也會大幅增加</u></b></mark></color>"
     },
     {
       "id": 956801,

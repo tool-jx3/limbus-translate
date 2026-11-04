@@ -1987,7 +1987,7 @@
         {
           "level": 3,
           "name": "敬畏，輕蔑",
-          "desc": "若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級\n[BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的視線」\n[WhenUse] 若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於8級，則使本技能的硬幣威力+1\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+20%)",
+          "desc": "若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級\n[BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的<noparse>視線</noparse>」\n[WhenUse] 若目標的 [Laceration] 強度與 [Vibration] 強度之和不低於8級，則使本技能的硬幣威力+1\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+20%)",
           "coinlist": [
             {
               "coindescs": [
@@ -2033,7 +2033,7 @@
         {
           "level": 4,
           "name": "敬畏，輕蔑",
-          "desc": "若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級<style=\"highlight\"></style>\n[BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的視線」\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和<style=\"highlight\">每有8級</style>，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+<style=\"highlight\">40</style>%)",
+          "desc": "若目標帶有 [GazeRyoshu]，則使本技能增加的 [Laceration] 強度與 [Vibration] 強度額外+2級<style=\"highlight\"></style>\n[BeforeUse] 若全體敵方單位的 [GazeRyoshu] 層數之和不低於7層，或全體敵方單位的 [ContemptRyoshu] 層數之和不低於1層，則改為使用「<noparse>輕蔑</noparse>之下，傾灑敬畏的<noparse>視線</noparse>」\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和<style=\"highlight\">每有8級</style>，則使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 目標的 [Laceration] 強度與 [Vibration] 強度之和每有1級，則使本技能造成的傷害+1%(最多+<style=\"highlight\">40</style>%)",
           "coinlist": [
             {
               "coindescs": [

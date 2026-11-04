@@ -1131,7 +1131,7 @@
         {
           "level": 1,
           "name": "獲得材料 - 浴血的藝術品",
-          "desc": "優先指定人體觀劇作為目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[DefeatDuel] 使本技能造成的最終傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "優先指定<noparse>人體觀劇</noparse>作為目標\n[WhenUse] 若目標帶有的 [Laceration] 強度不低於6級，則使本技能的硬幣威力+1\n[DefeatDuel] 使本技能造成的最終傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [

@@ -2224,7 +2224,7 @@
         {
           "level": 4,
           "name": "可不會這樣就算了哦",
-          "desc": "<style=\"highlight\">[StartBattle] 若嫉妒完全共鳴數的總和不低於6，則反擊時使用「紺紫痛擊」\n(優先從位於儀錶盤左側的行動槽觸發，每回合最多2次)</style>\n[StartBattle] 使自身獲得失去體力值25%的護盾 (每回合最多1次)",
+          "desc": "<style=\"highlight\">[StartBattle] 若嫉妒完全共鳴數的總和不低於6，則反擊時使用「紺紫<noparse>痛擊</noparse>」\n(優先從位於儀錶盤左側的行動槽觸發，每回合最多2次)</style>\n[StartBattle] 使自身獲得失去體力值25%的護盾 (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [

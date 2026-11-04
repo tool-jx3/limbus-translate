@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261029",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "745d05b1965ed4461ff23edc294917ee0279afa7",
+  "rules_commit": "6f76a18c025ebd56c1c37d803c381a1754de758a",
   "changes": {
     "unchanged": 0,
     "moved": 0,
@@ -12,12 +12,17 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 3,
+    "applied": 25,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-04-hana-association",
+      "units": 31
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],

@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261029",
   "raw_token": "l20261029_n2rX1Jku6_9sBiu9Np24",
-  "rules_commit": "745d05b1965ed4461ff23edc294917ee0279afa7",
-  "built_at": "2026-11-04T08:35:28Z",
+  "rules_commit": "6f76a18c025ebd56c1c37d803c381a1754de758a",
+  "built_at": "2026-11-04T11:19:04Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 991,
   "zips": {
-    "zh-TW_complete_raw-20261029.zip": "79e8fde84a7e3c655c426099af4eb8149f4846c6f57a17bd62a9ce24d2400616",
-    "zh-TW_text_raw-20261029.zip": "7dd8a0c815bd44649788319d7a461f08ce0ba14729d38dabbb6176d52301d67d"
+    "zh-TW_complete_raw-20261029.zip": "f5e8ff7a823e433732b24b3924bcdc62846013665839831e6fc05da4407d2339",
+    "zh-TW_text_raw-20261029.zip": "243eecdbe24f6d9dec9f01fadb916de1abf3959d9ec18972db1c34439e97c5df"
   },
   "report": {
     "origins": {
-      "claude": 18027,
+      "claude": 18009,
       "copy": 90934,
-      "human": 3,
-      "paratranz": 163819
+      "human": 25,
+      "paratranz": 163815
     },
     "pending": 0,
     "needs_review": 0,
@@ -32,7 +32,7 @@
       "halfwidth-bracket": 5,
       "halfwidth-punct": 9,
       "kana": 7,
-      "length-ratio": 10
+      "length-ratio": 2
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -83,16 +83,8 @@
         "TutorialRenewalDesc.json|/dataList/70/content"
       ],
       "length-ratio": [
-        "ActionEvents_mowe-re.json|/dataList/1/desc",
         "BattleKeywords.json|/dataList/98/name",
-        "BgmLyrics/BgmLyrics_TianTian.json|/dataList/33/content",
-        "BgmLyrics/BgmLyrics_TianTian.json|/dataList/80/content",
-        "Bufs.json|/dataList/101/name",
-        "Skills_Assist-a1c9p3.json|/dataList/27/levelList/0/name",
-        "Skills_personality-02.json|/dataList/22/levelList/0/name",
-        "Skills_personality-02.json|/dataList/22/levelList/1/name",
-        "StoryTheaterPersonality.json|/dataList/237/content",
-        "StoryTheaterPersonality.json|/dataList/276/content"
+        "Bufs.json|/dataList/101/name"
       ]
     },
     "inconsistent": [
@@ -506,12 +498,12 @@
       }
     ],
     "notes": [],
-    "new_translated": 18027,
+    "new_translated": 18009,
     "shown": {
-      "claude": 18027,
+      "claude": 18009,
       "copy": 90934,
-      "human": 3,
-      "paratranz": 163819
+      "human": 25,
+      "paratranz": 163815
     },
     "misaligned": [
       {
@@ -1776,24 +1768,6 @@
       "counts": [
         2,
         5
-      ],
-      "units": 7
-    },
-    {
-      "family": "other",
-      "field": "content",
-      "kr": "관리자님이 하자가 많아 보이는 여러 수감자들을 보며 막막해 하고 있을지도 모르겠습니다. 안심하세요. 본 수감자는 비교적 군말 없이 일을 처리해 나갈 수 있는 몇 안 되는 유형입니다. 합리적인 의사결정을 내릴 가능성이 높은 유형이므로 조언을 구하고 싶을 땐 해당 수감자 쪽을 바라보며 화두를 꺼내는 것도 좋은 방법입니다. 하지만 잊지 마세요. 멀고도 거대한 물웅덩이에서 말도 안 되는 그 항해를 겪고 살아남은 수감자이니만큼 인내심은 길겠지만, 한 번 관계가 틀어지기 시작하면 회복하기 어려울 것입니다.",
-      "zh": [
-        "身為執行經理，面對大多各有缺點的罪人，您或許會感到困惑和無力。然而請放心，該罪人是能夠不加抱怨地執行各種命令的少數類型之一。由於該罪人能做出合理的判斷，因此若您想要尋求建議，看向她並開啟話題也是一個好辦法。但請記住，她是從那片深遠且廣闊的水域中歷經艱難旅途得以生還的罪人，故而其忍耐力可以說是深不見底，然而，一旦與她開始走向歧途，要恢復關係可能就十分困難了。",
-        "以實瑪利\n女\n9月23日\nA\n171CM\n57KG"
-      ],
-      "keys": [
-        "StoryTheaterPersonality.json|/dataList/61/content",
-        "StoryTheaterPersonality.json|/dataList/237/content"
-      ],
-      "counts": [
-        5,
-        2
       ],
       "units": 7
     },
@@ -10019,6 +9993,24 @@
       "keys": [
         "MirrorDungeonUI_4.json|/dataList/207/content",
         "MirrorDungeonUI_7.json|/dataList/54/content"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "mirror",
+      "field": "content",
+      "kr": "부스러기 안에 보이는 거울 조각을 집어든다.",
+      "zh": [
+        "拾起在碎屑中發現的鏡子碎片。",
+        "撿起在碎屑中看到的鏡子碎片。"
+      ],
+      "keys": [
+        "MirrorDungeonUI_2.json|/dataList/20/content",
+        "MirrorDungeonUI_2.json|/dataList/73/content"
       ],
       "counts": [
         1,

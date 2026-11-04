@@ -3934,7 +3934,7 @@
         {
           "level": 4,
           "name": "廣播",
-          "desc": "[DuelCounter]\n<style=\"highlight\">自身每帶有2級 [ChargeNoirAlly] 強度，則使本技能造成的傷害+25%(最多+75%)</style>\n[StartBattle] 若自身未帶有 [SupportProtect]，則使自身獲得1層 [SupportProtect]\n<style=\"highlight\">[BeforeUse] 若自身帶有 [TimeToListenHonglu]，則改為以「恐怖的重播」發動(每場戰鬥最多1次)\n[WhenUse] 自身每帶有3級 [ChargeNoirAlly] 強度，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 使自身獲得<style=\"highlight\">(自身的 [ChargeNoirAlly] 強度×3)</style>層 [NoirBindArmorAlly] (每個技能最多<style=\"highlight\">15</style>層)\n[WhenUse] 使自身的 [ChargeNoirAlly] 回數增加<style=\"highlight\">4</style>",
+          "desc": "[DuelCounter]\n<style=\"highlight\">自身每帶有2級 [ChargeNoirAlly] 強度，則使本技能造成的傷害+25%(最多+75%)</style>\n[StartBattle] 若自身未帶有 [SupportProtect]，則使自身獲得1層 [SupportProtect]\n<style=\"highlight\">[BeforeUse] 若自身帶有 [TimeToListenHonglu]，則改為以「<noparse>恐怖的重播</noparse>」發動(每場戰鬥最多1次)\n[WhenUse] 自身每帶有3級 [ChargeNoirAlly] 強度，則使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 使自身獲得<style=\"highlight\">(自身的 [ChargeNoirAlly] 強度×3)</style>層 [NoirBindArmorAlly] (每個技能最多<style=\"highlight\">15</style>層)\n[WhenUse] 使自身的 [ChargeNoirAlly] 回數增加<style=\"highlight\">4</style>",
           "coinlist": [
             {
               "coindescs": [
