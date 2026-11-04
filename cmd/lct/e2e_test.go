@@ -158,6 +158,9 @@ func e2eRepo(t *testing.T) string {
 			}
 		}
 	}
+	// The confirmed warnings of the repo are of its tw and its KR too: keep
+	// only the leading comment of rules/accepted.yaml.
+	keepHeader(t, filepath.Join(root, "rules", "accepted.yaml"))
 	// The dry run checks the frozen files on BgmLyrics/L.json, whatever the
 	// repo freezes now.
 	cfgPath := filepath.Join(root, "lct.yaml")
@@ -658,5 +661,23 @@ func TestSiteWarningsMatchBuild(t *testing.T) {
 	}
 	if !maps.Equal(got, rep.Report.Warnings) {
 		t.Errorf("review/warnings.json counts %v, build.json report.warnings %v", got, rep.Report.Warnings)
+	}
+}
+
+// keepHeader cuts the file at path down to its leading comment lines (and the
+// blank lines among them), the part before the first entry.
+func keepHeader(t *testing.T, path string) {
+	t.Helper()
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	lines := strings.SplitAfter(string(data), "\n")
+	n := 0
+	for n < len(lines) && (strings.HasPrefix(lines[n], "#") || strings.TrimSpace(lines[n]) == "") && lines[n] != "" {
+		n++
+	}
+	if err := os.WriteFile(path, []byte(strings.Join(lines[:n], "")), 0o644); err != nil {
+		t.Fatal(err)
 	}
 }

@@ -118,8 +118,10 @@ func TestAcceptedHeaderMatchesRepoFile(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if acceptedHeader != string(want) {
-		t.Errorf("acceptedHeader differs from rules/accepted.yaml:\n%s", acceptedHeader)
+	// The repo file is the header followed by the entries people confirmed.
+	rest, ok := strings.CutPrefix(string(want), acceptedHeader)
+	if !ok || (rest != "" && !strings.HasPrefix(rest, "- ")) {
+		t.Errorf("rules/accepted.yaml does not start with acceptedHeader:\n%s", acceptedHeader)
 	}
 }
 
