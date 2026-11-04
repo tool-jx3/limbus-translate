@@ -1557,6 +1557,11 @@ details.rv-more ul {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* One column here: starting at line 2 would make a second, implicit one. */
+  .rv-jpens {
+    grid-column: 1 / -1;
+  }
+
   .rv-example {
     white-space: normal;
     overflow-wrap: anywhere;
