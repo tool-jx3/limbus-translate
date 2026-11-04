@@ -59,3 +59,6 @@
 - id: "inconsistent/identity/title/af7bae96"
   reason: 稱號 중지 작은 아우 依說話者性別寫「中指 幼弟」或「中指 幼妹」（唐吉訶德），見 guides/characters/donquixote.md
   date: 2026-11-02
+- id: "note/StoryData/7D104B.json|/dataList/22/content/d511624e"
+  reason: Hana 協會改寫「하나協會」：詞彙表與 rules/rewrite/2026-11-04-hana-association.yaml（人工確認）
+  date: 2026-11-04

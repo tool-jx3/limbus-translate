@@ -1,0 +1,8 @@
+# note/StoryData/7D104B.json|/dataList/22/content/d511624e：使用者確認（2026-11-04）Hana 協會寫「하나協會」，
+# 協會名可以用外語，同 し協會保留原文文字；詞彙表的 하나 협회、하나협회 已改為「하나協會」，諺文檢查不標出核准的譯名。
+# 現有 31 個單位寫「Hana協會」。
+reason: 'Hana 協會寫「하나協會」（詞彙表）'
+files: ['StoryData/**', 'FileDownloadDesc.json', 'PersonalityVoiceDlg/**', 'ScenarioModelCodes-AutoCreated.json']
+pattern: 'Hana協會'
+replace: '하나協會'
+kr_pattern: '하나 ?협회'
