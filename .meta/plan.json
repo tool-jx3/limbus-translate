@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261029",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "2270118c587747302e42d04380627ef370cbf59b",
+  "rules_commit": "ae80691b319ce3b1d5abe3e8ed9ba5520a1793df",
   "changes": {
     "unchanged": 0,
     "moved": 0,
@@ -17,7 +17,12 @@
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-04-ego-no-period",
+      "units": 6
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],
