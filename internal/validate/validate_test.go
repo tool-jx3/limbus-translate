@@ -1117,6 +1117,30 @@ func TestExtraClosingTagOnlyAtTheEnd(t *testing.T) {
 
 // The kana of an approved glossary rendering, such as the し of し協會 (the
 // Shi Association: association names may be foreign words), are meant.
+// The Hangul of an approved rendering such as 하나協會 are meant, like the kana
+// of し協會: the Hangul check leaves the rendering alone and flags any other.
+func TestHangulOfAGlossaryRendering(t *testing.T) {
+	hangulIssue := func(issues []Issue) *Issue {
+		for i := range issues {
+			if issues[i].Code == CodeHangul {
+				return &issues[i]
+			}
+		}
+		return nil
+	}
+	const kr, zh = "초대 하나 협회 해결사가 쓴 투구", "初代하나協會收尾人戴的頭盔"
+	if hangulIssue(Check(kr, zh, Context{})) == nil {
+		t.Fatal("without the rendering, the 하나 of 하나協會 is not flagged")
+	}
+	if is := hangulIssue(Check(kr, zh, Context{ScriptOK: []string{"하나協會"}})); is != nil {
+		t.Errorf("the rendering 하나協會 is allowed, but got %+v", *is)
+	}
+	is := hangulIssue(Check("하나 협회의 한 사람", "하나協會的한人", Context{ScriptOK: []string{"하나協會"}}))
+	if is == nil || !strings.Contains(is.Message, `"한"`) || strings.Contains(is.Message, `"하"`) {
+		t.Fatalf("Hangul outside the rendering must still be flagged, and only it, got %+v", is)
+	}
+}
+
 func TestKanaOfAGlossaryRendering(t *testing.T) {
 	kanaIssue := func(issues []Issue) *Issue {
 		for i := range issues {
@@ -1129,10 +1153,10 @@ func TestKanaOfAGlossaryRendering(t *testing.T) {
 	if is := kanaIssue(Check("동부 시 협회 3과", "し協會 東部3科", Context{Existing: true})); is == nil {
 		t.Fatal("without the rendering, the し of し協會 is not flagged")
 	}
-	if is := kanaIssue(Check("동부 시 협회 3과", "し協會 東部3科", Context{Existing: true, KanaOK: []string{"し協會"}})); is != nil {
+	if is := kanaIssue(Check("동부 시 협회 3과", "し協會 東部3科", Context{Existing: true, ScriptOK: []string{"し協會"}})); is != nil {
 		t.Errorf("the rendering し協會 is allowed, but got %+v", *is)
 	}
-	is := kanaIssue(Check("시 협회의 사람", "し協會のし人", Context{KanaOK: []string{"し協會"}}))
+	is := kanaIssue(Check("시 협회의 사람", "し協會のし人", Context{ScriptOK: []string{"し協會"}}))
 	if is == nil || !strings.Contains(is.Message, "の") {
 		t.Fatalf("kana outside the rendering must still be flagged, got %+v", is)
 	}

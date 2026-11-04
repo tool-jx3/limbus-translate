@@ -283,10 +283,10 @@
 
 - kr: 하나 협회
   en: Hana Association
-  zh: Hana協會
+  zh: 하나協會
   status: approved
   category: [city]
-  notes: 協會名沿用原文字母（拉丁或西里爾，同 Zwei協會、Cinq協會、Девять協會）；不可保留韓文
+  notes: 協會名可以用外語，各協會剛好取自不同語言（Zwei協會、Cinq協會、Девять協會、し協會）；Hana 協會寫韓文「하나」（使用者確認 2026-11-04，同 し協會）。這個「하나」是刻意的，諺文檢查不會標出
 
 - kr: 감정평가서
   zh: 鑑定評價書
@@ -302,7 +302,7 @@
   notes: 劇情 teller 欄位常見（既有 9 處）；這是一般詞，不是外來譯名
 
 - kr: 하나협회
-  zh: Hana協會
+  zh: 하나協會
   status: approved
   category: [city]
   notes: 同「하나 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）

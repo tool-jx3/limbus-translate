@@ -104,17 +104,26 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 	return slices.DeleteFunc(hits, func(t Term) bool { return len(t.Files) == 0 && scoped[t.KR] })
 }
 
-// KanaRenderings returns the renderings of the glossary hits of kr in file
-// that hold kana, such as し協會: their kana are meant, so the kana check
-// leaves them alone (validate.Context.KanaOK).
-func (r *Rules) KanaRenderings(file, kr string) []string {
+// ScriptRenderings returns the renderings of the glossary hits of kr in file
+// that hold kana or Hangul, such as し協會 and 하나協會: their kana and Hangul
+// are meant, so the kana and Hangul checks leave them alone
+// (validate.Context.ScriptOK).
+func (r *Rules) ScriptRenderings(file, kr string) []string {
 	var out []string
 	for _, t := range r.GlossaryHits(file, kr) {
-		if strings.ContainsFunc(t.ZH, func(c rune) bool { return c >= 0x3040 && c <= 0x30FF && c != 0x30FB }) && !slices.Contains(out, t.ZH) {
+		if strings.ContainsFunc(t.ZH, foreignScript) && !slices.Contains(out, t.ZH) {
 			out = append(out, t.ZH)
 		}
 	}
 	return out
+}
+
+// foreignScript reports whether c is kana (but not the middle dot ・, which
+// Chinese uses) or Hangul, the scripts validate flags in a translation.
+func foreignScript(c rune) bool {
+	kana := c >= 0x3040 && c <= 0x30FF && c != 0x30FB
+	hangul := (c >= 0xAC00 && c <= 0xD7A3) || (c >= 0x1100 && c <= 0x11FF) || (c >= 0x3130 && c <= 0x318F)
+	return kana || hangul
 }
 
 // ValidateTerms returns the part of the glossary hits of kr in file that

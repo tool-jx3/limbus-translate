@@ -366,7 +366,7 @@ func glossaryFor(r *rules.Rules, file string, krs []string) []rules.Term {
 // rules.Rules.GlossaryHits), content issues being hard. zh is checked as it
 // is; Submit normalizes a translation first.
 func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), File: file, KanaOK: r.KanaRenderings(file, kr)})
+	return validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), File: file, ScriptOK: r.ScriptRenderings(file, kr)})
 }
 
 // ShortTextRunes is the length, in runes of the KR text, under which a text

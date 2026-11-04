@@ -91,10 +91,11 @@ type Context struct {
 	// File is the pack file the unit is from, such as RPGSystem/rpg-loc-quest-1.json;
 	// "" when it is not known.
 	File string
-	// KanaOK are approved glossary renderings whose kana are meant, such as
-	// し協會 (association names may be foreign words): the kana check leaves
-	// the text of these renderings alone (rules.Rules.KanaRenderings).
-	KanaOK []string
+	// ScriptOK are approved glossary renderings whose kana or Hangul are
+	// meant, such as し協會 and 하나協會 (association names may be foreign
+	// words): the kana and Hangul checks leave the text of these renderings
+	// alone (rules.Rules.ScriptRenderings).
+	ScriptOK []string
 }
 
 // issue builds an Issue with the severity its class has in this context.
@@ -439,7 +440,8 @@ func nestingProblem(s string) string {
 
 func checkContent(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
-	if hangul := distinct(hangulRe.FindAllString(zh, -1)); len(hangul) > 0 {
+	// The Hangul of an approved rendering such as 하나協會 are meant.
+	if hangul := distinct(hangulRe.FindAllString(withoutRenderings(zh, ctx.ScriptOK), -1)); len(hangul) > 0 {
 		issues = append(issues, ctx.issue(CodeHangul, ClassContent, "the translation contains Hangul: %s", quoteList(hangul)))
 	}
 	var simplified []string
@@ -506,18 +508,23 @@ func compilePattern(pattern string) (*regexp.Regexp, error) {
 	return re, err
 }
 
+// withoutRenderings is text with every occurrence of the renderings taken out.
+func withoutRenderings(text string, renderings []string) string {
+	for _, ok := range renderings {
+		if ok != "" {
+			text = strings.ReplaceAll(text, ok, "")
+		}
+	}
+	return text
+}
+
 func checkStyle(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
 	// ・ (U+30FB) is a middle dot that Chinese text uses, so it is not kana.
 	var kana []string
 	// The reading of a ruby may be kana (base.md: 良秀 read ヨシヒデ); tags
 	// are not text; nor are the kana of an approved rendering such as し協會.
-	text := tagRe.ReplaceAllString(zh, "")
-	for _, ok := range ctx.KanaOK {
-		if ok != "" {
-			text = strings.ReplaceAll(text, ok, "")
-		}
-	}
+	text := withoutRenderings(tagRe.ReplaceAllString(zh, ""), ctx.ScriptOK)
 	for _, r := range text {
 		if r >= 0x3040 && r <= 0x30FF && r != 0x30FB {
 			kana = append(kana, string(r))
