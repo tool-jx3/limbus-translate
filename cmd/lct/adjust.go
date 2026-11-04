@@ -147,7 +147,7 @@ func runAdjustAdd(ctx *cli.Context, args []string) error {
 // names), goes here. The text is a new one, so content issues are hard.
 func prepareAdjustmentText(r *rules.Rules, keywordNames []string, file, kr, zh string) (string, []validate.Issue) {
 	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), keywordNames)
-	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false, File: file})
+	return zh, validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), Existing: false, File: file, KanaOK: r.KanaRenderings(file, kr)})
 }
 
 // adjustKRText returns the raw snapshot the repo is at, its packs and the KR

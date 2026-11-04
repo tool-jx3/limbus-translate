@@ -484,7 +484,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
-	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File})
+	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, KanaOK: b.kanaOK(u.File, u.KR)})
 	// Every used record counts its warnings, whether or not its text is
 	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {
@@ -576,6 +576,15 @@ func (b *builder) addRendering(u units.Unit, key, zh string) {
 	if len(g.variants) < maxRenderings {
 		g.variants = append(g.variants, variant{zh, key, 1})
 	}
+}
+
+// kanaOK is what the kana check leaves alone in a unit of file whose KR is
+// kr: the renderings with kana among its glossary hits; none without rules.
+func (b *builder) kanaOK(file, kr string) []string {
+	if b.opt.Rules == nil {
+		return nil
+	}
+	return b.opt.Rules.KanaRenderings(file, kr)
 }
 
 // familyOf is the family of file; every file is of one family without rules.

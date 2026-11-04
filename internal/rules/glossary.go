@@ -104,6 +104,19 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 	return slices.DeleteFunc(hits, func(t Term) bool { return len(t.Files) == 0 && scoped[t.KR] })
 }
 
+// KanaRenderings returns the renderings of the glossary hits of kr in file
+// that hold kana, such as し協會: their kana are meant, so the kana check
+// leaves them alone (validate.Context.KanaOK).
+func (r *Rules) KanaRenderings(file, kr string) []string {
+	var out []string
+	for _, t := range r.GlossaryHits(file, kr) {
+		if strings.ContainsFunc(t.ZH, func(c rune) bool { return c >= 0x3040 && c <= 0x30FF && c != 0x30FB }) && !slices.Contains(out, t.ZH) {
+			out = append(out, t.ZH)
+		}
+	}
+	return out
+}
+
 // ValidateTerms returns the part of the glossary hits of kr in file that
 // validation enforces.
 func (r *Rules) ValidateTerms(file, kr string) []validate.Term {

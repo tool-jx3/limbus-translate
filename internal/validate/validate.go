@@ -91,6 +91,10 @@ type Context struct {
 	// File is the pack file the unit is from, such as RPGSystem/rpg-loc-quest-1.json;
 	// "" when it is not known.
 	File string
+	// KanaOK are approved glossary renderings whose kana are meant, such as
+	// し協會 (association names may be foreign words): the kana check leaves
+	// the text of these renderings alone (rules.Rules.KanaRenderings).
+	KanaOK []string
 }
 
 // issue builds an Issue with the severity its class has in this context.
@@ -507,8 +511,14 @@ func checkStyle(kr, zh string, ctx Context) []Issue {
 	// ・ (U+30FB) is a middle dot that Chinese text uses, so it is not kana.
 	var kana []string
 	// The reading of a ruby may be kana (base.md: 良秀 read ヨシヒデ); tags
-	// are not text.
-	for _, r := range tagRe.ReplaceAllString(zh, "") {
+	// are not text; nor are the kana of an approved rendering such as し協會.
+	text := tagRe.ReplaceAllString(zh, "")
+	for _, ok := range ctx.KanaOK {
+		if ok != "" {
+			text = strings.ReplaceAll(text, ok, "")
+		}
+	}
+	for _, r := range text {
 		if r >= 0x3040 && r <= 0x30FF && r != 0x30FB {
 			kana = append(kana, string(r))
 		}

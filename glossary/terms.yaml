@@ -307,6 +307,19 @@
   category: [city]
   notes: 同「하나 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）
 
+- kr: 시 협회
+  en: Shi Association
+  zh: し協會
+  status: approved
+  category: [city]
+  notes: 協會名可以用外語，各協會剛好取自不同語言；Shi 協會寫日文假名「し」（既有 103 處，使用者確認 2026-11-04）。這個「し」是刻意的，假名檢查不會標出
+
+- kr: 시협회
+  zh: し協會
+  status: approved
+  category: [city]
+  notes: 同「시 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）
+
 - kr: 신부
   zh: 牧師
   forbidden: [神父]

@@ -995,3 +995,17 @@ func TestLintGlossaryCountsApprovedOnly(t *testing.T) {
 		t.Errorf("lint missed the second approved entry without files:\n%s", msg)
 	}
 }
+
+// KanaRenderings are the approved renderings with kana among the glossary
+// hits of a text: the kana check leaves them alone.
+func TestKanaRenderings(t *testing.T) {
+	r := loadRepo(t)
+	for _, kr := range []string{"동부 시 협회 3과", "옆에 시협회에서"} {
+		if got := r.KanaRenderings(anyFile, kr); !slices.Equal(got, []string{"し協會"}) {
+			t.Errorf("KanaRenderings(%q) = %q, want [し協會]", kr, got)
+		}
+	}
+	if got := r.KanaRenderings(anyFile, "이 패키지는 한정 판매입니다."); len(got) != 0 {
+		t.Errorf("組合包 has no kana, but KanaRenderings = %q", got)
+	}
+}

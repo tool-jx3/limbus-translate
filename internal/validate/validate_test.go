@@ -1114,3 +1114,29 @@ func TestExtraClosingTagOnlyAtTheEnd(t *testing.T) {
 		})
 	}
 }
+
+// The kana of an approved glossary rendering, such as the し of し協會 (the
+// Shi Association: association names may be foreign words), are meant.
+func TestKanaOfAGlossaryRendering(t *testing.T) {
+	kanaIssue := func(issues []Issue) *Issue {
+		for i := range issues {
+			if issues[i].Code == CodeKana {
+				return &issues[i]
+			}
+		}
+		return nil
+	}
+	if is := kanaIssue(Check("동부 시 협회 3과", "し協會 東部3科", Context{Existing: true})); is == nil {
+		t.Fatal("without the rendering, the し of し協會 is not flagged")
+	}
+	if is := kanaIssue(Check("동부 시 협회 3과", "し協會 東部3科", Context{Existing: true, KanaOK: []string{"し協會"}})); is != nil {
+		t.Errorf("the rendering し協會 is allowed, but got %+v", *is)
+	}
+	is := kanaIssue(Check("시 협회의 사람", "し協會のし人", Context{KanaOK: []string{"し協會"}}))
+	if is == nil || !strings.Contains(is.Message, "の") {
+		t.Fatalf("kana outside the rendering must still be flagged, got %+v", is)
+	}
+	if !strings.Contains(is.Message, `"し"`) {
+		t.Errorf("a し outside the rendering is still kana: %s", is.Message)
+	}
+}
