@@ -214,15 +214,18 @@ jobs:
           DISABLE_AUTOUPDATER: '1'
         run: |
           status=0
-          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 100 --run-timeout 90m || status=$?
+          bin/lct translate --max-usd "${MAX_USD}" --deadline 5h --max-turns 100 --run-timeout 90m --push-each-run || status=$?
           if [ "$status" -ne 0 ]; then
             echo "::warning::lct translate stopped with exit code $status; what was translated is built and released"
           fi
 
-      # What was translated is kept on tw before anything else can fail, and
-      # also when the translate step was cancelled or ran out of time: a build,
-      # publish or push that fails later does not throw the paid work away.
-      # Nothing changed, nothing committed. Publish commits on top of this.
+      # lct translate --push-each-run commits and pushes tw after every run, so
+      # a runner that is lost loses one run at most. What the last run and lct
+      # itself left (.meta/translate.json, a push that failed) is kept here,
+      # before anything else can fail, and also when the translate step was
+      # cancelled or ran out of time: a build, publish or push that fails
+      # later does not throw the paid work away. Nothing changed, nothing
+      # committed. Publish commits on top of this.
       - name: Keep the translations on tw
         if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'
         env:

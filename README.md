@@ -68,7 +68,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 `update.yml` 與 `rebuild.yml` 都呼叫 `pipeline.yml`（共同的流程，不單獨執行）。`rules-proposal.yml` 與 `pages.yml` 在它們成功結束後才執行，失敗或被取消的不執行，其他分支上的執行也不算。細節：
 
 - 翻譯最多進行 5 小時。每一輪執行最多 100 個回合，用完回合是正常的結束，接著開下一輪；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
-- 翻譯一結束（包括失敗、被取消或逾時），已翻的內容馬上 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit）。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它後面。
+- 翻譯時每一輪（Claude Code 的一次執行，最多 100 個回合）結束，`lct translate --push-each-run` 就把已翻的內容 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit；推送失敗只發警告，下一輪再推）。所以 runner 中途掛掉，最多只損失正在進行的那一輪。翻譯一結束（包括失敗、被取消或逾時），再把剩下的（最後一輪、`.meta/translate.json`）commit 並推上去。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它們後面。
 - 「沒事可做」還要看三件事，任何一件不成立就不算沒事可做：
   - `tw` 上次建置的 raw tag（`tw` 的 `.meta/build.json` 的 `raw_tag`）是不是目前 `raw` 的 tag；`tw` 落後 `raw`（例如上次翻完卻沒建置成功），或讀不到那個檔，這次會補建置與發布。
   - 有沒有還欠著的 Release：`bin/lct publish --check` 只讀 `tw` 的 git 狀態（HEAD、tag、檔案樹），`tw` 的語言包和最新的 Release 不同、HEAD 又沒有 Release 的 tag（上次 `tw` 推上去了，Release 卻沒建成），這次會補建立。

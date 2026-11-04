@@ -64,6 +64,73 @@ func headCommit(t *testing.T, root string) string {
 	return strings.TrimSpace(string(out))
 }
 
+// twWithOrigin makes the tw worktree of root a git repo on the branch tw
+// whose origin is a bare repo, as in CI (where it is a worktree of the repo on
+// tw), with its state committed and pushed. It returns the bare repo.
+func twWithOrigin(t *testing.T, root string) string {
+	t.Helper()
+	tw := filepath.Join(root, ".work", "tw")
+	bare := filepath.Join(t.TempDir(), "origin.git")
+	runGitIn(t, root, "init", "-q", "--bare", bare)
+	runGitIn(t, tw, "init", "-q", "-b", "tw")
+	runGitIn(t, tw, "config", "user.name", "test")
+	runGitIn(t, tw, "config", "user.email", "test@example.com")
+	runGitIn(t, tw, "add", "-A")
+	runGitIn(t, tw, "commit", "-q", "-m", "state")
+	runGitIn(t, tw, "remote", "add", "origin", bare)
+	runGitIn(t, tw, "push", "-q", "origin", "tw")
+	return bare
+}
+
+// With --push-each-run, what each run translated is committed on the tw
+// worktree as the progress of the raw tag and pushed to the tw of origin, so
+// that a runner that is lost loses one run at most.
+func TestTranslatePushesEachRun(t *testing.T) {
+	root, _, script := translateRepo(t)
+	bare := twWithOrigin(t, root)
+	t.Setenv("FAKE_EMPTY", filepath.Join(root, ".work", "tw", ".meta", "pending.jsonl"))
+
+	code, stdout, stderr := lct(t, translateArgs(script, "--push-each-run")...)
+	if code != 0 {
+		t.Fatalf("lct translate: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	if got := runGitIn(t, bare, "log", "-1", "--format=%s", "tw"); got != "translate: keep the progress of raw-20261029" {
+		t.Errorf("the tw of origin ends with %q, want the progress of raw-20261029", got)
+	}
+	if got := runGitIn(t, bare, "show", "tw:.meta/pending.jsonl"); got != "" {
+		t.Errorf("the pushed pending list is %q, want the empty one the run left", got)
+	}
+	if !strings.Contains(stderr, "round 1: kept the progress on tw") {
+		t.Errorf("stderr does not say that round 1 was kept:\n%s", stderr)
+	}
+}
+
+// A push that fails does not stop the translation: the progress stays
+// committed on the worktree, and is pushed after the next run or by the
+// pipeline once the step is over.
+func TestTranslateGoesOnWhenThePushFails(t *testing.T) {
+	root, _, script := translateRepo(t)
+	bare := twWithOrigin(t, root)
+	if err := os.RemoveAll(bare); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("FAKE_EMPTY", filepath.Join(root, ".work", "tw", ".meta", "pending.jsonl"))
+
+	code, stdout, stderr := lct(t, translateArgs(script, "--push-each-run")...)
+	if code != 0 {
+		t.Fatalf("lct translate: exit code %d, want 0: a failed push is no failed translation\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	if res, _ := readTranslateJSON(t, root); res.Stopped != translate.StopDone {
+		t.Errorf("translate.json says %q, want done", res.Stopped)
+	}
+	if !strings.Contains(stderr, "round 1: after the run:") || !strings.Contains(stderr, "push") {
+		t.Errorf("stderr does not say that the push of round 1 failed:\n%s", stderr)
+	}
+	if got := runGitIn(t, filepath.Join(root, ".work", "tw"), "log", "-1", "--format=%s"); got != "translate: keep the progress of raw-20261029" {
+		t.Errorf("the tw worktree ends with %q, want the progress committed though the push failed", got)
+	}
+}
+
 func TestTranslateCommandRecordsTheRun(t *testing.T) {
 	root, fakeDir, script := translateRepo(t)
 	t.Setenv("FAKE_EMPTY", filepath.Join(root, ".work", "tw", ".meta", "pending.jsonl"))

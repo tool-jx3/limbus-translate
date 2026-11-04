@@ -100,6 +100,12 @@ type Options struct {
 	Available func() (int, error)
 	// Log gets one line a round. Nil means no log.
 	Log io.Writer
+	// AfterRun, when set, is called after every run that ends normally, with
+	// its round, so that the caller can keep what the run translated (commit
+	// and push it) before the next one. Its error is logged and the loop goes
+	// on: what it failed to keep is kept after the next run, or by the caller
+	// once Run is over. It is not called after a run that fails, which ends Run.
+	AfterRun func(round int) error
 
 	// waitDelay is how long Wait waits for the output of a run that has
 	// exited; zero means defaultWaitDelay. Only the tests set it.
@@ -251,6 +257,11 @@ func Run(opt Options) (*Result, error) {
 				res.PendingAfter = n
 			}
 			return fail("round %d: %v", round, err)
+		}
+		if opt.AfterRun != nil {
+			if err := opt.AfterRun(round); err != nil {
+				fmt.Fprintf(log, "round %d: after the run: %v\n", round, err)
+			}
 		}
 	}
 }

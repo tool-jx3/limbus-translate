@@ -1348,6 +1348,15 @@ var pipelineGated = []string{
 	"npm install", "bin/lct translate", "git -C .work/tw push origin tw", "bin/lct build", "bin/lct publish --json", "git push origin tw", "gh release create", "gh issue",
 }
 
+// The commit lct translate --push-each-run makes after each run has the
+// subject the idle check reads: otherwise a tw whose last commit kept the
+// progress of a run, and was never built, would count as done.
+func TestProgressSubjectIsTheOneTheIdleCheckReads(t *testing.T) {
+	if progressSubject != keptProgressPrefix {
+		t.Errorf("lct translate commits %q, but the pipeline keeps and checks %q", progressSubject, keptProgressPrefix)
+	}
+}
+
 // keptProgressPrefix is how the subject of the commit that keeps the
 // translations on tw begins; the idle check looks for it in the last commit of
 // tw, so the commit step and the check must agree.
@@ -1399,6 +1408,8 @@ var pipelineMarkers = []struct{ text, why string }{
 	// a round; with more turns than fit in 90 minutes it would be killed and
 	// counted as an error, which ends the whole loop.
 	{"--deadline 5h --max-turns 100 --run-timeout 90m", "the translation has no time limits, or a turn limit that does not end a run before the 90 minutes do"},
+	// Each run is kept on tw as it ends, not only once the step is over.
+	{"--run-timeout 90m --push-each-run", "the translations are pushed only once the translate step is over: a runner that is lost takes every run of the step with it"},
 	// What was translated is kept before anything can fail.
 	{"git -C .work/tw status --porcelain", "the step that keeps the translations does not look for what changed, so it commits nothing or commits when there is nothing"},
 	{"git -C .work/tw commit", "the translations are not committed to tw right after translating"},
@@ -3436,6 +3447,7 @@ func TestWorkflowContract(t *testing.T) {
 
 		// The turn limit ends a run before the time limit does.
 		{"a turn limit above the time limit", "--max-turns 100", "--max-turns 300", `--max-turns 100 --run-timeout 90m`},
+		{"translations pushed only at the end", "--run-timeout 90m --push-each-run", "--run-timeout 90m", "--push-each-run"},
 
 		// The translations are kept right after translating.
 		{"translations kept without always()", "if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "if: steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'", "always()"},

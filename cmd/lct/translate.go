@@ -11,14 +11,21 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
 )
+
+// progressSubject is how the commit that keeps what a translation did begins,
+// followed by the raw tag; the idle check of the pipeline reads it in the last
+// commit of tw, and the pipeline's own commit after the step uses it too.
+const progressSubject = "translate: keep the progress of"
 
 func init() {
 	cli.Register(cli.Command{
 		Name: "translate",
 		Usage: "run the translate-pending skill with the claude CLI until nothing is pending, the money or the time is out, " +
-			"or a run fails: --max-usd F --deadline D --max-turns N --run-timeout D [--claude PATH] [--model M]; " +
+			"or a run fails: --max-usd F --deadline D --max-turns N --run-timeout D [--claude PATH] [--model M] [--push-each-run] " +
+			"(--push-each-run: after every run, commit the tw worktree as \"" + progressSubject + " <raw tag>\" and push it to the tw of origin); " +
 			"or, with --not-run REASON, run nothing and record in .meta/translate.json that the translation was not run",
 		Run: runTranslate,
 	})
@@ -37,6 +44,7 @@ func runTranslate(ctx *cli.Context, args []string) error {
 	runTimeout := flags.Duration("run-timeout", 0, "kill a run that takes longer than this, such as 90m")
 	claude := flags.String("claude", "", "the claude command (default: claude, from PATH)")
 	model := flags.String("model", "", "the model of the runs (default: $LCT_MODEL)")
+	pushEachRun := flags.Bool("push-each-run", false, "after every run, commit the tw worktree and push it to the tw of origin, so that a runner that is lost loses one run at most")
 	notRun := flags.String("not-run", "", "run nothing: record in .meta/translate.json that the translation was not run, for this reason "+
 		"(a pipeline with units to translate and no API key or no model); the other flags are not needed")
 	if err := flags.Parse(args); err != nil {
@@ -89,6 +97,10 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		return err
 	}
 
+	var afterRun func(int) error
+	if *pushEachRun {
+		afterRun = keepProgress(env, filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.TW)), progressSubject+" "+env.RawTag)
+	}
 	res, err := translate.Run(translate.Options{
 		Root:       ctx.Root,
 		Claude:     *claude,
@@ -100,6 +112,7 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		// The queue is read anew each time; KR does not change meanwhile.
 		Available: func() (int, error) { return batch.Available(env, batchNow()) },
 		Log:       os.Stderr,
+		AfterRun:  afterRun,
 	})
 	if err != nil {
 		return err
@@ -112,6 +125,37 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		return fmt.Errorf("translate: %s", res.Error)
 	}
 	return nil
+}
+
+// keepProgress returns what lct translate --push-each-run does after a run:
+// commit the tw worktree at dir with msg, under the lock of the store, and push
+// it to the tw of origin. A push that failed is tried again after the next
+// run even when that run changed nothing, so the error it returns loses
+// nothing: the commit stays, and the pipeline pushes once the step is over.
+func keepProgress(env batch.Env, dir, msg string) func(int) error {
+	unpushed := false
+	return func(round int) error {
+		var sha string
+		var changed bool
+		err := env.Store.WithLock(func() error {
+			var err error
+			sha, changed, err = gitx.CommitAll(dir, msg)
+			return err
+		})
+		if err != nil {
+			return fmt.Errorf("committing the progress on tw: %w", err)
+		}
+		if !changed && !unpushed {
+			return nil
+		}
+		if err := gitx.Push(dir, "origin", "tw"); err != nil {
+			unpushed = true
+			return fmt.Errorf("pushing the progress to tw (it stays committed): %w", err)
+		}
+		unpushed = false
+		fmt.Fprintf(os.Stderr, "round %d: kept the progress on tw (%.7s)\n", round, sha)
+		return nil
+	}
 }
 
 // runTranslateNotRun records a translation that was not run: the pipeline had

@@ -265,6 +265,13 @@ func CommitAll(dir, msg string) (sha string, changed bool, err error) {
 	return sha, true, err
 }
 
+// Push pushes ref of the repo at dir to remote; a missing credential fails
+// rather than waits for someone to type it (see git).
+func Push(dir, remote, ref string) error {
+	_, err := git(dir, "push", "--quiet", remote, ref)
+	return err
+}
+
 // IsClean reports whether the worktree at dir has no staged, unstaged or
 // untracked changes.
 func IsClean(dir string) (bool, error) {

@@ -6,6 +6,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"slices"
 	"strconv"
 	"strings"
 	"syscall"
@@ -263,6 +264,48 @@ func TestRunStopsOnAnError(t *testing.T) {
 
 	if res.Stopped != StopError || res.Runs != 1 || res.Error == "" {
 		t.Errorf("result = %+v, want error after 1 run with a message", res)
+	}
+}
+
+// AfterRun is called after every run that ends normally, with its round; its
+// error is logged and the loop goes on: what it failed to keep is kept after
+// the next run, or by the caller once Run is over.
+func TestRunCallsAfterRunAfterEveryRun(t *testing.T) {
+	f := newFake(t, 3, 1)
+	opt := f.opts()
+	var rounds []int
+	opt.AfterRun = func(round int) error {
+		rounds = append(rounds, round)
+		if round == 2 {
+			return errors.New("push refused")
+		}
+		return nil
+	}
+	res := mustRun(t, opt)
+	if res.Stopped != StopDone || res.Runs != 3 {
+		t.Errorf("result = %+v, want done after 3 runs: a failed AfterRun does not stop the loop", res)
+	}
+	if !slices.Equal(rounds, []int{1, 2, 3}) {
+		t.Errorf("AfterRun was called for rounds %v, want 1, 2 and 3", rounds)
+	}
+	if !strings.Contains(f.log.String(), "round 2") || !strings.Contains(f.log.String(), "push refused") {
+		t.Errorf("the log does not say that AfterRun failed in round 2:\n%s", f.log.String())
+	}
+}
+
+// A run that fails ends Run at once, without AfterRun: the caller keeps what
+// there is when Run is over.
+func TestRunDoesNotCallAfterRunForAFailedRun(t *testing.T) {
+	f := newFake(t, 5, 1)
+	t.Setenv("FAKE_OUT", `{"is_error": true}`)
+	opt := f.opts()
+	called := false
+	opt.AfterRun = func(int) error { called = true; return nil }
+	if res := mustRun(t, opt); res.Stopped != StopError {
+		t.Fatalf("result = %+v, want an error", res)
+	}
+	if called {
+		t.Error("AfterRun was called after a run that failed")
 	}
 }
 
