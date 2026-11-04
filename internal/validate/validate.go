@@ -178,11 +178,15 @@ func checkStructure(kr, zh string, ctx Context) []Issue {
 		issues = append(issues, ctx.issue(CodeTagMismatch, ClassStructural,
 			"tags differ from KR%s; opening tags must keep their attributes", describeDiff(missing, extra)))
 	}
+	// <noparse> pairs take no part in the comparison above (base.md), so they
+	// are checked on their own, whatever KR is.
 	// KR strings that are fragments (a lone </color>, an unclosed <color>)
 	// cannot be nested correctly by any translation, so the nesting of zh is
 	// only checked when KR's own tags are balanced. The comparison above still
 	// holds a fragment's translation to the same tags.
-	if nestingProblem(kr) == "" {
+	if problem := noparseProblem(zh); problem != "" {
+		issues = append(issues, ctx.issue(CodeTagNesting, ClassStructural, "<noparse> must open and close in turn and hold plain text: %s", problem))
+	} else if nestingProblem(kr) == "" {
 		if problem := nestingProblem(zh); problem != "" {
 			issues = append(issues, ctx.issue(CodeTagNesting, ClassStructural, "tags are not nested correctly: %s", problem))
 		}
@@ -221,6 +225,9 @@ func tagDiff(kr, zh string, addRuby bool) (missing, extra []string) {
 	split := func(s string) (keys []string, written map[string]string) {
 		written = map[string]string{}
 		for _, tok := range Tags(s) {
+			if isNoparse(tok) {
+				continue // zh places its own (see noparseProblem)
+			}
 			key := comparableTag(tok)
 			keys = append(keys, key)
 			if _, seen := written[key]; seen {
@@ -409,6 +416,48 @@ func openLeft(s string) map[string]int {
 		}
 	}
 	return depth
+}
+
+// isNoparse reports whether tok is a <noparse> or </noparse> tag.
+func isNoparse(tok string) bool {
+	name, _ := tagName(tok)
+	return strings.EqualFold(name, "noparse")
+}
+
+var noparseRe = regexp.MustCompile(`(?i)<(/?)noparse>`)
+
+// noparseProblem returns what is wrong with the <noparse> pairs of s, or "" if
+// they are fine. <noparse> keeps the game from reading a keyword name in the
+// text; the names of KR and the translation differ, so a translation places
+// its own pairs (base.md), which open and close in turn, one at a time, and
+// hold plain text: the game shows a tag or an [ID] inside a pair as written.
+func noparseProblem(s string) string {
+	open := false
+	last := 0
+	for _, m := range noparseRe.FindAllStringSubmatchIndex(s, -1) {
+		closing := m[3] > m[2]
+		if open {
+			inside := s[last:m[0]]
+			if tags := Tags(inside); len(tags) > 0 {
+				return fmt.Sprintf("<noparse>…</noparse> holds %s", tags[0])
+			}
+			if ids := IDs(inside); len(ids) > 0 {
+				return fmt.Sprintf("<noparse>…</noparse> holds %s", ids[0])
+			}
+		}
+		switch {
+		case closing && !open:
+			return "</noparse> has no <noparse> before it"
+		case !closing && open:
+			return "<noparse> inside <noparse>"
+		}
+		open = !closing
+		last = m[1]
+	}
+	if open {
+		return "<noparse> is never closed"
+	}
+	return ""
 }
 
 // nestingProblem returns what is wrong with the nesting of the tags of s, or

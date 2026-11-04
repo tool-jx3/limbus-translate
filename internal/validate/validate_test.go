@@ -619,6 +619,50 @@ func TestStoryMayAddRuby(t *testing.T) {
 	}
 }
 
+// <noparse> keeps the game from reading a keyword name in the text, and the
+// names of KR and zh differ, so zh may add, move or leave out <noparse> pairs
+// (base.md).
+func TestNoparseMayDifferFromKR(t *testing.T) {
+	const file = "EGOgift_MirrorDungeon-EventTheme_2.json"
+	for _, tc := range []struct{ name, kr, zh string }{
+		{"added", "스킬 2의 공격 레벨 +1", "2技能<noparse>攻擊等級+</noparse>1"},
+		{"left out", "피해 (소수점 <noparse>버림</noparse>)", "傷害(小數點以下捨去)"},
+		{"moved and more", "<noparse>경멸</noparse> 아래", "<noparse>輕蔑</noparse>之下灑下敬畏的<noparse>視線</noparse>"},
+		{"next to other tags", "<color=#f00>가</color> 나", "<color=#f00>甲</color> <noparse>援</noparse>"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			if issues := Check(tc.kr, tc.zh, Context{File: file}); HasHard(issues) {
+				t.Errorf("Check(%q, %q) = %+v", tc.kr, tc.zh, issues)
+			}
+		})
+	}
+}
+
+// A <noparse> pair of zh opens and closes in turn and holds plain text: the
+// game shows a tag or an [ID] inside it as written.
+func TestNoparseMustPairAndHoldPlainText(t *testing.T) {
+	for _, tc := range []struct{ name, kr, zh, want string }{
+		{"never closed", "공격 레벨 +1", "<noparse>攻擊等級+1", "<noparse>"},
+		{"closed before opened", "공격 레벨 +1", "</noparse>攻擊等級+<noparse>1", "</noparse>"},
+		{"inside another", "공격 레벨 +1", "<noparse>攻擊<noparse>等級+</noparse>1</noparse>", "<noparse>"},
+		{"holds a tag", "<color=#f00>가</color>", "<noparse><color=#f00>甲</color></noparse>", "<color=#f00>"},
+		{"holds an [ID]", "[Burn] 부여", "<noparse>[Burn]</noparse>賦予", "[Burn]"},
+		{"KR a fragment", "가</color>", "<noparse>甲</color>", "<noparse>"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			issues := Check(tc.kr, tc.zh, Context{})
+			is, ok := find(issues, CodeTagNesting)
+			if !ok || !strings.Contains(is.Message, "noparse") || !strings.Contains(is.Message, tc.want) {
+				t.Errorf("Check(%q, %q) = %+v, want a %s naming noparse and %s", tc.kr, tc.zh, issues, CodeTagNesting, tc.want)
+			}
+		})
+	}
+	// The other tags are still compared with KR.
+	if _, ok := find(Check("<color=#f00>가</color>", "<noparse>甲</noparse>", Context{}), CodeTagMismatch); !ok {
+		t.Error("a <color> of KR replaced by <noparse> is no tag-mismatch")
+	}
+}
+
 // Only <ruby> is exempt from the attribute comparison.
 func TestRubyExemptionIsOnlyForRuby(t *testing.T) {
 	tests := []struct{ name, kr, zh string }{
