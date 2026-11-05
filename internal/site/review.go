@@ -3,6 +3,7 @@ package site
 import (
 	"cmp"
 	"errors"
+	"fmt"
 	"slices"
 	"strings"
 
@@ -121,7 +122,8 @@ type WarningItem struct {
 	Accepted *Confirmed `json:"accepted,omitempty"`
 	// Term and Units are set on a term-missing group only: one glossary
 	// entry, and every unit that lacks its rendering. KR and ZH are those of
-	// the entry, Keys the units not accepted yet.
+	// the entry, Keys the units not accepted yet, and Message says to a person
+	// what the units lack (termGroupMessage).
 	Term  *TermRef   `json:"term,omitempty"`
 	Units []TermUnit `json:"units,omitempty"`
 }
@@ -364,11 +366,10 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				if is.Severity != validate.SeverityWarn {
 					continue
 				}
-				if is.Code == validate.CodeTermMissing {
+				if gid, ok := termGroupID(is); ok {
 					// One item per glossary entry, by its KR and rendering (two
 					// entries of one KR may both apply); a unit lacks an entry once.
 					termZH := is.TermZH
-					gid := itemid.TermGroup(is.Term, termZH)
 					if seen[gid] {
 						continue
 					}
@@ -376,7 +377,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 					w := warnByID[gid]
 					if w == nil {
 						w = &warnAcc{
-							item:     WarningItem{ID: gid, Code: is.Code, KR: is.Term, ZH: termZH, Message: is.Message, Keys: []string{}, Term: &TermRef{KR: is.Term, ZH: termZH}},
+							item:     WarningItem{ID: gid, Code: is.Code, KR: is.Term, ZH: termZH, Message: termGroupMessage(is.Term, termZH), Keys: []string{}, Term: &TermRef{KR: is.Term, ZH: termZH}},
 							families: map[string]bool{}, origins: map[string]bool{},
 						}
 						warnByID[gid] = w
@@ -519,10 +520,10 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			w.item.Accepted = accepted[w.item.ID]
 		}
 		if w.item.Term != nil && len(w.item.Units) > 0 && len(w.item.Keys) == 0 {
-			// Every unit is accepted: the group reads as confirmed, with the
-			// confirmation of its last unit. A group with an unaccepted unit
-			// stays open and its Keys are those units.
-			w.item.Accepted = w.item.Units[len(w.item.Units)-1].Accepted
+			// Every unit is accepted: the group reads as confirmed (see
+			// groupConfirmed). A group with an unaccepted unit stays open and
+			// its Keys are those units.
+			w.item.Accepted = groupConfirmed(w.item.Units)
 		}
 		w.item.Pending = pendingOf(w.item.Keys)
 		if w.item.Accepted == nil {
@@ -551,6 +552,38 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		out.Refs[k] = slices.Compact(ids)
 	}
 	return out, nil
+}
+
+// groupConfirmed is the confirmation of a term group whose units us are all
+// accepted: the latest date of theirs, and their reason when they share one;
+// otherwise the reason says that the units were confirmed each on its own.
+func groupConfirmed(us []TermUnit) *Confirmed {
+	c := *us[0].Accepted
+	for _, u := range us[1:] {
+		c.Date = max(c.Date, u.Accepted.Date) // YYYY-MM-DD
+		if u.Accepted.Reason != us[0].Accepted.Reason {
+			c.Reason = fmt.Sprintf("%d 個單位各自確認", len(us))
+		}
+	}
+	return &c
+}
+
+// termGroupMessage is the message of the term group of the entry kr -> zh:
+// what the review page tells a person about its units (the check's message
+// is an instruction to the translator).
+func termGroupMessage(kr, zh string) string {
+	return fmt.Sprintf("這些譯文沒有用詞彙表的譯名「%s」（%s）。", zh, kr)
+}
+
+// termGroupID is the id of the term group of a term-missing issue: the
+// group of its glossary entry, by the entry's KR and rendering. An issue of
+// another code, or one that lacks the entry's KR or rendering, has none (ok
+// is false) and stays the warning of its unit.
+func termGroupID(is validate.Issue) (id string, ok bool) {
+	if is.Code != validate.CodeTermMissing || strings.TrimSpace(is.Term) == "" || strings.TrimSpace(is.TermZH) == "" {
+		return "", false
+	}
+	return itemid.TermGroup(is.Term, is.TermZH), true
 }
 
 // confirmedIndex indexes the entries of a confirmation list by id.

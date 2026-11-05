@@ -19,6 +19,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 	"github.com/tool-jx3/limbus-translate/internal/units"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 const (
@@ -1277,5 +1278,69 @@ func TestReviewTermGroupsOfOneKROnOneUnitAcceptApart(t *testing.T) {
 	}
 	if w := termGroupByZH(t, r, "자판기", "販賣機台"); w.Accepted != nil || w.Units[0].Accepted != nil || !slices.Equal(w.Keys, []string{k(rvA, 0)}) {
 		t.Errorf("販賣機台: accepted %v, unit %+v, keys %v; want it open", w.Accepted, w.Units[0], w.Keys)
+	}
+}
+
+// A term-missing issue is grouped by its glossary entry only when it names
+// the entry's KR and rendering; without either it stays the warning of its
+// unit, as every other code is, rather than a group of an empty rendering.
+func TestTermGroupIDNeedsTheEntry(t *testing.T) {
+	is := validate.Issue{Code: validate.CodeTermMissing, Term: "자판기", TermZH: "自動販賣機"}
+	if id, ok := termGroupID(is); !ok || id != itemid.TermGroup("자판기", "自動販賣機") {
+		t.Errorf("termGroupID(%+v) = %q, %v; want the group of 자판기 → 自動販賣機", is, id, ok)
+	}
+	for _, is := range []validate.Issue{
+		{Code: validate.CodeTermMissing, Term: "자판기"},
+		{Code: validate.CodeTermMissing, Term: "자판기", TermZH: " "},
+		{Code: validate.CodeTermMissing, TermZH: "自動販賣機"},
+		{Code: "kana", Term: "자판기", TermZH: "自動販賣機"},
+	} {
+		if id, ok := termGroupID(is); ok {
+			t.Errorf("termGroupID(%+v) = %q, want no group", is, id)
+		}
+	}
+}
+
+// A term group whose units are all accepted reads as confirmed on the latest
+// date of its units, with their reason when they share one and otherwise
+// 「<N> 個單位各自確認」.
+func TestReviewTermGroupConfirmationIsItsLatest(t *testing.T) {
+	in, files := vendingInputs(t)
+	ids := []string{
+		itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 하나", "販賣機一"),
+		itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 둘", "販賣機二"),
+		itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 셋", "販賣機三"),
+	}
+	dates := []string{"2026-11-03", "2026-11-05", "2026-11-04"}
+	confirmed := func(reasons ...string) *Confirmed {
+		t.Helper()
+		in.Review.Accepted = nil
+		for i, id := range ids {
+			in.Review.Accepted = append(in.Review.Accepted, suggest.Declined{ID: id, Reason: reasons[i], Date: dates[i]})
+		}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return termGroupOf(t, r).Accepted
+	}
+	if got := confirmed("簡稱", "簡稱", "簡稱"); got == nil || *got != (Confirmed{Reason: "簡稱", Date: "2026-11-05"}) {
+		t.Errorf("one reason: accepted = %+v, want 簡稱 on 2026-11-05", got)
+	}
+	if got := confirmed("簡稱", "原文如此", "簡稱"); got == nil || *got != (Confirmed{Reason: "3 個單位各自確認", Date: "2026-11-05"}) {
+		t.Errorf("reasons differ: accepted = %+v, want 3 個單位各自確認 on 2026-11-05", got)
+	}
+}
+
+// The message of a term group is for the person who reviews it, not the
+// translator's instruction of the check: it names the entry's rendering and KR.
+func TestReviewTermGroupMessageIsForAPerson(t *testing.T) {
+	in, files := vendingInputs(t)
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, want := termGroupOf(t, r).Message, "這些譯文沒有用詞彙表的譯名「自動販賣機」（자판기）。"; got != want {
+		t.Errorf("message = %q, want %q", got, want)
 	}
 }
