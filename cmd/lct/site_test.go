@@ -11,6 +11,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 )
@@ -380,5 +381,30 @@ func TestSiteCommandRefusesADirectoryWithTrackedFiles(t *testing.T) {
 	}
 	if b, err := os.ReadFile(filepath.Join(root, "frontend", "src", "app.ts")); err != nil || string(b) != "tracked" {
 		t.Errorf("frontend/src/app.ts = %q, %v", b, err)
+	}
+}
+
+// Without history in tw the output has an empty list of updates; with it, the
+// releases of the history.
+func TestSiteCommandExportsUpdates(t *testing.T) {
+	root := siteRepo(t)
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(root, "work", "site", "updates", "index.json"))
+	if err != nil || strings.TrimSpace(string(b)) != `{"releases":[]}` {
+		t.Fatalf("index.json = %q, %v; want no releases", b, err)
+	}
+	rec := &history.Record{Tag: "zh-TW-20261029.1", ReleasedAt: "2026-10-29T00:00:00Z", RawTag: "raw-20261029", PrevRawTag: "raw-20261022"}
+	if err := history.Write(filepath.Join(root, ".work", "tw"), rec); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"index.json", "zh-TW-20261029.1.json"} {
+		if _, err := os.Stat(filepath.Join(root, "work", "site", "updates", name)); err != nil {
+			t.Errorf("updates/%s: %v", name, err)
+		}
 	}
 }

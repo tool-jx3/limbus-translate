@@ -1,0 +1,108 @@
+package site
+
+import (
+	"encoding/json"
+	"os"
+	"path/filepath"
+	"reflect"
+	"testing"
+
+	"github.com/tool-jx3/limbus-translate/internal/history"
+)
+
+func updRecord(tag, prev, at, prevAt, rawTag, prevRaw string, entries ...history.Entry) history.Record {
+	return history.Record{
+		Tag: tag, PrevTag: prev, ReleasedAt: at, PrevReleasedAt: prevAt, RawTag: rawTag, PrevRawTag: prevRaw,
+		Counts: history.Counts{New: len(entries)}, OtherFiles: []string{"a", "b"}, Entries: entries,
+	}
+}
+
+func readUpdateIndex(t *testing.T, dir string) []byte {
+	t.Helper()
+	b, err := os.ReadFile(filepath.Join(dir, "updates", "index.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	return b
+}
+
+func TestExportUpdatesListsEveryReleaseNewestFirst(t *testing.T) {
+	dir := t.TempDir()
+	e := history.Entry{File: "Skills.json", Pointer: "/a", Kind: history.KindNew}
+	recs := []history.Record{
+		updRecord("zh-TW-20261103.3", "zh-TW-20261103.2", "2026-11-03T12:00:00Z", "2026-11-03T08:00:00Z", "raw-2", "raw-2", e),
+		updRecord("zh-TW-20261103.2", "zh-TW-20261103.1", "2026-11-03T08:00:00Z", "2026-11-02T08:00:00Z", "raw-2", "raw-1", e, e),
+	}
+	idx, err := ExportUpdates(recs, testRules(), dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var kinds, tags []string
+	for _, r := range idx.Releases {
+		kinds, tags = append(kinds, r.Kind), append(tags, r.Tag)
+	}
+	if want := []string{"rebuild", "game", "first"}; !reflect.DeepEqual(kinds, want) {
+		t.Errorf("kinds = %v, want %v", kinds, want)
+	}
+	if want := []string{"zh-TW-20261103.3", "zh-TW-20261103.2", "zh-TW-20261103.1"}; !reflect.DeepEqual(tags, want) {
+		t.Errorf("tags = %v, want %v", tags, want)
+	}
+	if r := idx.Releases[1]; r.Files != 1 || r.OtherFiles != 2 || r.Counts.New != 2 || r.PrevRawTag != "raw-1" {
+		t.Errorf("game row = %+v", r)
+	}
+	if f := idx.Releases[2]; f.ReleasedAt != "2026-11-02T08:00:00Z" || f.RawTag != "raw-1" || f.Counts != (history.Counts{}) || f.PrevTag != "" {
+		t.Errorf("first row = %+v", f)
+	}
+	var onDisk UpdateIndex
+	if err := json.Unmarshal(readUpdateIndex(t, dir), &onDisk); err != nil || !reflect.DeepEqual(onDisk, idx) {
+		t.Errorf("index.json = %+v, %v; want %+v", onDisk, err, idx)
+	}
+	b, err := os.ReadFile(filepath.Join(dir, "updates", "zh-TW-20261103.3.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var rec history.Record
+	if err := json.Unmarshal(b, &rec); err != nil || rec.Tag != "zh-TW-20261103.3" || len(rec.Entries) != 1 {
+		t.Errorf("record file = %+v, %v", rec, err)
+	}
+}
+
+func TestExportUpdatesOrdersTheEntriesByFile(t *testing.T) {
+	dir := t.TempDir()
+	mk := func(file, ptr string) history.Entry {
+		return history.Entry{File: file, Pointer: ptr, Kind: history.KindNew}
+	}
+	rec := updRecord("zh-TW-20261103.1", "", "2026-11-03T08:00:00Z", "", "raw-1", "raw-1",
+		mk("Skills.json", "/2"), mk("StoryData/S10.json", "/1"), mk("Skills.json", "/1"),
+		mk("StoryData/S2.json", "/9"), mk("StoryData/S10.json", "/0"))
+	if _, err := ExportUpdates([]history.Record{rec}, testRules(), dir); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(dir, "updates", "zh-TW-20261103.1.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got history.Record
+	if err := json.Unmarshal(b, &got); err != nil {
+		t.Fatal(err)
+	}
+	var order []string
+	for _, e := range got.Entries {
+		order = append(order, e.File+e.Pointer)
+	}
+	want := []string{"StoryData/S2.json/9", "StoryData/S10.json/1", "StoryData/S10.json/0", "Skills.json/2", "Skills.json/1"}
+	if !reflect.DeepEqual(order, want) {
+		t.Errorf("order = %v, want %v", order, want)
+	}
+}
+
+func TestExportUpdatesWithNoRecords(t *testing.T) {
+	dir := t.TempDir()
+	idx, err := ExportUpdates(nil, testRules(), dir)
+	if err != nil || idx.Releases == nil || len(idx.Releases) != 0 {
+		t.Fatalf("idx = %+v, %v", idx, err)
+	}
+	if got := string(readUpdateIndex(t, dir)); got != "{\"releases\":[]}\n" {
+		t.Errorf("index.json = %q", got)
+	}
+}

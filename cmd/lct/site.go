@@ -17,6 +17,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
@@ -100,6 +101,27 @@ func runSite(ctx *cli.Context, args []string) error {
 		return err
 	}
 	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r, Review: &review}, meta, outDir)
+	if err != nil {
+		return err
+	}
+	hist, err := history.List(twRoot)
+	if err != nil {
+		return err
+	}
+	if _, err := site.ExportUpdates(hist, r, outDir); err != nil {
+		return err
+	}
+	// Result.Bytes is the size of everything written.
+	err = filepath.WalkDir(filepath.Join(outDir, "updates"), func(_ string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() {
+			return err
+		}
+		info, err := d.Info()
+		if err == nil {
+			res.Bytes += info.Size()
+		}
+		return err
+	})
 	if err != nil {
 		return err
 	}
