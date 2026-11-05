@@ -839,7 +839,8 @@ func TestAcceptUsageNamesTheReport(t *testing.T) {
 // A term group id that is in no item of the last build (the glossary or the
 // translations changed since the review page was made) is not a plain unknown
 // id: lct accept and its dry run say that the group is not in the current
-// review data and that the page wants a refresh or the pack a rebuild. Exit
+// review data, which comes from .work/raw, .work/tw and glossary/, and that
+// the worktrees want the page's data or the page a refresh. Exit
 // code 1, and nothing is written.
 func TestAcceptTermGroupNotInTheBuild(t *testing.T) {
 	s := acceptRepo(t)
@@ -852,7 +853,7 @@ func TestAcceptTermGroupNotInTheBuild(t *testing.T) {
 	for _, id := range []string{group + "@2", group} {
 		code, stdout, stderr := lct(t, "accept", "--reason", "r", "--date", "2026-11-05", s.warnings[0], id)
 		if code != 1 || !strings.Contains(stderr, id) || !strings.Contains(stderr, "not in the current review data") ||
-			!strings.Contains(stderr, "refresh the review page, or rebuild with lct build") || strings.Contains(stderr, "no item of the last build") {
+			!termGroupGoneSaid(stderr) || strings.Contains(stderr, "no item of the last build") {
 			t.Errorf("accept %s: exit code %d, want 1 saying the group is not in the review data\n%s%s", id, code, stdout, stderr)
 		}
 	}
@@ -871,11 +872,22 @@ func TestAcceptTermGroupNotInTheBuild(t *testing.T) {
 	}
 	code, stdout, _ = lct(t, "accept", "--dry-run", group+"@2", other)
 	gone, plain, found := strings.Cut(stdout, "no item of the last build:")
-	if code != 1 || !found || !strings.Contains(stdout, "not in the current review data") || !strings.Contains(stdout, "refresh the review page, or rebuild with lct build") ||
+	if code != 1 || !found || !strings.Contains(stdout, "not in the current review data") || !termGroupGoneSaid(stdout) ||
 		!strings.Contains(gone+plain, group+"@2") || strings.Contains(plain, group) || !strings.Contains(plain, other) {
 		t.Errorf("text dry run (exit %d):\n%s", code, stdout)
 	}
 	if lists() != before {
 		t.Errorf("the dry run wrote:\n%s", lists())
 	}
+}
+
+// termGroupGoneSaid reports whether out gives the cause and the way out of a
+// term group that is not in the review data built here: the data comes from
+// .work/raw, .work/tw and glossary/, the raw_tag and tw_commit can be compared
+// with the page's, and the way out is the page's data or a fresh page. It does
+// not send the person to lct build, which writes none of that data.
+func termGroupGoneSaid(out string) bool {
+	return strings.Contains(out, ".work/raw, .work/tw and glossary/") && strings.Contains(out, "raw_tag and tw_commit") &&
+		strings.Contains(out, "update the worktrees to the page's raw tag and tw commit, or refresh the review page and paste again") &&
+		!strings.Contains(out, "lct build")
 }

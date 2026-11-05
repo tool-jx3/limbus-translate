@@ -125,7 +125,7 @@ type lookupReport struct {
 
 // termGroupGone says why a term group id can be no item of the last build and
 // what to do: the review page that gave it was made from other data.
-const termGroupGone = "the glossary or the translations changed since the review page was made: refresh the review page, or rebuild with lct build"
+const termGroupGone = "the local review data comes from .work/raw, .work/tw and glossary/, and the group is not in it; compare the raw_tag and tw_commit with the review page's, then update the worktrees to the page's raw tag and tw commit, or refresh the review page and paste again"
 
 func (r lookupReport) String() string {
 	var b strings.Builder

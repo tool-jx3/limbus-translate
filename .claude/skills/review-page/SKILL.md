@@ -44,8 +44,8 @@ allowed-tools:
    - 待辦：沒有 ID，不能確認。人提到時，向人說明處理方式見 `/review`（`needs_review` 用調整或重翻，凍結檔決定是否解除凍結）
 3. 依人的決定處理：
    - 沒問題：執行 `bin/lct accept --json --reason '<人給的理由，沒有就寫「人工確認沒問題」>' 'ID1' 'ID2'`，理由與每個 ID 都用單引號（單引號的寫法同第 2 步）。規則建議與註記記進 `rules/declined.yaml`，警告記進 `rules/accepted.yaml`；全部 ID 一次傳入，`--reason` 是這一批共同的理由，理由不同的分批執行。ID 很多時分成每批數十個直接傳入
-     - 輸出 `{declined, accepted, skipped, raw_tag, tw_commit}`：`skipped` 是早就確認過的，不算錯，向人列出
-     - 整組 ID 被拒絕（exit 1，什麼都沒寫）：N 與目前還沒確認的單位數不同，或這個組已不在目前審核資料裡。先用 `bin/lct accept --dry-run --json` 查出變了什麼（`open_units` 的 `now`，或該 ID 在 `unknown_term_groups`），告訴人變動，請人重新整理審核頁再貼一次，或改貼逐單位 ID（`warning/term-missing/…`，只確認他指的那幾個單位）。不去掉 `@N`，也不自己改 N 來讓指令通過
+     - 輸出 `{declined, accepted, skipped, empty, raw_tag, tw_commit}`：`skipped` 是早就確認過的，不算錯，向人列出；`empty` 是整組都已確認、沒有東西可確認的組，沒有寫入，也向人列出
+     - 整組 ID 被拒絕（exit 1，什麼都沒寫）：N 與目前還沒確認的單位數不同，或這個組已不在目前審核資料裡（本機審核資料來自 `.work/raw`、`.work/tw` 與 `glossary/`，可能與網頁的不同）。先用 `bin/lct accept --dry-run --json` 查出變了什麼（`open_units` 的 `now`，或該 ID 在 `unknown_term_groups`），拿輸出的 `raw_tag`、`tw_commit` 與網頁的比對，告訴人變動；組已不在時請人把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit，或請人重新整理審核頁再貼一次，或改貼逐單位 ID（`warning/term-missing/…`，只確認他指的那幾個單位）。不去掉 `@N`，也不自己改 N 來讓指令通過
      - exit 1 且訊息列出不是目前項目的 ID：整批都沒有寫入。把這些 ID 告訴人，說明兩種可能：本機 `.work/raw`、`.work/tw` 比網頁舊（請人更新到 origin 的 `raw`、`tw` 後再試，例如 `git -C .work/tw pull --ff-only`；這個 skill 不執行 `git`），或項目已解決、譯文已改。經人同意後，只用其餘的 ID 再執行一次
    - 要改：修改必須讓譯文真的改變——只改指引而不重翻，譯文不會變。依項目種類：
      - 單一單位（警告、註記，或只涉及幾個單位的建議）：先讀 `prompts/translate.md` 與 `guides/README.md` 指示的指引，擬一個能通過檢查的譯文和 `reason`，用 `bin/lct validate` 試過，把譯文給人看，同意後執行 `bin/lct adjust add --json --key K --zh Z --reason R --rule PATH --topic T`（`--rule` 是這個道理歸納進的既有規則檔，一次性的寫 `one-off`；各項用同一個 `--topic`）。exit 1 且有 `issues`：依 issues 改後再送，同一筆最多重試兩次，仍不過就把 issues 給人看

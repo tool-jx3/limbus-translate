@@ -802,6 +802,9 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"整組 ID 帶 `@N`", "the id of a term group is not said to carry @N, the number of units open: a person cannot tell why accept refuses it"},
 	skillSays{"請人重新整理審核頁再貼一次，或改貼逐單位 ID", "a refusal because the count changed or the group is gone is not said to be answered by a refresh and a new paste, or by the ids of the units"},
 	skillSays{"不去掉 `@N`", "the skill does not forbid stripping @N from a group id to force the write: it would confirm units the person never saw"},
+	skillSays{"`empty` 是整組都已確認、沒有東西可確認的組，沒有寫入", "the empty field of the accept output is not said to be a group with nothing left to accept, where nothing was written"},
+	skillSays{"本機審核資料來自 `.work/raw`、`.work/tw` 與 `glossary/`", "a refused term group is not said to come from the local review data (.work/raw, .work/tw, glossary/) that may differ from the page's"},
+	skillSays{"把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit", "a refused term group is not said to be answered by updating the worktrees to the raw tag and tw commit of the page"},
 	skillSays{"收窄 `files`", "a glossary entry that is too broad is not said to be narrowed in glossary/terms.yaml (files, match, notes)"},
 )
 
@@ -828,6 +831,9 @@ func TestReviewPageSays(t *testing.T) {
 		{"no word about quotes in an id", "寫成 `'\\''`", "寫成別的", "ID 或理由裡有單引號時寫成"},
 		{"no word about @N", "整組 ID 帶 `@N`", "整組 ID", "整組 ID 帶 `@N`"},
 		{"no way out of a refusal", "請人重新整理審核頁再貼一次", "再試一次", "請人重新整理審核頁再貼一次"},
+		{"empty not explained", "`empty` 是整組都已確認、沒有東西可確認的組，沒有寫入", "`empty`", "`empty` 是整組都已確認"},
+		{"no cause of a refused group", "本機審核資料來自 `.work/raw`、`.work/tw` 與 `glossary/`", "本機資料", "本機審核資料來自"},
+		{"no way to bring the worktrees up", "把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit", "重建", "把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit"},
 		{"may strip @N", "不去掉 `@N`", "去掉 `@N`", "不去掉 `@N`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
 	} {
