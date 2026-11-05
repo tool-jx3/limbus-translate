@@ -21,48 +21,76 @@ const CAUSE_NAMES: Record<UpdateCause, string> = {
 }
 
 /** The old and the new text of one language: the old above the new, what the other lacks marked. */
-function Pair({ label, lang, old, now, show }: { label: string; lang: Lang; old: string | undefined; now: string | undefined; show: boolean }) {
+export function TextPair({ lang, old, now }: { lang: Lang; old: string | undefined; now: string | undefined }) {
   const { raw } = useContext(ShownText)
-  if (!show || (old === undefined && now === undefined)) return null
+  if (old === undefined && now === undefined) return null
   // Only one of them: no diff, and not marked as old or new.
   if (old === undefined || now === undefined) {
     const text = (old ?? now) as string
     const isOld = old !== undefined
     return (
-      <div class="uc-row">
-        <dt>{label}</dt>
-        <dd lang={LANG_ATTR[lang]} class={isOld ? 'uc-old' : 'uc-new'}>
-          <span class="uc-tag">{isOld ? '舊' : '新'}</span>
-          <TmpText text={text} raw={raw} lang={lang} />
-        </dd>
+      <div lang={LANG_ATTR[lang]} class={isOld ? 'uc-old' : 'uc-new'}>
+        <span class="uc-tag">{isOld ? '舊' : '新'}</span>
+        <TmpText text={text} raw={raw} lang={lang} />
       </div>
     )
   }
   if (old === now) {
     return (
-      <div class="uc-row">
-        <dt>{label}</dt>
-        <dd lang={LANG_ATTR[lang]}>
-          <TmpText text={now} raw={raw} lang={lang} />
-        </dd>
+      <div lang={LANG_ATTR[lang]}>
+        <TmpText text={now} raw={raw} lang={lang} />
       </div>
     )
   }
   return (
+    <div lang={LANG_ATTR[lang]} class="uc-pair">
+      <div class="uc-old">
+        <span class="uc-tag">舊</span>
+        <DiffText key={raw ? 'raw' : 'drawn'} pieces={variantDiff(now, old, { raw })} raw={raw} />
+      </div>
+      <div class="uc-new">
+        <span class="uc-tag">新</span>
+        <DiffText key={raw ? 'raw' : 'drawn'} pieces={variantDiff(old, now, { raw })} raw={raw} />
+      </div>
+    </div>
+  )
+}
+
+function Pair({ label, lang, old, now, show }: { label: string; lang: Lang; old: string | undefined; now: string | undefined; show: boolean }) {
+  if (!show || (old === undefined && now === undefined)) return null
+  return (
     <div class="uc-row">
       <dt>{label}</dt>
-      <dd lang={LANG_ATTR[lang]} class="uc-pair">
-        <div class="uc-old">
-          <span class="uc-tag">舊</span>
-          <DiffText key={raw ? 'raw' : 'drawn'} pieces={variantDiff(now, old, { raw })} raw={raw} />
-        </div>
-        <div class="uc-new">
-          <span class="uc-tag">新</span>
-          <DiffText key={raw ? 'raw' : 'drawn'} pieces={variantDiff(old, now, { raw })} raw={raw} />
-        </div>
+      <dd>
+        <TextPair lang={lang} old={old} now={now} />
       </dd>
     </div>
   )
+}
+
+/** The old and the new KR of an entry; a unit that only the translation changed has one KR, so they are the same. */
+export function entryKr(e: UpdateEntry): { old: string | undefined; now: string | undefined } {
+  return {
+    old: e.old_kr ?? (e.kind === 'zh-changed' ? e.new_kr : undefined),
+    now: e.new_kr ?? (e.kind === 'zh-changed' ? e.old_kr : undefined),
+  }
+}
+
+/** The origin before and after (either may be missing). */
+export function Origins({ entry: e }: { entry: UpdateEntry }) {
+  const oldOrigin = e.old_origin as Origin | undefined
+  const newOrigin = e.new_origin as Origin | undefined
+  return (
+    <span class="uc-origins">
+      {oldOrigin && <OriginBadge origin={oldOrigin} />}
+      {oldOrigin && newOrigin && <span aria-label="改成">→</span>}
+      {newOrigin && <OriginBadge origin={newOrigin} />}
+    </span>
+  )
+}
+
+export function CauseChip({ cause }: { cause: UpdateCause }) {
+  return <span class="uc-cause">{CAUSE_NAMES[cause]}</span>
 }
 
 type Current = { status: 'loading' } | { status: 'error' } | { status: 'ready'; unit: Unit | undefined }
@@ -111,27 +139,19 @@ export function UpdateCard({ entry: e }: { entry: UpdateEntry }) {
   const { langs } = useContext(ShownText)
   const kind = KIND_NAMES[e.kind]
   const deleted = e.kind === 'deleted'
-  // A unit that only the translation changed has one KR; the old and the new are the same.
-  const oldKr = e.old_kr ?? (e.kind === 'zh-changed' ? e.new_kr : undefined)
-  const newKr = e.new_kr ?? (e.kind === 'zh-changed' ? e.old_kr : undefined)
-  const oldOrigin = e.old_origin as Origin | undefined
-  const newOrigin = e.new_origin as Origin | undefined
+  const kr = entryKr(e)
   return (
     <article class="uc-card">
       <div class="uc-head">
         <span class={`uc-kind ${kind.cls}`}>{kind.name}</span>
-        {e.cause && <span class="uc-cause">{CAUSE_NAMES[e.cause]}</span>}
+        {e.cause && <CauseChip cause={e.cause} />}
         <code class="uc-where">
           {e.field} {e.ptr}
         </code>
-        <span class="uc-origins">
-          {oldOrigin && <OriginBadge origin={oldOrigin} />}
-          {oldOrigin && newOrigin && <span aria-label="改成">→</span>}
-          {newOrigin && <OriginBadge origin={newOrigin} />}
-        </span>
+        <Origins entry={e} />
       </div>
       <dl class="uc-texts">
-        <Pair label="KR" lang="kr" old={oldKr} now={newKr} show={langs.kr} />
+        <Pair label="KR" lang="kr" old={kr.old} now={kr.now} show={langs.kr} />
         <Pair label="TW" lang="zh" old={e.old_zh} now={e.new_zh} show={langs.zh} />
       </dl>
       {!deleted && (

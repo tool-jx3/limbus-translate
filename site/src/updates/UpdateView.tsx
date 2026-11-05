@@ -1,3 +1,4 @@
+import type { JSX } from 'preact'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { DataError, loadUpdate } from '../data'
@@ -6,6 +7,7 @@ import { updateHref, type Route } from '../route'
 import type { Settings } from '../settings'
 import type { UpdateEntry, UpdateKind, UpdateRecord } from '../types'
 import { KIND_NAMES, UpdateCard } from './UpdateCard'
+import { UpdateTable } from './UpdateTable'
 import { countKinds, entryFiles, entryOrigins, filterEntries, type UpdateFilter } from './filter'
 import { day } from './UpdatesView'
 
@@ -90,7 +92,7 @@ function Head({ record, files }: { record: UpdateRecord; files: number }) {
   )
 }
 
-function Filters({ route, entries }: { route: UpdateRoute; entries: UpdateEntry[] }) {
+function Filters({ route, entries, settings, onSettings }: { route: UpdateRoute; entries: UpdateEntry[]; settings: Settings; onSettings: (s: Settings) => void }) {
   const counts = countKinds(entries, route.copy)
   const copies = entries.filter((e) => e.copy).length
   const toggle = (kind: UpdateKind) =>
@@ -116,22 +118,42 @@ function Filters({ route, entries }: { route: UpdateRoute; entries: UpdateEntry[
         <input type="checkbox" name="hide-copy" checked={!route.copy} onChange={(e) => go(route, { copy: !e.currentTarget.checked })} />
         隱藏不需翻譯的單位（{copies} 個）
       </label>
-      {/* Task 8 puts the switch of the view (cards or table) here. */}
+      <div class="uv-views" role="group" aria-label="顯示方式">
+        {(['cards', 'table'] as const).map((view) => (
+          <button key={view} type="button" aria-pressed={settings.updateView === view ? 'true' : 'false'} onClick={() => onSettings({ ...settings, updateView: view })}>
+            {view === 'cards' ? '卡片' : '表格'}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
 
-/** The cards of the entries, grouped by file; UPDATE_PAGE of them at first, then UPDATE_PAGE more at each press. */
-function Cards({ entries }: { entries: UpdateEntry[] }) {
+/** UPDATE_PAGE of the entries at first, then UPDATE_PAGE more at each press; `children` draws the ones shown. */
+function Paged({ entries, children }: { entries: UpdateEntry[]; children: (shown: UpdateEntry[]) => JSX.Element }) {
   const [limit, setLimit] = useState(UPDATE_PAGE)
   const shown = entries.slice(0, limit)
+  const left = entries.length - shown.length
+  return (
+    <>
+      {children(shown)}
+      {left > 0 && (
+        <button type="button" class="rv-more" onClick={() => setLimit(limit + UPDATE_PAGE)}>
+          再顯示 {Math.min(left, UPDATE_PAGE)} 筆
+        </button>
+      )}
+    </>
+  )
+}
+
+/** The cards of the entries, grouped by file. */
+function Cards({ entries }: { entries: UpdateEntry[] }) {
   const groups = new Map<string, UpdateEntry[]>()
-  for (const e of shown) {
+  for (const e of entries) {
     const g = groups.get(e.file)
     if (g) g.push(e)
     else groups.set(e.file, [e])
   }
-  const left = entries.length - shown.length
   return (
     <>
       {[...groups].map(([file, list]) => (
@@ -144,17 +166,12 @@ function Cards({ entries }: { entries: UpdateEntry[] }) {
           </div>
         </section>
       ))}
-      {left > 0 && (
-        <button type="button" class="rv-more" onClick={() => setLimit(limit + UPDATE_PAGE)}>
-          再顯示 {Math.min(left, UPDATE_PAGE)} 筆
-        </button>
-      )}
     </>
   )
 }
 
 /** The changes of one Release. */
-export function UpdateView({ route, settings }: { route: UpdateRoute; settings: Settings; onSettings: (s: Settings) => void }) {
+export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute; settings: Settings; onSettings: (s: Settings) => void }) {
   const state = useUpdate(route.tag)
   const shown = useMemo(() => ({ langs: settings.langs, raw: settings.rawTags }), [settings.langs, settings.rawTags])
   const filter: UpdateFilter = { kinds: route.kinds, origin: route.origin, file: route.file, copy: route.copy }
@@ -168,13 +185,14 @@ export function UpdateView({ route, settings }: { route: UpdateRoute; settings: 
     <ShownText.Provider value={shown}>
       <section class="update">
         <Head record={record} files={entryFiles(record.entries).length} />
-        <Filters route={route} entries={record.entries} />
+        <Filters route={route} entries={record.entries} settings={settings} onSettings={onSettings} />
         {list.length === 0 ? (
           <p class="uv-empty">沒有符合的變動</p>
         ) : (
-          // Task 8 draws a table here where settings.updateView is 'table'.
           // Keyed by the filter, so that a change of it starts again from the first page.
-          <Cards key={`${route.kinds.join(',')}|${route.origin}|${route.file}|${route.copy}`} entries={list} />
+          <Paged key={`${route.kinds.join(',')}|${route.origin}|${route.file}|${route.copy}`} entries={list}>
+            {(shownList) => (settings.updateView === 'table' ? <UpdateTable entries={shownList} /> : <Cards entries={shownList} />)}
+          </Paged>
         )}
       </section>
     </ShownText.Provider>

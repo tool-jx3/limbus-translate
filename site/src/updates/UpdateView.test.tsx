@@ -8,6 +8,7 @@ import type { UpdateEntry, UpdateRecord } from '../types'
 import { UpdateCard } from './UpdateCard'
 import { UPDATE_PAGE, UpdateView } from './UpdateView'
 import type { Route } from '../route'
+import css from '../styles.css?raw'
 
 type UpdateRoute = Extract<Route, { kind: 'update' }>
 
@@ -87,12 +88,16 @@ function stub(docs: Record<string, unknown> = {}, rec: UpdateRecord = record()) 
   vi.stubGlobal('fetch', vi.fn(fixtureFetch({ [`updates/${TAG}.json`]: rec, ...docs })))
 }
 
-async function mount(r: UpdateRoute = route(), settings: Settings = defaultSettings()): Promise<HTMLElement> {
+async function mount(
+  r: UpdateRoute = route(),
+  settings: Settings = defaultSettings(),
+  onSettings: (s: Settings) => void = () => {},
+): Promise<HTMLElement> {
   const container = document.createElement('div')
   document.body.append(container)
   containers.push(container)
-  render(<UpdateView route={r} settings={settings} onSettings={() => {}} />, container)
-  await vi.waitFor(() => expect(container.querySelector('.uc-card, .notice, .uv-empty')).not.toBeNull())
+  render(<UpdateView route={r} settings={settings} onSettings={onSettings} />, container)
+  await vi.waitFor(() => expect(container.querySelector('.uc-card, .ut-table, .notice, .uv-empty')).not.toBeNull())
   return container
 }
 
@@ -419,5 +424,130 @@ describe('UpdateCard alone', () => {
     containers.push(container)
     render(<UpdateCard entry={entries[0]!} />, container)
     expect(container.querySelector('.uc-card')).not.toBeNull()
+  })
+})
+
+describe('the table view', () => {
+  const table = (): Settings => ({ ...defaultSettings(), updateView: 'table' })
+  const rowsOf = (el: Element) => [...el.querySelectorAll<HTMLElement>('tr.ut-row')]
+
+  it('has a switch 卡片｜表格 that asks for the table, and the cards stay by default', async () => {
+    stub()
+    const onSettings = vi.fn()
+    const el = await mount(route(), defaultSettings(), onSettings)
+    const buttons = [...el.querySelectorAll<HTMLButtonElement>('.uv-views button')]
+    expect(buttons.map((b) => text(b))).toEqual(['卡片', '表格'])
+    expect(buttons.map((b) => b.getAttribute('aria-pressed'))).toEqual(['true', 'false'])
+    expect(el.querySelector('table')).toBeNull()
+    await act(() => buttons[1]!.click())
+    expect(onSettings).toHaveBeenCalledWith({ ...defaultSettings(), updateView: 'table' })
+  })
+
+  it('opens as a table when the setting says table, and the switch can go back to cards', async () => {
+    stub()
+    const onSettings = vi.fn()
+    const el = await mount(route(), table(), onSettings)
+    expect(el.querySelector('.uc-card')).toBeNull()
+    const buttons = [...el.querySelectorAll<HTMLButtonElement>('.uv-views button')]
+    expect(buttons.map((b) => b.getAttribute('aria-pressed'))).toEqual(['false', 'true'])
+    await act(() => buttons[0]!.click())
+    expect(onSettings).toHaveBeenCalledWith({ ...defaultSettings(), updateView: 'cards' })
+  })
+
+  it('has the columns, and a group row for each file', async () => {
+    stub()
+    const el = await mount(route(), table())
+    expect([...el.querySelectorAll('thead th')].map((h) => text(h))).toEqual(['欄位', '種類', 'KR', 'TW', '來源'])
+    const groups = [...el.querySelectorAll('tr.ut-file')]
+    expect(groups.map((g) => text(g))).toEqual(['A.json', 'B.json'])
+    expect(groups[0]!.querySelector('th')!.getAttribute('colspan')).toBe('5')
+    expect(rowsOf(el).length).toBe(6)
+  })
+
+  it('shows the field and pointer, the kind, the cause and the origins of a row', async () => {
+    stub()
+    const el = await mount(route(), table())
+    const rows = rowsOf(el)
+    expect(text(rows[1]!.querySelector('code'))).toContain('desc')
+    expect(text(rows[1]!.querySelector('code'))).toContain('/1/desc')
+    expect(text(rows[1]!.querySelector('.uc-kind'))).toBe('KR 修改')
+    expect(text(rows[1]!.querySelector('.uc-origins'))).toContain('paratranz')
+    expect(text(rows[1]!.querySelector('.uc-origins'))).toContain('claude')
+    expect(text(rows[3]!.querySelector('.uc-cause'))).toBe('人工調整')
+  })
+
+  it('puts the old above the new in the KR and TW cells, with the differences marked', async () => {
+    stub()
+    const row = rowsOf(await mount(route(), table()))[1]!
+    const cells = [...row.querySelectorAll('td')]
+    const kr = cells[2]!
+    const zh = cells[3]!
+    expect(kr.querySelector('.uc-old')!.compareDocumentPosition(kr.querySelector('.uc-new')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect([...kr.querySelectorAll('.uc-old .rv-d')].map((d) => d.textContent)).toEqual(['옛'])
+    expect([...kr.querySelectorAll('.uc-new .rv-d')].map((d) => d.textContent)).toEqual(['새'])
+    expect([...zh.querySelectorAll('.uc-old .rv-d')].map((d) => d.textContent)).toEqual(['舊'])
+    expect([...zh.querySelectorAll('.uc-new .rv-d')].map((d) => d.textContent)).toEqual(['新'])
+  })
+
+  it('leaves the KR cell empty when KR is switched off', async () => {
+    stub()
+    const s = table()
+    s.langs.kr = false
+    const row = rowsOf(await mount(route(), s))[1]!
+    const cells = [...row.querySelectorAll('td')]
+    expect(text(cells[2])).toBe('')
+    expect(text(cells[3])).toContain('新的說明文字')
+  })
+
+  it('is collapsed at first, toggles on a click on the row, and keeps it out of the URL', async () => {
+    stub()
+    const el = await mount(route(), table())
+    const row = rowsOf(el)[0]!
+    expect(row.classList.contains('is-open')).toBe(false)
+    expect(row.getAttribute('aria-expanded')).toBe('false')
+    await act(() => row.click())
+    expect(rowsOf(el)[0]!.classList.contains('is-open')).toBe(true)
+    expect(rowsOf(el)[0]!.getAttribute('aria-expanded')).toBe('true')
+    expect(rowsOf(el)[1]!.classList.contains('is-open')).toBe(false)
+    expect(location.hash).toBe('')
+    await act(() => rowsOf(el)[0]!.click())
+    expect(rowsOf(el)[0]!.classList.contains('is-open')).toBe(false)
+  })
+
+  it('can be toggled from the keyboard through a button in the row', async () => {
+    stub()
+    const el = await mount(route(), table())
+    const button = rowsOf(el)[0]!.querySelector<HTMLButtonElement>('button.ut-toggle')!
+    expect(button).not.toBeNull()
+    await act(() => button.click())
+    expect(rowsOf(el)[0]!.classList.contains('is-open')).toBe(true)
+  })
+
+  it('is wrapped in a container that scrolls sideways', async () => {
+    stub()
+    const el = await mount(route(), table())
+    const wrap = el.querySelector('table')!.parentElement!
+    expect(wrap.classList.contains('ut-scroll')).toBe(true)
+    expect(css).toMatch(/\.ut-scroll\s*\{[^}]*overflow-x:\s*auto/)
+  })
+
+  it('pages like the cards do', async () => {
+    const many: UpdateEntry[] = Array.from({ length: 650 }, (_, k) => ({
+      file: 'A.json',
+      field: 'name',
+      ptr: `/${k}/name`,
+      kind: 'new',
+      new_kr: 'k',
+      new_zh: 'b',
+      new_origin: 'claude',
+    }))
+    stub({}, record({ entries: many }))
+    const el = await mount(route(), table())
+    const more = () => [...el.querySelectorAll<HTMLButtonElement>('button')].find((b) => text(b).startsWith('再顯示'))
+    expect(rowsOf(el).length).toBe(300)
+    expect(text(more())).toBe('再顯示 300 筆')
+    await act(() => more()!.click())
+    expect(rowsOf(el).length).toBe(600)
+    expect(text(more())).toBe('再顯示 50 筆')
   })
 })
