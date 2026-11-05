@@ -375,3 +375,46 @@ func TestSuggestKindsAndPages(t *testing.T) {
 		}
 	}
 }
+
+// The provisional terms in force (batch.ActiveProvisional: not in the
+// glossary, not declined) are listed as term-new/<kr>, with the conflicting
+// renderings of the KR as evidence; --skip-kind leaves a kind out.
+func TestSuggestListsProvisionalTerms(t *testing.T) {
+	root, _ := suggestRepo(t)
+	st := store.Open(filepath.Join(root, ".work", "tw"))
+	if _, err := st.AppendTerms([]store.ProvisionalTerm{
+		{KR: "우레", ZH: "雷鳴", Key: "a.json|/dataList/0/name", Batch: "b1", RawTag: suggestRawTag, Time: "2026-11-05T00:00:00Z"},
+		{KR: "우레", ZH: "驚雷", Key: "b.json|/dataList/0/name", Batch: "b2", RawTag: suggestRawTag, Time: "2026-11-05T00:00:00Z", Conflict: true},
+		{KR: "신규 용어", ZH: "新術語二", Key: "c.json|/dataList/0/name", Batch: "b3", RawTag: suggestRawTag, Time: "2026-11-05T00:00:00Z"},
+		{KR: "번개", ZH: "閃電", Key: "d.json|/dataList/0/name", Batch: "b4", RawTag: suggestRawTag, Time: "2026-11-05T00:00:00Z"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	// 신규 용어 is in the glossary (as a candidate), so it is not listed.
+	out := suggestJSON(t, "--kind", "term-new")
+	if want := []string{"term-new/번개", "term-new/우레"}; !slices.Equal(out.ids(), want) {
+		t.Fatalf("term-new = %v, want %v", out.ids(), want)
+	}
+	if n := len(out.Suggestions[1].Evidence); n != 2 {
+		t.Errorf("우레 has %d evidence rows, want the unit and the conflict", n)
+	}
+	all := suggestJSON(t)
+	if i, j := slices.Index(all.ids(), "term-new/우레"), slices.Index(all.ids(), "term/신규 용어"); i < 0 || j < 0 || i > j {
+		t.Errorf("ids = %v, want term-new before term", all.ids())
+	}
+
+	// A declined id is not listed again.
+	writeTestFile(t, root, "rules/declined.yaml", "- {id: 'term-new/우레', reason: r, date: 2026-11-06}\n")
+	if got := suggestJSON(t, "--kind", "term-new"); !slices.Equal(got.ids(), []string{"term-new/번개"}) {
+		t.Errorf("after declining: %v", got.ids())
+	}
+
+	// --skip-kind is what CI uses to leave term-new to a person.
+	skipped := suggestJSON(t, "--skip-kind", "term-new")
+	if slices.ContainsFunc(skipped.ids(), func(id string) bool { return strings.HasPrefix(id, "term-new/") }) || len(skipped.Suggestions) == 0 {
+		t.Errorf("--skip-kind term-new: %v", skipped.ids())
+	}
+	if code, _, stderr := lct(t, "suggest", "--skip-kind", "bogus"); code != 1 || !strings.Contains(stderr, "bogus") {
+		t.Errorf("--skip-kind bogus: exit code %d, stderr %q; want 1 and a message with bogus", code, stderr)
+	}
+}

@@ -149,19 +149,35 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 // activeProvisional reads the provisional terms of the store and the declined
 // list of root and returns the terms in force (see batch.ActiveProvisional).
 func activeProvisional(root string, st *store.Store, r *rules.Rules) ([]rules.Term, error) {
+	_, terms, err := activeProvisionalRecords(root, st, r)
+	return terms, err
+}
+
+// activeProvisionalRecords is activeProvisional with the records of those
+// terms too: every record of an active KR, conflicts included, in the order
+// of the file. These are what lct suggest and the review page list as
+// "term-new/<kr>". Which KR are active is decided by batch.ActiveProvisional
+// alone, so the batches and the suggestions never disagree.
+func activeProvisionalRecords(root string, st *store.Store, r *rules.Rules) ([]store.ProvisionalTerm, []rules.Term, error) {
 	all, err := st.LoadTerms()
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	list, err := suggest.LoadDeclined(root)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	declined := make(map[string]bool, len(list))
 	for _, d := range list {
 		declined[d.ID] = true
 	}
-	return batch.ActiveProvisional(all, r, declined), nil
+	terms := batch.ActiveProvisional(all, r, declined)
+	active := make(map[string]bool, len(terms))
+	for _, t := range terms {
+		active[t.KR] = true
+	}
+	records := slices.DeleteFunc(slices.Clone(all), func(p store.ProvisionalTerm) bool { return !active[p.KR] })
+	return records, terms, nil
 }
 
 // keywordNames reads the Chinese names of the keywords from the records in

@@ -23,6 +23,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 // The kinds of suggestion. The id of a suggestion is its kind, a "/" and what
@@ -35,6 +36,7 @@ import (
 //	field/<add|remove>/<group or ->/<field>    a change of rules/fields.yaml
 //	adjustment-moved/<old key>                 an adjustment whose key moved
 //	adjustment-expired/<key>                   an adjustment that expired
+//	term-new/<kr>                              a provisional term a translator registered
 //	term/<kr>                                  a glossary term that is a candidate
 //	inconsistent/<family>/<field>/<sha8(KR)>   one group of Info.InconsistentAll
 const (
@@ -44,6 +46,7 @@ const (
 	KindFamily            = "family"
 	KindNote              = "note"
 	KindTerm              = "term"
+	KindNewTerm           = "term-new"
 	KindAdjustmentMoved   = "adjustment-moved"
 	KindAdjustmentExpired = "adjustment-expired"
 )
@@ -54,7 +57,7 @@ const (
 // different translations, of which a build finds hundreds, last.
 var Kinds = []string{
 	KindNote, KindSpeaker, KindFamily, KindField,
-	KindAdjustmentMoved, KindAdjustmentExpired, KindTerm, KindInconsistent,
+	KindAdjustmentMoved, KindAdjustmentExpired, KindNewTerm, KindTerm, KindInconsistent,
 }
 
 // MaxEvidence is the most rows of evidence a suggestion has.
@@ -111,6 +114,11 @@ type Inputs struct {
 	Build *build.Info
 	// Plan is .meta/plan.json of the tw worktree, nil if there is none.
 	Plan *plan.Summary
+	// Provisional are the records of the provisional terms in force
+	// (.meta/terms.jsonl), conflicts included: the caller has left out the KR
+	// the glossary has and the one a person declined (batch.ActiveProvisional
+	// says which are in force), so Run lists every KR it gets.
+	Provisional []store.ProvisionalTerm
 }
 
 // Run lists the suggestions by kind, in the order of Kinds; the groups of
@@ -138,6 +146,7 @@ func Run(in Inputs) ([]Suggestion, error) {
 		c.fromPlan(in.Plan, in.Rules, in.Adjustments)
 	}
 	c.fromGlossary(in.Rules.Glossary)
+	c.fromProvisional(in.Provisional)
 
 	out := make([]Suggestion, 0, len(c.byID))
 	for _, s := range c.byID {
@@ -316,6 +325,26 @@ func (c *collector) fromGlossary(terms []rules.Term) {
 		}
 		c.add(KindTerm, t.KR, fmt.Sprintf("詞彙候選：%s → %s", clip(t.KR, maxTitleText), clip(t.ZH, maxTitleText)),
 			Evidence{KR: t.KR, ZH: t.ZH})
+	}
+}
+
+// fromProvisional makes the suggestion of every KR of the provisional terms.
+// The record of a KR that is no conflict is the term the batches use: the
+// title says its rendering, and the evidence is the unit that registered it
+// (its batch in Note) and then each conflicting rendering. A KR that has only
+// conflicts is not suggested; there is no term to decide on.
+func (c *collector) fromProvisional(terms []store.ProvisionalTerm) {
+	for _, t := range terms {
+		if t.Conflict || t.KR == "" {
+			continue
+		}
+		c.add(KindNewTerm, t.KR, fmt.Sprintf("暫定詞：%s → %s", clip(t.KR, maxTitleText), clip(t.ZH, maxTitleText)),
+			Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: t.Batch})
+	}
+	for _, t := range terms {
+		if _, ok := c.byID[KindNewTerm+"/"+t.KR]; ok && t.Conflict {
+			c.add(KindNewTerm, t.KR, "", Evidence{Key: t.Key, KR: t.KR, ZH: t.ZH, Note: "衝突"})
+		}
 	}
 }
 

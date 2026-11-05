@@ -26,7 +26,7 @@ func init() {
 		Usage: "list what the rules could learn from the last build and plan of the current snapshot, with stable ids, " +
 			"by kind in the order of --kind below (the biggest inconsistent group first), then by id; " +
 			"skips rules/declined.yaml and the ids in each exclude file (one id a line; blank lines and # lines are ignored): " +
-			"[--exclude-file F]... [--kind K]... (only these kinds: " + strings.Join(suggest.Kinds, ", ") + ") " +
+			"[--exclude-file F]... [--kind K]... (only these kinds: " + strings.Join(suggest.Kinds, ", ") + ") [--skip-kind K]... (all but these kinds) " +
 			"[--limit N] [--offset N] (a page of what is left; total is how many that is)",
 		Run: runSuggest,
 	})
@@ -86,9 +86,10 @@ func (r suggestReport) String() string {
 func runSuggest(ctx *cli.Context, args []string) error {
 	flags := flag.NewFlagSet("suggest", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
-	var excludeFiles, kinds stringList
+	var excludeFiles, kinds, skipKinds stringList
 	flags.Var(&excludeFiles, "exclude-file", "a file of suggestion ids to leave out, one a line (repeatable)")
 	flags.Var(&kinds, "kind", "only the suggestions of this kind (repeatable): "+strings.Join(suggest.Kinds, ", "))
+	flags.Var(&skipKinds, "skip-kind", "leave out the suggestions of this kind (repeatable): "+strings.Join(suggest.Kinds, ", "))
 	limit := flags.Int("limit", 0, "the most suggestions to list (at least 1; default all)")
 	offset := flags.Int("offset", 0, "the suggestions to skip first (default 0)")
 	if err := flags.Parse(args); err != nil {
@@ -102,6 +103,11 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	for _, k := range kinds {
 		if !slices.Contains(suggest.Kinds, k) {
 			return cli.UserError(fmt.Sprintf("suggest: --kind %q is not one of %s", k, strings.Join(suggest.Kinds, ", ")))
+		}
+	}
+	for _, k := range skipKinds {
+		if !slices.Contains(suggest.Kinds, k) {
+			return cli.UserError(fmt.Sprintf("suggest: --skip-kind %q is not one of %s", k, strings.Join(suggest.Kinds, ", ")))
 		}
 	}
 	if given["limit"] && *limit < 1 {
@@ -159,6 +165,11 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	}
 	twRoot := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.TW))
 	in := suggest.Inputs{RawTag: src.Tag, Rules: r, Adjustments: adjustments}
+	// The provisional terms in force are those the batches carry (one rule,
+	// batch.ActiveProvisional); suggest lists them for a person to decide on.
+	if in.Provisional, _, err = activeProvisionalRecords(ctx.Root, st, r); err != nil {
+		return err
+	}
 	switch info, err := build.ReadInfo(twRoot); {
 	case err == nil:
 		in.Build = &info
@@ -178,6 +189,9 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	}
 	if len(kinds) > 0 {
 		all = slices.DeleteFunc(all, func(s suggest.Suggestion) bool { return !slices.Contains(kinds, s.Kind) })
+	}
+	if len(skipKinds) > 0 {
+		all = slices.DeleteFunc(all, func(s suggest.Suggestion) bool { return slices.Contains(skipKinds, s.Kind) })
 	}
 	kept, excluded := suggest.Exclude(all, skip)
 	// The page is taken from the list in the order of suggest.Run (by kind,

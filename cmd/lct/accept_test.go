@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
@@ -457,5 +458,55 @@ func TestAcceptDryRunCannotBeTurnedOff(t *testing.T) {
 	}
 	if got := readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml"); got != was {
 		t.Error("lct accept with --dry-run turned off wrote a list")
+	}
+}
+
+// lct accept declines a provisional term like any rule suggestion: the id
+// goes to rules/declined.yaml, the dry run knows it, and the batches stop
+// carrying the term.
+func TestAcceptDeclinesANewTerm(t *testing.T) {
+	s := acceptRepo(t)
+	st := store.Open(filepath.Join(s.root, ".work", "tw"))
+	records, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	key := slices.Sorted(maps.Keys(records))[0]
+	if _, err := st.AppendTerms([]store.ProvisionalTerm{
+		{KR: "우레", ZH: "雷鳴", Key: key, Batch: "b1", RawTag: "raw-20261029", Time: "2026-11-05T00:00:00Z"},
+		{KR: "우레", ZH: "驚雷", Key: key, Batch: "b2", RawTag: "raw-20261029", Time: "2026-11-05T00:00:00Z", Conflict: true},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	const id = "term-new/우레"
+
+	var look lookupOut
+	mustLct(t, &look, "accept", "--dry-run", id)
+	if len(look.Items) != 1 || look.Items[0].Kind != "term-new" || look.Items[0].List != "declined" || len(look.Unknown) != 0 {
+		t.Fatalf("dry run = %+v, want the term-new item that goes to declined", look)
+	}
+	r, err := rules.Load(s.root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, err := activeProvisional(s.root, st, r); err != nil || len(got) != 1 || got[0].KR != "우레" {
+		t.Fatalf("before: active = %+v, %v", got, err)
+	}
+
+	var out acceptOut
+	mustLct(t, &out, "accept", "--reason", "譯法還沒定", "--date", "2026-11-05", id)
+	if !slices.Equal(out.Declined, []string{id}) {
+		t.Fatalf("accept = %+v", out)
+	}
+	if declined := readOptional(t, s.root, "rules/declined.yaml"); !strings.Contains(declined, `- id: "`+id+`"`) {
+		t.Errorf("declined.yaml lacks %s:\n%s", id, declined)
+	}
+	if got, err := activeProvisional(s.root, st, r); err != nil || len(got) != 0 {
+		t.Errorf("after: active = %+v, %v; want none", got, err)
+	}
+	var sug suggestOut
+	mustLct(t, &sug, "suggest", "--kind", "term-new")
+	if len(sug.Suggestions) != 0 {
+		t.Errorf("suggest still lists %v", sug.ids())
 	}
 }

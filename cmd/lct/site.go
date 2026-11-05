@@ -266,6 +266,13 @@ func loadReviewInputs(ctx *cli.Context, cmd string) (site.ReviewInputs, error) {
 	if in.Pending, err = st.LoadPending(); err != nil {
 		return in, err
 	}
+	r, err := rules.Load(ctx.Root)
+	if err != nil {
+		return in, err
+	}
+	if in.Provisional, _, err = activeProvisionalRecords(ctx.Root, st, r); err != nil {
+		return in, err
+	}
 	return in, nil
 }
 

@@ -32,6 +32,7 @@ allowed-tools:
 - 翻譯規則不寫在這裡，也不憑記憶：見 `guides/README.md`、`glossary/README.md` 與它們指向的檔案。新規則寫進那些檔，格式依它們的說明；規則有衝突時，指出衝突在哪裡，不自行取捨
 - 不讀 `.git/` 底下的檔案（那裡可能有 git 的憑證），也不把看起來像 token 或金鑰的字串寫進說明或規則檔；`bin/lct proposal publish` 會拒絕含有這類字串的說明與修改
 - 規則改了不會自動重翻舊譯文。要重翻，只能附一個重翻要求檔，範圍要小而明確；合併 PR 即代表人同意重翻
+- `term-new`（翻譯者登記的暫定詞）不處理：它由人在審核頁或 `/term-decision` 決定採用或不採用，不進規則 PR，所以兩種執行都加 `--skip-kind term-new`；結果裡若仍出現 `term-new/…`，略過它，不寫進說明
 - 回合有限：一次最多處理 8 個建議，依 `bin/lct suggest` 給的順序（第 1 步只取這 8 個）。處理完一定接著做第 3 到 5 步（檢查、影響評估、說明、收尾），不因為還有建議就停下；沒輪到的下次執行再處理
 - 沒有把握的項目（需要詞彙或指引以外的決定、證據不足、規則互相衝突）不改檔、也不記進 `rules/declined.yaml`：列在說明的 `## 需要人決定` 一節，附標記與一行理由，交給人決定。列進規則 PR 之後，PR 開著時就不會再提出，不會每次都佔住前 8 個的位置。`note` 尤其要列：建置只列上次建置後新增的備註，每則備註只提出一次，沒列就不會再出現
 
@@ -42,7 +43,7 @@ allowed-tools:
    - 讀不到是本機：執行 `go build -o bin/lct ./cmd/lct`，失敗就停止並回報
    - `bin/lct suggest` 與 `bin/lct search` 讀 `.work/raw` 與 `.work/tw` 兩個 worktree；指令說沒有快照或找不到時，停止並回報，不自己建立
 1. 取得建議，最多 8 個：
-   - CI 執行 `bin/lct suggest --json --limit 8 --exclude-file work/proposal/exclude.txt`；本機執行 `bin/lct suggest --json --limit 8`。`rules/declined.yaml` 的 id 兩種都已略過
+   - CI 執行 `bin/lct suggest --json --limit 8 --skip-kind term-new --exclude-file work/proposal/exclude.txt`；本機執行 `bin/lct suggest --json --limit 8 --skip-kind term-new`。`rules/declined.yaml` 的 id 兩種都已略過
    - 結果 `{suggestions: [{id, kind, title, evidence: [{key, kr, zh, note, count}]}], excluded, total}`：`suggestions` 是這次要處理的，`total` 是還沒在規則 PR、也沒被不採用的建議總數（含這幾個）；有建議也是 exit 0。id 可能含空格、中日韓文字與 `|`，一律原樣照抄。exit 1 照錯誤訊息處理，exit 2 停止並回報
    - `suggestions` 是空的：不寫說明檔、不執行 publish；第 5 步寫 `nothing: 沒有新的建議`，結束
    - CI 且讀得到 `work/proposal/existing-body.md`：已有開著的規則 PR，這是它現在的說明。裡面的項目已在 PR，不重做，第 4 步要保留

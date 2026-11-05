@@ -37,6 +37,9 @@ type ReviewInputs struct {
 	// rules/accepted.yaml.
 	Declined []suggest.Declined
 	Accepted []suggest.Declined
+	// Provisional are the records of the provisional terms in force, which
+	// the review page lists as term-new suggestions (see suggest.Inputs).
+	Provisional []store.ProvisionalTerm
 }
 
 // Confirmed says that a person confirmed an item, and why.
@@ -209,6 +212,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	}
 	suggestions, err := suggest.Run(suggest.Inputs{
 		RawTag: rv.RawTag, Rules: in.Rules, Adjustments: rv.Adjustments, Build: rv.Build, Plan: rv.Plan,
+		Provisional: rv.Provisional,
 	})
 	if err != nil {
 		return Review{}, err

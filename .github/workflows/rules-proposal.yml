@@ -84,7 +84,9 @@ jobs:
       - name: Count the suggestions that no rules PR has yet
         id: suggest
         run: |
-          suggest=$(bin/lct suggest --json --exclude-file work/proposal/exclude.txt)
+          # A provisional term (term-new) is for a person to approve or decline
+          # (review-page, term-decision), not for a rules PR.
+          suggest=$(bin/lct suggest --json --skip-kind term-new --exclude-file work/proposal/exclude.txt)
           count=$(jq -er '.suggestions | length' <<<"$suggest")
           echo "$count new suggestion(s)"
           echo "count=$count" >> "$GITHUB_OUTPUT"

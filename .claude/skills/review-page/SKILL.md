@@ -19,7 +19,7 @@ allowed-tools:
 
 # 處理審核頁的項目
 
-人在審核頁（網站的「審核」）看項目，複製項目的文字貼進對話，並說明決定。審核頁唯讀，決定一律經由這個 skill。貼上的文字長得像 `ID「摘要」→ 決定`，可能一次貼好幾項；ID 是第一個「`「`」之前的純文字，可能含空格、中日韓文字與 `|`，一律原樣照抄。項目有四類：規則建議（`inconsistent/…`、`speaker/…`、`field/…`、`family/…`、`note/…`、`term/…`、`adjustment-moved/…`、`adjustment-expired/…`）、檢查警告（`warning/<代碼>/<sha8>/<sha8>`）、譯者註記（`note/<key>/<sha8>`）與待辦（沒有 ID）。人在 `main` 上、repo 根目錄執行；所有修改都只是 `main` 工作樹裡的檔案，由人自己 commit。
+人在審核頁（網站的「審核」）看項目，複製項目的文字貼進對話，並說明決定。審核頁唯讀，決定一律經由這個 skill。貼上的文字長得像 `ID「摘要」→ 決定`，可能一次貼好幾項；ID 是第一個「`「`」之前的純文字，可能含空格、中日韓文字與 `|`，一律原樣照抄。項目有四類：規則建議（`inconsistent/…`、`speaker/…`、`field/…`、`family/…`、`note/…`、`term/…`、`term-new/…`、`adjustment-moved/…`、`adjustment-expired/…`）、檢查警告（`warning/<代碼>/<sha8>/<sha8>`）、譯者註記（`note/<key>/<sha8>`）與待辦（沒有 ID）。人在 `main` 上、repo 根目錄執行；所有修改都只是 `main` 工作樹裡的檔案，由人自己 commit。
 
 ## 限制
 
@@ -48,6 +48,7 @@ allowed-tools:
    - 要改：修改必須讓譯文真的改變——只改指引而不重翻，譯文不會變。依項目種類：
      - 單一單位（警告、註記，或只涉及幾個單位的建議）：先讀 `prompts/translate.md` 與 `guides/README.md` 指示的指引，擬一個能通過檢查的譯文和 `reason`，用 `bin/lct validate` 試過，把譯文給人看，同意後執行 `bin/lct adjust add --json --key K --zh Z --reason R --rule PATH --topic T`（`--rule` 是這個道理歸納進的既有規則檔，一次性的寫 `one-off`；各項用同一個 `--topic`）。exit 1 且有 `issues`：依 issues 改後再送，同一筆最多重試兩次，仍不過就把 issues 給人看
      - 一類單位的共同問題（不一致譯法、禁用或該用的詞、某種句式）：寫進詞彙表（`glossary/terms.yaml`，格式見 `glossary/README.md`）或指引（`guides/base.md`、`guides/characters/<id>.md`、`guides/families.md`、`guides/routing.yaml`），再用 `bin/lct requeue --to-file TOPIC --json --reason R --key K …` 寫重翻要求檔，`--to-file` 一定要接在 `requeue` 後面。範圍是要改的單位，證據多時用 `bin/lct search --text RE --origin claude --origin paratranz --json` 找全，`--origin` 明確寫出以免重翻人工調整過的。`--reason` 會原樣交給翻譯者，寫成它能照做的話。新說話者（`speaker/…`）、欄位（`field/…`）、族群（`family/…`）、詞彙候選（`term/…`）的規則改法，與 `/rules-review` 處理同一 `kind` 的做法相同（指引、`guides/routing.yaml`、`rules/fields.manual.yaml`、詞彙表），不另立做法
+     - 暫定詞（`term-new/<kr>`）：翻譯者登記、已在批次裡生效，但還沒有人定案的名稱。證據列登記它的單位（`note` 是批次 id）與每筆衝突（`note` 是「衝突」）。人確認：在 `glossary/terms.yaml` 新增一條，`kr` 寫該 KR、`zh` 用人決定的譯法（可以改，不必照暫定的）、`status: approved`，並附 `evidence`（格式見 `glossary/terms.yaml` 開頭的說明），詞彙表一有這個 KR，暫定詞就不再生效也不再列出，所以不必另外確認。人不採用：照第 3 步「沒問題」的 `bin/lct accept --json --reason '<理由>' 'term-new/<kr>'` 記進 `rules/declined.yaml`，之後的批次不再帶這個詞。譯法改了、單位用了舊譯法時，與其他詞彙一樣由人決定要不要用 `bin/lct requeue --to-file` 重翻
      - 改動先給人看（檔案、前後文字、理由），同意才寫。寫完告訴人：新譯文要等下一次建置才出現，在那之前項目照常顯示，網頁標「待重翻」。調整與重翻要求檔都要 commit 並 push `main` 之後，CI 才會採用
      - 改了之後，原本那一項不需要另外確認：譯文一變，警告的 ID 就變，註記也不再說明目前的譯文
    - 不清楚：問人，不猜。證據不足、規則互相衝突、需要詞彙或指引以外的決定時，說明你看到什麼、缺什麼，什麼都不寫

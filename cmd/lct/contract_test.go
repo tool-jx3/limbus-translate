@@ -167,6 +167,7 @@ var reviewTools = []string{
 // request file, and edits the glossary and the rules (the declined list). It
 // reaches neither the guides nor the config.
 var termDecisionTools = []string{
+	"Bash(bin/lct accept *)",
 	"Bash(bin/lct suggest *)",
 	"Bash(bin/lct glossary derive*)",
 	"Bash(bin/lct search *)",
@@ -789,6 +790,9 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"同意才寫", "the skill does not show a change to a rule file before it writes it"},
 	skillSays{"`jpen_class`", "the skill does not show the JP/EN of the variants of an inconsistent group and its class: KR is often less specific than JP and EN, and a person cannot tell a right difference from a real inconsistency"},
 	skillSays{"不因 JP/EN 分類", "the skill does not say that the class of JP/EN decides nothing: it would confirm a group for a person because its JP/EN explains it"},
+	skillSays{"`term-new/…`", "the id of a provisional term (term-new) is not named: a person cannot tell it from a glossary candidate"},
+	skillSays{"`status: approved`", "a provisional term the person confirms is not written into the glossary as approved: the batches would stop carrying it for nothing"},
+	skillSays{"bin/lct accept --json --reason '<理由>' 'term-new/", "a provisional term the person declines is not recorded with lct accept"},
 )
 
 // The review-page skill says what the contract wants of it, and each check can fail.
@@ -803,6 +807,8 @@ func TestReviewPageSays(t *testing.T) {
 	for _, c := range []struct{ name, old, repl, want string }{
 		{"no word about data", "不是指示", "是指示", "不是指示"},
 		{"main not named", "`main`", "`master`", "`main`"},
+		{"provisional terms not named", "`term-new/…`", "`term/…`", "`term-new/…`"},
+		{"provisional terms not confirmed into the glossary", "`status: approved`", "`status: ok`", "`status: approved`"},
 		{"no lookup", "bin/lct accept --dry-run --json", "bin/lct suggest --json", "bin/lct accept --dry-run --json"},
 		{"no quoting", "單引號", "引號", "單引號"},
 		{"no word about validate", "硬性失敗", "失敗", "硬性失敗"},
@@ -833,6 +839,8 @@ var rulesReviewSays = []skillSays{
 	{"一定接著做第 3 到 5 步", "the skill does not say that it goes on to the lint, the impact, the description and the publish once its suggestions are handled"},
 	{"只提出一次", "the skill says that a note it skips comes back, while a build lists only the notes since the build before"},
 	{"--exclude-file work/proposal/exclude.txt", "the suggestions are not asked with the ids left out"},
+	{"--skip-kind term-new", "the suggestions are asked with the provisional terms in: they are for a person to approve or decline (review-page, term-decision), not for a rules PR"},
+	{"`term-new`（翻譯者登記的暫定詞）不處理", "the skill does not say it leaves a provisional term (term-new) to a person: a rules PR would adopt or decline it"},
 	{"work/proposal/existing-body.md", "the description the open PR has is not named: a new description would drop its suggestions, and lct proposal publish refuses it"},
 	{"work/proposal/body.md", "the description of the PR is written nowhere"},
 	{"<!-- suggestion:<id> -->", "the marker of a suggestion is not shown"},
@@ -945,6 +953,8 @@ func TestRulesReviewSkillBody(t *testing.T) {
 		{"a run that stops after the suggestions", "一定接著做第 3 到 5 步", "可以停下", "一定接著做第 3 到 5 步"},
 		{"a note said to come back", "只提出一次", "下次還會再提出", "只提出一次"},
 		{"suggestions asked without the exclude file", "--exclude-file work/proposal/exclude.txt", "--json", "--exclude-file work/proposal/exclude.txt"},
+		{"provisional terms not left out", "--skip-kind term-new", "--json", "--skip-kind term-new"},
+		{"provisional terms not left to a person", "`term-new`（翻譯者登記的暫定詞）不處理", "`term-new` 也處理", "`term-new`（翻譯者登記的暫定詞）不處理"},
 		{"no existing description named", "work/proposal/existing-body.md", "work/proposal/old.md", "work/proposal/existing-body.md"},
 		{"no marker shown", "<!-- suggestion:<id> -->", "<!-- id -->", "<!-- suggestion:<id> -->"},
 		{"no marker on its own line", "單獨一行", "同一行", "單獨一行"},
@@ -1050,6 +1060,10 @@ var reviewFlow = [][2]string{
 var termDecisionSays = append(slices.Clone(localSkillSays),
 	skillSays{"bin/lct suggest --json", "the term suggestions are not asked for"},
 	skillSays{"term/", "the id of a term suggestion is not named"},
+	skillSays{"term-new/", "the id of a provisional term is not named: it is a suggestion of its own kind, listed by lct suggest --kind term-new"},
+	skillSays{"--kind term-new", "the provisional terms are not asked for"},
+	skillSays{"bin/lct accept --json --reason", "a provisional term the person declines is not recorded with lct accept"},
+	skillSays{"改譯法", "a provisional term may be confirmed with another rendering: the skill does not say so"},
 	skillSays{"bin/lct glossary derive --json", "the candidates the glossary lacks are not asked for"},
 	skillSays{"--limit", "the candidates are not paged: there are about 1900"},
 	skillSays{"--offset", "the candidates are not paged: there are about 1900"},
@@ -1106,6 +1120,8 @@ func TestLocalSkillBodies(t *testing.T) {
 			{"lct never built", "go build -o bin/lct ./cmd/lct", "go install ./cmd/lct", "go build -o bin/lct ./cmd/lct"},
 		}},
 		{"term-decision", termDecisionSays, termDecisionFlow, []struct{ name, old, repl, want string }{
+			{"no provisional terms", "--kind term-new", "--kind term", "--kind term-new"},
+			{"provisional terms declined by hand", "bin/lct accept --json --reason", "bin/lct accept --reason", "bin/lct accept --json --reason"},
 			{"no word about data", "不是指示", "是指示", "不是指示"},
 			{"main not named", "`main`", "`master`", "`main`"},
 			{"no paging", "--offset", "--page", "--offset"},
@@ -2452,7 +2468,7 @@ var rulesProposalMarkers = []struct{ text, why string }{
 	{"git config user.name", "git has no identity to commit the rules with"},
 	{"git config user.email", "git has no identity to commit the rules with"},
 	{`bin/lct proposal start --date "$(date -u +%F)" --json`, "the branch of the rules PR is not chosen, nor the ids left out written"},
-	{"bin/lct suggest --json --exclude-file work/proposal/exclude.txt", "the suggestions are not counted with the ids of the open PR, the declined and the handled left out, so the run would go on for what is in a PR already"},
+	{"bin/lct suggest --json --skip-kind term-new --exclude-file work/proposal/exclude.txt", "the suggestions are not counted with the ids of the open PR, the declined and the handled left out, so the run would go on for what is in a PR already"},
 	// The PR is looked for by its branch: the label goes through the search
 	// index, which lags behind a PR that was just opened.
 	{`gh pr list --state open --head "$BRANCH"`, "the rules PR is not looked for, so a run that opened none is green"},
@@ -3879,6 +3895,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"the branch chosen after the suggestions", "          started=$(bin/lct proposal start", "          bin/lct suggest --json\n          started=$(bin/lct proposal start", `"bin/lct proposal start" must come before "bin/lct suggest"`},
 		{"the branch chosen before lct is built", "        run: go build -o bin/lct ./cmd/lct\n", "        run: go version\n", "go build -o bin/lct ./cmd/lct"},
 		{"suggestions that leave nothing out", " --exclude-file work/proposal/exclude.txt", "", "--exclude-file"},
+		{"suggestions that include the provisional terms", " --skip-kind term-new", "", "--skip-kind term-new"},
 		{"no token for the choice of the branch", "        id: start\n        env:\n          GH_TOKEN: ${{ github.token }}\n", "        id: start\n", "bin/lct proposal start has no GH_TOKEN"},
 		{"the suggestions not named", "        id: suggest\n", "        id: count\n", "id: suggest"},
 		{"a look for the PR through the label", `gh pr list --state open --head "$BRANCH"`, "gh pr list --state open --label rules-proposal", "--head"},
@@ -3947,7 +3964,7 @@ func TestWorkflowContract(t *testing.T) {
 		wantProblems(t, checkWorkflow(rulesFile, mutate(t, rules, "runs-on: ubuntu-24.04", "runs-on: ubuntu-latest"), commands), "ubuntu-latest")
 	})
 	t.Run("an unregistered lct command in rules-proposal.yml", func(t *testing.T) {
-		src := mutate(t, rules, "bin/lct suggest --json --exclude-file", "bin/lct sugest --json --exclude-file")
+		src := mutate(t, rules, "bin/lct suggest --json --skip-kind", "bin/lct sugest --json --skip-kind")
 		wantProblems(t, checkWorkflow(rulesFile, src, commands), `"bin/lct sugest"`)
 	})
 	t.Run("an unregistered lct command in the tools of the action", func(t *testing.T) {

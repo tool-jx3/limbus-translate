@@ -22,6 +22,7 @@ const SUGGESTION_KINDS: Record<string, string> = {
   field: '欄位規則變化',
   family: '新檔案族群',
   note: '譯者備註',
+  'term-new': '暫定詞',
   term: '詞彙候選',
   'adjustment-moved': '調整已移位',
   'adjustment-expired': '調整已過期',

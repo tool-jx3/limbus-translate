@@ -72,6 +72,7 @@ func fixture() Inputs {
 				Notes: []store.Note{{Key: noteKey, Batch: "b1", KRSha: "x", Model: "m", Note: krNote}},
 			},
 		},
+		Provisional: []store.ProvisionalTerm{{KR: "임시어", ZH: "暫定詞", Key: "F.json|/dataList/9/name", Batch: "b0"}},
 		Plan: &plan.Summary{
 			RawTag:                rawTag,
 			NewSpeakers:           []string{"새 화자"},
@@ -113,6 +114,7 @@ func TestSuggestKindsAndIDs(t *testing.T) {
 		"field/add/BattleSpeechBubbleDlg/desc",
 		"adjustment-moved/" + movedFrom,
 		"adjustment-expired/" + expiredKey,
+		"term-new/임시어",
 		"term/신규 용어",
 		"inconsistent/ally/name/fd93b875", // sha256("도약 모듈")[:8]
 	}
@@ -167,6 +169,7 @@ func TestSuggestOrder(t *testing.T) {
 		"field/add/BattleSpeechBubbleDlg/desc",
 		"adjustment-moved/" + movedFrom,
 		"adjustment-expired/" + expiredKey,
+		"term-new/임시어",
 		"term/신규 용어",
 		"inconsistent/ally/name/" + sha8("큰"), // 40 units
 		min("inconsistent/ally/name/"+sha8(krInconsist), "inconsistent/ally/name/"+sha8("같은 크기")), // 12 units each: by id
@@ -409,14 +412,14 @@ func TestSuggestIgnoresAnotherRawTag(t *testing.T) {
 	t.Run("neither", func(t *testing.T) {
 		in := fixture()
 		in.Plan, in.Build = nil, nil
-		if got := ids(run(t, in)); !slices.Equal(got, []string{"term/신규 용어"}) {
-			t.Errorf("ids = %v, want only the term from the glossary", got)
+		if got := ids(run(t, in)); !slices.Equal(got, []string{"term-new/임시어", "term/신규 용어"}) {
+			t.Errorf("ids = %v, want only the terms from the glossary and the provisional ones", got)
 		}
 	})
 	t.Run("no current tag", func(t *testing.T) {
 		in := fixture()
 		in.RawTag, in.Plan.RawTag, in.Build.RawTag = "", "", ""
-		if got := ids(run(t, in)); !slices.Equal(got, []string{"term/신규 용어"}) {
+		if got := ids(run(t, in)); !slices.Equal(got, []string{"term-new/임시어", "term/신규 용어"}) {
 			t.Errorf("ids = %v, want nothing from a plan and a build that belong to no snapshot", got)
 		}
 	})
@@ -689,5 +692,58 @@ func TestSuggestReadsEveryInconsistentGroup(t *testing.T) {
 	in.Build.InconsistentAll = []build.Inconsistency{} // a build that found none
 	if got := count(run(t, in)); got != 0 {
 		t.Errorf("%d inconsistent suggestions from a build that found none, want 0", got)
+	}
+}
+
+// A provisional term is one suggestion for its KR: the registered unit and
+// each conflicting rendering are its evidence. Which terms are in force is
+// decided by the caller (batch.ActiveProvisional), so Run lists what it gets.
+func TestSuggestListsProvisionalTerms(t *testing.T) {
+	in := fixture()
+	in.Provisional = []store.ProvisionalTerm{
+		{KR: "우레", ZH: "雷鳴", Key: "F.json|/dataList/0/name", Batch: "b1"},
+		{KR: "우레", ZH: "驚雷", Key: "F.json|/dataList/1/name", Batch: "b2", Conflict: true},
+		{KR: "번개", ZH: "閃電", Key: "F.json|/dataList/2/name", Batch: "b3"},
+	}
+	var got []Suggestion
+	for _, s := range run(t, in) {
+		if s.Kind == KindNewTerm {
+			got = append(got, s)
+		}
+	}
+	// By id within the kind.
+	if len(got) != 2 || got[0].ID != "term-new/번개" || got[1].ID != "term-new/우레" {
+		t.Fatalf("term-new suggestions = %+v, want one for 번개 then one for 우레", got)
+	}
+	got = got[1:]
+	if got[0].Title != "暫定詞：우레 → 雷鳴" {
+		t.Errorf("title = %q", got[0].Title)
+	}
+	want := []Evidence{
+		{Key: "F.json|/dataList/0/name", KR: "우레", ZH: "雷鳴", Note: "b1"},
+		{Key: "F.json|/dataList/1/name", KR: "우레", ZH: "驚雷", Note: "衝突"},
+	}
+	if !slices.Equal(got[0].Evidence, want) {
+		t.Errorf("evidence = %+v, want %+v", got[0].Evidence, want)
+	}
+	in.Provisional = nil
+	for _, s := range run(t, in) {
+		if s.Kind == KindNewTerm {
+			t.Errorf("without provisional terms, got %s", s.ID)
+		}
+	}
+}
+
+func TestSuggestKindsOrderNewTermBeforeTerm(t *testing.T) {
+	i, j := slices.Index(Kinds, KindNewTerm), slices.Index(Kinds, KindTerm)
+	if i < 0 || j < 0 || i >= j {
+		t.Errorf("Kinds = %v, want %s before %s", Kinds, KindNewTerm, KindTerm)
+	}
+	in := fixture()
+	in.Provisional = []store.ProvisionalTerm{{KR: "우레", ZH: "雷鳴", Key: "F.json|/a", Batch: "b"}}
+	got := ids(run(t, in))
+	a, b := slices.Index(got, "term-new/우레"), slices.Index(got, "term/신규 용어")
+	if a < 0 || b < 0 || a >= b {
+		t.Errorf("order = %v, want term-new/우레 before term/신규 용어", got)
 	}
 }
