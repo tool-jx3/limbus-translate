@@ -348,6 +348,10 @@ func (r submitReport) String() string {
 	unitWarnings := slices.DeleteFunc(slices.Clone(r.Warnings), func(w batch.Rejection) bool { return w.Key == "" })
 	fmt.Fprintf(&b, "batch %s: %d accepted, %d reused, %d rejected, %d with warnings, %d need review, %d not submitted, %d notes kept\n",
 		r.Batch, len(r.Accepted), len(r.Reused), len(r.Rejected), len(unitWarnings), len(r.NeedsReview), len(r.Released), r.Notes)
+	fmt.Fprintf(&b, "%d provisional terms kept\n", r.Terms)
+	for _, t := range r.TermsSkipped {
+		fmt.Fprintf(&b, "  term skipped, %s: %s -> %s (%s)\n", t.Key, t.KR, t.ZH, t.Reason)
+	}
 	for _, w := range r.Warnings {
 		if w.Key == "" {
 			for _, is := range w.Issues {

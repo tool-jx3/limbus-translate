@@ -28,7 +28,7 @@ allowed-tools:
    - 結果為 `{"batch": null}`：沒有批次可領（有 `stopped` 時是這次執行的回合已用完，一樣照下面結束，下次執行再領）。執行 `bin/lct pending --count --json`，回報它的結果、這次送出的批次數，以及 `released` 不是空的批次與其中的 key（見「退回」），然後結束
    - 否則記下 `batch`（批次 id，以下寫作 `<id>`）、`path`（批次檔）與 `units`（單位數）
 2. 讀批次檔，格式見 `schemas/batch.schema.json`。檔案長時分段讀，確定讀到全部 `units`。讀 `prompts/translate.md`，再依序讀批次 `guides` 列出的檔案。讀過的檔案只有在內容仍完整留在上下文中時才可以不重讀；不確定就重讀
-3. 依 `prompts/translate.md` 翻譯全部單位，寫成 `work/batches/<id>.out.json`，格式見 `schemas/batch-out.schema.json`；物件數要等於 `units`
+3. 依 `prompts/translate.md` 翻譯全部單位，寫成 `work/batches/<id>.out.json`，格式見 `schemas/batch-out.schema.json`；物件數要等於 `units`。詞彙表沒有、但應統一譯法的名稱，除了 `note`，也在該單位的 `terms` 登記 `{kr, zh}`（`kr` 用 KR 原文中的完整詞），規則見 `prompts/translate.md`
 4. 執行 `bin/lct batch submit <id> --json`：
    - exit 0：全部收下
    - exit 1 且有 JSON 結果：有單位被退回，依下方「退回」處理
@@ -39,7 +39,7 @@ allowed-tools:
 
 ## 退回
 
-`batch submit` 的結果有 `accepted`、`rejected`（`[{key, errors: [{code, severity, class, message}]}]`）、`warnings`、`needs_review`、`released`。
+`batch submit` 的結果有 `accepted`、`rejected`（`[{key, errors: [{code, severity, class, message}]}]`）、`warnings`、`needs_review`、`released`，另有 `terms`（新記下的暫定詞數）與 `terms_skipped`（略過的登記與理由，不影響單位，不必處理）。
 
 - **要修正的單位**：在 `rejected` 中、不在 `needs_review` 中，而且 `errors` 裡沒有任何一個 `code` 是協定錯誤碼：`lease-lost`、`not-in-batch`、`duplicate-key`、`kr-missing`、`kr-changed`、`needs-review`
 - 其他被退回的單位不再處理：`needs_review` 中的已用完嘗試次數，`lct` 已寫入替代文字；含協定錯誤碼的不能重送

@@ -10,7 +10,20 @@
     "properties": {
       "key": { "description": "The key of a unit of the batch.", "type": "string", "minLength": 1 },
       "zh": { "description": "The translation, in Traditional Chinese (Taiwan).", "type": "string" },
-      "note": { "description": "A question or a new term to report. It goes to the report; it never becomes a rule by itself.", "type": "string" }
+      "note": { "description": "A question or a new term to report. It goes to the report; it never becomes a rule by itself.", "type": "string" },
+      "terms": {
+        "description": "New terms the unit uses that the glossary lacks and that should be rendered the same way everywhere. Kept as provisional terms; a person decides on them.",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kr", "zh"],
+          "properties": {
+            "kr": { "description": "The whole word as the KR text of the unit has it (at least two characters).", "type": "string", "minLength": 2 },
+            "zh": { "description": "Its rendering, as it stands in zh.", "type": "string", "minLength": 1 }
+          }
+        }
+      }
     }
   }
 }

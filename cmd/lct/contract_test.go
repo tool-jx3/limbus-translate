@@ -626,6 +626,40 @@ func TestBatchSchemaDeclaresHint(t *testing.T) {
 	}
 }
 
+// The translator registers a new term in the `terms` of the unit: the schema
+// of the out file declares it and the shared prompt explains it.
+func TestBatchOutSchemaDeclaresTerms(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch-out.schema.json"))
+	var schema struct {
+		Items struct {
+			Properties map[string]struct {
+				Type  string `json:"type"`
+				Items struct {
+					Type       string `json:"type"`
+					Properties map[string]struct {
+						Type string `json:"type"`
+					} `json:"properties"`
+				} `json:"items"`
+			} `json:"properties"`
+		} `json:"items"`
+	}
+	if err := json.Unmarshal([]byte(content), &schema); err != nil {
+		t.Fatalf("schemas/batch-out.schema.json does not parse: %v", err)
+	}
+	terms, ok := schema.Items.Properties["terms"]
+	if !ok || terms.Type != "array" || terms.Items.Type != "object" {
+		t.Fatalf("batch-out.schema.json: items.properties.terms = %+v (declared %v), want an array of objects", terms, ok)
+	}
+	for _, f := range []string{"kr", "zh"} {
+		if terms.Items.Properties[f].Type != "string" {
+			t.Errorf("batch-out.schema.json: terms items property %s = %+v, want a string", f, terms.Items.Properties[f])
+		}
+	}
+	if _, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md")); !strings.Contains(prompt, "`terms`") {
+		t.Error("prompts/translate.md does not explain `terms`")
+	}
+}
+
 // A unit whose adjustment expired carries the person's old text in
 // refs.adjustment (store.RefAdjustment): the shared prompt tells the translator
 // what that is and what to do with it, in the section of the refs.

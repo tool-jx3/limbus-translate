@@ -1973,7 +1973,7 @@ func TestResultJSONShape(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if want := `{"accepted":[],"reused":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0}`; string(data) != want {
+	if want := `{"accepted":[],"reused":[],"rejected":[],"warnings":[],"needs_review":[],"released":[],"notes":0,"terms":0,"terms_skipped":[]}`; string(data) != want {
 		t.Errorf("result JSON = %s, want %s", data, want)
 	}
 
@@ -2238,7 +2238,7 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 		t.Errorf("round trip changed the batch:\n got  %+v\n want %+v", back, *b)
 	}
 
-	// The output schema: an array of {key, zh, note?}.
+	// The output schema: an array of {key, zh, note?, terms?}.
 	outSchema := loadSchema(t, "batch-out.schema.json")
 	if outSchema["type"] != "array" {
 		t.Errorf("batch-out schema type = %v, want array", outSchema["type"])
@@ -2248,7 +2248,7 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	if !slices.Equal(outRequired, []string{"key", "zh"}) {
 		t.Errorf("batch-out required = %v, want key and zh", outRequired)
 	}
-	omsg, _ := json.Marshal(OutUnit{Key: "k", ZH: "z", Note: "n"})
+	omsg, _ := json.Marshal(OutUnit{Key: "k", ZH: "z", Note: "n", Terms: []NewTerm{{KR: "kr", ZH: "zh"}}})
 	var om map[string]any
 	if err := json.Unmarshal(omsg, &om); err != nil {
 		t.Fatal(err)
@@ -3130,5 +3130,101 @@ func TestCheckNewLeavesTermMissingAWarning(t *testing.T) {
 	issues := CheckNew(r, "Other.json", "두 시즌 전부터", "從兩棵季前起")
 	if !hasCode(issues, validate.CodeTermMissing) || validate.HasHard(issues) {
 		t.Errorf("CheckNew = %+v, want term-missing as a warning only", issues)
+	}
+}
+
+func termsEnv(t *testing.T) (Env, *Batch) {
+	t.Helper()
+	kr := map[string]string{"Other.json": `{"dataList":[
+ {"id":0,"content":"우레가 쳤다"},
+ {"id":1,"content":"우레가 울렸다"},
+ {"id":2,"content":"그냥"},
+ {"id":3,"content":"[Burn] 부여"}
+]}`}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, items("Other.json", 0, 4)...)
+	return env, mustNext(t, env, NextOptions{})
+}
+
+func TestSubmitRecordsAProvisionalTerm(t *testing.T) {
+	env, b := termsEnv(t)
+	out := []OutUnit{{Key: key("Other.json", 0), ZH: "雷鳴響起", Terms: []NewTerm{{KR: "우레", ZH: "雷鳴"}}}}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || res.Terms != 1 || res.TermsSkipped == nil || len(res.TermsSkipped) != 0 {
+		t.Fatalf("result = %+v, want 1 accepted, 1 term, no skipped", res)
+	}
+	terms, err := env.Store.LoadTerms()
+	if err != nil || len(terms) != 1 {
+		t.Fatalf("terms = %+v, %v", terms, err)
+	}
+	got := terms[0]
+	if got.KR != "우레" || got.ZH != "雷鳴" || got.Key != key("Other.json", 0) || got.Batch != b.ID || got.RawTag != env.RawTag || got.Conflict {
+		t.Errorf("term = %+v", got)
+	}
+	if got.Time != env.Now.UTC().Format(time.RFC3339) {
+		t.Errorf("time = %q, want %q", got.Time, env.Now.UTC().Format(time.RFC3339))
+	}
+}
+
+func TestSubmitSkipsATermNotInTheUnit(t *testing.T) {
+	env, b := termsEnv(t)
+	out := []OutUnit{{Key: key("Other.json", 0), ZH: "雷鳴響起", Terms: []NewTerm{
+		{KR: "번개", ZH: "雷鳴"}, // kr not in the KR text
+		{KR: "우레", ZH: "閃電"}, // zh not in the translation
+		{KR: "우", ZH: "雷"},   // kr of one character
+	}}}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || res.Terms != 0 || len(res.TermsSkipped) != 3 {
+		t.Fatalf("result = %+v, want the unit accepted and 3 terms skipped", res)
+	}
+	for i, s := range res.TermsSkipped {
+		if s.Key != key("Other.json", 0) || s.Reason == "" || s.KR != out[0].Terms[i].KR || s.ZH != out[0].Terms[i].ZH {
+			t.Errorf("skipped[%d] = %+v", i, s)
+		}
+	}
+	if terms, err := env.Store.LoadTerms(); err != nil || len(terms) != 0 {
+		t.Errorf("terms = %+v, %v, want none", terms, err)
+	}
+}
+
+func TestSubmitRecordsTheFirstRenderingAndAConflict(t *testing.T) {
+	env, b := termsEnv(t)
+	out := []OutUnit{
+		{Key: key("Other.json", 0), ZH: "雷鳴響起", Terms: []NewTerm{{KR: "우레", ZH: "雷鳴"}}},
+		{Key: key("Other.json", 1), ZH: "驚雷響起", Terms: []NewTerm{{KR: "우레", ZH: "驚雷"}}},
+	}
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil || res.Terms != 2 {
+		t.Fatalf("result = %+v, %v, want 2 terms", res, err)
+	}
+	terms, _ := env.Store.LoadTerms()
+	if len(terms) != 2 || terms[0].ZH != "雷鳴" || terms[0].Conflict || terms[1].ZH != "驚雷" || !terms[1].Conflict {
+		t.Fatalf("terms = %+v", terms)
+	}
+	// The same file again records nothing new.
+	res, err = Submit(env, b, out, "test-model", 3)
+	if err != nil || res.Terms != 0 {
+		t.Fatalf("resubmit: %+v, %v, want 0 terms", res, err)
+	}
+	if terms, _ := env.Store.LoadTerms(); len(terms) != 2 {
+		t.Errorf("terms after resubmitting = %+v", terms)
+	}
+}
+
+func TestSubmitRecordsNoTermOfARejectedUnit(t *testing.T) {
+	env, b := termsEnv(t)
+	out := []OutUnit{{Key: key("Other.json", 3), ZH: "賦予燒傷", Terms: []NewTerm{{KR: "부여", ZH: "賦予"}}}} // [Burn] missing
+	res, err := Submit(env, b, out, "test-model", 3)
+	if err != nil || len(res.Rejected) != 1 || res.Terms != 0 || len(res.TermsSkipped) != 0 {
+		t.Fatalf("result = %+v, %v", res, err)
+	}
+	if terms, _ := env.Store.LoadTerms(); len(terms) != 0 {
+		t.Errorf("terms = %+v, want none", terms)
 	}
 }

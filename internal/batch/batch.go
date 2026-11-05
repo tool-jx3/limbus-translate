@@ -134,6 +134,24 @@ type OutUnit struct {
 	Key  string `json:"key"`
 	ZH   string `json:"zh"`
 	Note string `json:"note,omitempty"`
+	// Terms are new terms the unit uses: names the glossary lacks and that
+	// should be rendered the same way everywhere.
+	Terms []NewTerm `json:"terms,omitempty"`
+}
+
+// NewTerm is a term a translator registers: kr is the word as the KR text of
+// the unit has it, zh its rendering in the translation.
+type NewTerm struct {
+	KR string `json:"kr"`
+	ZH string `json:"zh"`
+}
+
+// SkippedTerm is a registered term that was not kept, with the reason.
+type SkippedTerm struct {
+	Key    string `json:"key"`
+	KR     string `json:"kr"`
+	ZH     string `json:"zh"`
+	Reason string `json:"reason"`
 }
 
 // check reports a missing part of the Env.

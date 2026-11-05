@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"slices"
 	"strings"
+	"time"
+	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -60,6 +62,11 @@ type SubmitResult struct {
 	// A note already stored with the same key, batch and text is not added
 	// or counted again.
 	Notes int `json:"notes"`
+	// Terms is how many provisional terms were newly kept in
+	// .meta/terms.jsonl.
+	Terms int `json:"terms"`
+	// TermsSkipped are the terms of accepted units that were not kept.
+	TermsSkipped []SkippedTerm `json:"terms_skipped"`
 }
 
 // Rejection is a unit with the issues found in it. It is written as
@@ -150,7 +157,7 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 	}
 
 	res := &SubmitResult{
-		Accepted: []string{}, Reused: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{},
+		Accepted: []string{}, Reused: []string{}, Rejected: []Rejection{}, Warnings: []Rejection{}, NeedsReview: []string{}, Released: []string{}, TermsSkipped: []SkippedTerm{},
 	}
 	err := env.Store.WithLock(func() error {
 		records, err := env.Store.LoadRecords()
@@ -186,9 +193,12 @@ func Submit(env Env, b *Batch, out []OutUnit, model string, maxAttempts int) (*S
 		}
 		s.releaseOmitted()
 
-		// Notes first: storing one twice is harmless, and a failure here
-		// leaves the rest unchanged.
+		// Notes and terms first: storing one twice is harmless, and a failure
+		// here leaves the rest unchanged.
 		if res.Notes, err = env.Store.AppendNotes(s.notes); err != nil {
+			return err
+		}
+		if res.Terms, err = s.keepTerms(); err != nil {
 			return err
 		}
 		kept := make([]store.PendingItem, 0, len(pending))
@@ -245,6 +255,65 @@ type submission struct {
 	notes   []store.Note // the notes of the batch's units, in out order
 
 	accepted []acceptedUnit // the units accepted, in out order
+	terms    []termCandidate
+}
+
+// termCandidate is a term of an accepted unit that passed the checks.
+type termCandidate struct {
+	key string
+	NewTerm
+}
+
+// collectTerms checks the terms a unit registers against its KR text and its
+// normalized translation. Those that fit wait in s.terms; the others are
+// listed in the result.
+func (s *submission) collectTerms(key, kr, zh string, terms []NewTerm) {
+	for _, t := range terms {
+		reason := ""
+		switch {
+		case utf8.RuneCountInString(t.KR) < 2:
+			reason = "kr is shorter than two characters"
+		case !strings.Contains(kr, t.KR):
+			reason = "kr is not in the KR text of the unit"
+		case t.ZH == "" || !strings.Contains(zh, t.ZH):
+			reason = "zh is not in the translation"
+		}
+		if reason != "" {
+			s.res.TermsSkipped = append(s.res.TermsSkipped, SkippedTerm{Key: key, KR: t.KR, ZH: t.ZH, Reason: reason})
+			continue
+		}
+		s.terms = append(s.terms, termCandidate{key: key, NewTerm: t})
+	}
+}
+
+// keepTerms stores the terms collected as provisional terms. The first
+// rendering of a KR word stands; another rendering of it is stored flagged as
+// a conflict; one already stored is not stored again.
+func (s *submission) keepTerms() (int, error) {
+	if len(s.terms) == 0 {
+		return 0, nil
+	}
+	stored, err := s.env.Store.LoadTerms()
+	if err != nil {
+		return 0, err
+	}
+	renderings := map[string][]string{}
+	for _, t := range stored {
+		renderings[t.KR] = append(renderings[t.KR], t.ZH)
+	}
+	now := s.env.now().UTC().Format(time.RFC3339)
+	var add []store.ProvisionalTerm
+	for _, c := range s.terms {
+		have := renderings[c.KR]
+		if slices.Contains(have, c.ZH) {
+			continue
+		}
+		renderings[c.KR] = append(have, c.ZH)
+		add = append(add, store.ProvisionalTerm{
+			KR: c.KR, ZH: c.ZH, Key: c.key, Batch: s.batch.ID, RawTag: s.env.RawTag, Time: now, Conflict: len(have) > 0,
+		})
+	}
+	return s.env.Store.AppendTerms(add)
 }
 
 func (s *submission) reject(key string, issues ...validate.Issue) {
@@ -384,6 +453,7 @@ func (s *submission) unit(o OutUnit) error {
 	s.records[o.Key] = s.claudeRecord(o.Key, kr, zh)
 	s.removed[i] = true
 	s.res.Accepted = append(s.res.Accepted, o.Key)
+	s.collectTerms(o.Key, kr, zh, o.Terms)
 	s.accepted = append(s.accepted, acceptedUnit{file: file, group: TextGroupOf(s.env.Rules, fd.doc, fd.units[pos]), zh: zh})
 	if warnings := append(issues, foreignNameIssues(zh, s.env.ForeignNames, s.env.Rules.ForeignIgnore)...); len(warnings) > 0 {
 		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
