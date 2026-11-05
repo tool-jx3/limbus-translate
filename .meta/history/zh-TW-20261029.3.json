@@ -1,0 +1,49 @@
+{
+  "tag": "zh-TW-20261029.3",
+  "prev_tag": "zh-TW-20261029.2",
+  "released_at": "2026-11-02T11:44:13Z",
+  "prev_released_at": "2026-11-01T22:12:51Z",
+  "raw_tag": "raw-20261029",
+  "prev_raw_tag": "raw-20261029",
+  "rules_commit": "acd4e0e5ad871a20ab38ff0e218adc6a45356c21",
+  "prev_rules_commit": "7bad47f10cd5508824b923385f25022da6b58439",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 2
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "AbEventsResultLog_Refraction4.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "zh-changed",
+      "new_kr": "<color=#ebcaa2>{0} 수감자 {1} 피해<color=#e30000> {2} 입음</color>",
+      "old_zh": "<color=#ebcaa2>罪人{0}</color><color=#e30000>受到{2}點</color>{1}傷害",
+      "new_zh": "<color=#ebcaa2>罪人{0}<color=#e30000>受到{2}點</color>{1}傷害</color>",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    },
+    {
+      "file": "HellsChicken.json",
+      "field": "content",
+      "ptr": "/dataList/8/content",
+      "kind": "zh-changed",
+      "new_kr": "은봉이네 <color=#205925>호프치킨<color=#ebcaa2>이 쏩니다!",
+      "old_zh": "銀鳳家<color=#205925>炸雞酒吧\n</color><color=#ebcaa2>究極跳樓價特惠活動！</color>",
+      "new_zh": "銀鳳家<color=#205925>炸雞酒吧\n<color=#ebcaa2>究極跳樓價特惠活動！</color></color>",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    }
+  ]
+}

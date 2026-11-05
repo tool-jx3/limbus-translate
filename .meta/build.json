@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261105",
   "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
-  "rules_commit": "e42400842610d6107581deb3cd49deb52c8d2d47",
-  "built_at": "2026-11-05T05:32:58Z",
+  "rules_commit": "01a6dc44abf87f77ecfdc10e69c39512dcf13302",
+  "built_at": "2026-11-05T22:48:26Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1000,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "0c82564d4673b3f8602d37bedd7a99e93612b47b9b6e7cb3698e7d0aa595bd28",
-    "zh-TW_text_raw-20261105.zip": "66fae91dea8353967750eced39bfa66a3d211ee996c685ca5567839a4cba833a"
+    "zh-TW_complete_raw-20261105.zip": "ef0a8109973a1e9be4965f0c7c5cb3d3c2ea120dc00a0bfeeec5833267377ae3",
+    "zh-TW_text_raw-20261105.zip": "ec9f56a7202a734d08609c897ef6235976e128d0114d8e610a22bb22909a8330"
   },
   "report": {
     "origins": {
@@ -29,10 +29,12 @@
     "warnings": {
       "ascii-ellipsis": 13,
       "curly-quotes": 4,
+      "forbidden-term": 7,
       "halfwidth-bracket": 5,
       "halfwidth-punct": 9,
       "kana": 7,
-      "length-ratio": 2
+      "length-ratio": 2,
+      "term-missing": 3098
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -54,6 +56,15 @@
         "Skills_personality-01.json|/dataList/43/levelList/1/desc",
         "Skills_personality-12.json|/dataList/40/levelList/0/desc",
         "Skills_personality-12.json|/dataList/40/levelList/1/desc"
+      ],
+      "forbidden-term": [
+        "Items.json|/dataList/104/name",
+        "StageNode91-27.json|/dataList/4/title",
+        "StoryData/5D101B.json|/dataList/44/content",
+        "StoryData/E723B.json|/dataList/63/content",
+        "StoryData/S937B.json|/dataList/35/content",
+        "TutorialMainUIText.json|/dataList/1274/content",
+        "TutorialMainUIText.json|/dataList/1275/content"
       ],
       "halfwidth-bracket": [
         "RPGSystem/rpg-loc-item-common-a1c10p2.json|/dataList/42/statText",
@@ -85,6 +96,18 @@
       "length-ratio": [
         "BattleKeywords.json|/dataList/98/name",
         "Bufs.json|/dataList/101/name"
+      ],
+      "term-missing": [
+        "AbEvents-a1c5p3.json|/dataList/4/successDesc/0",
+        "AbEvents-a1c5p3.json|/dataList/4/successDesc/1",
+        "AbEvents-a1c5p3.json|/dataList/5/successDesc/0",
+        "AbEvents-a1c5p3.json|/dataList/5/successDesc/1",
+        "AbEvents-a1c5p3.json|/dataList/7/eventDesc",
+        "AbEvents-a1c5p3.json|/dataList/9/successDesc/0",
+        "AbEvents-a1c6p2.json|/dataList/0/successDesc/0",
+        "AbEvents-a1c6p3.json|/dataList/4/failureDesc/0",
+        "AbEvents-a1c6p3.json|/dataList/4/successDesc/0",
+        "AbEvents-a1c7p3.json|/dataList/2/successDesc/0"
       ]
     },
     "inconsistent": [
@@ -497,71 +520,7 @@
         "units": 9
       }
     ],
-    "notes": [
-      {
-        "key": "BattleKeywords_Mirror8.json|/dataList/0/name",
-        "batch": "20261105T043422-68ebdc7c",
-        "kr_sha": "b556aac493e21658cc5f43f98a0093fad78c6e8888e9101d8faca3c4247164a0",
-        "model": "claude-opus-5-5",
-        "note": "新詞：우레 → 雷鳴（JP 雷鳴、EN Thundercrack）；Bufs_Mirror8 有同名效果，應統一"
-      },
-      {
-        "key": "BattleKeywords_Mirror8.json|/dataList/0/desc",
-        "batch": "20261105T043422-68ebdc7c",
-        "kr_sha": "b2210b51f0e0b5bdb115005e53ba21c793971f5f0e186aa7c5c36080ae5caf2e",
-        "model": "claude-opus-5-5",
-        "note": "와일드헌트 히스클리프 寫「狂獵希斯克利夫」（人格名「狂獵」，Personalities）。「狂獵」也是 Bufs 的效果名，EGOgift_MirrorDungeon_8 的 KR 用 <noparse>와일드헌트</noparse> 包住；本句 KR 沒有 noparse，依規定未自行新增，遊戲中可能被讀成關鍵字，需確認"
-      },
-      {
-        "key": "EGOgift_MirrorDungeon.json|/dataList/278/desc",
-        "batch": "20261105T043556-dc1810ed",
-        "kr_sha": "72b6e71fca9be0f8d44d5260ec4f38ba96e6307e524f7816e7fd85cf57ba64e3",
-        "model": "claude-opus-5-5",
-        "note": "prev_zh 的強調標籤包住「2層 [Agility] 」，依「強調標籤只包 KR 包住的部分」改成只包「2」"
-      },
-      {
-        "key": "EGOgift_MirrorDungeon_7.json|/dataList/25/desc",
-        "batch": "20261105T043627-f787710c",
-        "kr_sha": "1d6117f496625504f76db479b53998b2bf2809c325bc2f626fb8182b3e03a212",
-        "model": "claude-opus-5-5",
-        "note": "거미집 소지 제자 싱클레어 照 Personalities 寫「蜘蛛巢 小指 弟子 辛克萊」；캐스크 스피리츠 照 EGOgift_MirrorDungeon_2 寫「桶裝烈酒」"
-      },
-      {
-        "key": "EGOgift_MirrorDungeon_8.json|/dataList/10/name",
-        "batch": "20261105T043659-ff885d54",
-        "kr_sha": "e15a0e12dfc04965c2477c6ee29b3a692e865458c819944617e37d1ffea67fb5",
-        "model": "claude-opus-5-5",
-        "note": "新詞：飾品名 폭풍이 치는 언덕（EN Wuthering Heights）→ 暴風肆虐的山丘；KR 刻意和所屬名 워더링하이츠（咆哮山莊）用不同寫法，所以照 KR 字面"
-      },
-      {
-        "key": "EGOgift_MirrorDungeon_8.json|/dataList/10/desc",
-        "batch": "20261105T043659-ff885d54",
-        "kr_sha": "2315901a47b8ba0c362e45f70b193f943b61439dd38a28f26e4aaf2af6e876a3",
-        "model": "claude-opus-5-5",
-        "note": "前半照 EGOgift_MirrorDungeon-StoryTheme_2 的同一段譯文；技能名照 Skills_personality-07「悲嘆、哀慟、破滅吧」；와일드헌트 히스클리프 照人格標題寫「狂獵 希斯克利夫」（BattleKeywords_Mirror8 先前寫成「狂獵希斯克利夫」未空格，宜統一）"
-      },
-      {
-        "key": "EGOgift_MirrorDungeon_8.json|/dataList/11/name",
-        "batch": "20261105T043659-ff885d54",
-        "kr_sha": "a01acb6df6988631c4da7487b53eba80784dad8f3c656afd840c40e7635bd1ad",
-        "model": "claude-opus-5-5",
-        "note": "新詞：飾品名 서리 온도 → 霜之溫度（JP 霜の温度）"
-      },
-      {
-        "key": "UI_Mission_MirrorDungeon8Event.json|/dataList/4/content",
-        "batch": "20261105T043805-2ba20263",
-        "kr_sha": "40ab47f9c193196a4ce2444895b1b740dfe3283a61d33514db1688d0fa1b7073",
-        "model": "claude-opus-5-5",
-        "note": "任務文字的人數條件照 UI_Mission_MirrorDungeon5Event／7Event 既有句型寫「至少N名」「第N或更高層」，數值條件寫「不低於」"
-      },
-      {
-        "key": "UI_Mission_MirrorDungeon8Event.json|/dataList/6/content",
-        "batch": "20261105T043805-2ba20263",
-        "kr_sha": "8a3afe9fbc19675205aceb05aaf9377987cd9020fcb0283cd509fe58fa7ee3c1",
-        "model": "claude-opus-5-5",
-        "note": "主題卡包名照 MirrorDungeonTheme-1 既有「貪食的再臨」；詞彙表 탐식 → 暴食 是罪孽屬性用語，這裡是專有名稱，未改"
-      }
-    ],
+    "notes": [],
     "new_translated": 73,
     "shown": {
       "claude": 18077,

@@ -1,0 +1,1281 @@
+{
+  "tag": "zh-TW-20261105.1",
+  "prev_tag": "zh-TW-20261029.7",
+  "released_at": "2026-11-05T05:35:44Z",
+  "prev_released_at": "2026-11-04T14:08:15Z",
+  "raw_tag": "raw-20261105",
+  "prev_raw_tag": "raw-20261029",
+  "rules_commit": "e42400842610d6107581deb3cd49deb52c8d2d47",
+  "prev_rules_commit": "ae80691b319ce3b1d5abe3e8ed9ba5520a1793df",
+  "counts": {
+    "new": 68,
+    "kr_changed": 12,
+    "deleted": 6,
+    "zh_changed": 0
+  },
+  "copy_counts": {
+    "new": 36,
+    "kr_changed": 2,
+    "deleted": 6,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords_Mirror8.json",
+      "field": "id",
+      "ptr": "/dataList/0/id",
+      "kind": "new",
+      "new_kr": "SoundOfStorm",
+      "new_zh": "SoundOfStorm",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "BattleKeywords_Mirror8.json",
+      "field": "name",
+      "ptr": "/dataList/0/name",
+      "kind": "new",
+      "new_kr": "우레",
+      "new_zh": "雷鳴",
+      "new_origin": "claude"
+    },
+    {
+      "file": "BattleKeywords_Mirror8.json",
+      "field": "desc",
+      "ptr": "/dataList/0/desc",
+      "kind": "new",
+      "new_kr": "최댓값: 3\n- 수치 1당 코인 위력 +1, 적에게 가하는 기본 스킬 피해량 +15%\n- 와일드헌트 히스클리프가 퇴각 및 사망했으면, 소멸",
+      "new_zh": "最大值：3\n- 每1層使自身的硬幣威力+1、對敵方造成的基礎技能傷害+15%\n- 若狂獵希斯克利夫已撤退或死亡，則本效果消失",
+      "new_origin": "claude"
+    },
+    {
+      "file": "BattleKeywords_Mirror8.json",
+      "field": "summary",
+      "ptr": "/dataList/0/summary",
+      "kind": "new",
+      "new_kr": "",
+      "new_zh": "",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "BattleKeywords_Mirror8.json",
+      "field": "undefined",
+      "ptr": "/dataList/0/undefined",
+      "kind": "new",
+      "new_kr": "-",
+      "new_zh": "-",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "Bufs_Mirror8.json",
+      "field": "id",
+      "ptr": "/dataList/0/id",
+      "kind": "new",
+      "new_kr": "SoundOfStorm",
+      "new_zh": "SoundOfStorm",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "Bufs_Mirror8.json",
+      "field": "name",
+      "ptr": "/dataList/0/name",
+      "kind": "new",
+      "new_kr": "우레",
+      "new_zh": "雷鳴",
+      "new_origin": "claude"
+    },
+    {
+      "file": "Bufs_Mirror8.json",
+      "field": "desc",
+      "ptr": "/dataList/0/desc",
+      "kind": "new",
+      "new_kr": "최댓값: 3\n- 수치 1당 코인 위력 +1, 적에게 가하는 기본 스킬 피해량 +15%\n- 와일드헌트 히스클리프가 퇴각 및 사망했으면, 소멸",
+      "new_zh": "最大值：3\n- 每1層使自身的硬幣威力+1、對敵方造成的基礎技能傷害+15%\n- 若狂獵希斯克利夫已撤退或死亡，則本效果消失",
+      "new_origin": "claude"
+    },
+    {
+      "file": "Bufs_Mirror8.json",
+      "field": "summary",
+      "ptr": "/dataList/0/summary",
+      "kind": "new",
+      "new_kr": "",
+      "new_zh": "",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "Bufs_Mirror8.json",
+      "field": "undefined",
+      "ptr": "/dataList/0/undefined",
+      "kind": "new",
+      "new_kr": "-",
+      "new_zh": "-",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "EGOgift_MirrorDungeon-StoryTheme_2.json",
+      "field": "desc",
+      "ptr": "/dataList/7/desc",
+      "kind": "kr-changed",
+      "old_kr": "턴 종료시 흐트러짐 상태가 되었을 때, 흐트러짐 상태가 해제되고, 다음 턴 시작 시 모든 적에게 [Sinking] 위력 4, [Sinking] 횟수 4 부여 (전투당 1회 발동, 강제 흐트러짐 제외, 집중 전투에서는 부위로 판정)\n\n적 처치 시 [Sinking] 횟수가 가장 낮은 적 1명의 [Sinking] 횟수 2 증가 (턴당 3회 발동, 집중 전투에서는 부위로 판정)",
+      "new_kr": "턴 종료시 흐트러짐 상태가 되었을 때, 흐트러짐 상태가 해제되고, 다음 턴 시작 시 모든 적에게 [Sinking] 위력 4, [Sinking] 횟수 4 부여 (전투당 1회 발동, 강제 흐트러짐 제외, 집중 전투에서는 부위로 판정)\n- 편성된 인격 중 워더링하이츠 소속과 에드가 가문 소속 인격의 합 2명당 전투당 발동 횟수가 1씩 증가 (최대 전투당 4회까지 발동 가능, 대기인원 포함)\n\n적 처치 시 [Sinking] 횟수가 가장 낮은 적 1명의 [Sinking] 횟수 2 증가 (턴당 3회 발동, 집중 전투에서는 부위로 판정)",
+      "old_zh": "回合結束時，若自身陷入混亂，則解除自身的混亂，下回合開始時使全體敵方單位增加4級 [Sinking] 強度與4回 [Sinking] (每場戰鬥最多1次；不包括強制混亂；若是集中遭遇戰，則改為所有部位)\n\n擊殺敵方單位時，對 [Sinking] 回數最低的1名敵方單位施加2回 [Sinking] (每回合最多3次；若是集中遭遇戰，則改為1個部位)",
+      "new_zh": "回合結束時，若自身陷入混亂，則解除自身的混亂，下回合開始時使全體敵方單位增加4級 [Sinking] 強度與4回 [Sinking] (每場戰鬥最多1次；不包括強制混亂；若是集中遭遇戰，則改為所有部位)\n- 編隊的人格中，咆哮山莊與埃德加家族所屬人格合計每有2名，每場戰鬥的發動次數+1 (每場戰鬥最多發動4次，包括待命人員)\n\n擊殺敵方單位時，對 [Sinking] 回數最低的1名敵方單位施加2回 [Sinking] (每回合最多3次；若是集中遭遇戰，則改為1個部位)",
+      "old_origin": "paratranz",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon-StoryTheme_2.json",
+      "field": "desc",
+      "ptr": "/dataList/11/desc",
+      "kind": "kr-changed",
+      "old_kr": "일반 전투에서 [Sinking] 위력과 [Sinking] 횟수의 합이 10 이상인 적에게 공격 적중시, 대상의 정신력이 -45이면,\n대상의 ([Sinking] 위력 / 2)만큼 우울 피해를 입힘 (스킬당 1회 발동)\n\n집중 전투에서 [Sinking] 위력과 [Sinking] 횟수의 합이 10 이상인 적에게 공격 적중시,\n대상의 ([Sinking] 위력 / 2)만큼 우울 피해를 입힘 (스킬당 1회 발동)\n\n적에게 공격 적중한 스킬이 [Sinking](횟수, 특수 <noparse>침잠</noparse> 포함)을 부여하는 스킬일 경우, ([Sinking] 위력/2) 대신 ([Sinking] 위력)만큼 우울 피해를 입힘 \n(턴에서 처음으로 공격 적중한 [Sinking] 부여 스킬에만 적용)",
+      "new_kr": "정신력을 보유한 적에게 공격 적중시, 대상의 정신력이 -45이면, 대상의 [Sinking] 위력만큼 우울 피해를 입힘\n\n집중 전투에서 [Sinking] 위력과 [Sinking] 횟수의 합이 10 이상인 적에게 공격 적중시,\n대상의 ([Sinking] 위력 / 2)만큼 우울 피해를 입힘 (스킬당 1회 발동)\n\n적에게 공격 적중한 스킬이 [Sinking](횟수, 특수 <noparse>침잠</noparse> 포함)을 부여하는 스킬일 경우, ([Sinking] 위력/2) 대신 ([Sinking] 위력)만큼 우울 피해를 입힘 \n(턴에서 처음으로 공격 적중한 [Sinking] 부여 스킬에만 적용)",
+      "old_zh": "常規遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，若目標的理智值為-45點，\n則對其造成(其 [Sinking] 強度 ÷ 2)點憂鬱傷害 (每個技能最多1次)\n\n集中遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，\n對目標造成(其 [Sinking] 強度 ÷ 2)點憂鬱傷害 (每個技能最多1次)\n\n若命中敵方單位的技能為增加 [Sinking] (包含回數以及特殊<noparse>沉淪</noparse>)的技能，則不造成 (目標帶有的 [Sinking] 強度 ÷ 2) 點憂鬱傷害，改為造成 (目標帶有的 [Sinking] 強度) 點憂鬱傷害\n(每回合僅適用於第1個命中敵方且增加 [Sinking] 的技能)",
+      "new_zh": "命中擁有理智值的敵方單位時，若目標的理智值為-45點，則對其造成等同於目標 [Sinking] 強度的憂鬱傷害\n\n集中遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，\n對目標造成(其 [Sinking] 強度 ÷ 2)點憂鬱傷害 (每個技能最多1次)\n\n若命中敵方單位的技能為增加 [Sinking] (包含回數以及特殊<noparse>沉淪</noparse>)的技能，則不造成 (目標帶有的 [Sinking] 強度 ÷ 2) 點憂鬱傷害，改為造成 (目標帶有的 [Sinking] 強度) 點憂鬱傷害\n(每回合僅適用於第1個命中敵方且增加 [Sinking] 的技能)",
+      "old_origin": "claude",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon.json",
+      "field": "desc",
+      "ptr": "/dataList/277/desc",
+      "kind": "kr-changed",
+      "old_kr": "참격 스킬을 2개 이상 보유한 모든 아군이 이번 전투 동안 첫 턴에는 합 위력 +1, 두 번째 턴부터는 [Agility] 1 얻고 합 위력 +1.\n\n시 협회 소속 인격이 유지 또는 회복 가능한 최대 체력의 상한선이 75%로 고정되는 대신 받는 피해량과 자신이 받는 회복량이 50% 감소 (전투 진입 시 발동, E.G.O 기프트로 인한 회복 제외).\n\n시 협회 소속 인격이라면 매 턴 시작시마다 참격 위력 증가 1, 참격 피해량 증가 1 얻음. ",
+      "new_kr": "참격 스킬을 2개 이상 보유한 모든 아군이 이번 전투 동안 첫 턴에는 합 위력 +2, 두 번째 턴부터는 [Agility] 1 얻고 합 위력 +2.\n\n시 협회 소속 인격이 유지 또는 회복 가능한 최대 체력의 상한선이 75%로 고정되는 대신 받는 피해량과 자신이 받는 회복량이 50% 감소 (전투 진입 시 발동, E.G.O 기프트로 인한 회복 제외).\n\n시 협회 소속 인격이라면 매 턴 시작시마다 참격 위력 증가 1, 참격 피해량 증가 1 얻음. ",
+      "old_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+1，從第2回合起使其獲得1層 [Agility] 並使其拚點威力+1。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的75%，但受到的傷害與使自身恢復的體力-50%（關卡開始時立即觸發；不包含E.G.O飾品恢復的體力）。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與1層斬擊傷害強化 ",
+      "new_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+2，從第2回合起使其獲得1層 [Agility] 並使其拚點威力+2。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的75%，但受到的傷害與使自身恢復的體力-50%（關卡開始時立即觸發；不包含E.G.O飾品恢復的體力）。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與1層斬擊傷害強化 ",
+      "old_origin": "paratranz",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon.json",
+      "field": "desc",
+      "ptr": "/dataList/278/desc",
+      "kind": "kr-changed",
+      "old_kr": "참격 스킬을 2개 이상 보유한 모든 아군이 이번 전투 동안 첫 턴에는 합 위력 +1, 두 번째 턴부터는 [Agility] <style=\"upgradeHighlight\">2</style> 얻고 합 위력 +1.\n\n시 협회 소속 인격이 유지 또는 회복 가능한 최대 체력의 상한선이 <style=\"upgradeHighlight\">50%</style>로 고정되는 대신 받는 피해량과 자신이 받는 회복량이 <style=\"upgradeHighlight\">75%</style> 감소 (전투 진입 시 발동, E.G.O 기프트로 인한 회복 제외).\n\n시 협회 소속 인격이라면 매 턴 시작시마다 참격 위력 증가 1, 참격 피해량 증가 <style=\"upgradeHighlight\">2</style> 얻음. ",
+      "new_kr": "참격 스킬을 2개 이상 보유한 모든 아군이 이번 전투 동안 첫 턴에는 합 위력 +2, 두 번째 턴부터는 [Agility] <style=\"upgradeHighlight\">2</style> 얻고 합 위력 +2.\n\n시 협회 소속 인격이 유지 또는 회복 가능한 최대 체력의 상한선이 <style=\"upgradeHighlight\">50%</style>로 고정되는 대신 받는 피해량과 자신이 받는 회복량이 <style=\"upgradeHighlight\">75%</style> 감소 (전투 진입 시 발동, E.G.O 기프트로 인한 회복 제외).\n\n시 협회 소속 인격이라면 매 턴 시작시마다 참격 위력 증가 1, 참격 피해량 증가 <style=\"upgradeHighlight\">2</style> 얻음. ",
+      "old_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+1，從第2回合起使其獲得<style=\"upgradeHighlight\">2層 [Agility] </style>並使其拚點威力+1。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的<style=\"upgradeHighlight\">50</style>%，但受到的傷害與使自身恢復的體力-<style=\"upgradeHighlight\">75</style>%（關卡開始時立即觸發；不包含E.G.O飾品恢復的體力）。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與<style=\"upgradeHighlight\">2</style>層斬擊傷害強化 ",
+      "new_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+2，從第2回合起使其獲得<style=\"upgradeHighlight\">2</style>層 [Agility] 並使其拚點威力+2。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的<style=\"upgradeHighlight\">50</style>%，但受到的傷害與使自身恢復的體力-<style=\"upgradeHighlight\">75</style>%（關卡開始時立即觸發；不包含E.G.O飾品恢復的體力）。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與<style=\"upgradeHighlight\">2</style>層斬擊傷害強化 ",
+      "old_origin": "paratranz",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon.json",
+      "field": "desc",
+      "ptr": "/dataList/279/desc",
+      "kind": "kr-changed",
+      "old_kr": "참격 스킬을 2개 이상 보유한 모든 아군이 이번 전투 동안 첫 턴에는 합 위력 +1, 두 번째 턴부터는 [Agility] 2 얻고 <style=\"upgradeHighlight\">최종 위력 +1</style>.\n\n시 협회 소속 인격이 유지 또는 회복 가능한 최대 체력의 상한선이 <style=\"upgradeHighlight\">49%</style>로 고정되는 대신 받는 피해량과 자신이 받는 회복량이 75% 감소 (전투 진입 시 발동, E.G.O 기프트로 인한 회복 제외).\n\n시 협회 소속 인격이라면 매 턴 시작시마다 참격 위력 증가 1, 참격 피해량 증가 <style=\"upgradeHighlight\">3</style> 얻음. ",
+      "new_kr": "참격 스킬을 2개 이상 보유한 모든 아군이 이번 전투 동안 첫 턴에는 합 위력 +2, 두 번째 턴부터는 [Agility] 2 얻고 <style=\"upgradeHighlight\">최종 위력 +1\n- 해당 인격의 속도가 7 이상이면, 해당 인격의 참격 스킬의 피해량 +10%</style>.\n\n시 협회 소속 인격이 유지 또는 회복 가능한 최대 체력의 상한선이 <style=\"upgradeHighlight\">49%</style>로 고정되는 대신 받는 피해량과 자신이 받는 회복량이 75% 감소 (전투 진입 시 발동, E.G.O 기프트로 인한 회복 제외).\n\n시 협회 소속 인격이라면 매 턴 시작시마다 참격 위력 증가 1, 참격 피해량 증가 <style=\"upgradeHighlight\">3</style> 얻음. ",
+      "old_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+1，從第2回合起使其獲得2層 [Agility] 並使其<style=\"upgradeHighlight\">最終威力+1。</style>\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的<style=\"upgradeHighlight\">49</style>%，但受到的傷害與使自身恢復的體力-75%（關卡開始時立即觸發；不包含E.G.O飾品恢復的體力）。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與<style=\"upgradeHighlight\">3</style>層斬擊傷害強化 ",
+      "new_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+2，從第2回合起使其獲得2層 [Agility] 並使其<style=\"upgradeHighlight\">最終威力+1\n- 若該人格的速度值不低於7，則使該人格的斬擊技能造成的傷害+10%</style>。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的<style=\"upgradeHighlight\">49</style>%，但受到的傷害與使自身恢復的體力-75%（關卡開始時立即觸發；不包含E.G.O飾品恢復的體力）。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與<style=\"upgradeHighlight\">3</style>層斬擊傷害強化 ",
+      "old_origin": "paratranz",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_2.json",
+      "field": "desc",
+      "ptr": "/dataList/16/desc",
+      "kind": "kr-changed",
+      "old_kr": "턴 시작 시, [Breath] 위력 또는 [Breath] 횟수를 부여하거나 획득하는 공격 스킬을 보유한 인격이 5인 이상이면, 이번 전투 동안 발동 (E.G.O 스킬 제외. 대기 인원 제외)\n\n턴 종료시, 각 아군이 자신의 [Breath] 위력이 20을 초과했으면, [Breath] 위력을 1 소모하여 [Breath] 횟수 1 증가\n\n턴 종료 시, [Breath] 위력이 제일 높은 아군 하나와 [Breath] 횟수가 제일 높은 아군 하나에게 다음 턴에 [Agility] 2, [AttackUp] 1 부여 (같은 인격일 경우 중복 가능)\n\n스킬 효과로 [Breath]위력을 획득할 때마다 해당 캐릭터가 [Breath] 위력 2, [Breath] 횟수 2 얻음. 보유한 [Breath] 위력과 횟수의 합이 20 미만이면, 대신 [Breath] 위력 3, [Breath] 횟수 3 얻음.\n\n전투 종료 시, 자신의 [Breath] 위력이 40을 초과하면, [Breath] 위력을 15 소모하여 자신의 모든 스킬 슬롯에서 등급이 가장 낮은 스킬 1개를 [Discard] (캐릭터 당, 턴 당 1회)",
+      "new_kr": "턴 시작 시, [Breath] 위력 또는 [Breath] 횟수를 부여하거나 획득하는 공격 스킬을 보유한 인격이 5인 이상이면, 이번 전투 동안 발동 (E.G.O 스킬 제외. 대기 인원 제외)\n\n턴 종료시, 각 아군이 자신의 [Breath] 위력이 20을 초과했으면, [Breath] 위력을 1 소모하여 [Breath] 횟수 1 증가\n\n턴 종료 시, [Breath] 위력이 제일 높은 아군 하나와 [Breath] 횟수가 제일 높은 아군 하나에게 다음 턴에 [Agility] 2, [AttackUp] 1, [AttackDmgUp] 1 부여 (같은 인격일 경우 중복 가능)\n\n스킬 효과로 [Breath]위력을 획득할 때마다 해당 캐릭터가 [Breath] 위력 2, [Breath] 횟수 2 얻음. 보유한 [Breath] 위력과 횟수의 합이 20 미만이면, 대신 [Breath] 위력 3, [Breath] 횟수 3 얻음.\n\n전투 종료 시, 자신의 [Breath] 위력이 40을 초과하면, [Breath] 위력을 15 소모하여 자신의 모든 스킬 슬롯에서 등급이 가장 낮은 스킬 1개를 [Discard] (캐릭터 당, 턴 당 1회)",
+      "old_zh": "回合開始時，若擁有增加或獲得 [Breath] 強度或 [Breath] 回數的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n回合結束時，[Breath] 強度高於20級的友方單位消耗1級 [Breath] 強度並獲得1回 [Breath]\n\n回合結束時，下回合使 [Breath] 強度最高的1名友方單位與 [Breath] 回數最高的1名友方單位獲得2層 [Agility] 與1層 [AttackUp] (若為同一名人格，可重複獲得)\n\n透過技能效果增加 [Breath] 強度時，額外增加2級 [Breath] 強度並獲得2回 [Breath]。若自身的 [Breath] 強度與回數之和低於20，則改為增加3級 [Breath] 強度並獲得3回 [Breath]。\n\n戰鬥結束時，若自身的 [Breath] 強度高於40級，則消耗15級 [Breath] 強度並 [Discard] 自身所有行動槽中等級最低的1個技能(每回合每名角色最多1次)",
+      "new_zh": "回合開始時，若擁有增加或獲得 [Breath] 強度或 [Breath] 回數的攻擊技能的人格不低於5名，則在本場戰鬥期間觸發該效果(不包括E.G.O技能、不包括待命人員)\n\n回合結束時，[Breath] 強度高於20級的友方單位消耗1級 [Breath] 強度並獲得1回 [Breath]\n\n回合結束時，下回合使 [Breath] 強度最高的1名友方單位與 [Breath] 回數最高的1名友方單位獲得2層 [Agility] 、1層 [AttackUp] 與1層 [AttackDmgUp] (若為同一名人格，可重複獲得)\n\n透過技能效果增加 [Breath] 強度時，額外增加2級 [Breath] 強度並獲得2回 [Breath]。若自身的 [Breath] 強度與回數之和低於20，則改為增加3級 [Breath] 強度並獲得3回 [Breath]。\n\n戰鬥結束時，若自身的 [Breath] 強度高於40級，則消耗15級 [Breath] 強度並 [Discard] 自身所有行動槽中等級最低的1個技能(每回合每名角色最多1次)",
+      "old_origin": "claude",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_2.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/16/simpleDesc/1/simpleDesc",
+      "kind": "kr-changed",
+      "old_kr": "신속 2, 공격 레벨 증가 1 부여",
+      "new_kr": "신속 2, 공격 레벨 증가 1, 피해량 증가 1 부여",
+      "old_zh": "獲得2層迅捷 與1層攻擊等級提升 ",
+      "new_zh": "獲得2層迅捷 、1層攻擊等級提升 與1層傷害強化 ",
+      "old_origin": "paratranz",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_7.json",
+      "field": "desc",
+      "ptr": "/dataList/25/desc",
+      "kind": "kr-changed",
+      "old_kr": "전투 시작 시 보호막이 있으면, [CriticalDamageUp] 1 얻음\n아군의 스킬이 크리티컬 적중 시, 다음 턴에 해당 아군이 ([Breath] 수치/5)만큼 보호막을 얻음 (최대 15)",
+      "new_kr": "전투 시작 시 보호막이 있으면, [CriticalDamageUp] 1 얻음\n아군의 스킬이 크리티컬 적중 시, 다음 턴에 해당 아군이 ([Breath] 수치/5)만큼 보호막을 얻음 (최대 15)\n\n[거미집 소지 제자 싱클레어 전용 효과]\n전투 종료 시, 자신의 [Breath] 횟수가 30을 초과하면, [Breath] 횟수를 10 소모하여 자신의 모든 스킬 슬롯에서 등급이 가장 낮은 스킬 1개를 버림 (턴당 1회)\nE.G.O 기프트 ‘캐스크 스피리츠’의 효과 중 전투 종료 시, 자신의 [Breath] 위력이 40을 초과하면, [Breath] 위력을 15 소모하여 자신의 모든 스킬 슬롯에서 등급이 가장 낮은 스킬 1개를 버림 효과를 적용 받지 않음",
+      "old_zh": "戰鬥開始時，使帶有護盾的友方單位獲得1層 [CriticalDamageUp]\n友方單位的技能暴擊命中時，下回合使該友方單位獲得(自身的 [Breath] 強度÷5)點護盾(最多15點)",
+      "new_zh": "戰鬥開始時，使帶有護盾的友方單位獲得1層 [CriticalDamageUp]\n友方單位的技能暴擊命中時，下回合使該友方單位獲得(自身的 [Breath] 強度÷5)點護盾(最多15點)\n\n[蜘蛛巢 小指 弟子 辛克萊專用效果]\n戰鬥結束時，若自身的 [Breath] 回數高於30回，則消耗10回 [Breath] 並丟棄自身所有行動槽中等級最低的1個技能(每回合最多1次)\n不適用E.G.O飾品「桶裝烈酒」的效果中「戰鬥結束時，若自身的 [Breath] 強度高於40級，則消耗15級 [Breath] 強度並丟棄自身所有行動槽中等級最低的1個技能」",
+      "old_origin": "paratranz",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_7.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/25/simpleDesc/2/simpleDesc",
+      "kind": "new",
+      "new_kr": "거미집 소지 제자 싱클레어 전용 효과",
+      "new_zh": "蜘蛛巢 小指 弟子 辛克萊專用效果",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "name",
+      "ptr": "/dataList/10/name",
+      "kind": "new",
+      "new_kr": "폭풍이 치는 언덕",
+      "new_zh": "暴風肆虐的山丘",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "desc",
+      "ptr": "/dataList/10/desc",
+      "kind": "new",
+      "new_kr": "턴 종료시 흐트러짐 상태가 되었을 때, 흐트러짐 상태가 해제되고, 다음 턴 시작 시 모든 적에게 [Sinking] 위력 4, [Sinking] 횟수 4 부여 (전투당 1회 발동, 집중 전투에서는 부위로 판정)\n- 편성된 인격 중 워더링하이츠 소속과 에드가 가문 소속 인격의 합 2명당 전투당 발동 횟수가 1씩 증가 (최대 전투당 4회까지 발동 가능, 대기인원 포함)\n\n적 처치 시 [Sinking] 횟수가 가장 낮은 적 1명의 [Sinking] 횟수 2 증가 (집중 전투에서는 부위로 판정)\n\n정신력을 보유한 적에게 공격 적중시, 대상의 정신력이 -45이면, 대상의 [Sinking] 위력만큼 우울 피해를 입힘\n\n집중 전투에서 [Sinking] 위력과 [Sinking] 횟수의 합이 10 이상인 적에게 공격 적중시, 대상의 ([Sinking] 위력/2) 만큼 우울 피해를 입힘 (스킬당 1회 발동)\n\n적에게 공격 적중한 스킬이 [Sinking](횟수, 특수 [Sinking] 포함)을 부여하는 스킬일 경우, ([Sinking] 위력/2) 대신 ([Sinking] 위력)만큼 우울 피해를 입힘\n(턴에서 처음으로 공격 적중한 [Sinking] 부여 스킬에만 적용)\n\n[<noparse>와일드헌트</noparse> 히스클리프 전용 효과]\n턴 시작시 자신에게 [NightPathfinding]이 없으면, [NightPathfinding]을 1 얻음\n- 자신의 [Coffin]이 5/10이면, 대신 [NightPathfinding]을 2/3 얻음\n- 워더링하이츠, 에드가 가문 소속 인격에게 [SoundOfStorm] 1 부여 (전투 중 인격당 3회)\n\n[Coffin]을 획득할 때 2배로 얻음\n- 워더링하이츠, 에드가 가문 소속 인격이 적 처치 시에도 [Coffin] 2 얻음\n\n‘비탄하고, 애탄하며, 파탄하라’의 사용시 효과로 감소하는 정신력 수치 15 증가\n- 해당 스킬 및 기프트의 효과로 정신력이 -40 미만으로 내려가지 않음\n\n‘비탄하고, 애탄하며, 파탄하라’의 마지막 코인 적중시 적의 [Sinking]이 20 이상이면, 해당 코인 최종 피해량의 100%만큼 우울 피해",
+      "new_zh": "回合結束時，若自身陷入混亂，則解除自身的混亂，下回合開始時使全體敵方單位增加4級 [Sinking] 強度與4回 [Sinking] (每場戰鬥最多1次；若是集中遭遇戰，則改為所有部位)\n- 編隊的人格中，咆哮山莊與埃德加家族所屬人格合計每有2名，每場戰鬥的發動次數+1 (每場戰鬥最多發動4次，包括待命人員)\n\n擊殺敵方單位時，對 [Sinking] 回數最低的1名敵方單位施加2回 [Sinking] (若是集中遭遇戰，則改為1個部位)\n\n命中擁有理智值的敵方單位時，若目標的理智值為-45點，則對其造成等同於目標 [Sinking] 強度的憂鬱傷害\n\n集中遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，對目標造成(其 [Sinking] 強度/2)點憂鬱傷害 (每個技能最多1次)\n\n若命中敵方單位的技能為增加 [Sinking] (包含回數以及特殊 [Sinking] )的技能，則不造成 (目標帶有的 [Sinking] 強度/2) 點憂鬱傷害，改為造成 (目標帶有的 [Sinking] 強度) 點憂鬱傷害\n(每回合僅適用於第1個命中敵方且增加 [Sinking] 的技能)\n\n[<noparse>狂獵</noparse> 希斯克利夫專用效果]\n回合開始時，若自身沒有 [NightPathfinding]，則獲得1層 [NightPathfinding]\n- 若自身的 [Coffin] 為5/10層，則改為獲得2/3層 [NightPathfinding]\n- 使屬於咆哮山莊、埃德加家族的人格獲得1層 [SoundOfStorm] (戰鬥中每名人格最多3次)\n\n獲得 [Coffin] 時，獲得量變為2倍\n- 屬於咆哮山莊、埃德加家族的人格擊殺敵方單位時，也使自身獲得2層 [Coffin]\n\n「悲嘆、哀慟、破滅吧」的使用時效果使自身失去的理智值增加15點\n- 透過該技能與本飾品的效果，理智值不會降至-40點以下\n\n「悲嘆、哀慟、破滅吧」的最後一枚硬幣命中時，若敵方帶有的 [Sinking] 不低於20，則造成等同於該硬幣最終傷害量100%的憂鬱傷害",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/0/simpleDesc",
+      "kind": "new",
+      "new_kr": "다음 턴에 모든 적에게 [Sinking] 위력, 횟수 4 부여",
+      "new_zh": "下回合使全體敵方單位增加 [Sinking] 強度與回數各4",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/1/simpleDesc",
+      "kind": "new",
+      "new_kr": "[Sinking] 횟수가 가장 낮은 적 [Sinking] 횟수 2 증가",
+      "new_zh": "使 [Sinking] 回數最低的敵方單位增加2回 [Sinking]",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/2/simpleDesc",
+      "kind": "new",
+      "new_kr": "대상의 [Sinking]에 비례해 우울 피해",
+      "new_zh": "根據目標的 [Sinking] 造成憂鬱傷害",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/3/simpleDesc",
+      "kind": "new",
+      "new_kr": "대상의 [Sinking]에 비례해 우울 피해",
+      "new_zh": "根據目標的 [Sinking] 造成憂鬱傷害",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/4/simpleDesc",
+      "kind": "new",
+      "new_kr": "[NightPathfinding] 얻음, 특정 소속 인격에게 [SoundOfStorm] 부여",
+      "new_zh": "獲得 [NightPathfinding]，使特定所屬的人格獲得 [SoundOfStorm]",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/5/simpleDesc",
+      "kind": "new",
+      "new_kr": "[Coffin]을 획득할 때 2배로 얻음",
+      "new_zh": "獲得 [Coffin] 時，獲得量變為2倍",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/6/simpleDesc",
+      "kind": "new",
+      "new_kr": "특정 소속 인격이 적 처치 시 [Coffin] 얻음",
+      "new_zh": "特定所屬的人格擊殺敵方單位時，獲得 [Coffin]",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/7/simpleDesc",
+      "kind": "new",
+      "new_kr": "‘비탄하고, 애탄하며, 파탄하라’ 사용시 감소하는 정신력 증가",
+      "new_zh": "「悲嘆、哀慟、破滅吧」使用時失去的理智值增加",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/10/simpleDesc/8/simpleDesc",
+      "kind": "new",
+      "new_kr": "‘비탄하고, 애탄하며, 파탄하라’ 마지막 코인 적중시 우울 피해",
+      "new_zh": "「悲嘆、哀慟、破滅吧」的最後一枚硬幣命中時造成憂鬱傷害",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "name",
+      "ptr": "/dataList/11/name",
+      "kind": "new",
+      "new_kr": "서리 온도",
+      "new_zh": "霜之溫度",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "desc",
+      "ptr": "/dataList/11/desc",
+      "kind": "new",
+      "new_kr": "턴 시작시 정신력이 40 이상이거나 -40 이하이면, [GainSinStockAdder] 1 얻음\n\n[빼기 코인 스킬을 2개 이상 보유한 인격 전용 효과]\n턴 시작시 정신력 15 감소 (해당 효과로 정신력이 -40 미만으로 내려가지 않음)\n\n이번 전투에서 정신력이 -45가 되는 피해를 받았을 때, 해당 턴 동안 정신력이 -44로 유지됨 (전투당 1회)\n(※ 정신력 피해에만 적용되며, 정신력이 변경되거나 E.G.O 스킬 사용과 같이 정신력을 소모하는 경우에는 적용되지 않음)\n\n스킬 3 또는 E.G.O 스킬 공격 시작 전, 스킬 속성과 동일 속성의 E.G.O 자원을 최대 5개 소모하여, (소모한 값 x 10)%만큼 <noparse>피해량 증가</noparse>",
+      "new_zh": "回合開始時，若理智值不低於40點或不高於-40點，則獲得1層 [GainSinStockAdder]\n\n[擁有不低於2個減算硬幣技能的人格專用效果]\n回合開始時，理智值減少15點(透過本效果，理智值不會降至-40點以下)\n\n本場戰鬥中，受到會使理智值變為-45點的傷害時，本回合內理智值維持為-44點(每場戰鬥最多1次)\n(※僅適用於理智值傷害；理智值被變更，或使用E.G.O技能等消耗理智值的情況不適用)\n\n技能3或E.G.O技能進行攻擊前，消耗最多5個與技能屬性相同的罪孽碎片，使<noparse>造成的傷害</noparse>+(消耗的罪孽碎片數×10)%",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/11/simpleDesc/0/simpleDesc",
+      "kind": "new",
+      "new_kr": "정신력 조건 만족 시 [GainSinStockAdder] 얻음",
+      "new_zh": "滿足理智值條件時，獲得 [GainSinStockAdder]",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/11/simpleDesc/1/simpleDesc",
+      "kind": "new",
+      "new_kr": "턴 시작시 정신력 감소",
+      "new_zh": "回合開始時，理智值減少",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/11/simpleDesc/2/simpleDesc",
+      "kind": "new",
+      "new_kr": "정신력이 -45 되는 피해를 받으면 1회 버팀",
+      "new_zh": "受到會使理智值變為-45點的傷害時，撐住1次",
+      "new_origin": "claude"
+    },
+    {
+      "file": "EGOgift_MirrorDungeon_8.json",
+      "field": "simpleDesc",
+      "ptr": "/dataList/11/simpleDesc/3/simpleDesc",
+      "kind": "new",
+      "new_kr": "E.G.O 자원을 소모해 스킬 3, E.G.O 스킬 <noparse>피해량 증가</noparse>",
+      "new_zh": "消耗罪孽碎片，使技能3、E.G.O技能<noparse>造成的傷害</noparse>增加",
+      "new_origin": "claude"
+    },
+    {
+      "file": "LobbyBGM-29.json",
+      "field": "name",
+      "ptr": "/dataList/39/name",
+      "kind": "kr-changed",
+      "old_kr": "The Symbolic Battle [Buffet]",
+      "new_kr": "Battle The Warden Phase3",
+      "old_zh": "The Symbolic Battle [Buffet]",
+      "new_zh": "Battle The Warden Phase3",
+      "old_origin": "copy",
+      "new_origin": "claude"
+    },
+    {
+      "file": "LobbyBGM-29.json",
+      "field": "name",
+      "ptr": "/dataList/40/name",
+      "kind": "kr-changed",
+      "old_kr": "Battle Buffet Phase1",
+      "new_kr": "The Symbolic Battle [Buffet]",
+      "old_zh": "Battle Buffet Phase1",
+      "new_zh": "The Symbolic Battle [Buffet]",
+      "old_origin": "copy",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "LobbyBGM-29.json",
+      "field": "name",
+      "ptr": "/dataList/41/name",
+      "kind": "kr-changed",
+      "old_kr": "Battle Buffet Phase2",
+      "new_kr": "Battle Buffet Phase1",
+      "old_zh": "Battle Buffet Phase2",
+      "new_zh": "Battle Buffet Phase1",
+      "old_origin": "copy",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "LobbyBGM-29.json",
+      "field": "name",
+      "ptr": "/dataList/42/name",
+      "kind": "new",
+      "new_kr": "Battle Buffet Phase2",
+      "new_zh": "Battle Buffet Phase2",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "LobbyBGM-29.json",
+      "field": "songWriter",
+      "ptr": "/dataList/42/songWriter",
+      "kind": "new",
+      "new_kr": "Studio EIM",
+      "new_zh": "Studio EIM",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "MirrorDungeonEgoGiftLockedDesc.json",
+      "field": "content",
+      "ptr": "/dataList/64/content",
+      "kind": "new",
+      "new_kr": "획득 기록 없음\n\n\n<획득 조건>\n- 상점 「E.G.O 기프트 합성」",
+      "new_zh": "暫無獲取紀錄\n\n\n<獲取條件>\n- 商店「E.G.O飾品合成」",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "MirrorDungeonRentalName.json",
+      "field": "content",
+      "ptr": "/dataList/37/content",
+      "kind": "new",
+      "new_kr": "충전",
+      "new_zh": "充能",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "Passives.json",
+      "field": "desc",
+      "ptr": "/dataList/616/desc",
+      "kind": "kr-changed",
+      "old_kr": "자신을 제외한 르누아르 소속 아군 인격이 적에게 공격 시작 전, 자신이 ‘심판!’으로 메인 타겟을 우선으로 일방 공격함 (턴당 1회)\n\n기본 스킬의 마지막 코인 시작 시 (자신의 [ChargeNoirAlly] 위력 + 대상의 [NoirNailDonQuixote]/2)만큼 해당 코인의 최종 위력이 증가함 (최대 5)\n\n자신에게 [OathFieldDonQuixote]이 있으면, 기본 스킬 1/2/3의 합 위력 +1/+2/+3\n\n[NoirNailDonQuixote]이 있는 대상에게 [VibrationExplosion] 발생 시 자신과 자신을 제외한 [Charge] 횟수가 가장 적은 아군 [PersonalityCharge] 1명의 [Charge] 횟수 2 증가 (턴당 2회)",
+      "new_kr": "자신을 제외한 르누아르 소속 아군 인격이 적에게 공격 스킬, 반격 스킬의 사용 전, 자신이 ‘심판!’으로 메인 타겟을 우선으로 일방 공격함 (턴당 1회)\n\n기본 스킬의 마지막 코인 시작 시 (자신의 [ChargeNoirAlly] 위력 + 대상의 [NoirNailDonQuixote]/2)만큼 해당 코인의 최종 위력이 증가함 (최대 5)\n\n자신에게 [OathFieldDonQuixote]이 있으면, 기본 스킬 1/2/3의 합 위력 +1/+2/+3\n\n[NoirNailDonQuixote]이 있는 대상에게 [VibrationExplosion] 발생 시 자신과 자신을 제외한 [Charge] 횟수가 가장 적은 아군 [PersonalityCharge] 1명의 [Charge] 횟수 2 증가 (턴당 2회)",
+      "old_zh": "除自身以外屬於漆黑派的友方人格攻擊敵方單位前，自身使用「審判！」優先對主要目標進行單方面攻擊(每回合最多1次)\n\n基礎技能的最後一枚硬幣開始投擲時，使該硬幣的最終威力增加(自身的 [ChargeNoirAlly] 強度+目標的 [NoirNailDonQuixote] 層數÷2)(最多+5)\n\n若自身帶有 [OathFieldDonQuixote]，則使基礎技能1/2/3的拚點威力+1/+2/+3\n\n對帶有 [NoirNailDonQuixote] 的目標觸發 [VibrationExplosion] 時，使自身與除自身以外 [Charge] 回數最低的1名友方 [PersonalityCharge] 各獲得2回 [Charge] (每回合最多2次)",
+      "new_zh": "除自身以外屬於漆黑派的友方人格對敵方使用攻擊技能、反擊技能前，自身使用「審判！」優先對主要目標進行單方面攻擊(每回合最多1次)\n\n基礎技能的最後一枚硬幣開始投擲時，使該硬幣的最終威力增加(自身的 [ChargeNoirAlly] 強度+目標的 [NoirNailDonQuixote] 層數÷2)(最多+5)\n\n若自身帶有 [OathFieldDonQuixote]，則使基礎技能1/2/3的拚點威力+1/+2/+3\n\n對帶有 [NoirNailDonQuixote] 的目標觸發 [VibrationExplosion] 時，使自身與除自身以外 [Charge] 回數最低的1名友方 [PersonalityCharge] 各獲得2回 [Charge] (每回合最多2次)",
+      "old_origin": "claude",
+      "new_origin": "claude"
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Ryoshu_Contem_10416.json",
+      "field": "dlg",
+      "ptr": "/dataList/6/dlg",
+      "kind": "kr-changed",
+      "old_kr": "두 그루 시즌 전부터 알음알음 이 층에 소문이 돌기 시작하더군. 르카키들이 모여 사는 어느 매장에 전설의 검이 숨겨져 있다던가… 흥, 그래봤자 내 검에 비해면 고귀하지도 않을 테지.",
+      "new_kr": "두 그루 시즌 전부터 알음알음 이 층에 소문이 돌기 시작하더군. 르카키들이 모여 사는 어느 매장에 전설의 검이 숨겨져 있다던가… 흥, 그래봤자 내 검에 비하면 고귀하지도 않을 테지.",
+      "old_zh": "從兩棵季前起，這層樓就開始口耳相傳一個傳聞。說是卡其派群居的某間店裡藏著傳說之劍……哼，就算真有，跟我的劍比起來也稱不上高貴吧。",
+      "new_zh": "從兩棵季前起，這層樓就開始口耳相傳一個傳聞。說是卡其派群居的某間店裡藏著傳說之劍……哼，就算真有，跟我的劍比起來也稱不上高貴吧。",
+      "old_origin": "claude",
+      "new_origin": "claude"
+    },
+    {
+      "file": "StoryData/P10717.json",
+      "field": "content",
+      "ptr": "/dataList/40/content",
+      "kind": "kr-changed",
+      "old_kr": "방직을 하시는 건 이곳 지하 2층의 플로우 매니저시니까… 그분께 문의를 드려야… 엇?!",
+      "new_kr": "방직을 하시는 건 이곳 지하 2층의 플로어 매니저시니까… 그분께 문의를 드려야… 엇?!",
+      "old_zh": "負責織布的是這裡地下2樓的樓層經理……應該去問那位才對……咦？！",
+      "new_zh": "負責織布的是這裡地下2樓的樓層經理……應該去問那位才對……咦？！",
+      "old_origin": "claude",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/64/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005014_5",
+      "new_zh": "mission_ui_condition_tags_201005014_5",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/64/content",
+      "kind": "new",
+      "new_kr": "전투 중 적이 10명 이상이 되었을 때, 해당 한 턴 동안 10명 이상의 적 모두 처치 (집중 전투인 경우, 본체를 기준으로 판정)",
+      "new_zh": "戰鬥中存在10名以上敵方單位時，於該回合擊殺所有10名以上敵方單位（若是於集中遭遇戰，則以本體判定）",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/65/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005015_5",
+      "new_zh": "mission_ui_condition_tags_201005015_5",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/65/content",
+      "kind": "new",
+      "new_kr": "공격 스킬 1개로 2개 이상의 부위를 동시에 흐트러짐 상태 또는 부위 파괴 상태로 만들기",
+      "new_zh": "使用1個攻擊技能造成2個以上的部位同時陷入混亂或部位被破壞狀態",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/66/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005016_5",
+      "new_zh": "mission_ui_condition_tags_201005016_5",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/66/content",
+      "kind": "new",
+      "new_kr": "한 대상에게 부정적인 효과 10개 부여한 채 전투 승리",
+      "new_zh": "對1名敵方單位施加不低於10種負面效果的狀態下戰鬥勝利",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/67/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005017_5",
+      "new_zh": "mission_ui_condition_tags_201005017_5",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/67/content",
+      "kind": "new",
+      "new_kr": "거울 던전 1회 플레이에서 ‘인연 얽힘’ E.G.O 기프트의 효과를 발동하고 스테이지 5회 클리어",
+      "new_zh": "在一次鏡像迷宮進程中，發動E.G.O飾品「糾纏的因緣」的效果完成5次關卡。",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/68/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005018_5",
+      "new_zh": "mission_ui_condition_tags_201005018_5",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/68/content",
+      "kind": "new",
+      "new_kr": "술 관련 E.G.O 기프트 중 5종 이상 들고 ‘이상진역’ 테마팩의 보스 처치\n(원목 술잔, 초록빛 결실, 고혈, 흔들리는 술통, 잔향, 낙수의 잔, 폭우, 데블스 셰어, 엔젤스 컷, 크랲게 뇌수 담금주, 소흥주 중 5종)",
+      "new_zh": "擊殺「異常地震帶」主題卡包BOSS時，持有5種以上與酒相關的E.G.O飾品\n（木質酒杯、綠光果實、膏血、搖晃的酒桶、殘響、涓滴之杯、暴雨、魔鬼所享、天使所私、廢料蟹腦髓泡酒、紹興酒，以上任5種）",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/69/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005019_5",
+      "new_zh": "mission_ui_condition_tags_201005019_5",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/69/content",
+      "kind": "new",
+      "new_kr": "약지 소속 인격을 2명 이상 편성한 상태에서 해당 인격 중 1명이 ‘수작’ E.G.O 기프트로 ‘훌륭한 미감’ 효과 얻고 전투 승리",
+      "new_zh": "在編隊中編入至少2名屬於環指的人格，任一該人格透過E.G.O飾品「佳作」獲得「卓越的美感」效果的狀態下戰鬥勝利",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/64/id",
+      "kind": "deleted",
+      "old_kr": "mission_ui_condition_tags_201005014",
+      "old_zh": "mission_ui_condition_tags_201005014",
+      "old_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/64/content",
+      "kind": "deleted",
+      "old_kr": "전투 중 적이 10명 이상이 되었을 때, 해당 한 턴 동안 10명 이상의 적 모두 처치 (집중 전투인 경우, 본체를 기준으로 판정)",
+      "old_zh": "戰鬥中存在10名以上敵方單位時，於該回合擊殺所有10名以上敵方單位（若是於集中遭遇戰，則以本體判定）",
+      "old_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/65/id",
+      "kind": "deleted",
+      "old_kr": "mission_ui_condition_tags_201005015",
+      "old_zh": "mission_ui_condition_tags_201005015",
+      "old_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/65/content",
+      "kind": "deleted",
+      "old_kr": "공격 스킬 1개로 2개 이상의 부위를 동시에 흐트러짐 상태 또는 부위 파괴 상태로 만들기",
+      "old_zh": "使用1個攻擊技能造成2個以上的部位同時陷入混亂或部位被破壞狀態",
+      "old_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/66/id",
+      "kind": "deleted",
+      "old_kr": "mission_ui_condition_tags_201005016",
+      "old_zh": "mission_ui_condition_tags_201005016",
+      "old_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/66/content",
+      "kind": "deleted",
+      "old_kr": "한 대상에게 부정적인 효과 10개 부여한 채 전투 승리",
+      "old_zh": "對1名敵方單位施加不低於10種負面效果的狀態下戰鬥勝利",
+      "old_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/67/id",
+      "kind": "deleted",
+      "old_kr": "mission_ui_condition_tags_201005017",
+      "old_zh": "mission_ui_condition_tags_201005017",
+      "old_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/67/content",
+      "kind": "deleted",
+      "old_kr": "거울 던전 1회 플레이에서 ‘인연 얽힘’ E.G.O 기프트의 효과를 발동하고 스테이지 5회 클리어",
+      "old_zh": "在一次鏡像迷宮進程中，發動E.G.O飾品「糾纏的因緣」的效果完成5次關卡。",
+      "old_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/68/id",
+      "kind": "deleted",
+      "old_kr": "mission_ui_condition_tags_201005018",
+      "old_zh": "mission_ui_condition_tags_201005018",
+      "old_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/68/content",
+      "kind": "deleted",
+      "old_kr": "술 관련 E.G.O 기프트 중 5종 이상 들고 ‘이상진역’ 테마팩의 보스 처치\n(원목 술잔, 초록빛 결실, 고혈, 흔들리는 술통, 잔향, 낙수의 잔, 폭우, 데블스 셰어, 엔젤스 컷, 크랲게 뇌수 담금주, 소흥주 중 5종)",
+      "old_zh": "擊殺「異常地震帶」主題卡包BOSS時，持有5種以上與酒相關的E.G.O飾品\n（木質酒杯、綠光果實、膏血、搖晃的酒桶、殘響、涓滴之杯、暴雨、魔鬼所享、天使所私、廢料蟹腦髓泡酒、紹興酒，以上任5種）",
+      "old_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "id",
+      "ptr": "/dataList/69/id",
+      "kind": "deleted",
+      "old_kr": "mission_ui_condition_tags_201005019",
+      "old_zh": "mission_ui_condition_tags_201005019",
+      "old_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon5Event.json",
+      "field": "content",
+      "ptr": "/dataList/69/content",
+      "kind": "deleted",
+      "old_kr": "약지 소속 인격을 2명 이상 편성한 상태에서 해당 인격 중 1명이 ‘수작’ E.G.O 기프트로 ‘훌륭한 미감’ 효과 얻고 전투 승리",
+      "old_zh": "在編隊中編入至少2名屬於環指的人格，任一該人格透過E.G.O飾品「佳作」獲得「卓越的美感」效果的狀態下戰鬥勝利",
+      "old_origin": "paratranz"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/0/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201004011",
+      "new_zh": "mission_ui_condition_tags_201004011",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/0/content",
+      "kind": "new",
+      "new_kr": "1번의 상점 방문에서 기프트 구매로 코스트 {0}을 한 번에 사용하고 거울 던전 클리어",
+      "new_zh": "在一次商店造訪中，透過購買飾品一次花費{0}經費，並通關鏡像迷宮",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/1/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201004012",
+      "new_zh": "mission_ui_condition_tags_201004012",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/1/content",
+      "kind": "new",
+      "new_kr": "거울 던전 1회 플레이에서 상점에서 기프트 판매로 총합 코스트 {0} 얻고 거울 던전 클리어",
+      "new_zh": "在一次鏡像迷宮進程中，於商店出售飾品共獲得{0}經費，並通關鏡像迷宮",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/2/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201004013",
+      "new_zh": "mission_ui_condition_tags_201004013",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/2/content",
+      "kind": "new",
+      "new_kr": "새로고침을 한 번도 진행하지 않은 채 거울 던전 {0}층 이상을 클리어",
+      "new_zh": "在完全未使用刷新的情況下通關第{0}或更高層鏡像迷宮",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/3/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201004014",
+      "new_zh": "mission_ui_condition_tags_201004014",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/3/content",
+      "kind": "new",
+      "new_kr": "거울 던전 1회 플레이에서 E.G.O 기프트 리베이트 토큰 효과를 {0}회 연속으로 발동하고 거울 던전 클리어",
+      "new_zh": "在一次鏡像迷宮進程中，連續{0}次發動E.G.O飾品「返利禮券」的效果，並通關鏡像迷宮",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/4/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003041",
+      "new_zh": "mission_ui_condition_tags_201003041",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/4/content",
+      "kind": "new",
+      "new_kr": "클리어 시점에 시지프 소속 인격이 5명 이상 편성된 상태로 거울 던전 5층 이상 클리어 (대여 편성으로 클리어 불가)",
+      "new_zh": "通關第5或更高層鏡像迷宮時在編隊中編入至少5名屬於薛西弗斯的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/5/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003042",
+      "new_zh": "mission_ui_condition_tags_201003042",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "new",
+      "new_kr": "클리어 시점에 엄지 소속 인격이 2명 이상 편성된 상태로 거울 던전 5층 이상 클리어 (대여 편성으로 클리어 불가)",
+      "new_zh": "通關第5或更高層鏡像迷宮時在編隊中編入至少2名屬於拇指的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/6/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003043",
+      "new_zh": "mission_ui_condition_tags_201003043",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/6/content",
+      "kind": "new",
+      "new_kr": "‘오트쿠튀르::르누아르 브랜드 매니저 돈키호테’ 인격을 포함한 르누아르 소속 인격을 3명 이상 편성한 상태(대기인원은 포함하지 않음)에서 ‘탐식의 재림’ 테마팩의 보스 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「貪食的再臨」主題卡包BOSS時在編隊中（不包括待命人員）編入包括「高級訂製服::漆黑派 品牌經理 唐吉訶德」在內至少3名屬於漆黑派的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/7/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003044",
+      "new_zh": "mission_ui_condition_tags_201003044",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/7/content",
+      "kind": "new",
+      "new_kr": "‘오트쿠튀르::르루주 붉은 신 싱클레어’ 인격을 포함한 르루주 소속 인격을 3명 이상 편성한 상태(대기인원은 포함하지 않음)에서 ‘보존의 신념’ 테마팩의 보스 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「保存的信念」主題卡包BOSS時在編隊中（不包括待命人員）編入包括「高級訂製服::丹紅派 丹紅之神 辛克萊」在內至少3名屬於丹紅派的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/8/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003045",
+      "new_zh": "mission_ui_condition_tags_201003045",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/8/content",
+      "kind": "new",
+      "new_kr": "‘료. 고. 파. 주방장 료슈’, ‘료. 고. 파. 조수 그레고르’ 인격을 2명 편성한 상태(대기인원은 포함하지 않음)에서 ‘헬스치킨’ 테마팩의 보스 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「地獄雞」主題卡包BOSS時在編隊中（不包括待命人員）編入「良．派 廚師長 良秀」、「良．派 幫廚 格里高爾」2名人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/9/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003046",
+      "new_zh": "mission_ui_condition_tags_201003046",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/9/content",
+      "kind": "new",
+      "new_kr": "어금니 사무소 소속 인격을 4명 편성한 상태(대기인원은 포함하지 않음)에서 ‘우.미.다’ 테마팩의 보스 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「去．海．邊」主題卡包BOSS時在編隊中（不包括待命人員）編入4名屬於臼齒事務所的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/10/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003047",
+      "new_zh": "mission_ui_condition_tags_201003047",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/10/content",
+      "kind": "new",
+      "new_kr": "클리어 시점에 사무소 및 공방 소속 해결사 인격이 6명 이상 편성된 상태로 거울 던전 5층 이상 클리어 (대여 편성으로 클리어 불가)",
+      "new_zh": "通關第5或更高層鏡像迷宮時在編隊中編入至少6名屬於事務所及工坊的收尾人人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/11/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003048",
+      "new_zh": "mission_ui_condition_tags_201003048",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/11/content",
+      "kind": "new",
+      "new_kr": "‘피쿼드호 선장 이스마엘’ 인격을 포함한 피쿼드호 소속 인격을 3명 이상 편성한 상태(대기인원은 포함하지 않음)에서 ‘기어오는 심연’, ‘악으로 규정되는’, ‘우.미.다 게.판’ 테마팩의 보스 3종 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「伏行深淵」、「定義為惡」、「去．海．邊．激．蟹」3種主題卡包BOSS時在編隊中（不包括待命人員）編入包括「裴廓德號 船長 以實瑪利」在內至少3名屬於裴廓德號的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/12/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003049",
+      "new_zh": "mission_ui_condition_tags_201003049",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/12/content",
+      "kind": "new",
+      "new_kr": "‘흑운회 부조장 그레고르’ 인격을 포함한 흑운회 소속 인격을 6명 이상 편성한 상태(대기인원은 포함하지 않음)에서 ‘육참골단 BokGak’ 테마팩의 보스 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「肉斬骨斷 復刻」主題卡包BOSS時在編隊中（不包括待命人員）編入包括「黑雲會 副會長 格里高爾」在內至少6名屬於黑雲會的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/13/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003050",
+      "new_zh": "mission_ui_condition_tags_201003050",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/13/content",
+      "kind": "new",
+      "new_kr": "‘검계 우두머리 뫼르소’ 인격을 포함한 검계 소속 인격을 6명 이상 편성한 상태(대기인원은 포함하지 않음)에서 ‘탄환이 찍은 마침표’, ‘육참골단 BokGak’, ‘경험기억’ 테마팩의 보스 3종 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「由子彈畫下的句點」、「肉斬骨斷 復刻」、「經歷記憶」3種主題卡包BOSS時在編隊中（不包括待命人員）編入包括「劍契組 頭領 莫梭」在內至少6名屬於劍契組的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/14/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201003051",
+      "new_zh": "mission_ui_condition_tags_201003051",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/14/content",
+      "kind": "new",
+      "new_kr": "‘홍원 군주 홍루’, ‘가주 후보 이스마엘’ 인격을 포함한 H사 소속 인격을 7명 이상 편성한 상태(대기인원은 포함하지 않음)에서 ‘심야청소’, ‘사대 가문과 욕망’, ‘바라볼 수밖에 없는’, ‘절차탁춘’ 테마팩의 보스 4종 처치 (대여 편성으로 클리어 불가)",
+      "new_zh": "擊殺「深夜清掃」、「四大家族與慾望」、「不思觀望」、「切磋琢春」4種主題卡包BOSS時在編隊中（不包括待命人員）編入包括「鴻園君主 鴻璐」、「家主候選人 以實瑪利」在內至少7名屬於H公司的人格（不可使用租借編隊完成）",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/15/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005101",
+      "new_zh": "mission_ui_condition_tags_201005101",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/15/content",
+      "kind": "new",
+      "new_kr": "조합 E.G.O 기프트 없이 거울 던전 {0}층 이상 클리어",
+      "new_zh": "在未持有合成E.G.O飾品的情況下通關第{0}或更高層鏡像迷宮",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/16/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005014",
+      "new_zh": "mission_ui_condition_tags_201005014",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/16/content",
+      "kind": "new",
+      "new_kr": "한 턴에 인격 6명 이상이 모두 속도 12 이상 달성",
+      "new_zh": "在一回合內使至少6名人格的速度值全部達到不低於12",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/17/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005015",
+      "new_zh": "mission_ui_condition_tags_201005015",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/17/content",
+      "kind": "new",
+      "new_kr": "한 턴에 모든 아군이 공격 스킬로 충전 횟수를 총합 {0} 이상 소모하기",
+      "new_zh": "在一回合內使所有友方單位透過攻擊技能消耗的充能回數合計不低於{0}回",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/18/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005019",
+      "new_zh": "mission_ui_condition_tags_201005019",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/18/content",
+      "kind": "new",
+      "new_kr": "한 턴에 적 1명에게 진동 {0}종류 이상 진폭 변환",
+      "new_zh": "在一回合內對1名敵方單位進行不低於{0}種震顫的振幅轉換",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/19/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005016",
+      "new_zh": "mission_ui_condition_tags_201005016",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/19/content",
+      "kind": "new",
+      "new_kr": "한 전투에서 원호 방어 전용 스킬을 {0}회 이상 사용한 채로 전투 클리어",
+      "new_zh": "在一場戰鬥中使用掩護防禦專用技能不低於{0}次並取得戰鬥勝利",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/20/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005017",
+      "new_zh": "mission_ui_condition_tags_201005017",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/20/content",
+      "kind": "new",
+      "new_kr": "한 턴에 한 수감자가 보호막 {0} 이상 얻기",
+      "new_zh": "在一回合內使1名罪人獲得不低於{0}點護盾",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "id",
+      "ptr": "/dataList/21/id",
+      "kind": "new",
+      "new_kr": "mission_ui_condition_tags_201005018",
+      "new_zh": "mission_ui_condition_tags_201005018",
+      "new_origin": "copy",
+      "copy": true
+    },
+    {
+      "file": "UI_Mission_MirrorDungeon8Event.json",
+      "field": "content",
+      "ptr": "/dataList/21/content",
+      "kind": "new",
+      "new_kr": "환상체 ‘나는 비워내느니’ 전투 중 ‘업보’를 통해 적을 {0}명 처치",
+      "new_zh": "在與異想體「無我入定」的戰鬥中，透過「業報」擊殺{0}名敵方單位",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserBanner.json",
+      "field": "name",
+      "ptr": "/dataList/94/name",
+      "kind": "new",
+      "new_kr": "시즌 8 시지프의 거울 기념 특별 배너",
+      "new_zh": "第8賽季 薛西弗斯之鏡 特別紀念橫幅",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserBanner.json",
+      "field": "desc",
+      "ptr": "/dataList/94/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득\n\n※ 「시즌 8 거울 던전 - 시지프의 거울」을 5층 이상 클리어한 횟수와 도달한 최대 층수가 배너에 표시됩니다.",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取\n\n※ 此橫幅將會顯示通關「第8賽季鏡像迷宮 - 薛西弗斯之鏡」5層及以上的次數以及抵達的最高層數。",
+      "new_origin": "paratranz"
+    },
+    {
+      "file": "UserBanner.json",
+      "field": "name",
+      "ptr": "/dataList/95/name",
+      "kind": "new",
+      "new_kr": "시즌 8 시지프의 거울 업적 특별 배너",
+      "new_zh": "第8賽季 薛西弗斯之鏡 特別成就橫幅",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserBanner.json",
+      "field": "desc",
+      "ptr": "/dataList/95/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 모든 업적 달성 보상으로 획득\n\n해당 아이템 수령 시 시즌 8 시지프의 거울 기념 배너, 기념 특별 배너 아이템이 업적 특별 배너의 디자인으로 변경됩니다.\n\n※ 「시즌 8 거울 던전 - 시지프의 거울」을 5층 이상 클리어한 횟수와 도달한 최대 층수가 배너에 표시됩니다.",
+      "new_zh": "作為薛西弗斯之鏡全成就獎勵獲取\n\n領取該獎勵後，第8賽季 薛西弗斯之鏡 紀念橫幅及特別紀念橫幅將變換為特別成就橫幅的樣式。\n\n※ 此橫幅將會顯示通關「第8賽季鏡像迷宮 - 薛西弗斯之鏡」5層及以上的次數以及抵達的最高層數。",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-EGOBg.json",
+      "field": "name",
+      "ptr": "/dataList/78/name",
+      "kind": "new",
+      "new_kr": "시지프의 거울",
+      "new_zh": "薛西弗斯之鏡",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-EGOBg.json",
+      "field": "desc",
+      "ptr": "/dataList/78/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-EGOBg.json",
+      "field": "name",
+      "ptr": "/dataList/79/name",
+      "kind": "new",
+      "new_kr": "시지프의 거울 - 특별 티켓",
+      "new_zh": "薛西弗斯之鏡 - 特別車票",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-EGOBg.json",
+      "field": "desc",
+      "ptr": "/dataList/79/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-L.json",
+      "field": "name",
+      "ptr": "/dataList/78/name",
+      "kind": "new",
+      "new_kr": "시지프의 거울",
+      "new_zh": "薛西弗斯之鏡",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-L.json",
+      "field": "desc",
+      "ptr": "/dataList/78/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-L.json",
+      "field": "name",
+      "ptr": "/dataList/79/name",
+      "kind": "new",
+      "new_kr": "시지프의 거울 - 특별 티켓",
+      "new_zh": "薛西弗斯之鏡 - 特別車票",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-L.json",
+      "field": "desc",
+      "ptr": "/dataList/79/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-R.json",
+      "field": "name",
+      "ptr": "/dataList/78/name",
+      "kind": "new",
+      "new_kr": "시지프의 거울",
+      "new_zh": "薛西弗斯之鏡",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-R.json",
+      "field": "desc",
+      "ptr": "/dataList/78/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-R.json",
+      "field": "name",
+      "ptr": "/dataList/79/name",
+      "kind": "new",
+      "new_kr": "시지프의 거울 - 특별 티켓",
+      "new_zh": "薛西弗斯之鏡 - 特別車票",
+      "new_origin": "claude"
+    },
+    {
+      "file": "UserTicket-R.json",
+      "field": "desc",
+      "ptr": "/dataList/79/desc",
+      "kind": "new",
+      "new_kr": "시지프의 거울 업적 보상으로 획득",
+      "new_zh": "作為薛西弗斯之鏡成就獎勵獲取",
+      "new_origin": "claude"
+    }
+  ]
+}

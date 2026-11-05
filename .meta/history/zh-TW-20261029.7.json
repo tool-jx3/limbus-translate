@@ -1,0 +1,97 @@
+{
+  "tag": "zh-TW-20261029.7",
+  "prev_tag": "zh-TW-20261029.6",
+  "released_at": "2026-11-04T14:08:15Z",
+  "prev_released_at": "2026-11-04T11:23:17Z",
+  "raw_tag": "raw-20261029",
+  "prev_raw_tag": "raw-20261029",
+  "rules_commit": "ae80691b319ce3b1d5abe3e8ed9ba5520a1793df",
+  "prev_rules_commit": "6f76a18c025ebd56c1c37d803c381a1754de758a",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 6
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleKeywords-a1c9p3.json",
+      "field": "flavor",
+      "ptr": "/dataList/125/flavor",
+      "kind": "zh-changed",
+      "new_kr": "천살성도 - 아라야시키를 제어하기 위해서 만들어진 료슈만의 검집. 꺼지지 않는 불 속에서 단조된 아라야의 E.G.O.",
+      "old_zh": "為了控制天殺星刀 - 阿賴耶識而打造，僅為了良秀存在的刀鞘。於不滅之炎中鍛造出來，阿賴耶的E.G.O.。",
+      "new_zh": "為了控制天殺星刀 - 阿賴耶識而打造，僅為了良秀存在的刀鞘。於不滅之炎中鍛造出來，阿賴耶的E.G.O。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    },
+    {
+      "file": "BattleKeywords-a1c9p3.json",
+      "field": "flavor",
+      "ptr": "/dataList/126/flavor",
+      "kind": "zh-changed",
+      "new_kr": "희미한 자아만이 남아있는 역설적인 E.G.O.\n오직 상대를 위하는 것처럼 보이더라도, 이는 절대적인 이타성이 아니다.\n타인의 삶이 가진 의미를 자신의 삶보다 우선 시하기 위해서는 절대적인 이기심이 필요하다.\n\n“엄마가 나를 잊지 않았으면 좋겠지만, 이대로 엄마를 잃는 게 나는 더 싫어.”\n“그러니까 나를 먼저 잊고, 자신을 더 소중히 해.”",
+      "old_zh": "這是個殘存微弱自我，矛盾的E.G.O.。\n即使看來像是僅為了對方，卻非絕對的利他性。\n若想將他人人生意義置於自己人生意義之上，必須先懷有絕對的利己心。\n\n「雖然希望媽媽不要忘記我，可是就這樣失去媽媽更讓我無法接受。」\n「所以先忘了我，再更重視自己吧。」",
+      "new_zh": "這是個殘存微弱自我，矛盾的E.G.O。\n即使看來像是僅為了對方，卻非絕對的利他性。\n若想將他人人生意義置於自己人生意義之上，必須先懷有絕對的利己心。\n\n「雖然希望媽媽不要忘記我，可是就這樣失去媽媽更讓我無法接受。」\n「所以先忘了我，再更重視自己吧。」",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    },
+    {
+      "file": "Bufs-a1c9p3.json",
+      "field": "flavor",
+      "ptr": "/dataList/125/flavor",
+      "kind": "zh-changed",
+      "new_kr": "천살성도 - 아라야시키를 제어하기 위해서 만들어진 료슈만의 검집. 꺼지지 않는 불 속에서 단조된 아라야의 E.G.O.",
+      "old_zh": "為了控制天殺星刀 - 阿賴耶識而打造，僅為了良秀存在的刀鞘。於不滅之炎中鍛造出來，阿賴耶的E.G.O.。",
+      "new_zh": "為了控制天殺星刀 - 阿賴耶識而打造，僅為了良秀存在的刀鞘。於不滅之炎中鍛造出來，阿賴耶的E.G.O。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    },
+    {
+      "file": "Bufs-a1c9p3.json",
+      "field": "flavor",
+      "ptr": "/dataList/126/flavor",
+      "kind": "zh-changed",
+      "new_kr": "희미한 자아만이 남아있는 역설적인 E.G.O.\n오직 상대를 위하는 것처럼 보이더라도, 이는 절대적인 이타성이 아니다.\n타인의 삶이 가진 의미를 자신의 삶보다 우선 시하기 위해서는 절대적인 이기심이 필요하다.\n\n“엄마가 나를 잊지 않았으면 좋겠지만, 이대로 엄마를 잃는 게 나는 더 싫어.”\n“그러니까 나를 먼저 잊고, 자신을 더 소중히 해.”",
+      "old_zh": "這是個殘存微弱自我，矛盾的E.G.O.。\n即使看來像是僅為了對方，卻非絕對的利他性。\n若想將他人人生意義置於自己人生意義之上，必須先懷有絕對的利己心。\n\n「雖然希望媽媽不要忘記我，可是就這樣失去媽媽更讓我無法接受。」\n「所以先忘了我，再更重視自己吧。」",
+      "new_zh": "這是個殘存微弱自我，矛盾的E.G.O。\n即使看來像是僅為了對方，卻非絕對的利他性。\n若想將他人人生意義置於自己人生意義之上，必須先懷有絕對的利己心。\n\n「雖然希望媽媽不要忘記我，可是就這樣失去媽媽更讓我無法接受。」\n「所以先忘了我，再更重視自己吧。」",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    },
+    {
+      "file": "StoryData/P11214.json",
+      "field": "content",
+      "ptr": "/dataList/15/content",
+      "kind": "zh-changed",
+      "new_kr": "이상 씨에 대한 이야기도 들었습니다. 그레고르 씨를 구하기 위해 에고 장비의 감응도를 지나치게 올렸다고…",
+      "old_zh": "我聽說了李箱先生的事，為了拯救格里高爾先生，而將E.G.O.的感應度過度提高了……",
+      "new_zh": "我聽說了李箱先生的事，為了拯救格里高爾先生，而將E.G.O的感應度過度提高了……",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    },
+    {
+      "file": "StoryData/S912B.json",
+      "field": "content",
+      "ptr": "/dataList/136/content",
+      "kind": "zh-changed",
+      "new_kr": "림버스 컴퍼니. 거울. 유리창. 구 L사. 추출된 E.G.O. 엔케팔린. 신비. 환상체. 모노리스. 수감자 료슈.",
+      "old_zh": "邊獄公司。鏡子。玻璃窗。舊L公司。提取E.G.O.。腦啡肽。神備。異想體。獨石。罪人良秀。",
+      "new_zh": "邊獄公司。鏡子。玻璃窗。舊L公司。提取E.G.O。腦啡肽。神備。異想體。獨石。罪人良秀。",
+      "old_origin": "paratranz",
+      "new_origin": "paratranz",
+      "cause": "retranslated"
+    }
+  ]
+}
