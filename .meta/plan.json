@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261105",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "ab8952ea1ec0285b7bfa8704df61a8931a86c4aa",
+  "rules_commit": "e42400842610d6107581deb3cd49deb52c8d2d47",
   "changes": {
     "unchanged": 272757,
     "moved": 0,
@@ -32,8 +32,8 @@
       "UserTicket-R.json"
     ]
   },
-  "copy": 38,
-  "reused": 11,
+  "copy": 0,
+  "reused": 0,
   "adjustments": {
     "applied": 25,
     "moved": [],
@@ -45,5 +45,5 @@
   "new_speakers": [],
   "field_changes": [],
   "new_files_default_family": [],
-  "pending": 71
+  "pending": 0
 }

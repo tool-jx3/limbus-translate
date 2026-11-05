@@ -3346,7 +3346,7 @@
     {
       "id": 1031504,
       "name": "神之旨意和價值與我們同在……",
-      "desc": "除自身以外屬於漆黑派的友方人格攻擊敵方單位前，自身使用「審判！」優先對主要目標進行單方面攻擊(每回合最多1次)\n\n基礎技能的最後一枚硬幣開始投擲時，使該硬幣的最終威力增加(自身的 [ChargeNoirAlly] 強度+目標的 [NoirNailDonQuixote] 層數÷2)(最多+5)\n\n若自身帶有 [OathFieldDonQuixote]，則使基礎技能1/2/3的拚點威力+1/+2/+3\n\n對帶有 [NoirNailDonQuixote] 的目標觸發 [VibrationExplosion] 時，使自身與除自身以外 [Charge] 回數最低的1名友方 [PersonalityCharge] 各獲得2回 [Charge] (每回合最多2次)",
+      "desc": "除自身以外屬於漆黑派的友方人格對敵方使用攻擊技能、反擊技能前，自身使用「審判！」優先對主要目標進行單方面攻擊(每回合最多1次)\n\n基礎技能的最後一枚硬幣開始投擲時，使該硬幣的最終威力增加(自身的 [ChargeNoirAlly] 強度+目標的 [NoirNailDonQuixote] 層數÷2)(最多+5)\n\n若自身帶有 [OathFieldDonQuixote]，則使基礎技能1/2/3的拚點威力+1/+2/+3\n\n對帶有 [NoirNailDonQuixote] 的目標觸發 [VibrationExplosion] 時，使自身與除自身以外 [Charge] 回數最低的1名友方 [PersonalityCharge] 各獲得2回 [Charge] (每回合最多2次)",
       "summary": "屬於漆黑派的友方單位攻擊前，自身使用「審判！」\n自身基礎技能最後一枚硬幣的最終威力增加[TabExplain]\n若已啟動 [OathFieldDonQuixote]，則使自身基礎技能的拚點威力增加[TabExplain]\n若目標帶有 [NoirNailDonQuixote] 時觸發了 [VibrationExplosion]，則使自身獲得 [Charge] 回數",
       "flavor": "在這萬物皆不確定的世上，唯有一者引領並守護我們，那便是漆黑之神的話語。那話語成為道路、成為光芒照耀我們，我們方才被賦予了意義。"
     },

@@ -117,6 +117,72 @@
           "simpleDesc": "對主要目標造成斬擊傷害[TabExplain]"
         }
       ]
+    },
+    {
+      "id": 9301,
+      "name": "暴風肆虐的山丘",
+      "desc": "回合結束時，若自身陷入混亂，則解除自身的混亂，下回合開始時使全體敵方單位增加4級 [Sinking] 強度與4回 [Sinking] (每場戰鬥最多1次；若是集中遭遇戰，則改為所有部位)\n- 編隊的人格中，咆哮山莊與埃德加家族所屬人格合計每有2名，每場戰鬥的發動次數+1 (每場戰鬥最多發動4次，包括待命人員)\n\n擊殺敵方單位時，對 [Sinking] 回數最低的1名敵方單位施加2回 [Sinking] (若是集中遭遇戰，則改為1個部位)\n\n命中擁有理智值的敵方單位時，若目標的理智值為-45點，則對其造成等同於目標 [Sinking] 強度的憂鬱傷害\n\n集中遭遇戰中，命中 [Sinking] 強度與 [Sinking] 回數之和不低於10的敵方單位時，對目標造成(其 [Sinking] 強度/2)點憂鬱傷害 (每個技能最多1次)\n\n若命中敵方單位的技能為增加 [Sinking] (包含回數以及特殊 [Sinking] )的技能，則不造成 (目標帶有的 [Sinking] 強度/2) 點憂鬱傷害，改為造成 (目標帶有的 [Sinking] 強度) 點憂鬱傷害\n(每回合僅適用於第1個命中敵方且增加 [Sinking] 的技能)\n\n[<noparse>狂獵</noparse> 希斯克利夫專用效果]\n回合開始時，若自身沒有 [NightPathfinding]，則獲得1層 [NightPathfinding]\n- 若自身的 [Coffin] 為5/10層，則改為獲得2/3層 [NightPathfinding]\n- 使屬於咆哮山莊、埃德加家族的人格獲得1層 [SoundOfStorm] (戰鬥中每名人格最多3次)\n\n獲得 [Coffin] 時，獲得量變為2倍\n- 屬於咆哮山莊、埃德加家族的人格擊殺敵方單位時，也使自身獲得2層 [Coffin]\n\n「悲嘆、哀慟、破滅吧」的使用時效果使自身失去的理智值增加15點\n- 透過該技能與本飾品的效果，理智值不會降至-40點以下\n\n「悲嘆、哀慟、破滅吧」的最後一枚硬幣命中時，若敵方帶有的 [Sinking] 不低於20，則造成等同於該硬幣最終傷害量100%的憂鬱傷害",
+      "simpleDesc": [
+        {
+          "abilityID": 9432,
+          "simpleDesc": "下回合使全體敵方單位增加 [Sinking] 強度與回數各4"
+        },
+        {
+          "abilityID": 94321,
+          "simpleDesc": "使 [Sinking] 回數最低的敵方單位增加2回 [Sinking]"
+        },
+        {
+          "abilityID": 9436,
+          "simpleDesc": "根據目標的 [Sinking] 造成憂鬱傷害"
+        },
+        {
+          "abilityID": 94361,
+          "simpleDesc": "根據目標的 [Sinking] 造成憂鬱傷害"
+        },
+        {
+          "abilityID": 93011,
+          "simpleDesc": "獲得 [NightPathfinding]，使特定所屬的人格獲得 [SoundOfStorm]"
+        },
+        {
+          "abilityID": 93012,
+          "simpleDesc": "獲得 [Coffin] 時，獲得量變為2倍"
+        },
+        {
+          "abilityID": 93013,
+          "simpleDesc": "特定所屬的人格擊殺敵方單位時，獲得 [Coffin]"
+        },
+        {
+          "abilityID": 93014,
+          "simpleDesc": "「悲嘆、哀慟、破滅吧」使用時失去的理智值增加"
+        },
+        {
+          "abilityID": 93015,
+          "simpleDesc": "「悲嘆、哀慟、破滅吧」的最後一枚硬幣命中時造成憂鬱傷害"
+        }
+      ]
+    },
+    {
+      "id": 9302,
+      "name": "霜之溫度",
+      "desc": "回合開始時，若理智值不低於40點或不高於-40點，則獲得1層 [GainSinStockAdder]\n\n[擁有不低於2個減算硬幣技能的人格專用效果]\n回合開始時，理智值減少15點(透過本效果，理智值不會降至-40點以下)\n\n本場戰鬥中，受到會使理智值變為-45點的傷害時，本回合內理智值維持為-44點(每場戰鬥最多1次)\n(※僅適用於理智值傷害；理智值被變更，或使用E.G.O技能等消耗理智值的情況不適用)\n\n技能3或E.G.O技能進行攻擊前，消耗最多5個與技能屬性相同的罪孽碎片，使<noparse>造成的傷害</noparse>+(消耗的罪孽碎片數×10)%",
+      "simpleDesc": [
+        {
+          "abilityID": 9302,
+          "simpleDesc": "滿足理智值條件時，獲得 [GainSinStockAdder]"
+        },
+        {
+          "abilityID": 93021,
+          "simpleDesc": "回合開始時，理智值減少"
+        },
+        {
+          "abilityID": 93022,
+          "simpleDesc": "受到會使理智值變為-45點的傷害時，撐住1次"
+        },
+        {
+          "abilityID": 93023,
+          "simpleDesc": "消耗罪孽碎片，使技能3、E.G.O技能<noparse>造成的傷害</noparse>增加"
+        }
+      ]
     }
   ]
 }

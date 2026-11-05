@@ -257,27 +257,27 @@
       "content": "1名友方單位於BOSS關卡（各階層最終關卡）承受超過體力上限80%的傷害且存活的狀態下擊殺BOSS。"
     },
     {
-      "id": "mission_ui_condition_tags_201005014",
+      "id": "mission_ui_condition_tags_201005014_5",
       "content": "戰鬥中存在10名以上敵方單位時，於該回合擊殺所有10名以上敵方單位（若是於集中遭遇戰，則以本體判定）"
     },
     {
-      "id": "mission_ui_condition_tags_201005015",
+      "id": "mission_ui_condition_tags_201005015_5",
       "content": "使用1個攻擊技能造成2個以上的部位同時陷入混亂或部位被破壞狀態"
     },
     {
-      "id": "mission_ui_condition_tags_201005016",
+      "id": "mission_ui_condition_tags_201005016_5",
       "content": "對1名敵方單位施加不低於10種負面效果的狀態下戰鬥勝利"
     },
     {
-      "id": "mission_ui_condition_tags_201005017",
+      "id": "mission_ui_condition_tags_201005017_5",
       "content": "在一次鏡像迷宮進程中，發動E.G.O飾品「糾纏的因緣」的效果完成5次關卡。"
     },
     {
-      "id": "mission_ui_condition_tags_201005018",
+      "id": "mission_ui_condition_tags_201005018_5",
       "content": "擊殺「異常地震帶」主題卡包BOSS時，持有5種以上與酒相關的E.G.O飾品\n（木質酒杯、綠光果實、膏血、搖晃的酒桶、殘響、涓滴之杯、暴雨、魔鬼所享、天使所私、廢料蟹腦髓泡酒、紹興酒，以上任5種）"
     },
     {
-      "id": "mission_ui_condition_tags_201005019",
+      "id": "mission_ui_condition_tags_201005019_5",
       "content": "在編隊中編入至少2名屬於環指的人格，任一該人格透過E.G.O飾品「佳作」獲得「卓越的美感」效果的狀態下戰鬥勝利"
     }
   ]
