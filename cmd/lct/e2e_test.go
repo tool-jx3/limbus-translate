@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/fs"
 	"maps"
 	"os"
@@ -15,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
@@ -135,8 +137,9 @@ func mustLct(t *testing.T, into any, args ...string) {
 
 // e2eRepo makes the repo the dry run works in: a git repo on main holding what
 // the real repo holds besides code, with the real font linked in rather than
-// copied (it is 23 MB).
-func e2eRepo(t *testing.T) string {
+// copied (it is 23 MB). terms are glossary entries (YAML blocks) added to the
+// repo's own before the glossary is fitted to the fixtures, as a person adds one.
+func e2eRepo(t *testing.T, terms ...string) string {
 	t.Helper()
 	root := t.TempDir()
 	for _, f := range []string{"lct.yaml", "LICENSE-CONTENT", ".gitignore", "assets/fonts/OFL.txt"} {
@@ -145,7 +148,10 @@ func e2eRepo(t *testing.T) string {
 	for _, d := range []string{"guides", "glossary", "rules"} {
 		copyDir(t, filepath.Join(repoRoot, d), filepath.Join(root, d))
 	}
-	dropTerms(t, root, fixtureTerms...)
+	for _, term := range terms {
+		appendTestFile(t, root, "glossary/terms.yaml", "\n"+term)
+	}
+	dropFixtureTerms(t, root)
 	// The request, rewrite and adjustment files of the repo are made for its
 	// tw and its KR; the dry run has a tw and a KR of its own, and its files.
 	for _, d := range []string{"rules/requeue", "rules/rewrite", "rules/adjustments"} {
@@ -230,12 +236,77 @@ func e2eCDN(t *testing.T, fixture, token string) (template string) {
 	return "file://" + cdn + "/{token}/localize_{lang}.zip"
 }
 
-// fixtureTerms are the glossary terms the KR texts of the fixtures contain.
-// The fake model writes the shortest text that passes validation, which has
-// none of their renderings (Submit rejects that: term-missing), and its note
-// would show in the build report; the replays copy the repo's glossary
-// without them.
-var fixtureTerms = []string{"뒷골목", "버스", "속도", "턴 종료 시"}
+// dropFixtureTerms removes from the glossary under root every approved entry
+// whose KR the KR texts of the fixtures hold (fixtureKR), as the checks match
+// it (rules.Term.OccursIn). The fake model writes the shortest text that passes
+// validation, which has none of their renderings (Submit rejects that:
+// term-missing), and a note would show in the build report; so the replays do
+// not depend on what the repo's glossary holds. A test that means to check a
+// term adds its entry after e2eRepo.
+func dropFixtureTerms(t *testing.T, root string) {
+	t.Helper()
+	texts := fixtureKR(t)
+	hits := func() []string {
+		r, err := rules.Load(root)
+		if err != nil {
+			t.Fatal(err)
+		}
+		var krs []string
+		for _, term := range r.Glossary {
+			if term.Status != rules.StatusApproved || term.KR == "" || slices.Contains(krs, term.KR) {
+				continue
+			}
+			if slices.ContainsFunc(texts, term.OccursIn) {
+				krs = append(krs, term.KR)
+			}
+		}
+		return krs
+	}
+	dropTerms(t, root, hits()...)
+	if left := hits(); len(left) > 0 {
+		t.Fatalf("glossary/terms.yaml: dropTerms left the entries of %q, which the fixtures hold", left)
+	}
+}
+
+// fixtureKR are the KR texts of the fixtures the replays run on (every string
+// of the KR packs of e2eFixture and phase2Fixture) and the lines the replays
+// add to them.
+func fixtureKR(t *testing.T) []string {
+	t.Helper()
+	texts := []string{newSpeakerKR}
+	var collect func(v any)
+	collect = func(v any) {
+		switch v := v.(type) {
+		case string:
+			texts = append(texts, v)
+		case []any:
+			for _, e := range v {
+				collect(e)
+			}
+		case map[string]any:
+			for _, e := range v {
+				collect(e)
+			}
+		}
+	}
+	for _, dir := range []string{e2eFixture, phase2Fixture} {
+		err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
+			if err != nil || d.IsDir() || filepath.Ext(p) != ".json" || !slices.Contains(strings.Split(filepath.ToSlash(p), "/"), "kr") {
+				return err
+			}
+			var v any
+			if err := json.Unmarshal(readFile(t, p), &v); err != nil {
+				return fmt.Errorf("%s: %v", p, err)
+			}
+			collect(v)
+			return nil
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	return texts
+}
 
 // dropTerms removes the entries of the glossary under root whose KR is one of
 // krs.

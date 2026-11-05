@@ -422,7 +422,10 @@ func TestPhase2Replay(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	p := &phase2{t: t, root: e2eRepo(t), fixture: fixture, claude: claude, fakeDir: t.TempDir()}
+	// The replay holds whatever the glossary holds: a person approving an
+	// ordinary term the fixture's texts have (피해, in KR_Passives.json and
+	// the like) does not change what it checks.
+	p := &phase2{t: t, root: e2eRepo(t, "- kr: 피해\n  zh: 傷害\n  status: approved\n"), fixture: fixture, claude: claude, fakeDir: t.TempDir()}
 	t.Chdir(p.root)
 	t.Setenv("LCT_MODEL", "e2e") // not a real model name
 	// As in CI: the build time is the time of the commit of the rules.
