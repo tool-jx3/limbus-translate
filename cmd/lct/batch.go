@@ -153,11 +153,14 @@ func activeProvisional(root string, st *store.Store, r *rules.Rules) ([]rules.Te
 	return terms, err
 }
 
-// activeProvisionalRecords is activeProvisional with the records of those
-// terms too: every record of an active KR, conflicts included, in the order
-// of the file. These are what lct suggest and the review page list as
-// "term-new/<kr>". Which KR are active is decided by batch.ActiveProvisional
-// alone, so the batches and the suggestions never disagree.
+// activeProvisionalRecords is activeProvisional with the records of the
+// suggestions "term-new/<kr>" too: every record, conflicts included and in
+// the order of the file, of a KR that is in force or that only a person's
+// decline keeps out. lct suggest and the review page list those KR and treat
+// the declined ones as they treat any declined suggestion (lct suggest leaves
+// them out, the review page flags them). Which KR count is decided by
+// batch.ActiveProvisional alone, so the batches and the suggestions never
+// disagree.
 func activeProvisionalRecords(root string, st *store.Store, r *rules.Rules) ([]store.ProvisionalTerm, []rules.Term, error) {
 	all, err := st.LoadTerms()
 	if err != nil {
@@ -172,11 +175,11 @@ func activeProvisionalRecords(root string, st *store.Store, r *rules.Rules) ([]s
 		declined[d.ID] = true
 	}
 	terms := batch.ActiveProvisional(all, r, declined)
-	active := make(map[string]bool, len(terms))
-	for _, t := range terms {
-		active[t.KR] = true
+	listed := map[string]bool{}
+	for _, t := range batch.ActiveProvisional(all, r, nil) {
+		listed[t.KR] = true
 	}
-	records := slices.DeleteFunc(slices.Clone(all), func(p store.ProvisionalTerm) bool { return !active[p.KR] })
+	records := slices.DeleteFunc(slices.Clone(all), func(p store.ProvisionalTerm) bool { return !listed[p.KR] })
 	return records, terms, nil
 }
 

@@ -2,6 +2,7 @@ package site
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -837,28 +838,230 @@ func TestReviewNewTermEvidenceListsTheUnitsItHits(t *testing.T) {
 	in.Review.Provisional = []store.ProvisionalTerm{{KR: "자판기", ZH: "販賣機", Key: k(rvA, 0), Batch: "b1", RawTag: "t1"}}
 	// The fourth unit does not use the provisional rendering.
 	in.ZH = writePack(t, "", map[string]string{rvA: `{"dataList":[{"id":1,"content":"販賣機一"},{"id":2,"content":"販賣機二"},{"id":3,"content":"販賣機三"},{"id":4,"content":"自動賣貨機四"}]}`})
+	in.Records[k(rvA, 3)] = withSha(record(rvA, "/dataList/3/content", "自動賣貨機四", store.OriginClaude), "자판기 넷")
 	r, err := BuildReview(in, files)
 	if err != nil {
 		t.Fatal(err)
 	}
 	s := findSuggestion(t, r, "term-new/자판기")
-	var hits []suggest.Evidence
-	for _, e := range s.Evidence {
-		if e.Note == "有用" || e.Note == "未用" {
-			hits = append(hits, e)
-		}
-	}
-	if len(hits) != 4 {
-		t.Fatalf("evidence = %+v, want the four units it hits", s.Evidence)
+	hits := hitRows(s.Evidence)
+	// The first unit registered the term: it is the first row, not a hit.
+	if len(hits) != 3 {
+		t.Fatalf("evidence = %+v, want the three other units it hits", s.Evidence)
 	}
 	for i, h := range hits {
 		want := "有用"
-		if i == 3 {
+		if i == 2 {
 			want = "未用"
 		}
-		if h.Key != k(rvA, i) || h.Note != want || h.KR == "" || h.ZH == "" {
+		if h.Key != k(rvA, i+1) || h.Note != want || h.KR == "" || h.ZH == "" {
 			t.Errorf("hit %d = %+v, want note %s", i, h, want)
 		}
+	}
+}
+
+// newTermInputs has one unit in A.json for each row: its KR, its TW (the
+// string of the built pack) and the origin of its record, "" for a unit with
+// no record. The glossary is empty.
+func newTermInputs(t *testing.T, rows ...[3]string) (Inputs, []string) {
+	t.Helper()
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	type item struct {
+		ID      int    `json:"id"`
+		Content string `json:"content"`
+	}
+	var kr, en, zh []item
+	var recs []store.Record
+	for i, r := range rows {
+		kr = append(kr, item{i + 1, r[0]})
+		en = append(en, item{i + 1, "vending"})
+		zh = append(zh, item{i + 1, r[1]})
+		if r[2] != "" {
+			recs = append(recs, withSha(record(rvA, fmt.Sprintf("/dataList/%d/content", i), r[1], r[2]), r[0]))
+		}
+	}
+	doc := func(items []item) string {
+		b, err := json.Marshal(map[string][]item{"dataList": items})
+		if err != nil {
+			t.Fatal(err)
+		}
+		return string(b)
+	}
+	in := Inputs{
+		KR:      writePack(t, "KR_", map[string]string{rvA: doc(kr)}),
+		EN:      writePack(t, "EN_", map[string]string{rvA: doc(en)}),
+		JP:      writePack(t, "JP_", map[string]string{rvA: doc(en)}),
+		ZH:      writePack(t, "", map[string]string{rvA: doc(zh)}),
+		Records: recordsOf(recs...),
+		Rules:   glossaryRules(t, "[]\n"),
+	}
+	in.Review = &ReviewInputs{RawTag: "t1", Fields: fr}
+	return in, []string{rvA}
+}
+
+// nthKey is the key of the unit of row i of newTermInputs.
+func nthKey(i int) string { return rvKey(rvA, fmt.Sprintf("/dataList/%d/content", i)) }
+
+// hitRows are the rows of the evidence that are units a provisional term hits.
+func hitRows(ev []suggest.Evidence) []suggest.Evidence {
+	var out []suggest.Evidence
+	for _, e := range ev {
+		if e.Note == "有用" || e.Note == "未用" {
+			out = append(out, e)
+		}
+	}
+	return out
+}
+
+// The evidence of a provisional term is at most suggest.MaxEvidence rows in
+// all: the registration, then the conflicts, then the units it hits.
+func TestReviewNewTermEvidenceIsCapped(t *testing.T) {
+	var rows [][3]string
+	for i := range suggest.MaxEvidence + 5 {
+		rows = append(rows, [3]string{fmt.Sprintf("자판기 %d", i), fmt.Sprintf("販賣機%d", i), store.OriginClaude})
+	}
+	in, files := newTermInputs(t, rows...)
+	in.Review.Provisional = []store.ProvisionalTerm{
+		{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"},
+		{KR: "자판기", ZH: "售貨機", Key: nthKey(1), Batch: "b2", Conflict: true},
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	ev := findSuggestion(t, r, "term-new/자판기").Evidence
+	if len(ev) != suggest.MaxEvidence {
+		t.Fatalf("%d rows of evidence, want %d: %+v", len(ev), suggest.MaxEvidence, ev)
+	}
+	if ev[0].Note != "b1" || ev[1].Note != "衝突" {
+		t.Errorf("first rows = %+v, %+v; want the registration, then the conflict", ev[0], ev[1])
+	}
+	if hits := hitRows(ev); len(hits) != suggest.MaxEvidence-2 || hits[0].Key != nthKey(2) {
+		t.Errorf("hits = %+v, want %d from %s", hits, suggest.MaxEvidence-2, nthKey(2))
+	}
+}
+
+// The units a provisional term hits are those with a translation of their
+// own: not a copy, not a unit with no record or a fallback. The units of the
+// registration and of a conflict are listed once, as such.
+func TestReviewNewTermHitsAreTranslatedUnits(t *testing.T) {
+	in, files := newTermInputs(t,
+		[3]string{"자판기 하나", "販賣機一", store.OriginClaude},
+		[3]string{"자판기", "자판기", store.OriginCopy},
+		[3]string{"자판기 셋", "vending three", ""},
+		[3]string{"자판기 넷", "vending four", store.OriginFallback},
+		[3]string{"자판기 다섯", "售貨機五", store.OriginParatranz},
+		[3]string{"자판기 여섯", "販賣機六", store.OriginHuman},
+	)
+	in.Review.Provisional = []store.ProvisionalTerm{
+		{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"},
+		{KR: "자판기", ZH: "售貨機", Key: nthKey(4), Batch: "b2", Conflict: true},
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	ev := findSuggestion(t, r, "term-new/자판기").Evidence
+	want := []suggest.Evidence{
+		{Key: nthKey(0), KR: "자판기", ZH: "販賣機", Note: "b1"},
+		{Key: nthKey(4), KR: "자판기", ZH: "售貨機", Note: "衝突"},
+		{Key: nthKey(5), KR: "자판기 여섯", ZH: "販賣機六", Note: "有用"},
+	}
+	if !slices.Equal(ev, want) {
+		t.Errorf("evidence =\n  %+v\nwant\n  %+v", ev, want)
+	}
+}
+
+// A provisional term's suggestion names its term, the KR and the rendering in
+// force (a conflict is not it), as a term group does; no other kind has one.
+func TestReviewNewTermNamesItsTerm(t *testing.T) {
+	in, files := newTermInputs(t, [3]string{"자판기 하나", "販賣機一", store.OriginClaude})
+	in.Review.Provisional = []store.ProvisionalTerm{
+		{KR: "자판기", ZH: "售貨機", Key: nthKey(0), Batch: "b0", Conflict: true},
+		{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"},
+	}
+	in.Review.Build = &build.Info{RawTag: "t1", Report: build.Report{Notes: []store.Note{{Key: nthKey(0), Note: "備註"}}}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := findSuggestion(t, r, "term-new/자판기")
+	if s.Term == nil || *s.Term != (TermRef{KR: "자판기", ZH: "販賣機"}) {
+		t.Errorf("term = %+v, want 자판기 → 販賣機", s.Term)
+	}
+	data, err := json.Marshal(s)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"term":{"kr":"자판기","zh":"販賣機"}`) {
+		t.Errorf("JSON lacks the term: %s", data)
+	}
+	others := 0
+	for _, o := range r.Suggestions {
+		if o.Kind != suggest.KindNewTerm {
+			others++
+			if o.Term != nil {
+				t.Errorf("%s has a term: %+v", o.ID, o.Term)
+			}
+		}
+	}
+	if others == 0 {
+		t.Errorf("no suggestion of another kind in %+v", r.Suggestions)
+	}
+}
+
+// A declined provisional term is listed like any declined suggestion: flagged
+// with the decline, its term and evidence kept, and not counted as waiting.
+func TestReviewDeclinedNewTermIsListedAsDeclined(t *testing.T) {
+	in, files := newTermInputs(t,
+		[3]string{"자판기 하나", "販賣機一", store.OriginClaude},
+		[3]string{"자판기 둘", "販賣機二", store.OriginClaude},
+	)
+	in.Review.Provisional = []store.ProvisionalTerm{{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	before := countReview(r)
+	in.Review.Declined = []suggest.Declined{{ID: "term-new/자판기", Reason: "譯法還沒定", Date: "2026-11-05"}}
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	s := findSuggestion(t, r, "term-new/자판기")
+	if s.Declined == nil || *s.Declined != (Confirmed{Reason: "譯法還沒定", Date: "2026-11-05"}) {
+		t.Errorf("declined = %+v", s.Declined)
+	}
+	if s.Term == nil || s.Term.ZH != "販賣機" || len(hitRows(s.Evidence)) != 1 {
+		t.Errorf("term %+v, evidence %+v; want both kept", s.Term, s.Evidence)
+	}
+	if c := countReview(r); c.Suggestions != before.Suggestions-1 {
+		t.Errorf("counts = %+v, before %+v: want one suggestion less", c, before)
+	}
+}
+
+// A tag does not keep a provisional term from hitting a unit, in the KR as in
+// the TW: the checks strip the tags of both.
+func TestReviewNewTermHitsAcrossTags(t *testing.T) {
+	in, files := newTermInputs(t,
+		[3]string{"자판기 하나", "販賣機一", store.OriginClaude},
+		[3]string{"<b>자판</b>기 둘", "<b>販</b>賣機二", store.OriginClaude},
+		[3]string{"<i>자판기</i> 셋", "自動賣貨機三", store.OriginClaude},
+	)
+	in.Review.Provisional = []store.ProvisionalTerm{{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	hits := hitRows(findSuggestion(t, r, "term-new/자판기").Evidence)
+	want := []suggest.Evidence{
+		{Key: nthKey(1), KR: "<b>자판</b>기 둘", ZH: "<b>販</b>賣機二", Note: "有用"},
+		{Key: nthKey(2), KR: "<i>자판기</i> 셋", ZH: "自動賣貨機三", Note: "未用"},
+	}
+	if !slices.Equal(hits, want) {
+		t.Errorf("hits =\n  %+v\nwant\n  %+v", hits, want)
 	}
 }
 

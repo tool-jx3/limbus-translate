@@ -386,6 +386,9 @@ func acceptLookup(ctx *cli.Context, ids []string) error {
 		for _, v := range sg.Variants {
 			it.Keys = append(it.Keys, v.Keys...)
 		}
+		if sg.Term != nil {
+			it.KR, it.ZH = sg.Term.KR, sg.Term.ZH
+		}
 		if sg.Kind == suggest.KindNote && len(sg.Evidence) > 0 {
 			it.Note = sg.Evidence[0].Note
 			if sg.Evidence[0].Key != "" {

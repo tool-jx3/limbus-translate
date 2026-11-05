@@ -114,10 +114,12 @@ type Inputs struct {
 	Build *build.Info
 	// Plan is .meta/plan.json of the tw worktree, nil if there is none.
 	Plan *plan.Summary
-	// Provisional are the records of the provisional terms in force
-	// (.meta/terms.jsonl), conflicts included: the caller has left out the KR
-	// the glossary has and the one a person declined (batch.ActiveProvisional
-	// says which are in force), so Run lists every KR it gets.
+	// Provisional are the records of the provisional terms (.meta/terms.jsonl),
+	// conflicts included, of the KR that are in force or that only a person's
+	// decline keeps out: the caller has left out the KR the glossary has and
+	// the too short ones (batch.ActiveProvisional says which). Run lists every
+	// KR it gets; a declined one is left out (Exclude) or flagged as declined
+	// as the suggestions of any kind are.
 	Provisional []store.ProvisionalTerm
 }
 

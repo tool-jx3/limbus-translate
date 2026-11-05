@@ -489,6 +489,11 @@ func TestAcceptDeclinesANewTerm(t *testing.T) {
 	if len(look.Items) != 1 || look.Items[0].Kind != "term-new" || look.Items[0].List != "declined" || len(look.Unknown) != 0 {
 		t.Fatalf("dry run = %+v, want the term-new item that goes to declined", look)
 	}
+	if it := look.Items[0]; it.KR != "우레" || it.ZH != "雷鳴" {
+		t.Errorf("dry run KR %q TW %q, want the term 우레 → 雷鳴", it.KR, it.ZH)
+	}
+	mustLct(t, nil, "site", "--out", "work/site")
+	before := reviewCounts(t, s.root)
 	r, err := rules.Load(s.root)
 	if err != nil {
 		t.Fatal(err)
@@ -510,8 +515,39 @@ func TestAcceptDeclinesANewTerm(t *testing.T) {
 	}
 	var sug suggestOut
 	mustLct(t, &sug, "suggest", "--kind", "term-new")
-	if len(sug.Suggestions) != 0 {
-		t.Errorf("suggest still lists %v", sug.ids())
+	if len(sug.Suggestions) != 0 || sug.Excluded != 1 {
+		t.Errorf("suggest lists %v, %d excluded; want none, the declined one excluded", sug.ids(), sug.Excluded)
+	}
+
+	// The review page lists it as declined, as it does any declined
+	// suggestion, and counts one less waiting.
+	mustLct(t, nil, "site", "--out", "work/site")
+	type pageItem struct {
+		ID   string `json:"id"`
+		Term *struct {
+			KR string `json:"kr"`
+			ZH string `json:"zh"`
+		} `json:"term"`
+		Declined *struct {
+			Reason string `json:"reason"`
+			Date   string `json:"date"`
+		} `json:"declined"`
+	}
+	var page struct {
+		Items []pageItem `json:"items"`
+	}
+	if err := json.Unmarshal(readFile(t, filepath.Join(s.root, "work", "site", "review", "suggestions.json")), &page); err != nil {
+		t.Fatal(err)
+	}
+	i := slices.IndexFunc(page.Items, func(it pageItem) bool { return it.ID == id })
+	if i < 0 {
+		t.Fatalf("suggestions.json lacks %s", id)
+	}
+	if it := page.Items[i]; it.Declined == nil || it.Declined.Reason != "譯法還沒定" || it.Declined.Date != "2026-11-05" || it.Term == nil || it.Term.ZH != "雷鳴" {
+		t.Errorf("%s = %+v, want it declined with its term", id, it)
+	}
+	if after := reviewCounts(t, s.root); after.Suggestions != before.Suggestions-1 {
+		t.Errorf("meta.review = %+v, before %+v: want one suggestion less", after, before)
 	}
 }
 

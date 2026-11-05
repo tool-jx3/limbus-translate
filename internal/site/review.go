@@ -39,8 +39,10 @@ type ReviewInputs struct {
 	// rules/accepted.yaml.
 	Declined []suggest.Declined
 	Accepted []suggest.Declined
-	// Provisional are the records of the provisional terms in force, which
-	// the review page lists as term-new suggestions (see suggest.Inputs).
+	// Provisional are the records of the provisional terms in force and of
+	// the declined ones, which the review page lists as term-new suggestions
+	// (see suggest.Inputs); a declined one is flagged with its entry of
+	// Declined, as a suggestion of any kind is.
 	Provisional []store.ProvisionalTerm
 }
 
@@ -95,10 +97,13 @@ type SuggestionItem struct {
 	Variants []Variant `json:"variants,omitempty"`
 	// JPENClass says whether JP and EN tell the variants apart: JPENSame,
 	// JPENExplained or JPENPartial; inconsistent groups only.
-	JPENClass string             `json:"jpen_class,omitempty"`
-	Evidence  []suggest.Evidence `json:"evidence"`
-	Pending   int                `json:"pending"`
-	Declined  *Confirmed         `json:"declined,omitempty"`
+	JPENClass string `json:"jpen_class,omitempty"`
+	// Term is the term of a provisional term's suggestion (term-new): its KR
+	// and the rendering the batches carry, not a conflict's.
+	Term     *TermRef           `json:"term,omitempty"`
+	Evidence []suggest.Evidence `json:"evidence"`
+	Pending  int                `json:"pending"`
+	Declined *Confirmed         `json:"declined,omitempty"`
 }
 
 // WarningItem is one check warning: a code about one KR text and its
@@ -219,10 +224,27 @@ type group struct {
 	jpen              map[string][2]*string // unit key -> its JP, EN
 }
 
-// newTermHits is the units whose KR a provisional term hits, as evidence.
+// newTermHits is the units whose KR a provisional term hits, as evidence:
+// at most room of them, none of the units the suggestion lists already
+// (listed: the registration and the conflicts).
 type newTermHits struct {
-	term  rules.Term
-	units []suggest.Evidence
+	term   rules.Term
+	units  []suggest.Evidence
+	room   int
+	listed map[string]bool
+}
+
+// add adds the unit key to the hits when the term hits its KR and there is
+// room. u is the unit as the page shows it: only a unit whose text is a
+// translation of its own (shownOrigin: not a copy, a fallback or a unit with
+// no record) says whether the term is used. Tags are no text, in the KR as in
+// the TW, as the checks have it.
+func (h *newTermHits) add(key string, u Unit, kr string) {
+	if len(h.units) >= h.room || h.listed[key] || !shownOrigin(u.O) || !h.term.OccursIn(validate.StripTags(kr)) {
+		return
+	}
+	used := strings.Contains(validate.StripTags(u.ZH), validate.StripTags(h.term.ZH))
+	h.units = append(h.units, suggest.Evidence{Key: key, KR: kr, ZH: u.ZH, Note: usedNote(used)})
 }
 
 // usedNote is the note of a unit a provisional term hits: whether its
@@ -276,7 +298,8 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	declined := confirmedIndex(rv.Declined)
 	accepted := confirmedIndex(rv.Accepted)
 
-	// The provisional terms with a suggestion, and the units their KR hits.
+	// The provisional terms with a suggestion, and the units their KR hits:
+	// as many as the rows of evidence suggest leaves room for.
 	newTerms := map[string]*newTermHits{}
 	for _, s := range suggestions {
 		if s.Kind != suggest.KindNewTerm {
@@ -285,7 +308,11 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		kr := strings.TrimPrefix(s.ID, s.Kind+"/")
 		for _, p := range rv.Provisional {
 			if p.KR == kr && !p.Conflict {
-				newTerms[s.ID] = &newTermHits{term: rules.Term{KR: kr, ZH: p.ZH, Match: rules.MatchWord}}
+				h := &newTermHits{term: rules.Term{KR: kr, ZH: p.ZH, Match: rules.MatchWord}, room: suggest.MaxEvidence - len(s.Evidence), listed: map[string]bool{}}
+				for _, e := range s.Evidence {
+					h.listed[e.Key] = true
+				}
+				newTerms[s.ID] = h
 				break
 			}
 		}
@@ -318,9 +345,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				g.jpen[key] = [2]*string{u.JP, u.EN}
 			}
 			for _, h := range newTerms {
-				if h.term.OccursIn(ku.KR) {
-					h.units = append(h.units, suggest.Evidence{Key: key, KR: ku.KR, ZH: u.ZH, Note: usedNote(strings.Contains(u.ZH, h.term.ZH))})
-				}
+				h.add(key, u, ku.KR)
 			}
 			// The warnings are chosen as the build chooses what to check.
 			rec, ok := in.Records[key]
@@ -448,7 +473,8 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		}
 		item := SuggestionItem{ID: s.ID, Kind: s.Kind, Title: s.Title, Evidence: s.Evidence, Declined: declined[s.ID]}
 		if h := newTerms[s.ID]; h != nil {
-			item.Evidence = append(slices.Clone(s.Evidence), h.units[:min(len(h.units), suggest.MaxEvidence)]...)
+			item.Term = &TermRef{KR: h.term.KR, ZH: h.term.ZH}
+			item.Evidence = append(slices.Clone(s.Evidence), h.units...)
 		}
 		if s.Kind == suggest.KindInconsistent {
 			g := groups[s.ID]

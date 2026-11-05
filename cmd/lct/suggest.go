@@ -167,6 +167,8 @@ func runSuggest(ctx *cli.Context, args []string) error {
 	in := suggest.Inputs{RawTag: src.Tag, Rules: r, Adjustments: adjustments}
 	// The provisional terms in force are those the batches carry (one rule,
 	// batch.ActiveProvisional); suggest lists them for a person to decide on.
+	// A declined one comes too and is excluded below, as any declined
+	// suggestion is.
 	if in.Provisional, _, err = activeProvisionalRecords(ctx.Root, st, r); err != nil {
 		return err
 	}
