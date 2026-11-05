@@ -3659,3 +3659,82 @@ func TestMergedBatchShowsTheTermOfEachFile(t *testing.T) {
 		t.Errorf("glossary = %+v, want the entry of A.json, then the one of every file", b.Glossary)
 	}
 }
+
+// mirrorRouting is testRouting with the family mirror (*Mirror*), which comes
+// before other, as in the real routing.
+const mirrorRouting = `families:
+  - id: story-main
+    match: ["StoryData/S*"]
+    guide: guides/families.md
+  - id: mirror
+    match: ["*Mirror*"]
+    guide: guides/families.md
+  - id: other
+    match: []
+    guide: guides/families.md
+priority:
+  - story-main
+  - mirror
+  - other
+`
+
+// A batch of keyword files takes no other file of its family: the texts that
+// use the names wait for the names to be translated, and then get them in
+// the keywords of their batch.
+func TestKeywordBatchTakesOnlyKeywordFiles(t *testing.T) {
+	const bufs, gift = "Bufs_Mirror8.json", "EGOgift_Mirror8.json"
+	kr := map[string]string{
+		bufs: `{"dataList":[{"id":"Thunder","name":"우레"}]}`,
+		gift: `{"dataList":[{"id":1,"desc":"[Thunder] 3 부여"}]}`,
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, mirrorRouting, testGlossary)
+	nameKey, descKey := bufs+"|/dataList/0/name", gift+"|/dataList/0/desc"
+	seed(t, env, store.PendingItem{Key: nameKey, Reason: "new"}, store.PendingItem{Key: descKey, Reason: "new"})
+
+	b1 := mustNext(t, env, NextOptions{})
+	if b1 == nil || !slices.Equal(b1.Files, []string{bufs}) || !slices.Equal(keysOf(b1), []string{nameKey}) {
+		t.Fatalf("first batch = %+v, want the name in %s alone", b1, bufs)
+	}
+	res, err := Submit(env, b1, []OutUnit{{Key: nameKey, ZH: "雷鳴"}}, "m", 3)
+	if err != nil || !slices.Equal(res.Accepted, []string{nameKey}) {
+		t.Fatalf("submit of the name = %+v, %v, want it accepted", res, err)
+	}
+	b2 := mustNext(t, env, NextOptions{})
+	if b2 == nil || !slices.Equal(b2.Files, []string{gift}) || !slices.Equal(keysOf(b2), []string{descKey}) {
+		t.Fatalf("second batch = %+v, want the text of %s", b2, gift)
+	}
+	if want := map[string]string{"Thunder": "雷鳴"}; !reflect.DeepEqual(b2.Keywords, want) {
+		t.Errorf("keywords of the second batch = %v, want %v: the name was translated first", b2.Keywords, want)
+	}
+}
+
+// With keyword files in two families, every unit of a keyword file is handed
+// out before any other unit; the keyword files of a family share a batch.
+func TestNextHandsOutEveryKeywordUnitFirst(t *testing.T) {
+	keywordFiles := []string{"BattleKeywords_Mirror8.json", "Bufs_Mirror8.json", "Bufs-a1c11p1.json"}
+	kr := map[string]string{"EGOgift_Mirror8.json": dataList(t, 2, "", line), "Other.json": dataList(t, 2, "", line)}
+	pending := append(items("EGOgift_Mirror8.json", 0, 2), items("Other.json", 0, 2)...)
+	for _, f := range keywordFiles {
+		kr[f] = dataList(t, 2, "", line)
+		pending = append(pending, items(f, 0, 2)...)
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, mirrorRouting, testGlossary)
+	seed(t, env, pending...)
+
+	var got [][]string
+	for b := mustNext(t, env, NextOptions{}); b != nil; b = mustNext(t, env, NextOptions{}) {
+		checkUnitFiles(t, b)
+		got = append(got, b.Files)
+	}
+	want := [][]string{
+		{"BattleKeywords_Mirror8.json", "Bufs_Mirror8.json"}, // mirror comes before other
+		{"Bufs-a1c11p1.json"},
+		{"EGOgift_Mirror8.json"},
+		{"Other.json"},
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("batches = %q, want %q", got, want)
+	}
+}

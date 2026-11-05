@@ -844,12 +844,13 @@ func checkPhase2StaleBatch(t *testing.T, p *phase2, id string) {
 
 // checkPhase2BatchFiles checks the files of the batches of one translation
 // run, in the order they were handed out: the files that name the keywords
-// (Bufs.json) come first; a batch lists the files of its units, which name
-// their own, all of the family of the batch; a story batch holds one file.
-// The files of the replay are small, so a run that hands out two files of one
-// family outside the stories has a batch with both, and one that does not has
-// none with more than one file. The replay has no such two files (Bufs.json is
-// of other, Passives.json of ally, and BgmLyrics/L.json is the one file of
+// (Bufs.json) come first, in batches of keyword files only; a batch lists the
+// files of its units, which name their own, all of the family of the batch; a
+// story batch holds one file. The files of the replay are small, so a run that
+// hands out two files of one family outside the stories, both keyword files
+// or both not, has a batch with both, and one that does not has none with
+// more than one file. The replay has no such two files (Bufs.json is of
+// other, Passives.json of ally, and BgmLyrics/L.json is the one file of
 // story-main outside StoryData/), so every batch of it holds one file.
 func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 	t.Helper()
@@ -861,12 +862,18 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 		t.Fatal("the run handed out no batch")
 	}
 	keywordsDone, merged := false, false
-	plain := map[string]map[string]bool{} // the files outside the stories, by family
+	// The files outside the stories, by family and by whether they name
+	// keywords: the files that may share a batch.
+	plain := map[string]map[string]bool{}
 	for _, b := range batches {
-		if names.IsKeywordFile(b.File) && keywordsDone {
+		keyword := names.IsKeywordFile(b.File)
+		if keyword && keywordsDone {
 			t.Errorf("batch %s of %s comes after a batch of no keyword file", b.ID, b.File)
 		}
-		keywordsDone = keywordsDone || !names.IsKeywordFile(b.File)
+		if keyword && slices.ContainsFunc(b.Files, func(f string) bool { return !names.IsKeywordFile(f) }) {
+			t.Errorf("batch %s of the keyword file %s holds files that are none: %q", b.ID, b.File, b.Files)
+		}
+		keywordsDone = keywordsDone || !keyword
 		merged = merged || len(b.Files) > 1
 		var files []string
 		for _, u := range b.Units {
@@ -890,10 +897,11 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 				}
 				continue
 			}
-			if plain[b.Family] == nil {
-				plain[b.Family] = map[string]bool{}
+			group := fmt.Sprintf("%s, keyword file %v", b.Family, names.IsKeywordFile(f))
+			if plain[group] == nil {
+				plain[group] = map[string]bool{}
 			}
-			plain[b.Family][f] = true
+			plain[group][f] = true
 		}
 	}
 	mergeable := false

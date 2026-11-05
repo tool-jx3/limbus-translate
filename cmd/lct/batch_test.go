@@ -1026,3 +1026,76 @@ func TestBatchNextSkipsADeclinedProvisionalTerm(t *testing.T) {
 		t.Errorf("a declined term is in the batch:\n%s", data)
 	}
 }
+
+// Through lct batch next and batch submit: the keyword file goes out alone,
+// and once its name is in, the two texts of its family that use it go out in
+// one batch, which names its files and each unit its own, carries the name,
+// and is taken in whole.
+func TestBatchNextAndSubmitAMergedBatch(t *testing.T) {
+	root, st := batchRepo(t)
+	rawWT := filepath.Join(root, ".work", "raw")
+	const bufs, gift1, gift2 = "Bufs_Mirror8.json", "EGOgift_Mirror8.json", "EGOgift_Mirror8_2.json"
+	writeTestFile(t, rawWT, "kr/KR_"+bufs, `{"dataList":[{"id":"Thunder","name":"우레"}]}`)
+	writeTestFile(t, rawWT, "kr/KR_"+gift1, `{"dataList":[{"id":1,"desc":"[Thunder] 3 부여"}]}`)
+	writeTestFile(t, rawWT, "kr/KR_"+gift2, `{"dataList":[{"id":2,"desc":"[Thunder] 5 부여"}]}`)
+	nameKey, desc1, desc2 := bufs+"|/dataList/0/name", gift1+"|/dataList/0/desc", gift2+"|/dataList/0/desc"
+	if err := st.SavePending([]store.PendingItem{
+		{Key: nameKey, Reason: "new"}, {Key: desc1, Reason: "new"}, {Key: desc2, Reason: "new"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	readBatch := func(next nextOut) batch.Batch {
+		t.Helper()
+		var b batch.Batch
+		if err := json.Unmarshal(readFile(t, next.Path), &b); err != nil {
+			t.Fatal(err)
+		}
+		return b
+	}
+
+	next, raw, err := runNextJSON(t, root)
+	if err != nil || next.Batch == nil {
+		t.Fatalf("batch next: %v\n%s", err, raw)
+	}
+	if b := readBatch(next); !slices.Equal(b.Files, []string{bufs}) || len(b.Units) != 1 {
+		t.Fatalf("first batch = %+v, want the name of %s alone", b, bufs)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: nameKey, ZH: "雷鳴"})
+	if got, raw, err := runSubmitJSON(t, root, *next.Batch); err != nil || !slices.Equal(got.Accepted, []string{nameKey}) {
+		t.Fatalf("submit of the name: %v\n%s", err, raw)
+	}
+
+	next, raw, err = runNextJSON(t, root)
+	if err != nil || next.Batch == nil || next.Units != 2 {
+		t.Fatalf("batch next: %+v, %v\n%s", next, err, raw)
+	}
+	b := readBatch(next)
+	if b.File != gift1 || !slices.Equal(b.Files, []string{gift1, gift2}) || b.Family != "mirror" {
+		t.Fatalf("second batch = %+v, want %s and %s of mirror", b, gift1, gift2)
+	}
+	for i, want := range []string{gift1, gift2} {
+		if b.Units[i].File != want {
+			t.Errorf("unit %s names the file %q, want %q", b.Units[i].Key, b.Units[i].File, want)
+		}
+	}
+	if b.Keywords["Thunder"] != "雷鳴" {
+		t.Errorf("keywords = %v, want Thunder to be 雷鳴", b.Keywords)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: desc1, ZH: "賦予3層[Thunder]"}, batch.OutUnit{Key: desc2, ZH: "賦予5層[Thunder]"})
+	got, raw, err := runSubmitJSON(t, root, *next.Batch)
+	if err != nil || !slices.Equal(got.Accepted, []string{desc1, desc2}) || len(got.Rejected) != 0 {
+		t.Fatalf("submit of the merged batch: %v\n%s", err, raw)
+	}
+	recs, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, k := range []string{desc1, desc2} {
+		if rec := recs[k]; rec.Batch != *next.Batch || rec.Origin != store.OriginClaude {
+			t.Errorf("record of %s = %+v, want a claude record of batch %s", k, rec, *next.Batch)
+		}
+	}
+	if pending, err := st.LoadPending(); err != nil || len(pending) != 0 {
+		t.Errorf("pending = %v, %v, want none", pending, err)
+	}
+}

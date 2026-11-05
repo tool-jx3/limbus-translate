@@ -65,10 +65,12 @@ func (o NextOptions) withDefaults() (NextOptions, error) {
 // translated lines near its units. Any other file gives its first MaxUnits
 // eligible units, and while the batch holds fewer than MaxUnits the next files
 // in the same order that are of the same family and no story file add theirs,
-// up to MaxUnits in all. The units need not be next to each other, and a
-// pending line that is not eligible is skipped. The next batch of a file
-// starts at the first eligible unit left. Of twins (see twins.go) a batch
-// takes one, whichever files they are in.
+// up to MaxUnits in all; a batch that starts with a keyword file takes only
+// keyword files, so that the names are translated before the texts that use
+// them are handed out (and get them in Keywords). The units need not be next
+// to each other, and a pending line that is not eligible is skipped. The next
+// batch of a file starts at the first eligible unit left. Of twins (see
+// twins.go) a batch takes one, whichever files they are in.
 //
 // It returns nil, nil when there is nothing to hand out. The whole cut is one
 // store lock, so concurrent calls never share a unit.
@@ -272,11 +274,14 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		if IsStory(c.file) {
 			break
 		}
-		// Other files of the family fill the batch up.
+		// Other files of the family fill the batch up. A batch of keyword files
+		// takes no other file: the names are recorded before the texts that
+		// use them are cut, so those batches carry them in Keywords, and every
+		// keyword file goes out before any other file.
 		n := len(first.chosen)
 		for _, d := range files[i+1:] {
-			if n >= opt.MaxUnits {
-				break
+			if n >= opt.MaxUnits || c.keyword && !d.keyword {
+				break // the keyword files come first: none is left
 			}
 			if d.family != c.family || IsStory(d.file) {
 				continue
