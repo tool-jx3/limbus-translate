@@ -61,7 +61,7 @@ export function filterWarnings(items: WarningItem[], f: ReviewFilter, target?: s
       !hidden(w.accepted, f, w.id, target) &&
       (f.family === '' || w.families.includes(f.family)) &&
       (f.sub === '' || w.code === f.sub) &&
-      has(needle, [w.id, w.kr, w.zh, ...w.keys]),
+      has(needle, [w.id, w.kr, w.zh, ...w.keys, ...(w.units ?? []).flatMap((u) => [u.id, u.key, u.kr, u.zh, u.note])]),
   )
 }
 

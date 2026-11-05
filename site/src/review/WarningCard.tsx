@@ -1,13 +1,61 @@
 import { stripTags } from '../search/match'
 import { OriginBadge } from '../view/OriginBadge'
-import type { Origin, WarningItem } from '../types'
-import { WARNING_MARKS } from './marks'
+import type { Origin, TermRef, TermUnit, WarningItem } from '../types'
+import { WARNING_MARKS, termMark } from './marks'
 import { warningInfo } from './names'
-import { ConfirmedLine, IdCopy, Pending, Row, UnitLinks } from './parts'
+import { ConfirmedLine, IdCopy, Pending, Row, UnitLink, UnitLinks } from './parts'
 
 const chars = (s: string) => Array.from(stripTags(s)).length
 
-export function WarningCard({ item, target }: { item: WarningItem; target: boolean }) {
+/** A unit of a term-missing group: its source with the original term marked, its translation, the translator's note. */
+function TermUnitRow({ term, unit }: { term: TermRef; unit: TermUnit }) {
+  return (
+    <li class={unit.accepted ? 'rv-tunit is-confirmed' : 'rv-tunit'}>
+      <div class="rv-tunit-head">
+        <UnitLink unitKey={unit.key} />
+        <IdCopy id={unit.id} source={unit.zh} />
+      </div>
+      <ConfirmedLine confirmed={unit.accepted} />
+      <dl class="rv-src">
+        <Row label="KR" lang="kr" text={unit.kr} mark={termMark(term.kr)} />
+        <Row label="TW" lang="zh" text={unit.zh} />
+      </dl>
+      {unit.note !== undefined && <p class="rv-note-text">{unit.note}</p>}
+    </li>
+  )
+}
+
+/** A term-missing group: one glossary entry, and each unit that lacks its rendering. */
+function TermGroupCard({ item, term, units, target, showAccepted }: { item: WarningItem; term: TermRef; units: TermUnit[]; target: boolean; showAccepted: boolean }) {
+  const cls = ['rv-card', item.accepted ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
+  const info = warningInfo(item.code, item.message)
+  const shown = showAccepted ? units : units.filter((u) => !u.accepted)
+  return (
+    <article class={cls} data-id={item.id}>
+      <div class="rv-head">
+        <span class="rv-kind rv-kind-warn">{info.name}</span>
+        <span class="rv-where">
+          詞彙表：{term.kr} → {term.zh}（{units.length} 處）
+        </span>
+        {item.origins.map((o) => (
+          <OriginBadge key={o} origin={o as Origin} />
+        ))}
+        <Pending pending={item.pending} units={item.keys.length} />
+        <IdCopy id={item.id} source={`${term.kr} → ${term.zh}`} />
+      </div>
+      <p class="rv-msg">{item.message}</p>
+      <ConfirmedLine confirmed={item.accepted} />
+      <ul class="rv-tunits">
+        {shown.map((u) => (
+          <TermUnitRow key={u.id} term={term} unit={u} />
+        ))}
+      </ul>
+    </article>
+  )
+}
+
+export function WarningCard({ item, target, showAccepted = false }: { item: WarningItem; target: boolean; showAccepted?: boolean }) {
+  if (item.term && item.units) return <TermGroupCard item={item} term={item.term} units={item.units} target={target} showAccepted={showAccepted} />
   const info = warningInfo(item.code, item.message)
   const cls = ['rv-card', item.accepted ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
   const mark = WARNING_MARKS[item.code]

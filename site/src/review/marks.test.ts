@@ -2,7 +2,7 @@ import { render } from 'preact'
 import { h } from 'preact'
 import { afterEach, describe, expect, it } from 'vitest'
 import { TmpText } from '../tmp/TmpText'
-import { WARNING_MARKS } from './marks'
+import { WARNING_MARKS, termMark } from './marks'
 
 const containers: HTMLElement[] = []
 
@@ -69,5 +69,12 @@ describe('WARNING_MARKS', () => {
 
   it('has a mark for the codes of the spec and none for length-ratio', () => {
     expect(Object.keys(WARNING_MARKS).sort()).toEqual(['ascii-ellipsis', 'curly-quotes', 'halfwidth-bracket', 'halfwidth-punct', 'kana'])
+  })
+})
+
+describe('termMark', () => {
+  it('marks every occurrence of the term and nothing else, whatever characters it has', () => {
+    const el = show('a.b a.b axb', termMark('a.b'))
+    expect([...el.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['a.b', 'a.b'])
   })
 })

@@ -158,6 +158,20 @@ describe('ReviewView', () => {
     expect(card.querySelector('.rv-msg')?.textContent).toBe('the translation contains kana: "の"')
   })
 
+  it('shows a term group with its confirmed units only on all=1', async () => {
+    const unit = (n: number, accepted?: object) => ({ key: `a.json|/${n}`, id: `warning/term-missing/${n}`, kr: '자판기', zh: '機器', ...(accepted ? { accepted } : {}) })
+    const group = {
+      id: 'termgroup/aaaaaaaa/bbbbbbbb', code: 'term-missing', kr: '자판기', zh: '自動販賣機', message: 'm', keys: ['a.json|/1'], families: ['story'], origins: [], pending: 0,
+      term: { kr: '자판기', zh: '自動販賣機' }, units: [unit(1), unit(2, { reason: '例外', date: '2026-11-03' })],
+    }
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/warnings.json': { items: [group] } })))
+    clearDataCache()
+    let el = await mount(route('warnings'))
+    expect(el.querySelectorAll('.rv-tunit')).toHaveLength(1)
+    el = await mount(route('warnings', { all: true }))
+    expect(el.querySelectorAll('.rv-tunit')).toHaveLength(2)
+  })
+
   it('shows the whole note and the unit of a translator note', async () => {
     const el = await mount(route('notes'))
     expect(cards(el)).toHaveLength(1)

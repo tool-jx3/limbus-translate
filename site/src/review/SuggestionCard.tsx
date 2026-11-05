@@ -4,6 +4,7 @@ import { TmpText } from '../tmp/TmpText'
 import { LANG_ATTR, type JPENClass, type JPENGroup, type SuggestionItem } from '../types'
 import { variantDiff } from './diff'
 import { suggestionUnits } from './filter'
+import { termMark } from './marks'
 import { suggestionKindName } from './names'
 import { ConfirmedLine, DiffText, IdCopy, Pending, Row, ShownText, UnitLink, UnitLinks, splitKey } from './parts'
 
@@ -133,6 +134,35 @@ function Evidence({ item }: { item: SuggestionItem }) {
   )
 }
 
+/** The evidence of a provisional term: where it was registered, the other renderings, and the units that hit it. */
+function TermNewEvidence({ item }: { item: SuggestionItem }) {
+  const first = item.evidence[0]
+  const krMark = first?.kr !== undefined ? termMark(first.kr) : undefined
+  const zhMark = first?.zh !== undefined ? termMark(first.zh) : undefined
+  return (
+    <ul class="rv-evidence">
+      {item.evidence.map((e, k) => {
+        const hit = e.note === '有用' || e.note === '未用'
+        const label = k === 0 ? '登記的句子' : e.note === '衝突' ? '衝突的譯法' : hit ? '命中的句子' : ''
+        return (
+          <li key={k} class="rv-tev">
+            <div class="rv-tev-head">
+              {label && <span class="rv-tev-label">{label}</span>}
+              {e.key !== undefined && <UnitLink unitKey={e.key} />}
+              {hit && <span class={e.note === '有用' ? 'rv-use' : 'rv-use is-unused'}>{e.note}</span>}
+            </div>
+            {!hit && e.note !== undefined && <p class="rv-note-text">{e.note}</p>}
+            <dl class="rv-src">
+              {e.kr !== undefined && <Row label="KR" lang="kr" text={e.kr} {...(krMark ? { mark: krMark } : {})} />}
+              {e.zh !== undefined && <Row label="TW" lang="zh" text={e.zh} {...(zhMark ? { mark: zhMark } : {})} />}
+            </dl>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 export function SuggestionCard({ item, target, jpen = false }: { item: SuggestionItem; target: boolean; jpen?: boolean }) {
   const inconsistent = item.kind === 'inconsistent'
   const units = suggestionUnits(item)
@@ -152,7 +182,7 @@ export function SuggestionCard({ item, target, jpen = false }: { item: Suggestio
         <IdCopy id={item.id} source={source} />
       </div>
       <ConfirmedLine confirmed={item.declined} />
-      {inconsistent ? <Inconsistent item={item} jpen={jpen} /> : <Evidence item={item} />}
+      {inconsistent ? <Inconsistent item={item} jpen={jpen} /> : item.kind === 'term-new' ? <TermNewEvidence item={item} /> : <Evidence item={item} />}
     </article>
   )
 }

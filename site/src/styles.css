@@ -2127,3 +2127,51 @@ button.chip {
 .ut-origin {
   white-space: nowrap;
 }
+
+.rv-tunits {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rv-tunit,
+.rv-tev {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.rv-tunit {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+
+.rv-tunit.is-confirmed {
+  opacity: 0.6;
+}
+
+.rv-tunit-head,
+.rv-tev-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.rv-tev-label {
+  font-weight: 600;
+}
+
+.rv-use {
+  padding: 0 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.rv-use.is-unused {
+  font-weight: 600;
+}

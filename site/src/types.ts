@@ -170,8 +170,14 @@ export interface WarningItem {
   pending: number
   accepted?: Confirmed
   /** A term-missing group only: the glossary entry, and every unit that lacks its rendering (keys: those not accepted). */
-  term?: { kr: string; zh: string }
+  term?: TermRef
   units?: TermUnit[]
+}
+
+/** A glossary entry: the original term and its rendering. */
+export interface TermRef {
+  kr: string
+  zh: string
 }
 
 /** One unit of a term-missing group; id is its own warning id. */
