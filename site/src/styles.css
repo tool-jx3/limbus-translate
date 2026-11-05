@@ -2113,16 +2113,14 @@ button.chip {
   gap: 0.2rem;
 }
 
-.ut-row:not(.is-open) .ut-text > * {
+/* Collapsed: three lines of each text; of an old/new pair, three of the old and three of the new. */
+.ut-row:not(.is-open) .ut-text > :not(.uc-pair),
+.ut-row:not(.is-open) .ut-text .uc-pair > * {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   overflow: hidden;
-}
-
-.ut-row:not(.is-open) .ut-text .uc-pair {
-  display: block;
 }
 
 .ut-origin {
