@@ -1362,6 +1362,16 @@ func TestProgressSubjectIsTheOneTheIdleCheckReads(t *testing.T) {
 // tw, so the commit step and the check must agree.
 const keptProgressPrefix = "translate: keep the progress of"
 
+// Every push of tw runs in this loop. GitHub can refuse a push that comes a
+// second after the one before it (missing necessary objects: the server that
+// takes it has not seen that push yet), and a try a few seconds later goes
+// through. The step fails when the last try fails, so a Release is never made
+// from a commit origin lacks.
+const (
+	twPushRetry  = "for wait in 2 4 8 16 x; do"
+	twPushGiveUp = `if [ "$wait" = x ]; then exit 1; fi`
+)
+
 // pipelineIdleTerms are the terms, in this order, of the condition under which
 // the decide step ends the run with nothing to do. Every term keeps a run from
 // ending early that has something to do; the terms are joined by &&.
@@ -1872,6 +1882,13 @@ func checkPipelineWorkflow(file, content string) []string {
 		}
 	} else {
 		add("no step sets idle=true: the run never ends when there is nothing to do")
+	}
+	for _, s := range job.Steps {
+		for _, push := range []string{"git -C .work/tw push origin tw", "git push origin tw"} {
+			if strings.Contains(s.Run, push) && (!strings.Contains(s.Run, twPushRetry) || !strings.Contains(s.Run, twPushGiveUp)) {
+				add("the step that runs %q tries the push once: GitHub can refuse a push of tw that comes right after another one (missing necessary objects), so the step tries again in the loop %q and fails with %q only when the last try fails", push, twPushRetry, twPushGiveUp)
+			}
+		}
 	}
 	if s, ok := find("bin/lct translate --max-usd"); ok {
 		if claudeCLIRe.MatchString(s.Run) {
@@ -3189,6 +3206,24 @@ func mutate(t *testing.T, src, old, repl string) string {
 	return strings.Replace(src, old, repl, 1)
 }
 
+// pipelineStepWith is the text of the one step of pipeline.yml whose text
+// holds sub, from its "- name:" line to the next step.
+func pipelineStepWith(t *testing.T, src, sub string) string {
+	t.Helper()
+	const head = "\n      - "
+	var found []string
+	parts := strings.Split(src, head)
+	for _, part := range parts[1:] {
+		if strings.Contains(part, sub) {
+			found = append(found, head+part)
+		}
+	}
+	if len(found) != 1 {
+		t.Fatalf("pipeline.yml has %d steps with %q, want 1: update the test", len(found), sub)
+	}
+	return found[0]
+}
+
 // mutateAll replaces every copy of old, of which there must be at least one.
 func mutateAll(t *testing.T, src, old, repl string) string {
 	t.Helper()
@@ -3461,7 +3496,7 @@ func TestWorkflowContract(t *testing.T) {
 		{"translations committed with a message of no meaning", `-m "translate: keep the progress of $RAW_TAG"`, `-m "wip $RAW_TAG"`, `"translate: keep the progress of"`},
 		{"translations committed with a message the idle check does not know", `-m "translate: keep the progress of $RAW_TAG"`, `-m "translate: kept the progress of $RAW_TAG"`, `"translate: keep the progress of"`},
 		{"translations not pushed", "git -C .work/tw push origin tw", "git -C .work/tw status", `"git -C .work/tw push origin tw"`},
-		{"translations never kept", "          if [ -n \"$(git -C .work/tw status --porcelain)\" ]; then\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n            git -C .work/tw push origin tw\n          fi\n", "          true\n", `"git -C .work/tw commit"`},
+		{"translations never kept", "          if [ -n \"$(git -C .work/tw status --porcelain)\" ]; then\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n            for wait in 2 4 8 16 x; do\n              git -C .work/tw push origin tw && break\n              if [ \"$wait\" = x ]; then exit 1; fi\n              echo \"::warning::the push of tw was refused; trying again in ${wait}s\"\n              sleep \"$wait\"\n            done\n          fi\n", "          true\n", `"git -C .work/tw commit"`},
 
 		// Units that are pending while the key or the model is missing are
 		// recorded as untranslated, for the build and the review issue; a dry
@@ -3535,9 +3570,26 @@ func TestWorkflowContract(t *testing.T) {
 			wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, tc.want)
 		})
 	}
+	// The two pushes of tw each run in the retry loop: the one that keeps the
+	// translations comes a second after the last push of lct translate.
+	for _, tc := range []struct{ name, push string }{
+		{"translations pushed once", "git -C .work/tw push origin tw"},
+		{"tw pushed once", "git push origin tw"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			step := pipelineStepWith(t, pipeline, tc.push)
+			src := mutate(t, pipeline, step, mutate(t, step, twPushRetry, "for wait in x; do"))
+			wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, fmt.Sprintf("the step that runs %q tries the push once", tc.push))
+		})
+		t.Run(tc.name+", its last failure let through", func(t *testing.T) {
+			step := pipelineStepWith(t, pipeline, tc.push)
+			src := mutate(t, pipeline, step, mutate(t, step, twPushGiveUp, "true"))
+			wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, fmt.Sprintf("the step that runs %q tries the push once", tc.push))
+		})
+	}
 	t.Run("translations kept only after the build", func(t *testing.T) {
 		src := mutate(t, pipeline, "bin/lct build --json", "bin/lct build --json; git -C .work/tw push origin tw")
-		src = mutate(t, src, "            git -C .work/tw push origin tw\n          fi", "            git -C .work/tw status\n          fi")
+		src = mutate(t, src, "              git -C .work/tw push origin tw && break\n", "              git -C .work/tw status && break\n")
 		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), `"git -C .work/tw push origin tw" must come before "bin/lct build"`)
 	})
 	t.Run("the Release still due asked outside the decide step", func(t *testing.T) {

@@ -228,6 +228,12 @@ jobs:
       # cancelled or ran out of time: a build, publish or push that fails
       # later does not throw the paid work away. Nothing changed, nothing
       # committed. Publish commits on top of this.
+      #
+      # This push comes a second after the last one of lct translate, and
+      # GitHub can refuse a push that follows another so closely (missing
+      # necessary objects: the server that takes it has not seen the one
+      # before yet). Every push of tw is tried again after 2, 4, 8 and 16
+      # seconds, and fails the step only when the last try fails.
       - name: Keep the translations on tw
         if: always() && steps.decide.outputs.translate == 'true' && steps.cli.outputs.installed == 'true'
         env:
@@ -236,7 +242,12 @@ jobs:
           if [ -n "$(git -C .work/tw status --porcelain)" ]; then
             git -C .work/tw add -A
             git -C .work/tw commit --quiet -m "translate: keep the progress of $RAW_TAG"
-            git -C .work/tw push origin tw
+            for wait in 2 4 8 16 x; do
+              git -C .work/tw push origin tw && break
+              if [ "$wait" = x ]; then exit 1; fi
+              echo "::warning::the push of tw was refused; trying again in ${wait}s"
+              sleep "$wait"
+            done
           fi
 
       # Units are pending and the API key or the model is missing, or the
@@ -286,9 +297,16 @@ jobs:
             } | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
+      # Tried again as the push that keeps the translations is.
       - name: Push tw
         if: steps.decide.outputs.idle == 'false'
-        run: git push origin tw
+        run: |
+          for wait in 2 4 8 16 x; do
+            git push origin tw && break
+            if [ "$wait" = x ]; then exit 1; fi
+            echo "::warning::the push of tw was refused; trying again in ${wait}s"
+            sleep "$wait"
+          done
 
       - name: Create the Release
         if: steps.decide.outputs.idle == 'false' && steps.publish.outputs.release_needed == 'true'
