@@ -1253,3 +1253,45 @@ func TestForbiddenTermCarriesTheTerm(t *testing.T) {
 		t.Fatalf("issues = %+v, want forbidden-term with Term 패키지", issues)
 	}
 }
+
+// A unit that lacks the renderings of two entries gets one term-missing per
+// entry, each with its own Term and TermZH; the order of the issues is not
+// part of the contract.
+func TestTermMissingForTwoTerms(t *testing.T) {
+	terms := []Term{{KR: "우레", ZH: "雷鳴"}, {KR: "번개", ZH: "閃電"}}
+	issues := Check("우레와 번개", "打雷與打閃", Context{Terms: terms})
+	got := map[string]string{}
+	for _, is := range issues {
+		if is.Code != CodeTermMissing {
+			t.Fatalf("issues = %+v, want only term-missing", issues)
+		}
+		got[is.Term] = is.TermZH
+	}
+	if len(issues) != 2 || got["우레"] != "雷鳴" || got["번개"] != "閃電" {
+		t.Errorf("issues = %+v, want one term-missing for 우레 -> 雷鳴 and one for 번개 -> 閃電", issues)
+	}
+}
+
+// The rendering of an entry may itself look like a tag; the translation and
+// the rendering lose their tags the same way, so it still counts as present.
+func TestTermMissingRenderingWithTagLikeText(t *testing.T) {
+	terms := []Term{{KR: "우레", ZH: "雷<b>鳴"}}
+	if got := Check("우레가 친다", "雷<b>鳴響起", Context{Terms: terms}); slices.Contains(codes(got), CodeTermMissing) {
+		t.Errorf("got %v, want no term-missing for a rendering that holds a tag-like string", got)
+	}
+	if got := Check("우레가 친다", "打雷了", Context{Terms: terms}); !slices.Contains(codes(got), CodeTermMissing) {
+		t.Errorf("got %v, want term-missing when the rendering is absent", got)
+	}
+}
+
+// A tag may cut the KR term, or wrap all of it: the entry hits the unit
+// either way, for term-missing and for forbidden-term.
+func TestTermsHitTheKRWithoutItsTags(t *testing.T) {
+	terms := []Term{{KR: "우레", ZH: "雷鳴", Forbidden: []string{"打雷"}}}
+	for _, kr := range []string{"우<b>레</b>가 친다", "<b>우레</b>가 친다", "<color=#ffffff>우</color>레가 친다"} {
+		issues := Check(kr, "打雷了", Context{Terms: terms})
+		if !slices.Contains(codes(issues), CodeTermMissing) || !slices.Contains(codes(issues), CodeForbiddenTerm) {
+			t.Errorf("Check(%q) = %v, want term-missing and forbidden-term", kr, codes(issues))
+		}
+	}
+}

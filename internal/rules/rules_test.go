@@ -1098,3 +1098,33 @@ func TestTermOccursIn(t *testing.T) {
 		t.Error("OccursIn without match should hit inside a longer word")
 	}
 }
+
+// A match value other than word is a lint error (see the "words" case of the
+// glossary lint test); where one gets through anyway, the entry hits wherever
+// its KR occurs, as an entry without match does. It neither panics nor skips.
+func TestTermOccursInWithAnInvalidMatch(t *testing.T) {
+	bad := rules.Term{KR: "백화", Match: "words"}
+	if !bad.OccursIn("백화점") || bad.OccursIn("꽃") {
+		t.Error("OccursIn with an unknown match should be a plain substring test")
+	}
+}
+
+// Tags are not text: a KR term cut by a tag, or wrapped in one, is found.
+func TestGlossaryHitsIgnoreTagsInKR(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(string) string {
+		return "- kr: 우레\n  zh: 雷鳴\n  status: approved\n- kr: 백화\n  zh: 白花\n  status: approved\n  match: word\n"
+	})
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, kr := range []string{"우<b>레</b>가", "<b>우레</b>가", "<color=#ffffff>백</color>화가 핀다"} {
+		if len(r.GlossaryHits(anyFile, kr)) != 1 || len(r.ValidateTerms(anyFile, kr)) != 1 {
+			t.Errorf("GlossaryHits(%q) = %+v, want the one entry", kr, r.GlossaryHits(anyFile, kr))
+		}
+	}
+	if hits := r.GlossaryHits(anyFile, "<b>백화</b>점"); len(hits) != 0 {
+		t.Errorf("GlossaryHits = %+v, want none: 백화점 is a longer word", hits)
+	}
+}

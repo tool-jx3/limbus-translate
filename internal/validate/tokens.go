@@ -53,6 +53,10 @@ func Placeholders(s string) []string { return placeholderRe.FindAllString(s, -1)
 // appearance, duplicates kept.
 func Tags(s string) []string { return tagRe.FindAllString(s, -1) }
 
+// StripTags is s without its tags: they are markup, not text, so a term is
+// looked for in the text that is left.
+func StripTags(s string) string { return tagRe.ReplaceAllString(s, "") }
+
 // selfClosing lists the tags that have no closing tag.
 var selfClosing = map[string]bool{"sprite": true, "br": true}
 
