@@ -34,7 +34,7 @@ allowed-tools:
 
 0. 執行 `go build -o bin/lct ./cmd/lct`，失敗就停止並回報。`bin/lct accept`、`bin/lct suggest`、`bin/lct search` 讀 `.work/raw` 與 `.work/tw` 兩個 worktree；指令說沒有快照或找不到時，停止並說明請人準備好（`git fetch origin raw tw`，再 `git worktree add .work/raw raw` 與 `git worktree add .work/tw tw`，或把兩個 worktree 更新到最新），不由這個 skill 代做
 1. 整理人貼上的內容：列出每個 ID 與人對它的決定（沒問題、要改、不清楚；人只貼 ID 沒說決定時，問人）。同一批 ID 的決定不同時分開處理
-2. 依 ID 找到項目內容，向人確認你看到的和他看到的是同一件事。每一類都先用 `bin/lct accept --dry-run --json` 查：它唯讀，不需要 `--reason`，對每個 ID 印出審核頁上的那一項，並列出不是目前項目的 ID。每個 ID 用單引號包起來（`note/…` 的 ID 含 `|`，ID 也可能含空格；雙引號裡的 `$` 與反引號會被 shell 展開）。ID 或理由裡有單引號時寫成 `'\''`（先結束引號，再放一個跳脫的單引號，再重新開始引號；例如 `it's` 寫成 `'it'\''s'`）：
+2. 依 ID 找到項目內容，向人確認你看到的和他看到的是同一件事。每一類都先用 `bin/lct accept --dry-run --json` 查：它唯讀，不需要 `--reason`，對每個 ID 印出審核頁上的那一項，並列出不是目前項目的 ID。每個 ID 用單引號包起來：`note/…` 的 ID 含 `|`，ID 也可能含空格，雙引號裡的 `$` 與反引號會被 shell 展開。ID 或理由裡有單引號時寫成 `'\''`：先結束引號，再放一個跳脫的單引號，再重新開始引號。例如 `it's` 寫成 `'it'\''s'`。指令如下：
    `bin/lct accept --dry-run --json 'ID1' 'ID2'`
    - 依詞彙表條目分組的整組 ID 帶 `@N`：`termgroup/<sha8>/<sha8>@<N>`，審核頁複製出來的就是這個形式，N 是頁面當時顯示、還沒確認的單位數。`bin/lct accept` 只在 N 等於目前還沒確認的單位數時才確認整組，這樣人確認的就是他看到的那幾個單位。`--dry-run` 對這種 ID 的項目印出 `open_units`（`page` 是 N，`now` 是目前的數，`match` 是兩者是否相同）；組已不在目前審核資料裡的 ID 另列在 `unknown_term_groups`。這兩種情形 `--dry-run` 都是 exit 1。逐單位的 `warning/term-missing/…` 不帶 `@N`
    - 輸出 `{items, unknown, unknown_term_groups, raw_tag, tw_commit}`。每個 `items` 有 `id`、`kind`、`list`（`declined` 或 `accepted`，確認後會記進哪個清單）、`confirmed`（已確認時有 `reason` 與 `date`，否則 `null`）、`kr`、`zh`、`note` 或 `message`、`keys`（用到的單位）、`variants`（只有 `inconsistent`）、`pending`（待重翻的單位數）。向人複述 `kind`、`kr`、`zh` 與 `note` 或 `message`
