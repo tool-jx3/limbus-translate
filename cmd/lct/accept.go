@@ -84,8 +84,10 @@ const (
 // it. ID is the id as given (with its @N, for a term group id that has one).
 // List is the file the id goes to, "declined" or "accepted"; Confirmed is
 // set when it is in that file already. KR and ZH are the texts the item is
-// about, Note a translator's note, Message the check's description of a
-// warning; Variants are those of a group of inconsistent translations only.
+// about (of a term group or a provisional term, its term), Note a
+// translator's note, Message the check's description of a warning (of a term
+// group, what its units lack); Variants are those of a group of inconsistent
+// translations only.
 type lookupItem struct {
 	ID        string          `json:"id"`
 	Kind      string          `json:"kind"`
@@ -533,7 +535,8 @@ var groupCountRe = regexp.MustCompile(`^(` + regexp.QuoteMeta(itemid.TermGroupPr
 
 // givenID is an id given to lct accept. Item is the id of the item it names:
 // the id as given (ID) but for an id termgroup/…@N, whose Item is the id of
-// the group, and Count the N (HasCount). Only Item is ever written to a list.
+// the group, and Count the N (HasCount). A term group id, with @N or without,
+// is never written to a list: the ids of its units are.
 type givenID struct {
 	ID       string
 	Item     string
