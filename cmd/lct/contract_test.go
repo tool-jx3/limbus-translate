@@ -26,6 +26,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/proposal"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
@@ -4743,5 +4744,36 @@ func TestTermMissingExceptionIsExplained(t *testing.T) {
 				t.Errorf("%s does not mention %s (the glossary rendering is held to, and a note names the exception)", name, want)
 			}
 		}
+	}
+}
+
+// The glossary items of a batch are rules.Term values: the schema declares
+// exactly the fields Term writes as JSON (match and provisional included), so
+// a batch lct writes validates against it.
+func TestBatchSchemaGlossaryMatchesTheTerm(t *testing.T) {
+	_, content := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	var schema struct {
+		Properties struct {
+			Glossary struct {
+				Items struct {
+					Properties map[string]json.RawMessage `json:"properties"`
+				} `json:"items"`
+			} `json:"glossary"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal([]byte(content), &schema); err != nil {
+		t.Fatalf("schemas/batch.schema.json does not parse: %v", err)
+	}
+	var want []string
+	typ := reflect.TypeOf(rules.Term{})
+	for i := 0; i < typ.NumField(); i++ {
+		if name, _, _ := strings.Cut(typ.Field(i).Tag.Get("json"), ","); name != "" && name != "-" {
+			want = append(want, name)
+		}
+	}
+	got := slices.Sorted(maps.Keys(schema.Properties.Glossary.Items.Properties))
+	slices.Sort(want)
+	if !slices.Equal(got, want) {
+		t.Errorf("batch.schema.json glossary item properties = %v, want the json fields of rules.Term %v", got, want)
 	}
 }

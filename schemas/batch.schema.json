@@ -44,6 +44,14 @@
             "items": { "type": "string" }
           },
           "category": { "type": "array", "items": { "type": "string" } },
+          "match": {
+            "description": "\"word\": the term applies only where its KR stands as a word, not inside a longer word.",
+            "type": "string"
+          },
+          "provisional": {
+            "description": "true: a provisional term registered earlier in this project and awaiting confirmation. Use it like any other entry.",
+            "type": "boolean"
+          },
           "files": {
             "description": "The file patterns the term is written for; absent, it is for every file. Every term of a batch applies to the batch's file, so this is for information.",
             "type": "array",

@@ -3228,3 +3228,102 @@ func TestSubmitRecordsNoTermOfARejectedUnit(t *testing.T) {
 		t.Errorf("terms = %+v, want none", terms)
 	}
 }
+
+func provTerm(kr, zh string, conflict bool) store.ProvisionalTerm {
+	return store.ProvisionalTerm{KR: kr, ZH: zh, Key: key("Other.json", 0), Conflict: conflict}
+}
+
+func TestActiveProvisional(t *testing.T) {
+	r := testRulesWith(t, "- kr: 위력\n  zh: 威力\n  status: approved\n- kr: 후보어\n  zh: 候選\n  status: candidate\n")
+	all := []store.ProvisionalTerm{
+		provTerm("우레", "雷鳴", false),
+		provTerm("우레", "驚雷", true),
+		provTerm("하", "X", false),
+		provTerm("위력", "力量", false),
+		provTerm("후보어", "Y", false),
+		provTerm("번개", "閃電", false),
+	}
+	got := ActiveProvisional(all, r, map[string]bool{"term-new/번개": true})
+	want := []rules.Term{{KR: "우레", ZH: "雷鳴", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("ActiveProvisional = %+v, want %+v", got, want)
+	}
+}
+
+func TestProvisionalTermsYieldToTheGlossary(t *testing.T) {
+	r := testRulesWith(t, "- kr: 와일드헌트 히스클리프\n  zh: 狂獵希斯克利夫\n  status: approved\n")
+	all := []store.ProvisionalTerm{provTerm("와일드헌트", "狂獵", false)}
+	prov := ActiveProvisional(all, r, nil)
+	if len(prov) != 1 {
+		t.Fatalf("provisional = %+v, want 1", prov)
+	}
+	// Both hit: the glossary term is longer, the provisional one is checked too.
+	issues := CheckNewTerms(r, prov, "Other.json", "와일드헌트 히스클리프", "狂獵希斯克利夫")
+	if validate.HasHard(issues) || hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("issues = %+v, want none", issues)
+	}
+	// The same KR in the glossary: the provisional term does not apply.
+	r2 := testRulesWith(t, "- kr: 와일드헌트\n  zh: 狂獵\n  status: candidate\n")
+	if got := ActiveProvisional(all, r2, nil); len(got) != 0 {
+		t.Errorf("provisional = %+v, want none when the glossary has the KR", got)
+	}
+}
+
+func TestCheckNewTermsAppliesOnlyHitProvisionalTerms(t *testing.T) {
+	r := testRules(t)
+	prov := []rules.Term{{KR: "우레", ZH: "雷鳴", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
+	if issues := CheckNewTerms(r, prov, "Other.json", "우레가 쳤다", "打雷了"); !hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("issues = %+v, want term-missing", issues)
+	}
+	if issues := CheckNewTerms(r, prov, "Other.json", "우레비", "雨"); hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("issues = %+v, want none for 우레비", issues)
+	}
+	if issues := CheckNew(r, "Other.json", "우레가 쳤다", "打雷了"); hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("CheckNew = %+v, want no provisional term", issues)
+	}
+}
+
+func provEnv(t *testing.T) Env {
+	t.Helper()
+	kr := map[string]string{"Other.json": `{"dataList":[
+ {"id":0,"content":"우레가 쳤다"},
+ {"id":1,"content":"우레비가 내렸다"}
+]}`}
+	env := newEnv(t, kr, nil, nil)
+	env.Provisional = []rules.Term{{KR: "우레", ZH: "雷鳴", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
+	return env
+}
+
+func TestNextCarriesProvisionalTerms(t *testing.T) {
+	env := provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	if len(b.Glossary) != 1 || b.Glossary[0].KR != "우레" || !b.Glossary[0].Provisional || b.Glossary[0].ZH != "雷鳴" {
+		t.Errorf("glossary = %+v, want the provisional 우레", b.Glossary)
+	}
+	env2 := provEnv(t)
+	seed(t, env2, items("Other.json", 1, 2)...)
+	if b := mustNext(t, env2, NextOptions{}); len(b.Glossary) != 0 {
+		t.Errorf("glossary = %+v, want none for 우레비", b.Glossary)
+	}
+}
+
+func TestSubmitChecksProvisionalTerms(t *testing.T) {
+	env := provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "打雷了"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
+		t.Fatalf("result = %+v, want rejected for term-missing", res)
+	}
+	res, err = Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "打雷了", Note: "우레：此處指別的東西"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Warnings) != 1 {
+		t.Errorf("result = %+v, want accepted with a warning", res)
+	}
+}

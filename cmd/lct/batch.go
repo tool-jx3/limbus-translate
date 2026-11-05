@@ -22,6 +22,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
@@ -130,14 +131,37 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 	if _, err := st.ReadMetaJSON(bootstrap.ForeignNamesFile, &foreign); err != nil {
 		return batch.Env{}, nil, err
 	}
+	provisional, err := activeProvisional(ctx.Root, st, r)
+	if err != nil {
+		return batch.Env{}, nil, err
+	}
 	return batch.Env{
 		Store:        st,
 		Src:          set,
 		Rules:        r,
 		RawTag:       src.Tag,
 		ForeignNames: foreign,
+		Provisional:  provisional,
 		Now:          batchNow(),
 	}, r, nil
+}
+
+// activeProvisional reads the provisional terms of the store and the declined
+// list of root and returns the terms in force (see batch.ActiveProvisional).
+func activeProvisional(root string, st *store.Store, r *rules.Rules) ([]rules.Term, error) {
+	all, err := st.LoadTerms()
+	if err != nil {
+		return nil, err
+	}
+	list, err := suggest.LoadDeclined(root)
+	if err != nil {
+		return nil, err
+	}
+	declined := make(map[string]bool, len(list))
+	for _, d := range list {
+		declined[d.ID] = true
+	}
+	return batch.ActiveProvisional(all, r, declined), nil
 }
 
 // keywordNames reads the Chinese names of the keywords from the records in

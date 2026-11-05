@@ -1073,3 +1073,28 @@ func TestScriptRenderings(t *testing.T) {
 		t.Errorf("組合包 has no kana or Hangul, but ScriptRenderings = %q", got)
 	}
 }
+
+// provisional marks a term the project registered; it is never a glossary key,
+// so a glossary that writes it is reported like any unknown key.
+func TestLintRejectsProvisionalInTheGlossary(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 우레\n  zh: 雷鳴\n  status: approved\n  provisional: true\n"
+	})
+	msg := lintMessages(rules.Lint(root))
+	for _, want := range []string{"glossary/terms.yaml", "provisional"} {
+		if !strings.Contains(msg, want) {
+			t.Errorf("lint output does not mention %q:\n%s", want, msg)
+		}
+	}
+}
+
+func TestTermOccursIn(t *testing.T) {
+	word := rules.Term{KR: "백화", Match: rules.MatchWord}
+	if !word.OccursIn("백화가 핀다") || word.OccursIn("백화점") {
+		t.Error("OccursIn with match: word should hit 백화가 and not 백화점")
+	}
+	if !(rules.Term{KR: "백화"}).OccursIn("백화점") {
+		t.Error("OccursIn without match should hit inside a longer word")
+	}
+}

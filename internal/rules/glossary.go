@@ -35,15 +35,19 @@ type Term struct {
 	// word (see standsAsWord); empty for one that hits wherever its KR occurs,
 	// inside a longer word too.
 	Match string `yaml:"match" json:"match,omitempty"`
+	// Provisional marks a term registered by a translator and not yet decided
+	// on by a person (see batch.ActiveProvisional). It is never read from the
+	// glossary: "provisional" is not a glossary key.
+	Provisional bool `yaml:"-" json:"provisional,omitempty"`
 }
 
 // MatchWord is the one value of Term.Match: the term hits only where its KR
 // stands as a word, so 백화 does not hit 백화점 nor 버스 림버스.
 const MatchWord = "word"
 
-// occursIn reports whether the KR text of t occurs in kr, as a word where t
+// OccursIn reports whether the KR text of t occurs in kr, as a word where t
 // asks for it.
-func (t Term) occursIn(kr string) bool {
+func (t Term) OccursIn(kr string) bool {
 	if t.Match == MatchWord {
 		return standsAsWord(kr, t.KR)
 	}
@@ -153,7 +157,7 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 	var hits []Term
 	scoped := map[string]bool{} // the KR texts with an entry for file
 	for _, t := range r.Glossary {
-		if t.Status != StatusApproved || t.KR == "" || !t.occursIn(kr) {
+		if t.Status != StatusApproved || t.KR == "" || !t.OccursIn(kr) {
 			continue
 		}
 		if len(t.Files) > 0 {

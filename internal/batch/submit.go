@@ -406,7 +406,7 @@ func (s *submission) unit(o OutUnit) error {
 	}
 
 	zh := validate.NormalizeKeywordSpace(validate.Normalize(kr, o.ZH), s.env.KeywordNames)
-	issues := CheckNew(s.env.Rules, file, kr, zh)
+	issues := CheckNewTerms(s.env.Rules, s.env.Provisional, file, kr, zh)
 	// A missing glossary rendering is only a warning in CheckNew; a submission
 	// without it is rejected unless the note names the term.
 	for j := range issues {

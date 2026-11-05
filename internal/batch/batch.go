@@ -62,6 +62,10 @@ type Env struct {
 	// Submit puts a half-width space after each of them that follows a count
 	// (validate.NormalizeKeywordSpace). Empty means no name is looked for.
 	KeywordNames []string
+	// Provisional are the provisional terms in force (see ActiveProvisional):
+	// Next puts those a batch's units contain into its glossary, and Submit
+	// holds the translations to them like to glossary terms.
+	Provisional []rules.Term
 	// Now is the clock: the time of the batch id and the base of lease expiry.
 	// The zero value means the current time.
 	Now time.Time
@@ -360,10 +364,11 @@ func nonNil(s []string) []string {
 }
 
 // glossaryFor is the union of the approved terms the texts contain in file,
-// once per KR term and rendering, in order of first appearance. They are the
+// once per KR term and rendering, in order of first appearance, then the
+// provisional terms they contain, once per KR. They are the
 // terms CheckNew enforces on the units of file: a text that is shown with a
 // term is held to it, and the other way round.
-func glossaryFor(r *rules.Rules, file string, krs []string) []rules.Term {
+func glossaryFor(r *rules.Rules, provisional []rules.Term, file string, krs []string) []rules.Term {
 	terms := []rules.Term{}
 	type termKey struct{ kr, zh string }
 	seen := map[termKey]bool{}
@@ -371,6 +376,18 @@ func glossaryFor(r *rules.Rules, file string, krs []string) []rules.Term {
 		for _, t := range r.GlossaryHits(file, kr) {
 			if k := (termKey{t.KR, t.ZH}); !seen[k] {
 				seen[k] = true
+				terms = append(terms, t)
+			}
+		}
+	}
+	seenKR := map[string]bool{}
+	for _, t := range terms {
+		seenKR[t.KR] = true
+	}
+	for _, kr := range krs {
+		for _, t := range provisional {
+			if t.OccursIn(kr) && !seenKR[t.KR] {
+				seenKR[t.KR] = true
 				terms = append(terms, t)
 			}
 		}
@@ -384,7 +401,42 @@ func glossaryFor(r *rules.Rules, file string, krs []string) []rules.Term {
 // rules.Rules.GlossaryHits), content issues being hard. zh is checked as it
 // is; Submit normalizes a translation first.
 func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: r.ValidateTerms(file, kr), File: file, ScriptOK: r.ScriptRenderings(file)})
+	return CheckNewTerms(r, nil, file, kr, zh)
+}
+
+// CheckNewTerms is CheckNew with the provisional terms that occur in kr held
+// to as well.
+func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
+	terms := r.ValidateTerms(file, kr)
+	for _, t := range provisional {
+		if t.OccursIn(kr) {
+			terms = append(terms, t.ToValidate())
+		}
+	}
+	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: r.ScriptRenderings(file)})
+}
+
+// ActiveProvisional returns the provisional terms in force, in the order of
+// their first record. Of the records of one KR the first one that is no
+// conflict counts. Left out are a KR of fewer than two characters, a KR the
+// glossary has an entry for in any status, and a KR whose suggestion
+// "term-new/<kr>" is in declined. The terms hit only where their KR stands as
+// a word.
+func ActiveProvisional(all []store.ProvisionalTerm, r *rules.Rules, declined map[string]bool) []rules.Term {
+	inGlossary := map[string]bool{}
+	for _, t := range r.Glossary {
+		inGlossary[t.KR] = true
+	}
+	var out []rules.Term
+	seen := map[string]bool{}
+	for _, p := range all {
+		if p.Conflict || seen[p.KR] || utf8.RuneCountInString(p.KR) < 2 || inGlossary[p.KR] || declined["term-new/"+p.KR] {
+			continue
+		}
+		seen[p.KR] = true
+		out = append(out, rules.Term{KR: p.KR, ZH: p.ZH, Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true})
+	}
+	return out
 }
 
 // ShortTextRunes is the length, in runes of the KR text, under which a text

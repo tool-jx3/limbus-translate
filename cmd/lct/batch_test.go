@@ -973,3 +973,56 @@ func TestBatchCommandsMakeNoBatchLog(t *testing.T) {
 		t.Errorf("the batch commands made %s without lct translate: %v", batchLogFile, err)
 	}
 }
+
+// A provisional term in .meta/terms.jsonl goes into the batch that contains it,
+// unless the declined list or the glossary rules it out.
+func TestBatchNextLoadsProvisionalTerms(t *testing.T) {
+	root, st := batchRepo(t)
+	if _, err := st.AppendTerms([]store.ProvisionalTerm{
+		{KR: "뫼르소", ZH: "穆爾索", Key: batchKey1, Batch: "b", RawTag: "raw-20261029", Time: "2026-10-30T00:00:00Z"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	got, raw, err := runNextJSON(t, root)
+	if err != nil || got.Batch == nil {
+		t.Fatalf("next = %s, %v", raw, err)
+	}
+	var b batch.Batch
+	data, err := os.ReadFile(got.Path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(data, &b); err != nil {
+		t.Fatal(err)
+	}
+	var found bool
+	for _, g := range b.Glossary {
+		if g.KR == "뫼르소" && g.ZH == "穆爾索" && g.Provisional && g.Match == "word" {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("glossary = %+v, want the provisional 뫼르소", b.Glossary)
+	}
+	if !strings.Contains(string(data), `"provisional": true`) {
+		t.Errorf("the batch file lacks provisional: true:\n%s", data)
+	}
+}
+
+func TestBatchNextSkipsADeclinedProvisionalTerm(t *testing.T) {
+	root, st := batchRepo(t)
+	if _, err := st.AppendTerms([]store.ProvisionalTerm{
+		{KR: "뫼르소", ZH: "穆爾索", Key: batchKey1, Batch: "b", RawTag: "raw-20261029", Time: "2026-10-30T00:00:00Z"},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "rules/declined.yaml", "- id: term-new/뫼르소\n  reason: 不要\n  date: 2026-11-01\n")
+	got, raw, err := runNextJSON(t, root)
+	if err != nil || got.Batch == nil {
+		t.Fatalf("next = %s, %v", raw, err)
+	}
+	data, _ := os.ReadFile(got.Path)
+	if strings.Contains(string(data), `"provisional"`) {
+		t.Errorf("a declined term is in the batch:\n%s", data)
+	}
+}

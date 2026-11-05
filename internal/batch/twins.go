@@ -171,7 +171,7 @@ func (s *submission) reuseForTwins() error {
 		}
 		u := fd.units[pos]
 		src, ok := sources[twinKeyOf(TextGroupOf(s.env.Rules, fd.doc, u), file)]
-		if !ok || validate.HasHard(CheckNew(s.env.Rules, file, u.KR, src.zh)) {
+		if !ok || validate.HasHard(CheckNewTerms(s.env.Rules, s.env.Provisional, file, u.KR, src.zh)) {
 			continue
 		}
 		s.records[it.Key] = s.claudeRecord(it.Key, u.KR, src.zh)

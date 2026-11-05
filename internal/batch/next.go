@@ -403,7 +403,7 @@ func assemble(
 		needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 	}
 	b.Guides = env.Rules.GuidesFor(fd.file, speakers)
-	b.Glossary = glossaryFor(env.Rules, fd.file, krs)
+	b.Glossary = glossaryFor(env.Rules, env.Provisional, fd.file, krs)
 
 	b.Keywords = map[string]string{}
 	if !needRecords {
