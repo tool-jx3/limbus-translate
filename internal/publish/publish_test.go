@@ -17,6 +17,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 )
 
@@ -110,7 +111,7 @@ func write(t *testing.T, dir, rel, content string) {
 // fixture is a repo with a tw worktree that holds a build, and the out
 // directory with the two zips of that build.
 type fixture struct {
-	root, tw, out string
+	root, tw, raw, out string
 }
 
 func newFixture(t *testing.T) fixture {
@@ -126,10 +127,18 @@ func newFixture(t *testing.T) fixture {
 	runGit(t, root, "add", "-A")
 	runGit(t, root, "commit", "-q", "-m", "init")
 
-	f := fixture{root: root, tw: filepath.Join(root, ".work", "tw"), out: filepath.Join(root, "out")}
+	f := fixture{root: root, tw: filepath.Join(root, ".work", "tw"), raw: filepath.Join(root, ".work", "raw"), out: filepath.Join(root, "out")}
 	if err := gitx.EnsureWorktree(root, "tw", f.tw); err != nil {
 		t.Fatal(err)
 	}
+	// The raw snapshots the history compares: the KR pack is the same in all.
+	if err := gitx.EnsureWorktree(root, "raw", f.raw); err != nil {
+		t.Fatal(err)
+	}
+	write(t, f.raw, "kr/KR_Other.json", "{}\n")
+	runGit(t, f.raw, "add", "-A")
+	runGit(t, f.raw, "commit", "-q", "-m", testRawTag)
+	runGit(t, f.raw, "tag", testRawTag)
 	write(t, f.tw, ".meta/build.json", testBuildJSON)
 	write(t, f.tw, "LimbusCompany_Data/Lang/config.json", "{\"lang\": \"zh-TW\"}\n")
 	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Sample.json", "{}\n")
@@ -481,7 +490,7 @@ func TestNotesUseTheLangDir(t *testing.T) {
 	write(t, f.tw, ".meta/build.json", strings.ReplaceAll(testBuildJSON, testLang+"_", lang+"_"))
 	write(t, f.out, lang+"_text_"+testRawTag+".zip", "text")
 	write(t, f.out, lang+"_complete_"+testRawTag+".zip", "complete")
-	res, err := Run(f.root, f.tw, f.out, lang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, lang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -509,7 +518,7 @@ func TestPublishNotesCarryThePlan(t *testing.T) {
 		RawTag: testRawTag, PrevRawTag: "raw-20261022",
 		Changes: plan.Changes{New: 15, Changed: 14, Deleted: 16},
 	})
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -519,7 +528,7 @@ func TestPublishNotesCarryThePlan(t *testing.T) {
 	}
 
 	writePlan(plan.Summary{RawTag: "raw-20260101", PrevRawTag: "raw-20251225", Changes: plan.Changes{New: 77}})
-	res, err = Run(f.root, f.tw, f.out, testLang)
+	res, err = Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -531,7 +540,7 @@ func TestPublishNotesCarryThePlan(t *testing.T) {
 func TestPublishCommitsAndTags(t *testing.T) {
 	f := newFixture(t)
 
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -571,7 +580,7 @@ func TestPublishCommitsAndTags(t *testing.T) {
 	// Again: nothing changed, so no commit, and as no Release tag exists yet,
 	// the same tag.
 	commits := runGit(t, f.tw, "rev-list", "--count", "HEAD")
-	again, err := Run(f.root, f.tw, f.out, testLang)
+	again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -587,7 +596,7 @@ func TestPublishCommitsAndTags(t *testing.T) {
 	if err := gitx.Tag(f.root, testReleaseA); err != nil {
 		t.Fatal(err)
 	}
-	next, err := Run(f.root, f.tw, f.out, testLang)
+	next, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -600,7 +609,7 @@ func TestPublishCommitsAndTags(t *testing.T) {
 
 	// A change in tw is a new commit on top of the first.
 	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Sample.json", "{\"changed\": true}\n")
-	changed, err := Run(f.root, f.tw, f.out, testLang)
+	changed, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -662,7 +671,7 @@ func TestPublishNeedsBuild(t *testing.T) {
 			tc.damage(t, f)
 			before := runGit(t, f.tw, "status", "--porcelain", "-uall")
 
-			res, err := Run(f.root, f.tw, f.out, testLang)
+			res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 			if !errors.Is(err, ErrNotBuilt) {
 				t.Fatalf("Run = %+v, %v; want ErrNotBuilt", res, err)
 			}
@@ -689,7 +698,7 @@ func TestPublishRejectsAnUnreadableBuildJSON(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			f := newFixture(t)
 			write(t, f.tw, ".meta/build.json", content)
-			res, err := Run(f.root, f.tw, f.out, testLang)
+			res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 			if err == nil || errors.Is(err, ErrNotBuilt) {
 				t.Errorf("Run = %+v, %v; want a system error that is not ErrNotBuilt", res, err)
 			}
@@ -739,7 +748,7 @@ func TestPublishUsesTheLanguageDirectory(t *testing.T) {
 	}
 
 	// The zips of the other language directory are not the build's.
-	if res, err := Run(f.root, f.tw, f.out, testLang); !errors.Is(err, ErrNotBuilt) || !strings.Contains(err.Error(), "zh-TW_text_"+testRawTag+".zip") {
+	if res, err := Run(f.root, f.tw, f.raw, f.out, testLang); !errors.Is(err, ErrNotBuilt) || !strings.Contains(err.Error(), "zh-TW_text_"+testRawTag+".zip") {
 		t.Fatalf("Run(%q) = %+v, %v; want ErrNotBuilt naming the zip", testLang, res, err)
 	}
 	if head, err := gitx.Head(f.tw); err != nil || head != "" {
@@ -751,7 +760,7 @@ func TestPublishUsesTheLanguageDirectory(t *testing.T) {
 		testTextZip, "zh-XX_text_"+testRawTag+".zip",
 		testCompleteZip, "zh-XX_complete_"+testRawTag+".zip",
 	).Replace(testBuildJSON))
-	res, err := Run(f.root, f.tw, f.out, "zh-XX")
+	res, err := Run(f.root, f.tw, f.raw, f.out, "zh-XX")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -768,7 +777,7 @@ func TestPublishUsesTheLanguageDirectory(t *testing.T) {
 func TestPublishRejectsALanguageDirectoryThatIsNotAName(t *testing.T) {
 	for _, bad := range []string{"", ".", "..", "a/b", `a\b`, "/zh-TW", "../zh-TW"} {
 		f := newFixture(t)
-		res, err := Run(f.root, f.tw, f.out, bad)
+		res, err := Run(f.root, f.tw, f.raw, f.out, bad)
 		if err == nil || errors.Is(err, ErrNotBuilt) {
 			t.Errorf("Run(lang %q) = %+v, %v; want an error that is not ErrNotBuilt", bad, res, err)
 		}
@@ -785,7 +794,7 @@ func TestPublishRefusesDirtyRules(t *testing.T) {
 	write(t, f.tw, ".meta/build.json", strings.Replace(testBuildJSON, testRules, "abc+dirty", 1))
 	before := runGit(t, f.tw, "status", "--porcelain", "-uall")
 
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if !errors.Is(err, ErrDirtyRules) {
 		t.Fatalf("Run = %+v, %v; want ErrDirtyRules", res, err)
 	}
@@ -834,7 +843,7 @@ func TestPublishRefusesZipsOfAnotherBuild(t *testing.T) {
 			tc.damage(t, f)
 			before := runGit(t, f.tw, "status", "--porcelain", "-uall")
 
-			res, err := Run(f.root, f.tw, f.out, testLang)
+			res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 			if !errors.Is(err, ErrNotBuilt) || !strings.Contains(err.Error(), tc.zip) {
 				t.Fatalf("Run = %+v, %v; want ErrNotBuilt naming %s", res, err, tc.zip)
 			}
@@ -857,7 +866,7 @@ func TestPublishRefusesZipsOfAnotherBuild(t *testing.T) {
 func TestPublishReleaseNeeded(t *testing.T) {
 	f := newFixture(t)
 
-	first, err := Run(f.root, f.tw, f.out, testLang)
+	first, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -866,10 +875,10 @@ func TestPublishReleaseNeeded(t *testing.T) {
 	}
 
 	// Unchanged, and no Release tag on the commit: the Release is still due.
-	if err := gitx.Tag(f.tw, "raw-20261029"); err != nil {
+	if err := gitx.Tag(f.tw, "other-20261029"); err != nil {
 		t.Fatal(err)
 	}
-	pending, err := Run(f.root, f.tw, f.out, testLang)
+	pending, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -881,7 +890,7 @@ func TestPublishReleaseNeeded(t *testing.T) {
 	if err := gitx.Tag(f.tw, "zh-TW-20261029.1"); err != nil {
 		t.Fatal(err)
 	}
-	done, err := Run(f.root, f.tw, f.out, testLang)
+	done, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -891,7 +900,7 @@ func TestPublishReleaseNeeded(t *testing.T) {
 
 	// A new commit needs a Release, whatever the tags of the older ones.
 	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Sample.json", "{\"changed\": true}\n")
-	next, err := Run(f.root, f.tw, f.out, testLang)
+	next, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -933,7 +942,7 @@ func (f fixture) rebuild(t *testing.T, rules, records string) {
 // is needed, tags the commit of tw with the tag of the result.
 func (f fixture) releaseWith(t *testing.T) *Result {
 	t.Helper()
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1055,7 +1064,7 @@ func TestSamePack(t *testing.T) {
 func TestPublishFirstRelease(t *testing.T) {
 	f := newFixture(t)
 	f.rebuild(t, testRules, "{}\n")
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1063,7 +1072,7 @@ func TestPublishFirstRelease(t *testing.T) {
 		t.Errorf("first run = %+v, want a Release needed, same as nothing, tagged %s", res, testReleaseA)
 	}
 	// Until the Release is made, the next run says so again.
-	again, err := Run(f.root, f.tw, f.out, testLang)
+	again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil || !again.ReleaseNeeded || again.SameAs != "" {
 		t.Errorf("second run = %+v, %v, want the Release still needed", again, err)
 	}
@@ -1078,7 +1087,7 @@ func TestPublishSkipsAnIdenticalPack(t *testing.T) {
 	first := f.releaseWith(t)
 
 	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1097,7 +1106,7 @@ func TestPublishSkipsAnIdenticalPack(t *testing.T) {
 	}
 
 	// Running again changes nothing, and still no Release.
-	again, err := Run(f.root, f.tw, f.out, testLang)
+	again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1118,7 +1127,7 @@ func TestPublishReleasesWhenThePackChanged(t *testing.T) {
 	f.releaseWith(t)
 
 	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
-	res, err := Run(f.root, f.tw, f.out, testLang)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1141,7 +1150,7 @@ func TestPublishComparesWithTheLastRelease(t *testing.T) {
 
 	// Version only: no Release.
 	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
-	if res, err := Run(f.root, f.tw, f.out, testLang); err != nil || res.ReleaseNeeded || res.SameAs != first.Tag {
+	if res, err := Run(f.root, f.tw, f.raw, f.out, testLang); err != nil || res.ReleaseNeeded || res.SameAs != first.Tag {
 		t.Fatalf("version-only build = %+v, %v, want no Release, same as %s", res, err, first.Tag)
 	}
 	// The pack changes: a Release, though the commit before it had none.
@@ -1152,7 +1161,7 @@ func TestPublishComparesWithTheLastRelease(t *testing.T) {
 	}
 	// Back to the first Release's translations: not the same as the last one.
 	f.rebuild(t, testRules, "{\"a\": 1}\n")
-	if res, err := Run(f.root, f.tw, f.out, testLang); err != nil || !res.ReleaseNeeded || res.SameAs != "" {
+	if res, err := Run(f.root, f.tw, f.raw, f.out, testLang); err != nil || !res.ReleaseNeeded || res.SameAs != "" {
 		t.Errorf("reverted build = %+v, %v, want a Release (the last one is %s)", res, err, second.Tag)
 	}
 }
@@ -1165,7 +1174,7 @@ func TestPublishReleasesAfterAFailedRelease(t *testing.T) {
 	f.releaseWith(t)
 
 	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
-	failed, err := Run(f.root, f.tw, f.out, testLang)
+	failed, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1173,7 +1182,7 @@ func TestPublishReleasesAfterAFailedRelease(t *testing.T) {
 		t.Fatalf("run = %+v, want a commit and a Release", failed)
 	}
 	// The Release failed: its tag was not made.
-	again, err := Run(f.root, f.tw, f.out, testLang)
+	again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1278,7 +1287,7 @@ func TestCheckTWAgreesWithRun(t *testing.T) {
 	f.releaseWith(t)
 	for _, records := range []string{"{\"a\": 1}\n", "{\"a\": 2}\n"} {
 		f.rebuild(t, testRulesB, records)
-		res, err := Run(f.root, f.tw, f.out, testLang)
+		res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -1289,5 +1298,169 @@ func TestCheckTWAgreesWithRun(t *testing.T) {
 		if c.TWCommit != res.TWCommit || c.ReleaseNeeded != res.ReleaseNeeded || c.SameAs != res.SameAs {
 			t.Errorf("records %q: check = %+v, run = %+v", records, c, res)
 		}
+	}
+}
+
+// oldRelease commits the tw worktree with the pack sample, as the build of the
+// raw snapshot rawTag (made here, with the same KR pack), and tags it tag, as
+// a Release made earlier.
+func (f fixture) oldRelease(t *testing.T, tag, rawTag, sample string) {
+	t.Helper()
+	if rawTag != testRawTag {
+		runGit(t, f.raw, "tag", rawTag)
+	}
+	write(t, f.tw, ".meta/build.json", strings.Replace(testBuildJSON, testRawTag, rawTag, 1))
+	write(t, f.tw, sampleRel, sample)
+	runGit(t, f.tw, "add", "-A")
+	runGit(t, f.tw, "commit", "-q", "--allow-empty", "-m", "build: "+rawTag)
+	runGit(t, f.tw, "tag", tag)
+}
+
+// readHistory reads .meta/history/<tag>.json of the HEAD of tw; ok is false if
+// there is none.
+func (f fixture) readHistory(t *testing.T, tag string) (rec history.Record, ok bool) {
+	t.Helper()
+	out, err := exec.Command("git", "-C", f.tw, "show", "HEAD:.meta/history/"+tag+".json").Output()
+	if err != nil {
+		return rec, false
+	}
+	if err := json.Unmarshal(out, &rec); err != nil {
+		t.Fatal(err)
+	}
+	return rec, true
+}
+
+func TestRunWritesTheHistoryOfTheReleaseItPrepares(t *testing.T) {
+	f := newFixture(t)
+	first := f.releaseWith(t)
+	if len(first.History) != 0 || len(first.HistoryWarnings) != 0 {
+		t.Errorf("the first Run = %+v, want no history: there is no Release to compare with", first)
+	}
+	if _, ok := f.readHistory(t, first.Tag); ok {
+		t.Errorf("the first Release has a history record")
+	}
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Info/LICENSE-CONTENT", "licence\n")
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.ReleaseNeeded || !slices.Equal(res.History, []string{res.Tag}) || len(res.HistoryWarnings) != 0 {
+		t.Fatalf("Run = %+v, want a Release with the history of %s", res, res.Tag)
+	}
+	rec, ok := f.readHistory(t, res.Tag)
+	if !ok || rec.PrevTag != first.Tag || rec.Tag != res.Tag || rec.RawTag != testRawTag {
+		t.Errorf("record in the build commit = %+v, %v, want %s compared with %s", rec, ok, res.Tag, first.Tag)
+	}
+	if want := []string{"Lang/zh-TW/Info/LICENSE-CONTENT", "Lang/zh-TW/Sample.json"}; !slices.Equal(rec.OtherFiles, want) {
+		t.Errorf("other files = %v, want %v", rec.OtherFiles, want)
+	}
+	if status := runGit(t, f.tw, "status", "--porcelain"); status != "" {
+		t.Errorf("the worktree is not clean after Run: %q", status)
+	}
+}
+
+func TestRunWritesNoHistoryWhenThePackIsTheSame(t *testing.T) {
+	f := newFixture(t)
+	f.releaseWith(t)
+	f.rebuild(t, testRulesB, "{}\n") // only the rules commit differs
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.ReleaseNeeded || len(res.History) != 0 || len(res.HistoryWarnings) != 0 {
+		t.Errorf("Run = %+v, want no Release and no history", res)
+	}
+	if _, ok := f.readHistory(t, res.Tag); ok {
+		t.Errorf("a record of %s was written for a pack that did not change", res.Tag)
+	}
+}
+
+func TestRunFillsInTheMissingHistories(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	f.oldRelease(t, "zh-TW-20261102.1", "raw-20261102", "{\"v\": 2}\n")
+	f.oldRelease(t, "zh-TW-20261103.1", "raw-20261103", "{\"v\": 3}\n")
+	// The build of the worktree is that of the last Release.
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := []string{"zh-TW-20261102.1", "zh-TW-20261103.1"}; !slices.Equal(res.History, want) || len(res.HistoryWarnings) != 0 {
+		t.Fatalf("Run = %+v, want the histories %v", res, want)
+	}
+	for tag, prev := range map[string]string{"zh-TW-20261102.1": "zh-TW-20261101.1", "zh-TW-20261103.1": "zh-TW-20261102.1"} {
+		if rec, ok := f.readHistory(t, tag); !ok || rec.PrevTag != prev {
+			t.Errorf("record of %s = %+v, %v, want it compared with %s", tag, rec, ok, prev)
+		}
+	}
+	if _, ok := f.readHistory(t, "zh-TW-20261101.1"); ok {
+		t.Errorf("the oldest Release has a record: it has nothing before it")
+	}
+	head := runGit(t, f.tw, "rev-parse", "HEAD")
+	again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(again.History) != 0 || len(again.HistoryWarnings) != 0 || again.Changed || runGit(t, f.tw, "rev-parse", "HEAD") != head {
+		t.Errorf("second Run = %+v, want nothing new in tw (at %s)", again, head)
+	}
+}
+
+func TestRunRewritesTheHistoryOfATagNotYetReleased(t *testing.T) {
+	f := newFixture(t)
+	first := f.releaseWith(t)
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	one, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	f.rebuild(t, testRulesB, "{\"a\": 2}\n")
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Extra.json", "{}\n")
+	two, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if one.Tag != two.Tag || !slices.Equal(two.History, []string{two.Tag}) {
+		t.Fatalf("runs = %+v, %+v, want the history of the same tag twice", one, two)
+	}
+	rec, ok := f.readHistory(t, two.Tag)
+	if want := []string{"Lang/zh-TW/Extra.json", "Lang/zh-TW/Sample.json"}; !ok || rec.PrevTag != first.Tag || !slices.Equal(rec.OtherFiles, want) {
+		t.Errorf("record = %+v, %v, want the other files %v", rec, ok, want)
+	}
+	// Back to the pack of the Release: the record of the tag goes.
+	f.rebuild(t, testRulesB, "{}\n")
+	if err := os.Remove(filepath.Join(f.tw, "LimbusCompany_Data/Lang/zh-TW/Extra.json")); err != nil {
+		t.Fatal(err)
+	}
+	three, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, ok := f.readHistory(t, three.Tag); ok || len(three.History) != 0 {
+		t.Errorf("Run = %+v: the record of an unchanged pack is still there (%v)", three, ok)
+	}
+}
+
+func TestRunWarnsWhenAHistoryCannotBeMade(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	f.oldRelease(t, "zh-TW-20261102.1", "raw-20261102", "{\"v\": 2}\n")
+	f.oldRelease(t, "zh-TW-20261103.1", "raw-20261103", "{\"v\": 3}\n")
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	runGit(t, f.root, "tag", "-d", "raw-20261102")
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatalf("Run: %v, want the failed history to be a warning", err)
+	}
+	if res.TWCommit == "" || !res.Changed || res.ReleaseNeeded || res.SameAs != "zh-TW-20261103.1" {
+		t.Errorf("Run = %+v, want tw committed, no Release, the pack of zh-TW-20261103.1", res)
+	}
+	if !slices.ContainsFunc(res.HistoryWarnings, func(w string) bool { return strings.Contains(w, "zh-TW-20261102.1") }) {
+		t.Errorf("warnings = %q, want one that names zh-TW-20261102.1", res.HistoryWarnings)
+	}
+	if _, ok := f.readHistory(t, "zh-TW-20261102.1"); ok {
+		t.Errorf("zh-TW-20261102.1 has a record though its snapshot is gone")
 	}
 }

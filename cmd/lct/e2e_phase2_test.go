@@ -20,6 +20,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
@@ -554,6 +555,7 @@ func TestPhase2Replay(t *testing.T) {
 	if !pub2.Changed || !pub2.ReleaseNeeded || pub2.Tag != "zh-TW-20261105.1" {
 		t.Errorf("second publish = %+v, want a new tw commit to release as zh-TW-20261105.1", pub2)
 	}
+	checkPhase2History(t, p, pub2, plan2.Changes)
 	p.build()
 	pub3 := p.publish()
 	if pub3.Changed || pub3.ReleaseNeeded || pub3.TWCommit != pub2.TWCommit {
@@ -583,6 +585,37 @@ func TestPhase2Replay(t *testing.T) {
 	}
 	if after := p.state(); !reflect.DeepEqual(after, beforeTidyPlan) {
 		t.Errorf("a plan after adjust tidy changed the state:\nbefore %v\nafter  %v", beforeTidyPlan, after)
+	}
+}
+
+// checkPhase2History checks the history record of the second Release in the
+// HEAD of tw: compared with the first Release, and with the numbers of new,
+// changed and deleted strings that the plan of the second snapshot found (the
+// plan counts every string, the record the copies apart).
+func checkPhase2History(t *testing.T, p *phase2, pub publish.Result, want plan.Changes) {
+	t.Helper()
+	if !slices.Equal(pub.History, []string{pub.Tag}) || len(pub.HistoryWarnings) != 0 {
+		t.Errorf("second publish: history %v, warnings %q, want only the record of %s", pub.History, pub.HistoryWarnings, pub.Tag)
+	}
+	tw := filepath.Join(p.root, ".work", "tw")
+	var rec history.Record
+	data := runGitIn(t, tw, "show", pub.TWCommit+":.meta/history/"+pub.Tag+".json")
+	if err := json.Unmarshal([]byte(data), &rec); err != nil {
+		t.Fatalf(".meta/history/%s.json in tw: %v\n%s", pub.Tag, err, data)
+	}
+	if rec.Tag != pub.Tag || rec.PrevTag != "zh-TW-20261029.1" || rec.RawTag != phase2Raw2 || rec.PrevRawTag != phase2Raw1 {
+		t.Errorf("history record = %+v, want %s after zh-TW-20261029.1, from %s after %s", rec, pub.Tag, phase2Raw2, phase2Raw1)
+	}
+	got := plan.Changes{
+		New:     rec.Counts.New + rec.CopyCounts.New,
+		Changed: rec.Counts.KRChanged + rec.CopyCounts.KRChanged,
+		Deleted: rec.Counts.Deleted + rec.CopyCounts.Deleted,
+	}
+	if got.New != want.New || got.Changed != want.Changed || got.Deleted != want.Deleted {
+		t.Errorf("history counts %+v and copies %+v add up to %+v, want the new %d, changed %d, deleted %d of the plan", rec.Counts, rec.CopyCounts, got, want.New, want.Changed, want.Deleted)
+	}
+	if len(rec.Entries) == 0 {
+		t.Errorf("history record has no entry")
 	}
 }
 

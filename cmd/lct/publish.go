@@ -3,7 +3,9 @@ package main
 import (
 	"errors"
 	"flag"
+	"fmt"
 	"io"
+	"os"
 	"path/filepath"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
@@ -51,13 +53,17 @@ func runPublish(ctx *cli.Context, args []string) error {
 		}
 		return ctx.Emit(res)
 	}
-	res, err := publish.Run(ctx.Root, twRoot, filepath.Join(ctx.Root, buildOutDir), ctx.Config.LangDir)
+	rawRoot := filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw))
+	res, err := publish.Run(ctx.Root, twRoot, rawRoot, filepath.Join(ctx.Root, buildOutDir), ctx.Config.LangDir)
 	// Both are fixed by building again: a user error, not a system one.
 	if errors.Is(err, publish.ErrNotBuilt) || errors.Is(err, publish.ErrDirtyRules) {
 		return cli.UserError(err.Error())
 	}
 	if err != nil {
 		return err
+	}
+	for _, w := range res.HistoryWarnings {
+		fmt.Fprintf(os.Stderr, "lct: warning: history: %s\n", w)
 	}
 	return ctx.Emit(res)
 }

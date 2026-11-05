@@ -290,6 +290,12 @@ type Result struct {
 	// that Release (see SamePack); it is empty when the pack differs or there
 	// is no Release yet, and the key is left out then.
 	SameAs string `json:"same_as,omitempty"`
+	// History are the tags of the history records (.meta/history/<tag>.json) this
+	// run wrote: that of the Release it prepares, when the pack changed, and those
+	// the earlier Releases lacked.
+	History []string `json:"history,omitempty"`
+	// HistoryWarnings say why a record could not be made, one for each tag.
+	HistoryWarnings []string `json:"history_warnings,omitempty"`
 }
 
 func (r Result) String() string {
@@ -313,7 +319,8 @@ func (r Result) String() string {
 // Run commits the build that lct build left in the tw worktree and prepares
 // the Release of it: the tag, the notes (outDir/release-notes.md) and the list
 // of the zips to attach. root is the repo, whose tags number the Releases;
-// twRoot is the tw worktree; outDir is the directory lct build wrote the zips
+// twRoot is the tw worktree; rawRoot is the raw worktree, which holds the
+// snapshots the history records compare; outDir is the directory lct build wrote the zips
 // to and langDir the language directory it named them after (lang_dir in
 // lct.yaml), which must be a plain name, as for build.ZipPaths.
 //
@@ -328,7 +335,7 @@ func (r Result) String() string {
 // whether a Release is due for TWCommit: only when its pack differs from that
 // of the latest Release. tw is committed and the notes are written whatever it
 // says.
-func Run(root, twRoot, outDir, langDir string) (*Result, error) {
+func Run(root, twRoot, rawRoot, outDir, langDir string) (*Result, error) {
 	if err := checkLangDir(langDir); err != nil {
 		return nil, err
 	}
@@ -362,6 +369,11 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 		}
 	}
 
+	// The history records of the Releases go into the commit. Reading the
+	// Releases takes long, so it is done outside the lock; a failure is a
+	// warning, never an error of the Release.
+	written, warnings := writeHistory(root, twRoot, rawRoot, langDir, tag)
+
 	// No writer of the store, such as a batch, may change tw between the files
 	// being staged and the commit being made.
 	var sha string
@@ -386,7 +398,7 @@ func Run(root, twRoot, outDir, langDir string) (*Result, error) {
 	if err := os.WriteFile(notesPath, Notes(info, sum, tag, langDir), 0o644); err != nil {
 		return nil, err
 	}
-	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: d.releaseNeeded, SameAs: d.sameAs}, nil
+	return &Result{TWCommit: sha, Changed: changed, Tag: tag, NotesPath: notesPath, Assets: assets, ReleaseNeeded: d.releaseNeeded, SameAs: d.sameAs, History: written, HistoryWarnings: warnings}, nil
 }
 
 // checkZip refuses the zip at name unless it is a file with the sha256 that
