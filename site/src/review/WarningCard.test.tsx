@@ -82,6 +82,30 @@ describe('WarningCard, a term-missing group', () => {
     expect(el.querySelector('.rv-head .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb')
   })
 
+  it('copies @0 and titles 0 處 for a group with every unit confirmed', async () => {
+    const writeText = vi.fn(async () => {})
+    vi.stubGlobal('navigator', { clipboard: { writeText } })
+    const done: WarningItem = { ...group, keys: [], accepted: { reason: '例外', date: '2026-11-03' }, units: group.units!.slice(2) }
+    const el = mount(<WarningCard item={done} target={false} showAccepted={false} />)
+    expect(el.querySelector('.rv-where')?.textContent).toBe('詞彙表：자판기 → 自動販賣機（0 處，1 處已確認）')
+    await act(async () => {
+      el.querySelector<HTMLButtonElement>('.rv-head .rv-copy')!.click()
+    })
+    expect(writeText).toHaveBeenCalledWith('termgroup/aaaaaaaa/bbbbbbbb@0「자판기 → 自動販賣機」→ ')
+  })
+
+  it('takes the open and confirmed counts from the units alone, so they cannot disagree', async () => {
+    const writeText = vi.fn(async () => {})
+    vi.stubGlobal('navigator', { clipboard: { writeText } })
+    const stale: WarningItem = { ...group, keys: ['a.json|/1', 'a.json|/2', 'a.json|/9', 'a.json|/8'] }
+    const el = mount(<WarningCard item={stale} target={false} showAccepted={false} />)
+    expect(el.querySelector('.rv-where')?.textContent).toBe('詞彙表：자판기 → 自動販賣機（2 處，1 處已確認）')
+    await act(async () => {
+      el.querySelector<HTMLButtonElement>('.rv-head .rv-copy')!.click()
+    })
+    expect(writeText).toHaveBeenCalledWith('termgroup/aaaaaaaa/bbbbbbbb@2「자판기 → 自動販賣機」→ ')
+  })
+
   it('lists a unit per row with the original term marked, the translation and the note', () => {
     const el = mount(<WarningCard item={group} target={false} showAccepted={false} />)
     const rows = unitRows(el)

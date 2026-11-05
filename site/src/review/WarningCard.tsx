@@ -31,8 +31,9 @@ function TermGroupCard({ item, term, units, target, showAccepted }: { item: Warn
   const cls = ['rv-card', item.accepted ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
   const info = warningInfo(item.code, item.message)
   const shown = showAccepted ? units : units.filter((u) => !u.accepted)
-  const open = item.keys.length
+  // Both counts come from the units: the build gives a group one unit per key, and Keys are the keys of the units not accepted (see internal/site/review.go).
   const confirmed = units.filter((u) => u.accepted).length
+  const open = units.length - confirmed
   return (
     <article class={cls} data-id={item.id}>
       <div class="rv-head">
