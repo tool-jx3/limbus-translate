@@ -2129,7 +2129,9 @@ button.chip {
 }
 
 .rv-tunits {
+  min-width: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.6rem;
   margin: 0;
   padding: 0;
@@ -2150,6 +2152,11 @@ button.chip {
 
 .rv-tunit.is-confirmed {
   opacity: 0.6;
+}
+
+.rv-tunit-head a,
+.rv-tev-head a {
+  overflow-wrap: anywhere;
 }
 
 .rv-tunit-head,
