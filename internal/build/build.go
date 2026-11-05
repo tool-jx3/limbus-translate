@@ -484,7 +484,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	}
 	// Existing: a record that shipped is held to the structure of KR only; the
 	// wording rules may have changed since.
-	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, ScriptOK: b.scriptOK(u.File)})
+	issues := validate.Check(u.KR, rec.ZH, validate.Context{Existing: true, File: u.File, ScriptOK: b.scriptOK(u.File), Terms: b.terms(u.File, u.KR)})
 	// Every used record counts its warnings, whether or not its text is
 	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {
@@ -585,6 +585,14 @@ func (b *builder) scriptOK(file string) []string {
 		return nil
 	}
 	return b.opt.Rules.ScriptRenderings(file)
+}
+
+// terms are the glossary terms u.KR contains in file; none without rules.
+func (b *builder) terms(file, kr string) []validate.Term {
+	if b.opt.Rules == nil {
+		return nil
+	}
+	return b.opt.Rules.ValidateTerms(file, kr)
 }
 
 // familyOf is the family of file; every file is of one family without rules.

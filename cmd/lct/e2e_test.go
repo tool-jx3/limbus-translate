@@ -145,6 +145,7 @@ func e2eRepo(t *testing.T) string {
 	for _, d := range []string{"guides", "glossary", "rules"} {
 		copyDir(t, filepath.Join(repoRoot, d), filepath.Join(root, d))
 	}
+	dropTerms(t, root, fixtureTerms...)
 	// The request, rewrite and adjustment files of the repo are made for its
 	// tw and its KR; the dry run has a tw and a KR of its own, and its files.
 	for _, d := range []string{"rules/requeue", "rules/rewrite", "rules/adjustments"} {
@@ -227,6 +228,40 @@ func e2eCDN(t *testing.T, fixture, token string) (template string) {
 		writePackZip(t, dir, "localize_"+lang+".zip", lang, files)
 	}
 	return "file://" + cdn + "/{token}/localize_{lang}.zip"
+}
+
+// fixtureTerms are the glossary terms the KR texts of the fixtures contain.
+// The fake model writes the shortest text that passes validation, which has
+// none of their renderings (Submit rejects that: term-missing), and its note
+// would show in the build report; the replays copy the repo's glossary
+// without them.
+var fixtureTerms = []string{"뒷골목", "버스", "속도", "턴 종료 시"}
+
+// dropTerms removes the entries of the glossary under root whose KR is one of
+// krs.
+func dropTerms(t *testing.T, root string, krs ...string) {
+	t.Helper()
+	file := filepath.Join(root, "glossary", "terms.yaml")
+	data, err := os.ReadFile(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	blocks := strings.Split(string(data), "\n\n")
+	kept := blocks[:0]
+	for _, b := range blocks {
+		drop := false
+		for _, kr := range krs {
+			if strings.HasPrefix(b, "- kr: "+kr+"\n") {
+				drop = true
+			}
+		}
+		if !drop {
+			kept = append(kept, b)
+		}
+	}
+	if err := os.WriteFile(file, []byte(strings.Join(kept, "\n\n")), 0o644); err != nil {
+		t.Fatal(err)
+	}
 }
 
 // fakeTranslate stands in for the model. It makes the shortest text that

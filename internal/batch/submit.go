@@ -338,6 +338,13 @@ func (s *submission) unit(o OutUnit) error {
 
 	zh := validate.NormalizeKeywordSpace(validate.Normalize(kr, o.ZH), s.env.KeywordNames)
 	issues := CheckNew(s.env.Rules, file, kr, zh)
+	// A missing glossary rendering is only a warning in CheckNew; a submission
+	// without it is rejected unless the note names the term.
+	for j := range issues {
+		if issues[j].Code == validate.CodeTermMissing && !strings.Contains(o.Note, issues[j].Term) {
+			issues[j].Severity = validate.SeverityHard
+		}
+	}
 	existing, hasRecord := s.records[o.Key]
 	since := s.since(o.Key)
 

@@ -3055,3 +3055,80 @@ func TestStoryContextOfASmallBatch(t *testing.T) {
 		})
 	}
 }
+
+// The glossary rendering is held to at submission: a text without it is
+// rejected unless the unit's note names the term (it is the KR of the term
+// the note has to carry).
+const seasonGlossary = `- kr: 시즌
+  zh: 賽季
+  status: approved
+`
+
+func seasonEnv(t *testing.T) (Env, *Batch) {
+	t.Helper()
+	kr := map[string]string{"Other.json": dataList(t, 1, "", func(int) string { return "두 시즌 전부터" })}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, seasonGlossary)
+	seed(t, env, items("Other.json", 0, 1)...)
+	return env, mustNext(t, env, NextOptions{})
+}
+
+func TestSubmitRejectsAMissingTermWithoutANote(t *testing.T) {
+	env, b := seasonEnv(t)
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "從兩棵季前起"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 0 || len(res.Rejected) != 1 {
+		t.Fatalf("result = %+v, want one rejection", res)
+	}
+	var found bool
+	for _, is := range res.Rejected[0].Issues {
+		if is.Code == validate.CodeTermMissing {
+			found = true
+			if is.Severity != validate.SeverityHard || is.Term != "시즌" {
+				t.Errorf("issue = %+v, want hard for 시즌", is)
+			}
+		}
+	}
+	if !found {
+		t.Errorf("issues = %+v, want term-missing", res.Rejected[0].Issues)
+	}
+	if got := pendingMap(t, env)[key("Other.json", 0)].Attempts; got != 1 {
+		t.Errorf("Attempts = %d, want 1", got)
+	}
+}
+
+func TestSubmitAcceptsAMissingTermTheNoteNames(t *testing.T) {
+	env, b := seasonEnv(t)
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "從兩棵季前起", Note: "시즌：劇中季節，非遊戲賽季"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+		t.Fatalf("result = %+v, want accepted", res)
+	}
+	if len(res.Warnings) != 1 || len(res.Warnings[0].Issues) != 1 ||
+		res.Warnings[0].Issues[0].Code != validate.CodeTermMissing || res.Warnings[0].Issues[0].Severity != validate.SeverityWarn {
+		t.Errorf("warnings = %+v, want one term-missing warn", res.Warnings)
+	}
+}
+
+func TestSubmitTermMissingNeedsTheTermInTheNote(t *testing.T) {
+	env, b := seasonEnv(t)
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "從兩棵季前起", Note: "탐식：卡包名"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
+		t.Errorf("result = %+v, want rejected for term-missing", res)
+	}
+}
+
+func TestCheckNewLeavesTermMissingAWarning(t *testing.T) {
+	r := testRulesWith(t, seasonGlossary)
+	issues := CheckNew(r, "Other.json", "두 시즌 전부터", "從兩棵季前起")
+	if !hasCode(issues, validate.CodeTermMissing) || validate.HasHard(issues) {
+		t.Errorf("CheckNew = %+v, want term-missing as a warning only", issues)
+	}
+}

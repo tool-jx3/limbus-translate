@@ -2150,3 +2150,38 @@ func TestBuildDeclinedGroupGivesUpItsPlace(t *testing.T) {
 		t.Errorf("InconsistentAll = %+v, want only the group of 나", info.InconsistentAll)
 	}
 }
+
+// A used record that lacks the glossary rendering warns term-missing, unless
+// its warning was accepted.
+func TestBuildCountsTermMissingWarnings(t *testing.T) {
+	const glossary = "- kr: 탐식\n  zh: 暴食\n  status: approved\n"
+	root := t.TempDir()
+	for _, d := range []string{"guides/characters", "glossary"} {
+		if err := os.MkdirAll(filepath.Join(root, d), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{"A.json": `{"dataList":[{"id":1,"content":"탐식의 재림"}]}`}
+	r := rec("A.json", "/dataList/0/content", "탐식의 재림", "貪食的再臨")
+
+	e := newEnv(t, kr, nil)
+	e.opt.Rules = rl
+	e.save(r)
+	if rep := e.run(); rep.Warnings["term-missing"] != 1 {
+		t.Fatalf("Warnings = %v, want one term-missing", rep.Warnings)
+	}
+
+	e = newEnv(t, kr, nil)
+	e.opt.Rules = rl
+	e.save(r)
+	e.opt.Accepted = map[string]bool{itemid.Warning("term-missing", "탐식의 재림", "貪食的再臨"): true}
+	if rep := e.run(); rep.Warnings["term-missing"] != 0 {
+		t.Errorf("Warnings = %v, want none: the warning was accepted", rep.Warnings)
+	}
+}

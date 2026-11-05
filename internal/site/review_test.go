@@ -2,6 +2,8 @@ package site
 
 import (
 	"encoding/json"
+	"os"
+	"path/filepath"
 	"reflect"
 	"slices"
 	"strings"
@@ -649,5 +651,45 @@ func TestReviewJPENMissingLanguage(t *testing.T) {
 	}
 	if strings.Contains(string(data), `"jp"`) || !strings.Contains(string(data), `"en":"one"`) {
 		t.Errorf("JSON = %s, want no jp key and en one", data)
+	}
+}
+
+// A used record without the glossary rendering is a term-missing warning on
+// the review page, like the build counts it.
+func TestReviewWarnsOnTermMissing(t *testing.T) {
+	in, files := reviewInputs(t)
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "guides/characters"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	for name, content := range map[string]string{
+		"guides/routing.yaml": "families:\n  - id: other\n    match: []\npriority:\n  - other\n",
+		"glossary/terms.yaml": "- kr: 하나\n  zh: 壹\n  status: approved\n",
+	} {
+		p := filepath.Join(root, name)
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	in.Rules = rl
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got *WarningItem
+	for i, w := range r.Warnings {
+		if w.Code == "term-missing" {
+			got = &r.Warnings[i]
+		}
+	}
+	if got == nil || got.KR != rvKR || got.ZH != "一" {
+		t.Fatalf("warnings = %+v, want term-missing for 하나 -> 一", r.Warnings)
 	}
 }

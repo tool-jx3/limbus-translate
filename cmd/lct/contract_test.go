@@ -4695,3 +4695,19 @@ func TestWorkflowReadsLctJSON(t *testing.T) {
 		hasProblem(t, problems, "other.json", "does not know")
 	})
 }
+
+// A missing glossary rendering is rejected at submission (term-missing); the
+// exception is a note that names the Korean term. The translator is told so
+// by the shared prompt and by the translate-pending skill, which also fixes
+// the rejected units.
+func TestTermMissingExceptionIsExplained(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	_, skill := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
+	for name, text := range map[string]string{"prompts/translate.md": prompt, "translate-pending/SKILL.md": skill} {
+		for _, want := range []string{"term-missing", "`note`", "시즌"} {
+			if !strings.Contains(text, want) {
+				t.Errorf("%s does not mention %s (the glossary rendering is held to, and a note names the exception)", name, want)
+			}
+		}
+	}
+}

@@ -269,7 +269,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				return
 			}
 			seen := map[string]bool{}
-			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path)}) {
+			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path), Terms: in.Rules.ValidateTerms(path, ku.KR)}) {
 				if is.Severity != validate.SeverityWarn || seen[is.Code] {
 					continue
 				}
