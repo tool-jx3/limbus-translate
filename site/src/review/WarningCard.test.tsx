@@ -54,7 +54,7 @@ describe('WarningCard, a term-missing group', () => {
   it('titles the group with the entry and the number of units', () => {
     const el = mount(<WarningCard item={group} target={false} showAccepted={false} />)
     expect(el.querySelector('.rv-where')?.textContent).toBe('詞彙表：자판기 → 自動販賣機（2 處，1 處已確認）')
-    expect(el.querySelector('.rv-head > .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb')
+    expect(el.querySelector('.rv-head > .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb@2')
   })
 
   it('counts the units not confirmed in the title, and says nothing of the confirmed when there are none', () => {
@@ -79,7 +79,7 @@ describe('WarningCard, a term-missing group', () => {
       el.querySelector<HTMLButtonElement>('.rv-head .rv-copy')!.click()
     })
     expect(writeText).toHaveBeenCalledWith('termgroup/aaaaaaaa/bbbbbbbb@2「자판기 → 自動販賣機」→ ')
-    expect(el.querySelector('.rv-head .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb')
+    expect(el.querySelector('.rv-head .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb@2')
   })
 
   it('copies @0 and titles 0 處 for a group with every unit confirmed', async () => {
@@ -220,6 +220,13 @@ describe('SuggestionCard, a provisional term', () => {
   it('shows a declined one like the other declined suggestions', () => {
     const el = mount(<SuggestionCard item={{ ...item, declined: { reason: '譯法還沒定', date: '2026-11-05' } }} target={false} />)
     expect(el.querySelector('article')?.classList.contains('is-confirmed')).toBe(true)
-    expect(el.textContent).toContain('已確認（2026-11-05）：譯法還沒定')
+    expect(el.textContent).toContain('已否決（2026-11-05）：譯法還沒定')
+    expect(el.textContent).not.toContain('已確認')
+  })
+
+  it('keeps 已確認 for a declined suggestion of another kind', () => {
+    const other: SuggestionItem = { ...item, id: 'x/1', kind: 'inconsistent', declined: { reason: '可以', date: '2026-11-05' } }
+    const el = mount(<SuggestionCard item={other} target={false} />)
+    expect(el.textContent).toContain('已確認（2026-11-05）：可以')
   })
 })

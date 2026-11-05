@@ -180,7 +180,7 @@ export function SuggestionCard({ item, target, jpen = false }: { item: Suggestio
         <Pending pending={item.pending} units={units} />
         <IdCopy id={item.id} source={source} />
       </div>
-      <ConfirmedLine confirmed={item.declined} />
+      <ConfirmedLine confirmed={item.declined} verb={item.kind === 'term-new' ? '已否決' : '已確認'} />
       {inconsistent ? <Inconsistent item={item} jpen={jpen} /> : item.kind === 'term-new' ? <TermNewEvidence item={item} /> : <Evidence item={item} />}
     </article>
   )

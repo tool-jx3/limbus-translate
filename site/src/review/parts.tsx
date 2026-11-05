@@ -38,7 +38,7 @@ export function Pending({ pending, units }: { pending: number; units: number }) 
   return <span class="rv-pending">{pending >= units ? '等待重翻' : `待重翻 ${pending}`}</span>
 }
 
-/** The ID of an item, selectable, and the button that copies it with a piece of the text; copyId is what the button copies where it is not the id shown. */
+/** The ID of an item, selectable, and the button that copies it with a piece of the text; copyId, where there is one, is the id shown and copied (a group's id with its @N), so a copy by hand has it too. */
 export function IdCopy({ id, copyId, source }: { id: string; copyId?: string; source: string }) {
   const code = useRef<HTMLElement>(null)
   const [said, setSaid] = useState('')
@@ -49,7 +49,7 @@ export function IdCopy({ id, copyId, source }: { id: string; copyId?: string; so
   }
   return (
     <span class="rv-id">
-      <code ref={code}>{id}</code>
+      <code ref={code}>{copyId ?? id}</code>
       <button type="button" class="rv-copy" onClick={copy}>
         複製 ID
       </button>
@@ -82,12 +82,12 @@ export function Row({ label, lang, text, mark }: { label: string; lang: Lang; te
   )
 }
 
-/** Why and when a person confirmed an item. */
-export function ConfirmedLine({ confirmed }: { confirmed: Confirmed | undefined }) {
+/** Why and when a person confirmed an item; verb is 已否決 where the person declined something proposed. */
+export function ConfirmedLine({ confirmed, verb = '已確認' }: { confirmed: Confirmed | undefined; verb?: string }) {
   if (!confirmed) return null
   return (
     <p class="rv-confirmed">
-      已確認（{confirmed.date}）：{confirmed.reason}
+      {verb}（{confirmed.date}）：{confirmed.reason}
     </p>
   )
 }
