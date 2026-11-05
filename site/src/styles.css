@@ -1786,3 +1786,227 @@ button.chip {
     align-items: flex-start;
   }
 }
+
+.update {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.uv-head h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.uv-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.uv-others {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.uv-others ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.uv-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.uv-filters label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.uv-filters select {
+  padding: 0.2rem 0.5rem;
+  max-width: 18rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.uv-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.uv-kind {
+  padding: 0.1em 0.7em;
+  border: 1px solid transparent;
+  border-radius: 1em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.uv-kind[aria-pressed="true"] {
+  opacity: 1;
+  border-color: currentColor;
+  font-weight: 700;
+}
+
+.uv-kind.is-new,
+.uc-kind.is-new {
+  background: var(--u-new-bg);
+  color: var(--u-new-fg);
+}
+
+.uv-kind.is-kr,
+.uc-kind.is-kr {
+  background: var(--u-kr-bg);
+  color: var(--u-kr-fg);
+}
+
+.uv-kind.is-deleted,
+.uc-kind.is-deleted {
+  background: var(--u-del-bg);
+  color: var(--u-del-fg);
+}
+
+.uv-kind.is-zh,
+.uc-kind.is-zh,
+.uc-cause {
+  background: var(--u-zh-bg);
+  color: var(--u-zh-fg);
+}
+
+.uv-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.uv-file {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.uc-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.uc-card {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.uc-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+}
+
+.uc-kind,
+.uc-cause {
+  padding: 0.05em 0.6em;
+  border-radius: 1em;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.uc-where {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.uc-origins {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.uc-texts {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.uc-row {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.uc-row dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.uc-row dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.uc-pair {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.uc-old {
+  color: var(--muted);
+}
+
+.uc-tag {
+  margin-right: 0.5em;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.uc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  font-size: 0.85rem;
+}
+
+.uc-jpen {
+  flex: 1 1 14rem;
+  min-width: 0;
+  color: var(--muted);
+}
+
+.uc-cur {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.35rem 0 0;
+}
+
+.uv-empty {
+  color: var(--muted);
+}

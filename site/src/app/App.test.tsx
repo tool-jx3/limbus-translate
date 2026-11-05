@@ -99,7 +99,7 @@ describe('App', () => {
     }
   })
 
-  it('shows the list of updates on #/u and a placeholder with the tag on #/u/<tag>', async () => {
+  it('shows the list of updates on #/u and the page of the release on #/u/<tag>', async () => {
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'updates/index.json': { releases: [] } })))
     location.hash = '#/u'
     let el = mount()
@@ -107,10 +107,31 @@ describe('App', () => {
     await vi.waitFor(() => expect(el.querySelector('.updates')).not.toBeNull())
     expect(el.querySelector('.home')).toBeNull()
 
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        fixtureFetch({
+          'updates/zh-TW-20261029.5.json': {
+            tag: 'zh-TW-20261029.5',
+            prev_tag: 'zh-TW-20261029.4',
+            released_at: '2026-10-29T08:30:00Z',
+            prev_released_at: '2026-10-28T08:30:00Z',
+            raw_tag: 'raw-20261029',
+            prev_raw_tag: 'raw-20261029',
+            rules_commit: 'a',
+            prev_rules_commit: 'b',
+            counts: { new: 0, kr_changed: 0, deleted: 0, zh_changed: 0 },
+            copy_counts: { new: 0, kr_changed: 0, deleted: 0, zh_changed: 0 },
+            other_files: [],
+            entries: [],
+          },
+        }),
+      ),
+    )
     location.hash = '#/u/zh-TW-20261029.5'
     el = mount()
     await loaded(el)
-    expect(el.querySelector('.update-placeholder')?.textContent).toContain('zh-TW-20261029.5')
+    await vi.waitFor(() => expect(el.querySelector('.uv-head')?.textContent).toContain('zh-TW-20261029.5'))
   })
 
   it('shows the review page on the review route', async () => {

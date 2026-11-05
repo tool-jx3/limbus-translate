@@ -14,7 +14,7 @@ const COUNTS: { key: 'new' | 'kr_changed' | 'deleted' | 'zh_changed'; name: stri
 ]
 
 /** The day of a release, in the viewer's own time zone (YYYY-MM-DD). */
-function day(releasedAt: string): string {
+export function day(releasedAt: string): string {
   const t = new Date(releasedAt)
   if (Number.isNaN(t.getTime())) return releasedAt.slice(0, 10)
   const pad = (n: number) => String(n).padStart(2, '0')
