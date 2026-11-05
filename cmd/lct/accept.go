@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/fs"
 	"path/filepath"
+	"slices"
 	"strings"
 	"time"
 
@@ -20,7 +21,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "accept",
 		Usage: "record the review items a person confirmed, so the review page, lct suggest and the build report skip them: " +
-			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml; " +
+			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml, a termgroup/… id to rules/accepted.yaml unit by unit (the warning/term-missing/… ids of the units of the group not accepted yet; none left is a no-op it says so); " +
 			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing); " +
 			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants) and the ids that are no item of the last build (exit code 1 if any); " +
 			"or --tidy: delete the entries of rules/accepted.yaml that are no warning of the last build any more",
@@ -36,13 +37,19 @@ type acceptReport struct {
 	Declined []string `json:"declined"`
 	Accepted []string `json:"accepted"`
 	Skipped  []string `json:"skipped"`
+	// Empty are the termgroup/… ids whose units are all accepted: nothing to write.
+	Empty    []string `json:"empty"`
 	RawTag   string   `json:"raw_tag"`
 	TWCommit string   `json:"tw_commit"`
 }
 
 func (r acceptReport) String() string {
-	return fmt.Sprintf("%d to %s, %d to %s, %d already confirmed (build %s, tw %s)",
+	s := fmt.Sprintf("%d to %s, %d to %s, %d already confirmed (build %s, tw %s)",
 		len(r.Declined), suggest.DeclinedFile, len(r.Accepted), suggest.AcceptedFile, len(r.Skipped), r.RawTag, r.TWCommit)
+	if len(r.Empty) > 0 {
+		s += "\nno unit left to accept in:\n  " + strings.Join(r.Empty, "\n  ")
+	}
+	return s
 }
 
 // tidyReport is what "accept --tidy" prints: the entries removed, and the
@@ -88,6 +95,9 @@ type lookupItem struct {
 	// site.JPENExplained, site.JPENPartial); inconsistent groups only.
 	JPENClass string `json:"jpen_class,omitempty"`
 	Pending   int    `json:"pending"`
+	// Units are the units of a term-missing group (termgroup/…); accepting the
+	// group accepts those without Accepted, one id each.
+	Units []site.TermUnit `json:"units,omitempty"`
 }
 
 // lookupReport is what "accept --dry-run" prints: the items in the order of the
@@ -121,6 +131,13 @@ func (r lookupReport) String() string {
 			for _, j := range v.JPEN {
 				fmt.Fprintf(&b, "    JP %s／EN %s（%d）\n", orDash(j.JP), orDash(j.EN), j.Count)
 			}
+		}
+		for _, u := range it.Units {
+			state := "open"
+			if u.Accepted != nil {
+				state = "accepted"
+			}
+			fmt.Fprintf(&b, "  unit %s (%s)\n    id: %s\n    TW: %s\n", u.Key, state, u.ID, u.ZH)
 		}
 		if len(it.Keys) > 0 {
 			fmt.Fprintf(&b, "  units (%d, %d waiting for retranslation):\n    %s\n", len(it.Keys), it.Pending, strings.Join(it.Keys, "\n    "))
@@ -220,9 +237,23 @@ func runAccept(ctx *cli.Context, args []string) error {
 		toDeclined[n.ID] = true
 	}
 	toAccepted := map[string]bool{}
+	// A term group goes to accepted.yaml unit by unit: its id stands for the
+	// ids of the units not accepted yet.
+	groupUnits := map[string][]string{}
 	for _, w := range rev.Warnings {
 		toAccepted[w.ID] = true
+		if w.Term == nil {
+			continue
+		}
+		groupUnits[w.ID] = []string{}
+		for _, u := range w.Units {
+			toAccepted[u.ID] = true
+			if u.Accepted == nil && !slices.Contains(groupUnits[w.ID], u.ID) {
+				groupUnits[w.ID] = append(groupUnits[w.ID], u.ID)
+			}
+		}
 	}
+	written := map[string]bool{}
 	known := map[string]bool{}
 	for _, e := range in.Declined {
 		known[e.ID] = true
@@ -232,7 +263,7 @@ func runAccept(ctx *cli.Context, args []string) error {
 	}
 
 	var unknown []string
-	rep := acceptReport{Declined: []string{}, Accepted: []string{}, Skipped: []string{}, RawTag: in.RawTag, TWCommit: head}
+	rep := acceptReport{Declined: []string{}, Accepted: []string{}, Skipped: []string{}, Empty: []string{}, RawTag: in.RawTag, TWCommit: head}
 	var declined, accepted []suggest.Declined
 	for _, id := range ids {
 		switch {
@@ -246,8 +277,20 @@ func runAccept(ctx *cli.Context, args []string) error {
 			rep.Declined = append(rep.Declined, id)
 			declined = append(declined, suggest.Declined{ID: id, Reason: *reason, Date: day})
 		default:
-			rep.Accepted = append(rep.Accepted, id)
-			accepted = append(accepted, suggest.Declined{ID: id, Reason: *reason, Date: day})
+			targets := []string{id}
+			if us, isGroup := groupUnits[id]; isGroup {
+				if targets = us; len(us) == 0 {
+					rep.Empty = append(rep.Empty, id)
+				}
+			}
+			for _, t := range targets {
+				if known[t] || written[t] {
+					continue
+				}
+				written[t] = true
+				rep.Accepted = append(rep.Accepted, t)
+				accepted = append(accepted, suggest.Declined{ID: t, Reason: *reason, Date: day})
+			}
 		}
 	}
 	if len(unknown) > 0 {
@@ -351,7 +394,7 @@ func acceptLookup(ctx *cli.Context, ids []string) error {
 		items[n.ID] = lookupItem{ID: n.ID, Kind: suggest.KindNote, List: listDeclined, Confirmed: n.Declined, KR: n.KR, ZH: n.ZH, Note: n.Note, Keys: []string{n.Key}, Pending: n.Pending}
 	}
 	for _, w := range rev.Warnings {
-		items[w.ID] = lookupItem{ID: w.ID, Kind: "warning", List: listAccepted, Confirmed: w.Accepted, KR: w.KR, ZH: w.ZH, Message: w.Message, Keys: w.Keys, Pending: w.Pending}
+		items[w.ID] = lookupItem{ID: w.ID, Kind: "warning", List: listAccepted, Confirmed: w.Accepted, KR: w.KR, ZH: w.ZH, Message: w.Message, Keys: w.Keys, Pending: w.Pending, Units: w.Units}
 	}
 	listed := map[string]lookupItem{}
 	for _, f := range []struct {

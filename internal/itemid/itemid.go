@@ -26,6 +26,13 @@ func Warning(code, kr, zh string) string {
 	return "warning/" + code + "/" + Sha8(kr) + "/" + Sha8(zh)
 }
 
+// TermGroup is the id of the group of units that lack the rendering of one
+// glossary entry (term-missing warnings). It is no warning id, so a unit is
+// accepted by its own Warning id.
+func TermGroup(kr, zh string) string {
+	return "termgroup/" + Sha8(kr) + "/" + Sha8(zh)
+}
+
 // Note is the id of a translator's note of the unit with this key.
 func Note(key, note string) string {
 	return "note/" + key + "/" + Sha8(note)

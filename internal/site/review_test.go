@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"slices"
 	"strings"
 	"testing"
@@ -689,7 +690,174 @@ func TestReviewWarnsOnTermMissing(t *testing.T) {
 			got = &r.Warnings[i]
 		}
 	}
-	if got == nil || got.KR != rvKR || got.ZH != "一" {
-		t.Fatalf("warnings = %+v, want term-missing for 하나 -> 一", r.Warnings)
+	if got == nil || got.KR != rvKR || got.ZH != "壹" || len(got.Units) != 2 || got.Units[0].ZH != "一" {
+		t.Fatalf("warnings = %+v, want the term-missing group of 하나 -> 壹", r.Warnings)
+	}
+}
+
+// acceptedIDPattern is suggest's pattern of the id of a check warning.
+var acceptedIDPattern = regexp.MustCompile(`^warning/[a-z0-9-]+/[0-9a-f]{8}/[0-9a-f]{8}$`)
+
+// glossaryRules loads the rules of a repo with one catch-all family and the
+// given glossary.
+func glossaryRules(t *testing.T, glossary string) *rules.Rules {
+	t.Helper()
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "guides/characters"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	for name, content := range map[string]string{
+		"guides/routing.yaml": "families:\n  - id: other\n    match: []\npriority:\n  - other\n",
+		"glossary/terms.yaml": glossary,
+	} {
+		p := filepath.Join(root, name)
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return rl
+}
+
+// vendingInputs has three units that hold 자판기 and a fourth that renders it.
+func vendingInputs(t *testing.T) (Inputs, []string) {
+	t.Helper()
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	krs := []string{"자판기 하나", "자판기 둘", "자판기 셋", "자판기 넷"}
+	zhs := []string{"販賣機一", "販賣機二", "販賣機三", "自動販賣機四"}
+	var kr, en, zh []string
+	var recs []store.Record
+	for i := range krs {
+		ptr := "/dataList/" + string(rune('0'+i)) + "/content"
+		kr = append(kr, `{"id":`+string(rune('1'+i))+`,"content":"`+krs[i]+`"}`)
+		en = append(en, `{"id":`+string(rune('1'+i))+`,"content":"vending"}`)
+		zh = append(zh, `{"id":`+string(rune('1'+i))+`,"content":"`+zhs[i]+`"}`)
+		recs = append(recs, withSha(record(rvA, ptr, zhs[i], store.OriginClaude), krs[i]))
+	}
+	doc := func(items []string) string { return `{"dataList":[` + strings.Join(items, ",") + `]}` }
+	in := Inputs{
+		KR:      writePack(t, "KR_", map[string]string{rvA: doc(kr)}),
+		EN:      writePack(t, "EN_", map[string]string{rvA: doc(en)}),
+		JP:      writePack(t, "JP_", map[string]string{rvA: doc(en)}),
+		ZH:      writePack(t, "", map[string]string{rvA: doc(zh)}),
+		Records: recordsOf(recs...),
+		Rules:   glossaryRules(t, "- kr: 자판기\n  zh: 自動販賣機\n  status: approved\n"),
+	}
+	in.Review = &ReviewInputs{RawTag: "t1", Fields: fr}
+	return in, []string{rvA}
+}
+
+func termGroupOf(t *testing.T, r Review) WarningItem {
+	t.Helper()
+	var got []WarningItem
+	for _, w := range r.Warnings {
+		if w.Code == "term-missing" {
+			got = append(got, w)
+		}
+	}
+	if len(got) != 1 {
+		t.Fatalf("term-missing items = %+v, want one group", got)
+	}
+	return got[0]
+}
+
+func TestReviewGroupsTermMissingByTerm(t *testing.T) {
+	in, files := vendingInputs(t)
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	w := termGroupOf(t, r)
+	if w.ID != itemid.TermGroup("자판기", "自動販賣機") || acceptedIDPattern.MatchString(w.ID) {
+		t.Errorf("ID = %s", w.ID)
+	}
+	if w.Term == nil || *w.Term != (TermRef{KR: "자판기", ZH: "自動販賣機"}) || w.KR != "자판기" || w.ZH != "自動販賣機" {
+		t.Errorf("term = %+v, KR %q ZH %q", w.Term, w.KR, w.ZH)
+	}
+	if len(w.Units) != 3 || len(w.Keys) != 3 {
+		t.Fatalf("units = %+v, keys = %v, want 3 each", w.Units, w.Keys)
+	}
+	for i, u := range w.Units {
+		if u.Key != k(rvA, i) || u.ID != itemid.Warning("term-missing", u.KR, u.ZH) || !acceptedIDPattern.MatchString(u.ID) || u.Accepted != nil {
+			t.Errorf("unit %d = %+v", i, u)
+		}
+	}
+	for _, key := range w.Keys {
+		if !slices.Contains(r.Refs[key], w.ID) {
+			t.Errorf("Refs[%s] = %v, want the group", key, r.Refs[key])
+		}
+	}
+}
+
+func TestReviewTermGroupKeepsAcceptedUnits(t *testing.T) {
+	in, files := vendingInputs(t)
+	one := itemid.Warning("term-missing", "자판기 둘", "販賣機二")
+	in.Review.Accepted = []suggest.Declined{{ID: one, Reason: "自動販賣機太長", Date: "2026-11-05"}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	w := termGroupOf(t, r)
+	if len(w.Units) != 3 || len(w.Keys) != 2 || slices.Contains(w.Keys, k(rvA, 1)) {
+		t.Fatalf("keys = %v, units = %+v", w.Keys, w.Units)
+	}
+	if u := w.Units[1]; u.ID != one || u.Accepted == nil || u.Accepted.Reason != "自動販賣機太長" {
+		t.Errorf("unit 1 = %+v, want it accepted", u)
+	}
+	if slices.Contains(r.Refs[k(rvA, 1)], w.ID) {
+		t.Errorf("Refs of the accepted unit has the group: %v", r.Refs[k(rvA, 1)])
+	}
+}
+
+func TestReviewTermGroupUnitsCarryNotes(t *testing.T) {
+	in, files := vendingInputs(t)
+	in.Review.Notes = []store.Note{{Key: k(rvA, 0), KRSha: units.KRSha("자판기 하나"), Note: "刻意簡稱"}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	w := termGroupOf(t, r)
+	if w.Units[0].Note != "刻意簡稱" || w.Units[1].Note != "" {
+		t.Errorf("notes = %q, %q", w.Units[0].Note, w.Units[1].Note)
+	}
+}
+
+func TestReviewNewTermEvidenceListsTheUnitsItHits(t *testing.T) {
+	in, files := vendingInputs(t)
+	in.Rules = glossaryRules(t, "[]\n")
+	in.Review.Provisional = []store.ProvisionalTerm{{KR: "자판기", ZH: "販賣機", Key: k(rvA, 0), Batch: "b1", RawTag: "t1"}}
+	// The fourth unit does not use the provisional rendering.
+	in.ZH = writePack(t, "", map[string]string{rvA: `{"dataList":[{"id":1,"content":"販賣機一"},{"id":2,"content":"販賣機二"},{"id":3,"content":"販賣機三"},{"id":4,"content":"自動賣貨機四"}]}`})
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := findSuggestion(t, r, "term-new/자판기")
+	var hits []suggest.Evidence
+	for _, e := range s.Evidence {
+		if e.Note == "有用" || e.Note == "未用" {
+			hits = append(hits, e)
+		}
+	}
+	if len(hits) != 4 {
+		t.Fatalf("evidence = %+v, want the four units it hits", s.Evidence)
+	}
+	for i, h := range hits {
+		want := "有用"
+		if i == 3 {
+			want = "未用"
+		}
+		if h.Key != k(rvA, i) || h.Note != want || h.KR == "" || h.ZH == "" {
+			t.Errorf("hit %d = %+v, want note %s", i, h, want)
+		}
 	}
 }

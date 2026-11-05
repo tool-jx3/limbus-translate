@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"errors"
 	"slices"
+	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/align"
@@ -12,6 +13,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -112,6 +114,28 @@ type WarningItem struct {
 	Origins  []string   `json:"origins"`
 	Pending  int        `json:"pending"`
 	Accepted *Confirmed `json:"accepted,omitempty"`
+	// Term and Units are set on a term-missing group only: one glossary
+	// entry, and every unit that lacks its rendering. KR and ZH are those of
+	// the entry, Keys the units not accepted yet.
+	Term  *TermRef   `json:"term,omitempty"`
+	Units []TermUnit `json:"units,omitempty"`
+}
+
+// TermRef is the glossary entry a term-missing group is about.
+type TermRef struct {
+	KR string `json:"kr"`
+	ZH string `json:"zh"`
+}
+
+// TermUnit is one unit of a term-missing group. ID is the warning id of its
+// KR and TW; Accepted is set when it is in rules/accepted.yaml.
+type TermUnit struct {
+	Key      string     `json:"key"`
+	ID       string     `json:"id"`
+	KR       string     `json:"kr"`
+	ZH       string     `json:"zh"`
+	Note     string     `json:"note,omitempty"`
+	Accepted *Confirmed `json:"accepted,omitempty"`
 }
 
 // NoteItem is one translator's note on the unit it explains. ID is made of
@@ -194,7 +218,23 @@ type group struct {
 	jpen              map[string][2]*string // unit key -> its JP, EN
 }
 
+// newTermHits is the units whose KR a provisional term hits, as evidence.
+type newTermHits struct {
+	term  rules.Term
+	units []suggest.Evidence
+}
+
+// usedNote is the note of a unit a provisional term hits: whether its
+// translation uses the term.
+func usedNote(used bool) string {
+	if used {
+		return "有用"
+	}
+	return "未用"
+}
+
 type warnAcc struct {
+	units    []TermUnit
 	item     WarningItem
 	families map[string]bool
 	origins  map[string]bool
@@ -235,6 +275,21 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	declined := confirmedIndex(rv.Declined)
 	accepted := confirmedIndex(rv.Accepted)
 
+	// The provisional terms with a suggestion, and the units their KR hits.
+	newTerms := map[string]*newTermHits{}
+	for _, s := range suggestions {
+		if s.Kind != suggest.KindNewTerm {
+			continue
+		}
+		kr := strings.TrimPrefix(s.ID, s.Kind+"/")
+		for _, p := range rv.Provisional {
+			if p.KR == kr && !p.Conflict {
+				newTerms[s.ID] = &newTermHits{term: rules.Term{KR: kr, ZH: p.ZH, Match: rules.MatchWord}}
+				break
+			}
+		}
+	}
+
 	groups := map[string]*group{}
 	var warns []*warnAcc
 	warnByID := map[string]*warnAcc{}
@@ -261,6 +316,11 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				g.keys[u.ZH] = append(g.keys[u.ZH], key)
 				g.jpen[key] = [2]*string{u.JP, u.EN}
 			}
+			for _, h := range newTerms {
+				if h.term.OccursIn(ku.KR) {
+					h.units = append(h.units, suggest.Evidence{Key: key, KR: ku.KR, ZH: u.ZH, Note: usedNote(strings.Contains(u.ZH, h.term.ZH))})
+				}
+			}
 			// The warnings are chosen as the build chooses what to check.
 			rec, ok := in.Records[key]
 			if ok {
@@ -273,8 +333,39 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				return
 			}
 			seen := map[string]bool{}
-			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path), Terms: in.Rules.ValidateTerms(path, ku.KR)}) {
-				if is.Severity != validate.SeverityWarn || seen[is.Code] {
+			terms := in.Rules.ValidateTerms(path, ku.KR)
+			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path), Terms: terms}) {
+				if is.Severity != validate.SeverityWarn {
+					continue
+				}
+				if is.Code == validate.CodeTermMissing {
+					// One item per glossary entry; a unit lacks an entry once.
+					termZH := ""
+					for _, t := range terms {
+						if t.KR == is.Term {
+							termZH = t.ZH
+						}
+					}
+					gid := itemid.TermGroup(is.Term, termZH)
+					if seen[gid] {
+						continue
+					}
+					seen[gid] = true
+					w := warnByID[gid]
+					if w == nil {
+						w = &warnAcc{
+							item:     WarningItem{ID: gid, Code: is.Code, KR: is.Term, ZH: termZH, Message: is.Message, Keys: []string{}, Term: &TermRef{KR: is.Term, ZH: termZH}},
+							families: map[string]bool{}, origins: map[string]bool{},
+						}
+						warnByID[gid] = w
+						warns = append(warns, w)
+					}
+					w.units = append(w.units, TermUnit{Key: key, ID: itemid.Warning(is.Code, ku.KR, rec.ZH), KR: ku.KR, ZH: rec.ZH})
+					w.families[family] = true
+					w.origins[rec.Origin] = true
+					continue
+				}
+				if seen[is.Code] {
 					continue
 				}
 				seen[is.Code] = true
@@ -359,6 +450,9 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			continue
 		}
 		item := SuggestionItem{ID: s.ID, Kind: s.Kind, Title: s.Title, Evidence: s.Evidence, Declined: declined[s.ID]}
+		if h := newTerms[s.ID]; h != nil {
+			item.Evidence = append(slices.Clone(s.Evidence), h.units[:min(len(h.units), suggest.MaxEvidence)]...)
+		}
 		if s.Kind == suggest.KindInconsistent {
 			g := groups[s.ID]
 			ok := false
@@ -389,7 +483,18 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	for _, w := range warns {
 		w.item.Families = sortedKeys(w.families)
 		w.item.Origins = sortedKeys(w.origins)
-		w.item.Accepted = accepted[w.item.ID]
+		if w.item.Term != nil {
+			for _, u := range w.units {
+				u.Accepted = accepted[u.ID]
+				u.Note = noteText[u.Key]
+				w.item.Units = append(w.item.Units, u)
+				if u.Accepted == nil {
+					w.item.Keys = append(w.item.Keys, u.Key)
+				}
+			}
+		} else {
+			w.item.Accepted = accepted[w.item.ID]
+		}
 		w.item.Pending = pendingOf(w.item.Keys)
 		if w.item.Accepted == nil {
 			ref(w.item.ID, w.item.Keys)

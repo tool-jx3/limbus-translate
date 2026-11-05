@@ -169,6 +169,19 @@ export interface WarningItem {
   origins: string[]
   pending: number
   accepted?: Confirmed
+  /** A term-missing group only: the glossary entry, and every unit that lacks its rendering (keys: those not accepted). */
+  term?: { kr: string; zh: string }
+  units?: TermUnit[]
+}
+
+/** One unit of a term-missing group; id is its own warning id. */
+export interface TermUnit {
+  key: string
+  id: string
+  kr: string
+  zh: string
+  note?: string
+  accepted?: Confirmed
 }
 
 /** One translator's note. id is made of the key as written in the notes; key is the unit it is placed on. */

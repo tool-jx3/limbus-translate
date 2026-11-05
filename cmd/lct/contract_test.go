@@ -793,6 +793,10 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"`term-new/…`", "the id of a provisional term (term-new) is not named: a person cannot tell it from a glossary candidate"},
 	skillSays{"`status: approved`", "a provisional term the person confirms is not written into the glossary as approved: the batches would stop carrying it for nothing"},
 	skillSays{"bin/lct accept --json --reason '<理由>' 'term-new/", "a provisional term the person declines is not recorded with lct accept"},
+	skillSays{"`termgroup/…`", "the id of a group of term-missing warnings (termgroup) is not named: a person cannot tell it from a single warning"},
+	skillSays{"'termgroup/…'` 把群組裡還沒確認的單位全部記進", "keeping the units of a term group is not said to be lct accept of the group id, which writes one entry per unit"},
+	skillSays{"依詞彙表把 X 譯為 Y", "using the glossary rendering is not said to be lct requeue --to-file with the hint about the term"},
+	skillSays{"收窄 `files`", "a glossary entry that is too broad is not said to be narrowed in glossary/terms.yaml (files, match, notes)"},
 )
 
 // The review-page skill says what the contract wants of it, and each check can fail.

@@ -115,6 +115,7 @@ type acceptOut struct {
 	RawTag   string   `json:"raw_tag"`
 	TWCommit string   `json:"tw_commit"`
 	Removed  []string `json:"removed"`
+	Empty    []string `json:"empty"`
 }
 
 // lookupOut is "accept --dry-run --json".
@@ -138,6 +139,9 @@ type lookupOut struct {
 			Keys  []string `json:"keys"`
 		} `json:"variants"`
 		Pending int `json:"pending"`
+		Units   []struct {
+			ID string `json:"id"`
+		} `json:"units"`
 	} `json:"items"`
 	Unknown  []string `json:"unknown"`
 	RawTag   string   `json:"raw_tag"`
@@ -508,5 +512,79 @@ func TestAcceptDeclinesANewTerm(t *testing.T) {
 	mustLct(t, &sug, "suggest", "--kind", "term-new")
 	if len(sug.Suggestions) != 0 {
 		t.Errorf("suggest still lists %v", sug.ids())
+	}
+}
+
+// lct accept expands a termgroup/… id into the warning ids of the units of the
+// group that are not accepted yet, and writes those.
+func TestAcceptExpandsATermGroup(t *testing.T) {
+	s := acceptRepo(t)
+	glossary := filepath.Join(s.root, "glossary", "terms.yaml")
+	data, err := os.ReadFile(glossary)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(glossary, append(data, "\n\n- kr: 열상\n  zh: 絕無此譯\n  status: approved\n"...), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	mustLct(t, nil, "site", "--out", "work/site")
+	var wr struct {
+		Items []struct {
+			ID    string `json:"id"`
+			Code  string `json:"code"`
+			KR    string `json:"kr"`
+			Units []struct {
+				ID string `json:"id"`
+			} `json:"units"`
+		} `json:"items"`
+	}
+	if err := json.Unmarshal(readFile(t, filepath.Join(s.root, "work", "site", "review", "warnings.json")), &wr); err != nil {
+		t.Fatal(err)
+	}
+	var group string
+	var unitIDs []string
+	for _, w := range wr.Items {
+		if w.Code == "term-missing" && strings.HasPrefix(w.ID, "termgroup/") && w.KR == "열상" {
+			group = w.ID
+			for _, u := range w.Units {
+				unitIDs = append(unitIDs, u.ID)
+			}
+		}
+	}
+	if group == "" || len(unitIDs) == 0 {
+		t.Fatalf("no term group in %+v", wr.Items)
+	}
+
+	var look lookupOut
+	before := readOptional(t, s.root, "rules/accepted.yaml")
+	mustLct(t, &look, "accept", "--dry-run", group)
+	if len(look.Items) != 1 || len(look.Unknown) != 0 || readOptional(t, s.root, "rules/accepted.yaml") != before ||
+		len(look.Items[0].Units) != len(unitIDs) || look.Items[0].Units[0].ID != unitIDs[0] {
+		t.Fatalf("dry run = %+v, ids %v, before %q after %q", look, unitIDs, before, readOptional(t, s.root, "rules/accepted.yaml"))
+	}
+	var out acceptOut
+	mustLct(t, &out, "accept", "--reason", "簡稱即可", "--date", "2026-11-05", group)
+	if !slices.Equal(out.Accepted, unitIDs) {
+		t.Fatalf("accepted = %v, want %v", out.Accepted, unitIDs)
+	}
+	accepted := readOptional(t, s.root, "rules/accepted.yaml")
+	for _, id := range unitIDs {
+		if !strings.HasPrefix(id, "warning/term-missing/") || !strings.Contains(accepted, `- id: "`+id+`"`) {
+			t.Errorf("accepted.yaml lacks %s:\n%s", id, accepted)
+		}
+	}
+	if strings.Contains(accepted, "termgroup/") {
+		t.Errorf("accepted.yaml holds the group id:\n%s", accepted)
+	}
+
+	// Everything is accepted now: the group is a no-op.
+	stdout := ""
+	var again acceptOut
+	mustLct(t, &again, "accept", "--reason", "again", group)
+	if len(again.Accepted) != 0 || !slices.Equal(again.Empty, []string{group}) {
+		t.Errorf("second accept = %+v (%s)", again, stdout)
+	}
+	if after := readOptional(t, s.root, "rules/accepted.yaml"); after != accepted {
+		t.Errorf("a group without unaccepted units wrote:\n%s", after)
 	}
 }
