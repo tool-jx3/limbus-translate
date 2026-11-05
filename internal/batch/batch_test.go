@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"maps"
 	"os"
 	"path"
 	"path/filepath"
@@ -2248,6 +2249,22 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 		}
 	}
 
+	// The glossary items are rules.Term values: the schema declares exactly
+	// the fields Term writes as JSON (match and provisional included).
+	var wantTerm []string
+	termType := reflect.TypeOf(rules.Term{})
+	for i := 0; i < termType.NumField(); i++ {
+		if name, _, _ := strings.Cut(termType.Field(i).Tag.Get("json"), ","); name != "" && name != "-" {
+			wantTerm = append(wantTerm, name)
+		}
+	}
+	glossProps, _ := schemaProps(t, glossSchema)
+	gotTerm := slices.Sorted(maps.Keys(glossProps))
+	slices.Sort(wantTerm)
+	if !slices.Equal(gotTerm, wantTerm) {
+		t.Errorf("batch.schema.json glossary item properties = %v, want the json fields of rules.Term %v", gotTerm, wantTerm)
+	}
+
 	// A batch survives the trip through its file.
 	var back Batch
 	if err := json.Unmarshal(data, &back); err != nil {
@@ -3945,5 +3962,46 @@ func TestSubmitChecksTheCurrentProvisionalRendering(t *testing.T) {
 	}
 	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "驚雷響起"}}, "m", 3); err != nil || len(res.Accepted) != 1 {
 		t.Errorf("current rendering: %+v, %v, want accepted", res, err)
+	}
+}
+
+// A text with an approved term and a provisional term that overlaps it (the
+// provisional KR is a part of the approved one) gets both in the glossary.
+func TestNextCarriesBothAnOverlappingGlossaryTermAndProvisionalTerm(t *testing.T) {
+	kr := map[string]string{"Other.json": oneLine(t, "와일드헌트 히스클리프가 왔다")}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, "- kr: 와일드헌트 히스클리프\n  zh: 狂獵希斯克利夫\n  status: approved\n")
+	env.Provisional = ActiveProvisional([]store.ProvisionalTerm{provTerm("와일드헌트", "狂獵", false)}, env.Rules, nil)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	var got []string
+	for _, g := range b.Glossary {
+		got = append(got, g.KR+"="+g.ZH)
+	}
+	if want := []string{"와일드헌트 히스클리프=狂獵希斯克利夫", "와일드헌트=狂獵"}; !slices.Equal(got, want) {
+		t.Errorf("glossary = %v, want %v", got, want)
+	}
+}
+
+// In a merged batch, a unit of a later file whose twin is leased to another
+// batch is left out; the other units of that file go in as usual.
+func TestMergedBatchLeavesOutAUnitWhoseTwinIsLeasedElsewhere(t *testing.T) {
+	kr := map[string]string{
+		"A.json": oneLine(t, "첫 번째 파일의 문장"),
+		"B.json": `{"dataList":[{"id":0,"content":` + q(t, twinText) + `},{"id":1,"content":"다른 문장"}]}`,
+		"C.json": oneLine(t, twinText),
+	}
+	env := newEnv(t, kr, nil, nil)
+	pending := append(items("A.json", 0, 1), items("B.json", 0, 2)...)
+	pending = append(pending, items("C.json", 0, 1)...)
+	pending[3].Lease = &store.Lease{Batch: "20261101T000000-deadbeef", Until: testNow.Add(time.Hour)}
+	seed(t, env, pending...)
+	b := mustNext(t, env, NextOptions{})
+	want := []string{key("A.json", 0), key("B.json", 1)}
+	if b == nil || !slices.Equal(keysOf(b), want) {
+		t.Fatalf("batch = %+v, want the keys %v", b, want)
+	}
+	if it := pendingMap(t, env)[key("B.json", 0)]; it.Lease != nil {
+		t.Errorf("the twin is leased: %+v", it.Lease)
 	}
 }

@@ -268,12 +268,13 @@ func dropFixtureTerms(t *testing.T, root string) {
 	}
 }
 
-// fixtureKR are the KR texts of the fixtures the replays run on (every string
-// of the KR packs of e2eFixture and phase2Fixture) and the lines the replays
-// add to them.
+// fixtureKR are the KR texts the replays run on: every string of every JSON
+// file under e2eFixture and phase2Fixture (each snapshot, each language pack;
+// a term's KR is Korean, so the strings of the other languages hold none of
+// them), and the texts the replays name or add (replayKR).
 func fixtureKR(t *testing.T) []string {
 	t.Helper()
-	texts := []string{newSpeakerKR}
+	texts := slices.Clone(replayKR)
 	var collect func(v any)
 	collect = func(v any) {
 		switch v := v.(type) {
@@ -291,7 +292,7 @@ func fixtureKR(t *testing.T) []string {
 	}
 	for _, dir := range []string{e2eFixture, phase2Fixture} {
 		err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
-			if err != nil || d.IsDir() || filepath.Ext(p) != ".json" || !slices.Contains(strings.Split(filepath.ToSlash(p), "/"), "kr") {
+			if err != nil || d.IsDir() || filepath.Ext(p) != ".json" {
 				return err
 			}
 			var v any
@@ -306,6 +307,53 @@ func fixtureKR(t *testing.T) []string {
 		}
 	}
 	return texts
+}
+
+// replayKR are the KR texts the replays name or add on their own, besides the
+// fixtures' files.
+var replayKR = []string{newSpeaker, newSpeakerKR, busKR, stopKR, undecidedKR}
+
+// The texts a replay uses are all in fixtureKR: the ones it names, a line of
+// every snapshot, and the file of each language pack.
+func TestFixtureKRCoversTheReplayTexts(t *testing.T) {
+	texts := fixtureKR(t)
+	for _, want := range replayKR {
+		if !slices.Contains(texts, want) {
+			t.Errorf("fixtureKR lacks %q", want)
+		}
+	}
+	// Every line of every pack, in every snapshot.
+	lines := 0
+	for _, dir := range []string{e2eFixture, phase2Fixture} {
+		err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
+			if err != nil || d.IsDir() || filepath.Ext(p) != ".json" {
+				return err
+			}
+			var doc struct {
+				DataList []struct {
+					Content string `json:"content"`
+				} `json:"dataList"`
+			}
+			if json.Unmarshal(readFile(t, p), &doc) != nil {
+				return nil
+			}
+			for _, e := range doc.DataList {
+				if e.Content != "" && !slices.Contains(texts, e.Content) {
+					t.Errorf("fixtureKR lacks %q of %s", e.Content, p)
+				}
+				if e.Content != "" {
+					lines++
+				}
+			}
+			return nil
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+	if lines == 0 {
+		t.Fatal("no fixture line was checked")
+	}
 }
 
 // dropTerms removes the entries of the glossary under root whose KR is one of

@@ -393,10 +393,10 @@ func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []r
 			}
 		}
 	}
+	// No glossary KR is deduped against the provisional terms: ActiveProvisional
+	// already leaves out a KR the glossary has an entry for. Only the texts
+	// of the batch can bring the same provisional term twice.
 	seenKR := map[string]bool{}
-	for _, t := range terms {
-		seenKR[t.KR] = true
-	}
 	for _, x := range texts {
 		plain := validate.StripTags(x.kr) // as CheckNewTerms looks for them
 		for _, t := range provisional {
@@ -432,9 +432,10 @@ func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string
 }
 
 // ActiveProvisional returns the provisional terms in force, in the order of
-// their first record. Of the records of one KR the first one that is no
-// conflict counts. Left out are a KR of fewer than two characters, a KR the
-// glossary has an entry for in any status, and a KR whose suggestion
+// their first record. Of the records of one KR the first one that is not a
+// conflict counts; the later records of that KR are ignored. A KR does not
+// take effect when it has fewer than two characters, when the glossary has an
+// entry with the same KR (in any status), or when its suggestion
 // "term-new/<kr>" is in declined. The terms hit only where their KR stands as
 // a word.
 func ActiveProvisional(all []store.ProvisionalTerm, r *rules.Rules, declined map[string]bool) []rules.Term {

@@ -19,6 +19,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
@@ -849,12 +850,11 @@ func checkPhase2StaleBatch(t *testing.T, p *phase2, id string) {
 // run, in the order they were handed out: the files that name the keywords
 // (Bufs.json) come first, in batches of keyword files only; a batch lists the
 // files of its units, which name their own, all of the family of the batch; a
-// story batch holds one file. The files of the replay are small, so a run that
-// hands out two files of one family outside the stories, both keyword files
-// or both not, has a batch with both, and one that does not has none with
-// more than one file. The replay has no such two files (Bufs.json is of
-// other, Passives.json of ally, and BgmLyrics/L.json is the one file of
-// story-main outside StoryData/), so every batch of it holds one file.
+// story batch holds one file. The files that may share a batch are those of
+// one family outside the stories, all keyword files or none (the rule of
+// batch.Next, which has no helper to ask): when their units handed out in the
+// run are no more than batch.max_units of lct.yaml in all, one batch holds
+// them all (see unmergedFiles).
 func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 	t.Helper()
 	r, err := rules.Load(root)
@@ -864,10 +864,14 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 	if len(batches) == 0 {
 		t.Fatal("the run handed out no batch")
 	}
-	keywordsDone, merged := false, false
-	// The files outside the stories, by family and by whether they name
-	// keywords: the files that may share a batch.
-	plain := map[string]map[string]bool{}
+	cfg, err := config.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	keywordsDone := false
+	// The units handed out of the files outside the stories, by family and by
+	// whether they name keywords: the files that may share a batch.
+	plain := map[string]map[string]int{}
 	for _, b := range batches {
 		keyword := names.IsKeywordFile(b.File)
 		if keyword && keywordsDone {
@@ -877,7 +881,6 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 			t.Errorf("batch %s of the keyword file %s holds files that are none: %q", b.ID, b.File, b.Files)
 		}
 		keywordsDone = keywordsDone || !keyword
-		merged = merged || len(b.Files) > 1
 		var files []string
 		for _, u := range b.Units {
 			if file, _, err := units.SplitKey(u.Key); err != nil || u.File != file {
@@ -902,18 +905,43 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 			}
 			group := fmt.Sprintf("%s, keyword file %v", b.Family, names.IsKeywordFile(f))
 			if plain[group] == nil {
-				plain[group] = map[string]bool{}
+				plain[group] = map[string]int{}
 			}
-			plain[group][f] = true
+		}
+		for _, u := range b.Units {
+			if batch.IsStory(u.File) {
+				continue
+			}
+			plain[fmt.Sprintf("%s, keyword file %v", b.Family, names.IsKeywordFile(u.File))][u.File]++
 		}
 	}
-	mergeable := false
-	for _, files := range plain {
-		mergeable = mergeable || len(files) > 1
+	for _, group := range unmergedFiles(plain, batches, cfg.Batch.MaxUnits) {
+		t.Errorf("the files %q fit one batch (batch.max_units %d) but no batch holds them all", group, cfg.Batch.MaxUnits)
 	}
-	if merged != mergeable {
-		t.Errorf("a batch of several files: %v; files of one family outside the stories: %v; want both or neither (%v)", merged, mergeable, plain)
+}
+
+// unmergedFiles returns, for each group of files that may share a batch (units
+// handed out by file) whose units are no more than limit in all, the files
+// when no batch of batches holds them all. Of a group with more units a
+// batch may or may not hold several files, depending on the order.
+func unmergedFiles(groups map[string]map[string]int, batches []batch.Batch, limit int) [][]string {
+	var out [][]string
+	for _, perFile := range groups {
+		total := 0
+		for _, n := range perFile {
+			total += n
+		}
+		if len(perFile) < 2 || total > limit {
+			continue
+		}
+		files := slices.Sorted(maps.Keys(perFile))
+		if !slices.ContainsFunc(batches, func(b batch.Batch) bool {
+			return !slices.ContainsFunc(files, func(f string) bool { return !slices.Contains(b.Files, f) })
+		}) {
+			out = append(out, files)
+		}
 	}
+	return out
 }
 
 // checkPhase2Batches checks what the translator was handed after the second
@@ -1070,5 +1098,23 @@ func TestNotRunReachesTheReviewIssue(t *testing.T) {
 	p.build()
 	if _, err := os.Stat(filepath.Join(p.root, "out", "review-issue")); err == nil {
 		t.Error("the review issue is still made after the units were translated")
+	}
+}
+
+// A group of files that fit one batch must be held by one; a group that does
+// not fit, or a single file, need not.
+func TestUnmergedFiles(t *testing.T) {
+	groups := map[string]map[string]int{
+		"other, keyword file false": {"A.json": 3, "B.json": 4},
+		"ally, keyword file false":  {"C.json": 30, "D.json": 30},
+		"npc, keyword file false":   {"E.json": 5},
+	}
+	split := []batch.Batch{{Files: []string{"A.json"}}, {Files: []string{"B.json"}}, {Files: []string{"C.json"}}, {Files: []string{"D.json"}}}
+	if got, want := unmergedFiles(groups, split, 40), [][]string{{"A.json", "B.json"}}; !reflect.DeepEqual(got, want) {
+		t.Errorf("unmergedFiles = %q, want %q", got, want)
+	}
+	merged := append(split, batch.Batch{Files: []string{"B.json", "A.json", "X.json"}})
+	if got := unmergedFiles(groups, merged, 40); len(got) != 0 {
+		t.Errorf("unmergedFiles = %q, want none when one batch holds A and B", got)
 	}
 }

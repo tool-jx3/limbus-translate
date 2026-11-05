@@ -233,9 +233,9 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		return recs, nil
 	}
 
-	// take returns the first max units of the file of c that can go into the
+	// take returns the first n units of the file of c that can go into the
 	// batch, and notes their texts as taken.
-	take := func(c candidate, max int) (part, error) {
+	take := func(c candidate, n int) (part, error) {
 		fd, err := ld.file(c.file)
 		if err != nil {
 			return part{}, err
@@ -250,7 +250,7 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		slices.SortFunc(slots, func(a, b slot) int { return a.pos - b.pos })
 		chosen := firstEligible(slots, func(s slot) bool {
 			return Claimable(pending[s.idx], now) && twins.pick(fd, s.pos, pending[s.idx])
-		}, max)
+		}, n)
 		return part{fd, chosen}, nil
 	}
 
@@ -325,11 +325,11 @@ type part struct {
 	chosen []slot
 }
 
-// firstEligible returns the first max slots that ok accepts.
-func firstEligible(slots []slot, ok func(slot) bool, max int) []slot {
+// firstEligible returns the first n slots that ok accepts.
+func firstEligible(slots []slot, ok func(slot) bool, n int) []slot {
 	var out []slot
 	for _, s := range slots {
-		if len(out) == max {
+		if len(out) == n {
 			break
 		}
 		if ok(s) {
@@ -439,8 +439,9 @@ func assemble(
 	}
 	var (
 		texts []unitText
-		krs   []string
+		krs   []string // the KR texts, each once
 	)
+	seenKR := map[string]bool{}
 	needRecords := story
 	for _, p := range parts {
 		fd := p.fd
@@ -477,7 +478,10 @@ func assemble(
 				Keep:    constraints(u.KR),
 			})
 			texts = append(texts, unitText{fd.file, u.KR})
-			krs = append(krs, u.KR)
+			if !seenKR[u.KR] {
+				seenKR[u.KR] = true
+				krs = append(krs, u.KR)
+			}
 			needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 		}
 		// The guides of the file and of the speakers of its units, each once.
