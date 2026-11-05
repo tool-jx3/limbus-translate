@@ -14,11 +14,13 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 const (
@@ -1462,5 +1464,131 @@ func TestRunWarnsWhenAHistoryCannotBeMade(t *testing.T) {
 	}
 	if _, ok := f.readHistory(t, "zh-TW-20261102.1"); ok {
 		t.Errorf("zh-TW-20261102.1 has a record though its snapshot is gone")
+	}
+}
+
+func TestRunDoesNotCommitAgainWhenTheSameTagIsPreparedAgain(t *testing.T) {
+	f := newFixture(t)
+	f.releaseWith(t)
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	t0 := time.Date(2026, 11, 5, 8, 0, 0, 0, time.UTC)
+	defer func(old func() time.Time) { now = old }(now)
+	now = func() time.Time { return t0 }
+	one, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The Release did not follow; the clock has moved on.
+	now = func() time.Time { return t0.Add(time.Second) }
+	two, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if two.Changed || two.TWCommit != one.TWCommit || two.Tag != one.Tag || len(two.History) != 0 {
+		t.Errorf("second Run = %+v after %+v, want no new commit and no record written again", two, one)
+	}
+	if rec, ok := f.readHistory(t, one.Tag); !ok || rec.ReleasedAt != "2026-11-05T08:00:00Z" {
+		t.Errorf("record = %+v, %v, want the time of the first run kept", rec, ok)
+	}
+}
+
+func TestRunWritesTheHistoryInsideTheStoreLock(t *testing.T) {
+	f := newFixture(t)
+	f.releaseWith(t)
+	f.rebuild(t, testRulesB, "{\"a\": 1}\n")
+	recFile := filepath.Join(f.tw, ".meta", "history", "zh-TW-20261029.2.json")
+	done := make(chan error, 1)
+	err := store.Open(f.tw).WithLock(func() error {
+		go func() {
+			_, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+			done <- err
+		}()
+		time.Sleep(time.Second)
+		if _, err := os.Stat(recFile); err == nil {
+			t.Errorf("the record is in the worktree while another holder has the lock")
+		}
+		return nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := <-done; err != nil {
+		t.Fatal(err)
+	}
+	if _, ok := f.readHistory(t, "zh-TW-20261029.2"); !ok {
+		t.Errorf("the record is not in the commit")
+	}
+}
+
+func TestLatestReleaseIsTheLastOfTheOrder(t *testing.T) {
+	names := []string{"zh-TW-20261029.10", "zh-TW-20261029.9", "zh-TW-20261029.01", "zh-TW-20261029.1", "zh-TW-latest", "zh-TW-20261030.1"}
+	order := sortedReleases(names)
+	if want := []string{"zh-TW-20261029.01", "zh-TW-20261029.1", "zh-TW-20261029.9", "zh-TW-20261029.10", "zh-TW-20261030.1"}; !slices.Equal(order, want) {
+		t.Errorf("sortedReleases = %v, want %v", order, want)
+	}
+	if got := latestRelease(names); got != order[len(order)-1] {
+		t.Errorf("latestRelease = %q, want the last of the order %q", got, order[len(order)-1])
+	}
+}
+
+// moveRawTag points the raw tag at a new snapshot whose KR pack holds Passives.
+func (f fixture) moveRawTag(t *testing.T, tag string) {
+	t.Helper()
+	write(t, f.raw, "kr/KR_Passives.json", "{\"dataList\":[{\"id\":1,\"desc\":\"a\"}]}\n")
+	runGit(t, f.raw, "add", "-A")
+	runGit(t, f.raw, "commit", "-q", "-m", "kr changed")
+	runGit(t, f.raw, "tag", "-f", tag)
+}
+
+func TestRunWritesNoHistoryWhenOnlyTheKRChangedAndThePackIsTheSame(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	// The build of the worktree has the pack of the Release, from a snapshot
+	// whose KR text is another.
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	f.moveRawTag(t, testRawTag)
+
+	// The strings do differ, so a record of the strings would not be empty.
+	dir := t.TempDir()
+	prev, err := history.ReadRev(f.tw, f.raw, "zh-TW-20261101.1", testLang, filepath.Join(dir, "a"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	cur, err := history.ReadWorktree(f.tw, f.raw, testLang, filepath.Join(dir, "b"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if rec, err := history.Make(prev, cur, "x", time.Now(), testLang); err != nil || len(rec.Entries) == 0 {
+		t.Fatalf("Make = %+v, %v, want entries for the new KR text", rec, err)
+	}
+
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.ReleaseNeeded || len(res.History) != 0 || len(res.HistoryWarnings) != 0 {
+		t.Errorf("Run = %+v, want no Release and no history", res)
+	}
+	if _, ok := f.readHistory(t, res.Tag); ok {
+		t.Errorf("a record of %s was written though no Release is made", res.Tag)
+	}
+}
+
+func TestRunWritesAnEmptyHistoryWhenOnlyTheBytesOfThePackDiffer(t *testing.T) {
+	f := newFixture(t)
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Other.json", "{}\n")
+	first := f.releaseWith(t)
+	// The same strings, written another way: the pack is not the same.
+	write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Other.json", "{ }\n")
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.ReleaseNeeded || !slices.Equal(res.History, []string{res.Tag}) {
+		t.Fatalf("Run = %+v, want a Release with its history", res)
+	}
+	rec, ok := f.readHistory(t, res.Tag)
+	if !ok || rec.PrevTag != first.Tag || len(rec.Entries) != 0 || len(rec.OtherFiles) != 0 {
+		t.Errorf("record = %+v, %v, want an empty one after %s", rec, ok, first.Tag)
 	}
 }

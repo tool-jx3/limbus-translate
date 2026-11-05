@@ -109,26 +109,11 @@ func LastRelease(twRoot string) (string, error) {
 
 // latestRelease returns the latest of the Release tags among names, or "".
 func latestRelease(names []string) string {
-	var last string
-	var lastDay string
-	lastN := -1
-	for _, name := range names {
-		m := releaseTagRe.FindStringSubmatch(name)
-		if m == nil {
-			continue
-		}
-		// A number too large for an int cannot be told from another: skipped,
-		// as ReleaseTag does.
-		n, err := strconv.Atoi(m[2])
-		if err != nil {
-			continue
-		}
-		// The days have eight digits each, so they compare as text.
-		if last == "" || m[1] > lastDay || (m[1] == lastDay && n > lastN) {
-			last, lastDay, lastN = name, m[1], n
-		}
+	rels := sortedReleases(names)
+	if len(rels) == 0 {
+		return ""
 	}
-	return last
+	return rels[len(rels)-1]
 }
 
 // packDir is the directory of the pack in tw, the one the zips hold.
@@ -369,16 +354,21 @@ func Run(root, twRoot, rawRoot, outDir, langDir string) (*Result, error) {
 		}
 	}
 
-	// The history records of the Releases go into the commit. Reading the
-	// Releases takes long, so it is done outside the lock; a failure is a
-	// warning, never an error of the Release.
-	written, warnings := writeHistory(root, twRoot, rawRoot, langDir, tag)
+	// The history records of the Releases go into the commit. Comparing the
+	// Releases takes long, so it is done outside the lock; the files are written
+	// inside it, just before the commit. A failure is a warning, never an error
+	// of the Release.
+	hist, warnings := planHistory(root, twRoot, rawRoot, langDir, tag)
 
 	// No writer of the store, such as a batch, may change tw between the files
 	// being staged and the commit being made.
 	var sha string
 	var changed bool
+	var written []string
 	err = store.Open(twRoot).WithLock(func() error {
+		var more []string
+		written, more = hist.apply(twRoot)
+		warnings = append(warnings, more...)
 		var err error
 		sha, changed, err = gitx.CommitAll(twRoot, fmt.Sprintf("build: %s (rules %s)", info.RawTag, info.RulesCommit))
 		return err

@@ -1,8 +1,12 @@
 package publish
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io/fs"
 	"os"
+	"path"
 	"path/filepath"
 	"slices"
 	"strconv"
@@ -16,8 +20,10 @@ import (
 // now is the clock of the history records; tests replace it.
 var now = time.Now
 
-// sortedReleases returns the Release tags among names, the oldest first, in the
-// order latestRelease picks the last of.
+// sortedReleases returns the Release tags among names, the oldest first: by
+// day, then by N as a number. Names that are not Release tags are left out. It
+// is the one place that parses and orders Release tags; latestRelease takes the
+// last of it.
 func sortedReleases(names []string) []string {
 	type rel struct {
 		name, day string
@@ -29,13 +35,16 @@ func sortedReleases(names []string) []string {
 		if m == nil {
 			continue
 		}
+		// A number too large for an int cannot be told from another: skipped,
+		// as ReleaseTag does.
 		n, err := strconv.Atoi(m[2])
 		if err != nil {
 			continue
 		}
 		rels = append(rels, rel{name, m[1], n})
 	}
-	slices.SortFunc(rels, func(a, b rel) int {
+	// The days have eight digits each, so they compare as text.
+	slices.SortStableFunc(rels, func(a, b rel) int {
 		if a.day != b.day {
 			return strings.Compare(a.day, b.day)
 		}
@@ -70,13 +79,43 @@ func readRelease(twRoot, rawRoot, tag, langDir string) *readSide {
 	return &readSide{side: side, dir: dir, err: err}
 }
 
-// writeHistory writes, in the tw worktree, the history record of the Release
-// tag that Run prepares (compared with the latest Release; nothing when there is
-// none, or the pack did not change) and the records the earlier Releases lack
-// (each compared with the Release before it; the first one has none). It
-// returns the tags it wrote and one warning for each record it could not make:
-// a failure never stops the others, nor Run.
-func writeHistory(root, twRoot, rawRoot, langDir, tag string) (written, warnings []string) {
+// historyPlan is what Run writes to the tw worktree, inside the lock and just
+// before the commit: the records to store, and the tag whose record is stale.
+type historyPlan struct {
+	records []*history.Record
+	remove  string // a tag whose record is to go, "" if none
+}
+
+// apply writes the plan to the worktree at twRoot and returns the tags written
+// and one warning for each file it could not write or remove.
+func (p historyPlan) apply(twRoot string) (written, warnings []string) {
+	for _, rec := range p.records {
+		if err := history.Write(twRoot, rec); err != nil {
+			warnings = append(warnings, fmt.Sprintf("%s: %v", rec.Tag, err))
+			continue
+		}
+		written = append(written, rec.Tag)
+	}
+	if p.remove != "" {
+		file := filepath.Join(twRoot, ".meta", "history", p.remove+".json")
+		if err := os.Remove(file); err != nil && !os.IsNotExist(err) {
+			warnings = append(warnings, fmt.Sprintf("%s: %v", p.remove, err))
+		}
+	}
+	return written, warnings
+}
+
+// planHistory compares Releases and returns what to write, without writing:
+// the records the earlier Releases lack (each compared with the Release before
+// it; the first one has none), and the record of the Release tag that Run
+// prepares, compared with the latest Release. That one is made exactly when the
+// pack of the worktree differs from that of the latest Release (the rule of
+// SamePack), even if no string differs; when it does not, a stale record of tag
+// is to be removed. There is none when there is no Release. A record equal to
+// the one the worktree holds, but for its time, is not written again, so that
+// running again changes nothing. It returns one warning for each record it
+// could not make: a failure never stops the others, nor Run.
+func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, warnings []string) {
 	warn := func(t string, err error) {
 		warnings = append(warnings, fmt.Sprintf("%s: %v", t, err))
 	}
@@ -110,26 +149,25 @@ func writeHistory(root, twRoot, rawRoot, langDir, tag string) (written, warnings
 		case cur.err != nil:
 			warn(rels[i], cur.err)
 		default:
-			rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir)
-			if err == nil {
-				err = history.Write(twRoot, rec)
-			}
-			if err != nil {
+			if rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir); err != nil {
 				warn(rels[i], err)
 			} else {
-				written = append(written, rels[i])
+				plan.records = append(plan.records, rec)
 			}
 		}
 		prev.remove()
 		prev = cur
 	}
 
-	// The Release this run prepares, from the worktree not yet committed.
-	if len(rels) == 0 {
+	// The Release this run prepares, from the worktree not yet committed. The
+	// Release it is compared with is the one the decision of Run is made on.
+	last := latestRelease(names)
+	if last == "" {
 		return
 	}
-	if prev == nil {
-		prev = readRelease(twRoot, rawRoot, rels[len(rels)-1], langDir)
+	if prev == nil || prev.side == nil || prev.side.Tag != last {
+		prev.remove()
+		prev = readRelease(twRoot, rawRoot, last, langDir)
 	}
 	if prev.err != nil {
 		warn(tag, fmt.Errorf("the latest Release: %w", prev.err))
@@ -146,23 +184,92 @@ func writeHistory(root, twRoot, rawRoot, langDir, tag string) (written, warnings
 		warn(tag, err)
 		return
 	}
+	same, err := samePackDirs(prev.side.PackDir, cur.PackDir, langDir)
+	if err != nil {
+		warn(tag, err)
+		return
+	}
+	if same {
+		plan.remove = tag
+		return
+	}
 	rec, err := history.Make(prev.side, cur, tag, now().UTC().Truncate(time.Second), langDir)
 	if err != nil {
 		warn(tag, err)
 		return
 	}
-	file := filepath.Join(twRoot, ".meta", "history", tag+".json")
-	if rec.Empty() {
-		// An earlier run, whose pack differed, may have left a record of this tag.
-		if err := os.Remove(file); err != nil && !os.IsNotExist(err) {
-			warn(tag, err)
-		}
+	if unchanged(twRoot, rec) {
 		return
 	}
-	if err := history.Write(twRoot, rec); err != nil {
-		warn(tag, err)
-		return
-	}
-	written = append(written, tag)
+	plan.records = append(plan.records, rec)
 	return
+}
+
+// unchanged reports whether the worktree holds a record of rec.Tag that is rec
+// but for the time of the Release.
+func unchanged(twRoot string, rec *history.Record) bool {
+	data, err := os.ReadFile(filepath.Join(twRoot, ".meta", "history", rec.Tag+".json"))
+	if err != nil {
+		return false
+	}
+	var old history.Record
+	if json.Unmarshal(data, &old) != nil {
+		return false
+	}
+	old.ReleasedAt = rec.ReleasedAt
+	a, errA := json.Marshal(old)
+	b, errB := json.Marshal(rec)
+	return errA == nil && errB == nil && bytes.Equal(a, b)
+}
+
+// samePackDirs reports whether the pack directories a and b hold the same files
+// with the same bytes, but for Info/version.json of langDir: the rule of
+// SamePack, for a directory not committed yet.
+func samePackDirs(a, b, langDir string) (bool, error) {
+	skip := path.Join("Lang", langDir, "Info", "version.json")
+	files := func(dir string) (map[string]bool, error) {
+		out := map[string]bool{}
+		err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
+			if err != nil || d.IsDir() {
+				return err
+			}
+			rel, err := filepath.Rel(dir, p)
+			if err != nil {
+				return err
+			}
+			if rel = filepath.ToSlash(rel); rel != skip {
+				out[rel] = true
+			}
+			return nil
+		})
+		return out, err
+	}
+	left, err := files(a)
+	if err != nil {
+		return false, err
+	}
+	right, err := files(b)
+	if err != nil {
+		return false, err
+	}
+	if len(left) != len(right) {
+		return false, nil
+	}
+	for rel := range left {
+		if !right[rel] {
+			return false, nil
+		}
+		x, err := os.ReadFile(filepath.Join(a, filepath.FromSlash(rel)))
+		if err != nil {
+			return false, err
+		}
+		y, err := os.ReadFile(filepath.Join(b, filepath.FromSlash(rel)))
+		if err != nil {
+			return false, err
+		}
+		if !bytes.Equal(x, y) {
+			return false, nil
+		}
+	}
+	return true, nil
 }
