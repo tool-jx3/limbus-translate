@@ -861,3 +861,35 @@ func TestReviewNewTermEvidenceListsTheUnitsItHits(t *testing.T) {
 		}
 	}
 }
+
+// A group reads as confirmed once every unit is accepted, and counts as an
+// open warning while one is not.
+func TestReviewCountsATermGroupByItsUnits(t *testing.T) {
+	in, files := vendingInputs(t)
+	ids := []string{
+		itemid.Warning("term-missing", "자판기 하나", "販賣機一"),
+		itemid.Warning("term-missing", "자판기 둘", "販賣機二"),
+		itemid.Warning("term-missing", "자판기 셋", "販賣機三"),
+	}
+	count := func(accepted ...string) (ReviewCounts, WarningItem) {
+		in.Review.Accepted = nil
+		for _, id := range accepted {
+			in.Review.Accepted = append(in.Review.Accepted, suggest.Declined{ID: id, Reason: "簡稱", Date: "2026-11-05"})
+		}
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return countReview(r), termGroupOf(t, r)
+	}
+	if c, w := count(); c.Warnings != 1 || w.Accepted != nil {
+		t.Errorf("none accepted: counts %+v, accepted %v", c, w.Accepted)
+	}
+	if c, w := count(ids[:2]...); c.Warnings != 1 || w.Accepted != nil || len(w.Keys) != 1 {
+		t.Errorf("partly accepted: counts %+v, accepted %v, keys %v", c, w.Accepted, w.Keys)
+	}
+	c, w := count(ids...)
+	if c.Warnings != 0 || w.Accepted == nil || len(w.Keys) != 0 || w.Accepted.Reason != "簡稱" {
+		t.Errorf("all accepted: counts %+v, accepted %v, keys %v", c, w.Accepted, w.Keys)
+	}
+}

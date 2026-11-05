@@ -577,6 +577,13 @@ func TestAcceptExpandsATermGroup(t *testing.T) {
 		t.Errorf("accepted.yaml holds the group id:\n%s", accepted)
 	}
 
+	// --tidy keeps the entries of the units of a group: they are warnings of the build.
+	var tidy acceptOut
+	mustLct(t, &tidy, "accept", "--tidy")
+	if len(tidy.Removed) != 0 || readOptional(t, s.root, "rules/accepted.yaml") != accepted {
+		t.Errorf("tidy removed %v:\n%s", tidy.Removed, readOptional(t, s.root, "rules/accepted.yaml"))
+	}
+
 	// Everything is accepted now: the group is a no-op.
 	stdout := ""
 	var again acceptOut

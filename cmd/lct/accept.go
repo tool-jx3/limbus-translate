@@ -316,6 +316,10 @@ func acceptTidy(ctx *cli.Context) error {
 	current := map[string]bool{}
 	for _, w := range rev.Warnings {
 		current[w.ID] = true
+		// A term group is accepted by the ids of its units.
+		for _, u := range w.Units {
+			current[u.ID] = true
+		}
 	}
 	stale := map[string]bool{}
 	for _, e := range in.Accepted {

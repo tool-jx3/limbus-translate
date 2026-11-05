@@ -495,6 +495,12 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		} else {
 			w.item.Accepted = accepted[w.item.ID]
 		}
+		if w.item.Term != nil && len(w.item.Units) > 0 && len(w.item.Keys) == 0 {
+			// Every unit is accepted: the group reads as confirmed, with the
+			// confirmation of its last unit. A group with an unaccepted unit
+			// stays open and its Keys are those units.
+			w.item.Accepted = w.item.Units[len(w.item.Units)-1].Accepted
+		}
 		w.item.Pending = pendingOf(w.item.Keys)
 		if w.item.Accepted == nil {
 			ref(w.item.ID, w.item.Keys)
