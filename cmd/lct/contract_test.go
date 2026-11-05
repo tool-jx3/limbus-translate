@@ -1367,6 +1367,10 @@ const keptProgressPrefix = "translate: keep the progress of"
 // takes it has not seen that push yet), and a try a few seconds later goes
 // through. The step fails when the last try fails, so a Release is never made
 // from a commit origin lacks.
+// keepCommitIf is the first line of the step that keeps the translations on
+// tw: it commits only when the worktree changed.
+const keepCommitIf = `if [ -n "$(git -C .work/tw status --porcelain)" ]; then`
+
 const (
 	twPushRetry  = "for wait in 2 4 8 16 x; do"
 	twPushGiveUp = `if [ "$wait" = x ]; then exit 1; fi`
@@ -1909,6 +1913,23 @@ func checkPipelineWorkflow(file, content string) []string {
 			}
 			if !strings.Contains(keep.Run, `-m "`+keptProgressPrefix+` $RAW_TAG"`) {
 				add("the commit of the step that keeps the translations on tw has no message %q followed by the raw tag: the idle check tells a tw whose progress was kept and never built by the subject of its last commit", keptProgressPrefix)
+			}
+			// The commit is made when the worktree changed; the push is
+			// made every time, after the if: tw can be ahead of origin
+			// with a clean worktree (the push of a run failed and the
+			// step was cancelled before .meta/translate.json was written),
+			// and a push with nothing new does nothing.
+			before, after, found := strings.Cut(keep.Run, keepCommitIf)
+			body, _, closed := strings.Cut(after, "\nfi\n")
+			switch {
+			case !found || strings.TrimSpace(before) != "":
+				add("the step that keeps the translations on tw does not begin with %q: it commits nothing, or commits when nothing changed", keepCommitIf)
+			case !closed:
+				add("the if of the step that keeps the translations on tw is not closed by a fi of its own line")
+			case strings.Contains(keep.Run, "git -C .work/tw commit") && !strings.Contains(body, "git -C .work/tw commit"):
+				add("the step that keeps the translations on tw commits outside its if: a commit with nothing changed fails the step")
+			case strings.Contains(body, "push origin tw"):
+				add("the step that keeps the translations on tw pushes only when the worktree changed: push after the fi, so that commits a run made and could not push are pushed with a clean worktree too")
 			}
 		}
 		if s.Env["ANTHROPIC_API_KEY"] != "${{ secrets.ANTHROPIC_API_KEY }}" {
@@ -3496,7 +3517,6 @@ func TestWorkflowContract(t *testing.T) {
 		{"translations committed with a message of no meaning", `-m "translate: keep the progress of $RAW_TAG"`, `-m "wip $RAW_TAG"`, `"translate: keep the progress of"`},
 		{"translations committed with a message the idle check does not know", `-m "translate: keep the progress of $RAW_TAG"`, `-m "translate: kept the progress of $RAW_TAG"`, `"translate: keep the progress of"`},
 		{"translations not pushed", "git -C .work/tw push origin tw", "git -C .work/tw status", `"git -C .work/tw push origin tw"`},
-		{"translations never kept", "          if [ -n \"$(git -C .work/tw status --porcelain)\" ]; then\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n            for wait in 2 4 8 16 x; do\n              git -C .work/tw push origin tw && break\n              if [ \"$wait\" = x ]; then exit 1; fi\n              echo \"::warning::the push of tw was refused; trying again in ${wait}s\"\n              sleep \"$wait\"\n            done\n          fi\n", "          true\n", `"git -C .work/tw commit"`},
 
 		// Units that are pending while the key or the model is missing are
 		// recorded as untranslated, for the build and the review issue; a dry
@@ -3587,9 +3607,29 @@ func TestWorkflowContract(t *testing.T) {
 			wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, fmt.Sprintf("the step that runs %q tries the push once", tc.push))
 		})
 	}
+	t.Run("translations never kept", func(t *testing.T) {
+		src := mutate(t, pipeline, "          "+keepCommitIf+"\n            git -C .work/tw add -A\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n          fi\n", "")
+		src = mutate(t, src, "            git -C .work/tw push origin tw && break\n", "            true && break\n")
+		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), `"git -C .work/tw commit"`)
+	})
+	// A run whose push failed leaves tw ahead of origin with a clean
+	// worktree: the push comes after the if, not inside it.
+	t.Run("translations pushed only when the worktree changed", func(t *testing.T) {
+		step := pipelineStepWith(t, pipeline, "git -C .work/tw push origin tw")
+		moved := mutate(t, step, "$RAW_TAG\"\n          fi\n", "$RAW_TAG\"\n")
+		moved = mutate(t, moved, "          done\n", "          done\n          fi\n")
+		src := mutate(t, pipeline, step, moved)
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, "pushes only when the worktree changed")
+	})
+	t.Run("translations committed when nothing changed", func(t *testing.T) {
+		step := pipelineStepWith(t, pipeline, "git -C .work/tw push origin tw")
+		moved := mutate(t, step, "            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n          fi\n", "          fi\n            git -C .work/tw commit --quiet -m \"translate: keep the progress of $RAW_TAG\"\n")
+		src := mutate(t, pipeline, step, moved)
+		wantProblems(t, checkPipelineWorkflow(pipelineFile, src), pipelineFile, "commits outside its if")
+	})
 	t.Run("translations kept only after the build", func(t *testing.T) {
 		src := mutate(t, pipeline, "bin/lct build --json", "bin/lct build --json; git -C .work/tw push origin tw")
-		src = mutate(t, src, "              git -C .work/tw push origin tw && break\n", "              git -C .work/tw status && break\n")
+		src = mutate(t, src, "            git -C .work/tw push origin tw && break\n", "            git -C .work/tw status && break\n")
 		hasProblem(t, checkPipelineWorkflow(pipelineFile, src), `"git -C .work/tw push origin tw" must come before "bin/lct build"`)
 	})
 	t.Run("the Release still due asked outside the decide step", func(t *testing.T) {

@@ -227,7 +227,10 @@ jobs:
       # before anything else can fail, and also when the translate step was
       # cancelled or ran out of time: a build, publish or push that fails
       # later does not throw the paid work away. Nothing changed, nothing
-      # committed. Publish commits on top of this.
+      # committed; the push is made all the same, as tw can be ahead of
+      # origin with nothing changed (the push of a run failed, and the step
+      # was cancelled before .meta/translate.json was written), and a push
+      # with nothing new does nothing. Publish commits on top of this.
       #
       # This push comes a second after the last one of lct translate, and
       # GitHub can refuse a push that follows another so closely (missing
@@ -242,13 +245,13 @@ jobs:
           if [ -n "$(git -C .work/tw status --porcelain)" ]; then
             git -C .work/tw add -A
             git -C .work/tw commit --quiet -m "translate: keep the progress of $RAW_TAG"
-            for wait in 2 4 8 16 x; do
-              git -C .work/tw push origin tw && break
-              if [ "$wait" = x ]; then exit 1; fi
-              echo "::warning::the push of tw was refused; trying again in ${wait}s"
-              sleep "$wait"
-            done
           fi
+          for wait in 2 4 8 16 x; do
+            git -C .work/tw push origin tw && break
+            if [ "$wait" = x ]; then exit 1; fi
+            echo "::warning::the push of tw was refused; trying again in ${wait}s"
+            sleep "$wait"
+          done
 
       # Units are pending and the API key or the model is missing, or the
       # claude CLI did not install. Nothing is translated and nothing is
