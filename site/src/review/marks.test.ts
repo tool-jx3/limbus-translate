@@ -77,4 +77,11 @@ describe('termMark', () => {
     const el = show('a.b a.b axb', termMark('a.b'))
     expect([...el.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['a.b', 'a.b'])
   })
+
+  it('marks nothing for an empty term', () => {
+    expect(termMark('')).toBeUndefined()
+    const el = show('abc', termMark(''))
+    expect(el.querySelectorAll('mark')).toHaveLength(0)
+    expect(el.textContent).toBe('abc')
+  })
 })

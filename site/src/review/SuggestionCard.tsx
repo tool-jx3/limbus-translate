@@ -136,9 +136,8 @@ function Evidence({ item }: { item: SuggestionItem }) {
 
 /** The evidence of a provisional term: where it was registered, the other renderings, and the units that hit it. */
 function TermNewEvidence({ item }: { item: SuggestionItem }) {
-  const first = item.evidence[0]
-  const krMark = first?.kr !== undefined ? termMark(first.kr) : undefined
-  const zhMark = first?.zh !== undefined ? termMark(first.zh) : undefined
+  const krMark = item.term ? termMark(item.term.kr) : undefined
+  const zhMark = item.term ? termMark(item.term.zh) : undefined
   return (
     <ul class="rv-evidence">
       {item.evidence.map((e, k) => {

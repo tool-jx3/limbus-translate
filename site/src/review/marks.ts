@@ -22,7 +22,8 @@ export const WARNING_MARKS: Partial<Record<string, RegExp>> = {
   'curly-quotes': /[“”]/g,
 }
 
-/** Marks every occurrence of a term (a KR or a TW name) in a text; the term is matched as written, not as a pattern. */
-export function termMark(term: string): RegExp {
+/** Marks every occurrence of a term (a KR or a TW name) in a text; the term is matched as written, not as a pattern. An empty term marks nothing. */
+export function termMark(term: string): RegExp | undefined {
+  if (term === '') return undefined
   return new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gu')
 }

@@ -9,6 +9,7 @@ const chars = (s: string) => Array.from(stripTags(s)).length
 
 /** A unit of a term-missing group: its source with the original term marked, its translation, the translator's note. */
 function TermUnitRow({ term, unit }: { term: TermRef; unit: TermUnit }) {
+  const krMark = termMark(term.kr)
   return (
     <li class={unit.accepted ? 'rv-tunit is-confirmed' : 'rv-tunit'}>
       <div class="rv-tunit-head">
@@ -17,7 +18,7 @@ function TermUnitRow({ term, unit }: { term: TermRef; unit: TermUnit }) {
       </div>
       <ConfirmedLine confirmed={unit.accepted} />
       <dl class="rv-src">
-        <Row label="KR" lang="kr" text={unit.kr} mark={termMark(term.kr)} />
+        <Row label="KR" lang="kr" text={unit.kr} {...(krMark ? { mark: krMark } : {})} />
         <Row label="TW" lang="zh" text={unit.zh} />
       </dl>
       {unit.note !== undefined && <p class="rv-note-text">{unit.note}</p>}
@@ -30,18 +31,20 @@ function TermGroupCard({ item, term, units, target, showAccepted }: { item: Warn
   const cls = ['rv-card', item.accepted ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
   const info = warningInfo(item.code, item.message)
   const shown = showAccepted ? units : units.filter((u) => !u.accepted)
+  const open = item.keys.length
+  const confirmed = units.filter((u) => u.accepted).length
   return (
     <article class={cls} data-id={item.id}>
       <div class="rv-head">
         <span class="rv-kind rv-kind-warn">{info.name}</span>
         <span class="rv-where">
-          詞彙表：{term.kr} → {term.zh}（{units.length} 處）
+          詞彙表：{term.kr} → {term.zh}（{open} 處{confirmed > 0 && `，${confirmed} 處已確認`}）
         </span>
         {item.origins.map((o) => (
           <OriginBadge key={o} origin={o as Origin} />
         ))}
         <Pending pending={item.pending} units={item.keys.length} />
-        <IdCopy id={item.id} source={`${term.kr} → ${term.zh}`} />
+        <IdCopy id={item.id} copyId={`${item.id}@${open}`} source={`${term.kr} → ${term.zh}`} />
       </div>
       <p class="rv-msg">{item.message}</p>
       <ConfirmedLine confirmed={item.accepted} />

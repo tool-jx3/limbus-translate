@@ -36,6 +36,23 @@ describe('filterSuggestions', () => {
   })
 })
 
+describe('filterSuggestions, a declined provisional term', () => {
+  const declined: SuggestionItem = {
+    id: 'term-new/자판기',
+    kind: 'term-new',
+    title: '暫定詞：자판기 → 販賣機',
+    term: { kr: '자판기', zh: '販賣機' },
+    evidence: [],
+    pending: 0,
+    declined: { reason: '譯法還沒定', date: '2026-11-05' },
+  }
+  it('is hidden unless all, like the other declined ones', () => {
+    expect(ids(filterSuggestions([declined], none))).toEqual([])
+    expect(ids(filterSuggestions([declined], { ...none, all: true }))).toEqual(['term-new/자판기'])
+    expect(ids(filterSuggestions([declined], none, 'term-new/자판기'))).toEqual(['term-new/자판기'])
+  })
+})
+
 describe('sortSuggestions', () => {
   it('puts the ones with more translations first, and leaves the rest in order', () => {
     const sorted = sortSuggestions(suggestions, 'variants')

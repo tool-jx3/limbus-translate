@@ -53,8 +53,33 @@ const unitRows = (el: HTMLElement) => el.querySelectorAll('.rv-tunit')
 describe('WarningCard, a term-missing group', () => {
   it('titles the group with the entry and the number of units', () => {
     const el = mount(<WarningCard item={group} target={false} showAccepted={false} />)
-    expect(el.querySelector('.rv-where')?.textContent).toContain('詞彙表：자판기 → 自動販賣機（3 處）')
+    expect(el.querySelector('.rv-where')?.textContent).toBe('詞彙表：자판기 → 自動販賣機（2 處，1 處已確認）')
     expect(el.querySelector('.rv-head > .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb')
+  })
+
+  it('counts the units not confirmed in the title, and says nothing of the confirmed when there are none', () => {
+    const open: WarningItem = { ...group, units: group.units!.slice(0, 2) }
+    const el = mount(<WarningCard item={open} target={false} showAccepted={false} />)
+    expect(el.querySelector('.rv-where')?.textContent).toBe('詞彙表：자판기 → 自動販賣機（2 處）')
+    const done: WarningItem = { ...group, keys: [], units: group.units!.slice(2) }
+    const el2 = mount(<WarningCard item={done} target={false} showAccepted={false} />)
+    expect(el2.querySelector('.rv-where')?.textContent).toBe('詞彙表：자판기 → 自動販賣機（0 處，1 處已確認）')
+  })
+
+  it('shows the message of the group', () => {
+    const el = mount(<WarningCard item={{ ...group, message: '這些譯文沒有用詞彙表的譯名「自動販賣機」（자판기）。' }} target={false} showAccepted={false} />)
+    expect(el.querySelector('.rv-msg')?.textContent).toBe('這些譯文沒有用詞彙表的譯名「自動販賣機」（자판기）。')
+  })
+
+  it('copies the id of the whole group with the number of units still open', async () => {
+    const writeText = vi.fn(async () => {})
+    vi.stubGlobal('navigator', { clipboard: { writeText } })
+    const el = mount(<WarningCard item={group} target={false} showAccepted={false} />)
+    await act(async () => {
+      el.querySelector<HTMLButtonElement>('.rv-head .rv-copy')!.click()
+    })
+    expect(writeText).toHaveBeenCalledWith('termgroup/aaaaaaaa/bbbbbbbb@2「자판기 → 自動販賣機」→ ')
+    expect(el.querySelector('.rv-head .rv-id code')?.textContent).toBe('termgroup/aaaaaaaa/bbbbbbbb')
   })
 
   it('lists a unit per row with the original term marked, the translation and the note', () => {
@@ -120,6 +145,7 @@ describe('SuggestionCard, a provisional term', () => {
     kind: 'term-new',
     title: '暫定詞：우레 → 雷鳴',
     pending: 0,
+    term: { kr: '우레', zh: '雷鳴' },
     evidence: [
       { key: 'a.json|/1', kr: '우레', zh: '雷鳴', note: 'batch-7' },
       { key: 'b.json|/2', kr: '우레', zh: '雷聲', note: '衝突' },
@@ -152,5 +178,24 @@ describe('SuggestionCard, a provisional term', () => {
     const el = mount(<SuggestionCard item={item} target={false} />, { langs: { kr: false, jp: true, en: true, zh: true }, raw: false })
     expect(el.querySelectorAll('.rv-tev')[2]!.textContent).not.toContain('우레가')
     expect(el.querySelectorAll('.rv-tev')[2]!.textContent).toContain('雷鳴響起')
+  })
+
+  it('takes its marks from the term, not from the first evidence row', () => {
+    const odd: SuggestionItem = { ...item, term: { kr: '소리', zh: '聲' } }
+    const el = mount(<SuggestionCard item={odd} target={false} />)
+    const hit = el.querySelectorAll('.rv-tev')[3]!
+    expect([...hit.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['소리', '聲'])
+  })
+
+  it('marks nothing without a term', () => {
+    const { term: _t, ...bare } = item
+    const el = mount(<SuggestionCard item={bare} target={false} />)
+    expect(el.querySelectorAll('mark')).toHaveLength(0)
+  })
+
+  it('shows a declined one like the other declined suggestions', () => {
+    const el = mount(<SuggestionCard item={{ ...item, declined: { reason: '譯法還沒定', date: '2026-11-05' } }} target={false} />)
+    expect(el.querySelector('article')?.classList.contains('is-confirmed')).toBe(true)
+    expect(el.textContent).toContain('已確認（2026-11-05）：譯法還沒定')
   })
 })
