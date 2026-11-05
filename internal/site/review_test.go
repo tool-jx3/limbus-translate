@@ -787,7 +787,7 @@ func TestReviewGroupsTermMissingByTerm(t *testing.T) {
 		t.Fatalf("units = %+v, keys = %v, want 3 each", w.Units, w.Keys)
 	}
 	for i, u := range w.Units {
-		if u.Key != k(rvA, i) || u.ID != itemid.Warning("term-missing", u.KR, u.ZH) || !acceptedIDPattern.MatchString(u.ID) || u.Accepted != nil {
+		if u.Key != k(rvA, i) || u.ID != itemid.UnitWarning("term-missing", "자판기", u.KR, u.ZH) || !acceptedIDPattern.MatchString(u.ID) || u.Accepted != nil {
 			t.Errorf("unit %d = %+v", i, u)
 		}
 	}
@@ -800,7 +800,7 @@ func TestReviewGroupsTermMissingByTerm(t *testing.T) {
 
 func TestReviewTermGroupKeepsAcceptedUnits(t *testing.T) {
 	in, files := vendingInputs(t)
-	one := itemid.Warning("term-missing", "자판기 둘", "販賣機二")
+	one := itemid.UnitWarning("term-missing", "자판기", "자판기 둘", "販賣機二")
 	in.Review.Accepted = []suggest.Declined{{ID: one, Reason: "自動販賣機太長", Date: "2026-11-05"}}
 	r, err := BuildReview(in, files)
 	if err != nil {
@@ -867,9 +867,9 @@ func TestReviewNewTermEvidenceListsTheUnitsItHits(t *testing.T) {
 func TestReviewCountsATermGroupByItsUnits(t *testing.T) {
 	in, files := vendingInputs(t)
 	ids := []string{
-		itemid.Warning("term-missing", "자판기 하나", "販賣機一"),
-		itemid.Warning("term-missing", "자판기 둘", "販賣機二"),
-		itemid.Warning("term-missing", "자판기 셋", "販賣機三"),
+		itemid.UnitWarning("term-missing", "자판기", "자판기 하나", "販賣機一"),
+		itemid.UnitWarning("term-missing", "자판기", "자판기 둘", "販賣機二"),
+		itemid.UnitWarning("term-missing", "자판기", "자판기 셋", "販賣機三"),
 	}
 	count := func(accepted ...string) (ReviewCounts, WarningItem) {
 		in.Review.Accepted = nil
@@ -891,5 +891,57 @@ func TestReviewCountsATermGroupByItsUnits(t *testing.T) {
 	c, w := count(ids...)
 	if c.Warnings != 0 || w.Accepted == nil || len(w.Keys) != 0 || w.Accepted.Reason != "簡稱" {
 		t.Errorf("all accepted: counts %+v, accepted %v, keys %v", c, w.Accepted, w.Keys)
+	}
+}
+
+// A unit that lacks two glossary entries is a unit of two groups, with an id
+// in each: keeping it in one group (lct accept of that group's unit ids)
+// leaves it open in the other, which nobody judged.
+func TestReviewTermGroupsAcceptTheirUnitsApart(t *testing.T) {
+	in, files := vendingInputs(t)
+	// 자판기 하나 -> 販賣機一 lacks both 自動販賣機 and 單一.
+	in.Rules = glossaryRules(t, "- kr: 자판기\n  zh: 自動販賣機\n  status: approved\n\n- kr: 하나\n  zh: 單一\n  status: approved\n")
+	groupOf := func(r Review, kr string) WarningItem {
+		t.Helper()
+		for _, w := range r.Warnings {
+			if w.Term != nil && w.Term.KR == kr {
+				return w
+			}
+		}
+		t.Fatalf("no term group of %s in %+v", kr, r.Warnings)
+		return WarningItem{}
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	vending, one := groupOf(r, "자판기"), groupOf(r, "하나")
+	if len(vending.Units) != 3 || len(one.Units) != 1 || one.Units[0].Key != k(rvA, 0) || vending.Units[0].Key != k(rvA, 0) {
+		t.Fatalf("units: 자판기 %+v, 하나 %+v", vending.Units, one.Units)
+	}
+	if vending.Units[0].ID == one.Units[0].ID {
+		t.Errorf("the unit has one id in both groups: %s", one.Units[0].ID)
+	}
+
+	// The person keeps 자판기 as it is: every unit of its group is accepted.
+	for _, u := range vending.Units {
+		in.Review.Accepted = append(in.Review.Accepted, suggest.Declined{ID: u.ID, Reason: "販賣機即可", Date: "2026-11-05"})
+	}
+	r, err = BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if w := groupOf(r, "자판기"); w.Accepted == nil || len(w.Keys) != 0 {
+		t.Errorf("자판기: accepted %v, keys %v; want confirmed", w.Accepted, w.Keys)
+	}
+	w := groupOf(r, "하나")
+	if w.Accepted != nil || w.Units[0].Accepted != nil || !slices.Equal(w.Keys, []string{k(rvA, 0)}) {
+		t.Errorf("하나: accepted %v, unit %+v, keys %v; want it open", w.Accepted, w.Units[0], w.Keys)
+	}
+	if !slices.Contains(r.Refs[k(rvA, 0)], w.ID) {
+		t.Errorf("Refs[%s] = %v, want the open group of 하나", k(rvA, 0), r.Refs[k(rvA, 0)])
+	}
+	if c := countReview(r); c.Warnings != 1 {
+		t.Errorf("counts = %+v, want the one open group", c)
 	}
 }

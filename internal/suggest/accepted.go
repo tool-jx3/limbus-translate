@@ -18,8 +18,9 @@ import (
 
 // AcceptedFile is the list of the check warnings that people confirmed as
 // fine, relative to the repo root. It is optional, and has the format of
-// DeclinedFile; the id of an entry is itemid.Warning of the KR text and the
-// translation, so a change of the translation brings the warning back.
+// DeclinedFile; the id of an entry is itemid.UnitWarning of the KR text and
+// the translation (for term-missing, of the glossary entry too), so a change of
+// the translation brings the warning back.
 const AcceptedFile = "rules/accepted.yaml"
 
 // acceptedIDPattern is the id of a check warning: warning/<code>/<sha8 of KR>/<sha8 of ZH>.

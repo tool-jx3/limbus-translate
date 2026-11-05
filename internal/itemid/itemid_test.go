@@ -39,3 +39,21 @@ func TestNote(t *testing.T) {
 		t.Errorf("Note = %q, want %q", got, want)
 	}
 }
+
+func TestUnitWarning(t *testing.T) {
+	a := UnitWarning("term-missing", "자판기", "음료 자판기", "販賣機")
+	b := UnitWarning("term-missing", "음료", "음료 자판기", "販賣機")
+	if a == b {
+		t.Errorf("a unit that lacks two entries has one id for both: %s", a)
+	}
+	if want := "warning/term-missing/" + Sha8("음료 자판기\x00자판기") + "/" + Sha8("販賣機"); a != want {
+		t.Errorf("UnitWarning = %q, want %q", a, want)
+	}
+	// Any other code is Warning, term or not: the ids people accepted stay.
+	if got, want := UnitWarning("forbidden-term", "자판기", "자판기", "販賣機"), Warning("forbidden-term", "자판기", "販賣機"); got != want {
+		t.Errorf("UnitWarning(forbidden-term) = %q, want %q", got, want)
+	}
+	if got, want := UnitWarning("kana", "", "가", "か"), Warning("kana", "가", "か"); got != want {
+		t.Errorf("UnitWarning(kana) = %q, want %q", got, want)
+	}
+}

@@ -32,6 +32,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
 	"github.com/tool-jx3/limbus-translate/internal/units"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 const (
@@ -2180,8 +2181,49 @@ func TestBuildCountsTermMissingWarnings(t *testing.T) {
 	e = newEnv(t, kr, nil)
 	e.opt.Rules = rl
 	e.save(r)
-	e.opt.Accepted = map[string]bool{itemid.Warning("term-missing", "탐식의 재림", "貪食的再臨"): true}
+	e.opt.Accepted = map[string]bool{itemid.UnitWarning(validate.CodeTermMissing, "탐식", "탐식의 재림", "貪食的再臨"): true}
 	if rep := e.run(); rep.Warnings["term-missing"] != 0 {
 		t.Errorf("Warnings = %v, want none: the warning was accepted", rep.Warnings)
+	}
+}
+
+// A unit that lacks two glossary entries warns term-missing for each, and
+// the one accepted (for its entry, as the review page's term group has it)
+// leaves the other counted.
+func TestBuildAcceptsTermMissingByTerm(t *testing.T) {
+	const glossary = "- kr: 탐식\n  zh: 暴食\n  status: approved\n\n- kr: 재림\n  zh: 降臨\n  status: approved\n"
+	root := t.TempDir()
+	for _, d := range []string{"guides/characters", "glossary"} {
+		if err := os.MkdirAll(filepath.Join(root, d), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{"A.json": `{"dataList":[{"id":1,"content":"탐식의 재림"}]}`}
+	r := rec("A.json", "/dataList/0/content", "탐식의 재림", "貪食的再臨")
+	run := func(terms ...string) *Report {
+		e := newEnv(t, kr, nil)
+		e.opt.Rules = rl
+		e.save(r)
+		e.opt.Accepted = map[string]bool{}
+		for _, term := range terms {
+			e.opt.Accepted[itemid.UnitWarning(validate.CodeTermMissing, term, "탐식의 재림", "貪食的再臨")] = true
+		}
+		return e.run()
+	}
+	if rep := run(); rep.Warnings["term-missing"] != 2 {
+		t.Fatalf("Warnings = %v, want two term-missing", rep.Warnings)
+	}
+	rep := run("탐식")
+	if rep.Warnings["term-missing"] != 1 || !slices.Equal(rep.WarningSamples["term-missing"], []string{r.Key}) {
+		t.Errorf("탐식 accepted: Warnings = %v, samples %v; want the one of 재림", rep.Warnings, rep.WarningSamples["term-missing"])
+	}
+	if rep := run("탐식", "재림"); rep.Warnings["term-missing"] != 0 {
+		t.Errorf("both accepted: Warnings = %v, want none", rep.Warnings)
 	}
 }

@@ -128,7 +128,8 @@ type TermRef struct {
 }
 
 // TermUnit is one unit of a term-missing group. ID is the warning id of its
-// KR and TW; Accepted is set when it is in rules/accepted.yaml.
+// KR and TW for the group's entry (itemid.UnitWarning), so a unit of two groups
+// has an id in each; Accepted is set when it is in rules/accepted.yaml.
 type TermUnit struct {
 	Key      string     `json:"key"`
 	ID       string     `json:"id"`
@@ -360,7 +361,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 						warnByID[gid] = w
 						warns = append(warns, w)
 					}
-					w.units = append(w.units, TermUnit{Key: key, ID: itemid.Warning(is.Code, ku.KR, rec.ZH), KR: ku.KR, ZH: rec.ZH})
+					w.units = append(w.units, TermUnit{Key: key, ID: itemid.UnitWarning(is.Code, is.Term, ku.KR, rec.ZH), KR: ku.KR, ZH: rec.ZH})
 					w.families[family] = true
 					w.origins[rec.Origin] = true
 					continue
@@ -369,7 +370,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 					continue
 				}
 				seen[is.Code] = true
-				id := itemid.Warning(is.Code, ku.KR, rec.ZH)
+				id := itemid.UnitWarning(is.Code, is.Term, ku.KR, rec.ZH)
 				w := warnByID[id]
 				if w == nil {
 					w = &warnAcc{
