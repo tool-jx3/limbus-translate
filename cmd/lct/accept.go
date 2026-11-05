@@ -7,12 +7,15 @@ import (
 	"io"
 	"io/fs"
 	"path/filepath"
+	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
@@ -21,9 +24,11 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "accept",
 		Usage: "record the review items a person confirmed, so the review page, lct suggest and the build report skip them: " +
-			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml, a termgroup/… id to rules/accepted.yaml unit by unit (the warning/term-missing/… ids of the units of the group not accepted yet; none left is a no-op it says so); " +
-			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing); " +
-			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants) and the ids that are no item of the last build (exit code 1 if any); " +
+			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml, a termgroup/… id to rules/accepted.yaml unit by unit (the warning/term-missing/… ids of the units of the group not accepted yet; with none left it writes nothing and lists the id under empty); " +
+			"a term group id may end in @N, the number of its units not accepted yet that the review page showed (termgroup/<a>/<b>@3): when the last build has another number the id is refused and nothing is written; " +
+			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing; " +
+			"--json prints declined and accepted (the ids written to each list), skipped (those confirmed before), empty (the term group ids none of whose units was left to accept: nothing is written for them), raw_tag and tw_commit (the build the ids were checked against)); " +
+			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants; for termgroup/…@N, open_units: N against the number of the last build) and the ids that are no item of the last build (exit code 1 if any, or if an @N does not match); " +
 			"or --tidy: delete the entries of rules/accepted.yaml that are no warning of the last build any more",
 		Run: runAccept,
 	})
@@ -32,12 +37,13 @@ func init() {
 // acceptReport is what "accept" prints. Declined and Accepted are the ids
 // written to rules/declined.yaml and rules/accepted.yaml, Skipped those that
 // were confirmed before this call. RawTag and TWCommit name the build the ids
-// were checked against. With --tidy only Removed is set.
+// were checked against. The usage of the command says the same of the JSON.
 type acceptReport struct {
 	Declined []string `json:"declined"`
 	Accepted []string `json:"accepted"`
 	Skipped  []string `json:"skipped"`
-	// Empty are the termgroup/… ids whose units are all accepted: nothing to write.
+	// Empty are the termgroup/… ids, as given, whose units are all accepted:
+	// nothing is written for them.
 	Empty    []string `json:"empty"`
 	RawTag   string   `json:"raw_tag"`
 	TWCommit string   `json:"tw_commit"`
@@ -75,7 +81,8 @@ const (
 )
 
 // lookupItem is one id of "accept --dry-run": the item as the review page has
-// it. List is the file the id goes to, "declined" or "accepted"; Confirmed is
+// it. ID is the id as given (with its @N, for a term group id that has one).
+// List is the file the id goes to, "declined" or "accepted"; Confirmed is
 // set when it is in that file already. KR and ZH are the texts the item is
 // about, Note a translator's note, Message the check's description of a
 // warning; Variants are those of a group of inconsistent translations only.
@@ -98,6 +105,8 @@ type lookupItem struct {
 	// Units are the units of a term-missing group (termgroup/…); accepting the
 	// group accepts those without Accepted, one id each.
 	Units []site.TermUnit `json:"units,omitempty"`
+	// OpenUnits is set for an id termgroup/…@N only.
+	OpenUnits *openUnits `json:"open_units,omitempty"`
 }
 
 // lookupReport is what "accept --dry-run" prints: the items in the order of the
@@ -131,6 +140,11 @@ func (r lookupReport) String() string {
 			for _, j := range v.JPEN {
 				fmt.Fprintf(&b, "    JP %s／EN %s（%d）\n", orDash(j.JP), orDash(j.EN), j.Count)
 			}
+		}
+		if o := it.OpenUnits; o != nil && o.Match {
+			fmt.Fprintf(&b, "  units not accepted yet: %d, as the review page showed\n", o.Now)
+		} else if o != nil {
+			fmt.Fprintf(&b, "  units not accepted yet: the review page showed %d, the last build has %d; lct accept refuses this id (reload the review page, or give the ids of the units)\n", o.Page, o.Now)
 		}
 		for _, u := range it.Units {
 			state := "open"
@@ -212,8 +226,16 @@ func runAccept(ctx *cli.Context, args []string) error {
 	if len(ids) == 0 {
 		return cli.UserError("accept: give at least one ID (as arguments or with --file), or --tidy")
 	}
+	given := make([]givenID, len(ids))
+	for i, id := range ids {
+		g, err := parseGivenID(id)
+		if err != nil {
+			return cli.UserError("accept: " + err.Error())
+		}
+		given[i] = g
+	}
 	if *dryRun {
-		return acceptLookup(ctx, ids)
+		return acceptLookup(ctx, given)
 	}
 	if strings.TrimSpace(*reason) == "" {
 		return cli.UserError("accept: --reason is required and must not be empty")
@@ -238,13 +260,16 @@ func runAccept(ctx *cli.Context, args []string) error {
 	}
 	toAccepted := map[string]bool{}
 	// A term group goes to accepted.yaml unit by unit: its id stands for the
-	// ids of the units not accepted yet.
+	// ids of the units not accepted yet, of which it has groupOpen (Keys holds
+	// one key for each unit, where two units may share an id).
 	groupUnits := map[string][]string{}
+	groupOpen := map[string]int{}
 	for _, w := range rev.Warnings {
 		toAccepted[w.ID] = true
 		if w.Term == nil {
 			continue
 		}
+		groupOpen[w.ID] = len(w.Keys)
 		groupUnits[w.ID] = []string{}
 		for _, u := range w.Units {
 			toAccepted[u.ID] = true
@@ -262,25 +287,30 @@ func runAccept(ctx *cli.Context, args []string) error {
 		known[e.ID] = true
 	}
 
-	var unknown []string
+	var unknown, stale []string
 	rep := acceptReport{Declined: []string{}, Accepted: []string{}, Skipped: []string{}, Empty: []string{}, RawTag: in.RawTag, TWCommit: head}
 	var declined, accepted []suggest.Declined
-	for _, id := range ids {
+	for _, g := range given {
+		id := g.Item
 		switch {
 		case known[id]:
 			// Already in a list: the build may no longer have the item (it drops
 			// a declined group of inconsistent translations), so this goes first.
-			rep.Skipped = append(rep.Skipped, id)
+			rep.Skipped = append(rep.Skipped, g.ID)
 		case !toDeclined[id] && !toAccepted[id]:
-			unknown = append(unknown, id)
+			unknown = append(unknown, g.ID)
 		case toDeclined[id]:
 			rep.Declined = append(rep.Declined, id)
 			declined = append(declined, suggest.Declined{ID: id, Reason: *reason, Date: day})
 		default:
 			targets := []string{id}
 			if us, isGroup := groupUnits[id]; isGroup {
+				if g.HasCount && g.Count != groupOpen[id] {
+					stale = append(stale, fmt.Sprintf("%s: the review page showed %d units not accepted yet, the last build has %d", g.ID, g.Count, groupOpen[id]))
+					continue
+				}
 				if targets = us; len(us) == 0 {
-					rep.Empty = append(rep.Empty, id)
+					rep.Empty = append(rep.Empty, g.ID)
 				}
 			}
 			for _, t := range targets {
@@ -293,9 +323,17 @@ func runAccept(ctx *cli.Context, args []string) error {
 			}
 		}
 	}
+	var refused []string
 	if len(unknown) > 0 {
-		return cli.UserError(fmt.Sprintf("accept: %d of the ids are no item of the last build (%s), so nothing was written:\n  %s",
+		refused = append(refused, fmt.Sprintf("accept: %d of the ids are no item of the last build (%s), so nothing was written:\n  %s",
 			len(unknown), in.RawTag, strings.Join(unknown, "\n  ")))
+	}
+	if len(stale) > 0 {
+		refused = append(refused, fmt.Sprintf("accept: %d of the term group ids do not match the last build (%s), so nothing was written; reload the review page, or give the ids of the units:\n  %s",
+			len(stale), in.RawTag, strings.Join(stale, "\n  ")))
+	}
+	if len(refused) > 0 {
+		return cli.UserError(strings.Join(refused, "\n"))
 	}
 	if err := suggest.AppendEntries(ctx.Root, suggest.DeclinedFile, declined); err != nil {
 		return err
@@ -374,8 +412,9 @@ func repoFile(root, path string) (string, error) {
 // nothing. An id that is in a confirmation list but no item of the last build
 // (the build drops a declined group of inconsistent translations) is printed
 // with what the list says; the other ids that are no item are unknown, which
-// is exit code 1.
-func acceptLookup(ctx *cli.Context, ids []string) error {
+// is exit code 1, as is an id termgroup/…@N whose N is not the number of
+// units the last build has open (lct accept would refuse it).
+func acceptLookup(ctx *cli.Context, ids []givenID) error {
 	rev, in, head, err := acceptReview(ctx)
 	if err != nil {
 		return err
@@ -415,19 +454,27 @@ func acceptLookup(ctx *cli.Context, ids []string) error {
 		}
 	}
 	rep := lookupReport{Items: []lookupItem{}, Unknown: []string{}, RawTag: in.RawTag, TWCommit: head}
-	for _, id := range ids {
-		if it, ok := items[id]; ok {
-			rep.Items = append(rep.Items, it)
-		} else if it, ok := listed[id]; ok {
-			rep.Items = append(rep.Items, it)
-		} else {
-			rep.Unknown = append(rep.Unknown, id)
+	mismatch := false
+	for _, g := range ids {
+		it, ok := items[g.Item]
+		if !ok {
+			it, ok = listed[g.Item]
 		}
+		if !ok || (g.HasCount && it.Units == nil) {
+			rep.Unknown = append(rep.Unknown, g.ID)
+			continue
+		}
+		if g.HasCount {
+			it.ID = g.ID
+			it.OpenUnits = &openUnits{Page: g.Count, Now: len(it.Keys), Match: g.Count == len(it.Keys)}
+			mismatch = mismatch || !it.OpenUnits.Match
+		}
+		rep.Items = append(rep.Items, it)
 	}
 	if err := ctx.Emit(rep); err != nil {
 		return err
 	}
-	if len(rep.Unknown) > 0 {
+	if len(rep.Unknown) > 0 || mismatch {
 		return cli.ErrFindings
 	}
 	return nil
@@ -469,4 +516,46 @@ func acceptReview(ctx *cli.Context) (site.Review, site.ReviewInputs, string, err
 	si := site.Inputs{KR: ss.Set.KR, EN: ss.Set.EN, JP: ss.Set.JP, ZH: ss.ZH, Records: ss.Records, Rules: ss.Rules, Review: &in}
 	rev, err := site.BuildReview(si, site.OrderFiles(ss.Set.KR.Files(), ss.Rules))
 	return rev, in, head, err
+}
+
+// openUnits compares, for an id termgroup/…@N, the number of units not
+// accepted yet that the review page showed (Page, the N) with the number the
+// last build has (Now). lct accept refuses the id unless they Match.
+type openUnits struct {
+	Page  int  `json:"page"`
+	Now   int  `json:"now"`
+	Match bool `json:"match"`
+}
+
+// groupCountRe is the id of a term group with the number of its units not
+// accepted yet that the review page showed: termgroup/<a>/<b>@<N>.
+var groupCountRe = regexp.MustCompile(`^(` + regexp.QuoteMeta(itemid.TermGroupPrefix) + `[^@]+)@([0-9]+)$`)
+
+// givenID is an id given to lct accept. Item is the id of the item it names:
+// the id as given (ID) but for an id termgroup/…@N, whose Item is the id of
+// the group, and Count the N (HasCount). Only Item is ever written to a list.
+type givenID struct {
+	ID       string
+	Item     string
+	Count    int
+	HasCount bool
+}
+
+// parseGivenID reads an id given to lct accept. A term group id with an @ must
+// end in @ and a number; any other id is taken as it is.
+func parseGivenID(id string) (givenID, error) {
+	g := givenID{ID: id, Item: id}
+	if !strings.HasPrefix(id, itemid.TermGroupPrefix) || !strings.Contains(id, "@") {
+		return g, nil
+	}
+	m := groupCountRe.FindStringSubmatch(id)
+	if m == nil {
+		return g, fmt.Errorf("%s: a term group id ends in @ and the number of its units not accepted yet, such as %s@3, or has no @", id, itemid.TermGroupPrefix+"<a>/<b>")
+	}
+	n, err := strconv.Atoi(m[2])
+	if err != nil {
+		return g, fmt.Errorf("%s: the number after @ is too large", id)
+	}
+	g.Item, g.Count, g.HasCount = m[1], n, true
+	return g, nil
 }

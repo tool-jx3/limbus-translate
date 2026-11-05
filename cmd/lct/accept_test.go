@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"maps"
 	"os"
 	"path/filepath"
@@ -142,6 +143,7 @@ type lookupOut struct {
 		Units   []struct {
 			ID string `json:"id"`
 		} `json:"units"`
+		OpenUnits *openUnits `json:"open_units"`
 	} `json:"items"`
 	Unknown  []string `json:"unknown"`
 	RawTag   string   `json:"raw_tag"`
@@ -635,11 +637,10 @@ func TestAcceptExpandsATermGroup(t *testing.T) {
 	}
 
 	// Everything is accepted now: the group is a no-op.
-	stdout := ""
 	var again acceptOut
 	mustLct(t, &again, "accept", "--reason", "again", group)
 	if len(again.Accepted) != 0 || !slices.Equal(again.Empty, []string{group}) {
-		t.Errorf("second accept = %+v (%s)", again, stdout)
+		t.Errorf("second accept = %+v", again)
 	}
 	if after := readOptional(t, s.root, "rules/accepted.yaml"); after != accepted {
 		t.Errorf("a group without unaccepted units wrote:\n%s", after)
@@ -690,5 +691,144 @@ func TestAddUnitLookupsListsEveryUnitOfAnID(t *testing.T) {
 	}
 	if own := items["warning/term-missing/33333333/22222222"]; !slices.Equal(own.Keys, []string{"C.json|/dataList/0/name"}) || own.Pending != 0 || own.Note != "刻意" {
 		t.Errorf("own id = %+v", own)
+	}
+}
+
+// A term group id may carry the number of its units not accepted yet that the
+// review page showed: termgroup/<a>/<b>@<N>. lct accept writes the units when
+// the last build has that many open, and refuses the id, writing nothing,
+// when it has another number; the dry run shows the comparison. Without @N
+// the id is as before (TestAcceptExpandsATermGroup).
+func TestAcceptTermGroupCount(t *testing.T) {
+	s, group, units := termGroupRepo(t)
+	n := len(units)
+	at := func(k int) string { return fmt.Sprintf("%s@%d", group, k) }
+	lists := func() string {
+		return readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml")
+	}
+	before := lists()
+
+	// Another number: refused with both numbers, and nothing is written, not
+	// the other id either.
+	code, stdout, stderr := lct(t, "accept", "--reason", "簡稱即可", "--date", "2026-11-05", s.suggestion, at(n+1))
+	if code != 1 || !strings.Contains(stderr, at(n+1)) || !strings.Contains(stderr, fmt.Sprintf("the review page showed %d", n+1)) ||
+		!strings.Contains(stderr, fmt.Sprintf("the last build has %d", n)) {
+		t.Errorf("accept %s: exit code %d, want 1 naming %d and %d\n%s%s", at(n+1), code, n+1, n, stdout, stderr)
+	}
+	if lists() != before {
+		t.Errorf("a refused count wrote:\n%s", lists())
+	}
+
+	// The dry run shows the comparison, and exits 1 as accept would refuse.
+	code, stdout, stderr = lct(t, "--json", "accept", "--dry-run", at(n+1))
+	var look lookupOut
+	if err := json.Unmarshal([]byte(stdout), &look); err != nil {
+		t.Fatalf("%v\n%s%s", err, stdout, stderr)
+	}
+	if code != 1 || len(look.Items) != 1 || look.Items[0].ID != at(n+1) || look.Items[0].OpenUnits == nil ||
+		*look.Items[0].OpenUnits != (openUnits{Page: n + 1, Now: n, Match: false}) || len(look.Items[0].Units) != n {
+		t.Errorf("dry run of %s: exit code %d, %+v", at(n+1), code, look)
+	}
+	code, stdout, _ = lct(t, "accept", "--dry-run", at(n+1))
+	if code != 1 || !strings.Contains(stdout, fmt.Sprintf("the review page showed %d, the last build has %d", n+1, n)) {
+		t.Errorf("text dry run (exit %d):\n%s", code, stdout)
+	}
+	look = lookupOut{}
+	mustLct(t, &look, "accept", "--dry-run", at(n))
+	if len(look.Items) != 1 || look.Items[0].OpenUnits == nil || *look.Items[0].OpenUnits != (openUnits{Page: n, Now: n, Match: true}) {
+		t.Errorf("dry run of %s = %+v, want a match", at(n), look)
+	}
+	if lists() != before {
+		t.Errorf("the dry run wrote:\n%s", lists())
+	}
+
+	// The same number: the units are written, as for the group id.
+	var want []string
+	for _, u := range units {
+		if !slices.Contains(want, u.ID) {
+			want = append(want, u.ID)
+		}
+	}
+	var out acceptOut
+	mustLct(t, &out, "accept", "--reason", "簡稱即可", "--date", "2026-11-05", at(n))
+	if !slices.Equal(out.Accepted, want) {
+		t.Errorf("accepted = %v, want %v", out.Accepted, want)
+	}
+	accepted := readOptional(t, s.root, "rules/accepted.yaml")
+	if strings.Contains(accepted, "termgroup/") || strings.Contains(accepted, "@") {
+		t.Errorf("accepted.yaml holds the group id:\n%s", accepted)
+	}
+
+	// None is open now: the page's number is stale, and 0 is a no-op.
+	if code, stdout, stderr := lct(t, "accept", "--reason", "again", at(n)); code != 1 || !strings.Contains(stderr, "the last build has 0") {
+		t.Errorf("accept %s again: exit code %d, want 1\n%s%s", at(n), code, stdout, stderr)
+	}
+	var again acceptOut
+	mustLct(t, &again, "accept", "--reason", "again", at(0))
+	if len(again.Accepted) != 0 || !slices.Equal(again.Empty, []string{at(0)}) {
+		t.Errorf("accept %s = %+v, want a no-op", at(0), again)
+	}
+	if readOptional(t, s.root, "rules/accepted.yaml") != accepted {
+		t.Errorf("a stale or empty group wrote:\n%s", readOptional(t, s.root, "rules/accepted.yaml"))
+	}
+
+	// A count that is no number is refused, in both modes.
+	for _, bad := range []string{group + "@", group + "@x", group + "@-1", group + "@1@2", group + "@ 1"} {
+		for _, mode := range [][]string{{"--dry-run"}, {"--reason", "r"}} {
+			args := append(append([]string{"accept"}, mode...), bad)
+			if code, stdout, stderr := lct(t, args...); code != 1 || !strings.Contains(stderr, "@") {
+				t.Errorf("%v: exit code %d, want 1\n%s%s", args, code, stdout, stderr)
+			}
+		}
+	}
+	if readOptional(t, s.root, "rules/accepted.yaml") != accepted {
+		t.Error("a bad count wrote a list")
+	}
+}
+
+// Only a term group id takes @N; an @ in any other id is part of it.
+func TestParseGivenID(t *testing.T) {
+	const group = "termgroup/aaaaaaaa/bbbbbbbb"
+	for _, c := range []struct {
+		id   string
+		want givenID
+	}{
+		{group, givenID{ID: group, Item: group}},
+		{group + "@3", givenID{ID: group + "@3", Item: group, Count: 3, HasCount: true}},
+		{group + "@0", givenID{ID: group + "@0", Item: group, Count: 0, HasCount: true}},
+		{"note/A.json|/a@b/12345678", givenID{ID: "note/A.json|/a@b/12345678", Item: "note/A.json|/a@b/12345678"}},
+		{"warning/kana/11111111/22222222@3", givenID{ID: "warning/kana/11111111/22222222@3", Item: "warning/kana/11111111/22222222@3"}},
+	} {
+		if got, err := parseGivenID(c.id); err != nil || got != c.want {
+			t.Errorf("parseGivenID(%q) = %+v, %v; want %+v", c.id, got, err, c.want)
+		}
+	}
+	for _, id := range []string{group + "@", group + "@x", group + "@-1", group + "@+1", group + "@1@2", "termgroup/@3", group + "@99999999999999999999"} {
+		if got, err := parseGivenID(id); err == nil {
+			t.Errorf("parseGivenID(%q) = %+v, want an error", id, got)
+		}
+	}
+}
+
+// The usage of lct accept says what each list of its report holds, empty
+// included: a term group id none of whose units was left to accept.
+func TestAcceptUsageNamesTheReport(t *testing.T) {
+	code, stdout, stderr := lct(t, "help")
+	if code != 0 {
+		t.Fatalf("lct help: exit code %d\n%s%s", code, stdout, stderr)
+	}
+	var line string
+	for _, l := range strings.Split(stdout, "\n") {
+		if f := strings.Fields(l); len(f) > 0 && f[0] == "accept" {
+			line = l
+		}
+	}
+	for _, want := range []string{
+		"--json prints declined and accepted (the ids written to each list), skipped (those confirmed before)",
+		"empty (the term group ids none of whose units was left to accept: nothing is written for them)",
+	} {
+		if !strings.Contains(line, want) {
+			t.Errorf("the usage of accept lacks %q:\n%s", want, line)
+		}
 	}
 }

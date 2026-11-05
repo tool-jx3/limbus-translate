@@ -50,11 +50,14 @@ func UnitWarning(code, termKR, termZH, kr, zh string) string {
 // (validate.CodeTermMissing, which this package cannot import).
 const termMissing = "term-missing"
 
+// TermGroupPrefix is what the id of a term group starts with (TermGroup).
+const TermGroupPrefix = "termgroup/"
+
 // TermGroup is the id of the group of units that lack the rendering of one
 // glossary entry (term-missing warnings). It is no warning id, so a unit is
 // accepted by its own UnitWarning id.
 func TermGroup(kr, zh string) string {
-	return "termgroup/" + Sha8(kr) + "/" + Sha8(zh)
+	return TermGroupPrefix + Sha8(kr) + "/" + Sha8(zh)
 }
 
 // Note is the id of a translator's note of the unit with this key.
