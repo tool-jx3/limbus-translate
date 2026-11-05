@@ -4005,3 +4005,56 @@ func TestMergedBatchLeavesOutAUnitWhoseTwinIsLeasedElsewhere(t *testing.T) {
 		t.Errorf("the twin is leased: %+v", it.Lease)
 	}
 }
+
+// ShareKey is what files must have in common to share a batch: the family
+// and whether they name keywords; a story file shares with none.
+func TestShareKey(t *testing.T) {
+	r := testRules(t)
+	key := func(file string) string {
+		k, ok := ShareKey(r, file)
+		if !ok {
+			return ""
+		}
+		return k
+	}
+	if _, ok := ShareKey(r, "StoryData/S001A.json"); ok {
+		t.Error("a story file has a share key")
+	}
+	if key("A.json") == "" || key("A.json") != key("B.json") {
+		t.Errorf("A.json = %q, B.json = %q, want one key", key("A.json"), key("B.json"))
+	}
+	if key("Bufs.json") == key("A.json") {
+		t.Errorf("a keyword file shares the key %q with a plain file of its family", key("A.json"))
+	}
+	if key("Bufs.json") != key("BattleKeywords.json") {
+		t.Errorf("keyword files Bufs.json = %q, BattleKeywords.json = %q, want one key", key("Bufs.json"), key("BattleKeywords.json"))
+	}
+}
+
+// A text that stands in a batch twice (here under two fields, which are not
+// twins) is collected once for the keyword lookup.
+func TestDistinctKRs(t *testing.T) {
+	texts := []unitText{{"A.json", "[Bleed] 하나"}, {"A.json", "둘"}, {"B.json", "[Bleed] 하나"}}
+	if got, want := distinctKRs(texts), []string{"[Bleed] 하나", "둘"}; !slices.Equal(got, want) {
+		t.Errorf("distinctKRs = %q, want %q", got, want)
+	}
+}
+
+// The keywords of a batch with the same text under two fields are all there.
+func TestNextNamesKeywordsOfARepeatedText(t *testing.T) {
+	kr := map[string]string{
+		"A.json":    `{"dataList":[{"id":0,"name":"[Bleed] 하나","desc":"[Bleed] 하나"}]}`,
+		"Bufs.json": `{"dataList":[{"id":"Bleed","name":"출혈"}]}`,
+	}
+	env := newEnv(t, kr, nil, nil)
+	if err := env.Store.SaveRecords(map[string]store.Record{
+		"Bufs.json|/dataList/0/name": {Key: "Bufs.json|/dataList/0/name", KRSha: units.KRSha("출혈"), ZH: "流血", Origin: store.OriginParatranz, Since: testTag},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	seed(t, env, store.PendingItem{Key: "A.json|/dataList/0/name", Reason: "new"}, store.PendingItem{Key: "A.json|/dataList/0/desc", Reason: "new"})
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || len(b.Units) != 2 || b.Keywords["Bleed"] != "流血" {
+		t.Errorf("batch = %+v, want two units and the keyword Bleed", b)
+	}
+}

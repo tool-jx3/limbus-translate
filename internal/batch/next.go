@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/names"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -279,11 +280,12 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		// use them are cut, so those batches carry them in Keywords, and every
 		// keyword file goes out before any other file.
 		n := len(first.chosen)
+		shareKey, _ := ShareKey(env.Rules, c.file)
 		for _, d := range files[i+1:] {
-			if n >= opt.MaxUnits || c.keyword && !d.keyword {
-				break // the keyword files come first: none is left
+			if n >= opt.MaxUnits {
+				break
 			}
-			if d.family != c.family || IsStory(d.file) {
+			if k, ok := ShareKey(env.Rules, d.file); !ok || k != shareKey {
 				continue
 			}
 			p, err := take(d, opt.MaxUnits-n)
@@ -316,6 +318,31 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		}
 	}
 	return b, leased, nil
+}
+
+// ShareKey is what files must have in common to go into one batch: their
+// family and whether they name the keywords (names.IsKeywordFile). A story
+// file (IsStory) is a batch of its own: ok is false and it has no key. Next
+// merges files with one key while the batch has room (batch.max_units); the
+// checks of its callers use this one rule.
+func ShareKey(r *rules.Rules, file string) (key string, ok bool) {
+	if IsStory(file) {
+		return "", false
+	}
+	return fmt.Sprintf("%s, keyword file %v", r.Family(file), names.IsKeywordFile(file)), true
+}
+
+// distinctKRs returns the KR texts of texts, each once, in order.
+func distinctKRs(texts []unitText) []string {
+	var out []string
+	seen := map[string]bool{}
+	for _, x := range texts {
+		if !seen[x.kr] {
+			seen[x.kr] = true
+			out = append(out, x.kr)
+		}
+	}
+	return out
 }
 
 // part is what a batch takes from one file: its data and the slots of the
@@ -437,11 +464,7 @@ func assemble(
 		Units:   []BatchUnit{},
 		Context: []ContextLine{},
 	}
-	var (
-		texts []unitText
-		krs   []string // the KR texts, each once
-	)
-	seenKR := map[string]bool{}
+	var texts []unitText
 	needRecords := story
 	for _, p := range parts {
 		fd := p.fd
@@ -478,10 +501,6 @@ func assemble(
 				Keep:    constraints(u.KR),
 			})
 			texts = append(texts, unitText{fd.file, u.KR})
-			if !seenKR[u.KR] {
-				seenKR[u.KR] = true
-				krs = append(krs, u.KR)
-			}
 			needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 		}
 		// The guides of the file and of the speakers of its units, each once.
@@ -501,7 +520,7 @@ func assemble(
 	if err != nil {
 		return nil, err
 	}
-	if b.Keywords, err = keywordNames(env, recs, krs); err != nil {
+	if b.Keywords, err = keywordNames(env, recs, distinctKRs(texts)); err != nil {
 		return nil, err
 	}
 	if story {

@@ -872,6 +872,7 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 	// The units handed out of the files outside the stories, by family and by
 	// whether they name keywords: the files that may share a batch.
 	plain := map[string]map[string]int{}
+	counted := map[string]bool{}
 	for _, b := range batches {
 		keyword := names.IsKeywordFile(b.File)
 		if keyword && keywordsDone {
@@ -903,16 +904,17 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 				}
 				continue
 			}
-			group := fmt.Sprintf("%s, keyword file %v", b.Family, names.IsKeywordFile(f))
+		}
+		for _, u := range b.Units {
+			group, ok := batch.ShareKey(r, u.File)
+			if !ok || counted[u.Key] {
+				continue
+			}
+			counted[u.Key] = true // a unit handed out again by a retry counts once
 			if plain[group] == nil {
 				plain[group] = map[string]int{}
 			}
-		}
-		for _, u := range b.Units {
-			if batch.IsStory(u.File) {
-				continue
-			}
-			plain[fmt.Sprintf("%s, keyword file %v", b.Family, names.IsKeywordFile(u.File))][u.File]++
+			plain[group][u.File]++
 		}
 	}
 	for _, group := range unmergedFiles(plain, batches, cfg.Batch.MaxUnits) {
@@ -921,9 +923,12 @@ func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
 }
 
 // unmergedFiles returns, for each group of files that may share a batch (units
-// handed out by file) whose units are no more than limit in all, the files
-// when no batch of batches holds them all. Of a group with more units a
-// batch may or may not hold several files, depending on the order.
+// handed out by file, grouped by batch.ShareKey) whose units are no more than
+// limit in all, the files when no batch of batches holds them all. Of a group
+// with more units a batch may or may not hold several files, depending on the
+// order. The units are those of the whole run: files whose units were pending
+// at different stages of it (one released or leased out when the other was
+// cut) could still look mergeable here although they never were together.
 func unmergedFiles(groups map[string]map[string]int, batches []batch.Batch, limit int) [][]string {
 	var out [][]string
 	for _, perFile := range groups {

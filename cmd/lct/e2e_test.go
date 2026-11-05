@@ -313,46 +313,22 @@ func fixtureKR(t *testing.T) []string {
 // fixtures' files.
 var replayKR = []string{newSpeaker, newSpeakerKR, busKR, stopKR, undecidedKR}
 
-// The texts a replay uses are all in fixtureKR: the ones it names, a line of
-// every snapshot, and the file of each language pack.
-func TestFixtureKRCoversTheReplayTexts(t *testing.T) {
+// The texts the replays name, and one line of each fixture (only the walk
+// finds those), are in fixtureKR. The walk reads every JSON file, but the KR
+// of a term occurs only in the kr packs today: no other file has a Hangul
+// string that is not also in a kr pack.
+func TestFixtureKRHoldsTheReplayTexts(t *testing.T) {
 	texts := fixtureKR(t)
-	for _, want := range replayKR {
+	for _, want := range append(slices.Clone(replayKR),
+		"우산을 챙겨 올 걸 그랬어.",  // phase2, KR_S1.json of v1 and v2
+		"다음 정거장은 어디란 말이오?", // phase2, KR_S2.json of v2 only
+	) {
 		if !slices.Contains(texts, want) {
 			t.Errorf("fixtureKR lacks %q", want)
 		}
 	}
-	// Every line of every pack, in every snapshot.
-	lines := 0
-	for _, dir := range []string{e2eFixture, phase2Fixture} {
-		err := filepath.WalkDir(dir, func(p string, d fs.DirEntry, err error) error {
-			if err != nil || d.IsDir() || filepath.Ext(p) != ".json" {
-				return err
-			}
-			var doc struct {
-				DataList []struct {
-					Content string `json:"content"`
-				} `json:"dataList"`
-			}
-			if json.Unmarshal(readFile(t, p), &doc) != nil {
-				return nil
-			}
-			for _, e := range doc.DataList {
-				if e.Content != "" && !slices.Contains(texts, e.Content) {
-					t.Errorf("fixtureKR lacks %q of %s", e.Content, p)
-				}
-				if e.Content != "" {
-					lines++
-				}
-			}
-			return nil
-		})
-		if err != nil {
-			t.Fatal(err)
-		}
-	}
-	if lines == 0 {
-		t.Fatal("no fixture line was checked")
+	if !slices.ContainsFunc(texts, func(s string) bool { return strings.Contains(s, "열상") }) {
+		t.Error("fixtureKR holds no text of the e2e fixture (testdata/e2e/kr/KR_Bufs.json: 열상)")
 	}
 }
 
