@@ -489,7 +489,7 @@ func (b *builder) useRecord(u units.Unit, key string, rec store.Record, frozen b
 	// written, so that Origins, NeedsReview and Warnings cover the same records.
 	for _, is := range issues {
 		if is.Severity == validate.SeverityWarn {
-			if b.opt.Accepted[itemid.UnitWarning(is.Code, is.Term, u.KR, rec.ZH)] {
+			if b.opt.Accepted[itemid.UnitWarning(is.Code, is.Term, is.TermZH, u.KR, rec.ZH)] {
 				continue
 			}
 			b.rep.Warnings[is.Code]++

@@ -1218,8 +1218,8 @@ func TestTermMissing(t *testing.T) {
 			t.Fatalf("Existing=%v: codes = %v, want only term-missing (%v)", existing, got, issues)
 		}
 		is := issues[0]
-		if is.Severity != SeverityWarn || is.Class != ClassContent || is.Term != "우레" {
-			t.Errorf("Existing=%v: got %s/%s term %q, want warn/content 우레", existing, is.Severity, is.Class, is.Term)
+		if is.Severity != SeverityWarn || is.Class != ClassContent || is.Term != "우레" || is.TermZH != "雷鳴" {
+			t.Errorf("Existing=%v: got %s/%s term %q -> %q, want warn/content 우레 -> 雷鳴", existing, is.Severity, is.Class, is.Term, is.TermZH)
 		}
 		if !strings.Contains(is.Message, "雷鳴") || !strings.Contains(is.Message, "note") {
 			t.Errorf("message %q should name 雷鳴 and note", is.Message)

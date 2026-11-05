@@ -72,6 +72,9 @@ type Issue struct {
 	// Term is the KR of the glossary entry behind a term-missing or
 	// forbidden-term issue.
 	Term string `json:"term,omitempty"`
+	// TermZH is the rendering of the entry behind a term-missing issue: two
+	// entries of one KR text (one of them limited by files) differ in it.
+	TermZH string `json:"term_zh,omitempty"`
 }
 
 // Term is the part of a glossary entry that Check needs.
@@ -555,7 +558,7 @@ func checkTerms(kr, zh string, ctx Context) []Issue {
 				"%s should be rendered %q, which the translation lacks; if this is a reasonable exception, name the term %q and the reason in the note",
 				term.KR, term.ZH, term.KR)
 			is.Severity = SeverityWarn
-			is.Term = term.KR
+			is.Term, is.TermZH = term.KR, term.ZH
 			issues = append(issues, is)
 		}
 	}

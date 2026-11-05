@@ -340,13 +340,9 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 					continue
 				}
 				if is.Code == validate.CodeTermMissing {
-					// One item per glossary entry; a unit lacks an entry once.
-					termZH := ""
-					for _, t := range terms {
-						if t.KR == is.Term {
-							termZH = t.ZH
-						}
-					}
+					// One item per glossary entry, by its KR and rendering (two
+					// entries of one KR may both apply); a unit lacks an entry once.
+					termZH := is.TermZH
 					gid := itemid.TermGroup(is.Term, termZH)
 					if seen[gid] {
 						continue
@@ -361,7 +357,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 						warnByID[gid] = w
 						warns = append(warns, w)
 					}
-					w.units = append(w.units, TermUnit{Key: key, ID: itemid.UnitWarning(is.Code, is.Term, ku.KR, rec.ZH), KR: ku.KR, ZH: rec.ZH})
+					w.units = append(w.units, TermUnit{Key: key, ID: itemid.UnitWarning(is.Code, is.Term, is.TermZH, ku.KR, rec.ZH), KR: ku.KR, ZH: rec.ZH})
 					w.families[family] = true
 					w.origins[rec.Origin] = true
 					continue
@@ -370,7 +366,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 					continue
 				}
 				seen[is.Code] = true
-				id := itemid.UnitWarning(is.Code, is.Term, ku.KR, rec.ZH)
+				id := itemid.UnitWarning(is.Code, is.Term, is.TermZH, ku.KR, rec.ZH)
 				w := warnByID[id]
 				if w == nil {
 					w = &warnAcc{

@@ -2181,7 +2181,7 @@ func TestBuildCountsTermMissingWarnings(t *testing.T) {
 	e = newEnv(t, kr, nil)
 	e.opt.Rules = rl
 	e.save(r)
-	e.opt.Accepted = map[string]bool{itemid.UnitWarning(validate.CodeTermMissing, "탐식", "탐식의 재림", "貪食的再臨"): true}
+	e.opt.Accepted = map[string]bool{itemid.UnitWarning(validate.CodeTermMissing, "탐식", "暴食", "탐식의 재림", "貪食的再臨"): true}
 	if rep := e.run(); rep.Warnings["term-missing"] != 0 {
 		t.Errorf("Warnings = %v, want none: the warning was accepted", rep.Warnings)
 	}
@@ -2212,7 +2212,8 @@ func TestBuildAcceptsTermMissingByTerm(t *testing.T) {
 		e.save(r)
 		e.opt.Accepted = map[string]bool{}
 		for _, term := range terms {
-			e.opt.Accepted[itemid.UnitWarning(validate.CodeTermMissing, term, "탐식의 재림", "貪食的再臨")] = true
+			zh := map[string]string{"탐식": "暴食", "재림": "降臨"}[term]
+			e.opt.Accepted[itemid.UnitWarning(validate.CodeTermMissing, term, zh, "탐식의 재림", "貪食的再臨")] = true
 		}
 		return e.run()
 	}
@@ -2225,5 +2226,55 @@ func TestBuildAcceptsTermMissingByTerm(t *testing.T) {
 	}
 	if rep := run("탐식", "재림"); rep.Warnings["term-missing"] != 0 {
 		t.Errorf("both accepted: Warnings = %v, want none", rep.Warnings)
+	}
+}
+
+// Two entries of one KR text with two renderings: one for A.json, one for
+// the other files (as 신부 is 牧師 in chapter 10 and 神父 elsewhere), and two
+// that both apply to C.json. A warning accepted for one entry leaves the
+// warning of the other counted.
+func TestBuildAcceptsTermMissingByRendering(t *testing.T) {
+	const glossary = "- kr: 신부\n  zh: 牧師\n  files: [\"A.json\", \"C.json\"]\n  status: approved\n\n- kr: 신부\n  zh: 神父\n  status: approved\n\n" +
+		"- kr: 신부\n  zh: 神職者\n  files: [\"C.json\"]\n  status: approved\n"
+	root := t.TempDir()
+	for _, d := range []string{"guides/characters", "glossary"} {
+		if err := os.MkdirAll(filepath.Join(root, d), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	const kr, zh = "신부님이 왔다", "神甫來了"
+	doc := `{"dataList":[{"id":1,"content":"` + kr + `"}]}`
+	files := map[string]string{"A.json": doc, "B.json": doc, "C.json": doc}
+	recs := []store.Record{
+		rec("A.json", "/dataList/0/content", kr, zh),
+		rec("B.json", "/dataList/0/content", kr, zh),
+		rec("C.json", "/dataList/0/content", kr, zh),
+	}
+	run := func(renderings ...string) *Report {
+		e := newEnv(t, files, nil)
+		e.opt.Rules = rl
+		e.save(recs...)
+		e.opt.Accepted = map[string]bool{}
+		for _, r := range renderings {
+			e.opt.Accepted[itemid.UnitWarning(validate.CodeTermMissing, "신부", r, kr, zh)] = true
+		}
+		return e.run()
+	}
+	// A.json lacks 牧師, B.json 神父, C.json 牧師 and 神職者.
+	if rep := run(); rep.Warnings["term-missing"] != 4 {
+		t.Fatalf("Warnings = %v, want four term-missing", rep.Warnings)
+	}
+	rep := run("牧師")
+	if rep.Warnings["term-missing"] != 2 || !slices.Equal(rep.WarningSamples["term-missing"], []string{recs[1].Key, recs[2].Key}) {
+		t.Errorf("牧師 accepted: Warnings = %v, samples %v; want 神父 of B.json and 神職者 of C.json", rep.Warnings, rep.WarningSamples["term-missing"])
+	}
+	if rep := run("牧師", "神父", "神職者"); rep.Warnings["term-missing"] != 0 {
+		t.Errorf("all accepted: Warnings = %v, want none", rep.Warnings)
 	}
 }

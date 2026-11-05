@@ -787,7 +787,7 @@ func TestReviewGroupsTermMissingByTerm(t *testing.T) {
 		t.Fatalf("units = %+v, keys = %v, want 3 each", w.Units, w.Keys)
 	}
 	for i, u := range w.Units {
-		if u.Key != k(rvA, i) || u.ID != itemid.UnitWarning("term-missing", "자판기", u.KR, u.ZH) || !acceptedIDPattern.MatchString(u.ID) || u.Accepted != nil {
+		if u.Key != k(rvA, i) || u.ID != itemid.UnitWarning("term-missing", "자판기", "自動販賣機", u.KR, u.ZH) || !acceptedIDPattern.MatchString(u.ID) || u.Accepted != nil {
 			t.Errorf("unit %d = %+v", i, u)
 		}
 	}
@@ -800,7 +800,7 @@ func TestReviewGroupsTermMissingByTerm(t *testing.T) {
 
 func TestReviewTermGroupKeepsAcceptedUnits(t *testing.T) {
 	in, files := vendingInputs(t)
-	one := itemid.UnitWarning("term-missing", "자판기", "자판기 둘", "販賣機二")
+	one := itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 둘", "販賣機二")
 	in.Review.Accepted = []suggest.Declined{{ID: one, Reason: "自動販賣機太長", Date: "2026-11-05"}}
 	r, err := BuildReview(in, files)
 	if err != nil {
@@ -867,9 +867,9 @@ func TestReviewNewTermEvidenceListsTheUnitsItHits(t *testing.T) {
 func TestReviewCountsATermGroupByItsUnits(t *testing.T) {
 	in, files := vendingInputs(t)
 	ids := []string{
-		itemid.UnitWarning("term-missing", "자판기", "자판기 하나", "販賣機一"),
-		itemid.UnitWarning("term-missing", "자판기", "자판기 둘", "販賣機二"),
-		itemid.UnitWarning("term-missing", "자판기", "자판기 셋", "販賣機三"),
+		itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 하나", "販賣機一"),
+		itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 둘", "販賣機二"),
+		itemid.UnitWarning("term-missing", "자판기", "自動販賣機", "자판기 셋", "販賣機三"),
 	}
 	count := func(accepted ...string) (ReviewCounts, WarningItem) {
 		in.Review.Accepted = nil
@@ -943,5 +943,104 @@ func TestReviewTermGroupsAcceptTheirUnitsApart(t *testing.T) {
 	}
 	if c := countReview(r); c.Warnings != 1 {
 		t.Errorf("counts = %+v, want the one open group", c)
+	}
+}
+
+// sameKRInputs has the unit 자판기 하나 -> 販賣機一 in A.json and in B.json,
+// with glossary.
+func sameKRInputs(t *testing.T, glossary string) (Inputs, []string) {
+	t.Helper()
+	fr, err := fields.Load("../..")
+	if err != nil {
+		t.Fatal(err)
+	}
+	const kr, en, zh = `{"dataList":[{"id":1,"content":"자판기 하나"}]}`, `{"dataList":[{"id":1,"content":"vending"}]}`, `{"dataList":[{"id":1,"content":"販賣機一"}]}`
+	in := Inputs{
+		KR: writePack(t, "KR_", map[string]string{rvA: kr, rvB: kr}),
+		EN: writePack(t, "EN_", map[string]string{rvA: en, rvB: en}),
+		JP: writePack(t, "JP_", map[string]string{rvA: en, rvB: en}),
+		ZH: writePack(t, "", map[string]string{rvA: zh, rvB: zh}),
+		Records: recordsOf(
+			withSha(record(rvA, "/dataList/0/content", "販賣機一", store.OriginClaude), "자판기 하나"),
+			withSha(record(rvB, "/dataList/0/content", "販賣機一", store.OriginClaude), "자판기 하나"),
+		),
+		Rules: glossaryRules(t, glossary),
+	}
+	in.Review = &ReviewInputs{RawTag: "t1", Fields: fr}
+	return in, []string{rvA, rvB}
+}
+
+// termGroupByZH is the term group of the entry kr -> zh.
+func termGroupByZH(t *testing.T, r Review, kr, zh string) WarningItem {
+	t.Helper()
+	for _, w := range r.Warnings {
+		if w.Term != nil && *w.Term == (TermRef{KR: kr, ZH: zh}) {
+			return w
+		}
+	}
+	t.Fatalf("no term group of %s -> %s in %+v", kr, zh, r.Warnings)
+	return WarningItem{}
+}
+
+// acceptUnits records every unit of w as accepted, as lct accept of the
+// group writes them.
+func acceptUnits(in *Inputs, w WarningItem) {
+	for _, u := range w.Units {
+		in.Review.Accepted = append(in.Review.Accepted, suggest.Declined{ID: u.ID, Reason: "販賣機即可", Date: "2026-11-05"})
+	}
+}
+
+// Two entries of one KR text with two renderings: one for A.json, one for
+// the other files (as 신부 is 牧師 in chapter 10 and 神父 elsewhere). The same
+// KR and TW in A.json and B.json are units of two groups, and keeping the one
+// leaves the other open.
+func TestReviewTermGroupsOfOneKRAcrossFilesAcceptApart(t *testing.T) {
+	in, files := sameKRInputs(t, "- kr: 자판기\n  zh: 自動販賣機\n  files: [\"A.json\"]\n  status: approved\n\n- kr: 자판기\n  zh: 販賣機台\n  status: approved\n")
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	scoped, general := termGroupByZH(t, r, "자판기", "自動販賣機"), termGroupByZH(t, r, "자판기", "販賣機台")
+	if len(scoped.Units) != 1 || scoped.Units[0].Key != k(rvA, 0) || len(general.Units) != 1 || general.Units[0].Key != k(rvB, 0) {
+		t.Fatalf("units: 自動販賣機 %+v, 販賣機台 %+v", scoped.Units, general.Units)
+	}
+	if scoped.Units[0].ID == general.Units[0].ID {
+		t.Errorf("the units of the two groups share the id %s", scoped.Units[0].ID)
+	}
+	acceptUnits(&in, scoped)
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	if w := termGroupByZH(t, r, "자판기", "自動販賣機"); w.Accepted == nil {
+		t.Errorf("自動販賣機: accepted %v, want confirmed", w.Accepted)
+	}
+	if w := termGroupByZH(t, r, "자판기", "販賣機台"); w.Accepted != nil || w.Units[0].Accepted != nil || !slices.Equal(w.Keys, []string{k(rvB, 0)}) {
+		t.Errorf("販賣機台: accepted %v, unit %+v, keys %v; want it open", w.Accepted, w.Units[0], w.Keys)
+	}
+}
+
+// Two entries of one KR text that both apply to A.json: its unit lacks both
+// renderings, is a unit of both groups, and keeping it in one leaves it open
+// in the other.
+func TestReviewTermGroupsOfOneKROnOneUnitAcceptApart(t *testing.T) {
+	in, _ := sameKRInputs(t, "- kr: 자판기\n  zh: 自動販賣機\n  files: [\"A.json\"]\n  status: approved\n\n- kr: 자판기\n  zh: 販賣機台\n  files: [\"*.json\"]\n  status: approved\n")
+	files := []string{rvA}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	first, second := termGroupByZH(t, r, "자판기", "自動販賣機"), termGroupByZH(t, r, "자판기", "販賣機台")
+	if len(first.Units) != 1 || len(second.Units) != 1 || first.Units[0].Key != k(rvA, 0) || second.Units[0].Key != k(rvA, 0) {
+		t.Fatalf("units: 自動販賣機 %+v, 販賣機台 %+v", first.Units, second.Units)
+	}
+	if first.Units[0].ID == second.Units[0].ID {
+		t.Errorf("the unit has one id in both groups: %s", first.Units[0].ID)
+	}
+	acceptUnits(&in, first)
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	if w := termGroupByZH(t, r, "자판기", "販賣機台"); w.Accepted != nil || w.Units[0].Accepted != nil || !slices.Equal(w.Keys, []string{k(rvA, 0)}) {
+		t.Errorf("販賣機台: accepted %v, unit %+v, keys %v; want it open", w.Accepted, w.Units[0], w.Keys)
 	}
 }

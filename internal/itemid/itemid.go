@@ -27,17 +27,21 @@ func Warning(code, kr, zh string) string {
 }
 
 // UnitWarning is the id under which rules/accepted.yaml records a check warning
-// of code about one unit's KR text and its translation; term is the KR of the
-// glossary entry the warning is about, if any (validate.Issue.Term). The build
-// and the review page both use it, so that they agree on what is accepted.
+// of code about one unit's KR text and its translation; termKR and termZH are
+// the KR and the rendering of the glossary entry the warning is about, if any
+// (validate.Issue.Term and TermZH). The build and the review page both use it,
+// so that they agree on what is accepted.
 //
 // A term-missing warning is about one glossary entry, and a unit that lacks
-// two entries is a unit of two term groups: its first part hashes the term in
-// with the KR text, so that the unit has an id in each group and accepting it
-// in one leaves the other open. Any other code ignores term and is Warning.
-func UnitWarning(code, term, kr, zh string) string {
+// two entries is a unit of two term groups: its first part hashes the entry, KR
+// and rendering, in with the KR text, so that the unit has an id in each group
+// and accepting it in one leaves the other open. The rendering counts, since
+// two entries of one KR text (one limited by files, such as 신부 → 牧師 in
+// chapter 10 and 神父 elsewhere) are two groups. Any other code ignores the
+// entry and is Warning.
+func UnitWarning(code, termKR, termZH, kr, zh string) string {
 	if code == termMissing {
-		return Warning(code, kr+"\x00"+term, zh)
+		return Warning(code, kr+"\x00"+termKR+"\x00"+termZH, zh)
 	}
 	return Warning(code, kr, zh)
 }
