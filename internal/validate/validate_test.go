@@ -1295,3 +1295,29 @@ func TestTermsHitTheKRWithoutItsTags(t *testing.T) {
 		}
 	}
 }
+
+func TestMatchText(t *testing.T) {
+	for _, c := range []struct{ in, want string }{
+		{`당 <sprite name="X">피해량`, `당  피해량`},
+		{`a<br>b`, `a b`},
+		{`<b>와일드</b>헌트`, `와일드헌트`},
+		{`(턴 당 <style=x>2</style>회)`, `(턴 당 2회)`},
+		{`<color=#fff>x</color>`, `x`},
+		{`plain`, `plain`},
+	} {
+		if got := MatchText(c.in); got != c.want {
+			t.Errorf("MatchText(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+	if got := StripTags(`a<sprite name="X">b`); got != "ab" {
+		t.Errorf("StripTags changed: %q", got)
+	}
+}
+
+func TestCheckTermsSelfClosingTagSeparatesWords(t *testing.T) {
+	ctx := Context{Terms: []Term{{KR: "당 피해량", ZH: "每次傷害量"}}}
+	kr := `3%당 <sprite name="AttackDmgUp">피해량 증가`
+	if issues := checkTerms(kr, "3% 傷害", ctx); len(issues) != 0 {
+		t.Errorf("checkTerms = %+v, want none: 당 and 피해량 are two words", issues)
+	}
+}

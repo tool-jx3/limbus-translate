@@ -154,7 +154,7 @@ const (
 // KR text, those that match file stand for it alone: the entry without Files
 // is the one for the files no other entry takes.
 func (r *Rules) GlossaryHits(file, kr string) []Term {
-	kr = validate.StripTags(kr) // tags are markup: one inside a term does not split it
+	kr = validate.MatchText(kr) // a paired tag inside a term does not split it; a self-closing one does not fuse words
 	var hits []Term
 	scoped := map[string]bool{} // the KR texts with an entry for file
 	for _, t := range r.Glossary {

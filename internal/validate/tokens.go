@@ -57,6 +57,21 @@ func Tags(s string) []string { return tagRe.FindAllString(s, -1) }
 // looked for in the text that is left.
 func StripTags(s string) string { return tagRe.ReplaceAllString(s, "") }
 
+// MatchText is s as a term is looked for in it: a paired tag (<b>, <color=…>,
+// <style=…> and their closing tags) is removed, so a term it cuts or wraps is
+// still found, but a tag with no closing tag (<sprite …>, <br>, or any <…/>)
+// stands between words and becomes a space, so it does not fuse the words on
+// either side into a term. Lengths and display keep StripTags.
+func MatchText(s string) string {
+	return tagRe.ReplaceAllStringFunc(s, func(tok string) string {
+		name, closing := tagName(tok)
+		if !closing && (selfClosing[strings.ToLower(name)] || strings.HasSuffix(tok, "/>")) {
+			return " "
+		}
+		return ""
+	})
+}
+
 // selfClosing lists the tags that have no closing tag.
 var selfClosing = map[string]bool{"sprite": true, "br": true}
 

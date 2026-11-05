@@ -242,10 +242,10 @@ type newTermHits struct {
 // no record) says whether the term is used. Tags are no text, in the KR as in
 // the TW, as the checks have it.
 func (h *newTermHits) add(key string, u Unit, kr string) {
-	if len(h.units) >= h.room || h.listed[key] || !shownOrigin(u.O) || !h.term.OccursIn(validate.StripTags(kr)) {
+	if len(h.units) >= h.room || h.listed[key] || !shownOrigin(u.O) || !h.term.OccursIn(validate.MatchText(kr)) {
 		return
 	}
-	used := strings.Contains(validate.StripTags(u.ZH), validate.StripTags(h.term.ZH))
+	used := strings.Contains(validate.MatchText(u.ZH), validate.MatchText(h.term.ZH))
 	h.units = append(h.units, suggest.Evidence{Key: key, KR: kr, ZH: u.ZH, Note: usedNote(used)})
 }
 

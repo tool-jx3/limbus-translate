@@ -398,7 +398,7 @@ func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []r
 	// of the batch can bring the same provisional term twice.
 	seenKR := map[string]bool{}
 	for _, x := range texts {
-		plain := validate.StripTags(x.kr) // as CheckNewTerms looks for them
+		plain := validate.MatchText(x.kr) // as CheckNewTerms looks for them
 		for _, t := range provisional {
 			if t.OccursIn(plain) && !seenKR[t.KR] {
 				seenKR[t.KR] = true
@@ -422,7 +422,7 @@ func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 // to as well.
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
 	terms := r.ValidateTerms(file, kr)
-	plain := validate.StripTags(kr)
+	plain := validate.MatchText(kr)
 	for _, t := range provisional {
 		if t.OccursIn(plain) {
 			terms = append(terms, t.ToValidate())

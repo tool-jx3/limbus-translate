@@ -520,10 +520,10 @@ func checkContent(kr, zh string, ctx Context) []Issue {
 // checkTerms reports every forbidden rendering of the terms kr contains.
 func checkTerms(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
-	plain := StripTags(zh)
+	plain := MatchText(zh)
 	// Tags are not text: a tag in the middle of the KR term, or around it,
 	// does not change whether the entry hits the unit.
-	kr = StripTags(kr)
+	kr = MatchText(kr)
 	for _, term := range ctx.Terms {
 		if term.KR == "" || !strings.Contains(kr, term.KR) {
 			continue
@@ -554,7 +554,7 @@ func checkTerms(kr, zh string, ctx Context) []Issue {
 		for i := first; i < len(issues); i++ {
 			issues[i].Term = term.KR
 		}
-		if term.ZH != "" && term.ZH != term.KR && !strings.Contains(plain, StripTags(term.ZH)) {
+		if term.ZH != "" && term.ZH != term.KR && !strings.Contains(plain, MatchText(term.ZH)) {
 			// A warning whatever Existing says: a reasonable exception is
 			// explained in the batch note, not fixed in the text.
 			is := ctx.issue(CodeTermMissing, ClassContent,

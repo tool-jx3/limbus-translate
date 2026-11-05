@@ -1128,3 +1128,28 @@ func TestGlossaryHitsIgnoreTagsInKR(t *testing.T) {
 		t.Errorf("GlossaryHits = %+v, want none: 백화점 is a longer word", hits)
 	}
 }
+
+// A self-closing tag stands between words: it does not fuse them into a term.
+func TestGlossaryHitsSelfClosingTagSeparatesWords(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(string) string {
+		return "- kr: 당 피해량\n  zh: 每次傷害量\n  status: approved\n- kr: 와일드헌트\n  zh: 狂獵\n  status: approved\n- kr: 턴 당 2회\n  zh: 每回合 2 次\n  status: approved\n"
+	})
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, kr := range []string{`3%당 <sprite name="AttackDmgUp">피해량 증가`, `당 <sprite name="X">피해량`, "당 <br>피해량"} {
+		if hits := r.GlossaryHits(anyFile, kr); len(hits) != 0 {
+			t.Errorf("GlossaryHits(%q) = %+v, want none: the tag stands between two words", kr, hits)
+		}
+		if terms := r.ValidateTerms(anyFile, kr); len(terms) != 0 {
+			t.Errorf("ValidateTerms(%q) = %+v, want none", kr, terms)
+		}
+	}
+	for _, kr := range []string{"<b>와일드</b>헌트", "(턴 당 <style=x>2</style>회)"} {
+		if len(r.GlossaryHits(anyFile, kr)) != 1 {
+			t.Errorf("GlossaryHits(%q) = %+v, want the one entry", kr, r.GlossaryHits(anyFile, kr))
+		}
+	}
+}
