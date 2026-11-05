@@ -852,7 +852,7 @@ func checkPhase2StaleBatch(t *testing.T, p *phase2, id string) {
 // files of its units, which name their own, all of the family of the batch; a
 // story batch holds one file. The files that may share a batch are those of
 // one family outside the stories, all keyword files or none (the rule of
-// batch.Next, which has no helper to ask): when their units handed out in the
+// batch.Next, which batch.ShareKey states): when their units handed out in the
 // run are no more than batch.max_units of lct.yaml in all, one batch holds
 // them all (see unmergedFiles).
 func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
