@@ -96,7 +96,7 @@ func runSite(ctx *cli.Context, args []string) error {
 		release = latestReleaseTag(tags)
 	}
 	meta := site.Meta{RawTag: src.Tag, RulesCommit: info.RulesCommit, TWCommit: head, Release: release}
-	review, err := loadReviewInputs(ctx, "site")
+	review, err := loadReviewInputs(ctx, "site", r)
 	if err != nil {
 		return err
 	}
@@ -219,9 +219,11 @@ func openSiteSources(ctx *cli.Context, cmd string) (siteSources, error) {
 // loadReviewInputs reads what the review items are computed from: the raw tag,
 // the build record and plan of the tw worktree (nil when there is none; a
 // plan of another snapshot is no plan), the adjustments, the field rules, the
-// frozen patterns, the notes, the pending list and the declined and accepted
-// entries. cmd names the command in the errors.
-func loadReviewInputs(ctx *cli.Context, cmd string) (site.ReviewInputs, error) {
+// frozen patterns, the notes, the pending list, the declined and accepted
+// entries and the provisional terms. r are the rules the caller loaded (the
+// glossary decides which provisional terms count); they are not read again.
+// cmd names the command in the errors.
+func loadReviewInputs(ctx *cli.Context, cmd string, r *rules.Rules) (site.ReviewInputs, error) {
 	cfg := ctx.Config
 	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
 		return site.ReviewInputs{}, cli.UserError(cmd + ": worktrees.raw and worktrees.tw must be set in lct.yaml")
@@ -264,10 +266,6 @@ func loadReviewInputs(ctx *cli.Context, cmd string) (site.ReviewInputs, error) {
 		return in, err
 	}
 	if in.Pending, err = st.LoadPending(); err != nil {
-		return in, err
-	}
-	r, err := rules.Load(ctx.Root)
-	if err != nil {
 		return in, err
 	}
 	if in.Provisional, _, err = activeProvisionalRecords(ctx.Root, st, r); err != nil {

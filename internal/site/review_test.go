@@ -975,6 +975,38 @@ func TestReviewNewTermHitsAreTranslatedUnits(t *testing.T) {
 	}
 }
 
+// The provisional terms of ReviewInputs.Provisional are what BuildReview
+// lists as term-new suggestions: one per KR, made by suggest from the
+// records, by id as suggest orders them.
+func TestReviewListsTheProvisionalTermsOfItsInputs(t *testing.T) {
+	in, files := newTermInputs(t, [3]string{"자판기 하나", "販賣機一", store.OriginClaude})
+	newTermIDs := func() []string {
+		t.Helper()
+		r, err := BuildReview(in, files)
+		if err != nil {
+			t.Fatal(err)
+		}
+		var got []string
+		for _, s := range r.Suggestions {
+			if s.Kind == suggest.KindNewTerm {
+				got = append(got, s.ID+" "+s.Title)
+			}
+		}
+		return got
+	}
+	if got := newTermIDs(); len(got) != 0 {
+		t.Errorf("without provisional terms: %v", got)
+	}
+	in.Review.Provisional = []store.ProvisionalTerm{
+		{KR: "하나", ZH: "一個", Key: nthKey(0), Batch: "b1"},
+		{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"},
+	}
+	want := []string{"term-new/자판기 暫定詞：자판기 → 販賣機", "term-new/하나 暫定詞：하나 → 一個"}
+	if got := newTermIDs(); !slices.Equal(got, want) {
+		t.Errorf("term-new suggestions = %v, want %v", got, want)
+	}
+}
+
 // A provisional term's suggestion names its term, the KR and the rendering in
 // force (a conflict is not it), as a term group does; no other kind has one.
 func TestReviewNewTermNamesItsTerm(t *testing.T) {

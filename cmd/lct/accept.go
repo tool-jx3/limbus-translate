@@ -458,7 +458,7 @@ func acceptReview(ctx *cli.Context) (site.Review, site.ReviewInputs, string, err
 	if err != nil {
 		return site.Review{}, site.ReviewInputs{}, "", err
 	}
-	in, err := loadReviewInputs(ctx, "accept")
+	in, err := loadReviewInputs(ctx, "accept", ss.Rules)
 	if err != nil {
 		return site.Review{}, in, "", err
 	}

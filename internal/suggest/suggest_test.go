@@ -159,6 +159,9 @@ func TestSuggestOrder(t *testing.T) {
 	}
 	in.Build.Report.Notes = append(in.Build.Report.Notes, store.Note{Key: "A.json|/a", Note: "另一則"})
 	in.Plan.NewSpeakers = []string{"새 화자", "가 화자"}
+	// The provisional terms come by id, as every kind but the inconsistent
+	// groups, whatever the order of their records.
+	in.Provisional = append(in.Provisional, store.ProvisionalTerm{KR: "가설어", ZH: "假設詞", Key: "F.json|/dataList/8/name", Batch: "b1"})
 	got := ids(run(t, in))
 	want := []string{
 		"note/A.json|/a/" + sha8("另一則"),
@@ -169,6 +172,7 @@ func TestSuggestOrder(t *testing.T) {
 		"field/add/BattleSpeechBubbleDlg/desc",
 		"adjustment-moved/" + movedFrom,
 		"adjustment-expired/" + expiredKey,
+		"term-new/가설어",
 		"term-new/임시어",
 		"term/신규 용어",
 		"inconsistent/ally/name/" + sha8("큰"), // 40 units

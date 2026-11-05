@@ -13,7 +13,9 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 // siteRepo is the repo of the build tests with the pack built: raw and tw as
@@ -427,5 +429,37 @@ func TestSiteCommandExportsUpdates(t *testing.T) {
 	if err := json.Unmarshal(b, &idx); err != nil || len(idx.Releases) != 2 ||
 		idx.Releases[0].Tag != "zh-TW-20261029.1" || !idx.Releases[0].Recorded || idx.Releases[1].Kind != site.UpdateFirst {
 		t.Errorf("index.json = %s, %v; want the two Release tags, the newest with its record", b, err)
+	}
+}
+
+// loadReviewInputs computes from the rules its caller has loaded, and does
+// not read them again: rules that differ from the repo's are the ones it uses
+// (here a glossary entry of the KR of a provisional term, which keeps the
+// term out).
+func TestLoadReviewInputsUsesTheRulesItIsGiven(t *testing.T) {
+	root := siteRepo(t)
+	ctx, _ := testCtx(t, root, "", true)
+	st := store.Open(filepath.Join(root, filepath.FromSlash(ctx.Config.Worktrees.TW)))
+	if _, err := st.AppendTerms([]store.ProvisionalTerm{{KR: "우레", ZH: "雷鳴", Key: "A.json|/dataList/0/content", Batch: "b1", RawTag: "t", Time: "2026-11-05T00:00:00Z"}}); err != nil {
+		t.Fatal(err)
+	}
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	in, err := loadReviewInputs(ctx, "site", r)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(in.Provisional) != 1 || in.Provisional[0].KR != "우레" {
+		t.Fatalf("with the repo's rules: provisional = %+v, want 우레", in.Provisional)
+	}
+	given := *r
+	given.Glossary = append(slices.Clone(r.Glossary), rules.Term{KR: "우레", ZH: "雷", Status: rules.StatusApproved})
+	if in, err = loadReviewInputs(ctx, "site", &given); err != nil {
+		t.Fatal(err)
+	}
+	if len(in.Provisional) != 0 {
+		t.Errorf("with a glossary entry of 우레: provisional = %+v, want none", in.Provisional)
 	}
 }
