@@ -1,11 +1,11 @@
 name: update
 
-# Every Thursday at 12:00 (UTC+8), when a webhook reports a game update, and
+# Every Thursday at 11:35 (UTC+8), when a webhook reports a game update, and
 # by hand: ask the status API for a new game update and run the shared
 # pipeline. A run with no new update and nothing pending ends at once.
 on:
   schedule:
-    - cron: '0 4 * * 4'
+    - cron: '35 3 * * 4'
   repository_dispatch:
     types: [limbus_update]
   workflow_dispatch:

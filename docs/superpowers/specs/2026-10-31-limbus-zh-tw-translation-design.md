@@ -456,7 +456,7 @@ SKILL.md 只寫流程；翻譯指示在 `prompts/translate.md`，規則內容都
 
 | workflow | 觸發 | 內容 |
 |---|---|---|
-| `update.yml` | 每週四 12:00 UTC+8（cron `0 4 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release（§13）→ 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯，而且沒有還欠著的 Release（`lct publish --check`）、`tw` 最後一個 commit 不是只保存翻譯進度的（`translate: keep the progress of …`，保存後 build 失敗的情況），才直接結束 |
+| `update.yml` | 每週四 11:35 UTC+8（cron `35 3 * * 4`）；`repository_dispatch`（`limbus_update`）；手動（可選 `force`、`requeue`、`max_usd`） | fetch → 有新 token 才 snapshot → plan → 翻譯迴圈 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release（§13）→ 有需要處理的項目時開審核 Issue（§14）。待譯清單不是空的也會繼續翻。沒有新 token、也沒有待譯，而且沒有還欠著的 Release（`lct publish --check`）、`tw` 最後一個 commit 不是只保存翻譯進度的（`translate: keep the progress of …`，保存後 build 失敗的情況），才直接結束 |
 | `rebuild.yml` | push 到 `main` 且動到 `rules/**`、`glossary/**`、`guides/**`、`lct.yaml`；手動 | 不 fetch；plan → 有待譯才翻 → build → commit `tw` → 語言包與最新的 Release 不同才建立 Release → 有需要處理的項目時開審核 Issue |
 | `rules-proposal.yml` | `update.yml`／`rebuild.yml` 完成且成功時（`workflow_run`，`conclusion == 'success'`）；手動 | §11.2：checkout（完整歷史）→ 取得 `raw`、`tw` 並建 worktree → build `lct` → 設定 git 身分 → `lct proposal start` 選規則 PR 的分支 → `lct suggest --exclude-file work/proposal/exclude.txt`，沒有新建議就結束 → `anthropics/claude-code-action@v1` 跑 `rules-review` skill（`--model` 用 `vars.LCT_MODEL`，`--allowedTools` 與 skill 的 `allowed-tools` 相同，`--disallowedTools "Read(./.git/**)"`；checkout 設 `persist-credentials: false`），開或更新規則 PR → 讀 `work/proposal/outcome.txt`，用 `gh pr list --state open --head <分支>` 確認 PR 有這次新增的建議並把網址寫進 job summary。逾時 60 分鐘 |
 | `pages.yml` | `update.yml`／`rebuild.yml` 完成且成功、在 `main` 上、不是 PR 時（`workflow_run`，條件與 `rules-proposal.yml` 相同）；手動（沒有輸入） | 譯文對照網站（`site/`，設計見 `docs/superpowers/specs/2026-11-03-pages-viewer-design.md`）：checkout（完整歷史與 tag，`persist-credentials: false`）→ 取得 `raw`、`tw` 並建 worktree → build `lct` → `lct site --out site/public/data`（輸出含審核頁用的 `review/*.json`；非 0 就整個執行失敗，不部署）→ setup-node（版本取自 `site/.nvmrc`）→ `npm ci`、`npm run build`（於 `site/`）→ `configure-pages` → `upload-pages-artifact`（`site/dist`）→ `deploy-pages`。`environment: github-pages`，逾時 30 分鐘。第一次部署前，人要到 Settings → Pages 把 Source 選為「GitHub Actions」（README） |
@@ -596,7 +596,7 @@ docs/
 - CI 可以開 PR 改進規則，由人審核決定是否調整、合併
 - 做法 B 列為第三階段，第二階段穩定後再開發
 - 需要人處理的項目以 GitHub Issue 通知（§14）
-- `update.yml` 每週四 12:00 UTC+8 執行一次。其他日子的臨時更新與未翻完的待譯清單，靠手動觸發、`repository_dispatch` 或下週四處理
+- `update.yml` 每週四 11:35 UTC+8 執行一次。其他日子的臨時更新與未翻完的待譯清單，靠手動觸發、`repository_dispatch` 或下週四處理
 - 輸出檔案以 KR 為準（§6.2）
 - `StoryData` 的 `PC*` 是明日方舟聯動劇情，`ES*` 是第八章的特殊劇情模式
 - 不動 `tool-jx3/Assets`、`tool-jx3/ParatranzUploader`，本專案也不依賴這兩個 repo（§3）

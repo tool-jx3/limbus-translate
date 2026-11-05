@@ -2311,8 +2311,8 @@ func checkEvents(file string, w *workflowFile, want ...string) []string {
 	return nil
 }
 
-// updateCron is the schedule of update.yml: Thursday 12:00 in UTC+8.
-const updateCron = "0 4 * * 4"
+// updateCron is the schedule of update.yml: Thursday 11:35 in UTC+8.
+const updateCron = "35 3 * * 4"
 
 // checkUpdateWorkflow checks update.yml: every Thursday, on a dispatch of the
 // update event and by hand, it calls the pipeline with fetch on.
