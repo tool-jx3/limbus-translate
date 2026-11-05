@@ -399,6 +399,7 @@ func acceptLookup(ctx *cli.Context, ids []string) error {
 	}
 	for _, w := range rev.Warnings {
 		items[w.ID] = lookupItem{ID: w.ID, Kind: "warning", List: listAccepted, Confirmed: w.Accepted, KR: w.KR, ZH: w.ZH, Message: w.Message, Keys: w.Keys, Pending: w.Pending, Units: w.Units}
+		addUnitLookups(items, w, rev.Queued)
 	}
 	listed := map[string]lookupItem{}
 	for _, f := range []struct {
@@ -427,6 +428,24 @@ func acceptLookup(ctx *cli.Context, ids []string) error {
 		return cli.ErrFindings
 	}
 	return nil
+}
+
+// addUnitLookups adds to items the units of the term group w: a unit is
+// accepted by its own id, which the review page lets a person copy to keep that
+// unit alone. Units of one KR text and one translation share the id, and its
+// item lists them all. queued holds the keys waiting for retranslation.
+func addUnitLookups(items map[string]lookupItem, w site.WarningItem, queued map[string]bool) {
+	for _, u := range w.Units {
+		it, ok := items[u.ID]
+		if !ok {
+			it = lookupItem{ID: u.ID, Kind: "warning", List: listAccepted, Confirmed: u.Accepted, KR: u.KR, ZH: u.ZH, Note: u.Note, Message: w.Message, Keys: []string{}}
+		}
+		it.Keys = append(it.Keys, u.Key)
+		if queued[u.Key] {
+			it.Pending++
+		}
+		items[u.ID] = it
+	}
 }
 
 // acceptReview computes the review items of the last build, the way lct site

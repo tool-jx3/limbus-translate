@@ -515,10 +515,20 @@ func TestAcceptDeclinesANewTerm(t *testing.T) {
 	}
 }
 
-// lct accept expands a termgroup/… id into the warning ids of the units of the
-// group that are not accepted yet, and writes those.
-func TestAcceptExpandsATermGroup(t *testing.T) {
-	s := acceptRepo(t)
+// termGroupUnit is a unit of a term group as the review page has it.
+type termGroupUnit struct {
+	ID  string `json:"id"`
+	Key string `json:"key"`
+	KR  string `json:"kr"`
+	ZH  string `json:"zh"`
+}
+
+// termGroupRepo is acceptRepo with a glossary entry the fixture never renders
+// (열상 → 絕無此譯): it returns the id of its term group on the review page and
+// the units of the group.
+func termGroupRepo(t *testing.T) (s acceptState, group string, units []termGroupUnit) {
+	t.Helper()
+	s = acceptRepo(t)
 	glossary := filepath.Join(s.root, "glossary", "terms.yaml")
 	data, err := os.ReadFile(glossary)
 	if err != nil {
@@ -530,29 +540,33 @@ func TestAcceptExpandsATermGroup(t *testing.T) {
 	mustLct(t, nil, "site", "--out", "work/site")
 	var wr struct {
 		Items []struct {
-			ID    string `json:"id"`
-			Code  string `json:"code"`
-			KR    string `json:"kr"`
-			Units []struct {
-				ID string `json:"id"`
-			} `json:"units"`
+			ID    string          `json:"id"`
+			Code  string          `json:"code"`
+			KR    string          `json:"kr"`
+			Units []termGroupUnit `json:"units"`
 		} `json:"items"`
 	}
 	if err := json.Unmarshal(readFile(t, filepath.Join(s.root, "work", "site", "review", "warnings.json")), &wr); err != nil {
 		t.Fatal(err)
 	}
-	var group string
-	var unitIDs []string
 	for _, w := range wr.Items {
 		if w.Code == "term-missing" && strings.HasPrefix(w.ID, "termgroup/") && w.KR == "열상" {
-			group = w.ID
-			for _, u := range w.Units {
-				unitIDs = append(unitIDs, u.ID)
-			}
+			group, units = w.ID, w.Units
 		}
 	}
-	if group == "" || len(unitIDs) == 0 {
+	if group == "" || len(units) == 0 {
 		t.Fatalf("no term group in %+v", wr.Items)
+	}
+	return s, group, units
+}
+
+// lct accept expands a termgroup/… id into the warning ids of the units of the
+// group that are not accepted yet, and writes those.
+func TestAcceptExpandsATermGroup(t *testing.T) {
+	s, group, units := termGroupRepo(t)
+	var unitIDs []string
+	for _, u := range units {
+		unitIDs = append(unitIDs, u.ID)
 	}
 
 	var look lookupOut
@@ -593,5 +607,52 @@ func TestAcceptExpandsATermGroup(t *testing.T) {
 	}
 	if after := readOptional(t, s.root, "rules/accepted.yaml"); after != accepted {
 		t.Errorf("a group without unaccepted units wrote:\n%s", after)
+	}
+}
+
+// The dry run knows the id of a unit of a term group, which the review page
+// lets a person copy to keep that unit alone, and says once it is accepted.
+func TestAcceptDryRunKnowsTheUnitsOfATermGroup(t *testing.T) {
+	s, _, units := termGroupRepo(t)
+	u := units[0]
+	var look lookupOut
+	mustLct(t, &look, "accept", "--dry-run", u.ID)
+	if len(look.Unknown) != 0 || len(look.Items) != 1 {
+		t.Fatalf("dry run of %s = %+v, want the unit", u.ID, look)
+	}
+	it := look.Items[0]
+	if it.ID != u.ID || it.Kind != "warning" || it.List != "accepted" || it.Confirmed != nil ||
+		it.KR != u.KR || it.ZH != u.ZH || !slices.Equal(it.Keys, []string{u.Key}) {
+		t.Errorf("item = %+v, want the open warning of unit %+v", it, u)
+	}
+
+	mustLct(t, nil, "accept", "--reason", "這裡不譯流血", "--date", "2026-11-05", u.ID)
+	if accepted := readOptional(t, s.root, "rules/accepted.yaml"); !strings.Contains(accepted, `- id: "`+u.ID+`"`) {
+		t.Fatalf("accepted.yaml lacks %s:\n%s", u.ID, accepted)
+	}
+	look = lookupOut{}
+	mustLct(t, &look, "accept", "--dry-run", u.ID)
+	if len(look.Unknown) != 0 || len(look.Items) != 1 || look.Items[0].Confirmed == nil || look.Items[0].Confirmed.Reason != "這裡不譯流血" {
+		t.Errorf("dry run after accept = %+v, want the unit confirmed", look)
+	}
+}
+
+// Units of one KR text and one translation share an id: its item lists every
+// one of them, as lct accept of the id accepts them all.
+func TestAddUnitLookupsListsEveryUnitOfAnID(t *testing.T) {
+	w := site.WarningItem{ID: "termgroup/aaaaaaaa/bbbbbbbb", Code: "term-missing", Message: "缺「流血」", Units: []site.TermUnit{
+		{Key: "A.json|/dataList/0/name", ID: "warning/term-missing/11111111/22222222", KR: "열상", ZH: "裂傷"},
+		{Key: "B.json|/dataList/0/name", ID: "warning/term-missing/11111111/22222222", KR: "열상", ZH: "裂傷"},
+		{Key: "C.json|/dataList/0/name", ID: "warning/term-missing/33333333/22222222", KR: "열상이다", ZH: "裂傷", Note: "刻意"},
+	}}
+	items := map[string]lookupItem{}
+	addUnitLookups(items, w, map[string]bool{"B.json|/dataList/0/name": true})
+	shared := items["warning/term-missing/11111111/22222222"]
+	if !slices.Equal(shared.Keys, []string{"A.json|/dataList/0/name", "B.json|/dataList/0/name"}) || shared.Pending != 1 ||
+		shared.Kind != "warning" || shared.List != listAccepted || shared.KR != "열상" || shared.ZH != "裂傷" || shared.Message != w.Message {
+		t.Errorf("shared id = %+v, want both units, one waiting", shared)
+	}
+	if own := items["warning/term-missing/33333333/22222222"]; !slices.Equal(own.Keys, []string{"C.json|/dataList/0/name"}) || own.Pending != 0 || own.Note != "刻意" {
+		t.Errorf("own id = %+v", own)
 	}
 }
