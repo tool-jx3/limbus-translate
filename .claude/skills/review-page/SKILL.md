@@ -34,16 +34,18 @@ allowed-tools:
 
 0. 執行 `go build -o bin/lct ./cmd/lct`，失敗就停止並回報。`bin/lct accept`、`bin/lct suggest`、`bin/lct search` 讀 `.work/raw` 與 `.work/tw` 兩個 worktree；指令說沒有快照或找不到時，停止並說明請人準備好（`git fetch origin raw tw`，再 `git worktree add .work/raw raw` 與 `git worktree add .work/tw tw`，或把兩個 worktree 更新到最新），不由這個 skill 代做
 1. 整理人貼上的內容：列出每個 ID 與人對它的決定（沒問題、要改、不清楚；人只貼 ID 沒說決定時，問人）。同一批 ID 的決定不同時分開處理
-2. 依 ID 找到項目內容，向人確認你看到的和他看到的是同一件事。每一類都先用 `bin/lct accept --dry-run --json` 查：它唯讀，不需要 `--reason`，對每個 ID 印出審核頁上的那一項，並列出不是目前項目的 ID。每個 ID 用單引號包起來（`note/…` 的 ID 含 `|`，ID 也可能含空格；雙引號裡的 `$` 與反引號會被 shell 展開；ID 裡有單引號時改用 `--file`）：
+2. 依 ID 找到項目內容，向人確認你看到的和他看到的是同一件事。每一類都先用 `bin/lct accept --dry-run --json` 查：它唯讀，不需要 `--reason`，對每個 ID 印出審核頁上的那一項，並列出不是目前項目的 ID。每個 ID 用單引號包起來（`note/…` 的 ID 含 `|`，ID 也可能含空格；雙引號裡的 `$` 與反引號會被 shell 展開）。ID 或理由裡有單引號時寫成 `'\''`（先結束引號，再放一個跳脫的單引號，再重新開始引號；例如 `it's` 寫成 `'it'\''s'`）：
    `bin/lct accept --dry-run --json 'ID1' 'ID2'`
-   - 輸出 `{items, unknown, raw_tag, tw_commit}`。每個 `items` 有 `id`、`kind`、`list`（`declined` 或 `accepted`，確認後會記進哪個清單）、`confirmed`（已確認時有 `reason` 與 `date`，否則 `null`）、`kr`、`zh`、`note` 或 `message`、`keys`（用到的單位）、`variants`（只有 `inconsistent`）、`pending`（待重翻的單位數）。向人複述 `kind`、`kr`、`zh` 與 `note` 或 `message`
+   - 依詞彙表條目分組的整組 ID 帶 `@N`：`termgroup/<sha8>/<sha8>@<N>`，審核頁複製出來的就是這個形式，N 是頁面當時顯示、還沒確認的單位數。`bin/lct accept` 只在 N 等於目前還沒確認的單位數時才確認整組，這樣人確認的就是他看到的那幾個單位。`--dry-run` 對這種 ID 的項目印出 `open_units`（`page` 是 N，`now` 是目前的數，`match` 是兩者是否相同）；組已不在目前審核資料裡的 ID 另列在 `unknown_term_groups`。這兩種情形 `--dry-run` 都是 exit 1。逐單位的 `warning/term-missing/…` 不帶 `@N`
+   - 輸出 `{items, unknown, unknown_term_groups, raw_tag, tw_commit}`。每個 `items` 有 `id`、`kind`、`list`（`declined` 或 `accepted`，確認後會記進哪個清單）、`confirmed`（已確認時有 `reason` 與 `date`，否則 `null`）、`kr`、`zh`、`note` 或 `message`、`keys`（用到的單位）、`variants`（只有 `inconsistent`）、`pending`（待重翻的單位數）。向人複述 `kind`、`kr`、`zh` 與 `note` 或 `message`
    - 不一致的譯法（`inconsistent`）只依 KR 分組，而 KR 常比 JP、EN 籠統（例如 JP／EN 分成「弟」與「妹」），譯法不同可能是對的。每個 `variants` 有 `jpen`：這種譯法的單位依 JP、EN 分成的子組（`jp`、`en`、`count`、`keys`；該語言沒有對應時沒有那個鍵），項目有 `jpen_class`：`explained`（每種 JP/EN 只對到一種譯法）、`partial`（部分如此）、`same`（JP/EN 全同）。向人列出每種譯法的 JP/EN 與單位數，以及 `jpen_class`。分類只是參考：不因 JP/EN 分類就確認、就改譯法或替人做任何決定，決定一律由人做
    - `unknown` 不是目前項目：可能已確認過、已解決，或本機 `.work/raw`、`.work/tw` 比網頁舊；處理方式見第 3 步
    - 需要更多背景時，才補用其他指令：`bin/lct search --json --key K` 或 `--text RE` 看單位的 KR 與現行譯文，`bin/lct suggest --json` 看建議的 `evidence`（它只列上次建置之後新增的）。`bin/lct validate --json --kr KR --zh ZH --file 檔名` 是以新譯文的標準檢查（內容類的代碼是硬性的，詞彙表也適用），所以審核頁上的 `hangul`、`simplified` 等警告在這裡可能是硬性失敗，這是預期的，以審核頁的那一項為準
    - 待辦：沒有 ID，不能確認。人提到時，向人說明處理方式見 `/review`（`needs_review` 用調整或重翻，凍結檔決定是否解除凍結）
 3. 依人的決定處理：
-   - 沒問題：執行 `bin/lct accept --json --reason '<人給的理由，沒有就寫「人工確認沒問題」>' 'ID1' 'ID2'`，理由與每個 ID 都用單引號（理由裡有單引號時，改用不含單引號的說法）。規則建議與註記記進 `rules/declined.yaml`，警告記進 `rules/accepted.yaml`；全部 ID 一次傳入，`--reason` 是這一批共同的理由，理由不同的分批執行。ID 很多時分成每批數十個直接傳入
+   - 沒問題：執行 `bin/lct accept --json --reason '<人給的理由，沒有就寫「人工確認沒問題」>' 'ID1' 'ID2'`，理由與每個 ID 都用單引號（單引號的寫法同第 2 步）。規則建議與註記記進 `rules/declined.yaml`，警告記進 `rules/accepted.yaml`；全部 ID 一次傳入，`--reason` 是這一批共同的理由，理由不同的分批執行。ID 很多時分成每批數十個直接傳入
      - 輸出 `{declined, accepted, skipped, raw_tag, tw_commit}`：`skipped` 是早就確認過的，不算錯，向人列出
+     - 整組 ID 被拒絕（exit 1，什麼都沒寫）：N 與目前還沒確認的單位數不同，或這個組已不在目前審核資料裡。先用 `bin/lct accept --dry-run --json` 查出變了什麼（`open_units` 的 `now`，或該 ID 在 `unknown_term_groups`），告訴人變動，請人重新整理審核頁再貼一次，或改貼逐單位 ID（`warning/term-missing/…`，只確認他指的那幾個單位）。不去掉 `@N`，也不自己改 N 來讓指令通過
      - exit 1 且訊息列出不是目前項目的 ID：整批都沒有寫入。把這些 ID 告訴人，說明兩種可能：本機 `.work/raw`、`.work/tw` 比網頁舊（請人更新到 origin 的 `raw`、`tw` 後再試，例如 `git -C .work/tw pull --ff-only`；這個 skill 不執行 `git`），或項目已解決、譯文已改。經人同意後，只用其餘的 ID 再執行一次
    - 要改：修改必須讓譯文真的改變——只改指引而不重翻，譯文不會變。依項目種類：
      - 單一單位（警告、註記，或只涉及幾個單位的建議）：先讀 `prompts/translate.md` 與 `guides/README.md` 指示的指引，擬一個能通過檢查的譯文和 `reason`，用 `bin/lct validate` 試過，把譯文給人看，同意後執行 `bin/lct adjust add --json --key K --zh Z --reason R --rule PATH --topic T`（`--rule` 是這個道理歸納進的既有規則檔，一次性的寫 `one-off`；各項用同一個 `--topic`）。exit 1 且有 `issues`：依 issues 改後再送，同一筆最多重試兩次，仍不過就把 issues 給人看

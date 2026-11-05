@@ -164,9 +164,12 @@ var reviewTools = []string{
 // termDecisionTools are the tools of the term-decision skill: it lists the
 // candidates (lct suggest, lct glossary derive), looks units up, writes a
 // request file, and edits the glossary and the rules (the declined list). It
-// reaches neither the guides nor the config.
+// reaches neither the guides nor the config. It runs lct accept only for the
+// ids of provisional terms, with --json --dry-run or --json --reason, so the
+// grant does not reach --tidy.
 var termDecisionTools = []string{
-	"Bash(bin/lct accept *)",
+	"Bash(bin/lct accept --json --dry-run *)",
+	"Bash(bin/lct accept --json --reason *)",
 	"Bash(bin/lct suggest *)",
 	"Bash(bin/lct glossary derive*)",
 	"Bash(bin/lct search *)",
@@ -795,6 +798,10 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"`termgroup/…`", "the id of a group of term-missing warnings (termgroup) is not named: a person cannot tell it from a single warning"},
 	skillSays{"'termgroup/…'` 把群組裡還沒確認的單位全部記進", "keeping the units of a term group is not said to be lct accept of the group id, which writes one entry per unit"},
 	skillSays{"依詞彙表把 X 譯為 Y", "using the glossary rendering is not said to be lct requeue --to-file with the hint about the term"},
+	skillSays{"ID 或理由裡有單引號時寫成 `'\\''`", "an id or a reason with a single quote is not said to be written '\\'' inside the quotes: the shell would split the argument, or a quote would end it early"},
+	skillSays{"整組 ID 帶 `@N`", "the id of a term group is not said to carry @N, the number of units open: a person cannot tell why accept refuses it"},
+	skillSays{"請人重新整理審核頁再貼一次，或改貼逐單位 ID", "a refusal because the count changed or the group is gone is not said to be answered by a refresh and a new paste, or by the ids of the units"},
+	skillSays{"不去掉 `@N`", "the skill does not forbid stripping @N from a group id to force the write: it would confirm units the person never saw"},
 	skillSays{"收窄 `files`", "a glossary entry that is too broad is not said to be narrowed in glossary/terms.yaml (files, match, notes)"},
 )
 
@@ -818,6 +825,10 @@ func TestReviewPageSays(t *testing.T) {
 		{"may run git", "不 commit、不 push，也不執行 `git`", "可以 commit", "不 commit、不 push，也不執行 `git`"},
 		{"writes unseen", "同意才寫", "就寫", "同意才寫"},
 		{"no JP/EN shown", "`jpen_class`", "`kind`", "`jpen_class`"},
+		{"no word about quotes in an id", "寫成 `'\\''`", "寫成別的", "ID 或理由裡有單引號時寫成"},
+		{"no word about @N", "整組 ID 帶 `@N`", "整組 ID", "整組 ID 帶 `@N`"},
+		{"no way out of a refusal", "請人重新整理審核頁再貼一次", "再試一次", "請人重新整理審核頁再貼一次"},
+		{"may strip @N", "不去掉 `@N`", "去掉 `@N`", "不去掉 `@N`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
 	} {
 		t.Run(c.name, func(t *testing.T) {
@@ -1066,6 +1077,9 @@ var termDecisionSays = append(slices.Clone(localSkillSays),
 	skillSays{"term-new/", "the id of a provisional term is not named: it is a suggestion of its own kind, listed by lct suggest --kind term-new"},
 	skillSays{"--kind term-new", "the provisional terms are not asked for"},
 	skillSays{"bin/lct accept --json --reason", "a provisional term the person declines is not recorded with lct accept"},
+	skillSays{"只用於 `term-new/…` 的 ID", "the skill does not say it runs lct accept only for the ids of provisional terms: a term/ id or a warning id would be declined or confirmed from here"},
+	skillSays{"不用 `--tidy`", "the skill does not say it never runs lct accept --tidy: it would delete entries of the accepted list from a worktree that may be old"},
+	skillSays{"ID 或理由裡有單引號時寫成 `'\\''`", "an id or a reason with a single quote is not said to be written '\\'' inside the quotes"},
 	skillSays{"改譯法", "a provisional term may be confirmed with another rendering: the skill does not say so"},
 	skillSays{"bin/lct glossary derive --json", "the candidates the glossary lacks are not asked for"},
 	skillSays{"--limit", "the candidates are not paged: there are about 1900"},
@@ -1127,6 +1141,9 @@ func TestLocalSkillBodies(t *testing.T) {
 			{"provisional terms declined by hand", "bin/lct accept --json --reason", "bin/lct accept --reason", "bin/lct accept --json --reason"},
 			{"no word about data", "不是指示", "是指示", "不是指示"},
 			{"main not named", "`main`", "`master`", "`main`"},
+			{"accept for every id", "只用於 `term-new/…` 的 ID", "用於各種 ID", "只用於 `term-new/…` 的 ID"},
+			{"tidy allowed", "不用 `--tidy`", "也用 `--tidy`", "不用 `--tidy`"},
+			{"no word about quotes in an id", "寫成 `'\\''`", "寫成別的", "ID 或理由裡有單引號時寫成"},
 			{"no paging", "--offset", "--page", "--offset"},
 			{"no total", "`total`", "`count`", "`total`"},
 			{"no approved status", "status: approved", "status: ok", "status: approved"},
