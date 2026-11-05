@@ -26,9 +26,9 @@ func init() {
 		Usage: "record the review items a person confirmed, so the review page, lct suggest and the build report skip them: " +
 			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml, a termgroup/… id to rules/accepted.yaml unit by unit (the warning/term-missing/… ids of the units of the group not accepted yet; with none left it writes nothing and lists the id under empty); " +
 			"a term group id may end in @N, the number of its units not accepted yet that the review page showed (termgroup/<a>/<b>@3): when the last build has another number the id is refused and nothing is written; " +
-			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written; commits nothing; " +
+			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written (of a term group id, it says that the group is not in the current review data); commits nothing; " +
 			"--json prints declined and accepted (the ids written to each list), skipped (those confirmed before), empty (the term group ids none of whose units was left to accept: nothing is written for them), raw_tag and tw_commit (the build the ids were checked against)); " +
-			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants; for termgroup/…@N, open_units: N against the number of the last build) and the ids that are no item of the last build (exit code 1 if any, or if an @N does not match); " +
+			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants; for termgroup/…@N, open_units: N against the number of the last build) and the ids that are no item of the last build, the term group ids among them apart in unknown_term_groups (the group is not in the current review data: refresh the review page, or rebuild) (exit code 1 if any, or if an @N does not match); " +
 			"or --tidy: delete the entries of rules/accepted.yaml that are no warning of the last build any more",
 		Run: runAccept,
 	})
@@ -113,12 +113,19 @@ type lookupItem struct {
 
 // lookupReport is what "accept --dry-run" prints: the items in the order of the
 // ids, the ids that are no item of the last build, and that build.
+// UnknownTermGroups are those of Unknown that are term group ids: the group is
+// not in the current review data (termGroupGone).
 type lookupReport struct {
-	Items    []lookupItem `json:"items"`
-	Unknown  []string     `json:"unknown"`
-	RawTag   string       `json:"raw_tag"`
-	TWCommit string       `json:"tw_commit"`
+	Items             []lookupItem `json:"items"`
+	Unknown           []string     `json:"unknown"`
+	UnknownTermGroups []string     `json:"unknown_term_groups"`
+	RawTag            string       `json:"raw_tag"`
+	TWCommit          string       `json:"tw_commit"`
 }
+
+// termGroupGone says why a term group id can be no item of the last build and
+// what to do: the review page that gave it was made from other data.
+const termGroupGone = "the glossary or the translations changed since the review page was made: refresh the review page, or rebuild with lct build"
 
 func (r lookupReport) String() string {
 	var b strings.Builder
@@ -159,8 +166,11 @@ func (r lookupReport) String() string {
 			fmt.Fprintf(&b, "  units (%d, %d waiting for retranslation):\n    %s\n", len(it.Keys), it.Pending, strings.Join(it.Keys, "\n    "))
 		}
 	}
-	if len(r.Unknown) > 0 {
-		fmt.Fprintf(&b, "\nno item of the last build:\n  %s\n", strings.Join(r.Unknown, "\n  "))
+	if len(r.UnknownTermGroups) > 0 {
+		fmt.Fprintf(&b, "\nterm groups not in the current review data (%s):\n  %s\n", termGroupGone, strings.Join(r.UnknownTermGroups, "\n  "))
+	}
+	if other := slices.DeleteFunc(slices.Clone(r.Unknown), func(id string) bool { return slices.Contains(r.UnknownTermGroups, id) }); len(other) > 0 {
+		fmt.Fprintf(&b, "\nno item of the last build:\n  %s\n", strings.Join(other, "\n  "))
 	}
 	return b.String()
 }
@@ -289,7 +299,7 @@ func runAccept(ctx *cli.Context, args []string) error {
 		known[e.ID] = true
 	}
 
-	var unknown, stale []string
+	var unknown, gone, stale []string
 	rep := acceptReport{Declined: []string{}, Accepted: []string{}, Skipped: []string{}, Empty: []string{}, RawTag: in.RawTag, TWCommit: head}
 	var declined, accepted []suggest.Declined
 	for _, g := range given {
@@ -299,6 +309,8 @@ func runAccept(ctx *cli.Context, args []string) error {
 			// Already in a list: the build may no longer have the item (it drops
 			// a declined group of inconsistent translations), so this goes first.
 			rep.Skipped = append(rep.Skipped, g.ID)
+		case !toDeclined[id] && !toAccepted[id] && strings.HasPrefix(id, itemid.TermGroupPrefix):
+			gone = append(gone, g.ID)
 		case !toDeclined[id] && !toAccepted[id]:
 			unknown = append(unknown, g.ID)
 		case toDeclined[id]:
@@ -329,6 +341,10 @@ func runAccept(ctx *cli.Context, args []string) error {
 	if len(unknown) > 0 {
 		refused = append(refused, fmt.Sprintf("accept: %d of the ids are no item of the last build (%s), so nothing was written:\n  %s",
 			len(unknown), in.RawTag, strings.Join(unknown, "\n  ")))
+	}
+	if len(gone) > 0 {
+		refused = append(refused, fmt.Sprintf("accept: %d of the ids are term groups not in the current review data (build %s), so nothing was written; %s:\n  %s",
+			len(gone), in.RawTag, termGroupGone, strings.Join(gone, "\n  ")))
 	}
 	if len(stale) > 0 {
 		refused = append(refused, fmt.Sprintf("accept: %d of the term group ids do not match the last build (%s), so nothing was written; reload the review page, or give the ids of the units:\n  %s",
@@ -415,7 +431,8 @@ func repoFile(root, path string) (string, error) {
 // (the build drops a declined group of inconsistent translations) is printed
 // with what the list says; the other ids that are no item are unknown, which
 // is exit code 1, as is an id termgroup/…@N whose N is not the number of
-// units the last build has open (lct accept would refuse it).
+// units the last build has open (lct accept would refuse it). An unknown term
+// group id is listed in UnknownTermGroups too, and the text says why.
 func acceptLookup(ctx *cli.Context, ids []givenID) error {
 	rev, in, head, err := acceptReview(ctx)
 	if err != nil {
@@ -455,7 +472,7 @@ func acceptLookup(ctx *cli.Context, ids []givenID) error {
 			listed[e.ID] = lookupItem{ID: e.ID, Kind: kind, List: f.list, Confirmed: &site.Confirmed{Reason: e.Reason, Date: e.Date}, Keys: []string{}}
 		}
 	}
-	rep := lookupReport{Items: []lookupItem{}, Unknown: []string{}, RawTag: in.RawTag, TWCommit: head}
+	rep := lookupReport{Items: []lookupItem{}, Unknown: []string{}, UnknownTermGroups: []string{}, RawTag: in.RawTag, TWCommit: head}
 	mismatch := false
 	for _, g := range ids {
 		it, ok := items[g.Item]
@@ -464,6 +481,9 @@ func acceptLookup(ctx *cli.Context, ids []givenID) error {
 		}
 		if !ok || (g.HasCount && it.Units == nil) {
 			rep.Unknown = append(rep.Unknown, g.ID)
+			if strings.HasPrefix(g.Item, itemid.TermGroupPrefix) {
+				rep.UnknownTermGroups = append(rep.UnknownTermGroups, g.ID)
+			}
 			continue
 		}
 		if g.HasCount {
@@ -485,12 +505,17 @@ func acceptLookup(ctx *cli.Context, ids []givenID) error {
 // addUnitLookups adds to items the units of the term group w: a unit is
 // accepted by its own id, which the review page lets a person copy to keep that
 // unit alone. Units of one KR text and one translation share the id, and its
-// item lists them all. queued holds the keys waiting for retranslation.
+// item lists them all; its message says what that translation lacks
+// (site.TermUnitMessage). queued holds the keys waiting for retranslation.
 func addUnitLookups(items map[string]lookupItem, w site.WarningItem, queued map[string]bool) {
+	if w.Term == nil {
+		return
+	}
+	message := site.TermUnitMessage(w.Term.KR, w.Term.ZH)
 	for _, u := range w.Units {
 		it, ok := items[u.ID]
 		if !ok {
-			it = lookupItem{ID: u.ID, Kind: "warning", List: listAccepted, Confirmed: u.Accepted, KR: u.KR, ZH: u.ZH, Note: u.Note, Message: w.Message, Keys: []string{}}
+			it = lookupItem{ID: u.ID, Kind: "warning", List: listAccepted, Confirmed: u.Accepted, KR: u.KR, ZH: u.ZH, Note: u.Note, Message: message, Keys: []string{}}
 		}
 		it.Keys = append(it.Keys, u.Key)
 		if queued[u.Key] {

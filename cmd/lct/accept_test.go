@@ -145,9 +145,10 @@ type lookupOut struct {
 		} `json:"units"`
 		OpenUnits *openUnits `json:"open_units"`
 	} `json:"items"`
-	Unknown  []string `json:"unknown"`
-	RawTag   string   `json:"raw_tag"`
-	TWCommit string   `json:"tw_commit"`
+	Unknown           []string `json:"unknown"`
+	UnknownTermGroups []string `json:"unknown_term_groups"`
+	RawTag            string   `json:"raw_tag"`
+	TWCommit          string   `json:"tw_commit"`
 }
 
 func readOptional(t *testing.T, root, rel string) string {
@@ -659,7 +660,7 @@ func TestAcceptDryRunKnowsTheUnitsOfATermGroup(t *testing.T) {
 	}
 	it := look.Items[0]
 	if it.ID != u.ID || it.Kind != "warning" || it.List != "accepted" || it.Confirmed != nil ||
-		it.KR != u.KR || it.ZH != u.ZH || !slices.Equal(it.Keys, []string{u.Key}) {
+		it.KR != u.KR || it.ZH != u.ZH || !slices.Equal(it.Keys, []string{u.Key}) || it.Message != "這句譯文沒有用詞彙表的譯名「絕無此譯」（열상）。" {
 		t.Errorf("item = %+v, want the open warning of unit %+v", it, u)
 	}
 
@@ -675,9 +676,11 @@ func TestAcceptDryRunKnowsTheUnitsOfATermGroup(t *testing.T) {
 }
 
 // Units of one KR text and one translation share an id: its item lists every
-// one of them, as lct accept of the id accepts them all.
+// one of them, as lct accept of the id accepts them all. The item of a unit
+// says what that one translation lacks, not what the group's do.
 func TestAddUnitLookupsListsEveryUnitOfAnID(t *testing.T) {
-	w := site.WarningItem{ID: "termgroup/aaaaaaaa/bbbbbbbb", Code: "term-missing", Message: "缺「流血」", Units: []site.TermUnit{
+	const unitMessage = "這句譯文沒有用詞彙表的譯名「流血」（열상）。"
+	w := site.WarningItem{ID: "termgroup/aaaaaaaa/bbbbbbbb", Code: "term-missing", Message: "這些譯文沒有用詞彙表的譯名「流血」（열상）。", Term: &site.TermRef{KR: "열상", ZH: "流血"}, Units: []site.TermUnit{
 		{Key: "A.json|/dataList/0/name", ID: "warning/term-missing/11111111/22222222", KR: "열상", ZH: "裂傷"},
 		{Key: "B.json|/dataList/0/name", ID: "warning/term-missing/11111111/22222222", KR: "열상", ZH: "裂傷"},
 		{Key: "C.json|/dataList/0/name", ID: "warning/term-missing/33333333/22222222", KR: "열상이다", ZH: "裂傷", Note: "刻意"},
@@ -686,10 +689,10 @@ func TestAddUnitLookupsListsEveryUnitOfAnID(t *testing.T) {
 	addUnitLookups(items, w, map[string]bool{"B.json|/dataList/0/name": true})
 	shared := items["warning/term-missing/11111111/22222222"]
 	if !slices.Equal(shared.Keys, []string{"A.json|/dataList/0/name", "B.json|/dataList/0/name"}) || shared.Pending != 1 ||
-		shared.Kind != "warning" || shared.List != listAccepted || shared.KR != "열상" || shared.ZH != "裂傷" || shared.Message != w.Message {
+		shared.Kind != "warning" || shared.List != listAccepted || shared.KR != "열상" || shared.ZH != "裂傷" || shared.Message != unitMessage {
 		t.Errorf("shared id = %+v, want both units, one waiting", shared)
 	}
-	if own := items["warning/term-missing/33333333/22222222"]; !slices.Equal(own.Keys, []string{"C.json|/dataList/0/name"}) || own.Pending != 0 || own.Note != "刻意" {
+	if own := items["warning/term-missing/33333333/22222222"]; !slices.Equal(own.Keys, []string{"C.json|/dataList/0/name"}) || own.Pending != 0 || own.Note != "刻意" || own.Message != unitMessage {
 		t.Errorf("own id = %+v", own)
 	}
 }
@@ -830,5 +833,49 @@ func TestAcceptUsageNamesTheReport(t *testing.T) {
 		if !strings.Contains(line, want) {
 			t.Errorf("the usage of accept lacks %q:\n%s", want, line)
 		}
+	}
+}
+
+// A term group id that is in no item of the last build (the glossary or the
+// translations changed since the review page was made) is not a plain unknown
+// id: lct accept and its dry run say that the group is not in the current
+// review data and that the page wants a refresh or the pack a rebuild. Exit
+// code 1, and nothing is written.
+func TestAcceptTermGroupNotInTheBuild(t *testing.T) {
+	s := acceptRepo(t)
+	const group = "termgroup/00000000/00000000"
+	const other = "warning/kana/00000000/00000000"
+	lists := func() string {
+		return readOptional(t, s.root, "rules/accepted.yaml") + readOptional(t, s.root, "rules/declined.yaml")
+	}
+	before := lists()
+	for _, id := range []string{group + "@2", group} {
+		code, stdout, stderr := lct(t, "accept", "--reason", "r", "--date", "2026-11-05", s.warnings[0], id)
+		if code != 1 || !strings.Contains(stderr, id) || !strings.Contains(stderr, "not in the current review data") ||
+			!strings.Contains(stderr, "refresh the review page, or rebuild with lct build") || strings.Contains(stderr, "no item of the last build") {
+			t.Errorf("accept %s: exit code %d, want 1 saying the group is not in the review data\n%s%s", id, code, stdout, stderr)
+		}
+	}
+	if lists() != before {
+		t.Errorf("a term group not in the build wrote:\n%s", lists())
+	}
+
+	// The dry run lists it among the unknown ids and apart, and says so.
+	code, stdout, stderr := lct(t, "--json", "accept", "--dry-run", group+"@2", other)
+	var look lookupOut
+	if err := json.Unmarshal([]byte(stdout), &look); err != nil {
+		t.Fatalf("%v\n%s%s", err, stdout, stderr)
+	}
+	if code != 1 || !slices.Equal(look.Unknown, []string{group + "@2", other}) || !slices.Equal(look.UnknownTermGroups, []string{group + "@2"}) {
+		t.Errorf("dry run: exit code %d, %+v", code, look)
+	}
+	code, stdout, _ = lct(t, "accept", "--dry-run", group+"@2", other)
+	gone, plain, found := strings.Cut(stdout, "no item of the last build:")
+	if code != 1 || !found || !strings.Contains(stdout, "not in the current review data") || !strings.Contains(stdout, "refresh the review page, or rebuild with lct build") ||
+		!strings.Contains(gone+plain, group+"@2") || strings.Contains(plain, group) || !strings.Contains(plain, other) {
+		t.Errorf("text dry run (exit %d):\n%s", code, stdout)
+	}
+	if lists() != before {
+		t.Errorf("the dry run wrote:\n%s", lists())
 	}
 }

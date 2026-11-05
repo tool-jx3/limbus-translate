@@ -1344,3 +1344,28 @@ func TestReviewTermGroupMessageIsForAPerson(t *testing.T) {
 		t.Errorf("message = %q, want %q", got, want)
 	}
 }
+
+// groupConfirmed confirms only a group whose units are all accepted: no units,
+// or a unit not accepted, is no confirmation (nil), not a panic.
+func TestGroupConfirmedNeedsEveryUnitAccepted(t *testing.T) {
+	ok := &Confirmed{Reason: "簡稱", Date: "2026-11-05"}
+	for name, us := range map[string][]TermUnit{
+		"no units":           nil,
+		"first not accepted": {{Key: "a"}, {Key: "b", Accepted: ok}},
+		"last not accepted":  {{Key: "a", Accepted: ok}, {Key: "b"}},
+	} {
+		func() {
+			defer func() {
+				if p := recover(); p != nil {
+					t.Errorf("%s: groupConfirmed panicked: %v", name, p)
+				}
+			}()
+			if got := groupConfirmed(us); got != nil {
+				t.Errorf("%s: groupConfirmed = %+v, want nil", name, got)
+			}
+		}()
+	}
+	if got := groupConfirmed([]TermUnit{{Key: "a", Accepted: ok}}); got == nil || *got != *ok {
+		t.Errorf("one accepted unit: groupConfirmed = %+v, want %+v", got, ok)
+	}
+}

@@ -558,6 +558,10 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 // accepted: the latest date of theirs, and their reason when they share one;
 // otherwise the reason says that the units were confirmed each on its own.
 func groupConfirmed(us []TermUnit) *Confirmed {
+	// No units, or one not accepted, is no confirmation of the group.
+	if len(us) == 0 || slices.ContainsFunc(us, func(u TermUnit) bool { return u.Accepted == nil }) {
+		return nil
+	}
 	c := *us[0].Accepted
 	for _, u := range us[1:] {
 		c.Date = max(c.Date, u.Accepted.Date) // YYYY-MM-DD
@@ -573,6 +577,13 @@ func groupConfirmed(us []TermUnit) *Confirmed {
 // is an instruction to the translator).
 func termGroupMessage(kr, zh string) string {
 	return fmt.Sprintf("這些譯文沒有用詞彙表的譯名「%s」（%s）。", zh, kr)
+}
+
+// TermUnitMessage is termGroupMessage for one unit of the group of the entry
+// kr -> zh, where something shows that unit alone (lct accept --dry-run of
+// its id).
+func TermUnitMessage(kr, zh string) string {
+	return fmt.Sprintf("這句譯文沒有用詞彙表的譯名「%s」（%s）。", zh, kr)
 }
 
 // termGroupID is the id of the term group of a term-missing issue: the
