@@ -395,9 +395,18 @@ func TestSiteCommandExportsUpdates(t *testing.T) {
 	if err != nil || strings.TrimSpace(string(b)) != `{"releases":[]}` {
 		t.Fatalf("index.json = %q, %v; want no releases", b, err)
 	}
-	rec := &history.Record{Tag: "zh-TW-20261029.1", ReleasedAt: "2026-10-29T00:00:00Z", RawTag: "raw-20261029", PrevRawTag: "raw-20261022"}
-	if err := history.Write(filepath.Join(root, ".work", "tw"), rec); err != nil {
-		t.Fatal(err)
+	tw := filepath.Join(root, ".work", "tw")
+	runGitIn(t, tw, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "--allow-empty", "-m", "release")
+	runGitIn(t, tw, "tag", "zh-TW-20261028.1")
+	runGitIn(t, tw, "tag", "zh-TW-20261029.1")
+	// The record of a tag that never became a Release is left out.
+	for _, rec := range []*history.Record{
+		{Tag: "zh-TW-20261029.1", PrevTag: "zh-TW-20261028.1", ReleasedAt: "2026-10-29T00:00:00Z", RawTag: "raw-20261029", PrevRawTag: "raw-20261022"},
+		{Tag: "zh-TW-20261030.1", PrevTag: "zh-TW-20261029.1", ReleasedAt: "2026-10-30T00:00:00Z", RawTag: "raw-20261030", PrevRawTag: "raw-20261029"},
+	} {
+		if err := history.Write(tw, rec); err != nil {
+			t.Fatal(err)
+		}
 	}
 	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
 		t.Fatal(err)
@@ -406,5 +415,17 @@ func TestSiteCommandExportsUpdates(t *testing.T) {
 		if _, err := os.Stat(filepath.Join(root, "work", "site", "updates", name)); err != nil {
 			t.Errorf("updates/%s: %v", name, err)
 		}
+	}
+	if _, err := os.Stat(filepath.Join(root, "work", "site", "updates", "zh-TW-20261030.1.json")); !os.IsNotExist(err) {
+		t.Errorf("updates/zh-TW-20261030.1.json (no Release tag): %v", err)
+	}
+	b, err = os.ReadFile(filepath.Join(root, "work", "site", "updates", "index.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var idx site.UpdateIndex
+	if err := json.Unmarshal(b, &idx); err != nil || len(idx.Releases) != 2 ||
+		idx.Releases[0].Tag != "zh-TW-20261029.1" || !idx.Releases[0].Recorded || idx.Releases[1].Kind != site.UpdateFirst {
+		t.Errorf("index.json = %s, %v; want the two Release tags, the newest with its record", b, err)
 	}
 }

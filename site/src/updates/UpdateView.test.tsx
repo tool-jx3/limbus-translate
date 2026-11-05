@@ -124,7 +124,7 @@ describe('UpdateView header', () => {
   })
 
   it('shows the notice when the load fails', async () => {
-    vi.stubGlobal('fetch', vi.fn(fixtureFetch()))
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ [`updates/${TAG}.json`]: { tag: TAG } })))
     const el = await mount()
     expect(el.querySelector('.notice')).not.toBeNull()
   })
@@ -312,7 +312,7 @@ describe('JP/EN of the current file', () => {
     family: 'x',
     units: [
       { p: '/0/name', f: 'name', i: -1, kr: '새 이름', jp: '新しい名前', en: 'New name', zh: '新名稱', o: 'claude' },
-      { p: '/1/desc', f: 'desc', i: -1, kr: 'k', zh: 'z', o: 'claude' },
+      { p: '/1/desc', f: 'desc', i: -1, kr: '새 설명입니다', zh: 'z', o: 'claude' },
     ],
   }
 
@@ -360,6 +360,22 @@ describe('JP/EN of the current file', () => {
     await vi.waitFor(() => expect(text(first)).toContain('目前的檔案裡找不到這個單位'))
   })
 
+  it('does not show the JP and EN of another unit that now lies at the pointer, and still offers the link', async () => {
+    const moved = { ...file, units: [{ ...file.units[0]!, kr: '다른 문장' }, file.units[1]!] }
+    stub({ 'files/A.json': moved })
+    const el = await mount(route({ file: 'A.json' }))
+    const first = el.querySelector('.uc-card')!
+    const d = first.querySelector<HTMLDetailsElement>('details.uc-jpen')!
+    d.open = true
+    await act(() => {
+      d.dispatchEvent(new Event('toggle'))
+    })
+    await vi.waitFor(() => expect(text(d)).toContain('目前檔案的這個位置已是另一句'))
+    expect(text(d)).not.toContain('新しい名前')
+    expect(text(d)).not.toContain('New name')
+    expect(first.querySelector('a.uc-open')).not.toBeNull()
+  })
+
   it('has no such disclosure when JP and EN are both switched off, nor for a deleted unit', async () => {
     stub()
     const s = defaultSettings()
@@ -371,6 +387,16 @@ describe('JP/EN of the current file', () => {
     stub()
     const el2 = await mount(route({ kinds: ['deleted'] }))
     expect(el2.querySelector('details.uc-jpen')).toBeNull()
+  })
+})
+
+describe('a Release without a record', () => {
+  it('says there is no comparison for the tag, with a link back to the list', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch()))
+    const el = await mount(route())
+    expect(text(el)).toContain(`沒有 ${TAG} 的比對紀錄`)
+    expect(el.querySelector('.notice')).toBeNull()
+    expect(el.querySelector('a')?.getAttribute('href')).toBe('#/u')
   })
 })
 

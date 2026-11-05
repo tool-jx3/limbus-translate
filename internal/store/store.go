@@ -595,6 +595,19 @@ func (s *Store) WriteMetaFile(name string, data []byte) error {
 	return nil
 }
 
+// RemoveMetaJSON removes .meta/<name> (see metaPath for the names allowed). A
+// missing file is not an error. Like the writers it does not take the lock.
+func (s *Store) RemoveMetaJSON(name string) error {
+	p, err := s.metaPath(name, ".json")
+	if err != nil {
+		return err
+	}
+	if err := os.Remove(p); err != nil && !errors.Is(err, fs.ErrNotExist) {
+		return fmt.Errorf("store: remove %s: %w", name, err)
+	}
+	return nil
+}
+
 // ReadMetaJSON reads .meta/<name> into v. A missing file is not an error: it
 // reports found as false and leaves v as it is. Unknown fields, trailing data
 // and malformed JSON are errors naming the file.

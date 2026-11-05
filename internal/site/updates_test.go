@@ -33,7 +33,12 @@ func TestExportUpdatesListsEveryReleaseNewestFirst(t *testing.T) {
 		updRecord("zh-TW-20261103.3", "zh-TW-20261103.2", "2026-11-03T12:00:00Z", "2026-11-03T08:00:00Z", "raw-2", "raw-2", e),
 		updRecord("zh-TW-20261103.2", "zh-TW-20261103.1", "2026-11-03T08:00:00Z", "2026-11-02T08:00:00Z", "raw-2", "raw-1", e, e),
 	}
-	idx, err := ExportUpdates(recs, testRules(), dir)
+	rels := []Release{
+		{"zh-TW-20261103.1", "2026-11-02T08:00:00Z"},
+		{"zh-TW-20261103.2", "2026-11-03T08:00:00Z"},
+		{"zh-TW-20261103.3", "2026-11-03T12:00:00Z"},
+	}
+	idx, err := ExportUpdates(rels, recs, testRules(), dir)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -47,7 +52,7 @@ func TestExportUpdatesListsEveryReleaseNewestFirst(t *testing.T) {
 	if want := []string{"zh-TW-20261103.3", "zh-TW-20261103.2", "zh-TW-20261103.1"}; !reflect.DeepEqual(tags, want) {
 		t.Errorf("tags = %v, want %v", tags, want)
 	}
-	if r := idx.Releases[1]; r.Files != 1 || r.OtherFiles != 2 || r.Counts.New != 2 || r.PrevRawTag != "raw-1" {
+	if r := idx.Releases[1]; !r.Recorded || r.Files != 1 || r.OtherFiles != 2 || r.Counts.New != 2 || r.PrevRawTag != "raw-1" {
 		t.Errorf("game row = %+v", r)
 	}
 	if f := idx.Releases[2]; f.ReleasedAt != "2026-11-02T08:00:00Z" || f.RawTag != "raw-1" || f.Counts != (history.Counts{}) || f.PrevTag != "" {
@@ -75,7 +80,7 @@ func TestExportUpdatesOrdersTheEntriesByFile(t *testing.T) {
 	rec := updRecord("zh-TW-20261103.1", "", "2026-11-03T08:00:00Z", "", "raw-1", "raw-1",
 		mk("Skills.json", "/2"), mk("StoryData/S10.json", "/1"), mk("Skills.json", "/1"),
 		mk("StoryData/S2.json", "/9"), mk("StoryData/S10.json", "/0"))
-	if _, err := ExportUpdates([]history.Record{rec}, testRules(), dir); err != nil {
+	if _, err := ExportUpdates([]Release{{"zh-TW-20261102.1", "2026-11-02T08:00:00Z"}, {"zh-TW-20261103.1", "2026-11-03T08:00:00Z"}}, []history.Record{rec}, testRules(), dir); err != nil {
 		t.Fatal(err)
 	}
 	b, err := os.ReadFile(filepath.Join(dir, "updates", "zh-TW-20261103.1.json"))
@@ -98,11 +103,65 @@ func TestExportUpdatesOrdersTheEntriesByFile(t *testing.T) {
 
 func TestExportUpdatesWithNoRecords(t *testing.T) {
 	dir := t.TempDir()
-	idx, err := ExportUpdates(nil, testRules(), dir)
+	idx, err := ExportUpdates(nil, nil, testRules(), dir)
 	if err != nil || idx.Releases == nil || len(idx.Releases) != 0 {
 		t.Fatalf("idx = %+v, %v", idx, err)
 	}
 	if got := string(readUpdateIndex(t, dir)); got != "{\"releases\":[]}\n" {
 		t.Errorf("index.json = %q", got)
+	}
+}
+
+// A record whose tag never became a Release (a prepared tag that was dropped)
+// is neither listed nor written.
+func TestExportUpdatesSkipsARecordWithoutAReleaseTag(t *testing.T) {
+	dir := t.TempDir()
+	rels := []Release{{"zh-TW-20261101.1", "2026-11-01T08:00:00Z"}, {"zh-TW-20261102.1", "2026-11-02T08:00:00Z"}}
+	recs := []history.Record{
+		updRecord("zh-TW-20261103.1", "zh-TW-20261102.1", "2026-11-03T08:00:00Z", "2026-11-02T08:00:00Z", "raw-3", "raw-2"),
+		updRecord("zh-TW-20261102.1", "zh-TW-20261101.1", "2026-11-02T08:00:00Z", "2026-11-01T08:00:00Z", "raw-2", "raw-1"),
+	}
+	idx, err := ExportUpdates(rels, recs, testRules(), dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(idx.Releases) != 2 || idx.Releases[0].Tag != "zh-TW-20261102.1" || idx.Releases[1].Kind != UpdateFirst {
+		t.Errorf("releases = %+v, want the two Release tags", idx.Releases)
+	}
+	if _, err := os.Stat(filepath.Join(dir, "updates", "zh-TW-20261103.1.json")); !os.IsNotExist(err) {
+		t.Errorf("the record of an abandoned tag was written: %v", err)
+	}
+}
+
+// A middle Release without a record is listed, without counts and unlinked; the
+// oldest stays the first; the earlier ones do not vanish.
+func TestExportUpdatesListsAReleaseWithoutARecord(t *testing.T) {
+	dir := t.TempDir()
+	rels := []Release{
+		{"zh-TW-20261101.1", "2026-11-01T08:00:00Z"},
+		{"zh-TW-20261102.1", "2026-11-02T08:00:00Z"},
+		{"zh-TW-20261103.1", "2026-11-03T08:00:00Z"},
+	}
+	e := history.Entry{File: "Skills.json", Pointer: "/a", Kind: history.KindNew}
+	recs := []history.Record{updRecord("zh-TW-20261103.1", "zh-TW-20261102.1", "2026-11-03T09:00:00Z", "2026-11-02T08:00:00Z", "raw-3", "raw-2", e)}
+	idx, err := ExportUpdates(rels, recs, testRules(), dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(idx.Releases) != 3 {
+		t.Fatalf("releases = %+v, want 3 rows", idx.Releases)
+	}
+	top, mid, first := idx.Releases[0], idx.Releases[1], idx.Releases[2]
+	if top.Tag != "zh-TW-20261103.1" || !top.Recorded || top.Kind != UpdateGame || top.Counts.New != 1 || top.PrevTag != "zh-TW-20261102.1" {
+		t.Errorf("newest row = %+v", top)
+	}
+	if mid.Tag != "zh-TW-20261102.1" || mid.Recorded || mid.Counts != (history.Counts{}) || mid.PrevTag != "" || mid.ReleasedAt != "2026-11-02T08:00:00Z" {
+		t.Errorf("middle row = %+v, want no record: no counts, not recorded, the date of the tag", mid)
+	}
+	if first.Tag != "zh-TW-20261101.1" || first.Kind != UpdateFirst || first.Recorded {
+		t.Errorf("first row = %+v", first)
+	}
+	if _, err := os.Stat(filepath.Join(dir, "updates", "zh-TW-20261102.1.json")); !os.IsNotExist(err) {
+		t.Errorf("a file for the Release without a record: %v", err)
 	}
 }

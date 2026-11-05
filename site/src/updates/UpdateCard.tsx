@@ -95,8 +95,12 @@ export function CauseChip({ cause }: { cause: UpdateCause }) {
 
 type Current = { status: 'loading' } | { status: 'error' } | { status: 'ready'; unit: Unit | undefined }
 
-/** The JP and EN of the unit as the file now has them; the file is loaded when this is opened. */
-function CurrentJPEN({ file, ptr }: { file: string; ptr: string }) {
+/**
+ * The JP and EN of the unit as the file now has them; the file is loaded when
+ * this is opened. The unit is found by its pointer, which an older Release may
+ * no longer have at the same place: one whose KR is not `kr` is another unit.
+ */
+function CurrentJPEN({ file, ptr, kr }: { file: string; ptr: string; kr: string | undefined }) {
   const { langs, raw } = useContext(ShownText)
   const [state, setState] = useState<Current>()
   if (!langs.jp && !langs.en) return null
@@ -114,7 +118,10 @@ function CurrentJPEN({ file, ptr }: { file: string; ptr: string }) {
       {state?.status === 'loading' && <p role="status">載入中…</p>}
       {state?.status === 'error' && <p role="status">讀不到這個檔案</p>}
       {state?.status === 'ready' && !state.unit && <p role="status">目前的檔案裡找不到這個單位</p>}
-      {state?.status === 'ready' && state.unit && (
+      {state?.status === 'ready' && state.unit && kr !== undefined && state.unit.kr !== kr && (
+        <p role="status">目前檔案的這個位置已是另一句</p>
+      )}
+      {state?.status === 'ready' && state.unit && (kr === undefined || state.unit.kr === kr) && (
         <dl class="uc-cur">
           {langs.jp && (
             <div class="uc-row">
@@ -156,7 +163,7 @@ export function UpdateCard({ entry: e }: { entry: UpdateEntry }) {
       </dl>
       {!deleted && (
         <div class="uc-foot">
-          <CurrentJPEN file={e.file} ptr={e.ptr} />
+          <CurrentJPEN file={e.file} ptr={e.ptr} kr={e.new_kr} />
           <a class="uc-open" href={fileHref(e.file, e.ptr)}>
             在檔案中開啟 →
           </a>

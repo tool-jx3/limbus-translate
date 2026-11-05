@@ -108,7 +108,20 @@ func runSite(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	if _, err := site.ExportUpdates(hist, r, outDir); err != nil {
+	// The Releases and their dates are those of the tags, not of the records.
+	allTags, err := gitx.Tags(twRoot, publish.TagPrefix)
+	if err != nil {
+		return err
+	}
+	var releases []site.Release
+	for _, tag := range publish.SortedReleases(allTags) {
+		at, err := gitx.RevTime(twRoot, "refs/tags/"+tag)
+		if err != nil {
+			return err
+		}
+		releases = append(releases, site.Release{Tag: tag, At: at.Format("2006-01-02T15:04:05Z")})
+	}
+	if _, err := site.ExportUpdates(releases, hist, r, outDir); err != nil {
 		return err
 	}
 	// Result.Bytes is the size of everything written.

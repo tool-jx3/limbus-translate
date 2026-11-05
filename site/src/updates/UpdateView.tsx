@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { DataError, loadUpdate } from '../data'
 import { ShownText } from '../review/parts'
-import { updateHref, type Route } from '../route'
+import { updateHref, updatesHref, type Route } from '../route'
 import type { Settings } from '../settings'
 import type { UpdateEntry, UpdateKind, UpdateRecord } from '../types'
 import { KIND_NAMES, UpdateCard } from './UpdateCard'
@@ -179,7 +179,21 @@ export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute
   const list = useMemo(() => (entries ? filterEntries(entries, filter) : []), [entries, route.kinds.join(','), route.origin, route.file, route.copy])
 
   if (!state) return <p role="status">資料載入中…</p>
-  if (state.status === 'error') return <Notice error={state.error} />
+  if (state.status === 'error') {
+    // A Release with no record (the first one, or one the next build has not
+    // reached) has no file; reloading would not bring one.
+    if (state.error.kind === 'missing') {
+      return (
+        <section class="update">
+          <p class="uv-empty">沒有 {route.tag} 的比對紀錄</p>
+          <p>
+            <a href={updatesHref()}>回到更新列表</a>
+          </p>
+        </section>
+      )
+    }
+    return <Notice error={state.error} />
+  }
   const { record } = state
   return (
     <ShownText.Provider value={shown}>

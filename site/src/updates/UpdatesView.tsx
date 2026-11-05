@@ -24,14 +24,20 @@ export function day(releasedAt: string): string {
 function Row({ release: r }: { release: UpdateRelease }) {
   return (
     <li class="uv-row">
-      <a class="uv-tag" href={updateHref(r.tag)}>
-        {r.tag}
-      </a>
+      {r.recorded && r.kind !== 'first' ? (
+        <a class="uv-tag" href={updateHref(r.tag)}>
+          {r.tag}
+        </a>
+      ) : (
+        <span class="uv-tag">{r.tag}</span>
+      )}
       <time class="uv-date" dateTime={r.released_at}>
         {day(r.released_at)}
       </time>
       {r.kind === 'first' ? (
         <span class="uv-first">第一版，沒有可比對的上一版</span>
+      ) : !r.recorded ? (
+        <span class="uv-first">還沒有比對紀錄，下次建置後補上</span>
       ) : (
         <>
           {r.prev_tag && <span class="uv-prev">比對 {r.prev_tag}</span>}

@@ -20,11 +20,11 @@ import (
 // now is the clock of the history records; tests replace it.
 var now = time.Now
 
-// sortedReleases returns the Release tags among names, the oldest first: by
+// SortedReleases returns the Release tags among names, the oldest first: by
 // day, then by N as a number. Names that are not Release tags are left out. It
 // is the one place that parses and orders Release tags; latestRelease takes the
 // last of it.
-func sortedReleases(names []string) []string {
+func SortedReleases(names []string) []string {
 	type rel struct {
 		name, day string
 		n         int
@@ -97,8 +97,7 @@ func (p historyPlan) apply(twRoot string) (written, warnings []string) {
 		written = append(written, rec.Tag)
 	}
 	if p.remove != "" {
-		file := filepath.Join(twRoot, ".meta", "history", p.remove+".json")
-		if err := os.Remove(file); err != nil && !os.IsNotExist(err) {
+		if err := history.Remove(twRoot, p.remove); err != nil {
 			warnings = append(warnings, fmt.Sprintf("%s: %v", p.remove, err))
 		}
 	}
@@ -124,7 +123,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		warn(tag, err)
 		return
 	}
-	rels := sortedReleases(names)
+	rels := SortedReleases(names)
 
 	// Each Release is read once and dropped when no later record needs it.
 	var prev *readSide
@@ -165,6 +164,10 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 	if last == "" {
 		return
 	}
+	// Until its record is made (or found unchanged), a record of tag from an
+	// earlier attempt is stale and must not be committed: the backfill of a
+	// later run makes it from git once the Release exists.
+	plan.remove = tag
 	if prev == nil || prev.side == nil || prev.side.Tag != last {
 		prev.remove()
 		prev = readRelease(twRoot, rawRoot, last, langDir)
@@ -198,6 +201,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		warn(tag, err)
 		return
 	}
+	plan.remove = ""
 	if unchanged(twRoot, rec) {
 		return
 	}

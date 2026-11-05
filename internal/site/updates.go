@@ -19,11 +19,12 @@ type UpdateRelease struct {
 	PrevTag    string         `json:"prev_tag,omitempty"`
 	RawTag     string         `json:"raw_tag"`
 	PrevRawTag string         `json:"prev_raw_tag,omitempty"`
-	Kind       string         `json:"kind"` // "game" (another raw tag than the one before), "rebuild" or "first"
+	Kind       string         `json:"kind"` // "game" (another raw tag than the one before), "rebuild" or "first"; a Release without a record is a "rebuild" with no counts
 	Counts     history.Counts `json:"counts"`
 	CopyCounts history.Counts `json:"copy_counts"`
 	OtherFiles int            `json:"other_files"`
-	Files      int            `json:"files"` // the number of files with a change
+	Files      int            `json:"files"`    // the number of files with a change
+	Recorded   bool           `json:"recorded"` // false for the first Release and one whose record is not made yet: no page
 }
 
 // UpdateIndex is updates/index.json, the newest Release first.
@@ -38,58 +39,82 @@ const (
 	UpdateFirst   = "first"
 )
 
-// ExportUpdates writes <outDir>/updates/index.json and, for each of records
-// (newest first, as history.List gives them), <outDir>/updates/<tag>.json, the
-// Record with its entries stably re-ordered by the order of OrderFiles (the
-// order inside a file is kept). Unlike Export it empties nothing. The earliest
-// record whose PrevTag has no record of its own gets one more row of Kind
-// "first", with no counts, made from its Prev fields.
-func ExportUpdates(records []history.Record, r *rules.Rules, outDir string) (UpdateIndex, error) {
+// Release is a Release tag with the time of its commit (RFC 3339, UTC, to the
+// second): the list of Releases and their dates are those of the tags.
+type Release struct {
+	Tag string
+	At  string
+}
+
+// ExportUpdates writes <outDir>/updates/index.json and, for each Release that
+// has a record among records, <outDir>/updates/<tag>.json, the Record with its
+// entries stably re-ordered by the order of OrderFiles (the order inside a file
+// is kept). releases are the Release tags, the oldest first, and decide what is
+// listed: a record whose tag is not among them is left out. The index has one
+// row for each Release, the newest first: the oldest is Kind "first" with no
+// counts, one with a record has its kind, counts and prev_tag, and a later one
+// without a record has no counts and Recorded false (it gets its record with
+// the next build of the pack). Unlike Export it empties nothing.
+func ExportUpdates(releases []Release, records []history.Record, r *rules.Rules, outDir string) (UpdateIndex, error) {
 	if outDir == "" {
 		return UpdateIndex{}, errors.New("site: no output directory")
 	}
 	w := &writer{dir: outDir}
 	idx := UpdateIndex{Releases: []UpdateRelease{}}
-	have := make(map[string]bool, len(records))
+	byTag := make(map[string]history.Record, len(records))
 	for _, rec := range records {
-		have[rec.Tag] = true
+		byTag[rec.Tag] = rec
 	}
-	for _, rec := range records {
-		if rec.Tag == "" || !filepath.IsLocal(rec.Tag) || strings.ContainsAny(rec.Tag, `/\`) {
-			return UpdateIndex{}, fmt.Errorf("site: %q is not a Release tag", rec.Tag)
+	for i := len(releases) - 1; i >= 0; i-- {
+		rel := releases[i]
+		if rel.Tag == "" || !filepath.IsLocal(rel.Tag) || strings.ContainsAny(rel.Tag, `/\`) {
+			return UpdateIndex{}, fmt.Errorf("site: %q is not a Release tag", rel.Tag)
 		}
-		rec.Entries = orderEntries(rec.Entries, r)
-		if rec.OtherFiles == nil {
-			rec.OtherFiles = []string{}
+		rec, has := byTag[rel.Tag]
+		row := UpdateRelease{Tag: rel.Tag, ReleasedAt: rel.At}
+		switch {
+		case i == 0:
+			row.Kind = UpdateFirst
+			// The record of the Release after it knows the snapshot it was made from.
+			if next, ok := byTag[nextTag(releases, i)]; ok {
+				row.RawTag = next.PrevRawTag
+			}
+		case !has:
+			row.Kind = UpdateRebuild
+		default:
+			rec.Entries = orderEntries(rec.Entries, r)
+			if rec.OtherFiles == nil {
+				rec.OtherFiles = []string{}
+			}
+			files := map[string]bool{}
+			for _, e := range rec.Entries {
+				files[e.File] = true
+			}
+			row.Kind = UpdateRebuild
+			if rec.RawTag != rec.PrevRawTag {
+				row.Kind = UpdateGame
+			}
+			row.Recorded = true
+			row.PrevTag, row.RawTag, row.PrevRawTag = rec.PrevTag, rec.RawTag, rec.PrevRawTag
+			row.Counts, row.CopyCounts, row.OtherFiles, row.Files = rec.Counts, rec.CopyCounts, len(rec.OtherFiles), len(files)
+			if err := w.writeJSON("updates/"+rel.Tag+".json", rec); err != nil {
+				return UpdateIndex{}, err
+			}
 		}
-		files := map[string]bool{}
-		for _, e := range rec.Entries {
-			files[e.File] = true
-		}
-		kind := UpdateRebuild
-		if rec.RawTag != rec.PrevRawTag {
-			kind = UpdateGame
-		}
-		idx.Releases = append(idx.Releases, UpdateRelease{
-			Tag: rec.Tag, ReleasedAt: rec.ReleasedAt, PrevTag: rec.PrevTag, RawTag: rec.RawTag, PrevRawTag: rec.PrevRawTag,
-			Kind: kind, Counts: rec.Counts, CopyCounts: rec.CopyCounts, OtherFiles: len(rec.OtherFiles), Files: len(files),
-		})
-		if err := w.writeJSON("updates/"+rec.Tag+".json", rec); err != nil {
-			return UpdateIndex{}, err
-		}
-	}
-	// The earliest record is the last one.
-	if n := len(records); n > 0 {
-		if e := records[n-1]; e.PrevTag != "" && !have[e.PrevTag] {
-			idx.Releases = append(idx.Releases, UpdateRelease{
-				Tag: e.PrevTag, ReleasedAt: e.PrevReleasedAt, RawTag: e.PrevRawTag, Kind: UpdateFirst,
-			})
-		}
+		idx.Releases = append(idx.Releases, row)
 	}
 	if err := w.writeJSON("updates/index.json", idx); err != nil {
 		return UpdateIndex{}, err
 	}
 	return idx, nil
+}
+
+// nextTag returns the tag after releases[i], "" if there is none.
+func nextTag(releases []Release, i int) string {
+	if i+1 < len(releases) {
+		return releases[i+1].Tag
+	}
+	return ""
 }
 
 // orderEntries returns entries sorted by the position of their file in

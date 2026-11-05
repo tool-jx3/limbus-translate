@@ -109,7 +109,7 @@ func LastRelease(twRoot string) (string, error) {
 
 // latestRelease returns the latest of the Release tags among names, or "".
 func latestRelease(names []string) string {
-	rels := sortedReleases(names)
+	rels := SortedReleases(names)
 	if len(rels) == 0 {
 		return ""
 	}

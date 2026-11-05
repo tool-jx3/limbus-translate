@@ -226,6 +226,14 @@ func TestCompareOriginsCopyAndCause(t *testing.T) {
 		t.Errorf("late: %+v", e)
 	}
 
+	// The old origin is fallback (EN or KR stood in): late too.
+	e = compare(t,
+		state(t, oneKR, oneZH("a"), rec(f, p, "a", store.OriginFallback)),
+		state(t, oneKR, oneZH("乙"), rec(f, p, "乙", store.OriginClaude)))[0]
+	if e.OldOrigin != store.OriginFallback || e.Cause != CauseLate {
+		t.Errorf("late after fallback: %+v", e)
+	}
+
 	// Old paratranz, new claude: retranslated.
 	e = compare(t,
 		state(t, oneKR, oneZH("甲"), rec(f, p, "甲", store.OriginParatranz)),

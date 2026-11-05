@@ -59,6 +59,12 @@ func Write(twRoot string, rec *Record) error {
 	return store.Open(twRoot).WriteMetaJSON(recordName(out.Tag), &out)
 }
 
+// Remove deletes the Record of tag from the worktree at twRoot; one that is not
+// there is no error.
+func Remove(twRoot, tag string) error {
+	return store.Open(twRoot).RemoveMetaJSON(recordName(tag))
+}
+
 // Has reports whether the worktree at twRoot has the Record of tag.
 func Has(twRoot, tag string) (bool, error) {
 	var rec Record

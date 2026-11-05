@@ -235,6 +235,8 @@ export interface UpdateRelease {
   copy_counts: UpdateCounts
   other_files: number
   files: number
+  /** false for the first release and for one whose record is not made yet: no counts and no page. */
+  recorded: boolean
 }
 
 /** One changed unit of data/updates/<tag>.json. */

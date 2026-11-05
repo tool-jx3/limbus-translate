@@ -18,6 +18,7 @@ const releases: UpdateRelease[] = [
     copy_counts: { new: 40, kr_changed: 9, deleted: 1, zh_changed: 9 },
     other_files: 1,
     files: 4,
+    recorded: true,
   },
   {
     tag: 'zh-TW-20261029.7',
@@ -30,18 +31,33 @@ const releases: UpdateRelease[] = [
     copy_counts: zero,
     other_files: 0,
     files: 1,
+    recorded: true,
   },
   {
     tag: 'zh-TW-20261001.1',
     released_at: '2026-10-01T08:30:00Z',
     raw_tag: 'raw-20261001',
     kind: 'first',
-    counts: { new: 100, kr_changed: 0, deleted: 0, zh_changed: 0 },
+    counts: zero,
     copy_counts: zero,
     other_files: 0,
-    files: 10,
+    files: 0,
+    recorded: false,
   },
 ]
+
+// A Release whose record is not made yet.
+const unrecorded: UpdateRelease = {
+  tag: 'zh-TW-20261030.1',
+  released_at: '2026-10-30T08:30:00Z',
+  raw_tag: '',
+  kind: 'rebuild',
+  counts: zero,
+  copy_counts: zero,
+  other_files: 0,
+  files: 0,
+  recorded: false,
+}
 
 const containers: HTMLElement[] = []
 let undoEffects = () => {}
@@ -75,15 +91,22 @@ describe('UpdatesView', () => {
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'updates/index.json': { releases } })))
   })
 
-  it('lists the releases newest first, each tag linking to its update', async () => {
+  it('lists the releases newest first, each tag with a record linking to its update', async () => {
     const el = await mount()
-    const links = [...el.querySelectorAll<HTMLAnchorElement>('.uv-row .uv-tag')]
-    expect(links.map((a) => a.textContent)).toEqual(['zh-TW-20261105.1', 'zh-TW-20261029.7', 'zh-TW-20261001.1'])
-    expect(links.map((a) => a.getAttribute('href'))).toEqual([
-      '#/u/zh-TW-20261105.1',
-      '#/u/zh-TW-20261029.7',
-      '#/u/zh-TW-20261001.1',
-    ])
+    const tags = [...el.querySelectorAll('.uv-row .uv-tag')]
+    expect(tags.map((a) => a.textContent)).toEqual(['zh-TW-20261105.1', 'zh-TW-20261029.7', 'zh-TW-20261001.1'])
+    expect(tags.map((a) => a.getAttribute('href'))).toEqual(['#/u/zh-TW-20261105.1', '#/u/zh-TW-20261029.7', null])
+  })
+
+  it('gives neither the first release nor one without a record a link', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'updates/index.json': { releases: [releases[0], unrecorded, releases[2]] } })))
+    const rows = (await mount()).querySelectorAll('.uv-row')
+    expect([...rows].map((r) => r.querySelector('a') !== null)).toEqual([true, false, false])
+    const row = rows[1]!
+    expect(row.querySelector('.uv-tag')?.textContent).toBe('zh-TW-20261030.1')
+    expect(row.textContent).toContain('還沒有比對紀錄')
+    expect(row.querySelector('.uv-count')).toBeNull()
+    expect(row.querySelector('.uv-origin')).toBeNull()
   })
 
   it('shows a game update with its raw tag, the date, the previous tag and the non-zero counts', async () => {

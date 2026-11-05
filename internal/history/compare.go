@@ -24,7 +24,7 @@ const (
 // The causes of a KindZHChanged entry.
 const (
 	CauseAdjustment   = "adjustment"   // the new origin is human
-	CauseLate         = "late"         // the old origin was a stand-in
+	CauseLate         = "late"         // the old origin was a stand-in or a fallback
 	CauseRetranslated = "retranslated" // anything else
 )
 
@@ -166,7 +166,7 @@ func entryOf(file string, m align.VersionMatch, o, n side) (Entry, bool) {
 	switch {
 	case e.NewOrigin == store.OriginHuman:
 		e.Cause = CauseAdjustment
-	case e.OldOrigin == OriginStandIn:
+	case e.OldOrigin == OriginStandIn || e.OldOrigin == store.OriginFallback:
 		e.Cause = CauseLate
 	default:
 		e.Cause = CauseRetranslated

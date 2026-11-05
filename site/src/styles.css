@@ -2040,7 +2040,7 @@ button.chip {
 
 .ut-table {
   width: 100%;
-  min-width: 46rem;
+  min-width: 60rem;
   border-collapse: collapse;
   font-size: 0.9rem;
 }
@@ -2078,6 +2078,7 @@ button.chip {
 
 .ut-where {
   width: 11rem;
+  min-width: 9rem;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   color: var(--muted);

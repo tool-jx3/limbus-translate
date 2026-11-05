@@ -1467,6 +1467,30 @@ func TestRunWarnsWhenAHistoryCannotBeMade(t *testing.T) {
 	}
 }
 
+func TestRunRemovesAStaleHistoryOfTheTagWhenItsHalfFails(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	f.oldRelease(t, "zh-TW-20261102.1", "raw-20261102", "{\"v\": 2}\n")
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	// A record of the tag Run prepares, left by an earlier attempt.
+	const tag = "zh-TW-20261029.1"
+	if err := history.Write(f.tw, &history.Record{Tag: tag, PrevTag: "zh-TW-20261102.1", RawTag: testRawTag}); err != nil {
+		t.Fatal(err)
+	}
+	// The snapshot of the latest Release is gone, so the record of tag cannot be made.
+	runGit(t, f.root, "tag", "-d", "raw-20261102")
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.Tag != tag || !slices.ContainsFunc(res.HistoryWarnings, func(w string) bool { return strings.HasPrefix(w, tag+":") }) {
+		t.Fatalf("Run = %+v, want a warning for %s", res, tag)
+	}
+	if _, ok := f.readHistory(t, tag); ok {
+		t.Errorf("the stale record of %s was committed", tag)
+	}
+}
+
 func TestRunDoesNotCommitAgainWhenTheSameTagIsPreparedAgain(t *testing.T) {
 	f := newFixture(t)
 	f.releaseWith(t)
@@ -1522,9 +1546,9 @@ func TestRunWritesTheHistoryInsideTheStoreLock(t *testing.T) {
 
 func TestLatestReleaseIsTheLastOfTheOrder(t *testing.T) {
 	names := []string{"zh-TW-20261029.10", "zh-TW-20261029.9", "zh-TW-20261029.01", "zh-TW-20261029.1", "zh-TW-latest", "zh-TW-20261030.1"}
-	order := sortedReleases(names)
+	order := SortedReleases(names)
 	if want := []string{"zh-TW-20261029.01", "zh-TW-20261029.1", "zh-TW-20261029.9", "zh-TW-20261029.10", "zh-TW-20261030.1"}; !slices.Equal(order, want) {
-		t.Errorf("sortedReleases = %v, want %v", order, want)
+		t.Errorf("SortedReleases = %v, want %v", order, want)
 	}
 	if got := latestRelease(names); got != order[len(order)-1] {
 		t.Errorf("latestRelease = %q, want the last of the order %q", got, order[len(order)-1])
