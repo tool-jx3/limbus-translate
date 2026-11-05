@@ -50,8 +50,8 @@
 
 - 新的檢查碼 `term-missing`（`ClassContent`）：對每個命中的詞彙表條目（`rules.GlossaryHits`），譯文不含條目的 `zh` 時記一則。訊息寫出韓文原詞、指定譯法，以及「若是合理例外，在 note 寫出原詞與理由」。
 - 嚴重度：
-  - `batch submit`：預設 `hard`（退回、計嘗試次數）；該單位輸出的 `note` 含有條目的 `kr` 時改為 `warn`（收下，記入 warnings）。
-  - 建置與審核頁（`Existing: true`）：一律 `warn`。
+  - `batch submit`（譯者的新譯文）：預設 `hard`（退回、計嘗試次數）；該單位輸出的 `note` 含有條目的 `kr` 時改為 `warn`（收下，記入 warnings）。
+  - 其他所有檢查一律 `warn`，不擋任何事：建置與審核頁（`Existing: true`）、`batch.CheckNew` 用到的地方（相同原文沿用譯文、plan 的沿用、改寫規則的套用、`lct impact`）、Paratranz 匯入、`lct adjust add`、`lct validate`。（我的決定：使用者的決定針對譯者的新譯文；人寫的調整是刻意的，改寫與沿用不該因此被擋。做法是 `term-missing` 本身記成 `warn`，只有 `batch.Submit` 把沒有 note 說明的升為 `hard`。）
 - 不檢查：欄位規則判定不翻譯的單位（`copy`）；條目的 `zh` 與 `kr` 相同的條目。
 - 建置報告的 `warnings` 計數會多出 `term-missing`；審核 Issue 不收警告，不受影響。
 
@@ -59,8 +59,14 @@
 
 - 輸出格式：每個單位可有 `terms`，陣列，每項 `{"kr": "<韓文詞>", "zh": "<譯法>"}`；`schemas/batch-out.schema.json` 增加此欄位。`kr` 必須出現在該單位的 KR 原文中，`zh` 必須出現在該單位的譯文中，否則該項不記（送出結果列出被略過的項與原因，不退回整句）。
 - 儲存：`batch submit` 把收下的單位登記的詞寫進 `tw` 的 `.meta/terms.jsonl`（狀態，只經由 `lct` 寫），每行記 `kr`、`zh`、`key`、`batch`、`raw_tag`、`time`。同一個 `kr` 已有暫定詞時不覆蓋；譯法不同的另記為衝突，留給審核頁顯示。
-- 生效：之後發放的批次，單位的 KR 含某個暫定詞的 `kr`、而 `glossary/terms.yaml` 沒有同樣 `kr` 的條目、`rules/declined.yaml` 也沒有否決它時，把它放進批次的 `glossary`，標 `provisional: true`。驗證時和詞彙表條目一樣做 `term-missing` 檢查。
-- 審核：`lct suggest`（審核頁「規則建議」分頁）把每個暫定詞列成一個項目（新的種類，例如 `term/new/…`），附登記它的句子與用到它的句子、衝突的譯法。使用者經 `/review-page` 或 `term-decision` 決定：確認 → 寫入 `glossary/terms.yaml`（`status: approved`，附 `evidence`）；否決 → `rules/declined.yaml`，之後不再放進批次。確認後的條目由詞彙表接手，暫定詞紀錄保留但不再生效。
+- 生效：之後發放的批次，單位的 KR 命中某個暫定詞的 `kr`、而 `glossary/terms.yaml` 沒有同樣 `kr` 的條目、`rules/declined.yaml` 也沒有否決它時，把它放進批次的 `glossary`，標 `provisional: true`。送出時和詞彙表條目一樣做 `term-missing` 檢查（沒寫 note 就退回）。
+- 命中規則：暫定詞一律用 `match: word` 的判定（前面不接韓文音節、後面是非韓文或助詞），而且 `kr` 至少兩個字；不限檔案或族群（名稱常跨族群使用）。（我的決定：避免短詞或一般詞在無關的句子裡被硬性要求。）
+- 既有譯文不因暫定詞產生警告：暫定詞在確認前不是規則；確認加入詞彙表後，才由第 1 項的檢查涵蓋。（我的決定）
+- 審核：審核頁「規則建議」分頁把每個暫定詞列成一個項目（新的種類，例如 `term/new/…`），附登記它的句子、目前 KR 命中它的所有單位與它們現在的譯文（標出有沒有用這個譯法），以及衝突的譯法。使用者經 `/review-page` 或 `term-decision` 決定：
+  - 確認 → 寫入 `glossary/terms.yaml`（`status: approved`，附 `evidence`）；確認時可以改用別的譯法。
+  - 否決 → `rules/declined.yaml`，否決的是這個韓文詞：之後不再把它當暫定詞，之後再登記也不生效（我的決定：不讓衝突的譯法在使用者沒看過時自動接手；要換譯法就「確認並改譯法」）。
+  - 確認後的條目由詞彙表接手，暫定詞紀錄保留但不再生效。
+- CI 的 `rules-proposal.yml`／`/rules-review` 不處理暫定詞（跳過這個種類），只由使用者在審核頁決定。（我的決定：符合「未經使用者確認不寫進詞彙表」。）
 - 暫定詞跨次更新持續生效，直到被確認或否決。
 
 ### 3. 小檔案合批
@@ -77,7 +83,7 @@
 
 - 審核頁「檢查警告」分頁，`term-missing` 依詞彙表條目分組：每個條目一個項目，顯示韓文原詞 → 指定譯法、不合的單位數、每個單位的原文與譯文（指定譯法該出現處標示）、譯者 note（例外說明）。項目 ID 以條目為單位；也可只複製其中幾個單位。
 - 使用者看過後，在 Claude Code 用 `/review-page` 貼上 ID 並說明決定。這個 skill 依決定執行（既有能力）：
-  - 保留這些譯法 → `bin/lct accept`（記入 `rules/accepted.yaml`，之後不再列出）；
+  - 保留這些譯法 → `bin/lct accept`，逐單位記入 `rules/accepted.yaml`，只有這些單位之後不再列出；同一個詞之後新出現的不合仍會列出。（我的決定：逐單位而不是整個詞，才不會把之後的疏忽也一起放掉；詞彙表本身太寬時改詞彙表，見下一項。）群組的項目 ID 用不會和逐單位的 `warning/<code>/<KR>/<TW>` 格式混淆的寫法。
   - 改用指定譯法 → `bin/lct requeue --to-file`（重翻要求檔，附提示「依詞彙表把 X 譯為 Y」），下次建置時重翻；
   - 詞彙表本身太寬（例如「날개 → 翼」不適用身體部位的翅膀）→ 修改 `glossary/terms.yaml`（`files`、`match`、`notes`），重建後不再列出。
 - 不自動改寫：要用機械替換時，由 skill 在使用者同意後寫改寫規則（`rules/rewrite/`，既有機制）。
