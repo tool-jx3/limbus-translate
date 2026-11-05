@@ -3913,3 +3913,37 @@ func TestSubmitChecksTheBatchProvisionalTermsStillInForce(t *testing.T) {
 		t.Errorf("no longer in force: %+v, %v, want accepted", res, err)
 	}
 }
+
+// A tag may cut a provisional term in the KR text: the term still enters the
+// batch glossary, and so is enforced at submission.
+func TestProvisionalTermCutByATagIsInTheBatchAndEnforced(t *testing.T) {
+	env := newEnv(t, map[string]string{"Other.json": `{"dataList":[{"id":0,"content":"우<b>레</b>가 쳤다"}]}`}, nil, nil)
+	env.Provisional = []rules.Term{{KR: "우레", ZH: "雷鳴", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	if len(b.Glossary) != 1 || b.Glossary[0].KR != "우레" || !b.Glossary[0].Provisional {
+		t.Fatalf("glossary = %+v, want the provisional 우레", b.Glossary)
+	}
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "<b>打雷</b>了"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
+		t.Errorf("result = %+v, want rejected for term-missing", res)
+	}
+}
+
+// The batch glossary only decides which provisional KRs are checked; the
+// rendering checked is the one in force at submission.
+func TestSubmitChecksTheCurrentProvisionalRendering(t *testing.T) {
+	env := provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{}) // the batch carries 우레 -> 雷鳴
+	env.Provisional = []rules.Term{{KR: "우레", ZH: "驚雷", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
+	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "雷鳴響起"}}, "m", 3); err != nil || len(res.Rejected) != 1 {
+		t.Errorf("old rendering: %+v, %v, want rejected: 驚雷 is in force", res, err)
+	}
+	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "驚雷響起"}}, "m", 3); err != nil || len(res.Accepted) != 1 {
+		t.Errorf("current rendering: %+v, %v, want accepted", res, err)
+	}
+}

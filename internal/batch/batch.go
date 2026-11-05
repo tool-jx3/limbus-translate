@@ -398,8 +398,9 @@ func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []r
 		seenKR[t.KR] = true
 	}
 	for _, x := range texts {
+		plain := validate.StripTags(x.kr) // as CheckNewTerms looks for them
 		for _, t := range provisional {
-			if t.OccursIn(x.kr) && !seenKR[t.KR] {
+			if t.OccursIn(plain) && !seenKR[t.KR] {
 				seenKR[t.KR] = true
 				terms = append(terms, t)
 			}

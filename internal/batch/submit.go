@@ -410,11 +410,12 @@ func (s *submission) unit(o OutUnit) error {
 	}
 
 	zh := validate.NormalizeKeywordSpace(validate.Normalize(kr, o.ZH), s.env.KeywordNames)
-	issues := CheckNewTerms(s.env.Rules, s.provisional(), file, kr, zh)
+	prov := s.provisional()
+	issues := CheckNewTerms(s.env.Rules, prov, file, kr, zh)
 	// A missing glossary rendering is only a warning in CheckNew; a submission
 	// without it is rejected unless the note names the term, the way the
 	// entry itself matches a KR text.
-	entries := append(s.env.Rules.GlossaryHits(file, kr), s.provisional()...)
+	entries := append(s.env.Rules.GlossaryHits(file, kr), prov...)
 	for j := range issues {
 		if issues[j].Code == validate.CodeTermMissing && !noteNames(entries, issues[j], o.Note) {
 			issues[j].Severity = validate.SeverityHard
@@ -471,22 +472,21 @@ func (s *submission) unit(o OutUnit) error {
 // term-missing issue, as the entry matches a KR text (a match: word entry
 // needs the term as a word).
 func noteNames(entries []rules.Term, is validate.Issue, note string) bool {
-	found := false
 	for _, t := range entries {
-		if t.KR == is.Term && t.ZH == is.TermZH {
-			found = true
-			if t.OccursIn(note) {
-				return true
-			}
+		if t.KR == is.Term && t.ZH == is.TermZH && t.OccursIn(note) {
+			return true
 		}
 	}
-	return !found && strings.Contains(note, is.Term)
+	// No entry behind the issue is a broken invariant: the issue stays hard.
+	return false
 }
 
 // provisional returns the provisional terms Submit holds the translations to:
 // those the batch carried in its glossary (provisional: true) that are still
 // in force. A term registered after the batch was cut is not asked of it, and
 // one declined or taken into the glossary since is no longer asked at all.
+// The batch glossary only decides which KRs are checked; the rendering is the
+// one in env.Provisional now, the one the next batch would carry.
 func (s *submission) provisional() []rules.Term {
 	var out []rules.Term
 	for _, g := range s.batch.Glossary {
