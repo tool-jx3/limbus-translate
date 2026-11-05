@@ -44,7 +44,8 @@ func TestBatchWatchCountsWhatTheRunsAndTheSettlingDid(t *testing.T) {
 	w.settled(&batchEvent{Event: "submit", Batch: "b", File: "B.json", Units: 1, Rejected: 1, NeedsReview: 1}, 0)
 	w.endRound(1)
 	// The next run left c without one: lct translate released it.
-	add(`{"event":"next","batch":"c","file":"C.json","units":5}` + "\n")
+	// A batch of three files is told by its first.
+	add(`{"event":"next","batch":"c","file":"C.json","files":3,"units":5}` + "\n")
 	w.read(2)
 	w.settled(nil, 5)
 	w.endRound(2)
@@ -54,7 +55,7 @@ func TestBatchWatchCountsWhatTheRunsAndTheSettlingDid(t *testing.T) {
 		"round 1: batch a submitted: 39 accepted, 0 reused, 0 rejected (0 need review), 1 not submitted",
 		"round 1: batch b: 1 unit of B.json",
 		"round 1: 2 batches, 41 units; 2 submitted: 39 accepted, 0 reused, 1 rejected (1 need review), 1 not submitted; 0 released after the run",
-		"round 2: batch c: 5 units of C.json",
+		"round 2: batch c: 5 units of C.json and 2 more files",
 		"round 2: 1 batch, 5 units; 0 submitted: 0 accepted, 0 reused, 0 rejected (0 need review), 0 not submitted; 5 released after the run",
 	}, "\n") + "\n"
 	if got := log.String(); got != want {

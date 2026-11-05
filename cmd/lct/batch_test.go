@@ -948,7 +948,7 @@ func TestBatchCommandsLogTheirBatchesForTranslate(t *testing.T) {
 		t.Fatalf("batch submit: %v\n%s", err, raw)
 	}
 	want := []batchEvent{
-		{Event: "next", Batch: *next.Batch, File: "Sample.json", Units: 2},
+		{Event: "next", Batch: *next.Batch, File: "Sample.json", Files: 1, Units: 2},
 		{Event: "submit", Batch: *next.Batch, File: "Sample.json", Units: 2, Accepted: 1, Released: 1},
 	}
 	if got := readBatchLog(t, root); !slices.Equal(got, want) {

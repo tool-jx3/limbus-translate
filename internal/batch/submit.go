@@ -111,7 +111,8 @@ func foreignNameIssues(zh string, names, ignore []string) []validate.Issue {
 // is leased to b (the lease may have run out, but no other batch may hold
 // it), and its KR text is the one b was cut with. Its text is
 // normalized (validate.Normalize, then the space after the keyword names of
-// env.KeywordNames) and checked as a new translation. Without a hard issue it
+// env.KeywordNames) and checked as a new translation in the file of its key,
+// whichever of the files of b that is. Without a hard issue it
 // becomes a record (origin claude) and leaves the queue. With one, its attempts grow
 // and it keeps its lease, so the owner of b can send the fix; at maxAttempts
 // the lease ends and the unit gets a fallback record (the EN text, else KR)

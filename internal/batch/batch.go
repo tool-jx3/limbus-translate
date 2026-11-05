@@ -1,11 +1,12 @@
 // Package batch hands out the units waiting for translation in leased
 // batches and takes the translations back (spec 9.1).
 //
-// Next cuts one batch from the pending queue: the units of one file, with
-// everything a translator needs to see. Submit validates what came back,
-// records the translations that pass and counts the failures of the rest.
-// Both read and write the store in a single lock, so any number of processes
-// can run them at once without handing out a unit twice.
+// Next cuts one batch from the pending queue: the units of one story file, or
+// of one or more other files of a family, with everything a translator needs
+// to see. Submit validates what came back, records the translations that pass
+// and counts the failures of the rest. Both read and write the store in a
+// single lock, so any number of processes can run them at once without
+// handing out a unit twice.
 package batch
 
 import (
@@ -76,10 +77,16 @@ type Env struct {
 type Batch struct {
 	ID     string `json:"id"`
 	Family string `json:"family"`
-	File   string `json:"file"`
-	// Guides are the guide files to read, in the order they layer.
+	// File is the first file of Files.
+	File string `json:"file"`
+	// Files are the files of the units, in the order they were handed out;
+	// never empty. A story batch has one.
+	Files []string `json:"files"`
+	// Guides are the guide files to read, in the order they layer: those of
+	// the files and of the speakers of their units.
 	Guides []string `json:"guides"`
-	// Glossary lists the approved terms the units contain.
+	// Glossary lists the approved terms the units contain, each in the file
+	// of its unit.
 	Glossary []rules.Term `json:"glossary"`
 	// Keywords maps the [ID]s of the units, without brackets, to the name
 	// this translation gives them.
@@ -91,7 +98,9 @@ type Batch struct {
 
 // BatchUnit is one string to translate.
 type BatchUnit struct {
-	Key   string `json:"key"`
+	Key string `json:"key"`
+	// File is the file of the unit, that of its key.
+	File  string `json:"file"`
 	Field string `json:"field"`
 	// Speaker is a character id, or the raw model or speaker string of a
 	// speaker that is no known character, or "".
@@ -363,18 +372,22 @@ func nonNil(s []string) []string {
 	return s
 }
 
-// glossaryFor is the union of the approved terms the texts contain in file,
-// once per KR term and rendering, in order of first appearance, then the
-// provisional terms they contain, once per KR. They are the
-// terms CheckNew enforces on the units of file: a text that is shown with a
-// term is held to it, and the other way round.
-func glossaryFor(r *rules.Rules, provisional []rules.Term, file string, krs []string) []rules.Term {
+// unitText is the KR text of a unit and the file it is in.
+type unitText struct{ file, kr string }
+
+// glossaryFor is the union of the approved terms the texts contain, each in
+// its own file (so a term for some files only comes with a text of those
+// files), once per KR term, rendering and files, in order of first
+// appearance; then the provisional terms they contain, once per KR. They are
+// the terms CheckNew enforces on the units: a text that is shown with a term
+// is held to it, and the other way round.
+func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []rules.Term {
 	terms := []rules.Term{}
-	type termKey struct{ kr, zh string }
+	type termKey struct{ kr, zh, files string }
 	seen := map[termKey]bool{}
-	for _, kr := range krs {
-		for _, t := range r.GlossaryHits(file, kr) {
-			if k := (termKey{t.KR, t.ZH}); !seen[k] {
+	for _, x := range texts {
+		for _, t := range r.GlossaryHits(x.file, x.kr) {
+			if k := (termKey{t.KR, t.ZH, strings.Join(t.Files, "\x00")}); !seen[k] {
 				seen[k] = true
 				terms = append(terms, t)
 			}
@@ -384,9 +397,9 @@ func glossaryFor(r *rules.Rules, provisional []rules.Term, file string, krs []st
 	for _, t := range terms {
 		seenKR[t.KR] = true
 	}
-	for _, kr := range krs {
+	for _, x := range texts {
 		for _, t := range provisional {
-			if t.OccursIn(kr) && !seenKR[t.KR] {
+			if t.OccursIn(x.kr) && !seenKR[t.KR] {
 				seenKR[t.KR] = true
 				terms = append(terms, t)
 			}

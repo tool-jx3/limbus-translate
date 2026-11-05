@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tool-jx3/limbus-translate/internal/names"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -47,21 +48,27 @@ func (o NextOptions) withDefaults() (NextOptions, error) {
 }
 
 // Next cuts one batch from the pending queue and leases its units. Units are
-// handed out by the priority of their file family, then file name, then
-// document order. Only units that are not leased and not flagged needs_review
-// are eligible; units whose file or pointer has left KR are left alone.
+// handed out by file: first the files that name the keywords
+// (names.IsKeywordFile), then by the priority of their file family, then by
+// file name; within a file, in document order. Only units that are not leased
+// and not flagged needs_review are eligible; units whose file or pointer has
+// left KR are left alone.
 //
 // The id of a batch is the UTC time and the start of the hash of its first
 // key (see batchID). If a lease already names that id, or IDTaken says it is
 // in use, "-2", "-3" and so on is appended until the id is unique; after
 // maxIDSuffixes suffixes Next gives up with an error.
 //
-// A batch holds units of one file: the first MaxUnits eligible units of the
-// file in document order, or for a story file (StoryData/ and the RPG
-// dialogue, see IsStory) the first StoryMaxUnits. The units need not be next
-// to each other, and a pending line that is not eligible is skipped. The next
-// batch of the file starts at the first eligible unit left. A story batch comes
-// with Context, translated lines near its units.
+// A batch starts with the first file that has an eligible unit. A story file
+// (StoryData/ and the RPG dialogue, see IsStory) is a batch of its own: its
+// first StoryMaxUnits eligible units in document order, with Context,
+// translated lines near its units. Any other file gives its first MaxUnits
+// eligible units, and while the batch holds fewer than MaxUnits the next files
+// in the same order that are of the same family and no story file add theirs,
+// up to MaxUnits in all. The units need not be next to each other, and a
+// pending line that is not eligible is skipped. The next batch of a file
+// starts at the first eligible unit left. Of twins (see twins.go) a batch
+// takes one, whichever files they are in.
 //
 // It returns nil, nil when there is nothing to hand out. The whole cut is one
 // store lock, so concurrent calls never share a unit.
@@ -178,9 +185,10 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		}
 	}
 	type candidate struct {
-		file   string
-		family string
-		prio   int
+		file    string
+		family  string
+		keyword bool // the file names keywords: it goes first
+		prio    int
 	}
 	var files []candidate
 	for file, idxs := range byFile {
@@ -189,10 +197,16 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 			continue
 		}
 		if slices.ContainsFunc(idxs, func(i int) bool { return Claimable(pending[i], now) }) {
-			files = append(files, candidate{file, family, env.Rules.Priority(family)})
+			files = append(files, candidate{file, family, names.IsKeywordFile(file), env.Rules.Priority(family)})
 		}
 	}
 	slices.SortFunc(files, func(a, b candidate) int {
+		if a.keyword != b.keyword {
+			if a.keyword {
+				return -1
+			}
+			return 1
+		}
 		if a.prio != b.prio {
 			return a.prio - b.prio
 		}
@@ -204,6 +218,7 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 	if err != nil {
 		return nil, nil, err
 	}
+	twins := newTwinFilter(env, busy)
 	var recs map[string]store.Record
 	records := func() (map[string]store.Record, error) {
 		if recs == nil {
@@ -216,10 +231,12 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 		return recs, nil
 	}
 
-	for _, c := range files {
+	// take returns the first max units of the file of c that can go into the
+	// batch, and notes their texts as taken.
+	take := func(c candidate, max int) (part, error) {
 		fd, err := ld.file(c.file)
 		if err != nil {
-			return nil, nil, err
+			return part{}, err
 		}
 		var slots []slot // in document order
 		for _, i := range byFile[c.file] {
@@ -229,33 +246,78 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 			}
 		}
 		slices.SortFunc(slots, func(a, b slot) int { return a.pos - b.pos })
+		chosen := firstEligible(slots, func(s slot) bool {
+			return Claimable(pending[s.idx], now) && twins.pick(fd, s.pos, pending[s.idx])
+		}, max)
+		return part{fd, chosen}, nil
+	}
 
+	var (
+		parts  []part
+		family string
+	)
+	for i, c := range files {
 		limit := opt.MaxUnits
 		if IsStory(c.file) {
 			limit = opt.StoryMaxUnits
 		}
-		twins := newTwinFilter(env, fd, busy)
-		chosen := firstEligible(slots, func(s slot) bool {
-			return Claimable(pending[s.idx], now) && twins.pick(s.pos, pending[s.idx])
-		}, limit)
-		if len(chosen) == 0 {
+		first, err := take(c, limit)
+		if err != nil {
+			return nil, nil, err
+		}
+		if len(first.chosen) == 0 {
 			continue
 		}
-		id, err := uniqueID(batchID(now, pending[chosen[0].idx].Key), pending, opt.IDTaken)
-		if err != nil {
-			return nil, nil, err
+		parts, family = []part{first}, c.family
+		if IsStory(c.file) {
+			break
 		}
-		b, err := assemble(env, fd, id, c.family, pending, byFile[c.file], chosen, records)
-		if err != nil {
-			return nil, nil, err
+		// Other files of the family fill the batch up.
+		n := len(first.chosen)
+		for _, d := range files[i+1:] {
+			if n >= opt.MaxUnits {
+				break
+			}
+			if d.family != c.family || IsStory(d.file) {
+				continue
+			}
+			p, err := take(d, opt.MaxUnits-n)
+			if err != nil {
+				return nil, nil, err
+			}
+			if len(p.chosen) > 0 {
+				parts = append(parts, p)
+				n += len(p.chosen)
+			}
 		}
-		leased := make([]int, len(chosen))
-		for i, s := range chosen {
-			leased[i] = s.idx
-		}
-		return b, leased, nil
+		break
 	}
-	return nil, nil, nil
+	if parts == nil {
+		return nil, nil, nil
+	}
+
+	id, err := uniqueID(batchID(now, pending[parts[0].chosen[0].idx].Key), pending, opt.IDTaken)
+	if err != nil {
+		return nil, nil, err
+	}
+	b, err := assemble(env, id, family, pending, byFile, parts, records)
+	if err != nil {
+		return nil, nil, err
+	}
+	var leased []int
+	for _, p := range parts {
+		for _, s := range p.chosen {
+			leased = append(leased, s.idx)
+		}
+	}
+	return b, leased, nil
+}
+
+// part is what a batch takes from one file: its data and the slots of the
+// units, in document order.
+type part struct {
+	fd     *fileData
+	chosen []slot
 }
 
 // firstEligible returns the first max slots that ok accepts.
@@ -353,57 +415,74 @@ func uniqueID(id string, pending []store.PendingItem, taken func(string) (bool, 
 	return "", fmt.Errorf("batch: no free batch id: %s and its %d suffixes are all in use", id, maxIDSuffixes)
 }
 
-// assemble builds the batch of the chosen slots. filePending holds the
-// pending indexes of the whole file; records loads the stored translations
-// (only story batches and batches with [ID]s need them).
+// assemble builds the batch of parts, the units taken from each file in the
+// order they were taken (a story batch has one part). byFile holds the pending
+// indexes of each file; records loads the stored translations (only story
+// batches and batches with [ID]s need them).
 func assemble(
-	env Env, fd *fileData, id, family string,
-	pending []store.PendingItem, filePending []int, chosen []slot,
+	env Env, id, family string,
+	pending []store.PendingItem, byFile map[string][]int, parts []part,
 	records func() (map[string]store.Record, error),
 ) (*Batch, error) {
+	story := IsStory(parts[0].fd.file)
 	b := &Batch{
 		ID:      id,
 		Family:  family,
-		File:    fd.file,
-		Units:   make([]BatchUnit, 0, len(chosen)),
+		File:    parts[0].fd.file,
+		Units:   []BatchUnit{},
 		Context: []ContextLine{},
 	}
-	var krs, speakers []string
-	needRecords := IsStory(fd.file)
-	for _, s := range chosen {
-		item, u := pending[s.idx], fd.units[s.pos]
-		who, known := speaker(env.Rules, fd.doc, u)
-		if known && !slices.Contains(speakers, who) {
-			speakers = append(speakers, who)
+	var (
+		texts []unitText
+		krs   []string
+	)
+	needRecords := story
+	for _, p := range parts {
+		fd := p.fd
+		b.Files = append(b.Files, fd.file)
+		var speakers []string
+		for _, s := range p.chosen {
+			item, u := pending[s.idx], fd.units[s.pos]
+			who, known := speaker(env.Rules, fd.doc, u)
+			if known && !slices.Contains(speakers, who) {
+				speakers = append(speakers, who)
+			}
+			en, err := fd.aligned(langEN, u.Pointer)
+			if err != nil {
+				return nil, err
+			}
+			jp, err := fd.aligned(langJP, u.Pointer)
+			if err != nil {
+				return nil, err
+			}
+			b.Units = append(b.Units, BatchUnit{
+				Key:     item.Key,
+				File:    fd.file,
+				Field:   u.Field,
+				Speaker: who,
+				KR:      u.KR,
+				Reason:  item.Reason,
+				PrevKR:  item.PrevKR,
+				PrevZH:  item.PrevZH,
+				Draft:   item.Draft,
+				Hint:    item.Hint,
+				EN:      en,
+				JP:      jp,
+				Refs:    cleanRefs(item.Refs),
+				Keep:    constraints(u.KR),
+			})
+			texts = append(texts, unitText{fd.file, u.KR})
+			krs = append(krs, u.KR)
+			needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 		}
-		en, err := fd.aligned(langEN, u.Pointer)
-		if err != nil {
-			return nil, err
+		// The guides of the file and of the speakers of its units, each once.
+		for _, g := range env.Rules.GuidesFor(fd.file, speakers) {
+			if !slices.Contains(b.Guides, g) {
+				b.Guides = append(b.Guides, g)
+			}
 		}
-		jp, err := fd.aligned(langJP, u.Pointer)
-		if err != nil {
-			return nil, err
-		}
-		b.Units = append(b.Units, BatchUnit{
-			Key:     item.Key,
-			Field:   u.Field,
-			Speaker: who,
-			KR:      u.KR,
-			Reason:  item.Reason,
-			PrevKR:  item.PrevKR,
-			PrevZH:  item.PrevZH,
-			Draft:   item.Draft,
-			Hint:    item.Hint,
-			EN:      en,
-			JP:      jp,
-			Refs:    cleanRefs(item.Refs),
-			Keep:    constraints(u.KR),
-		})
-		krs = append(krs, u.KR)
-		needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 	}
-	b.Guides = env.Rules.GuidesFor(fd.file, speakers)
-	b.Glossary = glossaryFor(env.Rules, env.Provisional, fd.file, krs)
+	b.Glossary = glossaryFor(env.Rules, env.Provisional, texts)
 
 	b.Keywords = map[string]string{}
 	if !needRecords {
@@ -416,12 +495,13 @@ func assemble(
 	if b.Keywords, err = keywordNames(env, recs, krs); err != nil {
 		return nil, err
 	}
-	if IsStory(fd.file) {
-		pendingByKey := make(map[string]store.PendingItem, len(filePending))
-		for _, i := range filePending {
+	if story {
+		p := parts[0]
+		pendingByKey := make(map[string]store.PendingItem, len(byFile[p.fd.file]))
+		for _, i := range byFile[p.fd.file] {
 			pendingByKey[pending[i].Key] = pending[i]
 		}
-		b.Context = storyContext(env, fd, recs, pendingByKey, chosen)
+		b.Context = storyContext(env, p.fd, recs, pendingByKey, p.chosen)
 	}
 	return b, nil
 }

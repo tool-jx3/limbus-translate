@@ -91,8 +91,15 @@ func testRules(t *testing.T) *rules.Rules { return testRulesWith(t, testGlossary
 // testRulesWith is testRules with the glossary replaced.
 func testRulesWith(t *testing.T, glossary string) *rules.Rules {
 	t.Helper()
+	return testRulesWithRouting(t, testRouting, glossary)
+}
+
+// testRulesWithRouting is testRules with the routing and the glossary
+// replaced.
+func testRulesWithRouting(t *testing.T, routing, glossary string) *rules.Rules {
+	t.Helper()
 	root := t.TempDir()
-	writeFile(t, filepath.Join(root, "guides/routing.yaml"), testRouting)
+	writeFile(t, filepath.Join(root, "guides/routing.yaml"), routing)
 	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), glossary)
 	writeFile(t, filepath.Join(root, "guides/characters/faust.md"), testFaust)
 	writeFile(t, filepath.Join(root, "guides/characters/sinclair.md"), testSinclair)
@@ -2200,6 +2207,18 @@ func TestSchemasMatchTheTypes(t *testing.T) {
 	if hint, ok := unitProps["hint"]; !ok || hint["type"] != "string" {
 		t.Errorf("the unit schema's hint = %v, want a string property", hint)
 	}
+	// A batch names its files, never none, and every unit its own.
+	if _, required := schemaProps(t, schema); !slices.Contains(required, "files") {
+		t.Errorf("the batch schema does not require files: %v", required)
+	}
+	files := props["files"]
+	fileItems, _ := files["items"].(map[string]any)
+	if files["type"] != "array" || files["minItems"] != float64(1) || fileItems["type"] != "string" {
+		t.Errorf("the batch schema's files = %v, want an array of at least one string", files)
+	}
+	if _, required := schemaProps(t, unitSchema); !slices.Contains(required, "file") || unitProps["file"]["type"] != "string" {
+		t.Errorf("the unit schema's file = %v (required %v), want a required string", unitProps["file"], required)
+	}
 
 	for i, u := range top["units"].([]any) {
 		um := u.(map[string]any)
@@ -2282,8 +2301,9 @@ func TestNextDefersTwinsOfLeasedUnits(t *testing.T) {
 	env := newEnv(t, kr, nil, nil)
 	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 2)...)...)
 
-	b1 := mustNext(t, env, NextOptions{Family: "other"})
-	if b1 == nil || b1.File != "A.json" {
+	// A batch of one unit, so that B.json is not in it.
+	b1 := mustNext(t, env, NextOptions{Family: "other", MaxUnits: 1})
+	if b1 == nil || !slices.Equal(b1.Files, []string{"A.json"}) {
 		t.Fatalf("first batch = %+v, want A.json", b1)
 	}
 	// B's first line says what A's line says, and A's line is out for translation.
@@ -2333,10 +2353,12 @@ func TestNextDoesNotDeferShortTextsOfOtherFiles(t *testing.T) {
 	kr := map[string]string{"A.json": oneLine(t, "확인"), "B.json": oneLine(t, "확인")}
 	env := newEnv(t, kr, nil, nil)
 	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
-	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "A.json" {
+	// Batches of one unit, so that the files are in batches of their own (in
+	// one batch, see TestMergedBatchHoldsOneOfTwins).
+	if b := mustNext(t, env, NextOptions{MaxUnits: 1}); b == nil || b.File != "A.json" {
 		t.Fatalf("first batch = %+v, want A.json", b)
 	}
-	if b := mustNext(t, env, NextOptions{}); b == nil || b.File != "B.json" {
+	if b := mustNext(t, env, NextOptions{MaxUnits: 1}); b == nil || b.File != "B.json" {
 		t.Errorf("second batch = %+v, want B.json", b)
 	}
 }
@@ -3325,5 +3347,315 @@ func TestSubmitChecksProvisionalTerms(t *testing.T) {
 	}
 	if len(res.Accepted) != 1 || len(res.Warnings) != 1 {
 		t.Errorf("result = %+v, want accepted with a warning", res)
+	}
+}
+
+// The tests of the order files are handed out in and of batches of several
+// files.
+
+// allyRouting is testRouting with the family ally (Passives*), which comes
+// before other.
+const allyRouting = `families:
+  - id: story-main
+    match: ["StoryData/S*"]
+    guide: guides/families.md
+  - id: ally
+    match: ["Passives*"]
+    guide: guides/families.md
+  - id: other
+    match: []
+    guide: guides/families.md
+priority:
+  - story-main
+  - ally
+  - other
+`
+
+// fileOf is the file of a unit key.
+func fileOf(t *testing.T, k string) string {
+	t.Helper()
+	file, _, err := units.SplitKey(k)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return file
+}
+
+// checkUnitFiles fails the test unless every unit of b names the file of its
+// key, and b.Files lists those files once each, in the order of the units,
+// with b.File the first.
+func checkUnitFiles(t *testing.T, b *Batch) {
+	t.Helper()
+	var files []string
+	for _, u := range b.Units {
+		if want := fileOf(t, u.Key); u.File != want {
+			t.Errorf("unit %s: file = %q, want %q", u.Key, u.File, want)
+		}
+		if !slices.Contains(files, u.File) {
+			files = append(files, u.File)
+		}
+	}
+	if !slices.Equal(b.Files, files) || len(b.Files) == 0 || b.File != b.Files[0] {
+		t.Errorf("batch files = %q, file = %q, want the files of the units %q, the first as the file", b.Files, b.File, files)
+	}
+}
+
+func TestNextHandsOutKeywordFilesFirst(t *testing.T) {
+	const passives, bufs, keywords = "Passives.json", "Bufs_X.json", "BattleKeywords_X.json"
+	kr := map[string]string{
+		passives: dataList(t, 2, "", line),
+		bufs:     dataList(t, 2, "", line),
+		keywords: dataList(t, 2, "", line),
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, allyRouting, testGlossary)
+	seed(t, env, append(append(items(passives, 0, 2), items(bufs, 0, 2)...), items(keywords, 0, 2)...)...)
+
+	// ally comes before other, but the files that name the keywords come
+	// before every family; the two are of one family and share the batch.
+	b1 := mustNext(t, env, NextOptions{})
+	if b1 == nil || !slices.Equal(b1.Files, []string{keywords, bufs}) || b1.Family != "other" {
+		t.Fatalf("first batch = %+v, want %s and %s", b1, keywords, bufs)
+	}
+	checkUnitFiles(t, b1)
+	if b2 := mustNext(t, env, NextOptions{}); b2 == nil || !slices.Equal(b2.Files, []string{passives}) {
+		t.Errorf("second batch = %+v, want %s", b2, passives)
+	}
+
+	// They come before the story too, which is first of the families.
+	const story = "StoryData/S001A.json"
+	kr[story] = dataList(t, 1, "파우스트", line)
+	env = newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, allyRouting, testGlossary)
+	seed(t, env, append(items(story, 0, 1), items(bufs, 0, 2)...)...)
+	if b := mustNext(t, env, NextOptions{}); b == nil || !slices.Equal(b.Files, []string{bufs}) {
+		t.Errorf("first batch = %+v, want %s before the story", b, bufs)
+	}
+}
+
+func TestNextMergesSmallFilesOfAFamily(t *testing.T) {
+	files := []string{"A.json", "B.json", "C.json"}
+	kr := map[string]string{"Passives.json": dataList(t, 2, "", line)}
+	pending := items("Passives.json", 0, 2)
+	var want []string
+	for _, f := range files {
+		kr[f] = dataList(t, 2, "", line)
+		pending = append(pending, items(f, 0, 2)...)
+		want = append(want, key(f, 0), key(f, 1))
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, allyRouting, testGlossary)
+	seed(t, env, pending...)
+
+	// Passives.json is first and of ally: the files of other do not join it.
+	b1 := mustNext(t, env, NextOptions{})
+	if b1 == nil || !slices.Equal(b1.Files, []string{"Passives.json"}) || len(b1.Units) != 2 {
+		t.Fatalf("first batch = %+v, want the 2 units of Passives.json alone", b1)
+	}
+	checkUnitFiles(t, b1)
+
+	b2 := mustNext(t, env, NextOptions{})
+	if b2 == nil || !slices.Equal(b2.Files, files) || b2.File != "A.json" || b2.Family != "other" {
+		t.Fatalf("second batch = %+v, want the three files of other", b2)
+	}
+	if !slices.Equal(keysOf(b2), want) {
+		t.Errorf("second batch keys = %v, want %v", keysOf(b2), want)
+	}
+	checkUnitFiles(t, b2)
+	got := pendingMap(t, env)
+	for _, k := range want {
+		if l := got[k].Lease; l == nil || l.Batch != b2.ID {
+			t.Errorf("%s: lease = %+v, want batch %s", k, l, b2.ID)
+		}
+	}
+	if b3 := mustNext(t, env, NextOptions{}); b3 != nil {
+		t.Errorf("third batch = %+v, want nil", b3)
+	}
+}
+
+func TestNextStopsAtMaxUnits(t *testing.T) {
+	kr := map[string]string{"Passives.json": dataList(t, 1, "", line)}
+	pending := items("Passives.json", 0, 1)
+	for _, f := range []string{"A.json", "B.json", "C.json"} {
+		kr[f] = dataList(t, 3, "", line)
+		pending = append(pending, items(f, 0, 3)...)
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, allyRouting, testGlossary)
+	seed(t, env, pending...)
+
+	// --family keeps Passives.json out, which would come first.
+	opt := NextOptions{Family: "other", MaxUnits: 4}
+	for i, want := range []struct {
+		files []string
+		keys  []string
+	}{
+		{[]string{"A.json", "B.json"}, []string{key("A.json", 0), key("A.json", 1), key("A.json", 2), key("B.json", 0)}},
+		{[]string{"B.json", "C.json"}, []string{key("B.json", 1), key("B.json", 2), key("C.json", 0), key("C.json", 1)}},
+		{[]string{"C.json"}, []string{key("C.json", 2)}},
+	} {
+		b := mustNext(t, env, opt)
+		if b == nil || !slices.Equal(b.Files, want.files) || !slices.Equal(keysOf(b), want.keys) {
+			t.Fatalf("batch %d = %+v, want the keys %v of %v", i+1, b, want.keys, want.files)
+		}
+		checkUnitFiles(t, b)
+	}
+	if b := mustNext(t, env, opt); b != nil {
+		t.Errorf("batch 4 = %+v, want nil: only Passives.json is left, of another family", b)
+	}
+}
+
+func TestNextKeepsStoryBatchesToOneFile(t *testing.T) {
+	const s1, s2 = "StoryData/S001A.json", "StoryData/S002A.json"
+	kr := map[string]string{s1: dataList(t, 3, "파우스트", line), s2: dataList(t, 3, "파우스트", line)}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, append(items(s1, 1, 3), items(s2, 1, 3)...)...)
+	if err := env.Store.SaveRecords(map[string]store.Record{
+		key(s1, 0): translated(key(s1, 0), line(0), "譯文 0"),
+		key(s2, 0): translated(key(s2, 0), line(0), "譯文 0"),
+	}); err != nil {
+		t.Fatal(err)
+	}
+	for _, file := range []string{s1, s2} {
+		b := mustNext(t, env, NextOptions{})
+		if b == nil || !slices.Equal(b.Files, []string{file}) || len(b.Units) != 2 {
+			t.Fatalf("batch = %+v, want the 2 units of %s alone", b, file)
+		}
+		checkUnitFiles(t, b)
+		if want := []string{key(file, 0)}; !slices.Equal(ctxKeys(b), want) {
+			t.Errorf("context of %s = %v, want %v", file, ctxKeys(b), want)
+		}
+	}
+
+	// An RPG dialogue is a story: it does not join a batch of a plain file of
+	// its family.
+	const dialogue = "RPGSystem/rpg-loc-dialogue-1.json"
+	kr = map[string]string{
+		"Other.json": dataList(t, 1, "", line),
+		dialogue:     `{"dataList":[{"key":"D1","texts":[{"index":0,"text":"이쪽이다."}]}]}`,
+	}
+	env = newEnv(t, kr, nil, nil)
+	seed(t, env, append(items("Other.json", 0, 1), store.PendingItem{Key: dialogue + "|/dataList/0/texts/0/text", Reason: "new"})...)
+	for _, file := range []string{"Other.json", dialogue} {
+		if b := mustNext(t, env, NextOptions{}); b == nil || !slices.Equal(b.Files, []string{file}) {
+			t.Errorf("batch = %+v, want %s alone", b, file)
+		}
+	}
+}
+
+func TestMergedBatchScopesTermsByUnitFile(t *testing.T) {
+	const glossary = `- kr: 위력
+  zh: 威力
+  status: approved
+  files: ["A.json"]
+`
+	kr := map[string]string{
+		"A.json": `{"dataList":[{"id":0,"content":"위력이 강하다"},{"id":1,"content":"그냥 간다"}]}`,
+		"B.json": oneLine(t, "위력이 약하다"),
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, glossary)
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(b.Files, []string{"A.json", "B.json"}) {
+		t.Fatalf("batch = %+v, want A.json and B.json", b)
+	}
+	if len(b.Glossary) != 1 || b.Glossary[0].KR != "위력" || !slices.Equal(b.Glossary[0].Files, []string{"A.json"}) {
+		t.Errorf("glossary = %+v, want the term of A.json", b.Glossary)
+	}
+	// The term holds A's unit, not B's.
+	res, err := Submit(env, b, []OutUnit{{Key: key("A.json", 0), ZH: "很強"}, {Key: key("B.json", 0), ZH: "很弱"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Rejected) != 1 || res.Rejected[0].Key != key("A.json", 0) || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
+		t.Errorf("rejected = %+v, want A's unit for term-missing", res.Rejected)
+	}
+	if !slices.Equal(res.Accepted, []string{key("B.json", 0)}) {
+		t.Errorf("accepted = %v, want B's unit: the term is not for B.json", res.Accepted)
+	}
+
+	// The term is in the glossary for A's unit only: with a unit of A that
+	// does not contain it, B's unit brings no term.
+	env = newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, glossary)
+	seed(t, env, append(items("A.json", 1, 2), items("B.json", 0, 1)...)...)
+	b = mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(b.Files, []string{"A.json", "B.json"}) || len(b.Glossary) != 0 {
+		t.Errorf("batch = %+v, want A.json and B.json with no glossary term", b)
+	}
+}
+
+func TestMergedBatchGuidesCoverEverySpeaker(t *testing.T) {
+	kr := map[string]string{
+		"A.json": dataList(t, 1, "파우스트", line),
+		"B.json": dataList(t, 1, "싱클레어", line),
+		"C.json": dataList(t, 1, "", line),
+	}
+	env := newEnv(t, kr, nil, nil)
+	seed(t, env, append(append(items("A.json", 0, 1), items("B.json", 0, 1)...), items("C.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(b.Files, []string{"A.json", "B.json", "C.json"}) {
+		t.Fatalf("batch = %+v, want the three files", b)
+	}
+	var speakers []string
+	for _, u := range b.Units {
+		speakers = append(speakers, u.Speaker)
+	}
+	if want := []string{"faust", "sinclair", ""}; !slices.Equal(speakers, want) {
+		t.Errorf("speakers = %q, want %q", speakers, want)
+	}
+	if want := []string{rules.BaseGuide, "guides/families.md", "guides/characters/faust.md", "guides/characters/sinclair.md"}; !slices.Equal(b.Guides, want) {
+		t.Errorf("guides = %v, want %v", b.Guides, want)
+	}
+}
+
+// Of twins in several files only one goes into the batch, and the others take
+// its translation; a short text is shared within its file only, so the same
+// short line of each file goes in.
+func TestMergedBatchHoldsOneOfTwins(t *testing.T) {
+	two := `{"dataList":[{"id":0,"content":` + q(t, twinText) + `},{"id":1,"content":"확인"}]}`
+	env := newEnv(t, map[string]string{"A.json": two, "B.json": two}, nil, nil)
+	seed(t, env, append(items("A.json", 0, 2), items("B.json", 0, 2)...)...)
+	b := mustNext(t, env, NextOptions{})
+	if want := []string{key("A.json", 0), key("A.json", 1), key("B.json", 1)}; b == nil || !slices.Equal(keysOf(b), want) {
+		t.Fatalf("batch = %+v, want the keys %v", b, want)
+	}
+	checkUnitFiles(t, b)
+	if l := pendingMap(t, env)[key("B.json", 0)].Lease; l != nil {
+		t.Errorf("the twin in B.json is leased: %+v", l)
+	}
+	res, err := Submit(env, b, translate(b), "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 3 || !slices.Equal(res.Reused, []string{key("B.json", 0)}) {
+		t.Errorf("accepted %v, reused %v, want all 3 accepted and the twin in B.json reused", res.Accepted, res.Reused)
+	}
+}
+
+// Of two entries of one KR term and rendering, one for some files and one for
+// the rest, a batch whose units are in both kinds of file shows both: each
+// tells which units it holds.
+func TestMergedBatchShowsTheTermOfEachFile(t *testing.T) {
+	kr := map[string]string{"A.json": oneLine(t, "위력이 강하다"), "B.json": oneLine(t, "위력이 약하다")}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, `- kr: 위력
+  zh: 威力
+  status: approved
+  forbidden: [力量]
+  files: ["A.json"]
+- kr: 위력
+  zh: 威力
+  status: approved
+`)
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(b.Files, []string{"A.json", "B.json"}) {
+		t.Fatalf("batch = %+v, want A.json and B.json", b)
+	}
+	if len(b.Glossary) != 2 || !slices.Equal(b.Glossary[0].Files, []string{"A.json"}) || len(b.Glossary[1].Files) != 0 {
+		t.Errorf("glossary = %+v, want the entry of A.json, then the one of every file", b.Glossary)
 	}
 }

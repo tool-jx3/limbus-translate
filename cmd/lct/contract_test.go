@@ -4747,6 +4747,25 @@ func TestTermMissingExceptionIsExplained(t *testing.T) {
 	}
 }
 
+// A batch outside the stories may hold several files of a family: the shared
+// prompt and the translate-pending skill tell the translator that each unit
+// names its own file, which is what a guide that tells files apart, and a
+// glossary term for some files, go by.
+func TestMergedBatchIsExplained(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	_, skill := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
+	for name, text := range map[string]string{"prompts/translate.md": prompt, "translate-pending/SKILL.md": skill} {
+		for _, want := range []string{"`files`", "單位的 `file`"} {
+			if !strings.Contains(text, want) {
+				t.Errorf("%s does not mention %s (a batch may hold several files; each unit names its own)", name, want)
+			}
+		}
+		if strings.Contains(text, "批次的 `file`") {
+			t.Errorf("%s still goes by the file of the batch, which is only its first", name)
+		}
+	}
+}
+
 // The glossary items of a batch are rules.Term values: the schema declares
 // exactly the fields Term writes as JSON (match and provisional included), so
 // a batch lct writes validates against it.

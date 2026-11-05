@@ -27,7 +27,10 @@ type batchEvent struct {
 	// batch submit took it in).
 	Event string `json:"event"`
 	Batch string `json:"batch"`
+	// File is the first file of the batch, Files (of a next event) how many
+	// files it holds.
 	File  string `json:"file,omitempty"`
+	Files int    `json:"files,omitempty"`
 	// Units is the number of units of the batch.
 	Units int `json:"units"`
 	// What a submit did with them: counts of batch.SubmitResult.
@@ -187,7 +190,11 @@ func (w *batchWatch) event(round int, ev batchEvent) {
 	case "next":
 		w.round.Batches++
 		w.round.Units += ev.Units
-		fmt.Fprintf(w.log, "round %d: batch %s: %s of %s\n", round, ev.Batch, counted(ev.Units, "unit", "units"), ev.File)
+		of := ev.File
+		if ev.Files > 1 {
+			of += " and " + counted(ev.Files-1, "more file", "more files")
+		}
+		fmt.Fprintf(w.log, "round %d: batch %s: %s of %s\n", round, ev.Batch, counted(ev.Units, "unit", "units"), of)
 	case "submit":
 		w.submitted(ev)
 		fmt.Fprintf(w.log, "round %d: batch %s submitted: %s\n", round, ev.Batch,

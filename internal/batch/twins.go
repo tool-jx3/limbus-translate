@@ -76,24 +76,24 @@ func busyTwins(env Env, ld *loader, pending []store.PendingItem, now time.Time) 
 	return busy, nil
 }
 
-// twinFilter picks the units of one file for a batch so that no text is
-// translated twice: a unit is left out while a twin of it is being translated
-// in another batch (busy), or has been picked for this one.
+// twinFilter picks the units of a batch, from one file or several, so that
+// no text is translated twice: a unit is left out while a twin of it is being
+// translated in another batch (busy), or has been picked for this one, from
+// its file or another.
 type twinFilter struct {
 	env   Env
-	fd    *fileData
 	busy  map[twinKey]bool
 	taken map[twinKey]bool
 }
 
-func newTwinFilter(env Env, fd *fileData, busy map[twinKey]bool) *twinFilter {
-	return &twinFilter{env: env, fd: fd, busy: busy, taken: map[twinKey]bool{}}
+func newTwinFilter(env Env, busy map[twinKey]bool) *twinFilter {
+	return &twinFilter{env: env, busy: busy, taken: map[twinKey]bool{}}
 }
 
-// pick reports whether the unit at position pos of the file, which is
-// eligible, goes into the batch, and if it does notes its text as taken.
-func (f *twinFilter) pick(pos int, item store.PendingItem) bool {
-	k := twinKeyOf(TextGroupOf(f.env.Rules, f.fd.doc, f.fd.units[pos]), f.fd.file)
+// pick reports whether the unit at position pos of fd, which is eligible,
+// goes into the batch, and if it does notes its text as taken.
+func (f *twinFilter) pick(fd *fileData, pos int, item store.PendingItem) bool {
+	k := twinKeyOf(TextGroupOf(f.env.Rules, fd.doc, fd.units[pos]), fd.file)
 	if !CarriesInput(item) && (f.busy[k] || f.taken[k]) {
 		return false
 	}

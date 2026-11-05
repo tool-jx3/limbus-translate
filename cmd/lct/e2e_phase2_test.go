@@ -22,8 +22,10 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
+	"github.com/tool-jx3/limbus-translate/internal/names"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/translate"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -251,7 +253,7 @@ func (p *phase2) translate(wantBefore int) translate.Result {
 	}
 	// Every batch the run took and handed in is in the log, as the batch
 	// commands logged it, and the round adds them up.
-	handedOut := regexp.MustCompile(`(?m)^round 1: batch \S+: \d+ units? of \S+$`).FindAllString(stderr, -1)
+	handedOut := regexp.MustCompile(`(?m)^round 1: batch \S+: \d+ units? of \S+( and \d+ more files?)?$`).FindAllString(stderr, -1)
 	submitted := regexp.MustCompile(`(?m)^round 1: batch \S+ submitted: \d+ accepted, `).FindAllString(stderr, -1)
 	if len(handedOut) == 0 || len(submitted) != len(handedOut) {
 		p.t.Errorf("lct translate logged %d batches handed out and %d submitted, want as many, and some:\n%s", len(handedOut), len(submitted), stderr)
@@ -442,6 +444,7 @@ func TestPhase2Replay(t *testing.T) {
 	plan1 := p.plan()
 	checkPhase2FirstPlan(t, plan1, runGitIn(t, p.root, "rev-parse", "HEAD"))
 	p.translate(14)
+	checkPhase2BatchFiles(t, p.root, p.batches())
 	recs1 := p.records()
 	if len(recs1) != 21 {
 		t.Errorf("after the first translation the store holds %d records, want 21", len(recs1))
@@ -546,6 +549,7 @@ func TestPhase2Replay(t *testing.T) {
 	// 6. Translate and build.
 	firstRun := len(p.batches())
 	p.translate(6)
+	checkPhase2BatchFiles(t, p.root, p.batches()[firstRun:])
 	checkPhase2Batches(t, p.batches()[firstRun:])
 	built2 := p.build()
 	checkPhase2SecondBuild(t, p, built2)
@@ -835,6 +839,69 @@ func checkPhase2StaleBatch(t *testing.T, p *phase2, id string) {
 	}
 	if after := p.state(); !reflect.DeepEqual(after, before) {
 		t.Errorf("handing in the stale batch changed the state:\nbefore %v\nafter  %v", before, after)
+	}
+}
+
+// checkPhase2BatchFiles checks the files of the batches of one translation
+// run, in the order they were handed out: the files that name the keywords
+// (Bufs.json) come first; a batch lists the files of its units, which name
+// their own, all of the family of the batch; a story batch holds one file.
+// The files of the replay are small, so a run that hands out two files of one
+// family outside the stories has a batch with both, and one that does not has
+// none with more than one file. The replay has no such two files (Bufs.json is
+// of other, Passives.json of ally, and BgmLyrics/L.json is the one file of
+// story-main outside StoryData/), so every batch of it holds one file.
+func checkPhase2BatchFiles(t *testing.T, root string, batches []batch.Batch) {
+	t.Helper()
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(batches) == 0 {
+		t.Fatal("the run handed out no batch")
+	}
+	keywordsDone, merged := false, false
+	plain := map[string]map[string]bool{} // the files outside the stories, by family
+	for _, b := range batches {
+		if names.IsKeywordFile(b.File) && keywordsDone {
+			t.Errorf("batch %s of %s comes after a batch of no keyword file", b.ID, b.File)
+		}
+		keywordsDone = keywordsDone || !names.IsKeywordFile(b.File)
+		merged = merged || len(b.Files) > 1
+		var files []string
+		for _, u := range b.Units {
+			if file, _, err := units.SplitKey(u.Key); err != nil || u.File != file {
+				t.Errorf("batch %s: unit %s names the file %q", b.ID, u.Key, u.File)
+			}
+			if !slices.Contains(files, u.File) {
+				files = append(files, u.File)
+			}
+		}
+		if len(b.Files) == 0 || !slices.Equal(b.Files, files) || b.File != b.Files[0] {
+			t.Errorf("batch %s: file %q, files %q, want the files of its units %q", b.ID, b.File, b.Files, files)
+		}
+		for _, f := range b.Files {
+			if r.Family(f) != b.Family {
+				t.Errorf("batch %s of %s holds %s, of %s", b.ID, b.Family, f, r.Family(f))
+			}
+			if batch.IsStory(f) {
+				if len(b.Files) != 1 {
+					t.Errorf("story batch %s holds %q, want one file", b.ID, b.Files)
+				}
+				continue
+			}
+			if plain[b.Family] == nil {
+				plain[b.Family] = map[string]bool{}
+			}
+			plain[b.Family][f] = true
+		}
+	}
+	mergeable := false
+	for _, files := range plain {
+		mergeable = mergeable || len(files) > 1
+	}
+	if merged != mergeable {
+		t.Errorf("a batch of several files: %v; files of one family outside the stories: %v; want both or neither (%v)", merged, mergeable, plain)
 	}
 }
 

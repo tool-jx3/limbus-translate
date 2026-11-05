@@ -262,7 +262,7 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 	if err := writeJSONFile(path, b); err != nil {
 		return err
 	}
-	logBatchEvent(ctx, batchEvent{Event: "next", Batch: b.ID, File: b.File, Units: len(b.Units)})
+	logBatchEvent(ctx, batchEvent{Event: "next", Batch: b.ID, File: b.File, Files: len(b.Files), Units: len(b.Units)})
 	return ctx.Emit(nextReport{Batch: &b.ID, Path: path, Units: len(b.Units)})
 }
 
