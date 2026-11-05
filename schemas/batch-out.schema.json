@@ -19,7 +19,7 @@
           "additionalProperties": false,
           "required": ["kr", "zh"],
           "properties": {
-            "kr": { "description": "The whole word as the KR text of the unit has it (at least two characters).", "type": "string", "minLength": 2 },
+            "kr": { "description": "The whole word as the KR text of the unit has it (at least two characters, counted in characters, not bytes).", "type": "string", "minLength": 2 },
             "zh": { "description": "Its rendering, as it stands in zh.", "type": "string", "minLength": 1 }
           }
         }

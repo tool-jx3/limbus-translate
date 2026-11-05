@@ -8,6 +8,7 @@ import (
 	"time"
 	"unicode/utf8"
 
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
@@ -272,6 +273,8 @@ func (s *submission) collectTerms(key, kr, zh string, terms []NewTerm) {
 	for _, t := range terms {
 		reason := ""
 		switch {
+		case strings.TrimSpace(t.KR) == "":
+			reason = "kr is empty"
 		case utf8.RuneCountInString(t.KR) < 2:
 			reason = "kr is shorter than two characters"
 		case !strings.Contains(kr, t.KR):
@@ -407,11 +410,13 @@ func (s *submission) unit(o OutUnit) error {
 	}
 
 	zh := validate.NormalizeKeywordSpace(validate.Normalize(kr, o.ZH), s.env.KeywordNames)
-	issues := CheckNewTerms(s.env.Rules, s.env.Provisional, file, kr, zh)
+	issues := CheckNewTerms(s.env.Rules, s.provisional(), file, kr, zh)
 	// A missing glossary rendering is only a warning in CheckNew; a submission
-	// without it is rejected unless the note names the term.
+	// without it is rejected unless the note names the term, the way the
+	// entry itself matches a KR text.
+	entries := append(s.env.Rules.GlossaryHits(file, kr), s.provisional()...)
 	for j := range issues {
-		if issues[j].Code == validate.CodeTermMissing && !strings.Contains(o.Note, issues[j].Term) {
+		if issues[j].Code == validate.CodeTermMissing && !noteNames(entries, issues[j], o.Note) {
 			issues[j].Severity = validate.SeverityHard
 		}
 	}
@@ -460,6 +465,42 @@ func (s *submission) unit(o OutUnit) error {
 		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
 	}
 	return nil
+}
+
+// noteNames reports whether note writes the KR term of the entry behind the
+// term-missing issue, as the entry matches a KR text (a match: word entry
+// needs the term as a word).
+func noteNames(entries []rules.Term, is validate.Issue, note string) bool {
+	found := false
+	for _, t := range entries {
+		if t.KR == is.Term && t.ZH == is.TermZH {
+			found = true
+			if t.OccursIn(note) {
+				return true
+			}
+		}
+	}
+	return !found && strings.Contains(note, is.Term)
+}
+
+// provisional returns the provisional terms Submit holds the translations to:
+// those the batch carried in its glossary (provisional: true) that are still
+// in force. A term registered after the batch was cut is not asked of it, and
+// one declined or taken into the glossary since is no longer asked at all.
+func (s *submission) provisional() []rules.Term {
+	var out []rules.Term
+	for _, g := range s.batch.Glossary {
+		if !g.Provisional {
+			continue
+		}
+		for _, t := range s.env.Provisional {
+			if t.KR == g.KR {
+				out = append(out, t)
+				break
+			}
+		}
+	}
+	return out
 }
 
 // hardIssues is the text PendingItem.LastError holds for issues: the code and

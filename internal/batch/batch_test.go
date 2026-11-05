@@ -3738,3 +3738,178 @@ func TestNextHandsOutEveryKeywordUnitFirst(t *testing.T) {
 		t.Errorf("batches = %q, want %q", got, want)
 	}
 }
+
+// krEnv is an env whose Other.json holds the given KR texts, one per unit,
+// under the glossary, all of its units pending and cut into one batch.
+func krEnv(t *testing.T, glossary string, texts ...string) (Env, *Batch) {
+	t.Helper()
+	env := newEnv(t, map[string]string{"Other.json": dataList(t, len(texts), "", func(i int) string { return texts[i] })}, nil, nil)
+	env.Rules = testRulesWith(t, glossary)
+	seed(t, env, items("Other.json", 0, len(texts))...)
+	return env, mustNext(t, env, NextOptions{})
+}
+
+// hardTermMissing lists the Term of each hard term-missing among issues.
+func hardTermMissing(issues []validate.Issue) []string {
+	var out []string
+	for _, is := range issues {
+		if is.Code == validate.CodeTermMissing && is.Severity == validate.SeverityHard {
+			out = append(out, is.Term)
+		}
+	}
+	slices.Sort(out)
+	return out
+}
+
+// The note has to write the term the way the entry matches it: an entry that
+// hits only as a word is not named by a longer word that holds it.
+func TestSubmitNoteNamesTheTermAsTheEntryMatches(t *testing.T) {
+	const glossary = "- kr: 속도\n  zh: 速度\n  status: approved\n  match: word\n"
+	for _, tc := range []struct {
+		note   string
+		accept bool
+	}{
+		{"속도감：此處指節奏感", false},
+		{"속도를：此處指別的東西", true},
+		{"속도：此處指別的東西", true},
+	} {
+		env, b := krEnv(t, glossary, "속도가 빠르다")
+		res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "很快", Note: tc.note}}, "m", 3)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := len(res.Accepted) == 1; got != tc.accept {
+			t.Errorf("note %q: accepted = %v, want %v (result %+v)", tc.note, got, tc.accept, res)
+		}
+	}
+}
+
+// Two entries are missing and the note names one: the unit goes back for the
+// other one, and the hard issue is only about that one.
+func TestSubmitNoteNamesOnlyOneOfTwoMissingTerms(t *testing.T) {
+	const glossary = "- kr: 시즌\n  zh: 賽季\n  status: approved\n- kr: 탐식\n  zh: 暴食\n  status: approved\n"
+	env, b := krEnv(t, glossary, "시즌과 탐식")
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "季和貪吃", Note: "시즌：劇中季節"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 0 || len(res.Rejected) != 1 {
+		t.Fatalf("result = %+v, want one rejection", res)
+	}
+	if got := hardTermMissing(res.Rejected[0].Issues); !slices.Equal(got, []string{"탐식"}) {
+		t.Errorf("hard term-missing = %v, want only 탐식", got)
+	}
+	last := pendingMap(t, env)[key("Other.json", 0)].LastError
+	if !strings.Contains(last, "탐식") || strings.Contains(last, "시즌") {
+		t.Errorf("LastError = %q, want it to name 탐식 and not 시즌", last)
+	}
+}
+
+// A combined name inside the story, with the note naming the Korean term, is
+// accepted, like the 시즌 case.
+func TestSubmitAcceptsACombinedNameTheNoteNames(t *testing.T) {
+	const glossary = "- kr: 탐식\n  zh: 暴食\n  status: approved\n"
+	env, b := krEnv(t, glossary, "탐식의 재림")
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "貪吃的再臨", Note: "탐식：劇中組合名稱「탐식의 재림」的一部分"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+		t.Fatalf("result = %+v, want accepted", res)
+	}
+	if len(res.Warnings) != 1 || res.Warnings[0].Issues[0].Code != validate.CodeTermMissing || res.Warnings[0].Issues[0].Severity != validate.SeverityWarn {
+		t.Errorf("warnings = %+v, want one term-missing warn", res.Warnings)
+	}
+	env, b = krEnv(t, glossary, "탐식의 재림")
+	res, err = Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "貪吃的再臨"}}, "m", 3)
+	if err != nil || len(res.Rejected) != 1 {
+		t.Errorf("without the note: %+v, %v, want rejected", res, err)
+	}
+}
+
+// The same KR with the same rendering from another unit adds nothing; a third
+// rendering is stored as a conflict. Through Submit, across two submissions.
+func TestSubmitDedupesProvisionalTermsAndRecordsConflicts(t *testing.T) {
+	env, b := krEnv(t, "", "우레가 쳤다", "우레가 울렸다")
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "雷鳴響起", Terms: []NewTerm{{KR: "우레", ZH: "雷鳴"}}}}, "m", 3)
+	if err != nil || res.Terms != 1 {
+		t.Fatalf("first: %+v, %v, want 1 term", res, err)
+	}
+	// Unit 1 was not answered, so its lease ended; cut a new batch for it.
+	b = mustNext(t, env, NextOptions{})
+	res, err = Submit(env, b, []OutUnit{{Key: key("Other.json", 1), ZH: "雷鳴震動", Terms: []NewTerm{{KR: "우레", ZH: "雷鳴"}}}}, "m", 3)
+	if err != nil || res.Terms != 0 || len(res.Accepted) != 1 {
+		t.Fatalf("same rendering again: %+v, %v, want 0 terms", res, err)
+	}
+	if terms, _ := env.Store.LoadTerms(); len(terms) != 1 {
+		t.Fatalf("terms = %+v, want one", terms)
+	}
+
+	env, b = krEnv(t, "", "우레가 쳤다", "우레가 울렸다", "우레가 멎었다")
+	out := []OutUnit{
+		{Key: key("Other.json", 0), ZH: "雷鳴響起", Terms: []NewTerm{{KR: "우레", ZH: "雷鳴"}}},
+		{Key: key("Other.json", 1), ZH: "雷鳴震動", Terms: []NewTerm{{KR: "우레", ZH: "雷鳴"}}},
+		{Key: key("Other.json", 2), ZH: "驚雷停了", Terms: []NewTerm{{KR: "우레", ZH: "驚雷"}}},
+	}
+	res, err = Submit(env, b, out, "m", 3)
+	if err != nil || res.Terms != 2 {
+		t.Fatalf("one batch: %+v, %v, want 2 terms", res, err)
+	}
+	terms, _ := env.Store.LoadTerms()
+	if len(terms) != 2 || terms[0].ZH != "雷鳴" || terms[0].Conflict || terms[1].ZH != "驚雷" || !terms[1].Conflict {
+		t.Errorf("terms = %+v, want 雷鳴 then 驚雷 as a conflict", terms)
+	}
+}
+
+// A kr of spaces is empty, not too short.
+func TestSubmitSkipsABlankTermKR(t *testing.T) {
+	env, b := krEnv(t, "", "우레 가 쳤다")
+	out := []OutUnit{{Key: key("Other.json", 0), ZH: "雷 鳴", Terms: []NewTerm{{KR: "  ", ZH: "雷"}, {KR: "우", ZH: "雷"}}}}
+	res, err := Submit(env, b, out, "m", 3)
+	if err != nil || len(res.TermsSkipped) != 2 || res.Terms != 0 {
+		t.Fatalf("result = %+v, %v, want 2 skipped", res, err)
+	}
+	if got := res.TermsSkipped[0].Reason; got != "kr is empty" {
+		t.Errorf("reason of a blank kr = %q, want %q", got, "kr is empty")
+	}
+	// The length is counted in characters, not bytes: one syllable is three
+	// bytes and is still too short.
+	if got := res.TermsSkipped[1].Reason; got != "kr is shorter than two characters" {
+		t.Errorf("reason of a one-syllable kr = %q", got)
+	}
+}
+
+// Only the provisional terms the batch carried (provisional: true in its
+// glossary) and that are still in force are held to at submission.
+func TestSubmitChecksTheBatchProvisionalTermsStillInForce(t *testing.T) {
+	bad := []OutUnit{{Key: key("Other.json", 0), ZH: "打雷了"}}
+	term := rules.Term{KR: "우레", ZH: "雷鳴", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}
+
+	// Registered after the batch was cut: this batch is not held to it.
+	env := provEnv(t)
+	env.Provisional = nil
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	env.Provisional = []rules.Term{term}
+	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 {
+		t.Errorf("registered after the batch: %+v, %v, want accepted", res, err)
+	}
+
+	// Carried by the batch and still in force: checked.
+	env = provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b = mustNext(t, env, NextOptions{})
+	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Rejected) != 1 {
+		t.Errorf("in force: %+v, %v, want rejected", res, err)
+	}
+
+	// Carried by the batch, declined or replaced by a glossary entry since:
+	// no longer in env.Provisional, so no longer checked.
+	env = provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b = mustNext(t, env, NextOptions{})
+	env.Provisional = nil
+	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 {
+		t.Errorf("no longer in force: %+v, %v, want accepted", res, err)
+	}
+}

@@ -1099,3 +1099,20 @@ func TestBatchNextAndSubmitAMergedBatch(t *testing.T) {
 		t.Errorf("pending = %v, %v, want none", pending, err)
 	}
 }
+
+// The report speaks of provisional terms only when the out file registered
+// some, kept or skipped.
+func TestSubmitReportMentionsTermsOnlyWhenRegistered(t *testing.T) {
+	none := submitReport{Batch: "b1", SubmitResult: batch.SubmitResult{}}.String()
+	if strings.Contains(none, "provisional terms") {
+		t.Errorf("report = %q, want no line about provisional terms", none)
+	}
+	kept := submitReport{Batch: "b1", SubmitResult: batch.SubmitResult{Terms: 2}}.String()
+	if !strings.Contains(kept, "2 provisional terms kept") {
+		t.Errorf("report = %q, want the count of terms kept", kept)
+	}
+	skipped := submitReport{Batch: "b1", SubmitResult: batch.SubmitResult{TermsSkipped: []batch.SkippedTerm{{Key: "k", KR: "우", ZH: "雷", Reason: "r"}}}}.String()
+	if !strings.Contains(skipped, "0 provisional terms kept") || !strings.Contains(skipped, "term skipped") {
+		t.Errorf("report = %q, want the count and the skipped term", skipped)
+	}
+}

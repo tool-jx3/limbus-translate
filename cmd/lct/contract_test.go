@@ -4766,6 +4766,20 @@ func TestTermMissingExceptionIsExplained(t *testing.T) {
 			}
 		}
 	}
+	// The whole sentence: the note has to write the KR term, or the unit is
+	// rejected all the same.
+	for name, want := range map[string]string{
+		"prompts/translate.md":       "`note` 沒有寫出這個原詞，照樣退回",
+		"translate-pending/SKILL.md": "`note` 沒有寫出原詞，一樣會被退回",
+	} {
+		text := prompt
+		if strings.HasPrefix(name, "translate-pending") {
+			text = skill
+		}
+		if !strings.Contains(text, want) {
+			t.Errorf("%s lacks %q (a note that does not write the KR term does not excuse the missing rendering)", name, want)
+		}
+	}
 }
 
 // A batch outside the stories may hold several files of a family: the shared

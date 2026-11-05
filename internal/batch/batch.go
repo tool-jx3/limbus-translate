@@ -421,8 +421,9 @@ func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 // to as well.
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
 	terms := r.ValidateTerms(file, kr)
+	plain := validate.StripTags(kr)
 	for _, t := range provisional {
-		if t.OccursIn(kr) {
+		if t.OccursIn(plain) {
 			terms = append(terms, t.ToValidate())
 		}
 	}
