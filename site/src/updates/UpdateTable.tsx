@@ -43,7 +43,7 @@ export function UpdateTable({ entries }: { entries: UpdateEntry[] }) {
     else groups.set(e.file, [e])
   }
   return (
-    <div class="ut-scroll">
+    <div class="ut-scroll" style={{ overflowX: 'auto' }}>
       <table class="ut-table">
         <thead>
           <tr>

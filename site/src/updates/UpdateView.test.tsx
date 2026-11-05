@@ -8,7 +8,6 @@ import type { UpdateEntry, UpdateRecord } from '../types'
 import { UpdateCard } from './UpdateCard'
 import { UPDATE_PAGE, UpdateView } from './UpdateView'
 import type { Route } from '../route'
-import css from '../styles.css?raw'
 
 type UpdateRoute = Extract<Route, { kind: 'update' }>
 
@@ -528,7 +527,7 @@ describe('the table view', () => {
     const el = await mount(route(), table())
     const wrap = el.querySelector('table')!.parentElement!
     expect(wrap.classList.contains('ut-scroll')).toBe(true)
-    expect(css).toMatch(/\.ut-scroll\s*\{[^}]*overflow-x:\s*auto/)
+    expect(wrap.style.overflowX).toBe('auto')
   })
 
   it('pages like the cards do', async () => {
