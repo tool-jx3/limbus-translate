@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks'
-import { reviewHref, searchHref, type Route } from '../route'
+import { reviewHref, searchHref, updatesHref, type Route } from '../route'
 import { LANGS, type Settings } from '../settings'
 import type { Lang, ReviewCounts } from '../types'
 
@@ -64,6 +64,9 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
       </button>
       <a class="brand" href="#/">
         Limbus 譯文對照
+      </a>
+      <a class="update-link" href={updatesHref()} {...(route.kind === 'updates' || route.kind === 'update' ? { 'aria-current': 'page' as const } : {})}>
+        更新
       </a>
       <a class="review-link" href={reviewHref('suggestions')}>
         審核

@@ -81,6 +81,38 @@ describe('App', () => {
     expect(link?.querySelector('.review-count')?.textContent).toBe(String(total))
   })
 
+  it('header links 更新 to the left of 審核 and marks it on both update routes', async () => {
+    let el = mount()
+    await loaded(el)
+    const links = [...el.querySelectorAll<HTMLAnchorElement>('.top a')]
+    const update = links.find((a) => a.textContent === '更新')
+    expect(update?.getAttribute('href')).toBe('#/u')
+    expect(update?.getAttribute('aria-current')).toBeNull()
+    expect(links.indexOf(update!)).toBe(links.findIndex((a) => a.classList.contains('review-link')) - 1)
+
+    for (const hash of ['#/u', '#/u/zh-TW-20261029.5']) {
+      location.hash = hash
+      el = mount()
+      await loaded(el)
+      const a = [...el.querySelectorAll<HTMLAnchorElement>('.top a')].find((x) => x.textContent === '更新')
+      expect(a?.getAttribute('aria-current')).toBe('page')
+    }
+  })
+
+  it('shows the list of updates on #/u and a placeholder with the tag on #/u/<tag>', async () => {
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'updates/index.json': { releases: [] } })))
+    location.hash = '#/u'
+    let el = mount()
+    await loaded(el)
+    await vi.waitFor(() => expect(el.querySelector('.updates')).not.toBeNull())
+    expect(el.querySelector('.home')).toBeNull()
+
+    location.hash = '#/u/zh-TW-20261029.5'
+    el = mount()
+    await loaded(el)
+    expect(el.querySelector('.update-placeholder')?.textContent).toContain('zh-TW-20261029.5')
+  })
+
   it('shows the review page on the review route', async () => {
     location.hash = '#/r/notes'
     const el = mount()

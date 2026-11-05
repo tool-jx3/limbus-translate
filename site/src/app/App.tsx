@@ -3,6 +3,7 @@ import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
 import { SearchView } from '../search/SearchView'
 import { ReviewView } from '../review/ReviewView'
+import { UpdatesView } from '../updates/UpdatesView'
 import { loadSettings, saveSettings, type Settings } from '../settings'
 import type { Index, Meta } from '../types'
 import { FileView } from '../view/FileView'
@@ -134,5 +135,10 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
       return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
     case 'review':
       return <ReviewView route={route} index={index} meta={meta} settings={settings} />
+    case 'updates':
+      return <UpdatesView />
+    case 'update':
+      // Task 7 replaces this with UpdateView.
+      return <p class="update-placeholder">{route.tag}</p>
   }
 }
