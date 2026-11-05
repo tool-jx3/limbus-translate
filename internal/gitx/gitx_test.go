@@ -855,3 +855,31 @@ func TestTreeBlobsErrors(t *testing.T) {
 		t.Errorf("TreeBlobs on an unborn branch = %v, want an error", got)
 	}
 }
+
+func TestRevTimeIsTheCommitTimeOfTheRevision(t *testing.T) {
+	repo := newRepo(t)
+	commit := func(msg, date string) {
+		cmd := exec.Command("git", "-C", repo, "commit", "-q", "--allow-empty", "-m", msg)
+		cmd.Env = append(os.Environ(), "GIT_COMMITTER_DATE="+date, "GIT_AUTHOR_DATE="+date)
+		if out, err := cmd.CombinedOutput(); err != nil {
+			t.Fatalf("git commit: %v\n%s", err, out)
+		}
+	}
+	commit("first", "2026-10-30T12:30:45+08:00")
+	runGit(t, repo, "tag", "early")
+	commit("second", "2026-11-02T00:00:00Z")
+
+	got, err := RevTime(repo, "early")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := time.Date(2026, 10, 30, 4, 30, 45, 0, time.UTC); !got.Equal(want) || got.Location() != time.UTC {
+		t.Errorf("RevTime(early) = %v, want %v", got, want)
+	}
+	if _, err := RevTime(repo, "no-such-tag"); err == nil {
+		t.Error("RevTime of a missing revision succeeded")
+	}
+	if _, err := RevTime(repo, "--all"); err == nil {
+		t.Error("RevTime of an option succeeded")
+	}
+}

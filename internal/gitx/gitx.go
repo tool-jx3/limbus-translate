@@ -349,6 +349,23 @@ func CommitTime(dir string) (time.Time, error) {
 	return time.Unix(sec, 0).UTC(), nil
 }
 
+// RevTime returns the committer time of rev (a tag, a branch or a commit) in
+// UTC, to whole seconds. It is an error if rev does not name a commit.
+func RevTime(dir, rev string) (time.Time, error) {
+	if strings.HasPrefix(rev, "-") {
+		return time.Time{}, fmt.Errorf("gitx: revision %q looks like an option", rev)
+	}
+	out, err := git(dir, "log", "-1", "--format=%ct", rev, "--")
+	if err != nil {
+		return time.Time{}, err
+	}
+	sec, err := strconv.ParseInt(strings.TrimSpace(out), 10, 64)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("gitx: commit time of %s: %w", rev, err)
+	}
+	return time.Unix(sec, 0).UTC(), nil
+}
+
 // Tag creates a lightweight tag called name on HEAD. It is an error if the tag
 // exists. The tag.gpgSign setting is ignored: a signed tag needs a message and
 // an editor, and these tags only mark snapshots.
