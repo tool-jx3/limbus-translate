@@ -1,16 +1,39 @@
 {
-  "raw_tag": "raw-20261029",
+  "raw_tag": "raw-20261105",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "64e3e7b43e8202317f7ecb21c0a3b437ab8098fb",
+  "rules_commit": "ab8952ea1ec0285b7bfa8704df61a8931a86c4aa",
   "changes": {
-    "unchanged": 0,
+    "unchanged": 272757,
     "moved": 0,
-    "changed": 0,
-    "new": 0,
-    "deleted": 0
+    "changed": 14,
+    "new": 104,
+    "deleted": 12,
+    "files_added": [
+      "BattleKeywords_Mirror8.json",
+      "Bufs_Mirror8.json",
+      "UI_Mission_MirrorDungeon8Event.json"
+    ],
+    "files_changed": [
+      "EGOgift_MirrorDungeon-StoryTheme_2.json",
+      "EGOgift_MirrorDungeon.json",
+      "EGOgift_MirrorDungeon_2.json",
+      "EGOgift_MirrorDungeon_7.json",
+      "EGOgift_MirrorDungeon_8.json",
+      "LobbyBGM-29.json",
+      "MirrorDungeonEgoGiftLockedDesc.json",
+      "MirrorDungeonRentalName.json",
+      "Passives.json",
+      "PersonalityVoiceDlg/Voice_Ryoshu_Contem_10416.json",
+      "StoryData/P10717.json",
+      "UI_Mission_MirrorDungeon5Event.json",
+      "UserBanner.json",
+      "UserTicket-EGOBg.json",
+      "UserTicket-L.json",
+      "UserTicket-R.json"
+    ]
   },
-  "copy": 0,
-  "reused": 0,
+  "copy": 38,
+  "reused": 11,
   "adjustments": {
     "applied": 25,
     "moved": [],
@@ -22,5 +45,5 @@
   "new_speakers": [],
   "field_changes": [],
   "new_files_default_family": [],
-  "pending": 0
+  "pending": 71
 }
