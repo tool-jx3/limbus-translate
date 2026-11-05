@@ -97,7 +97,7 @@ func standsAsWord(text, term string) bool {
 
 // ToValidate returns the part of the term that validate.Check enforces.
 func (t Term) ToValidate() validate.Term {
-	return validate.Term{KR: t.KR, Forbidden: t.Forbidden}
+	return validate.Term{KR: t.KR, ZH: t.ZH, Forbidden: t.Forbidden}
 }
 
 // termFields are the keys an entry may have; "evidence" is statistics for

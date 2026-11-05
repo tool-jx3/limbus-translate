@@ -2,6 +2,7 @@ package validate
 
 import (
 	"reflect"
+	"slices"
 	"strings"
 	"testing"
 )
@@ -1206,5 +1207,49 @@ func TestKanaOfAGlossaryRendering(t *testing.T) {
 	}
 	if !strings.Contains(is.Message, `"し"`) {
 		t.Errorf("a し outside the rendering is still kana: %s", is.Message)
+	}
+}
+
+func TestTermMissing(t *testing.T) {
+	terms := []Term{{KR: "우레", ZH: "雷鳴"}}
+	for _, existing := range []bool{false, true} {
+		issues := Check("우레가 친다", "打雷了", Context{Terms: terms, Existing: existing})
+		if got := codes(issues); !reflect.DeepEqual(got, []string{CodeTermMissing}) {
+			t.Fatalf("Existing=%v: codes = %v, want only term-missing (%v)", existing, got, issues)
+		}
+		is := issues[0]
+		if is.Severity != SeverityWarn || is.Class != ClassContent || is.Term != "우레" {
+			t.Errorf("Existing=%v: got %s/%s term %q, want warn/content 우레", existing, is.Severity, is.Class, is.Term)
+		}
+		if !strings.Contains(is.Message, "雷鳴") || !strings.Contains(is.Message, "note") {
+			t.Errorf("message %q should name 雷鳴 and note", is.Message)
+		}
+	}
+	if got := Check("우레가 친다", "雷鳴響起", Context{Terms: terms}); len(got) != 0 {
+		t.Errorf("rendering used: got %v, want none", got)
+	}
+}
+
+func TestTermMissingSkipsTermsWithoutARendering(t *testing.T) {
+	for _, term := range []Term{{KR: "우레"}, {KR: "우레", ZH: "우레"}} {
+		if got := Check("우레가 친다", "打雷了", Context{Terms: []Term{term}}); len(got) != 0 {
+			t.Errorf("%+v: got %v, want none", term, got)
+		}
+	}
+}
+
+func TestTermMissingIgnoresTags(t *testing.T) {
+	terms := []Term{{KR: "우레", ZH: "雷鳴"}}
+	for _, zh := range []string{"<color=#ffffff>雷鳴</color>響起", "雷<b>鳴</b>響起"} {
+		if got := Check("<color=#ffffff>우레</color>가 친다", zh, Context{Terms: terms}); slices.Contains(codes(got), CodeTermMissing) {
+			t.Errorf("Check(%q) = %v, want no term-missing", zh, got)
+		}
+	}
+}
+
+func TestForbiddenTermCarriesTheTerm(t *testing.T) {
+	issues := Check("패키지 구매", "購買禮包", Context{Terms: testTerms})
+	if len(issues) == 0 || issues[0].Code != CodeForbiddenTerm || issues[0].Term != "패키지" {
+		t.Fatalf("issues = %+v, want forbidden-term with Term 패키지", issues)
 	}
 }

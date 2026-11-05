@@ -60,6 +60,7 @@ const (
 	CodeASCIIEllipsis       = "ascii-ellipsis"
 	CodeCurlyQuotes         = "curly-quotes"
 	CodeLengthRatio         = "length-ratio"
+	CodeTermMissing         = "term-missing"
 )
 
 // Issue is one problem Check found in a translation.
@@ -68,6 +69,9 @@ type Issue struct {
 	Severity Severity `json:"severity"`
 	Class    Class    `json:"class"`
 	Message  string   `json:"message"`
+	// Term is the KR of the glossary entry behind a term-missing or
+	// forbidden-term issue.
+	Term string `json:"term,omitempty"`
 }
 
 // Term is the part of a glossary entry that Check needs.
@@ -75,6 +79,9 @@ type Term struct {
 	// KR is the Korean term. The term only applies to a unit whose KR text
 	// contains it.
 	KR string
+	// ZH is the approved rendering. term-missing warns when a unit whose KR
+	// contains KR lacks it; "" or the same as KR means nothing to check.
+	ZH string
 	// Forbidden lists renderings the translation must not contain. An entry
 	// starting with "re:" is a regular expression (Go syntax), any other
 	// entry is a substring.
@@ -510,10 +517,12 @@ func checkContent(kr, zh string, ctx Context) []Issue {
 // checkTerms reports every forbidden rendering of the terms kr contains.
 func checkTerms(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
+	plain := tagRe.ReplaceAllString(zh, "")
 	for _, term := range ctx.Terms {
 		if term.KR == "" || !strings.Contains(kr, term.KR) {
 			continue
 		}
+		first := len(issues)
 		for _, f := range term.Forbidden {
 			if f == "" || f == "re:" {
 				continue
@@ -535,6 +544,19 @@ func checkTerms(kr, zh string, ctx Context) []Issue {
 				issues = append(issues, ctx.issue(CodeForbiddenTerm, ClassContent,
 					"%q is a forbidden rendering of %s (matches %s)", m, term.KR, f))
 			}
+		}
+		for i := first; i < len(issues); i++ {
+			issues[i].Term = term.KR
+		}
+		if term.ZH != "" && term.ZH != term.KR && !strings.Contains(plain, term.ZH) {
+			// A warning whatever Existing says: a reasonable exception is
+			// explained in the batch note, not fixed in the text.
+			is := ctx.issue(CodeTermMissing, ClassContent,
+				"%s should be rendered %q, which the translation lacks; if this is a reasonable exception, name the term %q and the reason in the note",
+				term.KR, term.ZH, term.KR)
+			is.Severity = SeverityWarn
+			is.Term = term.KR
+			issues = append(issues, is)
 		}
 	}
 	return issues

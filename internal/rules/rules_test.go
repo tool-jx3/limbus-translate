@@ -558,6 +558,13 @@ func TestGlossaryHoldsBothRenderingsOfSinbu(t *testing.T) {
 	}
 }
 
+func TestToValidateCarriesTheRendering(t *testing.T) {
+	term := rules.Term{KR: "우레", ZH: "雷鳴"}
+	if got := term.ToValidate().ZH; got != "雷鳴" {
+		t.Errorf("ToValidate().ZH = %q, want 雷鳴", got)
+	}
+}
+
 func TestToValidate(t *testing.T) {
 	r := loadRepo(t)
 	hit := hitFor(r.GlossaryHits(anyFile, "시즌"), "시즌")
@@ -567,7 +574,7 @@ func TestToValidate(t *testing.T) {
 	if !slices.Contains(hit.Forbidden, `re:第\d+季`) {
 		t.Fatalf("시즌 forbids %v, want the pattern re:第\\d+季 among them", hit.Forbidden)
 	}
-	want := validate.Term{KR: "시즌", Forbidden: hit.Forbidden}
+	want := validate.Term{KR: "시즌", ZH: hit.ZH, Forbidden: hit.Forbidden}
 	if got := hit.ToValidate(); !reflect.DeepEqual(got, want) {
 		t.Errorf("ToValidate = %+v, want %+v", got, want)
 	}
