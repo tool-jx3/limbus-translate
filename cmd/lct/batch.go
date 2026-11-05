@@ -238,6 +238,7 @@ func runBatchNext(ctx *cli.Context, args []string) error {
 	if err := writeJSONFile(path, b); err != nil {
 		return err
 	}
+	logBatchEvent(ctx, batchEvent{Event: "next", Batch: b.ID, File: b.File, Units: len(b.Units)})
 	return ctx.Emit(nextReport{Batch: &b.ID, Path: path, Units: len(b.Units)})
 }
 
@@ -336,6 +337,9 @@ func rulesDirtyWarning(rulesCommit string) batch.Rejection {
 type submitReport struct {
 	Batch string `json:"batch"`
 	batch.SubmitResult
+	// file and units are of the batch, for the batch log.
+	file  string
+	units int
 }
 
 func (r submitReport) String() string {
@@ -408,6 +412,7 @@ func runBatchSubmit(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	logBatchEvent(ctx, submitEvent(id, rep.file, rep.units, rep))
 	res := &rep.SubmitResult
 	if err := ctx.Emit(submitReport{Batch: id, SubmitResult: *res}); err != nil {
 		return err
@@ -463,5 +468,5 @@ func submitBatch(ctx *cli.Context, id, model string) (*submitReport, error) {
 		res.Warnings = append([]batch.Rejection{*rulesWarning}, res.Warnings...)
 	}
 
-	return &submitReport{Batch: id, SubmitResult: *res}, nil
+	return &submitReport{Batch: id, SubmitResult: *res, file: b.File, units: len(b.Units)}, nil
 }

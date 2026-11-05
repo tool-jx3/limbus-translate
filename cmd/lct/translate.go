@@ -104,9 +104,23 @@ func runTranslate(ctx *cli.Context, args []string) error {
 	// Batches a run left: the run that took them is over. One lost earlier
 	// (a runner that died) holds its units too, so they are settled before
 	// the first round as well.
-	settle := settleBatches(ctx, env, *model)
-	if err := settle(0); err != nil {
+	if err := settleBatches(ctx, env, *model, nil)(0); err != nil {
 		fmt.Fprintf(os.Stderr, "before round 1: settling the batches left: %v\n", err)
+	}
+	// The batch commands of the runs log every batch they hand out and take
+	// in; each is reported as the run streams, and what the batches of a
+	// round came to once it is over.
+	watch, err := newBatchWatch(filepath.Join(ctx.Root, filepath.FromSlash(batchLogFile)), os.Stderr)
+	if err != nil {
+		return err
+	}
+	defer watch.close()
+	settle := settleBatches(ctx, env, *model, watch)
+	settleRound := func(round int) error {
+		watch.read(round)
+		err := settle(round)
+		watch.endRound(round)
+		return err
 	}
 	var afterRun func(int) error
 	if *pushEachRun {
@@ -125,12 +139,14 @@ func runTranslate(ctx *cli.Context, args []string) error {
 		Log:       os.Stderr,
 		SoftTurns: *softTurns,
 		StopFile:  filepath.Join(ctx.Root, filepath.FromSlash(batchStopFile)),
-		Settle:    settle,
+		Settle:    settleRound,
 		AfterRun:  afterRun,
+		Progress:  watch.read,
 	})
 	if err != nil {
 		return err
 	}
+	fmt.Fprintln(os.Stderr, watch.summary())
 	res.RawTag, res.RulesCommit = env.RawTag, commit
 	if err := storeTranslation(ctx, env, res); err != nil {
 		return err
@@ -146,7 +162,8 @@ func runTranslate(ctx *cli.Context, args []string) error {
 // them. One whose out file is there is submitted as lct batch submit does; the
 // others, and one whose out file is refused, are released, so that the next
 // round can take their units at once rather than when the lease runs out.
-func settleBatches(ctx *cli.Context, env batch.Env, model string) func(int) error {
+// What it submits and releases is counted in watch, when there is one.
+func settleBatches(ctx *cli.Context, env batch.Env, model string, watch *batchWatch) func(int) error {
 	return func(round int) error {
 		when := fmt.Sprintf("round %d", round)
 		if round == 0 {
@@ -164,8 +181,13 @@ func settleBatches(ctx *cli.Context, env batch.Env, model string) func(int) erro
 				if err == nil {
 					fmt.Fprintf(os.Stderr, "%s: submitted the batch %s the run left: %d accepted, %d rejected\n", when, id, len(rep.Accepted), len(rep.Rejected))
 					// Units it did not cover are still leased: free them too.
-					if _, err := batch.Release(env, id); err != nil {
+					n, err := batch.Release(env, id)
+					if err != nil {
 						return err
+					}
+					if watch != nil {
+						ev := submitEvent(id, rep.file, rep.units, rep)
+						watch.settled(&ev, n)
 					}
 					continue
 				}
@@ -174,6 +196,9 @@ func settleBatches(ctx *cli.Context, env batch.Env, model string) func(int) erro
 			n, err := batch.Release(env, id)
 			if err != nil {
 				return err
+			}
+			if watch != nil {
+				watch.settled(nil, n)
 			}
 			fmt.Fprintf(os.Stderr, "%s: released the batch %s the run left (%d units)\n", when, id, n)
 		}

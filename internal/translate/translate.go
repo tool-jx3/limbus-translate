@@ -122,6 +122,12 @@ type Options struct {
 	// on: what it failed to keep is kept after the next run, or by the caller
 	// once Run is over. It is not called after a run that fails, which ends Run.
 	AfterRun func(round int) error
+	// Progress, when set, is called as a run streams, after each line of its
+	// output, with its round, so that the caller can report what the run has
+	// done so far (lct translate: the batches it took and submitted). It is
+	// called from another goroutine than the one Run runs in, one call at a
+	// time.
+	Progress func(round int)
 
 	// waitDelay is how long Wait waits for the output of a run that has
 	// exited; zero means defaultWaitDelay. Only the tests set it.
@@ -367,6 +373,7 @@ type streamWatch struct {
 	signaled bool
 	round    int
 	log      io.Writer
+	progress func(round int)
 	// seen are the ids of the messages counted: one message of the model may
 	// come in more than one assistant event, and it is one turn.
 	seen map[string]bool
@@ -382,6 +389,9 @@ func (w *streamWatch) Write(p []byte) (int, error) {
 		}
 		w.line(rest[:nl])
 		w.scanned += nl + 1
+		if w.progress != nil {
+			w.progress(w.round)
+		}
 	}
 }
 
@@ -444,7 +454,7 @@ func runOnce(opt Options, round int, log io.Writer) (cost float64, turns int, st
 	if opt.waitDelay > 0 {
 		cmd.WaitDelay = opt.waitDelay
 	}
-	stdout := &streamWatch{soft: opt.SoftTurns, stopFile: opt.StopFile, round: round, log: log}
+	stdout := &streamWatch{soft: opt.SoftTurns, stopFile: opt.StopFile, round: round, log: log, progress: opt.Progress}
 	stderr := &tail{max: stderrKept}
 	cmd.Stdout, cmd.Stderr = stdout, stderr
 

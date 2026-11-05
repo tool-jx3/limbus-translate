@@ -15,11 +15,13 @@ import (
 )
 
 // fakeClaudeCLI stands in for the claude CLI in the tests of lct translate.
-// A run records its arguments and LCT_MODEL, empties the pending queue when
-// FAKE_EMPTY names its file, and prints FAKE_OUT.
+// A run records its arguments and LCT_MODEL, adds FAKE_LOG to the batch log
+// as the batch commands would, empties the pending queue when FAKE_EMPTY
+// names its file, and prints FAKE_OUT.
 const fakeClaudeCLI = `#!/bin/sh
 echo "$*" >> "$FAKE_DIR/args"
 echo "$LCT_MODEL" >> "$FAKE_DIR/model"
+if [ -n "$FAKE_LOG" ]; then printf '%s\n' "$FAKE_LOG" >> work/batches/.log.jsonl; fi
 if [ -n "$FAKE_EMPTY" ]; then : > "$FAKE_EMPTY"; fi
 printf '%s\n' "$FAKE_OUT"
 `
@@ -38,6 +40,7 @@ func translateRepo(t *testing.T) (root, fakeDir, script string) {
 	}
 	t.Setenv("FAKE_DIR", fakeDir)
 	t.Setenv("FAKE_EMPTY", "")
+	t.Setenv("FAKE_LOG", "")
 	t.Setenv("FAKE_OUT", `{"type":"result","subtype":"success","is_error":false,"num_turns":3,"total_cost_usd":0.25}`)
 	return root, fakeDir, script
 }
@@ -171,6 +174,49 @@ func TestTranslateSettlesTheBatchesARunLeft(t *testing.T) {
 	// emptied the queue).
 	if res, _ := readTranslateJSON(t, root); res.Runs != 1 {
 		t.Errorf("translate.json says %d runs, want 1", res.Runs)
+	}
+}
+
+// lct translate reports every batch a run hands out and takes in, from the
+// batch log the batch commands write while it runs, and what the batches of
+// each round and of every round came to. A log an earlier lct translate left
+// is not of these runs, and the log is gone once lct translate is over.
+func TestTranslateLogsTheBatchesOfEachRound(t *testing.T) {
+	root, _, script := translateRepo(t)
+	writeTestFile(t, root, batchLogFile, `{"event":"next","batch":"20261101T000000-00000000","file":"Old.json","units":9}`+"\n")
+	t.Setenv("FAKE_EMPTY", filepath.Join(root, ".work", "tw", ".meta", "pending.jsonl"))
+	t.Setenv("FAKE_LOG", strings.Join([]string{
+		`{"event":"next","batch":"20261105T043512-1a2b3c4d","file":"StoryData/S706B.json","units":40}`,
+		`{"event":"submit","batch":"20261105T043512-1a2b3c4d","file":"StoryData/S706B.json","units":40,"accepted":37,"reused":1,"rejected":2,"needs_review":1,"released":1}`,
+		`{"event":"next","batch":"20261105T044010-5e6f7a8b","file":"Passives.json","units":31}`,
+		`{"event":"submit","batch":"20261105T044010-5e6f7a8b","file":"Passives.json","units":31,"accepted":31}`,
+	}, "\n"))
+	code, stdout, stderr := lct(t, translateArgs(script)...)
+	if code != 0 {
+		t.Fatalf("lct translate: exit code %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	want := []string{
+		"round 1: batch 20261105T043512-1a2b3c4d: 40 units of StoryData/S706B.json",
+		"round 1: batch 20261105T043512-1a2b3c4d submitted: 37 accepted, 1 reused, 2 rejected (1 need review), 1 not submitted",
+		"round 1: batch 20261105T044010-5e6f7a8b: 31 units of Passives.json",
+		"round 1: batch 20261105T044010-5e6f7a8b submitted: 31 accepted, 0 reused, 0 rejected (0 need review), 0 not submitted",
+		"round 1: 2 batches, 71 units; 2 submitted: 68 accepted, 1 reused, 2 rejected (1 need review), 1 not submitted; 0 released after the run",
+		"round 1: ended after 3 turns",
+		"translate: 1 round, 2 batches, 71 units; 2 submitted: 68 accepted, 1 reused, 2 rejected (1 need review), 1 not submitted; 0 released after the run",
+	}
+	at := 0
+	for _, line := range want {
+		i := strings.Index(stderr[at:], line)
+		if i < 0 {
+			t.Fatalf("stderr lacks %q after what came before it:\n%s", line, stderr)
+		}
+		at += i + len(line)
+	}
+	if strings.Contains(stderr, "20261101T000000-00000000") {
+		t.Errorf("lct translate reported a batch of the log an earlier one left:\n%s", stderr)
+	}
+	if _, err := os.Stat(filepath.Join(root, batchLogFile)); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("the batch log is still there after lct translate: %v", err)
 	}
 }
 

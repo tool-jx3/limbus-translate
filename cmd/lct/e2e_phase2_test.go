@@ -9,7 +9,9 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -245,6 +247,20 @@ func (p *phase2) translate(wantBefore int) translate.Result {
 	}
 	if c := pendingNow(p.t); c.Total != 0 {
 		p.t.Errorf("pending after translate = %+v, want none", c)
+	}
+	// Every batch the run took and handed in is in the log, as the batch
+	// commands logged it, and the round adds them up.
+	handedOut := regexp.MustCompile(`(?m)^round 1: batch \S+: \d+ units? of \S+$`).FindAllString(stderr, -1)
+	submitted := regexp.MustCompile(`(?m)^round 1: batch \S+ submitted: \d+ accepted, `).FindAllString(stderr, -1)
+	if len(handedOut) == 0 || len(submitted) != len(handedOut) {
+		p.t.Errorf("lct translate logged %d batches handed out and %d submitted, want as many, and some:\n%s", len(handedOut), len(submitted), stderr)
+	}
+	sum := regexp.MustCompile(`(?m)^round 1: (\d+) batch(es)?, \d+ units?; (\d+) submitted: `).FindStringSubmatch(stderr)
+	if sum == nil || sum[1] != strconv.Itoa(len(handedOut)) || sum[3] != strconv.Itoa(len(submitted)) {
+		p.t.Errorf("the round 1 summary is %q, want %d batches handed out and submitted:\n%s", sum, len(handedOut), stderr)
+	}
+	if !strings.Contains(stderr, "translate: 1 round, ") {
+		p.t.Errorf("lct translate does not sum the batches of its round up:\n%s", stderr)
 	}
 	return res
 }

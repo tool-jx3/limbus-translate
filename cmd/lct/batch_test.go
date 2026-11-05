@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"slices"
@@ -912,5 +913,63 @@ func TestBatchSubmitAddsTheSpaceAfterKeywordNames(t *testing.T) {
 	}
 	if rec := recs[statusKey]; rec.ZH != "使目標增加2級破裂 強度" {
 		t.Errorf("record ZH = %q, want the space after 破裂", rec.ZH)
+	}
+}
+
+// readBatchLog reads the batch log of lct translate in root.
+func readBatchLog(t *testing.T, root string) []batchEvent {
+	t.Helper()
+	var events []batchEvent
+	for _, line := range strings.Split(strings.TrimSuffix(string(readFile(t, filepath.Join(root, batchLogFile))), "\n"), "\n") {
+		if line == "" {
+			continue
+		}
+		var ev batchEvent
+		if err := json.Unmarshal([]byte(line), &ev); err != nil {
+			t.Fatalf("a line of the batch log is not an event: %v\n%s", err, line)
+		}
+		events = append(events, ev)
+	}
+	return events
+}
+
+// While lct translate keeps its batch log, batch next and batch submit add a
+// line to it for every batch they hand out and take in.
+func TestBatchCommandsLogTheirBatchesForTranslate(t *testing.T) {
+	root, _ := batchRepo(t)
+	t.Chdir(root)
+	writeTestFile(t, root, batchLogFile, "")
+	next, raw, err := runNextJSON(t, root)
+	if err != nil || next.Batch == nil {
+		t.Fatalf("batch next: %v\n%s", err, raw)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"})
+	if _, raw, err := runSubmitJSON(t, root, *next.Batch); err != nil {
+		t.Fatalf("batch submit: %v\n%s", err, raw)
+	}
+	want := []batchEvent{
+		{Event: "next", Batch: *next.Batch, File: "Sample.json", Units: 2},
+		{Event: "submit", Batch: *next.Batch, File: "Sample.json", Units: 2, Accepted: 1, Released: 1},
+	}
+	if got := readBatchLog(t, root); !slices.Equal(got, want) {
+		t.Errorf("the batch log holds\n%+v\nwant\n%+v", got, want)
+	}
+}
+
+// Without the log, which only lct translate makes, the batch commands make
+// none.
+func TestBatchCommandsMakeNoBatchLog(t *testing.T) {
+	root, _ := batchRepo(t)
+	t.Chdir(root)
+	next, raw, err := runNextJSON(t, root)
+	if err != nil || next.Batch == nil {
+		t.Fatalf("batch next: %v\n%s", err, raw)
+	}
+	writeOut(t, root, *next.Batch, batch.OutUnit{Key: batchKey0, ZH: "賦予5級[Laceration]威力"})
+	if _, raw, err := runSubmitJSON(t, root, *next.Batch); err != nil {
+		t.Fatalf("batch submit: %v\n%s", err, raw)
+	}
+	if _, err := os.Stat(filepath.Join(root, batchLogFile)); !errors.Is(err, fs.ErrNotExist) {
+		t.Errorf("the batch commands made %s without lct translate: %v", batchLogFile, err)
 	}
 }

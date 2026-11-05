@@ -9,6 +9,7 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"sync"
 	"syscall"
 	"testing"
 	"time"
@@ -392,6 +393,42 @@ func TestRunSignalsTheStopAfterSoftTurns(t *testing.T) {
 				t.Errorf("the log does not say that round 1 stopped taking batches:\n%s", f.log.String())
 			}
 		})
+	}
+}
+
+// Progress is called while a run streams, after each line of its output, and
+// not only once it is over: the fake waits for a file after its first events,
+// and Progress makes it.
+func TestRunReportsProgressWhileARunStreams(t *testing.T) {
+	f := newFake(t, 2, 1)
+	seen := filepath.Join(f.root, "seen")
+	t.Setenv("FAKE_TURNS", "2")
+	t.Setenv("FAKE_STOP", seen)
+	t.Setenv("FAKE_WAIT", "3")
+	opt := f.opts()
+	var mu sync.Mutex
+	var rounds []int
+	opt.Progress = func(round int) {
+		mu.Lock()
+		defer mu.Unlock()
+		rounds = append(rounds, round)
+		if err := os.WriteFile(seen, nil, 0o644); err != nil {
+			t.Error(err)
+		}
+	}
+	// Each run waits for a file of its own.
+	opt.Settle = func(int) error { return os.Remove(seen) }
+	if res := mustRun(t, opt); res.Stopped != StopDone || res.Runs != 2 {
+		t.Fatalf("result = %+v, want done after 2 runs", res)
+	}
+	if got := f.recorded("stop"); !slices.Equal(got, []string{"seen", "seen"}) {
+		t.Errorf("the runs saw the file of Progress: %q, want seen twice: Progress was not called while they streamed", got)
+	}
+	// Two assistant events and the result, a run.
+	mu.Lock()
+	defer mu.Unlock()
+	if want := []int{1, 1, 1, 2, 2, 2}; !slices.Equal(rounds, want) {
+		t.Errorf("Progress was called with the rounds %v, want %v: once a line of output", rounds, want)
 	}
 }
 
