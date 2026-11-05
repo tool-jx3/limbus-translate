@@ -1,14 +1,18 @@
-import type { JPENClass, Lang, ReviewTab } from './types'
+import type { JPENClass, Lang, ReviewTab, UpdateKind } from './types'
+import type { UpdateFilter } from './updates/filter'
 
 /**
  * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/s?q=…&lang=…&re=1,
- * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning).
+ * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
+ * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1.
  */
 export type Route =
   | { kind: 'home' }
   | { kind: 'file'; path: string; ptr?: string }
   | { kind: 'search'; q: string; lang: Lang; re: boolean }
   | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
+  | { kind: 'updates' }
+  | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean }
 
 /** How the inconsistent translations are shown: by KR alone, or with each variant's JP and EN. */
 export type ReviewMode = 'kr' | 'jpen'
@@ -19,6 +23,8 @@ const JPEN_CLASSES: readonly string[] = ['explained', 'partial', 'same']
 
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
 const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo']
+const UPDATE_KINDS: readonly string[] = ['new', 'kr-changed', 'deleted', 'zh-changed']
+const UPDATE_TAG = /^zh-TW-\d{8}\.\d+$/
 
 /** decodeURIComponent that keeps the text as it is where the escape is not valid. */
 function decode(s: string): string {
@@ -83,6 +89,13 @@ export function parseHash(hash: string): Route {
       ...(id ? { id } : {}),
     }
   }
+  if (pathname === '/u') return { kind: 'updates' }
+  if (pathname.startsWith('/u/')) {
+    const tag = decode(pathname.slice(3))
+    if (!UPDATE_TAG.test(tag)) return { kind: 'home' }
+    const kinds = (query.get('k') ?? '').split(',').filter((k): k is UpdateKind => UPDATE_KINDS.includes(k))
+    return { kind: 'update', tag, kinds, origin: query.get('o') ?? '', file: query.get('f') ?? '', copy: query.get('copy') === '1' }
+  }
   return { kind: 'home' }
 }
 
@@ -112,4 +125,20 @@ export function reviewHref(
   if (opts.id) pairs.push(['id', opts.id])
   const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
   return `#/r/${tab}${query ? `?${query}` : ''}`
+}
+
+/** The hash of the list of updates. */
+export function updatesHref(): string {
+  return '#/u'
+}
+
+/** The hash of an update, with the filters that are not the default. */
+export function updateHref(tag: string, f: Partial<UpdateFilter> = {}): string {
+  const pairs: [string, string][] = []
+  if (f.kinds && f.kinds.length > 0) pairs.push(['k', f.kinds.join(',')])
+  if (f.origin) pairs.push(['o', encodeURIComponent(f.origin)])
+  if (f.file) pairs.push(['f', encodeURIComponent(f.file)])
+  if (f.copy) pairs.push(['copy', '1'])
+  const query = pairs.map(([k, v]) => `${k}=${v}`).join('&')
+  return `#/u/${encodeURIComponent(tag)}${query ? `?${query}` : ''}`
 }

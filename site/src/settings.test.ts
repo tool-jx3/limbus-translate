@@ -14,6 +14,7 @@ describe('settings', () => {
       rawTags: false,
       scriptMode: 'auto',
       reviewOnly: false,
+      updateView: 'cards',
     })
     expect(loadSettings()).toEqual(defaultSettings())
   })
@@ -37,6 +38,7 @@ describe('settings', () => {
       rawTags: true,
       scriptMode: 'on',
       reviewOnly: true,
+      updateView: 'table',
     }
     saveSettings(s)
     expect(loadSettings()).toEqual(s)
@@ -76,5 +78,21 @@ describe('settings', () => {
     })
     expect(loadSettings()).toEqual(defaultSettings())
     expect(() => saveSettings(defaultSettings())).not.toThrow()
+  })
+})
+
+describe('updateView', () => {
+  it('is cards when nothing is saved', () => {
+    expect(loadSettings().updateView).toBe('cards')
+  })
+
+  it('is kept when saved', () => {
+    saveSettings({ ...defaultSettings(), updateView: 'table' })
+    expect(loadSettings().updateView).toBe('table')
+  })
+
+  it('is cards when what is saved is not a view', () => {
+    localStorage.setItem(KEY, JSON.stringify({ updateView: 'grid' }))
+    expect(loadSettings().updateView).toBe('cards')
   })
 })

@@ -1,4 +1,4 @@
-import type { FileData, Index, Meta, ReviewData, ReviewTab } from './types'
+import type { FileData, Index, Meta, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -103,6 +103,23 @@ export function loadReview<T extends ReviewTab>(tab: T): Promise<ReviewData[T]> 
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc[REVIEW_LIST[tab]])) throw new DataError('format', `${rel}: no ${REVIEW_LIST[tab]}`)
     return doc as unknown as ReviewData[T]
+  })
+}
+
+/** data/updates/index.json: the releases, newest first. */
+export function loadUpdates(): Promise<{ releases: UpdateRelease[] }> {
+  return load('updates/index.json', (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.releases)) throw new DataError('format', 'updates/index.json: no releases')
+    return doc as unknown as { releases: UpdateRelease[] }
+  })
+}
+
+/** data/updates/<tag>.json: what one release changed. */
+export function loadUpdate(tag: string): Promise<UpdateRecord> {
+  const rel = `updates/${encodeURIComponent(tag)}.json`
+  return load(rel, (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.entries)) throw new DataError('format', `${rel}: no entries`)
+    return doc as unknown as UpdateRecord
   })
 }
 

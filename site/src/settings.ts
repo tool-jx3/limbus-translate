@@ -12,11 +12,14 @@ export type Settings = {
   scriptMode: 'auto' | 'on' | 'off'
   /** Show only the units that have a review item (rv). */
   reviewOnly: boolean
+  /** How the changes of an update are shown: as cards, or as a table. */
+  updateView: 'cards' | 'table'
 }
 
 export const LANGS: readonly Lang[] = ['kr', 'jp', 'en', 'zh']
 export const ORIGINS: readonly Origin[] = ['paratranz', 'claude', 'human', 'copy', 'fallback', 'stand-in']
 const SCRIPT_MODES: readonly string[] = ['auto', 'on', 'off']
+const UPDATE_VIEWS: readonly string[] = ['cards', 'table']
 
 const KEY = 'lct-viewer-settings'
 
@@ -27,6 +30,7 @@ export function defaultSettings(): Settings {
     rawTags: false,
     scriptMode: 'auto',
     reviewOnly: false,
+    updateView: 'cards',
   }
 }
 
@@ -63,6 +67,7 @@ export function loadSettings(): Settings {
     rawTags: typeof saved.rawTags === 'boolean' ? saved.rawTags : s.rawTags,
     scriptMode: typeof saved.scriptMode === 'string' && SCRIPT_MODES.includes(saved.scriptMode) ? (saved.scriptMode as Settings['scriptMode']) : s.scriptMode,
     reviewOnly: typeof saved.reviewOnly === 'boolean' ? saved.reviewOnly : s.reviewOnly,
+    updateView: typeof saved.updateView === 'string' && UPDATE_VIEWS.includes(saved.updateView) ? (saved.updateView as Settings['updateView']) : s.updateView,
   }
 }
 

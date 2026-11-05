@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DataError, clearDataCache, loadFile, loadIndex, loadMeta, loadReview } from './data'
+import { DataError, clearDataCache, loadFile, loadIndex, loadMeta, loadReview, loadUpdate, loadUpdates } from './data'
 import { fixture, fixtureFetch } from './testdata'
 import type { FileData, Index, Meta, ReviewData } from './types'
 
@@ -129,5 +129,31 @@ describe('data loading', () => {
     expect(e).toBeInstanceOf(Error)
     expect(e.kind).toBe('format')
     expect(e.name).toBe('DataError')
+  })
+})
+
+describe('update loading', () => {
+  const tag = 'zh-TW-20261105.1'
+  const record = { tag, entries: [] }
+
+  it('reads data/updates/<tag>.json once', async () => {
+    const fetchMock = serve({ [`updates/${tag}.json`]: record })
+    expect(await loadUpdate(tag)).toEqual(record)
+    await loadUpdate(tag)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(fetchMock.mock.calls[0]?.[0]).toBe(`./data/updates/${tag}.json`)
+  })
+
+  it('reads data/updates/index.json', async () => {
+    const fetchMock = serve({ 'updates/index.json': { releases: [] } })
+    expect(await loadUpdates()).toEqual({ releases: [] })
+    expect(fetchMock.mock.calls[0]?.[0]).toBe('./data/updates/index.json')
+  })
+
+  it('rejects documents of another shape, and a missing one', async () => {
+    serve({ 'updates/index.json': { nope: 1 }, [`updates/${tag}.json`]: { entries: 1 } })
+    expect(await kindOf(loadUpdates())).toBe('format')
+    expect(await kindOf(loadUpdate(tag))).toBe('format')
+    expect(await kindOf(loadUpdate('zh-TW-20261106.1'))).toBe('missing')
   })
 })

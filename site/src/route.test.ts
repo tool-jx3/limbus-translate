@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHref, parseHash, reviewHref, searchHref } from './route'
+import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref } from './route'
 
 describe('parseHash', () => {
   it('reads the empty hash and #/ as home', () => {
@@ -130,5 +130,45 @@ describe('review route modes', () => {
     expect(parseHash('#/r/suggestions')).toMatchObject({ mode: 'kr', jpen: '' })
     expect(parseHash('#/r/suggestions?mode=bogus&jpen=bogus')).toMatchObject({ mode: 'kr', jpen: '' })
     expect(reviewHref('suggestions', { mode: 'kr' })).toBe('#/r/suggestions')
+  })
+})
+
+describe('update routes', () => {
+  const tag = 'zh-TW-20261105.1'
+
+  it('reads #/u as the list of updates', () => {
+    expect(parseHash('#/u')).toEqual({ kind: 'updates' })
+    expect(updatesHref()).toBe('#/u')
+  })
+
+  it('reads the filters of an update and writes them back', () => {
+    const hash = `#/u/${tag}?k=new,kr-changed&o=claude&f=Passives.json&copy=1`
+    const route = parseHash(hash)
+    expect(route).toEqual({ kind: 'update', tag, kinds: ['new', 'kr-changed'], origin: 'claude', file: 'Passives.json', copy: true })
+    expect(updateHref(tag, { kinds: ['new', 'kr-changed'], origin: 'claude', file: 'Passives.json', copy: true })).toBe(hash)
+  })
+
+  it('has no filter by default, and writes none', () => {
+    expect(parseHash(`#/u/${tag}`)).toEqual({ kind: 'update', tag, kinds: [], origin: '', file: '', copy: false })
+    expect(updateHref(tag)).toBe(`#/u/${tag}`)
+    expect(updateHref(tag, { kinds: [], origin: '', file: '', copy: false })).toBe(`#/u/${tag}`)
+  })
+
+  it('encodes the values and reads them back', () => {
+    const f = { kinds: ['deleted' as const], origin: '', file: 'StoryData/S 1.json', copy: false }
+    const hash = updateHref(tag, f)
+    expect(hash).toBe(`#/u/${tag}?k=deleted&f=StoryData%2FS%201.json`)
+    expect(parseHash(hash)).toEqual({ kind: 'update', tag, ...f })
+  })
+
+  it('reads a tag that is not one as home', () => {
+    for (const h of ['#/u/..', '#/u/foo', '#/u/zh-TW-2026.1', '#/u/zh-TW-20261105', '#/u/zh-TW-20261105.1/x', '#/u/']) {
+      expect(parseHash(h)).toEqual({ kind: 'home' })
+    }
+  })
+
+  it('drops the kinds it does not know', () => {
+    expect(parseHash(`#/u/${tag}?k=new,bogus,,zh-changed`)).toMatchObject({ kinds: ['new', 'zh-changed'] })
+    expect(parseHash(`#/u/${tag}?k=bogus`)).toMatchObject({ kinds: [] })
   })
 })

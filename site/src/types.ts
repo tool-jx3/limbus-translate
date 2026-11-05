@@ -210,6 +210,66 @@ export interface ReviewData {
   todo: { sections: TodoSection[] }
 }
 
+/** What changed in a unit between two releases. */
+export type UpdateKind = 'new' | 'kr-changed' | 'deleted' | 'zh-changed'
+/** Why a zh-changed unit changed. */
+export type UpdateCause = 'adjustment' | 'late' | 'retranslated'
+
+/** The number of changed units of each kind. */
+export interface UpdateCounts {
+  new: number
+  kr_changed: number
+  deleted: number
+  zh_changed: number
+}
+
+/** One release in data/updates/index.json (newest first). */
+export interface UpdateRelease {
+  tag: string
+  released_at: string
+  prev_tag?: string
+  raw_tag: string
+  prev_raw_tag?: string
+  kind: 'game' | 'rebuild' | 'first'
+  counts: UpdateCounts
+  copy_counts: UpdateCounts
+  other_files: number
+  files: number
+}
+
+/** One changed unit of data/updates/<tag>.json. */
+export interface UpdateEntry {
+  file: string
+  field: string
+  ptr: string
+  old_ptr?: string
+  kind: UpdateKind
+  old_kr?: string
+  new_kr?: string
+  old_zh?: string
+  new_zh?: string
+  old_origin?: string
+  new_origin?: string
+  copy?: boolean
+  cause?: UpdateCause
+}
+
+/** data/updates/<tag>.json: what one release changed. */
+export interface UpdateRecord {
+  tag: string
+  prev_tag: string
+  released_at: string
+  prev_released_at: string
+  raw_tag: string
+  prev_raw_tag: string
+  rules_commit: string
+  prev_rules_commit: string
+  counts: UpdateCounts
+  copy_counts: UpdateCounts
+  other_files: string[]
+  entries: UpdateEntry[]
+}
+
 /** The `lang` attribute of the text of each language, so that the browser picks the right glyphs. */
 export const LANG_ATTR: Record<Lang, string> = {
   kr: 'ko',
