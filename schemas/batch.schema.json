@@ -62,6 +62,11 @@
             "description": "The file patterns the term is written for; absent, it is for every file. A term with files applies only to the units whose file matches one of them, and for those units it takes the place of a term of the same kr without files.",
             "type": "array",
             "items": { "type": "string" }
+          },
+          "not_files": {
+            "description": "The file patterns the term does not apply to, written like files. A unit whose file matches one of them is not held to this term, and gets no rendering from it.",
+            "type": "array",
+            "items": { "type": "string" }
           }
         }
       }

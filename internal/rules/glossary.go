@@ -32,8 +32,7 @@ type Term struct {
 	// means every file.
 	Files []string `yaml:"files" json:"files,omitempty"`
 	// NotFiles are the files the term does not apply to (patterns as Files).
-	// A batch is cut per file, so it does not carry them.
-	NotFiles []string `yaml:"not_files" json:"-"`
+	NotFiles []string `yaml:"not_files" json:"not_files,omitempty"`
 	// Match is MatchWord, or empty for the same, for a term that hits only
 	// where its KR stands as a word (see standsAsWord), and MatchSubstring for
 	// one that hits wherever its KR occurs, inside a longer word too.

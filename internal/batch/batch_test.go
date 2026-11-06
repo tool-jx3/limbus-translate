@@ -4077,3 +4077,40 @@ func TestBatchGlossaryMatch(t *testing.T) {
 		t.Errorf("glossary JSON = %s, want match: substring", data)
 	}
 }
+
+// A merged batch holds units of several files, so an entry that is excluded
+// from one of them carries its not_files, as it carries its files: the
+// translator and the schema see where it does not apply.
+func TestMergedBatchCarriesNotFiles(t *testing.T) {
+	const glossary = "- kr: 위력\n  zh: 威力\n  status: approved\n  not_files: [\"B.json\"]\n"
+	kr := map[string]string{
+		"A.json": oneLine(t, "위력이 강하다"),
+		"B.json": oneLine(t, "위력이 약하다"),
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, glossary)
+	seed(t, env, append(items("A.json", 0, 1), items("B.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(b.Files, []string{"A.json", "B.json"}) {
+		t.Fatalf("batch = %+v, want A.json and B.json", b)
+	}
+	if len(b.Glossary) != 1 || !slices.Equal(b.Glossary[0].NotFiles, []string{"B.json"}) {
+		t.Fatalf("glossary = %+v, want the one term with not_files [B.json]", b.Glossary)
+	}
+	data, err := json.Marshal(b.Glossary)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"not_files":["B.json"]`) {
+		t.Errorf("glossary JSON = %s, want not_files", data)
+	}
+}
+
+// Entries that differ only in not_files are two entries of the batch.
+func TestGlossaryForKeepsEntriesApartByNotFiles(t *testing.T) {
+	r := testRulesWith(t, "- kr: 위력\n  zh: 威力\n  status: approved\n  files: [\"*.json\"]\n  not_files: [\"B.json\"]\n- kr: 위력\n  zh: 威力\n  status: approved\n  files: [\"*.json\"]\n  not_files: [\"A.json\"]\n")
+	got := glossaryFor(r, nil, []unitText{{"A.json", "위력"}, {"B.json", "위력"}})
+	if len(got) != 2 {
+		t.Errorf("glossaryFor = %+v, want both entries", got)
+	}
+}

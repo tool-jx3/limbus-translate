@@ -383,11 +383,11 @@ type unitText struct{ file, kr string }
 // is held to it, and the other way round.
 func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []rules.Term {
 	terms := []rules.Term{}
-	type termKey struct{ kr, zh, files string }
+	type termKey struct{ kr, zh, files, notFiles string }
 	seen := map[termKey]bool{}
 	for _, x := range texts {
 		for _, t := range r.GlossaryHits(x.file, x.kr) {
-			if k := (termKey{t.KR, t.ZH, strings.Join(t.Files, "\x00")}); !seen[k] {
+			if k := (termKey{t.KR, t.ZH, strings.Join(t.Files, "\x00"), strings.Join(t.NotFiles, "\x00")}); !seen[k] {
 				seen[k] = true
 				terms = append(terms, t)
 			}
