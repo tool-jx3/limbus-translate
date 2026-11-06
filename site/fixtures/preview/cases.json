@@ -1,0 +1,47 @@
+[
+  {
+    "path": "StoryData/S001A.json",
+    "index": 5,
+    "batch": "batches/0.json"
+  },
+  {
+    "path": "StoryData/S001A.json",
+    "index": 7,
+    "batch": "batches/1.json"
+  },
+  {
+    "path": "StoryData/S001A.json",
+    "index": 11,
+    "batch": "batches/2.json"
+  },
+  {
+    "path": "StoryData/S001A.json",
+    "index": 9,
+    "batch": "batches/3.json"
+  },
+  {
+    "path": "Other.json",
+    "index": 0,
+    "batch": "batches/4.json"
+  },
+  {
+    "path": "Other.json",
+    "index": 1,
+    "batch": "batches/5.json"
+  },
+  {
+    "path": "Other.json",
+    "index": 2,
+    "batch": "batches/6.json"
+  },
+  {
+    "path": "Other.json",
+    "index": 3,
+    "batch": "batches/7.json"
+  },
+  {
+    "path": "Frozen.json",
+    "index": 0,
+    "batch": "batches/8.json"
+  }
+]

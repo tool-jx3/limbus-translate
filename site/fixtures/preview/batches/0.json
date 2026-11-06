@@ -1,0 +1,77 @@
+{
+  "id": "preview",
+  "family": "story-main",
+  "file": "StoryData/S001A.json",
+  "files": [
+    "StoryData/S001A.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md",
+    "guides/characters/faust.md"
+  ],
+  "glossary": [
+    {
+      "kr": "위력",
+      "zh": "威力",
+      "status": "approved",
+      "forbidden": [
+        "力量"
+      ],
+      "units": [
+        "StoryData/S001A.json|/dataList/2/content"
+      ]
+    },
+    {
+      "kr": "공격",
+      "zh": "攻擊",
+      "status": "approved",
+      "units": [
+        "StoryData/S001A.json|/dataList/2/content"
+      ]
+    }
+  ],
+  "keywords": {},
+  "units": [
+    {
+      "key": "StoryData/S001A.json|/dataList/2/content",
+      "file": "StoryData/S001A.json",
+      "field": "content",
+      "speaker": "faust",
+      "kr": "<color=#f8c200>공격</color> 위력 대사 2",
+      "reason": "kr-changed",
+      "prev_kr": "옛 대사 2",
+      "prev_zh": "舊的第二行",
+      "draft": "<color=#f8c200>攻擊</color> 威力 第二行",
+      "hint": "語氣再正式一點",
+      "en": {
+        "value": "<color=#f8c200>Attack</color> Potency line 2",
+        "method": "pointer"
+      },
+      "jp": {
+        "value": "<color=#f8c200>攻撃</color> 威力 行2",
+        "method": "pointer"
+      },
+      "refs": {
+        "llc": "參考譯文"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [
+          "<color=#f8c200>",
+          "</color>"
+        ],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": [
+    {
+      "key": "StoryData/S001A.json|/dataList/1/content",
+      "speaker": "faust",
+      "kr": "대사 1",
+      "zh": "第一行"
+    }
+  ]
+}

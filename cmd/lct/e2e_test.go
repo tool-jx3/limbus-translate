@@ -145,7 +145,7 @@ func e2eRepo(t *testing.T, terms ...string) string {
 	for _, f := range []string{"lct.yaml", "LICENSE-CONTENT", ".gitignore", "assets/fonts/OFL.txt"} {
 		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
 	}
-	for _, d := range []string{"guides", "glossary", "rules"} {
+	for _, d := range []string{"guides", "glossary", "rules", "prompts"} {
 		copyDir(t, filepath.Join(repoRoot, d), filepath.Join(root, d))
 	}
 	for _, term := range terms {

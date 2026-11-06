@@ -1,0 +1,51 @@
+{
+  "id": "preview",
+  "family": "story-main",
+  "file": "StoryData/S001A.json",
+  "files": [
+    "StoryData/S001A.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md",
+    "guides/characters/sinclair.md"
+  ],
+  "glossary": [],
+  "keywords": {
+    "Bleed": "流血"
+  },
+  "units": [
+    {
+      "key": "StoryData/S001A.json|/dataList/3/content",
+      "file": "StoryData/S001A.json",
+      "field": "content",
+      "speaker": "sinclair",
+      "kr": "[Bleed] 5 부여",
+      "reason": "new",
+      "en": {
+        "value": "Inflict 5 [Bleed]",
+        "method": "pointer"
+      },
+      "jp": {
+        "value": "[Bleed] を5付与",
+        "method": "pointer"
+      },
+      "keep": {
+        "ids": [
+          "[Bleed]"
+        ],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": [
+    {
+      "key": "StoryData/S001A.json|/dataList/4/content",
+      "speaker": "faust",
+      "kr": "위력 대사 4",
+      "zh": "威力 第四行"
+    }
+  ]
+}

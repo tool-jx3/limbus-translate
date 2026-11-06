@@ -35,6 +35,9 @@ type Inputs struct {
 	// Review is what BuildReview needs besides the packs; BuildFile and the
 	// export of the files do not look at it.
 	Review *ReviewInputs
+	// Preview is what Export writes the preview data from (preview.json and
+	// preview/<path>); nil writes none.
+	Preview *PreviewInputs
 }
 
 // Unit is one string of a file in the four languages. JP and EN are nil, and

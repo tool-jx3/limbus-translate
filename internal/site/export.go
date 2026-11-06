@@ -89,6 +89,9 @@ type Result struct {
 	Bytes       int64  `json:"bytes"`
 	// GlossaryBytes is the size of data/glossary/, part of Bytes.
 	GlossaryBytes int64 `json:"glossary_bytes"`
+	// PreviewBytes is the size of data/preview.json and data/preview/, part of
+	// Bytes; 0 without Inputs.Preview.
+	PreviewBytes int64 `json:"preview_bytes"`
 	// Review is Meta.Review. ReviewMismatches are the groups of inconsistent
 	// translations whose units do not add up to the evidence of the suggestion,
 	// and NotesUnplaced the notes that sit on no unit.
@@ -102,7 +105,8 @@ type Result struct {
 // search/{kr,jp,en,zh}.json, and review/{suggestions,warnings,notes,todo}.json
 // and review/scope.json (Review.Scope), empty lists without in.Review, and
 // glossary/index.json with glossary/<a>-<b>.json for each entry of the
-// glossary (writeGlossary). The
+// glossary (writeGlossary), and with in.Preview preview.json and
+// preview/<path> for each file (see PreviewFile). The
 // corpus holds the units of every file in the order of the index, but not the
 // copies (identifiers and texts that are the same in every language). meta supplies what Export cannot know: RawTag,
 // RulesCommit, TWCommit and Release. The output depends on in alone, so the
@@ -143,6 +147,11 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	var keys [][2]any
 	corpus := make([][]string, len(searchLangs)) // by searchLangs
 	total := 0
+	var previewBytes int64
+	var guides *guideTable
+	if in.Preview != nil {
+		guides = &guideTable{texts: in.Preview.Guides, at: map[string]int{}}
+	}
 	for n, p := range paths {
 		file, sum, err := BuildFile(in, p)
 		if err != nil {
@@ -159,6 +168,21 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		}
 		if err := w.writeJSON("files/"+p, file); err != nil {
 			return Result{}, err
+		}
+		if in.Preview != nil {
+			pvs, err := in.Preview.Previewer.File(p)
+			if err != nil {
+				return Result{}, fmt.Errorf("site: preview %s: %w", p, err)
+			}
+			pf, err := buildPreviewFile(in.Rules, file, pvs, guides)
+			if err != nil {
+				return Result{}, err
+			}
+			before := w.bytes
+			if err := w.writeJSON("preview/"+p, pf); err != nil {
+				return Result{}, err
+			}
+			previewBytes += w.bytes - before
 		}
 		idx.Files = append(idx.Files, sum)
 		if last := len(idx.Families) - 1; last >= 0 && idx.Families[last].ID == sum.Family {
@@ -234,6 +258,17 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		return Result{}, err
 	}
 	glossaryBytes := w.bytes - before
+	if in.Preview != nil {
+		shared := PreviewShared{RulesCommit: in.Preview.RulesCommit, Prompt: in.Preview.Prompt, Guides: guides.list}
+		if shared.Guides == nil {
+			shared.Guides = []PreviewGuide{}
+		}
+		before := w.bytes
+		if err := w.writeJSON("preview.json", shared); err != nil {
+			return Result{}, err
+		}
+		previewBytes += w.bytes - before
+	}
 	meta.Review = counts
 	meta.Format = FormatVersion
 	meta.Langs = append([]string(nil), searchLangs...)
@@ -246,7 +281,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		mismatches = []string{}
 	}
 	return Result{
-		Out: outDir, Files: len(paths), Units: total, SearchUnits: len(keys), Bytes: w.bytes, GlossaryBytes: glossaryBytes,
+		Out: outDir, Files: len(paths), Units: total, SearchUnits: len(keys), Bytes: w.bytes, GlossaryBytes: glossaryBytes, PreviewBytes: previewBytes,
 		Review: counts, ReviewMismatches: mismatches, NotesUnplaced: rev.NotesUnplaced,
 	}, nil
 }

@@ -1,0 +1,35 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "Other.json",
+  "files": [
+    "Other.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "units": [
+    {
+      "key": "Other.json|/dataList/2/content",
+      "file": "Other.json",
+      "field": "content",
+      "speaker": "",
+      "kr": "검토 대기",
+      "reason": "structural-fail",
+      "en": {
+        "value": "Awaiting review",
+        "method": "pointer"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

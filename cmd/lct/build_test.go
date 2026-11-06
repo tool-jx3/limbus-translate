@@ -44,6 +44,10 @@ func buildRepo(t *testing.T) string {
 	}
 	writeTestFile(t, root, "assets/fonts/OFL.txt", "OFL text\n")
 	writeTestFile(t, root, "LICENSE-CONTENT", "content license\n")
+	// What lct site reads for the preview: the prompt and the guides.
+	for _, f := range []string{"prompts/translate.md", "guides/base.md", "guides/families.md"} {
+		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
+	}
 	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
 		t.Fatal(err)
 	}

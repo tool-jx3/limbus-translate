@@ -1,0 +1,51 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "Other.json",
+  "files": [
+    "Other.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [
+    {
+      "kr": "위력",
+      "zh": "威力",
+      "status": "approved",
+      "forbidden": [
+        "力量"
+      ],
+      "units": [
+        "Other.json|/dataList/0/content"
+      ]
+    }
+  ],
+  "keywords": {},
+  "units": [
+    {
+      "key": "Other.json|/dataList/0/content",
+      "file": "Other.json",
+      "field": "content",
+      "speaker": "",
+      "kr": "<b>굵게</b> & 위력",
+      "reason": "requeue",
+      "prev_zh": "<b>粗體</b> & 威力",
+      "en": {
+        "value": "<b>Bold</b> & Potency",
+        "method": "pointer"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [
+          "<b>",
+          "</b>"
+        ],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

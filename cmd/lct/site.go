@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
@@ -48,8 +49,8 @@ func init() {
 type siteOutput struct{ site.Result }
 
 func (o siteOutput) String() string {
-	return fmt.Sprintf("wrote %d files (%d units, %d in the search corpus), %.1f MB, to %s",
-		o.Files, o.Units, o.SearchUnits, float64(o.Bytes)/(1<<20), o.Out)
+	return fmt.Sprintf("wrote %d files (%d units, %d in the search corpus), %.1f MB (%.1f MB of it the preview), to %s",
+		o.Files, o.Units, o.SearchUnits, float64(o.Bytes)/(1<<20), float64(o.PreviewBytes)/(1<<20), o.Out)
 }
 
 func runSite(ctx *cli.Context, args []string) error {
@@ -100,7 +101,11 @@ func runSite(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r, Review: &review}, meta, outDir)
+	preview, err := loadPreviewInputs(ctx, "site")
+	if err != nil {
+		return err
+	}
+	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r, Review: &review, Preview: preview}, meta, outDir)
 	if err != nil {
 		return err
 	}
@@ -139,6 +144,51 @@ func runSite(ctx *cli.Context, args []string) error {
 		return err
 	}
 	return ctx.Emit(siteOutput{res})
+}
+
+// previewPromptFile is the translation prompt the preview shows.
+const previewPromptFile = "prompts/translate.md"
+
+// loadPreviewInputs opens what the preview data is made from: the Previewer,
+// on the environment lct batch preview loads (openPreviewEnv), the rules commit
+// of that environment, the translation prompt and every guide under guides/,
+// keyed by their path relative to the repo root with forward slashes, the way
+// the batches name them (rules.Rules.GuidesFor). cmd names the command in the
+// errors.
+func loadPreviewInputs(ctx *cli.Context, cmd string) (*site.PreviewInputs, error) {
+	env, frozen, err := openPreviewEnv(ctx, cmd)
+	if err != nil {
+		return nil, err
+	}
+	previewer, err := batch.NewPreviewer(env, frozen)
+	if err != nil {
+		return nil, err
+	}
+	prompt, err := os.ReadFile(filepath.Join(ctx.Root, filepath.FromSlash(previewPromptFile)))
+	if err != nil {
+		return nil, fmt.Errorf("%s: %w", cmd, err)
+	}
+	guides := map[string]string{}
+	guidesDir := filepath.Join(ctx.Root, "guides")
+	err = filepath.WalkDir(guidesDir, func(p string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() || !strings.HasSuffix(d.Name(), ".md") {
+			return err
+		}
+		rel, err := filepath.Rel(ctx.Root, p)
+		if err != nil {
+			return err
+		}
+		text, err := os.ReadFile(p)
+		if err != nil {
+			return err
+		}
+		guides[filepath.ToSlash(rel)] = string(text)
+		return nil
+	})
+	if err != nil {
+		return nil, fmt.Errorf("%s: %w", cmd, err)
+	}
+	return &site.PreviewInputs{Previewer: previewer, RulesCommit: env.RulesCommit, Prompt: string(prompt), Guides: guides}, nil
 }
 
 // siteSources are the packs and stores the review items and the viewer data are

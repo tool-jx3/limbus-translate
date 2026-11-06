@@ -1,0 +1,53 @@
+{
+  "id": "preview",
+  "family": "story-main",
+  "file": "StoryData/S001A.json",
+  "files": [
+    "StoryData/S001A.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md",
+    "guides/characters/faust.md"
+  ],
+  "glossary": [
+    {
+      "kr": "위력",
+      "zh": "威力",
+      "status": "approved",
+      "forbidden": [
+        "力量"
+      ],
+      "units": [
+        "StoryData/S001A.json|/dataList/4/content"
+      ]
+    }
+  ],
+  "keywords": {},
+  "units": [
+    {
+      "key": "StoryData/S001A.json|/dataList/4/content",
+      "file": "StoryData/S001A.json",
+      "field": "content",
+      "speaker": "faust",
+      "kr": "위력 대사 4",
+      "reason": "requeue",
+      "prev_zh": "威力 第四行",
+      "en": {
+        "value": "Potency line 4",
+        "method": "pointer"
+      },
+      "jp": {
+        "value": "威力 行4",
+        "method": "pointer"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

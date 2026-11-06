@@ -1,0 +1,47 @@
+{
+  "id": "preview",
+  "family": "story-main",
+  "file": "StoryData/S001A.json",
+  "files": [
+    "StoryData/S001A.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md",
+    "guides/characters/faust.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "units": [
+    {
+      "key": "StoryData/S001A.json|/dataList/5/content",
+      "file": "StoryData/S001A.json",
+      "field": "content",
+      "speaker": "faust",
+      "kr": "첫 줄\u2028둘째 줄",
+      "reason": "new",
+      "en": {
+        "value": "First line\nSecond line",
+        "method": "pointer"
+      },
+      "jp": {
+        "value": "一行目\n二行目",
+        "method": "pointer"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": [
+    {
+      "key": "StoryData/S001A.json|/dataList/4/content",
+      "speaker": "faust",
+      "kr": "위력 대사 4",
+      "zh": "威力 第四行"
+    }
+  ]
+}

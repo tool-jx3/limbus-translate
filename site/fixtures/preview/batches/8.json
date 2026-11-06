@@ -1,0 +1,32 @@
+{
+  "id": "preview",
+  "family": "loose",
+  "glossary_check": "warn",
+  "file": "Frozen.json",
+  "files": [
+    "Frozen.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "units": [
+    {
+      "key": "Frozen.json|/dataList/0/content",
+      "file": "Frozen.json",
+      "field": "content",
+      "speaker": "",
+      "kr": "얼린 문장",
+      "reason": "new",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

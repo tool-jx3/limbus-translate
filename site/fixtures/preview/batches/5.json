@@ -1,0 +1,35 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "Other.json",
+  "files": [
+    "Other.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "units": [
+    {
+      "key": "Other.json|/dataList/1/content",
+      "file": "Other.json",
+      "field": "content",
+      "speaker": "",
+      "kr": "새 문장",
+      "reason": "new",
+      "en": {
+        "value": "New sentence",
+        "method": "pointer"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

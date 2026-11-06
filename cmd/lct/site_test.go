@@ -463,3 +463,49 @@ func TestLoadReviewInputsUsesTheRulesItIsGiven(t *testing.T) {
 		t.Errorf("with a glossary entry of 우레: provisional = %+v, want none", in.Provisional)
 	}
 }
+
+// lct site writes the preview data: the shared prompt and guides, keyed by the
+// repo-relative paths the batches name, and a file per file of the pack.
+func TestSiteCommandWritesThePreview(t *testing.T) {
+	root := siteRepo(t)
+	got, err := runSiteJSON(t, root, "--out", "work/site")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var previewBytes, total int64
+	field(t, got, "preview_bytes", &previewBytes)
+	field(t, got, "bytes", &total)
+	if previewBytes <= 0 || previewBytes >= total {
+		t.Errorf("preview_bytes = %d of %d bytes, want some and part of the whole", previewBytes, total)
+	}
+	var shared site.PreviewShared
+	readTestJSON(t, filepath.Join(root, "work", "site", "preview.json"), &shared)
+	if shared.RulesCommit == "" || !strings.Contains(shared.Prompt, "#") {
+		t.Errorf("preview.json = commit %q, prompt %.30q, want both", shared.RulesCommit, shared.Prompt)
+	}
+	paths := map[string]bool{}
+	for _, g := range shared.Guides {
+		paths[g.Path] = g.Text != ""
+	}
+	if !paths["guides/base.md"] {
+		t.Errorf("guides = %v, want guides/base.md with its text", paths)
+	}
+	var idx site.Index
+	readTestJSON(t, filepath.Join(root, "work", "site", "index.json"), &idx)
+	for _, f := range idx.Files {
+		if _, err := os.Stat(filepath.Join(root, "work", "site", "preview", filepath.FromSlash(f.Path))); err != nil {
+			t.Errorf("no preview data for %s: %v", f.Path, err)
+		}
+	}
+}
+
+func readTestJSON(t *testing.T, path string, v any) {
+	t.Helper()
+	b, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(b, v); err != nil {
+		t.Fatalf("%s: %v", path, err)
+	}
+}
