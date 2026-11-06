@@ -100,3 +100,27 @@ func TestExportWritesGlossary(t *testing.T) {
 	}
 	_ = suggest.Confirmed{}
 }
+
+// A used unit has a span in the KR and a rendering in the TW; where either is
+// not found, usedSnippets cuts that side from the start: the first
+// snippetSide characters and …, or the text whole when it is short.
+func TestUsedSnippetsWithoutASpan(t *testing.T) {
+	term := rules.Term{KR: "대상", ZH: "目標", Also: []string{"對象"}}
+	long := strings.Repeat("가", 80)
+	zhLong := strings.Repeat("字", 80)
+	for _, c := range []struct {
+		name, kr, zh, wantKR, wantZH string
+	}{
+		{"neither found, both long", long, zhLong, strings.Repeat("가", snippetSide) + "…", strings.Repeat("字", snippetSide) + "…"},
+		{"neither found, both short", "가나다", "字字字", "가나다", "字字字"},
+		{"only the KR has no span", long, "那個目標在哪", strings.Repeat("가", snippetSide) + "…", "那個目標在哪"},
+		{"only the TW has no rendering", "저 대상은", zhLong, "저 대상은", strings.Repeat("字", snippetSide) + "…"},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			kr, zh := usedSnippets(term, c.kr, c.zh)
+			if kr != c.wantKR || zh != c.wantZH {
+				t.Errorf("usedSnippets = %q, %q; want %q, %q", kr, zh, c.wantKR, c.wantZH)
+			}
+		})
+	}
+}

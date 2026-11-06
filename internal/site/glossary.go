@@ -103,7 +103,8 @@ func usedSnippets(t rules.Term, kr, zh string) (string, string) {
 	if spans := t.Spans(k); len(spans) > 0 {
 		at, size = spans[0][0], spans[0][1]-spans[0][0]
 	}
-	// A used unit always has a span; without one the piece starts at 0.
+	// A used unit has a span, but without one the piece starts at 0 and stays
+	// bounded (TestUsedSnippetsWithoutASpan).
 	zat, zsize := -1, 0
 	for _, r := range append([]string{t.ZH}, t.Also...) {
 		if r == "" {
