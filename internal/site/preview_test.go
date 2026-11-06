@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -21,6 +22,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 // updatePreview rewrites site/fixtures/preview/ from the test pack instead of
@@ -239,6 +241,8 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		rec(story, 4, "威力 第四行", store.OriginClaude),
 		rec(story, 6, "1234", store.OriginCopy),
 		pvRec("Bufs.json", "/dataList/0/name", "출혈", "流血", store.OriginParatranz),
+		// still Hangul: the check does not accept it, and its text is that of the file
+		pvRec("Bufs.json", "/dataList/1/name", "화상", "화상", store.OriginClaude),
 		stale,
 	} {
 		records[r.Key] = r
@@ -334,16 +338,17 @@ func rebuildBatch(t *testing.T, file File, pf PreviewFile, shared PreviewShared,
 	for _, id := range pu.K {
 		b.Keywords[id] = pf.Keywords[id]
 	}
+	ex := expandPreviewUnit(t, file, pf, i)
 	bu := batch.BatchUnit{
 		Key: key, File: file.Path, Field: u.F, Speaker: pu.SP, KR: u.KR,
-		Reason: pu.It.Reason, PrevKR: pu.It.PrevKR, PrevZH: pu.It.PrevZH, Draft: pu.It.Draft, Hint: pu.It.Hint,
-		Refs: pu.It.Refs, Keep: pu.Keep,
+		Reason: pu.It.Reason, PrevKR: pu.It.PrevKR, PrevZH: ex.PrevZH, Draft: pu.It.Draft, Hint: pu.It.Hint,
+		Refs: pu.It.Refs, Keep: ex.Keep,
 	}
-	if pu.EM != "" {
-		bu.EN = &align.LangAligned{Value: *u.EN, Method: align.Method(pu.EM)}
+	if ex.EM != "" {
+		bu.EN = &align.LangAligned{Value: *u.EN, Method: align.Method(ex.EM)}
 	}
-	if pu.JM != "" {
-		bu.JP = &align.LangAligned{Value: *u.JP, Method: align.Method(pu.JM)}
+	if ex.JM != "" {
+		bu.JP = &align.LangAligned{Value: *u.JP, Method: align.Method(ex.JM)}
 	}
 	b.Units = []batch.BatchUnit{bu}
 	for _, c := range pu.C {
@@ -356,6 +361,124 @@ func rebuildBatch(t *testing.T, file File, pf PreviewFile, shared PreviewShared,
 		b.Context = append(b.Context, batch.ContextLine{Key: units.Key(file.Path, cu.P), Speaker: cp.SP, KR: cu.KR, ZH: zh})
 	}
 	return b
+}
+
+// pvExpanded is a unit of preview/<path> with every default put back, the
+// shape the viewer expands the compact format to (site/src/preview/decode.ts).
+type pvExpanded struct {
+	Keep   batch.Constraints
+	PrevZH string
+	EM, JM string // "" for none
+	State  PreviewState
+	Rec    *PreviewRecord // every field set
+	Chk    *PreviewCheck  // every field set
+}
+
+func expandMethod(t *testing.T, c byte) string {
+	t.Helper()
+	switch c {
+	case '-':
+		return ""
+	case 'p':
+		return string(align.MethodPointer)
+	case 'i':
+		return string(align.MethodID)
+	case 's':
+		return string(align.MethodSequence)
+	}
+	t.Fatalf("method character %q", c)
+	return ""
+}
+
+func str(p *string, def string) string {
+	if p == nil {
+		return def
+	}
+	return *p
+}
+
+// expandPreviewUnit puts back what the compact format of unit i leaves out.
+func expandPreviewUnit(t *testing.T, file File, pf PreviewFile, i int) pvExpanded {
+	t.Helper()
+	pu := pf.Units[i]
+	fu := file.Units[i]
+	ex := pvExpanded{PrevZH: pu.It.PrevZH}
+	if pu.PZ == 1 {
+		ex.PrevZH = fu.ZH
+	}
+	ex.Keep = batch.Constraints{IDs: []string{}, Placeholders: []string{}, Tags: []string{}}
+	if pu.Keep != nil {
+		ex.Keep = *pu.Keep
+	}
+	if pu.St != nil {
+		ex.State = *pu.St
+	}
+	if pu.M != "" {
+		if len(pu.M) != 2 {
+			t.Fatalf("m = %q, want two characters", pu.M)
+		}
+		ex.EM, ex.JM = expandMethod(t, pu.M[0]), expandMethod(t, pu.M[1])
+	}
+	if pu.Rec != nil {
+		if pf.RD == nil {
+			t.Fatalf("a record but no rd")
+		}
+		r := *pu.Rec
+		rec := PreviewRecord{
+			Model: r.Model, Batch: r.Batch, Flags: r.Flags, Stale: r.Stale,
+			Origin: ptr(str(r.Origin, pf.RD.Origin)), Rules: ptr(str(r.Rules, pf.RD.Rules)), Since: ptr(str(r.Since, pf.RD.Since)),
+		}
+		ex.Rec = &rec
+		chk := PreviewCheck{Verdict: "accept", ZH: ptr(fu.ZH), Issues: []validate.Issue{}}
+		if pu.Chk != nil {
+			chk.Verdict = pu.Chk.Verdict
+			chk.ZH = ptr(str(pu.Chk.ZH, fu.ZH))
+			if pu.Chk.Issues != nil {
+				chk.Issues = pu.Chk.Issues
+			}
+		}
+		ex.Chk = &chk
+	} else if pu.Chk != nil {
+		t.Fatalf("a check but no record")
+	}
+	return ex
+}
+
+func ptr[T any](v T) *T { return &v }
+
+// checkExpanded compares an expanded unit with what Previewer.Unit says.
+func checkExpanded(t *testing.T, key string, ex pvExpanded, want *batch.UnitPreview) {
+	t.Helper()
+	ws := want.State
+	wantState := PreviewState{Pending: ws.Pending, NeedsReview: ws.NeedsReview, LeasedTo: ws.LeasedTo, Frozen: ws.Frozen, Attempts: ws.Attempts, LastError: ws.LastError}
+	if ex.State != wantState {
+		t.Errorf("%s: state %+v, want %+v", key, ex.State, wantState)
+	}
+	if ex.PrevZH != want.Pending.PrevZH {
+		t.Errorf("%s: prev_zh %q, want %q", key, ex.PrevZH, want.Pending.PrevZH)
+	}
+	if (ex.Rec == nil) != (want.Record == nil) || (ex.Chk == nil) != (want.Check == nil) {
+		t.Fatalf("%s: record %v check %v, want record %v check %v", key, ex.Rec, ex.Chk, want.Record, want.Check)
+	}
+	if r := want.Record; r != nil {
+		got := *ex.Rec
+		if *got.Origin != r.Origin || *got.Rules != r.Rules || *got.Since != r.Since || got.Model != r.Model || got.Batch != r.Batch ||
+			!slices.Equal(got.Flags, r.Flags) {
+			t.Errorf("%s: record %+v, want %+v", key, got, *r)
+		}
+	}
+	if c := want.Check; c != nil {
+		wantIssues := c.Issues
+		if wantIssues == nil {
+			wantIssues = []validate.Issue{}
+		}
+		if ex.Chk.Verdict != c.Verdict || *ex.Chk.ZH != c.ZH || !reflect.DeepEqual(ex.Chk.Issues, wantIssues) {
+			t.Errorf("%s: check %+v, want %+v", key, *ex.Chk, *c)
+		}
+		if ex.Rec.Stale != c.StaleKR {
+			t.Errorf("%s: stale %v, want %v", key, ex.Rec.Stale, c.StaleKR)
+		}
+	}
 }
 
 func TestExportPreviewRoundTrip(t *testing.T) {
@@ -391,6 +514,7 @@ func TestExportPreviewRoundTrip(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
+			checkExpanded(t, key, expandPreviewUnit(t, file, pf, i), want)
 			got := rebuildBatch(t, file, pf, shared, i)
 			if g, w := encodeBatch(t, got), encodeBatch(t, want.Batch); g != w {
 				t.Errorf("%s: rebuilt batch differs\n got: %s\nwant: %s", key, g, w)
@@ -416,6 +540,98 @@ func TestExportPreviewRoundTrip(t *testing.T) {
 	}
 	if checked < 10 {
 		t.Errorf("checked %d units, want the whole test pack", checked)
+	}
+}
+
+// The compact format leaves out what a reader can put back: each of these has to
+// happen somewhere in the test pack, or the test of the decoder proves nothing.
+func TestExportPreviewOmissions(t *testing.T) {
+	w := newPvWorld(t, "Frozen.json")
+	out := t.TempDir()
+	if _, err := Export(w.In, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	seen := map[string]int{}
+	for _, path := range w.In.KR.Files() {
+		var file File
+		var pf PreviewFile
+		readJSON(t, out, "files/"+path, &file)
+		readJSON(t, out, "preview/"+path, &pf)
+		for _, pu := range pf.Units {
+			if pu == nil {
+				continue
+			}
+			note := func(name string, ok bool) {
+				if ok {
+					seen[name]++
+				}
+			}
+			note("keep omitted", pu.Keep == nil)
+			note("keep kept", pu.Keep != nil)
+			note("st omitted", pu.St == nil)
+			note("st kept", pu.St != nil)
+			note("pz", pu.PZ == 1)
+			note("prev_zh kept", pu.It.PrevZH != "")
+			note("chk omitted with a record", pu.Chk == nil && pu.Rec != nil)
+			note("chk kept", pu.Chk != nil)
+			note("chk zh omitted", pu.Chk != nil && pu.Chk.ZH == nil)
+			note("chk zh kept", pu.Chk != nil && pu.Chk.ZH != nil)
+			note("no record", pu.Rec == nil)
+			note("rec origin omitted", pu.Rec != nil && pu.Rec.Origin == nil)
+			note("rec origin kept", pu.Rec != nil && pu.Rec.Origin != nil)
+			note("rec rules omitted", pu.Rec != nil && pu.Rec.Rules == nil)
+			note("rec rules kept", pu.Rec != nil && pu.Rec.Rules != nil)
+			note("rec since omitted", pu.Rec != nil && pu.Rec.Since == nil)
+			note("m omitted", pu.M == "")
+			note("m kept", pu.M != "")
+		}
+		if hasRec := slices.ContainsFunc(pf.Units, func(u *PreviewUnit) bool { return u != nil && u.Rec != nil }); hasRec != (pf.RD != nil) {
+			t.Errorf("%s: rd %v but records %v", path, pf.RD, hasRec)
+		}
+	}
+	for _, name := range []string{
+		"keep omitted", "keep kept", "st omitted", "st kept", "pz", "prev_zh kept", "chk omitted with a record", "chk kept",
+		"chk zh omitted", "no record", "rec origin omitted", "rec rules omitted", "rec rules kept", "rec since omitted", "m omitted", "m kept",
+	} {
+		if seen[name] == 0 {
+			t.Errorf("no unit of the test pack has %q", name)
+		}
+	}
+}
+
+func TestPreviewMostCommon(t *testing.T) {
+	for _, c := range []struct {
+		in   []string
+		want string
+	}{
+		{nil, ""},
+		{[]string{"b", "a", "b"}, "b"},
+		{[]string{"b", "a"}, "a"},
+		{[]string{"", "x", "x", ""}, ""},
+	} {
+		if got := mostCommon(c.in); got != c.want {
+			t.Errorf("mostCommon(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+}
+
+func TestPreviewMethodChars(t *testing.T) {
+	for _, c := range []struct {
+		en, jp *align.LangAligned
+		want   string
+	}{
+		{nil, nil, ""},
+		{&align.LangAligned{Method: align.MethodPointer}, nil, "p-"},
+		{nil, &align.LangAligned{Method: align.MethodID}, "-i"},
+		{&align.LangAligned{Method: align.MethodSequence}, &align.LangAligned{Method: align.MethodPointer}, "sp"},
+	} {
+		got, err := methodChars(c.en, c.jp)
+		if err != nil || got != c.want {
+			t.Errorf("methodChars = %q, %v, want %q", got, err, c.want)
+		}
+	}
+	if _, err := methodChars(&align.LangAligned{Method: "other"}, nil); err == nil {
+		t.Error("an unknown method is no error")
 	}
 }
 

@@ -8,6 +8,7 @@ import { fileHref, termHref, type Route } from '../route'
 import type { BatchJSON, FileData, Origin, PreviewFile, PreviewShared, PreviewUnit, Term } from '../types'
 import { COPY_NOT_SENT } from '../view/PreviewLink'
 import { OriginBadge } from '../view/OriginBadge'
+import { expandPreviewFile } from './decode'
 import { fullText, goJSON, rebuildBatch } from './rebuild'
 import { sha8 } from './sha8'
 
@@ -397,8 +398,8 @@ function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
 export function PreviewView({ route }: { route: PreviewRoute }) {
   const key = `${route.path}\n${route.ptr}`
   const loaded = useLoad(key, async () => {
-    const [file, pf, shared] = await Promise.all([loadFile(route.path), loadPreviewFile(route.path), loadPreviewShared()])
-    return { file, pf, shared }
+    const [file, wire, shared] = await Promise.all([loadFile(route.path), loadPreviewFile(route.path), loadPreviewShared()])
+    return { file, pf: expandPreviewFile(wire, file), shared }
   })
   if (loaded === undefined) return <p role="status">預覽載入中…</p>
   if (loaded.status === 'error') return <Notice error={loaded.error} />

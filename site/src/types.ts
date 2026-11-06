@@ -449,6 +449,9 @@ export const LANG_ATTR: Record<Lang, string> = {
 
 // The translation preview (internal/site/preview.go): data/preview.json and
 // data/preview/<path>. The batch of a unit is rebuilt from them and files/<path>.
+// data/preview/<path> is compact (the *Wire types): what a reader can put back
+// is left out. expandPreviewFile (preview/decode.ts) turns it into PreviewFile,
+// which is what the page and rebuildBatch work on.
 
 /** A guide file of data/preview.json. */
 export interface PreviewGuide {
@@ -596,4 +599,72 @@ export interface BatchJSON {
   keywords: Record<string, string>
   units: BatchUnit[]
   context: ContextLine[]
+}
+
+/** PreviewFile.rd: the values most records of a file have; a record leaves out the fields equal to them. */
+export interface PreviewRecDefaults {
+  origin: string
+  rules: string
+  since: string
+}
+
+/** PreviewState as written: a field at its zero value is left out, and so is st when all are. */
+export interface PreviewStateWire {
+  pending?: boolean
+  needs_review?: boolean
+  leased_to?: string
+  frozen?: boolean
+  attempts?: number
+  last_error?: string
+}
+
+/** PreviewRecord as written: origin, rules and since are left out where they equal PreviewFile.rd. */
+export interface PreviewRecordWire {
+  origin?: string
+  model?: string
+  batch?: string
+  since?: string
+  rules?: string
+  flags?: string[]
+  stale?: boolean
+}
+
+/** PreviewCheck as written; a record whose check accepts its file text with no issue has none. */
+export interface PreviewCheckWire {
+  verdict: string
+  /** Absent where the text checked is the zh of the unit in files/<path>. */
+  zh?: string
+  issues?: unknown[]
+}
+
+/** PreviewUnit as written. */
+export interface PreviewUnitWire {
+  sp: string
+  g: number[]
+  t: number[]
+  k: string[]
+  /** prev_zh is left out where pz is 1. */
+  it: PreviewItem
+  /** 1: the prev_zh is the zh of the unit in files/<path>. */
+  pz?: number
+  /** Methods of the aligned EN and JP strings, one character each: p pointer, i id, s sequence, - none. Absent when neither. */
+  m?: string
+  /** Absent when nothing is to be kept. */
+  keep?: Constraints
+  c: (number | string)[][]
+  st?: PreviewStateWire
+  rec?: PreviewRecordWire
+  chk?: PreviewCheckWire
+  nt?: string
+}
+
+/** data/preview/<path> as written. */
+export interface PreviewFileWire {
+  family: string
+  glossary_check: string
+  terms: Term[]
+  keywords: Record<string, string>
+  /** Present when some unit has a record. */
+  rd?: PreviewRecDefaults
+  units: (PreviewUnitWire | null)[]
 }

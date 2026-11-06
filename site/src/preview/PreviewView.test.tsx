@@ -4,7 +4,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { clearDataCache } from '../data'
 import { fileHref, termHref, type Route } from '../route'
 import { runEffectsAtOnce } from '../testdata'
-import type { BatchJSON, FileData, PreviewFile, PreviewShared } from '../types'
+import type { BatchJSON, FileData, PreviewFileWire, PreviewShared } from '../types'
+import { expandPreviewFile } from './decode'
 import { PreviewView } from './PreviewView'
 import { fullText, rebuildBatch } from './rebuild'
 import { sha8 } from './sha8'
@@ -66,9 +67,9 @@ async function open(path: string, ptr: string): Promise<HTMLElement> {
 }
 
 /** The preview file of `path` with the unit at `index` changed by `edit`. */
-function edit(path: string, index: number, change: (u: NonNullable<PreviewFile['units'][number]>) => void): void {
-  const pf = json<PreviewFile>(`preview/${path}`)
-  change(pf.units[index] as NonNullable<PreviewFile['units'][number]>)
+function edit(path: string, index: number, change: (u: NonNullable<PreviewFileWire['units'][number]>) => void): void {
+  const pf = json<PreviewFileWire>(`preview/${path}`)
+  change(pf.units[index] as NonNullable<PreviewFileWire['units'][number]>)
   docs[`preview/${path}`] = pf
 }
 
@@ -116,7 +117,7 @@ describe('PreviewView: head and composition', () => {
   })
 
   it('does not link a provisional term', async () => {
-    const pf = json<PreviewFile>(`preview/${STORY}`)
+    const pf = json<PreviewFileWire>(`preview/${STORY}`)
     pf.terms[1] = { ...pf.terms[1]!, provisional: true }
     docs[`preview/${STORY}`] = pf
     const el = await open(STORY, ptrOf(STORY, 5))
@@ -231,7 +232,7 @@ describe('PreviewView: state, record and check', () => {
 describe('PreviewView: full text', () => {
   const full = () => {
     const file = json<FileData>(`files/${STORY}`)
-    const pf = json<PreviewFile>(`preview/${STORY}`)
+    const pf = expandPreviewFile(json<PreviewFileWire>(`preview/${STORY}`), file)
     const batch: BatchJSON = rebuildBatch(STORY, file, pf, shared, 5)
     return fullText(shared, batch)
   }

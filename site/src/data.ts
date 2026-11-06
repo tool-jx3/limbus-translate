@@ -1,4 +1,4 @@
-import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, PreviewFile, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -99,12 +99,12 @@ export function loadPreviewShared(): Promise<PreviewShared> {
   })
 }
 
-/** data/preview/<path>: what the batches of the units of a file have in common. */
-export function loadPreviewFile(path: string): Promise<PreviewFile> {
+/** data/preview/<path>, compact as written: what the batches of the units of a file have in common (see expandPreviewFile). */
+export function loadPreviewFile(path: string): Promise<PreviewFileWire> {
   const rel = `preview/${path.split('/').map(encodeURIComponent).join('/')}`
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', `${rel}: no units`)
-    return doc as unknown as PreviewFile
+    return doc as unknown as PreviewFileWire
   })
 }
 

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import type { BatchJSON, FileData, PreviewFile, PreviewShared } from '../types'
+import type { BatchJSON, FileData, PreviewFile, PreviewFileWire, PreviewShared } from '../types'
+import { expandPreviewFile } from './decode'
 import { fullText, goJSON, rebuildBatch } from './rebuild'
 
 // Read as text (?raw), so that the batches are compared byte for byte. The site
@@ -11,6 +12,8 @@ const read = (rel: string): string => {
   return text
 }
 const json = <T>(rel: string): T => JSON.parse(read(rel)) as T
+/** preview/<path> as the page works on it: the compact file with its defaults put back. */
+const expanded = (path: string): PreviewFile => expandPreviewFile(json<PreviewFileWire>(`preview/${path}`), json<FileData>(`files/${path}`))
 
 const shared = json<PreviewShared>('preview.json')
 const cases = json<{ path: string; index: number; batch: string }[]>('cases.json')
@@ -35,13 +38,13 @@ describe('rebuildBatch', () => {
   for (const c of cases) {
     it(`${c.path} #${c.index} is the text of ${c.batch}`, () => {
       const file = json<FileData>(`files/${c.path}`)
-      const pf = json<PreviewFile>(`preview/${c.path}`)
+      const pf = expanded(c.path)
       expect(goJSON(rebuildBatch(c.path, file, pf, shared, c.index))).toBe(read(c.batch))
     })
   }
 
   it('refuses a copy', () => {
-    const c = json<PreviewFile>('preview/StoryData/S001A.json')
+    const c = expanded('StoryData/S001A.json')
     const i = c.units.findIndex((u) => u === null)
     expect(i).toBeGreaterThanOrEqual(0)
     expect(() => rebuildBatch('StoryData/S001A.json', json<FileData>('files/StoryData/S001A.json'), c, shared, i)).toThrow(/has no preview/)
@@ -49,7 +52,7 @@ describe('rebuildBatch', () => {
 
   const base = () => {
     const file = json<FileData>('files/StoryData/S001A.json')
-    const pf = json<PreviewFile>('preview/StoryData/S001A.json')
+    const pf = expanded('StoryData/S001A.json')
     return { file, pf, i: 2 }
   }
   const run = (file: FileData, pf: PreviewFile, i: number) => rebuildBatch('StoryData/S001A.json', file, pf, shared, i)
