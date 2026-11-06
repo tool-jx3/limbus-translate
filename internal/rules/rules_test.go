@@ -2060,3 +2060,30 @@ func TestLintScopeWarningsTokens(t *testing.T) {
 		}
 	}
 }
+
+// Without readable character guides every character: token is an error for
+// Lint, and LintScopeWarnings leaves it alone: no warning, no panic.
+func TestLintScopeWarningsUnreadableCharacters(t *testing.T) {
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "glossary"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	glossary := "- kr: 속도\n  zh: 速度\n  status: approved\n  files: [\"character:heathcliff\"]\n"
+	if err := os.WriteFile(filepath.Join(root, "glossary/terms.yaml"), []byte(glossary), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	files := []string{"Skills_Enemy-mowe.json", "PersonalityVoiceDlg/Voice_Heathcliff_RCorp4_10703.json"}
+	if got := rules.LintScopeWarnings(root, files); len(got) != 0 {
+		t.Errorf("no guides/characters directory: warnings = %v, want none", got)
+	}
+	// A file where the directory should be is unreadable as one too.
+	if err := os.MkdirAll(filepath.Join(root, "guides"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(root, "guides/characters"), []byte("x"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if got := rules.LintScopeWarnings(root, files); len(got) != 0 {
+		t.Errorf("unreadable guides/characters: warnings = %v, want none", got)
+	}
+}
