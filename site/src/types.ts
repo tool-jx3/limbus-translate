@@ -27,6 +27,8 @@ export interface ReviewCounts {
   warnings: number
   notes: number
   todo: number
+  /** The scope proposals nobody declined. */
+  scope: number
 }
 
 /** A family of files in data/index.json: files are positions in Index.files. */
@@ -221,7 +223,7 @@ export interface TodoSection {
 }
 
 /** The pages of the review. */
-export type ReviewTab = 'suggestions' | 'warnings' | 'notes' | 'todo'
+export type ReviewTab = 'suggestions' | 'warnings' | 'notes' | 'todo' | 'scope'
 
 /** The documents of data/review/, by page. */
 export interface ReviewData {
@@ -229,6 +231,81 @@ export interface ReviewData {
   warnings: { items: WarningItem[] }
   notes: { items: NoteItem[] }
   todo: { sections: TodoSection[] }
+  scope: ScopeReport
+}
+
+/** The limits the scope proposals are made by (review/scope.json, internal/scope). */
+export interface ScopeThresholds {
+  min_n: number
+  used: number
+  not_used: number
+  explained: number
+  lost_units: number
+  lost_share: number
+}
+
+/** The units an entry hits in one family ("family:<id>"), one directory group ("StoryData/**") or the rest ("rest"). */
+export interface ScopeGroup {
+  name: string
+  kind: 'family' | 'dir'
+  n: number
+  used: number
+}
+
+export interface ScopeCount {
+  n: number
+  used: number
+}
+
+/** One approved glossary entry and its counts. */
+export interface ScopeEntry {
+  id: string
+  kr: string
+  zh: string
+  also: string[]
+  files: string[]
+  not_files: string[]
+  match: string
+  notes: string
+  groups: ScopeGroup[]
+  compound: ScopeCount
+  explained: number
+  unexplained: number
+}
+
+export type ScopeKind = 'not-files' | 'files' | 'substring' | 'word' | 'mixed' | 'explained'
+
+export interface ScopeExample {
+  key: string
+  group: string
+  kr: string
+  zh: string
+}
+
+/** One change of an entry, or one entry a person should look at. */
+export interface ScopeProposal {
+  id: string
+  kind: ScopeKind
+  kr: string
+  zh: string
+  patterns: string[]
+  /** 'substring' or 'word' on those two kinds, '' on the others. */
+  match: string
+  mixed_groups: string[]
+  warn_removed: number
+  warn_added: number
+  used_lost: number
+  used_gained: number
+  flagged: boolean
+  examples: ScopeExample[]
+  declined?: Confirmed
+}
+
+/** review/scope.json. */
+export interface ScopeReport {
+  thresholds: ScopeThresholds
+  entries: ScopeEntry[]
+  proposals: ScopeProposal[]
 }
 
 /** What changed in a unit between two releases. */

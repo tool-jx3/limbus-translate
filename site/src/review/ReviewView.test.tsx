@@ -47,12 +47,12 @@ async function mount(r: ReviewRoute, settings: Settings = defaultSettings()): Pr
 const cards = (el: HTMLElement) => el.querySelectorAll('article.rv-card')
 
 describe('ReviewView', () => {
-  it('shows the instructions and the unconfirmed count on each of the four tabs', async () => {
+  it('shows the instructions and the unconfirmed count on each of the five tabs', async () => {
     const el = await mount(route('suggestions'))
     expect(el.textContent).toContain('按「複製 ID」，貼到對話中再加上你的決定；Claude 會改規則或把項目記為確認過，下次建置後這頁就跟著更新。')
     const tabs = [...el.querySelectorAll<HTMLAnchorElement>('[role=tab]')]
-    expect(tabs.map((t) => t.textContent)).toEqual(['規則建議3', '檢查警告1', '譯者註記1', '待辦清單1'])
-    expect(tabs.map((t) => t.getAttribute('href'))).toEqual(['#/r/suggestions', '#/r/warnings', '#/r/notes', '#/r/todo'])
+    expect(tabs.map((t) => t.textContent)).toEqual(['規則建議3', '檢查警告1', '譯者註記1', '待辦清單1', '詞彙範圍6'])
+    expect(tabs.map((t) => t.getAttribute('href'))).toEqual(['#/r/suggestions', '#/r/warnings', '#/r/notes', '#/r/todo', '#/r/scope'])
     expect(tabs[0]?.getAttribute('aria-selected')).toBe('true')
   })
 

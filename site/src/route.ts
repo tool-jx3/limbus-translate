@@ -22,7 +22,7 @@ export type JPENFilter = '' | JPENClass
 const JPEN_CLASSES: readonly string[] = ['explained', 'partial', 'same']
 
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
-const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo']
+const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo', 'scope']
 const UPDATE_KINDS: readonly string[] = ['new', 'kr-changed', 'deleted', 'zh-changed']
 const UPDATE_TAG = /^zh-TW-\d{8}\.\d+$/
 

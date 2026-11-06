@@ -3,11 +3,12 @@ import { Notice } from '../app/Notice'
 import { DataError, loadReview } from '../data'
 import { reviewHref, type Route } from '../route'
 import type { Settings } from '../settings'
-import type { Index, Meta, NoteItem, ReviewData, ReviewTab, SuggestionItem, WarningItem } from '../types'
+import type { Index, Meta, NoteItem, ReviewData, ReviewTab, ScopeReport, SuggestionItem, WarningItem } from '../types'
 import { filterNotes, filterSuggestions, filterWarnings, jpenCounts, sortSuggestions, type ReviewFilter } from './filter'
 import { warningInfo } from './names'
 import { NoteCard } from './NoteCard'
 import { ShownText } from './parts'
+import { filterProposals, ScopeBody } from './ScopeView'
 import { SuggestionCard } from './SuggestionCard'
 import { TodoView } from './TodoView'
 import { WarningCard } from './WarningCard'
@@ -20,6 +21,7 @@ const TABS: { tab: ReviewTab; name: string }[] = [
   { tab: 'warnings', name: '檢查警告' },
   { tab: 'notes', name: '譯者註記' },
   { tab: 'todo', name: '待辦清單' },
+  { tab: 'scope', name: '詞彙範圍' },
 ]
 const QUICK = ['新詞', '諧音', '俗語', '沿用', '標籤']
 
@@ -140,11 +142,12 @@ interface ToolsProps {
   kindLabel?: string
   sort?: { value: 'units' | 'variants'; onChange: (v: 'units' | 'variants') => void }
   quick?: boolean
+  placeholder?: string
   /** The 只看 KR／連同 JP/EN switch, and in the JP/EN view the class filter with its counts. */
   jpen?: Record<'explained' | 'partial' | 'same', number>
 }
 
-function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quick, jpen }: ToolsProps) {
+function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quick, jpen, placeholder = '篩選 ID、檔名、KR、TW、註記' }: ToolsProps) {
   return (
     <div class="rv-tools">
       {jpen && (
@@ -185,7 +188,7 @@ function Tools({ route, count, confirmed, families, kinds, kindLabel, sort, quic
       <input
         type="search"
         name="q"
-        placeholder="篩選 ID、檔名、KR、TW、註記"
+        placeholder={placeholder}
         aria-label="篩選文字"
         value={route.q}
         onInput={(e) => go(route, { q: e.currentTarget.value }, true)}
@@ -293,6 +296,17 @@ function Notes({ route, items }: { route: ReviewRoute; items: NoteItem[] }) {
   )
 }
 
+function Scope({ route, report }: { route: ReviewRoute; report: ScopeReport }) {
+  const filter = { q: route.q, all: route.all, id: route.id }
+  const count = filterProposals(report.proposals, filter).length
+  return (
+    <>
+      <Tools route={route} count={count} confirmed={report.proposals.filter((p) => p.declined).length} families={[]} placeholder="篩選建議的 ID、KR、譯名、樣式" />
+      <ScopeBody report={report} filter={filter} />
+    </>
+  )
+}
+
 export interface ReviewViewProps {
   route: ReviewRoute
   index: Index
@@ -324,6 +338,7 @@ export function ReviewView({ route, meta, settings }: ReviewViewProps) {
         {loaded?.status === 'ready' && route.tab === 'suggestions' && <Suggestions route={route} items={(loaded.data as ReviewData['suggestions']).items} />}
         {loaded?.status === 'ready' && route.tab === 'warnings' && <Warnings route={route} items={(loaded.data as ReviewData['warnings']).items} />}
         {loaded?.status === 'ready' && route.tab === 'notes' && <Notes route={route} items={(loaded.data as ReviewData['notes']).items} />}
+        {loaded?.status === 'ready' && route.tab === 'scope' && <Scope route={route} report={loaded.data as ReviewData['scope']} />}
         {loaded?.status === 'ready' && route.tab === 'todo' && (
           <div class="rv-body">
             <TodoView sections={(loaded.data as ReviewData['todo']).sections} />

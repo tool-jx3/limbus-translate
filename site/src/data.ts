@@ -95,6 +95,7 @@ const REVIEW_LIST: Record<ReviewTab, string> = {
   warnings: 'items',
   notes: 'items',
   todo: 'sections',
+  scope: 'proposals',
 }
 
 /** A page of data/review/: the items of one tab. */

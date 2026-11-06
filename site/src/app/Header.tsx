@@ -42,7 +42,7 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
     if (route.kind === 'search') setQ(route.q)
   }, [route])
 
-  const open = review ? review.suggestions + review.warnings + review.notes + review.todo : 0
+  const open = review ? review.suggestions + review.warnings + review.notes + review.todo + review.scope : 0
 
   function search(e: Event) {
     e.preventDefault()

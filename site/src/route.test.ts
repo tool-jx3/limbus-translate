@@ -107,6 +107,12 @@ describe('review route', () => {
     expect(parseHash('#/r/todo?all=1')).toEqual({ kind: 'review', tab: 'todo', family: '', sub: '', q: '', all: true, mode: 'kr', jpen: '' })
   })
 
+  it('reads #/r/scope as the scope tab', () => {
+    expect(parseHash('#/r/scope')).toEqual({ kind: 'review', tab: 'scope', family: '', sub: '', q: '', all: false, mode: 'kr', jpen: '' })
+    expect(parseHash(reviewHref('scope', { all: true, q: '대상' }))).toMatchObject({ tab: 'scope', all: true, q: '대상' })
+    expect(reviewHref('scope')).toBe('#/r/scope')
+  })
+
   it('reads an unknown tab as home', () => {
     expect(parseHash('#/r/bogus')).toEqual({ kind: 'home' })
     expect(parseHash('#/review')).toEqual({ kind: 'home' })

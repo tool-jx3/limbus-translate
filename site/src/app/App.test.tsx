@@ -72,8 +72,8 @@ describe('App', () => {
   it('header shows the review count', async () => {
     const el = mount()
     await loaded(el)
-    const { suggestions, warnings, notes, todo } = fixture<Meta>('meta.json').review
-    const total = suggestions + warnings + notes + todo
+    const { suggestions, warnings, notes, todo, scope } = fixture<Meta>('meta.json').review
+    const total = suggestions + warnings + notes + todo + scope
     expect(total).toBeGreaterThan(0)
     const link = el.querySelector<HTMLAnchorElement>('.top a.review-link')
     expect(link?.getAttribute('href')).toBe('#/r/suggestions')
@@ -145,7 +145,7 @@ describe('App', () => {
 
   it('shows no number beside the review link when nothing is left to review', async () => {
     const meta = fixture<Meta>('meta.json')
-    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'meta.json': { ...meta, review: { suggestions: 0, warnings: 0, notes: 0, todo: 0 } } })))
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'meta.json': { ...meta, review: { suggestions: 0, warnings: 0, notes: 0, todo: 0, scope: 0 } } })))
     const el = mount()
     await loaded(el)
     expect(el.querySelector('.top a.review-link')?.textContent).toBe('審核')

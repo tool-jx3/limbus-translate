@@ -2,7 +2,7 @@
 // and are what the tests of the viewer read. This keeps them true to types.ts
 // and to themselves: the index, the files and the search corpus agree.
 import { describe, expect, it } from 'vitest'
-import type { FileData, Index, Meta, NoteItem, Origin, SuggestionItem, TodoSection, Unit, WarningItem } from './types'
+import type { FileData, Index, Meta, NoteItem, Origin, ScopeProposal, SuggestionItem, TodoSection, Unit, WarningItem } from './types'
 
 const modules = import.meta.glob('../fixtures/data/**/*.json', { eager: true, import: 'default' })
 const at = (rel: string): unknown => modules[`../fixtures/data/${rel}`]
@@ -19,13 +19,14 @@ const suggestions = (at('review/suggestions.json') as { items: SuggestionItem[] 
 const warnings = (at('review/warnings.json') as { items: WarningItem[] }).items
 const notes = (at('review/notes.json') as { items: NoteItem[] }).items
 const todo = (at('review/todo.json') as { sections: TodoSection[] }).sections
+const scope = (at('review/scope.json') as { proposals: ScopeProposal[] }).proposals
 
 const ORIGINS: Origin[] = ['paratranz', 'claude', 'human', 'copy', 'fallback', 'stand-in']
 
 describe('fixtures', () => {
   it('has the keys of the Go types, and no others', () => {
     expect(Object.keys(meta)).toEqual(['format', 'raw_tag', 'rules_commit', 'tw_commit', 'release', 'langs', 'files', 'units', 'review'])
-    expect(Object.keys(meta.review)).toEqual(['suggestions', 'warnings', 'notes', 'todo'])
+    expect(Object.keys(meta.review)).toEqual(['suggestions', 'warnings', 'notes', 'todo', 'scope'])
     expect(Object.keys(index)).toEqual(['families', 'files'])
     for (const fam of index.families) expect(Object.keys(fam)).toEqual(['id', 'files'])
     for (const f of index.files) {
@@ -156,6 +157,7 @@ describe('review fixtures', () => {
       warnings: warnings.filter((w) => !w.accepted).length,
       notes: notes.filter((n) => !n.declined).length,
       todo: todo.reduce((n, sec) => n + sec.items.length, 0),
+      scope: scope.filter((p) => !p.declined).length,
     })
   })
 

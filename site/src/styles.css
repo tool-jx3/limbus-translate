@@ -2182,3 +2182,217 @@ button.chip {
 .rv-use.is-unused {
   font-weight: 600;
 }
+
+/* Review: the 詞彙範圍 tab. */
+.sc-section,
+.sc-all {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+  margin-top: 0.6rem;
+}
+
+.sc-section h2,
+.sc-all h2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.7rem;
+  align-items: baseline;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.sc-desc {
+  margin: 0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.sc-section > .rv-empty {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--muted);
+}
+
+.sc-title {
+  margin: 0;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.sc-patterns,
+.sc-line,
+.sc-effect {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.sc-patterns code {
+  margin-inline-end: 0.4rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 4px;
+  background: var(--raw-bg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.sc-effect {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-flag {
+  padding: 0 0.55em;
+  border-radius: 999px;
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.sc-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.sc-table {
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-table th,
+.sc-table td {
+  padding: 0.25rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.sc-table thead th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.sc-table tbody th {
+  font-weight: 400;
+  font-family: var(--font-mono);
+}
+
+.sc-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sc-meter {
+  display: inline-block;
+  width: 5rem;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--raw-bg);
+  overflow: hidden;
+}
+
+.sc-meter i {
+  display: block;
+  height: 100%;
+  background: var(--bar-top);
+}
+
+.sc-class {
+  padding: 0 0.5em;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.sc-class-used {
+  background: var(--o-human-bg);
+  color: var(--o-human-fg);
+}
+
+.sc-class-unused {
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+}
+
+.sc-class-mixed {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+
+.sc-class-few,
+.sc-class-mid {
+  background: var(--o-copy-bg);
+  color: var(--o-copy-fg);
+}
+
+.sc-examples summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.sc-examples ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.sc-examples li {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.sc-entries {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.sc-entry {
+  min-width: 0;
+  padding: 0.5rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.sc-entry summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+  cursor: pointer;
+}
+
+.sc-entry-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.sc-entry-total {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.8rem;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.sc-entry-body {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  min-width: 0;
+}
