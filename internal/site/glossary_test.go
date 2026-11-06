@@ -26,7 +26,7 @@ func TestGlossaryFiles(t *testing.T) {
 	rep.Entries = []scope.Entry{{ID: id, KR: "대상", ZH: "目標"}}
 	rep.Units[id] = []scope.EntryUnit{
 		{Key: "Skills.json#/a", File: "Skills.json", KR: "대상을 <b>쓴다</b>", ZH: "使用<b>對象</b>", Origin: "claude", Note: "n1", Used: false},
-		{Key: "StoryData/S1.json#/b", File: "StoryData/S1.json", KR: krPad + "대상" + krPad, ZH: pad + "目標" + pad, Origin: "paratranz", Used: true},
+		{Key: "StoryData/S1.json#/b", File: "StoryData/S1.json", KR: krPad + " 대상 " + krPad, ZH: pad + "目標" + pad, Origin: "paratranz", Used: true},
 		{Key: "Skills.json#/c", File: "Skills.json", KR: "대상" + long, ZH: long, Origin: "human"},
 		{Key: "Skills.json#/d", File: "Skills.json", KR: "대상", ZH: "好", Origin: "claude", Used: true},
 	}
@@ -59,7 +59,7 @@ func TestGlossaryFiles(t *testing.T) {
 	if u.ID != "" || u.Accepted != nil || u.Family != "story" || u.Top != "StoryData/" || u.Sub != "StoryData/S" {
 		t.Errorf("used[0] = %+v", u)
 	}
-	if want := "…" + strings.Repeat("가", 30) + "대상" + strings.Repeat("가", 30) + "…"; u.KR != want {
+	if want := "…" + strings.Repeat("가", 29) + " 대상 " + strings.Repeat("가", 29) + "…"; u.KR != want {
 		t.Errorf("used kr = %q, want %q", u.KR, want)
 	}
 	if want := "…" + strings.Repeat("甲", 30) + "目標" + strings.Repeat("甲", 30) + "…"; u.ZH != want {

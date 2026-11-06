@@ -546,56 +546,68 @@ func withoutUnits(r scope.Report) scope.Report {
 }
 
 func TestIndexGroups(t *testing.T) {
-	r := &rules.Rules{}
-	var sums []FileSummary
-	for _, p := range []string{
+	code := "07"
+	r := &rules.Rules{Characters: []rules.Character{{ID: "faust", Name: "浮士德", Code: &code}}}
+	build := func(paths ...string) []IndexGroup {
+		var sums []FileSummary
+		for _, p := range paths {
+			n := rules.FileNode(p)
+			s := FileSummary{Path: p, Top: n.Top, Sub: n.Sub}
+			if tag, ok := r.FileTag(p); ok {
+				s.Tag = &tag
+			}
+			sums = append(sums, s)
+		}
+		return buildGroups(sums)
+	}
+	got := build(
 		"StoryData/S1037B.json", "StoryData/S937A.json", "StoryData/P10702.json",
 		"Skills_Enemy-a.json", "Skills_Enemy-b.json", "Bufs-walpu7.json",
-	} {
-		n := rules.FileNode(p)
-		s := FileSummary{Path: p, Top: n.Top, Sub: n.Sub}
-		if tag, ok := r.FileTag(p); ok {
-			s.Tag = &tag
-		}
-		sums = append(sums, s)
-	}
-	got := buildGroups(sums)
+	)
 	if len(got) != 3 {
 		t.Fatalf("groups = %+v", got)
 	}
-	// By number of files, most first; ties by name.
+	// By number of files, most first.
 	if got[0].Node != "StoryData/" || got[1].Node != "Skills" || got[2].Node != "Bufs" {
 		t.Fatalf("top order = %s %s %s", got[0].Node, got[1].Node, got[2].Node)
 	}
+	// S has two files and P one: P folds into the top, which leaves one sub,
+	// so S is not shown either and the third level hangs under the top.
 	story := got[0]
-	if story.Kind != "top" || story.Label != "StoryData/" || !reflect.DeepEqual(story.Files, []int{2}) {
-		t.Errorf("story = %+v, want the single-file sub P folded into the top", story)
+	if story.Kind != "top" || story.Label != "StoryData/" || len(story.Files) != 0 || len(story.Children) != 3 {
+		t.Fatalf("story = %+v", story)
 	}
-	if len(story.Children) != 1 || story.Children[0].Kind != "sub" || story.Children[0].Node != "StoryData/S" {
-		t.Fatalf("story children = %+v", story.Children)
-	}
-	s := story.Children[0]
-	if len(s.Files) != 0 || len(s.Children) != 2 {
-		t.Fatalf("sub S = %+v", s)
-	}
-	c0, c1 := s.Children[0], s.Children[1]
+	c0, c1, c2 := story.Children[0], story.Children[1], story.Children[2]
 	if c0.Kind != "chapter" || c0.Node != "9" || c0.Label != "第 9 章" || !reflect.DeepEqual(c0.Files, []int{1}) {
 		t.Errorf("chapter 9 = %+v", c0)
 	}
 	if c1.Kind != "chapter" || c1.Node != "10" || c1.Label != "第 10 章" || !reflect.DeepEqual(c1.Files, []int{0}) {
 		t.Errorf("chapter 10 = %+v, a one-file third level is shown", c1)
 	}
+	if c2.Kind != "character" || c2.Node != "faust" || c2.Label != "浮士德" || !reflect.DeepEqual(c2.Files, []int{2}) {
+		t.Errorf("character = %+v", c2)
+	}
 	if c0.Children == nil || len(c0.Children) != 0 {
 		t.Errorf("leaf children = %#v, want []", c0.Children)
 	}
+	// Skills_Enemy is the only sub: not shown; the events a and b are.
 	sk := got[1]
-	// Skills_Enemy is the only sub, so it is not shown; the files carry the
-	// events a and b, which the third level shows.
 	if len(sk.Children) != 2 || sk.Children[0].Kind != "event" || sk.Children[1].Kind != "event" || len(sk.Files) != 0 {
-		t.Errorf("Skills = %+v, want its one sub folded away", sk)
+		t.Errorf("Skills = %+v", sk)
 	}
 	if b := got[2]; len(b.Files) != 0 || len(b.Children) != 1 || b.Children[0].Kind != "event" || b.Children[0].Node != "walpu7" || !reflect.DeepEqual(b.Children[0].Files, []int{5}) {
 		t.Errorf("Bufs = %+v", b)
+	}
+
+	// Two subs of two files each: both show, and a file without a tag stays
+	// in its sub.
+	two := build("Ui_A1.json", "Ui_A2.json", "Ui_B1.json", "Ui_B2.json", "Ui_B3.json")
+	if len(two) != 1 || len(two[0].Files) != 0 || len(two[0].Children) != 2 {
+		t.Fatalf("two subs = %+v", two)
+	}
+	if b, a := two[0].Children[0], two[0].Children[1]; b.Kind != "sub" || b.Node != "Ui_B" || !reflect.DeepEqual(b.Files, []int{2, 3, 4}) ||
+		a.Kind != "sub" || a.Node != "Ui_A" || !reflect.DeepEqual(a.Files, []int{0, 1}) {
+		t.Errorf("subs = %+v", two[0].Children)
 	}
 }
 

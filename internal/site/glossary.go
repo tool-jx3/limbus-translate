@@ -91,7 +91,8 @@ func clip(s string) string {
 	if len([]rune(s)) <= missingMax {
 		return s
 	}
-	return string([]rune(validate.MatchText(s))[:min(missingMax, len([]rune(validate.MatchText(s))))]) + "…"
+	m := []rune(validate.MatchText(s))
+	return string(m[:min(missingMax, len(m))]) + "…"
 }
 
 // usedSnippets cuts the KR around the first hit of the term and the TW around
@@ -101,9 +102,8 @@ func usedSnippets(t rules.Term, kr, zh string) (string, string) {
 	at, size := 0, 0
 	if spans := t.Spans(k); len(spans) > 0 {
 		at, size = spans[0][0], spans[0][1]-spans[0][0]
-	} else if i := strings.Index(k, t.KR); i >= 0 && t.KR != "" {
-		at, size = i, len(t.KR)
 	}
+	// A used unit always has a span; without one the piece starts at 0.
 	zat, zsize := -1, 0
 	for _, r := range append([]string{t.ZH}, t.Also...) {
 		if r == "" {

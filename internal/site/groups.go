@@ -23,7 +23,8 @@ type IndexGroup struct {
 // buildGroups builds the display tree of sums (in the order of Index.Files):
 //   - tops and subs go by their number of files, most first, then by name;
 //   - a sub with one file is not shown, its file is listed in the top; a top
-//     that has one sub at most shows none, its files are listed in the top;
+//     with at most one sub of two files or more left shows none, all its
+//     files are listed in the top;
 //   - under a sub (or the top, where no sub is shown) the files with a tag go
 //     into a group of the tag, one group even for one file; when no file of the
 //     level has a tag, none is shown. Files without a tag stay in the level.
@@ -62,11 +63,6 @@ func buildGroups(sums []FileSummary) []IndexGroup {
 	for _, name := range order {
 		t := tops[name]
 		g := IndexGroup{Kind: "top", Node: name, Label: name, Files: []int{}, Children: []IndexGroup{}}
-		if len(t.order) <= 1 {
-			g.Files, g.Children = level(sums, t.all)
-			out = append(out, g)
-			continue
-		}
 		rest := slices.Clone(t.bare)
 		var shown []string
 		for _, sub := range t.order {
@@ -75,6 +71,13 @@ func buildGroups(sums []FileSummary) []IndexGroup {
 			} else {
 				shown = append(shown, sub)
 			}
+		}
+		if len(shown) <= 1 {
+			// At most one sub is left after the single-file ones fold: none
+			// is shown, and the third level hangs under the top.
+			g.Files, g.Children = level(sums, t.all)
+			out = append(out, g)
+			continue
 		}
 		slices.Sort(rest)
 		g.Files, g.Children = level(sums, rest)
