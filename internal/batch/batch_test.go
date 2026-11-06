@@ -4253,6 +4253,10 @@ func TestTermsInIgnoresAProvisionalTermAbsentFromTheKR(t *testing.T) {
 		{KR: "\ufffd", ZH: "替", Match: rules.MatchSubstring},
 		{KR: "", ZH: "空"},
 		{KR: "<br>", ZH: "換行", Match: rules.MatchSubstring},
+		{KR: " 우레", ZH: "雷鳴", Match: rules.MatchWord},
+		{KR: " 우레", ZH: "雷鳴二", Match: rules.MatchSubstring},
+		{KR: "우레", ZH: "雷", Match: rules.MatchWord},
+		{KR: "우레", ZH: "雷二", Match: rules.MatchSubstring},
 	}
 	scan := func(file, kr string) []rules.Term {
 		terms := r.GlossaryHits(file, kr)
@@ -4269,7 +4273,7 @@ func TestTermsInIgnoresAProvisionalTermAbsentFromTheKR(t *testing.T) {
 		}
 		return rules.DropCovered(plain, terms)
 	}
-	for _, kr := range []string{"", "보스", "조직의 보스가 왔다", "조직이 보스를 불렀다", "xabx", "\xff\xfe\xff", "a\xffb", "x\ufffdy", "줄<br>바꿈", "あいう"} {
+	for _, kr := range []string{"", "보스", "조직의 보스가 왔다", "조직이 보스를 불렀다", "xabx", "\xff\xfe\xff", "a\xffb", "x\ufffdy", "줄<br>바꿈", "あいう", "큰 우레가 쳤다", "우레탄을 발랐다", "우레 우레탄", " 우레", "우레"} {
 		got, want := TermsIn(r, many, "Other.json", kr), scan("Other.json", kr)
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("TermsIn(%q) = %+v, want %+v", kr, got, want)
