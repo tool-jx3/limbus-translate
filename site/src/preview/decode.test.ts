@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { FileData, PreviewFile, PreviewFileWire, PreviewUnitWire } from '../types'
+import type { FileData, PreviewFileWire, PreviewShared, PreviewUnitWire } from '../types'
 import { DataError } from '../data'
 import { expandPreviewFile } from './decode'
 
@@ -158,7 +158,17 @@ describe('expandPreviewFile against the golden files of Go', () => {
   for (const path of expandedPaths) {
     it(`${path} expands to the golden file`, () => {
       const got = expandPreviewFile(fixture<PreviewFileWire>(`preview/${path}`), fixture<FileData>(`files/${path}`))
-      expect(got).toEqual(fixture<PreviewFile>(`expanded/${path}`))
+      // The golden file names what the compact one numbers: the guides by path and the
+      // glossary entries by content, as the batches of the Previewer have them.
+      const guides = fixture<PreviewShared>('preview.json').guides
+      const { terms, ...rest } = got
+      const named = {
+        ...rest,
+        units: got.units.map((u) =>
+          u && { ...u, g: u.g.map((n) => guides[n]?.path), t: u.t.map((n) => terms[n]) },
+        ),
+      }
+      expect(named).toEqual(fixture<unknown>(`expanded/${path}`))
     })
   }
 })

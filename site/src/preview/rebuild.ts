@@ -4,8 +4,12 @@
 // byte for byte; the contract test reads site/fixtures/preview/.
 import type { BatchJSON, BatchUnit, ContextLine, FileData, PreviewFile, PreviewShared, Term } from '../types'
 
-/** The maps Go writes with their keys sorted (Batch.Keywords, BatchUnit.Refs); see goJSON. */
-const goMaps = new WeakSet<object>()
+/**
+ * The paths of the maps Go writes with their keys sorted (Batch.Keywords,
+ * BatchUnit.Refs). A path is the keys from the root, an array adding nothing:
+ * the refs of the units of a batch are "units.refs".
+ */
+const BATCH_MAPS: ReadonlySet<string> = new Set(['keywords', 'units.refs'])
 
 const utf8 = new TextEncoder()
 
@@ -19,41 +23,53 @@ function byBytes(a: string, b: string): number {
   return x.length - y.length
 }
 
-function write(v: unknown, indent: string): string | undefined {
+function write(v: unknown, indent: string, path: string, sorted: ReadonlySet<string>): string | undefined {
   if (v === null || typeof v !== 'object') return JSON.stringify(v)
   const inner = indent + '  '
   if (Array.isArray(v)) {
     if (v.length === 0) return '[]'
-    return '[\n' + v.map((e) => inner + (write(e, inner) ?? 'null')).join(',\n') + '\n' + indent + ']'
+    return '[\n' + v.map((e) => inner + (write(e, inner, path, sorted) ?? 'null')).join(',\n') + '\n' + indent + ']'
   }
   const rec = v as Record<string, unknown>
   const keys = Object.keys(rec)
-  if (goMaps.has(rec)) keys.sort(byBytes)
+  if (sorted.has(path)) keys.sort(byBytes)
   const lines: string[] = []
   for (const k of keys) {
-    const text = write(rec[k], inner)
+    const text = write(rec[k], inner, path === '' ? k : `${path}.${k}`, sorted)
     if (text !== undefined) lines.push(`${inner}${JSON.stringify(k)}: ${text}`)
   }
   if (lines.length === 0) return '{}'
   return '{\n' + lines.join(',\n') + '\n' + indent + '}'
 }
 
-/**
- * The text Go's json.Encoder writes with SetEscapeHTML(false) and SetIndent("", "  "):
- * JSON.stringify(v, null, 2) with U+2028 and U+2029 escaped and a line feed at the end.
- * The maps rebuildBatch made (keywords, refs) get their keys in UTF-8 byte order,
- * which a JS object cannot keep (integer-like keys come first).
- */
-export function goJSON(value: unknown): string {
-  const s = (write(value, '') ?? 'null').replaceAll('\u2028', '\\u2028').replaceAll('\u2029', '\\u2029')
+function encode(value: unknown, sorted: ReadonlySet<string>): string {
+  const s = (write(value, '', '', sorted) ?? 'null').replaceAll('\u2028', '\\u2028').replaceAll('\u2029', '\\u2029')
   return s + '\n'
 }
 
-/** A plain copy of the map, registered to be written with its keys sorted. */
+/**
+ * The text Go's json.Encoder writes with SetEscapeHTML(false) and SetIndent("", "  "):
+ * JSON.stringify(v, null, 2) with U+2028 and U+2029 escaped and a line feed at the end.
+ * Objects keep the order they were made in (a Go struct); see batchJSON for maps.
+ */
+export function goJSON(value: unknown): string {
+  return encode(value, new Set())
+}
+
+/**
+ * goJSON of a batch, with its maps (keywords, the refs of each unit) written
+ * with their keys in UTF-8 byte order, as Go does, which a JS object cannot keep
+ * (integer-like keys come first). They are found by path, so a copy of the batch
+ * is written the same.
+ */
+export function batchJSON(batch: BatchJSON): string {
+  return encode(batch, BATCH_MAPS)
+}
+
+/** A plain copy of the map with its keys in byte order (the order the object keeps, integer-like keys apart). */
 function goMap(m: Record<string, string>): Record<string, string> {
   const out: Record<string, string> = {}
   for (const k of Object.keys(m).sort(byBytes)) out[k] = m[k] as string
-  goMaps.add(out)
   return out
 }
 
@@ -134,6 +150,6 @@ export function fullText(shared: PreviewShared, batch: BatchJSON): string {
     if (!g) throw new Error(`no guide ${path}`)
     parts.push(`# ${path}\n\n${g.text}`)
   }
-  parts.push(`# 批次 JSON\n\n${goJSON(batch)}`)
+  parts.push(`# 批次 JSON\n\n${batchJSON(batch)}`)
   return parts.join('\n\n')
 }

@@ -9,7 +9,7 @@ import type { BatchJSON, FileData, Origin, PreviewFile, PreviewShared, PreviewUn
 import { COPY_NOT_SENT } from '../view/PreviewLink'
 import { OriginBadge } from '../view/OriginBadge'
 import { expandPreviewFile } from './decode'
-import { fullText, goJSON, rebuildBatch } from './rebuild'
+import { batchJSON, fullText, rebuildBatch } from './rebuild'
 import { sha8 } from './sha8'
 
 type PreviewRoute = Extract<Route, { kind: 'preview' }>
@@ -325,7 +325,7 @@ function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
     if (pu === null || unit === undefined || unit.o === 'copy') return undefined
     try {
       const batch = rebuildBatch(path, file, pf, shared, index)
-      return { batch, json: goJSON(batch), full: fullText(shared, batch) }
+      return { batch, json: batchJSON(batch), full: fullText(shared, batch) }
     } catch {
       return 'broken' as const
     }

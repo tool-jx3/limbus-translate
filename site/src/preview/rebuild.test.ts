@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { BatchJSON, FileData, PreviewFile, PreviewFileWire, PreviewShared } from '../types'
 import { expandPreviewFile } from './decode'
-import { fullText, goJSON, rebuildBatch } from './rebuild'
+import { batchJSON, fullText, goJSON, rebuildBatch } from './rebuild'
 
 // Read as text (?raw), so that the batches are compared byte for byte. The site
 // has no node types, so this is how the other tests read fixtures too.
@@ -39,7 +39,7 @@ describe('rebuildBatch', () => {
     it(`${c.path} #${c.index} is the text of ${c.batch}`, () => {
       const file = json<FileData>(`files/${c.path}`)
       const pf = expanded(c.path)
-      expect(goJSON(rebuildBatch(c.path, file, pf, shared, c.index))).toBe(read(c.batch))
+      expect(batchJSON(rebuildBatch(c.path, file, pf, shared, c.index))).toBe(read(c.batch))
     })
   }
 
@@ -88,10 +88,25 @@ describe('rebuildBatch', () => {
     pf.keywords = { '9': 'x', '10': 'y', a: 'z', B: 'w' }
     pf.units[i]!.k = ['9', '10', 'a', 'B']
     pf.units[i]!.it.refs = { '9': 'x', '10': 'y', a: 'z', B: 'w' }
-    const text = goJSON(run(file, pf, i))
+    const text = batchJSON(run(file, pf, i))
     const order = (from: string) => [...text.slice(text.indexOf(from)).matchAll(/^ {4,8}"([^"]+)": "[xyzw]"/gm)].map((m) => m[1]).slice(0, 4)
     expect(order('"keywords"')).toEqual(['10', '9', 'B', 'a'])
     expect(order('"refs"')).toEqual(['10', '9', 'B', 'a'])
+  })
+  it('sorts by the path of the map, not by the identity of the object', () => {
+    const { file, pf, i } = base()
+    pf.keywords = { '9': 'x', '10': 'y', a: 'z', B: 'w' }
+    pf.units[i]!.k = ['9', '10', 'a', 'B']
+    pf.units[i]!.it.refs = { '9': 'x', '10': 'y', a: 'z', B: 'w' }
+    const batch = run(file, pf, i)
+    const want = batchJSON(batch)
+    // Copies of the maps (spread, structuredClone) are other objects at the same paths.
+    const copied = { ...batch, keywords: { ...batch.keywords }, units: batch.units.map((u) => ({ ...u, refs: u.refs && { ...u.refs } })) }
+    expect(batchJSON(copied)).toBe(want)
+    expect(batchJSON(structuredClone(batch))).toBe(want)
+    // goJSON knows no paths: any other object keeps the order it was made in.
+    expect(goJSON({ b: 1, 10: 2, a: 3 })).toBe('{\n  "10": 2,\n  "b": 1,\n  "a": 3\n}\n')
+    expect(goJSON({ keywords: { b: 1, a: 2 } })).toBe('{\n  "keywords": {\n    "b": 1,\n    "a": 2\n  }\n}\n')
   })
 })
 
