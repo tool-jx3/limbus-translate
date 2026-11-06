@@ -1,6 +1,6 @@
 # 翻譯預覽：單位送翻時拿到什麼、送出時會怎樣
 
-日期：2026-11-06。狀態：草稿，待使用者核可。
+日期：2026-11-06。狀態：草稿（已併入實作者角度檢查的回答），待使用者核可。
 
 ## 目的
 
@@ -64,6 +64,8 @@
 - 紀錄是 copy 的單位不會送翻（requeue 也略過它們）：
   - CLI 回使用者錯誤（exit 1），說明它是 copy；
   - 網站不顯示預覽按鈕，改顯示「copy：識別碼或各語言相同，不送翻」。
+- 不會送翻的情況與 `lct requeue` 一致：copy 之外，凍結檔案（`lct.yaml` 的 `frozen`，目前是空的）的單位也標示「不送翻：凍結檔案」，批次照樣組出來供參考。human、fallback 的紀錄 requeue 預設會送，預覽照常。
+- 批次帶的是真實的待譯項目（reason、prev_kr、prev_zh、draft、hint、refs）。attempts、last_error 與租約不屬於批次內容，只在「狀態」一欄顯示。
 - 批次 id 固定為 `preview`。上下文的範圍依 `contextReach(1)`，也就是實際只送這一個單位時的範圍（前後各 1 個元素）。
 - 預覽要另外標示目前的狀態：
   - 單位有 `needs_review` 旗標時，標示「等人處理，現在不會發出」；
@@ -77,7 +79,8 @@
   - `CheckNewTerms`；
   - term-missing 依 `check: hard`、族群 `glossary: warn` 與 note 是否寫出原詞來升級；
   - 收下時另外檢查 `foreignNameIssues`。
-- note 用這個 key、`kr_sha` 與現在 KR 相同的譯者說明，依序合併。
+- note 用這個 key、`kr_sha` 與現在 KR 相同的譯者說明，依 store 中的順序以換行合併（與網站 `nt` 欄位相同），再交給判定函式，就像 `Submit` 收到的一個 `note`。
+- 每個非 copy 的紀錄都檢查，並標示來源：fallback 標「替代文字（EN 或 KR），不是譯文：結果僅供參考」，human 標「人工譯文」。
 - 結果有三種：退回（有 hard）、收下但有警告、收下。每個問題列出 code、severity、class 與 message。
 - 沒有紀錄時寫「沒有譯文可檢查」。
 - 紀錄的 `kr_sha` 與現在 KR 不同時照樣檢查，但標示「這是舊 KR 的譯文」。
@@ -90,7 +93,8 @@
 
 ### CLI
 
-- 指令是 `lct batch preview <key> [--json]`，與 `batch next` 用同一個環境（`openBatchEnv`）。
+- 指令是 `lct batch preview <key> [--json]`。
+- CLI 與 `lct site` 用同一個「預覽輸入」載入函式取得 tw store、raw 三語、規則、foreign names、keyword names、生效中的暫定詞。兩者讀的本來就是同一個 tw worktree 的 store（`openStore` 與 `openTWStore` 指向同一處），共用載入函式是為了保證 `Env` 一致。注意 `openBatchEnv` 現在不填 `KeywordNames`，預覽要填，否則正規化與 `Submit` 不同。
 - `--json` 輸出 `{batch, check, record, pending, notes, state}`，其中 `batch` 就是批次 JSON。
 - 文字模式列出摘要：族群、指引清單、詞彙條目（kr → zh、check）、keywords、上下文行數、檢查結果與問題、紀錄狀態。
 - exit code：成功 0；key 不存在、單位是 copy 等使用者錯誤 1；系統錯誤 2。
@@ -105,11 +109,13 @@
 - 資料：
   - 共用檔一份：提示詞全文、指引全文（約 120 KB）；
   - 每個 KR 檔一份預覽檔，點開時才載入。
-- 契約測試：Go 測試用固定資料產生某幾個單位的預覽檔，以及 `batch.Preview` 的完整批次 JSON，放進 `site/fixtures/`。TS 測試用預覽檔組回批次 JSON，必須與 Go 的完整 JSON 相等。這比照現有 fixture index 測試的做法。
+- 一個單位的預覽只需要三樣資料：該檔的檔案資料（`data/files/…`，檔案頁已載入）、該檔的預覽檔、共用檔。不跨檔載入。`storyContext` 本來就只看同一個檔案；keywords 的名稱在預覽檔裡存成每檔一張表（id → 名稱）。上下文的 `zh` 是 `lct site` 執行當時紀錄的譯文；它與檔案資料的 `zh` 不同時，預覽檔要自己帶。
+- 「全文」分頁的批次 JSON 必須與 `batch next` 寫出的檔案逐字相同：`writeJSONFile` 的格式是兩格縮排、不跳脫 `<` `>` `&`、結尾換行，鍵的順序依 Go 結構。
+- 契約測試：Go 測試用固定資料產生某幾個單位的預覽檔，以及 `writeJSONFile` 格式的完整批次 JSON，放進 `site/fixtures/`。TS 測試用預覽檔組回批次 JSON 文字，必須與 Go 的檔案逐字相等。這比照現有 fixture index 測試的做法。fixture 要涵蓋這些單位：劇情單位（有上下文、有 speaker 指引）、非劇情單位、含 `[ID]` 的單位（有 keywords）、有 `<` 標籤的單位、待譯單位（有 draft 或 hint）。
 
 ### 預算
 
-驗收時用真實資料量測，並在交付時報告：
+這是要回報的數字，不是建置的關卡。合併本來就要使用者同意，數字在那時一併報告。驗收時用真實資料量測：
 - 預覽資料總大小，以及 `lct site` 多花的時間。
 - 預估資料增加在 60 MB 以內、時間增加在 50% 以內。超過時先回報使用者，再決定要精簡什麼（例如上下文改由瀏覽器從檔案資料取文字、只存編號）。
 
