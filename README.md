@@ -190,6 +190,7 @@ git worktree add .work/tw tw
 之後 `bin/lct search`、`bin/lct pending --count`、`bin/lct build` 等指令（`bin/lct help` 列出全部，都支援 `--json`）就能在本機執行。`.work/`、`bin/`、`out/` 不進版控。
 
 - 提交前執行 `go vet ./... && go test ./...`；動到 `site/` 時另外執行 `cd site && npm ci && npm run typecheck && npm test && npm run build`（Node 版本見 `site/.nvmrc`）。
+- 看某個單位單獨送翻會得到什麼批次（族群、指引、詞彙、上下文、待譯原因）以及它現有的譯文在送出檢查下的結果：`bin/lct batch preview <key>`（加 `--json` 輸出 `batch`、`state`、`pending`、`record`、`notes`、`check`）。唯讀，不寫租約、嘗試次數或紀錄；`copy` 紀錄與不在 KR 的 key 會回報錯誤（exit 1）。
 - 本機預覽網站：先 `bin/lct site --out site/public/data` 輸出資料（要有 `.work/raw` 與 `.work/tw`），再 `cd site && npm run build && npm run preview`。`site/public/data/`、`site/dist/`、`site/node_modules/` 不進版控。
 - 用 Claude Code 開啟本 repo，可以使用 `.claude/skills/` 的 skill：`translate-pending`（翻譯待譯清單）、`adjust`（人工調整）、`weekly-update`（在本機演練每週更新，結果只留在 `out/`）、`rules-review`（把 `lct suggest` 的建議整理成規則修改）、`review`（依 `lct review` 帶你逐項處理審核 Issue 的項目）、`review-page`（處理你從審核頁貼上的項目 ID）、`term-decision`（逐個決定詞彙表的候選條目）。模型由環境變數 `LCT_MODEL` 提供。
 - 本機的 `.work/` 與 CI 的不是同一份。`raw`、`tw` 分支與 Release 只由 CI 寫入，不要 push；改動一律走 `main`。
