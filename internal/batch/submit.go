@@ -409,25 +409,12 @@ func (s *submission) unit(o OutUnit) error {
 		return nil
 	}
 
-	zh := validate.NormalizeKeywordSpace(validate.Normalize(kr, o.ZH), s.env.KeywordNames)
-	prov := s.provisional()
-	issues := CheckNewTerms(s.env.Rules, prov, file, kr, zh)
-	// A missing glossary rendering is only a warning in CheckNew; a submission
-	// without it is rejected only where the entry behind it is check: hard
-	// (a provisional term never is), unless the note names the term, the way
-	// the entry itself matches a KR text. A family with glossary: warn keeps
-	// it a warning whatever the note says.
-	entries := append(s.env.Rules.GlossaryHits(file, kr), prov...)
-	warnOnly := s.env.Rules.GlossaryWarnOnly(file)
-	for j := range issues {
-		if issues[j].Code == validate.CodeTermMissing && !warnOnly && hardEntry(entries, issues[j]) && !noteNames(entries, issues[j], o.Note) {
-			issues[j].Severity = validate.SeverityHard
-		}
-	}
+	v := Judge(s.env, s.provisional(), file, kr, o.ZH, o.Note)
+	zh, issues := v.ZH, v.Issues
 	existing, hasRecord := s.records[o.Key]
 	since := s.since(o.Key)
 
-	if validate.HasHard(issues) {
+	if v.Rejected {
 		s.reject(o.Key, issues...)
 		item.Attempts++
 		item.LastError = hardIssues(issues)
@@ -465,8 +452,8 @@ func (s *submission) unit(o OutUnit) error {
 	s.res.Accepted = append(s.res.Accepted, o.Key)
 	s.collectTerms(o.Key, kr, zh, o.Terms)
 	s.accepted = append(s.accepted, acceptedUnit{file: file, group: TextGroupOf(s.env.Rules, fd.doc, fd.units[pos]), zh: zh})
-	if warnings := append(issues, foreignNameIssues(zh, s.env.ForeignNames, s.env.Rules.ForeignIgnore)...); len(warnings) > 0 {
-		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
+	if len(issues) > 0 {
+		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: issues})
 	}
 	return nil
 }
@@ -508,19 +495,7 @@ func noteNames(entries []rules.Term, is validate.Issue, note string) bool {
 // there at submission. This is the same edge as an edit of the glossary
 // between cut and submit: the rules in force at submission decide.
 func (s *submission) provisional() []rules.Term {
-	var out []rules.Term
-	for _, g := range s.batch.Glossary {
-		if !g.Provisional {
-			continue
-		}
-		for _, t := range s.env.Provisional {
-			if t.KR == g.KR {
-				out = append(out, t)
-				break
-			}
-		}
-	}
-	return out
+	return provisionalOf(s.batch.Glossary, s.env.Provisional)
 }
 
 // hardIssues is the text PendingItem.LastError holds for issues: the code and
