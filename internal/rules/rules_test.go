@@ -140,9 +140,7 @@ func TestCharacterByFile(t *testing.T) {
 		{"AbDlg_Nobody.json", ""},
 		{"AbDlg_MeursaultTwo.json", ""}, // the name must end at _ or the end of the name
 		{"PersonalityVoiceDlg/Voice_Nobody_xxx.json", ""},
-		{"Skills_personality-99.json", ""}, // no character has code 99
-		{"Skills_personality-08.json", "ishmael"},
-		{"Skills_Ego_Personality-08.json", "ishmael"},
+		{"Skills_personality-08.json", ""},
 		{"SomeFile_110511.json", ""}, // six digits are not a personality id
 		{"MainUIText.json", ""},
 	}
@@ -282,6 +280,10 @@ func TestGuidesFor(t *testing.T) {
 		{
 			"repeated speakers", "StoryData/S1037B.json", []string{"faust", "dante", "faust"},
 			[]string{"guides/base.md", "guides/families.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+		},
+		{
+			"skill file has no character guide", "Skills_personality-08.json", nil,
+			[]string{"guides/base.md", "guides/families.md"},
 		},
 		{
 			"unknown speaker is skipped", "StoryData/S1037B.json", []string{"nobody", "dante"},

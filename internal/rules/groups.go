@@ -21,6 +21,7 @@ var (
 // FileNode derives the top and sub node of a file from its path alone.
 func FileNode(file string) Node {
 	stem := strings.TrimSuffix(file, ".json")
+	// Only the first "/" splits: A/B/C.json has the sub A/B/C.
 	if dir, name, ok := strings.Cut(stem, "/"); ok {
 		n := Node{Top: dir + "/"}
 		if dir == "StoryData" {
@@ -69,7 +70,24 @@ var (
 	storyDChapter  = regexp.MustCompile(`^StoryData/(\d+)D`)
 	rootChapterRe  = regexp.MustCompile(`^a1c(\d+)`)
 	eventRe        = regexp.MustCompile(`^[^-_]+`)
+	// Skills_personality-<code> and Skills_Ego_Personality-<code>.
+	skillPersonaRe = regexp.MustCompile(`^Skills_(?:personality|Ego_Personality)-(\d\d)$`)
 )
+
+// skillCharacter finds the character of a personality skill file by Code.
+// CharacterByFile does not, as it also picks guides and speakers.
+func (r *Rules) skillCharacter(stem string) (*Character, bool) {
+	m := skillPersonaRe.FindStringSubmatch(stem)
+	if m == nil {
+		return nil, false
+	}
+	for i := range r.Characters {
+		if code := r.Characters[i].Code; code != nil && *code == m[1] {
+			return &r.Characters[i], true
+		}
+	}
+	return nil, false
+}
 
 func chapterTag(digits string) Tag {
 	n := strings.TrimLeft(digits, "0")
@@ -87,6 +105,9 @@ func (r *Rules) FileTag(file string) (Tag, bool) {
 		return Tag{Kind: TagCharacter, Value: c.ID, Label: c.Name}, true
 	}
 	stem := strings.TrimSuffix(file, ".json")
+	if c, ok := r.skillCharacter(stem); ok {
+		return Tag{Kind: TagCharacter, Value: c.ID, Label: c.Name}, true
+	}
 	if strings.Contains(stem, "/") {
 		for _, re := range []*regexp.Regexp{storyChapterRe, storyDChapter} {
 			if m := re.FindStringSubmatch(stem); m != nil {

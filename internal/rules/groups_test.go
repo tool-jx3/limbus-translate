@@ -6,8 +6,18 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 )
 
+func checkFileNodes(t *testing.T, tests []struct{ in, top, sub string }) {
+	t.Helper()
+	for _, tt := range tests {
+		got := rules.FileNode(tt.in)
+		if got.Top != tt.top || got.Sub != tt.sub {
+			t.Errorf("FileNode(%q) = {%q, %q}, want {%q, %q}", tt.in, got.Top, got.Sub, tt.top, tt.sub)
+		}
+	}
+}
+
 func TestFileNode(t *testing.T) {
-	tests := []struct{ in, top, sub string }{
+	checkFileNodes(t, []struct{ in, top, sub string }{
 		{"StoryData/S1037B.json", "StoryData/", "StoryData/S"},
 		{"StoryData/1D101A.json", "StoryData/", "StoryData/D"},
 		{"StoryData/ES050A.json", "StoryData/", "StoryData/ES"},
@@ -21,28 +31,18 @@ func TestFileNode(t *testing.T) {
 		{"StageNode91-a1c5.json", "StageNode", ""},
 		{"MirrorDungeonUI_5.json", "MirrorDungeonUI", ""},
 		{"Walpu6EventText.json", "Walpu", "Walpu6EventText"},
-	}
-	for _, tt := range tests {
-		got := rules.FileNode(tt.in)
-		if got.Top != tt.top || got.Sub != tt.sub {
-			t.Errorf("FileNode(%q) = {%q, %q}, want {%q, %q}", tt.in, got.Top, got.Sub, tt.top, tt.sub)
-		}
-	}
+	})
 }
 
 func TestFileNodeOddNames(t *testing.T) {
-	tests := []struct{ in, top, sub string }{
+	checkFileNodes(t, []struct{ in, top, sub string }{
 		{"kr.json", "kr", ""},
 		{"reward.json", "reward", ""},
 		{"Ch1.json", "Ch", ""},
 		{"9Lives.json", "9Lives", ""},
-	}
-	for _, tt := range tests {
-		got := rules.FileNode(tt.in)
-		if got.Top != tt.top || got.Sub != tt.sub {
-			t.Errorf("FileNode(%q) = {%q, %q}, want {%q, %q}", tt.in, got.Top, got.Sub, tt.top, tt.sub)
-		}
-	}
+		// Only the first "/" splits: the rest is part of the name.
+		{"A/B/C.json", "A/", "A/B/C"},
+	})
 }
 
 func TestFileTag(t *testing.T) {
@@ -75,9 +75,16 @@ func TestFileTag(t *testing.T) {
 			t.Errorf("FileTag(%q) = %+v, %v; want %+v", tt.in, got, ok, tt.want)
 		}
 	}
-	for _, in := range []string{"Bufs.json", "StageNode91-1.json", "StoryData/E302B.json"} {
+	for _, in := range []string{"Skills_personality-99.json", "Bufs.json", "StageNode91-1.json", "StoryData/E302B.json"} {
 		if got, ok := r.FileTag(in); ok {
 			t.Errorf("FileTag(%q) = %+v, want none", in, got)
 		}
+	}
+}
+
+func TestFileTagNilCode(t *testing.T) {
+	r := &rules.Rules{Characters: []rules.Character{{ID: "nocode", Name: "無代碼"}}}
+	if got, ok := r.FileTag("Skills_personality-00.json"); ok {
+		t.Errorf("FileTag with a nil Code matched %+v", got)
 	}
 }
