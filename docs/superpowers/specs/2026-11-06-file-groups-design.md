@@ -1,4 +1,4 @@
-# 依路徑與檔名分群、「詞彙」頁、條目 `check: warn` 設計
+# 依路徑與檔名分群、「詞彙」頁、詞彙表預設只警告 設計
 
 日期：2026-11-06。前一階段（`docs/superpowers/plans/2026-11-06-glossary-context.md`，已合併到 main 5b7b4f6）做了 `family:` 範圍、`also`、長詞條優先、敘事族群只警告與「詞彙範圍」分頁。
 
@@ -34,7 +34,9 @@
    - 每個頂層節點都要明確歸到某族群，沒歸的 lint 警告。
    - 新的切法先用實際資料提案，給使用者看過再定。
 4. **新的「詞彙」頁是獨立頁面**，網站頂端加連結。列表頁列出全部詞條；點進去看用了譯名與沒用譯名的全部單位。
-5. **詞彙表條目加 `check: warn`**：該條目缺譯名時，送出只警告、不退回。
+5. **詞彙表預設只警告**（取代先前「加 `check: warn`」的決定）。使用者的話：「詞彙先全都只警告，若之後分群與詞彙應用範圍限縮能把詞彙應用率確立高於 95% 再考慮是否該詞彙要採用退回」。
+   - 所有條目缺譯名時，送出只警告、不退回。
+   - 個別條目在適用範圍內的應用率高於 95% 之後，由人決定改為退回（`check: hard`）。
 7. **族群切法照提案**：16 個族群與附錄的 `routing.yaml`、priority。
 8. **abnormality 整個族群只警告**（`glossary: warn`）：異想體事件、觀察日誌、AbDlg 多是敘事文字；`AbEvents-a1c*` 跟著併入。
 6. **檔名底下再分第三層**，分三種：
@@ -55,7 +57,7 @@
 7. **「詞彙」頁**（`#/g`）：
    - 列表：全部詞條，可搜尋、排序、篩選。
    - 詳情（`#/g/<條目 ID>`）：該詞條命中的每個單位，分「沒用譯名」與「用了譯名」兩區，可依族群、分群、來源篩選。
-8. **條目 `check: warn`**：送出時該條目缺譯名不升為硬性。批次的詞彙表帶出 `check`，讓譯者知道這只是預設譯名。
+8. **詞彙表預設只警告**：送出時缺譯名一律只是警告。條目寫 `check: hard` 才可能退回。批次的詞彙表帶出 `check`。「詞彙」頁列出應用率高於 95% 的條目，供人考慮改為退回。
 9. **第三層：章節、角色、活動**：每個檔最多有一個第三層標記（下節）。
    - 分群樹顯示成第三層；
    - 側欄與「詞彙」頁可以依章節、角色、活動跨分群篩選；
@@ -336,14 +338,15 @@ priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, en
 - 譯名（含 `also`）
 - `check`
 - 範圍：`files`、`not_files`、`match` 的摘要
-- 出現、用了、沒用、沒用比例
+- 出現、用了、沒用、應用率（用了 ÷ 出現）
+- 「可考慮退回」標記：應用率高於 95%、出現至少 20 個單位，而且條目還不是 `check: hard`
 
-預設依「沒用」由多到少排序，也可以依原詞排序。
+預設依「沒用」由多到少排序，也可以依原詞或應用率排序。篩選多一個「可考慮退回」。
 
 **詳情**
 
 - **上方**：
-  - 條目內容：`notes`、範圍、`check`；
+  - 條目內容：`notes`、範圍、`check`、應用率；
   - 各族群與各頂層的出現／用了；
   - 連到審核頁的詞彙群組（`termgroup/…`）與詞彙範圍的條目。
 - **「沒用譯名」區**：全部單位。
@@ -371,16 +374,28 @@ priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, en
 - 最大的是 대상，6151 個單位，估 3 MB 以內，gzip 後約 1 MB。
 - 驗收實測。
 
-## 條目 `check: warn`
+## 詞彙表預設只警告（使用者決定；細節為我的判斷）
 
-- `glossary/terms.yaml` 的條目可以寫 `check: warn`。省略或 `hard` 是現在的行為。
+- **`glossary/terms.yaml` 的條目可以寫 `check: hard`。**
+  - 省略或寫 `warn`：只警告，這是新的預設。
+  - 現有 595 條都不寫，所以全部只警告。
 - **送出時**：
-  - 條目是 `warn`，或檔的族群是 `glossary: warn`，缺譯名都只警告。
-  - `forbidden` 照舊退回。
-- **建置、審核頁、詞彙範圍**：照舊列出缺譯名的單位，不因 `warn` 消失；頁面標出條目是 `warn`。
-- **批次**：詞彙表帶 `check`。同時更新 `schemas/batch.schema.json`、`prompts/translate.md`、`translate-pending` skill 的說明與 `cmd/lct/contract_test.go`。
+  - 條目是 `check: hard`，而且檔的族群是 `glossary: hard`，才照現在的方式退回：note 寫了原詞就收下。
+  - 其餘情況，缺譯名只是警告，照常收下。
+  - `forbidden`（禁用譯法）照舊一律退回，這不是「缺譯名」。
+- **族群的 `glossary: hard|warn` 保留**：`warn` 族群裡，即使條目是 `check: hard` 也只警告。所以敘事類族群永遠不會因詞彙退回。
+- **建置、審核頁、詞彙範圍、「詞彙」頁**：照舊列出缺譯名的單位，不因只警告而消失。
+- **譯者說明**：`prompts/translate.md`、`translate-pending` skill 改成這樣：
+  - 詞彙表的譯名是預設；
+  - 語境不合可以不用，請在 note 寫原因；
+  - 標了 `check: hard` 的條目才會退回。
+- **批次**：詞彙表帶 `check`（`hard` 或省略）。同時更新 `schemas/batch.schema.json` 與 `cmd/lct/contract_test.go`。
 - **lint**：值只能是 `hard`、`warn`。
-- **`/review-page`**：多一種決定，「暫時只警告」（加 `check: warn`，`notes` 寫日期與理由）。
+- **改為退回的流程**：
+  - 「詞彙」頁的條目可以複製 `glossary/…` ID，貼給 `/review-page` 並說「改為退回」；
+  - skill 在條目加 `check: hard`，`notes` 寫日期、應用率與出現數；
+  - 反過來「改回只警告」就刪掉 `check`。
+- **門檻**：95% 與至少 20 個單位寫在程式常數，頁面上顯示，同詞彙範圍的門檻。
 
 ## 驗收（真實資料，scratch clone）
 
@@ -389,7 +404,12 @@ priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, en
   - `unsorted` 為 0；
   - lint 0 錯誤。
   - 列出警告：同層兩族群搶同一節點的清單。
-- **glossary 模式**：改變的檔就是上面那 83 個。
+- **glossary 模式**：族群的 `glossary` 改變的檔就是上面那 83 個。條目全部只警告後，送出時不再因缺譯名退回，用測試釘住：
+  - 沒寫 `check` 的條目缺譯名：收下並警告；
+  - `check: hard` 的條目在 hard 族群缺譯名且 note 沒寫原詞：退回；
+  - `check: hard` 的條目在 warn 族群：收下並警告；
+  - `forbidden`：照舊退回。
+- **「詞彙」頁**：列出「可考慮退回」的條目數。
 - **已存的決定**：
   - `rules/declined.yaml` 的 14 筆 `inconsistent/…` 仍對得上（不重新出現）；
   - 審核頁各分頁數字和改前比較，差異逐項說明。
@@ -422,7 +442,11 @@ priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, en
    - 「沒用」存全文、「用了」存片段；
    - 「用了」每次顯示 100 個；
    - 列表預設依沒用數排序。
-8. `check: warn` 只影響送出，建置與審核照舊列出。
+8. 詞彙表預設只警告的細節：
+   - `check: hard` 只在 hard 族群生效；
+   - `forbidden` 照舊退回；
+   - 「可考慮退回」要應用率高於 95% 且至少 20 個單位；
+   - 改為退回經由 `/review-page` 處理 `glossary/…` ID。
 
 ## 留給實作的
 
