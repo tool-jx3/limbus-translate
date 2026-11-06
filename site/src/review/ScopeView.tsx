@@ -40,8 +40,8 @@ export function groupClass(g: { n: number; used: number }, t: ScopeThresholds): 
 
 /** Why a group is read as 太少 or 中間: it is not counted by the proposals. */
 function classTitle(c: GroupClass, t: ScopeThresholds): string | undefined {
-  if (c === 'few') return `出現不到 ${t.min_n} 次，不計入建議`
-  if (c === 'between') return `未用譯名的不到 ${t.min_n} 次，不計入建議`
+  if (c === 'few') return `出現不到 ${t.min_n} 個單位，不計入建議`
+  if (c === 'between') return `未用譯名的不到 ${t.min_n} 個單位，不計入建議`
   return undefined
 }
 
@@ -260,9 +260,10 @@ export function ScopeBody({ report, filter }: { report: ScopeReport; filter: Sco
   const byEntry = useMemo(() => new Map(report.entries.map((e) => [`${e.kr}\u0000${e.zh}`, e])), [report])
   const box = useRef<HTMLDivElement>(null)
   const found = filter.id !== undefined && (shown.some((p) => p.id === filter.id) || report.entries.some((e) => e.id === filter.id))
-  const [allMixed, setAllMixed] = useState(false)
-  // A new search or the 顯示已確認 switch folds 需要人看 back.
-  useEffect(() => setAllMixed(false), [filter.q, filter.all])
+  // 需要人看 is expanded only for the filter it was expanded under, so a new search or the 顯示已確認 switch folds it back in the same render.
+  const filterKey = `${filter.q}\u0000${filter.all}`
+  const [expandedKey, setExpandedKey] = useState<string>()
+  const allMixed = expandedKey === filterKey
   useEffect(() => {
     box.current?.querySelector('.is-target')?.scrollIntoView?.({ block: 'center' })
   }, [filter.id, found])
@@ -296,7 +297,7 @@ export function ScopeBody({ report, filter }: { report: ScopeReport; filter: Sco
               ))}
             </div>
             {collapsible && sorted.length < total && (
-              <button type="button" class="rv-more sc-more-mixed" onClick={() => setAllMixed(true)}>
+              <button type="button" class="rv-more sc-more-mixed" onClick={() => setExpandedKey(filterKey)}>
                 顯示更多（共 {total}）
               </button>
             )}

@@ -173,6 +173,17 @@ describe('ScopeView', () => {
       expect(sections(el)[3]!.querySelector('.sc-more-mixed')).not.toBeNull()
     })
 
+    it('folds back at once when the 顯示已確認 switch changes', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': twelve() })))
+      const el = await mount()
+      act(() => sections(el)[3]!.querySelector<HTMLButtonElement>('.sc-more-mixed')!.click())
+      expect(mixed(el)).toHaveLength(12)
+      act(() => {
+        render(<ReviewView route={route({ all: true })} index={index} meta={meta} settings={defaultSettings()} />, el)
+      })
+      expect(mixed(el)).toHaveLength(10)
+    })
+
     it('shows the one the address names even when it is outside the top 10', async () => {
       vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': twelve() })))
       const el = await mount(route({ id: 'scope/mglossary/m0/z/mixed' }))
@@ -188,10 +199,20 @@ describe('ScopeView', () => {
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, entries } })))
     const el = await mount()
     const cell = (cls: string) => el.querySelector<HTMLElement>(`.sc-class-${cls}`)!.closest('td')!
-    expect(cell('few').title).toBe('出現不到 3 次，不計入建議')
-    expect(cell('between').title).toBe('未用譯名的不到 3 次，不計入建議')
+    expect(cell('few').title).toBe('出現不到 3 個單位，不計入建議')
+    expect(cell('between').title).toBe('未用譯名的不到 3 個單位，不計入建議')
     expect(cell('uses').title).toBe('')
     expect(cell('mixed').title).toBe('')
+  })
+
+  it('takes the number in the tooltips from the thresholds', async () => {
+    const base = fixture<{ thresholds: object; entries: { groups: object[] }[] }>('review/scope.json')
+    const entries = base.entries.map((e, i) => (i === 0 ? { ...e, groups: [...e.groups, { name: 'family:mirror', kind: 'family', n: 4, used: 3 }] } : e))
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, thresholds: { ...base.thresholds, min_n: 4 }, entries } })))
+    const el = await mount()
+    const cell = (cls: string) => el.querySelector<HTMLElement>(`.sc-class-${cls}`)!.closest('td')!
+    expect(cell('few').title).toBe('出現不到 4 個單位，不計入建議')
+    expect(cell('between').title).toBe('未用譯名的不到 4 個單位，不計入建議')
   })
 
   it('links a card to its entry, which opens and is marked when the address names it', async () => {
