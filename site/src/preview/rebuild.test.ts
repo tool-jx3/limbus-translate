@@ -28,7 +28,10 @@ describe('goJSON', () => {
 })
 
 describe('rebuildBatch', () => {
-  it('has cases', () => expect(cases.length).toBeGreaterThan(0))
+  it('has a case for every batch file, once', () => {
+    const files = Object.keys(raw).filter((k) => /\/batches\/[^/]+\.json$/.test(k)).map((k) => k.replace('../../fixtures/preview/', ''))
+    expect(cases.map((c) => c.batch).sort()).toEqual(files.sort())
+  })
   for (const c of cases) {
     it(`${c.path} #${c.index} is the text of ${c.batch}`, () => {
       const file = json<FileData>(`files/${c.path}`)
@@ -41,11 +44,59 @@ describe('rebuildBatch', () => {
     const c = json<PreviewFile>('preview/StoryData/S001A.json')
     const i = c.units.findIndex((u) => u === null)
     expect(i).toBeGreaterThanOrEqual(0)
-    expect(() => rebuildBatch('StoryData/S001A.json', json<FileData>('files/StoryData/S001A.json'), c, shared, i)).toThrow()
+    expect(() => rebuildBatch('StoryData/S001A.json', json<FileData>('files/StoryData/S001A.json'), c, shared, i)).toThrow(/has no preview/)
+  })
+
+  const base = () => {
+    const file = json<FileData>('files/StoryData/S001A.json')
+    const pf = json<PreviewFile>('preview/StoryData/S001A.json')
+    return { file, pf, i: 2 }
+  }
+  const run = (file: FileData, pf: PreviewFile, i: number) => rebuildBatch('StoryData/S001A.json', file, pf, shared, i)
+
+  it('throws for a context line whose unit has no preview', () => {
+    const { file, pf, i } = base()
+    const nul = pf.units.findIndex((u) => u === null)
+    pf.units[i]!.c = [[nul]]
+    expect(() => run(file, pf, i)).toThrow(/context unit \d+ has no preview/)
+  })
+  it('throws for an en method with no EN string', () => {
+    const { file, pf, i } = base()
+    delete file.units[i]!.en
+    expect(() => run(file, pf, i)).toThrow(/no EN string/)
+  })
+  it('throws for a jp method with no JP string', () => {
+    const { file, pf, i } = base()
+    delete file.units[i]!.jp
+    expect(() => run(file, pf, i)).toThrow(/no JP string/)
+  })
+  it('throws for a keyword id missing from the table', () => {
+    const { file, pf, i } = base()
+    pf.units[i]!.k = ['Nope']
+    expect(() => run(file, pf, i)).toThrow(/no keyword Nope/)
+  })
+  it('throws when the preview and the file differ in length', () => {
+    const { file, pf, i } = base()
+    pf.units.pop()
+    expect(() => run(file, pf, i)).toThrow(/units in the preview/)
+  })
+  it('writes keywords and refs in byte order', () => {
+    const { file, pf, i } = base()
+    pf.keywords = { '9': 'x', '10': 'y', a: 'z', B: 'w' }
+    pf.units[i]!.k = ['9', '10', 'a', 'B']
+    pf.units[i]!.it.refs = { '9': 'x', '10': 'y', a: 'z', B: 'w' }
+    const text = goJSON(run(file, pf, i))
+    const order = (from: string) => [...text.slice(text.indexOf(from)).matchAll(/^ {4,8}"([^"]+)": "[xyzw]"/gm)].map((m) => m[1]).slice(0, 4)
+    expect(order('"keywords"')).toEqual(['10', '9', 'B', 'a'])
+    expect(order('"refs"')).toEqual(['10', '9', 'B', 'a'])
   })
 })
 
 describe('fullText', () => {
+  it('throws for a guide the shared data lacks', () => {
+    const s = { rules_commit: 'x', prompt: 'P', guides: [] }
+    expect(() => fullText(s, { guides: ['guides/a.md'] } as unknown as BatchJSON)).toThrow(/no guide guides\/a.md/)
+  })
   it('puts the prompt, the guides and the batch in order', () => {
     const batch = { id: 'preview' } as unknown as BatchJSON
     const s = { rules_commit: 'x', prompt: 'P\n', guides: [{ path: 'guides/a.md', text: 'A\n' }] }
