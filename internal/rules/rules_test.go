@@ -1527,6 +1527,43 @@ func TestLintGlossaryAlso(t *testing.T) {
 	}
 }
 
+// An also that forbidden rules out is reported on its own: the fixture's also
+// is never the zh, so only the forbidden check can fire.
+func TestLintGlossaryAlsoForbidden(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  also: [百貨, 商場, 百貨店]\n  forbidden: [百貨, re:商.]\n  status: approved\n"
+	})
+	msg := lintMessages(rules.Lint(root))
+	for _, want := range []string{
+		`also holds "百貨", which forbidden "百貨" rules out`,
+		`also holds "商場", which forbidden "re:商." rules out`,
+		`also holds "百貨店", which forbidden "百貨" rules out`,
+	} {
+		if !strings.Contains(msg, want) {
+			t.Errorf("lint output does not mention %q:\n%s", want, msg)
+		}
+	}
+	if strings.Contains(msg, "is the zh already") {
+		t.Errorf("the zh check fired, so the test does not isolate forbidden:\n%s", msg)
+	}
+}
+
+// An also that is blank once tags are read as spaces would match any
+// translation with a space or a self-closing tag.
+func TestLintGlossaryAlsoBlankAfterMatchText(t *testing.T) {
+	for _, also := range []string{`" "`, `"<br>"`, `"<sprite name=x>"`} {
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string {
+			return s + "\n- kr: 백화점\n  zh: 百貨公司\n  also: [" + also + "]\n  status: approved\n"
+		})
+		msg := lintMessages(rules.Lint(root))
+		if !strings.Contains(msg, "백화점") || !strings.Contains(msg, "also holds") {
+			t.Errorf("also %s passes lint:\n%s", also, msg)
+		}
+	}
+}
+
 // An also made only of tags is no text: Used would find it in every
 // translation, so lint rejects it.
 func TestLintGlossaryAlsoOfTagsOnly(t *testing.T) {

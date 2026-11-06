@@ -124,7 +124,7 @@ func (l *linter) glossary() {
 			switch {
 			case a == "":
 				l.report(GlossaryFile, "%s: also holds an empty rendering", label)
-			case validate.MatchText(a) == "":
+			case strings.TrimSpace(validate.MatchText(a)) == "":
 				l.report(GlossaryFile, "%s: also holds %q, which is only tags and would match every translation", label, a)
 			case a == t.ZH:
 				l.report(GlossaryFile, "%s: also holds %q, which is the zh already", label, a)
