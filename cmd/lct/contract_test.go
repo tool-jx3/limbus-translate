@@ -4821,10 +4821,22 @@ func TestGlossaryWarnIsExplained(t *testing.T) {
 	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
 	_, skill := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
 	for name, text := range map[string]string{"prompts/translate.md": prompt, "translate-pending/SKILL.md": skill} {
-		for _, want := range []string{"glossary_check", "預設", "`note` 寫出 KR 原詞與理由", "forbidden"} {
+		for _, want := range []string{"glossary_check", "預設", "`note` 寫出 KR 原詞與理由", "不寫也不會退回", "forbidden"} {
 			if !strings.Contains(text, want) {
 				t.Errorf("%s does not mention %s (a warn batch makes the rendering a default, the reason still goes in the note)", name, want)
 			}
+		}
+	}
+	for name, want := range map[string]string{
+		"prompts/translate.md":       "`glossary_check: \"warn\"` 的批次除外",
+		"translate-pending/SKILL.md": "`glossary_check: \"warn\"` 的批次除外",
+	} {
+		text := prompt
+		if name != "prompts/translate.md" {
+			text = skill
+		}
+		if !strings.Contains(text, want) {
+			t.Errorf("%s lacks %q (the unconditional term-missing rejection is qualified for warn batches)", name, want)
 		}
 	}
 	if !strings.Contains(prompt, "詞彙統計") {

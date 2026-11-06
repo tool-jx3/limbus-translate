@@ -3229,6 +3229,76 @@ priority:
 	})
 }
 
+const warnRouting = `families:
+  - id: voice
+    match: ["Warn*"]
+    glossary: warn
+    guide: guides/families.md
+  - id: other
+    match: []
+    guide: guides/families.md
+priority:
+  - voice
+  - other
+`
+
+// A merged batch (several files of one non-story family) in a warn family
+// carries glossary_check: warn, and a missing rendering is accepted in every
+// one of its files.
+func TestSubmitWarnFamilyMergedBatch(t *testing.T) {
+	kr := map[string]string{
+		"Warn1.json": oneLine(t, "두 시즌 전부터"),
+		"Warn2.json": oneLine(t, "세 시즌 전부터"),
+	}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, warnRouting, seasonGlossary)
+	seed(t, env, append(items("Warn1.json", 0, 1), items("Warn2.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(b.Files, []string{"Warn1.json", "Warn2.json"}) || b.GlossaryCheck != "warn" {
+		t.Fatalf("batch = %+v, want both files with glossary_check warn", b)
+	}
+	res, err := Submit(env, b, []OutUnit{
+		{Key: key("Warn1.json", 0), ZH: "從兩個賽局前起"},
+		{Key: key("Warn2.json", 0), ZH: "從三個賽局前起"},
+	}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 2 || len(res.Rejected) != 0 || len(res.Warnings) != 2 {
+		t.Errorf("result = %+v, want both accepted, each with a term-missing warning", res)
+	}
+}
+
+// Twins of a warn-family unit stay in the warn family (a TextGroup holds the
+// family, so a twin never comes from another one): a twin takes the
+// translation although it lacks a rendering, but a twin whose file forbids a
+// word of the translation is not given it.
+func TestTwinsOfAWarnFamilyUnit(t *testing.T) {
+	const text = "같은 문장에 시즌이 두 군데에 있다"
+	kr := map[string]string{}
+	for _, f := range []string{"Warn1.json", "Warn2.json", "Warn3.json"} {
+		kr[f] = oneLine(t, text)
+	}
+	const glossary = "- kr: 시즌\n  zh: 賽季\n  status: approved\n  forbidden: [季前]\n  files: [\"Warn2.json\"]\n"
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWithRouting(t, warnRouting, glossary)
+	seed(t, env, append(append(items("Warn1.json", 0, 1), items("Warn2.json", 0, 1)...), items("Warn3.json", 0, 1)...)...)
+	b := mustNext(t, env, NextOptions{})
+	if b == nil || !slices.Equal(keysOf(b), []string{key("Warn1.json", 0)}) || b.GlossaryCheck != "warn" {
+		t.Fatalf("batch = %+v, want only the first twin, glossary_check warn", b)
+	}
+	res, err := Submit(env, b, []OutUnit{{Key: key("Warn1.json", 0), ZH: "同一句話在季前"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(res.Reused, []string{key("Warn3.json", 0)}) {
+		t.Errorf("reused = %v, want only Warn3.json (Warn2.json forbids 季前)", res.Reused)
+	}
+	if _, ok := pendingMap(t, env)[key("Warn2.json", 0)]; !ok {
+		t.Error("the twin whose file forbids the rendering is no longer pending")
+	}
+}
+
 func TestCheckNewLeavesTermMissingAWarning(t *testing.T) {
 	r := testRulesWith(t, seasonGlossary)
 	issues := CheckNew(r, "Other.json", "두 시즌 전부터", "從兩棵季前起")
