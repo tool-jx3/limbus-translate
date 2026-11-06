@@ -25,9 +25,14 @@ function useTermIds(terms: readonly Term[]): Map<Term, string> {
   const [ids, setIds] = useState(new Map<Term, string>())
   useEffect(() => {
     let live = true
-    Promise.all(terms.map(async (t) => [t, `glossary/${await sha8(t.kr)}/${await sha8(t.zh)}`] as const)).then((pairs) => {
-      if (live) setIds(new Map(pairs))
-    })
+    Promise.all(terms.map(async (t) => [t, `glossary/${await sha8(t.kr)}/${await sha8(t.zh)}`] as const)).then(
+      (pairs) => {
+        if (live) setIds(new Map(pairs))
+      },
+      () => {
+        // No digest: the terms stay unlinked.
+      },
+    )
     return () => {
       live = false
     }
@@ -65,7 +70,7 @@ function Box({ children, label }: { children: string; label?: string }) {
 
 function Facts({ rows }: { rows: [string, ComponentChildren][] }) {
   return (
-    <dl class="tv-facts">
+    <dl class="tv-facts pv-facts">
       {rows.map(([k, v]) => (
         <>
           <dt>{k}</dt>
@@ -87,7 +92,7 @@ function State({ pu }: { pu: PreviewUnit }) {
   return (
     <Section title="狀態">
       {notes.map((n) => (
-        <p key={n} class="pv-note" role="status">
+        <p key={n} class="pv-note">
           {n}
         </p>
       ))}
@@ -257,15 +262,10 @@ function CopyFull({ text }: { text: string }) {
         <button type="button" onClick={copy}>
           複製全文
         </button>
-        <span class="rv-said" role="status">
-          {said}
-        </span>
       </div>
-      {refused && (
-        <p class="tv-copyhint" role="status">
-          {COPY_REFUSED_HINT}
-        </p>
-      )}
+      <p class={refused ? 'tv-copyhint' : 'rv-said'} role="status">
+        {refused ? COPY_REFUSED_HINT : said}
+      </p>
       <textarea
         ref={box}
         class={refused ? 'tv-copybox' : 'tv-copybox is-hidden'}
@@ -279,8 +279,7 @@ function CopyFull({ text }: { text: string }) {
   )
 }
 
-function Full({ shared, batch }: { shared: PreviewShared; batch: BatchJSON }) {
-  const text = useMemo(() => fullText(shared, batch), [shared, batch])
+function Full({ text }: { text: string }) {
   return (
     <>
       <CopyFull text={text} />
@@ -297,6 +296,11 @@ interface Docs {
   shared: PreviewShared
 }
 
+const TABS = [
+  ['compose', '組合'],
+  ['full', '全文'],
+] as const
+
 function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
   const { path, ptr } = route
   const { file, pf, shared } = docs
@@ -304,9 +308,24 @@ function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
   const index = file.units.findIndex((u) => u.p === ptr)
   const unit = file.units[index]
   const pu = pf.units[index] ?? null
-  const batch = useMemo(() => {
+  // Left and right switch the tab, and the focus goes with it.
+  const onTabKey = (e: KeyboardEvent) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    e.preventDefault()
+    const next = tab === 'compose' ? 'full' : 'compose'
+    setTab(next)
+    document.getElementById(`pv-tab-${next}`)?.focus()
+  }
+
+  // The batch, its JSON and its full text; the data of the file and of the preview may disagree (one of them is newer), which the rebuild reports by throwing.
+  const built = useMemo(() => {
     if (pu === null || unit === undefined || unit.o === 'copy') return undefined
-    return rebuildBatch(path, file, pf, shared, index)
+    try {
+      const batch = rebuildBatch(path, file, pf, shared, index)
+      return { batch, json: goJSON(batch), full: fullText(shared, batch) }
+    } catch {
+      return 'broken' as const
+    }
   }, [path, file, pf, shared, index])
 
   let body: ComponentChildren
@@ -316,7 +335,13 @@ function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
         找不到這個單位：<code>{ptr}</code>。它可能已被改掉或刪除。
       </p>
     )
-  } else if (batch === undefined || pu === null) {
+  } else if (built === 'broken') {
+    body = (
+      <p class="pv-gone" role="status">
+        預覽資料與檔案資料不一致，請重新整理或等網站更新
+      </p>
+    )
+  } else if (built === undefined || pu === null) {
     body = (
       <p class="pv-gone" role="status">
         {COPY_NOT_SENT}
@@ -325,22 +350,30 @@ function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
   } else {
     body = (
       <>
-        <div class="pv-tabs" role="tablist">
-          {(
-            [
-              ['compose', '組合'],
-              ['full', '全文'],
-            ] as const
-          ).map(([id, label]) => (
-            <button key={id} type="button" role="tab" data-tab={id} aria-selected={tab === id} class={tab === id ? 'is-on' : ''} onClick={() => setTab(id)}>
+        <div class="pv-tabs" role="tablist" onKeyDown={onTabKey}>
+          {TABS.map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              id={`pv-tab-${id}`}
+              data-tab={id}
+              aria-selected={tab === id}
+              aria-controls="pv-panel"
+              tabIndex={tab === id ? 0 : -1}
+              class={tab === id ? 'is-on' : ''}
+              onClick={() => setTab(id)}
+            >
               {label}
             </button>
           ))}
         </div>
-        {tab === 'compose' ? <Composition batch={batch} pf={pf} pu={pu} shared={shared} /> : <Full shared={shared} batch={batch} />}
+        <div role="tabpanel" id="pv-panel" aria-labelledby={`pv-tab-${tab}`} class="pv-panel">
+          {tab === 'compose' ? <Composition batch={built.batch} pf={pf} pu={pu} shared={shared} /> : <Full text={built.full} />}
+        </div>
         <details class="pv-json">
           <summary>批次 JSON</summary>
-          <Box>{goJSON(batch)}</Box>
+          <Box>{built.json}</Box>
         </details>
       </>
     )

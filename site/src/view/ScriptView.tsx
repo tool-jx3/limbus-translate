@@ -23,20 +23,20 @@ function Line({ path, kind, units, langs, raw, ptr, marks, onCopy }: LineProps) 
   if (first === undefined) return null
   const target = ptr !== undefined && units.some((u) => u.p === ptr)
   return (
-    <div class={target ? `line line-${kind} is-target` : `line line-${kind}`} data-ptr={first.p} tabIndex={-1}>
+    <div class={`line line-${kind}${target ? ' is-target' : ''}${units.length > 1 ? ' line-multi' : ''}`} data-ptr={first.p} tabIndex={-1}>
       {kind === 'text' && first.f !== 'content' && <span class="line-field">{first.f}</span>}
       {langs.map((lang) => (
         <Cell key={lang} lang={lang} units={units} raw={raw} marks={marks} />
       ))}
       <MarkDetail units={units} marks={marks} />
-      <span class="line-preview">
+      <span class="line-actions">
         {units.map((u) => (
           <PreviewLink key={u.p} path={path} unit={u} named />
         ))}
+        <button type="button" class="permalink" title={units.map((u) => u.p).join('\n')} aria-label="複製這一行的連結" onClick={() => onCopy(first.p)}>
+          #
+        </button>
       </span>
-      <button type="button" class="permalink" title={units.map((u) => u.p).join('\n')} aria-label="複製這一行的連結" onClick={() => onCopy(first.p)}>
-        #
-      </button>
     </div>
   )
 }

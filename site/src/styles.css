@@ -2741,11 +2741,38 @@ button.chip {
   color: var(--muted);
 }
 
-.line-preview {
-  grid-column: 1 / -1;
+/* The preview links and the # button of a line, at its end; the line keeps room for them. */
+.line-actions {
+  position: absolute;
+  top: 0.1rem;
+  right: 0;
   display: flex;
-  flex-wrap: wrap;
+  align-items: baseline;
   gap: 0.25rem;
+}
+
+.line-actions .permalink {
+  position: static;
+}
+
+.line {
+  padding-right: 4.5rem;
+}
+
+.line-multi {
+  padding-right: 7rem;
+}
+
+.pv-facts {
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+}
+
+.pv-facts dt {
+  overflow-wrap: anywhere;
+}
+
+.pv-facts dd {
+  white-space: pre-wrap;
 }
 
 /* The translation preview. */
@@ -2834,7 +2861,6 @@ button.chip {
   overflow-wrap: anywhere;
 }
 
-.pv-check-reject .pv-note,
 .pv-check-reject strong {
   color: var(--danger-fg);
 }

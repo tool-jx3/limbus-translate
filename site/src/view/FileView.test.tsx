@@ -886,3 +886,14 @@ describe('FileView: preview links', () => {
     expect(line.querySelector('.no-send')?.getAttribute('title')).toBe(COPY_TITLE)
   })
 })
+
+describe('FileView: preview links sit by the permalink', () => {
+  it('puts the links of a line inline with the # button, and no row of their own', async () => {
+    const el = await open(STORY)
+    expect(el.querySelector('.line-preview')).toBeNull()
+    const speaker = el.querySelectorAll<HTMLElement>('.line-speaker')[0]!
+    const actions = speaker.querySelector('.line-actions')!
+    expect(actions.querySelectorAll('a.preview-link')).toHaveLength(2)
+    expect(actions.querySelector('.permalink')).not.toBeNull()
+  })
+})

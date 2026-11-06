@@ -291,3 +291,56 @@ describe('PreviewView: units that cannot be previewed', () => {
     expect(el.querySelector('.notice')).not.toBeNull()
   })
 })
+
+describe('PreviewView: polish', () => {
+  it('explains inconsistent data instead of going blank', async () => {
+    edit(STORY, 5, (u) => {
+      u.c = [[999]]
+    })
+    const el = await open(STORY, ptrOf(STORY, 5))
+    expect(el.querySelector('.pv-gone')?.textContent).toContain('預覽資料與檔案資料不一致，請重新整理或等網站更新')
+    expect(el.querySelector('a.pv-back')).not.toBeNull()
+  })
+
+  it('leaves the terms unlinked, without an unhandled rejection, where the digest fails', async () => {
+    const spy = vi.spyOn(crypto.subtle, 'digest').mockRejectedValue(new Error('no digest'))
+    const el = await open(STORY, ptrOf(STORY, 5))
+    await new Promise((r) => setTimeout(r, 20))
+    expect(el.querySelectorAll('.pv-terms li')).toHaveLength(2)
+    expect(el.querySelectorAll('.pv-terms a')).toHaveLength(0)
+    spy.mockRestore()
+  })
+
+  it('keeps line feeds and a narrow label column in the facts', async () => {
+    const el = await open(STORY, ptrOf(STORY, 5))
+    expect(el.querySelectorAll('dl.pv-facts').length).toBeGreaterThan(0)
+    expect(el.querySelectorAll('dl.tv-facts:not(.pv-facts)')).toHaveLength(0)
+  })
+
+  it('has no role on the notes: the copy hint is the one live region', async () => {
+    const el = await open(OTHER, ptrOf(OTHER, 0))
+    expect(el.querySelectorAll('.pv-note').length).toBeGreaterThan(0)
+    expect(el.querySelectorAll('.pv-note[role]')).toHaveLength(0)
+    const needs = await open(OTHER, ptrOf(OTHER, 2))
+    expect(needs.querySelectorAll('.pv-note[role]')).toHaveLength(0)
+  })
+
+  it('wires the tabs to panels and switches with the arrow keys', async () => {
+    const el = await open(STORY, ptrOf(STORY, 5))
+    const compose = tab(el, 'compose')
+    const panel = el.querySelector<HTMLElement>('[role="tabpanel"]')!
+    expect(compose.getAttribute('aria-controls')).toBe(panel.id)
+    expect(panel.getAttribute('aria-labelledby')).toBe(compose.id)
+    expect(compose.getAttribute('tabindex')).toBe('0')
+    expect(tab(el, 'full').getAttribute('tabindex')).toBe('-1')
+    act(() => {
+      compose.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }))
+    })
+    expect(tab(el, 'full').getAttribute('aria-selected')).toBe('true')
+    expect(el.querySelector('[role="tabpanel"]')?.getAttribute('aria-labelledby')).toBe(tab(el, 'full').id)
+    act(() => {
+      tab(el, 'full').dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }))
+    })
+    expect(tab(el, 'compose').getAttribute('aria-selected')).toBe('true')
+  })
+})
