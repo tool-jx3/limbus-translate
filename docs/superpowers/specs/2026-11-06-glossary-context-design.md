@@ -1,0 +1,135 @@
+# 詞彙表依語境套用與「詞彙範圍」頁 設計
+
+日期：2026-11-06。前一階段（`docs/superpowers/plans/2026-11-06-term-scope.md`，已合併）做了整詞比對、`match: substring`、`not_files`，並依實際譯文替 44 個條目設了範圍。
+
+## 為什麼
+
+使用者的話：「詞彙表就算是對的也有可能不符合該句子的應用情況，這種問題應該如何解決？」以及「把這個詞彙適用範圍網頁也加入 github page，讓我將來也可以用這套工具來做決定」。
+
+詞彙表是硬性規定：新譯文漏用規定的譯名，`lct batch submit` 就退回，除非 note 寫了原詞。這擋得住譯者不照做，卻擋不住「詞條對，但這句的用法不同」：
+
+- 一個詞有兩種正確譯法，看語境決定（대상：技能裡是「目標」，指人時是「對象」）。
+- 固定搭配改變語意（조직의 보스 是「組織的老大」，不是「BOSS」）。
+- 劇情與語音最需要語境，系統文字最需要一致；兩者現在一樣硬性。
+
+另外，詞彙表的範圍與正確性要能持續檢視：每次更新後重算各詞條在各類檔案的使用情況，在網站上看數字做決定，不必每次請人另外分析。
+
+## 目標
+
+1. **族群名稱當範圍**：`files`、`not_files` 可寫 `family:<id>`（`guides/routing.yaml` 的族群），依路由的「第一個符合」判定，取代用萬用字元湊族群（前一階段 `RPGSystem*`、`Passives*` 兩次出錯都是這樣來的）。
+2. **多個正確譯法**：條目可列 `also`（其他也算正確的譯法），譯文用 `zh` 或 `also` 任一個都不算漏用。
+3. **長詞條優先**：同一處 KR 被兩個適用的條目命中、其中一個的命中範圍完全蓋住另一個時，只套用長的那個。
+4. **劇情類只警告**：路由族群可標 `glossary: warn`；這些族群的檔漏用譯名時，送出不退回（照常收下），漏用的單位照舊列在審核頁的詞彙群組。`forbidden`（禁用譯法）照舊一律退回。
+5. **note 例外統計**：每個詞條算出「漏用且 note 有說明」與「漏用且沒有說明」的單位數，不新增狀態檔，從譯文與 note 推得。
+6. **網站「詞彙範圍」分頁**：審核頁第五個分頁 `#/r/scope`。上方列出有建議的詞條（排除檔案、限定檔案、改比對方式、需要人看、常被 note 說明偏離），下方可搜尋全部條目，每條附各族群與各目錄的使用比例、例子、note 例外數。決定照現行流程：頁面複製 → 貼給 Claude → `/review-page` 改 `glossary/terms.yaml`；不採用的建議記進 `rules/declined.yaml`。
+
+## 不做的（non-goals）
+
+- 依前後文字（正規表示式）決定是否套用的語境條件：脆弱、難維護，第 2、3 點涵蓋大部分情況。
+- 在網站上直接改檔：網站唯讀，決定一律經由 skill。
+- 自動改譯文或自動重翻：範圍或譯法改了，要不要重翻由人另外決定（照舊用 `lct requeue --to-file`）。
+- 自動從譯文推出 `also` 的候選譯法（需要對齊譯文片段，不準）；頁面只給數字與例子，`also` 由人決定。
+
+## 反目標（做了也算失敗）
+
+- 劇情類只警告之後，劇情裡的詞彙表譯名大量消失卻沒人看得到。→ 漏用的單位必須照舊出現在審核頁的詞彙群組，並在「詞彙範圍」頁的數字裡。
+- 長詞條優先讓某個詞條在不該失效的地方失效（例如兩個條目只是部分重疊）。→ 只有「完全蓋住」才讓位；部分重疊兩個都套用。
+- 頁面上的建議樣式套用後實際比對不到檔（前一階段的 bug 類型）。→ 建議只用族群名或整個目錄（`X/**`），`lct rules lint` 對比對不到檔的樣式與族群名報警告／錯誤。
+
+## 限制
+
+- `CLAUDE.md`：規則只在 `guides/`、`glossary/`、`rules/`（所以「哪些族群只警告」放在 `guides/routing.yaml`，不放 `lct.yaml`）；狀態只經由 `lct`；`raw`、`tw`、Release 只由 CI 寫入；所有 `lct` 指令支援 `--json`；skill 與 `prompts/` 不寫模型名稱。
+- 批次檔與輸出檔欄位同時改 `schemas/batch.schema.json`、`schemas/batch-out.schema.json`（`additionalProperties: false`）。
+- skill 文字與 `cmd/lct/contract_test.go` 的釘選一起改。
+- 網站資料由 `pages.yml` 以 `lct site` 產生，不進版控；網站唯讀。
+- 審核頁的既有 ID 格式與 `lct accept` 的流程不變；新 ID 不得與既有格式衝突。
+
+## 做法（已選定）
+
+| 項目 | 選定做法 | 考慮過的其他做法 |
+|---|---|---|
+| 網站分頁 | 分析搬進 `lct site`，放審核頁第五個分頁；建議＋全部條目可搜尋 | 獨立指令與獨立頁面（與審核流程分開，較零散） |
+| 多個譯法 | 條目欄位 `also` | （只有這個合理做法） |
+| 長詞條優先 | 比對時記錄命中位置，被完全蓋住的短條目那一處不算 | 長條目手寫它取代哪些短條目（易漏） |
+| 劇情只警告 | 路由族群標 `glossary: warn`；範圍支援 `family:<id>` | 每個條目各自設只警告的檔（太細） |
+| note 統計 | 從譯文與 note 推得，不新增狀態 | 送出時另存例外紀錄（多一份狀態） |
+
+使用者 2026-11-06：「Ok 合併，五件事照你建議做」。
+
+## 設計
+
+### 1. `family:<id>`
+
+- `files`、`not_files` 的每一項可以是檔名樣式，或 `family:<id>`。`family:<id>` 符合「`rules.Family(file) == id`」的檔（路由第一個符合）。
+- `Term.AppliesTo` 需要路由才能判斷，所以判斷改在能取得路由的地方（例如 `(*Rules).Applies(t Term, file string) bool`）；所有呼叫者照舊只經由這一個函式。批次檔帶的 `files`／`not_files` 原樣帶 `family:<id>`，`prompts/translate.md` 說明它的意思（批次裡每個單位另帶自己的族群，或在說明裡告訴譯者怎麼對應——由實作決定其一，見「留給實作」）。
+- lint：未知的族群 id 是錯誤；有 raw 時，比對不到任何檔的樣式照舊是警告。
+- 資料：把前一階段由族群湊成的樣式清單改寫成 `family:<id>`，修掉 `전투 패배` 的 `Skills_Assist*` 多排除 `Skills_Assist-walpu6` 的問題；改寫前後以真實資料確認每個條目適用的檔集合只在預期處改變。
+
+### 2. `also`
+
+- 條目欄位 `also: [譯法…]`。`term-missing` 的判斷：譯文（`validate.MatchText` 後）含 `zh` 或任一 `also` 就算有用到。
+- `forbidden` 與 `also` 不得重疊（lint 錯誤）。
+- 批次詞彙表帶 `also`；`prompts/translate.md` 說明：依 `notes` 的說明在 `zh` 與 `also` 之間選，選 `also` 不需要 note。
+- 審核頁的詞彙群組、`term-new` 的「有用／未用」、「詞彙範圍」頁的使用比例，都把 `also` 算進「有用」。
+- 群組 ID（`termgroup/<sha8 KR>/<sha8 ZH>`）與逐單位 ID 照舊以 `zh` 計，加了 `also` 不改 ID。
+
+### 3. 長詞條優先
+
+- 每個適用的條目在 KR（`MatchText` 後）找出所有命中位置（整詞或 substring 依該條目的 `match`）。某條目在某位置的命中範圍被另一個適用條目的命中範圍完全蓋住（範圍嚴格較大），這一處不算；一個條目只要還有一處沒被蓋住，就算命中這個單位。
+- 只在適用於該檔的條目之間比較；暫定詞與詞彙表條目一起比較。
+- `forbidden` 檢查跟著命中走（被蓋住的短條目在該單位不命中，就不檢查它的 `forbidden`）。
+- 影響範圍：批次詞彙表注入、送出檢查、建置與審核頁警告、`term-new` 的命中、「詞彙範圍」頁的統計。實作後以真實資料量出前後差異。
+
+### 4. 劇情類只警告
+
+- `guides/routing.yaml` 的族群可加 `glossary: warn`（預設 `hard`）。初值：`story-main`、`story-interlude`、`identity`、`ego-voice`、`announcer`、`dante-note` 標 `warn`（與前一階段分析的敘事類相同）；使用者之後可在 `guides/routing.yaml` 調整。
+- `lct batch submit`：單位所在檔的族群是 `warn` 時，`term-missing` 不升為硬性（不看 note）。其他檢查不變，`forbidden-term` 照舊硬性。
+- 譯者：批次說明（`prompts/translate.md`、schema 說明）告訴譯者這些檔裡詞彙表譯名是「預設用、語境不合可不用」，不用時仍建議在 note 寫原因（寫了會算進 note 例外統計）。批次需要讓譯者知道每個單位是否屬於 `warn` 族群（例如批次的 `glossary_check: warn` 或單位欄位；由實作選，見「留給實作」）。
+- 審核頁：這些單位照舊出現在詞彙群組（警告），由人決定保留或改。
+
+### 5. note 例外統計
+
+- 對每個條目、每個它命中而譯文沒用 `zh`／`also` 的已翻譯單位：note（`NoteText`，同單位的所有 note）以該條目的比對規則（`OccursIn`）含條目 KR → 「有說明」；否則「沒說明」。
+- 只算 origin 為 `claude`、`human`、`paratranz` 的單位；照抄與補翻不算。
+- 結果放進「詞彙範圍」頁每個條目的數字；「有說明」最多的條目在頁面上另列一區「常被說明偏離」。
+
+### 6. 「詞彙範圍」分頁
+
+**資料**：新套件（例如 `internal/scope`）由 `lct site` 呼叫，產生 `review/scope.json`；另提供 `lct glossary scope --json` 讓 skill 讀同一份資料。內容：
+
+- 每個核准條目：`kr`、`zh`、`also`、`files`、`not_files`、`match`、`notes`；各族群與各目錄群組（`StoryData/`、`PersonalityVoiceDlg/`、`EGOVoiceDig/`、`BattleAnnouncerDlg/`、`RPGSystem/`、其餘）的「出現／有用」數；詞中詞（字串包含但不成詞）的「出現／有用」數；note 例外（有說明／沒說明）；每個「沒用」群組至多 3 個例子（key、KR 片段、TW 片段）。
+- 建議（只列和目前設定不同的）：
+  - **排除檔案**：有「沒用」群組（n ≥ 3、比例 ≤ 30%），其餘 n ≥ 3 的群組都「有用」（比例 ≥ 80%）→ 建議 `not_files` 加上那些群組，寫成 `family:<id>` 或 `<目錄>/**`。
+  - **限定檔案**：只有少數群組「有用」、其餘「沒用」且列出「有用」較短 → 建議 `files`。
+  - **詞中詞**：詞中詞 n ≥ 3 且有用比例 ≥ 80%，而條目不是 `substring` → 建議 `match: substring`；反之條目是 `substring` 但詞中詞有用比例 ≤ 30% → 建議拿掉。
+  - **需要人看**：有「混用」群組（30%～80%）。
+  - **常被說明偏離**：「有說明」≥ 3 → 提醒考慮 `also`、縮範圍或改譯名。
+  - 每個建議附效果：會移除多少審核頁警告、會少檢查多少「有用」的單位；少檢查 ≥ 20 或 ≥ 10% 的標記為「失去檢查偏多」，預設不採用。
+  - 門檻寫在程式常數，頁面上顯示。
+- 建議的 ID：`scope/<sha8 KR>/<sha8 ZH>/<種類>`（種類：`not-files`、`files`、`substring`、`word`），不符合既有任何 ID 格式；不採用時 `lct accept` 記進 `rules/declined.yaml`，之後同條目同種類的建議不再列出（建議的內容變了也一樣不列，頁面「顯示已確認」可看到）。
+
+**頁面**（`site/src/review/`，沿用審核頁的卡片、篩選、「顯示已確認」與複製元件）：
+
+- 分區：排除檔案、限定檔案、詞中詞、需要人看、常被說明偏離；每張卡片照前一階段 artifact 的樣子：條目、建議的範圍、效果、群組表（出現、用了譯名、比例、判斷）、例子、選項。
+- 下方「全部條目」：搜尋 KR／譯名，展開看同樣的群組表與 note 例外數。
+- 「複製決定」：每項一行 `ID「摘要」→ 決定`，與審核頁其他分頁相同格式，`/review-page` 照舊處理（採用 → 改 `glossary/terms.yaml`；不採用 → `lct accept`）。使用者也可在貼上時加自己的指示（例如「대상 加 also 對象」）。
+- 手機寬度 400px 不出現水平捲動。
+
+**skill**：`review-page` 加上 `scope/…` 的處理：採用時照 ID 讀 `lct glossary scope --json` 取得建議內容，改 `glossary/terms.yaml`（欄位與 `notes` 的寫法同前一階段：日期、依據數字），`lct rules lint` 通過；不採用時 `lct accept`。`also` 只在人明確指示時加。
+
+## 留給實作的
+
+- `family:<id>` 在批次裡怎麼讓譯者判斷（每單位帶族群，或批次層級說明）；選一個最簡單、譯者不會誤解的。
+- 「劇情類只警告」怎麼標在批次裡讓譯者知道。
+- 長詞條優先的資料結構與效能（`lct site` 掃全部單位，需在 CI 可接受的時間內）。
+- `internal/scope` 與前一階段 scratch 分析程式（`termscope.go.txt`）的取捨；群組清單必須用 `RPGSystem/**` 與 `family:<id>`，不得用 `RPGSystem*` 這類比對不到檔的樣式。
+- 頁面版面細節，沿用既有審核頁風格。
+
+## 驗收
+
+- 真實資料（隔離 clone，`origin/raw`、`origin/tw`）：
+  - 改寫成 `family:` 的條目適用檔集合只在 `전투 패배` 的 `Skills_Assist-walpu6` 改變。
+  - 長詞條優先、`also` 與劇情只警告各自造成的審核頁警告數變化。
+  - `review/scope.json` 的建議數、全部條目數；前一階段已套用的 44 條不再出現在建議裡（除非資料顯示要再調整）。
+  - 網站 `#/r/scope` 在 1280px 與 400px 的截圖；400px 時 `scrollWidth <= 400`。
+- `go vet ./... && go test ./...`、`cd site && npm test && npm run typecheck && npm run build` 通過；`lct rules lint` 在有 raw 時沒有警告。
