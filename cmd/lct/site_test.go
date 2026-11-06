@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"io/fs"
+	"maps"
 	"os"
 	"path/filepath"
 	"slices"
@@ -507,5 +508,64 @@ func readTestJSON(t *testing.T, path string, v any) {
 	}
 	if err := json.Unmarshal(b, v); err != nil {
 		t.Fatalf("%s: %v", path, err)
+	}
+}
+
+// The raw packs are parsed once by lct site: the Previewer works on the packs
+// openSiteSources opened, not on a second set of them.
+func TestOpenPreviewEnvUsesTheSetItIsGiven(t *testing.T) {
+	root := siteRepo(t)
+	ctx, _ := testCtx(t, root, "", true)
+	ss, err := openSiteSources(ctx, "site")
+	if err != nil {
+		t.Fatal(err)
+	}
+	env, _, _, err := openPreviewEnv(ctx, "site", ss.Records, &ss.Set)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if env.Src.KR != ss.Set.KR || env.Src.EN != ss.Set.EN || env.Src.JP != ss.Set.JP {
+		t.Error("the env opened its own raw packs instead of using the ones it was given")
+	}
+	env, _, _, err = openPreviewEnv(ctx, "batch preview", nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if env.Src.KR == nil || env.Src.KR == ss.Set.KR {
+		t.Error("with no set the env should open its own")
+	}
+}
+
+// The preview reads the store and never writes to it: lct site leaves every
+// file of .meta/ in the tw worktree as it was.
+func TestSiteCommandLeavesTheStoreAlone(t *testing.T) {
+	root := siteRepo(t)
+	ctx, _ := testCtx(t, root, "", true)
+	meta := filepath.Join(root, filepath.FromSlash(ctx.Config.Worktrees.TW), ".meta")
+	read := func() map[string]string {
+		got := map[string]string{}
+		err := filepath.WalkDir(meta, func(p string, d fs.DirEntry, err error) error {
+			if err != nil || d.IsDir() {
+				return err
+			}
+			b, err := os.ReadFile(p)
+			got[p] = string(b)
+			return err
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+		return got
+	}
+	before := read()
+	if len(before) == 0 {
+		t.Fatalf("no files under %s", meta)
+	}
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	after := read()
+	if !maps.Equal(before, after) {
+		t.Errorf(".meta/ changed under lct site:\nbefore %d files, after %d files", len(before), len(after))
 	}
 }

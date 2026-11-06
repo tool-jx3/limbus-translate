@@ -317,17 +317,14 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 	}
 }
 
-// encodeBatch writes v as lct batch next writes a batch file (writeJSONFile).
+// encodeBatch writes v as lct batch next writes a batch file.
 func encodeBatch(t *testing.T, v any) string {
 	t.Helper()
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	enc.SetIndent("", "  ")
-	if err := enc.Encode(v); err != nil {
+	data, err := batch.EncodeFile(v)
+	if err != nil {
 		t.Fatal(err)
 	}
-	return buf.String()
+	return string(data)
 }
 
 // rebuildBatch is how the viewer builds the batch of unit i of a file from the

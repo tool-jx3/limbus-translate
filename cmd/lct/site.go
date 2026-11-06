@@ -101,7 +101,7 @@ func runSite(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	preview, err := loadPreviewInputs(ctx, "site", records)
+	preview, err := loadPreviewInputs(ctx, "site", records, &set)
 	if err != nil {
 		return err
 	}
@@ -154,10 +154,10 @@ const previewPromptFile = "prompts/translate.md"
 // of that environment, the translation prompt and every guide under guides/,
 // keyed by their path relative to the repo root with forward slashes, the way
 // the batches name them (rules.Rules.GuidesFor). cmd names the command in the
-// errors. records are the records the caller has read already (nil: they are
-// read here).
-func loadPreviewInputs(ctx *cli.Context, cmd string, records map[string]store.Record) (*site.PreviewInputs, error) {
-	env, frozen, recs, err := openPreviewEnv(ctx, cmd, records)
+// errors. records are the records and set the raw packs the caller has read
+// already (nil: they are read here).
+func loadPreviewInputs(ctx *cli.Context, cmd string, records map[string]store.Record, set *pack.Set) (*site.PreviewInputs, error) {
+	env, frozen, recs, err := openPreviewEnv(ctx, cmd, records, set)
 	if err != nil {
 		return nil, err
 	}

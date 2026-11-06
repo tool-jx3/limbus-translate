@@ -67,8 +67,8 @@ func openStore(ctx *cli.Context) *store.Store {
 // and answer as if there were none. The error is a user error that says how to
 // make the worktree (lct does not make it; CI and a person do, from the tw
 // branch). The commands for looking things up and for working on the rules
-// (search, requeue, adjust, review, impact, suggest, glossary derive) open it
-// here; the batch commands and pending keep openStore.
+// (search, requeue, adjust, review, impact, suggest, glossary derive, batch
+// preview) open it here; the other batch commands and pending keep openStore.
 func openTWStore(ctx *cli.Context, command string) (*store.Store, error) {
 	tw := ctx.Config.Worktrees.TW
 	if tw == "" {
@@ -110,7 +110,7 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
 		return batch.Env{}, nil, cli.UserError(command + ": worktrees.raw and worktrees.tw must be set in lct.yaml")
 	}
-	env, err := baseEnv(ctx, command, openStore(ctx))
+	env, err := baseEnv(ctx, command, openStore(ctx), nil)
 	if err != nil {
 		return batch.Env{}, nil, err
 	}
@@ -120,8 +120,10 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 // baseEnv is what openBatchEnv and openPreviewEnv share: the env of st, with
 // the raw packs and their tag, the rules, the foreign names bootstrap found
 // and the provisional terms in force. The caller has checked that
-// worktrees.raw is set.
-func baseEnv(ctx *cli.Context, command string, st *store.Store) (batch.Env, error) {
+// worktrees.raw is set. set is the raw packs if the caller has opened them
+// already (a pack caches the files it parses, so they are opened once); nil
+// and they are opened here.
+func baseEnv(ctx *cli.Context, command string, st *store.Store, set *pack.Set) (batch.Env, error) {
 	cfg := ctx.Config
 	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
 	src, err := raw.LastSource(rawWorktree)
@@ -131,9 +133,12 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store) (batch.Env, erro
 	if src == nil {
 		return batch.Env{}, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
 	}
-	set, err := pack.OpenRaw(rawWorktree)
-	if err != nil {
-		return batch.Env{}, err
+	if set == nil {
+		opened, err := pack.OpenRaw(rawWorktree)
+		if err != nil {
+			return batch.Env{}, err
+		}
+		set = &opened
 	}
 	r, err := rules.Load(ctx.Root)
 	if err != nil {
@@ -149,7 +154,7 @@ func baseEnv(ctx *cli.Context, command string, st *store.Store) (batch.Env, erro
 	}
 	return batch.Env{
 		Store:        st,
-		Src:          set,
+		Src:          *set,
 		Rules:        r,
 		RawTag:       src.Tag,
 		ForeignNames: foreign,
@@ -310,14 +315,11 @@ func pathExists(path string) (bool, error) {
 	return false, err
 }
 
-// writeJSONFile writes v as indented JSON with a final newline, without
-// escaping < and >. The file appears whole or not at all.
+// writeJSONFile writes v as batch.EncodeFile encodes it. The file appears whole
+// or not at all.
 func writeJSONFile(path string, v any) error {
-	var buf bytes.Buffer
-	enc := json.NewEncoder(&buf)
-	enc.SetEscapeHTML(false)
-	enc.SetIndent("", "  ")
-	if err := enc.Encode(v); err != nil {
+	data, err := batch.EncodeFile(v)
+	if err != nil {
 		return err
 	}
 	dir := filepath.Dir(path)
@@ -328,7 +330,7 @@ func writeJSONFile(path string, v any) error {
 	if err != nil {
 		return err
 	}
-	_, err = f.Write(buf.Bytes())
+	_, err = f.Write(data)
 	if cerr := f.Close(); err == nil {
 		err = cerr
 	}

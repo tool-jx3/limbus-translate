@@ -93,9 +93,11 @@ type UnitPreview struct {
 // writes to it. It shares its code with Next (assemble) and Submit (Judge), so
 // the preview cannot differ from the real thing.
 //
-// A Previewer holds no KR file between calls: each Unit and File opens the
-// files it needs and lets them go, so that a pass over every file of the pack
-// does not keep them all in memory. It is not safe for concurrent use.
+// A Previewer keeps no file data of its own between calls: each Unit and File
+// works on the files it needs through Env.Src. The packs cache the trees they
+// parse (pack.Pack.Doc), so what is held in memory is held by the pack set,
+// the same one lct site goes on to use for the rest of its work (it hands the
+// set it opened to openPreviewEnv). It is not safe for concurrent use.
 type Previewer struct {
 	env     Env
 	frozen  []string

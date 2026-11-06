@@ -11,6 +11,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -29,8 +30,9 @@ func init() {
 // files. lct batch preview and lct site both load it here, so they preview
 // the same thing. records are the records of the store if the caller has read
 // them already, else nil and they are read here; the records used are
-// returned, so that the Previewer need not read them again.
-func openPreviewEnv(ctx *cli.Context, command string, records map[string]store.Record) (batch.Env, []string, map[string]store.Record, error) {
+// returned, so that the Previewer need not read them again. set is likewise
+// the raw packs if the caller has opened them (nil: they are opened here).
+func openPreviewEnv(ctx *cli.Context, command string, records map[string]store.Record, set *pack.Set) (batch.Env, []string, map[string]store.Record, error) {
 	st, err := openTWStore(ctx, command)
 	if err != nil {
 		return batch.Env{}, nil, nil, err
@@ -38,7 +40,7 @@ func openPreviewEnv(ctx *cli.Context, command string, records map[string]store.R
 	if ctx.Config.Worktrees.Raw == "" {
 		return batch.Env{}, nil, nil, cli.UserError(command + ": worktrees.raw must be set in lct.yaml")
 	}
-	env, err := baseEnv(ctx, command, st)
+	env, err := baseEnv(ctx, command, st, set)
 	if err != nil {
 		return batch.Env{}, nil, nil, err
 	}
@@ -81,7 +83,7 @@ func (r previewReport) String() string {
 		if t.Check == rules.CheckHard {
 			extra = "  [check: hard]"
 		}
-		if t.Status != "approved" {
+		if t.Provisional {
 			extra += "  [provisional]"
 		}
 		line("  %s → %s%s", t.KR, t.ZH, extra)
@@ -98,6 +100,12 @@ func (r previewReport) String() string {
 	}
 	if p.Pending.Draft != "" {
 		line("  draft: %s", p.Pending.Draft)
+	}
+	if p.Pending.Attempts > 0 {
+		line("  attempts: %d", p.Pending.Attempts)
+	}
+	if p.Pending.LastError != "" {
+		line("  last_error: %s", p.Pending.LastError)
 	}
 	if !p.State.Pending {
 		line("  (not in the pending list: this is what a requeue or the plan would make)")
@@ -121,6 +129,12 @@ func (r previewReport) String() string {
 			same = "same as the current rules"
 		}
 		line("record: origin %s, model %s, batch %s, rules %s (%s)", rec.Origin, dashed(rec.Model), dashed(rec.Batch), dashed(rec.Rules), same)
+		if rec.Since != "" {
+			line("  since: %s", rec.Since)
+		}
+		if len(rec.Flags) > 0 {
+			line("  flags: %s", strings.Join(rec.Flags, ", "))
+		}
 	}
 	for _, n := range p.Notes {
 		line("note: %s", n.Note)
@@ -133,7 +147,7 @@ func (r previewReport) String() string {
 			line("  the translation was made from an older KR")
 		}
 		for _, is := range c.Issues {
-			line("  %s [%s] %s", is.Code, is.Severity, is.Message)
+			line("  %s [%s] [%s] %s", is.Code, is.Severity, is.Class, is.Message)
 		}
 	}
 	return strings.TrimRight(sb.String(), "\n")
@@ -152,7 +166,7 @@ func runBatchPreview(ctx *cli.Context, args []string) error {
 	case len(positional) > 1:
 		return cli.UserError("batch preview: unexpected argument " + positional[1])
 	}
-	env, frozen, records, err := openPreviewEnv(ctx, "batch preview", nil)
+	env, frozen, records, err := openPreviewEnv(ctx, "batch preview", nil, nil)
 	if err != nil {
 		return err
 	}

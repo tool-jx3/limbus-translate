@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
@@ -133,13 +134,37 @@ func TestPreviewReportText(t *testing.T) {
 		{"check with issues, stale KR", func(p *batch.UnitPreview) {
 			p.Record = rec("abc1234")
 			p.Check = &batch.Check{Verdict: "reject", StaleKR: true, Issues: []validate.Issue{
-				{Code: "hangul", Severity: validate.SeverityHard, Message: "still Hangul"},
-				{Code: "term-missing", Severity: validate.SeverityWarn, Message: "威力 is missing"},
+				{Code: "hangul", Severity: validate.SeverityHard, Class: "structure", Message: "still Hangul"},
+				{Code: "term-missing", Severity: validate.SeverityWarn, Class: "glossary", Message: "威力 is missing"},
 			}}
 		}, []string{
 			"check: reject", "  the translation was made from an older KR",
-			"  hangul [hard] still Hangul", "  term-missing [warn] 威力 is missing",
+			"  hangul [hard] [structure] still Hangul", "  term-missing [warn] [glossary] 威力 is missing",
 		}, []string{"nothing to check"}},
+		{"issue lines name their class", func(p *batch.UnitPreview) {
+			p.Record = rec("abc1234")
+			p.Check = &batch.Check{Verdict: "reject", Issues: []validate.Issue{
+				{Code: "hangul", Severity: validate.SeverityHard, Class: "structure", Message: "still Hangul"},
+				{Code: "term-missing", Severity: validate.SeverityWarn, Class: "glossary", Message: "威力 is missing"},
+			}}
+		}, []string{"  hangul [hard] [structure] still Hangul", "  term-missing [warn] [glossary] 威力 is missing"}, nil},
+		{"glossary marks provisional and hard terms", func(p *batch.UnitPreview) {
+			p.Batch.Glossary = []rules.Term{
+				{KR: "일반", ZH: "一般", Status: "approved"},
+				{KR: "임시", ZH: "暫定", Status: "approved", Provisional: true},
+				{KR: "강제", ZH: "強制", Status: "approved", Check: rules.CheckHard},
+			}
+		}, []string{"  일반 → 一般", "  임시 → 暫定  [provisional]", "  강제 → 強制  [check: hard]"}, nil},
+		{"record since and flags", func(p *batch.UnitPreview) {
+			r := rec("abc1234")
+			r.Since, r.Flags = "raw-20261101", []string{"fallback-en", "x"}
+			p.Record = r
+		}, []string{"  since: raw-20261101", "  flags: fallback-en, x"}, nil},
+		{"record with no since or flags", func(p *batch.UnitPreview) { p.Record = rec("abc1234") }, nil, []string{"since:", "flags:"}},
+		{"pending attempts and last error", func(p *batch.UnitPreview) {
+			p.Pending.Attempts, p.Pending.LastError = 2, "hangul: still Hangul"
+		}, []string{"  attempts: 2", "  last_error: hangul: still Hangul"}, nil},
+		{"pending with no attempts or error", func(p *batch.UnitPreview) {}, nil, []string{"attempts:", "last_error:"}},
 		{"accepted check", func(p *batch.UnitPreview) {
 			p.Record = rec("abc1234")
 			p.Check = &batch.Check{Verdict: "accept"}

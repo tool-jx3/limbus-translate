@@ -23,7 +23,7 @@ const Reason = "requeue"
 
 // Item is the pending item Apply makes for a translated unit it sends back: the
 // old translation as PrevZH, so that the translator sees what it is to fix,
-// and the hint as the reason. The one definition of that item, so that a
+// and the hint as Hint (the Reason is Reason, "requeue"). The one definition of that item, so that a
 // preview of a translated unit shows what a requeue would hand out.
 func Item(key string, rec store.Record, hint string) store.PendingItem {
 	return store.PendingItem{Key: key, Reason: Reason, PrevZH: rec.ZH, Hint: hint}
