@@ -1739,3 +1739,15 @@ func TestSubstringEntrySpansTakePart(t *testing.T) {
 		}
 	}
 }
+
+// An also that is the zh once its tags are stripped adds nothing and hides a typo.
+func TestLintGlossaryAlsoEqualsZHAfterMatchText(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 목표\n  zh: 目標\n  also: [\"<b>目標</b>\"]\n  status: approved\n"
+	})
+	msg := lintMessages(rules.Lint(root))
+	if want := `also holds "<b>目標</b>", which is the zh already`; !strings.Contains(msg, want) {
+		t.Errorf("lint output does not mention %q:\n%s", want, msg)
+	}
+}

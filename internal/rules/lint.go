@@ -128,6 +128,8 @@ func (l *linter) glossary() {
 				l.report(GlossaryFile, "%s: also holds %q, which is only tags and would match every translation", label, a)
 			case a == t.ZH:
 				l.report(GlossaryFile, "%s: also holds %q, which is the zh already", label, a)
+			case validate.MatchText(a) == validate.MatchText(t.ZH):
+				l.report(GlossaryFile, "%s: also holds %q, which is the zh already once its tags are stripped", label, a)
 			default:
 				if f, ok := forbiddenIn(a, t.Forbidden); ok {
 					l.report(GlossaryFile, "%s: also holds %q, which forbidden %q rules out", label, a, f)
