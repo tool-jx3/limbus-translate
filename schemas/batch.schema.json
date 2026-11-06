@@ -15,6 +15,10 @@
       "description": "File family of the batch's files (guides/routing.yaml); all of them are of it.",
       "type": "string"
     },
+    "glossary_check": {
+      "description": "Present, as \"warn\", only when the family's glossary is a default and not a rule (guides/routing.yaml, glossary: warn): a glossary rendering missing from a translation is only a warning, and the translator may depart from it where the context does not fit, giving the reason in the note. Absent: a missing rendering is rejected unless the note names the term.",
+      "const": "warn"
+    },
     "file": {
       "description": "The first of files, such as StoryData/S1037B.json.",
       "type": "string"

@@ -77,6 +77,9 @@ type Env struct {
 type Batch struct {
 	ID     string `json:"id"`
 	Family string `json:"family"`
+	// GlossaryCheck is "warn" when the family's glossary renderings are only
+	// a default (guides/routing.yaml, glossary: warn), else empty.
+	GlossaryCheck string `json:"glossary_check,omitempty"`
 	// File is the first file of Files.
 	File string `json:"file"`
 	// Files are the files of the units, in the order they were handed out;

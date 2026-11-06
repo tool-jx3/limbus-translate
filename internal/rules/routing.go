@@ -30,7 +30,17 @@ type FamilyRule struct {
 	Match []string `yaml:"match" json:"match"`
 	// Guide is the family's guide file, relative to the repo root.
 	Guide string `yaml:"guide" json:"guide"`
+	// Glossary is how the glossary binds the family: "" or "hard" (a missing
+	// rendering is rejected at submission unless the note names the term) or
+	// "warn" (a missing rendering stays a warning).
+	Glossary string `yaml:"glossary,omitempty" json:"glossary,omitempty"`
 }
+
+// Glossary modes of a family.
+const (
+	GlossaryHard = "hard"
+	GlossaryWarn = "warn"
+)
 
 // parseRouting decodes routing.yaml. Whether the content is sound is for
 // globErrors and Lint to say.
@@ -78,6 +88,17 @@ func (r *Rules) Family(file string) string {
 		}
 	}
 	return ""
+}
+
+// GlossaryWarnOnly reports whether the family of file has glossary: warn, so
+// that a glossary rendering missing from a translation is only a warning.
+func (r *Rules) GlossaryWarnOnly(file string) bool {
+	for _, f := range r.Routing.Families {
+		if f.matches(file) {
+			return f.Glossary == GlossaryWarn
+		}
+	}
+	return false
 }
 
 // DefaultFamily is the id of the catch-all family of the routing, the one

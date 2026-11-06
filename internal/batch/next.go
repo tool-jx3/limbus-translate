@@ -457,12 +457,17 @@ func assemble(
 	records func() (map[string]store.Record, error),
 ) (*Batch, error) {
 	story := IsStory(parts[0].fd.file)
+	glossaryCheck := ""
+	if env.Rules.GlossaryWarnOnly(parts[0].fd.file) {
+		glossaryCheck = rules.GlossaryWarn
+	}
 	b := &Batch{
-		ID:      id,
-		Family:  family,
-		File:    parts[0].fd.file,
-		Units:   []BatchUnit{},
-		Context: []ContextLine{},
+		GlossaryCheck: glossaryCheck,
+		ID:            id,
+		Family:        family,
+		File:          parts[0].fd.file,
+		Units:         []BatchUnit{},
+		Context:       []ContextLine{},
 	}
 	var texts []unitText
 	needRecords := story

@@ -158,6 +158,25 @@ func TestCharacterByFile(t *testing.T) {
 	}
 }
 
+func TestGlossaryWarnOnly(t *testing.T) {
+	r := loadRepo(t)
+	for file, want := range map[string]bool{
+		"StoryData/S1037B.json":                      true,
+		"StoryData/E020X.json":                       true,
+		"PersonalityVoiceDlg/Voice_Faust_10211.json": true,
+		"EGOVoiceDig/Voice_EGO_Faust_20202_1.json":   true,
+		"BattleAnnouncerDlg/Announcer_1.json":        true,
+		"StoryTheaterDanteNote_1.json":               true,
+		"Skills_Ego_Personality-08.json":             false,
+		"Egos.json":                                  false,
+		"Other.json":                                 false,
+	} {
+		if got := r.GlossaryWarnOnly(file); got != want {
+			t.Errorf("GlossaryWarnOnly(%q) = %v, want %v", file, got, want)
+		}
+	}
+}
+
 func TestFamily(t *testing.T) {
 	r := loadRepo(t)
 	tests := map[string]string{
@@ -659,7 +678,7 @@ func TestLintRepoRulesAreClean(t *testing.T) {
 
 func TestLint(t *testing.T) {
 	const ryoshu = "guides/characters/ryoshu.md"
-	const danteNote = "  - id: dante-note\n    match: [\"StoryTheaterDanteNote*\"]\n    guide: guides/families.md\n"
+	const danteNote = "  - id: dante-note\n    match: [\"StoryTheaterDanteNote*\"]\n    glossary: warn\n    guide: guides/families.md\n"
 	const other = "  - id: other\n    match: []\n    guide: guides/families.md\n"
 	tests := []struct {
 		name string
@@ -709,6 +728,7 @@ func TestLint(t *testing.T) {
 		{"family guide does not exist", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families.md", "guides/families/nothing.md", 1)), []string{"guides/routing.yaml", "dante-note", "guides/families/nothing.md"}},
 		{"family without guide", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "    guide: guides/families.md\n", "", 1)), []string{"guides/routing.yaml", "dante-note", "guide"}},
 		{"family without id", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "  - id: dante-note\n    match", "  - match", 1)), []string{"guides/routing.yaml", "id"}},
+		{"unknown glossary mode", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "glossary: warn", "glossary: soft", 1)), []string{"guides/routing.yaml", "dante-note", "glossary", "soft"}},
 		{"family id used twice", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "dante-note", "mirror", 1)), []string{"guides/routing.yaml", "mirror", "twice"}},
 		{"family without match is not the last", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, `["StoryTheaterDanteNote*"]`, "[]", 1)), []string{"guides/routing.yaml", "dante-note", "last"}},
 		{"priority id not in families", "guides/routing.yaml", replaceOnce("  - story-main\n", "  - story-main\n  - no-such-family\n"), []string{"guides/routing.yaml", "no-such-family"}},

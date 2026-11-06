@@ -3164,6 +3164,71 @@ func TestSubmitTermMissingNeedsTheTermInTheNote(t *testing.T) {
 	}
 }
 
+// In a family with glossary: warn a missing glossary rendering stays a
+// warning, with or without a note; a forbidden rendering is still rejected,
+// and a family without the setting still rejects the missing rendering.
+func TestSubmitWarnFamily(t *testing.T) {
+	const routing = `families:
+  - id: voice
+    match: ["Warn*"]
+    glossary: warn
+    guide: guides/families.md
+  - id: other
+    match: []
+    guide: guides/families.md
+priority:
+  - voice
+  - other
+`
+	const glossary = seasonGlossary + "  forbidden: [季前]\n"
+	run := func(t *testing.T, file, zh, note string) (*SubmitResult, *Batch) {
+		t.Helper()
+		kr := map[string]string{file: dataList(t, 1, "", func(int) string { return "두 시즌 전부터" })}
+		env := newEnv(t, kr, nil, nil)
+		env.Rules = testRulesWithRouting(t, routing, glossary)
+		seed(t, env, items(file, 0, 1)...)
+		b := mustNext(t, env, NextOptions{})
+		res, err := Submit(env, b, []OutUnit{{Key: key(file, 0), ZH: zh, Note: note}}, "m", 3)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return res, b
+	}
+	t.Run("missing without a note is accepted with a warning", func(t *testing.T) {
+		res, b := run(t, "Warn.json", "從兩個賽局前起", "")
+		if b.GlossaryCheck != "warn" {
+			t.Errorf("GlossaryCheck = %q, want warn", b.GlossaryCheck)
+		}
+		if len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+			t.Fatalf("result = %+v, want accepted", res)
+		}
+		if len(res.Warnings) != 1 || !hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) || validate.HasHard(res.Warnings[0].Issues) {
+			t.Errorf("warnings = %+v, want term-missing as a warning", res.Warnings)
+		}
+	})
+	t.Run("missing with an unrelated note is accepted", func(t *testing.T) {
+		res, _ := run(t, "Warn.json", "從兩個賽局前起", "탐식：卡包名")
+		if len(res.Accepted) != 1 || len(res.Rejected) != 0 {
+			t.Errorf("result = %+v, want accepted", res)
+		}
+	})
+	t.Run("forbidden is still rejected", func(t *testing.T) {
+		res, _ := run(t, "Warn.json", "從兩棵季前起", "")
+		if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, "forbidden-term") {
+			t.Errorf("result = %+v, want rejected for forbidden-term", res)
+		}
+	})
+	t.Run("hard family still rejects a missing rendering", func(t *testing.T) {
+		res, b := run(t, "Other.json", "從兩個賽局前起", "")
+		if b.GlossaryCheck != "" {
+			t.Errorf("GlossaryCheck = %q, want none", b.GlossaryCheck)
+		}
+		if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
+			t.Errorf("result = %+v, want rejected for term-missing", res)
+		}
+	})
+}
+
 func TestCheckNewLeavesTermMissingAWarning(t *testing.T) {
 	r := testRulesWith(t, seasonGlossary)
 	issues := CheckNew(r, "Other.json", "두 시즌 전부터", "從兩棵季前起")

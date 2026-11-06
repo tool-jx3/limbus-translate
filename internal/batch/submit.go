@@ -414,10 +414,12 @@ func (s *submission) unit(o OutUnit) error {
 	issues := CheckNewTerms(s.env.Rules, prov, file, kr, zh)
 	// A missing glossary rendering is only a warning in CheckNew; a submission
 	// without it is rejected unless the note names the term, the way the
-	// entry itself matches a KR text.
+	// entry itself matches a KR text. A family with glossary: warn keeps it a
+	// warning whatever the note says.
 	entries := append(s.env.Rules.GlossaryHits(file, kr), prov...)
+	warnOnly := s.env.Rules.GlossaryWarnOnly(file)
 	for j := range issues {
-		if issues[j].Code == validate.CodeTermMissing && !noteNames(entries, issues[j], o.Note) {
+		if issues[j].Code == validate.CodeTermMissing && !warnOnly && !noteNames(entries, issues[j], o.Note) {
 			issues[j].Severity = validate.SeverityHard
 		}
 	}

@@ -2,6 +2,8 @@
 
 `terms.yaml` 是硬性規定：翻譯時注入命中的條目，驗證時檢查禁用譯法。
 
+劇情與台詞類族群（`guides/routing.yaml` 標 `glossary: warn` 的：`story-main`、`story-interlude`、`identity`、`ego-voice`、`announcer`、`dante-note`）語境多變，譯名只是預設：缺少 `zh` 時只警告，不退回；譯者語境不合可以不用，仍在 `note` 寫原因。`forbidden` 的禁用譯法在這些族群照樣退回。
+
 ## 術語相關（原指引）
 
 ### 為方便在專案平台上搜尋以及使用，將術語的備註中標註說明，並不排除未來以代號形式做備註。

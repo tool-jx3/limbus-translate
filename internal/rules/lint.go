@@ -293,6 +293,9 @@ func (l *linter) routing() {
 			l.report(RoutingFile, "%s: id is used twice", label)
 		}
 		ids[f.ID] = true
+		if f.Glossary != "" && f.Glossary != GlossaryHard && f.Glossary != GlossaryWarn {
+			l.report(RoutingFile, "%s: glossary %q must be empty, %q or %q", label, f.Glossary, GlossaryHard, GlossaryWarn)
+		}
 		switch {
 		case f.Guide == "":
 			l.report(RoutingFile, "%s: guide is missing", label)
