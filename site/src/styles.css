@@ -2678,8 +2678,19 @@ button.chip {
   list-style: none;
 }
 
-/* The box a copy falls back to: out of sight, but there to select, so the selection holds the lines a copy would. */
+/* The box a copy falls back to: shown, within the page width, with the lines selected, once the clipboard has said no. */
 .tv-copybox {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Until then it is out of sight but there to select, so the selection holds the lines a copy would. */
+.tv-copybox.is-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -2688,4 +2699,9 @@ button.chip {
   overflow: hidden;
   clip-path: inset(50%);
   opacity: 0;
+}
+
+.tv-copyhint {
+  margin: 0.25rem 0;
+  overflow-wrap: anywhere;
 }

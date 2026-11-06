@@ -257,15 +257,19 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
   const zhMark = useMemo(() => termsMark([entry.zh, ...entry.also]), [entry.zh, entry.also])
   const box = useRef<HTMLTextAreaElement>(null)
   const [saidAt, setSaidAt] = useState({ key: '', text: '' })
+  // The filters under which the clipboard said no: the box of the lines then shows, with a hint, until the next copy that works or the next change of the filters.
+  const [boxKey, setBoxKey] = useState<string | undefined>(undefined)
   // The status belongs to the filters it was said under: under other filters it is hidden at once, and cleared, so that it does not come back with the same filters (the box of the text keeps its focus, so the component is not keyed).
   const said = saidAt.key === filterKey ? saidAt.text : ''
   const setSaid = (text: string) => setSaidAt({ key: filterKey, text })
   useEffect(() => {
     setSaidAt({ key: '', text: '' })
+    setBoxKey(undefined)
   }, [filterKey])
   // Which run of the filters this is, for a copy that finishes late: it says nothing if the filters changed since it started, even if they have come back to the same ones.
   const run = useRef({ key: filterKey, n: 0 })
   if (run.current.key !== filterKey) run.current = { key: filterKey, n: run.current.n + 1 }
+  const boxShown = boxKey === filterKey
 
   // The unconfirmed units under the filters, as ID「TW」→ a line each: what to paste to the conversation to decide on them.
   const lines = useMemo(() => missing.filter((u) => u.accepted === undefined && u.id !== undefined).map((u) => copyText(u.id ?? '', stripTags(u.zh))), [missing])
@@ -275,9 +279,11 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
       return
     }
     if (!box.current) return
+    const startedUnder = filterKey
     const startedRun = run.current.n
     const result = await copyToClipboard(lines.join('\n'), box.current)
     if (run.current.n !== startedRun) return
+    setBoxKey(result === 'copied' ? undefined : startedUnder)
     setSaid(result === 'copied' ? `已複製 ${lines.length} 個單位，貼到對話中再加上你的決定` : '瀏覽器不讓複製，已選取單位，請按 Ctrl/⌘+C')
   }
 
@@ -294,7 +300,16 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
             {said}
           </span>
         </div>
-        <textarea ref={box} class="tv-copybox" readOnly tabIndex={-1} aria-hidden="true" value={lines.join('\n')} />
+        {boxShown && <p class="tv-copyhint">瀏覽器不讓網頁寫入剪貼簿：已選取下面的文字，按 Ctrl+C（或 ⌘C）複製</p>}
+        <textarea
+          ref={box}
+          class={boxShown ? 'tv-copybox' : 'tv-copybox is-hidden'}
+          readOnly
+          aria-label="要複製的單位"
+          {...(boxShown ? {} : { tabIndex: -1, 'aria-hidden': 'true' as const })}
+          rows={Math.min(Math.max(lines.length, 1), 8)}
+          value={lines.join('\n')}
+        />
         <MissingList key={filterKey} units={missing} mark={krMark} />
       </section>
       <section class="tv-used">

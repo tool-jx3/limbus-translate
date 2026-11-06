@@ -185,6 +185,44 @@ describe('TermView, units without the rendering', () => {
       expect(el.querySelector('.tv-missing .rv-said')?.textContent).toBe('')
     })
 
+    describe('where the clipboard says no', () => {
+      const refuse = async (el: HTMLElement) => {
+        vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText: vi.fn(async () => Promise.reject(new Error('no'))) } })
+        const button = [...el.querySelectorAll<HTMLButtonElement>('.tv-missing button')].find((b) => b.textContent === '複製這些單位')!
+        await act(() => {
+          button.click()
+        })
+        await vi.waitFor(() => expect(el.querySelector('.tv-missing .tv-copyhint')).not.toBeNull())
+      }
+      const box = (el: HTMLElement) => el.querySelector<HTMLTextAreaElement>('.tv-missing textarea.tv-copybox')!
+
+      it('shows the box with the lines selected, and a hint', async () => {
+        const el = await mount()
+        expect(box(el).classList.contains('is-hidden')).toBe(true)
+        await refuse(el)
+        expect(box(el).classList.contains('is-hidden')).toBe(false)
+        expect(box(el).getAttribute('aria-hidden')).not.toBe('true')
+        const open = file.missing.filter((u) => !u.accepted)
+        expect(box(el).value.split('\n')).toEqual(open.map((u) => `${u.id}「${u.zh}」→ `))
+        expect(el.querySelector('.tv-missing .tv-copyhint')?.textContent).toBe('瀏覽器不讓網頁寫入剪貼簿：已選取下面的文字，按 Ctrl+C（或 ⌘C）複製')
+      })
+
+      it('hides the box again when the filters change, and on the next successful copy', async () => {
+        const el = await mount()
+        await refuse(el)
+        await again(el, route({ family: 'story-main' }))
+        expect(box(el).classList.contains('is-hidden')).toBe(true)
+        expect(el.querySelector('.tv-copyhint')).toBeNull()
+        await again(el, route())
+        expect(box(el).classList.contains('is-hidden')).toBe(true)
+        await refuse(el)
+        await copied(el)
+        await vi.waitFor(() => expect(el.querySelector('.tv-missing .rv-said')?.textContent).toContain('已複製'))
+        expect(box(el).classList.contains('is-hidden')).toBe(true)
+        expect(el.querySelector('.tv-copyhint')).toBeNull()
+      })
+    })
+
     it('copies the units that the filters keep', async () => {
       const text = await copied(await mount(route({ family: 'story-main' })))
       const open = file.missing.filter((u) => !u.accepted && u.family === 'story-main')
