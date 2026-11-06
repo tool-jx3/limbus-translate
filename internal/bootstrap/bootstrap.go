@@ -127,6 +127,7 @@ func Run(in Inputs, fr *fields.Rules, r *rules.Rules) (*Result, error) {
 		in:       in,
 		fr:       fr,
 		rules:    r,
+		scripts:  rules.NewScriptCache(r),
 		keywords: keywords,
 		res: &Result{
 			Records: map[string]store.Record{},
@@ -252,6 +253,7 @@ type builder struct {
 	in       Inputs
 	fr       *fields.Rules
 	rules    *rules.Rules
+	scripts  *rules.ScriptCache
 	keywords map[string]string
 	res      *Result
 }
@@ -352,7 +354,7 @@ func (b *builder) unit(u units.Unit, a alignedFile, frozen bool) {
 // check validates zh as a new translation of kr, a text of file, under the
 // approved glossary terms kr contains in that file.
 func (b *builder) check(file, kr, zh string) []validate.Issue {
-	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file, ScriptOK: b.rules.ScriptRenderings(file)})
+	return validate.Check(kr, zh, validate.Context{Terms: b.rules.ValidateTerms(file, kr), File: file, ScriptOK: b.scripts.For(file)})
 }
 
 // settle records zh as the translation of u.

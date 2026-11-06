@@ -360,6 +360,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	for _, path := range files {
 		frozen := config.MatchAny(rv.Frozen, path)
 		family := in.Rules.Family(path)
+		scriptOK := in.Rules.ScriptRenderings(path)
 		var withRec []placedUnit
 		fileScope := len(scopeUnits)
 		visit := func(u Unit, ku units.Unit, en, jp *align.LangAligned) {
@@ -407,7 +408,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
-			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path), Terms: terms}) {
+			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: scriptOK, Terms: terms}) {
 				if is.Severity != validate.SeverityWarn {
 					continue
 				}

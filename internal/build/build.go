@@ -212,6 +212,7 @@ type builder struct {
 	added   []store.PendingItem
 	rep     *Report
 	glyphs  runeSet
+	scripts *rules.ScriptCache
 	// warnKeys are the keys of the units that warn, by code, in the order
 	// they were met; renders groups the translations by the text they render.
 	warnKeys   map[string][]string
@@ -315,6 +316,7 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	}
 	b := &builder{
 		opt: opt, src: src, fr: fr,
+		scripts: rules.NewScriptCache(opt.Rules),
 		records: records,
 		queued:  make(map[string]bool, len(pending)),
 		rep: &Report{
@@ -593,10 +595,7 @@ func (b *builder) addRendering(u units.Unit, key, zh string) {
 // scriptOK is what the kana and Hangul checks leave alone in a unit of file:
 // the approved renderings for file with kana or Hangul; none without rules.
 func (b *builder) scriptOK(file string) []string {
-	if b.opt.Rules == nil {
-		return nil
-	}
-	return b.opt.Rules.ScriptRenderings(file)
+	return b.scripts.For(file)
 }
 
 // terms are the glossary terms u.KR contains in file, weighed with the

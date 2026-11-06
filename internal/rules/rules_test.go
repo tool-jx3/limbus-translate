@@ -1751,3 +1751,38 @@ func TestLintGlossaryAlsoEqualsZHAfterMatchText(t *testing.T) {
 		t.Errorf("lint output does not mention %q:\n%s", want, msg)
 	}
 }
+
+// The cache of ScriptRenderings answers as ScriptRenderings does, for a file
+// no scoped entry applies to, one a pattern scopes, one of a family, and one
+// with no script name; asked again, it answers the same.
+func TestScriptCacheEqualsScriptRenderings(t *testing.T) {
+	r := &rules.Rules{
+		Routing: rules.Routing{
+			Families: []rules.FamilyRule{{ID: "story", Match: []string{"Story*"}}, {ID: "rest"}},
+			Priority: []string{"story", "rest"},
+		},
+		Glossary: []rules.Term{
+			{KR: "하나", ZH: "하나協會", Status: rules.StatusApproved},
+			{KR: "하나", ZH: "ハナ協會", Status: rules.StatusApproved, Files: []string{"Skill*.json"}},
+			{KR: "시", ZH: "し協會", Status: rules.StatusApproved, Files: []string{rules.FamilyPrefix + "story"}},
+			{KR: "패키지", ZH: "組合包", Status: rules.StatusApproved},
+			{KR: "후보", ZH: "ほ候補", Status: rules.StatusCandidate},
+			{KR: "제외", ZH: "ず除外", Status: rules.StatusApproved, NotFiles: []string{"Other.json"}},
+		},
+	}
+	cache := rules.NewScriptCache(r)
+	for _, file := range []string{"Other.json", "Skill1.json", "Story1.json", "Plain.json", "Other.json", "Skill1.json"} {
+		want := r.ScriptRenderings(file)
+		for range 2 {
+			if got := cache.For(file); !slices.Equal(got, want) {
+				t.Errorf("For(%q) = %q, want %q", file, got, want)
+			}
+		}
+	}
+	if got := cache.For("Plain.json"); !slices.Contains(got, "하나協會") || slices.Contains(got, "ハナ協會") {
+		t.Errorf("For(Plain.json) = %q, want the unscoped 하나協會 alone of the 하나 entries", got)
+	}
+	if got := rules.NewScriptCache(nil).For("Other.json"); len(got) != 0 {
+		t.Errorf("a cache of no rules gave %q, want none", got)
+	}
+}

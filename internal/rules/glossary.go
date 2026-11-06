@@ -379,6 +379,34 @@ func (r *Rules) ScriptRenderings(file string) []string {
 	return out
 }
 
+// ScriptCache remembers ScriptRenderings by file, for a run over many units of
+// few files: the result depends on the file alone, and computing it scans the
+// whole glossary. It assumes the glossary does not change while it is in use,
+// and it is not safe for concurrent use (no caller runs goroutines). The
+// slices it returns are shared: callers must not change them.
+type ScriptCache struct {
+	r      *Rules
+	byFile map[string][]string
+}
+
+// NewScriptCache returns an empty cache over r. A nil r gives no renderings.
+func NewScriptCache(r *Rules) *ScriptCache {
+	return &ScriptCache{r: r, byFile: map[string][]string{}}
+}
+
+// For returns r.ScriptRenderings(file), computed once per file.
+func (c *ScriptCache) For(file string) []string {
+	if c.r == nil {
+		return nil
+	}
+	out, ok := c.byFile[file]
+	if !ok {
+		out = c.r.ScriptRenderings(file)
+		c.byFile[file] = out
+	}
+	return out
+}
+
 // foreignScript reports whether c is kana (but not the middle dot ・, which
 // Chinese uses) or Hangul, the scripts validate flags in a translation.
 func foreignScript(c rune) bool {
