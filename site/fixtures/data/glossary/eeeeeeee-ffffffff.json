@@ -3,7 +3,7 @@
  "missing": [
   {
    "key": "Skills_personality-02.json|/dataList/1/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -24,8 +24,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "이 공격은(는) 어디에 있지? (21)",
@@ -43,8 +43,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "이 공격은(는) 어디에 있지? (22)",
@@ -58,8 +58,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "이 공격은(는) 어디에 있지? (23)",
@@ -73,8 +73,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "이 공격은(는) 어디에 있지? (24)",
@@ -85,7 +85,7 @@
  "used": [
   {
    "key": "Skills_personality-02.json|/dataList/2/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -99,7 +99,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/3/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -113,7 +113,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/4/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -127,7 +127,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/5/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -141,7 +141,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/6/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -155,7 +155,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/7/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -169,7 +169,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/8/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -183,7 +183,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/9/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -197,7 +197,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/10/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -211,7 +211,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/11/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -225,7 +225,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/12/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -239,7 +239,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/13/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -253,7 +253,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/14/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -267,7 +267,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/15/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -281,7 +281,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/16/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -295,7 +295,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/17/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -309,7 +309,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/18/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -323,7 +323,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/19/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -337,7 +337,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/20/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -356,8 +356,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (25)…",
@@ -370,8 +370,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (26)…",
@@ -384,8 +384,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (27)…",
@@ -398,8 +398,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (28)…",
@@ -412,8 +412,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (29)…",
@@ -426,8 +426,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (30)…",
@@ -440,8 +440,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (31)…",

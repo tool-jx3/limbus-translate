@@ -3,7 +3,7 @@
  "missing": [
   {
    "key": "Skills_personality-02.json|/dataList/1/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -19,7 +19,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/2/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -43,8 +43,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "이 대상은(는) 어디에 있지? (41)",
@@ -58,8 +58,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "이 대상은(는) 어디에 있지? (42)",
@@ -73,8 +73,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "이 대상은(는) 어디에 있지? (43)",
@@ -88,8 +88,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "이 대상은(는) 어디에 있지? (44)",
@@ -103,8 +103,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "이 대상은(는) 어디에 있지? (45)",
@@ -118,8 +118,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "이 대상은(는) 어디에 있지? (46)",
@@ -133,8 +133,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "이 대상은(는) 어디에 있지? (47)",
@@ -148,8 +148,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "이 대상은(는) 어디에 있지? (48)",
@@ -163,8 +163,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "이 대상은(는) 어디에 있지? (49)",
@@ -178,8 +178,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "human",
    "kr": "이 대상은(는) 어디에 있지? (50)",
@@ -190,7 +190,7 @@
  "used": [
   {
    "key": "Skills_personality-02.json|/dataList/3/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -204,7 +204,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/4/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -218,7 +218,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/5/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -232,7 +232,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/6/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -246,7 +246,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/7/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -260,7 +260,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/8/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -274,7 +274,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/9/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -288,7 +288,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/10/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -302,7 +302,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/11/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -316,7 +316,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/12/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -330,7 +330,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/13/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -344,7 +344,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/14/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -358,7 +358,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/15/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -372,7 +372,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/16/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -386,7 +386,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/17/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -400,7 +400,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/18/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -414,7 +414,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/19/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -428,7 +428,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/20/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -442,7 +442,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/21/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -456,7 +456,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/22/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -470,7 +470,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/23/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -484,7 +484,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/24/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -498,7 +498,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/25/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -512,7 +512,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/26/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -526,7 +526,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/27/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -540,7 +540,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/28/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -554,7 +554,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/29/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -568,7 +568,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/30/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -582,7 +582,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/31/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -596,7 +596,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/32/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -610,7 +610,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/33/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -624,7 +624,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/34/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -638,7 +638,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/35/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -652,7 +652,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/36/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -666,7 +666,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/37/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -680,7 +680,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/38/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -694,7 +694,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/39/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -708,7 +708,7 @@
   },
   {
    "key": "Skills_personality-02.json|/dataList/40/content",
-   "family": "skill",
+   "family": "ally",
    "top": "Skills",
    "sub": "Skills_personality",
    "tag": {
@@ -727,8 +727,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "paratranz",
    "kr": "…앞의 말 대상을(를) 보고 뒤의 말을 이었다 (51)…",
@@ -741,8 +741,8 @@
    "sub": "StoryData/S",
    "tag": {
     "kind": "chapter",
-    "value": "1",
-    "label": "第 1 章"
+    "value": "99",
+    "label": "第 99 章"
    },
    "origin": "claude",
    "kr": "…앞의 말 대상을(를) 보고 뒤의 말을 이었다 (52)…",

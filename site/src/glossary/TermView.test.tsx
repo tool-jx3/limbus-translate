@@ -266,9 +266,9 @@ describe('TermView, the filters', () => {
   it('lists the options the units have', async () => {
     const el = await mount()
     const opts = (name: string) => [...el.querySelectorAll<HTMLOptionElement>(`select[name=${name}] option`)].map((o) => o.value)
-    expect(opts('family')).toEqual(['', 'skill', 'story-main'])
+    expect(opts('family')).toEqual(['', 'ally', 'story-main'])
     expect(opts('group')).toEqual(['', 'Skills', 'StoryData/'])
-    expect(opts('chapter')).toEqual(['', '1'])
+    expect(opts('chapter')).toEqual(['', '99'])
     expect(opts('character')).toEqual(['', 'faust'])
     expect(opts('event')).toEqual([''])
     expect(opts('origin')).toEqual(['', 'claude', 'human', 'paratranz'])
@@ -283,7 +283,7 @@ describe('TermView, the filters', () => {
 
   it('applies a top node, a chapter, a character and an origin', async () => {
     expect(both(await mount(route({ group: 'Skills' })))).toEqual(count((u) => u.top === 'Skills'))
-    expect(both(await mount(route({ chapter: '1' })))).toEqual(count((u) => u.tag?.kind === 'chapter' && u.tag.value === '1'))
+    expect(both(await mount(route({ chapter: '99' })))).toEqual(count((u) => u.tag?.kind === 'chapter' && u.tag.value === '99'))
     expect(both(await mount(route({ character: 'faust' })))).toEqual(count((u) => u.tag?.kind === 'character' && u.tag.value === 'faust'))
     expect(both(await mount(route({ origin: 'human' })))).toEqual(count((u) => u.origin === 'human'))
   })
