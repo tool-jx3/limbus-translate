@@ -831,6 +831,7 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"`glossary/…`", "the id of a glossary entry (glossary/…) that carries an instruction is not named"},
 	skillSays{"`entries[].id`", "the entry of a glossary/… id is not said to be found by entries[].id of lct glossary scope"},
 	skillSays{"`bin/lct accept` 拒絕 `glossary/…`", "the skill does not say that lct accept refuses a glossary/… id"},
+	skillSays{"輸出裡找不到這個 ID 時停止，不改檔", "a scope/… or glossary/… id missing from lct glossary scope --json is not said to stop the edit: the skill would treat a stale local build as an adopted proposal"},
 	skillSays{"`also` 只在人明確指示時加", "the skill does not forbid adding also unless the person says so"},
 )
 
@@ -863,6 +864,7 @@ func TestReviewPageSays(t *testing.T) {
 		{"may strip @N", "不去掉 `@N`", "去掉 `@N`", "不去掉 `@N`"},
 		{"scope proposal not named", "`scope/…`", "`warning/…`", "`scope/…`"},
 		{"scope proposal not looked up", "bin/lct glossary scope --json", "bin/lct suggest --json", "bin/lct glossary scope --json"},
+		{"missing id not stopped", "輸出裡找不到這個 ID 時停止，不改檔", "輸出裡找不到這個 ID 時略過", "輸出裡找不到這個 ID 時停止，不改檔"},
 		{"also added unasked", "`also` 只在人明確指示時加", "`also` 可以加", "`also` 只在人明確指示時加"},
 		{"glossary id accepted", "`bin/lct accept` 拒絕 `glossary/…`", "`bin/lct accept` 接受", "`bin/lct accept` 拒絕 `glossary/…`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
