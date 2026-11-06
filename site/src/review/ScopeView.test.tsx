@@ -128,6 +128,67 @@ describe('ScopeView', () => {
     expect(cards(el)).toHaveLength(2)
   })
 
+  describe('需要人看 collapsed', () => {
+    type Doc = { thresholds: object; entries: { id: string; kr: string; zh: string; groups: { name: string; kind: string; n: number; used: number }[] }[]; proposals: { kind: string; id: string }[] }
+    // Proposal i has i+1 units without the rendering, so the last one ranks lowest.
+    function twelve(): Doc {
+      const base = fixture<Doc>('review/scope.json')
+      const entries = Array.from({ length: 12 }, (_, i) => ({
+        ...base.entries[0]!,
+        id: `glossary/m${i}/z`,
+        kr: `혼합${i}`,
+        zh: `混${i}`,
+        groups: [{ name: 'family:skill', kind: 'family', n: 10, used: 10 - (i + 1) }],
+      }))
+      const proposals = entries.map((e) => ({ ...base.proposals[4]!, id: `scope/m${e.id}/mixed`, kr: e.kr, zh: e.zh }))
+      return { ...base, entries, proposals }
+    }
+    const mixed = (el: HTMLElement) => [...sections(el)[3]!.querySelectorAll<HTMLElement>('article')]
+
+    it('shows the top 10 by units without the rendering and a button for the rest', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': twelve() })))
+      const el = await mount()
+      expect(sections(el)[3]!.querySelector('h2')?.textContent).toBe('需要人看 12 項')
+      let shown = mixed(el)
+      expect(shown).toHaveLength(10)
+      expect(shown[0]!.querySelector('h3')?.textContent).toContain('혼합11')
+      expect(shown[9]!.querySelector('h3')?.textContent).toContain('혼합2')
+      const button = sections(el)[3]!.querySelector<HTMLButtonElement>('.sc-more-mixed')!
+      expect(button.textContent).toBe('顯示更多（共 12）')
+      act(() => button.click())
+      shown = mixed(el)
+      expect(shown).toHaveLength(12)
+      expect(sections(el)[3]!.querySelector('.sc-more-mixed')).toBeNull()
+    })
+
+    it('shows the one the address names even when it is outside the top 10', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': twelve() })))
+      const el = await mount(route({ id: 'scope/mglossary/m0/z/mixed' }))
+      expect(mixed(el)).toHaveLength(11)
+      expect(el.querySelector('article.is-target')?.querySelector('h3')?.textContent).toContain('혼합0')
+      expect(el.querySelector('.rv-missing')).toBeNull()
+    })
+  })
+
+  it('explains 太少 and 中間 with the real min_n', async () => {
+    const el = await mount()
+    const few = [...el.querySelectorAll<HTMLElement>('.sc-class-few')][0]!
+    expect(few.title).toBe('不到 3 筆，或未用譯名的不到 3 筆，不計入建議')
+    expect(el.querySelector<HTMLElement>('.sc-class-uses')?.title).toBe('')
+  })
+
+  it('links a card to its entry, which opens and is marked when the address names it', async () => {
+    let el = await mount()
+    const link = sections(el)[0]!.querySelector<HTMLAnchorElement>('article a.sc-entry-link')!
+    expect(link.textContent).toBe('看條目')
+    expect(link.getAttribute('href')).toBe(reviewHref('scope', { id: 'glossary/aaaaaaaa/bbbbbbbb' }))
+    el = await mount(route({ id: 'glossary/aaaaaaaa/bbbbbbbb' }))
+    const entry = el.querySelector<HTMLDetailsElement>('.sc-entry.is-target')!
+    expect(entry.getAttribute('data-id')).toBe('glossary/aaaaaaaa/bbbbbbbb')
+    expect(entry.open).toBe(true)
+    expect(el.querySelector('.rv-missing')).toBeNull()
+  })
+
   describe('all entries', () => {
     const rows = (el: HTMLElement) => [...el.querySelectorAll<HTMLElement>('.sc-entry')]
 
@@ -173,6 +234,14 @@ describe('ScopeView', () => {
       expect(row.querySelector('.rv-id code')?.textContent).toBe('glossary/aaaaaaaa/bbbbbbbb')
       act(() => row.querySelector<HTMLButtonElement>('.rv-copy')!.click())
       await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith('glossary/aaaaaaaa/bbbbbbbb「대상 → 目標」→ '))
+    })
+
+    it('shows an entry beyond the first 50 when the address names it', async () => {
+      const base = fixture<{ entries: { id: string }[] }>('review/scope.json')
+      const many = Array.from({ length: 120 }, (_, i) => ({ ...base.entries[0]!, id: `glossary/x${i}/y`, kr: `단어${i}` }))
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, entries: many } })))
+      const el = await mount(route({ id: 'glossary/x77/y' }))
+      expect(el.querySelector<HTMLDetailsElement>('.sc-entry.is-target')?.open).toBe(true)
     })
 
     it('shows the first 50 and more on request', async () => {

@@ -2308,12 +2308,12 @@ button.chip {
   font-weight: 600;
 }
 
-.sc-class-used {
+.sc-class-uses {
   background: var(--o-human-bg);
   color: var(--o-human-fg);
 }
 
-.sc-class-unused {
+.sc-class-notUse {
   background: var(--danger-bg);
   color: var(--danger-fg);
 }
@@ -2324,7 +2324,7 @@ button.chip {
 }
 
 .sc-class-few,
-.sc-class-mid {
+.sc-class-between {
   background: var(--o-copy-bg);
   color: var(--o-copy-fg);
 }
@@ -2395,4 +2395,16 @@ button.chip {
   gap: 0.5rem;
   margin-top: 0.6rem;
   min-width: 0;
+}
+
+.sc-entry.is-target {
+  background: var(--target-bg);
+  border-color: var(--target-ring);
+  box-shadow: inset 4px 0 0 var(--target-ring);
+  scroll-margin-top: calc(var(--top-h) + 1rem);
+}
+
+.sc-entry-link {
+  justify-self: start;
+  font-size: 0.85rem;
 }

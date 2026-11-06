@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
+import { reviewHref } from '../route'
 import { LANG_ATTR, type ScopeEntry, type ScopeGroup, type ScopeKind, type ScopeProposal, type ScopeReport, type ScopeThresholds } from '../types'
 import { ConfirmedLine, IdCopy, UnitLink } from './parts'
 
 const ENTRY_PAGE = 50
+/** How many 需要人看 proposals show before the button. */
+const MIXED_TOP = 10
 
 /** The sections of the page, in order: the kinds each holds, and what they are called. */
 const SECTIONS: { name: string; desc: string; kinds: ScopeKind[] }[] = [
@@ -23,15 +26,25 @@ const KIND_LABEL: Record<ScopeKind, string> = {
 }
 
 /** How a group reads by the thresholds: 有用, 沒用, 混用 (enough units lack the rendering), 太少 (too few units to say), 中間 (between, with few lacking). */
-export function groupClass(g: { n: number; used: number }, t: ScopeThresholds): string {
-  if (g.n < t.min_n) return '太少'
+export type GroupClass = 'uses' | 'notUse' | 'mixed' | 'few' | 'between'
+
+export const CLASS_LABEL: Record<GroupClass, string> = { uses: '有用', notUse: '沒用', mixed: '混用', few: '太少', between: '中間' }
+
+export function groupClass(g: { n: number; used: number }, t: ScopeThresholds): GroupClass {
+  if (g.n < t.min_n) return 'few'
   const rate = g.used / g.n
-  if (rate >= t.used) return '有用'
-  if (rate <= t.not_used) return '沒用'
-  return g.n - g.used >= t.min_n ? '混用' : '中間'
+  if (rate >= t.used) return 'uses'
+  if (rate <= t.not_used) return 'notUse'
+  return g.n - g.used >= t.min_n ? 'mixed' : 'between'
 }
 
-const CLASS_KEY: Record<string, string> = { 有用: 'used', 沒用: 'unused', 混用: 'mixed', 太少: 'few', 中間: 'mid' }
+/** Why a group is read as 太少 or 中間: it is not counted by the proposals. */
+function classTitle(c: GroupClass, t: ScopeThresholds): string | undefined {
+  return c === 'few' || c === 'between' ? `不到 ${t.min_n} 筆，或未用譯名的不到 ${t.min_n} 筆，不計入建議` : undefined
+}
+
+/** The units of an entry that do not use its rendering, over all its groups. */
+const nonUsing = (e: ScopeEntry | undefined) => (e ? e.groups.reduce((s, g) => s + g.n - g.used, 0) : 0)
 const percent = (used: number, n: number) => (n === 0 ? 0 : Math.round((used / n) * 100))
 
 /** The effect of a proposal as a line: only the numbers that are not zero; '' when none is. */
@@ -80,7 +93,9 @@ function GroupTable({ groups, t }: { groups: ScopeGroup[]; t: ScopeThresholds })
                   </span>
                 </td>
                 <td>
-                  <span class={`sc-class sc-class-${CLASS_KEY[cls]}`}>{cls}</span>
+                  <span class={`sc-class sc-class-${cls}`} title={classTitle(cls, t)}>
+                    {CLASS_LABEL[cls]}
+                  </span>
                 </td>
               </tr>
             )
@@ -110,7 +125,7 @@ function Examples({ p }: { p: ScopeProposal }) {
   )
 }
 
-function ProposalCard({ p, entry, t, target }: { p: ScopeProposal; entry: ScopeEntry | undefined; t: ScopeThresholds; target: boolean }) {
+function ProposalCard({ p, entry, t, target, all }: { p: ScopeProposal; entry: ScopeEntry | undefined; t: ScopeThresholds; target: boolean; all: boolean }) {
   const cls = ['rv-card', p.declined ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
   const effect = effectText(p)
   const title = `${p.kr} → ${p.zh}`
@@ -139,15 +154,20 @@ function ProposalCard({ p, entry, t, target }: { p: ScopeProposal; entry: ScopeE
       {effect !== '' && <p class="sc-effect">{effect}</p>}
       {entry && <GroupTable groups={entry.groups} t={t} />}
       <Examples p={p} />
+      {entry && (
+        <a class="sc-entry-link" href={reviewHref('scope', { id: entry.id, all })}>
+          看條目
+        </a>
+      )}
     </article>
   )
 }
 
-function EntryRow({ e, t }: { e: ScopeEntry; t: ScopeThresholds }) {
+function EntryRow({ e, t, target }: { e: ScopeEntry; t: ScopeThresholds; target: boolean }) {
   const n = e.groups.reduce((s, g) => s + g.n, 0)
   const used = e.groups.reduce((s, g) => s + g.used, 0)
   return (
-    <details class="sc-entry" data-id={e.id}>
+    <details class={target ? 'sc-entry is-target' : 'sc-entry'} data-id={e.id} open={target}>
       <summary>
         <span class="sc-entry-name">
           <span lang={LANG_ATTR.kr}>{e.kr}</span> → <span lang={LANG_ATTR.zh}>{e.zh}</span>
@@ -174,7 +194,7 @@ function EntryRow({ e, t }: { e: ScopeEntry; t: ScopeThresholds }) {
   )
 }
 
-function AllEntries({ entries, t }: { entries: ScopeEntry[]; t: ScopeReport['thresholds'] }) {
+function AllEntries({ entries, t, id }: { entries: ScopeEntry[]; t: ScopeReport['thresholds']; id: string | undefined }) {
   const [q, setQ] = useState('')
   const [limit, setLimit] = useState(ENTRY_PAGE)
   const needle = q.trim().toLowerCase()
@@ -182,6 +202,8 @@ function AllEntries({ entries, t }: { entries: ScopeEntry[]; t: ScopeReport['thr
     () => (needle === '' ? entries : entries.filter((e) => [e.kr, e.zh, ...e.also].some((x) => x.toLowerCase().includes(needle)))),
     [entries, needle],
   )
+  const at = id === undefined ? -1 : shown.findIndex((e) => e.id === id)
+  const count = Math.min(shown.length, Math.max(limit, at + 1))
   return (
     <section class="sc-all">
       <h2>
@@ -203,12 +225,12 @@ function AllEntries({ entries, t }: { entries: ScopeEntry[]; t: ScopeReport['thr
       </div>
       {shown.length === 0 && <p class="rv-empty">沒有符合的條目</p>}
       <div class="sc-entries">
-        {shown.slice(0, limit).map((e) => (
-          <EntryRow key={e.id} e={e} t={t} />
+        {shown.slice(0, count).map((e) => (
+          <EntryRow key={e.id} e={e} t={t} target={e.id === id} />
         ))}
       </div>
-      {limit < shown.length && (
-        <button type="button" class="rv-more sc-more" onClick={() => setLimit(limit + ENTRY_PAGE)}>
+      {count < shown.length && (
+        <button type="button" class="rv-more sc-more" onClick={() => setLimit(count + ENTRY_PAGE)}>
           顯示更多（共 {shown.length}）
         </button>
       )}
@@ -237,7 +259,8 @@ export function ScopeBody({ report, filter }: { report: ScopeReport; filter: Sco
   const shown = useMemo(() => filterProposals(report.proposals, filter), [report, filter.q, filter.all, filter.id])
   const byEntry = useMemo(() => new Map(report.entries.map((e) => [`${e.kr}\u0000${e.zh}`, e])), [report])
   const box = useRef<HTMLDivElement>(null)
-  const found = filter.id !== undefined && shown.some((p) => p.id === filter.id)
+  const found = filter.id !== undefined && (shown.some((p) => p.id === filter.id) || report.entries.some((e) => e.id === filter.id))
+  const [allMixed, setAllMixed] = useState(false)
   useEffect(() => {
     box.current?.querySelector('.is-target')?.scrollIntoView?.({ block: 'center' })
   }, [filter.id, found])
@@ -249,23 +272,36 @@ export function ScopeBody({ report, filter }: { report: ScopeReport; filter: Sco
         </p>
       )}
       {SECTIONS.map((s) => {
-        const items = shown.filter((p) => s.kinds.includes(p.kind))
+        let items = shown.filter((p) => s.kinds.includes(p.kind))
+        const total = items.length
+        const collapsible = s.kinds.includes('mixed')
+        if (collapsible && !allMixed && total > MIXED_TOP) {
+          const rank = (p: ScopeProposal) => nonUsing(byEntry.get(`${p.kr}\u0000${p.zh}`))
+          const top = new Set([...items].sort((a, b) => rank(b) - rank(a)).slice(0, MIXED_TOP))
+          items = items.filter((p) => top.has(p) || p.id === filter.id)
+        }
+        const sorted = collapsible ? [...items].sort((a, b) => nonUsing(byEntry.get(`${b.kr}\u0000${b.zh}`)) - nonUsing(byEntry.get(`${a.kr}\u0000${a.zh}`))) : items
         return (
           <section class="sc-section" key={s.name}>
             <h2>
-              {s.name} <span class="rv-n">{items.length} 項</span>
+              {s.name} <span class="rv-n">{total} 項</span>
             </h2>
             <p class="sc-desc">{s.desc}</p>
-            {items.length === 0 && <p class="rv-empty">沒有建議</p>}
+            {total === 0 && <p class="rv-empty">沒有建議</p>}
             <div class="rv-list">
-              {items.map((p) => (
-                <ProposalCard key={p.id} p={p} entry={byEntry.get(`${p.kr}\u0000${p.zh}`)} t={report.thresholds} target={p.id === filter.id} />
+              {sorted.map((p) => (
+                <ProposalCard key={p.id} p={p} entry={byEntry.get(`${p.kr}\u0000${p.zh}`)} t={report.thresholds} target={p.id === filter.id} all={filter.all} />
               ))}
             </div>
+            {collapsible && sorted.length < total && (
+              <button type="button" class="rv-more sc-more-mixed" onClick={() => setAllMixed(true)}>
+                顯示更多（共 {total}）
+              </button>
+            )}
           </section>
         )
       })}
-      <AllEntries entries={report.entries} t={report.thresholds} />
+      <AllEntries entries={report.entries} t={report.thresholds} id={filter.id} />
     </div>
   )
 }
