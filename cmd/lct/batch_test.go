@@ -212,14 +212,14 @@ func TestBatchNextWritesTheBatchFile(t *testing.T) {
 
 func TestBatchNextOptions(t *testing.T) {
 	root, _ := batchRepo(t)
-	got, raw, err := runNextJSON(t, root, "--max-units", "1", "--family", "other")
+	got, raw, err := runNextJSON(t, root, "--max-units", "1", "--family", "unsorted")
 	if err != nil || got.Units != 1 {
 		t.Fatalf("output = %s, %v, want 1 unit", raw, err)
 	}
 	if got, raw, err := runNextJSON(t, root, "--family", "story-main"); err != nil || got.Batch != nil {
 		t.Errorf("output = %s, %v, want no batch in another family", raw, err)
 	}
-	got, raw, err = runNextJSON(t, root, "--family", "other")
+	got, raw, err = runNextJSON(t, root, "--family", "unsorted")
 	if err != nil || got.Units != 1 {
 		t.Errorf("output = %s, %v, want the other unit", raw, err)
 	}

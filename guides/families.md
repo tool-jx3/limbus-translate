@@ -49,9 +49,9 @@
 - 戰鬥泡泡的 `desc` 是觸發標籤，三語幾乎相同，**不翻**；台詞在 `dlg`
 - 戰鬥泡泡的批次沒有說話者：看 KR 的 `desc`（觸發標籤常含角色名）與 `id`（`1XXYY` = 罪人代碼 XX、人格 YY）判斷是誰在說話
 
-**原指引「未列出」的族群**（檔數）：
+**原指引「未列出」的文本**（檔數；歸哪個族群見下一節，由節點決定，不看這張表）：
 
-| 族群 | 檔名樣式 | 檔數 |
+| 文本 | 檔名樣式 | 檔數 |
 |---|---|---|
 | 鏡牢事件 | `AbEvents_Mirror*`、`ActionEvents_Mirror*`、`MirrorDungeon*`、`DungeonStartBuffs*` | 約 70 |
 | 鏡牢飾品 | `EGOgift_*`（如 `EGOgift_MirrorDungeon-StoryTheme_2`） | 29 |
@@ -59,8 +59,8 @@
 | 人格技能／E.G.O | `Skills_personality-YY`、`Skills_Ego_Personality-YY`、`Passive_Ego*`、`Egos*`、`Personality*` | 各 14 份技能檔＋其他 |
 | 敵方名稱／技能 | `Enemies*`、`Skills_Enemy*`、`Passives_Enemy*`、`Skills_Abnormality*`、`Passives_Abnormality*` | 約 200 |
 | 但丁筆記 | `StoryTheaterDanteNote`、`StoryTheaterDanteNoteDetail_<章>` | 26 |
-| 瓦夜 | 檔名含 `walpu`（如 `AbEvents-walpu6`） | 47 |
-| 折射軌道 | 檔名含 `Refraction`、`Railway`（如 `RailwayDungeonUI_5`） | 81 |
+| 瓦夜活動檔 | 檔名含 `walpu`（如 `AbEvents-walpu6`） | 47 |
+| 折射軌道活動檔 | 檔名含 `Refraction`、`Railway`（如 `RailwayDungeonUI_5`） | 81 |
 | RPG 探索 | `RPGSystem/rpg-loc-*`（對話、NPC、選項、旁白） | 189 |
 | 協助者 | `Skills_Assist*`、`Passives_Assist*` | 14 |
 
@@ -81,6 +81,30 @@
 ### 待確認
 
 - 原指引寫「全數泡泡在同一個檔案內」，現在已分成 11 個檔，章節檔改用 `<章>SV-<序號>` 編號；原指引需更新
+
+## 族群與節點
+
+族群由分群樹的節點組成（`guides/routing.yaml` 的 `nodes`）。檔名推導出 `top`、`sub` 兩層節點，先看 `sub` 再看 `top`；同一層寫出完整名稱的族群優先，否則取路由裡第一個樣式符合的族群；都沒有的檔歸 `unsorted`。瓦夜與折射軌道活動檔不再自成一個族群，依文字類型歸進下面的族群。節點的完整清單以 `guides/routing.yaml` 為準。
+
+| 族群 | 文字類型 | 節點 |
+|---|---|---|
+| `story-main` | 主線劇情、主線地牢、歌詞 | `StoryData/S`、`StoryData/D`、`StoryData/RPG`、`DungeonNode`、`BgmLyrics/` |
+| `story-interlude` | 間章與活動劇情、聯動劇情 | `StoryData/E`、`StoryData/ES`、`StoryData/PC` |
+| `identity` | 人格故事、人格語音、戰鬥泡泡 | `StoryData/P`、`PersonalityVoiceDlg/`、`BattleSpeechBubbleDlg` |
+| `ego-voice` | E.G.O 台詞 | `EGOVoiceDig/` |
+| `announcer` | 播報員台詞 | `BattleAnnouncerDlg/` |
+| `dante-note` | 但丁的筆記 | `StoryTheaterDanteNote*` |
+| `rpg` | RPG 探索 | `RPGSystem/` |
+| `ally` | 我方：人格與 E.G.O 的技能、被動、名稱，協助者 | `Skills_personality`、`Skills_Ego_Personality`、`Skills_Ego`、`Skills_Assist`、`Passives_Assist`、`Passive`、`Passives`、`Personalit*`、`Egos`、`Assist`、`EGO` |
+| `enemy` | 敵方：敵人與異想體戰鬥的名稱、技能、被動 | `Enemies`、`Skills`、`Skills_Enemy*`、`Skills_Abnormality*`、`Passives_Enemy*`、`Passives_Abnormality*` |
+| `keywords` | 關鍵字、狀態、戰鬥術語 | `Bufs*`、`BattleKeywords*`、`UnitKeyword`、`SkillTag`、`KeywordDictionary` 等 |
+| `abnormality` | 異想體圖鑑、觀察日誌、異想體事件 | `AbnormalityGuides*`、`AbDlg`、`AbEvents*`、`AbEventsResultLog*` |
+| `mirror` | 鏡牢專屬：飾品、事件、起始增益 | `MirrorDungeon*`、`EGOgift*`、`ActionEvents*`、`DungeonStartBuffs`、`StoryTheaterMirrorWorld*` 等 |
+| `railway` | 折射軌道 | `Railway*` |
+| `stage` | 關卡、地牢區域、選擇事件、角色與場景名稱 | `StageNode`、`Stage*`、`DungeonArea`、`ChoiceEvent*`、`StoryTheater*`、`Characters` 等 |
+| `events` | 活動 | `Event*`、`*EventText`、`BossRaidUI` 等 |
+| `ui` | 介面、教學、商店、公告 | `*UI`、`*UIText`、`Tutorial*`、`FAQ`、`IAP*` 等 |
+| `unsorted` | 後備：沒有族群列到的新檔 | 無（看到新檔先補 `nodes`） |
 
 ## 凍結項目
 
@@ -117,5 +141,5 @@
 
 ### 決定
 
-- **照列出的順序**，不照編號。實際順序：主線劇情 → 間章 → E.G.O 台詞 → 播報員台詞 → 人格卡 → 我方 → 敵方 → 異想體圖鑑 → 但丁的筆記 → 鏡牢 → 瓦夜／折射軌道
+- **照列出的順序**，不照編號。實際順序（`guides/routing.yaml` 的 `priority`）：`story-main` → `story-interlude` → `ego-voice` → `announcer` → `identity` → `ally` → `enemy` → `keywords` → `abnormality` → `dante-note` → `mirror` → `railway` → `rpg` → `stage` → `events` → `ui` → `unsorted`
 - 自動化中的用途：當週待翻量很大、需要分批時，決定先翻哪些族群；第二階段複查或改進舊譯文時，決定先處理哪些族群

@@ -1628,7 +1628,7 @@ func TestReportWarningSamples(t *testing.T) {
 
 func routingRules() *rules.Rules {
 	return &rules.Rules{Routing: rules.Routing{
-		Families: []rules.FamilyRule{{ID: "alpha", Match: []string{"A*"}}, {ID: "other"}},
+		Families: []rules.FamilyRule{{ID: "alpha", Nodes: []string{"A*"}}, {ID: "other"}},
 		Priority: []string{"alpha", "other"},
 	}}
 }
@@ -2162,7 +2162,7 @@ func TestBuildCountsTermMissingWarnings(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    nodes: []\npriority:\n  - other\n"))
 	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
 	rl, err := rules.Load(root)
 	if err != nil {
@@ -2200,7 +2200,7 @@ func TestBuildWeighsProvisionalTermsAsCoverers(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    nodes: []\npriority:\n  - other\n"))
 	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
 	rl, err := rules.Load(root)
 	if err != nil {
@@ -2249,7 +2249,7 @@ func TestBuildAcceptsTermMissingByTerm(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    nodes: []\npriority:\n  - other\n"))
 	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
 	rl, err := rules.Load(root)
 	if err != nil {
@@ -2293,7 +2293,7 @@ func TestBuildAcceptsTermMissingByRendering(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    nodes: []\npriority:\n  - other\n"))
 	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
 	rl, err := rules.Load(root)
 	if err != nil {

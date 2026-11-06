@@ -27,9 +27,9 @@ const (
 func testRules(terms ...rules.Term) *rules.Rules {
 	return &rules.Rules{Glossary: terms, Routing: rules.Routing{
 		Families: []rules.FamilyRule{
-			{ID: "story", Match: []string{"StoryData/*"}},
-			{ID: "voice", Match: []string{"PersonalityVoiceDlg/*"}},
-			{ID: "skill", Match: []string{"Skills*"}},
+			{ID: "story", Nodes: []string{"StoryData/"}},
+			{ID: "voice", Nodes: []string{"PersonalityVoiceDlg/"}},
+			{ID: "skill", Nodes: []string{"Skills*"}},
 			{ID: "other"},
 		},
 		Priority: []string{"story", "voice", "skill", "other"},
@@ -394,7 +394,7 @@ func TestProposalPatternsMatchFiles(t *testing.T) {
 	r, us := combined()
 	// A family whose match list is a glob (as story-main's is), and one that
 	// takes a directory and a file outside it.
-	r.Routing.Families = append([]rules.FamilyRule{{ID: "lyrics", Match: []string{"BgmLyrics/*"}}, {ID: "rpg", Match: []string{"RPGSystem/*", "Rpg*"}}}, r.Routing.Families...)
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "lyrics", Nodes: []string{"BgmLyrics/"}}, {ID: "rpg", Nodes: []string{"RPGSystem/", "Rpg*"}}}, r.Routing.Families...)
 	f := &fixture{units: us}
 	// 보스 is used in two families and not in two: not_files, the glob family too.
 	f.add("BgmLyrics/L1.json", 3, "보스", "老大").add(voiceFile, 3, "보스", "BOSS")
@@ -627,7 +627,7 @@ func TestNotFilesEffectHandsTheKRToTheGeneralEntry(t *testing.T) {
 // tell its two halves apart.
 func TestConcreteNamesTheMixedGroups(t *testing.T) {
 	r := testRules(approved("속도", "速度值"))
-	r.Routing.Families = append([]rules.FamilyRule{{ID: "rpg", Match: []string{"RPGSystem/*", "Rpg*"}}}, r.Routing.Families...)
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "rpg", Nodes: []string{"RPGSystem/", "Rpg*"}}}, r.Routing.Families...)
 	f := &fixture{}
 	f.add(skillFile, 10, "속도", "速度值")
 	f.add("RPGSystem/R1.json", 3, "속도", "速度").add("RpgTop.json", 3, "속도", "速度值")
@@ -647,7 +647,7 @@ func TestConcreteNamesTheMixedGroups(t *testing.T) {
 // nothing, and the one family is proposed.
 func TestFewerPatternsFirst(t *testing.T) {
 	r := testRules(approved("속도", "速度值"))
-	r.Routing.Families = append([]rules.FamilyRule{{ID: "narrative", Match: []string{"StoryData/*", "PersonalityVoiceDlg/*", "Narr*"}}}, r.Routing.Families...)
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "narrative", Nodes: []string{"StoryData/", "PersonalityVoiceDlg/", "Narr*"}}}, r.Routing.Families...)
 	f := &fixture{}
 	f.add(skillFile, 10, "속도", "速度值")
 	f.add(storyFile, 3, "속도", "速度").add(voiceFile, 3, "속도", "速度")
@@ -669,7 +669,7 @@ func TestFewerPatternsFirst(t *testing.T) {
 // loses those 2 checks and is flagged, so the unflagged not_files is proposed.
 func TestUnflaggedNotFilesBeatsFlaggedFiles(t *testing.T) {
 	r := testRules(approved("속도", "速度值"))
-	r.Routing.Families = append([]rules.FamilyRule{{ID: "narr", Match: []string{"Narr*"}}}, r.Routing.Families...)
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "narr", Nodes: []string{"Narr*"}}}, r.Routing.Families...)
 	f := &fixture{}
 	f.add(voiceFile, 3, "속도", "速度值")
 	f.add(storyFile, 3, "속도", "速度").add(skillFile, 3, "속도", "速度")

@@ -27,13 +27,13 @@ import (
 const (
 	testRouting = `families:
   - id: story
-    match: ["StoryData/*"]
+    nodes: ["StoryData/"]
     guide: guides/families.md
   - id: skill
-    match: ["Skills*"]
+    nodes: ["Skills*"]
     guide: guides/families.md
   - id: other
-    match: []
+    nodes: []
     guide: guides/families.md
 priority: [story, skill, other]
 `

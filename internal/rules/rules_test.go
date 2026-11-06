@@ -178,82 +178,150 @@ func TestGlossaryWarnOnly(t *testing.T) {
 	}
 }
 
+// routingOf builds a routing of families in order; a family with no nodes is
+// the unsorted fallback.
+func routingOf(families ...rules.FamilyRule) *rules.Rules {
+	var ids []string
+	for _, f := range families {
+		ids = append(ids, f.ID)
+	}
+	return &rules.Rules{Routing: rules.Routing{Families: families, Priority: ids}}
+}
+
 func TestFamily(t *testing.T) {
-	r := loadRepo(t)
+	// ui comes before events and mirror comes after ui's wildcard peers, so the
+	// order alone would give BossRaidUI to ui.
+	r := routingOf(
+		rules.FamilyRule{ID: "ui", Nodes: []string{"*UI", "Tutorial*"}},
+		rules.FamilyRule{ID: "events", Nodes: []string{"BossRaidUI", "Event*"}},
+		rules.FamilyRule{ID: "enemy", Nodes: []string{"Enemies", "Skills", "Skills_Enemy*"}},
+		rules.FamilyRule{ID: "ally", Nodes: []string{"Skills_personality", "Personalit*"}},
+		rules.FamilyRule{ID: "mirror", Nodes: []string{"MirrorDungeon*"}},
+		rules.FamilyRule{ID: "story-main", Nodes: []string{"StoryData/S", "BgmLyrics/"}},
+		rules.FamilyRule{ID: "unsorted", Nodes: []string{}, Glossary: rules.GlossaryWarn},
+	)
 	tests := map[string]string{
-		"StoryData/S1037B.json":                        "story-main",
-		"StoryData/S001A.json":                         "story-main",
-		"StoryData/1D101A.json":                        "story-main",
-		"StoryData/5D302B.json":                        "story-main",
-		"BgmLyrics/Foo.json":                           "story-main",
-		"AbEvents-a1c5p1.json":                         "story-main",
-		"DungeonNode_1.json":                           "story-main",
-		"StoryData/PC01A.json":                         "story-interlude",
-		"StoryData/E020X.json":                         "story-interlude",
-		"StoryData/ES120A.json":                        "story-interlude",
-		"StoryData/P11005.json":                        "identity",
-		"PersonalityVoiceDlg/Voice_Faust_10211.json":   "identity",
-		"BattleSpeechBubbleDlg-twth.json":              "identity",
-		"BattleSpeechBubbleDlg.json":                   "identity",
-		"EGOVoiceDig/Voice_EGO_Faust_20202_1.json":     "ego-voice",
-		"BattleAnnouncerDlg/Announcer_1.json":          "announcer",
-		"Skills_personality-08.json":                   "ally",
-		"Skills_Ego_Personality-08.json":               "ally",
-		"Passives-a1c9p1.json":                         "ally",
-		"Egos.json":                                    "ally",
-		"Personality.json":                             "ally",
-		"Skills_Assist-1.json":                         "ally",
-		"Passives_Assist-1.json":                       "ally",
-		"Passives_Enemy-twth.json":                     "enemy",
-		"Enemies.json":                                 "enemy",
-		"Skills_Enemy-1.json":                          "enemy",
-		"Skills_Abnormality-1.json":                    "enemy",
-		"Passives_Abnormality-1.json":                  "enemy",
-		"AbnormalityGuides.json":                       "abnormality",
-		"AbDlg_Faust.json":                             "abnormality",
-		"AbEvents.json":                                "abnormality",
-		"AbEventsResultLog.json":                       "abnormality",
-		"StoryTheaterDanteNote.json":                   "dante-note",
-		"StoryTheaterDanteNoteDetail_1.json":           "dante-note",
-		"AbEvents_Mirror3.json":                        "mirror",
-		"ActionEvents_Mirror1.json":                    "mirror",
-		"MirrorDungeon-1.json":                         "mirror",
-		"EGOgift_MirrorDungeon-StoryTheme_2.json":      "mirror",
-		"EGOgift_Other.json":                           "mirror",
-		"DungeonStartBuffs.json":                       "mirror",
-		"AbEvents-walpu6.json":                         "walpu-refraction",
-		"AbEvents-Refraction1.json":                    "walpu-refraction",
-		"RailwayDungeonUI_5.json":                      "walpu-refraction",
-		"MainUIText.json":                              "other",
-		"RPGSystem/rpg-loc-dialog.json":                "other",
-		"StoryData/Z1.json":                            "other",
-		"":                                             "other",
-		"SomethingCompletelyNew/Whatever.json":         "other",
-		"StoryData/S1037B.json.bak/extra/deep/path.js": "other",
+		// sub before top: the sub is ally's, the top would be enemy's
+		"Skills_personality-01.json": "ally",
+		"Skills.json":                "enemy",
+		"Skills_Enemy-twth.json":     "enemy",
+		"Skills_Ego-1.json":          "enemy", // sub Skills_Ego matches nothing; the top Skills is enemy's
+		// the full name beats a wildcard of the same level, whatever the order
+		"BossRaidUI.json": "events",
+		"MainUI.json":     "ui",
+		// two wildcards on one level: the family listed first
+		"MirrorDungeonUI_5.json": "ui",
+		"MirrorDungeon-1.json":   "mirror",
+		// a node of a directory
+		"StoryData/S1037B.json": "story-main",
+		"BgmLyrics/Foo.json":    "story-main",
+		"StoryData/E020X.json":  "unsorted",
+		// * does not cross a /
+		"Foo/MainUI.json":  "unsorted",
+		"Personality.json": "ally",
+		"Enemies-1.json":   "enemy",
+		"":                 "unsorted",
 	}
 	for file, want := range tests {
 		if got := r.Family(file); got != want {
 			t.Errorf("Family(%q) = %q, want %q", file, got, want)
 		}
 	}
+	for file, want := range map[string]bool{"Skills.json": false, "StoryData/E020X.json": true, "BossRaidUI.json": false} {
+		if got := r.GlossaryWarnOnly(file); got != want {
+			t.Errorf("GlossaryWarnOnly(%q) = %v, want %v", file, got, want)
+		}
+	}
+}
+
+// A file whose nodes no pattern lists goes to the fallback family.
+func TestUnlistedTopFallsInUnsorted(t *testing.T) {
+	r := routingOf(
+		rules.FamilyRule{ID: "ui", Nodes: []string{"*UI"}},
+		rules.FamilyRule{ID: "unsorted", Nodes: []string{}},
+	)
+	if got := r.Family("FooBar-tkt.json"); got != "unsorted" {
+		t.Errorf("Family(FooBar-tkt.json) = %q, want unsorted", got)
+	}
+	if got := r.DefaultFamily(); got != "unsorted" {
+		t.Errorf("DefaultFamily() = %q, want unsorted", got)
+	}
+}
+
+// The repo's routing sends sample files of each text type to its family.
+func TestFamilyRepoRouting(t *testing.T) {
+	r := loadRepo(t)
+	if got := r.DefaultFamily(); got != "unsorted" {
+		t.Errorf("DefaultFamily() = %q, want unsorted", got)
+	}
+	tests := map[string]string{
+		"StoryData/S1037B.json":                      "story-main",
+		"StoryData/1D101A.json":                      "story-main",
+		"BgmLyrics/Foo.json":                         "story-main",
+		"DungeonNode_1.json":                         "story-main",
+		"StoryData/PC01A.json":                       "story-interlude",
+		"StoryData/E020X.json":                       "story-interlude",
+		"StoryData/ES120A.json":                      "story-interlude",
+		"StoryData/P11005.json":                      "identity",
+		"PersonalityVoiceDlg/Voice_Faust_10211.json": "identity",
+		"BattleSpeechBubbleDlg-twth.json":            "identity",
+		"EGOVoiceDig/Voice_EGO_Faust_20202_1.json":   "ego-voice",
+		"BattleAnnouncerDlg/Announcer_1.json":        "announcer",
+		"StoryTheaterDanteNoteDetail_1.json":         "dante-note",
+		"RPGSystem/rpg-loc-dialog.json":              "rpg",
+		"Skills_personality-08.json":                 "ally",
+		"Skills_Ego_Personality-08.json":             "ally",
+		"Passives-a1c9p1.json":                       "ally",
+		"Egos.json":                                  "ally",
+		"Skills_Assist-walpu6.json":                  "ally",
+		"Passives_Enemy-twth.json":                   "enemy",
+		"Enemies.json":                               "enemy",
+		"Skills-1.json":                              "enemy",
+		"Bufs_Mirror.json":                           "keywords",
+		"BattleKeywords.json":                        "keywords",
+		"AbnormalityGuides.json":                     "abnormality",
+		"AbEvents-walpu6.json":                       "abnormality",
+		"MirrorDungeon-1.json":                       "mirror",
+		"EGOgift_Other.json":                         "mirror",
+		"RailwayDungeonUI_5.json":                    "railway",
+		"StageNode.json":                             "stage",
+		"MainUIText.json":                            "ui",
+		"BossRaidUI.json":                            "events",
+		"EventTitle.json":                            "events",
+		"SomethingCompletelyNew/Whatever.json":       "unsorted",
+		"":                                           "unsorted",
+	}
+	for file, want := range tests {
+		if got := r.Family(file); got != want {
+			t.Errorf("Family(%q) = %q, want %q", file, got, want)
+		}
+	}
+	for file, want := range map[string]bool{
+		"StoryData/S1037B.json": true, "StoryData/E020X.json": true, "EGOVoiceDig/Voice_EGO_Faust_20202_1.json": true,
+		"AbnormalityGuides.json": true, "Skills_Ego_Personality-08.json": false, "RPGSystem/rpg-loc-dialog.json": false,
+	} {
+		if got := r.GlossaryWarnOnly(file); got != want {
+			t.Errorf("GlossaryWarnOnly(%q) = %v, want %v", file, got, want)
+		}
+	}
 }
 
 func TestPriority(t *testing.T) {
 	r := loadRepo(t)
-	if !(r.Priority("story-main") < r.Priority("ally") && r.Priority("ally") < r.Priority("enemy") && r.Priority("enemy") < r.Priority("other")) {
-		t.Errorf("priorities out of order: main %d, ally %d, enemy %d, other %d",
-			r.Priority("story-main"), r.Priority("ally"), r.Priority("enemy"), r.Priority("other"))
+	if !(r.Priority("story-main") < r.Priority("ally") && r.Priority("ally") < r.Priority("enemy") && r.Priority("enemy") < r.Priority("unsorted")) {
+		t.Errorf("priorities out of order: main %d, ally %d, enemy %d, unsorted %d",
+			r.Priority("story-main"), r.Priority("ally"), r.Priority("enemy"), r.Priority("unsorted"))
 	}
 	// the order of guides/families.md "照列出的順序"
-	want := []string{"story-main", "story-interlude", "ego-voice", "announcer", "identity", "ally", "enemy", "abnormality", "dante-note", "mirror", "walpu-refraction", "other"}
+	want := []string{"story-main", "story-interlude", "ego-voice", "announcer", "identity", "ally", "enemy", "keywords", "abnormality", "dante-note", "mirror", "railway", "rpg", "stage", "events", "ui", "unsorted"}
 	for i, id := range want {
 		if got := r.Priority(id); got != i {
 			t.Errorf("Priority(%q) = %d, want %d", id, got, i)
 		}
 	}
 	// an unknown family goes after everything
-	if got := r.Priority("no-such-family"); got <= r.Priority("other") {
-		t.Errorf("Priority(unknown) = %d, want more than other (%d)", got, r.Priority("other"))
+	if got := r.Priority("no-such-family"); got <= r.Priority("unsorted") {
+		t.Errorf("Priority(unknown) = %d, want more than unsorted (%d)", got, r.Priority("unsorted"))
 	}
 }
 
@@ -675,6 +743,106 @@ func lintMessages(errs []error) string {
 	return strings.Join(parts, "\n")
 }
 
+// The routing lint rejects a match field, a fallback family that is not the
+// only one at the end, a pattern path.Match cannot read, and a glossary mode
+// that is none of the two.
+func TestRoutingLint(t *testing.T) {
+	const danteNote = "  - id: dante-note\n    nodes: [\"StoryTheaterDanteNote*\"]\n    glossary: warn\n"
+	tests := []struct {
+		name string
+		edit func(string) string
+		want []string
+	}{
+		{"match field", replaceOnce(danteNote, danteNote+"    match: [\"StoryTheaterDanteNote*\"]\n"), []string{"guides/routing.yaml", "dante-note", "match", "nodes"}},
+		{"fallback not last", replaceOnce(danteNote, strings.Replace(danteNote, `["StoryTheaterDanteNote*"]`, "[]", 1)), []string{"guides/routing.yaml", "dante-note", "last"}},
+		{"two fallbacks", func(s string) string {
+			return strings.Replace(s, "  - id: unsorted\n    nodes: []\n", "  - id: unsorted\n    nodes: []\n    guide: guides/families.md\n  - id: unsorted2\n    nodes: []\n", 1)
+		}, []string{"guides/routing.yaml", "unsorted", "last"}},
+		{"no fallback", replaceOnce("  - id: unsorted\n    nodes: []\n", "  - id: unsorted\n    nodes: [\"Everything\"]\n"), []string{"guides/routing.yaml", "last family"}},
+		{"bad pattern", replaceOnce(`"Railway*"`, `"Railway[*"`), []string{"guides/routing.yaml", "railway", "Railway["}},
+		{"empty pattern", replaceOnce(`"Railway*"`, `""`), []string{"guides/routing.yaml", "railway", "empty"}},
+		{"bad glossary", replaceOnce(danteNote, strings.Replace(danteNote, "glossary: warn", "glossary: soft", 1)), []string{"guides/routing.yaml", "dante-note", "glossary", "soft"}},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyRules(t)
+			edit(t, root, "guides/routing.yaml", tc.edit)
+			msg := lintMessages(rules.Lint(root))
+			if msg == "" {
+				t.Fatal("Lint found nothing")
+			}
+			for _, want := range tc.want {
+				if !strings.Contains(msg, want) {
+					t.Errorf("lint output does not mention %q:\n%s", want, msg)
+				}
+			}
+		})
+	}
+}
+
+// With the KR pack at hand, the routing lint warns of a pattern that fits no
+// node, of a top node that lands in unsorted, and of a node two families of
+// one level both list.
+func TestLintRoutingWarnings(t *testing.T) {
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "guides"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	routing := `families:
+  - id: ui
+    nodes: ["*UI", "Tutorial", "Skills_*"]
+    guide: guides/families.md
+  - id: events
+    nodes: ["BossRaidUI", "Typo*"]
+    guide: guides/families.md
+  - id: ally
+    nodes: ["Skills_Ego", "Skills_*"]
+    guide: guides/families.md
+  - id: story
+    nodes: ["StoryData/S"]
+    guide: guides/families.md
+  - id: unsorted
+    nodes: []
+    guide: guides/families.md
+priority: [ui, events, ally, story, unsorted]
+`
+	if err := os.WriteFile(filepath.Join(root, "guides/routing.yaml"), []byte(routing), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	files := []string{"MainUI.json", "BossRaidUI.json", "Skills_Ego-1.json", "Skills_Foo-1.json", "StoryData/S1.json", "StoryData/E1.json", "FooBar-tkt.json", "Zed-1.json"}
+	var msgs []string
+	for _, w := range rules.LintRoutingWarnings(root, files) {
+		if w.File != rules.RoutingFile {
+			t.Errorf("warning file = %q, want %q", w.File, rules.RoutingFile)
+		}
+		msgs = append(msgs, w.Message)
+	}
+	all := strings.Join(msgs, "\n")
+	for _, tc := range []struct {
+		what string
+		want []string
+	}{
+		{"a pattern that fits no node", []string{`"Typo*"`, "matches no node"}},
+		{"a literal that fits no node", []string{`"Tutorial"`, "matches no node"}},
+		{"unsorted tops", []string{"unsorted", "FooBar", "Zed", "StoryData/"}},
+		{"an exact name against a wildcard", []string{`"BossRaidUI"`, "ui", "events", "events takes"}},
+		{"two wildcards", []string{`"Skills_Foo"`, "ui", "ally", "ui takes"}},
+		{"exact beats wildcard", []string{`"Skills_Ego"`, "ally takes"}},
+	} {
+		for _, want := range tc.want {
+			if !strings.Contains(all, want) {
+				t.Errorf("%s: warnings do not mention %q:\n%s", tc.what, want, all)
+			}
+		}
+	}
+	if len(msgs) != 6 {
+		t.Errorf("got %d warnings, want 6:\n%s", len(msgs), all)
+	}
+	if got := rules.LintRoutingWarnings(root, nil); len(got) != 0 {
+		t.Errorf("no KR pack gave warnings: %v", got)
+	}
+}
+
 func TestLintRepoRulesAreClean(t *testing.T) {
 	if errs := rules.Lint(repoRoot); len(errs) != 0 {
 		t.Errorf("the repo's own rules fail lint:\n%s", lintMessages(errs))
@@ -683,8 +851,8 @@ func TestLintRepoRulesAreClean(t *testing.T) {
 
 func TestLint(t *testing.T) {
 	const ryoshu = "guides/characters/ryoshu.md"
-	const danteNote = "  - id: dante-note\n    match: [\"StoryTheaterDanteNote*\"]\n    glossary: warn\n    guide: guides/families.md\n"
-	const other = "  - id: other\n    match: []\n    guide: guides/families.md\n"
+	const danteNote = "  - id: dante-note\n    nodes: [\"StoryTheaterDanteNote*\"]\n    glossary: warn\n    guide: guides/families.md\n"
+	const other = "  - id: unsorted\n    nodes: []\n    guide: guides/families.md\n"
 	tests := []struct {
 		name string
 		file string // file to edit, relative to the root
@@ -732,19 +900,19 @@ func TestLint(t *testing.T) {
 
 		{"family guide does not exist", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families.md", "guides/families/nothing.md", 1)), []string{"guides/routing.yaml", "dante-note", "guides/families/nothing.md"}},
 		{"family without guide", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "    guide: guides/families.md\n", "", 1)), []string{"guides/routing.yaml", "dante-note", "guide"}},
-		{"family without id", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "  - id: dante-note\n    match", "  - match", 1)), []string{"guides/routing.yaml", "id"}},
+		{"family without id", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "  - id: dante-note\n    nodes", "  - nodes", 1)), []string{"guides/routing.yaml", "id"}},
 		{"unknown glossary mode", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "glossary: warn", "glossary: soft", 1)), []string{"guides/routing.yaml", "dante-note", "glossary", "soft"}},
 		{"family id used twice", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "dante-note", "mirror", 1)), []string{"guides/routing.yaml", "mirror", "twice"}},
 		{"family without match is not the last", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, `["StoryTheaterDanteNote*"]`, "[]", 1)), []string{"guides/routing.yaml", "dante-note", "last"}},
-		{"priority id not in families", "guides/routing.yaml", replaceOnce("  - story-main\n", "  - story-main\n  - no-such-family\n"), []string{"guides/routing.yaml", "no-such-family"}},
-		{"family missing from priority", "guides/routing.yaml", replaceOnce("  - story-main\n", ""), []string{"guides/routing.yaml", "story-main", "priority"}},
-		{"duplicate priority", "guides/routing.yaml", replaceOnce("  - story-main\n", "  - story-main\n  - story-main\n"), []string{"guides/routing.yaml", "story-main"}},
-		{"bad glob", "guides/routing.yaml", replaceOnce(`"*walpu*"`, `"*walpu[*"`), []string{"guides/routing.yaml", "walpu["}},
+		{"priority id not in families", "guides/routing.yaml", replaceOnce("priority: [story-main, ", "priority: [story-main, no-such-family, "), []string{"guides/routing.yaml", "no-such-family"}},
+		{"family missing from priority", "guides/routing.yaml", replaceOnce("priority: [story-main, ", "priority: ["), []string{"guides/routing.yaml", "story-main", "priority"}},
+		{"duplicate priority", "guides/routing.yaml", replaceOnce("priority: [story-main, ", "priority: [story-main, story-main, "), []string{"guides/routing.yaml", "story-main"}},
+		{"bad glob", "guides/routing.yaml", replaceOnce(`"Railway*"`, `"Railway[*"`), []string{"guides/routing.yaml", "Railway["}},
 		{"catch-all moved to the front", "guides/routing.yaml", func(s string) string {
 			s = strings.Replace(s, "\n"+other, "", 1)
 			return strings.Replace(s, "families:\n", "families:\n"+other+"\n", 1)
-		}, []string{"guides/routing.yaml", `"other"`, "last"}},
-		{"no catch-all", "guides/routing.yaml", replaceOnce(other, strings.Replace(other, "match: []", `match: ["*.json"]`, 1)), []string{"guides/routing.yaml", "last family"}},
+		}, []string{"guides/routing.yaml", `"unsorted"`, "last"}},
+		{"no catch-all", "guides/routing.yaml", replaceOnce(other, strings.Replace(other, "nodes: []", `nodes: ["*.json"]`, 1)), []string{"guides/routing.yaml", "last family"}},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
@@ -1023,7 +1191,7 @@ func TestLoadRejectsUnparseableFiles(t *testing.T) {
 		{"character", "guides/characters/faust.md", replaceOnce("gender: female\n", "gender: [female\n"), "faust.md"},
 		{"character without front matter", "guides/characters/faust.md", func(string) string { return "# 浮士德\n" }, "faust.md"},
 		{"routing", "guides/routing.yaml", func(s string) string { return "families: [unclosed\n" + s }, "guides/routing.yaml"},
-		{"routing glob", "guides/routing.yaml", replaceOnce(`"*walpu*"`, `"*walpu[*"`), "guides/routing.yaml"},
+		{"routing glob", "guides/routing.yaml", replaceOnce(`"Railway*"`, `"Railway[*"`), "guides/routing.yaml"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
@@ -1204,8 +1372,9 @@ func TestApplies(t *testing.T) {
 		// family:<id> is the files the routing puts in the family, first match wins.
 		{"family in files, in family", rules.Term{Files: []string{"family:story-main"}}, "StoryData/S1037B.json", true},
 		{"family in files, other family", rules.Term{Files: []string{"family:story-main"}}, "StoryData/E1.json", false},
-		{"family in files, shadowed by an earlier family", rules.Term{Files: []string{"family:ally"}}, "Skills_Assist-walpu6.json", false},
-		{"family in files, the family it routes to", rules.Term{Files: []string{"family:walpu-refraction"}}, "Skills_Assist-walpu6.json", true},
+		{"family in files, a node of another family", rules.Term{Files: []string{"family:ally"}}, "Enemies.json", false},
+		{"family in files, the family it routes to", rules.Term{Files: []string{"family:enemy"}}, "Enemies.json", true},
+		{"family in files, a season file of a node", rules.Term{Files: []string{"family:ally"}}, "Skills_Assist-walpu6.json", true},
 		{"family in not_files, in family", rules.Term{NotFiles: []string{"family:story-main"}}, "StoryData/S1037B.json", false},
 		{"family in not_files, other family", rules.Term{NotFiles: []string{"family:story-main"}}, "StoryData/E1.json", true},
 		{"family mixed with a pattern in files, by family", rules.Term{Files: []string{"family:story-main", "Bufs*"}}, "StoryData/S1.json", true},
@@ -1249,7 +1418,7 @@ func TestGlossaryHitsFamilyScopes(t *testing.T) {
 			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
 		}
 	}
-	for file, want := range map[string]string{"Skills_personality-1.json": "貫穿", "Skills_Assist-walpu6.json": "穿刺", "Bufs.json": "穿刺"} {
+	for file, want := range map[string]string{"Skills_personality-1.json": "貫穿", "Skills_Assist-walpu6.json": "貫穿", "Skills_Enemy-1.json": "穿刺", "Bufs.json": "穿刺"} {
 		if got := zhOf(r.GlossaryHits(file, "관통이다")); !slices.Equal(got, []string{want}) {
 			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
 		}
@@ -1365,7 +1534,7 @@ func TestLintGlossaryFamilyScope(t *testing.T) {
 	}
 	root := copyRules(t)
 	edit(t, root, "glossary/terms.yaml", func(s string) string {
-		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  files: [\"family:story-main\", \"Bufs*\"]\n  not_files: [\"family:walpu-refraction\"]\n"
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  files: [\"family:story-main\", \"Bufs*\"]\n  not_files: [\"family:enemy\"]\n"
 	})
 	if msg := lintMessages(rules.Lint(root)); strings.Contains(msg, "백화점") {
 		t.Errorf("lint reports a valid family scope:\n%s", msg)
@@ -1763,7 +1932,7 @@ func TestLintGlossaryAlsoEqualsZHAfterMatchText(t *testing.T) {
 func TestScriptCacheEqualsScriptRenderings(t *testing.T) {
 	r := &rules.Rules{
 		Routing: rules.Routing{
-			Families: []rules.FamilyRule{{ID: "story", Match: []string{"Story*"}}, {ID: "rest"}},
+			Families: []rules.FamilyRule{{ID: "story", Nodes: []string{"Story*"}}, {ID: "rest"}},
 			Priority: []string{"story", "rest"},
 		},
 		Glossary: []rules.Term{

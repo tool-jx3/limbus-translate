@@ -200,7 +200,7 @@ func TestReviewRoutingChangedIsNotFatal(t *testing.T) {
 	in, files := reviewInputs(t)
 	// B.json moves to the story family: the group of the build is now two units.
 	in.Rules = &rules.Rules{Routing: rules.Routing{
-		Families: []rules.FamilyRule{{ID: "story", Match: []string{"B.json"}}, {ID: "other"}},
+		Families: []rules.FamilyRule{{ID: "story", Nodes: []string{"B"}}, {ID: "other"}},
 		Priority: []string{"story", "other"},
 	}}
 	r, err := BuildReview(in, files)
@@ -667,7 +667,7 @@ func TestReviewWarnsOnTermMissing(t *testing.T) {
 		t.Fatal(err)
 	}
 	for name, content := range map[string]string{
-		"guides/routing.yaml": "families:\n  - id: other\n    match: []\npriority:\n  - other\n",
+		"guides/routing.yaml": "families:\n  - id: other\n    nodes: []\npriority:\n  - other\n",
 		"glossary/terms.yaml": "- kr: 하나\n  zh: 壹\n  status: approved\n",
 	} {
 		p := filepath.Join(root, name)
@@ -710,7 +710,7 @@ func glossaryRules(t *testing.T, glossary string) *rules.Rules {
 		t.Fatal(err)
 	}
 	for name, content := range map[string]string{
-		"guides/routing.yaml": "families:\n  - id: other\n    match: []\npriority:\n  - other\n",
+		"guides/routing.yaml": "families:\n  - id: other\n    nodes: []\npriority:\n  - other\n",
 		"glossary/terms.yaml": glossary,
 	} {
 		p := filepath.Join(root, name)

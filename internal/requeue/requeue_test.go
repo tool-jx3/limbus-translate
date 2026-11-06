@@ -154,7 +154,7 @@ func checkResult(t *testing.T, got *Result, want Result) {
 func testRules(t *testing.T) *rules.Rules {
 	t.Helper()
 	root := t.TempDir()
-	writeFile(t, filepath.Join(root, "guides/routing.yaml"), "families:\n  - id: other\n    match: []\n    guide: guides/families.md\npriority:\n  - other\n")
+	writeFile(t, filepath.Join(root, "guides/routing.yaml"), "families:\n  - id: other\n    nodes: []\n    guide: guides/families.md\npriority:\n  - other\n")
 	writeFile(t, filepath.Join(root, "glossary/terms.yaml"), "- kr: 위력\n  zh: 威力\n  status: approved\n")
 	writeFile(t, filepath.Join(root, "guides/characters/.keep"), "")
 	r, err := rules.Load(root)

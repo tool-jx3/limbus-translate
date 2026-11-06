@@ -59,7 +59,7 @@ func TestNaturalLessIsATotalOrder(t *testing.T) {
 func TestOrderFilesByFamilyThenName(t *testing.T) {
 	r := &rules.Rules{Routing: rules.Routing{
 		Families: []rules.FamilyRule{
-			{ID: "B", Match: []string{"X*"}},
+			{ID: "B", Nodes: []string{"X*"}},
 			{ID: "A"},
 		},
 		Priority: []string{"B", "A"},
@@ -84,8 +84,8 @@ func TestOrderFilesByFamilyThenName(t *testing.T) {
 func TestOrderFilesUnlistedFamilies(t *testing.T) {
 	r := &rules.Rules{Routing: rules.Routing{
 		Families: []rules.FamilyRule{
-			{ID: "Z", Match: []string{"Z*"}},
-			{ID: "Y", Match: []string{"Y*"}},
+			{ID: "Z", Nodes: []string{"Z*"}},
+			{ID: "Y", Nodes: []string{"Y*"}},
 			{ID: "A"},
 		},
 		Priority: []string{"A"},

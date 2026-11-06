@@ -1841,11 +1841,11 @@
 
 - kr: 흐트러짐 구간
   zh: 混亂閾值
-  not_files: ["family:walpu-refraction"]
+  not_files: ["*walpu*", "*Refraction*", "Railway*"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 79, approved: 73, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（7 句 1 句用），排除
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（7 句 1 句用），排除。2026-11-06 族群改由節點組成，改寫成原族群的樣式，範圍不變
 
 - kr: 창백한 고래
   zh: 白鯨
@@ -3938,11 +3938,11 @@
 
 - kr: 키워드
   zh: 關鍵字
-  not_files: ["family:walpu-refraction"]
+  not_files: ["*walpu*", "*Refraction*", "Railway*"]
   status: approved
   match: substring
   evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞。2026-11-06 族群改由節點組成，改寫成原族群的樣式，範圍不變
 
 - kr: 유리창
   zh: 玻璃窗

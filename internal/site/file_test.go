@@ -41,7 +41,7 @@ func writePack(t *testing.T, prefix string, files map[string]string) *pack.Pack 
 // testRules has a story family and a catch-all one.
 func testRules() *rules.Rules {
 	return &rules.Rules{Routing: rules.Routing{
-		Families: []rules.FamilyRule{{ID: "story", Match: []string{"StoryData/*"}}, {ID: "other"}},
+		Families: []rules.FamilyRule{{ID: "story", Nodes: []string{"StoryData/"}}, {ID: "other"}},
 		Priority: []string{"story", "other"},
 	}}
 }

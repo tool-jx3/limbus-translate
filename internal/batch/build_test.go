@@ -25,7 +25,7 @@ import (
 
 const (
 	testTag          = "raw-20261029"
-	testRoutingYAML  = "families:\n  - id: other\n    match: []\n    guide: guides/families.md\npriority:\n  - other\n"
+	testRoutingYAML  = "families:\n  - id: other\n    nodes: []\n    guide: guides/families.md\npriority:\n  - other\n"
 	testGlossaryYAML = "- kr: 위력\n  zh: 威力\n  status: approved\n  forbidden: [力量]\n"
 )
 

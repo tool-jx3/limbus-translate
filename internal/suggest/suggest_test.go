@@ -43,8 +43,8 @@ func testRules() *rules.Rules {
 		},
 		Routing: rules.Routing{
 			Families: []rules.FamilyRule{
-				{ID: "story-main", Match: []string{"StoryData/S*"}},
-				{ID: "other", Match: []string{}},
+				{ID: "story-main", Nodes: []string{"StoryData/S"}},
+				{ID: "other", Nodes: []string{}},
 			},
 			Priority: []string{"story-main", "other"},
 		},

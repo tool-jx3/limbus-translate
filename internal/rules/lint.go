@@ -304,14 +304,17 @@ func (l *linter) routing() {
 		case !l.fileExists(f.Guide):
 			l.report(RoutingFile, "%s: guide file %s does not exist", label, f.Guide)
 		}
-		if len(f.Match) == 0 && i != len(rt.Families)-1 {
-			l.report(RoutingFile, "%s: has no match patterns, so it takes every file; only the last family may do that", label)
+		if len(f.Nodes) == 0 && i != len(rt.Families)-1 {
+			l.report(RoutingFile, "%s: has no nodes, so it takes every file no other family lists; only the last family may do that", label)
 		}
 	}
-	if n := len(rt.Families); n == 0 || len(rt.Families[n-1].Match) != 0 {
-		l.report(RoutingFile, "the last family must have an empty match list to take the remaining files")
+	if n := len(rt.Families); n == 0 || len(rt.Families[n-1].Nodes) != 0 {
+		l.report(RoutingFile, "the last family must have an empty nodes list to take the remaining files")
 	}
-	for _, err := range globErrors(rt) {
+	for _, id := range matchKeys(data) {
+		l.report(RoutingFile, "family %q: match is no longer read; list node names or patterns in nodes", id)
+	}
+	for _, err := range patternErrors(rt) {
 		l.report(RoutingFile, "%v", err)
 	}
 
@@ -504,4 +507,89 @@ func forbiddenIn(rendering string, forbidden []string) (string, bool) {
 		}
 	}
 	return "", false
+}
+
+// LintRoutingWarnings returns the warnings of the routing against the KR pack
+// krFiles (the file names Family receives): a nodes entry that fits no node of
+// the pack (a misspelled name, or a node the game has dropped), top nodes of
+// files that fall in the fallback family (a new node no family lists), and a
+// node two families of the same level both list (the warning says which one
+// takes it). krFiles empty means the pack is not at hand, and there are no
+// warnings. A routing that does not parse is Lint's to report.
+func LintRoutingWarnings(root string, krFiles []string) []LintError {
+	if len(krFiles) == 0 {
+		return nil
+	}
+	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(RoutingFile)))
+	if err != nil {
+		return nil
+	}
+	rt, err := parseRouting(data)
+	if err != nil || len(patternErrors(rt)) != 0 {
+		return nil
+	}
+	tops, subs := map[string]bool{}, map[string]bool{}
+	unsorted := map[string]bool{}
+	fb := rt.fallback()
+	for _, f := range krFiles {
+		n := FileNode(f)
+		tops[n.Top] = true
+		if n.Sub != "" {
+			subs[n.Sub] = true
+		}
+		if fb >= 0 && rt.route(f) == fb {
+			unsorted[n.Top] = true
+		}
+	}
+	topList, subList := sortedKeys(tops), sortedKeys(subs)
+	var out []LintError
+	warn := func(format string, args ...any) {
+		out = append(out, LintError{File: RoutingFile, Message: fmt.Sprintf(format, args...)})
+	}
+	for _, f := range rt.Families {
+		for _, pattern := range f.Nodes {
+			fitsNode := func(node string) bool {
+				ok, _ := path.Match(pattern, node)
+				return ok
+			}
+			if !slices.ContainsFunc(topList, fitsNode) && !slices.ContainsFunc(subList, fitsNode) {
+				warn("family %q: nodes pattern %q matches no node of the KR pack", f.ID, pattern)
+			}
+		}
+	}
+	if len(unsorted) > 0 {
+		warn("files of these top nodes fall in %q, which no family lists: %s", rt.Families[fb].ID, strings.Join(sortedKeys(unsorted), ", "))
+	}
+	for _, level := range [][]string{topList, subList} {
+		for _, node := range level {
+			var ids []string
+			byName := false
+			for _, f := range rt.Families {
+				exact, wildcard := f.fits(node)
+				if exact || wildcard {
+					ids = append(ids, f.ID)
+				}
+				byName = byName || exact
+			}
+			if len(ids) < 2 {
+				continue
+			}
+			why := "listed first"
+			if byName {
+				why = "it lists the full name"
+			}
+			warn("node %q is fit by families %s; %s takes it (%s)", node, strings.Join(ids, ", "), rt.Families[rt.routeNode(node)].ID, why)
+		}
+	}
+	return out
+}
+
+// sortedKeys lists the keys of set in order.
+func sortedKeys(set map[string]bool) []string {
+	keys := make([]string, 0, len(set))
+	for k := range set {
+		keys = append(keys, k)
+	}
+	slices.Sort(keys)
+	return keys
 }

@@ -38,10 +38,10 @@ var testNow = time.Date(2026, 11, 1, 3, 4, 5, 0, time.UTC)
 const (
 	testRouting = `families:
   - id: story-main
-    match: ["StoryData/S*"]
+    nodes: ["StoryData/S"]
     guide: guides/families.md
   - id: other
-    match: []
+    nodes: []
     guide: guides/families.md
 priority:
   - story-main
@@ -3170,11 +3170,11 @@ func TestSubmitTermMissingNeedsTheTermInTheNote(t *testing.T) {
 func TestSubmitWarnFamily(t *testing.T) {
 	const routing = `families:
   - id: voice
-    match: ["Warn*"]
+    nodes: ["Warn*"]
     glossary: warn
     guide: guides/families.md
   - id: other
-    match: []
+    nodes: []
     guide: guides/families.md
 priority:
   - voice
@@ -3231,11 +3231,11 @@ priority:
 
 const warnRouting = `families:
   - id: voice
-    match: ["Warn*"]
+    nodes: ["Warn*"]
     glossary: warn
     guide: guides/families.md
   - id: other
-    match: []
+    nodes: []
     guide: guides/families.md
 priority:
   - voice
@@ -3525,13 +3525,13 @@ func TestSubmitChecksProvisionalTerms(t *testing.T) {
 // before other.
 const allyRouting = `families:
   - id: story-main
-    match: ["StoryData/S*"]
+    nodes: ["StoryData/S"]
     guide: guides/families.md
   - id: ally
-    match: ["Passives*"]
+    nodes: ["Passives*"]
     guide: guides/families.md
   - id: other
-    match: []
+    nodes: []
     guide: guides/families.md
 priority:
   - story-main
@@ -3832,13 +3832,13 @@ func TestMergedBatchShowsTheTermOfEachFile(t *testing.T) {
 // before other, as in the real routing.
 const mirrorRouting = `families:
   - id: story-main
-    match: ["StoryData/S*"]
+    nodes: ["StoryData/S"]
     guide: guides/families.md
   - id: mirror
-    match: ["*Mirror*"]
+    nodes: ["*Mirror*"]
     guide: guides/families.md
   - id: other
-    match: []
+    nodes: []
     guide: guides/families.md
 priority:
   - story-main

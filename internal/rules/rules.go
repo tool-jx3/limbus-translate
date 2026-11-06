@@ -73,7 +73,7 @@ func Load(root string) (*Rules, error) {
 		return nil, fmt.Errorf("%s: %w", RoutingFile, err)
 	}
 	// A pattern path.Match rejects would never match, silently.
-	if errs := globErrors(r.Routing); len(errs) > 0 {
+	if errs := patternErrors(r.Routing); len(errs) > 0 {
 		return nil, fmt.Errorf("%s: %w", RoutingFile, errs[0])
 	}
 

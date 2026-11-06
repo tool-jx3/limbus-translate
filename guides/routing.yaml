@@ -1,88 +1,92 @@
 # 檔案族群路由（程式用，由 lct 讀取）
 #
-# families：有序清單，清單順序就是比對順序，取第一個符合的族群。
-#   id      族群 id
-#   match   檔名樣式（Go path.Match 的 glob），比對去掉語言前綴、以 / 分隔的相對路徑，
-#           例如 StoryData/S1037B.json、Passives_Enemy-twth.json。
-#           * 不會跨過 /，所以 StoryData/S* 只比對 StoryData 底下的檔案。
-#           空清單 [] 表示符合其餘所有檔案；這樣的族群只能有一個，而且要放在最後。
-#   guide   該族群套用的指引檔（相對於 repo 根目錄）
+# 檔案先推導出它在分群樹的節點（internal/rules/groups.go 的 FileNode），族群由節點組成。
+#   檔在目錄裡（StoryData/S1037B.json）：
+#     top 是 目錄/，例如 StoryData/、BgmLyrics/、RPGSystem/
+#     sub 在 StoryData/ 是檔名開頭的英文字母（跳過開頭的數字），例如 StoryData/S、StoryData/D、StoryData/PC；
+#         在其他目錄是檔名以 _ 和 - 切開的前兩段，用 _ 接起來，例如 PersonalityVoiceDlg/Voice_Heathcliff
+#   檔在根目錄（Skills_Enemy-mowe.json）：
+#     top 是檔名開頭連續的英文字母，例如 Skills
+#     sub 是檔名 - 之前的部分，去掉結尾的數字與 _，例如 Skills_Enemy；sub 與 top 同名時沒有 sub
+#
+# families：有序清單，清單順序就是比對順序。
+#   id        族群 id
+#   nodes     節點名稱或樣式（Go path.Match），* 不跨 /。寫出完整名稱（不含 * ? [）的項目是「完整名稱」，
+#             含萬用字元的是樣式。空清單 [] 是後備族群 unsorted：沒有任何族群列到的檔就歸它；
+#             只能有一個，而且放最後。
+#   guide     該族群套用的指引檔（相對於 repo 根目錄）
 #   glossary  詞彙表對該族群的約束，可省略；省略等於 hard
-#           hard：譯文缺少詞彙表指定的譯名（term-missing），送出時退回，除非 note 寫出該原詞
-#           warn：詞彙表譯名只是預設；缺少時只警告，不退回，語境不合就可以不用，仍請在 note 寫原因
-#           兩者都照舊退回 forbidden 的禁用譯法。劇情與台詞類語境多變，標 warn
+#             hard：譯文缺少詞彙表指定的譯名（term-missing），送出時退回，除非 note 寫出該原詞
+#             warn：詞彙表譯名只是預設；缺少時只警告，不退回，語境不合就可以不用，仍請在 note 寫原因
+#             兩者都照舊退回 forbidden 的禁用譯法。劇情與台詞類語境多變，標 warn
 #
-# 較具體的族群排在前面，避免被較寬的樣式搶走：
-#   Passives_Enemy* 要先於 ally 的 Passives*；AbEvents_Mirror* 要先於 abnormality 的 AbEvents*。
+# 比對順序：
+#   1. 先用 sub 找族群，再用 top 找（sub 優先）。
+#   2. 同一層：nodes 寫出該節點完整名稱的族群優先；沒有的話，取清單裡第一個有樣式符合的族群。
+#      所以兩個族群的樣式搶同一個節點時，排在前面的取得；lct rules lint 在有 raw 時會警告這種衝突。
+#   3. sub、top 都沒有族群列到，歸 unsorted。
 #
-# priority：待譯項目的發放順序，族群 id 依 guides/families.md「照列出的順序」排列，越前面越先翻。
+# priority：待譯項目的發放順序，族群 id 依 guides/families.md「對於既有文本翻譯優先序」排列，越前面越先翻。
 #   每個族群都要列在這裡，各列一次。
 
 families:
-  - id: walpu-refraction
-    match: ["*walpu*", "*Refraction*", "Railway*"]
-    guide: guides/families.md
-
-  - id: mirror
-    match: ["*Mirror*", "MirrorDungeon*", "EGOgift*", "DungeonStartBuffs*", "ActionEvents*"]
-    guide: guides/families.md
-
-  - id: dante-note
-    match: ["StoryTheaterDanteNote*"]
-    glossary: warn
-    guide: guides/families.md
-
-  - id: enemy
-    match: ["Enemies*", "Skills_Enemy*", "Passives_Enemy*", "Skills_Abnormality*", "Passives_Abnormality*"]
-    guide: guides/families.md
-
   - id: story-main
-    match: ["StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
+    nodes: ["StoryData/S", "StoryData/D", "StoryData/RPG", "DungeonNode", "BgmLyrics/"]
     glossary: warn
     guide: guides/families.md
-
   - id: story-interlude
-    match: ["StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
+    nodes: ["StoryData/E", "StoryData/ES", "StoryData/PC"]
     glossary: warn
     guide: guides/families.md
-
   - id: identity
-    match: ["PersonalityVoiceDlg/*", "StoryData/P1*", "BattleSpeechBubbleDlg*"]
+    nodes: ["StoryData/P", "PersonalityVoiceDlg/", "BattleSpeechBubbleDlg"]
     glossary: warn
     guide: guides/families.md
-
   - id: ego-voice
-    match: ["EGOVoiceDig/*"]
+    nodes: ["EGOVoiceDig/"]
     glossary: warn
     guide: guides/families.md
-
   - id: announcer
-    match: ["BattleAnnouncerDlg/*"]
+    nodes: ["BattleAnnouncerDlg/"]
     glossary: warn
     guide: guides/families.md
-
+  - id: dante-note
+    nodes: ["StoryTheaterDanteNote*"]
+    glossary: warn
+    guide: guides/families.md
+  - id: rpg
+    nodes: ["RPGSystem/"]
+    guide: guides/families.md
   - id: ally
-    match: ["Skills_personality*", "Skills_Ego*", "Passive_Ego*", "Egos*", "Personalit*", "Passives*", "Skills_Assist*", "Passives_Assist*"]
+    nodes: ["Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
     guide: guides/families.md
-
+  - id: enemy
+    nodes: ["Enemies", "Skills", "Skills_Enemy*", "Skills_Abnormality*", "Passives_Enemy*", "Passives_Abnormality*"]
+    guide: guides/families.md
+  - id: keywords
+    nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText", "ChoiceEventKeyword"]
+    guide: guides/families.md
   - id: abnormality
-    match: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "AbEventsResultLog*"]
+    nodes: ["AbnormalityGuides*", "AbDlg", "AbEvents*", "AbEventsResultLog*"]
+    glossary: warn
+    guide: guides/families.md
+  - id: mirror
+    nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
+    guide: guides/families.md
+  - id: railway
+    nodes: ["Railway*"]
+    guide: guides/families.md
+  - id: stage
+    nodes: ["StageNode", "Stage*", "DungeonArea", "DungeonName", "ThreadDungeon", "HellsChicken*", "ChoiceEvent*", "BattleResultHint", "BattleHint", "SuccessRate", "StoryTheater*", "ScenarioModelCodes", "Characters", "AssociationName", "Story", "IntroduceCharacter", "Ch", "Fools", "Limbus", "ProjectGS*", "Quest", "reward", "RewardDungeonUI"]
+    guide: guides/families.md
+  - id: ui
+    nodes: ["*UI", "*UIText", "*Ui", "UI", "UI_*", "Tutorial*", "LoginUIText", "FAQ", "ErrorCodeMsg", "Filter", "FormationName*", "FileDownloadDesc", "ShotcutKeyManual", "SkinUI", "UnlockCode", "UserAgreements", "ReturnPolicy", "UserInfo", "UserBanner", "IntroductionPreset", "TooltipUIText", "kr", "LobbyBGM*", "SelectLoadingCgUi", "ShopItemCount", "Items", "UserTicket", "AnnouncerTicketUIPopup", "AnnouncerVoiceType", "Announcer", "IAP*", "GachaTitle", "GachaNotice", "BattlePass*", "ChapterBannerConfig", "SeasonTitle", "DanteAbility*"]
+    guide: guides/families.md
+  - id: events
+    nodes: ["Event*", "*EventText", "DailyLoginEvent", "CultivationEvent", "RecordMemoryEvent", "TwiningThreadsEvent", "NightCleanUpEvent", "AttendanceCheckS", "AttendanceRewardsText", "DawnOfGreenEventText", "BossRaidUI", "PilgrimageUIText", "CouponUIText"]
+    guide: guides/families.md
+  - id: unsorted
+    nodes: []
     guide: guides/families.md
 
-  - id: other
-    match: []
-    guide: guides/families.md
-
-priority:
-  - story-main
-  - story-interlude
-  - ego-voice
-  - announcer
-  - identity
-  - ally
-  - enemy
-  - abnormality
-  - dante-note
-  - mirror
-  - walpu-refraction
-  - other
+priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, enemy, keywords, abnormality, dante-note, mirror, railway, rpg, stage, events, ui, unsorted]
