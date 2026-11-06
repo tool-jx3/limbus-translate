@@ -248,11 +248,12 @@ describe('Directory', () => {
     expect(select(none, '角色')).toBeTruthy()
   })
 
-  it('draws the fixture index, tops by file count', () => {
+  it('draws the fixture index, tops by file count then name', () => {
     const el = show({})
-    expect(rows(el)).toEqual(['Skills:2', 'StoryData:1'])
+    expect(rows(el)).toEqual(['Passives:1', 'Skills:1', 'StoryData/:1'])
     open(el, 'Skills')
-    expect(rows(el)).toEqual(['Skills:2', '浮士德:1', 'StoryData:1'])
+    expect(rows(el)).toEqual(['Passives:1', 'Skills:1', '浮士德:1', 'StoryData/:1'])
+    open(el, 'Passives')
     expect(links(el)).toEqual(['Passives-empty.json'])
     expect(el.textContent).not.toContain('story-main')
   })

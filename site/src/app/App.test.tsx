@@ -52,7 +52,7 @@ describe('App', () => {
     const el = mount()
     expect(el.querySelector('.top .brand')?.textContent).toBe('Limbus 譯文對照')
     await loaded(el)
-    expect([...el.querySelectorAll('.dir-family-id')].map((e) => e.textContent)).toEqual(['Skills', 'StoryData'])
+    expect([...el.querySelectorAll('.dir-family-id')].map((e) => e.textContent)).toEqual(['Passives', 'Skills', 'StoryData/'])
     expect(el.querySelector('.home')?.textContent).toContain('單位21')
     expect(el.querySelector('.foot-version')?.textContent).toContain('raw-20261029')
     expect(el.querySelector('.foot-version a')?.getAttribute('href')).toBe(

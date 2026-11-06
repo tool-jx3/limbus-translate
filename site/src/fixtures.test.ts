@@ -30,9 +30,23 @@ describe('fixtures', () => {
     expect(Object.keys(index)).toEqual(['families', 'files', 'groups'])
     for (const fam of index.families) expect(Object.keys(fam)).toEqual(['id', 'files', 'glossary', 'nodes'])
     for (const f of index.files) {
-      expect(Object.keys(f).filter((k) => k !== 'sub' && k !== 'tag')).toEqual(['path', 'family', 'top', 'label', 'speakers', 'units', 'origins', 'missing'])
+      // FileSummary (internal/site/file.go): sub and tag are omitempty; the order is that of the struct.
+      const optional = Object.keys(f).filter((k) => !['path', 'family', 'top', 'label', 'speakers', 'units', 'origins', 'missing'].includes(k))
+      for (const k of optional) expect(['sub', 'tag']).toContain(k)
+      expect(Object.keys(f)).toEqual([
+        'path', 'family', 'top', ...(f.sub !== undefined ? ['sub'] : []), ...(f.tag !== undefined ? ['tag'] : []),
+        'label', 'speakers', 'units', 'origins', 'missing',
+      ])
+      if (f.tag !== undefined) expect(Object.keys(f.tag)).toEqual(['kind', 'value', 'label'])
       expect(Object.keys(f.missing)).toEqual(['en', 'jp'])
     }
+    const checkGroups = (gs: typeof index.groups) => {
+      for (const grp of gs) {
+        expect(Object.keys(grp)).toEqual(['kind', 'node', 'label', 'files', 'children'])
+        checkGroups(grp.children)
+      }
+    }
+    checkGroups(index.groups)
     for (const f of files) {
       expect(Object.keys(f)).toEqual(['path', 'family', 'units'])
       for (const u of f.units) {
@@ -72,7 +86,7 @@ describe('fixtures', () => {
       }
     }
     walk(index.groups, '')
-    expect(seen.sort()).toEqual(index.files.map((_, n) => n))
+    expect(seen.sort((x, y) => x - y)).toEqual(index.files.map((_, n) => n))
   })
 
   it('has a file for each entry of the index, as the index says', () => {
