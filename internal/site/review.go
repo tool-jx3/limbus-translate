@@ -9,6 +9,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
@@ -240,13 +241,30 @@ type newTermHits struct {
 // room. u is the unit as the page shows it: only a unit whose text is a
 // translation of its own (shownOrigin: not a copy, a fallback or a unit with
 // no record) says whether the term is used. Tags are no text, in the KR as in
-// the TW, as the checks have it.
-func (h *newTermHits) add(key string, u Unit, kr string) {
-	if len(h.units) >= h.room || h.listed[key] || !shownOrigin(u.O) || !h.term.OccursIn(validate.MatchText(kr)) {
+// the TW, as the checks have it. heldTo returns the terms the unit is held to
+// (batch.TermsIn); where each hit of the term lies inside a hit of a longer
+// one of them, the term does not hit the unit (rules.DropCovered). A nil
+// heldTo weighs the term against no other.
+func (h *newTermHits) add(key string, u Unit, kr string, heldTo func() []rules.Term) {
+	if len(h.units) >= h.room || h.listed[key] || !shownOrigin(u.O) {
+		return
+	}
+	plain := validate.MatchText(kr)
+	if !h.term.OccursIn(plain) || heldTo != nil && h.coveredIn(plain, heldTo()) {
 		return
 	}
 	used := h.term.Used(u.ZH)
 	h.units = append(h.units, suggest.Evidence{Key: key, KR: kr, ZH: u.ZH, Note: usedNote(used)})
+}
+
+// coveredIn reports whether each hit of the term in plain, a KR text as
+// validate.MatchText leaves it, lies inside a hit of a longer one of terms.
+// The term itself is added to terms, so a declined one, which is not among
+// the terms in force, is weighed too; one in force is there already, with
+// the same hits.
+func (h *newTermHits) coveredIn(plain string, terms []rules.Term) bool {
+	kept := rules.DropCovered(plain, append(slices.Clip(terms), h.term))
+	return !slices.ContainsFunc(kept, func(t rules.Term) bool { return t.KR == h.term.KR })
 }
 
 // usedNote is the note of a unit a provisional term hits: whether its
@@ -320,6 +338,17 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		}
 	}
 
+	// The provisional terms in force, which the batches weigh a provisional
+	// term against as they weigh the glossary terms (batch.TermsIn).
+	var inForce []rules.Term
+	if len(newTerms) > 0 {
+		declinedIDs := make(map[string]bool, len(rv.Declined))
+		for _, d := range rv.Declined {
+			declinedIDs[d.ID] = true
+		}
+		inForce = batch.ActiveProvisional(rv.Provisional, in.Rules, declinedIDs)
+	}
+
 	groups := map[string]*group{}
 	var warns []*warnAcc
 	warnByID := map[string]*warnAcc{}
@@ -346,8 +375,18 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				g.keys[u.ZH] = append(g.keys[u.ZH], key)
 				g.jpen[key] = [2]*string{u.JP, u.EN}
 			}
-			for _, h := range newTerms {
-				h.add(key, u, ku.KR)
+			if len(newTerms) > 0 {
+				var held []rules.Term
+				haveHeld := false
+				heldTo := func() []rules.Term {
+					if !haveHeld {
+						held, haveHeld = batch.TermsIn(in.Rules, inForce, path, ku.KR), true
+					}
+					return held
+				}
+				for _, h := range newTerms {
+					h.add(key, u, ku.KR, heldTo)
+				}
 			}
 			// The warnings are chosen as the build chooses what to check.
 			rec, ok := in.Records[key]

@@ -111,6 +111,99 @@ func (t Term) OccursIn(kr string) bool {
 	return standsAsWord(kr, t.KR)
 }
 
+// Spans returns where the KR text of t occurs in kr, a text as
+// validate.MatchText leaves it, by the rule of OccursIn: the byte range
+// [start, end) of each hit, in order, overlapping hits too. It is nil where
+// OccursIn is false, and for an empty KR.
+func (t Term) Spans(kr string) [][2]int {
+	if t.KR == "" {
+		return nil
+	}
+	word := t.Match != MatchSubstring
+	var out [][2]int
+	for from := 0; from < len(kr); {
+		i := strings.Index(kr[from:], t.KR)
+		if i < 0 {
+			break
+		}
+		at := from + i
+		_, size := utf8.DecodeRuneInString(kr[at:])
+		from = at + size
+		if !word || wordAt(kr, t.KR, at) {
+			out = append(out, [2]int{at, at + len(t.KR)})
+		}
+	}
+	return out
+}
+
+// DropCovered returns terms without the terms each of whose hits in kr (see
+// Spans; kr as validate.MatchText leaves it) lies strictly inside a hit of
+// another of terms: where two entries hit the same KR text, the longer one
+// stands for it, as 조직의 보스 for the 보스 in it. A term with one hit that
+// no other hit covers stays, and so do two terms with the same span, two that
+// only overlap and a term that does not occur in kr. The order is kept; when
+// no term is dropped, terms itself is returned.
+//
+// terms are the terms that apply to the text, weighed against each other:
+// the glossary hits of its file and the provisional terms in force. A term
+// already dropped would cover nothing that the longer one does not, so terms
+// may come from an earlier DropCovered with more terms added.
+func DropCovered(kr string, terms []Term) []Term {
+	if len(terms) < 2 {
+		return terms
+	}
+	spans := make([][][2]int, len(terms))
+	for i, t := range terms {
+		spans[i] = t.Spans(kr)
+	}
+	var drop []bool
+	for i := range terms {
+		if allCovered(i, spans) {
+			if drop == nil {
+				drop = make([]bool, len(terms))
+			}
+			drop[i] = true
+		}
+	}
+	if drop == nil {
+		return terms
+	}
+	out := make([]Term, 0, len(terms)-1)
+	for i, t := range terms {
+		if !drop[i] {
+			out = append(out, t)
+		}
+	}
+	return out
+}
+
+// allCovered reports whether term i has hits and each lies strictly inside a
+// hit of another term; spans[j] are the hits of term j.
+func allCovered(i int, spans [][][2]int) bool {
+	for _, s := range spans[i] {
+		if !strictlyInside(s, i, spans) {
+			return false
+		}
+	}
+	return len(spans[i]) > 0
+}
+
+// strictlyInside reports whether the hit s of term i lies inside a hit of
+// another term and is not the same range.
+func strictlyInside(s [2]int, i int, spans [][][2]int) bool {
+	for j, other := range spans {
+		if j == i {
+			continue
+		}
+		for _, o := range other {
+			if o[0] <= s[0] && s[1] <= o[1] && o != s {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // wordFollowers are what may follow a word in KR and keep it that word: the
 // particles, the copula and the endings of 하다 and 되다. A Hangul syllable
 // after the term that starts none of them makes it part of a longer word.
@@ -138,8 +231,6 @@ func standsAsWord(text, term string) bool {
 	if term == "" {
 		return false
 	}
-	first, _ := utf8.DecodeRuneInString(term)
-	last, _ := utf8.DecodeLastRuneInString(term)
 	for from := 0; from < len(text); {
 		i := strings.Index(text[from:], term)
 		if i < 0 {
@@ -148,17 +239,28 @@ func standsAsWord(text, term string) bool {
 		at := from + i
 		_, size := utf8.DecodeRuneInString(text[at:])
 		from = at + size
-		if before, _ := utf8.DecodeLastRuneInString(text[:at]); at > 0 && isHangulSyllable(before) && isHangulSyllable(first) {
-			continue
-		}
-		rest := text[at+len(term):]
-		if next, _ := utf8.DecodeRuneInString(rest); rest == "" || !isHangulSyllable(next) || !isHangulSyllable(last) {
+		if wordAt(text, term, at) {
 			return true
 		}
-		for _, f := range wordFollowers {
-			if strings.HasPrefix(rest, f) {
-				return true
-			}
+	}
+	return false
+}
+
+// wordAt reports whether term, which occurs in text at byte at, stands as a
+// word there (see standsAsWord).
+func wordAt(text, term string, at int) bool {
+	first, _ := utf8.DecodeRuneInString(term)
+	last, _ := utf8.DecodeLastRuneInString(term)
+	if before, _ := utf8.DecodeLastRuneInString(text[:at]); at > 0 && isHangulSyllable(before) && isHangulSyllable(first) {
+		return false
+	}
+	rest := text[at+len(term):]
+	if next, _ := utf8.DecodeRuneInString(rest); rest == "" || !isHangulSyllable(next) || !isHangulSyllable(last) {
+		return true
+	}
+	for _, f := range wordFollowers {
+		if strings.HasPrefix(rest, f) {
+			return true
 		}
 	}
 	return false
@@ -224,6 +326,9 @@ const (
 // files that match one of its NotFiles (see Rules.Applies). Of several entries for one
 // KR text, those that apply to file (see Rules.Applies) stand for it alone: the entry without Files
 // is the one for the files no other entry takes.
+//
+// Of the entries that are left, one each of whose hits lies inside a hit of
+// a longer one is not a hit (see DropCovered): 보스 in 조직의 보스.
 func (r *Rules) GlossaryHits(file, kr string) []Term {
 	kr = validate.MatchText(kr) // a paired tag inside a term does not split it; a self-closing one does not fuse words
 	var hits []Term
@@ -240,7 +345,8 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 		}
 		hits = append(hits, t)
 	}
-	return slices.DeleteFunc(hits, func(t Term) bool { return len(t.Files) == 0 && scoped[t.KR] })
+	hits = slices.DeleteFunc(hits, func(t Term) bool { return len(t.Files) == 0 && scoped[t.KR] })
+	return DropCovered(kr, hits)
 }
 
 // ScriptRenderings returns the approved renderings for file that hold kana or

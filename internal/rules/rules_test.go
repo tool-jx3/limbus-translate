@@ -1521,3 +1521,157 @@ func TestLintGlossaryAlsoOfTagsOnly(t *testing.T) {
 		}
 	}
 }
+
+// Spans are the byte ranges of the hits of a term in a text as MatchText
+// leaves it, by its match: only where its KR stands as a word, or at every
+// occurrence for match: substring, overlapping ones too.
+func TestTermSpans(t *testing.T) {
+	text := "정사무소와 사무소, 사무소"
+	for _, tc := range []struct {
+		term rules.Term
+		text string
+		want [][2]int
+	}{
+		{rules.Term{KR: "사무소", Match: rules.MatchSubstring}, text, [][2]int{{3, 12}, {16, 25}, {27, 36}}},
+		{rules.Term{KR: "사무소"}, text, [][2]int{{16, 25}, {27, 36}}},
+		{rules.Term{KR: "사무소", Match: rules.MatchWord}, text, [][2]int{{16, 25}, {27, 36}}},
+		{rules.Term{KR: "가가", Match: rules.MatchSubstring}, "가가가", [][2]int{{0, 6}, {3, 9}}},
+		{rules.Term{KR: "꽃"}, text, nil},
+		{rules.Term{KR: "", Match: rules.MatchSubstring}, text, nil},
+	} {
+		if got := tc.term.Spans(tc.text); !slices.Equal(got, tc.want) {
+			t.Errorf("%+v.Spans(%q) = %v, want %v", tc.term, tc.text, got, tc.want)
+		}
+		if got := len(tc.term.Spans(tc.text)) > 0; tc.term.KR != "" && got != tc.term.OccursIn(tc.text) {
+			t.Errorf("%+v: Spans and OccursIn disagree on %q", tc.term, tc.text)
+		}
+	}
+}
+
+// Review Focus 1. A longer entry takes the place of a shorter one only where
+// it covers it: 보스 inside 조직의 보스 does not count, a 보스 elsewhere in the
+// same text does, and then both entries hit the unit.
+func TestLongerEntryCoversOnlyItsOwnSpan(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 보스
+  zh: BOSS
+  status: approved
+- kr: 조직의 보스
+  zh: 組織的老大
+  status: approved
+`)
+	for _, tc := range []struct {
+		text string
+		want []string
+	}{
+		{"조직의 보스가 보스 전투에 나섰다", []string{"BOSS", "組織的老大"}},
+		{"보스 전투 전에 조직의 보스가 왔다", []string{"BOSS", "組織的老大"}},
+		{"조직의 보스가 왔다", []string{"組織的老大"}},
+		{"조직의 보스와 조직의 보스", []string{"組織的老大"}},
+		{"<b>조직의</b> 보스가 왔다", []string{"組織的老大"}},
+		{"보스가 왔다", []string{"BOSS"}},
+	} {
+		if got := zhOf(r.GlossaryHits(anyFile, tc.text)); !slices.Equal(got, tc.want) {
+			t.Errorf("GlossaryHits(%q) = %v, want %v", tc.text, got, tc.want)
+		}
+	}
+
+	boss := rules.Term{KR: "보스", ZH: "BOSS"}
+	org := rules.Term{KR: "조직의 보스", ZH: "組織的老大"}
+	if got := zhOf(rules.DropCovered("조직의 보스가 보스 전투에", []rules.Term{boss, org})); !slices.Equal(got, []string{"BOSS", "組織的老大"}) {
+		t.Errorf("DropCovered with an uncovered 보스 = %v, want both", got)
+	}
+	if got := zhOf(rules.DropCovered("조직의 보스가 왔다", []rules.Term{org, boss})); !slices.Equal(got, []string{"組織的老大"}) {
+		t.Errorf("DropCovered with 보스 covered = %v, want only the longer entry", got)
+	}
+	// A term that does not occur is not weighed: DropCovered keeps it.
+	absent := rules.Term{KR: "꽃", ZH: "花"}
+	if got := zhOf(rules.DropCovered("보스가 왔다", []rules.Term{boss, absent})); !slices.Equal(got, []string{"BOSS", "花"}) {
+		t.Errorf("DropCovered with a term that does not occur = %v, want both", got)
+	}
+}
+
+// Review Focus 2. Entries that only overlap cover each other nowhere: both
+// hit.
+func TestPartialOverlapKeepsBoth(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 가나다
+  zh: 甲
+  status: approved
+  match: substring
+- kr: 나다라
+  zh: 乙
+  status: approved
+  match: substring
+`)
+	if got := zhOf(r.GlossaryHits(anyFile, "가나다라")); !slices.Equal(got, []string{"甲", "乙"}) {
+		t.Errorf("GlossaryHits(가나다라) = %v, want both", got)
+	}
+	a := rules.Term{KR: "가나다", ZH: "甲", Match: rules.MatchSubstring}
+	b := rules.Term{KR: "나다라", ZH: "乙", Match: rules.MatchSubstring}
+	if got := zhOf(rules.DropCovered("가나다라", []rules.Term{a, b})); !slices.Equal(got, []string{"甲", "乙"}) {
+		t.Errorf("DropCovered(가나다라) = %v, want both", got)
+	}
+}
+
+// Two entries with the same span do not cover each other (coverage is
+// strict): both stay.
+func TestSameSpanEntriesBothStay(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 보스
+  zh: BOSS
+  status: approved
+  files: ["A*.json"]
+- kr: 보스
+  zh: 首領
+  status: approved
+  files: ["*B.json"]
+- kr: 조직의 보스
+  zh: 組織的老大
+  status: approved
+`)
+	if got := zhOf(r.GlossaryHits("AB.json", "보스가 왔다")); !slices.Equal(got, []string{"BOSS", "首領"}) {
+		t.Errorf("GlossaryHits = %v, want both entries of 보스", got)
+	}
+	if got := zhOf(r.GlossaryHits("AB.json", "조직의 보스가 왔다")); !slices.Equal(got, []string{"組織的老大"}) {
+		t.Errorf("GlossaryHits = %v, want only the longer entry: it covers both", got)
+	}
+	word := rules.Term{KR: "보스", ZH: "BOSS"}
+	sub := rules.Term{KR: "보스", ZH: "首領", Match: rules.MatchSubstring}
+	if got := zhOf(rules.DropCovered("보스가 왔다", []rules.Term{word, sub})); !slices.Equal(got, []string{"BOSS", "首領"}) {
+		t.Errorf("DropCovered with the same span = %v, want both", got)
+	}
+}
+
+// The hits of a substring entry take part as any: one inside a longer word is
+// covered by a longer entry, and covers a shorter one. A longer entry covers
+// only where it hits by its own match.
+func TestSubstringEntrySpansTakePart(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 사무소
+  zh: 事務所
+  status: approved
+  match: substring
+- kr: 정사무소
+  zh: 正事務所
+  status: approved
+- kr: 보스
+  zh: BOSS
+  status: approved
+- kr: 중간 보스
+  zh: 中頭目
+  status: approved
+  match: substring
+`)
+	for _, tc := range []struct {
+		text string
+		want []string
+	}{
+		{"정사무소 대표", []string{"正事務所"}},
+		{"정사무소와 사무소", []string{"事務所", "正事務所"}},
+		// 정사무소 is no word here: it hits nowhere, so it covers nothing.
+		{"새정사무소", []string{"事務所"}},
+		// The hit of 중간 보스 inside 최중간 covers the word 보스.
+		{"최중간 보스가 왔다", []string{"中頭目"}},
+	} {
+		if got := zhOf(r.GlossaryHits(anyFile, tc.text)); !slices.Equal(got, tc.want) {
+			t.Errorf("GlossaryHits(%q) = %v, want %v", tc.text, got, tc.want)
+		}
+	}
+}

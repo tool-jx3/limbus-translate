@@ -3296,7 +3296,8 @@ func TestProvisionalTermsYieldToTheGlossary(t *testing.T) {
 	if len(prov) != 1 {
 		t.Fatalf("provisional = %+v, want 1", prov)
 	}
-	// Both hit: the glossary term is longer, the provisional one is checked too.
+	// The glossary term covers the provisional one, which does not hit there
+	// (see TestCheckNewTermsWeighsProvisionalTermsWithTheGlossary).
 	issues := CheckNewTerms(r, prov, "Other.json", "와일드헌트 히스클리프", "狂獵希斯克利夫")
 	if validate.HasHard(issues) || hasCode(issues, validate.CodeTermMissing) {
 		t.Errorf("issues = %+v, want none", issues)
@@ -3965,21 +3966,111 @@ func TestSubmitChecksTheCurrentProvisionalRendering(t *testing.T) {
 	}
 }
 
-// A text with an approved term and a provisional term that overlaps it (the
-// provisional KR is a part of the approved one) gets both in the glossary.
-func TestNextCarriesBothAnOverlappingGlossaryTermAndProvisionalTerm(t *testing.T) {
-	kr := map[string]string{"Other.json": oneLine(t, "와일드헌트 히스클리프가 왔다")}
+// A provisional term is weighed with the glossary terms: where its KR lies
+// inside an approved term (와일드헌트 in 와일드헌트 히스클리프) it does not hit,
+// so a text with only that one does not bring it into the batch glossary; a
+// text that also has it alone does, after the approved term. (Until
+// 2026-11-06 both came in for the first text too.)
+func TestNextLeavesOutAProvisionalTermTheGlossaryCovers(t *testing.T) {
+	for _, tc := range []struct {
+		text string
+		want []string
+	}{
+		{"와일드헌트 히스클리프가 왔다", []string{"와일드헌트 히스클리프=狂獵希斯克利夫"}},
+		{"와일드헌트 히스클리프와 와일드헌트가 왔다", []string{"와일드헌트 히스클리프=狂獵希斯克利夫", "와일드헌트=狂獵"}},
+	} {
+		env := newEnv(t, map[string]string{"Other.json": oneLine(t, tc.text)}, nil, nil)
+		env.Rules = testRulesWith(t, "- kr: 와일드헌트 히스클리프\n  zh: 狂獵希斯克利夫\n  status: approved\n")
+		env.Provisional = ActiveProvisional([]store.ProvisionalTerm{provTerm("와일드헌트", "狂獵", false)}, env.Rules, nil)
+		seed(t, env, items("Other.json", 0, 1)...)
+		b := mustNext(t, env, NextOptions{})
+		var got []string
+		for _, g := range b.Glossary {
+			got = append(got, g.KR+"="+g.ZH)
+		}
+		if !slices.Equal(got, tc.want) {
+			t.Errorf("%s: glossary = %v, want %v", tc.text, got, tc.want)
+		}
+	}
+}
+
+// The batch glossary is the union over the texts of what each one is held
+// to: a provisional term covered in one text comes in for another text
+// where it stands alone.
+func TestNextCarriesAProvisionalTermOneTextHasAlone(t *testing.T) {
+	kr := map[string]string{"Other.json": `{"dataList":[
+ {"id":0,"content":"와일드헌트 히스클리프가 왔다"},
+ {"id":1,"content":"와일드헌트가 왔다"}
+]}`}
 	env := newEnv(t, kr, nil, nil)
 	env.Rules = testRulesWith(t, "- kr: 와일드헌트 히스클리프\n  zh: 狂獵希斯克利夫\n  status: approved\n")
-	env.Provisional = ActiveProvisional([]store.ProvisionalTerm{provTerm("와일드헌트", "狂獵", false)}, env.Rules, nil)
-	seed(t, env, items("Other.json", 0, 1)...)
+	env.Provisional = ActiveProvisional([]store.ProvisionalTerm{provTerm("와일드헌트", "荒獵", false)}, env.Rules, nil)
+	seed(t, env, items("Other.json", 0, 2)...)
 	b := mustNext(t, env, NextOptions{})
 	var got []string
 	for _, g := range b.Glossary {
 		got = append(got, g.KR+"="+g.ZH)
 	}
-	if want := []string{"와일드헌트 히스클리프=狂獵希斯克利夫", "와일드헌트=狂獵"}; !slices.Equal(got, want) {
-		t.Errorf("glossary = %v, want %v", got, want)
+	if want := []string{"와일드헌트 히스클리프=狂獵希斯克利夫", "와일드헌트=荒獵"}; !slices.Equal(got, want) {
+		t.Fatalf("glossary = %v, want %v", got, want)
+	}
+	// The unit where the approved term covers it is not held to it.
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "狂獵希斯克利夫來了"}, {Key: key("Other.json", 1), ZH: "荒獵來了"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 2 || len(res.Warnings) != 0 {
+		t.Errorf("result = %+v, want both accepted without warnings", res)
+	}
+}
+
+// Submission holds a text to the glossary hits and the provisional terms that
+// occur in it, weighed together: a term each of whose hits lies inside a
+// longer one's is not checked, whichever of the two is provisional.
+func TestCheckNewTermsWeighsProvisionalTermsWithTheGlossary(t *testing.T) {
+	r := testRulesWith(t, "- kr: 와일드헌트 히스클리프\n  zh: 狂獵希斯克利夫\n  status: approved\n")
+	prov := ActiveProvisional([]store.ProvisionalTerm{provTerm("와일드헌트", "荒獵", false)}, r, nil)
+	if issues := CheckNewTerms(r, prov, "Other.json", "와일드헌트 히스클리프가 왔다", "狂獵希斯克利夫來了"); hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("covered provisional term: issues = %+v, want no term-missing", issues)
+	}
+	issues := CheckNewTerms(r, prov, "Other.json", "와일드헌트 히스클리프와 와일드헌트", "狂獵希斯克利夫與狂獵")
+	if !slices.ContainsFunc(issues, func(is validate.Issue) bool {
+		return is.Code == validate.CodeTermMissing && is.Term == "와일드헌트"
+	}) {
+		t.Errorf("provisional term also alone: issues = %+v, want term-missing for 와일드헌트", issues)
+	}
+
+	// The other way round: a provisional term covers a glossary term.
+	r2 := testRulesWith(t, "- kr: 와일드헌트\n  zh: 狂獵\n  status: approved\n")
+	prov2 := ActiveProvisional([]store.ProvisionalTerm{provTerm("와일드헌트 히스클리프", "荒獵希斯克利夫", false)}, r2, nil)
+	if len(prov2) != 1 {
+		t.Fatalf("provisional = %+v, want 와일드헌트 히스클리프 in force", prov2)
+	}
+	if issues := CheckNewTerms(r2, prov2, "Other.json", "와일드헌트 히스클리프가 왔다", "荒獵希斯克利夫來了"); hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("covered glossary term: issues = %+v, want no term-missing", issues)
+	}
+	if issues := CheckNew(r2, "Other.json", "와일드헌트 히스클리프가 왔다", "荒獵希斯克利夫來了"); !hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("CheckNew = %+v, want term-missing: without the provisional term nothing covers 와일드헌트", issues)
+	}
+}
+
+// The forbidden renderings of a term are checked where it hits: not where a
+// longer term covers it.
+func TestCheckNewSkipsTheForbiddenOfACoveredTerm(t *testing.T) {
+	r := testRulesWith(t, `- kr: 보스
+  zh: BOSS
+  status: approved
+  forbidden: [首領]
+- kr: 조직의 보스
+  zh: 組織的首領
+  status: approved
+`)
+	if issues := CheckNew(r, "Other.json", "조직의 보스가 왔다", "組織的首領來了"); validate.HasHard(issues) || hasCode(issues, validate.CodeForbiddenTerm) || hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("covered 보스: issues = %+v, want none", issues)
+	}
+	issues := CheckNew(r, "Other.json", "조직의 보스가 보스 전투에 나섰다", "組織的首領參加首領戰")
+	if !hasCode(issues, validate.CodeForbiddenTerm) || !hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("a 보스 outside: issues = %+v, want forbidden-term and term-missing", issues)
 	}
 }
 

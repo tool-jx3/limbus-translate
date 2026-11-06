@@ -375,38 +375,61 @@ func nonNil(s []string) []string {
 // unitText is the KR text of a unit and the file it is in.
 type unitText struct{ file, kr string }
 
-// glossaryFor is the union of the approved terms the texts contain, each in
-// its own file (so a term for some files only comes with a text of those
-// files), once per KR term, rendering and files, in order of first
-// appearance; then the provisional terms they contain, once per KR. They are
-// the terms CheckNew enforces on the units: a text that is shown with a term
-// is held to it, and the other way round.
+// glossaryFor is the union of the terms each text is held to (TermsIn), each
+// in its own file (so a term for some files only comes with a text of those
+// files): the approved terms once per KR term, rendering and files, in order
+// of first appearance; then the provisional terms, once per KR. They are the
+// terms CheckNew enforces on the units: a text that is shown with a term is
+// held to it, and the other way round. A term that a longer one covers
+// wherever it occurs in a text does not come with that text.
 func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []rules.Term {
 	terms := []rules.Term{}
 	type termKey struct{ kr, zh, files, notFiles string }
 	seen := map[termKey]bool{}
+	// No glossary KR is deduped against the provisional terms: ActiveProvisional
+	// already leaves out a KR the glossary has an entry for. Only the texts
+	// of the batch can bring the same provisional term twice.
+	var prov []rules.Term
+	seenKR := map[string]bool{}
 	for _, x := range texts {
-		for _, t := range r.GlossaryHits(x.file, x.kr) {
+		for _, t := range TermsIn(r, provisional, x.file, x.kr) {
+			if t.Provisional {
+				if !seenKR[t.KR] {
+					seenKR[t.KR] = true
+					prov = append(prov, t)
+				}
+				continue
+			}
 			if k := (termKey{t.KR, t.ZH, strings.Join(t.Files, "\x00"), strings.Join(t.NotFiles, "\x00")}); !seen[k] {
 				seen[k] = true
 				terms = append(terms, t)
 			}
 		}
 	}
-	// No glossary KR is deduped against the provisional terms: ActiveProvisional
-	// already leaves out a KR the glossary has an entry for. Only the texts
-	// of the batch can bring the same provisional term twice.
-	seenKR := map[string]bool{}
-	for _, x := range texts {
-		plain := validate.MatchText(x.kr) // as CheckNewTerms looks for them
-		for _, t := range provisional {
-			if t.OccursIn(plain) && !seenKR[t.KR] {
-				seenKR[t.KR] = true
-				terms = append(terms, t)
-			}
+	return append(terms, prov...)
+}
+
+// TermsIn returns the terms the KR text kr of file is held to: its glossary
+// hits (rules.Rules.GlossaryHits), then the provisional terms that occur in
+// it, without a term each of whose hits lies inside a hit of a longer one
+// (rules.DropCovered), whichever of the two is provisional. provisional are
+// the provisional terms in force (ActiveProvisional).
+func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.Term {
+	terms := r.GlossaryHits(file, kr)
+	if len(provisional) == 0 {
+		return terms
+	}
+	plain := validate.MatchText(kr) // as GlossaryHits looks for its terms
+	n := len(terms)
+	for _, t := range provisional {
+		if t.OccursIn(plain) {
+			terms = append(terms, t)
 		}
 	}
-	return terms
+	if len(terms) == n {
+		return terms
+	}
+	return rules.DropCovered(plain, terms)
 }
 
 // CheckNew checks zh as a new translation of the KR text kr of file, which is
@@ -419,14 +442,11 @@ func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 }
 
 // CheckNewTerms is CheckNew with the provisional terms that occur in kr held
-// to as well.
+// to as well, weighed with the glossary terms (TermsIn).
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
-	terms := r.ValidateTerms(file, kr)
-	plain := validate.MatchText(kr)
-	for _, t := range provisional {
-		if t.OccursIn(plain) {
-			terms = append(terms, t.ToValidate())
-		}
+	var terms []validate.Term
+	for _, t := range TermsIn(r, provisional, file, kr) {
+		terms = append(terms, t.ToValidate())
 	}
 	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: r.ScriptRenderings(file)})
 }

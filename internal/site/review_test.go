@@ -1392,10 +1392,55 @@ func TestReviewTermGroupLeavesOutUnitsThatUseAlso(t *testing.T) {
 	}
 }
 
+// A unit is no hit of a provisional term where each of its hits lies inside
+// a hit of a longer term in force in the unit (rules.DropCovered), as the
+// batches have it (batch.TermsIn): a glossary entry that applies to the file
+// or another provisional term that is not declined.
+func TestReviewNewTermHitsLeaveOutUnitsALongerTermCovers(t *testing.T) {
+	in, files := newTermInputs(t,
+		[3]string{"자판기 하나", "販賣機一", store.OriginClaude},
+		[3]string{"자동 자판기 둘", "自動販賣機二", store.OriginClaude},
+		[3]string{"자동 자판기 옆 자판기 셋", "自動販賣機旁的販賣機三", store.OriginClaude},
+		[3]string{"자판기 고장 넷", "販賣機故障四", store.OriginClaude},
+		[3]string{"낡은 자판기 다섯", "舊販賣機五", store.OriginClaude},
+		[3]string{"자판기 여섯", "販賣機六", store.OriginClaude},
+	)
+	in.Rules = glossaryRules(t, "- kr: 자동 자판기\n  zh: 自動販賣機\n  status: approved\n"+
+		"- kr: 낡은 자판기\n  zh: 舊式販賣機\n  status: approved\n  files: [B.json]\n")
+	in.Review.Provisional = []store.ProvisionalTerm{
+		{KR: "자판기", ZH: "販賣機", Key: nthKey(0), Batch: "b1"},
+		{KR: "자판기 고장", ZH: "販賣機故障", Key: nthKey(3), Batch: "b2"},
+	}
+	keysOf := func(r Review) []string {
+		var out []string
+		for _, h := range hitRows(findSuggestion(t, r, "term-new/자판기").Evidence) {
+			out = append(out, h.Key)
+		}
+		return out
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	// 1 lies inside the glossary's 자동 자판기, 3 inside the provisional
+	// 자판기 고장; 2 has a 자판기 of its own; 낡은 자판기 is for B.json only.
+	if got, want := keysOf(r), []string{nthKey(2), nthKey(4), nthKey(5)}; !slices.Equal(got, want) {
+		t.Errorf("hits = %v, want %v", got, want)
+	}
+	// A declined provisional term is not in force: it covers nothing.
+	in.Review.Declined = []suggest.Declined{{ID: "term-new/자판기 고장", Reason: "不是固定詞", Date: "2026-11-06"}}
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	if got, want := keysOf(r), []string{nthKey(2), nthKey(3), nthKey(4), nthKey(5)}; !slices.Equal(got, want) {
+		t.Errorf("with 자판기 고장 declined: hits = %v, want %v", got, want)
+	}
+}
+
 // For a provisional term the 有用 of an evidence row is the same Used.
 func TestNewTermHitUsedIsTermUsed(t *testing.T) {
 	h := &newTermHits{term: rules.Term{KR: "자판기", ZH: "販賣機", Also: []string{"自販機"}, Match: rules.MatchWord}, room: 5, listed: map[string]bool{}}
-	h.add("a", Unit{O: store.OriginClaude, ZH: "自販機一"}, "자판기 하나")
+	h.add("a", Unit{O: store.OriginClaude, ZH: "自販機一"}, "자판기 하나", nil)
 	if len(h.units) != 1 || h.units[0].Note != "有用" {
 		t.Errorf("units = %+v, want 有用 for an also rendering", h.units)
 	}

@@ -4867,3 +4867,17 @@ func TestAlsoIsExplainedToTheTranslator(t *testing.T) {
 		t.Error("glossary/README.md does not describe `also`")
 	}
 }
+
+// Where a longer glossary entry covers a shorter one in the KR, only the
+// longer one applies there (rules.DropCovered); the translator and the
+// glossary README say so.
+func TestLongerEntryFirstIsExplained(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	if !strings.Contains(prompt, "蓋住") || !strings.Contains(prompt, "部分重疊") {
+		t.Error("prompts/translate.md does not say that a longer entry covering a shorter one applies alone there, and that a partial overlap keeps both")
+	}
+	_, readme := readRepoFile(t, filepath.Join(repoRoot, "glossary", "README.md"))
+	if !strings.Contains(readme, "## 長詞條優先") {
+		t.Error("glossary/README.md has no section 長詞條優先")
+	}
+}
