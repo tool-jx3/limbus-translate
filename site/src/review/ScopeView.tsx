@@ -62,7 +62,7 @@ export function proposalDetail(p: ScopeProposal): string {
 function Legend({ t }: { t: ScopeThresholds }) {
   return (
     <ul class="sc-legend" aria-label="門檻">
-      <li>群組：少於 {t.min_n} 個單位的群組不計入建議。</li>
+      <li>群組：族群（family:）與頂層分群（group:）；少於 {t.min_n} 個單位的群組不計入建議。</li>
       <li>
         有用：{pct(t.used)} 以上的單位用了譯名；沒用：{pct(t.not_used)} 以下。
       </li>

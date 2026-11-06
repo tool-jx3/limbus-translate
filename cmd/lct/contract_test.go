@@ -26,6 +26,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/proposal"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
@@ -846,6 +847,8 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"加 `check: hard`，`notes` 補一句有日期的話，寫明日期、`rate` 的百分比與 `n`", "a glossary entry made check: hard is not said to carry the date, the rate and the count in notes"},
 	skillSays{"`rate` 的百分比與 `n`", "the notes of a glossary entry made check: hard are not said to record the rate as a percentage and n"},
 	skillSays{"不自己加總 `groups`", "the numbers are not said to come from the entry's own fields: summing groups counts each hit in both a family and a dir group"},
+	skillSays{"`thresholds.hard_rate`", "the rate an entry must exceed to be a hard candidate is not read from thresholds.hard_rate of the output: the skill would carry a number of its own"},
+	skillSays{"`thresholds.hard_min_n`", "the number of units an entry needs to be a hard candidate is not read from thresholds.hard_min_n of the output: the skill would carry a number of its own"},
 	skillSays{"`hard_candidate` 為 false 時，先告訴人原因", "a person is not told why an entry is not a hard candidate before it is made hard"},
 	skillSays{"「改回只警告」：刪掉那一條的 `check`", "the decision to go back to warning only is not said to delete check"},
 	skillSays{"`entries[].id`", "the entry of a glossary/… id is not said to be found by entries[].id of lct glossary scope"},
@@ -901,6 +904,8 @@ func TestReviewPageSays(t *testing.T) {
 		{"warn only not named", "「改回只警告」：刪掉那一條的 `check`", "「改回只警告」：不動", "「改回只警告」：刪掉那一條的 `check`"},
 		{"glossary id accepted", "`bin/lct accept` 拒絕 `glossary/…`", "`bin/lct accept` 接受", "`bin/lct accept` 拒絕 `glossary/…`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
+		{"rate threshold not read", "`thresholds.hard_rate`", "95%", "`thresholds.hard_rate`"},
+		{"count threshold not read", "`thresholds.hard_min_n`", "20 個單位", "`thresholds.hard_min_n`"},
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			src := mutateAll(t, body, c.old, c.repl)
@@ -908,6 +913,29 @@ func TestReviewPageSays(t *testing.T) {
 		})
 	}
 }
+
+// The thresholds of a hard candidate are the 95% and the 20 units of the
+// spec, and live in the code alone: the skill reads them from the output of
+// lct glossary scope, so a number in its text could drift from them.
+func TestHardCandidateThresholds(t *testing.T) {
+	if th := scope.Empty().Thresholds; th.HardRate != 0.95 || th.HardMinN != 20 {
+		t.Errorf("thresholds = hard_rate %v, hard_min_n %d, want 0.95 and 20", th.HardRate, th.HardMinN)
+	}
+	_, body, _ := localSkillBody(t, "review-page")
+	if lit := thresholdLiterals(body); len(lit) > 0 {
+		t.Errorf("the review-page skill writes the hard-candidate thresholds as numbers %q: point to thresholds.hard_rate and thresholds.hard_min_n", lit)
+	}
+	for _, mutated := range []string{body + " 95%", body + " 至少 20 個單位", body + " 0.95"} {
+		if len(thresholdLiterals(mutated)) == 0 {
+			t.Errorf("a threshold written into the skill is not noticed: %q", mutated[len(body):])
+		}
+	}
+}
+
+var thresholdLiteralRe = regexp.MustCompile(`95\s*%|0\.95|20\s*個單位`)
+
+// thresholdLiterals returns the hard-candidate thresholds written as numbers in text.
+func thresholdLiterals(text string) []string { return thresholdLiteralRe.FindAllString(text, -1) }
 
 // skillSays is a text the body of a skill must hold, and what is wrong with a
 // body that lacks it.

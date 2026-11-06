@@ -1,6 +1,7 @@
 // Package scope measures where the translations use each approved entry of the
 // glossary, and proposes where the entry should apply (spec of the glossary in
-// context, section 6): for each file family and each directory group, how many
+// context, section 6): for each file family and each top node of the group
+// tree (rules.FileNode), how many
 // translated units the entry hits and how many of them use its rendering; how
 // many units hold it inside a longer word; how many of the units that lack the
 // rendering have a note that names the term. lct site writes the result as
@@ -38,16 +39,8 @@ var Kinds = itemid.ScopeKinds
 // The kinds of group.
 const (
 	GroupFamily = "family"
-	GroupDir    = "dir"
+	GroupNode   = "group"
 )
-
-// Dirs are the directory groups, as the patterns that name them; a file in
-// none is in RestGroup.
-var Dirs = []string{"StoryData/**", "PersonalityVoiceDlg/**", "EGOVoiceDig/**", "BattleAnnouncerDlg/**", "RPGSystem/**"}
-
-// RestGroup is the name of the directory group of the files in none of Dirs.
-// No pattern names it, so no proposal does.
-const RestGroup = "rest"
 
 // Unit is one translated unit: Origin is its record's, ZH its record's text,
 // Note the notes on it joined by "\n".
@@ -85,6 +78,10 @@ type Thresholds struct {
 	// that use the rendering unchecked, or so large a share of them.
 	LostUnits int     `json:"lost_units"`
 	LostShare float64 `json:"lost_share"`
+	// HardRate and HardMinN make an entry worth considering for check: hard:
+	// a rate above HardRate over at least HardMinN units (Entry.HardCandidate).
+	HardRate float64 `json:"hard_rate"`
+	HardMinN int     `json:"hard_min_n"`
 }
 
 // Report is the result of Analyze.
@@ -92,6 +89,18 @@ type Report struct {
 	Thresholds Thresholds `json:"thresholds"`
 	Entries    []Entry    `json:"entries"`
 	Proposals  []Proposal `json:"proposals"`
+	// Units are the units each entry hits, by Entry.ID, for the pages of the
+	// glossary; the hits are those of Entries, and of its compound units a
+	// substring entry's only. lct site writes them elsewhere, not in the
+	// report.
+	Units map[string][]EntryUnit `json:"-"`
+}
+
+// EntryUnit is one unit an entry hits: Used says whether its ZH uses the
+// rendering (Term.Used), Origin and Note are the record's.
+type EntryUnit struct {
+	Key, File, KR, ZH, Origin, Note string
+	Used                            bool
 }
 
 // Entry is one approved glossary entry and its counts.
@@ -103,9 +112,19 @@ type Entry struct {
 	Files    []string `json:"files"`
 	NotFiles []string `json:"not_files"`
 	Match    string   `json:"match"`
+	Check    string   `json:"check,omitempty"`
 	Notes    string   `json:"notes"`
 	Groups   []Group  `json:"groups"`
-	Compound Count    `json:"compound"`
+	// N and Used are the units the entry hits and how many use the rendering,
+	// the compound units of a word entry (and of a substring entry) left out:
+	// the sum of the family groups. Rate is Used / N, 0 without units.
+	// HardCandidate says the entry is worth considering for check: hard (see
+	// Thresholds.HardRate and HardMinN) and is not that yet.
+	N             int     `json:"n"`
+	Used          int     `json:"used"`
+	Rate          float64 `json:"rate"`
+	HardCandidate bool    `json:"hard_candidate"`
+	Compound      Count   `json:"compound"`
 	// Explained and Unexplained are the units the entry hits that do not use
 	// its rendering, with a note that names the term and without.
 	Explained   int `json:"explained"`
@@ -115,7 +134,7 @@ type Entry struct {
 	Examples []Example `json:"examples"`
 }
 
-// Group is the units an entry hits in one family or one directory group.
+// Group is the units an entry hits in one family or one top node.
 type Group struct {
 	Name string `json:"name"`
 	Kind string `json:"kind"`
@@ -178,6 +197,8 @@ const (
 	minExplained = 3
 	lostUnits    = 20
 	lostShare    = 0.1
+	hardRate     = 0.95
+	hardMinN     = 20
 )
 
 // maxExamples is the most examples of a group a proposal lists, and of the
@@ -189,12 +210,12 @@ const (
 )
 
 func thresholds() Thresholds {
-	return Thresholds{MinN: minN, Used: usedShare, NotUsed: notUsedShare, Explained: minExplained, LostUnits: lostUnits, LostShare: lostShare}
+	return Thresholds{MinN: minN, Used: usedShare, NotUsed: notUsedShare, Explained: minExplained, LostUnits: lostUnits, LostShare: lostShare, HardRate: hardRate, HardMinN: hardMinN}
 }
 
 // Empty is the report of no entries.
 func Empty() Report {
-	return Report{Thresholds: thresholds(), Entries: []Entry{}, Proposals: []Proposal{}}
+	return Report{Thresholds: thresholds(), Entries: []Entry{}, Proposals: []Proposal{}, Units: map[string][]EntryUnit{}}
 }
 
 // counted reports whether a unit of origin o is a translation of its own,
@@ -213,8 +234,8 @@ func counted(o string) bool {
 // terms of batch.TermsIn with in.Provisional, that is Rules.GlossaryHits
 // (scopes, and the longer entry that covers a shorter one), the provisional
 // terms in force covering entries too. A unit's groups are its family
-// (Rules.Family, as family:<id>) and its directory group (Dirs, or
-// RestGroup). A unit is a compound unit of an entry when its hit depends on
+// (Rules.Family, as family:<id>) and its top node (rules.FileNode, as
+// group:<top>). A unit is a compound unit of an entry when its hit depends on
 // the entry's match: of a word entry, a unit the entry would hit as a
 // substring entry (its KR holds the entry inside a longer word); of a
 // substring entry, a unit it hits that it would not hit as a word entry. The
@@ -246,7 +267,9 @@ func Analyze(in Inputs) Report {
 	rep := Empty()
 	byKind := map[string][]Proposal{}
 	for _, a := range an.accs {
-		rep.Entries = append(rep.Entries, an.entry(a))
+		e := an.entry(a)
+		rep.Entries = append(rep.Entries, e)
+		rep.Units[e.ID] = an.entryUnits(a)
 		for _, p := range an.proposals(a) {
 			p.Declined = in.Declined[p.ID]
 			byKind[p.Kind] = append(byKind[p.Kind], p)
@@ -284,7 +307,7 @@ type acc struct {
 }
 
 // place is the groups of a file.
-type place struct{ family, dir string }
+type place struct{ family, node string }
 
 type analysis struct {
 	r           *rules.Rules
@@ -492,7 +515,7 @@ func (a *acc) add(h hit, pl place, note string) {
 			a.compound.Used++
 		}
 	} else {
-		for _, g := range []struct{ name, kind string }{{pl.family, GroupFamily}, {pl.dir, GroupDir}} {
+		for _, g := range []struct{ name, kind string }{{pl.family, GroupFamily}, {pl.node, GroupNode}} {
 			if g.name == "" {
 				continue
 			}
@@ -517,41 +540,63 @@ func (an *analysis) placeOf(file string) place {
 	if pl, ok := an.places[file]; ok {
 		return pl
 	}
-	pl := place{dir: RestGroup}
+	var pl place
 	if f := an.r.Family(file); f != "" {
 		pl.family = rules.FamilyPrefix + f
 	}
-	for _, d := range Dirs {
-		if an.r.Applies(rules.Term{Files: []string{d}}, file) {
-			pl.dir = d
-			break
-		}
+	if top := rules.FileNode(file).Top; top != "" {
+		pl.node = rules.GroupPrefix + top
 	}
 	an.places[file] = pl
 	return pl
 }
 
 // orderedGroups returns the groups of a: the families in the order of the
-// routing, then the directories in the order of Dirs, then RestGroup.
+// routing, then the top nodes by name.
 func (an *analysis) orderedGroups(a *acc) []Group {
 	out := []Group{}
-	var names []string
 	for _, f := range an.r.Routing.Families {
-		names = append(names, rules.FamilyPrefix+f.ID)
-	}
-	names = append(append(names, Dirs...), RestGroup)
-	for _, n := range names {
-		if g := a.groups[n]; g != nil {
+		if g := a.groups[rules.FamilyPrefix+f.ID]; g != nil {
 			out = append(out, *g)
 		}
+	}
+	nodes := []Group{}
+	for _, g := range a.groups {
+		if g.Kind == GroupNode {
+			nodes = append(nodes, *g)
+		}
+	}
+	slices.SortFunc(nodes, func(x, y Group) int { return cmp.Compare(x.Name, y.Name) })
+	return append(out, nodes...)
+}
+
+// entryUnits returns the units a hits, in the order of the inputs.
+func (an *analysis) entryUnits(a *acc) []EntryUnit {
+	out := make([]EntryUnit, 0, len(a.hits))
+	for _, h := range a.hits {
+		u := an.units[h.unit]
+		out = append(out, EntryUnit{Key: u.Key, File: u.File, KR: u.KR, ZH: u.ZH, Origin: u.Origin, Note: u.Note, Used: h.used})
 	}
 	return out
 }
 
 func (an *analysis) entry(a *acc) Entry {
 	t := a.term
+	n, used := 0, 0
+	for _, g := range a.groups {
+		if g.Kind == GroupFamily {
+			n += g.N
+			used += g.Used
+		}
+	}
+	rate := 0.0
+	if n > 0 {
+		rate = float64(used) / float64(n)
+	}
 	return Entry{
-		ID: itemid.GlossaryEntry(t.KR, t.ZH), KR: t.KR, ZH: t.ZH,
+		N: n, Used: used, Rate: rate, Check: t.Check,
+		HardCandidate: !t.Hard() && n >= hardMinN && rate > hardRate,
+		ID:            itemid.GlossaryEntry(t.KR, t.ZH), KR: t.KR, ZH: t.ZH,
 		Also: nonNil(t.Also), Files: nonNil(t.Files), NotFiles: nonNil(t.NotFiles),
 		Match: matchOf(t), Notes: t.Notes, Groups: an.orderedGroups(a),
 		Compound: a.compound, Explained: a.explained, Unexplained: a.unexplained,
@@ -642,10 +687,10 @@ func (an *analysis) proposals(a *acc) []Proposal {
 		return p
 	}
 
-	// Where: by the families, and by the directories.
+	// Where: by the families, and by the top nodes.
 	var opts []option
 	var mixedOrUnused []string
-	for _, kind := range []string{GroupFamily, GroupDir} {
+	for _, kind := range []string{GroupFamily, GroupNode} {
 		os, groups := an.scopeOptions(a, kind)
 		for _, o := range os {
 			alt := t
@@ -723,8 +768,7 @@ func compareBool(x, y bool) int {
 // that use it, and none in part: not_files gets the first, and files is
 // limited to the second. Both are returned, not_files first, and proposals
 // chooses by their effects. A group not_files takes out already has no hits,
-// so not_files never gets a pattern it has. RestGroup names no files: a
-// change that needs it is not made. files is not proposed for an entry that
+// so not_files never gets a pattern it has. files is not proposed for an entry that
 // has files, or whose KR text has another entry, which the change would leave
 // out of those files.
 func (an *analysis) scopeOptions(a *acc, kind string) ([]option, []string) {
@@ -751,10 +795,8 @@ func (an *analysis) scopeOptions(a *acc, kind string) ([]option, []string) {
 		return nil, notUsed
 	}
 	var out []option
-	if !slices.Contains(notUsed, RestGroup) {
-		out = append(out, option{kind: KindNotFiles, patterns: notUsed, left: notUsed})
-	}
-	if !slices.Contains(used, RestGroup) && len(a.term.Files) == 0 && !an.sameKR[a.term.KR] {
+	out = append(out, option{kind: KindNotFiles, patterns: notUsed, left: notUsed})
+	if len(a.term.Files) == 0 && !an.sameKR[a.term.KR] {
 		out = append(out, option{kind: KindFiles, patterns: used, left: notUsed})
 	}
 	return out, nil
@@ -774,7 +816,7 @@ func (an *analysis) groupExamples(a *acc, groups []string) []Example {
 }
 
 // examplesOfGroups is groupExamples; a nil listed lists a unit of two groups
-// (its family and its directory) under each.
+// (its family and its top node) under each.
 func (an *analysis) examplesOfGroups(a *acc, groups []string, listed map[int32]bool) []Example {
 	out := []Example{}
 	for _, g := range groups {
@@ -786,7 +828,7 @@ func (an *analysis) examplesOfGroups(a *acc, groups []string, listed map[int32]b
 			if h.used || h.compound || (listed != nil && listed[h.unit]) {
 				continue
 			}
-			if pl := an.placeOf(an.units[h.unit].File); pl.family != g && pl.dir != g {
+			if pl := an.placeOf(an.units[h.unit].File); pl.family != g && pl.node != g {
 				continue
 			}
 			if listed != nil {

@@ -68,16 +68,16 @@ describe('ScopeView', () => {
     const card = sections(el)[0]!.querySelector('article')!
     expect(card.querySelector('h3')?.textContent).toContain('대상 → 目標')
     expect(card.querySelector('.rv-kind')?.textContent).toBe('排除檔案')
-    expect([...card.querySelectorAll('.sc-patterns code')].map((c) => c.textContent)).toEqual(['family:story-main', 'StoryData/**'])
-    expect(card.textContent).toContain('另有混用：rest')
+    expect([...card.querySelectorAll('.sc-patterns code')].map((c) => c.textContent)).toEqual(['family:story-main', 'group:StoryData/'])
+    expect(card.textContent).toContain('另有混用：group:Passives')
     expect(card.querySelector('.sc-effect')?.textContent).toBe('移除警告 11、少檢查 5')
     // the table is the entry's: group, n, used, rate, class
     const rows = [...card.querySelectorAll('table.sc-table tbody tr')].map((tr) => [...tr.children].map((c) => c.textContent))
     expect(rows).toEqual([
       ['family:skill', '40', '38', '95%', '有用'],
       ['family:story-main', '12', '2', '17%', '沒用'],
-      ['StoryData/**', '14', '3', '21%', '沒用'],
-      ['rest', '2', '1', '50%', '太少'],
+      ['group:StoryData/', '14', '3', '21%', '沒用'],
+      ['group:Passives', '2', '1', '50%', '太少'],
     ])
     expect(card.querySelector('details.sc-examples')?.textContent).toContain('確認對象')
   })
@@ -121,7 +121,7 @@ describe('ScopeView', () => {
     expect(card.querySelector('.rv-id code')?.textContent).toBe('scope/aaaaaaaa/bbbbbbbb/not-files')
     act(() => card.querySelector<HTMLButtonElement>('.rv-copy')!.click())
     await vi.waitFor(() =>
-      expect(writeText).toHaveBeenCalledWith('scope/aaaaaaaa/bbbbbbbb/not-files「대상 → 目標」（kind: not-files；patterns: family:story-main, StoryData/**）→ '),
+      expect(writeText).toHaveBeenCalledWith('scope/aaaaaaaa/bbbbbbbb/not-files「대상 → 目標」（kind: not-files；patterns: family:story-main, group:StoryData/）→ '),
     )
   })
 
@@ -236,7 +236,7 @@ describe('ScopeView', () => {
     expect(legend.closest('details')).toBeNull()
     const lines = [...legend.querySelectorAll('li')].map((li) => li.textContent)
     expect(lines).toEqual([
-      '群組：少於 3 個單位的群組不計入建議。',
+      '群組：族群（family:）與頂層分群（group:）；少於 3 個單位的群組不計入建議。',
       '有用：80% 以上的單位用了譯名；沒用：30% 以下。',
       '混用：介於 30% 到 80% 之間，且沒用譯名的單位至少 3 個；不到 3 個算中間，不計入建議。',
       '詞中詞：複合詞單位至少 3 個且 80% 以上用了譯名，建議 substring；已是 substring 而 30% 以下用了譯名，建議 word。',
@@ -245,7 +245,7 @@ describe('ScopeView', () => {
     ])
     expect(el.querySelector('.sc-flag')?.getAttribute('title')).toBe('不再檢查的用了譯名的單位至少 20 個，或佔 10% 以上；預設不採用')
     const base = fixture<{ thresholds: object }>('review/scope.json')
-    const thresholds = { min_n: 5, used: 0.9, not_used: 0.2, explained: 4, lost_units: 30, lost_share: 0.25 }
+    const thresholds = { min_n: 5, used: 0.9, not_used: 0.2, explained: 4, lost_units: 30, lost_share: 0.25, hard_rate: 0.95, hard_min_n: 20 }
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, thresholds } })))
     clearDataCache()
     el = await mount()
@@ -281,7 +281,7 @@ describe('ScopeView', () => {
       const second = rows(el)[1]!.querySelector('summary')!.textContent!
       expect(second).toContain('老大')
       expect(second).toContain('family:skill')
-      expect(second).toContain('StoryData/**')
+      expect(second).toContain('group:StoryData/')
       expect(second).toContain('word')
 
       const search = el.querySelector<HTMLInputElement>('input[name=entry-q]')!
@@ -321,7 +321,7 @@ describe('ScopeView', () => {
       const details = row.querySelector<HTMLElement>('.sc-entry-body details.sc-examples')!
       expect(details.querySelector('summary')?.textContent).toBe('沒用譯名的例子（3）')
       const items = [...details.querySelectorAll('li')]
-      expect(items.map((li) => li.querySelector('.rv-where')?.textContent)).toEqual(['family:story-main・', 'family:story-main・', 'StoryData/**・'])
+      expect(items.map((li) => li.querySelector('.rv-where')?.textContent)).toEqual(['family:story-main・', 'family:story-main・', 'group:StoryData/・'])
       expect(items[0]!.textContent).toContain('저 대상은 누구지?')
       expect(items[0]!.textContent).toContain('那個對象是誰？')
       expect(items[0]!.querySelector('a')?.getAttribute('href')).toContain('S9001')

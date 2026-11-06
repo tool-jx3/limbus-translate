@@ -242,12 +242,15 @@ export interface ScopeThresholds {
   explained: number
   lost_units: number
   lost_share: number
+  /** An entry is a hard candidate with a rate above hard_rate over at least hard_min_n units. */
+  hard_rate: number
+  hard_min_n: number
 }
 
-/** The units an entry hits in one family ("family:<id>"), one directory group ("StoryData/**") or the rest ("rest"). */
+/** The units an entry hits in one family ("family:<id>") or one top node of the file tree ("group:StoryData/", "group:Skills"). */
 export interface ScopeGroup {
   name: string
-  kind: 'family' | 'dir'
+  kind: 'family' | 'group'
   n: number
   used: number
 }
@@ -266,8 +269,15 @@ export interface ScopeEntry {
   files: string[]
   not_files: string[]
   match: string
+  /** 'hard', or absent for an entry that only warns. */
+  check?: string
   notes: string
   groups: ScopeGroup[]
+  /** The units the entry hits and how many use the rendering (compound units left out), their rate, and whether the entry is worth considering for check: hard. */
+  n: number
+  used: number
+  rate: number
+  hard_candidate: boolean
   compound: ScopeCount
   explained: number
   unexplained: number

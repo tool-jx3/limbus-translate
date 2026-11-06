@@ -17,10 +17,10 @@ import (
 // The files of the fixtures, one of each group: their family by testRules and
 // their directory group.
 const (
-	storyFile = "StoryData/S1.json"           // story, StoryData/**
-	voiceFile = "PersonalityVoiceDlg/V1.json" // voice, PersonalityVoiceDlg/**
-	skillFile = "Skills_A.json"               // skill, rest
-	otherFile = "Other.json"                  // other, rest
+	storyFile = "StoryData/S1.json"           // story, group:StoryData/
+	voiceFile = "PersonalityVoiceDlg/V1.json" // voice, group:PersonalityVoiceDlg/
+	skillFile = "Skills_A.json"               // skill, group:Skills
+	otherFile = "Other.json"                  // other, group:Other
 )
 
 // testRules has four families: story, voice, skill and the catch-all other.
@@ -157,7 +157,7 @@ func TestSubstring(t *testing.T) {
 		t.Errorf("proposal = %+v, want match substring, nothing removed, 3 examples", p)
 	}
 	e := entryOf(t, rep, "사무소")
-	if e.Compound != (Count{N: 3, Used: 3}) || !reflect.DeepEqual(e.Groups, []Group{{Name: "family:skill", Kind: GroupFamily, N: 1, Used: 1}, {Name: RestGroup, Kind: GroupDir, N: 1, Used: 1}}) {
+	if e.Compound != (Count{N: 3, Used: 3}) || !reflect.DeepEqual(e.Groups, []Group{{Name: "family:skill", Kind: GroupFamily, N: 1, Used: 1}, {Name: "group:Skills", Kind: GroupNode, N: 1, Used: 1}}) {
 		t.Errorf("entry = %+v, want 3 of 3 compound units and the one word in the groups", e)
 	}
 }
@@ -191,7 +191,7 @@ func TestMixed(t *testing.T) {
 	if len(p.Patterns) != 0 || p.Match != "" || p.WarnRemoved != 0 || p.WarnAdded != 0 || p.UsedLost != 0 || p.UsedGained != 0 || p.Flagged {
 		t.Errorf("proposal = %+v, want no change and no effect", p)
 	}
-	if !slices.Equal(p.MixedGroups, []string{"family:story", "StoryData/**"}) || !strings.Contains(p.Title(), "只部分用了譯名") {
+	if !slices.Equal(p.MixedGroups, []string{"family:story", "group:StoryData/"}) || !strings.Contains(p.Title(), "只部分用了譯名") {
 		t.Errorf("mixed groups %v, title %q: want the stories, both ways", p.MixedGroups, p.Title())
 	}
 	if len(p.Examples) != 3 || p.Examples[0].ZH != "通道" || p.Examples[0].Group != "family:story" {
@@ -298,8 +298,8 @@ func TestOnlyTranslationsCount(t *testing.T) {
 	want := []Group{
 		{Name: "family:story", Kind: GroupFamily, N: 3, Used: 0},
 		{Name: "family:skill", Kind: GroupFamily, N: 4, Used: 4},
-		{Name: "StoryData/**", Kind: GroupDir, N: 3, Used: 0},
-		{Name: RestGroup, Kind: GroupDir, N: 4, Used: 4},
+		{Name: "group:Skills", Kind: GroupNode, N: 4, Used: 4},
+		{Name: "group:StoryData/", Kind: GroupNode, N: 3, Used: 0},
 	}
 	if e := entryOf(t, rep, "보스"); !reflect.DeepEqual(e.Groups, want) {
 		t.Errorf("groups = %+v, want %+v", e.Groups, want)
@@ -382,7 +382,7 @@ func TestCombinedHasEveryKind(t *testing.T) {
 	if want := []string{"보스", "공격 시작", "사무소", "다리", "복도", "대상", "속도", "조직의 보스"}; !slices.Equal(krs, want) {
 		t.Errorf("entries = %v, want %v", krs, want)
 	}
-	if rep.Thresholds != (Thresholds{MinN: 3, Used: 0.8, NotUsed: 0.3, Explained: 3, LostUnits: 20, LostShare: 0.1}) {
+	if rep.Thresholds != (Thresholds{MinN: 3, Used: 0.8, NotUsed: 0.3, Explained: 3, LostUnits: 20, LostShare: 0.1, HardRate: 0.95, HardMinN: 20}) {
 		t.Errorf("thresholds = %+v", rep.Thresholds)
 	}
 }
@@ -403,9 +403,10 @@ func TestProposalPatternsMatchFiles(t *testing.T) {
 	f.add("EGOVoiceDig/E1.json", 3, "공격 시작", "開始攻擊").add("BattleAnnouncerDlg/A1.json", 3, "공격 시작", "開始攻擊")
 	rep := Analyze(Inputs{Rules: r, Units: f.units})
 
-	files := map[string]bool{}
+	files, tops := map[string]bool{}, map[string]bool{}
 	for _, u := range f.units {
 		files[u.File] = true
+		tops[rules.FileNode(u.File).Top] = true
 	}
 	families := map[string]bool{}
 	for _, fam := range r.Routing.Families {
@@ -419,8 +420,9 @@ func TestProposalPatternsMatchFiles(t *testing.T) {
 		for _, pat := range p.Patterns {
 			seen++
 			id, isFamily := strings.CutPrefix(pat, rules.FamilyPrefix)
-			if isFamily && !families[id] || !isFamily && !slices.Contains(Dirs, pat) {
-				t.Errorf("%s: pattern %q is neither family:<id> of the routing nor one of %v", p.ID, pat, Dirs)
+			top, isGroup := strings.CutPrefix(pat, rules.GroupPrefix)
+			if isFamily && !families[id] || isGroup && !tops[top] || !isFamily && !isGroup {
+				t.Errorf("%s: pattern %q is neither family:<id> of the routing nor group:<top node> of an input file", p.ID, pat)
 			}
 			matched := false
 			for file := range files {
@@ -436,7 +438,7 @@ func TestProposalPatternsMatchFiles(t *testing.T) {
 	}
 	want := map[string][]string{
 		"보스":    {"family:lyrics", "family:story"},
-		"속도":    {"StoryData/**", "RPGSystem/**"},
+		"속도":    {"group:RPGSystem/", "group:StoryData/"},
 		"공격 시작": {"family:voice"},
 	}
 	for kr, pats := range want {
@@ -529,10 +531,10 @@ func TestProposalTitle(t *testing.T) {
 		p    Proposal
 		want []string
 	}{
-		{Proposal{Kind: KindNotFiles, KR: "보스", ZH: "BOSS", Patterns: []string{"family:story", "StoryData/**"}, WarnRemoved: 3, UsedLost: 1, UsedGained: 2},
-			[]string{"보스 → BOSS", "not_files", "family:story、StoryData/**", "移除 3 個警告", "新增 0 個", "1 個用了譯名的單位不再檢查", "2 個開始檢查"}},
-		{Proposal{Kind: KindFiles, KR: "섭취하라", ZH: "吸食殆盡", Patterns: []string{"StoryData/**"}, MixedGroups: []string{"family:identity"}, WarnRemoved: 9, UsedLost: 25, Flagged: true},
-			[]string{"files", "StoryData/**", "失去檢查偏多", "family:identity 只部分用了譯名"}},
+		{Proposal{Kind: KindNotFiles, KR: "보스", ZH: "BOSS", Patterns: []string{"family:story", "group:StoryData/"}, WarnRemoved: 3, UsedLost: 1, UsedGained: 2},
+			[]string{"보스 → BOSS", "not_files", "family:story、group:StoryData/", "移除 3 個警告", "新增 0 個", "1 個用了譯名的單位不再檢查", "2 個開始檢查"}},
+		{Proposal{Kind: KindFiles, KR: "섭취하라", ZH: "吸食殆盡", Patterns: []string{"group:StoryData/"}, MixedGroups: []string{"family:identity"}, WarnRemoved: 9, UsedLost: 25, Flagged: true},
+			[]string{"files", "group:StoryData/", "失去檢查偏多", "family:identity 只部分用了譯名"}},
 		{Proposal{Kind: KindSubstring, KR: "대상", ZH: "目標", Match: rules.MatchSubstring, WarnAdded: 1, UsedGained: 4}, []string{"match: substring", "新增 1 個", "4 個開始檢查"}},
 		{Proposal{Kind: KindWord, KR: "다리", ZH: "橋", Match: rules.MatchWord, WarnRemoved: 3}, []string{"match: word", "移除 3 個警告"}},
 		{Proposal{Kind: KindMixed, KR: "복도", ZH: "走廊", MixedGroups: []string{"family:story"}}, []string{"family:story", "只部分用了譯名", "需要人看"}},
@@ -568,7 +570,7 @@ func TestProvisionalTermsCover(t *testing.T) {
 	}
 	rep := Analyze(Inputs{Rules: r, Units: f.units, Provisional: provisional})
 	e := entryOf(t, rep, "보스")
-	want := []Group{{Name: "family:skill", Kind: GroupFamily, N: 4, Used: 4}, {Name: RestGroup, Kind: GroupDir, N: 4, Used: 4}}
+	want := []Group{{Name: "family:skill", Kind: GroupFamily, N: 4, Used: 4}, {Name: "group:Skills", Kind: GroupNode, N: 4, Used: 4}}
 	if !reflect.DeepEqual(e.Groups, want) || e.Compound != (Count{}) || e.Unexplained != 0 || len(rep.Proposals) != 0 {
 		t.Errorf("보스 = %+v, proposals %+v: want the 4 units of the skills alone, and no proposal", e, rep.Proposals)
 	}
@@ -632,8 +634,8 @@ func TestConcreteNamesTheMixedGroups(t *testing.T) {
 	f.add(skillFile, 10, "속도", "速度值")
 	f.add("RPGSystem/R1.json", 3, "속도", "速度").add("RpgTop.json", 3, "속도", "速度值")
 	p := onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
-	if !slices.Equal(p.Patterns, []string{"RPGSystem/**"}) || !slices.Equal(p.MixedGroups, []string{"family:rpg"}) || p.WarnRemoved != 3 {
-		t.Errorf("proposal = %+v, want not_files RPGSystem/** naming family:rpg as mixed", p)
+	if !slices.Equal(p.Patterns, []string{"group:RPGSystem/"}) || !slices.Equal(p.MixedGroups, []string{"family:rpg"}) || p.WarnRemoved != 3 {
+		t.Errorf("proposal = %+v, want not_files group:RPGSystem/ naming family:rpg as mixed", p)
 	}
 	if !strings.Contains(p.Title(), "family:rpg") {
 		t.Errorf("title %q, want the mixed group in it", p.Title())
@@ -657,7 +659,7 @@ func TestFewerPatternsFirst(t *testing.T) {
 	}
 	f.add("Narr.json", 2, "속도", "速度值")
 	p = onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
-	if !slices.Equal(p.Patterns, []string{"StoryData/**", "PersonalityVoiceDlg/**"}) || p.UsedLost != 0 || p.Flagged {
+	if !slices.Equal(p.Patterns, []string{"group:PersonalityVoiceDlg/", "group:StoryData/"}) || p.UsedLost != 0 || p.Flagged {
 		t.Errorf("the family flagged: proposal = %+v, want the two directories, which lose nothing", p)
 	}
 }
@@ -697,11 +699,107 @@ func TestEntryExamplesOfNonUsingGroups(t *testing.T) {
 		}
 	}
 	// The family and the directory of the stories each get their 3 of the 5.
-	want := map[string]int{"family:story": maxExamples, "StoryData/**": maxExamples}
+	want := map[string]int{"family:story": maxExamples, "group:StoryData/": maxExamples}
 	if !reflect.DeepEqual(perGroup, want) {
 		t.Errorf("examples per group = %v, want %v (none for the groups that use it)", perGroup, want)
 	}
 	if empty := entryOf(t, Analyze(Inputs{Rules: testRules(approved("없음", "無"))}), "없음"); empty.Examples == nil || len(empty.Examples) != 0 {
 		t.Errorf("entry without hits has examples %v, want an empty list", empty.Examples)
+	}
+}
+
+// A file is grouped by its top node: the files of StoryData/ in
+// group:StoryData/, Skills_Enemy-x.json in group:Skills.
+func TestGroupsAreTopNodes(t *testing.T) {
+	f := &fixture{}
+	f.add("StoryData/S1.json", 1, "보스", "BOSS").add("StoryData/S2.json", 1, "보스", "BOSS")
+	f.add("Skills_Enemy-x.json", 1, "보스", "BOSS")
+	rep := Analyze(Inputs{Rules: testRules(approved("보스", "BOSS")), Units: f.units})
+	var got []string
+	for _, g := range entryOf(t, rep, "보스").Groups {
+		if g.Kind == GroupNode {
+			got = append(got, fmt.Sprintf("%s=%d", g.Name, g.N))
+		}
+	}
+	if want := []string{"group:Skills=1", "group:StoryData/=2"}; !slices.Equal(got, want) {
+		t.Errorf("node groups = %v, want %v", got, want)
+	}
+}
+
+// rateEntry is the entry of 보스 with n hits, used of them using BOSS.
+func rateEntry(t *testing.T, term rules.Term, n, used int) Entry {
+	t.Helper()
+	f := &fixture{}
+	f.add(skillFile, used, "보스 등장", "BOSS 登場").add(skillFile, n-used, "보스 등장", "老大登場")
+	return entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: f.units}), "보스")
+}
+
+func TestEntryRateAndHardCandidate(t *testing.T) {
+	hard := approved("보스", "BOSS")
+	hard.Check = rules.CheckHard
+	for _, c := range []struct {
+		name    string
+		term    rules.Term
+		n, used int
+		rate    float64
+		cand    bool
+	}{
+		{"20 of 20", approved("보스", "BOSS"), 20, 20, 1, true},
+		{"19 of 20 is 0.95, not above it", approved("보스", "BOSS"), 20, 19, 0.95, false},
+		{"19 of 19 is too few", approved("보스", "BOSS"), 19, 19, 1, false},
+		{"already hard", hard, 20, 20, 1, false},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			e := rateEntry(t, c.term, c.n, c.used)
+			if e.N != c.n || e.Used != c.used || e.Rate != c.rate || e.HardCandidate != c.cand {
+				t.Errorf("n %d used %d rate %v candidate %v, want %d %d %v %v", e.N, e.Used, e.Rate, e.HardCandidate, c.n, c.used, c.rate, c.cand)
+			}
+		})
+	}
+	if e := rateEntry(t, hard, 3, 3); e.Check != rules.CheckHard {
+		t.Errorf("check = %q, want hard", e.Check)
+	}
+	if th := thresholds(); th.HardRate != 0.95 || th.HardMinN != 20 {
+		t.Errorf("thresholds = %+v", th)
+	}
+	if e := entryOf(t, Analyze(Inputs{Rules: testRules(approved("없음", "無"))}), "없음"); e.Rate != 0 || e.HardCandidate {
+		t.Errorf("entry without hits = %+v", e)
+	}
+}
+
+// Units lists the real hits of each entry, as the review page decides them:
+// a hit covered by a longer entry is not one, nor is the compound unit of a
+// word entry; a substring entry's compound unit is.
+func TestReportUnits(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 2, "보스 등장", "BOSS 登場")
+	f.addAs(skillFile, 1, "보스 등장", "老大登場", store.OriginHuman, "보스 用老大")
+	f.add(skillFile, 1, "최종 보스", "最終頭目")  // covered by the longer entry
+	f.add(skillFile, 1, "최종보스", "最終BOSS") // compound: no word hit
+	r := testRules(approved("보스", "BOSS"), approved("최종 보스", "最終頭目"))
+	rep := Analyze(Inputs{Rules: r, Units: f.units})
+	boss, long := entryOf(t, rep, "보스"), entryOf(t, rep, "최종 보스")
+	us := rep.Units[boss.ID]
+	if len(us) != 3 || boss.N != 3 || boss.Used != 2 {
+		t.Fatalf("units of 보스 = %+v, entry n %d used %d, want the 3 units of 보스 등장", us, boss.N, boss.Used)
+	}
+	for _, u := range us {
+		hit := r.Glossary[0]
+		if u.KR != "보스 등장" || u.File != skillFile || u.Key == "" || u.Used != hit.Used(u.ZH) {
+			t.Errorf("unit = %+v", u)
+		}
+	}
+	if us[2].Origin != store.OriginHuman || us[2].Note != "보스 用老大" || us[2].Used {
+		t.Errorf("unit = %+v, want the human unit with its note, not used", us[2])
+	}
+	if got := rep.Units[long.ID]; len(got) != 1 || got[0].KR != "최종 보스" {
+		t.Errorf("units of 최종 보스 = %+v", got)
+	}
+	// A substring entry lists its compound unit too: it is a hit.
+	sub := approved("보스", "BOSS")
+	sub.Match = rules.MatchSubstring
+	rep = Analyze(Inputs{Rules: testRules(sub), Units: f.units})
+	if got := rep.Units[itemid.GlossaryEntry("보스", "BOSS")]; len(got) != 5 {
+		t.Errorf("substring entry units = %d, want 5", len(got))
 	}
 }

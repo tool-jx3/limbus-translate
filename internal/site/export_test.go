@@ -444,7 +444,7 @@ func TestExportWritesReviewData(t *testing.T) {
 		"warnings":    reflect.DeepEqual(wr.Items, want.Warnings),
 		"notes":       reflect.DeepEqual(nt.Items, want.Notes),
 		"todo":        reflect.DeepEqual(td.Sections, want.Todo),
-		"scope":       reflect.DeepEqual(sc, want.Scope),
+		"scope":       reflect.DeepEqual(sc, withoutUnits(want.Scope)),
 	} {
 		if !ok {
 			t.Errorf("review/%s.json differs from BuildReview", name)
@@ -514,7 +514,7 @@ func TestExportWithoutReviewInputsWritesEmptyLists(t *testing.T) {
 		"review/warnings.json":    `{"items":[]}`,
 		"review/notes.json":       `{"items":[]}`,
 		"review/todo.json":        `{"sections":[]}`,
-		"review/scope.json":       `{"thresholds":{"min_n":3,"used":0.8,"not_used":0.3,"explained":3,"lost_units":20,"lost_share":0.1},"entries":[],"proposals":[]}`,
+		"review/scope.json":       `{"thresholds":{"min_n":3,"used":0.8,"not_used":0.3,"explained":3,"lost_units":20,"lost_share":0.1,"hard_rate":0.95,"hard_min_n":20},"entries":[],"proposals":[]}`,
 	} {
 		b, err := os.ReadFile(filepath.Join(out, filepath.FromSlash(rel)))
 		if err != nil {
@@ -536,4 +536,11 @@ func TestExportWithoutReviewInputsWritesEmptyLists(t *testing.T) {
 			t.Errorf("unit %s has review marks without review inputs: %+v", u.P, u)
 		}
 	}
+}
+
+// withoutUnits is r as review/scope.json holds it: Report.Units is not part of
+// it (json:"-").
+func withoutUnits(r scope.Report) scope.Report {
+	r.Units = nil
+	return r
 }

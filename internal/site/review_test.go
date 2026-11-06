@@ -1507,7 +1507,7 @@ func TestReviewScope(t *testing.T) {
 		t.Fatalf("entries = %+v, want 하나 and 다섯", r.Scope.Entries)
 	}
 	one, five := r.Scope.Entries[0], r.Scope.Entries[1]
-	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Used: 0}, {Name: scope.RestGroup, Kind: scope.GroupDir, N: 3, Used: 0}}
+	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Used: 0}, {Name: "group:A", Kind: scope.GroupNode, N: 2, Used: 0}, {Name: "group:B", Kind: scope.GroupNode, N: 1, Used: 0}}
 	if !reflect.DeepEqual(one.Groups, wantGroups) || one.Explained != 1 || one.Unexplained != 2 {
 		t.Errorf("하나 = %+v, want groups %+v and the one unit with a note explained", one, wantGroups)
 	}
