@@ -40,7 +40,9 @@ export function groupClass(g: { n: number; used: number }, t: ScopeThresholds): 
 
 /** Why a group is read as 太少 or 中間: it is not counted by the proposals. */
 function classTitle(c: GroupClass, t: ScopeThresholds): string | undefined {
-  return c === 'few' || c === 'between' ? `不到 ${t.min_n} 筆，或未用譯名的不到 ${t.min_n} 筆，不計入建議` : undefined
+  if (c === 'few') return `出現不到 ${t.min_n} 次，不計入建議`
+  if (c === 'between') return `未用譯名的不到 ${t.min_n} 次，不計入建議`
+  return undefined
 }
 
 /** The units of an entry that do not use its rendering, over all its groups. */
@@ -92,10 +94,8 @@ function GroupTable({ groups, t }: { groups: ScopeGroup[]; t: ScopeThresholds })
                     {pct}%
                   </span>
                 </td>
-                <td>
-                  <span class={`sc-class sc-class-${cls}`} title={classTitle(cls, t)}>
-                    {CLASS_LABEL[cls]}
-                  </span>
+                <td title={classTitle(cls, t)}>
+                  <span class={`sc-class sc-class-${cls}`}>{CLASS_LABEL[cls]}</span>
                 </td>
               </tr>
             )
@@ -261,6 +261,8 @@ export function ScopeBody({ report, filter }: { report: ScopeReport; filter: Sco
   const box = useRef<HTMLDivElement>(null)
   const found = filter.id !== undefined && (shown.some((p) => p.id === filter.id) || report.entries.some((e) => e.id === filter.id))
   const [allMixed, setAllMixed] = useState(false)
+  // A new search or the 顯示已確認 switch folds 需要人看 back.
+  useEffect(() => setAllMixed(false), [filter.q, filter.all])
   useEffect(() => {
     box.current?.querySelector('.is-target')?.scrollIntoView?.({ block: 'center' })
   }, [filter.id, found])

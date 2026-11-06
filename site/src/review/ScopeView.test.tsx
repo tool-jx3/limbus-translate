@@ -161,6 +161,18 @@ describe('ScopeView', () => {
       expect(sections(el)[3]!.querySelector('.sc-more-mixed')).toBeNull()
     })
 
+    it('folds back when the filter changes', async () => {
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': twelve() })))
+      const el = await mount()
+      act(() => sections(el)[3]!.querySelector<HTMLButtonElement>('.sc-more-mixed')!.click())
+      expect(mixed(el)).toHaveLength(12)
+      act(() => {
+        render(<ReviewView route={route({ q: '혼합' })} index={index} meta={meta} settings={defaultSettings()} />, el)
+      })
+      expect(mixed(el)).toHaveLength(10)
+      expect(sections(el)[3]!.querySelector('.sc-more-mixed')).not.toBeNull()
+    })
+
     it('shows the one the address names even when it is outside the top 10', async () => {
       vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': twelve() })))
       const el = await mount(route({ id: 'scope/mglossary/m0/z/mixed' }))
@@ -170,11 +182,16 @@ describe('ScopeView', () => {
     })
   })
 
-  it('explains 太少 and 中間 with the real min_n', async () => {
+  it('explains 太少 and 中間 on the cell, each in its own words, with the real min_n', async () => {
+    const base = fixture<{ entries: { kr: string; groups: object[] }[] }>('review/scope.json')
+    const entries = base.entries.map((e, i) => (i === 0 ? { ...e, groups: [...e.groups, { name: 'family:mirror', kind: 'family', n: 4, used: 3 }] } : e))
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, entries } })))
     const el = await mount()
-    const few = [...el.querySelectorAll<HTMLElement>('.sc-class-few')][0]!
-    expect(few.title).toBe('不到 3 筆，或未用譯名的不到 3 筆，不計入建議')
-    expect(el.querySelector<HTMLElement>('.sc-class-uses')?.title).toBe('')
+    const cell = (cls: string) => el.querySelector<HTMLElement>(`.sc-class-${cls}`)!.closest('td')!
+    expect(cell('few').title).toBe('出現不到 3 次，不計入建議')
+    expect(cell('between').title).toBe('未用譯名的不到 3 次，不計入建議')
+    expect(cell('uses').title).toBe('')
+    expect(cell('mixed').title).toBe('')
   })
 
   it('links a card to its entry, which opens and is marked when the address names it', async () => {
