@@ -424,8 +424,9 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 	kr = validate.MatchText(kr) // a paired tag inside a term does not split it; a self-closing one does not fuse words
 	var hits []Term
 	scoped := map[string]bool{} // the KR texts with an entry for file
+	runes := NewRuneSet(kr)     // a term whose first runes are not in the text cannot occur in it
 	for _, t := range r.Glossary {
-		if t.Status != StatusApproved || t.KR == "" || !t.OccursIn(kr) {
+		if t.Status != StatusApproved || t.KR == "" || !runes.MayStartTerm(t.KR) || !t.OccursIn(kr) {
 			continue
 		}
 		if r.scopedTo(t, file) {

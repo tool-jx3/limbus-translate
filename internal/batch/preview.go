@@ -102,7 +102,7 @@ type Previewer struct {
 	byKey   map[string]int      // key -> index in pending
 	byFile  map[string][]int    // file -> indexes in pending
 	records map[string]store.Record
-	notes   []store.Note
+	notes   map[string][]store.Note // key -> its notes, in store order
 
 	keywords    map[string]string // the keyword table, made on first use
 	keywordsErr error
@@ -134,7 +134,10 @@ func NewPreviewer(env Env, frozen []string) (*Previewer, error) {
 		byKey:   make(map[string]int, len(pending)),
 		byFile:  map[string][]int{},
 		records: recs,
-		notes:   notes,
+		notes:   make(map[string][]store.Note),
+	}
+	for _, n := range notes {
+		p.notes[n.Key] = append(p.notes[n.Key], n)
 	}
 	for i, it := range pending {
 		p.byKey[it.Key] = i
@@ -242,8 +245,8 @@ func (p *Previewer) unit(fd *fileData, pos int) (*UnitPreview, error) {
 	pv := &UnitPreview{Batch: b, State: state, Pending: item, Notes: []store.Note{}}
 	krSha := units.KRSha(u.KR)
 	var noteTexts []string
-	for _, n := range p.notes {
-		if n.Key == key && n.KRSha == krSha {
+	for _, n := range p.notes[key] {
+		if n.KRSha == krSha {
 			pv.Notes = append(pv.Notes, n)
 			noteTexts = append(noteTexts, n.Note)
 		}
