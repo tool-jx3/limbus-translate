@@ -12,7 +12,7 @@ import { FileView } from './FileView'
 const index = fixture<Index>('index.json')
 const STORY = 'StoryData/S9999.json'
 const EMPTY = 'Passives-empty.json'
-const SKILLS = 'Skills_personality-99.json'
+const SKILLS = 'Skills_personality-02.json'
 
 const containers: HTMLElement[] = []
 const scrollIntoView = vi.fn()

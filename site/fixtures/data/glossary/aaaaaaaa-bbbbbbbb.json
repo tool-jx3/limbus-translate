@@ -2,7 +2,7 @@
  "id": "glossary/aaaaaaaa/bbbbbbbb",
  "missing": [
   {
-   "key": "Skills_personality-99.json|/dataList/1/content",
+   "key": "Skills_personality-02.json|/dataList/1/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -18,7 +18,7 @@
    "id": "warning/term-missing/1000b301/7004e50a"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/2/content",
+   "key": "Skills_personality-02.json|/dataList/2/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -189,7 +189,7 @@
  ],
  "used": [
   {
-   "key": "Skills_personality-99.json|/dataList/3/content",
+   "key": "Skills_personality-02.json|/dataList/3/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -203,7 +203,7 @@
    "zh": "…看著目標接了後面的話（3）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/4/content",
+   "key": "Skills_personality-02.json|/dataList/4/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -217,7 +217,7 @@
    "zh": "…看著目標接了後面的話（4）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/5/content",
+   "key": "Skills_personality-02.json|/dataList/5/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -231,7 +231,7 @@
    "zh": "…看著目標接了後面的話（5）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/6/content",
+   "key": "Skills_personality-02.json|/dataList/6/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -245,7 +245,7 @@
    "zh": "…看著目標接了後面的話（6）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/7/content",
+   "key": "Skills_personality-02.json|/dataList/7/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -259,7 +259,7 @@
    "zh": "…看著目標接了後面的話（7）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/8/content",
+   "key": "Skills_personality-02.json|/dataList/8/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -273,7 +273,7 @@
    "zh": "…看著目標接了後面的話（8）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/9/content",
+   "key": "Skills_personality-02.json|/dataList/9/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -287,7 +287,7 @@
    "zh": "…看著目標接了後面的話（9）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/10/content",
+   "key": "Skills_personality-02.json|/dataList/10/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -301,7 +301,7 @@
    "zh": "…看著目標接了後面的話（10）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/11/content",
+   "key": "Skills_personality-02.json|/dataList/11/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -315,7 +315,7 @@
    "zh": "…看著目標接了後面的話（11）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/12/content",
+   "key": "Skills_personality-02.json|/dataList/12/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -329,7 +329,7 @@
    "zh": "…看著目標接了後面的話（12）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/13/content",
+   "key": "Skills_personality-02.json|/dataList/13/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -343,7 +343,7 @@
    "zh": "…看著目標接了後面的話（13）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/14/content",
+   "key": "Skills_personality-02.json|/dataList/14/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -357,7 +357,7 @@
    "zh": "…看著目標接了後面的話（14）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/15/content",
+   "key": "Skills_personality-02.json|/dataList/15/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -371,7 +371,7 @@
    "zh": "…看著目標接了後面的話（15）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/16/content",
+   "key": "Skills_personality-02.json|/dataList/16/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -385,7 +385,7 @@
    "zh": "…看著目標接了後面的話（16）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/17/content",
+   "key": "Skills_personality-02.json|/dataList/17/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -399,7 +399,7 @@
    "zh": "…看著目標接了後面的話（17）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/18/content",
+   "key": "Skills_personality-02.json|/dataList/18/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -413,7 +413,7 @@
    "zh": "…看著目標接了後面的話（18）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/19/content",
+   "key": "Skills_personality-02.json|/dataList/19/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -427,7 +427,7 @@
    "zh": "…看著目標接了後面的話（19）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/20/content",
+   "key": "Skills_personality-02.json|/dataList/20/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -441,7 +441,7 @@
    "zh": "…看著目標接了後面的話（20）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/21/content",
+   "key": "Skills_personality-02.json|/dataList/21/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -455,7 +455,7 @@
    "zh": "…看著目標接了後面的話（21）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/22/content",
+   "key": "Skills_personality-02.json|/dataList/22/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -469,7 +469,7 @@
    "zh": "…看著目標接了後面的話（22）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/23/content",
+   "key": "Skills_personality-02.json|/dataList/23/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -483,7 +483,7 @@
    "zh": "…看著目標接了後面的話（23）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/24/content",
+   "key": "Skills_personality-02.json|/dataList/24/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -497,7 +497,7 @@
    "zh": "…看著目標接了後面的話（24）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/25/content",
+   "key": "Skills_personality-02.json|/dataList/25/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -511,7 +511,7 @@
    "zh": "…看著目標接了後面的話（25）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/26/content",
+   "key": "Skills_personality-02.json|/dataList/26/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -525,7 +525,7 @@
    "zh": "…看著目標接了後面的話（26）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/27/content",
+   "key": "Skills_personality-02.json|/dataList/27/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -539,7 +539,7 @@
    "zh": "…看著目標接了後面的話（27）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/28/content",
+   "key": "Skills_personality-02.json|/dataList/28/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -553,7 +553,7 @@
    "zh": "…看著目標接了後面的話（28）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/29/content",
+   "key": "Skills_personality-02.json|/dataList/29/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -567,7 +567,7 @@
    "zh": "…看著目標接了後面的話（29）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/30/content",
+   "key": "Skills_personality-02.json|/dataList/30/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -581,7 +581,7 @@
    "zh": "…看著目標接了後面的話（30）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/31/content",
+   "key": "Skills_personality-02.json|/dataList/31/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -595,7 +595,7 @@
    "zh": "…看著目標接了後面的話（31）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/32/content",
+   "key": "Skills_personality-02.json|/dataList/32/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -609,7 +609,7 @@
    "zh": "…看著目標接了後面的話（32）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/33/content",
+   "key": "Skills_personality-02.json|/dataList/33/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -623,7 +623,7 @@
    "zh": "…看著目標接了後面的話（33）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/34/content",
+   "key": "Skills_personality-02.json|/dataList/34/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -637,7 +637,7 @@
    "zh": "…看著目標接了後面的話（34）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/35/content",
+   "key": "Skills_personality-02.json|/dataList/35/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -651,7 +651,7 @@
    "zh": "…看著目標接了後面的話（35）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/36/content",
+   "key": "Skills_personality-02.json|/dataList/36/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -665,7 +665,7 @@
    "zh": "…看著目標接了後面的話（36）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/37/content",
+   "key": "Skills_personality-02.json|/dataList/37/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -679,7 +679,7 @@
    "zh": "…看著目標接了後面的話（37）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/38/content",
+   "key": "Skills_personality-02.json|/dataList/38/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -693,7 +693,7 @@
    "zh": "…看著目標接了後面的話（38）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/39/content",
+   "key": "Skills_personality-02.json|/dataList/39/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -707,7 +707,7 @@
    "zh": "…看著目標接了後面的話（39）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/40/content",
+   "key": "Skills_personality-02.json|/dataList/40/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",

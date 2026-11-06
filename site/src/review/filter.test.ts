@@ -23,7 +23,7 @@ describe('filterSuggestions', () => {
   it('filters by text in the id, the file name, KR, TW and the note', () => {
     const q = (s: string) => ids(filterSuggestions(suggestions, { ...none, q: s }))
     expect(q('c3a1192c')).toEqual(['inconsistent/ally/name/c3a1192c'])
-    expect(q('skills_personality-99')).toEqual(['inconsistent/ally/name/c3a1192c'])
+    expect(q('skills_personality-02')).toEqual(['inconsistent/ally/name/c3a1192c'])
     expect(q('시험용')).toEqual(['inconsistent/ally/name/c3a1192c'])
     expect(q('試驗斬擊')).toEqual(['inconsistent/ally/name/c3a1192c'])
     expect(q('內心獨白')).toEqual(['note/StoryData/S9999.json|/dataList/2/content/5991de5a'])

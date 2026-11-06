@@ -12,7 +12,7 @@ import { InProcessWorker } from './testworker'
 
 const index = fixture<Index>('index.json')
 const STORY = 'StoryData/S9999.json'
-const SKILLS = 'Skills_personality-99.json'
+const SKILLS = 'Skills_personality-02.json'
 
 const containers: HTMLElement[] = []
 let undoEffects = () => {}

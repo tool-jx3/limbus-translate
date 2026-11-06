@@ -269,10 +269,10 @@ describe('App', () => {
   })
 
   it('opens the family of the file in the address and marks the file', async () => {
-    location.hash = '#/f/Skills_personality-99.json'
+    location.hash = '#/f/Skills_personality-02.json'
     const el = mount()
     await loaded(el)
-    expect(el.querySelector('.directory a[aria-current="page"]')?.getAttribute('href')).toBe('#/f/Skills_personality-99.json')
+    expect(el.querySelector('.directory a[aria-current="page"]')?.getAttribute('href')).toBe('#/f/Skills_personality-02.json')
     expect(el.querySelector('.home')).toBeNull()
   })
 
@@ -294,7 +294,7 @@ describe('App', () => {
     await vi.waitFor(() => expect(el.querySelector('.file-view .script')).not.toBeNull())
     expect(el.querySelector('.file-title')?.textContent).toBe('StoryData/S9999.json')
     act(() => {
-      location.hash = '#/f/Skills_personality-99.json'
+      location.hash = '#/f/Skills_personality-02.json'
       window.dispatchEvent(new HashChangeEvent('hashchange'))
     })
     await vi.waitFor(() => expect(el.querySelector('.file-view .tbl')).not.toBeNull())
@@ -302,7 +302,7 @@ describe('App', () => {
   })
 
   it('marks the unit of the address in the file', async () => {
-    location.hash = '#/f/Skills_personality-99.json?u=%2FdataList%2F1%2FlevelList%2F0%2Fname'
+    location.hash = '#/f/Skills_personality-02.json?u=%2FdataList%2F1%2FlevelList%2F0%2Fname'
     const el = mount()
     await vi.waitFor(() => expect(el.querySelector('.file-view .is-target')).not.toBeNull())
     expect(el.querySelector('.is-target')?.getAttribute('data-ptr')).toBe('/dataList/1/levelList/0/name')
@@ -315,7 +315,7 @@ describe('App', () => {
     act(() => {
       document.body.dispatchEvent(new KeyboardEvent('keydown', { key: ']', bubbles: true }))
     })
-    await vi.waitFor(() => expect(el.querySelector('.file-title')?.textContent).toBe('Skills_personality-99.json'))
+    await vi.waitFor(() => expect(el.querySelector('.file-title')?.textContent).toBe('Skills_personality-02.json'))
     act(() => el.querySelector<HTMLInputElement>('input[data-origin="claude"]')?.click())
     expect(JSON.parse(localStorage.getItem('lct-viewer-settings') ?? '{}').origins.claude).toBe(false)
     expect(el.querySelector('[data-ptr="/dataList/0/levelList/0/coinlist/0/coindescs/0/desc"]')).toBeNull()
@@ -426,7 +426,7 @@ describe('App', () => {
 
       it('shows a file from the top when the link names no unit in it, as the links of the directory do', async () => {
         const el = await scrolledResults()
-        go('#/f/Skills_personality-99.json')
+        go('#/f/Skills_personality-02.json')
         await vi.waitFor(() => expect(el.querySelector('.file-view .tbl')).not.toBeNull())
         expect(document.documentElement.scrollTop).toBe(0)
       })

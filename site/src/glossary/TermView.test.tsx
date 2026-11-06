@@ -100,7 +100,7 @@ describe('TermView, units without the rendering', () => {
     expect(first.querySelector('.origin')?.textContent).toBe(file.missing[0]!.origin)
     expect(first.querySelector('.rv-note-text')?.textContent).toBe(file.missing[0]!.note)
     const key = file.missing[0]!.key
-    expect(first.querySelector('a')?.getAttribute('href')).toBe(`#/f/Skills_personality-99.json?u=${encodeURIComponent(key.split('|')[1]!)}`)
+    expect(first.querySelector('a')?.getAttribute('href')).toBe(`#/f/Skills_personality-02.json?u=${encodeURIComponent(key.split('|')[1]!)}`)
     expect(first.querySelector('.rv-id code')?.textContent).toBe(file.missing[0]!.id)
   })
 

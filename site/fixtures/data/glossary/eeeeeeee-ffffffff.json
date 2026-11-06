@@ -2,7 +2,7 @@
  "id": "glossary/eeeeeeee/ffffffff",
  "missing": [
   {
-   "key": "Skills_personality-99.json|/dataList/1/content",
+   "key": "Skills_personality-02.json|/dataList/1/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -84,7 +84,7 @@
  ],
  "used": [
   {
-   "key": "Skills_personality-99.json|/dataList/2/content",
+   "key": "Skills_personality-02.json|/dataList/2/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -98,7 +98,7 @@
    "zh": "…看著攻擊接了後面的話（2）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/3/content",
+   "key": "Skills_personality-02.json|/dataList/3/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -112,7 +112,7 @@
    "zh": "…看著攻擊接了後面的話（3）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/4/content",
+   "key": "Skills_personality-02.json|/dataList/4/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -126,7 +126,7 @@
    "zh": "…看著攻擊接了後面的話（4）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/5/content",
+   "key": "Skills_personality-02.json|/dataList/5/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -140,7 +140,7 @@
    "zh": "…看著攻擊接了後面的話（5）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/6/content",
+   "key": "Skills_personality-02.json|/dataList/6/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -154,7 +154,7 @@
    "zh": "…看著攻擊接了後面的話（6）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/7/content",
+   "key": "Skills_personality-02.json|/dataList/7/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -168,7 +168,7 @@
    "zh": "…看著攻擊接了後面的話（7）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/8/content",
+   "key": "Skills_personality-02.json|/dataList/8/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -182,7 +182,7 @@
    "zh": "…看著攻擊接了後面的話（8）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/9/content",
+   "key": "Skills_personality-02.json|/dataList/9/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -196,7 +196,7 @@
    "zh": "…看著攻擊接了後面的話（9）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/10/content",
+   "key": "Skills_personality-02.json|/dataList/10/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -210,7 +210,7 @@
    "zh": "…看著攻擊接了後面的話（10）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/11/content",
+   "key": "Skills_personality-02.json|/dataList/11/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -224,7 +224,7 @@
    "zh": "…看著攻擊接了後面的話（11）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/12/content",
+   "key": "Skills_personality-02.json|/dataList/12/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -238,7 +238,7 @@
    "zh": "…看著攻擊接了後面的話（12）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/13/content",
+   "key": "Skills_personality-02.json|/dataList/13/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -252,7 +252,7 @@
    "zh": "…看著攻擊接了後面的話（13）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/14/content",
+   "key": "Skills_personality-02.json|/dataList/14/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -266,7 +266,7 @@
    "zh": "…看著攻擊接了後面的話（14）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/15/content",
+   "key": "Skills_personality-02.json|/dataList/15/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -280,7 +280,7 @@
    "zh": "…看著攻擊接了後面的話（15）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/16/content",
+   "key": "Skills_personality-02.json|/dataList/16/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -294,7 +294,7 @@
    "zh": "…看著攻擊接了後面的話（16）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/17/content",
+   "key": "Skills_personality-02.json|/dataList/17/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -308,7 +308,7 @@
    "zh": "…看著攻擊接了後面的話（17）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/18/content",
+   "key": "Skills_personality-02.json|/dataList/18/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -322,7 +322,7 @@
    "zh": "…看著攻擊接了後面的話（18）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/19/content",
+   "key": "Skills_personality-02.json|/dataList/19/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",
@@ -336,7 +336,7 @@
    "zh": "…看著攻擊接了後面的話（19）…"
   },
   {
-   "key": "Skills_personality-99.json|/dataList/20/content",
+   "key": "Skills_personality-02.json|/dataList/20/content",
    "family": "skill",
    "top": "Skills",
    "sub": "Skills_personality",

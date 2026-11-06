@@ -100,8 +100,8 @@ describe('ReviewView', () => {
     expect(card.textContent).toContain('全部 2 個單位')
     const hrefs = [...card.querySelectorAll('details a')].map((a) => a.getAttribute('href'))
     expect(hrefs).toEqual([
-      fileHref('Skills_personality-99.json', '/dataList/0/levelList/0/name'),
-      fileHref('Skills_personality-99.json', '/dataList/1/levelList/0/name'),
+      fileHref('Skills_personality-02.json', '/dataList/0/levelList/0/name'),
+      fileHref('Skills_personality-02.json', '/dataList/1/levelList/0/name'),
     ])
     expect(card.querySelector('.rv-copy')?.textContent).toBe('複製 ID')
     expect(card.querySelector('.rv-var.is-top')).not.toBeNull()
@@ -149,8 +149,8 @@ describe('ReviewView', () => {
     const card = el.querySelector('article.rv-card')!
     const hrefs = [...card.querySelectorAll('.rv-units a')].map((a) => a.getAttribute('href'))
     expect(hrefs).toEqual([
-      fileHref('Skills_personality-99.json', '/dataList/0/levelList/0/coinlist/0/coindescs/1/desc'),
-      fileHref('Skills_personality-99.json', '/dataList/2/levelList/0/coinlist/0/coindescs/1/desc'),
+      fileHref('Skills_personality-02.json', '/dataList/0/levelList/0/coinlist/0/coindescs/1/desc'),
+      fileHref('Skills_personality-02.json', '/dataList/2/levelList/0/coinlist/0/coindescs/1/desc'),
     ])
     expect([...card.querySelectorAll('mark')].map((m) => m.textContent)).toEqual(['の'])
     expect(el.querySelector('.rv-section h2')?.textContent).toContain('假名殘留')

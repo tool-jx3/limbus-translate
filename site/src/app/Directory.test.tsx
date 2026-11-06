@@ -254,6 +254,8 @@ describe('Directory', () => {
     open(el, 'Skills')
     expect(rows(el)).toEqual(['Passives:1', 'Skills:1', '浮士德:1', 'StoryData/:1'])
     open(el, 'Passives')
+    expect(rows(el)).toEqual(['Passives:1', 'empty:1', 'Skills:1', '浮士德:1', 'StoryData/:1'])
+    open(el, 'empty')
     expect(links(el)).toEqual(['Passives-empty.json'])
     expect(el.textContent).not.toContain('story-main')
   })
