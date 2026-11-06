@@ -4934,3 +4934,63 @@ func TestLongerEntryFirstIsExplained(t *testing.T) {
 		t.Error("glossary/README.md has no section 長詞條優先")
 	}
 }
+
+// The two bullets of the review-page skill that look an id up in
+// lct glossary scope --json each say what to do when the id is not there.
+var reviewPageScopeBullets = []string{"     - 詞彙範圍的建議（`scope/", "     - 附指示的詞彙表條目（`glossary/"}
+
+var reviewPageMissingIDClauses = []string{
+	"輸出裡找不到這個 ID 時停止，不改檔",
+	"可能比網頁舊",
+	"更新到網頁的 raw tag 與 tw commit",
+	"不把找不到當成已經採用",
+}
+
+// bulletOf returns the start and end of the bullet that begins with marker: up to the next bullet of the same level.
+func bulletOf(t *testing.T, body, marker string) (int, int) {
+	t.Helper()
+	if strings.Count(body, marker) != 1 {
+		t.Fatalf("want exactly one bullet starting %q", marker)
+	}
+	start := strings.Index(body, marker)
+	end := len(body)
+	if i := strings.Index(body[start+1:], "\n     - "); i >= 0 {
+		end = start + 1 + i
+	}
+	return start, end
+}
+
+func missingIDProblems(t *testing.T, body string) []string {
+	var out []string
+	for _, m := range reviewPageScopeBullets {
+		s, e := bulletOf(t, body, m)
+		for _, c := range reviewPageMissingIDClauses {
+			if !strings.Contains(body[s:e], c) {
+				out = append(out, m+": no "+c)
+			}
+		}
+	}
+	return out
+}
+
+// Each of the scope/ and glossary/ bullets says, itself, what to do when the id is not in the local scope output.
+func TestReviewPageMissingScopeID(t *testing.T) {
+	_, body, _ := localSkillBody(t, "review-page")
+	for _, p := range missingIDProblems(t, body) {
+		t.Error(p)
+	}
+	for bi, m := range reviewPageScopeBullets {
+		for _, c := range reviewPageMissingIDClauses {
+			t.Run(fmt.Sprintf("bullet%d/%s", bi, c), func(t *testing.T) {
+				s, e := bulletOf(t, body, m)
+				bullet := strings.Replace(body[s:e], c, "（略）", 1)
+				if bullet == body[s:e] {
+					t.Fatalf("no %q in the bullet", c)
+				}
+				if len(missingIDProblems(t, body[:s]+bullet+body[e:])) == 0 {
+					t.Errorf("dropping %q from one bullet is not caught", c)
+				}
+			})
+		}
+	}
+}
