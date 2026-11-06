@@ -119,6 +119,18 @@ func (l *linter) glossary() {
 				}
 			}
 		}
+		for _, a := range t.Also {
+			switch {
+			case a == "":
+				l.report(GlossaryFile, "%s: also holds an empty rendering", label)
+			case a == t.ZH:
+				l.report(GlossaryFile, "%s: also holds %q, which is the zh already", label, a)
+			default:
+				if f, ok := forbiddenIn(a, t.Forbidden); ok {
+					l.report(GlossaryFile, "%s: also holds %q, which forbidden %q rules out", label, a, f)
+				}
+			}
+		}
 		if t.Match != "" && t.Match != MatchWord && t.Match != MatchSubstring {
 			l.report(GlossaryFile, "%s: match is %q, want %q (hit only where the KR stands as a word; the default) or %q (hit inside a longer word too)", label, t.Match, MatchWord, MatchSubstring)
 		}
@@ -461,4 +473,27 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 		}
 	}
 	return out
+}
+
+// forbiddenIn returns the first item of forbidden that a translation holding
+// rendering would trip (validate's rule: a substring, or a regular expression
+// for an item starting with "re:"), if there is one. An invalid pattern is
+// reported elsewhere and skipped here.
+func forbiddenIn(rendering string, forbidden []string) (string, bool) {
+	for _, f := range forbidden {
+		if f == "" || f == "re:" {
+			continue
+		}
+		pattern, isRegexp := strings.CutPrefix(f, "re:")
+		if !isRegexp {
+			if strings.Contains(rendering, f) {
+				return f, true
+			}
+			continue
+		}
+		if re, err := regexp.Compile(pattern); err == nil && re.MatchString(rendering) {
+			return f, true
+		}
+	}
+	return "", false
 }

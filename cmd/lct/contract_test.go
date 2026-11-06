@@ -4849,3 +4849,21 @@ func TestPromptExplainsWhereAGlossaryEntryApplies(t *testing.T) {
 		t.Error("prompts/translate.md still says a glossary entry applies wherever the KR contains kr")
 	}
 }
+
+// A glossary entry's also is the other correct renderings: the translator is
+// told to choose by notes, that an also rendering needs no note, and the
+// batch schema and the glossary README describe the field.
+func TestAlsoIsExplainedToTheTranslator(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	if !strings.Contains(prompt, "`also`") || !strings.Contains(prompt, "不需要 note") {
+		t.Error("prompts/translate.md does not explain `also` and that using it needs no note")
+	}
+	_, schema := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	if !strings.Contains(schema, `"also"`) {
+		t.Error("schemas/batch.schema.json has no `also` in the glossary entry")
+	}
+	_, readme := readRepoFile(t, filepath.Join(repoRoot, "glossary", "README.md"))
+	if !strings.Contains(readme, "`also`") {
+		t.Error("glossary/README.md does not describe `also`")
+	}
+}

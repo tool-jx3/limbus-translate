@@ -49,6 +49,11 @@
             "type": "array",
             "items": { "type": "string" }
           },
+          "also": {
+            "description": "Other correct renderings of the term, beside zh. Choose between zh and these by notes; a translation that uses one of them needs no note.",
+            "type": "array",
+            "items": { "type": "string" }
+          },
           "category": { "type": "array", "items": { "type": "string" } },
           "match": {
             "description": "Absent or \"word\": the term applies where its KR stands as a word (a following particle or ending such as 로, 가 or 니까 still counts), not inside a longer word. \"substring\": it applies wherever its KR occurs, inside a longer word too.",

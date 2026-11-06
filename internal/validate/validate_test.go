@@ -1321,3 +1321,26 @@ func TestCheckTermsSelfClosingTagSeparatesWords(t *testing.T) {
 		t.Errorf("checkTerms = %+v, want none: 당 and 피해량 are two words", issues)
 	}
 }
+
+// A translation that uses an also rendering, or the zh, has no term-missing;
+// tags do not matter to the match, in the also as in the zh.
+func TestTermMissingAcceptsAlso(t *testing.T) {
+	terms := []Term{{KR: "대상", ZH: "目標", Also: []string{"對象", "<b>目</b>的"}}}
+	for _, zh := range []string{"目標選定", "選擇對象", "選<color=#fff>擇</color>對象", "選擇目的"} {
+		if got := Check("대상 선택", zh, Context{Terms: terms}); slices.Contains(codes(got), CodeTermMissing) {
+			t.Errorf("Check(%q) = %v, want no term-missing", zh, got)
+		}
+	}
+	if got := Check("대상 선택", "選擇敵人", Context{Terms: terms}); !slices.Contains(codes(got), CodeTermMissing) {
+		t.Errorf("without zh or also: %v, want term-missing", got)
+	}
+}
+
+func TestTermUsed(t *testing.T) {
+	term := Term{KR: "보스", ZH: "BOSS", Also: []string{"老大", ""}}
+	for zh, want := range map[string]bool{"BOSS來了": true, "老大來了": true, "首領來了": false, "": false} {
+		if got := term.Used(zh); got != want {
+			t.Errorf("Used(%q) = %v, want %v", zh, got, want)
+		}
+	}
+}

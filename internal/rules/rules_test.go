@@ -1475,3 +1475,34 @@ func TestLintScopeWarnings(t *testing.T) {
 		t.Errorf("without a file list there is nothing to compare with: %v", got)
 	}
 }
+
+// also reaches validate through ToValidate, and Used counts zh and also.
+func TestTermUsedAndToValidateCarryAlso(t *testing.T) {
+	term := rules.Term{KR: "보스", ZH: "BOSS", Also: []string{"老大", "首領"}}
+	if got := term.ToValidate().Also; !slices.Equal(got, term.Also) {
+		t.Errorf("ToValidate().Also = %v, want %v", got, term.Also)
+	}
+	for zh, want := range map[string]bool{"BOSS": true, "<b>老</b>大": true, "首領": true, "頭目": false} {
+		if got := term.Used(zh); got != want {
+			t.Errorf("Used(%q) = %v, want %v", zh, got, want)
+		}
+	}
+}
+
+// also is a term field, and lint rejects an empty item, the zh again, and a
+// rendering that forbidden also lists.
+func TestLintGlossaryAlso(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  also: [\"\", 百貨公司, 百貨, 商場, \"<b>x</b>\"]\n  forbidden: [百貨, re:商.]\n  status: approved\n"
+	})
+	msg := lintMessages(rules.Lint(root))
+	for _, want := range []string{"백화점", "also", "empty", "百貨公司", "百貨"} {
+		if !strings.Contains(msg, want) {
+			t.Errorf("lint output does not mention %q:\n%s", want, msg)
+		}
+	}
+	if strings.Contains(msg, "unknown") && strings.Contains(msg, `"also"`) {
+		t.Errorf("also is reported as an unknown key:\n%s", msg)
+	}
+}

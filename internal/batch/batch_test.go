@@ -4143,3 +4143,32 @@ func TestBatchGlossaryCarriesFamilyScope(t *testing.T) {
 		}
 	}
 }
+
+const alsoGlossary = `- kr: 시즌
+  zh: 賽季
+  also: [季度]
+  status: approved
+`
+
+// An also rendering is as good as the zh: no rejection, no warning, no note.
+func TestSubmitAcceptsAnAlsoRenderingWithoutANote(t *testing.T) {
+	kr := map[string]string{"Other.json": dataList(t, 1, "", func(int) string { return "두 시즌 전부터" })}
+	env := newEnv(t, kr, nil, nil)
+	env.Rules = testRulesWith(t, alsoGlossary)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "從兩個季度前起"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 || len(res.Warnings) != 0 {
+		t.Errorf("result = %+v, want accepted without warnings", res)
+	}
+	if len(b.Glossary) != 1 || !slices.Equal(b.Glossary[0].Also, []string{"季度"}) {
+		t.Fatalf("glossary = %+v, want the term with also", b.Glossary)
+	}
+	data, err := json.Marshal(b.Glossary)
+	if err != nil || !strings.Contains(string(data), `"also":["季度"]`) {
+		t.Errorf("glossary JSON = %s, %v, want also", data, err)
+	}
+}

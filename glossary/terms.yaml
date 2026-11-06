@@ -145,12 +145,13 @@
 - kr: 보스
   en: Boss
   zh: BOSS
+  also: [老大, 首領]
   not_files: ["StoryData/**"]
   status: approved
   match: word
   category: [system, combat]
   evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
-  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除
+  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除。2026-11-06 加 also：遊戲用語寫 BOSS；指幫派或組織的頭頭寫 `also` 的「老大」（口語、幫派頭頭）或「首領」（較正式、組織首腦），選這兩個不需要 note
 
 - kr: E.G.O 자원
   en: E.G.O Resource
@@ -1001,9 +1002,10 @@
 
 - kr: 대상
   zh: 目標
+  also: [對象]
   status: approved
   evidence: { kr_lines: 6419, approved: 5825, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 加 also：技能、效果、戰鬥的選取對象寫「目標」；指人（被施行、被針對、被服務的人）或文意是「對象」時寫 `also` 的「對象」，不需要 note
 
 - kr: 다음 턴
   zh: 下回合

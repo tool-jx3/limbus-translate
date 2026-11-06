@@ -27,7 +27,11 @@ type Term struct {
 	// Forbidden lists renderings the translation must not contain; an entry
 	// starting with "re:" is a regular expression.
 	Forbidden []string `yaml:"forbidden" json:"forbidden,omitempty"`
-	Category  []string `yaml:"category" json:"category,omitempty"`
+	// Also lists other correct renderings of the term, beside ZH: a
+	// translation that uses one needs no note (see Used). It may not overlap
+	// Forbidden or hold ZH.
+	Also     []string `yaml:"also" json:"also,omitempty"`
+	Category []string `yaml:"category" json:"category,omitempty"`
 	// Files are the files the term applies to (see config.MatchAny); empty
 	// means every file.
 	Files []string `yaml:"files" json:"files,omitempty"`
@@ -162,14 +166,19 @@ func standsAsWord(text, term string) bool {
 
 // ToValidate returns the part of the term that validate.Check enforces.
 func (t Term) ToValidate() validate.Term {
-	return validate.Term{KR: t.KR, ZH: t.ZH, Forbidden: t.Forbidden}
+	return validate.Term{KR: t.KR, ZH: t.ZH, Forbidden: t.Forbidden, Also: t.Also}
 }
+
+// Used reports whether the translation zh uses a rendering of the term: ZH or
+// one of Also, tags aside (validate.Term.Used). Every decision "does this text
+// use the term" goes through it.
+func (t Term) Used(zh string) bool { return t.ToValidate().Used(zh) }
 
 // termFields are the keys an entry may have; "evidence" is statistics for
 // people and is not loaded.
 var termFields = map[string]bool{
 	"kr": true, "jp": true, "en": true, "zh": true, "status": true,
-	"forbidden": true, "category": true, "evidence": true, "notes": true, "files": true, "not_files": true, "match": true,
+	"forbidden": true, "also": true, "category": true, "evidence": true, "notes": true, "files": true, "not_files": true, "match": true,
 }
 
 // parseGlossary decodes the glossary. unknown[i] lists the keys of entry i

@@ -245,7 +245,7 @@ func (h *newTermHits) add(key string, u Unit, kr string) {
 	if len(h.units) >= h.room || h.listed[key] || !shownOrigin(u.O) || !h.term.OccursIn(validate.MatchText(kr)) {
 		return
 	}
-	used := strings.Contains(validate.MatchText(u.ZH), validate.MatchText(h.term.ZH))
+	used := h.term.Used(u.ZH)
 	h.units = append(h.units, suggest.Evidence{Key: key, KR: kr, ZH: u.ZH, Note: usedNote(used)})
 }
 

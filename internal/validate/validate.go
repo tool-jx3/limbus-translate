@@ -89,6 +89,27 @@ type Term struct {
 	// starting with "re:" is a regular expression (Go syntax), any other
 	// entry is a substring.
 	Forbidden []string
+	// Also lists other correct renderings of KR: a translation that has one
+	// of them is as good as one that has ZH (see Used).
+	Also []string
+}
+
+// Used reports whether zh, a translation, uses a rendering of the term: it
+// holds ZH or one of Also, after MatchText on both sides, so tags are no
+// text. A term without a ZH to check, or whose ZH is its KR, is used by every
+// translation: there is nothing to look for. It is the one place that decides
+// it; term-missing and the review page go through it.
+func (t Term) Used(zh string) bool {
+	if t.ZH == "" || t.ZH == t.KR {
+		return true
+	}
+	plain := MatchText(zh)
+	for _, r := range append([]string{t.ZH}, t.Also...) {
+		if r != "" && strings.Contains(plain, MatchText(r)) {
+			return true
+		}
+	}
+	return false
 }
 
 // Context is what Check needs besides the two strings.
@@ -520,7 +541,6 @@ func checkContent(kr, zh string, ctx Context) []Issue {
 // checkTerms reports every forbidden rendering of the terms kr contains.
 func checkTerms(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
-	plain := MatchText(zh)
 	// Tags are not text: a tag in the middle of the KR term, or around it,
 	// does not change whether the entry hits the unit.
 	kr = MatchText(kr)
@@ -554,7 +574,7 @@ func checkTerms(kr, zh string, ctx Context) []Issue {
 		for i := first; i < len(issues); i++ {
 			issues[i].Term = term.KR
 		}
-		if term.ZH != "" && term.ZH != term.KR && !strings.Contains(plain, MatchText(term.ZH)) {
+		if !term.Used(zh) {
 			// A warning whatever Existing says: a reasonable exception is
 			// explained in the batch note, not fixed in the text.
 			is := ctx.issue(CodeTermMissing, ClassContent,

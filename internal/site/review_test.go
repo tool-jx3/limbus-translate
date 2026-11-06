@@ -1369,3 +1369,34 @@ func TestGroupConfirmedNeedsEveryUnitAccepted(t *testing.T) {
 		t.Errorf("one accepted unit: groupConfirmed = %+v, want %+v", got, ok)
 	}
 }
+
+// A unit that uses an also rendering is not in the term group; the group of
+// the others keeps its ID, which also does not change.
+func TestReviewTermGroupLeavesOutUnitsThatUseAlso(t *testing.T) {
+	in, files := vendingInputs(t)
+	base, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	in.Rules = glossaryRules(t, "- kr: 자판기\n  zh: 自動販賣機\n  also: [販賣機二]\n  status: approved\n")
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	w := termGroupOf(t, r)
+	if w.ID != termGroupOf(t, base).ID || w.ID != itemid.TermGroup("자판기", "自動販賣機") {
+		t.Errorf("ID = %s, want unchanged", w.ID)
+	}
+	if len(w.Units) != 2 || w.Units[0].Key != k(rvA, 0) || w.Units[1].Key != k(rvA, 2) {
+		t.Errorf("units = %+v, want the two units that use neither rendering", w.Units)
+	}
+}
+
+// For a provisional term the 有用 of an evidence row is the same Used.
+func TestNewTermHitUsedIsTermUsed(t *testing.T) {
+	h := &newTermHits{term: rules.Term{KR: "자판기", ZH: "販賣機", Also: []string{"自販機"}, Match: rules.MatchWord}, room: 5, listed: map[string]bool{}}
+	h.add("a", Unit{O: store.OriginClaude, ZH: "自販機一"}, "자판기 하나")
+	if len(h.units) != 1 || h.units[0].Note != "有用" {
+		t.Errorf("units = %+v, want 有用 for an also rendering", h.units)
+	}
+}
