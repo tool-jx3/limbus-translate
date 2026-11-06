@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'preact/hooks'
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { loadGlossary, loadGlossaryEntry } from '../data'
 import { stripTags } from '../search/match'
@@ -257,9 +257,10 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
   const zhMark = useMemo(() => termsMark([entry.zh, ...entry.also]), [entry.zh, entry.also])
   const box = useRef<HTMLTextAreaElement>(null)
   const [saidAt, setSaidAt] = useState({ key: '', text: '' })
-  // The status belongs to the filters it was said under; under other filters it is gone (the box of the text keeps its focus, so the component is not keyed).
+  // The status belongs to the filters it was said under: under other filters it is hidden at once, and cleared, so that it does not come back with the same filters (the box of the text keeps its focus, so the component is not keyed).
   const said = saidAt.key === filterKey ? saidAt.text : ''
   const setSaid = (text: string) => setSaidAt({ key: filterKey, text })
+  useEffect(() => setSaidAt({ key: '', text: '' }), [filterKey])
 
   // The unconfirmed units under the filters, as ID「TW」→ a line each: what to paste to the conversation to decide on them.
   const lines = useMemo(() => missing.filter((u) => u.accepted === undefined && u.id !== undefined).map((u) => copyText(u.id ?? '', stripTags(u.zh))), [missing])

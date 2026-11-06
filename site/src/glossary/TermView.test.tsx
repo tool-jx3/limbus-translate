@@ -134,9 +134,20 @@ describe('TermView, units without the rendering', () => {
     it('drops the status when a filter changes', async () => {
       const el = await mount()
       await copied(el)
-      expect(el.querySelector('.tv-missing .rv-said')?.textContent).toContain('已複製')
+      const said = () => el.querySelector('.tv-missing .rv-said')?.textContent
+      await vi.waitFor(() => expect(said()).toContain('已複製'))
       await again(el, route({ family: 'story-main' }))
-      expect(el.querySelector('.tv-missing .rv-said')?.textContent).toBe('')
+      expect(said()).toBe('')
+    })
+
+    it('does not bring the status back when the same filters return', async () => {
+      const el = await mount()
+      await copied(el)
+      const said = () => el.querySelector('.tv-missing .rv-said')?.textContent
+      await vi.waitFor(() => expect(said()).toContain('已複製'))
+      await again(el, route({ family: 'story-main' }))
+      await again(el, route())
+      expect(said()).toBe('')
     })
 
     it('where the clipboard says no, selects a box that holds the very lines a copy would', async () => {
