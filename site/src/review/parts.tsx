@@ -39,12 +39,12 @@ export function Pending({ pending, units }: { pending: number; units: number }) 
 }
 
 /** The ID of an item, selectable, and the button that copies it with a piece of the text; copyId, where there is one, is the id shown and copied (a group's id with its @N), so a copy by hand has it too. */
-export function IdCopy({ id, copyId, source }: { id: string; copyId?: string; source: string }) {
+export function IdCopy({ id, copyId, source, detail }: { id: string; copyId?: string; source: string; detail?: string }) {
   const code = useRef<HTMLElement>(null)
   const [said, setSaid] = useState('')
   const copy = async () => {
     if (!code.current) return
-    const result = await copyToClipboard(copyText(copyId ?? id, source), code.current)
+    const result = await copyToClipboard(copyText(copyId ?? id, source, detail), code.current)
     setSaid(result === 'copied' ? '已複製，貼到對話中再加上你的決定' : '瀏覽器不讓複製，已選取 ID，請按 Ctrl/⌘+C')
   }
   return (

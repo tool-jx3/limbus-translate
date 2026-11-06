@@ -50,6 +50,14 @@ const pct = (share: number) => `${Math.round(share * 100)}%`
 /** What a card with 失去檢查偏多 loses, by the thresholds. */
 const flagText = (t: ScopeThresholds) => `不再檢查的用了譯名的單位至少 ${t.lost_units} 個，或佔 ${pct(t.lost_share)} 以上；預設不採用`
 
+/** The content of a proposal that goes with its id when copied: its kind, patterns and match, so that a skill that finds the id in older local data can see the proposal has changed. */
+export function proposalDetail(p: ScopeProposal): string {
+  const parts = [`kind: ${p.kind}`]
+  if (p.patterns.length > 0) parts.push(`patterns: ${p.patterns.join(', ')}`)
+  if (p.match !== '') parts.push(`match: ${p.match}`)
+  return `（${parts.join('；')}）`
+}
+
 /** The thresholds the labels and proposals follow, in words and with the values of the data. */
 function Legend({ t }: { t: ScopeThresholds }) {
   return (
@@ -168,7 +176,7 @@ function ProposalCard({ p, entry, t, target, all }: { p: ScopeProposal; entry: S
             失去檢查偏多
           </span>
         )}
-        <IdCopy id={p.id} source={title} />
+        <IdCopy id={p.id} source={title} detail={proposalDetail(p)} />
       </div>
       <ConfirmedLine confirmed={p.declined} verb="已否決" />
       {p.patterns.length > 0 && (

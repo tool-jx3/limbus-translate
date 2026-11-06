@@ -120,7 +120,22 @@ describe('ScopeView', () => {
     const card = sections(el)[0]!.querySelector('article')!
     expect(card.querySelector('.rv-id code')?.textContent).toBe('scope/aaaaaaaa/bbbbbbbb/not-files')
     act(() => card.querySelector<HTMLButtonElement>('.rv-copy')!.click())
-    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith('scope/aaaaaaaa/bbbbbbbb/not-files「대상 → 目標」→ '))
+    await vi.waitFor(() =>
+      expect(writeText).toHaveBeenCalledWith('scope/aaaaaaaa/bbbbbbbb/not-files「대상 → 目標」（kind: not-files；patterns: family:story-main, StoryData/**）→ '),
+    )
+  })
+
+  it('copies the kind, patterns and match of a proposal with its id, and the match alone when it has no patterns', async () => {
+    const writeText = vi.fn(async () => {})
+    vi.stubGlobal('navigator', { clipboard: { writeText } })
+    const el = await mount()
+    const card = sections(el)[2]!.querySelector('article[data-id="scope/eeeeeeee/ffffffff/substring"]')!
+    act(() => card.querySelector<HTMLButtonElement>('.rv-copy')!.click())
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith('scope/eeeeeeee/ffffffff/substring「공격 → 攻擊」（kind: substring；match: substring）→ '))
+    // a changed proposal changes the copied text
+    const card2 = sections(el)[1]!.querySelector('article')!
+    act(() => card2.querySelector<HTMLButtonElement>('.rv-copy')!.click())
+    await vi.waitFor(() => expect(writeText).toHaveBeenLastCalledWith('scope/cccccccc/dddddddd/files「보스 → BOSS」（kind: files；patterns: family:skill）→ '))
   })
 
   it('filters the proposals by the text of the address', async () => {

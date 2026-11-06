@@ -17,6 +17,11 @@ describe('copyText', () => {
     expect(copyText('x/1', 'a\n\n b\t c')).toBe('x/1「a b c」→ ')
   })
 
+  it('puts the detail whole between the quote and the arrow', () => {
+    expect(copyText('x/1', 'a', '（k: v）')).toBe('x/1「a」（k: v）→ ')
+    expect(copyText('x/1', '字'.repeat(41), `（${'d'.repeat(50)}）`)).toBe(`x/1「${'字'.repeat(40)}…」（${'d'.repeat(50)}）→ `)
+  })
+
   it('cuts at 40 characters with an ellipsis', () => {
     const text = '字'.repeat(41)
     expect(copyText('x/1', text)).toBe(`x/1「${'字'.repeat(40)}…」→ `)
