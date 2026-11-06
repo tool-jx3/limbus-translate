@@ -1,4 +1,4 @@
-import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, PreviewFile, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -86,6 +86,25 @@ export function loadFile(path: string): Promise<FileData> {
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', `${rel}: no units`)
     return doc as unknown as FileData
+  })
+}
+
+/** data/preview.json: the prompt, the guides and the rules commit every preview batch shares. */
+export function loadPreviewShared(): Promise<PreviewShared> {
+  return load('preview.json', (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.guides) || typeof doc.prompt !== 'string') {
+      throw new DataError('format', 'preview.json: no prompt and guides')
+    }
+    return doc as unknown as PreviewShared
+  })
+}
+
+/** data/preview/<path>: what the batches of the units of a file have in common. */
+export function loadPreviewFile(path: string): Promise<PreviewFile> {
+  const rel = `preview/${path.split('/').map(encodeURIComponent).join('/')}`
+  return load(rel, (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', `${rel}: no units`)
+    return doc as unknown as PreviewFile
   })
 }
 

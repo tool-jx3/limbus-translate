@@ -446,3 +446,154 @@ export const LANG_ATTR: Record<Lang, string> = {
   en: 'en',
   zh: 'zh-Hant-TW',
 }
+
+// The translation preview (internal/site/preview.go): data/preview.json and
+// data/preview/<path>. The batch of a unit is rebuilt from them and files/<path>.
+
+/** A guide file of data/preview.json. */
+export interface PreviewGuide {
+  path: string
+  text: string
+}
+
+/** data/preview.json: what every batch shares. */
+export interface PreviewShared {
+  rules_commit: string
+  /** The text of prompts/translate.md. */
+  prompt: string
+  /** Numbered in the order some batch names them first; PreviewUnit.g are numbers in this list. */
+  guides: PreviewGuide[]
+}
+
+/** A glossary entry (rules.Term) in the order of the Go fields; `units` is a batch's only. */
+export interface Term {
+  kr: string
+  jp?: string
+  en?: string
+  zh: string
+  status: string
+  notes?: string
+  forbidden?: string[]
+  also?: string[]
+  category?: string[]
+  files?: string[]
+  not_files?: string[]
+  match?: string
+  check?: string
+  provisional?: boolean
+  units?: string[]
+}
+
+/** What a translation must keep from KR (batch.Constraints). */
+export interface Constraints {
+  ids: string[]
+  placeholders: string[]
+  tags: string[]
+  dante_wrapper: boolean
+}
+
+/** The part of a batch unit that comes from the pending item. */
+export interface PreviewItem {
+  reason: string
+  prev_kr?: string
+  prev_zh?: string
+  draft?: string
+  hint?: string
+  refs?: Record<string, string>
+}
+
+export interface PreviewState {
+  pending: boolean
+  needs_review: boolean
+  leased_to?: string
+  frozen: boolean
+  attempts?: number
+  last_error?: string
+}
+
+export interface PreviewRecord {
+  origin: string
+  model?: string
+  batch?: string
+  since?: string
+  rules?: string
+  flags?: string[]
+  /** True when the record was made from another KR text than the present one. */
+  stale: boolean
+}
+
+export interface PreviewCheck {
+  verdict: string
+  zh: string
+  issues: unknown[]
+}
+
+/** What the batch of one unit has that files/<path> and PreviewFile do not. */
+export interface PreviewUnit {
+  sp: string
+  /** Guides: numbers in PreviewShared.guides. */
+  g: number[]
+  /** Glossary entries: numbers in PreviewFile.terms. */
+  t: number[]
+  /** Keyword ids, sorted. */
+  k: string[]
+  it: PreviewItem
+  /** The methods of the aligned EN and JP strings. */
+  em?: string
+  jm?: string
+  keep: Constraints
+  /** Lines of context: [unit number] or [unit number, another translation]. */
+  c: (number | string)[][]
+  st: PreviewState
+  rec?: PreviewRecord
+  chk?: PreviewCheck
+  /** The notes on the unit, joined by a line feed. */
+  nt?: string
+}
+
+/** data/preview/<path>; units has the length and order of files/<path>, null for a copy. */
+export interface PreviewFile {
+  family: string
+  glossary_check: string
+  terms: Term[]
+  keywords: Record<string, string>
+  units: (PreviewUnit | null)[]
+}
+
+export interface BatchUnit {
+  key: string
+  file: string
+  field: string
+  speaker: string
+  kr: string
+  reason: string
+  prev_kr?: string
+  prev_zh?: string
+  draft?: string
+  hint?: string
+  en?: { value: string; method: string }
+  jp?: { value: string; method: string }
+  refs?: Record<string, string>
+  keep: Constraints
+}
+
+export interface ContextLine {
+  key: string
+  speaker: string
+  kr: string
+  zh: string
+}
+
+/** The batch JSON `batch next` writes (batch.Batch), keys in Go's order. */
+export interface BatchJSON {
+  id: string
+  family: string
+  glossary_check?: string
+  file: string
+  files: string[]
+  guides: string[]
+  glossary: Term[]
+  keywords: Record<string, string>
+  units: BatchUnit[]
+  context: ContextLine[]
+}

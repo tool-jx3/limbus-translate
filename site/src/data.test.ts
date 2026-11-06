@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DataError, clearDataCache, loadFile, loadGlossary, loadGlossaryEntry, loadIndex, loadMeta, loadReview, loadUpdate, loadUpdates } from './data'
+import { DataError, clearDataCache, loadFile, loadGlossary, loadGlossaryEntry, loadIndex, loadMeta, loadPreviewFile, loadPreviewShared, loadReview, loadUpdate, loadUpdates } from './data'
 import { fixture, fixtureFetch } from './testdata'
 import type { FileData, Index, Meta, ReviewData } from './types'
 
@@ -184,5 +184,23 @@ describe('glossary data', () => {
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'glossary/index.json': { entries: [] } })))
     clearDataCache()
     await expect(loadGlossary()).rejects.toMatchObject({ kind: 'format' })
+  })
+})
+
+describe('preview loading', () => {
+  it('reads preview.json and preview/<path> with the path encoded like a file', async () => {
+    const shared = { rules_commit: 'abc', prompt: 'p', guides: [] }
+    const pf = { family: 'x', glossary_check: '', terms: [], keywords: {}, units: [] }
+    const fetchMock = serve({ 'preview.json': shared, 'preview/a b/c%d.json': pf })
+    expect(await loadPreviewShared()).toEqual(shared)
+    expect(await loadPreviewFile('a b/c%d.json')).toEqual(pf)
+    expect(fetchMock.mock.calls.map((c) => c[0])).toEqual(['./data/preview.json', './data/preview/a%20b/c%25d.json'])
+  })
+
+  it('says format for a document of the wrong shape, missing for a 404', async () => {
+    serve({ 'preview.json': { prompt: 'p' }, 'preview/x.json': { units: 1 } })
+    expect(await kindOf(loadPreviewShared())).toBe('format')
+    expect(await kindOf(loadPreviewFile('x.json'))).toBe('format')
+    expect(await kindOf(loadPreviewFile('nope.json'))).toBe('missing')
   })
 })
