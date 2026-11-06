@@ -72,6 +72,7 @@
 - 批次詞彙表帶 `also`；`prompts/translate.md` 說明：依 `notes` 的說明在 `zh` 與 `also` 之間選，選 `also` 不需要 note。
 - 審核頁的詞彙群組、`term-new` 的「有用／未用」、「詞彙範圍」頁的使用比例，都把 `also` 算進「有用」。
 - 群組 ID（`termgroup/<sha8 KR>/<sha8 ZH>`）與逐單位 ID 照舊以 `zh` 計，加了 `also` 不改 ID。
+- 這次就加的 `also`（使用者 2026-11-06 同意）：`대상 → 目標` 加 `also: [對象]`；`보스 → BOSS` 加 `also: [老大, 首領]`（它的 `notes` 已寫指組織頭頭時用這兩個）。兩條的 `notes` 補上何時用哪一個；驗收量出這兩條的審核頁警告變化。
 
 ### 3. 長詞條優先
 
