@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/rulefile"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 // LintError is one problem Lint found. File is relative to the repo root.
@@ -123,6 +124,8 @@ func (l *linter) glossary() {
 			switch {
 			case a == "":
 				l.report(GlossaryFile, "%s: also holds an empty rendering", label)
+			case validate.MatchText(a) == "":
+				l.report(GlossaryFile, "%s: also holds %q, which is only tags and would match every translation", label, a)
 			case a == t.ZH:
 				l.report(GlossaryFile, "%s: also holds %q, which is the zh already", label, a)
 			default:

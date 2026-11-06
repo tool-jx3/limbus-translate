@@ -104,7 +104,10 @@ func (t Term) Used(zh string) bool {
 		return true
 	}
 	plain := MatchText(zh)
-	for _, r := range append([]string{t.ZH}, t.Also...) {
+	if strings.Contains(plain, MatchText(t.ZH)) {
+		return true
+	}
+	for _, r := range t.Also {
 		if r != "" && strings.Contains(plain, MatchText(r)) {
 			return true
 		}

@@ -1506,3 +1506,18 @@ func TestLintGlossaryAlso(t *testing.T) {
 		t.Errorf("also is reported as an unknown key:\n%s", msg)
 	}
 }
+
+// An also made only of tags is no text: Used would find it in every
+// translation, so lint rejects it.
+func TestLintGlossaryAlsoOfTagsOnly(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  also: [\"<b></b>\"]\n  status: approved\n"
+	})
+	msg := lintMessages(rules.Lint(root))
+	for _, want := range []string{"백화점", "also", "only tags"} {
+		if !strings.Contains(msg, want) {
+			t.Errorf("lint output does not mention %q:\n%s", want, msg)
+		}
+	}
+}
