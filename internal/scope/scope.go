@@ -115,9 +115,10 @@ type Entry struct {
 	Check    string   `json:"check,omitempty"`
 	Notes    string   `json:"notes"`
 	Groups   []Group  `json:"groups"`
-	// N and Used are the units the entry hits and how many use the rendering,
-	// the compound units of a word entry (and of a substring entry) left out:
-	// the sum of the family groups. Rate is Used / N, 0 without units.
+	// N and Used are the units the entry hits and how many use the rendering:
+	// exactly the units of Report.Units for the entry (a substring entry's
+	// compound units are hits and count; a word entry's are not and do not).
+	// The groups leave compound units out. Rate is Used / N, 0 without units.
 	// HardCandidate says the entry is worth considering for check: hard (see
 	// Thresholds.HardRate and HardMinN) and is not that yet.
 	N             int     `json:"n"`
@@ -582,13 +583,7 @@ func (an *analysis) entryUnits(a *acc) []EntryUnit {
 
 func (an *analysis) entry(a *acc) Entry {
 	t := a.term
-	n, used := 0, 0
-	for _, g := range a.groups {
-		if g.Kind == GroupFamily {
-			n += g.N
-			used += g.Used
-		}
-	}
+	n, used := len(a.hits), a.usedHits // exactly the units of Report.Units
 	rate := 0.0
 	if n > 0 {
 		rate = float64(used) / float64(n)
