@@ -27,10 +27,10 @@ describe('fixtures', () => {
   it('has the keys of the Go types, and no others', () => {
     expect(Object.keys(meta)).toEqual(['format', 'raw_tag', 'rules_commit', 'tw_commit', 'release', 'langs', 'files', 'units', 'review'])
     expect(Object.keys(meta.review)).toEqual(['suggestions', 'warnings', 'notes', 'todo', 'scope'])
-    expect(Object.keys(index)).toEqual(['families', 'files'])
-    for (const fam of index.families) expect(Object.keys(fam)).toEqual(['id', 'files'])
+    expect(Object.keys(index)).toEqual(['families', 'files', 'groups'])
+    for (const fam of index.families) expect(Object.keys(fam)).toEqual(['id', 'files', 'glossary', 'nodes'])
     for (const f of index.files) {
-      expect(Object.keys(f)).toEqual(['path', 'family', 'label', 'speakers', 'units', 'origins', 'missing'])
+      expect(Object.keys(f).filter((k) => k !== 'sub' && k !== 'tag')).toEqual(['path', 'family', 'top', 'label', 'speakers', 'units', 'origins', 'missing'])
       expect(Object.keys(f.missing)).toEqual(['en', 'jp'])
     }
     for (const f of files) {
@@ -57,6 +57,22 @@ describe('fixtures', () => {
     for (const fam of index.families) {
       for (const n of fam.files) expect(index.files[n]?.family).toBe(fam.id)
     }
+  })
+
+  it('has groups that list every file once, under the top of the file', () => {
+    const seen: number[] = []
+    const walk = (gs: typeof index.groups, top: string) => {
+      for (const grp of gs) {
+        const t = grp.kind === 'top' ? grp.node : top
+        for (const n of grp.files) {
+          seen.push(n)
+          expect(index.files[n]?.top).toBe(t)
+        }
+        walk(grp.children, t)
+      }
+    }
+    walk(index.groups, '')
+    expect(seen.sort()).toEqual(index.files.map((_, n) => n))
   })
 
   it('has a file for each entry of the index, as the index says', () => {

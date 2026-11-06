@@ -52,12 +52,27 @@ describe('App', () => {
     const el = mount()
     expect(el.querySelector('.top .brand')?.textContent).toBe('Limbus 譯文對照')
     await loaded(el)
-    expect([...el.querySelectorAll('.dir-family-id')].map((e) => e.textContent)).toEqual(['story-main', 'ally'])
+    expect([...el.querySelectorAll('.dir-family-id')].map((e) => e.textContent)).toEqual(['Skills', 'StoryData'])
     expect(el.querySelector('.home')?.textContent).toContain('單位21')
     expect(el.querySelector('.foot-version')?.textContent).toContain('raw-20261029')
     expect(el.querySelector('.foot-version a')?.getAttribute('href')).toBe(
       'https://github.com/tool-jx3/limbus-translate/releases/tag/zh-TW-20261029.5',
     )
+  })
+
+  it('lists the families on the home page as a table: family, glossary, nodes, file count, in the order of the index', async () => {
+    const el = mount()
+    await loaded(el)
+    const heads = [...el.querySelectorAll('.home .fam-table th[scope="col"]')].map((e) => e.textContent)
+    expect(heads).toEqual(['族群', 'glossary', '節點', '檔數'])
+    const rows = [...el.querySelectorAll('.home .fam-table tbody tr')]
+    expect(rows.map((r) => [...r.children].map((c) => c.textContent))).toEqual([
+      ['story-main', 'hard', 'StoryData/', '1'],
+      ['ally', 'warn', 'Skills_personalityPassives', '2'],
+    ])
+    expect(rows.map((r) => r.querySelector('.pill')?.className)).toEqual(['pill pill-hard', 'pill pill-warn'])
+    expect([...rows[1]!.querySelectorAll('code')].map((c) => c.textContent)).toEqual(['Skills_personality', 'Passives'])
+    expect(el.querySelector('.home .fam-wrap')).not.toBeNull()
   })
 
   it('shows the reload notice, and no directory, when the data is of another format', async () => {

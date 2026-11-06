@@ -35,12 +35,37 @@ export interface ReviewCounts {
 export interface IndexFamily {
   id: string
   files: number[]
+  /** Whether a missing glossary rendering sends a batch back: "hard", or "warn". */
+  glossary: 'hard' | 'warn'
+  /** The nodes the routing lists for the family; [] for the fallback. */
+  nodes: string[]
+}
+
+/** The third-level mark of a file. */
+export interface FileTag {
+  kind: 'character' | 'chapter' | 'event'
+  value: string
+  label: string
+}
+
+/** A node of the group tree of the sidebar; files are positions in Index.files, listed directly in the group. */
+export interface IndexGroup {
+  kind: 'top' | 'sub' | 'chapter' | 'character' | 'event'
+  node: string
+  label: string
+  files: number[]
+  children: IndexGroup[]
 }
 
 /** What the index says of one file. */
 export interface FileSummary {
   path: string
   family: string
+  /** The node of the file in the group tree, and its sub-node, if any. */
+  top: string
+  sub?: string
+  /** The third-level mark, if any. */
+  tag?: FileTag
   /** The place a story starts in; "" outside StoryData/. */
   label: string
   /** The tellers of the file, each once, first seen first. */
@@ -56,6 +81,8 @@ export interface FileSummary {
 export interface Index {
   families: IndexFamily[]
   files: FileSummary[]
+  /** The group tree of the sidebar, folded and ordered. */
+  groups: IndexGroup[]
 }
 
 /**

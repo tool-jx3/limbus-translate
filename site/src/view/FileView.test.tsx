@@ -80,7 +80,8 @@ function big(n: number): FileData {
 
 const bigIndex: Index = {
   families: index.families.map((f) => (f.id === 'ally' ? { ...f, files: [...f.files, index.files.length] } : f)),
-  files: [...index.files, { path: 'Big.json', family: 'ally', label: '', speakers: [], units: 1500, origins: { paratranz: 1500 }, missing: { en: 1500, jp: 1500 } }],
+  groups: index.groups,
+  files: [...index.files, { path: 'Big.json', family: 'ally', top: 'Big.json', label: '', speakers: [], units: 1500, origins: { paratranz: 1500 }, missing: { en: 1500, jp: 1500 } }],
 }
 
 let undoEffects = () => {}
@@ -413,8 +414,9 @@ describe('FileView: deep link to a place that is not drawn as a divider', () => 
     ],
   }
   const repIndex: Index = {
-    families: [{ id: 'story-main', files: [0] }],
-    files: [{ path: rep.path, family: 'story-main', label: '', speakers: [], units: 6, origins: { paratranz: 6 }, missing: { en: 0, jp: 0 } }],
+    families: [{ id: 'story-main', files: [0], glossary: 'hard', nodes: [] }],
+    groups: [],
+    files: [{ path: rep.path, family: 'story-main', top: 'StoryData', label: '', speakers: [], units: 6, origins: { paratranz: 6 }, missing: { en: 0, jp: 0 } }],
   }
 
   beforeEach(() => {

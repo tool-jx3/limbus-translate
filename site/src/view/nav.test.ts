@@ -24,7 +24,7 @@ describe('neighbors', () => {
   })
 
   it('goes by the order of index.files, not by the name', () => {
-    const odd: Index = { families: [], files: ['b.json', 'a.json', 'c.json'].map((path) => ({ ...(index.files[0] as Index['files'][number]), path })) }
+    const odd: Index = { families: [], groups: [], files: ['b.json', 'a.json', 'c.json'].map((path) => ({ ...(index.files[0] as Index['files'][number]), path })) }
     expect(neighbors(odd, 'b.json')).toEqual({ next: 'a.json' })
     expect(neighbors(odd, 'a.json')).toEqual({ prev: 'b.json', next: 'c.json' })
   })

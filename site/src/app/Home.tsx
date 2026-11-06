@@ -28,9 +28,38 @@ export function Home({ meta, index, onOpenDirectory }: HomeProps) {
           <dd>{number.format(meta.units)}</dd>
         </div>
       </dl>
+      <h2>檔案族群</h2>
+      <div class="fam-wrap">
+        <table class="fam-table">
+          <thead>
+            <tr>
+              <th scope="col">族群</th>
+              <th scope="col">glossary</th>
+              <th scope="col">節點</th>
+              <th scope="col">檔數</th>
+            </tr>
+          </thead>
+          <tbody>
+            {index.families.map((fam) => (
+              <tr key={fam.id}>
+                <th scope="row">{fam.id}</th>
+                <td>
+                  <span class={`pill pill-${fam.glossary}`}>{fam.glossary}</span>
+                </td>
+                <td class="fam-nodes">
+                  {fam.nodes.map((node) => (
+                    <code key={node}>{node}</code>
+                  ))}
+                </td>
+                <td class="fam-n">{number.format(fam.files.length)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <ul class="howto">
         <li>
-          目錄依族群列出檔案，點族群名稱展開。
+          目錄依分群列出檔案，點群組名稱展開；章節、角色、活動可由下拉選單篩出。
           <button type="button" class="link only-narrow" onClick={onOpenDirectory}>
             開啟目錄
           </button>
