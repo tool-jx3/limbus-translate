@@ -33,6 +33,12 @@
    - 新的切法先用實際資料提案，給使用者看過再定。
 4. **新的「詞彙」頁是獨立頁面**，網站頂端加連結。列表頁列出全部詞條；點進去看用了譯名與沒用譯名的全部單位。
 5. **詞彙表條目加 `check: warn`**：該條目缺譯名時，送出只警告、不退回。
+6. **檔名底下再分第三層**，分三種：
+   - 章節；
+   - 角色；
+   - 活動代號（檔名 `-` 之後的 walpu6、tkt、mowe……）。
+
+   第三層用在三個地方：分群樹的第三層、側欄與「詞彙」頁的篩選、詞彙表範圍（`files`、`not_files`）。詞彙範圍統計不加這三種分法。
 
 ## 目標
 
@@ -46,12 +52,16 @@
    - 列表：全部詞條，可搜尋、排序、篩選。
    - 詳情（`#/g/<條目 ID>`）：該詞條命中的每個單位，分「沒用譯名」與「用了譯名」兩區，可依族群、分群、來源篩選。
 8. **條目 `check: warn`**：送出時該條目缺譯名不升為硬性。批次的詞彙表帶出 `check`，讓譯者知道這只是預設譯名。
+9. **第三層：章節、角色、活動**：每個檔最多有一個第三層標記（下節）。
+   - 分群樹顯示成第三層；
+   - 側欄與「詞彙」頁可以依章節、角色、活動跨分群篩選；
+   - 詞彙表範圍可寫 `chapter:<章>`、`character:<角色 id>`、`event:<代號樣式>`。
 
 ## 不做的（non-goals）
 
-- 季節／活動代號（檔名 `-` 之後的 `walpu`、`a1c`、`tkt`……）不當成分群或族群。
-  - 規則上需要它的兩個詞彙條目（`흐트러짐 구간`、`키워드`，現在寫 `family:walpu-refraction`）改寫成原本族群的檔名萬用字元 `*walpu*`、`*Refraction*`、`Railway*`。條目的範圍不變。
-- 第三層分群（例如 StoryData 的章節 `S1`、`S10`）。
+- 章節、角色、活動代號不當成族群：族群仍只由前兩層的節點組成，翻譯指引與退回／只警告不看第三層。
+  - 現在寫 `family:walpu-refraction` 的兩個詞彙條目（`흐트러짐 구간`、`키워드`）改寫成原本族群的檔名萬用字元 `*walpu*`、`*Refraction*`、`Railway*`，範圍完全不變。之後要改用 `event:` 由使用者決定。
+- 詞彙範圍統計不加章節、角色、活動的分法。
 - 在網站上直接改規則：網站唯讀，決定照舊經由 `/review-page`。
 - 改詞彙表條目的譯名或範圍：這次只改機制與族群，條目內容由使用者之後用新頁面決定。
 
@@ -65,7 +75,7 @@
   - `StoryData/RPG1.json` 從 hard 變 warn。
 - **節點樣式比對不到檔、或同一節點被兩個族群搶。** 處理方式：
   - 比對不到檔：有 raw 時 lint 警告；
-  - 同層兩個族群都符合：取路由裡先列的族群，lint 另外列出這種節點，讓人知道誰搶到；
+  - 同層兩個族群都符合：完整寫出節點名稱的樣式優先於萬用字元，再來取路由裡先列的族群；lint 另外列出這種節點，讓人知道誰搶到；
   - 子群一律優先於頂層。
 - **「詞彙」頁大到打不開。**
   - 資料依詞條分檔，點開才載入；
@@ -104,6 +114,44 @@
 | `StoryData/E*` | 目錄子群 |
 | `*UIText` | 名稱以 UIText 結尾的頂層 |
 
+## 第三層：章節、角色、活動（使用者決定要這三種；推導細節為我的判斷）
+
+每個檔最多一個第三層標記，依下面的順序取第一個符合的：
+
+1. **角色**：沿用 `Rules.CharacterByFile`，對照 `guides/characters/*.md` 的 `file_names` 與 `code`。
+   - 涵蓋人格故事 `StoryData/P1<代碼>`、人格語音 `Voice_<名>`、E.G.O 語音、`AbDlg_<名>`，以及檔名結尾的人格編號 `1<代碼>XX`。
+   - 另外補 `Skills_personality-<代碼>`、`Skills_Ego_Personality-<代碼>`（`-01`～`-12`）。
+   - 標記是角色檔的 `id`（`heathcliff`），顯示角色檔的 `name`（希斯克里夫）。
+2. **章節**：
+   - `StoryData/S<章>XX`，例如 `S1037B` 是第 10 章，`S001A` 是第 0 章；
+   - `StoryData/<章>D…`；
+   - 根目錄檔名 `-` 之後以 `a1c<章>` 開頭的檔（298 檔，例如 `Skills_Abnormality-a1c9p1`、`AbEvents-a1c5p3`）。
+
+   標記是章的數字，顯示「第 N 章」。
+3. **活動**：根目錄檔名 `-` 之後的第一段，到下一個 `-` 或 `_` 為止。
+   - 例如 `walpu6`、`tkt`（`tkt-re` 也是 `tkt`）、`mowe`、`twth`、`exme`、`pilgrimage`；
+   - 純數字的不算。
+
+   標記與顯示都是代號本身。
+
+**分群樹**：第三層掛在子群下（沒有子群就掛在頂層下）。同一子群裡沒有任何檔有標記時，不顯示第三層；只有部分檔有標記時，沒標記的檔直接列在子群下。
+
+**篩選**：側欄與「詞彙」頁各有「章節」「角色」「活動」三個下拉選單，跨分群列出符合的檔或單位。
+
+**詞彙表範圍**：`files`、`not_files` 的項目多三種寫法：
+
+| 寫法 | 指的是 |
+|---|---|
+| `chapter:10` | 第 10 章的檔 |
+| `character:heathcliff` | 角色檔 `id` 是 heathcliff 的檔 |
+| `event:walpu*` | 活動代號符合 `path.Match` 樣式的檔 |
+
+lint 的檢查：
+- 章不是整數：錯誤；
+- 角色 id 不存在：錯誤；
+- 樣式寫錯：錯誤；
+- 有 raw 時，比對不到任何檔：警告。
+
 ## 族群由節點組成（我的判斷）
 
 `guides/routing.yaml`：
@@ -122,8 +170,10 @@ families:
 
 **比對**：一個檔的族群照下面的順序決定。
 
-1. 先用它的 `sub`，依路由順序找第一個 `nodes` 有樣式符合的族群。
-2. 沒有，再用 `top` 做同樣的事。
+1. 先用它的 `sub` 找族群：
+   - 有族群的 `nodes` 寫了這個節點的完整名稱（不含萬用字元），就取這個族群；
+   - 沒有的話，取路由裡第一個有萬用字元樣式符合的族群。
+2. `sub` 找不到，再用 `top` 做同樣的事。
 3. 都沒有，就是 `unsorted`。
 
 `Family(file)` 仍只看路徑。
@@ -146,30 +196,98 @@ families:
 
 ## 提案的族群切法（待使用者確認）
 
-| 族群 | glossary | 節點 | 檔 | 單位 | 主要來自 |
-|---|---|---|---|---|---|
-| story-main | warn | `StoryData/S`、`StoryData/D`、`StoryData/RPG`、`DungeonNode`、`BgmLyrics/` | 591 | 69863 | story-main |
-| story-interlude | warn | `StoryData/E`、`StoryData/ES`、`StoryData/PC` | 256 | 39153 | story-interlude |
-| identity | warn | `StoryData/P`、`PersonalityVoiceDlg/`、`BattleSpeechBubbleDlg` | 386 | 44459 | identity |
-| ego-voice | warn | `EGOVoiceDig/` | 14 | 1124 | ego-voice |
-| announcer | warn | `BattleAnnouncerDlg/` | 65 | 3931 | announcer |
-| dante-note | warn | `StoryTheaterDanteNote*` | 26 | 731 | dante-note |
-| ally | hard | 我方技能、被動、人格、E.G.O、協助者 | 80 | 17544 | ally、other 9、walpu 4 |
-| enemy | hard | `Enemies`、`Skills`、`Skills_Enemy*`、`Skills_Abnormality*`、`Passives_Enemy*`、`Passives_Abnormality*` | 205 | 22875 | enemy、walpu 36、mirror 5 |
-| keywords（新） | hard | `Bufs*`、`BattleKeywords*`、`UnitKeyword`、`SkillTag`、`BuffAbilities`、`PanicInfo`、`MentalCondition`…… | 153 | 18398 | other 118、walpu 23、mirror 12 |
-| abnormality | hard | `AbnormalityGuides*`、`AbDlg`、`AbEvents*`、`AbEventsResultLog*` | 91 | 4063 | abnormality、walpu 21、story-main 9、mirror 7 |
-| mirror | hard | `MirrorDungeon*`、`EGOgift*`、`ActionEvents*`、`DungeonStartBuffs`、`TutorialMirrorDungeon`、`StoryTheaterMirrorWorld*`、`EgoGiftCategory` | 95 | 10491 | mirror、walpu 12 |
-| railway（新） | hard | `Railway*`、`Walpu` | 26 | 852 | walpu-refraction |
-| rpg（新） | hard | `RPGSystem/` | 189 | 20258 | other |
-| stage（新） | hard | 關卡、地牢、選擇事件、劇場…… | 95 | 6086 | other |
-| events（新） | hard | `Event*`、`*Event`、出席、活動文字…… | 25 | 1057 | other |
-| ui（新） | hard | `*UI`、`*UIText`、`Tutorial*`、商店、通行證、說明…… | 125 | 11990 | other 121、mirror 4 |
-| unsorted | hard | （後備） | 0 | 0 | |
+資料是 raw-20261105（2422 個 KR 檔）。下表由附錄的 `routing.yaml` 依上面的比對規則算出。提案頁 https://claude.ai/artifact/MHtxthoFrjfo7G12FcuxpM 列出每個節點歸哪個族群。
+
+| 族群 | glossary | 檔 | 單位 | 現在的族群（檔數） |
+|---|---|---|---|---|
+| story-main | warn | 591 | 69863 | story-main 590、other 1 |
+| story-interlude | warn | 256 | 39153 | story-interlude 256 |
+| identity | warn | 386 | 44459 | identity 386 |
+| ego-voice | warn | 14 | 1124 | ego-voice 14 |
+| announcer | warn | 65 | 3931 | announcer 65 |
+| dante-note | warn | 26 | 731 | dante-note 26 |
+| rpg | hard | 189 | 20258 | other 189 |
+| ally | hard | 80 | 17544 | ally 67、other 9、walpu-refraction 4 |
+| enemy | hard | 205 | 22875 | enemy 161、walpu-refraction 36、mirror 5、other 3 |
+| keywords | hard | 153 | 18398 | other 118、walpu-refraction 23、mirror 12 |
+| abnormality | hard | 91 | 4063 | abnormality 54、walpu-refraction 21、story-main 9、mirror 7 |
+| mirror | hard | 95 | 10491 | mirror 82、walpu-refraction 12、other 1 |
+| railway | hard | 26 | 852 | walpu-refraction 26 |
+| stage | hard | 96 | 6097 | other 96 |
+| ui | hard | 119 | 11764 | other 115、mirror 4 |
+| events | hard | 30 | 1272 | other 30 |
+| unsorted | hard | 0 | 0 |  |
 
 - `walpu-refraction` 拆進各文字類型。
 - `mirror` 只留鏡牢專屬的類型；`Bufs_Mirror` 這類子群依類型歸到 keywords 等。
+- 路由的族群順序就是附錄的順序。同層衝突時，這個順序決定誰搶到（見上節）。
 - **priority**：story-main → story-interlude → ego-voice → announcer → identity → ally → enemy → keywords → abnormality → dante-note → mirror → railway → rpg → stage → events → ui → unsorted。
-- 完整的節點對照（每個頂層、子群歸哪個族群、現在在哪個族群）放在提案頁，確認後由實作照抄。
+- 使用者確認這個切法之前，計畫不定案。確認時若有改動，改附錄，表格重算。
+
+### 附錄：提案的 `guides/routing.yaml` 族群（實作照抄）
+
+```yaml
+families:
+  - id: story-main
+    nodes: ["StoryData/S", "StoryData/D", "StoryData/RPG", "DungeonNode", "BgmLyrics/"]
+    glossary: warn
+    guide: guides/families.md
+  - id: story-interlude
+    nodes: ["StoryData/E", "StoryData/ES", "StoryData/PC"]
+    glossary: warn
+    guide: guides/families.md
+  - id: identity
+    nodes: ["StoryData/P", "PersonalityVoiceDlg/", "BattleSpeechBubbleDlg"]
+    glossary: warn
+    guide: guides/families.md
+  - id: ego-voice
+    nodes: ["EGOVoiceDig/"]
+    glossary: warn
+    guide: guides/families.md
+  - id: announcer
+    nodes: ["BattleAnnouncerDlg/"]
+    glossary: warn
+    guide: guides/families.md
+  - id: dante-note
+    nodes: ["StoryTheaterDanteNote*"]
+    glossary: warn
+    guide: guides/families.md
+  - id: rpg
+    nodes: ["RPGSystem/"]
+    guide: guides/families.md
+  - id: ally
+    nodes: ["Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
+    guide: guides/families.md
+  - id: enemy
+    nodes: ["Enemies", "Skills", "Skills_Enemy*", "Skills_Abnormality*", "Passives_Enemy*", "Passives_Abnormality*"]
+    guide: guides/families.md
+  - id: keywords
+    nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText", "ChoiceEventKeyword"]
+    guide: guides/families.md
+  - id: abnormality
+    nodes: ["AbnormalityGuides*", "AbDlg", "AbEvents*", "AbEventsResultLog*"]
+    guide: guides/families.md
+  - id: mirror
+    nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
+    guide: guides/families.md
+  - id: railway
+    nodes: ["Railway*"]
+    guide: guides/families.md
+  - id: stage
+    nodes: ["StageNode", "Stage*", "DungeonArea", "DungeonName", "ThreadDungeon", "HellsChicken*", "ChoiceEvent*", "BattleResultHint", "BattleHint", "SuccessRate", "StoryTheater*", "ScenarioModelCodes", "Characters", "AssociationName", "Story", "IntroduceCharacter", "Ch", "Fools", "Limbus", "ProjectGS*", "Quest", "reward", "RewardDungeonUI"]
+    guide: guides/families.md
+  - id: ui
+    nodes: ["*UI", "*UIText", "*Ui", "UI", "UI_*", "Tutorial*", "LoginUIText", "FAQ", "ErrorCodeMsg", "Filter", "FormationName*", "FileDownloadDesc", "ShotcutKeyManual", "SkinUI", "UnlockCode", "UserAgreements", "ReturnPolicy", "UserInfo", "UserBanner", "IntroductionPreset", "TooltipUIText", "kr", "LobbyBGM*", "SelectLoadingCgUi", "ShopItemCount", "Items", "UserTicket", "AnnouncerTicketUIPopup", "AnnouncerVoiceType", "Announcer", "IAP*", "GachaTitle", "GachaNotice", "BattlePass*", "ChapterBannerConfig", "SeasonTitle", "DanteAbility*"]
+    guide: guides/families.md
+  - id: events
+    nodes: ["Event*", "*EventText", "DailyLoginEvent", "CultivationEvent", "RecordMemoryEvent", "TwiningThreadsEvent", "NightCleanUpEvent", "AttendanceCheckS", "AttendanceRewardsText", "DawnOfGreenEventText", "BossRaidUI", "PilgrimageUIText", "CouponUIText"]
+    guide: guides/families.md
+  - id: unsorted
+    nodes: []
+    guide: guides/families.md
+
+priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, enemy, keywords, abnormality, dante-note, mirror, railway, rpg, stage, events, ui, unsorted]
+```
 
 ## 詞彙表 `group:` 範圍
 
@@ -185,7 +303,7 @@ families:
 - **側欄**：分群樹。頂層依檔數多到少排，子群同樣排序，子群下列檔。目前檔所在的頂層與子群展開。篩選時，有命中的全部展開。
 - **首頁**：族群表，欄位是族群、glossary、節點、檔數。
 - **審核頁的「族群」篩選**：照舊用族群（族群變細了，篩選就有用）。
-- **`index.json`**：每個檔加 `top`、`sub`；另有 `groups`（顯示用的樹，已合併單檔子群）。
+- **`index.json`**：每個檔加 `top`、`sub` 與第三層（`chapter`、`character`、`event` 三者最多一個）；另有 `groups`（顯示用的樹，已合併單檔子群）。
 
 ## 詞彙範圍統計
 
@@ -224,7 +342,7 @@ families:
   - 另有「複製這些單位」：把目前篩選下的單位 ID 一次複製，供整批重翻、確認或保留。
 - **「用了譯名」區**：每次顯示 100 個，有「再顯示 100 個」。
   - 每個單位附：KR、TW 片段（原詞與譯名前後各約 30 字）、來源、連結。
-- **篩選**：族群、頂層分群、來源（paratranz、claude、human）、文字。
+- **篩選**：族群、頂層分群、章節、角色、活動、來源（paratranz、claude、human）、文字。
 
 **命中的定義**
 
@@ -280,7 +398,11 @@ families:
    - 其他目錄用前兩段；
    - 根目錄子群去掉結尾數字與 `_`。
 2. 比對順序：子群優先於頂層；同層取路由先列的族群；沒歸到的落在 `unsorted`。
-3. 季節代號不分群；兩個 `family:walpu-refraction` 條目改寫成原萬用字元。
+3. 第三層的推導：
+   - 取用順序是角色 → 章節 → 活動；
+   - `a1c<章>` 算章節不算活動；
+   - 活動代號去掉 `-re` 等後綴；
+   - 兩個 `family:walpu-refraction` 條目先改寫成原萬用字元，不改用 `event:`。
 4. 提案的 16 個族群與 priority。特別是：
    - `AbEvents-a1c*` 併入 abnormality（9 檔 warn → hard）；
    - `RPGSystem/` 自成 `rpg` 並維持 hard；
