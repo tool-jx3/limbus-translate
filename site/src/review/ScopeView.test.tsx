@@ -144,7 +144,7 @@ describe('ScopeView', () => {
   })
 
   describe('需要人看 collapsed', () => {
-    type Doc = { thresholds: object; entries: { id: string; kr: string; zh: string; groups: { name: string; kind: string; n: number; used: number }[] }[]; proposals: { kind: string; id: string }[] }
+    type Doc = { thresholds: object; entries: { id: string; kr: string; zh: string; n: number; used: number; groups: { name: string; kind: string; n: number; used: number }[] }[]; proposals: { kind: string; id: string }[] }
     // Proposal i has i+1 units without the rendering, so the last one ranks lowest.
     function twelve(): Doc {
       const base = fixture<Doc>('review/scope.json')
@@ -153,6 +153,8 @@ describe('ScopeView', () => {
         id: `glossary/m${i}/z`,
         kr: `혼합${i}`,
         zh: `混${i}`,
+        n: 10,
+        used: 10 - (i + 1),
         groups: [{ name: 'family:skill', kind: 'family', n: 10, used: 10 - (i + 1) }],
       }))
       const proposals = entries.map((e) => ({ ...base.proposals[4]!, id: `scope/m${e.id}/mixed`, kr: e.kr, zh: e.zh }))
@@ -174,6 +176,20 @@ describe('ScopeView', () => {
       shown = mixed(el)
       expect(shown).toHaveLength(12)
       expect(sections(el)[3]!.querySelector('.sc-more-mixed')).toBeNull()
+    })
+
+    it('ranks by the entry\'s own n - used, not by the sum of its groups (each hit is in two groups)', async () => {
+      const doc = twelve()
+      // 혼합0 lacks the rendering in 1 unit, but its groups (a family and a node group) add up to 20 such units.
+      doc.entries[0]!.groups = [
+        { name: 'family:skill', kind: 'family', n: 10, used: 0 },
+        { name: 'group:Skills', kind: 'group', n: 10, used: 0 },
+      ]
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': doc })))
+      const el = await mount()
+      const shown = mixed(el)
+      expect(shown[0]!.querySelector('h3')?.textContent).toContain('혼합11')
+      expect(shown.map((a) => a.querySelector('h3')?.textContent).some((t) => t?.includes('혼합0'))).toBe(false)
     })
 
     it('folds back when the filter changes', async () => {
@@ -308,7 +324,7 @@ describe('ScopeView', () => {
       const row = rows(el)[0]!
       expect(row.querySelectorAll('table.sc-table tbody tr')).toHaveLength(4)
       expect(row.textContent).toContain('複合詞 5 個單位，用了譯名 1')
-      expect(row.textContent).toContain('有說明 4、沒說明 6')
+      expect(row.textContent).toContain('有說明 4、沒說明 8')
       expect(row.textContent).toContain('story 裡常譯成「對象」。')
       expect(row.querySelector('.rv-id code')?.textContent).toBe('glossary/aaaaaaaa/bbbbbbbb')
       act(() => row.querySelector<HTMLButtonElement>('.rv-copy')!.click())

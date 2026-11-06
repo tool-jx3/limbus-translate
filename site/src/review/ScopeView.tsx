@@ -78,8 +78,8 @@ function Legend({ t }: { t: ScopeThresholds }) {
   )
 }
 
-/** The units of an entry that do not use its rendering, over all its groups. */
-const nonUsing = (e: ScopeEntry | undefined) => (e ? e.groups.reduce((s, g) => s + g.n - g.used, 0) : 0)
+/** The units of an entry that do not use its rendering (each hit is in a family group and a node group, so the groups would count it twice). */
+const nonUsing = (e: ScopeEntry | undefined) => (e ? e.n - e.used : 0)
 const percent = (used: number, n: number) => (n === 0 ? 0 : Math.round((used / n) * 100))
 
 /** The effect of a proposal as a line: only the numbers that are not zero; '' when none is. */

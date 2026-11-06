@@ -778,7 +778,7 @@ func TestReportUnits(t *testing.T) {
 	f.add(skillFile, 1, "최종보스", "最終BOSS") // compound: no word hit
 	r := testRules(approved("보스", "BOSS"), approved("최종 보스", "最終頭目"))
 	rep := Analyze(Inputs{Rules: r, Units: f.units})
-	rep0 := rep
+	wordRep := rep
 	boss, long := entryOf(t, rep, "보스"), entryOf(t, rep, "최종 보스")
 	us := rep.Units[boss.ID]
 	if len(us) != 3 || boss.N != 3 || boss.Used != 2 {
@@ -812,7 +812,13 @@ func TestReportUnits(t *testing.T) {
 		t.Errorf("substring entry: %d units, n %d, used %d (counted %d), want 5, n and used the units', 3 used", len(got), e.N, e.Used, usedN)
 	}
 	// A word entry counts its compound unit nowhere.
-	if boss.N != len(rep0.Units[boss.ID]) {
-		t.Errorf("word entry n %d, units %d", boss.N, len(us))
+	wordUsed := 0
+	for _, u := range wordRep.Units[boss.ID] {
+		if u.Used {
+			wordUsed++
+		}
+	}
+	if boss.N != len(wordRep.Units[boss.ID]) || boss.Used != wordUsed {
+		t.Errorf("word entry n %d used %d, units %d used %d", boss.N, boss.Used, len(wordRep.Units[boss.ID]), wordUsed)
 	}
 }

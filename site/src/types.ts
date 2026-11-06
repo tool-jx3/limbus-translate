@@ -273,7 +273,7 @@ export interface ScopeEntry {
   check?: string
   notes: string
   groups: ScopeGroup[]
-  /** The units the entry hits and how many use the rendering (compound units left out), their rate, and whether the entry is worth considering for check: hard. */
+  /** The units the entry hits and how many use the rendering (the real hits of Report.Units: a substring entry's compound units count; the groups leave them out), their rate, and whether the entry is worth considering for check: hard. */
   n: number
   used: number
   rate: number
