@@ -15,6 +15,7 @@ const plain = (share: number): string => `${Number((share * 100).toFixed(1))}%`
 
 const nonUsing = (e: ScopeEntry) => e.n - e.used
 const byText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0)
+const otherDir = (d: SortDir): SortDir => (d === 'asc' ? 'desc' : 'asc')
 const cmp = (a: string | number, b: string | number) => (a < b ? -1 : a > b ? 1 : 0)
 const checkText = (e: ScopeEntry) => (e.check === 'hard' ? 'hard' : 'warn')
 
@@ -31,7 +32,7 @@ export function filterEntries(entries: ScopeEntry[], f: { q: string; sort: Gloss
       (needle === '' || [e.kr, e.zh, ...e.also, e.notes].some((x) => x.toLowerCase().includes(needle))),
   )
   const { id, dir } = sortParts(f.sort)
-  const value = COLUMNS.find((c) => c.id === id)!.value
+  const value = COLUMN_INFO[id].value
   // The tie goes by KR then ZH, A to Z whichever way the column goes, so that the order is stable.
   const order = (a: ScopeEntry, b: ScopeEntry) => cmp(value(a), value(b)) * (dir === 'asc' ? 1 : -1) || byText(a.kr, b.kr) || byText(a.zh, b.zh)
   return kept.sort(order)
@@ -46,17 +47,17 @@ export function scopeSummary(e: ScopeEntry): string[] {
   return parts.length > 0 ? parts : ['全部']
 }
 
-/** The columns of the list, as the headers and the sort select both have them: what each sorts by, and how its two directions read. */
-const COLUMNS: { id: GlossaryColumn; name: string; kind: 'text' | 'count' | 'rate'; value: (e: ScopeEntry) => string | number }[] = [
-  { id: 'kr', name: '原詞', kind: 'text', value: (e) => e.kr },
-  { id: 'zh', name: '譯名', kind: 'text', value: (e) => e.zh },
-  { id: 'check', name: '檢查', kind: 'text', value: checkText },
-  { id: 'scope', name: '範圍', kind: 'text', value: (e) => scopeSummary(e).join('、') },
-  { id: 'n', name: '出現', kind: 'count', value: (e) => e.n },
-  { id: 'used', name: '用了', kind: 'count', value: (e) => e.used },
-  { id: 'missing', name: '沒用', kind: 'count', value: nonUsing },
-  { id: 'rate', name: '應用率', kind: 'rate', value: (e) => e.rate },
-]
+/** What each column is called, what it sorts by, and how its two directions read; its id and the direction of its first click are GLOSSARY_COLUMNS in the route. */
+const COLUMN_INFO: Record<GlossaryColumn, { name: string; kind: 'text' | 'count' | 'rate'; value: (e: ScopeEntry) => string | number }> = {
+  kr: { name: '原詞', kind: 'text', value: (e) => e.kr },
+  zh: { name: '譯名', kind: 'text', value: (e) => e.zh },
+  check: { name: '檢查', kind: 'text', value: checkText },
+  scope: { name: '範圍', kind: 'text', value: (e) => scopeSummary(e).join('、') },
+  n: { name: '出現', kind: 'count', value: (e) => e.n },
+  used: { name: '用了', kind: 'count', value: (e) => e.used },
+  missing: { name: '沒用', kind: 'count', value: nonUsing },
+  rate: { name: '應用率', kind: 'rate', value: (e) => e.rate },
+}
 
 const DIR_WORDS: Record<'text' | 'count' | 'rate', Record<SortDir, string>> = {
   text: { asc: 'A→Z', desc: 'Z→A' },
@@ -65,10 +66,9 @@ const DIR_WORDS: Record<'text' | 'count' | 'rate', Record<SortDir, string>> = {
 }
 
 /** The options of the sort select: two for each column, the direction of the first click first. */
-const SORTS: { value: GlossarySort; label: string }[] = COLUMNS.flatMap((c) => {
-  const first = GLOSSARY_COLUMNS.find((x) => x.id === c.id)!.first
-  const second: SortDir = first === 'asc' ? 'desc' : 'asc'
-  return [first, second].map((dir) => ({ value: glossarySort(c.id, dir), label: `${c.name}（${DIR_WORDS[c.kind][dir]}）` }))
+const SORTS: { value: GlossarySort; label: string }[] = GLOSSARY_COLUMNS.flatMap((c) => {
+  const info = COLUMN_INFO[c.id]
+  return [c.first, otherDir(c.first)].map((dir) => ({ value: glossarySort(c.id, dir), label: `${info.name}（${DIR_WORDS[info.kind][dir]}）` }))
 })
 
 /** The words of the limits an entry is a hard candidate by, with the values of the data. */
@@ -196,14 +196,14 @@ export function GlossaryView({ route }: { route: GlossaryRoute }) {
               <table class="gl-table">
                 <thead>
                   <tr>
-                    {COLUMNS.map((c) => (
+                    {GLOSSARY_COLUMNS.map((c) => (
                       <th key={c.id} scope="col" {...(sorted.id === c.id ? { 'aria-sort': sorted.dir === 'asc' ? ('ascending' as const) : ('descending' as const) } : {})}>
                         <button
                           type="button"
                           class="gl-sort"
-                          onClick={() => go(route, { sort: glossarySort(c.id, sorted.id === c.id ? (sorted.dir === 'asc' ? 'desc' : 'asc') : GLOSSARY_COLUMNS.find((x) => x.id === c.id)!.first) })}
+                          onClick={() => go(route, { sort: glossarySort(c.id, sorted.id === c.id ? otherDir(sorted.dir) : c.first) })}
                         >
-                          {c.name}
+                          {COLUMN_INFO[c.id].name}
                           {sorted.id === c.id && <span aria-hidden="true">{sorted.dir === 'asc' ? '▲' : '▼'}</span>}
                         </button>
                       </th>

@@ -283,7 +283,8 @@ describe('glossary fixtures', () => {
     const named = g.entries.flatMap((e) => e.groups.filter((x) => x.kind === 'family').map((x) => x.name.replace(/^family:/, '')))
     expect(named.length).toBeGreaterThan(0)
     for (const id of new Set(named)) expect(known).toContain(id)
-    for (const e of g.entries) for (const x of e.groups) if (x.name.startsWith('family:')) expect(known).toContain(x.name.slice('family:'.length))
+    const patterns = g.entries.flatMap((e) => [...e.files, ...e.not_files]).filter((x) => x.startsWith('family:'))
+    for (const x of patterns) expect(known).toContain(x.slice('family:'.length))
   })
 
   it('has the keys of the Go types, in their order (internal/scope, internal/site/glossary.go)', () => {

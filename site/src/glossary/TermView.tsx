@@ -301,7 +301,7 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
             {said}
           </span>
         </div>
-        {boxShown && <p class="tv-copyhint">瀏覽器不讓網頁寫入剪貼簿：已選取下面的文字，按 Ctrl+C（或 ⌘C）複製</p>}
+        {boxShown && <p class="tv-copyhint" role="status">瀏覽器不讓網頁寫入剪貼簿：已選取下面的文字，按 Ctrl+C（或 ⌘C）複製</p>}
         <textarea
           ref={box}
           class={boxShown ? 'tv-copybox' : 'tv-copybox is-hidden'}

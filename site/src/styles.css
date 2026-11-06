@@ -2713,6 +2713,7 @@ button.chip {
   cursor: pointer;
   color: inherit;
   font: inherit;
+  padding: 0.25rem 0.5rem;
   white-space: nowrap;
 }
 

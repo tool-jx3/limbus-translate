@@ -206,6 +206,7 @@ describe('TermView, units without the rendering', () => {
         const open = file.missing.filter((u) => !u.accepted)
         expect(box(el).value.split('\n')).toEqual(open.map((u) => `${u.id}「${u.zh}」→ `))
         expect(el.querySelector('.tv-missing .tv-copyhint')?.textContent).toBe('瀏覽器不讓網頁寫入剪貼簿：已選取下面的文字，按 Ctrl+C（或 ⌘C）複製')
+        expect(el.querySelector('.tv-missing .tv-copyhint')?.getAttribute('role')).toBe('status')
       })
 
       it('hides the box again when the filters change, and on the next successful copy', async () => {

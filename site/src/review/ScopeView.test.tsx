@@ -155,7 +155,7 @@ describe('ScopeView', () => {
         zh: `混${i}`,
         n: 12,
         used: 12 - (i + 1),
-        groups: [{ name: 'family:skill', kind: 'family', n: 12, used: 12 - (i + 1) }],
+        groups: [{ name: 'family:ally', kind: 'family', n: 12, used: 12 - (i + 1) }],
       }))
       const proposals = entries.map((e) => ({ ...base.proposals[4]!, id: `scope/m${e.id}/mixed`, kr: e.kr, zh: e.zh }))
       return { ...base, entries, proposals }
@@ -182,7 +182,7 @@ describe('ScopeView', () => {
       const doc = twelve()
       // 혼합0 lacks the rendering in 1 unit, but its groups (a family and a node group) add up to 20 such units.
       doc.entries[0]!.groups = [
-        { name: 'family:skill', kind: 'family', n: 10, used: 0 },
+        { name: 'family:ally', kind: 'family', n: 10, used: 0 },
         { name: 'group:Skills', kind: 'group', n: 10, used: 0 },
       ]
       vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': doc })))
