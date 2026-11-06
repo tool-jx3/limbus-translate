@@ -469,7 +469,7 @@ func (s *submission) unit(o OutUnit) error {
 }
 
 // noteNames reports whether note writes the KR term of the entry behind the
-// term-missing issue, as the entry matches a KR text (a match: word entry
+// term-missing issue, as the entry matches a KR text (an entry that matches as a word
 // needs the term as a word).
 func noteNames(entries []rules.Term, is validate.Issue, note string) bool {
 	for _, t := range entries {

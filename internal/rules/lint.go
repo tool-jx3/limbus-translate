@@ -118,8 +118,8 @@ func (l *linter) glossary() {
 				}
 			}
 		}
-		if t.Match != "" && t.Match != MatchWord {
-			l.report(GlossaryFile, "%s: match is %q, want %q (hit only where the KR stands as a word) or no match", label, t.Match, MatchWord)
+		if t.Match != "" && t.Match != MatchWord && t.Match != MatchSubstring {
+			l.report(GlossaryFile, "%s: match is %q, want %q (hit only where the KR stands as a word; the default) or %q (hit inside a longer word too)", label, t.Match, MatchWord, MatchSubstring)
 		}
 		for _, pattern := range t.Files {
 			if pattern == "" {
@@ -127,6 +127,18 @@ func (l *linter) glossary() {
 			} else if err := config.ValidPattern(pattern); err != nil {
 				l.report(GlossaryFile, "%s: files pattern %q is not valid: %v", label, pattern, err)
 			}
+		}
+		for _, pattern := range t.NotFiles {
+			if pattern == "" {
+				l.report(GlossaryFile, "%s: not_files holds an empty pattern", label)
+			} else if err := config.ValidPattern(pattern); err != nil {
+				l.report(GlossaryFile, "%s: not_files pattern %q is not valid: %v", label, pattern, err)
+			}
+		}
+		// A pattern in both lists takes the files of files out again. Whether
+		// two different globs overlap is not decided here: only the plain case.
+		if len(t.Files) > 0 && len(t.NotFiles) > 0 && !slices.ContainsFunc(t.Files, func(p string) bool { return !slices.Contains(t.NotFiles, p) }) {
+			l.report(GlossaryFile, "%s: every pattern of files is also in not_files, so the entry applies to no file", label)
 		}
 		// A candidate binds nothing (see GlossaryHits), so only the approved
 		// entries count.

@@ -4058,3 +4058,22 @@ func TestNextNamesKeywordsOfARepeatedText(t *testing.T) {
 		t.Errorf("batch = %+v, want two units and the keyword Bleed", b)
 	}
 }
+
+// An entry matches as a word unless it says match: substring, so a batch only
+// brings a longer word's entry when the entry asks for it, and says so in its
+// glossary: the translator sees match: substring, the one value that is not
+// the default.
+func TestBatchGlossaryMatch(t *testing.T) {
+	const glossary = "- kr: 속도\n  zh: 速度\n  status: approved\n- kr: 사무소\n  zh: 事務所\n  status: approved\n  match: substring\n"
+	_, b := krEnv(t, glossary, "약속도 정사무소")
+	if len(b.Glossary) != 1 || b.Glossary[0].KR != "사무소" || b.Glossary[0].Match != rules.MatchSubstring {
+		t.Fatalf("Glossary = %+v, want only 사무소 with match substring (속도 is no word of 약속도)", b.Glossary)
+	}
+	data, err := json.Marshal(b.Glossary)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"match":"substring"`) {
+		t.Errorf("glossary JSON = %s, want match: substring", data)
+	}
+}

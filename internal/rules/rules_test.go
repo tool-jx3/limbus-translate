@@ -402,7 +402,7 @@ func zhOf(hits []rules.Term) []string {
 // An entry with match: word hits only where its KR stands as a word: not right
 // after a Hangul syllable, and followed by no Hangul or by a particle or an
 // ending (이/가/을/를/의/에서, 하다/되다…), so 백화 does not hit 백화점, nor
-// 버스 림버스. An entry without match still hits inside a longer word.
+// 버스 림버스. An entry with match: substring hits inside a longer word.
 func TestGlossaryHitsWholeWord(t *testing.T) {
 	r := rulesWithGlossary(t, `- kr: 백화
   zh: 白化
@@ -417,6 +417,7 @@ func TestGlossaryHitsWholeWord(t *testing.T) {
 - kr: 사무소
   zh: 事務所
   status: approved
+  match: substring
 `)
 	for _, tc := range []struct {
 		text string
@@ -439,7 +440,8 @@ func TestGlossaryHitsWholeWord(t *testing.T) {
 	}
 }
 
-// match takes one value, word; anything else is a mistake lint reports.
+// match takes the values word and substring; anything else is a mistake lint
+// reports.
 func TestLintGlossaryMatch(t *testing.T) {
 	root := copyRules(t)
 	edit(t, root, "glossary/terms.yaml", func(s string) string {
@@ -1090,22 +1092,135 @@ func TestLintRejectsProvisionalInTheGlossary(t *testing.T) {
 }
 
 func TestTermOccursIn(t *testing.T) {
-	word := rules.Term{KR: "백화", Match: rules.MatchWord}
-	if !word.OccursIn("백화가 핀다") || word.OccursIn("백화점") {
-		t.Error("OccursIn with match: word should hit 백화가 and not 백화점")
+	for _, match := range []string{"", rules.MatchWord} {
+		word := rules.Term{KR: "속도", Match: match}
+		for text, want := range map[string]bool{
+			"빠른 속도로": true, "속도가 붙는다": true, "속도": true,
+			"약속도": false, "고속도로": false, "도시락": false,
+		} {
+			if got := word.OccursIn(text); got != want {
+				t.Errorf("Term{Match: %q}.OccursIn(%q) = %v, want %v", match, text, got, want)
+			}
+		}
 	}
-	if !(rules.Term{KR: "백화"}).OccursIn("백화점") {
-		t.Error("OccursIn without match should hit inside a longer word")
+	if !(rules.Term{KR: "도시"}).OccursIn("도시가") || (rules.Term{KR: "도시"}).OccursIn("도시락") {
+		t.Error("OccursIn without match should be a whole-word test")
+	}
+	sub := rules.Term{KR: "사무소", Match: rules.MatchSubstring}
+	if !sub.OccursIn("정사무소") || !sub.OccursIn("사무소") || sub.OccursIn("꽃") {
+		t.Error("OccursIn with match: substring should hit inside a longer word")
 	}
 }
 
-// A match value other than word is a lint error (see the "words" case of the
-// glossary lint test); where one gets through anyway, the entry hits wherever
-// its KR occurs, as an entry without match does. It neither panics nor skips.
+// A match value other than word and substring is a lint error (see the "words"
+// case of the glossary lint test); where one gets through anyway, the entry
+// hits as one without match does. It neither panics nor skips.
 func TestTermOccursInWithAnInvalidMatch(t *testing.T) {
 	bad := rules.Term{KR: "백화", Match: "words"}
-	if !bad.OccursIn("백화점") || bad.OccursIn("꽃") {
-		t.Error("OccursIn with an unknown match should be a plain substring test")
+	if bad.OccursIn("백화점") || !bad.OccursIn("백화가") {
+		t.Error("OccursIn with an unknown match should be a whole-word test")
+	}
+}
+
+func TestTermAppliesTo(t *testing.T) {
+	for _, tc := range []struct {
+		name string
+		term rules.Term
+		file string
+		want bool
+	}{
+		{"no scope", rules.Term{}, "StoryData/S1.json", true},
+		{"files hit", rules.Term{Files: []string{"StoryData/**"}}, "StoryData/S1.json", true},
+		{"files miss", rules.Term{Files: []string{"StoryData/**"}}, "Bufs.json", false},
+		{"not_files hit", rules.Term{NotFiles: []string{"StoryData/**"}}, "StoryData/S1.json", false},
+		{"not_files miss", rules.Term{NotFiles: []string{"StoryData/**"}}, "Bufs.json", true},
+		{"both: in files, not excluded", rules.Term{Files: []string{"StoryData/**"}, NotFiles: []string{"StoryData/S2*"}}, "StoryData/S1.json", true},
+		{"both: in files, excluded", rules.Term{Files: []string{"StoryData/**"}, NotFiles: []string{"StoryData/S2*"}}, "StoryData/S2.json", false},
+		{"both: outside files", rules.Term{Files: []string{"StoryData/**"}, NotFiles: []string{"StoryData/S2*"}}, "Bufs.json", false},
+	} {
+		if got := tc.term.AppliesTo(tc.file); got != tc.want {
+			t.Errorf("%s: AppliesTo(%q) = %v, want %v", tc.name, tc.file, got, tc.want)
+		}
+	}
+}
+
+// Two complementary entries of one KR: 神父 for every file but the chapter,
+// 牧師 for the chapter alone (the entry with files stands for its KR there, and
+// the other one's not_files agrees). Each file has exactly one.
+func TestGlossaryHitsNotFilesComplement(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 신부
+  zh: 神父
+  status: approved
+  not_files: ["StoryData/ch10*"]
+
+- kr: 신부
+  zh: 牧師
+  status: approved
+  files: ["StoryData/ch10*"]
+`)
+	for file, want := range map[string]string{"StoryData/ch10_a.json": "牧師", "StoryData/ch09.json": "神父", "Bufs.json": "神父"} {
+		if got := zhOf(r.GlossaryHits(file, "신부가 왔다")); !slices.Equal(got, []string{want}) {
+			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
+		}
+		if got := r.ValidateTerms(file, "신부가 왔다"); len(got) != 1 || got[0].ZH != want {
+			t.Errorf("ValidateTerms(%q) = %+v, want [%s]", file, got, want)
+		}
+	}
+}
+
+// not_files with files: only the files that match files and not not_files.
+func TestGlossaryHitsFilesAndNotFiles(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 위력
+  zh: 威力
+  status: approved
+  files: ["StoryData/**"]
+  not_files: ["StoryData/S2*"]
+`)
+	for file, want := range map[string]int{"StoryData/S1.json": 1, "StoryData/S2.json": 0, "Bufs.json": 0} {
+		if got := len(r.GlossaryHits(file, "위력 5")); got != want {
+			t.Errorf("GlossaryHits(%q) = %d hits, want %d", file, got, want)
+		}
+	}
+}
+
+// not_files on a term with kana or Hangul in its rendering hides it from
+// ScriptRenderings in the excluded files, as it does from GlossaryHits.
+func TestScriptRenderingsNotFiles(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 하나 협회
+  zh: 하나協會
+  status: approved
+  not_files: ["StoryData/**"]
+`)
+	if got := r.ScriptRenderings("StoryData/S1.json"); len(got) != 0 {
+		t.Errorf("ScriptRenderings in an excluded file = %v, want none", got)
+	}
+	if got := r.ScriptRenderings("Bufs.json"); !slices.Equal(got, []string{"하나協會"}) {
+		t.Errorf("ScriptRenderings = %v, want the rendering", got)
+	}
+}
+
+func TestLintGlossaryNotFiles(t *testing.T) {
+	for name, tc := range map[string]struct{ entry, want string }{
+		"bad pattern":   {"  not_files: [\"[\"]\n", "not_files pattern"},
+		"empty pattern": {"  not_files: [\"\"]\n", "not_files holds an empty pattern"},
+		"same pattern":  {"  files: [\"StoryData/**\"]\n  not_files: [\"StoryData/**\"]\n", "applies to no file"},
+	} {
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string {
+			return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n" + tc.entry
+		})
+		if msg := lintMessages(rules.Lint(root)); !strings.Contains(msg, tc.want) || !strings.Contains(msg, "백화점") {
+			t.Errorf("%s: lint output does not mention %q:\n%s", name, tc.want, msg)
+		}
+	}
+	// Valid entries, and the old match: word, are clean.
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  match: word\n  files: [\"StoryData/**\"]\n  not_files: [\"StoryData/S2*\"]\n" +
+			"\n- kr: 사무소2\n  zh: 事務所\n  status: approved\n  match: substring\n"
+	})
+	if msg := lintMessages(rules.Lint(root)); strings.Contains(msg, "백화점") || strings.Contains(msg, "사무소2") {
+		t.Errorf("lint reports a valid entry:\n%s", msg)
 	}
 }
 

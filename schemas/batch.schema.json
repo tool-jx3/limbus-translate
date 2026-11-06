@@ -51,7 +51,7 @@
           },
           "category": { "type": "array", "items": { "type": "string" } },
           "match": {
-            "description": "\"word\": the term applies only where its KR stands as a word, not inside a longer word.",
+            "description": "Absent: the term applies where its KR stands as a word (a following particle such as 로 or 가 still counts), not inside a longer word. \"substring\": it applies wherever its KR occurs, inside a longer word too.",
             "type": "string"
           },
           "provisional": {

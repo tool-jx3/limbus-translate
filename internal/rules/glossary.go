@@ -31,9 +31,12 @@ type Term struct {
 	// Files are the files the term applies to (see config.MatchAny); empty
 	// means every file.
 	Files []string `yaml:"files" json:"files,omitempty"`
-	// Match is MatchWord for a term that hits only where its KR stands as a
-	// word (see standsAsWord); empty for one that hits wherever its KR occurs,
-	// inside a longer word too.
+	// NotFiles are the files the term does not apply to (patterns as Files).
+	// A batch is cut per file, so it does not carry them.
+	NotFiles []string `yaml:"not_files" json:"-"`
+	// Match is MatchWord, or empty for the same, for a term that hits only
+	// where its KR stands as a word (see standsAsWord), and MatchSubstring for
+	// one that hits wherever its KR occurs, inside a longer word too.
 	Match string `yaml:"match" json:"match,omitempty"`
 	// Provisional marks a term registered by a translator and not yet decided
 	// on by a person (see batch.ActiveProvisional). It is never read from the
@@ -41,17 +44,37 @@ type Term struct {
 	Provisional bool `yaml:"-" json:"provisional,omitempty"`
 }
 
-// MatchWord is the one value of Term.Match: the term hits only where its KR
-// stands as a word, so 백화 does not hit 백화점 nor 버스 림버스.
+// MatchWord is the default value of Term.Match: the term hits only where its
+// KR stands as a word, so 백화 does not hit 백화점 nor 버스 림버스.
 const MatchWord = "word"
 
-// OccursIn reports whether the KR text of t occurs in kr, as a word where t
-// asks for it.
+// MatchSubstring is the other value of Term.Match: the term hits wherever its
+// KR occurs, inside a longer word too (사무소 in 정사무소).
+const MatchSubstring = "substring"
+
+// AppliesTo reports whether t is in force in file: file matches one of Files
+// (or t has none) and matches none of NotFiles. It is the one place that
+// decides it; GlossaryHits and ScriptRenderings go through it. Whether an
+// entry without Files gives way to one with is a matter of the KR text
+// (scopedTo), not of this entry alone.
+func (t Term) AppliesTo(file string) bool {
+	return (len(t.Files) == 0 || config.MatchAny(t.Files, file)) && !config.MatchAny(t.NotFiles, file)
+}
+
+// scopedTo reports whether t has Files and file is one of them: t then stands
+// for its KR text in file, in place of an entry of that KR without Files,
+// whether or not NotFiles takes it out again.
+func (t Term) scopedTo(file string) bool {
+	return len(t.Files) > 0 && config.MatchAny(t.Files, file)
+}
+
+// OccursIn reports whether the KR text of t occurs in kr: as a word, unless t
+// asks for MatchSubstring.
 func (t Term) OccursIn(kr string) bool {
-	if t.Match == MatchWord {
-		return standsAsWord(kr, t.KR)
+	if t.Match == MatchSubstring {
+		return strings.Contains(kr, t.KR)
 	}
-	return strings.Contains(kr, t.KR)
+	return standsAsWord(kr, t.KR)
 }
 
 // wordFollowers are what may follow a word in KR and keep it that word: the
@@ -108,7 +131,7 @@ func (t Term) ToValidate() validate.Term {
 // people and is not loaded.
 var termFields = map[string]bool{
 	"kr": true, "jp": true, "en": true, "zh": true, "status": true,
-	"forbidden": true, "category": true, "evidence": true, "notes": true, "files": true, "match": true,
+	"forbidden": true, "category": true, "evidence": true, "notes": true, "files": true, "not_files": true, "match": true,
 }
 
 // parseGlossary decodes the glossary. unknown[i] lists the keys of entry i
@@ -150,7 +173,8 @@ const (
 // validation.
 //
 // A term with Files applies to the files that match one of them (see
-// config.MatchAny), a term without to every file. Of several entries for one
+// config.MatchAny), a term without to every file; a term does not apply to the
+// files that match one of its NotFiles (see Term.AppliesTo). Of several entries for one
 // KR text, those that match file stand for it alone: the entry without Files
 // is the one for the files no other entry takes.
 func (r *Rules) GlossaryHits(file, kr string) []Term {
@@ -161,11 +185,11 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 		if t.Status != StatusApproved || t.KR == "" || !t.OccursIn(kr) {
 			continue
 		}
-		if len(t.Files) > 0 {
-			if !config.MatchAny(t.Files, file) {
-				continue
-			}
+		if t.scopedTo(file) {
 			scoped[t.KR] = true
+		}
+		if !t.AppliesTo(file) {
+			continue
 		}
 		hits = append(hits, t)
 	}
@@ -182,7 +206,7 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 func (r *Rules) ScriptRenderings(file string) []string {
 	scoped := map[string]bool{} // the KR texts with an entry for file
 	for _, t := range r.Glossary {
-		if t.Status == StatusApproved && len(t.Files) > 0 && config.MatchAny(t.Files, file) {
+		if t.Status == StatusApproved && t.scopedTo(file) {
 			scoped[t.KR] = true
 		}
 	}
@@ -191,7 +215,7 @@ func (r *Rules) ScriptRenderings(file string) []string {
 		if t.Status != StatusApproved || !strings.ContainsFunc(t.ZH, foreignScript) || slices.Contains(out, t.ZH) {
 			continue
 		}
-		if len(t.Files) > 0 && !config.MatchAny(t.Files, file) || len(t.Files) == 0 && scoped[t.KR] {
+		if !t.AppliesTo(file) || len(t.Files) == 0 && scoped[t.KR] {
 			continue
 		}
 		out = append(out, t.ZH)
