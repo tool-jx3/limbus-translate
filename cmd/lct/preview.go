@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
 func init() {
@@ -29,47 +30,54 @@ func init() {
 // openPreviewEnv gathers what a preview works with, for command: the same
 // inputs as the batch commands, read-only, and the patterns of the frozen
 // files. lct batch preview and lct site both load it here, so they preview
-// the same thing.
-func openPreviewEnv(ctx *cli.Context, command string) (batch.Env, []string, error) {
+// the same thing. records are the records of the store if the caller has read
+// them already, else nil and they are read here; the records used are
+// returned, so that the Previewer need not read them again.
+func openPreviewEnv(ctx *cli.Context, command string, records map[string]store.Record) (batch.Env, []string, map[string]store.Record, error) {
 	st, err := openTWStore(ctx, command)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	cfg := ctx.Config
 	if cfg.Worktrees.Raw == "" {
-		return batch.Env{}, nil, cli.UserError(command + ": worktrees.raw must be set in lct.yaml")
+		return batch.Env{}, nil, nil, cli.UserError(command + ": worktrees.raw must be set in lct.yaml")
 	}
 	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
 	src, err := raw.LastSource(rawWorktree)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	if src == nil {
-		return batch.Env{}, nil, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
+		return batch.Env{}, nil, nil, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
 	}
 	set, err := pack.OpenRaw(rawWorktree)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	r, err := rules.Load(ctx.Root)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	commit, err := rulesCommit(ctx, command)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	var foreign []string
 	if _, err := st.ReadMetaJSON(bootstrap.ForeignNamesFile, &foreign); err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	provisional, err := activeProvisional(ctx.Root, st, r)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
-	names, err := keywordNames(st, set)
+	if records == nil {
+		if records, err = st.LoadRecords(); err != nil {
+			return batch.Env{}, nil, nil, err
+		}
+	}
+	names, err := batch.KeywordNames(set.KR, records)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, nil, nil, err
 	}
 	return batch.Env{
 		Store:        st,
@@ -81,7 +89,7 @@ func openPreviewEnv(ctx *cli.Context, command string) (batch.Env, []string, erro
 		KeywordNames: names,
 		Provisional:  provisional,
 		Now:          batchNow(),
-	}, cfg.Frozen, nil
+	}, cfg.Frozen, records, nil
 }
 
 // previewReport is what "batch preview" prints; as JSON it is the preview.
@@ -180,11 +188,11 @@ func runBatchPreview(ctx *cli.Context, args []string) error {
 	case len(positional) > 1:
 		return cli.UserError("batch preview: unexpected argument " + positional[1])
 	}
-	env, frozen, err := openPreviewEnv(ctx, "batch preview")
+	env, frozen, records, err := openPreviewEnv(ctx, "batch preview", nil)
 	if err != nil {
 		return err
 	}
-	pv, err := batch.NewPreviewer(env, frozen)
+	pv, err := batch.NewPreviewerWith(env, frozen, records)
 	if err != nil {
 		return err
 	}

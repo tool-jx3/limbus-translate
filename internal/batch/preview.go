@@ -8,6 +8,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/requeue"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
@@ -115,11 +116,24 @@ func NewPreviewer(env Env, frozen []string) (*Previewer, error) {
 	if err := env.check(); err != nil {
 		return nil, err
 	}
-	pending, err := env.Store.LoadPending()
+	recs, err := env.Store.LoadRecords()
 	if err != nil {
 		return nil, err
 	}
-	recs, err := env.Store.LoadRecords()
+	return NewPreviewerWith(env, frozen, recs)
+}
+
+// NewPreviewerWith is NewPreviewer for a caller that has read the records
+// already (store.Store.LoadRecords); the Previewer reads them no more and does
+// not change the map.
+func NewPreviewerWith(env Env, frozen []string, recs map[string]store.Record) (*Previewer, error) {
+	if err := env.check(); err != nil {
+		return nil, err
+	}
+	if env.Scripts == nil {
+		env.Scripts = rules.NewScriptCache(env.Rules)
+	}
+	pending, err := env.Store.LoadPending()
 	if err != nil {
 		return nil, err
 	}

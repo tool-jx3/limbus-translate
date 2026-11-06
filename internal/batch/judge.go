@@ -1,6 +1,8 @@
 package batch
 
 import (
+	"slices"
+
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
@@ -33,8 +35,15 @@ type Verdict struct {
 // rejected verdict never carries them.
 func Judge(env Env, prov []rules.Term, file, kr, zh, note string) Verdict {
 	zh = validate.NormalizeKeywordSpace(validate.Normalize(kr, zh), env.KeywordNames)
-	issues := CheckNewTerms(env.Rules, prov, file, kr, zh)
-	entries := append(env.Rules.GlossaryHits(file, kr), prov...)
+	hits := env.Rules.GlossaryHits(file, kr) // looked up once for the check and the entries
+	var scriptOK []string
+	if env.Scripts != nil {
+		scriptOK = env.Scripts.For(file)
+	} else {
+		scriptOK = env.Rules.ScriptRenderings(file)
+	}
+	issues := checkNewTerms(hits, prov, file, kr, zh, scriptOK)
+	entries := append(slices.Clip(hits), prov...)
 	warnOnly := env.Rules.GlossaryWarnOnly(file)
 	for j := range issues {
 		if issues[j].Code == validate.CodeTermMissing && !warnOnly && hardEntry(entries, issues[j]) && !noteNames(entries, issues[j], note) {

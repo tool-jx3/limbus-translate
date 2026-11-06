@@ -1,8 +1,10 @@
 package batch
 
 import (
+	"reflect"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
@@ -78,4 +80,41 @@ priority:
 			t.Errorf("ZH = %q, want the space after the keyword name", v.ZH)
 		}
 	})
+}
+
+// Env.Scripts only saves work: a Judge with the cache gives the verdict of
+// one without, including for an entry whose rendering has kana (so that
+// ScriptRenderings is not empty) and with a provisional term in play.
+func TestJudgeScriptCacheSameVerdict(t *testing.T) {
+	const routing = `families:
+  - id: other
+    nodes: []
+    guide: guides/families.md
+priority:
+  - other
+`
+	const glossary = "- kr: 하나 협회\n  zh: し協會\n  status: approved\n  check: hard\n" +
+		"- kr: 시즌\n  zh: 賽季\n  status: approved\n  check: hard\n"
+	const kr = "하나 협회의 두 시즌 전부터 밝은 별"
+	r := testRulesWithRouting(t, routing, glossary)
+	if len(r.ScriptRenderings("Other.json")) == 0 {
+		t.Fatal("no script renderings: the test checks nothing")
+	}
+	prov := []rules.Term{{KR: "밝은 별", ZH: "明星", Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true}}
+	plain := Env{Rules: r, ForeignNames: []string{"賽局"}}
+	cached := plain
+	cached.Scripts = rules.NewScriptCache(r)
+	for _, zh := range []string{
+		"し協會的兩個賽季前起的明星",
+		"ハナ協會的兩個賽局前起的亮星",
+		"하나協會的兩個賽季前起",
+	} {
+		for pass := 0; pass < 2; pass++ { // the second pass reads the cache
+			want := Judge(plain, prov, "Other.json", kr, zh, "")
+			got := Judge(cached, prov, "Other.json", kr, zh, "")
+			if !reflect.DeepEqual(got, want) {
+				t.Errorf("zh %q pass %d:\ncached = %+v\nplain  = %+v", zh, pass, got, want)
+			}
+		}
+	}
 }

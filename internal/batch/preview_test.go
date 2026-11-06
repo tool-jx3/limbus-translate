@@ -383,3 +383,29 @@ func TestPreviewMalformedKey(t *testing.T) {
 		t.Errorf("err = %q, want the message of SplitKey (%v)", err, want)
 	}
 }
+
+// NewPreviewerWith takes the records the caller has read: the previews are
+// those of a Previewer that reads them itself.
+func TestNewPreviewerWithRecords(t *testing.T) {
+	const file = "StoryData/S001A.json"
+	env := newEnv(t, map[string]string{file: dataList(t, 4, "파우스트", line)}, nil, nil)
+	saveRecs(t, env,
+		recOf(key(file, 1), line(1), "第一行", store.OriginClaude),
+		recOf(key(file, 2), line(2), "第二行", store.OriginParatranz),
+	)
+	recs, err := env.Store.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	own := newPreviewer(t, env)
+	with, err := NewPreviewerWith(env, nil, recs)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for i := 1; i <= 3; i++ {
+		k := key(file, i)
+		if got, want := mustUnit(t, with, k), mustUnit(t, own, k); !reflect.DeepEqual(got, want) {
+			t.Errorf("%s: with records = %+v\nown            = %+v", k, got, want)
+		}
+	}
+}

@@ -67,6 +67,10 @@ type Env struct {
 	// Next puts those a batch's units contain into its glossary, and Submit
 	// holds the translations to them like to glossary terms.
 	Provisional []rules.Term
+	// Scripts, if set, remembers rules.ScriptRenderings by file, which Judge
+	// would otherwise work out for every unit; the preview, which judges many
+	// units of one file, sets it. Nil means no cache. See rules.ScriptCache.
+	Scripts *rules.ScriptCache
 	// Now is the clock: the time of the batch id and the base of lease expiry.
 	// The zero value means the current time.
 	Now time.Time
@@ -435,7 +439,13 @@ func appendUnit(units []string, key string) []string {
 // the provisional terms in force (ActiveProvisional); those returned are
 // marked Provisional, whether they came so or not.
 func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.Term {
-	terms := r.GlossaryHits(file, kr)
+	return termsIn(r.GlossaryHits(file, kr), provisional, kr)
+}
+
+// termsIn is TermsIn on the glossary hits of kr, which the caller has looked
+// up (rules.Rules.GlossaryHits). It does not write into hits.
+func termsIn(hits []rules.Term, provisional []rules.Term, kr string) []rules.Term {
+	terms := slices.Clip(hits)
 	if len(provisional) == 0 {
 		return terms
 	}
@@ -484,11 +494,17 @@ func CheckNew(r *rules.Rules, file, kr, zh string) []validate.Issue {
 // CheckNewTerms is CheckNew with the provisional terms that occur in kr held
 // to as well, weighed with the glossary terms (TermsIn).
 func CheckNewTerms(r *rules.Rules, provisional []rules.Term, file, kr, zh string) []validate.Issue {
+	return checkNewTerms(r.GlossaryHits(file, kr), provisional, file, kr, zh, r.ScriptRenderings(file))
+}
+
+// checkNewTerms is CheckNewTerms on the glossary hits of kr and the script
+// renderings of file, which the caller has worked out.
+func checkNewTerms(hits []rules.Term, provisional []rules.Term, file, kr, zh string, scriptOK []string) []validate.Issue {
 	var terms []validate.Term
-	for _, t := range TermsIn(r, provisional, file, kr) {
+	for _, t := range termsIn(hits, provisional, kr) {
 		terms = append(terms, t.ToValidate())
 	}
-	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: r.ScriptRenderings(file)})
+	return validate.Check(kr, zh, validate.Context{Terms: terms, File: file, ScriptOK: scriptOK})
 }
 
 // ActiveProvisional returns the provisional terms in force, in the order of
