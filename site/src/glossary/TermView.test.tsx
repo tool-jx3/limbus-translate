@@ -165,6 +165,26 @@ describe('TermView, units without the rendering', () => {
       expect(box.selectionEnd).toBe(box.value.length)
     })
 
+    it('drops the status of a slow copy that finishes under other filters, and does not bring it back', async () => {
+      const el = await mount()
+      let done: () => void = () => {}
+      const write = vi.fn(() => new Promise<void>((resolve) => (done = resolve)))
+      vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText: write } })
+      const button = [...el.querySelectorAll<HTMLButtonElement>('.tv-missing button')].find((b) => b.textContent === '複製這些單位')!
+      await act(() => {
+        button.click()
+      })
+      await vi.waitFor(() => expect(write).toHaveBeenCalled())
+      await again(el, route({ family: 'story-main' }))
+      await again(el, route())
+      await act(async () => {
+        done()
+        await Promise.resolve()
+      })
+      await act(async () => {})
+      expect(el.querySelector('.tv-missing .rv-said')?.textContent).toBe('')
+    })
+
     it('copies the units that the filters keep', async () => {
       const text = await copied(await mount(route({ family: 'story-main' })))
       const open = file.missing.filter((u) => !u.accepted && u.family === 'story-main')

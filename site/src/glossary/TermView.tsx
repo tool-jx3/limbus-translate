@@ -260,7 +260,12 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
   // The status belongs to the filters it was said under: under other filters it is hidden at once, and cleared, so that it does not come back with the same filters (the box of the text keeps its focus, so the component is not keyed).
   const said = saidAt.key === filterKey ? saidAt.text : ''
   const setSaid = (text: string) => setSaidAt({ key: filterKey, text })
-  useEffect(() => setSaidAt({ key: '', text: '' }), [filterKey])
+  useEffect(() => {
+    setSaidAt({ key: '', text: '' })
+  }, [filterKey])
+  // Which run of the filters this is, for a copy that finishes late: it says nothing if the filters changed since it started, even if they have come back to the same ones.
+  const run = useRef({ key: filterKey, n: 0 })
+  if (run.current.key !== filterKey) run.current = { key: filterKey, n: run.current.n + 1 }
 
   // The unconfirmed units under the filters, as ID「TW」→ a line each: what to paste to the conversation to decide on them.
   const lines = useMemo(() => missing.filter((u) => u.accepted === undefined && u.id !== undefined).map((u) => copyText(u.id ?? '', stripTags(u.zh))), [missing])
@@ -270,7 +275,9 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
       return
     }
     if (!box.current) return
+    const startedRun = run.current.n
     const result = await copyToClipboard(lines.join('\n'), box.current)
+    if (run.current.n !== startedRun) return
     setSaid(result === 'copied' ? `已複製 ${lines.length} 個單位，貼到對話中再加上你的決定` : '瀏覽器不讓複製，已選取單位，請按 Ctrl/⌘+C')
   }
 
