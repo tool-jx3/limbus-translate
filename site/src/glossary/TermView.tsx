@@ -1,3 +1,4 @@
+import type { Ref } from 'preact'
 import { useMemo, useRef, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { loadGlossary, loadGlossaryEntry } from '../data'
@@ -222,6 +223,30 @@ function UsedList({ units, krMark, zhMark }: { units: GlossaryUnit[]; krMark: Re
   )
 }
 
+/** The units without the rendering, 100 at a time; keyed by the filters, like UsedList. */
+function MissingList({ units, mark, listRef }: { units: GlossaryUnit[]; mark: RegExp | undefined; listRef: Ref<HTMLUListElement> }) {
+  const [limit, setLimit] = useState(PAGE)
+  const shown = Math.min(units.length, limit)
+  return (
+    <>
+      {units.length === 0 ? (
+        <p class="rv-empty">沒有符合的單位</p>
+      ) : (
+        <ul class="rv-tunits tv-list" ref={listRef}>
+          {units.slice(0, shown).map((u) => (
+            <MissingUnit key={u.key} u={u} mark={mark} />
+          ))}
+        </ul>
+      )}
+      {shown < units.length && (
+        <button type="button" class="rv-more" onClick={() => setLimit(shown + PAGE)}>
+          再顯示 {PAGE} 個（共 {units.length}）
+        </button>
+      )}
+    </>
+  )
+}
+
 /** The units the entry file holds, under the filters of the address. */
 function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; file: GlossaryFile }) {
   const filter = filterOf(route)
@@ -262,15 +287,7 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
             {said}
           </span>
         </div>
-        {missing.length === 0 ? (
-          <p class="rv-empty">沒有符合的單位</p>
-        ) : (
-          <ul class="rv-tunits tv-list" ref={list}>
-            {missing.map((u) => (
-              <MissingUnit key={u.key} u={u} mark={krMark} />
-            ))}
-          </ul>
-        )}
+        <MissingList key={filterKey} listRef={list} units={missing} mark={krMark} />
       </section>
       <section class="tv-used">
         <h2>用了譯名 {used.length} 項</h2>

@@ -185,6 +185,54 @@ describe('TermView, units with the rendering', () => {
   })
 })
 
+describe('TermView, units without the rendering, paged', () => {
+  const missingUnits = (n: number): GlossaryUnit[] =>
+    Array.from({ length: n }, (_, i) => ({
+      key: `StoryData/S9999.json|/dataList/${i}/content`,
+      id: `ID${String(i).padStart(3, '0')}`,
+      family: 'story-main',
+      top: 'StoryData/',
+      origin: i % 2 === 0 ? 'paratranz' : 'human',
+      kr: `…대상 ${i}…`,
+      zh: `…目標 ${i}…`,
+    }))
+  const docs = { [`glossary/aaaaaaaa-bbbbbbbb.json`]: { id: ID, missing: missingUnits(150), used: [] } }
+  const more = (el: HTMLElement) => el.querySelector<HTMLButtonElement>('.tv-missing .rv-more')
+
+  it('shows 100 first and the rest after one click, with the count over all of them', async () => {
+    const el = await mount(route(), docs)
+    expect(missingItems(el)).toHaveLength(100)
+    expect(heading(el, 'tv-missing')).toBe('沒用譯名 150 項')
+    expect(more(el)?.textContent).toBe('再顯示 100 個（共 150）')
+    await act(() => more(el)!.click())
+    expect(missingItems(el)).toHaveLength(150)
+    expect(more(el)).toBeNull()
+  })
+
+  it('goes back to 100 when a filter changes', async () => {
+    const el = await mount(route(), docs)
+    await act(() => more(el)!.click())
+    expect(missingItems(el)).toHaveLength(150)
+    await again(el, route({ q: '目標' }))
+    expect(missingItems(el)).toHaveLength(100)
+  })
+
+  it('copies every filtered unconfirmed unit, not only the ones on screen', async () => {
+    const el2 = await mount(route(), docs)
+    const write = vi.fn(async () => {})
+    vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText: write } })
+    const button = [...el2.querySelectorAll<HTMLButtonElement>('.tv-missing button')].find((b) => b.textContent === '複製這些單位')!
+    await act(() => {
+      button.click()
+    })
+    await vi.waitFor(() => expect(write).toHaveBeenCalled())
+    const lines = (write.mock.calls[0] as unknown as [string])[0].split('\n')
+    expect(lines).toHaveLength(150)
+    expect(lines[149]).toBe('ID149「…目標 149…」→ ')
+    expect(missingItems(el2)).toHaveLength(100)
+  })
+})
+
 describe('TermView, the filters', () => {
   const both = (el: HTMLElement) => [missingItems(el).length, usedItems(el).length]
   const count = (pred: (u: GlossaryUnit) => boolean) => [file.missing.filter(pred).length, file.used.filter(pred).length]
