@@ -75,7 +75,7 @@ var (
 )
 
 // skillCharacter finds the character of a personality skill file by Code.
-// CharacterByFile does not, as it also picks guides and speakers.
+// CharacterByFile leaves skill files out, since it also picks the translator's guides and the speakers.
 func (r *Rules) skillCharacter(stem string) (*Character, bool) {
 	m := skillPersonaRe.FindStringSubmatch(stem)
 	if m == nil {
