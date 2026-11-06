@@ -2789,6 +2789,8 @@ button.chip {
 /* The translation preview. */
 .preview {
   display: grid;
+  /* minmax(0, 1fr), not auto: an auto track grows to the longest line of a pre, and the page scrolls sideways */
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
   min-width: 0;
 }
@@ -2801,7 +2803,19 @@ button.chip {
 
 .pv-head {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.25rem;
+}
+
+.pv-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.pv-json {
+  min-width: 0;
 }
 
 .pv-head code,
@@ -2822,6 +2836,7 @@ button.chip {
 
 .pv-section {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.4rem;
   min-width: 0;
   padding: 0.5rem 0.8rem;

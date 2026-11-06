@@ -10,5 +10,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.{ts,tsx}'],
+    // layout.test.ts reads styles.css as text; by default the test runner empties CSS files.
+    css: { include: /styles\.css/ },
   },
 })
