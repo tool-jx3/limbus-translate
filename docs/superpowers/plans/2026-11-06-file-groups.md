@@ -304,7 +304,7 @@ func (r *Rules) FileTag(file string) (Tag, bool)
   - `GroupDir` 改名 `GroupNode = "group"`，群組名是 `group:<Top>`；
   - `Dirs`、`RestGroup` 移除；
   - `Thresholds` 加 `HardRate float64`（json `hard_rate`，0.95）、`HardMinN int`（json `hard_min_n`，20）；
-  - `Entry` 加 `Check string`（json `check,omitempty`）、`N int`、`Used int`、`Rate float64`、`HardCandidate bool`（json `n`、`used`、`rate`、`hard_candidate`）。這幾個數以族群群組加總（不含詞中詞）。
+  - `Entry` 加 `Check string`（json `check,omitempty`）、`N int`、`Used int`、`Rate float64`、`HardCandidate bool`（json `n`、`used`、`rate`、`hard_candidate`）。這幾個數就是 `Report.Units` 裡該條目的單位：實際命中，substring 條目的詞中詞也算（2026-11-06 執行時的判斷，取代原本「族群群組加總、不含詞中詞」）。
   - `Report.Units map[string][]EntryUnit`（json `-`），鍵是 `Entry.ID`：
 
 ```go
@@ -391,7 +391,7 @@ type GlossaryUnit struct {
   - 斷言：
     - 頂層依檔數多到少排；
     - `Skills` 只有一個子群 `Skills_Enemy`，所以不顯示子群，檔直接列在 `Skills` 下；
-    - `StoryData/S` 底下有 `chapter` 子層「第 10 章」「第 9 章」，依章號由小到大；
+    - `StoryData` 底下 `P` 只有一個檔、收進頂層後只剩 `S` 一個子群，所以不顯示子群，`chapter` 子層「第 9 章」「第 10 章」直接掛在頂層下，依章號由小到大（執行時依規格更正）；
     - 只有一個檔的子群不顯示；
     - 第三層即使只有一個檔也顯示。
 - [ ] **6.2 測試先行**：`TestIndexFamiliesCarryNodes`：每個族群帶 `glossary` 與 `nodes`。`glossary` 省略的族群輸出 `"hard"`。
@@ -504,4 +504,4 @@ type GlossaryUnit struct {
 4. **「詞彙」頁的連結。**
    - 詳情連到審核頁時，用 `#/r/warnings?q=<termgroup id>`；
    - 連到詞彙範圍時，用 `#/r/scope?id=<entry id>`（現有的深連結）。
-5. **`Entry.N`、`Entry.Used`、`Entry.Rate`** 以族群群組加總，不含詞中詞，與詞彙範圍頁的數字一致。
+5. **`Entry.N`、`Entry.Used`、`Entry.Rate`** 就是 `Report.Units` 裡該條目的單位數（實際命中；substring 條目的詞中詞也算），「詞彙」頁的列表數字、詳情與「可考慮退回」用同一組數字（執行時改定，原為族群群組加總）。
