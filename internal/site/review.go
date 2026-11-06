@@ -209,7 +209,7 @@ type Review struct {
 	Queued map[string]bool
 	// Scope is where the translations use each glossary entry, and the
 	// proposals of where it should apply (scope.Analyze), over the units the
-	// warnings check.
+	// warnings check, with the provisional terms in force the warnings weigh.
 	Scope scope.Report
 }
 
@@ -492,7 +492,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		NoteText:      noteText,
 		Queued:        queued,
 		NotesUnplaced: len(rv.Notes) - placedCount,
-		Scope:         scope.Analyze(scope.Inputs{Rules: in.Rules, Units: scopeUnits, Declined: declined}),
+		Scope:         scope.Analyze(scope.Inputs{Rules: in.Rules, Units: scopeUnits, Declined: declined, Provisional: inForce}),
 	}
 	for key, ids := range noteRefs {
 		out.Refs[key] = append(out.Refs[key], ids...)

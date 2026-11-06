@@ -1494,8 +1494,8 @@ func TestNewTermHitUsedIsTermUsed(t *testing.T) {
 func TestReviewScope(t *testing.T) {
 	in, files := reviewInputs(t)
 	in.Rules.Glossary = []rules.Term{
-		{KR: rvKR, ZH: "一", Status: rules.StatusApproved},
-		{KR: "다섯", ZH: "五", Status: rules.StatusApproved}, // only in the stale unit
+		{KR: rvKR, ZH: "絕無此譯", Status: rules.StatusApproved}, // no unit uses it
+		{KR: "다섯", ZH: "五", Status: rules.StatusApproved},    // only in the stale unit
 	}
 	withBatch(in, k(rvA, 1), "b1")
 	in.Review.Notes = []store.Note{noteOf(k(rvA, 1), "b1", rvKR, "하나 在這裡譯為壹")}
@@ -1507,14 +1507,14 @@ func TestReviewScope(t *testing.T) {
 		t.Fatalf("entries = %+v, want 하나 and 다섯", r.Scope.Entries)
 	}
 	one, five := r.Scope.Entries[0], r.Scope.Entries[1]
-	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Used: 2}, {Name: scope.RestGroup, Kind: scope.GroupDir, N: 3, Used: 2}}
-	if !reflect.DeepEqual(one.Groups, wantGroups) || one.Explained != 1 || one.Unexplained != 0 {
-		t.Errorf("하나 = %+v, want groups %+v and the one unit that lacks it explained by its note", one, wantGroups)
+	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Used: 0}, {Name: scope.RestGroup, Kind: scope.GroupDir, N: 3, Used: 0}}
+	if !reflect.DeepEqual(one.Groups, wantGroups) || one.Explained != 1 || one.Unexplained != 2 {
+		t.Errorf("하나 = %+v, want groups %+v and the one unit with a note explained", one, wantGroups)
 	}
 	if len(five.Groups) != 0 {
 		t.Errorf("다섯 = %+v, want no units: its one unit has a record of another KR", five)
 	}
-	mixed := itemid.Scope(rvKR, "一", scope.KindMixed)
+	mixed := itemid.Scope(rvKR, "絕無此譯", scope.KindMixed)
 	if len(r.Scope.Proposals) != 1 || r.Scope.Proposals[0].ID != mixed || r.Scope.Proposals[0].Declined != nil {
 		t.Fatalf("proposals = %+v, want %s", r.Scope.Proposals, mixed)
 	}
@@ -1532,5 +1532,32 @@ func TestReviewScope(t *testing.T) {
 	}
 	if c := countReview(r); c.Scope != 0 {
 		t.Errorf("counts = %+v, want no scope proposal waiting once it is declined", c)
+	}
+}
+
+// The scope report weighs the provisional terms in force as the warnings do:
+// 히스클리프 inside the provisional 시 히스클리프 is no hit of it there, so
+// the report counts none of its units, as the review page warns of none.
+func TestReviewScopeWeighsProvisionalTerms(t *testing.T) {
+	in, files := reviewInputs(t)
+	in.Rules.Glossary = []rules.Term{{KR: "히스클리프", ZH: "絕無此譯", Status: rules.StatusApproved}}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if e := r.Scope.Entries[0]; e.Unexplained != 2 {
+		t.Fatalf("without the provisional term: %+v, want the 2 units that lack it", e)
+	}
+	in.Review.Provisional = []store.ProvisionalTerm{{KR: rvKana, ZH: rvKanaZ, Key: k(rvA, 2), Batch: "b1", RawTag: "t1", Time: "2026-11-06T00:00:00Z"}}
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	for _, w := range r.Warnings {
+		if w.Term != nil && w.Term.KR == "히스클리프" {
+			t.Fatalf("the review page warns of 히스클리프 under the provisional term: %+v", w)
+		}
+	}
+	if e := r.Scope.Entries[0]; len(e.Groups) != 0 || e.Unexplained != 0 || len(r.Scope.Proposals) != 0 {
+		t.Errorf("with the provisional term: %+v, proposals %+v; want no hit, as the warnings have none", e, r.Scope.Proposals)
 	}
 }

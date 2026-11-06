@@ -14,6 +14,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -60,16 +61,22 @@ type Inputs struct {
 	Rules    *rules.Rules
 	Units    []Unit
 	Declined map[string]*suggest.Confirmed
+	// Provisional are the provisional terms in force
+	// (batch.ActiveProvisional), which cover glossary entries as on the
+	// review page (batch.TermsIn).
+	Provisional []rules.Term
 }
 
 // Thresholds are the limits the proposals are made by.
 type Thresholds struct {
 	// MinN is the fewest units a group, or the compound units, need to say
-	// anything.
+	// anything, and the fewest units without the rendering that make a group
+	// mixed.
 	MinN int `json:"min_n"`
 	// Used is the least share of units that use the rendering for a group
 	// to use it; NotUsed the most for a group not to use it. A group in
-	// between is mixed.
+	// between is mixed when MinN of its units or more lack the rendering;
+	// with fewer it says nothing.
 	Used    float64 `json:"used"`
 	NotUsed float64 `json:"not_used"`
 	// Explained is the fewest explained units that make an explained proposal.
@@ -120,6 +127,21 @@ type Count struct {
 }
 
 // Proposal is one change of an entry, or one entry a person should look at.
+//
+// MixedGroups are the groups of the entry that use the rendering in part, by
+// name (Group.Name), on a proposal of where the entry applies (not-files,
+// files, mixed); empty on the others, and on a mixed proposal of an entry
+// that no group uses. A change of files or not_files is proposed beside them
+// when the other kind of group splits cleanly: the person sees what it leaves
+// as it is.
+//
+// The effect is the review page before and after the change, over every
+// entry (shorter entries that a changed entry no longer covers, the entry
+// without files that takes a KR text an entry with files gives up):
+// WarnRemoved and WarnAdded are the term-missing warnings that go and come,
+// UsedLost and UsedGained the hits that use their rendering that go (units the
+// check no longer covers) and come. A mixed or explained proposal changes
+// nothing and has none.
 type Proposal struct {
 	ID          string             `json:"id"`
 	Kind        string             `json:"kind"`
@@ -127,8 +149,11 @@ type Proposal struct {
 	ZH          string             `json:"zh"`
 	Patterns    []string           `json:"patterns"`
 	Match       string             `json:"match"`
+	MixedGroups []string           `json:"mixed_groups"`
 	WarnRemoved int                `json:"warn_removed"`
+	WarnAdded   int                `json:"warn_added"`
 	UsedLost    int                `json:"used_lost"`
+	UsedGained  int                `json:"used_gained"`
 	Flagged     bool               `json:"flagged"`
 	Examples    []Example          `json:"examples"`
 	Declined    *suggest.Confirmed `json:"declined,omitempty"`
@@ -181,25 +206,28 @@ func counted(o string) bool {
 // then in glossary order. Only the units of a counted origin (Claude's, a
 // person's, Paratranz's) count.
 //
-// Whether an entry hits a unit is what Rules.GlossaryHits says, scopes and the
-// longer entry that covers a shorter one included. A unit's groups are its
+// Whether an entry hits a unit is what the review page says: the glossary
+// terms of batch.TermsIn with in.Provisional, that is Rules.GlossaryHits
+// (scopes, and the longer entry that covers a shorter one), the provisional
+// terms in force covering entries too. A unit's groups are its
 // family (Rules.Family, as family:<id>) and its directory group (Dirs, or
 // RestGroup). A unit is a compound unit of an entry when its hit depends on
-// the entry's match: of a word entry, a unit that GlossaryHits would give the
-// entry as a substring entry (its KR holds the entry inside a longer word); of
-// a substring entry, a unit it hits that GlossaryHits would not give it as a
-// word entry. The groups count the hits that are no compound units, so that
+// the entry's match: of a word entry, a unit the entry would hit as a
+// substring entry (its KR holds the entry inside a longer word); of a
+// substring entry, a unit it hits that it would not hit as a word entry. The groups count the hits that are no compound units, so that
 // the two questions, where and how the entry matches, stay apart.
 //
 // The proposals list only what differs from the entry as it is, and each
-// says what it does to the entry as it is: WarnRemoved, the hits that lack
-// the rendering and would be hits no more (the term-missing warnings of the
-// review page that go), and UsedLost, the hits that use it and would be hits
-// no more (units the check no longer covers). A proposal that adds hits
-// (substring) removes and loses nothing; the entry's Compound says what it
-// adds. Flagged marks a proposal that loses LostUnits units or more, or a
-// LostShare of the hits that use the rendering. A proposal whose id is in
-// in.Declined carries its confirmation.
+// says what it does to the review page as it is (see Proposal). Flagged marks
+// a proposal whose UsedLost is LostUnits or more, or a LostShare of the hits
+// of the entry that use its rendering. A proposal whose id is in in.Declined
+// carries its confirmation.
+//
+// Of the two kinds of group, each may propose a change of files or not_files
+// (see scopeOption); of two, the one with fewer patterns is proposed, then
+// the one that loses fewer checks, then the one that removes more warnings,
+// then the families'. Without one, a mixed proposal is made when a group uses
+// the rendering in part, or no group of a kind uses it.
 func Analyze(in Inputs) Report {
 	if in.Rules == nil {
 		return Empty()
@@ -236,8 +264,12 @@ type hit struct {
 
 // acc is what Analyze gathers of one entry.
 type acc struct {
-	term   rules.Term
-	groups map[string]*Group
+	term rules.Term
+	// idx is the place of the entry in analysis.accs; contains are the units
+	// whose KR text holds its KR, which a change of the entry may change.
+	idx      int
+	contains []int32
+	groups   map[string]*Group
 	// hits are the units the entry hits; extra the compound units of a word
 	// entry.
 	hits, extra            []hit
@@ -250,9 +282,10 @@ type acc struct {
 type place struct{ family, dir string }
 
 type analysis struct {
-	r     *rules.Rules
-	units []Unit
-	accs  []*acc
+	r           *rules.Rules
+	provisional []rules.Term
+	units       []Unit
+	accs        []*acc
 	// sameKR holds the KR texts of more than one entry: limiting one of them
 	// to files would make it stand for the others there.
 	sameKR map[string]bool
@@ -268,7 +301,7 @@ type analysis struct {
 }
 
 func newAnalysis(in Inputs) *analysis {
-	an := &analysis{r: in.Rules, units: in.Units, sameKR: map[string]bool{}, places: map[string]place{}, byRune: map[rune][]int{}}
+	an := &analysis{r: in.Rules, provisional: in.Provisional, units: in.Units, sameKR: map[string]bool{}, places: map[string]place{}, byRune: map[rune][]int{}}
 	n := map[string]int{}
 	for _, t := range in.Rules.Glossary {
 		if t.Status != rules.StatusApproved || t.KR == "" {
@@ -276,7 +309,7 @@ func newAnalysis(in Inputs) *analysis {
 		}
 		first, _ := utf8.DecodeRuneInString(t.KR)
 		an.byRune[first] = append(an.byRune[first], len(an.accs))
-		an.accs = append(an.accs, &acc{term: t, groups: map[string]*Group{}})
+		an.accs = append(an.accs, &acc{term: t, idx: len(an.accs), groups: map[string]*Group{}})
 		if n[t.KR]++; n[t.KR] > 1 {
 			an.sameKR[t.KR] = true
 		}
@@ -305,35 +338,24 @@ func (an *analysis) contained(plain string) []int {
 }
 
 // unit counts the unit u, number i of the inputs.
-//
-// GlossaryHits is asked about the entries whose KR the text holds only: of the
-// others none occurs, so none would be a hit, and none would take the place
-// of another (an entry with files stands for the entries of its KR text, and
-// a covering entry occurs where it covers). The answer is the same as of the
-// whole glossary, for a fraction of the work.
 func (an *analysis) unit(i int32, u Unit) {
-	idx := an.contained(validate.MatchText(u.KR))
+	idx := an.setCands(u)
 	if len(idx) == 0 {
 		return
 	}
-	an.cands = an.cands[:0]
-	for _, j := range idx {
-		an.cands = append(an.cands, an.accs[j].term)
-	}
-	sub := *an.r
-	sub.Glossary = an.cands
-	an.isHit = marks(an.isHit, an.cands, sub.GlossaryHits(u.File, u.KR))
+	an.isHit = an.hitsIn(u, -1, rules.Term{}, an.isHit)
 	isHit := an.isHit
 	pl := an.placeOf(u.File)
 	for c, j := range idx {
 		a := an.accs[j]
+		a.contains = append(a.contains, i)
 		t := a.term
 		switch {
 		case isHit[c]:
 			h := hit{unit: i, used: t.Used(u.ZH)}
-			h.compound = t.Match == rules.MatchSubstring && !an.hitsAs(&sub, c, withMatch(t, rules.MatchWord), u)
+			h.compound = t.Match == rules.MatchSubstring && !an.hitsAs(u, c, withMatch(t, rules.MatchWord))
 			a.add(h, pl, u.Note)
-		case t.Match != rules.MatchSubstring && an.hitsAs(&sub, c, withMatch(t, rules.MatchSubstring), u):
+		case t.Match != rules.MatchSubstring && an.hitsAs(u, c, withMatch(t, rules.MatchSubstring)):
 			h := hit{unit: i, used: t.Used(u.ZH), compound: true}
 			a.compound.N++
 			if h.used {
@@ -344,20 +366,88 @@ func (an *analysis) unit(i int32, u Unit) {
 	}
 }
 
-// hitsAs reports whether GlossaryHits of u would give entry c of an.cands
-// (sub's glossary) if it were alt.
-func (an *analysis) hitsAs(sub *rules.Rules, c int, alt rules.Term, u Unit) bool {
-	an.alt = append(an.alt[:0], an.cands...)
-	an.alt[c] = alt
-	sub.Glossary = an.alt
-	hits := sub.GlossaryHits(u.File, u.KR)
-	sub.Glossary = an.cands
-	an.altHit = marks(an.altHit, an.alt, hits)
+// setCands sets an.cands to the entries whose KR the text of u holds and
+// returns their places in an.accs, in glossary order.
+//
+// Only they are asked about: of the others none occurs, so none would be a
+// hit, and none would take the place of another (an entry with files stands
+// for the entries of its KR text, and a covering entry occurs where it
+// covers). The answer is the same as of the whole glossary, for a fraction of
+// the work.
+func (an *analysis) setCands(u Unit) []int {
+	idx := an.contained(validate.MatchText(u.KR))
+	an.cands = an.cands[:0]
+	for _, j := range idx {
+		an.cands = append(an.cands, an.accs[j].term)
+	}
+	return idx
+}
+
+// hitsIn sets into[k] to whether entry k of an.cands hits u, entry c taken as
+// alt when c is 0 or more, and returns into. The hits are those of the review
+// page: the glossary terms of batch.TermsIn over the entries and the
+// provisional terms in force.
+func (an *analysis) hitsIn(u Unit, c int, alt rules.Term, into []bool) []bool {
+	terms := an.cands
+	if c >= 0 {
+		an.alt = append(an.alt[:0], an.cands...)
+		an.alt[c] = alt
+		terms = an.alt
+	}
+	sub := *an.r
+	sub.Glossary = terms
+	hits := slices.DeleteFunc(batch.TermsIn(&sub, an.provisional, u.File, u.KR), func(t rules.Term) bool { return t.Provisional })
+	return marks(into, terms, hits)
+}
+
+// hitsAs reports whether entry c of an.cands would hit u if it were alt.
+func (an *analysis) hitsAs(u Unit, c int, alt rules.Term) bool {
+	an.altHit = an.hitsIn(u, c, alt, an.altHit)
 	return an.altHit[c]
 }
 
+// effect is what changing an entry does to the review page.
+type effect struct {
+	removed, added, lost, gained int
+	flagged                      bool
+}
+
+// effectOf returns what the entry of a does to the review page as alt: over
+// the units that hold its KR, the hits of every entry before and after.
+func (an *analysis) effectOf(a *acc, alt rules.Term) effect {
+	var e effect
+	before := []bool{}
+	for _, i := range a.contains {
+		u := an.units[i]
+		idx := an.setCands(u)
+		c := slices.Index(idx, a.idx)
+		before = an.hitsIn(u, -1, rules.Term{}, before)
+		after := an.hitsIn(u, c, alt, an.altHit)
+		an.altHit = after
+		for k, j := range idx {
+			if before[k] == after[k] {
+				continue
+			}
+			used := an.accs[j].term.Used(u.ZH) // alt has the renderings of the entry
+			switch {
+			case before[k] && used:
+				e.lost++
+			case before[k]:
+				e.removed++
+			case used:
+				e.gained++
+			default:
+				e.added++
+			}
+		}
+	}
+	e.flagged = a.flag(e.lost)
+	return e
+}
+
 // marks sets into[i] to whether terms[i] is among hits, which GlossaryHits
-// returned for terms: a subsequence of them, in their order.
+// (or batch.TermsIn, without its provisional terms) returned for terms: a
+// subsequence of them, in their order.
 func marks(into []bool, terms, hits []rules.Term) []bool {
 	into = slices.Grow(into[:0], len(terms))[:len(terms)]
 	j := 0
@@ -480,10 +570,10 @@ func matchOf(t rules.Term) string {
 
 // The classes of a group.
 const (
-	classFew     = iota // fewer than minN units
+	classFew     = iota // says nothing: fewer than minN units, or fewer than minN without the rendering in a group in between
 	classUsed           // usedShare or more use the rendering
 	classNotUsed        // notUsedShare or fewer
-	classMixed
+	classMixed          // in between, and minN units or more lack the rendering
 )
 
 func classOf(n, used int) int {
@@ -494,8 +584,22 @@ func classOf(n, used int) int {
 		return classUsed
 	case share <= notUsedShare:
 		return classNotUsed
+	case n-used < minN:
+		return classFew
 	}
 	return classMixed
+}
+
+// mixedGroups returns the names of the groups of a that use the rendering in
+// part, in group order.
+func (an *analysis) mixedGroups(a *acc) []string {
+	out := []string{}
+	for _, g := range an.orderedGroups(a) {
+		if classOf(g.N, g.Used) == classMixed {
+			out = append(out, g.Name)
+		}
+	}
+	return out
 }
 
 // option is a change of files or not_files that one kind of group proposes.
@@ -503,9 +607,8 @@ type option struct {
 	kind     string
 	patterns []string
 	// left are the groups whose units the change leaves out.
-	left          []string
-	removed, lost int
-	flagged       bool
+	left []string
+	effect
 }
 
 // proposals returns the proposals about a.
@@ -513,36 +616,48 @@ func (an *analysis) proposals(a *acc) []Proposal {
 	var out []Proposal
 	t := a.term
 	newProposal := func(kind string) Proposal {
-		return Proposal{ID: itemid.Scope(t.KR, t.ZH, kind), Kind: kind, KR: t.KR, ZH: t.ZH, Patterns: []string{}, Examples: []Example{}}
+		return Proposal{ID: itemid.Scope(t.KR, t.ZH, kind), Kind: kind, KR: t.KR, ZH: t.ZH, Patterns: []string{}, MixedGroups: []string{}, Examples: []Example{}}
+	}
+
+	withEffect := func(p Proposal, e effect) Proposal {
+		p.WarnRemoved, p.WarnAdded, p.UsedLost, p.UsedGained, p.Flagged = e.removed, e.added, e.lost, e.gained, e.flagged
+		return p
 	}
 
 	// Where: by the families, and by the directories.
 	var opts []option
-	var mixedGroups []string
+	var mixedOrUnused []string
 	for _, kind := range []string{GroupFamily, GroupDir} {
-		o, mixed := an.scopeOption(a, kind)
+		o, groups := an.scopeOption(a, kind)
 		if o != nil {
-			an.effect(a, o)
+			alt := t
+			switch o.kind {
+			case KindNotFiles:
+				alt.NotFiles = append(slices.Clone(t.NotFiles), o.patterns...)
+			case KindFiles:
+				alt.Files = o.patterns
+			}
+			o.effect = an.effectOf(a, alt)
 			opts = append(opts, *o)
 		}
-		mixedGroups = append(mixedGroups, mixed...)
+		mixedOrUnused = append(mixedOrUnused, groups...)
 	}
-	// The change that loses fewer checks, then the shorter, then the one that
-	// loses fewer units and removes more warnings; the families first.
+	// The shorter change, then the one that loses fewer checks, then the one
+	// that removes more warnings; the families first.
 	slices.SortStableFunc(opts, func(x, y option) int {
-		return cmp.Or(compareBool(x.flagged, y.flagged), cmp.Compare(len(x.patterns), len(y.patterns)),
-			cmp.Compare(x.lost, y.lost), cmp.Compare(y.removed, x.removed))
+		return cmp.Or(cmp.Compare(len(x.patterns), len(y.patterns)), cmp.Compare(x.lost, y.lost), cmp.Compare(y.removed, x.removed))
 	})
 	switch {
 	case len(opts) > 0:
 		o := opts[0]
-		p := newProposal(o.kind)
-		p.Patterns, p.WarnRemoved, p.UsedLost, p.Flagged = o.patterns, o.removed, o.lost, o.flagged
+		p := withEffect(newProposal(o.kind), o.effect)
+		p.Patterns, p.MixedGroups = o.patterns, an.mixedGroups(a)
 		p.Examples = an.groupExamples(a, o.left)
 		out = append(out, p)
-	case len(mixedGroups) > 0:
+	case len(mixedOrUnused) > 0:
 		p := newProposal(KindMixed)
-		p.Examples = an.groupExamples(a, mixedGroups)
+		p.MixedGroups = an.mixedGroups(a)
+		p.Examples = an.groupExamples(a, mixedOrUnused)
 		out = append(out, p)
 	}
 
@@ -550,15 +665,13 @@ func (an *analysis) proposals(a *acc) []Proposal {
 	c := a.compound
 	switch {
 	case t.Match != rules.MatchSubstring && c.N >= minN && float64(c.Used) >= usedShare*float64(c.N):
-		p := newProposal(KindSubstring)
+		p := withEffect(newProposal(KindSubstring), an.effectOf(a, withMatch(t, rules.MatchSubstring)))
 		p.Match = rules.MatchSubstring
 		p.Examples = an.unitExamples(a, a.extra)
 		out = append(out, p)
 	case t.Match == rules.MatchSubstring && c.N >= minN && float64(c.Used) <= notUsedShare*float64(c.N):
-		p := newProposal(KindWord)
+		p := withEffect(newProposal(KindWord), an.effectOf(a, withMatch(t, rules.MatchWord)))
 		p.Match = rules.MatchWord
-		p.WarnRemoved, p.UsedLost = c.N-c.Used, c.Used
-		p.Flagged = a.flag(c.Used)
 		p.Examples = an.unitExamples(a, slices.DeleteFunc(slices.Clone(a.hits), func(h hit) bool { return !h.compound }))
 		out = append(out, p)
 	}
@@ -589,10 +702,11 @@ func compareBool(x, y bool) int {
 //
 // Of groups (MinN units or more) that do not use the rendering beside groups
 // that use it, and none in part: not_files gets the first, or files is
-// limited to the second, when they are fewer. RestGroup names no files: a
-// change that needs it is not made. files is not proposed for an entry that
-// has files, or whose KR text has another entry, which the change would leave
-// out of those files.
+// limited to the second, when they are fewer. A group not_files takes out
+// already has no hits, so not_files never gets a pattern it has. RestGroup
+// names no files: a change that needs it is not made. files is not proposed
+// for an entry that has files, or whose KR text has another entry, which the
+// change would leave out of those files.
 func (an *analysis) scopeOption(a *acc, kind string) (*option, []string) {
 	var notUsed, used, mixed []string
 	for _, g := range an.orderedGroups(a) {
@@ -618,9 +732,7 @@ func (an *analysis) scopeOption(a *acc, kind string) (*option, []string) {
 	}
 	var nf, fl *option
 	if !slices.Contains(notUsed, RestGroup) {
-		if pats := slices.DeleteFunc(slices.Clone(notUsed), func(p string) bool { return slices.Contains(a.term.NotFiles, p) }); len(pats) > 0 {
-			nf = &option{kind: KindNotFiles, patterns: pats, left: notUsed}
-		}
+		nf = &option{kind: KindNotFiles, patterns: notUsed, left: notUsed}
 	}
 	if !slices.Contains(used, RestGroup) && len(a.term.Files) == 0 && !an.sameKR[a.term.KR] {
 		fl = &option{kind: KindFiles, patterns: used, left: notUsed}
@@ -629,34 +741,6 @@ func (an *analysis) scopeOption(a *acc, kind string) (*option, []string) {
 		return fl, nil
 	}
 	return nf, nil
-}
-
-// effect sets what the change o does to the hits of a.
-func (an *analysis) effect(a *acc, o *option) {
-	t := a.term
-	switch o.kind {
-	case KindNotFiles:
-		t.NotFiles = append(slices.Clone(t.NotFiles), o.patterns...)
-	case KindFiles:
-		t.Files = o.patterns
-	}
-	in := map[string]bool{}
-	for _, h := range a.hits {
-		file := an.units[h.unit].File
-		still, ok := in[file]
-		if !ok {
-			still = an.r.Applies(t, file)
-			in[file] = still
-		}
-		switch {
-		case still:
-		case h.used:
-			o.lost++
-		default:
-			o.removed++
-		}
-	}
-	o.flagged = a.flag(o.lost)
 }
 
 // flag reports whether losing the check of lost units that use the rendering
@@ -743,26 +827,33 @@ func snippet(text []rune, start, n int) string {
 
 // Title says in one line what the proposal changes and what that does.
 func (p Proposal) Title() string {
-	entry := p.KR + " → " + p.ZH
-	effect := fmt.Sprintf("（移除 %d 個警告，%d 個用了譯名的單位不再檢查", p.WarnRemoved, p.UsedLost)
+	entry := "詞彙範圍：" + p.KR + " → " + p.ZH
+	effect := fmt.Sprintf("（移除 %d 個警告、新增 %d 個；%d 個用了譯名的單位不再檢查、%d 個開始檢查", p.WarnRemoved, p.WarnAdded, p.UsedLost, p.UsedGained)
 	if p.Flagged {
 		effect += "；失去檢查偏多"
 	}
 	effect += "）"
+	mixed := ""
+	if len(p.MixedGroups) > 0 {
+		mixed = "；" + strings.Join(p.MixedGroups, "、") + " 只部分用了譯名"
+	}
 	pats := strings.Join(p.Patterns, "、")
 	switch p.Kind {
 	case KindNotFiles:
-		return "詞彙範圍：" + entry + " 的 not_files 加上 " + pats + effect
+		return entry + " 的 not_files 加上 " + pats + effect + mixed
 	case KindFiles:
-		return "詞彙範圍：" + entry + " 的 files 限定為 " + pats + effect
+		return entry + " 的 files 限定為 " + pats + effect + mixed
 	case KindSubstring:
-		return "詞彙範圍：" + entry + " 改為 match: substring（詞中詞也比對，不移除警告）"
+		return entry + " 改為 match: substring" + effect
 	case KindWord:
-		return "詞彙範圍：" + entry + " 改為 match: word" + effect
+		return entry + " 改為 match: word" + effect
 	case KindMixed:
-		return "詞彙範圍：" + entry + " 有群組只部分用了譯名，需要人看"
+		if len(p.MixedGroups) == 0 {
+			return entry + " 各群組都很少用這個譯名，需要人看"
+		}
+		return entry + " 有群組只部分用了譯名（" + strings.Join(p.MixedGroups, "、") + "），需要人看"
 	case KindExplained:
-		return "詞彙範圍：" + entry + " 常有 note 說明不用譯名，考慮 also、縮小範圍或改譯名"
+		return entry + " 常有 note 說明不用譯名，考慮 also、縮小範圍或改譯名"
 	}
-	return "詞彙範圍：" + entry
+	return entry
 }

@@ -183,16 +183,51 @@ func TestWord(t *testing.T) {
 // 복도 is half 走廊 in the stories: a person looks.
 func TestMixed(t *testing.T) {
 	f := &fixture{}
-	f.add(storyFile, 2, "복도", "走廊")
-	f.add(storyFile, 2, "복도", "通道")
+	f.add(storyFile, 3, "복도", "走廊")
+	f.add(storyFile, 3, "복도", "通道")
 	f.add(skillFile, 3, "복도", "走廊")
 	rep := Analyze(Inputs{Rules: testRules(approved("복도", "走廊")), Units: f.units})
 	p := onlyProposal(t, rep, "복도", KindMixed)
-	if len(p.Patterns) != 0 || p.Match != "" || p.WarnRemoved != 0 || p.UsedLost != 0 || p.Flagged {
+	if len(p.Patterns) != 0 || p.Match != "" || p.WarnRemoved != 0 || p.WarnAdded != 0 || p.UsedLost != 0 || p.UsedGained != 0 || p.Flagged {
 		t.Errorf("proposal = %+v, want no change and no effect", p)
 	}
-	if len(p.Examples) != 2 || p.Examples[0].ZH != "通道" || p.Examples[0].Group != "family:story" {
-		t.Errorf("examples = %+v, want the 2 units of the stories that do not use it, once", p.Examples)
+	if !slices.Equal(p.MixedGroups, []string{"family:story", "StoryData/**"}) || !strings.Contains(p.Title(), "只部分用了譯名") {
+		t.Errorf("mixed groups %v, title %q: want the stories, both ways", p.MixedGroups, p.Title())
+	}
+	if len(p.Examples) != 3 || p.Examples[0].ZH != "通道" || p.Examples[0].Group != "family:story" {
+		t.Errorf("examples = %+v, want the 3 units of the stories that do not use it, once", p.Examples)
+	}
+}
+
+// A group that uses the rendering in part, but lacks it in fewer than MinN
+// units, says nothing: it is no mixed group, and it does not keep a change
+// that other groups ask for from being proposed.
+func TestSmallMixedSaysNothing(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 2, "복도", "走廊").add(storyFile, 2, "복도", "通道")
+	f.add(skillFile, 3, "복도", "走廊")
+	if rep := Analyze(Inputs{Rules: testRules(approved("복도", "走廊")), Units: f.units}); len(rep.Proposals) != 0 {
+		t.Errorf("2 of 4 without it: proposals %+v, want none", rep.Proposals)
+	}
+	r, us := notFilesFixture()
+	g := &fixture{units: us}
+	g.add(voiceFile, 2, "보스", "BOSS").add(voiceFile, 2, "보스", "老闆")
+	p := onlyProposal(t, Analyze(Inputs{Rules: r, Units: g.units}), "보스", KindNotFiles)
+	if !slices.Equal(p.Patterns, []string{"family:story"}) || len(p.MixedGroups) != 0 {
+		t.Errorf("proposal = %+v, want not_files family:story and no mixed group", p)
+	}
+}
+
+// No group uses the rendering: a person looks, and the title says so.
+func TestNoGroupUsesIt(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 3, "복도", "通道").add(skillFile, 3, "복도", "通道")
+	p := onlyProposal(t, Analyze(Inputs{Rules: testRules(approved("복도", "走廊")), Units: f.units}), "복도", KindMixed)
+	if len(p.MixedGroups) != 0 || !strings.Contains(p.Title(), "各群組都很少用這個譯名") || strings.Contains(p.Title(), "只部分") {
+		t.Errorf("proposal = %+v, title %q: want no mixed group and the title of a rendering used nowhere", p, p.Title())
+	}
+	if len(p.Examples) != 6 {
+		t.Errorf("examples = %+v, want 3 of each group, no unit twice", p.Examples)
 	}
 }
 
@@ -271,8 +306,9 @@ func TestOnlyTranslationsCount(t *testing.T) {
 	}
 }
 
-// What the entry is set to already is not proposed: a pattern of not_files,
-// substring for an entry that matches so.
+// What the entry is set to already is not proposed: a group not_files takes
+// out has no hits, so its pattern does not come back; an entry that matches as
+// a substring is not proposed substring.
 func TestOnlyDifferences(t *testing.T) {
 	r, us := notFilesFixture()
 	r.Glossary[0].NotFiles = []string{"family:story"}
@@ -311,7 +347,7 @@ func combined() (*rules.Rules, []Unit) {
 	f.add(voiceFile, 3, "공격 시작!", "進行攻擊！").add(storyFile, 3, "공격 시작", "開始攻擊").add(skillFile, 3, "공격 시작", "開始攻擊").add(otherFile, 3, "공격 시작", "開始攻擊")
 	f.add(skillFile, 3, "정사무소", "正事務所").add(skillFile, 1, "사무소", "事務所")
 	f.add(skillFile, 3, "다리미", "熨斗").add(skillFile, 3, "다리 위", "橋上")
-	f.add(storyFile, 2, "복도", "走廊").add(storyFile, 2, "복도", "通道").add(skillFile, 3, "복도", "走廊")
+	f.add(storyFile, 3, "복도", "走廊").add(storyFile, 3, "복도", "通道").add(skillFile, 3, "복도", "走廊")
 	for _, file := range []string{storyFile, skillFile, otherFile} {
 		f.add(file, 4, "대상", "目標").addAs(file, 1, "대상에게", "給對象", store.OriginClaude, "這裡的 대상 指人")
 	}
@@ -493,13 +529,14 @@ func TestProposalTitle(t *testing.T) {
 		p    Proposal
 		want []string
 	}{
-		{Proposal{Kind: KindNotFiles, KR: "보스", ZH: "BOSS", Patterns: []string{"family:story", "StoryData/**"}, WarnRemoved: 3, UsedLost: 1},
-			[]string{"보스 → BOSS", "not_files", "family:story、StoryData/**", "移除 3 個警告", "1 個用了譯名的單位不再檢查"}},
-		{Proposal{Kind: KindFiles, KR: "공격 시작", ZH: "進行攻擊", Patterns: []string{"family:voice"}, WarnRemoved: 9, UsedLost: 25, Flagged: true},
-			[]string{"files", "family:voice", "失去檢查偏多"}},
-		{Proposal{Kind: KindSubstring, KR: "사무소", ZH: "事務所", Match: rules.MatchSubstring}, []string{"match: substring"}},
+		{Proposal{Kind: KindNotFiles, KR: "보스", ZH: "BOSS", Patterns: []string{"family:story", "StoryData/**"}, WarnRemoved: 3, UsedLost: 1, UsedGained: 2},
+			[]string{"보스 → BOSS", "not_files", "family:story、StoryData/**", "移除 3 個警告", "新增 0 個", "1 個用了譯名的單位不再檢查", "2 個開始檢查"}},
+		{Proposal{Kind: KindFiles, KR: "섭취하라", ZH: "吸食殆盡", Patterns: []string{"StoryData/**"}, MixedGroups: []string{"family:identity"}, WarnRemoved: 9, UsedLost: 25, Flagged: true},
+			[]string{"files", "StoryData/**", "失去檢查偏多", "family:identity 只部分用了譯名"}},
+		{Proposal{Kind: KindSubstring, KR: "대상", ZH: "目標", Match: rules.MatchSubstring, WarnAdded: 1, UsedGained: 4}, []string{"match: substring", "新增 1 個", "4 個開始檢查"}},
 		{Proposal{Kind: KindWord, KR: "다리", ZH: "橋", Match: rules.MatchWord, WarnRemoved: 3}, []string{"match: word", "移除 3 個警告"}},
-		{Proposal{Kind: KindMixed, KR: "복도", ZH: "走廊"}, []string{"需要人看"}},
+		{Proposal{Kind: KindMixed, KR: "복도", ZH: "走廊", MixedGroups: []string{"family:story"}}, []string{"family:story", "只部分用了譯名", "需要人看"}},
+		{Proposal{Kind: KindMixed, KR: "복도", ZH: "走廊"}, []string{"各群組都很少用這個譯名", "需要人看"}},
 		{Proposal{Kind: KindExplained, KR: "대상", ZH: "目標"}, []string{"note", "also"}},
 	} {
 		got := tc.p.Title()
@@ -508,5 +545,113 @@ func TestProposalTitle(t *testing.T) {
 				t.Errorf("Title of %s = %q, want %q in it", tc.p.Kind, got, w)
 			}
 		}
+	}
+}
+
+// Review focus of the fix round: the provisional terms in force cover glossary
+// entries as on the review page (batch.TermsIn). 보스 inside the provisional
+// 조직의 보스 is no hit of 보스, nor a compound unit.
+func TestProvisionalTermsCover(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 4, "보스 등장", "BOSS 登場")
+	f.add(storyFile, 3, "조직의 보스다", "組織的老大")
+	f.add(otherFile, 3, "최종보스와", "與最終BOSS")
+	r := testRules(approved("보스", "BOSS"))
+	provisional := []rules.Term{
+		{KR: "조직의 보스", ZH: "組織的老大", Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true},
+		{KR: "최종보스", ZH: "最終BOSS", Status: rules.StatusApproved, Match: rules.MatchWord, Provisional: true},
+	}
+	// Without them, the stories lack BOSS and 최종보스 holds it in a word.
+	without := Analyze(Inputs{Rules: r, Units: f.units})
+	if ps := proposals(without, "보스"); len(ps) != 2 || ps[KindNotFiles].WarnRemoved != 3 || ps[KindSubstring].ID == "" {
+		t.Fatalf("without provisional terms: %v, want not-files removing 3 and substring", kinds(ps))
+	}
+	rep := Analyze(Inputs{Rules: r, Units: f.units, Provisional: provisional})
+	e := entryOf(t, rep, "보스")
+	want := []Group{{Name: "family:skill", Kind: GroupFamily, N: 4, Used: 4}, {Name: RestGroup, Kind: GroupDir, N: 4, Used: 4}}
+	if !reflect.DeepEqual(e.Groups, want) || e.Compound != (Count{}) || e.Unexplained != 0 || len(rep.Proposals) != 0 {
+		t.Errorf("보스 = %+v, proposals %+v: want the 4 units of the skills alone, and no proposal", e, rep.Proposals)
+	}
+}
+
+// The effect of a proposal is the review page before and after it, over every
+// entry: a substring entry warns where the word was no hit (시대상 is no 대상).
+func TestSubstringEffectAddsWarnings(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 4, "공격대상", "攻擊目標")
+	f.add(storyFile, 1, "시대상이", "年代感")
+	p := onlyProposal(t, Analyze(Inputs{Rules: testRules(approved("대상", "目標")), Units: f.units}), "대상", KindSubstring)
+	if p.WarnRemoved != 0 || p.WarnAdded != 1 || p.UsedLost != 0 || p.UsedGained != 4 || p.Flagged {
+		t.Errorf("proposal = %+v, want 1 warning added and 4 units checked", p)
+	}
+	if p.Examples[0].KR != "시대상이" {
+		t.Errorf("examples = %+v, want the warning it adds first", p.Examples)
+	}
+}
+
+// Matching 공격 시작 as a word no longer covers 시작 in 선공격 시작: 시작 is
+// checked there, and it is used.
+func TestWordEffectUncoversAShorterEntry(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 3, "선공격 시작", "先攻開始")
+	long := approved("공격 시작", "進行攻擊")
+	long.Match = rules.MatchSubstring
+	p := onlyProposal(t, Analyze(Inputs{Rules: testRules(long, approved("시작", "開始")), Units: f.units}), "공격 시작", KindWord)
+	if p.WarnRemoved != 3 || p.WarnAdded != 0 || p.UsedLost != 0 || p.UsedGained != 3 {
+		t.Errorf("proposal = %+v, want 3 warnings removed and the 3 units checked for 시작", p)
+	}
+}
+
+// Taking the stories out of an entry with files hands 신부 there to the entry
+// without files, whose rendering the stories use.
+func TestNotFilesEffectHandsTheKRToTheGeneralEntry(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 3, "신부님", "神父大人")
+	f.add(voiceFile, 3, "신부", "牧師")
+	scoped := approved("신부", "牧師")
+	scoped.Files = []string{"family:story", "family:voice"}
+	rep := Analyze(Inputs{Rules: testRules(scoped, approved("신부", "神父")), Units: f.units})
+	var p Proposal
+	for _, q := range rep.Proposals {
+		if q.ZH == "牧師" {
+			p = q
+		}
+	}
+	if p.Kind != KindNotFiles || !slices.Equal(p.Patterns, []string{"family:story"}) || p.WarnRemoved != 3 || p.UsedGained != 3 || p.UsedLost != 0 || p.WarnAdded != 0 {
+		t.Errorf("proposal = %+v, want not_files family:story removing 3 warnings, and 神父 checked in those 3 units", p)
+	}
+}
+
+// A clean split by one kind of group is proposed although the other kind has
+// a mixed group, which the proposal names: rpg is half 速度值, the directories
+// tell its two halves apart.
+func TestConcreteNamesTheMixedGroups(t *testing.T) {
+	r := testRules(approved("속도", "速度值"))
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "rpg", Match: []string{"RPGSystem/*", "Rpg*"}}}, r.Routing.Families...)
+	f := &fixture{}
+	f.add(skillFile, 10, "속도", "速度值")
+	f.add("RPGSystem/R1.json", 3, "속도", "速度").add("RpgTop.json", 3, "속도", "速度值")
+	p := onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
+	if !slices.Equal(p.Patterns, []string{"RPGSystem/**"}) || !slices.Equal(p.MixedGroups, []string{"family:rpg"}) || p.WarnRemoved != 3 {
+		t.Errorf("proposal = %+v, want not_files RPGSystem/** naming family:rpg as mixed", p)
+	}
+	if !strings.Contains(p.Title(), "family:rpg") {
+		t.Errorf("title %q, want the mixed group in it", p.Title())
+	}
+}
+
+// Of two changes, the one with fewer patterns, then the one that loses fewer
+// checks: the family needs one pattern and loses the 2 units of Narr.json that
+// use 速度值 (flagged), the directories need two and lose none. The family is
+// proposed.
+func TestFewerPatternsFirst(t *testing.T) {
+	r := testRules(approved("속도", "速度值"))
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "narrative", Match: []string{"StoryData/*", "PersonalityVoiceDlg/*", "Narr*"}}}, r.Routing.Families...)
+	f := &fixture{}
+	f.add(skillFile, 10, "속도", "速度值").add("Narr.json", 2, "속도", "速度值")
+	f.add(storyFile, 3, "속도", "速度").add(voiceFile, 3, "속도", "速度")
+	p := onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
+	if !slices.Equal(p.Patterns, []string{"family:narrative"}) || p.UsedLost != 2 || !p.Flagged {
+		t.Errorf("proposal = %+v, want the one family, losing 2 and flagged, over the two directories", p)
 	}
 }

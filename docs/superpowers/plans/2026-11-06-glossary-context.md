@@ -119,10 +119,11 @@
 **Interfaces:**
 - Consumes：Task 1 `Applies`；Task 2 `Term.Used`；Task 3 `GlossaryHits`（已含長詞條優先）。
 - Produces（JSON 欄位名稱即下列 snake_case）：
-  - `scope.Inputs{Rules *rules.Rules; Units []Unit; Declined map[string]bool}`；`scope.Unit{Key, File, KR, ZH, Origin, Note string}`。
+  - `scope.Inputs{Rules *rules.Rules; Units []Unit; Declined map[string]*suggest.Confirmed; Provisional []rules.Term /* 生效中的暫定詞，同審核頁的 inForce */}`；`scope.Unit{Key, File, KR, ZH, Origin, Note string}`。
   - `scope.Report{Thresholds; Entries []Entry; Proposals []Proposal}`。
   - `Entry{ID, KR, ZH string; Also, Files, NotFiles []string; Match, Notes string; Groups []Group; Compound Count; Explained, Unexplained int}`；`Group{Name, Kind string /* "family" | "dir" */; N, Used int}`；`Count{N, Used int}`。
-  - `Proposal{ID, Kind, KR, ZH string; Patterns []string; Match string; WarnRemoved, UsedLost int; Flagged bool; Examples []Example; Declined *suggest.Confirmed}`；`Example{Key, Group, KR, ZH string}`。
+  - `Proposal{ID, Kind, KR, ZH string; Patterns []string; Match string; MixedGroups []string; WarnRemoved, WarnAdded, UsedLost, UsedGained int; Flagged bool; Examples []Example; Declined *suggest.Confirmed}`；`Example{Key, Group, KR, ZH string}`。JSON：`{"id","kind","kr","zh","patterns","match","mixed_groups","warn_removed","warn_added","used_lost","used_gained","flagged","examples","declined"?}`；`mixed_groups` 只在 `not-files`、`files`、`mixed` 有值（混用群組名；`mixed` 為空表示各群組都很少用這個譯名），其餘為 `[]`；效果是改了該條目後對所有條目重算的前後差；`flagged` 看 `used_lost`。
+  - 群組名：族群 `family:<id>`、目錄 `StoryData/**` 等、其餘 `rest`；`Example.Group` 與 `Proposal.Patterns` 用同一套名稱。`match` 只有 `substring`、`word` 兩種建議有值，其餘為 `""`。
   - `func Analyze(in Inputs) Report`。
   - `itemid.Scope(kr, zh, kind string) string`、`itemid.GlossaryEntry(kr, zh string) string`。
   - `lct glossary scope --json` 輸出 `Report`；`lct site` 寫 `review/scope.json`（同 `Report`）。

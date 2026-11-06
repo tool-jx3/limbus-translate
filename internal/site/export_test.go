@@ -399,8 +399,8 @@ func exportReviewInputs(t *testing.T) (Inputs, []string) {
 	in.Review.Pending = []store.PendingItem{{Key: k(rvA, 1), Reason: "new"}}
 	withBatch(in, k(rvA, 0), "b1")
 	in.Review.Notes = []store.Note{noteOf(k(rvA, 0), "b1", rvKR, "a note")}
-	// 하나 is 一 in two units of three: a scope proposal (mixed).
-	in.Rules.Glossary = []rules.Term{{KR: rvKR, ZH: "一", Status: rules.StatusApproved}}
+	// No unit renders 하나 so: a scope proposal (mixed).
+	in.Rules.Glossary = []rules.Term{{KR: rvKR, ZH: "絕無此譯", Status: rules.StatusApproved}}
 	return in, files
 }
 
