@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261105",
   "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
-  "rules_commit": "5bde5d6713dfcd1ded9fe8ac37dcad37a2685ae7",
-  "built_at": "2026-11-06T01:27:08Z",
+  "rules_commit": "5b7b4f6eca2b11d595b7d0aefcb479da84b0ed2c",
+  "built_at": "2026-11-06T06:53:56Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1000,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "9fcbcdcc2e96525b672f9b1088555c5f65c997fe6a1e49d91f65df7a594a7b7e",
-    "zh-TW_text_raw-20261105.zip": "a89126958ad702256b415766a4212b8d523337c9dfc310c05c01da6a88ed61e9"
+    "zh-TW_complete_raw-20261105.zip": "3293ff9127c88ea352a4350900b3c88620a73d8c32b01ed641002f59eeaa43d8",
+    "zh-TW_text_raw-20261105.zip": "69f225698db20d083cdee26e54f9fa46eecd741800216cedee3caeced7fe689c"
   },
   "report": {
     "origins": {
@@ -34,7 +34,7 @@
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 2481
+      "term-missing": 2335
     },
     "missing_glyphs": [],
     "stand_in": 0,
