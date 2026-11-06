@@ -1351,7 +1351,7 @@ func TestLintGlossaryFamilyScope(t *testing.T) {
 func TestLintScopeWarningsFamily(t *testing.T) {
 	root := copyRules(t)
 	edit(t, root, "glossary/terms.yaml", func(string) string {
-		return "- kr: 속도\n  zh: 速度\n  status: approved\n  files: [\"family:ally\", \"family:mirror\"]\n  not_files: [\"family:story-main\"]\n"
+		return "- kr: 속도\n  zh: 速度\n  status: approved\n  files: [\"family:ally\", \"family:mirror\", \"family:nope\"]\n  not_files: [\"family:story-main\"]\n"
 	})
 	files := []string{"Skills_Ego-1.json", "StoryData/S1.json"}
 	var msgs []string
@@ -1359,7 +1359,7 @@ func TestLintScopeWarningsFamily(t *testing.T) {
 		msgs = append(msgs, w.Message)
 	}
 	if len(msgs) != 1 || !strings.Contains(msgs[0], `"family:mirror"`) || !strings.Contains(msgs[0], "files") || !strings.Contains(msgs[0], `"속도"`) {
-		t.Errorf("warnings = %q, want one for family:mirror in files", msgs)
+		t.Errorf("warnings = %q, want one for family:mirror in files and none for the unknown family:nope", msgs)
 	}
 }
 

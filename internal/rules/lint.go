@@ -443,8 +443,8 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 		}{{"files", t.Files}, {"not_files", t.NotFiles}} {
 			for _, pattern := range list.patterns {
 				id, isFamily := strings.CutPrefix(pattern, FamilyPrefix)
-				if isFamily && len(rt.Families) == 0 {
-					continue // no routing to judge by
+				if isFamily && !slices.ContainsFunc(rt.Families, func(f FamilyRule) bool { return f.ID == id }) {
+					continue // no routing to judge by, or an unknown family: Lint reports that as an error
 				}
 				if !isFamily && (pattern == "" || config.ValidPattern(pattern) != nil) {
 					continue // Lint reports these

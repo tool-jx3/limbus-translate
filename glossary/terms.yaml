@@ -1312,7 +1312,7 @@
   match: word
   category: [general, combat, physical]
   evidence: { kr_lines: 306, approved: 276, forbidden: 0 }
-  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：identity、story-interlude、story-main 族群的人格語音與劇情檔（PersonalityVoiceDlg 4 句、StoryData 11 句）不用此譯名（15 句 0 句用）；另排除同類敘事族群 identity、story-interlude、story-main 的其餘檔（戰鬥對話氣泡、歌詞、AbEvents-a1c*、地下城節點等，目前沒有符合的句子）
+  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：人格語音與劇情檔（PersonalityVoiceDlg 4 句、StoryData 11 句）不用此譯名（15 句 0 句用），排除 identity、story-interlude、story-main 三個敘事族群，其餘檔也一併排除（戰鬥對話氣泡、歌詞、AbEvents-a1c*、地下城節點等，目前沒有符合的句子）
 
 - kr: 색욕
   zh: 色慾
@@ -1419,7 +1419,7 @@
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：ally 族群（夥伴）不採此譯名，排除：夥伴被動 Passives_Assist* 10 句 0 句用，同族群的 Passives.json、Passives-*、技能、E.G.O、人格檔目前沒有符合的句子。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：ally 族群（夥伴）不採此譯名，排除：夥伴被動 Passives_Assist* 10 句 0 句用，同族群的 Passives.json、Passives-*、技能、E.G.O、人格檔目前沒有符合的句子。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除。2026-11-06 起 Skills_Assist-walpu6.json 適用此譯名：它路由到 walpu-refraction 而非 ally，原本的 Skills_Assist* 樣式多排除了它
 
 - kr: 상점
   zh: 商店
