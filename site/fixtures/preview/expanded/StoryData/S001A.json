@@ -1,21 +1,6 @@
 {
   "family": "story-main",
   "glossary_check": "",
-  "terms": [
-    {
-      "kr": "위력",
-      "zh": "威力",
-      "status": "approved",
-      "forbidden": [
-        "力量"
-      ]
-    },
-    {
-      "kr": "공격",
-      "zh": "攻擊",
-      "status": "approved"
-    }
-  ],
   "keywords": {
     "Bleed": "流血"
   },
@@ -23,9 +8,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -58,9 +43,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -107,9 +92,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -142,9 +127,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -184,9 +169,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -216,13 +201,24 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [
-        0,
-        1
+        {
+          "kr": "위력",
+          "zh": "威力",
+          "status": "approved",
+          "forbidden": [
+            "力量"
+          ]
+        },
+        {
+          "kr": "공격",
+          "zh": "攻擊",
+          "status": "approved"
+        }
       ],
       "k": [],
       "it": {
@@ -261,9 +257,9 @@
     {
       "sp": "sinclair",
       "g": [
-        0,
-        1,
-        3
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/sinclair.md"
       ],
       "t": [],
       "k": [],
@@ -292,9 +288,9 @@
     {
       "sp": "sinclair",
       "g": [
-        0,
-        1,
-        3
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/sinclair.md"
       ],
       "t": [],
       "k": [
@@ -327,9 +323,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -358,12 +354,19 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [
-        0
+        {
+          "kr": "위력",
+          "zh": "威力",
+          "status": "approved",
+          "forbidden": [
+            "力量"
+          ]
+        }
       ],
       "k": [],
       "it": {
@@ -398,9 +401,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -429,9 +432,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],
@@ -460,9 +463,9 @@
     {
       "sp": "faust",
       "g": [
-        0,
-        1,
-        2
+        "guides/base.md",
+        "guides/families.md",
+        "guides/characters/faust.md"
       ],
       "t": [],
       "k": [],

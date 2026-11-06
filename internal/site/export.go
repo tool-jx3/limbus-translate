@@ -153,7 +153,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		guides = &guideTable{texts: in.Preview.Guides, at: map[string]int{}}
 	}
 	for n, p := range paths {
-		file, sum, err := BuildFile(in, p)
+		file, sum, aligner, err := buildFile(in, p, nil)
 		if err != nil {
 			return Result{}, err
 		}
@@ -170,7 +170,11 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			return Result{}, err
 		}
 		if in.Preview != nil {
-			pvs, err := in.Preview.Previewer.File(p)
+			en, jp, err := aligner.Maps() // aligned by buildFile already
+			if err != nil {
+				return Result{}, fmt.Errorf("site: preview %s: %w", p, err)
+			}
+			pvs, err := in.Preview.Previewer.FileWith(p, en, jp)
 			if err != nil {
 				return Result{}, fmt.Errorf("site: preview %s: %w", p, err)
 			}

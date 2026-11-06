@@ -38,6 +38,16 @@ func (a *FileAligner) Get(pointer string) (en, jp *LangAligned, err error) {
 	return pick(a.enAt), pick(a.jpAt), nil
 }
 
+// Maps returns the EN and JP strings aligned to the KR strings, by pointer; a
+// language whose pack lacks the file has a nil map. The maps are shared with
+// the aligner: callers must not change them.
+func (a *FileAligner) Maps() (en, jp map[string]LangAligned, err error) {
+	if err := a.load(); err != nil {
+		return nil, nil, err
+	}
+	return a.enAt, a.jpAt, nil
+}
+
 // Unmatched counts the strings of the KR file that have no EN string aligned
 // to them, and those that have no JP string. A language whose pack lacks the
 // file (or is nil) counts none: the file is missing there, which is not a

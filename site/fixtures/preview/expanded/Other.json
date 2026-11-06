@@ -1,26 +1,23 @@
 {
   "family": "other",
   "glossary_check": "",
-  "terms": [
-    {
-      "kr": "위력",
-      "zh": "威力",
-      "status": "approved",
-      "forbidden": [
-        "力量"
-      ]
-    }
-  ],
   "keywords": {},
   "units": [
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [
-        0
+        {
+          "kr": "위력",
+          "zh": "威力",
+          "status": "approved",
+          "forbidden": [
+            "力量"
+          ]
+        }
       ],
       "k": [],
       "it": {
@@ -58,8 +55,8 @@
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],
@@ -83,8 +80,8 @@
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],
@@ -110,8 +107,8 @@
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],

@@ -1,14 +1,13 @@
 {
   "family": "other",
   "glossary_check": "",
-  "terms": [],
   "keywords": {},
   "units": [
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],
@@ -31,8 +30,8 @@
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],
@@ -66,8 +65,8 @@
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],
@@ -90,8 +89,8 @@
     {
       "sp": "",
       "g": [
-        0,
-        1
+        "guides/base.md",
+        "guides/families.md"
       ],
       "t": [],
       "k": [],

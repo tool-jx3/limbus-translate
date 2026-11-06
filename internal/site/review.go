@@ -453,7 +453,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				w.origins[rec.Origin] = true
 			}
 		}
-		if _, _, err := buildFile(in, path, visit); err != nil {
+		if _, _, _, err := buildFile(in, path, visit); err != nil {
 			return Review{}, err
 		}
 		placed := placeNotes(notesOf[path], withRec)

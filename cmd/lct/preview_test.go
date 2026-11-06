@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 	"testing"
@@ -117,14 +118,14 @@ func TestPreviewReportText(t *testing.T) {
 			p.Pending.Reason, p.Pending.Hint, p.Pending.Draft = "kr-changed", "再正式一點", "草稿"
 		}, []string{"pending: kr-changed", "  hint: 再正式一點", "  draft: 草稿"}, nil},
 		{"glossary_check", func(p *batch.UnitPreview) { p.Batch.GlossaryCheck = "warn" }, []string{"glossary_check: warn"}, nil},
-		{"not pending", func(p *batch.UnitPreview) { p.State.Pending = false }, []string{"(not in the pending list: this is what a requeue or the plan would make)"}, nil},
+		{"not pending", func(p *batch.UnitPreview) { p.State.Pending = false }, []string{"  (not in the pending list: this is what a requeue or the plan would make)"}, nil},
 		{"needs_review", func(p *batch.UnitPreview) { p.State.NeedsReview = true }, []string{"state: needs_review (waits for a person, is not handed out now)"}, nil},
 		{"leased", func(p *batch.UnitPreview) { p.State.LeasedTo = "20261101-0002" }, []string{"state: leased to 20261101-0002"}, nil},
 		{"frozen", func(p *batch.UnitPreview) { p.State.Frozen = true }, []string{"state: frozen (the file is not sent for translation)"}, nil},
 		{"record under the same rules", func(p *batch.UnitPreview) { p.Record = rec("abc1234") },
 			[]string{"record: origin claude, model m1, batch b1, rules abc1234 (same as the current rules)"}, nil},
 		{"record under other rules", func(p *batch.UnitPreview) { p.Record = rec("old9999") },
-			[]string{"rules old9999 (differs from the current rules)"}, nil},
+			[]string{"record: origin claude, model m1, batch b1, rules old9999 (differs from the current rules)"}, nil},
 		{"record with no model, batch or rules", func(p *batch.UnitPreview) {
 			r := rec("")
 			r.Model, r.Batch = "", ""
@@ -172,8 +173,9 @@ func TestPreviewReportText(t *testing.T) {
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			got := previewReport{UnitPreview: preview(c.mod)}.String()
+			lines := strings.Split(got, "\n") // a want is a whole line, the first one too
 			for _, w := range c.want {
-				if !strings.Contains(got, w+"\n") && !strings.HasSuffix(got, w) {
+				if !slices.Contains(lines, w) {
 					t.Errorf("text lacks the line %q:\n%s", w, got)
 				}
 			}

@@ -6,6 +6,7 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/requeue"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -110,6 +111,8 @@ type Previewer struct {
 	keywords    map[string]string // the keyword table, made on first use
 	keywordsErr error
 	keywordsOK  bool
+
+	opens int // how many files Unit and File have opened (a fresh fileData each)
 }
 
 // NewPreviewer reads the pending queue, the records and the notes of env.Store
@@ -178,7 +181,7 @@ func (p *Previewer) Unit(key string) (*UnitPreview, error) {
 		// A key that cannot be split names no unit of KR.
 		return nil, fmt.Errorf("batch: preview: %w: %w", ErrNotInKR, err)
 	}
-	fd, err := newLoader(p.env).file(file)
+	fd, err := p.open(file)
 	if err != nil {
 		return nil, err
 	}
@@ -195,16 +198,40 @@ func (p *Previewer) Unit(key string) (*UnitPreview, error) {
 	return p.unit(fd, pos)
 }
 
+// open opens a KR file for one call: a loader of its own, so that no file data
+// outlives the call. It counts the files it opens.
+func (p *Previewer) open(name string) (*fileData, error) {
+	ld := newLoader(p.env)
+	fd, err := ld.file(name)
+	p.opens += ld.built
+	return fd, err
+}
+
 // File previews every unit of a KR file, in document order. The entry of a
 // copy is nil. The file is opened for this call alone (a Previewer keeps no
 // file data), and ErrNotInKR is returned if the pack has no such file.
 func (p *Previewer) File(path string) ([]*UnitPreview, error) {
-	fd, err := newLoader(p.env).file(path)
+	return p.file(path, nil, nil)
+}
+
+// FileWith is File for a caller that has aligned the EN and JP strings of the
+// file already (align.FileAligner.Maps): the file is not aligned again. The
+// result is the same as that of File.
+func (p *Previewer) FileWith(path string, en, jp map[string]align.LangAligned) ([]*UnitPreview, error) {
+	return p.file(path, &en, &jp)
+}
+
+func (p *Previewer) file(path string, en, jp *map[string]align.LangAligned) ([]*UnitPreview, error) {
+	fd, err := p.open(path)
 	if err != nil {
 		return nil, err
 	}
 	if fd == nil {
 		return nil, fmt.Errorf("batch: preview %s: %w", path, ErrNotInKR)
+	}
+	if en != nil {
+		fd.langs[langEN], fd.loaded[langEN] = *en, true
+		fd.langs[langJP], fd.loaded[langJP] = *jp, true
 	}
 	out := make([]*UnitPreview, len(fd.units))
 	for pos, u := range fd.units {

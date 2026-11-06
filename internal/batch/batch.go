@@ -262,6 +262,7 @@ type fileData struct {
 type loader struct {
 	env   Env
 	files map[string]*fileData
+	built int // how many fileData the loader has made
 }
 
 func newLoader(env Env) *loader {
@@ -280,6 +281,7 @@ func (l *loader) file(name string) (*fileData, error) {
 			return nil, fmt.Errorf("batch: %w", err)
 		}
 		fd = &fileData{env: l.env, file: name, doc: doc, units: units.Extract(name, doc)}
+		l.built++
 		fd.index = make(map[string]int, len(fd.units))
 		for i, u := range fd.units {
 			fd.index[u.Pointer] = i

@@ -102,23 +102,24 @@ type FileSummary struct {
 // built pack has the record's string, and is a stand-in otherwise (no record,
 // or EN or KR built in its place); its flags are those of its record, if any.
 func BuildFile(in Inputs, path string) (File, FileSummary, error) {
-	return buildFile(in, path, nil)
+	f, sum, _, err := buildFile(in, path, nil)
+	return f, sum, err
 }
 
 // buildFile is BuildFile; visit, if set, is called for each unit with the
 // built unit, the KR unit and the aligned EN and JP strings (nil where there is
-// none).
-func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp *align.LangAligned)) (File, FileSummary, error) {
+// none). The aligner it returns has aligned the file already when a unit asked.
+func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp *align.LangAligned)) (File, FileSummary, *align.FileAligner, error) {
 	krDoc, err := in.KR.Doc(path)
 	if err != nil {
-		return File{}, FileSummary{}, err
+		return File{}, FileSummary{}, nil, err
 	}
 	if !in.ZH.Has(path) {
-		return File{}, FileSummary{}, fmt.Errorf("site: %s is not in the built pack", path)
+		return File{}, FileSummary{}, nil, fmt.Errorf("site: %s is not in the built pack", path)
 	}
 	zhDoc, err := in.ZH.Doc(path)
 	if err != nil {
-		return File{}, FileSummary{}, err
+		return File{}, FileSummary{}, nil, err
 	}
 	zhAt := make(map[string]string)
 	for _, f := range zhDoc.Strings() {
@@ -138,7 +139,7 @@ func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp 
 	for _, ku := range krUnits {
 		en, jp, err := aligner.Get(ku.Pointer)
 		if err != nil {
-			return File{}, FileSummary{}, fmt.Errorf("site: align %s: %w", path, err)
+			return File{}, FileSummary{}, nil, fmt.Errorf("site: align %s: %w", path, err)
 		}
 		u := Unit{P: ku.Pointer, F: ku.Field, I: ku.ItemIndex, KR: ku.KR, ZH: zhAt[ku.Pointer], O: OriginStandIn}
 		if en != nil {
@@ -168,7 +169,7 @@ func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp 
 	sum.Units = len(file.Units)
 	sum.Label = storyLabel(path, file.Units)
 	sum.Speakers = speakers(file.Units)
-	return file, sum, nil
+	return file, sum, aligner, nil
 }
 
 // storyLabel is the TW text of the first non-empty "place" of a story file, or

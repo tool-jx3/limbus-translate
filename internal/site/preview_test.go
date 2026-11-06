@@ -6,6 +6,7 @@ import (
 	"errors"
 	"flag"
 	"io/fs"
+	"maps"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -782,8 +783,8 @@ var pvCases = []struct {
 // compact unit, so a decoder that puts a default back wrong is caught.
 type pvGoldUnit struct {
 	SP   string            `json:"sp"`
-	G    []int             `json:"g"`
-	T    []int             `json:"t"`
+	G    []string          `json:"g"`
+	T    []rules.Term      `json:"t"`
 	K    []string          `json:"k"`
 	It   PreviewItem       `json:"it"`
 	EM   string            `json:"em,omitempty"`
@@ -824,28 +825,62 @@ type pvGoldCheck struct {
 type pvGoldFile struct {
 	Family        string            `json:"family"`
 	GlossaryCheck string            `json:"glossary_check"`
-	Terms         []rules.Term      `json:"terms"`
 	Keywords      map[string]string `json:"keywords"`
 	Units         []*pvGoldUnit     `json:"units"`
 }
 
 // goldenPreviewFile is preview/<path> in the shape the viewer expands the
-// compact file to, made straight from the Previewer (pf is only asked for what
-// the compact format does not change). The viewer's tests compare its decoder
-// with it.
-func goldenPreviewFile(t *testing.T, pv *batch.Previewer, file File, pf PreviewFile) pvGoldFile {
+// compact file to, made straight from the Previewer and nothing of the
+// encoder: the guides are paths and the glossary entries their content (the
+// compact format numbers them), the keywords are those the batches name, and
+// the context lines are the numbers of the units in file. The viewer's tests
+// compare its decoder with it, after they put the content in place of the
+// numbers.
+func goldenPreviewFile(t *testing.T, pv *batch.Previewer, file File) pvGoldFile {
 	t.Helper()
-	out := pvGoldFile{Family: pf.Family, GlossaryCheck: pf.GlossaryCheck, Terms: pf.Terms, Keywords: pf.Keywords, Units: make([]*pvGoldUnit, len(pf.Units))}
-	for i, cu := range pf.Units {
-		if cu == nil {
+	out := pvGoldFile{Keywords: map[string]string{}, Units: make([]*pvGoldUnit, len(file.Units))}
+	at := make(map[string]int, len(file.Units))
+	for i, fu := range file.Units {
+		at[fu.P] = i
+	}
+	for i := range file.Units {
+		p, err := pv.Unit(units.Key(file.Path, file.Units[i].P))
+		if errors.Is(err, batch.ErrCopy) {
 			continue
 		}
-		p, err := pv.Unit(units.Key(file.Path, file.Units[i].P))
 		if err != nil {
 			t.Fatal(err)
 		}
+		b := p.Batch
+		out.Family, out.GlossaryCheck = b.Family, b.GlossaryCheck
+		maps.Copy(out.Keywords, b.Keywords)
 		bu := p.Batch.Units[0]
-		g := &pvGoldUnit{SP: cu.SP, G: cu.G, T: cu.T, K: cu.K, C: cu.C, NT: cu.NT}
+		g := &pvGoldUnit{SP: bu.Speaker, G: nonNil(slices.Clone(b.Guides)), T: []rules.Term{}, K: nonNil(slices.Sorted(maps.Keys(b.Keywords))), C: [][]any{}}
+		for _, term := range b.Glossary {
+			term.Units = nil
+			g.T = append(g.T, term)
+		}
+		for _, line := range b.Context {
+			_, pointer, err := units.SplitKey(line.Key)
+			if err != nil {
+				t.Fatal(err)
+			}
+			n, ok := at[pointer]
+			if !ok {
+				t.Fatalf("context line %s is no unit of %s", line.Key, file.Path)
+			}
+			if line.ZH == file.Units[n].ZH {
+				g.C = append(g.C, []any{n})
+			} else {
+				g.C = append(g.C, []any{n, line.ZH})
+			}
+		}
+		for _, n := range p.Notes {
+			if g.NT != "" {
+				g.NT += "\n"
+			}
+			g.NT += n.Note
+		}
 		g.It = PreviewItem{Reason: bu.Reason, PrevKR: bu.PrevKR, PrevZH: bu.PrevZH, Draft: bu.Draft, Hint: bu.Hint, Refs: bu.Refs}
 		if bu.EN != nil {
 			g.EM = string(bu.EN.Method)
@@ -902,10 +937,8 @@ func TestPreviewFixturesUpToDate(t *testing.T) {
 	got["preview.json"] = data
 	for _, path := range w.In.KR.Files() {
 		var file File
-		var pf PreviewFile
 		readJSON(t, out, "files/"+path, &file)
-		readJSON(t, out, "preview/"+path, &pf)
-		got["expanded/"+path] = []byte(encodeBatch(t, goldenPreviewFile(t, w.In.Preview.Previewer, file, pf)))
+		got["expanded/"+path] = []byte(encodeBatch(t, goldenPreviewFile(t, w.In.Preview.Previewer, file)))
 	}
 
 	type caseJSON struct {

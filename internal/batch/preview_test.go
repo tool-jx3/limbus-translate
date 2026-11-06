@@ -2,6 +2,7 @@ package batch
 
 import (
 	"errors"
+	"fmt"
 	"io/fs"
 	"maps"
 	"os"
@@ -12,6 +13,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -327,17 +329,50 @@ func TestPreviewReadOnly(t *testing.T) {
 func TestPreviewFileFreshLoader(t *testing.T) {
 	env := newEnv(t, map[string]string{"A.json": dataList(t, 2, "", line), "B.json": dataList(t, 2, "", line)}, nil, nil)
 	p := newPreviewer(t, env)
-	for _, f := range []string{"A.json", "B.json"} {
+	// Every call opens its file anew: a loader shared between calls would not
+	// open A.json the second time, and the count would fall short.
+	for i, f := range []string{"A.json", "B.json", "A.json"} {
 		if all, err := p.File(f); err != nil || len(all) != 2 {
 			t.Fatalf("File(%s) = %d entries, %v", f, len(all), err)
 		}
-	}
-	// The data of a file lives in a loader; the Previewer must not hold one.
-	rt := reflect.TypeOf(*p)
-	for i := 0; i < rt.NumField(); i++ {
-		if s := rt.Field(i).Type.String(); strings.Contains(s, "loader") || strings.Contains(s, "fileData") {
-			t.Errorf("Previewer.%s has type %s: it keeps file data between calls", rt.Field(i).Name, s)
+		if p.opens != i+1 {
+			t.Fatalf("after File #%d (%s) the Previewer has opened %d files, want %d: a file kept from a call before", i+1, f, p.opens, i+1)
 		}
+	}
+	if _, err := p.Unit(key("A.json", 0)); err != nil || p.opens != 4 {
+		t.Errorf("Unit opened %d files in all (%v), want 4", p.opens, err)
+	}
+}
+
+// FileWith, given the alignment a caller has made, gives what File gives.
+func TestPreviewFileWithEqualsFile(t *testing.T) {
+	const file = "Other.json"
+	env := newEnv(t,
+		map[string]string{file: dataList(t, 3, "", line)},
+		map[string]string{file: dataList(t, 3, "", func(i int) string { return fmt.Sprintf("EN %d", i) })},
+		map[string]string{file: dataList(t, 2, "", func(i int) string { return fmt.Sprintf("JP %d", i) })})
+	p := newPreviewer(t, env)
+	want, err := p.File(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr, err := env.Src.KR.Doc(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	en, jp, err := align.NewFileAligner(file, kr, env.Src.EN, env.Src.JP).Maps()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(en) == 0 || len(jp) == 0 {
+		t.Fatalf("aligned %d EN, %d JP strings: the test checks nothing", len(en), len(jp))
+	}
+	got, err := p.FileWith(file, en, jp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("FileWith differs from File:\n got %+v\nwant %+v", got, want)
 	}
 }
 
