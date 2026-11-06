@@ -42,6 +42,11 @@ type Term struct {
 	// where its KR stands as a word (see standsAsWord), and MatchSubstring for
 	// one that hits wherever its KR occurs, inside a longer word too.
 	Match string `yaml:"match" json:"match,omitempty"`
+	// Check is CheckHard, or empty or CheckWarn for the same as empty: only an
+	// entry with CheckHard has a missing rendering rejected at submission (in
+	// a family that does not say glossary: warn); every other entry only
+	// warns. A forbidden rendering is rejected whatever Check says.
+	Check string `yaml:"check" json:"check,omitempty"`
 	// Provisional marks a term registered by a translator and not yet decided
 	// on by a person (see batch.ActiveProvisional). It is never read from the
 	// glossary: "provisional" is not a glossary key.
@@ -51,6 +56,15 @@ type Term struct {
 	// batch fills it.
 	Units []string `yaml:"-" json:"units,omitempty"`
 }
+
+// The values of Term.Check.
+const (
+	CheckHard = "hard"
+	CheckWarn = "warn"
+)
+
+// Hard reports whether a missing rendering of t is rejected at submission.
+func (t Term) Hard() bool { return t.Check == CheckHard }
 
 // MatchWord is the default value of Term.Match: the term hits only where its
 // KR stands as a word, so 백화 does not hit 백화점 nor 버스 림버스.
@@ -356,7 +370,7 @@ func (t Term) Used(zh string) bool { return t.ToValidate().Used(zh) }
 // people and is not loaded.
 var termFields = map[string]bool{
 	"kr": true, "jp": true, "en": true, "zh": true, "status": true,
-	"forbidden": true, "also": true, "category": true, "evidence": true, "notes": true, "files": true, "not_files": true, "match": true,
+	"forbidden": true, "also": true, "category": true, "evidence": true, "notes": true, "files": true, "not_files": true, "match": true, "check": true,
 }
 
 // parseGlossary decodes the glossary. unknown[i] lists the keys of entry i

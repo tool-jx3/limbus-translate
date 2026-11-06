@@ -842,6 +842,9 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"`notes` 補一句有日期的繁體中文", "the adoption of a scope proposal is not said to leave a dated note in the entry's notes with the proposal's numbers"},
 	skillSays{"`mixed`、`explained`", "the mixed and explained proposals are not said to have no concrete change"},
 	skillSays{"`glossary/…`", "the id of a glossary entry (glossary/…) that carries an instruction is not named"},
+	skillSays{"「改為退回」", "the decision to make a glossary entry reject a missing rendering is not named"},
+	skillSays{"加 `check: hard`，`notes` 補一句有日期的話，寫明日期、應用率與出現數", "a glossary entry made check: hard is not said to carry the date, the rate and the count in notes"},
+	skillSays{"「改回只警告」：刪掉那一條的 `check`", "the decision to go back to warning only is not said to delete check"},
 	skillSays{"`entries[].id`", "the entry of a glossary/… id is not said to be found by entries[].id of lct glossary scope"},
 	skillSays{"`bin/lct accept` 拒絕 `glossary/…`", "the skill does not say that lct accept refuses a glossary/… id"},
 	skillSays{"輸出裡找不到這個 ID 時停止，不改檔", "a scope/… or glossary/… id missing from lct glossary scope --json is not said to stop the edit: the skill would treat a stale local build as an adopted proposal"},
@@ -887,6 +890,9 @@ func TestReviewPageSays(t *testing.T) {
 		{"changed summary not stopped", "本機輸出裡該 ID 的 `patterns`、`match` 與摘要不同時同樣停止，不改檔", "本機輸出裡該 ID 的 `patterns`、`match` 與摘要不同時照本機的做", "本機輸出裡該 ID 的 `patterns`、`match` 與摘要不同時同樣停止，不改檔"},
 		{"summary content not named", "括號裡有網頁上那個建議的 `kind`、`patterns`、`match`", "括號裡有建議", "括號裡有網頁上那個建議的"},
 		{"also added unasked", "`also` 只在人明確指示時加", "`also` 可以加", "`also` 只在人明確指示時加"},
+		{"hard not named", "「改為退回」", "「改成退回」", "「改為退回」"},
+		{"hard without a record", "寫明日期、應用率與出現數", "寫明日期", "寫明日期、應用率與出現數"},
+		{"warn only not named", "「改回只警告」：刪掉那一條的 `check`", "「改回只警告」：不動", "「改回只警告」：刪掉那一條的 `check`"},
 		{"glossary id accepted", "`bin/lct accept` 拒絕 `glossary/…`", "`bin/lct accept` 接受", "`bin/lct accept` 拒絕 `glossary/…`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
 	} {
@@ -4845,7 +4851,7 @@ func TestTermMissingExceptionIsExplained(t *testing.T) {
 	// rejected all the same.
 	texts := map[string]string{"prompts/translate.md": prompt, "translate-pending/SKILL.md": skill}
 	for name, want := range map[string]string{
-		"prompts/translate.md":       "`note` 沒有寫出這個原詞，照樣退回",
+		"prompts/translate.md":       "又沒有寫出這個原詞，照樣退回",
 		"translate-pending/SKILL.md": "`note` 沒有寫出原詞，一樣會被退回",
 	} {
 		text := texts[name]
@@ -5014,4 +5020,62 @@ func TestReviewPageMissingScopeID(t *testing.T) {
 			})
 		}
 	}
+}
+
+// glossaryCheckSays are the texts of the shared prompt and of the
+// translate-pending skill that tell the translator only an entry with
+// check: hard has a missing rendering rejected, with why each is needed.
+var glossaryCheckSays = []struct{ in, text, why string }{
+	{"prompt", "`glossary` 的 `zh` 是本專案的預設譯名，用在條目的 `units` 列出的單位", "the glossary renderings are not the defaults used in the units of each entry"},
+	{"prompt", "只有條目有 `check: \"hard\"` 時，缺少 `zh` 才會退回", "only check: hard rejects a missing rendering"},
+	{"prompt", "`note` 寫出原詞就收下", "a note that names the term is not said to be accepted"},
+	{"prompt", "暫定詞不會退回", "a provisional term is not said to only warn"},
+	{"skill", "條目有 `check: \"hard\"` 時，缺少詞彙表指定的譯法才會退回", "only check: hard rejects a missing rendering"},
+}
+
+// glossaryCheckProblems lists what prompt and skill lack of glossaryCheckSays.
+func glossaryCheckProblems(prompt, skill string) []string {
+	var out []string
+	for _, c := range glossaryCheckSays {
+		text := prompt
+		if c.in == "skill" {
+			text = skill
+		}
+		if !strings.Contains(text, c.text) {
+			out = append(out, c.in+" lacks "+c.text+": "+c.why)
+		}
+	}
+	if strings.Contains(prompt, "條目是硬性規定") {
+		out = append(out, "prompt still calls the glossary entries hard rules")
+	}
+	return out
+}
+
+// Only an entry with check: hard has a missing rendering rejected; the
+// shared prompt and the translate-pending skill say so, and each sentence is
+// pinned: a text without it is reported.
+func TestGlossaryCheckHardIsExplained(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	_, skill := readRepoFile(t, filepath.Join(repoRoot, ".claude", "skills", "translate-pending", "SKILL.md"))
+	for _, p := range glossaryCheckProblems(prompt, skill) {
+		t.Error(p)
+	}
+	for _, c := range glossaryCheckSays {
+		t.Run(c.in+" "+c.text, func(t *testing.T) {
+			p, s := prompt, skill
+			if c.in == "skill" {
+				s = strings.ReplaceAll(s, c.text, "x")
+			} else {
+				p = strings.ReplaceAll(p, c.text, "x")
+			}
+			if len(glossaryCheckProblems(p, s)) == 0 {
+				t.Errorf("removing %q is not reported", c.text)
+			}
+		})
+	}
+	t.Run("old opening returns", func(t *testing.T) {
+		if len(glossaryCheckProblems(prompt+"\n- `glossary` 的條目是硬性規定", skill)) == 0 {
+			t.Error("the old opening is not reported")
+		}
+	})
 }

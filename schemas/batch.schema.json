@@ -63,6 +63,10 @@
             "description": "Absent or \"word\": the term applies where its KR stands as a word (a following particle or ending such as 로, 가 or 니까 still counts), not inside a longer word. \"substring\": it applies wherever its KR occurs, inside a longer word too.",
             "type": "string"
           },
+          "check": {
+            "description": "Absent or \"warn\": the rendering zh is the project's default, and a translation without it is accepted with a warning. \"hard\": a translation without zh is sent back unless the note names the KR term and the reason (a batch with glossary_check: warn only warns). A forbidden rendering is always sent back.",
+            "enum": ["hard", "warn"]
+          },
           "provisional": {
             "description": "true: a provisional term registered earlier in this project and awaiting confirmation. Use it like any other entry.",
             "type": "boolean"

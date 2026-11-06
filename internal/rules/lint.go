@@ -114,6 +114,9 @@ func (l *linter) glossary() {
 		if !slices.Contains(validStatus, t.Status) {
 			l.report(GlossaryFile, "%s: status is %q, want one of %s", label, t.Status, strings.Join(validStatus, ", "))
 		}
+		if t.Check != "" && t.Check != CheckHard && t.Check != CheckWarn {
+			l.report(GlossaryFile, "%s: check is %q, want %s or %s", label, t.Check, CheckHard, CheckWarn)
+		}
 		for _, f := range t.Forbidden {
 			if pattern, isRegexp := strings.CutPrefix(f, "re:"); isRegexp {
 				if _, err := regexp.Compile(pattern); err != nil {

@@ -413,13 +413,14 @@ func (s *submission) unit(o OutUnit) error {
 	prov := s.provisional()
 	issues := CheckNewTerms(s.env.Rules, prov, file, kr, zh)
 	// A missing glossary rendering is only a warning in CheckNew; a submission
-	// without it is rejected unless the note names the term, the way the
-	// entry itself matches a KR text. A family with glossary: warn keeps it a
-	// warning whatever the note says.
+	// without it is rejected only where the entry behind it is check: hard
+	// (a provisional term never is), unless the note names the term, the way
+	// the entry itself matches a KR text. A family with glossary: warn keeps
+	// it a warning whatever the note says.
 	entries := append(s.env.Rules.GlossaryHits(file, kr), prov...)
 	warnOnly := s.env.Rules.GlossaryWarnOnly(file)
 	for j := range issues {
-		if issues[j].Code == validate.CodeTermMissing && !warnOnly && !noteNames(entries, issues[j], o.Note) {
+		if issues[j].Code == validate.CodeTermMissing && !warnOnly && hardEntry(entries, issues[j]) && !noteNames(entries, issues[j], o.Note) {
 			issues[j].Severity = validate.SeverityHard
 		}
 	}
@@ -468,6 +469,18 @@ func (s *submission) unit(o OutUnit) error {
 		s.res.Warnings = append(s.res.Warnings, Rejection{Key: o.Key, Issues: warnings})
 	}
 	return nil
+}
+
+// hardEntry reports whether the entry behind the term-missing issue is
+// check: hard. No entry behind the issue is a broken invariant, and it only
+// warns.
+func hardEntry(entries []rules.Term, is validate.Issue) bool {
+	for _, t := range entries {
+		if t.KR == is.Term && t.ZH == is.TermZH && t.Hard() {
+			return true
+		}
+	}
+	return false
 }
 
 // noteNames reports whether note writes the KR term of the entry behind the

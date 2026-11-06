@@ -1,8 +1,17 @@
 # 詞彙表
 
-`terms.yaml` 是硬性規定：翻譯時注入命中的條目，驗證時檢查禁用譯法。
+`terms.yaml` 的譯名是專案的預設譯名：翻譯時注入命中的條目，驗證時檢查禁用譯法。缺少 `zh` 預設只警告，不退回（見下一節 `check`）。
 
-劇情與台詞類族群（`guides/routing.yaml` 標 `glossary: warn` 的：`story-main`、`story-interlude`、`identity`、`ego-voice`、`announcer`、`dante-note`）語境多變，譯名只是預設：缺少 `zh` 時只警告，不退回；譯者語境不合可以不用，仍在 `note` 寫原因。`forbidden` 的禁用譯法在這些族群照樣退回。
+`guides/routing.yaml` 標 `glossary: warn` 的族群（列表以 routing.yaml 為準，不在這裡重抄）語境多變：即使條目有 `check: hard`，缺少 `zh` 也只警告，不退回；譯者語境不合可以不用，仍在 `note` 寫原因。`forbidden` 的禁用譯法在這些族群照樣退回。
+
+## `check`：缺少譯名時退回
+
+`check` 的值是 `hard` 或 `warn`，省略等於 `warn`（`lct rules lint` 檢查）：
+
+- 省略或 `warn`：譯文缺少 `zh`（也沒有 `also`）只警告，送出時照樣收下，警告列在審核頁
+- `hard`：缺少 `zh` 時，送出會退回，除非該單位的 `note` 寫出條目的 KR 原詞（說明為何在此不照條目譯）；`glossary: warn` 的族群仍只警告。暫定詞沒有 `check`，一律只警告
+- `forbidden` 與 `check` 無關，譯文含禁用譯法一律退回
+- 改為 `hard` 要有依據：在 `notes` 寫日期、應用率與出現數。詞彙範圍分頁列有「可考慮退回」的條目（應用率高於 95%、至少 20 個單位）；由人決定，經 `review-page` skill 改，`bin/lct glossary scope --json` 是數字的來源。改回只警告就刪掉 `check`
 
 ## 術語相關（原指引）
 

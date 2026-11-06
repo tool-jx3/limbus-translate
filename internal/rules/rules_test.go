@@ -547,6 +547,33 @@ func TestLintGlossaryMatch(t *testing.T) {
 	}
 }
 
+// check takes hard and warn, or nothing; anything else is a mistake lint
+// reports. Hard is true for hard alone.
+func TestLintGlossaryCheck(t *testing.T) {
+	for _, tc := range []struct {
+		check   string
+		wantErr bool
+	}{{"", false}, {"hard", false}, {"warn", false}, {"strict", true}} {
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string {
+			line := ""
+			if tc.check != "" {
+				line = "  check: " + tc.check + "\n"
+			}
+			return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n" + line
+		})
+		msg := lintMessages(rules.Lint(root))
+		if got := strings.Contains(msg, "check"); got != tc.wantErr {
+			t.Errorf("check %q: lint mentions check = %v, want %v:\n%s", tc.check, got, tc.wantErr, msg)
+		}
+	}
+	for check, want := range map[string]bool{"": false, "warn": false, "hard": true} {
+		if got := (rules.Term{Check: check}).Hard(); got != want {
+			t.Errorf("Term{Check: %q}.Hard() = %v, want %v", check, got, want)
+		}
+	}
+}
+
 // A term with files applies to the files that match; a term without files to
 // all of them. Where both are given for one KR text, the term that matches
 // the file stands for it alone, so each file has one rendering.

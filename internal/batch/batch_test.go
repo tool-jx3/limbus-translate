@@ -3101,6 +3101,7 @@ func TestStoryContextOfASmallBatch(t *testing.T) {
 const seasonGlossary = `- kr: 시즌
   zh: 賽季
   status: approved
+  check: hard
 `
 
 func seasonEnv(t *testing.T) (Env, *Batch) {
@@ -3506,15 +3507,8 @@ func TestSubmitChecksProvisionalTerms(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
-		t.Fatalf("result = %+v, want rejected for term-missing", res)
-	}
-	res, err = Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "打雷了", Note: "우레：此處指別的東西"}}, "m", 3)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if len(res.Accepted) != 1 || len(res.Warnings) != 1 {
-		t.Errorf("result = %+v, want accepted with a warning", res)
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 || len(res.Warnings) != 1 || !hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) {
+		t.Errorf("result = %+v, want accepted with a term-missing warning: a provisional term only warns", res)
 	}
 }
 
@@ -3716,6 +3710,7 @@ func TestMergedBatchScopesTermsByUnitFile(t *testing.T) {
   zh: 威力
   status: approved
   files: ["A.json"]
+  check: hard
 `
 	kr := map[string]string{
 		"A.json": `{"dataList":[{"id":0,"content":"위력이 강하다"},{"id":1,"content":"그냥 간다"}]}`,
@@ -3932,7 +3927,7 @@ func hardTermMissing(issues []validate.Issue) []string {
 // The note has to write the term the way the entry matches it: an entry that
 // hits only as a word is not named by a longer word that holds it.
 func TestSubmitNoteNamesTheTermAsTheEntryMatches(t *testing.T) {
-	const glossary = "- kr: 속도\n  zh: 速度\n  status: approved\n  match: word\n"
+	const glossary = "- kr: 속도\n  zh: 速度\n  status: approved\n  match: word\n  check: hard\n"
 	for _, tc := range []struct {
 		note   string
 		accept bool
@@ -3955,7 +3950,7 @@ func TestSubmitNoteNamesTheTermAsTheEntryMatches(t *testing.T) {
 // Two entries are missing and the note names one: the unit goes back for the
 // other one, and the hard issue is only about that one.
 func TestSubmitNoteNamesOnlyOneOfTwoMissingTerms(t *testing.T) {
-	const glossary = "- kr: 시즌\n  zh: 賽季\n  status: approved\n- kr: 탐식\n  zh: 暴食\n  status: approved\n"
+	const glossary = "- kr: 시즌\n  zh: 賽季\n  status: approved\n  check: hard\n- kr: 탐식\n  zh: 暴食\n  status: approved\n  check: hard\n"
 	env, b := krEnv(t, glossary, "시즌과 탐식")
 	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "季和貪吃", Note: "시즌：劇中季節"}}, "m", 3)
 	if err != nil {
@@ -3976,7 +3971,7 @@ func TestSubmitNoteNamesOnlyOneOfTwoMissingTerms(t *testing.T) {
 // A combined name inside the story, with the note naming the Korean term, is
 // accepted, like the 시즌 case.
 func TestSubmitAcceptsACombinedNameTheNoteNames(t *testing.T) {
-	const glossary = "- kr: 탐식\n  zh: 暴食\n  status: approved\n"
+	const glossary = "- kr: 탐식\n  zh: 暴食\n  status: approved\n  check: hard\n"
 	env, b := krEnv(t, glossary, "탐식의 재림")
 	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "貪吃的再臨", Note: "탐식：劇中組合名稱「탐식의 재림」的一部分"}}, "m", 3)
 	if err != nil {
@@ -4059,7 +4054,7 @@ func TestSubmitChecksTheBatchProvisionalTermsStillInForce(t *testing.T) {
 	seed(t, env, items("Other.json", 0, 1)...)
 	b := mustNext(t, env, NextOptions{})
 	env.Provisional = []rules.Term{term}
-	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 {
+	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 || len(res.Warnings) != 0 {
 		t.Errorf("registered after the batch: %+v, %v, want accepted", res, err)
 	}
 
@@ -4067,8 +4062,8 @@ func TestSubmitChecksTheBatchProvisionalTermsStillInForce(t *testing.T) {
 	env = provEnv(t)
 	seed(t, env, items("Other.json", 0, 1)...)
 	b = mustNext(t, env, NextOptions{})
-	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Rejected) != 1 {
-		t.Errorf("in force: %+v, %v, want rejected", res, err)
+	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 || len(res.Warnings) != 1 || !hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) {
+		t.Errorf("in force: %+v, %v, want accepted with a term-missing warning", res, err)
 	}
 
 	// Carried by the batch, declined or replaced by a glossary entry since:
@@ -4077,7 +4072,7 @@ func TestSubmitChecksTheBatchProvisionalTermsStillInForce(t *testing.T) {
 	seed(t, env, items("Other.json", 0, 1)...)
 	b = mustNext(t, env, NextOptions{})
 	env.Provisional = nil
-	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 {
+	if res, err := Submit(env, b, bad, "m", 3); err != nil || len(res.Accepted) != 1 || len(res.Warnings) != 0 {
 		t.Errorf("no longer in force: %+v, %v, want accepted", res, err)
 	}
 }
@@ -4096,8 +4091,8 @@ func TestProvisionalTermCutByATagIsInTheBatchAndEnforced(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, validate.CodeTermMissing) {
-		t.Errorf("result = %+v, want rejected for term-missing", res)
+	if len(res.Accepted) != 1 || len(res.Warnings) != 1 || !hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) {
+		t.Errorf("result = %+v, want accepted with a term-missing warning", res)
 	}
 }
 
@@ -4108,11 +4103,16 @@ func TestSubmitChecksTheCurrentProvisionalRendering(t *testing.T) {
 	seed(t, env, items("Other.json", 0, 1)...)
 	b := mustNext(t, env, NextOptions{}) // the batch carries 우레 -> 雷鳴
 	env.Provisional = []rules.Term{{KR: "우레", ZH: "驚雷", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
-	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "雷鳴響起"}}, "m", 3); err != nil || len(res.Rejected) != 1 {
-		t.Errorf("old rendering: %+v, %v, want rejected: 驚雷 is in force", res, err)
+	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "雷鳴響起"}}, "m", 3); err != nil || len(res.Warnings) != 1 ||
+		len(res.Warnings[0].Issues) != 1 || res.Warnings[0].Issues[0].TermZH != "驚雷" {
+		t.Errorf("old rendering: %+v, %v, want a term-missing warning for 驚雷, which is in force", res, err)
 	}
-	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "驚雷響起"}}, "m", 3); err != nil || len(res.Accepted) != 1 {
-		t.Errorf("current rendering: %+v, %v, want accepted", res, err)
+	env = provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b = mustNext(t, env, NextOptions{})
+	env.Provisional = []rules.Term{{KR: "우레", ZH: "驚雷", Match: rules.MatchWord, Status: rules.StatusApproved, Provisional: true}}
+	if res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "驚雷響起"}}, "m", 3); err != nil || len(res.Accepted) != 1 || len(res.Warnings) != 0 {
+		t.Errorf("current rendering: %+v, %v, want accepted without a warning", res, err)
 	}
 }
 
@@ -4514,5 +4514,77 @@ func TestBatchGlossaryUnits(t *testing.T) {
 	}
 	if !slices.Equal(units["임시"], []string{"u1", "u2"}) {
 		t.Errorf("임시 units = %q, want [u1 u2]", units["임시"])
+	}
+}
+
+// A missing glossary rendering is rejected at submission only for an entry
+// with check: hard (in a family that does not say glossary: warn), and only
+// when the note does not name the term; every other entry, and a provisional
+// term, only warns. A forbidden rendering is rejected whatever check says.
+func TestSubmitGlossaryCheck(t *testing.T) {
+	const (
+		plain = "- kr: 시즌\n  zh: 賽季\n  status: approved\n  forbidden: [季前]\n"
+		hard  = plain + "  check: hard\n"
+	)
+	run := func(t *testing.T, routing, glossary, file, zh, note string) *SubmitResult {
+		t.Helper()
+		env := newEnv(t, map[string]string{file: oneLine(t, "두 시즌 전부터")}, nil, nil)
+		if routing == "" {
+			env.Rules = testRulesWith(t, glossary)
+		} else {
+			env.Rules = testRulesWithRouting(t, routing, glossary)
+		}
+		seed(t, env, items(file, 0, 1)...)
+		res, err := Submit(env, mustNext(t, env, NextOptions{}), []OutUnit{{Key: key(file, 0), ZH: zh, Note: note}}, "m", 3)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return res
+	}
+	warned := func(t *testing.T, res *SubmitResult) {
+		t.Helper()
+		if len(res.Accepted) != 1 || len(res.Rejected) != 0 || len(res.Warnings) != 1 ||
+			!hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) || validate.HasHard(res.Warnings[0].Issues) {
+			t.Errorf("result = %+v, want accepted with a term-missing warning", res)
+		}
+	}
+	rejected := func(t *testing.T, res *SubmitResult, code string) {
+		t.Helper()
+		if len(res.Accepted) != 0 || len(res.Rejected) != 1 || !hasCode(res.Rejected[0].Issues, code) {
+			t.Errorf("result = %+v, want rejected for %s", res, code)
+		}
+	}
+	t.Run("no check: a missing rendering only warns", func(t *testing.T) {
+		warned(t, run(t, "", plain, "Other.json", "從兩個賽局前起", ""))
+	})
+	t.Run("check warn: a missing rendering only warns", func(t *testing.T) {
+		warned(t, run(t, "", plain+"  check: warn\n", "Other.json", "從兩個賽局前起", ""))
+	})
+	t.Run("check hard: rejected without the term in the note", func(t *testing.T) {
+		rejected(t, run(t, "", hard, "Other.json", "從兩個賽局前起", ""), validate.CodeTermMissing)
+		rejected(t, run(t, "", hard, "Other.json", "從兩個賽局前起", "탐식：卡包名"), validate.CodeTermMissing)
+	})
+	t.Run("check hard: accepted when the note names the term", func(t *testing.T) {
+		warned(t, run(t, "", hard, "Other.json", "從兩個賽局前起", "시즌：劇中季節"))
+	})
+	t.Run("check hard in a warn family only warns", func(t *testing.T) {
+		warned(t, run(t, warnRouting, hard, "Warn.json", "從兩個賽局前起", ""))
+	})
+	t.Run("forbidden is rejected whatever check says", func(t *testing.T) {
+		rejected(t, run(t, "", plain, "Other.json", "從兩棵季前起", ""), "forbidden-term")
+	})
+}
+
+func TestSubmitProvisionalTermOnlyWarns(t *testing.T) {
+	env := provEnv(t)
+	seed(t, env, items("Other.json", 0, 1)...)
+	b := mustNext(t, env, NextOptions{})
+	res, err := Submit(env, b, []OutUnit{{Key: key("Other.json", 0), ZH: "打雷了"}}, "m", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Accepted) != 1 || len(res.Rejected) != 0 || len(res.Warnings) != 1 ||
+		!hasCode(res.Warnings[0].Issues, validate.CodeTermMissing) || validate.HasHard(res.Warnings[0].Issues) {
+		t.Errorf("result = %+v, want accepted with a term-missing warning", res)
 	}
 }
