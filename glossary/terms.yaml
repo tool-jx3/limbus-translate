@@ -86,11 +86,11 @@
   en: Season
   zh: 賽季
   forbidden: ["re:第\\d+季"]
-  not_files: ["BattleAnnouncerDlg/**", "PersonalityVoiceDlg/**", "RPGSystem*", "StoryData/**"]
+  not_files: ["BattleAnnouncerDlg/**", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**"]
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）。2026-11-06 依實際譯文：BattleAnnouncerDlg、PersonalityVoiceDlg、RPGSystem、StoryData 等檔幾乎不用此譯名（109 句 0 句用），排除
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）。2026-11-06 依實際譯文：BattleAnnouncerDlg、PersonalityVoiceDlg、RPGSystem、StoryData 等播報、語音、RPG 與劇情檔不用此譯名（109 句 0 句用），排除
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -150,7 +150,7 @@
   match: word
   category: [system, combat]
   evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
-  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 等檔幾乎不用此譯名（116 句 2 句用），排除
+  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除
 
 - kr: E.G.O 자원
   en: E.G.O Resource
@@ -510,7 +510,7 @@
   files: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "AbEventsResultLog*", "StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
   status: approved
   category: [general]
-  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有。2026-11-06 依實際譯文：只有指定的檔用此譯名（43 句 43 句用），其他檔不用（7 句 2 句用），限定檔案
+  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有。2026-11-06 依實際譯文：只有指定的檔（異想體說明、事件、間章劇情）用此譯名（43 句 43 句用），其他檔 8 句 3 句用，限定檔案
 
 - kr: 어제의 약속
   zh: 昨天的約定
@@ -918,7 +918,7 @@
   status: approved
   match: substring
   category: [city]
-  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：間章劇情 等檔幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
+  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：StoryData/E*、ES*、PC* 的間章劇情幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 뿌이
   zh: 普依
@@ -1312,7 +1312,7 @@
   match: word
   category: [general, combat, physical]
   evidence: { kr_lines: 306, approved: 276, forbidden: 0 }
-  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：人格語音、間章劇情、主線劇情 等檔幾乎不用此譯名（15 句 0 句用），排除
+  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：人格語音與劇情檔（PersonalityVoiceDlg 4 句、StoryData 11 句）不用此譯名（15 句 0 句用）；樣式另涵蓋戰鬥對話氣泡、歌詞、AbEvents-a1c*、地下城節點等同類敘事檔（目前沒有符合的句子），排除
 
 - kr: 색욕
   zh: 色慾
@@ -1419,7 +1419,7 @@
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：友方技能 等檔幾乎不用此譯名（10 句 0 句用），排除
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：夥伴被動（Passives_Assist 10 句 0 句用）與異想體被動（Passives_Abnormality 5 句 4 句用）等被動、技能、E.G.O、人格檔不採此譯名，共 15 句 4 句用，排除
 
 - kr: 상점
   zh: 商店
@@ -1441,7 +1441,7 @@
   status: approved
   category: [general]
   evidence: { kr_lines: 204, approved: 197, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：只有指定的檔用此譯名（194 句 194 句用），其他檔不用（10 句 3 句用），限定檔案
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：只有 PersonalityVoiceDlg 人格語音用此譯名（194 句 194 句用），其他檔 10 句 3 句用，限定檔案
 
 - kr: 림버스 컴퍼니
   zh: 邊獄公司
@@ -1608,7 +1608,7 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 163, approved: 154, forbidden: 0 }
-  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：主線劇情 等檔幾乎不用此譯名（3 句 0 句用），排除
+  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：劇情、歌詞、地下城節點等檔（StoryData 1 句、DungeonNode 2 句）不用此譯名（3 句 0 句用），排除
 
 - kr: 반격
   zh: 反擊
@@ -1709,7 +1709,7 @@
   status: approved
   category: [city]
   evidence: { kr_lines: 110, approved: 105, forbidden: 0 }
-  notes: Paratranz 詞彙表：環指位階之一。2026-11-06 依實際譯文：PersonalityVoiceDlg 等檔幾乎不用此譯名（3 句 0 句用），排除
+  notes: Paratranz 詞彙表：環指位階之一。2026-11-06 依實際譯文：PersonalityVoiceDlg 人格語音不用此譯名（3 句 0 句用），排除
 
 - kr: 크흠
   zh: 咳
@@ -1843,7 +1843,7 @@
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 79, approved: 73, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：瓦普折射 等檔幾乎不用此譯名（7 句 1 句用），排除
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：瓦普與折射活動檔（*walpu*、*Refraction*、Railway*）不用此譯名（7 句 1 句用），排除
 
 - kr: 창백한 고래
   zh: 白鯨
@@ -3845,7 +3845,7 @@
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 195, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述（evidence 只算單獨成詞的用法；KR 的「방치시켜」等長詞裡也有這個字串）。2026-11-06 依實際譯文：只有指定的檔用此譯名（195 句 193 句用），其他檔不用（21 句 2 句用），限定檔案
+  notes: Paratranz 詞彙表：輔助文本描述（evidence 只算單獨成詞的用法；KR 的「방치시켜」等長詞裡也有這個字串）。2026-11-06 依實際譯文：只有 PersonalityVoiceDlg 人格語音用此譯名（195 句 193 句用），其他檔 21 句 2 句用，限定檔案
 
 - kr: 카포
   zh: 指揮官
@@ -3879,11 +3879,11 @@
 
 - kr: 속도
   zh: 速度值
-  not_files: ["AbEvents*", "PersonalityVoiceDlg/**", "RPGSystem*", "StoryData/**"]
+  not_files: ["AbEvents*", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 1242, approved: 1050, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：AbEvents*、PersonalityVoiceDlg、RPGSystem、StoryData 等檔幾乎不用此譯名（124 句 3 句用），排除
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：AbEvents* 事件檔 16 句 1 句用、PersonalityVoiceDlg 4 句 0 句用、RPGSystem 26 句 2 句用、StoryData 78 句 0 句用，共 124 句 3 句用，排除
 
 - kr: 공격 시작
   zh: 進行攻擊
@@ -3891,7 +3891,7 @@
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 239, approved: 195, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：只有指定的檔用此譯名（191 句 191 句用），其他檔不用（47 句 5 句用），限定檔案
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：只有 PersonalityVoiceDlg 人格語音用此譯名（191 句 191 句用），其他檔 48 句 5 句用（RPGSystem 1 句 0 句用、其餘 47 句 5 句用），限定檔案
 
 - kr: 스킬당 1회
   zh: 每個技能最多1次
@@ -3901,11 +3901,11 @@
 
 - kr: 자판기
   zh: 自動販賣機
-  not_files: ["RPGSystem*", "StoryData/**"]
+  not_files: ["RPGSystem/**", "StoryData/**"]
   status: approved
   category: [ego]
   evidence: { kr_lines: 189, approved: 162, forbidden: 0 }
-  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：RPGSystem、StoryData 等檔幾乎不用此譯名（21 句 3 句用），排除
+  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：RPGSystem 6 句 0 句用、StoryData 15 句 3 句用，共 21 句 3 句用，排除
 
 - kr: 이번 턴 동안
   zh: 本回合內
@@ -3925,7 +3925,7 @@
   not_files: ["PersonalityVoiceDlg/**", "StoryData/**"]
   status: approved
   evidence: { kr_lines: 130, approved: 107, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：PersonalityVoiceDlg、StoryData 等檔幾乎不用此譯名（16 句 2 句用），排除
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：PersonalityVoiceDlg 6 句 0 句用、StoryData 10 句 2 句用，共 16 句 2 句用，排除
 
 - kr: 다음 턴 시작 시
   zh: 下回合開始時
@@ -3940,7 +3940,7 @@
   status: approved
   match: substring
   evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：瓦普折射 等檔幾乎不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：瓦普與折射活動檔（*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞
 
 - kr: 유리창
   zh: 玻璃窗
