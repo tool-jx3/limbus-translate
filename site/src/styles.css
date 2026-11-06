@@ -2904,6 +2904,11 @@ button.chip {
   font-size: 0.8rem;
 }
 
+.pv-issues li.is-hard .pv-sev {
+  background: var(--danger-fg);
+  color: var(--bg);
+}
+
 .pv-none {
   color: var(--muted);
 }

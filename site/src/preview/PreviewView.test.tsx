@@ -1,7 +1,7 @@
 import { render } from 'preact'
 import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { clearDataCache } from '../data'
+import { clearDataCache, loadIndex } from '../data'
 import { fileHref, termHref, type Route } from '../route'
 import { runEffectsAtOnce } from '../testdata'
 import type { BatchJSON, FileData, PreviewFileWire, PreviewShared } from '../types'
@@ -125,6 +125,18 @@ describe('PreviewView: head and composition', () => {
     expect([...el.querySelectorAll('.pv-terms li')].some((li) => li.textContent?.includes('공격 → 攻擊') && li.querySelector('a') === null)).toBe(true)
   })
 
+  it('tags a provisional term and a hard one, and not the status every term has', async () => {
+    const pf = json<PreviewFileWire>(`preview/${STORY}`)
+    pf.terms[0] = { ...pf.terms[0]!, status: 'approved', check: 'hard' }
+    pf.terms[1] = { ...pf.terms[1]!, status: 'approved', provisional: true, check: undefined }
+    docs[`preview/${STORY}`] = pf
+    const el = await open(STORY, ptrOf(STORY, 5))
+    const tags = [...el.querySelectorAll('.pv-terms .pv-tag')].map((t) => t.textContent)
+    expect(tags).toContain('hard')
+    expect(tags).toContain('暫定')
+    expect(tags).not.toContain('approved')
+  })
+
   it('keeps long texts in boxes of their own that scroll', async () => {
     const el = await open(STORY, ptrOf(STORY, 5))
     expect(el.querySelectorAll('pre.pv-box').length).toBeGreaterThan(0)
@@ -204,6 +216,16 @@ describe('PreviewView: state, record and check', () => {
     expect(text(el)).toContain('缺少標籤 <b>')
     expect(text(el)).toContain('term-missing')
     expect(text(el)).toContain('沒用譯名 위력')
+    // each issue shows its code, severity, class and message
+    const lines = [...el.querySelectorAll('.pv-issues li')].map((li) => li.textContent ?? '')
+    expect(lines).toHaveLength(2)
+    for (const [i, parts] of [
+      [0, ['tags-missing', 'hard', 'structure', '缺少標籤 <b>']],
+      [1, ['term-missing', 'warn', 'glossary', '沒用譯名 위력']],
+    ] as const) {
+      for (const part of parts) expect(lines[i]).toContain(part)
+    }
+    expect(el.querySelectorAll('.pv-issues li.is-hard')).toHaveLength(1)
     edit(STORY, 9, (u) => {
       u.chk = { verdict: 'warn', zh: '威力', issues: [{ code: 'term-missing', severity: 'warn', class: 'glossary', message: '沒用譯名 위력' }] }
     })
@@ -343,5 +365,26 @@ describe('PreviewView: polish', () => {
       tab(el, 'full').dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }))
     })
     expect(tab(el, 'compose').getAttribute('aria-selected')).toBe('true')
+  })
+})
+
+describe('PreviewView: data of one deployment', () => {
+  it('asks the server for its three documents again each time it is opened, and the other pages still cache', async () => {
+    const f = vi.mocked(fetch)
+    await open(STORY, ptrOf(STORY, 5))
+    expect(f).toHaveBeenCalledTimes(3)
+    await open(STORY, ptrOf(STORY, 5))
+    expect(f).toHaveBeenCalledTimes(6)
+    for (const [, init] of f.mock.calls) expect(init).toMatchObject({ cache: 'no-cache' })
+    const urls = f.mock.calls.slice(0, 3).map(([u]) => String(u))
+    expect(urls.some((u) => u.includes('files/'))).toBe(true)
+    expect(urls.some((u) => u.includes('preview/'))).toBe(true)
+    expect(urls.some((u) => u.endsWith('preview.json'))).toBe(true)
+    // the cache of the other loaders is as it was
+    f.mockClear()
+    docs['index.json'] = { families: [], files: [] }
+    await loadIndex()
+    await loadIndex()
+    expect(f).toHaveBeenCalledTimes(1)
   })
 })

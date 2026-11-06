@@ -18,6 +18,8 @@ const VERDICT: Record<string, string> = { reject: '退回', warn: '收下但有�
 
 interface Issue {
   code: string
+  severity: string
+  class: string
   message: string
 }
 
@@ -135,7 +137,7 @@ function Composition({ batch, pf, pu, shared }: { batch: BatchJSON; pf: PreviewF
                 <li key={i}>
                   {id !== undefined && !t.provisional ? <a href={termHref(id)}>{label}</a> : label}
                   {t.provisional && <span class="pv-tag">暫定</span>}
-                  {t.status && <span class="pv-tag">{t.status}</span>}
+                  {t.check === 'hard' && <span class="pv-tag">hard</span>}
                 </li>
               )
             })}
@@ -235,8 +237,8 @@ function RecordAndCheck({ pu, rules }: { pu: PreviewUnit; rules: string }) {
           {issues.length > 0 && (
             <ul class="pv-issues">
               {issues.map((i, k) => (
-                <li key={k}>
-                  <code>{i.code}</code> {i.message}
+                <li key={k} class={i.severity === 'hard' ? 'is-hard' : ''}>
+                  <code>{i.code}</code> <span class="pv-tag pv-sev">{i.severity}</span> <span class="pv-tag">{i.class}</span> {i.message}
                 </li>
               ))}
             </ul>
@@ -398,7 +400,9 @@ function Loaded({ route, docs }: { route: PreviewRoute; docs: Docs }) {
 export function PreviewView({ route }: { route: PreviewRoute }) {
   const key = `${route.path}\n${route.ptr}`
   const loaded = useLoad(key, async () => {
-    const [file, wire, shared] = await Promise.all([loadFile(route.path), loadPreviewFile(route.path), loadPreviewShared()])
+    // The three documents are asked for anew each time, together, so that they are of one deployment.
+    const fresh = { fresh: true }
+    const [file, wire, shared] = await Promise.all([loadFile(route.path, fresh), loadPreviewFile(route.path, fresh), loadPreviewShared(fresh)])
     return { file, pf: expandPreviewFile(wire, file), shared }
   })
   if (loaded === undefined) return <p role="status">預覽載入中…</p>

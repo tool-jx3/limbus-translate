@@ -33,9 +33,14 @@ export function clearDataCache(): void {
   cache.clear()
 }
 
-/** One JSON file under ./data/, fetched once: later calls get the same promise. A failure is not kept. */
-function load<T>(rel: string, check: (doc: unknown) => T): Promise<T> {
-  const cached = cache.get(rel)
+/** Options of a load: `fresh` asks the server again and neither reads nor fills the cache. */
+export interface LoadOptions {
+  fresh?: boolean
+}
+
+/** One JSON file under ./data/, fetched once: later calls get the same promise. A failure is not kept. With `fresh` it is fetched anew and kept by no one. */
+function load<T>(rel: string, check: (doc: unknown) => T, opts: LoadOptions = {}): Promise<T> {
+  const cached = opts.fresh ? undefined : cache.get(rel)
   if (cached) return cached as Promise<T>
   const p = (async () => {
     let res: Response
@@ -56,6 +61,7 @@ function load<T>(rel: string, check: (doc: unknown) => T): Promise<T> {
     }
     return check(doc)
   })()
+  if (opts.fresh) return p
   cache.set(rel, p)
   p.catch(() => {
     if (cache.get(rel) === p) cache.delete(rel)
@@ -81,31 +87,31 @@ export function loadIndex(): Promise<Index> {
 }
 
 /** A file of data/files/, by its path in the index (such as "StoryData/S001A.json"). */
-export function loadFile(path: string): Promise<FileData> {
+export function loadFile(path: string, opts?: LoadOptions): Promise<FileData> {
   const rel = `files/${path.split('/').map(encodeURIComponent).join('/')}`
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', `${rel}: no units`)
     return doc as unknown as FileData
-  })
+  }, opts)
 }
 
 /** data/preview.json: the prompt, the guides and the rules commit every preview batch shares. */
-export function loadPreviewShared(): Promise<PreviewShared> {
+export function loadPreviewShared(opts?: LoadOptions): Promise<PreviewShared> {
   return load('preview.json', (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.guides) || typeof doc.prompt !== 'string') {
       throw new DataError('format', 'preview.json: no prompt and guides')
     }
     return doc as unknown as PreviewShared
-  })
+  }, opts)
 }
 
 /** data/preview/<path>, compact as written: what the batches of the units of a file have in common (see expandPreviewFile). */
-export function loadPreviewFile(path: string): Promise<PreviewFileWire> {
+export function loadPreviewFile(path: string, opts?: LoadOptions): Promise<PreviewFileWire> {
   const rel = `preview/${path.split('/').map(encodeURIComponent).join('/')}`
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', `${rel}: no units`)
     return doc as unknown as PreviewFileWire
-  })
+  }, opts)
 }
 
 /** The key under which each review document holds its list. */
