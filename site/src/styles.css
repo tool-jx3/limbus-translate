@@ -246,6 +246,7 @@ input[type="search"] {
 }
 
 .update-link,
+.glossary-link,
 .review-link {
   color: var(--fg);
   text-decoration: none;
@@ -2537,4 +2538,142 @@ button.chip {
 .sc-entry-link {
   justify-self: start;
   font-size: 0.85rem;
+}
+
+/* The glossary page: the list of entries, and one entry with its units. */
+.glossary {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.gl-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.gl-table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.gl-table th,
+.gl-table td {
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: baseline;
+}
+
+.gl-table thead th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.gl-name {
+  white-space: nowrap;
+}
+
+.gl-table .gl-num {
+  text-align: end;
+}
+
+.gl-zh {
+  font-weight: 600;
+}
+
+.gl-also {
+  display: block;
+}
+
+.gl-also,
+.gl-scope {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.gl-scope {
+  min-width: 8rem;
+  max-width: 22rem;
+  overflow-wrap: anywhere;
+}
+
+.gl-check-hard {
+  font-weight: 600;
+  color: var(--warn-fg);
+}
+
+.gl-hard {
+  margin-inline-start: 0.5em;
+  padding: 0 0.45em;
+  border: 1px solid var(--warn-fg);
+  border-radius: 999px;
+  color: var(--warn-fg);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.gl-hard-note {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.tv-top {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.tv-top h1,
+.tv-top p,
+.tv-back {
+  margin: 0;
+}
+
+.tv-facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.2rem 0.8rem;
+  margin: 0;
+}
+
+.tv-facts dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.tv-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.tv-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+}
+
+.tv-filters select {
+  max-width: 100%;
+}
+
+.tv-missing,
+.tv-used {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.tv-missing h2,
+.tv-used h2 {
+  margin: 0;
+}
+
+.tv-list {
+  list-style: none;
 }

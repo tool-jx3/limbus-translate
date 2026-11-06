@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref } from './route'
+import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref } from './route'
 
 describe('parseHash', () => {
   it('reads the empty hash and #/ as home', () => {
@@ -176,5 +176,40 @@ describe('update routes', () => {
   it('drops the kinds it does not know', () => {
     expect(parseHash(`#/u/${tag}?k=new,bogus,,zh-changed`)).toMatchObject({ kinds: ['new', 'zh-changed'] })
     expect(parseHash(`#/u/${tag}?k=bogus`)).toMatchObject({ kinds: [] })
+  })
+})
+
+describe('glossary routes', () => {
+  it('reads #/g as the list with the defaults', () => {
+    expect(parseHash('#/g')).toEqual({ kind: 'glossary', q: '', sort: 'missing', only: '', family: '' })
+    expect(glossaryHref()).toBe('#/g')
+  })
+
+  it('round-trips the list filters', () => {
+    const f = { q: '대상 & ?', sort: 'rate' as const, only: 'hard' as const, family: 'story-main' }
+    expect(parseHash(glossaryHref(f))).toEqual({ kind: 'glossary', ...f })
+    expect(parseHash(glossaryHref({ sort: 'kr', only: 'missing' }))).toEqual({ kind: 'glossary', q: '', sort: 'kr', only: 'missing', family: '' })
+    expect(glossaryHref({ sort: 'missing' })).toBe('#/g')
+  })
+
+  it('reads an unknown sort or only as the default', () => {
+    expect(parseHash('#/g?sort=x&only=y')).toEqual({ kind: 'glossary', q: '', sort: 'missing', only: '', family: '' })
+  })
+
+  it('reads #/g/<a>/<b> as the entry glossary/<a>/<b>', () => {
+    expect(parseHash('#/g/aaaaaaaa/bbbbbbbb')).toEqual({
+      kind: 'term', id: 'glossary/aaaaaaaa/bbbbbbbb', family: '', group: '', chapter: '', character: '', event: '', origin: '', q: '',
+    })
+    expect(termHref('glossary/aaaaaaaa/bbbbbbbb')).toBe('#/g/aaaaaaaa/bbbbbbbb')
+  })
+
+  it('round-trips every filter of an entry', () => {
+    const f = { family: 'story-main', group: 'StoryData/', chapter: '10', character: 'faust', event: 'walpu6', origin: 'claude', q: '대상 & ?' }
+    expect(parseHash(termHref('glossary/aaaaaaaa/bbbbbbbb', f))).toEqual({ kind: 'term', id: 'glossary/aaaaaaaa/bbbbbbbb', ...f })
+    expect(termHref('glossary/aaaaaaaa/bbbbbbbb', { origin: 'human' })).toBe('#/g/aaaaaaaa/bbbbbbbb?origin=human')
+  })
+
+  it('reads a malformed entry address as home', () => {
+    for (const h of ['#/g/x', '#/g/', '#/g/a/', '#/g/a/b/c', '#/g//b', '#/g/../b', '#/gx']) expect(parseHash(h), h).toEqual({ kind: 'home' })
   })
 })

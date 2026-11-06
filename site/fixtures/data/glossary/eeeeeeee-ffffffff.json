@@ -1,0 +1,451 @@
+{
+ "id": "glossary/eeeeeeee/ffffffff",
+ "missing": [
+  {
+   "key": "Skills_personality-99.json|/dataList/1/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "이 공격은(는) 어디에 있지? (1)",
+   "zh": "打擊力（1）",
+   "note": "譯者說明：此處不用「攻擊」。",
+   "id": "warning/term-missing/1000acf6/7004babd"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/21/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "paratranz",
+   "kr": "이 공격은(는) 어디에 있지? (21)",
+   "zh": "進犯（21）",
+   "id": "warning/term-missing/1000ad0a/7004bb49",
+   "accepted": {
+    "reason": "語氣需要，確認保留",
+    "date": "2026-11-05"
+   }
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/22/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "claude",
+   "kr": "이 공격은(는) 어디에 있지? (22)",
+   "zh": "進犯（22）",
+   "id": "warning/term-missing/1000ad0b/7004bb50"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/23/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "human",
+   "kr": "이 공격은(는) 어디에 있지? (23)",
+   "zh": "進犯（23）",
+   "id": "warning/term-missing/1000ad0c/7004bb57"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/24/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "paratranz",
+   "kr": "이 공격은(는) 어디에 있지? (24)",
+   "zh": "進犯（24）",
+   "id": "warning/term-missing/1000ad0d/7004bb5e"
+  }
+ ],
+ "used": [
+  {
+   "key": "Skills_personality-99.json|/dataList/2/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (2)…",
+   "zh": "…看著攻擊接了後面的話（2）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/3/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (3)…",
+   "zh": "…看著攻擊接了後面的話（3）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/4/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (4)…",
+   "zh": "…看著攻擊接了後面的話（4）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/5/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (5)…",
+   "zh": "…看著攻擊接了後面的話（5）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/6/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (6)…",
+   "zh": "…看著攻擊接了後面的話（6）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/7/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (7)…",
+   "zh": "…看著攻擊接了後面的話（7）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/8/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (8)…",
+   "zh": "…看著攻擊接了後面的話（8）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/9/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (9)…",
+   "zh": "…看著攻擊接了後面的話（9）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/10/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (10)…",
+   "zh": "…看著攻擊接了後面的話（10）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/11/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (11)…",
+   "zh": "…看著攻擊接了後面的話（11）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/12/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (12)…",
+   "zh": "…看著攻擊接了後面的話（12）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/13/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (13)…",
+   "zh": "…看著攻擊接了後面的話（13）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/14/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (14)…",
+   "zh": "…看著攻擊接了後面的話（14）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/15/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (15)…",
+   "zh": "…看著攻擊接了後面的話（15）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/16/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (16)…",
+   "zh": "…看著攻擊接了後面的話（16）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/17/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (17)…",
+   "zh": "…看著攻擊接了後面的話（17）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/18/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (18)…",
+   "zh": "…看著攻擊接了後面的話（18）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/19/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (19)…",
+   "zh": "…看著攻擊接了後面的話（19）…"
+  },
+  {
+   "key": "Skills_personality-99.json|/dataList/20/content",
+   "family": "skill",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (20)…",
+   "zh": "…看著攻擊接了後面的話（20）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/25/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (25)…",
+   "zh": "…看著攻擊接了後面的話（25）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/26/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (26)…",
+   "zh": "…看著攻擊接了後面的話（26）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/27/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (27)…",
+   "zh": "…看著攻擊接了後面的話（27）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/28/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (28)…",
+   "zh": "…看著攻擊接了後面的話（28）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/29/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "human",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (29)…",
+   "zh": "…看著攻擊接了後面的話（29）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/30/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "paratranz",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (30)…",
+   "zh": "…看著攻擊接了後面的話（30）…"
+  },
+  {
+   "key": "StoryData/S9999.json|/dataList/31/content",
+   "family": "story-main",
+   "top": "StoryData/",
+   "sub": "StoryData/S",
+   "tag": {
+    "kind": "chapter",
+    "value": "1",
+    "label": "第 1 章"
+   },
+   "origin": "claude",
+   "kr": "…앞의 말 공격을(를) 보고 뒤의 말을 이었다 (31)…",
+   "zh": "…看著攻擊接了後面的話（31）…"
+  }
+ ]
+}

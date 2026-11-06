@@ -347,6 +347,36 @@ export interface ScopeReport {
   proposals: ScopeProposal[]
 }
 
+/** data/glossary/index.json: the entries of the glossary with their counts, and the limits the hard candidates follow. */
+export interface GlossaryIndex {
+  thresholds: ScopeThresholds
+  entries: ScopeEntry[]
+}
+
+/** One unit an entry hits (data/glossary/<a>-<b>.json). A unit that lacks the rendering has its full KR and TW (cut at 400 characters), its id and, if a person confirmed it, accepted; a unit that uses it has a piece of each around the term. */
+export interface GlossaryUnit {
+  /** "<file path>|<pointer>". */
+  key: string
+  family: string
+  top: string
+  sub?: string
+  tag?: FileTag
+  origin: Origin
+  kr: string
+  zh: string
+  note?: string
+  /** warning/term-missing/…, on a unit without the rendering only. */
+  id?: string
+  accepted?: Confirmed
+}
+
+/** data/glossary/<a>-<b>.json, the file of the entry glossary/<a>/<b>. */
+export interface GlossaryFile {
+  id: string
+  missing: GlossaryUnit[]
+  used: GlossaryUnit[]
+}
+
 /** What changed in a unit between two releases. */
 export type UpdateKind = 'new' | 'kr-changed' | 'deleted' | 'zh-changed'
 /** Why a zh-changed unit changed. */

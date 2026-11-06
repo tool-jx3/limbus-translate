@@ -4,7 +4,8 @@ import type { UpdateFilter } from './updates/filter'
 /**
  * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/s?q=…&lang=…&re=1,
  * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
- * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1.
+ * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1,
+ * #/g?q=…&sort=…&only=…&family=…, #/g/<a>/<b>?family=…&group=…&chapter=…&character=…&event=…&origin=…&q=… (the entry glossary/<a>/<b>).
  */
 export type Route =
   | { kind: 'home' }
@@ -13,6 +14,24 @@ export type Route =
   | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
   | { kind: 'updates' }
   | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean }
+  | { kind: 'glossary'; q: string; sort: GlossarySort; only: GlossaryOnly; family: string }
+  | { kind: 'term'; id: string; family: string; group: string; chapter: string; character: string; event: string; origin: string; q: string }
+
+/** How the list of glossary entries is ordered: by units without the rendering (most first), by KR, or by rate. */
+export type GlossarySort = 'missing' | 'kr' | 'rate'
+/** Which entries the list keeps: all, those with a unit without the rendering, or the hard candidates. */
+export type GlossaryOnly = '' | 'missing' | 'hard'
+
+/** The filters of one glossary entry (the 'term' route without its id). */
+export interface TermFilter {
+  family: string
+  group: string
+  chapter: string
+  character: string
+  event: string
+  origin: string
+  q: string
+}
 
 /** How the inconsistent translations are shown: by KR alone, or with each variant's JP and EN. */
 export type ReviewMode = 'kr' | 'jpen'
@@ -24,6 +43,10 @@ const JPEN_CLASSES: readonly string[] = ['explained', 'partial', 'same']
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
 const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo', 'scope']
 const UPDATE_KINDS: readonly string[] = ['new', 'kr-changed', 'deleted', 'zh-changed']
+const GLOSSARY_SORTS: readonly string[] = ['missing', 'kr', 'rate']
+const GLOSSARY_ONLY: readonly string[] = ['missing', 'hard']
+/** The <a>/<b> of glossary/<a>/<b>. */
+const ENTRY_PATH = /^[0-9A-Za-z_-]+\/[0-9A-Za-z_-]+$/
 const UPDATE_TAG = /^zh-TW-\d{8}\.\d+$/
 
 /** decodeURIComponent that keeps the text as it is where the escape is not valid. */
@@ -89,6 +112,32 @@ export function parseHash(hash: string): Route {
       ...(id ? { id } : {}),
     }
   }
+  if (pathname === '/g') {
+    const sort = query.get('sort') ?? ''
+    const only = query.get('only') ?? ''
+    return {
+      kind: 'glossary',
+      q: query.get('q') ?? '',
+      sort: GLOSSARY_SORTS.includes(sort) ? (sort as GlossarySort) : 'missing',
+      only: GLOSSARY_ONLY.includes(only) ? (only as GlossaryOnly) : '',
+      family: query.get('family') ?? '',
+    }
+  }
+  if (pathname.startsWith('/g/')) {
+    const rest = pathname.slice(3)
+    if (!ENTRY_PATH.test(rest)) return { kind: 'home' }
+    return {
+      kind: 'term',
+      id: `glossary/${rest}`,
+      family: query.get('family') ?? '',
+      group: query.get('group') ?? '',
+      chapter: query.get('chapter') ?? '',
+      character: query.get('character') ?? '',
+      event: query.get('event') ?? '',
+      origin: query.get('origin') ?? '',
+      q: query.get('q') ?? '',
+    }
+  }
   if (pathname === '/u') return { kind: 'updates' }
   if (pathname.startsWith('/u/')) {
     const tag = decode(pathname.slice(3))
@@ -141,4 +190,26 @@ export function updateHref(tag: string, f: Partial<UpdateFilter> = {}): string {
   if (f.copy) pairs.push(['copy', '1'])
   const query = pairs.map(([k, v]) => `${k}=${v}`).join('&')
   return `#/u/${encodeURIComponent(tag)}${query ? `?${query}` : ''}`
+}
+
+/** The hash of the list of glossary entries, with the filters that are not the default. */
+export function glossaryHref(f: Partial<Pick<Extract<Route, { kind: 'glossary' }>, 'q' | 'sort' | 'only' | 'family'>> = {}): string {
+  const pairs: [string, string][] = []
+  if (f.q) pairs.push(['q', f.q])
+  if (f.sort && f.sort !== 'missing') pairs.push(['sort', f.sort])
+  if (f.only) pairs.push(['only', f.only])
+  if (f.family) pairs.push(['family', f.family])
+  const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
+  return `#/g${query ? `?${query}` : ''}`
+}
+
+/** The hash of one glossary entry (its id is glossary/<a>/<b>), with the filters that are given. */
+export function termHref(id: string, f: Partial<TermFilter> = {}): string {
+  const pairs: [string, string][] = []
+  for (const k of ['family', 'group', 'chapter', 'character', 'event', 'origin', 'q'] as const) {
+    const v = f[k]
+    if (v) pairs.push([k, v])
+  }
+  const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
+  return `#/g/${id.replace(/^glossary\//, '')}${query ? `?${query}` : ''}`
 }

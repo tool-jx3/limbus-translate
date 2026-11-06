@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks'
-import { reviewHref, searchHref, updatesHref, type Route } from '../route'
+import { glossaryHref, reviewHref, searchHref, updatesHref, type Route } from '../route'
 import { LANGS, type Settings } from '../settings'
 import type { Lang, ReviewCounts } from '../types'
 
@@ -71,6 +71,9 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
       <a class="review-link" href={reviewHref('suggestions')}>
         審核
         {open > 0 && <span class="review-count">{open}</span>}
+      </a>
+      <a class="glossary-link" href={glossaryHref()} {...(route.kind === 'glossary' || route.kind === 'term' ? { 'aria-current': 'page' as const } : {})}>
+        詞彙
       </a>
       <div class="top-filter">
         <FileFilter value={fileQuery} onInput={onFileQuery} />

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DataError, clearDataCache, loadFile, loadIndex, loadMeta, loadReview, loadUpdate, loadUpdates } from './data'
+import { DataError, clearDataCache, loadFile, loadGlossary, loadGlossaryEntry, loadIndex, loadMeta, loadReview, loadUpdate, loadUpdates } from './data'
 import { fixture, fixtureFetch } from './testdata'
 import type { FileData, Index, Meta, ReviewData } from './types'
 
@@ -155,5 +155,34 @@ describe('update loading', () => {
     expect(await kindOf(loadUpdates())).toBe('format')
     expect(await kindOf(loadUpdate(tag))).toBe('format')
     expect(await kindOf(loadUpdate('zh-TW-20261106.1'))).toBe('missing')
+  })
+})
+
+describe('glossary data', () => {
+  beforeEach(() => {
+    clearDataCache()
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch()))
+  })
+  afterEach(() => vi.unstubAllGlobals())
+
+  it('loads the index of the glossary once', async () => {
+    const a = await loadGlossary()
+    expect(a.entries.length).toBeGreaterThan(0)
+    expect(a.thresholds.hard_min_n).toBe(20)
+    await loadGlossary()
+    expect(fetch).toHaveBeenCalledTimes(1)
+  })
+
+  it('loads the file of an entry from its id', async () => {
+    const f = await loadGlossaryEntry('glossary/aaaaaaaa/bbbbbbbb')
+    expect(f.id).toBe('glossary/aaaaaaaa/bbbbbbbb')
+    expect(fetch).toHaveBeenCalledWith('./data/glossary/aaaaaaaa-bbbbbbbb.json', expect.anything())
+  })
+
+  it('says missing for an entry with no file, and format for a file with no units', async () => {
+    await expect(loadGlossaryEntry('glossary/00000000/00000000')).rejects.toMatchObject({ kind: 'missing' })
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'glossary/index.json': { entries: [] } })))
+    clearDataCache()
+    await expect(loadGlossary()).rejects.toMatchObject({ kind: 'format' })
   })
 })

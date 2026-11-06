@@ -158,6 +158,35 @@ describe('App', () => {
     expect(el.querySelector('.home')).toBeNull()
   })
 
+  it('header links 詞彙 right after 審核 and marks it on both glossary routes', async () => {
+    let el = mount()
+    await loaded(el)
+    const links = [...el.querySelectorAll<HTMLAnchorElement>('.top a')]
+    const review = links.findIndex((a) => a.classList.contains('review-link'))
+    expect(links[review + 1]?.textContent).toBe('詞彙')
+    expect(links[review + 1]?.getAttribute('href')).toBe('#/g')
+    expect(links[review + 1]?.getAttribute('aria-current')).toBeNull()
+    for (const hash of ['#/g', '#/g/aaaaaaaa/bbbbbbbb']) {
+      location.hash = hash
+      el = mount()
+      await loaded(el)
+      const a = [...el.querySelectorAll<HTMLAnchorElement>('.top a')].find((x) => x.textContent === '詞彙')
+      expect(a?.getAttribute('aria-current'), hash).toBe('page')
+    }
+  })
+
+  it('shows the list of the glossary on #/g and an entry on #/g/<a>/<b>', async () => {
+    location.hash = '#/g'
+    let el = mount()
+    await loaded(el)
+    await vi.waitFor(() => expect(el.querySelector('.glossary .gl-table')).not.toBeNull())
+    expect(el.querySelector('.home')).toBeNull()
+    location.hash = '#/g/aaaaaaaa/bbbbbbbb'
+    el = mount()
+    await loaded(el)
+    await vi.waitFor(() => expect(el.querySelector('.glossary .tv-missing')).not.toBeNull())
+  })
+
   it('shows no number beside the review link when nothing is left to review', async () => {
     const meta = fixture<Meta>('meta.json')
     vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'meta.json': { ...meta, review: { suggestions: 0, warnings: 0, notes: 0, todo: 0, scope: 0 } } })))

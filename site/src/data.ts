@@ -1,4 +1,4 @@
-import type { FileData, Index, Meta, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -121,6 +121,27 @@ export function loadUpdate(tag: string): Promise<UpdateRecord> {
   return load(rel, (doc) => {
     if (!isRecord(doc) || !Array.isArray(doc.entries)) throw new DataError('format', `${rel}: no entries`)
     return doc as unknown as UpdateRecord
+  })
+}
+
+/** data/glossary/index.json: the entries of the glossary and the limits of the hard candidates. */
+export function loadGlossary(): Promise<GlossaryIndex> {
+  return load('glossary/index.json', (doc) => {
+    if (!isRecord(doc) || !isRecord(doc.thresholds) || !Array.isArray(doc.entries)) {
+      throw new DataError('format', 'glossary/index.json: no thresholds and entries')
+    }
+    return doc as unknown as GlossaryIndex
+  })
+}
+
+/** data/glossary/<a>-<b>.json: the units of the entry glossary/<a>/<b>. */
+export function loadGlossaryEntry(id: string): Promise<GlossaryFile> {
+  const rel = `glossary/${id.replace(/^glossary\//, '').replaceAll('/', '-')}.json`
+  return load(rel, (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.missing) || !Array.isArray(doc.used)) {
+      throw new DataError('format', `${rel}: no missing and used`)
+    }
+    return doc as unknown as GlossaryFile
   })
 }
 

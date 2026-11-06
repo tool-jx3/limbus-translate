@@ -2,7 +2,7 @@
 // and are what the tests of the viewer read. This keeps them true to types.ts
 // and to themselves: the index, the files and the search corpus agree.
 import { describe, expect, it } from 'vitest'
-import type { FileData, Index, Meta, NoteItem, Origin, ScopeProposal, SuggestionItem, TodoSection, Unit, WarningItem } from './types'
+import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, NoteItem, Origin, ScopeEntry, ScopeProposal, SuggestionItem, TodoSection, Unit, WarningItem } from './types'
 
 const modules = import.meta.glob('../fixtures/data/**/*.json', { eager: true, import: 'default' })
 const at = (rel: string): unknown => modules[`../fixtures/data/${rel}`]
@@ -270,5 +270,67 @@ describe('review fixtures', () => {
     expect([...unitOf.values()].some((u) => u.pq === 1)).toBe(true)
     // the units that the todo section calls needs_review carry the flag
     for (const it of todo.find((s) => s.kind === 'needs_review')?.items ?? []) expect(unitOf.get(it.key ?? '')?.fl).toContain('needs_review')
+  })
+})
+
+describe('glossary fixtures', () => {
+  const g = at('glossary/index.json') as GlossaryIndex
+  const entryFile = (id: string) => at(`glossary/${id.replace(/^glossary\//, '').replace('/', '-')}.json`) as GlossaryFile
+  const scopeEntries = (at('review/scope.json') as { entries: ScopeEntry[] }).entries
+
+  it('has the keys of the Go types, in their order (internal/scope, internal/site/glossary.go)', () => {
+    expect(Object.keys(g)).toEqual(['thresholds', 'entries'])
+    expect(Object.keys(g.thresholds)).toEqual(['min_n', 'used', 'not_used', 'explained', 'lost_units', 'lost_share', 'hard_rate', 'hard_min_n'])
+    expect(g.entries.length).toBeGreaterThanOrEqual(2)
+    for (const e of g.entries) {
+      expect(Object.keys(e)).toEqual([
+        'id', 'kr', 'zh', 'also', 'files', 'not_files', 'match', ...(e.check !== undefined ? ['check'] : []), 'notes', 'groups',
+        'n', 'used', 'rate', 'hard_candidate', 'compound', 'explained', 'unexplained', 'examples',
+      ])
+      for (const grp of e.groups) expect(Object.keys(grp)).toEqual(['name', 'kind', 'n', 'used'])
+      expect(Object.keys(e.compound)).toEqual(['n', 'used'])
+      for (const ex of e.examples) expect(Object.keys(ex)).toEqual(['key', 'group', 'kr', 'zh'])
+    }
+    for (const id of g.entries.map((e) => e.id)) {
+      const f = entryFile(id)
+      expect(Object.keys(f)).toEqual(['id', 'missing', 'used'])
+      for (const [which, us] of [['missing', f.missing], ['used', f.used]] as const) {
+        for (const u of us) {
+          expect(Object.keys(u)).toEqual([
+            'key', 'family', 'top', ...(u.sub !== undefined ? ['sub'] : []), ...(u.tag !== undefined ? ['tag'] : []), 'origin', 'kr', 'zh',
+            ...(u.note !== undefined ? ['note'] : []), ...(which === 'missing' ? ['id', ...(u.accepted !== undefined ? ['accepted'] : [])] : []),
+          ])
+          if (u.tag !== undefined) expect(Object.keys(u.tag)).toEqual(['kind', 'value', 'label'])
+          expect(ORIGINS).toContain(u.origin)
+        }
+      }
+    }
+  })
+
+  it('counts n and used as the units of the entry file, and agrees with the scope entries where they overlap', () => {
+    for (const e of g.entries) {
+      const f = entryFile(e.id)
+      expect(f.id).toBe(e.id)
+      expect(f.missing.length + f.used.length, e.id).toBe(e.n)
+      expect(f.used.length, e.id).toBe(e.used)
+      expect(e.rate).toBeCloseTo(e.n === 0 ? 0 : e.used / e.n, 3)
+      expect(e.hard_candidate).toBe(e.check !== 'hard' && e.n >= g.thresholds.hard_min_n && e.rate > g.thresholds.hard_rate)
+      const same = scopeEntries.find((s) => s.id === e.id)
+      if (same) expect(e).toEqual(same)
+      const keys = [...f.missing, ...f.used].map((u) => u.key)
+      expect(new Set(keys).size, e.id).toBe(keys.length)
+      for (const u of f.missing) expect(u.id?.startsWith('warning/term-missing/')).toBe(true)
+    }
+  })
+
+  it('covers what the glossary page has to show', () => {
+    expect(g.entries.some((e) => e.hard_candidate)).toBe(true)
+    expect(g.entries.some((e) => !e.hard_candidate && e.n > e.used)).toBe(true)
+    const all = g.entries.flatMap((e) => [...entryFile(e.id).missing, ...entryFile(e.id).used])
+    expect(all.some((u) => u.accepted !== undefined)).toBe(true)
+    expect(all.some((u) => u.note !== undefined)).toBe(true)
+    expect(new Set(all.map((u) => u.origin)).size).toBeGreaterThanOrEqual(3)
+    expect(new Set(all.map((u) => u.family)).size).toBeGreaterThanOrEqual(2)
+    expect(new Set(all.map((u) => u.tag?.kind)).size).toBeGreaterThanOrEqual(2)
   })
 })
