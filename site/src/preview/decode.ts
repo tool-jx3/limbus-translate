@@ -2,6 +2,7 @@
 // put back from files/<path> or from the defaults of the file is left out) to
 // the shape the preview page and rebuildBatch work on. The format is
 // described by PreviewUnit in internal/site/preview.go.
+import { DataError } from '../data'
 import type {
   Constraints,
   FileData,
@@ -21,12 +22,12 @@ const METHODS: Record<string, string | undefined> = { p: 'pointer', i: 'id', s: 
 function method(where: string, c: string | undefined): string | undefined {
   if (c === '-') return undefined
   const m = c === undefined ? undefined : METHODS[c]
-  if (m === undefined) throw new Error(`${where}: no alignment method for ${JSON.stringify(c)}`)
+  if (m === undefined) throw new DataError('format', `${where}: no alignment method for ${JSON.stringify(c)}`)
   return m
 }
 
 function expandRecord(where: string, wire: NonNullable<PreviewUnitWire['rec']>, rd: PreviewRecDefaults | undefined): PreviewRecord {
-  if (!rd) throw new Error(`${where}: a record but no defaults for records`)
+  if (!rd) throw new DataError('format', `${where}: a record but no defaults for records`)
   const rec: PreviewRecord = { origin: wire.origin ?? rd.origin, stale: wire.stale === true }
   if (wire.model !== undefined) rec.model = wire.model
   if (wire.batch !== undefined) rec.batch = wire.batch
@@ -45,7 +46,7 @@ function expandUnit(where: string, wire: PreviewUnitWire, fu: FileData['units'][
   const st: PreviewState = { pending: false, needs_review: false, frozen: false, ...wire.st }
   const out: PreviewUnit = { sp: wire.sp, g: wire.g, t: wire.t, k: wire.k, it, keep, c: wire.c, st }
   if (wire.m !== undefined) {
-    if (wire.m.length !== 2) throw new Error(`${where}: the methods ${JSON.stringify(wire.m)} are not two characters`)
+    if (wire.m.length !== 2) throw new DataError('format', `${where}: the methods ${JSON.stringify(wire.m)} are not two characters`)
     const em = method(where, wire.m[0])
     const jm = method(where, wire.m[1])
     if (em !== undefined) out.em = em
@@ -60,7 +61,7 @@ function expandUnit(where: string, wire: PreviewUnitWire, fu: FileData['units'][
     }
     out.chk = chk
   } else if (wire.chk) {
-    throw new Error(`${where}: a check but no record`)
+    throw new DataError('format', `${where}: a check but no record`)
   }
   if (wire.nt !== undefined) out.nt = wire.nt
   return out
@@ -69,7 +70,7 @@ function expandUnit(where: string, wire: PreviewUnitWire, fu: FileData['units'][
 /** The preview of a file with every default put back; `file` is files/<path> of the same file. */
 export function expandPreviewFile(wire: PreviewFileWire, file: FileData): PreviewFile {
   if (wire.units.length !== file.units.length) {
-    throw new Error(`${file.path}: ${file.units.length} units in the file, ${wire.units.length} units in the preview`)
+    throw new DataError('format', `${file.path}: ${file.units.length} units in the file, ${wire.units.length} units in the preview`)
   }
   return {
     family: wire.family,

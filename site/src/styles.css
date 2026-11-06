@@ -2741,13 +2741,12 @@ button.chip {
   color: var(--muted);
 }
 
-/* The preview links and the # button of a line, at its end; the line keeps room for them. */
+/* The preview links and the # button of a line. Narrow: they close the line, on a row of their own, so the text keeps the whole width. */
 .line-actions {
-  position: absolute;
-  top: 0.1rem;
-  right: 0;
   display: flex;
   align-items: baseline;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 0.25rem;
 }
 
@@ -2755,16 +2754,28 @@ button.chip {
   position: static;
 }
 
-.line {
-  padding-right: 4.5rem;
-}
+/* Wide enough: they sit at the end of the line, which keeps room for them. */
+@media (min-width: 600px) {
+  .line-actions {
+    position: absolute;
+    top: 0.1rem;
+    right: 0;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
 
-.line-multi {
-  padding-right: 7rem;
+  .line {
+    padding-right: 4.5rem;
+  }
+
+  .line-multi {
+    padding-right: 7rem;
+  }
 }
 
 .pv-facts {
-  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  /* a long label wraps (dt breaks anywhere) instead of widening the column past the page */
+  grid-template-columns: fit-content(10em) minmax(0, 1fr);
 }
 
 .pv-facts dt {

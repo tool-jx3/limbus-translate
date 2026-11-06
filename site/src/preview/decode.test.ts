@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import type { FileData, PreviewFileWire, PreviewUnitWire } from '../types'
+import type { FileData, PreviewFile, PreviewFileWire, PreviewUnitWire } from '../types'
+import { DataError } from '../data'
 import { expandPreviewFile } from './decode'
 
 const file = (zhs: string[]): FileData => ({
@@ -21,6 +22,19 @@ const wire = (units: (PreviewUnitWire | null)[], rd?: PreviewFileWire['rd']): Pr
 
 const RD = { origin: 'claude', rules: 'abc1234', since: 'raw-1' }
 const one = (u: PreviewUnitWire | null, zh = 'ZH', rd?: PreviewFileWire['rd']) => expandPreviewFile(wire([u], rd), file([zh])).units[0]
+
+/** The error `fn` throws must be a format error: the page then says the data was updated, not that the network failed. */
+const formatError = (fn: () => unknown, message: RegExp) => {
+  let error: unknown
+  try {
+    fn()
+  } catch (e) {
+    error = e
+  }
+  expect(error).toBeInstanceOf(DataError)
+  expect((error as DataError).kind).toBe('format')
+  expect((error as DataError).message).toMatch(message)
+}
 
 describe('expandPreviewFile', () => {
   it('keeps a copy null', () => {
@@ -66,8 +80,9 @@ describe('expandPreviewFile', () => {
     expect(em('ii')).toEqual(['id', 'id'])
   })
   it('refuses a bad m', () => {
-    expect(() => one(unit({ m: 'p' }))).toThrow(/not two characters/)
-    expect(() => one(unit({ m: 'px' }))).toThrow(/no alignment method/)
+    formatError(() => one(unit({ m: 'p' })), /not two characters/)
+    formatError(() => one(unit({ m: 'px' })), /no alignment method/)
+    formatError(() => one(unit({ m: 'xp' })), /no alignment method/)
     expect(() => one(unit({ m: '--' }))).not.toThrow()
   })
 
@@ -90,7 +105,7 @@ describe('expandPreviewFile', () => {
     expect(one(unit({ rec: {} }), 'ZH', { origin: 'human', rules: '', since: '' })!.rec).toEqual({ origin: 'human', stale: false })
   })
   it('refuses a record with no defaults', () => {
-    expect(() => one(unit({ rec: {} }))).toThrow(/no defaults/)
+    formatError(() => one(unit({ rec: {} })), /no defaults/)
   })
 
   it('accepts the file text where a record has no check', () => {
@@ -107,14 +122,43 @@ describe('expandPreviewFile', () => {
     expect(one(unit({ rec: {}, chk: { verdict: 'accept', zh: '' } }), '譯文', RD)!.chk).toEqual({ verdict: 'accept', zh: '', issues: [] })
   })
   it('refuses a check with no record', () => {
-    expect(() => one(unit({ chk: { verdict: 'accept' } }), 'ZH', RD)).toThrow(/no record/)
+    formatError(() => one(unit({ chk: { verdict: 'accept' } }), 'ZH', RD), /no record/)
   })
 
   it('refuses a preview of another length than the file', () => {
-    expect(() => expandPreviewFile(wire([null, null]), file(['a']))).toThrow(/1 units in the file, 2 units in the preview/)
+    formatError(() => expandPreviewFile(wire([null, null]), file(['a'])), /1 units in the file, 2 units in the preview/)
   })
   it('passes the rest through', () => {
     const u = one(unit({ sp: 'S', g: [1], t: [2], k: ['K'], c: [[0], [1, 'x']], nt: 'n', it: { reason: 'new', hint: 'h', refs: { a: 'b' } } }))!
     expect(u).toMatchObject({ sp: 'S', g: [1], t: [2], k: ['K'], c: [[0], [1, 'x']], nt: 'n', it: { reason: 'new', hint: 'h', refs: { a: 'b' } } })
   })
+})
+
+// fixtures/preview/expanded/<path> is what Go makes straight from the Previewer
+// (TestPreviewFixturesUpToDate), never by decoding: the decoder must give it back.
+const fixtures = import.meta.glob('../../fixtures/preview/**/*.json', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>
+const PREFIX = '../../fixtures/preview/'
+const fixture = <T>(rel: string): T => {
+  const text = fixtures[PREFIX + rel]
+  if (text === undefined) throw new Error(`no fixture ${rel}`)
+  return JSON.parse(text) as T
+}
+const expandedPaths = Object.keys(fixtures)
+  .filter((k) => k.startsWith(`${PREFIX}expanded/`))
+  .map((k) => k.slice(`${PREFIX}expanded/`.length))
+
+describe('expandPreviewFile against the golden files of Go', () => {
+  it('has a golden file for every file of the pack, and nothing else', () => {
+    const files = Object.keys(fixtures)
+      .filter((k) => k.startsWith(`${PREFIX}preview/`) && k !== `${PREFIX}preview.json`)
+      .map((k) => k.slice(`${PREFIX}preview/`.length))
+    expect(files.length).toBeGreaterThan(0)
+    expect([...expandedPaths].sort()).toEqual(files.sort())
+  })
+  for (const path of expandedPaths) {
+    it(`${path} expands to the golden file`, () => {
+      const got = expandPreviewFile(fixture<PreviewFileWire>(`preview/${path}`), fixture<FileData>(`files/${path}`))
+      expect(got).toEqual(fixture<PreviewFile>(`expanded/${path}`))
+    })
+  }
 })
