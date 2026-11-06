@@ -224,9 +224,9 @@ func counted(o string) bool {
 // carries its confirmation.
 //
 // Of the two kinds of group, each may propose a change of files or not_files
-// (see scopeOption); of two, the one with fewer patterns is proposed, then
-// the one that loses fewer checks, then the one that removes more warnings,
-// then the families'. Without one, a mixed proposal is made when a group uses
+// (see scopeOption); of two, the one that is not flagged is proposed, then
+// the one with fewer patterns, then the one that loses fewer checks, then the
+// one that removes more warnings, then the families'. Without one, a mixed proposal is made when a group uses
 // the rendering in part, or no group of a kind uses it.
 func Analyze(in Inputs) Report {
 	if in.Rules == nil {
@@ -642,10 +642,11 @@ func (an *analysis) proposals(a *acc) []Proposal {
 		}
 		mixedOrUnused = append(mixedOrUnused, groups...)
 	}
-	// The shorter change, then the one that loses fewer checks, then the one
-	// that removes more warnings; the families first.
+	// The unflagged change, then the shorter, then the one that loses fewer
+	// checks, then the one that removes more warnings; the families first.
 	slices.SortStableFunc(opts, func(x, y option) int {
-		return cmp.Or(cmp.Compare(len(x.patterns), len(y.patterns)), cmp.Compare(x.lost, y.lost), cmp.Compare(y.removed, x.removed))
+		return cmp.Or(compareBool(x.flagged, y.flagged), cmp.Compare(len(x.patterns), len(y.patterns)),
+			cmp.Compare(x.lost, y.lost), cmp.Compare(y.removed, x.removed))
 	})
 	switch {
 	case len(opts) > 0:

@@ -640,18 +640,24 @@ func TestConcreteNamesTheMixedGroups(t *testing.T) {
 	}
 }
 
-// Of two changes, the one with fewer patterns, then the one that loses fewer
-// checks: the family needs one pattern and loses the 2 units of Narr.json that
-// use 速度值 (flagged), the directories need two and lose none. The family is
-// proposed.
+// Of two changes, the unflagged one first, then the one with fewer patterns,
+// then the one that loses fewer checks. The family needs one pattern; with the
+// 2 units of Narr.json that use 速度值 it loses them and is flagged, and the
+// directories, two patterns losing none, are proposed. Without them both lose
+// nothing, and the one family is proposed.
 func TestFewerPatternsFirst(t *testing.T) {
 	r := testRules(approved("속도", "速度值"))
 	r.Routing.Families = append([]rules.FamilyRule{{ID: "narrative", Match: []string{"StoryData/*", "PersonalityVoiceDlg/*", "Narr*"}}}, r.Routing.Families...)
 	f := &fixture{}
-	f.add(skillFile, 10, "속도", "速度值").add("Narr.json", 2, "속도", "速度值")
+	f.add(skillFile, 10, "속도", "速度值")
 	f.add(storyFile, 3, "속도", "速度").add(voiceFile, 3, "속도", "速度")
 	p := onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
-	if !slices.Equal(p.Patterns, []string{"family:narrative"}) || p.UsedLost != 2 || !p.Flagged {
-		t.Errorf("proposal = %+v, want the one family, losing 2 and flagged, over the two directories", p)
+	if !slices.Equal(p.Patterns, []string{"family:narrative"}) || p.UsedLost != 0 || p.Flagged {
+		t.Errorf("both unflagged: proposal = %+v, want the one family over the two directories", p)
+	}
+	f.add("Narr.json", 2, "속도", "速度值")
+	p = onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
+	if !slices.Equal(p.Patterns, []string{"StoryData/**", "PersonalityVoiceDlg/**"}) || p.UsedLost != 0 || p.Flagged {
+		t.Errorf("the family flagged: proposal = %+v, want the two directories, which lose nothing", p)
 	}
 }
