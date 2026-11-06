@@ -281,3 +281,59 @@ func TestRulesLintChecksAcceptedFile(t *testing.T) {
 		t.Fatalf("err = %v, want cli.ErrFindings naming rules/accepted.yaml\n%s", err, out)
 	}
 }
+
+// With the raw worktree present, rules lint warns about a files or not_files
+// pattern that matches no KR pack file; the warning does not fail the lint.
+// Without the worktree, lint says nothing about it.
+func TestRulesLintWarnsOfUnmatchedPatterns(t *testing.T) {
+	root := cleanRules(t)
+	path := filepath.Join(root, "glossary/terms.yaml")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	extra := "\n- kr: 속도테스트\n  zh: 測試\n  status: approved\n  not_files: [\"Nothing_Here*\"]\n"
+	if err := os.WriteFile(path, append(data, extra...), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, root, "lct.yaml", "lang_dir: zh-TW\nworktrees: { raw: .work/raw, tw: .work/tw }\n")
+
+	out, err := runIn(t, runRulesLint, root, false)
+	if err != nil || strings.Contains(out, "Nothing_Here") {
+		t.Fatalf("without the raw worktree: err = %v, output:\n%s", err, out)
+	}
+
+	writeTestFile(t, root, ".work/raw/meta/source.json", `{"tag":"raw-20261029","token":"t","created_at":"2026-10-29 00:00:00","fetched_at":"2026-11-01T00:00:00Z","files":{}}`)
+	writeTestFile(t, root, ".work/raw/kr/KR_Passives.json", "{}")
+	writeTestFile(t, root, ".work/raw/en/EN_Passives.json", "{}")
+	writeTestFile(t, root, ".work/raw/jp/JP_Passives.json", "{}")
+	out, err = runIn(t, runRulesLint, root, false)
+	if err != nil {
+		t.Fatalf("a warning must not fail the lint: %v\n%s", err, out)
+	}
+	if !strings.Contains(out, "warning") || !strings.Contains(out, "Nothing_Here*") || !strings.Contains(out, "ok") {
+		t.Errorf("output should be ok and warn of the pattern:\n%s", out)
+	}
+
+	out, err = runIn(t, runRulesLint, root, true)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		OK       bool `json:"ok"`
+		Warnings []struct {
+			File    string `json:"file"`
+			Message string `json:"message"`
+		} `json:"warnings"`
+	}
+	if err := json.Unmarshal([]byte(out), &got); err != nil {
+		t.Fatalf("output is not JSON: %v\n%s", err, out)
+	}
+	found := false
+	for _, w := range got.Warnings {
+		found = found || w.File == "glossary/terms.yaml" && strings.Contains(w.Message, `"속도테스트"`) && strings.Contains(w.Message, "Nothing_Here*")
+	}
+	if !got.OK || !found {
+		t.Errorf("report = %+v", got)
+	}
+}

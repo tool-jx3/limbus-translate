@@ -4820,3 +4820,19 @@ func TestMergedBatchIsExplained(t *testing.T) {
 		}
 	}
 }
+
+// A glossary entry applies where its kr stands as a word (a following particle
+// or ending still counts) and inside a longer word only with match: substring;
+// the shared prompt says so, or the translator reads "KR 含 kr" as a substring
+// test and is told of entries that do not apply.
+func TestPromptExplainsWhereAGlossaryEntryApplies(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	for _, want := range []string{"單獨成詞", "後面接助詞或語尾仍算", "`match: substring`"} {
+		if !strings.Contains(prompt, want) {
+			t.Errorf("prompts/translate.md lacks %q (an entry applies where its kr stands as a word, inside a longer word only with match: substring)", want)
+		}
+	}
+	if strings.Contains(prompt, "KR 含 `kr` 時用 `zh`；") {
+		t.Error("prompts/translate.md still says a glossary entry applies wherever the KR contains kr")
+	}
+}

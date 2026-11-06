@@ -5,10 +5,14 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"path/filepath"
 	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/pack"
+	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/requeue"
 	"github.com/tool-jx3/limbus-translate/internal/rewrite"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -32,13 +36,20 @@ func init() {
 type lintReport struct {
 	OK     bool              `json:"ok"`
 	Errors []rules.LintError `json:"errors"`
+	// Warnings are findings that do not fail the lint: they are given only
+	// when the raw worktree is present.
+	Warnings []rules.LintError `json:"warnings"`
 }
 
 func (r lintReport) String() string {
-	if r.OK {
-		return "ok: the rule files are valid\n"
-	}
 	var b strings.Builder
+	for _, w := range r.Warnings {
+		fmt.Fprintln(&b, "warning: "+w.Error())
+	}
+	if r.OK {
+		b.WriteString("ok: the rule files are valid\n")
+		return b.String()
+	}
 	for _, e := range r.Errors {
 		fmt.Fprintln(&b, e.Error())
 	}
@@ -50,7 +61,7 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	if len(args) > 0 {
 		return cli.UserError("rules lint: unexpected argument " + args[0])
 	}
-	report := lintReport{Errors: []rules.LintError{}}
+	report := lintReport{Errors: []rules.LintError{}, Warnings: []rules.LintError{}}
 	for _, err := range rules.Lint(ctx.Root) {
 		var le rules.LintError
 		if !errors.As(err, &le) {
@@ -65,6 +76,7 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 		report.Errors = append(report.Errors, rules.LintError{File: is.File, Message: is.Message})
 	}
 	report.OK = len(report.Errors) == 0
+	report.Warnings = append(report.Warnings, rules.LintScopeWarnings(ctx.Root, krPackFiles(ctx.Root))...)
 	if err := ctx.Emit(report); err != nil {
 		return err
 	}
@@ -72,6 +84,25 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 		return cli.ErrFindings
 	}
 	return nil
+}
+
+// krPackFiles lists the files of the KR pack in the raw worktree, or nil when
+// there is none (no lct.yaml, no worktree, no snapshot): lint then has nothing
+// to compare the glossary's file patterns with and says nothing of them.
+func krPackFiles(root string) []string {
+	cfg, err := config.Load(root)
+	if err != nil || cfg.Worktrees.Raw == "" {
+		return nil
+	}
+	worktree := filepath.Join(root, filepath.FromSlash(cfg.Worktrees.Raw))
+	if src, err := raw.LastSource(worktree); err != nil || src == nil {
+		return nil
+	}
+	set, err := pack.OpenRaw(worktree)
+	if err != nil {
+		return nil
+	}
+	return set.KR.Files()
 }
 
 // resolveReport is what "guide resolve" prints.

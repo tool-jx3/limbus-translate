@@ -383,3 +383,40 @@ func (l *linter) adjustmentFile(rel string, keyOwner map[string]string) {
 		}
 	}
 }
+
+// LintScopeWarnings returns a warning for each files or not_files pattern of
+// the glossary that matches none of krFiles, the file names of the KR pack
+// (the names GlossaryHits receives): such a pattern is a misspelled name or a
+// file the game has renamed, and scopes nothing. krFiles empty means the pack
+// is not at hand, and there are no warnings. A glossary that does not parse is
+// Lint's to report.
+func LintScopeWarnings(root string, krFiles []string) []LintError {
+	if len(krFiles) == 0 {
+		return nil
+	}
+	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(GlossaryFile)))
+	if err != nil {
+		return nil
+	}
+	terms, _, err := parseGlossary(data)
+	if err != nil {
+		return nil
+	}
+	var out []LintError
+	for _, t := range terms {
+		for _, list := range []struct {
+			name     string
+			patterns []string
+		}{{"files", t.Files}, {"not_files", t.NotFiles}} {
+			for _, pattern := range list.patterns {
+				if pattern == "" || config.ValidPattern(pattern) != nil {
+					continue // Lint reports these
+				}
+				if !slices.ContainsFunc(krFiles, func(f string) bool { return config.MatchAny([]string{pattern}, f) }) {
+					out = append(out, LintError{File: GlossaryFile, Message: fmt.Sprintf("term %q: %s pattern %q matches no file of the KR pack", t.KR, list.name, pattern)})
+				}
+			}
+		}
+	}
+	return out
+}

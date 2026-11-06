@@ -1112,6 +1112,40 @@ func TestTermOccursIn(t *testing.T) {
 	}
 }
 
+// Endings that follow a vowel-final noun and keep it a word (복도니까요,
+// 도시잖아요, 관리자답게…) were measured on the real translations: each hit
+// below is a unit that uses the rendering. 예 (날개예요 half the time) and 네
+// (no unit) start nouns too (예정, 네트워크) and are not endings of a word.
+func TestTermOccursInEndings(t *testing.T) {
+	for _, tc := range []struct {
+		kr, text string
+		want     bool
+	}{
+		{"복도", "복도니까요.", true},
+		{"관리자", "관리자니까.", true},
+		{"가주", "가주시다.", true},
+		{"언더보스", "언더보스셨다는", true},
+		{"도시", "도시잖아요.", true},
+		{"주홍십자", "주홍십자겠지?", true},
+		{"가주", "가주더라도", true},
+		{"날개", "날개든,", true},
+		{"지부", "지부거나", true},
+		{"낭술회", "낭술회냐며", true},
+		{"심상", "심상던전의", true},
+		{"관리자", "관리자답게,", true},
+		{"유로지비", "유로지비끼리", true},
+		{"날개", "날개씩이나", true},
+		{"복도", "복도예정", false},
+		{"복도", "복도네트워크", false},
+		{"엄지", "엄지군", false},
+		{"엄지", "엄지분", false},
+	} {
+		if got := (rules.Term{KR: tc.kr}).OccursIn(tc.text); got != tc.want {
+			t.Errorf("Term{KR: %q}.OccursIn(%q) = %v, want %v", tc.kr, tc.text, got, tc.want)
+		}
+	}
+}
+
 // A match value other than word and substring is a lint error (see the "words"
 // case of the glossary lint test); where one gets through anyway, the entry
 // hits as one without match does. It neither panics nor skips.
@@ -1287,5 +1321,52 @@ func TestGlossaryHitsScopedEntryExcludedByNotFiles(t *testing.T) {
 		if got := zhOf(r.GlossaryHits(file, "신부가 왔다")); !slices.Equal(got, []string{want}) {
 			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
 		}
+	}
+}
+
+// A files or not_files pattern that matches no file of the KR pack is a
+// slip (a misspelled name, a pack file that was renamed): LintScopeWarnings
+// names each one. It is a warning, not an error.
+func TestLintScopeWarnings(t *testing.T) {
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "glossary"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	glossary := `- kr: 속도
+  zh: 速度
+  status: approved
+  files: ["Skills_Ego*", "Skillz*", "Mirror/**"]
+  not_files: ["Passives.json", "Passive_Typo*", "StoryData/**"]
+
+- kr: 도시
+  zh: 都市
+  status: approved
+`
+	if err := os.WriteFile(filepath.Join(root, "glossary/terms.yaml"), []byte(glossary), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	files := []string{"Skills_Ego-1.json", "Passives.json", "StoryData/S1.json"}
+	got := rules.LintScopeWarnings(root, files)
+	var msgs []string
+	for _, w := range got {
+		if w.File != "glossary/terms.yaml" {
+			t.Errorf("warning %+v should name glossary/terms.yaml", w)
+		}
+		msgs = append(msgs, w.Message)
+	}
+	want := []string{`"Skillz*"`, `"Mirror/**"`, `"Passive_Typo*"`}
+	if len(msgs) != len(want) {
+		t.Fatalf("warnings = %q, want one for each of %q", msgs, want)
+	}
+	for i, w := range want {
+		if !strings.Contains(msgs[i], w) || !strings.Contains(msgs[i], `"속도"`) {
+			t.Errorf("warning %d = %q, want it to name the term and %s", i, msgs[i], w)
+		}
+	}
+	if !strings.Contains(msgs[0], "files") || !strings.Contains(msgs[2], "not_files") {
+		t.Errorf("warnings should say which list the pattern is in: %q", msgs)
+	}
+	if got := rules.LintScopeWarnings(root, nil); len(got) != 0 {
+		t.Errorf("without a file list there is nothing to compare with: %v", got)
 	}
 }

@@ -79,11 +79,18 @@ func (t Term) OccursIn(kr string) bool {
 // wordFollowers are what may follow a word in KR and keep it that word: the
 // particles, the copula and the endings of 하다 and 되다. A Hangul syllable
 // after the term that starts none of them makes it part of a longer word.
+//
+// The endings from 니 on were added for vowel-final nouns (복도니까요,
+// 도시잖아요, 관리자답게) after measuring, on the translated units, how many
+// of the hits they add use the rendering: 80% or more kept an ending. Left
+// out: 예 (half; it starts 예정), 네 and 됐 (no unit), 군 and 분 (they start
+// compounds such as 엄지군).
 var wordFollowers = []string{
 	"이", "가", "을", "를", "은", "는", "의", "에", "께", "로", "으로", "와", "과", "도", "만", "까지", "부터",
 	"처럼", "보다", "한테", "랑", "나", "고", "며", "다", "입니다", "야", "요", "들", "란", "라", "마저", "조차",
 	"밖에", "뿐", "대로", "만큼", "마다", "면", "엔", "님", "씨", "지", "죠", "여", "아", "였", "었", "인", "일", "임",
 	"하", "했", "한", "할", "해", "함", "합", "히", "되", "된", "될", "돼", "됨", "됩",
+	"니", "시", "셨", "잖", "겠", "더", "든", "거", "냐", "던", "답", "끼리", "씩",
 }
 
 func isHangulSyllable(r rune) bool { return r >= 0xAC00 && r <= 0xD7A3 }
