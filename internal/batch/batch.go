@@ -643,29 +643,30 @@ func keywordTable(kr *pack.Pack, records map[string]store.Record) (map[string]st
 	return table, nil
 }
 
-// keywordNames builds the names this translation gives the [ID]s that occur
-// in krs (see keywordTable).
-func keywordNames(env Env, records map[string]store.Record, krs []string) (map[string]string, error) {
+// keywordIDs returns the keyword ids ("[Id]" without the brackets) that occur
+// in krs.
+func keywordIDs(krs []string) map[string]bool {
 	want := map[string]bool{}
 	for _, kr := range krs {
 		for _, id := range validate.IDs(kr) {
 			want[strings.TrimSuffix(strings.TrimPrefix(id, "["), "]")] = true
 		}
 	}
-	if len(want) == 0 {
-		return map[string]string{}, nil
-	}
-	all, err := keywordTable(env.Src.KR, records)
-	if err != nil {
-		return nil, err
-	}
-	table := map[string]string{}
-	for id, name := range all {
-		if want[id] {
-			table[id] = name
+	return want
+}
+
+// keywordNames returns the names of table (see keywordTable) for the [ID]s
+// that occur in krs. It only filters: the table is built by the caller, a
+// batch cut by Next from the records it has just loaded, a Previewer once for
+// all the units it is asked about.
+func keywordNames(table map[string]string, krs []string) map[string]string {
+	out := map[string]string{}
+	for id := range keywordIDs(krs) {
+		if name, ok := table[id]; ok {
+			out[id] = name
 		}
 	}
-	return table, nil
+	return out
 }
 
 // KeywordNames lists, sorted and once each, the Chinese names this

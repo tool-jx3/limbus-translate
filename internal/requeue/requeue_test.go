@@ -1,4 +1,4 @@
-package requeue
+package requeue_test
 
 import (
 	"encoding/json"
@@ -17,6 +17,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
+	. "github.com/tool-jx3/limbus-translate/internal/requeue"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -874,5 +875,17 @@ func TestApplyToWorksOnTheCallersState(t *testing.T) {
 	// Without a predicate nothing is held: the human record is requeued.
 	if out, _, err := ApplyTo(records, pending, set.KR, frozen, Selector{Keys: []string{key(storyFile, 2)}}, hint, nil); err != nil || len(out) != 2 {
 		t.Errorf("ApplyTo without held = %+v, %v; want the human record requeued", out, err)
+	}
+}
+
+func TestItem(t *testing.T) {
+	k := key(otherFile, 3)
+	got := Item(k, store.Record{Key: k, ZH: "舊譯", Origin: store.OriginClaude, KRSha: "x"}, hint)
+	want := store.PendingItem{Key: k, Reason: "requeue", PrevZH: "舊譯", Hint: hint}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("Item = %+v, want %+v", got, want)
+	}
+	if got := Item(k, store.Record{ZH: "舊譯"}, ""); got.Hint != "" {
+		t.Errorf("Item without a hint = %+v", got)
 	}
 }

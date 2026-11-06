@@ -1,4 +1,4 @@
-package requeue
+package requeue_test
 
 import (
 	"errors"
@@ -9,6 +9,7 @@ import (
 	"strings"
 	"testing"
 
+	. "github.com/tool-jx3/limbus-translate/internal/requeue"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 

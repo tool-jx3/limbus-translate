@@ -9,6 +9,7 @@ import (
 	"sort"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -18,7 +19,7 @@ import (
 
 // Reasons of the pending items Transition adds (store.PendingItem.Reason).
 const (
-	ReasonNew       = "new"
+	ReasonNew       = batch.ReasonNew
 	ReasonKRChanged = "kr-changed"
 )
 

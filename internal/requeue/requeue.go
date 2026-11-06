@@ -21,6 +21,14 @@ import (
 // Reason is the Reason of the pending items Apply adds.
 const Reason = "requeue"
 
+// Item is the pending item Apply makes for a translated unit it sends back: the
+// old translation as PrevZH, so that the translator sees what it is to fix,
+// and the hint as the reason. The one definition of that item, so that a
+// preview of a translated unit shows what a requeue would hand out.
+func Item(key string, rec store.Record, hint string) store.PendingItem {
+	return store.PendingItem{Key: key, Reason: Reason, PrevZH: rec.ZH, Hint: hint}
+}
+
 // defaultOrigins are the origins a record needs to be requeued when the
 // selector names none. Copies are left out: they are identifiers and texts
 // that are the same in every language, there is nothing to translate again.
@@ -387,7 +395,7 @@ func (r *run) requeueRecords() error {
 				r.res.MissingKeys = append(r.res.MissingKeys, key)
 				continue
 			}
-			r.pending = append(r.pending, store.PendingItem{Key: key, Reason: Reason, PrevZH: rec.ZH, Hint: r.hint})
+			r.pending = append(r.pending, Item(key, rec, r.hint))
 			r.res.Requeued++
 			r.changed = true
 		}

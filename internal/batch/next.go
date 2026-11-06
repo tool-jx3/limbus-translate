@@ -307,7 +307,9 @@ func cut(env Env, opt NextOptions, now time.Time, pending []store.PendingItem) (
 	if err != nil {
 		return nil, nil, err
 	}
-	b, err := assemble(env, id, family, pending, byFile, parts, records)
+	b, err := assemble(env, id, family, pending, byFile, parts, records, func(r map[string]store.Record) (map[string]string, error) {
+		return keywordTable(env.Src.KR, r)
+	})
 	if err != nil {
 		return nil, nil, err
 	}
@@ -450,11 +452,15 @@ func uniqueID(id string, pending []store.PendingItem, taken func(string) (bool, 
 // assemble builds the batch of parts, the units taken from each file in the
 // order they were taken (a story batch has one part). byFile holds the pending
 // indexes of each file; records loads the stored translations (only story
-// batches and batches with [ID]s need them).
+// batches and batches with [ID]s need them); keywords returns the whole
+// keyword table (see keywordTable) made from those records, and is asked only
+// when a text names a keyword. Next builds it anew for each batch, a Previewer
+// keeps it.
 func assemble(
 	env Env, id, family string,
 	pending []store.PendingItem, byFile map[string][]int, parts []part,
 	records func() (map[string]store.Record, error),
+	keywords func(map[string]store.Record) (map[string]string, error),
 ) (*Batch, error) {
 	story := IsStory(parts[0].fd.file)
 	glossaryCheck := ""
@@ -525,8 +531,12 @@ func assemble(
 	if err != nil {
 		return nil, err
 	}
-	if b.Keywords, err = keywordNames(env, recs, distinctKRs(texts)); err != nil {
-		return nil, err
+	if krs := distinctKRs(texts); len(keywordIDs(krs)) > 0 {
+		table, err := keywords(recs)
+		if err != nil {
+			return nil, err
+		}
+		b.Keywords = keywordNames(table, krs)
 	}
 	if story {
 		p := parts[0]
