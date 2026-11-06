@@ -3,6 +3,7 @@ package batch
 import (
 	"errors"
 	"io/fs"
+	"maps"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -385,7 +386,9 @@ func TestPreviewMalformedKey(t *testing.T) {
 }
 
 // NewPreviewerWith takes the records the caller has read: the previews are
-// those of a Previewer that reads them itself.
+// those of a Previewer that reads them itself when the records are the
+// store's, and they follow the records passed when those differ from the
+// store's (a Previewer that ignored them and read the store would not).
 func TestNewPreviewerWithRecords(t *testing.T) {
 	const file = "StoryData/S001A.json"
 	env := newEnv(t, map[string]string{file: dataList(t, 4, "파우스트", line)}, nil, nil)
@@ -407,5 +410,23 @@ func TestNewPreviewerWithRecords(t *testing.T) {
 		if got, want := mustUnit(t, with, k), mustUnit(t, own, k); !reflect.DeepEqual(got, want) {
 			t.Errorf("%s: with records = %+v\nown            = %+v", k, got, want)
 		}
+	}
+
+	// Records that are not the store's: the unit 1 has another translation.
+	other := maps.Clone(recs)
+	r1 := other[key(file, 1)]
+	r1.ZH = "換掉的譯文"
+	other[key(file, 1)] = r1
+	delete(other, key(file, 2))
+	diff, err := NewPreviewerWith(env, nil, other)
+	if err != nil {
+		t.Fatal(err)
+	}
+	u1 := mustUnit(t, diff, key(file, 1))
+	if u1.Record == nil || u1.Record.ZH != "換掉的譯文" || u1.Check == nil || u1.Check.ZH != "換掉的譯文" {
+		t.Errorf("unit 1: record = %+v, check = %+v, want the translation of the records passed", u1.Record, u1.Check)
+	}
+	if u2 := mustUnit(t, diff, key(file, 2)); u2.Record != nil {
+		t.Errorf("unit 2: record = %+v, want none (it is not in the records passed)", u2.Record)
 	}
 }

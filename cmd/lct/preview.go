@@ -6,17 +6,14 @@ import (
 	"fmt"
 	"io"
 	"maps"
-	"path/filepath"
 	"slices"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
-	"github.com/tool-jx3/limbus-translate/internal/bootstrap"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
-	"github.com/tool-jx3/limbus-translate/internal/pack"
-	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 func init() {
@@ -38,36 +35,14 @@ func openPreviewEnv(ctx *cli.Context, command string, records map[string]store.R
 	if err != nil {
 		return batch.Env{}, nil, nil, err
 	}
-	cfg := ctx.Config
-	if cfg.Worktrees.Raw == "" {
+	if ctx.Config.Worktrees.Raw == "" {
 		return batch.Env{}, nil, nil, cli.UserError(command + ": worktrees.raw must be set in lct.yaml")
 	}
-	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
-	src, err := raw.LastSource(rawWorktree)
+	env, err := baseEnv(ctx, command, st)
 	if err != nil {
 		return batch.Env{}, nil, nil, err
 	}
-	if src == nil {
-		return batch.Env{}, nil, nil, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
-	}
-	set, err := pack.OpenRaw(rawWorktree)
-	if err != nil {
-		return batch.Env{}, nil, nil, err
-	}
-	r, err := rules.Load(ctx.Root)
-	if err != nil {
-		return batch.Env{}, nil, nil, err
-	}
-	commit, err := rulesCommit(ctx, command)
-	if err != nil {
-		return batch.Env{}, nil, nil, err
-	}
-	var foreign []string
-	if _, err := st.ReadMetaJSON(bootstrap.ForeignNamesFile, &foreign); err != nil {
-		return batch.Env{}, nil, nil, err
-	}
-	provisional, err := activeProvisional(ctx.Root, st, r)
-	if err != nil {
+	if env.RulesCommit, err = rulesCommit(ctx, command); err != nil {
 		return batch.Env{}, nil, nil, err
 	}
 	if records == nil {
@@ -75,21 +50,10 @@ func openPreviewEnv(ctx *cli.Context, command string, records map[string]store.R
 			return batch.Env{}, nil, nil, err
 		}
 	}
-	names, err := batch.KeywordNames(set.KR, records)
-	if err != nil {
+	if env.KeywordNames, err = batch.KeywordNames(env.Src.KR, records); err != nil {
 		return batch.Env{}, nil, nil, err
 	}
-	return batch.Env{
-		Store:        st,
-		Src:          set,
-		Rules:        r,
-		RawTag:       src.Tag,
-		RulesCommit:  commit,
-		ForeignNames: foreign,
-		KeywordNames: names,
-		Provisional:  provisional,
-		Now:          batchNow(),
-	}, cfg.Frozen, records, nil
+	return env, ctx.Config.Frozen, records, nil
 }
 
 // previewReport is what "batch preview" prints; as JSON it is the preview.
@@ -201,7 +165,12 @@ func runBatchPreview(ctx *cli.Context, args []string) error {
 	case errors.Is(err, batch.ErrCopy):
 		return cli.UserError(fmt.Sprintf("batch preview: %s: the record is a copy (an identifier, or the same in every language), which is not sent for translation", positional[0]))
 	case errors.Is(err, batch.ErrNotInKR):
-		return cli.UserError(fmt.Sprintf("batch preview: %s: %v", positional[0], err))
+		msg := fmt.Sprintf("batch preview: %s is not a unit of the KR pack", positional[0])
+		if _, _, splitErr := units.SplitKey(positional[0]); splitErr != nil {
+			// A key that cannot be split says why, once (the error names the key).
+			msg += " (" + strings.TrimPrefix(splitErr.Error(), fmt.Sprintf("units: invalid key %q: ", positional[0])) + ")"
+		}
+		return cli.UserError(msg)
 	case err != nil:
 		return err
 	}

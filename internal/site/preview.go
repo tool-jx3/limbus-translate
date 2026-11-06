@@ -185,7 +185,7 @@ func (g *guideTable) number(path string) (int, error) {
 
 // buildPreviewFile makes the preview data of a file from its units and their
 // previews, which have the same length and order.
-func buildPreviewFile(r *rules.Rules, file File, pvs []*batch.UnitPreview, guides *guideTable) (PreviewFile, error) {
+func buildPreviewFile(file File, pvs []*batch.UnitPreview, guides *guideTable) (PreviewFile, error) {
 	if len(pvs) != len(file.Units) {
 		return PreviewFile{}, fmt.Errorf("site: preview %s: %d units previewed, %d in the file", file.Path, len(pvs), len(file.Units))
 	}
@@ -195,9 +195,7 @@ func buildPreviewFile(r *rules.Rules, file File, pvs []*batch.UnitPreview, guide
 		Keywords: map[string]string{},
 		Units:    make([]*PreviewUnit, len(file.Units)),
 	}
-	if r.GlossaryWarnOnly(file.Path) {
-		out.GlossaryCheck = rules.GlossaryWarn
-	}
+	glossaryCheckSet := false // out.GlossaryCheck is the one of the batches
 	byPointer := make(map[string]int, len(file.Units))
 	for i, u := range file.Units {
 		byPointer[u.P] = i
@@ -211,6 +209,11 @@ func buildPreviewFile(r *rules.Rules, file File, pvs []*batch.UnitPreview, guide
 		b := pv.Batch
 		if len(b.Units) != 1 || b.Family != file.Family || b.File != file.Path {
 			return PreviewFile{}, fmt.Errorf("site: preview %s: the batch of unit %d is not that of one unit of the file", file.Path, i)
+		}
+		if !glossaryCheckSet {
+			out.GlossaryCheck, glossaryCheckSet = b.GlossaryCheck, true
+		} else if b.GlossaryCheck != out.GlossaryCheck {
+			return PreviewFile{}, fmt.Errorf("site: preview %s: the batch of unit %d has glossary_check %q, the others %q", file.Path, i, b.GlossaryCheck, out.GlossaryCheck)
 		}
 		bu := b.Units[0]
 		fu := file.Units[i]

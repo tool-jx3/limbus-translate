@@ -1,0 +1,137 @@
+{
+  "family": "other",
+  "glossary_check": "",
+  "terms": [
+    {
+      "kr": "위력",
+      "zh": "威力",
+      "status": "approved",
+      "forbidden": [
+        "力量"
+      ]
+    }
+  ],
+  "keywords": {},
+  "units": [
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [
+        0
+      ],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "<b>粗體</b> & 威力"
+      },
+      "em": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [
+          "<b>",
+          "</b>"
+        ],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "paratranz",
+        "since": "raw-20261029",
+        "stale": true
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "<b>粗體</b> & 威力",
+        "issues": []
+      },
+      "nt": "<b> 保留標籤\n第二則 & 備註"
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "structural-fail"
+      },
+      "em": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": true,
+        "needs_review": true,
+        "frozen": false,
+        "attempts": 3,
+        "last_error": "tags: <b> missing"
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": true,
+        "needs_review": false,
+        "leased_to": "20261101-0002",
+        "frozen": false
+      }
+    }
+  ]
+}

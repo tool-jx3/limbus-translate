@@ -1,0 +1,489 @@
+{
+  "family": "story-main",
+  "glossary_check": "",
+  "terms": [
+    {
+      "kr": "위력",
+      "zh": "威力",
+      "status": "approved",
+      "forbidden": [
+        "力量"
+      ]
+    },
+    {
+      "kr": "공격",
+      "zh": "攻擊",
+      "status": "approved"
+    }
+  ],
+  "keywords": {
+    "Bleed": "流血"
+  },
+  "units": [
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          1
+        ],
+        [
+          3,
+          "第一行"
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "第零行"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          3,
+          "第一行"
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "claude",
+        "model": "test-model",
+        "batch": "20261030-0001",
+        "since": "raw-20261029",
+        "rules": "abc1234",
+        "flags": [
+          "checked"
+        ],
+        "stale": false
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "第零行",
+        "issues": []
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          1
+        ],
+        [
+          3,
+          "第一行"
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "第一行"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          1
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "claude",
+        "since": "raw-20261029",
+        "stale": false
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "第一行",
+        "issues": []
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          3,
+          "第一行"
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [
+        0,
+        1
+      ],
+      "k": [],
+      "it": {
+        "reason": "kr-changed",
+        "prev_kr": "옛 대사 2",
+        "prev_zh": "舊的第二行",
+        "draft": "<color=#f8c200>攻擊</color> 威力 第二行",
+        "hint": "語氣再正式一點",
+        "refs": {
+          "llc": "參考譯文"
+        }
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [
+          "<color=#f8c200>",
+          "</color>"
+        ],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          3,
+          "第一行"
+        ]
+      ],
+      "st": {
+        "pending": true,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "sinclair",
+      "g": [
+        0,
+        1,
+        3
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          9
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "sinclair",
+      "g": [
+        0,
+        1,
+        3
+      ],
+      "t": [],
+      "k": [
+        "Bleed"
+      ],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [
+          "[Bleed]"
+        ],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          9
+        ]
+      ],
+      "st": {
+        "pending": true,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          9
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [
+        0
+      ],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "威力 第四行"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "claude",
+        "since": "raw-20261029",
+        "stale": false
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "威力 第四行",
+        "issues": []
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          9
+        ]
+      ],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [
+        [
+          9
+        ]
+      ],
+      "st": {
+        "pending": true,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "faust",
+      "g": [
+        0,
+        1,
+        2
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "pointer",
+      "jm": "pointer",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    null
+  ]
+}

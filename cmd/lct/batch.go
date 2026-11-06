@@ -110,30 +110,42 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 	if cfg.Worktrees.Raw == "" || cfg.Worktrees.TW == "" {
 		return batch.Env{}, nil, cli.UserError(command + ": worktrees.raw and worktrees.tw must be set in lct.yaml")
 	}
+	env, err := baseEnv(ctx, command, openStore(ctx))
+	if err != nil {
+		return batch.Env{}, nil, err
+	}
+	return env, env.Rules, nil
+}
+
+// baseEnv is what openBatchEnv and openPreviewEnv share: the env of st, with
+// the raw packs and their tag, the rules, the foreign names bootstrap found
+// and the provisional terms in force. The caller has checked that
+// worktrees.raw is set.
+func baseEnv(ctx *cli.Context, command string, st *store.Store) (batch.Env, error) {
+	cfg := ctx.Config
 	rawWorktree := filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw))
 	src, err := raw.LastSource(rawWorktree)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, err
 	}
 	if src == nil {
-		return batch.Env{}, nil, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
+		return batch.Env{}, cli.UserError(fmt.Sprintf("%s: %s has no snapshot; run lct snapshot first", command, cfg.Worktrees.Raw))
 	}
 	set, err := pack.OpenRaw(rawWorktree)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, err
 	}
 	r, err := rules.Load(ctx.Root)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, err
 	}
-	st := openStore(ctx)
 	var foreign []string
 	if _, err := st.ReadMetaJSON(bootstrap.ForeignNamesFile, &foreign); err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, err
 	}
 	provisional, err := activeProvisional(ctx.Root, st, r)
 	if err != nil {
-		return batch.Env{}, nil, err
+		return batch.Env{}, err
 	}
 	return batch.Env{
 		Store:        st,
@@ -143,7 +155,7 @@ func openBatchEnv(ctx *cli.Context, command string) (batch.Env, *rules.Rules, er
 		ForeignNames: foreign,
 		Provisional:  provisional,
 		Now:          batchNow(),
-	}, r, nil
+	}, nil
 }
 
 // activeProvisional reads the provisional terms of the store and the declined

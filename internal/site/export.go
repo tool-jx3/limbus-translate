@@ -174,7 +174,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			if err != nil {
 				return Result{}, fmt.Errorf("site: preview %s: %w", p, err)
 			}
-			pf, err := buildPreviewFile(in.Rules, file, pvs, guides)
+			pf, err := buildPreviewFile(file, pvs, guides)
 			if err != nil {
 				return Result{}, err
 			}

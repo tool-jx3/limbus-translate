@@ -1,0 +1,199 @@
+{
+  "family": "other",
+  "glossary_check": "",
+  "terms": [],
+  "keywords": {},
+  "units": [
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "id",
+      "jm": "sequence",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "第一"
+      },
+      "em": "id",
+      "jm": "sequence",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "claude",
+        "since": "raw-20261029",
+        "rules": "abc1234",
+        "stale": false
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "第一",
+        "issues": []
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "id",
+      "jm": "sequence",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "第二"
+      },
+      "em": "id",
+      "jm": "sequence",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "claude",
+        "since": "raw-20261029",
+        "rules": "abc1234",
+        "stale": false
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "第二",
+        "issues": []
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "new"
+      },
+      "em": "id",
+      "jm": "sequence",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      }
+    },
+    {
+      "sp": "",
+      "g": [
+        0,
+        1
+      ],
+      "t": [],
+      "k": [],
+      "it": {
+        "reason": "requeue",
+        "prev_zh": "第三"
+      },
+      "em": "id",
+      "jm": "sequence",
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      },
+      "c": [],
+      "st": {
+        "pending": false,
+        "needs_review": false,
+        "frozen": false
+      },
+      "rec": {
+        "origin": "claude",
+        "since": "raw-20261001",
+        "stale": false
+      },
+      "chk": {
+        "verdict": "accept",
+        "zh": "第三",
+        "issues": []
+      }
+    }
+  ]
+}

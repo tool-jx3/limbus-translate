@@ -157,11 +157,11 @@ const previewPromptFile = "prompts/translate.md"
 // errors. records are the records the caller has read already (nil: they are
 // read here).
 func loadPreviewInputs(ctx *cli.Context, cmd string, records map[string]store.Record) (*site.PreviewInputs, error) {
-	env, frozen, records, err := openPreviewEnv(ctx, cmd, records)
+	env, frozen, recs, err := openPreviewEnv(ctx, cmd, records)
 	if err != nil {
 		return nil, err
 	}
-	previewer, err := batch.NewPreviewerWith(env, frozen, records)
+	previewer, err := batch.NewPreviewerWith(env, frozen, recs)
 	if err != nil {
 		return nil, err
 	}

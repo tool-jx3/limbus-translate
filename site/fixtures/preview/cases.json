@@ -43,5 +43,15 @@
     "path": "Frozen.json",
     "index": 0,
     "batch": "batches/8.json"
+  },
+  {
+    "path": "Rules.json",
+    "index": 1,
+    "batch": "batches/9.json"
+  },
+  {
+    "path": "Rules.json",
+    "index": 5,
+    "batch": "batches/10.json"
   }
 ]

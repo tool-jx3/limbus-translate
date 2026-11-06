@@ -8,8 +8,10 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
+	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
 func runPreview(t *testing.T, root string, jsonOut bool, args ...string) (string, error) {
@@ -82,6 +84,94 @@ func TestBatchPreviewUnknownKey(t *testing.T) {
 	for _, args := range [][]string{{"Nope.json|/dataList/0/content"}, {"Sample.json|/dataList/9/content"}, {"bad"}, {}, {batchKey0, batchKey1}} {
 		if _, err := runPreview(t, root, true, args...); !isUserError(err) {
 			t.Errorf("args %v: err = %v, want a user error", args, err)
+		}
+	}
+}
+
+// The text of "batch preview", branch by branch, from previews made by hand.
+func TestPreviewReportText(t *testing.T) {
+	const key = "Sample.json|/dataList/0/content"
+	preview := func(mod func(p *batch.UnitPreview)) *batch.UnitPreview {
+		p := &batch.UnitPreview{
+			Batch:   &batch.Batch{Family: "story", Keywords: map[string]string{}},
+			State:   batch.PreviewState{Pending: true, RulesCommit: "abc1234"},
+			Pending: store.PendingItem{Key: key, Reason: "new"},
+		}
+		mod(p)
+		return p
+	}
+	rec := func(rules string) *store.Record {
+		return &store.Record{Key: key, ZH: "譯文", Origin: store.OriginClaude, Model: "m1", Batch: "b1", Rules: rules}
+	}
+	for _, c := range []struct {
+		name string
+		mod  func(p *batch.UnitPreview)
+		want []string
+		not  []string
+	}{
+		{"new unit, nothing else", func(p *batch.UnitPreview) {}, []string{
+			"preview of " + key, "family: story", "pending: new", "record: none", "check: nothing to check",
+		}, []string{"hint:", "draft:", "state:", "not in the pending list", "glossary_check"}},
+		{"reason, hint and draft", func(p *batch.UnitPreview) {
+			p.Pending.Reason, p.Pending.Hint, p.Pending.Draft = "kr-changed", "再正式一點", "草稿"
+		}, []string{"pending: kr-changed", "  hint: 再正式一點", "  draft: 草稿"}, nil},
+		{"glossary_check", func(p *batch.UnitPreview) { p.Batch.GlossaryCheck = "warn" }, []string{"glossary_check: warn"}, nil},
+		{"not pending", func(p *batch.UnitPreview) { p.State.Pending = false }, []string{"(not in the pending list: this is what a requeue or the plan would make)"}, nil},
+		{"needs_review", func(p *batch.UnitPreview) { p.State.NeedsReview = true }, []string{"state: needs_review (waits for a person, is not handed out now)"}, nil},
+		{"leased", func(p *batch.UnitPreview) { p.State.LeasedTo = "20261101-0002" }, []string{"state: leased to 20261101-0002"}, nil},
+		{"frozen", func(p *batch.UnitPreview) { p.State.Frozen = true }, []string{"state: frozen (the file is not sent for translation)"}, nil},
+		{"record under the same rules", func(p *batch.UnitPreview) { p.Record = rec("abc1234") },
+			[]string{"record: origin claude, model m1, batch b1, rules abc1234 (same as the current rules)"}, nil},
+		{"record under other rules", func(p *batch.UnitPreview) { p.Record = rec("old9999") },
+			[]string{"rules old9999 (differs from the current rules)"}, nil},
+		{"record with no model, batch or rules", func(p *batch.UnitPreview) {
+			r := rec("")
+			r.Model, r.Batch = "", ""
+			p.Record = r
+		}, []string{"record: origin claude, model -, batch -, rules - (differs from the current rules)"}, nil},
+		{"notes", func(p *batch.UnitPreview) { p.Notes = []store.Note{{Note: "第一則"}, {Note: "第二則"}} }, []string{"note: 第一則", "note: 第二則"}, nil},
+		{"check with issues, stale KR", func(p *batch.UnitPreview) {
+			p.Record = rec("abc1234")
+			p.Check = &batch.Check{Verdict: "reject", StaleKR: true, Issues: []validate.Issue{
+				{Code: "hangul", Severity: validate.SeverityHard, Message: "still Hangul"},
+				{Code: "term-missing", Severity: validate.SeverityWarn, Message: "威力 is missing"},
+			}}
+		}, []string{
+			"check: reject", "  the translation was made from an older KR",
+			"  hangul [hard] still Hangul", "  term-missing [warn] 威力 is missing",
+		}, []string{"nothing to check"}},
+		{"accepted check", func(p *batch.UnitPreview) {
+			p.Record = rec("abc1234")
+			p.Check = &batch.Check{Verdict: "accept"}
+		}, []string{"check: accept"}, []string{"older KR"}},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			got := previewReport{UnitPreview: preview(c.mod)}.String()
+			for _, w := range c.want {
+				if !strings.Contains(got, w+"\n") && !strings.HasSuffix(got, w) {
+					t.Errorf("text lacks the line %q:\n%s", w, got)
+				}
+			}
+			for _, n := range c.not {
+				if strings.Contains(got, n) {
+					t.Errorf("text has %q:\n%s", n, got)
+				}
+			}
+		})
+	}
+}
+
+// The message names the key once, whether the key is well formed or not.
+func TestBatchPreviewNotInKRMessage(t *testing.T) {
+	root, _ := batchRepo(t)
+	for _, c := range []struct{ key, want string }{
+		{"Nope.json|/dataList/0/content", "batch preview: Nope.json|/dataList/0/content is not a unit of the KR pack"},
+		{"Sample.json|/dataList/9/content", "batch preview: Sample.json|/dataList/9/content is not a unit of the KR pack"},
+		{"bad", `batch preview: bad is not a unit of the KR pack (missing "|")`},
+	} {
+		_, err := runPreview(t, root, true, c.key)
+		if !isUserError(err) || err.Error() != c.want {
+			t.Errorf("key %q: err = %v, want the user error %q", c.key, err, c.want)
 		}
 	}
 }

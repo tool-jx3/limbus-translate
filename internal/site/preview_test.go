@@ -97,6 +97,10 @@ var pvKR = map[string]string{
 ]}`,
 	"Frozen.json": `{"dataList":[{"id":0,"content":"얼린 문장"}]}`,
 	"Bufs.json":   `{"dataList":[{"id":"Bleed","name":"출혈"},{"id":"Burn","name":"화상"}]}`,
+	// Rules.json: its EN is paired by id (the entries are in another order) and
+	// its JP by sequence (the ids are other ones); its records show which
+	// fields of a record are kept where they differ from the file's.
+	"Rules.json": `{"dataList":[{"id":"A","content":"첫째"},{"id":"B","content":"둘째"},{"id":"C","content":"셋째"}]}`,
 }
 
 var pvEN = map[string]string{
@@ -115,6 +119,7 @@ var pvEN = map[string]string{
  {"id":2,"content":"Awaiting review"},
  {"id":3,"content":"Leased"}
 ]}`,
+	"Rules.json": `{"dataList":[{"id":"C","content":"Third"},{"id":"A","content":"First"},{"id":"B","content":"Second"}]}`,
 }
 
 var pvJP = map[string]string{
@@ -127,6 +132,7 @@ var pvJP = map[string]string{
  {"id":5,"model":"파우스트","content":"一行目\n二行目"},
  {"id":6,"model":"파우스트","content":"1234"}
 ]}`,
+	"Rules.json": `{"dataList":[{"id":"x","content":"一つ目"},{"id":"y","content":"二つ目"},{"id":"z","content":"三つ目"}]}`,
 }
 
 // pvZH is the built pack: the translation of a unit that has one (line 1 of the
@@ -150,6 +156,7 @@ var pvZH = map[string]string{
 ]}`,
 	"Frozen.json": `{"dataList":[{"id":0,"content":"얼린 문장"}]}`,
 	"Bufs.json":   `{"dataList":[{"id":"Bleed","name":"流血"},{"id":"Burn","name":"화상"}]}`,
+	"Rules.json":  `{"dataList":[{"id":"A","content":"第一"},{"id":"B","content":"第二"},{"id":"C","content":"第三"}]}`,
 }
 
 // pvWorld is the test pack with its store, the Previewer over it and the
@@ -211,7 +218,7 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		t.Fatal(err)
 	}
 	st := store.Open(filepath.Join(t.TempDir(), "tw"))
-	story, other := "StoryData/S001A.json", "Other.json"
+	story, other, rulesFile := "StoryData/S001A.json", "Other.json", "Rules.json"
 	kr := func(file, pointer string) string {
 		doc, err := src.KR.Doc(file)
 		if err != nil {
@@ -226,6 +233,10 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		return ""
 	}
 	at := func(file string, i int) string { return "/dataList/" + strconv.Itoa(i) + "/content" }
+	ruleRec := func(r store.Record, rules, since string) store.Record {
+		r.Rules, r.Since = rules, since
+		return r
+	}
 	rec := func(file string, i int, zh, origin string) store.Record {
 		p := at(file, i)
 		return pvRec(file, p, kr(file, p), zh, origin)
@@ -244,6 +255,10 @@ func newPvWorld(t *testing.T, frozen ...string) pvWorld {
 		// still Hangul: the check does not accept it, and its text is that of the file
 		pvRec("Bufs.json", "/dataList/1/name", "화상", "화상", store.OriginClaude),
 		stale,
+		ruleRec(rec(rulesFile, 0, "第一", store.OriginClaude), "abc1234", "raw-20261029"),
+		ruleRec(rec(rulesFile, 1, "第二", store.OriginClaude), "abc1234", "raw-20261029"),
+		// no rules commit, and another since, where the other two have them
+		ruleRec(rec(rulesFile, 2, "第三", store.OriginClaude), "", "raw-20261001"),
 	} {
 		records[r.Key] = r
 	}
@@ -582,6 +597,10 @@ func TestExportPreviewOmissions(t *testing.T) {
 			note("rec rules omitted", pu.Rec != nil && pu.Rec.Rules == nil)
 			note("rec rules kept", pu.Rec != nil && pu.Rec.Rules != nil)
 			note("rec since omitted", pu.Rec != nil && pu.Rec.Since == nil)
+			note("rec since kept", pu.Rec != nil && pu.Rec.Since != nil)
+			note("rec rules kept empty", pu.Rec != nil && pu.Rec.Rules != nil && *pu.Rec.Rules == "" && pf.RD != nil && pf.RD.Rules != "")
+			note("m by id", strings.HasPrefix(pu.M, "i") || strings.HasSuffix(pu.M, "i"))
+			note("m by sequence", strings.HasPrefix(pu.M, "s") || strings.HasSuffix(pu.M, "s"))
 			note("m omitted", pu.M == "")
 			note("m kept", pu.M != "")
 		}
@@ -589,9 +608,19 @@ func TestExportPreviewOmissions(t *testing.T) {
 			t.Errorf("%s: rd %v but records %v", path, pf.RD, hasRec)
 		}
 	}
+	// A record with no rules commit, in a file where the others have one, says
+	// so in the file: leaving it out would give it the commit of the others.
+	text, err := os.ReadFile(filepath.Join(out, "preview", "Rules.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(text), `"rules":""`) {
+		t.Errorf("preview/Rules.json has no %q: %s", `"rules":""`, text)
+	}
 	for _, name := range []string{
 		"keep omitted", "keep kept", "st omitted", "st kept", "pz", "prev_zh kept", "chk omitted with a record", "chk kept",
-		"chk zh omitted", "no record", "rec origin omitted", "rec rules omitted", "rec rules kept", "rec since omitted", "m omitted", "m kept",
+		"chk zh omitted", "chk zh kept", "no record", "rec origin omitted", "rec origin kept", "rec rules omitted", "rec rules kept",
+		"rec rules kept empty", "rec since omitted", "rec since kept", "m omitted", "m kept", "m by id", "m by sequence",
 	} {
 		if seen[name] == 0 {
 			t.Errorf("no unit of the test pack has %q", name)
@@ -745,6 +774,108 @@ var pvCases = []struct {
 	{"Other.json", "/dataList/2/content", "needs_review pending item with attempts and an error"},
 	{"Other.json", "/dataList/3/content", "pending item leased to a batch"},
 	{"Frozen.json", "/dataList/0/content", "frozen file, glossary_check warn"},
+	{"Rules.json", "/dataList/0/content", "EN aligned by id, JP by sequence; a record like the file's other records"},
+	{"Rules.json", "/dataList/2/content", "a record with no rules commit and another since than the file's others"},
+}
+
+// pvGoldUnit is a unit of preview/<path> as the viewer works on it, with every
+// default put back (PreviewUnit of site/src/types.ts). The fields the compact
+// format keeps as they are (sp, g, t, k, c, nt) are those of the compact unit;
+// the others are made from the UnitPreview of the Previewer, never from the
+// compact unit, so a decoder that puts a default back wrong is caught.
+type pvGoldUnit struct {
+	SP   string            `json:"sp"`
+	G    []int             `json:"g"`
+	T    []int             `json:"t"`
+	K    []string          `json:"k"`
+	It   PreviewItem       `json:"it"`
+	EM   string            `json:"em,omitempty"`
+	JM   string            `json:"jm,omitempty"`
+	Keep batch.Constraints `json:"keep"`
+	C    [][]any           `json:"c"`
+	St   pvGoldState       `json:"st"`
+	Rec  *pvGoldRec        `json:"rec,omitempty"`
+	Chk  *pvGoldCheck      `json:"chk,omitempty"`
+	NT   string            `json:"nt,omitempty"`
+}
+
+type pvGoldState struct {
+	Pending     bool   `json:"pending"`
+	NeedsReview bool   `json:"needs_review"`
+	LeasedTo    string `json:"leased_to,omitempty"`
+	Frozen      bool   `json:"frozen"`
+	Attempts    int    `json:"attempts,omitempty"`
+	LastError   string `json:"last_error,omitempty"`
+}
+
+type pvGoldRec struct {
+	Origin string   `json:"origin"`
+	Model  string   `json:"model,omitempty"`
+	Batch  string   `json:"batch,omitempty"`
+	Since  string   `json:"since,omitempty"`
+	Rules  string   `json:"rules,omitempty"`
+	Flags  []string `json:"flags,omitempty"`
+	Stale  bool     `json:"stale"`
+}
+
+type pvGoldCheck struct {
+	Verdict string           `json:"verdict"`
+	ZH      string           `json:"zh"`
+	Issues  []validate.Issue `json:"issues"`
+}
+
+type pvGoldFile struct {
+	Family        string            `json:"family"`
+	GlossaryCheck string            `json:"glossary_check"`
+	Terms         []rules.Term      `json:"terms"`
+	Keywords      map[string]string `json:"keywords"`
+	Units         []*pvGoldUnit     `json:"units"`
+}
+
+// goldenPreviewFile is preview/<path> in the shape the viewer expands the
+// compact file to, made straight from the Previewer (pf is only asked for what
+// the compact format does not change). The viewer's tests compare its decoder
+// with it.
+func goldenPreviewFile(t *testing.T, pv *batch.Previewer, file File, pf PreviewFile) pvGoldFile {
+	t.Helper()
+	out := pvGoldFile{Family: pf.Family, GlossaryCheck: pf.GlossaryCheck, Terms: pf.Terms, Keywords: pf.Keywords, Units: make([]*pvGoldUnit, len(pf.Units))}
+	for i, cu := range pf.Units {
+		if cu == nil {
+			continue
+		}
+		p, err := pv.Unit(units.Key(file.Path, file.Units[i].P))
+		if err != nil {
+			t.Fatal(err)
+		}
+		bu := p.Batch.Units[0]
+		g := &pvGoldUnit{SP: cu.SP, G: cu.G, T: cu.T, K: cu.K, C: cu.C, NT: cu.NT}
+		g.It = PreviewItem{Reason: bu.Reason, PrevKR: bu.PrevKR, PrevZH: bu.PrevZH, Draft: bu.Draft, Hint: bu.Hint, Refs: bu.Refs}
+		if bu.EN != nil {
+			g.EM = string(bu.EN.Method)
+		}
+		if bu.JP != nil {
+			g.JM = string(bu.JP.Method)
+		}
+		g.Keep = bu.Keep
+		g.Keep.IDs, g.Keep.Placeholders, g.Keep.Tags = nonNil(g.Keep.IDs), nonNil(g.Keep.Placeholders), nonNil(g.Keep.Tags)
+		s := p.State
+		g.St = pvGoldState{Pending: s.Pending, NeedsReview: s.NeedsReview, LeasedTo: s.LeasedTo, Frozen: s.Frozen, Attempts: s.Attempts, LastError: s.LastError}
+		if r := p.Record; r != nil {
+			g.Rec = &pvGoldRec{Origin: r.Origin, Model: r.Model, Batch: r.Batch, Since: r.Since, Rules: r.Rules, Flags: r.Flags, Stale: r.KRSha != units.KRSha(file.Units[i].KR)}
+		}
+		if c := p.Check; c != nil {
+			g.Chk = &pvGoldCheck{Verdict: c.Verdict, ZH: c.ZH, Issues: nonNil(c.Issues)}
+		}
+		out.Units[i] = g
+	}
+	return out
+}
+
+func nonNil[T any](s []T) []T {
+	if s == nil {
+		return []T{}
+	}
+	return s
 }
 
 func TestPreviewFixturesUpToDate(t *testing.T) {
@@ -772,6 +903,13 @@ func TestPreviewFixturesUpToDate(t *testing.T) {
 		t.Fatal(err)
 	}
 	got["preview.json"] = data
+	for _, path := range w.In.KR.Files() {
+		var file File
+		var pf PreviewFile
+		readJSON(t, out, "files/"+path, &file)
+		readJSON(t, out, "preview/"+path, &pf)
+		got["expanded/"+path] = []byte(encodeBatch(t, goldenPreviewFile(t, w.In.Preview.Previewer, file, pf)))
+	}
 
 	type caseJSON struct {
 		Path  string `json:"path"`
@@ -842,5 +980,47 @@ func TestPreviewFixturesUpToDate(t *testing.T) {
 	}
 	if t.Failed() {
 		t.Log("run go test ./internal/site -run TestPreviewFixturesUpToDate -update-preview")
+	}
+}
+
+// The glossary_check of a file is the one its batches carry (they are made by
+// the Previewer), not a second look at the rules.
+func TestBuildPreviewFileGlossaryCheck(t *testing.T) {
+	w := newPvWorld(t)
+	out := t.TempDir()
+	if _, err := Export(w.In, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	var file File
+	readJSON(t, out, "files/Other.json", &file)
+	build := func(set func(i int, b *batch.Batch)) (PreviewFile, error) {
+		pvs, err := w.In.Preview.Previewer.File("Other.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		for i, pv := range pvs {
+			if pv != nil {
+				set(i, pv.Batch)
+			}
+		}
+		g := &guideTable{texts: pvGuides, at: map[string]int{}}
+		return buildPreviewFile(file, pvs, g)
+	}
+
+	pf, err := build(func(int, *batch.Batch) {})
+	if err != nil || pf.GlossaryCheck != "" {
+		t.Fatalf("glossary_check = %q, %v, want \"\" (the batches say nothing)", pf.GlossaryCheck, err)
+	}
+	pf, err = build(func(_ int, b *batch.Batch) { b.GlossaryCheck = rules.GlossaryWarn })
+	if err != nil || pf.GlossaryCheck != rules.GlossaryWarn {
+		t.Errorf("glossary_check = %q, %v, want %q from the batches", pf.GlossaryCheck, err, rules.GlossaryWarn)
+	}
+	_, err = build(func(i int, b *batch.Batch) {
+		if i == 0 {
+			b.GlossaryCheck = rules.GlossaryWarn
+		}
+	})
+	if err == nil || !strings.Contains(err.Error(), "glossary_check") {
+		t.Errorf("batches that disagree: err = %v, want one about glossary_check", err)
 	}
 }

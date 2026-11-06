@@ -1,0 +1,40 @@
+{
+  "id": "preview",
+  "family": "other",
+  "file": "Rules.json",
+  "files": [
+    "Rules.json"
+  ],
+  "guides": [
+    "guides/base.md",
+    "guides/families.md"
+  ],
+  "glossary": [],
+  "keywords": {},
+  "units": [
+    {
+      "key": "Rules.json|/dataList/2/content",
+      "file": "Rules.json",
+      "field": "content",
+      "speaker": "",
+      "kr": "셋째",
+      "reason": "requeue",
+      "prev_zh": "第三",
+      "en": {
+        "value": "Third",
+        "method": "id"
+      },
+      "jp": {
+        "value": "三つ目",
+        "method": "sequence"
+      },
+      "keep": {
+        "ids": [],
+        "placeholders": [],
+        "tags": [],
+        "dante_wrapper": false
+      }
+    }
+  ],
+  "context": []
+}

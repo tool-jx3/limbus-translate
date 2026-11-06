@@ -113,22 +113,27 @@ type Previewer struct {
 // NewPreviewer reads the pending queue, the records and the notes of env.Store
 // once. frozen are the patterns of the frozen files (config.MatchAny).
 func NewPreviewer(env Env, frozen []string) (*Previewer, error) {
-	if err := env.check(); err != nil {
-		return nil, err
-	}
-	recs, err := env.Store.LoadRecords()
-	if err != nil {
-		return nil, err
-	}
-	return NewPreviewerWith(env, frozen, recs)
+	return buildPreviewer(env, frozen, nil, true)
 }
 
 // NewPreviewerWith is NewPreviewer for a caller that has read the records
 // already (store.Store.LoadRecords); the Previewer reads them no more and does
 // not change the map.
 func NewPreviewerWith(env Env, frozen []string, recs map[string]store.Record) (*Previewer, error) {
+	return buildPreviewer(env, frozen, recs, false)
+}
+
+// buildPreviewer checks env once, then takes recs, or reads them from the store
+// when load is set.
+func buildPreviewer(env Env, frozen []string, recs map[string]store.Record, load bool) (*Previewer, error) {
 	if err := env.check(); err != nil {
 		return nil, err
+	}
+	if load {
+		var err error
+		if recs, err = env.Store.LoadRecords(); err != nil {
+			return nil, err
+		}
 	}
 	if env.Scripts == nil {
 		env.Scripts = rules.NewScriptCache(env.Rules)

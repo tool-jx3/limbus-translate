@@ -80,6 +80,15 @@ priority:
 			t.Errorf("ZH = %q, want the space after the keyword name", v.ZH)
 		}
 	})
+	t.Run("rejected: ZH still has the space after the keyword name", func(t *testing.T) {
+		v := Judge(env, nil, "Other.json", "2단계 파열 강도 시즌", "2級破裂強度", "")
+		if !v.Rejected {
+			t.Fatalf("not rejected: %+v", v.Issues)
+		}
+		if v.ZH != "2級破裂 強度" {
+			t.Errorf("ZH = %q, want the normalized text with the space after the keyword name", v.ZH)
+		}
+	})
 }
 
 // Env.Scripts only saves work: a Judge with the cache gives the verdict of
