@@ -507,7 +507,7 @@
 - kr: 필름
   zh: 底片
   forbidden: [膠捲]
-  files: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "AbEventsResultLog*", "StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
+  files: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "StoryData/E*", "StoryData/PC*"]
   status: approved
   category: [general]
   notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有。2026-11-06 依實際譯文：只有指定的檔（異想體說明、事件、間章劇情）用此譯名（43 句 43 句用），其他檔 8 句 3 句用，限定檔案
@@ -914,11 +914,11 @@
 - kr: 이방인
   zh: 異鄉人
   forbidden: [外來者]
-  not_files: ["StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
+  not_files: ["StoryData/E*", "StoryData/PC*"]
   status: approved
   match: substring
   category: [city]
-  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：StoryData/E*、ES*、PC* 的間章劇情幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
+  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：StoryData/E*、PC* 的間章劇情幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 뿌이
   zh: 普依
@@ -1307,7 +1307,7 @@
 
 - kr: 관통
   zh: 突刺
-  not_files: ["PersonalityVoiceDlg/*", "StoryData/P1*", "BattleSpeechBubbleDlg*", "StoryData/E*", "StoryData/ES*", "StoryData/PC*", "StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
+  not_files: ["PersonalityVoiceDlg/*", "StoryData/P1*", "BattleSpeechBubbleDlg*", "StoryData/E*", "StoryData/PC*", "StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
   status: approved
   match: word
   category: [general, combat, physical]
@@ -1415,11 +1415,11 @@
 
 - kr: 전투 패배
   zh: 戰鬥失敗
-  not_files: ["Skills_personality*", "Skills_Ego*", "Passive_Ego*", "Egos*", "Personalit*", "Passives*", "Skills_Assist*", "Passives_Assist*"]
+  not_files: ["Skills_personality*", "Skills_Ego*", "Passive_Ego*", "Egos*", "Personalit*", "Passives.json", "Passives-*", "Passives_check*", "Passives_fools*", "Passives_Assist.json", "Passives_Assist-[^w]*", "Skills_Assist*"]
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：夥伴被動（Passives_Assist 10 句 0 句用）與異想體被動（Passives_Abnormality 5 句 4 句用）等被動、技能、E.G.O、人格檔不採此譯名，共 15 句 4 句用，排除
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：夥伴被動（Passives_Assist* 10 句 0 句用）不採此譯名，排除；樣式另涵蓋同屬夥伴的 Passives.json、Passives-*、技能、E.G.O、人格檔（目前沒有符合的句子）。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除
 
 - kr: 상점
   zh: 商店
