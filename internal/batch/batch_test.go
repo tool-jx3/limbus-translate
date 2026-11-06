@@ -4247,6 +4247,8 @@ func TestTermsInIgnoresAProvisionalTermAbsentFromTheKR(t *testing.T) {
 		{KR: "조직", ZH: "組織", Match: rules.MatchWord},
 		{KR: "조직의 보스", ZH: "組織的首領", Match: rules.MatchWord},
 		{KR: "ab", ZH: "AB", Match: rules.MatchSubstring},
+		{KR: "x", ZH: "X", Match: rules.MatchSubstring},
+		{KR: "보\xff", ZH: "壞二", Match: rules.MatchSubstring},
 		{KR: "\xff\xfe", ZH: "壞", Match: rules.MatchSubstring},
 		{KR: "\ufffd", ZH: "替", Match: rules.MatchSubstring},
 		{KR: "", ZH: "空"},
