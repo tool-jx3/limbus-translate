@@ -37,12 +37,12 @@ export function filterEntries(entries: ScopeEntry[], f: { q: string; sort: Gloss
   return kept.sort(order[f.sort])
 }
 
-/** The scope of an entry in a line: files, not_files and match; 全部 where it has none. */
+/** The scope of an entry in a line: files, not_files and match; word is the default and goes unsaid, so an entry with no files, no not_files and match word reads 全部. */
 export function scopeSummary(e: ScopeEntry): string[] {
   const parts: string[] = []
   if (e.files.length > 0) parts.push(`files：${e.files.join('、')}`)
   if (e.not_files.length > 0) parts.push(`not_files：${e.not_files.join('、')}`)
-  if (e.match !== '') parts.push(`match：${e.match}`)
+  if (e.match === 'substring') parts.push('match：substring')
   return parts.length > 0 ? parts : ['全部']
 }
 

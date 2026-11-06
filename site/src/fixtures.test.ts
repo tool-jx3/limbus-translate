@@ -287,6 +287,7 @@ describe('glossary fixtures', () => {
         'id', 'kr', 'zh', 'also', 'files', 'not_files', 'match', ...(e.check !== undefined ? ['check'] : []), 'notes', 'groups',
         'n', 'used', 'rate', 'hard_candidate', 'compound', 'explained', 'unexplained', 'examples',
       ])
+      expect(['word', 'substring']).toContain(e.match)
       for (const grp of e.groups) expect(Object.keys(grp)).toEqual(['name', 'kind', 'n', 'used'])
       expect(Object.keys(e.compound)).toEqual(['n', 'used'])
       for (const ex of e.examples) expect(Object.keys(ex)).toEqual(['key', 'group', 'kr', 'zh'])

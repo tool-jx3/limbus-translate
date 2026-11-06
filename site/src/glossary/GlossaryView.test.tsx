@@ -72,9 +72,17 @@ describe('GlossaryView', () => {
     const scope = boss.querySelector('.gl-scope')?.textContent ?? ''
     expect(scope).toContain('files：family:skill')
     expect(scope).toContain('not_files：group:StoryData/')
-    expect(scope).toContain('match：word')
+    expect(scope).not.toContain('match：')
     const first = rows(el)[0]!.querySelector('.gl-scope')?.textContent ?? ''
-    expect(first).toContain('全部')
+    expect(first).toBe('全部')
+    const attack = rows(el).find((r) => r.querySelector('.gl-kr')?.textContent === '공격')!
+    expect(attack.querySelector('.gl-scope')?.textContent).toBe('match：substring')
+  })
+
+  it('says 全部 for an entry with no files, no not_files and match word, the way Go writes it', async () => {
+    const docs = { 'glossary/index.json': { ...base, entries: base.entries.map((e, i) => (i === 0 ? { ...e, match: 'word' } : e)) } }
+    const el = await mount(route(), docs)
+    expect(rows(el)[0]!.querySelector('.gl-scope')?.textContent).toBe('全部')
   })
 
   it('links each row to the entry', async () => {
