@@ -189,14 +189,14 @@ func routingOf(families ...rules.FamilyRule) *rules.Rules {
 }
 
 func TestFamily(t *testing.T) {
-	// ui comes before events and mirror comes after ui's wildcard peers, so the
-	// order alone would give BossRaidUI to ui.
+	// ui is listed before events, so the order alone would give BossRaidUI to
+	// ui; mirror is listed before ui, so MirrorDungeonUI goes to mirror.
 	r := routingOf(
+		rules.FamilyRule{ID: "mirror", Nodes: []string{"MirrorDungeon*"}},
 		rules.FamilyRule{ID: "ui", Nodes: []string{"*UI", "Tutorial*"}},
 		rules.FamilyRule{ID: "events", Nodes: []string{"BossRaidUI", "Event*"}},
 		rules.FamilyRule{ID: "enemy", Nodes: []string{"Enemies", "Skills", "Skills_Enemy*"}},
 		rules.FamilyRule{ID: "ally", Nodes: []string{"Skills_personality", "Personalit*"}},
-		rules.FamilyRule{ID: "mirror", Nodes: []string{"MirrorDungeon*"}},
 		rules.FamilyRule{ID: "story-main", Nodes: []string{"StoryData/S", "BgmLyrics/"}},
 		rules.FamilyRule{ID: "unsorted", Nodes: []string{}, Glossary: rules.GlossaryWarn},
 	)
@@ -209,8 +209,8 @@ func TestFamily(t *testing.T) {
 		// the full name beats a wildcard of the same level, whatever the order
 		"BossRaidUI.json": "events",
 		"MainUI.json":     "ui",
-		// two wildcards on one level: the family listed first
-		"MirrorDungeonUI_5.json": "ui",
+		// at one level, among wildcards, the first family in the routing wins
+		"MirrorDungeonUI_5.json": "mirror",
 		"MirrorDungeon-1.json":   "mirror",
 		// a node of a directory
 		"StoryData/S1037B.json": "story-main",

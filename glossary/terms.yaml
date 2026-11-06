@@ -1421,7 +1421,7 @@
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：ally 族群（夥伴）不採此譯名，排除：夥伴被動 Passives_Assist* 10 句 0 句用，同族群的 Passives.json、Passives-*、技能、E.G.O、人格檔目前沒有符合的句子。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除。2026-11-06 起 Skills_Assist-walpu6.json 適用此譯名：它路由到 walpu-refraction 而非 ally，原本的 Skills_Assist* 樣式多排除了它
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：ally 族群（夥伴）不採此譯名，排除：夥伴被動 Passives_Assist* 10 句 0 句用，同族群的 Passives.json、Passives-*、技能、E.G.O、人格檔目前沒有符合的句子。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除。2026-11-06 族群改由節點組成後，Skills_Assist-walpu6.json 歸 ally，同樣排除（目前沒有含此詞的句子）
 
 - kr: 상점
   zh: 商店

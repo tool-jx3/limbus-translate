@@ -84,27 +84,27 @@
 
 ## 族群與節點
 
-族群由分群樹的節點組成（`guides/routing.yaml` 的 `nodes`）。檔名推導出 `top`、`sub` 兩層節點，先看 `sub` 再看 `top`；同一層寫出完整名稱的族群優先，否則取路由裡第一個樣式符合的族群；都沒有的檔歸 `unsorted`。瓦夜與折射軌道活動檔不再自成一個族群，依文字類型歸進下面的族群。節點的完整清單以 `guides/routing.yaml` 為準。
+族群由分群樹的節點組成（`guides/routing.yaml` 的 `nodes`）。檔名推導出 `top`、`sub` 兩層節點，先看 `sub` 再看 `top`；同一層寫出完整名稱的族群優先，否則取路由裡第一個樣式符合的族群；都沒有的檔歸 `unsorted`。瓦夜與折射軌道活動檔不再自成一個族群，依文字類型歸進下面的族群。各族群的節點以 `guides/routing.yaml` 為準。
 
-| 族群 | 文字類型 | 節點 |
+| 族群 | 文字類型 | 詞彙表 |
 |---|---|---|
-| `story-main` | 主線劇情、主線地牢、歌詞 | `StoryData/S`、`StoryData/D`、`StoryData/RPG`、`DungeonNode`、`BgmLyrics/` |
-| `story-interlude` | 間章與活動劇情、聯動劇情 | `StoryData/E`、`StoryData/ES`、`StoryData/PC` |
-| `identity` | 人格故事、人格語音、戰鬥泡泡 | `StoryData/P`、`PersonalityVoiceDlg/`、`BattleSpeechBubbleDlg` |
-| `ego-voice` | E.G.O 台詞 | `EGOVoiceDig/` |
-| `announcer` | 播報員台詞 | `BattleAnnouncerDlg/` |
-| `dante-note` | 但丁的筆記 | `StoryTheaterDanteNote*` |
-| `rpg` | RPG 探索 | `RPGSystem/` |
-| `ally` | 我方：人格與 E.G.O 的技能、被動、名稱，協助者 | `Skills_personality`、`Skills_Ego_Personality`、`Skills_Ego`、`Skills_Assist`、`Passives_Assist`、`Passive`、`Passives`、`Personalit*`、`Egos`、`Assist`、`EGO` |
-| `enemy` | 敵方：敵人與異想體戰鬥的名稱、技能、被動 | `Enemies`、`Skills`、`Skills_Enemy*`、`Skills_Abnormality*`、`Passives_Enemy*`、`Passives_Abnormality*` |
-| `keywords` | 關鍵字、狀態、戰鬥術語 | `Bufs*`、`BattleKeywords*`、`UnitKeyword`、`SkillTag`、`KeywordDictionary` 等 |
-| `abnormality` | 異想體圖鑑、觀察日誌、異想體事件 | `AbnormalityGuides*`、`AbDlg`、`AbEvents*`、`AbEventsResultLog*` |
-| `mirror` | 鏡牢專屬：飾品、事件、起始增益 | `MirrorDungeon*`、`EGOgift*`、`ActionEvents*`、`DungeonStartBuffs`、`StoryTheaterMirrorWorld*` 等 |
-| `railway` | 折射軌道 | `Railway*` |
-| `stage` | 關卡、地牢區域、選擇事件、角色與場景名稱 | `StageNode`、`Stage*`、`DungeonArea`、`ChoiceEvent*`、`StoryTheater*`、`Characters` 等 |
-| `events` | 活動 | `Event*`、`*EventText`、`BossRaidUI` 等 |
-| `ui` | 介面、教學、商店、公告 | `*UI`、`*UIText`、`Tutorial*`、`FAQ`、`IAP*` 等 |
-| `unsorted` | 後備：沒有族群列到的新檔 | 無（看到新檔先補 `nodes`） |
+| `story-main` | 主線劇情、主線地牢、歌詞 | warn |
+| `story-interlude` | 間章與活動劇情、聯動劇情 | warn |
+| `identity` | 人格故事、人格語音、戰鬥泡泡 | warn |
+| `ego-voice` | E.G.O 台詞 | warn |
+| `announcer` | 播報員台詞 | warn |
+| `dante-note` | 但丁的筆記 | warn |
+| `rpg` | RPG 探索 | hard |
+| `ally` | 我方：人格與 E.G.O 的技能、被動、名稱，協助者 | hard |
+| `enemy` | 敵方：敵人與異想體戰鬥的名稱、技能、被動 | hard |
+| `keywords` | 關鍵字、狀態、戰鬥術語 | hard |
+| `abnormality` | 異想體圖鑑、觀察日誌、異想體事件 | warn |
+| `mirror` | 鏡牢專屬：飾品、事件、起始增益 | hard |
+| `railway` | 折射軌道 | hard |
+| `stage` | 關卡、地牢區域、選擇事件、角色與場景名稱 | hard |
+| `events` | 活動 | hard |
+| `ui` | 介面、教學、商店、公告 | hard |
+| `unsorted` | 後備：沒有族群列到的新檔 | hard |
 
 ## 凍結項目
 
