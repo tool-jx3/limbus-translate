@@ -32,6 +32,7 @@ export function filterEntries(entries: ScopeEntry[], f: { q: string; sort: Gloss
     missing: (a, b) => nonUsing(b) - nonUsing(a) || byText(a.kr, b.kr),
     kr: (a, b) => byText(a.kr, b.kr) || byText(a.zh, b.zh),
     rate: (a, b) => a.rate - b.rate || byText(a.kr, b.kr),
+    'rate-desc': (a, b) => b.rate - a.rate || byText(a.kr, b.kr),
   }
   return kept.sort(order[f.sort])
 }
@@ -61,6 +62,7 @@ const SORTS: { value: GlossarySort; label: string }[] = [
   { value: 'missing', label: '沒用數（多到少）' },
   { value: 'kr', label: '原詞' },
   { value: 'rate', label: '應用率（低到高）' },
+  { value: 'rate-desc', label: '應用率（高到低）' },
 ]
 
 const ONLY: { value: GlossaryOnly; label: string }[] = [

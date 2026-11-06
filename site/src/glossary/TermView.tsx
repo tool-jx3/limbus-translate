@@ -232,7 +232,10 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
   const krMark = useMemo(() => termMark(entry.kr), [entry.kr])
   const zhMark = useMemo(() => termsMark([entry.zh, ...entry.also]), [entry.zh, entry.also])
   const list = useRef<HTMLUListElement>(null)
-  const [said, setSaid] = useState('')
+  const [saidAt, setSaidAt] = useState({ key: '', text: '' })
+  // The status belongs to the filters it was said under; under other filters it is gone (the box of the text keeps its focus, so the component is not keyed).
+  const said = saidAt.key === filterKey ? saidAt.text : ''
+  const setSaid = (text: string) => setSaidAt({ key: filterKey, text })
 
   // The unconfirmed units under the filters, as ID「TW」→ a line each: what to paste to the conversation to decide on them.
   const copy = async () => {

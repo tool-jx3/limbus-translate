@@ -188,6 +188,8 @@ describe('glossary routes', () => {
   it('round-trips the list filters', () => {
     const f = { q: '대상 & ?', sort: 'rate' as const, only: 'hard' as const, family: 'story-main' }
     expect(parseHash(glossaryHref(f))).toEqual({ kind: 'glossary', ...f })
+    expect(parseHash(glossaryHref({ sort: 'rate-desc' }))).toMatchObject({ sort: 'rate-desc' })
+    expect(glossaryHref({ sort: 'rate-desc' })).toBe('#/g?sort=rate-desc')
     expect(parseHash(glossaryHref({ sort: 'kr', only: 'missing' }))).toEqual({ kind: 'glossary', q: '', sort: 'kr', only: 'missing', family: '' })
     expect(glossaryHref({ sort: 'missing' })).toBe('#/g')
   })

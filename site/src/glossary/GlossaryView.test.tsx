@@ -97,6 +97,12 @@ describe('GlossaryView', () => {
     expect(krs(await mount(route({ sort: 'rate' })))).toEqual(['대상', '공격', '보스'])
   })
 
+  it('orders by rate, highest first, with rate-desc', async () => {
+    const el = await mount(route({ sort: 'rate-desc' }))
+    expect(krs(el)).toEqual(['보스', '공격', '대상'])
+    expect(el.querySelector<HTMLSelectElement>('select[name=sort]')?.value).toBe('rate-desc')
+  })
+
   it('goes to the address of a sort that is picked', async () => {
     const el = await mount()
     const select = el.querySelector<HTMLSelectElement>('select[name=sort]')!

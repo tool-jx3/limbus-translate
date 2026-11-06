@@ -131,6 +131,14 @@ describe('TermView, units without the rendering', () => {
       expect(open.length).toBeLessThan(file.missing.length)
     })
 
+    it('drops the status when a filter changes', async () => {
+      const el = await mount()
+      await copied(el)
+      expect(el.querySelector('.tv-missing .rv-said')?.textContent).toContain('已複製')
+      await again(el, route({ family: 'story-main' }))
+      expect(el.querySelector('.tv-missing .rv-said')?.textContent).toBe('')
+    })
+
     it('copies the units that the filters keep', async () => {
       const text = await copied(await mount(route({ family: 'story-main' })))
       const open = file.missing.filter((u) => !u.accepted && u.family === 'story-main')
@@ -254,8 +262,6 @@ describe('TermView, what goes wrong', () => {
   })
 
   it('shows the entry and an error when its file cannot be loaded', async () => {
-    const el = await mount(route({ id: 'glossary/cccccccc/dddddddd' }), {})
-    expect(el.querySelector('.tv-top')).not.toBeNull()
     vi.stubGlobal('fetch', vi.fn(async (u: string) => (u.includes('glossary/index.json') ? fixtureFetch()(u) : new Response('x', { status: 500 }))))
     clearDataCache()
     const container = document.createElement('div')

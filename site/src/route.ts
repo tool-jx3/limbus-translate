@@ -18,7 +18,7 @@ export type Route =
   | { kind: 'term'; id: string; family: string; group: string; chapter: string; character: string; event: string; origin: string; q: string }
 
 /** How the list of glossary entries is ordered: by units without the rendering (most first), by KR, or by rate. */
-export type GlossarySort = 'missing' | 'kr' | 'rate'
+export type GlossarySort = 'missing' | 'kr' | 'rate' | 'rate-desc'
 /** Which entries the list keeps: all, those with a unit without the rendering, or the hard candidates. */
 export type GlossaryOnly = '' | 'missing' | 'hard'
 
@@ -43,7 +43,7 @@ const JPEN_CLASSES: readonly string[] = ['explained', 'partial', 'same']
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
 const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo', 'scope']
 const UPDATE_KINDS: readonly string[] = ['new', 'kr-changed', 'deleted', 'zh-changed']
-const GLOSSARY_SORTS: readonly string[] = ['missing', 'kr', 'rate']
+const GLOSSARY_SORTS: readonly string[] = ['missing', 'kr', 'rate', 'rate-desc']
 const GLOSSARY_ONLY: readonly string[] = ['missing', 'hard']
 /** The <a>/<b> of glossary/<a>/<b>. */
 const ENTRY_PATH = /^[0-9A-Za-z_-]+\/[0-9A-Za-z_-]+$/
