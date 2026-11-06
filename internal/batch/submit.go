@@ -487,6 +487,11 @@ func noteNames(entries []rules.Term, is validate.Issue, note string) bool {
 // one declined or taken into the glossary since is no longer asked at all.
 // The batch glossary only decides which KRs are checked; the rendering is the
 // one in env.Provisional now, the one the next batch would carry.
+//
+// A term declined between cut and submit no longer covers a glossary term
+// either (TermsIn), so a glossary term it covered in a unit becomes required
+// there at submission. This is the same edge as an edit of the glossary
+// between cut and submit: the rules in force at submission decide.
 func (s *submission) provisional() []rules.Term {
 	var out []rules.Term
 	for _, g := range s.batch.Glossary {

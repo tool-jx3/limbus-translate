@@ -3291,13 +3291,14 @@ func TestActiveProvisional(t *testing.T) {
 
 func TestProvisionalTermsYieldToTheGlossary(t *testing.T) {
 	r := testRulesWith(t, "- kr: 와일드헌트 히스클리프\n  zh: 狂獵希斯克利夫\n  status: approved\n")
-	all := []store.ProvisionalTerm{provTerm("와일드헌트", "狂獵", false)}
+	all := []store.ProvisionalTerm{provTerm("와일드헌트", "荒獵", false)}
 	prov := ActiveProvisional(all, r, nil)
 	if len(prov) != 1 {
 		t.Fatalf("provisional = %+v, want 1", prov)
 	}
-	// The glossary term covers the provisional one, which does not hit there
-	// (see TestCheckNewTermsWeighsProvisionalTermsWithTheGlossary).
+	// The glossary term covers the provisional one, which does not hit there:
+	// the translation need not hold 荒獵 (see
+	// TestCheckNewTermsWeighsProvisionalTermsWithTheGlossary).
 	issues := CheckNewTerms(r, prov, "Other.json", "와일드헌트 히스클리프", "狂獵希斯克利夫")
 	if validate.HasHard(issues) || hasCode(issues, validate.CodeTermMissing) {
 		t.Errorf("issues = %+v, want none", issues)
@@ -4051,6 +4052,27 @@ func TestCheckNewTermsWeighsProvisionalTermsWithTheGlossary(t *testing.T) {
 	}
 	if issues := CheckNew(r2, "Other.json", "와일드헌트 히스클리프가 왔다", "荒獵希斯克利夫來了"); !hasCode(issues, validate.CodeTermMissing) {
 		t.Errorf("CheckNew = %+v, want term-missing: without the provisional term nothing covers 와일드헌트", issues)
+	}
+}
+
+// TermsIn marks the provisional terms it returns, whether or not they came
+// marked, and ValidateTermsIn, what an existing translation is checked
+// against, leaves them out: they only cover glossary terms there.
+func TestTermsInMarksProvisionalTerms(t *testing.T) {
+	r := testRulesWith(t, "- kr: 와일드헌트\n  zh: 狂獵\n  status: approved\n")
+	prov := []rules.Term{{KR: "와일드헌트 히스클리프", ZH: "荒獵希斯克利夫", Match: rules.MatchWord, Status: rules.StatusApproved}}
+	got := TermsIn(r, prov, "Other.json", "와일드헌트 히스클리프가 왔다")
+	if len(got) != 1 || got[0].KR != "와일드헌트 히스클리프" || !got[0].Provisional {
+		t.Errorf("TermsIn = %+v, want the provisional term alone, marked", got)
+	}
+	if prov[0].Provisional {
+		t.Error("TermsIn marked the caller's term")
+	}
+	if got := ValidateTermsIn(r, prov, "Other.json", "와일드헌트 히스클리프가 왔다"); len(got) != 0 {
+		t.Errorf("ValidateTermsIn = %+v, want none: the glossary term is covered, the provisional one not enforced", got)
+	}
+	if got := ValidateTermsIn(r, prov, "Other.json", "와일드헌트가 왔다"); len(got) != 1 || got[0].KR != "와일드헌트" {
+		t.Errorf("ValidateTermsIn = %+v, want the glossary term", got)
 	}
 }
 

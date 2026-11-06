@@ -338,16 +338,14 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		}
 	}
 
-	// The provisional terms in force, which the batches weigh a provisional
-	// term against as they weigh the glossary terms (batch.TermsIn).
-	var inForce []rules.Term
-	if len(newTerms) > 0 {
-		declinedIDs := make(map[string]bool, len(rv.Declined))
-		for _, d := range rv.Declined {
-			declinedIDs[d.ID] = true
-		}
-		inForce = batch.ActiveProvisional(rv.Provisional, in.Rules, declinedIDs)
+	// The provisional terms in force, which are weighed with the glossary
+	// terms as at submission (batch.TermsIn): in the hits of a provisional
+	// term and in the warnings, as the build has them.
+	declinedIDs := make(map[string]bool, len(rv.Declined))
+	for _, d := range rv.Declined {
+		declinedIDs[d.ID] = true
 	}
+	inForce := batch.ActiveProvisional(rv.Provisional, in.Rules, declinedIDs)
 
 	groups := map[string]*group{}
 	var warns []*warnAcc
@@ -400,7 +398,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 				return
 			}
 			seen := map[string]bool{}
-			terms := in.Rules.ValidateTerms(path, ku.KR)
+			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
 			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path), Terms: terms}) {
 				if is.Severity != validate.SeverityWarn {
 					continue

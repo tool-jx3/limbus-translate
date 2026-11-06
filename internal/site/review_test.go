@@ -1437,6 +1437,47 @@ func TestReviewNewTermHitsLeaveOutUnitsALongerTermCovers(t *testing.T) {
 	}
 }
 
+// The warnings of existing translations weigh the provisional terms in force
+// with the glossary, as Submit does (batch.TermsIn): a glossary entry each of
+// whose hits lies inside a provisional term's does not warn. The provisional
+// terms themselves never warn on an existing translation. A declined one
+// covers nothing.
+func TestReviewWarningsWeighProvisionalTermsAsCoverers(t *testing.T) {
+	in, files := newTermInputs(t,
+		[3]string{"와일드헌트 히스클리프가 왔다", "荒獵希斯克利夫來了", store.OriginClaude},
+		[3]string{"와일드헌트 히스클리프 둘", "希斯克利夫二", store.OriginClaude},
+		[3]string{"와일드헌트가 왔다", "來了", store.OriginClaude},
+	)
+	in.Rules = glossaryRules(t, "- kr: 와일드헌트\n  zh: 狂獵\n  status: approved\n")
+	in.Review.Provisional = []store.ProvisionalTerm{{KR: "와일드헌트 히스클리프", ZH: "荒獵希斯克利夫", Key: nthKey(0), Batch: "b1"}}
+	termMissing := func(r Review) map[string][]string {
+		out := map[string][]string{}
+		for _, w := range r.Warnings {
+			if w.Code != validate.CodeTermMissing {
+				continue
+			}
+			for _, u := range w.Units {
+				out[w.KR] = append(out[w.KR], u.Key)
+			}
+		}
+		return out
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, want := termMissing(r), map[string][]string{"와일드헌트": {nthKey(2)}}; !reflect.DeepEqual(got, want) {
+		t.Errorf("term-missing units = %v, want %v", got, want)
+	}
+	in.Review.Declined = []suggest.Declined{{ID: "term-new/와일드헌트 히스클리프", Reason: "不是固定詞", Date: "2026-11-06"}}
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	if got, want := termMissing(r), map[string][]string{"와일드헌트": {nthKey(0), nthKey(1), nthKey(2)}}; !reflect.DeepEqual(got, want) {
+		t.Errorf("declined: term-missing units = %v, want %v", got, want)
+	}
+}
+
 // For a provisional term the 有用 of an evidence row is the same Used.
 func TestNewTermHitUsedIsTermUsed(t *testing.T) {
 	h := &newTermHits{term: rules.Term{KR: "자판기", ZH: "販賣機", Also: []string{"自販機"}, Match: rules.MatchWord}, room: 5, listed: map[string]bool{}}

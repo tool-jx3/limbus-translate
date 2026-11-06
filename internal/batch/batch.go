@@ -413,7 +413,8 @@ func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []r
 // hits (rules.Rules.GlossaryHits), then the provisional terms that occur in
 // it, without a term each of whose hits lies inside a hit of a longer one
 // (rules.DropCovered), whichever of the two is provisional. provisional are
-// the provisional terms in force (ActiveProvisional).
+// the provisional terms in force (ActiveProvisional); those returned are
+// marked Provisional, whether they came so or not.
 func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.Term {
 	terms := r.GlossaryHits(file, kr)
 	if len(provisional) == 0 {
@@ -423,6 +424,7 @@ func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.
 	n := len(terms)
 	for _, t := range provisional {
 		if t.OccursIn(plain) {
+			t.Provisional = true
 			terms = append(terms, t)
 		}
 	}
@@ -430,6 +432,21 @@ func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.
 		return terms
 	}
 	return rules.DropCovered(plain, terms)
+}
+
+// ValidateTermsIn returns the glossary terms of TermsIn as validation
+// enforces them on an existing translation, which the build and the review
+// page check: the provisional terms in force cover glossary terms there as
+// at submission, but are not enforced themselves, so a translation made
+// before a term was registered warns for none.
+func ValidateTermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []validate.Term {
+	var out []validate.Term
+	for _, t := range TermsIn(r, provisional, file, kr) {
+		if !t.Provisional {
+			out = append(out, t.ToValidate())
+		}
+	}
+	return out
 }
 
 // CheckNew checks zh as a new translation of the KR text kr of file, which is

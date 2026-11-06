@@ -103,8 +103,11 @@ func (r *Rules) scopedTo(t Term, file string) bool {
 }
 
 // OccursIn reports whether the KR text of t occurs in kr: as a word, unless t
-// asks for MatchSubstring.
+// asks for MatchSubstring. An empty KR text occurs nowhere.
 func (t Term) OccursIn(kr string) bool {
+	if t.KR == "" {
+		return false
+	}
 	if t.Match == MatchSubstring {
 		return strings.Contains(kr, t.KR)
 	}
@@ -114,7 +117,7 @@ func (t Term) OccursIn(kr string) bool {
 // Spans returns where the KR text of t occurs in kr, a text as
 // validate.MatchText leaves it, by the rule of OccursIn: the byte range
 // [start, end) of each hit, in order, overlapping hits too. It is nil where
-// OccursIn is false, and for an empty KR.
+// OccursIn is false, as for an empty KR.
 func (t Term) Spans(kr string) [][2]int {
 	if t.KR == "" {
 		return nil

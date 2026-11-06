@@ -1542,8 +1542,14 @@ func TestTermSpans(t *testing.T) {
 		if got := tc.term.Spans(tc.text); !slices.Equal(got, tc.want) {
 			t.Errorf("%+v.Spans(%q) = %v, want %v", tc.term, tc.text, got, tc.want)
 		}
-		if got := len(tc.term.Spans(tc.text)) > 0; tc.term.KR != "" && got != tc.term.OccursIn(tc.text) {
+		if got := len(tc.term.Spans(tc.text)) > 0; got != tc.term.OccursIn(tc.text) {
 			t.Errorf("%+v: Spans and OccursIn disagree on %q", tc.term, tc.text)
+		}
+	}
+	// An empty KR occurs nowhere, whatever the match.
+	for _, match := range []string{"", rules.MatchWord, rules.MatchSubstring} {
+		if (rules.Term{Match: match}).OccursIn(text) {
+			t.Errorf("Term{Match: %q} with no KR occurs in %q", match, text)
 		}
 	}
 }
@@ -1591,24 +1597,25 @@ func TestLongerEntryCoversOnlyItsOwnSpan(t *testing.T) {
 }
 
 // Review Focus 2. Entries that only overlap cover each other nowhere: both
-// hit.
+// hit, of the same length or not (a longer entry that overlaps a shorter one
+// without holding all of it does not cover it), whichever side the longer
+// one is on.
 func TestPartialOverlapKeepsBoth(t *testing.T) {
-	r := rulesWithGlossary(t, `- kr: 가나다
-  zh: 甲
-  status: approved
-  match: substring
-- kr: 나다라
-  zh: 乙
-  status: approved
-  match: substring
-`)
-	if got := zhOf(r.GlossaryHits(anyFile, "가나다라")); !slices.Equal(got, []string{"甲", "乙"}) {
-		t.Errorf("GlossaryHits(가나다라) = %v, want both", got)
-	}
-	a := rules.Term{KR: "가나다", ZH: "甲", Match: rules.MatchSubstring}
-	b := rules.Term{KR: "나다라", ZH: "乙", Match: rules.MatchSubstring}
-	if got := zhOf(rules.DropCovered("가나다라", []rules.Term{a, b})); !slices.Equal(got, []string{"甲", "乙"}) {
-		t.Errorf("DropCovered(가나다라) = %v, want both", got)
+	for _, tc := range []struct{ text, a, b string }{
+		{"가나다라", "가나다", "나다라"},
+		{"가나다라마", "가나다", "나다라마"},
+		{"가나다라마", "가나다라", "다라마"},
+	} {
+		r := rulesWithGlossary(t, "- kr: "+tc.a+"\n  zh: "+tc.a+"\n  status: approved\n  match: substring\n"+
+			"- kr: "+tc.b+"\n  zh: "+tc.b+"\n  status: approved\n  match: substring\n")
+		if got := zhOf(r.GlossaryHits(anyFile, tc.text)); !slices.Equal(got, []string{tc.a, tc.b}) {
+			t.Errorf("GlossaryHits(%q) with %s and %s = %v, want both", tc.text, tc.a, tc.b, got)
+		}
+		a := rules.Term{KR: tc.a, ZH: tc.a, Match: rules.MatchSubstring}
+		b := rules.Term{KR: tc.b, ZH: tc.b, Match: rules.MatchSubstring}
+		if got := zhOf(rules.DropCovered(tc.text, []rules.Term{b, a})); !slices.Equal(got, []string{tc.b, tc.a}) {
+			t.Errorf("DropCovered(%q, %s, %s) = %v, want both", tc.text, tc.b, tc.a, got)
+		}
 	}
 }
 

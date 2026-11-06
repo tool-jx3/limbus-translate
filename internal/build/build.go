@@ -19,6 +19,7 @@ import (
 	"time"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/batch"
 	"github.com/tool-jx3/limbus-translate/internal/config"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/jsonx"
@@ -87,7 +88,8 @@ type Options struct {
 	// Declined and Accepted are the sets of ids (internal/itemid) of the
 	// suggestions a person confirmed: a declined group of inconsistent
 	// renderings is left out of the report, an accepted warning is not
-	// counted. nil is empty.
+	// counted, and a declined term-new/<kr> is no provisional term in force
+	// (batch.ActiveProvisional). nil is empty.
 	Declined, Accepted map[string]bool
 }
 
@@ -219,6 +221,9 @@ type builder struct {
 	// inconsistentAll are the groups of Report.Inconsistent and those after
 	// them, up to maxInconsistentAll; see Info.InconsistentAll.
 	inconsistentAll []Inconsistency
+	// provisional are the provisional terms in force, which cover glossary
+	// terms in the checks as they do at submission (batch.ValidateTermsIn).
+	provisional []rules.Term
 }
 
 // Run builds the language pack for src (the raw KR, EN and JP packs) from the
@@ -323,6 +328,13 @@ func buildLocked(st *store.Store, opt Options, in *inputs, src pack.Set, fr *fie
 	}
 	for _, it := range pending {
 		b.queued[it.Key] = true
+	}
+	if opt.Rules != nil {
+		all, err := st.LoadTerms()
+		if err != nil {
+			return nil, err
+		}
+		b.provisional = batch.ActiveProvisional(all, opt.Rules, opt.Declined)
 	}
 
 	tree := newTree(opt.TWRoot)
@@ -587,12 +599,13 @@ func (b *builder) scriptOK(file string) []string {
 	return b.opt.Rules.ScriptRenderings(file)
 }
 
-// terms are the glossary terms u.KR contains in file; none without rules.
+// terms are the glossary terms u.KR contains in file, weighed with the
+// provisional terms in force (batch.ValidateTermsIn); none without rules.
 func (b *builder) terms(file, kr string) []validate.Term {
 	if b.opt.Rules == nil {
 		return nil
 	}
-	return b.opt.Rules.ValidateTerms(file, kr)
+	return batch.ValidateTermsIn(b.opt.Rules, b.provisional, file, kr)
 }
 
 // familyOf is the family of file; every file is of one family without rules.

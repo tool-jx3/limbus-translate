@@ -2187,6 +2187,57 @@ func TestBuildCountsTermMissingWarnings(t *testing.T) {
 	}
 }
 
+// The term-missing warnings weigh the provisional terms in force with the
+// glossary, as Submit does (batch.TermsIn): a glossary entry each of whose
+// hits lies inside a provisional term's does not warn, and the provisional
+// terms themselves never warn on an existing translation. A declined one, or
+// none in the store, covers nothing.
+func TestBuildWeighsProvisionalTermsAsCoverers(t *testing.T) {
+	const glossary = "- kr: 와일드헌트\n  zh: 狂獵\n  status: approved\n"
+	root := t.TempDir()
+	for _, d := range []string{"guides/characters", "glossary"} {
+		if err := os.MkdirAll(filepath.Join(root, d), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    match: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte(glossary))
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{"A.json": `{"dataList":[{"id":1,"content":"와일드헌트 히스클리프가 왔다"},{"id":2,"content":"와일드헌트 히스클리프 둘"},{"id":3,"content":"와일드헌트가 왔다"}]}`}
+	recs := []store.Record{
+		rec("A.json", "/dataList/0/content", "와일드헌트 히스클리프가 왔다", "荒獵希斯克利夫來了"),
+		rec("A.json", "/dataList/1/content", "와일드헌트 히스클리프 둘", "希斯克利夫二"),
+		rec("A.json", "/dataList/2/content", "와일드헌트가 왔다", "來了"),
+	}
+	run := func(provisional bool, declined map[string]bool) *Report {
+		e := newEnv(t, kr, nil)
+		e.opt.Rules = rl
+		e.opt.Declined = declined
+		e.save(recs...)
+		if provisional {
+			if _, err := store.Open(e.opt.TWRoot).AppendTerms([]store.ProvisionalTerm{{KR: "와일드헌트 히스클리프", ZH: "荒獵希斯克利夫", Key: recs[0].Key, Batch: "b1"}}); err != nil {
+				t.Fatal(err)
+			}
+		}
+		return e.run()
+	}
+	rep := run(true, nil)
+	if rep.Warnings["term-missing"] != 1 || !slices.Equal(rep.WarningSamples["term-missing"], []string{recs[2].Key}) {
+		t.Errorf("provisional in force: Warnings = %v, samples %v; want only %s", rep.Warnings, rep.WarningSamples["term-missing"], recs[2].Key)
+	}
+	for name, rep := range map[string]*Report{
+		"declined":       run(true, map[string]bool{"term-new/와일드헌트 히스클리프": true}),
+		"no provisional": run(false, nil),
+	} {
+		if rep.Warnings["term-missing"] != 3 {
+			t.Errorf("%s: Warnings = %v, want three term-missing", name, rep.Warnings)
+		}
+	}
+}
+
 // A unit that lacks two glossary entries warns term-missing for each, and
 // the one accepted (for its entry, as the review page's term group has it)
 // leaves the other counted.
