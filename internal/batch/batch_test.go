@@ -3269,20 +3269,31 @@ func TestSubmitWarnFamilyMergedBatch(t *testing.T) {
 	}
 }
 
-// Twins of a warn-family unit stay in the warn family (a TextGroup holds the
-// family, so a twin never comes from another one): a twin takes the
-// translation although it lacks a rendering, but a twin whose file forbids a
-// word of the translation is not given it.
+// Twins of a warn-family unit stay in the warn family: a twin in another warn
+// file takes the translation although it lacks the glossary rendering (the
+// term-missing path of a warn file), a twin whose file forbids a word of the
+// translation is not given it, and a unit of the same KR text in a family
+// that is not warn (Other.json, which also lacks the rendering) is not a twin
+// at all, whatever the glossary says. The guarantee is the family in the
+// TextGroup that keys a twin (the families[...] filter in reuseForTwins only
+// narrows the scan).
 func TestTwinsOfAWarnFamilyUnit(t *testing.T) {
 	const text = "같은 문장에 시즌이 두 군데에 있다"
 	kr := map[string]string{}
-	for _, f := range []string{"Warn1.json", "Warn2.json", "Warn3.json"} {
+	for _, f := range []string{"Warn1.json", "Warn2.json", "Warn3.json", "Other.json"} {
 		kr[f] = oneLine(t, text)
 	}
-	const glossary = "- kr: 시즌\n  zh: 賽季\n  status: approved\n  forbidden: [季前]\n  files: [\"Warn2.json\"]\n"
+	// 賽季 is asked of every file; Warn2.json has its own entry for 시즌 that
+	// also forbids 季前, and takes the place of the general one there.
+	const glossary = seasonGlossary +
+		"- kr: 시즌\n  zh: 賽季\n  status: approved\n  forbidden: [季前]\n  files: [\"Warn2.json\"]\n"
 	env := newEnv(t, kr, nil, nil)
 	env.Rules = testRulesWithRouting(t, warnRouting, glossary)
-	seed(t, env, append(append(items("Warn1.json", 0, 1), items("Warn2.json", 0, 1)...), items("Warn3.json", 0, 1)...)...)
+	var all []store.PendingItem
+	for _, f := range []string{"Warn1.json", "Warn2.json", "Warn3.json", "Other.json"} {
+		all = append(all, items(f, 0, 1)...)
+	}
+	seed(t, env, all...)
 	b := mustNext(t, env, NextOptions{})
 	if b == nil || !slices.Equal(keysOf(b), []string{key("Warn1.json", 0)}) || b.GlossaryCheck != "warn" {
 		t.Fatalf("batch = %+v, want only the first twin, glossary_check warn", b)
@@ -3292,10 +3303,13 @@ func TestTwinsOfAWarnFamilyUnit(t *testing.T) {
 		t.Fatal(err)
 	}
 	if !slices.Equal(res.Reused, []string{key("Warn3.json", 0)}) {
-		t.Errorf("reused = %v, want only Warn3.json (Warn2.json forbids 季前)", res.Reused)
+		t.Errorf("reused = %v, want only Warn3.json (Warn2.json forbids 季前, Other.json is not of the family)", res.Reused)
 	}
-	if _, ok := pendingMap(t, env)[key("Warn2.json", 0)]; !ok {
-		t.Error("the twin whose file forbids the rendering is no longer pending")
+	pending := pendingMap(t, env)
+	for _, f := range []string{"Warn2.json", "Other.json"} {
+		if _, ok := pending[key(f, 0)]; !ok {
+			t.Errorf("%s is no longer pending", f)
+		}
 	}
 }
 
