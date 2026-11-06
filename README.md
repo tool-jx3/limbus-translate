@@ -26,14 +26,16 @@ Release（`zh-TW-YYYYMMDD.N`）也只由 CI 建立，而且只在語言包的內
 
 網站把每個檔案的 KR、JP、EN 原文與 TW 譯文並排顯示（表格與劇本兩種模式），標出每句譯文的來源並可依來源篩選，也能全文搜尋（子字串或正規表示式）。資料只放最新一次建置，由 CI 產生並部署，不 commit 到任何分支。網站用每頁的 `<meta name="robots" content="noindex, nofollow">` 要求搜尋引擎不收錄。`site/public/robots.txt`（`Disallow: /`）也會一起部署，但網站是專案網站（網址帶 `/limbus-translate/`），爬蟲只讀主機根目錄的 `robots.txt`，所以這個檔案在這個網址上不起作用，有效的是 `<meta>`；只有改放在自訂網域的根目錄時它才會被讀到。網站不收集使用者資料，也不使用外部 CDN。
 
-網站另有「審核」頁（`#/r/<suggestions|warnings|notes|todo>`），把人需要看的項目集中成四個分頁，網頁唯讀：
+網站另有「審核」頁（`#/r/<suggestions|warnings|notes|todo|scope>`），把人需要看的項目集中成五個分頁（四個加上「詞彙範圍」），網頁唯讀：
 
-- 四個分頁：規則建議、檢查警告、譯者註記、待辦。待辦與審核 Issue 的項目相同，只放規則建議分頁沒有的種類。
+- 五個分頁：規則建議、檢查警告、譯者註記、待辦、詞彙範圍（說明見下一項）。待辦與審核 Issue 的項目相同，只放規則建議分頁沒有的種類。
 - 檢查警告分頁：同一個詞彙表詞條漏譯的 `term-missing` 警告合成一張「詞彙群組」卡，不再一句一張。標題為「詞彙表：<KR> → <譯名>（<未確認> 處）」；有單位已確認時才加「，<M> 處已確認」，卡片列出該詞條在每個單位的原文與譯文。
 - 詞彙群組的 ID：複製群組卡得到 `termgroup/<KR 雜湊>/<譯名雜湊>@<N>「<KR> → <譯名>」→ `，`@N` 是頁面當時還沒確認的單位數。每個單位列各自複製 `warning/term-missing/…`，只確認那一個單位。
 - `bin/lct accept --reason '<理由>' 'termgroup/…@N'` 會展開成群組內還沒確認的每個單位的 ID，把整組警告一次記為確認。N 必須等於目前還沒確認的單位數，不符就拒絕（exit 1，什麼都不寫），代表頁面看到的已經不是現況，請重新整理頁面再貼，或改貼逐單位的 ID；ID 的群組已不在本機審核資料時也拒絕（本機審核資料來自 `.work/raw`、`.work/tw` 與 `glossary/`，輸出的 `raw_tag`、`tw_commit` 可與頁面的比對）：把 `.work/raw`、`.work/tw` 更新到頁面的 raw tag 與 tw commit，或重新整理頁面再貼。群組內的單位都確認過了，`@0` 不寫任何東西，歸在輸出的 `empty`。只傳某個單位的 ID 就只確認那個單位，群組的其他單位照舊列出。
 - 規則建議分頁多一種「暫定詞」（見「詞彙檢查與暫定詞」），標題為「暫定詞：<KR> → <譯名>」。不採用的暫定詞和其他已否決的建議一樣預設隱藏，顯示時標為已否決。
 - 規則建議分頁的不一致譯法可切換為「連同 JP/EN」：KR 常比 JP、EN 籠統，譯法不同可能是對的，所以每種譯法旁列出它的 JP 與 EN，卡片標出「JP/EN 可解釋」「部分可解釋」「JP/EN 相同」，並可依此篩選；`/review-page` 與 `/rules-review` 處理不一致的譯法時也會列出這些，但不因此替你決定。
+- 詞彙範圍分頁（`#/r/scope`）：每個詞彙表條目在各檔案族群與目錄群組（`StoryData`、`PersonalityVoiceDlg`、`EGOVoiceDig`、`BattleAnnouncerDlg`、`RPGSystem`、其餘）裡，有幾個單位的 KR 命中、其中幾個真的用了條目的譯名。分頁列出「全部條目」的群組用字表，並依用字的分布提出建議：排除檔案（`not_files` 加上族群或目錄樣式）、限定檔案（`files`）、詞中詞改 `substring` 或 `word`、需要人看（沒有乾淨的切法）、常被說明偏離（譯者常在註記說明不用此譯名，也許該加 `also`）。每張建議卡列出採用後少掉與多出的警告、少檢查的單位與例子，失去的檢查很多的標為預設不採用。資料由 `lct site` 與 `lct glossary scope --json` 以同一份計算（`review/scope.json`），門檻也在其中。
+- 詞彙範圍的 ID 與決定：建議的 ID 是 `scope/<KR 雜湊>/<譯名雜湊>/<種類>`（種類 `not-files`、`files`、`substring`、`word`、`mixed`、`explained`），複製後貼給 `/review-page`。採用：skill 編輯 `glossary/terms.yaml` 的那個條目、在 `notes` 記日期與數字、跑 `bin/lct rules lint`；不採用或維持現狀：`bin/lct accept` 記進 `rules/declined.yaml`；`mixed` 與 `explained` 沒有具體修改，人可以不採用，或附上自己的指示（例如加 `also`、排除某族群）。條目的 ID `glossary/<KR 雜湊>/<譯名雜湊>` 只用來帶指示，`bin/lct accept` 拒絕它。
 - 用法：看 → 複製項目的文字（`ID「摘要」→ `，單筆或一組）→ 貼進 Claude Code 的對話，用 `/review-page` 說明決定。
   - 沒問題的，skill 執行 `bin/lct accept` 把規則建議與註記記進 `rules/declined.yaml`、檢查警告記進 `rules/accepted.yaml`（確認過的項目預設隱藏，建置報告也不再計入確認過的警告）。
   - 要改的，skill 寫調整（`lct adjust add`）或改規則並附重翻要求檔，讓譯文真的改變，新譯文出來前項目標「待重翻」。
@@ -87,7 +89,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 
 - 翻譯最多進行 5 小時。每一輪執行到第 100 個回合後就不再領新批次，送出手上那批就結束（`--soft-turns 100`），接著開下一輪；130 個回合是硬上限（`--max-turns 130`），用完也是正常的結束。每輪結束時，這一輪領了卻沒送出的批次：結果檔已寫好的直接替它送出（照樣經過驗證），其餘馬上釋放，下一輪就能再領，不必等鎖定的 2 小時過去；開始翻譯前也先這樣處理一次，清掉上次中斷留下的批次。Actions 的記錄每輪印出開始時的花費與待譯數、結束時用了幾個回合與花費；每領一批印出批次 ID、單位數與檔案，每送出一批印出接受、沿用、退回（其中轉人工審核）、沒送出的單位數，每輪結束印出這輪共領了幾批、幾個單位與送出的結果，翻譯結束再印出所有輪的合計（`lct translate` 執行期間會建立 `work/batches/.log.jsonl`，`lct batch next` 與 `lct batch submit` 把每一批寫進去，`lct translate` 邊跑邊讀；平常手動執行批次指令時沒有這個檔，也不會記錄）；單輪另有 90 分鐘的上限，只用來擋住卡死的執行（被它終止算錯誤，整個翻譯迴圈就此結束）。到了花費上限或時間就停止，沒翻完的留在待譯清單，下次繼續，打包時暫以 EN 或 KR 顯示。翻譯失敗只發警告，已翻的照常 build 與發布。
 - 領批次的順序與合批：`BattleKeywords*` 與 `Bufs*` 是關鍵字檔，先發，之後的批次才看得到它們定下的譯名；關鍵字批次只併同一族群的關鍵字檔。非劇情的小檔會與同族群的其他小檔合成一批，單位數上限是 `lct.yaml` 的 `batch.max_units`；劇情批次仍然一個檔一批。批次愈合愈少，輪數與花費隨之下降。
-- 詞彙檢查與暫定詞：送出時，`lct batch submit` 依 `glossary/` 檢查譯文有沒有用詞條規定的譯名（詞條預設整詞比對，後接助詞也算，`match: substring` 才比對長詞裡的用法；`not_files` 可排除檔案，見 `glossary/README.md`）；漏用的 `term-missing` 本來只是內容警告，送出時改成退回，除非該單位的註記（`note`）寫了這個詞條的 KR（例如說明為何在此不照詞條譯）。詞彙表沒有的詞，譯者可在結果檔的 `terms` 登記暫定譯名；暫定詞存在 `tw` 的 `.meta/terms.jsonl`，同一個 KR 以第一個登記的譯法為準，之後的批次會把它放進詞彙表欄位，送出時同樣檢查，審核頁也列為「暫定詞」供人決定。暫定詞只在送出批次時比對：整詞比對（KR 要以獨立的詞出現才算），KR 至少兩個字，不限檔案；對已有的譯文不產生警告。CI 的 `/rules-review` 不處理暫定詞，由人用 `term-decision` 或 `review-page` 決定。暫定詞不是規則，規則仍只在 `guides/`、`glossary/`、`rules/`。
+- 詞彙檢查與暫定詞：送出時，`lct batch submit` 依 `glossary/` 檢查譯文有沒有用詞條規定的譯名（詞條預設整詞比對，後接助詞也算，`match: substring` 才比對長詞裡的用法；`files`、`not_files` 限定或排除檔案，項目可寫檔名樣式或 `family:<id>`，指路由判為該族群的檔；`also` 列 `zh` 以外同樣正確的譯法，譯文含 `zh` 或任一 `also` 就算用了；同一處 KR 被另一個適用條目的更長命中完全蓋住時，那一處不算，長詞條優先；細節見 `glossary/README.md`）；漏用的 `term-missing` 本來只是內容警告，送出時改成退回，但 `guides/routing.yaml` 標 `glossary: warn` 的族群（劇情、人格、EGO 語音、播報、但丁筆記）只警告不退回，`forbidden-term` 在這些族群照舊退回；除非該單位的註記（`note`）寫了這個詞條的 KR（例如說明為何在此不照詞條譯）。詞彙表沒有的詞，譯者可在結果檔的 `terms` 登記暫定譯名；暫定詞存在 `tw` 的 `.meta/terms.jsonl`，同一個 KR 以第一個登記的譯法為準，之後的批次會把它放進詞彙表欄位，送出時同樣檢查，審核頁也列為「暫定詞」供人決定。暫定詞只在送出批次時比對：整詞比對（KR 要以獨立的詞出現才算），KR 至少兩個字，不限檔案；對已有的譯文不產生警告。CI 的 `/rules-review` 不處理暫定詞，由人用 `term-decision` 或 `review-page` 決定。暫定詞不是規則，規則仍只在 `guides/`、`glossary/`、`rules/`。
 - 翻譯時每一輪（Claude Code 的一次執行，最多 100 個回合）結束，`lct translate --push-each-run` 就把已翻的內容 commit 並推到 `tw`（commit 訊息 `translate: keep the progress of <raw tag>`，沒有變動就不 commit；推送失敗只發警告，下一輪再推）。所以 runner 中途掛掉，最多只損失正在進行的那一輪。翻譯一結束（包括失敗、被取消或逾時），再把剩下的（最後一輪、`.meta/translate.json`）commit 並推上去；沒有變動就不 commit，但照樣推一次，把前面推送失敗、還留在本地的 commit 推上去（沒有新東西時推送什麼都不做）。這次推送緊接在最後一輪的推送之後，GitHub 偶爾會拒絕（`missing necessary objects`：接收的伺服器還沒看到前一次推送），所以 pipeline 每次推 `tw` 失敗都會在 2、4、8、16 秒後重試，最後一次也失敗才讓步驟失敗。之後 build、發布或推送失敗，已付費翻好的內容也不會丟掉；build 與發布的 commit 接在它們後面。
 - 「沒事可做」還要看三件事，任何一件不成立就不算沒事可做：
   - `tw` 上次建置的 raw tag（`tw` 的 `.meta/build.json` 的 `raw_tag`）是不是目前 `raw` 的 tag；`tw` 落後 `raw`（例如上次翻完卻沒建置成功），或讀不到那個檔，這次會補建置與發布。

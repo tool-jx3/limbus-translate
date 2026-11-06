@@ -191,6 +191,7 @@ var reviewPageTools = []string{
 	"Bash(bin/lct suggest*)",
 	"Bash(bin/lct search *)",
 	"Bash(bin/lct validate *)",
+	"Bash(bin/lct glossary scope *)",
 	"Bash(bin/lct adjust add *)",
 	"Bash(bin/lct requeue --to-file *)",
 	"Bash(bin/lct rules lint*)",
@@ -819,6 +820,18 @@ var reviewPageSays = append(slices.Clone(localSkillSays),
 	skillSays{"本機審核資料來自 `.work/raw`、`.work/tw` 與 `glossary/`", "a refused term group is not said to come from the local review data (.work/raw, .work/tw, glossary/) that may differ from the page's"},
 	skillSays{"把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit", "a refused term group is not said to be answered by updating the worktrees to the raw tag and tw commit of the page"},
 	skillSays{"收窄 `files`", "a glossary entry that is too broad is not said to be narrowed in glossary/terms.yaml (files, match, notes)"},
+	skillSays{"`scope/…`", "the id of a scope proposal (scope/…) is not named: a person cannot tell it from a warning"},
+	skillSays{"bin/lct glossary scope --json", "a scope proposal is not looked up with lct glossary scope --json: the skill would guess its patterns and numbers"},
+	skillSays{"`proposals[].id`", "the skill does not say that the proposal is found by its id in proposals"},
+	skillSays{"`not-files`、`files`", "the adoption of a not-files or files proposal is not said to add its patterns to the entry's not_files or files"},
+	skillSays{"`substring`、`word`", "the adoption of a substring or word proposal is not said to set match"},
+	skillSays{"拿掉 `match: substring`", "adopting a word proposal is not said to remove match: substring"},
+	skillSays{"`notes` 補一句有日期的繁體中文", "the adoption of a scope proposal is not said to leave a dated note in the entry's notes with the proposal's numbers"},
+	skillSays{"`mixed`、`explained`", "the mixed and explained proposals are not said to have no concrete change"},
+	skillSays{"`glossary/…`", "the id of a glossary entry (glossary/…) that carries an instruction is not named"},
+	skillSays{"`entries[].id`", "the entry of a glossary/… id is not said to be found by entries[].id of lct glossary scope"},
+	skillSays{"`bin/lct accept` 拒絕 `glossary/…`", "the skill does not say that lct accept refuses a glossary/… id"},
+	skillSays{"`also` 只在人明確指示時加", "the skill does not forbid adding also unless the person says so"},
 )
 
 // The review-page skill says what the contract wants of it, and each check can fail.
@@ -848,6 +861,10 @@ func TestReviewPageSays(t *testing.T) {
 		{"no cause of a refused group", "本機審核資料來自 `.work/raw`、`.work/tw` 與 `glossary/`", "本機資料", "本機審核資料來自"},
 		{"no way to bring the worktrees up", "把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit", "重建", "把 `.work/raw`、`.work/tw` 更新到網頁的 raw tag 與 tw commit"},
 		{"may strip @N", "不去掉 `@N`", "去掉 `@N`", "不去掉 `@N`"},
+		{"scope proposal not named", "`scope/…`", "`warning/…`", "`scope/…`"},
+		{"scope proposal not looked up", "bin/lct glossary scope --json", "bin/lct suggest --json", "bin/lct glossary scope --json"},
+		{"also added unasked", "`also` 只在人明確指示時加", "`also` 可以加", "`also` 只在人明確指示時加"},
+		{"glossary id accepted", "`bin/lct accept` 拒絕 `glossary/…`", "`bin/lct accept` 接受", "`bin/lct accept` 拒絕 `glossary/…`"},
 		{"decides by the class", "不因 JP/EN 分類", "依 JP/EN 分類", "不因 JP/EN 分類"},
 	} {
 		t.Run(c.name, func(t *testing.T) {
