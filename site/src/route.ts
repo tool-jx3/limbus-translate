@@ -2,7 +2,7 @@ import type { JPENClass, Lang, ReviewTab, UpdateKind } from './types'
 import type { UpdateFilter } from './updates/filter'
 
 /**
- * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/s?q=…&lang=…&re=1,
+ * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/pv/<path>?u=<pointer> (the translation preview of a unit), #/s?q=…&lang=…&re=1,
  * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
  * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1,
  * #/g?q=…&sort=…&only=…&family=…, #/g/<a>/<b>?family=…&group=…&chapter=…&character=…&event=…&origin=…&q=… (the entry glossary/<a>/<b>).
@@ -10,6 +10,7 @@ import type { UpdateFilter } from './updates/filter'
 export type Route =
   | { kind: 'home' }
   | { kind: 'file'; path: string; ptr?: string }
+  | { kind: 'preview'; path: string; ptr: string }
   | { kind: 'search'; q: string; lang: Lang; re: boolean }
   | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
   | { kind: 'updates' }
@@ -121,6 +122,12 @@ export function parseHash(hash: string): Route {
     const ptr = query.get('u')
     return ptr ? { kind: 'file', path, ptr } : { kind: 'file', path }
   }
+  if (pathname.startsWith('/pv/')) {
+    const path = pathname.slice(4).split('/').map(decode).join('/')
+    if (!isFilePath(path)) return { kind: 'home' }
+    const ptr = query.get('u')
+    return ptr ? { kind: 'preview', path, ptr } : { kind: 'file', path }
+  }
   if (pathname === '/s') {
     const lang = query.get('lang') ?? ''
     return {
@@ -186,6 +193,11 @@ export function parseHash(hash: string): Route {
 export function fileHref(path: string, ptr?: string): string {
   const base = `#/f/${path.split('/').map(encodeURIComponent).join('/')}`
   return ptr ? `${base}?u=${encodeURIComponent(ptr)}` : base
+}
+
+/** The hash of the translation preview of a unit. */
+export function previewHref(path: string, ptr: string): string {
+  return `#/pv/${path.split('/').map(encodeURIComponent).join('/')}?u=${encodeURIComponent(ptr)}`
 }
 
 /** The hash of a full-text search. */

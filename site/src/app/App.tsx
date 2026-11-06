@@ -3,6 +3,7 @@ import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
 import { GlossaryView } from '../glossary/GlossaryView'
 import { TermView } from '../glossary/TermView'
+import { PreviewView } from '../preview/PreviewView'
 import { SearchView } from '../search/SearchView'
 import { ReviewView } from '../review/ReviewView'
 import { UpdateView } from '../updates/UpdateView'
@@ -72,7 +73,7 @@ export function App() {
     return () => document.removeEventListener('keydown', onKey)
   }, [drawer])
 
-  const current = route.kind === 'file' ? route.path : undefined
+  const current = route.kind === 'file' || route.kind === 'preview' ? route.path : undefined
 
   return (
     <div class="app">
@@ -134,6 +135,8 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
       return <Home meta={meta} index={index} onOpenDirectory={onOpenDirectory} />
     case 'file':
       return <FileView path={route.path} ptr={route.ptr} index={index} settings={settings} onSettings={onSettings} />
+    case 'preview':
+      return <PreviewView route={route} />
     case 'search':
       return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
     case 'review':

@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks'
 import { act } from 'preact/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { clearDataCache } from '../data'
-import { fileHref } from '../route'
+import { fileHref, previewHref } from '../route'
 import { defaultSettings, type Settings } from '../settings'
 import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
 import type { FileData, Index, Lang, Origin, Unit } from '../types'
@@ -846,5 +846,43 @@ describe('FileView: review marks', () => {
     const origins = { ...defaultSettings().origins, paratranz: false }
     const el = await open('Big.json', { index: bigIndex, settings: { ...defaultSettings(), origins } })
     expect(el.querySelector('.file-note')?.textContent).toContain('所有單位都被來源篩選隱藏了。')
+  })
+})
+
+describe('FileView: preview links', () => {
+  const COPY_TITLE = 'copy：識別碼或各語言相同，不送翻'
+  const withCopy = { ...defaultSettings(), origins: { ...defaultSettings().origins, copy: true } }
+  const links = (el: ParentNode) => [...el.querySelectorAll<HTMLAnchorElement>('a')].filter((a) => a.textContent === '預覽')
+
+  it('puts a preview link in each row of the table, and a muted label for a copy', async () => {
+    const el = await open(SKILLS, { settings: withCopy })
+    const r = row(el, '/dataList/0/levelList/0/name')!
+    const a = links(r)
+    expect(a).toHaveLength(1)
+    expect(a[0]?.getAttribute('href')).toBe(previewHref(SKILLS, '/dataList/0/levelList/0/name'))
+    const copy = row(el, '/dataList/0/code')!
+    expect(links(copy)).toHaveLength(0)
+    const label = [...copy.querySelectorAll<HTMLElement>('.no-send')]
+    expect(label).toHaveLength(1)
+    expect(label[0]?.textContent).toBe('不送翻')
+    expect(label[0]?.getAttribute('title')).toBe(COPY_TITLE)
+  })
+
+  it('puts a preview link on each unit of a line of the script, with the field name in the title', async () => {
+    const el = await open(STORY)
+    const speaker = el.querySelectorAll<HTMLElement>('.line-speaker')[0]!
+    const a = links(speaker)
+    expect(a.map((x) => x.getAttribute('href'))).toEqual([previewHref(STORY, '/dataList/1/teller'), previewHref(STORY, '/dataList/1/title')])
+    expect(a[0]?.getAttribute('title')).toContain('teller')
+    expect(a[1]?.getAttribute('title')).toContain('title')
+    const text = el.querySelector<HTMLElement>('[data-ptr="/dataList/0/content"]')!
+    expect(links(text).map((x) => x.getAttribute('href'))).toEqual([previewHref(STORY, '/dataList/0/content')])
+  })
+
+  it('shows the copy units of a script as not sent', async () => {
+    const el = await open(STORY, { settings: withCopy })
+    const line = el.querySelector<HTMLElement>('[data-ptr="/dataList/1/model"]')!
+    expect(links(line)).toHaveLength(0)
+    expect(line.querySelector('.no-send')?.getAttribute('title')).toBe(COPY_TITLE)
   })
 })

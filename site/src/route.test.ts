@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref } from './route'
+import { fileHref, parseHash, reviewHref, searchHref, updateHref, updatesHref, glossaryHref, termHref, previewHref } from './route'
 
 describe('parseHash', () => {
   it('reads the empty hash and #/ as home', () => {
@@ -229,5 +229,23 @@ describe('glossary routes', () => {
 
   it('reads a malformed entry address as home', () => {
     for (const h of ['#/g/x', '#/g/', '#/g/a/', '#/g/a/b/c', '#/g//b', '#/g/../b', '#/gx']) expect(parseHash(h), h).toEqual({ kind: 'home' })
+  })
+})
+
+describe('preview route', () => {
+  it('writes #/pv/<path>?u=<pointer> and reads it back', () => {
+    const href = previewHref('StoryData/S001A.json', '/dataList/3/content')
+    expect(href).toBe('#/pv/StoryData/S001A.json?u=%2FdataList%2F3%2Fcontent')
+    expect(parseHash(href)).toEqual({ kind: 'preview', path: 'StoryData/S001A.json', ptr: '/dataList/3/content' })
+  })
+
+  it('goes back to the same path and pointer for odd characters', () => {
+    const href = previewHref('Sub Dir/100% real+file #1?.json', '/dataList/3/a b&c=d%')
+    expect(parseHash(href)).toEqual({ kind: 'preview', path: 'Sub Dir/100% real+file #1?.json', ptr: '/dataList/3/a b&c=d%' })
+  })
+
+  it('falls back to the file route without u, and for a bad path', () => {
+    expect(parseHash('#/pv/StoryData/S001A.json')).toEqual({ kind: 'file', path: 'StoryData/S001A.json' })
+    expect(parseHash('#/pv/a/../b.json?u=%2Fx')).toEqual({ kind: 'home' })
   })
 })

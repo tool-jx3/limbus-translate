@@ -1,10 +1,13 @@
 import type { RefObject } from 'preact'
 import type { Lang, Unit } from '../types'
 import { Cell, LANG_LABEL } from './Cell'
+import { PreviewLink } from './PreviewLink'
 import { MarkDetail, type MarkState } from './marks'
 
 /** What the table and the script have in common. */
 export interface ViewProps {
+  /** The path of the file. */
+  path: string
   langs: readonly Lang[]
   /** Show the strings with their tags. */
   raw: boolean
@@ -29,7 +32,7 @@ export interface TableViewProps extends ViewProps {
 }
 
 /** One unit a row: the field name, then a cell for each language that is on. */
-export function TableView({ units, langs, raw, ptr, start, before, after, listRef, marks, onCopy }: TableViewProps) {
+export function TableView({ path, units, langs, raw, ptr, start, before, after, listRef, marks, onCopy }: TableViewProps) {
   return (
     <div class="tbl" role="table" aria-label="對照表" style={{ '--cols': langs.length }}>
       <div class="trow thead" role="row">
@@ -58,6 +61,7 @@ export function TableView({ units, langs, raw, ptr, start, before, after, listRe
               <button type="button" class="field" title={u.p} onClick={() => onCopy(u.p)}>
                 {u.f}
               </button>
+              <PreviewLink path={path} unit={u} />
             </div>
             {langs.map((lang) => (
               <Cell key={lang} lang={lang} units={[u]} raw={raw} role="cell" marks={marks} />

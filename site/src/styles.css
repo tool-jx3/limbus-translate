@@ -2729,3 +2729,147 @@ button.chip {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* The way into the translation preview: next to the field name of a row, at the end of a line of the script. */
+.preview-link,
+.no-send {
+  font-size: 0.8rem;
+  margin-inline-start: 0.5rem;
+}
+
+.no-send {
+  color: var(--muted);
+}
+
+.line-preview {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* The translation preview. */
+.preview {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.preview h1,
+.preview h2,
+.preview p {
+  margin: 0;
+}
+
+.pv-head {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.pv-head code,
+.pv-where {
+  overflow-wrap: anywhere;
+}
+
+.pv-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pv-tabs [role='tab'].is-on {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.pv-section {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+  padding: 0.5rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.pv-section h2 {
+  font-size: 1rem;
+}
+
+.pv-section ul,
+.pv-section ol {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+  overflow-wrap: anywhere;
+}
+
+/* A long text (a guide, the batch JSON, the full text) scrolls in its own box, not the page. */
+.pv-box {
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 24rem;
+  margin: 0.25rem 0;
+  padding: 0.5rem;
+  overflow: auto;
+  background: var(--raw-bg);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  white-space: pre;
+}
+
+.pv-full {
+  max-height: 70vh;
+}
+
+.pv-pre {
+  white-space: pre-wrap;
+}
+
+.pv-note {
+  padding: 0.3rem 0.5rem;
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+.pv-check-reject .pv-note,
+.pv-check-reject strong {
+  color: var(--danger-fg);
+}
+
+.pv-check-warn strong {
+  color: var(--warn-fg);
+}
+
+.pv-tag {
+  margin-inline-start: 0.4rem;
+  padding: 0 0.35rem;
+  background: var(--tok-bg);
+  color: var(--tok-fg);
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.pv-none {
+  color: var(--muted);
+}
+
+.pv-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pv-gone {
+  padding: 0.5rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.pv-section summary {
+  overflow-wrap: anywhere;
+}

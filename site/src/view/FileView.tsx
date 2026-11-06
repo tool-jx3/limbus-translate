@@ -244,7 +244,7 @@ function FileBody({ path, file, ptr, settings, onSettings }: BodyProps) {
     )
   } else if (count === 0) note = '所有單位都被來源篩選隱藏了。'
 
-  const view = { langs, raw: settings.rawTags, ptr, start: v.start, before: v.before, after: v.after, listRef: v.listRef, marks, onCopy: copy }
+  const view = { path, langs, raw: settings.rawTags, ptr, start: v.start, before: v.before, after: v.after, listRef: v.listRef, marks, onCopy: copy }
   return (
     <div class="file-body">
       <p class="file-count">

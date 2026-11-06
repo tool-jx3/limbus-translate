@@ -33,6 +33,8 @@ allowed-tools:
 
 ## 流程
 
+想確認某個單位的批次由哪些指引、詞彙與上下文組成，可在網站的預覽頁（`#/pv/…`，檔案頁每個單位旁的「預覽」）看，或執行 `bin/lct batch preview <key>`（唯讀）。
+
 0. 執行 `go build -o bin/lct ./cmd/lct`，失敗就停止並回報。`bin/lct accept`、`bin/lct suggest`、`bin/lct search` 讀 `.work/raw` 與 `.work/tw` 兩個 worktree；指令說沒有快照或找不到時，停止並說明請人準備好（`git fetch origin raw tw`，再 `git worktree add .work/raw raw` 與 `git worktree add .work/tw tw`，或把兩個 worktree 更新到最新），不由這個 skill 代做
 1. 整理人貼上的內容：列出每個 ID 與人對它的決定（沒問題、要改、不清楚；人只貼 ID 沒說決定時，問人）。同一批 ID 的決定不同時分開處理
 2. 依 ID 找到項目內容，向人確認你看到的和他看到的是同一件事。每一類都先用 `bin/lct accept --dry-run --json` 查：它唯讀，不需要 `--reason`，對每個 ID 印出審核頁上的那一項，並列出不是目前項目的 ID。每個 ID 用單引號包起來：`note/…` 的 ID 含 `|`，ID 也可能含空格，雙引號裡的 `$` 與反引號會被 shell 展開。ID 或理由裡有單引號時寫成 `'\''`：先結束引號，再放一個跳脫的單引號，再重新開始引號。例如 `it's` 寫成 `'it'\''s'`。指令如下：

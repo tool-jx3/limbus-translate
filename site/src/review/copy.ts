@@ -2,6 +2,9 @@ import { stripTags } from '../search/match'
 
 const EXCERPT = 40
 
+/** What a page says above the selected box where the browser did not let it write to the clipboard. */
+export const COPY_REFUSED_HINT = '瀏覽器不讓網頁寫入剪貼簿：已選取下面的文字，按 Ctrl+C（或 ⌘C）複製'
+
 /** What "copy ID" copies: the id, the first 40 characters of the text without its tags, and an arrow to write the decision after; detail, if any, stands between the quote and the arrow, whole (it is not cut). */
 export function copyText(id: string, excerptSource: string, detail = ''): string {
   const chars = Array.from(stripTags(excerptSource).replace(/\s+/g, ' ').trim())
