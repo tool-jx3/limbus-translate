@@ -209,13 +209,14 @@ func counted(o string) bool {
 // Whether an entry hits a unit is what the review page says: the glossary
 // terms of batch.TermsIn with in.Provisional, that is Rules.GlossaryHits
 // (scopes, and the longer entry that covers a shorter one), the provisional
-// terms in force covering entries too. A unit's groups are its
-// family (Rules.Family, as family:<id>) and its directory group (Dirs, or
+// terms in force covering entries too. A unit's groups are its family
+// (Rules.Family, as family:<id>) and its directory group (Dirs, or
 // RestGroup). A unit is a compound unit of an entry when its hit depends on
 // the entry's match: of a word entry, a unit the entry would hit as a
 // substring entry (its KR holds the entry inside a longer word); of a
-// substring entry, a unit it hits that it would not hit as a word entry. The groups count the hits that are no compound units, so that
-// the two questions, where and how the entry matches, stay apart.
+// substring entry, a unit it hits that it would not hit as a word entry. The
+// groups count the hits that are no compound units, so that the two
+// questions, where and how the entry matches, stay apart.
 //
 // The proposals list only what differs from the entry as it is, and each
 // says what it does to the review page as it is (see Proposal). Flagged marks
@@ -223,11 +224,12 @@ func counted(o string) bool {
 // of the entry that use its rendering. A proposal whose id is in in.Declined
 // carries its confirmation.
 //
-// Of the two kinds of group, each may propose a change of files or not_files
-// (see scopeOption); of two, the one that is not flagged is proposed, then
-// the one with fewer patterns, then the one that loses fewer checks, then the
-// one that removes more warnings, then the families'. Without one, a mixed proposal is made when a group uses
-// the rendering in part, or no group of a kind uses it.
+// Each of the two kinds of group may propose a change of files and one of
+// not_files (see scopeOptions); of those, the one that is not flagged is
+// proposed, then the one with fewer patterns, then the one that loses fewer
+// checks, then the one that removes more warnings, then the families'.
+// Without one, a mixed proposal is made when a group uses the rendering in
+// part, or no group of a kind uses it.
 func Analyze(in Inputs) Report {
 	if in.Rules == nil {
 		return Empty()
@@ -628,8 +630,8 @@ func (an *analysis) proposals(a *acc) []Proposal {
 	var opts []option
 	var mixedOrUnused []string
 	for _, kind := range []string{GroupFamily, GroupDir} {
-		o, groups := an.scopeOption(a, kind)
-		if o != nil {
+		os, groups := an.scopeOptions(a, kind)
+		for _, o := range os {
 			alt := t
 			switch o.kind {
 			case KindNotFiles:
@@ -638,7 +640,7 @@ func (an *analysis) proposals(a *acc) []Proposal {
 				alt.Files = o.patterns
 			}
 			o.effect = an.effectOf(a, alt)
-			opts = append(opts, *o)
+			opts = append(opts, o)
 		}
 		mixedOrUnused = append(mixedOrUnused, groups...)
 	}
@@ -696,19 +698,20 @@ func compareBool(x, y bool) int {
 	return 1
 }
 
-// scopeOption returns the change of files or not_files that the groups of
+// scopeOptions returns the changes of files and not_files that the groups of
 // kind propose, if any, and else the groups that make the entry mixed, if
 // any: groups that use the rendering in part, or the groups that do not use
 // it when none of kind does.
 //
 // Of groups (MinN units or more) that do not use the rendering beside groups
-// that use it, and none in part: not_files gets the first, or files is
-// limited to the second, when they are fewer. A group not_files takes out
-// already has no hits, so not_files never gets a pattern it has. RestGroup
-// names no files: a change that needs it is not made. files is not proposed
-// for an entry that has files, or whose KR text has another entry, which the
-// change would leave out of those files.
-func (an *analysis) scopeOption(a *acc, kind string) (*option, []string) {
+// that use it, and none in part: not_files gets the first, and files is
+// limited to the second. Both are returned, not_files first, and proposals
+// chooses by their effects. A group not_files takes out already has no hits,
+// so not_files never gets a pattern it has. RestGroup names no files: a
+// change that needs it is not made. files is not proposed for an entry that
+// has files, or whose KR text has another entry, which the change would leave
+// out of those files.
+func (an *analysis) scopeOptions(a *acc, kind string) ([]option, []string) {
 	var notUsed, used, mixed []string
 	for _, g := range an.orderedGroups(a) {
 		if g.Kind != kind {
@@ -731,17 +734,14 @@ func (an *analysis) scopeOption(a *acc, kind string) (*option, []string) {
 	case len(used) == 0:
 		return nil, notUsed
 	}
-	var nf, fl *option
+	var out []option
 	if !slices.Contains(notUsed, RestGroup) {
-		nf = &option{kind: KindNotFiles, patterns: notUsed, left: notUsed}
+		out = append(out, option{kind: KindNotFiles, patterns: notUsed, left: notUsed})
 	}
 	if !slices.Contains(used, RestGroup) && len(a.term.Files) == 0 && !an.sameKR[a.term.KR] {
-		fl = &option{kind: KindFiles, patterns: used, left: notUsed}
+		out = append(out, option{kind: KindFiles, patterns: used, left: notUsed})
 	}
-	if fl != nil && (nf == nil || len(fl.patterns) < len(nf.patterns)) {
-		return fl, nil
-	}
-	return nf, nil
+	return out, nil
 }
 
 // flag reports whether losing the check of lost units that use the rendering

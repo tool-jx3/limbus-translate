@@ -661,3 +661,22 @@ func TestFewerPatternsFirst(t *testing.T) {
 		t.Errorf("the family flagged: proposal = %+v, want the two directories, which lose nothing", p)
 	}
 }
+
+// Inside one partition, files is not chosen over not_files for having fewer
+// patterns before the effects are known. 속도 is used in the voice lines and
+// in 2 lines of Narr.json, which no group of three units covers: files
+// [family:voice] removes the same 6 warnings as not_files [skill, story], but
+// loses those 2 checks and is flagged, so the unflagged not_files is proposed.
+func TestUnflaggedNotFilesBeatsFlaggedFiles(t *testing.T) {
+	r := testRules(approved("속도", "速度值"))
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "narr", Match: []string{"Narr*"}}}, r.Routing.Families...)
+	f := &fixture{}
+	f.add(voiceFile, 3, "속도", "速度值")
+	f.add(storyFile, 3, "속도", "速度").add(skillFile, 3, "속도", "速度")
+	f.add("Narr.json", 2, "속도", "速度值")
+	p := onlyProposal(t, Analyze(Inputs{Rules: r, Units: f.units}), "속도", KindNotFiles)
+	if len(p.Patterns) != 2 || !slices.Contains(p.Patterns, "family:story") || !slices.Contains(p.Patterns, "family:skill") ||
+		p.WarnRemoved != 6 || p.UsedLost != 0 || p.Flagged {
+		t.Errorf("proposal = %+v, want the unflagged not_files [family:skill family:story] removing 6", p)
+	}
+}
