@@ -45,6 +45,31 @@ function classTitle(c: GroupClass, t: ScopeThresholds): string | undefined {
   return undefined
 }
 
+const pct = (share: number) => `${Math.round(share * 100)}%`
+
+/** What a card with 失去檢查偏多 loses, by the thresholds. */
+const flagText = (t: ScopeThresholds) => `不再檢查的用了譯名的單位至少 ${t.lost_units} 個，或佔 ${pct(t.lost_share)} 以上；預設不採用`
+
+/** The thresholds the labels and proposals follow, in words and with the values of the data. */
+function Legend({ t }: { t: ScopeThresholds }) {
+  return (
+    <ul class="sc-legend" aria-label="門檻">
+      <li>群組：少於 {t.min_n} 個單位的群組不計入建議。</li>
+      <li>
+        有用：{pct(t.used)} 以上的單位用了譯名；沒用：{pct(t.not_used)} 以下。
+      </li>
+      <li>
+        混用：介於 {pct(t.not_used)} 到 {pct(t.used)} 之間，且沒用譯名的單位至少 {t.min_n} 個；不到 {t.min_n} 個算中間，不計入建議。
+      </li>
+      <li>
+        詞中詞：複合詞單位至少 {t.min_n} 個且 {pct(t.used)} 以上用了譯名，建議 substring；已是 substring 而 {pct(t.not_used)} 以下用了譯名，建議 word。
+      </li>
+      <li>常被說明偏離：沒用譯名而註記說明的單位至少 {t.explained} 個。</li>
+      <li>失去檢查偏多：不再檢查的用了譯名的單位至少 {t.lost_units} 個，或佔該條目用了譯名的 {pct(t.lost_share)} 以上；這樣的建議預設不採用。</li>
+    </ul>
+  )
+}
+
 /** The units of an entry that do not use its rendering, over all its groups. */
 const nonUsing = (e: ScopeEntry | undefined) => (e ? e.groups.reduce((s, g) => s + g.n - g.used, 0) : 0)
 const percent = (used: number, n: number) => (n === 0 ? 0 : Math.round((used / n) * 100))
@@ -136,7 +161,11 @@ function ProposalCard({ p, entry, t, target, all }: { p: ScopeProposal; entry: S
         <h3 class="sc-title">
           <span lang={LANG_ATTR.kr}>{p.kr}</span> → <span lang={LANG_ATTR.zh}>{p.zh}</span>
         </h3>
-        {p.flagged && <span class="sc-flag">失去檢查偏多</span>}
+        {p.flagged && (
+          <span class="sc-flag" title={flagText(t)}>
+            失去檢查偏多
+          </span>
+        )}
         <IdCopy id={p.id} source={title} />
       </div>
       <ConfirmedLine confirmed={p.declined} verb="已否決" />
@@ -274,6 +303,7 @@ export function ScopeBody({ report, filter }: { report: ScopeReport; filter: Sco
           找不到項目 <code>{filter.id}</code>：它可能已解決，或被目前的篩選擋住了。
         </p>
       )}
+      <Legend t={report.thresholds} />
       {SECTIONS.map((s) => {
         let items = shown.filter((p) => s.kinds.includes(p.kind))
         const total = items.length

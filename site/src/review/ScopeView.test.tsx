@@ -215,6 +215,32 @@ describe('ScopeView', () => {
     expect(cell('between').title).toBe('未用譯名的不到 4 個單位，不計入建議')
   })
 
+  it('explains every threshold in an always-visible block, with the values of the data', async () => {
+    let el = await mount()
+    const legend = el.querySelector<HTMLElement>('.sc-legend')!
+    expect(legend.closest('details')).toBeNull()
+    const lines = [...legend.querySelectorAll('li')].map((li) => li.textContent)
+    expect(lines).toEqual([
+      '群組：少於 3 個單位的群組不計入建議。',
+      '有用：80% 以上的單位用了譯名；沒用：30% 以下。',
+      '混用：介於 30% 到 80% 之間，且沒用譯名的單位至少 3 個；不到 3 個算中間，不計入建議。',
+      '詞中詞：複合詞單位至少 3 個且 80% 以上用了譯名，建議 substring；已是 substring 而 30% 以下用了譯名，建議 word。',
+      '常被說明偏離：沒用譯名而註記說明的單位至少 3 個。',
+      '失去檢查偏多：不再檢查的用了譯名的單位至少 20 個，或佔該條目用了譯名的 10% 以上；這樣的建議預設不採用。',
+    ])
+    expect(el.querySelector('.sc-flag')?.getAttribute('title')).toBe('不再檢查的用了譯名的單位至少 20 個，或佔 10% 以上；預設不採用')
+    const base = fixture<{ thresholds: object }>('review/scope.json')
+    const thresholds = { min_n: 5, used: 0.9, not_used: 0.2, explained: 4, lost_units: 30, lost_share: 0.25 }
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, thresholds } })))
+    clearDataCache()
+    el = await mount()
+    const text = el.querySelector('.sc-legend')!.textContent!
+    for (const want of ['少於 5 個單位', '90% 以上', '20% 以下', '20% 到 90%', '至少 5 個', '至少 4 個', '至少 30 個', '25% 以上']) {
+      expect(text).toContain(want)
+    }
+    expect(text).not.toMatch(/80%|30% 以下|至少 3 個|至少 20 個|10%/)
+  })
+
   it('links a card to its entry, which opens and is marked when the address names it', async () => {
     let el = await mount()
     const link = sections(el)[0]!.querySelector<HTMLAnchorElement>('article a.sc-entry-link')!
