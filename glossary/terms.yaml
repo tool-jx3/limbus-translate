@@ -86,10 +86,11 @@
   en: Season
   zh: 賽季
   forbidden: ["re:第\\d+季"]
+  not_files: ["BattleAnnouncerDlg/**", "PersonalityVoiceDlg/**", "RPGSystem*", "StoryData/**"]
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）。2026-11-06 依實際譯文：BattleAnnouncerDlg、PersonalityVoiceDlg、RPGSystem、StoryData 等檔幾乎不用此譯名（109 句 0 句用），排除
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -144,11 +145,12 @@
 - kr: 보스
   en: Boss
   zh: BOSS
+  not_files: ["StoryData/**"]
   status: approved
   match: word
   category: [system, combat]
   evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
-  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）
+  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 等檔幾乎不用此譯名（116 句 2 句用），排除
 
 - kr: E.G.O 자원
   en: E.G.O Resource
@@ -162,8 +164,10 @@
   zh: 丹紅派
   forbidden: ["re:丹紅([ 們，。、！？…」]|$)"]
   status: approved
+  match: substring
   category: [city]
   evidence: { kr_lines: 621, approved: 404, forbidden: 0 }
+  notes: 2026-11-06 長詞裡的用法也用此譯名（7/7），比對詞中詞
 
 - kr: 말쿠트
   en: Malkuth
@@ -220,8 +224,9 @@
   en: Sephirah
   zh: Sephirah
   status: approved
+  match: substring
   category: [city]
-  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的。2026-11-06 長詞裡的用法也用此譯名（4/4），比對詞中詞
 
 - kr: 마 퓌스
   zh: 小甜心
@@ -269,8 +274,9 @@
 - kr: 눈알
   zh: 眼球
   status: approved
+  match: substring
   category: [general]
-  notes: 既有繁中 77 處用「眼球」
+  notes: 既有繁中 77 處用「眼球」。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 은둔자
   zh: 隱者
@@ -341,8 +347,9 @@
   zh: 姊姊
   forbidden: [姐姐]
   status: approved
+  match: substring
   category: [general]
-  notes: 臺灣標準字（既有 41 處）
+  notes: 臺灣標準字（既有 41 處）。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 언니
   zh: 姊姊
@@ -399,8 +406,9 @@
   zh: 血魔
   forbidden: [血鬼]
   status: approved
+  match: substring
   category: [city]
-  notes: 既有繁中 632 處皆為「血魔」
+  notes: 既有繁中 632 處皆為「血魔」。2026-11-06 長詞裡的用法也用此譯名（8/8），比對詞中詞
 
 - kr: 작은 누님
   zh: 幼姐
@@ -499,9 +507,10 @@
 - kr: 필름
   zh: 底片
   forbidden: [膠捲]
+  files: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "AbEventsResultLog*", "StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
   status: approved
   category: [general]
-  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有
+  notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有。2026-11-06 依實際譯文：只有指定的檔用此譯名（43 句 43 句用），其他檔不用（7 句 2 句用），限定檔案
 
 - kr: 어제의 약속
   zh: 昨天的約定
@@ -621,8 +630,9 @@
   zh: 漆黑派
   forbidden: ["re:漆黑([ 們，。、！？…」]|$)"]
   status: approved
+  match: substring
   category: [city]
-  notes: 百貨公司派系（既有 559 行）；說話者名稱也寫「漆黑派 X」
+  notes: 百貨公司派系（既有 559 行）；說話者名稱也寫「漆黑派 X」。2026-11-06 長詞裡的用法也用此譯名（5/5），比對詞中詞
 
 - kr: 르카키
   zh: 卡其派
@@ -904,9 +914,11 @@
 - kr: 이방인
   zh: 異鄉人
   forbidden: [外來者]
+  not_files: ["StoryData/E*", "StoryData/ES*", "StoryData/PC*"]
   status: approved
+  match: substring
   category: [city]
-  notes: 百貨公司與第十章（既有 74 處）
+  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：間章劇情 等檔幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 뿌이
   zh: 普依
@@ -996,15 +1008,17 @@
 - kr: 다음 턴
   zh: 下回合
   status: approved
+  match: substring
   category: [general, combat]
   evidence: { kr_lines: 4290, approved: 4239, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（8/8），比對詞中詞
 
 - kr: 수감자
   zh: 罪人
   status: approved
+  match: substring
   evidence: { kr_lines: 2709, approved: 2668, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（14/14），比對詞中詞
 
 - kr: 정신력
   zh: 理智值
@@ -1016,9 +1030,10 @@
 - kr: 소모
   zh: 消耗
   status: approved
+  match: substring
   category: [general]
   evidence: { kr_lines: 2324, approved: 2209, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（29/32），比對詞中詞
 
 - kr: 코인 위력
   zh: 硬幣威力
@@ -1051,22 +1066,25 @@
 - kr: 협회
   zh: 協會
   status: approved
+  match: substring
   category: [city]
   evidence: { kr_lines: 1246, approved: 1245, forbidden: 0 }
-  notes: Paratranz 詞彙表：管理收尾人的協會
+  notes: Paratranz 詞彙表：管理收尾人的協會。2026-11-06 長詞裡的用法也用此譯名（20/20），比對詞中詞
 
 - kr: 부위
   zh: 部位
   status: approved
+  match: substring
   category: [combat]
   evidence: { kr_lines: 1152, approved: 1114, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述，多用於集中遭遇戰使用
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述，多用於集中遭遇戰使用。2026-11-06 長詞裡的用法也用此譯名（11/11），比對詞中詞
 
 - kr: 해결사
   zh: 收尾人
   status: approved
+  match: substring
   evidence: { kr_lines: 1116, approved: 1113, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（17/17），比對詞中詞
 
 - kr: 최종 위력
   zh: 最終威力
@@ -1085,8 +1103,9 @@
 - kr: 동기화
   zh: 同步
   status: approved
+  match: substring
   evidence: { kr_lines: 914, approved: 913, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 방어 레벨
   zh: 防禦等級
@@ -1106,16 +1125,18 @@
 - kr: 공격 스킬
   zh: 攻擊技能
   status: approved
+  match: substring
   category: [general, combat]
   evidence: { kr_lines: 847, approved: 791, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 사무소
   zh: 事務所
   status: approved
+  match: substring
   category: [general, city]
   evidence: { kr_lines: 783, approved: 779, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，多指收尾人事務所
+  notes: Paratranz 詞彙表：輔助文本描述，多指收尾人事務所。2026-11-06 長詞裡的用法也用此譯名（33/33），比對詞中詞
 
 - kr: 기본 위력
   zh: 基礎威力
@@ -1127,8 +1148,9 @@
 - kr: 흑수
   zh: 黑獸
   status: approved
+  match: substring
   evidence: { kr_lines: 671, approved: 670, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（23/23），比對詞中詞
 
 - kr: 기프트
   zh: 飾品
@@ -1146,9 +1168,10 @@
 - kr: 당 피해량
   zh: 造成的傷害
   status: approved
+  match: substring
   category: [general, combat]
   evidence: { kr_lines: 541, approved: 505, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（71/74），比對詞中詞
 
 - kr: 보호막
   zh: 護盾
@@ -1222,8 +1245,9 @@
 - kr: 구인회
   zh: 九人會
   status: approved
+  match: substring
   evidence: { kr_lines: 378, approved: 377, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（152/152），比對詞中詞
 
 - kr: 로보토미
   zh: 腦葉公司
@@ -1276,17 +1300,19 @@
 - kr: 적 처치
   zh: 擊殺敵方
   status: approved
+  match: substring
   category: [general, combat]
   evidence: { kr_lines: 310, approved: 280, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（10/10），比對詞中詞
 
 - kr: 관통
   zh: 突刺
+  not_files: ["PersonalityVoiceDlg/*", "StoryData/P1*", "BattleSpeechBubbleDlg*", "StoryData/E*", "StoryData/ES*", "StoryData/PC*", "StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
   status: approved
   match: word
   category: [general, combat, physical]
   evidence: { kr_lines: 306, approved: 276, forbidden: 0 }
-  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：人格語音、間章劇情、主線劇情 等檔幾乎不用此譯名（15 句 0 句用），排除
 
 - kr: 색욕
   zh: 色慾
@@ -1334,9 +1360,10 @@
 - kr: 둥지
   zh: 巢
   status: approved
+  match: substring
   category: [city]
   evidence: { kr_lines: 271, approved: 266, forbidden: 0 }
-  notes: Paratranz 詞彙表：多為都市用語，請根據情況翻譯
+  notes: Paratranz 詞彙表：多為都市用語，請根據情況翻譯。2026-11-06 長詞裡的用法也用此譯名（30/33），比對詞中詞
 
 - kr: (턴 당 1회)
   zh: (每回合最多1次)
@@ -1348,8 +1375,9 @@
 - kr: 시지프
   zh: 薛西弗斯
   status: approved
+  match: substring
   evidence: { kr_lines: 260, approved: 260, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（22/22），比對詞中詞
 
 - kr: 무작위 대상 공격
   zh: 隨機指定目標
@@ -1387,17 +1415,19 @@
 
 - kr: 전투 패배
   zh: 戰鬥失敗
+  not_files: ["Skills_personality*", "Skills_Ego*", "Passive_Ego*", "Egos*", "Personalit*", "Passives*", "Skills_Assist*", "Passives_Assist*"]
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：友方技能 等檔幾乎不用此譯名（10 句 0 句用），排除
 
 - kr: 상점
   zh: 商店
   status: approved
+  match: substring
   category: [general]
   evidence: { kr_lines: 214, approved: 212, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（10/10），比對詞中詞
 
 - kr: 집중 전투
   zh: 集中遭遇戰
@@ -1407,16 +1437,18 @@
 
 - kr: 인격 편성
   zh: 人格出戰
+  files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [general]
   evidence: { kr_lines: 204, approved: 197, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：只有指定的檔用此譯名（194 句 194 句用），其他檔不用（10 句 3 句用），限定檔案
 
 - kr: 림버스 컴퍼니
   zh: 邊獄公司
   status: approved
+  match: substring
   evidence: { kr_lines: 202, approved: 200, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 굴절된
   zh: 折射的
@@ -1553,8 +1585,9 @@
 - kr: 앰플
   zh: 安瓿
   status: approved
+  match: substring
   evidence: { kr_lines: 164, approved: 163, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 주군
   zh: 主公
@@ -1571,10 +1604,11 @@
 
 - kr: 별빛
   zh: 星芒
+  not_files: ["StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
   status: approved
   category: [system]
   evidence: { kr_lines: 163, approved: 154, forbidden: 0 }
-  notes: Paratranz 詞彙表：鏡像迷宮機制
+  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：主線劇情 等檔幾乎不用此譯名（3 句 0 句用），排除
 
 - kr: 반격
   zh: 反擊
@@ -1671,10 +1705,11 @@
 
 - kr: 도슨트
   zh: 導覽員
+  not_files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [city]
   evidence: { kr_lines: 110, approved: 105, forbidden: 0 }
-  notes: Paratranz 詞彙表：環指位階之一
+  notes: Paratranz 詞彙表：環指位階之一。2026-11-06 依實際譯文：PersonalityVoiceDlg 等檔幾乎不用此譯名（3 句 0 句用），排除
 
 - kr: 크흠
   zh: 咳
@@ -1790,9 +1825,10 @@
 - kr: 초롱
   zh: 提燈
   status: approved
+  match: substring
   category: [abnormality]
   evidence: { kr_lines: 80, approved: 78, forbidden: 0 }
-  notes: Paratranz 詞彙表：異想體
+  notes: Paratranz 詞彙表：異想體。2026-11-06 長詞裡的用法也用此譯名（35/37），比對詞中詞
 
 - kr: 쥐는 자
   zh: 執柄者
@@ -1803,10 +1839,11 @@
 
 - kr: 흐트러짐 구간
   zh: 混亂閾值
+  not_files: ["*walpu*", "*Refraction*", "Railway*"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 79, approved: 73, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：瓦普折射 等檔幾乎不用此譯名（7 句 1 句用），排除
 
 - kr: 창백한 고래
   zh: 白鯨
@@ -2221,9 +2258,10 @@
 - kr: 가주 후보
   zh: 家主候選人
   status: approved
+  match: substring
   category: [general]
   evidence: { kr_lines: 28, approved: 28, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（6/6），比對詞中詞
 
 - kr: 단수어
   zh: 斷首魚
@@ -2604,8 +2642,9 @@
 - kr: 로직 아틀리에
   zh: 邏輯工作室
   status: approved
+  match: substring
   evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（7/7），比對詞中詞
 
 - kr: 빼기 코인 인격
   zh: 減算硬幣人格
@@ -3713,9 +3752,10 @@
 - kr: 버틀러
   zh: 管家
   status: approved
+  match: substring
   category: [general]
   evidence: { kr_lines: 204, approved: 204, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（9/9），比對詞中詞
 
 - kr: 데드레빗츠
   zh: 死兔幫
@@ -3801,10 +3841,11 @@
 
 - kr: 방치
   zh: 閒置
+  files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 195, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述（evidence 只算單獨成詞的用法；KR 的「방치시켜」等長詞裡也有這個字串）
+  notes: Paratranz 詞彙表：輔助文本描述（evidence 只算單獨成詞的用法；KR 的「방치시켜」等長詞裡也有這個字串）。2026-11-06 依實際譯文：只有指定的檔用此譯名（195 句 193 句用），其他檔不用（21 句 2 句用），限定檔案
 
 - kr: 카포
   zh: 指揮官
@@ -3838,17 +3879,19 @@
 
 - kr: 속도
   zh: 速度值
+  not_files: ["AbEvents*", "PersonalityVoiceDlg/**", "RPGSystem*", "StoryData/**"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 1242, approved: 1050, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：AbEvents*、PersonalityVoiceDlg、RPGSystem、StoryData 等檔幾乎不用此譯名（124 句 3 句用），排除
 
 - kr: 공격 시작
   zh: 進行攻擊
+  files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 239, approved: 195, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：只有指定的檔用此譯名（191 句 191 句用），其他檔不用（47 句 5 句用），限定檔案
 
 - kr: 스킬당 1회
   zh: 每個技能最多1次
@@ -3858,10 +3901,11 @@
 
 - kr: 자판기
   zh: 自動販賣機
+  not_files: ["RPGSystem*", "StoryData/**"]
   status: approved
   category: [ego]
   evidence: { kr_lines: 189, approved: 162, forbidden: 0 }
-  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：RPGSystem、StoryData 等檔幾乎不用此譯名（21 句 3 句用），排除
 
 - kr: 이번 턴 동안
   zh: 本回合內
@@ -3878,9 +3922,10 @@
 
 - kr: 광기
   zh: 狂氣
+  not_files: ["PersonalityVoiceDlg/**", "StoryData/**"]
   status: approved
   evidence: { kr_lines: 130, approved: 107, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：PersonalityVoiceDlg、StoryData 等檔幾乎不用此譯名（16 句 2 句用），排除
 
 - kr: 다음 턴 시작 시
   zh: 下回合開始時
@@ -3891,9 +3936,11 @@
 
 - kr: 키워드
   zh: 關鍵字
+  not_files: ["*walpu*", "*Refraction*", "Railway*"]
   status: approved
+  match: substring
   evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：瓦普折射 等檔幾乎不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞
 
 - kr: 유리창
   zh: 玻璃窗
