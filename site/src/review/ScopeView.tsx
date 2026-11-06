@@ -199,8 +199,8 @@ function AllEntries({ entries, t, id }: { entries: ScopeEntry[]; t: ScopeReport[
   const [limit, setLimit] = useState(ENTRY_PAGE)
   const needle = q.trim().toLowerCase()
   const shown = useMemo(
-    () => (needle === '' ? entries : entries.filter((e) => [e.kr, e.zh, ...e.also].some((x) => x.toLowerCase().includes(needle)))),
-    [entries, needle],
+    () => (needle === '' ? entries : entries.filter((e) => e.id === id || [e.kr, e.zh, ...e.also].some((x) => x.toLowerCase().includes(needle)))),
+    [entries, needle, id],
   )
   const at = id === undefined ? -1 : shown.findIndex((e) => e.id === id)
   const count = Math.min(shown.length, Math.max(limit, at + 1))

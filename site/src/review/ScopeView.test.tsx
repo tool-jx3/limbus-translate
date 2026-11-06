@@ -236,6 +236,17 @@ describe('ScopeView', () => {
       await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith('glossary/aaaaaaaa/bbbbbbbb「대상 → 目標」→ '))
     })
 
+    it('keeps the entry the address names in the list even when the search filters it out', async () => {
+      const el = await mount(route({ id: 'glossary/cccccccc/dddddddd' }))
+      const search = el.querySelector<HTMLInputElement>('input[name=entry-q]')!
+      search.value = '攻擊'
+      act(() => {
+        search.dispatchEvent(new Event('input', { bubbles: true }))
+      })
+      expect(rows(el).map((r) => r.getAttribute('data-id'))).toEqual(['glossary/cccccccc/dddddddd', 'glossary/eeeeeeee/ffffffff'])
+      expect(el.querySelector('.sc-entry.is-target')?.getAttribute('data-id')).toBe('glossary/cccccccc/dddddddd')
+    })
+
     it('shows an entry beyond the first 50 when the address names it', async () => {
       const base = fixture<{ entries: { id: string }[] }>('review/scope.json')
       const many = Array.from({ length: 120 }, (_, i) => ({ ...base.entries[0]!, id: `glossary/x${i}/y`, kr: `단어${i}` }))
