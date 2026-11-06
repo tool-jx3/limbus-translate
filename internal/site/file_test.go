@@ -447,14 +447,14 @@ func TestBuildFileJSONShape(t *testing.T) {
 
 func TestFileSummaryJSONShape(t *testing.T) {
 	sum := FileSummary{
-		Path: "StoryData/S1.json", Family: "story", Label: "某地", Speakers: []string{"甲"},
+		Path: "StoryData/S1.json", Family: "story", Top: "StoryData/", Sub: "StoryData/S", Label: "某地", Speakers: []string{"甲"},
 		Units: 2, Origins: map[string]int{"paratranz": 1, OriginStandIn: 1}, Missing: Missing{EN: 1, JP: 0},
 	}
 	got, err := json.Marshal(sum)
 	if err != nil {
 		t.Fatal(err)
 	}
-	const want = `{"path":"StoryData/S1.json","family":"story","label":"某地","speakers":["甲"],` +
+	const want = `{"path":"StoryData/S1.json","family":"story","top":"StoryData/","sub":"StoryData/S","label":"某地","speakers":["甲"],` +
 		`"units":2,"origins":{"paratranz":1,"stand-in":1},"missing":{"en":1,"jp":0}}`
 	if string(got) != want {
 		t.Errorf("JSON =\n%s\nwant\n%s", got, want)

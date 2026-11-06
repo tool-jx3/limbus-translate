@@ -109,7 +109,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 
 	want := []string{
 		"files/Skills.json", "files/StoryData/S10.json", "files/StoryData/S2.json",
-		"index.json", "meta.json",
+		"glossary/index.json", "index.json", "meta.json",
 		"review/notes.json", "review/scope.json", "review/suggestions.json", "review/todo.json", "review/warnings.json",
 		"search/en.json", "search/jp.json", "search/keys.json", "search/kr.json", "search/zh.json",
 	}
@@ -149,7 +149,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 	if !slices.Equal(paths, fixtureFiles) {
 		t.Errorf("index.files = %v, want %v", paths, fixtureFiles)
 	}
-	wantFamilies := []IndexFamily{{ID: "story", Files: []int{0, 1}}, {ID: "other", Files: []int{2}}}
+	wantFamilies := []IndexFamily{{ID: "story", Files: []int{0, 1}, Glossary: "hard", Nodes: []string{"StoryData/"}}, {ID: "other", Files: []int{2}, Glossary: "hard", Nodes: []string{}}}
 	if !reflect.DeepEqual(idx.Families, wantFamilies) {
 		t.Errorf("index.families = %+v, want %+v", idx.Families, wantFamilies)
 	}
@@ -178,7 +178,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 		}
 	}
 
-	if want := (Result{Out: out, Files: 3, Units: 8, SearchUnits: 7, Bytes: bytesTotal, ReviewMismatches: []string{}}); !reflect.DeepEqual(res, want) {
+	if want := (Result{Out: out, Files: 3, Units: 8, SearchUnits: 7, Bytes: bytesTotal, GlossaryBytes: res.GlossaryBytes, ReviewMismatches: []string{}}); !reflect.DeepEqual(res, want) {
 		t.Errorf("result = %+v, want %+v", res, want)
 	}
 	var resKeys map[string]json.RawMessage
@@ -346,8 +346,8 @@ func TestExportClearsOutDir(t *testing.T) {
 			t.Errorf("%s is still there (%v)", rel, err)
 		}
 	}
-	if got := len(listFiles(t, out)); got != 15 {
-		t.Errorf("%d files, want the 15 of the layout", got)
+	if got := len(listFiles(t, out)); got != 16 {
+		t.Errorf("%d files, want the 16 of the layout", got)
 	}
 }
 
@@ -543,4 +543,87 @@ func TestExportWithoutReviewInputsWritesEmptyLists(t *testing.T) {
 func withoutUnits(r scope.Report) scope.Report {
 	r.Units = nil
 	return r
+}
+
+func TestIndexGroups(t *testing.T) {
+	r := &rules.Rules{}
+	var sums []FileSummary
+	for _, p := range []string{
+		"StoryData/S1037B.json", "StoryData/S937A.json", "StoryData/P10702.json",
+		"Skills_Enemy-a.json", "Skills_Enemy-b.json", "Bufs-walpu7.json",
+	} {
+		n := rules.FileNode(p)
+		s := FileSummary{Path: p, Top: n.Top, Sub: n.Sub}
+		if tag, ok := r.FileTag(p); ok {
+			s.Tag = &tag
+		}
+		sums = append(sums, s)
+	}
+	got := buildGroups(sums)
+	if len(got) != 3 {
+		t.Fatalf("groups = %+v", got)
+	}
+	// By number of files, most first; ties by name.
+	if got[0].Node != "StoryData/" || got[1].Node != "Skills" || got[2].Node != "Bufs" {
+		t.Fatalf("top order = %s %s %s", got[0].Node, got[1].Node, got[2].Node)
+	}
+	story := got[0]
+	if story.Kind != "top" || story.Label != "StoryData/" || !reflect.DeepEqual(story.Files, []int{2}) {
+		t.Errorf("story = %+v, want the single-file sub P folded into the top", story)
+	}
+	if len(story.Children) != 1 || story.Children[0].Kind != "sub" || story.Children[0].Node != "StoryData/S" {
+		t.Fatalf("story children = %+v", story.Children)
+	}
+	s := story.Children[0]
+	if len(s.Files) != 0 || len(s.Children) != 2 {
+		t.Fatalf("sub S = %+v", s)
+	}
+	c0, c1 := s.Children[0], s.Children[1]
+	if c0.Kind != "chapter" || c0.Node != "9" || c0.Label != "第 9 章" || !reflect.DeepEqual(c0.Files, []int{1}) {
+		t.Errorf("chapter 9 = %+v", c0)
+	}
+	if c1.Kind != "chapter" || c1.Node != "10" || c1.Label != "第 10 章" || !reflect.DeepEqual(c1.Files, []int{0}) {
+		t.Errorf("chapter 10 = %+v, a one-file third level is shown", c1)
+	}
+	if c0.Children == nil || len(c0.Children) != 0 {
+		t.Errorf("leaf children = %#v, want []", c0.Children)
+	}
+	sk := got[1]
+	// Skills_Enemy is the only sub, so it is not shown; the files carry the
+	// events a and b, which the third level shows.
+	if len(sk.Children) != 2 || sk.Children[0].Kind != "event" || sk.Children[1].Kind != "event" || len(sk.Files) != 0 {
+		t.Errorf("Skills = %+v, want its one sub folded away", sk)
+	}
+	if b := got[2]; len(b.Files) != 0 || len(b.Children) != 1 || b.Children[0].Kind != "event" || b.Children[0].Node != "walpu7" || !reflect.DeepEqual(b.Children[0].Files, []int{5}) {
+		t.Errorf("Bufs = %+v", b)
+	}
+}
+
+func TestIndexFamiliesCarryNodes(t *testing.T) {
+	in := exportInputs(t)
+	in.Rules.Routing.Families[0].Glossary = rules.GlossaryWarn
+	dir := t.TempDir()
+	if _, err := Export(in, Meta{}, dir); err != nil {
+		t.Fatal(err)
+	}
+	var idx Index
+	data, _ := os.ReadFile(filepath.Join(dir, "index.json"))
+	if err := json.Unmarshal(data, &idx); err != nil {
+		t.Fatal(err)
+	}
+	if len(idx.Families) != 2 {
+		t.Fatalf("families = %+v", idx.Families)
+	}
+	if f := idx.Families[0]; f.Glossary != "warn" || !reflect.DeepEqual(f.Nodes, []string{"StoryData/"}) {
+		t.Errorf("story = %+v", f)
+	}
+	if f := idx.Families[1]; f.Glossary != "hard" || f.Nodes == nil || len(f.Nodes) != 0 {
+		t.Errorf("other = %+v, want glossary hard and nodes []", f)
+	}
+	if !strings.Contains(string(data), `"nodes":[]`) || !strings.Contains(string(data), `"groups":[`) {
+		t.Errorf("index.json = %s", data)
+	}
+	if idx.Files[0].Top != "StoryData/" || idx.Files[0].Sub != "StoryData/S" {
+		t.Errorf("file = %+v", idx.Files[0])
+	}
 }

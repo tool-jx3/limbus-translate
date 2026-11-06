@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -59,6 +60,10 @@ type ReviewCounts struct {
 type IndexFamily struct {
 	ID    string `json:"id"`
 	Files []int  `json:"files"`
+	// Glossary is "hard" or "warn" (routing.yaml leaves "hard" out); Nodes are
+	// the nodes the routing lists for the family, [] for the fallback.
+	Glossary string   `json:"glossary"`
+	Nodes    []string `json:"nodes"`
 }
 
 // Index is data/index.json. Files are in the order of OrderFiles, the order of
@@ -68,6 +73,9 @@ type IndexFamily struct {
 type Index struct {
 	Families []IndexFamily `json:"families"`
 	Files    []FileSummary `json:"files"`
+	// Groups is the group tree of the sidebar, merged for display (see
+	// buildGroups).
+	Groups []IndexGroup `json:"groups"`
 }
 
 // Result is what Export wrote: Out is the directory, Files the number of files
@@ -79,6 +87,8 @@ type Result struct {
 	Units       int    `json:"units"`
 	SearchUnits int    `json:"search_units"`
 	Bytes       int64  `json:"bytes"`
+	// GlossaryBytes is the size of data/glossary/, part of Bytes.
+	GlossaryBytes int64 `json:"glossary_bytes"`
 	// Review is Meta.Review. ReviewMismatches are the groups of inconsistent
 	// translations whose units do not add up to the evidence of the suggestion,
 	// and NotesUnplaced the notes that sit on no unit.
@@ -152,7 +162,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		if last := len(idx.Families) - 1; last >= 0 && idx.Families[last].ID == sum.Family {
 			idx.Families[last].Files = append(idx.Families[last].Files, n)
 		} else {
-			idx.Families = append(idx.Families, IndexFamily{ID: sum.Family, Files: []int{n}})
+			idx.Families = append(idx.Families, indexFamily(in.Rules, sum.Family, n))
 		}
 		total += len(file.Units)
 		for _, u := range file.Units {
@@ -182,6 +192,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			return Result{}, err
 		}
 	}
+	idx.Groups = buildGroups(idx.Files)
 	if err := w.writeJSON("index.json", idx); err != nil {
 		return Result{}, err
 	}
@@ -212,6 +223,15 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			return Result{}, err
 		}
 	}
+	before := w.bytes
+	var accepted map[string]*Confirmed
+	if in.Review != nil {
+		accepted = confirmedIndex(in.Review.Accepted)
+	}
+	if err := writeGlossary(w, in.Rules, rev.Scope, accepted); err != nil {
+		return Result{}, err
+	}
+	glossaryBytes := w.bytes - before
 	meta.Review = counts
 	meta.Format = FormatVersion
 	meta.Langs = append([]string(nil), searchLangs...)
@@ -224,7 +244,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		mismatches = []string{}
 	}
 	return Result{
-		Out: outDir, Files: len(paths), Units: total, SearchUnits: len(keys), Bytes: w.bytes,
+		Out: outDir, Files: len(paths), Units: total, SearchUnits: len(keys), Bytes: w.bytes, GlossaryBytes: glossaryBytes,
 		Review: counts, ReviewMismatches: mismatches, NotesUnplaced: rev.NotesUnplaced,
 	}, nil
 }
@@ -318,4 +338,20 @@ func (w *writer) writeJSON(rel string, v any) error {
 	}
 	w.bytes += int64(buf.Len())
 	return nil
+}
+
+// indexFamily is the index entry of family id with its first file n: the
+// routing's glossary mode and nodes.
+func indexFamily(r *rules.Rules, id string, n int) IndexFamily {
+	f := IndexFamily{ID: id, Files: []int{n}, Glossary: rules.GlossaryHard, Nodes: []string{}}
+	for _, fr := range r.Routing.Families {
+		if fr.ID == id {
+			if fr.Glossary != "" {
+				f.Glossary = fr.Glossary
+			}
+			f.Nodes = append(f.Nodes, fr.Nodes...)
+			break
+		}
+	}
+	return f
 }

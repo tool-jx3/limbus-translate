@@ -77,6 +77,11 @@ type Missing struct {
 type FileSummary struct {
 	Path   string `json:"path"`
 	Family string `json:"family"`
+	// Top and Sub are the node of the file in the group tree (rules.FileNode),
+	// Tag its third-level mark (rules.Rules.FileTag), if any.
+	Top string     `json:"top"`
+	Sub string     `json:"sub,omitempty"`
+	Tag *rules.Tag `json:"tag,omitempty"`
 	// Label is the place a story starts in; empty outside StoryData/.
 	Label string `json:"label"`
 	// Speakers are the tellers of the file, each once, first seen first.
@@ -122,6 +127,11 @@ func buildFile(in Inputs, path string, visit func(u Unit, ku units.Unit, en, jp 
 	krUnits := units.Extract(path, krDoc)
 	file := File{Path: path, Family: in.Rules.Family(path), Units: make([]Unit, 0, len(krUnits))}
 	sum := FileSummary{Path: path, Family: file.Family, Origins: make(map[string]int)}
+	node := rules.FileNode(path)
+	sum.Top, sum.Sub = node.Top, node.Sub
+	if tag, ok := in.Rules.FileTag(path); ok {
+		sum.Tag = &tag
+	}
 	for _, ku := range krUnits {
 		en, jp, err := aligner.Get(ku.Pointer)
 		if err != nil {
