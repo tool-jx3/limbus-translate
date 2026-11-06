@@ -17,7 +17,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/validate"
 )
 
-// translated makes a record of the translation zh of the KR text kr.
+// recOf makes a record of the translation zh of the KR text kr.
 func recOf(k, kr, zh, origin string) store.Record {
 	return store.Record{Key: k, KRSha: units.KRSha(kr), ZH: zh, Origin: origin, Since: testTag}
 }
@@ -337,5 +337,49 @@ func TestPreviewFileFreshLoader(t *testing.T) {
 		if s := rt.Field(i).Type.String(); strings.Contains(s, "loader") || strings.Contains(s, "fileData") {
 			t.Errorf("Previewer.%s has type %s: it keeps file data between calls", rt.Field(i).Name, s)
 		}
+	}
+}
+
+// A text that names a keyword comes with the name this translation gives it,
+// the same as in the batch Next cuts, and a second preview on the same
+// Previewer (which keeps the keyword table) gives the same names.
+func TestPreviewKeywords(t *testing.T) {
+	const file = "Other.json"
+	const kr = "[Bleed] 위력 5 부여"
+	env := newEnv(t, map[string]string{
+		file:        dataList(t, 2, "", func(int) string { return kr }),
+		"Bufs.json": `{"dataList":[{"id":"Bleed","name":"출혈"}]}`,
+	}, nil, nil)
+	saveRecs(t, env, recOf("Bufs.json|/dataList/0/name", "출혈", "流血", store.OriginParatranz))
+	seed(t, env, store.PendingItem{Key: key(file, 0), Reason: "new"})
+
+	p := newPreviewer(t, env)
+	first := mustUnit(t, p, key(file, 0))
+	again := mustUnit(t, p, key(file, 0))
+	other := mustUnit(t, p, key(file, 1)) // not pending: the table is shared
+	b := mustNext(t, env, NextOptions{MaxUnits: 1})
+
+	if len(b.Keywords) == 0 || b.Keywords["Bleed"] != "流血" {
+		t.Fatalf("Next keywords = %v, want Bleed: the test checks nothing otherwise", b.Keywords)
+	}
+	if !reflect.DeepEqual(first.Batch.Keywords, b.Keywords) {
+		t.Errorf("preview keywords = %v, Next keywords = %v", first.Batch.Keywords, b.Keywords)
+	}
+	if !reflect.DeepEqual(again.Batch.Keywords, first.Batch.Keywords) || !reflect.DeepEqual(other.Batch.Keywords, first.Batch.Keywords) {
+		t.Errorf("keywords change between previews: %v, %v, %v", first.Batch.Keywords, again.Batch.Keywords, other.Batch.Keywords)
+	}
+}
+
+// A key that cannot be split names no unit: the user's mistake, like a key
+// that is not in KR.
+func TestPreviewMalformedKey(t *testing.T) {
+	env := newEnv(t, map[string]string{"Other.json": dataList(t, 1, "", line)}, nil, nil)
+	_, err := newPreviewer(t, env).Unit("no-separator")
+	if !errors.Is(err, ErrNotInKR) {
+		t.Fatalf("err = %v, want ErrNotInKR", err)
+	}
+	_, _, want := units.SplitKey("no-separator")
+	if want == nil || !strings.Contains(err.Error(), want.Error()) {
+		t.Errorf("err = %q, want the message of SplitKey (%v)", err, want)
 	}
 }

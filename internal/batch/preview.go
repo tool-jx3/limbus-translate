@@ -146,12 +146,13 @@ func NewPreviewer(env Env, frozen []string) (*Previewer, error) {
 }
 
 // Unit previews the unit of key. It returns an error wrapping ErrNotInKR if
-// the file or the pointer is not in KR, and one wrapping ErrCopy if the record
+// the key is malformed or its file or pointer is not in KR, and one wrapping ErrCopy if the record
 // of the unit is a copy.
 func (p *Previewer) Unit(key string) (*UnitPreview, error) {
 	file, pointer, err := units.SplitKey(key)
 	if err != nil {
-		return nil, fmt.Errorf("batch: %w", err)
+		// A key that cannot be split names no unit of KR.
+		return nil, fmt.Errorf("batch: preview: %w: %w", ErrNotInKR, err)
 	}
 	fd, err := newLoader(p.env).file(file)
 	if err != nil {
