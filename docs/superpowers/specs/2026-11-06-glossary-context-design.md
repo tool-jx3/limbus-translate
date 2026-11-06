@@ -106,7 +106,8 @@
   - **常被說明偏離**：「有說明」≥ 3 → 提醒考慮 `also`、縮範圍或改譯名。
   - 每個建議附效果：會移除多少審核頁警告、會少檢查多少「有用」的單位；少檢查 ≥ 20 或 ≥ 10% 的標記為「失去檢查偏多」，預設不採用。
   - 門檻寫在程式常數，頁面上顯示。
-- 建議的 ID：`scope/<sha8 KR>/<sha8 ZH>/<種類>`（種類：`not-files`、`files`、`substring`、`word`），不符合既有任何 ID 格式；不採用時 `lct accept` 記進 `rules/declined.yaml`，之後同條目同種類的建議不再列出（建議的內容變了也一樣不列，頁面「顯示已確認」可看到）。
+- 建議的 ID：`scope/<sha8 KR>/<sha8 ZH>/<種類>`，種類有 `not-files`、`files`、`substring`、`word`（具體的改法），以及 `mixed`（需要人看）、`explained`（常被說明偏離）（沒有具體改法，由人決定）。不符合既有任何 ID 格式；種類加進 `suggest` 的已知種類，`rules/declined.yaml` 的 lint 接受。不採用（或「維持現狀」）時 `lct accept` 記進 `rules/declined.yaml`，之後同條目同種類的建議不再列出（建議的內容變了也一樣不列，頁面「顯示已確認」可看到）。【我的決定】
+- 「全部條目」的每一列有條目 ID `glossary/<sha8 KR>/<sha8 ZH>`，只用來讓人複製後附上自己的指示（例如「加 also 對象」「排除 family:identity」），不會出現在待決定的數量裡，也不記進 `declined.yaml`。`mixed`、`explained` 的卡片同樣可以附指示。`/review-page` 依 ID 找到條目，照人寫的指示改 `glossary/terms.yaml`。【我的決定】
 
 **頁面**（`site/src/review/`，沿用審核頁的卡片、篩選、「顯示已確認」與複製元件）：
 
@@ -128,8 +129,8 @@
 ## 驗收
 
 - 真實資料（隔離 clone，`origin/raw`、`origin/tw`）：
-  - 改寫成 `family:` 的條目適用檔集合只在 `전투 패배` 的 `Skills_Assist-walpu6` 改變。
-  - 長詞條優先、`also` 與劇情只警告各自造成的審核頁警告數變化。
+  - 改寫成 `family:` 的條目適用檔集合只在 `전투 패배` 的 `Skills_Assist-walpu6` 改變（`필름` 對不上整個族群，維持樣式）。
+  - 長詞條優先、（若有加）`also` 造成的審核頁警告數變化。劇情只警告不影響審核頁（既有譯文本來就只是警告），它的效果以測試驗證：`warn` 族群的新譯文漏用譯名時送出收下、`forbidden` 照舊退回、非 `warn` 族群照舊退回。【我的決定】
   - `review/scope.json` 的建議數、全部條目數；前一階段已套用的 44 條不再出現在建議裡（除非資料顯示要再調整）。
   - 網站 `#/r/scope` 在 1280px 與 400px 的截圖；400px 時 `scrollWidth <= 400`。
 - `go vet ./... && go test ./...`、`cd site && npm test && npm run typecheck && npm run build` 通過；`lct rules lint` 在有 raw 時沒有警告。
