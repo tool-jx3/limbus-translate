@@ -140,7 +140,9 @@ func TestCharacterByFile(t *testing.T) {
 		{"AbDlg_Nobody.json", ""},
 		{"AbDlg_MeursaultTwo.json", ""}, // the name must end at _ or the end of the name
 		{"PersonalityVoiceDlg/Voice_Nobody_xxx.json", ""},
-		{"Skills_personality-08.json", ""},
+		{"Skills_personality-99.json", ""}, // no character has code 99
+		{"Skills_personality-08.json", "ishmael"},
+		{"Skills_Ego_Personality-08.json", "ishmael"},
 		{"SomeFile_110511.json", ""}, // six digits are not a personality id
 		{"MainUIText.json", ""},
 	}

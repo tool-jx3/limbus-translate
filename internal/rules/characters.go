@@ -134,6 +134,8 @@ func (r *Rules) CharacterByModel(model string) (c *Character, otherSelf bool, ok
 var (
 	// StoryData/P1<code>XX: the personality stories.
 	storyPersonaRe = regexp.MustCompile(`^StoryData/P1(\d{2})\d{2}$`)
+	// Skills_personality-<code> and Skills_Ego_Personality-<code>.
+	skillPersonaRe = regexp.MustCompile(`^Skills_(?:personality|Ego_Personality)-(\d\d)$`)
 	// A personality id 1<code>XX closing the file name.
 	trailingIDRe = regexp.MustCompile(`_1(\d{2})\d{2}$`)
 )
@@ -150,7 +152,7 @@ var nameFilePrefixes = []string{
 // CharacterByFile finds the character a file belongs to. file is the relative
 // path without language prefix. The name in the file name (matched against
 // file_names, ignoring case) decides first; otherwise the two-digit code of
-// StoryData/P1<code>XX or of a trailing personality id 1<code>XX does.
+// StoryData/P1<code>XX, Skills_personality-<code> or of a trailing personality id 1<code>XX does.
 func (r *Rules) CharacterByFile(file string) (*Character, bool) {
 	stem := strings.TrimSuffix(file, ".json")
 	for _, prefix := range nameFilePrefixes {
@@ -167,7 +169,7 @@ func (r *Rules) CharacterByFile(file string) (*Character, bool) {
 			}
 		}
 	}
-	for _, re := range []*regexp.Regexp{storyPersonaRe, trailingIDRe} {
+	for _, re := range []*regexp.Regexp{storyPersonaRe, skillPersonaRe, trailingIDRe} {
 		if m := re.FindStringSubmatch(stem); m != nil {
 			for i := range r.Characters {
 				if code := r.Characters[i].Code; code != nil && *code == m[1] {
