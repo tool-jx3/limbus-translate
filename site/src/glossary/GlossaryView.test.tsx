@@ -70,7 +70,7 @@ describe('GlossaryView', () => {
     const el = await mount()
     const boss = rows(el).find((r) => r.querySelector('.gl-kr')?.textContent === '보스')!
     const scope = boss.querySelector('.gl-scope')?.textContent ?? ''
-    expect(scope).toContain('files：family:skill')
+    expect(scope).toContain('files：family:ally')
     expect(scope).toContain('not_files：group:StoryData/')
     expect(scope).not.toContain('match：')
     const first = rows(el)[0]!.querySelector('.gl-scope')?.textContent ?? ''
@@ -147,7 +147,7 @@ describe('GlossaryView', () => {
 
   it('filters by a family the entry hits', async () => {
     expect(krs(await mount(route({ family: 'story-main' })))).toEqual(['대상', '공격'])
-    expect(krs(await mount(route({ family: 'skill' })))).toEqual(['대상', '공격', '보스'])
+    expect(krs(await mount(route({ family: 'ally' })))).toEqual(['대상', '공격', '보스'])
   })
 
   it('searches the KR, the rendering, also and notes', async () => {

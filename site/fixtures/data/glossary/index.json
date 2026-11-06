@@ -23,7 +23,7 @@
    "notes": "story 裡常譯成「對象」。",
    "groups": [
     {
-     "name": "family:skill",
+     "name": "family:ally",
      "kind": "family",
      "n": 40,
      "used": 38
@@ -87,7 +87,7 @@
     "首領"
    ],
    "files": [
-    "family:skill"
+    "family:ally"
    ],
    "not_files": [
     "group:StoryData/"
@@ -96,7 +96,7 @@
    "notes": "",
    "groups": [
     {
-     "name": "family:skill",
+     "name": "family:ally",
      "kind": "family",
      "n": 30,
      "used": 30
@@ -131,7 +131,7 @@
    "notes": "",
    "groups": [
     {
-     "name": "family:skill",
+     "name": "family:ally",
      "kind": "family",
      "n": 20,
      "used": 19

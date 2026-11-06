@@ -278,6 +278,14 @@ describe('glossary fixtures', () => {
   const entryFile = (id: string) => at(`glossary/${id.replace(/^glossary\//, '').replace('/', '-')}.json`) as GlossaryFile
   const scopeEntries = (at('review/scope.json') as { entries: ScopeEntry[] }).entries
 
+  it('names only families that the site index has (the family:<id> groups)', () => {
+    const known = index.families.map((f) => f.id)
+    const named = g.entries.flatMap((e) => e.groups.filter((x) => x.kind === 'family').map((x) => x.name.replace(/^family:/, '')))
+    expect(named.length).toBeGreaterThan(0)
+    for (const id of new Set(named)) expect(known).toContain(id)
+    for (const e of g.entries) for (const x of e.groups) if (x.name.startsWith('family:')) expect(known).toContain(x.name.slice('family:'.length))
+  })
+
   it('has the keys of the Go types, in their order (internal/scope, internal/site/glossary.go)', () => {
     expect(Object.keys(g)).toEqual(['thresholds', 'entries'])
     expect(Object.keys(g.thresholds)).toEqual(['min_n', 'used', 'not_used', 'explained', 'lost_units', 'lost_share', 'hard_rate', 'hard_min_n'])

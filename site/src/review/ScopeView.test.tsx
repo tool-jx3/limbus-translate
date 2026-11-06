@@ -74,7 +74,7 @@ describe('ScopeView', () => {
     // the table is the entry's: group, n, used, rate, class
     const rows = [...card.querySelectorAll('table.sc-table tbody tr')].map((tr) => [...tr.children].map((c) => c.textContent))
     expect(rows).toEqual([
-      ['family:skill', '40', '38', '95%', '有用'],
+      ['family:ally', '40', '38', '95%', '有用'],
       ['family:story-main', '12', '2', '17%', '沒用'],
       ['group:StoryData/', '14', '3', '21%', '沒用'],
       ['group:Passives', '2', '1', '50%', '太少'],
@@ -135,7 +135,7 @@ describe('ScopeView', () => {
     // a changed proposal changes the copied text
     const card2 = sections(el)[1]!.querySelector('article')!
     act(() => card2.querySelector<HTMLButtonElement>('.rv-copy')!.click())
-    await vi.waitFor(() => expect(writeText).toHaveBeenLastCalledWith('scope/cccccccc/dddddddd/files「보스 → BOSS」（kind: files；patterns: family:skill）→ '))
+    await vi.waitFor(() => expect(writeText).toHaveBeenLastCalledWith('scope/cccccccc/dddddddd/files「보스 → BOSS」（kind: files；patterns: family:ally）→ '))
   })
 
   it('filters the proposals by the text of the address', async () => {
@@ -296,7 +296,7 @@ describe('ScopeView', () => {
       expect(first.textContent).toContain('44/68')
       const second = rows(el)[1]!.querySelector('summary')!.textContent!
       expect(second).toContain('老大')
-      expect(second).toContain('family:skill')
+      expect(second).toContain('family:ally')
       expect(second).toContain('group:StoryData/')
       expect(second).toContain('word')
 
