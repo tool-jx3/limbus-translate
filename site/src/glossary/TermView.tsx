@@ -284,7 +284,8 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
     const result = await copyToClipboard(lines.join('\n'), box.current)
     if (run.current.n !== startedRun) return
     setBoxKey(result === 'copied' ? undefined : startedUnder)
-    setSaid(result === 'copied' ? `已複製 ${lines.length} 個單位，貼到對話中再加上你的決定` : '瀏覽器不讓複製，已選取單位，請按 Ctrl/⌘+C')
+    // Where the clipboard says no, the hint above the box says it; the status says nothing.
+    setSaid(result === 'copied' ? `已複製 ${lines.length} 個單位，貼到對話中再加上你的決定` : '')
   }
 
   return (

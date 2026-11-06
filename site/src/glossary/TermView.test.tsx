@@ -157,7 +157,8 @@ describe('TermView, units without the rendering', () => {
       await act(() => {
         button.click()
       })
-      await vi.waitFor(() => expect(el.querySelector('.tv-missing .rv-said')?.textContent).toContain('已選取'))
+      await vi.waitFor(() => expect(el.querySelector('.tv-missing .tv-copyhint')).not.toBeNull())
+      expect(el.querySelector('.tv-missing .rv-said')?.textContent).toBe('')
       const box = el.querySelector<HTMLTextAreaElement>('.tv-missing textarea[readonly]')!
       const open = file.missing.filter((u) => !u.accepted)
       expect(box.value.split('\n')).toEqual(open.map((u) => `${u.id}「${u.zh}」→ `))
