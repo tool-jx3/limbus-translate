@@ -528,8 +528,10 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 		rt, _ = parseRouting(data) // a routing that does not parse is Lint's to report; family: items are then not judged
 	}
 	r := &Rules{Routing: rt}
-	// Unreadable character guides leave r.Characters nil, but characterIDList
-	// of it is an empty, non-nil list. scopeItemError then judges every
+	// A missing guides/characters, or one that is not a directory, leaves
+	// r.Characters nil (a single unreadable guide is skipped, and only its id
+	// is missing from the list), but characterIDList of it is an empty,
+	// non-nil list. scopeItemError then judges every
 	// character: token and reports an error for each, and the loop below skips
 	// the patterns it reports (Lint reports them), so no warning appears.
 	r.Characters, _ = loadCharacters(root)

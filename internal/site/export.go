@@ -100,7 +100,9 @@ type Result struct {
 // Export writes the data of the viewer to outDir: meta.json, index.json,
 // files/<path> for each file of the KR pack, search/keys.json and
 // search/{kr,jp,en,zh}.json, and review/{suggestions,warnings,notes,todo}.json
-// and review/scope.json (Review.Scope), empty lists without in.Review. The
+// and review/scope.json (Review.Scope), empty lists without in.Review, and
+// glossary/index.json with glossary/<a>-<b>.json for each entry of the
+// glossary (writeGlossary). The
 // corpus holds the units of every file in the order of the index, but not the
 // copies (identifiers and texts that are the same in every language). meta supplies what Export cannot know: RawTag,
 // RulesCommit, TWCommit and Release. The output depends on in alone, so the

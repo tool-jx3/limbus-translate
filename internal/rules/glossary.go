@@ -93,8 +93,9 @@ const (
 // Applies reports whether t is in force in file: file matches one of Files
 // (or t has none) and matches none of NotFiles. An item of those lists is a
 // file pattern (see config.MatchAny), FamilyPrefix and a family id, which
-// matches the files of that family by the routing (Rules.Family: the first
-// family that matches a file is its family), or one of GroupPrefix,
+// matches the files of that family by the routing (see Rules.Family: the sub
+// node before the top node, the exact node name before a wildcard, then the
+// routing order, and the fallback family, unsorted, where none matches), or one of GroupPrefix,
 // ChapterPrefix, CharacterPrefix and EventPrefix with its argument. It is the
 // one place that decides it; GlossaryHits and ScriptRenderings go through it.
 // Whether an entry without Files gives way to one with is a matter of the KR
