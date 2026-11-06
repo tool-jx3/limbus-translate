@@ -1160,7 +1160,8 @@ func TestTermOccursInWithAnInvalidMatch(t *testing.T) {
 	}
 }
 
-func TestTermAppliesTo(t *testing.T) {
+func TestApplies(t *testing.T) {
+	r := rulesWithGlossary(t, "- kr: 도시\n  zh: 都市\n  status: approved\n")
 	for _, tc := range []struct {
 		name string
 		term rules.Term
@@ -1175,10 +1176,68 @@ func TestTermAppliesTo(t *testing.T) {
 		{"both: in files, not excluded", rules.Term{Files: []string{"StoryData/**"}, NotFiles: []string{"StoryData/S2*"}}, "StoryData/S1.json", true},
 		{"both: in files, excluded", rules.Term{Files: []string{"StoryData/**"}, NotFiles: []string{"StoryData/S2*"}}, "StoryData/S2.json", false},
 		{"both: outside files", rules.Term{Files: []string{"StoryData/**"}, NotFiles: []string{"StoryData/S2*"}}, "Bufs.json", false},
+		// family:<id> is the files the routing puts in the family, first match wins.
+		{"family in files, in family", rules.Term{Files: []string{"family:story-main"}}, "StoryData/S1037B.json", true},
+		{"family in files, other family", rules.Term{Files: []string{"family:story-main"}}, "StoryData/E1.json", false},
+		{"family in files, shadowed by an earlier family", rules.Term{Files: []string{"family:ally"}}, "Skills_Assist-walpu6.json", false},
+		{"family in files, the family it routes to", rules.Term{Files: []string{"family:walpu-refraction"}}, "Skills_Assist-walpu6.json", true},
+		{"family in not_files, in family", rules.Term{NotFiles: []string{"family:story-main"}}, "StoryData/S1037B.json", false},
+		{"family in not_files, other family", rules.Term{NotFiles: []string{"family:story-main"}}, "StoryData/E1.json", true},
+		{"family mixed with a pattern in files, by family", rules.Term{Files: []string{"family:story-main", "Bufs*"}}, "StoryData/S1.json", true},
+		{"family mixed with a pattern in files, by pattern", rules.Term{Files: []string{"family:story-main", "Bufs*"}}, "Bufs.json", true},
+		{"family mixed with a pattern in files, neither", rules.Term{Files: []string{"family:story-main", "Bufs*"}}, "StoryData/E1.json", false},
+		{"family in files, pattern in not_files", rules.Term{Files: []string{"family:story-main"}, NotFiles: []string{"StoryData/S2*"}}, "StoryData/S2.json", false},
+		{"unknown family matches nothing", rules.Term{Files: []string{"family:nope"}}, "StoryData/S1.json", false},
+		{"unknown family in not_files excludes nothing", rules.Term{NotFiles: []string{"family:nope"}}, "StoryData/S1.json", true},
 	} {
-		if got := tc.term.AppliesTo(tc.file); got != tc.want {
-			t.Errorf("%s: AppliesTo(%q) = %v, want %v", tc.name, tc.file, got, tc.want)
+		if got := r.Applies(tc.term, tc.file); got != tc.want {
+			t.Errorf("%s: Applies(%q) = %v, want %v", tc.name, tc.file, got, tc.want)
 		}
+	}
+}
+
+// An entry whose files is a family replaces the general entry of its KR in the
+// files of that family, and only there; not_files with a family agrees.
+func TestGlossaryHitsFamilyScopes(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 신부
+  zh: 神父
+  status: approved
+  not_files: ["family:story-main"]
+
+- kr: 신부
+  zh: 牧師
+  status: approved
+  files: ["family:story-main"]
+
+- kr: 관통
+  zh: 貫穿
+  status: approved
+  files: ["family:ally"]
+  forbidden: ["穿透"]
+
+- kr: 관통
+  zh: 穿刺
+  status: approved
+`)
+	for file, want := range map[string]string{"StoryData/S1037B.json": "牧師", "StoryData/E1.json": "神父", "Bufs.json": "神父"} {
+		if got := zhOf(r.GlossaryHits(file, "신부가 왔다")); !slices.Equal(got, []string{want}) {
+			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
+		}
+	}
+	for file, want := range map[string]string{"Skills_personality-1.json": "貫穿", "Skills_Assist-walpu6.json": "穿刺", "Bufs.json": "穿刺"} {
+		if got := zhOf(r.GlossaryHits(file, "관통이다")); !slices.Equal(got, []string{want}) {
+			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
+		}
+	}
+}
+
+func TestScriptRenderingsFamilyScope(t *testing.T) {
+	r := rulesWithGlossary(t, "- kr: 하나\n  zh: 하나協會\n  status: approved\n  not_files: [\"family:story-main\"]\n")
+	if got := r.ScriptRenderings("StoryData/S1.json"); len(got) != 0 {
+		t.Errorf("ScriptRenderings in the excluded family = %v, want none", got)
+	}
+	if got := r.ScriptRenderings("Bufs.json"); !slices.Equal(got, []string{"하나協會"}) {
+		t.Errorf("ScriptRenderings elsewhere = %v, want the rendering", got)
 	}
 }
 
@@ -1259,6 +1318,48 @@ func TestLintGlossaryNotFiles(t *testing.T) {
 	})
 	if msg := lintMessages(rules.Lint(root)); strings.Contains(msg, "백화점") || strings.Contains(msg, "사무소2") {
 		t.Errorf("lint reports a valid entry:\n%s", msg)
+	}
+}
+
+// An unknown family id in files or not_files is a lint error; known ids and
+// mixing with patterns are clean.
+func TestLintGlossaryFamilyScope(t *testing.T) {
+	for name, tc := range map[string]struct{ entry, want string }{
+		"unknown in files":     {"  files: [\"family:nope\"]\n", `family "nope"`},
+		"unknown in not_files": {"  not_files: [\"Bufs*\", \"family:story-mian\"]\n", `family "story-mian"`},
+		"empty id":             {"  files: [\"family:\"]\n", "family"},
+		"same family":          {"  files: [\"family:ally\"]\n  not_files: [\"family:ally\"]\n", "applies to no file"},
+	} {
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string {
+			return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n" + tc.entry
+		})
+		if msg := lintMessages(rules.Lint(root)); !strings.Contains(msg, tc.want) || !strings.Contains(msg, "백화점") {
+			t.Errorf("%s: lint output does not mention %q:\n%s", name, tc.want, msg)
+		}
+	}
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  files: [\"family:story-main\", \"Bufs*\"]\n  not_files: [\"family:walpu-refraction\"]\n"
+	})
+	if msg := lintMessages(rules.Lint(root)); strings.Contains(msg, "백화점") {
+		t.Errorf("lint reports a valid family scope:\n%s", msg)
+	}
+}
+
+// A family: token warns when no file of the KR pack belongs to the family.
+func TestLintScopeWarningsFamily(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(string) string {
+		return "- kr: 속도\n  zh: 速度\n  status: approved\n  files: [\"family:ally\", \"family:mirror\"]\n  not_files: [\"family:story-main\"]\n"
+	})
+	files := []string{"Skills_Ego-1.json", "StoryData/S1.json"}
+	var msgs []string
+	for _, w := range rules.LintScopeWarnings(root, files) {
+		msgs = append(msgs, w.Message)
+	}
+	if len(msgs) != 1 || !strings.Contains(msgs[0], `"family:mirror"`) || !strings.Contains(msgs[0], "files") || !strings.Contains(msgs[0], `"속도"`) {
+		t.Errorf("warnings = %q, want one for family:mirror in files", msgs)
 	}
 }
 

@@ -914,11 +914,11 @@
 - kr: 이방인
   zh: 異鄉人
   forbidden: [外來者]
-  not_files: ["StoryData/E*", "StoryData/PC*"]
+  not_files: ["family:story-interlude"]
   status: approved
   match: substring
   category: [city]
-  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：StoryData/E*、PC* 的間章劇情幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
+  notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：story-interlude 族群（StoryData/E*、PC* 的間章劇情）幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 뿌이
   zh: 普依
@@ -1307,12 +1307,12 @@
 
 - kr: 관통
   zh: 突刺
-  not_files: ["PersonalityVoiceDlg/*", "StoryData/P1*", "BattleSpeechBubbleDlg*", "StoryData/E*", "StoryData/PC*", "StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
+  not_files: ["family:identity", "family:story-interlude", "family:story-main"]
   status: approved
   match: word
   category: [general, combat, physical]
   evidence: { kr_lines: 306, approved: 276, forbidden: 0 }
-  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：人格語音與劇情檔（PersonalityVoiceDlg 4 句、StoryData 11 句）不用此譯名（15 句 0 句用）；樣式另涵蓋戰鬥對話氣泡、歌詞、AbEvents-a1c*、地下城節點等同類敘事檔（目前沒有符合的句子），排除
+  notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：identity、story-interlude、story-main 族群的人格語音與劇情檔（PersonalityVoiceDlg 4 句、StoryData 11 句）不用此譯名（15 句 0 句用）；另排除同類敘事族群 identity、story-interlude、story-main 的其餘檔（戰鬥對話氣泡、歌詞、AbEvents-a1c*、地下城節點等，目前沒有符合的句子）
 
 - kr: 색욕
   zh: 色慾
@@ -1415,11 +1415,11 @@
 
 - kr: 전투 패배
   zh: 戰鬥失敗
-  not_files: ["Skills_personality*", "Skills_Ego*", "Passive_Ego*", "Egos*", "Personalit*", "Passives.json", "Passives-*", "Passives_check*", "Passives_fools*", "Passives_Assist.json", "Passives_Assist-[^w]*", "Skills_Assist*"]
+  not_files: ["family:ally"]
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：夥伴被動（Passives_Assist* 10 句 0 句用）不採此譯名，排除；樣式另涵蓋同屬夥伴的 Passives.json、Passives-*、技能、E.G.O、人格檔（目前沒有符合的句子）。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除
+  notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：ally 族群（夥伴）不採此譯名，排除：夥伴被動 Passives_Assist* 10 句 0 句用，同族群的 Passives.json、Passives-*、技能、E.G.O、人格檔目前沒有符合的句子。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除
 
 - kr: 상점
   zh: 商店
@@ -1604,11 +1604,11 @@
 
 - kr: 별빛
   zh: 星芒
-  not_files: ["StoryData/S*", "StoryData/[0-9]*D*", "BgmLyrics/*", "AbEvents-a1c*", "DungeonNode*"]
+  not_files: ["family:story-main"]
   status: approved
   category: [system]
   evidence: { kr_lines: 163, approved: 154, forbidden: 0 }
-  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：劇情、歌詞、地下城節點等檔（StoryData 1 句、DungeonNode 2 句）不用此譯名（3 句 0 句用），排除
+  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：story-main 族群（劇情、歌詞、地下城節點等檔，StoryData 1 句、DungeonNode 2 句）不用此譯名（3 句 0 句用），排除
 
 - kr: 반격
   zh: 反擊
@@ -1839,11 +1839,11 @@
 
 - kr: 흐트러짐 구간
   zh: 混亂閾值
-  not_files: ["*walpu*", "*Refraction*", "Railway*"]
+  not_files: ["family:walpu-refraction"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 79, approved: 73, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：瓦普與折射活動檔（*walpu*、*Refraction*、Railway*）不用此譯名（7 句 1 句用），排除
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（7 句 1 句用），排除
 
 - kr: 창백한 고래
   zh: 白鯨
@@ -3936,11 +3936,11 @@
 
 - kr: 키워드
   zh: 關鍵字
-  not_files: ["*walpu*", "*Refraction*", "Railway*"]
+  not_files: ["family:walpu-refraction"]
   status: approved
   match: substring
   evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：瓦普與折射活動檔（*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞
 
 - kr: 유리창
   zh: 玻璃窗

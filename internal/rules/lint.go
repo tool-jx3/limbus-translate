@@ -97,6 +97,7 @@ func (l *linter) glossary() {
 		return
 	}
 	general := map[string]int{} // KR text -> approved entries that apply to every file
+	families := l.familyIDs()
 	for i, t := range terms {
 		label := fmt.Sprintf("entry %d", i+1)
 		if t.KR != "" {
@@ -122,14 +123,22 @@ func (l *linter) glossary() {
 			l.report(GlossaryFile, "%s: match is %q, want %q (hit only where the KR stands as a word; the default) or %q (hit inside a longer word too)", label, t.Match, MatchWord, MatchSubstring)
 		}
 		for _, pattern := range t.Files {
-			if pattern == "" {
+			if id, isFamily := strings.CutPrefix(pattern, FamilyPrefix); isFamily {
+				if families != nil && !slices.Contains(families, id) {
+					l.report(GlossaryFile, "%s: files names family %q, which is not a family of %s", label, id, RoutingFile)
+				}
+			} else if pattern == "" {
 				l.report(GlossaryFile, "%s: files holds an empty pattern", label)
 			} else if err := config.ValidPattern(pattern); err != nil {
 				l.report(GlossaryFile, "%s: files pattern %q is not valid: %v", label, pattern, err)
 			}
 		}
 		for _, pattern := range t.NotFiles {
-			if pattern == "" {
+			if id, isFamily := strings.CutPrefix(pattern, FamilyPrefix); isFamily {
+				if families != nil && !slices.Contains(families, id) {
+					l.report(GlossaryFile, "%s: not_files names family %q, which is not a family of %s", label, id, RoutingFile)
+				}
+			} else if pattern == "" {
 				l.report(GlossaryFile, "%s: not_files holds an empty pattern", label)
 			} else if err := config.ValidPattern(pattern); err != nil {
 				l.report(GlossaryFile, "%s: not_files pattern %q is not valid: %v", label, pattern, err)
@@ -152,6 +161,25 @@ func (l *linter) glossary() {
 			l.report(GlossaryFile, "%s: unknown field %q", label, key)
 		}
 	}
+}
+
+// familyIDs returns the family ids of the routing, or nil when the routing
+// cannot be read (its own lint reports that, and a family: scope is then not
+// judged).
+func (l *linter) familyIDs() []string {
+	data, err := os.ReadFile(filepath.Join(l.root, filepath.FromSlash(RoutingFile)))
+	if err != nil {
+		return nil
+	}
+	rt, err := parseRouting(data)
+	if err != nil {
+		return nil
+	}
+	var ids []string
+	for _, f := range rt.Families {
+		ids = append(ids, f.ID)
+	}
+	return ids
 }
 
 // foreignIgnore checks the list of words the foreign-name warning leaves
@@ -402,6 +430,11 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 	if err != nil {
 		return nil
 	}
+	var rt Routing
+	if data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(RoutingFile))); err == nil {
+		rt, _ = parseRouting(data) // a routing that does not parse is Lint's to report; family: items are then not judged
+	}
+	r := &Rules{Routing: rt}
 	var out []LintError
 	for _, t := range terms {
 		for _, list := range []struct {
@@ -409,10 +442,19 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 			patterns []string
 		}{{"files", t.Files}, {"not_files", t.NotFiles}} {
 			for _, pattern := range list.patterns {
-				if pattern == "" || config.ValidPattern(pattern) != nil {
+				id, isFamily := strings.CutPrefix(pattern, FamilyPrefix)
+				if isFamily && len(rt.Families) == 0 {
+					continue // no routing to judge by
+				}
+				if !isFamily && (pattern == "" || config.ValidPattern(pattern) != nil) {
 					continue // Lint reports these
 				}
-				if !slices.ContainsFunc(krFiles, func(f string) bool { return config.MatchAny([]string{pattern}, f) }) {
+				if !slices.ContainsFunc(krFiles, func(f string) bool {
+					if isFamily {
+						return r.Family(f) == id
+					}
+					return config.MatchAny([]string{pattern}, f)
+				}) {
 					out = append(out, LintError{File: GlossaryFile, Message: fmt.Sprintf("term %q: %s pattern %q matches no file of the KR pack", t.KR, list.name, pattern)})
 				}
 			}

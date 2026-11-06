@@ -39,6 +39,7 @@
 同一個詞在不同的檔案要有不同譯法時（例如「신부」在第十章是牧師、其他章節是神父），用 `files` 限定條目適用的檔：
 
 - `files` 是檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`：`StoryData/S10[0-9][0-9]*`、`*a1c10*`；以 `/**` 結尾的樣式涵蓋該目錄底下所有檔（`RPGSystem/**`）。`*` 不跨 `/`：`RPGSystem*` 不比對 `RPGSystem/` 底下的檔，要寫 `RPGSystem/**`。省略 `files` = 所有檔
+- `files` 的項目也可以寫 `family:<id>`，指 `guides/routing.yaml` 路由判為該族群的檔（`lct` 用 `Family(file)`，路由由上往下第一個符合的族群），例如 `files: ["family:story-main"]` 只適用於主線劇情族群的檔；族群裡的檔隨路由增減，不必逐一列檔名樣式。可以和檔名樣式混用（`files: ["family:mirror", "Enemies-a1c10*"]`，符合任一項就適用）。`<id>` 不在路由的族群裡，`lct rules lint` 報錯；有 raw 時，族群裡沒有任何 KR 包的檔則給警告。批次的詞彙表欄位原樣帶著 `family:<id>`，它指批次 `family` 為 <id> 的單位
 - 只有批次的檔名符合時，條目才會注入批次，驗證時才檢查它的 `forbidden`
 - 同一個 `kr` 可以有多個條目，其中至多一個 `status: approved` 的條目不設 `files`（`lct rules lint` 檢查；`candidate` 不計，因為它不生效）。某個檔有適用的、設了 `files` 的條目（`files` 符合，且 `not_files` 不符合，見下面的 `not_files`）時，由那些條目代表這個詞，沒設 `files` 的那一條在這個檔不適用；沒有這樣的條目就用沒設 `files` 的那一條
 - `files` 重疊的條目會同時生效：一個檔符合同一個 `kr` 的多個有 `files` 的條目時，這些條目全部注入批次、全部檢查 `forbidden`。要讓譯法互斥，`files` 的樣式就不要重疊
@@ -63,6 +64,7 @@
 - 寫法同 `files`：檔名樣式清單，`StoryData/**` 涵蓋該目錄底下所有檔，也可以是 `*a1c10*` 這類 glob。`*` 不跨 `/`：`RPGSystem*` 不比對 `RPGSystem/` 底下的檔，要寫 `RPGSystem/**`。例如 `not_files: ["StoryData/**"]` 讓條目不用在 `StoryData/` 底下的檔
 - 條目適用於一個檔，要同時滿足：沒設 `files`，或 `files` 有一個樣式符合；而且 `not_files` 沒有樣式符合。兩者都設時是這兩個條件的交集
 - 上一節 `files` 的優先規則看「適用」：有 `files` 的條目只在它適用的檔（`files` 符合且 `not_files` 不符合）代表這個詞，沒設 `files` 的那一條才在該檔不適用；有 `files` 的條目被 `not_files` 排除的檔，仍用沒設 `files` 的那一條。要讓兩條互補，一條設 `not_files`、另一條設相同樣式的 `files`（例如「신부」：神父那條 `not_files: ["StoryData/S10[0-9][0-9]*"]`，牧師那條 `files: ["StoryData/S10[0-9][0-9]*"]`），每個檔恰好一條適用
+- `not_files` 的項目同樣可以寫 `family:<id>`，把整個族群的檔排除，也可以和樣式混用，例如 `not_files: ["family:story-main"]` 讓條目不用在主線劇情族群的檔；比起把族群的檔名樣式抄過來，優先用 `family:<id>`（樣式容易多排除到路由判給別的族群的檔，例如 `Skills_Assist*` 也比對到 `Skills_Assist-walpu6.json`，它屬於 walpu-refraction）。`family:<id>` 的檢查與 `files` 相同
 - `lct rules lint` 檢查樣式寫法；`files`、`not_files` 的樣式若沒有比對到 KR 包的任何檔（寫錯檔名、檔案改名），在 raw 工作樹存在時給警告（`warning:`，不算錯誤、不影響結束碼）；也會在 `files` 的每個樣式都同時寫在 `not_files`（條目在任何檔都不適用）時報錯；兩個不同的樣式是否重疊不檢查
 - 劇情以外的小檔會併成一個批次，批次裡的單位來自不同的檔，所以批次的詞彙表欄位和 `files` 一樣帶著條目的 `not_files`（設了才帶）：`file` 符合其中一個樣式的單位不適用這個條目
 

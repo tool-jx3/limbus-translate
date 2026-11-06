@@ -4114,3 +4114,32 @@ func TestGlossaryForKeepsEntriesApartByNotFiles(t *testing.T) {
 		t.Errorf("glossaryFor = %+v, want both entries", got)
 	}
 }
+
+// A family: scope goes into the batch as written, and the entry is in the batch
+// only if a unit of its family has the word; the translator reads
+// family:<id> against the batch's family.
+func TestBatchGlossaryCarriesFamilyScope(t *testing.T) {
+	const glossary = "- kr: 위력\n  zh: 威力\n  status: approved\n  files: [\"family:story-main\"]\n" +
+		"- kr: 위력\n  zh: 力量\n  status: approved\n  not_files: [\"family:story-main\"]\n"
+	for file, want := range map[string]struct{ zh, files, notFiles string }{
+		"StoryData/S1.json": {"威力", "family:story-main", ""},
+		"A.json":            {"力量", "", "family:story-main"},
+	} {
+		kr := map[string]string{file: oneLine(t, "위력이 강하다")}
+		env := newEnv(t, kr, nil, nil)
+		env.Rules = testRulesWith(t, glossary)
+		seed(t, env, items(file, 0, 1)...)
+		b := mustNext(t, env, NextOptions{})
+		if b == nil || len(b.Glossary) != 1 {
+			t.Fatalf("%s: batch = %+v, want the one entry for its family", file, b)
+		}
+		g := b.Glossary[0]
+		if g.ZH != want.zh || strings.Join(g.Files, ",") != want.files || strings.Join(g.NotFiles, ",") != want.notFiles {
+			t.Errorf("%s: glossary = %+v, want %+v", file, g, want)
+		}
+		data, _ := json.Marshal(g)
+		if !strings.Contains(string(data), "family:story-main") {
+			t.Errorf("%s: glossary JSON = %s, want the family: token as written", file, data)
+		}
+	}
+}

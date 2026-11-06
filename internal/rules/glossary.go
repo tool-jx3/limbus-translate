@@ -51,20 +51,51 @@ const MatchWord = "word"
 // KR occurs, inside a longer word too (사무소 in 정사무소).
 const MatchSubstring = "substring"
 
-// AppliesTo reports whether t is in force in file: file matches one of Files
-// (or t has none) and matches none of NotFiles. It is the one place that
-// decides it; GlossaryHits and ScriptRenderings go through it. Whether an
-// entry without Files gives way to one with is a matter of the KR text
-// (scopedTo), not of this entry alone.
-func (t Term) AppliesTo(file string) bool {
-	return (len(t.Files) == 0 || config.MatchAny(t.Files, file)) && !config.MatchAny(t.NotFiles, file)
+// FamilyPrefix starts an item of Files or NotFiles that names a routing family
+// instead of a file pattern: "family:story-main" stands for the files whose
+// Family is story-main.
+const FamilyPrefix = "family:"
+
+// Applies reports whether t is in force in file: file matches one of Files
+// (or t has none) and matches none of NotFiles. An item of those lists is a
+// file pattern (see config.MatchAny) or FamilyPrefix and a family id, which
+// matches the files of that family by the routing (Rules.Family: the first
+// family that matches a file is its family). It is the one place that decides
+// it; GlossaryHits and ScriptRenderings go through it. Whether an entry
+// without Files gives way to one with is a matter of the KR text (scopedTo),
+// not of this entry alone.
+func (r *Rules) Applies(t Term, file string) bool {
+	return (len(t.Files) == 0 || r.matchScope(t.Files, file)) && !r.matchScope(t.NotFiles, file)
+}
+
+// matchScope reports whether file matches one item of items, patterns and
+// family ids alike.
+func (r *Rules) matchScope(items []string, file string) bool {
+	family := ""
+	haveFamily := false
+	for _, item := range items {
+		id, isFamily := strings.CutPrefix(item, FamilyPrefix)
+		if !isFamily {
+			if config.MatchAny([]string{item}, file) {
+				return true
+			}
+			continue
+		}
+		if !haveFamily {
+			family, haveFamily = r.Family(file), true
+		}
+		if family == id {
+			return true
+		}
+	}
+	return false
 }
 
 // scopedTo reports whether t has Files and applies to file: t then stands for
 // its KR text in file, in place of an entry of that KR without Files. Where
 // NotFiles takes t out of file, the entry without Files is the one for it.
-func (t Term) scopedTo(file string) bool {
-	return len(t.Files) > 0 && t.AppliesTo(file)
+func (r *Rules) scopedTo(t Term, file string) bool {
+	return len(t.Files) > 0 && r.Applies(t, file)
 }
 
 // OccursIn reports whether the KR text of t occurs in kr: as a word, unless t
@@ -181,8 +212,8 @@ const (
 //
 // A term with Files applies to the files that match one of them (see
 // config.MatchAny), a term without to every file; a term does not apply to the
-// files that match one of its NotFiles (see Term.AppliesTo). Of several entries for one
-// KR text, those that apply to file (see Term.AppliesTo) stand for it alone: the entry without Files
+// files that match one of its NotFiles (see Rules.Applies). Of several entries for one
+// KR text, those that apply to file (see Rules.Applies) stand for it alone: the entry without Files
 // is the one for the files no other entry takes.
 func (r *Rules) GlossaryHits(file, kr string) []Term {
 	kr = validate.MatchText(kr) // a paired tag inside a term does not split it; a self-closing one does not fuse words
@@ -192,10 +223,10 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 		if t.Status != StatusApproved || t.KR == "" || !t.OccursIn(kr) {
 			continue
 		}
-		if t.scopedTo(file) {
+		if r.scopedTo(t, file) {
 			scoped[t.KR] = true
 		}
-		if !t.AppliesTo(file) {
+		if !r.Applies(t, file) {
 			continue
 		}
 		hits = append(hits, t)
@@ -213,7 +244,7 @@ func (r *Rules) GlossaryHits(file, kr string) []Term {
 func (r *Rules) ScriptRenderings(file string) []string {
 	scoped := map[string]bool{} // the KR texts with an entry for file
 	for _, t := range r.Glossary {
-		if t.Status == StatusApproved && t.scopedTo(file) {
+		if t.Status == StatusApproved && r.scopedTo(t, file) {
 			scoped[t.KR] = true
 		}
 	}
@@ -222,7 +253,7 @@ func (r *Rules) ScriptRenderings(file string) []string {
 		if t.Status != StatusApproved || !strings.ContainsFunc(t.ZH, foreignScript) || slices.Contains(out, t.ZH) {
 			continue
 		}
-		if !t.AppliesTo(file) || len(t.Files) == 0 && scoped[t.KR] {
+		if !r.Applies(t, file) || len(t.Files) == 0 && scoped[t.KR] {
 			continue
 		}
 		out = append(out, t.ZH)

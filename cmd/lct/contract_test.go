@@ -664,6 +664,19 @@ func TestBatchOutSchemaDeclaresTerms(t *testing.T) {
 	}
 }
 
+// A glossary entry's files and not_files may hold family:<id>; the translator
+// and the batch schema are told what it means.
+func TestFamilyScopeIsExplainedToTheTranslator(t *testing.T) {
+	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
+	if !strings.Contains(prompt, "`family:<id>`") || !strings.Contains(prompt, "`family` 為 <id>") {
+		t.Error("prompts/translate.md does not explain `family:<id>` against the batch's `family`")
+	}
+	_, schema := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
+	if strings.Count(schema, "family:<id>") < 2 {
+		t.Error("schemas/batch.schema.json does not describe family:<id> in both files and not_files")
+	}
+}
+
 // A unit whose adjustment expired carries the person's old text in
 // refs.adjustment (store.RefAdjustment): the shared prompt tells the translator
 // what that is and what to do with it, in the section of the refs.
