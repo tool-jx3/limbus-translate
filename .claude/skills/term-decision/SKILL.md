@@ -18,7 +18,7 @@ allowed-tools:
 
 # 決定詞彙表候選
 
-詞彙表 `glossary/terms.yaml` 是硬性規定：翻譯時注入命中的條目，驗證時檢查禁用譯法。這個 skill 把還沒有定案的名稱一個一個交給人決定。人在 `main` 上、repo 根目錄執行；所有修改都只是 `main` 工作樹裡的檔案，由人自己 commit。
+詞彙表 `glossary/terms.yaml` 的譯名是預設譯名：翻譯時注入命中的條目，驗證時檢查禁用譯法，只有 `check: hard` 的條目缺譯名才在送出時退回。這個 skill 把還沒有定案的名稱一個一個交給人決定。人在 `main` 上、repo 根目錄執行；所有修改都只是 `main` 工作樹裡的檔案，由人自己 commit。
 
 ## 限制
 
