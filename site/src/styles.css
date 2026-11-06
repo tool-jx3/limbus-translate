@@ -2677,3 +2677,15 @@ button.chip {
 .tv-list {
   list-style: none;
 }
+
+/* The box a copy falls back to: out of sight, but there to select, so the selection holds the lines a copy would. */
+.tv-copybox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  opacity: 0;
+}

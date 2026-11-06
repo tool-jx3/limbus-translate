@@ -1,4 +1,3 @@
-import type { Ref } from 'preact'
 import { useMemo, useRef, useState } from 'preact/hooks'
 import { Notice } from '../app/Notice'
 import { loadGlossary, loadGlossaryEntry } from '../data'
@@ -224,7 +223,7 @@ function UsedList({ units, krMark, zhMark }: { units: GlossaryUnit[]; krMark: Re
 }
 
 /** The units without the rendering, 100 at a time; keyed by the filters, like UsedList. */
-function MissingList({ units, mark, listRef }: { units: GlossaryUnit[]; mark: RegExp | undefined; listRef: Ref<HTMLUListElement> }) {
+function MissingList({ units, mark }: { units: GlossaryUnit[]; mark: RegExp | undefined }) {
   const [limit, setLimit] = useState(PAGE)
   const shown = Math.min(units.length, limit)
   return (
@@ -232,7 +231,7 @@ function MissingList({ units, mark, listRef }: { units: GlossaryUnit[]; mark: Re
       {units.length === 0 ? (
         <p class="rv-empty">沒有符合的單位</p>
       ) : (
-        <ul class="rv-tunits tv-list" ref={listRef}>
+        <ul class="rv-tunits tv-list">
           {units.slice(0, shown).map((u) => (
             <MissingUnit key={u.key} u={u} mark={mark} />
           ))}
@@ -256,21 +255,21 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
   const all = useMemo(() => [...file.missing, ...file.used], [file])
   const krMark = useMemo(() => termMark(entry.kr), [entry.kr])
   const zhMark = useMemo(() => termsMark([entry.zh, ...entry.also]), [entry.zh, entry.also])
-  const list = useRef<HTMLUListElement>(null)
+  const box = useRef<HTMLTextAreaElement>(null)
   const [saidAt, setSaidAt] = useState({ key: '', text: '' })
   // The status belongs to the filters it was said under; under other filters it is gone (the box of the text keeps its focus, so the component is not keyed).
   const said = saidAt.key === filterKey ? saidAt.text : ''
   const setSaid = (text: string) => setSaidAt({ key: filterKey, text })
 
   // The unconfirmed units under the filters, as ID「TW」→ a line each: what to paste to the conversation to decide on them.
+  const lines = useMemo(() => missing.filter((u) => u.accepted === undefined && u.id !== undefined).map((u) => copyText(u.id ?? '', stripTags(u.zh))), [missing])
   const copy = async () => {
-    const lines = missing.filter((u) => u.accepted === undefined && u.id !== undefined).map((u) => copyText(u.id ?? '', stripTags(u.zh)))
     if (lines.length === 0) {
       setSaid('沒有未確認的單位可複製')
       return
     }
-    if (!list.current) return
-    const result = await copyToClipboard(lines.join('\n'), list.current)
+    if (!box.current) return
+    const result = await copyToClipboard(lines.join('\n'), box.current)
     setSaid(result === 'copied' ? `已複製 ${lines.length} 個單位，貼到對話中再加上你的決定` : '瀏覽器不讓複製，已選取單位，請按 Ctrl/⌘+C')
   }
 
@@ -287,7 +286,8 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
             {said}
           </span>
         </div>
-        <MissingList key={filterKey} listRef={list} units={missing} mark={krMark} />
+        <textarea ref={box} class="tv-copybox" readOnly tabIndex={-1} aria-hidden="true" value={lines.join('\n')} />
+        <MissingList key={filterKey} units={missing} mark={krMark} />
       </section>
       <section class="tv-used">
         <h2>用了譯名 {used.length} 項</h2>

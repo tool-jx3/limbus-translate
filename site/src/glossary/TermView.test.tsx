@@ -139,6 +139,21 @@ describe('TermView, units without the rendering', () => {
       expect(el.querySelector('.tv-missing .rv-said')?.textContent).toBe('')
     })
 
+    it('where the clipboard says no, selects a box that holds the very lines a copy would', async () => {
+      const el = await mount()
+      vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText: vi.fn(async () => Promise.reject(new Error('no'))) } })
+      const button = [...el.querySelectorAll<HTMLButtonElement>('.tv-missing button')].find((b) => b.textContent === '複製這些單位')!
+      await act(() => {
+        button.click()
+      })
+      await vi.waitFor(() => expect(el.querySelector('.tv-missing .rv-said')?.textContent).toContain('已選取'))
+      const box = el.querySelector<HTMLTextAreaElement>('.tv-missing textarea[readonly]')!
+      const open = file.missing.filter((u) => !u.accepted)
+      expect(box.value.split('\n')).toEqual(open.map((u) => `${u.id}「${u.zh}」→ `))
+      expect(box.selectionStart).toBe(0)
+      expect(box.selectionEnd).toBe(box.value.length)
+    })
+
     it('copies the units that the filters keep', async () => {
       const text = await copied(await mount(route({ family: 'story-main' })))
       const open = file.missing.filter((u) => !u.accepted && u.family === 'story-main')

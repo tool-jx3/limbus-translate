@@ -9,7 +9,7 @@ export function copyText(id: string, excerptSource: string, detail = ''): string
   return `${id}「${excerpt}」${detail}→ `
 }
 
-/** Puts the text on the clipboard; where the browser says no, selects the text of fallbackEl for the reader to copy. */
+/** Puts the text on the clipboard; where the browser says no, selects the text of fallbackEl (a textarea selects its value) for the reader to copy. */
 export async function copyToClipboard(text: string, fallbackEl: HTMLElement): Promise<'copied' | 'selected'> {
   try {
     await navigator.clipboard.writeText(text)
@@ -17,10 +17,15 @@ export async function copyToClipboard(text: string, fallbackEl: HTMLElement): Pr
   } catch {
     try {
       const selection = window.getSelection()
-      const range = document.createRange()
-      range.selectNodeContents(fallbackEl)
-      selection?.removeAllRanges()
-      selection?.addRange(range)
+      if (fallbackEl instanceof HTMLTextAreaElement) {
+        fallbackEl.focus()
+        fallbackEl.select()
+      } else {
+        const range = document.createRange()
+        range.selectNodeContents(fallbackEl)
+        selection?.removeAllRanges()
+        selection?.addRange(range)
+      }
     } catch {
       // Nothing more to try; the text is still on the page.
     }
