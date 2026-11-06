@@ -11,7 +11,7 @@
 - 省略或 `warn`：譯文缺少 `zh`（也沒有 `also`）只警告，送出時照樣收下，警告列在審核頁
 - `hard`：缺少 `zh` 時，送出會退回，除非該單位的 `note` 寫出條目的 KR 原詞（說明為何在此不照條目譯）；`glossary: warn` 的族群仍只警告。暫定詞沒有 `check`，一律只警告
 - `forbidden` 與 `check` 無關，譯文含禁用譯法一律退回
-- 改為 `hard` 要有依據：在 `notes` 寫日期、應用率與出現數。詞彙範圍分頁列有「可考慮退回」的條目（應用率高於 95%、至少 20 個單位）；由人決定，經 `review-page` skill 改，`bin/lct glossary scope --json` 是數字的來源。改回只警告就刪掉 `check`
+- 改為 `hard` 要有依據：在 `notes` 寫日期、應用率與出現數。網站「詞彙」頁（`#/g?only=hard`）列有「可考慮退回」的條目（應用率高於 95%、至少 20 個單位）；由人決定，經 `review-page` skill 改，`bin/lct glossary scope --json` 是數字的來源。改回只警告就刪掉 `check`
 
 ## 術語相關（原指引）
 
