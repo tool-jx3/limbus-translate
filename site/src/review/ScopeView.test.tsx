@@ -153,9 +153,9 @@ describe('ScopeView', () => {
         id: `glossary/m${i}/z`,
         kr: `혼합${i}`,
         zh: `混${i}`,
-        n: 10,
-        used: 10 - (i + 1),
-        groups: [{ name: 'family:skill', kind: 'family', n: 10, used: 10 - (i + 1) }],
+        n: 12,
+        used: 12 - (i + 1),
+        groups: [{ name: 'family:skill', kind: 'family', n: 12, used: 12 - (i + 1) }],
       }))
       const proposals = entries.map((e) => ({ ...base.proposals[4]!, id: `scope/m${e.id}/mixed`, kr: e.kr, zh: e.zh }))
       return { ...base, entries, proposals }
