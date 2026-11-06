@@ -115,10 +115,3 @@ const GlossaryEntryPrefix = "glossary/"
 func GlossaryEntry(kr, zh string) string {
 	return GlossaryEntryPrefix + Sha8(kr) + "/" + Sha8(zh)
 }
-
-// glossaryEntryRe is the id of a glossary entry.
-var glossaryEntryRe = regexp.MustCompile(`^glossary/[0-9a-f]{8}/[0-9a-f]{8}$`)
-
-// IsGlossaryEntry reports whether id is the id of a glossary entry
-// (GlossaryEntry).
-func IsGlossaryEntry(id string) bool { return glossaryEntryRe.MatchString(id) }

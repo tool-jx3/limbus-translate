@@ -86,7 +86,4 @@ func TestScopeAndGlossaryEntry(t *testing.T) {
 			t.Errorf("IsScope(%q) = true", id)
 		}
 	}
-	if !IsGlossaryEntry(GlossaryEntry("대상", "目標")) || IsGlossaryEntry("glossary/abc") || IsGlossaryEntry(TermGroup("대상", "目標")) {
-		t.Error("IsGlossaryEntry is wrong")
-	}
 }
