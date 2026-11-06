@@ -19,6 +19,8 @@
 
 ## 使用者已決定的事
 
+（以下 7、8 兩項是看過提案頁之後的決定。）
+
 （2026-11-06 對話中以選項回答）
 
 1. **兩層都改。** 網站的顯示與統計改用路徑與檔名推出的分群。族群規則（翻譯指引、詞彙表退回／只警告、待譯順序、`family:` 範圍）也依路徑與檔名重切。
@@ -33,6 +35,8 @@
    - 新的切法先用實際資料提案，給使用者看過再定。
 4. **新的「詞彙」頁是獨立頁面**，網站頂端加連結。列表頁列出全部詞條；點進去看用了譯名與沒用譯名的全部單位。
 5. **詞彙表條目加 `check: warn`**：該條目缺譯名時，送出只警告、不退回。
+7. **族群切法照提案**：16 個族群與附錄的 `routing.yaml`、priority。
+8. **abnormality 整個族群只警告**（`glossary: warn`）：異想體事件、觀察日誌、AbDlg 多是敘事文字；`AbEvents-a1c*` 跟著併入。
 6. **檔名底下再分第三層**，分三種：
    - 章節；
    - 角色；
@@ -70,8 +74,12 @@
 - **改族群後，已確認或已拒絕的項目重新冒出來。**
   - 例如 `rules/declined.yaml` 的 `inconsistent/<族群>/…` ID 內含族群 id。現有 14 筆都在 `story-main`、`story-interlude`、`identity`，這三個 id 保留。
   - 驗收要確認這 14 筆在新切法下仍對得上。
-- **族群變了，詞彙表的退回／只警告悄悄改變。** 驗收列出 `glossary` 模式改變的每個檔。提案切法只有 10 個檔改變：
-  - `AbEvents-a1c*` 9 個檔從 warn 變 hard（併入異想體事件）；
+- **族群變了，詞彙表的退回／只警告悄悄改變。** 驗收列出 `glossary` 模式改變的每個檔。提案切法改變 83 個檔（3845 個單位），全部從 hard 變 warn：
+  - abnormality 整個族群改為 warn（使用者 2026-11-06 決定），共 82 個檔：
+    - 現在 abnormality 的 54 個；
+    - 現在 walpu-refraction 的 21 個；
+    - 現在 mirror 的 7 個。
+  - `AbEvents-a1c*` 9 個檔併入 abnormality，維持 warn；
   - `StoryData/RPG1.json` 從 hard 變 warn。
 - **節點樣式比對不到檔、或同一節點被兩個族群搶。** 處理方式：
   - 比對不到檔：有 raw 時 lint 警告；
@@ -194,7 +202,7 @@ families:
 - `family:<id>`
 - 「預設族群的新檔」提醒（`DefaultFamily` 改指 `unsorted`）
 
-## 提案的族群切法（待使用者確認）
+## 族群切法（使用者 2026-11-06 確認照提案；abnormality 改 warn）
 
 資料是 raw-20261105（2422 個 KR 檔）。下表由附錄的 `routing.yaml` 依上面的比對規則算出。提案頁 https://claude.ai/artifact/MHtxthoFrjfo7G12FcuxpM 列出每個節點歸哪個族群。
 
@@ -210,7 +218,7 @@ families:
 | ally | hard | 80 | 17544 | ally 67、other 9、walpu-refraction 4 |
 | enemy | hard | 205 | 22875 | enemy 161、walpu-refraction 36、mirror 5、other 3 |
 | keywords | hard | 153 | 18398 | other 118、walpu-refraction 23、mirror 12 |
-| abnormality | hard | 91 | 4063 | abnormality 54、walpu-refraction 21、story-main 9、mirror 7 |
+| abnormality | warn | 91 | 4063 | abnormality 54、walpu-refraction 21、story-main 9、mirror 7 |
 | mirror | hard | 95 | 10491 | mirror 82、walpu-refraction 12、other 1 |
 | railway | hard | 26 | 852 | walpu-refraction 26 |
 | stage | hard | 96 | 6097 | other 96 |
@@ -222,9 +230,9 @@ families:
 - `mirror` 只留鏡牢專屬的類型；`Bufs_Mirror` 這類子群依類型歸到 keywords 等。
 - 路由的族群順序就是附錄的順序。同層衝突時，這個順序決定誰搶到（見上節）。
 - **priority**：story-main → story-interlude → ego-voice → announcer → identity → ally → enemy → keywords → abnormality → dante-note → mirror → railway → rpg → stage → events → ui → unsorted。
-- 使用者確認這個切法之前，計畫不定案。確認時若有改動，改附錄，表格重算。
+- 實作照附錄；之後要調整節點歸屬，改 `guides/routing.yaml` 即可。
 
-### 附錄：提案的 `guides/routing.yaml` 族群（實作照抄）
+### 附錄：`guides/routing.yaml` 的族群（實作照抄）
 
 ```yaml
 families:
@@ -266,6 +274,7 @@ families:
     guide: guides/families.md
   - id: abnormality
     nodes: ["AbnormalityGuides*", "AbDlg", "AbEvents*", "AbEventsResultLog*"]
+    glossary: warn
     guide: guides/families.md
   - id: mirror
     nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
@@ -380,7 +389,7 @@ priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, en
   - `unsorted` 為 0；
   - lint 0 錯誤。
   - 列出警告：同層兩族群搶同一節點的清單。
-- **glossary 模式**：改變的檔就是上面那 10 個。
+- **glossary 模式**：改變的檔就是上面那 83 個。
 - **已存的決定**：
   - `rules/declined.yaml` 的 14 筆 `inconsistent/…` 仍對得上（不重新出現）；
   - 審核頁各分頁數字和改前比較，差異逐項說明。
@@ -404,7 +413,7 @@ priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, en
    - 活動代號去掉 `-re` 等後綴；
    - 兩個 `family:walpu-refraction` 條目先改寫成原萬用字元，不改用 `event:`。
 4. 提案的 16 個族群與 priority。特別是：
-   - `AbEvents-a1c*` 併入 abnormality（9 檔 warn → hard）；
+   - `AbEvents-a1c*` 併入 abnormality（abnormality 整個 warn，由使用者決定）；
    - `RPGSystem/` 自成 `rpg` 並維持 hard；
    - `StoryData/RPG1` 歸 story-main。
 5. 詞彙範圍的第二種分法改成頂層節點，建議用 `group:<頂層>`。
