@@ -4352,7 +4352,7 @@ func TestShareKey(t *testing.T) {
 // A text that stands in a batch twice (here under two fields, which are not
 // twins) is collected once for the keyword lookup.
 func TestDistinctKRs(t *testing.T) {
-	texts := []unitText{{"A.json", "[Bleed] 하나"}, {"A.json", "둘"}, {"B.json", "[Bleed] 하나"}}
+	texts := []unitText{{"A.json", "[Bleed] 하나", "a"}, {"A.json", "둘", "b"}, {"B.json", "[Bleed] 하나", "c"}}
 	if got, want := distinctKRs(texts), []string{"[Bleed] 하나", "둘"}; !slices.Equal(got, want) {
 		t.Errorf("distinctKRs = %q, want %q", got, want)
 	}
@@ -4427,7 +4427,7 @@ func TestMergedBatchCarriesNotFiles(t *testing.T) {
 // Entries that differ only in not_files are two entries of the batch.
 func TestGlossaryForKeepsEntriesApartByNotFiles(t *testing.T) {
 	r := testRulesWith(t, "- kr: 위력\n  zh: 威力\n  status: approved\n  files: [\"*.json\"]\n  not_files: [\"B.json\"]\n- kr: 위력\n  zh: 威力\n  status: approved\n  files: [\"*.json\"]\n  not_files: [\"A.json\"]\n")
-	got := glossaryFor(r, nil, []unitText{{"A.json", "위력"}, {"B.json", "위력"}})
+	got := glossaryFor(r, nil, []unitText{{"A.json", "위력", "a"}, {"B.json", "위력", "b"}})
 	if len(got) != 2 {
 		t.Errorf("glossaryFor = %+v, want both entries", got)
 	}
@@ -4488,5 +4488,31 @@ func TestSubmitAcceptsAnAlsoRenderingWithoutANote(t *testing.T) {
 	data, err := json.Marshal(b.Glossary)
 	if err != nil || !strings.Contains(string(data), `"also":["季度"]`) {
 		t.Errorf("glossary JSON = %s, %v, want also", data, err)
+	}
+}
+
+// A glossary entry of the batch lists the units that use it: the scope, the
+// longer entries and the provisional terms are already counted in.
+func TestBatchGlossaryUnits(t *testing.T) {
+	r := testRulesWith(t, "- kr: 보스\n  zh: BOSS\n  status: approved\n  files: [\"group:Skills_Enemy*\"]\n"+
+		"- kr: 조직의 보스\n  zh: 組織首領\n  status: approved\n  files: [\"group:Skills_Enemy*\"]\n")
+	prov := []rules.Term{{KR: "임시", ZH: "暫定", Status: rules.StatusCandidate}}
+	got := glossaryFor(r, prov, []unitText{
+		{"Skills_Enemy-x.json", "보스가 온다 임시", "u1"},
+		{"Skills_personality-01.json", "보스가 온다 임시", "u2"},
+		{"Skills_Enemy-x.json", "조직의 보스가 온다", "u3"},
+	})
+	units := map[string][]string{}
+	for _, g := range got {
+		units[g.KR] = g.Units
+	}
+	if !slices.Equal(units["보스"], []string{"u1"}) {
+		t.Errorf("보스 units = %q, want [u1]", units["보스"])
+	}
+	if !slices.Equal(units["조직의 보스"], []string{"u3"}) {
+		t.Errorf("조직의 보스 units = %q, want [u3]", units["조직의 보스"])
+	}
+	if !slices.Equal(units["임시"], []string{"u1", "u2"}) {
+		t.Errorf("임시 units = %q, want [u1 u2]", units["임시"])
 	}
 }

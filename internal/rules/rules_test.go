@@ -1960,3 +1960,76 @@ func TestScriptCacheEqualsScriptRenderings(t *testing.T) {
 		t.Errorf("a cache of no rules gave %q, want none", got)
 	}
 }
+
+// group:, chapter:, character: and event: in files and not_files go by the
+// file's nodes and third-level tag.
+func TestAppliesScopeTokens(t *testing.T) {
+	r, err := rules.Load(copyRules(t))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, tt := range []struct {
+		token, file string
+		want        bool
+	}{
+		{"group:Skills_Enemy*", "Skills_Enemy-mowe.json", true},
+		{"group:Skills_Enemy*", "Skills_personality-01.json", false},
+		{"group:StoryData/", "StoryData/S1037B.json", true},
+		{"chapter:10", "StoryData/S1037B.json", true},
+		{"chapter:10", "StoryData/S937A.json", false},
+		{"character:heathcliff", "PersonalityVoiceDlg/Voice_Heathcliff_RCorp4_10703.json", true},
+		{"character:heathcliff", "Skills_Enemy-mowe.json", false},
+		{"event:walpu*", "Bufs-walpu7.json", true},
+		{"event:walpu*", "Bufs-tkt.json", false},
+	} {
+		in := rules.Term{KR: "x", Files: []string{tt.token}}
+		if got := r.Applies(in, tt.file); got != tt.want {
+			t.Errorf("files %q on %q = %v, want %v", tt.token, tt.file, got, tt.want)
+		}
+		out := rules.Term{KR: "x", NotFiles: []string{tt.token}}
+		if got := r.Applies(out, tt.file); got == tt.want {
+			t.Errorf("not_files %q on %q = %v, want %v", tt.token, tt.file, got, !tt.want)
+		}
+	}
+}
+
+func TestLintGlossaryScopeTokens(t *testing.T) {
+	for _, tok := range []string{"chapter:x", "chapter:-1", "character:nobody", "group:[", "event:[", "group:", "chapter:", "character:", "event:"} {
+		for _, list := range []string{"files", "not_files"} {
+			root := copyRules(t)
+			edit(t, root, "glossary/terms.yaml", func(s string) string {
+				return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  " + list + ": [\"" + tok + "\"]\n"
+			})
+			if msg := lintMessages(rules.Lint(root)); !strings.Contains(msg, "백화점") || !strings.Contains(msg, tok) {
+				t.Errorf("%s %q: lint = %q, want an error naming the term and the token", list, tok, msg)
+			}
+		}
+	}
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(s string) string {
+		return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  files: [\"group:Skills_Enemy*\", \"chapter:10\", \"character:heathcliff\", \"event:walpu*\"]\n"
+	})
+	if msg := lintMessages(rules.Lint(root)); strings.Contains(msg, "백화점") {
+		t.Errorf("lint reports valid scope tokens:\n%s", msg)
+	}
+}
+
+func TestLintScopeWarningsTokens(t *testing.T) {
+	root := copyRules(t)
+	edit(t, root, "glossary/terms.yaml", func(string) string {
+		return "- kr: 속도\n  zh: 速度\n  status: approved\n  files: [\"group:Skills_Enemy*\", \"chapter:10\", \"character:heathcliff\", \"event:walpu*\", \"group:Nope\", \"chapter:42\", \"event:zzz\", \"character:nobody\"]\n"
+	})
+	files := []string{"Skills_Enemy-mowe.json", "StoryData/S1037B.json", "PersonalityVoiceDlg/Voice_Heathcliff_RCorp4_10703.json", "Bufs-walpu7.json"}
+	var msgs []string
+	for _, w := range rules.LintScopeWarnings(root, files) {
+		msgs = append(msgs, w.Message)
+	}
+	if len(msgs) != 3 {
+		t.Fatalf("warnings = %q, want 3", msgs)
+	}
+	for i, w := range []string{`"group:Nope"`, `"chapter:42"`, `"event:zzz"`} {
+		if !strings.Contains(msgs[i], w) {
+			t.Errorf("warning %d = %q, want %s", i, msgs[i], w)
+		}
+	}
+}

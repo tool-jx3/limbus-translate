@@ -68,12 +68,17 @@
             "type": "boolean"
           },
           "files": {
-            "description": "The file patterns the term is written for; an item may also be family:<id>, which stands for the units of a batch whose family is <id>. Absent, it is for every file. A term with files applies only to the units whose file matches one of them, and for those units it takes the place of a term of the same kr without files.",
+            "description": "The file patterns the term is written for; an item may also be family:<id>, which stands for the units of a batch whose family is <id>, or group:<node>, chapter:<n>, character:<id> or event:<name>, which go by the file's node and tag. Absent, it is for every file. A term with files applies only to the units whose file matches one of them, and for those units it takes the place of a term of the same kr without files.",
             "type": "array",
             "items": { "type": "string" }
           },
           "not_files": {
-            "description": "The file patterns the term does not apply to, written like files (family:<id> included: the units of a batch whose family is <id>). A unit whose file matches one of them is not held to this term, and gets no rendering from it.",
+            "description": "The file patterns the term does not apply to, written like files (family:<id> included: the units of a batch whose family is <id>; also group:<node>, chapter:<n>, character:<id> and event:<name>). A unit whose file matches one of them is not held to this term, and gets no rendering from it.",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "units": {
+            "description": "The keys of the units of this batch that use the term. The scope (files, not_files) and the longer-entry rule are already counted in: a unit not listed here need not use the term, even if its KR holds the word.",
             "type": "array",
             "items": { "type": "string" }
           }

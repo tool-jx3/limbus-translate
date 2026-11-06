@@ -376,7 +376,7 @@ func nonNil(s []string) []string {
 }
 
 // unitText is the KR text of a unit and the file it is in.
-type unitText struct{ file, kr string }
+type unitText struct{ file, kr, key string }
 
 // glossaryFor is the union of the terms each text is held to (TermsIn), each
 // in its own file (so a term for some files only comes with a text of those
@@ -388,28 +388,44 @@ type unitText struct{ file, kr string }
 func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []rules.Term {
 	terms := []rules.Term{}
 	type termKey struct{ kr, zh, files, notFiles string }
-	seen := map[termKey]bool{}
+	index := map[termKey]int{} // into terms
 	// No glossary KR is deduped against the provisional terms: ActiveProvisional
 	// already leaves out a KR the glossary has an entry for. Only the texts
 	// of the batch can bring the same provisional term twice.
 	var prov []rules.Term
-	seenKR := map[string]bool{}
+	provIndex := map[string]int{} // KR -> into prov
 	for _, x := range texts {
 		for _, t := range TermsIn(r, provisional, x.file, x.kr) {
 			if t.Provisional {
-				if !seenKR[t.KR] {
-					seenKR[t.KR] = true
+				i, ok := provIndex[t.KR]
+				if !ok {
+					i = len(prov)
+					provIndex[t.KR] = i
 					prov = append(prov, t)
 				}
+				prov[i].Units = appendUnit(prov[i].Units, x.key)
 				continue
 			}
-			if k := (termKey{t.KR, t.ZH, strings.Join(t.Files, "\x00"), strings.Join(t.NotFiles, "\x00")}); !seen[k] {
-				seen[k] = true
+			k := termKey{t.KR, t.ZH, strings.Join(t.Files, "\x00"), strings.Join(t.NotFiles, "\x00")}
+			i, ok := index[k]
+			if !ok {
+				i = len(terms)
+				index[k] = i
 				terms = append(terms, t)
 			}
+			terms[i].Units = appendUnit(terms[i].Units, x.key)
 		}
 	}
 	return append(terms, prov...)
+}
+
+// appendUnit adds key to units unless it is the last one there already (a
+// unit's texts come together).
+func appendUnit(units []string, key string) []string {
+	if key == "" || slices.Contains(units, key) {
+		return units
+	}
+	return append(units, key)
 }
 
 // TermsIn returns the terms the KR text kr of file is held to: its glossary

@@ -52,6 +52,13 @@
 
 - `files` 是檔名樣式清單，寫法同 `lct.yaml` 的 `frozen`：`StoryData/S10[0-9][0-9]*`、`*a1c10*`；以 `/**` 結尾的樣式涵蓋該目錄底下所有檔（`RPGSystem/**`）。`*` 不跨 `/`：`RPGSystem*` 不比對 `RPGSystem/` 底下的檔，要寫 `RPGSystem/**`。省略 `files` = 所有檔
 - `files` 的項目也可以寫 `family:<id>`，指 `guides/routing.yaml` 路由判為該族群的檔（`lct` 用 `Family(file)`，路由由上往下第一個符合的族群），例如 `files: ["family:story-main"]` 只適用於主線劇情族群的檔；族群裡的檔隨路由增減，不必逐一列檔名樣式。可以和檔名樣式混用（`files: ["family:mirror", "Enemies-a1c10*"]`，符合任一項就適用）。`<id>` 不在路由的族群裡，`lct rules lint` 報錯；有 raw 時，族群裡沒有任何 KR 包的檔則給警告。批次的詞彙表欄位原樣帶著 `family:<id>`，它指批次 `family` 為 <id> 的單位
+- `files`、`not_files` 的項目另有四種寫法，依檔的節點與第三層標記（`FileNode`、`FileTag`）判斷：
+  - `group:<樣式>`：檔的節點（子節點或頂層節點）符合 `path.Match` 樣式，`*` 不跨 `/`。例如 `group:Skills_Enemy*`、`group:StoryData/`
+  - `chapter:<數字>`：章節標記為該章的檔，例如 `chapter:10`（`StoryData/S1037B.json`）
+  - `character:<id>`：角色標記為該角色的檔，`<id>` 是 `guides/characters/` 的角色 id，例如 `character:heathcliff`
+  - `event:<樣式>`：活動標記符合樣式的檔，例如 `event:walpu*`（`Bufs-walpu7.json`）
+  - 這些寫法可以和檔名樣式、`family:<id>` 混用，在 `files` 與 `not_files` 的效力相同。`chapter:` 的值不是數字、`character:` 不是已有的角色 id、`group:`／`event:` 的樣式不合法或是空的，`lct rules lint` 報錯；有 raw 時，比對不到任何 KR 包的檔則給警告
+  - 批次的詞彙表條目原樣帶著這些寫法，另有 `units`：批次裡要用這個條目的單位的 `key`，已經算進範圍與長詞條優先
 - 只有批次的檔名符合時，條目才會注入批次，驗證時才檢查它的 `forbidden`
 - 同一個 `kr` 可以有多個條目，其中至多一個 `status: approved` 的條目不設 `files`（`lct rules lint` 檢查；`candidate` 不計，因為它不生效）。某個檔有適用的、設了 `files` 的條目（`files` 符合，且 `not_files` 不符合，見下面的 `not_files`）時，由那些條目代表這個詞，沒設 `files` 的那一條在這個檔不適用；沒有這樣的條目就用沒設 `files` 的那一條
 - `files` 重疊的條目會同時生效：一個檔符合同一個 `kr` 的多個有 `files` 的條目時，這些條目全部注入批次、全部檢查 `forbidden`。要讓譯法互斥，`files` 的樣式就不要重疊

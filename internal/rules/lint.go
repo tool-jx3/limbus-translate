@@ -99,6 +99,7 @@ func (l *linter) glossary() {
 	}
 	general := map[string]int{} // KR text -> approved entries that apply to every file
 	families := l.familyIDs()
+	characters := l.characterIDs()
 	for i, t := range terms {
 		label := fmt.Sprintf("entry %d", i+1)
 		if t.KR != "" {
@@ -139,26 +140,14 @@ func (l *linter) glossary() {
 		if t.Match != "" && t.Match != MatchWord && t.Match != MatchSubstring {
 			l.report(GlossaryFile, "%s: match is %q, want %q (hit only where the KR stands as a word; the default) or %q (hit inside a longer word too)", label, t.Match, MatchWord, MatchSubstring)
 		}
-		for _, pattern := range t.Files {
-			if id, isFamily := strings.CutPrefix(pattern, FamilyPrefix); isFamily {
-				if families != nil && !slices.Contains(families, id) {
-					l.report(GlossaryFile, "%s: files names family %q, which is not a family of %s", label, id, RoutingFile)
+		for _, list := range []struct {
+			name     string
+			patterns []string
+		}{{"files", t.Files}, {"not_files", t.NotFiles}} {
+			for _, pattern := range list.patterns {
+				if msg := scopeItemError(pattern, families, characters); msg != "" {
+					l.report(GlossaryFile, "%s: %s %s", label, list.name, msg)
 				}
-			} else if pattern == "" {
-				l.report(GlossaryFile, "%s: files holds an empty pattern", label)
-			} else if err := config.ValidPattern(pattern); err != nil {
-				l.report(GlossaryFile, "%s: files pattern %q is not valid: %v", label, pattern, err)
-			}
-		}
-		for _, pattern := range t.NotFiles {
-			if id, isFamily := strings.CutPrefix(pattern, FamilyPrefix); isFamily {
-				if families != nil && !slices.Contains(families, id) {
-					l.report(GlossaryFile, "%s: not_files names family %q, which is not a family of %s", label, id, RoutingFile)
-				}
-			} else if pattern == "" {
-				l.report(GlossaryFile, "%s: not_files holds an empty pattern", label)
-			} else if err := config.ValidPattern(pattern); err != nil {
-				l.report(GlossaryFile, "%s: not_files pattern %q is not valid: %v", label, pattern, err)
 			}
 		}
 		// A pattern in both lists takes the files of files out again. Whether
@@ -435,6 +424,65 @@ func (l *linter) adjustmentFile(rel string, keyOwner map[string]string) {
 	}
 }
 
+// scopeItemError describes what is wrong with an item of files or not_files,
+// or returns "". families and characters are the known ids; nil means they
+// could not be read and the tokens naming them are not judged.
+func scopeItemError(item string, families, characters []string) string {
+	prefix, arg, isToken := cutScopeToken(item)
+	switch {
+	case item == "":
+		return "holds an empty pattern"
+	case !isToken:
+		if err := config.ValidPattern(item); err != nil {
+			return fmt.Sprintf("pattern %q is not valid: %v", item, err)
+		}
+		return ""
+	case arg == "":
+		return fmt.Sprintf("holds %q without a name after it", item)
+	}
+	switch prefix {
+	case FamilyPrefix:
+		if families != nil && !slices.Contains(families, arg) {
+			return fmt.Sprintf("names family %q, which is not a family of %s", arg, RoutingFile)
+		}
+	case GroupPrefix, EventPrefix:
+		if _, err := path.Match(arg, ""); err != nil {
+			return fmt.Sprintf("token %q is not a valid pattern: %v", item, err)
+		}
+	case ChapterPrefix:
+		if strings.Trim(arg, "0123456789") != "" {
+			return fmt.Sprintf("token %q needs a chapter number (digits only)", item)
+		}
+	case CharacterPrefix:
+		if characters != nil && !slices.Contains(characters, arg) {
+			return fmt.Sprintf("token %q names a character with no file in %s", item, CharactersDir)
+		}
+	}
+	return ""
+}
+
+// characterIDs returns the ids of the character guides, or nil when they
+// cannot be read (Lint reports that).
+func (l *linter) characterIDs() []string { return readCharacterIDs(l.root) }
+
+func readCharacterIDs(root string) []string {
+	files, err := characterFiles(root)
+	if err != nil {
+		return nil
+	}
+	ids := []string{}
+	for _, rel := range files {
+		data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(rel)))
+		if err != nil {
+			continue
+		}
+		if c, _, err := parseCharacter(data); err == nil && c.ID != "" {
+			ids = append(ids, c.ID)
+		}
+	}
+	return ids
+}
+
 // LintScopeWarnings returns a warning for each files or not_files pattern of
 // the glossary that matches none of krFiles, the file names of the KR pack
 // (the names GlossaryHits receives): such a pattern is a misspelled name or a
@@ -458,6 +506,24 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 		rt, _ = parseRouting(data) // a routing that does not parse is Lint's to report; family: items are then not judged
 	}
 	r := &Rules{Routing: rt}
+	if files, err := characterFiles(root); err == nil {
+		for _, rel := range files {
+			if data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(rel))); err == nil {
+				if c, _, err := parseCharacter(data); err == nil {
+					c.Path = rel
+					r.Characters = append(r.Characters, c)
+				}
+			}
+		}
+	}
+	characterIDs := []string{}
+	for _, c := range r.Characters {
+		characterIDs = append(characterIDs, c.ID)
+	}
+	families := make([]string, 0, len(rt.Families))
+	for _, f := range rt.Families {
+		families = append(families, f.ID)
+	}
 	var out []LintError
 	for _, t := range terms {
 		for _, list := range []struct {
@@ -465,19 +531,10 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 			patterns []string
 		}{{"files", t.Files}, {"not_files", t.NotFiles}} {
 			for _, pattern := range list.patterns {
-				id, isFamily := strings.CutPrefix(pattern, FamilyPrefix)
-				if isFamily && !slices.ContainsFunc(rt.Families, func(f FamilyRule) bool { return f.ID == id }) {
-					continue // no routing to judge by, or an unknown family: Lint reports that as an error
+				if scopeItemError(pattern, families, characterIDs) != "" {
+					continue // no routing to judge by, an unknown name or a bad pattern: Lint reports these as errors
 				}
-				if !isFamily && (pattern == "" || config.ValidPattern(pattern) != nil) {
-					continue // Lint reports these
-				}
-				if !slices.ContainsFunc(krFiles, func(f string) bool {
-					if isFamily {
-						return r.Family(f) == id
-					}
-					return config.MatchAny([]string{pattern}, f)
-				}) {
+				if !slices.ContainsFunc(krFiles, func(f string) bool { return r.matchScope([]string{pattern}, f) }) {
 					out = append(out, LintError{File: GlossaryFile, Message: fmt.Sprintf("term %q: %s pattern %q matches no file of the KR pack", t.KR, list.name, pattern)})
 				}
 			}

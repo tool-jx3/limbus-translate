@@ -505,7 +505,7 @@ func assemble(
 				Refs:    cleanRefs(item.Refs),
 				Keep:    constraints(u.KR),
 			})
-			texts = append(texts, unitText{fd.file, u.KR})
+			texts = append(texts, unitText{fd.file, u.KR, item.Key})
 			needRecords = needRecords || len(b.Units[len(b.Units)-1].Keep.IDs) > 0
 		}
 		// The guides of the file and of the speakers of its units, each once.

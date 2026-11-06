@@ -2,6 +2,7 @@ package rules
 
 import (
 	"fmt"
+	"path"
 	"slices"
 	"strings"
 	"unicode/utf8"
@@ -45,6 +46,10 @@ type Term struct {
 	// on by a person (see batch.ActiveProvisional). It is never read from the
 	// glossary: "provisional" is not a glossary key.
 	Provisional bool `yaml:"-" json:"provisional,omitempty"`
+	// Units are the keys of the units of a batch that this entry is for (see
+	// batch.Glossary): scope and longer entries already counted in. Only a
+	// batch fills it.
+	Units []string `yaml:"-" json:"units,omitempty"`
 }
 
 // MatchWord is the default value of Term.Match: the term hits only where its
@@ -60,37 +65,105 @@ const MatchSubstring = "substring"
 // Family is story-main.
 const FamilyPrefix = "family:"
 
+// The other scope tokens of Files and NotFiles. group: names a node of the
+// file (FileNode: the top or the sub node) by path.Match; chapter:, character:
+// and event: name the third-level tag of the file (FileTag): a chapter number,
+// a character id, an event name by path.Match.
+const (
+	GroupPrefix     = "group:"
+	ChapterPrefix   = "chapter:"
+	CharacterPrefix = "character:"
+	EventPrefix     = "event:"
+)
+
 // Applies reports whether t is in force in file: file matches one of Files
 // (or t has none) and matches none of NotFiles. An item of those lists is a
-// file pattern (see config.MatchAny) or FamilyPrefix and a family id, which
+// file pattern (see config.MatchAny), FamilyPrefix and a family id, which
 // matches the files of that family by the routing (Rules.Family: the first
-// family that matches a file is its family). It is the one place that decides
-// it; GlossaryHits and ScriptRenderings go through it. Whether an entry
-// without Files gives way to one with is a matter of the KR text (scopedTo),
-// not of this entry alone.
+// family that matches a file is its family), or one of GroupPrefix,
+// ChapterPrefix, CharacterPrefix and EventPrefix with its argument. It is the
+// one place that decides it; GlossaryHits and ScriptRenderings go through it.
+// Whether an entry without Files gives way to one with is a matter of the KR
+// text (scopedTo), not of this entry alone.
 func (r *Rules) Applies(t Term, file string) bool {
 	return (len(t.Files) == 0 || r.matchScope(t.Files, file)) && !r.matchScope(t.NotFiles, file)
 }
 
 // matchScope reports whether file matches one item of items, patterns and
-// family ids alike.
+// tokens alike.
 func (r *Rules) matchScope(items []string, file string) bool {
-	family := ""
-	haveFamily := false
+	var (
+		family, haveFamily = "", false
+		node, haveNode     = Node{}, false
+		tag, haveTag, done = Tag{}, false, false
+	)
 	for _, item := range items {
-		id, isFamily := strings.CutPrefix(item, FamilyPrefix)
-		if !isFamily {
+		prefix, arg, isToken := cutScopeToken(item)
+		if !isToken {
 			if config.MatchAny([]string{item}, file) {
 				return true
 			}
 			continue
 		}
-		if !haveFamily {
-			family, haveFamily = r.Family(file), true
+		switch prefix {
+		case FamilyPrefix:
+			if !haveFamily {
+				family, haveFamily = r.Family(file), true
+			}
+			if family == arg {
+				return true
+			}
+		case GroupPrefix:
+			if !haveNode {
+				node, haveNode = FileNode(file), true
+			}
+			if matchGlob(arg, node.Sub) || matchGlob(arg, node.Top) {
+				return true
+			}
+		default:
+			if !done {
+				tag, haveTag = r.FileTag(file)
+				done = true
+			}
+			if haveTag && tagMatches(prefix, arg, tag) {
+				return true
+			}
 		}
-		if family == id {
-			return true
+	}
+	return false
+}
+
+// scopePrefixes are the token prefixes of Files and NotFiles.
+var scopePrefixes = []string{FamilyPrefix, GroupPrefix, ChapterPrefix, CharacterPrefix, EventPrefix}
+
+// cutScopeToken splits an item of Files or NotFiles into its token prefix and
+// argument; isToken is false for a file pattern.
+func cutScopeToken(item string) (prefix, arg string, isToken bool) {
+	for _, p := range scopePrefixes {
+		if arg, ok := strings.CutPrefix(item, p); ok {
+			return p, arg, true
 		}
+	}
+	return "", "", false
+}
+
+func matchGlob(pattern, name string) bool {
+	if name == "" {
+		return false
+	}
+	ok, err := path.Match(pattern, name)
+	return err == nil && ok
+}
+
+// tagMatches reports whether tag is the one the token prefix and arg name.
+func tagMatches(prefix, arg string, tag Tag) bool {
+	switch prefix {
+	case ChapterPrefix:
+		return tag.Kind == TagChapter && tag.Value == chapterTag(arg).Value
+	case CharacterPrefix:
+		return tag.Kind == TagCharacter && tag.Value == arg
+	case EventPrefix:
+		return tag.Kind == TagEvent && matchGlob(arg, tag.Value)
 	}
 	return false
 }

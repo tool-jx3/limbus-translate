@@ -665,16 +665,29 @@ func TestBatchOutSchemaDeclaresTerms(t *testing.T) {
 	}
 }
 
-// A glossary entry's files and not_files may hold family:<id>; the translator
-// and the batch schema are told what it means.
-func TestFamilyScopeIsExplainedToTheTranslator(t *testing.T) {
+// A glossary entry of a batch lists its units; the translator is told that
+// they already account for the scope and the longer entries, and the batch
+// schema describes the field.
+func TestGlossaryUnitsAreExplainedToTheTranslator(t *testing.T) {
 	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
-	if !strings.Contains(prompt, "`family:<id>`") || !strings.Contains(prompt, "`family` 為 <id>") {
-		t.Error("prompts/translate.md does not explain `family:<id>` against the batch's `family`")
+	for _, want := range []string{
+		"`units` 列出要用這個條目的單位",
+		"`family:`、`group:`、`chapter:`、`character:`、`event:`",
+		"長詞條優先",
+		"不在 `units` 的單位不必用這個條目，即使 KR 含這個詞",
+	} {
+		if !strings.Contains(prompt, want) {
+			t.Errorf("prompts/translate.md does not say %q", want)
+		}
 	}
 	_, schema := readRepoFile(t, filepath.Join(repoRoot, "schemas", "batch.schema.json"))
-	if strings.Count(schema, "family:<id>") < 2 {
-		t.Error("schemas/batch.schema.json does not describe family:<id> in both files and not_files")
+	if !strings.Contains(schema, `"units"`) || !strings.Contains(schema, "family:<id>") {
+		t.Error("schemas/batch.schema.json does not describe the glossary units and the scope tokens")
+	}
+	for _, old := range []string{"條目有 `files`（檔名樣式）時", "也可以是 `family:<id>`"} {
+		if strings.Contains(prompt, old) {
+			t.Errorf("prompts/translate.md still explains the scope item by item (%q)", old)
+		}
 	}
 }
 
@@ -4934,8 +4947,8 @@ func TestAlsoIsExplainedToTheTranslator(t *testing.T) {
 // glossary README say so.
 func TestLongerEntryFirstIsExplained(t *testing.T) {
 	_, prompt := readRepoFile(t, filepath.Join(repoRoot, "prompts", "translate.md"))
-	if !strings.Contains(prompt, "蓋住") || !strings.Contains(prompt, "部分重疊") {
-		t.Error("prompts/translate.md does not say that a longer entry covering a shorter one applies alone there, and that a partial overlap keeps both")
+	if !strings.Contains(prompt, "蓋住") || !strings.Contains(prompt, "部分重疊") || !strings.Contains(prompt, "長詞條優先") {
+		t.Error("prompts/translate.md does not say that the units of an entry account for a longer entry covering a shorter one, and that a partial overlap lists both")
 	}
 	_, readme := readRepoFile(t, filepath.Join(repoRoot, "glossary", "README.md"))
 	if !strings.Contains(readme, "## 長詞條優先") {
