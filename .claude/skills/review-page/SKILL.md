@@ -6,6 +6,7 @@ allowed-tools:
   - Bash(bin/lct accept *)
   - Bash(bin/lct suggest*)
   - Bash(bin/lct search *)
+  - Bash(bin/lct batch preview *)
   - Bash(bin/lct validate *)
   - Bash(bin/lct glossary scope *)
   - Bash(bin/lct adjust add *)
