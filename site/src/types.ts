@@ -271,6 +271,8 @@ export interface ScopeEntry {
   compound: ScopeCount
   explained: number
   unexplained: number
+  /** At most 3 units of each group that does not use the rendering. */
+  examples: ScopeExample[]
 }
 
 export type ScopeKind = 'not-files' | 'files' | 'substring' | 'word' | 'mixed' | 'explained'

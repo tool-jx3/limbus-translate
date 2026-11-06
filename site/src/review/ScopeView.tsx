@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import { reviewHref } from '../route'
-import { LANG_ATTR, type ScopeEntry, type ScopeGroup, type ScopeKind, type ScopeProposal, type ScopeReport, type ScopeThresholds } from '../types'
+import { LANG_ATTR, type ScopeEntry, type ScopeExample, type ScopeGroup, type ScopeKind, type ScopeProposal, type ScopeReport, type ScopeThresholds } from '../types'
 import { ConfirmedLine, IdCopy, UnitLink } from './parts'
 
 const ENTRY_PAGE = 50
@@ -131,14 +131,16 @@ function GroupTable({ groups, t }: { groups: ScopeGroup[]; t: ScopeThresholds })
   )
 }
 
-function Examples({ p }: { p: ScopeProposal }) {
-  if (p.examples.length === 0) return null
+function Examples({ items, label = '例子' }: { items: ScopeExample[]; label?: string }) {
+  if (items.length === 0) return null
   return (
     <details class="sc-examples">
-      <summary>例子（{p.examples.length}）</summary>
+      <summary>
+        {label}（{items.length}）
+      </summary>
       <ul>
-        {p.examples.map((e) => (
-          <li key={e.key}>
+        {items.map((e) => (
+          <li key={`${e.group}\u0000${e.key}`}>
             <span class="rv-where">{e.group}・</span>
             <UnitLink unitKey={e.key} />
             <div lang={LANG_ATTR.kr}>{e.kr}</div>
@@ -182,7 +184,7 @@ function ProposalCard({ p, entry, t, target, all }: { p: ScopeProposal; entry: S
       {p.kind === 'mixed' && p.mixed_groups.length === 0 && <p class="sc-line">各群組都很少用這個譯名。</p>}
       {effect !== '' && <p class="sc-effect">{effect}</p>}
       {entry && <GroupTable groups={entry.groups} t={t} />}
-      <Examples p={p} />
+      <Examples items={p.examples} />
       {entry && (
         <a class="sc-entry-link" href={reviewHref('scope', { id: entry.id, all })}>
           看條目
@@ -217,6 +219,7 @@ function EntryRow({ e, t, target }: { e: ScopeEntry; t: ScopeThresholds; target:
           複合詞 {e.compound.n} 個單位，用了譯名 {e.compound.used}。未用譯名的單位：有說明 {e.explained}、沒說明 {e.unexplained}。
         </p>
         {e.notes !== '' && <p class="sc-line">{e.notes}</p>}
+        <Examples items={e.examples} label="沒用譯名的例子" />
         <IdCopy id={e.id} source={`${e.kr} → ${e.zh}`} />
       </div>
     </details>

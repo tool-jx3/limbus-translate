@@ -680,3 +680,28 @@ func TestUnflaggedNotFilesBeatsFlaggedFiles(t *testing.T) {
 		t.Errorf("proposal = %+v, want the unflagged not_files [family:skill family:story] removing 6", p)
 	}
 }
+
+// An entry carries up to maxExamples units of each group that does not use its
+// rendering, and none of a group that does.
+func TestEntryExamplesOfNonUsingGroups(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 4, "보스 등장", "BOSS 登場")
+	f.add(storyFile, 5, "그 보스다", "那個老大")
+	rep := Analyze(Inputs{Rules: testRules(approved("보스", "BOSS")), Units: f.units})
+	e := entryOf(t, rep, "보스")
+	perGroup := map[string]int{}
+	for _, ex := range e.Examples {
+		perGroup[ex.Group]++
+		if ex.Key == "" || ex.KR != "그 보스다" || ex.ZH != "那個老大" || !strings.HasPrefix(ex.Key, storyFile+"|") {
+			t.Errorf("example = %+v, want a unit of the stories with its KR and ZH", ex)
+		}
+	}
+	// The family and the directory of the stories each get their 3 of the 5.
+	want := map[string]int{"family:story": maxExamples, "StoryData/**": maxExamples}
+	if !reflect.DeepEqual(perGroup, want) {
+		t.Errorf("examples per group = %v, want %v (none for the groups that use it)", perGroup, want)
+	}
+	if empty := entryOf(t, Analyze(Inputs{Rules: testRules(approved("없음", "無"))}), "없음"); empty.Examples == nil || len(empty.Examples) != 0 {
+		t.Errorf("entry without hits has examples %v, want an empty list", empty.Examples)
+	}
+}

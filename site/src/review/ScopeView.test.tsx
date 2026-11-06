@@ -300,6 +300,20 @@ describe('ScopeView', () => {
       await vi.waitFor(() => expect(writeText).toHaveBeenCalledWith('glossary/aaaaaaaa/bbbbbbbb「대상 → 目標」→ '))
     })
 
+    it('shows the examples of the groups that do not use the rendering when the entry is expanded', async () => {
+      const el = await mount()
+      const row = rows(el)[0]!
+      const details = row.querySelector<HTMLElement>('.sc-entry-body details.sc-examples')!
+      expect(details.querySelector('summary')?.textContent).toBe('沒用譯名的例子（3）')
+      const items = [...details.querySelectorAll('li')]
+      expect(items.map((li) => li.querySelector('.rv-where')?.textContent)).toEqual(['family:story-main・', 'family:story-main・', 'StoryData/**・'])
+      expect(items[0]!.textContent).toContain('저 대상은 누구지?')
+      expect(items[0]!.textContent).toContain('那個對象是誰？')
+      expect(items[0]!.querySelector('a')?.getAttribute('href')).toContain('S9001')
+      // an entry without examples has no such block
+      expect(rows(el)[1]!.querySelector('.sc-entry-body details.sc-examples')).toBeNull()
+    })
+
     it('keeps the entry the address names in the list even when the search filters it out', async () => {
       const el = await mount(route({ id: 'glossary/cccccccc/dddddddd' }))
       const search = el.querySelector<HTMLInputElement>('input[name=entry-q]')!

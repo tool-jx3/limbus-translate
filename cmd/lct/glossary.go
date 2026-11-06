@@ -29,8 +29,8 @@ func init() {
 		Name: "glossary scope",
 		Usage: "print where the translations use each approved glossary entry and the proposals of where it should apply, " +
 			"the review/scope.json of lct site, computed from the raw and tw worktrees and the rules as lct site computes it; writes nothing: " +
-			"--json prints thresholds, entries (id glossary/…, kr, zh, also, files, not_files, match, notes, groups with name, kind, n and used, compound, explained, unexplained) " +
-			"and proposals (id scope/…, kind, kr, zh, patterns, match, warn_removed, used_lost, flagged, examples, declined when rules/declined.yaml has the id)",
+			"--json prints thresholds, entries (id glossary/…, kr, zh, also, files, not_files, match, notes, groups with name, kind, n and used, compound, explained, unexplained, examples: at most 3 units of each group that does not use the rendering) " +
+			"and proposals (id scope/…, kind, kr, zh, patterns, match, mixed_groups, warn_removed, warn_added, used_lost, used_gained, flagged, examples, declined when rules/declined.yaml has the id)",
 		Run: runGlossaryScope,
 	})
 }

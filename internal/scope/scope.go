@@ -110,6 +110,9 @@ type Entry struct {
 	// its rendering, with a note that names the term and without.
 	Explained   int `json:"explained"`
 	Unexplained int `json:"unexplained"`
+	// Examples are at most maxExamples units of each group that does not use
+	// the rendering, whether or not a proposal lists them.
+	Examples []Example `json:"examples"`
 }
 
 // Group is the units an entry hits in one family or one directory group.
@@ -552,6 +555,7 @@ func (an *analysis) entry(a *acc) Entry {
 		Also: nonNil(t.Also), Files: nonNil(t.Files), NotFiles: nonNil(t.NotFiles),
 		Match: matchOf(t), Notes: t.Notes, Groups: an.orderedGroups(a),
 		Compound: a.compound, Explained: a.explained, Unexplained: a.unexplained,
+		Examples: an.examplesOfGroups(a, an.notUsedGroups(a), nil),
 	}
 }
 
@@ -590,6 +594,18 @@ func classOf(n, used int) int {
 		return classFew
 	}
 	return classMixed
+}
+
+// notUsedGroups returns the names of the groups of a that do not use the
+// rendering (classNotUsed), in group order.
+func (an *analysis) notUsedGroups(a *acc) []string {
+	out := []string{}
+	for _, g := range an.orderedGroups(a) {
+		if classOf(g.N, g.Used) == classNotUsed {
+			out = append(out, g.Name)
+		}
+	}
+	return out
 }
 
 // mixedGroups returns the names of the groups of a that use the rendering in
@@ -754,21 +770,28 @@ func (a *acc) flag(lost int) bool {
 // entry hits and that do not use the rendering, no unit twice. Compound units
 // are in no group.
 func (an *analysis) groupExamples(a *acc, groups []string) []Example {
+	return an.examplesOfGroups(a, groups, map[int32]bool{})
+}
+
+// examplesOfGroups is groupExamples; a nil listed lists a unit of two groups
+// (its family and its directory) under each.
+func (an *analysis) examplesOfGroups(a *acc, groups []string, listed map[int32]bool) []Example {
 	out := []Example{}
-	listed := map[int32]bool{}
 	for _, g := range groups {
 		n := 0
 		for _, h := range a.hits {
 			if n == maxExamples {
 				break
 			}
-			if h.used || h.compound || listed[h.unit] {
+			if h.used || h.compound || (listed != nil && listed[h.unit]) {
 				continue
 			}
 			if pl := an.placeOf(an.units[h.unit].File); pl.family != g && pl.dir != g {
 				continue
 			}
-			listed[h.unit] = true
+			if listed != nil {
+				listed[h.unit] = true
+			}
 			n++
 			out = append(out, an.example(a.term, h.unit, g))
 		}
