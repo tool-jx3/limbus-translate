@@ -61,11 +61,11 @@ func (t Term) AppliesTo(file string) bool {
 	return (len(t.Files) == 0 || config.MatchAny(t.Files, file)) && !config.MatchAny(t.NotFiles, file)
 }
 
-// scopedTo reports whether t has Files and file is one of them: t then stands
-// for its KR text in file, in place of an entry of that KR without Files,
-// whether or not NotFiles takes it out again.
+// scopedTo reports whether t has Files and applies to file: t then stands for
+// its KR text in file, in place of an entry of that KR without Files. Where
+// NotFiles takes t out of file, the entry without Files is the one for it.
 func (t Term) scopedTo(file string) bool {
-	return len(t.Files) > 0 && config.MatchAny(t.Files, file)
+	return len(t.Files) > 0 && t.AppliesTo(file)
 }
 
 // OccursIn reports whether the KR text of t occurs in kr: as a word, unless t
@@ -175,7 +175,7 @@ const (
 // A term with Files applies to the files that match one of them (see
 // config.MatchAny), a term without to every file; a term does not apply to the
 // files that match one of its NotFiles (see Term.AppliesTo). Of several entries for one
-// KR text, those that match file stand for it alone: the entry without Files
+// KR text, those that apply to file (see Term.AppliesTo) stand for it alone: the entry without Files
 // is the one for the files no other entry takes.
 func (r *Rules) GlossaryHits(file, kr string) []Term {
 	kr = validate.MatchText(kr) // a paired tag inside a term does not split it; a self-closing one does not fuse words

@@ -62,7 +62,7 @@
 
 - 寫法同 `files`：檔名樣式清單，`StoryData/**` 涵蓋該目錄底下所有檔，也可以是 `*a1c10*` 這類 glob。例如 `not_files: ["StoryData/**"]` 讓條目不用在 `StoryData/` 底下的檔
 - 條目適用於一個檔，要同時滿足：沒設 `files`，或 `files` 有一個樣式符合；而且 `not_files` 沒有樣式符合。兩者都設時是這兩個條件的交集
-- `not_files` 只讓條目在符合的檔不適用，不改變上一節 `files` 的優先規則：某檔符合同一個 `kr` 的有 `files` 條目時，沒設 `files` 的那一條在該檔不適用。要讓兩條互補，一條設 `not_files`、另一條設相同樣式的 `files`（例如「신부」：神父那條 `not_files: ["StoryData/S10[0-9][0-9]*"]`，牧師那條 `files: ["StoryData/S10[0-9][0-9]*"]`），每個檔恰好一條適用
+- 上一節 `files` 的優先規則看「適用」：有 `files` 的條目只在它適用的檔（`files` 符合且 `not_files` 不符合）代表這個詞，沒設 `files` 的那一條才在該檔不適用；有 `files` 的條目被 `not_files` 排除的檔，仍用沒設 `files` 的那一條。要讓兩條互補，一條設 `not_files`、另一條設相同樣式的 `files`（例如「신부」：神父那條 `not_files: ["StoryData/S10[0-9][0-9]*"]`，牧師那條 `files: ["StoryData/S10[0-9][0-9]*"]`），每個檔恰好一條適用
 - `lct rules lint` 檢查樣式寫法，也會在 `files` 的每個樣式都同時寫在 `not_files`（條目在任何檔都不適用）時報錯；兩個不同的樣式是否重疊不檢查
 - 批次是一檔一檔切的，篩選在注入前就做完，批次的詞彙表欄位不帶 `not_files`
 

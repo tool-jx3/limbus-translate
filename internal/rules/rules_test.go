@@ -1268,3 +1268,24 @@ func TestGlossaryHitsSelfClosingTagSeparatesWords(t *testing.T) {
 		}
 	}
 }
+
+// An entry with files stands for its KR text only in the files where it
+// applies: files match and not_files does not. Where not_files takes it out,
+// the entry without files is the one for the file.
+func TestGlossaryHitsScopedEntryExcludedByNotFiles(t *testing.T) {
+	r := rulesWithGlossary(t, `- kr: 신부
+  zh: 牧師
+  status: approved
+  files: ["StoryData/**"]
+  not_files: ["StoryData/S10*"]
+
+- kr: 신부
+  zh: 神父
+  status: approved
+`)
+	for file, want := range map[string]string{"StoryData/S1001.json": "神父", "StoryData/S0901.json": "牧師", "Skills.json": "神父"} {
+		if got := zhOf(r.GlossaryHits(file, "신부가 왔다")); !slices.Equal(got, []string{want}) {
+			t.Errorf("GlossaryHits(%q) = %v, want [%s]", file, got, want)
+		}
+	}
+}
