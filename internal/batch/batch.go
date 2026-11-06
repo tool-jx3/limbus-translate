@@ -419,8 +419,8 @@ func glossaryFor(r *rules.Rules, provisional []rules.Term, texts []unitText) []r
 	return append(terms, prov...)
 }
 
-// appendUnit adds key to units unless it is the last one there already (a
-// unit's texts come together).
+// appendUnit adds key to units unless it is there already (a unit has
+// several texts, and a key is listed once).
 func appendUnit(units []string, key string) []string {
 	if key == "" || slices.Contains(units, key) {
 		return units

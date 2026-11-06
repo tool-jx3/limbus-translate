@@ -463,20 +463,39 @@ func scopeItemError(item string, families, characters []string) string {
 
 // characterIDs returns the ids of the character guides, or nil when they
 // cannot be read (Lint reports that).
-func (l *linter) characterIDs() []string { return readCharacterIDs(l.root) }
-
-func readCharacterIDs(root string) []string {
-	files, err := characterFiles(root)
+func (l *linter) characterIDs() []string {
+	chars, err := loadCharacters(l.root)
 	if err != nil {
 		return nil
 	}
-	ids := []string{}
+	return characterIDList(chars)
+}
+
+// loadCharacters reads the character guides under root; one that cannot be
+// read or parsed is left out (Lint reports it).
+func loadCharacters(root string) ([]Character, error) {
+	files, err := characterFiles(root)
+	if err != nil {
+		return nil, err
+	}
+	chars := []Character{}
 	for _, rel := range files {
 		data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(rel)))
 		if err != nil {
 			continue
 		}
-		if c, _, err := parseCharacter(data); err == nil && c.ID != "" {
+		if c, _, err := parseCharacter(data); err == nil {
+			c.Path = rel
+			chars = append(chars, c)
+		}
+	}
+	return chars, nil
+}
+
+func characterIDList(chars []Character) []string {
+	ids := []string{}
+	for _, c := range chars {
+		if c.ID != "" {
 			ids = append(ids, c.ID)
 		}
 	}
@@ -506,20 +525,10 @@ func LintScopeWarnings(root string, krFiles []string) []LintError {
 		rt, _ = parseRouting(data) // a routing that does not parse is Lint's to report; family: items are then not judged
 	}
 	r := &Rules{Routing: rt}
-	if files, err := characterFiles(root); err == nil {
-		for _, rel := range files {
-			if data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(rel))); err == nil {
-				if c, _, err := parseCharacter(data); err == nil {
-					c.Path = rel
-					r.Characters = append(r.Characters, c)
-				}
-			}
-		}
-	}
-	characterIDs := []string{}
-	for _, c := range r.Characters {
-		characterIDs = append(characterIDs, c.ID)
-	}
+	// Unreadable character guides leave the list empty, not nil: character:
+	// tokens are then not judged (scopeItemError reports them).
+	r.Characters, _ = loadCharacters(root)
+	characterIDs := characterIDList(r.Characters)
 	families := make([]string, 0, len(rt.Families))
 	for _, f := range rt.Families {
 		families = append(families, f.ID)
