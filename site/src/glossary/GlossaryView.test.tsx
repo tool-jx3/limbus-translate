@@ -4,8 +4,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { clearDataCache } from '../data'
 import { glossaryHref, termHref, type Route } from '../route'
 import { fixture, fixtureFetch, runEffectsAtOnce } from '../testdata'
-import type { GlossaryIndex } from '../types'
-import { GlossaryView } from './GlossaryView'
+import type { GlossaryIndex, ScopeEntry } from '../types'
+import { filterEntries, GlossaryView } from './GlossaryView'
 
 type GlossaryRoute = Extract<Route, { kind: 'glossary' }>
 const base = fixture<GlossaryIndex>('glossary/index.json')
@@ -50,7 +50,8 @@ describe('GlossaryView', () => {
     const el = await mount()
     expect(krs(el)).toEqual(['대상', '공격', '보스'])
     const heads = [...el.querySelectorAll('.gl-table thead th')].map((h) => h.textContent)
-    expect(heads).toEqual(['原詞', '譯名', '檢查', '範圍', '出現', '用了', '沒用', '應用率'])
+    // the column sorted by carries a direction mark
+    expect(heads).toEqual(['原詞', '譯名', '檢查', '範圍', '出現', '用了', '沒用▼', '應用率'])
     const r = rows(el)[0]!
     expect(r.querySelector('.gl-zh')?.textContent).toBe('目標')
     expect(r.querySelector('.gl-also')?.textContent).toContain('對象')
@@ -171,5 +172,114 @@ describe('GlossaryView', () => {
     containers.push(container)
     render(<GlossaryView route={route()} />, container)
     await vi.waitFor(() => expect(container.querySelector('.notice')).not.toBeNull())
+  })
+})
+
+describe('filterEntries, the sorts of the columns', () => {
+  const mk = (kr: string, zh: string, o: Partial<ScopeEntry> = {}): ScopeEntry => ({ ...base.entries[0]!, id: `glossary/${kr}`, kr, zh, also: [], files: [], not_files: [], match: 'word', notes: '', check: 'warn', n: 10, used: 5, rate: 0.5, ...o })
+  const f = (sort: Parameters<typeof filterEntries>[1]['sort']) => ({ q: '', sort, only: '' as const, family: '' })
+  const order = (es: ScopeEntry[], sort: Parameters<typeof filterEntries>[1]['sort']) => filterEntries([...es], f(sort)).map((e) => e.kr)
+  const es = [
+    mk('b', 'Y', { check: 'hard', n: 30, used: 10, rate: 0.9, files: ['family:story-main'] }),
+    mk('a', 'Z', { n: 10, used: 10, rate: 0.1 }),
+    mk('c', 'X', { n: 20, used: 5, rate: 0.5, match: 'substring' }),
+  ]
+
+  it('orders by KR and ZH, either way', () => {
+    expect(order(es, 'kr')).toEqual(['a', 'b', 'c'])
+    expect(order(es, 'kr-desc')).toEqual(['c', 'b', 'a'])
+    expect(order(es, 'zh')).toEqual(['c', 'b', 'a'])
+    expect(order(es, 'zh-desc')).toEqual(['a', 'b', 'c'])
+  })
+
+  it('orders by the check as shown, hard before warn', () => {
+    expect(order(es, 'check')).toEqual(['b', 'a', 'c'])
+    expect(order(es, 'check-desc')).toEqual(['a', 'c', 'b'])
+  })
+
+  it('orders by the scope line', () => {
+    // files：family:story-main (b), match：substring (c), 全部 (a)
+    expect(order(es, 'scope')).toEqual(['b', 'c', 'a'])
+    expect(order(es, 'scope-desc')).toEqual(['a', 'c', 'b'])
+  })
+
+  it('orders by n, used, missing and rate in the first direction, and back', () => {
+    expect(order(es, 'n')).toEqual(['b', 'c', 'a'])
+    expect(order(es, 'n-asc')).toEqual(['a', 'c', 'b'])
+    expect(order(es, 'used')).toEqual(['a', 'b', 'c'])
+    expect(order(es, 'used-asc')).toEqual(['c', 'a', 'b'])
+    // missing: b 20, c 15, a 0
+    expect(order(es, 'missing')).toEqual(['b', 'c', 'a'])
+    expect(order(es, 'missing-asc')).toEqual(['a', 'c', 'b'])
+    expect(order(es, 'rate')).toEqual(['a', 'c', 'b'])
+    expect(order(es, 'rate-desc')).toEqual(['b', 'c', 'a'])
+  })
+
+  it('breaks a tie by KR then ZH, A to Z, whichever way the column goes', () => {
+    const tied = [mk('b', 'B', { n: 5 }), mk('a', 'Z', { n: 5 }), mk('a', 'A', { n: 5 }), mk('c', 'A', { n: 9 })]
+    const zhs = (sort: Parameters<typeof filterEntries>[1]['sort']) => filterEntries([...tied], f(sort)).map((e) => `${e.kr}${e.zh}`)
+    expect(zhs('n')).toEqual(['cA', 'aA', 'aZ', 'bB'])
+    expect(zhs('n-asc')).toEqual(['aA', 'aZ', 'bB', 'cA'])
+  })
+})
+
+describe('GlossaryView, the sort by header', () => {
+  const heads = (el: HTMLElement) => [...el.querySelectorAll<HTMLElement>('.gl-table thead th')]
+  const click = (el: HTMLElement, name: string) => act(() => heads(el).find((h) => h.querySelector('button')?.textContent?.startsWith(name))!.querySelector('button')!.click())
+  const sortOf = () => new URLSearchParams(location.hash.split('?')[1] ?? '').get('sort')
+
+  it('puts a button in every header', async () => {
+    const el = await mount()
+    expect(heads(el).map((h) => h.querySelector('button')?.getAttribute('type'))).toEqual(Array(8).fill('button'))
+  })
+
+  it('sorts by another column in the direction of its first click', async () => {
+    const el = await mount()
+    await click(el, '出現')
+    expect(sortOf()).toBe('n')
+    await click(el, '原詞')
+    expect(sortOf()).toBe('kr')
+  })
+
+  it('goes the other way on the column it is sorted by', async () => {
+    const el = await mount(route({ sort: 'n' }))
+    await click(el, '出現')
+    expect(sortOf()).toBe('n-asc')
+    const back = await mount(route({ sort: 'n-asc' }))
+    await click(back, '出現')
+    expect(sortOf()).toBe('n')
+    const kr = await mount(route({ sort: 'kr' }))
+    await click(kr, '原詞')
+    expect(sortOf()).toBe('kr-desc')
+  })
+
+  it('goes back to the default address when missing is the sort picked again by its first click', async () => {
+    const el = await mount(route({ sort: 'missing-asc' }))
+    await click(el, '沒用')
+    expect(location.hash).toBe(glossaryHref())
+  })
+
+  it('marks the sorted column with aria-sort and a hidden mark, and no other', async () => {
+    const asc = await mount(route({ sort: 'rate' }))
+    expect(heads(asc).map((h) => h.getAttribute('aria-sort'))).toEqual([null, null, null, null, null, null, null, 'ascending'])
+    expect(heads(asc)[7]!.querySelector('span[aria-hidden=true]')?.textContent).toBe('▲')
+    const desc = await mount(route({ sort: 'n' }))
+    expect(heads(desc).map((h) => h.getAttribute('aria-sort'))).toEqual([null, null, null, null, 'descending', null, null, null])
+    expect(heads(desc)[4]!.querySelector('span[aria-hidden=true]')?.textContent).toBe('▼')
+    expect(desc.querySelectorAll('.gl-table thead [aria-hidden=true]')).toHaveLength(1)
+  })
+
+  it('lists two directions of each column in the select, the same values as the headers', async () => {
+    const el = await mount()
+    const opts = [...el.querySelectorAll<HTMLOptionElement>('select[name=sort] option')]
+    expect(opts.map((o) => o.value)).toEqual(['kr', 'kr-desc', 'zh', 'zh-desc', 'check', 'check-desc', 'scope', 'scope-desc', 'n', 'n-asc', 'used', 'used-asc', 'missing', 'missing-asc', 'rate', 'rate-desc'])
+    expect(opts.map((o) => o.textContent)).toEqual([
+      '原詞（A→Z）', '原詞（Z→A）', '譯名（A→Z）', '譯名（Z→A）', '檢查（A→Z）', '檢查（Z→A）', '範圍（A→Z）', '範圍（Z→A）',
+      '出現（多到少）', '出現（少到多）', '用了（多到少）', '用了（少到多）', '沒用（多到少）', '沒用（少到多）', '應用率（低到高）', '應用率（高到低）',
+    ])
+    for (const o of opts) {
+      const el2 = await mount(route({ sort: o.value as GlossaryRoute['sort'] }))
+      expect(el2.querySelectorAll('.gl-table thead [aria-sort]')).toHaveLength(1)
+    }
   })
 })

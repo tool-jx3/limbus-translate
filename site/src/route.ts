@@ -18,7 +18,42 @@ export type Route =
   | { kind: 'term'; id: string; family: string; group: string; chapter: string; character: string; event: string; origin: string; q: string }
 
 /** How the list of glossary entries is ordered: by units without the rendering (most first), by KR, or by rate. */
-export type GlossarySort = 'missing' | 'kr' | 'rate' | 'rate-desc'
+/** The columns of the glossary list that sort, each with the direction of its first click: counts go most first, text A to Z, rate lowest first. */
+export const GLOSSARY_COLUMNS = [
+  { id: 'kr', first: 'asc' },
+  { id: 'zh', first: 'asc' },
+  { id: 'check', first: 'asc' },
+  { id: 'scope', first: 'asc' },
+  { id: 'n', first: 'desc' },
+  { id: 'used', first: 'desc' },
+  { id: 'missing', first: 'desc' },
+  { id: 'rate', first: 'asc' },
+] as const
+export type GlossaryColumn = (typeof GLOSSARY_COLUMNS)[number]['id']
+export type SortDir = 'asc' | 'desc'
+type SortValueOf<C> = C extends { id: infer I extends string; first: infer D } ? (D extends 'asc' ? I | `${I}-desc` : I | `${I}-asc`) : never
+/** A sort of the glossary list: the id of a column for its first direction, the id with -desc or -asc for the other. */
+export type GlossarySort = SortValueOf<(typeof GLOSSARY_COLUMNS)[number]>
+
+const other = (d: SortDir): SortDir => (d === 'asc' ? 'desc' : 'asc')
+
+/** The sort value of a column in a direction. */
+export function glossarySort(id: GlossaryColumn, dir: SortDir): GlossarySort {
+  const first = GLOSSARY_COLUMNS.find((c) => c.id === id)!.first
+  return (dir === first ? id : `${id}-${dir}`) as GlossarySort
+}
+
+/** The column and direction a sort value stands for. */
+export function sortParts(sort: GlossarySort): { id: GlossaryColumn; dir: SortDir } {
+  for (const c of GLOSSARY_COLUMNS) {
+    if (sort === c.id) return { id: c.id, dir: c.first }
+    if (sort === `${c.id}-${other(c.first)}`) return { id: c.id, dir: other(c.first) }
+  }
+  return { id: 'missing', dir: 'desc' }
+}
+
+/** Every sort value, the columns in order, the first direction first. */
+export const GLOSSARY_SORTS: readonly GlossarySort[] = GLOSSARY_COLUMNS.flatMap((c) => [glossarySort(c.id, c.first), glossarySort(c.id, other(c.first))])
 /** Which entries the list keeps: all, those with a unit without the rendering, or the hard candidates. */
 export type GlossaryOnly = '' | 'missing' | 'hard'
 
@@ -43,7 +78,6 @@ const JPEN_CLASSES: readonly string[] = ['explained', 'partial', 'same']
 const LANGS: readonly string[] = ['kr', 'jp', 'en', 'zh']
 const REVIEW_TABS: readonly string[] = ['suggestions', 'warnings', 'notes', 'todo', 'scope']
 const UPDATE_KINDS: readonly string[] = ['new', 'kr-changed', 'deleted', 'zh-changed']
-const GLOSSARY_SORTS: readonly string[] = ['missing', 'kr', 'rate', 'rate-desc']
 const GLOSSARY_ONLY: readonly string[] = ['missing', 'hard']
 /** The <a>/<b> of glossary/<a>/<b>. */
 const ENTRY_PATH = /^[0-9A-Za-z_-]+\/[0-9A-Za-z_-]+$/
@@ -118,7 +152,7 @@ export function parseHash(hash: string): Route {
     return {
       kind: 'glossary',
       q: query.get('q') ?? '',
-      sort: GLOSSARY_SORTS.includes(sort) ? (sort as GlossarySort) : 'missing',
+      sort: (GLOSSARY_SORTS as readonly string[]).includes(sort) ? (sort as GlossarySort) : 'missing',
       only: GLOSSARY_ONLY.includes(only) ? (only as GlossaryOnly) : '',
       family: query.get('family') ?? '',
     }

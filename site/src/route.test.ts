@@ -194,6 +194,22 @@ describe('glossary routes', () => {
     expect(glossaryHref({ sort: 'missing' })).toBe('#/g')
   })
 
+  it('round-trips every sort of the columns, and keeps the four old values as they were', () => {
+    const values = ['kr', 'kr-desc', 'zh', 'zh-desc', 'check', 'check-desc', 'scope', 'scope-desc', 'n', 'n-asc', 'used', 'used-asc', 'missing-asc', 'rate', 'rate-desc'] as const
+    for (const sort of values) {
+      expect(glossaryHref({ sort })).toBe(`#/g?sort=${sort}`)
+      expect(parseHash(glossaryHref({ sort }))).toMatchObject({ kind: 'glossary', sort })
+    }
+    expect(glossaryHref({ sort: 'missing' })).toBe('#/g')
+    expect(parseHash('#/g?sort=missing')).toMatchObject({ sort: 'missing' })
+  })
+
+  it('reads the wrong direction of a column as the default', () => {
+    for (const sort of ['kr-asc', 'n-desc', 'missing-desc', 'rate-asc', 'x-desc', '-desc']) {
+      expect(parseHash(`#/g?sort=${sort}`)).toMatchObject({ sort: 'missing' })
+    }
+  })
+
   it('reads an unknown sort or only as the default', () => {
     expect(parseHash('#/g?sort=x&only=y')).toEqual({ kind: 'glossary', q: '', sort: 'missing', only: '', family: '' })
   })
