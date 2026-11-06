@@ -13,6 +13,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 )
 
@@ -24,6 +25,59 @@ func init() {
 			"[--limit N] [--offset N] (a page of the sorted list; total is how many there are)",
 		Run: runGlossaryDerive,
 	})
+	cli.Register(cli.Command{
+		Name: "glossary scope",
+		Usage: "print where the translations use each approved glossary entry and the proposals of where it should apply, " +
+			"the review/scope.json of lct site, computed from the raw and tw worktrees and the rules as lct site computes it; writes nothing: " +
+			"--json prints thresholds, entries (id glossary/…, kr, zh, also, files, not_files, match, notes, groups with name, kind, n and used, compound, explained, unexplained) " +
+			"and proposals (id scope/…, kind, kr, zh, patterns, match, warn_removed, used_lost, flagged, examples, declined when rules/declined.yaml has the id)",
+		Run: runGlossaryScope,
+	})
+}
+
+// scopeOutput is what "glossary scope" prints: the scope report.
+type scopeOutput struct{ scope.Report }
+
+func (o scopeOutput) String() string {
+	var b strings.Builder
+	open, by := 0, map[string]int{}
+	for _, p := range o.Proposals {
+		by[p.Kind]++
+		if p.Declined == nil {
+			open++
+		}
+	}
+	var counts []string
+	for _, k := range scope.Kinds {
+		counts = append(counts, fmt.Sprintf("%s %d", k, by[k]))
+	}
+	fmt.Fprintf(&b, "%d entries, %d proposals (%d not declined): %s\n", len(o.Entries), len(o.Proposals), open, strings.Join(counts, ", "))
+	for _, p := range o.Proposals {
+		fmt.Fprintf(&b, "  %s  %s", p.ID, p.Title())
+		if p.Declined != nil {
+			fmt.Fprintf(&b, " [declined %s: %s]", p.Declined.Date, p.Declined.Reason)
+		}
+		b.WriteString("\n")
+	}
+	return b.String()
+}
+
+// runGlossaryScope prints the scope report of the last build. Proposals are the
+// result and not a finding, so the exit code is 0.
+func runGlossaryScope(ctx *cli.Context, args []string) error {
+	flags := flag.NewFlagSet("glossary scope", flag.ContinueOnError)
+	flags.SetOutput(io.Discard)
+	if err := flags.Parse(args); err != nil {
+		return cli.UserError("glossary scope: " + err.Error())
+	}
+	if flags.NArg() > 0 {
+		return cli.UserError("glossary scope: unexpected argument " + flags.Arg(0))
+	}
+	rev, _, _, err := lastReview(ctx, "glossary scope")
+	if err != nil {
+		return err
+	}
+	return ctx.Emit(scopeOutput{rev.Scope})
 }
 
 // deriveReport is what "glossary derive" prints. Total is the number of

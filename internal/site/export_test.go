@@ -11,6 +11,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 )
 
@@ -108,7 +110,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 	want := []string{
 		"files/Skills.json", "files/StoryData/S10.json", "files/StoryData/S2.json",
 		"index.json", "meta.json",
-		"review/notes.json", "review/suggestions.json", "review/todo.json", "review/warnings.json",
+		"review/notes.json", "review/scope.json", "review/suggestions.json", "review/todo.json", "review/warnings.json",
 		"search/en.json", "search/jp.json", "search/keys.json", "search/kr.json", "search/zh.json",
 	}
 	if got := listFiles(t, out); !slices.Equal(got, want) {
@@ -344,8 +346,8 @@ func TestExportClearsOutDir(t *testing.T) {
 			t.Errorf("%s is still there (%v)", rel, err)
 		}
 	}
-	if got := len(listFiles(t, out)); got != 14 {
-		t.Errorf("%d files, want the 14 of the layout", got)
+	if got := len(listFiles(t, out)); got != 15 {
+		t.Errorf("%d files, want the 15 of the layout", got)
 	}
 }
 
@@ -397,6 +399,8 @@ func exportReviewInputs(t *testing.T) (Inputs, []string) {
 	in.Review.Pending = []store.PendingItem{{Key: k(rvA, 1), Reason: "new"}}
 	withBatch(in, k(rvA, 0), "b1")
 	in.Review.Notes = []store.Note{noteOf(k(rvA, 0), "b1", rvKR, "a note")}
+	// 하나 is 一 in two units of three: a scope proposal (mixed).
+	in.Rules.Glossary = []rules.Term{{KR: rvKR, ZH: "一", Status: rules.StatusApproved}}
 	return in, files
 }
 
@@ -418,7 +422,7 @@ func TestExportWritesReviewData(t *testing.T) {
 	if meta.Format != 2 || meta.Review != wantCounts || res.Review != wantCounts {
 		t.Errorf("format %d, meta.review %+v, result.review %+v, want format 2 and %+v", meta.Format, meta.Review, res.Review, wantCounts)
 	}
-	if wantCounts.Suggestions == 0 || wantCounts.Warnings == 0 || wantCounts.Notes == 0 {
+	if wantCounts.Suggestions == 0 || wantCounts.Warnings == 0 || wantCounts.Notes == 0 || wantCounts.Scope == 0 || len(want.Scope.Entries) == 0 {
 		t.Fatalf("the fixture has too little to review: %+v", wantCounts)
 	}
 	if !reflect.DeepEqual(res.ReviewMismatches, want.Mismatches) || res.NotesUnplaced != want.NotesUnplaced {
@@ -429,6 +433,8 @@ func TestExportWritesReviewData(t *testing.T) {
 	var wr struct{ Items []WarningItem }
 	var nt struct{ Items []NoteItem }
 	var td struct{ Sections []TodoSection }
+	var sc scope.Report
+	readJSON(t, out, "review/scope.json", &sc)
 	readJSON(t, out, "review/suggestions.json", &sg)
 	readJSON(t, out, "review/warnings.json", &wr)
 	readJSON(t, out, "review/notes.json", &nt)
@@ -438,6 +444,7 @@ func TestExportWritesReviewData(t *testing.T) {
 		"warnings":    reflect.DeepEqual(wr.Items, want.Warnings),
 		"notes":       reflect.DeepEqual(nt.Items, want.Notes),
 		"todo":        reflect.DeepEqual(td.Sections, want.Todo),
+		"scope":       reflect.DeepEqual(sc, want.Scope),
 	} {
 		if !ok {
 			t.Errorf("review/%s.json differs from BuildReview", name)
@@ -507,6 +514,7 @@ func TestExportWithoutReviewInputsWritesEmptyLists(t *testing.T) {
 		"review/warnings.json":    `{"items":[]}`,
 		"review/notes.json":       `{"items":[]}`,
 		"review/todo.json":        `{"sections":[]}`,
+		"review/scope.json":       `{"thresholds":{"min_n":3,"used":0.8,"not_used":0.3,"explained":3,"lost_units":20,"lost_share":0.1},"entries":[],"proposals":[]}`,
 	} {
 		b, err := os.ReadFile(filepath.Join(out, filepath.FromSlash(rel)))
 		if err != nil {

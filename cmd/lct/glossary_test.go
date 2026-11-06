@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -270,5 +271,32 @@ func TestGlossaryDeriveCommandNeedsASnapshot(t *testing.T) {
 	}
 	if code, _, stderr := lct(t, "glossary", "derive"); code != 1 || !strings.Contains(stderr, "snapshot") {
 		t.Errorf("without a snapshot: exit code %d (want 1), stderr %q", code, stderr)
+	}
+}
+
+// lct glossary scope prints the report of review/scope.json, computed as lct
+// site computes it, and writes nothing.
+func TestGlossaryScopeCommand(t *testing.T) {
+	s, _ := scopeRepo(t)
+	var fromSite, fromCommand any
+	if err := json.Unmarshal(readFile(t, filepath.Join(s.root, "work", "site", "review", "scope.json")), &fromSite); err != nil {
+		t.Fatal(err)
+	}
+	code, stdout, stderr := lct(t, "glossary", "scope", "--json")
+	if code != 0 {
+		t.Fatalf("exit code %d\n%s%s", code, stdout, stderr)
+	}
+	if err := json.Unmarshal([]byte(stdout), &fromCommand); err != nil {
+		t.Fatalf("%v:\n%s", err, stdout)
+	}
+	if !reflect.DeepEqual(fromCommand, fromSite) {
+		t.Errorf("glossary scope --json differs from review/scope.json:\n%s", stdout)
+	}
+	code, stdout, stderr = lct(t, "glossary", "scope")
+	if code != 0 || !strings.Contains(stdout, scopeID) || !strings.Contains(stdout, "word 1") {
+		t.Errorf("text: exit code %d, want 0 listing %s and the count by kind\n%s%s", code, scopeID, stdout, stderr)
+	}
+	if code, _, stderr := lct(t, "glossary", "scope", "extra"); code != 1 || !strings.Contains(stderr, "extra") {
+		t.Errorf("an argument: exit code %d, want 1\n%s", code, stderr)
 	}
 }

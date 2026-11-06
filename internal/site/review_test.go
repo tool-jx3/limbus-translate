@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -1484,5 +1485,52 @@ func TestNewTermHitUsedIsTermUsed(t *testing.T) {
 	h.add("a", Unit{O: store.OriginClaude, ZH: "自販機一"}, "자판기 하나", nil)
 	if len(h.units) != 1 || h.units[0].Note != "有用" {
 		t.Errorf("units = %+v, want 有用 for an also rendering", h.units)
+	}
+}
+
+// The review carries the scope report of the glossary (scope.Analyze) over
+// the units the warnings check: a stale record or a copy is no unit of it, a
+// unit's notes come with it, and a declined proposal carries its entry.
+func TestReviewScope(t *testing.T) {
+	in, files := reviewInputs(t)
+	in.Rules.Glossary = []rules.Term{
+		{KR: rvKR, ZH: "一", Status: rules.StatusApproved},
+		{KR: "다섯", ZH: "五", Status: rules.StatusApproved}, // only in the stale unit
+	}
+	withBatch(in, k(rvA, 1), "b1")
+	in.Review.Notes = []store.Note{noteOf(k(rvA, 1), "b1", rvKR, "하나 在這裡譯為壹")}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(r.Scope.Entries) != 2 {
+		t.Fatalf("entries = %+v, want 하나 and 다섯", r.Scope.Entries)
+	}
+	one, five := r.Scope.Entries[0], r.Scope.Entries[1]
+	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Used: 2}, {Name: scope.RestGroup, Kind: scope.GroupDir, N: 3, Used: 2}}
+	if !reflect.DeepEqual(one.Groups, wantGroups) || one.Explained != 1 || one.Unexplained != 0 {
+		t.Errorf("하나 = %+v, want groups %+v and the one unit that lacks it explained by its note", one, wantGroups)
+	}
+	if len(five.Groups) != 0 {
+		t.Errorf("다섯 = %+v, want no units: its one unit has a record of another KR", five)
+	}
+	mixed := itemid.Scope(rvKR, "一", scope.KindMixed)
+	if len(r.Scope.Proposals) != 1 || r.Scope.Proposals[0].ID != mixed || r.Scope.Proposals[0].Declined != nil {
+		t.Fatalf("proposals = %+v, want %s", r.Scope.Proposals, mixed)
+	}
+	if c := countReview(r); c.Scope != 1 {
+		t.Errorf("counts = %+v, want 1 scope proposal waiting", c)
+	}
+
+	in.Review.Declined = []suggest.Declined{{ID: mixed, Reason: "兩種譯法都對", Date: "2026-11-06"}}
+	r, err = BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if p := r.Scope.Proposals[0]; p.Declined == nil || *p.Declined != (Confirmed{Reason: "兩種譯法都對", Date: "2026-11-06"}) {
+		t.Errorf("declined proposal = %+v", p)
+	}
+	if c := countReview(r); c.Scope != 0 {
+		t.Errorf("counts = %+v, want no scope proposal waiting once it is declined", c)
 	}
 }

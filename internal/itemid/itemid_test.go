@@ -61,3 +61,32 @@ func TestUnitWarning(t *testing.T) {
 		t.Errorf("UnitWarning(kana) = %q, want %q", got, want)
 	}
 }
+
+func TestScopeAndGlossaryEntry(t *testing.T) {
+	if got, want := Scope("대상", "目標", ScopeNotFiles), "scope/"+Sha8("대상")+"/"+Sha8("目標")+"/not-files"; got != want {
+		t.Errorf("Scope = %q, want %q", got, want)
+	}
+	if got, want := GlossaryEntry("대상", "目標"), "glossary/"+Sha8("대상")+"/"+Sha8("目標"); got != want {
+		t.Errorf("GlossaryEntry = %q, want %q", got, want)
+	}
+	for _, kind := range ScopeKinds {
+		if id := Scope("대상", "目標", kind); !IsScope(id) {
+			t.Errorf("IsScope(%q) = false", id)
+		}
+	}
+	for _, id := range []string{
+		"scope/" + Sha8("대상") + "/" + Sha8("目標"),           // no kind
+		"scope/" + Sha8("대상") + "/" + Sha8("目標") + "/also", // not a kind
+		"scope/대상/目標/word",                                 // not sha8
+		"scope/" + Sha8("대상") + "/" + Sha8("目標") + "/word/x",
+		GlossaryEntry("대상", "目標"),
+		TermGroup("대상", "目標"),
+	} {
+		if IsScope(id) {
+			t.Errorf("IsScope(%q) = true", id)
+		}
+	}
+	if !IsGlossaryEntry(GlossaryEntry("대상", "目標")) || IsGlossaryEntry("glossary/abc") || IsGlossaryEntry(TermGroup("대상", "目標")) {
+		t.Error("IsGlossaryEntry is wrong")
+	}
+}

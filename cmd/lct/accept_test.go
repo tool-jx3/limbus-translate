@@ -10,10 +10,14 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 // acceptState is a repo with a build, a rule suggestion, warnings and a note
@@ -129,6 +133,7 @@ type lookupOut struct {
 			Reason string `json:"reason"`
 			Date   string `json:"date"`
 		} `json:"confirmed"`
+		Title    string   `json:"title"`
 		KR       string   `json:"kr"`
 		ZH       string   `json:"zh"`
 		Note     string   `json:"note"`
@@ -890,4 +895,139 @@ func termGroupGoneSaid(out string) bool {
 	return strings.Contains(out, ".work/raw, .work/tw and glossary/") && strings.Contains(out, "raw_tag and tw_commit") &&
 		strings.Contains(out, "update the worktrees to the page's raw tag and tw commit, or refresh the review page and paste again") &&
 		!strings.Contains(out, "lct build")
+}
+
+// scopeKR, scopeZH and scopeID are the entry and the proposal of scopeRepo: 다
+// as a substring stands inside a word in three units of the story, none of
+// which says 絕無此譯, so the page proposes to match it as a word.
+const (
+	scopeKR = "다"
+	scopeZH = "絕無此譯"
+)
+
+var scopeID = itemid.Scope(scopeKR, scopeZH, scope.KindWord)
+
+// scopeProposal is a proposal of review/scope.json, as the tests read it.
+type scopeProposal struct {
+	ID          string `json:"id"`
+	Kind        string `json:"kind"`
+	WarnRemoved int    `json:"warn_removed"`
+	Declined    *struct {
+		Reason string `json:"reason"`
+		Date   string `json:"date"`
+	} `json:"declined"`
+}
+
+// scopeRepo is acceptRepo with the entry 다 → 絕無此譯 (substring) in the
+// glossary, two more lines of the story translated (the build left them to
+// EN) and the site written: it returns the proposals of review/scope.json.
+func scopeRepo(t *testing.T) (acceptState, []scopeProposal) {
+	t.Helper()
+	s := acceptRepo(t)
+	st := store.Open(filepath.Join(s.root, ".work", "tw"))
+	records, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for pointer, text := range map[string][2]string{
+		"/dataList/3/content": {"<오늘도 아무 일 없이 지나가길 바랄 뿐이다.>", "<只希望今天也平安無事。>"},
+		"/dataList/4/content": {"{0}번 승객은 이미 배에서 내린 뒤였다.", "{0}號乘客已經下船了。"},
+	} {
+		key := units.Key("StoryData/S001A.json", pointer)
+		rec := records[key]
+		rec.Key, rec.KRSha, rec.ZH, rec.Origin = key, units.KRSha(text[0]), text[1], store.OriginParatranz
+		records[key] = rec
+	}
+	if err := st.SaveRecords(records); err != nil {
+		t.Fatal(err)
+	}
+	appendTestFile(t, s.root, "glossary/terms.yaml", "\n- kr: "+scopeKR+"\n  zh: "+scopeZH+"\n  status: approved\n  match: substring\n")
+	mustLct(t, nil, "site", "--out", "work/site")
+	return s, readScopeProposals(t, s.root)
+}
+
+func readScopeProposals(t *testing.T, root string) []scopeProposal {
+	t.Helper()
+	var rep struct {
+		Proposals []scopeProposal `json:"proposals"`
+	}
+	if err := json.Unmarshal(readFile(t, filepath.Join(root, "work", "site", "review", "scope.json")), &rep); err != nil {
+		t.Fatal(err)
+	}
+	return rep.Proposals
+}
+
+// A scope proposal is declined as a rule suggestion is: lct accept writes its
+// id to rules/declined.yaml, the dry run shows it, and the review page lists
+// it as declined and counts one less waiting.
+func TestAcceptDeclinesAScopeProposal(t *testing.T) {
+	s, props := scopeRepo(t)
+	i := slices.IndexFunc(props, func(p scopeProposal) bool { return p.ID == scopeID })
+	if i < 0 || props[i].WarnRemoved != 3 || props[i].Declined != nil {
+		t.Fatalf("scope.json proposals = %+v, want %s removing 3 warnings", props, scopeID)
+	}
+	before := readSiteMeta(t, s.root).Review
+
+	var look lookupOut
+	mustLct(t, &look, "accept", "--dry-run", scopeID)
+	if len(look.Items) != 1 || len(look.Unknown) != 0 {
+		t.Fatalf("dry run = %+v, want the proposal", look)
+	}
+	if it := look.Items[0]; it.Kind != "scope" || it.List != "declined" || it.Confirmed != nil || it.KR != scopeKR || it.ZH != scopeZH ||
+		!strings.Contains(it.Title, "match: word") {
+		t.Errorf("item = %+v, want the open proposal of %s → %s that goes to declined", it, scopeKR, scopeZH)
+	}
+
+	var out acceptOut
+	mustLct(t, &out, "accept", "--reason", "維持 substring", "--date", "2026-11-06", scopeID)
+	if !slices.Equal(out.Declined, []string{scopeID}) || len(out.Accepted) != 0 {
+		t.Fatalf("accept = %+v", out)
+	}
+	if declined := readOptional(t, s.root, "rules/declined.yaml"); !strings.Contains(declined, `- id: "`+scopeID+`"`) {
+		t.Errorf("declined.yaml lacks %s:\n%s", scopeID, declined)
+	}
+	if issues := suggest.LintDeclined(s.root); len(issues) != 0 {
+		t.Errorf("lint of declined.yaml: %v", issues)
+	}
+
+	mustLct(t, nil, "site", "--out", "work/site")
+	props = readScopeProposals(t, s.root)
+	i = slices.IndexFunc(props, func(p scopeProposal) bool { return p.ID == scopeID })
+	if i < 0 || props[i].Declined == nil || props[i].Declined.Reason != "維持 substring" || props[i].Declined.Date != "2026-11-06" {
+		t.Errorf("scope.json proposals = %+v, want %s declined", props, scopeID)
+	}
+	if after := readSiteMeta(t, s.root).Review; after.Scope != before.Scope-1 || before.Scope == 0 {
+		t.Errorf("meta.review = %+v, before %+v: want one scope proposal less", after, before)
+	}
+	look = lookupOut{}
+	mustLct(t, &look, "accept", "--dry-run", scopeID)
+	if len(look.Items) != 1 || look.Items[0].Confirmed == nil || look.Items[0].Confirmed.Reason != "維持 substring" {
+		t.Errorf("dry run after accept = %+v, want the proposal confirmed", look)
+	}
+	var again acceptOut
+	mustLct(t, &again, "accept", "--reason", "again", scopeID)
+	if !slices.Equal(again.Skipped, []string{scopeID}) {
+		t.Errorf("second accept = %+v, want it skipped", again)
+	}
+}
+
+// A glossary entry id is for an instruction to the skill: lct accept refuses
+// it, dry run or not, says what it is for, and writes nothing.
+func TestAcceptRefusesAGlossaryEntryID(t *testing.T) {
+	s := acceptRepo(t)
+	writeTestFile(t, s.root, "rules/declined.yaml", "# keep\n")
+	entry := itemid.GlossaryEntry(scopeKR, scopeZH)
+	for _, args := range [][]string{
+		{"accept", "--reason", "r", entry},
+		{"accept", "--reason", "r", s.suggestion, entry},
+		{"accept", "--dry-run", entry},
+	} {
+		code, stdout, stderr := lct(t, args...)
+		if code != 1 || !strings.Contains(stderr, entry) || !strings.Contains(stderr, "glossary entry") || !strings.Contains(stderr, "skill") {
+			t.Errorf("%v: exit code %d, want 1 saying the id is a glossary entry for the skill\n%s%s", args, code, stdout, stderr)
+		}
+	}
+	if got := readOptional(t, s.root, "rules/declined.yaml") + readOptional(t, s.root, "rules/accepted.yaml"); !strings.HasPrefix(got, "# keep\n") || strings.Contains(got, s.suggestion) {
+		t.Errorf("a list changed:\n%s", got)
+	}
 }

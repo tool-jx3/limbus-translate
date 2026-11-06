@@ -39,6 +39,11 @@ import (
 //	term-new/<kr>                              a provisional term a translator registered
 //	term/<kr>                                  a glossary term that is a candidate
 //	inconsistent/<family>/<field>/<sha8(KR)>   one group of Info.InconsistentAll
+//
+// A proposal of where a glossary entry applies (internal/scope, the review
+// page's scope tab) may be declined as a suggestion is, under its own id
+// itemid.Scope, scope/<sha8(KR)>/<sha8(ZH)>/<kind>; KindScope names it.
+// lct suggest does not make such proposals, so it is not one of Kinds.
 const (
 	KindInconsistent      = "inconsistent"
 	KindSpeaker           = "speaker"
@@ -49,6 +54,7 @@ const (
 	KindNewTerm           = "term-new"
 	KindAdjustmentMoved   = "adjustment-moved"
 	KindAdjustmentExpired = "adjustment-expired"
+	KindScope             = "scope"
 )
 
 // Kinds lists the kinds in the order Run lists their suggestions, the order
@@ -85,6 +91,13 @@ type Suggestion struct {
 	Title string `json:"title"`
 	// Evidence is at most MaxEvidence rows that show it; never nil.
 	Evidence []Evidence `json:"evidence"`
+}
+
+// Confirmed says that a person confirmed an item, and why: the reason and
+// the date of its entry in DeclinedFile or AcceptedFile.
+type Confirmed struct {
+	Reason string `json:"reason"`
+	Date   string `json:"date"`
 }
 
 // Evidence is one row of what a suggestion rests on. A field that does not

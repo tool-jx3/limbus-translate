@@ -12,6 +12,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/adjust"
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -749,5 +750,36 @@ func TestSuggestKindsOrderNewTermBeforeTerm(t *testing.T) {
 	a, b := slices.Index(got, "term-new/우레"), slices.Index(got, "term/신규 용어")
 	if a < 0 || b < 0 || a >= b {
 		t.Errorf("order = %v, want term-new/우레 before term/신규 용어", got)
+	}
+}
+
+// A scope proposal (itemid.Scope) may be declined: the lint takes its id when
+// it has the shape and one of the kinds. A glossary entry id names no proposal
+// and is not declined.
+func TestLintDeclinedScope(t *testing.T) {
+	root := t.TempDir()
+	var good strings.Builder
+	for _, kind := range itemid.ScopeKinds {
+		fmt.Fprintf(&good, "- {id: '%s', reason: r, date: 2026-11-06}\n", itemid.Scope("대상", "目標", kind))
+	}
+	writeFile(t, root, DeclinedFile, good.String())
+	if got := LintDeclined(root); len(got) != 0 {
+		t.Errorf("a scope id of every kind: %v, want no issues", got)
+	}
+	for name, tc := range map[string]struct{ id, want string }{
+		"unknown kind":   {"scope/" + itemid.Sha8("대상") + "/" + itemid.Sha8("目標") + "/also", "scope/<8 hex digits>/<8 hex digits>/"},
+		"no hashes":      {"scope/대상/目標/word", "scope/<8 hex digits>/<8 hex digits>/"},
+		"glossary entry": {itemid.GlossaryEntry("대상", "目標"), "glossary entry"},
+	} {
+		writeFile(t, root, DeclinedFile, fmt.Sprintf("- {id: '%s', reason: r, date: 2026-11-06}\n", tc.id))
+		got := LintDeclined(root)
+		if len(got) != 1 || !strings.Contains(got[0].Message, tc.want) {
+			t.Errorf("%s: issues = %v, want one about %q", name, got, tc.want)
+		}
+	}
+	// An id of another kind is told the scope kind is there too.
+	writeFile(t, root, DeclinedFile, "- {id: 'bogus/x', reason: r, date: 2026-11-06}\n")
+	if got := LintDeclined(root); len(got) != 1 || !strings.Contains(got[0].Message, KindScope) {
+		t.Errorf("unknown kind: %v, want the kinds to name %s", got, KindScope)
 	}
 }

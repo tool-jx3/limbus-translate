@@ -12,6 +12,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/rulefile"
 )
 
@@ -49,9 +50,10 @@ func LoadDeclined(root string) ([]Declined, error) { return loadEntries(root, De
 
 // LintDeclined checks the declined list of root and returns every problem it
 // finds: what LoadDeclined refuses, an id whose kind is not one of Kinds or
-// that has nothing after the kind, an empty reason, a date that is not
-// YYYY-MM-DD, and an id that is listed twice. A root without the file has no
-// issues.
+// KindScope or that has nothing after the kind, a scope id that is not
+// itemid.Scope of one of itemid.ScopeKinds, a glossary entry id (which names
+// no proposal), an empty reason, a date that is not YYYY-MM-DD, and an id that
+// is listed twice. A root without the file has no issues.
 func LintDeclined(root string) []rulefile.Issue {
 	return lintEntries(root, DeclinedFile, declinedProblems)
 }
@@ -144,8 +146,14 @@ func declinedProblems(list []Declined) []string {
 		switch {
 		case id == "":
 			return "id is missing or empty; it is the id of a suggestion, such as speaker/<model>"
+		case kind == KindScope && !itemid.IsScope(id):
+			return fmt.Sprintf("a scope id is scope/<8 hex digits>/<8 hex digits>/<kind>, the kind one of %s", strings.Join(itemid.ScopeKinds, ", "))
+		case kind == KindScope:
+			return ""
+		case strings.HasPrefix(id, itemid.GlossaryEntryPrefix):
+			return "a glossary entry id names no proposal and is not declined; it carries an instruction about the entry to the skill, which edits glossary/terms.yaml"
 		case !slices.Contains(Kinds, kind):
-			return fmt.Sprintf("unknown kind %q (the kinds are %s)", kind, strings.Join(Kinds, ", "))
+			return fmt.Sprintf("unknown kind %q (the kinds are %s, %s)", kind, strings.Join(Kinds, ", "), KindScope)
 		case !hasRest || rest == "":
 			return fmt.Sprintf("nothing after the kind %q; the id is <kind>/<what the suggestion is about>", kind)
 		}

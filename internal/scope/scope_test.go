@@ -1,0 +1,512 @@
+package scope
+
+import (
+	"fmt"
+	"reflect"
+	"slices"
+	"strings"
+	"testing"
+	"unicode/utf8"
+
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
+	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/suggest"
+)
+
+// The files of the fixtures, one of each group: their family by testRules and
+// their directory group.
+const (
+	storyFile = "StoryData/S1.json"           // story, StoryData/**
+	voiceFile = "PersonalityVoiceDlg/V1.json" // voice, PersonalityVoiceDlg/**
+	skillFile = "Skills_A.json"               // skill, rest
+	otherFile = "Other.json"                  // other, rest
+)
+
+// testRules has four families: story, voice, skill and the catch-all other.
+func testRules(terms ...rules.Term) *rules.Rules {
+	return &rules.Rules{Glossary: terms, Routing: rules.Routing{
+		Families: []rules.FamilyRule{
+			{ID: "story", Match: []string{"StoryData/*"}},
+			{ID: "voice", Match: []string{"PersonalityVoiceDlg/*"}},
+			{ID: "skill", Match: []string{"Skills*"}},
+			{ID: "other"},
+		},
+		Priority: []string{"story", "voice", "skill", "other"},
+	}}
+}
+
+// approved is an approved entry kr -> zh that matches as a word.
+func approved(kr, zh string) rules.Term {
+	return rules.Term{KR: kr, ZH: zh, Status: rules.StatusApproved}
+}
+
+// fixture builds units: each call of add puts n units of one text in file,
+// translated by Claude, with keys that never repeat.
+type fixture struct{ units []Unit }
+
+func (f *fixture) add(file string, n int, kr, zh string) *fixture {
+	return f.addAs(file, n, kr, zh, store.OriginClaude, "")
+}
+
+func (f *fixture) addAs(file string, n int, kr, zh, origin, note string) *fixture {
+	for range n {
+		key := fmt.Sprintf("%s|/dataList/%d/content", file, len(f.units))
+		f.units = append(f.units, Unit{Key: key, File: file, KR: kr, ZH: zh, Origin: origin, Note: note})
+	}
+	return f
+}
+
+// proposals returns the proposals of rep about the entry kr, by kind.
+func proposals(rep Report, kr string) map[string]Proposal {
+	out := map[string]Proposal{}
+	for _, p := range rep.Proposals {
+		if p.KR == kr {
+			out[p.Kind] = p
+		}
+	}
+	return out
+}
+
+func kinds(m map[string]Proposal) []string {
+	var ks []string
+	for k := range m {
+		ks = append(ks, k)
+	}
+	slices.Sort(ks)
+	return ks
+}
+
+func entryOf(t *testing.T, rep Report, kr string) Entry {
+	t.Helper()
+	for _, e := range rep.Entries {
+		if e.KR == kr {
+			return e
+		}
+	}
+	t.Fatalf("no entry %s in %+v", kr, rep.Entries)
+	return Entry{}
+}
+
+// onlyProposal fails unless rep has exactly the proposal of kind about kr, and
+// returns it.
+func onlyProposal(t *testing.T, rep Report, kr, kind string) Proposal {
+	t.Helper()
+	ps := proposals(rep, kr)
+	p, ok := ps[kind]
+	if !ok || len(ps) != 1 {
+		t.Fatalf("proposals of %s = %v, want only %s:\n%+v", kr, kinds(ps), kind, rep.Proposals)
+	}
+	if want := itemid.Scope(kr, p.ZH, kind); p.ID != want {
+		t.Errorf("id = %s, want %s", p.ID, want)
+	}
+	return p
+}
+
+// 보스 is used everywhere but in the stories: exclude them.
+func notFilesFixture() (*rules.Rules, []Unit) {
+	f := &fixture{}
+	f.add(skillFile, 4, "보스 등장", "BOSS 登場")
+	f.add(storyFile, 3, "그 보스다", "那個老大")
+	return testRules(approved("보스", "BOSS")), f.units
+}
+
+func TestNotFiles(t *testing.T) {
+	r, us := notFilesFixture()
+	rep := Analyze(Inputs{Rules: r, Units: us})
+	p := onlyProposal(t, rep, "보스", KindNotFiles)
+	// The family and the directory say the same; the family is named.
+	if !slices.Equal(p.Patterns, []string{"family:story"}) || p.WarnRemoved != 3 || p.UsedLost != 0 || p.Flagged || p.Match != "" {
+		t.Errorf("proposal = %+v, want not_files family:story removing 3 warnings, no check lost", p)
+	}
+	if len(p.Examples) != 3 {
+		t.Fatalf("examples = %+v, want the 3 units of the stories", p.Examples)
+	}
+	for _, ex := range p.Examples {
+		if ex.Group != "family:story" || ex.KR != "그 보스다" || ex.ZH != "那個老大" || !strings.HasPrefix(ex.Key, storyFile+"|") {
+			t.Errorf("example = %+v, want a unit of the stories", ex)
+		}
+	}
+}
+
+// 공격 시작 is used in the voice lines only: limit it to them.
+func TestFiles(t *testing.T) {
+	f := &fixture{}
+	f.add(voiceFile, 3, "공격 시작!", "進行攻擊！")
+	f.add(storyFile, 3, "공격 시작", "開始攻擊")
+	f.add(skillFile, 3, "공격 시작", "開始攻擊")
+	f.add(otherFile, 3, "공격 시작", "開始攻擊")
+	rep := Analyze(Inputs{Rules: testRules(approved("공격 시작", "進行攻擊")), Units: f.units})
+	p := onlyProposal(t, rep, "공격 시작", KindFiles)
+	if !slices.Equal(p.Patterns, []string{"family:voice"}) || p.WarnRemoved != 9 || p.UsedLost != 0 || p.Flagged {
+		t.Errorf("proposal = %+v, want files family:voice removing 9 warnings", p)
+	}
+	if len(p.Examples) != 9 {
+		t.Errorf("examples = %+v, want 3 of each group left out", p.Examples)
+	}
+}
+
+// 사무소 inside 정사무소 uses the rendering: match it inside words too.
+func TestSubstring(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 3, "정사무소", "正事務所")
+	f.add(skillFile, 1, "사무소", "事務所")
+	rep := Analyze(Inputs{Rules: testRules(approved("사무소", "事務所")), Units: f.units})
+	p := onlyProposal(t, rep, "사무소", KindSubstring)
+	if p.Match != rules.MatchSubstring || len(p.Patterns) != 0 || p.WarnRemoved != 0 || p.UsedLost != 0 || p.Flagged || len(p.Examples) != 3 {
+		t.Errorf("proposal = %+v, want match substring, nothing removed, 3 examples", p)
+	}
+	e := entryOf(t, rep, "사무소")
+	if e.Compound != (Count{N: 3, Used: 3}) || !reflect.DeepEqual(e.Groups, []Group{{Name: "family:skill", Kind: GroupFamily, N: 1, Used: 1}, {Name: RestGroup, Kind: GroupDir, N: 1, Used: 1}}) {
+		t.Errorf("entry = %+v, want 3 of 3 compound units and the one word in the groups", e)
+	}
+}
+
+// 다리 is substring, but 다리미 is no bridge: match it as a word.
+func TestWord(t *testing.T) {
+	f := &fixture{}
+	f.add(skillFile, 3, "다리미", "熨斗")
+	f.add(skillFile, 3, "다리 위", "橋上")
+	term := approved("다리", "橋")
+	term.Match = rules.MatchSubstring
+	rep := Analyze(Inputs{Rules: testRules(term), Units: f.units})
+	p := onlyProposal(t, rep, "다리", KindWord)
+	if p.Match != rules.MatchWord || p.WarnRemoved != 3 || p.UsedLost != 0 || p.Flagged || len(p.Examples) != 3 || p.Examples[0].KR != "다리미" {
+		t.Errorf("proposal = %+v, want match word removing the 3 warnings of 다리미", p)
+	}
+	e := entryOf(t, rep, "다리")
+	if e.Match != rules.MatchSubstring || e.Compound != (Count{N: 3, Used: 0}) || e.Groups[0] != (Group{Name: "family:skill", Kind: GroupFamily, N: 3, Used: 3}) {
+		t.Errorf("entry = %+v, want the 3 compound units apart from the groups", e)
+	}
+}
+
+// 복도 is half 走廊 in the stories: a person looks.
+func TestMixed(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 2, "복도", "走廊")
+	f.add(storyFile, 2, "복도", "通道")
+	f.add(skillFile, 3, "복도", "走廊")
+	rep := Analyze(Inputs{Rules: testRules(approved("복도", "走廊")), Units: f.units})
+	p := onlyProposal(t, rep, "복도", KindMixed)
+	if len(p.Patterns) != 0 || p.Match != "" || p.WarnRemoved != 0 || p.UsedLost != 0 || p.Flagged {
+		t.Errorf("proposal = %+v, want no change and no effect", p)
+	}
+	if len(p.Examples) != 2 || p.Examples[0].ZH != "通道" || p.Examples[0].Group != "family:story" {
+		t.Errorf("examples = %+v, want the 2 units of the stories that do not use it, once", p.Examples)
+	}
+}
+
+// 대상 is used in each group, but the notes of three units say why not there.
+func TestExplained(t *testing.T) {
+	f := &fixture{}
+	for _, file := range []string{storyFile, skillFile, otherFile} {
+		f.add(file, 4, "대상", "目標")
+		f.addAs(file, 1, "대상에게", "給對象", store.OriginClaude, "這裡的 대상 指人，譯為對象")
+	}
+	f.add(voiceFile, 4, "대상", "目標")
+	f.addAs(voiceFile, 1, "대상", "對象", store.OriginClaude, "指人")
+	rep := Analyze(Inputs{Rules: testRules(approved("대상", "目標")), Units: f.units})
+	p := onlyProposal(t, rep, "대상", KindExplained)
+	if len(p.Patterns) != 0 || p.WarnRemoved != 0 || p.UsedLost != 0 || p.Flagged || len(p.Examples) != 3 {
+		t.Errorf("proposal = %+v, want no change, 3 examples", p)
+	}
+	for _, ex := range p.Examples {
+		if ex.ZH != "給對象" {
+			t.Errorf("example = %+v, want a unit whose note explains", ex)
+		}
+	}
+	if e := entryOf(t, rep, "대상"); e.Explained != 3 || e.Unexplained != 1 {
+		t.Errorf("explained %d, unexplained %d, want 3 and 1", e.Explained, e.Unexplained)
+	}
+}
+
+// Excluding the stories loses the check of 3 of the 13 units that use 속도:
+// flagged.
+func TestFlagged(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 3, "속도", "速度值")
+	f.add(storyFile, 7, "속도", "速度")
+	f.add(skillFile, 10, "속도", "速度值")
+	rep := Analyze(Inputs{Rules: testRules(approved("속도", "速度值")), Units: f.units})
+	p := onlyProposal(t, rep, "속도", KindNotFiles)
+	if p.WarnRemoved != 7 || p.UsedLost != 3 || !p.Flagged {
+		t.Errorf("proposal = %+v, want 7 removed, 3 lost, flagged", p)
+	}
+}
+
+// A declined proposal is still listed, with its confirmation.
+func TestDeclined(t *testing.T) {
+	r, us := notFilesFixture()
+	id := itemid.Scope("보스", "BOSS", KindNotFiles)
+	c := &suggest.Confirmed{Reason: "BOSS 在劇情也可以", Date: "2026-11-06"}
+	rep := Analyze(Inputs{Rules: r, Units: us, Declined: map[string]*suggest.Confirmed{id: c, "scope/00000000/00000000/word": c}})
+	p := onlyProposal(t, rep, "보스", KindNotFiles)
+	if p.Declined == nil || *p.Declined != *c {
+		t.Errorf("declined = %+v, want %+v", p.Declined, c)
+	}
+	if rep := Analyze(Inputs{Rules: r, Units: us}); rep.Proposals[0].Declined != nil {
+		t.Errorf("not declined: %+v", rep.Proposals[0].Declined)
+	}
+}
+
+// Only the translations of their own count: Claude's, a person's and
+// Paratranz's. Copies and fallbacks would make the stories use BOSS.
+func TestOnlyTranslationsCount(t *testing.T) {
+	r, us := notFilesFixture()
+	us[0].Origin, us[1].Origin = store.OriginHuman, store.OriginParatranz
+	f := &fixture{units: us}
+	f.addAs(storyFile, 5, "보스", "BOSS", store.OriginCopy, "")
+	f.addAs(storyFile, 5, "보스", "BOSS", store.OriginFallback, "")
+	f.addAs(storyFile, 5, "보스", "BOSS", "", "")
+	rep := Analyze(Inputs{Rules: r, Units: f.units})
+	onlyProposal(t, rep, "보스", KindNotFiles)
+	want := []Group{
+		{Name: "family:story", Kind: GroupFamily, N: 3, Used: 0},
+		{Name: "family:skill", Kind: GroupFamily, N: 4, Used: 4},
+		{Name: "StoryData/**", Kind: GroupDir, N: 3, Used: 0},
+		{Name: RestGroup, Kind: GroupDir, N: 4, Used: 4},
+	}
+	if e := entryOf(t, rep, "보스"); !reflect.DeepEqual(e.Groups, want) {
+		t.Errorf("groups = %+v, want %+v", e.Groups, want)
+	}
+}
+
+// What the entry is set to already is not proposed: a pattern of not_files,
+// substring for an entry that matches so.
+func TestOnlyDifferences(t *testing.T) {
+	r, us := notFilesFixture()
+	r.Glossary[0].NotFiles = []string{"family:story"}
+	if rep := Analyze(Inputs{Rules: r, Units: us}); len(rep.Proposals) != 0 {
+		t.Errorf("not_files family:story already: proposals %+v, want none", rep.Proposals)
+	}
+	f := &fixture{}
+	f.add(skillFile, 3, "정사무소", "正事務所")
+	term := approved("사무소", "事務所")
+	term.Match = rules.MatchSubstring
+	if rep := Analyze(Inputs{Rules: testRules(term), Units: f.units}); len(rep.Proposals) != 0 {
+		t.Errorf("substring already: proposals %+v, want none", rep.Proposals)
+	}
+}
+
+// The longer entry stands for its text: 보스 in 조직의 보스 is neither a hit
+// of 보스 nor a word in a word, so it moves none of the numbers of 보스.
+func TestCoveredIsNoHitNorCompound(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 3, "조직의 보스", "組織的老大")
+	f.add(skillFile, 3, "보스", "BOSS")
+	rep := Analyze(Inputs{Rules: testRules(approved("보스", "BOSS"), approved("조직의 보스", "組織的老大")), Units: f.units})
+	e := entryOf(t, rep, "보스")
+	if e.Compound != (Count{}) || len(e.Groups) != 2 || e.Groups[0] != (Group{Name: "family:skill", Kind: GroupFamily, N: 3, Used: 3}) {
+		t.Errorf("보스 = %+v, want only the 3 units of the skills", e)
+	}
+	if len(rep.Proposals) != 0 {
+		t.Errorf("proposals = %+v, want none", rep.Proposals)
+	}
+}
+
+// combined is every fixture in one: each entry with its own text.
+func combined() (*rules.Rules, []Unit) {
+	f := &fixture{}
+	f.add(skillFile, 4, "보스 등장", "BOSS 登場").add(storyFile, 3, "그 보스다", "那個老大")
+	f.add(voiceFile, 3, "공격 시작!", "進行攻擊！").add(storyFile, 3, "공격 시작", "開始攻擊").add(skillFile, 3, "공격 시작", "開始攻擊").add(otherFile, 3, "공격 시작", "開始攻擊")
+	f.add(skillFile, 3, "정사무소", "正事務所").add(skillFile, 1, "사무소", "事務所")
+	f.add(skillFile, 3, "다리미", "熨斗").add(skillFile, 3, "다리 위", "橋上")
+	f.add(storyFile, 2, "복도", "走廊").add(storyFile, 2, "복도", "通道").add(skillFile, 3, "복도", "走廊")
+	for _, file := range []string{storyFile, skillFile, otherFile} {
+		f.add(file, 4, "대상", "目標").addAs(file, 1, "대상에게", "給對象", store.OriginClaude, "這裡的 대상 指人")
+	}
+	f.add(storyFile, 3, "속도", "速度值").add(storyFile, 7, "속도", "速度").add(skillFile, 10, "속도", "速度值")
+	f.add(storyFile, 3, "조직의 보스", "組織的老大")
+	bridge := approved("다리", "橋")
+	bridge.Match = rules.MatchSubstring
+	return testRules(approved("보스", "BOSS"), approved("공격 시작", "進行攻擊"), approved("사무소", "事務所"), bridge,
+		approved("복도", "走廊"), approved("대상", "目標"), approved("속도", "速度值"), approved("조직의 보스", "組織的老大"),
+		rules.Term{KR: "후보", ZH: "候選", Status: rules.StatusCandidate}), f.units
+}
+
+func TestCombinedHasEveryKind(t *testing.T) {
+	r, us := combined()
+	rep := Analyze(Inputs{Rules: r, Units: us})
+	var got []string
+	for _, p := range rep.Proposals {
+		got = append(got, p.Kind+" "+p.KR)
+	}
+	// By kind, then in the order of the glossary.
+	want := []string{
+		"not-files 보스", "not-files 속도", "files 공격 시작", "substring 사무소", "word 다리", "mixed 복도", "explained 대상",
+	}
+	if !slices.Equal(got, want) {
+		t.Errorf("proposals =\n%v\nwant\n%v", got, want)
+	}
+	// Every approved entry, in glossary order, and no candidate.
+	var krs []string
+	for _, e := range rep.Entries {
+		krs = append(krs, e.KR)
+	}
+	if want := []string{"보스", "공격 시작", "사무소", "다리", "복도", "대상", "속도", "조직의 보스"}; !slices.Equal(krs, want) {
+		t.Errorf("entries = %v, want %v", krs, want)
+	}
+	if rep.Thresholds != (Thresholds{MinN: 3, Used: 0.8, NotUsed: 0.3, Explained: 3, LostUnits: 20, LostShare: 0.1}) {
+		t.Errorf("thresholds = %+v", rep.Thresholds)
+	}
+}
+
+// Review focus: a proposed pattern names a family of the routing or one of the
+// fixed directories, and matches a file of the input. No glob of a family's
+// match list, and no pattern that matches nothing.
+func TestProposalPatternsMatchFiles(t *testing.T) {
+	r, us := combined()
+	// A family whose match list is a glob (as story-main's is), and one that
+	// takes a directory and a file outside it.
+	r.Routing.Families = append([]rules.FamilyRule{{ID: "lyrics", Match: []string{"BgmLyrics/*"}}, {ID: "rpg", Match: []string{"RPGSystem/*", "Rpg*"}}}, r.Routing.Families...)
+	f := &fixture{units: us}
+	// 보스 is used in two families and not in two: not_files, the glob family too.
+	f.add("BgmLyrics/L1.json", 3, "보스", "老大").add(voiceFile, 3, "보스", "BOSS")
+	// rpg is half 速度值, so the families cannot say it; the directories can.
+	f.add("RPGSystem/R1.json", 3, "속도", "速度").add("RpgTop.json", 3, "속도", "速度值")
+	f.add("EGOVoiceDig/E1.json", 3, "공격 시작", "開始攻擊").add("BattleAnnouncerDlg/A1.json", 3, "공격 시작", "開始攻擊")
+	rep := Analyze(Inputs{Rules: r, Units: f.units})
+
+	files := map[string]bool{}
+	for _, u := range f.units {
+		files[u.File] = true
+	}
+	families := map[string]bool{}
+	for _, fam := range r.Routing.Families {
+		families[fam.ID] = true
+	}
+	seen := 0
+	for _, p := range rep.Proposals {
+		if (p.Kind == KindNotFiles || p.Kind == KindFiles) != (len(p.Patterns) > 0) {
+			t.Errorf("%s: patterns %v", p.ID, p.Patterns)
+		}
+		for _, pat := range p.Patterns {
+			seen++
+			id, isFamily := strings.CutPrefix(pat, rules.FamilyPrefix)
+			if isFamily && !families[id] || !isFamily && !slices.Contains(Dirs, pat) {
+				t.Errorf("%s: pattern %q is neither family:<id> of the routing nor one of %v", p.ID, pat, Dirs)
+			}
+			matched := false
+			for file := range files {
+				matched = matched || r.Applies(rules.Term{Files: []string{pat}}, file)
+			}
+			if !matched {
+				t.Errorf("%s: pattern %q matches no input file", p.ID, pat)
+			}
+		}
+	}
+	if seen < 4 {
+		t.Fatalf("only %d patterns proposed: %+v", seen, rep.Proposals)
+	}
+	want := map[string][]string{
+		"보스":    {"family:lyrics", "family:story"},
+		"속도":    {"StoryData/**", "RPGSystem/**"},
+		"공격 시작": {"family:voice"},
+	}
+	for kr, pats := range want {
+		ps := proposals(rep, kr)
+		if p := ps[KindNotFiles]; kr != "공격 시작" && !slices.Equal(p.Patterns, pats) {
+			t.Errorf("%s: not-files %v, want %v", kr, p.Patterns, pats)
+		}
+		if p := ps[KindFiles]; kr == "공격 시작" && !slices.Equal(p.Patterns, pats) {
+			t.Errorf("%s: files %v, want %v", kr, p.Patterns, pats)
+		}
+	}
+}
+
+// The hits are those of GlossaryHits: each entry's units in its groups (and,
+// for a substring entry, its compound units) are the units GlossaryHits
+// gives it.
+func TestHitsAreGlossaryHits(t *testing.T) {
+	r, us := combined()
+	rep := Analyze(Inputs{Rules: r, Units: us})
+	for _, e := range rep.Entries {
+		want := 0
+		for _, u := range us {
+			if slices.ContainsFunc(r.GlossaryHits(u.File, u.KR), func(t rules.Term) bool { return t.KR == e.KR && t.ZH == e.ZH }) {
+				want++
+			}
+		}
+		got := 0
+		for _, g := range e.Groups {
+			if g.Kind == GroupFamily {
+				got += g.N
+			}
+		}
+		if e.Match == rules.MatchSubstring {
+			got += e.Compound.N
+		}
+		if got != want {
+			t.Errorf("%s: %d units in the groups, GlossaryHits gives it %d", e.KR, got, want)
+		}
+	}
+}
+
+// An entry lists its settings and the counts, never a null list.
+func TestEntryFields(t *testing.T) {
+	r, us := notFilesFixture()
+	r.Glossary[0].Notes = "指組織頭頭時用老大"
+	r.Glossary[0].Also = []string{"老大"}
+	rep := Analyze(Inputs{Rules: r, Units: us})
+	e := entryOf(t, rep, "보스")
+	if e.ID != itemid.GlossaryEntry("보스", "BOSS") || e.ZH != "BOSS" || !slices.Equal(e.Also, []string{"老大"}) || e.Files == nil || e.NotFiles == nil ||
+		e.Match != rules.MatchWord || e.Notes != "指組織頭頭時用老大" {
+		t.Errorf("entry = %+v", e)
+	}
+	// With also 老大 the stories use it: nothing to propose.
+	if len(rep.Proposals) != 0 {
+		t.Errorf("proposals = %+v, want none once also holds 老大", rep.Proposals)
+	}
+	empty := Analyze(Inputs{Rules: testRules(approved("없음", "無"))})
+	if e := entryOf(t, empty, "없음"); e.Groups == nil || e.Also == nil || len(empty.Proposals) != 0 || empty.Proposals == nil {
+		t.Errorf("entry without hits = %+v, proposals %v", e, empty.Proposals)
+	}
+	if rep := Analyze(Inputs{}); rep.Entries == nil || rep.Proposals == nil || rep.Thresholds.MinN != 3 {
+		t.Errorf("no rules: %+v", rep)
+	}
+}
+
+// An example is a short piece of each text, around the entry in the KR.
+func TestExamplesAreShort(t *testing.T) {
+	long := strings.Repeat("가나다라 ", 15) + "보스가 나타났다 " + strings.Repeat("마바사아 ", 15)
+	zh := strings.Repeat("甲乙丙丁", 15) + "老大出現了" + strings.Repeat("戊己庚辛", 15)
+	f := &fixture{}
+	f.add(skillFile, 4, "보스", "BOSS")
+	f.add(storyFile, 5, long, zh)
+	rep := Analyze(Inputs{Rules: testRules(approved("보스", "BOSS")), Units: f.units})
+	p := onlyProposal(t, rep, "보스", KindNotFiles)
+	if len(p.Examples) != maxExamples {
+		t.Fatalf("examples = %d, want %d", len(p.Examples), maxExamples)
+	}
+	ex := p.Examples[0]
+	if n := utf8.RuneCountInString(ex.KR); n > maxSnippet || !strings.Contains(ex.KR, "보스가 나타났다") || !strings.HasPrefix(ex.KR, "…") || !strings.HasSuffix(ex.KR, "…") {
+		t.Errorf("KR = %q (%d runes), want at most %d around 보스", ex.KR, n, maxSnippet)
+	}
+	if n := utf8.RuneCountInString(ex.ZH); n > maxSnippet || !strings.Contains(ex.ZH, "老大") {
+		t.Errorf("ZH = %q (%d runes), want at most %d about where the KR has it", ex.ZH, n, maxSnippet)
+	}
+}
+
+// A proposal says in one line what it changes and what that does.
+func TestProposalTitle(t *testing.T) {
+	for _, tc := range []struct {
+		p    Proposal
+		want []string
+	}{
+		{Proposal{Kind: KindNotFiles, KR: "보스", ZH: "BOSS", Patterns: []string{"family:story", "StoryData/**"}, WarnRemoved: 3, UsedLost: 1},
+			[]string{"보스 → BOSS", "not_files", "family:story、StoryData/**", "移除 3 個警告", "1 個用了譯名的單位不再檢查"}},
+		{Proposal{Kind: KindFiles, KR: "공격 시작", ZH: "進行攻擊", Patterns: []string{"family:voice"}, WarnRemoved: 9, UsedLost: 25, Flagged: true},
+			[]string{"files", "family:voice", "失去檢查偏多"}},
+		{Proposal{Kind: KindSubstring, KR: "사무소", ZH: "事務所", Match: rules.MatchSubstring}, []string{"match: substring"}},
+		{Proposal{Kind: KindWord, KR: "다리", ZH: "橋", Match: rules.MatchWord, WarnRemoved: 3}, []string{"match: word", "移除 3 個警告"}},
+		{Proposal{Kind: KindMixed, KR: "복도", ZH: "走廊"}, []string{"需要人看"}},
+		{Proposal{Kind: KindExplained, KR: "대상", ZH: "目標"}, []string{"note", "also"}},
+	} {
+		got := tc.p.Title()
+		for _, w := range tc.want {
+			if !strings.Contains(got, w) {
+				t.Errorf("Title of %s = %q, want %q in it", tc.p.Kind, got, w)
+			}
+		}
+	}
+}

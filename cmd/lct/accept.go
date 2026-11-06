@@ -24,9 +24,10 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "accept",
 		Usage: "record the review items a person confirmed, so the review page, lct suggest and the build report skip them: " +
-			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion or note/… id goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml, a termgroup/… id to rules/accepted.yaml unit by unit (the warning/term-missing/… ids of the units of the group not accepted yet; with none left it writes nothing and lists the id under empty); " +
+			"--reason R [--date YYYY-MM-DD] [--file F] [ID...] (a rule suggestion, note/… or scope/… id (a proposal of the review page's scope tab, which lct glossary scope lists) goes to rules/declined.yaml, a warning/… id to rules/accepted.yaml, a termgroup/… id to rules/accepted.yaml unit by unit (the warning/term-missing/… ids of the units of the group not accepted yet; with none left it writes nothing and lists the id under empty); " +
 			"a term group id may end in @N, the number of its units not accepted yet that the review page showed (termgroup/<a>/<b>@3): when the last build has another number the id is refused and nothing is written; " +
-			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written (of a term group id, it says that the group is not in the current review data); commits nothing; " +
+			"--file holds ids one a line, blank lines and lines that start with # ignored, and must be a file of the repo outside .git; the date defaults to today; an id that is not an item of the last build is refused and nothing is written (of a term group id, it says that the group is not in the current review data); " +
+			"a glossary/… id (a glossary entry, given with an instruction for the skill, which edits glossary/terms.yaml) is refused, dry run or not, and nothing is written; commits nothing; " +
 			"--json prints declined and accepted (the ids written to each list), skipped (those confirmed before), empty (the term group ids none of whose units was left to accept: nothing is written for them), raw_tag and tw_commit (the build the ids were checked against)); " +
 			"or --dry-run [--file F] ID...: write nothing, print each item as the review page has it (kind, the list it goes to, whether and why it is confirmed, KR, TW, note or message, units, variants; for termgroup/…@N, open_units: N against the number of the last build) and the ids that are no item of the last build, the term group ids among them apart in unknown_term_groups (the group is not in the current review data: refresh the review page, or rebuild) (exit code 1 if any, or if an @N does not match); " +
 			"or --tidy: delete the entries of rules/accepted.yaml that are no warning of the last build any more",
@@ -121,6 +122,18 @@ type lookupReport struct {
 	UnknownTermGroups []string     `json:"unknown_term_groups"`
 	RawTag            string       `json:"raw_tag"`
 	TWCommit          string       `json:"tw_commit"`
+}
+
+// glossaryEntryIDs says what a glossary/… id is for and why lct accept takes
+// none.
+const glossaryEntryIDs = "of a glossary entry (glossary/…), which names no item to confirm: the review page lets a person copy it to give an instruction about the entry (such as 加 also 對象), and the skill (/review-page) carries the instruction out in glossary/terms.yaml; lct accept records nothing for it (lct glossary scope --json lists the entries by id)"
+
+// plural is one when n is 1 and many otherwise.
+func plural(n int, one, many string) string {
+	if n == 1 {
+		return one
+	}
+	return many
 }
 
 // termGroupGone says why a term group id can be no item of the last build and
@@ -238,6 +251,16 @@ func runAccept(ctx *cli.Context, args []string) error {
 	if len(ids) == 0 {
 		return cli.UserError("accept: give at least one ID (as arguments or with --file), or --tidy")
 	}
+	var entries []string
+	for _, id := range ids {
+		if strings.HasPrefix(id, itemid.GlossaryEntryPrefix) {
+			entries = append(entries, id)
+		}
+	}
+	if len(entries) > 0 {
+		return cli.UserError(fmt.Sprintf("accept: %s %s, so nothing was written:\n  %s",
+			plural(len(entries), "this is the id", "these are the ids"), glossaryEntryIDs, strings.Join(entries, "\n  ")))
+	}
 	given := make([]givenID, len(ids))
 	for i, id := range ids {
 		g, err := parseGivenID(id)
@@ -269,6 +292,9 @@ func runAccept(ctx *cli.Context, args []string) error {
 	}
 	for _, n := range rev.Notes {
 		toDeclined[n.ID] = true
+	}
+	for _, p := range rev.Scope.Proposals {
+		toDeclined[p.ID] = true
 	}
 	toAccepted := map[string]bool{}
 	// A term group goes to accepted.yaml unit by unit: its id stands for the
@@ -458,6 +484,9 @@ func acceptLookup(ctx *cli.Context, ids []givenID) error {
 	for _, n := range rev.Notes {
 		items[n.ID] = lookupItem{ID: n.ID, Kind: suggest.KindNote, List: listDeclined, Confirmed: n.Declined, KR: n.KR, ZH: n.ZH, Note: n.Note, Keys: []string{n.Key}, Pending: n.Pending}
 	}
+	for _, p := range rev.Scope.Proposals {
+		items[p.ID] = lookupItem{ID: p.ID, Kind: suggest.KindScope, List: listDeclined, Confirmed: p.Declined, Title: p.Title(), KR: p.KR, ZH: p.ZH, Keys: []string{}}
+	}
 	for _, w := range rev.Warnings {
 		items[w.ID] = lookupItem{ID: w.ID, Kind: "warning", List: listAccepted, Confirmed: w.Accepted, KR: w.KR, ZH: w.ZH, Message: w.Message, Keys: w.Keys, Pending: w.Pending, Units: w.Units}
 		addUnitLookups(items, w, rev.Queued)
@@ -528,11 +557,16 @@ func addUnitLookups(items map[string]lookupItem, w site.WarningItem, queued map[
 // acceptReview computes the review items of the last build, the way lct site
 // does, and returns them with their inputs and the commit of the tw worktree.
 func acceptReview(ctx *cli.Context) (site.Review, site.ReviewInputs, string, error) {
-	ss, err := openSiteSources(ctx, "accept")
+	return lastReview(ctx, "accept")
+}
+
+// lastReview is acceptReview for the command cmd, which the errors name.
+func lastReview(ctx *cli.Context, cmd string) (site.Review, site.ReviewInputs, string, error) {
+	ss, err := openSiteSources(ctx, cmd)
 	if err != nil {
 		return site.Review{}, site.ReviewInputs{}, "", err
 	}
-	in, err := loadReviewInputs(ctx, "accept", ss.Rules)
+	in, err := loadReviewInputs(ctx, cmd, ss.Rules)
 	if err != nil {
 		return site.Review{}, in, "", err
 	}

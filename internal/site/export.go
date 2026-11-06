@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -43,12 +44,14 @@ type Meta struct {
 }
 
 // ReviewCounts is the number of unconfirmed items of each page of the review.
-// Todo counts the lines of the to-do sections.
+// Todo counts the lines of the to-do sections, Scope the scope proposals
+// nobody declined.
 type ReviewCounts struct {
 	Suggestions int `json:"suggestions"`
 	Warnings    int `json:"warnings"`
 	Notes       int `json:"notes"`
 	Todo        int `json:"todo"`
+	Scope       int `json:"scope"`
 }
 
 // IndexFamily is a family of files in data/index.json: Files are the positions
@@ -87,9 +90,9 @@ type Result struct {
 // Export writes the data of the viewer to outDir: meta.json, index.json,
 // files/<path> for each file of the KR pack, search/keys.json and
 // search/{kr,jp,en,zh}.json, and review/{suggestions,warnings,notes,todo}.json
-// (empty lists without in.Review). The corpus holds the units of every file in the
-// order of the index, but not the copies (identifiers and texts that are the
-// same in every language). meta supplies what Export cannot know: RawTag,
+// and review/scope.json (Review.Scope), empty lists without in.Review. The
+// corpus holds the units of every file in the order of the index, but not the
+// copies (identifiers and texts that are the same in every language). meta supplies what Export cannot know: RawTag,
 // RulesCommit, TWCommit and Release. The output depends on in alone, so the
 // same inputs give the same bytes.
 //
@@ -185,6 +188,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	counts := countReview(rev)
 	if rev.Suggestions == nil {
 		rev.Suggestions, rev.Warnings, rev.Notes, rev.Todo = []SuggestionItem{}, []WarningItem{}, []NoteItem{}, []TodoSection{}
+		rev.Scope = scope.Empty()
 	}
 	for _, f := range []struct {
 		name string
@@ -202,6 +206,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 		{"todo", struct {
 			Sections []TodoSection `json:"sections"`
 		}{rev.Todo}},
+		{"scope", rev.Scope},
 	} {
 		if err := w.writeJSON("review/"+f.name+".json", f.v); err != nil {
 			return Result{}, err
@@ -244,6 +249,11 @@ func countReview(r Review) ReviewCounts {
 	}
 	for _, sec := range r.Todo {
 		c.Todo += len(sec.Items)
+	}
+	for _, p := range r.Scope.Proposals {
+		if p.Declined == nil {
+			c.Scope++
+		}
 	}
 	return c
 }

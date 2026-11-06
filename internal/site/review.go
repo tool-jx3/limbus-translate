@@ -16,6 +16,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/suggest"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -48,11 +49,9 @@ type ReviewInputs struct {
 	Provisional []store.ProvisionalTerm
 }
 
-// Confirmed says that a person confirmed an item, and why.
-type Confirmed struct {
-	Reason string `json:"reason"`
-	Date   string `json:"date"`
-}
+// Confirmed says that a person confirmed an item, and why (suggest.Confirmed,
+// which the scope proposals carry too).
+type Confirmed = suggest.Confirmed
 
 // Variant is one translation of a group of inconsistent translations, with
 // every unit that shows it.
@@ -208,6 +207,10 @@ type Review struct {
 	NoteText map[string]string
 	// Queued holds the keys of the pending list.
 	Queued map[string]bool
+	// Scope is where the translations use each glossary entry, and the
+	// proposals of where it should apply (scope.Analyze), over the units the
+	// warnings check.
+	Scope scope.Report
 }
 
 // shownOrigin says whether a unit of this origin counts as a rendering the
@@ -350,11 +353,15 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 	groups := map[string]*group{}
 	var warns []*warnAcc
 	warnByID := map[string]*warnAcc{}
+	// The units of the scope report: those whose glossary terms the warnings
+	// check, each with its notes once the notes of its file are placed.
+	var scopeUnits []scope.Unit
 
 	for _, path := range files {
 		frozen := config.MatchAny(rv.Frozen, path)
 		family := in.Rules.Family(path)
 		var withRec []placedUnit
+		fileScope := len(scopeUnits)
 		visit := func(u Unit, ku units.Unit, en, jp *align.LangAligned) {
 			key := units.Key(path, ku.Pointer)
 			// Only the shipped text of a record counts as a rendering, as in
@@ -397,6 +404,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			if !rv.Fields.Classify(ku, en, jp).Translate || rec.Origin == store.OriginCopy {
 				return
 			}
+			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
 			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: in.Rules.ScriptRenderings(path), Terms: terms}) {
@@ -469,6 +477,9 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			}
 			noteItems = append(noteItems, item)
 		}
+		for i := fileScope; i < len(scopeUnits); i++ {
+			scopeUnits[i].Note = noteText[scopeUnits[i].Key]
+		}
 	}
 
 	out := Review{
@@ -481,6 +492,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 		NoteText:      noteText,
 		Queued:        queued,
 		NotesUnplaced: len(rv.Notes) - placedCount,
+		Scope:         scope.Analyze(scope.Inputs{Rules: in.Rules, Units: scopeUnits, Declined: declined}),
 	}
 	for key, ids := range noteRefs {
 		out.Refs[key] = append(out.Refs[key], ids...)

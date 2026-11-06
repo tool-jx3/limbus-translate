@@ -7,6 +7,8 @@ package itemid
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"regexp"
+	"slices"
 )
 
 // Sha8 is the first 8 lowercase hex digits of the sha256 of text.
@@ -64,3 +66,59 @@ func TermGroup(kr, zh string) string {
 func Note(key, note string) string {
 	return "note/" + key + "/" + Sha8(note)
 }
+
+// ScopePrefix is what the id of a scope proposal starts with (Scope).
+const ScopePrefix = "scope/"
+
+// The kinds of a scope proposal: where an entry of the glossary could apply,
+// as the translations use it (internal/scope). The first four are a change of
+// the entry; the last two leave the change to a person.
+const (
+	ScopeNotFiles  = "not-files" // add patterns to not_files
+	ScopeFiles     = "files"     // limit files to patterns
+	ScopeSubstring = "substring" // match: substring
+	ScopeWord      = "word"      // match: word, in place of substring
+	ScopeMixed     = "mixed"     // a group uses the rendering in part: a person looks
+	ScopeExplained = "explained" // notes often explain why the rendering is not used
+)
+
+// ScopeKinds lists the kinds of a scope proposal, in the order the review page
+// shows them.
+var ScopeKinds = []string{ScopeNotFiles, ScopeFiles, ScopeSubstring, ScopeWord, ScopeMixed, ScopeExplained}
+
+// Scope is the id of the proposal of kind about the glossary entry kr -> zh:
+// scope/<sha8 KR>/<sha8 ZH>/<kind>. The id does not change with what the
+// proposal says, so a declined proposal stays declined when the numbers
+// behind it move.
+func Scope(kr, zh, kind string) string {
+	return ScopePrefix + Sha8(kr) + "/" + Sha8(zh) + "/" + kind
+}
+
+// scopeRe is the id of a scope proposal; the kind is checked apart.
+var scopeRe = regexp.MustCompile(`^scope/[0-9a-f]{8}/[0-9a-f]{8}/([a-z-]+)$`)
+
+// IsScope reports whether id is the id of a scope proposal: Scope of some KR,
+// rendering and one of ScopeKinds.
+func IsScope(id string) bool {
+	m := scopeRe.FindStringSubmatch(id)
+	return m != nil && slices.Contains(ScopeKinds, m[1])
+}
+
+// GlossaryEntryPrefix is what the id of a glossary entry starts with
+// (GlossaryEntry).
+const GlossaryEntryPrefix = "glossary/"
+
+// GlossaryEntry is the id of the glossary entry kr -> zh:
+// glossary/<sha8 KR>/<sha8 ZH>. A person copies it from the review page to
+// give an instruction about the entry ("add also 對象"); it names no item to
+// confirm, so lct accept and rules/declined.yaml take none.
+func GlossaryEntry(kr, zh string) string {
+	return GlossaryEntryPrefix + Sha8(kr) + "/" + Sha8(zh)
+}
+
+// glossaryEntryRe is the id of a glossary entry.
+var glossaryEntryRe = regexp.MustCompile(`^glossary/[0-9a-f]{8}/[0-9a-f]{8}$`)
+
+// IsGlossaryEntry reports whether id is the id of a glossary entry
+// (GlossaryEntry).
+func IsGlossaryEntry(id string) bool { return glossaryEntryRe.MatchString(id) }
