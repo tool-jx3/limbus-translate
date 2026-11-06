@@ -425,7 +425,11 @@ func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.
 	}
 	plain := validate.MatchText(kr) // as GlossaryHits looks for its terms
 	n := len(terms)
+	runes := newRuneSet(plain)
 	for _, t := range provisional {
+		if !runes.mayStartTerm(t.KR) {
+			continue
+		}
 		if t.OccursIn(plain) {
 			t.Provisional = true
 			terms = append(terms, t)
@@ -435,6 +439,33 @@ func TermsIn(r *rules.Rules, provisional []rules.Term, file, kr string) []rules.
 		return terms
 	}
 	return rules.DropCovered(plain, terms)
+}
+
+// runeSet is a Bloom filter of the runes of a text: with thousands of
+// provisional terms, scanning each of them in every unit's text is the cost of
+// TermsIn, and a term whose first rune is not in the text cannot occur in it.
+type runeSet [16]uint64
+
+func newRuneSet(text string) *runeSet {
+	var set runeSet
+	for _, r := range text {
+		h := uint32(r) % 1024
+		set[h/64] |= 1 << (h % 64)
+	}
+	return &set
+}
+
+// mayStartTerm reports whether a term with this KR text may occur in the text
+// of the set: false only when its first rune is not in the text. A KR that
+// does not start with a valid rune (bytes that range would read differently
+// from strings.Index) always may.
+func (s *runeSet) mayStartTerm(kr string) bool {
+	r, _ := utf8.DecodeRuneInString(kr)
+	if r == utf8.RuneError {
+		return true
+	}
+	h := uint32(r) % 1024
+	return s[h/64]&(1<<(h%64)) != 0
 }
 
 // ValidateTermsIn returns the glossary terms of TermsIn as validation

@@ -4225,6 +4225,56 @@ func TestTermsInMarksProvisionalTerms(t *testing.T) {
 	}
 }
 
+// A provisional term whose KR is not in the text is neither a coverer nor
+// checked, and TermsIn gives what a scan of every provisional term gives (the
+// first-rune prefilter changes no result), for odd texts too.
+func TestTermsInIgnoresAProvisionalTermAbsentFromTheKR(t *testing.T) {
+	r := testRulesWith(t, "- kr: 보스\n  zh: BOSS\n  status: approved\n")
+	prov := []rules.Term{{KR: "조직의 보스", ZH: "組織的首領", Match: rules.MatchWord, Status: rules.StatusApproved}}
+	got := TermsIn(r, prov, "Other.json", "보스가 왔다")
+	if len(got) != 1 || got[0].KR != "보스" || got[0].Provisional {
+		t.Errorf("TermsIn = %+v, want the glossary term 보스 alone: the provisional term is absent from the KR, so it covers nothing", got)
+	}
+	if got := ValidateTermsIn(r, prov, "Other.json", "보스가 왔다"); len(got) != 1 || got[0].KR != "보스" {
+		t.Errorf("ValidateTermsIn = %+v, want 보스 checked", got)
+	}
+	if got := ValidateTermsIn(r, prov, "Other.json", "조직의 보스가 왔다"); len(got) != 0 {
+		t.Errorf("ValidateTermsIn = %+v, want none once the provisional term is present and covers 보스", got)
+	}
+
+	// Against a scan of every provisional term, over texts of every kind.
+	many := []rules.Term{
+		{KR: "조직", ZH: "組織", Match: rules.MatchWord},
+		{KR: "조직의 보스", ZH: "組織的首領", Match: rules.MatchWord},
+		{KR: "ab", ZH: "AB", Match: rules.MatchSubstring},
+		{KR: "\xff\xfe", ZH: "壞", Match: rules.MatchSubstring},
+		{KR: "\ufffd", ZH: "替", Match: rules.MatchSubstring},
+		{KR: "", ZH: "空"},
+		{KR: "<br>", ZH: "換行", Match: rules.MatchSubstring},
+	}
+	scan := func(file, kr string) []rules.Term {
+		terms := r.GlossaryHits(file, kr)
+		plain := validate.MatchText(kr)
+		n := len(terms)
+		for _, p := range many {
+			if p.OccursIn(plain) {
+				p.Provisional = true
+				terms = append(terms, p)
+			}
+		}
+		if len(terms) == n {
+			return terms
+		}
+		return rules.DropCovered(plain, terms)
+	}
+	for _, kr := range []string{"", "보스", "조직의 보스가 왔다", "조직이 보스를 불렀다", "xabx", "\xff\xfe\xff", "a\xffb", "x\ufffdy", "줄<br>바꿈", "あいう"} {
+		got, want := TermsIn(r, many, "Other.json", kr), scan("Other.json", kr)
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("TermsIn(%q) = %+v, want %+v", kr, got, want)
+		}
+	}
+}
+
 // The forbidden renderings of a term are checked where it hits: not where a
 // longer term covers it.
 func TestCheckNewSkipsTheForbiddenOfACoveredTerm(t *testing.T) {
