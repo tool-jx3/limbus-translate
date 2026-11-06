@@ -172,6 +172,22 @@ describe('ReviewView', () => {
     expect(el.querySelectorAll('.rv-tunit')).toHaveLength(2)
   })
 
+  it('keeps the units of a term group folded, and opens them while the text filter has a query', async () => {
+    const unit = (n: number) => ({ key: `a.json|/${n}`, id: `warning/term-missing/${n}`, kr: '자판기', zh: '機器' })
+    const group = {
+      id: 'termgroup/aaaaaaaa/bbbbbbbb', code: 'term-missing', kr: '자판기', zh: '自動販賣機', message: 'm', keys: ['a.json|/1', 'a.json|/2'], families: ['story'], origins: [], pending: 0,
+      term: { kr: '자판기', zh: '自動販賣機' }, units: [unit(1), unit(2)],
+    }
+    vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/warnings.json': { items: [group] } })))
+    clearDataCache()
+    let el = await mount(route('warnings'))
+    expect(el.querySelector<HTMLDetailsElement>('details.rv-tfold')!.open).toBe(false)
+    el = await mount(route('warnings', { q: 'a.json|/2' }))
+    expect(el.querySelector<HTMLDetailsElement>('details.rv-tfold')!.open).toBe(true)
+    el = await mount(route('warnings', { id: 'termgroup/aaaaaaaa/bbbbbbbb' }))
+    expect(el.querySelector<HTMLDetailsElement>('details.rv-tfold')!.open).toBe(true)
+  })
+
   it('shows the whole note and the unit of a translator note', async () => {
     const el = await mount(route('notes'))
     expect(cards(el)).toHaveLength(1)

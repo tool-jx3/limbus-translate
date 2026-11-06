@@ -274,7 +274,7 @@ function Warnings({ route, items }: { route: ReviewRoute; items: WarningItem[] }
           render={(w, target, previous) => (
             <>
               {previous?.code !== w.code && <Section key={`h-${w.code}`} code={w.code} count={sectionCounts.get(w.code) ?? 0} message={w.message} />}
-              <WarningCard key={w.id} item={w} target={target} showAccepted={route.all} />
+              <WarningCard key={w.id} item={w} target={target} showAccepted={route.all} unfold={route.q !== ''} />
             </>
           )}
         />

@@ -26,8 +26,11 @@ function TermUnitRow({ term, unit }: { term: TermRef; unit: TermUnit }) {
   )
 }
 
-/** A term-missing group: one glossary entry, and each unit that lacks its rendering. */
-function TermGroupCard({ item, term, units, target, showAccepted }: { item: WarningItem; term: TermRef; units: TermUnit[]; target: boolean; showAccepted: boolean }) {
+/**
+ * A term-missing group: one glossary entry, and each unit that lacks its rendering.
+ * The units fold behind a line with their number; the group the address names and a search open them.
+ */
+function TermGroupCard({ item, term, units, target, showAccepted, unfold }: { item: WarningItem; term: TermRef; units: TermUnit[]; target: boolean; showAccepted: boolean; unfold: boolean }) {
   const cls = ['rv-card', item.accepted ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
   const info = warningInfo(item.code, item.message)
   const shown = showAccepted ? units : units.filter((u) => !u.accepted)
@@ -49,17 +52,22 @@ function TermGroupCard({ item, term, units, target, showAccepted }: { item: Warn
       </div>
       <p class="rv-msg">{item.message}</p>
       <ConfirmedLine confirmed={item.accepted} />
-      <ul class="rv-tunits">
-        {shown.map((u) => (
-          <TermUnitRow key={u.id} term={term} unit={u} />
-        ))}
-      </ul>
+      {shown.length > 0 && (
+        <details class="rv-tfold" open={target || unfold}>
+          <summary>{shown.length} 個單位</summary>
+          <ul class="rv-tunits">
+            {shown.map((u) => (
+              <TermUnitRow key={u.id} term={term} unit={u} />
+            ))}
+          </ul>
+        </details>
+      )}
     </article>
   )
 }
 
-export function WarningCard({ item, target, showAccepted = false }: { item: WarningItem; target: boolean; showAccepted?: boolean }) {
-  if (item.term && item.units) return <TermGroupCard item={item} term={item.term} units={item.units} target={target} showAccepted={showAccepted} />
+export function WarningCard({ item, target, showAccepted = false, unfold = false }: { item: WarningItem; target: boolean; showAccepted?: boolean; unfold?: boolean }) {
+  if (item.term && item.units) return <TermGroupCard item={item} term={item.term} units={item.units} target={target} showAccepted={showAccepted} unfold={unfold} />
   const info = warningInfo(item.code, item.message)
   const cls = ['rv-card', item.accepted ? 'is-confirmed' : '', target ? 'is-target' : ''].filter(Boolean).join(' ')
   const mark = WARNING_MARKS[item.code]

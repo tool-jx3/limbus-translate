@@ -155,6 +155,37 @@ describe('WarningCard, a term-missing group', () => {
     expect(unitRows(el)[0]!.textContent).not.toContain('<b>')
   })
 
+  it('folds the units of a group behind a line with their number, closed by default', () => {
+    const el = mount(<WarningCard item={group} target={false} showAccepted={false} />)
+    const fold = el.querySelector<HTMLDetailsElement>('details.rv-tfold')
+    expect(fold).not.toBeNull()
+    expect(fold!.open).toBe(false)
+    expect(fold!.querySelector('summary')?.textContent).toBe('2 個單位')
+    expect(fold!.querySelectorAll('.rv-tunit')).toHaveLength(2)
+    expect(el.querySelector('.rv-head')?.closest('details')).toBeNull()
+  })
+
+  it('counts the units it shows, the confirmed among them on all=1', () => {
+    const el = mount(<WarningCard item={group} target={false} showAccepted={true} />)
+    expect(el.querySelector('details.rv-tfold summary')?.textContent).toBe('3 個單位')
+  })
+
+  it('opens the units of the group the address names', () => {
+    const el = mount(<WarningCard item={group} target={true} showAccepted={false} />)
+    expect(el.querySelector<HTMLDetailsElement>('details.rv-tfold')!.open).toBe(true)
+  })
+
+  it('opens the units when asked to, as a search does', () => {
+    const el = mount(<WarningCard item={group} target={false} showAccepted={false} unfold={true} />)
+    expect(el.querySelector<HTMLDetailsElement>('details.rv-tfold')!.open).toBe(true)
+  })
+
+  it('has no fold when no unit is shown', () => {
+    const done: WarningItem = { ...group, keys: [], units: group.units!.slice(2) }
+    const el = mount(<WarningCard item={done} target={false} showAccepted={false} />)
+    expect(el.querySelector('details.rv-tfold')).toBeNull()
+  })
+
   it('keeps the other warnings as they were', () => {
     const plain: WarningItem = { id: 'warning/kana/1/2', code: 'kana', kr: 'k', zh: 'の', message: 'm', keys: ['a|/1'], families: ['story'], origins: [], pending: 0 }
     const el = mount(<WarningCard item={plain} target={false} showAccepted={false} />)

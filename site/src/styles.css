@@ -2128,6 +2128,20 @@ button.chip {
   white-space: nowrap;
 }
 
+.rv-tfold {
+  min-width: 0;
+}
+
+.rv-tfold > summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.rv-tfold[open] > summary {
+  margin-bottom: 0.4rem;
+}
+
 .rv-tunits {
   min-width: 0;
   display: grid;
