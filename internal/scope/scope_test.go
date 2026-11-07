@@ -485,11 +485,16 @@ func TestEntryFields(t *testing.T) {
 	r, us := notFilesFixture()
 	r.Glossary[0].Notes = "指組織頭頭時用老大"
 	r.Glossary[0].Also = []string{"老大"}
+	r.Glossary[0].JP, r.Glossary[0].EN = "ボス", "Boss"
+	r.Glossary[0].Meaning, r.Glossary[0].Sources = "組織的首領", []string{"game:Other.json#/dataList/0/content"}
 	rep := Analyze(Inputs{Rules: r, Units: us})
 	e := entryOf(t, rep, "보스")
 	if e.ID != itemid.GlossaryEntry("보스", "BOSS") || e.ZH != "BOSS" || !slices.Equal(e.Also, []string{"老大"}) || e.Files == nil || e.NotFiles == nil ||
 		e.Match != rules.MatchWord || e.Notes != "指組織頭頭時用老大" {
 		t.Errorf("entry = %+v", e)
+	}
+	if e.JP != "ボス" || e.EN != "Boss" || e.Meaning != "組織的首領" || !slices.Equal(e.Sources, []string{"game:Other.json#/dataList/0/content"}) {
+		t.Errorf("jp, en, meaning, sources = %q %q %q %q", e.JP, e.EN, e.Meaning, e.Sources)
 	}
 	// With also 老大 the stories use it: nothing to propose.
 	if len(rep.Proposals) != 0 {

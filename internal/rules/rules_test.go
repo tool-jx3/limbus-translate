@@ -1,6 +1,7 @@
 package rules_test
 
 import (
+	"encoding/json"
 	"errors"
 	"io/fs"
 	"os"
@@ -2217,5 +2218,71 @@ func TestLintGuideTotal(t *testing.T) {
 	}
 	if strings.Contains(all, "MainUIText.json") {
 		t.Errorf("MainUIText.json (30000 bytes) is warned of:\n%s", all)
+	}
+}
+
+// meaning is the sense the entry stands for; it needs a source.
+func TestLintMeaningNeedsSources(t *testing.T) {
+	for _, tc := range []struct {
+		name, extra string
+		wantErr     bool
+	}{
+		{"none", "", false},
+		{"meaning only", "  meaning: 百貨公司（商店）\n", true},
+		{"meaning and sources", "  meaning: 百貨公司（商店）\n  sources: [\"game:Bufs.json#/dataList/0/name\"]\n", false},
+		{"sources only", "  sources: [\"game:Bufs.json#/dataList/0/name\"]\n", false},
+	} {
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string {
+			return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n" + tc.extra
+		})
+		msg := lintMessages(rules.Lint(root))
+		if got := strings.Contains(msg, "meaning"); got != tc.wantErr {
+			t.Errorf("%s: lint mentions meaning = %v, want %v:\n%s", tc.name, got, tc.wantErr, msg)
+		}
+	}
+}
+
+// Each source is game:<file>#<pointer> or a limbuscompany.wiki.gg URL.
+func TestLintSourceForms(t *testing.T) {
+	for src, wantErr := range map[string]bool{
+		"game:Bufs.json#/dataList/0/name":               false,
+		"game:StoryData/S001A.json#/dataList/3/content": false,
+		"https://limbuscompany.wiki.gg/wiki/Bleed":      false,
+		"game:Bufs.json":      true,
+		"game:#/a":            true,
+		"game:Bufs.json#/a b": true,
+		"http://limbuscompany.wiki.gg/wiki/Bleed":  true,
+		"https://namu.wiki/w/Bleed":                true,
+		"https://limbuscompany.wiki.gg.evil.com/x": true,
+		"": true,
+	} {
+		root := copyRules(t)
+		edit(t, root, "glossary/terms.yaml", func(s string) string {
+			return s + "\n- kr: 백화점\n  zh: 百貨公司\n  status: approved\n  meaning: m\n  sources: [\"" + src + "\"]\n"
+		})
+		msg := lintMessages(rules.Lint(root))
+		if got := strings.Contains(msg, "sources"); got != wantErr {
+			t.Errorf("source %q: lint mentions sources = %v, want %v:\n%s", src, got, wantErr, msg)
+		}
+	}
+}
+
+// units has to be the last key of a term: the site appends it to the JSON of a
+// term to rebuild a batch.
+func TestTermJSONOrder(t *testing.T) {
+	data, err := json.Marshal(rules.Term{
+		KR: "a", ZH: "b", Status: "approved", Check: "hard", Meaning: "m", Sources: []string{"game:x#/y"},
+		Provisional: true, Units: []string{"k"},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := string(data)
+	if !strings.HasSuffix(s, `"units":["k"]}`) {
+		t.Errorf("units is not the last key: %s", s)
+	}
+	if !(strings.Index(s, `"check"`) < strings.Index(s, `"meaning"`) && strings.Index(s, `"sources"`) < strings.Index(s, `"provisional"`)) {
+		t.Errorf("meaning and sources are not between check and provisional: %s", s)
 	}
 }

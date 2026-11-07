@@ -24,8 +24,16 @@
     },
     {
       "kr": "공격",
+      "jp": "攻撃",
+      "en": "Attack",
       "zh": "攻擊",
       "status": "approved",
+      "check": "hard",
+      "meaning": "戰鬥中的攻擊行動",
+      "sources": [
+        "game:Bufs.json#/dataList/0/name",
+        "https://limbuscompany.wiki.gg/wiki/Attack"
+      ],
       "units": [
         "StoryData/S001A.json|/dataList/2/content"
       ]

@@ -57,8 +57,13 @@ const pvGlossary = `- kr: 위력
   status: approved
   forbidden: [力量]
 - kr: 공격
+  jp: 攻撃
+  en: Attack
   zh: 攻擊
   status: approved
+  check: hard
+  meaning: 戰鬥中的攻擊行動
+  sources: ["game:Bufs.json#/dataList/0/name", "https://limbuscompany.wiki.gg/wiki/Attack"]
 - kr: 후보
   zh: 候選
   status: candidate

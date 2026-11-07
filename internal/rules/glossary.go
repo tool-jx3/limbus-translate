@@ -3,6 +3,7 @@ package rules
 import (
 	"fmt"
 	"path"
+	"regexp"
 	"slices"
 	"strings"
 	"unicode/utf8"
@@ -47,6 +48,13 @@ type Term struct {
 	// a family that does not say glossary: warn); every other entry only
 	// warns. A forbidden rendering is rejected whatever Check says.
 	Check string `yaml:"check" json:"check,omitempty"`
+	// Meaning is the sense the entry stands for, in a few words; the
+	// translator weighs it, with JP and EN, against the sense of the KR in a
+	// unit. Sources say where Meaning comes from (see SourceRe). Both stay
+	// before Provisional and Units: the site appends "units" to the JSON of a
+	// term as its last key.
+	Meaning string   `yaml:"meaning" json:"meaning,omitempty"`
+	Sources []string `yaml:"sources" json:"sources,omitempty"`
 	// Provisional marks a term registered by a translator and not yet decided
 	// on by a person (see batch.ActiveProvisional). It is never read from the
 	// glossary: "provisional" is not a glossary key.
@@ -56,6 +64,10 @@ type Term struct {
 	// batch fills it.
 	Units []string `yaml:"-" json:"units,omitempty"`
 }
+
+// SourceRe is the form of an item of Term.Sources: a game file key
+// (game:<file>#<pointer>) or a page of the Limbus Company wiki.
+var SourceRe = regexp.MustCompile(`^(?:game:[^#\s]+#/\S*|https://limbuscompany\.wiki\.gg/\S+)$`)
 
 // The values of Term.Check.
 const (
@@ -372,6 +384,7 @@ func (t Term) Used(zh string) bool { return t.ToValidate().Used(zh) }
 var termFields = map[string]bool{
 	"kr": true, "jp": true, "en": true, "zh": true, "status": true,
 	"forbidden": true, "also": true, "category": true, "evidence": true, "notes": true, "files": true, "not_files": true, "match": true, "check": true,
+	"meaning": true, "sources": true,
 }
 
 // parseGlossary decodes the glossary. unknown[i] lists the keys of entry i

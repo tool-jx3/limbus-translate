@@ -108,6 +108,10 @@ type Entry struct {
 	ID       string   `json:"id"`
 	KR       string   `json:"kr"`
 	ZH       string   `json:"zh"`
+	JP       string   `json:"jp,omitempty"`
+	EN       string   `json:"en,omitempty"`
+	Meaning  string   `json:"meaning,omitempty"`
+	Sources  []string `json:"sources,omitempty"`
 	Also     []string `json:"also"`
 	Files    []string `json:"files"`
 	NotFiles []string `json:"not_files"`
@@ -592,6 +596,7 @@ func (an *analysis) entry(a *acc) Entry {
 		N: n, Used: used, Rate: rate, Check: t.Check,
 		HardCandidate: !t.Hard() && n >= hardMinN && rate > hardRate,
 		ID:            itemid.GlossaryEntry(t.KR, t.ZH), KR: t.KR, ZH: t.ZH,
+		JP: t.JP, EN: t.EN, Meaning: t.Meaning, Sources: slices.Clone(t.Sources),
 		Also: nonNil(t.Also), Files: nonNil(t.Files), NotFiles: nonNil(t.NotFiles),
 		Match: matchOf(t), Notes: t.Notes, Groups: an.orderedGroups(a),
 		Compound: a.compound, Explained: a.explained, Unexplained: a.unexplained,

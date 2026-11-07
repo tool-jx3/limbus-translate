@@ -4,6 +4,12 @@
 
 `guides/routing.yaml` 標 `glossary: warn` 的族群（列表以 routing.yaml 為準，不在這裡重抄）語境多變：即使條目有 `check: hard`，缺少 `zh` 也只警告，不退回；譯者語境不合可以不用，仍在 `note` 寫原因。`forbidden` 的禁用譯法在這些族群照樣退回。
 
+## `meaning` 與 `sources`：詞義與出處
+
+- `meaning`：條目指的意思，幾個字即可（例如「戰鬥中的攻擊行動」）。翻譯時與 `jp`、`en` 一起注入，讓譯者比對單位的 `jp`、`en`，判斷單位裡的 KR 是不是同一個意思；不同就不用 `zh`，在 `note` 寫原詞與理由
+- `sources`：`meaning` 的出處，列表，每項是 `game:<檔名>#<pointer>`（遊戲檔案的 key，例如 `game:Bufs.json#/dataList/0/name`）或 `https://limbuscompany.wiki.gg/…` 網址。有 `meaning` 就必須有 `sources`；找不到出處就不寫 `meaning`（`lct rules lint` 檢查）
+- 兩者都可省略；網站詞條頁顯示 JP、EN、詞義與出處（wiki 網址為連結）
+
 ## `check`：缺少譯名時退回
 
 `check` 的值是 `hard` 或 `warn`，省略等於 `warn`（`lct rules lint` 檢查）：

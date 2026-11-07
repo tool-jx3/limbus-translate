@@ -117,6 +117,14 @@ func (l *linter) glossary() {
 		if t.Check != "" && t.Check != CheckHard && t.Check != CheckWarn {
 			l.report(GlossaryFile, "%s: check is %q, want %s or %s", label, t.Check, CheckHard, CheckWarn)
 		}
+		if t.Meaning != "" && len(t.Sources) == 0 {
+			l.report(GlossaryFile, "%s: meaning needs sources (game:<file>#<pointer> or a limbuscompany.wiki.gg URL)", label)
+		}
+		for _, src := range t.Sources {
+			if !SourceRe.MatchString(src) {
+				l.report(GlossaryFile, "%s: sources holds %q, want game:<file>#<pointer> or https://limbuscompany.wiki.gg/...", label, src)
+			}
+		}
 		for _, f := range t.Forbidden {
 			if pattern, isRegexp := strings.CutPrefix(f, "re:"); isRegexp {
 				if _, err := regexp.Compile(pattern); err != nil {
