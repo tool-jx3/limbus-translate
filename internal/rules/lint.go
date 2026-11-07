@@ -128,15 +128,23 @@ func (l *linter) glossary() {
 			name  string
 			forms Forms
 		}{{"jp", t.JP}, {"en", t.EN}} {
-			seen := map[string]bool{}
+			// Two forms are one where every check reads them alike
+			// (sameForm): in EN, case and the number of the last word do not
+			// tell them apart.
+			var kept []string
 			for _, form := range f.forms {
-				switch {
-				case strings.TrimSpace(form) == "":
+				if strings.TrimSpace(form) == "" {
 					l.report(GlossaryFile, "%s: %s holds an empty form", label, f.name)
-				case seen[form]:
-					l.report(GlossaryFile, "%s: %s holds %q twice", label, f.name, form)
+					continue
 				}
-				seen[form] = true
+				switch at := slices.IndexFunc(kept, func(k string) bool { return sameForm(f.name, k, form) }); {
+				case at < 0:
+					kept = append(kept, form)
+				case kept[at] == form:
+					l.report(GlossaryFile, "%s: %s holds %q twice", label, f.name, form)
+				default:
+					l.report(GlossaryFile, "%s: %s holds %q and %q, one form to every check (EN is compared ignoring case and the number of its last word)", label, f.name, kept[at], form)
+				}
 			}
 		}
 		if t.Meaning != "" && len(t.Sources) == 0 {

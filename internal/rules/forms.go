@@ -4,6 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"strings"
+	"unicode"
+	"unicode/utf8"
 
 	"gopkg.in/yaml.v3"
 )
@@ -107,3 +110,92 @@ func (f *Forms) UnmarshalJSON(data []byte) error {
 	*f = list
 	return nil
 }
+
+// HoldsEN reports whether the EN text holds the EN form: as a word, ignoring
+// case, with its last word as a plural or a singular too (numberForms). It is
+// how an EN form is compared everywhere: evidence.Holds (the checks of lct
+// glossary evidence and the senses of lct glossary scope) reads EN through
+// it, and lint tells two EN forms of an entry apart by it. text is taken as
+// it is; evidence.Holds strips its tags first.
+func HoldsEN(text, form string) bool {
+	for _, v := range numberForms(form) {
+		if containsWord(text, v) {
+			return true
+		}
+	}
+	return false
+}
+
+// sameForm reports whether the forms a and b of lang ("jp" or "en") are one
+// form for every check: each holds the other (HoldsEN) in EN, so case and the
+// number of the last word do not tell them apart; JP compares as a substring,
+// so only the same text does.
+func sameForm(lang, a, b string) bool {
+	if lang == "en" {
+		return HoldsEN(a, b) && HoldsEN(b, a)
+	}
+	return a == b
+}
+
+// numberForms is the candidate and the forms its last word takes as a plural
+// or a singular: +s, +es, y to ies, and without a final s, es or ies (to y).
+// The words before it stay as they are.
+func numberForms(candidate string) []string {
+	// The head ends after the last non-letter, whatever its width in bytes.
+	cut := 0
+	if i := strings.LastIndexFunc(candidate, func(r rune) bool { return !unicode.IsLetter(r) }); i >= 0 {
+		_, w := utf8.DecodeRuneInString(candidate[i:])
+		cut = i + w
+	}
+	head, last := candidate[:cut], strings.ToLower(candidate[cut:])
+	out := []string{candidate}
+	if last == "" {
+		return out
+	}
+	add := func(stem string) { out = append(out, head+stem) }
+	// Case follows the text compared with: containsWord ignores it.
+	add(last + "s")
+	add(last + "es")
+	if strings.HasSuffix(last, "y") && len(last) > 1 {
+		add(last[:len(last)-1] + "ies")
+	}
+	if strings.HasSuffix(last, "ies") && len(last) > 4 {
+		add(last[:len(last)-3] + "y")
+	}
+	if strings.HasSuffix(last, "es") && len(last) > 4 {
+		add(last[:len(last)-2])
+	}
+	if strings.HasSuffix(last, "s") && len(last) > 3 {
+		add(last[:len(last)-1])
+	}
+	return out
+}
+
+// containsWord reports whether text holds word, ignoring case, with no letter
+// or digit right before or after it where it starts or ends with one.
+func containsWord(text, word string) bool {
+	text, word = strings.ToLower(text), strings.ToLower(word)
+	if word == "" {
+		return false
+	}
+	first, _ := utf8.DecodeRuneInString(word)
+	last, _ := utf8.DecodeLastRuneInString(word)
+	for from := 0; from < len(text); {
+		i := strings.Index(text[from:], word)
+		if i < 0 {
+			return false
+		}
+		at := from + i
+		from = at + 1
+		if r, _ := utf8.DecodeLastRuneInString(text[:at]); at > 0 && isWordRune(r) && isWordRune(first) {
+			continue
+		}
+		if r, _ := utf8.DecodeRuneInString(text[at+len(word):]); at+len(word) < len(text) && isWordRune(r) && isWordRune(last) {
+			continue
+		}
+		return true
+	}
+	return false
+}
+
+func isWordRune(r rune) bool { return unicode.IsLetter(r) || unicode.IsDigit(r) || r == '_' }

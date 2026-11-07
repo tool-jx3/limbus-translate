@@ -5074,13 +5074,18 @@ func TestReviewPageMissingScopeID(t *testing.T) {
 
 // glossaryCheckSays are the texts of the shared prompt and of the
 // translate-pending skill that tell the translator only an entry with
-// check: hard has a missing rendering rejected, with why each is needed.
+// check: hard has a missing rendering rejected, that one of check: off does
+// not even warn, and that any listed jp or en form counts, with why each is
+// needed.
 var glossaryCheckSays = []struct{ in, text, why string }{
 	{"prompt", "`glossary` 的 `zh` 是本專案的預設譯名，用在條目的 `units` 列出的單位", "the glossary renderings are not the defaults used in the units of each entry"},
 	{"prompt", "只有條目有 `check: \"hard\"` 時，缺少 `zh` 才會退回", "only check: hard rejects a missing rendering"},
 	{"prompt", "`note` 寫出原詞就收下", "a note that names the term is not said to be accepted"},
 	{"prompt", "暫定詞不會退回", "a provisional term is not said to only warn"},
 	{"skill", "條目有 `check: \"hard\"` 時，缺少詞彙表指定的譯法才會退回", "only check: hard rejects a missing rendering"},
+	{"prompt", "`check: \"off\"` 的條目是一般用語，`zh` 只是建議，缺少也不警告", "an entry of check: off is not said to draw no warning"},
+	{"prompt", "條目的 `jp`、`en` 是清單時，是同一個詞的幾種詞形，含任一個就算", "a list of jp or en forms is not said to count by any of them"},
+	{"skill", "`term-missing` 預設只是警告，`check: \"off\"` 的條目不會有", "an entry of check: off is not said to have no term-missing"},
 }
 
 // glossaryCheckProblems lists what prompt and skill lack of glossaryCheckSays.

@@ -11,8 +11,6 @@ import (
 	"fmt"
 	"slices"
 	"strings"
-	"unicode"
-	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
@@ -340,10 +338,10 @@ func entryKey(t rules.Term) string {
 // formSets), whose hits are the units that hold any of its forms.
 func checksOf(lang string, own rules.Forms, name string, given rules.Forms, occ []occurrence) []Check {
 	var out []Check
-	for _, c := range distinct(own.Each(), name, given.Each()) {
+	for _, c := range distinct(own, []string{name}, given) {
 		out = append(out, check(lang, []string{c}, occ))
 	}
-	for _, set := range formSets(distinct(own.Each()), distinct(given.Each())) {
+	for _, set := range formSets(distinct(own), distinct(given)) {
 		out = append(out, check(lang, set, occ))
 	}
 	return out
@@ -416,22 +414,15 @@ func mostCommon(ns []Name, field func(Name) string) string {
 	return best
 }
 
-// distinct lists the non-empty values of the arguments (a string or a list),
-// without repeats, in order.
-func distinct(parts ...any) []string {
+// distinct lists the non-empty values of the lists, trimmed, without
+// repeats, in order. It is typed: a rules.Forms is a list of strings and is
+// taken as one, and a single value has to be passed as a list.
+func distinct(lists ...[]string) []string {
 	var out []string
-	add := func(s string) {
-		if s = strings.TrimSpace(s); s != "" && !slices.Contains(out, s) {
-			out = append(out, s)
-		}
-	}
-	for _, p := range parts {
-		switch v := p.(type) {
-		case string:
-			add(v)
-		case []string:
-			for _, s := range v {
-				add(s)
+	for _, list := range lists {
+		for _, s := range list {
+			if s = strings.TrimSpace(s); s != "" && !slices.Contains(out, s) {
+				out = append(out, s)
 			}
 		}
 	}
@@ -439,53 +430,16 @@ func distinct(parts ...any) []string {
 }
 
 // Holds reports whether the aligned text of lang holds the candidate rendering,
-// as a check counts a hit: tags removed, EN by word (ignoring case), JP as a
-// substring. The scope analysis classifies units by it too.
+// as a check counts a hit: tags removed, EN by word, ignoring case and the
+// number of the last word (rules.HoldsEN, which lint compares the EN forms of
+// an entry by), JP as a substring. The scope analysis classifies units by it
+// too.
 func Holds(lang, text, candidate string) bool {
 	text = validate.MatchText(text)
 	if lang == LangEN {
-		for _, v := range numberForms(candidate) {
-			if containsWord(text, v) {
-				return true
-			}
-		}
-		return false
+		return rules.HoldsEN(text, candidate)
 	}
 	return strings.Contains(text, candidate)
-}
-
-// numberForms is the candidate and the forms its last word takes as a plural
-// or a singular: +s, +es, y to ies, and without a final s, es or ies (to y).
-// The words before it stay as they are.
-func numberForms(candidate string) []string {
-	// The head ends after the last non-letter, whatever its width in bytes.
-	cut := 0
-	if i := strings.LastIndexFunc(candidate, func(r rune) bool { return !unicode.IsLetter(r) }); i >= 0 {
-		_, w := utf8.DecodeRuneInString(candidate[i:])
-		cut = i + w
-	}
-	head, last := candidate[:cut], strings.ToLower(candidate[cut:])
-	out := []string{candidate}
-	if last == "" {
-		return out
-	}
-	add := func(stem string) { out = append(out, head+stem) }
-	// Case follows the text compared with: containsWord ignores it.
-	add(last + "s")
-	add(last + "es")
-	if strings.HasSuffix(last, "y") && len(last) > 1 {
-		add(last[:len(last)-1] + "ies")
-	}
-	if strings.HasSuffix(last, "ies") && len(last) > 4 {
-		add(last[:len(last)-3] + "y")
-	}
-	if strings.HasSuffix(last, "es") && len(last) > 4 {
-		add(last[:len(last)-2])
-	}
-	if strings.HasSuffix(last, "s") && len(last) > 3 {
-		add(last[:len(last)-1])
-	}
-	return out
 }
 
 // check counts, over occ, the units with aligned text in lang (N) and those
@@ -517,32 +471,3 @@ func check(lang string, forms []string, occ []occurrence) Check {
 	c.OK = c.N >= MinN && c.Rate >= MinRate
 	return c
 }
-
-// containsWord reports whether text holds word, ignoring case, with no letter
-// or digit right before or after it where it starts or ends with one.
-func containsWord(text, word string) bool {
-	text, word = strings.ToLower(text), strings.ToLower(word)
-	if word == "" {
-		return false
-	}
-	first, _ := utf8.DecodeRuneInString(word)
-	last, _ := utf8.DecodeLastRuneInString(word)
-	for from := 0; from < len(text); {
-		i := strings.Index(text[from:], word)
-		if i < 0 {
-			return false
-		}
-		at := from + i
-		from = at + 1
-		if r, _ := utf8.DecodeLastRuneInString(text[:at]); at > 0 && isWordRune(r) && isWordRune(first) {
-			continue
-		}
-		if r, _ := utf8.DecodeRuneInString(text[at+len(word):]); at+len(word) < len(text) && isWordRune(r) && isWordRune(last) {
-			continue
-		}
-		return true
-	}
-	return false
-}
-
-func isWordRune(r rune) bool { return unicode.IsLetter(r) || unicode.IsDigit(r) || r == '_' }

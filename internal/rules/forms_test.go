@@ -122,6 +122,13 @@ func TestLintGlossaryForms(t *testing.T) {
 		{"empty in a list", "  en: [Resistance, \"\"]\n", "en holds an empty form"},
 		{"twice", "  jp: [耐性, 耐性]\n", `jp holds "耐性" twice`},
 		{"blank", "  en: [\" \"]\n", "en holds an empty form"},
+		// EN is compared ignoring case and the number of its last word, as
+		// evidence.Holds does: these are one form for every check.
+		{"EN case", "  en: [Resist, resist]\n", `en holds "Resist" and "resist"`},
+		{"EN plural", "  en: [Resistance, Resistances]\n", `en holds "Resistance" and "Resistances"`},
+		{"EN y to ies", "  en: [Ability, abilities]\n", `en holds "Ability" and "abilities"`},
+		{"EN other words", "  en: [Resistance, Resist, Physical Resistance]\n", ""},
+		{"JP is exact", "  jp: [耐性, 耐性値]\n", ""},
 	} {
 		root := copyRules(t)
 		edit(t, root, "glossary/terms.yaml", func(s string) string {

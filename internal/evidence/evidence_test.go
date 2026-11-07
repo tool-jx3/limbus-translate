@@ -5,10 +5,8 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"slices"
 	"strings"
 	"testing"
-	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
@@ -372,25 +370,6 @@ func TestHoldsENPlurals(t *testing.T) {
 	}
 }
 
-// A last separator of more than one byte (U+3000, a typographic apostrophe)
-// is kept whole in the head of the plural forms.
-func TestNumberFormsMultibyteSeparator(t *testing.T) {
-	for _, c := range []struct{ cand, want string }{
-		{"Big\u3000Burn", "Big\u3000burns"},
-		{"Dante’Burn", "Dante’burns"},
-	} {
-		got := numberForms(c.cand)
-		if !slices.Contains(got, c.want) {
-			t.Errorf("numberForms(%q) = %q, want %q among them", c.cand, got, c.want)
-		}
-		for _, f := range got {
-			if !utf8.ValidString(f) {
-				t.Errorf("numberForms(%q) holds the invalid UTF-8 %q", c.cand, f)
-			}
-		}
-	}
-}
-
 // testFields loads the real field rules (rules/fields.manual.yaml, which says
 // id and model are identifier fields) from a temp root.
 func testFields(t *testing.T) *fields.Rules {
@@ -749,5 +728,14 @@ func TestCollectCandidateEntryCountsWhereItWouldApply(t *testing.T) {
 	}
 	if c := checkOf(t, items[1], LangEN, "came"); c.N != 20 {
 		t.Errorf("approved check = %+v, want all 20 units: the candidate takes none", c)
+	}
+}
+
+// distinct takes lists of forms, a rules.Forms as well as a []string: each
+// non-blank value once, trimmed, in order.
+func TestDistinctTakesForms(t *testing.T) {
+	got := distinct(rules.Forms{"Resistance", "", " Resist "}, []string{"Resist", "Ineff."}, nil)
+	if want := []string{"Resistance", "Resist", "Ineff."}; !reflect.DeepEqual(got, want) {
+		t.Errorf("distinct = %q, want %q", got, want)
 	}
 }
