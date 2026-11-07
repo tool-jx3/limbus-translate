@@ -5,9 +5,9 @@ name_kr: 이스마엘
 gender: female
 number: 8
 code: "08"
-models: [이스마엘, 다친이스마엘, 이스마엘다침, 이스마엘F, 이스마엘그림자, 이스마엘만우]
+models: [이스마엘, 다친이스마엘, 이스마엘다침, 이스마엘그림자, 이스마엘만우]
 models_other_self: [이스마엘과거, 이스마엘과거2]
-models_not_this: []
+models_not_this: [이스마엘F]  # E001X 換身體，格里高爾的意識
 file_names: [Ishmael]
 ---
 

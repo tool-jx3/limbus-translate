@@ -85,12 +85,13 @@ func TestCharacterByModel(t *testing.T) {
 		{"과거료슈3", "ryoshu", true},
 		{"단테2", "dante", false},
 		{"프롤로그단테", "dante", true},
-		{"뫼르소엄마", "", false},   // Meursault's mother, not Meursault
-		{"파우스트와삼조", "", false}, // several people speak at once
-		{"료슈딸", "", false},     // Ryoshu's daughter
-		{"이스마엘 ", "", false},   // exact match only
-		{"", "", false},        // no model
-		{"알수없는모델", "", false},  // not in any file
+		{"뫼르소엄마", "", false},    // Meursault's mother, not Meursault
+		{"파우스트와삼조", "", false},  // several people speak at once
+		{"료슈딸", "araya", false}, // Ryoshu's daughter Araya, not Ryoshu
+		{"그렉료슈", "", false},     // several people speak at once
+		{"이스마엘 ", "", false},    // exact match only
+		{"", "", false},         // no model
+		{"알수없는모델", "", false},   // not in any file
 		{"어린히스클리프", "heathcliff", true},
 	}
 	for _, tc := range tests {
