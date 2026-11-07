@@ -444,3 +444,26 @@ func TestCollectSkipsUntranslatedFields(t *testing.T) {
 		t.Errorf("check = %+v, want N %d Hits %d OK (the model units are not counted)", *got, n, n)
 	}
 }
+
+// The names and descs skip those fields too: a model unit would otherwise give
+// the term the "name" of its own Hangul id, the most frequent one, and with it
+// a candidate that is no rendering.
+func TestCollectNamesSkipUntranslatedFields(t *testing.T) {
+	set := openSet(t,
+		packFiles{"Story.json": `{"dataList":[{"id":1,"model":"잔느"},{"id":2,"model":"잔느"},{"id":3,"model":"잔느"},{"id":4,"name":"잔느"}]}`},
+		packFiles{"Story.json": `{"dataList":[{"id":1,"model":"잔느"},{"id":2,"model":"잔느"},{"id":3,"model":"잔느"},{"id":4,"name":"Jeanne"}]}`},
+		packFiles{"Story.json": `{"dataList":[{"id":1,"model":"잔느"},{"id":2,"model":"잔느"},{"id":3,"model":"잔느"},{"id":4,"name":"ジャンヌ"}]}`})
+	items, err := Collect(glossary(term("잔느", "賈恩")), set, testFields(t), nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	it := items[0]
+	if len(it.Names) != 1 || it.Names[0].EN != "Jeanne" || it.Names[0].JP != "ジャンヌ" || it.Names[0].Count != 1 {
+		t.Errorf("Names = %+v, want only the name unit (Jeanne, ジャンヌ)", it.Names)
+	}
+	for _, c := range it.Checks {
+		if c.Candidate == "잔느" {
+			t.Errorf("candidate %+v is the Hangul id of the model units", c)
+		}
+	}
+}

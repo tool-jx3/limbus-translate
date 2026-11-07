@@ -26,7 +26,8 @@ func init() {
 			"grouped by pair, with unit keys and counts), the descriptions of keyword names, and for each candidate JP or EN rendering " +
 			"(the entry's jp and en, the most frequent official names and those given) how many aligned units hold the term (n), how many of them hold the candidate (hits), " +
 			"the rate and ok (n >= 10 and rate >= 0.6); reads only the raw worktree and the rules, writes nothing: " +
-			"(a name is matched against the whole KR text of a unit, trimmed at both ends; n counts only units with non-empty aligned text, tags and spaces aside) " +
+			"(a name is matched against the whole KR text of a unit, trimmed at both ends; n counts only units with non-empty aligned text, tags and spaces aside; " +
+			"units of fields the field rules do not translate, such as id and model, are left out of names, descriptions and n) " +
 			"[--kr K]... (default every approved entry) [--candidates FILE.yaml] (a mapping of KR to {jp: [...], en: [...]})",
 		Run: runGlossaryEvidence,
 	})

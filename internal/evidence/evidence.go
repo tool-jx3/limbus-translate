@@ -37,8 +37,8 @@ const (
 )
 
 // Name is what the packs call a KR text, over the units whose whole KR text is
-// the entry's KR (after trimming spaces): the aligned JP and EN, and the keys
-// of those units.
+// the entry's KR (after trimming spaces) and of a field the field rules
+// translate: the aligned JP and EN, and the keys of those units.
 type Name struct {
 	JP    string   `json:"jp"`
 	EN    string   `json:"en"`
@@ -182,16 +182,18 @@ func Collect(r *rules.Rules, set pack.Set, fr *fields.Rules, krs []string, candi
 			if err != nil {
 				return nil, err
 			}
+			// Only what is translated says anything about a rendering: a unit
+			// of a field the field rules leave alone (an id or model, whose
+			// aligned text is the KR id itself) counts neither in the checks
+			// nor among the names, as lct glossary scope leaves it out. The
+			// records are not read here, so a copy-origin unit stays counted;
+			// the field rules alone decide.
+			if !fr.Classify(u, en, jp).Translate {
+				continue
+			}
 			o := alignedText(en, jp)
-			// The checks count only what is translated: a unit of an
-			// untranslated field (an id, whose aligned text is the KR id
-			// itself) says nothing about the rendering of a term. The records
-			// are not read here, so a copy-origin unit stays counted; the
-			// field rules alone decide, as lct glossary scope does with them.
-			if fr.Classify(u, en, jp).Translate {
-				for _, i := range hit {
-					occs[i] = append(occs[i], o)
-				}
+			for _, i := range hit {
+				occs[i] = append(occs[i], o)
 			}
 			if acc == nil {
 				continue
