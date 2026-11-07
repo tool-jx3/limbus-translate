@@ -298,7 +298,7 @@ describe('ScopeView', () => {
 
     it('lists the entries with also, files, not_files, match and used/n, and searches KR, ZH and also', async () => {
       const el = await mount()
-      expect(rows(el)).toHaveLength(3)
+      expect(rows(el)).toHaveLength(4)
       const first = rows(el)[0]!.querySelector('summary')!
       expect(first.textContent).toContain('대상 → 目標')
       expect(first.textContent).toContain('對象')

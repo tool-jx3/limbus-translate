@@ -1,0 +1,120 @@
+{
+ "id": "glossary/12121212/34343434",
+ "missing": [
+  {
+   "key": "Skills_personality-02.json|/dataList/40/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "전투 승리 시 체력 회복 (40)",
+   "zh": "戰勝時回復體力（40）",
+   "note": "譯者說明：전투 승리 在這裡譯成「戰勝」。"
+  },
+  {
+   "key": "Skills_personality-02.json|/dataList/41/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "전투 승리 보상 (41)",
+   "zh": "勝利獎勵（41）"
+  },
+  {
+   "key": "Skills_personality-02.json|/dataList/42/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "전투 승리 보상 (42)",
+   "zh": "勝利獎勵（42）"
+  },
+  {
+   "key": "Skills_personality-02.json|/dataList/43/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "전투 승리 후 이동 (43)",
+   "zh": "獲勝後移動（43）"
+  },
+  {
+   "key": "Skills_personality-02.json|/dataList/44/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "human",
+   "kr": "전투 승리 조건 (44)",
+   "zh": "勝利條件（44）"
+  },
+  {
+   "key": "Skills_personality-02.json|/dataList/45/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "전투 승리 횟수 (45)",
+   "zh": "勝場數（45）"
+  }
+ ],
+ "used": [
+  {
+   "key": "Skills_personality-02.json|/dataList/46/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "claude",
+   "kr": "…전투 승리 시 (46)…",
+   "zh": "…戰鬥勝利時（46）…"
+  },
+  {
+   "key": "Skills_personality-02.json|/dataList/47/content",
+   "family": "ally",
+   "top": "Skills",
+   "sub": "Skills_personality",
+   "tag": {
+    "kind": "character",
+    "value": "faust",
+    "label": "浮士德"
+   },
+   "origin": "paratranz",
+   "kr": "…전투 승리 보상 (47)…",
+   "zh": "…戰鬥勝利獎勵（47）…"
+  }
+ ]
+}

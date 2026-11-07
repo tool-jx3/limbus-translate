@@ -20,10 +20,15 @@ const otherDir = (d: SortDir): SortDir => (d === 'asc' ? 'desc' : 'asc')
 const cmp = (a: string | number, b: string | number) => (a < b ? -1 : a > b ? 1 : 0)
 const checkText = (e: ScopeEntry) => checkLevel(e.check)
 
+const isOff = (e: ScopeEntry) => checkText(e) === 'off'
+
+/** The columns whose sorts put the entries of check: off last: the units without the rendering, and the rate. */
+const OFF_LAST: ReadonlySet<GlossaryColumn> = new Set<GlossaryColumn>(['missing', 'rate'])
+
 /** The ids of the families an entry hits ("family:<id>" groups). */
 const familiesOf = (e: ScopeEntry) => e.groups.filter((g) => g.kind === 'family').map((g) => g.name.replace(/^family:/, ''))
 
-/** The entries the filters keep, in the order asked: by a column, either way; sort missing is most units without the rendering first, rate the lowest rate first. */
+/** The entries the filters keep, in the order asked: by a column, either way; sort missing is most units without the rendering first, rate the lowest rate first, and in both the entries of check: off come last. */
 export function filterEntries(entries: ScopeEntry[], f: { q: string; sort: GlossarySort; only: GlossaryOnly; family: string }): ScopeEntry[] {
   const needle = f.q.trim().toLowerCase()
   const kept = entries.filter(
@@ -34,8 +39,10 @@ export function filterEntries(entries: ScopeEntry[], f: { q: string; sort: Gloss
   )
   const { id, dir } = sortParts(f.sort)
   const value = COLUMN_INFO[id].value
+  // An entry of check: off warns of no missing rendering: in the sorts by how much the rendering is missing it comes after the others, whichever way, so that it does not crowd what is worth a look.
+  const offLast = (a: ScopeEntry, b: ScopeEntry) => (OFF_LAST.has(id) ? Number(isOff(a)) - Number(isOff(b)) : 0)
   // The tie goes by KR then ZH, A to Z whichever way the column goes, so that the order is stable.
-  const order = (a: ScopeEntry, b: ScopeEntry) => cmp(value(a), value(b)) * (dir === 'asc' ? 1 : -1) || byText(a.kr, b.kr) || byText(a.zh, b.zh)
+  const order = (a: ScopeEntry, b: ScopeEntry) => offLast(a, b) || cmp(value(a), value(b)) * (dir === 'asc' ? 1 : -1) || byText(a.kr, b.kr) || byText(a.zh, b.zh)
   return kept.sort(order)
 }
 

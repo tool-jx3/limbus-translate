@@ -192,6 +192,93 @@
    "other": 1,
    "unknown": 2,
    "examples": []
+  },
+  {
+   "id": "glossary/12121212/34343434",
+   "kr": "전투 승리",
+   "zh": "戰鬥勝利",
+   "jp": "戦闘勝利",
+   "en": [
+    "Victory",
+    "Win"
+   ],
+   "also": [],
+   "files": [],
+   "not_files": [],
+   "match": "word",
+   "check": "off",
+   "notes": "一般用語，缺譯名不警告。",
+   "groups": [
+    {
+     "name": "family:ally",
+     "kind": "family",
+     "n": 8,
+     "used": 2,
+     "same": 1,
+     "other": 3,
+     "unknown": 2
+    },
+    {
+     "name": "group:Skills",
+     "kind": "group",
+     "n": 8,
+     "used": 2,
+     "same": 1,
+     "other": 3,
+     "unknown": 2
+    }
+   ],
+   "n": 8,
+   "used": 2,
+   "rate": 0.25,
+   "hard_candidate": false,
+   "compound": {
+    "n": 0,
+    "used": 0
+   },
+   "explained": 1,
+   "unexplained": 5,
+   "same": 1,
+   "other": 3,
+   "unknown": 2,
+   "examples": [
+    {
+     "key": "Skills_personality-02.json|/dataList/40/content",
+     "group": "family:ally",
+     "kr": "전투 승리 시 체력 회복 (40)",
+     "zh": "戰勝時回復體力（40）"
+    },
+    {
+     "key": "Skills_personality-02.json|/dataList/41/content",
+     "group": "family:ally",
+     "kr": "전투 승리 보상 (41)",
+     "zh": "勝利獎勵（41）"
+    },
+    {
+     "key": "Skills_personality-02.json|/dataList/42/content",
+     "group": "family:ally",
+     "kr": "전투 승리 보상 (42)",
+     "zh": "勝利獎勵（42）"
+    },
+    {
+     "key": "Skills_personality-02.json|/dataList/40/content",
+     "group": "group:Skills",
+     "kr": "전투 승리 시 체력 회복 (40)",
+     "zh": "戰勝時回復體力（40）"
+    },
+    {
+     "key": "Skills_personality-02.json|/dataList/41/content",
+     "group": "group:Skills",
+     "kr": "전투 승리 보상 (41)",
+     "zh": "勝利獎勵（41）"
+    },
+    {
+     "key": "Skills_personality-02.json|/dataList/42/content",
+     "group": "group:Skills",
+     "kr": "전투 승리 보상 (42)",
+     "zh": "勝利獎勵（42）"
+    }
+   ]
   }
  ]
 }

@@ -333,12 +333,17 @@ describe('glossary fixtures', () => {
       if (same) expect(e).toEqual(same)
       const keys = [...f.missing, ...f.used].map((u) => u.key)
       expect(new Set(keys).size, e.id).toBe(keys.length)
-      for (const u of f.missing) expect(u.id?.startsWith('warning/term-missing/')).toBe(true)
+      // An entry of check: off has no warning, so its missing units have no warning id to accept.
+      for (const u of f.missing) expect(u.id?.startsWith('warning/term-missing/') ?? false, u.key).toBe(e.check !== 'off')
+      if (e.check === 'off') for (const u of f.missing) expect(u.accepted, u.key).toBeUndefined()
     }
   })
 
   it('covers what the glossary page has to show', () => {
     expect(g.entries.some((e) => e.hard_candidate)).toBe(true)
+    // An entry of check: off with units that lack its rendering, and one whose en lists several forms.
+    expect(g.entries.some((e) => e.check === 'off' && e.n > e.used)).toBe(true)
+    expect(g.entries.some((e) => Array.isArray(e.en))).toBe(true)
     expect(g.entries.some((e) => !e.hard_candidate && e.n > e.used)).toBe(true)
     const all = g.entries.flatMap((e) => [...entryFile(e.id).missing, ...entryFile(e.id).used])
     expect(all.some((u) => u.accepted !== undefined)).toBe(true)

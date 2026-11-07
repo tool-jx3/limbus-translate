@@ -48,7 +48,7 @@ const cells = (r: HTMLElement) => [...r.querySelectorAll('td')].map((c) => c.tex
 describe('GlossaryView', () => {
   it('lists every entry with its columns', async () => {
     const el = await mount()
-    expect(krs(el)).toEqual(['대상', '공격', '보스'])
+    expect(krs(el)).toEqual(['대상', '공격', '보스', '전투 승리'])
     const heads = [...el.querySelectorAll('.gl-table thead th')].map((h) => h.textContent)
     // the column sorted by carries a direction mark
     expect(heads).toEqual(['原詞', '譯名', '檢查', '範圍', '出現', '用了', '沒用▼', '應用率'])
@@ -57,14 +57,14 @@ describe('GlossaryView', () => {
     expect(r.querySelector('.gl-also')?.textContent).toContain('對象')
     // n, used, missing, rate with one decimal
     expect(cells(r).slice(-4)).toEqual(['52', '40', '12', '76.9%'])
-    expect(el.textContent).toContain('3 條')
+    expect(el.textContent).toContain('4 條')
   })
 
   it('shows check as hard, off, or as warn when it is left out', async () => {
     const docs = { 'glossary/index.json': { ...base, entries: base.entries.map((e, i) => (i === 0 ? { ...e, check: 'hard' } : e.kr === '공격' ? { ...e, check: 'off' } : e)) } }
     const el = await mount(route(), docs)
     const checks = Object.fromEntries(rows(el).map((r) => [r.querySelector('.gl-kr')?.textContent, r.querySelector('.gl-check')?.textContent]))
-    expect(checks).toEqual({ 대상: 'hard', 공격: 'off', 보스: 'warn' })
+    expect(checks).toEqual({ 대상: 'hard', 공격: 'off', 보스: 'warn', '전투 승리': 'off' })
     const attack = rows(el).find((r) => r.querySelector('.gl-kr')?.textContent === '공격')!
     expect(attack.querySelector('.gl-check')?.classList.contains('gl-check-off')).toBe(true)
     expect(attack.querySelector('.gl-check')?.getAttribute('title')).toContain('不警告')
@@ -92,26 +92,26 @@ describe('GlossaryView', () => {
   it('links each row to the entry', async () => {
     const el = await mount()
     const hrefs = rows(el).map((r) => r.querySelector('a')?.getAttribute('href'))
-    expect(hrefs).toEqual(['#/g/aaaaaaaa/bbbbbbbb', '#/g/eeeeeeee/ffffffff', '#/g/cccccccc/dddddddd'])
+    expect(hrefs).toEqual(['#/g/aaaaaaaa/bbbbbbbb', '#/g/eeeeeeee/ffffffff', '#/g/cccccccc/dddddddd', '#/g/12121212/34343434'])
     expect(hrefs[0]).toBe(termHref('glossary/aaaaaaaa/bbbbbbbb'))
   })
 
   it('orders by the units without the rendering, most first, by default', async () => {
     const el = await mount()
-    // 대상 12, 공격 5, 보스 0
-    expect(krs(el)).toEqual(['대상', '공격', '보스'])
+    // 대상 12, 공격 5, 보스 0; then 전투 승리 (6), which is check: off
+    expect(krs(el)).toEqual(['대상', '공격', '보스', '전투 승리'])
     expect(el.querySelector<HTMLSelectElement>('select[name=sort]')?.value).toBe('missing')
   })
 
   it('orders by KR or by rate when asked', async () => {
-    expect(krs(await mount(route({ sort: 'kr' })))).toEqual(['공격', '대상', '보스'])
-    // lowest rate first: 대상 76.9, 공격 83.9, 보스 100
-    expect(krs(await mount(route({ sort: 'rate' })))).toEqual(['대상', '공격', '보스'])
+    expect(krs(await mount(route({ sort: 'kr' })))).toEqual(['공격', '대상', '보스', '전투 승리'])
+    // lowest rate first: 대상 76.9, 공격 83.9, 보스 100; then 전투 승리 (25.0), which is check: off
+    expect(krs(await mount(route({ sort: 'rate' })))).toEqual(['대상', '공격', '보스', '전투 승리'])
   })
 
   it('orders by rate, highest first, with rate-desc', async () => {
     const el = await mount(route({ sort: 'rate-desc' }))
-    expect(krs(el)).toEqual(['보스', '공격', '대상'])
+    expect(krs(el)).toEqual(['보스', '공격', '대상', '전투 승리'])
     expect(el.querySelector<HTMLSelectElement>('select[name=sort]')?.value).toBe('rate-desc')
   })
 
@@ -145,13 +145,16 @@ describe('GlossaryView', () => {
     expect(rows(el)[0]!.querySelector('.gl-hard')).toBeNull()
   })
 
-  it('lists only the entries with a unit without the rendering', async () => {
-    expect(krs(await mount(route({ only: 'missing' })))).toEqual(['대상', '공격'])
+  it('lists only the entries with a unit without the rendering, one of check: off after the others', async () => {
+    const el = await mount(route({ only: 'missing' }))
+    expect(krs(el)).toEqual(['대상', '공격', '전투 승리'])
+    const last = rows(el).at(-1)!
+    expect(last.querySelector('.gl-check')?.textContent).toBe('off')
   })
 
   it('filters by a family the entry hits', async () => {
     expect(krs(await mount(route({ family: 'story-main' })))).toEqual(['대상', '공격'])
-    expect(krs(await mount(route({ family: 'ally' })))).toEqual(['대상', '공격', '보스'])
+    expect(krs(await mount(route({ family: 'ally' })))).toEqual(['대상', '공격', '보스', '전투 승리'])
   })
 
   it('searches the KR, the rendering, also and notes', async () => {
@@ -203,6 +206,18 @@ describe('filterEntries, the sorts of the columns', () => {
   it('orders off between hard and warn, as its name sorts', () => {
     const withOff = [...es, mk('d', 'W', { check: 'off' })]
     expect(order(withOff, 'check')).toEqual(['b', 'd', 'a', 'c'])
+  })
+
+  it('puts the entries of check: off after the others in the sorts by units without the rendering and by rate, whichever way', () => {
+    // d lacks the rendering in the most units and has the lowest rate, e is close behind; both are off.
+    const withOff = [...es, mk('d', 'W', { check: 'off', n: 40, used: 0, rate: 0 }), mk('e', 'V', { check: 'off', n: 30, used: 3, rate: 0.1 })]
+    expect(order(withOff, 'missing')).toEqual(['b', 'c', 'a', 'd', 'e'])
+    expect(order(withOff, 'missing-asc')).toEqual(['a', 'c', 'b', 'e', 'd'])
+    expect(order(withOff, 'rate')).toEqual(['a', 'c', 'b', 'd', 'e'])
+    expect(order(withOff, 'rate-desc')).toEqual(['b', 'c', 'a', 'e', 'd'])
+    // The other columns sort them with the rest.
+    expect(order(withOff, 'kr')).toEqual(['a', 'b', 'c', 'd', 'e'])
+    expect(order(withOff, 'n')).toEqual(['d', 'b', 'e', 'c', 'a'])
   })
 
   it('orders by the scope line', () => {
