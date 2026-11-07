@@ -386,15 +386,19 @@ func TestNumberFormsMultibyteSeparator(t *testing.T) {
 	}
 }
 
-// testFields loads field rules from a temp root: id, model are identifier
-// fields, as in rules/fields.manual.yaml.
+// testFields loads the real field rules (rules/fields.manual.yaml, which says
+// id and model are identifier fields) from a temp root.
 func testFields(t *testing.T) *fields.Rules {
 	t.Helper()
+	manual, err := os.ReadFile(filepath.Join("..", "..", "rules", "fields.manual.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
 	root := t.TempDir()
 	if err := os.MkdirAll(filepath.Join(root, "rules"), 0o755); err != nil {
 		t.Fatal(err)
 	}
-	if err := os.WriteFile(filepath.Join(root, "rules", "fields.manual.yaml"), []byte("identifier_fields: [id, model]\n"), 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(root, "rules", "fields.manual.yaml"), manual, 0o644); err != nil {
 		t.Fatal(err)
 	}
 	fr, err := fields.Load(root)
@@ -418,10 +422,12 @@ func TestCollectSkipsUntranslatedFields(t *testing.T) {
 		if i == 0 {
 			sep = ""
 		}
-		fmt.Fprintf(&kr, `%s{"id":%d,"model":"티페리트","content":"티페리트가 왔다"}`, sep, i+1)
-		// the id and model are the Hangul id in every language; the content is translated.
-		fmt.Fprintf(&en, `%s{"id":%d,"model":"티페리트","content":"Tiphereth came"}`, sep, i+1)
-		fmt.Fprintf(&jp, `%s{"id":%d,"model":"ティファレト","content":"ティファレトが来た"}`, sep, i+1)
+		fmt.Fprintf(&kr, `%s{"id":%d,"codeName":"티페리트","content":"티페리트가 왔다"}`, sep, i+1)
+		// The codeName unit has aligned text (a model field cannot differ: the
+		// aligner pairs entries by it) that differs from its KR and does
+		// not hold the candidate, so only the field rule can leave it out.
+		fmt.Fprintf(&en, `%s{"id":%d,"codeName":"Codename-X","content":"Tiphereth came"}`, sep, i+1)
+		fmt.Fprintf(&jp, `%s{"id":%d,"codeName":"モデルX","content":"ティファレトが来た"}`, sep, i+1)
 	}
 	for _, s := range []*strings.Builder{&kr, &en, &jp} {
 		s.WriteString(`]}`)
@@ -441,18 +447,18 @@ func TestCollectSkipsUntranslatedFields(t *testing.T) {
 		t.Fatalf("no EN check: %+v", items[0].Checks)
 	}
 	if got.N != n || got.Hits != n || !got.OK {
-		t.Errorf("check = %+v, want N %d Hits %d OK (the model units are not counted)", *got, n, n)
+		t.Errorf("check = %+v, want N %d Hits %d OK (the codeName units are not counted)", *got, n, n)
 	}
 }
 
-// The names and descs skip those fields too: a model unit would otherwise give
+// The names and descs skip those fields too: a codeName unit would otherwise give
 // the term the "name" of its own Hangul id, the most frequent one, and with it
 // a candidate that is no rendering.
 func TestCollectNamesSkipUntranslatedFields(t *testing.T) {
 	set := openSet(t,
-		packFiles{"Story.json": `{"dataList":[{"id":1,"model":"잔느"},{"id":2,"model":"잔느"},{"id":3,"model":"잔느"},{"id":4,"name":"잔느"}]}`},
-		packFiles{"Story.json": `{"dataList":[{"id":1,"model":"잔느"},{"id":2,"model":"잔느"},{"id":3,"model":"잔느"},{"id":4,"name":"Jeanne"}]}`},
-		packFiles{"Story.json": `{"dataList":[{"id":1,"model":"잔느"},{"id":2,"model":"잔느"},{"id":3,"model":"잔느"},{"id":4,"name":"ジャンヌ"}]}`})
+		packFiles{"Story.json": `{"dataList":[{"id":1,"codeName":"잔느"},{"id":2,"codeName":"잔느"},{"id":3,"codeName":"잔느"},{"id":4,"name":"잔느"}]}`},
+		packFiles{"Story.json": `{"dataList":[{"id":1,"codeName":"Codename-X"},{"id":2,"codeName":"Codename-X"},{"id":3,"codeName":"Codename-X"},{"id":4,"name":"Jeanne"}]}`},
+		packFiles{"Story.json": `{"dataList":[{"id":1,"codeName":"モデルX"},{"id":2,"codeName":"モデルX"},{"id":3,"codeName":"モデルX"},{"id":4,"name":"ジャンヌ"}]}`})
 	items, err := Collect(glossary(term("잔느", "賈恩")), set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
@@ -463,7 +469,7 @@ func TestCollectNamesSkipUntranslatedFields(t *testing.T) {
 	}
 	for _, c := range it.Checks {
 		if c.Candidate == "잔느" {
-			t.Errorf("candidate %+v is the Hangul id of the model units", c)
+			t.Errorf("candidate %+v is the Hangul id of the codeName units", c)
 		}
 	}
 }

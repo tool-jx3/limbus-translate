@@ -59,8 +59,8 @@ type Desc struct {
 // units that hold the term. N counts the units whose KR text (as
 // validate.MatchText leaves it) holds the term by Term.OccursIn and that have
 // aligned, non-empty text in the language, and are of a field the field rules
-// translate; Hits those whose text holds the
-// candidate (EN: ignoring case, at word boundaries; JP: as a substring).
+// translate; Hits those whose text holds the candidate (EN: ignoring case, at
+// word boundaries; JP: as a substring).
 type Check struct {
 	Lang      string  `json:"lang"`
 	Candidate string  `json:"candidate"`
@@ -117,9 +117,9 @@ type nameAcc struct {
 // every approved entry when krs is empty, in glossary order. It reads each KR
 // file of set once, aligns it once, and answers every entry from that pass.
 // fr, the field rules, leave the units of fields that are not translated out
-// of the checks. candidates (by KR) are checked beside the entry's own jp and en and the most
-// frequent official names. A KR in krs or in candidates that is not in the
-// glossary is an error for which IsUserError is true.
+// of the checks. candidates (by KR) are checked beside the entry's own jp and
+// en and the most frequent official names. A KR in krs or in candidates that
+// is not in the glossary is an error for which IsUserError is true.
 func Collect(r *rules.Rules, set pack.Set, fr *fields.Rules, krs []string, candidates map[string]Candidates) ([]Item, error) {
 	known := map[string]bool{}
 	for _, t := range r.Glossary {
