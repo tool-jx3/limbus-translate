@@ -162,7 +162,60 @@ describe('GoldView', () => {
   })
 })
 
+describe('GoldView local choices', () => {
+  const spaced = { key: 'c.json|/a b', path: 'c.json', ptr: '/a b', family: 'story', origin: 'claude', kr: '공백', zh: '空白', verdict: '' as const, note: '', stale: false }
+
+  it('disables the note until a verdict is chosen, and says so', async () => {
+    const c = await mount()
+    const note = () => c.querySelector('[data-key="a.json|1"] input[type="text"]') as HTMLInputElement
+    expect(note().disabled).toBe(true)
+    expect(c.querySelector('[data-key="a.json|1"]')?.textContent).toContain('先選判定')
+    choose(c, 'a.json|1', 'wrong')
+    await vi.waitFor(() => expect(note().disabled).toBe(false))
+  })
+
+  it('does not offer a unit whose key has whitespace, and says it cannot be judged by copy and paste', async () => {
+    vi.stubGlobal('fetch', fixtureFetch({ 'gold.json': { ...gold, units: [...gold.units, spaced] } }))
+    const c = await mount()
+    const unit = c.querySelector('[data-key="c.json|/a b"]') as HTMLElement
+    expect(unit.textContent).toContain('空白')
+    expect(unit.textContent).toContain('無法用複製貼上判定')
+    expect(unit.querySelector('input')).toBeNull()
+  })
+
+  it('clears the choices of the page, in memory and in storage', async () => {
+    const c = await mount()
+    choose(c, 'a.json|1', 'wrong')
+    await vi.waitFor(() => expect(localStorage.getItem(STORAGE_KEY)).toContain('a.json|1'))
+    ;(c.querySelector('.gold-clear') as HTMLButtonElement).click()
+    await vi.waitFor(() => expect((c.querySelector('[data-key="a.json|1"] input[value="wrong"]') as HTMLInputElement).checked).toBe(false))
+    expect(localStorage.getItem(STORAGE_KEY) ?? '{}').not.toContain('a.json|1')
+  })
+
+  it('drops stored choices that the data already holds, keeps the others', async () => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ 'a.json|2': { verdict: 'correct', note: '' }, 'a.json|1': { verdict: 'wrong', note: 'x' }, 'b.json|1': { verdict: 'unsure', note: '' } }),
+    )
+    const c = await mount()
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}')
+    expect(Object.keys(stored).sort()).toEqual(['a.json|1', 'b.json|1'])
+    expect((c.querySelector('[data-key="a.json|1"] input[value="wrong"]') as HTMLInputElement).checked).toBe(true)
+  })
+
+  it('counts missing from the report when it carries it', async () => {
+    vi.stubGlobal('fetch', fixtureFetch({ 'gold.json': { ...gold, missing: undefined, report: { ...gold.report!, missing: 4 } } }))
+    const c = await mount()
+    expect(c.querySelector('.gold-missing')?.textContent).toContain('4')
+  })
+})
+
 describe('goldLines', () => {
+  it('leaves out a key with whitespace', () => {
+    const u = { ...gold.units[0]!, key: 'x.json|/a b' }
+    expect(goldLines([u], { [u.key]: { verdict: 'correct', note: '' } })).toBe('')
+  })
+
   it('leaves out units without a verdict and keeps the sample order; no trailing space for an empty note', () => {
     const units = gold.units
     expect(goldLines(units, { 'b.json|1': { verdict: 'unsure', note: '' }, 'a.json|1': { verdict: '', note: 'x' } })).toBe('gold b.json|1 unsure')

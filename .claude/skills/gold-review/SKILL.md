@@ -15,7 +15,7 @@ allowed-tools:
 
 `gold <key> <correct|wrong|unsure> <說明>`
 
-`<key>` 是第二個欄位，可能含 `|`、空格與中日韓文字，一律原樣照抄；`<verdict>` 是 `correct`、`wrong`、`unsure` 之一；其後到行尾都是說明，可以沒有。人在 `main` 上、repo 根目錄執行；`rules/gold.yaml` 是 `main` 工作樹裡的檔案，由人自己 commit。
+解析規則只有這一條，不做任何猜測：把每一行依空白切開。第 1 個詞必須是 `gold`；第 2 個詞是 key，key 不含空白（網站不會產生含空白 key 的行）；第 3 個詞必須是 `correct`、`wrong`、`unsure` 之一；第 3 個詞之後到行尾的全部文字是說明（可以沒有）。key 可含 `|` 與中日韓文字，一律原樣照抄。不符合的行（詞數不足、第 1 個詞不是 `gold`、第 3 個詞不是三者之一）一律拒絕：不執行、不更正、不猜 key，原樣列給人看並說明原因。人在 `main` 上、repo 根目錄執行；`rules/gold.yaml` 是 `main` 工作樹裡的檔案，由人自己 commit。
 
 ## 限制
 
@@ -27,7 +27,7 @@ allowed-tools:
 ## 流程
 
 0. 執行 `go build -o bin/lct ./cmd/lct`，失敗就停止並回報。`bin/lct gold set` 讀 `.work/tw` 的紀錄；說找不到紀錄或快照時，停止並說明請人把 `.work/tw` 準備好或更新到最新（這個 skill 不執行 `git`）
-1. 逐行解析：`gold`、key、verdict、說明。verdict 不是三者之一、少了 key 的行不執行，列給人看
+1. 逐行照上面的解析規則切開；不符合的行不執行，列給人看
 2. 每一行執行一次，key 與說明都用單引號包起來（`$` 與反引號在雙引號裡會被 shell 展開；內容有單引號時寫成 `'\''`）：
    `bin/lct gold set 'KEY' correct`
    `bin/lct gold set 'KEY' wrong --note '說明'`

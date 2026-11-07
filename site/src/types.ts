@@ -717,6 +717,8 @@ export interface GoldReport {
   rows: GoldRow[]
   families: GoldRow[]
   total: GoldRow
+  /** Units of the sample that are not in the pack. */
+  missing?: number
 }
 
 export interface GoldData {

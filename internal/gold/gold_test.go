@@ -154,3 +154,15 @@ func TestMakeReport(t *testing.T) {
 		t.Errorf("text report = %q", r.String())
 	}
 }
+
+func TestDrawSkipsKeysWithWhitespace(t *testing.T) {
+	all := append(cands("story", 3), Candidate{Key: "story.json|/a b", Family: "story", Origin: "claude"}, Candidate{Key: "story.json|/a\tb", Family: "story", Origin: "claude"})
+	for _, u := range Draw(all, DefaultSeed, 20) {
+		if strings.ContainsAny(u.Key, " \t\r\n") {
+			t.Errorf("drew %q: a key with whitespace cannot be pasted as a gold line", u.Key)
+		}
+	}
+	if n := len(Draw(all, DefaultSeed, 20)); n != 3 {
+		t.Errorf("drew %d units, want 3", n)
+	}
+}

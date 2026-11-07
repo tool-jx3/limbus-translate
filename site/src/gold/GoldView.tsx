@@ -46,12 +46,17 @@ function writeChoices(choices: Choices): void {
   }
 }
 
+/** A key the gold line cannot carry: the line is split on whitespace. */
+export function pasteable(key: string): boolean {
+  return !/\s/.test(key)
+}
+
 /** The lines `gold <key> <verdict> <note>` for the units the reader judged, in the order of the sample; an empty note leaves no trailing space. */
 export function goldLines(units: GoldUnit[], choices: Choices): string {
   const lines: string[] = []
   for (const u of units) {
     const c = choices[u.key]
-    if (!c || c.verdict === '') continue
+    if (!c || c.verdict === '' || !pasteable(u.key)) continue
     const note = c.note.replace(/\s+/g, ' ').trim()
     lines.push(`gold ${u.key} ${c.verdict}${note ? ` ${note}` : ''}`)
   }
@@ -60,6 +65,16 @@ export function goldLines(units: GoldUnit[], choices: Choices): string {
 
 function pct(r: GoldRow): string {
   return r.accuracy === null ? '—' : `${Math.round(r.accuracy * 100)}%`
+}
+
+/** Local choices that differ from what the data already holds: the others were recorded and need no sending. */
+export function pending(units: GoldUnit[], choices: Choices): Choices {
+  const out: Choices = {}
+  for (const u of units) {
+    const c = choices[u.key]
+    if (c && !(c.verdict === u.verdict && c.note === u.note)) out[u.key] = c
+  }
+  return out
 }
 
 function Report({ data }: { data: GoldData }) {
@@ -115,6 +130,10 @@ function Unit({ u, choice, onChange }: { u: GoldUnit; choice: Choice | undefined
       {u.en !== undefined && <p class="gold-text" lang="en">EN　{u.en}</p>}
       <p class="gold-text" lang="zh-TW">TW　{u.zh}</p>
       {u.shipped !== undefined && <p class="gold-text gold-meta gold-shipped">實際打包：{u.shipped}</p>}
+      {!pasteable(u.key) ? (
+        <p class="gold-meta gold-nopaste">此單位的 key 含空白，無法用複製貼上判定。</p>
+      ) : (
+        <>
       <div class="gold-verdicts" role="radiogroup" aria-label={`判定 ${u.key}`}>
         {VERDICTS.map((v) => (
           <label key={v.value}>
@@ -135,14 +154,22 @@ function Unit({ u, choice, onChange }: { u: GoldUnit; choice: Choice | undefined
         aria-label={`說明 ${u.key}`}
         placeholder="說明"
         value={note}
+        disabled={verdict === ''}
         onInput={(e) => onChange({ note: e.currentTarget.value })}
       />
+      {verdict === '' && <span class="gold-meta">先選判定，說明才會一起複製</span>}
+        </>
+      )}
     </li>
   )
 }
 
 function Loaded({ data }: { data: GoldData }) {
-  const [choices, setChoices] = useState<Choices>(readChoices)
+  const [choices, setChoices] = useState<Choices>(() => {
+    const kept = pending(data.units, readChoices())
+    writeChoices(kept)
+    return kept
+  })
   const [refused, setRefused] = useState(false)
   const [said, setSaid] = useState('')
   const box = useRef<HTMLTextAreaElement>(null)
@@ -158,9 +185,18 @@ function Loaded({ data }: { data: GoldData }) {
     setChoices(next)
   }
 
+  const clear = () => {
+    latest.current = {}
+    writeChoices({})
+    setChoices({})
+    setRefused(false)
+    setSaid('')
+  }
+
   const families: string[] = []
   for (const u of data.units) if (!families.includes(u.family)) families.push(u.family)
 
+  const missing = data.report?.missing ?? data.missing ?? 0
   const text = goldLines(data.units, choices)
   const copy = async () => {
     const text = goldLines(data.units, latest.current)
@@ -173,7 +209,7 @@ function Loaded({ data }: { data: GoldData }) {
   return (
     <section class="gold">
       <h1>基準樣本</h1>
-      {(data.missing ?? 0) > 0 && <p class="gold-missing">有 {data.missing} 個樣本單位在打包結果裡找不到，未列入下表。</p>}
+      {missing > 0 && <p class="gold-missing">有 {missing} 個樣本單位在打包結果裡找不到，未列入下表。</p>}
       <Report data={data} />
       {data.units.length === 0 && <p>還沒有基準樣本。</p>}
       {families.map((f) => (
@@ -191,6 +227,9 @@ function Loaded({ data }: { data: GoldData }) {
       <div class="pv-actions">
         <button type="button" class="gold-copy" onClick={copy}>
           複製判定
+        </button>
+        <button type="button" class="gold-clear" onClick={clear}>
+          清除本頁選擇
         </button>
       </div>
       <p class={refused ? 'tv-copyhint' : 'rv-said'} role="status">

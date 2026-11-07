@@ -19,6 +19,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode"
 
 	"gopkg.in/yaml.v3"
 
@@ -154,10 +155,15 @@ type Candidate struct {
 
 // Draw picks per units of each family from cands, those with the smallest
 // sha256(seed|key); a family with fewer takes all. The units come in the order
-// of the families, then of the hashes, and have no verdict.
+// of the families, then of the hashes, and have no verdict. A key with
+// whitespace is never drawn: the gold line `gold <key> <verdict> <note>` of the
+// site and the skill is split on whitespace, so such a unit could not be judged.
 func Draw(cands []Candidate, seed, per int) []Unit {
 	byFamily := map[string][]Candidate{}
 	for _, c := range cands {
+		if strings.IndexFunc(c.Key, unicode.IsSpace) >= 0 {
+			continue
+		}
 		byFamily[c.Family] = append(byFamily[c.Family], c)
 	}
 	families := make([]string, 0, len(byFamily))
