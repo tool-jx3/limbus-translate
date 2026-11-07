@@ -392,10 +392,13 @@
   sources: ["game:Enemies-a1c10p3.json#/dataList/4/name"]
 
 - kr: 신부
+  jp: 神父
+  en: Priest
   zh: 神父
   status: approved
   category: [general]
   notes: 其他章節與人格的「신부」。第十章的檔（見上一條的 files）譯「牧師」，以那一條為準
+  sources: ["game:Enemies-a1c7p3.json#/dataList/10/name"]
 
 - kr: 누나
   jp: 姉
@@ -912,6 +915,7 @@
 
 - kr: 예지안
   jp: 予知眼
+  en: Eye of Precognition
   zh: 預知眼
   status: approved
   category: [city]
@@ -1117,6 +1121,7 @@
 
 - kr: 이방인
   jp: 異邦人
+  en: Stranger
   zh: 異鄉人
   forbidden: [外來者]
   not_files: ["family:story-interlude"]
@@ -1124,7 +1129,7 @@
   match: substring
   category: [city]
   notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：story-interlude 族群（StoryData/E*、PC* 的間章劇情）幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
-  sources: ["game:BattleKeywords-a1c10p3.json#/dataList/2/name"]
+  sources: ["game:BattleKeywords-a1c10p3.json#/dataList/2/name", "game:StoryData/P10816.json#/dataList/13/title"]
 
 - kr: 뿌이
   jp: プイ
@@ -1392,6 +1397,7 @@
 
 - kr: 방어 레벨
   jp: 防御レベル
+  en: Defense Level
   zh: 防禦等級
   status: approved
   category: [general, combat]
@@ -1491,29 +1497,41 @@
 
 - kr: E.G.O 기프트
   jp: E.G.Oギフト
+  en: E.G.O Gift
   zh: E.G.O飾品
   status: approved
   category: [combat]
   evidence: { kr_lines: 506, approved: 506, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
-  sources: ["game:MainUIText.json#/dataList/271/content"]
+  sources: ["game:MainUIText.json#/dataList/271/content", "game:ChoiceEventKeyword.json#/dataList/0/content"]
 
 - kr: 황금가지
   jp: 黄金の枝
+  en: Golden Bough
   zh: 金枝
   status: approved
   evidence: { kr_lines: 476, approved: 476, forbidden: 0 }
   notes: Paratranz 詞彙表
-  sources: ["game:FileDownloadDesc.json#/dataList/3/title"]
+  sources: ["game:FileDownloadDesc.json#/dataList/3/title", "game:IntroductionPreset.json#/dataList/15/content"]
 
 - kr: 전투 승리
   jp: 戦闘勝利
+  en: Victory
   zh: 戰鬥勝利
   status: approved
   category: [general]
   evidence: { kr_lines: 454, approved: 449, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
-  sources: ["game:AnnouncerVoiceType.json#/dataList/30/content"]
+  sources: ["game:AnnouncerVoiceType.json#/dataList/30/content", "game:MainUIText.json#/dataList/37/content"]
+
+- kr: EX CLEAR 전투 승리
+  jp: EX CLEAR戦闘勝利
+  en: Extra Conditions Fulfilled
+  zh: EX CLEAR戰鬥勝利
+  status: approved
+  category: [system]
+  notes: 人格語音的標籤（PersonalityVoiceDlg 的 desc）；既有 193 個單位全部寫「EX CLEAR戰鬥勝利」（2026-11-07）。這個較長的條目蓋住其中的「전투 승리」
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/22/desc"]
 
 - kr: 뒷골목
   jp: 裏路地
@@ -1612,6 +1630,7 @@
 
 - kr: 흑운회
   jp: 黒雲会
+  en: Kurokumo Clan
   zh: 黑雲會
   status: approved
   category: [city]
@@ -1632,12 +1651,13 @@
 
 - kr: 내성
   jp: 耐性
+  en: [Resistance, Resist]
   zh: 抗性
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 349, approved: 339, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
-  sources: ["game:ResistText.json#/dataList/4/content"]
+  sources: ["game:ResistText.json#/dataList/4/content", "game:TooltipUIText.json#/dataList/2/content", "game:MainUIText.json#/dataList/182/content"]
 
 - kr: 턴 종료시
   jp: ターン終了時
@@ -1717,6 +1737,7 @@
 
 - kr: 공격 가중치
   jp: 攻撃加重値
+  en: Atk Weight
   zh: 攻擊容量
   status: approved
   category: [combat]
@@ -2466,12 +2487,13 @@
 
 - kr: 환상 해석
   jp: 幻想解析
+  en: [Threadspinning, Threadspin]
   zh: 異想解析
   status: approved
   category: [ego]
   evidence: { kr_lines: 74, approved: 72, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O階段的名稱
-  sources: ["game:MainUIText.json#/dataList/103/content"]
+  sources: ["game:MainUIText.json#/dataList/103/content", "game:UI_ModuleDevice.json#/dataList/8/content"]
 
 - kr: 추출 10회 티켓
   jp: 抽出10回チケット
@@ -2727,6 +2749,7 @@
 
 - kr: 상영관
   jp: 上映館
+  en: Theater
   zh: 放映室
   status: approved
   evidence: { kr_lines: 42, approved: 42, forbidden: 0 }
@@ -3035,12 +3058,13 @@
 
 - kr: 신체파
   jp: 身体派
+  en: [Corporism, Corporist]
   zh: 人體派
   status: approved
   category: [city]
   evidence: { kr_lines: 26, approved: 26, forbidden: 0 }
   notes: Paratranz 詞彙表：環指派系之一
-  sources: ["game:Passives_Abnormality-a1c9p3.json#/dataList/14/name"]
+  sources: ["game:Passives_Abnormality-a1c9p3.json#/dataList/14/name", "game:Enemies-a1c9p1.json#/dataList/0/name"]
 
 - kr: 웨이브 첫 턴 시작 시
   zh: 波次的首個回合開始時
@@ -3122,12 +3146,13 @@
 
 - kr: 우.미.다
   jp: う・み・ダ
+  en: S.E.A
   zh: 去．海．邊
   status: approved
   category: [system]
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第4.5章
-  sources: ["game:MirrorDungeonTheme-1.json#/dataList/18/name"]
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/18/name", "game:UserTicket-EGOBg.json#/dataList/11/name"]
 
 - kr: 푼크툼
   jp: プンクトゥム
@@ -4917,13 +4942,14 @@
 
 - kr: 버틀러
   jp: バトラー
+  en: Butler
   zh: 管家
   status: approved
   match: substring
   category: [general]
   evidence: { kr_lines: 204, approved: 204, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（9/9），比對詞中詞
-  sources: ["game:StageNode-a1c6p1.json#/dataList/10/title"]
+  sources: ["game:StageNode-a1c6p1.json#/dataList/10/title", "game:IntroductionPreset.json#/dataList/257/content"]
 
 - kr: 데드레빗츠
   jp: デッドラビッツ
@@ -5056,12 +5082,13 @@
 
 - kr: 백화
   jp: 白化
+  en: [Pallidification, Pallidified]
   zh: 白化
   status: approved
   match: word
   evidence: { kr_lines: 33, approved: 31, forbidden: 0 }
   notes: Paratranz 詞彙表：多指白化現象（evidence 只算單獨成詞的用法；KR 的「백화점의、백화점、백화점을」等長詞裡也有這個字串）
-  sources: ["game:Passives_Enemy-a1c5p2.json#/dataList/1/name"]
+  sources: ["game:Passives_Enemy-a1c5p2.json#/dataList/1/name", "game:UnitKeyword.json#/dataList/41/content"]
 
 - kr: 마름
   zh: 司田
