@@ -280,6 +280,10 @@ export interface ScopeGroup {
   kind: 'family' | 'group'
   n: number
   used: number
+  /** Of the units that do not use the rendering: the aligned EN or JP holds the entry's en or jp (same), is aligned and does not (other), or there is nothing to compare (unknown). */
+  same: number
+  other: number
+  unknown: number
 }
 
 export interface ScopeCount {
@@ -313,6 +317,10 @@ export interface ScopeEntry {
   compound: ScopeCount
   explained: number
   unexplained: number
+  /** The units that do not use the rendering by sense, as in ScopeGroup. */
+  same: number
+  other: number
+  unknown: number
   /** At most 3 units of each group that does not use the rendering. */
   examples: ScopeExample[]
 }

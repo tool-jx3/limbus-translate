@@ -104,7 +104,7 @@ describe('TermView, the top', () => {
   it('shows the groups: family and top node, each with units and units with the rendering', async () => {
     const el = await mount()
     const rows = [...el.querySelectorAll('.tv-groups tbody tr')].map((r) => [...r.children].map((c) => c.textContent))
-    expect(rows).toEqual(entry.groups.map((g) => [g.name, String(g.n), String(g.used), `${Math.round((g.used / g.n) * 100)}%`]))
+    expect(rows).toEqual(entry.groups.map((g) => [g.name, String(g.n), String(g.used), `${Math.round((g.used / g.n) * 100)}%`, String(g.same), String(g.other)]))
   })
 
   it('links to the warnings of the termgroup, to the entry in the scope tab, and back to the list', async () => {

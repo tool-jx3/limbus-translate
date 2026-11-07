@@ -26,25 +26,37 @@
      "name": "family:ally",
      "kind": "family",
      "n": 40,
-     "used": 38
+     "used": 38,
+     "same": 1,
+     "other": 0,
+     "unknown": 1
     },
     {
      "name": "family:story-main",
      "kind": "family",
      "n": 12,
-     "used": 2
+     "used": 2,
+     "same": 5,
+     "other": 3,
+     "unknown": 2
     },
     {
      "name": "group:StoryData/",
      "kind": "group",
      "n": 14,
-     "used": 3
+     "used": 3,
+     "same": 5,
+     "other": 3,
+     "unknown": 3
     },
     {
      "name": "group:Passives",
      "kind": "group",
      "n": 2,
-     "used": 1
+     "used": 1,
+     "same": 0,
+     "other": 0,
+     "unknown": 1
     }
    ],
    "n": 52,
@@ -57,6 +69,9 @@
    },
    "explained": 4,
    "unexplained": 8,
+   "same": 6,
+   "other": 4,
+   "unknown": 2,
    "examples": [
     {
      "key": "StoryData/S9001.json|/dataList/4/content",
@@ -99,13 +114,19 @@
      "name": "family:ally",
      "kind": "family",
      "n": 30,
-     "used": 30
+     "used": 30,
+     "same": 0,
+     "other": 0,
+     "unknown": 0
     },
     {
      "name": "group:Passives",
      "kind": "group",
      "n": 3,
-     "used": 0
+     "used": 0,
+     "same": 1,
+     "other": 1,
+     "unknown": 1
     }
    ],
    "n": 30,
@@ -118,6 +139,9 @@
    },
    "explained": 0,
    "unexplained": 0,
+   "same": 0,
+   "other": 0,
+   "unknown": 0,
    "examples": []
   },
   {
@@ -134,13 +158,19 @@
      "name": "family:ally",
      "kind": "family",
      "n": 20,
-     "used": 19
+     "used": 19,
+     "same": 0,
+     "other": 0,
+     "unknown": 1
     },
     {
      "name": "family:story-main",
      "kind": "family",
      "n": 8,
-     "used": 4
+     "used": 4,
+     "same": 2,
+     "other": 1,
+     "unknown": 1
     }
    ],
    "n": 31,
@@ -153,6 +183,9 @@
    },
    "explained": 0,
    "unexplained": 5,
+   "same": 2,
+   "other": 1,
+   "unknown": 2,
    "examples": []
   }
  ]

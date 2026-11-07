@@ -74,10 +74,10 @@ describe('ScopeView', () => {
     // the table is the entry's: group, n, used, rate, class
     const rows = [...card.querySelectorAll('table.sc-table tbody tr')].map((tr) => [...tr.children].map((c) => c.textContent))
     expect(rows).toEqual([
-      ['family:ally', '40', '38', '95%', '有用'],
-      ['family:story-main', '12', '2', '17%', '沒用'],
-      ['group:StoryData/', '14', '3', '21%', '沒用'],
-      ['group:Passives', '2', '1', '50%', '太少'],
+      ['family:ally', '40', '38', '95%', '1', '0', '有用'],
+      ['family:story-main', '12', '2', '17%', '5', '3', '沒用'],
+      ['group:StoryData/', '14', '3', '21%', '5', '3', '沒用'],
+      ['group:Passives', '2', '1', '50%', '0', '0', '太少'],
     ])
     expect(card.querySelector('details.sc-examples')?.textContent).toContain('確認對象')
   })
@@ -97,7 +97,7 @@ describe('ScopeView', () => {
     expect(card.querySelector('.sc-effect')).toBeNull()
     const word = sections(el)[2]!.querySelectorAll('article')[1]!
     const rows = [...word.querySelectorAll('table.sc-table tbody tr')].map((tr) => [...tr.children].map((c) => c.textContent))
-    expect(rows[1]).toEqual(['family:story-main', '8', '4', '50%', '混用'])
+    expect(rows[1]).toEqual(['family:story-main', '8', '4', '50%', '2', '1', '混用'])
   })
 
   it('hides a declined proposal until 顯示已確認 is on, then shows it with 已否決', async () => {
@@ -325,6 +325,7 @@ describe('ScopeView', () => {
       expect(row.querySelectorAll('table.sc-table tbody tr')).toHaveLength(4)
       expect(row.textContent).toContain('複合詞 5 個單位，用了譯名 1')
       expect(row.textContent).toContain('有說明 4、沒說明 8')
+      expect(row.textContent).toContain('同義 6、他義 4、未知 2')
       expect(row.textContent).toContain('story 裡常譯成「對象」。')
       expect(row.querySelector('.rv-id code')?.textContent).toBe('glossary/aaaaaaaa/bbbbbbbb')
       act(() => row.querySelector<HTMLButtonElement>('.rv-copy')!.click())
