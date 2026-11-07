@@ -1,0 +1,7 @@
+# 接 2026-11-07-enkephalin-module.yaml：Items.json /3/flavor（엔케팔린 모듈 的道具說明）開頭的「구 형태의 모듈」譯作「球型模塊」，
+# 前一個改寫後同段其他地方都是「模組」，改成「球型模組」。Items.json 其他的「模塊」是 도약 모듈 等別的模組，不改。
+reason: '엔케팔린 모듈 的道具說明寫「模組」（詞彙表）'
+files: ['Items.json']
+pattern: '模塊'
+replace: '模組'
+kr_pattern: '구 형태의 모듈'

@@ -1,0 +1,9 @@
+# 接 2026-11-07-enkephalin-module.yaml：KR 單寫「모듈」（指腦啡肽模組，EN Modules）而譯文單寫「模塊」的單位，改「模組」。
+# raw-20261105 在下列 6 個檔有 9 個：ShopUI /36、/56（/56 另有人工調整，不由本檔改）、LoginUIText /57、/71、MainUIText /505、
+# BattleUIText /216、/217、TutorialRenewalMainUIDesc /33、Walpu7EventText /0（前一個改寫後同句混用「模塊」「模組」）。
+# 這 6 個檔裡 KR 有「모듈」的「模塊」都指腦啡肽模組；Items.json 另有 도약 모듈 等別的模組，不在這裡。
+reason: '엔케팔린 모듈 單寫「모듈」時也寫「模組」（詞彙表）'
+files: ['ShopUI.json', 'LoginUIText.json', 'MainUIText.json', 'BattleUIText.json', 'TutorialRenewalMainUIDesc.json', 'Walpu7EventText.json']
+pattern: '模塊'
+replace: '模組'
+kr_pattern: '모듈'
