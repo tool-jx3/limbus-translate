@@ -33,3 +33,12 @@ python3 -I glosscheck.py DATA    # 譯名統一列表核對
 python3 -I naming.py DATA        # 檔名規律核對
 python3 -I examples.py DATA      # 挑選角色例句
 ```
+
+## 族群指引的統計
+
+`guides/families/*.md` 的「既有 a／b」與「KR 含此樣式的單位全在本族群」由 `family_guides.py` 重算。它讀 `lct site --out DIR` 寫出的網站資料（不是上面的 `DATA`），數字對應 raw-20261105 與當時的 tw：
+
+```bash
+bin/lct site --out site/public/data
+python3 -I docs/research/scripts/family_guides.py site/public/data
+```

@@ -336,28 +336,28 @@ func TestGuidesFor(t *testing.T) {
 	}{
 		{
 			"story with speakers", "StoryData/S1037B.json", []string{"faust", "dante"},
-			[]string{"guides/base.md", "guides/families.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"},
 		},
 		{
 			"no speakers", "MainUIText.json", nil,
-			[]string{"guides/base.md", "guides/families.md"},
+			[]string{"guides/base.md", "guides/families/ui.md"},
 		},
 		{
 			"character of the file comes before the speakers and is not repeated",
 			"PersonalityVoiceDlg/Voice_Meursalut_xxx_10511.json", []string{"dante", "meursault"},
-			[]string{"guides/base.md", "guides/families.md", "guides/characters/meursault.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/identity.md", "guides/characters/meursault.md", "guides/characters/dante.md"},
 		},
 		{
 			"repeated speakers", "StoryData/S1037B.json", []string{"faust", "dante", "faust"},
-			[]string{"guides/base.md", "guides/families.md", "guides/characters/faust.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"},
 		},
 		{
 			"skill file has no character guide", "Skills_personality-08.json", nil,
-			[]string{"guides/base.md", "guides/families.md"},
+			[]string{"guides/base.md", "guides/families/ally.md"},
 		},
 		{
 			"unknown speaker is skipped", "StoryData/S1037B.json", []string{"nobody", "dante"},
-			[]string{"guides/base.md", "guides/families.md", "guides/characters/dante.md"},
+			[]string{"guides/base.md", "guides/families/story-main.md", "guides/characters/dante.md"},
 		},
 	}
 	for _, tc := range tests {
@@ -879,8 +879,8 @@ func TestLintRepoRulesAreClean(t *testing.T) {
 
 func TestLint(t *testing.T) {
 	const ryoshu = "guides/characters/ryoshu.md"
-	const danteNote = "  - id: dante-note\n    nodes: [\"StoryTheaterDanteNote*\"]\n    glossary: warn\n    guide: guides/families.md\n"
-	const other = "  - id: unsorted\n    nodes: []\n    guide: guides/families.md\n"
+	const danteNote = "  - id: dante-note\n    nodes: [\"StoryTheaterDanteNote*\"]\n    glossary: warn\n    guide: guides/families/dante-note.md\n"
+	const other = "  - id: unsorted\n    nodes: []\n    guide: guides/families/unsorted.md\n"
 	tests := []struct {
 		name string
 		file string // file to edit, relative to the root
@@ -926,8 +926,8 @@ func TestLint(t *testing.T) {
 		{"misspelled term field", "glossary/terms.yaml", replaceOnce("  forbidden: [禮包]\n", "  forbiden: [禮包]\n"), []string{"glossary/terms.yaml", "패키지", "forbiden"}},
 		{"glossary is not a list", "glossary/terms.yaml", func(string) string { return "kr: x\n" }, []string{"glossary/terms.yaml"}},
 
-		{"family guide does not exist", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families.md", "guides/families/nothing.md", 1)), []string{"guides/routing.yaml", "dante-note", "guides/families/nothing.md"}},
-		{"family without guide", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "    guide: guides/families.md\n", "", 1)), []string{"guides/routing.yaml", "dante-note", "guide"}},
+		{"family guide does not exist", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families/dante-note.md", "guides/families/nothing.md", 1)), []string{"guides/routing.yaml", "dante-note", "guides/families/nothing.md"}},
+		{"family without guide", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "    guide: guides/families/dante-note.md\n", "", 1)), []string{"guides/routing.yaml", "dante-note", "guide"}},
 		{"family without id", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "  - id: dante-note\n    nodes", "  - nodes", 1)), []string{"guides/routing.yaml", "id"}},
 		{"unknown glossary mode", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "glossary: warn", "glossary: soft", 1)), []string{"guides/routing.yaml", "dante-note", "glossary", "soft"}},
 		{"family id used twice", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "dante-note", "mirror", 1)), []string{"guides/routing.yaml", "mirror", "twice"}},
@@ -2121,7 +2121,7 @@ func TestGuidesForLayers(t *testing.T) {
   - when: "PersonalityVoiceDlg/"
     guide: guides/families/node-top.md
   - when: "PersonalityVoiceDlg/"
-    guide: guides/families.md
+    guide: guides/families/identity.md
   - when: "Skills"
     guide: guides/families/chapter.md
   - when: "chapter:1"
@@ -2135,7 +2135,7 @@ func TestGuidesForLayers(t *testing.T) {
 	}
 	got := r.GuidesFor("PersonalityVoiceDlg/Voice_Meursalut_xxx_10511.json", []string{"dante", "meursault"})
 	want := []string{
-		"guides/base.md", "guides/families.md",
+		"guides/base.md", "guides/families/identity.md",
 		"guides/families/node-sub.md", "guides/families/node-top.md",
 		"guides/families/tag.md",
 		"guides/characters/meursault.md", "guides/characters/dante.md",
@@ -2144,7 +2144,7 @@ func TestGuidesForLayers(t *testing.T) {
 		t.Errorf("GuidesFor = %v, want %v", got, want)
 	}
 	// a file no entry fits keeps the old result
-	if got, want := r.GuidesFor("MainUIText.json", nil), []string{"guides/base.md", "guides/families.md"}; !reflect.DeepEqual(got, want) {
+	if got, want := r.GuidesFor("MainUIText.json", nil), []string{"guides/base.md", "guides/families/ui.md"}; !reflect.DeepEqual(got, want) {
 		t.Errorf("GuidesFor(MainUIText) = %v, want %v", got, want)
 	}
 }
@@ -2201,7 +2201,8 @@ func TestLintGuideRules(t *testing.T) {
 func TestLintGuideTotal(t *testing.T) {
 	root := copyRules(t)
 	writeGuide(t, root, "guides/base.md", 20000)
-	writeGuide(t, root, "guides/families.md", 10000)
+	writeGuide(t, root, "guides/families/enemy.md", 10000)
+	writeGuide(t, root, "guides/families/ui.md", 10000)
 	writeGuide(t, root, "guides/families/a.md", 4000)
 	writeGuide(t, root, "guides/families/b.md", 3000)
 	addGuideRules(t, root, "  - when: \"Skills*\"\n    guide: guides/families/a.md\n  - when: \"Skills_Enemy\"\n    guide: guides/families/b.md\n")

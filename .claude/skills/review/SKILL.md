@@ -47,7 +47,7 @@ CI 每次建置後，若有需要人處理的項目，會開一則「審核：YY
    - `frozen_fallback`：凍結檔的譯文破壞了原文結構，暫用英文；凍結檔不重新翻譯，調整也不會套用。流程同 `frozen_changed`：保持凍結，或解除凍結後寫重翻要求檔
    - `new_speaker`：每個 item 是 KR 的 `model` 字串。先用 `bin/lct search --speaker MODEL --json` 看這個 model 的台詞。是既有角色就補進 `guides/characters/<id>.md` 開頭 YAML 的 `models`、`models_other_self` 或 `models_not_this`；是新角色就新增 `guides/characters/<id>.md`（格式見 `guides/README.md`）；路人不需要指引，要讓 `lct suggest` 不再提出時，在 `rules/declined.yaml` 加一筆 `id`（`speaker/MODEL`，用雙引號包起來）、`reason`、`date`（今天，`YYYY-MM-DD`）。指引的修改先給人看
    - `field_change`：遊戲新增或移除了欄位。先執行 `bin/lct fields learn --json`（不加 `--write` 只列出變化），把 `changes` 給人看，人確認這些欄位的值不是要翻的文字，再執行 `bin/lct fields learn --write --json`。學不到、但人要的規則寫進 `rules/fields.manual.yaml`（格式見該檔開頭）
-   - `new_family`：新檔落在預設族群。用 `bin/lct search --file GLOB --json --limit 10` 看內容，到 `guides/routing.yaml` 加族群或擴充某族群的 `match`；順序就是比對順序，較具體的排前面，並依該檔開頭的說明把族群列進 `priority`。需要專屬指引時寫在 `guides/families.md`
+   - `new_family`：新檔落在預設族群。用 `bin/lct search --file GLOB --json --limit 10` 看內容，到 `guides/routing.yaml` 加族群或擴充某族群的 `match`；順序就是比對順序，較具體的排前面，並依該檔開頭的說明把族群列進 `priority`。需要專屬指引時寫在 `guides/families/<族群 id>.md`（新族群要新增一份，並在 `guide:` 指向它）
    - `loop_error`：翻譯迴圈在 CI 上因錯誤中斷，item 是錯誤訊息。向人說明可能的原因（執行環境、認證、額度、claude CLI 的錯誤等）；這個 skill 查不到 Actions 的執行紀錄，請人到該次執行的頁面確認。還沒翻的單位仍在待譯清單，下次執行會繼續；不重跑翻譯，不改 workflow
    - `not_translated`：CI 有待譯的單位，但沒有設定 `ANTHROPIC_API_KEY`（secret）或 `LCT_MODEL`（variable），翻譯沒有執行；item 是原因與待譯的單位數。向人說明要到 repo 的 Settings 補上這兩項，再到 Actions 手動執行 `rebuild`（待譯清單還在，會接著翻）；這個 skill 查不到也改不了 Actions 的設定，不翻譯、不改 workflow
    - 其他的 `kind`（比這份流程新）：照 `hint` 向人說明，不自行做

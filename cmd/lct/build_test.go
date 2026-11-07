@@ -48,6 +48,7 @@ func buildRepo(t *testing.T) string {
 	for _, f := range []string{"prompts/translate.md", "guides/base.md", "guides/families.md"} {
 		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
 	}
+	copyDir(t, filepath.Join(repoRoot, "guides/families"), filepath.Join(root, "guides/families"))
 	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
 		t.Fatal(err)
 	}

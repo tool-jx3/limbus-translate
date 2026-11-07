@@ -39,14 +39,14 @@ func cleanRules(t *testing.T) string {
 	for _, f := range []string{"glossary/terms.yaml", "guides/base.md", "guides/families.md", "guides/routing.yaml"} {
 		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
 	}
-	entries, err := os.ReadDir(filepath.Join(repoRoot, "guides/characters"))
-	if err != nil {
-		t.Fatal(err)
-	}
-	for _, e := range entries {
-		src := filepath.Join(repoRoot, "guides/characters", e.Name())
-		dst := filepath.Join(root, "guides/characters", e.Name())
-		copyFile(t, src, dst)
+	for _, dir := range []string{"guides/characters", "guides/families"} {
+		entries, err := os.ReadDir(filepath.Join(repoRoot, dir))
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, e := range entries {
+			copyFile(t, filepath.Join(repoRoot, dir, e.Name()), filepath.Join(root, dir, e.Name()))
+		}
 	}
 	return root
 }
@@ -138,7 +138,7 @@ func TestGuideResolve(t *testing.T) {
 	if err := json.Unmarshal([]byte(out), &got); err != nil {
 		t.Fatalf("output is not JSON: %v\n%s", err, out)
 	}
-	want := []string{"guides/base.md", "guides/families.md", "guides/characters/faust.md", "guides/characters/dante.md"}
+	want := []string{"guides/base.md", "guides/families/story-main.md", "guides/characters/faust.md", "guides/characters/dante.md"}
 	if got.File != "StoryData/S1037B.json" || got.Family != "story-main" || strings.Join(got.Guides, ",") != strings.Join(want, ",") {
 		t.Errorf("resolved = %+v", got)
 	}

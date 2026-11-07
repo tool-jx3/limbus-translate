@@ -1,5 +1,7 @@
 # 檔案族群
 
+給人看的參考：檔名規律、族群與節點、翻譯優先序、凍結項目。這份檔案**不送給譯者**；送給譯者的族群規則在 `guides/families/<族群 id>.md`（由 `guides/routing.yaml` 各族群的 `guide:` 指定）。
+
 ## 多數檔案命名規律
 
 ### 原指引
@@ -40,14 +42,13 @@
 | `PC` + 2 碼 | 19 | `PC01A`、`PC14B` | **原指引未列**。《明日方舟》聯動劇情 |
 | `ES` + 3 碼 | 37 | `ES000B`、`ES120A` | **原指引未列**。第八章的特殊劇情模式（場景如「大觀園 特殊教室」） |
 
-**檔名代碼與遊戲內編號**：資料確認了原指引的註記。遊戲內辛克萊是 11 號、奧提斯 12 號、格里高爾 13 號（`ScenarioModelCodes` 的 `nickName`），檔名代碼則是 10、11、12。人格編號 `1YYXX` 也用同一套代碼，例如 `10310` = 唐吉訶德（03）第 10 號人格。
+**檔名代碼與遊戲內編號**：資料確認了原指引的註記（遊戲內編號見 `ScenarioModelCodes` 的 `nickName`）；對照已移至 `guides/families/identity.md`「文本類型」。
 
 **戰鬥泡泡**：已不是單一檔案，目前有 11 個檔：
 
 - `BattleSpeechBubbleDlg`（817 條）沿用原指引的編號：`battle_<類型>_1XXYY_<序號>`，類型有 `s1`～`s3`、`s3-2`、`react`、`special`、`eE` 等。例：`battle_s3_10617_1_1` = 鴻璐（06）第 17 號人格
 - 各賽季另有分檔：`BattleSpeechBubbleDlg-a1c9p1`～`-a1c10p3`、`-exme`、`-twth`、`_Cultivation`、`_mowe`。章節分檔改用 `10SV-051_1` 這種編號（`<章>SV-<序號>`）
-- 戰鬥泡泡的 `desc` 是觸發標籤，三語幾乎相同，**不翻**；台詞在 `dlg`
-- 戰鬥泡泡的批次沒有說話者：看 KR 的 `desc`（觸發標籤常含角色名）與 `id`（`1XXYY` = 罪人代碼 XX、人格 YY）判斷是誰在說話
+- `desc` 不翻、批次沒有說話者時怎麼判斷：已移至 `guides/families/identity.md`
 
 **原指引「未列出」的文本**（檔數；歸哪個族群見下一節，由節點決定，不看這張表）：
 
@@ -64,17 +65,9 @@
 | RPG 探索 | `RPGSystem/rpg-loc-*`（對話、NPC、選項、旁白） | 189 |
 | 協助者 | `Skills_Assist*`、`Passives_Assist*` | 14 |
 
-**RPG 探索的對話**：`RPGSystem/rpg-loc-dialogue-*` 是對話，每句的說話者在 `speaker`（KR 名稱，與角色檔的 `models` 相同）；`rpg-loc-dialogue-choice-*` 是選項
+**RPG 探索的對話**、**RPG 標籤的括號**、**RPG 的樓層寫法**、**RPG 角色口癖**、**RPG 樓層變體要一致**：已移至 `guides/families/rpg.md`
 
-**RPG 標籤的括號**：`RPGSystem/` 除了對話之外的所有文字（`rpg-loc-item-*` 的 `statText`、`rpg-loc-npc-*`／`swarm-mob-*` 的名稱、`rpg-loc-quest-*` 的 title／goal／description、`rpg-loc-location-*`）括號一律用全形「（）」（既有 statText 29：1、paratranz 任務全是全形，例如「黃金皮革閃光（屍堆）」「（內部）…」）；開發用的代號照原樣放在全形括號裡，括號內的逗號照 KR：「（52,64）」「（S1001B）」。這是 base.md 第 7 條「系統文字用半形」的例外。只有問號的名稱寫半形「???」（既有 226 處）
-
-**RPG 的樓層寫法**：任務的 title、goal 與道具名、NPC 名稱是標籤，寫「3F」「B2F」；任務的 description 與對話是敘述，寫「3樓」「地下2樓」
-
-**RPG 角色口癖**：副廚（수셰프）幾乎每句以「~(는/다는) 거예요」結尾，譯成句尾「喔」（item-common-a1c10p1／p2 既有），只加在 KR 有 거예요 的陳述句與命令句（包括 `죽을 거예요` 這種未來式、`~라는 거예요` 的命令）；問句不加，包括反問與轉述的問句（`~냐는 거예요`）；不用「的說」
-
-**RPG 樓層變體要一致**：`floor-N`、`floor-N-b`、`floor-N-c1`、`floor-N-c2`（以及 `common-*`）有大量 KR 完全相同的句子。KR 相同的句子譯文也要完全相同：已經譯好的那句優先；兩邊都已譯好時以本體 `floor-N` 為準（除非它錯了）。翻譯前先在 `.work/tw/.meta/units/RPGSystem/` 找同一句 KR
-
-**人格語音的分類標籤**：`PersonalityVoiceDlg` 的 `desc` 是語音的分類標籤，所有人格寫法相同，照既有多數：`아침 인사` → 晨間問候（既有 138 處；55 處寫「早晨問候」）、`점심 인사` → 午間問候（既有 137 處；56 處寫「午時問候」）、`저녁 인사` → 晚間問候、`대화 1` → 對話 1、`동기화 후 대화 1` → 同步後對話 1（數字前空一格，同 KR；既有 188、179 處，7 處不空格）、`입장` → 進入戰鬥（既有 190 處；「入場」「進入」各 1 處）、`EX CLEAR 전투 승리` → EX CLEAR戰鬥勝利（既有 192 處不空格，1 處空格）；標籤結尾不留空格
+**人格語音的分類標籤**：已移至 `guides/families/identity.md`「格式慣例」
 
 **檔案集合**：輸出以 KR 為準（已決定）。KR 比 EN 多 53 個檔（例如 `Passives-a1c9p1～p3`），這些檔沒有 EN／JP 可參考，只依 KR 翻譯。只有 EN 有的 10 個檔不輸出。
 
@@ -84,7 +77,7 @@
 
 ## 族群與節點
 
-族群由分群樹的節點組成（`guides/routing.yaml` 的 `nodes`）。檔名推導出 `top`、`sub` 兩層節點，先看 `sub` 再看 `top`；同一層寫出完整名稱的族群優先，否則取路由裡第一個樣式符合的族群；都沒有的檔歸 `unsorted`。瓦夜與折射軌道活動檔不再自成一個族群，依文字類型歸進下面的族群。各族群的節點以 `guides/routing.yaml` 為準。
+族群由分群樹的節點組成（`guides/routing.yaml` 的 `nodes`）。檔名推導出 `top`、`sub` 兩層節點，先看 `sub` 再看 `top`；同一層寫出完整名稱的族群優先，否則取路由裡第一個樣式符合的族群；都沒有的檔歸 `unsorted`。瓦夜與折射軌道活動檔不再自成一個族群，依文字類型歸進下面的族群。各族群的節點以 `guides/routing.yaml` 為準；各族群送給譯者的指引是 `guides/families/<族群 id>.md`。
 
 | 族群 | 文字類型 | 詞彙表 |
 |---|---|---|
