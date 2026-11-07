@@ -87,11 +87,11 @@
   en: Season
   zh: 賽季
   forbidden: ["re:第\\d+季"]
-  not_files: ["BattleAnnouncerDlg/**", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**"]
+  not_files: ["BattleAnnouncerDlg/**", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**", "group:ActionEvents", "group:AbEvents"]
   status: approved
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
-  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）。2026-11-06 依實際譯文：BattleAnnouncerDlg、PersonalityVoiceDlg、RPGSystem、StoryData 等播報、語音、RPG 與劇情檔不用此譯名（109 句 0 句用），排除
+  notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）。2026-11-06 依實際譯文：BattleAnnouncerDlg、PersonalityVoiceDlg、RPGSystem、StoryData 等播報、語音、RPG 與劇情檔不用此譯名（109 句 0 句用），排除。2026-11-07 依詞義另排除鏡牢與異想體事件的敘述（group:ActionEvents 3 句、group:AbEvents 2 句，0 句用）：都是百貨公司的時尚季（「이번 시즌 신상」這一季的新品），寫「季」
   meaning: "作為遊戲的分期時，指每期約 4 至 7 個月的單位，各有專屬的人格與 E.G.O，以及對應的劇情章節、通行證、折射軌道與活動。"
   sources: ["https://limbuscompany.wiki.gg/wiki/Seasons"]
 
@@ -491,8 +491,86 @@
   status: approved
   match: word
   category: [general]
-  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）。「중지 복도」「검지 복도」這種「手指＋복도」也是專名，寫「長廊」（既有 93 處）。蜘蛛巢裡沒有指名的「복도」（다른 복도、이쪽 복도、복도를 이용해）仍寫「走廊」（既有 47 行）
+  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）。「중지 복도」「검지 복도」這種「手指＋복도」也是專名，寫「長廊」（既有 93 處）。蜘蛛巢裡沒有指名的「복도」（다른 복도、이쪽 복도、복도를 이용해）仍寫「走廊」（既有 47 行）。2026-11-07 專名另立條目（엄지／검지／중지／약지／소지의 복도、아비의 복도、중지 복도、검지 복도、철함사로 향하는 복도、격리 복도），長詞條優先，這些地方不用本條
   sources: ["game:RPGSystem/rpg-loc-location-floor-4.json#/dataList/0/text"]
+
+- kr: 엄지의 복도
+  jp: 親指の廊下
+  en: Corridor of the Thumb
+  zh: 拇指的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 10 個單位都寫「拇指的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
+  sources: ["game:StoryData/S941B.json#/dataList/28/place"]
+
+- kr: 검지의 복도
+  jp: 人差し指の廊下
+  en: Corridor of the Index
+  zh: 食指的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 12 個單位都寫「食指的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
+  sources: ["game:StoryData/S939B.json#/dataList/9/place"]
+
+- kr: 중지의 복도
+  jp: 中指の廊下
+  en: Corridor of the Middle
+  zh: 中指的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 7 個單位都寫「中指的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
+  sources: ["game:StoryData/S938B.json#/dataList/12/place"]
+
+- kr: 약지의 복도
+  jp: 薬指の廊下
+  en: Corridor of the Ring
+  zh: 環指的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 12 個單位都寫「環指的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
+  sources: ["game:StoryData/S936B.json#/dataList/0/place"]
+
+- kr: 소지의 복도
+  jp: 小指の廊下
+  en: Corridor of the Pinky
+  zh: 小指的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 14 個單位都寫「小指的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
+  sources: ["game:StoryData/S940B.json#/dataList/0/place"]
+
+- kr: 아비의 복도
+  zh: 父輩的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名「X 아비의 복도」（X父輩的長廊，例「環指父輩的長廊」）；既有 36 個單位都寫「父輩的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
+
+- kr: 중지 복도
+  zh: 中指長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 2 個單位（「조용한 중지 복도」→ 寂靜的中指長廊）寫「中指長廊」（2026-11-07）
+
+- kr: 검지 복도
+  zh: 食指的長廊
+  status: approved
+  category: [city]
+  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 1 個單位（StoryData/E912B.json /1）寫「食指的長廊」（2026-11-07）
+
+- kr: 철함사로 향하는 복도
+  jp: 鉄檻寺へと向かう廊下
+  en: Passageway to Tiekan Temple
+  zh: 前往鐵檻寺之廊
+  status: approved
+  category: [city]
+  notes: 第八章的地點名；既有 3 個單位（StoryData/S826B、S827A、S828B 的 place）都寫「前往鐵檻寺之廊」（2026-11-07）
+  sources: ["game:StoryData/S826B.json#/dataList/0/place"]
+
+- kr: 격리 복도
+  zh: 收容通道
+  status: approved
+  category: [city]
+  notes: 地牢區域名「제 N 격리 복도」（第N收容通道）；既有 3 個單位（DungeonArea1-1.json）都寫「收容通道」（2026-11-07）
 
 - kr: 변곡점
   zh: 曲折點
@@ -1210,17 +1288,46 @@
   zh: 經理
   status: approved
   category: [general]
-  notes: 依語境：稱但丁「經理」（約 1,170 行；唐吉訶德「經理老爺」）；腦葉公司、廢墟圖書館的播報員（安吉拉、源質）與 LEGO 人格稱「主管」（約 100 行）；系統文字「管理員」
+  notes: 依語境：稱但丁「經理」（約 1,170 行；唐吉訶德「經理老爺」）；腦葉公司、廢墟圖書館的播報員（安吉拉、源質）與 LEGO 人格稱「主管」（約 100 行）；系統文字「管理員」。2026-11-07 起這些腦葉公司系的檔由下一條（設了 files）譯「主管」
   meaning: "作為但丁的職稱時，指邊獄公司 LCB 部門的執行經理（Executive Manager）。"
   sources: ["game:ScenarioModelCodes-AutoCreated.json#/dataList/22/nickName", "https://limbuscompany.wiki.gg/wiki/Dante"]
+
+- kr: 관리자
+  jp: 管理人
+  en: Manager
+  zh: 主管
+  files: ["BattleAnnouncerDlg/Announcer_Angela_12.json", "BattleAnnouncerDlg/Announcer_Chesed_44.json", "BattleAnnouncerDlg/Announcer_Gebura_39.json", "BattleAnnouncerDlg/Announcer_Hod_18.json", "BattleAnnouncerDlg/Announcer_Malkuth_10.json", "BattleAnnouncerDlg/Announcer_Netzach_24.json", "PersonalityVoiceDlg/Voice_*_LEGO*", "StoryData/E082X.json", "StoryData/P10110.json", "StoryData/P10207.json", "StoryData/P10312.json", "StoryData/P10410.json", "StoryData/P10414.json", "StoryData/P10514.json", "StoryData/P10913.json"]
+  status: approved
+  category: [general]
+  notes: 腦葉公司系的檔譯「主管」：腦葉公司、廢墟圖書館的播報員（安吉拉與源質 Chesed、Gebura、Hod、Malkuth、Netzach）稱但丁，LEGO 人格的語音與腦葉公司系的人格故事、間章稱 L 公司分部的管理者。2026-11-07 這些檔既有 88 個單位中 86 個寫「主管」（另 1 個省略、1 個寫「經理」）。其他檔見上一條「經理」
+  sources: ["game:BattleAnnouncerDlg/Announcer_Angela_12.json#/dataList/1/dlg"]
+
+- kr: 관리자 파우스트
+  zh: 管理員浮士德
+  status: approved
+  category: [city]
+  notes: 第九章浮士德們的稱呼（不是但丁）；既有 5 個單位（StoryData/S951B.json 4 個、RPGSystem/rpg-loc-dialogue-floor-2.json 1 個）都寫「管理員浮士德」（2026-11-07）。這個較長的條目蓋住其中的「관리자」
+
+- kr: 관리자 혈귀
+  zh: 管理者血魔
+  status: approved
+  category: [city]
+  notes: 第七章管理各區的血魔（不是但丁）；既有 4 個單位中 3 個寫「管理者血魔」（StoryData/S716A、S716B、S730B；另 1 個寫「管理者的血魔」，2026-11-07）。這個較長的條目蓋住其中的「관리자」
+
+- kr: 시스템 관리자
+  zh: 系統管理員
+  status: approved
+  category: [general]
+  notes: 系統的管理者（不是但丁），例「시지프 시스템 관리자」薛西弗斯系統管理員；既有 2 個單位（BattleKeywords-a1c10p3、Bufs-a1c10p3 的 flavor）都寫「系統管理員」（2026-11-07）。這個較長的條目蓋住其中的「관리자」
 
 - kr: 날개
   jp: 翼
   en: Wings
   zh: 翼
+  also: [翅膀]
   status: approved
   category: [city]
-  notes: 都市的「翼」（巨企），量詞「片」（某片翼、折斷之翼、成為翼）；只有真的鳥翅膀才寫「翅膀」「羽翼」
+  notes: 都市的「翼」（巨企），量詞「片」（某片翼、折斷之翼、成為翼）；只有真的鳥翅膀才寫「翅膀」「羽翼」。2026-11-07 加 also：字面的翅膀（鳥、蟲、異想體的部位、李箱的「날개」意象）寫 `also` 的「翅膀」，不需要 note（既有 78 個單位）
   meaning: "作為都市的組織時，指規模最大、最有權勢的 26 家巨型企業，各自作為所屬區之巢的管理者，並各擁有一項奇點技術。"
   sources: ["game:FileDownloadDesc.json#/dataList/1/title", "https://limbuscompany.wiki.gg/wiki/Wings"]
 
@@ -1253,6 +1360,21 @@
   notes: Paratranz 詞彙表。2026-11-06 加 also：技能、效果、戰鬥的選取對象寫「目標」；指人（被施行、被針對、被服務的人）或文意是「對象」時寫 `also` 的「對象」，不需要 note
   sources: ["game:BattleKeywords-a1c10p2.json#/dataList/16/name"]
 
+- kr: 이벤트 특화 대상
+  jp: イベント特化対象
+  en: Event Bonus Units
+  zh: 活動加成角色
+  status: approved
+  category: [system]
+  notes: 活動期間有加成的人格（介面用語）；既有 42 個單位寫「活動加成角色」（2026-11-07）。後接 E.G.O 時見「이벤트 특화 대상 E.G.O」。這個較長的條目蓋住其中的「대상」
+  sources: ["game:CultivationEvent.json#/dataList/8/content"]
+
+- kr: 이벤트 특화 대상 E.G.O
+  zh: 活動加成E.G.O
+  status: approved
+  category: [system]
+  notes: 既有 1 個單位（TutorialMainUIText.json /1010）寫「活動加成E.G.O」（2026-11-07）
+
 - kr: 다음 턴
   jp: 次のターン
   en: Next Turn
@@ -1278,10 +1400,11 @@
   jp: 精神力
   en: SP
   zh: 理智值
+  also: [理智]
   status: approved
   category: [combat]
   evidence: { kr_lines: 2334, approved: 2120, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述。2026-11-07 加 also：「理智」（沒有「值」）也算（既有 198 個單位）
   meaning: "作為戰鬥數值時，指單位的理智值（SP），以數字顯示在體力條旁，隨戰鬥內外的各種互動增減，範圍為 -45 到 45。"
   sources: ["game:EGOgift_MirrorDungeon-EventTheme_2.json#/dataList/41/simpleDesc/1/simpleDesc", "https://limbuscompany.wiki.gg/wiki/Sanity"]
 
@@ -1477,9 +1600,10 @@
   jp: 都市
   en: The City
   zh: 都市
+  also: [城市]
   status: approved
   evidence: { kr_lines: 558, approved: 536, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-07 加 also：專名「都市」（The City，故事舞台）寫「都市」；泛指一般的城市時寫 `also` 的「城市」（既有 7 個單位）
   meaning: "《Limbus Company》與前作《腦葉公司》《廢墟圖書館》的故事舞台；在此死亡與暴力是家常便飯。"
   sources: ["game:StoryTheaterDanteNote.json#/dataList/0/content", "https://limbuscompany.wiki.gg/wiki/The_City"]
 
@@ -1490,8 +1614,18 @@
   match: substring
   category: [general, combat]
   evidence: { kr_lines: 541, approved: 505, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（71/74），比對詞中詞
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（71/74），比對詞中詞。「N당 피해량 증가」（每 N 獲得傷害強化）見「당 피해량 증가」條目
   sources: ["game:Skills.json#/dataList/254/levelList/0/desc"]
+
+- kr: 당 피해량 증가
+  jp: ダメージ量増加
+  en: Damage Up
+  zh: 傷害強化
+  status: approved
+  match: substring
+  category: [combat]
+  notes: 「N당 피해량 증가 M」是每 N 獲得 M 層「傷害強化」（狀態 피해량 증가），「당」屬於前面的數量，不是「당 피해량」（每…造成的傷害）；既有 30 個單位都寫「傷害強化」（2026-11-07）。這個較長的條目蓋住其中的「당 피해량」
+  sources: ["game:BattleKeywords.json#/dataList/21/name", "game:BattleKeywords-a1c9p3.json#/dataList/28/desc"]
 
 - kr: 보호막
   zh: 護盾
@@ -1553,10 +1687,11 @@
   jp: 打撃
   en: Blunt
   zh: 打擊
+  not_files: ["StoryData/**"]
   status: approved
   category: [general, combat, physical]
   evidence: { kr_lines: 433, approved: 411, forbidden: 0 }
-  notes: Paratranz 詞彙表：打擊，輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：打擊，輔助文本描述，輔助戰鬥相關文本描述。2026-11-07 依詞義排除 StoryData/**：劇情檔的 12 個單位都是「打擊、衝擊、傷害」的一般意思（「타격이 없다」不痛不癢、「타격을 입다」受到重創），不是傷害類型；其中 4 個寫「打擊」、8 個寫別的
   meaning: "作為傷害類型時，指三種傷害類型之一，通常見於使用能重擊目標之武器的技能。"
   sources: ["game:BattleUIText.json#/dataList/44/content", "https://limbuscompany.wiki.gg/wiki/Blunt"]
 
@@ -1570,6 +1705,15 @@
   evidence: { kr_lines: 429, approved: 395, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
   sources: ["game:BattleKeywords_Mirror3.json#/dataList/16/name"]
+
+- kr: 조작 슬롯
+  jp: 操作スロット
+  en: Slot
+  zh: 儀錶盤
+  status: approved
+  category: [combat]
+  notes: 戰鬥介面放技能的位置，與「조작 패널」（儀錶盤）同譯（使用者決定 2026-11-07）。既有 14 個單位：「儀錶盤」7、「儀表盤」1、「行動槽」6。這個較長的條目蓋住其中的「슬롯」
+  sources: ["game:Passives.json#/dataList/490/desc"]
 
 - kr: 참격
   jp: 斬撃
@@ -1846,10 +1990,11 @@
   jp: マッチ勝利時
   en: Clash Win
   zh: 拚點勝利時
+  also: [拚點勝利後]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 217, approved: 206, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-07 加 also：「拚點勝利後」（既有 8 個單位）
   sources: ["game:BattleKeywords.json#/dataList/144/summary"]
 
 - kr: 전투 패배
@@ -2368,9 +2513,10 @@
   jp: トイレ
   en: Restroom
   zh: 廁所
+  also: [洗手間]
   status: approved
   evidence: { kr_lines: 93, approved: 87, forbidden: 0 }
-  notes: Paratranz 詞彙表
+  notes: Paratranz 詞彙表。2026-11-07 加 also：「洗手間」（既有 4 個單位）
   sources: ["game:StoryData/S1001B.json#/dataList/31/place"]
 
 - kr: 보상 교환
@@ -5115,11 +5261,11 @@
   jp: 速度
   en: Speed
   zh: 速度值
-  not_files: ["AbEvents*", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**"]
+  not_files: ["AbEvents*", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**", "group:ActionEvents", "group:AbnormalityGuides"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 1242, approved: 1050, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：AbEvents* 事件檔 16 句 1 句用、PersonalityVoiceDlg 4 句 0 句用、RPGSystem 26 句 2 句用、StoryData 78 句 0 句用，共 124 句 3 句用，排除
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：AbEvents* 事件檔 16 句 1 句用、PersonalityVoiceDlg 4 句 0 句用、RPGSystem 26 句 2 句用、StoryData 78 句 0 句用，共 124 句 3 句用，排除。2026-11-07 另排除 group:ActionEvents（鏡牢事件敘述，11 句 1 句用）、group:AbnormalityGuides（異想體觀察紀錄，8 句 0 句用），兩者也是敘事文字
   sources: ["game:FormationUI_S6.json#/dataList/44/content"]
 
 - kr: 공격 시작
@@ -5146,29 +5292,32 @@
   jp: 自販機
   en: Dispenser
   zh: 自動販賣機
+  also: [販賣機]
   not_files: ["RPGSystem/**", "StoryData/**"]
   status: approved
   category: [ego]
   evidence: { kr_lines: 189, approved: 162, forbidden: 0 }
-  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：RPGSystem 6 句 0 句用、StoryData 15 句 3 句用，共 21 句 3 句用，排除
+  notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：RPGSystem 6 句 0 句用、StoryData 15 句 3 句用，共 21 句 3 句用，排除。2026-11-07 加 also：「販賣機」（既有 8 個單位）
   meaning: "作為遊戲系統時，指可用自我碎片購買人格與 E.G.O（包括過去通行證的 E.G.O）的商店。"
   sources: ["game:ReturnPolicy.json#/dataList/20/content", "https://limbuscompany.wiki.gg/wiki/Dispenser"]
 
 - kr: 이번 턴 동안
   en: this turn
   zh: 本回合內
+  also: [本回合]
   status: approved
   category: [general]
   evidence: { kr_lines: 187, approved: 151, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本使用（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：輔助文本使用（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：「本回合」與「本回合內」同義（既有 25 個單位寫「本回合」），選這個不需要 note
   sources: ["game:Bufs.json#/dataList/1/desc"]
 
 - kr: 이 스킬의 피해로 대상이 흐트러지지 않음
   en: Damage dealt by this Skill cannot Stagger the target
   zh: 本技能造成的傷害不會使目標陷入混亂
+  also: [本技能造成的傷害無法使目標陷入混亂]
   status: approved
   evidence: { kr_lines: 181, approved: 148, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：「無法」與「不會」同義（既有 27 個單位寫「無法」）
   sources: ["game:Skills_Abnormality-x1p1c1.json#/dataList/4/levelList/0/desc"]
 
 - kr: 광기
@@ -5224,10 +5373,11 @@
 - kr: 엔케팔린 모듈
   jp: エンケファリンモジュール
   en: Enkephalin Modules
-  zh: 腦啡肽模塊
+  zh: 腦啡肽模組
+  forbidden: [腦啡肽模塊]
   status: approved
   evidence: { kr_lines: 60, approved: 52, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 依使用者決定改為「腦啡肽模組」，與「도약 모듈」（跳躍成長模組）一致；既有寫「腦啡肽模塊」的 53 個單位由 rules/rewrite/2026-11-07-enkephalin-module.yaml 統一
   sources: ["game:ShopUI.json#/dataList/30/content"]
 
 - kr: 쉼터
