@@ -16,4 +16,4 @@
 
 ## 常見錯誤
 
-- draft 或舊譯可能是錯位的別列內容（Paratranz 錯位），先逐句對照 KR：`StoryTheaterPersonality` 有 2 列放了上一列的角色資料，已由人工修正（rules/adjustments/2026-11-04-review-page-fixes.yaml，例 `StoryTheaterPersonality.json|/dataList/237/content`）
+（目前無足夠證據）

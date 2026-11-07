@@ -15,7 +15,7 @@
 - `[X] N 부여`（X 為 Combustion、Laceration、Vibration、Burst、Sinking）寫「使目標增加N級 [X] 強度」（既有 1,729／1,810，例 `Skills_Enemy-tkt.json|/dataList/20/levelList/0/coinlist/0/coindescs/1/desc`）
 - `(턴당 N회)` 寫「(每回合最多N次)」（既有 60／60，例 `Passives_Abnormality-exme.json|/dataList/0/desc`）
 - `피해량 +N%` 寫「造成的傷害+N%」（既有 615／646，例 `Passives_Enemy-a1c6p1.json|/dataList/0/summary`）
-- `최종 위력 +N` 寫「最終威力+N」（既有 311／317，例 `Skills.json|/dataList/138/levelList/0/desc`）
+- `최종 위력 ±N` 寫「最終威力±N」，正負號照 KR（既有 311／317，例 `Skills.json|/dataList/138/levelList/0/desc`）
 - `정신력 N 회복` 寫「恢復N點理智值」（既有 253／255，例 `Passives_Enemy.json|/dataList/11/desc`）；`체력 N 회복` 寫「恢復N點體力」（既有 80／80，例 `Passives_Enemy.json|/dataList/0/desc`）
 - `아군` 寫「友方單位」（既有 308／309，例 `Passives_Enemy.json|/dataList/3/desc`）
 

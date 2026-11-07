@@ -6,7 +6,7 @@
 
 ## 語氣與人稱
 
-- 台詞多半是對敵人說話，第二人稱用「你」；KR 對聽者有敬語標記時仍依 base.md「第二人稱：您／你」（既有 77／82，例 `EGOVoiceDig/Voice_EGO_Faust_2.json|/dataList/7/dlg`；base.md「第二人稱：您／你」表）
+- 第二人稱多用「你」，不用「您」（既有 77／82，例 `EGOVoiceDig/Voice_EGO_Faust_2.json|/dataList/7/dlg`）；KR 對聽者有敬語標記時依 base.md「第二人稱：您／你」（base.md 該節）
 
 ## 格式慣例
 

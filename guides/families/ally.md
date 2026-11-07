@@ -14,7 +14,7 @@
 - `[X] N 부여`（X 為 Combustion、Laceration、Vibration、Burst、Sinking）寫「使目標增加N級 [X] 強度」（既有 1,691／1,776，例 `Skills_personality-12.json|/dataList/8/levelList/0/desc`）
 - `(턴당 N회)` 寫「(每回合最多N次)」（既有 412／414，例 `Passives-BossRaid.json|/dataList/14/desc`）
 - `피해량 +N%` 寫「造成的傷害+N%」（既有 756／807，例 `Passives.json|/dataList/3/desc`）
-- `최종 위력 +N` 寫「最終威力+N」（既有 227／239，例 `Skills_personality-06.json|/dataList/4/levelList/2/desc`）
+- `최종 위력 ±N` 寫「最終威力±N」，正負號照 KR（既有 227／239，例 `Skills_personality-06.json|/dataList/4/levelList/2/desc`）
 - `정신력 N 회복` 寫「恢復N點理智值」（既有 201／209，例 `Passives.json|/dataList/15/desc`）；`체력 N 회복` 寫「恢復N點體力」（既有 47／47，例 `Passives.json|/dataList/35/desc`）
 - `아군` 寫「友方單位」（既有 810／844，例 `Passives.json|/dataList/0/desc`）
 - `처치 시` 寫「擊殺……時」或「擊殺……後」（既有 47／50，例 `Passives.json|/dataList/106/desc`）

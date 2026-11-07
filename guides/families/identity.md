@@ -5,7 +5,7 @@
 - 人格故事 `StoryData/P1YYXX`（181 檔）：欄位同劇情（`content`、`teller`、`title`）（families.md 原指引；raw-20261105 檔數）
 - 人格語音 `PersonalityVoiceDlg/Voice_<罪人>_<人格>_<編號>`（194 檔）：`desc` 是分類標籤、`dlg` 是台詞（families.md；raw-20261105 檔數）
 - 戰鬥泡泡 `BattleSpeechBubbleDlg*`（11 檔）：台詞在 `dlg`；`desc` 是觸發標籤，三語幾乎相同，不翻（自 families.md「戰鬥泡泡」移入）
-- 罪人代碼：檔名與人格編號 `1YYXX` 的 YY，01～09 與遊戲內編號相同，10 是辛克萊、11 奧提斯、12 格里高爾（遊戲內是 11、12、13 號），例如 `10310` = 唐吉訶德（03）第 10 號人格（自 families.md「檔名代碼與遊戲內編號」移入）
+- 罪人代碼：檔名與人格編號 `1YYXX` 的 YY，例如 `10310` = 唐吉訶德（03）第 10 號人格；代碼 10、11、12 是辛克萊、奧提斯、格里高爾，遊戲內是 11、12、13 號（自 families.md「檔名代碼與遊戲內編號」移入）；各罪人的代碼與遊戲內編號見 `guides/characters/<id>.md` 的 `code`、`number`，01～09 兩者相同（characters/*.md；遊戲內編號出自 `ScenarioModelCodes` 的 `nickName`，例 `ScenarioModelCodes-AutoCreated.json|/dataList/9/nickName`：辛克萊「11번 수감자」）
 
 ## 語氣與人稱
 

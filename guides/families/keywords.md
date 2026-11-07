@@ -16,7 +16,7 @@
 - `- 최댓값: N` 寫「- 最大值：N」（既有 676／718，例 `Bufs-cultivation.json|/dataList/3/desc`）
 - `수치 N당`（本效果的層數）寫「每帶有N層本效果」或「每有N層」（既有 238／266，例 `BattleKeywords-a1c9p1.json|/dataList/21/desc`）
 - `(턴당 N회)` 寫「(每回合最多N次)」（既有 126／138，例 `Bufs-a1c9p1.json|/dataList/16/desc`）
-- `공격 레벨 +N`、`최종 위력 +N` 寫「攻擊等級+N」「最終威力+N」（既有 304／324、182／198，例 `Bufs.json|/dataList/593/desc`、`Bufs.json|/dataList/108/summary`）
+- `공격 레벨 ±N`、`최종 위력 ±N` 寫「攻擊等級±N」「最終威力±N」，正負號照 KR（既有 304／324、182／198，例 `Bufs.json|/dataList/593/desc`、`Bufs.json|/dataList/108/summary`）
 - `정신력 N 회복` 寫「恢復N點理智值」（既有 150／152，例 `Bufs.json|/dataList/306/desc`）
 - `적중 시` 寫「命中時」；`처치 시` 寫「擊殺……時」（既有 193／197、31／31，例 `Bufs.json|/dataList/47/desc`、`SkillTag.json|/dataList/45/name`）
 - `아군` 寫「友方單位」（既有 297／326，例 `Bufs.json|/dataList/12/desc`）

@@ -49,3 +49,5 @@
 - 每條規則句末的括號是出處：從 `base.md`、`families.md`、`rules/adjustments/` 搬來或摘要的寫明原處；依統計寫的標「既有 a／b」與例子 key
 - 「既有 a／b」：raw-20261105 該族群 KR 符合條件、已有譯文紀錄（Paratranz、Claude、人工，不含照抄）的 b 個單位中，a 個照這個寫法；只收 a／b ≥ 80% 且 b ≥ 30 的慣例
 - 只適用於單一族群的規則寫在該族群的檔，不寫進 `base.md`；`base.md` 只放各族群共通的規則
+- 統計數字由 `docs/research/scripts/family_guides.py` 重算（讀 `lct site` 的輸出）；改了寫法或重算時，指引裡的數字與腳本的樣式一起改
+- 同一條規則寫在幾個族群的檔裡（技能文字的句型：`아군`、`피해량 +N%`、`최종 위력`、`(턴당 N회)`、`정신력 N 회복` 等在 ally、enemy、keywords、mirror；「方括號裡的韓文照譯」在 ui、events、mirror、stage、keywords）：改其中一份時，其他族群的同一條要一起改

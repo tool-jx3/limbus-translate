@@ -16,4 +16,4 @@
 
 ## 常見錯誤
 
-- 歌詞的 `<size>` 放大的字要和 KR 放大的詞對應：既有譯文曾多放大 KR 沒放大的字、或少放大，已由人工修正（rules/adjustments/2026-11-02-cromer2-size.yaml，3 筆，例 `BgmLyrics/BgmLyrics_Cromer2.json|/dataList/45/content`）
+（目前無足夠證據）

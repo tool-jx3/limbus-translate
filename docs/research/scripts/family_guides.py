@@ -48,7 +48,7 @@ SPECS = [
     ("keywords", "아군", "", ALLY, r"友方單位", ""),
     ("keywords", "[韓文]", "", BRACKET_KR, BRACKET_ZH, ""),
     ("mirror", "선택 시,", "messageDesc", r"^선택 시, ", r"^選擇後，", ""),
-    ("mirror", "E.G.O GIFT 획득", "messageDesc", r"(?<![0-9] )E\.G\.O GIFT 획득", r"獲得1件", ""),
+    ("mirror", "E.G.O GIFT 획득", "messageDesc", r"(?<![0-9] )E\.G\.O GIFT 획득", r"獲得1件[^，。；\n]*E\.G\.O飾品", ""),
     ("mirror", "별도 효과 없음", "messageDesc", r"^별도 효과 없음$", r"^沒有效果$", ""),
     ("mirror", "판정 성공 시", "", r"판정 성공 시", r"判定 成功後", ""),
     ("mirror", "피해량 +N%", "", r"(?<!받는 )피해량 \+(?P<n>\d+)%", r"造成的傷害\+{n}%", ""),
