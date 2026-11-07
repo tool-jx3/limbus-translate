@@ -15,6 +15,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"strconv"
 	"strings"
@@ -89,6 +90,11 @@ func Load(root string) (Sample, error) {
 	if err != nil {
 		return Sample{}, err
 	}
+	return parse(data)
+}
+
+// parse reads the content of the file; see Load.
+func parse(data []byte) (Sample, error) {
 	var s Sample
 	dec := yaml.NewDecoder(bytes.NewReader(data))
 	dec.KnownFields(true)
@@ -109,22 +115,76 @@ func Load(root string) (Sample, error) {
 }
 
 // Save writes the sample to root atomically, in the one stable format.
+//
+// The emitter of yaml.v3 gets some strings wrong (a text that starts with a
+// line break comes out so that it reads back without it), so the result is
+// read back and compared. When it differs, the judged_zh and note texts are
+// written double-quoted, which the emitter does right.
 func Save(root string, s Sample) error {
 	if s.Units == nil {
 		s.Units = []Unit{}
 	}
+	var data []byte
+	for _, quote := range []bool{false, true} {
+		var err error
+		if data, err = encode(s, quote); err != nil {
+			return err
+		}
+		if back, err := parse(data); err == nil && reflect.DeepEqual(back, s) {
+			break
+		} else if quote {
+			return fmt.Errorf("%s: the sample cannot be written as YAML", File)
+		}
+	}
+	return rulefile.WriteAtomic(filepath.Join(root, filepath.FromSlash(File)), data)
+}
+
+// encode writes s with the header; quote writes the judged_zh and note texts
+// double-quoted. The tree is built by hand: yaml.Node.Encode reads the
+// emitter's output back, which fails on the very texts quote is for.
+func encode(s Sample, quote bool) ([]byte, error) {
+	str := func(v string, quoted bool) *yaml.Node {
+		n := &yaml.Node{Kind: yaml.ScalarNode, Tag: "!!str", Value: v}
+		if quoted {
+			n.Style = yaml.DoubleQuotedStyle
+		}
+		return n
+	}
+	num := func(v int) *yaml.Node {
+		return &yaml.Node{Kind: yaml.ScalarNode, Tag: "!!int", Value: strconv.Itoa(v)}
+	}
+	mapping := func(pairs ...*yaml.Node) *yaml.Node {
+		return &yaml.Node{Kind: yaml.MappingNode, Content: pairs}
+	}
+	units := &yaml.Node{Kind: yaml.SequenceNode}
+	for _, u := range s.Units {
+		units.Content = append(units.Content, mapping(
+			str("key", false), str(u.Key, false),
+			str("family", false), str(u.Family, false),
+			str("origin", false), str(u.Origin, false),
+			str("verdict", false), str(u.Verdict, false),
+			str("note", false), str(u.Note, quote),
+			str("judged_zh", false), str(u.JudgedZH, quote),
+			str("judged_at", false), str(u.JudgedAt, false),
+		))
+	}
+	root := mapping(
+		str("seed", false), num(s.Seed),
+		str("per_family", false), num(s.PerFamily),
+		str("units", false), units,
+	)
 	var buf bytes.Buffer
 	buf.WriteString(header)
 	buf.WriteString("\n")
 	enc := yaml.NewEncoder(&buf)
 	enc.SetIndent(2)
-	if err := enc.Encode(s); err != nil {
-		return err
+	if err := enc.Encode(root); err != nil {
+		return nil, err
 	}
 	if err := enc.Close(); err != nil {
-		return err
+		return nil, err
 	}
-	return rulefile.WriteAtomic(filepath.Join(root, filepath.FromSlash(File)), buf.Bytes())
+	return buf.Bytes(), nil
 }
 
 // Judged returns the number of units that have a verdict.

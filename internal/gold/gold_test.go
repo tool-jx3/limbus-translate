@@ -166,3 +166,38 @@ func TestDrawSkipsKeysWithWhitespace(t *testing.T) {
 		t.Errorf("drew %d units, want 3", n)
 	}
 }
+
+// yaml.v3 writes a text that starts with a line break so that it reads back
+// without it; Save must keep judged_zh and note exactly.
+func TestSaveKeepsTextsThatStartWithABreak(t *testing.T) {
+	root := t.TempDir()
+	texts := []string{"\n換行開頭", " 空白開頭", "結尾空白 ", "\n\n兩個換行\n中間也有\n", "a: b", "- x", "# 不是註解", "'單引號'", "\ttab"}
+	var s Sample
+	for i, text := range texts {
+		s.Units = append(s.Units, Unit{
+			Key: fmt.Sprintf("S.json|/dataList/%d/content", i), Family: "f", Origin: "claude",
+			Verdict: VerdictWrong, Note: text, JudgedZH: text, JudgedAt: "2026-11-07",
+		})
+	}
+	if err := Save(root, s); err != nil {
+		t.Fatal(err)
+	}
+	got, err := Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for i, u := range got.Units {
+		if u.JudgedZH != texts[i] || u.Note != texts[i] {
+			t.Errorf("unit %d: judged_zh %q, note %q, want %q", i, u.JudgedZH, u.Note, texts[i])
+		}
+	}
+	// A sample whose texts are all plain is written as before (no quotes).
+	plain := Sample{Units: []Unit{{Key: "S.json|/dataList/0/content", Family: "f", Origin: "claude", Verdict: VerdictWrong, Note: "ok", JudgedZH: "譯文", JudgedAt: "2026-11-07"}}}
+	if err := Save(root, plain); err != nil {
+		t.Fatal(err)
+	}
+	raw, _ := os.ReadFile(filepath.Join(root, filepath.FromSlash(File)))
+	if !strings.Contains(string(raw), "judged_zh: 譯文\n") {
+		t.Errorf("plain texts changed format:\n%s", raw)
+	}
+}
