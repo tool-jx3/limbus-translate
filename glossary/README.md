@@ -1,6 +1,6 @@
 # 詞彙表
 
-`terms.yaml` 的譯名是專案的預設譯名：翻譯時注入命中的條目，驗證時檢查禁用譯法。缺少 `zh` 預設只警告，不退回（見下一節 `check`）。
+`terms.yaml` 的譯名是專案的預設譯名：翻譯時注入命中的條目，驗證時檢查禁用譯法。缺少 `zh` 預設只警告，不退回；`check: off` 的條目連警告也沒有（見 `check` 一節）。
 
 `guides/routing.yaml` 標 `glossary: warn` 的族群（列表以 routing.yaml 為準，不在這裡重抄）語境多變：即使條目有 `check: hard`，缺少 `zh` 也只警告，不退回；譯者語境不合可以不用，仍在 `note` 寫原因。`forbidden` 的禁用譯法在這些族群照樣退回。
 
@@ -20,11 +20,12 @@
 
 ## `check`：缺少譯名時退回
 
-`check` 的值是 `hard` 或 `warn`，省略等於 `warn`（`lct rules lint` 檢查）：
+`check` 的值是 `hard`、`warn` 或 `off`，省略等於 `warn`（`lct rules lint` 檢查，其他值報錯）：
 
 - 省略或 `warn`：譯文缺少 `zh`（也沒有 `also`）只警告，送出時照樣收下，警告列在審核頁
 - `hard`：缺少 `zh` 時，送出會退回，除非該單位的 `note` 寫出條目的 KR 原詞（說明為何在此不照條目譯）；`glossary: warn` 的族群仍只警告。暫定詞沒有 `check`，一律只警告
-- `forbidden` 與 `check` 無關，譯文含禁用譯法一律退回
+- `off`：給一般用語。條目照樣注入批次（批次的詞彙表欄位帶 `check: "off"`），`zh` 只是建議；缺少 `zh` 不警告也不退回：送出、`lct validate`、建置與審核頁都沒有 `term-missing`，審核頁沒有它的詞彙群組，`lct audit` 不因它產生複查訊號，`lct glossary scope` 不為它提範圍建議、也不列為「可考慮退回」。應用率（n、used、rate）照算，只供參考，網站「詞彙」頁與詞條頁標示 `off`，詞條頁沒用譯名的單位沒有可確認的警告 ID
+- `forbidden` 與 `check` 無關，譯文含禁用譯法一律退回（`off` 也一樣）
 - 改為 `hard` 要有依據：在 `notes` 寫日期、應用率與出現數。網站「詞彙」頁（`#/g?only=hard`）列有「可考慮退回」的條目（應用率高於 95%、至少 20 個單位）；由人決定，經 `review-page` skill 改，`bin/lct glossary scope --json` 是數字的來源。改回只警告就刪掉 `check`
 
 ## 術語相關（原指引）

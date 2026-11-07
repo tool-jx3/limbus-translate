@@ -127,3 +127,28 @@ priority:
 		}
 	}
 }
+
+// An entry of check: off is general vocabulary: a translation without its
+// rendering passes the submit check with no term-missing at all, while its
+// forbidden renderings are rejected as ever. The batch still carries it.
+func TestJudgeCheckOff(t *testing.T) {
+	const glossary = "- kr: 시즌\n  zh: 賽季\n  status: approved\n  check: off\n  forbidden: [季度]\n"
+	const kr = "두 시즌 전부터"
+	env := Env{Rules: testRulesWith(t, glossary)}
+	v := Judge(env, nil, "Other.json", kr, "從兩個賽局前起", "")
+	if v.Rejected || hasCode(v.Issues, validate.CodeTermMissing) {
+		t.Errorf("missing rendering: %+v, want accepted without term-missing", v)
+	}
+	if issues := CheckNew(env.Rules, "Other.json", kr, "從兩個賽局前起"); hasCode(issues, validate.CodeTermMissing) {
+		t.Errorf("CheckNew = %+v, want no term-missing", issues)
+	}
+	v = Judge(env, nil, "Other.json", kr, "從兩個季度前起", "")
+	if !v.Rejected || !hasCode(v.Issues, validate.CodeForbiddenTerm) {
+		t.Errorf("forbidden rendering: %+v, want rejected for forbidden-term", v)
+	}
+	// The entry is in the glossary of the batch, check: off and all.
+	terms := TermsIn(env.Rules, nil, "Other.json", kr)
+	if len(terms) != 1 || terms[0].Check != rules.CheckOff {
+		t.Errorf("TermsIn = %+v, want the off entry", terms)
+	}
+}

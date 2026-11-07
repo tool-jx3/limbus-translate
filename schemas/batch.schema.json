@@ -70,8 +70,8 @@
             "type": "string"
           },
           "check": {
-            "description": "Absent or \"warn\": the rendering zh is the project's default, and a translation without it is accepted with a warning. \"hard\": a translation without zh is sent back unless the note names the KR term and the reason (a batch with glossary_check: warn only warns). A forbidden rendering is always sent back.",
-            "enum": ["hard", "warn"]
+            "description": "Absent or \"warn\": the rendering zh is the project's default, and a translation without it is accepted with a warning. \"hard\": a translation without zh is sent back unless the note names the KR term and the reason (a batch with glossary_check: warn only warns). \"off\": general vocabulary; zh is offered as a rendering, and a translation without it draws no warning. A forbidden rendering is always sent back.",
+            "enum": ["hard", "warn", "off"]
           },
           "meaning": {
             "description": "The sense the entry stands for, in a few words. Weigh it, with this entry's jp and en, against the unit's own jp and en: if the KR in the unit means something else, do not use zh and say so in the note.",

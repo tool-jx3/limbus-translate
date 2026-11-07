@@ -154,8 +154,9 @@ func TestPreviewReportText(t *testing.T) {
 				{KR: "일반", ZH: "一般", Status: "approved"},
 				{KR: "임시", ZH: "暫定", Status: "approved", Provisional: true},
 				{KR: "강제", ZH: "強制", Status: "approved", Check: rules.CheckHard},
+				{KR: "보통", ZH: "普通", Status: "approved", Check: rules.CheckOff},
 			}
-		}, []string{"  일반 → 一般", "  임시 → 暫定  [provisional]", "  강제 → 強制  [check: hard]"}, nil},
+		}, []string{"  일반 → 一般", "  임시 → 暫定  [provisional]", "  강제 → 強制  [check: hard]", "  보통 → 普通  [check: off]"}, nil},
 		{"record since and flags", func(p *batch.UnitPreview) {
 			r := rec("abc1234")
 			r.Since, r.Flags = "raw-20261101", []string{"fallback-en", "x"}

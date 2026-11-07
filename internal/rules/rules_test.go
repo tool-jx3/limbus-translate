@@ -548,13 +548,14 @@ func TestLintGlossaryMatch(t *testing.T) {
 	}
 }
 
-// check takes hard and warn, or nothing; anything else is a mistake lint
-// reports. Hard is true for hard alone.
+// check takes hard, warn and off, or nothing; anything else (an off written
+// otherwise too) is a mistake lint reports. Hard is true for hard alone, Off
+// for off alone.
 func TestLintGlossaryCheck(t *testing.T) {
 	for _, tc := range []struct {
 		check   string
 		wantErr bool
-	}{{"", false}, {"hard", false}, {"warn", false}, {"strict", true}} {
+	}{{"", false}, {"hard", false}, {"warn", false}, {"off", false}, {"strict", true}, {"Off", true}} {
 		root := copyRules(t)
 		edit(t, root, "glossary/terms.yaml", func(s string) string {
 			line := ""
@@ -568,9 +569,26 @@ func TestLintGlossaryCheck(t *testing.T) {
 			t.Errorf("check %q: lint mentions check = %v, want %v:\n%s", tc.check, got, tc.wantErr, msg)
 		}
 	}
-	for check, want := range map[string]bool{"": false, "warn": false, "hard": true} {
+	for check, want := range map[string]bool{"": false, "warn": false, "hard": true, "off": false} {
 		if got := (rules.Term{Check: check}).Hard(); got != want {
 			t.Errorf("Term{Check: %q}.Hard() = %v, want %v", check, got, want)
+		}
+	}
+	for check, want := range map[string]bool{"": false, "warn": false, "hard": false, "off": true} {
+		if got := (rules.Term{Check: check}).Off(); got != want {
+			t.Errorf("Term{Check: %q}.Off() = %v, want %v", check, got, want)
+		}
+	}
+}
+
+// An entry of check: off is checked for its forbidden renderings alone: what
+// validation enforces of it says so (NoMissing); the others are missed.
+func TestToValidateCarriesCheckOff(t *testing.T) {
+	for check, want := range map[string]bool{"": false, "warn": false, "hard": false, "off": true} {
+		term := rules.Term{KR: "우레", ZH: "雷鳴", Forbidden: []string{"雷聲"}, Check: check}
+		got := term.ToValidate()
+		if got.NoMissing != want || !slices.Equal(got.Forbidden, term.Forbidden) {
+			t.Errorf("check %q: ToValidate() = %+v, want NoMissing %v and the forbidden renderings", check, got, want)
 		}
 	}
 }

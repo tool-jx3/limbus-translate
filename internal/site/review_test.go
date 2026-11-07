@@ -1586,3 +1586,74 @@ func TestReviewScopeSenseCounts(t *testing.T) {
 		}
 	}
 }
+
+// An entry of check: off has no term group on the review page, and none of
+// its units is counted as waiting; its forbidden rendering still warns. The
+// scope report measures it, says off, and proposes nothing for it.
+func TestReviewCheckOff(t *testing.T) {
+	in, files := vendingInputs(t)
+	in.Rules = glossaryRules(t, "- kr: 자판기\n  zh: 自動販賣機\n  status: approved\n  check: off\n  forbidden: [販賣機三]\n")
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var forbidden []string
+	for _, w := range r.Warnings {
+		switch w.Code {
+		case validate.CodeTermMissing:
+			t.Errorf("warning %+v: an off entry has no term-missing", w)
+		case validate.CodeForbiddenTerm:
+			forbidden = append(forbidden, w.Keys...)
+		}
+	}
+	if !slices.Equal(forbidden, []string{k(rvA, 2)}) {
+		t.Errorf("forbidden-term keys = %v, want the unit with 販賣機三", forbidden)
+	}
+	for key, ids := range r.Refs {
+		for _, id := range ids {
+			if strings.HasPrefix(id, "termgroup/") || strings.HasPrefix(id, "warning/term-missing/") {
+				t.Errorf("Refs[%s] has %s", key, id)
+			}
+		}
+	}
+	if len(r.Scope.Entries) != 1 {
+		t.Fatalf("scope entries = %+v", r.Scope.Entries)
+	}
+	e := r.Scope.Entries[0]
+	if e.Check != rules.CheckOff || e.N != 4 || e.Used != 1 || e.HardCandidate {
+		t.Errorf("scope entry = %+v, want check off, n 4, used 1, no hard candidate", e)
+	}
+	if len(r.Scope.Proposals) != 0 {
+		t.Errorf("proposals = %+v, want none for an off entry", r.Scope.Proposals)
+	}
+	// The same entry warning-only has a group of the three units.
+	in.Rules = glossaryRules(t, "- kr: 자판기\n  zh: 自動販賣機\n  status: approved\n  forbidden: [販賣機三]\n")
+	if r, err = BuildReview(in, files); err != nil {
+		t.Fatal(err)
+	}
+	if w := termGroupOf(t, r); len(w.Units) != 3 {
+		t.Errorf("warn entry group = %+v, want three units", w)
+	}
+}
+
+// The glossary page lists the units of an off entry that lack the rendering
+// (n and used are for information), without the id of a warning to accept:
+// there is none.
+func TestGlossaryFilesOfAnOffEntry(t *testing.T) {
+	in, files := vendingInputs(t)
+	in.Rules = glossaryRules(t, "- kr: 자판기\n  zh: 自動販賣機\n  status: approved\n  check: off\n")
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	out := buildGlossaryFiles(in.Rules, r.Scope, nil)
+	f := out[glossaryFileName(r.Scope.Entries[0].ID)]
+	if len(f.Missing) != 3 || len(f.Used) != 1 {
+		t.Fatalf("file = %+v, want 3 missing and 1 used", f)
+	}
+	for _, u := range f.Missing {
+		if u.ID != "" || u.Accepted != nil {
+			t.Errorf("missing unit %+v has a warning id", u)
+		}
+	}
+}

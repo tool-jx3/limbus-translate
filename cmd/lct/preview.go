@@ -80,8 +80,11 @@ func (r previewReport) String() string {
 	line("glossary: %d", len(b.Glossary))
 	for _, t := range b.Glossary {
 		extra := ""
-		if t.Check == rules.CheckHard {
+		switch t.Check {
+		case rules.CheckHard:
 			extra = "  [check: hard]"
+		case rules.CheckOff:
+			extra = "  [check: off]"
 		}
 		if t.Provisional {
 			extra += "  [provisional]"

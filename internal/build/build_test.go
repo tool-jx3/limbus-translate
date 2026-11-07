@@ -2187,6 +2187,31 @@ func TestBuildCountsTermMissingWarnings(t *testing.T) {
 	}
 }
 
+// An entry of check: off warns of no missing rendering in the build; its
+// forbidden renderings warn as ever.
+func TestBuildCheckOffWarnsOnlyForbidden(t *testing.T) {
+	root := t.TempDir()
+	for _, d := range []string{"guides/characters", "glossary"} {
+		if err := os.MkdirAll(filepath.Join(root, d), 0o755); err != nil {
+			t.Fatal(err)
+		}
+	}
+	mustWrite(t, filepath.Join(root, "guides/routing.yaml"), []byte("families:\n  - id: other\n    nodes: []\npriority:\n  - other\n"))
+	mustWrite(t, filepath.Join(root, "glossary/terms.yaml"), []byte("- kr: 탐식\n  zh: 暴食\n  status: approved\n  check: off\n  forbidden: [饕餮]\n"))
+	rl, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	kr := map[string]string{"A.json": `{"dataList":[{"id":1,"content":"탐식의 재림"},{"id":2,"content":"탐식"}]}`}
+	e := newEnv(t, kr, nil)
+	e.opt.Rules = rl
+	e.save(rec("A.json", "/dataList/0/content", "탐식의 재림", "貪食的再臨"), rec("A.json", "/dataList/1/content", "탐식", "饕餮"))
+	rep := e.run()
+	if rep.Warnings["term-missing"] != 0 || rep.Warnings["forbidden-term"] != 1 {
+		t.Errorf("Warnings = %v, want no term-missing and one forbidden-term", rep.Warnings)
+	}
+}
+
 // The term-missing warnings weigh the provisional terms in force with the
 // glossary, as Submit does (batch.TermsIn): a glossary entry each of whose
 // hits lies inside a provisional term's does not warn, and the provisional

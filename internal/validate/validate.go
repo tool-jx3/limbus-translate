@@ -92,6 +92,10 @@ type Term struct {
 	// Also lists other correct renderings of KR: a translation that has one
 	// of them is as good as one that has ZH (see Used).
 	Also []string
+	// NoMissing says a translation without ZH is no issue: the entry is
+	// general vocabulary (check: off in the glossary), a rendering to offer
+	// and not to hold to. Its Forbidden renderings are checked all the same.
+	NoMissing bool
 }
 
 // Used reports whether zh, a translation, uses a rendering of the term: it
@@ -541,7 +545,8 @@ func checkContent(kr, zh string, ctx Context) []Issue {
 	return append(issues, checkTerms(kr, zh, ctx)...)
 }
 
-// checkTerms reports every forbidden rendering of the terms kr contains.
+// checkTerms reports every forbidden rendering of the terms kr contains, and
+// a missing rendering of each of them that is not NoMissing.
 func checkTerms(kr, zh string, ctx Context) []Issue {
 	var issues []Issue
 	// Tags are not text: a tag in the middle of the KR term, or around it,
@@ -577,7 +582,7 @@ func checkTerms(kr, zh string, ctx Context) []Issue {
 		for i := first; i < len(issues); i++ {
 			issues[i].Term = term.KR
 		}
-		if !term.Used(zh) {
+		if !term.NoMissing && !term.Used(zh) {
 			// A warning whatever Existing says: a reasonable exception is
 			// explained in the batch note, not fixed in the text.
 			is := ctx.issue(CodeTermMissing, ClassContent,

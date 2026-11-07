@@ -742,6 +742,8 @@ func rateEntry(t *testing.T, term rules.Term, n, used int) Entry {
 func TestEntryRateAndHardCandidate(t *testing.T) {
 	hard := approved("보스", "BOSS")
 	hard.Check = rules.CheckHard
+	off := approved("보스", "BOSS")
+	off.Check = rules.CheckOff
 	for _, c := range []struct {
 		name    string
 		term    rules.Term
@@ -753,6 +755,7 @@ func TestEntryRateAndHardCandidate(t *testing.T) {
 		{"19 of 20 is 0.95, not above it", approved("보스", "BOSS"), 20, 19, 0.95, false},
 		{"19 of 19 is too few", approved("보스", "BOSS"), 19, 19, 1, false},
 		{"already hard", hard, 20, 20, 1, false},
+		{"off", off, 20, 20, 1, false},
 	} {
 		t.Run(c.name, func(t *testing.T) {
 			e := rateEntry(t, c.term, c.n, c.used)
@@ -982,5 +985,59 @@ func TestSenseMultipleForms(t *testing.T) {
 	empty.EN = rules.Forms{""}
 	if e := entryOf(t, Analyze(Inputs{Rules: testRules(empty), Units: us[3:4]}), "침식"); e.Unknown != 1 {
 		t.Errorf("an empty form: %+v, want unknown", e)
+	}
+}
+
+// An entry of check: off is general vocabulary: it is measured for
+// information (n, used, the groups, the senses), says off, and proposes
+// nothing, of any kind.
+func TestOffEntryProposesNothing(t *testing.T) {
+	r, us := notFilesFixture()
+	f := &fixture{units: us}
+	f.add(skillFile, 3, "보스전보스", "BOSS戰BOSS")                              // compound units that use it: substring
+	f.addAs(storyFile, 3, "보스 등장", "老大登場", store.OriginClaude, "보스 在此是老大") // explained
+	if ps := Analyze(Inputs{Rules: r, Units: f.units}).Proposals; len(ps) < 2 {
+		t.Fatalf("warn entry proposals = %+v, want several kinds: the test checks nothing", ps)
+	}
+	r.Glossary[0].Check = rules.CheckOff
+	rep := Analyze(Inputs{Rules: r, Units: f.units})
+	if len(rep.Proposals) != 0 {
+		t.Errorf("proposals = %+v, want none for an off entry", rep.Proposals)
+	}
+	e := entryOf(t, rep, "보스")
+	if e.Check != rules.CheckOff || e.N != 10 || e.Used != 4 || e.Explained != 3 || len(e.Groups) == 0 || e.Compound.N != 3 {
+		t.Errorf("entry = %+v, want it measured and check off", e)
+	}
+}
+
+// A change of one entry adds or removes no warning of an off entry, and
+// gains or loses it no check: the off entry has neither.
+func TestEffectLeavesOffEntriesOut(t *testing.T) {
+	f := &fixture{}
+	f.add(storyFile, 3, "신부님", "神父大人")
+	f.add(voiceFile, 3, "신부", "牧師")
+	scoped := approved("신부", "牧師")
+	scoped.Files = []string{"family:story", "family:voice"}
+	general := approved("신부", "神父")
+	general.Check = rules.CheckOff
+	var p Proposal
+	for _, q := range Analyze(Inputs{Rules: testRules(scoped, general), Units: f.units}).Proposals {
+		if q.ZH == "牧師" {
+			p = q
+		}
+	}
+	if p.Kind != KindNotFiles || p.WarnRemoved != 3 || p.UsedGained != 0 || p.UsedLost != 0 || p.WarnAdded != 0 {
+		t.Errorf("proposal = %+v, want not_files removing the 3 warnings of 牧師 and nothing of the off 神父", p)
+	}
+
+	g := &fixture{}
+	g.add(skillFile, 3, "선공격 시작", "先攻開始")
+	long := approved("공격 시작", "進行攻擊")
+	long.Match = rules.MatchSubstring
+	short := approved("시작", "開始")
+	short.Check = rules.CheckOff
+	w := onlyProposal(t, Analyze(Inputs{Rules: testRules(long, short), Units: g.units}), "공격 시작", KindWord)
+	if w.WarnRemoved != 3 || w.UsedGained != 0 || w.WarnAdded != 0 || w.UsedLost != 0 {
+		t.Errorf("proposal = %+v, want the 3 warnings of 공격 시작 removed and no check of the off 시작 gained", w)
 	}
 }

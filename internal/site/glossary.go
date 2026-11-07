@@ -21,7 +21,8 @@ const (
 // GlossaryUnit is one unit an entry hits, in data/glossary/<a>-<b>.json.
 // Missing units keep the KR and TW text (up to missingMax characters); used
 // units keep the piece around the term. ID and Accepted are set on missing
-// units only.
+// units only, and not on those of an entry of check: off, which has no
+// warning.
 type GlossaryUnit struct {
 	Key      string     `json:"key"`
 	Family   string     `json:"family"`
@@ -53,7 +54,7 @@ func glossaryFileName(id string) string {
 func buildGlossaryFiles(r *rules.Rules, rep scope.Report, accepted map[string]*Confirmed) map[string]glossaryFile {
 	out := make(map[string]glossaryFile, len(rep.Entries))
 	for _, e := range rep.Entries {
-		term := rules.Term{KR: e.KR, ZH: e.ZH, Also: e.Also}
+		term := rules.Term{KR: e.KR, ZH: e.ZH, Also: e.Also, Check: e.Check}
 		for _, t := range r.Glossary {
 			if t.KR == e.KR && t.ZH == e.ZH {
 				term = t
@@ -76,8 +77,12 @@ func buildGlossaryFiles(r *rules.Rules, rep scope.Report, accepted map[string]*C
 				continue
 			}
 			g.KR, g.ZH = clip(u.KR), clip(u.ZH)
-			g.ID = itemid.UnitWarning(validate.CodeTermMissing, e.KR, e.ZH, u.KR, u.ZH)
-			g.Accepted = accepted[g.ID]
+			// An entry of check: off warns of no missing rendering: there is
+			// no warning to accept.
+			if !term.Off() {
+				g.ID = itemid.UnitWarning(validate.CodeTermMissing, e.KR, e.ZH, u.KR, u.ZH)
+				g.Accepted = accepted[g.ID]
+			}
 			f.Missing = append(f.Missing, g)
 		}
 		out[glossaryFileName(e.ID)] = f

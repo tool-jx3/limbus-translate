@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -233,5 +234,38 @@ func TestAuditUsage(t *testing.T) {
 		if code, _, stderr := lct(t, append([]string{"audit"}, args...)...); code != 1 || stderr == "" {
 			t.Errorf("%s: exit %d, stderr %q, want a user error", name, code, stderr)
 		}
+	}
+}
+
+// An entry of check: off gives the audit no signal: the review has no
+// warning of a missing rendering of it. The same entry with the default
+// check gives its units a term-missing signal.
+func TestAuditGivesNoSignalForAnOffEntry(t *testing.T) {
+	s := acceptRepo(t)
+	glossary := filepath.Join(s.root, "glossary", "terms.yaml")
+	data, err := os.ReadFile(glossary)
+	if err != nil {
+		t.Fatal(err)
+	}
+	termSignals := func(entry string) int {
+		t.Helper()
+		if err := os.WriteFile(glossary, append(slices.Clip(data), entry...), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		var out auditOutput
+		mustLct(t, &out, "audit", "--wave-size", "1000")
+		n := 0
+		for _, w := range out.Waves {
+			n += w.Signals[audit.SignalTermMissing] + w.Signals[audit.SignalTermMissingSame]
+		}
+		return n
+	}
+	base := termSignals("")
+	const entry = "\n\n- kr: 열상\n  zh: 絕無此譯\n  status: approved\n"
+	if warn := termSignals(entry); warn <= base {
+		t.Fatalf("term signals with the warn entry = %d, without it %d: the test checks nothing", warn, base)
+	}
+	if off := termSignals(entry + "  check: off\n"); off != base {
+		t.Errorf("term signals with the off entry = %d, want %d as without it", off, base)
 	}
 }

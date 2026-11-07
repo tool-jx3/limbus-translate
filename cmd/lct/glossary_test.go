@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
@@ -299,6 +300,19 @@ func TestGlossaryScopeCommand(t *testing.T) {
 	}
 	if code, _, stderr := lct(t, "glossary", "scope", "extra"); code != 1 || !strings.Contains(stderr, "extra") {
 		t.Errorf("an argument: exit code %d, want 1\n%s", code, stderr)
+	}
+}
+
+// The totals of the text leave out the entries of check: off, which miss
+// nothing; it says how many there are.
+func TestScopeOutputLeavesOffEntriesOutOfTheTotals(t *testing.T) {
+	rep := scope.Empty()
+	rep.Entries = []scope.Entry{{Same: 2, Other: 1, Unknown: 4}, {Same: 5, Other: 5, Unknown: 5, Check: rules.CheckOff}}
+	got := (scopeOutput{rep}).String()
+	for _, want := range []string{"same sense 2, other sense 1, unknown 4", "1 entry of check: off"} {
+		if !strings.Contains(got, want) {
+			t.Errorf("text = %q, want %q", got, want)
+		}
 	}
 }
 

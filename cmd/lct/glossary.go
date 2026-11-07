@@ -29,7 +29,7 @@ func init() {
 		Name: "glossary scope",
 		Usage: "print where the translations use each approved glossary entry and the proposals of where it should apply, " +
 			"the review/scope.json of lct site, computed from the raw and tw worktrees and the rules as lct site computes it; writes nothing: " +
-			"--json prints thresholds (with hard_rate and hard_min_n, the least rate and number of units for hard_candidate), entries (id glossary/…, kr, zh, also, files, not_files, match, check, notes, n, used and rate over the units the entry hits, hard_candidate, groups with name, kind (family: or group: <top node of the file tree>), n and used, compound, explained, unexplained, examples: at most 3 units of each group that does not use the rendering) " +
+			"--json prints thresholds (with hard_rate and hard_min_n, the least rate and number of units for hard_candidate), entries (id glossary/…, kr, zh, jp and en (a string, or a list of forms), also, files, not_files, match, check (hard, off, or absent for warn; an off entry is measured for information only: it is never a hard_candidate and has no proposal), notes, n, used and rate over the units the entry hits, hard_candidate, groups with name, kind (family: or group: <top node of the file tree>), n and used, compound, explained, unexplained, examples: at most 3 units of each group that does not use the rendering) " +
 			"and proposals (id scope/…, kind, kr, zh, patterns, match, mixed_groups, warn_removed, warn_added, used_lost, used_gained, flagged, examples, declined when rules/declined.yaml has the id)",
 		Run: runGlossaryScope,
 	})
@@ -52,11 +52,24 @@ func (o scopeOutput) String() string {
 		counts = append(counts, fmt.Sprintf("%s %d", k, by[k]))
 	}
 	fmt.Fprintf(&b, "%d entries, %d proposals (%d not declined): %s\n", len(o.Entries), len(o.Proposals), open, strings.Join(counts, ", "))
-	var same, other, unknown int
+	// An entry of check: off misses nothing: its units are left out.
+	var same, other, unknown, off int
 	for _, e := range o.Entries {
+		if e.Check == rules.CheckOff {
+			off++
+			continue
+		}
 		same, other, unknown = same+e.Same, other+e.Other, unknown+e.Unknown
 	}
-	fmt.Fprintf(&b, "units without the rendering: same sense %d, other sense %d, unknown %d\n", same, other, unknown)
+	fmt.Fprintf(&b, "units without the rendering: same sense %d, other sense %d, unknown %d", same, other, unknown)
+	switch off {
+	case 0:
+	case 1:
+		b.WriteString(" (1 entry of check: off left out)")
+	default:
+		fmt.Fprintf(&b, " (%d entries of check: off left out)", off)
+	}
+	b.WriteString("\n")
 	for _, p := range o.Proposals {
 		fmt.Fprintf(&b, "  %s  %s", p.ID, p.Title())
 		if p.Declined != nil {

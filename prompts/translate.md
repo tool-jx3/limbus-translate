@@ -30,7 +30,7 @@
 - `glossary` 條目的 `units` 列出要用這個條目的單位（單位的 `key`）：已經算進 `files`、`not_files`（含 `family:`、`group:`、`chapter:`、`character:`、`event:`）與長詞條優先（一個條目的 `kr` 蓋住另一個時，那一處只用長的）；不在 `units` 的單位不必用這個條目，即使 KR 含這個詞。只是部分重疊的兩個條目，兩個都列
 - `glossary` 條目的 `jp`、`en`、`meaning`（有才有）用來判斷單位裡的 KR 是不是同一個意思：拿單位的 `jp`、`en` 與條目的比對（條目的 `jp`、`en` 是清單時，是同一個詞的幾種詞形，含任一個就算）；意思不同就不用 `zh`，並在該單位的 `note` 寫出 KR 原詞與理由；單位的 `en`、`jp` 沒有條目的詞，不代表意思不同（EN 常省略，JP 漢字詞常跨義）；以 KR 語境判斷。`sources` 只是 `meaning` 的出處，不必處理
 - `glossary` 中 `provisional: true` 的條目是本專案先前登記、尚待確認的暫定詞，和其他條目一樣照用；例外同樣在 `note` 寫出 KR 原詞
-- 譯文缺少 `glossary` 指定的 `zh`，只警告（`term-missing`），不會退回；只有條目有 `check: "hard"` 時，缺少 `zh` 才會退回（`glossary_check: "warn"` 的批次除外，見下），暫定詞不會退回。語境不合而不用，例如 KR 的詞在這裡是別的意思，或是已有固定名稱的一部分：在該單位的 `note` 寫出 KR 原詞與理由，例如「시즌：劇中季節，非遊戲賽季」；`check: "hard"` 的條目缺少 `zh`、`note` 又沒有寫出這個原詞，照樣退回，`note` 寫出原詞就收下
+- 譯文缺少 `glossary` 指定的 `zh`，只警告（`term-missing`），不會退回；只有條目有 `check: "hard"` 時，缺少 `zh` 才會退回（`glossary_check: "warn"` 的批次除外，見下），暫定詞不會退回；`check: "off"` 的條目是一般用語，`zh` 只是建議，缺少也不警告。語境不合而不用，例如 KR 的詞在這裡是別的意思，或是已有固定名稱的一部分：在該單位的 `note` 寫出 KR 原詞與理由，例如「시즌：劇中季節，非遊戲賽季」；`check: "hard"` 的條目缺少 `zh`、`note` 又沒有寫出這個原詞，照樣退回，`note` 寫出原詞就收下
 - `keywords` 是 `[ID]`（不含括號）→ 本專案的中文名稱。`[ID]` 本身原樣留在譯文中，名稱用來理解句意、搭配周圍的字（量詞、動詞）。KR 不用 `[ID]`、直接用韓文提到同一個東西時，也用這個名稱
 - 人名、地名、組織、技能、狀態等名稱以 `keywords`、`glossary`、指引與 `context` 為準，不取自 `refs`
 - 批次有 `glossary_check: "warn"` 時（族群在 `guides/routing.yaml` 標了 `glossary: warn`，多是劇情與台詞），詞彙表譯名是預設：語境不合就可以不用，缺少時只警告，不會退回。不用時請在該單位的 `note` 寫出 KR 原詞與理由（`note` 寫出 KR 原詞與理由會列入詞彙統計，供人檢視詞條，不寫也不會退回）；`forbidden` 的禁用譯法照樣退回

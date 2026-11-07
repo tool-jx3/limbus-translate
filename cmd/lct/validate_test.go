@@ -211,3 +211,18 @@ func TestValidateFileDecidesTheBracketWarning(t *testing.T) {
 		}
 	}
 }
+
+// lct validate holds an entry of check: off to its forbidden renderings
+// alone: a translation without its rendering has no term-missing.
+func TestValidateCheckOff(t *testing.T) {
+	root := cleanRules(t)
+	writeTestFile(t, root, "glossary/terms.yaml", "- kr: 패키지\n  zh: 組合包\n  status: approved\n  check: off\n  forbidden: [禮包]\n")
+	out, err := validateIn(t, root, true, "--kr", "패키지 구매", "--zh", "購買套組")
+	if err != nil || strings.Contains(out, "term-missing") {
+		t.Errorf("missing rendering: err %v, output %s; want no term-missing", err, out)
+	}
+	out, err = validateIn(t, root, true, "--kr", "패키지 구매", "--zh", "購買禮包")
+	if !errors.Is(err, cli.ErrFindings) || !strings.Contains(out, "forbidden-term") {
+		t.Errorf("forbidden rendering: err %v, output %s; want forbidden-term", err, out)
+	}
+}

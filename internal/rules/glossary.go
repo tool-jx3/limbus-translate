@@ -45,10 +45,13 @@ type Term struct {
 	// where its KR stands as a word (see standsAsWord), and MatchSubstring for
 	// one that hits wherever its KR occurs, inside a longer word too.
 	Match string `yaml:"match" json:"match,omitempty"`
-	// Check is CheckHard, or empty or CheckWarn for the same as empty: only an
-	// entry with CheckHard has a missing rendering rejected at submission (in
-	// a family that does not say glossary: warn); every other entry only
-	// warns. A forbidden rendering is rejected whatever Check says.
+	// Check is CheckHard, CheckOff, or empty or CheckWarn for the same as
+	// empty: only an entry with CheckHard has a missing rendering rejected at
+	// submission (in a family that does not say glossary: warn); an entry
+	// with CheckOff, general vocabulary, is still injected into batches but a
+	// missing rendering of it is no issue anywhere (no term-missing, no
+	// review signal, no scope proposal); every other entry only warns. A
+	// forbidden rendering is rejected whatever Check says.
 	Check string `yaml:"check" json:"check,omitempty"`
 	// Meaning is the sense the entry stands for, in a few words; the
 	// translator weighs it, with JP and EN, against the sense of the KR in a
@@ -75,10 +78,14 @@ var SourceRe = regexp.MustCompile(`^(?:game:[^#\s]+#/\S*|https://limbuscompany\.
 const (
 	CheckHard = "hard"
 	CheckWarn = "warn"
+	CheckOff  = "off"
 )
 
 // Hard reports whether a missing rendering of t is rejected at submission.
 func (t Term) Hard() bool { return t.Check == CheckHard }
+
+// Off reports whether a missing rendering of t is no issue anywhere.
+func (t Term) Off() bool { return t.Check == CheckOff }
 
 // MatchWord is the default value of Term.Match: the term hits only where its
 // KR stands as a word, so 백화 does not hit 백화점 nor 버스 림버스.
@@ -371,9 +378,10 @@ func wordAt(text, term string, at int) bool {
 	return false
 }
 
-// ToValidate returns the part of the term that validate.Check enforces.
+// ToValidate returns the part of the term that validate.Check enforces: an
+// entry of check: off is held to its forbidden renderings alone (NoMissing).
 func (t Term) ToValidate() validate.Term {
-	return validate.Term{KR: t.KR, ZH: t.ZH, Forbidden: t.Forbidden, Also: t.Also}
+	return validate.Term{KR: t.KR, ZH: t.ZH, Forbidden: t.Forbidden, Also: t.Also, NoMissing: t.Off()}
 }
 
 // Used reports whether the translation zh uses a rendering of the term: ZH or

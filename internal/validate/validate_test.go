@@ -1344,3 +1344,19 @@ func TestTermUsed(t *testing.T) {
 		}
 	}
 }
+
+// A term with NoMissing (a glossary entry of check: off) is not missed: a
+// translation without its rendering has no term-missing, new or existing. Its
+// forbidden renderings are checked all the same.
+func TestTermNoMissingChecksOnlyForbidden(t *testing.T) {
+	terms := []Term{{KR: "우레", ZH: "雷鳴", Forbidden: []string{"雷聲"}, NoMissing: true}}
+	for _, existing := range []bool{false, true} {
+		if got := Check("우레가 친다", "打雷了", Context{Terms: terms, Existing: existing}); len(got) != 0 {
+			t.Errorf("Existing=%v: issues = %v, want none", existing, got)
+		}
+		got := Check("우레가 친다", "雷聲響起", Context{Terms: terms, Existing: existing})
+		if !reflect.DeepEqual(codes(got), []string{CodeForbiddenTerm}) || got[0].Term != "우레" {
+			t.Errorf("Existing=%v: issues = %v, want only forbidden-term of 우레", existing, got)
+		}
+	}
+}

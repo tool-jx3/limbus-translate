@@ -121,8 +121,8 @@ func (l *linter) glossary() {
 		if !slices.Contains(validStatus, t.Status) {
 			l.report(GlossaryFile, "%s: status is %q, want one of %s", label, t.Status, strings.Join(validStatus, ", "))
 		}
-		if t.Check != "" && t.Check != CheckHard && t.Check != CheckWarn {
-			l.report(GlossaryFile, "%s: check is %q, want %s or %s", label, t.Check, CheckHard, CheckWarn)
+		if t.Check != "" && t.Check != CheckHard && t.Check != CheckWarn && t.Check != CheckOff {
+			l.report(GlossaryFile, "%s: check is %q, want %s, %s or %s", label, t.Check, CheckHard, CheckWarn, CheckOff)
 		}
 		for _, f := range []struct {
 			name  string

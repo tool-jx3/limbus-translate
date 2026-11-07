@@ -197,7 +197,9 @@ type Entry struct {
 	// compound units are hits and count; a word entry's are not and do not).
 	// The groups leave compound units out. Rate is Used / N, 0 without units.
 	// HardCandidate says the entry is worth considering for check: hard (see
-	// Thresholds.HardRate and HardMinN) and is not that yet.
+	// Thresholds.HardRate and HardMinN) and is not that yet, nor check: off.
+	// An entry of check: off (Check) is measured all the same, for
+	// information: it has no warning, and no proposal is made of it.
 	N             int     `json:"n"`
 	Used          int     `json:"used"`
 	Rate          float64 `json:"rate"`
@@ -548,7 +550,9 @@ func (an *analysis) effectOf(a *acc, alt rules.Term) effect {
 		after := an.hitsIn(u, c, alt, an.altHit)
 		an.altHit = after
 		for k, j := range idx {
-			if before[k] == after[k] {
+			// An entry of check: off has no warning to add or remove, and
+			// no check to gain or lose.
+			if before[k] == after[k] || an.accs[j].term.Off() {
 				continue
 			}
 			used := an.accs[j].term.Used(u.ZH) // alt has the renderings of the entry
@@ -700,7 +704,7 @@ func (an *analysis) entry(a *acc) Entry {
 	}
 	return Entry{
 		N: n, Used: used, Rate: rate, Check: t.Check,
-		HardCandidate: !t.Hard() && n >= hardMinN && rate > hardRate,
+		HardCandidate: !t.Hard() && !t.Off() && n >= hardMinN && rate > hardRate,
 		ID:            itemid.GlossaryEntry(t.KR, t.ZH), KR: t.KR, ZH: t.ZH,
 		JP: slices.Clone(t.JP), EN: slices.Clone(t.EN), Meaning: t.Meaning, Sources: slices.Clone(t.Sources),
 		Also: nonNil(t.Also), Files: nonNil(t.Files), NotFiles: nonNil(t.NotFiles),
@@ -781,8 +785,12 @@ type option struct {
 	effect
 }
 
-// proposals returns the proposals about a.
+// proposals returns the proposals about a; none about an entry of check: off,
+// which has no warning to take away.
 func (an *analysis) proposals(a *acc) []Proposal {
+	if a.term.Off() {
+		return nil
+	}
 	var out []Proposal
 	t := a.term
 	newProposal := func(kind string) Proposal {
