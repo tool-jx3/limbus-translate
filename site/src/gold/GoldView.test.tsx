@@ -220,6 +220,16 @@ describe('GoldView local choices', () => {
     await vi.waitFor(() => expect(c.querySelector('[data-key="a.json|1"] .gold-tocopy')).not.toBeNull())
   })
 
+  it('drops the marker when a non-stale unit is set back to its recorded verdict', async () => {
+    const units = gold.units.map((u) => (u.key === 'b.json|1' ? { ...u, verdict: 'correct' as const } : u))
+    vi.stubGlobal('fetch', fixtureFetch({ 'gold.json': { ...gold, units } }))
+    const c = await mount()
+    choose(c, 'b.json|1', 'wrong')
+    await vi.waitFor(() => expect(c.querySelector('[data-key="b.json|1"] .gold-tocopy')).not.toBeNull())
+    choose(c, 'b.json|1', 'correct')
+    await vi.waitFor(() => expect(c.querySelector('[data-key="b.json|1"] .gold-tocopy')).toBeNull())
+  })
+
   it('says that the missing units are not in the list below, and that the report still counts them', async () => {
     const c = await mount()
     const text = c.querySelector('.gold-missing')?.textContent ?? ''

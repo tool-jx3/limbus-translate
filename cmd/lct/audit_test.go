@@ -194,6 +194,33 @@ func TestAuditToFileWritesOneRequestForEachSetOfSignals(t *testing.T) {
 	}
 }
 
+// A second set whose file exists already must not leave the first set's file
+// behind: all or nothing.
+func TestAuditToFileWritesNothingWhenAnyTargetExists(t *testing.T) {
+	s := acceptRepo(t)
+	longRecord(t, s)
+	old := ruleFileNow
+	ruleFileNow = func() time.Time { return time.Date(2026, 11, 7, 12, 0, 0, 0, time.UTC) }
+	t.Cleanup(func() { ruleFileNow = old })
+
+	dir := filepath.Join(s.root, "rules", "requeue")
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	taken := filepath.Join(dir, "2026-11-07-audit-w-format.yaml")
+	if err := os.WriteFile(taken, []byte("reason: x\nkeys: [a]\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	code, _, stderr := lct(t, "audit", "--wave-size", "10", "--to-file", "w")
+	if code != 1 || !strings.Contains(stderr, "exists") {
+		t.Errorf("exit %d, stderr %q, want 1 and exists", code, stderr)
+	}
+	left, _ := filepath.Glob(filepath.Join(dir, "*.yaml"))
+	if len(left) != 1 || left[0] != taken {
+		t.Errorf("files = %v, want only the one that existed", left)
+	}
+}
+
 func TestAuditUsage(t *testing.T) {
 	acceptRepo(t)
 	for name, args := range map[string][]string{

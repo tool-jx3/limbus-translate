@@ -18,11 +18,7 @@
 - 暫定詞（`batch.ActiveProvisional`）照舊是整詞比對，不受 `match: substring` 影響。
 - Task 1 只改程式與文件，不改 `glossary/terms.yaml` 的條目；Task 3 才依使用者的決定改條目。
 - 提交前 `set -o pipefail; go vet ./... && go test ./...`；動到 `site/` 另跑 `cd site && npm test && npm run typecheck && npm run build`。
-- commit 訊息結尾加：
-  ```
-  Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
-  Claude-Session: https://claude.ai/code/session_015XrjRvHe6FfxjemSS1js35
-  ```
+- commit 訊息結尾附上工作階段指定的 `Co-Authored-By` 與 `Claude-Session` 兩行。
 - 在 `claude/festive-wright-g2k853` 開發；不 push `main`、`tw`、`raw`；真實資料只在 scratchpad 的隔離 clone 用，clone 的 `.work/raw`、`.work/tw` 取自來源 repo 的 `origin/raw`、`origin/tw`（`git fetch /home/user/limbus-translate refs/remotes/origin/raw:refs/heads/raw-latest refs/remotes/origin/tw:refs/heads/tw-latest`），不碰 `/home/user/limbus-translate/.work/`。
 
 ## Review Focus

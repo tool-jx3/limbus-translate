@@ -20,11 +20,7 @@
 - 比對紀錄或補齊失敗只發警告，不能讓 `lct publish` 失敗、擋住 Release。
 - 網站文字照規格：頂端列「更新」；列表的「比對 <tag>」「遊戲更新 <raw tag>」「重建」「第一版，沒有可比對的上一版」「其他檔案 N」；種類「新增」「KR 修改」「刪除」「只有譯文改變」；原因「人工調整」「補翻」「重翻」；「隱藏不需翻譯的單位」；「卡片」「表格」；「JP／EN（目前的）」；「在檔案中開啟」。
 - 網站在手機寬度（約 400px）整頁不左右捲動；深色模式沿用 `styles.css` 的 token。
-- commit 訊息結尾加：
-  ```
-  Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
-  Claude-Session: https://claude.ai/code/session_015XrjRvHe6FfxjemSS1js35
-  ```
+- commit 訊息結尾附上工作階段指定的 `Co-Authored-By` 與 `Claude-Session` 兩行。
 - 在分支 `claude/festive-wright-g2k853` 開發；不要 push 到 `main`、`tw`、`raw`。
 
 ## Review Focus

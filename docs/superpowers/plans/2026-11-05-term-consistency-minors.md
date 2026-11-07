@@ -19,11 +19,7 @@
 - skill 的 `allowed-tools`、必備句與提示詞的釘選測試在 `cmd/lct/contract_test.go`，改 skill 時一起改。
 - 提交前 `set -o pipefail; go vet ./... && go test ./...`；動到 `site/` 另跑 `cd site && npm test && npm run typecheck && npm run build`；不用 prettier 重排既有檔案。
 - 不改真正的 `glossary/terms.yaml` 條目與 `rules/` 的紀錄；不碰 `/home/user/limbus-translate/.work/`。
-- commit 訊息結尾加：
-  ```
-  Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
-  Claude-Session: https://claude.ai/code/session_015XrjRvHe6FfxjemSS1js35
-  ```
+- commit 訊息結尾附上工作階段指定的 `Co-Authored-By` 與 `Claude-Session` 兩行。
 - 在 `claude/festive-wright-g2k853` 開發；不 push `main`、`tw`、`raw`（合併到 `main` 由 controller 在最後做）。
 
 ## Review Focus

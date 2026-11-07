@@ -5,7 +5,10 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"io/fs"
+	"os"
 	"path"
+	"path/filepath"
 	"slices"
 	"strings"
 
@@ -185,8 +188,20 @@ func runAudit(ctx *cli.Context, args []string) error {
 		// One request for each set of signals, so that the hint of a request
 		// names only what its units have.
 		from := (picked.Number - 1) * *size
-		for _, set := range audit.Sets(cands[from : from+picked.Units]) {
-			written, err := requeue.WriteFile(ctx.Root, ruleFileNow().Format("2006-01-02"), "audit-"+*toFile+"-"+set.Topic(),
+		date := ruleFileNow().Format("2006-01-02")
+		sets := audit.Sets(cands[from : from+picked.Units])
+		// All or nothing: a request that exists already (it may have been
+		// applied) stops the command before any file is written.
+		for _, set := range sets {
+			target := filepath.Join(ctx.Root, requeue.Dir, date+"-audit-"+*toFile+"-"+set.Topic()+rulefile.Ext)
+			if _, err := os.Stat(target); err == nil {
+				return cli.UserError(fmt.Sprintf("audit: %s exists already; a request is applied once, so give the new one another topic or date", filepath.ToSlash(strings.TrimPrefix(target, ctx.Root+string(filepath.Separator)))))
+			} else if !errors.Is(err, fs.ErrNotExist) {
+				return err
+			}
+		}
+		for _, set := range sets {
+			written, err := requeue.WriteFile(ctx.Root, date, "audit-"+*toFile+"-"+set.Topic(),
 				requeue.Selector{Keys: set.Keys}, set.Reason())
 			if errors.Is(err, requeue.ErrInvalid) {
 				return cli.UserError("audit: " + err.Error())

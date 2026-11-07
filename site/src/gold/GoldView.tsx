@@ -128,7 +128,7 @@ function Unit({ u, choice, onChange }: { u: GoldUnit; choice: Choice | undefined
       <div class="gold-meta">
         {u.key} · {u.origin}
         {u.stale && <span class="gold-stale"> · 已過時（譯文在判定後改過）</span>}
-        {choice && choice.verdict !== '' && pasteable(u.key) && <span class="gold-tocopy"> · 待複製</span>}
+        {choice && choice.verdict !== '' && pasteable(u.key) && u.key in pending([u], { [u.key]: choice }) && <span class="gold-tocopy"> · 待複製</span>}
       </div>
       <p class="gold-text" lang="ko">KR　{u.kr}</p>
       {u.jp !== undefined && <p class="gold-text" lang="ja">JP　{u.jp}</p>}
