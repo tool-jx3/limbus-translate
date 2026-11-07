@@ -204,6 +204,16 @@ var reviewPageTools = []string{
 	"Edit(./rules/**)",
 }
 
+// goldReviewTools are the tools of the gold-review skill: it records the
+// verdicts a person pastes from the gold page (lct gold set), reports them
+// (lct gold report) and writes nothing else.
+var goldReviewTools = []string{
+	"Bash(bin/lct gold set *)",
+	"Bash(bin/lct gold report*)",
+	"Bash(go build -o bin/lct ./cmd/lct)",
+	"Read(./**)",
+}
+
 // requiredSkills are the skills this repo must have, and the tools of each.
 // Each is run on purpose by a person or by CI, so none may be started by the
 // model on its own.
@@ -215,6 +225,7 @@ var requiredSkills = map[string][]string{
 	"review":            reviewTools,
 	"term-decision":     termDecisionTools,
 	"review-page":       reviewPageTools,
+	"gold-review":       goldReviewTools,
 }
 
 // goBuildTool is the one go command a skill may run: it builds bin/lct.
@@ -803,6 +814,10 @@ func TestAdjustSaysWhereItEnds(t *testing.T) {
 // the action.
 func TestRulesReviewTools(t *testing.T) {
 	checkExactTools(t, "rules-review", rulesReviewTools)
+}
+
+func TestGoldReviewTools(t *testing.T) {
+	checkExactTools(t, "gold-review", goldReviewTools)
 }
 
 func TestReviewPageTools(t *testing.T) {
