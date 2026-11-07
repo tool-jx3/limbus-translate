@@ -1,0 +1,30 @@
+- key: StoryData/S430B.json|/dataList/80/content
+  raw: raw-20261105
+  kr_sha: 7933ab8cf9ce40866c870589992c18b4b02de7d746020d15ef70e1b4d66d382c
+  zh: 我們的指令是抹除恐怖分子。目標：摘除所有部位。
+  reason: '「목표는 전 부위 적출」是摘除身體的所有部位（JP「全部位の摘出」、EN「Target: all parts」），舊譯誤作「所有部門」（人工確認）'
+  rule: one-off
+- key: ScenarioModelCodes-AutoCreated.json|/dataList/331/name
+  raw: raw-20261105
+  kr_sha: 2ec5f43408d90211d6d371691a1a12f0a13b7380e398f9fb49f36abed28ac1bc
+  zh: 神父
+  reason: 第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」
+  rule: glossary/terms.yaml
+- key: ScenarioModelCodes-AutoCreated.json|/dataList/338/name
+  raw: raw-20261105
+  kr_sha: 2ec5f43408d90211d6d371691a1a12f0a13b7380e398f9fb49f36abed28ac1bc
+  zh: 神父
+  reason: 第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」
+  rule: glossary/terms.yaml
+- key: ScenarioModelCodes-AutoCreated.json|/dataList/352/name
+  raw: raw-20261105
+  kr_sha: 2ec5f43408d90211d6d371691a1a12f0a13b7380e398f9fb49f36abed28ac1bc
+  zh: 神父
+  reason: 第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」
+  rule: glossary/terms.yaml
+- key: ScenarioModelCodes-AutoCreated.json|/dataList/363/name
+  raw: raw-20261105
+  kr_sha: 2ec5f43408d90211d6d371691a1a12f0a13b7380e398f9fb49f36abed28ac1bc
+  zh: 神父
+  reason: 第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」
+  rule: glossary/terms.yaml

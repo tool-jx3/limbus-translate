@@ -70,3 +70,93 @@
 - id: "warning/length-ratio/0a362a7e/785f3624"
   reason: 人工確認沒問題
   date: 2026-11-04
+- id: "warning/term-missing/339d2cfb/5a8f5f93"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/eb72d34f/5a5bdb54"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/e7bd8622/69426ad0"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/5693747e/c96d317c"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/55cca80c/94914a92"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/8ace23c2/14fa7007"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/78e7aae4/86b0f2a8"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/6e7c65ed/a0a54d11"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/17647bd7/fd291924"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/ee89007d/868d783b"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/62a728a6/f1c31a8b"
+  reason: JP、EN 都省略「特定抽出／Target Extraction」，譯文跟著省略（guides/base.md「JP、EN 都省略的詞」；使用者決定 2026-11-07，H2）
+  date: 2026-11-07
+- id: "warning/term-missing/eba883b2/77bbb17a"
+  reason: KR 誤命中：「간수하다」（保管、看好）的變化，不是「간수」（獄卒）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/462c13d7/bf228052"
+  reason: KR 誤命中：「간수하다」（保管、看好）的變化，不是「간수」（獄卒）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/ed2fe0a9/30f6bd8b"
+  reason: KR 誤命中：「간수하다」（保管、看好）的變化，不是「간수」（獄卒）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/ee0a1069/94de8e08"
+  reason: KR 誤命中：「간수하다」（保管、看好）的變化，不是「간수」（獄卒）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/cfafe0d0/a666174a"
+  reason: KR 誤命中：「간수하다」（保管、看好）的變化，不是「간수」（獄卒）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/049a1b69/4b3e185f"
+  reason: KR 誤命中：「의뢰인지／의뢰인가」是「의뢰」（委託）加「인지／인가」，不是「의뢰인」（委託人）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/e04eaef9/c8a0618e"
+  reason: KR 誤命中：「의뢰인지／의뢰인가」是「의뢰」（委託）加「인지／인가」，不是「의뢰인」（委託人）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/5edd2c8d/44caca7f"
+  reason: KR 誤命中：「의뢰인지／의뢰인가」是「의뢰」（委託）加「인지／인가」，不是「의뢰인」（委託人）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/df82135f/c180883e"
+  reason: KR 誤命中：「의뢰인지／의뢰인가」是「의뢰」（委託）加「인지／인가」，不是「의뢰인」（委託人）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/90c0dd06/86573766"
+  reason: KR 誤命中：「이십 오만」（二十五萬）、「오만가지」「오만 생명」「오만 사각」（無數、各種）的「오만」，不是「오만」（傲慢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/74727d16/7c03ced2"
+  reason: KR 誤命中：「이십 오만」（二十五萬）、「오만가지」「오만 생명」「오만 사각」（無數、各種）的「오만」，不是「오만」（傲慢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/e1b42173/367ca457"
+  reason: KR 誤命中：「이십 오만」（二十五萬）、「오만가지」「오만 생명」「오만 사각」（無數、各種）的「오만」，不是「오만」（傲慢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/4bd6a72a/0aaa9a1b"
+  reason: KR 誤命中：「이십 오만」（二十五萬）、「오만가지」「오만 생명」「오만 사각」（無數、各種）的「오만」，不是「오만」（傲慢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/b68d1e50/c67c8864"
+  reason: KR 誤命中：「허둥지둥」（慌張）裡的字串，不是「둥지」（巢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/fff1902a/33c377af"
+  reason: KR 誤命中：「허둥지둥」（慌張）裡的字串，不是「둥지」（巢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/a588d1ff/f5e948e7"
+  reason: KR 誤命中：「허둥지둥」（慌張）裡的字串，不是「둥지」（巢）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/fd1e8ec2/4b9abeb4"
+  reason: KR 誤命中：「가 주다」（去、帶去）的變化「가주지／가주시면」，不是「가주」（家主）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/db064a2c/f2576bef"
+  reason: KR 誤命中：「가 주다」（去、帶去）的變化「가주지／가주시면」，不是「가주」（家主）（使用者決定 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/8823e6ef/54406f1d"
+  reason: KR 誤命中：「세가지」（三樣），不是「세가」（勢力）（使用者決定 2026-11-07）
+  date: 2026-11-07
