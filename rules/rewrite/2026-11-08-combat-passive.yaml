@@ -1,7 +1,8 @@
-# 應用率回顧（2026-11-07）：「전투 패시브」寫「戰鬥被動」（詞彙表，與「서포트 패시브」支援被動對應）。MainUIText /159「전투 패시브 추가」寫「追加被動技能」，
-# MainUIText_UPDATE_ON_0720 /3「전투 패시브 [{0}] 강화」、/4「전투 패시브 강화」寫「被動技能 [{0}] 強化」「被動技能強化」，少了「戰鬥」；改為譯名。
+# 應用率回顧（2026-11-07）：「전투 패시브」寫「戰鬥被動」（詞彙表，與「서포트 패시브」支援被動對應）。
+# MainUIText_UPDATE_ON_0720 /3「전투 패시브 [{0}] 강화」寫「被動技能 [{0}] 強化」，少了「戰鬥」；照同檔 /2「서포트 패시브 [{0}] 강화」→「支援被動 [{0}] 強化」改為「戰鬥被動 [{0}] 強化」。
+# 不帶 [{0}] 的 MainUIText /159、MainUIText_UPDATE_ON_0720 /4 由 2026-11-08-combat-passive-skill.yaml 處理（寫「戰鬥被動技能」）。
 reason: '「전투 패시브」寫「戰鬥被動」（詞彙表）'
-files: ['MainUIText.json', 'MainUIText_UPDATE_ON_0720.json']
-pattern: '^(追加)?被動技能'
-replace: '${1}戰鬥被動'
-kr_pattern: '^전투 패시브'
+files: ['MainUIText_UPDATE_ON_0720.json']
+pattern: '^被動技能 \['
+replace: '戰鬥被動 ['
+kr_pattern: '^전투 패시브 \['

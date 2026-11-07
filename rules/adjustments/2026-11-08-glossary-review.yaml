@@ -147,12 +147,6 @@
   zh: 這個是導覽員大人的作品……沒錯吧？但你說這上面既沒有毛也沒有爪子，真的假的？
   reason: 「도슨트」寫「導覽員」（詞彙表）
   rule: glossary/terms.yaml
-- key: StoryData/E001X.json|/dataList/225/content
-  raw: raw-20261105
-  kr_sha: a998ef19b4fdf10e169cfc3c26f6feb2882582db9b8c65c5b3afa239dce1b877
-  zh: 我望著巴士的後門的方向悄悄說道。
-  reason: 「버스의 뒷문」寫「巴士的後門」（詞彙表）
-  rule: glossary/terms.yaml
 - key: BattlePass.json|/dataList/52/content
   raw: raw-20261105
   kr_sha: 115e98a9c38c43b34fd40dd2bec8f49d3d31b001f4b29cdc174a3653f41dcae0
@@ -172,4 +166,31 @@
     - 使用技能時，若主要目標為普依，則使其拚點威力與基礎威力增加[TabExplain]
     - 戰鬥開始時，技能的所有硬幣轉變為 [SuperCoin]
   reason: 「패닉」寫「恐慌」（詞彙表；EN Panic）；舊譯把恐慌寫成混亂
+  rule: glossary/terms.yaml
+- key: Passives_Abnormality-a1c9p3.json|/dataList/66/desc
+  raw: raw-20261105
+  kr_sha: 473c7490c53da164cf997f06906d128c4a8ffef498ff8307cf418e5aa18af6bf
+  zh: |-
+    回合開始時，使自身獲得50層 [DefenseBug] (每經過1回合，使自身獲得的層數減少3層，最多減少20層)
+    - 若自身帶有 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking]，
+    <color=#ff6000><mark=#ff000040><b><u>則使效果強度隨機減少，並使自身的 [DefenseBug] 層數等量減少</u></b></mark></color>
+    - 若該效果強度為1級，但回數不低於2回，則改為減少回數
+
+    <color=#ff6000><mark=#ff000040><b><u>若自身失去所有 [DefenseBug]</u></b></mark></color>，則下回合觸發以下效果
+    - 自身不會獲得 [DefenseBug]，而改為對自身施加10層 [DefenseDown]
+    - 獲得敵方單位最少屬性的3種罪孽碎片各2個
+    - 回合結束時，解除自身帶有的所有負面狀態並獲得 [DefenseBug]
+  reason: 「E.G.O 자원」寫「罪孽碎片」（詞彙表）；KR「가장 부족한 속성의 E.G.O 자원 3종」，舊譯「3種罪孽屬性碎片」字序顛倒，改為「3種罪孽碎片」
+  rule: glossary/terms.yaml
+- key: StageNode-a1c5p2.json|/dataList/4/desc
+  raw: raw-20261105
+  kr_sha: 086765e88d7714abc77ad1f19d428570a742f608771f9481a1ad013c800fa446
+  zh: 霧氣彼岸，隱約可見的，是尋覓已久的U公司的腦葉公司分部。只是那建築通體覆蓋在一層詭異的白色黏膜之下，令人不禁懷疑其真實性……我忖度著，起碼我們沒走錯路。
+  reason: 「로보토미」寫「腦葉公司」（詞彙表）；「U사의 로보토미 지부」照 E401B /23、S524B /1 寫「U公司的腦葉公司分部」
+  rule: glossary/terms.yaml
+- key: StoryData/E001X.json|/dataList/225/content
+  raw: raw-20261105
+  kr_sha: a998ef19b4fdf10e169cfc3c26f6feb2882582db9b8c65c5b3afa239dce1b877
+  zh: 我望著巴士的後門那邊悄悄說道。
+  reason: 「버스의 뒷문」寫「巴士的後門」（詞彙表）；「뒷문이 있는 쪽」寫「後門那邊」，避免連用兩個「的」
   rule: glossary/terms.yaml
