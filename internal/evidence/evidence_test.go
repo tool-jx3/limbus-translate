@@ -5,8 +5,10 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"strings"
 	"testing"
+	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -361,5 +363,24 @@ func TestHoldsENPlurals(t *testing.T) {
 	// JP is not touched.
 	if Holds(LangJP, "翼たち", "翼s") || !Holds(LangJP, "翼たち", "翼") {
 		t.Error("JP matching changed")
+	}
+}
+
+// A last separator of more than one byte (U+3000, a typographic apostrophe)
+// is kept whole in the head of the plural forms.
+func TestNumberFormsMultibyteSeparator(t *testing.T) {
+	for _, c := range []struct{ cand, want string }{
+		{"Big\u3000Burn", "Big\u3000burns"},
+		{"Dante’Burn", "Dante’burns"},
+	} {
+		got := numberForms(c.cand)
+		if !slices.Contains(got, c.want) {
+			t.Errorf("numberForms(%q) = %q, want %q among them", c.cand, got, c.want)
+		}
+		for _, f := range got {
+			if !utf8.ValidString(f) {
+				t.Errorf("numberForms(%q) holds the invalid UTF-8 %q", c.cand, f)
+			}
+		}
 	}
 }

@@ -320,9 +320,11 @@ func Holds(lang, text, candidate string) bool {
 // or a singular: +s, +es, y to ies, and without a final s, es or ies (to y).
 // The words before it stay as they are.
 func numberForms(candidate string) []string {
-	cut := strings.LastIndexFunc(candidate, func(r rune) bool { return !unicode.IsLetter(r) }) + 1
-	if cut > len(candidate) {
-		return []string{candidate}
+	// The head ends after the last non-letter, whatever its width in bytes.
+	cut := 0
+	if i := strings.LastIndexFunc(candidate, func(r rune) bool { return !unicode.IsLetter(r) }); i >= 0 {
+		_, w := utf8.DecodeRuneInString(candidate[i:])
+		cut = i + w
 	}
 	head, last := candidate[:cut], strings.ToLower(candidate[cut:])
 	out := []string{candidate}
