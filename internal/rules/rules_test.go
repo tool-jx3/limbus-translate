@@ -2113,7 +2113,7 @@ func writeGuide(t *testing.T, root, rel string, size int) {
 // speakers. Nothing is listed twice.
 func TestGuidesForLayers(t *testing.T) {
 	root := copyRules(t)
-	for _, g := range []string{"tag", "node-sub", "node-top", "chapter", "ev"} {
+	for _, g := range []string{"tag", "node-sub", "node-top", "chapter", "ev", "ch10", "walpu-node", "walpu-tag"} {
 		writeGuide(t, root, "guides/families/"+g+".md", 10)
 	}
 	addGuideRules(t, root, `  - when: "character:meursault"
@@ -2131,11 +2131,15 @@ func TestGuidesForLayers(t *testing.T) {
   - when: "event:nothing"
     guide: guides/families/chapter.md
   - when: "chapter:10"
-    guide: guides/families/chapter.md
+    guide: guides/families/ch10.md
   - when: "event:walpu*"
     guide: guides/families/tag.md
-  - when: "Bufs-walpu*"
+  - when: "Bufs"
     guide: guides/families/tag.md
+  - when: "event:walpu*"
+    guide: guides/families/walpu-tag.md
+  - when: "Bufs"
+    guide: guides/families/walpu-node.md
   - when: "event:tkt"
     guide: guides/families/ev.md
 `)
@@ -2155,11 +2159,16 @@ func TestGuidesForLayers(t *testing.T) {
 	}
 	// a chapter: tag and an event: tag that fit; a node and a tag naming the
 	// same guide list it once
-	if got, want := r.GuidesFor("StoryData/S1037B.json", nil), []string{"guides/base.md", "guides/families/story-main.md", "guides/families/chapter.md"}; !reflect.DeepEqual(got, want) {
+	// chapter:10 has a guide of its own: chapter:1 (chapter.md) must not fit
+	// chapter 10 and chapter:10 must fit.
+	if got, want := r.GuidesFor("StoryData/S1037B.json", nil), []string{"guides/base.md", "guides/families/story-main.md", "guides/families/ch10.md"}; !reflect.DeepEqual(got, want) {
 		t.Errorf("GuidesFor(chapter:10 file) = %v, want %v", got, want)
 	}
-	if got := r.GuidesFor("Bufs-walpu7.json", nil); strings.Count(strings.Join(got, " "), "guides/families/tag.md") != 1 {
-		t.Errorf("GuidesFor(Bufs-walpu7) = %v, want tag.md once", got)
+	// The event: tag and the node both name tag.md (listed once, at the first
+	// place), and each has
+	// a guide of its own, so both are proven to fit.
+	if got, want := r.GuidesFor("Bufs-walpu7.json", nil), []string{"guides/base.md", "guides/families/keywords.md", "guides/families/tag.md", "guides/families/walpu-node.md", "guides/families/walpu-tag.md"}; !reflect.DeepEqual(got, want) {
+		t.Errorf("GuidesFor(Bufs-walpu7) = %v, want %v", got, want)
 	}
 	if got := r.GuidesFor("Bufs-tkt.json", nil); !slices.Contains(got, "guides/families/ev.md") {
 		t.Errorf("GuidesFor(Bufs-tkt) = %v, want the event: guide", got)
