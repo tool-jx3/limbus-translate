@@ -122,7 +122,7 @@
     },
     {
       "id": "shopui_make_enkephalin_module",
-      "content": "製作腦啡肽模塊"
+      "content": "製作腦啡肽模組"
     },
     {
       "id": "shopui_charge_enkephalin_about",
@@ -134,7 +134,7 @@
     },
     {
       "id": "shopui_ask_create_enkephalin_module",
-      "content": "要製作腦啡肽模塊嗎？"
+      "content": "要製作腦啡肽模組嗎？"
     },
     {
       "id": "shopui_charge_as_lunacy",
@@ -146,7 +146,7 @@
     },
     {
       "id": "shopui_create_module",
-      "content": "模塊"
+      "content": "模組"
     },
     {
       "id": "remain_days",
@@ -186,11 +186,11 @@
     },
     {
       "id": "create_enkephalin_module_success",
-      "content": "腦啡肽模塊製作完畢"
+      "content": "腦啡肽模組製作完畢"
     },
     {
       "id": "unable_to_create_enkephalin_module",
-      "content": "無法製作腦啡肽模塊"
+      "content": "無法製作腦啡肽模組"
     },
     {
       "id": "lack_of_enkephalin",
@@ -202,7 +202,7 @@
     },
     {
       "id": "enkephalin_module",
-      "content": "腦啡肽模塊"
+      "content": "腦啡肽模組"
     },
     {
       "id": "enkephalin_box",
@@ -222,11 +222,11 @@
     },
     {
       "id": "enkephalin_module_count_max",
-      "content": "腦啡肽模塊已滿"
+      "content": "腦啡肽模組已滿"
     },
     {
       "id": "enkephalin_module_count_max_desc",
-      "content": "無法製作模塊；您的庫存已滿。"
+      "content": "已達腦啡肽模組的持有上限，無法再製作。"
     },
     {
       "id": "mainui_shop_lunacy_package_tab",

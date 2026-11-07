@@ -762,7 +762,7 @@
     },
     {
       "id": "battle_StageBuffUI_Stackdesc",
-      "content": "(當前值：{0})"
+      "content": "（當前值：{0}）"
     },
     {
       "id": "EGOSelectUI_not_allow",
@@ -866,11 +866,11 @@
     },
     {
       "id": "contMineInfo_Desc_Valid_Reward",
-      "content": "※放棄關卡時，消耗{0}個模塊並獲得相應的獎勵"
+      "content": "※放棄關卡時，消耗{0}個模組並獲得相應的獎勵"
     },
     {
       "id": "contMineInfo_Desc_Invalid_Reward",
-      "content": "※放棄關卡時，不消耗模塊也無法獲得獎勵"
+      "content": "※放棄關卡時，不消耗模組也無法獲得獎勵"
     },
     {
       "id": "battle_operation_player_support",

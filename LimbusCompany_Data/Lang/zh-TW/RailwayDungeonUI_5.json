@@ -86,7 +86,7 @@
     },
     {
       "id": "railway_5_stage_level_warning",
-      "content": "※當前人格平均等級 ：<color=#990000>{0}</color>  (推薦等級：<color=#990000>{1}</color> )"
+      "content": "※當前人格平均等級 ：<color=#990000>{0}</color>（推薦等級：<color=#990000>{1}</color> ）"
     },
     {
       "id": "railway_dungeon_5_entrance_recommended_gacksung",

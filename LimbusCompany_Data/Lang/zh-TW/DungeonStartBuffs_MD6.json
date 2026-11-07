@@ -54,7 +54,7 @@
     },
     {
       "id": "GiveBuffOnRSOnNewFloorTheme",
-      "description": "<color=#f8c200>選擇未被記錄的主題卡包時（階層{4}及其以下），在該卡包的遭遇戰中獲得{2}層{1}</color>"
+      "description": "<color=#f8c200>選擇未被記錄的主題卡包時(階層{4}及其以下)，在該卡包的遭遇戰中獲得{2}層{1}</color>"
     },
     {
       "id": "GiveBuffOnRSOnThemePackUnlockCount",
@@ -82,7 +82,7 @@
     },
     {
       "id": "ACQUIRE_COST_BY_EGOGIFT_TIER_TOTAL_ON_ENTER_SHOP",
-      "description": "<color=#f8c200>進入商店時，獲得持有中所有E.G.O飾品等級之和的經費。（最多{1}）</color>"
+      "description": "<color=#f8c200>進入商店時，獲得持有中所有E.G.O飾品等級之和的經費。(最多{1})</color>"
     },
     {
       "id": "FREE_SHOP_KEYWORD_REFRESH_EGO_GIFT_ONCE",
@@ -170,11 +170,11 @@
     },
     {
       "id": "ACQUIRE_3_TIER_RANDOM_KEYWORD_EGO_GIFT_ON_ENTER_1ST_FLOOR",
-      "description": "進入鏡像迷宮時，選擇獲得{0}件所選關鍵字對應的隨機3級<color=#5bffde>E.G.O飾品</color>（若無該等級飾品時，則會出現更低等級之飾品）"
+      "description": "進入鏡像迷宮時，選擇獲得{0}件所選關鍵字對應的隨機3級<color=#5bffde>E.G.O飾品</color>(若無該等級飾品時，則會出現更低等級之飾品)"
     },
     {
       "id": "ACQUIRE_3_TIER_RANDOM_KEYWORD_EGO_GIFT_ON_ENTER_1ST_FLOOR_TEXT_HIGHLIGHT",
-      "description": "進入鏡像迷宮時，<color=#f8c200>選擇獲得{0}件</color>所選關鍵字對應的隨機3級<color=#5bffde>E.G.O飾品</color>（若無該等級飾品時，則會出現更低等級之飾品）"
+      "description": "進入鏡像迷宮時，<color=#f8c200>選擇獲得{0}件</color>所選關鍵字對應的隨機3級<color=#5bffde>E.G.O飾品</color>(若無該等級飾品時，則會出現更低等級之飾品)"
     }
   ]
 }

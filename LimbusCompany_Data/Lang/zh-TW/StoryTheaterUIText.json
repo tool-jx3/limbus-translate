@@ -78,11 +78,11 @@
     },
     {
       "id": "DATA_DOWNLOAD_NO",
-      "content": "無配音\n(0.00 MB)"
+      "content": "無配音\n（0.00 MB）"
     },
     {
       "id": "DATA_DOWNLOAD_YES",
-      "content": "有配音\n({0} MB)"
+      "content": "有配音\n（{0} MB）"
     },
     {
       "id": "CV_1",

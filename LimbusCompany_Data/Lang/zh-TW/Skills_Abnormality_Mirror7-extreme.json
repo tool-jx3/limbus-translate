@@ -1814,7 +1814,7 @@
         {
           "level": 1,
           "name": "我就是……這場遊行的……王子……！",
-          "desc": "[CantDuel]\n[WhenUse] 對自身施加4層 [Paralysis]\n[WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍\n[WhenUse] 將自身理智值重置為0\n[EndSkill] 使自身獲得10層 [KeptBlood]\n該回合自身不會陷入混亂；回合於本技能施放後強制結束",
+          "desc": "[CantDuel]\n[WhenUse] 對自身施加4層 [Paralysis]\n[WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍\n[WhenUse] 將自身理智值重置為0\n[EndSkill] 使自身獲得10層 [KeptBlood]\n本回合內自身不會陷入混亂；回合於本技能施放後強制結束",
           "coinlist": [
             {
               "coindescs": [

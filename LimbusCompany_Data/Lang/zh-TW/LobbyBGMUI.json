@@ -86,11 +86,11 @@
     },
     {
       "id": "ui_lobby_bgm_playlist_registered_desc_lobby_bgm",
-      "content": "播放清單({0}/{1})"
+      "content": "播放清單（{0}/{1}）"
     },
     {
       "id": "ui_lobby_bgm_playlist_registered_desc_jukebox",
-      "content": "播放清單({0}/{1})"
+      "content": "播放清單（{0}/{1}）"
     },
     {
       "id": "ui_lobby_bgm_playlist_title",

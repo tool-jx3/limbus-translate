@@ -134,7 +134,7 @@
     },
     {
       "id": "event_for_new_user_from_date",
-      "content": "對象：<color=#990000>{2}年{0}月{1}日</color> 11:00(GMT+8)後新創建的帳戶"
+      "content": "對象：<color=#990000>{2}年{0}月{1}日</color> 11:00（GMT+8）後新創建的帳戶"
     },
     {
       "id": "mission_progress_rate",

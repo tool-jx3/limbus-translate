@@ -162,7 +162,7 @@
     },
     {
       "id": "battlepass_limbus_pass_benefit_ex_box_reward_count",
-      "content": "<size=75%>(根據購買通行證時的等級\n獲得<style=\"highlightConverted\">{1}</style>個[第{0}賽季]自我碎片自選箱)</size>"
+      "content": "<size=75%>（根據購買通行證時的等級\n獲得<style=\"highlightConverted\">{1}</style>個[第{0}賽季]自我碎片自選箱）</size>"
     },
     {
       "id": "battlepass_select_product_popup_title",

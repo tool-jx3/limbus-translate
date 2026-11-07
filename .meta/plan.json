@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261105",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "4b68adad7b5c2a65839072fbabb3aca743444472",
+  "rules_commit": "c922394a49d63ef61b5b3a06f96064886eac0e68",
   "changes": {
     "unchanged": 272757,
     "moved": 0,
@@ -35,12 +35,65 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 25,
+    "applied": 43,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
-  "rewrite_applied": [],
+  "rewrite_applied": [
+    {
+      "id": "2026-11-07-brackets-1-full",
+      "units": 43
+    },
+    {
+      "id": "2026-11-07-brackets-2-half",
+      "units": 104
+    },
+    {
+      "id": "2026-11-07-brackets-3-id-space",
+      "units": 5
+    },
+    {
+      "id": "2026-11-07-brackets-4-codes",
+      "units": 36
+    },
+    {
+      "id": "2026-11-07-brackets-5-outer",
+      "units": 2
+    },
+    {
+      "id": "2026-11-07-brackets-6-list",
+      "units": 1
+    },
+    {
+      "id": "2026-11-07-brackets-7-space",
+      "units": 7
+    },
+    {
+      "id": "2026-11-07-caution-bracket",
+      "units": 3
+    },
+    {
+      "id": "2026-11-07-enkephalin-module",
+      "units": 53
+    },
+    {
+      "id": "2026-11-07-enkephalin-typo",
+      "units": 9
+    },
+    {
+      "id": "2026-11-07-module-bare",
+      "units": 8
+    },
+    {
+      "id": "2026-11-07-module-sphere",
+      "units": 1
+    },
+    {
+      "id": "2026-11-07-modules-other",
+      "units": 12
+    }
+  ],
   "frozen_changed": [],
   "new_speakers": [],
   "field_changes": [],

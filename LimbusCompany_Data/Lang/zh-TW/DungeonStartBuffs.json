@@ -94,7 +94,7 @@
     },
     {
       "id": "GiveBuffOnRSOnNewFloorTheme",
-      "description": "選擇未被記錄的主題卡包時（階層{4}及其以下），在該卡包的遭遇戰中獲得{2}層<color=#5bffde>{1}</color>"
+      "description": "選擇未被記錄的主題卡包時(階層{4}及其以下)，在該卡包的遭遇戰中獲得{2}層<color=#5bffde>{1}</color>"
     },
     {
       "id": "GiveBuffOnRSOnThemePackUnlockCount",

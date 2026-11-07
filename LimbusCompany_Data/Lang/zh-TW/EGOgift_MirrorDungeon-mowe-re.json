@@ -117,7 +117,7 @@
     {
       "id": 9818,
       "name": "廢棄的次元護手",
-      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，該回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)",
+      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)",
       "simpleDesc": [
         {
           "abilityID": 9818,
@@ -128,7 +128,7 @@
     {
       "id": 19818,
       "name": "廢棄的次元護手+",
-      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，該回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)\n<style=\"upgradeHighlight\">- 額外施加1層 [VioletResistDown]</style>",
+      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)\n<style=\"upgradeHighlight\">- 額外施加1層 [VioletResistDown]</style>",
       "simpleDesc": [
         {
           "abilityID": 19818,
@@ -139,7 +139,7 @@
     {
       "id": 29818,
       "name": "廢棄的次元護手++",
-      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，該回合內使該敵方單位最低的物理抗性+0.1(每回合最多<style=\"upgradeHighlight\">2</style>次)\n- 額外施加1層 [VioletResistDown] 與<style=\"upgradeHighlight\">1層 [AzureResistDown]</style>",
+      "desc": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多<style=\"upgradeHighlight\">2</style>次)\n- 額外施加1層 [VioletResistDown] 與<style=\"upgradeHighlight\">1層 [AzureResistDown]</style>",
       "simpleDesc": [
         {
           "abilityID": 29818,

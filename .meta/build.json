@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261105",
   "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
-  "rules_commit": "4b68adad7b5c2a65839072fbabb3aca743444472",
-  "built_at": "2026-11-06T10:38:25Z",
+  "rules_commit": "c922394a49d63ef61b5b3a06f96064886eac0e68",
+  "built_at": "2026-11-07T08:54:58Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1000,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "0ff3ce2da99aeca1a067978a6e8735f00afbd6d0dd444c038e01d89190617e85",
-    "zh-TW_text_raw-20261105.zip": "6cbfa10511c9bf3d953e09f93dd2c4bfd68a86e1fa34f7b0cd0f6c7ffd48af61"
+    "zh-TW_complete_raw-20261105.zip": "a23b82199520ec86adaa4ad372741c83881b9b692116896572540a2b4a6dd6de",
+    "zh-TW_text_raw-20261105.zip": "5e1bfa327df99df5a7e52999d7e641fb9c879650dc44838328636684ac70dc41"
   },
   "report": {
     "origins": {
       "claude": 18077,
       "copy": 90961,
-      "human": 25,
-      "paratranz": 163812
+      "human": 43,
+      "paratranz": 163794
     },
     "pending": 0,
     "needs_review": 0,
@@ -30,11 +30,10 @@
       "ascii-ellipsis": 13,
       "curly-quotes": 4,
       "forbidden-term": 3,
-      "halfwidth-bracket": 5,
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 2335
+      "term-missing": 956
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -61,13 +60,6 @@
         "StoryData/5D101B.json|/dataList/44/content",
         "StoryData/E723B.json|/dataList/63/content",
         "StoryData/S937B.json|/dataList/35/content"
-      ],
-      "halfwidth-bracket": [
-        "RPGSystem/rpg-loc-item-common-a1c10p2.json|/dataList/42/statText",
-        "RPGSystem/rpg-loc-item-common-a1c10p2.json|/dataList/44/statText",
-        "RPGSystem/rpg-loc-item-common-a1c10p2.json|/dataList/52/statText",
-        "RPGSystem/rpg-loc-item-common-a1c10p2.json|/dataList/8/statText",
-        "RPGSystem/rpg-loc-item-common-a1c10p3.json|/dataList/3/statText"
       ],
       "halfwidth-punct": [
         "AbEventsResultLog-a1c7p3.json|/dataList/1/content",
@@ -98,12 +90,12 @@
         "AbEvents-a1c6p2.json|/dataList/0/successDesc/0",
         "AbEvents-a1c6p3.json|/dataList/4/failureDesc/0",
         "AbEvents-a1c6p3.json|/dataList/4/successDesc/0",
-        "AbEvents-a1c9p1.json|/dataList/0/eventDesc",
         "AbEvents-a1c9p2.json|/dataList/0/successDesc/0",
-        "AbEvents-a1c9p2.json|/dataList/2/eventDesc",
         "AbEvents-a1c9p2.json|/dataList/3/eventDesc",
         "AbEvents-walpu4.json|/dataList/0/eventDesc",
-        "AbEvents-walpu4.json|/dataList/0/failureDesc/0"
+        "AbEvents-walpu4.json|/dataList/0/failureDesc/0",
+        "AbEvents-walpu4.json|/dataList/0/successDesc/0",
+        "AbEvents.json|/dataList/0/behaveDesc"
       ]
     },
     "inconsistent": [
@@ -494,8 +486,8 @@
     "shown": {
       "claude": 18077,
       "copy": 90961,
-      "human": 25,
-      "paratranz": 163812
+      "human": 43,
+      "paratranz": 163794
     },
     "misaligned": [
       {
@@ -1869,24 +1861,6 @@
       "counts": [
         5,
         2
-      ],
-      "units": 7
-    },
-    {
-      "family": "ally",
-      "field": "name",
-      "kr": "적안(開)",
-      "zh": [
-        "赤瞳（開）",
-        "赤瞳(開)"
-      ],
-      "keys": [
-        "Egos.json|/dataList/44/name",
-        "Skills_Ego.json|/dataList/76/levelList/0/name"
-      ],
-      "counts": [
-        1,
-        6
       ],
       "units": 7
     },
@@ -3766,6 +3740,24 @@
       "units": 5
     },
     {
+      "family": "stage",
+      "field": "name",
+      "kr": "신부",
+      "zh": [
+        "神父",
+        "牧師"
+      ],
+      "keys": [
+        "ScenarioModelCodes-AutoCreated.json|/dataList/331/name",
+        "ScenarioModelCodes-AutoCreated.json|/dataList/735/name"
+      ],
+      "counts": [
+        4,
+        1
+      ],
+      "units": 5
+    },
+    {
       "family": "story-interlude",
       "field": "content",
       "kr": "<하아…>",
@@ -5163,7 +5155,7 @@
       "kr": "([Breath] 위력/2)만큼 추가 오만 피해",
       "zh": [
         "額外造成(自身的 [Breath] 強度÷2)點傲慢傷害",
-        "額外造成（自身的 [Breath] 強度/2）點傲慢傷害"
+        "額外造成(自身的 [Breath] 強度/2)點傲慢傷害"
       ],
       "keys": [
         "EGOgift_MirrorDungeon-EventTheme.json|/dataList/14/simpleDesc/1/simpleDesc",
@@ -6950,8 +6942,8 @@
       "field": "content",
       "kr": "- ‘사영전투][투전영사’는 <color=#ff0000>고난이도 콘텐츠</color>로,\n인격과 E.G.O를 권장 사양에 맞추어 <color=#ff0000>충분히 성장시킨 후 도전</color>하는 것을 권장드립니다.\n(※ 지원 인격은 사용할 수 없습니다.)\n\n- 보스 전투마다 특별한 효과가 반영됩니다.\n사영 효과는 모든 난이도, <color=#f8c200>고난은 Hard 난이도</color>에서만 적용됩니다.\n\n- 전투에서는 최대 <color=#f8c200>3개의 편성</color>을 순차적으로 사용할 수 있습니다.\n단, 이전 편성에 포함된 인격은 이후 편성에서 다시 사용할 수 없습니다.\n\n- 편성 하나당 최대 <color=#f8c200>12턴</color> 동안 전투를 진행할 수 있습니다.\n전투 진행 중 12턴이 넘거나 전투 종료를 선택하면\n보스의 페이즈와 체력, 정신력, 남은 E.G.O 자원이 저장되고\n다음 편성으로 이어서 진행할 수 있습니다.\n(※ 보스의 패턴, 보스 이외 적들의 체력과 정신력, 적들이 보유한 효과는 저장되지 않습니다.)\n\n- 두 번째 편성부터는 입장할 때 누적 턴수에 비례하여\n<color=#f8c200>시작 정신력이 증가</color>합니다 (※ 턴당 5).\n\n빼기 코인을 사용하는 인격의 경우에는 시작 정신력이 음수 값으로 적용됩니다 (※ 턴당 -5, 최소 -25).",
       "zh": [
-        "映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、體力、能力提升、剩餘的罪孽碎片，\n由下個編成繼承並接續戰鬥。\n（※不會保存BOSS的模式、BOSS以外的敵方體力及理智值、敵方持有的效果。)\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）",
-        "由於映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、攻擊模式、部分持有效果、體力、理智值、剩餘的罪孽碎片，\n並繼承至下個編隊接續戰鬥。\n(※ BOSS的攻擊模式、BOSS以外的敵方單位體力、理智值、持有的效果狀態將不會被保存。)\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）"
+        "映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、體力、能力提升、剩餘的罪孽碎片，\n由下個編成繼承並接續戰鬥。\n（※不會保存BOSS的模式、BOSS以外的敵方體力及理智值、敵方持有的效果。）\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）",
+        "由於映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、攻擊模式、部分持有效果、體力、理智值、剩餘的罪孽碎片，\n並繼承至下個編隊接續戰鬥。\n（※ BOSS的攻擊模式、BOSS以外的敵方單位體力、理智值、持有的效果狀態將不會被保存。）\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）"
       ],
       "keys": [
         "BossRaidUI-2.json|/dataList/8/content",

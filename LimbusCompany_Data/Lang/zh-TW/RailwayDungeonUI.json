@@ -66,7 +66,7 @@
     },
     {
       "id": "use_enkephalin_module_to_acquire_rewards",
-      "content": "是否花費<color=#990000>{0}腦啡肽模塊</color>\n以領取獎勵？"
+      "content": "是否花費<color=#990000>{0}腦啡肽模組</color>\n以領取獎勵？"
     },
     {
       "id": "able_to_acquire_rewards_without_using_enkephalin_module",

@@ -10,7 +10,7 @@
     },
     {
       "id": "857701_abm_failure_1_1",
-      "content": "<color=#ebcaa2>將全體罪人的</color> <color=#e30000>{0}強度和 {0} 回數</color>相加，然後以罪人的數量等分，使罪人增加相應的<color=#e30000>{0}強度 和{0} 回數</color> 。（最少1回）"
+      "content": "<color=#ebcaa2>將全體罪人的</color> <color=#e30000>{0}強度和 {0} 回數</color>相加，然後以罪人的數量等分，使罪人增加相應的<color=#e30000>{0}強度 和{0} 回數</color> 。(最少1回)"
     },
     {
       "id": "857801_success_1_1",

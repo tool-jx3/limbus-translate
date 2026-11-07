@@ -30,7 +30,7 @@
     },
     {
       "id": "event_verification_input_verified",
-      "content": "已完成驗證的帳號 (無法重新驗證)"
+      "content": "已完成驗證的帳號（無法重新驗證）"
     },
     {
       "id": "event_verification_verified",
@@ -38,11 +38,11 @@
     },
     {
       "id": "event_verification_already_verified",
-      "content": "此帳號已完成驗證。(無法重新驗證)"
+      "content": "此帳號已完成驗證。（無法重新驗證）"
     },
     {
       "id": "event_verification_verified_at",
-      "content": "驗證時間：{0} (KST)"
+      "content": "驗證時間：{0}（KST）"
     },
     {
       "id": "event_verification_level_required",

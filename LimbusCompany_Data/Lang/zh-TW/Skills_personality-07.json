@@ -3534,7 +3534,7 @@
         {
           "level": 2,
           "name": "如果從側縫外側看得見兩條縫線的話就是雙針。淘汰！",
-          "desc": "[WideAreaRampage]\n本技能命中時，使自身恢復體力上限8%的體力\n[WhenUse] 消耗自身所有 [NeedlekinAlly]，下回合使自身與除自身以外隨機2名友方單位獲得1層 [PenetrateDamageUp]\n- 優先適用於屬於丹紅派的友方單位（編入順序）",
+          "desc": "[WideAreaRampage]\n本技能命中時，使自身恢復體力上限8%的體力\n[WhenUse] 消耗自身所有 [NeedlekinAlly]，下回合使自身與除自身以外隨機2名友方單位獲得1層 [PenetrateDamageUp]\n- 優先適用於屬於丹紅派的友方單位(編入順序)",
           "coinlist": [
             {
               "coindescs": [

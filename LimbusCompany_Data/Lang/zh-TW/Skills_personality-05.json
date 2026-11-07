@@ -1778,7 +1778,7 @@
         {
           "level": 3,
           "name": "讓你我的血凝聚一塊吧。",
-          "desc": "本技能命中時，使自身恢復造成傷害量40%的體力 (每次技能最多恢復50點體力)\n[BeforeUse] 若自身帶有5層 [BloodArmorMeursault]，改為使用「序曲」\n[WhenUse] 指定目標每帶有6級 [Laceration]，使本技能硬幣威力 +1 (最多+2)\n[WhenUse] 使自身與（最大共鳴數）名友方單位獲得1層 [BloodArmorMeursault] (每回合最多2次；最多4名友方單位；優先指定隸屬為<拉．曼查領>和<血魔>（高等眷屬）的友方單位；不包含已帶有最大效果層數的友方)\n[EndSkill] 本技能擊殺目標時，獲得20層 [BloodDinner] (每回合最多1次)",
+          "desc": "本技能命中時，使自身恢復造成傷害量40%的體力 (每次技能最多恢復50點體力)\n[BeforeUse] 若自身帶有5層 [BloodArmorMeursault]，改為使用「序曲」\n[WhenUse] 指定目標每帶有6級 [Laceration]，使本技能硬幣威力 +1 (最多+2)\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得1層 [BloodArmorMeursault] (每回合最多2次；最多4名友方單位；優先指定隸屬為<拉．曼查領>和<血魔>(高等眷屬)的友方單位；不包含已帶有最大效果層數的友方)\n[EndSkill] 本技能擊殺目標時，獲得20層 [BloodDinner] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -1825,7 +1825,7 @@
         {
           "level": 4,
           "name": "讓你我的血凝聚一塊吧。",
-          "desc": "本技能命中時，使自身恢復造成傷害量40%的體力 (每次技能最多恢復<style=\"highlight\">80</style>點體力)\n[BeforeUse] 若自身帶有5層 [BloodArmorMeursault]，改為使用「序曲」\n[WhenUse] 指定目標每帶有6級 [Laceration]，使本技能硬幣威力 +1 (最多+2)\n<style=\"highlight\">[WhenUse] 指定目標每帶有2回 [Laceration]，使本技能造成的傷害+10% (最多40%)</style>\n[WhenUse] 使自身與（最大共鳴數）名友方單位獲得1層 [BloodArmorMeursault] (每回合最多2次；最多4名友方單位；優先指定隸屬為<拉．曼查領>和<血魔>（高等眷屬）的友方單位；不包含已帶有最大效果層數的友方)\n<style=\"highlight\">- 若該共鳴為色慾共鳴，額外使2名最大體力值最低的友方單位獲得2層 [BloodArmorMeursault]</style>\n[EndSkill] 本技能擊殺目標時，獲得20層 [BloodDinner] (每回合最多1次)",
+          "desc": "本技能命中時，使自身恢復造成傷害量40%的體力 (每次技能最多恢復<style=\"highlight\">80</style>點體力)\n[BeforeUse] 若自身帶有5層 [BloodArmorMeursault]，改為使用「序曲」\n[WhenUse] 指定目標每帶有6級 [Laceration]，使本技能硬幣威力 +1 (最多+2)\n<style=\"highlight\">[WhenUse] 指定目標每帶有2回 [Laceration]，使本技能造成的傷害+10% (最多40%)</style>\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得1層 [BloodArmorMeursault] (每回合最多2次；最多4名友方單位；優先指定隸屬為<拉．曼查領>和<血魔>(高等眷屬)的友方單位；不包含已帶有最大效果層數的友方)\n<style=\"highlight\">- 若該共鳴為色慾共鳴，額外使2名最大體力值最低的友方單位獲得2層 [BloodArmorMeursault]</style>\n[EndSkill] 本技能擊殺目標時，獲得20層 [BloodDinner] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [

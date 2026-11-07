@@ -66,7 +66,7 @@
     },
     {
       "id": 40000901,
-      "name": "蜜黃蜂槍（命名者：以斯拉）",
+      "name": "蜜黃蜂槍(命名者：以斯拉)",
       "desc": "戰鬥開始時，使自身獲得 [YellowHarpoon]\n\n回合開始時，若自身的理智值高於0點且中指 父輩帶有2層 [ReinforcedTattooSpider] 時，使自身獲得 [YellowHarpoonSin]\n\n當自身的理智值低於0點時，則使自身失去 [YellowHarpoonSin]",
       "flavor": "<color=#fde55d>「不是，聽我說！老么你真的很會用那把刺槍！\n那把刺槍可是超級特別的喔！你還一直盯著黃色！\n所以蜜黃蜂槍最適合你了吧！！！」</color>"
     },

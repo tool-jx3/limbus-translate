@@ -2,8 +2,8 @@
   "dataList": [
     {
       "id": "OnWinDuelAsParryingCountMultiplyAndPlusPercent",
-      "add": "拚點勝利後根據拚點次數依比例增加\n<size=95%>（增加量的基礎值為{0}，首次拚點之後每次拚點增加{1}%）</size>",
-      "min": "拚點勝利後根據拚點次數依比例減少\n<size=95%>（減少量的基礎值為{0}，首次拚點之後每次拚點增加{1}%）</size>"
+      "add": "拚點勝利後根據拚點次數依比例增加\n<size=95%>(增加量的基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>",
+      "min": "拚點勝利後根據拚點次數依比例減少\n<size=95%>(減少量的基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>"
     },
     {
       "id": "OnWinDuelAsParryingCountMultiplyAndPlusPercentWithMax",
@@ -22,13 +22,13 @@
     },
     {
       "id": "OnLoseDuelAsParryingCountMultiplyAndPlusPercent",
-      "add": "拚點失敗時，根據拚點次數依比例增加\n<size=95%>（增加量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%）</size>",
-      "min": "拚點失敗時，根據拚點次數依比例減少\n<size=95%>（減少量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%）</size>"
+      "add": "拚點失敗時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>",
+      "min": "拚點失敗時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>"
     },
     {
       "id": "OnDieAllyAsLevelRatio",
-      "add": "友方單位陣亡時，若該友方單位等級不低於自身等級，\n根據等級差相應增加\n<size=95%>（增加量：基礎值為{0}，根據等級差相應增加{0}）</size>",
-      "min": "友方單位陣亡時，若該友方單位等級不低於自身等級，\n根據等級差相應減少\n<size=95%>（減少量：基礎值為{0}，根據等級差相應增加{0}）</size>"
+      "add": "友方單位陣亡時，若該友方單位等級不低於自身等級，\n根據等級差相應增加\n<size=95%>(增加量：基礎值為{0}，根據等級差相應增加{0})</size>",
+      "min": "友方單位陣亡時，若該友方單位等級不低於自身等級，\n根據等級差相應減少\n<size=95%>(減少量：基礎值為{0}，根據等級差相應增加{0})</size>"
     },
     {
       "id": "OnRoundStartAfterEvent",
@@ -82,28 +82,28 @@
     },
     {
       "id": "OnWinDuelAsParryingCountMultiplyAndPlusPercentWithEmphasis",
-      "add": "拚點勝利時，根據拚點次數依比例增加\n<size=95%>（增加量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>）</size>",
-      "min": "拚點勝利時，根據拚點次數依比例減少\n<size=95%>（減少量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>）</size>"
+      "add": "拚點勝利時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>",
+      "min": "拚點勝利時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>"
     },
     {
       "id": "OnLoseDuelAsParryingCountMultiplyAndPlusPercentWithEmphasis",
-      "add": "拚點失敗時，根據拚點次數依比例增加\n<size=95%>（增加量：基礎值為{0}，從第二次拚點起，每次拚點增加<color=red>{1}%</color>）</size>",
-      "min": "拚點失敗時，根據拚點次數依比例減少\n<size=95%>（減少量：基礎值為{0}，從第二次拚點起，每次拚點增加<color=red>{1}%</color>）</size>"
+      "add": "拚點失敗時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，從第二次拚點起，每次拚點增加<color=red>{1}%</color>)</size>",
+      "min": "拚點失敗時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，從第二次拚點起，每次拚點增加<color=red>{1}%</color>)</size>"
     },
     {
       "id": "OnTakeAttackDamagePerWithMax",
-      "add": "<color=red>受到敵方單位攻擊時增加\n<size=95%>（增加量：基礎值為{0}，每回合最多為{1}）</size></color>",
-      "min": "<color=red>受到敵方單位攻擊時減少\n<size=95%>（減少量：基礎值為{0}，每回合最多為{1}）</size></color>"
+      "add": "<color=red>受到敵方單位攻擊時增加\n<size=95%>(增加量：基礎值為{0}，每回合最多為{1})</size></color>",
+      "min": "<color=red>受到敵方單位攻擊時減少\n<size=95%>(減少量：基礎值為{0}，每回合最多為{1})</size></color>"
     },
     {
       "id": "OnWinDuelAsParryingCountMultiplyAndPlusPercentIfMpNotLessThan",
-      "add": "理智值不低於{2}且拚點勝利時，根據拚點次數依比例增加\n<size=95%>（增加量：基礎值為{0}，首次拚點之後每次拚點增加{1}%）</size>",
-      "min": "理智值不低於{2}且拚點勝利時，根據拚點次數依比例減少\n<size=95%>（減少量：基礎值為{0}，首次拚點之後每次拚點增加{1}%）</size>"
+      "add": "理智值不低於{2}且拚點勝利時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>",
+      "min": "理智值不低於{2}且拚點勝利時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>"
     },
     {
       "id": "OnWinDuelAsParryingCountMultiplyAndPlusPercentIfMpNotLessThanWithEmphasis",
-      "add": "<color=red>理智值不低於{2}時，</color>拚點勝利時，根據拚點次數依比例增加\n<size=95%>（增加量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>）</size>",
-      "min": "<color=red>理智值不低於{2}時，</color>拚點勝利時，根據拚點次數依比例減少\n<size=95%>（減少量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>）</size>"
+      "add": "<color=red>理智值不低於{2}時，</color>拚點勝利時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>",
+      "min": "<color=red>理智值不低於{2}時，</color>拚點勝利時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>"
     },
     {
       "id": "OnOneSideAttackEnd",
@@ -132,8 +132,8 @@
     },
     {
       "id": "OnLoseDuelToSlowerEnemyAsParryingCountMultiplyAndPlusPercent",
-      "add": "與速度值低於自身的敵方單位拚點失敗時，根據拚點次數依比例增加\n<size=95%>（增加量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%）</size>",
-      "min": "與速度值低於自身的敵方單位拚點失敗時，根據拚點次數依比例減少\n<size=95%>（減少量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%）</size>"
+      "add": "與速度值低於自身的敵方單位拚點失敗時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>",
+      "min": "與速度值低於自身的敵方單位拚點失敗時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>"
     }
   ]
 }

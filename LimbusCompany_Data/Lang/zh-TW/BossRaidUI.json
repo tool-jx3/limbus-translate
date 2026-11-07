@@ -134,7 +134,7 @@
     },
     {
       "id": "boss_raid_reward_ui_warning_10001",
-      "content": "<size=80%>※2026. 04. 23 11:00 ～ 2026. 05. 21 09:00 (GMT+8)共計4週的期限內可領取獎勵。\n請注意，一旦超過領取期限將不可再領取獎勵。</size>"
+      "content": "<size=80%>※2026. 04. 23 11:00 ～ 2026. 05. 21 09:00（GMT+8）共計4週的期限內可領取獎勵。\n請注意，一旦超過領取期限將不可再領取獎勵。</size>"
     },
     {
       "id": "boss_raid_reward_tab_text_NORMAL",
@@ -182,7 +182,7 @@
     },
     {
       "id": "boss_raid_rule_popup_desc_10001",
-      "content": "映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、體力、能力提升、剩餘的罪孽碎片，\n由下個編成繼承並接續戰鬥。\n（※不會保存BOSS的模式、BOSS以外的敵方體力及理智值、敵方持有的效果。)\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）"
+      "content": "映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、體力、能力提升、剩餘的罪孽碎片，\n由下個編成繼承並接續戰鬥。\n（※不會保存BOSS的模式、BOSS以外的敵方體力及理智值、敵方持有的效果。）\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）"
     },
     {
       "id": "boss_raid_reward_ui_only_clear",
@@ -254,7 +254,7 @@
     },
     {
       "id": "boss_raid_ask_give_up_popup_desc_detail_last_formation",
-      "content": "<size=80%>按下確認時<color=#f8c200>結束戰鬥</color>。\n\n(※由於當前已是最後可用的編隊，將以<color=#ff0000>戰鬥失敗</color>結束關卡。)</size>"
+      "content": "<size=80%>按下確認時<color=#f8c200>結束戰鬥</color>。\n\n（※由於當前已是最後可用的編隊，將以<color=#ff0000>戰鬥失敗</color>結束關卡。）</size>"
     },
     {
       "id": "boss_raid_battle_pause_ui_end_title_last_formation",
@@ -262,7 +262,7 @@
     },
     {
       "id": "boss_raid_battle_pause_ui_end_desc_last_formation",
-      "content": "結束進行中的關卡。\n(※最後的編隊將不會保存進度，立刻結束關卡。)"
+      "content": "結束進行中的關卡。\n（※最後的編隊將不會保存進度，立刻結束關卡。）"
     },
     {
       "id": "boss_raid_shop_infinite_item_warning_text",

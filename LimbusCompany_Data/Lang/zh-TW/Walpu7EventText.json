@@ -2,7 +2,7 @@
   "dataList": [
     {
       "id": "walpu7_reward_event_desc",
-      "content": "活動期間所消耗的腦啡肽會被記錄下來。\n用於製作模塊的腦啡肽將不計入，\n當腦啡肽模塊被消耗時，\n每個將會換算成<color=#22ffe4>20 腦啡肽 </color>。"
+      "content": "活動期間所消耗的腦啡肽會被記錄下來。\n用於製作模組的腦啡肽將不計入，\n當腦啡肽模組被消耗時，\n每個將會換算成<color=#22ffe4>20 腦啡肽 </color>。"
     },
     {
       "id": "walpu7_consumed_enkephalin",

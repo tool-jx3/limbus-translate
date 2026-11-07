@@ -15,8 +15,8 @@
     {
       "id": 1022,
       "panicName": "憎惡",
-      "lowMoraleDescription": "拚點勝利時，下回合使自身獲得1層 [AttackUp]（每回合最多3次）\n拚點失敗時，使自身獲得1層 [DefenseUp]（每回合最多3次）",
-      "panicDescription": "拚點勝利時，本回合與下回合使自身獲得1層 [AttackUp]（每回合最多3次）\n拚點失敗時，使自身獲得1層 [DefenseUp]（每回合最多3次）\n回合結束時，使自身獲得2層 [Agility]"
+      "lowMoraleDescription": "拚點勝利時，下回合使自身獲得1層 [AttackUp] (每回合最多3次)\n拚點失敗時，使自身獲得1層 [DefenseUp] (每回合最多3次)",
+      "panicDescription": "拚點勝利時，本回合與下回合使自身獲得1層 [AttackUp] (每回合最多3次)\n拚點失敗時，使自身獲得1層 [DefenseUp] (每回合最多3次)\n回合結束時，使自身獲得2層 [Agility]"
     }
   ]
 }

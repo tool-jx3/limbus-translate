@@ -1332,7 +1332,7 @@
         {
           "level": 4,
           "name": "炎拳",
-          "desc": "目標<style=\"highlight\">每帶有</style>3回 [Combustion]，使本技能的硬幣威力+1<style=\"highlight\">（最多+2）</style>\n[WhenUse] 目標每帶有6級 [Combustion] 強度，使本技能的基礎威力+1（最多<style=\"highlight\">+3</style>）\n[WhenUse] 消耗最多25層 [FirePunchFuel]，每消耗1層 [FirePunchFuel]，使本技能造成的傷害+<style=\"highlight\">2</style>%（最多<style=\"highlight\">+50</style>%）\n- 若自身處於 [FirePunchFuelOverheated] 狀態，則改為每消耗1層 [FirePunchFuel]，使本技能造成的傷害+<style=\"highlight\">4</style>%（最多<style=\"highlight\">+100</style>%）\n[EndSkill] 若擊殺目標，或本技能消耗了 [FirePunchFuel]，則下回合使自身獲得<style=\"highlight\">2</style>層 [HitDamageUp]",
+          "desc": "目標<style=\"highlight\">每帶有</style>3回 [Combustion]，使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 目標每帶有6級 [Combustion] 強度，使本技能的基礎威力+1(最多<style=\"highlight\">+3</style>)\n[WhenUse] 消耗最多25層 [FirePunchFuel]，每消耗1層 [FirePunchFuel]，使本技能造成的傷害+<style=\"highlight\">2</style>%(最多<style=\"highlight\">+50</style>%)\n- 若自身處於 [FirePunchFuelOverheated] 狀態，則改為每消耗1層 [FirePunchFuel]，使本技能造成的傷害+<style=\"highlight\">4</style>%(最多<style=\"highlight\">+100</style>%)\n[EndSkill] 若擊殺目標，或本技能消耗了 [FirePunchFuel]，則下回合使自身獲得<style=\"highlight\">2</style>層 [HitDamageUp]",
           "coinlist": [
             {
               "coindescs": [

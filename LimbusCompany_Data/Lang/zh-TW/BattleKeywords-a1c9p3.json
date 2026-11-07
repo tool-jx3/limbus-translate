@@ -238,15 +238,15 @@
     },
     {
       "id": "HumanBoneTheRings",
-      "name": "人體材料（骨）",
-      "desc": "- 最大值：206\n- 特殊充能（固定強度）",
+      "name": "人體材料(骨)",
+      "desc": "- 最大值：206\n- 特殊充能(固定強度)",
       "summary": "",
       "undefined": "-"
     },
     {
       "id": "HumanBloodTheRings",
-      "name": "人體材料（血）",
-      "desc": "- 最大值：5\n- 特殊充能（固定強度）",
+      "name": "人體材料(血)",
+      "desc": "- 最大值：5\n- 特殊充能(固定強度)",
       "summary": "",
       "undefined": "-"
     },

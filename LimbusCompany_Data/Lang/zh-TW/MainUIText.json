@@ -218,7 +218,7 @@
     },
     {
       "id": "mainui_mirror_entrance_warning",
-      "content": "※已消耗的腦啡肽模塊將不會返還。"
+      "content": "※已消耗的腦啡肽模組將不會返還。"
     },
     {
       "id": "mainui_proress",
@@ -862,7 +862,7 @@
     },
     {
       "id": "mainui_ask_purchase_enkephalin_module",
-      "content": "腦啡肽模塊不足。\n要進行合成嗎？"
+      "content": "腦啡肽模組不足。\n要進行合成嗎？"
     },
     {
       "id": "list",
@@ -1242,7 +1242,7 @@
     },
     {
       "id": "announcer_selection_description",
-      "content": "※ 同時選擇2個或以上播報員時，所選播報員的對話將會被隨機播放。(最多同時選擇100個)"
+      "content": "※ 同時選擇2個或以上播報員時，所選播報員的對話將會被隨機播放。（最多同時選擇100個）"
     },
     {
       "id": "panic_type",
@@ -1370,11 +1370,11 @@
     },
     {
       "id": "open_date_description_month_day_time_zone",
-      "content": "{0}月{1}日({2}) 更新後解鎖"
+      "content": "{0}月{1}日（{2}） 更新後解鎖"
     },
     {
       "id": "open_date_description_month_day_time_zone_date",
-      "content": "{0}月{1}日({2})"
+      "content": "{0}月{1}日（{2}）"
     },
     {
       "id": "open_date_description_month_day_time_zone_desc",
@@ -1818,19 +1818,19 @@
     },
     {
       "id": "vending_machine_item_available_date_label",
-      "content": "{0}月{1}日{2} ({3})後可在自動販賣機兌換"
+      "content": "{0}月{1}日{2}（{3}）後可在自動販賣機兌換"
     },
     {
       "id": "gacha_notice_vending_available_date",
-      "content": "賽季人格能在{0}月{1}日{2} ({3})後透過自動販賣機兌換。"
+      "content": "賽季人格能在{0}月{1}日{2}（{3}）後透過自動販賣機兌換。"
     },
     {
       "id": "gacha_notice_vending_available_date_v2",
-      "content": "賽季E.G.O能在{0}月{1}日{2} ({3})後透過自動販賣機兌換。"
+      "content": "賽季E.G.O能在{0}月{1}日{2}（{3}）後透過自動販賣機兌換。"
     },
     {
       "id": "gacha_notice_vending_available_date_v3",
-      "content": "賽季人格與E.G.O能在{0}月{1}日{2} ({3})後透過自動販賣機兌換。"
+      "content": "賽季人格與E.G.O能在{0}月{1}日{2}（{3}）後透過自動販賣機兌換。"
     },
     {
       "id": "mini_story_warning_spoiler_checkbox_desc",
@@ -2022,7 +2022,7 @@
     },
     {
       "id": "mainui_battleresult_consumable",
-      "content": "消耗模塊"
+      "content": "消耗模組"
     },
     {
       "id": "mainui_cont_mine_title",
