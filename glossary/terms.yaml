@@ -1663,6 +1663,7 @@
   jp: 敵討伐
   en: Enemy Killed
   zh: 擊殺敵方
+  also: [擊殺帶有]
   status: approved
   match: substring
   category: [general, combat]
