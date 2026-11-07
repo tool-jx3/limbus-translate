@@ -5,6 +5,11 @@
 - 以 KR 韓文為主，JP 日文與 EN 英文作為輔助。KR 與 EN 意思不同時，依 KR
 - 遇到本指引未說明的情況，優先參考韓文原文
 
+## 詞彙表
+
+- **一般用語**：`check: off` 的條目（例如 소모、부위、대상）的 `zh` 只是預設譯法，可依中文語法合併、省略或換成自然的同義詞，不必寫 `note`：`머리 부위` → 頭部（`Passives_Abnormality.json|/dataList/63/desc`）、`버스에서 내리라고` → 讓你們下車（`StoryData/S606B.json|/dataList/47/content`）、`비용 소모 없음` → 免費（`MirrorDungeonUI_2.json|/dataList/190/content`）（使用者決定 2026-11-07）
+- **JP、EN 都省略的詞**：KR 有詞彙表的詞，而 JP 與 EN 都沒有寫出時，中文也可以省略，`note` 寫出省略的 KR 原詞（使用者決定 2026-11-07；例：`IAPProduct-a1c8.json|/dataList/17/desc` 的「제6회 발푸르기스의 밤 특정 추출」，JP、EN 只寫「第6回ヴァルプルギスの夜」「The 6th Walpurgis Night」）
+
 ## 與程式語言有關的翻譯須知
 
 ### 原指引
