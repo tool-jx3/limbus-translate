@@ -160,8 +160,14 @@
   match: word
   category: [system, combat]
   evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
-  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除。2026-11-06 加 also：遊戲用語寫 BOSS；指幫派或組織的頭頭寫 `also` 的「老大」（口語、幫派頭頭）或「首領」（較正式、組織首腦），選這兩個不需要 note
+  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除。2026-11-06 加 also：遊戲用語寫 BOSS；指幫派或組織的頭頭寫 `also` 的「老大」（口語、幫派頭頭）或「首領」（較正式、組織首腦），選這兩個不需要 note。人格稱號「마리아치 보스」（流浪樂隊 領袖）見下一條
   sources: ["game:Enemies-a1c7p2.json#/dataList/4/desc"]
+
+- kr: 마리아치 보스
+  zh: 流浪樂隊 領袖
+  status: approved
+  category: [city]
+  notes: 人格「마리아치 보스 싱클레어」（流浪樂隊 領袖 辛克萊）的稱號；既有 4 個單位（Personality_Get_Condition.json /42、/43，StoryTheaterMirrorWorldStoryTitle.json /21，StoryTheaterPersonality.json /72）都寫「流浪樂隊 領袖」（2026-11-07）。這個較長的條目蓋住其中的「보스」
 
 - kr: E.G.O 자원
   jp: E.G.O資源
@@ -763,9 +769,10 @@
 
 - kr: 걸쳐라
   zh: 披覆吧
+  also: [纏繞吧]
   status: approved
   category: [city]
-  notes: 百貨公司的咒語（RPG 旁白既有「披覆吧，而後毫不吝惜地吞食殆盡」）；技能名「패턴：걸쳐라」（KR 為半形冒號）沿用既有「圖樣：纏繞吧」
+  notes: 百貨公司的咒語（RPG 旁白既有「披覆吧，而後毫不吝惜地吞食殆盡」）；技能名「패턴：걸쳐라」（KR 為半形冒號）沿用既有「圖樣：纏繞吧」。2026-11-07 加 also：技能名寫 `also` 的「纏繞吧」，不需要 note（既有 1 個單位）
 
 - kr: 주홍십자
   zh: 朱紅十字
@@ -833,9 +840,10 @@
   jp: メゾン
   en: Maison
   zh: 品牌旗艦店
+  also: [品牌]
   status: approved
   category: [city]
-  notes: 百貨公司的店（르누아르 메종 → 漆黑派 品牌旗艦店）；道具名用「漆黑派 品牌X」（品牌大禮帽、品牌西裝褲）
+  notes: 百貨公司的店（르누아르 메종 → 漆黑派 品牌旗艦店）；道具名用「漆黑派 品牌X」（品牌大禮帽、品牌西裝褲）。2026-11-07 加 also：道具名寫 `also` 的「品牌」，不需要 note（既有 5 個單位）
   sources: ["game:Enemies-a1c10p2.json#/dataList/11/name"]
 
 - kr: 수선실
@@ -851,10 +859,11 @@
   jp: マネキン
   en: Mannequins
   zh: 人台模特兒
+  also: [人體模特兒]
   forbidden: ["人體模型"]
   status: approved
   category: [city]
-  notes: 百貨公司（既有 84 行）
+  notes: 百貨公司（既有 84 行）。2026-11-07 加 also：「人體模特兒」（既有 2 個單位）
   sources: ["game:RPGSystem/rpg-loc-dialogue-floor-1.json#/dataList/12/texts/39/text"]
 
 - kr: 브랜드 매니저
@@ -920,9 +929,10 @@
   jp: 摂取せよ
   en: Consume
   zh: 吸食殆盡
+  also: [攝取吧]
   status: approved
   category: [city]
-  notes: 只用於咒語「…남김없이 섭취하라」（RPG 旁白「慾求吧，並將慾望所求的一切吸食殆盡」）；單獨的命令與技能名沿用既有「攝取吧」（「圖樣：攝取吧」「渴求吧！攝取吧！」）
+  notes: 只用於咒語「…남김없이 섭취하라」（RPG 旁白「慾求吧，並將慾望所求的一切吸食殆盡」）；單獨的命令與技能名沿用既有「攝取吧」（「圖樣：攝取吧」「渴求吧！攝取吧！」）。2026-11-07 加 also：命令與技能名寫 `also` 的「攝取吧」，不需要 note（既有 4 個單位）
   sources: ["game:Skills_Abnormality-a1c10p3.json#/dataList/44/levelList/0/name"]
 
 - kr: 로지온
@@ -1239,10 +1249,11 @@
   jp: ランコロール
   en: L'Incolore
   zh: 無色染料
+  also: [無色]
   forbidden: [朗克洛]
   status: approved
   category: [city]
-  notes: L'Incolore，百貨公司地下2F（quest-floor-b2 既有「無色染料」）；只指顏色時可寫「無色」
+  notes: L'Incolore，百貨公司地下2F（quest-floor-b2 既有「無色染料」）；只指顏色時可寫「無色」。2026-11-07 加 also：「랭콜로르라는 염료」（名為無色的染料）這類「染料」另外寫出時，名稱寫 `also` 的「無色」（既有 2 個單位）
   sources: ["game:RPGSystem/rpg-loc-dialogue-floor-b2.json#/dataList/34/texts/1/text"]
 
 - kr: 카르멘
@@ -1421,10 +1432,11 @@
   jp: ターン開始時
   en: Turn Start
   zh: 回合開始時
+  also: [回合開始]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 1431, approved: 1409, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-07 加 also：「回合開始」（沒有「時」）也算，例如比較用的「턴 시작 시보다 … 낮으면」→「低於回合開始」（既有 8 個單位）
   sources: ["game:SkillTag.json#/dataList/41/name"]
 
 - kr: 합 위력
@@ -1813,8 +1825,14 @@
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 322, approved: 314, forbidden: 0 }
-  notes: Paratranz 詞彙表：暴擊，輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：暴擊，輔助文本描述，輔助戰鬥相關文本描述。受到的暴擊傷害「받는 크리티컬 피해량」見下一條
   sources: ["game:BattleKeywords.json#/dataList/334/summary"]
+
+- kr: 받는 크리티컬 피해량
+  zh: 被暴擊時受到的傷害
+  status: approved
+  category: [combat]
+  notes: 自身受到的暴擊傷害（「받는 크리티컬 피해량이 (수치x3)% 증가」→「被暴擊時受到的傷害+(層數×3)%」），不是自身暴擊時造成的傷害；既有 5 個單位中 4 個寫「被暴擊時受到的傷害」（BattleKeywords.json /259、Bufs.json /312 的 desc 與 summary；另 1 個是 Passives_Abnormality-exme.json /12 的「受到金笠暴擊時的傷害」，2026-11-07）。這個較長的條目蓋住其中的「크리티컬 피해량」
 
 - kr: 적 처치
   jp: 敵討伐
@@ -1890,8 +1908,17 @@
   match: word
   category: [general, combat, sin]
   evidence: { kr_lines: 286, approved: 277, forbidden: 0 }
-  notes: Paratranz 詞彙表：暴食，輔助文本描述，輔助戰鬥相關文本描述
+  notes: Paratranz 詞彙表：暴食，輔助文本描述，輔助戰鬥相關文本描述。主題卡包名「탐식의 재림」（貪食的再臨）見下一條
   sources: ["game:Passives.json#/dataList/82/name"]
+
+- kr: 탐식의 재림
+  jp: 貪食の再臨
+  en: Readvent of Gluttony
+  zh: 貪食的再臨
+  status: approved
+  category: [system]
+  notes: 鏡像迷宮的主題卡包名；既有 2 個單位（MirrorDungeonTheme-1.json /120 的 name、UI_Mission_MirrorDungeon8Event.json /6）都寫「貪食的再臨」（2026-11-07）。jp、en 照 MirrorDungeonTheme-1.json /120（id 1031）的名稱。這個較長的條目蓋住其中的「탐식」
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/120/name"]
 
 - kr: 나태
   jp: 怠惰
@@ -5420,10 +5447,11 @@
 - kr: 속도와 상관없이 이 스킬과 합을 할 수 있음
   en: can Clash with this Skill regardless of Speed
   zh: 可無視速度值與本技能拚點
+  also: [可無視速度差距與本技能拚點]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 20, approved: 17, forbidden: 0 }
-  notes: Paratranz 詞彙表：技能輔助文本（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：技能輔助文本（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：「可無視速度差距與本技能拚點」（既有 3 個單位）
   sources: ["game:Skills_Abnormality_Refraction6.json#/dataList/12/levelList/0/desc"]
 
 - kr: 출격 인원을 기준으로 함
