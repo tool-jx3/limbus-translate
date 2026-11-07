@@ -62,3 +62,6 @@
 - id: "note/StoryData/7D104B.json|/dataList/22/content/d511624e"
   reason: Hana 協會改寫「하나協會」：詞彙表與 rules/rewrite/2026-11-04-hana-association.yaml（人工確認）
   date: 2026-11-04
+- id: "scope/bd542ee0/64da73be/not-files"
+  reason: 不縮範圍：FAQ 的 3 個缺漏中，/2、/3 是商品名「월간 광기 패키지」（每月狂氣補給，已逐一確認），/7「각종 패키지」→「各類補給包」是同義的譯法不一，交給複查（使用者決定 2026-11-07）
+  date: 2026-11-07

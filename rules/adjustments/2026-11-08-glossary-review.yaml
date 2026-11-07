@@ -194,3 +194,59 @@
   zh: 我望著巴士的後門那邊悄悄說道。
   reason: 「버스의 뒷문」寫「巴士的後門」（詞彙表）；「뒷문이 있는 쪽」寫「後門那邊」，避免連用兩個「的」
   rule: glossary/terms.yaml
+- key: MirrorDungeonUI_6.json|/dataList/93/content
+  raw: raw-20261105
+  kr_sha: 2aaa537ef5cbbc0683f7288f731dedc39a72f014c482e1c663c9a110eee21589
+  zh: 第{0}賽季 戰鬥通行證
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）
+  rule: glossary/terms.yaml
+- key: BattlePass.json|/dataList/26/content
+  raw: raw-20261105
+  kr_sha: 8fb6955a20bcca0a865e0b87795279606b34135bb1af9ac53ef8268a7f1015c6
+  zh: ※購買戰鬥通行證等級需要花費300付費狂氣。
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）
+  rule: glossary/terms.yaml
+- key: Items.json|/dataList/81/name
+  raw: raw-20261105
+  kr_sha: 11512b516dc7bcff9a01ca479fff399a1ae849c0967073348a07c5b1de27ab33
+  zh: 第1賽季戰鬥通行證E.G.O自選券
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；道具名與同一道具的 Items /81/desc「第1賽季戰鬥通行證E.G.O」一致
+  rule: glossary/terms.yaml
+- key: TutorialMainUIText.json|/dataList/219/content
+  raw: raw-20261105
+  kr_sha: a6a3339a9d5591ce36939f6bf91df39d6376af034f5f29972a52de28b791e709
+  zh: 能夠確認及領取戰鬥通行證每級的免費或巴士通行證獎勵。
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；KR「배틀 패스 레벨별 무료 혹은 림버스 패스에 해당하는 보상」，림버스 패스 寫「巴士通行證」（詞彙表）
+  rule: glossary/terms.yaml
+- key: TutorialRenewalMainUIDesc.json|/dataList/37/content
+  raw: raw-20261105
+  kr_sha: ab24c0001901e6b355551734d69e7c8b5a0e6a27d5b0c8239a458979aea22bf5
+  zh: |-
+    點擊此處進入鏡像迷宮。
+    鏡像迷宮是用於測試多種可能性的場域，通關後可獲得戰鬥通行證經驗與一定數量的狂氣。
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）
+  rule: glossary/terms.yaml
+- key: UI_ModuleDevice.json|/dataList/14/content
+  raw: raw-20261105
+  kr_sha: 843719d606fe54f0648b59fab2d23d87fd73f60f203ec2d766945193d512b821
+  zh: 選擇第1賽季戰鬥通行證E.G.O
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；與道具名 Items /81「第1賽季戰鬥通行證E.G.O自選券」一致
+  rule: glossary/terms.yaml
+- key: PersonalityVoiceDlg/Voice_Rodion_Blackwater_10912.json|/dataList/5/dlg
+  raw: raw-20261105
+  kr_sha: 9f6b4baa38b99c83158505fce4e202560bbe1b7b13e517c6c6b7989d7bb21659
+  zh: 黑獸並非效忠於人，而是效忠於主公。我聽過這樣的話無數次了，但是……為了蛻去野獸的外殼，為了更加引人注目……就必須向他人宣示自己的忠誠，只有這樣才能夠被選上。
+  reason: 「주군」寫「主公」（詞彙表；使用者決定 2026-11-07，不另加「主君」）；KR「흑수는 사람이 아니라, 주군에게 충성한다」是「效忠的不是人，而是主公」，舊譯「黑獸並不是人，僅僅只是侍奉主君的道具」與後文「사람에게 충성해야 해」（向他人宣示忠誠）的對比不合，一併照 KR 改
+  rule: glossary/terms.yaml
+- key: StoryData/P10313.json|/dataList/11/content
+  raw: raw-20261105
+  kr_sha: 4028a1af0e12c92129a20c7e5eaf2f645baf7a40254c7cb14877df602365b191
+  zh: 主公尋求的正義之人，恐怕並不在那個堡壘中吧？
+  reason: 「주군」寫「主公」（詞彙表；使用者決定 2026-11-07，不另加「主君」）
+  rule: glossary/terms.yaml
+- key: TutorialMainUIText.json|/dataList/225/content
+  raw: raw-20261105
+  kr_sha: e9a3241a9bf9b17f93b190218be59728c8831c6bc03500d6930d8dc721cf7eff
+  zh: 任務列表中顯示了完成後將會獲得的戰鬥通行證進度。分為日常，周常及賽季任務。
+  reason: 「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；同句「시즌 미션」照詞彙表寫「賽季任務」（系統用語，不寫「季度」）
+  rule: glossary/terms.yaml
