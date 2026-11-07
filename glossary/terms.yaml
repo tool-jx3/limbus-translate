@@ -285,6 +285,13 @@
   category: [general]
   notes: 同「시.대.」，KR 有空格的寫法
 
+- kr: 시. 대
+  zh: 時．頭
+  forbidden: [鐘．頭]
+  status: approved
+  category: [general]
+  notes: 同「시.대.」，KR 末字沒有點（`시. 대?`：S1004B#15、#16、S1027B#18）；KR 是「시. 대.」時由該條目蓋過
+
 - kr: 참관인
   zh: 旁聽者
   forbidden: [參觀者]
