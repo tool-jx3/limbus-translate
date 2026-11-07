@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"os"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -247,12 +248,14 @@ func runGoldReport(ctx *cli.Context, args []string) error {
 		current[u.Key] = records[u.Key].ZH
 	}
 	rep := gold.MakeReport(s, current)
-	set, err := pack.OpenRaw(filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw)))
-	if errors.Is(err, fs.ErrNotExist) {
+	rawRoot := filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw))
+	if _, err := os.Stat(rawRoot); errors.Is(err, fs.ErrNotExist) {
 		// No raw worktree: report from gold.yaml alone, KR staleness unknown.
+		// A worktree that exists but lacks kr, en or jp is an error below.
 		rep.KRUnknown = true
 		return ctx.Emit(rep)
 	}
+	set, err := pack.OpenRaw(rawRoot)
 	if err != nil {
 		return err
 	}

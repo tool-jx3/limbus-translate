@@ -316,3 +316,18 @@ func TestGoldReportWithoutRaw(t *testing.T) {
 		t.Errorf("kr_unknown = %v, missing = %d; want true, 0", rep.KRUnknown, rep.Missing)
 	}
 }
+
+// A raw worktree that exists but lacks a language is broken, not absent: the
+// report is a system error and does not pretend there is no worktree.
+func TestGoldReportWithHalfAWorktreeIsASystemError(t *testing.T) {
+	root := goldRepo(t)
+	if code, _, stderr := goldSample(t); code != 0 {
+		t.Fatalf("exit %d: %s", code, stderr)
+	}
+	if err := os.RemoveAll(filepath.Join(root, ".work", "raw", "kr")); err != nil {
+		t.Fatal(err)
+	}
+	if code, _, stderr := lct(t, "gold", "report"); code != 2 {
+		t.Errorf("exit %d (stderr %q), want 2", code, stderr)
+	}
+}
