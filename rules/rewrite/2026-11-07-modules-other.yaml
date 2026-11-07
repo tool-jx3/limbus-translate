@@ -1,0 +1,13 @@
+# 使用者決定（2026-11-07）：KR 모듈 的中文一律寫台灣用語「模組」。腦啡肽模組由 2026-11-07-enkephalin-module.yaml、
+# 2026-11-07-module-bare.yaml、2026-11-07-module-sphere.yaml 處理；本檔處理其餘仍寫「模塊」的 12 個單位（原文都有「모듈」）：
+#   심장 리액트 모듈（EGOgift_MirrorDungeon-mowe /5/name）、충전 모듈（Passives /301/name）、
+#   가사 보조 모듈（ActionEvents-pilgrimage /4/options/1/message、/4/options/1/result/0、BattleKeywords-pilgrimage /18/name、Bufs-pilgrimage /18/name）、
+#   Items.json /78 /79 /83 /106 的 flavor（LCA 研發小組製作的各種解析模組）、
+#   StoryTheaterDanteNoteDetail_2 /7/desc（박스와 모듈，盒子與模組）、StoryTheaterDanteNoteDetail_8 /5/desc（코어 또는 모듈，核心或模組）。
+# 檔名「modules-other」排在 module-bare、module-sphere 之後（'-' 排在 's' 之前）；Items.json 的 /3/flavor 先由 module-sphere 改好。
+# 上述單位的「模塊」都對應「모듈」，所以用明確的 files 與 kr_pattern 限定。
+reason: 'KR 모듈 寫「模組」（台灣用語，使用者決定 2026-11-07）'
+files: ['ActionEvents-pilgrimage.json', 'BattleKeywords-pilgrimage.json', 'Bufs-pilgrimage.json', 'EGOgift_MirrorDungeon-mowe.json', 'Items.json', 'Passives.json', 'StoryTheaterDanteNoteDetail_2.json', 'StoryTheaterDanteNoteDetail_8.json']
+pattern: '模塊'
+replace: '模組'
+kr_pattern: '모듈'
