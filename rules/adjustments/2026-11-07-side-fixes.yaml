@@ -28,3 +28,15 @@
   zh: 神父
   reason: 第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」
   rule: glossary/terms.yaml
+- key: ShopUI.json|/dataList/56/content
+  raw: raw-20261105
+  kr_sha: 61164068b24abc37b23e71a5f161ef36b38e7b18b07bfb545b2a65b3e24d85d0
+  zh: 已達腦啡肽模組的持有上限，無法再製作。
+  reason: 「엔케팔린 모듈 최대치를 초과하여 제작할 수 없습니다」：舊譯「無法製作模塊；您的庫存已滿。」缺「腦啡肽」，詞彙表寫「腦啡肽模組」（使用者決定 2026-11-07）
+  rule: glossary/terms.yaml
+- key: BattleKeywords.json|/dataList/82/desc
+  raw: raw-20261105
+  kr_sha: 4b86af603640e083d975ab79b2c6e254f0289c609af643e52bbb821bfad5312d
+  zh: 目標的嫉妒抗性減少(每層0.1)
+  reason: KR「대상의 질투 내성을 (스택 * 0.1) 감소」（JP 嫉妬耐性、EN Envy Resistance）是嫉妒抗性；舊譯「目標的暴怒嫉妒減少」多了「暴怒」、少了「抗性」。照同組 /76～/81 的寫法（詞彙表 질투 → 嫉妒、내성 → 抗性）
+  rule: glossary/terms.yaml

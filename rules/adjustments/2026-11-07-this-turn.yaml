@@ -44,3 +44,49 @@
   zh: "- 最大層數：3\n- 回合開始時，本效果每有1層，則對自身施加2級流血 強度\n．若層數為最大值，則額外施加1回流血 \n- 回合結束時，本效果每有1層，則在下回合對自身施加1層束縛 \n．若層數為最大值，則在下回合額外施加1層虛弱 \n- 回合結束時，若本單位本回合內沒有受到暴擊攻擊命中，則使本效果層數減少1層"
   reason: 「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）；同時補上舊譯漏掉的「다음 턴」（下回合）
   rule: glossary/terms.yaml
+- key: Skills_Abnormality-mowe-re.json|/dataList/7/levelList/0/desc
+  raw: raw-20261105
+  kr_sha: ac0581e46bd5aee16ca4f5ba3bbbb0ef21768d58cba4eafb58993e29d98fea3c
+  zh: |-
+    [CantDuel]
+    [WhenUse] 對自身施加4層 [Paralysis]
+    [WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍
+    [WhenUse] 將自身理智值重置為0
+    [EndSkill] 使自身獲得10層 [KeptBlood]
+    本回合內自身不會陷入混亂；回合於本技能施放後強制結束
+  reason: 「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）
+  rule: glossary/terms.yaml
+- key: Skills_Abnormality_Mirror7-extreme.json|/dataList/77/levelList/0/desc
+  raw: raw-20261105
+  kr_sha: ac0581e46bd5aee16ca4f5ba3bbbb0ef21768d58cba4eafb58993e29d98fea3c
+  zh: |-
+    [CantDuel]
+    [WhenUse] 對自身施加4層 [Paralysis]
+    [WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍
+    [WhenUse] 將自身理智值重置為0
+    [EndSkill] 使自身獲得10層 [KeptBlood]
+    本回合內自身不會陷入混亂；回合於本技能施放後強制結束
+  reason: 「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）
+  rule: glossary/terms.yaml
+- key: EGOgift_MirrorDungeon-mowe-re.json|/dataList/6/desc
+  raw: raw-20261105
+  kr_sha: d9c186831b79933ae7a114666d0e8309ffa6891e8e1cc4c3fac4f77c64d8ba5c
+  zh: 使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)
+  reason: 「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）
+  rule: glossary/terms.yaml
+- key: EGOgift_MirrorDungeon-mowe-re.json|/dataList/7/desc
+  raw: raw-20261105
+  kr_sha: 735bd98673c162a0c402782511f906c951b404c7ee1f7cde5e808e30386993e5
+  zh: |-
+    使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)
+    <style="upgradeHighlight">- 額外施加1層 [VioletResistDown]</style>
+  reason: 「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）
+  rule: glossary/terms.yaml
+- key: EGOgift_MirrorDungeon-mowe-re.json|/dataList/8/desc
+  raw: raw-20261105
+  kr_sha: 0961090c3efc72f320d1b4067eb813887ed46378f445cefbeb1cba1dd687c299
+  zh: |-
+    使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多<style="upgradeHighlight">2</style>次)
+    - 額外施加1層 [VioletResistDown] 與<style="upgradeHighlight">1層 [AzureResistDown]</style>
+  reason: 「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）
+  rule: glossary/terms.yaml
