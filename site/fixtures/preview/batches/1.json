@@ -8,6 +8,7 @@
   "guides": [
     "guides/base.md",
     "guides/families.md",
+    "guides/shared/tone.md",
     "guides/characters/sinclair.md"
   ],
   "glossary": [],

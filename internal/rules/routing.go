@@ -48,6 +48,9 @@ type FamilyRule struct {
 	Nodes []string `yaml:"nodes" json:"nodes"`
 	// Guide is the family's guide file, relative to the repo root.
 	Guide string `yaml:"guide" json:"guide"`
+	// Include lists shared guide files (guides/shared/<topic>.md) the family
+	// takes in, in order, right after its guide.
+	Include []string `yaml:"include,omitempty" json:"include,omitempty"`
 	// Glossary is how the glossary binds the family: "" or "hard" (a missing
 	// rendering is rejected at submission unless the note names the term) or
 	// "warn" (a missing rendering stays a warning).
@@ -231,6 +234,16 @@ func (r *Rules) familyGuide(id string) string {
 		}
 	}
 	return ""
+}
+
+// familyInclude returns the include files of a family, or nil.
+func (r *Rules) familyInclude(id string) []string {
+	for _, f := range r.Routing.Families {
+		if f.ID == id {
+			return f.Include
+		}
+	}
+	return nil
 }
 
 // guideLayerTags are the prefixes of a GuideRule.When that name a tag.

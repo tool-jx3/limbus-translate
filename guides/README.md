@@ -8,11 +8,12 @@
 |---|---|---|
 | `base.md` | 共通原則、程式格式須知、標點 | 每一批都套用 |
 | `families/<id>.md` | 各族群的文本類型、語氣與人稱、格式慣例、常見錯誤（每份 ≤ 4096 bytes） | 依檔名判斷族群（`routing.yaml` 的 `guide:`） |
+| `shared/<主題>.md` | 跨族群、但不是所有族群都用的規則（每份 ≤ 4096 bytes，附出處） | 用到的族群在 `routing.yaml` 以 `include:` 引入 |
 | `families.md` | 給人看的參考：檔名規律、檔案族群、翻譯優先序、凍結項目 | 不送給譯者 |
 | `characters/<id>.md` | 角色語言風格 | 該批出現此角色時（劇情看每行的 `model`，RPG 對話看該行的 `speaker` 欄位，對得上角色 id 才套用；語音／`AbDlg` 看檔名） |
 | `../glossary/terms.yaml` | 譯名統一列表（預設譯名；`check: hard` 的條目缺譯名才退回，禁用譯法一律退回） | 每一批注入命中的條目 |
 
-疊加順序：`base` → 族群 → 依節點或標記疊加的指引（`routing.yaml` 的 `guides:`）→ 角色 → 單檔備註。`base.md` 的格式規則是硬性規定；詞彙表的譯名是預設（`check: hard` 的條目與 `forbidden` 除外），角色風格不能推翻它們。
+疊加順序：`base` → 族群 → 該族群的 `include`（共用指引，依序）→ 依節點或標記疊加的指引（`routing.yaml` 的 `guides:`）→ 角色 → 單檔備註。`base.md` 的格式規則是硬性規定；詞彙表的譯名是預設（`check: hard` 的條目與 `forbidden` 除外），角色風格不能推翻它們。
 
 `characters/*.md` 開頭的 YAML 是給程式用的對照資料：
 

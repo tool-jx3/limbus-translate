@@ -2357,3 +2357,135 @@ func TestTermJSONOrder(t *testing.T) {
 		t.Errorf("meaning and sources are not between check and provisional: %s", s)
 	}
 }
+
+// addInclude adds an include: list to the family id of the routing.
+func addInclude(t *testing.T, root, id string, files ...string) {
+	t.Helper()
+	list := ""
+	for _, f := range files {
+		list += "      - " + f + "\n"
+	}
+	edit(t, root, "guides/routing.yaml", func(s string) string {
+		marker := "  - id: " + id + "\n"
+		if !strings.Contains(s, marker) {
+			t.Fatalf("routing has no family %s", id)
+		}
+		return strings.Replace(s, marker, marker+"    include:\n"+list, 1)
+	})
+}
+
+// A family's include: files come right after its guide, in order, before the
+// node and tag layers; one equal to the family guide or to a layer is listed
+// once; a family without include is unchanged.
+func TestGuidesForInclude(t *testing.T) {
+	root := copyRules(t)
+	for _, g := range []string{"shared/a", "shared/b", "families/node", "families/tag"} {
+		writeGuide(t, root, "guides/"+g+".md", 10)
+	}
+	addInclude(t, root, "ui", "guides/shared/a.md", "guides/shared/b.md", "guides/families/ui.md", "guides/families/node.md")
+	addGuideRules(t, root, `  - when: "MainUIText"
+    guide: guides/families/node.md
+  - when: "MainUIText"
+    guide: guides/shared/a.md
+  - when: "MainUIText"
+    guide: guides/families/tag.md
+`)
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := r.GuidesFor("MainUIText.json", nil)
+	want := []string{"guides/base.md", "guides/families/ui.md", "guides/shared/a.md", "guides/shared/b.md", "guides/families/node.md", "guides/families/tag.md"}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("GuidesFor = %v, want %v", got, want)
+	}
+	if got, want := r.GuidesFor("Skills_Enemy-mowe.json", nil), []string{"guides/base.md", "guides/families/enemy.md"}; !reflect.DeepEqual(got, want) {
+		t.Errorf("GuidesFor(no include) = %v, want %v", got, want)
+	}
+}
+
+// Lint checks every include: entry like a guide path, rejects a repeat in one
+// family, and caps guides/shared/*.md at 4096 bytes whether included or not.
+func TestLintInclude(t *testing.T) {
+	tests := []struct {
+		name  string
+		setup func(t *testing.T, root string)
+		want  []string // empty: Lint must find nothing
+	}{
+		{"valid", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/shared/a.md", 4096)
+			addInclude(t, root, "ui", "guides/shared/a.md")
+		}, nil},
+		{"own guide is harmless", func(t *testing.T, root string) {
+			addInclude(t, root, "ui", "guides/families/ui.md")
+		}, nil},
+		{"missing file", func(t *testing.T, root string) {
+			addInclude(t, root, "ui", "guides/shared/nope.md")
+		}, []string{"guides/routing.yaml", "ui", "guides/shared/nope.md", "does not exist"}},
+		{"outside guides/", func(t *testing.T, root string) {
+			addInclude(t, root, "ui", "glossary/terms.yaml")
+		}, []string{"guides/routing.yaml", "glossary/terms.yaml", "a .md file under guides/"}},
+		{"not markdown", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/shared/a.txt", 10)
+			addInclude(t, root, "ui", "guides/shared/a.txt")
+		}, []string{"guides/shared/a.txt", "a .md file under guides/"}},
+		{"duplicate in a family", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/shared/a.md", 10)
+			addInclude(t, root, "ui", "guides/shared/a.md", "guides/shared/a.md")
+		}, []string{"guides/routing.yaml", "ui", "guides/shared/a.md", "twice"}},
+		{"shared file too big, included", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/shared/big.md", 4097)
+			addInclude(t, root, "ui", "guides/shared/big.md")
+		}, []string{"guides/shared/big.md", "4096"}},
+		{"shared file too big, not included", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/shared/big.md", 4097)
+		}, []string{"guides/shared/big.md", "4096"}},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyRules(t)
+			tc.setup(t, root)
+			msg := lintMessages(rules.Lint(root))
+			if len(tc.want) == 0 {
+				if msg != "" {
+					t.Fatalf("Lint found %s", msg)
+				}
+				return
+			}
+			if msg == "" {
+				t.Fatal("Lint found nothing")
+			}
+			for _, want := range tc.want {
+				if !strings.Contains(msg, want) {
+					t.Errorf("lint output does not mention %q:\n%s", want, msg)
+				}
+			}
+		})
+	}
+}
+
+// The total of a batch's guides counts the include: files.
+func TestLintGuideTotalCountsInclude(t *testing.T) {
+	warn := func(include ...string) string {
+		root := copyRules(t)
+		writeGuide(t, root, "guides/base.md", 20000)
+		writeGuide(t, root, "guides/families/ui.md", 10000)
+		writeGuide(t, root, "guides/shared/a.md", 4000)
+		writeGuide(t, root, "guides/shared/b.md", 2000)
+		addInclude(t, root, "ui", include...)
+		var msgs []string
+		for _, w := range rules.LintRoutingWarnings(root, []string{"MainUIText.json"}) {
+			msgs = append(msgs, w.Message)
+		}
+		return strings.Join(msgs, "\n")
+	}
+	if got := warn("guides/shared/a.md"); strings.Contains(got, "35000") {
+		t.Errorf("34000 bytes warned of: %s", got)
+	}
+	got := warn("guides/shared/a.md", "guides/shared/b.md")
+	for _, want := range []string{"MainUIText.json", "36000", "35000"} {
+		if !strings.Contains(got, want) {
+			t.Errorf("warnings do not mention %q:\n%s", want, got)
+		}
+	}
+}

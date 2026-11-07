@@ -313,6 +313,18 @@ func (l *linter) routing() {
 		case !l.fileExists(f.Guide):
 			l.report(RoutingFile, "%s: guide file %s does not exist", label, f.Guide)
 		}
+		seen := map[string]bool{}
+		for _, inc := range f.Include {
+			switch {
+			case !guidePathOK(inc):
+				l.report(RoutingFile, "%s: include %s must be a .md file under guides/", label, inc)
+			case !l.fileExists(inc):
+				l.report(RoutingFile, "%s: include file %s does not exist", label, inc)
+			case seen[inc]:
+				l.report(RoutingFile, "%s: include lists %s twice", label, inc)
+			}
+			seen[inc] = true
+		}
 		if len(f.Nodes) == 0 && i != len(rt.Families)-1 {
 			l.report(RoutingFile, "%s: has no nodes, so it takes every file no other family lists; only the last family may do that", label)
 		}
@@ -366,23 +378,27 @@ func (l *linter) routing() {
 // batch (speakers' characters left out; see LintRoutingWarnings).
 const (
 	FamilyGuidesDir     = "guides/families"
+	SharedGuidesDir     = "guides/shared"
 	MaxFamilyGuideBytes = 4096
 	MaxGuideTotalBytes  = 35000
 )
 
-// familyGuideSizes reports the guides/families/*.md files over the limit.
+// familyGuideSizes reports the guides/families/*.md and guides/shared/*.md
+// files over the limit.
 func (l *linter) familyGuideSizes() {
-	entries, err := os.ReadDir(filepath.Join(l.root, filepath.FromSlash(FamilyGuidesDir)))
-	if err != nil {
-		return
-	}
-	for _, e := range entries {
-		if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
+	for _, dir := range []string{FamilyGuidesDir, SharedGuidesDir} {
+		entries, err := os.ReadDir(filepath.Join(l.root, filepath.FromSlash(dir)))
+		if err != nil {
 			continue
 		}
-		info, err := e.Info()
-		if err == nil && info.Size() > MaxFamilyGuideBytes {
-			l.report(FamilyGuidesDir+"/"+e.Name(), "is %d bytes, over the limit of %d", info.Size(), MaxFamilyGuideBytes)
+		for _, e := range entries {
+			if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
+				continue
+			}
+			info, err := e.Info()
+			if err == nil && info.Size() > MaxFamilyGuideBytes {
+				l.report(dir+"/"+e.Name(), "is %d bytes, over the limit of %d", info.Size(), MaxFamilyGuideBytes)
+			}
 		}
 	}
 }

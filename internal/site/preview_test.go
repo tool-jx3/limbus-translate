@@ -39,6 +39,7 @@ const pvRouting = `families:
   - id: story-main
     nodes: ["StoryData/S"]
     guide: guides/families.md
+    include: [guides/shared/tone.md]
   - id: loose
     nodes: ["Frozen"]
     guide: guides/families.md
@@ -78,6 +79,7 @@ const (
 var pvGuides = map[string]string{
 	"guides/base.md":                "# 基本\n\n通用規則。\n",
 	"guides/families.md":            "# 家族\n\n各家族的規則。\n",
+	"guides/shared/tone.md":         "# 共用語氣\n\n跨族群的規則。\n",
 	"guides/characters/faust.md":    pvFaust,
 	"guides/characters/sinclair.md": pvSinc,
 }
@@ -721,7 +723,7 @@ func TestExportPreviewSharedGuides(t *testing.T) {
 			t.Errorf("guide %s = %q, want the text given", g.Path, g.Text)
 		}
 	}
-	want := []string{"guides/base.md", "guides/families.md", "guides/characters/faust.md", "guides/characters/sinclair.md"}
+	want := []string{"guides/base.md", "guides/families.md", "guides/shared/tone.md", "guides/characters/faust.md", "guides/characters/sinclair.md"}
 	if !reflect.DeepEqual(paths, want) {
 		t.Errorf("guides = %v, want %v", paths, want)
 	}
@@ -737,7 +739,7 @@ func TestExportPreviewSharedGuides(t *testing.T) {
 
 	// A guide that is named and not given is an error; one never named is not listed.
 	short := newPvWorld(t)
-	short.In.Preview.Guides = map[string]string{"guides/base.md": "base", "guides/families.md": "families"}
+	short.In.Preview.Guides = map[string]string{"guides/base.md": "base", "guides/families.md": "families", "guides/shared/tone.md": "tone"}
 	if _, err := Export(short.In, Meta{}, t.TempDir()); err == nil || !strings.Contains(err.Error(), "guides/characters/faust.md") {
 		t.Errorf("Export without a guide that is named: err = %v, want one that names guides/characters/faust.md", err)
 	}
