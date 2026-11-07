@@ -16,9 +16,7 @@
 - 選項效果的 `E.G.O GIFT 획득`（KR 沒寫數量）寫「獲得1件……E.G.O飾品」（既有 310／360，例 `ActionEvents.json|/dataList/37/options/1/messageDesc`）
 - 選項效果 `별도 효과 없음` 寫「沒有效果」（既有 44／44，例 `ActionEvents_twth.json|/dataList/0/options/2/messageDesc`）
 - `… 판정 성공 시` 寫「……判定 成功後」（既有 122／146，例 `ActionEvents.json|/dataList/37/options/0/messageDesc`）
-- 飾品說明的 `피해량 +N%` 寫「造成的傷害+N%」、`최종 위력 ±N` 寫「最終威力±N」（正負號照 KR）（既有 195／227、35／38，例 `EGOgift_MirrorDungeon-EventTheme.json|/dataList/20/simpleDesc/0/simpleDesc`、`EGOgift_MirrorDungeon.json|/dataList/323/simpleDesc/0/simpleDesc`）
-- `아군` 寫「友方單位」（既有 357／378，例 `EGOgift_StoryDungeon.json|/dataList/7/desc`）
-- KR 方括號裡的韓文名稱譯成中文，方括號照樣保留（`[…]`）（既有 102／102，例 `MirrorDungeonUI_7.json|/dataList/28/content`）
+- 飾品說明的 `피해량 +N%` 寫「造成的傷害+N%」（既有 195／227，例 `EGOgift_MirrorDungeon-EventTheme.json|/dataList/20/simpleDesc/0/simpleDesc`）
 
 ## 常見錯誤
 

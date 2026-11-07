@@ -11,7 +11,7 @@
 
 ## 格式慣例
 
-- **RPG 標籤的括號**：`RPGSystem/` 除了對話之外的所有文字（`rpg-loc-item-*` 的 `statText`、`rpg-loc-npc-*`／`swarm-mob-*` 的名稱、`rpg-loc-quest-*` 的 title／goal／description、`rpg-loc-location-*`）括號一律用全形「（）」（既有 statText 29：1、paratranz 任務全是全形，例如「黃金皮革閃光（屍堆）」「（內部）…」）；開發用的代號照原樣放在全形括號裡，括號內的逗號照 KR：「（52,64）」「（S1001B）」。這是 base.md 第 7 條「系統文字用半形」的例外。只有問號的名稱寫半形「???」（既有 226 處）（自 families.md 移入）
+- **RPG 標籤的括號**：`RPGSystem/` 除了對話之外的所有文字（`rpg-loc-item-*` 的 `statText`、`rpg-loc-npc-*`／`swarm-mob-*` 的名稱、`rpg-loc-quest-*` 的 title／goal／description、`rpg-loc-location-*`）括號一律用全形「（）」（既有 statText 29：1、paratranz 任務全是全形，例如「黃金皮革閃光（屍堆）」「（內部）…」）；開發用的代號照原樣放在全形括號裡，括號內的逗號照 KR：「（52,64）」「（S1001B）」。只有問號的名稱寫半形「???」（既有 226 處）（自 families.md 移入）
 - **RPG 的樓層寫法**：任務的 title、goal 與道具名、NPC 名稱是標籤，寫「3F」「B2F」；任務的 description 與對話是敘述，寫「3樓」「地下2樓」（自 families.md 移入）
 
 ## 常見錯誤

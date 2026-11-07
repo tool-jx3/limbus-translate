@@ -39,7 +39,7 @@ func cleanRules(t *testing.T) string {
 	for _, f := range []string{"glossary/terms.yaml", "guides/base.md", "guides/families.md", "guides/routing.yaml"} {
 		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
 	}
-	for _, dir := range []string{"guides/characters", "guides/families"} {
+	for _, dir := range []string{"guides/characters", "guides/families", "guides/shared"} {
 		entries, err := os.ReadDir(filepath.Join(repoRoot, dir))
 		if err != nil {
 			t.Fatal(err)

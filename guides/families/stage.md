@@ -12,7 +12,6 @@
 ## 格式慣例
 
 - `클리어` 寫「通關」（既有 40／47，例 `StageStatisticUIText.json|/dataList/0/content`）
-- KR 方括號裡的韓文名稱譯成中文，方括號照樣保留（`[…]`）（既有 39／39，例 `HellsChicken.json|/dataList/7/content`）
 
 ## 常見錯誤
 

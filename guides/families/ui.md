@@ -11,7 +11,6 @@
 ## 格式慣例
 
 - 數量的 ` x N` 寫「 × N」，用乘號「×」（既有 159／163，例 `IAPProduct.json|/dataList/14/desc`）
-- KR 方括號裡的韓文名稱譯成中文，方括號照樣保留（`[…]`）（既有 198／199，例 `ShotcutKeyManual.json|/dataList/4/content`）
 
 ## 常見錯誤
 

@@ -340,7 +340,7 @@ func TestGuidesFor(t *testing.T) {
 		},
 		{
 			"no speakers", "MainUIText.json", nil,
-			[]string{"guides/base.md", "guides/families/ui.md"},
+			[]string{"guides/base.md", "guides/families/ui.md", "guides/shared/korean-brackets.md"},
 		},
 		{
 			"character of the file comes before the speakers and is not repeated",
@@ -353,7 +353,7 @@ func TestGuidesFor(t *testing.T) {
 		},
 		{
 			"skill file has no character guide", "Skills_personality-08.json", nil,
-			[]string{"guides/base.md", "guides/families/ally.md"},
+			[]string{"guides/base.md", "guides/families/ally.md", "guides/shared/battle-text.md", "guides/shared/korean-brackets.md"},
 		},
 		{
 			"unknown speaker is skipped", "StoryData/S1037B.json", []string{"nobody", "dante"},
@@ -710,7 +710,10 @@ func TestToValidate(t *testing.T) {
 	}
 }
 
-// copyRules copies the files Lint reads into a fresh root.
+// copyRules copies the files Lint reads into a fresh root. The families'
+// include: lines of the repo are left out of the routing: the tests that need
+// one add their own (addInclude), and the byte totals the tests count do not
+// depend on the size of the shared guides of the repo.
 func copyRules(t *testing.T) string {
 	t.Helper()
 	dst := t.TempDir()
@@ -728,6 +731,9 @@ func copyRules(t *testing.T) string {
 			if err != nil {
 				return err
 			}
+			if filepath.ToSlash(rel) == "guides/routing.yaml" {
+				data = withoutIncludes(data)
+			}
 			return os.WriteFile(filepath.Join(dst, rel), data, 0o644)
 		})
 		if err != nil {
@@ -735,6 +741,13 @@ func copyRules(t *testing.T) string {
 		}
 	}
 	return dst
+}
+
+// withoutIncludes drops the include: lines of the families from routing.
+func withoutIncludes(routing []byte) []byte {
+	lines := strings.SplitAfter(string(routing), "\n")
+	lines = slices.DeleteFunc(lines, func(l string) bool { return strings.HasPrefix(l, "    include: [") })
+	return []byte(strings.Join(lines, ""))
 }
 
 // edit rewrites one file under root, requiring that the edit changes it.

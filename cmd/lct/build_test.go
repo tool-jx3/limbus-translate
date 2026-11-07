@@ -49,6 +49,7 @@ func buildRepo(t *testing.T) string {
 		copyFile(t, filepath.Join(repoRoot, f), filepath.Join(root, f))
 	}
 	copyDir(t, filepath.Join(repoRoot, "guides/families"), filepath.Join(root, "guides/families"))
+	copyDir(t, filepath.Join(repoRoot, "guides/shared"), filepath.Join(root, "guides/shared"))
 	if _, err := runBootstrapJSON(t, root, "--upstream", upstream); err != nil {
 		t.Fatal(err)
 	}

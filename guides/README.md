@@ -51,4 +51,10 @@
 - 「既有 a／b」：raw-20261105 該族群 KR 符合條件、已有譯文紀錄（Paratranz、Claude、人工，不含照抄）的 b 個單位中，a 個照這個寫法；只收 a／b ≥ 80% 且 b ≥ 30 的慣例
 - 只適用於單一族群的規則寫在該族群的檔，不寫進 `base.md`；`base.md` 只放各族群共通的規則
 - 統計數字由 `docs/research/scripts/family_guides.py` 重算（讀 `lct site` 的輸出）；改了寫法或重算時，指引裡的數字與腳本的樣式一起改
-- 同一條規則寫在幾個族群的檔裡（技能文字的句型：`아군`、`피해량 +N%`、`최종 위력`、`(턴당 N회)`、`정신력 N 회복` 等在 ally、enemy、keywords、mirror；「方括號裡的韓文照譯」在 ui、events、mirror、stage、keywords）：改其中一份時，其他族群的同一條要一起改
+
+## 共用指引（`shared/<主題>.md`）
+
+- 幾個族群都用、但不是所有族群都用的規則寫在共用指引，只寫一份；用到的族群在 `routing.yaml` 以 `include:` 引入。不必另立四節，只寫用得到的節（節名與族群指引相同）
+- 「既有 a／b」是引入它的族群合計，同樣要 ≥ 80% 且 b ≥ 30；每個引入的族群自己有單位時，比例也不低於 80%（腳本逐族群列出）。規則只在部分族群成立時，不引入其他族群
+- 現有：`battle-text.md`（ally、enemy、keywords、mirror：括號用半形、`(턴당 N회)`、`최종 위력`、`정신력／체력 N 회복`、`아군`、`처치 시`）；`korean-brackets.md`（ui、events、stage、rpg、ally、enemy、keywords、mirror：方括號裡的韓文照譯）
+- 只在兩三個族群成立、不另立共用檔的，仍寫在各族群的檔：`[X] N 부여`（ally、enemy）、`피해량 +N%`（ally、enemy、mirror；keywords 只有 79%）。改其中一份時，其他族群的同一條要一起改

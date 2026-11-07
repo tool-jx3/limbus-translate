@@ -72,15 +72,19 @@ families:
   - id: rpg
     nodes: ["RPGSystem/"]
     guide: guides/families/rpg.md
+    include: [guides/shared/korean-brackets.md]
   - id: ally
     nodes: ["Skills_personality", "Skills_Ego_Personality", "Skills_Ego", "Skills_Assist", "Passives_Assist", "Passive", "Passives", "Personalit*", "Egos", "Assist", "EGO"]
     guide: guides/families/ally.md
+    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: enemy
     nodes: ["Enemies", "Skills", "Skills_Enemy*", "Skills_Abnormality*", "Passives_Enemy*", "Passives_Abnormality*"]
     guide: guides/families/enemy.md
+    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: keywords
     nodes: ["Bufs", "Bufs_*", "BattleKeywords", "BattleKeywords_*", "UnitKeyword", "SkillTag", "BuffAbilities", "KeywordDictionary", "MentalCondition", "PanicInfo", "ResistText", "AttributeText", "ChoiceEventKeyword"]
     guide: guides/families/keywords.md
+    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: abnormality
     nodes: ["AbnormalityGuides*", "AbDlg", "AbEvents*", "AbEventsResultLog*"]
     glossary: warn
@@ -88,18 +92,22 @@ families:
   - id: mirror
     nodes: ["MirrorDungeon*", "EGOgift", "EGOgift_*", "EgoGiftCategory", "ActionEvents", "ActionEvents_*", "DungeonStartBuffs", "TutorialMirrorDungeon", "StoryTheaterMirrorWorld*"]
     guide: guides/families/mirror.md
+    include: [guides/shared/battle-text.md, guides/shared/korean-brackets.md]
   - id: railway
     nodes: ["Railway*"]
     guide: guides/families/railway.md
   - id: stage
     nodes: ["StageNode", "Stage*", "DungeonArea", "DungeonName", "ThreadDungeon", "HellsChicken*", "ChoiceEvent*", "BattleResultHint", "BattleHint", "SuccessRate", "StoryTheater*", "ScenarioModelCodes", "Characters", "AssociationName", "Story", "IntroduceCharacter", "Ch", "Fools", "Limbus", "ProjectGS*", "Quest", "reward", "RewardDungeonUI"]
     guide: guides/families/stage.md
+    include: [guides/shared/korean-brackets.md]
   - id: ui
     nodes: ["*UI", "*UIText", "*Ui", "UI", "UI_*", "Tutorial*", "LoginUIText", "FAQ", "ErrorCodeMsg", "Filter", "FormationName*", "FileDownloadDesc", "ShotcutKeyManual", "SkinUI", "UnlockCode", "UserAgreements", "ReturnPolicy", "UserInfo", "UserBanner", "IntroductionPreset", "TooltipUIText", "kr", "LobbyBGM*", "SelectLoadingCgUi", "ShopItemCount", "Items", "UserTicket", "AnnouncerTicketUIPopup", "AnnouncerVoiceType", "Announcer", "IAP*", "GachaTitle", "GachaNotice", "BattlePass*", "ChapterBannerConfig", "SeasonTitle", "DanteAbility*"]
     guide: guides/families/ui.md
+    include: [guides/shared/korean-brackets.md]
   - id: events
     nodes: ["Event*", "*EventText", "DailyLoginEvent", "CultivationEvent", "RecordMemoryEvent", "TwiningThreadsEvent", "NightCleanUpEvent", "AttendanceCheckS", "AttendanceRewardsText", "DawnOfGreenEventText", "BossRaidUI", "PilgrimageUIText", "CouponUIText"]
     guide: guides/families/events.md
+    include: [guides/shared/korean-brackets.md]
   - id: unsorted
     nodes: []
     guide: guides/families/unsorted.md
