@@ -251,14 +251,16 @@ func whenItem(when string) string {
 }
 
 // whenError describes what is wrong with a GuideRule.When, or returns "".
-func whenError(when string) string {
+// characters are the character ids a character: tag may name; nil leaves that
+// tag unjudged.
+func whenError(when string, characters []string) string {
 	if prefix, _, ok := cutScopeToken(when); ok && !isTagWhen(when) {
 		return fmt.Sprintf("when %q: %s is not a node or a tag (chapter:, character:, event:)", when, prefix)
 	}
 	if when == "" {
 		return "when is empty"
 	}
-	if msg := scopeItemError(whenItem(when), nil, nil); msg != "" {
+	if msg := scopeItemError(whenItem(when), nil, characters); msg != "" {
 		return fmt.Sprintf("when %q: %s", when, msg)
 	}
 	return ""

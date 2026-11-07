@@ -2111,7 +2111,7 @@ func writeGuide(t *testing.T, root, rel string, size int) {
 // speakers. Nothing is listed twice.
 func TestGuidesForLayers(t *testing.T) {
 	root := copyRules(t)
-	for _, g := range []string{"tag", "node-sub", "node-top", "chapter"} {
+	for _, g := range []string{"tag", "node-sub", "node-top", "chapter", "ev"} {
 		writeGuide(t, root, "guides/families/"+g+".md", 10)
 	}
 	addGuideRules(t, root, `  - when: "character:meursault"
@@ -2128,6 +2128,14 @@ func TestGuidesForLayers(t *testing.T) {
     guide: guides/families/chapter.md
   - when: "event:nothing"
     guide: guides/families/chapter.md
+  - when: "chapter:10"
+    guide: guides/families/chapter.md
+  - when: "event:walpu*"
+    guide: guides/families/tag.md
+  - when: "Bufs-walpu*"
+    guide: guides/families/tag.md
+  - when: "event:tkt"
+    guide: guides/families/ev.md
 `)
 	r, err := rules.Load(root)
 	if err != nil {
@@ -2142,6 +2150,17 @@ func TestGuidesForLayers(t *testing.T) {
 	}
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("GuidesFor = %v, want %v", got, want)
+	}
+	// a chapter: tag and an event: tag that fit; a node and a tag naming the
+	// same guide list it once
+	if got, want := r.GuidesFor("StoryData/S1037B.json", nil), []string{"guides/base.md", "guides/families/story-main.md", "guides/families/chapter.md"}; !reflect.DeepEqual(got, want) {
+		t.Errorf("GuidesFor(chapter:10 file) = %v, want %v", got, want)
+	}
+	if got := r.GuidesFor("Bufs-walpu7.json", nil); strings.Count(strings.Join(got, " "), "guides/families/tag.md") != 1 {
+		t.Errorf("GuidesFor(Bufs-walpu7) = %v, want tag.md once", got)
+	}
+	if got := r.GuidesFor("Bufs-tkt.json", nil); !slices.Contains(got, "guides/families/ev.md") {
+		t.Errorf("GuidesFor(Bufs-tkt) = %v, want the event: guide", got)
 	}
 	// a file no entry fits keeps the old result
 	if got, want := r.GuidesFor("MainUIText.json", nil), []string{"guides/base.md", "guides/families/ui.md"}; !reflect.DeepEqual(got, want) {
@@ -2166,6 +2185,9 @@ func TestLintGuideRules(t *testing.T) {
 		{"bad tag", func(t *testing.T, root string) {
 			addGuideRules(t, root, "  - when: \"chapter:x\"\n    guide: guides/families.md\n")
 		}, []string{"guides/routing.yaml", "chapter:x"}},
+		{"unknown character tag", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"character:nobody\"\n    guide: guides/families.md\n")
+		}, []string{"guides/routing.yaml", "character:nobody"}},
 		{"empty when", func(t *testing.T, root string) {
 			addGuideRules(t, root, "  - when: \"\"\n    guide: guides/families.md\n")
 		}, []string{"guides/routing.yaml", "when"}},
@@ -2190,7 +2212,7 @@ func TestLintGuideRules(t *testing.T) {
 	}
 	root := copyRules(t)
 	writeGuide(t, root, "guides/families/ok.md", 4096)
-	addGuideRules(t, root, "  - when: \"Skills*\"\n    guide: guides/families/ok.md\n  - when: \"chapter:1\"\n    guide: guides/families/ok.md\n")
+	addGuideRules(t, root, "  - when: \"Skills*\"\n    guide: guides/families/ok.md\n  - when: \"chapter:1\"\n    guide: guides/families/ok.md\n  - when: \"character:dante\"\n    guide: guides/families/ok.md\n")
 	if errs := rules.Lint(root); len(errs) != 0 {
 		t.Errorf("Lint of a sound guides: list: %v", lintMessages(errs))
 	}
@@ -2222,6 +2244,32 @@ func TestLintGuideTotal(t *testing.T) {
 	}
 }
 
+// Files with the same guide list are warned of in one line: the total, how
+// many files, and one example.
+func TestLintGuideTotalGrouped(t *testing.T) {
+	root := copyRules(t)
+	writeGuide(t, root, "guides/base.md", 20000)
+	writeGuide(t, root, "guides/families/enemy.md", 10000)
+	writeGuide(t, root, "guides/families/a.md", 4000)
+	writeGuide(t, root, "guides/families/b.md", 3000)
+	addGuideRules(t, root, "  - when: \"Skills*\"\n    guide: guides/families/a.md\n  - when: \"Skills_Enemy\"\n    guide: guides/families/b.md\n")
+	ws := rules.LintRoutingWarnings(root, []string{"Skills_Enemy-a.json", "Skills_Enemy-b.json"})
+	var over []string
+	for _, w := range ws {
+		if strings.Contains(w.Message, "35000") {
+			over = append(over, w.Message)
+		}
+	}
+	if len(over) != 1 {
+		t.Fatalf("want one grouped warning, got %d: %v", len(over), over)
+	}
+	for _, want := range []string{"37000", "2 files", "Skills_Enemy-a.json"} {
+		if !strings.Contains(over[0], want) {
+			t.Errorf("warning does not mention %q: %s", want, over[0])
+		}
+	}
+}
+
 // meaning is the sense the entry stands for; it needs a source.
 func TestLintMeaningNeedsSources(t *testing.T) {
 	for _, tc := range []struct {
@@ -2250,9 +2298,10 @@ func TestLintSourceForms(t *testing.T) {
 		"game:Bufs.json#/dataList/0/name":               false,
 		"game:StoryData/S001A.json#/dataList/3/content": false,
 		"https://limbuscompany.wiki.gg/wiki/Bleed":      false,
-		"game:Bufs.json":      true,
-		"game:#/a":            true,
-		"game:Bufs.json#/a b": true,
+		"game:Bufs.json":                           true,
+		"game:#/a":                                 true,
+		"game:Bufs.json#/a b":                      true,
+		"https://limbuscompany.wiki.gg/wiki/A B":   true,
 		"http://limbuscompany.wiki.gg/wiki/Bleed":  true,
 		"https://namu.wiki/w/Bleed":                true,
 		"https://limbuscompany.wiki.gg.evil.com/x": true,

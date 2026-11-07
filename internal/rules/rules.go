@@ -119,8 +119,8 @@ func characterFiles(root string) ([]string, error) {
 // layered: the base guide, the guide of the file's family, the guides: entries
 // of the routing that fit the file by node and then those that fit by tag (each
 // in list order), the character the file belongs to, then the characters of
-// the speakers (ids, in order of appearance). Nothing is listed twice, and a speaker id that is not a
-// character is left out.
+// the speakers (ids, in order of appearance). Nothing is listed twice, and a
+// speaker id that is not a character is left out.
 func (r *Rules) GuidesFor(file string, speakers []string) []string {
 	guides := []string{BaseGuide}
 	add := func(p string) {

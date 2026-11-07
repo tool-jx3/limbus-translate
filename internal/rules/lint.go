@@ -318,9 +318,10 @@ func (l *linter) routing() {
 		l.report(RoutingFile, "%v", err)
 	}
 
+	characters := l.characterIDs()
 	for i, g := range rt.Guides {
 		label := fmt.Sprintf("guides entry %d", i+1)
-		if msg := whenError(g.When); msg != "" {
+		if msg := whenError(g.When, characters); msg != "" {
 			l.report(RoutingFile, "%s: %s", label, msg)
 		}
 		switch {
@@ -707,7 +708,7 @@ func LintRoutingWarnings(root string, krFiles []string) []LintError {
 }
 
 // guideTotalWarnings warns of the KR files whose GuidesFor (no speakers) add
-// up to more than MaxGuideTotalBytes.
+// up to more than MaxGuideTotalBytes, one line for each distinct guide list.
 func guideTotalWarnings(root string, krFiles []string) []LintError {
 	r, err := Load(root)
 	if err != nil {
@@ -724,15 +725,36 @@ func guideTotalWarnings(root string, krFiles []string) []LintError {
 		}
 		return n
 	}
-	var out []LintError
+	// group the files by their guide list: one warning per composition
+	type group struct {
+		total   int64
+		files   int
+		example string
+	}
+	groups := map[string]*group{}
+	var order []string
 	for _, f := range krFiles {
 		var total int64
-		for _, g := range r.GuidesFor(f, nil) {
+		guides := r.GuidesFor(f, nil)
+		for _, g := range guides {
 			total += size(g)
 		}
-		if total > MaxGuideTotalBytes {
-			out = append(out, LintError{File: RoutingFile, Message: fmt.Sprintf("the guides of %s add up to %d bytes, over %d", f, total, MaxGuideTotalBytes)})
+		if total <= MaxGuideTotalBytes {
+			continue
 		}
+		key := strings.Join(guides, "\x00")
+		g := groups[key]
+		if g == nil {
+			g = &group{total: total, example: f}
+			groups[key] = g
+			order = append(order, key)
+		}
+		g.files++
+	}
+	var out []LintError
+	for _, key := range order {
+		g := groups[key]
+		out = append(out, LintError{File: RoutingFile, Message: fmt.Sprintf("the guides of %d files (e.g. %s) add up to %d bytes, over %d", g.files, g.example, g.total, MaxGuideTotalBytes)})
 	}
 	return out
 }
