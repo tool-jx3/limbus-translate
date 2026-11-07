@@ -67,11 +67,21 @@ SHARED = [
 ]
 
 # 括號（base.md 第 7 條、shared/battle-text.md）：譯文去掉標籤後有括號的單位，分只用半形、只用全形、兩者都有。
-# 戰鬥說明類照半形；KR 在韓文音譯後的括號附原文（라 노제(la nausée)）時寫「中文意思（原文）」是例外。
-# 「半形括號」的 a：去掉這種「中文（原文）」後不剩全形括號的單位。
+# 括號依文本類型：說明戰鬥效果的文字（EFFECT）用半形，其他用全形。效果文字裡，KR 在韓文音譯後的括號附原文
+# （라 노제(la nausée)）時寫「中文意思（原文）」是例外。
+# 「半形括號」的 a：效果文字裡去掉這種「中文（原文）」後不剩全形括號的單位；「全形括號」的 a：其他文字裡沒有半形括號的單位。
+# 效果文字：ally、enemy、keywords 的全部；其他族群的檔名樣式、檔名樣式＋欄位、單位 key。rpg 照 families/rpg.md 用全形。
+EFFECT_FAMILIES = {"ally", "enemy", "keywords"}
+EFFECT_FILES = {
+    "mirror": r"^(EGOgift|DungeonStartBuffs|MirrorDungeonBattleRewardCase|EgoGiftCategory)",
+    "abnormality": r"^AbEventsResultLog",
+    "stage": r"^(ChoiceEventEffect|BattleResultHint|BattleHint)",
+}
+EFFECT_FIELDS = {"mirror": (r"^ActionEvents", "messageDesc")}
+EFFECT_KEYS = {"Walpu4EventText.json|/dataList/11/content", "Walpu4EventText.json|/dataList/22/content"}  # 任務條件裡的狀態
 TAG = re.compile(r"<[^<>]*>")
 LATIN = r"[A-Za-zÀ-ÿ'’][A-Za-zÀ-ÿ'’ ,.!?-]*"
-ORIGINAL_KR = re.compile(r"[가-힣] ?\(" + LATIN + r"\)")
+ORIGINAL_KR = re.compile(r"[가-힣] ?\((?![A-Z]+\))" + LATIN + r"\)")  # 不含全大寫的 (KST)
 ORIGINAL_ZH = re.compile(r"[一-鿿] ?（" + LATIN + r"）")
 HALF = re.compile(r"[()]")
 FULL = re.compile(r"[（）]")
@@ -162,42 +172,71 @@ def main():
         print(f"位置 {label}: {dict(where)}")
 
 
+def effect(family, path, field, key):
+    if family in EFFECT_FAMILIES or key in EFFECT_KEYS:
+        return True
+    if family in EFFECT_FILES and re.search(EFFECT_FILES[family], path):
+        return True
+    if family in EFFECT_FIELDS:
+        pattern, name = EFFECT_FIELDS[family]
+        return bool(re.search(pattern, path)) and field == name
+    return False
+
+
 def brackets(files):
     by_family = {}
-    half_rule = [0, 0, []]
+    # 規則 → 族群 → [a, b, 例子]
+    rules = {"半形括號（效果文字）": {}, "中文意思（原文）（效果文字）": {}, "全形括號（其他文字）": {}}
+    spacing = Counter()  # 其他文字「（」前是不是半形空格；效果文字 [ID] 後接半形括號有沒有空格
     for d in files:
         family = d["family"]
         c = by_family.setdefault(family, Counter())
         for u in d["units"]:
             if u.get("o") not in RECORDED:
                 continue
+            key = d["path"] + "|" + u["p"]
             zh = TAG.sub("", u.get("zh") or "")
+            is_effect = effect(family, d["path"], u["f"], key)
+            if is_effect and ORIGINAL_KR.search(u["kr"]):
+                r = rules["中文意思（原文）（效果文字）"].setdefault(family, [0, 0, []])
+                r[1] += 1
+                if ORIGINAL_ZH.search(zh):
+                    r[0] += 1
+                    r[2].append((len(u["kr"]), key))
+            if is_effect:
+                spacing["[ID] ("] += len(re.findall(r"\[[A-Za-z][A-Za-z0-9_]*\] \(", zh))
+                spacing["[ID]("] += len(re.findall(r"\[[A-Za-z][A-Za-z0-9_]*\]\(", zh))
+            else:
+                for m in re.finditer(r"(.)（", zh):
+                    spacing["空格（" if m.group(1) == " " else "其他（"] += 1
             half, full = bool(HALF.search(zh)), bool(FULL.search(zh))
             if not (half or full):
                 continue
             c["both" if half and full else "half" if half else "full"] += 1
-            if family in BATTLE:
-                half_rule[1] += 1
-                if not FULL.search(ORIGINAL_ZH.sub("", zh)):
-                    half_rule[0] += 1
-                    half_rule[2].append((len(u["kr"]), d["path"] + "|" + u["p"]))
+            if is_effect:
+                r = rules["半形括號（效果文字）"].setdefault(family, [0, 0, []])
+                ok = not FULL.search(ORIGINAL_ZH.sub("", zh))
+            else:
+                r = rules["全形括號（其他文字）"].setdefault(family, [0, 0, []])
+                ok = not half
+            r[1] += 1
+            if ok:
+                r[0] += 1
+                r[2].append((len(u["kr"]), key))
     for family, c in sorted(by_family.items(), key=lambda x: -sum(x[1].values())):
         print(f"括號 {family:16} 只用半形 {c['half']:5}  只用全形 {c['full']:5}  兩者都有 {c['both']:4}")
-    for label, families in (("戰鬥說明類", BATTLE), ("其他族群", [f for f in by_family if f not in BATTLE])):
-        c = sum((by_family[f] for f in families), Counter())
-        print(f"括號 {label}：只用半形 {c['half']}  只用全形 {c['full']}  兩者都有 {c['both']}  共 {sum(c.values())}")
-    show("shared/battle-text", "半形括號", half_rule[0], half_rule[1], shortest(half_rule[2]))
-    hits = total = 0
-    examples = []
-    for family in BATTLE:
-        for key, u in recorded(files, family):
-            if not ORIGINAL_KR.search(u["kr"]):
+    print(f"括號 其他文字的「（」前是半形空格 {spacing['空格（']}／{spacing['空格（'] + spacing['其他（']}；"
+          f"效果文字 [ID] 後接半形括號：有空格 {spacing['[ID] (']}、沒有 {spacing['[ID](']}")
+    for label, parts in rules.items():
+        for scope, families in (("全部", None), ("battle-text 引入的族群", BATTLE)):
+            chosen = {f: v for f, v in parts.items() if families is None or f in families}
+            if not chosen:
                 continue
-            total += 1
-            if ORIGINAL_ZH.search(TAG.sub("", u.get("zh") or "")):
-                hits += 1
-                examples.append((len(u["kr"]), key))
-    show("shared/battle-text", "中文意思（原文）", hits, total, shortest(examples))
+            hits = sum(v[0] for v in chosen.values())
+            total = sum(v[1] for v in chosen.values())
+            show("括號/" + scope, label, hits, total, shortest([e for v in chosen.values() for e in v[2]]))
+            print("   " + "  ".join(f"{f} {v[0]}/{v[1]}" + ("" if v[0] / v[1] >= 0.8 else " <80%")
+                                   for f, v in sorted(chosen.items(), key=lambda x: -x[1][1])))
 
 
 def show(family, label, hits, total, examples):

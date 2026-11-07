@@ -25,9 +25,10 @@
    - 針對 `<>`，前後則無須空格。
    - 當 `[]` 與 `[]` 相鄰時，彼此之間空一格半形。
    - `[TabExplain]` 用來阻擋關鍵字觸發，無任何效果。不可以在 `[` 前空格，但在 `]` 後若需空格可空格。
-7. 括號用全形「（）」（已決定 2026-11-07，取代原指引「任何括號都使用半形」）。
+7. 括號依文本類型（已決定 2026-11-07，取代原指引「任何括號都使用半形」）：
+   - 說明戰鬥效果的文字用半形「()」：技能、被動、狀態、E.G.O 飾品、敵人的名稱與說明，鏡牢的起始增益與事件選項的效果（`messageDesc`），異想體事件的結果紀錄（`AbEventsResultLog`）、選擇事件的效果（`ChoiceEventEffect`）、戰鬥提示（`BattleResultHint`）、活動任務的戰鬥條件；細則見 `guides/shared/battle-text.md`
+   - 其他文字用全形「（）」：劇情、台詞、介面、教學、目錄、事件敘述與 RPG（含道具說明，見 `families/rpg.md`），戰鬥族群檔案裡的這類文字也是（`MirrorDungeonUI*`、`TutorialMirrorDungeon`、`StoryTheaterMirrorWorld`、事件的 `desc`／`message`／`result`／`name`）；括號內只有時區、佔位符、英文或編號時也用全形（「（GMT+8）」「（{0}）」）；全形「（」前不加半形空格
    - 例外：非劇情檔把 ruby 改寫成的「Y(X)」用半形（劇情的 ruby 保留為標籤，見「ruby（劇情與其他檔案）」）；亂碼與遮蔽字串的符號照原樣（見「亂碼與遮蔽字串」）
-   - 戰鬥說明類族群（ally、enemy、keywords、mirror）照它們共用的 `guides/shared/battle-text.md`，用半形
 8. `，`／`。`／`：` 使用全形符號。
    - （補充，已決定）`E.G.O` 一律寫成「E.G.O」，結尾不加「.」。KR 句末寫 `E.G.O.` 時，最後一點是句號，寫「。」（「阿賴耶的E.G.O。」）；句中直接接後面的字（「E.G.O的感應度」）（使用者確認 2026-11-04）
 9. 針對具有強度與層數的狀態，請依範例格式書寫：「1**級**流血**強度**」、「1**回**流血 」、「1**層**易損」。
@@ -42,7 +43,7 @@
 - **第 6 條**：`[ID]` 前空格正確 53,364 處、後空格正確 53,657 處。例外集中在兩類：
   - 複合名稱：`釘[Console]`、`釘[Breakpoint]`，`[` 前不空格（543 處多屬此類）
   - 全大寫的替換變數：`擁有[ATTRIBUTES]屬性攻擊技能的`，前後都不空格（250 處多屬此類）
-- **第 7 條**：raw-20261105 有譯文紀錄、譯文（去掉標籤）有括號的單位：ally、enemy、keywords、mirror 共 6,916 個，只用半形 6,665、只用全形 232、兩者都有 19；其他 12 個族群共 720 個，只用全形 627（87%）、只用半形 77、兩者都有 16。各族群只用全形／有括號：ui 203／243、rpg 121／126、identity 82／86、story-main 65／69、abnormality 46／59、stage 42／49、dante-note 24／26、story-interlude 14／19、railway 14／17、events 6／15、announcer 7／7、ego-voice 3／4（`docs/research/scripts/family_guides.py`）。不符的舊譯由 `rules/rewrite/2026-11-07-brackets-*.yaml` 統一
+- **第 7 條**：raw-20261105 有譯文紀錄、譯文（去掉標籤）有括號的單位（`docs/research/scripts/family_guides.py`）：效果文字 6,898 個，除了「中文意思（原文）」都只用半形的 6,791（98%；ally 3,129／3,138、enemy 1,621／1,627、keywords 1,378／1,436、mirror 649／682、abnormality 7／8、stage 5／5、events 2／2）；其他文字 738 個，沒有半形的 647（88%；ui 203／243、rpg 121／126、identity 82／86、story-main 65／69、abnormality 45／51、stage 40／44、mirror 23／33、dante-note 24／26、story-interlude 14／19、railway 14／17、events 6／13、announcer 7／7、ego-voice 3／4）。其他文字的全形「（」前是半形空格的 5／598 處。不符的舊譯由 `rules/rewrite/2026-11-07-brackets-*.yaml` 統一
 - **第 8 條**：半形逗號只出現 3 處，已是全形
 - **第 9 條**在 `[]` 寫法下的實際格式：
   - 強度：`2級 [Vibration] 強度`（5,037 行）
