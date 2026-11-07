@@ -154,13 +154,13 @@
   jp: ボス
   en: Boss
   zh: BOSS
-  also: [老大, 首領]
+  also: [老大, 首領, 幫主]
   not_files: ["StoryData/**"]
   status: approved
   match: word
   category: [system, combat]
   evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
-  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除。2026-11-06 加 also：遊戲用語寫 BOSS；指幫派或組織的頭頭寫 `also` 的「老大」（口語、幫派頭頭）或「首領」（較正式、組織首腦），選這兩個不需要 note。人格稱號「마리아치 보스」（流浪樂隊 領袖）見下一條
+  notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除。2026-11-06 加 also：遊戲用語寫 BOSS；指幫派或組織的頭頭寫 `also` 的「老大」（口語、幫派頭頭）或「首領」（較正式、組織首腦），選這兩個不需要 note。2026-11-07 加 also：幫派的頭頭也可寫「幫主」（「콩콩이파 보스」→「豆豆幫幫主」，既有 5 個）（使用者決定 2026-11-07）。人格稱號「마리아치 보스」（流浪樂隊 領袖）見下一條
   sources: ["game:Enemies-a1c7p2.json#/dataList/4/desc"]
 
 - kr: 마리아치 보스
@@ -2289,11 +2289,11 @@
   jp: 星明かり
   en: Starlight
   zh: 星芒
-  not_files: ["family:story-main"]
+  not_files: ["family:story-main", "group:EGOVoiceDig/", "group:AbEvents", "group:ActionEvents"]
   status: approved
   category: [system]
   evidence: { kr_lines: 163, approved: 154, forbidden: 0 }
-  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：story-main 族群（劇情、歌詞、地下城節點等檔，StoryData 1 句、DungeonNode 2 句）不用此譯名（3 句 0 句用），排除
+  notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：story-main 族群（劇情、歌詞、地下城節點等檔，StoryData 1 句、DungeonNode 2 句）不用此譯名（3 句 0 句用），排除。2026-11-07 依詞義另排除 group:EGOVoiceDig/、group:AbEvents、group:ActionEvents：這三組的 5 個單位都是一般的星光（「별빛으로 만들어드릴」化作星光、「별빛이 반짝이면」星星們的光芒），0 個用此譯名（使用者決定 2026-11-07）
   sources: ["game:MirrorDungeonUI_2.json#/dataList/37/content"]
 
 - kr: 반격
@@ -2438,8 +2438,9 @@
   en: Ahem
   zh: 咳
   status: approved
+  check: "off"
   evidence: { kr_lines: 109, approved: 102, forbidden: 0 }
-  notes: Paratranz 詞彙表：清喉嚨的狀聲詞
+  notes: Paratranz 詞彙表：清喉嚨的狀聲詞。2026-11-07 改為一般用語（check 設為 off）：狀聲詞依語氣寫「唔嗯」「嗯哼」「咕哼」等也可以（既有 108 個中 6 個）（使用者決定 2026-11-07）
   sources: ["game:StoryData/1D102A.json#/dataList/15/content"]
 
 - kr: 안전팀
@@ -2907,10 +2908,11 @@
   jp: 過ぎし日
   en: Bygone Days
   zh: 往昔
+  not_files: ["group:StoryData/", "group:ActionEvents"]
   status: approved
   category: [ego]
   evidence: { kr_lines: 43, approved: 40, forbidden: 0 }
-  notes: Paratranz 詞彙表：E.G.O名稱
+  notes: Paratranz 詞彙表：E.G.O名稱。2026-11-07 依詞義排除 group:StoryData/、group:ActionEvents：這兩組的 3 個單位都是一般的「過去的日子」（「지난 날처럼」「지난 날의 과오」），0 個用此譯名；E.G.O 名稱的 22 個用法都在 Skills、Egos 與 GachaTitle（使用者決定 2026-11-07）
   sources: ["game:Egos.json#/dataList/61/name"]
 
 - kr: 상영관
@@ -5350,10 +5352,11 @@
   jp: 次のターン開始時
   en: next turn start
   zh: 下回合開始時
+  also: [下回合]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 117, approved: 104, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：「다음 턴 시작 시 X 얻음」寫「下回合使自身獲得X」這類只寫「下回合」的也算（既有 13 個缺漏中 12 個）（使用者決定 2026-11-07）
   sources: ["game:EGOgift_MirrorDungeon-mowe.json#/dataList/1/simpleDesc/0/simpleDesc"]
 
 - kr: 키워드
@@ -5363,8 +5366,9 @@
   not_files: ["*walpu*", "*Refraction*", "Railway*"]
   status: approved
   match: substring
+  check: "off"
   evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞。2026-11-06 族群改由節點組成，改寫成原族群的樣式，範圍不變
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞。2026-11-06 族群改由節點組成，改寫成原族群的樣式，範圍不變。2026-11-07 改為一般用語（check 設為 off）：「화상 키워드 E.G.O 기프트」寫「燒傷E.G.O飾品」這類把「關鍵字」併入的寫法也可以（既有 123 個中 15 個；UI_Mission_MirrorDungeon5Event 的 10 個 EN 也省略 Keyword）（使用者決定 2026-11-07）
   sources: ["game:MainUIText.json#/dataList/501/content"]
 
 - kr: 유리창
@@ -5380,9 +5384,10 @@
 - kr: 피해량이 80%만큼 감소하고
   en: "-80% damage"
   zh: 使本技能造成的傷害-80%
+  also: [使本技能造成的最終傷害-80%]
   status: approved
   evidence: { kr_lines: 78, approved: 69, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：KR 是「최종 피해량이 80%만큼 감소하고」時寫「使本技能造成的最終傷害-80%」（既有 4 個）（使用者決定 2026-11-07）
   sources: ["game:Skills_Abnormality-a1c9p1.json#/dataList/20/levelList/0/desc"]
 
 - kr: 엔케팔린 모듈
@@ -5419,10 +5424,11 @@
   jp: 精神力ダメージ
   en: SP damage
   zh: 理智傷害
+  not_files: ["group:StoryData/", "group:ActionEvents", "group:StageNode"]
   status: approved
   category: [combat]
   evidence: { kr_lines: 29, approved: 26, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 依詞義排除 group:StoryData/、group:ActionEvents、group:StageNode：這三組的 3 個單位都是一般的精神傷害（「정신 피해로만 전멸」、「상당한 정신 피해를 입은 채」），0 個用此譯名（使用者決定 2026-11-07）
   sources: ["game:Skills_Enemy.json#/dataList/82/levelList/0/desc"]
 
 - kr: 레미니센스
@@ -5438,10 +5444,11 @@
   jp: 縛られた王
   en: The King in Binds
   zh: 受縛之王
+  also: [縛王]
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 29, approved: 25, forbidden: 0 }
-  notes: Paratranz 詞彙表：異想體（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：異想體（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：簡稱「縛王」也算（「묶인 왕의 앞으로」→「縛王御前」、「묶인 왕의 손짓에」→「縛王抬手示意」，既有 3 個）（使用者決定 2026-11-07）
   sources: ["game:AbEvents_Refraction4.json#/dataList/2/title"]
 
 - kr: 속도와 상관없이 이 스킬과 합을 할 수 있음
@@ -5458,10 +5465,11 @@
   jp: "(出撃人員を基準とする)"
   en: Only counts Identities on the field
   zh: 以參戰人員為基準
+  also: [戰場上]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 20, approved: 16, forbidden: 0 }
-  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 加 also：把括號併進條件、寫「若戰場上隸屬於…的友方單位不低於N名」的也算（EN「only counts Identities on the field」，既有 4 個）（使用者決定 2026-11-07）
   sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/11/desc"]
 
 - kr: 전투 패시브
