@@ -774,7 +774,7 @@
           "level": 1,
           "name": "諧律和聲",
           "abName": "歌唱機",
-          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力 +1(最多+6)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多+10%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復8點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
+          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力 +1(最多+6)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多+10%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每個技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復8點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -813,7 +813,7 @@
           "level": 3,
           "name": "諧律和聲",
           "abName": "歌唱機",
-          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+8</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+15</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">10</style>點理智值 (最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
+          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+8</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+15</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每個技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">10</style>點理智值 (最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
           "coinlist": [
             {
               "coindescs": [
@@ -852,7 +852,7 @@
           "level": 4,
           "name": "諧律和聲",
           "abName": "歌唱機",
-          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+10</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+20</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">12</style>點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
+          "desc": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+10</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+20</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每個技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">12</style>點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
           "coinlist": [
             {
               "coindescs": [

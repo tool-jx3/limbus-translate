@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261105",
   "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
-  "rules_commit": "c922394a49d63ef61b5b3a06f96064886eac0e68",
-  "built_at": "2026-11-07T08:54:58Z",
+  "rules_commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce",
+  "built_at": "2026-11-07T13:04:48Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1000,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "a23b82199520ec86adaa4ad372741c83881b9b692116896572540a2b4a6dd6de",
-    "zh-TW_text_raw-20261105.zip": "5e1bfa327df99df5a7e52999d7e641fb9c879650dc44838328636684ac70dc41"
+    "zh-TW_complete_raw-20261105.zip": "713e3fcb8dba57d1ce2c2de59d62bd53f32ec151eff66686ff8b99d18b32f170",
+    "zh-TW_text_raw-20261105.zip": "4b7993f181a6dc558bfc2c7872fce5010818846a38f58df05738bcb9be033f47"
   },
   "report": {
     "origins": {
-      "claude": 18077,
+      "claude": 18076,
       "copy": 90961,
-      "human": 43,
-      "paratranz": 163794
+      "human": 80,
+      "paratranz": 163758
     },
     "pending": 0,
     "needs_review": 0,
@@ -33,7 +33,7 @@
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 956
+      "term-missing": 674
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -484,10 +484,10 @@
     "notes": [],
     "new_translated": 73,
     "shown": {
-      "claude": 18077,
+      "claude": 18076,
       "copy": 90961,
-      "human": 43,
-      "paratranz": 163794
+      "human": 80,
+      "paratranz": 163758
     },
     "misaligned": [
       {
@@ -6112,7 +6112,7 @@
       "kr": "시즌 2 레미니센스 기간 내에 순환 횟수 5 이상, 누적 턴 수 200턴 이하로 2호선 클리어 시 획득",
       "zh": [
         "在第2賽季 追憶 期間以不少於5的巡迴數，不多於200的累計回合數通關2號線後獲得",
-        "以巡迴數5以上，總計回合數150以下通關2號線時獲得"
+        "第2賽季 追憶期間內，以巡迴數5以上，總計回合數200以下通關2號線時獲得"
       ],
       "keys": [
         "UserBanner.json|/dataList/17/desc",

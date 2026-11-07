@@ -1435,7 +1435,7 @@
         {
           "level": 4,
           "name": "在東部大鬧一場吧",
-          "desc": "<style=\"highlight\">[StartBattle] 根據總計嫉妒共鳴數相應改變本技能效果\n- 總計不低於4時，反擊時改為使用「加倍奉還吧」進行反擊\n- 總計不低於6時，反擊時改為使用「銘刻於心」進行反擊\n(位於儀錶盤左側的技能優先觸發，每回合最多觸發2次)</style>\n[StartBattle] 使自身獲得已失去體力<style=\"highlight\">30%</style>的護盾(每回合最多1次)",
+          "desc": "<style=\"highlight\">[StartBattle] 根據總計嫉妒完全共鳴數相應改變本技能效果\n- 總計不低於4時，反擊時改為使用「加倍奉還吧」進行反擊\n- 總計不低於6時，反擊時改為使用「銘刻於心」進行反擊\n(位於儀錶盤左側的技能優先觸發，每回合最多觸發2次)</style>\n[StartBattle] 使自身獲得已失去體力<style=\"highlight\">30%</style>的護盾(每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [

@@ -2324,7 +2324,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若自身帶有的 [Combustion] 強度不低於20級或現存體力低於體力上限的50%，則重複使用本硬幣(每次技能最多1次)"
+                  "desc": "[OnSucceedAttack] 若自身帶有的 [Combustion] 強度不低於20級或現存體力低於體力上限的50%，則重複使用本硬幣(每個技能最多1次)"
                 }
               ]
             }
@@ -2374,7 +2374,7 @@
                   "desc": "[OnSucceedAttack] 使目標增加2級 [Combustion] 強度"
                 },
                 {
-                  "desc": "[OnSucceedAttack] 若自身帶有的 [Combustion] 強度不低於20級或現存體力低於體力上限的50%，則重複使用本硬幣(每次技能最多1次)"
+                  "desc": "[OnSucceedAttack] 若自身帶有的 [Combustion] 強度不低於20級或現存體力低於體力上限的50%，則重複使用本硬幣(每個技能最多1次)"
                 },
                 {
                   "desc": "<style=\"highlight\">[OnSucceedAttack] 對全體目標追加本硬幣最終傷害量20%的暴怒傷害(最多20%)\n- 若此硬幣為最後使用的硬幣，則使自身恢復等同於上述效果造成的傷害的體力值</style>"

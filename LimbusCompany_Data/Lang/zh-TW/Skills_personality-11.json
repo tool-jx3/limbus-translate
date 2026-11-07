@@ -615,7 +615,7 @@
         {
           "level": 1,
           "name": "魔彈的代價",
-          "desc": "[WhenUse] 使自身獲得1層 [FreischutzShotCount] (每回合最多1層)\n[EndSkillAll] 根據自身帶有的 [FreischutzShotCount] 層數，使自身失去相應的理智值",
+          "desc": "[WhenUse] 使自身獲得1層 [FreischutzShotCount] (每回合最多1次)\n[EndSkillAll] 根據自身帶有的 [FreischutzShotCount] 層數，使自身失去相應的理智值",
           "coinlist": [
             {}
           ]
@@ -623,7 +623,7 @@
         {
           "level": 4,
           "name": "魔彈的代價",
-          "desc": "[WhenUse] 使自身獲得1層 [FreischutzShotCount] (每回合最多1層)\n[WhenUse] 使本技能的最終威力+(自身的 [FreischutzShotCount] 層數×2)\n[EndSkillAll] 根據自身帶有的 [FreischutzShotCount] 層數，使自身失去相應的理智值",
+          "desc": "[WhenUse] 使自身獲得1層 [FreischutzShotCount] (每回合最多1次)\n[WhenUse] 使本技能的最終威力+(自身的 [FreischutzShotCount] 層數×2)\n[EndSkillAll] 根據自身帶有的 [FreischutzShotCount] 層數，使自身失去相應的理智值",
           "coinlist": [
             {}
           ]

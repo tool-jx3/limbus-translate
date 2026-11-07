@@ -63,7 +63,7 @@
         },
         {
           "abilityID": 92481,
-          "simpleDesc": "與速度較低的敵人拚點時，增加拚點威力[TabExplain]並使造成的傷害增加[TabExplain]"
+          "simpleDesc": "與速度較低的敵人拚點時，增加最終威力[TabExplain]並使造成的傷害增加[TabExplain]"
         },
         {
           "abilityID": 92482,

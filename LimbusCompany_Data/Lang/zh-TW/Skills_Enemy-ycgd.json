@@ -87,7 +87,7 @@
         {
           "level": 1,
           "name": "閃避",
-          "desc": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1層)",
+          "desc": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [
@@ -180,7 +180,7 @@
         {
           "level": 1,
           "name": "閃避",
-          "desc": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1層)",
+          "desc": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1次)",
           "coinlist": [
             {
               "coindescs": [

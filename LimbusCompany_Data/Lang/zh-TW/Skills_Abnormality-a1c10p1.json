@@ -1161,7 +1161,7 @@
         {
           "level": 1,
           "name": "更加自我……再一次，更加自我……！",
-          "desc": "[DuelCounter]\n[RougeThreeCocoon] 專用技能\n\n[DefeatDuel] 本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂。",
+          "desc": "[DuelCounter]\n[RougeThreeCocoon] 專用技能\n\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂。",
           "coinlist": [
             {
               "coindescs": [

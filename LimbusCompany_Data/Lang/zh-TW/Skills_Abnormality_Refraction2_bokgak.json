@@ -1198,7 +1198,7 @@
         {
           "level": 1,
           "name": "要來一杯嗎？",
-          "desc": "[StartBattle] 下回合召喚折射的精靈酒\n[DefeatDuel] 折射的精靈酒會以體力上限50%的體力被召喚\n[DefeatDuel] 使本技能造成的傷害量-80%，且本技能造成的傷害不會使目標陷入混亂",
+          "desc": "[StartBattle] 下回合召喚折射的精靈酒\n[DefeatDuel] 折射的精靈酒會以體力上限50%的體力被召喚\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [

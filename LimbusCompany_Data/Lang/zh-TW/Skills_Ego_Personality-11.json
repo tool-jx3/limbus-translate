@@ -571,7 +571,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限6%的體力值(每次技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限6%的體力值(每個技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
                   "summary": "[UnBrokenCoinOnSucceedAttack] 恢復體力值"
                 },
                 {
@@ -596,7 +596,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限8%的體力值(每次技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限8%的體力值(每個技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
                   "summary": "[UnBrokenCoinOnSucceedAttack] 恢復體力值"
                 },
                 {
@@ -624,7 +624,7 @@
                   "desc": "[SuperCoin]"
                 },
                 {
-                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限10%的體力值(每次技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
+                  "desc": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限10%的體力值(每個技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
                   "summary": "[UnBrokenCoinOnSucceedAttack] 恢復體力值"
                 },
                 {

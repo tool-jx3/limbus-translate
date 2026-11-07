@@ -1139,17 +1139,17 @@
     {
       "id": 1120801,
       "name": "黑雲刀",
-      "desc": "拚點勝利時，使目標增加1級 [Laceration] 強度(最多3級)"
+      "desc": "拚點勝利時，使目標增加1級 [Laceration] 強度(每回合最多3次)"
     },
     {
       "id": 1120821,
       "name": "黑雲劍法",
-      "desc": "速度值最低的1名友方單位命中 [Laceration] 強度不低於10級的敵方單位時，下回合對該敵方單位施加1層攻擊等級降低 (每回合最多3級)"
+      "desc": "速度值最低的1名友方單位命中 [Laceration] 強度不低於10級的敵方單位時，下回合對該敵方單位施加1層攻擊等級降低 (每回合最多3次)"
     },
     {
       "id": 1120831,
       "name": "黑雲劍法",
-      "desc": "速度值最低的1名友方單位命中 [Laceration] 強度不低於7級的敵方單位時，下回合對該敵方單位施加1層攻擊等級降低 (每回合最多3級)"
+      "desc": "速度值最低的1名友方單位命中 [Laceration] 強度不低於7級的敵方單位時，下回合對該敵方單位施加1層攻擊等級降低 (每回合最多3次)"
     },
     {
       "id": 1050802,
@@ -1873,12 +1873,12 @@
     {
       "id": 1061102,
       "name": "戰術性射擊支援",
-      "desc": "若句點事務所 希斯克利夫處於 [Retreat_FullStop] 狀態，或作為待命人員編入隊伍，則強化句點事務所 代表 鴻璐的2技能與3技能"
+      "desc": "若句點事務所 收尾人 希斯克利夫處於 [Retreat_FullStop] 狀態，或作為待命人員編入隊伍，則強化句點事務所 代表 鴻璐的2技能與3技能"
     },
     {
       "id": 1061111,
       "name": "戰術性射擊支援",
-      "desc": "若句點事務所 希斯克利夫處於 [Retreat_FullStop] 狀態，或作為待命人員編入隊伍，則強化句點事務所 代表 鴻璐的2技能與3技能\n\n戰鬥開始時，若自身的 [Breath] 強度不低於20級，則使自身獲得1回 [Breath]"
+      "desc": "若句點事務所 收尾人 希斯克利夫處於 [Retreat_FullStop] 狀態，或作為待命人員編入隊伍，則強化句點事務所 代表 鴻璐的2技能與3技能\n\n戰鬥開始時，若自身的 [Breath] 強度不低於20級，則使自身獲得1回 [Breath]"
     },
     {
       "id": 1061121,
@@ -2578,7 +2578,7 @@
     {
       "id": 1091421,
       "name": "敬死去的同伴們，予以頌歌",
-      "desc": "使理智值最低的1名友方單位使用消耗 [Charge] 或特殊充能並且增加 [Sinking] 的技能時，造成的傷害+10% (不包含E.G.O技能)"
+      "desc": "使理智值最低的1名友方單位使用消耗 [Charge] 或特殊充能並且增加 [Sinking] 的技能時，造成的傷害+10% (不包括E.G.O技能)"
     },
     {
       "id": 1111401,
@@ -2726,7 +2726,7 @@
     {
       "id": 1011503,
       "name": "神諭代行者 / 解禁",
-      "desc": "當自身解放階段低於 [UnlockBuffAlly_2] 時，並且在回合中執行了 [IndexPrescript_Base_2nd]：\n回合結束時，使自身恢復4點理智值，並使自身獲得1層 [BlessingOfIndexPrescriptAlly] (每回合最多1次)\n- 若執行 [IndexPrescript_Base_2nd] 時，主要目標帶有 [IndexPrescriptTargetToEnemy]：\n則改為恢復8點理智值，並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n當自身解放階段到達 [UnlockBuffAlly_2] 時，並且在回合中執行了 [IndexPrescriptYi_2]：\n回合結束時，使自身恢復4點理智值 (每回合最多1次)\n- 若執行 [IndexPrescript_Base_2nd] 時，自身的 [StackYisangSpecialSkill] 層數為9：\n則改為恢復8點理智值，並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n若回合中未能執行 [IndexPrescript_Base_2nd]：\n回合結束時，對自身施加5層 [KarmaOfIndexAlly]\n- 自身帶有 [UnlockBuffAlly_3] 時，則不會對自身施加 [KarmaOfIndexAlly]\n- 若自身在交戰開始時嘗試執行 [IndexPrescript_Base_2nd]，但於交戰期間無法指定目標，則回合結束時不會對自身施加 [KarmaOfIndexAlly] (僅限自身解放階段未達到 [UnlockBuffAlly_2] 前)\n\n自身帶有的 [BlessingOfIndexPrescriptAlly] 層數分別在3/6/9層時，將於回合結束時使自身獲得 [UnlockBuffAlly_1] / [UnlockBuffAlly_2] / [UnlockBuffAlly_3]\n若自身帶有 [UnlockBuffAlly_3]，則於回合開始時，使自身獲得 [Shin_IndexFingerYisang]",
+      "desc": "當自身解放階段低於 [UnlockBuffAlly_2] 時，並且在回合中執行了 [IndexPrescript_Base_2nd]：\n回合結束時，使自身恢復4點理智值，並使自身獲得1層 [BlessingOfIndexPrescriptAlly] (每回合最多1次)\n- 若執行 [IndexPrescript_Base_2nd] 時，主要目標帶有 [IndexPrescriptTargetToEnemy]：\n則改為恢復8點理智值，並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n當自身解放階段到達 [UnlockBuffAlly_2] 時，並且在回合中執行了 [IndexPrescriptYi_2]：\n回合結束時，使自身恢復4點理智值 (每回合最多1次)\n- 若執行 [IndexPrescript_Base_2nd] 時，自身的 [StackYisangSpecialSkill] 層數為9：\n則改為恢復8點理智值，並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n若回合中未能執行 [IndexPrescript_Base_2nd]：\n回合結束時，對自身施加5層 [KarmaOfIndexAlly]\n- 自身帶有 [UnlockBuffAlly_3] 時，則不會對自身施加 [KarmaOfIndexAlly]\n- 若自身在戰鬥開始時嘗試執行 [IndexPrescript_Base_2nd]，但於交戰期間無法指定目標，則回合結束時不會對自身施加 [KarmaOfIndexAlly] (僅限自身解放階段未達到 [UnlockBuffAlly_2] 前)\n\n自身帶有的 [BlessingOfIndexPrescriptAlly] 層數分別在3/6/9層時，將於回合結束時使自身獲得 [UnlockBuffAlly_1] / [UnlockBuffAlly_2] / [UnlockBuffAlly_3]\n若自身帶有 [UnlockBuffAlly_3]，則於回合開始時，使自身獲得 [Shin_IndexFingerYisang]",
       "summary": ""
     },
     {
@@ -2995,7 +2995,7 @@
     {
       "id": 1111501,
       "name": "復仇帳簿 - 蜘蛛巢特別條款",
-      "desc": "回合結束時：\n- 對本回合中對友方單位造成最多技能傷害的1名敵方單位施加 [RetaliationBook]\n- 對本回合中對自身造成最多技能傷害的1名敵方單位施加 [RetaliationBookSpiderOutis]\n\n交戰開始時，根據嫉妒共鳴連鎖數，使自身獲得等量的 [ResentmentSpiderOutis] 層數 (最多7層)\n\n交戰期間滿足下列條件時，使自身獲得2層 [ResentmentSpiderOutis]\n- 自身遭到其他單位的技能命中時 (每回合最多2次)\n- 蜘蛛巢 中指 弟子 - 以實瑪利遭到其他單位的技能命中時 (每回合最多1次)\n\n交戰期間滿足下列條件時，使自身獲得1層 [ResentmentSpiderOutis] (適用於除自身以及蜘蛛巢 中指 弟子 - 以實瑪利之外的友方單位)\n- 屬於中指的友方單位遭到其他單位的技能命中時 (每人每回合最多1次)\n- 屬於蜘蛛巢的友方單位遭到其他單位的技能命中時 (每人每回合最多1次)\n\n自身獲得 [ResentmentSpiderOutis] 層數時，若對方帶有 [RetaliationBook]，則額外使獲得層數增加1層\n\n自身每消耗5層 [ResentmentSpiderOutis] 時，使自身獲得1層 [ReinforcedTattooSpiderOutis]\n\n【蜘蛛巢 中指 弟子 - 以實瑪利專屬效果】\n當蜘蛛巢 中指 父輩 - 奧提斯遭到其他單位的技能命中時，使以實瑪利獲得2層 [ResentmentIshmael] (每回合最多1次)"
+      "desc": "回合結束時：\n- 對本回合中對友方單位造成最多技能傷害的1名敵方單位施加 [RetaliationBook]\n- 對本回合中對自身造成最多技能傷害的1名敵方單位施加 [RetaliationBookSpiderOutis]\n\n戰鬥開始時，根據嫉妒共鳴連鎖數，使自身獲得等量的 [ResentmentSpiderOutis] 層數 (最多7層)\n\n交戰期間滿足下列條件時，使自身獲得2層 [ResentmentSpiderOutis]\n- 自身遭到其他單位的技能命中時 (每回合最多2次)\n- 蜘蛛巢 中指 弟子 - 以實瑪利遭到其他單位的技能命中時 (每回合最多1次)\n\n交戰期間滿足下列條件時，使自身獲得1層 [ResentmentSpiderOutis] (適用於除自身以及蜘蛛巢 中指 弟子 - 以實瑪利之外的友方單位)\n- 屬於中指的友方單位遭到其他單位的技能命中時 (每人每回合最多1次)\n- 屬於蜘蛛巢的友方單位遭到其他單位的技能命中時 (每人每回合最多1次)\n\n自身獲得 [ResentmentSpiderOutis] 層數時，若對方帶有 [RetaliationBook]，則額外使獲得層數增加1層\n\n自身每消耗5層 [ResentmentSpiderOutis] 時，使自身獲得1層 [ReinforcedTattooSpiderOutis]\n\n【蜘蛛巢 中指 弟子 - 以實瑪利專屬效果】\n當蜘蛛巢 中指 父輩 - 奧提斯遭到其他單位的技能命中時，使以實瑪利獲得2層 [ResentmentIshmael] (每回合最多1次)"
     },
     {
       "id": 1111502,

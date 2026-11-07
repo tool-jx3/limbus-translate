@@ -2658,7 +2658,7 @@
         {
           "level": 1,
           "name": "被選定的對手",
-          "desc": "帶有 [SojiAbiBuffOne]、[SojiAbiBuffTwo]、[SojiAbiBuffThree] 效果的單位當中，<color=#ff6000><mark=#ff000040><b><u>僅有相應效果的目標可與本技能拚點</u></b></mark></color>\n本技能不會觸發目標的守備技能\n\n[DefeatDuel] 對自身施加1層 [Vulnerable]\n[DefeatDuel] 解除目標帶有的 [SojiAbiBuffOne]、[SojiAbiBuffTwo]、[SojiAbiBuffThree]\n\n[OnDirectAttack] 本技能的最終威力+10",
+          "desc": "帶有 [SojiAbiBuffOne]、[SojiAbiBuffTwo]、[SojiAbiBuffThree] 效果的單位當中，<color=#ff6000><mark=#ff000040><b><u>僅有相應效果的目標可與本技能拚點</u></b></mark></color>\n本技能不會觸發守備技能\n\n[DefeatDuel] 對自身施加1層 [Vulnerable]\n[DefeatDuel] 解除目標帶有的 [SojiAbiBuffOne]、[SojiAbiBuffTwo]、[SojiAbiBuffThree]\n\n[OnDirectAttack] 本技能的最終威力+10",
           "coinlist": [
             {
               "coindescs": [

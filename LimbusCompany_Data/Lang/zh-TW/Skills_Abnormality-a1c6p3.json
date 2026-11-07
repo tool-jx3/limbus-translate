@@ -785,7 +785,7 @@
         {
           "level": 1,
           "name": "忍耐",
-          "desc": "[WhenUse] 下回合使自身獲得1層 [Enhancement] (每回合最多1層)",
+          "desc": "[WhenUse] 下回合使自身獲得1層 [Enhancement] (每回合最多1次)",
           "coinlist": [
             {}
           ]

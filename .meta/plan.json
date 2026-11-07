@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261105",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "c922394a49d63ef61b5b3a06f96064886eac0e68",
+  "rules_commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce",
   "changes": {
     "unchanged": 272757,
     "moved": 0,
@@ -35,63 +35,139 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 43,
+    "applied": 80,
     "moved": [],
     "expired": []
   },
   "requeue_applied": [],
   "rewrite_applied": [
     {
-      "id": "2026-11-07-brackets-1-full",
-      "units": 43
-    },
-    {
-      "id": "2026-11-07-brackets-2-half",
-      "units": 104
-    },
-    {
-      "id": "2026-11-07-brackets-3-id-space",
-      "units": 5
-    },
-    {
-      "id": "2026-11-07-brackets-4-codes",
-      "units": 36
-    },
-    {
-      "id": "2026-11-07-brackets-5-outer",
+      "id": "2026-11-08-certain-skill",
       "units": 2
     },
     {
-      "id": "2026-11-07-brackets-6-list",
+      "id": "2026-11-08-clash-power-up",
+      "units": 4
+    },
+    {
+      "id": "2026-11-08-combat-passive-skill",
+      "units": 2
+    },
+    {
+      "id": "2026-11-08-combat-passive",
       "units": 1
     },
     {
-      "id": "2026-11-07-brackets-7-space",
-      "units": 7
+      "id": "2026-11-08-combat-start-2",
+      "units": 2
     },
     {
-      "id": "2026-11-07-caution-bracket",
+      "id": "2026-11-08-combat-start",
+      "units": 2
+    },
+    {
+      "id": "2026-11-08-damage-80-verb",
+      "units": 1
+    },
+    {
+      "id": "2026-11-08-damage-80",
+      "units": 4
+    },
+    {
+      "id": "2026-11-08-defense-not-triggered",
+      "units": 2
+    },
+    {
+      "id": "2026-11-08-defense-skill-tutorial",
+      "units": 1
+    },
+    {
+      "id": "2026-11-08-ego-resource",
       "units": 3
     },
     {
-      "id": "2026-11-07-enkephalin-module",
-      "units": 53
+      "id": "2026-11-08-ego-skill-except",
+      "units": 7
     },
     {
-      "id": "2026-11-07-enkephalin-typo",
-      "units": 9
+      "id": "2026-11-08-fullstop-fixer",
+      "units": 2
     },
     {
-      "id": "2026-11-07-module-bare",
+      "id": "2026-11-08-grace-of-stars",
+      "units": 2
+    },
+    {
+      "id": "2026-11-08-guarantee-ticket",
+      "units": 4
+    },
+    {
+      "id": "2026-11-08-limbus-pass-package",
       "units": 8
     },
     {
-      "id": "2026-11-07-module-sphere",
+      "id": "2026-11-08-limbus-pass-reward",
+      "units": 13
+    },
+    {
+      "id": "2026-11-08-lobotomy-branch",
       "units": 1
     },
     {
-      "id": "2026-11-07-modules-other",
-      "units": 12
+      "id": "2026-11-08-low-morale-tutorial",
+      "units": 3
+    },
+    {
+      "id": "2026-11-08-luxcavation",
+      "units": 2
+    },
+    {
+      "id": "2026-11-08-mirror-dungeon",
+      "units": 13
+    },
+    {
+      "id": "2026-11-08-once-per-turn",
+      "units": 6
+    },
+    {
+      "id": "2026-11-08-osir-team",
+      "units": 4
+    },
+    {
+      "id": "2026-11-08-railway-line2",
+      "units": 3
+    },
+    {
+      "id": "2026-11-08-refresh",
+      "units": 3
+    },
+    {
+      "id": "2026-11-08-reminiscence-line2",
+      "units": 3
+    },
+    {
+      "id": "2026-11-08-rest-stop",
+      "units": 4
+    },
+    {
+      "id": "2026-11-08-reward-card",
+      "units": 3
+    },
+    {
+      "id": "2026-11-08-skill-once-ego09",
+      "units": 3
+    },
+    {
+      "id": "2026-11-08-skill-once",
+      "units": 20
+    },
+    {
+      "id": "2026-11-08-target-defense",
+      "units": 2
+    },
+    {
+      "id": "2026-11-08-thrice-per-turn",
+      "units": 3
     }
   ],
   "frozen_changed": [],

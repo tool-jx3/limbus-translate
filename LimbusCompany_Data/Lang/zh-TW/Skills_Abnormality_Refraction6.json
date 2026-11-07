@@ -759,7 +759,7 @@
         {
           "level": 1,
           "name": "積雨",
-          "desc": "[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [YesdragonSelfRefraction]</u></b></mark></color>，則使本技能的基礎威力+1\n[WhenUse] 若自身的 <color=#ff6000><mark=#ff000040><b><u>[YesdragonSelfRefraction] 層數不低於5層</u></b></mark></color>，則使本技能的硬幣威力+1、攻擊容量+1\n[DefeatDuel] 使本技能造成的傷害量-80%，且本技能造成的傷害無法使目標陷入混亂",
+          "desc": "[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [YesdragonSelfRefraction]</u></b></mark></color>，則使本技能的基礎威力+1\n[WhenUse] 若自身的 <color=#ff6000><mark=#ff000040><b><u>[YesdragonSelfRefraction] 層數不低於5層</u></b></mark></color>，則使本技能的硬幣威力+1、攻擊容量+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -1024,7 +1024,7 @@
         {
           "level": 1,
           "name": "積雨",
-          "desc": "[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [YesdragonSelfRefraction]</u></b></mark></color>，則使本技能的基礎威力+1\n[WhenUse] 若自身的 <color=#ff6000><mark=#ff000040><b><u>[YesdragonSelfRefraction] 層數不低於5層</u></b></mark></color>，則使本技能的硬幣威力+1、攻擊容量+1\n[DefeatDuel] 使本技能造成的傷害量-80%，且本技能造成的傷害無法使目標陷入混亂",
+          "desc": "[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [YesdragonSelfRefraction]</u></b></mark></color>，則使本技能的基礎威力+1\n[WhenUse] 若自身的 <color=#ff6000><mark=#ff000040><b><u>[YesdragonSelfRefraction] 層數不低於5層</u></b></mark></color>，則使本技能的硬幣威力+1、攻擊容量+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂",
           "coinlist": [
             {
               "coindescs": [
@@ -1094,7 +1094,7 @@
         {
           "level": 1,
           "name": "龍淚成濤",
-          "desc": "可無視速度值與本技能拚點\n[WhenUse] 直到本技能結束，自身不會因受到傷害而陷入混亂\n[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [DragonLanceRefraction]</u></b></mark></color>，使本技能的硬幣威力+1、攻擊容量+1\n- 若自身的 [DragonLanceRefraction] 層數為最大值，則使本技能造成的傷害額外+100%\n[DefeatDuel] 使本技能造成的傷害量-80%，且本技能造成的傷害無法使目標陷入混亂\n[DefeatDuel] 直到下回合，對自身施加3層 [Vulnerable]\n[EndSkillAll] 使自身的 [DragonLanceRefraction] 減少至1層",
+          "desc": "可無視速度值與本技能拚點\n[WhenUse] 直到本技能結束，自身不會因受到傷害而陷入混亂\n[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [DragonLanceRefraction]</u></b></mark></color>，使本技能的硬幣威力+1、攻擊容量+1\n- 若自身的 [DragonLanceRefraction] 層數為最大值，則使本技能造成的傷害額外+100%\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂\n[DefeatDuel] 直到下回合，對自身施加3層 [Vulnerable]\n[EndSkillAll] 使自身的 [DragonLanceRefraction] 減少至1層",
           "coinlist": [
             {
               "coindescs": [

@@ -24,7 +24,7 @@
     {
       "id": 133104,
       "name": "畢生之作：緹比雅",
-      "desc": "回合結束時，若自身帶有206層的 [HumanBoneTheRings] 以及5層的 [HumanBloodTheRings]，則消耗所有層數並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合將發動強力攻擊\n\n<color=#ff6000><mark=#ff000040><b><u>自身準備使用強力攻擊時，每被技能攻擊一次，則對自身施加1層 [PlusCoinValueDown] 以及1層 [ResultReduction]</u></b></mark></color>(每個技能最多觸發1次；每回合最多3次)",
+      "desc": "回合結束時，若自身帶有206層的 [HumanBoneTheRings] 以及5層的 [HumanBloodTheRings]，則消耗所有層數並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合將發動強力攻擊\n\n<color=#ff6000><mark=#ff000040><b><u>自身準備使用強力攻擊時，每被技能攻擊一次，則對自身施加1層 [PlusCoinValueDown] 以及1層 [ResultReduction]</u></b></mark></color>(每個技能最多1次；每回合最多3次)",
       "flavor": "傾注自己所有的肉體反覆雕琢而成的傑作：緹比雅"
     },
     {
@@ -412,7 +412,7 @@
     {
       "id": 133901,
       "name": "帝王的子民",
-      "desc": "回合開始時，使自身獲得50層 [DefenseBug] (每經過1回合，使自身獲得的層數減少3層，最多減少20層)\n- 若自身帶有 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking]，\n<color=#ff6000><mark=#ff000040><b><u>則使效果強度隨機減少，並使自身的 [DefenseBug] 層數等量減少</u></b></mark></color>\n- 若該效果強度為1級，但回數不低於2回，則改為減少回數\n\n<color=#ff6000><mark=#ff000040><b><u>若自身失去所有 [DefenseBug]</u></b></mark></color>，則下回合觸發以下效果\n- 自身不會獲得 [DefenseBug]，而改為對自身施加10層 [DefenseDown]\n- 獲得敵方單位最少屬性的3種罪孽屬性碎片各2個\n- 回合結束時，解除自身帶有的所有負面狀態並獲得 [DefenseBug]",
+      "desc": "回合開始時，使自身獲得50層 [DefenseBug] (每經過1回合，使自身獲得的層數減少3層，最多減少20層)\n- 若自身帶有 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking]，\n<color=#ff6000><mark=#ff000040><b><u>則使效果強度隨機減少，並使自身的 [DefenseBug] 層數等量減少</u></b></mark></color>\n- 若該效果強度為1級，但回數不低於2回，則改為減少回數\n\n<color=#ff6000><mark=#ff000040><b><u>若自身失去所有 [DefenseBug]</u></b></mark></color>，則下回合觸發以下效果\n- 自身不會獲得 [DefenseBug]，而改為對自身施加10層 [DefenseDown]\n- 獲得敵方單位最少屬性的3種罪孽碎片各2個\n- 回合結束時，解除自身帶有的所有負面狀態並獲得 [DefenseBug]",
       "flavor": "無論何時、無論何地，她們都會從面與面交接的邊緣爬出來。"
     },
     {

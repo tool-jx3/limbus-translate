@@ -178,15 +178,15 @@
     },
     {
       "id": "tuto_00_03_04_02",
-      "content": "理智值下降至一定程度的敵人會進入<color=#f8c200><士氣低下><color=#ebcaa2>、抑或<color=#f8c200><恐慌><color=#ebcaa2>的負面狀態。"
+      "content": "理智值下降至一定程度的敵人會進入<color=#f8c200><士氣低落><color=#ebcaa2>、抑或<color=#f8c200><恐慌><color=#ebcaa2>的負面狀態。"
     },
     {
       "id": "tuto_00_03_04_03",
-      "content": "受到<color=#f8c200><士氣低下><color=#ebcaa2>、<color=#f8c200><恐慌><color=#ebcaa2>效果影響的敵人，其負面狀態將會顯示於此。"
+      "content": "受到<color=#f8c200><士氣低落><color=#ebcaa2>、<color=#f8c200><恐慌><color=#ebcaa2>效果影響的敵人，其負面狀態將會顯示於此。"
     },
     {
       "id": "tuto_00_03_04_04",
-      "content": "<color=#f8c200><士氣低下><color=#ebcaa2>、<color=#f8c200><恐慌><color=#ebcaa2>的效果會有個體差異。\n點擊底下的圖示，即可確認目前正受到哪種狀態影響。"
+      "content": "<color=#f8c200><士氣低落><color=#ebcaa2>、<color=#f8c200><恐慌><color=#ebcaa2>的效果會有個體差異。\n點擊底下的圖示，即可確認目前正受到哪種狀態影響。"
     },
     {
       "id": "tuto_00_04_01_01",
@@ -334,7 +334,7 @@
     },
     {
       "id": "tuto_01_02_04_07_title",
-      "content": "支援技能"
+      "content": "支援被動"
     },
     {
       "id": "tuto_01_02_04_08",
@@ -398,7 +398,7 @@
     },
     {
       "id": "tuto_01_03_02_02",
-      "content": "此外，若經理<color=#f8c200>未直接下達指令<color=#ebcaa2>，罪人們將不會自行使用<color=#f8c200><防禦技能><color=#ebcaa2>，因此在使用<color=#f8c200>自動裝填技能<color=#ebcaa2>功能時，請多加注意。"
+      "content": "此外，若經理<color=#f8c200>未直接下達指令<color=#ebcaa2>，罪人們將不會自行使用<color=#f8c200><守備技能><color=#ebcaa2>，因此在使用<color=#f8c200>自動裝填技能<color=#ebcaa2>功能時，請多加注意。"
     },
     {
       "id": "tuto_01_04_01_01_title",

@@ -2696,7 +2696,7 @@
         {
           "level": 4,
           "name": "將凝結的血液纏繞三百三十圈",
-          "desc": "以(75-(自身的 [KarmaOfIndexAlly] 層數/2))%的機率使用打擊武器\n- 令使用打擊武器的硬幣造成的傷害<style=\"highlight\">+15%</style>\n若本技能被 [IndexPrescriptTargetMarkToEnemy] 標記，則使本技能<style=\"highlight\">的硬幣威力+1</style>，造成的傷害<style=\"highlight\">+20%</style>\n自身的 [Breath] 強度與目標的 [Sinking] 強度之和<style=\"highlight\">每有6級，使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 從本技能的最後一枚硬幣起，使(自身的 [UnlockBuff_Base] 階段-1)枚硬幣轉化為 [SuperCoin]\n[WhenUse] 使自身獲得2回 [Breath]",
+          "desc": "以(75-(自身的 [KarmaOfIndexAlly] 層數/2))%的機率使用打擊武器\n- 令使用打擊武器的硬幣造成的傷害<style=\"highlight\">+15%</style>\n若本技能被 [IndexPrescriptTargetMarkToEnemy] 標記，則使本技能<style=\"highlight\">的拚點威力+1</style>，造成的傷害<style=\"highlight\">+20%</style>\n自身的 [Breath] 強度與目標的 [Sinking] 強度之和<style=\"highlight\">每有6級，使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 從本技能的最後一枚硬幣起，使(自身的 [UnlockBuff_Base] 階段-1)枚硬幣轉化為 [SuperCoin]\n[WhenUse] 使自身獲得2回 [Breath]",
           "coinlist": [
             {},
             {
@@ -2958,7 +2958,7 @@
             {
               "coindescs": [
                 {
-                  "desc": "[OnSucceedAttack] 使自身獲得6回 [Charge] (每技能最多1次)"
+                  "desc": "[OnSucceedAttack] 使自身獲得6回 [Charge] (每個技能最多1次)"
                 },
                 {
                   "desc": "[OnSucceedAttack] 使目標增加1級 [Burst] 強度"

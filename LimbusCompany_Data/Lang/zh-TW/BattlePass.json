@@ -106,7 +106,7 @@
     },
     {
       "id": "only_paid_lunacy_for_battlepass_levelup",
-      "content": "※購買通行證等級需要花費300付費狂氣。"
+      "content": "※購買戰鬥通行證等級需要花費300付費狂氣。"
     },
     {
       "id": "buy_battlepass_word",
@@ -210,7 +210,7 @@
     },
     {
       "id": "battlepass_ask_purchase_limbus_pass_package",
-      "content": "購買巴士通行證時，\n會在{0}期間提供以下福利。"
+      "content": "購買巴士通行證組合包時，\n會在{0}期間提供以下福利。"
     },
     {
       "id": "battlepass_purchase_desc_pass",

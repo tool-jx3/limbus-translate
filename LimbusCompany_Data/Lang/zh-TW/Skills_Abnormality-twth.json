@@ -283,7 +283,7 @@
         {
           "level": 1,
           "name": "將你膚下那脈動的紅色顏料揮灑開來吧。",
-          "desc": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+100%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
+          "desc": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發目標的守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+100%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [
@@ -407,7 +407,7 @@
         {
           "level": 1,
           "name": "將你膚下那脈動的紅色顏料揮灑開來吧。",
-          "desc": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+200%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
+          "desc": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發目標的守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+200%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
           "coinlist": [
             {
               "coindescs": [

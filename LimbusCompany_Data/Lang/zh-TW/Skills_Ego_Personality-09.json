@@ -646,7 +646,7 @@
                   "desc": "主要目標每帶有1級 [Combustion] 強度，使本硬幣對其造成的傷害+1%(最多+50%)"
                 },
                 {
-                  "desc": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多4名，每回合最多1次)"
+                  "desc": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多4名，每個技能最多1次)"
                 }
               ]
             }
@@ -680,7 +680,7 @@
                   "desc": "主要目標每帶有1級 [Combustion] 強度，使本硬幣對其造成的傷害+1%(最多+50%)"
                 },
                 {
-                  "desc": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多<style=\"highlight\">5</style>名，每回合最多1次)"
+                  "desc": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多<style=\"highlight\">5</style>名，每個技能最多1次)"
                 }
               ]
             }
@@ -717,7 +717,7 @@
                   "desc": "主要目標每帶有1級 [Combustion] 強度，使本硬幣對其造成的傷害上升<style=\"highlight\">2</style>%(最多<style=\"highlight\">100</style>%)"
                 },
                 {
-                  "desc": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多<style=\"highlight\">6</style>名，每回合最多1次)"
+                  "desc": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多<style=\"highlight\">6</style>名，每個技能最多1次)"
                 }
               ]
             }

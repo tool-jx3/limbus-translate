@@ -74,7 +74,7 @@
     },
     {
       "id": "purchase_personality_skill_by_starlight_desc",
-      "content": "是否消耗<color=#f8c200>{0}</color>經費進行技能替換？"
+      "content": "是否消耗<color=#f8c200>{0}</color>星芒進行技能替換？"
     },
     {
       "id": "mirror_starlight_result_tooltip_item_detect_personality_skill",

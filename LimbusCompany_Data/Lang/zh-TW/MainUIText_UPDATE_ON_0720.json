@@ -14,11 +14,11 @@
     },
     {
       "id": "mainui_reinforce_battle_passive",
-      "content": "被動技能 [{0}] 強化"
+      "content": "戰鬥被動 [{0}] 強化"
     },
     {
       "id": "mainui_battle_passsive_reinforce",
-      "content": "被動技能強化"
+      "content": "戰鬥被動技能強化"
     },
     {
       "id": "mainui_support_passsive_reinforce",
