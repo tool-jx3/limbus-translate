@@ -29,7 +29,9 @@ type Verdict struct {
 // glossary rendering is only a warning in CheckNew; here it is hard where the
 // entry behind it is check: hard (a provisional term never is), unless the
 // note names the term, the way the entry itself matches a KR text. A family
-// with glossary: warn keeps it a warning whatever the note says.
+// with glossary: warn keeps it a warning whatever the note says. An entry of
+// check: off has no term-missing to begin with (rules.Term.ToValidate), so
+// nothing of it is escalated; its forbidden renderings are hard as any.
 //
 // Foreign names are warned about only when the translation is accepted, so a
 // rejected verdict never carries them.
