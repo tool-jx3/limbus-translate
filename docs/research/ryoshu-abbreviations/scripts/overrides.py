@@ -1,0 +1,21 @@
+# key-suffix -> (old abbr -> new abbr or None to drop)
+OV={
+ 'StoryData/E042X.json|/dataList/35/content': {'모. 분.':'답. 하. 모. 분.'},
+ 'StoryData/5D205B.json|/dataList/3/content': {'어.이. 뭐':'어.이.'},
+ 'StoryData/S430B.json|/dataList/54/content': {'모.분.말.':'모.분.말.도.'},
+ 'StoryData/E906B.json|/dataList/80/content': {'나.다.':'어. 나.'},
+ 'StoryData/E912B.json|/dataList/106/content': {'반. 반. 위.겠':'반. 반. 위.'},
+ 'StoryData/E724B.json|/dataList/78/content': {'성.업.된':'성.업.'},
+ 'StoryData/E721B.json|/dataList/50/content': {'목. 죽. 덜':'목. 죽.'},
+ 'StoryData/P10408.json|/dataList/23/content': {'웃. 소. 내':'웃. 소.'},
+ 'StoryData/E903B.json|/dataList/247/content': {'거. 말. 더. 많. 또':'거. 말. 더. 많.'},
+ 'StoryData/ES130B.json|/dataList/0/content': {'애. 애. 훗.':'애. 애.'},
+ 'StoryData/4D305A.json|/dataList/25/content': {'모.분. 내':'모.분.'},
+ 'StoryData/S926A.json|/dataList/80/content': {'시. 불. 또':'시. 불.'},
+ 'StoryData/S926B.json|/dataList/67/content': {'머.터. 살':'머.터.'},
+ 'PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json|/dataList/13/dlg': {'거.대. 곧':'거.대.'},
+ 'PersonalityVoiceDlg/Voice_Ryoshu_23GuCooker_10404.json|/dataList/1/dlg': {'아.문.안.연. 영.준.':['아.문.안.연.','영.준.']},
+ 'StoryData/S813B.json|/dataList/105/content': {'소. 닭. 용.':None},
+ 'StoryData/E912B.json|/dataList/51/content': {'거. 거. 일':'거. 거.'},
+ 'StoryData/S913B.json|/dataList/19/content': {'불. 시.':'불. 시. 낭'},
+}

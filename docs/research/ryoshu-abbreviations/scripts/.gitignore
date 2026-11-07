@@ -1,0 +1,5 @@
+# Intermediate results of the scripts (see README.md)
+*.pkl
+*.txt
+*.tsv
+table.md
