@@ -927,6 +927,8 @@ func TestLint(t *testing.T) {
 		{"glossary is not a list", "glossary/terms.yaml", func(string) string { return "kr: x\n" }, []string{"glossary/terms.yaml"}},
 
 		{"family guide does not exist", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families/dante-note.md", "guides/families/nothing.md", 1)), []string{"guides/routing.yaml", "dante-note", "guides/families/nothing.md"}},
+		{"family guide outside guides/", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families/dante-note.md", "glossary/terms.yaml", 1)), []string{"guides/routing.yaml", "dante-note", "glossary/terms.yaml", "a .md file under guides/"}},
+		{"family guide not markdown", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "guides/families/dante-note.md", "guides/routing.yaml", 1)), []string{"guides/routing.yaml", "dante-note", "a .md file under guides/"}},
 		{"family without guide", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "    guide: guides/families/dante-note.md\n", "", 1)), []string{"guides/routing.yaml", "dante-note", "guide"}},
 		{"family without id", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "  - id: dante-note\n    nodes", "  - nodes", 1)), []string{"guides/routing.yaml", "id"}},
 		{"unknown glossary mode", "guides/routing.yaml", replaceOnce(danteNote, strings.Replace(danteNote, "glossary: warn", "glossary: soft", 1)), []string{"guides/routing.yaml", "dante-note", "glossary", "soft"}},
@@ -2191,6 +2193,16 @@ func TestLintGuideRules(t *testing.T) {
 		{"empty when", func(t *testing.T, root string) {
 			addGuideRules(t, root, "  - when: \"\"\n    guide: guides/families.md\n")
 		}, []string{"guides/routing.yaml", "when"}},
+		{"layer guide outside guides/", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"Skills\"\n    guide: glossary/terms.yaml\n")
+		}, []string{"guides/routing.yaml", "glossary/terms.yaml", "a .md file under guides/"}},
+		{"layer guide not markdown", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/families/notes.txt", 10)
+			addGuideRules(t, root, "  - when: \"Skills\"\n    guide: guides/families/notes.txt\n")
+		}, []string{"guides/routing.yaml", "guides/families/notes.txt", "a .md file under guides/"}},
+		{"layer guide climbs out of guides/", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"Skills\"\n    guide: guides/../README.md\n")
+		}, []string{"guides/routing.yaml", "guides/../README.md", "a .md file under guides/"}},
 		{"too big", func(t *testing.T, root string) {
 			writeGuide(t, root, "guides/families/big.md", 4097)
 		}, []string{"guides/families/big.md", "4096"}},

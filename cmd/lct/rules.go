@@ -11,6 +11,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/config"
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/requeue"
@@ -74,6 +75,10 @@ func runRulesLint(ctx *cli.Context, args []string) error {
 	// import cycle), nor suggest, which builds on rules.
 	for _, is := range slices.Concat(requeue.Lint(ctx.Root), rewrite.Lint(ctx.Root), suggest.LintDeclined(ctx.Root), suggest.LintAccepted(ctx.Root)) {
 		report.Errors = append(report.Errors, rules.LintError{File: is.File, Message: is.Message})
+	}
+	// lct site loads rules/gold.yaml and stops on a file that does not parse.
+	if _, err := gold.Load(ctx.Root); err != nil {
+		report.Errors = append(report.Errors, rules.LintError{File: gold.File, Message: strings.TrimPrefix(err.Error(), gold.File+": ")})
 	}
 	report.OK = len(report.Errors) == 0
 	krFiles := krPackFiles(ctx.Root)

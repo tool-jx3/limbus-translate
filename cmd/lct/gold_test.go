@@ -331,3 +331,45 @@ func TestGoldReportWithHalfAWorktreeIsASystemError(t *testing.T) {
 		t.Errorf("exit %d (stderr %q), want 2", code, stderr)
 	}
 }
+
+// rules lint loads rules/gold.yaml: a file that does not parse stops lct site,
+// so CI has to find it first.
+func TestRulesLintReportsAMalformedGoldFile(t *testing.T) {
+	root := goldRepo(t)
+	if code, _, stderr := goldSample(t); code != 0 {
+		t.Fatalf("exit %d: %s", code, stderr)
+	}
+	goldErrors := func() (int, []string) {
+		code, stdout, stderr := lct(t, "--json", "rules", "lint")
+		var rep struct {
+			Errors []struct{ File, Message string } `json:"errors"`
+		}
+		if err := json.Unmarshal([]byte(stdout), &rep); err != nil {
+			t.Fatalf("exit %d, stdout %q, stderr %q: %v", code, stdout, stderr, err)
+		}
+		var msgs []string
+		for _, e := range rep.Errors {
+			if e.File == "rules/gold.yaml" {
+				msgs = append(msgs, e.Message)
+			}
+		}
+		return code, msgs
+	}
+	if _, msgs := goldErrors(); len(msgs) != 0 {
+		t.Fatalf("a good gold.yaml is reported: %v", msgs)
+	}
+	if err := os.WriteFile(filepath.Join(root, "rules", "gold.yaml"), []byte("units: [\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if code, msgs := goldErrors(); code != 1 || len(msgs) != 1 {
+		t.Errorf("malformed: exit %d, gold.yaml problems %v, want 1 and one problem", code, msgs)
+	}
+	// A verdict that is not valid is reported too.
+	bad := "units:\n  - key: S.json|/dataList/0/content\n    verdict: maybe\n"
+	if err := os.WriteFile(filepath.Join(root, "rules", "gold.yaml"), []byte(bad), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if code, msgs := goldErrors(); code != 1 || len(msgs) != 1 || !strings.Contains(msgs[0], "maybe") {
+		t.Errorf("bad verdict: exit %d, problems %v", code, msgs)
+	}
+}

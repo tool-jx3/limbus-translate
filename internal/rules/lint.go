@@ -74,6 +74,13 @@ func ioMessage(err error) string {
 	return err.Error()
 }
 
+// guidePathOK reports whether rel is a clean slash path of a .md file under
+// guides/. The preview's guide texts come from walking guides/**/*.md, so a
+// guide anywhere else could be named by GuidesFor but not shown.
+func guidePathOK(rel string) bool {
+	return path.Clean(rel) == rel && strings.HasPrefix(rel, "guides/") && strings.HasSuffix(rel, ".md")
+}
+
 func (l *linter) fileExists(rel string) bool {
 	info, err := os.Stat(filepath.Join(l.root, filepath.FromSlash(rel)))
 	return err == nil && !info.IsDir()
@@ -301,6 +308,8 @@ func (l *linter) routing() {
 		switch {
 		case f.Guide == "":
 			l.report(RoutingFile, "%s: guide is missing", label)
+		case !guidePathOK(f.Guide):
+			l.report(RoutingFile, "%s: guide %s must be a .md file under guides/", label, f.Guide)
 		case !l.fileExists(f.Guide):
 			l.report(RoutingFile, "%s: guide file %s does not exist", label, f.Guide)
 		}
@@ -327,6 +336,8 @@ func (l *linter) routing() {
 		switch {
 		case g.Guide == "":
 			l.report(RoutingFile, "%s: guide is missing", label)
+		case !guidePathOK(g.Guide):
+			l.report(RoutingFile, "%s: guide %s must be a .md file under guides/", label, g.Guide)
 		case !l.fileExists(g.Guide):
 			l.report(RoutingFile, "%s: guide file %s does not exist", label, g.Guide)
 		}
