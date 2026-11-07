@@ -1,0 +1,175 @@
+- key: MirrorDungeonUI_7.json|/dataList/18/content
+  raw: raw-20261105
+  kr_sha: c4d775ac8334b237e1c51cebd5f6c2832261b47dea3cd4bb5a193ea3263bb412
+  zh: 是否消耗<color=#f8c200>{0}</color>星芒進行技能替換？
+  reason: 「별빛」寫「星芒」（詞彙表）；舊譯把별빛 寫成「經費」，與 KR、EN（Starlight）不符
+  rule: glossary/terms.yaml
+- key: Personality_Get_Condition.json|/dataList/135/content
+  raw: raw-20261105
+  kr_sha: 7487317d2d26cf3ce993148847742e6a959c029c689329c365ae69c7138707f1
+  zh: 裴廓德號 大副 李箱 人格同步階段3 完成
+  reason: 「동기화 3단계 달성」寫「人格同步階段3 完成」（詞彙表，與同檔其他人格一致）
+  rule: glossary/terms.yaml
+- key: Personality_Get_Condition.json|/dataList/257/content
+  raw: raw-20261105
+  kr_sha: f988d3a4e894d08a7c6e56b8c86c88d251984c7dbfa19359cbf9bc7cc553eb6a
+  zh: 家主候選人 以實瑪利 人格同步階段3 完成
+  reason: 「동기화 3단계 달성」寫「人格同步階段3 完成」（詞彙表，與同檔其他人格一致）
+  rule: glossary/terms.yaml
+- key: UserBanner.json|/dataList/67/name
+  raw: raw-20261105
+  kr_sha: 48d7718dea6f60338d4614cd9df6256c0eaa5191dad31036ae125edceeaac73c
+  zh: 切磋琢春 - 特別橫幅
+  reason: 「배너」寫「橫幅」（詞彙表；「특별 배너」既有 24 個寫「特別橫幅」），不是車票
+  rule: glossary/terms.yaml
+- key: UserBanner.json|/dataList/69/name
+  raw: raw-20261105
+  kr_sha: b31e83e57cc215d1ff4d0c94f97a9eb872f7c46c3366843303bddc8ae9e5f755
+  zh: 善意的巡禮 - 特別橫幅
+  reason: 「배너」寫「橫幅」（詞彙表；「특별 배너」既有 24 個寫「特別橫幅」），不是車票
+  rule: glossary/terms.yaml
+- key: UnlockCode-1.json|/dataList/12/openCondition
+  raw: raw-20261105
+  kr_sha: 396a1e858d5e85de988d52b46afc02ab4b4f51445bc1e4da6f74a5c3369863ad
+  zh: 通關第3次 瓦爾普吉斯之夜
+  reason: KR「제3회 발푸르기스의 밤 클리어」：第3次瓦爾普吉斯之夜（詞彙表），舊譯的次數與活動名都錯；格式照同檔 /10、/16
+  rule: glossary/terms.yaml
+- key: StoryData/P10609.json|/dataList/31/content
+  raw: raw-20261105
+  kr_sha: ed44e6d4c334dd28f05086ca6a3cf334d7a3ff76433a28dbafc689e0603e7dc2
+  zh: 比起由翼或協會來負責調查這樣的事件，同志之間自己解決更符合聖愚的宗旨。
+  reason: 「협회」寫「協會」（詞彙表）；舊譯寫成事務所
+  rule: glossary/terms.yaml
+- key: EGOgift_lcbcheckup-re.json|/dataList/4/simpleDesc/1/simpleDesc
+  raw: raw-20261105
+  kr_sha: 6fd2bc4dd4eca03f4f5167b7e7a430e7ff25d33330341f862c4a0644dc8eb759
+  zh: 與速度較低的敵人拚點時，增加最終威力[TabExplain]並使造成的傷害增加[TabExplain]
+  reason: 「최종 위력」寫「最終威力」（詞彙表；EN Final Power），不是拚點威力
+  rule: glossary/terms.yaml
+- key: StoryData/4D301B.json|/dataList/22/content
+  raw: raw-20261105
+  kr_sha: 50e2acb498330c73d05cb824effbaa32a254e82d450c54be67c06297d47f7144
+  zh: 難道不是這樣嗎？有著如此深厚關係的九人會也分崩離析……
+  reason: 「구인회」寫「九人會」（詞彙表）；舊譯「九人也會」把「會」併進了「也會」
+  rule: glossary/terms.yaml
+- key: PersonalityVoiceDlg/Voice_DonQuixote_LEGOMagic_10312.json|/dataList/18/desc
+  raw: raw-20261105
+  kr_sha: 8a1f236176e2dd0abb3d1a806fd9acb089325efa0a97b127f9827489433e10ff
+  zh: 敵方混亂 2
+  reason: 「적 흐트러질 시 대사」寫「敵方混亂」（詞彙表，既有 193 個）；舊譯寫成自身混亂
+  rule: glossary/terms.yaml
+- key: Skills_personality-10.json|/dataList/26/levelList/1/desc
+  raw: raw-20261105
+  kr_sha: 70d4f53a3814c0193af828a16459300d5a60403b948c2dfe4a72351307ed28a6
+  zh: |-
+    <style="highlight">[StartBattle] 根據總計嫉妒完全共鳴數相應改變本技能效果
+    - 總計不低於4時，反擊時改為使用「加倍奉還吧」進行反擊
+    - 總計不低於6時，反擊時改為使用「銘刻於心」進行反擊
+    (位於儀錶盤左側的技能優先觸發，每回合最多觸發2次)</style>
+    [StartBattle] 使自身獲得已失去體力<style="highlight">30%</style>的護盾(每回合最多1次)
+  reason: 「완전 공명」寫「完全共鳴」（詞彙表；EN A-Reson.）；舊譯漏了「完全」
+  rule: glossary/terms.yaml
+- key: Skills_personality-01.json|/dataList/41/levelList/2/desc
+  raw: raw-20261105
+  kr_sha: 1fdad47c10f84680e457a789aff1e3276c17b57fe439a4f78bf3d6599f8d5f99
+  zh: |-
+    以(75-(自身的 [KarmaOfIndexAlly] 層數/2))%的機率使用打擊武器
+    - 令使用打擊武器的硬幣造成的傷害<style="highlight">+15%</style>
+    若本技能被 [IndexPrescriptTargetMarkToEnemy] 標記，則使本技能<style="highlight">的拚點威力+1</style>，造成的傷害<style="highlight">+20%</style>
+    自身的 [Breath] 強度與目標的 [Sinking] 強度之和<style="highlight">每有6級，使本技能的硬幣威力+1(最多+2)</style>
+    [WhenUse] 從本技能的最後一枚硬幣起，使(自身的 [UnlockBuff_Base] 階段-1)枚硬幣轉化為 [SuperCoin]
+    [WhenUse] 使自身獲得2回 [Breath]
+  reason: 「합 위력」寫「拚點威力」（詞彙表；EN Clash Power）；舊譯寫成硬幣威力
+  rule: glossary/terms.yaml
+- key: DungeonNode1-1.json|/dataList/0/stageList/28/title
+  raw: raw-20261105
+  kr_sha: 5d7d07ca316de3816d4a6e22ded7598ff4dbdc764b219c76269bc55a2433a861
+  zh: 控制部 大廳
+  reason: 「지휘팀」寫「控制部」（詞彙表）；寫法照同檔 /stageList/2 的「控制部 大廳」
+  rule: glossary/terms.yaml
+- key: BattleAnnouncerDlg/Announcer_Magical_32.json|/dataList/0/dlg
+  raw: raw-20261105
+  kr_sha: a96eab47ed8b60d6b32a115106a4322363f6965aaed9be58cafedd57c0b7f0e4
+  zh: 今天也為了充滿正義的一天而努力吧！一起～阿爾卡那……心跳跳！
+  reason: 「아르카나」寫「阿爾卡那」（詞彙表）
+  rule: glossary/terms.yaml
+- key: TutorialMainUIText.json|/dataList/239/content
+  raw: raw-20261105
+  kr_sha: 3f905d08d6ccc9e2a7ca11e3e6582c2a5baa7e584d624511c3067d536414f77d
+  zh: 在紡錘採光中出現的敵人均擁有特殊的物理抗性及屬性抗性。在對應關卡中將會標明有效的罪孽屬性。
+  reason: 「죄악 속성」寫「罪孽屬性」（詞彙表）
+  rule: glossary/terms.yaml
+- key: RPGSystem/rpg-loc-ui-common-a1c10p1.json|/dataList/128/text
+  raw: raw-20261105
+  kr_sha: 6d48967ee42783edb2d35d070fa4ac7fc7436369ef7a534f62b66e9be227de01
+  zh: 陰影界的情況
+  reason: 「그림자계」寫「陰影界」（詞彙表）；舊譯是 JP 字形「影界」
+  rule: glossary/terms.yaml
+- key: TutorialMainUIText.json|/dataList/436/content
+  raw: raw-20261105
+  kr_sha: a13bc160f1ebf206658226e7f410aaee14f8b60b3a675f3fe2c1b45f012981d9
+  zh: 初次通關關卡或是滿足特定的條件後，相關的獎勵將會在失物招領處中呈現。
+  reason: 「분실물 보관소」寫「失物招領處」（詞彙表）
+  rule: glossary/terms.yaml
+- key: TutorialRenewalDesc.json|/dataList/83/content
+  raw: raw-20261105
+  kr_sha: d849898519489f90dcd748eece61e807c058f93d794e41e3d8cfa4e5173fc1ba
+  zh: 支援被動
+  reason: 「서포트 패시브」寫「支援被動」（詞彙表）
+  rule: glossary/terms.yaml
+- key: StoryData/P10903.json|/dataList/7/content
+  raw: raw-20261105
+  kr_sha: f2f4f441ed85a401d9bf025eaa94d9ddd6e820870bf2b588480296a00a3ac029
+  zh: 協助在梅菲斯托費勒斯上的12罪人並確保他們能成功回收金枝是LCC清理部門的工作。這是連這孩子都知道的事實。
+  reason: 「클리어 부서」寫「清理部門」（詞彙表）
+  rule: glossary/terms.yaml
+- key: StoryData/E913B.json|/dataList/43/content
+  raw: raw-20261105
+  kr_sha: 6e6da3f84c136290105745b5a4696fb0509820953a6ff491431290522f904da3
+  zh: 畢竟……又不是要進分部或地牢之類的地方嘛……
+  reason: 「지부」寫「分部」（詞彙表）；舊譯是 JP 字形「支部」
+  rule: glossary/terms.yaml
+- key: GachaTitle.json|/dataList/117/content
+  raw: raw-20261105
+  kr_sha: d0e61fe09ef7444d2e8a30c6a1c8d8e58ff14da1ac3db44619d0fbd42dc0d6c2
+  zh: 特定提取：劍契組．黑雲會
+  reason: 「검계」寫「劍契組」（詞彙表）
+  rule: glossary/terms.yaml
+- key: StoryData/S625B.json|/dataList/46/content
+  raw: raw-20261105
+  kr_sha: e8cc645a70c5f686990e25762f6203d6ed2bc1f1316225b786fe994f14388e48
+  zh: 那些大人們。有趣。是導覽員嗎？還是大師呢？
+  reason: 「도슨트」寫「導覽員」（詞彙表）
+  rule: glossary/terms.yaml
+- key: StoryData/P10915.json|/dataList/0/content
+  raw: raw-20261105
+  kr_sha: a749adfd9b4082133e8fed013c475c435ad3ef8d3ece6460720ecd0228d256e7
+  zh: 這個是導覽員大人的作品……沒錯吧？但你說這上面既沒有毛也沒有爪子，真的假的？
+  reason: 「도슨트」寫「導覽員」（詞彙表）
+  rule: glossary/terms.yaml
+- key: StoryData/E001X.json|/dataList/225/content
+  raw: raw-20261105
+  kr_sha: a998ef19b4fdf10e169cfc3c26f6feb2882582db9b8c65c5b3afa239dce1b877
+  zh: 我望著巴士的後門的方向悄悄說道。
+  reason: 「버스의 뒷문」寫「巴士的後門」（詞彙表）
+  rule: glossary/terms.yaml
+- key: BattlePass.json|/dataList/52/content
+  raw: raw-20261105
+  kr_sha: 115e98a9c38c43b34fd40dd2bec8f49d3d31b001f4b29cdc174a3653f41dcae0
+  zh: |-
+    購買巴士通行證組合包時，
+    會在{0}期間提供以下福利。
+  reason: 「림버스 패스 패키지」寫「巴士通行證組合包」（ShopUI /73 既有；詞彙表）；舊譯漏了「組合包」
+  rule: glossary/terms.yaml
+- key: Passives_Abnormality-a1c10p2.json|/dataList/0/desc
+  raw: raw-20261105
+  kr_sha: f5187c74c706c5297a6e3052e8fdb6d89664915432820f3b233e12cb279947e7
+  zh: |-
+    關卡開始時，使自身陷入恐慌並開始戰鬥
+
+    自身陷入恐慌時，觸發以下效果
+    - <color=#ff6000><mark color=#ff000040><b><u>所有攻擊目標指定普依</color></mark></b></u>
+    - 使用技能時，若主要目標為普依，則使其拚點威力與基礎威力增加[TabExplain]
+    - 戰鬥開始時，技能的所有硬幣轉變為 [SuperCoin]
+  reason: 「패닉」寫「恐慌」（詞彙表；EN Panic）；舊譯把恐慌寫成混亂
+  rule: glossary/terms.yaml
