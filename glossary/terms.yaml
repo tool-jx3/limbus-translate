@@ -491,7 +491,7 @@
   status: approved
   match: word
   category: [general]
-  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）。「중지 복도」「검지 복도」這種「手指＋복도」也是專名，寫「長廊」（既有 93 處）。蜘蛛巢裡沒有指名的「복도」（다른 복도、이쪽 복도、복도를 이용해）仍寫「走廊」（既有 47 行）。2026-11-07 專名另立條目（엄지／검지／중지／약지／소지의 복도、아비의 복도、중지 복도、검지 복도、철함사로 향하는 복도、격리 복도），長詞條優先，這些地方不用本條
+  notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）。「중지 복도」「검지 복도」這種「手指＋복도」也是專名，寫「長廊」（既有 93 處）。蜘蛛巢裡沒有指名的「복도」（다른 복도、이쪽 복도、복도를 이용해）仍寫「走廊」（既有 47 行）。2026-11-07 專名另立條目（엄지／검지／중지／약지／소지의 복도、아비의 복도、철함사로 향하는 복도、격리 복도），長詞條優先，這些地方不用本條
   sources: ["game:RPGSystem/rpg-loc-location-floor-4.json#/dataList/0/text"]
 
 - kr: 엄지의 복도
@@ -544,18 +544,6 @@
   status: approved
   category: [city]
   notes: 蜘蛛巢的專名「X 아비의 복도」（X父輩的長廊，例「環指父輩的長廊」）；既有 36 個單位都寫「父輩的長廊」（2026-11-07）。這個較長的條目蓋住其中的「복도」
-
-- kr: 중지 복도
-  zh: 中指長廊
-  status: approved
-  category: [city]
-  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 2 個單位（「조용한 중지 복도」→ 寂靜的中指長廊）寫「中指長廊」（2026-11-07）
-
-- kr: 검지 복도
-  zh: 食指的長廊
-  status: approved
-  category: [city]
-  notes: 蜘蛛巢的專名（見「복도」的 notes）；既有 1 個單位（StoryData/E912B.json /1）寫「食指的長廊」（2026-11-07）
 
 - kr: 철함사로 향하는 복도
   jp: 鉄檻寺へと向かう廊下
@@ -1300,7 +1288,7 @@
   status: approved
   category: [general]
   notes: 腦葉公司系的檔譯「主管」：腦葉公司、廢墟圖書館的播報員（安吉拉與源質 Chesed、Gebura、Hod、Malkuth、Netzach）稱但丁，LEGO 人格的語音與腦葉公司系的人格故事、間章稱 L 公司分部的管理者。2026-11-07 這些檔既有 88 個單位中 86 個寫「主管」（另 1 個省略、1 個寫「經理」）。其他檔見上一條「經理」
-  sources: ["game:BattleAnnouncerDlg/Announcer_Angela_12.json#/dataList/1/dlg"]
+  sources: ["game:PersonalityVoiceDlg/Voice_Faust_LEGO_10207.json#/dataList/1/dlg"]
 
 - kr: 관리자 파우스트
   zh: 管理員浮士德
@@ -1655,13 +1643,13 @@
 
 - kr: 전투 승리
   jp: 戦闘勝利
-  en: Victory
+  en: [Victory, Win]
   zh: 戰鬥勝利
   status: approved
   category: [general]
   evidence: { kr_lines: 454, approved: 449, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
-  sources: ["game:AnnouncerVoiceType.json#/dataList/30/content", "game:MainUIText.json#/dataList/37/content"]
+  sources: ["game:AnnouncerVoiceType.json#/dataList/30/content", "game:MainUIText.json#/dataList/37/content", "game:ActionEvents_Mirror.json#/dataList/73/options/1/messageDesc"]
 
 - kr: EX CLEAR 전투 승리
   jp: EX CLEAR戦闘勝利
@@ -1708,12 +1696,12 @@
 
 - kr: 조작 슬롯
   jp: 操作スロット
-  en: Slot
+  en: Dashboard
   zh: 儀錶盤
   status: approved
   category: [combat]
   notes: 戰鬥介面放技能的位置，與「조작 패널」（儀錶盤）同譯（使用者決定 2026-11-07）。既有 14 個單位：「儀錶盤」7、「儀表盤」1、「行動槽」6。這個較長的條目蓋住其中的「슬롯」
-  sources: ["game:Passives.json#/dataList/490/desc"]
+  sources: ["game:BattleKeywords-a1c9p1.json#/dataList/19/desc"]
 
 - kr: 참격
   jp: 斬撃
@@ -5377,7 +5365,7 @@
   forbidden: [腦啡肽模塊]
   status: approved
   evidence: { kr_lines: 60, approved: 52, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 依使用者決定改為「腦啡肽模組」，與「도약 모듈」（跳躍成長模組）一致；既有寫「腦啡肽模塊」的 53 個單位由 rules/rewrite/2026-11-07-enkephalin-module.yaml 統一
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 依使用者決定改為「腦啡肽模組」，與「도약 모듈」（跳躍成長模組）一致；既有寫「腦啡肽模塊」（含錯字「腦啡呔模塊」）的 62 個單位由 rules/rewrite/2026-11-07-enkephalin-module.yaml 統一；KR 單寫「모듈」而譯文單寫「模塊」的由 2026-11-07-module-bare.yaml、2026-11-07-module-sphere.yaml 統一
   sources: ["game:ShopUI.json#/dataList/30/content"]
 
 - kr: 쉼터

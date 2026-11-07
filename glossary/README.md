@@ -14,7 +14,7 @@
 
 - 條目的詞在官方 JP、EN 語言包裡的寫法。翻譯時注入批次，讓譯者比對單位的 `jp`、`en` 判斷意思是否相同（見上一節）；`lct glossary scope` 也依它把沒用譯名的單位分成同義、他義
 - 同一個詞在 JP 或 EN 有幾種詞形時（例如 EN 的 Resistance 與 Resist），寫成清單：`en: [Resistance, Resist]`；只有一種就寫字串，與以前相同。單位的 EN／JP 含清單中任一個就算有這個詞（EN 依整詞比對、不分大小寫，最後一個字的單複數也算；JP 依字串包含）
-- 清單不得有空字串或重複的值（`lct rules lint` 報錯）
+- 清單不得有空字串或重複的詞形（`lct rules lint` 報錯）。重複依檢查時的比對方式判斷：JP 是兩個值完全相同；EN 只差大小寫，或只差最後一個字的單複數（+s、+es、y／ies），也算重複，例如 `[Resist, resist]`、`[Resistance, Resistances]`，因為兩者命中的單位完全相同。`[Resistance, Resist]` 是兩個不同的詞，可以並列
 - 批次的詞彙表欄位：一個值照舊是字串，多個值是陣列
 - 依據用 `lct glossary evidence`：它列出每個詞形各自的命中率，與整組（含任一個）的命中率（見 README「詞條的官方證據」）
 
