@@ -195,12 +195,37 @@ describe('GoldView local choices', () => {
   it('drops stored choices that the data already holds, keeps the others', async () => {
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ 'a.json|2': { verdict: 'correct', note: '' }, 'a.json|1': { verdict: 'wrong', note: 'x' }, 'b.json|1': { verdict: 'unsure', note: '' } }),
+      JSON.stringify({ 'b.json|1': { verdict: '', note: '' }, 'a.json|1': { verdict: 'wrong', note: 'x' } }),
     )
     const c = await mount()
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}')
-    expect(Object.keys(stored).sort()).toEqual(['a.json|1', 'b.json|1'])
+    expect(Object.keys(stored)).toEqual(['a.json|1'])
     expect((c.querySelector('[data-key="a.json|1"] input[value="wrong"]') as HTMLInputElement).checked).toBe(true)
+  })
+
+  it('keeps the choice of a stale unit even when it equals the data: sending it again clears the staleness', async () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ 'a.json|2': { verdict: 'correct', note: '' } }))
+    const c = await mount()
+    expect(Object.keys(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}'))).toEqual(['a.json|2'])
+    // and the page says that its line will be copied
+    expect(c.querySelector('[data-key="a.json|2"] .gold-tocopy')?.textContent).toContain('待複製')
+    expect(c.querySelector('[data-key="a.json|1"] .gold-tocopy')).toBeNull()
+    expect(goldLines(gold.units, JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}'))).toBe('gold a.json|2 correct')
+  })
+
+  it('marks a unit whose line will be copied once it is judged on the page', async () => {
+    const c = await mount()
+    expect(c.querySelector('[data-key="a.json|1"] .gold-tocopy')).toBeNull()
+    choose(c, 'a.json|1', 'wrong')
+    await vi.waitFor(() => expect(c.querySelector('[data-key="a.json|1"] .gold-tocopy')).not.toBeNull())
+  })
+
+  it('says that the missing units are not in the list below, and that the report still counts them', async () => {
+    const c = await mount()
+    const text = c.querySelector('.gold-missing')?.textContent ?? ''
+    expect(text).toContain('樣本清單')
+    expect(text).toContain('報告仍計入')
+    expect(text).not.toContain('未列入下表')
   })
 
   it('counts missing from the report when it carries it', async () => {

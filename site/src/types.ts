@@ -682,7 +682,7 @@ export interface PreviewFileWire {
   units: (PreviewUnitWire | null)[]
 }
 
-/** A unit of the gold sample (data/gold.json). zh is the translation now built; stale: it is not the one that was judged. */
+/** A unit of the gold sample (data/gold.json). zh is the translation of the record; shipped is the text now built into the pack, when it differs; stale: the record's translation is not the one that was judged. */
 export interface GoldUnit {
   key: string
   path: string
@@ -693,7 +693,7 @@ export interface GoldUnit {
   jp?: string
   en?: string
   zh: string
-  /** The text in the pack when it differs from zh (the translation that was judged). */
+  /** The built text in the pack when it differs from zh (the record's translation). */
   shipped?: string
   verdict: '' | 'correct' | 'wrong' | 'unsure'
   note: string
@@ -719,6 +719,8 @@ export interface GoldReport {
   total: GoldRow
   /** Units of the sample that are not in the pack. */
   missing?: number
+  /** True when the report was made without the raw worktree: the KR check was left out and missing is not known. */
+  kr_unknown?: boolean
 }
 
 export interface GoldData {

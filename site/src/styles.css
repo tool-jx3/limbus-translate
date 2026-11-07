@@ -2995,7 +2995,8 @@ button.chip {
   overflow-wrap: anywhere;
 }
 
-.gold-stale {
+.gold-stale,
+.gold-tocopy {
   font-weight: 700;
 }
 

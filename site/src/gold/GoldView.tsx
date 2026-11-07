@@ -67,12 +67,16 @@ function pct(r: GoldRow): string {
   return r.accuracy === null ? '—' : `${Math.round(r.accuracy * 100)}%`
 }
 
-/** Local choices that differ from what the data already holds: the others were recorded and need no sending. */
+/**
+ * Local choices that differ from what the data already holds: the others were recorded and need no sending.
+ * A stale unit keeps its choice even when it equals the data: sending the same verdict again records the new
+ * translation and clears the staleness.
+ */
 export function pending(units: GoldUnit[], choices: Choices): Choices {
   const out: Choices = {}
   for (const u of units) {
     const c = choices[u.key]
-    if (c && !(c.verdict === u.verdict && c.note === u.note)) out[u.key] = c
+    if (c && (u.stale || !(c.verdict === u.verdict && c.note === u.note))) out[u.key] = c
   }
   return out
 }
@@ -124,6 +128,7 @@ function Unit({ u, choice, onChange }: { u: GoldUnit; choice: Choice | undefined
       <div class="gold-meta">
         {u.key} · {u.origin}
         {u.stale && <span class="gold-stale"> · 已過時（譯文在判定後改過）</span>}
+        {choice && choice.verdict !== '' && pasteable(u.key) && <span class="gold-tocopy"> · 待複製</span>}
       </div>
       <p class="gold-text" lang="ko">KR　{u.kr}</p>
       {u.jp !== undefined && <p class="gold-text" lang="ja">JP　{u.jp}</p>}
@@ -209,7 +214,7 @@ function Loaded({ data }: { data: GoldData }) {
   return (
     <section class="gold">
       <h1>基準樣本</h1>
-      {missing > 0 && <p class="gold-missing">有 {missing} 個樣本單位在打包結果裡找不到，未列入下表。</p>}
+      {missing > 0 && <p class="gold-missing">有 {missing} 個樣本單位在打包結果裡找不到，不在下方的樣本清單；報告仍計入。</p>}
       <Report data={data} />
       {data.units.length === 0 && <p>還沒有基準樣本。</p>}
       {families.map((f) => (
