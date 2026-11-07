@@ -112,4 +112,9 @@ families:
     nodes: []
     guide: guides/families/unsorted.md
 
+guides:
+  # 良秀的播報員語音：檔名不在 CharacterByFile 的前綴裡，以節點掛角色指引（Announcer_Charon 另有非卡戎的 90002，不用通用前綴）
+  - when: "BattleAnnouncerDlg/Announcer_Ryoshu"
+    guide: guides/characters/ryoshu.md
+
 priority: [story-main, story-interlude, ego-voice, announcer, identity, ally, enemy, keywords, abnormality, dante-note, mirror, railway, rpg, stage, events, ui, unsorted]

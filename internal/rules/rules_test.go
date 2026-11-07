@@ -2123,10 +2123,18 @@ func TestLintScopeWarningsUnreadableCharacters(t *testing.T) {
 	}
 }
 
-// addGuideRules appends a guides: list to the routing of root.
+// addGuideRules adds the entries of list to the guides: list of the routing
+// of root, in front of the entries the repo's routing has, or as a new list.
 func addGuideRules(t *testing.T, root, list string) {
 	t.Helper()
-	edit(t, root, "guides/routing.yaml", func(s string) string { return s + "\nguides:\n" + list })
+	edit(t, root, "guides/routing.yaml", func(s string) string {
+		const key = "\nguides:\n"
+		if i := strings.Index(s, key); i >= 0 {
+			at := i + len(key)
+			return s[:at] + list + s[at:]
+		}
+		return s + key + list
+	})
 }
 
 func writeGuide(t *testing.T, root, rel string, size int) {
