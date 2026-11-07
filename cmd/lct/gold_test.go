@@ -286,3 +286,33 @@ func TestGoldReportCountsUnitsMissingFromThePack(t *testing.T) {
 		t.Errorf("text report does not say what is missing: %q", stdout)
 	}
 }
+
+// Without a raw worktree the report comes from gold.yaml alone: it exits 0,
+// says that the KR check was left out, and does not guess a missing count.
+func TestGoldReportWithoutRaw(t *testing.T) {
+	root := goldRepo(t)
+	if code, _, stderr := goldSample(t); code != 0 {
+		t.Fatalf("exit %d: %s", code, stderr)
+	}
+	if err := os.RemoveAll(filepath.Join(root, ".work", "raw")); err != nil {
+		t.Fatal(err)
+	}
+	code, stdout, stderr := lct(t, "gold", "report")
+	if code != 0 {
+		t.Fatalf("exit %d (stderr %q), want 0", code, stderr)
+	}
+	if !strings.Contains(stdout, "total") || !strings.Contains(stdout, "unknown") || !strings.Contains(stdout, "raw") {
+		t.Errorf("text report does not say that the KR check is unknown and why: %q", stdout)
+	}
+	code, stdout, stderr = lct(t, "--json", "gold", "report")
+	if code != 0 {
+		t.Fatalf("--json: exit %d: %s", code, stderr)
+	}
+	var rep gold.Report
+	if err := json.Unmarshal([]byte(stdout), &rep); err != nil {
+		t.Fatal(err)
+	}
+	if !rep.KRUnknown || rep.Missing != 0 {
+		t.Errorf("kr_unknown = %v, missing = %d; want true, 0", rep.KRUnknown, rep.Missing)
+	}
+}

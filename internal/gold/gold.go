@@ -239,6 +239,9 @@ type Report struct {
 	// Missing is the number of units of the sample that are not in the KR
 	// pack any more; the caller sets it.
 	Missing int `json:"missing"`
+	// KRUnknown says the KR pack could not be read (no raw worktree), so
+	// Missing was not counted.
+	KRUnknown bool `json:"kr_unknown"`
 }
 
 func (r *Row) add(u Unit, stale bool) {
@@ -331,6 +334,9 @@ func (r Report) String() string {
 		line(x.Family+" (all)", x)
 	}
 	line("total", r.Total)
+	if r.KRUnknown {
+		fmt.Fprintf(&b, "missing from the pack: unknown (no raw worktree to read the KR pack from)\n")
+	}
 	if r.Missing > 0 {
 		fmt.Fprintf(&b, "missing from the pack: %d\n", r.Missing)
 	}

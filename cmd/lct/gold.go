@@ -1,9 +1,11 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"io"
+	"io/fs"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -39,7 +41,8 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "gold report",
 		Usage: "count the judgements of the gold sample by family and origin: judged, correct, wrong, unsure, " +
-			"accuracy (correct/(correct+wrong), null with neither) and stale (the translation is no more the one judged)",
+			"accuracy (correct/(correct+wrong), null with neither) and stale (the translation is no more the one judged); " +
+			"missing counts the units gone from the KR pack, and without a raw worktree it is not counted (kr_unknown) and the exit is still 0",
 		Run: runGoldReport,
 	})
 }
@@ -243,11 +246,16 @@ func runGoldReport(ctx *cli.Context, args []string) error {
 	for _, u := range s.Units {
 		current[u.Key] = records[u.Key].ZH
 	}
+	rep := gold.MakeReport(s, current)
 	set, err := pack.OpenRaw(filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw)))
+	if errors.Is(err, fs.ErrNotExist) {
+		// No raw worktree: report from gold.yaml alone, KR staleness unknown.
+		rep.KRUnknown = true
+		return ctx.Emit(rep)
+	}
 	if err != nil {
 		return err
 	}
-	rep := gold.MakeReport(s, current)
 	for _, u := range s.Units {
 		file, ptr, err := units.SplitKey(u.Key)
 		if err != nil || !set.KR.Has(file) {

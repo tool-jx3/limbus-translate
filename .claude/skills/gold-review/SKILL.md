@@ -32,5 +32,5 @@ allowed-tools:
    `bin/lct gold set 'KEY' correct`
    `bin/lct gold set 'KEY' wrong --note '說明'`
    沒有說明就不加 `--note`。某一行失敗（例如 key 不在樣本裡）時記下訊息，繼續處理其餘的行，不改 key 重試
-3. 全部處理完執行 `bin/lct gold report`，把各族群的已判定數與正確率告訴人；`stale` 大於 0 時說明那些單位的譯文在判定後改過
+3. 全部處理完執行 `bin/lct gold report`，把各族群的已判定數與正確率告訴人；`stale` 大於 0 時說明那些單位的譯文在判定後改過；沒有 raw 工作樹時 report 仍會輸出（exit 0），但 KR 缺漏數標為未知（`kr_unknown`），如實轉告
 4. 向人報告：記了幾行、哪些行沒處理與原因、report 的結果。提醒人：`rules/gold.yaml` 還沒 commit，請檢查後自己 commit 到 `main` 並 push `main`
