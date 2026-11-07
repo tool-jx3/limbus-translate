@@ -840,16 +840,18 @@ func TestSenseCounts(t *testing.T) {
 		senseUnit(0, "侵蝕", "Erosion", "浸食"),         // used: not classified
 		senseUnit(1, "腐蝕", "the Erosion grows", ""), // same (EN, word, any case)
 		senseUnit(2, "腐蝕", "Erosionary grow", ""),   // other: EN aligned, not as a word
-		senseUnit(3, "腐蝕", "a corrosion", "浸食された"),  // other: EN decides, JP is not asked
+		senseUnit(3, "腐蝕", "a corrosion", "浸食された"),  // same: EN misses, JP holds
 		senseUnit(4, "腐蝕", "", "浸食された"),             // same via JP
-		senseUnit(5, "腐蝕", "", "腐食"),                // other via JP
+		senseUnit(5, "腐蝕", "", "腐食"),                // other: only JP aligned, and it misses
 		senseUnit(6, "腐蝕", "", ""),                  // unknown: no alignment
 		senseUnit(7, "腐蝕", "  ", ""),                // unknown: blank alignment
 		senseUnit(8, "腐蝕", "Erosions grow", ""),     // same: a plural of the en
+		senseUnit(9, "腐蝕", "a corrosion", "腐食"),     // other: both aligned, both miss
+		senseUnit(10, "腐蝕", "the Erosion", "腐食"),    // same: EN holds, JP misses
 	}
 	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
-	if e.Same != 3 || e.Other != 3 || e.Unknown != 2 || e.Used != 1 || e.N != 9 {
-		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 3/3/2 (1, 9)", e.Same, e.Other, e.Unknown, e.Used, e.N)
+	if e.Same != 5 || e.Other != 3 || e.Unknown != 2 || e.Used != 1 || e.N != 11 {
+		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 5/3/2 (1, 11)", e.Same, e.Other, e.Unknown, e.Used, e.N)
 	}
 	var g Group
 	for _, x := range e.Groups {
@@ -857,8 +859,24 @@ func TestSenseCounts(t *testing.T) {
 			g = x
 		}
 	}
-	if g.Same != 3 || g.Other != 3 || g.Unknown != 2 {
-		t.Fatalf("group same/other/unknown = %d/%d/%d, want 3/3/2", g.Same, g.Other, g.Unknown)
+	if g.Same != 5 || g.Other != 3 || g.Unknown != 2 {
+		t.Fatalf("group same/other/unknown = %d/%d/%d, want 5/3/2", g.Same, g.Other, g.Unknown)
+	}
+}
+
+func TestSenseJPOnlyEntry(t *testing.T) {
+	// The entry has only a jp: the unit's EN is not available to compare
+	// (the entry has no en), so JP alone decides, and a miss is other.
+	jpOnly := approved("침식", "侵蝕")
+	jpOnly.JP = "浸食"
+	us := []Unit{
+		senseUnit(0, "腐蝕", "the Erosion grows", "腐食"), // other: JP misses, EN not available
+		senseUnit(1, "腐蝕", "a corrosion", "浸食された"),    // same via JP
+		senseUnit(2, "腐蝕", "the Erosion grows", ""),   // unknown: no JP, EN not available
+	}
+	e := entryOf(t, Analyze(Inputs{Rules: testRules(jpOnly), Units: us}), "침식")
+	if e.Same != 1 || e.Other != 1 || e.Unknown != 1 {
+		t.Fatalf("jp-only entry = %d/%d/%d, want 1/1/1", e.Same, e.Other, e.Unknown)
 	}
 }
 

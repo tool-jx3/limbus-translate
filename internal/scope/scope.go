@@ -55,21 +55,30 @@ type Unit struct {
 // aligned EN and JP against the entry's.
 const (
 	senseNone    = iota // the unit uses the rendering: not classified
-	senseSame           // the aligned text holds the entry's en or jp
-	senseOther          // it is aligned and does not
+	senseSame           // an aligned text holds the entry's en or jp
+	senseOther          // it is aligned, and no aligned text does
 	senseUnknown        // no alignment to look at, or the entry has no en and jp
 )
 
-// senseOf classifies the unit u against t: EN first, when the entry has an en
-// and the unit an EN alignment; then JP the same way.
+// senseOf classifies the unit u against t by every alignment available: a
+// language is available when the entry has a value for it (en, jp) and the
+// unit's aligned text in it is not blank. The unit is senseSame when one
+// available alignment holds the entry's value (evidence.Holds), senseOther
+// when one is available and none holds it, and senseUnknown when none is
+// available. An EN that leaves the word out does not outvote a JP that has it.
 func senseOf(t rules.Term, u Unit) int {
+	available := false
 	for _, c := range []struct{ lang, cand, text string }{{evidence.LangEN, t.EN, u.EN}, {evidence.LangJP, t.JP, u.JP}} {
-		if c.cand == "" || strings.TrimSpace(c.text) == "" {
+		text := strings.TrimSpace(c.text)
+		if c.cand == "" || text == "" {
 			continue
 		}
-		if evidence.Holds(c.lang, strings.TrimSpace(c.text), c.cand) {
+		available = true
+		if evidence.Holds(c.lang, text, c.cand) {
 			return senseSame
 		}
+	}
+	if available {
 		return senseOther
 	}
 	return senseUnknown
@@ -186,9 +195,10 @@ type Entry struct {
 	Explained   int `json:"explained"`
 	Unexplained int `json:"unexplained"`
 	// Same, Other and Unknown split the same units (those that do not use the
-	// rendering) by the aligned EN and JP: the text holds the entry's en or
-	// jp (same sense), is aligned and does not (another sense), or there is
-	// nothing to compare. Units that use the rendering are in none.
+	// rendering) by the aligned EN and JP (see senseOf): the EN holds the
+	// entry's en or the JP its jp (same sense), there is an alignment to
+	// compare and none holds (another sense), or there is nothing to compare.
+	// Units that use the rendering are in none.
 	Same    int `json:"same"`
 	Other   int `json:"other"`
 	Unknown int `json:"unknown"`
