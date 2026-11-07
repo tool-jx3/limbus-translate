@@ -39,6 +39,7 @@ func evidenceRepo(t *testing.T) string {
 	t.Helper()
 	root := cleanRules(t)
 	copyFile(t, filepath.Join(repoRoot, "lct.yaml"), filepath.Join(root, "lct.yaml"))
+	writeTestFile(t, root, "rules/fields.manual.yaml", "identifier_fields: [id, model]\n")
 	writeTestFile(t, root, "glossary/terms.yaml", "- {kr: 파열, zh: 破裂, status: approved, en: Rupture}\n- {kr: 출혈, zh: 流血, status: approved}\n- {kr: 후보, zh: 候選, status: candidate}\n")
 	writeTestFile(t, root, ".work/raw/meta/source.json", `{"tag": "raw-20261029", "token": "t", "created_at": "2026-10-29 02:55:23", "fetched_at": "2026-10-29T00:00:00Z", "files": {}}`)
 	writeTestFile(t, root, ".work/raw/kr/KR_Bufs.json", `{"dataList":[{"id":"Burst","name":"파열","desc":"파열 설명"},{"id":"Bleed","name":"출혈","desc":"출혈 설명"}]}`)

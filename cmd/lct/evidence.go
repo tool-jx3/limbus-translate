@@ -13,6 +13,7 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/evidence"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/raw"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -117,7 +118,11 @@ func runGlossaryEvidence(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	items, err := evidence.Collect(r, set, krs, candidates)
+	fr, err := fields.Load(ctx.Root)
+	if err != nil {
+		return err
+	}
+	items, err := evidence.Collect(r, set, fr, krs, candidates)
 	if err != nil {
 		if evidence.IsUserError(err) {
 			return cli.UserError("glossary: " + err.Error())

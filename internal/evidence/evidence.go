@@ -15,6 +15,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/names"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -57,7 +58,8 @@ type Desc struct {
 // Check says how often a candidate rendering is in the aligned text of the
 // units that hold the term. N counts the units whose KR text (as
 // validate.MatchText leaves it) holds the term by Term.OccursIn and that have
-// aligned, non-empty text in the language; Hits those whose text holds the
+// aligned, non-empty text in the language, and are of a field the field rules
+// translate; Hits those whose text holds the
 // candidate (EN: ignoring case, at word boundaries; JP: as a substring).
 type Check struct {
 	Lang      string  `json:"lang"`
@@ -114,10 +116,11 @@ type nameAcc struct {
 // Collect gathers the evidence for the entries of r whose KR is in krs, or for
 // every approved entry when krs is empty, in glossary order. It reads each KR
 // file of set once, aligns it once, and answers every entry from that pass.
-// candidates (by KR) are checked beside the entry's own jp and en and the most
+// fr, the field rules, leave the units of fields that are not translated out
+// of the checks. candidates (by KR) are checked beside the entry's own jp and en and the most
 // frequent official names. A KR in krs or in candidates that is not in the
 // glossary is an error for which IsUserError is true.
-func Collect(r *rules.Rules, set pack.Set, krs []string, candidates map[string]Candidates) ([]Item, error) {
+func Collect(r *rules.Rules, set pack.Set, fr *fields.Rules, krs []string, candidates map[string]Candidates) ([]Item, error) {
 	known := map[string]bool{}
 	for _, t := range r.Glossary {
 		known[t.KR] = true
@@ -180,8 +183,15 @@ func Collect(r *rules.Rules, set pack.Set, krs []string, candidates map[string]C
 				return nil, err
 			}
 			o := alignedText(en, jp)
-			for _, i := range hit {
-				occs[i] = append(occs[i], o)
+			// The checks count only what is translated: a unit of an
+			// untranslated field (an id, whose aligned text is the KR id
+			// itself) says nothing about the rendering of a term. The records
+			// are not read here, so a copy-origin unit stays counted; the
+			// field rules alone decide, as lct glossary scope does with them.
+			if fr.Classify(u, en, jp).Translate {
+				for _, i := range hit {
+					occs[i] = append(occs[i], o)
+				}
 			}
 			if acc == nil {
 				continue

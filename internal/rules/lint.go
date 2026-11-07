@@ -315,12 +315,15 @@ func (l *linter) routing() {
 		}
 		seen := map[string]bool{}
 		for _, inc := range f.Include {
+			// Every problem of an entry is reported: an entry may be both
+			// invalid or missing and a repeat.
 			switch {
 			case !guidePathOK(inc):
 				l.report(RoutingFile, "%s: include %s must be a .md file under guides/", label, inc)
 			case !l.fileExists(inc):
 				l.report(RoutingFile, "%s: include file %s does not exist", label, inc)
-			case seen[inc]:
+			}
+			if seen[inc] {
 				l.report(RoutingFile, "%s: include lists %s twice", label, inc)
 			}
 			seen[inc] = true
@@ -663,12 +666,10 @@ func forbiddenIn(rendering string, forbidden []string) (string, bool) {
 // the pack (a misspelled name, or a node the game has dropped), top nodes of
 // files that fall in the fallback family (a new node no family lists), and a
 // node two families of the same level both list (the warning says which one
-// takes it). krFiles empty means the pack is not at hand, and there are no
-// warnings. A routing that does not parse is Lint's to report.
+// takes it). krFiles empty means the pack is not at hand, and only the
+// warnings that need no pack remain (an include equal to the family's own
+// guide). A routing that does not parse is Lint's to report.
 func LintRoutingWarnings(root string, krFiles []string) []LintError {
-	if len(krFiles) == 0 {
-		return nil
-	}
 	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(RoutingFile)))
 	if err != nil {
 		return nil
@@ -676,6 +677,18 @@ func LintRoutingWarnings(root string, krFiles []string) []LintError {
 	rt, err := parseRouting(data)
 	if err != nil || len(patternErrors(rt)) != 0 {
 		return nil
+	}
+	var out []LintError
+	warn := func(format string, args ...any) {
+		out = append(out, LintError{File: RoutingFile, Message: fmt.Sprintf(format, args...)})
+	}
+	for _, f := range rt.Families {
+		if f.Guide != "" && slices.Contains(f.Include, f.Guide) {
+			warn("family %q: include lists %s, the family's own guide, which is applied anyway", f.ID, f.Guide)
+		}
+	}
+	if len(krFiles) == 0 {
+		return out
 	}
 	tops, subs := map[string]bool{}, map[string]bool{}
 	unsorted := map[string]bool{}
@@ -691,10 +704,6 @@ func LintRoutingWarnings(root string, krFiles []string) []LintError {
 		}
 	}
 	topList, subList := sortedKeys(tops), sortedKeys(subs)
-	var out []LintError
-	warn := func(format string, args ...any) {
-		out = append(out, LintError{File: RoutingFile, Message: fmt.Sprintf(format, args...)})
-	}
 	for _, f := range rt.Families {
 		for _, pattern := range f.Nodes {
 			fitsNode := func(node string) bool {

@@ -2433,6 +2433,12 @@ func TestLintInclude(t *testing.T) {
 			writeGuide(t, root, "guides/shared/a.md", 10)
 			addInclude(t, root, "ui", "guides/shared/a.md", "guides/shared/a.md")
 		}, []string{"guides/routing.yaml", "ui", "guides/shared/a.md", "twice"}},
+		{"missing and duplicate", func(t *testing.T, root string) {
+			addInclude(t, root, "ui", "guides/shared/nope.md", "guides/shared/nope.md")
+		}, []string{"guides/shared/nope.md", "does not exist", "twice"}},
+		{"outside guides/ and duplicate", func(t *testing.T, root string) {
+			addInclude(t, root, "ui", "glossary/terms.yaml", "glossary/terms.yaml")
+		}, []string{"glossary/terms.yaml", "a .md file under guides/", "twice"}},
 		{"shared file too big, included", func(t *testing.T, root string) {
 			writeGuide(t, root, "guides/shared/big.md", 4097)
 			addInclude(t, root, "ui", "guides/shared/big.md")
@@ -2486,6 +2492,32 @@ func TestLintGuideTotalCountsInclude(t *testing.T) {
 	for _, want := range []string{"MainUIText.json", "36000", "35000"} {
 		if !strings.Contains(got, want) {
 			t.Errorf("warnings do not mention %q:\n%s", want, got)
+		}
+	}
+}
+
+// An include equal to the family's own guide adds nothing: Lint passes it but
+// LintRoutingWarnings warns, with or without a KR pack at hand.
+func TestLintRoutingWarnsIncludeOfOwnGuide(t *testing.T) {
+	warns := func(krFiles []string, include ...string) string {
+		root := copyRules(t)
+		writeGuide(t, root, "guides/shared/a.md", 10)
+		addInclude(t, root, "ui", include...)
+		var msgs []string
+		for _, w := range rules.LintRoutingWarnings(root, krFiles) {
+			msgs = append(msgs, w.Message)
+		}
+		return strings.Join(msgs, "\n")
+	}
+	for _, files := range [][]string{nil, {"MainUIText.json"}} {
+		got := warns(files, "guides/shared/a.md", "guides/families/ui.md")
+		for _, want := range []string{"ui", "guides/families/ui.md", "own guide"} {
+			if !strings.Contains(got, want) {
+				t.Errorf("files %v: warnings do not mention %q:\n%s", files, want, got)
+			}
+		}
+		if got := warns(files, "guides/shared/a.md"); strings.Contains(got, "own guide") {
+			t.Errorf("files %v: warned of an include that is not the own guide: %s", files, got)
 		}
 	}
 }

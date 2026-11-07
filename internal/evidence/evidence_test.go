@@ -10,6 +10,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 )
@@ -80,7 +81,7 @@ func TestCollectNamesAggregateByPair(t *testing.T) {
 			"Skills.json": `{"dataList":[{"id":1,"name":"破裂"},{"id":2,"name":"炸裂"}]}`,
 			"Misc.json":   `{"dataList":[{"id":1,"text":"破裂した"}]}`,
 		})
-	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	items, err := Collect(glossary(term("파열", "破裂")), set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -133,7 +134,7 @@ func TestCollectChecksThreshold(t *testing.T) {
 				return "Miss"
 			})
 			set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
-			items, err := Collect(glossary(term("타격", "打擊")), set, nil, map[string]Candidates{"타격": {EN: []string{tc.cand}}})
+			items, err := Collect(glossary(term("타격", "打擊")), set, testFields(t), nil, map[string]Candidates{"타격": {EN: []string{tc.cand}}})
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -158,7 +159,7 @@ func TestCollectCheckJPSubstringAndNoAlignment(t *testing.T) {
 	jp := lines(10, func(i int) string { return "強い打撃だ" })
 	// the EN pack has no such file: N is 0 for EN.
 	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{}, packFiles{"Lines.json": jp})
-	items, err := Collect(glossary(term("타격", "打擊")), set, nil, map[string]Candidates{"타격": {JP: []string{"打撃"}, EN: []string{"Hit"}}})
+	items, err := Collect(glossary(term("타격", "打擊")), set, testFields(t), nil, map[string]Candidates{"타격": {JP: []string{"打撃"}, EN: []string{"Hit"}}})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -180,7 +181,7 @@ func TestCollectCandidateUnion(t *testing.T) {
 		packFiles{"Skills.json": `{"dataList":[{"id":1,"name":"打撃"},{"id":2,"name":"打撃"},{"id":3,"name":"打撃"}]}`})
 	e := term("타격", "打擊")
 	e.JP, e.EN = "打撃", "Blow"
-	items, err := Collect(glossary(e), set, []string{"타격"}, map[string]Candidates{"타격": {EN: []string{"Blow", "Smash"}}})
+	items, err := Collect(glossary(e), set, testFields(t), []string{"타격"}, map[string]Candidates{"타격": {EN: []string{"Blow", "Smash"}}})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -203,21 +204,21 @@ func TestCollectSelection(t *testing.T) {
 	cand.Status = "candidate"
 	r := glossary(term("가", "甲"), term("나", "乙"), cand)
 
-	items, err := Collect(r, set, nil, nil)
+	items, err := Collect(r, set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 	if len(items) != 2 || items[0].KR != "가" || items[1].KR != "나" {
 		t.Errorf("default selection = %+v, want the approved entries 가, 나", items)
 	}
-	items, err = Collect(r, set, []string{"나"}, nil)
+	items, err = Collect(r, set, testFields(t), []string{"나"}, nil)
 	if err != nil || len(items) != 1 || items[0].KR != "나" {
 		t.Errorf("--kr 나 = %+v, %v", items, err)
 	}
-	if _, err := Collect(r, set, []string{"없음"}, nil); err == nil || !IsUserError(err) {
+	if _, err := Collect(r, set, testFields(t), []string{"없음"}, nil); err == nil || !IsUserError(err) {
 		t.Errorf("unknown kr: err = %v, want a user error", err)
 	}
-	if _, err := Collect(r, set, nil, map[string]Candidates{"없음": {EN: []string{"x"}}}); err == nil || !IsUserError(err) {
+	if _, err := Collect(r, set, testFields(t), nil, map[string]Candidates{"없음": {EN: []string{"x"}}}); err == nil || !IsUserError(err) {
 		t.Errorf("candidates for unknown kr: err = %v, want a user error", err)
 	}
 	// An entry with no hits has empty (not nil) lists.
@@ -231,7 +232,7 @@ func TestCollectSelection(t *testing.T) {
 func TestCollectDescIsTheSiblingOfTheName(t *testing.T) {
 	kr := `{"dataList":[{"id":"K","name":"K","desc":"top","levelList":[{"name":"레벨","desc":"d0"},{"name":"레벨 ","desc":"d1"}]}]}`
 	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
-	items, err := Collect(glossary(term("레벨", "等級")), set, nil, nil)
+	items, err := Collect(glossary(term("레벨", "等級")), set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -252,7 +253,7 @@ func TestCollectDescIsTheSiblingOfTheName(t *testing.T) {
 func TestCollectDescTopLevelNameGetsOnlyTopDesc(t *testing.T) {
 	kr := `{"dataList":[{"id":"K","name":"파열","desc":"top","levelList":[{"name":"x","desc":"d0"}]}]}`
 	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
-	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	items, err := Collect(glossary(term("파열", "破裂")), set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -265,7 +266,7 @@ func TestCollectDescTopLevelNameGetsOnlyTopDesc(t *testing.T) {
 func TestCollectDescsAreNotRepeated(t *testing.T) {
 	kr := `{"dataList":[{"id":"K","name":"파열","desc":"설명","levelList":[{"name":"파열"}]}]}`
 	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
-	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	items, err := Collect(glossary(term("파열", "破裂")), set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -278,7 +279,7 @@ func TestCollectDescsAreNotRepeated(t *testing.T) {
 func TestCollectNoDescOutsideDataList(t *testing.T) {
 	kr := `{"name":"파열","desc":"설명","dataList":[]}`
 	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
-	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	items, err := Collect(glossary(term("파열", "破裂")), set, testFields(t), nil, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -297,7 +298,7 @@ func TestCollectTagOnlyAlignedTextIsNotCounted(t *testing.T) {
 		return "<sprite name=x/>"
 	})
 	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
-	items, err := Collect(glossary(term("타격", "打擊")), set, nil, map[string]Candidates{"타격": {EN: []string{"Hit"}}})
+	items, err := Collect(glossary(term("타격", "打擊")), set, testFields(t), nil, map[string]Candidates{"타격": {EN: []string{"Hit"}}})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -321,7 +322,7 @@ func TestCollectOccurrenceFollowsMatch(t *testing.T) {
 		term rules.Term
 		n    int
 	}{{word, 0}, {sub, 10}} {
-		items, err := Collect(glossary(tc.term), set, nil, cands)
+		items, err := Collect(glossary(tc.term), set, testFields(t), nil, cands)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -382,5 +383,64 @@ func TestNumberFormsMultibyteSeparator(t *testing.T) {
 				t.Errorf("numberForms(%q) holds the invalid UTF-8 %q", c.cand, f)
 			}
 		}
+	}
+}
+
+// testFields loads field rules from a temp root: id, model are identifier
+// fields, as in rules/fields.manual.yaml.
+func testFields(t *testing.T) *fields.Rules {
+	t.Helper()
+	root := t.TempDir()
+	if err := os.MkdirAll(filepath.Join(root, "rules"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(root, "rules", "fields.manual.yaml"), []byte("identifier_fields: [id, model]\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	fr, err := fields.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return fr
+}
+
+// Units of a field the field rules do not translate (an identifier, whose
+// aligned text is the KR id itself) are not counted in N, as in the scope
+// analysis.
+func TestCollectSkipsUntranslatedFields(t *testing.T) {
+	const n = 12
+	var kr, en, jp strings.Builder
+	for _, s := range []*strings.Builder{&kr, &en, &jp} {
+		s.WriteString(`{"dataList":[`)
+	}
+	for i := 0; i < n; i++ {
+		sep := ","
+		if i == 0 {
+			sep = ""
+		}
+		fmt.Fprintf(&kr, `%s{"id":%d,"model":"티페리트","content":"티페리트가 왔다"}`, sep, i+1)
+		// the id and model are the Hangul id in every language; the content is translated.
+		fmt.Fprintf(&en, `%s{"id":%d,"model":"티페리트","content":"Tiphereth came"}`, sep, i+1)
+		fmt.Fprintf(&jp, `%s{"id":%d,"model":"ティファレト","content":"ティファレトが来た"}`, sep, i+1)
+	}
+	for _, s := range []*strings.Builder{&kr, &en, &jp} {
+		s.WriteString(`]}`)
+	}
+	set := openSet(t, packFiles{"Story.json": kr.String()}, packFiles{"Story.json": en.String()}, packFiles{"Story.json": jp.String()})
+	items, err := Collect(glossary(term("티페리트", "迭菲瑞特")), set, testFields(t), nil, map[string]Candidates{"티페리트": {EN: []string{"Tiphereth"}}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got *Check
+	for i := range items[0].Checks {
+		if items[0].Checks[i].Lang == LangEN && items[0].Checks[i].Candidate == "Tiphereth" {
+			got = &items[0].Checks[i]
+		}
+	}
+	if got == nil {
+		t.Fatalf("no EN check: %+v", items[0].Checks)
+	}
+	if got.N != n || got.Hits != n || !got.OK {
+		t.Errorf("check = %+v, want N %d Hits %d OK (the model units are not counted)", *got, n, n)
 	}
 }
