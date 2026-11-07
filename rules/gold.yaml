@@ -1,0 +1,2254 @@
+# 基準樣本
+#
+# 每個族群固定種子抽出的單位，由人逐一判定譯文對不對，用來量譯文品質。
+# 只由 `lct gold` 修改，不要手改：
+#   lct gold sample   抽樣（檔案已有判定時拒絕，--force 才覆蓋）
+#   lct gold set      記判定
+#   lct gold report   依族群與來源列正確率
+#
+# verdict 為空（未判定）、correct、wrong 或 unsure；judged_zh 是判定當時的譯文，
+# 現有譯文與它不同的單位在報告列為 stale。
+
+seed: 20261107
+per_family: 20
+units:
+  - key: AbDlg_Merusault.json|/dataList/5/teller
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents.json|/dataList/6/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents_Ycgd.json|/dataList/8/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents.json|/dataList/17/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbnormalityGuides.json|/dataList/72/storyList/1/story
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents_Refraction3.json|/dataList/0/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbnormalityGuides_Refraction5.json|/dataList/0/storyList/2/story
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents.json|/dataList/27/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbDlg_Gregor.json|/dataList/0/teller
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEventsResultLog.json|/dataList/10/content
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents_Refraction4.json|/dataList/0/title
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEventsResultLog.json|/dataList/77/content
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbnormalityGuides_Mirror.json|/dataList/2/clue
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbnormalityGuides.json|/dataList/101/storyList/0/story
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents_Mirror.json|/dataList/13/failureDesc/1
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents-a1c5p3.json|/dataList/5/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbnormalityGuides.json|/dataList/50/name
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEventsResultLog-a1c6p3.json|/dataList/15/content
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents-walpu8.json|/dataList/0/behaveDesc
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: AbEvents-a1c6p3.json|/dataList/3/successDesc/0
+    family: abnormality
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-12.json|/dataList/24/levelList/1/name
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-05.json|/dataList/21/levelList/2/coinlist/1/coindescs/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-02.json|/dataList/5/levelList/0/name
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-07.json|/dataList/19/levelList/0/coinlist/0/coindescs/1/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-12.json|/dataList/35/levelList/0/coinlist/0/coindescs/1/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-05.json|/dataList/31/levelList/1/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-07.json|/dataList/29/levelList/2/coinlist/1/coindescs/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-06.json|/dataList/6/levelList/1/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-07.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Ego.json|/dataList/44/levelList/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-06.json|/dataList/29/levelList/1/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-08.json|/dataList/42/levelList/2/coinlist/0/coindescs/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Assist-a1c8p2.json|/dataList/1/levelList/0/coinlist/2/coindescs/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-07.json|/dataList/19/levelList/1/coinlist/0/coindescs/2/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-01.json|/dataList/7/levelList/0/name
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Ego_Personality-11.json|/dataList/8/levelList/2/name
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-04.json|/dataList/17/levelList/2/desc
+    family: ally
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-09.json|/dataList/13/levelList/0/coinlist/1/coindescs/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_personality-08.json|/dataList/21/levelList/1/coinlist/2/coindescs/1/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Ego_Personality-02.json|/dataList/2/levelList/0/desc
+    family: ally
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Yuri_9.json|/dataList/22/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Magical_32.json|/dataList/0/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Leiheng_40.json|/dataList/8/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_AngelaLoR_43.json|/dataList/9/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Aengdu_26.json|/dataList/23/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Heathcliff_14.json|/dataList/22/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Heathcliff_14.json|/dataList/18/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Ricardo_29.json|/dataList/12/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_ZigongZilu_30.json|/dataList/21/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_LaMancha_22.json|/dataList/10/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Amiya_37.json|/dataList/32/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_SatgatAengdu_49.json|/dataList/13/dlg
+    family: announcer
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_JackPierre_11.json|/dataList/1/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Dante_1.json|/dataList/14/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Malkuth_10.json|/dataList/29/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_LCE_45.json|/dataList/5/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Sinclair_4.json|/dataList/1/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Gebura_39.json|/dataList/0/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Vergilius_28.json|/dataList/32/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleAnnouncerDlg/Announcer_Ryoshu_42.json|/dataList/4/dlg
+    family: announcer
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_5.json|/dataList/12/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNote_6.json|/dataList/7/content
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_5.json|/dataList/11/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNote.json|/dataList/9/content
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_13.json|/dataList/6/desc
+    family: dante-note
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_10.json|/dataList/2/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNote_2.json|/dataList/2/content
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNote_7.json|/dataList/0/content
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_3.json|/dataList/12/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_7.json|/dataList/2/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_11.json|/dataList/11/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_3.json|/dataList/10/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_6.json|/dataList/18/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_11.json|/dataList/7/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNote_6.json|/dataList/2/content
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_2.json|/dataList/0/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_10.json|/dataList/0/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNote_10.json|/dataList/3/content
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_9.json|/dataList/3/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterDanteNoteDetail_12.json|/dataList/4/desc
+    family: dante-note
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Sinclair_10.json|/dataList/2/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Meursault_5.json|/dataList/11/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_DonQuixote_3.json|/dataList/15/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Outis_11.json|/dataList/15/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Rodion_9.json|/dataList/2/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Gregor_12.json|/dataList/6/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Meursault_5.json|/dataList/16/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Faust_2.json|/dataList/18/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Ryoshu_4.json|/dataList/8/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Ishmael_8.json|/dataList/13/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Sinclair_10.json|/dataList/19/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_HongLu_6.json|/dataList/6/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Ishmael_8.json|/dataList/5/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Ishmael_8.json|/dataList/0/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Outis_11.json|/dataList/22/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_YiSang_1.json|/dataList/32/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Ishmael_8.json|/dataList/17/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_Rodion_9.json|/dataList/5/desc
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_YiSang_1.json|/dataList/18/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOVoiceDig/Voice_EGO_YiSang_1.json|/dataList/19/dlg
+    family: ego-voice
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Enemy-pilgrimage.json|/dataList/8/levelList/0/coinlist/2/coindescs/2/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Abnormality-a1c5p3.json|/dataList/64/levelList/0/coinlist/1/coindescs/1/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Enemies-twth.json|/dataList/5/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Enemies-tkt.json|/dataList/10/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Enemy.json|/dataList/216/levelList/0/coinlist/1/coindescs/0/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Enemy-a1c6p1.json|/dataList/14/levelList/0/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Enemies.json|/dataList/348/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Abnormality-twth.json|/dataList/8/levelList/0/coinlist/2/coindescs/1/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Enemy-a1c9116.json|/dataList/24/levelList/0/coinlist/1/coindescs/0/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Passives_Abnormality_Refraction2.json|/dataList/74/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Passives_Abnormality-a1c951.json|/dataList/3/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Passives_Enemy-a1c6p1.json|/dataList/12/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Passives_Enemy-a1c10p1.json|/dataList/9/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Abnormality.json|/dataList/137/levelList/0/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Abnormality_Refraction2_bokgak.json|/dataList/35/levelList/0/coinlist/0/coindescs/2/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Abnormality.json|/dataList/142/levelList/0/coinlist/0/coindescs/0/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Enemies.json|/dataList/8/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Skills_Abnormality_Mirror6.json|/dataList/8/levelList/0/desc
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Passives_Abnormality-a1c9p3.json|/dataList/46/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Passives_Enemy-pilgrimage.json|/dataList/5/name
+    family: enemy
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu8EventText.json|/dataList/9/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: CultivationEvent.json|/dataList/8/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BossRaidUI.json|/dataList/12/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu5EventText.json|/dataList/71/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu8EventText.json|/dataList/5/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu6EventText.json|/dataList/11/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RecordMemoryEvent.json|/dataList/9/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: DawnOfGreenEventText.json|/dataList/26/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BossRaidUI-2.json|/dataList/1/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu5EventText.json|/dataList/49/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu5EventText.json|/dataList/18/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TwiningThreadsEvent.json|/dataList/2/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu8EventText.json|/dataList/40/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu3EventText.json|/dataList/47/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TwiningThreadsEvent.json|/dataList/6/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu3EventText.json|/dataList/48/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu6EventText.json|/dataList/23/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BossRaidUI.json|/dataList/17/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Walpu6EventText.json|/dataList/48/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: DawnOfGreenEventText.json|/dataList/13/content
+    family: events
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P11214.json|/dataList/27/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: PersonalityVoiceDlg/Voice_Meursault_Dieci_10510.json|/dataList/19/dlg
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: PersonalityVoiceDlg/Voice_Faust_Seven_10206.json|/dataList/2/dlg
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: PersonalityVoiceDlg/Voice_DonQuixote_LEGOMagic_10312.json|/dataList/27/desc
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10410.json|/dataList/83/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10310.json|/dataList/43/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10914.json|/dataList/61/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P11208.json|/dataList/4/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10905.json|/dataList/18/title
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: PersonalityVoiceDlg/Voice_Yisang_Funeral_10110.json|/dataList/15/dlg
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: PersonalityVoiceDlg/Voice_Donquixote_Cinq_10305.json|/dataList/8/dlg
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P11102.json|/dataList/12/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: PersonalityVoiceDlg/Voice_Gregor_Dawn_11216.json|/dataList/0/desc
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P11215.json|/dataList/62/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10610.json|/dataList/73/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10413.json|/dataList/18/teller
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P11216.json|/dataList/79/teller
+    family: identity
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10914.json|/dataList/150/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleSpeechBubbleDlg-a1c9p3.json|/dataList/298/dlg
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/P10212.json|/dataList/9/content
+    family: identity
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleKeywords-a1c8p2.json|/dataList/27/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs-walpu6.json|/dataList/26/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleKeywords-a1c9p3.json|/dataList/98/desc
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleKeywords.json|/dataList/121/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: SkillTag.json|/dataList/31/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs.json|/dataList/349/desc
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs.json|/dataList/197/desc
+    family: keywords
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs_Mirror6.json|/dataList/36/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleKeywords_Refraction5.json|/dataList/11/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs.json|/dataList/89/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs.json|/dataList/487/desc
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs_Refraction5.json|/dataList/41/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleKeywords-a1c7p2.json|/dataList/8/desc
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs-a1c10p3.json|/dataList/44/desc
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs-walpu6.json|/dataList/24/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs_Refraction3.json|/dataList/4/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleKeywords.json|/dataList/87/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs-a1c9p1.json|/dataList/12/desc
+    family: keywords
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Bufs.json|/dataList/437/desc
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: SkillTag.json|/dataList/49/name
+    family: keywords
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon_7.json|/dataList/18/desc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon.json|/dataList/287/desc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: DungeonStartBuffs_MD7.json|/dataList/40/description
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ActionEvents_Mirror4.json|/dataList/1/name
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon.json|/dataList/199/name
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon.json|/dataList/111/simpleDesc/1/simpleDesc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: MirrorDungeonEgoGiftLockedDesc.json|/dataList/3/content
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon.json|/dataList/100/simpleDesc/0/simpleDesc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: MirrorDungeonUI_2.json|/dataList/183/content
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: MirrorDungeonUI_6.json|/dataList/58/content
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ActionEvents_lcbcheckup-re.json|/dataList/3/options/2/messageDesc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon-mowe-re.json|/dataList/1/simpleDesc/2/simpleDesc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: MirrorDungeonTheme-1.json|/dataList/117/name
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ActionEvents_Mirror.json|/dataList/27/options/1/result/0
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMirrorDungeon.json|/dataList/535/content
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMirrorDungeon.json|/dataList/423/content
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: MirrorDungeonUI_7_Achievement.json|/dataList/2/content
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_StoryDungeon.json|/dataList/24/desc
+    family: mirror
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon-mowe.json|/dataList/8/name
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: EGOgift_MirrorDungeon_7.json|/dataList/8/desc
+    family: mirror
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_2.json|/dataList/37/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_6.json|/dataList/7/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonStationName1001.json|/dataList/0/nameList/5/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_3.json|/dataList/1/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonNode2.json|/dataList/10/desc
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonNode3.json|/dataList/5/desc
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonNode1002.json|/dataList/1/title
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonStationName4.json|/dataList/0/nameList/4/shortName
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonNode1002.json|/dataList/5/title
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonNode3.json|/dataList/3/desc
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_2.json|/dataList/40/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_6.json|/dataList/2/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_4.json|/dataList/8/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_2.json|/dataList/29/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_2.json|/dataList/20/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_2.json|/dataList/52/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_1001.json|/dataList/10/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_6.json|/dataList/14/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonUI_2.json|/dataList/25/content
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RailwayDungeonNode3.json|/dataList/9/desc
+    family: railway
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-b3-b.json|/dataList/124/texts/2/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-common-a1c10p1.json|/dataList/46/texts/1/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/97/texts/0/text
+    family: rpg
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/42/texts/6/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-b2-b.json|/dataList/88/texts/1/text
+    family: rpg
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-2-b.json|/dataList/26/texts/2/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-5-c2.json|/dataList/11/texts/0/text
+    family: rpg
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-quest-floor-5-b.json|/dataList/6/description
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-item-common-a1c10p1.json|/dataList/0/description
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-quest-floor-3.json|/dataList/7/title
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-b1.json|/dataList/26/texts/32/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-b2.json|/dataList/48/texts/1/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-3-b.json|/dataList/99/texts/0/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/5/texts/0/text
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-b1-b.json|/dataList/79/texts/1/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-2.json|/dataList/37/texts/6/text
+    family: rpg
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-1.json|/dataList/75/texts/2/text
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-4-b.json|/dataList/3/texts/10/text
+    family: rpg
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-3.json|/dataList/37/texts/25/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: RPGSystem/rpg-loc-dialogue-floor-4.json|/dataList/120/texts/0/speaker
+    family: rpg
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterPersonality.json|/dataList/92/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterUIText.json|/dataList/78/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: DungeonArea1-3.json|/dataList/24/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ScenarioModelCodes-AutoCreated.json|/dataList/178/name
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleResultHint-a1c9p2.json|/dataList/2/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterUIText.json|/dataList/40/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StageNode91-27.json|/dataList/11/title
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterPersonality.json|/dataList/43/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ScenarioModelCodes-AutoCreated.json|/dataList/570/name
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ScenarioModelCodes-AutoCreated.json|/dataList/89/name
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: SuccessRate.json|/dataList/8/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StageNode1-4.json|/dataList/49/desc
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterUIText.json|/dataList/74/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterPersonality.json|/dataList/265/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterPersonality.json|/dataList/75/content
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StageNode-a1c7p1.json|/dataList/10/title
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ScenarioModelCodes-AutoCreated.json|/dataList/626/name
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryTheaterMain.json|/dataList/7/title
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ScenarioModelCodes-AutoCreated.json|/dataList/173/name
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: ScenarioModelCodes-AutoCreated.json|/dataList/580/name
+    family: stage
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/PC12B.json|/dataList/26/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E625I.json|/dataList/1/title
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E053X.json|/dataList/80/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/ES290B.json|/dataList/55/title
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E063X.json|/dataList/153/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E711B.json|/dataList/3/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/PC07B.json|/dataList/140/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E718B.json|/dataList/41/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E907B.json|/dataList/109/content
+    family: story-interlude
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E606B.json|/dataList/41/teller
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E619A.json|/dataList/52/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E616B.json|/dataList/29/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E725B.json|/dataList/52/title
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/PC14B.json|/dataList/61/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E901B.json|/dataList/72/content
+    family: story-interlude
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/ES013A.json|/dataList/9/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E503B.json|/dataList/7/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/PC04B.json|/dataList/112/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E406B.json|/dataList/9/content
+    family: story-interlude
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/E923B.json|/dataList/6/content
+    family: story-interlude
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S920B.json|/dataList/59/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S1062B.json|/dataList/7/content
+    family: story-main
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S1010B.json|/dataList/19/content
+    family: story-main
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S610B.json|/dataList/17/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S701B.json|/dataList/128/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S719B.json|/dataList/29/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/1D105A.json|/dataList/23/title
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S806B.json|/dataList/73/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S418B.json|/dataList/54/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S648I.json|/dataList/38/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S216B.json|/dataList/4/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S1004B.json|/dataList/233/content
+    family: story-main
+    origin: claude
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S902B.json|/dataList/37/teller
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S820B.json|/dataList/51/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S629A.json|/dataList/13/teller
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S941B.json|/dataList/61/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S632A.json|/dataList/1/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S603B.json|/dataList/3/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S510A.json|/dataList/58/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryData/S719B.json|/dataList/21/content
+    family: story-main
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: GachaTitle.json|/dataList/24/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: BattleUIText.json|/dataList/17/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: UI_Mission_MirrorDungeon5Event.json|/dataList/13/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: IAPProduct.json|/dataList/31/desc
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: StoryDungeonUI-a1c8p2.json|/dataList/1/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: IntroductionPreset.json|/dataList/273/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: LoginUIText.json|/dataList/66/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialDesc0-4.json|/dataList/54/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMainUIText.json|/dataList/810/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Items.json|/dataList/35/desc
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: IAPProduct.json|/dataList/44/desc
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: LoginUIText.json|/dataList/72/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: UserBanner.json|/dataList/16/desc
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMainUIText.json|/dataList/633/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMainUIText.json|/dataList/1037/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMainUIText.json|/dataList/293/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: MainUIText.json|/dataList/330/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: TutorialMainUIText.json|/dataList/930/content
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: UnlockCode-1.json|/dataList/5/askLevelUp
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
+  - key: Items-a1c9p1.json|/dataList/6/name
+    family: ui
+    origin: paratranz
+    verdict: ""
+    note: ""
+    judged_zh: ""
+    judged_at: ""
