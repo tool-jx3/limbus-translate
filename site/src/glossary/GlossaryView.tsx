@@ -3,6 +3,7 @@ import { Notice } from '../app/Notice'
 import { loadGlossary } from '../data'
 import { GLOSSARY_COLUMNS, glossaryHref, glossarySort, sortParts, termHref, type GlossaryColumn, type GlossaryOnly, type GlossarySort, type Route, type SortDir } from '../route'
 import { LANG_ATTR, type ScopeEntry, type ScopeThresholds } from '../types'
+import { CHECK_TITLE, checkLevel } from './check'
 import { useLoad } from './useLoad'
 
 type GlossaryRoute = Extract<Route, { kind: 'glossary' }>
@@ -17,7 +18,7 @@ const nonUsing = (e: ScopeEntry) => e.n - e.used
 const byText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0)
 const otherDir = (d: SortDir): SortDir => (d === 'asc' ? 'desc' : 'asc')
 const cmp = (a: string | number, b: string | number) => (a < b ? -1 : a > b ? 1 : 0)
-const checkText = (e: ScopeEntry) => (e.check === 'hard' ? 'hard' : 'warn')
+const checkText = (e: ScopeEntry) => checkLevel(e.check)
 
 /** The ids of the families an entry hits ("family:<id>" groups). */
 const familiesOf = (e: ScopeEntry) => e.groups.filter((g) => g.kind === 'family').map((g) => g.name.replace(/^family:/, ''))
@@ -109,7 +110,9 @@ function Row({ e }: { e: ScopeEntry }) {
         )}
       </td>
       <td>
-        <span class={e.check === 'hard' ? 'gl-check gl-check-hard' : 'gl-check'}>{e.check === 'hard' ? 'hard' : 'warn'}</span>
+        <span class={checkText(e) === 'warn' ? 'gl-check' : `gl-check gl-check-${checkText(e)}`} title={CHECK_TITLE[checkText(e)]}>
+          {checkText(e)}
+        </span>
       </td>
       <td class="gl-scope">{scopeSummary(e).join('；')}</td>
       <td class="gl-num">{e.n}</td>

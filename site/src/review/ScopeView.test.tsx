@@ -287,6 +287,15 @@ describe('ScopeView', () => {
   describe('all entries', () => {
     const rows = (el: HTMLElement) => [...el.querySelectorAll<HTMLElement>('.sc-entry')]
 
+    it('says check: off on an entry that has it', async () => {
+      const base = fixture<{ entries: { id: string }[] }>('review/scope.json')
+      const entries = base.entries.map((e, i) => (i === 0 ? { ...e, check: 'off' } : e))
+      vi.stubGlobal('fetch', vi.fn(fixtureFetch({ 'review/scope.json': { ...base, entries } })))
+      const el = await mount()
+      expect(rows(el)[0]!.querySelector('.sc-entry-meta')?.textContent).toContain('check：off')
+      expect(rows(el)[1]!.querySelector('.sc-entry-meta')?.textContent).not.toContain('check')
+    })
+
     it('lists the entries with also, files, not_files, match and used/n, and searches KR, ZH and also', async () => {
       const el = await mount()
       expect(rows(el)).toHaveLength(3)

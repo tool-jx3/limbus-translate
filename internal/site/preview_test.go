@@ -68,6 +68,17 @@ const pvGlossary = `- kr: 위력
 - kr: 후보
   zh: 候選
   status: candidate
+- kr: 첫째
+  jp: [一つ目, 一番目]
+  en: [First, Firstly]
+  zh: 第一
+  status: approved
+- kr: 셋째
+  en: Third
+  zh: 三號
+  status: approved
+  check: off
+  forbidden: [第叁]
 `
 
 const (
@@ -779,8 +790,8 @@ var pvCases = []struct {
 	{"Other.json", "/dataList/2/content", "needs_review pending item with attempts and an error"},
 	{"Other.json", "/dataList/3/content", "pending item leased to a batch"},
 	{"Frozen.json", "/dataList/0/content", "frozen file, glossary_check warn"},
-	{"Rules.json", "/dataList/0/content", "EN aligned by id, JP by sequence; a record like the file's other records"},
-	{"Rules.json", "/dataList/2/content", "a record with no rules commit and another since than the file's others"},
+	{"Rules.json", "/dataList/0/content", "EN aligned by id, JP by sequence; a record like the file's other records; a glossary entry with several jp and en forms"},
+	{"Rules.json", "/dataList/2/content", "a record with no rules commit and another since than the file's others; a check: off entry the record lacks, with no term-missing"},
 }
 
 // pvGoldUnit is a unit of preview/<path> as the viewer works on it, with every
@@ -1059,5 +1070,31 @@ func TestBuildPreviewFileGlossaryCheck(t *testing.T) {
 	})
 	if err == nil || !strings.Contains(err.Error(), "glossary_check") {
 		t.Errorf("batches that disagree: err = %v, want one about glossary_check", err)
+	}
+}
+
+// The fixtures hold a glossary entry with several forms of jp and en, as
+// lists in the batch, and an entry of check: off, which the batch carries and
+// whose missing rendering the check does not report.
+func TestPreviewFixtureFormsAndCheckOff(t *testing.T) {
+	w := newPvWorld(t, "Frozen.json")
+	pv := w.In.Preview.Previewer
+	first, err := pv.Unit(units.Key("Rules.json", "/dataList/0/content"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	text := encodeBatch(t, first.Batch)
+	if !strings.Contains(text, "\"jp\": [\n        \"一つ目\",\n        \"一番目\"\n      ],") || !strings.Contains(text, "\"en\": [\n        \"First\",\n        \"Firstly\"\n      ],") {
+		t.Errorf("the batch of 첫째 lacks its forms as lists:\n%s", text)
+	}
+	third, err := pv.Unit(units.Key("Rules.json", "/dataList/2/content"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(third.Batch.Glossary) != 1 || third.Batch.Glossary[0].Check != rules.CheckOff || third.Batch.Glossary[0].EN[0] != "Third" {
+		t.Fatalf("glossary of 셋째 = %+v, want the off entry", third.Batch.Glossary)
+	}
+	if c := third.Check; c == nil || c.Verdict != "accept" || slices.ContainsFunc(c.Issues, func(is validate.Issue) bool { return is.Code == validate.CodeTermMissing }) {
+		t.Errorf("check = %+v, want accepted without term-missing (the record 第三 lacks 三號)", c)
 	}
 }

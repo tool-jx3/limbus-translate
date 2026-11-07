@@ -86,6 +86,14 @@ describe('TermView, the top', () => {
     expect(top.querySelector('.tv-sources')?.textContent).toContain('game:Bufs.json#/dataList/0/name')
   })
 
+  it('shows each form of a jp or en that lists several', async () => {
+    const docs = { ...index, entries: index.entries.map((e) => (e.id === ID ? { ...e, jp: ['対象', '目標'], en: ['Target', 'Targets'] } : e)) }
+    const el = await mount(route(), { 'glossary/index.json': docs })
+    const facts = [...el.querySelectorAll('.tv-facts dt')].map((dt) => [dt.textContent, dt.nextElementSibling?.textContent])
+    expect(facts).toContainEqual(['JP', '対象、目標'])
+    expect(facts).toContainEqual(['EN', 'Target、Targets'])
+  })
+
   it('links only https URLs on the wiki; every other source is text', async () => {
     const bad = ['https://evil.example/x', 'javascript:alert(1)', 'https://limbuscompany.wiki.gg.evil.com/x', 'http://limbuscompany.wiki.gg/x']
     const good = 'https://limbuscompany.wiki.gg/wiki/Target'
@@ -119,6 +127,33 @@ describe('TermView, the top', () => {
     const el = await mount()
     expect(el.querySelector('.tv-top .rv-id code')?.textContent).toBe(ID)
     expect(el.querySelector('.tv-top .rv-id button')?.textContent).toBe('複製 ID')
+  })
+})
+
+describe('TermView, an entry of check: off', () => {
+  // As lct site writes it: the missing units of an off entry have no warning id.
+  const offDocs = () => ({
+    'glossary/index.json': { ...index, entries: index.entries.map((e) => (e.id === ID ? { ...e, check: 'off', hard_candidate: false } : e)) },
+    'glossary/aaaaaaaa-bbbbbbbb.json': { ...file, missing: file.missing.map(({ id: _id, accepted: _accepted, ...u }) => u) },
+  })
+
+  it('says off, and that a missing rendering does not warn', async () => {
+    const el = await mount(route(), offDocs())
+    const facts = [...el.querySelectorAll('.tv-facts dt')].map((dt) => [dt.textContent, dt.nextElementSibling?.textContent ?? ''])
+    const check = facts.find(([dt]) => dt === '檢查')![1]
+    expect(check).toContain('off')
+    expect(check).toContain('不警告')
+  })
+
+  it('lists the units without the rendering for information, with no id to copy and no link to warnings', async () => {
+    const el = await mount(route(), offDocs())
+    expect(missingItems(el)).toHaveLength(file.missing.length)
+    expect(el.querySelector('.tv-missing .rv-id')).toBeNull()
+    expect([...el.querySelectorAll<HTMLButtonElement>('.tv-missing button')].some((b) => b.textContent === '複製這些單位')).toBe(false)
+    expect(el.querySelector('.tv-missing')?.textContent).toContain('只供參考')
+    const hrefs = [...el.querySelectorAll<HTMLAnchorElement>('.tv-top a')].map((a) => a.getAttribute('href') ?? '')
+    expect(hrefs.some((h) => h.startsWith('#/r/warnings'))).toBe(false)
+    expect(hrefs).toContain(`#/r/scope?id=${encodeURIComponent(ID)}`)
   })
 })
 

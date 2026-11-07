@@ -292,11 +292,15 @@ describe('glossary fixtures', () => {
     expect(Object.keys(g.thresholds)).toEqual(['min_n', 'used', 'not_used', 'explained', 'lost_units', 'lost_share', 'hard_rate', 'hard_min_n'])
     expect(g.entries.length).toBeGreaterThanOrEqual(2)
     for (const e of g.entries) {
+      const some = (k: keyof ScopeEntry) => (e[k] !== undefined ? [k] : [])
       expect(Object.keys(e)).toEqual([
-        'id', 'kr', 'zh', 'also', 'files', 'not_files', 'match', ...(e.check !== undefined ? ['check'] : []), 'notes', 'groups',
+        'id', 'kr', 'zh', ...some('jp'), ...some('en'), ...some('meaning'), ...some('sources'), 'also', 'files', 'not_files', 'match', ...some('check'), 'notes', 'groups',
         'n', 'used', 'rate', 'hard_candidate', 'compound', 'explained', 'unexplained', 'same', 'other', 'unknown', 'examples',
       ])
       expect(['word', 'substring']).toContain(e.match)
+      // jp and en are a string, or a list of two forms or more (rules.Forms).
+      for (const v of [e.jp, e.en]) if (Array.isArray(v)) expect(v.length).toBeGreaterThan(1)
+      if (e.check !== undefined) expect(['hard', 'off']).toContain(e.check)
       for (const grp of e.groups) expect(Object.keys(grp)).toEqual(['name', 'kind', 'n', 'used', 'same', 'other', 'unknown'])
       expect(Object.keys(e.compound)).toEqual(['n', 'used'])
       for (const ex of e.examples) expect(Object.keys(ex)).toEqual(['key', 'group', 'kr', 'zh'])
@@ -308,7 +312,7 @@ describe('glossary fixtures', () => {
         for (const u of us) {
           expect(Object.keys(u)).toEqual([
             'key', 'family', 'top', ...(u.sub !== undefined ? ['sub'] : []), ...(u.tag !== undefined ? ['tag'] : []), 'origin', 'kr', 'zh',
-            ...(u.note !== undefined ? ['note'] : []), ...(which === 'missing' ? ['id', ...(u.accepted !== undefined ? ['accepted'] : [])] : []),
+            ...(u.note !== undefined ? ['note'] : []), ...(which === 'missing' && g.entries.find((x) => x.id === id)?.check !== 'off' ? ['id', ...(u.accepted !== undefined ? ['accepted'] : [])] : []),
           ])
           if (u.tag !== undefined) expect(Object.keys(u.tag)).toEqual(['kind', 'value', 'label'])
           expect(ORIGINS).toContain(u.origin)
@@ -324,7 +328,7 @@ describe('glossary fixtures', () => {
       expect(f.missing.length + f.used.length, e.id).toBe(e.n)
       expect(f.used.length, e.id).toBe(e.used)
       expect(e.rate).toBeCloseTo(e.n === 0 ? 0 : e.used / e.n, 3)
-      expect(e.hard_candidate).toBe(e.check !== 'hard' && e.n >= g.thresholds.hard_min_n && e.rate > g.thresholds.hard_rate)
+      expect(e.hard_candidate).toBe(e.check !== 'hard' && e.check !== 'off' && e.n >= g.thresholds.hard_min_n && e.rate > g.thresholds.hard_rate)
       const same = scopeEntries.find((s) => s.id === e.id)
       if (same) expect(e).toEqual(same)
       const keys = [...f.missing, ...f.used].map((u) => u.key)

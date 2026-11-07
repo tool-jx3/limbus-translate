@@ -137,6 +137,13 @@ describe('PreviewView: head and composition', () => {
     expect(tags).not.toContain('approved')
   })
 
+  it('tags a term of check: off, as Go wrote it in the fixtures', async () => {
+    const el = await open('Rules.json', '/dataList/2/content')
+    await vi.waitFor(() => expect(el.querySelector('.pv-terms li')).not.toBeNull())
+    const li = [...el.querySelectorAll('.pv-terms li')].find((x) => x.textContent?.includes('셋째 → 三號'))!
+    expect([...li.querySelectorAll('.pv-tag')].map((t) => t.textContent)).toEqual(['off'])
+  })
+
   it('keeps long texts in boxes of their own that scroll', async () => {
     const el = await open(STORY, ptrOf(STORY, 5))
     expect(el.querySelectorAll('pre.pv-box').length).toBeGreaterThan(0)

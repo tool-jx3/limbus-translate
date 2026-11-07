@@ -296,16 +296,16 @@ export interface ScopeEntry {
   id: string
   kr: string
   zh: string
-  /** The Japanese and English of the entry, and the sense it stands for with where that comes from (game:<file>#<pointer> or a limbuscompany.wiki.gg URL); each is absent where the glossary has none. */
-  jp?: string
-  en?: string
+  /** The Japanese and English of the entry (one form, or a list of the forms of the word, any of which counts: Forms), and the sense it stands for with where that comes from (game:<file>#<pointer> or a limbuscompany.wiki.gg URL); each is absent where the glossary has none. */
+  jp?: Forms
+  en?: Forms
   meaning?: string
   sources?: string[]
   also: string[]
   files: string[]
   not_files: string[]
   match: string
-  /** 'hard', or absent for an entry that only warns. */
+  /** 'hard'; 'off' for general vocabulary, which warns of no missing rendering (its counts are for information, it is never a hard candidate and has no proposal); or absent for an entry that only warns. */
   check?: string
   notes: string
   groups: ScopeGroup[]
@@ -481,11 +481,14 @@ export interface PreviewShared {
   guides: PreviewGuide[]
 }
 
+/** The jp or en of a glossary entry (rules.Forms): one form as a string, several as a list. */
+export type Forms = string | string[]
+
 /** A glossary entry (rules.Term) in the order of the Go fields; `units` is a batch's only. */
 export interface Term {
   kr: string
-  jp?: string
-  en?: string
+  jp?: Forms
+  en?: Forms
   zh: string
   status: string
   notes?: string
@@ -495,6 +498,7 @@ export interface Term {
   files?: string[]
   not_files?: string[]
   match?: string
+  /** 'hard', 'off' (no warning of a missing rendering) or 'warn', absent for warn. */
   check?: string
   provisional?: boolean
   units?: string[]

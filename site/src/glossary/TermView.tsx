@@ -9,6 +9,7 @@ import { reviewHref, termHref, type Route, type TermFilter } from '../route'
 import type { Settings } from '../settings'
 import { OriginBadge } from '../view/OriginBadge'
 import { LANG_ATTR, type FileTag, type GlossaryFile, type GlossaryUnit, type ScopeEntry } from '../types'
+import { CHECK_TITLE, checkLevel, formsOf } from './check'
 import { hardSentence, percent, scopeSummary } from './GlossaryView'
 import { useLoad } from './useLoad'
 
@@ -96,16 +97,16 @@ function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
         <span lang={LANG_ATTR.kr}>{e.kr}</span> → <span lang={LANG_ATTR.zh}>{e.zh}</span>
       </h1>
       <dl class="tv-facts">
-        {e.jp !== undefined && (
+        {formsOf(e.jp).length > 0 && (
           <>
             <dt>JP</dt>
-            <dd lang={LANG_ATTR.jp}>{e.jp}</dd>
+            <dd lang={LANG_ATTR.jp}>{formsOf(e.jp).join('、')}</dd>
           </>
         )}
-        {e.en !== undefined && (
+        {formsOf(e.en).length > 0 && (
           <>
             <dt>EN</dt>
-            <dd lang={LANG_ATTR.en}>{e.en}</dd>
+            <dd lang={LANG_ATTR.en}>{formsOf(e.en).join('、')}</dd>
           </>
         )}
         {e.meaning !== undefined && (
@@ -142,7 +143,8 @@ function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
         )}
         <dt>檢查</dt>
         <dd>
-          {e.check === 'hard' ? 'hard' : 'warn'}
+          {checkLevel(e.check)}
+          {checkLevel(e.check) === 'off' && <span class="tv-check-note">（{CHECK_TITLE.off}；應用率只供參考）</span>}
           {e.hard_candidate && <span class="gl-hard" title={hard}>可考慮退回</span>}
         </dd>
         <dt>範圍</dt>
@@ -185,7 +187,8 @@ function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
         </table>
       </div>
       <p class="tv-links">
-        <a href={reviewHref('warnings', { q: termgroup })}>審核頁的警告</a>
+        {/* An entry of check: off has no warning on the review page. */}
+        {checkLevel(e.check) !== 'off' && <a href={reviewHref('warnings', { q: termgroup })}>審核頁的警告</a>}
         <a href={reviewHref('scope', { id: e.id })}>詞彙範圍的條目</a>
       </p>
       <IdCopy id={e.id} source={`${e.kr} → ${e.zh}`} />
@@ -305,6 +308,7 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
   const missing = useMemo(() => file.missing.filter((u) => keepUnit(u, filter)), [file, filterKey])
   const used = useMemo(() => file.used.filter((u) => keepUnit(u, filter)), [file, filterKey])
   const all = useMemo(() => [...file.missing, ...file.used], [file])
+  const off = checkLevel(entry.check) === 'off'
   const krMark = useMemo(() => termMark(entry.kr), [entry.kr])
   const zhMark = useMemo(() => termsMark([entry.zh, ...entry.also]), [entry.zh, entry.also])
   const box = useRef<HTMLTextAreaElement>(null)
@@ -345,24 +349,31 @@ function Units({ route, entry, file }: { route: TermRoute; entry: ScopeEntry; fi
       <Filters route={route} units={all} />
       <section class="tv-missing">
         <h2>沒用譯名 {missing.length} 項</h2>
-        <div class="rv-tools">
-          <button type="button" class="rv-copy" onClick={copy}>
-            複製這些單位
-          </button>
-          <span class="rv-said" role="status">
-            {said}
-          </span>
-        </div>
-        {boxShown && <p class="tv-copyhint" role="status">{COPY_REFUSED_HINT}</p>}
-        <textarea
-          ref={box}
-          class={boxShown ? 'tv-copybox' : 'tv-copybox is-hidden'}
-          readOnly
-          aria-label="要複製的單位"
-          {...(boxShown ? {} : { tabIndex: -1, 'aria-hidden': 'true' as const })}
-          rows={Math.min(Math.max(lines.length, 1), 8)}
-          value={lines.join('\n')}
-        />
+        {off ? (
+          // No warning to decide on: the units are for information only.
+          <p class="tv-off-note">這個條目是 <code>check: off</code>：缺譯名不警告，這些單位只供參考，沒有要確認的警告。</p>
+        ) : (
+          <>
+            <div class="rv-tools">
+              <button type="button" class="rv-copy" onClick={copy}>
+                複製這些單位
+              </button>
+              <span class="rv-said" role="status">
+                {said}
+              </span>
+            </div>
+            {boxShown && <p class="tv-copyhint" role="status">{COPY_REFUSED_HINT}</p>}
+            <textarea
+              ref={box}
+              class={boxShown ? 'tv-copybox' : 'tv-copybox is-hidden'}
+              readOnly
+              aria-label="要複製的單位"
+              {...(boxShown ? {} : { tabIndex: -1, 'aria-hidden': 'true' as const })}
+              rows={Math.min(Math.max(lines.length, 1), 8)}
+              value={lines.join('\n')}
+            />
+          </>
+        )}
         <MissingList key={filterKey} units={missing} mark={krMark} />
       </section>
       <section class="tv-used">

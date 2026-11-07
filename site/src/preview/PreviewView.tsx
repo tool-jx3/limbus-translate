@@ -138,6 +138,11 @@ function Composition({ batch, pf, pu, shared }: { batch: BatchJSON; pf: PreviewF
                   {id !== undefined && !t.provisional ? <a href={termHref(id)}>{label}</a> : label}
                   {t.provisional && <span class="pv-tag">暫定</span>}
                   {t.check === 'hard' && <span class="pv-tag">hard</span>}
+                  {t.check === 'off' && (
+                    <span class="pv-tag" title="一般用語：缺譯名不警告">
+                      off
+                    </span>
+                  )}
                 </li>
               )
             })}

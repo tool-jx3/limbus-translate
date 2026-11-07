@@ -9,7 +9,21 @@
     "guides/base.md",
     "guides/families.md"
   ],
-  "glossary": [],
+  "glossary": [
+    {
+      "kr": "셋째",
+      "en": "Third",
+      "zh": "三號",
+      "status": "approved",
+      "forbidden": [
+        "第叁"
+      ],
+      "check": "off",
+      "units": [
+        "Rules.json|/dataList/2/content"
+      ]
+    }
+  ],
   "keywords": {},
   "units": [
     {

@@ -2607,6 +2607,12 @@ button.chip {
   color: var(--warn-fg);
 }
 
+/* check: off, general vocabulary: its counts are for information only. */
+.gl-check-off {
+  color: var(--muted);
+  font-style: italic;
+}
+
 .gl-hard {
   margin-inline-start: 0.5em;
   padding: 0 0.45em;
@@ -2715,6 +2721,16 @@ button.chip {
 .tv-copyhint {
   margin: 0.25rem 0;
   overflow-wrap: anywhere;
+}
+
+.tv-check-note,
+.tv-off-note {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.tv-off-note {
+  margin: 0.25rem 0;
 }
 
 /* A header of the glossary list that sorts: it reads as the header text, with a mark for the direction. */

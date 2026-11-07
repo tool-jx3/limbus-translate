@@ -223,6 +223,7 @@ function EntryRow({ e, t, target }: { e: ScopeEntry; t: ScopeThresholds; target:
           {e.files.length > 0 && <span>files：{e.files.join('、')}</span>}
           {e.not_files.length > 0 && <span>not_files：{e.not_files.join('、')}</span>}
           {e.match !== '' && <span>match：{e.match}</span>}
+          {e.check === 'off' && <span title="一般用語：缺譯名不警告，不提範圍建議；數字只供參考">check：off</span>}
         </span>
       </summary>
       <div class="sc-entry-body">

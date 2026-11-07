@@ -60,11 +60,14 @@ describe('GlossaryView', () => {
     expect(el.textContent).toContain('3 條')
   })
 
-  it('shows check as hard, or as warn when it is left out', async () => {
-    const docs = { 'glossary/index.json': { ...base, entries: base.entries.map((e, i) => (i === 0 ? { ...e, check: 'hard' } : e)) } }
+  it('shows check as hard, off, or as warn when it is left out', async () => {
+    const docs = { 'glossary/index.json': { ...base, entries: base.entries.map((e, i) => (i === 0 ? { ...e, check: 'hard' } : e.kr === '공격' ? { ...e, check: 'off' } : e)) } }
     const el = await mount(route(), docs)
     const checks = Object.fromEntries(rows(el).map((r) => [r.querySelector('.gl-kr')?.textContent, r.querySelector('.gl-check')?.textContent]))
-    expect(checks).toEqual({ 대상: 'hard', 공격: 'warn', 보스: 'warn' })
+    expect(checks).toEqual({ 대상: 'hard', 공격: 'off', 보스: 'warn' })
+    const attack = rows(el).find((r) => r.querySelector('.gl-kr')?.textContent === '공격')!
+    expect(attack.querySelector('.gl-check')?.classList.contains('gl-check-off')).toBe(true)
+    expect(attack.querySelector('.gl-check')?.getAttribute('title')).toContain('不警告')
   })
 
   it('summarises the scope: files, not_files and match', async () => {
@@ -195,6 +198,11 @@ describe('filterEntries, the sorts of the columns', () => {
   it('orders by the check as shown, hard before warn', () => {
     expect(order(es, 'check')).toEqual(['b', 'a', 'c'])
     expect(order(es, 'check-desc')).toEqual(['a', 'c', 'b'])
+  })
+
+  it('orders off between hard and warn, as its name sorts', () => {
+    const withOff = [...es, mk('d', 'W', { check: 'off' })]
+    expect(order(withOff, 'check')).toEqual(['b', 'd', 'a', 'c'])
   })
 
   it('orders by the scope line', () => {

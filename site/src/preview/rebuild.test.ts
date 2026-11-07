@@ -43,6 +43,15 @@ describe('rebuildBatch', () => {
     })
   }
 
+  it('covers an entry with several jp and en forms, written as lists, and one of check: off', () => {
+    const terms = cases.flatMap((c) => (JSON.parse(read(c.batch)) as BatchJSON).glossary)
+    const forms = terms.find((t) => Array.isArray(t.jp) && Array.isArray(t.en))
+    expect(forms?.jp).toEqual(['一つ目', '一番目'])
+    expect(forms?.en).toEqual(['First', 'Firstly'])
+    expect(terms.some((t) => typeof t.jp === 'string' || typeof t.en === 'string')).toBe(true)
+    expect(terms.find((t) => t.check === 'off')?.kr).toBe('셋째')
+  })
+
   it('refuses a copy', () => {
     const c = expanded('StoryData/S001A.json')
     const i = c.units.findIndex((u) => u === null)

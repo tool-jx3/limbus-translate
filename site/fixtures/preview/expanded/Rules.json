@@ -35,7 +35,21 @@
         "guides/base.md",
         "guides/families.md"
       ],
-      "t": [],
+      "t": [
+        {
+          "kr": "첫째",
+          "jp": [
+            "一つ目",
+            "一番目"
+          ],
+          "en": [
+            "First",
+            "Firstly"
+          ],
+          "zh": "第一",
+          "status": "approved"
+        }
+      ],
       "k": [],
       "it": {
         "reason": "requeue",
@@ -163,7 +177,18 @@
         "guides/base.md",
         "guides/families.md"
       ],
-      "t": [],
+      "t": [
+        {
+          "kr": "셋째",
+          "en": "Third",
+          "zh": "三號",
+          "status": "approved",
+          "forbidden": [
+            "第叁"
+          ],
+          "check": "off"
+        }
+      ],
       "k": [],
       "it": {
         "reason": "requeue",
