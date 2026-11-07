@@ -681,3 +681,48 @@ export interface PreviewFileWire {
   rd?: PreviewRecDefaults
   units: (PreviewUnitWire | null)[]
 }
+
+/** A unit of the gold sample (data/gold.json). zh is the translation now built; stale: it is not the one that was judged. */
+export interface GoldUnit {
+  key: string
+  path: string
+  ptr: string
+  family: string
+  origin: string
+  kr: string
+  jp?: string
+  en?: string
+  zh: string
+  /** The text in the pack when it differs from zh (the translation that was judged). */
+  shipped?: string
+  verdict: '' | 'correct' | 'wrong' | 'unsure'
+  note: string
+  stale: boolean
+}
+
+/** A row of the report: a family and an origin (origin is absent in the rows of a family; both are empty in the total). */
+export interface GoldRow {
+  family: string
+  origin?: string
+  sampled: number
+  judged: number
+  correct: number
+  wrong: number
+  unsure: number
+  accuracy: number | null
+  stale: number
+}
+
+export interface GoldReport {
+  rows: GoldRow[]
+  families: GoldRow[]
+  total: GoldRow
+}
+
+export interface GoldData {
+  per_family?: number
+  /** Units of the sample that are not in the pack. */
+  missing?: number
+  units: GoldUnit[]
+  report?: GoldReport
+}

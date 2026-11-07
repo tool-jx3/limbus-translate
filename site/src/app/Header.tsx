@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks'
-import { glossaryHref, reviewHref, searchHref, updatesHref, type Route } from '../route'
+import { glossaryHref, goldHref, reviewHref, searchHref, updatesHref, type Route } from '../route'
 import { LANGS, type Settings } from '../settings'
 import type { Lang, ReviewCounts } from '../types'
 
@@ -74,6 +74,9 @@ export function Header({ route, review, settings, onSettings, fileQuery, onFileQ
       </a>
       <a class="glossary-link" href={glossaryHref()} {...(route.kind === 'glossary' || route.kind === 'term' ? { 'aria-current': 'page' as const } : {})}>
         詞彙
+      </a>
+      <a class="gold-link" href={goldHref()} {...(route.kind === 'gold' ? { 'aria-current': 'page' as const } : {})}>
+        基準
       </a>
       <div class="top-filter">
         <FileFilter value={fileQuery} onInput={onFileQuery} />

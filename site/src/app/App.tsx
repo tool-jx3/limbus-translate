@@ -3,6 +3,7 @@ import { DataError, loadIndex, loadMeta } from '../data'
 import { parseHash, type Route } from '../route'
 import { GlossaryView } from '../glossary/GlossaryView'
 import { TermView } from '../glossary/TermView'
+import { GoldView } from '../gold/GoldView'
 import { PreviewView } from '../preview/PreviewView'
 import { SearchView } from '../search/SearchView'
 import { ReviewView } from '../review/ReviewView'
@@ -141,6 +142,8 @@ function Page({ route, meta, index, settings, onSettings, onOpenDirectory }: Pag
       return <SearchView q={route.q} lang={route.lang} re={route.re} index={index} />
     case 'review':
       return <ReviewView route={route} index={index} meta={meta} settings={settings} />
+    case 'gold':
+      return <GoldView />
     case 'updates':
       return <UpdatesView />
     case 'update':

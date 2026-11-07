@@ -4,6 +4,7 @@ import type { UpdateFilter } from './updates/filter'
 /**
  * Where the page is, as the hash of its URL says: #/, #/f/<path>?u=<pointer>, #/pv/<path>?u=<pointer> (the translation preview of a unit), #/s?q=…&lang=…&re=1,
  * #/r/<tab>?family=…&kind=…&q=…&all=1&id=… (sub is the kind of the query: of a suggestion, the code of a warning),
+ * #/gold (the gold sample to judge),
  * #/u, #/u/<tag>?k=<kinds>&o=<origin>&f=<file>&copy=1,
  * #/g?q=…&sort=…&only=…&family=…, #/g/<a>/<b>?family=…&group=…&chapter=…&character=…&event=…&origin=…&q=… (the entry glossary/<a>/<b>).
  */
@@ -14,6 +15,7 @@ export type Route =
   | { kind: 'search'; q: string; lang: Lang; re: boolean }
   | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
   | { kind: 'updates' }
+  | { kind: 'gold' }
   | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean }
   | { kind: 'glossary'; q: string; sort: GlossarySort; only: GlossaryOnly; family: string }
   | { kind: 'term'; id: string; family: string; group: string; chapter: string; character: string; event: string; origin: string; q: string }
@@ -179,6 +181,7 @@ export function parseHash(hash: string): Route {
       q: query.get('q') ?? '',
     }
   }
+  if (pathname === '/gold') return { kind: 'gold' }
   if (pathname === '/u') return { kind: 'updates' }
   if (pathname.startsWith('/u/')) {
     const tag = decode(pathname.slice(3))
@@ -220,6 +223,11 @@ export function reviewHref(
   if (opts.id) pairs.push(['id', opts.id])
   const query = pairs.map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&')
   return `#/r/${tab}${query ? `?${query}` : ''}`
+}
+
+/** The hash of the gold page. */
+export function goldHref(): string {
+  return '#/gold'
 }
 
 /** The hash of the list of updates. */

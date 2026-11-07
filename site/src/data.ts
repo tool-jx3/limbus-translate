@@ -1,4 +1,4 @@
-import type { FileData, GlossaryFile, GlossaryIndex, Index, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
+import type { FileData, GlossaryFile, GlossaryIndex, GoldData, Index, Meta, PreviewFileWire, PreviewShared, ReviewData, ReviewTab, UpdateRecord, UpdateRelease } from './types'
 
 /** The version of the layout and keys of the data that this page reads. */
 const FORMAT = 2
@@ -179,5 +179,13 @@ export function filterFiles(index: Index, q: string): number[] {
     const f = index.files[n]
     if (!f) return false
     return [f.path, f.label, ...f.speakers].some((s) => s.toLowerCase().includes(needle))
+  })
+}
+
+/** data/gold.json: the gold sample with its texts, and the report of what is judged. */
+export function loadGold(): Promise<GoldData> {
+  return load('gold.json', (doc) => {
+    if (!isRecord(doc) || !Array.isArray(doc.units)) throw new DataError('format', 'gold.json: no units')
+    return doc as unknown as GoldData
   })
 }
