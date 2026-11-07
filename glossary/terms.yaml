@@ -91,6 +91,8 @@
   category: [system]
   evidence: { kr_lines: 528, approved: 465, forbidden: 0 }
   notes: 原指引禁用「第Y季」；「第8賽季」這類帶「賽」字的寫法在既有譯文中常見，不算違規。這是系統用語，只用於介面與系統文字；劇情（StoryData、RPG 對話）、語音與播報中指故事內的季節或時尚季時寫「季」：이번 시즌 → 本季／這一季、다음 시즌 → 下一季、몇 시즌 → 幾季、시즌 마감／시즌 오프 → 季末；不寫「季度」（季度是財務季）；數季節的怪量詞照 KR 保留（`아홉그루 시즌` → 九棵季、`두 마리 시즌` → 兩隻季，EN 也保留）。2026-11-06 依實際譯文：BattleAnnouncerDlg、PersonalityVoiceDlg、RPGSystem、StoryData 等播報、語音、RPG 與劇情檔不用此譯名（109 句 0 句用），排除
+  meaning: "遊戲的分期單位，每期約 4 至 7 個月，各有專屬的人格與 E.G.O，以及對應的劇情章節、通行證、折射軌道與活動。"
+  sources: ["https://limbuscompany.wiki.gg/wiki/Seasons"]
 
 - kr: 주요 이야기
   jp: メインストーリー
@@ -119,6 +121,8 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 29, approved: 22, forbidden: 0 }
+  meaning: "賽季期間的獎勵系列：完成每日、每週與賽季任務取得通行證經驗，升級以領取獎勵（wiki 的 Battle Pass 導向 Limbus Pass 頁）。"
+  sources: ["https://limbuscompany.wiki.gg/wiki/Limbus_Pass"]
 
 - kr: 림버스 패스
   jp: リンバスパス
@@ -128,6 +132,8 @@
   status: approved
   category: [system]
   evidence: { kr_lines: 58, approved: 35, forbidden: 0 }
+  meaning: "賽季期間的獎勵系列：完成每日、每週與賽季任務取得通行證經驗，升級以領取獎勵。"
+  sources: ["https://limbuscompany.wiki.gg/wiki/Limbus_Pass"]
 
 - kr: 전용 파편
   jp: 専用破片
@@ -143,6 +149,7 @@
     連接的 `·` 依 guides/base.md「句中的 ·」寫「、」（既有譯文混用「&」「＆」「．」）
 
 - kr: 보스
+  jp: ボス
   en: Boss
   zh: BOSS
   also: [老大, 首領]
@@ -152,16 +159,21 @@
   category: [system, combat]
   evidence: { kr_lines: 474, approved: 189, forbidden: 0 }
   notes: 遊戲用語（樓層、戰鬥的頭目）寫 BOSS；指幫派或組織的頭頭時依語境寫「老大」「首領」（既有繁中 107／10 行）。2026-11-06 依實際譯文：StoryData 劇情檔幾乎不用此譯名（116 句 2 句用），排除。2026-11-06 加 also：遊戲用語寫 BOSS；指幫派或組織的頭頭寫 `also` 的「老大」（口語、幫派頭頭）或「首領」（較正式、組織首腦），選這兩個不需要 note
+  sources: ["game:Enemies-a1c7p2.json#/dataList/4/desc"]
 
 - kr: E.G.O 자원
+  jp: E.G.O資源
   en: E.G.O Resource
   zh: 罪孽碎片
   forbidden: [E.G.O資源, E.G.O 資源]
   status: approved
   category: [system, mechanic]
   evidence: { kr_lines: 378, approved: 361, forbidden: 0 }
+  sources: ["game:MainUIText.json#/dataList/374/content"]
 
 - kr: 르루주
+  jp: ル・ルージュ
+  en: Le Rouge
   zh: 丹紅派
   forbidden: ["re:丹紅([ 們，。、！？…」]|$)"]
   status: approved
@@ -169,49 +181,62 @@
   category: [city]
   evidence: { kr_lines: 621, approved: 404, forbidden: 0 }
   notes: 2026-11-06 長詞裡的用法也用此譯名（7/7），比對詞中詞
+  sources: ["game:FormationNameEtcFilter.json#/dataList/35/content"]
 
 - kr: 말쿠트
+  jp: マルクト
   en: Malkuth
   zh: Malkuth
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  sources: ["game:Announcer.json#/dataList/9/name"]
 
 - kr: 예소드
+  jp: イェソド
   en: Yesod
   zh: Yesod
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  sources: ["game:Announcer.json#/dataList/15/name"]
 
 
 - kr: 네짜흐
+  jp: ネツァク
   en: Netzach
   zh: Netzach
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  sources: ["game:Announcer.json#/dataList/23/name"]
 
 - kr: 티페리트
+  jp: ティファレト
   en: Tiphereth
   zh: Tiphereth
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  sources: ["game:Announcer.json#/dataList/33/name"]
 
 - kr: 게부라
+  jp: ゲブラー
   en: Gebura
   zh: Gebura
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  sources: ["game:Announcer.json#/dataList/39/name"]
 
 - kr: 헤세드
+  jp: ケセド
   en: Chesed
   zh: Chesed
   status: approved
   category: [city]
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
+  sources: ["game:Announcer.json#/dataList/42/name"]
 
 
 - kr: 호크마
@@ -222,6 +247,7 @@
   notes: 源質（Sephirah）相關名稱沿用英文，與既有繁中、LTM、LLC 一致；譯文與 EN 相同是正確的
 
 - kr: 세피라
+  jp: セフィラ
   en: Sephirah
   zh: Sephirah
   status: approved
@@ -258,21 +284,28 @@
   notes: 法庭用語
 
 - kr: 잔느
+  jp: ジャンヌ
   en: Jeanne
   zh: 簡
   forbidden: [讓娜, 珍妮]
   status: approved
   category: [city]
   notes: 既有繁中 93 處、ScenarioModelCodes 皆為「簡」；「讓娜」是 LTM 的譯名
+  sources: ["game:Announcer-a1c10p3.json#/dataList/1/name"]
 
 - kr: 뷰티관
+  jp: ビューティーフロア
+  en: Beauty Hall
   zh: 美妝館
   forbidden: [美妝樓層]
   status: approved
   category: [city]
   notes: 薛西弗斯百貨公司的樓層名（既有 6 處）
+  sources: ["game:RPGSystem/rpg-loc-location-floor-1.json#/dataList/2/text"]
 
 - kr: 눈알
+  jp: 目玉
+  en: eyeballs
   zh: 眼球
   status: approved
   match: substring
@@ -285,18 +318,23 @@
   category: [general]
 
 - kr: 수선사
+  jp: お直し職人
+  en: Alterationist
   zh: 修補達人
   forbidden: [改衣師]
   status: approved
   category: [city]
   notes: 既有 58 處
+  sources: ["game:StoryData/S1009B.json#/dataList/6/title"]
 
 - kr: 하나 협회
+  jp: ハナ協会
   en: Hana Association
   zh: 하나協會
   status: approved
   category: [city]
   notes: 協會名可以用外語，各協會剛好取自不同語言（Zwei協會、Cinq協會、Девять協會、し協會）；Hana 協會寫韓文「하나」（使用者確認 2026-11-04，同 し協會）。這個「하나」是刻意的，諺文檢查不會標出。KR 只用「하나」稱呼這個協會時（StoryData/S706B 寶拉對한울說「하나, …」）也寫「하나協會」
+  sources: ["game:StoryData/S737B.json#/dataList/31/title"]
 
 - kr: 감정평가서
   zh: 鑑定評價書
@@ -306,10 +344,13 @@
   notes: RPG 道具「漆黑派的鑑定評價書」等既有譯名
 
 - kr: 독백
+  jp: 独白
+  en: Monologue
   zh: 獨白
   status: approved
   category: [general]
   notes: 劇情 teller 欄位常見（既有 9 處）；這是一般詞，不是外來譯名
+  sources: ["game:StoryData/S1042B.json#/dataList/116/teller"]
 
 - kr: 하나협회
   zh: 하나協會
@@ -318,25 +359,33 @@
   notes: 同「하나 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）
 
 - kr: 시 협회
+  jp: シ協会
   en: Shi Association
   zh: し協會
   status: approved
   category: [city]
   notes: 協會名可以用外語，各協會剛好取自不同語言；Shi 協會寫日文假名「し」（既有 103 處，使用者確認 2026-11-04）。這個「し」是刻意的，假名檢查不會標出
+  sources: ["game:StoryTheaterDanteNote_2.json#/dataList/1/content"]
 
 - kr: 시협회
+  jp: シ協会
+  en: Shi Association
   zh: し協會
   status: approved
   category: [city]
   notes: 同「시 협회」，KR 沒有空格的寫法（詞彙比對不會忽略空格）
+  sources: ["game:StoryData/S426B.json#/dataList/38/title"]
 
 - kr: 신부
+  jp: 司祭
+  en: The Chaplain
   zh: 牧師
   forbidden: [神父]
   files: ["*a1c10*", "StoryData/S10[0-9][0-9]*", "RPGSystem/**", "Enemies-a1c10*"]
   status: approved
   category: [general]
   notes: 第十章（莫梭的劇情、Enemies-a1c10*、S1034B、RPGSystem 百貨公司、*-a1c10* 狀態與技能）的「신부」是牧師莫里斯，譯「牧師」；其他檔譯「神父」（見下一條）
+  sources: ["game:Enemies-a1c10p3.json#/dataList/4/name"]
 
 - kr: 신부
   zh: 神父
@@ -345,12 +394,15 @@
   notes: 其他章節與人格的「신부」。第十章的檔（見上一條的 files）譯「牧師」，以那一條為準
 
 - kr: 누나
+  jp: 姉
+  en: Sister
   zh: 姊姊
   forbidden: [姐姐]
   status: approved
   match: substring
   category: [general]
   notes: 臺灣標準字（既有 41 處）。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
+  sources: ["game:StoryData/3D306B.json#/dataList/10/teller"]
 
 - kr: 언니
   zh: 姊姊
@@ -397,19 +449,25 @@
   notes: 幼兒口齒不清的「浮士德」（既有技能名）
 
 - kr: 림버스 유치원
+  jp: リンバスようちえん
+  en: Limbus Kindergarten
   zh: 邊獄幼稚園
   forbidden: [邊獄幼兒園]
   status: approved
   category: [general]
   notes: 幼稚園劇情
+  sources: ["game:UnitKeyword-x1p1c1.json#/dataList/0/content"]
 
 - kr: 혈귀
+  jp: 血鬼
   zh: 血魔
   forbidden: [血鬼]
   status: approved
   match: substring
   category: [city]
   notes: 既有繁中 632 處皆為「血魔」。2026-11-06 長詞裡的用法也用此譯名（8/8），比對詞中詞
+  meaning: "依賴鮮血維生、歷史可追溯數世紀的特殊怪物種族，以現代文學中的吸血鬼為原型。"
+  sources: ["game:FormationNameEtcFilter.json#/dataList/21/content", "https://limbuscompany.wiki.gg/wiki/Bloodfiends"]
 
 - kr: 작은 누님
   zh: 幼姐
@@ -418,11 +476,13 @@
   notes: 中指的職稱（P11115、5D202A）；職稱保留「姐」字，不改「姊」
 
 - kr: 복도
+  jp: 廊下
   zh: 走廊
   status: approved
   match: word
   category: [general]
   notes: 一般的走廊寫「走廊」；蜘蛛巢的專名（「X 아비의 복도」「소지의 복도」等）不論在地點欄位或對話中都寫「長廊」（「小指的長廊」「環指父輩的長廊」「崩塌的拇指父輩的長廊」）。「중지 복도」「검지 복도」這種「手指＋복도」也是專名，寫「長廊」（既有 93 處）。蜘蛛巢裡沒有指名的「복도」（다른 복도、이쪽 복도、복도를 이용해）仍寫「走廊」（既有 47 行）
+  sources: ["game:RPGSystem/rpg-loc-location-floor-4.json#/dataList/0/text"]
 
 - kr: 변곡점
   zh: 曲折點
@@ -432,38 +492,52 @@
   notes: 依關卡名 StageNode91-27「尋找曲折點」
 
 - kr: 친절한 시민
+  jp: 親切な市民
+  en: Kind Citizen
   zh: 友好的市民
   forbidden: [善良的市民]
   status: approved
   category: [general]
   notes: 說話者名稱（1D306A）
+  sources: ["game:StoryData/1D305B.json#/dataList/12/teller"]
 
 - kr: 대왕가오리 항구선
+  jp: ダイオウエイ港船
+  en: Giant Stingray Portship
   zh: 魟魚港船
   status: approved
   category: [city]
   notes: 既有 S532B 的寫法
+  sources: ["game:StoryData/E907B.json#/dataList/35/place"]
 
 - kr: 키라
+  jp: キラ
+  en: Kira
   zh: 綺羅
   status: approved
   match: word
   category: [city]
   notes: 뉴키라 同；自稱「我」（不用「咱」），稱父親「把拔」（第九章既有譯文）
+  sources: ["game:Announcer.json#/dataList/44/name"]
 
 - kr: 제뱌찌 협회
+  jp: ヂェーヴィチ協会
+  en: Devyat' Association
   zh: Девять協會
   forbidden: [Devyat協會]
   status: approved
   category: [city]
   notes: 既有 93 處
+  sources: ["game:StoryTheaterDanteNote_5.json#/dataList/5/content"]
 
 - kr: 계획
+  jp: 計画
   zh: 計畫
   forbidden: [計劃]
   status: approved
   category: [general]
   notes: 教育部標準字（既有 計畫 225 處）
+  sources: ["game:IntroductionPreset.json#/dataList/291/content"]
 
 - kr: 바가지머리
   zh: 西瓜頭
@@ -487,31 +561,43 @@
   notes: 既有 E512B、BattleSpeechBubbleDlg-exme
 
 - kr: 추노꾼
+  jp: チュノックン
+  en: Ch'unokkun
   zh: 推奴手
   forbidden: [推奴者]
   status: approved
   category: [city]
   notes: 既有 E918A、exme 系列
+  sources: ["game:Passives.json#/dataList/567/name"]
 
 - kr: 모제스
+  jp: モーゼス
+  en: Moses
   zh: 摩西
   status: approved
   category: [city]
   notes: 劇情中櫻桃等人稱她「아씨」時寫「摩西女士」；播報員台詞沿用既有的「摩西閣下」（Announcer_LCDAengdu_90004）；職稱「팀장」寫「隊長」（摩西隊長、現場推理小組的隊長，既有 12／14）
+  sources: ["game:Assist-a1c9p3.json#/dataList/2/name"]
 
 - kr: 발렌치나
+  jp: ヴァレンチーナ
+  en: Valencina
   zh: 瓦倫奇娜
   status: approved
   category: [city]
   notes: 自稱「老娘」（S930B 既有 5 處）
+  sources: ["game:ScenarioModelCodes-AutoCreated.json#/dataList/565/name"]
 
 - kr: 필름
+  jp: フィルム
+  en: Film
   zh: 底片
   forbidden: [膠捲]
   files: ["AbnormalityGuides*", "AbDlg_*", "AbEvents*", "StoryData/E*", "StoryData/PC*"]
   status: approved
   category: [general]
   notes: 照相館、顯影室劇情（既有與新譯合計 底片 33、膠捲 17）。例外：사영전투 活動的捲狀電影膠捲（道具「풀린 필름」散開的膠捲、關卡名「필름」膠捲）沿用既有。2026-11-06 依實際譯文：只有指定的檔（異想體說明、事件、間章劇情）用此譯名（43 句 43 句用），其他檔 8 句 3 句用，限定檔案
+  sources: ["game:StageNode91-27.json#/dataList/4/title"]
 
 - kr: 어제의 약속
   zh: 昨天的約定
@@ -541,19 +627,27 @@
   notes: 船名，簡稱「마사스호」大眾號（PC07A#6 既有：「大眾的反叛號。簡稱成大眾號」）
 
 - kr: 마사스호
+  jp: マサス号
+  en: Vessel Masas
   zh: 大眾號
   status: approved
   category: [city]
   notes: 「리벨리온 드 라스 마사스호」的簡稱；地點欄位「마사스호, 갑판」→ 大眾號，甲板
+  sources: ["game:StageNode91-20.json#/dataList/3/title"]
 
 - kr: 로시난테
+  jp: ロシナンテ
+  en: Rocinante
   zh: 駑騂難得
   forbidden: [羅辛南特]
   status: approved
   category: [city]
   notes: 唐吉訶德的馬／E.G.O（既有約 40 個檔案）
+  sources: ["game:ScenarioModelCodes-AutoCreated.json#/dataList/325/nickName"]
 
 - kr: 심상
+  jp: 心象
+  en: Fathoms
   zh: 心像
   forbidden: [心象]
   status: approved
@@ -608,19 +702,27 @@
   notes: 見「주홍십자」
 
 - kr: 스킬 슬롯
+  jp: スキルスロット
+  en: Skill Slot
   zh: 行動槽
   forbidden: [技能槽]
   status: approved
   category: [system, combat]
   notes: 既有 178 處；「스킬 슬롯 수 +1」→ 行動槽數量+1
+  sources: ["game:TutorialRenewalDesc.json#/dataList/15/content"]
 
 - kr: 따갑게 내리쬐는 햇살
+  jp: 刺すように照りつける陽射し
+  en: Shower of Stinging Sunshine
   zh: 灼熱照射的陽光
   status: approved
   category: [combat]
   notes: Passives_Abnormality-a1c10p2 的被動名與狀態名（Bufs／BattleKeywords-a1c10p2）
+  sources: ["game:Passives_Abnormality-a1c10p2.json#/dataList/36/name"]
 
 - kr: 세가
+  jp: 勢家
+  en: Clan
   zh: 勢力
   status: approved
   match: word
@@ -628,33 +730,46 @@
   notes: 鴻園（第8章）候選人的「X 세가」（ScenarioModelCodes `보차 세가` → 寶釵的勢力）；成員寫「勢力成員」「勢力的人」。「세가지」（三種）不適用
 
 - kr: 르누아르
+  jp: ル・ノワール
+  en: Le Noir
   zh: 漆黑派
   forbidden: ["re:漆黑([ 們，。、！？…」]|$)"]
   status: approved
   match: substring
   category: [city]
   notes: 百貨公司派系（既有 559 行）；說話者名稱也寫「漆黑派 X」。2026-11-06 長詞裡的用法也用此譯名（5/5），比對詞中詞
+  sources: ["game:FormationNameEtcFilter.json#/dataList/36/content"]
 
 - kr: 르카키
+  jp: ル・カーキ
+  en: Le Kaki
   zh: 卡其派
   forbidden: ["re:卡其([ 們，。、！？…」]|$)"]
   status: approved
   category: [city]
   notes: 百貨公司派系（既有 241 行），與漆黑派、丹紅派並列
+  sources: ["game:ScenarioModelCodes-AutoCreated.json#/dataList/701/nickName"]
 
 - kr: 메종
+  jp: メゾン
+  en: Maison
   zh: 品牌旗艦店
   status: approved
   category: [city]
   notes: 百貨公司的店（르누아르 메종 → 漆黑派 品牌旗艦店）；道具名用「漆黑派 品牌X」（品牌大禮帽、品牌西裝褲）
 
 - kr: 수선실
+  jp: お直し室
+  en: Alteration Shop
   zh: 改衣坊
   status: approved
   category: [city]
   notes: 百貨公司（既有 73 行）
+  sources: ["game:RPGSystem/rpg-loc-location-floor-3.json#/dataList/3/text"]
 
 - kr: 마네킹
+  jp: マネキン
+  en: Mannequins
   zh: 人台模特兒
   forbidden: ["人體模型"]
   status: approved
@@ -662,17 +777,23 @@
   notes: 百貨公司（既有 84 行）
 
 - kr: 브랜드 매니저
+  jp: ブランドマネージャー
+  en: Brand Manager
   zh: 品牌經理
   forbidden: ["品牌總監"]
   status: approved
   category: [city]
   notes: 「브랜드 디렉터」才是品牌總監
+  sources: ["game:RPGSystem/rpg-loc-dialogue-floor-2.json#/dataList/20/texts/1/speaker"]
 
 - kr: 플로어 매니저
+  jp: フロアマネージャー
+  en: Floor Manager
   zh: 樓層經理
   status: approved
   category: [city]
   notes: 百貨公司（既有 112 行）；標籤寫「3F 樓層經理」
+  sources: ["game:RPGSystem/rpg-loc-npc-floor-b1-b.json#/dataList/0/displayName"]
 
 - kr: 매니저님
   zh: 經理大人
@@ -687,11 +808,14 @@
   notes: 百貨公司（既有 74 行）
 
 - kr: 붉은 신
+  jp: 赤き神
+  en: The Crimson God
   zh: 丹紅之神
   forbidden: ["赤紅之神"]
   status: approved
   category: [city]
   notes: 百貨公司（既有 81 行）
+  sources: ["game:RPGSystem/rpg-loc-dialogue-floor-2.json#/dataList/36/texts/0/speaker"]
 
 - kr: 검은 신
   zh: 漆黑之神
@@ -712,6 +836,8 @@
   notes: 咒語「원하라, 원하는 만큼 서슴없이 고갈시켜라」→「渴望吧，並毫不遲疑地耗盡欲求的一切」（rpg-loc-narration-floor-3）
 
 - kr: 섭취하라
+  jp: 摂取せよ
+  en: Consume
   zh: 吸食殆盡
   status: approved
   category: [city]
@@ -724,10 +850,13 @@
   notes: 蜘蛛巢（既有 65 行）；女性
 
 - kr: 교본
+  jp: 教本
+  en: Textbook
   zh: 教材
   status: approved
   category: [city]
   notes: 蜘蛛巢對希斯克利夫的稱呼（既有 34 行）；其他語境（例如 Passives 的「教程」）依語境
+  sources: ["game:Bufs-a1c9p1.json#/dataList/16/name"]
 
 - kr: 천살성도
   zh: 天殺星刀
@@ -736,18 +865,24 @@
   notes: 蜘蛛巢
 
 - kr: 지혜성도
+  jp: 地慧星刀
+  en: Dihui Star's Blade
   zh: 地慧星刀
   forbidden: ["智慧星刀"]
   status: approved
   category: [city]
   notes: 蜘蛛巢；EN Dihui
+  sources: ["game:BattleKeywords-a1c9p2.json#/dataList/28/name"]
 
 - kr: 지혜성
+  jp: 地慧星
+  en: Dihui Star
   zh: 地慧星
   forbidden: ["智慧星"]
   status: approved
   category: [city]
   notes: 蜘蛛巢（既有 43 行）
+  sources: ["game:ScenarioModelCodes-AutoCreated.json#/dataList/572/name"]
 
 - kr: 천퇴성도
   zh: 天退星刀
@@ -756,16 +891,21 @@
   notes: 蜘蛛巢
 
 - kr: 파리 대왕
+  jp: 蝿の王
+  en: The Lord of Flies
   zh: 蒼蠅王
   status: approved
   category: [city]
   notes: 蜘蛛巢（既有 43 行）
+  sources: ["game:StoryData/P10916.json#/dataList/203/teller"]
 
 - kr: 예지안
+  jp: 予知眼
   zh: 預知眼
   status: approved
   category: [city]
   notes: 既有 31 行
+  sources: ["game:BattleKeywords-a1c9p3.json#/dataList/52/name"]
 
 - kr: 스승님
   zh: 師父
@@ -775,6 +915,7 @@
   notes: 蜘蛛巢的弟子稱師父（既有 58 行）；師父是武藝的師長，不是工匠
 
 - kr: 수비 스킬
+  jp: 守備スキル
   zh: 守備技能
   forbidden: [防備技能]
   status: approved
@@ -782,11 +923,14 @@
   notes: 既有 172 處
 
 - kr: 앙가즈망
+  jp: アンガジェマン
+  en: Engagement
   zh: 介入
   forbidden: [許諾, 交戰]
   status: approved
   category: [combat]
   notes: 沙特的 engagement（介入、承擔），第十章簡的狀態與技能名：「앙가즈망(engagement)」→ 介入（engagement）
+  sources: ["game:Skills_personality-10.json#/dataList/5/levelList/0/name"]
 
 - kr: 에트르 뿌르 수아
   zh: 自為存在
@@ -795,63 +939,97 @@
   notes: 沙特的 être-pour-soi（being-for-itself）；「에트르 뿌르 오트뤼」être-pour-autrui 是「為他人而存在」（既有）
 
 - kr: 간수
+  jp: 看守
+  en: The Warden
   zh: 獄卒
   forbidden: [看守]
   status: approved
   category: [city]
   notes: 既有 49 行（「進行薛西弗斯之刑刑罰的獄卒」）；「간수하다」（保管、收好）不是這個詞
+  sources: ["game:Enemies-a1c10p3.json#/dataList/0/name"]
 
 - kr: 붉은 신[미생]
+  jp: "赤き神[未生]"
+  en: "The Crimson God [Inchoate Life]"
   zh: 丹紅之神[尚未誕生]
   forbidden: ["[未生]"]
   status: approved
   category: [city]
   notes: Enemies-a1c10p1 既有
+  sources: ["game:Enemies-a1c10p1.json#/dataList/8/name"]
 
 - kr: 뜯겨져 나가는 검은실밥
+  jp: ほつれ落ちる黒い糸くず
+  en: Bursting Blackstitch
   zh: 被扯落的黑線頭
   forbidden: [黑色線頭]
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：每層使受到的傷害 +1%（最大 50 層），回合開始時每 25 層獲得 1 層易損。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/1/name", "game:BattleKeywords-a1c10p2.json#/dataList/1/desc"]
 
 - kr: 검게 뭉친 실
+  jp: 黒く固まった糸
+  en: Clumped Black Threads
   zh: 結成黑團的線
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：依層數提升各部位的行動槽權重，每層使受到的傷害 +10%（最大 5 層）。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/2/name", "game:BattleKeywords-a1c10p2.json#/dataList/2/desc"]
 
 - kr: 검은 물 웅덩이
+  jp: 黒い水たまり
+  en: Pool of Black Water
   zh: 黑水窪
   forbidden: [黑色水窪, 黑水水窪]
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：持有者不會陷入混亂，單方面攻擊時造成的傷害 +100%、受到的傷害 -100%；被擊中時威力減少，威力或次數歸零即消失。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/3/name", "game:BattleKeywords-a1c10p2.json#/dataList/3/desc"]
 
 - kr: 옛 포식자의 본능
+  jp: 古き捕食者の本能
+  en: Instinct of the Predator of Eld
   zh: 古老捕食者的本能
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：每個持有此效果的部位使所有部位拚點威力 +2，並依目標的糾纏層數提高造成的傷害；回合結束時消失。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/4/name", "game:BattleKeywords-a1c10p2.json#/dataList/4/desc"]
 
 - kr: 글로스 미디엄
+  jp: グロスメディウム
+  en: Gloss Medium
   zh: 亮光媒劑
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：對有束縛的目標施加的流血威力與次數 +1；主要目標有染料效果時，該技能最終威力 +1、造成的傷害 +20%。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/11/name", "game:BattleKeywords-a1c10p2.json#/dataList/11/desc"]
 
 - kr: 재단된 원단
+  jp: 裁断された生地
+  en: Cut Fabric
   zh: 裁剪好的布料
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：獲得或消耗充能次數的技能造成的傷害增加層數%（最大 30%），回合結束時減少 5 層。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/14/name", "game:BattleKeywords-a1c10p2.json#/dataList/14/desc"]
 
 - kr: 재단되어버린
+  jp: 裁断されてしまった
+  en: Sheared Apart
   zh: 已被裁剪
   forbidden: [被裁斷]
   status: approved
   category: [combat]
   notes: 第十章百貨公司的狀態名（Bufs／BattleKeywords-a1c10p2），戰鬥提示也用同一個名稱
+  meaning: "第十章的狀態效果：回合開始時每 6 層獲得 1 層體力恢復降低；與「製作版型」等特定技能拚點時，拚點威力減少層數。"
+  sources: ["game:BattleKeywords-a1c10p2.json#/dataList/18/name", "game:BattleKeywords-a1c10p2.json#/dataList/18/desc"]
 
 - kr: 뀽뀽이
   zh: 軟QQ
@@ -866,19 +1044,25 @@
   notes: 見「뀽뀽이」
 
 - kr: 소다
+  jp: ソーダ
+  en: Soda
   zh: 蘇打
   forbidden: [汽水]
   status: approved
   match: word
   category: [city]
   notes: 百貨公司的飲料（既有 RPG 16 處）；「정육 소다」→ 精肉蘇打
+  sources: ["game:Egos.json#/dataList/45/name"]
 
 - kr: 신발관
+  jp: シューズフロア
+  en: Footwear Hall
   zh: 名品鞋室
   forbidden: [鞋廈]
   status: approved
   category: [city]
   notes: 百貨公司（既有 78 行）
+  sources: ["game:RPGSystem/rpg-loc-location-floor-4.json#/dataList/1/text"]
 
 - kr: 가방관
   zh: 手提包展廳
@@ -887,17 +1071,23 @@
   notes: 百貨公司（既有 92 行）
 
 - kr: 가구관
+  jp: 家具フロア
+  en: Furniture Hall
   zh: 家具展廳
   status: approved
   category: [city]
   notes: 百貨公司4F
+  sources: ["game:RPGSystem/rpg-loc-location-floor-4.json#/dataList/2/text"]
 
 - kr: 미아 보호소
+  jp: 迷子センター
+  en: Lost Child Center
   zh: 走失兒童保護中心
   forbidden: [走失保護中心]
   status: approved
   category: [city]
   notes: 也寫作「미아보호소」「미아보호실」
+  sources: ["game:RPGSystem/rpg-loc-location-floor-4-b.json#/dataList/2/text"]
 
 - kr: 미아보호실
   zh: 走失兒童保護中心
@@ -913,6 +1103,7 @@
   notes: 百貨公司4F（任務與對話既有 9 處）
 
 - kr: 이방인
+  jp: 異邦人
   zh: 異鄉人
   forbidden: [外來者]
   not_files: ["family:story-interlude"]
@@ -920,25 +1111,36 @@
   match: substring
   category: [city]
   notes: 百貨公司與第十章（既有 74 處）。2026-11-06 依實際譯文：story-interlude 族群（StoryData/E*、PC* 的間章劇情）幾乎不用此譯名（7 句 1 句用），排除；長詞裡的用法也用此譯名（3/3），比對詞中詞
+  sources: ["game:BattleKeywords-a1c10p3.json#/dataList/2/name"]
 
 - kr: 뿌이
+  jp: プイ
+  en: Pwie
   zh: 普依
   status: approved
   category: [city]
   notes: 百貨公司；性別不明，不用他／她（base.md）
+  sources: ["game:Announcer.json#/dataList/56/name"]
 
 - kr: 황금원단
+  jp: 黄金の生地
+  en: Golden Fabric
   zh: 黃金之布
   status: approved
   category: [city]
   notes: 百貨公司道具
+  sources: ["game:RPGSystem/rpg-loc-item-common-a1c10p1.json#/dataList/74/displayName"]
 
 - kr: 머금은 피
+  jp: 宿した血
+  en: Stored Blood
   zh: 浸染的血液
   forbidden: [寄宿之血]
   status: approved
   category: [city]
   notes: 狀態名（Bufs-mowe、Passives_Abnormality-mowe）
+  meaning: "狀態效果：最大值 10，每失去最大體力的 5% 減少 1，命中時恢復最大體力 1% 的體力。"
+  sources: ["game:BattleKeywords-mowe.json#/dataList/0/name", "game:BattleKeywords-mowe.json#/dataList/0/desc"]
 
 - kr: 쪼용
   zh: ㄤ靜
@@ -948,6 +1150,8 @@
   notes: 針靈等的臭奶呆「조용」（安靜），既有 paratranz 5 處
 
 - kr: 랭콜로르
+  jp: ランコロール
+  en: L'Incolore
   zh: 無色染料
   forbidden: [朗克洛]
   status: approved
@@ -955,10 +1159,13 @@
   notes: L'Incolore，百貨公司地下2F（quest-floor-b2 既有「無色染料」）；只指顏色時可寫「無色」
 
 - kr: 카르멘
+  jp: カルメン
+  en: Carmen
   zh: Carmen
   status: approved
   category: [city]
   notes: 既有譯文寫原文（P11009、4D305B、RPG floor-4-c2、common-a1c10p2）
+  sources: ["game:RPGSystem/rpg-loc-narration-floor-5-c2.json#/dataList/14/texts/0/speaker"]
 
 - kr: 클론
   zh: 複製體
@@ -967,25 +1174,37 @@
   notes: 百貨公司；「단테 클론」→ 但丁的複製體（npc-floor-2 既有），人名後加「的」
 
 - kr: 유체
+  jp: 幼体
+  en: Larva
   zh: 幼蟲
   forbidden: [幼體]
   status: approved
   category: [city]
   notes: 百貨公司地下樓層（道具、RPG 既有）
+  sources: ["game:RPGSystem/rpg-loc-item-common-a1c10p2.json#/dataList/14/displayName"]
 
 - kr: 관리자
+  jp: 管理人
+  en: Manager
   zh: 經理
   status: approved
   category: [general]
   notes: 依語境：稱但丁「經理」（約 1,170 行；唐吉訶德「經理老爺」）；腦葉公司、廢墟圖書館的播報員（安吉拉、源質）與 LEGO 人格稱「主管」（約 100 行）；系統文字「管理員」
+  meaning: "邊獄公司 LCB 部門的執行經理（Executive Manager），即 10 號罪人但丁。"
+  sources: ["game:ScenarioModelCodes-AutoCreated.json#/dataList/22/nickName", "https://limbuscompany.wiki.gg/wiki/Dante"]
 
 - kr: 날개
+  jp: 翼
   zh: 翼
   status: approved
   category: [city]
   notes: 都市的「翼」（巨企），量詞「片」（某片翼、折斷之翼、成為翼）；只有真的鳥翅膀才寫「翅膀」「羽翼」
+  meaning: "都市中規模最大、最有權勢的 26 家巨型企業，各自作為所屬區之巢的管理者，並各擁有一項奇點技術。"
+  sources: ["game:FileDownloadDesc.json#/dataList/1/title", "https://limbuscompany.wiki.gg/wiki/Wings"]
 
 - kr: 현장추리팀
+  jp: 現場推理チーム
+  en: OSIR Team
   zh: 現場推理小組
   status: approved
   category: [city]
@@ -1001,6 +1220,8 @@
 # evidence 是 2026-11-04 tw 的使用情況（不計 copy 單位）；notes 保留 Paratranz 的備註。
 
 - kr: 대상
+  jp: 対象
+  en: Target
   zh: 目標
   also: [對象]
   status: approved
@@ -1008,6 +1229,8 @@
   notes: Paratranz 詞彙表。2026-11-06 加 also：技能、效果、戰鬥的選取對象寫「目標」；指人（被施行、被針對、被服務的人）或文意是「對象」時寫 `also` 的「對象」，不需要 note
 
 - kr: 다음 턴
+  jp: 次のターン
+  en: Next Turn
   zh: 下回合
   status: approved
   match: substring
@@ -1016,28 +1239,38 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（8/8），比對詞中詞
 
 - kr: 수감자
+  jp: 囚人
   zh: 罪人
   status: approved
   match: substring
   evidence: { kr_lines: 2709, approved: 2668, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（14/14），比對詞中詞
+  sources: ["game:MainUIText.json#/dataList/1/content"]
 
 - kr: 정신력
+  jp: 精神力
+  en: SP
   zh: 理智值
   status: approved
   category: [combat]
   evidence: { kr_lines: 2334, approved: 2120, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  meaning: "戰鬥單位的理智值（SP），以數字顯示在體力條旁，隨戰鬥內外的各種互動增減，範圍為 -45 到 45。"
+  sources: ["game:BattleUIText.json#/dataList/109/content", "https://limbuscompany.wiki.gg/wiki/Sanity"]
 
 - kr: 소모
+  jp: 消耗
   zh: 消耗
   status: approved
   match: substring
   category: [general]
   evidence: { kr_lines: 2324, approved: 2209, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（29/32），比對詞中詞
+  sources: ["game:MainUIText.json#/dataList/134/content"]
 
 - kr: 코인 위력
+  jp: コイン威力
+  en: Coin Power
   zh: 硬幣威力
   status: approved
   category: [general, combat]
@@ -1045,6 +1278,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 턴 시작 시
+  jp: ターン開始時
+  en: Turn Start
   zh: 回合開始時
   status: approved
   category: [general, combat]
@@ -1052,6 +1287,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 합 위력
+  jp: マッチ威力
+  en: Clash Power
   zh: 拚點威力
   status: approved
   category: [general, combat]
@@ -1059,6 +1296,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 턴 종료 시
+  jp: ターン終了時
+  en: Turn End
   zh: 回合結束時
   status: approved
   category: [general, combat]
@@ -1066,29 +1305,41 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 협회
+  jp: 協会
   zh: 協會
   status: approved
   match: substring
   category: [city]
   evidence: { kr_lines: 1246, approved: 1245, forbidden: 0 }
   notes: Paratranz 詞彙表：管理收尾人的協會。2026-11-06 長詞裡的用法也用此譯名（20/20），比對詞中詞
+  meaning: "由收尾人與事務所組成的大型組織（收尾人協會），都市共有 12 個，各有專長領域與行為準則。"
+  sources: ["game:StoryTheaterDanteNote_2.json#/dataList/0/content", "https://limbuscompany.wiki.gg/wiki/Associations"]
 
 - kr: 부위
+  jp: 部位
+  en: Part
   zh: 部位
   status: approved
   match: substring
   category: [combat]
   evidence: { kr_lines: 1152, approved: 1114, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述，多用於集中遭遇戰使用。2026-11-06 長詞裡的用法也用此譯名（11/11），比對詞中詞
+  sources: ["game:Enemies-a1c10p1.json#/dataList/1/desc"]
 
 - kr: 해결사
+  jp: フィクサー
+  en: Fixer
   zh: 收尾人
   status: approved
   match: substring
   evidence: { kr_lines: 1116, approved: 1113, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（17/17），比對詞中詞
+  meaning: "都市中受雇承接各種委託（從日常雜務到戰鬥）的人，須取得하나協會的執照，多數在事務所工作。"
+  sources: ["game:StoryData/P11216.json#/dataList/73/title", "https://limbuscompany.wiki.gg/wiki/Fixers"]
 
 - kr: 최종 위력
+  jp: 最終威力
+  en: Final Power
   zh: 最終威力
   status: approved
   category: [general, combat]
@@ -1096,35 +1347,47 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 공격 레벨
+  jp: 攻撃レベル
+  en: Offense Level
   zh: 攻擊等級
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 1035, approved: 1035, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:MainUIText.json#/dataList/358/content"]
 
 - kr: 동기화
+  jp: 同期化
+  en: Uptie
   zh: 同步
   status: approved
   match: substring
   evidence: { kr_lines: 914, approved: 913, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
+  sources: ["game:MainUIText.json#/dataList/108/content"]
 
 - kr: 방어 레벨
+  jp: 防御レベル
   zh: 防禦等級
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 908, approved: 908, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:MainUIText.json#/dataList/65/content"]
 
 - kr: 가주
+  jp: 家主
+  en: Hierarch
   zh: 家主
   status: approved
   match: word
   category: [general]
   evidence: { kr_lines: 893, approved: 876, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:UnitKeyword.json#/dataList/61/content"]
 
 - kr: 공격 스킬
+  jp: 攻撃スキル
   zh: 攻擊技能
   status: approved
   match: substring
@@ -1133,12 +1396,16 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 사무소
+  jp: 事務所
+  en: Office
   zh: 事務所
   status: approved
   match: substring
   category: [general, city]
   evidence: { kr_lines: 783, approved: 779, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，多指收尾人事務所。2026-11-06 長詞裡的用法也用此譯名（33/33），比對詞中詞
+  meaning: "由收尾人創立經營、收費承接各種委託的事業（收尾人事務所），多以戰鬥為主，受協會管理。"
+  sources: ["game:StoryTheaterDanteNote_2.json#/dataList/3/content", "https://limbuscompany.wiki.gg/wiki/Offices"]
 
 - kr: 기본 위력
   zh: 基礎威力
@@ -1148,26 +1415,39 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 흑수
+  jp: 黒獣
+  en: Heishou
   zh: 黑獸
   status: approved
   match: substring
   evidence: { kr_lines: 671, approved: 670, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（23/23），比對詞中詞
+  meaning: "在第 8 區活動的一群組織，擔任大觀園四大家族的「秘密部隊」或私兵。"
+  sources: ["game:FormationNameEtcFilter.json#/dataList/22/content", "https://limbuscompany.wiki.gg/wiki/Heishou_Packs"]
 
 - kr: 기프트
+  jp: ギフト
+  en: Gift
   zh: 飾品
   status: approved
   category: [ego]
   evidence: { kr_lines: 663, approved: 661, forbidden: 0 }
   notes: Paratranz 詞彙表：多指E.G.O飾品，請根據上下文翻譯
+  meaning: "在迷宮中透過技能判定、戰鬥或與異想體互動取得的 E.G.O飾品，為罪人帶來好處，從對敵人施加減益、給予增益、治療同伴到復活不等。"
+  sources: ["https://limbuscompany.wiki.gg/wiki/List_of_E.G.O_Gifts"]
 
 - kr: 도시
+  jp: 都市
+  en: The City
   zh: 都市
   status: approved
   evidence: { kr_lines: 558, approved: 536, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "《Limbus Company》與前作《腦葉公司》《廢墟圖書館》的故事舞台；在此死亡與暴力是家常便飯。"
+  sources: ["game:StoryTheaterDanteNote.json#/dataList/0/content", "https://limbuscompany.wiki.gg/wiki/The_City"]
 
 - kr: 당 피해량
+  en: damage for every
   zh: 造成的傷害
   status: approved
   match: substring
@@ -1183,40 +1463,56 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: E.G.O 기프트
+  jp: E.G.Oギフト
   zh: E.G.O飾品
   status: approved
   category: [combat]
   evidence: { kr_lines: 506, approved: 506, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:MainUIText.json#/dataList/271/content"]
 
 - kr: 황금가지
+  jp: 黄金の枝
   zh: 金枝
   status: approved
   evidence: { kr_lines: 476, approved: 476, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:FileDownloadDesc.json#/dataList/3/title"]
 
 - kr: 전투 승리
+  jp: 戦闘勝利
   zh: 戰鬥勝利
   status: approved
   category: [general]
   evidence: { kr_lines: 454, approved: 449, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:AnnouncerVoiceType.json#/dataList/30/content"]
 
 - kr: 뒷골목
+  jp: 裏路地
+  en: Backstreets
   zh: 後巷
   status: approved
   category: [general]
   evidence: { kr_lines: 450, approved: 447, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  meaning: "各區中不屬於巢、不受其保護的區域，是危險而貧困的貧民區。"
+  sources: ["game:StoryTheaterDanteNote.json#/dataList/10/content", "https://limbuscompany.wiki.gg/wiki/Backstreets"]
 
 - kr: 타격
+  jp: 打撃
+  en: Blunt
   zh: 打擊
   status: approved
   category: [general, combat, physical]
   evidence: { kr_lines: 433, approved: 411, forbidden: 0 }
   notes: Paratranz 詞彙表：打擊，輔助文本描述，輔助戰鬥相關文本描述
+  meaning: "三種傷害類型之一，通常見於使用能重擊目標之武器的技能。"
+  sources: ["game:Skills.json#/dataList/124/levelList/0/name", "https://limbuscompany.wiki.gg/wiki/Blunt"]
 
 - kr: 슬롯
+  jp: スロット
+  en: Slot
   zh: 行動槽
   status: approved
   match: word
@@ -1225,67 +1521,99 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 참격
+  jp: 斬撃
+  en: Slash
   zh: 斬擊
   status: approved
   category: [combat, physical]
   evidence: { kr_lines: 413, approved: 412, forbidden: 0 }
   notes: Paratranz 詞彙表：斬擊，輔助戰鬥相關文本描述
+  meaning: "三種傷害類型之一，通常見於使用劈砍類武器的技能。"
+  sources: ["game:BattleUIText.json#/dataList/42/content", "https://limbuscompany.wiki.gg/wiki/Slash"]
 
 - kr: 패닉
+  jp: パニック
+  en: Panic
   zh: 恐慌
   status: approved
   category: [buff]
   evidence: { kr_lines: 396, approved: 392, forbidden: 0 }
   notes: Paratranz 詞彙表：BUFF/DEBUFF
+  sources: ["game:BattleUIText.json#/dataList/34/content"]
 
 - kr: 거울 던전
+  jp: 鏡ダンジョン
+  en: Mirror Dungeon
   zh: 鏡像迷宮
   status: approved
   evidence: { kr_lines: 390, approved: 370, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "可無限次刷取材料的遊戲模式：逐層前進，選擇主題卡包與遭遇戰，並收集適合出戰人格的 E.G.O飾品。"
+  sources: ["game:MainUIText.json#/dataList/10/content", "https://limbuscompany.wiki.gg/wiki/Mirror_Dungeon"]
 
 - kr: 구인회
+  jp: 九人会
+  en: League of Nine Littérateurs
   zh: 九人會
   status: approved
   match: substring
   evidence: { kr_lines: 378, approved: 377, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（152/152），比對詞中詞
+  meaning: "源自第 19 區後巷的技術愛好者與科學家團體，遷往 T 巢研發發明；鏡子技術最早由其成員開發。"
+  sources: ["game:StoryData/4D102A.json#/dataList/7/title", "https://limbuscompany.wiki.gg/wiki/League_of_Nine_Litt%C3%A9rateurs"]
 
 - kr: 로보토미
+  jp: ロボトミー
+  en: Lobotomy
   zh: 腦葉公司
   status: approved
   evidence: { kr_lines: 378, approved: 370, forbidden: 0 }
   notes: Paratranz 詞彙表：Project Moon旗下作品之一，多指該公司本體
+  meaning: "腦葉公司（L公司），曾是 26 翼之一、第 12 區巢的擁有者，已經倒閉；以奇點將人類心智具象化，並藉此製造異想體。"
+  sources: ["https://limbuscompany.wiki.gg/wiki/Lobotomy_Corporation"]
 
 - kr: 질투
+  jp: 嫉妬
+  en: Envy
   zh: 嫉妒
   status: approved
   category: [combat, sin]
   evidence: { kr_lines: 370, approved: 369, forbidden: 0 }
   notes: Paratranz 詞彙表：嫉妒，輔助戰鬥相關文本描述
+  sources: ["game:AttributeText.json#/dataList/6/name"]
 
 - kr: 흑운회
+  jp: 黒雲会
   zh: 黑雲會
   status: approved
   category: [city]
   evidence: { kr_lines: 363, approved: 363, forbidden: 0 }
   notes: Paratranz 詞彙表：幫派之一
+  sources: ["game:AssociationName.json#/dataList/1/content"]
 
 - kr: 검계
+  jp: 剣契
+  en: Blade Lineage
   zh: 劍契組
   status: approved
   category: [city]
   evidence: { kr_lines: 361, approved: 359, forbidden: 0 }
   notes: Paratranz 詞彙表：幫派之一
+  meaning: "都市後巷的幫派之一，組織鬆散、成員多各自行動，接納無處可去且有足夠殺意的人。"
+  sources: ["game:AssociationName.json#/dataList/0/content", "https://limbuscompany.wiki.gg/wiki/Blade_Lineage"]
 
 - kr: 내성
+  jp: 耐性
   zh: 抗性
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 349, approved: 339, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:ResistText.json#/dataList/4/content"]
 
 - kr: 턴 종료시
+  jp: ターン終了時
+  en: Turn End
   zh: 回合結束時
   status: approved
   category: [general, combat]
@@ -1293,6 +1621,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 크리티컬 피해량
+  jp: クリティカルダメージ量
+  en: damage on Critical Hit
   zh: 暴擊時造成的傷害
   status: approved
   category: [general, combat]
@@ -1300,14 +1630,19 @@
   notes: Paratranz 詞彙表：暴擊，輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 적 처치
+  jp: 敵討伐
+  en: Enemy Killed
   zh: 擊殺敵方
   status: approved
   match: substring
   category: [general, combat]
   evidence: { kr_lines: 310, approved: 280, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 長詞裡的用法也用此譯名（10/10），比對詞中詞
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/17/desc"]
 
 - kr: 관통
+  jp: 貫通
+  en: Pierce
   zh: 突刺
   not_files: ["family:identity", "family:story-interlude", "family:story-main"]
   status: approved
@@ -1315,22 +1650,33 @@
   category: [general, combat, physical]
   evidence: { kr_lines: 306, approved: 276, forbidden: 0 }
   notes: Paratranz 詞彙表：突刺，輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：人格語音與劇情檔（PersonalityVoiceDlg 4 句、StoryData 11 句）不用此譯名（15 句 0 句用），排除 identity、story-interlude、story-main 三個敘事族群，其餘檔也一併排除（戰鬥對話氣泡、歌詞、AbEvents-a1c*、地下城節點等，目前沒有符合的句子）
+  meaning: "三種傷害類型之一，通常見於使用能刺穿肉體之武器的技能。"
+  sources: ["game:BattleUIText.json#/dataList/43/content", "https://limbuscompany.wiki.gg/wiki/Pierce"]
 
 - kr: 색욕
+  jp: 色欲
+  en: Lust
   zh: 色慾
   status: approved
   category: [general, combat, sin]
   evidence: { kr_lines: 303, approved: 303, forbidden: 0 }
   notes: Paratranz 詞彙表：色慾，輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:AttributeText.json#/dataList/1/name"]
 
 - kr: 공방
+  jp: 工房
+  en: Workshop
   zh: 工坊
   status: approved
   category: [city]
   evidence: { kr_lines: 292, approved: 287, forbidden: 0 }
   notes: Paratranz 詞彙表：都市術語
+  meaning: "專門設計、製造與改造武器、器材與義體的收尾人事務所。"
+  sources: ["game:IntroductionPreset.json#/dataList/95/content", "https://limbuscompany.wiki.gg/wiki/Workshops"]
 
 - kr: 전투 시작 시
+  jp: 戦闘開始時
+  en: Combat Start
   zh: 戰鬥開始時
   status: approved
   category: [general]
@@ -1338,36 +1684,50 @@
   notes: Paratranz 詞彙表：輔助文本描述
 
 - kr: 공격 가중치
+  jp: 攻撃加重値
   zh: 攻擊容量
   status: approved
   category: [combat]
   evidence: { kr_lines: 290, approved: 290, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥文本描述
+  sources: ["game:BattleUIText.json#/dataList/140/content"]
 
 - kr: 탐식
+  jp: 暴食
+  en: Gluttony
   zh: 暴食
   status: approved
   match: word
   category: [general, combat, sin]
   evidence: { kr_lines: 286, approved: 277, forbidden: 0 }
   notes: Paratranz 詞彙表：暴食，輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:Passives.json#/dataList/82/name"]
 
 - kr: 나태
+  jp: 怠惰
+  en: Sloth
   zh: 怠惰
   status: approved
   category: [general, combat, sin]
   evidence: { kr_lines: 283, approved: 281, forbidden: 0 }
   notes: Paratranz 詞彙表：怠惰，輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:AttributeText.json#/dataList/2/name"]
 
 - kr: 둥지
+  jp: 巣
+  en: Nest
   zh: 巢
   status: approved
   match: substring
   category: [city]
   evidence: { kr_lines: 271, approved: 266, forbidden: 0 }
   notes: Paratranz 詞彙表：多為都市用語，請根據情況翻譯。2026-11-06 長詞裡的用法也用此譯名（30/33），比對詞中詞
+  meaning: "區中由大企業「翼」控制的隔離區域，通常比後巷富裕、容易生活。"
+  sources: ["game:StoryTheaterDanteNote.json#/dataList/4/content", "https://limbuscompany.wiki.gg/wiki/Nests"]
 
 - kr: (턴 당 1회)
+  jp: "(1ターンにつき1回)"
+  en: Once per turn
   zh: (每回合最多1次)
   status: approved
   category: [combat]
@@ -1375,33 +1735,47 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 시지프
+  jp: シーシュポス
+  en: Sisyphe
   zh: 薛西弗斯
   status: approved
   match: substring
   evidence: { kr_lines: 260, approved: 260, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（22/22），比對詞中詞
+  sources: ["game:FormationNameEtcFilter.json#/dataList/34/content"]
 
 - kr: 무작위 대상 공격
+  jp: ランダムな対象を攻撃
+  en: Targets a random unit
   zh: 隨機指定目標
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 250, approved: 250, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:Skills_Abnormality.json#/dataList/215/levelList/0/desc"]
 
 - kr: 메피스토펠레스
+  jp: メフィストフェレス
+  en: Mephistopheles
   zh: 梅菲斯托費勒斯
   status: approved
   evidence: { kr_lines: 245, approved: 245, forbidden: 0 }
   notes: Paratranz 詞彙表：《浮士德》中的惡魔，在遊戲中為LCB的巴士
+  sources: ["game:StoryTheaterDanteNote_4.json#/dataList/0/content"]
 
 - kr: 섕크 협회
+  jp: センク協会
+  en: Cinq Association
   zh: Cinq協會
   status: approved
   category: [city]
   evidence: { kr_lines: 242, approved: 242, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人協會之一
+  sources: ["game:StoryTheaterDanteNote_2.json#/dataList/7/content"]
 
 - kr: 흐트러짐 손상
+  jp: 混乱区間
+  en: Stagger Threshold
   zh: 混亂閾值前移
   status: approved
   category: [general, combat]
@@ -1409,6 +1783,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 합 승리 시
+  jp: マッチ勝利時
+  en: Clash Win
   zh: 拚點勝利時
   status: approved
   category: [general, combat]
@@ -1416,43 +1792,61 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 전투 패배
+  jp: 戦闘敗北
+  en: Defeat
   zh: 戰鬥失敗
   not_files: ["family:ally"]
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 205, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：ally 族群（夥伴）不採此譯名，排除：夥伴被動 Passives_Assist* 10 句 0 句用，同族群的 Passives.json、Passives-*、技能、E.G.O、人格檔目前沒有符合的句子。敵方與異想體被動（Passives_Enemy*、Passives_Abnormality*，後者 5 句 4 句用）不排除。2026-11-06 族群改由節點組成後，Skills_Assist-walpu6.json 歸 ally，同樣排除（目前沒有含此詞的句子）
+  sources: ["game:AnnouncerVoiceType.json#/dataList/31/content"]
 
 - kr: 상점
+  jp: ショップ
+  en: Shops
   zh: 商店
   status: approved
   match: substring
   category: [general]
   evidence: { kr_lines: 214, approved: 212, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（10/10），比對詞中詞
+  sources: ["game:MirrorDungeonUI_2.json#/dataList/89/content"]
 
 - kr: 집중 전투
+  jp: 集中戦闘
+  en: Focused Encounters
   zh: 集中遭遇戰
   status: approved
   evidence: { kr_lines: 211, approved: 210, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:BattleUIText.json#/dataList/58/content"]
 
 - kr: 인격 편성
+  jp: 人格編成
+  en: Deployment
   zh: 人格出戰
   files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [general]
   evidence: { kr_lines: 204, approved: 197, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 依實際譯文：只有 PersonalityVoiceDlg 人格語音用此譯名（194 句 194 句用），其他檔 10 句 3 句用，限定檔案
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/11/desc"]
 
 - kr: 림버스 컴퍼니
+  jp: リンバス・カンパニー
+  en: Limbus Company
   zh: 邊獄公司
   status: approved
   match: substring
   evidence: { kr_lines: 202, approved: 200, forbidden: 0 }
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
+  meaning: "狄亞斯擁有的大型公司，趁腦葉公司倒閉之機，派 LCB 襲擊其殘存的分部以取得金枝。"
+  sources: ["game:FormationNameEtcFilter.json#/dataList/1/content", "https://limbuscompany.wiki.gg/wiki/Limbus_Company"]
 
 - kr: 굴절된
+  jp: 屈折された
+  en: Refracted
   zh: 折射的
   status: approved
   category: [system]
@@ -1460,65 +1854,94 @@
   notes: Paratranz 詞彙表：折射軌道相關的前綴
 
 - kr: 전투 중 인격 선택
+  jp: 戦闘中の人格選択
+  en: Viewed in Battle
   zh: 戰鬥中選中人格
   status: approved
   category: [general]
   evidence: { kr_lines: 200, approved: 200, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/13/desc"]
 
 - kr: 야수파
+  jp: 野獣派
+  en: School of Fauvism
   zh: 野獸派
   status: approved
   category: [city]
   evidence: { kr_lines: 198, approved: 198, forbidden: 0 }
   notes: Paratranz 詞彙表：環指派系之一
+  sources: ["game:UnitKeyword.json#/dataList/72/content"]
 
 - kr: 인격 획득
+  jp: 人格獲得
+  en: Identity Acquisition
   zh: 獲得時
   status: approved
   category: [general]
   evidence: { kr_lines: 195, approved: 193, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/0/desc"]
 
 - kr: 적 흐트러질 시 대사
+  jp: 敵混乱時
+  en: Enemy Stagger
   zh: 敵方混亂
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 195, approved: 194, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/15/desc"]
 
 - kr: 죄종
+  jp: 大罪
+  en: Peccatula
   zh: 罪種
   status: approved
   evidence: { kr_lines: 195, approved: 194, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "與扭曲相似但不同的存在，以七種類型反映都市人的罪孽，起源於白夜黑晝期間，常見於劇情與鏡像迷宮。"
+  sources: ["game:StoryTheaterDanteNote_6.json#/dataList/3/content", "https://limbuscompany.wiki.gg/wiki/Peccatula"]
 
 - kr: 선택지 성공
+  jp: 選択肢成功
+  en: Check Passed
   zh: 判定成功
   status: approved
   category: [general]
   evidence: { kr_lines: 193, approved: 193, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/19/desc"]
 
 - kr: 선택지 실패
+  jp: 選択肢失敗
+  en: Check Failed
   zh: 判定失敗
   status: approved
   category: [general]
   evidence: { kr_lines: 193, approved: 193, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/20/desc"]
 
 - kr: 저녁 인사
+  jp: 夕方の挨拶
+  en: Evening Greeting
   zh: 晚間問候
   status: approved
   category: [general]
   evidence: { kr_lines: 193, approved: 193, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/3/desc"]
 
 - kr: 거울굴절철도
+  jp: 鏡屈折鉄道
+  en: Refraction Railway
   zh: 折射軌道
   status: approved
   evidence: { kr_lines: 190, approved: 186, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "提供一系列高難度戰鬥挑戰的次要遊戲模式，獎勵資源與限時的個人資料裝飾；每個賽季推出新的路線。"
+  sources: ["game:StoryTheaterDanteNote_4.json#/dataList/4/content", "https://limbuscompany.wiki.gg/wiki/Refraction_Railway"]
 
 - kr: 복지팀
   zh: 福利部
@@ -1527,64 +1950,90 @@
   notes: Paratranz 詞彙表
 
 - kr: 츠바이 협회
+  jp: ツヴァイ協会
+  en: Zwei Association
   zh: Zwei協會
   status: approved
   category: [city]
   evidence: { kr_lines: 185, approved: 185, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人協會之一
+  sources: ["game:StoryData/S737B.json#/dataList/20/title"]
 
 - kr: 동기화 진행
+  jp: 同期化進行
+  en: Uptying
   zh: 進行同步
   status: approved
   evidence: { kr_lines: 184, approved: 183, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/10/desc"]
 
 - kr: 엔케팔린
+  jp: エンケファリン
+  en: Enkephalin
   zh: 腦啡肽
   status: approved
   evidence: { kr_lines: 183, approved: 171, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "遊戲的主要體力系統，也是世界觀中由腦葉公司製造的能源。"
+  sources: ["game:FileDownloadDesc.json#/dataList/6/title", "https://limbuscompany.wiki.gg/wiki/Enkephalin"]
 
 - kr: 동기화 3단계 달성
+  jp: 同期化3段階達成
   zh: 人格同步階段3 完成
   status: approved
   evidence: { kr_lines: 180, approved: 178, forbidden: 0 }
   notes: Paratranz 詞彙表
 
 - kr: E.G.O 침식
+  jp: E.G.O侵蝕
+  en: E.G.O Corrosion
   zh: E.G.O侵蝕
   status: approved
   category: [combat]
   evidence: { kr_lines: 178, approved: 177, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:BattleUIText.json#/dataList/116/content"]
 
 - kr: 완전 공명
+  jp: 完全共鳴
+  en: A-Reson
   zh: 完全共鳴
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 175, approved: 174, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:TutorialRenewalDesc.json#/dataList/67/content"]
 
 - kr: E.G.O 발동
+  jp: E.G.O発動
+  en: E.G.O Activation
   zh: E.G.O覺醒
   status: approved
   category: [combat]
   evidence: { kr_lines: 169, approved: 169, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:EGOVoiceDig/Voice_EGO_DonQuixote_3.json#/dataList/0/desc"]
 
 - kr: 배너
+  jp: バナー
+  en: Banner
   zh: 橫幅
   status: approved
   evidence: { kr_lines: 166, approved: 164, forbidden: 0 }
   notes: Paratranz 詞彙表：獎勵之一
 
 - kr: 사기 저하
+  jp: 士気低下
+  en: Low Morale
   zh: 士氣低落
   status: approved
   evidence: { kr_lines: 165, approved: 161, forbidden: 0 }
   notes: Paratranz 詞彙表
 
 - kr: 앰플
+  jp: アンプル
+  en: Ampule
   zh: 安瓿
   status: approved
   match: substring
@@ -1592,66 +2041,93 @@
   notes: Paratranz 詞彙表。2026-11-06 長詞裡的用法也用此譯名（3/3），比對詞中詞
 
 - kr: 주군
+  jp: 主君
+  en: Lord
   zh: 主公
   status: approved
   category: [general]
   evidence: { kr_lines: 164, approved: 160, forbidden: 0 }
   notes: Paratranz 詞彙表：僅限黑獸(暫定?) 輔助文本描述
+  sources: ["game:IntroductionPreset.json#/dataList/373/content"]
 
 - kr: 발푸르기스의 밤
+  jp: ヴァルプルギスの夜
+  en: Walpurgis Night
   zh: 瓦爾普吉斯之夜
   status: approved
   evidence: { kr_lines: 163, approved: 161, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:SeasonTitle.json#/dataList/4/content"]
 
 - kr: 별빛
+  jp: 星明かり
+  en: Starlight
   zh: 星芒
   not_files: ["family:story-main"]
   status: approved
   category: [system]
   evidence: { kr_lines: 163, approved: 154, forbidden: 0 }
   notes: Paratranz 詞彙表：鏡像迷宮機制。2026-11-06 依實際譯文：story-main 族群（劇情、歌詞、地下城節點等檔，StoryData 1 句、DungeonNode 2 句）不用此譯名（3 句 0 句用），排除
+  sources: ["game:MirrorDungeonUI_2.json#/dataList/37/content"]
 
 - kr: 반격
+  jp: 反撃
+  en: Counter
   zh: 反擊
   status: approved
   category: [combat]
   evidence: { kr_lines: 162, approved: 161, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥文本相關描述，多指反擊技能
+  sources: ["game:BattleUIText.json#/dataList/98/content"]
 
 - kr: 리우 협회
+  jp: リウ協会
+  en: Liu Association
   zh: 六協會
   status: approved
   category: [city]
   evidence: { kr_lines: 161, approved: 161, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人協會之一
+  sources: ["game:StoryData/P11216.json#/dataList/65/title"]
 
 - kr: 본인 사망
+  jp: 本人死亡
+  en: Death
   zh: 自身陣亡
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 158, approved: 158, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/18/desc"]
 
 - kr: 어금니 보트 센터
+  jp: 奥歯ボートセンター
+  en: Molar Boatworks
   zh: 臼齒修船廠
   status: approved
   evidence: { kr_lines: 155, approved: 155, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StageNode91-4.json#/dataList/3/place"]
 
 - kr: 테마팩
+  jp: テーマパック
+  en: Theme Pack
   zh: 主題卡包
   status: approved
   category: [system]
   evidence: { kr_lines: 138, approved: 138, forbidden: 0 }
   notes: Paratranz 詞彙表：鏡像迷宮術語
+  sources: ["game:MirrorDungeonUI_5.json#/dataList/11/content"]
 
 - kr: 합성
+  jp: 合成
+  en: Fuse
   zh: 合成
   status: approved
   category: [system]
   evidence: { kr_lines: 137, approved: 137, forbidden: 0 }
   notes: Paratranz 詞彙表：多用於鏡像合成術語
+  sources: ["game:MirrorDungeonUI_3.json#/dataList/9/content"]
 
 - kr: 순록팀
   zh: 馴鹿隊
@@ -1666,31 +2142,44 @@
   notes: Paratranz 詞彙表：十章RPG名詞
 
 - kr: 권속
+  jp: 眷属
+  en: Kindred
   zh: 眷屬
   status: approved
   category: [city]
   evidence: { kr_lines: 126, approved: 126, forbidden: 0 }
   notes: Paratranz 詞彙表：多指血魔眷屬。
+  sources: ["game:UnitKeyword-a1c7p1.json#/dataList/3/content"]
 
 - kr: 뒷문
+  jp: 裏口
+  en: Backdoor
   zh: 後門
   status: approved
   evidence: { kr_lines: 124, approved: 123, forbidden: 0 }
   notes: Paratranz 詞彙表：多指巴士後方走廊的神祕空間
+  sources: ["game:StoryTheaterDanteNote_4.json#/dataList/1/content"]
 
 - kr: 특이점
+  jp: 特異点
+  en: Singularity
   zh: 奇點
   status: approved
   category: [city]
   evidence: { kr_lines: 122, approved: 121, forbidden: 0 }
   notes: Paratranz 詞彙表：都市術語
+  meaning: "翼用來經營事業並加以徹底利用的獨特而奇幻的技術；許多翼持有不只一項奇點。"
+  sources: ["game:StoryTheaterDanteNote_2.json#/dataList/9/content", "https://limbuscompany.wiki.gg/wiki/Singularities"]
 
 - kr: 멀티크랙 사무소
+  jp: マルチクラック事務所
+  en: MultiCrack Office
   zh: 多裂紋事務所
   status: approved
   category: [city]
   evidence: { kr_lines: 121, approved: 121, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人事務所之一
+  sources: ["game:StageNode91-10.json#/dataList/4/title"]
 
 - kr: 장미스패너
   zh: 玫瑰扳手
@@ -1699,6 +2188,8 @@
   notes: Paratranz 詞彙表
 
 - kr: 특정 스킬
+  jp: 特定スキル
+  en: Certain Skills
   zh: 特定技能
   status: approved
   category: [general, combat]
@@ -1706,59 +2197,81 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 도슨트
+  jp: ドーセント
+  en: Docent
   zh: 導覽員
   not_files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [city]
   evidence: { kr_lines: 110, approved: 105, forbidden: 0 }
   notes: Paratranz 詞彙表：環指位階之一。2026-11-06 依實際譯文：PersonalityVoiceDlg 人格語音不用此譯名（3 句 0 句用），排除
+  sources: ["game:UnitKeyword.json#/dataList/70/content"]
 
 - kr: 크흠
+  en: Ahem
   zh: 咳
   status: approved
   evidence: { kr_lines: 109, approved: 102, forbidden: 0 }
   notes: Paratranz 詞彙表：清喉嚨的狀聲詞
 
 - kr: 안전팀
+  jp: 安全チーム
+  en: Safety Team
   zh: 安保部
   status: approved
   evidence: { kr_lines: 108, approved: 107, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:ActionEvents-walpu4.json#/dataList/2/name"]
 
 - kr: 워프 열차
+  jp: ワープ列車
   zh: WARP列車
   status: approved
   evidence: { kr_lines: 108, approved: 108, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:IntroductionPreset.json#/dataList/149/content"]
 
 - kr: 세븐 협회
+  jp: セブン協会
+  en: Seven Association
   zh: Seven協會
   status: approved
   category: [city]
   evidence: { kr_lines: 107, approved: 107, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人協會之
+  sources: ["game:StoryTheaterDanteNote_5.json#/dataList/4/content"]
 
 - kr: 디에치 협회
+  jp: ディエーチ協会
+  en: Dieci Association
   zh: Dieci協會
   status: approved
   category: [city]
   evidence: { kr_lines: 105, approved: 105, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人協會之一
+  sources: ["game:StoryTheaterDanteNote_4.json#/dataList/7/content"]
 
 - kr: 스튜던트
+  jp: スチューデント
+  en: Student
   zh: 學徒
   status: approved
   category: [city]
   evidence: { kr_lines: 102, approved: 102, forbidden: 0 }
   notes: Paratranz 詞彙表：環指位階之一
+  sources: ["game:UnitKeyword.json#/dataList/71/content"]
 
 - kr: 격리실
+  jp: 隔離室
+  en: Containment Unit
   zh: 收容單元
   status: approved
   evidence: { kr_lines: 95, approved: 94, forbidden: 0 }
   notes: Paratranz 詞彙表
 
 - kr: E.G.O 스킬 제외
+  jp: E.G.Oスキルを除く
+  en: except E.G.O Skills
   zh: 不包括E.G.O技能
   status: approved
   category: [combat]
@@ -1773,71 +2286,102 @@
   notes: Paratranz 詞彙表：輔助文本描述
 
 - kr: 지휘팀
+  jp: 指揮チーム
+  en: Control Team
   zh: 控制部
   status: approved
   evidence: { kr_lines: 94, approved: 93, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:IntroductionPreset.json#/dataList/165/content"]
 
 - kr: 화장실
+  jp: トイレ
+  en: Restroom
   zh: 廁所
   status: approved
   evidence: { kr_lines: 93, approved: 87, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StoryData/S1001B.json#/dataList/31/place"]
 
 - kr: 보상 교환
+  jp: 報酬交換
+  en: Reward Exchange
   zh: 獎勵兌換
   status: approved
   category: [general]
   evidence: { kr_lines: 92, approved: 92, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:CultivationEvent.json#/dataList/0/content"]
 
 - kr: 대호수
+  jp: 大湖
+  en: The Great Lake
   zh: 大湖
   status: approved
   evidence: { kr_lines: 91, approved: 91, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StoryData/E407A.json#/dataList/17/place"]
 
 - kr: 채광
+  jp: 採光
+  en: Luxcavation
   zh: 採光
   status: approved
   category: [general]
   evidence: { kr_lines: 90, approved: 88, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  meaning: "讓罪人與特定敵人戰鬥，以取得人格訓練券或線（Thread）為獎勵的次要遊戲模式。"
+  sources: ["game:RewardDungeonUI.json#/dataList/22/content", "https://limbuscompany.wiki.gg/wiki/Luxcavation"]
 
 - kr: 외곽
+  jp: 外郭
+  en: The Outskirts
   zh: 郊區
   status: approved
   category: [city]
   evidence: { kr_lines: 86, approved: 81, forbidden: 0 }
   notes: Paratranz 詞彙表：都市術語
+  sources: ["game:StoryData/S538B.json#/dataList/118/title"]
 
 - kr: 개화 E.G.O
+  jp: 開花E.G.O
+  en: Effloresced E.G.O
   zh: 綻放E.G.O
   status: approved
   evidence: { kr_lines: 82, approved: 82, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StoryTheaterDanteNote_13.json#/dataList/1/content"]
 
 - kr: 마침표 사무소
+  jp: 終止符事務所
+  en: Full-Stop Office
   zh: 句點事務所
   status: approved
   category: [city]
   evidence: { kr_lines: 82, approved: 82, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人事務所之一
+  sources: ["game:StoryData/P10611.json#/dataList/0/title"]
 
 - kr: 초롱
+  jp: 提灯
+  en: Lantern
   zh: 提燈
   status: approved
   match: substring
   category: [abnormality]
   evidence: { kr_lines: 80, approved: 78, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體。2026-11-06 長詞裡的用法也用此譯名（35/37），比對詞中詞
+  sources: ["game:Egos.json#/dataList/30/name"]
 
 - kr: 쥐는 자
+  jp: 握る者
+  en: The One Who Grips
   zh: 執柄者
   status: approved
   category: [city]
   evidence: { kr_lines: 79, approved: 77, forbidden: 0 }
   notes: Paratranz 詞彙表：N公司釘與錘職位
+  sources: ["game:Personalities.json#/dataList/40/title"]
 
 - kr: 흐트러짐 구간
   zh: 混亂閾值
@@ -1848,52 +2392,74 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（7 句 1 句用），排除。2026-11-06 族群改由節點組成，改寫成原族群的樣式，範圍不變
 
 - kr: 창백한 고래
+  jp: 蒼白な鯨
+  en: The Pallid Whale
   zh: 白鯨
   status: approved
   evidence: { kr_lines: 77, approved: 76, forbidden: 0 }
   notes: Paratranz 詞彙表：特指第5章的白鯨
+  sources: ["game:StageNode-a1c5p2.json#/dataList/14/title"]
 
 - kr: 조작 패널
+  jp: 操作パネル
+  en: The Dashboard
   zh: 儀錶盤
   status: approved
   category: [combat]
   evidence: { kr_lines: 76, approved: 74, forbidden: 0 }
   notes: Paratranz 詞彙表：戰鬥介面
+  sources: ["game:TutorialRenewalDesc.json#/dataList/9/content"]
 
 - kr: 파시아
+  jp: ファシア
+  en: Fascia
   zh: 法希雅
   status: approved
   category: [city]
   evidence: { kr_lines: 74, approved: 74, forbidden: 0 }
   notes: Paratranz 詞彙表：環指弟子的大劍武器
+  sources: ["game:IntroductionPreset.json#/dataList/481/content"]
 
 - kr: 환상 해석
+  jp: 幻想解析
   zh: 異想解析
   status: approved
   category: [ego]
   evidence: { kr_lines: 74, approved: 72, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O階段的名稱
+  sources: ["game:MainUIText.json#/dataList/103/content"]
 
 - kr: 추출 10회 티켓
+  jp: 抽出10回チケット
+  en: Decaextraction Ticket
   zh: 十連提取券
   status: approved
   evidence: { kr_lines: 73, approved: 73, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:Items.json#/dataList/5/name"]
 
 - kr: 마에스트로
+  jp: マエストロ
+  en: Maestro
   zh: 大師
   status: approved
   category: [city]
   evidence: { kr_lines: 69, approved: 69, forbidden: 0 }
   notes: Paratranz 詞彙表：環指位階之一
+  sources: ["game:UnitKeyword.json#/dataList/69/content"]
 
 - kr: 사기저하
+  jp: 士気低下
+  en: Low Morale
   zh: 士氣低落
   status: approved
   evidence: { kr_lines: 69, approved: 67, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:BattleUIText.json#/dataList/33/content"]
 
 - kr: 아르카나
+  jp: アルカナ
+  en: Arcana
   zh: 阿爾卡那
   status: approved
   category: [general]
@@ -1901,11 +2467,14 @@
   notes: Paratranz 詞彙表：魔法少女/憎惡女王相關術語，輔助文本描述
 
 - kr: 외우피 협회
+  jp: ウーフィ協会
+  en: Öufi Association
   zh: Öufi協會
   status: approved
   category: [city]
   evidence: { kr_lines: 69, approved: 69, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人協會之一
+  sources: ["game:StoryData/S611B.json#/dataList/5/title"]
 
 - kr: 오트쿠튀르
   zh: 高級訂製服
@@ -1914,24 +2483,33 @@
   notes: Paratranz 詞彙表
 
 - kr: 획득 기록 없음
+  jp: 獲得記録無し
+  en: No Acquisition Records
   zh: 暫無獲取紀錄
   status: approved
   category: [general]
   evidence: { kr_lines: 65, approved: 64, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:MainUIText.json#/dataList/200/content"]
 
 - kr: 게젤샤프트
+  jp: ゲゼルシャフト
+  en: Gesellschaft
   zh: Gesellschaft
   status: approved
   evidence: { kr_lines: 64, approved: 64, forbidden: 0 }
   notes: Paratranz 詞彙表：浮士德網路，目前使用英文
+  sources: ["game:StoryData/S951B.json#/dataList/68/title"]
 
 - kr: 경멸의 나선
+  jp: 軽蔑の螺旋
+  en: Spiral of Contempt
   zh: 輕蔑螺旋
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 64, approved: 64, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents_Refraction3.json#/dataList/3/title"]
 
 - kr: 속도에 상관없이 이 스킬과 합을 할 수 있음
   zh: 可無視速度值與本技能拚點
@@ -1941,6 +2519,8 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 전령
+  jp: 伝令
+  en: Messenger
   zh: 傳令者
   status: approved
   category: [city]
@@ -1948,10 +2528,13 @@
   notes: Paratranz 詞彙表：食指職位之一
 
 - kr: 아나운서
+  jp: アナウンサー
+  en: Announcer
   zh: 播報員
   status: approved
   evidence: { kr_lines: 52, approved: 51, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:MainUIText.json#/dataList/18/content"]
 
 - kr: 가주 심사
   zh: 家主審查
@@ -1961,17 +2544,23 @@
   notes: Paratranz 詞彙表：輔助文本描述
 
 - kr: 일반 전투
+  jp: 一般戦闘
+  en: Regular Encounter
   zh: 常規遭遇戰
   status: approved
   category: [general]
   evidence: { kr_lines: 51, approved: 50, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本使用
+  sources: ["game:BattleUIText.json#/dataList/57/content"]
 
 - kr: 의뢰인
+  jp: 依頼人
+  en: Client
   zh: 委託人
   status: approved
   evidence: { kr_lines: 50, approved: 45, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StageNode1-4.json#/dataList/6/title"]
 
 - kr: (턴 당 2회)
   zh: (每回合最多2次)
@@ -1981,11 +2570,14 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 점묘파
+  jp: 点描派
+  en: School of Pointillism
   zh: 點描派
   status: approved
   category: [city]
   evidence: { kr_lines: 48, approved: 48, forbidden: 0 }
   notes: Paratranz 詞彙表：環指派系之一
+  sources: ["game:UnitKeyword.json#/dataList/73/content"]
 
 - kr: 경혈식
   zh: 硬血
@@ -1994,19 +2586,27 @@
   notes: Paratranz 詞彙表
 
 - kr: 별의 가호
+  jp: 星の加護
+  en: Grace of Stars
   zh: 星之恩惠
   status: approved
   category: [system]
   evidence: { kr_lines: 46, approved: 43, forbidden: 0 }
   notes: Paratranz 詞彙表：鏡像迷宮機制
+  sources: ["game:MirrorDungeonUI_5.json#/dataList/20/content"]
 
 - kr: 붉은시선
+  jp: 赤い視線
+  en: The Red Gaze
   zh: 猩紅凝視
   status: approved
   evidence: { kr_lines: 46, approved: 45, forbidden: 0 }
   notes: Paratranz 詞彙表：維吉里烏斯的特色
+  sources: ["game:Passives.json#/dataList/255/name"]
 
 - kr: 죄악 속성
+  jp: 罪悪属性
+  en: Affinity
   zh: 罪孽屬性
   status: approved
   category: [general, combat]
@@ -2014,6 +2614,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥文本描述
 
 - kr: (턴 당 3회)
+  jp: "(1ターンにつき3回)"
+  en: 3 times per turn
   zh: (每回合最多3次)
   status: approved
   category: [combat]
@@ -2021,31 +2623,42 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 육참골단
+  jp: 肉斬骨断
+  en: Yield My Flesh to Claim Their Bones
   zh: 肉斬骨斷
   status: approved
   category: [system]
   evidence: { kr_lines: 45, approved: 45, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第5.5.2章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/20/name"]
 
 - kr: 평행중첩
+  jp: 平行重畳
   zh: 平行疊加
   status: approved
   category: [system]
   evidence: { kr_lines: 45, approved: 45, forbidden: 0 }
   notes: Paratranz 詞彙表：鏡像迷宮術語
+  sources: ["game:MirrorDungeonUI_5_InfinityFloor.json#/dataList/3/content"]
 
 - kr: 모노리스
+  jp: モノリス
+  en: Monolith
   zh: 獨石
   status: approved
   evidence: { kr_lines: 44, approved: 44, forbidden: 0 }
   notes: Paratranz 詞彙表：造成扭曲現象的物品之一
+  sources: ["game:StoryTheaterDanteNote_6.json#/dataList/6/content"]
 
 - kr: 홍염나방
+  jp: 紅炎蛾
+  en: Ardor Blossom Moth
   zh: 紅焰蛾
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 44, approved: 44, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents-a1c9p2.json#/dataList/0/title"]
 
 - kr: 중간 망치
   zh: 中鎚
@@ -2055,26 +2668,35 @@
   notes: Paratranz 詞彙表：N公司釘與鎚職位
 
 - kr: 지난 날
+  jp: 過ぎし日
+  en: Bygone Days
   zh: 往昔
   status: approved
   category: [ego]
   evidence: { kr_lines: 43, approved: 40, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O名稱
+  sources: ["game:Egos.json#/dataList/61/name"]
 
 - kr: 상영관
+  jp: 上映館
   zh: 放映室
   status: approved
   evidence: { kr_lines: 42, approved: 42, forbidden: 0 }
   notes: Paratranz 詞彙表：查看回放的功能
+  sources: ["game:MainUIText.json#/dataList/2/content"]
 
 - kr: 워프특급 살인사건
+  jp: ワープ特急殺人事件
+  en: Murder on the WARP Express
   zh: WARP列車謀殺案
   status: approved
   category: [system]
   evidence: { kr_lines: 41, approved: 41, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第6.5.2章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/63/name"]
 
 - kr: 탐사
+  jp: 探査
   zh: 探索
   status: approved
   category: [system]
@@ -2082,19 +2704,25 @@
   notes: Paratranz 詞彙表：鏡像迷宮/折射軌道專用動詞
 
 - kr: 투영도
+  jp: 投影度
+  en: Projection Rate
   zh: 折射率
   status: approved
   category: [system]
   evidence: { kr_lines: 39, approved: 39, forbidden: 0 }
   notes: Paratranz 詞彙表：鏡牢成就進度
+  sources: ["game:MirrorDungeonUI_6.json#/dataList/100/content"]
 
 - kr: 그림자계
+  jp: 影界
+  en: Shadowed
   zh: 陰影界
   status: approved
   evidence: { kr_lines: 38, approved: 37, forbidden: 0 }
   notes: Paratranz 詞彙表：十章RPG名詞
 
 - kr: 물리 내성
+  jp: 物理耐性
   zh: 物理抗性
   status: approved
   category: [buff]
@@ -2102,31 +2730,43 @@
   notes: Paratranz 詞彙表：BUFF/DEBUFF
 
 - kr: 새로고침
+  jp: 更新
+  en: Refresh
   zh: 刷新
   status: approved
   category: [system]
   evidence: { kr_lines: 38, approved: 35, forbidden: 0 }
   notes: Paratranz 詞彙表：多用於鏡像迷宮機制
+  sources: ["game:MirrorDungeonUI_3.json#/dataList/3/content"]
 
 - kr: 이홍원
+  jp: 怡紅院
+  en: Yihongyuan
   zh: 怡紅院
   status: approved
   evidence: { kr_lines: 37, approved: 37, forbidden: 0 }
   notes: Paratranz 詞彙表：第八章場景之一
+  sources: ["game:StageNode-a1c8p1.json#/dataList/7/title"]
 
 - kr: 20번구의 기적
+  jp: 20番区の奇跡
+  en: Miracle in District 20
   zh: 20區的奇蹟
   status: approved
   category: [system]
   evidence: { kr_lines: 36, approved: 34, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第5.5.1章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/19/name"]
 
 - kr: 경험기억
+  jp: 経験記憶
+  en: Mnestic Experience
   zh: 經歷記憶
   status: approved
   category: [system]
   evidence: { kr_lines: 36, approved: 36, forbidden: 0 }
   notes: Paratranz 詞彙表：9.5.2章節名
+  sources: ["game:BossRaidUI-3.json#/dataList/1/content"]
 
 - kr: 가스하푼
   zh: 燃氣捕鯨叉
@@ -2136,11 +2776,14 @@
   notes: Paratranz 詞彙表：亞哈的E.G.O名稱
 
 - kr: 어금니 사무소
+  jp: 奥歯事務所
+  en: Molar Office
   zh: 臼齒事務所
   status: approved
   category: [city]
   evidence: { kr_lines: 35, approved: 35, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人事務所之一
+  sources: ["game:Announcer.json#/dataList/16/name"]
 
 - kr: 이상으로 보고를 마칩니다.
   zh: 報告結束。
@@ -2156,31 +2799,43 @@
   notes: Paratranz 詞彙表
 
 - kr: 골목파수견
+  jp: 路地の番犬
+  en: Alleyway Watchdog
   zh: 巷弄惡犬
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 33, approved: 33, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides.json#/dataList/33/name"]
 
 - kr: 종말 달력
+  jp: 終末カレンダー
+  en: Doomsday Calendar
   zh: 終末日曆
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 33, approved: 33, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides.json#/dataList/1/name"]
 
 - kr: 타래 엮기
+  jp: 縒り合せ
+  en: Twining Threads
   zh: 搓揉撚合
   status: approved
   category: [system]
   evidence: { kr_lines: 32, approved: 32, forbidden: 0 }
   notes: Paratranz 詞彙表：9.5章名稱
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/104/name"]
 
 - kr: 혈액바
+  jp: 血液バー
+  en: Hemobar
   zh: 血棒
   status: approved
   evidence: { kr_lines: 32, approved: 32, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:IntroductionPreset.json#/dataList/331/content"]
 
 - kr: 정보팀
   zh: 情報部
@@ -2196,18 +2851,24 @@
   notes: Paratranz 詞彙表：N公司釘與鎚職位
 
 - kr: 분홍신
+  jp: 桃色の靴
+  en: Pink Shoes
   zh: 粉紅鞋
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 30, approved: 29, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides-a1c9p1.json#/dataList/0/name"]
 
 - kr: 산나비
+  jp: 生きた蝶
+  en: The Living
   zh: 生蝶
   status: approved
   category: [buff]
   evidence: { kr_lines: 30, approved: 30, forbidden: 0 }
   notes: Paratranz 詞彙表：BUFF/DEBUFF
+  sources: ["game:BattleUIText.json#/dataList/182/content"]
 
 - kr: 재적일
   zh: 再積日
@@ -2217,11 +2878,14 @@
   notes: Paratranz 詞彙表：H巢定期根據財產變更房地面積的日子
 
 - kr: 죽은나비
+  jp: 死んだ蝶
+  en: The Departed
   zh: 亡蝶
   status: approved
   category: [buff]
   evidence: { kr_lines: 30, approved: 30, forbidden: 0 }
   notes: Paratranz 詞彙表：BUFF/DEBUFF
+  sources: ["game:BattleUIText.json#/dataList/183/content"]
 
 - kr: <혈귀>
   zh: <血魔>
@@ -2230,13 +2894,18 @@
   notes: Paratranz 詞彙表
 
 - kr: 분실물 보관소
+  jp: 遺失物取扱所
+  en: Lost & Found
   zh: 失物招領處
   status: approved
   category: [system]
   evidence: { kr_lines: 29, approved: 28, forbidden: 0 }
   notes: Paratranz 詞彙表：多用於折射軌道
+  sources: ["game:RailwayDungeonUI.json#/dataList/4/content"]
 
 - kr: 이 스킬은 수비 스킬을 발동시키지 않음
+  jp: このスキルは守備スキルを発動させない
+  en: This Skill does not trigger Defense Skills
   zh: 本技能不會觸發守備技能
   status: approved
   category: [combat]
@@ -2244,35 +2913,48 @@
   notes: Paratranz 詞彙表：技能文本輔助
 
 - kr: 이름과 거미의 거울
+  jp: 名と蜘蛛の鏡
+  en: Mirror of Names and Spiders
   zh: 名與蛛之鏡
   status: approved
   category: [system]
   evidence: { kr_lines: 29, approved: 29, forbidden: 0 }
   notes: Paratranz 詞彙表：第7賽季鏡像迷宮
+  sources: ["game:MirrorDungeonName.json#/dataList/17/content"]
 
 - kr: 4번째 성냥불
+  jp: 4本目のマッチの火
+  en: 4th Match Flame
   zh: 第四根火柴
   status: approved
   category: [ego]
   evidence: { kr_lines: 28, approved: 28, forbidden: 0 }
   notes: Paratranz 詞彙表：EGO被動
+  sources: ["game:Egos.json#/dataList/1/name"]
 
 - kr: 가주 후보
+  jp: 家主候補
+  en: Family Hierarch Candidate
   zh: 家主候選人
   status: approved
   match: substring
   category: [general]
   evidence: { kr_lines: 28, approved: 28, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（6/6），比對詞中詞
+  sources: ["game:Personalities.json#/dataList/141/title"]
 
 - kr: 단수어
+  jp: 断首魚
+  en: Headless Ichthys
   zh: 斷首魚
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 27, approved: 27, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides.json#/dataList/32/name"]
 
 - kr: 치명타
+  jp: クリティカル
   zh: 暴擊
   status: approved
   category: [general, combat]
@@ -2280,24 +2962,29 @@
   notes: Paratranz 詞彙表：暴擊，輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 대상의 수비 스킬을 발동시키지 않음
+  jp: 対象の守備スキルを発動させない
   zh: 不會觸發目標的守備技能
   status: approved
   evidence: { kr_lines: 26, approved: 24, forbidden: 0 }
   notes: Paratranz 詞彙表
 
 - kr: 서포트 패시브
+  jp: サポートパッシブ
   zh: 支援被動
   status: approved
   category: [combat]
   evidence: { kr_lines: 26, approved: 25, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:MainUIText.json#/dataList/107/content"]
 
 - kr: 신체파
+  jp: 身体派
   zh: 人體派
   status: approved
   category: [city]
   evidence: { kr_lines: 26, approved: 26, forbidden: 0 }
   notes: Paratranz 詞彙表：環指派系之一
+  sources: ["game:Passives_Abnormality-a1c9p3.json#/dataList/14/name"]
 
 - kr: 웨이브 첫 턴 시작 시
   zh: 波次的首個回合開始時
@@ -2307,25 +2994,34 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 장미 사냥꾼
+  jp: 薔薇の狩人
+  en: Rose Hunter
   zh: 玫瑰獵人
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 26, approved: 26, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents-a1c7p3.json#/dataList/2/title"]
 
 - kr: 누구도 울지 않도록
+  jp: 誰も泣かぬように
+  en: So That No One Will Cry
   zh: 因而無人哭泣
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 25, approved: 25, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents.json#/dataList/45/title"]
 
 - kr: 떠돌이 여우
+  jp: さすらいの狐
+  en: Drifting Fox
   zh: 流浪狐狸
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 25, approved: 25, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents.json#/dataList/44/title"]
 
 - kr: 클리포트
   zh: 逆卡巴拉
@@ -2334,23 +3030,32 @@
   notes: Paratranz 詞彙表：腦葉公司相關術語
 
 - kr: HP탄
+  jp: HP弾
+  en: HP Bullets
   zh: HP彈
   status: approved
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:Passives_Abnormality_Refraction1BokGak.json#/dataList/17/name"]
 
 - kr: 길 잃은 승객
+  jp: 道を失った乗客
+  en: Wayward Passenger
   zh: 迷失的乘客
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents-a1c9p2.json#/dataList/3/title"]
 
 - kr: 르네앙
+  jp: ル・ネアン
+  en: Le Néant
   zh: 虛無派
   status: approved
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表：第十章派別之一
+  sources: ["game:RPGSystem/rpg-loc-dialogue-floor-1-c2.json#/dataList/39/texts/0/speaker"]
 
 - kr: 오블리비언
   zh: 忘卻
@@ -2360,31 +3065,42 @@
   notes: Paratranz 詞彙表：第5賽季名稱
 
 - kr: 우.미.다
+  jp: う・み・ダ
   zh: 去．海．邊
   status: approved
   category: [system]
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第4.5章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/18/name"]
 
 - kr: 푼크툼
+  jp: プンクトゥム
+  en: PUNCTUM
   zh: 刺點
   status: approved
   category: [system]
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表：第8賽季名稱
+  sources: ["game:BattlePass-a1c10.json#/dataList/0/content"]
 
 - kr: 헬스 치킨
+  jp: ヘルズチキン
+  en: Hell’s Chicken
   zh: 地獄雞
   status: approved
   category: [system]
   evidence: { kr_lines: 23, approved: 23, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第3.5章
+  sources: ["game:StageChapterText.json#/dataList/4/chaptertitle"]
 
 - kr: 기술 해방 연합
+  jp: 技術解放連合
+  en: Technology Liberation Alliance
   zh: 技術解放聯盟
   status: approved
   evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:FormationNameEtcFilter.json#/dataList/18/content"]
 
 - kr: 아군 전체
   zh: 全體友方單位
@@ -2394,17 +3110,23 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 아파하는 테디
+  jp: 痛がるテディ
+  en: Hurting Teddy Bear
   zh: 痛苦泰迪
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides-a1c7p3.json#/dataList/3/name"]
 
 - kr: 장미 표지판
+  jp: 薔薇の表示板
+  en: Sign of Roses
   zh: 玫瑰告示牌
   status: approved
   evidence: { kr_lines: 22, approved: 22, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:AbEvents_Refraction2.json#/dataList/8/title"]
 
 - kr: 추가적인 관찰이 이뤄지면 새롭게 서술하겠다
   zh: 如果有任何新的發現，我會在未來的報告中提及
@@ -2414,19 +3136,26 @@
   notes: Paratranz 詞彙表：僅限莫梭─觀察報告
 
 - kr: 시작 버프
+  jp: 開始バフ
+  en: Starter Buffs
   zh: 開局增益
   status: approved
   category: [system]
   evidence: { kr_lines: 21, approved: 21, forbidden: 0 }
   notes: Paratranz 詞彙表：多用於鏡像迷宮機制
+  sources: ["game:MirrorDungeonUI_3.json#/dataList/17/content"]
 
 - kr: 정예 전투
+  jp: 精鋭戦闘
+  en: Elite Encounter
   zh: 菁英遭遇戰
   status: approved
   evidence: { kr_lines: 21, approved: 21, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:MirrorDungeonUI_4.json#/dataList/15/content"]
 
 - kr: 클리어 올 캐시
+  jp: クリア・オール・キャシー
   zh: 清除凱茜
   status: approved
   category: [system]
@@ -2434,6 +3163,7 @@
   notes: Paratranz 詞彙表：第4賽季名稱
 
 - kr: 본 보야지
+  jp: ボン・ヴォヤージ
   zh: 一路順風
   status: approved
   category: [system]
@@ -2441,32 +3171,44 @@
   notes: Paratranz 詞彙表：第3三季名稱
 
 - kr: 위험등급
+  jp: 危険ランク
+  en: Risk Levels
   zh: 危險等級
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體分類法之一
+  sources: ["game:StoryTheaterDanteNote_6.json#/dataList/0/content"]
 
 - kr: 일방공격
+  jp: 一方攻撃
+  en: Unopposed
   zh: 單方面攻擊
   status: approved
   category: [general]
   evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述
+  sources: ["game:BattleUIText.json#/dataList/7/content"]
 
 - kr: 충격 지네
+  jp: 衝撃ムカデ
+  en: Shock Centipede
   zh: 電擊蜈蚣
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents.json#/dataList/43/title"]
 
 - kr: 홍적
+  jp: 紅籍
+  en: Red Sheet
   zh: 朱符
   status: approved
   category: [ego]
   evidence: { kr_lines: 20, approved: 20, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O名稱
+  sources: ["game:Egos.json#/dataList/91/name"]
 
 - kr: 버스배
   zh: 巴士船
@@ -2481,38 +3223,52 @@
   notes: Paratranz 詞彙表
 
 - kr: 비포팀
+  jp: ビフォーチーム
+  en: Before Team
   zh: 先遣部隊
   status: approved
   evidence: { kr_lines: 19, approved: 19, forbidden: 0 }
   notes: Paratranz 詞彙表：多指LCCB
 
 - kr: 울음 두꺼비
+  jp: 泣きヒキガエル
+  en: Blubbering Toad
   zh: 悲泣蟾蜍
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 19, approved: 19, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents.json#/dataList/39/title"]
 
 - kr: 꿈먹는 탁류
+  jp: 夢貪る濁流
+  en: Dream-Devouring Siltcurrent
   zh: 噬夢的濁流
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents-a1c5p3.json#/dataList/2/title"]
 
 - kr: 지난 날의 침낭
+  jp: 過ぎ去りし日の寝袋
+  en: Sleeping Bag of a Bygone Day
   zh: 往昔的睡袋
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides_Refraction5.json#/dataList/0/name"]
 
 - kr: 평생 스튜
+  jp: 一生シチュー
+  en: Lifetime Stew
   zh: 一生燉菜
   status: approved
   category: [ego]
   evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O名稱
+  sources: ["game:Egos.json#/dataList/33/name"]
 
 - kr: 흉탄의
   zh: 凶彈
@@ -2522,11 +3278,14 @@
   notes: Paratranz 詞彙表：E.G.O名稱
 
 - kr: 흉탄의 사수
+  jp: 凶弾の射手
+  en: Der Fluchschütze
   zh: 凶彈射手
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 18, approved: 18, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides_Refraction5.json#/dataList/1/name"]
 
 - kr: 이 스킬은 대상의 수비 스킬을 발동시키지 않음
   zh: 本技能不會觸發目標的守備技能
@@ -2535,18 +3294,24 @@
   notes: Paratranz 詞彙表
 
 - kr: 절망의 기사
+  jp: 絶望の騎士
+  en: The Knight of Despair
   zh: 絕望騎士
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 17, approved: 17, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides-walpu6.json#/dataList/0/name"]
 
 - kr: 황금빛의 사과
+  jp: 黄金色の林檎
+  en: Golden Apple
   zh: 金蘋果
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 17, approved: 17, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides.json#/dataList/10/name"]
 
 - kr: <라만차랜드>
   zh: <拉．曼查領>
@@ -2561,11 +3326,14 @@
   notes: Paratranz 詞彙表
 
 - kr: 삼도끼 사무소
+  jp: 三斧事務所
+  en: Tri-axe Office
   zh: 三斧事務所
   status: approved
   category: [city]
   evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
   notes: Paratranz 詞彙表：收尾人事務所之一
+  sources: ["game:StoryData/E719B.json#/dataList/71/title"]
 
 - kr: 일반 전투 한정
   zh: 僅限常規遭遇戰
@@ -2575,11 +3343,14 @@
   notes: Paratranz 詞彙表：輔助文本使用
 
 - kr: 전기울음
+  jp: 電気哀鳴
+  en: Electric Screaming
   zh: 電子哀鳴
   status: approved
   category: [ego]
   evidence: { kr_lines: 16, approved: 16, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O名稱
+  sources: ["game:Egos.json#/dataList/63/name"]
 
 - kr: 공멸일
   zh: 孔家滅門之日
@@ -2589,6 +3360,8 @@
   notes: Paratranz 詞彙表：輔助文本描述
 
 - kr: 애프터 팀
+  jp: アフターチーム
+  en: After Team
   zh: 收尾部隊
   status: approved
   evidence: { kr_lines: 15, approved: 15, forbidden: 0 }
@@ -2601,11 +3374,14 @@
   notes: Paratranz 詞彙表
 
 - kr: 휴식 보너스
+  jp: 休息ボーナス
+  en: Rest Bonus
   zh: 休息獎勵
   status: approved
   category: [system]
   evidence: { kr_lines: 15, approved: 15, forbidden: 0 }
   notes: Paratranz 詞彙表：多用於鏡像迷宮術語
+  sources: ["game:MirrorDungeonUI_3.json#/dataList/43/content"]
 
 - kr: 마에스트로님
   zh: 大師
@@ -2621,11 +3397,14 @@
   notes: Paratranz 詞彙表
 
 - kr: 바바야가
+  jp: バーバヤーガ
+  en: Baba Yaga
   zh: 芭芭雅嘎
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:Skills_Ego.json#/dataList/35/levelList/0/abName"]
 
 - kr: 언더보스
   zh: 二老闆
@@ -2635,11 +3414,14 @@
   notes: Paratranz 詞彙表：拇指職稱，輔助文本描述
 
 - kr: 흑단여왕의 사과
+  jp: 黒檀女王の林檎
+  en: Ebony Queen's Apple
   zh: 黑檀女王的蘋果
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides-a1c9p1.json#/dataList/3/name"]
 
 - kr: 로직 아틀리에
   zh: 邏輯工作室
@@ -2662,39 +3444,54 @@
   notes: Paratranz 詞彙表
 
 - kr: 죄악 공명
+  jp: 罪悪共鳴
   zh: 罪孽共鳴
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 13, approved: 12, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
+  meaning: "同一回合選用兩個以上相同罪孽屬性的技能時發生的戰鬥機制，會提升這些技能的攻擊／防禦等級。"
+  sources: ["https://limbuscompany.wiki.gg/wiki/Sin_Resonance"]
 
 - kr: 죽은 나비들의 장례
+  jp: 死んだ蝶たちの葬儀
+  en: Funeral of the Dead Butterflies
   zh: 亡蝶葬儀
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:Skills_Ego_Personality-01.json#/dataList/6/levelList/0/abName"]
 
 - kr: 쥐어들 자
+  jp: 握らんとする者
+  en: The One Who Shall Grip
   zh: 準執柄者
   status: approved
   category: [city]
   evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
   notes: Paratranz 詞彙表：N公司釘與錘職位
+  sources: ["game:Personalities.json#/dataList/47/title"]
 
 - kr: 증기 운반 기계
+  jp: 蒸気運搬機械
+  en: Steam Transport Machine
   zh: 蒸氣運輸機
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 13, approved: 13, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents_Refraction2.json#/dataList/7/title"]
 
 - kr: 아늑한 침대
+  jp: 心地よいベッド
+  en: Cozy Bed
   zh: 舒適臥床
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 12, approved: 12, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:Skills_Ego_Personality-08.json#/dataList/6/levelList/0/abName"]
 
 - kr: 낭술회
   zh: 朗術會
@@ -2704,10 +3501,13 @@
   notes: Paratranz 詞彙表：九人會的技術分享會議
 
 - kr: 동부십검
+  jp: 東部十剣
+  en: Ten Blades of the East
   zh: 東部十劍
   status: approved
   evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:Passives-BossRaid.json#/dataList/24/name"]
 
 - kr: 메이스
   zh: 鎚矛
@@ -2716,11 +3516,14 @@
   notes: Paratranz 詞彙表：以實瑪利的武器
 
 - kr: 부서진 칼날
+  jp: 壊れた刃
+  en: Broken Blade
   zh: 損壞的刀刃
   status: approved
   category: [ego]
   evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/14/name"]
 
 - kr: 작은 망치
   zh: 小鎚
@@ -2730,51 +3533,72 @@
   notes: Paratranz 詞彙表：N公司釘與鎚職位
 
 - kr: 청소부 액체 연료통
+  jp: 掃除屋液体燃料タンク
+  en: "[Sweeper Fuel Cylinder]"
   zh: 清道夫液態燃料罐
   status: approved
   category: [buff]
   evidence: { kr_lines: 11, approved: 11, forbidden: 0 }
   notes: Paratranz 詞彙表：BUFF/DEBUFF
+  sources: ["game:Items.json#/dataList/88/name"]
 
 - kr: 검은 장부
+  jp: 黒い帳簿
+  en: Black Ledger
   zh: 黑色帳簿
   status: approved
   category: [ego]
   evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/11/name"]
 
 - kr: 녹슨 칼자루
+  jp: 錆びた柄
+  en: Rusted Hilt
   zh: 生鏽的刀柄
   status: approved
   category: [ego]
   evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/12/name"]
 
 - kr: 의리 사슬
+  jp: 義理の鎖
+  en: Chains of Loyalty
   zh: 情義鎖鏈
   status: approved
   category: [ego]
   evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme_2.json#/dataList/51/name"]
 
 - kr: 초염옥구
+  jp: 草炎玉球
+  en: Virescent Pyrojade
   zh: 翠炎玉器
   status: approved
   evidence: { kr_lines: 10, approved: 10, forbidden: 0 }
   notes: Paratranz 詞彙表：目前特指東五唐手上的玉器
+  sources: ["game:Passives.json#/dataList/382/name"]
 
 - kr: 감상실
+  jp: 鑑賞室
+  en: Screening Room
   zh: 放映室
   status: approved
   evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
   notes: Paratranz 詞彙表：劇情中的放映室
+  sources: ["game:StageNode1-4.json#/dataList/46/title"]
 
 - kr: 물리 간섭 보호장
+  jp: 物理干渉保護フィールド
+  en: Material Interference Force Field
   zh: 反物理力場盾
   status: approved
   category: [ego]
   evidence: { kr_lines: 9, approved: 9, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/190/name"]
 
 - kr: 수비 스킬을 장착했으면
   zh: 裝備了守備技能
@@ -2808,18 +3632,24 @@
   notes: Paratranz 詞彙表
 
 - kr: 거짓 사과
+  jp: 偽物の林檎
+  en: False Apple
   zh: 假蘋果
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides.json#/dataList/11/name"]
 
 - kr: 경외심
+  jp: 畏敬の念
+  en: Awe
   zh: 敬畏
   status: approved
   category: [ego]
   evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/211/name"]
 
 - kr: 날개 전쟁
   zh: 翼際戰爭
@@ -2829,6 +3659,8 @@
   notes: Paratranz 詞彙表：翼與翼之間的戰爭，輔助文本描述
 
 - kr: 단일 코인 스킬
+  jp: 単一コインスキル
+  en: Single-Coin Skills
   zh: 單硬幣技能
   status: approved
   category: [general, combat]
@@ -2836,10 +3668,13 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 라이브러리 오브 루이나
+  jp: ライブラリー・オブ・ルイナ
+  en: Library of Ruina
   zh: 廢墟圖書館
   status: approved
   evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
   notes: Paratranz 詞彙表：Project Moon旗下作品之一，多指該圖書館本體
+  sources: ["game:UserBanner.json#/dataList/34/name"]
 
 - kr: 맘브리노
   zh: 曼布里諾
@@ -2862,18 +3697,24 @@
   notes: Paratranz 詞彙表：E.G.O名稱
 
 - kr: 피뢰침
+  jp: 避雷針
+  en: Lightning Rod
   zh: 避雷針
   status: approved
   category: [ego]
   evidence: { kr_lines: 8, approved: 8, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/141/name"]
 
 - kr: E.G.O 오버클록
+  jp: E.G.Oオーバークロック
+  en: E.G.O Overclock
   zh: E.G.O超頻
   status: approved
   category: [combat]
   evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:TutorialDesc0-4.json#/dataList/50/content"]
 
 - kr: 눈물 흘리는 것
   zh: 落淚之物
@@ -2901,11 +3742,14 @@
   notes: Paratranz 詞彙表
 
 - kr: 핏빛욕망
+  jp: 血色の欲望
+  en: Sanguine Desire
   zh: 血慾
   status: approved
   category: [ego]
   evidence: { kr_lines: 7, approved: 7, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O名稱
+  sources: ["game:Egos.json#/dataList/68/name"]
 
 - kr: 가주 선발
   zh: 家主選拔
@@ -2934,18 +3778,24 @@
   notes: Paratranz 詞彙表：維吉里烏斯的武器
 
 - kr: 낡은 칼자루
+  jp: 古びた柄
+  en: Worn Hilt
   zh: 陳舊的刀柄
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme_2.json#/dataList/44/name"]
 
 - kr: 놋쇠 황소 - 눈물 흘리는
+  jp: 真鍮の雄牛 - 涙を流す
+  en: Brazen Bull - Tearful
   zh: 黃銅公牛 - 流淚
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbnormalityGuides.json#/dataList/90/name"]
 
 - kr: 버스 부서
   zh: 巴士部門
@@ -2966,39 +3816,54 @@
   notes: Paratranz 詞彙表
 
 - kr: 장미 면류관
+  jp: 薔薇の冠
+  en: Crown of Roses
   zh: 玫瑰王冠
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/33/name"]
 
 - kr: 제한 풀린 제세동기
+  jp: 制限解除された除細動器
+  en: Uncapped Defibrilator
   zh: 解除限制的去顫器
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:ActionEvents_lcbcheckup-re.json#/dataList/2/options/0/message"]
 
 - kr: 지옥나비의 꿈
+  jp: 地獄蝶の夢
+  en: Hellterfly’s Dream
   zh: 煉獄炎蝶之夢
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:ActionEvents_lcbcheckup.json#/dataList/3/options/1/message"]
 
 - kr: 초록빛 결실
+  jp: 緑色の結実
+  en: Green Spirit
   zh: 綠光果實
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/29/name"]
 
 - kr: 해진 삿갓
+  jp: 破れた編み笠
+  en: Ragged Bamboo Hat
   zh: 破損的斗笠
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/18/name"]
 
 - kr: 공격이 적중하지 않음
   zh: 該攻擊不會命中目標
@@ -3007,11 +3872,14 @@
   notes: Paratranz 詞彙表
 
 - kr: 낡은 목각 인형
+  jp: 古い木彫り人形
+  en: Old Wooden Doll
   zh: 陳舊的木雕人偶
   status: approved
   category: [ego]
   evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/252/name"]
 
 - kr: 니콜리나
   zh: 尼古莉娜
@@ -3021,24 +3889,33 @@
   notes: Paratranz 詞彙表：多指三代血魔理髮師
 
 - kr: 닉시 다이버전스
+  jp: ニクシー・ダイバージェンス
+  en: Nixie Divergence
   zh: 輝光變動儀
   status: approved
   category: [ego]
   evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/54/name"]
 
 - kr: 마법의 탄환
+  jp: 魔法の弾丸
+  en: Magic Bullet
   zh: 魔彈
   status: approved
   evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：魔彈射手的特殊彈藥
+  sources: ["game:IntroductionPreset.json#/dataList/351/content"]
 
 - kr: 작열우모
+  jp: 灼熱の羽毛
+  en: Fiery Down
   zh: 熾熱的羽毛
   status: approved
   category: [ego]
   evidence: { kr_lines: 5, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/14/name"]
 
 - kr: 프리모
   zh: 一階
@@ -3060,53 +3937,74 @@
   notes: Paratranz 詞彙表：但丁宣布可以休息後，浮士德的固定台詞
 
 - kr: 고목 함정
+  jp: 古木の罠
+  en: Eldtree Snare
   zh: 古木陷阱
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/235/name"]
 
 - kr: 극독성 외피
+  jp: 劇毒性外皮
+  en: Venomous Skin
   zh: 劇毒外皮
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/219/name"]
 
 - kr: 낡은 도포
+  jp: 古びた道袍
+  en: Old Dopo Robe
   zh: 陳舊的道袍
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/19/name"]
 
 - kr: 녹빛 겉날개
+  jp: 緑の外翅
+  en: Emerald Elytra
   zh: 綠色鞘翅
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/249/name"]
 
 - kr: 녹슨 시계침
+  jp: 錆びた時計の針
+  en: Rusted Clock Hands
   zh: 生鏽的指針
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-EventTheme.json#/dataList/24/name"]
 
 - kr: 데블스 셰어
+  jp: デビルズシェア
+  en: Devil's Share
   zh: 魔鬼所享
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/246/name"]
 
 - kr: 마음이 어긋나는
+  jp: 心の擦れ違う
+  en: The Heartbreaking
   zh: 心意相悖
   status: approved
   category: [system]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：主線第6章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/65/name"]
 
 - kr: 맘브리노 투구를
   zh: 曼布里諾頭盔
@@ -3115,18 +4013,24 @@
   notes: Paratranz 詞彙表
 
 - kr: 블러디 가젯
+  jp: ブラッディー・ガジェット
+  en: Bloody Gadget
   zh: 鮮血裝飾
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/17/name"]
 
 - kr: 생체 맹독 바이알
+  jp: 生体猛毒バイアル
+  en: Bio-venom Vial
   zh: 生物劇毒藥瓶
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/216/name"]
 
 - kr: 세칸도
   zh: 二階
@@ -3136,60 +4040,84 @@
   notes: Paratranz 詞彙表：拇指階級，通常以槓(I)來表示
 
 - kr: 순찰용 손전등
+  jp: 巡察用懐中電灯
+  en: Patrolling Flashlight
   zh: 巡邏用手電筒
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/263/name"]
 
 - kr: 시큼한 주향
+  jp: 酸っぱい酒香
+  en: Sour Liquor Aroma
   zh: 酸味的酒香
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/222/name"]
 
 - kr: 악으로 규정되는
+  jp: 悪に規定される
+  en: The Evil Defining
   zh: 定義為惡
   status: approved
   category: [system]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：主線第5章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/14/name"]
 
 - kr: 어두운 숲
+  jp: 暗い森
+  en: Selva Oscura
   zh: 幽暗的森林
   status: approved
   category: [system]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：主線序章
+  sources: ["game:StageChapterText.json#/dataList/0/chaptertitle"]
 
 - kr: 엔도르핀 키트
+  jp: エンドルフィンキット
+  en: Endorphin Kit
   zh: 內啡肽試劑組
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/144/name"]
 
 - kr: 옭아맨 타래
+  jp: 縛り付けた枷
+  en: Tangled Bundle
   zh: 糾纏捆束
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/208/name"]
 
 - kr: 울화통
+  jp: かんしゃく玉
+  en: Pain of Stifled Rage
   zh: 鬱火
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/200/name"]
 
 - kr: 재에서 재로
+  jp: 灰は灰に
+  en: Ashes to Ashes
   zh: 塵歸塵
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/4/name"]
 
 - kr: 제논의 거북나선
   zh: 芝諾的龜之螺旋
@@ -3211,11 +4139,14 @@
   notes: Paratranz 詞彙表：拇指階級，通常以槓(I)表示
 
 - kr: 형광색 램프
+  jp: 蛍光色のランプ
+  en: Fluorescent Lamp
   zh: 螢光燈
   status: approved
   category: [ego]
   evidence: { kr_lines: 4, approved: 4, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O碎片
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/178/name"]
 
 - kr: (턴 당 4회)
   zh: (每回合最多4次)
@@ -3225,67 +4156,94 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: E.G.O 폭주 발동
+  jp: E.G.O暴走発動
+  en: Frenzied E.G.O Activation
   zh: E.G.O失控
   status: approved
   category: [combat]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:EGOVoiceDig/Voice_EGO_Heathcliff_7.json#/dataList/9/desc"]
 
 - kr: 굳게 쥔 상
+  jp: 握り締めた像
+  en: Clasped Sculpture
   zh: 緊握的雕像
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/306/name"]
 
 - kr: 근무용 통상 배터리
+  jp: 勤務用通常バッテリー
+  en: Standard-duty Battery
   zh: 標準負荷電池
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/58/name"]
 
 - kr: 끈적거리는 진액
+  jp: 粘つくエキス
+  en: Sticky Muck
   zh: 黏性淤漿
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/36/name"]
 
 - kr: 네잎클로버
+  jp: 四つ葉のクローバー
+  en: Four-leaf Clover
   zh: 四葉草
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/111/name"]
 
 - kr: 녹슨 기념 주화
+  jp: 錆びた記念通貨
+  en: Rusty Commemorative Coin
   zh: 生鏽的紀念幣
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/25/name"]
 
 - kr: 녹슨 입마개
+  jp: 錆びた轡
+  en: Rusted Muzzle
   zh: 生鏽的籠頭
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/170/name"]
 
 - kr: 녹슨 커터 나이프
+  jp: 錆びたカッターナイフ
+  en: Rusted Cutting Knife
   zh: 生鏽的美工刀
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/89/name"]
 
 - kr: 도착증
+  jp: 倒錯症
+  en: Perversion
   zh: 倒錯症
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/3/name"]
 
 - kr: 로렌소
   zh: 羅倫佐
@@ -3294,67 +4252,94 @@
   notes: Paratranz 詞彙表：《唐吉訶德》中的角色之一
 
 - kr: 먼지에서 먼지로
+  jp: 塵は塵に
+  en: Dust to Dust
   zh: 土歸土
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/104/name"]
 
 - kr: 명경지수
+  jp: 明鏡止水
+  en: Clear Mirror, Calm Water
   zh: 明鏡止水
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/137/name"]
 
 - kr: 바라보아지는
+  jp: 見つめられてしまう
+  en: The Gaze Bearing
   zh: 備受注視
   status: approved
   category: [system]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：第十章章節名
+  sources: ["game:StageChapterText.json#/dataList/29/chaptertitle"]
 
 - kr: 벼려진 가지
+  jp: 研がれた枝
+  en: Keenbranch
   zh: 磨尖的樹枝
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/293/name"]
 
 - kr: 분풀기
+  jp: 腹いせ
+  en: Upheaval
   zh: 洩憤暴打
   status: approved
   category: [combat]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：技能譯名
+  sources: ["game:Skills.json#/dataList/77/levelList/0/name"]
 
 - kr: 선고의 순간
+  jp: 宣告の瞬間
+  en: Moment of Sentencing
   zh: 宣判之刻
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/280/name"]
 
 - kr: 속하지 못하는
+  jp: 属せない
+  en: The Outcast
   zh: 身無所屬
   status: approved
   category: [system]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：主線第1章
+  sources: ["game:MirrorDungeonTheme-1.json#/dataList/1/name"]
 
 - kr: 손목 보호대
+  jp: 手首サポーター
+  en: Wrist Guards
   zh: 護腕
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/134/name"]
 
 - kr: 시간 굴레
+  jp: 時間のくびき
+  en: Temporal Bridle
   zh: 時間的枷鎖
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/303/name"]
 
 - kr: 시오미 요루
   zh: 鹽見夜鷺
@@ -3364,52 +4349,73 @@
   notes: Paratranz 詞彙表：小指 父輩
 
 - kr: 압박 붕대
+  jp: 圧迫包帯
+  en: Compression Bandage
   zh: 加壓繃帶
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/300/name"]
 
 - kr: 억류된 찬송
+  jp: 抑留された讃頌
+  en: Arrested Hymn
   zh: 被扣留的頌歌
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/205/name"]
 
 - kr: 연기와 철조망
+  jp: 煙と鉄条網
+  en: Smokes and Wires
   zh: 煙霾與鐵絲網
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/73/name"]
 
 - kr: 위장된 화평
+  jp: 偽装された和平
+  en: Deceptive Accord
   zh: 虛飾的和平
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/271/name"]
 
 - kr: 유연 화약
+  jp: 有煙火薬
+  en: Smoking Gunpowder
   zh: 有煙火藥
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/228/name"]
 
 - kr: 이 코인은 메인 타겟에게만 적중함
+  jp: このコインはメインターゲットにのみ的中する
+  en: This Coin hits only the main target
   zh: 本硬幣只會命中主要目標
   status: approved
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:Skills_Ego_Personality-05.json#/dataList/10/levelList/0/coinlist/0/coindescs/1/desc"]
 
 - kr: 일점타격논리회로
+  jp: 一点打撃論理回路
+  en: Pinpoint Logic Circuit
   zh: 單點打擊邏輯電路
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/59/name"]
 
 - kr: 자신의 코인 앞면 확률 100% 고정
   zh: 使自身硬幣翻為正面的機率固定為100%
@@ -3418,39 +4424,54 @@
   notes: Paratranz 詞彙表
 
 - kr: 재단용 가위
+  jp: 裁断用ハサミ
+  en: Tailor's Scissors
   zh: 裁縫用剪刀
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/274/name"]
 
 - kr: 진실의 종
+  jp: 真実の鐘
+  en: Bell of Truth
   zh: 真理之鐘
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/174/name"]
 
 - kr: 쪽빛 지포라이터
+  jp: 藍色のジッポライター
+  en: Blue Zippo Lighter
   zh: 藍色Zippo牌打火機
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/40/name"]
 
 - kr: 찢어진 밴돌리어
+  jp: 破れたバンドリヤー
+  en: Torn Bandolier
   zh: 撕裂的彈帶
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/290/name"]
 
 - kr: 축복이었던
+  jp: かつての祝福
+  en: Once, A Blessing
   zh: 曾經的祝福
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/287/name"]
 
 - kr: 테르조
   zh: 三階
@@ -3460,52 +4481,73 @@
   notes: Paratranz 詞彙表：拇指階級，通常以槓(I)來表示
 
 - kr: 편광
+  jp: 偏光
+  en: Polarization
   zh: 偏振光
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/197/name"]
 
 - kr: 한겨울 밤의 악몽
+  jp: 真冬の夜の悪夢
+  en: Midwinter Nightmare
   zh: 仲冬夜之噩夢
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O名稱
+  sources: ["game:ActionEvents_lcbcheckup.json#/dataList/4/options/0/message"]
 
 - kr: 휴대용 전지 소켓
+  jp: 携帯用電池ソケット
+  en: Portable Battery Socket
   zh: 攜帶式電源插座
   status: approved
   category: [ego]
   evidence: { kr_lines: 3, approved: 3, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/101/name"]
 
 - kr: E.G.O 해방
+  jp: E.G.O解放
+  en: E.G.O Liberation
   zh: E.G.O解放
   status: approved
   category: [combat]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
+  sources: ["game:EGOVoiceDig/Voice_EGO_YiSang_1.json#/dataList/1/desc"]
 
 - kr: 강요된 무게
+  jp: 強要された重荷
+  en: Imposed Weight
   zh: 強壓的重擔
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O.飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/311/name"]
 
 - kr: 거울 촉각 공감각
+  jp: 鏡触覚共感覚
+  en: Mirror Tactile Synaesthesia
   zh: 鏡觸覺通感
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/225/name"]
 
 - kr: 단테의 노트
+  jp: ダンテのノート
+  en: Dante’s Notes
   zh: 但丁的筆記
   status: approved
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StoryTheaterOther.json#/dataList/1/title"]
 
 - kr: 모든 캐릭터가 수치를 공유함
   zh: 本效果層數全體單位共同計算
@@ -3514,11 +4556,14 @@
   notes: Paratranz 詞彙表
 
 - kr: 문자 석판
+  jp: 文字の刻まれた石板
+  en: Lithograph
   zh: 石版字符
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/32/name"]
 
 - kr: 보유 패시브
   zh: 持有被動
@@ -3528,18 +4573,24 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 불빛꽃
+  jp: 灯り花
+  en: Ardent Flower
   zh: 火光花
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/203/name"]
 
 - kr: 사백 송이 장미
+  jp: 四百輪の薔薇
+  en: Four-hundred Roses
   zh: 四百朵玫瑰
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:AbEvents_Refraction5.json#/dataList/1/title"]
 
 - kr: 수감자 당 턴 당 1회 발동
   zh: 每名罪人每回合最多1次
@@ -3549,11 +4600,14 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 수집하는 해골
+  jp: 収集する骸骨
+  en: Gathering Skulls
   zh: 頭骨收藏
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O收藏
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/53/name"]
 
 - kr: 움브라
   zh: 安布拉
@@ -3581,18 +4635,24 @@
   notes: Paratranz 詞彙表：《唐吉訶德》角色之一
 
 - kr: 톱니바퀴 태엽
+  jp: 歯車のぜんまい
+  en: Clockwork Spring
   zh: 齒輪發條
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/226/name"]
 
 - kr: 휴대용 역장 배터리
+  jp: 携帯用力場バッテリー
+  en: Portable Barrier Battery
   zh: 攜帶式力場電池
   status: approved
   category: [ego]
   evidence: { kr_lines: 2, approved: 2, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-mowe.json#/dataList/3/name"]
 
 - kr: 공명 패시브
   zh: 共鳴被動
@@ -3602,25 +4662,34 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 구멍난 기억
+  jp: 穴の空いた記憶
+  en: Punctured Memory
   zh: 洞穿的記憶
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/296/name"]
 
 - kr: 귀신 들린 신발
+  jp: 憑かれた靴
+  en: Haunted Shoes
   zh: 鬼附鞋
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon-StoryTheme.json#/dataList/3/name"]
 
 - kr: 녹아내린 시계태엽
+  jp: 溶けた時計のゼンマイ
+  en: Melted Spring
   zh: 融化的時鐘發條
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/107/name"]
 
 - kr: 단악수선
   zh: 一罪百善
@@ -3630,10 +4699,13 @@
   notes: Paratranz 詞彙表：異想體一罪與百善的縮寫
 
 - kr: 단테의 기록
+  jp: ダンテの記録
+  en: Dante’s Records
   zh: 但丁的紀錄
   status: approved
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StoryTheaterOther.json#/dataList/2/title"]
 
 - kr: 디아스
   zh: 狄亞斯
@@ -3642,39 +4714,54 @@
   notes: Paratranz 詞彙表：扭曲偵探的反派，邊獄公司的代表
 
 - kr: 머나먼 별
+  jp: 彼方の星
+  en: Distant Star
   zh: 彼方之星
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/244/name"]
 
 - kr: 모조발전기
+  jp: 模造発電機
+  en: Imitative Generator
   zh: 仿造發電機
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/266/name"]
 
 - kr: 바스라진 기억
+  jp: 砕けた記憶
+  en: Crushed Memory
   zh: 粉碎的記憶
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/309/name"]
 
 - kr: 부서진 리볼버
+  jp: 壊れたリボルバー
+  en: Broken Revolver
   zh: 損壞的左輪手槍
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/125/name"]
 
 - kr: 업화 조각
+  jp: 業火の欠片
+  en: Fragment of Hellfire
   zh: 業火殘片
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/204/name"]
 
 - kr: 에잇 협회
   zh: Eight協會
@@ -3697,11 +4784,14 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述
 
 - kr: 죽음바라기
+  jp: 死にたがり
+  en: Deathseeker
   zh: 尋死者
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/233/name"]
 
 - kr: 청기사파
   zh: 青騎士派
@@ -3711,11 +4801,14 @@
   notes: Paratranz 詞彙表：環指派系之一；又稱藍騎士派
 
 - kr: 휴대용 구급상자
+  jp: 携帯用救急セット
+  en: First-aid Kit
   zh: 攜帶式急救包
   status: approved
   category: [ego]
   evidence: { kr_lines: 1, approved: 1, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/153/name"]
 
 - kr: 흐트러짐 구간 상승
   zh: 混亂閾值前移
@@ -3732,40 +4825,57 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 아비
+  jp: 親方
+  en: Nursefather
   zh: 父輩
   status: approved
   match: word
   evidence: { kr_lines: 786, approved: 754, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StageNode-a1c9p1.json#/dataList/16/title"]
 
 - kr: 엄지
+  jp: 親指
+  en: The Thumb
   zh: 拇指
   status: approved
   category: [city]
   evidence: { kr_lines: 440, approved: 440, forbidden: 0 }
   notes: Paratranz 詞彙表：手指幫派之一
+  sources: ["game:FormationNameEtcFilter.json#/dataList/24/content"]
 
 - kr: 유로지비
+  jp: ユロージヴィ
+  en: Yurodivy
   zh: 聖愚
   status: approved
   evidence: { kr_lines: 300, approved: 299, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "由索尼亞領導的幫派，主張把富人的財物重新分配給窮人、防止財富集中；成員稱為 Yurodivy。"
+  sources: ["game:StoryData/2D306A.json#/dataList/6/title", "https://limbuscompany.wiki.gg/wiki/Yurodiviye"]
 
 - kr: 버틀러
+  jp: バトラー
   zh: 管家
   status: approved
   match: substring
   category: [general]
   evidence: { kr_lines: 204, approved: 204, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述。2026-11-06 長詞裡的用法也用此譯名（9/9），比對詞中詞
+  sources: ["game:StageNode-a1c6p1.json#/dataList/10/title"]
 
 - kr: 데드레빗츠
+  jp: デッドラビッツ
+  en: The Dead Rabbits
   zh: 死兔幫
   status: approved
   evidence: { kr_lines: 112, approved: 112, forbidden: 0 }
   notes: Paratranz 詞彙表
+  sources: ["game:StageNode-a1c6p1.json#/dataList/16/title"]
 
 - kr: 스테이지 시작 시
+  jp: ステージ開始時
+  en: Encounter Start
   zh: 關卡開始時
   status: approved
   category: [general, combat]
@@ -3773,10 +4883,13 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述
 
 - kr: 청소부
+  jp: 掃除屋
   zh: 清道夫
   status: approved
   evidence: { kr_lines: 70, approved: 68, forbidden: 0 }
   notes: Paratranz 詞彙表
+  meaning: "棲息在都市各區後巷的奇特存在，只在夜裡特定時刻出現，「清掃」所有留在戶外的東西。"
+  sources: ["game:StoryData/E726A.json#/dataList/39/teller", "https://limbuscompany.wiki.gg/wiki/Sweepers"]
 
 - kr: 수행자
   zh: 修行者
@@ -3793,18 +4906,24 @@
   notes: Paratranz 詞彙表：拇指職稱，輔助文本描述
 
 - kr: 증오의 여왕
+  jp: 憎しみの女王
+  en: The Queen of Hatred
   zh: 憎惡女王
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 21, approved: 20, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體
+  sources: ["game:Skills_Ego_Personality-03.json#/dataList/8/levelList/0/abName"]
 
 - kr: 시간 살인 시간
+  jp: 時間殺人時間
+  en: Timekilling Time
   zh: 時間殺人時間
   status: approved
   category: [system]
   evidence: { kr_lines: 14, approved: 14, forbidden: 0 }
   notes: Paratranz 詞彙表：間章 第6.5.1章
+  sources: ["game:Skills_Abnormality-tkt-re.json#/dataList/14/levelList/0/name"]
 
 - kr: 산군도
   zh: 山君
@@ -3813,6 +4932,8 @@
   notes: Paratranz 詞彙表
 
 - kr: 버스
+  jp: バス
+  en: Bus
   zh: 巴士
   status: approved
   match: word
@@ -3820,6 +4941,8 @@
   notes: Paratranz 詞彙表（evidence 只算單獨成詞的用法；KR 的「림버스 컴퍼、, 림버스 컴퍼、… 림버스 컴퍼」等長詞裡也有這個字串）
 
 - kr: 제자
+  jp: 子方
+  en: Apprentice
   zh: 弟子
   status: approved
   match: word
@@ -3827,14 +4950,19 @@
   notes: Paratranz 詞彙表（evidence 只算單獨成詞的用法；KR 的「통제자、제자리에、통제자에게」等長詞裡也有這個字串）
 
 - kr: 오만
+  jp: 傲慢
+  en: Pride
   zh: 傲慢
   status: approved
   match: word
   category: [general, combat, sin]
   evidence: { kr_lines: 306, approved: 298, forbidden: 0 }
   notes: Paratranz 詞彙表：傲慢，輔助文本描述，輔助戰鬥相關文本描述（evidence 只算單獨成詞的用法；KR 的「까 하오만.、보이오만…、공간이오만.」等長詞裡也有這個字串）
+  sources: ["game:AttributeText.json#/dataList/5/name"]
 
 - kr: 지부
+  jp: 支部
+  en: Branch
   zh: 分部
   status: approved
   match: word
@@ -3842,12 +4970,15 @@
   notes: Paratranz 詞彙表（evidence 只算單獨成詞的用法；KR 的「스테이지부터 다、는 요지부동인、에 종지부를 찍」等長詞裡也有這個字串）
 
 - kr: 방치
+  jp: 放置
+  en: Idle
   zh: 閒置
   files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [general]
   evidence: { kr_lines: 216, approved: 195, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述（evidence 只算單獨成詞的用法；KR 的「방치시켜」等長詞裡也有這個字串）。2026-11-06 依實際譯文：只有 PersonalityVoiceDlg 人格語音用此譯名（195 句 193 句用），其他檔 21 句 2 句用，限定檔案
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/9/desc"]
 
 - kr: 카포
   zh: 指揮官
@@ -3858,11 +4989,13 @@
   notes: Paratranz 詞彙表：拇指職稱，輔助文本描述（evidence 只算單獨成詞的用法；KR 的「카포테」等長詞裡也有這個字串）
 
 - kr: 백화
+  jp: 白化
   zh: 白化
   status: approved
   match: word
   evidence: { kr_lines: 33, approved: 31, forbidden: 0 }
   notes: Paratranz 詞彙表：多指白化現象（evidence 只算單獨成詞的用法；KR 的「백화점의、백화점、백화점을」等長詞裡也有這個字串）
+  sources: ["game:Passives_Enemy-a1c5p2.json#/dataList/1/name"]
 
 - kr: 마름
   zh: 司田
@@ -3880,36 +5013,49 @@
   notes: Paratranz 詞彙表：A（evidence 只算單獨成詞的用法；KR 的「이베리아인과 에、이베리아인들을、이베리아인들은」等長詞裡也有這個字串）
 
 - kr: 속도
+  jp: 速度
+  en: Speed
   zh: 速度值
   not_files: ["AbEvents*", "PersonalityVoiceDlg/**", "RPGSystem/**", "StoryData/**"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 1242, approved: 1050, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：AbEvents* 事件檔 16 句 1 句用、PersonalityVoiceDlg 4 句 0 句用、RPGSystem 26 句 2 句用、StoryData 78 句 0 句用，共 124 句 3 句用，排除
+  sources: ["game:MainUIText.json#/dataList/64/content"]
 
 - kr: 공격 시작
+  jp: 攻撃開始
+  en: Commencing Attack
   zh: 進行攻擊
   files: ["PersonalityVoiceDlg/**"]
   status: approved
   category: [general, combat]
   evidence: { kr_lines: 239, approved: 195, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：只有 PersonalityVoiceDlg 人格語音用此譯名（191 句 191 句用），其他檔 48 句 5 句用（RPGSystem 1 句 0 句用、其餘 47 句 5 句用），限定檔案
+  sources: ["game:PersonalityVoiceDlg/Voice_DonQuixote_Bloodfiend_10310.json#/dataList/14/desc"]
 
 - kr: 스킬당 1회
+  jp: スキルごとに1回
+  en: Once per Skill
   zh: 每個技能最多1次
   status: approved
   evidence: { kr_lines: 221, approved: 197, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 자판기
+  jp: 自販機
+  en: Dispenser
   zh: 自動販賣機
   not_files: ["RPGSystem/**", "StoryData/**"]
   status: approved
   category: [ego]
   evidence: { kr_lines: 189, approved: 162, forbidden: 0 }
   notes: Paratranz 詞彙表：EGO碎片兌換處（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：RPGSystem 6 句 0 句用、StoryData 15 句 3 句用，共 21 句 3 句用，排除
+  meaning: "遊戲中的商店，可用自我碎片購買人格與 E.G.O（包括過去通行證的 E.G.O）。"
+  sources: ["game:ReturnPolicy.json#/dataList/20/content", "https://limbuscompany.wiki.gg/wiki/Dispenser"]
 
 - kr: 이번 턴 동안
+  en: this turn
   zh: 本回合內
   status: approved
   category: [general]
@@ -3917,19 +5063,26 @@
   notes: Paratranz 詞彙表：輔助文本使用（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 이 스킬의 피해로 대상이 흐트러지지 않음
+  en: Damage dealt by this Skill cannot Stagger the target
   zh: 本技能造成的傷害不會使目標陷入混亂
   status: approved
   evidence: { kr_lines: 181, approved: 148, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 광기
+  jp: 狂気
+  en: Lunacy
   zh: 狂氣
   not_files: ["PersonalityVoiceDlg/**", "StoryData/**"]
   status: approved
   evidence: { kr_lines: 130, approved: 107, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：PersonalityVoiceDlg 6 句 0 句用、StoryData 10 句 2 句用，共 16 句 2 句用，排除
+  meaning: "用來提取人格與 E.G.O 的基本資源，分為免費與付費兩種。"
+  sources: ["game:IAPProduct.json#/dataList/0/name", "https://limbuscompany.wiki.gg/wiki/Lunacy"]
 
 - kr: 다음 턴 시작 시
+  jp: 次のターン開始時
+  en: next turn start
   zh: 下回合開始時
   status: approved
   category: [general, combat]
@@ -3937,46 +5090,63 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 키워드
+  jp: キーワード
   zh: 關鍵字
   not_files: ["*walpu*", "*Refraction*", "Railway*"]
   status: approved
   match: substring
   evidence: { kr_lines: 117, approved: 98, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-06 依實際譯文：walpu-refraction 族群（瓦普與折射活動檔：*walpu*、*Refraction*、Railway*）不用此譯名（4 句 0 句用），排除；長詞裡的用法也用此譯名（10/10），比對詞中詞。2026-11-06 族群改由節點組成，改寫成原族群的樣式，範圍不變
+  sources: ["game:BattleUIText.json#/dataList/114/content"]
 
 - kr: 유리창
+  jp: 硝子窓
+  en: Window
   zh: 玻璃窗
   status: approved
   evidence: { kr_lines: 84, approved: 74, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:MainUIText.json#/dataList/0/content"]
 
 - kr: 피해량이 80%만큼 감소하고
+  en: "-80% damage"
   zh: 使本技能造成的傷害-80%
   status: approved
   evidence: { kr_lines: 78, approved: 69, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 엔케팔린 모듈
+  jp: エンケファリンモジュール
+  en: Enkephalin Modules
   zh: 腦啡肽模塊
   status: approved
   evidence: { kr_lines: 60, approved: 52, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:Items.json#/dataList/3/name"]
 
 - kr: 쉼터
+  jp: 憩いの場
+  en: Rest Stops
   zh: 休息點
   status: approved
   category: [system]
   evidence: { kr_lines: 35, approved: 30, forbidden: 0 }
   notes: Paratranz 詞彙表：多用於鏡像迷宮機制（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:TutorialMainUIText.json#/dataList/358/content"]
 
 - kr: 전투 보상 카드
+  jp: 戦闘報酬カード
+  en: Encounter Reward Cards
   zh: 遭遇戰獎勵卡
   status: approved
   category: [system]
   evidence: { kr_lines: 29, approved: 26, forbidden: 0 }
   notes: Paratranz 詞彙表：鏡像迷宮機制（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:MirrorDungeonUI_6.json#/dataList/46/content"]
 
 - kr: 정신 피해
+  jp: 精神力ダメージ
+  en: SP damage
   zh: 理智傷害
   status: approved
   category: [combat]
@@ -3984,6 +5154,7 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 레미니센스
+  jp: レミニセンス
   zh: 追憶
   status: approved
   category: [system]
@@ -3991,13 +5162,17 @@
   notes: Paratranz 詞彙表：第2賽季名稱（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 묶인 왕
+  jp: 縛られた王
+  en: The King in Binds
   zh: 受縛之王
   status: approved
   category: [abnormality]
   evidence: { kr_lines: 29, approved: 25, forbidden: 0 }
   notes: Paratranz 詞彙表：異想體（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:AbEvents_Refraction4.json#/dataList/2/title"]
 
 - kr: 속도와 상관없이 이 스킬과 합을 할 수 있음
+  en: can Clash with this Skill regardless of Speed
   zh: 可無視速度值與本技能拚點
   status: approved
   category: [general, combat]
@@ -4005,6 +5180,8 @@
   notes: Paratranz 詞彙表：技能輔助文本（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 출격 인원을 기준으로 함
+  jp: "(出撃人員を基準とする)"
+  en: Only counts Identities on the field
   zh: 以參戰人員為基準
   status: approved
   category: [general, combat]
@@ -4012,6 +5189,8 @@
   notes: Paratranz 詞彙表：輔助文本描述，輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 전투 패시브
+  jp: バトルパッシブ
+  en: Combat Passive
   zh: 戰鬥被動
   status: approved
   category: [combat]
@@ -4019,13 +5198,18 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 버스의 뒷문
+  jp: バスの裏口
+  en: Bus’s Backdoor
   zh: 巴士的後門
   status: approved
   category: [general]
   evidence: { kr_lines: 16, approved: 13, forbidden: 0 }
   notes: Paratranz 詞彙表：輔助文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:StageNode91-5.json#/dataList/2/place"]
 
 - kr: 전투당 1회 발동
+  jp: 戦闘につき1回発動
+  en: Once per Encounter
   zh: 每場戰鬥最多1次
   status: approved
   category: [combat]
@@ -4033,11 +5217,14 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 카르밀라
+  jp: カーミラ
+  en: Carmilla
   zh: 卡蜜拉
   status: approved
   category: [ego]
   evidence: { kr_lines: 10, approved: 8, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/63/name"]
 
 - kr: 클리어 부서
   zh: 清理部門
@@ -4054,18 +5241,24 @@
   notes: Paratranz 詞彙表：多指Cinq協會的主要業務（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 미적 감각
+  jp: 美的感覚
+  en: Artistic Sense
   zh: 美感
   status: approved
   category: [ego]
   evidence: { kr_lines: 8, approved: 7, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/126/name"]
 
 - kr: 장엄
+  jp: 荘厳
+  en: Grandeur
   zh: 莊嚴
   status: approved
   category: [ego]
   evidence: { kr_lines: 8, approved: 7, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/241/name"]
 
 - kr: 거울 투영
   zh: 鏡像投影
@@ -4082,10 +5275,13 @@
   notes: Paratranz 詞彙表：輔助戰鬥相關文本描述（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 부위파괴
+  jp: 部位破壊
+  en: Part Broken
   zh: 部位破壞
   status: approved
   evidence: { kr_lines: 7, approved: 6, forbidden: 0 }
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:BattleUIText.json#/dataList/6/content"]
 
 - kr: 외부 효과로 재사용할 수 없음
   zh: 不會因外部效果而重複使用
@@ -4094,15 +5290,21 @@
   notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
 
 - kr: 해진 우산
+  jp: 破れた傘
+  en: Ragged Umbrella
   zh: 破損的雨傘
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/230/name"]
 
 - kr: 흰 목화
+  jp: 白い綿花
+  en: White Gossypium
   zh: 白棉花
   status: approved
   category: [ego]
   evidence: { kr_lines: 6, approved: 5, forbidden: 0 }
   notes: Paratranz 詞彙表：E.G.O飾品（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）
+  sources: ["game:EGOgift_MirrorDungeon.json#/dataList/37/name"]
