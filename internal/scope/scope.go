@@ -16,6 +16,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/tool-jx3/limbus-translate/internal/batch"
+	"github.com/tool-jx3/limbus-translate/internal/evidence"
 	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -43,9 +44,35 @@ const (
 )
 
 // Unit is one translated unit: Origin is its record's, ZH its record's text,
-// Note the notes on it joined by "\n".
+// Note the notes on it joined by "\n". EN and JP are the texts the packs align
+// to the unit, "" without an alignment.
 type Unit struct {
 	Key, File, KR, ZH, Origin, Note string
+	EN, JP                          string
+}
+
+// The senses of a unit that does not use the rendering of an entry, by the
+// aligned EN and JP against the entry's.
+const (
+	senseNone    = iota // the unit uses the rendering: not classified
+	senseSame           // the aligned text holds the entry's en or jp
+	senseOther          // it is aligned and does not
+	senseUnknown        // no alignment to look at, or the entry has no en and jp
+)
+
+// senseOf classifies the unit u against t: EN first, when the entry has an en
+// and the unit an EN alignment; then JP the same way.
+func senseOf(t rules.Term, u Unit) int {
+	for _, c := range []struct{ lang, cand, text string }{{evidence.LangEN, t.EN, u.EN}, {evidence.LangJP, t.JP, u.JP}} {
+		if c.cand == "" || strings.TrimSpace(c.text) == "" {
+			continue
+		}
+		if evidence.Holds(c.lang, strings.TrimSpace(c.text), c.cand) {
+			return senseSame
+		}
+		return senseOther
+	}
+	return senseUnknown
 }
 
 // Inputs is what Analyze looks at. Declined are the confirmations of
@@ -134,6 +161,13 @@ type Entry struct {
 	// its rendering, with a note that names the term and without.
 	Explained   int `json:"explained"`
 	Unexplained int `json:"unexplained"`
+	// Same, Other and Unknown split the same units (those that do not use the
+	// rendering) by the aligned EN and JP: the text holds the entry's en or
+	// jp (same sense), is aligned and does not (another sense), or there is
+	// nothing to compare. Units that use the rendering are in none.
+	Same    int `json:"same"`
+	Other   int `json:"other"`
+	Unknown int `json:"unknown"`
 	// Examples are at most maxExamples units of each group that does not use
 	// the rendering, whether or not a proposal lists them.
 	Examples []Example `json:"examples"`
@@ -145,6 +179,10 @@ type Group struct {
 	Kind string `json:"kind"`
 	N    int    `json:"n"`
 	Used int    `json:"used"`
+	// Same, Other and Unknown as on Entry, over the units of the group.
+	Same    int `json:"same"`
+	Other   int `json:"other"`
+	Unknown int `json:"unknown"`
 }
 
 // Count is a number of units and how many of them use the rendering.
@@ -293,6 +331,7 @@ type hit struct {
 	used      bool  // the translation uses the rendering
 	compound  bool
 	explained bool // not used, and the note names the term
+	sense     int  // senseSame, senseOther or senseUnknown when not used
 }
 
 // acc is what Analyze gathers of one entry.
@@ -307,6 +346,7 @@ type acc struct {
 	// entry.
 	hits, extra            []hit
 	compound               Count
+	same, other, unknown   int
 	explained, unexplained int
 	usedHits               int
 }
@@ -386,6 +426,9 @@ func (an *analysis) unit(i int32, u Unit) {
 		switch {
 		case isHit[c]:
 			h := hit{unit: i, used: t.Used(u.ZH)}
+			if !h.used {
+				h.sense = senseOf(t, u)
+			}
 			h.compound = t.Match == rules.MatchSubstring && !an.hitsAs(u, c, withMatch(t, rules.MatchWord))
 			a.add(h, pl, u.Note)
 		case t.Match != rules.MatchSubstring && an.hitsAs(u, c, withMatch(t, rules.MatchSubstring)):
@@ -514,6 +557,14 @@ func (a *acc) add(h hit, pl place, note string) {
 	default:
 		a.unexplained++
 	}
+	switch h.sense {
+	case senseSame:
+		a.same++
+	case senseOther:
+		a.other++
+	case senseUnknown:
+		a.unknown++
+	}
 	if h.compound {
 		a.compound.N++
 		if h.used {
@@ -532,6 +583,14 @@ func (a *acc) add(h hit, pl place, note string) {
 			gr.N++
 			if h.used {
 				gr.Used++
+			}
+			switch h.sense {
+			case senseSame:
+				gr.Same++
+			case senseOther:
+				gr.Other++
+			case senseUnknown:
+				gr.Unknown++
 			}
 		}
 	}
@@ -599,6 +658,7 @@ func (an *analysis) entry(a *acc) Entry {
 		JP: t.JP, EN: t.EN, Meaning: t.Meaning, Sources: slices.Clone(t.Sources),
 		Also: nonNil(t.Also), Files: nonNil(t.Files), NotFiles: nonNil(t.NotFiles),
 		Match: matchOf(t), Notes: t.Notes, Groups: an.orderedGroups(a),
+		Same: a.same, Other: a.other, Unknown: a.unknown,
 		Compound: a.compound, Explained: a.explained, Unexplained: a.unexplained,
 		Examples: an.examplesOfGroups(a, an.notUsedGroups(a), nil),
 	}

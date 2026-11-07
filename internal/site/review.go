@@ -405,7 +405,7 @@ func BuildReview(in Inputs, files []string) (Review, error) {
 			if !rv.Fields.Classify(ku, en, jp).Translate || rec.Origin == store.OriginCopy {
 				return
 			}
-			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin})
+			scopeUnits = append(scopeUnits, scope.Unit{Key: key, File: path, KR: ku.KR, ZH: rec.ZH, Origin: rec.Origin, EN: alignedValue(en), JP: alignedValue(jp)})
 			seen := map[string]bool{}
 			terms := batch.ValidateTermsIn(in.Rules, inForce, path, ku.KR)
 			for _, is := range validate.Check(ku.KR, rec.ZH, validate.Context{Existing: true, File: path, ScriptOK: scriptOK, Terms: terms}) {
@@ -800,4 +800,12 @@ func placeNotes(notes []store.Note, us []placedUnit) []placedNote {
 		res[i] = s.placedNote
 	}
 	return res
+}
+
+// alignedValue is the text aligned to a unit, "" without an alignment.
+func alignedValue(a *align.LangAligned) string {
+	if a == nil {
+		return ""
+	}
+	return strings.TrimSpace(a.Value)
 }

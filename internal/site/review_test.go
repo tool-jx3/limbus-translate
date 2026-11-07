@@ -1507,7 +1507,7 @@ func TestReviewScope(t *testing.T) {
 		t.Fatalf("entries = %+v, want 하나 and 다섯", r.Scope.Entries)
 	}
 	one, five := r.Scope.Entries[0], r.Scope.Entries[1]
-	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Used: 0}, {Name: "group:A", Kind: scope.GroupNode, N: 2, Used: 0}, {Name: "group:B", Kind: scope.GroupNode, N: 1, Used: 0}}
+	wantGroups := []scope.Group{{Name: "family:other", Kind: scope.GroupFamily, N: 3, Unknown: 3}, {Name: "group:A", Kind: scope.GroupNode, N: 2, Unknown: 2}, {Name: "group:B", Kind: scope.GroupNode, N: 1, Unknown: 1}}
 	if !reflect.DeepEqual(one.Groups, wantGroups) || one.Explained != 1 || one.Unexplained != 2 {
 		t.Errorf("하나 = %+v, want groups %+v and the one unit with a note explained", one, wantGroups)
 	}
@@ -1559,5 +1559,30 @@ func TestReviewScopeWeighsProvisionalTerms(t *testing.T) {
 	}
 	if e := r.Scope.Entries[0]; len(e.Groups) != 0 || e.Unexplained != 0 || len(r.Scope.Proposals) != 0 {
 		t.Errorf("with the provisional term: %+v, proposals %+v; want no hit, as the warnings have none", e, r.Scope.Proposals)
+	}
+}
+
+// The scope units carry the aligned EN and JP, so the entry's same and other
+// sense counts come from the packs: 하나 is "one" / いち in A.json, and "one"
+// with no JP in B.json.
+func TestReviewScopeSenseCounts(t *testing.T) {
+	in, files := reviewInputs(t)
+	in.Rules.Glossary = []rules.Term{
+		{KR: rvKR, ZH: "絕無此譯", EN: "one", Status: rules.StatusApproved},
+		{KR: rvKR, ZH: "也無此譯", EN: "uno", Status: rules.StatusApproved},
+		{KR: rvKR, ZH: "再無此譯", JP: "いち", Status: rules.StatusApproved},
+	}
+	r, err := BuildReview(in, files)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(r.Scope.Entries) != 3 {
+		t.Fatalf("entries = %+v, want 3", r.Scope.Entries)
+	}
+	got := func(e scope.Entry) [3]int { return [3]int{e.Same, e.Other, e.Unknown} }
+	for i, want := range [][3]int{{3, 0, 0}, {0, 3, 0}, {2, 0, 1}} {
+		if g := got(r.Scope.Entries[i]); g != want {
+			t.Errorf("entry %d same/other/unknown = %v, want %v", i, g, want)
+		}
 	}
 }

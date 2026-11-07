@@ -52,6 +52,11 @@ func (o scopeOutput) String() string {
 		counts = append(counts, fmt.Sprintf("%s %d", k, by[k]))
 	}
 	fmt.Fprintf(&b, "%d entries, %d proposals (%d not declined): %s\n", len(o.Entries), len(o.Proposals), open, strings.Join(counts, ", "))
+	var same, other, unknown int
+	for _, e := range o.Entries {
+		same, other, unknown = same+e.Same, other+e.Other, unknown+e.Unknown
+	}
+	fmt.Fprintf(&b, "units without the rendering: same sense %d, other sense %d, unknown %d\n", same, other, unknown)
 	for _, p := range o.Proposals {
 		fmt.Fprintf(&b, "  %s  %s", p.ID, p.Title())
 		if p.Declined != nil {

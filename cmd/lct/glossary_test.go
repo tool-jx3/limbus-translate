@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
 	"github.com/tool-jx3/limbus-translate/internal/units"
 )
@@ -298,5 +299,14 @@ func TestGlossaryScopeCommand(t *testing.T) {
 	}
 	if code, _, stderr := lct(t, "glossary", "scope", "extra"); code != 1 || !strings.Contains(stderr, "extra") {
 		t.Errorf("an argument: exit code %d, want 1\n%s", code, stderr)
+	}
+}
+
+// The text of "glossary scope" totals the sense counts of the entries.
+func TestScopeOutputShowsSenseCounts(t *testing.T) {
+	rep := scope.Empty()
+	rep.Entries = []scope.Entry{{Same: 2, Other: 1, Unknown: 4}, {Same: 1, Other: 0, Unknown: 0}}
+	if got := (scopeOutput{rep}).String(); !strings.Contains(got, "same sense 3, other sense 1, unknown 4") {
+		t.Errorf("text = %q, want the totals of same, other and unknown", got)
 	}
 }

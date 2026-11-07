@@ -293,6 +293,17 @@ func distinct(parts ...any) []string {
 	return out
 }
 
+// Holds reports whether the aligned text of lang holds the candidate rendering,
+// as a check counts a hit: tags removed, EN by word (ignoring case), JP as a
+// substring. The scope analysis classifies units by it too.
+func Holds(lang, text, candidate string) bool {
+	text = validate.MatchText(text)
+	if lang == LangEN {
+		return containsWord(text, candidate)
+	}
+	return strings.Contains(text, candidate)
+}
+
 func check(lang, candidate string, occ []occurrence) Check {
 	c := Check{Lang: lang, Candidate: candidate}
 	for _, o := range occ {
@@ -304,8 +315,7 @@ func check(lang, candidate string, occ []occurrence) Check {
 			continue
 		}
 		c.N++
-		text = validate.MatchText(text)
-		if lang == LangEN && containsWord(text, candidate) || lang == LangJP && strings.Contains(text, candidate) {
+		if Holds(lang, text, candidate) {
 			c.Hits++
 		}
 	}

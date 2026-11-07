@@ -296,10 +296,10 @@ func TestOnlyTranslationsCount(t *testing.T) {
 	rep := Analyze(Inputs{Rules: r, Units: f.units})
 	onlyProposal(t, rep, "보스", KindNotFiles)
 	want := []Group{
-		{Name: "family:story", Kind: GroupFamily, N: 3, Used: 0},
+		{Name: "family:story", Kind: GroupFamily, N: 3, Used: 0, Unknown: 3},
 		{Name: "family:skill", Kind: GroupFamily, N: 4, Used: 4},
 		{Name: "group:Skills", Kind: GroupNode, N: 4, Used: 4},
-		{Name: "group:StoryData/", Kind: GroupNode, N: 3, Used: 0},
+		{Name: "group:StoryData/", Kind: GroupNode, N: 3, Used: 0, Unknown: 3},
 	}
 	if e := entryOf(t, rep, "보스"); !reflect.DeepEqual(e.Groups, want) {
 		t.Errorf("groups = %+v, want %+v", e.Groups, want)
@@ -825,5 +825,55 @@ func TestReportUnits(t *testing.T) {
 	}
 	if boss.N != len(wordRep.Units[boss.ID]) || boss.Used != wordUsed {
 		t.Errorf("word entry n %d used %d, units %d used %d", boss.N, boss.Used, len(wordRep.Units[boss.ID]), wordUsed)
+	}
+}
+
+// senseUnits builds units of one file for the sense counts.
+func senseUnit(i int, zh, en, jp string) Unit {
+	return Unit{Key: fmt.Sprintf("%s|/dataList/%d/content", storyFile, i), File: storyFile, KR: "침식", ZH: zh, EN: en, JP: jp, Origin: store.OriginClaude}
+}
+
+func TestSenseCounts(t *testing.T) {
+	term := approved("침식", "侵蝕")
+	term.EN, term.JP = "Erosion", "浸食"
+	us := []Unit{
+		senseUnit(0, "侵蝕", "Erosion", "浸食"),         // used: not classified
+		senseUnit(1, "腐蝕", "the Erosion grows", ""), // same (EN, word, any case)
+		senseUnit(2, "腐蝕", "Erosions grow", ""),     // other: EN aligned, not as a word
+		senseUnit(3, "腐蝕", "a corrosion", "浸食された"),  // other: EN decides, JP is not asked
+		senseUnit(4, "腐蝕", "", "浸食された"),             // same via JP
+		senseUnit(5, "腐蝕", "", "腐食"),                // other via JP
+		senseUnit(6, "腐蝕", "", ""),                  // unknown: no alignment
+		senseUnit(7, "腐蝕", "  ", ""),                // unknown: blank alignment
+	}
+	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
+	if e.Same != 2 || e.Other != 3 || e.Unknown != 2 || e.Used != 1 || e.N != 8 {
+		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 2/3/2 (1, 8)", e.Same, e.Other, e.Unknown, e.Used, e.N)
+	}
+	var g Group
+	for _, x := range e.Groups {
+		if x.Name == "family:story" {
+			g = x
+		}
+	}
+	if g.Same != 2 || g.Other != 3 || g.Unknown != 2 {
+		t.Fatalf("group same/other/unknown = %d/%d/%d, want 2/3/2", g.Same, g.Other, g.Unknown)
+	}
+}
+
+func TestSenseUnknownWithoutAlignment(t *testing.T) {
+	enOnly := approved("침식", "侵蝕")
+	enOnly.EN = "Erosion"
+	none := approved("침식", "侵蝕")
+	us := []Unit{senseUnit(0, "腐蝕", "", "浸食された"), senseUnit(1, "腐蝕", "Erosion", "")}
+	// The entry has an en and the unit no EN alignment, and no jp to look at: unknown.
+	e := entryOf(t, Analyze(Inputs{Rules: testRules(enOnly), Units: us}), "침식")
+	if e.Same != 1 || e.Other != 0 || e.Unknown != 1 {
+		t.Fatalf("en-only entry = %d/%d/%d, want 1/0/1", e.Same, e.Other, e.Unknown)
+	}
+	// An entry with neither en nor jp knows nothing of any unit.
+	e = entryOf(t, Analyze(Inputs{Rules: testRules(none), Units: us}), "침식")
+	if e.Same != 0 || e.Other != 0 || e.Unknown != 2 {
+		t.Fatalf("empty entry = %d/%d/%d, want 0/0/2", e.Same, e.Other, e.Unknown)
 	}
 }
