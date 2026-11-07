@@ -5,6 +5,7 @@ package site
 
 import (
 	"fmt"
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
@@ -38,6 +39,8 @@ type Inputs struct {
 	// Preview is what Export writes the preview data from (preview.json and
 	// preview/<path>); nil writes none.
 	Preview *PreviewInputs
+	// Gold is the gold sample (rules/gold.yaml); nil when there is none.
+	Gold *gold.Sample
 }
 
 // Unit is one string of a file in the four languages. JP and EN are nil, and

@@ -11,6 +11,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -109,7 +110,7 @@ func TestExportWritesSpecLayout(t *testing.T) {
 
 	want := []string{
 		"files/Skills.json", "files/StoryData/S10.json", "files/StoryData/S2.json",
-		"glossary/index.json", "index.json", "meta.json",
+		"glossary/index.json", "gold.json", "index.json", "meta.json",
 		"review/notes.json", "review/scope.json", "review/suggestions.json", "review/todo.json", "review/warnings.json",
 		"search/en.json", "search/jp.json", "search/keys.json", "search/kr.json", "search/zh.json",
 	}
@@ -346,8 +347,8 @@ func TestExportClearsOutDir(t *testing.T) {
 			t.Errorf("%s is still there (%v)", rel, err)
 		}
 	}
-	if got := len(listFiles(t, out)); got != 16 {
-		t.Errorf("%d files, want the 16 of the layout", got)
+	if got := len(listFiles(t, out)); got != 17 {
+		t.Errorf("%d files, want the 17 of the layout", got)
 	}
 }
 
@@ -637,5 +638,69 @@ func TestIndexFamiliesCarryNodes(t *testing.T) {
 	}
 	if idx.Files[0].Top != "StoryData/" || idx.Files[0].Sub != "StoryData/S" {
 		t.Errorf("file = %+v", idx.Files[0])
+	}
+}
+
+func TestExportWritesGold(t *testing.T) {
+	// Without a sample: {units: []}, and nothing else.
+	in := exportInputs(t)
+	out := filepath.Join(t.TempDir(), "data")
+	if _, err := Export(in, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(out, "gold.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.TrimSpace(string(b)); got != `{"units":[]}` {
+		t.Errorf("gold.json without a sample = %s", got)
+	}
+
+	// With one: the units come in the order of the sample, with the texts of
+	// the packs; stale is a translation that is not the one that was judged.
+	in = exportInputs(t)
+	in.Gold = &gold.Sample{Seed: 7, PerFamily: 2, Units: []gold.Unit{
+		{Key: "StoryData/S2.json|/dataList/1/content", Family: "story", Origin: "claude", Verdict: "wrong", Note: "n", JudgedZH: "舊"},
+		{Key: "Skills.json|/dataList/0/name", Family: "other", Origin: "human", Verdict: "correct", JudgedZH: "技能"},
+		{Key: "StoryData/S2.json|/dataList/0/content", Family: "story", Origin: "paratranz"},
+		{Key: "StoryData/Gone.json|/dataList/0/content", Family: "story", Origin: "claude", Verdict: "correct", JudgedZH: "x"},
+	}}
+	out = filepath.Join(t.TempDir(), "data")
+	if _, err := Export(in, Meta{}, out); err != nil {
+		t.Fatal(err)
+	}
+	var got struct {
+		PerFamily int `json:"per_family"`
+		Units     []struct {
+			Key, Path, Ptr, Family, Origin, KR, ZH, Verdict, Note string
+			JP, EN                                                *string
+			Stale                                                 bool
+		}
+		Report gold.Report `json:"report"`
+	}
+	b, err = os.ReadFile(filepath.Join(out, "gold.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(b, &got); err != nil {
+		t.Fatal(err)
+	}
+	if got.PerFamily != 2 || len(got.Units) != 3 {
+		t.Fatalf("gold.json = %s", b)
+	}
+	u := got.Units[0]
+	if u.Path != "StoryData/S2.json" || u.Ptr != "/dataList/1/content" || u.KR != "둘" || u.ZH != "二" ||
+		u.EN == nil || *u.EN != "one" || u.JP == nil || *u.JP != "に" || u.Verdict != "wrong" || u.Note != "n" || !u.Stale || u.Origin != "claude" || u.Family != "story" {
+		t.Errorf("unit 0 = %+v en=%v jp=%v", u, *u.EN, *u.JP)
+	}
+	if got.Units[1].Stale || got.Units[1].Path != "Skills.json" {
+		t.Errorf("unit 1 = %+v", got.Units[1])
+	}
+	if got.Units[2].Stale || got.Units[2].Verdict != "" {
+		t.Errorf("unit 2 = %+v (an unjudged unit is never stale)", got.Units[2])
+	}
+	// The unit that is not in the pack any more is left out of the list.
+	if got.Report.Total.Sampled != 3 || got.Report.Total.Stale != 1 || got.Report.Total.Correct != 1 {
+		t.Errorf("report total = %+v", got.Report.Total)
 	}
 }

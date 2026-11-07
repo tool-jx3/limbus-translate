@@ -18,6 +18,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/cli"
 	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/publish"
@@ -105,7 +106,11 @@ func runSite(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r, Review: &review, Preview: preview}, meta, outDir)
+	goldSample, err := gold.Load(ctx.Root)
+	if err != nil {
+		return err
+	}
+	res, err := site.Export(site.Inputs{KR: set.KR, EN: set.EN, JP: set.JP, ZH: zh, Records: records, Rules: r, Review: &review, Preview: preview, Gold: &goldSample}, meta, outDir)
 	if err != nil {
 		return err
 	}

@@ -12,11 +12,13 @@ import (
 
 	"github.com/tool-jx3/limbus-translate/internal/build"
 	"github.com/tool-jx3/limbus-translate/internal/gitx"
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 // siteRepo is the repo of the build tests with the pack built: raw and tw as
@@ -567,5 +569,53 @@ func TestSiteCommandLeavesTheStoreAlone(t *testing.T) {
 	after := read()
 	if !maps.Equal(before, after) {
 		t.Errorf(".meta/ changed under lct site:\nbefore %d files, after %d files", len(before), len(after))
+	}
+}
+
+// data/gold.json is {"units": []} without rules/gold.yaml, and holds the sample
+// with the texts of the packs when the file is there.
+func TestSiteCommandWritesGold(t *testing.T) {
+	root := siteRepo(t)
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(root, "work", "site", "gold.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.TrimSpace(string(b)); got != `{"units":[]}` {
+		t.Errorf("gold.json without a sample = %s", got)
+	}
+
+	set, err := pack.OpenRaw(filepath.Join(root, ".work", "raw"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	file := set.KR.Files()[0]
+	doc, err := set.KR.Doc(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	us := units.Extract(file, doc)
+	if len(us) == 0 {
+		t.Fatalf("%s has no units", file)
+	}
+	key := units.Key(file, us[0].Pointer)
+	if err := gold.Save(root, gold.Sample{Seed: 1, PerFamily: 1, Units: []gold.Unit{{Key: key, Family: "f", Origin: "claude", Verdict: "correct", JudgedZH: "none"}}}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := runSiteJSON(t, root, "--out", "work/site"); err != nil {
+		t.Fatal(err)
+	}
+	var g site.Gold
+	b, err = os.ReadFile(filepath.Join(root, "work", "site", "gold.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := json.Unmarshal(b, &g); err != nil {
+		t.Fatal(err)
+	}
+	if len(g.Units) != 1 || g.Units[0].Key != key || g.Units[0].KR != us[0].KR || !g.Units[0].Stale || g.PerFamily != 1 || g.Report == nil {
+		t.Errorf("gold.json = %s", b)
 	}
 }
