@@ -1,0 +1,8 @@
+# brackets-4-codes 把「活動期間(2025/9/25 11:00～10/23 05:00 (GMT+8))」裡面的 (GMT+8) 改成全形之後，
+# 外層的半形括號（裡面是日期，沒有中文）也改成全形：「活動期間（2025/9/25 11:00～10/23 05:00（GMT+8））」。
+# files 只列 TutorialMainUIText（/1018、/1029 兩個單位）。
+reason: 'base.md 第 7 條：括號用全形（內層已是全形的外層括號）'
+files: ['TutorialMainUIText.json']
+pattern: '\(([^()（）]*（GMT\+8）)\)'
+replace: '（${1}）'
+kr_pattern: '\('

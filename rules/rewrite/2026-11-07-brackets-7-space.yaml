@@ -1,0 +1,9 @@
+# brackets-1-full 改成全形之後，有 7 個單位的「（」前面留著 KR 括號前的半形空格。其他文字的全形「（」前接半形空格的
+# 只有 5／598 處（family_guides.py），所以刪掉。這 7 處都不是「關鍵字＋空格」的格式（base.md「KR 寫韓文狀態名、沒有 [ID] 時」）：
+# ActionEvents-walpu8 /3～/5 name「愛娜溫選項 （第1次）」、EventVerificationUIText /7「帳號 （無法重新驗證）」、
+# RailwayDungeonUI_5 /21「</color>  （推薦等級：」（兩個空格）、StoryData/S735B /1、/4 歌詞「♬ （」。
+# 「攻擊等級提升 (最多4層)」這類效果文字不在這份（用半形，不改）。
+reason: '全形括號前不留半形空格'
+files: ['ActionEvents-walpu8.json', 'EventVerificationUIText.json', 'RailwayDungeonUI_5.json', 'StoryData/S735B.json']
+pattern: ' +（'
+replace: '（'

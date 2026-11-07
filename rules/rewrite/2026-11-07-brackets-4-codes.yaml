@@ -1,0 +1,13 @@
+# brackets-1-full 只改括號內有中文的。這份把非效果文字裡、括號內沒有中文的顯示文字也改成全形（base.md 第 7 條）：
+# 時區 (GMT+8)／(KST)、佔位符 ({0})、({2})、({3})、({0}/{1})、(Lv. {0})、容量 (0.00 MB)、({0} MB)、
+# 英文的 (Long Ver)、(Special)、編號 (1)～(3)，以及戰鬥泡泡的「三(Trois)」「六(Six)」（base.md「KR 已在括號附上原文」
+# 要求「中文意思（原文）」用全形）。括號前的一個半形空格一併刪（其他文字的全形「（」前接半形空格的只有 5／598 處，family_guides.py）。
+# - pattern 逐一列出括號內的內容，不用萬用的樣式，所以亂碼（#&*()!#%、@(##$）不會配對到
+# - 不動：BattleUIText /86、/175 的「(, )」（KR 也是 {1}(, )，是格式的一部分，不是顯示文字）；
+#   BattleResultHint-a1c10p3 /14 的「各種釘(～)」（戰鬥提示，效果文字，用半形）
+# - files 只列以 raw-20261105、tw 675d8a3 模擬時會改到的 19 個檔、36 個單位
+reason: 'base.md 第 7 條：括號用全形（效果文字以外，括號內是時區、佔位符、英文或編號的）'
+files: ['BattleSpeechBubbleDlg-a1c9p3.json', 'BossRaidUI-3.json', 'BossRaidUI.json', 'EventVerificationUIText.json', 'Limbus3rdAnniversary.json', 'LobbyBGM.json', 'LobbyBGMUI.json', 'MainUIText.json', 'RailwayDungeonUI_2.json', 'ReturnPolicy.json', 'RewardDungeonUI.json', 'StoryTheaterUIText.json', 'TutorialMainUIText.json', 'TutorialMirrorDungeon.json', 'UI_Mission_NewReturnUserEvent.json', 'UnlockCode-1.json', 'UserTicket-EGOBg.json', 'UserTicket-L.json', 'UserTicket-R.json']
+pattern: ' ?\((GMT\+8|KST|\{[0-9]\}|\{0\}/\{1\}|Lv\. \{0\}|0\.00[ \x{00A0}]MB|\{0\} MB|Long Ver|Special|[1-3]|Trois|Six)\)'
+replace: '（${1}）'
+kr_pattern: '\('

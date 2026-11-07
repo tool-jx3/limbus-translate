@@ -1,0 +1,16 @@
+# 同一決定（見 brackets-1-full）：說明戰鬥效果的文字用半形（guides/shared/battle-text.md、base.md 第 7 條）：
+# 技能、被動、狀態、E.G.O 飾品、敵人的名稱與說明，鏡牢事件選項的效果 messageDesc、起始增益，
+# 異想體事件的結果紀錄。這份把這些文字裡、括號內有中文的全形括號（或混用的一對）改成半形，只改括號本身；
+# pattern 與 brackets-1-full 相同。
+# - 不動：「中文意思（原文）」（KR 在音譯後的括號附原文，例如「脫離（Dégagé）」，battle-text.md 的例外；
+#   括號內沒有漢字，pattern 不配對）；不成對的（「注意）」，KR 也是「주의)」）；KR 沒有半形括號的單位；
+#   mirror 裡的介面、教學、目錄與事件敘述（MirrorDungeonUI*、TutorialMirrorDungeon、StoryTheaterMirrorWorld、
+#   ActionEvents 的 desc／message／result）照 base.md 用全形，不列
+# - files 只列以 raw-20261105、tw 675d8a3 模擬時會改到的 36 個檔、104 個單位（keywords 58、mirror 30、
+#   ally 9、enemy 6、abnormality 1）；人工紀錄不動（origins 預設）
+# - [ID] 後面改成半形「(」時要補的空格由 brackets-3-id-space 補
+reason: '效果文字的括號用半形（guides/shared/battle-text.md；括號內有中文的）'
+files: ['AbEventsResultLog_Refraction3.json', 'ActionEvents-walpu4.json', 'ActionEvents_Mirror7.json', 'ActionEvents_Mirror8.json', 'BattleKeywords-a1c10p1.json', 'BattleKeywords-a1c10p3.json', 'BattleKeywords-a1c9p1.json', 'BattleKeywords-a1c9p3.json', 'BattleKeywords-cultivation.json', 'BattleKeywords.json', 'Bufs-a1c10p1.json', 'Bufs-a1c10p3.json', 'Bufs-a1c9p1.json', 'Bufs-a1c9p3.json', 'Bufs-cultivation.json', 'Bufs.json', 'DungeonStartBuffs.json', 'DungeonStartBuffs_MD6.json', 'DungeonStartBuffs_MD7.json', 'EGOgift_MirrorDungeon-EventTheme.json', 'EGOgift_MirrorDungeon-ycgd.json', 'EGOgift_MirrorDungeon.json', 'EGOgift_StoryDungeon.json', 'Egos.json', 'Enemies-x1p1c1.json', 'MentalCondition.json', 'PanicInfo-a1c6p1.json', 'PanicInfo-a1c6p2.json', 'PanicInfo.json', 'Passive_Ego.json', 'Passives.json', 'Passives_Assist-a1c9p2.json', 'Passives_Assist-a1c9p3.json', 'Skills_personality-05.json', 'Skills_personality-07.json', 'Skills_personality-12.json']
+pattern: '[(（]((?:[^()（）]|\([^()（）]*\))*?\p{Han}(?:[^()（）]|\([^()（）]*\))*)[)）]'
+replace: '(${1})'
+kr_pattern: '\('

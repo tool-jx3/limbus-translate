@@ -1,0 +1,17 @@
+# 使用者決定（2026-11-07，docs/superpowers/specs/2026-11-06-translation-quality-design.md「A 的追加決定」）
+# 與其後的裁定：括號依文本類型。說明戰鬥效果的文字用半形（brackets-2-half、guides/shared/battle-text.md），
+# 其他（劇情、台詞、介面、教學、目錄、事件敘述）用全形（guides/base.md 第 7 條）。
+# 這份把非效果文字裡、括號內有中文的半形括號（或半形與全形混用的一對）改成全形，只改括號本身。
+# - pattern：一對括號，括號內有漢字；可含一層半形括號（「(※以23/09/15 19:15 (GMT+8) 後…)」只改外層，
+#   內層由 brackets-4-codes 改）
+# - 不動：括號內沒有漢字的（由 brackets-4-codes 處理一部分）、亂碼與遮蔽字串、不成對的括號、KR 沒有半形括號的
+#   單位（kr_pattern；非劇情檔 ruby 改寫成「Y(X)」時 KR 沒有括號）；效果文字的檔（AbEventsResultLog*、
+#   ChoiceEventEffect、BattleResultHint*、Walpu4EventText 的兩句任務條件）不列
+# - files 只列以 raw-20261105、tw 675d8a3 模擬時會改到的 27 個檔、43 個單位（ui 15、abnormality 3、
+#   events 5、mirror 6、rpg 5、story-main 3、identity 2、dante-note 2、railway 2）；人工紀錄不動（origins 預設）
+# - 括號前的半形空格由 brackets-7-space 刪
+reason: 'base.md 第 7 條：括號用全形（效果文字以外，括號內有中文的）'
+files: ['AbnormalityGuides.json', 'AbnormalityGuides_Mirror.json', 'AbnormalityGuides_Refraction2.json', 'ActionEvents-walpu8.json', 'BattlePass.json', 'BattleUIText.json', 'BossRaidUI-2.json', 'BossRaidUI-4.json', 'BossRaidUI.json', 'EventVerificationUIText.json', 'FAQ.json', 'Items.json', 'MainUIText-a1c10p1.json', 'MainUIText.json', 'MirrorDungeonUI_4.json', 'MirrorDungeonUI_7.json', 'PersonalityVoiceDlg/Voice_Donquixote_Cinq_10305.json', 'RPGSystem/rpg-loc-item-common-a1c10p2.json', 'RPGSystem/rpg-loc-item-common-a1c10p3.json', 'RailwayDungeonUI_2.json', 'RailwayDungeonUI_5.json', 'StoryData/P11106.json', 'StoryData/S407B.json', 'StoryData/S735B.json', 'StoryTheaterDanteNoteDetail_2.json', 'TutorialMainUIText.json', 'TutorialRenewalDesc.json']
+pattern: '[(（]((?:[^()（）]|\([^()（）]*\))*?\p{Han}(?:[^()（）]|\([^()（）]*\))*)[)）]'
+replace: '（${1}）'
+kr_pattern: '\('
