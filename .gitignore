@@ -5,3 +5,4 @@
 site/node_modules/
 site/dist/
 site/public/data/
+__pycache__/
