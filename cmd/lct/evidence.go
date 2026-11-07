@@ -25,10 +25,13 @@ func init() {
 		Usage: "print, for glossary entries, what the official packs say: the names (the JP and EN aligned to units whose whole KR text is the entry's KR, " +
 			"grouped by pair, with unit keys and counts), the descriptions of keyword names, and for each candidate JP or EN rendering " +
 			"(the entry's jp and en, the most frequent official names and those given) how many aligned units hold the term (n), how many of them hold the candidate (hits), " +
-			"the rate and ok (n >= 10 and rate >= 0.6); reads only the raw worktree and the rules, writes nothing: " +
+			"the rate and ok (n >= 10 and rate >= 0.6), and the same for each set of forms (values: the entry's forms when jp or en lists several, the forms given, and both together; " +
+			"a unit holds a set when it holds any form of it); reads only the raw worktree and the rules, writes nothing: " +
+			"(the units of an entry are those it applies to as a batch has it: its files and not_files, an entry with files standing for its KR text there, and a longer entry taking the units it covers; " +
+			"names and descriptions are of those units; a candidate entry asked for by --kr counts the units it would apply to if approved) " +
 			"(a name is matched against the whole KR text of a unit, trimmed at both ends; n counts only units with non-empty aligned text, tags and spaces aside; " +
 			"units of fields the field rules do not translate, such as id and model, are left out of names, descriptions and n) " +
-			"[--kr K]... (default every approved entry) [--candidates FILE.yaml] (a mapping of KR to {jp: [...], en: [...]})",
+			"[--kr K]... (default every approved entry) [--candidates FILE.yaml] (a mapping of KR to {jp: [...], en: [...]}; a string for one form)",
 		Run: runGlossaryEvidence,
 	})
 }
@@ -43,11 +46,11 @@ func (r evidenceReport) String() string {
 			b.WriteString("\n")
 		}
 		fmt.Fprintf(&b, "%s -> %s", it.KR, it.ZH)
-		if it.JP != "" {
-			fmt.Fprintf(&b, "  jp=%s", it.JP)
+		if len(it.JP) > 0 {
+			fmt.Fprintf(&b, "  jp=%s", strings.Join(it.JP, ", "))
 		}
-		if it.EN != "" {
-			fmt.Fprintf(&b, "  en=%s", it.EN)
+		if len(it.EN) > 0 {
+			fmt.Fprintf(&b, "  en=%s", strings.Join(it.EN, ", "))
 		}
 		b.WriteString("\n")
 		if len(it.Names) == 0 {
@@ -60,7 +63,11 @@ func (r evidenceReport) String() string {
 			fmt.Fprintf(&b, "  desc %s\n    KR %s\n    JP %s\n    EN %s\n", d.Key, d.KR, d.JP, d.EN)
 		}
 		for _, c := range it.Checks {
-			fmt.Fprintf(&b, "  check %s %q N=%d Hits=%d Rate=%.2f OK=%v\n", c.Lang, c.Candidate, c.N, c.Hits, c.Rate, c.OK)
+			what := fmt.Sprintf("%q", c.Candidate)
+			if len(c.Values) > 0 {
+				what = fmt.Sprintf("any of %q", c.Values)
+			}
+			fmt.Fprintf(&b, "  check %s %s N=%d Hits=%d Rate=%.2f OK=%v\n", c.Lang, what, c.N, c.Hits, c.Rate, c.OK)
 		}
 	}
 	return b.String()

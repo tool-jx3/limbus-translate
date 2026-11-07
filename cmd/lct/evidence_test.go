@@ -7,12 +7,13 @@ import (
 )
 
 type evidenceCheckOut struct {
-	Lang      string  `json:"lang"`
-	Candidate string  `json:"candidate"`
-	N         int     `json:"n"`
-	Hits      int     `json:"hits"`
-	Rate      float64 `json:"rate"`
-	OK        bool    `json:"ok"`
+	Lang      string   `json:"lang"`
+	Candidate string   `json:"candidate"`
+	Values    []string `json:"values"`
+	N         int      `json:"n"`
+	Hits      int      `json:"hits"`
+	Rate      float64  `json:"rate"`
+	OK        bool     `json:"ok"`
 }
 
 type evidenceItemOut struct {
@@ -71,12 +72,13 @@ func TestEvidenceCommandJSON(t *testing.T) {
 	}
 	var got []string
 	for _, c := range it.Checks {
-		got = append(got, c.Lang+":"+c.Candidate)
+		got = append(got, c.Lang+":"+c.Candidate+strings.Join(c.Values, "+"))
 		if c.OK || c.N != 2 {
 			t.Errorf("check %+v: want N 2 (name and desc) and not ok", c)
 		}
 	}
-	if strings.Join(got, ",") != "JP:破裂,EN:Rupture,EN:Burst" {
+	// The candidate Burst is checked alone and with the entry's Rupture.
+	if strings.Join(got, ",") != "JP:破裂,EN:Rupture,EN:Burst,EN:Rupture+Burst" {
 		t.Errorf("checks = %v", got)
 	}
 
@@ -115,5 +117,40 @@ func TestEvidenceCommandUserErrors(t *testing.T) {
 		if code, _, stderr := lct(t, append([]string{"glossary", "evidence"}, args...)...); code != 1 || stderr == "" {
 			t.Errorf("glossary evidence %v: exit code %d (want 1), stderr %q", args, code, stderr)
 		}
+	}
+}
+
+// An entry with several forms prints them, and a check of the set beside the
+// check of each form; in JSON the forms are a list and the set check has
+// values in place of a candidate.
+func TestEvidenceCommandForms(t *testing.T) {
+	root := evidenceRepo(t)
+	writeTestFile(t, root, "glossary/terms.yaml", "- {kr: 파열, zh: 破裂, status: approved, en: [Rupture, Burst]}\n")
+	code, stdout, stderr := lct(t, "glossary", "evidence", "--kr", "파열")
+	if code != 0 || stderr != "" {
+		t.Fatalf("exit code %d, stderr %q", code, stderr)
+	}
+	for _, want := range []string{"en=Rupture, Burst", `check EN "Rupture" N=2 Hits=2`, `check EN "Burst" N=2 Hits=0`, `check EN any of ["Rupture" "Burst"] N=2 Hits=2`} {
+		if !strings.Contains(stdout, want) {
+			t.Errorf("text output lacks %q:\n%s", want, stdout)
+		}
+	}
+	var items []struct {
+		EN     []string `json:"en"`
+		Checks []struct {
+			Lang      string   `json:"lang"`
+			Candidate *string  `json:"candidate"`
+			Values    []string `json:"values"`
+			N         int      `json:"n"`
+			Hits      int      `json:"hits"`
+		} `json:"checks"`
+	}
+	mustLct(t, &items, "glossary", "evidence", "--kr", "파열")
+	if len(items) != 1 || strings.Join(items[0].EN, ",") != "Rupture,Burst" {
+		t.Fatalf("items = %+v", items)
+	}
+	last := items[0].Checks[len(items[0].Checks)-1]
+	if last.Lang != "EN" || last.Candidate != nil || strings.Join(last.Values, ",") != "Rupture,Burst" || last.N != 2 || last.Hits != 2 {
+		t.Errorf("set check = %+v", last)
 	}
 }

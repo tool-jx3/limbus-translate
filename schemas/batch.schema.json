@@ -43,8 +43,14 @@
         "required": ["kr", "zh", "status"],
         "properties": {
           "kr": { "type": "string" },
-          "jp": { "type": "string" },
-          "en": { "type": "string" },
+          "jp": {
+            "description": "The word in the Japanese pack: one form, or a list of the forms it takes there. A unit whose jp holds any of them has the same word.",
+            "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+          },
+          "en": {
+            "description": "The word in the English pack: one form, or a list of the forms it takes there (Resistance, Resist). A unit whose en holds any of them has the same word.",
+            "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+          },
           "zh": { "description": "The name to use.", "type": "string" },
           "status": { "type": "string" },
           "notes": { "type": "string" },

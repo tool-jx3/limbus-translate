@@ -124,6 +124,21 @@ func (l *linter) glossary() {
 		if t.Check != "" && t.Check != CheckHard && t.Check != CheckWarn {
 			l.report(GlossaryFile, "%s: check is %q, want %s or %s", label, t.Check, CheckHard, CheckWarn)
 		}
+		for _, f := range []struct {
+			name  string
+			forms Forms
+		}{{"jp", t.JP}, {"en", t.EN}} {
+			seen := map[string]bool{}
+			for _, form := range f.forms {
+				switch {
+				case strings.TrimSpace(form) == "":
+					l.report(GlossaryFile, "%s: %s holds an empty form", label, f.name)
+				case seen[form]:
+					l.report(GlossaryFile, "%s: %s holds %q twice", label, f.name, form)
+				}
+				seen[form] = true
+			}
+		}
 		if t.Meaning != "" && len(t.Sources) == 0 {
 			l.report(GlossaryFile, "%s: meaning needs sources (game:<file>#<pointer> or a limbuscompany.wiki.gg URL)", label)
 		}

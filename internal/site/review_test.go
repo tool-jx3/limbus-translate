@@ -1568,9 +1568,9 @@ func TestReviewScopeWeighsProvisionalTerms(t *testing.T) {
 func TestReviewScopeSenseCounts(t *testing.T) {
 	in, files := reviewInputs(t)
 	in.Rules.Glossary = []rules.Term{
-		{KR: rvKR, ZH: "絕無此譯", EN: "one", Status: rules.StatusApproved},
-		{KR: rvKR, ZH: "也無此譯", EN: "uno", Status: rules.StatusApproved},
-		{KR: rvKR, ZH: "再無此譯", JP: "いち", Status: rules.StatusApproved},
+		{KR: rvKR, ZH: "絕無此譯", EN: rules.Forms{"one"}, Status: rules.StatusApproved},
+		{KR: rvKR, ZH: "也無此譯", EN: rules.Forms{"uno"}, Status: rules.StatusApproved},
+		{KR: rvKR, ZH: "再無此譯", JP: rules.Forms{"いち"}, Status: rules.StatusApproved},
 	}
 	r, err := BuildReview(in, files)
 	if err != nil {

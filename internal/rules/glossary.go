@@ -20,8 +20,10 @@ const GlossaryFile = "glossary/terms.yaml"
 // Term is one entry of glossary/terms.yaml.
 type Term struct {
 	KR string `yaml:"kr" json:"kr"`
-	JP string `yaml:"jp" json:"jp,omitempty"`
-	EN string `yaml:"en" json:"en,omitempty"`
+	// JP and EN are the entry's word in the Japanese and English packs: one
+	// form or several forms of it (see Forms), any of which counts.
+	JP Forms  `yaml:"jp" json:"jp,omitempty"`
+	EN Forms  `yaml:"en" json:"en,omitempty"`
 	ZH string `yaml:"zh" json:"zh"`
 	// Status is "approved" or "candidate".
 	Status string `yaml:"status" json:"status"`

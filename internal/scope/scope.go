@@ -61,23 +61,28 @@ const (
 )
 
 // senseOf classifies the unit u against t by every alignment available: a
-// language is available when the entry has a value for it (en, jp) and the
-// unit's aligned text in it is not blank once its tags are stripped
-// (validate.MatchText, as evidence.Holds reads it). The unit is senseSame when
-// every available alignment holds the entry's value (evidence.Holds), senseOther
-// when every one misses it, and senseUnknown when they disagree or none is
+// language is available when the entry has a value for it (en, jp: one form
+// or more, see rules.Forms) and the unit's aligned text in it is not blank
+// once its tags are stripped (validate.MatchText, as evidence.Holds reads
+// it). A language holds when its text holds any form of the entry
+// (evidence.Holds). The unit is senseSame when every available alignment
+// holds, senseOther when every one misses, and senseUnknown when they disagree or none is
 // available. Each claim rests on agreeing evidence: scope narrowing acts on
 // Other and the review of old translations on Same, and a JP cognate shared
 // by several senses (対象) or an EN that leaves the word out must not decide
 // alone against the other language.
 func senseOf(t rules.Term, u Unit) int {
 	holds, misses := 0, 0
-	for _, c := range []struct{ lang, cand, text string }{{evidence.LangEN, t.EN, u.EN}, {evidence.LangJP, t.JP, u.JP}} {
+	for _, c := range []struct {
+		lang  string
+		forms []string
+		text  string
+	}{{evidence.LangEN, t.EN.Each(), u.EN}, {evidence.LangJP, t.JP.Each(), u.JP}} {
 		text := strings.TrimSpace(validate.MatchText(c.text))
-		if c.cand == "" || text == "" {
+		if len(c.forms) == 0 || text == "" {
 			continue
 		}
-		if evidence.Holds(c.lang, text, c.cand) {
+		if slices.ContainsFunc(c.forms, func(f string) bool { return evidence.Holds(c.lang, text, f) }) {
 			holds++
 		} else {
 			misses++
@@ -173,20 +178,20 @@ func senseName(s int) string {
 
 // Entry is one approved glossary entry and its counts.
 type Entry struct {
-	ID       string   `json:"id"`
-	KR       string   `json:"kr"`
-	ZH       string   `json:"zh"`
-	JP       string   `json:"jp,omitempty"`
-	EN       string   `json:"en,omitempty"`
-	Meaning  string   `json:"meaning,omitempty"`
-	Sources  []string `json:"sources,omitempty"`
-	Also     []string `json:"also"`
-	Files    []string `json:"files"`
-	NotFiles []string `json:"not_files"`
-	Match    string   `json:"match"`
-	Check    string   `json:"check,omitempty"`
-	Notes    string   `json:"notes"`
-	Groups   []Group  `json:"groups"`
+	ID       string      `json:"id"`
+	KR       string      `json:"kr"`
+	ZH       string      `json:"zh"`
+	JP       rules.Forms `json:"jp,omitempty"`
+	EN       rules.Forms `json:"en,omitempty"`
+	Meaning  string      `json:"meaning,omitempty"`
+	Sources  []string    `json:"sources,omitempty"`
+	Also     []string    `json:"also"`
+	Files    []string    `json:"files"`
+	NotFiles []string    `json:"not_files"`
+	Match    string      `json:"match"`
+	Check    string      `json:"check,omitempty"`
+	Notes    string      `json:"notes"`
+	Groups   []Group     `json:"groups"`
 	// N and Used are the units the entry hits and how many use the rendering:
 	// exactly the units of Report.Units for the entry (a substring entry's
 	// compound units are hits and count; a word entry's are not and do not).
@@ -697,7 +702,7 @@ func (an *analysis) entry(a *acc) Entry {
 		N: n, Used: used, Rate: rate, Check: t.Check,
 		HardCandidate: !t.Hard() && n >= hardMinN && rate > hardRate,
 		ID:            itemid.GlossaryEntry(t.KR, t.ZH), KR: t.KR, ZH: t.ZH,
-		JP: t.JP, EN: t.EN, Meaning: t.Meaning, Sources: slices.Clone(t.Sources),
+		JP: slices.Clone(t.JP), EN: slices.Clone(t.EN), Meaning: t.Meaning, Sources: slices.Clone(t.Sources),
 		Also: nonNil(t.Also), Files: nonNil(t.Files), NotFiles: nonNil(t.NotFiles),
 		Match: matchOf(t), Notes: t.Notes, Groups: an.orderedGroups(a),
 		Same: a.same, Other: a.other, Unknown: a.unknown,

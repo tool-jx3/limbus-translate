@@ -180,20 +180,25 @@ func TestCollectCandidateUnion(t *testing.T) {
 		packFiles{"Skills.json": `{"dataList":[{"id":1,"name":"Hit"},{"id":2,"name":"Hit"},{"id":3,"name":"Strike"}]}`},
 		packFiles{"Skills.json": `{"dataList":[{"id":1,"name":"打撃"},{"id":2,"name":"打撃"},{"id":3,"name":"打撃"}]}`})
 	e := term("타격", "打擊")
-	e.JP, e.EN = "打撃", "Blow"
+	e.JP, e.EN = rules.Forms{"打撃"}, rules.Forms{"Blow"}
 	items, err := Collect(glossary(e), set, testFields(t), []string{"타격"}, map[string]Candidates{"타격": {EN: []string{"Blow", "Smash"}}})
 	if err != nil {
 		t.Fatal(err)
 	}
 	var got []string
 	for _, c := range items[0].Checks {
+		if len(c.Values) > 0 {
+			got = append(got, c.Lang+":"+strings.Join(c.Values, "+"))
+			continue
+		}
 		got = append(got, c.Lang+":"+c.Candidate)
 	}
-	want := []string{"JP:打撃", "EN:Blow", "EN:Hit", "EN:Smash"}
+	// Then the candidates given, as a set (the entry's Blow among them).
+	want := []string{"JP:打撃", "EN:Blow", "EN:Hit", "EN:Smash", "EN:Blow+Smash"}
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("candidates = %v, want %v", got, want)
 	}
-	if items[0].JP != "打撃" || items[0].EN != "Blow" {
+	if !reflect.DeepEqual(items[0].JP, rules.Forms{"打撃"}) || !reflect.DeepEqual(items[0].EN, rules.Forms{"Blow"}) {
 		t.Errorf("Item JP/EN = %q/%q", items[0].JP, items[0].EN)
 	}
 }
@@ -517,5 +522,232 @@ func TestCollectSkipsLanguageEqualToKR(t *testing.T) {
 				t.Errorf("JP check = %+v, want N %d (JP differs in every unit)", c, 2*n)
 			}
 		}
+	}
+}
+
+// checkOf returns the check of lang for the candidate, or for the set of
+// values when values is given.
+func checkOf(t *testing.T, it Item, lang, candidate string, values ...string) Check {
+	t.Helper()
+	for _, c := range it.Checks {
+		if c.Lang != lang {
+			continue
+		}
+		if len(values) == 0 && c.Candidate == candidate && len(c.Values) == 0 || len(values) > 0 && reflect.DeepEqual(c.Values, values) {
+			return c
+		}
+	}
+	t.Fatalf("%s: no %s check for %q %v in %+v", it.KR, lang, candidate, values, it.Checks)
+	return Check{}
+}
+
+// An entry with several forms of its EN is checked as a set: a unit holds it
+// when its EN holds any form. Each form keeps a check of its own, so that
+// each form's share shows; an entry with one form has no set.
+func TestCollectFormsAreCheckedAsASet(t *testing.T) {
+	kr := lines(10, func(int) string { return "내성 있음" })
+	en := lines(10, func(i int) string {
+		switch {
+		case i < 5:
+			return "Resistance up"
+		case i < 9:
+			return "Resist it"
+		}
+		return "Other"
+	})
+	jp := lines(10, func(int) string { return "耐性あり" })
+	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{"Lines.json": jp})
+	e := term("내성", "抗性")
+	e.JP, e.EN = rules.Forms{"耐性"}, rules.Forms{"Resistance", "Resist"}
+	items, err := Collect(glossary(e), set, testFields(t), nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	it := items[0]
+	if !reflect.DeepEqual(it.EN, rules.Forms{"Resistance", "Resist"}) || !reflect.DeepEqual(it.JP, rules.Forms{"耐性"}) {
+		t.Errorf("Item JP/EN = %v/%v", it.JP, it.EN)
+	}
+	if c := checkOf(t, it, LangEN, "", "Resistance", "Resist"); c.N != 10 || c.Hits != 9 || !c.OK || c.Candidate != "" {
+		t.Errorf("set check = %+v, want N 10 Hits 9 OK", c)
+	}
+	if c := checkOf(t, it, LangEN, "Resistance"); c.N != 10 || c.Hits != 5 || c.OK {
+		t.Errorf("Resistance check = %+v, want N 10 Hits 5", c)
+	}
+	if c := checkOf(t, it, LangEN, "Resist"); c.N != 10 || c.Hits != 4 || c.OK {
+		t.Errorf("Resist check = %+v, want N 10 Hits 4", c)
+	}
+	for _, c := range it.Checks {
+		if c.Lang == LangJP && len(c.Values) > 0 {
+			t.Errorf("JP has one form, yet a set check %+v", c)
+		}
+	}
+}
+
+// The candidates of a language are checked one by one, as a set, and as a
+// set with the entry's own forms (what the entry would have with them added);
+// a set of one form is its own check, and a set is listed once.
+func TestCollectCandidateSets(t *testing.T) {
+	kr := lines(10, func(int) string { return "내성 있음" })
+	en := lines(10, func(i int) string { return []string{"A x", "B x", "C x", "D x", "E x"}[i%5] })
+	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
+	sets := func(own rules.Forms, given ...string) [][]string {
+		e := term("내성", "抗性")
+		e.EN = own
+		items, err := Collect(glossary(e), set, testFields(t), nil, map[string]Candidates{"내성": {EN: given}})
+		if err != nil {
+			t.Fatal(err)
+		}
+		var out [][]string
+		for _, c := range items[0].Checks {
+			if len(c.Values) > 0 {
+				out = append(out, c.Values)
+			}
+		}
+		return out
+	}
+	for _, tc := range []struct {
+		name  string
+		own   rules.Forms
+		given []string
+		want  [][]string
+	}{
+		{"no own forms", nil, []string{"A", "B"}, [][]string{{"A", "B"}}},
+		{"one own form, one candidate", rules.Forms{"A"}, []string{"B"}, [][]string{{"A", "B"}}},
+		{"one own form, two candidates", rules.Forms{"A"}, []string{"B", "C"}, [][]string{{"B", "C"}, {"A", "B", "C"}}},
+		{"two own forms, a candidate", rules.Forms{"A", "B"}, []string{"C"}, [][]string{{"A", "B"}, {"A", "B", "C"}}},
+		{"candidates among the own forms", rules.Forms{"A", "B"}, []string{"B", "A"}, [][]string{{"A", "B"}}},
+		{"one candidate alone", nil, []string{"A"}, nil},
+	} {
+		if got := sets(tc.own, tc.given...); !reflect.DeepEqual(got, tc.want) {
+			t.Errorf("%s: sets = %v, want %v", tc.name, got, tc.want)
+		}
+	}
+	// The set of A and B holds 4 of the 10 units.
+	e := term("내성", "抗性")
+	items, err := Collect(glossary(e), set, testFields(t), nil, map[string]Candidates{"내성": {EN: []string{"A", "B"}}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c := checkOf(t, items[0], LangEN, "", "A", "B"); c.N != 10 || c.Hits != 4 {
+		t.Errorf("set check = %+v, want N 10 Hits 4", c)
+	}
+}
+
+// sinbu are the two entries of 신부: 牧師 for the chapter 10 files, 神父 for
+// the others, as in the glossary.
+func sinbu() (chaplain, father rules.Term) {
+	chaplain = term("신부", "牧師")
+	chaplain.EN, chaplain.Files = rules.Forms{"The Chaplain"}, []string{"Ch10*"}
+	father = term("신부", "神父")
+	father.EN = rules.Forms{"Father"}
+	return chaplain, father
+}
+
+// The evidence of an entry is the units it applies to, as a batch sees them:
+// an entry with files counts the units of those files only, and the entry of
+// the same KR without files the units of the other files. So are its names.
+func TestCollectCountsOnlyWhereTheEntryApplies(t *testing.T) {
+	krLines := lines(10, func(int) string { return "신부가 왔다" })
+	set := openSet(t,
+		packFiles{"Ch10.json": krLines, "Other.json": krLines, "Names.json": `{"dataList":[{"id":1,"name":"신부"}]}`, "Ch10Names.json": `{"dataList":[{"id":1,"name":"신부"}]}`},
+		packFiles{"Ch10.json": lines(10, func(int) string { return "The Chaplain came" }), "Other.json": lines(10, func(int) string { return "Father came" }),
+			"Names.json": `{"dataList":[{"id":1,"name":"Father"}]}`, "Ch10Names.json": `{"dataList":[{"id":1,"name":"The Chaplain"}]}`},
+		packFiles{})
+	chaplain, father := sinbu()
+	items, err := Collect(glossary(chaplain, father), set, testFields(t), nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(items) != 2 {
+		t.Fatalf("items = %+v", items)
+	}
+	if c := checkOf(t, items[0], LangEN, "The Chaplain"); c.N != 11 || c.Hits != 11 || !c.OK {
+		t.Errorf("牧師 check = %+v, want the 11 units of the Ch10 files", c)
+	}
+	if c := checkOf(t, items[1], LangEN, "Father"); c.N != 11 || c.Hits != 11 || !c.OK {
+		t.Errorf("神父 check = %+v, want the 11 units of the other files", c)
+	}
+	for i, want := range []string{"The Chaplain", "Father"} {
+		if ns := items[i].Names; len(ns) != 1 || ns[0].EN != want {
+			t.Errorf("%s names = %+v, want only %s", items[i].ZH, ns, want)
+		}
+	}
+	// The name of the other entry's files is no candidate of this one.
+	for _, c := range items[1].Checks {
+		if c.Candidate == "The Chaplain" {
+			t.Errorf("神父 checks the name of the Ch10 files: %+v", c)
+		}
+	}
+
+	// not_files takes files out the same way.
+	only := term("신부", "神父")
+	only.EN, only.NotFiles = rules.Forms{"Father"}, []string{"Ch10*"}
+	items, err = Collect(glossary(only), set, testFields(t), nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c := checkOf(t, items[0], LangEN, "Father"); c.N != 11 || c.Hits != 11 {
+		t.Errorf("not_files check = %+v, want the 11 units outside the Ch10 files", c)
+	}
+}
+
+// Where a longer entry covers the term (전투 승리 in EX CLEAR 전투 승리), the
+// unit is the longer entry's, and not evidence of the shorter one.
+func TestCollectLongerEntryTakesItsUnits(t *testing.T) {
+	kr := lines(20, func(i int) string {
+		if i < 10 {
+			return "EX CLEAR 전투 승리 달성"
+		}
+		return "전투 승리"
+	})
+	en := lines(20, func(i int) string {
+		if i < 10 {
+			return "EX CLEAR achieved"
+		}
+		return "Victory"
+	})
+	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
+	short, long := term("전투 승리", "戰鬥勝利"), term("EX CLEAR 전투 승리", "EX CLEAR 戰鬥勝利")
+	short.EN, long.EN = rules.Forms{"Victory"}, rules.Forms{"EX CLEAR"}
+	items, err := Collect(glossary(short, long), set, testFields(t), nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c := checkOf(t, items[0], LangEN, "Victory"); c.N != 10 || c.Hits != 10 {
+		t.Errorf("전투 승리 check = %+v, want only the 10 units the longer entry does not cover", c)
+	}
+	if c := checkOf(t, items[1], LangEN, "EX CLEAR"); c.N != 10 || c.Hits != 10 {
+		t.Errorf("EX CLEAR 전투 승리 check = %+v, want its 10 units", c)
+	}
+	// Asked for alone, the shorter entry is still weighed against the longer.
+	items, err = Collect(glossary(short, long), set, testFields(t), []string{"전투 승리"}, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c := checkOf(t, items[0], LangEN, "Victory"); c.N != 10 {
+		t.Errorf("--kr 전투 승리 check = %+v, want N 10", c)
+	}
+}
+
+// A candidate entry binds nothing, so it takes no unit from an approved one;
+// asked for by --kr, it counts the units it would apply to once approved.
+func TestCollectCandidateEntryCountsWhereItWouldApply(t *testing.T) {
+	krLines := lines(10, func(int) string { return "신부가 왔다" })
+	set := openSet(t,
+		packFiles{"Ch10.json": krLines, "Other.json": krLines},
+		packFiles{"Ch10.json": lines(10, func(int) string { return "The Chaplain came" }), "Other.json": lines(10, func(int) string { return "Father came" })},
+		packFiles{})
+	chaplain, father := sinbu()
+	chaplain.Status = rules.StatusCandidate
+	father.EN = rules.Forms{"came"}
+	items, err := Collect(glossary(chaplain, father), set, testFields(t), []string{"신부"}, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c := checkOf(t, items[0], LangEN, "The Chaplain"); c.N != 10 || c.Hits != 10 {
+		t.Errorf("candidate check = %+v, want the 10 units of Ch10.json", c)
+	}
+	if c := checkOf(t, items[1], LangEN, "came"); c.N != 20 {
+		t.Errorf("approved check = %+v, want all 20 units: the candidate takes none", c)
 	}
 }

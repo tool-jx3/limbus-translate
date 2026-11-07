@@ -485,7 +485,7 @@ func TestEntryFields(t *testing.T) {
 	r, us := notFilesFixture()
 	r.Glossary[0].Notes = "指組織頭頭時用老大"
 	r.Glossary[0].Also = []string{"老大"}
-	r.Glossary[0].JP, r.Glossary[0].EN = "ボス", "Boss"
+	r.Glossary[0].JP, r.Glossary[0].EN = rules.Forms{"ボス"}, rules.Forms{"Boss"}
 	r.Glossary[0].Meaning, r.Glossary[0].Sources = "組織的首領", []string{"game:Other.json#/dataList/0/content"}
 	rep := Analyze(Inputs{Rules: r, Units: us})
 	e := entryOf(t, rep, "보스")
@@ -493,7 +493,7 @@ func TestEntryFields(t *testing.T) {
 		e.Match != rules.MatchWord || e.Notes != "指組織頭頭時用老大" {
 		t.Errorf("entry = %+v", e)
 	}
-	if e.JP != "ボス" || e.EN != "Boss" || e.Meaning != "組織的首領" || !slices.Equal(e.Sources, []string{"game:Other.json#/dataList/0/content"}) {
+	if !slices.Equal(e.JP, rules.Forms{"ボス"}) || !slices.Equal(e.EN, rules.Forms{"Boss"}) || e.Meaning != "組織的首領" || !slices.Equal(e.Sources, []string{"game:Other.json#/dataList/0/content"}) {
 		t.Errorf("jp, en, meaning, sources = %q %q %q %q", e.JP, e.EN, e.Meaning, e.Sources)
 	}
 	// With also 老大 the stories use it: nothing to propose.
@@ -835,7 +835,7 @@ func senseUnit(i int, zh, en, jp string) Unit {
 
 func TestSenseCounts(t *testing.T) {
 	term := approved("침식", "侵蝕")
-	term.EN, term.JP = "Erosion", "浸食"
+	term.EN, term.JP = rules.Forms{"Erosion"}, rules.Forms{"浸食"}
 	us := []Unit{
 		senseUnit(0, "侵蝕", "Erosion", "浸食"),         // used: not classified
 		senseUnit(1, "腐蝕", "the Erosion grows", ""), // same (EN, word, any case)
@@ -869,7 +869,7 @@ func TestSenseJPOnlyEntry(t *testing.T) {
 	// The entry has only a jp: the unit's EN is not available to compare
 	// (the entry has no en), so JP alone decides, and a miss is other.
 	jpOnly := approved("침식", "侵蝕")
-	jpOnly.JP = "浸食"
+	jpOnly.JP = rules.Forms{"浸食"}
 	us := []Unit{
 		senseUnit(0, "腐蝕", "the Erosion grows", "腐食"), // other: JP misses, EN not available
 		senseUnit(1, "腐蝕", "a corrosion", "浸食された"),    // same via JP
@@ -883,7 +883,7 @@ func TestSenseJPOnlyEntry(t *testing.T) {
 
 func TestSenseUnknownWithoutAlignment(t *testing.T) {
 	enOnly := approved("침식", "侵蝕")
-	enOnly.EN = "Erosion"
+	enOnly.EN = rules.Forms{"Erosion"}
 	none := approved("침식", "侵蝕")
 	us := []Unit{senseUnit(0, "腐蝕", "", "浸食された"), senseUnit(1, "腐蝕", "Erosion", "")}
 	// The entry has an en and the unit no EN alignment, and no jp to look at: unknown.
@@ -900,7 +900,7 @@ func TestSenseUnknownWithoutAlignment(t *testing.T) {
 
 func TestEntryUnitsCarryTheSense(t *testing.T) {
 	term := approved("침식", "侵蝕")
-	term.EN = "Erosion"
+	term.EN = rules.Forms{"Erosion"}
 	us := []Unit{
 		senseUnit(0, "侵蝕", "Erosion", ""),
 		senseUnit(1, "腐蝕", "the Erosion grows", ""),
@@ -923,7 +923,7 @@ func TestEntryUnitsCarryTheSense(t *testing.T) {
 // the unit is unknown, not other.
 func TestSenseTagOnlyAlignment(t *testing.T) {
 	term := approved("침식", "侵蝕")
-	term.EN, term.JP = "Erosion", "浸食"
+	term.EN, term.JP = rules.Forms{"Erosion"}, rules.Forms{"浸食"}
 	us := []Unit{
 		senseUnit(0, "腐蝕", "<color=#fff></color>", ""),      // unknown: EN is tags only
 		senseUnit(1, "腐蝕", "<color=#fff></color>", "浸食された"), // same: only JP counts
@@ -939,7 +939,7 @@ func TestSenseTagOnlyAlignment(t *testing.T) {
 // substring compound hit among them.
 func TestSenseSumsWithCompound(t *testing.T) {
 	term := approved("침식", "侵蝕")
-	term.EN, term.JP = "Erosion", "浸食"
+	term.EN, term.JP = rules.Forms{"Erosion"}, rules.Forms{"浸食"}
 	term.Match = rules.MatchSubstring
 	compound := senseUnit(3, "腐蝕", "the Erosion grows", "")
 	compound.KR = "침식당함"
@@ -955,5 +955,32 @@ func TestSenseSumsWithCompound(t *testing.T) {
 	}
 	if got, missing := e.Same+e.Other+e.Unknown, e.N-e.Used; got != missing || e.Same != 1 || e.Other != 1 || e.Unknown != 1 {
 		t.Fatalf("same+other+unknown = %d (%d/%d/%d), missing = %d, want 3 (1/1/1)", got, e.Same, e.Other, e.Unknown, missing)
+	}
+}
+
+// A language of several forms holds where its text holds any of them; the
+// languages must agree as with one form each.
+func TestSenseMultipleForms(t *testing.T) {
+	term := approved("침식", "侵蝕")
+	term.EN, term.JP = rules.Forms{"Resistance", "Resist"}, rules.Forms{"耐性", "抵抗"}
+	us := []Unit{
+		senseUnit(0, "腐蝕", "Resist it", ""),         // same: EN holds the second form
+		senseUnit(1, "腐蝕", "Resistance up", "抵抗する"), // same: each holds another form
+		senseUnit(2, "腐蝕", "Other", "抵抗"),           // unknown: EN misses every form, JP holds one
+		senseUnit(3, "腐蝕", "Other", "別"),            // other: both miss every form
+		senseUnit(4, "腐蝕", "", "耐性"),                // same: only JP aligned
+	}
+	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
+	if e.Same != 3 || e.Other != 1 || e.Unknown != 1 {
+		t.Fatalf("same/other/unknown = %d/%d/%d, want 3/1/1", e.Same, e.Other, e.Unknown)
+	}
+	if !reflect.DeepEqual(e.EN, rules.Forms{"Resistance", "Resist"}) || !reflect.DeepEqual(e.JP, rules.Forms{"耐性", "抵抗"}) {
+		t.Errorf("entry jp/en = %v/%v", e.JP, e.EN)
+	}
+	// An empty form holds nothing.
+	empty := approved("침식", "侵蝕")
+	empty.EN = rules.Forms{""}
+	if e := entryOf(t, Analyze(Inputs{Rules: testRules(empty), Units: us[3:4]}), "침식"); e.Unknown != 1 {
+		t.Errorf("an empty form: %+v, want unknown", e)
 	}
 }
