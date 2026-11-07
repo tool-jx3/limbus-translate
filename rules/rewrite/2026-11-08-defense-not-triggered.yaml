@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「이 스킬은 수비 스킬을 발동시키지 않음」寫「本技能不會觸發守備技能」（詞彙表）。Skills_Assist-a1c9p3 /48、Skills_Abnormality-a1c9p3 /68
+# 寫成「本技能不會觸發目標的守備技能」，多了 KR 沒有的「目標的」（那是「대상의 수비 스킬을…」的譯名）；改為譯名。
+reason: '「이 스킬은 수비 스킬을 발동시키지 않음」寫「本技能不會觸發守備技能」（詞彙表）'
+files: ['Skills_Abnormality-a1c9p3.json', 'Skills_Assist-a1c9p3.json']
+pattern: '本技能不會觸發目標的守備技能'
+replace: '本技能不會觸發守備技能'
+kr_pattern: '이 스킬은 수비 스킬을 발동시키지 않음'

@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「피해량이 80%만큼 감소하고」寫「使本技能造成的傷害-80%」（詞彙表）。tw ff9b2c6 有 4 個單位寫成「使本技能造成的傷害量-80%」
+# （Skills_Abnormality_Refraction2_bokgak /48、Skills_Abnormality_Refraction6 /26、/34、/36），去掉「量」，統一為譯名。
+reason: '「피해량이 80%만큼 감소하고」寫「使本技能造成的傷害-80%」（詞彙表）'
+files: ['Skills_Abnormality_Refraction2_bokgak.json', 'Skills_Abnormality_Refraction6.json']
+pattern: '使本技能造成的傷害量-80%'
+replace: '使本技能造成的傷害-80%'
+kr_pattern: '피해량이 80%만큼 감소하고'

@@ -1,0 +1,8 @@
+# 應用率回顧（2026-11-07）：「시즌 N X 림버스 패스 보상 L레벨에 획득」既有 17 個單位寫「第N賽季 X 巴士通行證達到等級L的獎勵」（詞彙表：림버스 패스 → 巴士通行證）。
+# UserBanner /73 與 UserTicket 系 12 個單位（各 a1c9p1、a1c10p1、a1c10p3 版的 /1，與 UserTicket-EGOBg、-L、-R 的 /52）寫成「第N賽季 X 達到等級L的免費獎勵」：
+# 漏了「巴士通行證」，又把付費的巴士通行證寫成「免費」；改為既有寫法。
+reason: '「림버스 패스」寫「巴士通行證」（詞彙表），巴士通行證的獎勵不是免費獎勵'
+files: ['UserBanner.json', 'UserTicket-EGOBg-a1c10p1.json', 'UserTicket-EGOBg-a1c10p3.json', 'UserTicket-EGOBg-a1c9p1.json', 'UserTicket-EGOBg.json', 'UserTicket-L-a1c10p1.json', 'UserTicket-L-a1c10p3.json', 'UserTicket-L-a1c9p1.json', 'UserTicket-L.json', 'UserTicket-R-a1c10p1.json', 'UserTicket-R-a1c10p3.json', 'UserTicket-R-a1c9p1.json', 'UserTicket-R.json']
+pattern: ' 達到等級(\d+)的免費獎勵$'
+replace: ' 巴士通行證達到等級${1}的獎勵'
+kr_pattern: '림버스 패스 보상 \d+레벨에 획득$'

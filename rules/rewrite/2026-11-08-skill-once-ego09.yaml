@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：Skills_Ego_Personality-09 /9 的硬幣效果（三級）KR「(최대 N명, 스킬당 1회)」、EN「once per Skill」，
+# 舊譯寫成「(最多N名，每回合最多1次)」，把「每個技能」誤譯成「每回合」；改為詞彙表的「每個技能最多1次」。
+reason: '「스킬당 1회」是每個技能最多1次，不是每回合（詞彙表）'
+files: ['Skills_Ego_Personality-09.json']
+pattern: '(名，)每回合最多1次\)'
+replace: '${1}每個技能最多1次)'
+kr_pattern: '명, 스킬당 1회\)'

@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「3성 인격 출현 추출 티켓」寫「3星人格必得十連提取券」（詞彙表）。tw ff9b2c6 的 IAPProduct /19、/37、/68 與 IAPProduct-a1c9 /17
+# 寫成「3星必得十連提取券」，少了「人格」；補上，統一為譯名。
+reason: '「3성 인격 출현 추출 티켓」寫「3星人格必得十連提取券」（詞彙表）'
+files: ['IAPProduct-a1c9.json', 'IAPProduct.json']
+pattern: '3星必得十連提取券'
+replace: '3星人格必得十連提取券'
+kr_pattern: '3성 인격 출현 추출 티켓'

@@ -1,0 +1,6 @@
+# 應用率回顧（2026-11-07）：「전투 보상 카드」寫「遭遇戰獎勵卡」（詞彙表）。TutorialMirrorDungeon /168、/299、/442 寫成「選擇星芒邂逅獎勵卡」；改為「遭遇戰獎勵卡」。
+reason: '「전투 보상 카드」寫「遭遇戰獎勵卡」（詞彙表）'
+files: ['TutorialMirrorDungeon.json']
+pattern: '邂逅獎勵卡'
+replace: '遭遇戰獎勵卡'
+kr_pattern: '전투 보상 카드'

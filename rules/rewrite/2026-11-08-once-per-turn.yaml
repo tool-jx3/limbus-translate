@@ -1,0 +1,8 @@
+# 應用率回顧（2026-11-07）：「(턴 당 1회)」寫「(每回合最多1次)」（詞彙表；268 個單位中 261 個）。tw ff9b2c6 有 6 個單位寫成「(每回合最多1層)」，
+# 把「次」寫成「層」（Skills_personality-11 /11 兩級、Passives_Abnormality_Refraction4 /14、Skills_Abnormality-a1c6p3 /27、Skills_Enemy-ycgd /3、/7）；
+# KR、EN 都是次數（1회、once per turn），改為譯名。
+reason: '「(턴 당 1회)」寫「(每回合最多1次)」（詞彙表）'
+files: ['Passives_Abnormality_Refraction4.json', 'Skills_Abnormality-a1c6p3.json', 'Skills_Enemy-ycgd.json', 'Skills_personality-11.json']
+pattern: '\(每回合最多1層\)'
+replace: '(每回合最多1次)'
+kr_pattern: '\(턴 당 1회\)'

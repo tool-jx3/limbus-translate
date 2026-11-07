@@ -1,0 +1,12 @@
+# 應用率回顧（2026-11-07）：「스킬당 1회」寫「每個技能最多1次」（詞彙表）。tw ff9b2c6 有 222 個單位，24 個沒用譯名，其中 20 個是同一句的寫法不一：
+#   「每技能最多1次」11 個（Passives-BossRaid /13、/18，Passives_Abnormality-exme /11、/15，Skills_Ego_Personality-10 /10 三級，
+#   Skills_personality-01 /46，Passives_Abnormality-walpu8 /1，EGOgift_MirrorDungeon_7 /7、/45）、
+#   「每次技能最多1次」5 個（Skills_Ego_Personality-11 /8 三級、Skills_personality-07 /37 兩級）、
+#   「每個技能最多觸發1次」2 個（Passives_Abnormality-a1c9p3 /4、Passives_Abnormality-pilgrimage /2）、
+#   「每個技能1次」2 個（BattleKeywords /434、Bufs /514）。
+# 意思相同，只補上「個」「最多」、去掉「次」「觸發」，統一為譯名。Skills_Ego_Personality-09 的誤譯由 2026-11-08-skill-once-ego09.yaml 處理。
+reason: '「스킬당 1회」寫「每個技能最多1次」（詞彙表）'
+files: ['BattleKeywords.json', 'Bufs.json', 'EGOgift_MirrorDungeon_7.json', 'Passives-BossRaid.json', 'Passives_Abnormality-a1c9p3.json', 'Passives_Abnormality-exme.json', 'Passives_Abnormality-pilgrimage.json', 'Passives_Abnormality-walpu8.json', 'Skills_Ego_Personality-10.json', 'Skills_Ego_Personality-11.json', 'Skills_personality-01.json', 'Skills_personality-07.json']
+pattern: '每次?技能最多1次|每個技能(?:最多觸發)?1次'
+replace: '每個技能最多1次'
+kr_pattern: '스킬당 1회'

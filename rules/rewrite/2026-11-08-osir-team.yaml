@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「현장추리팀」寫「現場推理小組」（詞彙表，LCD 部門的小組名）。tw ff9b2c6 有 4 個單位寫法不一：
+# 「現場推理小隊」3 個（Voice_Ishmael_LCD_10815 /9、StoryData/P10815 /3、/57）、「現場推理部隊」1 個（ActionEvents-a1c9p1 /0）。統一為譯名。
+reason: '「현장추리팀」寫「現場推理小組」（詞彙表）'
+files: ['ActionEvents-a1c9p1.json', 'PersonalityVoiceDlg/Voice_Ishmael_LCD_10815.json', 'StoryData/P10815.json']
+pattern: '現場推理(?:小隊|部隊)'
+replace: '現場推理小組'
+kr_pattern: '현장추리팀'

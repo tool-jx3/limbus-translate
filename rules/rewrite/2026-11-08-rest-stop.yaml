@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「쉼터」寫「休息點」（詞彙表，鏡像迷宮的休息點）。ActionEvents_Ycgd /9、/10 與 ActionEvents_tkt /6「익숙한 쉼터의 모습이다」寫成「一個熟悉的休憩處」，
+# TutorialMainUIText /343「상점, 쉼터에서」寫成「在商店處或休息區」；改為譯名。
+reason: '「쉼터」寫「休息點」（詞彙表）'
+files: ['ActionEvents_Ycgd.json', 'ActionEvents_tkt.json', 'TutorialMainUIText.json']
+pattern: '(熟悉的)休憩處|(或)休息區'
+replace: '${1}${2}休息點'
+kr_pattern: '쉼터'

@@ -1,0 +1,10 @@
+# 應用率回顧（2026-11-07）：「거울 던전」寫「鏡像迷宮」（詞彙表）。tw ff9b2c6 有 13 個單位只寫「迷宮」：
+#   TutorialMainUIText 的活動說明「…스테이지와 거울 던전을 클리어하면」→「通關活動關卡及迷宮」9 個（/635、/774、/938、/958、/1010、/1038、/1142、/1186、/1265）、
+#   「제일 마지막에는 거울 던전이 등장하며」→「最後關卡將會出現迷宮」2 個（/641、/763），
+#   EventMiracleText /7「…스테이지 또는 거울 던전을 클리어하면」→「關卡和迷宮」，HellsChicken /21「이벤트 거울 던전 포기」→「放棄活動迷宮」。
+# 補上「鏡像」。省略整個詞的 TutorialMirrorDungeon 6 個與 StoryTheaterDanteNoteDetail_4 /9 不在此列，留給複查。
+reason: '「거울 던전」寫「鏡像迷宮」（詞彙表）'
+files: ['EventMiracleText.json', 'HellsChicken.json', 'TutorialMainUIText.json']
+pattern: '(關卡及|關卡和|出現|放棄活動)迷宮'
+replace: '${1}鏡像迷宮'
+kr_pattern: '거울 던전'

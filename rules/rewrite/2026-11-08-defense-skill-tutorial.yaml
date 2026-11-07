@@ -1,0 +1,6 @@
+# 應用率回顧（2026-11-07）：「수비 스킬」寫「守備技能」（詞彙表）。TutorialRenewalDesc /99 的「<수비 스킬>」寫成「<防禦技能>」；改為譯名。
+reason: '「수비 스킬」寫「守備技能」（詞彙表）'
+files: ['TutorialRenewalDesc.json']
+pattern: '<防禦技能>'
+replace: '<守備技能>'
+kr_pattern: '<수비 스킬>'

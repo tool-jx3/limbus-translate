@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「로보토미 지부」既有 157 個單位寫「腦葉公司分部」（詞彙表：로보토미 → 腦葉公司）。StoryData/S514B /130 與 StageNode-a1c5p2 /4 的 desc
+# 寫成「腦葉分部」；補上「公司」。
+reason: '「로보토미」寫「腦葉公司」（詞彙表）'
+files: ['StageNode-a1c5p2.json', 'StoryData/S514B.json']
+pattern: '腦葉分部'
+replace: '腦葉公司分部'
+kr_pattern: '로보토미 지부'

@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：BattleKeywords-a1c9p3 /64 與 Bufs-a1c9p3 /64 的「전투 시작 시 (수치x12)만큼 고정 피해를 입음」（EN「Combat Start: Take (Stack x 12) fixed damage」）
+# 寫成「回合開始時，對自身造成…」，把戰鬥開始誤譯成回合開始；改為詞彙表的「戰鬥開始時」。
+reason: '「전투 시작 시」是戰鬥開始時，不是回合開始時（詞彙表）'
+files: ['BattleKeywords-a1c9p3.json', 'Bufs-a1c9p3.json']
+pattern: '回合開始時，對自身造成\(本效果層數×12\)點的固定傷害'
+replace: '戰鬥開始時，對自身造成(本效果層數×12)點的固定傷害'
+kr_pattern: '전투 시작 시 \(수치x12\)만큼 고정 피해'

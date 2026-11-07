@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「별의 가호」寫「星之恩惠」（詞彙表）。TutorialMirrorDungeon /361、/504「선택한 고난, 별의 가호, 선택지 효과」寫成「苦難、星芒獎勵和選擇的事件效果」，
+# 把「별의 가호」（Grace of Stars）寫成「星芒獎勵」；改為譯名。
+reason: '「별의 가호」寫「星之恩惠」（詞彙表）'
+files: ['TutorialMirrorDungeon.json']
+pattern: '苦難、星芒獎勵和'
+replace: '苦難、星之恩惠和'
+kr_pattern: '고난, 별의 가호'

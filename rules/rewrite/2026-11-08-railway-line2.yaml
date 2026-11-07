@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「거울굴절철도」寫「折射軌道」（詞彙表）。UserTicket-EGOBg、UserTicket-L、UserTicket-R 的 /14
+# 「…거울굴절철도 2호선 클리어 시 획득」寫成「…通關2號線時獲得」，省略了「折射軌道」（EN「clearing Refraction Railway Line 2」）；補上。
+reason: '「거울굴절철도」寫「折射軌道」（詞彙表）'
+files: ['UserTicket-EGOBg.json', 'UserTicket-L.json', 'UserTicket-R.json']
+pattern: '通關2號線時獲得'
+replace: '通關折射軌道2號線時獲得'
+kr_pattern: '거울굴절철도 2호선 클리어'

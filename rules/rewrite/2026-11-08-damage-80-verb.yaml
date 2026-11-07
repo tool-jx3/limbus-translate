@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：Skills_Abnormality-a1c10p1 /42 的「[DefeatDuel] 피해량이 80%만큼 감소하고」寫「[DefeatDuel] 本技能造成的傷害-80%」，
+# 少了譯名開頭的「使」；補上，與其他 69 個單位相同。
+reason: '「피해량이 80%만큼 감소하고」寫「使本技能造成的傷害-80%」（詞彙表）'
+files: ['Skills_Abnormality-a1c10p1.json']
+pattern: '\[DefeatDuel\] 本技能造成的傷害-80%'
+replace: '[DefeatDuel] 使本技能造成的傷害-80%'
+kr_pattern: '\[DefeatDuel\] 피해량이 80%만큼 감소하고'

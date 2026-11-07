@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：人格「마침표 사무소 해결사 히스클리프」寫「句點事務所 收尾人 希斯克利夫」（Personality_Get_Condition /226、/227、StoryTheaterMirrorWorldStoryTitle /113 既有）。
+# Passives /353、/354 寫成「句點事務所 希斯克利夫」，少了「收尾人」（詞彙表：해결사 → 收尾人）；補上。
+reason: '「해결사」寫「收尾人」（詞彙表），人格名照既有寫法'
+files: ['Passives.json']
+pattern: '句點事務所 希斯克利夫'
+replace: '句點事務所 收尾人 希斯克利夫'
+kr_pattern: '마침표 사무소 해결사 히스클리프'

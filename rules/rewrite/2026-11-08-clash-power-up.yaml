@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「합 위력 증가」是狀態「拚點威力提升」（BattleKeywords 系既有 35 個單位）。BattleKeywords-a1c9p3、Bufs-a1c9p3 的 /89、/90
+# 「참격 피해 증가 N, 합 위력 증가 N, 취약 N 얻음」寫成「N層斬擊傷害強化、N層強壯」，把它誤譯成「強壯」（공격 위력 증가）；改為「拚點威力提升」。
+reason: '「합 위력 증가」是拚點威力提升，不是強壯（詞彙表：합 위력 → 拚點威力）'
+files: ['BattleKeywords-a1c9p3.json', 'Bufs-a1c9p3.json']
+pattern: '(\d+)層強壯，並對自身施加'
+replace: '${1}層拚點威力提升，並對自身施加'
+kr_pattern: '합 위력 증가 \d+, 취약'

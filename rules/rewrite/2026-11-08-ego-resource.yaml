@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「X 속성 E.G.O 자원」既有寫「X屬性罪孽碎片」（ChoiceEventEffect-a1c7p3 /1–/3：「2個暴怒屬性罪孽碎片」；詞彙表：E.G.O 자원 → 罪孽碎片）。
+# 同一事件的選項 ActionEvents-a1c7p3 /10 的三個 messageDesc 與 Passives_Abnormality-a1c9p3 /66 寫成「罪孽屬性碎片」，字序顛倒；改為「屬性罪孽碎片」。
+reason: '「E.G.O 자원」寫「罪孽碎片」（詞彙表），屬性照既有寫在前面'
+files: ['ActionEvents-a1c7p3.json', 'Passives_Abnormality-a1c9p3.json']
+pattern: '罪孽屬性碎片'
+replace: '屬性罪孽碎片'
+kr_pattern: 'E\.G\.O 자원'

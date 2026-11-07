@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「채광」寫「採光」（詞彙表）。TutorialMainUIText /704、/1034「※ 단, 채광과 거울굴절철도에서는 [일반 승객 복구팩]…」寫成「在折射軌道中無法獲得」，
+# 漏了「採光」（EN「cannot be obtained in Luxcavations and Refraction Railways」）；補上。
+reason: '補上漏譯的「채광」（詞彙表：採光）'
+files: ['TutorialMainUIText.json']
+pattern: '在折射軌道中無法獲得'
+replace: '在採光與折射軌道中無法獲得'
+kr_pattern: '채광과 거울굴절철도에서는'

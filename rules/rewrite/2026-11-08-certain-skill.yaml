@@ -1,0 +1,7 @@
+# 應用率回顧（2026-11-07）：「특정 스킬」寫「特定技能」（詞彙表）。BattleKeywords /412、Bufs /488 的「특정 스킬 사용 시 화살이 소모됨」寫成「特殊技能使用時消耗的箭矢」，
+# 「特定」寫成「特殊」；改為譯名（EN「Arrows spent by certain Skills」）。
+reason: '「특정 스킬」寫「特定技能」（詞彙表）'
+files: ['BattleKeywords.json', 'Bufs.json']
+pattern: '特殊技能使用時消耗的箭矢'
+replace: '特定技能使用時消耗的箭矢'
+kr_pattern: '특정 스킬 사용 시 화살이 소모됨'

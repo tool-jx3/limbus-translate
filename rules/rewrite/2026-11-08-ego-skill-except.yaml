@@ -1,0 +1,9 @@
+# 應用率回顧（2026-11-07）：「E.G.O 스킬 제외」寫「不包括E.G.O技能」（詞彙表）。tw ff9b2c6 有 94 個單位，9 個沒用譯名，其中 7 個寫法不一：
+#   「不包含E.G.O技能」4 個（Passives /482、EGOgift_MirrorDungeon-mowe-re /2、/3、EGOgift_MirrorDungeon_7 /6）、
+#   「E.G.O技能除外」3 個（EGOgift_MirrorDungeon-StoryTheme /1、EGOgift_MirrorDungeon-StoryTheme_2 /3、EGOgift_MirrorDungeon_7 /7）。
+# 意思相同，統一為譯名。BattleKeywords /235、Bufs /282「(수비, E.G.O 스킬 제외」寫「(不包括守備技能，E.G.O技能」，是正確的合併寫法，不改。
+reason: '「E.G.O 스킬 제외」寫「不包括E.G.O技能」（詞彙表）'
+files: ['EGOgift_MirrorDungeon-StoryTheme.json', 'EGOgift_MirrorDungeon-StoryTheme_2.json', 'EGOgift_MirrorDungeon-mowe-re.json', 'EGOgift_MirrorDungeon_7.json', 'Passives.json']
+pattern: '不包含E\.G\.O技能|E\.G\.O技能除外'
+replace: '不包括E.G.O技能'
+kr_pattern: 'E\.G\.O 스킬 제외'

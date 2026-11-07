@@ -1,0 +1,6 @@
+# 應用率回顧（2026-11-07）：「사기 저하」寫「士氣低落」（詞彙表）。TutorialRenewalDesc /44、/45、/46 的「<사기 저하>」寫成 JP 字形「<士氣低下>」；改為譯名。
+reason: '「사기 저하」寫「士氣低落」（詞彙表）'
+files: ['TutorialRenewalDesc.json']
+pattern: '士氣低下'
+replace: '士氣低落'
+kr_pattern: '사기 저하'

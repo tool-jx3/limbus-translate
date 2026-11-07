@@ -1,0 +1,6 @@
+# 應用率回顧（2026-11-07）：「새로고침」寫「刷新」（詞彙表）。TutorialMirrorDungeon /208、/344、/487「새로고침 모양으로 변경되며」寫成「出現更新按鈕」（JP 字形「更新」）；改為「刷新按鈕」。
+reason: '「새로고침」寫「刷新」（詞彙表）'
+files: ['TutorialMirrorDungeon.json']
+pattern: '更新按鈕'
+replace: '刷新按鈕'
+kr_pattern: '새로고침 모양'
