@@ -116,9 +116,10 @@ func characterFiles(root string) ([]string, error) {
 }
 
 // GuidesFor lists the guide files to apply to a batch, in the order they are
-// layered: the base guide, the guide of the file's family, the character the
-// file belongs to, then the characters of the speakers (ids, in order of
-// appearance). Nothing is listed twice, and a speaker id that is not a
+// layered: the base guide, the guide of the file's family, the guides: entries
+// of the routing that fit the file by node and then those that fit by tag (each
+// in list order), the character the file belongs to, then the characters of
+// the speakers (ids, in order of appearance). Nothing is listed twice, and a speaker id that is not a
 // character is left out.
 func (r *Rules) GuidesFor(file string, speakers []string) []string {
 	guides := []string{BaseGuide}
@@ -128,6 +129,9 @@ func (r *Rules) GuidesFor(file string, speakers []string) []string {
 		}
 	}
 	add(r.familyGuide(r.Family(file)))
+	for _, g := range r.guideLayers(file) {
+		add(g)
+	}
 	if c, ok := r.CharacterByFile(file); ok {
 		add(c.Path)
 	}

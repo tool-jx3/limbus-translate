@@ -22,6 +22,19 @@ type Routing struct {
 	// Priority lists the family ids in the order they are translated, first
 	// first.
 	Priority []string `yaml:"priority" json:"priority"`
+	// Guides are extra guide files layered on a family's guide by node or by
+	// tag (see GuideRule), in the order they are listed.
+	Guides []GuideRule `yaml:"guides,omitempty" json:"guides,omitempty"`
+}
+
+// GuideRule adds Guide to the files it fits.
+type GuideRule struct {
+	// When is a node name or a path.Match pattern over node names (matched
+	// against the top and the sub node of FileNode, the same syntax as nodes),
+	// or a tag: chapter:<n>, character:<id> or event:<id> (see FileTag).
+	When string `yaml:"when" json:"when"`
+	// Guide is the guide file, relative to the repo root.
+	Guide string `yaml:"guide" json:"guide"`
 }
 
 // FamilyRule is one file family.
@@ -218,4 +231,49 @@ func (r *Rules) familyGuide(id string) string {
 		}
 	}
 	return ""
+}
+
+// guideLayerTags are the prefixes of a GuideRule.When that name a tag.
+var guideLayerTags = []string{ChapterPrefix, CharacterPrefix, EventPrefix}
+
+// isTagWhen reports whether when names a tag, not a node.
+func isTagWhen(when string) bool {
+	return slices.ContainsFunc(guideLayerTags, func(p string) bool { return strings.HasPrefix(when, p) })
+}
+
+// whenItem turns a GuideRule.When into the scope item matchScope reads: a tag
+// as it is, a node as a group: token.
+func whenItem(when string) string {
+	if isTagWhen(when) {
+		return when
+	}
+	return GroupPrefix + when
+}
+
+// whenError describes what is wrong with a GuideRule.When, or returns "".
+func whenError(when string) string {
+	if prefix, _, ok := cutScopeToken(when); ok && !isTagWhen(when) {
+		return fmt.Sprintf("when %q: %s is not a node or a tag (chapter:, character:, event:)", when, prefix)
+	}
+	if when == "" {
+		return "when is empty"
+	}
+	if msg := scopeItemError(whenItem(when), nil, nil); msg != "" {
+		return fmt.Sprintf("when %q: %s", when, msg)
+	}
+	return ""
+}
+
+// guideLayers lists the guide files of the entries of Guides that fit file,
+// the node entries first and then the tag entries, each in list order.
+func (r *Rules) guideLayers(file string) []string {
+	var out []string
+	for _, tags := range []bool{false, true} {
+		for _, g := range r.Routing.Guides {
+			if isTagWhen(g.When) == tags && g.Guide != "" && r.matchScope([]string{whenItem(g.When)}, file) {
+				out = append(out, g.Guide)
+			}
+		}
+	}
+	return out
 }

@@ -2087,3 +2087,135 @@ func TestLintScopeWarningsUnreadableCharacters(t *testing.T) {
 		t.Errorf("unreadable guides/characters: warnings = %v, want none", got)
 	}
 }
+
+// addGuideRules appends a guides: list to the routing of root.
+func addGuideRules(t *testing.T, root, list string) {
+	t.Helper()
+	edit(t, root, "guides/routing.yaml", func(s string) string { return s + "\nguides:\n" + list })
+}
+
+func writeGuide(t *testing.T, root, rel string, size int) {
+	t.Helper()
+	p := filepath.Join(root, filepath.FromSlash(rel))
+	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(p, []byte(strings.Repeat("a", size)), 0o644); err != nil {
+		t.Fatal(err)
+	}
+}
+
+// The layers of GuidesFor: base, family, the guides: entries that fit by node
+// (in list order), those that fit by tag, the character of the file, the
+// speakers. Nothing is listed twice.
+func TestGuidesForLayers(t *testing.T) {
+	root := copyRules(t)
+	for _, g := range []string{"tag", "node-sub", "node-top", "chapter"} {
+		writeGuide(t, root, "guides/families/"+g+".md", 10)
+	}
+	addGuideRules(t, root, `  - when: "character:meursault"
+    guide: guides/families/tag.md
+  - when: "PersonalityVoiceDlg/Voice_*"
+    guide: guides/families/node-sub.md
+  - when: "PersonalityVoiceDlg/"
+    guide: guides/families/node-top.md
+  - when: "PersonalityVoiceDlg/"
+    guide: guides/families.md
+  - when: "Skills"
+    guide: guides/families/chapter.md
+  - when: "chapter:1"
+    guide: guides/families/chapter.md
+  - when: "event:nothing"
+    guide: guides/families/chapter.md
+`)
+	r, err := rules.Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := r.GuidesFor("PersonalityVoiceDlg/Voice_Meursalut_xxx_10511.json", []string{"dante", "meursault"})
+	want := []string{
+		"guides/base.md", "guides/families.md",
+		"guides/families/node-sub.md", "guides/families/node-top.md",
+		"guides/families/tag.md",
+		"guides/characters/meursault.md", "guides/characters/dante.md",
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("GuidesFor = %v, want %v", got, want)
+	}
+	// a file no entry fits keeps the old result
+	if got, want := r.GuidesFor("MainUIText.json", nil), []string{"guides/base.md", "guides/families.md"}; !reflect.DeepEqual(got, want) {
+		t.Errorf("GuidesFor(MainUIText) = %v, want %v", got, want)
+	}
+}
+
+// Lint rejects a guides: entry whose file is missing or whose when is not a
+// node pattern or tag, and a family guide over 4096 bytes.
+func TestLintGuideRules(t *testing.T) {
+	tests := []struct {
+		name  string
+		setup func(t *testing.T, root string)
+		want  []string
+	}{
+		{"missing file", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"Skills\"\n    guide: guides/families/nope.md\n")
+		}, []string{"guides/routing.yaml", "guides/families/nope.md"}},
+		{"bad pattern", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"Skills[\"\n    guide: guides/families.md\n")
+		}, []string{"guides/routing.yaml", "Skills["}},
+		{"bad tag", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"chapter:x\"\n    guide: guides/families.md\n")
+		}, []string{"guides/routing.yaml", "chapter:x"}},
+		{"empty when", func(t *testing.T, root string) {
+			addGuideRules(t, root, "  - when: \"\"\n    guide: guides/families.md\n")
+		}, []string{"guides/routing.yaml", "when"}},
+		{"too big", func(t *testing.T, root string) {
+			writeGuide(t, root, "guides/families/big.md", 4097)
+		}, []string{"guides/families/big.md", "4096"}},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyRules(t)
+			tc.setup(t, root)
+			msg := lintMessages(rules.Lint(root))
+			if msg == "" {
+				t.Fatal("Lint found nothing")
+			}
+			for _, want := range tc.want {
+				if !strings.Contains(msg, want) {
+					t.Errorf("lint output does not mention %q:\n%s", want, msg)
+				}
+			}
+		})
+	}
+	root := copyRules(t)
+	writeGuide(t, root, "guides/families/ok.md", 4096)
+	addGuideRules(t, root, "  - when: \"Skills*\"\n    guide: guides/families/ok.md\n  - when: \"chapter:1\"\n    guide: guides/families/ok.md\n")
+	if errs := rules.Lint(root); len(errs) != 0 {
+		t.Errorf("Lint of a sound guides: list: %v", lintMessages(errs))
+	}
+}
+
+// With the KR pack at hand, a file whose guides add up to more than 35,000
+// bytes is warned of.
+func TestLintGuideTotal(t *testing.T) {
+	root := copyRules(t)
+	writeGuide(t, root, "guides/base.md", 20000)
+	writeGuide(t, root, "guides/families.md", 10000)
+	writeGuide(t, root, "guides/families/a.md", 4000)
+	writeGuide(t, root, "guides/families/b.md", 3000)
+	addGuideRules(t, root, "  - when: \"Skills*\"\n    guide: guides/families/a.md\n  - when: \"Skills_Enemy\"\n    guide: guides/families/b.md\n")
+	files := []string{"MainUIText.json", "Skills_Enemy-mowe.json"}
+	var msgs []string
+	for _, w := range rules.LintRoutingWarnings(root, files) {
+		msgs = append(msgs, w.Message)
+	}
+	all := strings.Join(msgs, "\n")
+	for _, want := range []string{"Skills_Enemy-mowe.json", "37000", "35000"} {
+		if !strings.Contains(all, want) {
+			t.Errorf("warnings do not mention %q:\n%s", want, all)
+		}
+	}
+	if strings.Contains(all, "MainUIText.json") {
+		t.Errorf("MainUIText.json (30000 bytes) is warned of:\n%s", all)
+	}
+}

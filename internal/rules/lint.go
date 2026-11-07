@@ -310,6 +310,20 @@ func (l *linter) routing() {
 		l.report(RoutingFile, "%v", err)
 	}
 
+	for i, g := range rt.Guides {
+		label := fmt.Sprintf("guides entry %d", i+1)
+		if msg := whenError(g.When); msg != "" {
+			l.report(RoutingFile, "%s: %s", label, msg)
+		}
+		switch {
+		case g.Guide == "":
+			l.report(RoutingFile, "%s: guide is missing", label)
+		case !l.fileExists(g.Guide):
+			l.report(RoutingFile, "%s: guide file %s does not exist", label, g.Guide)
+		}
+	}
+	l.familyGuideSizes()
+
 	listed := map[string]bool{}
 	for _, id := range rt.Priority {
 		switch {
@@ -323,6 +337,32 @@ func (l *linter) routing() {
 	for _, f := range rt.Families {
 		if f.ID != "" && !listed[f.ID] {
 			l.report(RoutingFile, "family %q is missing from priority", f.ID)
+		}
+	}
+}
+
+// FamilyGuidesDir holds the family guides; a file there may be
+// MaxFamilyGuideBytes long. MaxGuideTotalBytes is the limit of the guides of one
+// batch (speakers' characters left out; see LintRoutingWarnings).
+const (
+	FamilyGuidesDir     = "guides/families"
+	MaxFamilyGuideBytes = 4096
+	MaxGuideTotalBytes  = 35000
+)
+
+// familyGuideSizes reports the guides/families/*.md files over the limit.
+func (l *linter) familyGuideSizes() {
+	entries, err := os.ReadDir(filepath.Join(l.root, filepath.FromSlash(FamilyGuidesDir)))
+	if err != nil {
+		return
+	}
+	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".md") {
+			continue
+		}
+		info, err := e.Info()
+		if err == nil && info.Size() > MaxFamilyGuideBytes {
+			l.report(FamilyGuidesDir+"/"+e.Name(), "is %d bytes, over the limit of %d", info.Size(), MaxFamilyGuideBytes)
 		}
 	}
 }
@@ -652,6 +692,38 @@ func LintRoutingWarnings(root string, krFiles []string) []LintError {
 				why = "it lists the full name"
 			}
 			warn("node %q is fit by families %s; %s takes it (%s)", node, strings.Join(ids, ", "), rt.Families[rt.routeNode(node)].ID, why)
+		}
+	}
+	out = append(out, guideTotalWarnings(root, krFiles)...)
+	return out
+}
+
+// guideTotalWarnings warns of the KR files whose GuidesFor (no speakers) add
+// up to more than MaxGuideTotalBytes.
+func guideTotalWarnings(root string, krFiles []string) []LintError {
+	r, err := Load(root)
+	if err != nil {
+		return nil // Lint reports what does not load
+	}
+	sizes := map[string]int64{}
+	size := func(rel string) int64 {
+		n, ok := sizes[rel]
+		if !ok {
+			if info, err := os.Stat(filepath.Join(root, filepath.FromSlash(rel))); err == nil {
+				n = info.Size()
+			}
+			sizes[rel] = n
+		}
+		return n
+	}
+	var out []LintError
+	for _, f := range krFiles {
+		var total int64
+		for _, g := range r.GuidesFor(f, nil) {
+			total += size(g)
+		}
+		if total > MaxGuideTotalBytes {
+			out = append(out, LintError{File: RoutingFile, Message: fmt.Sprintf("the guides of %s add up to %d bytes, over %d", f, total, MaxGuideTotalBytes)})
 		}
 	}
 	return out

@@ -26,6 +26,19 @@
 #      所以兩個族群的樣式搶同一個節點時，排在前面的取得；lct rules lint 在有 raw 時會警告這種衝突。
 #   3. sub、top 都沒有族群列到，歸 unsorted。
 #
+# guides：在族群指引之外，依節點或標記疊加的指引（可省略；清單可為空）。每項：
+#   when   節點名稱或樣式（Go path.Match，與 nodes 相同，比對 top 與 sub 節點），
+#          或標記 chapter:<章數>、character:<角色 id>、event:<活動 id>（可含 path.Match 萬用字元）
+#   guide  指引檔（相對於 repo 根目錄，必須存在）
+#   疊加順序：base、族群指引、符合的節點項（依清單順序）、符合的標記項（依清單順序）、檔案所屬角色、說話者角色；重複的只列第一次。
+#   族群指引（guides/families/*.md）每份 ≤ 4096 bytes；lct rules lint 在有 raw 時，對任一 KR 檔的指引（不含說話者）總量 > 35,000 bytes 警告。
+#   例：
+#     guides:
+#       - when: "Skills_Enemy"
+#         guide: guides/families/enemy-skills.md
+#       - when: "chapter:7"
+#         guide: guides/families/chapter7.md
+#
 # priority：待譯項目的發放順序，族群 id 依 guides/families.md「對於既有文本翻譯優先序」排列，越前面越先翻。
 #   每個族群都要列在這裡，各列一次。
 
