@@ -67,6 +67,30 @@ describe('TermView, the top', () => {
     expect(top.textContent).toContain('40 / 52')
   })
 
+  it('shows jp, en, the meaning and its sources: a wiki URL as a link, a game key as text', async () => {
+    const withMeaning = {
+      ...index,
+      entries: index.entries.map((e) =>
+        e.id === ID
+          ? { ...e, jp: '対象', en: 'Target', meaning: '被攻擊的對象', sources: ['https://limbuscompany.wiki.gg/wiki/Target', 'game:Bufs.json#/dataList/0/name'] }
+          : e,
+      ),
+    }
+    const el = await mount(route(), { 'glossary/index.json': withMeaning })
+    const top = el.querySelector('.tv-top')!
+    expect(top.textContent).toContain('対象')
+    expect(top.textContent).toContain('Target')
+    expect(top.textContent).toContain('被攻擊的對象')
+    const links = [...top.querySelectorAll<HTMLAnchorElement>('.tv-sources a')]
+    expect(links.map((a) => a.getAttribute('href'))).toEqual(['https://limbuscompany.wiki.gg/wiki/Target'])
+    expect(top.querySelector('.tv-sources')?.textContent).toContain('game:Bufs.json#/dataList/0/name')
+  })
+
+  it('shows no meaning or sources row for an entry without them', async () => {
+    const el = await mount()
+    expect(el.querySelector('.tv-sources')).toBeNull()
+  })
+
   it('shows the groups: family and top node, each with units and units with the rendering', async () => {
     const el = await mount()
     const rows = [...el.querySelectorAll('.tv-groups tbody tr')].map((r) => [...r.children].map((c) => c.textContent))

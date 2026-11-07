@@ -292,6 +292,11 @@ export interface ScopeEntry {
   id: string
   kr: string
   zh: string
+  /** The Japanese and English of the entry, and the sense it stands for with where that comes from (game:<file>#<pointer> or a limbuscompany.wiki.gg URL); each is absent where the glossary has none. */
+  jp?: string
+  en?: string
+  meaning?: string
+  sources?: string[]
   also: string[]
   files: string[]
   not_files: string[]

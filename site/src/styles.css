@@ -2651,6 +2651,15 @@ button.chip {
   margin: 0;
   overflow-wrap: anywhere;
 }
+.tv-sources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tv-sources li {
+  overflow-wrap: anywhere;
+}
 
 .tv-links {
   display: flex;

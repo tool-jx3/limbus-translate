@@ -86,6 +86,44 @@ function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
         <span lang={LANG_ATTR.kr}>{e.kr}</span> → <span lang={LANG_ATTR.zh}>{e.zh}</span>
       </h1>
       <dl class="tv-facts">
+        {e.jp !== undefined && (
+          <>
+            <dt>JP</dt>
+            <dd lang={LANG_ATTR.jp}>{e.jp}</dd>
+          </>
+        )}
+        {e.en !== undefined && (
+          <>
+            <dt>EN</dt>
+            <dd lang={LANG_ATTR.en}>{e.en}</dd>
+          </>
+        )}
+        {e.meaning !== undefined && (
+          <>
+            <dt>詞義</dt>
+            <dd lang={LANG_ATTR.zh}>{e.meaning}</dd>
+          </>
+        )}
+        {e.sources !== undefined && e.sources.length > 0 && (
+          <>
+            <dt>出處</dt>
+            <dd class="tv-sources">
+              <ul>
+                {e.sources.map((s) => (
+                  <li key={s}>
+                    {s.startsWith('https://') ? (
+                      <a href={s} target="_blank" rel="noopener noreferrer">
+                        {s}
+                      </a>
+                    ) : (
+                      <code>{s}</code>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </>
+        )}
         {e.also.length > 0 && (
           <>
             <dt>也可</dt>
