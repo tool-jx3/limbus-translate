@@ -189,10 +189,118 @@ func TestUSDPerUnit(t *testing.T) {
 
 func ptr(f float64) *float64 { return &f }
 
-func TestReason(t *testing.T) {
-	w := Wave{Signals: map[string]int{SignalFormat: 2, SignalInconsistent: 1, SignalLengthRatio: 4}}
-	want := "複查：inconsistent、length-ratio、format；保留原措辭，只修正問題"
-	if got := w.Reason(); got != want {
+func TestSetsAndReasons(t *testing.T) {
+	cands := []Candidate{
+		{Key: "a", Signals: []string{SignalInconsistent, SignalFormat}},
+		{Key: "b", Signals: []string{SignalFormat}},
+		{Key: "c", Signals: []string{SignalInconsistent, SignalFormat}},
+	}
+	sets := Sets(cands)
+	if len(sets) != 2 || !slices.Equal(sets[0].Keys, []string{"a", "c"}) || !slices.Equal(sets[1].Keys, []string{"b"}) {
+		t.Fatalf("sets = %+v, want {a c} then {b}", sets)
+	}
+	if got, want := sets[0].Reason(), "複查：同一 KR 在其他單位有不同譯法、格式警告；保留原措辭，只修正問題"; got != want {
 		t.Errorf("reason = %q, want %q", got, want)
+	}
+	if got, want := sets[1].Reason(), "複查：格式警告；保留原措辭，只修正問題"; got != want {
+		t.Errorf("reason = %q, want %q", got, want)
+	}
+	if got := sets[0].Topic(); got != "inconsistent-format" {
+		t.Errorf("topic = %q", got)
+	}
+	for _, sig := range Signals {
+		if reasons[sig] == "" {
+			t.Errorf("signal %s has no reason", sig)
+		}
+	}
+}
+
+// variant builds a variant of n units of file f, starting at unit from, whose
+// units all have the JP/EN pair (jp, en).
+func variant(zh, f string, from, n int, jp, en string) site.Variant {
+	v := site.Variant{ZH: zh, Count: n}
+	g := site.JPENGroup{JP: &jp, EN: &en, Count: n}
+	for i := from; i < from+n; i++ {
+		v.Keys = append(v.Keys, k(f, i))
+		g.Keys = append(g.Keys, k(f, i))
+	}
+	v.JPEN = []site.JPENGroup{g}
+	return v
+}
+
+func inconsistent(class string, vs ...site.Variant) site.Review {
+	return site.Review{Suggestions: []site.SuggestionItem{{Kind: suggest.KindInconsistent, JPENClass: class, Variants: vs}}}
+}
+
+func candidateKeys(r site.Review) []string {
+	recs := map[string]store.Record{}
+	for _, s := range r.Suggestions {
+		for _, v := range s.Variants {
+			for _, key := range v.Keys {
+				recs[key] = rec(store.OriginClaude)
+			}
+		}
+	}
+	var out []string
+	for _, c := range Candidates(in(r, recs)) {
+		out = append(out, c.Key)
+	}
+	slices.Sort(out)
+	return out
+}
+
+func TestInconsistentOnlyOutsideTheLargestVariant(t *testing.T) {
+	// 3 to 1: only the single unit is signalled.
+	r := inconsistent(site.JPENSame, variant("甲", "A.json", 0, 3, "j", "e"), variant("乙", "A.json", 3, 1, "j", "e"))
+	if got := candidateKeys(r); !slices.Equal(got, []string{k("A.json", 3)}) {
+		t.Errorf("3-to-1: candidates %v, want only the minority unit", got)
+	}
+	// 2 to 2: a tie signals every member.
+	r = inconsistent(site.JPENSame, variant("甲", "A.json", 0, 2, "j", "e"), variant("乙", "A.json", 2, 2, "j", "e"))
+	if got := candidateKeys(r); len(got) != 4 {
+		t.Errorf("2-to-2: candidates %v, want all 4", got)
+	}
+	// A tie for largest with a smaller third: every member signals.
+	r = inconsistent(site.JPENSame, variant("甲", "A.json", 0, 2, "j", "e"), variant("乙", "A.json", 2, 2, "j", "e"), variant("丙", "A.json", 4, 1, "j", "e"))
+	if got := candidateKeys(r); len(got) != 5 {
+		t.Errorf("2-2-1: candidates %v, want all 5", got)
+	}
+}
+
+func TestInconsistentSkipsExplainedGroups(t *testing.T) {
+	r := inconsistent(site.JPENExplained, variant("甲", "A.json", 0, 3, "j1", "e1"), variant("乙", "A.json", 3, 3, "j2", "e2"))
+	if got := candidateKeys(r); len(got) != 0 {
+		t.Errorf("explained group: candidates %v, want none", got)
+	}
+}
+
+func TestInconsistentPartialSkipsVariantsThatFollowTheirJPEN(t *testing.T) {
+	// Pair p has two renderings (甲, 乙); 丙 is the only rendering of pair q.
+	// 甲 is the unique largest, 乙 is disputed, 丙 follows its JP/EN.
+	r := inconsistent(site.JPENPartial,
+		variant("甲", "A.json", 0, 4, "p", "p"),
+		variant("乙", "A.json", 4, 2, "p", "p"),
+		variant("丙", "A.json", 6, 3, "q", "q"),
+	)
+	if got := candidateKeys(r); !slices.Equal(got, []string{k("A.json", 4), k("A.json", 5)}) {
+		t.Errorf("partial: candidates %v, want only the units of 乙", got)
+	}
+}
+
+func TestInconsistentPartialWithoutJPENDataIsAnOrdinaryGroup(t *testing.T) {
+	a, b := variant("甲", "A.json", 0, 3, "p", "p"), variant("乙", "A.json", 3, 1, "p", "p")
+	a.JPEN, b.JPEN = nil, nil
+	r := inconsistent(site.JPENPartial, a, b)
+	if got := candidateKeys(r); !slices.Equal(got, []string{k("A.json", 3)}) {
+		t.Errorf("partial without data: candidates %v, want the minority unit", got)
+	}
+}
+
+func TestCandidatesExcludeHuman(t *testing.T) {
+	a, b := k("A.json", 0), k("A.json", 1)
+	r := site.Review{Warnings: []site.WarningItem{{Code: "ellipsis", Keys: []string{a, b}}}}
+	got := Candidates(in(r, map[string]store.Record{a: rec(store.OriginHuman), b: rec(store.OriginClaude)}))
+	if len(got) != 1 || got[0].Key != b {
+		t.Fatalf("candidates = %+v, want only the non-human unit", got)
 	}
 }

@@ -21,9 +21,11 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "audit",
 		Usage: "rank the existing translations by quality signals and split them into review waves: [--wave-size 500] [--wave N] [--usd-per-unit X] [--to-file TOPIC]; " +
-			"counts units, families and signals per wave (the unit keys are printed only with --wave, for that wave) and estimates the cost of translating a wave again " +
-			"(--usd-per-unit, default cost_usd / (pending_before - pending_after) of .meta/translate.json, null when that cannot be told); " +
-			"writes nothing, or with --to-file TOPIC (wave --wave, default 1) rules/requeue/<date>-audit-<topic>.yaml, the request lct requeue --to-file writes",
+			"counts units, families and signals per wave (the unit keys are printed with --wave, for that wave, and with --to-file, which writes wave 1 unless --wave says otherwise) " +
+			"and estimates the cost of translating a wave again " +
+			"(--usd-per-unit, default cost_usd / (pending_before - pending_after) of .meta/translate.json, null when that cannot be told; " +
+			"rate_source and rate_units say what the rate rests on); " +
+			"writes nothing, or with --to-file TOPIC one rules/requeue/<date>-audit-<topic>-<signals>.yaml for each set of signals in the wave, the requests lct requeue --to-file writes",
 		Run: runAudit,
 	})
 }
@@ -34,17 +36,27 @@ type auditOutput struct {
 	Candidates int `json:"candidates"`
 	WaveSize   int `json:"wave_size"`
 	// USDPerUnit is the rate the estimates use; null when it is unknown.
-	USDPerUnit *float64     `json:"usd_per_unit"`
+	USDPerUnit *float64 `json:"usd_per_unit"`
+	// RateSource says where the rate comes from: translate.MetaFile or
+	// "--usd-per-unit"; RateUnits is the number of units it was told from
+	// (pending_before - pending_after), absent for --usd-per-unit.
+	RateSource string       `json:"rate_source,omitempty"`
+	RateUnits  *int         `json:"rate_units,omitempty"`
 	Waves      []audit.Wave `json:"waves"`
-	// Written is the request file written by --to-file.
-	Written *requeueWritten `json:"written,omitempty"`
+	// Written are the request files written by --to-file, one for each set of
+	// signals in the wave.
+	Written []requeueWritten `json:"written,omitempty"`
 }
 
 func (o auditOutput) String() string {
 	var b strings.Builder
 	rate := "unknown"
 	if o.USDPerUnit != nil {
-		rate = fmt.Sprintf("%.4f USD per unit", *o.USDPerUnit)
+		rate = fmt.Sprintf("%.4f USD per unit (%s", *o.USDPerUnit, o.RateSource)
+		if o.RateUnits != nil {
+			rate += fmt.Sprintf(", from %d units", *o.RateUnits)
+		}
+		rate += ")"
 	}
 	fmt.Fprintf(&b, "%d units with a signal, waves of %d, %s\n", o.Candidates, o.WaveSize, rate)
 	for _, w := range o.Waves {
@@ -54,8 +66,8 @@ func (o auditOutput) String() string {
 		}
 		fmt.Fprintf(&b, "wave %d: %d units, %s\n  families: %s\n  signals: %s\n", w.Number, w.Units, est, counts(w.Families, nil), counts(w.Signals, audit.Signals))
 	}
-	if o.Written != nil {
-		b.WriteString(o.Written.String())
+	for _, w := range o.Written {
+		b.WriteString(w.String())
 	}
 	return b.String()
 }
@@ -130,8 +142,10 @@ func runAudit(ctx *cli.Context, args []string) error {
 	})
 
 	var rate *float64
+	var rateSource string
+	var rateUnits *int
 	if given["usd-per-unit"] {
-		rate = usd
+		rate, rateSource = usd, "--usd-per-unit"
 	} else {
 		st, err := openTWStore(ctx, "audit")
 		if err != nil {
@@ -144,11 +158,15 @@ func runAudit(ctx *cli.Context, args []string) error {
 		}
 		if found {
 			rate = audit.USDPerUnit(res.CostUSD, res.PendingBefore, res.PendingAfter)
+			if rate != nil {
+				n := res.PendingBefore - res.PendingAfter
+				rateSource, rateUnits = ".meta/"+translate.MetaFile, &n
+			}
 		}
 	}
 
 	waves := audit.Waves(cands, *size, rate)
-	out := auditOutput{Candidates: len(cands), WaveSize: *size, USDPerUnit: rate, Waves: waves}
+	out := auditOutput{Candidates: len(cands), WaveSize: *size, USDPerUnit: rate, RateSource: rateSource, RateUnits: rateUnits, Waves: waves}
 	var picked *audit.Wave
 	if *wave > 0 {
 		if *wave > len(waves) {
@@ -164,15 +182,20 @@ func runAudit(ctx *cli.Context, args []string) error {
 		}
 	}
 	if given["to-file"] {
-		written, err := requeue.WriteFile(ctx.Root, ruleFileNow().Format("2006-01-02"), "audit-"+*toFile,
-			requeue.Selector{Keys: picked.Keys}, picked.Reason())
-		if errors.Is(err, requeue.ErrInvalid) {
-			return cli.UserError("audit: " + err.Error())
+		// One request for each set of signals, so that the hint of a request
+		// names only what its units have.
+		from := (picked.Number - 1) * *size
+		for _, set := range audit.Sets(cands[from : from+picked.Units]) {
+			written, err := requeue.WriteFile(ctx.Root, ruleFileNow().Format("2006-01-02"), "audit-"+*toFile+"-"+set.Topic(),
+				requeue.Selector{Keys: set.Keys}, set.Reason())
+			if errors.Is(err, requeue.ErrInvalid) {
+				return cli.UserError("audit: " + err.Error())
+			}
+			if err != nil {
+				return err
+			}
+			out.Written = append(out.Written, requeueWritten{Path: written, ID: rulefile.ID(path.Base(written))})
 		}
-		if err != nil {
-			return err
-		}
-		out.Written = &requeueWritten{Path: written, ID: rulefile.ID(path.Base(written))}
 	}
 	return ctx.Emit(out)
 }

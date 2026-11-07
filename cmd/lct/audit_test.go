@@ -62,6 +62,12 @@ func TestAuditCost(t *testing.T) {
 	if out.USDPerUnit == nil || *out.USDPerUnit != 0.05 {
 		t.Fatalf("rate = %v, want 0.05", out.USDPerUnit)
 	}
+	if out.RateSource != ".meta/translate.json" || out.RateUnits == nil || *out.RateUnits != 60 {
+		t.Errorf("rate basis = %q, %v units, want .meta/translate.json and 60", out.RateSource, out.RateUnits)
+	}
+	if _, text, _ := lct(t, "audit"); !strings.Contains(text, ".meta/translate.json") || !strings.Contains(text, "60 units") {
+		t.Errorf("text output lacks the rate basis:\n%s", text)
+	}
 	if got := *out.Waves[0].EstimatedUSD; got != 0.05*float64(out.Waves[0].Units) {
 		t.Errorf("estimate = %v", got)
 	}
@@ -72,10 +78,37 @@ func TestAuditCost(t *testing.T) {
 		t.Errorf("a run that cleared nothing gave rate %v", out.USDPerUnit)
 	}
 
-	mustLct(t, &out, "audit", "--usd-per-unit", "0.5")
-	if out.USDPerUnit == nil || *out.USDPerUnit != 0.5 || *out.Waves[0].EstimatedUSD != 0.5*float64(out.Waves[0].Units) {
-		t.Errorf("--usd-per-unit not used: %+v", out)
+	var over auditOutput
+	mustLct(t, &over, "audit", "--usd-per-unit", "0.5")
+	if over.USDPerUnit == nil || *over.USDPerUnit != 0.5 || *over.Waves[0].EstimatedUSD != 0.5*float64(over.Waves[0].Units) {
+		t.Errorf("--usd-per-unit not used: %+v", over)
 	}
+	if over.RateSource != "--usd-per-unit" || over.RateUnits != nil {
+		t.Errorf("override: rate_source %q, rate_units %v, want --usd-per-unit and none", over.RateSource, over.RateUnits)
+	}
+}
+
+// longRecord makes the translation of one unit of the fixture far longer than
+// its KR, so that it has a length-ratio signal that the other unit lacks.
+func longRecord(t *testing.T, s acceptState) (long string) {
+	t.Helper()
+	st := store.Open(filepath.Join(s.root, ".work", "tw"))
+	records, err := st.LoadRecords()
+	if err != nil {
+		t.Fatal(err)
+	}
+	long = "Skills_personality-01.json|/dataList/0/levelList/0/desc"
+	rec, ok := records[long]
+	if !ok {
+		t.Fatalf("the fixture has no record %s", long)
+	}
+	rec.ZH = strings.Repeat("長", 60) + rec.ZH
+	records[long] = rec
+	if err := st.SaveRecords(records); err != nil {
+		t.Fatal(err)
+	}
+	mustLct(t, nil, "build")
+	return long
 }
 
 func TestAuditToFileWritesWhatRequeueWrites(t *testing.T) {
@@ -86,15 +119,15 @@ func TestAuditToFileWritesWhatRequeueWrites(t *testing.T) {
 
 	var out auditOutput
 	mustLct(t, &out, "audit", "--wave-size", "1", "--wave", "1", "--to-file", "first")
-	if out.Written == nil || out.Written.Path != "rules/requeue/2026-11-07-audit-first.yaml" {
+	if len(out.Written) != 1 || out.Written[0].Path != "rules/requeue/2026-11-07-audit-first-format.yaml" {
 		t.Fatalf("written = %+v", out.Written)
 	}
-	got, err := os.ReadFile(filepath.Join(s.root, filepath.FromSlash(out.Written.Path)))
+	got, err := os.ReadFile(filepath.Join(s.root, filepath.FromSlash(out.Written[0].Path)))
 	if err != nil {
 		t.Fatal(err)
 	}
 	key := out.Waves[0].Keys[0]
-	reason := "複查：" + strings.Join(signalsOf(out.Waves[0].Signals), "、") + "；保留原措辭，只修正問題"
+	reason := "複查：格式警告；保留原措辭，只修正問題"
 	mustLct(t, nil, "requeue", "--to-file", "ref", "--date", "2026-11-07", "--key", key, "--reason", reason)
 	want, err := os.ReadFile(filepath.Join(s.root, "rules", "requeue", "2026-11-07-ref.yaml"))
 	if err != nil {
@@ -111,14 +144,54 @@ func TestAuditToFileWritesWhatRequeueWrites(t *testing.T) {
 	}
 }
 
-func signalsOf(m map[string]int) []string {
-	var out []string
-	for _, s := range audit.Signals {
-		if m[s] > 0 {
-			out = append(out, s)
+func TestAuditToFileWritesOneRequestForEachSetOfSignals(t *testing.T) {
+	s := acceptRepo(t)
+	long := longRecord(t, s)
+	old := ruleFileNow
+	ruleFileNow = func() time.Time { return time.Date(2026, 11, 7, 12, 0, 0, 0, time.UTC) }
+	t.Cleanup(func() { ruleFileNow = old })
+
+	var out auditOutput
+	mustLct(t, &out, "audit", "--wave-size", "10", "--to-file", "w")
+	if len(out.Written) != 2 {
+		t.Fatalf("written = %+v, want a request for each of the 2 sets of signals", out.Written)
+	}
+	want := map[string]struct {
+		keys   []string
+		reason string
+	}{
+		"rules/requeue/2026-11-07-audit-w-length-ratio-format.yaml": {[]string{long}, "複查：譯文長度與 KR 比例異常、格式警告；保留原措辭，只修正問題"},
+		"rules/requeue/2026-11-07-audit-w-format.yaml":              {[]string{"Bufs.json|/dataList/0/name"}, "複查：格式警告；保留原措辭，只修正問題"},
+	}
+	for _, w := range out.Written {
+		exp, ok := want[w.Path]
+		if !ok {
+			t.Errorf("unexpected file %s", w.Path)
+			continue
+		}
+		delete(want, w.Path)
+		got, err := os.ReadFile(filepath.Join(s.root, filepath.FromSlash(w.Path)))
+		if err != nil {
+			t.Fatal(err)
+		}
+		// The file is what lct requeue --to-file writes for its keys and reason.
+		topic := "ref-" + strings.TrimSuffix(filepath.Base(w.Path), ".yaml")
+		topic = strings.ReplaceAll(topic, "2026-11-07-", "")
+		mustLct(t, nil, "requeue", "--to-file", topic, "--date", "2026-11-07", "--key", exp.keys[0], "--reason", exp.reason)
+		ref, err := os.ReadFile(filepath.Join(s.root, "rules", "requeue", "2026-11-07-"+topic+".yaml"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if string(got) != string(ref) {
+			t.Errorf("%s:\n%s\nrequeue file:\n%s", w.Path, got, ref)
+		}
+		if strings.Count(exp.reason, "、") == 0 && strings.Contains(string(got), "長度") {
+			t.Errorf("%s names a signal its units lack:\n%s", w.Path, got)
 		}
 	}
-	return out
+	for left := range want {
+		t.Errorf("%s was not written", left)
+	}
 }
 
 func TestAuditUsage(t *testing.T) {
