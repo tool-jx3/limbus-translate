@@ -467,3 +467,49 @@ func TestCollectNamesSkipUntranslatedFields(t *testing.T) {
 		}
 	}
 }
+
+// A language whose aligned text is the KR text itself (tags and spaces aside)
+// is a copy: the unit is not counted in that language's N. A text that differs
+// is counted.
+func TestCollectSkipsLanguageEqualToKR(t *testing.T) {
+	const n = 10
+	var kr, en, jp strings.Builder
+	for _, s := range []*strings.Builder{&kr, &en, &jp} {
+		s.WriteString(`{"dataList":[`)
+	}
+	for i := 0; i < 2*n; i++ {
+		sep := ","
+		if i == 0 {
+			sep = ""
+		}
+		fmt.Fprintf(&kr, `%s{"id":%d,"content":"잔느가 왔다"}`, sep, i+1)
+		if i < n {
+			// EN is the Hangul text (with a tag and a space around it): a copy.
+			fmt.Fprintf(&en, `%s{"id":%d,"content":" <b>잔느가 왔다</b>"}`, sep, i+1)
+		} else {
+			fmt.Fprintf(&en, `%s{"id":%d,"content":"Jeanne came"}`, sep, i+1)
+		}
+		fmt.Fprintf(&jp, `%s{"id":%d,"content":"ジャンヌが来た"}`, sep, i+1)
+	}
+	for _, s := range []*strings.Builder{&kr, &en, &jp} {
+		s.WriteString(`]}`)
+	}
+	set := openSet(t, packFiles{"Story.json": kr.String()}, packFiles{"Story.json": en.String()}, packFiles{"Story.json": jp.String()})
+	items, err := Collect(glossary(term("잔느", "賈恩")), set, testFields(t), nil,
+		map[string]Candidates{"잔느": {EN: []string{"Jeanne"}, JP: []string{"ジャンヌ"}}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, c := range items[0].Checks {
+		switch {
+		case c.Lang == LangEN && c.Candidate == "Jeanne":
+			if c.N != n || c.Hits != n || !c.OK {
+				t.Errorf("EN check = %+v, want N %d (the %d copies are not counted)", c, n, n)
+			}
+		case c.Lang == LangJP && c.Candidate == "ジャンヌ":
+			if c.N != 2*n || c.Hits != 2*n {
+				t.Errorf("JP check = %+v, want N %d (JP differs in every unit)", c, 2*n)
+			}
+		}
+	}
+}

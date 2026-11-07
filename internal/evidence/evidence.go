@@ -191,7 +191,7 @@ func Collect(r *rules.Rules, set pack.Set, fr *fields.Rules, krs []string, candi
 			if !fr.Classify(u, en, jp).Translate {
 				continue
 			}
-			o := alignedText(en, jp)
+			o := alignedText(u.KR, en, jp)
 			for _, i := range hit {
 				occs[i] = append(occs[i], o)
 			}
@@ -225,7 +225,7 @@ func Collect(r *rules.Rules, set pack.Set, fr *fields.Rules, krs []string, candi
 					if err != nil {
 						return nil, err
 					}
-					dt := alignedText(den, djp)
+					dt := alignedText(d.KR, den, djp)
 					acc.descs = append(acc.descs, Desc{Key: key, KR: d.KR, JP: dt.jp, EN: dt.en})
 				}
 			}
@@ -258,18 +258,27 @@ func Collect(r *rules.Rules, set pack.Set, fr *fields.Rules, krs []string, candi
 	return items, nil
 }
 
-// alignedText is the text aligned to a unit. A text that is only tags and
-// spaces (validate.MatchText) is no text: it is left out, as a check would
-// not find anything in it either.
-func alignedText(en, jp *align.LangAligned) occurrence {
+// alignedText is the text aligned to a unit whose KR text is kr. A text that
+// is only tags and spaces (validate.MatchText) is no text: it is left out, as
+// a check would not find anything in it either. So is a text that is the KR
+// text itself (isCopy): the language was not translated, and the unit says
+// nothing about its rendering. Checks, names and descs all read it here.
+func alignedText(kr string, en, jp *align.LangAligned) occurrence {
 	var o occurrence
-	if en != nil && strings.TrimSpace(validate.MatchText(en.Value)) != "" {
+	if en != nil && usable(kr, en.Value) {
 		o.en, o.hasEN = strings.TrimSpace(en.Value), true
 	}
-	if jp != nil && strings.TrimSpace(validate.MatchText(jp.Value)) != "" {
+	if jp != nil && usable(kr, jp.Value) {
 		o.jp, o.hasJP = strings.TrimSpace(jp.Value), true
 	}
 	return o
+}
+
+// usable reports whether the aligned text says anything about a rendering of
+// kr: it has text beyond tags and spaces, and is not a copy of kr.
+func usable(kr, text string) bool {
+	t := strings.TrimSpace(validate.MatchText(text))
+	return t != "" && t != strings.TrimSpace(validate.MatchText(kr))
 }
 
 // mostCommon returns the value of field that most names have, counting units;
