@@ -31,7 +31,7 @@
    - 當 `[]` 與 `[]` 相鄰時，彼此之間空一格半形。
    - `[TabExplain]` 用來阻擋關鍵字觸發，無任何效果。不可以在 `[` 前空格，但在 `]` 後若需空格可空格。
 7. 括號依文本類型（已決定 2026-11-07，取代原指引「任何括號都使用半形」）：
-   - 說明戰鬥效果的文字用半形「()」：技能、被動、狀態、E.G.O 飾品、敵人的名稱與說明，鏡牢的起始增益與事件選項的效果（`messageDesc`），異想體事件的結果紀錄（`AbEventsResultLog`）、選擇事件的效果（`ChoiceEventEffect`）、戰鬥提示（`BattleResultHint*`、`BattleHint*`）、活動任務的戰鬥條件；KR 在韓文音譯後的括號附原文時例外，寫「中文意思（原文）」、用全形（見「KR 已在括號附上原文」）；細則見 `guides/shared/battle-text.md`
+   - 說明戰鬥效果的文字用半形「()」：技能、被動、狀態、E.G.O 飾品、敵人的名稱與說明，鏡牢的起始增益與事件選項的效果（`messageDesc`），異想體事件的結果紀錄（`AbEventsResultLog`）、選擇事件的效果（`ChoiceEventEffect`）、戰鬥提示（`BattleResultHint*`、`BattleHint*`）、活動任務的戰鬥條件；KR 在韓文音譯後的括號附原文時例外，寫「中文意思（原文）」、用全形（見「KR 已在括號附上原文」）；這條對所有族群都適用，戰鬥說明族群（敵人、盟友、關鍵字、鏡牢）的細則見 `guides/shared/battle-text.md`
    - 其他文字用全形「（）」：劇情、台詞、介面、教學、目錄、事件敘述與 RPG（含道具說明，見 `families/rpg.md`），戰鬥族群檔案裡的這類文字也是（`MirrorDungeonUI*`、`TutorialMirrorDungeon`、`StoryTheaterMirrorWorld`、事件的 `desc`／`message`／`result`／`name`）；括號內只有時區、佔位符、英文或編號時也用全形（「（GMT+8）」「（{0}）」）；全形「（」前不加半形空格
    - 例外：非劇情檔把 ruby 改寫成的「Y(X)」用半形（劇情的 ruby 保留為標籤，見「ruby（劇情與其他檔案）」）；亂碼與遮蔽字串的符號照原樣（見「亂碼與遮蔽字串」）
 8. `，`／`。`／`：` 使用全形符號。

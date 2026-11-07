@@ -166,3 +166,12 @@
 - id: "warning/term-missing/fb90e77e/2a543b98"
   reason: 蜘蛛巢的專名「X 복도」（중지 복도、검지 복도）依 복도 的 notes 寫「長廊」；只有 3 個單位、不另立條目（controller 裁示 2026-11-07）
   date: 2026-11-07
+- id: "warning/halfwidth-punct/2e037f6e/76e24aee"
+  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
+  date: 2026-11-07
+- id: "warning/halfwidth-punct/63ddba7c/6a9d9fe7"
+  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
+  date: 2026-11-07
+- id: "warning/halfwidth-punct/f472e7b3/eb08d8a7"
+  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
+  date: 2026-11-07
