@@ -86,6 +86,16 @@ describe('TermView, the top', () => {
     expect(top.querySelector('.tv-sources')?.textContent).toContain('game:Bufs.json#/dataList/0/name')
   })
 
+  it('links only https URLs on the wiki; every other source is text', async () => {
+    const bad = ['https://evil.example/x', 'javascript:alert(1)', 'https://limbuscompany.wiki.gg.evil.com/x', 'http://limbuscompany.wiki.gg/x']
+    const good = 'https://limbuscompany.wiki.gg/wiki/Target'
+    const docs = { ...index, entries: index.entries.map((e) => (e.id === ID ? { ...e, meaning: 'm', sources: [...bad, good] } : e)) }
+    const el = await mount(route(), { 'glossary/index.json': docs })
+    const box = el.querySelector('.tv-sources')!
+    expect([...box.querySelectorAll('a')].map((a) => a.getAttribute('href'))).toEqual([good])
+    expect([...box.querySelectorAll('code')].map((c) => c.textContent)).toEqual(bad)
+  })
+
   it('shows no meaning or sources row for an entry without them', async () => {
     const el = await mount()
     expect(el.querySelector('.tv-sources')).toBeNull()

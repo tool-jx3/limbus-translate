@@ -74,6 +74,16 @@ function Select({ name, label, value, options, onChange }: { name: string; label
   )
 }
 
+/** Whether a source is an https URL on the Limbus Company wiki, the only kind shown as a link. */
+function isWikiUrl(s: string): boolean {
+  try {
+    const u = new URL(s)
+    return u.protocol === 'https:' && u.hostname === 'limbuscompany.wiki.gg'
+  } catch {
+    return false
+  }
+}
+
 /** The top of the page: what the entry says, how much it is used where, and where else to look at it. */
 function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
   const termgroup = e.id.replace(/^glossary\//, 'termgroup/')
@@ -111,7 +121,7 @@ function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
               <ul>
                 {e.sources.map((s) => (
                   <li key={s}>
-                    {s.startsWith('https://') ? (
+                    {isWikiUrl(s) ? (
                       <a href={s} target="_blank" rel="noopener noreferrer">
                         {s}
                       </a>
