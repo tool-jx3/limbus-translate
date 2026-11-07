@@ -1,0 +1,7 @@
+# ActionEvents-a1c7p3 /8 的三個選項效果（messageDesc）KR 開頭是不成對的「주의)」，舊譯寫成全形「注意）」。
+# 事件選項的效果是說明戰鬥效果的文字，括號用半形（guides/base.md 第 7 條）；KR 只有右括號，照 KR 寫「注意)」。
+reason: '事件選項效果的括號用半形（base.md 第 7 條）'
+files: ['ActionEvents-a1c7p3.json']
+pattern: '^注意）'
+replace: '注意)'
+kr_pattern: '^주의\)'
