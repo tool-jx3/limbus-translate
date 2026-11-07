@@ -166,8 +166,8 @@ function Top({ e, hard }: { e: ScopeEntry; hard: string }) {
               <th scope="col">出現</th>
               <th scope="col">用了</th>
               <th scope="col">應用率</th>
-              <th scope="col" title="沒用譯名的單位中，對齊的 EN／JP 含條目的 en／jp">同義</th>
-              <th scope="col" title="沒用譯名的單位中，有對齊的 EN／JP 但不含條目的 en／jp">他義</th>
+              <th scope="col" title="沒用譯名的單位中，可比對的 EN／JP 都含條目的 en／jp">同義</th>
+              <th scope="col" title="沒用譯名的單位中，可比對的 EN／JP 都不含條目的 en／jp">他義</th>
             </tr>
           </thead>
           <tbody>

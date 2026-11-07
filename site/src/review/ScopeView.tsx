@@ -107,8 +107,8 @@ function GroupTable({ groups, t }: { groups: ScopeGroup[]; t: ScopeThresholds })
             <th scope="col">出現</th>
             <th scope="col">用了譯名</th>
             <th scope="col">比例</th>
-            <th scope="col" title="沒用譯名的單位中，對齊的 EN／JP 含條目的 en／jp">同義</th>
-            <th scope="col" title="沒用譯名的單位中，有對齊的 EN／JP 但不含條目的 en／jp">他義</th>
+            <th scope="col" title="沒用譯名的單位中，可比對的 EN／JP 都含條目的 en／jp">同義</th>
+            <th scope="col" title="沒用譯名的單位中，可比對的 EN／JP 都不含條目的 en／jp">他義</th>
             <th scope="col">判斷</th>
           </tr>
         </thead>
@@ -228,7 +228,7 @@ function EntryRow({ e, t, target }: { e: ScopeEntry; t: ScopeThresholds; target:
       <div class="sc-entry-body">
         <GroupTable groups={e.groups} t={t} />
         <p class="sc-line">
-          複合詞 {e.compound.n} 個單位，用了譯名 {e.compound.used}。未用譯名的單位：有說明 {e.explained}、沒說明 {e.unexplained}。同義 {e.same}、他義 {e.other}、未知 {e.unknown}。
+          複合詞 {e.compound.n} 個單位，用了譯名 {e.compound.used}。未用譯名的單位：有說明 {e.explained}、沒說明 {e.unexplained}。同義 {e.same}、他義 {e.other}、<span title="沒有可比對的 EN／JP，或 EN／JP 判斷不一致">未知 {e.unknown}</span>。
         </p>
         {e.notes !== '' && <p class="sc-line">{e.notes}</p>}
         <Examples items={e.examples} label="沒用譯名的例子" />

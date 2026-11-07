@@ -28,7 +28,7 @@
 
 1. `Term` 欄位順序：`meaning`/`sources` 若排在 `units` 之後，預覽契約 fixture 會壞——Task 2 加測試：含 meaning 的條目經 `batch next` 寫出與網站組回逐字相同（在 `internal/site` 的 round-trip 測試世界加一個有 meaning 的條目）。
 2. 指引組合的重複與順序：節點層與標記層同時符合、或與族群指引同檔時只列一次；角色指引仍在最後——Task 1 測試。
-3. 同義／他義：條目有 en 但單位沒有 EN 對齊時是「未知」，不是他義——Task 4 測試。
+3. 同義／他義：沒有可比對的對齊（例如條目只有 en、單位沒有 EN 對齊），或 EN／JP 判斷不一致時是「未知」，不是他義——Task 4 測試（2026-11-07 Task 9c 改為 EN、JP 一致才判同義或他義）。
 4. `lct gold sample` 不覆蓋已有判定；同種子同資料結果相同——Task 5 測試。
 5. `lct audit` 不帶 `--to-file` 時不寫任何檔；排除待譯中、copy、凍結的單位——Task 7 測試。
 
@@ -87,7 +87,7 @@
 
 **Files:** Modify `internal/scope/scope.go`（`Unit` 加 `EN, JP string`；`Entry`、`Group` 加 `Same, Other, Unknown int`）、`internal/site/review.go`（建 `scope.Unit` 時帶入對齊的 EN/JP）、`cmd/lct/glossary.go`（`glossary scope` 文字輸出顯示三數）、`site/src/types.ts`、`site/src/glossary/TermView.tsx`（群組表加「同義／他義」兩欄）、`site/src/review/ScopeView.tsx`（條目列顯示）；Tests。
 
-**Interfaces — Produces:** 對沒用譯名的單位（`!Used`），若條目有 `EN`：單位 EN 對齊非空且含條目 EN（不分大小寫、字詞邊界）→ Same；EN 對齊非空且不含 → Other；否則看 `JP`（子字串）同理；兩者都無對齊或條目兩者皆空 → Unknown。json：`same`、`other`、`unknown`。現有提案邏輯不變。
+**Interfaces — Produces:** 對沒用譯名的單位（`!Used`），可比對的語言是條目有該值、且單位該語言的對齊非空白者（EN 不分大小寫、字詞邊界、最後一字容許單複數；JP 子字串）：可比對的都含 → Same；都不含 → Other；沒有可比對的，或 EN／JP 判斷不一致 → Unknown（2026-11-07 Task 9c 起；原本有 EN 就只看 EN）。json：`same`、`other`、`unknown`。現有提案邏輯不變。
 
 - [ ] Step 1：失敗測試——三種分類（含「條目有 en、單位無 EN 對齊 → Unknown」）、群組加總、site 欄位顯示。
 - [ ] Step 2：FAIL。Step 3：實作。Step 4：Go 與 site 全套 PASS。Step 5：commit。

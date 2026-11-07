@@ -280,7 +280,7 @@ export interface ScopeGroup {
   kind: 'family' | 'group'
   n: number
   used: number
-  /** Of the units that do not use the rendering: the aligned EN or JP holds the entry's en or jp (same), is aligned and does not (other), or there is nothing to compare (unknown). */
+  /** Of the units that do not use the rendering: every aligned EN/JP that can be compared holds the entry's en/jp (same), every one misses it (other), or there is nothing to compare or EN and JP disagree (unknown). */
   same: number
   other: number
   unknown: number

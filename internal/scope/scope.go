@@ -55,30 +55,37 @@ type Unit struct {
 // aligned EN and JP against the entry's.
 const (
 	senseNone    = iota // the unit uses the rendering: not classified
-	senseSame           // an aligned text holds the entry's en or jp
-	senseOther          // it is aligned, and no aligned text does
-	senseUnknown        // no alignment to look at, or the entry has no en and jp
+	senseSame           // every alignment compared holds the entry's en or jp
+	senseOther          // every alignment compared misses it
+	senseUnknown        // nothing to compare, or the alignments disagree
 )
 
 // senseOf classifies the unit u against t by every alignment available: a
 // language is available when the entry has a value for it (en, jp) and the
-// unit's aligned text in it is not blank. The unit is senseSame when one
+// unit's aligned text in it is not blank. The unit is senseSame when every
 // available alignment holds the entry's value (evidence.Holds), senseOther
-// when one is available and none holds it, and senseUnknown when none is
-// available. An EN that leaves the word out does not outvote a JP that has it.
+// when every one misses it, and senseUnknown when they disagree or none is
+// available. Each claim rests on agreeing evidence: scope narrowing acts on
+// Other and the review of old translations on Same, and a JP cognate shared
+// by several senses (対象) or an EN that leaves the word out must not decide
+// alone against the other language.
 func senseOf(t rules.Term, u Unit) int {
-	available := false
+	holds, misses := 0, 0
 	for _, c := range []struct{ lang, cand, text string }{{evidence.LangEN, t.EN, u.EN}, {evidence.LangJP, t.JP, u.JP}} {
 		text := strings.TrimSpace(c.text)
 		if c.cand == "" || text == "" {
 			continue
 		}
-		available = true
 		if evidence.Holds(c.lang, text, c.cand) {
-			return senseSame
+			holds++
+		} else {
+			misses++
 		}
 	}
-	if available {
+	switch {
+	case holds > 0 && misses == 0:
+		return senseSame
+	case misses > 0 && holds == 0:
 		return senseOther
 	}
 	return senseUnknown
@@ -195,10 +202,10 @@ type Entry struct {
 	Explained   int `json:"explained"`
 	Unexplained int `json:"unexplained"`
 	// Same, Other and Unknown split the same units (those that do not use the
-	// rendering) by the aligned EN and JP (see senseOf): the EN holds the
-	// entry's en or the JP its jp (same sense), there is an alignment to
-	// compare and none holds (another sense), or there is nothing to compare.
-	// Units that use the rendering are in none.
+	// rendering) by the aligned EN and JP (see senseOf): every alignment that
+	// can be compared holds the entry's en or jp (same sense), every one
+	// misses it (another sense), or there is nothing to compare or EN and JP
+	// disagree. Units that use the rendering are in none.
 	Same    int `json:"same"`
 	Other   int `json:"other"`
 	Unknown int `json:"unknown"`

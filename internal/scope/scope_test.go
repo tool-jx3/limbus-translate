@@ -840,18 +840,19 @@ func TestSenseCounts(t *testing.T) {
 		senseUnit(0, "侵蝕", "Erosion", "浸食"),         // used: not classified
 		senseUnit(1, "腐蝕", "the Erosion grows", ""), // same (EN, word, any case)
 		senseUnit(2, "腐蝕", "Erosionary grow", ""),   // other: EN aligned, not as a word
-		senseUnit(3, "腐蝕", "a corrosion", "浸食された"),  // same: EN misses, JP holds
-		senseUnit(4, "腐蝕", "", "浸食された"),             // same via JP
+		senseUnit(3, "腐蝕", "a corrosion", "浸食された"),  // unknown: EN misses, JP holds
+		senseUnit(4, "腐蝕", "", "浸食された"),             // same: only JP aligned, and it holds
 		senseUnit(5, "腐蝕", "", "腐食"),                // other: only JP aligned, and it misses
 		senseUnit(6, "腐蝕", "", ""),                  // unknown: no alignment
 		senseUnit(7, "腐蝕", "  ", ""),                // unknown: blank alignment
 		senseUnit(8, "腐蝕", "Erosions grow", ""),     // same: a plural of the en
 		senseUnit(9, "腐蝕", "a corrosion", "腐食"),     // other: both aligned, both miss
-		senseUnit(10, "腐蝕", "the Erosion", "腐食"),    // same: EN holds, JP misses
+		senseUnit(10, "腐蝕", "the Erosion", "腐食"),    // unknown: EN holds, JP misses
+		senseUnit(11, "腐蝕", "the Erosion", "浸食された"), // same: both aligned, both hold
 	}
 	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
-	if e.Same != 5 || e.Other != 3 || e.Unknown != 2 || e.Used != 1 || e.N != 11 {
-		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 5/3/2 (1, 11)", e.Same, e.Other, e.Unknown, e.Used, e.N)
+	if e.Same != 4 || e.Other != 3 || e.Unknown != 4 || e.Used != 1 || e.N != 12 {
+		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 4/3/4 (1, 12)", e.Same, e.Other, e.Unknown, e.Used, e.N)
 	}
 	var g Group
 	for _, x := range e.Groups {
@@ -859,8 +860,8 @@ func TestSenseCounts(t *testing.T) {
 			g = x
 		}
 	}
-	if g.Same != 5 || g.Other != 3 || g.Unknown != 2 {
-		t.Fatalf("group same/other/unknown = %d/%d/%d, want 5/3/2", g.Same, g.Other, g.Unknown)
+	if g.Same != 4 || g.Other != 3 || g.Unknown != 4 {
+		t.Fatalf("group same/other/unknown = %d/%d/%d, want 4/3/4", g.Same, g.Other, g.Unknown)
 	}
 }
 
