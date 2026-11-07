@@ -21,7 +21,7 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "audit",
 		Usage: "rank the existing translations by quality signals and split them into review waves: [--wave-size 500] [--wave N] [--usd-per-unit X] [--to-file TOPIC]; " +
-			"counts units, families and signals per wave and estimates the cost of translating a wave again " +
+			"counts units, families and signals per wave (the unit keys are printed only with --wave, for that wave) and estimates the cost of translating a wave again " +
 			"(--usd-per-unit, default cost_usd / (pending_before - pending_after) of .meta/translate.json, null when that cannot be told); " +
 			"writes nothing, or with --to-file TOPIC (wave --wave, default 1) rules/requeue/<date>-audit-<topic>.yaml, the request lct requeue --to-file writes",
 		Run: runAudit,

@@ -4,6 +4,7 @@ import (
 	"slices"
 	"testing"
 
+	"github.com/tool-jx3/limbus-translate/internal/itemid"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/site"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -55,7 +56,7 @@ func TestCandidatesExcludeCopyPendingFrozen(t *testing.T) {
 }
 
 func TestSignalsAndWeights(t *testing.T) {
-	a, b, c, d, e, f := k("A.json", 0), k("A.json", 1), k("A.json", 2), k("A.json", 3), k("A.json", 4), k("A.json", 5)
+	a, b, c, d, e, f, g := k("A.json", 0), k("A.json", 1), k("A.json", 2), k("A.json", 3), k("A.json", 4), k("A.json", 5), k("A.json", 6)
 	r := site.Review{
 		Suggestions: []site.SuggestionItem{
 			{Kind: suggest.KindInconsistent, Variants: []site.Variant{{Keys: []string{a}}, {Keys: []string{b}}}},
@@ -67,7 +68,7 @@ func TestSignalsAndWeights(t *testing.T) {
 			{Code: "ellipsis", Keys: []string{c}},
 			{Code: "ellipsis", Keys: []string{f}, Accepted: &site.Confirmed{}},
 			{Code: validate.CodeTermMissing, Term: &site.TermRef{KR: "침식", ZH: "侵蝕"}, Units: []site.TermUnit{
-				{Key: d}, {Key: e}, {Key: b}, {Key: f, Accepted: &site.Confirmed{}},
+				{Key: d}, {Key: e}, {Key: b}, {Key: g}, {Key: f, Accepted: &site.Confirmed{}},
 			}},
 		},
 		Scope: scope.Report{Units: map[string][]scope.EntryUnit{
@@ -76,14 +77,15 @@ func TestSignalsAndWeights(t *testing.T) {
 	}
 	// Entry units come by the entry id of the term; the audit looks it up by KR and ZH.
 	r.Scope.Units = map[string][]scope.EntryUnit{
-		entryID("침식", "侵蝕"): {
+		itemid.GlossaryEntry("침식", "侵蝕"): {
 			{Key: d, Sense: scope.SenseSame},
 			{Key: e, Sense: scope.SenseOther},
 			{Key: b, Sense: scope.SenseOther, Explained: true},
+			{Key: g, Sense: scope.SenseSame, Explained: true},
 		},
 	}
 	recs := map[string]store.Record{}
-	for _, key := range []string{a, b, c, d, e, f} {
+	for _, key := range []string{a, b, c, d, e, f, g} {
 		recs[key] = rec(store.OriginClaude)
 	}
 	got := map[string]Candidate{}
@@ -99,6 +101,7 @@ func TestSignalsAndWeights(t *testing.T) {
 		c: {2 + 1, []string{SignalLengthRatio, SignalFormat}},
 		d: {3, []string{SignalTermMissingSame}},
 		e: {1, []string{SignalTermMissing}},
+		g: {1, []string{SignalTermMissing}}, // same sense but explained: not term-missing-same
 	}
 	if len(got) != len(want) {
 		t.Fatalf("candidates = %+v, want keys %v", got, want)

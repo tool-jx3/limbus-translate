@@ -23,13 +23,15 @@ import (
 const (
 	// SignalInconsistent: the unit is in a group of inconsistent translations.
 	SignalInconsistent = "inconsistent"
-	// SignalTermMissingSame: the unit lacks a glossary rendering although the
-	// aligned EN or JP holds the entry's (scope.SenseSame).
+	// SignalTermMissingSame: the unit lacks a glossary rendering although
+	// every available EN/JP alignment holds the entry's, so they agree
+	// (scope.SenseSame), and no note explains it.
 	SignalTermMissingSame = "term-missing-same"
 	// SignalLengthRatio: the length-ratio warning.
 	SignalLengthRatio = "length-ratio"
 	// SignalTermMissing: the unit lacks a rendering, in another sense or
-	// without alignment, and its note does not explain it.
+	// without alignment and its note does not explain it, or in the same
+	// sense with a note that does.
 	SignalTermMissing = "term-missing"
 	// SignalFormat: any other check warning.
 	SignalFormat = "format"
@@ -69,8 +71,6 @@ type Candidate struct {
 	Signals []string `json:"signals"`
 }
 
-func entryID(kr, zh string) string { return itemid.GlossaryEntry(kr, zh) }
-
 // Candidates returns the units that have at least one signal, best first: the
 // higher score, then the family translated first, then the key. A copy record,
 // a unit without a record, a pending unit and a unit of a frozen file is never
@@ -99,17 +99,19 @@ func Candidates(in Input) []Candidate {
 		switch {
 		case w.Term != nil:
 			senses := map[string]scope.EntryUnit{}
-			for _, u := range in.Review.Scope.Units[entryID(w.Term.KR, w.Term.ZH)] {
+			for _, u := range in.Review.Scope.Units[itemid.GlossaryEntry(w.Term.KR, w.Term.ZH)] {
 				senses[u.Key] = u
 			}
 			for _, u := range w.Units {
 				if u.Accepted != nil {
 					continue
 				}
+				// A note that names the term explains the miss: the unit is
+				// then term-missing at most, even when the sense is the same.
 				switch eu := senses[u.Key]; {
-				case eu.Sense == scope.SenseSame:
+				case eu.Sense == scope.SenseSame && !eu.Explained:
 					add(u.Key, SignalTermMissingSame)
-				case !eu.Explained:
+				case eu.Sense == scope.SenseSame || !eu.Explained:
 					add(u.Key, SignalTermMissing)
 				}
 			}
