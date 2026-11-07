@@ -1624,7 +1624,7 @@
   status: approved
   match: substring
   category: [combat]
-  notes: 「N당 피해량 증가 M」是每 N 獲得 M 層「傷害強化」（狀態 피해량 증가），「당」屬於前面的數量，不是「당 피해량」（每…造成的傷害）；既有 30 個單位都寫「傷害強化」（2026-11-07）。這個較長的條目蓋住其中的「당 피해량」
+  notes: 「N당 피해량 증가 M」是每 N 獲得 M 層「傷害強化」（狀態 피해량 증가），「당」屬於前面的數量，不是「당 피해량」（每…造成的傷害）；既有 33 個單位中 30 個寫「傷害強化」，另 3 個是 Skills_Ego_Personality-01 硬幣說明的「傷害增加」（JP 以 noparse 標明不是狀態名，2026-11-07）。這個較長的條目蓋住其中的「당 피해량」
   sources: ["game:BattleKeywords.json#/dataList/21/name", "game:BattleKeywords-a1c9p3.json#/dataList/28/desc"]
 
 - kr: 보호막
