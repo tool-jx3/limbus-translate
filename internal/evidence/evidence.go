@@ -199,8 +199,14 @@ func Collect(r *rules.Rules, set pack.Set, krs []string, candidates map[string]C
 				n.Count++
 			}
 			if u.Field == "name" && u.ItemIndex >= 0 && names.IsKeywordFile(file) {
+				// The desc beside the name: the same parent, last segment desc.
+				parent, _ := strings.CutSuffix(u.Pointer, "name")
 				for _, d := range us {
-					if d.ItemIndex != u.ItemIndex || d.Field != "desc" {
+					if d.Pointer != parent+"desc" {
+						continue
+					}
+					key := units.Key(file, d.Pointer)
+					if slices.ContainsFunc(acc.descs, func(x Desc) bool { return x.Key == key }) {
 						continue
 					}
 					den, djp, err := fa.Get(d.Pointer)
@@ -208,7 +214,7 @@ func Collect(r *rules.Rules, set pack.Set, krs []string, candidates map[string]C
 						return nil, err
 					}
 					dt := alignedText(den, djp)
-					acc.descs = append(acc.descs, Desc{Key: units.Key(file, d.Pointer), KR: d.KR, JP: dt.jp, EN: dt.en})
+					acc.descs = append(acc.descs, Desc{Key: key, KR: d.KR, JP: dt.jp, EN: dt.en})
 				}
 			}
 		}
@@ -240,16 +246,17 @@ func Collect(r *rules.Rules, set pack.Set, krs []string, candidates map[string]C
 	return items, nil
 }
 
-// alignedText is the text aligned to a unit, tags removed as for a term.
+// alignedText is the text aligned to a unit. A text that is only tags and
+// spaces (validate.MatchText) is no text: it is left out, as a check would
+// not find anything in it either.
 func alignedText(en, jp *align.LangAligned) occurrence {
 	var o occurrence
-	if en != nil {
-		o.en = strings.TrimSpace(en.Value)
+	if en != nil && strings.TrimSpace(validate.MatchText(en.Value)) != "" {
+		o.en, o.hasEN = strings.TrimSpace(en.Value), true
 	}
-	if jp != nil {
-		o.jp = strings.TrimSpace(jp.Value)
+	if jp != nil && strings.TrimSpace(validate.MatchText(jp.Value)) != "" {
+		o.jp, o.hasJP = strings.TrimSpace(jp.Value), true
 	}
-	o.hasEN, o.hasJP = o.en != "", o.jp != ""
 	return o
 }
 

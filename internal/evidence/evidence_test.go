@@ -104,40 +104,32 @@ func TestCollectNamesAggregateByPair(t *testing.T) {
 }
 
 func TestCollectChecksThreshold(t *testing.T) {
-	// nine units, all with the candidate: too few. ten units, six with it: ok.
-	// ten units, five with it: not ok.
-	mk := func(n, withHit int, hit, miss string) (kr, en string) {
-		kr = lines(n, func(i int) string { return "타격 있음" })
-		en = lines(n, func(i int) string {
-			if i < withHit {
-				return hit
-			}
-			return miss
-		})
-		return kr, en
-	}
+	// Each case: n units hold the term, the first hits of them have EN text
+	// hitText, the rest "Miss".
 	tests := []struct {
 		name     string
 		n, hits  int
-		hit      string
+		hitText  string
 		cand     string
-		wantN    int
 		wantHits int
 		wantOK   bool
 	}{
-		{"nine of nine", 9, 9, "Hit", "Hit", 9, 9, false},
-		{"six of ten", 10, 6, "Hit", "Hit", 10, 6, true},
-		{"five of ten", 10, 5, "Hit", "Hit", 10, 5, false},
-		{"case-insensitive", 10, 10, "A HIT here", "hit", 10, 10, true},
-		{"word boundary", 10, 10, "Hitting it", "Hit", 10, 0, false},
-		{"word boundary, later occurrence", 10, 10, "Hitting. Hit!", "Hit", 10, 10, true},
+		{"nine of nine", 9, 9, "Hit", "Hit", 9, false},
+		{"six of ten", 10, 6, "Hit", "Hit", 6, true},
+		{"five of ten", 10, 5, "Hit", "Hit", 5, false},
+		{"case-insensitive", 10, 10, "A HIT here", "hit", 10, true},
+		{"word boundary", 10, 10, "Hitting it", "Hit", 0, false},
+		{"word boundary, later occurrence", 10, 10, "Hitting. Hit!", "Hit", 10, true},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			kr, en := mk(tc.n, tc.hits, tc.hit, "Miss")
-			if tc.name == "word boundary" || tc.name == "word boundary, later occurrence" || tc.name == "case-insensitive" {
-				kr, en = mk(tc.n, tc.n, tc.hit, "Miss")
-			}
+			kr := lines(tc.n, func(int) string { return "타격 있음" })
+			en := lines(tc.n, func(i int) string {
+				if i < tc.hits {
+					return tc.hitText
+				}
+				return "Miss"
+			})
 			set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
 			items, err := Collect(glossary(term("타격", "打擊")), set, nil, map[string]Candidates{"타격": {EN: []string{tc.cand}}})
 			if err != nil {
@@ -152,8 +144,8 @@ func TestCollectChecksThreshold(t *testing.T) {
 			if got == nil {
 				t.Fatalf("no EN check for %q in %+v", tc.cand, items[0].Checks)
 			}
-			if got.N != tc.wantN || got.Hits != tc.wantHits || got.OK != tc.wantOK {
-				t.Errorf("check = %+v, want N %d Hits %d OK %v", *got, tc.wantN, tc.wantHits, tc.wantOK)
+			if got.N != tc.n || got.Hits != tc.wantHits || got.OK != tc.wantOK {
+				t.Errorf("check = %+v, want N %d Hits %d OK %v", *got, tc.n, tc.wantHits, tc.wantOK)
 			}
 		})
 	}
@@ -229,5 +221,110 @@ func TestCollectSelection(t *testing.T) {
 	// An entry with no hits has empty (not nil) lists.
 	if items[0].Names == nil || items[0].Descs == nil || items[0].Checks == nil {
 		t.Errorf("empty lists must not be nil: %+v", items[0])
+	}
+}
+
+// A nested name pairs with the desc beside it, not with the other levels' or
+// the element's own.
+func TestCollectDescIsTheSiblingOfTheName(t *testing.T) {
+	kr := `{"dataList":[{"id":"K","name":"K","desc":"top","levelList":[{"name":"레벨","desc":"d0"},{"name":"레벨 ","desc":"d1"}]}]}`
+	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
+	items, err := Collect(glossary(term("레벨", "等級")), set, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var keys []string
+	for _, d := range items[0].Descs {
+		keys = append(keys, d.Key)
+	}
+	want := []string{"Bufs.json|/dataList/0/levelList/0/desc", "Bufs.json|/dataList/0/levelList/1/desc"}
+	if !reflect.DeepEqual(keys, want) {
+		t.Errorf("desc keys = %v, want %v", keys, want)
+	}
+	// each desc is the sibling of its own name
+	if items[0].Descs[0].KR != "d0" || items[0].Descs[1].KR != "d1" {
+		t.Errorf("descs = %+v", items[0].Descs)
+	}
+}
+
+func TestCollectDescTopLevelNameGetsOnlyTopDesc(t *testing.T) {
+	kr := `{"dataList":[{"id":"K","name":"파열","desc":"top","levelList":[{"name":"x","desc":"d0"}]}]}`
+	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
+	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(items[0].Descs) != 1 || items[0].Descs[0].Key != "Bufs.json|/dataList/0/desc" {
+		t.Errorf("descs = %+v", items[0].Descs)
+	}
+}
+
+// Two names equal to the KR in one element give each desc once.
+func TestCollectDescsAreNotRepeated(t *testing.T) {
+	kr := `{"dataList":[{"id":"K","name":"파열","desc":"설명","levelList":[{"name":"파열"}]}]}`
+	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
+	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(items[0].Descs) != 1 {
+		t.Errorf("descs = %+v, want one", items[0].Descs)
+	}
+}
+
+// A name outside dataList has no element, so no desc.
+func TestCollectNoDescOutsideDataList(t *testing.T) {
+	kr := `{"name":"파열","desc":"설명","dataList":[]}`
+	set := openSet(t, packFiles{"Bufs.json": kr}, packFiles{}, packFiles{})
+	items, err := Collect(glossary(term("파열", "破裂")), set, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(items[0].Names) != 0 || len(items[0].Descs) != 0 {
+		t.Errorf("item = %+v, want no desc", items[0])
+	}
+}
+
+// Aligned text that is only tags is no text: it is not in N.
+func TestCollectTagOnlyAlignedTextIsNotCounted(t *testing.T) {
+	kr := lines(10, func(int) string { return "타격 있음" })
+	en := lines(10, func(i int) string {
+		if i < 5 {
+			return "Hit"
+		}
+		return "<sprite name=x/>"
+	})
+	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
+	items, err := Collect(glossary(term("타격", "打擊")), set, nil, map[string]Candidates{"타격": {EN: []string{"Hit"}}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	c := items[0].Checks[0]
+	if c.N != 5 || c.Hits != 5 || c.OK {
+		t.Errorf("check = %+v, want N 5 Hits 5 not ok", c)
+	}
+}
+
+// The term occurs as a word by default, anywhere with match: substring.
+func TestCollectOccurrenceFollowsMatch(t *testing.T) {
+	// 타격 inside 강타격감: not a word, since the Hangul before it
+	kr := lines(10, func(int) string { return "강타격감" })
+	en := lines(10, func(int) string { return "Hit" })
+	set := openSet(t, packFiles{"Lines.json": kr}, packFiles{"Lines.json": en}, packFiles{})
+	word := term("타격", "打擊")
+	sub := term("타격", "打擊")
+	sub.Match = rules.MatchSubstring
+	cands := map[string]Candidates{"타격": {EN: []string{"Hit"}}}
+	for _, tc := range []struct {
+		term rules.Term
+		n    int
+	}{{word, 0}, {sub, 10}} {
+		items, err := Collect(glossary(tc.term), set, nil, cands)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := items[0].Checks[0].N; got != tc.n {
+			t.Errorf("match %q: N = %d, want %d", tc.term.Match, got, tc.n)
+		}
 	}
 }
