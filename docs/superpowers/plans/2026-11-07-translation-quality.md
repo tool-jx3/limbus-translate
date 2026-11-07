@@ -189,6 +189,24 @@
 - [ ] 改寫檔：非戰鬥族群的半形括號 → 全形；戰鬥說明類的全形 → 半形。只動 KR 有對應括號、括號內含中文的；排除 ruby「Y(X)」與亂碼符號。用真實資料模擬，報告各族群會改幾個單位並附樣本。
 - [ ] `rules lint` 無錯；`go vet ./... && go test ./...`。
 
+### Task 15: 詞彙證據排除不翻譯欄位（程式，已完成）
+
+### Task 16: jp／en 多值、證據依條目範圍、`check: off`（程式）
+
+**Files:** `internal/rules`（Term 的 jp／en 可為字串或清單、`check: off`、lint）、`internal/evidence`（多值聯集、只算條目適用的單位）、`internal/scope`（多值的 sense 判定、off 條目不產生提案）、`internal/validate` 與 `internal/batch`（off 不發 term-missing）、`internal/audit`（off 不產生訊號）、`internal/site` 與 `site/`（顯示）、`schemas/batch.schema.json`、`prompts/translate.md`。
+
+- [ ] 測試先寫。單值條目的批次 JSON 與網站組回的結果必須與改前逐字相同。
+- [ ] 多值條目在批次中帶全部值。網站契約測試涵蓋多值與 off。
+- [ ] `go vet ./... && go test ./...`；`cd site && npm test && npm run typecheck && npm run build`。
+
+### Task 17: B、C 的內容（內容任務）
+
+- [ ] 補單一值 10 條；神父條補 jp、en；另立「EX CLEAR 전투 승리」；多值 4 條。
+- [ ] 一般用語 7 條改 `check: off`；base.md 加一般用語與省略的規則；소모 的兩種慣例寫進指引。
+- [ ] P1–P8；依詞義限制 9 條的範圍；also 4 條、「조작 슬롯」長條目、정신력 加 also 理智。
+- [ ] H1 以人工調整統一成「本回合內」；H2 的 11 個與 KR 誤命中的 20 個單位標成已確認。
+- [ ] `rules lint` 無錯；`go vet ./... && go test ./...`。
+
 ## 最後
 
 最終整支審查（最強模型）→ 修正 Critical/Important（Minor 也修，使用者要求）→ 回報（含所有內容變更清單供審閱、rulings、費用與不提交重翻的提醒）→ 使用者同意後才合併。
