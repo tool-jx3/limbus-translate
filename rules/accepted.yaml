@@ -160,3 +160,9 @@
 - id: "warning/term-missing/8823e6ef/54406f1d"
   reason: KR 誤命中：「세가지」（三樣），不是「세가」（勢力）（使用者決定 2026-11-07）
   date: 2026-11-07
+- id: "warning/term-missing/83f614ba/9c97a938"
+  reason: 蜘蛛巢的專名「X 복도」（중지 복도、검지 복도）依 복도 的 notes 寫「長廊」；只有 3 個單位、不另立條目（controller 裁示 2026-11-07）
+  date: 2026-11-07
+- id: "warning/term-missing/fb90e77e/2a543b98"
+  reason: 蜘蛛巢的專名「X 복도」（중지 복도、검지 복도）依 복도 的 notes 寫「長廊」；只有 3 個單位、不另立條目（controller 裁示 2026-11-07）
+  date: 2026-11-07

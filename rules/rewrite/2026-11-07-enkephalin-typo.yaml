@@ -1,0 +1,8 @@
+# TutorialMirrorDungeon 的 9 個單位（/7、/76、/141、/165、/243、/296、/384、/439、/530）寫錯字「腦啡呔模塊」。
+# KR「소모한 엔케팔린 대비 보상 효율」、JP「消耗エンケファリン効率」、EN「enkephalin-efficient」說的都是消耗的腦啡肽，
+# 沒有 모듈，所以照原文改為「腦啡肽」（controller 裁示 2026-11-07）。改後「每次消耗1次加成可以更有效率地利用腦啡肽。」
+reason: '「腦啡呔模塊」是錯字，KR 是 엔케팔린（腦啡肽）'
+files: ['TutorialMirrorDungeon.json']
+pattern: '腦啡呔模塊'
+replace: '腦啡肽'
+kr_pattern: '소모한 엔케팔린 대비'

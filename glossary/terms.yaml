@@ -5365,7 +5365,7 @@
   forbidden: [腦啡肽模塊]
   status: approved
   evidence: { kr_lines: 60, approved: 52, forbidden: 0 }
-  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 依使用者決定改為「腦啡肽模組」，與「도약 모듈」（跳躍成長模組）一致；既有寫「腦啡肽模塊」（含錯字「腦啡呔模塊」）的 62 個單位由 rules/rewrite/2026-11-07-enkephalin-module.yaml 統一；KR 單寫「모듈」而譯文單寫「模塊」的由 2026-11-07-module-bare.yaml、2026-11-07-module-sphere.yaml 統一
+  notes: Paratranz 詞彙表（八成以上照這個譯法，人工確認 2026-11-04 加入；evidence 只算單獨成詞的用法）。2026-11-07 依使用者決定改為「腦啡肽模組」，與「도약 모듈」（跳躍成長模組）一致；既有寫「腦啡肽模塊」的 53 個單位由 rules/rewrite/2026-11-07-enkephalin-module.yaml 統一；KR 單寫「모듈」而譯文單寫「模塊」的由 2026-11-07-module-bare.yaml、2026-11-07-module-sphere.yaml 統一
   sources: ["game:ShopUI.json#/dataList/30/content"]
 
 - kr: 쉼터

@@ -1,9 +1,9 @@
 # 使用者決定（2026-11-07）：엔케팔린 모듈 寫「腦啡肽模組」，與 도약 모듈「跳躍成長模組」一致；詞彙表的譯名已改，
 # 並禁用「腦啡肽模塊」。raw-20261105 有 53 個單位寫「腦啡肽模塊」（6 個已寫「腦啡肽模組」），都在下列 15 個檔。
 # Items.json /3/flavor 的 KR 沒有「엔케팔린 모듈」（寫「모듈」與「액화 엔케팔린」），譯文的「腦啡肽模塊」也一併統一。
-# TutorialMirrorDungeon 另有 9 個單位寫錯字「腦啡呔模塊」（/7、/76、/141、/165、/243、/296、/384、/439、/530），一併改成「腦啡肽模組」。
+# TutorialMirrorDungeon 另有 9 個單位寫錯字「腦啡呔模塊」，KR 說的是腦啡肽而不是模組，由 2026-11-07-enkephalin-typo.yaml 處理。
 # 單寫「模塊」的由 2026-11-07-module-bare.yaml、2026-11-07-module-sphere.yaml 處理（檔名排在本檔之後）。
 reason: '엔케팔린 모듈 寫「腦啡肽模組」（詞彙表）'
 files: ['AttendanceRewardsText.json', 'BattleHint.json', 'BattlePass_Mission.json', 'HellsChicken.json', 'Items.json', 'MainUIText.json', 'MirrorDungeonUI.json', 'MirrorDungeonUI_5_InfinityFloor.json', 'RailwayDungeonUI.json', 'ShopUI.json', 'StoryDungeonUI.json', 'TutorialMainUIText.json', 'TutorialMirrorDungeon.json', 'TutorialRenewalMainUIDesc.json', 'Walpu7EventText.json']
-pattern: '腦啡[肽呔]模塊'
+pattern: '腦啡肽模塊'
 replace: '腦啡肽模組'
