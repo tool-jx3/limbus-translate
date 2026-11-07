@@ -328,3 +328,38 @@ func TestCollectOccurrenceFollowsMatch(t *testing.T) {
 		}
 	}
 }
+
+// The last word of an EN candidate may be a plural or singular of it; the
+// other words, the boundaries and the case rules stay.
+func TestHoldsENPlurals(t *testing.T) {
+	tests := []struct {
+		text, cand string
+		want       bool
+	}{
+		{"Two Wings of fire", "Wing", true},
+		{"a wing", "Wings", true},
+		{"Skill Slots left", "Skill Slot", true},
+		{"Abilities rise", "Ability", true},
+		{"one ability", "Abilities", true},
+		{"Two Buses", "Bus", true},
+		{"the bus", "Buses", true},
+		{"Boxes", "Box", true},
+		{"Wingman", "Wing", false},
+		{"Slotted", "Slot", false},
+		{"Slots of fire", "Slot", true},
+		{"Skill Slots", "Skills Slot", false}, // only the last word varies
+		{"Skills Slot", "Skill Slot", false},
+		{"Wing", "Wing", true},
+		{"WINGS", "wing", true},
+		{"Bu", "Bus", false}, // a stem too short to drop to
+	}
+	for _, tc := range tests {
+		if got := Holds(LangEN, tc.text, tc.cand); got != tc.want {
+			t.Errorf("Holds(EN, %q, %q) = %v, want %v", tc.text, tc.cand, got, tc.want)
+		}
+	}
+	// JP is not touched.
+	if Holds(LangJP, "翼たち", "翼s") || !Holds(LangJP, "翼たち", "翼") {
+		t.Error("JP matching changed")
+	}
+}

@@ -306,9 +306,46 @@ func distinct(parts ...any) []string {
 func Holds(lang, text, candidate string) bool {
 	text = validate.MatchText(text)
 	if lang == LangEN {
-		return containsWord(text, candidate)
+		for _, v := range numberForms(candidate) {
+			if containsWord(text, v) {
+				return true
+			}
+		}
+		return false
 	}
 	return strings.Contains(text, candidate)
+}
+
+// numberForms is the candidate and the forms its last word takes as a plural
+// or a singular: +s, +es, y to ies, and without a final s, es or ies (to y).
+// The words before it stay as they are.
+func numberForms(candidate string) []string {
+	cut := strings.LastIndexFunc(candidate, func(r rune) bool { return !unicode.IsLetter(r) }) + 1
+	if cut > len(candidate) {
+		return []string{candidate}
+	}
+	head, last := candidate[:cut], strings.ToLower(candidate[cut:])
+	out := []string{candidate}
+	if last == "" {
+		return out
+	}
+	add := func(stem string) { out = append(out, head+stem) }
+	// Case follows the text compared with: containsWord ignores it.
+	add(last + "s")
+	add(last + "es")
+	if strings.HasSuffix(last, "y") && len(last) > 1 {
+		add(last[:len(last)-1] + "ies")
+	}
+	if strings.HasSuffix(last, "ies") && len(last) > 4 {
+		add(last[:len(last)-3] + "y")
+	}
+	if strings.HasSuffix(last, "es") && len(last) > 4 {
+		add(last[:len(last)-2])
+	}
+	if strings.HasSuffix(last, "s") && len(last) > 3 {
+		add(last[:len(last)-1])
+	}
+	return out
 }
 
 func check(lang, candidate string, occ []occurrence) Check {

@@ -839,16 +839,17 @@ func TestSenseCounts(t *testing.T) {
 	us := []Unit{
 		senseUnit(0, "侵蝕", "Erosion", "浸食"),         // used: not classified
 		senseUnit(1, "腐蝕", "the Erosion grows", ""), // same (EN, word, any case)
-		senseUnit(2, "腐蝕", "Erosions grow", ""),     // other: EN aligned, not as a word
+		senseUnit(2, "腐蝕", "Erosionary grow", ""),   // other: EN aligned, not as a word
 		senseUnit(3, "腐蝕", "a corrosion", "浸食された"),  // other: EN decides, JP is not asked
 		senseUnit(4, "腐蝕", "", "浸食された"),             // same via JP
 		senseUnit(5, "腐蝕", "", "腐食"),                // other via JP
 		senseUnit(6, "腐蝕", "", ""),                  // unknown: no alignment
 		senseUnit(7, "腐蝕", "  ", ""),                // unknown: blank alignment
+		senseUnit(8, "腐蝕", "Erosions grow", ""),     // same: a plural of the en
 	}
 	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
-	if e.Same != 2 || e.Other != 3 || e.Unknown != 2 || e.Used != 1 || e.N != 8 {
-		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 2/3/2 (1, 8)", e.Same, e.Other, e.Unknown, e.Used, e.N)
+	if e.Same != 3 || e.Other != 3 || e.Unknown != 2 || e.Used != 1 || e.N != 9 {
+		t.Fatalf("entry same/other/unknown = %d/%d/%d (used %d, n %d), want 3/3/2 (1, 9)", e.Same, e.Other, e.Unknown, e.Used, e.N)
 	}
 	var g Group
 	for _, x := range e.Groups {
@@ -856,8 +857,8 @@ func TestSenseCounts(t *testing.T) {
 			g = x
 		}
 	}
-	if g.Same != 2 || g.Other != 3 || g.Unknown != 2 {
-		t.Fatalf("group same/other/unknown = %d/%d/%d, want 2/3/2", g.Same, g.Other, g.Unknown)
+	if g.Same != 3 || g.Other != 3 || g.Unknown != 2 {
+		t.Fatalf("group same/other/unknown = %d/%d/%d, want 3/3/2", g.Same, g.Other, g.Unknown)
 	}
 }
 
