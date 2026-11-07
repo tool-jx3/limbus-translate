@@ -172,6 +172,23 @@
 - [ ] 前 20 條的應用率改前改後表。
 - [ ] `lct audit` 第一波估計。結果進最終回報；之後最終整支審查。
 
+### Task 13: 族群引入共用指引（`include:`）
+
+**Files:** Modify `internal/rules/routing.go`（`FamilyRule.Include []string`，yaml `include`）、`internal/rules/rules.go`（`GuidesFor`）、`internal/rules/lint.go`；Test `internal/rules/*_test.go`；Modify `guides/README.md`、`prompts/translate.md`（疊加順序）、`guides/routing.yaml`（註解說明 `include:`）。
+
+- [ ] 測試先寫：`GuidesFor` 順序為 base → 族群 → include（依序、去重）→ 節點層 → 標記層 → 角色；include 與族群指引或層相同時只列一次。
+- [ ] lint：include 每項須為存在的 `guides/**/*.md`；`guides/shared/*.md` 與族群指引同樣 ≤ 4096 bytes；每批總量檢查計入 include。
+- [ ] `go vet ./... && go test ./...`；網站預覽靠 `GuidesFor`，不需改，跑 `cd site && npm test` 確認。
+
+### Task 14: 括號慣例與共用指引（內容任務）
+
+**Files:** Modify `guides/base.md`（第 7 條與其證據行）、`guides/families/*.md`、`guides/routing.yaml`（`include:`）；Create `guides/shared/*.md`、`rules/rewrite/2026-11-07-*.yaml`；Modify `docs/research/scripts/family_guides.py`。
+
+- [ ] base.md 第 7 條改為全形，例外照舊；戰鬥說明類的半形寫進它們共用的指引；rpg.md 不再稱為例外。
+- [ ] 跨族群重複的規則搬進 `guides/shared/`，用到的族群 `include:`；統計以引入族群合計（腳本可重算，≥80% 且 ≥30）。
+- [ ] 改寫檔：非戰鬥族群的半形括號 → 全形；戰鬥說明類的全形 → 半形。只動 KR 有對應括號、括號內含中文的；排除 ruby「Y(X)」與亂碼符號。用真實資料模擬，報告各族群會改幾個單位並附樣本。
+- [ ] `rules lint` 無錯；`go vet ./... && go test ./...`。
+
 ## 最後
 
 最終整支審查（最強模型）→ 修正 Critical/Important（Minor 也修，使用者要求）→ 回報（含所有內容變更清單供審閱、rulings、費用與不提交重翻的提醒）→ 使用者同意後才合併。
