@@ -128,6 +128,30 @@ type Report struct {
 type EntryUnit struct {
 	Key, File, KR, ZH, Origin, Note string
 	Used                            bool
+	// Explained says the unit lacks the rendering and its note names the term.
+	Explained bool
+	// Sense is SenseSame, SenseOther or SenseUnknown for a unit that does not
+	// use the rendering (see Entry.Same), "" for one that does.
+	Sense string
+}
+
+// The senses of an EntryUnit that does not use the rendering.
+const (
+	SenseSame    = "same"
+	SenseOther   = "other"
+	SenseUnknown = "unknown"
+)
+
+func senseName(s int) string {
+	switch s {
+	case senseSame:
+		return SenseSame
+	case senseOther:
+		return SenseOther
+	case senseUnknown:
+		return SenseUnknown
+	}
+	return ""
 }
 
 // Entry is one approved glossary entry and its counts.
@@ -639,7 +663,7 @@ func (an *analysis) entryUnits(a *acc) []EntryUnit {
 	out := make([]EntryUnit, 0, len(a.hits))
 	for _, h := range a.hits {
 		u := an.units[h.unit]
-		out = append(out, EntryUnit{Key: u.Key, File: u.File, KR: u.KR, ZH: u.ZH, Origin: u.Origin, Note: u.Note, Used: h.used})
+		out = append(out, EntryUnit{Key: u.Key, File: u.File, KR: u.KR, ZH: u.ZH, Origin: u.Origin, Note: u.Note, Used: h.used, Explained: h.explained, Sense: senseName(h.sense)})
 	}
 	return out
 }

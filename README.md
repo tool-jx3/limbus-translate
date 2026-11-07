@@ -144,6 +144,7 @@ Settings → Actions → General → Workflow permissions 選「Read and write p
 |---|---|---|
 | 修正某個單位的譯文 | `rules/adjustments/` | 用 `adjust` skill，或 `bin/lct adjust add`；只在該單位的 KR 沒變時有效，KR 改了就會重翻，舊調整當參考 |
 | 要求某個範圍重翻 | `rules/requeue/` | `bin/lct requeue --file GLOB --reason R --to-file TOPIC`；CI 套用一次，之後不再套用 |
+| 複查既有譯文的品質 | `rules/requeue/` | `bin/lct audit [--wave-size 500] [--wave N] [--usd-per-unit X]`：依品質訊號（不一致 3、缺譯名且 EN／JP 同義 3、長度比 2、缺譯名 1、其他格式警告 1）排序並分波，估計每波重翻費用（預設由 tw `.meta/translate.json` 的 `cost_usd /(pending_before − pending_after)` 推算，算不出來為 null），不寫任何檔；加 `--to-file TOPIC` 才把該波寫成 `rules/requeue/<日期>-audit-TOPIC.yaml`，格式同 `lct requeue --to-file`，合併後 CI 套用一次 |
 | 對既有譯文做機械式改寫（例如統一寫法） | `rules/rewrite/` | 寫改寫檔（格式見設計文件 §11.1）；CI 套用一次，不送回翻譯 |
 | 決定暫定詞 | `glossary/`，或 `rules/declined.yaml` | 採用：在 `glossary/terms.yaml` 新增該 KR 的詞條（`status: approved`，譯法可與暫定的不同；用 `term-decision` 或 `review-page` skill），詞彙表一有這個 KR，暫定詞就不再生效、也不再列出；不採用：`bin/lct accept --reason '<理由>' 'term-new/<KR>'`（ID 加單引號，KR 可能含空格；記進 `rules/declined.yaml`，該暫定詞不再出現在審核頁） |
 | 改進翻譯規則 | `guides/`、`glossary/`、`rules/fields*.yaml` | 改檔案；`glossary/` 的譯名是預設譯名，`check: hard` 的條目缺譯名才退回。規則改了不會自動重翻舊譯文，要重翻必須另外要求。CI 也會提出建議，見「收到規則 PR 怎麼處理」 |

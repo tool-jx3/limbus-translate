@@ -877,3 +877,24 @@ func TestSenseUnknownWithoutAlignment(t *testing.T) {
 		t.Fatalf("empty entry = %d/%d/%d, want 0/0/2", e.Same, e.Other, e.Unknown)
 	}
 }
+
+func TestEntryUnitsCarryTheSense(t *testing.T) {
+	term := approved("침식", "侵蝕")
+	term.EN = "Erosion"
+	us := []Unit{
+		senseUnit(0, "侵蝕", "Erosion", ""),
+		senseUnit(1, "腐蝕", "the Erosion grows", ""),
+		senseUnit(2, "腐蝕", "a corrosion", ""),
+		senseUnit(3, "腐蝕", "", ""),
+	}
+	rep := Analyze(Inputs{Rules: testRules(term), Units: us})
+	e := entryOf(t, rep, "침식")
+	got := map[string]string{}
+	for _, u := range rep.Units[e.ID] {
+		got[u.Key] = u.Sense
+	}
+	want := map[string]string{us[0].Key: "", us[1].Key: SenseSame, us[2].Key: SenseOther, us[3].Key: SenseUnknown}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("senses = %v, want %v", got, want)
+	}
+}
