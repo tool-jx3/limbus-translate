@@ -21,7 +21,7 @@
 - 範圍縮小門檻：某族群或 top 節點的缺漏 ≥5 單位且他義 ≥80%。
 - 基準樣本每族群 20 個（使用者核可），固定種子。
 - 提交前：`go vet ./... && go test ./...`；動到 `site/` 另跑 `cd site && npm test && npm run typecheck && npm run build`。
-- Commit 訊息繁體中文，結尾：`Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`、`Claude-Session: https://claude.ai/code/session_015XrjRvHe6FfxjemSS1js35`。程式、文件、skill 不寫模型名稱。
+- Commit 訊息繁體中文，結尾附上工作階段指定的 `Co-Authored-By` 與 `Claude-Session` 兩行。程式、文件、skill 不寫模型名稱。
 - 內容任務需要真實資料：用 scratch clone `/tmp/claude-0/-home-user/f7dbac2a-9a09-566e-ac65-036521a48b24/scratchpad/acc`（已有 `.work/raw`、`.work/tw`），在那裡 fetch 本分支、建 `bin/lct` 後執行分析；檔案修改寫在 `/home/user/limbus-translate`。不碰 `/home/user/limbus-translate/.work/`。wiki.gg 用 `curl -A "limbus-translate-glossary/1.0 (research)"` 讀 `https://limbuscompany.wiki.gg/api.php`。
 
 ## Review Focus

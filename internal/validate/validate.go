@@ -711,7 +711,7 @@ func halfwidthPunct(s string) []string {
 
 // halfwidthBrackets returns the distinct half-width ( ) in zh, a text of file,
 // if file is a label of the RPG: a file under RPGSystem/ that is not
-// dialogue. Labels use the full-width （） (see guides/families.md). Tags are
+// dialogue. Labels use the full-width （） (see guides/families/rpg.md). Tags are
 // not text.
 func halfwidthBrackets(file, zh string) []string {
 	if !strings.HasPrefix(file, "RPGSystem/") || isRPGDialogue(file) {

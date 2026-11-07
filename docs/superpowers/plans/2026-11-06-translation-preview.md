@@ -24,7 +24,7 @@
 - 網站：路由 `#/pv/<path>?u=<pointer>`（沿用檔案頁的 `u` 參數名，見 Ruling P1）；頁首寫「依規則 `<前 7 碼>` 模擬」；一個單位只載入該檔 `files/<path>`、`preview/<path>` 與 `preview.json`；400px 寬時整頁不得橫向捲動；沿用 `styles.css` 既有變數。
 - 預算（回報，不是關卡）：預覽資料總大小與 `lct site` 多花的時間；預估 ≤ 60 MB、≤ 50%。
 - 提交前：`go vet ./... && go test ./...`；動到 `site/` 時另跑 `cd site && npm test && npm run typecheck && npm run build`。
-- Commit 訊息用繁體中文，結尾兩行：`Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`、`Claude-Session: https://claude.ai/code/session_015XrjRvHe6FfxjemSS1js35`。程式、文件、skill 不寫模型名稱。
+- Commit 訊息用繁體中文，結尾附上工作階段指定的 `Co-Authored-By` 與 `Claude-Session` 兩行。程式、文件、skill 不寫模型名稱。
 
 ## Rulings（計畫層，對規格的細化）
 
