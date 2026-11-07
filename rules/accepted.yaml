@@ -16,15 +16,6 @@
 #   - id: "warning/kana/0123abcd/89ef4567"
 #     reason: 日文假名是刻意保留的
 #     date: 2026-11-05
-- id: "warning/halfwidth-punct/2e037f6e/3cfa8fec"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
-- id: "warning/halfwidth-punct/63ddba7c/90aa073a"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
-- id: "warning/halfwidth-punct/f472e7b3/4a3a1ae5"
-  reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
-  date: 2026-11-04
 - id: "warning/halfwidth-punct/af877463/e19e44d1"
   reason: E.G.O.、ver.、條列編號（1. 2. 3.）與亂碼「!@#$…」中的半形標點是原文的寫法，不用調整
   date: 2026-11-04
@@ -177,25 +168,22 @@
   date: 2026-11-07
 - id: "warning/term-missing/0be4e432/333798e8"
   reason: KR 誤命中：這裡的「공방」是同音的「攻防」（공방 능력 攻防能力、빠른 공방 激烈的交鋒），不是工房（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
 - id: "warning/term-missing/75e26c15/21a93e4a"
   reason: KR 誤命中：這裡的「공방」是同音的「攻防」（공방 능력 攻防能力、빠른 공방 激烈的交鋒），不是工房（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
 - id: "warning/term-missing/34b8a221/d1cc4188"
   reason: KR 誤命中：這裡的「유체」是同音的「流體」（fluid），不是幼蟲（幼体，Larva）（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
 - id: "warning/term-missing/e38bd5ef/fecf89e0"
   reason: KR 誤命中：這裡的「유체」是同音的「流體」（fluid），不是幼蟲（幼体，Larva）（應用率回顧 2026-11-07）
-  date: 2026-11-08
-- id: "warning/term-missing/3b650278/0c5396ab"
-  reason: KR 誤命中：被動技能名「초롱초롱」（明亮閃爍）是另一個詞，不是提燈（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
 - id: "warning/term-missing/8ea95836/aef0d353"
   reason: KR 誤命中：「키라…」是「키（舵）＋라」，不是人名綺羅（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
 - id: "warning/term-missing/2a7375b6/f0e1979f"
   reason: KR 誤命中：「지혜성도」是「지혜성（地慧星之位）＋도（也）」，不是地慧星刀（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
 - id: "warning/term-missing/87a54fd8/de16bc91"
   reason: KR 誤命中：「영생의 거울 투영」是「영생의 거울（永生之鏡）＋투영」，這裡的「거울 투영」跨了名稱的邊界（應用率回顧 2026-11-07）
-  date: 2026-11-08
+  date: 2026-11-07
