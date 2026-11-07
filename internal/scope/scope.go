@@ -62,8 +62,9 @@ const (
 
 // senseOf classifies the unit u against t by every alignment available: a
 // language is available when the entry has a value for it (en, jp) and the
-// unit's aligned text in it is not blank. The unit is senseSame when every
-// available alignment holds the entry's value (evidence.Holds), senseOther
+// unit's aligned text in it is not blank once its tags are stripped
+// (validate.MatchText, as evidence.Holds reads it). The unit is senseSame when
+// every available alignment holds the entry's value (evidence.Holds), senseOther
 // when every one misses it, and senseUnknown when they disagree or none is
 // available. Each claim rests on agreeing evidence: scope narrowing acts on
 // Other and the review of old translations on Same, and a JP cognate shared
@@ -72,7 +73,7 @@ const (
 func senseOf(t rules.Term, u Unit) int {
 	holds, misses := 0, 0
 	for _, c := range []struct{ lang, cand, text string }{{evidence.LangEN, t.EN, u.EN}, {evidence.LangJP, t.JP, u.JP}} {
-		text := strings.TrimSpace(c.text)
+		text := strings.TrimSpace(validate.MatchText(c.text))
 		if c.cand == "" || text == "" {
 			continue
 		}

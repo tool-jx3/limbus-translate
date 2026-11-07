@@ -828,7 +828,7 @@ func TestReportUnits(t *testing.T) {
 	}
 }
 
-// senseUnits builds units of one file for the sense counts.
+// senseUnit builds a unit of one file for the sense counts.
 func senseUnit(i int, zh, en, jp string) Unit {
 	return Unit{Key: fmt.Sprintf("%s|/dataList/%d/content", storyFile, i), File: storyFile, KR: "침식", ZH: zh, EN: en, JP: jp, Origin: store.OriginClaude}
 }
@@ -916,5 +916,44 @@ func TestEntryUnitsCarryTheSense(t *testing.T) {
 	want := map[string]string{us[0].Key: "", us[1].Key: SenseSame, us[2].Key: SenseOther, us[3].Key: SenseUnknown}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("senses = %v, want %v", got, want)
+	}
+}
+
+// An aligned text that is only tags is nothing to compare: with no JP either,
+// the unit is unknown, not other.
+func TestSenseTagOnlyAlignment(t *testing.T) {
+	term := approved("침식", "侵蝕")
+	term.EN, term.JP = "Erosion", "浸食"
+	us := []Unit{
+		senseUnit(0, "腐蝕", "<color=#fff></color>", ""),      // unknown: EN is tags only
+		senseUnit(1, "腐蝕", "<color=#fff></color>", "浸食された"), // same: only JP counts
+		senseUnit(2, "腐蝕", "<color=#fff></color>", "腐食"),    // other: only JP counts
+	}
+	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
+	if e.Same != 1 || e.Other != 1 || e.Unknown != 1 {
+		t.Fatalf("tag-only EN = %d/%d/%d, want 1/1/1", e.Same, e.Other, e.Unknown)
+	}
+}
+
+// Same + Other + Unknown is the units that do not use the rendering, with a
+// substring compound hit among them.
+func TestSenseSumsWithCompound(t *testing.T) {
+	term := approved("침식", "侵蝕")
+	term.EN, term.JP = "Erosion", "浸食"
+	term.Match = rules.MatchSubstring
+	compound := senseUnit(3, "腐蝕", "the Erosion grows", "")
+	compound.KR = "침식당함"
+	us := []Unit{
+		senseUnit(0, "侵蝕", "Erosion", "浸食"),
+		senseUnit(1, "腐蝕", "a corrosion", "腐食"),
+		senseUnit(2, "腐蝕", "", ""),
+		compound,
+	}
+	e := entryOf(t, Analyze(Inputs{Rules: testRules(term), Units: us}), "침식")
+	if e.Compound.N != 1 {
+		t.Fatalf("compound = %+v, want one compound unit", e.Compound)
+	}
+	if got, missing := e.Same+e.Other+e.Unknown, e.N-e.Used; got != missing || e.Same != 1 || e.Other != 1 || e.Unknown != 1 {
+		t.Fatalf("same+other+unknown = %d (%d/%d/%d), missing = %d, want 3 (1/1/1)", got, e.Same, e.Other, e.Unknown, missing)
 	}
 }
