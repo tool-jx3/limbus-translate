@@ -9,7 +9,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/tool-jx3/limbus-translate/internal/align"
 	"github.com/tool-jx3/limbus-translate/internal/cli"
+	"github.com/tool-jx3/limbus-translate/internal/fields"
 	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
@@ -79,9 +81,10 @@ func runGoldSample(ctx *cli.Context, args []string) error {
 	if *per < 1 {
 		return cli.UserError("gold sample: --per-family must be at least 1")
 	}
+	// A file that cannot be read has nothing to lose, and --force replaces it.
 	old, err := gold.Load(ctx.Root)
-	if err != nil {
-		return err
+	if err != nil && !*force {
+		return cli.UserError(fmt.Sprintf("gold sample: %v; fix it, or use --force to draw a new sample over it", err))
 	}
 	if n := old.Judged(); n > 0 && !*force {
 		return cli.UserError(fmt.Sprintf("gold sample: %s holds %d judgements, which a new draw would lose; use --force to overwrite them", gold.File, n))
@@ -102,6 +105,10 @@ func runGoldSample(ctx *cli.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	fieldRules, err := fields.Load(ctx.Root)
+	if err != nil {
+		return err
+	}
 	set, err := pack.OpenRaw(filepath.Join(ctx.Root, filepath.FromSlash(cfg.Worktrees.Raw)))
 	if err != nil {
 		return err
@@ -113,9 +120,18 @@ func runGoldSample(ctx *cli.Context, args []string) error {
 			return err
 		}
 		family := r.Family(file)
+		aligner := align.NewFileAligner(file, doc, set.EN, set.JP)
 		for _, u := range units.Extract(file, doc) {
 			key := units.Key(file, u.Pointer)
 			if rec, ok := records[key]; ok && rec.Origin != store.OriginCopy {
+				// The field rules decide what is translated at all.
+				en, jp, err := aligner.Get(u.Pointer)
+				if err != nil {
+					return err
+				}
+				if !fieldRules.Classify(u, en, jp).Translate {
+					continue
+				}
 				cands = append(cands, gold.Candidate{Key: key, Family: family, Origin: rec.Origin})
 			}
 		}
@@ -227,5 +243,24 @@ func runGoldReport(ctx *cli.Context, args []string) error {
 	for _, u := range s.Units {
 		current[u.Key] = records[u.Key].ZH
 	}
-	return ctx.Emit(gold.MakeReport(s, current))
+	set, err := pack.OpenRaw(filepath.Join(ctx.Root, filepath.FromSlash(ctx.Config.Worktrees.Raw)))
+	if err != nil {
+		return err
+	}
+	rep := gold.MakeReport(s, current)
+	for _, u := range s.Units {
+		file, ptr, err := units.SplitKey(u.Key)
+		if err != nil || !set.KR.Has(file) {
+			rep.Missing++
+			continue
+		}
+		doc, err := set.KR.Doc(file)
+		if err != nil {
+			return err
+		}
+		if _, ok := doc.Get(ptr); !ok {
+			rep.Missing++
+		}
+	}
+	return ctx.Emit(rep)
 }

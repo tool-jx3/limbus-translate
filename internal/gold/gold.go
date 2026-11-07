@@ -126,7 +126,7 @@ func Save(root string, s Sample) error {
 	return rulefile.WriteAtomic(filepath.Join(root, filepath.FromSlash(File)), buf.Bytes())
 }
 
-// Judged reports whether any unit has a verdict.
+// Judged returns the number of units that have a verdict.
 func (s Sample) Judged() int {
 	n := 0
 	for _, u := range s.Units {
@@ -230,6 +230,9 @@ type Report struct {
 	Rows     []Row `json:"rows"`
 	Families []Row `json:"families"`
 	Total    Row   `json:"total"`
+	// Missing is the number of units of the sample that are not in the KR
+	// pack any more; the caller sets it.
+	Missing int `json:"missing"`
 }
 
 func (r *Row) add(u Unit, stale bool) {
@@ -322,5 +325,8 @@ func (r Report) String() string {
 		line(x.Family+" (all)", x)
 	}
 	line("total", r.Total)
+	if r.Missing > 0 {
+		fmt.Fprintf(&b, "missing from the pack: %d\n", r.Missing)
+	}
 	return b.String()
 }

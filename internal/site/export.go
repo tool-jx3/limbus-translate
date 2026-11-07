@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"io/fs"
 	"os"
 	"path/filepath"
 
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/scope"
 	"github.com/tool-jx3/limbus-translate/internal/store"
@@ -169,7 +169,11 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			u := &file.Units[i]
 			key := units.Key(p, u.P)
 			if goldWanted[key] {
-				goldUnits[key] = GoldUnit{Path: p, Ptr: u.P, KR: u.KR, JP: u.JP, EN: u.EN, ZH: u.ZH}
+				gu := GoldUnit{Path: p, Ptr: u.P, KR: u.KR, JP: u.JP, EN: u.EN, ZH: in.Records[key].ZH}
+				if u.ZH != gu.ZH {
+					gu.Shipped = u.ZH
+				}
+				goldUnits[key] = gu
 			}
 			u.RV = rev.Refs[key]
 			u.NT = rev.NoteText[key]
@@ -233,7 +237,7 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 			return Result{}, err
 		}
 	}
-	if err := w.writeJSON("gold.json", buildGold(in.Gold, goldUnits)); err != nil {
+	if err := w.writeJSON("gold.json", buildGold(in.Gold, goldUnits, in.Records)); err != nil {
 		return Result{}, err
 	}
 	idx.Groups = buildGroups(idx.Files)
@@ -304,9 +308,11 @@ func Export(in Inputs, meta Meta, outDir string) (Result, error) {
 	}, nil
 }
 
-// GoldUnit is a unit of data/gold.json: the sample's unit with its texts. ZH is
-// the string of the built pack; Stale is that it is not the translation that
-// was judged.
+// GoldUnit is a unit of data/gold.json: the sample's unit with its texts. ZH
+// is the translation of the record, the one lct gold set judges and lct gold
+// report compares; Stale is that it is not the translation that was judged.
+// Shipped is the string of the built pack where that is another text (a
+// fallback, a stand-in, a field rule), and empty where it is the same.
 type GoldUnit struct {
 	Key     string  `json:"key"`
 	Path    string  `json:"path"`
@@ -317,40 +323,42 @@ type GoldUnit struct {
 	JP      *string `json:"jp,omitempty"`
 	EN      *string `json:"en,omitempty"`
 	ZH      string  `json:"zh"`
+	Shipped string  `json:"shipped,omitempty"`
 	Verdict string  `json:"verdict"`
 	Note    string  `json:"note"`
 	Stale   bool    `json:"stale"`
 }
 
 // Gold is data/gold.json. Without a sample it is {"units": []}. A unit of the
-// sample that is not in the pack any more is left out, and the report counts
-// the units that are listed.
+// sample that is not in the pack any more is left out of Units and counted in
+// Missing (left out when 0); the report counts the whole sample.
 type Gold struct {
 	PerFamily int          `json:"per_family,omitempty"`
 	Units     []GoldUnit   `json:"units"`
+	Missing   int          `json:"missing,omitempty"`
 	Report    *gold.Report `json:"report,omitempty"`
 }
 
-func buildGold(s *gold.Sample, found map[string]GoldUnit) Gold {
+func buildGold(s *gold.Sample, found map[string]GoldUnit, records map[string]store.Record) Gold {
 	g := Gold{Units: []GoldUnit{}}
 	if s == nil || (s.Seed == 0 && len(s.Units) == 0) {
 		return g
 	}
 	g.PerFamily = s.PerFamily
-	listed := gold.Sample{Seed: s.Seed, PerFamily: s.PerFamily}
 	current := map[string]string{}
 	for _, su := range s.Units {
+		current[su.Key] = records[su.Key].ZH
 		u, ok := found[su.Key]
 		if !ok {
+			g.Missing++
 			continue
 		}
 		u.Key, u.Family, u.Origin, u.Verdict, u.Note = su.Key, su.Family, su.Origin, su.Verdict, su.Note
 		u.Stale = gold.Stale(su, u.ZH)
 		g.Units = append(g.Units, u)
-		listed.Units = append(listed.Units, su)
-		current[su.Key] = u.ZH
 	}
-	rep := gold.MakeReport(listed, current)
+	rep := gold.MakeReport(*s, current)
+	rep.Missing = g.Missing
 	g.Report = &rep
 	return g
 }

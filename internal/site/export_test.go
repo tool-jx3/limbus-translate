@@ -659,10 +659,14 @@ func TestExportWritesGold(t *testing.T) {
 	// With one: the units come in the order of the sample, with the texts of
 	// the packs; stale is a translation that is not the one that was judged.
 	in = exportInputs(t)
+	// A structural fallback: the pack ships another text than the record holds.
+	// The record is what gold set judged, so it is the translation of the unit.
+	fb := "StoryData/S2.json|/dataList/0/content"
+	in.Records[fb] = store.Record{Key: fb, KRSha: "00", ZH: "記錄譯文", Origin: store.OriginFallback, Since: "raw-20261029"}
 	in.Gold = &gold.Sample{Seed: 7, PerFamily: 2, Units: []gold.Unit{
 		{Key: "StoryData/S2.json|/dataList/1/content", Family: "story", Origin: "claude", Verdict: "wrong", Note: "n", JudgedZH: "舊"},
 		{Key: "Skills.json|/dataList/0/name", Family: "other", Origin: "human", Verdict: "correct", JudgedZH: "技能"},
-		{Key: "StoryData/S2.json|/dataList/0/content", Family: "story", Origin: "paratranz"},
+		{Key: fb, Family: "story", Origin: "fallback", Verdict: "correct", JudgedZH: "記錄譯文"},
 		{Key: "StoryData/Gone.json|/dataList/0/content", Family: "story", Origin: "claude", Verdict: "correct", JudgedZH: "x"},
 	}}
 	out = filepath.Join(t.TempDir(), "data")
@@ -675,8 +679,10 @@ func TestExportWritesGold(t *testing.T) {
 			Key, Path, Ptr, Family, Origin, KR, ZH, Verdict, Note string
 			JP, EN                                                *string
 			Stale                                                 bool
+			Shipped                                               string
 		}
-		Report gold.Report `json:"report"`
+		Missing int         `json:"missing"`
+		Report  gold.Report `json:"report"`
 	}
 	b, err = os.ReadFile(filepath.Join(out, "gold.json"))
 	if err != nil {
@@ -696,11 +702,19 @@ func TestExportWritesGold(t *testing.T) {
 	if got.Units[1].Stale || got.Units[1].Path != "Skills.json" {
 		t.Errorf("unit 1 = %+v", got.Units[1])
 	}
-	if got.Units[2].Stale || got.Units[2].Verdict != "" {
-		t.Errorf("unit 2 = %+v (an unjudged unit is never stale)", got.Units[2])
+	if got.Units[0].Shipped != "" || got.Units[1].Shipped != "" {
+		t.Errorf("shipped is set where the pack holds the record: %+v %+v", got.Units[0], got.Units[1])
 	}
-	// The unit that is not in the pack any more is left out of the list.
-	if got.Report.Total.Sampled != 3 || got.Report.Total.Stale != 1 || got.Report.Total.Correct != 1 {
+	// The record is canonical: zh and stale follow it, the pack text is shipped.
+	if u := got.Units[2]; u.ZH != "記錄譯文" || u.Stale || u.Shipped != "一" {
+		t.Errorf("unit 2 = %+v, want zh from the record, not stale, shipped \"一\"", u)
+	}
+	// The unit that is not in the pack any more is left out of the list and
+	// counted; the report counts the whole sample, as lct gold report does.
+	if got.Missing != 1 || got.Report.Missing != 1 {
+		t.Errorf("missing = %d, report.missing = %d, want 1", got.Missing, got.Report.Missing)
+	}
+	if got.Report.Total.Sampled != 4 || got.Report.Total.Stale != 2 || got.Report.Total.Correct != 3 {
 		t.Errorf("report total = %+v", got.Report.Total)
 	}
 }

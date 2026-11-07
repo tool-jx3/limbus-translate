@@ -5,10 +5,10 @@ package site
 
 import (
 	"fmt"
-	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"strings"
 
 	"github.com/tool-jx3/limbus-translate/internal/align"
+	"github.com/tool-jx3/limbus-translate/internal/gold"
 	"github.com/tool-jx3/limbus-translate/internal/pack"
 	"github.com/tool-jx3/limbus-translate/internal/rules"
 	"github.com/tool-jx3/limbus-translate/internal/store"

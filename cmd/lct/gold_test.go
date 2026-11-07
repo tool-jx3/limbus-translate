@@ -17,25 +17,20 @@ import (
 // goldRepo is batchRepo with a KR pack of two files (Sample.json with six
 // units, StoryData/S1.json with two), records for all but one of them, one of
 // the records a copy, and the repo as the working directory.
-func goldRepo(t *testing.T) (root string, keys map[string][]string) {
+func goldRepo(t *testing.T) string {
 	t.Helper()
 	root, st := batchRepo(t)
 	rawWT := filepath.Join(root, ".work", "raw")
 	var sample, story []string
 	recs := map[string]store.Record{}
-	keys = map[string][]string{}
 	add := func(file string, i int, origin string, record bool) {
 		key := fmt.Sprintf("%s|/dataList/%d/content", file, i)
 		if record {
 			recs[key] = store.Record{Key: key, KRSha: "00", ZH: fmt.Sprintf("譯%d", i), Origin: origin, Since: "raw-20261029"}
 		}
-		fam := mustFamily(t, root, file)
-		if record && origin != store.OriginCopy {
-			keys[fam] = append(keys[fam], key)
-		}
 	}
 	for i := 0; i < 6; i++ {
-		sample = append(sample, fmt.Sprintf(`{"id":%d,"content":"가%d"}`, i, i))
+		sample = append(sample, fmt.Sprintf(`{"id":%d,"content":"가%d","model":"M%d"}`, i, i, i))
 	}
 	for i := 0; i < 2; i++ {
 		story = append(story, fmt.Sprintf(`{"id":%d,"content":"나%d"}`, i, i))
@@ -47,13 +42,16 @@ func goldRepo(t *testing.T) (root string, keys map[string][]string) {
 	add("Sample.json", 2, store.OriginHuman, true)
 	add("Sample.json", 3, store.OriginCopy, true)    // a copy: never drawn
 	add("Sample.json", 4, store.OriginClaude, false) // no record: never drawn
+	// An identifier field of the field rules: not translated, so not drawn.
+	recs["Sample.json|/dataList/0/model"] = store.Record{Key: "Sample.json|/dataList/0/model", KRSha: "00", ZH: "M0", Origin: store.OriginClaude, Since: "raw-20261029"}
 	add("StoryData/S1.json", 0, store.OriginParatranz, true)
 	add("StoryData/S1.json", 1, store.OriginClaude, true)
 	if err := st.SaveRecords(recs); err != nil {
 		t.Fatal(err)
 	}
+	writeTestFile(t, root, "rules/fields.manual.yaml", "identifier_fields: [model]\n")
 	t.Chdir(root)
-	return root, keys
+	return root
 }
 
 func mustFamily(t *testing.T, root, file string) string {
@@ -85,7 +83,7 @@ func goldSample(t *testing.T, args ...string) (int, goldSampleResult, string) {
 }
 
 func TestGoldSampleDrawsPerFamily(t *testing.T) {
-	root, keys := goldRepo(t)
+	root := goldRepo(t)
 	sampleFam, storyFam := mustFamily(t, root, "Sample.json"), mustFamily(t, root, "StoryData/S1.json")
 	if sampleFam == storyFam {
 		t.Fatalf("the fixture needs two families, both are %q", sampleFam)
@@ -105,11 +103,13 @@ func TestGoldSampleDrawsPerFamily(t *testing.T) {
 		t.Fatalf("sample = %+v", s)
 	}
 	for _, u := range s.Units {
+		if strings.HasSuffix(u.Key, "/model") {
+			t.Errorf("%s: a field the field rules do not translate was drawn", u.Key)
+		}
 		if strings.HasPrefix(u.Key, "Sample.json|/dataList/3") || strings.HasPrefix(u.Key, "Sample.json|/dataList/4") {
 			t.Errorf("%s: a copy or a unit without a record was drawn", u.Key)
 		}
 	}
-	_ = keys
 
 	// Fewer than N: all of them. Same input, same file.
 	before, _ := os.ReadFile(filepath.Join(root, gold.File))
@@ -125,7 +125,7 @@ func TestGoldSampleDrawsPerFamily(t *testing.T) {
 }
 
 func TestGoldSampleRefusesToOverwriteJudgements(t *testing.T) {
-	root, _ := goldRepo(t)
+	root := goldRepo(t)
 	if code, _, stderr := goldSample(t); code != 0 {
 		t.Fatalf("exit %d: %s", code, stderr)
 	}
@@ -152,7 +152,7 @@ func TestGoldSampleRefusesToOverwriteJudgements(t *testing.T) {
 }
 
 func TestGoldSetAndReport(t *testing.T) {
-	root, _ := goldRepo(t)
+	root := goldRepo(t)
 	oldNow := goldNow
 	goldNow = func() time.Time { return time.Date(2026, 11, 7, 23, 30, 0, 0, time.UTC) }
 	t.Cleanup(func() { goldNow = oldNow })
@@ -241,5 +241,48 @@ func TestGoldWithoutSample(t *testing.T) {
 		if code, _, stderr := lct(t, args...); code != 1 || !strings.Contains(stderr, "gold sample") {
 			t.Errorf("%v: exit %d, stderr %q; want 1 and a hint to run lct gold sample", args, code, stderr)
 		}
+	}
+}
+
+func TestGoldSampleForceReplacesAMalformedFile(t *testing.T) {
+	root := goldRepo(t)
+	writeTestFile(t, root, gold.File, "seed: [not a number\n")
+	code, _, stderr := goldSample(t)
+	if code != 1 || !strings.Contains(stderr, "--force") {
+		t.Errorf("exit %d, stderr %q; want 1 and a hint to use --force", code, stderr)
+	}
+	if code, _, stderr := goldSample(t, "--force"); code != 0 {
+		t.Fatalf("--force: exit %d: %s", code, stderr)
+	}
+	if s, err := gold.Load(root); err != nil || len(s.Units) == 0 {
+		t.Errorf("sample = %+v, %v", s, err)
+	}
+}
+
+func TestGoldReportCountsUnitsMissingFromThePack(t *testing.T) {
+	root := goldRepo(t)
+	if code, _, stderr := goldSample(t); code != 0 {
+		t.Fatalf("exit %d: %s", code, stderr)
+	}
+	s, _ := gold.Load(root)
+	for _, key := range []string{"Sample.json|/dataList/99/content", "Gone.json|/dataList/0/content"} {
+		s.Units = append(s.Units, gold.Unit{Key: key, Family: "f", Origin: "claude"})
+	}
+	if err := gold.Save(root, s); err != nil {
+		t.Fatal(err)
+	}
+	code, stdout, stderr := lct(t, "--json", "gold", "report")
+	if code != 0 {
+		t.Fatalf("exit %d: %s", code, stderr)
+	}
+	var rep gold.Report
+	if err := json.Unmarshal([]byte(stdout), &rep); err != nil {
+		t.Fatal(err)
+	}
+	if rep.Missing != 2 {
+		t.Errorf("missing = %d, want 2", rep.Missing)
+	}
+	if _, stdout, _ := lct(t, "gold", "report"); !strings.Contains(stdout, "missing") {
+		t.Errorf("text report does not say what is missing: %q", stdout)
 	}
 }
