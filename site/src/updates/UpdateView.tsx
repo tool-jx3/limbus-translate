@@ -185,7 +185,9 @@ function Paged({ entries, children }: { entries: UpdateEntry[]; children: (shown
 }
 
 /** The cards of the entries, grouped by file. */
-function Cards({ entries }: { entries: UpdateEntry[] }) {
+function Cards({ entries, nested = false }: { entries: UpdateEntry[]; nested?: boolean }) {
+  // Inside a cause group (an h2) the files are one level down.
+  const Heading = nested ? 'h3' : 'h2'
   const groups = new Map<string, UpdateEntry[]>()
   for (const e of entries) {
     const g = groups.get(e.file)
@@ -196,7 +198,7 @@ function Cards({ entries }: { entries: UpdateEntry[] }) {
     <>
       {[...groups].map(([file, list]) => (
         <section key={file} class="uv-group">
-          <h2 class="uv-file">{file}</h2>
+          <Heading class="uv-file">{file}</Heading>
           <div class="uc-list">
             {list.map((e) => (
               <UpdateCard key={`${e.file}|${e.ptr}|${e.kind}`} entry={e} />
@@ -252,6 +254,7 @@ export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute
           <p class="uv-empty">沒有符合的變動</p>
         ) : view === 'causes' ? (
           <CauseView
+            key={record.tag}
             record={record}
             kept={list}
             open={route.group}
@@ -259,7 +262,7 @@ export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute
               <CauseNav.Provider value={{ href: nav.href, current: group.key }}>
                 {/* Keyed by the filter, so that a change of it starts again from the first page. */}
                 <Paged key={filterKey} entries={entries}>
-                  {(shownList) => <Cards entries={shownList} />}
+                  {(shownList) => <Cards entries={shownList} nested />}
                 </Paged>
               </CauseNav.Provider>
             )}

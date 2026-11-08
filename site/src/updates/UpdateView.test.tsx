@@ -732,3 +732,90 @@ describe('UpdateView by cause', () => {
     expect(seen[0]!.updateView).toBe('table')
   })
 })
+
+describe('UpdateView by cause: jumping, switching and paging', () => {
+  const scrollIntoView = vi.fn()
+  beforeEach(() => {
+    scrollIntoView.mockReset()
+    Object.defineProperty(Element.prototype, 'scrollIntoView', { value: scrollIntoView, configurable: true, writable: true })
+  })
+  afterEach(() => {
+    Reflect.deleteProperty(Element.prototype, 'scrollIntoView')
+  })
+
+  const draw = (container: HTMLElement, r: UpdateRoute) =>
+    render(<UpdateView route={r} settings={causesView} onSettings={() => {}} />, container)
+  const newContainer = () => {
+    const c = document.createElement('div')
+    document.body.append(c)
+    containers.push(c)
+    return c
+  }
+
+  it('opens another group and scrolls to its header when g changes while shown', async () => {
+    stub({}, withCauses())
+    const c = newContainer()
+    await act(() => draw(c, route({ group: 'rewrite:x' })))
+    await vi.waitFor(() => expect(c.querySelector('.cg-head')).not.toBeNull())
+    expect(scrollIntoView).toHaveBeenCalledTimes(1)
+    expect(scrollIntoView.mock.contexts[0]).toBe(c.querySelector('#cg-group-rewrite\\:x'))
+    await act(() => draw(c, route({ group: 'new' })))
+    const head = heads(c).find((h) => text(h.querySelector('.cg-name')) === '新增')!
+    expect(head.getAttribute('aria-expanded')).toBe('true')
+    expect(scrollIntoView).toHaveBeenCalledTimes(2)
+    const target = scrollIntoView.mock.contexts[1] as HTMLElement
+    expect(target.contains(head)).toBe(true)
+    expect(target.hidden).toBe(false)
+  })
+
+  it('starts a Release collapsed again after another one was open', async () => {
+    const TAG_B = 'zh-TW-20261106.1'
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(fixtureFetch({ [`updates/${TAG}.json`]: withCauses(), [`updates/${TAG_B}.json`]: { ...withCauses(), tag: TAG_B } })),
+    )
+    const c = newContainer()
+    await act(() => draw(c, route()))
+    await vi.waitFor(() => expect(c.querySelector('.cg-head')).not.toBeNull())
+    await act(() => heads(c)[0]!.click())
+    expect(heads(c)[0]!.getAttribute('aria-expanded')).toBe('true')
+    await act(() => draw(c, route({ tag: TAG_B })))
+    await vi.waitFor(() => expect(c.querySelector('.cg-head')).not.toBeNull())
+    expect(heads(c).every((h) => h.getAttribute('aria-expanded') === 'false')).toBe(true)
+    await act(() => draw(c, route({ tag: TAG_B, group: 'rewrite:x' })))
+    expect(heads(c)[0]!.getAttribute('aria-expanded')).toBe('true')
+  })
+
+  it('puts the files of an opened group one heading level below the group', async () => {
+    stub({}, withCauses())
+    const el = await mount(route({ group: 'rewrite:x' }))
+    expect(el.querySelector('.cg-title')!.tagName).toBe('H2')
+    expect(el.querySelectorAll('.cg-panel h3.uv-file').length).toBe(2)
+    expect(el.querySelectorAll('.cg-panel h2').length).toBe(0)
+  })
+
+  it('pages each group on its own', async () => {
+    const big = (kind: 'new' | 'kr-changed') =>
+      Array.from({ length: UPDATE_PAGE + 2 }, (_, k) => E(`/${kind}${k}`, 'A.json', kind, [{ kind }]))
+    stub({}, record({ entries: [...big('new'), ...big('kr-changed')], causes_version: 1 }))
+    const el = await mount(route(), causesView)
+    await act(() => heads(el).forEach((h) => h.click()))
+    const panels = [...el.querySelectorAll<HTMLElement>('.cg-panel')]
+    const more = (p: HTMLElement) => [...p.querySelectorAll<HTMLButtonElement>('button')].find((b) => text(b).startsWith('再顯示'))
+    expect(panels.map((p) => p.querySelectorAll('.uc-card').length)).toEqual([UPDATE_PAGE, UPDATE_PAGE])
+    expect(text(more(panels[0]!))).toBe('再顯示 2 筆')
+    await act(() => more(panels[0]!)!.click())
+    expect(panels.map((p) => p.querySelectorAll('.uc-card').length)).toEqual([UPDATE_PAGE + 2, UPDATE_PAGE])
+    expect(more(panels[0]!)).toBeUndefined()
+    expect(more(panels[1]!)).toBeDefined()
+  })
+
+  it('filters a legacy record by the legacy kind, in the cards and in the groups', async () => {
+    stub()
+    const sel = (await mount()).querySelector<HTMLSelectElement>('select[name="cause"]')!
+    expect([...sel.options].map((o) => o.value)).toEqual(['', 'kr-changed', 'new', 'deleted', 'late', 'retranslated', 'adjustment'])
+    expect((await mount(route({ cause: 'late' }))).querySelectorAll('.uc-card').length).toBe(1)
+    const el = await mount(route({ cause: 'adjustment' }), causesView)
+    expect(heads(el).map((h) => text(h.querySelector('.cg-name')))).toEqual(['人工調整'])
+  })
+})

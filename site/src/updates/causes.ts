@@ -48,8 +48,27 @@ export function causeKey(c: UpdateEntryCause): string {
   return c.kind
 }
 
+/** The legacy cause kind of an entry that has no causes: the old coarse cause of a changed translation, else its kind. */
+export function entryLegacyKind(e: UpdateEntry): string {
+  return e.kind === 'zh-changed' ? (e.cause ?? 'other') : e.kind
+}
+
+/** The cause kinds of an entry; with no causes, its legacy kind (the key of its legacy group). */
+export function entryCauseKinds(e: UpdateEntry): string[] {
+  return e.causes && e.causes.length > 0 ? e.causes.map((c) => c.kind) : [entryLegacyKind(e)]
+}
+
 /** Groups the entries of a record by cause. An entry with several causes is in each group, once. */
 export function groupByCause(rec: UpdateRecord): CauseGroup[] {
+  return groupEntries(rec, rec.entries)
+}
+
+/**
+ * Groups some of the entries of a record (for instance the filtered ones) by
+ * cause, in the order of groupByCause. Whether the record is legacy is decided
+ * by the whole record, so that a filter cannot change it.
+ */
+export function groupEntries(rec: UpdateRecord, entries: UpdateEntry[]): CauseGroup[] {
   const legacy = !rec.causes_version && !rec.entries.some((e) => e.causes && e.causes.length > 0)
   const groups = new Map<string, CauseGroup>()
   const add = (key: string, c: UpdateEntryCause, e: UpdateEntry) => {
@@ -68,9 +87,9 @@ export function groupByCause(rec: UpdateRecord): CauseGroup[] {
     }
     if (g.entries[g.entries.length - 1] !== e) g.entries.push(e)
   }
-  for (const e of rec.entries) {
+  for (const e of entries) {
     if (legacy) {
-      const kind = e.kind === 'zh-changed' ? (e.cause ?? 'other') : e.kind
+      const kind = entryLegacyKind(e)
       add(kind, { kind }, e)
     } else for (const c of e.causes ?? []) add(causeKey(c), c, e)
   }

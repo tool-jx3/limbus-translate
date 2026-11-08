@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CAUSE_KIND_NAMES, causeKey, groupByCause, type CauseGroup } from './causes'
+import { CAUSE_KIND_NAMES, causeKey, entryCauseKinds, groupByCause, groupEntries, type CauseGroup } from './causes'
 import type { UpdateEntry, UpdateRecord } from '../types'
 
 function rec(entries: UpdateEntry[], extra: Partial<UpdateRecord> = {}): UpdateRecord {
@@ -104,5 +104,29 @@ describe('groupByCause', () => {
 
   it('returns nothing for a record with no entries', () => {
     expect(groupByCause(rec([]))).toEqual([])
+  })
+})
+
+describe('legacy kinds', () => {
+  const entries = [
+    e('A', '/1', 'zh-changed', { cause: 'adjustment' }),
+    e('A', '/2', 'zh-changed', { cause: 'late' }),
+    e('A', '/3', 'zh-changed', { cause: 'retranslated' }),
+    e('A', '/4', 'zh-changed'),
+    e('A', '/5', 'new'),
+    e('A', '/6', 'kr-changed'),
+    e('A', '/7', 'deleted'),
+  ]
+  it('are the keys of the legacy groups, so the cause filter and the groups agree', () => {
+    const record = rec(entries)
+    for (const g of groupByCause(record)) {
+      for (const x of g.entries) expect(entryCauseKinds(x)).toEqual([g.key])
+    }
+    expect(entries.map((x) => entryCauseKinds(x)[0])).toEqual(['adjustment', 'late', 'retranslated', 'other', 'new', 'kr-changed', 'deleted'])
+  })
+  it('groupEntries groups only the given entries, in the same order', () => {
+    const record = rec(entries)
+    const some = entries.filter((x) => x.kind !== 'new')
+    expect(groupEntries(record, some).map((g) => g.key)).toEqual(groupByCause(record).map((g) => g.key).filter((k) => k !== 'new'))
   })
 })

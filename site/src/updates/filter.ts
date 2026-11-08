@@ -1,3 +1,4 @@
+import { entryCauseKinds } from './causes'
 import type { UpdateCounts, UpdateEntry, UpdateKind } from '../types'
 
 /** Which changes of an update are shown. */
@@ -17,12 +18,6 @@ export interface UpdateFilter {
 /** The origin an entry is filtered by: the new one, or the old one where the unit is deleted. */
 function originOf(e: UpdateEntry): string {
   return (e.kind === 'deleted' ? e.old_origin : e.new_origin) ?? ''
-}
-
-/** The kinds of the causes of an entry; with none, the key the legacy grouping uses (see groupByCause). */
-export function entryCauseKinds(e: UpdateEntry): string[] {
-  if (e.causes && e.causes.length > 0) return e.causes.map((c) => c.kind)
-  return [e.kind === 'zh-changed' ? (e.cause ?? 'other') : e.kind]
 }
 
 export function filterEntries(entries: UpdateEntry[], f: UpdateFilter): UpdateEntry[] {

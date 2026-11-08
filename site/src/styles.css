@@ -3146,10 +3146,23 @@ a.uc-cause:focus-visible {
   overflow-wrap: anywhere;
 }
 
+.cg,
+.cg-group,
+.cg-panel {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .cg-panel {
   display: grid;
   gap: 0.5rem;
   min-width: 0;
+}
+
+/* Wide cards must wrap instead of stretching the page. */
+.cg-panel > *,
+.cg-panel .uc-list {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .cg-panel[hidden] {
