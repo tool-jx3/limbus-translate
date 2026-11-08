@@ -434,6 +434,26 @@ export interface UpdateEntry {
   new_origin?: string
   copy?: boolean
   cause?: UpdateCause
+  /** Why the unit changed (Release records from causes_version 1 on). */
+  causes?: UpdateEntryCause[]
+}
+
+/** One reason an entry changed; the rule kinds always carry `id`. */
+export interface UpdateEntryCause {
+  kind: string
+  id?: string
+  batch?: string
+  reason?: string
+  note?: string
+}
+
+/** A rule an entry cause points to; the key in UpdateRecord.rules is `<kind>:<id>`. */
+export interface UpdateRuleInfo {
+  kind: string
+  id: string
+  path: string
+  title: string
+  commit: string
 }
 
 /** data/updates/<tag>.json: what one release changed. */
@@ -450,6 +470,12 @@ export interface UpdateRecord {
   copy_counts: UpdateCounts
   other_files: string[]
   entries: UpdateEntry[]
+  /** Absent on a record made before causes existed. */
+  causes_version?: number
+  /** The rules the entries' causes point to, keyed `<kind>:<id>`. */
+  rules?: Record<string, UpdateRuleInfo>
+  /** The number of entries with an unknown cause. */
+  unknown?: number
 }
 
 /** The `lang` attribute of the text of each language, so that the browser picks the right glyphs. */

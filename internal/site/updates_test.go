@@ -165,3 +165,26 @@ func TestExportUpdatesListsAReleaseWithoutARecord(t *testing.T) {
 		t.Errorf("a file for the Release without a record: %v", err)
 	}
 }
+
+func TestExportUpdatesKeepsCausesAndRules(t *testing.T) {
+	dir := t.TempDir()
+	e := history.Entry{File: "Skills.json", Pointer: "/a", Kind: history.KindZHChanged,
+		Causes: []history.Cause{{Kind: history.CauseKindRewrite, ID: "r1"}, {Kind: history.CauseKindUnknown, Note: "x"}}}
+	rec := updRecord("zh-TW-20261103.1", "", "2026-11-03T08:00:00Z", "", "raw-1", "raw-1", e)
+	rec.CausesVersion, rec.Unknown = history.CausesVersion, 1
+	rec.Rules = map[string]history.RuleInfo{"rewrite:r1": {Kind: "rewrite", ID: "r1", Path: "rules/rewrites/r1.yaml", Title: "T", Commit: "abc"}}
+	if _, err := ExportUpdates([]Release{{"zh-TW-20261102.1", "2026-11-02T08:00:00Z"}, {"zh-TW-20261103.1", "2026-11-03T08:00:00Z"}}, []history.Record{rec}, testRules(), dir); err != nil {
+		t.Fatal(err)
+	}
+	b, err := os.ReadFile(filepath.Join(dir, "updates", "zh-TW-20261103.1.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got history.Record
+	if err := json.Unmarshal(b, &got); err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(got.Entries[0].Causes, e.Causes) || !reflect.DeepEqual(got.Rules, rec.Rules) || got.CausesVersion != 1 || got.Unknown != 1 {
+		t.Errorf("got causes %+v rules %+v v%d unknown %d", got.Entries[0].Causes, got.Rules, got.CausesVersion, got.Unknown)
+	}
+}
