@@ -2,9 +2,7 @@ package history
 
 import (
 	"fmt"
-	"maps"
 	"reflect"
-	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -142,47 +140,6 @@ func TestCausesRewriteOverwritten(t *testing.T) {
 		t.Fatalf("entries = %+v", got)
 	}
 	wantCauses(t, got[0], Cause{Kind: CauseKindRetranslated, Batch: "b1"})
-}
-
-// TestReplayAgreesWithRewriteApply holds the replay to the conditions of
-// rewrite.Apply (without its ok), which it repeats for one record at a time.
-func TestReplayAgreesWithRewriteApply(t *testing.T) {
-	krTexts := []string{"a 1", "b 2", "c 3", "d 4"}
-	var items []string
-	for i, text := range krTexts {
-		items = append(items, item(i+1, text))
-	}
-	kr := state(t, list(items...), "").KR
-	recs := map[string]store.Record{}
-	for i, r := range []struct{ zh, origin string }{
-		{"甲 甲", store.OriginParatranz}, {"乙 乙", store.OriginClaude}, {"丙 丙", store.OriginHuman}, {"丁 丁", store.OriginFallback},
-	} {
-		recs[keyAt(i)] = recAt(i, krTexts[i], r.zh, r.origin, "")
-	}
-	withKR := rw("kr", " ", "")
-	withKR.KRPattern = "[ab]"
-	human := rw("human", " ", "_")
-	human.Origins = []string{store.OriginHuman, store.OriginFallback}
-	other := rw("other", " ", "_")
-	other.Files = []string{"Other*.json"}
-	for _, f := range []rewrite.File{rw("plain", " ", "-"), rw("same", "甲", "甲"), withKR, human, other, rw("group", `(.) (.)`, "$2$1")} {
-		applied := maps.Clone(recs)
-		changed := rewrite.Apply(f, applied, kr, nil)
-		r := newReplay(f, commitCur)
-		var replayed []string
-		for i, key := range slices.Sorted(maps.Keys(recs)) {
-			zh, ok := r.rewrite("F.json", recs[key].Origin, recs[key].ZH, krTexts[i])
-			if ok {
-				replayed = append(replayed, key)
-			}
-			if zh != applied[key].ZH {
-				t.Errorf("%s %s: replay gives %q, Apply %q", f.ID, key, zh, applied[key].ZH)
-			}
-		}
-		if !reflect.DeepEqual(replayed, changed) {
-			t.Errorf("%s: replay changed %v, Apply %v", f.ID, replayed, changed)
-		}
-	}
 }
 
 func adjustment(file, key, kr, zh, reason string) adjust.Adjustment {
@@ -539,6 +496,204 @@ func TestMakeWithoutRulesInfersNothing(t *testing.T) {
 	for _, e := range rec.Entries {
 		if e.Causes != nil {
 			t.Errorf("%s has causes %+v", e.Pointer, e.Causes)
+		}
+	}
+}
+
+func TestCausesRequeueQueuedAgain(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"), item(3, "c"))
+	two := func(z0, z1, z2 string) string { return list(item(1, z0), item(2, z1), item(3, z2)) }
+	prev := sideSpec{
+		kr: kr, zh: two("甲", "乙", "丙"),
+		recs: []store.Record{
+			recAt(0, "a", "甲", store.OriginClaude, "b0"),
+			recAt(1, "b", "乙", store.OriginClaude, "b0"),
+			recAt(2, "c", "丙", store.OriginClaude, "b0"),
+		},
+		applied: store.Applied{Requeue: []string{"q0"}},
+		pending: []store.PendingItem{{Key: keyAt(1), Reason: requeue.Reason}},
+	}.side(t)
+	// Between the tags the units were translated, and then q1 sent the first
+	// two back again: their new translations are still to come.
+	cur := sideSpec{
+		kr: kr, zh: two("甲改", "乙改", "丙改"),
+		recs: []store.Record{
+			recAt(0, "a", "甲改", store.OriginClaude, "b1"),
+			recAt(1, "b", "乙改", store.OriginClaude, "b1"),
+			recAt(2, "c", "丙改", store.OriginClaude, "b1"),
+		},
+		applied: store.Applied{Requeue: []string{"q0", "q1"}},
+		pending: []store.PendingItem{{Key: keyAt(0), Reason: requeue.Reason}, {Key: keyAt(1), Reason: requeue.Reason}},
+	}.side(t)
+	all := requeue.Selector{Files: []string{"F.json"}}
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q0", all), rq("q1", all)}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 3 {
+		t.Fatalf("entries = %+v", got)
+	}
+	// (b) passes over a unit queued again.
+	wantCauses(t, got[0], Cause{Kind: CauseKindRetranslated, Batch: "b1"})
+	// (a) passes over the requests applied since prev: q1 is still to come.
+	wantCauses(t, got[1], Cause{Kind: CauseKindRequeue, ID: "q0", Batch: "b1"})
+	// Not queued again: q1, applied since prev, sent it back.
+	wantCauses(t, got[2], Cause{Kind: CauseKindRequeue, ID: "q1", Batch: "b1"})
+}
+
+func TestCausesRequeueBothWaysOnce(t *testing.T) {
+	kr := list(item(1, "a"))
+	all := requeue.Selector{Files: []string{"F.json"}}
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲")), recs: []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0")},
+		applied: store.Applied{Requeue: []string{"q0"}},
+		pending: []store.PendingItem{{Key: keyAt(0), Reason: requeue.Reason}},
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "甲改")), recs: []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1")},
+		applied: store.Applied{Requeue: []string{"q0", "q1"}},
+	}.side(t)
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q0", all), rq("q1", all)}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 1 {
+		t.Fatalf("entries = %+v", got)
+	}
+	// q1 is the last that selects it (a) and was applied since prev (b).
+	wantCauses(t, got[0], Cause{Kind: CauseKindRequeue, ID: "q1", Batch: "b1"})
+}
+
+func TestCausesRequeueSelectsNone(t *testing.T) {
+	kr := list(item(1, "a"))
+	applied := store.Applied{Requeue: []string{"q1"}}
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲")), recs: []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0")},
+		applied: applied, pending: []store.PendingItem{{Key: keyAt(0), Reason: requeue.Reason}},
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "甲改")), recs: []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1")},
+		applied: applied,
+	}.side(t)
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q1", requeue.Selector{Keys: []string{keyAt(5)}})}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 1 || len(got[0].Causes) != 1 || got[0].Causes[0].Kind != CauseKindUnknown {
+		t.Fatalf("entries = %+v, want one unknown cause", got)
+	}
+	if note := got[0].Causes[0].Note; !strings.Contains(note, "no request file applied selects it") || strings.Contains(note, "not found") {
+		t.Errorf("note = %q", note)
+	}
+}
+
+func TestCausesRequeueUnreadableIsUndecided(t *testing.T) {
+	prev := sideSpec{
+		kr: list(item(1, "a"), item(2, "b")), zh: list(item(1, "甲"), item(2, "b")),
+		recs: []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0")}, // id 2 stands in
+	}.side(t)
+	cur := sideSpec{
+		kr: list(item(1, "a"), item(2, "b")), zh: list(item(1, "甲改"), item(2, "乙")),
+		recs:    []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1"), recAt(1, "b", "乙", store.OriginClaude, "b1")},
+		applied: store.Applied{Requeue: []string{"q-gone"}},
+	}.side(t)
+	rules := &RuleFiles{Commit: commitCur}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 2 {
+		t.Fatalf("entries = %+v", got)
+	}
+	// q-gone may have sent the unit back: whether it did cannot be told.
+	if c := got[0].Causes; len(c) != 1 || c[0].Kind != CauseKindUnknown || !strings.Contains(c[0].Note, "request q-gone not found") {
+		t.Errorf("causes = %+v, want one unknown about q-gone", c)
+	}
+	// A unit without a record could not be selected: late, as before.
+	wantCauses(t, got[1], Cause{Kind: CauseKindLate, Batch: "b1"})
+}
+
+func TestCausesRewriteUnreadableSparesAdjustments(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"), item(3, "c"))
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "人工一"), item(2, "甲"), item(3, "丙")),
+		recs: []store.Record{
+			recAt(0, "a", "人工一", store.OriginHuman, "adjustment:F.yaml"),
+			recAt(1, "b", "甲", store.OriginClaude, "reuse:F.json|/dataList/9/desc"),
+			recAt(2, "c", "丙", store.OriginParatranz, ""),
+		},
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "人工二"), item(2, "甲改"), item(3, "丙改")),
+		recs: []store.Record{
+			recAt(0, "a", "人工二", store.OriginHuman, "adjustment:F.yaml"), // the adjustment was edited
+			recAt(1, "b", "甲改", store.OriginClaude, "reuse:F.json|/dataList/9/desc"),
+			recAt(2, "c", "丙改", store.OriginParatranz, ""),
+		},
+		applied: store.Applied{Rewrite: []string{"r-gone"}},
+	}.side(t)
+	rules := &RuleFiles{Commit: commitCur, Adjustments: []adjust.Adjustment{adjustment("F.yaml", keyAt(0), "a", "人工二", "改正")}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 3 {
+		t.Fatalf("entries = %+v", got)
+	}
+	// A human record is no rewrite of a file that names no origins.
+	wantCauses(t, got[0], Cause{Kind: CauseKindAdjustment, ID: "F.yaml", Reason: "改正"})
+	// The reused text may have been rewritten by r-gone: the reuse made
+	// before prev is no cause of it, and the rewrite cannot be told.
+	for _, e := range got[1:] {
+		if len(e.Causes) != 1 || e.Causes[0].Kind != CauseKindUnknown || !strings.Contains(e.Causes[0].Note, "rewrite r-gone not found") {
+			t.Errorf("%s: causes = %+v, want one unknown about r-gone", e.Pointer, e.Causes)
+		}
+	}
+}
+
+func TestCausesAdjustmentToAnotherFile(t *testing.T) {
+	kr := list(item(1, "a"))
+	prev := sideSpec{kr: kr, zh: list(item(1, "人工一")), recs: []store.Record{recAt(0, "a", "人工一", store.OriginHuman, "adjustment:A.yaml")}}.side(t)
+	cur := sideSpec{kr: kr, zh: list(item(1, "人工二")), recs: []store.Record{recAt(0, "a", "人工二", store.OriginHuman, "adjustment:B.yaml")}}.side(t)
+	prevRules := &RuleFiles{Commit: commitPrev, Adjustments: []adjust.Adjustment{adjustment("A.yaml", keyAt(0), "a", "人工一", "一")}}
+	curRules := &RuleFiles{Commit: commitCur, Adjustments: []adjust.Adjustment{adjustment("B.yaml", keyAt(0), "a", "人工二", "二")}}
+	got := causesOf(t, prev, cur, prevRules, curRules)
+	if len(got) != 1 {
+		t.Fatalf("entries = %+v", got)
+	}
+	// B took over from A: that is B's adjustment, not A expiring.
+	wantCauses(t, got[0], Cause{Kind: CauseKindAdjustment, ID: "B.yaml", Reason: "二"})
+}
+
+func TestMakeRulesPreferCurCommit(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"))
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲"), item(2, "乙")),
+		recs:  []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0"), recAt(1, "b", "乙", store.OriginClaude, "b0")},
+		rules: commitPrev,
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "人工甲"), item(2, "人工乙")),
+		recs: []store.Record{
+			recAt(0, "a", "人工甲", store.OriginHuman, "adjustment:F.yaml"),
+			recAt(1, "b", "人工乙", store.OriginHuman, "adjustment:F.yaml"),
+		},
+		rules: commitCur,
+	}.side(t)
+	// The first unit's entry is only in prev's F.yaml, the second's in cur's.
+	rec := makeWith(t, prev, cur, rulesFrom(map[string]*RuleFiles{
+		commitPrev: {Commit: commitPrev, Adjustments: []adjust.Adjustment{adjustment("F.yaml", keyAt(0), "a", "人工甲", "舊")}},
+		commitCur:  {Commit: commitCur, Adjustments: []adjust.Adjustment{adjustment("F.yaml", keyAt(1), "b", "人工乙", "新")}},
+	}))
+	wantCauses(t, rec.Entries[0], Cause{Kind: CauseKindAdjustment, ID: "F.yaml", Reason: "舊"})
+	wantCauses(t, rec.Entries[1], Cause{Kind: CauseKindAdjustment, ID: "F.yaml", Reason: "新"})
+	if got := rec.Rules[RuleKey(CauseKindAdjustment, "F.yaml")].Commit; got != commitCur || len(rec.Rules) != 1 {
+		t.Errorf("Rules = %+v, want F.yaml as of %s", rec.Rules, commitCur)
+	}
+}
+
+func TestNewSideRules(t *testing.T) {
+	read := &RuleFiles{Commit: commitCur}
+	for name, tc := range map[string]struct {
+		got        sideRules
+		commit     string
+		rules, err bool
+	}{
+		"the rules name their commit": {newSideRules("", read, nil), commitCur, true, false},
+		"rules without a commit":      {newSideRules(commitPrev, &RuleFiles{}, nil), commitPrev, true, false},
+		"refused":                     {newSideRules(commitPrev, nil, fmt.Errorf("boom")), commitPrev, false, true},
+		"not read":                    {newSideRules(commitPrev, nil, nil), commitPrev, false, true},
+	} {
+		if tc.got.commit != tc.commit || (tc.got.rules != nil) != tc.rules || (tc.got.err != nil) != tc.err {
+			t.Errorf("%s: %+v", name, tc.got)
 		}
 	}
 }

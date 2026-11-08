@@ -43,9 +43,9 @@ const Dir = "rules/rewrite"
 // fieldNames are the keys of a rewrite file, in the order the doc of Dir shows.
 var fieldNames = []string{"reason", "files", "origins", "pattern", "replace", "kr_pattern"}
 
-// defaultOrigins are the origins a rewrite changes when the file names none:
+// DefaultOrigins are the origins a rewrite changes when the file names none:
 // what a person did not write, and no copy or stand-in.
-var defaultOrigins = []string{store.OriginParatranz, store.OriginClaude}
+var DefaultOrigins = []string{store.OriginParatranz, store.OriginClaude}
 
 // File is one rewrite file.
 type File struct {
@@ -233,17 +233,12 @@ func Lint(root string) []rulefile.Issue {
 // A record whose unit KR no longer has (the file or the line is gone), or any
 // record when kr is nil, is left alone: without the KR text ok cannot decide.
 //
-// f must be valid, as a File from LoadFiles is: Apply panics on a pattern that
-// does not compile.
+// Each record is decided as Compiled decides it. f must be valid, as a File
+// from LoadFiles is: Apply panics on a pattern that does not compile.
 func Apply(f File, recs map[string]store.Record, kr *pack.Pack, ok func(key, kr, zh string) bool) []string {
-	re := regexp.MustCompile(f.Pattern)
-	var krRe *regexp.Regexp
-	if f.KRPattern != "" {
-		krRe = regexp.MustCompile(f.KRPattern)
-	}
-	origins := f.Origins
-	if len(origins) == 0 {
-		origins = defaultOrigins
+	c, err := Compile(f)
+	if err != nil {
+		panic(err)
 	}
 	krTexts := newKRTexts(kr)
 
@@ -251,15 +246,12 @@ func Apply(f File, recs map[string]store.Record, kr *pack.Pack, ok func(key, kr,
 	for key, rec := range recs {
 		// The cheap tests first: there are 250 thousand records, and the KR
 		// is read only for a file that has a unit to rewrite.
-		if !slices.Contains(origins, rec.Origin) || !config.MatchAny(f.Files, fileOf(key)) || !re.MatchString(rec.ZH) {
-			continue
-		}
-		zh := re.ReplaceAllString(rec.ZH, f.Replace)
-		if zh == rec.ZH {
+		zh, rewritten := c.Rewrite(fileOf(key), rec.Origin, rec.ZH)
+		if !rewritten {
 			continue
 		}
 		krText, found := krTexts.get(key)
-		if !found || (krRe != nil && !krRe.MatchString(krText)) {
+		if !found || !c.KROK(krText) {
 			continue
 		}
 		if ok != nil && !ok(key, krText, zh) {
@@ -271,6 +263,61 @@ func Apply(f File, recs map[string]store.Record, kr *pack.Pack, ok func(key, kr,
 	}
 	slices.Sort(changed)
 	return changed
+}
+
+// Compiled is a File ready to apply, its regular expressions compiled. It
+// decides, one record at a time, what Apply does: Apply rewrites a record when
+// Rewrite changes its text and KROK accepts the KR text of its unit (and ok
+// the result). Whoever needs to know what a rewrite does to one record asks
+// it, so that there is one rule.
+type Compiled struct {
+	File     File
+	re, krRe *regexp.Regexp
+	origins  []string // in effect: f.Origins, or DefaultOrigins without any
+}
+
+// Compile compiles the pattern and kr_pattern of f. A File from LoadFiles
+// always compiles.
+func Compile(f File) (*Compiled, error) {
+	re, err := regexp.Compile(f.Pattern)
+	if err != nil {
+		return nil, fmt.Errorf("rewrite %s: pattern: %w", f.ID, err)
+	}
+	c := &Compiled{File: f, re: re, origins: f.Origins}
+	if f.KRPattern != "" {
+		if c.krRe, err = regexp.Compile(f.KRPattern); err != nil {
+			return nil, fmt.Errorf("rewrite %s: kr_pattern: %w", f.ID, err)
+		}
+	}
+	if len(c.origins) == 0 {
+		c.origins = DefaultOrigins
+	}
+	return c, nil
+}
+
+// Touches reports whether the rewrite looks at a record of origin in file
+// (a pack file name, the file part of the key): origin is one of its origins
+// and file is in its files.
+func (c *Compiled) Touches(file, origin string) bool {
+	return slices.Contains(c.origins, origin) && config.MatchAny(c.File.Files, file)
+}
+
+// Rewrite returns the text the rewrite gives zh, the text of a record of
+// origin in file, and whether that changes it: the rewrite touches the record
+// (Touches) and replacing every match of the pattern changes the text. The KR
+// text, which is dearer to come by, is checked apart (KROK).
+func (c *Compiled) Rewrite(file, origin, zh string) (string, bool) {
+	if !c.Touches(file, origin) || !c.re.MatchString(zh) {
+		return zh, false
+	}
+	out := c.re.ReplaceAllString(zh, c.File.Replace)
+	return out, out != zh
+}
+
+// KROK reports whether kr, the KR text of the unit, passes the kr_pattern;
+// without one, every text does.
+func (c *Compiled) KROK(kr string) bool {
+	return c.krRe == nil || c.krRe.MatchString(kr)
 }
 
 // fileOf is the file part of a unit key. Keys of records are valid.

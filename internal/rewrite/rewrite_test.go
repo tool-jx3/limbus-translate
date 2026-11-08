@@ -463,3 +463,69 @@ func TestLintRewriteFiles(t *testing.T) {
 		}
 	}
 }
+
+// TestCompiledDecidesAsApply holds the compiled form, which callers ask about
+// one record, to what Apply does to the records.
+func TestCompiledDecidesAsApply(t *testing.T) {
+	krTexts := []string{"위력 1", "대사 2", "위력 3", "대사 4"}
+	kr := openKR(t, map[string][]string{storyFile: krTexts})
+	recs := map[string]store.Record{}
+	for i, r := range []struct{ zh, origin string }{
+		{"2級破裂強度", store.OriginParatranz}, {"2級破裂強度", store.OriginClaude},
+		{"2級破裂強度", store.OriginHuman}, {"2級破裂強度", store.OriginFallback},
+	} {
+		recs[key(storyFile, i)] = rec(key(storyFile, i), r.zh, r.origin)
+	}
+	withKR := addSpace
+	withKR.KRPattern = `위력`
+	human := addSpace
+	human.Origins = []string{store.OriginHuman, store.OriginFallback}
+	other := addSpace
+	other.Files = []string{"Other*.json"}
+	same := addSpace
+	same.Replace = "$1$2"
+	for _, f := range []File{addSpace, withKR, human, other, same} {
+		applied := cloneRecs(recs)
+		changed := Apply(f, applied, kr, nil)
+		c, err := Compile(f)
+		if err != nil {
+			t.Fatal(err)
+		}
+		var decided []string
+		for i := range krTexts {
+			k := key(storyFile, i)
+			zh, ok := c.Rewrite(storyFile, recs[k].Origin, recs[k].ZH)
+			if ok && c.KROK(krTexts[i]) {
+				decided = append(decided, k)
+				if zh != applied[k].ZH {
+					t.Errorf("%v %s: Rewrite gives %q, Apply %q", f.Origins, k, zh, applied[k].ZH)
+				}
+			}
+		}
+		if !slices.Equal(decided, changed) {
+			t.Errorf("files %v origins %v kr %q replace %q: Compiled rewrites %v, Apply %v",
+				f.Files, f.Origins, f.KRPattern, f.Replace, decided, changed)
+		}
+	}
+}
+
+func TestCompiled(t *testing.T) {
+	c, err := Compile(addSpace)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !c.Touches(storyFile, store.OriginClaude) || c.Touches(storyFile, store.OriginHuman) || c.Touches(otherFile, store.OriginClaude) {
+		t.Error("Touches does not follow the default origins and the files")
+	}
+	if zh, ok := c.Rewrite(storyFile, store.OriginClaude, "沒有關鍵字"); ok || zh != "沒有關鍵字" {
+		t.Errorf("Rewrite of a text the pattern does not match = %q, %v", zh, ok)
+	}
+	if !c.KROK("아무 말") {
+		t.Error("KROK refuses a KR text although there is no kr_pattern")
+	}
+	for _, bad := range []File{{ID: "p", Pattern: "("}, {ID: "k", Pattern: "a", KRPattern: "["}} {
+		if _, err := Compile(bad); err == nil || !strings.Contains(err.Error(), bad.ID) {
+			t.Errorf("Compile(%+v) = %v, want an error naming the file", bad, err)
+		}
+	}
+}

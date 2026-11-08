@@ -72,8 +72,8 @@ func RuleKey(kind, id string) string { return kind + ":" + id }
 // (inference), which is the same.
 func inferCauses(prev, cur *Side, prevRules, curRules *RuleFiles, e Entry) []Cause {
 	return newInference(prev, cur,
-		sideRules{commit: prev.RulesCommit, rules: prevRules},
-		sideRules{commit: cur.RulesCommit, rules: curRules}).causes(e)
+		newSideRules(prev.RulesCommit, prevRules, nil),
+		newSideRules(cur.RulesCommit, curRules, nil)).causes(e)
 }
 
 // sideRules are the rules of one Release: those of its rules commit, or why
@@ -84,18 +84,37 @@ type sideRules struct {
 	err    error
 }
 
+// newSideRules are the rules of a Release whose build names commit: rules,
+// whose own Commit names the commit when set, or else err. Rules that are
+// neither given nor refused were not read.
+func newSideRules(commit string, rules *RuleFiles, err error) sideRules {
+	switch {
+	case err != nil:
+		return sideRules{commit: commit, err: err}
+	case rules == nil:
+		return sideRules{commit: commit, err: fmt.Errorf("history: the rules of %s were not read", commit)}
+	case rules.Commit != "":
+		commit = rules.Commit
+	}
+	return sideRules{commit: commit, rules: rules}
+}
+
 // inference infers the causes of the entries of one Record, as the spec
 // (原因的推斷) lays down. What every entry needs is worked out once.
 type inference struct {
 	prev, cur           *Side
 	prevRules, curRules sideRules
 	pending             map[string]store.PendingItem // the queue of prev, by key
+	queuedAgain         map[string]bool              // the keys cur's queue holds as requeue
 
-	rewrites    []replay        // the rewrite files applied since prev, in file name order
-	rewriteGone []string        // the ids of those that neither rules have
-	requeues    []foundRequeue  // the request files cur has applied, in file name order
-	requeueGone []string        // the ids of those that neither rules have
-	newRequeue  map[string]bool // whether cur.Applied.Requeue[i] was applied since prev, by id
+	rewrites   []replay        // the rewrite files applied since prev, in file name order
+	requeues   []foundRequeue  // the request files cur has applied, in file name order
+	newRequeue map[string]bool // whether cur.Applied.Requeue[i] was applied since prev, by id
+
+	// The notes that say which rule files cannot be read ("" when all can),
+	// worked out once: the rewrite files applied since prev, the request files
+	// cur has applied, and those of them applied since prev.
+	rewriteGone, requeueGone, newRequeueGone string
 
 	rules map[string]RuleInfo // the rules the causes point to, by RuleKey
 }
@@ -107,18 +126,20 @@ type foundRequeue struct {
 }
 
 func newInference(prev, cur *Side, prevRules, curRules sideRules) *inference {
-	for _, s := range []*sideRules{&prevRules, &curRules} {
-		if s.rules == nil && s.err == nil {
-			s.err = fmt.Errorf("history: the rules of %s were not read", s.commit)
-		}
-	}
 	in := &inference{
 		prev: prev, cur: cur, prevRules: prevRules, curRules: curRules,
-		pending: map[string]store.PendingItem{}, newRequeue: map[string]bool{}, rules: map[string]RuleInfo{},
+		pending: map[string]store.PendingItem{}, queuedAgain: map[string]bool{},
+		newRequeue: map[string]bool{}, rules: map[string]RuleInfo{},
 	}
 	for _, it := range prev.Pending {
 		in.pending[it.Key] = it
 	}
+	for _, it := range cur.Pending {
+		if it.Reason == requeue.Reason {
+			in.queuedAgain[it.Key] = true
+		}
+	}
+	var rewriteGone, unusable []string
 	for _, id := range cur.Applied.Rewrite {
 		if slices.Contains(prev.Applied.Rewrite, id) {
 			continue
@@ -126,27 +147,41 @@ func newInference(prev, cur *Side, prevRules, curRules sideRules) *inference {
 		f, commit, ok := find(curRules, prevRules, func(r *RuleFiles) []rewrite.File { return r.Rewrites },
 			func(f rewrite.File) bool { return f.ID == id })
 		if !ok {
-			in.rewriteGone = append(in.rewriteGone, id)
+			rewriteGone = append(rewriteGone, id)
 			continue
 		}
-		in.rewrites = append(in.rewrites, newReplay(f, commit))
+		c, err := rewrite.Compile(f) // RulesAt gives none that fails
+		if err != nil {
+			unusable = append(unusable, err.Error())
+			continue
+		}
+		in.rewrites = append(in.rewrites, replay{c, commit})
 	}
+	var requeueGone, newRequeueGone []string
 	for _, id := range cur.Applied.Requeue {
 		in.newRequeue[id] = !slices.Contains(prev.Applied.Requeue, id)
 		f, commit, ok := find(curRules, prevRules, func(r *RuleFiles) []requeue.File { return r.Requeues },
 			func(f requeue.File) bool { return f.ID == id })
 		if !ok {
-			in.requeueGone = append(in.requeueGone, id)
+			requeueGone = append(requeueGone, id)
+			if in.newRequeue[id] {
+				newRequeueGone = append(newRequeueGone, id)
+			}
 			continue
 		}
 		in.requeues = append(in.requeues, foundRequeue{f, commit})
 	}
 	// The order of rewrite.LoadFiles and requeue.LoadFiles, which the plan
 	// applies them in: that of the file names.
-	slices.SortFunc(in.rewrites, func(a, b replay) int { return fileOrder(a.f.ID, b.f.ID) })
+	slices.SortFunc(in.rewrites, func(a, b replay) int { return fileOrder(a.c.File.ID, b.c.File.ID) })
 	slices.SortFunc(in.requeues, func(a, b foundRequeue) int { return fileOrder(a.f.ID, b.f.ID) })
-	slices.SortFunc(in.rewriteGone, fileOrder)
-	slices.SortFunc(in.requeueGone, fileOrder)
+
+	if len(rewriteGone) > 0 {
+		unusable = append([]string{in.goneFiles("rewrite", rewriteGone)}, unusable...)
+	}
+	in.rewriteGone = strings.Join(unusable, "; ")
+	in.requeueGone = in.goneFiles("request", requeueGone)
+	in.newRequeueGone = in.goneFiles("request", newRequeueGone)
 	return in
 }
 
@@ -173,6 +208,16 @@ func find[T any](first, second sideRules, list func(*RuleFiles) []T, match func(
 	}
 	var zero T
 	return zero, "", false
+}
+
+// goneFiles is the note of gone on the rule files of kind with ids, in file
+// name order; without ids there is none.
+func (in *inference) goneFiles(kind string, ids []string) string {
+	if len(ids) == 0 {
+		return ""
+	}
+	slices.SortFunc(ids, fileOrder)
+	return in.gone(kind + " " + strings.Join(ids, ", "))
 }
 
 // gone is the note of a cause that rests on a rule which neither rules have:
@@ -286,9 +331,10 @@ func (in *inference) causes(e Entry) []Cause {
 		add(c)
 	}
 	// The rewrites are worked out first: a rewrite of the record of an
-	// adjustment or a reuse is not a new adjustment or reuse.
+	// adjustment or a reuse is not a new adjustment or reuse, nor is a change
+	// a rewrite that cannot be read may have made.
 	rewrites, rewriteNote := in.rewriteCauses(e, u)
-	rewritten := len(rewrites) > 0
+	rewritten := len(rewrites) > 0 || rewriteNote != ""
 
 	// 3: an adjustment made the new record.
 	if u.hasCur && isAdjustment(u.cur) && u.written(rewritten) {
@@ -375,15 +421,23 @@ func (in *inference) expiredCause(u unitState) (Cause, string) {
 func adjustmentsOf(r *RuleFiles) []adjust.Adjustment { return r.Adjustments }
 
 // requeueCauses is step 6, for a unit translated since prev: the request files
-// that sent it back. A unit queued in prev as requeue was sent back by the
-// last request file cur has applied that selects it, as the request file
-// selects (by the old record); one sent back and translated since prev, by
-// each of the request files applied since prev that selects it. Each cause
-// carries the translation batch.
+// that sent it back. Each cause carries the translation batch.
 //
-// note says why a unit queued as requeue has none. undecided names the
-// request files applied since prev that might have selected the unit but
-// cannot be read; it matters only when the unit has no other cause.
+//   - (a) A unit queued in prev as requeue was sent back by the last request
+//     file cur has applied that selects it, as the request file selects (by
+//     the old record).
+//   - (b) A unit sent back and translated since prev was sent back by each of
+//     the request files applied since prev that select it.
+//
+// A unit that cur queues as requeue again was sent back once more after the
+// translation, by a request applied since prev, whose translation is still to
+// come: it has no cause of (b), and (a) passes over the request files applied
+// since prev. Which of those requests came before the translation cannot be
+// told.
+//
+// note says why a unit queued in prev as requeue has no cause. undecided
+// names the request files applied since prev that might have selected the
+// unit but cannot be read; it matters only when the unit has no other cause.
 func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided string) {
 	if !u.translated {
 		return nil, "", ""
@@ -391,11 +445,12 @@ func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided
 	selects := func(f requeue.File) bool {
 		return u.hasPrev && (f.Selector.Selects(u.prevKey, u.prev) || f.Selector.Selects(u.curKey, u.prev))
 	}
+	again := in.queuedAgain[u.curKey]
 	var picked []foundRequeue
 	if it, ok := in.pending[u.prevKey]; ok && it.Reason == requeue.Reason {
 		var last *foundRequeue
-		for i := range in.requeues {
-			if selects(in.requeues[i].f) {
+		for i, r := range in.requeues {
+			if selects(r.f) && !(again && in.newRequeue[r.f.ID]) {
 				last = &in.requeues[i]
 			}
 		}
@@ -403,29 +458,25 @@ func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided
 			picked = append(picked, *last)
 		} else {
 			note = "queued as " + requeue.Reason + ", but no request file applied selects it"
-			if len(in.requeueGone) > 0 {
-				note += "; " + in.gone("request "+strings.Join(in.requeueGone, ", "))
+			if in.requeueGone != "" {
+				note += "; " + in.requeueGone
 			}
 		}
 	}
-	for _, r := range in.requeues {
-		if in.newRequeue[r.f.ID] && selects(r.f) &&
-			!slices.ContainsFunc(picked, func(p foundRequeue) bool { return p.f.ID == r.f.ID }) {
-			picked = append(picked, r)
+	if !again {
+		for _, r := range in.requeues {
+			if in.newRequeue[r.f.ID] && selects(r.f) &&
+				!slices.ContainsFunc(picked, func(p foundRequeue) bool { return p.f.ID == r.f.ID }) {
+				picked = append(picked, r)
+			}
+		}
+		if u.hasPrev {
+			undecided = in.newRequeueGone
 		}
 	}
 	for _, r := range picked {
 		causes = append(causes, Cause{Kind: CauseKindRequeue, ID: r.f.ID, Batch: u.cur.Batch})
 		in.use(CauseKindRequeue, r.f.ID, requeue.Dir+"/"+r.f.ID+rulefile.Ext, r.f.Reason, r.commit)
-	}
-	var gone []string
-	for _, id := range in.requeueGone {
-		if in.newRequeue[id] {
-			gone = append(gone, id)
-		}
-	}
-	if u.hasPrev && len(gone) > 0 {
-		undecided = in.gone("request " + strings.Join(gone, ", "))
 	}
 	return causes, note, undecided
 }

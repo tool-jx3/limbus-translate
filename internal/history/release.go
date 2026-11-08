@@ -209,18 +209,14 @@ func makeRecord(prev, cur *Side, tag string, at time.Time, langDir string, rules
 // readRules reads the rules of s, the build of the Release called name, from
 // rules. A build that names no rules commit has none to read.
 func readRules(rules RulesSource, s *Side, name string) sideRules {
-	out := sideRules{commit: s.RulesCommit}
 	if s.RulesCommit == "" {
 		if name == "" {
 			name = "the build"
 		}
-		out.err = fmt.Errorf("history: %s names no rules commit", name)
-		return out
+		return newSideRules("", nil, fmt.Errorf("history: %s names no rules commit", name))
 	}
-	if out.rules, out.err = rules(s.RulesCommit); out.err != nil {
-		out.rules = nil
-	}
-	return out
+	r, err := rules(s.RulesCommit)
+	return newSideRules(s.RulesCommit, r, err)
 }
 
 func formatTime(t time.Time) string {
