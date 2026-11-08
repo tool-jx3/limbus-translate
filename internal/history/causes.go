@@ -205,14 +205,19 @@ func requeueReasons(id string, sides ...sideRules) []string {
 	return out
 }
 
-// hintParts are the parts of the hint of a queued unit, trimmed, each the
-// reason of one request or of lct requeue: a unit that takes over the request
-// of a deleted unit joins its hint to its own.
-func hintParts(hint string) []string {
+// hintNames are the reasons the hint of a queued unit may be, trimmed: the
+// hint of one request or of lct requeue, or of several that plan.joinHints
+// joined with plan.HintSeparator. A reason is prose and may hold the separator
+// itself, so every run of the parts between separators is one: the whole
+// hint, each part, and all between.
+func hintNames(hint string) []string {
+	parts := strings.Split(hint, plan.HintSeparator)
 	var out []string
-	for _, p := range strings.Split(hint, plan.HintSeparator) {
-		if p = strings.TrimSpace(p); p != "" {
-			out = append(out, p)
+	for i := range parts {
+		for j := i + 1; j <= len(parts); j++ {
+			if name := strings.TrimSpace(strings.Join(parts[i:j], plan.HintSeparator)); name != "" && !slices.Contains(out, name) {
+				out = append(out, name)
+			}
 		}
 	}
 	return out
@@ -462,9 +467,9 @@ func adjustmentsOf(r *RuleFiles) []adjust.Adjustment { return r.Adjustments }
 //     queued the request's reason as its hint, and a later request or lct
 //     requeue overwrites it (a unit that takes over the request of a deleted
 //     unit joins the two hints with plan.HintSeparator); so the request is the
-//     last that selects the unit and has a part of the hint of the queued item
-//     as its reason, or else the last that has one at all: the queue follows a
-//     unit to a new key, the request file does not. A unit queued as requeue
+//     last that selects the unit and has one of the names of the hint of the
+//     queued item (hintNames) as its reason, or else the last that has one at
+//     all: the queue follows a unit to a new key, the request file does not. A unit queued as requeue
 //     whose hint names no request was sent back by lct requeue (the
 //     workflow's requeue input), not by a request file: it has no cause here,
 //     unless a request file that cannot be read may be the one. A unit queued
@@ -495,21 +500,22 @@ func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided
 	it, queued := in.pending[u.prevKey]
 	hint := strings.TrimSpace(it.Hint)
 	if queued && (it.Reason == requeue.Reason || hint != "") {
-		parts := hintParts(hint)
-		// last selects the unit; named, the last that also has a part of the
-		// hint as its reason; touched, the last that has one at all.
+		names := hintNames(hint)
+		// last selects the unit; named, the last that also has one of the
+		// names of the hint as its reason; touched, the last that has one at
+		// all.
 		var last, named, touched *foundRequeue
 		for i, r := range in.requeues {
 			if again && in.newRequeue[r.f.ID] {
 				continue
 			}
-			names := slices.ContainsFunc(parts, func(p string) bool { return slices.Contains(r.reasons, p) })
-			if names {
+			isNamed := slices.ContainsFunc(r.reasons, func(reason string) bool { return slices.Contains(names, reason) })
+			if isNamed {
 				touched = &in.requeues[i]
 			}
 			if selects(r.f) {
 				last = &in.requeues[i]
-				if names {
+				if isNamed {
 					named = &in.requeues[i]
 				}
 			}

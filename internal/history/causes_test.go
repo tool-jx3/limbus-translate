@@ -730,6 +730,54 @@ func TestCausesRequeueHintNamesRequest(t *testing.T) {
 	wantCauses(t, got[3], Cause{Kind: CauseKindRetranslated, Batch: "b1", Reason: requeue.Reason})
 }
 
+// A reason is prose and may hold the separator of joined hints itself.
+func TestCausesRequeueReasonWithSeparator(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"), item(3, "c"))
+	all := requeue.Selector{Files: []string{"F.json"}}
+	const (
+		shard = "전용 파편 寫「專用碎片」，不加「人格」；KR 的 · 寫「、」；其餘沿用原譯"
+		moved = "改用「您」；語氣放軟"
+	)
+	applied := store.Applied{Requeue: []string{"q-moved", "shard"}} // both before prev
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲"), item(2, "乙"), item(3, "丙")),
+		recs: []store.Record{
+			recAt(0, "a", "甲", store.OriginClaude, "b0"),
+			recAt(1, "b", "乙", store.OriginClaude, "b0"),
+			recAt(2, "c", "丙", store.OriginClaude, "b0"),
+		},
+		applied: applied,
+		pending: []store.PendingItem{
+			{Key: keyAt(0), Reason: requeue.Reason, Hint: shard},
+			// Joined hints, one of them a reason with the separator in it.
+			{Key: keyAt(1), Reason: requeue.Reason, Hint: manualHint + "；" + moved},
+			{Key: keyAt(2), Reason: requeue.Reason, Hint: manualHint + "；" + moved + "；另一個手動理由"},
+		},
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "甲改"), item(2, "乙改"), item(3, "丙改")),
+		recs: []store.Record{
+			recAt(0, "a", "甲改", store.OriginClaude, "b1"),
+			recAt(1, "b", "乙改", store.OriginClaude, "b1"),
+			recAt(2, "c", "丙改", store.OriginClaude, "b1"),
+		},
+		applied: applied,
+	}.side(t)
+	// shard selects every unit; q-moved names a key that is gone.
+	qShard := rq("shard", all)
+	qShard.Reason = shard
+	qMoved := rq("q-moved", requeue.Selector{Keys: []string{keyAt(9)}})
+	qMoved.Reason = moved
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{qMoved, qShard}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 3 {
+		t.Fatalf("entries = %+v", got)
+	}
+	wantCauses(t, got[0], Cause{Kind: CauseKindRequeue, ID: "shard", Batch: "b1"})
+	wantCauses(t, got[1], Cause{Kind: CauseKindRequeue, ID: "q-moved", Batch: "b1"})
+	wantCauses(t, got[2], Cause{Kind: CauseKindRequeue, ID: "q-moved", Batch: "b1"})
+}
+
 // A unit queued for another reason that a request reset from needs_review
 // carries the request's hint; one a manual requeue reset does not.
 func TestCausesRequeueHintOnResetUnit(t *testing.T) {
