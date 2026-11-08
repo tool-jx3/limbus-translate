@@ -242,9 +242,8 @@ type run struct {
 	pending []store.PendingItem
 	res     *Result
 
-	index   map[string]int  // key -> index in pending
-	origins map[string]bool // origins that count
-	changed bool            // pending differs from what was loaded
+	index   map[string]int // key -> index in pending
+	changed bool           // pending differs from what was loaded
 
 	krPointers map[string]map[string]bool // file -> pointers in KR; nil for a file KR lacks
 }
@@ -253,20 +252,10 @@ func newRun(kr *pack.Pack, frozen []string, sel Selector, hint string, records m
 	r := &run{
 		kr: kr, frozen: frozen, sel: sel, hint: hint, records: records, pending: pending, res: res,
 		index:      make(map[string]int, len(pending)),
-		origins:    map[string]bool{},
 		krPointers: map[string]map[string]bool{},
 	}
 	for i, it := range pending {
 		r.index[it.Key] = i
-	}
-	// Without Origins every origin counts, copy too: a copy is then reported
-	// as skipped instead of passing unnoticed.
-	origins := sel.Origins
-	if len(origins) == 0 {
-		origins = knownOrigins
-	}
-	for _, o := range origins {
-		r.origins[o] = true
 	}
 	return r
 }
@@ -280,12 +269,34 @@ func fileOf(key string) string {
 
 // inScope reports whether key is among the Keys or in a file of Files; with
 // neither given, everything is.
-func (r *run) inScope(key string) bool {
-	if len(r.sel.Keys)+len(r.sel.Files) == 0 {
+func (s Selector) inScope(key string) bool {
+	if len(s.Keys)+len(s.Files) == 0 {
 		return true
 	}
-	return slices.Contains(r.sel.Keys, key) || config.MatchAny(r.sel.Files, fileOf(key))
+	return slices.Contains(s.Keys, key) || config.MatchAny(s.Files, fileOf(key))
 }
+
+// originIn reports whether origin passes the Origins in effect. Without
+// Origins every origin counts, copy too: a copy is then reported as skipped
+// instead of passing unnoticed.
+func (s Selector) originIn(origin string) bool {
+	if len(s.Origins) == 0 {
+		return slices.Contains(knownOrigins, origin)
+	}
+	return slices.Contains(s.Origins, origin)
+}
+
+// Selects reports whether the selector picks the unit key whose record is rec:
+// the key is in Keys or its file matches Files (everything, with neither), and
+// the origin of rec passes Origins. It is the one selection rule that Apply
+// and ApplyTo use for records. It looks only at Keys, Files and Origins: the
+// NeedsReview and Leased modes act on the pending queue and are not part of it.
+func (s Selector) Selects(key string, rec store.Record) bool {
+	return s.inScope(key) && s.originIn(rec.Origin)
+}
+
+// inScope reports whether key is selected by the Keys and Files.
+func (r *run) inScope(key string) bool { return r.sel.inScope(key) }
 
 // originOK reports whether key passes the origins in effect. A key without a
 // record passes only when no Origins are given.
@@ -294,7 +305,7 @@ func (r *run) originOK(key string) bool {
 	if !ok {
 		return len(r.sel.Origins) == 0
 	}
-	return r.origins[rec.Origin]
+	return r.sel.originIn(rec.Origin)
 }
 
 // stuckItems resets the units flagged needs_review and releases the leased

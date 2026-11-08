@@ -29,6 +29,11 @@ type Side struct {
 	Time                     time.Time
 	State                    State
 	PackDir                  string // root of the built files (.../LimbusCompany_Data)
+	// Applied are the rule files this build had applied (.meta/applied.json),
+	// Pending its queue (.meta/pending.jsonl). Both are empty when the tree
+	// has no such file.
+	Applied store.Applied
+	Pending []store.PendingItem
 }
 
 // ReadRev reads rev (a Release tag) of tw: it exports LimbusCompany_Data and
@@ -73,6 +78,14 @@ func readSide(root, rawRoot, langDir, tmp string) (*Side, error) {
 	if err != nil {
 		return nil, err
 	}
+	applied, err := store.Open(root).LoadApplied()
+	if err != nil {
+		return nil, err
+	}
+	pending, err := store.Open(root).LoadPending()
+	if err != nil {
+		return nil, err
+	}
 	packDir := filepath.Join(root, dataDir)
 	zh, err := pack.Open(filepath.Join(packDir, "Lang", langDir), "")
 	if err != nil {
@@ -87,6 +100,8 @@ func readSide(root, rawRoot, langDir, tmp string) (*Side, error) {
 		RulesCommit: info.RulesCommit,
 		State:       State{KR: kr, ZH: zh, Records: recs},
 		PackDir:     packDir,
+		Applied:     applied,
+		Pending:     pending,
 	}, nil
 }
 

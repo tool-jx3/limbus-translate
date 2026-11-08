@@ -301,6 +301,19 @@ func Tracked(dir, path string) ([]string, error) {
 	return names, nil
 }
 
+// HasPath reports whether the tree of rev has path (a file or a directory,
+// taken literally). It is an error when rev is not a commit.
+func HasPath(repo, rev, path string) (bool, error) {
+	if strings.HasPrefix(rev, "-") {
+		return false, fmt.Errorf("gitx: revision %q looks like an option", rev)
+	}
+	out, err := git(repo, "--literal-pathspecs", "ls-tree", "--name-only", rev, "--", path)
+	if err != nil {
+		return false, err
+	}
+	return strings.TrimSpace(out) != "", nil
+}
+
 // Head returns the commit HEAD points to, or "" if the branch has no commits.
 func Head(dir string) (string, error) {
 	out, err := git(dir, "rev-parse", "--verify", "--quiet", "HEAD")

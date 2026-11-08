@@ -889,3 +889,50 @@ func TestItem(t *testing.T) {
 		t.Errorf("Item without a hint = %+v", got)
 	}
 }
+
+func TestSelectorSelects(t *testing.T) {
+	set := openRaw(t, map[string]string{storyFile: dataList(3), otherFile: dataList(2)})
+	records := map[string]store.Record{}
+	for _, r := range []store.Record{
+		rec(key(storyFile, 0), "a", store.OriginClaude),
+		rec(key(storyFile, 1), "b", store.OriginHuman),
+		rec(key(storyFile, 2), "ID", store.OriginCopy),
+		rec(key(otherFile, 0), "c", store.OriginClaude),
+		rec(key(otherFile, 1), "d", store.OriginParatranz),
+	} {
+		records[r.Key] = r
+	}
+	cases := map[string]Selector{
+		"keys":          {Keys: []string{key(storyFile, 1), key(otherFile, 0)}},
+		"files":         {Files: []string{storyFile}},
+		"origins":       {Origins: []string{store.OriginClaude, store.OriginParatranz}},
+		"files+origins": {Files: []string{"StoryData/**"}, Origins: []string{store.OriginHuman}},
+	}
+	for name, sel := range cases {
+		t.Run(name, func(t *testing.T) {
+			// The set ApplyTo requeues: what Selects picks, but copies.
+			var want []string
+			for k, r := range records {
+				if sel.Selects(k, r) && r.Origin != store.OriginCopy {
+					want = append(want, k)
+				}
+			}
+			slices.Sort(want)
+			out, _, err := ApplyTo(records, nil, set.KR, nil, sel, hint, nil)
+			if err != nil {
+				t.Fatal(err)
+			}
+			var got []string
+			for _, it := range out {
+				got = append(got, it.Key)
+			}
+			slices.Sort(got)
+			if !slices.Equal(got, want) || len(want) == 0 {
+				t.Errorf("ApplyTo requeued %v, Selects picks %v", got, want)
+			}
+		})
+	}
+	if (Selector{NeedsReview: true}).Selects(key(storyFile, 0), records[key(storyFile, 0)]) != true {
+		t.Error("a stuck-mode selector without narrowing selects every record")
+	}
+}

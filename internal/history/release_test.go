@@ -79,6 +79,8 @@ type buildSpec struct {
 	rawTag, rules string
 	files         map[string]string // under LimbusCompany_Data/, replacing it
 	records       []store.Record
+	applied       *store.Applied
+	pending       []store.PendingItem
 }
 
 // stage writes spec into the tw worktree without committing.
@@ -99,6 +101,16 @@ func (f repoFixture) stage(t *testing.T, spec buildSpec) {
 	}
 	if err := store.Open(f.tw).SaveRecords(recs); err != nil {
 		t.Fatal(err)
+	}
+	if spec.applied != nil {
+		if err := store.Open(f.tw).SaveApplied(*spec.applied); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if spec.pending != nil {
+		if err := store.Open(f.tw).SavePending(spec.pending); err != nil {
+			t.Fatal(err)
+		}
 	}
 }
 
@@ -299,5 +311,29 @@ func TestReadWorktreeReadsWhatIsNotCommitted(t *testing.T) {
 	}
 	if got := *rec.Entries[0].NewZH; got != "甲丙" {
 		t.Errorf("new zh = %q", got)
+	}
+}
+
+func TestReadRevLoadsAppliedAndPending(t *testing.T) {
+	f := newRepoFixture(t)
+	f.snapshot(t, "raw-1", map[string]string{"A.json": `{"dataList":[{"id":1,"content":"가"}]}`})
+	pending := []store.PendingItem{{Key: units.Key("A.json", "/dataList/0/content"), Reason: "requeue", PrevZH: "舊", Hint: "h"}}
+	f.release(t, relA, "2026-11-01T12:00:00+08:00", buildSpec{
+		rawTag: "raw-1", rules: rulesA,
+		files:   map[string]string{lang("A.json"): `{"dataList":[{"id":1,"content":"甲"}]}`},
+		applied: &store.Applied{Rewrite: []string{"a"}, Requeue: []string{"r"}},
+		pending: pending,
+	})
+	s := f.rev(t, relA)
+	if want := (store.Applied{Rewrite: []string{"a"}, Requeue: []string{"r"}}); !reflect.DeepEqual(s.Applied, want) {
+		t.Errorf("Applied = %+v, want %+v", s.Applied, want)
+	}
+	if !reflect.DeepEqual(s.Pending, pending) {
+		t.Errorf("Pending = %+v, want %+v", s.Pending, pending)
+	}
+
+	f.release(t, relB, atB, buildSpec{rawTag: "raw-1", rules: rulesB, files: map[string]string{lang("A.json"): `{"dataList":[{"id":1,"content":"甲"}]}`}})
+	if s := f.rev(t, relB); len(s.Applied.Rewrite)+len(s.Applied.Requeue) != 0 || len(s.Pending) != 0 {
+		t.Errorf("a tag without the files has Applied %+v, Pending %+v; want none", s.Applied, s.Pending)
 	}
 }
