@@ -1,13 +1,28 @@
 import type { JSX } from 'preact'
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
+import { useContext, useEffect, useMemo, useState } from 'preact/hooks'
 import type { UpdateEntry, UpdateRecord } from '../types'
-import { CAUSE_KIND_NAMES, groupEntries, type CauseGroup } from './causes'
+import { adjustmentReason, CauseNav } from './CauseChips'
+import { CAUSE_KIND_NAMES, causeKey, groupEntries, type CauseGroup } from './causes'
 
 /** The distinct notes of the causes of a group's kind (English, from the history). */
 function notesOf(g: CauseGroup): string[] {
   const notes = new Set<string>()
   for (const e of g.entries) for (const c of e.causes ?? []) if (c.kind === g.kind && c.note) notes.add(c.note)
   return [...notes]
+}
+
+/** The distinct reasons of the adjustments of a group, each with its number of entries, the most used first. */
+function reasonsOf(g: CauseGroup): [string, number][] {
+  const counts = new Map<string, number>()
+  for (const e of g.entries) {
+    const reasons = new Set<string>()
+    for (const c of e.causes ?? []) {
+      const r = causeKey(c) === g.key ? adjustmentReason(c) : undefined
+      if (r) reasons.add(r)
+    }
+    for (const r of reasons) counts.set(r, (counts.get(r) ?? 0) + 1)
+  }
+  return [...counts].sort((a, b) => b[1] - a[1])
 }
 
 const panelId = (key: string) => `cg-${key}`
@@ -19,11 +34,15 @@ function GroupHead({ group: g, open, onToggle }: { group: CauseGroup; open: bool
   return (
     <h2 class="cg-title">
       <button type="button" class="cg-head" aria-expanded={open ? 'true' : 'false'} aria-controls={panelId(g.key)} onClick={onToggle}>
-        <span class="cg-mark" aria-hidden="true">
-          {open ? '▾' : '▸'}
+        {/* The mark stays on the line of the name, however narrow the screen. */}
+        <span class="cg-lead">
+          <span class="cg-mark" aria-hidden="true">
+            {open ? '▾' : '▸'}
+          </span>
+          <span class="cg-name">{what ? `${name} ${what}` : name}</span>
         </span>
-        <span class="cg-name">{what ? `${name} ${what}` : name}</span>
-        {g.title && <span class="cg-subtitle">{g.title}</span>}
+        {/* The title of an adjustment is its file name, which the name has already. */}
+        {g.title && g.title !== g.id && <span class="cg-subtitle">{g.title}</span>}
         <span class="cg-count">
           {g.entries.length} 筆、{g.files} 個檔案
         </span>
@@ -41,7 +60,8 @@ function GroupHead({ group: g, open, onToggle }: { group: CauseGroup; open: bool
 /**
  * The changes grouped by cause, each group collapsed to its header until it is
  * opened. `open` is a group to show opened and scrolled into view; `draw` draws
- * the entries of an opened group.
+ * the entries of an opened group. The chips of the cards of a group lead to
+ * the other groups through CauseNav, which this provides for them.
  */
 export function CauseView({
   record,
@@ -54,29 +74,37 @@ export function CauseView({
   open: string
   draw: (entries: UpdateEntry[], group: CauseGroup) => JSX.Element
 }) {
+  const nav = useContext(CauseNav)
   const groups = useMemo(() => groupEntries(record, kept), [record, kept])
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set(open ? [open] : []))
+  // The group to bring into view once it is drawn open: a new object each
+  // time, so that the same group can be asked for again.
+  const [target, setTarget] = useState<{ key: string }>()
   const toggle = (key: string) =>
     setExpanded((s) => {
       const next = new Set(s)
       if (!next.delete(key)) next.add(key)
       return next
     })
-  // A group named by the URL is opened, also when the URL changes while this is shown.
+  const show = (key: string) => {
+    setExpanded((s) => (s.has(key) ? s : new Set(s).add(key)))
+    setTarget({ key })
+  }
+  // A group named by the URL is shown, also when the URL changes while this is.
   useEffect(() => {
-    if (open) setExpanded((s) => (s.has(open) ? s : new Set(s).add(open)))
+    if (open) show(open)
   }, [open])
-  // And scrolled to once it is open: its panel is hidden until then, so the
-  // header (never hidden) is what is scrolled to, after the render that opened it.
-  const openIsExpanded = open !== '' && expanded.has(open)
-  const scrolledTo = useRef('')
+  // Its panel is hidden until it is open, so the header (never hidden) is what
+  // is scrolled to, after the render that opened it; the header takes the
+  // focus, which the chip that led here may have lost with its view.
   useEffect(() => {
-    if (!openIsExpanded || scrolledTo.current === open) return
-    const section = document.getElementById(sectionId(open))
+    if (!target) return
+    setTarget(undefined)
+    const section = expanded.has(target.key) ? document.getElementById(sectionId(target.key)) : null
     if (!section) return
-    scrolledTo.current = open
     section.scrollIntoView?.({ block: 'start' })
-  }, [open, openIsExpanded])
+    section.querySelector<HTMLElement>('.cg-head')?.focus({ preventScroll: true })
+  }, [target, expanded])
   const legacy = groups.some((g) => g.legacy)
   return (
     <div class="cg">
@@ -95,19 +123,31 @@ export function CauseView({
       </div>
       {groups.map((g) => {
         const isOpen = expanded.has(g.key)
-        const notes = g.kind === 'unknown' ? notesOf(g) : []
+        const notes = isOpen && g.kind === 'unknown' ? notesOf(g) : []
+        const reasons = isOpen && (g.kind === 'adjustment' || g.kind === 'adjustment-expired') ? reasonsOf(g) : []
         return (
           <section key={g.key} id={sectionId(g.key)} class="cg-group">
             <GroupHead group={g} open={isOpen} onToggle={() => toggle(g.key)} />
             <div id={panelId(g.key)} class="cg-panel" hidden={!isOpen}>
-              {isOpen && notes.length > 0 && (
+              {notes.length > 0 && (
                 <ul class="cg-notes">
                   {notes.map((n) => (
                     <li key={n}>說明：{n}</li>
                   ))}
                 </ul>
               )}
-              {isOpen && draw(g.entries, g)}
+              {reasons.length > 0 && (
+                <ul class="cg-notes cg-reasons">
+                  {reasons.map(([r, n]) => (
+                    <li key={r}>
+                      理由：{r}（{n} 筆）
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {isOpen && (
+                <CauseNav.Provider value={{ href: nav.href, current: g.key, show }}>{draw(g.entries, g)}</CauseNav.Provider>
+              )}
             </div>
           </section>
         )

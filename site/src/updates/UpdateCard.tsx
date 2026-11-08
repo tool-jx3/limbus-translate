@@ -152,7 +152,7 @@ export function UpdateCard({ entry: e }: { entry: UpdateEntry }) {
     <article class="uc-card">
       <div class="uc-head">
         <span class={`uc-kind ${kind.cls}`}>{kind.name}</span>
-        {hasCauses(e) ? <CauseChips entry={e} /> : e.cause && <CauseChip cause={e.cause} />}
+        {hasCauses(e) ? <CauseChips entry={e} reasons /> : e.cause && <CauseChip cause={e.cause} />}
         <code class="uc-where">
           {e.field} {e.ptr}
         </code>

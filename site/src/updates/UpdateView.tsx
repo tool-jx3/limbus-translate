@@ -253,20 +253,20 @@ export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute
         {list.length === 0 ? (
           <p class="uv-empty">沒有符合的變動</p>
         ) : view === 'causes' ? (
-          <CauseView
-            key={record.tag}
-            record={record}
-            kept={list}
-            open={route.group}
-            draw={(entries, group) => (
-              <CauseNav.Provider value={{ href: nav.href, current: group.key }}>
-                {/* Keyed by the filter, so that a change of it starts again from the first page. */}
+          <CauseNav.Provider value={nav}>
+            <CauseView
+              key={record.tag}
+              record={record}
+              kept={list}
+              open={route.group}
+              draw={(entries) => (
+                // Keyed by the filter, so that a change of it starts again from the first page.
                 <Paged key={filterKey} entries={entries}>
                   {(shownList) => <Cards entries={shownList} nested />}
                 </Paged>
-              </CauseNav.Provider>
-            )}
-          />
+              )}
+            />
+          </CauseNav.Provider>
         ) : (
           <CauseNav.Provider value={nav}>
             <Paged key={filterKey} entries={list}>

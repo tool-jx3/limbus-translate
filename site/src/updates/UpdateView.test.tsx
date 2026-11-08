@@ -601,6 +601,21 @@ const withCauses = () =>
     rules: { 'rewrite:x': { kind: 'rewrite', id: 'x', path: 'rules/rewrites/x.yaml', title: 'Fix the name', commit: 'abcdef0123456789' } },
   })
 const causesView: Settings = { ...defaultSettings(), updateView: 'causes' }
+const adjustmentEntries: UpdateEntry[] = [
+  E('/a1', 'A.json', 'zh-changed', [{ kind: 'adjustment', id: 'fix.yaml', reason: '改正' }]),
+  E('/a2', 'B.json', 'zh-changed', [{ kind: 'adjustment', id: 'fix.yaml', reason: '改正' }]),
+  E('/a3', 'A.json', 'zh-changed', [{ kind: 'adjustment', id: 'fix.yaml', reason: '語氣' }]),
+  E('/a4', 'A.json', 'kr-changed', [{ kind: 'kr-changed' }, { kind: 'adjustment-expired', id: 'old.yaml', reason: '舊理由' }]),
+]
+const withAdjustments = () =>
+  record({
+    entries: adjustmentEntries,
+    causes_version: 1,
+    rules: {
+      'adjustment:fix.yaml': { kind: 'adjustment', id: 'fix.yaml', path: 'rules/adjustments/fix.yaml', title: 'fix.yaml', commit: 'abcdef0123456789' },
+      'adjustment-expired:old.yaml': { kind: 'adjustment-expired', id: 'old.yaml', path: 'rules/adjustments/old.yaml', title: 'old.yaml', commit: '0123456789abcdef' },
+    },
+  })
 const heads = (el: HTMLElement) => [...el.querySelectorAll<HTMLButtonElement>('.cg-head')]
 
 describe('UpdateView by cause', () => {
@@ -720,6 +735,46 @@ describe('UpdateView by cause', () => {
     expect(el.querySelectorAll('.ut-row a.uc-cause').length).toBe(6)
   })
 
+  it('lists the reasons of an adjustment group with their counts, and shows its own on each card', async () => {
+    stub({}, withAdjustments())
+    const el = await mount(route({ group: 'adjustment:fix.yaml' }))
+    expect([...el.querySelectorAll('.cg-reasons li')].map(text)).toEqual(['理由：改正（2 筆）', '理由：語氣（1 筆）'])
+    // A.json (/a1, /a3), then B.json (/a2).
+    expect([...el.querySelectorAll('.cg-panel .uc-card .uc-reason')].map(text)).toEqual(['理由：改正', '理由：語氣', '理由：改正'])
+  })
+
+  it('does the same for an expired adjustment, next to the chips of the other groups', async () => {
+    stub({}, withAdjustments())
+    const el = await mount(route({ group: 'adjustment-expired:old.yaml' }))
+    expect([...el.querySelectorAll('.cg-reasons li')].map(text)).toEqual(['理由：舊理由（1 筆）'])
+    const card = el.querySelector('.cg-panel .uc-card')!
+    expect(text(card.querySelector('.uc-reason'))).toBe('理由：舊理由')
+    expect(text(card.querySelector('.uc-also'))).toContain('KR 改版')
+  })
+
+  it('shows the reason of an adjustment next to its chip on a card, and keeps it in the title', async () => {
+    stub({}, withAdjustments())
+    const el = await mount()
+    const card = el.querySelector('.uc-card')!
+    const chip = card.querySelector('a.uc-cause')!
+    expect(text(chip)).toBe('人工調整 fix.yaml')
+    expect(chip.getAttribute('title')).toBe('人工調整 fix.yaml（改正）')
+    expect(text(chip.nextElementSibling)).toBe('理由：改正')
+    expect(chip.nextElementSibling!.classList.contains('uc-reason')).toBe(true)
+  })
+
+  it('names an adjustment file once in its header, and keeps the mark with the name', async () => {
+    stub({}, withAdjustments())
+    const adj = heads(await mount(route(), causesView))[0]!
+    expect(text(adj.querySelector('.cg-name'))).toBe('人工調整 fix.yaml')
+    expect(adj.querySelector('.cg-subtitle')).toBeNull()
+    expect(adj.querySelector('.cg-lead > .cg-mark + .cg-name')).not.toBeNull()
+    clearDataCache()
+    stub({}, withCauses())
+    const rewrite = heads(await mount(route(), causesView))[0]!
+    expect(text(rewrite.querySelector('.cg-subtitle'))).toBe('Fix the name')
+  })
+
   it('drops g from the URL when another view is chosen', async () => {
     stub({}, withCauses())
     const seen: Settings[] = []
@@ -766,6 +821,42 @@ describe('UpdateView by cause: jumping, switching and paging', () => {
     const target = scrollIntoView.mock.contexts[1] as HTMLElement
     expect(target.contains(head)).toBe(true)
     expect(target.hidden).toBe(false)
+  })
+
+  it('opens, scrolls to and focuses the group of a chip whose g the URL has already', async () => {
+    stub({}, withCauses())
+    const c = newContainer()
+    await act(() => draw(c, route({ group: 'rewrite:x' })))
+    await vi.waitFor(() => expect(c.querySelector('.cg-head')).not.toBeNull())
+    const button = (name: string) => [...c.querySelectorAll<HTMLButtonElement>('.cg-all button')].find((b) => text(b) === name)!
+    await act(() => button('全部收合').click())
+    const other = heads(c).find((h) => text(h.querySelector('.cg-name')) === '其他')!
+    await act(() => other.click())
+    other.focus()
+    scrollIntoView.mockReset()
+    const chip = [...c.querySelectorAll<HTMLAnchorElement>('.cg-panel a.uc-cause')].find((a) => text(a) === '改寫檔 x')!
+    expect(chip.getAttribute('href')).toBe('#/u/zh-TW-20261105.1?g=rewrite%3Ax')
+    await act(() => chip.click())
+    const rewrite = heads(c)[0]!
+    expect(rewrite.getAttribute('aria-expanded')).toBe('true')
+    expect(scrollIntoView).toHaveBeenCalledTimes(1)
+    expect(scrollIntoView.mock.contexts[0]).toBe(c.querySelector('#cg-group-rewrite\\:x'))
+    expect(document.activeElement).toBe(rewrite)
+  })
+
+  it('moves the focus to the header of the group a chip of the cards leads to', async () => {
+    stub({}, withCauses())
+    const c = newContainer()
+    await act(() => render(<UpdateView route={route()} settings={defaultSettings()} onSettings={() => {}} />, c))
+    await vi.waitFor(() => expect(c.querySelector('.uc-card')).not.toBeNull())
+    const chip = [...c.querySelectorAll<HTMLAnchorElement>('a.uc-cause')].find((a) => text(a) === '改寫檔 x')!
+    chip.focus()
+    await act(() => chip.click())
+    // The app draws the route of the new hash: the chip is gone.
+    await act(() => render(<UpdateView route={route({ group: 'rewrite:x' })} settings={defaultSettings()} onSettings={() => {}} />, c))
+    const rewrite = heads(c)[0]!
+    expect(rewrite.getAttribute('aria-expanded')).toBe('true')
+    expect(document.activeElement).toBe(rewrite)
   })
 
   it('starts a Release collapsed again after another one was open', async () => {

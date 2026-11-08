@@ -80,11 +80,46 @@ describe('groupByCause', () => {
     const x3 = e('A.json', '/3', 'zh-changed', { causes: [{ kind: 'retranslated' }] })
     const x4 = e('B.json', '/4', 'zh-changed', { causes: [{ kind: 'retranslated', reason: 'typo' }] })
     const groups = groupByCause(rec([x1, x2, x3, x4], { causes_version: 1 }))
+    // Of the same rank, in the order of their keys.
     expect(groups.map((x) => [x.key, x.entries.length, x.reason])).toEqual([
-      ['retranslated:typo', 2, 'typo'],
-      ['retranslated:tone', 1, 'tone'],
       ['retranslated:', 1, undefined],
+      ['retranslated:tone', 1, 'tone'],
+      ['retranslated:typo', 2, 'typo'],
     ])
+  })
+
+  it('sorts rule groups of the same size by key, whatever the order of the entries', () => {
+    const one = (ptr: string, kind: string, id: string) => e('A.json', ptr, 'zh-changed', { causes: [{ kind, id }] })
+    const entries = [one('/1', 'rewrite', 'r2'), one('/2', 'requeue', 'q1'), one('/3', 'rewrite', 'r1'), one('/4', 'rewrite', 'r9'), one('/5', 'rewrite', 'r9')]
+    const want = ['rewrite:r9', 'requeue:q1', 'rewrite:r1', 'rewrite:r2']
+    expect(groupByCause(rec(entries, { causes_version: 1 })).map((x) => x.key)).toEqual(want)
+    expect(groupByCause(rec([...entries].reverse(), { causes_version: 1 })).map((x) => x.key)).toEqual(want)
+  })
+
+  it('makes a group of a rule the record does not describe, with the id only', () => {
+    const x = e('A.json', '/1', 'zh-changed', { causes: [{ kind: 'rewrite', id: 'gone' }] })
+    const [g] = groupByCause(rec([x], { causes_version: 1, rules })) as [CauseGroup]
+    expect(g).toMatchObject({ key: 'rewrite:gone', kind: 'rewrite', id: 'gone', isRule: true, files: 1 })
+    expect([g.title, g.path, g.commit]).toEqual([undefined, undefined, undefined])
+  })
+
+  it('returns nothing for a record with causes and no entries', () => {
+    expect(groupByCause(rec([], { causes_version: 1, rules }))).toEqual([])
+  })
+
+  it('groups an entry without causes in a record with causes by its legacy kind, never as a rule', () => {
+    const x = e('A.json', '/1', 'zh-changed', { causes: [{ kind: 'rewrite', id: 'r1' }] })
+    const y = e('A.json', '/2', 'zh-changed', { cause: 'adjustment' })
+    const z = e('B.json', '/3', 'new', { causes: [] })
+    const groups = groupByCause(rec([x, y, z], { causes_version: 1, rules }))
+    expect(groups.map((g) => [g.key, g.isRule, g.entries.length])).toEqual([
+      ['rewrite:r1', true, 1],
+      ['new', false, 1],
+      ['adjustment', false, 1],
+    ])
+    expect(groups.some((g) => g.legacy)).toBe(false)
+    // The cause filter finds them under the same keys.
+    for (const g of groups.slice(1)) for (const x of g.entries) expect(entryCauseKinds(x)).toEqual([g.key])
   })
 
   it('falls back to the old cause and the kind for a record without causes', () => {

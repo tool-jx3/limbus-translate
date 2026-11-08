@@ -66,20 +66,27 @@ export function groupByCause(rec: UpdateRecord): CauseGroup[] {
 /**
  * Groups some of the entries of a record (for instance the filtered ones) by
  * cause, in the order of groupByCause. Whether the record is legacy is decided
- * by the whole record, so that a filter cannot change it.
+ * by the whole record, so that a filter cannot change it. An entry without
+ * causes (all of a legacy record) is grouped by its legacy kind, as
+ * entryCauseKinds has it.
  */
 export function groupEntries(rec: UpdateRecord, entries: UpdateEntry[]): CauseGroup[] {
   const legacy = !rec.causes_version && !rec.entries.some((e) => e.causes && e.causes.length > 0)
   const groups = new Map<string, CauseGroup>()
-  const add = (key: string, c: UpdateEntryCause, e: UpdateEntry) => {
+  const add = (key: string, c: UpdateEntryCause, e: UpdateEntry, old: boolean) => {
     let g = groups.get(key)
     if (!g) {
-      const isRule = !legacy && RULE_KINDS.has(c.kind)
-      const info = isRule ? rec.rules?.[key] : undefined
+      // An old coarse cause names no rule (the old adjustment cause has no file), so its group is never a rule.
+      const isRule = !old && RULE_KINDS.has(c.kind)
       g = { key, kind: c.kind, entries: [], files: 0, isRule }
       if (isRule) {
         g.id = c.id
-        if (info) Object.assign(g, { title: info.title, path: info.path, commit: info.commit })
+        const info = rec.rules?.[key]
+        if (info) {
+          g.title = info.title
+          g.path = info.path
+          g.commit = info.commit
+        }
       }
       if (c.kind === 'retranslated' && c.reason) g.reason = c.reason
       if (legacy) g.legacy = true
@@ -88,10 +95,11 @@ export function groupEntries(rec: UpdateRecord, entries: UpdateEntry[]): CauseGr
     if (g.entries[g.entries.length - 1] !== e) g.entries.push(e)
   }
   for (const e of entries) {
-    if (legacy) {
+    if (e.causes && e.causes.length > 0) for (const c of e.causes) add(causeKey(c), c, e, false)
+    else {
       const kind = entryLegacyKind(e)
-      add(kind, { kind }, e)
-    } else for (const c of e.causes ?? []) add(causeKey(c), c, e)
+      add(kind, { kind }, e, true)
+    }
   }
   const out = [...groups.values()]
   for (const g of out) g.files = new Set(g.entries.map((e) => e.file)).size
@@ -99,7 +107,14 @@ export function groupEntries(rec: UpdateRecord, entries: UpdateEntry[]): CauseGr
     const i = KIND_ORDER.indexOf(g.kind)
     return i < 0 ? KIND_ORDER.length : i
   }
+  // Ties (rule groups of the same size, groups of the same kind) go by key, so
+  // that the order does not depend on that of the entries.
+  const byKey = (a: CauseGroup, b: CauseGroup) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0)
   return out.sort((a, b) =>
-    a.isRule !== b.isRule ? (a.isRule ? -1 : 1) : a.isRule ? b.entries.length - a.entries.length : rank(a) - rank(b),
+    a.isRule !== b.isRule
+      ? a.isRule
+        ? -1
+        : 1
+      : (a.isRule ? b.entries.length - a.entries.length : rank(a) - rank(b)) || byKey(a, b),
   )
 }

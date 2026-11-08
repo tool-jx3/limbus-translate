@@ -2055,6 +2055,13 @@ a.uc-cause:focus-visible {
   text-decoration: underline;
 }
 
+/* The reason a person gave for an adjustment, next to its chip. */
+.uc-reason {
+  min-width: 0;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
 .uc-also {
   display: inline-flex;
   flex-wrap: wrap;
@@ -3117,12 +3124,28 @@ a.uc-cause:focus-visible {
   border-color: var(--accent);
 }
 
+/* The mark and the name stay on one line; a long name wraps beside the mark. */
+.cg-lead {
+  display: flex;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
 .cg-name {
+  min-width: 0;
   font-weight: 600;
   overflow-wrap: anywhere;
 }
 
+/* The button takes the bold of the heading; only the name is bold. */
+.cg-subtitle,
+.cg-count,
+.cg-rule {
+  font-weight: normal;
+}
+
 .cg-subtitle {
+  min-width: 0;
   overflow-wrap: anywhere;
 }
 
