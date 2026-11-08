@@ -859,6 +859,37 @@ describe('UpdateView by cause: jumping, switching and paging', () => {
     expect(document.activeElement).toBe(rewrite)
   })
 
+  it('leaves the focus on a filter that empties the list and fills it again', async () => {
+    stub({}, withCauses())
+    const c = newContainer()
+    await act(() => draw(c, route({ group: 'rewrite:x' })))
+    await vi.waitFor(() => expect(c.querySelector('.cg-head')).not.toBeNull())
+    const file = c.querySelector<HTMLSelectElement>('select[name="file"]')!
+    file.focus()
+    await act(() => draw(c, route({ group: 'rewrite:x', file: 'Z.json' })))
+    expect(c.querySelector('.cg')).toBeNull()
+    await act(() => draw(c, route({ group: 'rewrite:x' })))
+    expect(heads(c)[0]!.getAttribute('aria-expanded')).toBe('true')
+    expect(document.activeElement).toBe(file)
+  })
+
+  it('scrolls once to the group a chip in the view leads to, when the URL follows', async () => {
+    stub({}, withCauses())
+    const c = newContainer()
+    await act(() => draw(c, route({ group: 'other' })))
+    await vi.waitFor(() => expect(c.querySelector('.cg-head')).not.toBeNull())
+    scrollIntoView.mockReset()
+    const chip = [...c.querySelectorAll<HTMLAnchorElement>('.cg-panel a.uc-cause')].find((a) => text(a) === '改寫檔 x')!
+    await act(() => chip.click())
+    // The app draws the route of the new hash.
+    await act(() => draw(c, route({ group: 'rewrite:x' })))
+    expect(scrollIntoView).toHaveBeenCalledTimes(1)
+    expect(document.activeElement).toBe(heads(c)[0])
+    // Going back to the other group by the URL still brings it into view.
+    await act(() => draw(c, route({ group: 'other' })))
+    expect(scrollIntoView).toHaveBeenCalledTimes(2)
+  })
+
   it('starts a Release collapsed again after another one was open', async () => {
     const TAG_B = 'zh-TW-20261106.1'
     vi.stubGlobal(

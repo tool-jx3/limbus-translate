@@ -1,5 +1,5 @@
 import type { JSX } from 'preact'
-import { useContext, useEffect, useMemo, useState } from 'preact/hooks'
+import { useContext, useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import type { UpdateEntry, UpdateRecord } from '../types'
 import { adjustmentReason, CauseNav } from './CauseChips'
 import { CAUSE_KIND_NAMES, causeKey, groupEntries, type CauseGroup } from './causes'
@@ -90,24 +90,39 @@ export function CauseView({
     setExpanded((s) => (s.has(key) ? s : new Set(s).add(key)))
     setTarget({ key })
   }
+  // The group a chip of this view was clicked for: the URL then names it too,
+  // which need not show it a second time.
+  const jumped = useRef('')
+  const jump = (key: string) => {
+    jumped.current = key
+    show(key)
+  }
   // A group named by the URL is shown, also when the URL changes while this is.
   useEffect(() => {
-    if (open) show(open)
+    const shown = jumped.current === open
+    jumped.current = ''
+    if (open && !shown) show(open)
   }, [open])
   // Its panel is hidden until it is open, so the header (never hidden) is what
-  // is scrolled to, after the render that opened it; the header takes the
-  // focus, which the chip that led here may have lost with its view.
+  // is scrolled to, after the render that opened it. The header takes the
+  // focus where it is lost (the chip that led here went with its view) or in
+  // this view, not from a control elsewhere, such as a filter whose change
+  // drew this view again.
+  const view = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (!target) return
     setTarget(undefined)
     const section = expanded.has(target.key) ? document.getElementById(sectionId(target.key)) : null
     if (!section) return
     section.scrollIntoView?.({ block: 'start' })
-    section.querySelector<HTMLElement>('.cg-head')?.focus({ preventScroll: true })
+    const active = document.activeElement
+    if (!active || active === document.body || view.current?.contains(active)) {
+      section.querySelector<HTMLElement>('.cg-head')?.focus({ preventScroll: true })
+    }
   }, [target, expanded])
   const legacy = groups.some((g) => g.legacy)
   return (
-    <div class="cg">
+    <div class="cg" ref={view}>
       {legacy && (
         <p class="cg-legacy" role="status">
           這個 Release 的紀錄尚未補上原因，暫以舊的分類顯示。
@@ -146,7 +161,7 @@ export function CauseView({
                 </ul>
               )}
               {isOpen && (
-                <CauseNav.Provider value={{ href: nav.href, current: g.key, show }}>{draw(g.entries, g)}</CauseNav.Provider>
+                <CauseNav.Provider value={{ href: nav.href, current: g.key, show: jump }}>{draw(g.entries, g)}</CauseNav.Provider>
               )}
             </div>
           </section>

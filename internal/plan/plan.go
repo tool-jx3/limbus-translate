@@ -47,6 +47,10 @@ const (
 	BatchReuse      = "reuse:"
 )
 
+// HintSeparator joins the hints of two requests a unit carries (joinHints);
+// history splits a hint on it to tell the requests apart.
+const HintSeparator = "；"
+
 // Inputs is what Run works with.
 type Inputs struct {
 	// Root is the repo root: the rules, and the adjustment, requeue and
@@ -1130,7 +1134,7 @@ func joinHints(own, handed string) string {
 	case handed == "":
 		return own
 	}
-	return own + "；" + handed
+	return own + HintSeparator + handed
 }
 
 // held reports whether steps 1 to 3 decided the source of the unit of key (a

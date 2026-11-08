@@ -205,6 +205,19 @@ func requeueReasons(id string, sides ...sideRules) []string {
 	return out
 }
 
+// hintParts are the parts of the hint of a queued unit, trimmed, each the
+// reason of one request or of lct requeue: a unit that takes over the request
+// of a deleted unit joins its hint to its own.
+func hintParts(hint string) []string {
+	var out []string
+	for _, p := range strings.Split(hint, plan.HintSeparator) {
+		if p = strings.TrimSpace(p); p != "" {
+			out = append(out, p)
+		}
+	}
+	return out
+}
+
 // fileOrder compares the ids of two rule files as their file names compare.
 func fileOrder(a, b string) int { return strings.Compare(a+rulefile.Ext, b+rulefile.Ext) }
 
@@ -447,9 +460,12 @@ func adjustmentsOf(r *RuleFiles) []adjust.Adjustment { return r.Adjustments }
 //     applied that selects it, as the request file selects (by the old
 //     record). The plan gives each unit a request sends back, resets or finds
 //     queued the request's reason as its hint, and a later request or lct
-//     requeue overwrites it; so the request is the last that selects the unit
-//     and has the hint of the queued item as its reason. A unit queued as
-//     requeue whose hint is no such reason was sent back by lct requeue (the
+//     requeue overwrites it (a unit that takes over the request of a deleted
+//     unit joins the two hints with plan.HintSeparator); so the request is the
+//     last that selects the unit and has a part of the hint of the queued item
+//     as its reason, or else the last that has one at all: the queue follows a
+//     unit to a new key, the request file does not. A unit queued as requeue
+//     whose hint names no request was sent back by lct requeue (the
 //     workflow's requeue input), not by a request file: it has no cause here,
 //     unless a request file that cannot be read may be the one. A unit queued
 //     as requeue without a hint has the last request that selects it. A unit
@@ -479,19 +495,32 @@ func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided
 	it, queued := in.pending[u.prevKey]
 	hint := strings.TrimSpace(it.Hint)
 	if queued && (it.Reason == requeue.Reason || hint != "") {
-		var last, named *foundRequeue
+		parts := hintParts(hint)
+		// last selects the unit; named, the last that also has a part of the
+		// hint as its reason; touched, the last that has one at all.
+		var last, named, touched *foundRequeue
 		for i, r := range in.requeues {
-			if !selects(r.f) || again && in.newRequeue[r.f.ID] {
+			if again && in.newRequeue[r.f.ID] {
 				continue
 			}
-			last = &in.requeues[i]
-			if hint != "" && slices.Contains(r.reasons, hint) {
-				named = &in.requeues[i]
+			names := slices.ContainsFunc(parts, func(p string) bool { return slices.Contains(r.reasons, p) })
+			if names {
+				touched = &in.requeues[i]
+			}
+			if selects(r.f) {
+				last = &in.requeues[i]
+				if names {
+					named = &in.requeues[i]
+				}
 			}
 		}
 		switch {
 		case named != nil:
 			picked = append(picked, *named)
+		case touched != nil:
+			// Its hint is the request's, though the request no longer
+			// selects it: the queue moved it to a new key.
+			picked = append(picked, *touched)
 		case it.Reason != requeue.Reason:
 			// Queued for its own reason, with the hint of no request.
 		case hint == "" && last != nil:
@@ -501,7 +530,7 @@ func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided
 		case hint == "":
 			note = "queued as " + requeue.Reason + ", but no request file applied selects it"
 		default:
-			note = fmt.Sprintf("queued as %s with the hint %q, but no request file applied that selects it has that reason", requeue.Reason, hint)
+			note = fmt.Sprintf("queued as %s with the hint %q, but no request file applied has it as its reason", requeue.Reason, hint)
 		}
 		if note != "" && in.requeueGone != "" {
 			note += "; " + in.requeueGone

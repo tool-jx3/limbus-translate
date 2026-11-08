@@ -681,6 +681,55 @@ func TestCausesRequeueByHint(t *testing.T) {
 	wantCauses(t, got[2], Cause{Kind: CauseKindRequeue, ID: "q0", Batch: "b1"})
 }
 
+// The hint names the request that touched the queued unit even where the
+// request no longer selects it (a key renumbered by a game update, which the
+// queue followed and the request file did not), and in each of the parts of a
+// hint joined from two requests.
+func TestCausesRequeueHintNamesRequest(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"), item(3, "c"), item(4, "d"))
+	all := requeue.Selector{Files: []string{"F.json"}}
+	applied := store.Applied{Requeue: []string{"q-all", "q-moved"}}
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲"), item(2, "乙"), item(3, "丙"), item(4, "丁")),
+		recs: []store.Record{
+			recAt(0, "a", "甲", store.OriginClaude, "b0"),
+			recAt(1, "b", "乙", store.OriginClaude, "b0"),
+			recAt(2, "c", "丙", store.OriginClaude, "b0"),
+			recAt(3, "d", "丁", store.OriginClaude, "b0"),
+		},
+		applied: applied,
+		pending: []store.PendingItem{
+			{Key: keyAt(0), Reason: requeue.Reason, Hint: "重翻 q-moved"},
+			{Key: keyAt(1), Reason: requeue.Reason, Hint: "重翻 q-moved；重翻 q-all"},
+			{Key: keyAt(2), Reason: requeue.Reason, Hint: manualHint + "； 重翻 q-moved "},
+			{Key: keyAt(3), Reason: requeue.Reason, Hint: manualHint + "；另一個手動理由"},
+		},
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "甲改"), item(2, "乙改"), item(3, "丙改"), item(4, "丁改")),
+		recs: []store.Record{
+			recAt(0, "a", "甲改", store.OriginClaude, "b1"),
+			recAt(1, "b", "乙改", store.OriginClaude, "b1"),
+			recAt(2, "c", "丙改", store.OriginClaude, "b1"),
+			recAt(3, "d", "丁改", store.OriginClaude, "b1"),
+		},
+		applied: applied,
+	}.side(t)
+	// q-all selects every unit; q-moved names a key that is gone.
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q-all", all), rq("q-moved", requeue.Selector{Keys: []string{keyAt(9)}})}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 4 {
+		t.Fatalf("entries = %+v", got)
+	}
+	// Named by the hint, not the last request that selects the unit.
+	wantCauses(t, got[0], Cause{Kind: CauseKindRequeue, ID: "q-moved", Batch: "b1"})
+	// Of two requests the hint names, the one that selects the unit.
+	wantCauses(t, got[1], Cause{Kind: CauseKindRequeue, ID: "q-all", Batch: "b1"})
+	wantCauses(t, got[2], Cause{Kind: CauseKindRequeue, ID: "q-moved", Batch: "b1"})
+	// Two manual requeues: no request.
+	wantCauses(t, got[3], Cause{Kind: CauseKindRetranslated, Batch: "b1", Reason: requeue.Reason})
+}
+
 // A unit queued for another reason that a request reset from needs_review
 // carries the request's hint; one a manual requeue reset does not.
 func TestCausesRequeueHintOnResetUnit(t *testing.T) {
