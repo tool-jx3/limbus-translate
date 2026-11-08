@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261105",
   "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
-  "rules_commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce",
-  "built_at": "2026-11-07T13:04:48Z",
+  "rules_commit": "58ede3ec52524e6f1686bf13b39504da678e670c",
+  "built_at": "2026-11-08T00:11:45Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,8 +10,8 @@
   },
   "notes_seen": 1000,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "713e3fcb8dba57d1ce2c2de59d62bd53f32ec151eff66686ff8b99d18b32f170",
-    "zh-TW_text_raw-20261105.zip": "4b7993f181a6dc558bfc2c7872fce5010818846a38f58df05738bcb9be033f47"
+    "zh-TW_complete_raw-20261105.zip": "8f1df373f94c9f7ee1d22227b186b7dea66641327fce826527d690d33ce6b557",
+    "zh-TW_text_raw-20261105.zip": "108fe8e5ae8ce0a28193fb922ea16414a3e9897c71e5a1c7cd4c1e23ed85eb1c"
   },
   "report": {
     "origins": {
@@ -29,11 +29,11 @@
     "warnings": {
       "ascii-ellipsis": 13,
       "curly-quotes": 4,
-      "forbidden-term": 3,
+      "forbidden-term": 4,
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 674
+      "term-missing": 675
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -59,6 +59,7 @@
       "forbidden-term": [
         "StoryData/5D101B.json|/dataList/44/content",
         "StoryData/E723B.json|/dataList/63/content",
+        "StoryData/S1027B.json|/dataList/18/content",
         "StoryData/S937B.json|/dataList/35/content"
       ],
       "halfwidth-punct": [
