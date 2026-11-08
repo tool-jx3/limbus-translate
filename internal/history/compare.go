@@ -56,6 +56,7 @@ type Entry struct {
 	NewOrigin  string  `json:"new_origin,omitempty"`
 	Copy       bool    `json:"copy,omitempty"`
 	Cause      string  `json:"cause,omitempty"` // zh-changed only
+	Causes     []Cause `json:"causes,omitempty"`
 }
 
 // side is the strings of one file in one Release, by pointer.

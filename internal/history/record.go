@@ -35,6 +35,10 @@ type Record struct {
 	CopyCounts      Counts   `json:"copy_counts"` // only the strings that need no translation
 	OtherFiles      []string `json:"other_files"` // never nil
 	Entries         []Entry  `json:"entries"`     // never nil
+
+	CausesVersion int                 `json:"causes_version,omitempty"`
+	Unknown       int                 `json:"unknown,omitempty"` // entries with an unknown cause
+	Rules         map[string]RuleInfo `json:"rules,omitempty"`   // keyed "<kind>:<id>"
 }
 
 // Empty reports whether the Record has no entry and no other file.
