@@ -148,7 +148,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		case cur.err != nil:
 			warn(rels[i], cur.err)
 		default:
-			if rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir); err != nil {
+			if rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir, nil); err != nil {
 				warn(rels[i], err)
 			} else {
 				plan.records = append(plan.records, rec)
@@ -196,7 +196,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		plan.remove = tag
 		return
 	}
-	rec, err := history.Make(prev.side, cur, tag, now().UTC().Truncate(time.Second), langDir)
+	rec, err := history.Make(prev.side, cur, tag, now().UTC().Truncate(time.Second), langDir, nil)
 	if err != nil {
 		warn(tag, err)
 		return

@@ -184,7 +184,7 @@ func twoReleases(t *testing.T) repoFixture {
 
 func TestMakeComparesTwoReleases(t *testing.T) {
 	f := twoReleases(t)
-	rec, err := Make(f.rev(t, relA), f.rev(t, relB), relB, timeB, testLang)
+	rec, err := Make(f.rev(t, relA), f.rev(t, relB), relB, timeB, testLang, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -228,7 +228,7 @@ func TestMakeListsTheOtherFilesThatChanged(t *testing.T) {
 	}
 	f.release(t, relA, "2026-11-01T00:00:00Z", spec("one\n", `{"v":1}`))
 	f.release(t, relB, atB, spec("two\n", `{"v":2}`))
-	rec, err := Make(f.rev(t, relA), f.rev(t, relB), relB, timeB, testLang)
+	rec, err := Make(f.rev(t, relA), f.rev(t, relB), relB, timeB, testLang, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -260,7 +260,7 @@ func TestMakeComparesOnlyTheFilesThatDiffer(t *testing.T) {
 	prev, cur := f.rev(t, relA), f.rev(t, relB)
 
 	var handed []string
-	rec, err := makeRecord(prev, cur, relB, timeB, testLang, func(o, n State, files []string) ([]Entry, error) {
+	rec, err := makeRecord(prev, cur, relB, timeB, testLang, nil, func(o, n State, files []string) ([]Entry, error) {
 		handed = files
 		return Compare(o, n, files)
 	})
@@ -274,7 +274,7 @@ func TestMakeComparesOnlyTheFilesThatDiffer(t *testing.T) {
 		t.Errorf("record = %+v", rec)
 	}
 	// And the broken file is not even read through the public Make.
-	if _, err := Make(prev, cur, relB, timeB, testLang); err != nil {
+	if _, err := Make(prev, cur, relB, timeB, testLang, nil); err != nil {
 		t.Errorf("Make: %v", err)
 	}
 }
@@ -302,7 +302,7 @@ func TestReadWorktreeReadsWhatIsNotCommitted(t *testing.T) {
 	if cur.RawTag != "raw-B" || cur.RulesCommit != rulesB {
 		t.Errorf("worktree side = %+v", cur)
 	}
-	rec, err := Make(f.rev(t, relB), cur, "zh-TW-20261103.1", timeB.Add(24*time.Hour), testLang)
+	rec, err := Make(f.rev(t, relB), cur, "zh-TW-20261103.1", timeB.Add(24*time.Hour), testLang, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

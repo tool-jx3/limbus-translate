@@ -1582,7 +1582,7 @@ func TestRunWritesNoHistoryWhenOnlyTheKRChangedAndThePackIsTheSame(t *testing.T)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if rec, err := history.Make(prev, cur, "x", time.Now(), testLang); err != nil || len(rec.Entries) == 0 {
+	if rec, err := history.Make(prev, cur, "x", time.Now(), testLang, nil); err != nil || len(rec.Entries) == 0 {
 		t.Fatalf("Make = %+v, %v, want entries for the new KR text", rec, err)
 	}
 

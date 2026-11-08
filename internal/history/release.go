@@ -111,11 +111,18 @@ func readSide(root, rawRoot, langDir, tmp string) (*Side, error) {
 // are not such pack files, nor Info/version.json (which changes every time),
 // and differ or are on one side only are listed in OtherFiles, relative to
 // LimbusCompany_Data.
-func Make(prev, cur *Side, tag string, at time.Time, langDir string) (*Record, error) {
-	return makeRecord(prev, cur, tag, at, langDir, Compare)
+//
+// With rules, which gives the rules of the RulesCommit of each side, every
+// entry gets its Causes (see inferCauses), and the Record the rules they point
+// to, the number of entries with an unknown cause and CausesVersion. Rules
+// that cannot be read stop nothing: the entries that need them have an unknown
+// cause, whose note says why. Without rules (nil) no cause is inferred and
+// CausesVersion is 0.
+func Make(prev, cur *Side, tag string, at time.Time, langDir string, rules RulesSource) (*Record, error) {
+	return makeRecord(prev, cur, tag, at, langDir, rules, Compare)
 }
 
-func makeRecord(prev, cur *Side, tag string, at time.Time, langDir string,
+func makeRecord(prev, cur *Side, tag string, at time.Time, langDir string, rules RulesSource,
 	compare func(old, new State, files []string) ([]Entry, error)) (*Record, error) {
 	rec := &Record{
 		Tag:             tag,
@@ -172,6 +179,19 @@ func makeRecord(prev, cur *Side, tag string, at time.Time, langDir string,
 			c.ZHChanged++
 		}
 	}
+	if rules != nil {
+		in := newInference(prev, cur, readRules(rules, prev, prev.Tag), readRules(rules, cur, tag))
+		for i := range entries {
+			entries[i].Causes = in.causes(entries[i])
+			if slices.ContainsFunc(entries[i].Causes, func(c Cause) bool { return c.Kind == CauseKindUnknown }) {
+				rec.Unknown++
+			}
+		}
+		rec.CausesVersion = CausesVersion
+		if len(in.rules) > 0 {
+			rec.Rules = in.rules
+		}
+	}
 	if entries != nil {
 		rec.Entries = entries
 	}
@@ -184,6 +204,23 @@ func makeRecord(prev, cur *Side, tag string, at time.Time, langDir string,
 		rec.OtherFiles = other
 	}
 	return rec, nil
+}
+
+// readRules reads the rules of s, the build of the Release called name, from
+// rules. A build that names no rules commit has none to read.
+func readRules(rules RulesSource, s *Side, name string) sideRules {
+	out := sideRules{commit: s.RulesCommit}
+	if s.RulesCommit == "" {
+		if name == "" {
+			name = "the build"
+		}
+		out.err = fmt.Errorf("history: %s names no rules commit", name)
+		return out
+	}
+	if out.rules, out.err = rules(s.RulesCommit); out.err != nil {
+		out.rules = nil
+	}
+	return out
 }
 
 func formatTime(t time.Time) string {

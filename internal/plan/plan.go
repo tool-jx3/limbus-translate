@@ -41,10 +41,10 @@ const (
 
 // The prefixes of the Batch of the records Run writes: the adjustment file
 // (its name in rules/adjustments) and the key of the unit whose translation
-// was reused.
+// was reused. history reads them to tell what made a record.
 const (
-	batchAdjustment = "adjustment:"
-	batchReuse      = "reuse:"
+	BatchAdjustment = "adjustment:"
+	BatchReuse      = "reuse:"
 )
 
 // Inputs is what Run works with.
@@ -633,7 +633,7 @@ func resolveAdjustments(list []adjust.Adjustment, kr *pack.Pack) resolved {
 func (p *planner) humanRecord(key string, c *claim) store.Record {
 	return store.Record{
 		Key: key, KRSha: c.a.KRSha, ZH: c.a.ZH, Origin: store.OriginHuman,
-		Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: batchAdjustment + c.a.File,
+		Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: BatchAdjustment + c.a.File,
 	}
 }
 
@@ -829,7 +829,7 @@ type fileVersions struct {
 func (p *planner) newUnitFinder() *unitFinder {
 	f := &unitFinder{p: p, human: map[humanRef][]string{}, versions: map[string]*fileVersions{}}
 	for key, rec := range p.prevRecords {
-		if rec.Origin == store.OriginHuman && strings.HasPrefix(rec.Batch, batchAdjustment) {
+		if rec.Origin == store.OriginHuman && strings.HasPrefix(rec.Batch, BatchAdjustment) {
 			ref := humanRef{rec.Batch, rec.KRSha, rec.ZH}
 			f.human[ref] = append(f.human[ref], key)
 		}
@@ -865,7 +865,7 @@ func (f *unitFinder) expiredUnit(a adjust.Adjustment) (string, error) {
 		return "", nil
 	}
 	from, mustHaveText := "", false
-	switch keys := f.human[humanRef{batchAdjustment + a.File, a.KRSha, a.ZH}]; {
+	switch keys := f.human[humanRef{BatchAdjustment + a.File, a.KRSha, a.ZH}]; {
 	case slices.Contains(keys, a.Key):
 		from = a.Key
 	case len(keys) == 1:
@@ -1062,7 +1062,7 @@ func (p *planner) reuse(queued map[string]bool) error {
 		}
 		p.records[key] = store.Record{
 			Key: key, KRSha: ref.sha, ZH: s.rec.ZH, Origin: s.rec.Origin, Model: s.rec.Model,
-			Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: batchReuse + s.key,
+			Since: p.sum.RawTag, Rules: p.in.RulesCommit, Batch: BatchReuse + s.key,
 		}
 		delete(p.pending, key)
 		p.sum.Reused++
