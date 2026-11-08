@@ -119,10 +119,13 @@ type inference struct {
 	rules map[string]RuleInfo // the rules the causes point to, by RuleKey
 }
 
-// foundRequeue is a request file and the rules commit it was read from.
+// foundRequeue is a request file and the rules commit it was read from, with
+// its reasons, trimmed, in the rules of both Releases that have it: the plan
+// gives the units it sends back one of them as their hint.
 type foundRequeue struct {
-	f      requeue.File
-	commit string
+	f       requeue.File
+	commit  string
+	reasons []string
 }
 
 func newInference(prev, cur *Side, prevRules, curRules sideRules) *inference {
@@ -169,7 +172,7 @@ func newInference(prev, cur *Side, prevRules, curRules sideRules) *inference {
 			}
 			continue
 		}
-		in.requeues = append(in.requeues, foundRequeue{f, commit})
+		in.requeues = append(in.requeues, foundRequeue{f, commit, requeueReasons(id, curRules, prevRules)})
 	}
 	// The order of rewrite.LoadFiles and requeue.LoadFiles, which the plan
 	// applies them in: that of the file names.
@@ -183,6 +186,23 @@ func newInference(prev, cur *Side, prevRules, curRules sideRules) *inference {
 	in.requeueGone = in.goneFiles("request", requeueGone)
 	in.newRequeueGone = in.goneFiles("request", newRequeueGone)
 	return in
+}
+
+// requeueReasons are the reasons, trimmed, of the request file id in the rules
+// of each of sides that have it.
+func requeueReasons(id string, sides ...sideRules) []string {
+	var out []string
+	for _, s := range sides {
+		if s.rules == nil {
+			continue
+		}
+		for _, f := range s.rules.Requeues {
+			if r := strings.TrimSpace(f.Reason); f.ID == id && !slices.Contains(out, r) {
+				out = append(out, r)
+			}
+		}
+	}
+	return out
 }
 
 // fileOrder compares the ids of two rule files as their file names compare.
@@ -423,9 +443,17 @@ func adjustmentsOf(r *RuleFiles) []adjust.Adjustment { return r.Adjustments }
 // requeueCauses is step 6, for a unit translated since prev: the request files
 // that sent it back. Each cause carries the translation batch.
 //
-//   - (a) A unit queued in prev as requeue was sent back by the last request
-//     file cur has applied that selects it, as the request file selects (by
-//     the old record).
+//   - (a) A unit queued in prev was sent back by a request file cur has
+//     applied that selects it, as the request file selects (by the old
+//     record). The plan gives each unit a request sends back, resets or finds
+//     queued the request's reason as its hint, and a later request or lct
+//     requeue overwrites it; so the request is the last that selects the unit
+//     and has the hint of the queued item as its reason. A unit queued as
+//     requeue whose hint is no such reason was sent back by lct requeue (the
+//     workflow's requeue input), not by a request file: it has no cause here,
+//     unless a request file that cannot be read may be the one. A unit queued
+//     as requeue without a hint has the last request that selects it. A unit
+//     queued for another reason has a cause here only by its hint.
 //   - (b) A unit sent back and translated since prev was sent back by each of
 //     the request files applied since prev that select it.
 //
@@ -435,9 +463,10 @@ func adjustmentsOf(r *RuleFiles) []adjust.Adjustment { return r.Adjustments }
 // since prev. Which of those requests came before the translation cannot be
 // told.
 //
-// note says why a unit queued in prev as requeue has no cause. undecided
-// names the request files applied since prev that might have selected the
-// unit but cannot be read; it matters only when the unit has no other cause.
+// note says why it cannot be told which request sent back a unit queued in
+// prev as requeue. undecided names the request files applied since prev that
+// might have selected the unit but cannot be read; it matters only when the
+// unit has no other cause.
 func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided string) {
 	if !u.translated {
 		return nil, "", ""
@@ -447,20 +476,35 @@ func (in *inference) requeueCauses(u unitState) (causes []Cause, note, undecided
 	}
 	again := in.queuedAgain[u.curKey]
 	var picked []foundRequeue
-	if it, ok := in.pending[u.prevKey]; ok && it.Reason == requeue.Reason {
-		var last *foundRequeue
+	it, queued := in.pending[u.prevKey]
+	hint := strings.TrimSpace(it.Hint)
+	if queued && (it.Reason == requeue.Reason || hint != "") {
+		var last, named *foundRequeue
 		for i, r := range in.requeues {
-			if selects(r.f) && !(again && in.newRequeue[r.f.ID]) {
-				last = &in.requeues[i]
+			if !selects(r.f) || again && in.newRequeue[r.f.ID] {
+				continue
+			}
+			last = &in.requeues[i]
+			if hint != "" && slices.Contains(r.reasons, hint) {
+				named = &in.requeues[i]
 			}
 		}
-		if last != nil {
+		switch {
+		case named != nil:
+			picked = append(picked, *named)
+		case it.Reason != requeue.Reason:
+			// Queued for its own reason, with the hint of no request.
+		case hint == "" && last != nil:
 			picked = append(picked, *last)
-		} else {
+		case hint != "" && in.requeueGone == "":
+			// lct requeue sent it back, not a request file.
+		case hint == "":
 			note = "queued as " + requeue.Reason + ", but no request file applied selects it"
-			if in.requeueGone != "" {
-				note += "; " + in.requeueGone
-			}
+		default:
+			note = fmt.Sprintf("queued as %s with the hint %q, but no request file applied that selects it has that reason", requeue.Reason, hint)
+		}
+		if note != "" && in.requeueGone != "" {
+			note += "; " + in.requeueGone
 		}
 	}
 	if !again {

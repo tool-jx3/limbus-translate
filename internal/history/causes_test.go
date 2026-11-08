@@ -560,25 +560,154 @@ func TestCausesRequeueBothWaysOnce(t *testing.T) {
 	wantCauses(t, got[0], Cause{Kind: CauseKindRequeue, ID: "q1", Batch: "b1"})
 }
 
+// manualHint is the hint of a requeue the pipeline workflow was asked for
+// (lct requeue --reason): no request file has it as its reason.
+const manualHint = "手動執行 workflow 要求重翻"
+
 func TestCausesRequeueSelectsNone(t *testing.T) {
 	kr := list(item(1, "a"))
-	applied := store.Applied{Requeue: []string{"q1"}}
+	for name, tc := range map[string]struct {
+		hint    string
+		applied []string
+		want    Cause  // when note is ""
+		note    string // what the note of the one unknown cause says
+	}{
+		// Without a hint the request is the last that selects the unit:
+		// there is none.
+		"no hint": {applied: []string{"q1"}, note: "no request file applied selects it"},
+		// A manual requeue: no request file sent it back.
+		"a manual requeue": {hint: manualHint, applied: []string{"q1"}, want: Cause{Kind: CauseKindRetranslated, Batch: "b1", Reason: requeue.Reason}},
+		// The request file that is gone may be the one that sent it back.
+		"a manual requeue, a request file gone": {hint: manualHint, applied: []string{"q-gone", "q1"}, note: "request q-gone not found"},
+	} {
+		t.Run(name, func(t *testing.T) {
+			applied := store.Applied{Requeue: tc.applied}
+			prev := sideSpec{
+				kr: kr, zh: list(item(1, "甲")), recs: []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0")},
+				applied: applied, pending: []store.PendingItem{{Key: keyAt(0), Reason: requeue.Reason, Hint: tc.hint}},
+			}.side(t)
+			cur := sideSpec{
+				kr: kr, zh: list(item(1, "甲改")), recs: []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1")},
+				applied: applied,
+			}.side(t)
+			rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q1", requeue.Selector{Keys: []string{keyAt(5)}})}}
+			got := causesOf(t, prev, cur, rules, rules)
+			if len(got) != 1 {
+				t.Fatalf("entries = %+v", got)
+			}
+			if tc.note == "" {
+				wantCauses(t, got[0], tc.want)
+				return
+			}
+			if c := got[0].Causes; len(c) != 1 || c[0].Kind != CauseKindUnknown || !strings.Contains(c[0].Note, tc.note) {
+				t.Errorf("causes = %+v, want one unknown that says %q", c, tc.note)
+			}
+		})
+	}
+}
+
+// A manual requeue of the pipeline workflow (no request file) in one Release,
+// translated in the next: an old request file that selects the unit too is
+// not its cause.
+func TestCausesRequeueManualAcrossReleases(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"))
+	all := requeue.Selector{Files: []string{"F.json"}}
+	applied := store.Applied{Requeue: []string{"q-old"}} // done long before prev
 	prev := sideSpec{
-		kr: kr, zh: list(item(1, "甲")), recs: []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0")},
-		applied: applied, pending: []store.PendingItem{{Key: keyAt(0), Reason: requeue.Reason}},
+		kr: kr, zh: list(item(1, "甲"), item(2, "乙")),
+		recs:    []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0"), recAt(1, "b", "乙", store.OriginClaude, "b0")},
+		applied: applied,
+		pending: []store.PendingItem{
+			{Key: keyAt(0), Reason: requeue.Reason, Hint: manualHint},
+			{Key: keyAt(1), Reason: requeue.Reason, Hint: " 重翻 q-old "}, // still waiting for q-old
+		},
+		rules: commitPrev,
 	}.side(t)
 	cur := sideSpec{
-		kr: kr, zh: list(item(1, "甲改")), recs: []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1")},
+		kr: kr, zh: list(item(1, "甲改"), item(2, "乙改")),
+		recs:    []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1"), recAt(1, "b", "乙改", store.OriginClaude, "b1")},
+		applied: applied, rules: commitCur,
+	}.side(t)
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q-old", all)}}
+	got := causesOf(t, prev, cur, rules, rules)
+	if len(got) != 2 {
+		t.Fatalf("entries = %+v", got)
+	}
+	wantCauses(t, got[0], Cause{Kind: CauseKindRetranslated, Batch: "b1", Reason: requeue.Reason})
+	wantCauses(t, got[1], Cause{Kind: CauseKindRequeue, ID: "q-old", Batch: "b1"})
+}
+
+// The hint names the request that sent the unit back last, which need not be
+// the last that selects it; its reason may have changed since, so either
+// rules commit's reason will do.
+func TestCausesRequeueByHint(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"), item(3, "c"))
+	all := requeue.Selector{Files: []string{"F.json"}}
+	applied := store.Applied{Requeue: []string{"q0", "q1"}}
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲"), item(2, "乙"), item(3, "丙")),
+		recs: []store.Record{
+			recAt(0, "a", "甲", store.OriginClaude, "b0"),
+			recAt(1, "b", "乙", store.OriginClaude, "b0"),
+			recAt(2, "c", "丙", store.OriginClaude, "b0"),
+		},
+		applied: applied,
+		pending: []store.PendingItem{
+			{Key: keyAt(0), Reason: requeue.Reason, Hint: "重翻 q0"},
+			{Key: keyAt(1), Reason: requeue.Reason, Hint: "q1 舊理由"},
+			{Key: keyAt(2), Reason: "structural-fail", Hint: "重翻 q0"}, // reset by q0
+		},
+		rules: commitPrev,
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "甲改"), item(2, "乙改"), item(3, "丙改")),
+		recs: []store.Record{
+			recAt(0, "a", "甲改", store.OriginClaude, "b1"),
+			recAt(1, "b", "乙改", store.OriginClaude, "b1"),
+			recAt(2, "c", "丙改", store.OriginClaude, "b1"),
+		},
+		applied: applied, rules: commitCur,
+	}.side(t)
+	q1old := rq("q1", all)
+	q1old.Reason = "q1 舊理由"
+	prevRules := &RuleFiles{Commit: commitPrev, Requeues: []requeue.File{rq("q0", all), q1old}}
+	curRules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q0", all), rq("q1", all)}}
+	got := causesOf(t, prev, cur, prevRules, curRules)
+	if len(got) != 3 {
+		t.Fatalf("entries = %+v", got)
+	}
+	wantCauses(t, got[0], Cause{Kind: CauseKindRequeue, ID: "q0", Batch: "b1"})
+	wantCauses(t, got[1], Cause{Kind: CauseKindRequeue, ID: "q1", Batch: "b1"})
+	wantCauses(t, got[2], Cause{Kind: CauseKindRequeue, ID: "q0", Batch: "b1"})
+}
+
+// A unit queued for another reason that a request reset from needs_review
+// carries the request's hint; one a manual requeue reset does not.
+func TestCausesRequeueHintOnResetUnit(t *testing.T) {
+	kr := list(item(1, "a"), item(2, "b"))
+	all := requeue.Selector{Files: []string{"F.json"}}
+	applied := store.Applied{Requeue: []string{"q0"}}
+	prev := sideSpec{
+		kr: kr, zh: list(item(1, "甲"), item(2, "乙")),
+		recs:    []store.Record{recAt(0, "a", "甲", store.OriginClaude, "b0"), recAt(1, "b", "乙", store.OriginClaude, "b0")},
+		applied: applied,
+		pending: []store.PendingItem{
+			{Key: keyAt(0), Reason: "structural-fail", Hint: "重翻 q0"},
+			{Key: keyAt(1), Reason: "structural-fail", Hint: manualHint},
+		},
+	}.side(t)
+	cur := sideSpec{
+		kr: kr, zh: list(item(1, "甲改"), item(2, "乙改")),
+		recs:    []store.Record{recAt(0, "a", "甲改", store.OriginClaude, "b1"), recAt(1, "b", "乙改", store.OriginClaude, "b1")},
 		applied: applied,
 	}.side(t)
-	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q1", requeue.Selector{Keys: []string{keyAt(5)}})}}
+	rules := &RuleFiles{Commit: commitCur, Requeues: []requeue.File{rq("q0", all)}}
 	got := causesOf(t, prev, cur, rules, rules)
-	if len(got) != 1 || len(got[0].Causes) != 1 || got[0].Causes[0].Kind != CauseKindUnknown {
-		t.Fatalf("entries = %+v, want one unknown cause", got)
+	if len(got) != 2 {
+		t.Fatalf("entries = %+v", got)
 	}
-	if note := got[0].Causes[0].Note; !strings.Contains(note, "no request file applied selects it") || strings.Contains(note, "not found") {
-		t.Errorf("note = %q", note)
-	}
+	wantCauses(t, got[0], Cause{Kind: CauseKindRequeue, ID: "q0", Batch: "b1"})
+	wantCauses(t, got[1], Cause{Kind: CauseKindRetranslated, Batch: "b1", Reason: "structural-fail"})
 }
 
 func TestCausesRequeueUnreadableIsUndecided(t *testing.T) {

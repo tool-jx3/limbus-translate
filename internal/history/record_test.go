@@ -1,6 +1,8 @@
 package history
 
 import (
+	"bytes"
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -110,6 +112,31 @@ func TestRecordRoundTripsCauses(t *testing.T) {
 	}
 	if !reflect.DeepEqual(got[0].Entries[0].Causes, in.Entries[0].Causes) {
 		t.Errorf("Causes = %v, want %v", got[0].Entries[0].Causes, in.Entries[0].Causes)
+	}
+}
+
+// A record without causes is written as one was before causes existed, so
+// that the site exports the records made then byte for byte as before.
+func TestRecordWithoutCausesHasNoCauseFields(t *testing.T) {
+	root := t.TempDir()
+	rec := Record{Tag: "zh-TW-20261101.1", Entries: []Entry{{File: "a.json", Field: "f", Pointer: "/0", Kind: KindZHChanged, Cause: CauseLate}}}
+	if err := Write(root, &rec); err != nil {
+		t.Fatal(err)
+	}
+	written, err := os.ReadFile(filepath.Join(root, ".meta", "history", "zh-TW-20261101.1.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	marshalled, err := json.Marshal(rec)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, data := range [][]byte{written, marshalled} {
+		for _, field := range []string{`"causes_version"`, `"unknown"`, `"rules"`, `"causes"`} {
+			if bytes.Contains(data, []byte(field)) {
+				t.Errorf("a record without causes has %s:\n%s", field, data)
+			}
+		}
 	}
 }
 

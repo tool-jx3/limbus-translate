@@ -28,12 +28,20 @@ type RulesSource func(commit string) (*RuleFiles, error)
 // one of them, has none of those rules; a commit that does not exist is an
 // error.
 func RulesAt(repo, commit, tmp string) (*RuleFiles, error) {
-	if _, err := gitx.RevTime(repo, commit); err != nil {
+	rules, err := rulesAt(repo, commit, tmp)
+	if err != nil {
 		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+	}
+	return rules, nil
+}
+
+func rulesAt(repo, commit, tmp string) (*RuleFiles, error) {
+	if _, err := gitx.RevTime(repo, commit); err != nil {
+		return nil, err
 	}
 	has, err := gitx.HasPath(repo, commit, "rules")
 	if err != nil {
-		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+		return nil, err
 	}
 	out := &RuleFiles{Commit: commit}
 	if !has {
@@ -41,19 +49,19 @@ func RulesAt(repo, commit, tmp string) (*RuleFiles, error) {
 	}
 	root, err := os.MkdirTemp(tmp, "rules-")
 	if err != nil {
-		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+		return nil, err
 	}
 	if err := gitx.Archive(repo, commit, []string{"rules"}, root); err != nil {
-		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+		return nil, err
 	}
 	if out.Rewrites, err = rewrite.LoadFiles(root); err != nil {
-		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+		return nil, err
 	}
 	if out.Requeues, err = requeue.LoadFiles(root); err != nil {
-		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+		return nil, err
 	}
 	if out.Adjustments, err = adjust.Load(root); err != nil {
-		return nil, fmt.Errorf("history: read the rules of %s: %w", commit, err)
+		return nil, err
 	}
 	return out, nil
 }

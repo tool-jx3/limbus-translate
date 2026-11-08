@@ -155,6 +155,25 @@ func TestHistoryMakeJSONCarriesCauses(t *testing.T) {
 	}
 }
 
+// A backfill keeps the time of a stored record, and so does history make.
+func TestHistoryMakeKeepsTheStoredTime(t *testing.T) {
+	root, first, second := historyRepo(t)
+	tw := filepath.Join(root, ".work", "tw")
+	const at = "2026-10-30T01:02:03Z"
+	writeTestFile(t, tw, ".meta/history/"+second+".json", `{"tag": "`+second+`", "prev_tag": "`+first+`", "released_at": "`+at+`"}`)
+	ctx, out := testCtx(t, root, "", true)
+	if err := runHistoryMake(ctx, []string{second}); err != nil {
+		t.Fatal(err)
+	}
+	var rec history.Record
+	if err := json.Unmarshal(out.Bytes(), &rec); err != nil {
+		t.Fatal(err)
+	}
+	if rec.ReleasedAt != at {
+		t.Errorf("released_at = %q, want the stored %q", rec.ReleasedAt, at)
+	}
+}
+
 func TestHistoryMakeText(t *testing.T) {
 	root, first, second := historyRepo(t)
 	ctx, out := testCtx(t, root, "", false)

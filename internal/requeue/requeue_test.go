@@ -932,7 +932,7 @@ func TestSelectorSelects(t *testing.T) {
 			}
 		})
 	}
-	if (Selector{NeedsReview: true}).Selects(key(storyFile, 0), records[key(storyFile, 0)]) != true {
+	if !(Selector{NeedsReview: true}).Selects(key(storyFile, 0), records[key(storyFile, 0)]) {
 		t.Error("a stuck-mode selector without narrowing selects every record")
 	}
 }

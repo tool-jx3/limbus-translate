@@ -160,6 +160,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		if rec, err := makeBetween(prev, cur, rels[i], langDir, rules); err != nil {
 			warn(rels[i], err)
 		} else {
+			keepTime(rec, old)
 			plan.records = append(plan.records, rec)
 		}
 		prev.remove()
@@ -294,7 +295,8 @@ var (
 )
 
 // MakeRecord makes the record of the Release tag, compared with the Release
-// before it, as planHistory does for a backfill, and writes nothing: root is
+// before it, as planHistory does for a backfill (the time of a record stored
+// already is kept), and writes nothing: root is
 // the main checkout (the Release tags, and the rules of the rules_commits),
 // twRoot and rawRoot the worktrees the Releases are read from. A tag that is no
 // Release is ErrUnknownRelease, the first Release ErrNoPreviousRelease.
@@ -324,7 +326,19 @@ func MakeRecord(root, twRoot, rawRoot, langDir, tag string) (*history.Record, er
 	if err != nil {
 		return nil, fmt.Errorf("%s: %w", tag, err)
 	}
+	if old, err := history.Read(twRoot, tag); err == nil {
+		keepTime(rec, old)
+	}
 	return rec, nil
+}
+
+// keepTime gives rec, a record made again, the time of old, the record of its
+// Release stored before (nil: none): that of the run that made the Release,
+// which the commit of its tag does not have.
+func keepTime(rec, old *history.Record) {
+	if old != nil && old.ReleasedAt != "" {
+		rec.ReleasedAt = old.ReleasedAt
+	}
 }
 
 // makeBetween makes the record of the Release cur (named tag) compared with the

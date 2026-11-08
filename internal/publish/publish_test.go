@@ -1620,14 +1620,17 @@ func TestRunWritesAnEmptyHistoryWhenOnlyTheBytesOfThePackDiffer(t *testing.T) {
 }
 
 // setCausesVersion rewrites the stored record of tag with causes_version v
-// (0 leaves it out, as the records made before causes were) and commits it.
-func (f fixture) setCausesVersion(t *testing.T, tag string, v int) {
+// (0 leaves it out, as the records made before causes were) and released_at
+// at, and commits it. The record a run makes of the Release it prepares has
+// the time of that run, not that of the commit of the tag.
+func (f fixture) setCausesVersion(t *testing.T, tag string, v int, at string) {
 	t.Helper()
 	rec, ok := f.readHistory(t, tag)
 	if !ok {
 		t.Fatalf("no record of %s", tag)
 	}
 	rec.CausesVersion = v
+	rec.ReleasedAt = at
 	if err := history.Write(f.tw, &rec); err != nil {
 		t.Fatal(err)
 	}
@@ -1645,10 +1648,11 @@ func TestPlanHistoryRemakesOldCausesVersion(t *testing.T) {
 		t.Fatal(err)
 	}
 	const old = "zh-TW-20261102.1"
+	const releasedAt = "2026-11-02T03:04:05Z"
 	before, _ := f.readHistory(t, old)
-	f.setCausesVersion(t, old, 0)
-	if rec, _ := f.readHistory(t, old); rec.CausesVersion != 0 {
-		t.Fatalf("setup: causes_version = %d", rec.CausesVersion)
+	f.setCausesVersion(t, old, 0, releasedAt)
+	if rec, _ := f.readHistory(t, old); rec.CausesVersion != 0 || before.ReleasedAt == releasedAt {
+		t.Fatalf("setup: causes_version = %d, released_at %q (made with %q)", rec.CausesVersion, rec.ReleasedAt, before.ReleasedAt)
 	}
 
 	// Whatever Run makes in the temp directory it removes again.
@@ -1665,8 +1669,8 @@ func TestPlanHistoryRemakesOldCausesVersion(t *testing.T) {
 	if !ok || rec.CausesVersion != history.CausesVersion || rec.PrevTag != "zh-TW-20261101.1" {
 		t.Errorf("remade record = %+v, %v, want causes_version %d, compared with zh-TW-20261101.1", rec, ok, history.CausesVersion)
 	}
-	if rec.ReleasedAt != before.ReleasedAt || rec.ReleasedAt == "" {
-		t.Errorf("released_at = %q, want the %q it had", rec.ReleasedAt, before.ReleasedAt)
+	if rec.ReleasedAt != releasedAt {
+		t.Errorf("released_at = %q, want the %q it had", rec.ReleasedAt, releasedAt)
 	}
 	if left, _ := os.ReadDir(tmp); len(left) != 0 {
 		t.Errorf("Run left %d entries in the temp directory, first %s", len(left), left[0].Name())

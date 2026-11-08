@@ -683,6 +683,42 @@ func TestArchiveErrors(t *testing.T) {
 	}
 }
 
+func TestHasPath(t *testing.T) {
+	repo := newRepo(t)
+	if err := Tag(repo, "v1"); err != nil {
+		t.Fatal(err)
+	}
+	write(t, repo, "c.txt", "c\n")
+	runGit(t, repo, "add", "-A")
+	runGit(t, repo, "commit", "-q", "-m", "c")
+	for _, tc := range []struct {
+		rev, path string
+		want      bool
+	}{
+		{"v1", "a.txt", true},     // a file
+		{"v1", "sub", true},       // a directory
+		{"v1", "sub/b.txt", true}, // a file below one
+		{"v1", "missing", false},
+		{"v1", "c.txt", false}, // only in a later commit
+		{"main", "c.txt", true},
+		{"v1", ":(top)a.txt", false}, // taken literally, without pathspec magic
+	} {
+		got, err := HasPath(repo, tc.rev, tc.path)
+		if err != nil || got != tc.want {
+			t.Errorf("HasPath(%q, %q) = %v, %v, want %v", tc.rev, tc.path, got, err, tc.want)
+		}
+	}
+	if _, err := HasPath(repo, "nope", "a.txt"); err == nil || !strings.Contains(err.Error(), "nope") {
+		t.Errorf("HasPath(nope) error = %v, want one naming the revision", err)
+	}
+	// Refused before git could take it for an option.
+	for _, rev := range []string{"--output=/tmp/x", "-v1"} {
+		if _, err := HasPath(repo, rev, "a.txt"); err == nil || !strings.Contains(err.Error(), rev+`" looks like an option`) {
+			t.Errorf("HasPath(%q) error = %v, want it refused as an option", rev, err)
+		}
+	}
+}
+
 // tarOf builds a tar stream from entries; Linkname applies to links.
 func tarOf(t *testing.T, entries ...tar.Header) *bytes.Reader {
 	t.Helper()
