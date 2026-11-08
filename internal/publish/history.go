@@ -127,14 +127,16 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 	rels := SortedReleases(names)
 
 	// The rules_commits of the records are commits of main, which is root. The
-	// rules of each commit are read once for all the records made here.
-	tmp, err := os.MkdirTemp("", "lct-rules-")
-	if err != nil {
-		warn(tag, err)
-		return
+	// rules of each commit are read once for all the records made here. If the
+	// directory for them cannot be made the records are made without causes
+	// (CausesVersion 0), so that a later run makes them again.
+	var rules history.RulesSource
+	if tmp, err := os.MkdirTemp("", "lct-rules-"); err != nil {
+		warn(tag, fmt.Errorf("the records are made without causes: %w", err))
+	} else {
+		defer os.RemoveAll(tmp)
+		rules = history.CachedRules(root, tmp)
 	}
-	defer os.RemoveAll(tmp)
-	rules := history.CachedRules(root, tmp)
 
 	// Each Release is read once and dropped when no later record needs it.
 	var prev *readSide
@@ -155,17 +157,10 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 			prev = readRelease(twRoot, rawRoot, rels[i-1], langDir)
 		}
 		cur := readRelease(twRoot, rawRoot, rels[i], langDir)
-		switch {
-		case prev.err != nil:
-			warn(rels[i], fmt.Errorf("the Release before it: %w", prev.err))
-		case cur.err != nil:
-			warn(rels[i], cur.err)
-		default:
-			if rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir, rules); err != nil {
-				warn(rels[i], err)
-			} else {
-				plan.records = append(plan.records, rec)
-			}
+		if rec, err := makeBetween(prev, cur, rels[i], langDir, rules); err != nil {
+			warn(rels[i], err)
+		} else {
+			plan.records = append(plan.records, rec)
 		}
 		prev.remove()
 		prev = cur
@@ -323,13 +318,24 @@ func MakeRecord(root, twRoot, rawRoot, langDir, tag string) (*history.Record, er
 	defer os.RemoveAll(tmp)
 	prev := readRelease(twRoot, rawRoot, rels[i-1], langDir)
 	defer prev.remove()
-	if prev.err != nil {
-		return nil, fmt.Errorf("%s: the Release before it: %w", tag, prev.err)
-	}
 	cur := readRelease(twRoot, rawRoot, tag, langDir)
 	defer cur.remove()
-	if cur.err != nil {
-		return nil, fmt.Errorf("%s: %w", tag, cur.err)
+	rec, err := makeBetween(prev, cur, tag, langDir, history.CachedRules(root, tmp))
+	if err != nil {
+		return nil, fmt.Errorf("%s: %w", tag, err)
 	}
-	return history.Make(prev.side, cur.side, tag, cur.side.Time, langDir, history.CachedRules(root, tmp))
+	return rec, nil
+}
+
+// makeBetween makes the record of the Release cur (named tag) compared with the
+// Release before it, prev, both read already. A Release that could not be read
+// is the error.
+func makeBetween(prev, cur *readSide, tag, langDir string, rules history.RulesSource) (*history.Record, error) {
+	if prev.err != nil {
+		return nil, fmt.Errorf("the Release before it: %w", prev.err)
+	}
+	if cur.err != nil {
+		return nil, cur.err
+	}
+	return history.Make(prev.side, cur.side, tag, cur.side.Time, langDir, rules)
 }

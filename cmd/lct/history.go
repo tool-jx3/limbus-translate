@@ -20,7 +20,8 @@ func init() {
 	cli.Register(cli.Command{
 		Name: "history make",
 		Usage: "make the update record of a Release (the changes from the Release before it, each with its causes) from the tags and the rules commits, " +
-			"and print it, for checking: <tag> [--out FILE] (--json prints the record; --out writes it to FILE and prints a summary); writes nothing to tw",
+			"and print it, for checking: <tag> [--out FILE]; text prints a summary, --json prints the whole record; --out writes the whole record (JSON) to FILE " +
+			"and then stdout carries only the summary (as JSON with --json, so --json --out does not print the record); writes nothing to tw",
 		Run: runHistoryMake,
 	})
 }

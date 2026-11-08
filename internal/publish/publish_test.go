@@ -1,6 +1,7 @@
 package publish
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -21,6 +22,7 @@ import (
 	"github.com/tool-jx3/limbus-translate/internal/history"
 	"github.com/tool-jx3/limbus-translate/internal/plan"
 	"github.com/tool-jx3/limbus-translate/internal/store"
+	"github.com/tool-jx3/limbus-translate/internal/units"
 )
 
 const (
@@ -1643,11 +1645,15 @@ func TestPlanHistoryRemakesOldCausesVersion(t *testing.T) {
 		t.Fatal(err)
 	}
 	const old = "zh-TW-20261102.1"
+	before, _ := f.readHistory(t, old)
 	f.setCausesVersion(t, old, 0)
 	if rec, _ := f.readHistory(t, old); rec.CausesVersion != 0 {
 		t.Fatalf("setup: causes_version = %d", rec.CausesVersion)
 	}
 
+	// Whatever Run makes in the temp directory it removes again.
+	tmp := t.TempDir()
+	t.Setenv("TMPDIR", tmp)
 	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
 	if err != nil {
 		t.Fatal(err)
@@ -1658,6 +1664,12 @@ func TestPlanHistoryRemakesOldCausesVersion(t *testing.T) {
 	rec, ok := f.readHistory(t, old)
 	if !ok || rec.CausesVersion != history.CausesVersion || rec.PrevTag != "zh-TW-20261101.1" {
 		t.Errorf("remade record = %+v, %v, want causes_version %d, compared with zh-TW-20261101.1", rec, ok, history.CausesVersion)
+	}
+	if rec.ReleasedAt != before.ReleasedAt || rec.ReleasedAt == "" {
+		t.Errorf("released_at = %q, want the %q it had", rec.ReleasedAt, before.ReleasedAt)
+	}
+	if left, _ := os.ReadDir(tmp); len(left) != 0 {
+		t.Errorf("Run left %d entries in the temp directory, first %s", len(left), left[0].Name())
 	}
 	// Remade exactly once: the next run finds nothing to do.
 	head := runGit(t, f.tw, "rev-parse", "HEAD")
@@ -1708,5 +1720,80 @@ func TestPlanHistoryLeavesAnUnreadableRecordAlone(t *testing.T) {
 	}
 	if b, _ := os.ReadFile(filepath.Join(f.tw, ".meta/history/zh-TW-20261102.1.json")); string(b) != "{not json" {
 		t.Errorf("the unreadable record was overwritten: %q", b)
+	}
+}
+
+// causesFixture is a fixture whose Releases hold one translated unit: a
+// Release zh-TW-20261101.1 built from the first commit of main, and a build not
+// released yet from a commit of main with a rewrite rule that explains why the
+// translation changed.
+func causesFixture(t *testing.T) fixture {
+	t.Helper()
+	f := newFixture(t)
+	first := runGit(t, f.root, "rev-parse", "HEAD")
+	write(t, f.root, "rules/rewrite/laceration.yaml", "reason: 統一用詞\nfiles: ['**']\npattern: '流血'\nreplace: '出血'\n")
+	runGit(t, f.root, "add", "rules")
+	runGit(t, f.root, "commit", "-q", "-m", "rules: laceration")
+	second := runGit(t, f.root, "rev-parse", "HEAD")
+
+	write(t, f.raw, "kr/KR_Bufs.json", "{\"dataList\": [{\"id\": \"Laceration\", \"name\": \"열상\"}]}\n")
+	runGit(t, f.raw, "add", "-A")
+	runGit(t, f.raw, "commit", "-q", "-m", "bufs")
+	runGit(t, f.raw, "tag", "-f", testRawTag)
+
+	// build writes the translation zh as the tw worktree holds it.
+	build := func(rules, zh string, applied string) {
+		write(t, f.tw, ".meta/build.json", strings.Replace(testBuildJSON, testRules, rules, 1))
+		write(t, f.tw, ".meta/applied.json", applied)
+		write(t, f.tw, sampleRel, "{}\n")
+		write(t, f.tw, "LimbusCompany_Data/Lang/zh-TW/Bufs.json", "{\"dataList\": [{\"id\": \"Laceration\", \"name\": \""+zh+"\"}]}\n")
+		write(t, f.tw, ".meta/units/Bufs.json.jsonl", `{"key":"Bufs.json|/dataList/0/name","kr_sha":"`+units.KRSha("열상")+
+			`","zh":"`+zh+`","origin":"paratranz","since":"`+testRawTag+`","rules":"`+rules+`"}`+"\n")
+	}
+	build(first, "流血", "{\"requeue\": [], \"rewrite\": []}\n")
+	runGit(t, f.tw, "add", "-A")
+	runGit(t, f.tw, "commit", "-q", "-m", "build")
+	runGit(t, f.tw, "tag", "zh-TW-20261101.1")
+	build(second, "出血", "{\"requeue\": [], \"rewrite\": [\"laceration\"]}\n")
+	return f
+}
+
+func TestRunRecordWithCausesIsStable(t *testing.T) {
+	f := causesFixture(t)
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !res.ReleaseNeeded || !slices.Equal(res.History, []string{res.Tag}) || len(res.HistoryWarnings) != 0 {
+		t.Fatalf("Run = %+v, want a Release with its record", res)
+	}
+	rec, ok := f.readHistory(t, res.Tag)
+	want := []history.Cause{{Kind: history.CauseKindRewrite, ID: "laceration"}}
+	if !ok || len(rec.Entries) != 1 || !reflect.DeepEqual(rec.Entries[0].Causes, want) || rec.Unknown != 0 {
+		t.Fatalf("record = %+v, %v, want one entry caused by the rewrite", rec, ok)
+	}
+	if info := rec.Rules["rewrite:laceration"]; info.Path != "rules/rewrite/laceration.yaml" {
+		t.Errorf("rules = %+v", rec.Rules)
+	}
+	path := filepath.Join(f.tw, ".meta", "history", res.Tag+".json")
+	bytes1, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	head := runGit(t, f.tw, "rev-parse", "HEAD")
+
+	// Again, as long as the Release is not tagged: the same record, nothing
+	// written, nothing committed.
+	for i := 0; i < 3; i++ {
+		again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if again.Tag != res.Tag || len(again.History) != 0 || len(again.HistoryWarnings) != 0 || runGit(t, f.tw, "rev-parse", "HEAD") != head {
+			t.Fatalf("run %d = %+v, want the record left as it is (tw at %s)", i+2, again, head)
+		}
+		if got, _ := os.ReadFile(path); !bytes.Equal(got, bytes1) {
+			t.Fatalf("run %d rewrote the record:\n%s\nwas\n%s", i+2, got, bytes1)
+		}
 	}
 }

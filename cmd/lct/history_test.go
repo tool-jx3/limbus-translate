@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 
@@ -33,6 +34,23 @@ func historyRepo(t *testing.T) (root, first, second string) {
 	runGitIn(t, tw, "tag", first)
 	second = "zh-TW-20261030.1"
 	writeTestFile(t, tw, "LimbusCompany_Data/Lang/zh-TW/Extra.json", "{}\n")
+	// A rewrite rule of main turns 流血 into 出血; the second Release is built
+	// from the commit that holds it and records it as applied.
+	writeTestFile(t, root, "rules/rewrite/laceration.yaml", "reason: 統一用詞\nfiles: ['**']\npattern: '流血'\nreplace: '出血'\n")
+	runGitIn(t, root, "add", "rules")
+	runGitIn(t, root, "commit", "-q", "-m", "rules: laceration")
+	build, err := os.ReadFile(filepath.Join(tw, ".meta", "build.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var info struct {
+		RulesCommit string `json:"rules_commit"`
+	}
+	if err := json.Unmarshal(build, &info); err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, tw, ".meta/build.json", strings.Replace(string(build), info.RulesCommit, runGitIn(t, root, "rev-parse", "HEAD"), 1))
+	writeTestFile(t, tw, ".meta/applied.json", "{\"requeue\": [], \"rewrite\": [\"laceration\"]}\n")
 	// One translation changes, in the pack and in its record.
 	for _, f := range []string{"LimbusCompany_Data/Lang/zh-TW/Bufs.json", ".meta/units/Bufs.json.jsonl"} {
 		data, err := os.ReadFile(filepath.Join(tw, f))
@@ -122,8 +140,15 @@ func TestHistoryMakeJSONCarriesCauses(t *testing.T) {
 	if err := json.Unmarshal(out.Bytes(), &rec); err != nil {
 		t.Fatal(err)
 	}
-	if len(rec.Entries) != 1 || len(rec.Entries[0].Causes) == 0 {
-		t.Fatalf("entries = %+v, want the changed translation with causes", rec.Entries)
+	if len(rec.Entries) != 1 {
+		t.Fatalf("entries = %+v, want the changed translation", rec.Entries)
+	}
+	want := []history.Cause{{Kind: history.CauseKindRewrite, ID: "laceration"}}
+	if got := rec.Entries[0].Causes; !reflect.DeepEqual(got, want) {
+		t.Errorf("causes = %+v, want %+v", got, want)
+	}
+	if info, ok := rec.Rules["rewrite:laceration"]; !ok || info.Path != "rules/rewrite/laceration.yaml" || rec.Unknown != 0 {
+		t.Errorf("rules = %+v, unknown = %d, want the rule laceration known", rec.Rules, rec.Unknown)
 	}
 	if !strings.Contains(out.String(), `"causes"`) {
 		t.Errorf("output lacks causes:\n%s", out)
