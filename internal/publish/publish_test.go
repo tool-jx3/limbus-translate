@@ -1616,3 +1616,97 @@ func TestRunWritesAnEmptyHistoryWhenOnlyTheBytesOfThePackDiffer(t *testing.T) {
 		t.Errorf("record = %+v, %v, want an empty one after %s", rec, ok, first.Tag)
 	}
 }
+
+// setCausesVersion rewrites the stored record of tag with causes_version v
+// (0 leaves it out, as the records made before causes were) and commits it.
+func (f fixture) setCausesVersion(t *testing.T, tag string, v int) {
+	t.Helper()
+	rec, ok := f.readHistory(t, tag)
+	if !ok {
+		t.Fatalf("no record of %s", tag)
+	}
+	rec.CausesVersion = v
+	if err := history.Write(f.tw, &rec); err != nil {
+		t.Fatal(err)
+	}
+	runGit(t, f.tw, "add", "-A")
+	runGit(t, f.tw, "commit", "-q", "-m", "history: set causes_version")
+}
+
+func TestPlanHistoryRemakesOldCausesVersion(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	f.oldRelease(t, "zh-TW-20261102.1", "raw-20261102", "{\"v\": 2}\n")
+	f.oldRelease(t, "zh-TW-20261103.1", "raw-20261103", "{\"v\": 3}\n")
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	if _, err := Run(f.root, f.tw, f.raw, f.out, testLang); err != nil {
+		t.Fatal(err)
+	}
+	const old = "zh-TW-20261102.1"
+	f.setCausesVersion(t, old, 0)
+	if rec, _ := f.readHistory(t, old); rec.CausesVersion != 0 {
+		t.Fatalf("setup: causes_version = %d", rec.CausesVersion)
+	}
+
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !slices.Equal(res.History, []string{old}) || len(res.HistoryWarnings) != 0 {
+		t.Fatalf("Run = %+v, want only %s remade", res, old)
+	}
+	rec, ok := f.readHistory(t, old)
+	if !ok || rec.CausesVersion != history.CausesVersion || rec.PrevTag != "zh-TW-20261101.1" {
+		t.Errorf("remade record = %+v, %v, want causes_version %d, compared with zh-TW-20261101.1", rec, ok, history.CausesVersion)
+	}
+	// Remade exactly once: the next run finds nothing to do.
+	head := runGit(t, f.tw, "rev-parse", "HEAD")
+	again, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(again.History) != 0 || len(again.HistoryWarnings) != 0 || runGit(t, f.tw, "rev-parse", "HEAD") != head {
+		t.Errorf("second Run = %+v, want nothing remade (tw at %s)", again, head)
+	}
+}
+
+func TestPlanHistoryKeepsCurrentVersion(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	f.oldRelease(t, "zh-TW-20261102.1", "raw-20261102", "{\"v\": 2}\n")
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	if _, err := Run(f.root, f.tw, f.raw, f.out, testLang); err != nil {
+		t.Fatal(err)
+	}
+	rec, ok := f.readHistory(t, "zh-TW-20261102.1")
+	if !ok || rec.CausesVersion != history.CausesVersion {
+		t.Fatalf("setup: record = %+v, %v", rec, ok)
+	}
+	// Even a raw tag that is gone does not matter: a current record is not read.
+	runGit(t, f.root, "tag", "-d", "raw-20261101")
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.History) != 0 || len(res.HistoryWarnings) != 0 {
+		t.Errorf("Run = %+v, want a current-version record left alone", res)
+	}
+}
+
+func TestPlanHistoryLeavesAnUnreadableRecordAlone(t *testing.T) {
+	f := newFixture(t)
+	f.oldRelease(t, "zh-TW-20261101.1", "raw-20261101", "{\"v\": 1}\n")
+	f.oldRelease(t, "zh-TW-20261102.1", "raw-20261102", "{\"v\": 2}\n")
+	write(t, f.tw, ".meta/build.json", testBuildJSON)
+	write(t, f.tw, ".meta/history/zh-TW-20261102.1.json", "{not json")
+	res, err := Run(f.root, f.tw, f.raw, f.out, testLang)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.History) != 0 || len(res.HistoryWarnings) != 1 || !strings.Contains(res.HistoryWarnings[0], "zh-TW-20261102.1") {
+		t.Errorf("Run = %+v, want one warning and nothing written", res)
+	}
+	if b, _ := os.ReadFile(filepath.Join(f.tw, ".meta/history/zh-TW-20261102.1.json")); string(b) != "{not json" {
+		t.Errorf("the unreadable record was overwritten: %q", b)
+	}
+}

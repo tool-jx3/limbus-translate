@@ -3,6 +3,7 @@ package publish
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/fs"
 	"os"
@@ -105,7 +106,7 @@ func (p historyPlan) apply(twRoot string) (written, warnings []string) {
 }
 
 // planHistory compares Releases and returns what to write, without writing:
-// the records the earlier Releases lack (each compared with the Release before
+// the records the earlier Releases lack or have from before the causes (each compared with the Release before
 // it; the first one has none), and the record of the Release tag that Run
 // prepares, compared with the latest Release. That one is made exactly when the
 // pack of the worktree differs from that of the latest Release (the rule of
@@ -125,15 +126,27 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 	}
 	rels := SortedReleases(names)
 
+	// The rules_commits of the records are commits of main, which is root. The
+	// rules of each commit are read once for all the records made here.
+	tmp, err := os.MkdirTemp("", "lct-rules-")
+	if err != nil {
+		warn(tag, err)
+		return
+	}
+	defer os.RemoveAll(tmp)
+	rules := history.CachedRules(root, tmp)
+
 	// Each Release is read once and dropped when no later record needs it.
 	var prev *readSide
 	defer func() { prev.remove() }()
 	for i := 1; i < len(rels); i++ {
-		has, err := history.Has(twRoot, rels[i])
+		// A record is made again when it is older than the causes of today. One
+		// that cannot be read is left alone, not overwritten.
+		old, err := history.Read(twRoot, rels[i])
 		if err != nil {
 			warn(rels[i], err)
 		}
-		if has || err != nil {
+		if err != nil || (old != nil && old.CausesVersion >= history.CausesVersion) {
 			prev.remove()
 			prev = nil
 			continue
@@ -148,7 +161,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		case cur.err != nil:
 			warn(rels[i], cur.err)
 		default:
-			if rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir, nil); err != nil {
+			if rec, err := history.Make(prev.side, cur.side, rels[i], cur.side.Time, langDir, rules); err != nil {
 				warn(rels[i], err)
 			} else {
 				plan.records = append(plan.records, rec)
@@ -196,7 +209,7 @@ func planHistory(root, twRoot, rawRoot, langDir, tag string) (plan historyPlan, 
 		plan.remove = tag
 		return
 	}
-	rec, err := history.Make(prev.side, cur, tag, now().UTC().Truncate(time.Second), langDir, nil)
+	rec, err := history.Make(prev.side, cur, tag, now().UTC().Truncate(time.Second), langDir, rules)
 	if err != nil {
 		warn(tag, err)
 		return
@@ -276,4 +289,47 @@ func samePackDirs(a, b, langDir string) (bool, error) {
 		}
 	}
 	return true, nil
+}
+
+var (
+	// ErrUnknownRelease is returned by MakeRecord for a tag that is no Release.
+	ErrUnknownRelease = errors.New("not a Release")
+	// ErrNoPreviousRelease is returned by MakeRecord for the first Release.
+	ErrNoPreviousRelease = errors.New("the first Release has no Release before it")
+)
+
+// MakeRecord makes the record of the Release tag, compared with the Release
+// before it, as planHistory does for a backfill, and writes nothing: root is
+// the main checkout (the Release tags, and the rules of the rules_commits),
+// twRoot and rawRoot the worktrees the Releases are read from. A tag that is no
+// Release is ErrUnknownRelease, the first Release ErrNoPreviousRelease.
+func MakeRecord(root, twRoot, rawRoot, langDir, tag string) (*history.Record, error) {
+	names, err := gitx.Tags(root, TagPrefix)
+	if err != nil {
+		return nil, err
+	}
+	rels := SortedReleases(names)
+	i := slices.Index(rels, tag)
+	if i < 0 {
+		return nil, fmt.Errorf("%s: %w", tag, ErrUnknownRelease)
+	}
+	if i == 0 {
+		return nil, fmt.Errorf("%s: %w", tag, ErrNoPreviousRelease)
+	}
+	tmp, err := os.MkdirTemp("", "lct-rules-")
+	if err != nil {
+		return nil, err
+	}
+	defer os.RemoveAll(tmp)
+	prev := readRelease(twRoot, rawRoot, rels[i-1], langDir)
+	defer prev.remove()
+	if prev.err != nil {
+		return nil, fmt.Errorf("%s: the Release before it: %w", tag, prev.err)
+	}
+	cur := readRelease(twRoot, rawRoot, tag, langDir)
+	defer cur.remove()
+	if cur.err != nil {
+		return nil, fmt.Errorf("%s: %w", tag, cur.err)
+	}
+	return history.Make(prev.side, cur.side, tag, cur.side.Time, langDir, history.CachedRules(root, tmp))
 }

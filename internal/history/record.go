@@ -75,6 +75,17 @@ func Has(twRoot, tag string) (bool, error) {
 	return store.Open(twRoot).ReadMetaJSON(recordName(tag), &rec)
 }
 
+// Read reads the Record of tag from the worktree at twRoot. It returns nil and
+// no error when there is none; a file that cannot be read or parsed is an error.
+func Read(twRoot, tag string) (*Record, error) {
+	var rec Record
+	ok, err := store.Open(twRoot).ReadMetaJSON(recordName(tag), &rec)
+	if err != nil || !ok {
+		return nil, err
+	}
+	return &rec, nil
+}
+
 // List reads every Record of the worktree at twRoot, the newest ReleasedAt
 // first and, at the same time, the greater Tag first. A worktree without
 // history yields an empty list.
