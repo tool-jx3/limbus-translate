@@ -89,6 +89,8 @@ describe('updateView', () => {
   it('is kept when saved', () => {
     saveSettings({ ...defaultSettings(), updateView: 'table' })
     expect(loadSettings().updateView).toBe('table')
+    saveSettings({ ...defaultSettings(), updateView: 'causes' })
+    expect(loadSettings().updateView).toBe('causes')
   })
 
   it('is cards when what is saved is not a view', () => {

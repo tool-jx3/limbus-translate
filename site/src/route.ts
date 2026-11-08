@@ -16,7 +16,7 @@ export type Route =
   | { kind: 'review'; tab: ReviewTab; family: string; sub: string; q: string; all: boolean; mode: ReviewMode; jpen: JPENFilter; id?: string }
   | { kind: 'updates' }
   | { kind: 'gold' }
-  | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean }
+  | { kind: 'update'; tag: string; kinds: UpdateKind[]; origin: string; file: string; copy: boolean; cause: string; group: string }
   | { kind: 'glossary'; q: string; sort: GlossarySort; only: GlossaryOnly; family: string }
   | { kind: 'term'; id: string; family: string; group: string; chapter: string; character: string; event: string; origin: string; q: string }
 
@@ -187,7 +187,16 @@ export function parseHash(hash: string): Route {
     const tag = decode(pathname.slice(3))
     if (!UPDATE_TAG.test(tag)) return { kind: 'home' }
     const kinds = (query.get('k') ?? '').split(',').filter((k): k is UpdateKind => UPDATE_KINDS.includes(k))
-    return { kind: 'update', tag, kinds, origin: query.get('o') ?? '', file: query.get('f') ?? '', copy: query.get('copy') === '1' }
+    return {
+      kind: 'update',
+      tag,
+      kinds,
+      origin: query.get('o') ?? '',
+      file: query.get('f') ?? '',
+      copy: query.get('copy') === '1',
+      cause: query.get('c') ?? '',
+      group: query.get('g') ?? '',
+    }
   }
   return { kind: 'home' }
 }
@@ -236,12 +245,15 @@ export function updatesHref(): string {
 }
 
 /** The hash of an update, with the filters that are not the default. */
-export function updateHref(tag: string, f: Partial<UpdateFilter> = {}): string {
+/** `group` is the cause group (a causeKey) to open in the by-cause view. */
+export function updateHref(tag: string, f: Partial<UpdateFilter> & { group?: string } = {}): string {
   const pairs: [string, string][] = []
   if (f.kinds && f.kinds.length > 0) pairs.push(['k', f.kinds.join(',')])
   if (f.origin) pairs.push(['o', encodeURIComponent(f.origin)])
   if (f.file) pairs.push(['f', encodeURIComponent(f.file)])
   if (f.copy) pairs.push(['copy', '1'])
+  if (f.cause) pairs.push(['c', encodeURIComponent(f.cause)])
+  if (f.group) pairs.push(['g', encodeURIComponent(f.group)])
   const query = pairs.map(([k, v]) => `${k}=${v}`).join('&')
   return `#/u/${encodeURIComponent(tag)}${query ? `?${query}` : ''}`
 }

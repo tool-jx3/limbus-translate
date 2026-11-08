@@ -10,11 +10,19 @@ export interface UpdateFilter {
   file: string
   /** false hides the entries that need no translation (copy). */
   copy: boolean
+  /** The kind of cause (an entry matches if any of its causes has it); '' is all. */
+  cause: string
 }
 
 /** The origin an entry is filtered by: the new one, or the old one where the unit is deleted. */
 function originOf(e: UpdateEntry): string {
   return (e.kind === 'deleted' ? e.old_origin : e.new_origin) ?? ''
+}
+
+/** The kinds of the causes of an entry; with none, the key the legacy grouping uses (see groupByCause). */
+export function entryCauseKinds(e: UpdateEntry): string[] {
+  if (e.causes && e.causes.length > 0) return e.causes.map((c) => c.kind)
+  return [e.kind === 'zh-changed' ? (e.cause ?? 'other') : e.kind]
 }
 
 export function filterEntries(entries: UpdateEntry[], f: UpdateFilter): UpdateEntry[] {
@@ -23,6 +31,7 @@ export function filterEntries(entries: UpdateEntry[], f: UpdateFilter): UpdateEn
       (f.kinds.length === 0 || f.kinds.includes(e.kind)) &&
       (f.origin === '' || originOf(e) === f.origin) &&
       (f.file === '' || e.file === f.file) &&
+      (f.cause === '' || entryCauseKinds(e).includes(f.cause)) &&
       (f.copy || !e.copy),
   )
 }

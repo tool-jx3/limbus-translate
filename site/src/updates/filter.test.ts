@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { countKinds, entryFiles, entryOrigins, filterEntries, type UpdateFilter } from './filter'
 import type { UpdateEntry } from '../types'
 
-const none: UpdateFilter = { kinds: [], origin: '', file: '', copy: true }
+const none: UpdateFilter = { kinds: [], origin: '', file: '', copy: true, cause: '' }
 
 const entries: UpdateEntry[] = [
   { file: 'A.json', field: 'name', ptr: '/0/name', kind: 'new', new_kr: 'a', new_zh: 'A', new_origin: 'claude' },
@@ -38,8 +38,8 @@ describe('filterEntries', () => {
   })
 
   it('combines the filters', () => {
-    expect(ptrs(filterEntries(entries, { kinds: ['new'], origin: 'claude', file: 'B.json', copy: true }))).toEqual(['/4/name'])
-    expect(filterEntries(entries, { kinds: ['new'], origin: 'claude', file: 'B.json', copy: false })).toEqual([])
+    expect(ptrs(filterEntries(entries, { ...none, kinds: ['new'], origin: 'claude', file: 'B.json' }))).toEqual(['/4/name'])
+    expect(filterEntries(entries, { ...none, kinds: ['new'], origin: 'claude', file: 'B.json', copy: false })).toEqual([])
   })
 })
 
@@ -60,5 +60,21 @@ describe('entryFiles and entryOrigins', () => {
 
   it('lists the origins sorted, once, deleted ones by old_origin', () => {
     expect(entryOrigins(entries)).toEqual(['claude', 'human', 'paratranz'])
+  })
+})
+
+describe('filterEntries by cause', () => {
+  const withCauses: UpdateEntry[] = [
+    { file: 'A.json', field: 'n', ptr: '/0', kind: 'zh-changed', causes: [{ kind: 'rewrite', id: 'x' }, { kind: 'other' }] },
+    { file: 'A.json', field: 'n', ptr: '/1', kind: 'zh-changed', causes: [{ kind: 'other' }] },
+    { file: 'A.json', field: 'n', ptr: '/2', kind: 'new', causes: [{ kind: 'new' }] },
+  ]
+  it('keeps an entry when any of its causes has the kind', () => {
+    expect(ptrs(filterEntries(withCauses, { ...none, cause: 'rewrite' }))).toEqual(['/0'])
+    expect(ptrs(filterEntries(withCauses, { ...none, cause: 'other' }))).toEqual(['/0', '/1'])
+  })
+  it('uses the legacy key for an entry with no causes', () => {
+    expect(ptrs(filterEntries(entries, { ...none, cause: 'late' }))).toEqual(['/3/name'])
+    expect(ptrs(filterEntries(entries, { ...none, cause: 'deleted' }))).toEqual(['/2/name'])
   })
 })

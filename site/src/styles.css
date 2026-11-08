@@ -2037,6 +2037,34 @@ button.chip {
   white-space: nowrap;
 }
 
+/* A long rule id is cut short; the whole text is in the title. */
+.uc-cause {
+  display: inline-block;
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+a.uc-cause {
+  text-decoration: none;
+}
+
+a.uc-cause:hover,
+a.uc-cause:focus-visible {
+  text-decoration: underline;
+}
+
+.uc-also {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  max-width: 100%;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 .uc-where {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -3027,4 +3055,110 @@ button.chip {
   width: 100%;
   max-width: 100%;
   font: inherit;
+}
+
+/* The by-cause view. */
+.cg {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.cg-legacy {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  background: var(--warn-bg);
+  border-radius: 8px;
+}
+
+.cg-all {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cg-all button {
+  padding: 0.2rem 0.8rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}
+
+.cg-group {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.cg-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.cg-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.6rem;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cg-head[aria-expanded="true"] {
+  border-color: var(--accent);
+}
+
+.cg-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.cg-subtitle {
+  overflow-wrap: anywhere;
+}
+
+.cg-count {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.cg-rule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  flex-basis: 100%;
+  min-width: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.cg-rule code {
+  overflow-wrap: anywhere;
+}
+
+.cg-panel {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.cg-panel[hidden] {
+  display: none;
+}
+
+.cg-notes {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
 }

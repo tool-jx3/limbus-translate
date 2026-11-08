@@ -6,6 +6,9 @@ import { ShownText } from '../review/parts'
 import { updateHref, updatesHref, type Route } from '../route'
 import type { Settings } from '../settings'
 import type { UpdateEntry, UpdateKind, UpdateRecord } from '../types'
+import { CauseNav } from './CauseChips'
+import { CauseView } from './CauseView'
+import { CAUSE_KIND_NAMES, groupByCause } from './causes'
 import { KIND_NAMES, UpdateCard } from './UpdateCard'
 import { UpdateTable } from './UpdateTable'
 import { countKinds, entryFiles, entryOrigins, filterEntries, type UpdateFilter } from './filter'
@@ -45,21 +48,30 @@ function useUpdate(tag: string): Loaded | undefined {
 }
 
 /** Goes to the same update with other filters. */
-function go(route: UpdateRoute, change: Partial<UpdateFilter>): void {
-  location.hash = updateHref(route.tag, { kinds: route.kinds, origin: route.origin, file: route.file, copy: route.copy, ...change })
+function go(route: UpdateRoute, change: Partial<UpdateFilter> & { group?: string }): void {
+  location.hash = hrefWith(route, change)
 }
 
-function Select({ name, label, value, options, onChange }: { name: string; label: string; value: string; options: string[]; onChange: (v: string) => void }) {
+/** The hash of the same update with other filters (the open group is kept unless `group` is given). */
+function hrefWith(route: UpdateRoute, change: Partial<UpdateFilter> & { group?: string }): string {
+  const { tag, kinds, origin, file, copy, cause, group } = route
+  return updateHref(tag, { kinds, origin, file, copy, cause, group, ...change })
+}
+
+function Select({ name, label, value, options, onChange }: { name: string; label: string; value: string; options: (string | { value: string; label: string })[]; onChange: (v: string) => void }) {
   return (
     <label>
       {label}
       <select name={name} value={value} onChange={(e) => onChange(e.currentTarget.value)}>
         <option value="">全部</option>
-        {options.map((o) => (
-          <option key={o} value={o}>
-            {o}
-          </option>
-        ))}
+        {options.map((o) => {
+          const { value, label } = typeof o === 'string' ? { value: o, label: o } : o
+          return (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          )
+        })}
       </select>
     </label>
   )
@@ -92,7 +104,21 @@ function Head({ record, files }: { record: UpdateRecord; files: number }) {
   )
 }
 
-function Filters({ route, entries, settings, onSettings }: { route: UpdateRoute; entries: UpdateEntry[]; settings: Settings; onSettings: (s: Settings) => void }) {
+function Filters({
+  route,
+  entries,
+  causes,
+  view,
+  onSettings,
+  settings,
+}: {
+  route: UpdateRoute
+  entries: UpdateEntry[]
+  causes: { value: string; label: string }[]
+  view: Settings['updateView']
+  settings: Settings
+  onSettings: (s: Settings) => void
+}) {
   const counts = countKinds(entries, route.copy)
   const copies = entries.filter((e) => e.copy).length
   const toggle = (kind: UpdateKind) =>
@@ -118,16 +144,28 @@ function Filters({ route, entries, settings, onSettings }: { route: UpdateRoute;
         <input type="checkbox" name="hide-copy" checked={!route.copy} onChange={(e) => go(route, { copy: !e.currentTarget.checked })} />
         隱藏不需翻譯的單位（{copies} 個）
       </label>
+      <Select name="cause" label="原因" value={route.cause} options={causes} onChange={(cause) => go(route, { cause })} />
       <div class="uv-views" role="group" aria-label="顯示方式">
-        {(['cards', 'table'] as const).map((view) => (
-          <button key={view} type="button" aria-pressed={settings.updateView === view ? 'true' : 'false'} onClick={() => onSettings({ ...settings, updateView: view })}>
-            {view === 'cards' ? '卡片' : '表格'}
+        {(['cards', 'table', 'causes'] as const).map((v) => (
+          <button
+            key={v}
+            type="button"
+            aria-pressed={view === v ? 'true' : 'false'}
+            onClick={() => {
+              // A group in the URL means the by-cause view; another view leaves it.
+              if (route.group) go(route, { group: '' })
+              onSettings({ ...settings, updateView: v })
+            }}
+          >
+            {VIEW_NAMES[v]}
           </button>
         ))}
       </div>
     </div>
   )
 }
+
+const VIEW_NAMES = { cards: '卡片', table: '表格', causes: '依原因' } as const
 
 /** UPDATE_PAGE of the entries at first, then UPDATE_PAGE more at each press; `children` draws the ones shown. */
 function Paged({ entries, children }: { entries: UpdateEntry[]; children: (shown: UpdateEntry[]) => JSX.Element }) {
@@ -174,9 +212,17 @@ function Cards({ entries }: { entries: UpdateEntry[] }) {
 export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute; settings: Settings; onSettings: (s: Settings) => void }) {
   const state = useUpdate(route.tag)
   const shown = useMemo(() => ({ langs: settings.langs, raw: settings.rawTags }), [settings.langs, settings.rawTags])
-  const filter: UpdateFilter = { kinds: route.kinds, origin: route.origin, file: route.file, copy: route.copy }
+  const filter: UpdateFilter = { kinds: route.kinds, origin: route.origin, file: route.file, copy: route.copy, cause: route.cause }
   const entries = state?.status === 'ready' ? state.record.entries : undefined
-  const list = useMemo(() => (entries ? filterEntries(entries, filter) : []), [entries, route.kinds.join(','), route.origin, route.file, route.copy])
+  const list = useMemo(() => (entries ? filterEntries(entries, filter) : []), [entries, route.kinds.join(','), route.origin, route.file, route.copy, route.cause])
+
+  const record = state?.status === 'ready' ? state.record : undefined
+  // The kinds of cause the record has, in the order of its groups.
+  const causes = useMemo(
+    () => (record ? [...new Set(groupByCause(record).map((g) => g.kind))].map((value) => ({ value, label: CAUSE_KIND_NAMES[value] ?? value })) : []),
+    [record],
+  )
+  const nav = useMemo(() => ({ href: (group: string) => hrefWith(route, { group }) }), [route])
 
   if (!state) return <p role="status">資料載入中…</p>
   if (state.status === 'error') {
@@ -194,19 +240,36 @@ export function UpdateView({ route, settings, onSettings }: { route: UpdateRoute
     }
     return <Notice error={state.error} />
   }
-  const { record } = state
+  if (!record) return null
+  const view = route.group ? 'causes' : settings.updateView
+  const filterKey = `${route.kinds.join(',')}|${route.origin}|${route.file}|${route.copy}|${route.cause}`
   return (
     <ShownText.Provider value={shown}>
       <section class="update">
         <Head record={record} files={entryFiles(record.entries).length} />
-        <Filters route={route} entries={record.entries} settings={settings} onSettings={onSettings} />
+        <Filters route={route} entries={record.entries} causes={causes} view={view} settings={settings} onSettings={onSettings} />
         {list.length === 0 ? (
           <p class="uv-empty">沒有符合的變動</p>
+        ) : view === 'causes' ? (
+          <CauseView
+            record={record}
+            kept={list}
+            open={route.group}
+            draw={(entries, group) => (
+              <CauseNav.Provider value={{ href: nav.href, current: group.key }}>
+                {/* Keyed by the filter, so that a change of it starts again from the first page. */}
+                <Paged key={filterKey} entries={entries}>
+                  {(shownList) => <Cards entries={shownList} />}
+                </Paged>
+              </CauseNav.Provider>
+            )}
+          />
         ) : (
-          // Keyed by the filter, so that a change of it starts again from the first page.
-          <Paged key={`${route.kinds.join(',')}|${route.origin}|${route.file}|${route.copy}`} entries={list}>
-            {(shownList) => (settings.updateView === 'table' ? <UpdateTable entries={shownList} /> : <Cards entries={shownList} />)}
-          </Paged>
+          <CauseNav.Provider value={nav}>
+            <Paged key={filterKey} entries={list}>
+              {(shownList) => (view === 'table' ? <UpdateTable entries={shownList} /> : <Cards entries={shownList} />)}
+            </Paged>
+          </CauseNav.Provider>
         )}
       </section>
     </ShownText.Provider>

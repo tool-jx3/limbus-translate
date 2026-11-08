@@ -63,7 +63,7 @@ function record(over: Partial<UpdateRecord> = {}): UpdateRecord {
   }
 }
 
-const route = (over: Partial<UpdateRoute> = {}): UpdateRoute => ({ kind: 'update', tag: TAG, kinds: [], origin: '', file: '', copy: false, ...over })
+const route = (over: Partial<UpdateRoute> = {}): UpdateRoute => ({ kind: 'update', tag: TAG, kinds: [], origin: '', file: '', copy: false, cause: '', group: '', ...over })
 
 const containers: HTMLElement[] = []
 let undoEffects = () => {}
@@ -96,7 +96,7 @@ async function mount(
   document.body.append(container)
   containers.push(container)
   render(<UpdateView route={r} settings={settings} onSettings={onSettings} />, container)
-  await vi.waitFor(() => expect(container.querySelector('.uc-card, .ut-table, .notice, .uv-empty')).not.toBeNull())
+  await vi.waitFor(() => expect(container.querySelector('.uc-card, .ut-table, .notice, .uv-empty, .cg-head')).not.toBeNull())
   return container
 }
 
@@ -461,8 +461,8 @@ describe('the table view', () => {
     const onSettings = vi.fn()
     const el = await mount(route(), defaultSettings(), onSettings)
     const buttons = [...el.querySelectorAll<HTMLButtonElement>('.uv-views button')]
-    expect(buttons.map((b) => text(b))).toEqual(['卡片', '表格'])
-    expect(buttons.map((b) => b.getAttribute('aria-pressed'))).toEqual(['true', 'false'])
+    expect(buttons.map((b) => text(b))).toEqual(['卡片', '表格', '依原因'])
+    expect(buttons.map((b) => b.getAttribute('aria-pressed'))).toEqual(['true', 'false', 'false'])
     expect(el.querySelector('table')).toBeNull()
     await act(() => buttons[1]!.click())
     expect(onSettings).toHaveBeenCalledWith({ ...defaultSettings(), updateView: 'table' })
@@ -474,7 +474,7 @@ describe('the table view', () => {
     const el = await mount(route(), table(), onSettings)
     expect(el.querySelector('.uc-card')).toBeNull()
     const buttons = [...el.querySelectorAll<HTMLButtonElement>('.uv-views button')]
-    expect(buttons.map((b) => b.getAttribute('aria-pressed'))).toEqual(['false', 'true'])
+    expect(buttons.map((b) => b.getAttribute('aria-pressed'))).toEqual(['false', 'true', 'false'])
     await act(() => buttons[0]!.click())
     expect(onSettings).toHaveBeenCalledWith({ ...defaultSettings(), updateView: 'cards' })
   })
@@ -574,5 +574,161 @@ describe('the table view', () => {
     await act(() => more()!.click())
     expect(rowsOf(el).length).toBe(600)
     expect(text(more())).toBe('再顯示 50 筆')
+  })
+})
+
+const E = (ptr: string, file: string, kind: UpdateEntry['kind'], causes: UpdateEntry['causes']): UpdateEntry => ({
+  file,
+  field: 'name',
+  ptr,
+  kind,
+  new_kr: 'kr',
+  new_zh: 'zh',
+  new_origin: 'claude',
+  causes,
+})
+const causeEntries: UpdateEntry[] = [
+  E('/0', 'A.json', 'new', [{ kind: 'new' }]),
+  E('/1', 'A.json', 'kr-changed', [{ kind: 'kr-changed' }]),
+  E('/2', 'B.json', 'zh-changed', [{ kind: 'rewrite', id: 'x' }, { kind: 'other' }]),
+  E('/3', 'A.json', 'zh-changed', [{ kind: 'rewrite', id: 'x' }]),
+  E('/4', 'B.json', 'zh-changed', [{ kind: 'unknown', note: 'rule file unreadable' }]),
+]
+const withCauses = () =>
+  record({
+    entries: causeEntries,
+    causes_version: 1,
+    rules: { 'rewrite:x': { kind: 'rewrite', id: 'x', path: 'rules/rewrites/x.yaml', title: 'Fix the name', commit: 'abcdef0123456789' } },
+  })
+const causesView: Settings = { ...defaultSettings(), updateView: 'causes' }
+const heads = (el: HTMLElement) => [...el.querySelectorAll<HTMLButtonElement>('.cg-head')]
+
+describe('UpdateView by cause', () => {
+  it('shows every group collapsed at first, with only the headers', async () => {
+    stub({}, withCauses())
+    const el = await mount(route(), causesView)
+    const hs = heads(el)
+    expect(hs.length).toBe(5)
+    expect(hs.every((h) => h.getAttribute('aria-expanded') === 'false')).toBe(true)
+    expect(el.querySelectorAll('.uc-card').length).toBe(0)
+    // Rule groups first, then the spec's order.
+    expect(hs.map((h) => text(h.querySelector('.cg-name')))).toEqual(['改寫檔 x', 'KR 改版', '新增', '其他', '無法判定'])
+  })
+
+  it('shows the kind, id, title, counts, path and the first 7 chars of the commit in the header', async () => {
+    stub({}, withCauses())
+    const h = heads(await mount(route(), causesView))[0]!
+    expect(text(h)).toContain('改寫檔 x')
+    expect(text(h)).toContain('Fix the name')
+    expect(text(h)).toContain('2 筆、2 個檔案')
+    expect(text(h)).toContain('rules/rewrites/x.yaml')
+    expect(text(h)).toContain('abcdef0')
+    expect(text(h)).not.toContain('abcdef01')
+  })
+
+  it('expands a group when its header is clicked, and collapses it again', async () => {
+    stub({}, withCauses())
+    const el = await mount(route(), causesView)
+    const h = heads(el)[0]!
+    await act(() => h.click())
+    expect(h.getAttribute('aria-expanded')).toBe('true')
+    expect(el.querySelector(`#${CSS.escape(h.getAttribute('aria-controls')!)}`)).not.toBeNull()
+    expect(el.querySelectorAll('.uc-card').length).toBe(2)
+    await act(() => h.click())
+    expect(el.querySelectorAll('.uc-card').length).toBe(0)
+  })
+
+  it('expands and collapses all groups from the top', async () => {
+    stub({}, withCauses())
+    const el = await mount(route(), causesView)
+    const button = (name: string) => [...el.querySelectorAll<HTMLButtonElement>('.cg-all button')].find((b) => text(b) === name)!
+    await act(() => button('全部展開').click())
+    expect(heads(el).every((h) => h.getAttribute('aria-expanded') === 'true')).toBe(true)
+    // 2 + 1 + 1 + 1 + 1 entries, the one with two causes drawn in both groups.
+    expect(el.querySelectorAll('.uc-card').length).toBe(6)
+    await act(() => button('全部收合').click())
+    expect(el.querySelectorAll('.uc-card').length).toBe(0)
+  })
+
+  it('opens the group of the g parameter, whatever the saved view', async () => {
+    stub({}, withCauses())
+    const el = await mount(route({ group: 'rewrite:x' }))
+    const hs = heads(el)
+    expect(hs.map((h) => h.getAttribute('aria-expanded'))).toEqual(['true', 'false', 'false', 'false', 'false'])
+    expect(el.querySelectorAll('.uc-card').length).toBe(2)
+  })
+
+  it('marks, on a card in a group, the other groups it also belongs to', async () => {
+    stub({}, withCauses())
+    const el = await mount(route({ group: 'rewrite:x' }))
+    const also = [...el.querySelectorAll('.uc-also')]
+    expect(also.length).toBe(1)
+    expect(text(also[0])).toContain('也屬於')
+    expect(text(also[0])).toContain('其他')
+    expect(text(also[0])).not.toContain('改寫檔')
+  })
+
+  it('lists the notes of the unknown group, framed in Chinese', async () => {
+    stub({}, withCauses())
+    const el = await mount(route({ group: 'unknown' }))
+    expect(text(el.querySelector('.cg-notes'))).toContain('說明：rule file unreadable')
+  })
+
+  it('shows a record without causes as before, in the legacy groups, with a notice', async () => {
+    stub()
+    const el = await mount(route(), causesView)
+    expect(text(el)).toContain('這個 Release 的紀錄尚未補上原因，暫以舊的分類顯示。')
+    expect(heads(el).length).toBeGreaterThan(0)
+    const cards = await mount()
+    expect(cards.querySelector('.cg-head')).toBeNull()
+    expect(text(cards)).not.toContain('尚未補上原因')
+    expect(cards.querySelector('.uc-cause')).not.toBeNull()
+  })
+
+  it('filters by the kind of cause: options are the kinds present, and the choice goes to the URL', async () => {
+    stub({}, withCauses())
+    const el = await mount()
+    const sel = el.querySelector<HTMLSelectElement>('select[name="cause"]')!
+    expect([...sel.options].map((o) => o.textContent)).toEqual(['全部', '改寫檔', 'KR 改版', '新增', '其他', '無法判定'])
+    sel.value = 'rewrite'
+    await act(() => {
+      sel.dispatchEvent(new Event('change', { bubbles: true }))
+    })
+    expect(location.hash).toBe('#/u/zh-TW-20261105.1?c=rewrite')
+  })
+
+  it('keeps only the entries of the chosen cause kind, in the cards and in the group counts', async () => {
+    stub({}, withCauses())
+    expect((await mount(route({ cause: 'other' }))).querySelectorAll('.uc-card').length).toBe(1)
+    const el = await mount(route({ cause: 'rewrite' }), causesView)
+    expect(heads(el).map((h) => text(h.querySelector('.cg-name')))).toEqual(['改寫檔 x', '其他'])
+    expect(text(heads(el)[1])).toContain('1 筆、1 個檔案')
+  })
+
+  it('draws a chip per cause on a card, linking to its group with the other filters kept', async () => {
+    stub({}, withCauses())
+    const el = await mount(route({ file: 'B.json' }))
+    const chips = [...el.querySelectorAll<HTMLAnchorElement>('a.uc-cause')]
+    const rewrite = chips.find((c) => text(c) === '改寫檔 x')!
+    expect(rewrite.getAttribute('href')).toBe('#/u/zh-TW-20261105.1?f=B.json&g=rewrite%3Ax')
+    expect(rewrite.getAttribute('title')).toContain('x')
+  })
+
+  it('draws the chips in the table rows too', async () => {
+    stub({}, withCauses())
+    const el = await mount(route(), { ...defaultSettings(), updateView: 'table' })
+    expect(el.querySelectorAll('.ut-row a.uc-cause').length).toBe(6)
+  })
+
+  it('drops g from the URL when another view is chosen', async () => {
+    stub({}, withCauses())
+    const seen: Settings[] = []
+    const el = await mount(route({ group: 'rewrite:x' }), defaultSettings(), (s) => seen.push(s))
+    const buttons = [...el.querySelectorAll<HTMLButtonElement>('.uv-views button')]
+    expect(buttons.map((b) => text(b))).toEqual(['卡片', '表格', '依原因'])
+    expect(buttons[2]!.getAttribute('aria-pressed')).toBe('true')
+    await act(() => buttons[1]!.click())
+    expect(location.hash).toBe('#/u/zh-TW-20261105.1')
+    expect(seen[0]!.updateView).toBe('table')
   })
 })

@@ -13,13 +13,13 @@ export type Settings = {
   /** Show only the units that have a review item (rv). */
   reviewOnly: boolean
   /** How the changes of an update are shown: as cards, or as a table. */
-  updateView: 'cards' | 'table'
+  updateView: 'cards' | 'table' | 'causes'
 }
 
 export const LANGS: readonly Lang[] = ['kr', 'jp', 'en', 'zh']
 export const ORIGINS: readonly Origin[] = ['paratranz', 'claude', 'human', 'copy', 'fallback', 'stand-in']
 const SCRIPT_MODES: readonly string[] = ['auto', 'on', 'off']
-const UPDATE_VIEWS: readonly string[] = ['cards', 'table']
+const UPDATE_VIEWS: readonly string[] = ['cards', 'table', 'causes']
 
 const KEY = 'lct-viewer-settings'
 

@@ -6,6 +6,7 @@ import { fileHref } from '../route'
 import { TmpText } from '../tmp/TmpText'
 import { LANG_ATTR, type Lang, type Origin, type Unit, type UpdateCause, type UpdateEntry, type UpdateKind } from '../types'
 import { OriginBadge } from '../view/OriginBadge'
+import { CauseChips, hasCauses } from './CauseChips'
 
 export const KIND_NAMES: Record<UpdateKind, { name: string; cls: string }> = {
   new: { name: '新增', cls: 'is-new' },
@@ -151,7 +152,7 @@ export function UpdateCard({ entry: e }: { entry: UpdateEntry }) {
     <article class="uc-card">
       <div class="uc-head">
         <span class={`uc-kind ${kind.cls}`}>{kind.name}</span>
-        {e.cause && <CauseChip cause={e.cause} />}
+        {hasCauses(e) ? <CauseChips entry={e} /> : e.cause && <CauseChip cause={e.cause} />}
         <code class="uc-where">
           {e.field} {e.ptr}
         </code>

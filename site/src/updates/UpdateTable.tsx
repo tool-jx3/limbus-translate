@@ -1,6 +1,7 @@
 import { useContext, useState } from 'preact/hooks'
 import { ShownText } from '../review/parts'
 import type { UpdateEntry } from '../types'
+import { CauseChips, hasCauses } from './CauseChips'
 import { CauseChip, KIND_NAMES, Origins, TextPair, entryKr } from './UpdateCard'
 
 const key = (e: UpdateEntry) => `${e.file}|${e.ptr}|${e.kind}`
@@ -23,7 +24,7 @@ function Row({ entry: e }: { entry: UpdateEntry }) {
       </td>
       <td class="ut-kind">
         <span class={`uc-kind ${kind.cls}`}>{kind.name}</span>
-        {e.cause && <CauseChip cause={e.cause} />}
+        {hasCauses(e) ? <CauseChips entry={e} /> : e.cause && <CauseChip cause={e.cause} />}
       </td>
       <td class="ut-text">{langs.kr && <TextPair lang="kr" old={kr.old} now={kr.now} />}</td>
       <td class="ut-text">{langs.zh && <TextPair lang="zh" old={e.old_zh} now={e.new_zh} />}</td>

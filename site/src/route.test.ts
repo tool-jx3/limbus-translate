@@ -150,12 +150,12 @@ describe('update routes', () => {
   it('reads the filters of an update and writes them back', () => {
     const hash = `#/u/${tag}?k=new,kr-changed&o=claude&f=Passives.json&copy=1`
     const route = parseHash(hash)
-    expect(route).toEqual({ kind: 'update', tag, kinds: ['new', 'kr-changed'], origin: 'claude', file: 'Passives.json', copy: true })
+    expect(route).toEqual({ kind: 'update', tag, kinds: ['new', 'kr-changed'], origin: 'claude', file: 'Passives.json', copy: true, cause: '', group: '' })
     expect(updateHref(tag, { kinds: ['new', 'kr-changed'], origin: 'claude', file: 'Passives.json', copy: true })).toBe(hash)
   })
 
   it('has no filter by default, and writes none', () => {
-    expect(parseHash(`#/u/${tag}`)).toEqual({ kind: 'update', tag, kinds: [], origin: '', file: '', copy: false })
+    expect(parseHash(`#/u/${tag}`)).toEqual({ kind: 'update', tag, kinds: [], origin: '', file: '', copy: false, cause: '', group: '' })
     expect(updateHref(tag)).toBe(`#/u/${tag}`)
     expect(updateHref(tag, { kinds: [], origin: '', file: '', copy: false })).toBe(`#/u/${tag}`)
   })
@@ -164,7 +164,14 @@ describe('update routes', () => {
     const f = { kinds: ['deleted' as const], origin: '', file: 'StoryData/S 1.json', copy: false }
     const hash = updateHref(tag, f)
     expect(hash).toBe(`#/u/${tag}?k=deleted&f=StoryData%2FS%201.json`)
-    expect(parseHash(hash)).toEqual({ kind: 'update', tag, ...f })
+    expect(parseHash(hash)).toEqual({ kind: 'update', tag, ...f, cause: '', group: '' })
+  })
+
+  it('reads the cause filter c and the group g, and writes them back', () => {
+    const hash = `#/u/${tag}?c=rewrite&g=rewrite%3Ax`
+    expect(parseHash(hash)).toEqual({ kind: 'update', tag, kinds: [], origin: '', file: '', copy: false, cause: 'rewrite', group: 'rewrite:x' })
+    expect(updateHref(tag, { cause: 'rewrite', group: 'rewrite:x' })).toBe(hash)
+    expect(updateHref(tag, { cause: '', group: '' })).toBe(`#/u/${tag}`)
   })
 
   it('reads a tag that is not one as home', () => {
