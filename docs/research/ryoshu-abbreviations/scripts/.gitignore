@@ -3,3 +3,8 @@
 *.txt
 *.tsv
 table.md
+table2.md
+table3.md
+rows4.json
+slice*.json
+full[0-9]*.json

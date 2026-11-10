@@ -1,0 +1,7504 @@
+[
+ {
+  "id": 0,
+  "kr": {
+   "full": "모든 것을 불살라서라도, 아름다움을 위해",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#0",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "総てを燃やし尽くせども、美しさの為",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#0",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Obligate style hearkens aflame this robust earth",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#0",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "縱使焚燒一切，僅為這片美景",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#0",
+   "who": "료슈"
+  },
+  "remark": "同句括號展開；EN 的 this 不在縮寫內"
+ },
+ {
+  "id": 1,
+  "kr": {
+   "full": "모든 것을 불살라서라도, 아라야를 위해",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#1",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "総てを燃やし尽くせども、アラヤの為",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#1",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Overcome the Searing Hellfire for Araya, to Reality's Extinction",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#1",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "縱使焚燒一切，僅為了阿賴耶",
+   "source": "遊戲內",
+   "loc": "EGOVoiceDig/Voice_EGO_Ryoshu_4.json#1",
+   "who": "료슈"
+  },
+  "remark": "同句括號展開；JP 阿＝阿頼耶（文中寫アラヤ）"
+ },
+ {
+  "id": 2,
+  "kr": {
+   "full": "내려라, 머저리들",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#0",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "降りろ、阿呆ども",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#0",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Useless idiotic travelers, go and abscond, now",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#0",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "退下，蠢貨們",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#0",
+   "who": "료슈"
+  },
+  "remark": "同句自行解釋"
+ },
+ {
+  "id": 3,
+  "kr": {
+   "full": "내리자, 머저리들",
+   "source": "遊戲內",
+   "loc": "StoryData/S201B.json#80",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "下りるぞ、阿呆ども",
+   "source": "遊戲內",
+   "loc": "StoryData/S201B.json#80",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Useless idiotic travelers go and abscond, now",
+   "source": "遊戲內",
+   "loc": "StoryData/S201B.json#80",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "該下車了，蠢貨們",
+   "source": "遊戲內",
+   "loc": "StoryData/S201B.json#80",
+   "who": "료슈"
+  },
+  "remark": "JP おあ取讀音（下りる、阿呆）"
+ },
+ {
+  "id": 4,
+  "kr": {
+   "full": "그레고르, 로쟈, 싱클레어, 이상",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "グレゴール、ロージャ、シンクレア、イサン",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Gregor, Rodion, Sinclair, Yi Sang",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "格里高爾、羅佳、辛克萊、李箱",
+   "source": "推測"
+  },
+  "remark": "先前的 Announcer；이／イ 是 이상 不是 이스마엘，依 Announcer 編號（Yisang_6、Ishmael_8）與 EN Y."
+ },
+ {
+  "id": 5,
+  "kr": {
+   "full": "이스마엘, 히스클리프, 돈키호테, 홍루",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "イシュメール、ヒースクリフ、ドンキホーテ、ホンル",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Ishmael, Heathcliff, Don Quixote, Hong Lu",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "以實瑪利、希斯克利夫、唐吉訶德、鴻璐",
+   "source": "推測"
+  },
+  "remark": "Announcer 編號 Ishmael_8、Heathcliff_14、DonQuixote_21、Honglu_31，都在 Ryoshu_42 之前；이／イ 是 이스마엘，依編號與 EN I."
+ },
+ {
+  "id": 6,
+  "kr": {
+   "full": "히스클리프",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ヒースクリフ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Heathcliff",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "希斯克利夫",
+   "source": "推測"
+  },
+  "remark": "E913B#65 對希斯克利夫說；E903B#167「히. 클.의 저택」；EN 取 Heath／cliff"
+ },
+ {
+  "id": 7,
+  "kr": {
+   "full": "싱클레어",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "シンクレア",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Sinclair",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "辛克萊",
+   "source": "推測"
+  },
+  "remark": "KR 取首、末音節（싱…어）；JP 取 シン…ア；EN 取 Sin／clair"
+ },
+ {
+  "id": 8,
+  "kr": {
+   "full": "모가지를 분질러버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首をへし斬れば",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Snap Your Neck Completely",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "TW 劇中解釋作「折斷你脖子」（S210B#5），無「扭」"
+ },
+ {
+  "id": 9,
+  "kr": {
+   "full": "모가지를 분질러버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首をへし斬れば",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Snap Her Neck Completely",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "KR／JP 展開見 S210B#5、ES130B#10；EN H＝Her（對象克羅默，女）"
+ },
+ {
+  "id": 10,
+  "kr": {
+   "full": "모가지를 분질러버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首をへし斬れば",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Cut In Half",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "KR／JP 展開見 S210B#5、ES130B#10；EN 依句法（have the clock C.I.H）與同場景 #45「cut this beast in half」"
+ },
+ {
+  "id": 11,
+  "kr": {
+   "full": "모가지를 분질러버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首をへし斬れば",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Snap Your Neck Completely",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "不扭斷脖子就不會閉嘴啊。那些跟豬沒兩樣的傢伙們",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#28",
+   "who": "료슈"
+  },
+  "remark": "EN SYNC＝S.Y.N.C.；TW 沿用 모.분.조.도. 的四段譯法（Announcer#28 同句解釋，語序不同；S101B#46 作「脖子扭斷…豬狗…閉嘴」），莫梭改作蟹．閉"
+ },
+ {
+  "id": 12,
+  "kr": {
+   "full": "모가지를 분질러버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首をへし斬れば",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "obliteration of forehead？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "KR／JP 展開見 S210B#5、ES130B#10；EN O.O.F. 本處未展開，推為沿用 S504B#111 的 obliteration of forehead（該處 KR 為 대. 박.，描述頭被打爛），本句只說要殺她，存疑"
+ },
+ {
+  "id": 13,
+  "kr": {
+   "full": "모가지를 분질러버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/S210B.json#5",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首をへし斬れば",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Snap Their Necks Completely",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "KR／JP 展開見 S210B#5、ES130B#10；EN 比照 S.Y.N.C.（Snap Your Neck Completely）"
+ },
+ {
+  "id": 14,
+  "kr": {
+   "full": "닥치고 돌격해서 죽기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "片っ端から？突撃して死ぬ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Charge？ In？ Die？ E？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "閉嘴突擊去死",
+   "source": "推測"
+  },
+  "remark": "同 S302B#9–11 닥.돌.죽.살.（EN CIDER）的前三字；EN 只有 D＝Die 較可信"
+ },
+ {
+  "id": 15,
+  "kr": {
+   "full": "살아나기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "蘇生",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Repeat",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "復活",
+   "source": "未縮"
+  },
+  "remark": "時鐘讓人復活；JP 單字未加點，也可讀 蘇る；EN 套 rinse and repeat，R 兼指復活"
+ },
+ {
+  "id": 16,
+  "kr": {
+   "full": "어차피？ 망하기 직전",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "どうせ破滅？寸前の戦闘",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Fucked Up Beyond All Recognition",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "險些？滅亡之前",
+   "source": "推測"
+  },
+  "remark": "KR 직.전. 是 직전 一詞逐音節加點；JP 第四段「戦闘」照寫；EN 為通行縮寫（R 也作 Repair）"
+ },
+ {
+  "id": 17,
+  "kr": {
+   "full": "완전 소중",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "マジ大切",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Love You",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "珍愛",
+   "source": "未縮"
+  },
+  "remark": "阿賴耶的流行語 완소；JP S947B#224 切 標 せつ（大切）"
+ },
+ {
+  "id": 18,
+  "kr": {
+   "full": "완전 소멸？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "マジ切り",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Love You",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "真悲哀",
+   "source": "推測"
+  },
+  "remark": "雙關前句 완소：KR 加點另讀，소 讀法不定；JP マジ切＝マジで切る；EN 反諷套 love you to pieces；TW 真哀 諧音 珍愛"
+ },
+ {
+  "id": 19,
+  "kr": {
+   "full": "시계 대가리",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "jp": {
+   "full": "時計ヅラ",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "en": {
+   "full": "Clockhead",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "tw": {
+   "full": "時鐘頭",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "remark": "同場景 #50/0 히스클리프喊出；EN 合寫 Clockhead"
+ },
+ {
+  "id": 20,
+  "kr": {
+   "full": "시계 대가리",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "jp": {
+   "full": "時計ヅラ",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "en": {
+   "full": "Clockhead",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#50/0",
+   "who": "히스클리프"
+  },
+  "tw": {
+   "full": "時鐘頭",
+   "source": "推測"
+  },
+  "remark": "展開見 RPG:common-a1c10p1#50/0；TW 鐘取「時鐘」之鐘，劇中「時鐘頭」對應的是時．頭"
+ },
+ {
+  "id": 21,
+  "kr": {
+   "full": "순서대로 차근차근？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "順番に着実に？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Step",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "按照步驟",
+   "source": "推測"
+  },
+  "remark": "EN 字母拼成 step（keep in step，句中 like music or a dance），各字母是否另有所指不明"
+ },
+ {
+  "id": 22,
+  "kr": {
+   "full": "무기 다루는 법",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "武器の扱い方",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Wield A Weapon？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "武器的使用方法",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 23,
+  "kr": {
+   "full": "왜 팔을",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "何で腕を",
+   "source": "推測"
+  },
+  "en": {
+   "full": "What The Hell",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "為何手臂",
+   "source": "推測"
+  },
+  "remark": "KR 왜、팔 本身都是單音節詞"
+ },
+ {
+  "id": 24,
+  "kr": {
+   "full": "제대로 행동？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "正しい行動",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Pro",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "正確的行動",
+   "source": "推測"
+  },
+  "remark": "KR 與後句 무.상. 合為 제행무상（諸行無常）雙關；EN P.R.O.＋後句 P.E.R.＝PROPER"
+ },
+ {
+  "id": 25,
+  "kr": {
+   "full": "무엇이든？ 상관없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "関係無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "沒問題",
+   "source": "推測"
+  },
+  "remark": "與前句 제.행. 合成 제행무상（諸行無常）雙關；KR 상＝상관 依 E920B#86 用法，무 不確定"
+ },
+ {
+  "id": 26,
+  "kr": {
+   "full": "무엇이든？ 상관없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "どうでもいい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "The Floor",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "無妨",
+   "source": "未縮"
+  },
+  "remark": "무 也可能是 무슨（상관）；EN 改縮 바닥（the floor），不對應 무. 상."
+ },
+ {
+  "id": 27,
+  "kr": {
+   "full": "그럼 그렇지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "案の定",
+   "source": "推測"
+  },
+  "en": {
+   "full": "was anticipated",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#8",
+   "who": "뉴키라"
+  },
+  "tw": {
+   "full": "意料之中",
+   "source": "推測"
+  },
+  "remark": "KR 依語氣（쳇…하지만…거.거.）讀，非 그게 그거，JP／EN 佐證；EN W.A. 展開見 E903A#8"
+ },
+ {
+  "id": 28,
+  "kr": {
+   "full": "그게 그거",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#8",
+   "who": "뉴키라"
+  },
+  "jp": {
+   "full": "似たもの",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#8",
+   "who": "뉴키라"
+  },
+  "en": {
+   "full": "was anticipated",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#8",
+   "who": "뉴키라"
+  },
+  "tw": {
+   "full": "都一樣",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#8",
+   "who": "뉴키라"
+  },
+  "remark": "키라叫료슈縮成「그게 그거」，료슈再縮成 그. 그."
+ },
+ {
+  "id": 29,
+  "kr": {
+   "full": "그게 그거",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#33",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "どっちもどっち",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#33",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Same difference",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#33",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "那就那樣",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#33",
+   "who": "싱클레어"
+  },
+  "remark": "싱클레어反問時展開"
+ },
+ {
+  "id": 30,
+  "kr": {
+   "full": "거기서 거기",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#7",
+   "who": "료슈2"
+  },
+  "jp": {
+   "full": "似たり寄ったり",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#7",
+   "who": "료슈2"
+  },
+  "en": {
+   "full": "Same difference",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#7",
+   "who": "료슈2"
+  },
+  "tw": {
+   "full": "此處彼處，此間彼間",
+   "source": "遊戲內",
+   "loc": "StoryData/E507A.json#45",
+   "who": "료슈"
+  },
+  "remark": "TW 在 E903A#7 作「此處彼處，都一樣」，對不上第二個此，取 E507A#45"
+ },
+ {
+  "id": 31,
+  "kr": {
+   "full": "거기서 거기",
+   "source": "遊戲內",
+   "loc": "StoryData/E507A.json#45",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "似たり寄ったり",
+   "source": "遊戲內",
+   "loc": "StoryData/E507A.json#45",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Same story everywhere",
+   "source": "遊戲內",
+   "loc": "StoryData/E507A.json#45",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "此處彼處，此間彼間",
+   "source": "遊戲內",
+   "loc": "StoryData/E507A.json#45",
+   "who": "료슈"
+  },
+  "remark": "JP に・よ取讀音（似、寄）"
+ },
+ {
+  "id": 32,
+  "kr": {
+   "full": "버러지？ 같은 놈",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "バカな奴",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "蠢傢伙",
+   "source": "推測"
+  },
+  "remark": "良秀常用 버러지（Butler_10408#7、P10408#45）；EN B.B.（our team of B.B.）推不出"
+ },
+ {
+  "id": 33,
+  "kr": {
+   "full": "마음에 들지 않으신대요",
+   "source": "遊戲內",
+   "loc": "StoryData/S415B.json#62",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "気に入らない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "doesn't like it",
+   "source": "遊戲內",
+   "loc": "StoryData/S415B.json#62",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "真不爽",
+   "source": "未縮"
+  },
+  "remark": "KR／EN 展開見 S415B#62（旁白引싱클레어轉述）；JP 無＝ない"
+ },
+ {
+  "id": 34,
+  "kr": {
+   "full": "마음에 들지 않으신대요",
+   "source": "遊戲內",
+   "loc": "StoryData/S415B.json#62",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "気に入らない",
+   "source": "遊戲內",
+   "loc": "StoryData/S415B.json#62",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "doesn't like it",
+   "source": "遊戲內",
+   "loc": "StoryData/S415B.json#62",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "不怎麼滿意",
+   "source": "遊戲內",
+   "loc": "StoryData/S415B.json#62",
+   "who": "旁白"
+  },
+  "remark": "旁白引싱클레어的轉述"
+ },
+ {
+  "id": 35,
+  "kr": {
+   "full": "만물？을 단축하는 지고？의 예술",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "万物？を短縮する至高？の芸術",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "萬物？縮短的至高？藝術",
+   "source": "推測"
+  },
+  "remark": "劇中未展開；E912B#155–163 前文講 단축（短縮）與 지고지순（至高至純）；EN S.A.N.G.R.I.A. 只被稱為 acronym（PinkyChibi_41#9）"
+ },
+ {
+  "id": 36,
+  "kr": {
+   "full": "그딴 태평한 말을 하기에는 늦었다",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#145",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "そんなのんきなことを言うには遅すぎる",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#145",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Chirping hesitation isn’t cool, kiddo",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#145",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "現在說這些輕鬆話已經晚了",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#145",
+   "who": "싱클레어"
+  },
+  "remark": "辛克萊猜出展開（E302B#145）"
+ },
+ {
+  "id": 37,
+  "kr": {
+   "full": "받은 만큼 돌려주기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "受けた分だけ返す",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Payback",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "原數奉還",
+   "source": "推測"
+  },
+  "remark": "EN It's P.B. time＝payback time"
+ },
+ {
+  "id": 38,
+  "kr": {
+   "full": "버스 안",
+   "source": "遊戲內",
+   "loc": "StoryData/E512B.json#2",
+   "who": "홍루"
+  },
+  "jp": {
+   "full": "バスの中",
+   "source": "推測"
+  },
+  "en": {
+   "full": "On The Bus",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "蠢貨？之中",
+   "source": "推測"
+  },
+  "remark": "KR 展開見 E512B#2；JP バ・中 推為 バスの中（E512B#2「バスの中」展開的是該處的 バ・な）；TW 似把 버 解作蠢（同 Announcer#20 버.놈.→蠢．傢）"
+ },
+ {
+  "id": 39,
+  "kr": {
+   "full": "버스 안",
+   "source": "遊戲內",
+   "loc": "StoryData/E512B.json#2",
+   "who": "홍루"
+  },
+  "jp": {
+   "full": "バスの中",
+   "source": "遊戲內",
+   "loc": "StoryData/E512B.json#2",
+   "who": "홍루"
+  },
+  "en": {
+   "full": "the bus",
+   "source": "遊戲內",
+   "loc": "StoryData/E512B.json#2",
+   "who": "홍루"
+  },
+  "tw": {
+   "full": "巴士內",
+   "source": "遊戲內",
+   "loc": "StoryData/E512B.json#2",
+   "who": "홍루"
+  },
+  "remark": "JP な取「中（なか）」讀音"
+ },
+ {
+  "id": 40,
+  "kr": {
+   "full": "싱클레어 수준",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "シンクレアレベル",
+   "source": "推測"
+  },
+  "en": {
+   "full": "M？ T？ L？ Sinclair",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "辛克萊",
+   "source": "推測"
+  },
+  "remark": "TW 把 수준 另寫成「程度」；EN S.C.＝Sinclair（同 Announcer#1），M.T.L. 不明"
+ },
+ {
+  "id": 41,
+  "kr": {
+   "full": "모가지를 분질러야 조용해지지, 도야지",
+   "source": "遊戲內",
+   "loc": "StoryData/S101B.json#46",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "首を圧し切らないと静かにならないのか、ブタ",
+   "source": "遊戲內",
+   "loc": "StoryData/S101B.json#46",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "To Right Against Noisy Crying Hogs Entails Scragging",
+   "source": "遊戲內",
+   "loc": "StoryData/S101B.json#46",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "不把脖子扭斷，他們這群豬狗一樣的傢伙就不會閉嘴",
+   "source": "遊戲內",
+   "loc": "StoryData/S101B.json#46",
+   "who": "료슈"
+  },
+  "remark": "良秀自己展開（S101B#46；Announcer#28 同句）"
+ },
+ {
+  "id": 42,
+  "kr": {
+   "full": "고기는 언제나 옳다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "肉は常に正義",
+   "source": "推測"
+  },
+  "en": {
+   "full": "meat's always an unquestionably ideal",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#30",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "肉永遠是最好的",
+   "source": "推測"
+  },
+  "remark": "KR 上下文只有「슬슬 물리는군」，依常見說法；EN 同句解釋字序為 M.A.U.I.，U.M.A.I. 諧日文うまい"
+ },
+ {
+  "id": 43,
+  "kr": {
+   "full": "군것질거리",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "砂糖菓子",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Junk Food",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "糖果點心",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 44,
+  "kr": {
+   "full": "림버스 컴퍼니 버스",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "リンバス・カンパニー・バス",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Limbus Company Bus Team？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "邊獄公司巴士",
+   "source": "推測"
+  },
+  "remark": "EN 多一個 T；EN 有 bus team 一說（DanteNoteDetail#4）"
+ },
+ {
+  "id": 45,
+  "kr": {
+   "full": "이번？ 실패해도 인생은 길다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "今の失敗、人生は長い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "This outcome may ache, regardless, abide now and improve",
+   "source": "遊戲內",
+   "loc": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json#31",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "現在失敗，人生還長",
+   "source": "推測"
+  },
+  "remark": "EN 同句展開；TOMARANAI 諧日文止まらない"
+ },
+ {
+  "id": 46,
+  "kr": {
+   "full": "녹음 마이크",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "録音マイク",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Recording Mic",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "錄音機",
+   "source": "推測"
+  },
+  "remark": "交給 Announcer 良秀的麥克風"
+ },
+ {
+  "id": 47,
+  "kr": {
+   "full": "듣고 있다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "通信良好",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Am Listening",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "我在聽",
+   "source": "推測"
+  },
+  "remark": "無線電應答"
+ },
+ {
+  "id": 48,
+  "kr": {
+   "full": "노잼",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "つまんね",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Boring as hell",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "無聊",
+   "source": "未縮"
+  },
+  "remark": "노잼 是俗語本身（no＋재미），只逐字加點；EN B.A.H. 展開見 S810B#92（該處 KR 為 질. 지.）"
+ },
+ {
+  "id": 49,
+  "kr": {
+   "full": "노잼",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "だるい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Boring as hell",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "無聊",
+   "source": "未縮"
+  },
+  "remark": "노잼 是俗語本身；JP 或即俗語「だる」；EN B.A.H. 展開見 S810B#92"
+ },
+ {
+  "id": 50,
+  "kr": {
+   "full": "솔로 플레이",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ソロプレイ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Solo Play",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "單人擊殺",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 51,
+  "kr": {
+   "full": "타겟 무력화",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCCB_10406.json#17",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "ターゲット無力化",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCCB_10406.json#17",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Target Neutralized",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCCB_10406.json#17",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "目標無效化",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCCB_10406.json#17",
+   "who": "료슈"
+  },
+  "remark": "同句更正"
+ },
+ {
+  "id": 52,
+  "kr": {
+   "full": "사전관측",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "事前観測",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Preliminary Observation",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "事前觀測",
+   "source": "推測"
+  },
+  "remark": "LCCB 사전관측 3과（S514B 標題、S310B#12）；EN 該課稱 Preliminary Observation Unit 3"
+ },
+ {
+  "id": 53,
+  "kr": {
+   "full": "오늘은 귀찮으니까 점심 따위는 패스",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#2",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "今日は面倒だから昼メシなんかパス",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#2",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "won’t ingest lunch today",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#2",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "今天很麻煩，午飯什麼的免了",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#2",
+   "who": "료슈"
+  },
+  "remark": "同句展開"
+ },
+ {
+  "id": 54,
+  "kr": {
+   "full": "알겠나 단테? 이것이 예술이다",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#7",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "分かったかダンテ？これが芸術だ",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#7",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Got it, right? Art stands in pure exemplarity, Dante",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#7",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "明白了嗎但丁？這就是藝術",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json#7",
+   "who": "료슈"
+  },
+  "remark": "同句括號展開"
+ },
+ {
+  "id": 55,
+  "kr": {
+   "full": "검으로 만들어내는 예술의 극치",
+   "source": "遊戲內",
+   "loc": "StoryData/P10402.json#13",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "剣で創り出す芸術の極致",
+   "source": "遊戲內",
+   "loc": "StoryData/P10402.json#13",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "Peak art created through swordsmanship",
+   "source": "遊戲內",
+   "loc": "StoryData/P10402.json#13",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "用劍創作出的藝術所能達到的極致",
+   "source": "遊戲內",
+   "loc": "StoryData/P10402.json#13",
+   "who": "旁白"
+  },
+  "remark": "旁白緊接著解釋（P10402#13）"
+ },
+ {
+  "id": 56,
+  "kr": {
+   "full": "알겠나 단테？ 잘 부탁한다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "分かったかダンテ？よろしく",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "知道了嗎但丁？請多關照",
+   "source": "推測"
+  },
+  "remark": "友方陣亡時，請但丁復活；알.단. 依同檔 #7 알.단.이.예.；JP よ・ろ＝よろしく 一詞；EN GENNED 依 GRASPED 句式可能是 Got it…Dante，其餘不明"
+ },
+ {
+  "id": 57,
+  "kr": {
+   "full": "관심 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "興味無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Don't Care",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "無趣",
+   "source": "未縮"
+  },
+  "remark": "KR／JP 同句有「관심 있다」「興味ない」；TW 無．趣即「無趣」（P10514#63 재. 없. 亦作無．趣）"
+ },
+ {
+  "id": 58,
+  "kr": {
+   "full": "관심 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "関心無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Don't Care",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒興趣",
+   "source": "推測"
+  },
+  "remark": "指이상 #30「이제는 관심 밖의 일이오」（JP 関心の外、TW 不感興趣）"
+ },
+ {
+  "id": 59,
+  "kr": {
+   "full": "관심 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "興味無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Don't Care",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "無所謂",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 60,
+  "kr": {
+   "full": "병아리？ 인솔？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ひよこの引率",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Baby Sitting",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "當保姆",
+   "source": "推測"
+  },
+  "remark": "同檔 #6 신입 교육、#10 사람 관리；KR 讀法取自 JP，솔 取 인솔 第二音節，KR 無直接根據；EN #10 有 babysitting"
+ },
+ {
+  "id": 61,
+  "kr": {
+   "full": "알아서 먹어",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "勝手に食え",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Don't Care",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "自己吃",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 62,
+  "kr": {
+   "full": "문제없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "問題無し",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No Problem",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒問題",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 63,
+  "kr": {
+   "full": "젠장",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "クソ",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Shit",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "媽的",
+   "source": "未縮"
+  },
+  "remark": "四種語言都是把一個詞逐字加點"
+ },
+ {
+  "id": 64,
+  "kr": {
+   "full": "상관없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "関係無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Don't Care",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "無所謂",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 65,
+  "kr": {
+   "full": "상관없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "関係無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "You Do You",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "不關我的事？",
+   "source": "推測"
+  },
+  "remark": "TW 關之後的部分不確定"
+ },
+ {
+  "id": 66,
+  "kr": {
+   "full": "연속 타격",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "連続打撃",
+   "source": "推測"
+  },
+  "en": {
+   "full": "consecutive strikes",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LiuAsso4_10407.json#8",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "連續打擊",
+   "source": "推測"
+  },
+  "remark": "KR／JP／TW 也可能就是 연타／連打 一詞逐字加點；EN 同句寫出"
+ },
+ {
+  "id": 67,
+  "kr": {
+   "full": "일수？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "一手",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "penetrating strike",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LiuAsso4_10407.json#8",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "一式",
+   "source": "未縮"
+  },
+  "remark": "KR 推為 일수（一手），也可能是一詞逐音節加點，KR 無直接根據；EN 同句寫出"
+ },
+ {
+  "id": 68,
+  "kr": {
+   "full": "믿을 수 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "信じられない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No way",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LiuAsso4_10407.json#23",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "無法相信",
+   "source": "推測"
+  },
+  "remark": "EN 同句隨即寫出 No way；JP 無＝ない"
+ },
+ {
+  "id": 69,
+  "kr": {
+   "full": "믿을 수 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "信じられない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No Fucking Way",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "難以置信",
+   "source": "推測"
+  },
+  "remark": "JP 無＝ない"
+ },
+ {
+  "id": 70,
+  "kr": {
+   "full": "단체？ 테러",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "団体テロ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Deconstruction Of Normalcy, Terrifying Everyone？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "襲擊群眾？",
+   "source": "推測"
+  },
+  "remark": "諧音 단테；聖愚（유로지비）的活動；EN #23 有 deconstruction of normalcy、no one's terrified，E 推為 Everyone"
+ },
+ {
+  "id": 71,
+  "kr": {
+   "full": "명줄 단축？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "命は墓行き？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Hacked In Two",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Yurodivy_10409.json#12",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "送入墳墓",
+   "source": "推測"
+  },
+  "remark": "KR 雙關 명단（名單），단 也可讀 단절；JP 命（めい）・墓（ぼ）諧 名簿（めいぼ）；EN 同句展開"
+ },
+ {
+  "id": 72,
+  "kr": {
+   "full": "고급？ 담배",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "高級煙草",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Luxury？ Cigarette",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "高級香菸",
+   "source": "推測"
+  },
+  "remark": "KR 고＝고급 KR 無直接根據，依 JP 高・、TW 高．；EN L 也可能是 Last（同檔 #2 Last chance today to smoke a cig）"
+ },
+ {
+  "id": 73,
+  "kr": {
+   "full": "신속하고, 정확하게",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Butler_10408.json#0",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "迅速かつ、正確に",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Butler_10408.json#0",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Speed, Precision, and Decisiveness",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Butler_10408.json#0",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "迅速，而且正確",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Butler_10408.json#0",
+   "who": "료슈"
+  },
+  "remark": "同句展開"
+ },
+ {
+  "id": 74,
+  "kr": {
+   "full": "꿈밤, 모가지 분지르기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "夢見る夜？に首を圧し切る",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Sleepy？ Snap Your Neck Completely",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "安眠拳、脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "꿈밤＝넬리的「꿈나라로 보내는 꿀밤」（S612B#3；EN sleepy smack、TW 安眠拳），KR 꿈.밤. 是一詞逐音節加點；JP 把 밤 讀成夜；모.분. 展開見 S101B#46、S210B#5"
+ },
+ {
+  "id": 75,
+  "kr": {
+   "full": "찌부다",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "平ら",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Flat",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "砸扁",
+   "source": "未縮"
+  },
+  "remark": "四種語言都是把一個詞逐字加點（찌부＋다、たいら、flat、砸扁）"
+ },
+ {
+  "id": 76,
+  "kr": {
+   "full": "해골바가지",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "髑髏(しゃれこうべ)",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Skullface",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "骷髏頭",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "remark": "前一句（Spider_10410#11）說出全名"
+ },
+ {
+  "id": 77,
+  "kr": {
+   "full": "거미대가리",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "蜘蛛ヅラ",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Spiderhead",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "蜘蛛頭",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Spider_10410.json#11",
+   "who": "료슈"
+  },
+  "remark": "前一句（Spider_10410#11）說出全名"
+ },
+ {
+  "id": 78,
+  "kr": {
+   "full": "감이… 다… 뒤졌다아",
+   "source": "遊戲內",
+   "loc": "StoryData/S940B.json#34",
+   "who": "료슈딸"
+  },
+  "jp": {
+   "full": "センスが…死んだぁ",
+   "source": "遊戲內",
+   "loc": "StoryData/S940B.json#34",
+   "who": "료슈딸"
+  },
+  "en": {
+   "full": "<b>S</b>haking... <b>M</b>y... <b>H</b>ead",
+   "source": "遊戲內",
+   "loc": "StoryData/S940B.json#34",
+   "who": "료슈딸"
+  },
+  "tw": {
+   "full": "品味……死光光了",
+   "source": "遊戲內",
+   "loc": "StoryData/S940B.json#34",
+   "who": "료슈딸"
+  },
+  "remark": "借用阿賴耶的流行語；阿賴耶在 S940B#34 展開；EN 原文含 <b> 標籤"
+ },
+ {
+  "id": 79,
+  "kr": {
+   "full": "중앙본부",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "中央本部",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Central Command",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "中央本部",
+   "source": "推測"
+  },
+  "remark": "腦葉公司的中央本部（UserTicket：로보토미 중앙본부팀／L Corp. Central Command Team）"
+ },
+ {
+  "id": 80,
+  "kr": {
+   "full": "파란 깡통",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "青い缶",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Blue Tin Can",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "藍色罐子",
+   "source": "推測"
+  },
+  "remark": "指 헤세드（P10514#59–61）"
+ },
+ {
+  "id": 81,
+  "kr": {
+   "full": "블랙 커피",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ブラックコーヒー",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Black Coffee",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "黑咖啡",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 82,
+  "kr": {
+   "full": "예술 감상 시간",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "芸術鑑賞時間",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Art Appreciation Time",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "觀賞藝術的時間",
+   "source": "推測"
+  },
+  "remark": "P10514#61 EN 有 art appreciation time 一語（不是展開）"
+ },
+ {
+  "id": 83,
+  "kr": {
+   "full": "분홍 장비",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "桃色の装備",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Pink Gear？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "粉色裝備",
+   "source": "推測"
+  },
+  "remark": "KR 雙關 분장（扮裝）；指身上的 E.G.O. 裝備"
+ },
+ {
+  "id": 84,
+  "kr": {
+   "full": "알리우네",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "アルリウネ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Alriune",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "愛娜溫",
+   "source": "推測"
+  },
+  "remark": "幻想體名；P10414 稱 알리우네／アルリウネ／Alriune／愛娜溫"
+ },
+ {
+  "id": 85,
+  "kr": {
+   "full": "늙은 여인",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "老婆",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Old Lady",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "老婦人",
+   "source": "推測"
+  },
+  "remark": "幻想體名；P10414 稱 늙은 여인／老婆（ろうば）／Old Lady／老婦人"
+ },
+ {
+  "id": 86,
+  "kr": {
+   "full": "엔케팔린",
+   "source": "遊戲內",
+   "loc": "LoginUIText.json#61",
+   "who": "推播通知"
+  },
+  "jp": {
+   "full": "エンケファリン",
+   "source": "遊戲內",
+   "loc": "LoginUIText.json#61",
+   "who": "推播通知"
+  },
+  "en": {
+   "full": "Enkephalin？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "腦啡肽",
+   "source": "遊戲內",
+   "loc": "LoginUIText.json#61",
+   "who": "推播通知"
+  },
+  "remark": "KR／JP／TW 展開在他處：LoginUIText#61「엔.팔.충.완.(엔케팔린 충전 완료.)」的括號；EN E.P. 疑取 En-／-Phalin 兩段，無展開"
+ },
+ {
+  "id": 87,
+  "kr": {
+   "full": "엔케팔린",
+   "source": "遊戲內",
+   "loc": "LoginUIText.json#61",
+   "who": "推播通知"
+  },
+  "jp": {
+   "full": "エンケファリン",
+   "source": "遊戲內",
+   "loc": "LoginUIText.json#61",
+   "who": "推播通知"
+  },
+  "en": {
+   "full": "Enkephalin",
+   "source": "遊戲內",
+   "loc": "LoginUIText.json#61",
+   "who": "推播通知"
+  },
+  "tw": {
+   "full": "腦啡肽",
+   "source": "未縮"
+  },
+  "remark": "展開在他處（LoginUIText#61；EN「E.C.(Enkephalin Charged.)」以 E 代 Enkephalin）；EN「on E」兼 ecstasy 俚語雙關"
+ },
+ {
+  "id": 88,
+  "kr": {
+   "full": "잔향・외로움",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "寂しさ・残香",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Faint Aroma & Solitude",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "餘香．孤獨",
+   "source": "推測"
+  },
+  "remark": "人格名（Personalities.json#169：잔향・외로움／残香・寂しさ／Faint Aroma & Solitude／餘香．孤獨）；JP 兩段次序與人格名相反，寂 標讀音サビ"
+ },
+ {
+  "id": 89,
+  "kr": {
+   "full": "사무직놈",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LEGOEcho_10414.json#21",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "事務職",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LEGOEcho_10414.json#21",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Clerical Employees",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "文職人員",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LEGOEcho_10414.json#21",
+   "who": "료슈"
+  },
+  "remark": "同句前文即寫出；EN 同句作 Clerks，C.E. 未展開"
+ },
+ {
+  "id": 90,
+  "kr": {
+   "full": "목표 에너지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "目標エネルギー",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Energy Quota",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "目標能源",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 91,
+  "kr": {
+   "full": "아침엔？ 문 안 연다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "朝？はやってない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Not Open Until Noon",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "中午前不營業",
+   "source": "推測"
+  },
+  "remark": "KR 아 無根據，依 EN Noon／TW 中午 讀作 아침（亦可能是 아직）；JP あ 讀作 朝 為推測"
+ },
+ {
+  "id": 92,
+  "kr": {
+   "full": "영업 준비",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "営業準備",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Mise En Place",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "餐前準備",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 93,
+  "kr": {
+   "full": "하루아침",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Hongyuan_10413.json#1",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "一朝にしてすべて？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "But One Day a Year",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Hongyuan_10413.json#1",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "一朝，一切便灰飛煙滅",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Hongyuan_10413.json#1",
+   "who": "료슈"
+  },
+  "remark": "同句緊接展開；JP し・す 疑取自同句「一朝にしてすべて」，不確定"
+ },
+ {
+  "id": 94,
+  "kr": {
+   "full": "예술은 실패했지만 인생은 길다",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCB_10401.json#20",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "芸術は失敗したが人生は長い",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCB_10401.json#20",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Artistic failure trounces excitement resoundingly, while all roads drag on",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCB_10401.json#20",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "藝術雖失敗，人生仍漫長",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_LCB_10401.json#20",
+   "who": "료슈"
+  },
+  "remark": "同句自行展開"
+ },
+ {
+  "id": 95,
+  "kr": {
+   "full": "다리가 넷인 놈",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "四本脚の奴",
+   "source": "推測"
+  },
+  "en": {
+   "full": "four-legged lowlives",
+   "source": "遊戲內",
+   "loc": "PersonalityVoiceDlg/Voice_Ryoshu_Contem_10416.json#3",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "四腳貨色",
+   "source": "推測"
+  },
+  "remark": "同句稱 포레그／フォーレグ／四腳"
+ },
+ {
+  "id": 96,
+  "kr": {
+   "full": "밟아 분쇄？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "踏んで粉砕",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Stomp And Pulverize？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "踩得粉碎",
+   "source": "推測"
+  },
+  "remark": "KR 분 依 JP 粉／EN P／TW 粉 讀作 분쇄（KR 亦可能是 분노）"
+ },
+ {
+  "id": 97,
+  "kr": {
+   "full": "모조리 퇴출",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "全員退場",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "全部退場",
+   "source": "推測"
+  },
+  "remark": "EN E.W. 推不出"
+ },
+ {
+  "id": 98,
+  "kr": {
+   "full": "이상한 계략",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "変な計略",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Unusual？ Schemes？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "怪異計謀",
+   "source": "推測"
+  },
+  "remark": "KR 無根據，依 JP／EN／TW（계 亦可能是 계획）"
+ },
+ {
+  "id": 99,
+  "kr": {
+   "full": "다리 많은",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "多脚",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "So Many Legs",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "腳很多",
+   "source": "推測"
+  },
+  "remark": "JP、TW 兩字本身即完整詞"
+ },
+ {
+  "id": 100,
+  "kr": {
+   "full": "시간, 장소",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "時間・場所",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Time And Place",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "時間、地點、場合",
+   "source": "推測"
+  },
+  "remark": "KR、JP 第三項 상황／状況 照寫；TW 末字「場合」可能照寫"
+ },
+ {
+  "id": 101,
+  "kr": {
+   "full": "천한 것",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "卑しい者",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Base Extraction",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "卑賤之物",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 102,
+  "kr": {
+   "full": "나갈 시간이다",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#18/2",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "出る時間",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#18/2",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "Get Going, Clockhead",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#18/2",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "出去的時間",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#18/2",
+   "who": "旁白"
+  },
+  "remark": "劇中給兩解：나갈 시간／나가라 시계（出る時間／出ろ時計；Gotta Go, Chore Hour／Get Going, Clockhead；出去的時間／出去吧時鐘），#30/1 同"
+ },
+ {
+  "id": 103,
+  "kr": {
+   "full": "머리 좀 치워",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#46/4",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "頭をどけて",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#46/4",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "move your head",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#46/4",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "把頭移開",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-common-a1c10p1.json#46/4",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 104,
+  "kr": {
+   "full": "순번이 돌았군",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/0",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "順番が回って",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/0",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "It's our turn",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/0",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "順序輪到",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/0",
+   "who": "뫼르소"
+  },
+  "remark": ""
+ },
+ {
+  "id": 105,
+  "kr": {
+   "full": "어중이떠중이",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "烏合の衆",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "mediocre bunch",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "烏合之眾",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "remark": "뫼르소 逐句解讀"
+ },
+ {
+  "id": 106,
+  "kr": {
+   "full": "어중이떠중이",
+   "source": "遊戲內",
+   "loc": "StoryData/S812A.json#27",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "烏合の衆どもめ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "mediocre bunch",
+   "source": "遊戲內",
+   "loc": "StoryData/S812A.json#27",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "烏合之眾",
+   "source": "遊戲內",
+   "loc": "StoryData/S812A.json#27",
+   "who": "싱클레어"
+  },
+  "remark": "JP 싱클레어 作「烏合の衆ども」只對上 う・ど，め 推測為罵語接尾，故列推測"
+ },
+ {
+  "id": 107,
+  "kr": {
+   "full": "어중이떠중이",
+   "source": "遊戲內",
+   "loc": "StoryData/S812A.json#27",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "有象無象",
+   "source": "推測"
+  },
+  "en": {
+   "full": "mediocre bunch",
+   "source": "遊戲內",
+   "loc": "StoryData/S812A.json#27",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "有象無象？",
+   "source": "推測"
+  },
+  "remark": "KR／EN 展開在他處（S812A#27）；JP 他處以「有象無象」譯 어중이떠중이（S111B#26、P10916#65）；TW 照 JP，中文亦可讀「有眼無珠」"
+ },
+ {
+  "id": 108,
+  "kr": {
+   "full": "여기가 어딘지부터 설명해라",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "この場所がどういうところか説明しろ",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "where we're at",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "說明這裡是哪裡",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#16/11",
+   "who": "뫼르소"
+  },
+  "remark": ""
+ },
+ {
+  "id": 109,
+  "kr": {
+   "full": "기분 나쁜 새끼",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "不愉快な奴",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Annoying bitch？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "討人厭的混蛋",
+   "source": "推測"
+  },
+  "remark": "뫼르소 只說出前半（floor-b2#17/1：기분 나쁜…／不愉快な…／Annoying b—／討人厭的……）"
+ },
+ {
+  "id": 110,
+  "kr": {
+   "full": "꾸물거리지 말아야",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/9",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "ぐずぐずするべきでない",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/9",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "dilly-dally",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/9",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "不該磨蹭",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/9",
+   "who": "뫼르소"
+  },
+  "remark": ""
+ },
+ {
+  "id": 111,
+  "kr": {
+   "full": "막힌 길",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "塞がった道",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Dead End",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "死路",
+   "source": "未縮"
+  },
+  "remark": "TW 兩字本身即完整詞"
+ },
+ {
+  "id": 112,
+  "kr": {
+   "full": "방심은 금물",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#20/16",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "油断は禁物",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#20/16",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Never off watch",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#20/16",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "切忌大意",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#20/16",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 113,
+  "kr": {
+   "full": "타래둥지",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/3",
+   "who": "크로머"
+  },
+  "jp": {
+   "full": "糸玉の巣",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/3",
+   "who": "크로머"
+  },
+  "en": {
+   "full": "Skein Nest",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/3",
+   "who": "크로머"
+  },
+  "tw": {
+   "full": "線團之巢",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#17/3",
+   "who": "크로머"
+  },
+  "remark": "良秀引用크로머說的地名（「…이라고 했나?」）"
+ },
+ {
+  "id": 114,
+  "kr": {
+   "full": "이상한 말이군",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#33/30",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "妙なことを言う",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#33/30",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "Weird thing to ask",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#33/30",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "奇怪的話",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#33/30",
+   "who": "뫼르소"
+  },
+  "remark": ""
+ },
+ {
+  "id": 115,
+  "kr": {
+   "full": "황금염료",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "黄金の染料",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Golden Dye",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "黃金染料",
+   "source": "推測"
+  },
+  "remark": "同場景（floor-b2#30–33）稱 황금염료／黄金の染料／Golden Dye／黃金染料"
+ },
+ {
+  "id": 116,
+  "kr": {
+   "full": "쓸모없는",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "無用な",
+   "source": "推測"
+  },
+  "en": {
+   "full": "bullshit？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "無用的",
+   "source": "推測"
+  },
+  "remark": "後接道具名 파하하（JP フハハ、EN \"Bwahahaha!\"、TW 噗哈哈）；KR 亦可讀 쓸데없는；EN 以 Worthless B.S. 代整個詞，B.S. 或兼 Bwahahaha 雙關"
+ },
+ {
+  "id": 117,
+  "kr": {
+   "full": "쓸모없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "不要",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Who cares",
+   "source": "遊戲內",
+   "loc": "StoryData/E614A.json#12",
+   "who": "탐정로쟈"
+  },
+  "tw": {
+   "full": "沒用",
+   "source": "未縮"
+  },
+  "remark": "KR 無展開，亦可讀 쓸데없다；EN W.C. 展開在他處（E614A#12，該處 KR 為 알. 바.）"
+ },
+ {
+  "id": 118,
+  "kr": {
+   "full": "평범한 실",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "普通の糸",
+   "source": "推測"
+  },
+  "en": {
+   "full": "One of a Kind",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "普通的線",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 119,
+  "kr": {
+   "full": "실로 분해되는",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#51/2",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "糸へ分解",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#51/2",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "split into threads",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#51/2",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "分解成線",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#51/2",
+   "who": "뫼르소"
+  },
+  "remark": "floor-b2-b#81/2 同"
+ },
+ {
+  "id": 120,
+  "kr": {
+   "full": "날렵하고 치명적인 기술",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#103/4",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "俊敏で、致命的な技",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#103/4",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Mortally Urgent Gift",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#103/4",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "敏捷又致命的技巧",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#103/4",
+   "who": "싱클레어"
+  },
+  "remark": "JP しゅ・び 取自 俊敏（しゅんびん），てき 取自 致命的"
+ },
+ {
+  "id": 121,
+  "kr": {
+   "full": "시계, 비켜",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#105/7",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "どけ、時計",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#105/7",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "Timepiece, Move",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#105/7",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "時鐘，挪開",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2.json#105/7",
+   "who": "뫼르소"
+  },
+  "remark": "JP ど・け 兩字恰為「どけ」"
+ },
+ {
+  "id": 122,
+  "kr": {
+   "full": "머저리 상태",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "間抜け状態",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "confused wimps",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "不對勁的狀態",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 123,
+  "kr": {
+   "full": "돌아다니는 고객들",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "徘徊している顧客",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "wandering customer",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "徘徊於各處的顧客",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-1.json#6/18",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 124,
+  "kr": {
+   "full": "빡빡하다？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "きつい",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Shit",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "火大",
+   "source": "未縮"
+  },
+  "remark": "JP、EN、TW 皆為一個詞逐字加點；KR 亦可能讀 빡친다"
+ },
+ {
+  "id": 125,
+  "kr": {
+   "full": "전체연령가",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#31/0",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "全年齢対象",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#31/0",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "Audience of All Ages",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#31/0",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "全年齡",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#31/0",
+   "who": "뫼르소"
+  },
+  "remark": ""
+ },
+ {
+  "id": 126,
+  "kr": {
+   "full": "마네킹",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#41/4",
+   "who": "팔레트"
+  },
+  "jp": {
+   "full": "マネキン",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#41/4",
+   "who": "팔레트"
+  },
+  "en": {
+   "full": "Mannequin",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#41/4",
+   "who": "팔레트"
+  },
+  "tw": {
+   "full": "人台模特兒",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#41/4",
+   "who": "팔레트"
+  },
+  "remark": "팔레트 回話更正（「마네킹 아니야」）"
+ },
+ {
+  "id": 127,
+  "kr": {
+   "full": "눈깔이 삐었군",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#54/12",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "目が節穴",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#54/12",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "are you blind, dumbass",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#54/12",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "眼珠子瞎了",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#54/12",
+   "who": "료슈"
+  },
+  "remark": "良秀自行解釋"
+ },
+ {
+  "id": 128,
+  "kr": {
+   "full": "강렬하고 정열적인",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#101/5",
+   "who": "뫼르소"
+  },
+  "jp": {
+   "full": "強烈で情熱的",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#101/5",
+   "who": "뫼르소"
+  },
+  "en": {
+   "full": "Torrid and rhapsodic taste",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#101/5",
+   "who": "뫼르소"
+  },
+  "tw": {
+   "full": "強烈而熱情",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#101/5",
+   "who": "뫼르소"
+  },
+  "remark": ""
+ },
+ {
+  "id": 129,
+  "kr": {
+   "full": "주먹으로 패서",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#140/5",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "拳で殴って",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#140/5",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "punching them",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#140/5",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "拳頭揍",
+   "source": "遊戲內",
+   "loc": "RPGSystem/rpg-loc-dialogue-floor-b2-b.json#140/5",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 130,
+  "kr": {
+   "full": "허접하다",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "雑魚",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Such A Disappointment？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "廢物，一無是處",
+   "source": "推測"
+  },
+  "remark": "KR、JP 為一個詞逐字加點；EN 同句有 Truly a disappointment（亦可能只是 sad）"
+ },
+ {
+  "id": 131,
+  "kr": {
+   "full": "좁은 형님",
+   "source": "遊戲內",
+   "loc": "StoryData/S532B.json#10",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "小さい兄",
+   "source": "遊戲內",
+   "loc": "StoryData/S532B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "B**ch Brother",
+   "source": "遊戲內",
+   "loc": "StoryData/S532B.json#10",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "小心眼的幼兄？",
+   "source": "推測"
+  },
+  "remark": "良秀確認 좁＝속 좁은／ケツの穴が小さい／Bitch／小心眼（S532B#74）；로쟈另讀 작은 형님／末兄／Big Brother／幼兄（#11）；雙關中指位階"
+ },
+ {
+  "id": 132,
+  "kr": {
+   "full": "재미없는",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "退屈な話",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Bad, weak, and highly annoying",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "對話沒意思",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "remark": "#78 良秀「안.들.은 아직 말하지 않았는데」認可 재.없. 的解讀"
+ },
+ {
+  "id": 133,
+  "kr": {
+   "full": "재미없는",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "面白く無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Boring as hell",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "無趣",
+   "source": "未縮"
+  },
+  "remark": "KR 展開在他處（E724B#75）；EN B.A.H. 展開在他處（S810B#92 良秀自釋，該處 KR 為 질. 지.）"
+ },
+ {
+  "id": 134,
+  "kr": {
+   "full": "재미없는",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "面白く無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Boring as hell",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "沒興致",
+   "source": "推測"
+  },
+  "remark": "KR 展開在他處（E724B#75）；EN B.A.H. 展開在他處（S810B#92）"
+ },
+ {
+  "id": 135,
+  "kr": {
+   "full": "안 그래도 들어가 보려고",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "ちょうど入ってみよう",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Good night, snoozefests",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "本來打算回去",
+   "source": "遊戲內",
+   "loc": "StoryData/E724B.json#75",
+   "who": "싱클레어"
+  },
+  "remark": "指싱클레어替 재.없. 多補的後半句"
+ },
+ {
+  "id": 136,
+  "kr": {
+   "full": "성능 업그레이드",
+   "source": "遊戲內",
+   "loc": "StoryData/E064X.json#15",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "性能アップグレード",
+   "source": "遊戲內",
+   "loc": "StoryData/E064X.json#15",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Functionality Upgrade",
+   "source": "遊戲內",
+   "loc": "StoryData/E064X.json#15",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "能力提升",
+   "source": "遊戲內",
+   "loc": "StoryData/E064X.json#15",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 137,
+  "kr": {
+   "full": "혼자는 못 죽지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "死なば諸共",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Get The Fuck Out",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "不會獨自死去",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 138,
+  "kr": {
+   "full": "시뮬레이션 훈련",
+   "source": "遊戲內",
+   "loc": "StoryData/P10412.json#10",
+   "who": "이상"
+  },
+  "jp": {
+   "full": "シミュレイシェン訓練",
+   "source": "遊戲內",
+   "loc": "StoryData/P10412.json#10",
+   "who": "이상"
+  },
+  "en": {
+   "full": "Training Simulation",
+   "source": "遊戲內",
+   "loc": "StoryData/P10412.json#10",
+   "who": "이상"
+  },
+  "tw": {
+   "full": "模擬訓練",
+   "source": "遊戲內",
+   "loc": "StoryData/P10412.json#10",
+   "who": "이상"
+  },
+  "remark": ""
+ },
+ {
+  "id": 139,
+  "kr": {
+   "full": "실망이 크다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "失望がデカい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Such A Disappointment",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "失望",
+   "source": "未縮"
+  },
+  "remark": "TW 兩字本身即完整詞"
+ },
+ {
+  "id": 140,
+  "kr": {
+   "full": "에고 소드",
+   "source": "遊戲內",
+   "loc": "StoryData/E905B.json#4",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "エゴソード",
+   "source": "遊戲內",
+   "loc": "StoryData/E905B.json#4",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "sentient sword",
+   "source": "遊戲內",
+   "loc": "StoryData/E903A.json#47",
+   "who": "단테"
+  },
+  "tw": {
+   "full": "有自我的劍",
+   "source": "遊戲內",
+   "loc": "StoryData/E905B.json#4",
+   "who": "료슈"
+  },
+  "remark": "後續 E905B 回收（「에고 소드가 아니었나」）；EN 同場景 단테 #47 說出 sentient sword"
+ },
+ {
+  "id": 141,
+  "kr": {
+   "full": "부탁할 일",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#102",
+   "who": "단테"
+  },
+  "jp": {
+   "full": "頼みごと",
+   "source": "推測"
+  },
+  "en": {
+   "full": "What kind of assistance",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#102",
+   "who": "단테"
+  },
+  "tw": {
+   "full": "拜託的事",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#102",
+   "who": "단테"
+  },
+  "remark": "良秀轉述단테的話；JP 劇中作「頼みたいこと」，ごと對不上；파우스트 #125 亦同"
+ },
+ {
+  "id": 142,
+  "kr": {
+   "full": "그럼 바로 거미집",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#131",
+   "who": "단테"
+  },
+  "jp": {
+   "full": "すぐ蜘蛛の巣へ行く",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#131",
+   "who": "단테"
+  },
+  "en": {
+   "full": "House of Spiders right away",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#131",
+   "who": "단테"
+  },
+  "tw": {
+   "full": "那是要直接去蜘蛛巢",
+   "source": "遊戲內",
+   "loc": "StoryData/E901B.json#131",
+   "who": "단테"
+  },
+  "remark": "良秀轉述단테的話"
+ },
+ {
+  "id": 143,
+  "kr": {
+   "full": "구인회의 아홉 구율",
+   "source": "遊戲內",
+   "loc": "StoryData/4D104B.json#7",
+   "who": "오티스"
+  },
+  "jp": {
+   "full": "九人会の九つの規律",
+   "source": "遊戲內",
+   "loc": "StoryData/4D104B.json#7",
+   "who": "오티스"
+  },
+  "en": {
+   "full": "League's nine laws",
+   "source": "遊戲內",
+   "loc": "StoryData/4D104B.json#7",
+   "who": "오티스"
+  },
+  "tw": {
+   "full": "九人會的九戒律",
+   "source": "遊戲內",
+   "loc": "StoryData/4D104B.json#7",
+   "who": "오티스"
+  },
+  "remark": ""
+ },
+ {
+  "id": 144,
+  "kr": {
+   "full": "저것들은 뭐냐고",
+   "source": "遊戲內",
+   "loc": "StoryData/E402A.json#17",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "アレらは何",
+   "source": "遊戲內",
+   "loc": "StoryData/E402A.json#17",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Rags and Tags",
+   "source": "遊戲內",
+   "loc": "StoryData/E402A.json#17",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "東西在說什麼",
+   "source": "遊戲內",
+   "loc": "StoryData/E402A.json#17",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 145,
+  "kr": {
+   "full": "벌레 양반",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "虫の旦那",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Bug Guy",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "蟲男",
+   "source": "未縮"
+  },
+  "remark": "그레고르 的稱號（IntroductionPreset.json#3：벌레 양반／虫の旦那／Bug Guy／蟲男）"
+ },
+ {
+  "id": 146,
+  "kr": {
+   "full": "말을 더 하지 않겠다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "話が通じない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No comment",
+   "source": "遊戲內",
+   "loc": "StoryData/S611B.json#62",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "說不通",
+   "source": "未縮"
+  },
+  "remark": "TW 為加點的完整詞"
+ },
+ {
+  "id": 147,
+  "kr": {
+   "full": "질리고 지루하다",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "飽き飽きして退屈",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Boring as hell",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "看膩了，無聊",
+   "source": "遊戲內",
+   "loc": "StoryData/S810B.json#92",
+   "who": "료슈"
+  },
+  "remark": "同句自行展開；JP あ・き・た 亦拼成「飽きた」"
+ },
+ {
+  "id": 148,
+  "kr": {
+   "full": "말보다 행동으로",
+   "source": "遊戲內",
+   "loc": "StoryData/7D111I3.json#29",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "言葉よりも行動で",
+   "source": "遊戲內",
+   "loc": "StoryData/7D111I3.json#29",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Actions, Cutting Through the Shit",
+   "source": "遊戲內",
+   "loc": "StoryData/7D111I3.json#29",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "行動勝於言語",
+   "source": "遊戲內",
+   "loc": "StoryData/7D111I3.json#29",
+   "who": "싱클레어"
+  },
+  "remark": "EN 略過 the"
+ },
+ {
+  "id": 149,
+  "kr": {
+   "full": "교체를 희망한다고",
+   "source": "遊戲內",
+   "loc": "StoryData/E709B.json#4",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "交代を希望する",
+   "source": "遊戲內",
+   "loc": "StoryData/E709B.json#4",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "switch teams",
+   "source": "遊戲內",
+   "loc": "StoryData/E709B.json#4",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "希望換個人",
+   "source": "遊戲內",
+   "loc": "StoryData/E709B.json#4",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 150,
+  "kr": {
+   "full": "일단 말해봐라",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130A.json#20",
+   "who": "료슈3"
+  },
+  "jp": {
+   "full": "とりあえずまあ",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130A.json#20",
+   "who": "료슈3"
+  },
+  "en": {
+   "full": "Two Words Do the Trick",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "一句話完事？",
+   "source": "推測"
+  },
+  "remark": "EN 依旁白斜體 two words／do／trick（ES130A#19）；TW 依旁白「一句話」，完字不確定"
+ },
+ {
+  "id": 151,
+  "kr": {
+   "full": "할 수 없지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "どうしようもない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "nothing we could've done",
+   "source": "遊戲內",
+   "loc": "StoryData/S529A.json#8",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "沒辦法",
+   "source": "推測"
+  },
+  "remark": "辛克萊附和覆述；KR #8「할 수 있는 건 없었겠죠」可佐證"
+ },
+ {
+  "id": 152,
+  "kr": {
+   "full": "애들에게 애들 다루는 법",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#1",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "子どもに子どもを扱う方法",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#1",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Teaching kids to deal with kids",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#1",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "教小孩怎麼帶小孩",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#1",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 153,
+  "kr": {
+   "full": "예술을 알지 못하는",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "芸術を知らない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "artless",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#4",
+   "who": "단테"
+  },
+  "tw": {
+   "full": "藝術無知",
+   "source": "推測"
+  },
+  "remark": "EN A.L.＝art-less，但丁內心呼應"
+ },
+ {
+  "id": 154,
+  "kr": {
+   "full": "말 안 듣는 어른",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "言うことを聞かない大人",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "unruly adult",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "不聽話的大人",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#10",
+   "who": "싱클레어"
+  },
+  "remark": "JP 無＝ない；同寫法 #8 改指 어린아이（雙關）"
+ },
+ {
+  "id": 155,
+  "kr": {
+   "full": "말 안듣는 어린아이",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "言うことを聞かない子ども",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "unruly child",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "不聽話的小孩",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "remark": "JP 無＝ない；KR 어 同字 #6 指 어른、#8 指 어린아이（雙關）"
+ },
+ {
+  "id": 156,
+  "kr": {
+   "full": "어르고 달래야",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "あやして宥め",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "soothe, coax, and nurture",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "撫摸安慰",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#11",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 157,
+  "kr": {
+   "full": "수업 시작",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#17",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "授業開始",
+   "source": "推測"
+  },
+  "en": {
+   "full": "much to learn",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#17",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "開始上課",
+   "source": "遊戲內",
+   "loc": "StoryData/ES130B.json#17",
+   "who": "싱클레어"
+  },
+  "remark": "KR 다. 為語尾（수업 시작이다）；JP し取「開始」之「始」音，非字首，故列推測（#17 有「授業開始」）"
+ },
+ {
+  "id": 158,
+  "kr": {
+   "full": "어이",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "おい",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Hey, W？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "喂，你",
+   "source": "未縮"
+  },
+  "remark": "對魁魁格的招呼；KR 無展開；EN W 不明"
+ },
+ {
+  "id": 159,
+  "kr": {
+   "full": "어이",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "おい、イサン",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Eh, Yi？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "喂，李箱",
+   "source": "推測"
+  },
+  "remark": "李箱答「부른 거요?」；KR 無展開，未確認是否含 이상；JP／TW 用李箱的「イ／李」，EN Y 疑為 Yi（或 you）；現有資料此句 JP 為空，JP 依先前紀錄的 お、イ"
+ },
+ {
+  "id": 160,
+  "kr": {
+   "full": "즐거운 시간",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "愉しい時間",
+   "source": "推測"
+  },
+  "en": {
+   "full": "fun",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "愉快時光",
+   "source": "推測"
+  },
+  "remark": "EN 字母拼成 fun，未見另有展開"
+ },
+ {
+  "id": 161,
+  "kr": {
+   "full": "닥쳐, 시계",
+   "source": "遊戲內",
+   "loc": "StoryData/E303B.json#12",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "黙れ、時計",
+   "source": "遊戲內",
+   "loc": "StoryData/E303B.json#12",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "shut the clock up",
+   "source": "遊戲內",
+   "loc": "StoryData/E303B.json#12",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "閉嘴，時鐘",
+   "source": "遊戲內",
+   "loc": "StoryData/E303B.json#12",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 162,
+  "kr": {
+   "full": "남은 손가락을 다 분질러",
+   "source": "遊戲內",
+   "loc": "StoryData/2D102B.json#18",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "残った指を全部圧し折る",
+   "source": "遊戲內",
+   "loc": "StoryData/2D102B.json#18",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "break all remaining fingers",
+   "source": "遊戲內",
+   "loc": "StoryData/2D102B.json#18",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "剩餘的手指盡數折斷",
+   "source": "遊戲內",
+   "loc": "StoryData/2D102B.json#18",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 163,
+  "kr": {
+   "full": "맞는 말",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "その通り",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Agree",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "說得對",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 164,
+  "kr": {
+   "full": "차원 마검",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "次元魔剣",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Dimensional Demon Edge Dimensional Rift？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "次元魔刃空間撕裂",
+   "source": "推測"
+  },
+  "remark": "依被動技能名 차원 마검／次元魔剣／Dimensional Demon Edge／次元魔刃；EN、TW 與 공. 절. 合譯，EN 末 R 或為 Rip"
+ },
+ {
+  "id": 165,
+  "kr": {
+   "full": "공간 절단",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "空間切断",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Dimensional Demon Edge Dimensional Rift？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "次元魔刃空間撕裂",
+   "source": "推測"
+  },
+  "remark": "同劇 P11110#49 有「공간 절단」；技能名 空間切断／Rip Space／空間撕裂；EN、TW 與 차. 마. 合譯"
+ },
+ {
+  "id": 166,
+  "kr": {
+   "full": "어이가 없다",
+   "source": "遊戲內",
+   "loc": "StoryData/E923I.json#91",
+   "who": "뉴료슈담배다침"
+  },
+  "jp": {
+   "full": "呆れた",
+   "source": "遊戲內",
+   "loc": "StoryData/E923I.json#91",
+   "who": "뉴료슈담배다침"
+  },
+  "en": {
+   "full": "What a Terrible Front",
+   "source": "遊戲內",
+   "loc": "StoryData/E923I.json#91",
+   "who": "뉴료슈담배다침"
+  },
+  "tw": {
+   "full": "真教人無言",
+   "source": "遊戲內",
+   "loc": "StoryData/E923I.json#91",
+   "who": "뉴료슈담배다침"
+  },
+  "remark": "本人下一句自行展開"
+ },
+ {
+  "id": 167,
+  "kr": {
+   "full": "버스 기사는 괜찮다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "バスの運転手は大丈夫",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Bus Driver's OK",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "巴士司機沒有受傷",
+   "source": "遊戲內",
+   "loc": "StoryData/S902B.json#139",
+   "who": "료슈"
+  },
+  "remark": "同句帶出「버스 기사」；JP バ＋（大）丈夫 雙關"
+ },
+ {
+  "id": 168,
+  "kr": {
+   "full": "별 이유 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "別に理由はない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Never Mind？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒什麼原因",
+   "source": "推測"
+  },
+  "remark": "EN 或 No Motive 等；KR 旁白 #3「별 의미는 없었지만」可佐證"
+ },
+ {
+  "id": 169,
+  "kr": {
+   "full": "시간을 내다 버리는",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#10",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "時間を無駄に",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#10",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "waste of time",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#10",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "浪費時間",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#10",
+   "who": "旁白"
+  },
+  "remark": ""
+ },
+ {
+  "id": 170,
+  "kr": {
+   "full": "기다리고 기다리니… 기어코",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#34",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "待ちに待って…ようやく",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#34",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Waiting overlong was worth it eventually",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#34",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "等啊等啊……終於",
+   "source": "遊戲內",
+   "loc": "StoryData/P10406.json#34",
+   "who": "료슈"
+  },
+  "remark": ""
+ },
+ {
+  "id": 171,
+  "kr": {
+   "full": "모두 썰어버린다",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#16",
+   "who": "단테"
+  },
+  "jp": {
+   "full": "全部切り刻んでやる",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#16",
+   "who": "단테"
+  },
+  "en": {
+   "full": "slice them all bare",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#16",
+   "who": "단테"
+  },
+  "tw": {
+   "full": "全都切碎",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#16",
+   "who": "단테"
+  },
+  "remark": ""
+ },
+ {
+  "id": 172,
+  "kr": {
+   "full": "벌레 털보",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#99",
+   "who": "그레고르"
+  },
+  "jp": {
+   "full": "毛むくじゃらの虫",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#99",
+   "who": "그레고르"
+  },
+  "en": {
+   "full": "crawling furball",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#99",
+   "who": "그레고르"
+  },
+  "tw": {
+   "full": "毛頭蟲子",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#99",
+   "who": "그레고르"
+  },
+  "remark": ""
+ },
+ {
+  "id": 173,
+  "kr": {
+   "full": "어차피 망하기 직전의 식당",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#164",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "どうせ廃業寸前のレストラン",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#164",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "restaurant already fated to shut",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#164",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "遲早要完蛋的餐廳",
+   "source": "遊戲內",
+   "loc": "StoryData/E302B.json#164",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 174,
+  "kr": {
+   "full": "기억이라도 잘못 먹은",
+   "source": "遊戲內",
+   "loc": "StoryData/S1017B.json#61",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "記憶違い",
+   "source": "遊戲內",
+   "loc": "StoryData/S1017B.json#61",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "memory poisoning",
+   "source": "遊戲內",
+   "loc": "StoryData/S1017B.json#61",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "記憶之類的吃錯了",
+   "source": "遊戲內",
+   "loc": "StoryData/S1017B.json#61",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 175,
+  "kr": {
+   "full": "알 바는 아니",
+   "source": "遊戲內",
+   "loc": "StoryData/E614A.json#12",
+   "who": "탐정로쟈"
+  },
+  "jp": {
+   "full": "知るか",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "None of my business",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "管他的",
+   "source": "未縮"
+  },
+  "remark": "KR 展開在他處（E614A#12）；JP、TW 為完整詞逐字拆開"
+ },
+ {
+  "id": 176,
+  "kr": {
+   "full": "알 바는 아니",
+   "source": "遊戲內",
+   "loc": "StoryData/E614A.json#12",
+   "who": "탐정로쟈"
+  },
+  "jp": {
+   "full": "知るか",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Who cares",
+   "source": "遊戲內",
+   "loc": "StoryData/E614A.json#12",
+   "who": "탐정로쟈"
+  },
+  "tw": {
+   "full": "管他的",
+   "source": "未縮"
+  },
+  "remark": "JP し・る・か、TW 管．他．的 為完整詞逐字拆開；로쟈的 JP「知ったこっちゃない」、TW「誰會在乎呢」對不上縮略的字"
+ },
+ {
+  "id": 177,
+  "kr": {
+   "full": "부의 재분배는 단축의 예술",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "富の再分配は短縮の芸術",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Redistribution of Wealth is the Art of Shortening",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "財富再分配是縮短的藝術",
+   "source": "推測"
+  },
+  "remark": "재＝재분배 依旁白 #49 文意與 EN（#49 有 redistribution of wealth）；「단축의 예술／art of shortening」見他處語音"
+ },
+ {
+  "id": 178,
+  "kr": {
+   "full": "직접 나와서 진행",
+   "source": "遊戲內",
+   "loc": "StoryData/S723B.json#6",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "直々に出て進行",
+   "source": "遊戲內",
+   "loc": "StoryData/S723B.json#6",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "graced us himself",
+   "source": "遊戲內",
+   "loc": "StoryData/S723B.json#6",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "直接進場",
+   "source": "遊戲內",
+   "loc": "StoryData/S723B.json#6",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 179,
+  "kr": {
+   "full": "새 자식",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "新しい子",
+   "source": "推測"
+  },
+  "en": {
+   "full": "New Child",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "新的子嗣",
+   "source": "推測"
+  },
+  "remark": "索拉 #63 說「다른 자식들」可佐證"
+ },
+ {
+  "id": 180,
+  "kr": {
+   "full": "머리가 터졌다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "頭が爆発した",
+   "source": "推測"
+  },
+  "en": {
+   "full": "oof",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "頭爆了",
+   "source": "推測"
+  },
+  "remark": "EN 字母拼成感嘆詞 oof，未見展開"
+ },
+ {
+  "id": 181,
+  "kr": {
+   "full": "시계가 불탄다？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "時計に火",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Clock Head",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "時鐘著火",
+   "source": "推測"
+  },
+  "remark": "시／時＝시계（但丁）；火的說法不確定"
+ },
+ {
+  "id": 182,
+  "kr": {
+   "full": "어이 상실",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "呆れた",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Good Grief？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "無語",
+   "source": "未縮"
+  },
+  "remark": "JP あき 標 ruby「呆」；EN 或 Good Game；TW 為加點的完整詞"
+ },
+ {
+  "id": 183,
+  "kr": {
+   "full": "어린 나다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "幼い俺",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Of course",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "年幼的我",
+   "source": "推測"
+  },
+  "remark": "旁白 #55「어린 시절」佐證"
+ },
+ {
+  "id": 184,
+  "kr": {
+   "full": "물어보면 말해",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "訊かれない事は言うな？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Shut Your Mouth",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒問的事別說？",
+   "source": "推測"
+  },
+  "remark": "與 안. 물. 입. 닫. 對句；EN 兩個合譯為 S.Y.M.… Unless asked.；JP、TW 末段不確定"
+ },
+ {
+  "id": 185,
+  "kr": {
+   "full": "안 물어보면 입 닫아",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "訊かれなければ口を閉じろ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Shut Your Mouth",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒問就把嘴閉上",
+   "source": "推測"
+  },
+  "remark": "EN 兩個合譯為 S.Y.M.… Unless asked."
+ },
+ {
+  "id": 186,
+  "kr": {
+   "full": "뭐가 아니라는",
+   "source": "遊戲內",
+   "loc": "StoryData/S947B.json#220",
+   "who": "과거료슈3"
+  },
+  "jp": {
+   "full": "何が違うんだ",
+   "source": "遊戲內",
+   "loc": "StoryData/S947B.json#220",
+   "who": "과거료슈3"
+  },
+  "en": {
+   "full": "What do you mean It's not?",
+   "source": "遊戲內",
+   "loc": "StoryData/S947B.json#220",
+   "who": "과거료슈3"
+  },
+  "tw": {
+   "full": "有什麼差別",
+   "source": "遊戲內",
+   "loc": "StoryData/S947B.json#220",
+   "who": "과거료슈3"
+  },
+  "remark": "EN W.I. 只取 What、It's"
+ },
+ {
+  "id": 187,
+  "kr": {
+   "full": "엄청？ 예쁘다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "すごくきれい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Mommy thinks it's Pretty",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "很漂亮",
+   "source": "推測"
+  },
+  "remark": "엄 依 JP／TW 作「很」；EN 讀作 Mommy"
+ },
+ {
+  "id": 188,
+  "kr": {
+   "full": "아가리를 닥치고",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "jp": {
+   "full": "口を閉じろ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "shut the fuck up",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "tw": {
+   "full": "閉上嘴",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "remark": "展開在他處（E914B#38）；EN S.T.F.U. 在 S703B#50 另解為 Shut that flaphole, ugly（該處 KR 為 닥. 허.）"
+ },
+ {
+  "id": 189,
+  "kr": {
+   "full": "아가리를 닥치고",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "jp": {
+   "full": "だまれ",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "en": {
+   "full": "shut the fuck up",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "tw": {
+   "full": "閉上嘴",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#38",
+   "who": "호엔하임"
+  },
+  "remark": "#41 뉴키라 另作曲解"
+ },
+ {
+  "id": 190,
+  "kr": {
+   "full": "쓸데없는 소리",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "無駄な言葉",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Don't Be Silly？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "別傻了",
+   "source": "推測"
+  },
+  "remark": "JP 駄言＝無駄な言葉；EN S 或 Stupid"
+ },
+ {
+  "id": 191,
+  "kr": {
+   "full": "취향 존중",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "蓼食う虫も好き好き",
+   "source": "推測"
+  },
+  "en": {
+   "full": "You Do You",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "人各有所愛",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 192,
+  "kr": {
+   "full": "별난 놈",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "変人",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "strange Office Rep",
+   "source": "遊戲內",
+   "loc": "StoryData/P10607.json#22",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "怪人",
+   "source": "未縮"
+  },
+  "remark": "JP、TW 為加點的完整詞"
+ },
+ {
+  "id": 193,
+  "kr": {
+   "full": "동감",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "同感",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "I agree",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "同樣這麼想？",
+   "source": "推測"
+  },
+  "remark": "KR／JP 為完整詞逐字拆開；TW 中間字不定"
+ },
+ {
+  "id": 194,
+  "kr": {
+   "full": "동감",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "同感",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "I agree",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "同意",
+   "source": "未縮"
+  },
+  "remark": "KR、JP（どう・かん＝同感的讀音）、TW 皆為完整詞逐字拆開"
+ },
+ {
+  "id": 195,
+  "kr": {
+   "full": "검거 완료",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "検挙完了",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Arrested On The Spot",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "現場逮捕",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 196,
+  "kr": {
+   "full": "미관적으로 만족",
+   "source": "遊戲內",
+   "loc": "StoryData/PC04B.json#29",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "美観的に満足",
+   "source": "遊戲內",
+   "loc": "StoryData/PC04B.json#29",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Aesthetically Satisfying",
+   "source": "遊戲內",
+   "loc": "StoryData/PC04B.json#29",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "美觀上感到滿意",
+   "source": "遊戲內",
+   "loc": "StoryData/PC04B.json#29",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 197,
+  "kr": {
+   "full": "건물 내 금연 포스터",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "建物内禁煙ポスター",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No Smoking On Premises",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "禁止進入建築海報？",
+   "source": "推測"
+  },
+  "remark": "TW 字序與 KR 不同，語意不確定"
+ },
+ {
+  "id": 198,
+  "kr": {
+   "full": "말이 너무 심하다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "言い方が酷過ぎる",
+   "source": "推測"
+  },
+  "en": {
+   "full": "That Was Harsh",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "話說得太過分",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 199,
+  "kr": {
+   "full": "환장",
+   "source": "遊戲內",
+   "loc": "StoryData/S445B.json#13",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "アホ",
+   "source": "遊戲內",
+   "loc": "StoryData/S445B.json#13",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "baffled",
+   "source": "遊戲內",
+   "loc": "StoryData/S445B.json#13",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "逼瘋",
+   "source": "遊戲內",
+   "loc": "StoryData/S445B.json#13",
+   "who": "료슈"
+  },
+  "remark": "本人更正：未縮略，只是加點"
+ },
+ {
+  "id": 200,
+  "kr": {
+   "full": "자색 정오",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#44",
+   "who": "이상"
+  },
+  "jp": {
+   "full": "紫の白昼？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Noon of Violet",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#44",
+   "who": "이상"
+  },
+  "tw": {
+   "full": "紫羅蘭的正午",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#44",
+   "who": "이상"
+  },
+  "remark": "劇中誤讀：#42 이상先讀成 자정（JP 無能、EN Night of Violet、TW 午夜），#44 才對；JP #44 作「紫の白昼」但「う」對不上，故列推測"
+ },
+ {
+  "id": 201,
+  "kr": {
+   "full": "자색 정오",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#44",
+   "who": "이상"
+  },
+  "jp": {
+   "full": "紫の白昼？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "D？ of Violet",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "紫羅蘭的正午",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#44",
+   "who": "이상"
+  },
+  "remark": "劇中誤讀：#55 이상又讀成 자정（EN Ordeal of Midnight）；EN 改作 D.O.V.，D 不明；JP「う」對不上 白昼"
+ },
+ {
+  "id": 202,
+  "kr": {
+   "full": "알지 못하는 놈",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "そんなわけない？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "That's not what I meant",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "懂的自然懂",
+   "source": "推測"
+  },
+  "remark": "KR 為俚語「알못」，他處「알. 못아」（E030X#94）、「알. 못. 들」（S524B#70）指人；EN 另造 T.N.W.I.M.（回應李箱更正）"
+ },
+ {
+  "id": 203,
+  "kr": {
+   "full": "알지 못하는 놈",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "そんなわけない？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "ignorant fool",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "懂的自然懂",
+   "source": "推測"
+  },
+  "remark": "KR 俚語「알못」，E030X#94「알. 못아」、S524B#70「알. 못. 들」指人；JP S524B#70「そ・ん・わ・なこと」作修飾語，與 そんなわけない 相合；EN「you I.F.」「surrounded by I.F.」"
+ },
+ {
+  "id": 204,
+  "kr": {
+   "full": "초록？ 깡통",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "緑？のカン",
+   "source": "推測"
+  },
+  "en": {
+   "full": "green tin can",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#68",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "腦啡肽醃罐頭",
+   "source": "遊戲內",
+   "loc": "StoryData/P10410.json#68",
+   "who": "료슈"
+  },
+  "remark": "KR 깡통 見 #68；초＝초록 KR 無根據，依 EN；JP カ・ン＝カン（缶），拼成みかん雙關"
+ },
+ {
+  "id": 205,
+  "kr": {
+   "full": "이게 왜 진짜",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "マジか",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No Fucking Way",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "不是吧",
+   "source": "未縮"
+  },
+  "remark": "JP、TW 為加點的完整詞"
+ },
+ {
+  "id": 206,
+  "kr": {
+   "full": "두 번 말하게",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "何度も同じこと",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Say It Twice",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "同樣的話",
+   "source": "推測"
+  },
+  "remark": "KR 或即「두말」一詞加點"
+ },
+ {
+  "id": 207,
+  "kr": {
+   "full": "과거의 악취가… 만연",
+   "source": "遊戲內",
+   "loc": "StoryData/S918B.json#52",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "過去の悪臭が…蔓延",
+   "source": "遊戲內",
+   "loc": "StoryData/S918B.json#52",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Insidious Stench Of The Past... In The Air",
+   "source": "遊戲內",
+   "loc": "StoryData/S918B.json#52",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "過去的惡臭……蔓延",
+   "source": "遊戲內",
+   "loc": "StoryData/S918B.json#52",
+   "who": "료슈"
+  },
+  "remark": "本人下一句自行展開"
+ },
+ {
+  "id": 208,
+  "kr": {
+   "full": "단축의 예술",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "短縮の芸術",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Art Of Shortening",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "斬斷的藝術？",
+   "source": "推測"
+  },
+  "remark": "「단축의 예술／短縮の芸術／art of shortening」見他處語音；TW 斷字所指不確定"
+ },
+ {
+  "id": 209,
+  "kr": {
+   "full": "뭘 원하는지 알아",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "何を知りたいのか分かっ",
+   "source": "遊戲內",
+   "loc": "StoryData/S912B.json#91",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "I know what you wan",
+   "source": "遊戲內",
+   "loc": "StoryData/S912B.json#91",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "我知道妳想",
+   "source": "遊戲內",
+   "loc": "StoryData/S912B.json#91",
+   "who": "싱클레어"
+  },
+  "remark": "辛克萊解讀被打斷；KR 只說到「뭘 원하시는지…」，알 未出現；EN 完整為 want"
+ },
+ {
+  "id": 210,
+  "kr": {
+   "full": "식량까지 약탈",
+   "source": "遊戲內",
+   "loc": "StoryData/PC02B.json#51",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "食料まで略奪",
+   "source": "遊戲內",
+   "loc": "StoryData/PC02B.json#51",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "pillage their storage depots",
+   "source": "遊戲內",
+   "loc": "StoryData/PC02B.json#51",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "連糧食都搶走",
+   "source": "遊戲內",
+   "loc": "StoryData/PC02B.json#51",
+   "who": "싱클레어"
+  },
+  "remark": "TW 字序相反"
+ },
+ {
+  "id": 211,
+  "kr": {
+   "full": "허탕",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "骨折り損",
+   "source": "推測"
+  },
+  "en": {
+   "full": "All That For Nothing",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "全部白費",
+   "source": "遊戲內",
+   "loc": "StoryData/S530B.json#2",
+   "who": "료슈"
+  },
+  "remark": "KR 為加點的完整詞；EN、TW 依本人下一句否定呼應（EN「all that wasn't for nothing」）"
+ },
+ {
+  "id": 212,
+  "kr": {
+   "full": "숨겨진 죽간",
+   "source": "遊戲內",
+   "loc": "StoryData/P10411.json#3",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "隠された竹簡",
+   "source": "遊戲內",
+   "loc": "StoryData/P10411.json#3",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Secret Handover, Here",
+   "source": "遊戲內",
+   "loc": "StoryData/P10411.json#3",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "隱藏的竹簡",
+   "source": "遊戲內",
+   "loc": "StoryData/P10411.json#3",
+   "who": "료슈"
+  },
+  "remark": "另一隻兔子先誤讀（숨을 죽이라는／家畜／shush／隱入竹林），#3 良秀自己更正"
+ },
+ {
+  "id": 213,
+  "kr": {
+   "full": "수련용 목인？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "修練用の木人",
+   "source": "推測"
+  },
+  "en": {
+   "full": "wooden training dummy",
+   "source": "遊戲內",
+   "loc": "StoryData/S808B.json#142",
+   "who": "오티스"
+  },
+  "tw": {
+   "full": "練功木人樁",
+   "source": "推測"
+  },
+  "remark": "KR 劇中稱허수아비；TW 劇中稱木人樁"
+ },
+ {
+  "id": 214,
+  "kr": {
+   "full": "닥치고 돌격",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "黙って突撃",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Charge In？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "閉嘴突擊",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 215,
+  "kr": {
+   "full": "죽고 살아나기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "死んで生き返る？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Die, E？, R？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "死去又生還？",
+   "source": "推測"
+  },
+  "remark": "但丁 #15 抱怨要承受的痛苦→反覆死亡復活；EN 只有 D=Die 較可信"
+ },
+ {
+  "id": 216,
+  "kr": {
+   "full": "닥치고 돌격, 죽고 살아나기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "黙って突撃・死んで生き返る？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Charge In, Die, E？, R？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "閉嘴突擊、死去又生還？",
+   "source": "推測"
+  },
+  "remark": "닥.돌.＋죽.살.；EN CIDER＝C.I.＋D.E.R."
+ },
+ {
+  "id": 217,
+  "kr": {
+   "full": "모이나, 시계",
+   "source": "遊戲內",
+   "loc": "StoryData/E920B.json#74",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "集まるのか、時計",
+   "source": "遊戲內",
+   "loc": "StoryData/E920B.json#74",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Do we regroup, Clock",
+   "source": "遊戲內",
+   "loc": "StoryData/E920B.json#74",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "要集合嗎，時鐘",
+   "source": "遊戲內",
+   "loc": "StoryData/E920B.json#74",
+   "who": "싱클레어"
+  },
+  "remark": "JP あ・と＝あつまる・とけい（讀音）"
+ },
+ {
+  "id": 218,
+  "kr": {
+   "full": "태엽만 잘 돌아가면",
+   "source": "遊戲內",
+   "loc": "StoryData/E002X.json#11",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "ゼンマイさえよく回るなら",
+   "source": "遊戲內",
+   "loc": "StoryData/E002X.json#11",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "As long as the clock turns",
+   "source": "遊戲內",
+   "loc": "StoryData/E002X.json#11",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "發條還在好好轉動就沒什麼問題",
+   "source": "遊戲內",
+   "loc": "StoryData/E002X.json#11",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 219,
+  "kr": {
+   "full": "불필요한… 시간 낭비",
+   "source": "遊戲內",
+   "loc": "StoryData/S913B.json#21",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "不必要な…時間の浪費",
+   "source": "遊戲內",
+   "loc": "StoryData/S913B.json#21",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Waste... Of... Time",
+   "source": "遊戲內",
+   "loc": "StoryData/S913B.json#21",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "無謂的……浪費時間",
+   "source": "遊戲內",
+   "loc": "StoryData/S913B.json#21",
+   "who": "싱클레어"
+  },
+  "remark": "TW 展開語序作「浪費時間」，與縮略「時．浪」順序相反"
+ },
+ {
+  "id": 220,
+  "kr": {
+   "full": "아이 앞에서",
+   "source": "遊戲內",
+   "loc": "StoryData/E812B.json#111",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "子供の前で",
+   "source": "遊戲內",
+   "loc": "StoryData/E812B.json#111",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "no smoking in front of kids",
+   "source": "遊戲內",
+   "loc": "StoryData/E812B.json#111",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "小孩子面前",
+   "source": "遊戲內",
+   "loc": "StoryData/E812B.json#111",
+   "who": "싱클레어"
+  },
+  "remark": "KR 애＝아이 的縮約"
+ },
+ {
+  "id": 221,
+  "kr": {
+   "full": "길게 말할 필요 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "長い話は必要無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Why I'm Here",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "不要多話",
+   "source": "未縮"
+  },
+  "remark": "EN「You know W.I.H.」後莫梭答又出逃了；TW 逐字加點即完整詞"
+ },
+ {
+  "id": 222,
+  "kr": {
+   "full": "로보토미 드림",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "jp": {
+   "full": "ロボトミードリーム",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "en": {
+   "full": "Lobotomy Dream",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "tw": {
+   "full": "腦葉夢",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "remark": "前一句的用語；KR、JP 不加點"
+ },
+ {
+  "id": 223,
+  "kr": {
+   "full": "엔케팔린 러쉬",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "jp": {
+   "full": "エンケファリンラッシュ",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "en": {
+   "full": "Enkephalin Rush",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "tw": {
+   "full": "腦啡肽熱潮",
+   "source": "遊戲內",
+   "loc": "StoryData/S111B.json#27",
+   "who": "이스마엘"
+  },
+  "remark": "前一句的用語；KR、JP 不加點"
+ },
+ {
+  "id": 224,
+  "kr": {
+   "full": "버러지 같은 못들？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "クギ共",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Waste Of Time",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "蟲子釘子們",
+   "source": "推測"
+  },
+  "remark": "對手是고정팀（Service des Clous，釘）；KR 或雙關「버러지만도 못한」；JP 把クギ拆兩段（同か・ちく）"
+ },
+ {
+  "id": 225,
+  "kr": {
+   "full": "목소리 죽여",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "息を殺せ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Shut Up",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "屏住呼吸",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 226,
+  "kr": {
+   "full": "고막 찢어지겠다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "鼓膜が破れる",
+   "source": "推測"
+  },
+  "en": {
+   "full": "My Ears？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "耳朵要裂了",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 227,
+  "kr": {
+   "full": "알 수 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "分からない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Have No Idea",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "不知道",
+   "source": "未縮"
+  },
+  "remark": "JP 無＝ない；TW 逐字加點即完整詞"
+ },
+ {
+  "id": 228,
+  "kr": {
+   "full": "괜찮은 예술",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "悪くない芸術",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Art Work？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "尚可的藝術",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 229,
+  "kr": {
+   "full": "괜찮은지 안 괜찮은지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "大丈夫かだいじょばないか？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "sure about this",
+   "source": "遊戲內",
+   "loc": "StoryData/E903B.json#165",
+   "who": "단테"
+  },
+  "tw": {
+   "full": "要不要緊",
+   "source": "未縮"
+  },
+  "remark": "JP だいじょば＝俗語だいじょばない（大丈夫じゃない）？；EN 呼應但丁「Are you sure about this」"
+ },
+ {
+  "id": 230,
+  "kr": {
+   "full": "거참 말 더럽게 많네",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "口数が多い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Talk Too Much",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "廢話真多",
+   "source": "未縮"
+  },
+  "remark": "TW 逐字加點即完整詞"
+ },
+ {
+  "id": 231,
+  "kr": {
+   "full": "썩은 표정",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "苦笑",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Long Face",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "苦笑",
+   "source": "未縮"
+  },
+  "remark": "JP、TW 逐字加點即完整詞"
+ },
+ {
+  "id": 232,
+  "kr": {
+   "full": "혀가 잘리게",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "舌切り",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Sliced？ Your Tongue, Cunt？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "切掉舌頭",
+   "source": "推測"
+  },
+  "remark": "EN 比照 S.Y.N.C.，S、C 不確定"
+ },
+ {
+  "id": 233,
+  "kr": {
+   "full": "디메리트",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#42",
+   "who": "뉴키라"
+  },
+  "jp": {
+   "full": "デメリット",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#42",
+   "who": "뉴키라"
+  },
+  "en": {
+   "full": "trade-off",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#42",
+   "who": "뉴키라"
+  },
+  "tw": {
+   "full": "副作用",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#42",
+   "who": "뉴키라"
+  },
+  "remark": "前一句綺羅的用語"
+ },
+ {
+  "id": 234,
+  "kr": {
+   "full": "그럴 가능성은 낮은",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#50",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "その可能性は低い",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#50",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "That's Pretty Unlikely",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#50",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "那種可能性應該很低",
+   "source": "遊戲內",
+   "loc": "StoryData/E910B.json#50",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 235,
+  "kr": {
+   "full": "억울한 누명",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "濡れ衣",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Stand？ This Slander",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "冤罪",
+   "source": "未縮"
+  },
+  "remark": "EN 辛克萊 #57 回「slander」；TW 逐字加點即完整詞"
+ },
+ {
+  "id": 236,
+  "kr": {
+   "full": "다리를 분질러？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "細切れ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Snap？ Your Legs, Cunt？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "盡數折斷？",
+   "source": "推測"
+  },
+  "remark": "KR 比照모.분.（모가지를 분질러）；EN「until you can barely walk」→Legs"
+ },
+ {
+  "id": 237,
+  "kr": {
+   "full": "대가리가 박살",
+   "source": "遊戲內",
+   "loc": "StoryData/S504B.json#111",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "哀れ",
+   "source": "遊戲內",
+   "loc": "StoryData/S504B.json#111",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "obliteration of forehead",
+   "source": "遊戲內",
+   "loc": "StoryData/S504B.json#111",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "頭顱被打得裂開",
+   "source": "遊戲內",
+   "loc": "StoryData/S504B.json#111",
+   "who": "旁白"
+  },
+  "remark": "JP あ・われ＝哀れ（旁白「哀れにも」）"
+ },
+ {
+  "id": 238,
+  "kr": {
+   "full": "도시의 별",
+   "source": "遊戲內",
+   "loc": "StoryData/E713B.json#67",
+   "who": "호엔하임"
+  },
+  "jp": {
+   "full": "都市の星",
+   "source": "遊戲內",
+   "loc": "StoryData/E713B.json#67",
+   "who": "호엔하임"
+  },
+  "en": {
+   "full": "Star of the City",
+   "source": "遊戲內",
+   "loc": "StoryData/E713B.json#67",
+   "who": "호엔하임"
+  },
+  "tw": {
+   "full": "都市之星",
+   "source": "遊戲內",
+   "loc": "StoryData/E713B.json#67",
+   "who": "호엔하임"
+  },
+  "remark": "前一句的用語"
+ },
+ {
+  "id": 239,
+  "kr": {
+   "full": "만족",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "よし",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Not Bad",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "很好",
+   "source": "未縮"
+  },
+  "remark": "KR、JP、TW 逐音節／字加點即完整詞"
+ },
+ {
+  "id": 240,
+  "kr": {
+   "full": "검사 결과",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#25",
+   "who": "히스클리프"
+  },
+  "jp": {
+   "full": "検査結果",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#25",
+   "who": "히스클리프"
+  },
+  "en": {
+   "full": "test results",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#36",
+   "who": "호엔하임"
+  },
+  "tw": {
+   "full": "檢查結果",
+   "source": "遊戲內",
+   "loc": "StoryData/E914B.json#25",
+   "who": "히스클리프"
+  },
+  "remark": "前文用語"
+ },
+ {
+  "id": 241,
+  "kr": {
+   "full": "싱클레어 번역",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "シンクレアの訳",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Machine Translation？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "辛克萊翻譯",
+   "source": "推測"
+  },
+  "remark": "EN 另造：MTL 慣用縮寫（L 取 translation）"
+ },
+ {
+  "id": 242,
+  "kr": {
+   "full": "황금가지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "黄金の枝",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Golden Bough",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "金枝",
+   "source": "未縮"
+  },
+  "remark": "KR 無直接展開，依 KR 劇情詞 황금가지（尋回失物）與 S1013B#11 뫼르소 的讀法，JP 黄・枝 佐證；TW 為完整詞逐字拆開"
+ },
+ {
+  "id": 243,
+  "kr": {
+   "full": "황금가죽",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "黄金の皮",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Golden Buildingskin",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "黃金皮革",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "remark": "劇中誤讀：#11 뫼르소讀成 황금가지（JP 黄金の枝、EN Golden Bough、TW 金枝），#12 良秀更正；JP お＝黄金（おうごん）"
+ },
+ {
+  "id": 244,
+  "kr": {
+   "full": "황금가죽",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "黄金の皮",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Golden Buildingskin",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "黃金皮革",
+   "source": "遊戲內",
+   "loc": "StoryData/S1013B.json#12",
+   "who": "료슈"
+  },
+  "remark": "同句更正（否定 황금가지）；JP お＝黄金（おうごん）"
+ },
+ {
+  "id": 245,
+  "kr": {
+   "full": "담에 봐",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "また会おう",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Later",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "再見",
+   "source": "未縮"
+  },
+  "remark": "糾正綺羅的담.또.봐.／ま・会・ね／S.Y.L.／下．次．再．見；KR 담＝다음；TW 逐字加點即完整詞"
+ },
+ {
+  "id": 246,
+  "kr": {
+   "full": "망할 관리자？ 망할 팀",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "クソ管理人・クソチーム",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Pathetic？ Manager, Pathetic？ Control？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "爛主管？爛團隊？",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 247,
+  "kr": {
+   "full": "쓸모없고, 쓸데없는",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#51",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "<ruby=カ>蚊</ruby>の涙ほどの役にも立たん、無駄な<ruby=はナシ>話</ruby>",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#51",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "literally otiose, needless, empty",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#51",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "空洞虛言、滿紙荒唐",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#51",
+   "who": "료슈"
+  },
+  "remark": "雙關：쓸쓸／かなし／LONE／空荒；JP 以 ruby カ、ナシ 對應"
+ },
+ {
+  "id": 248,
+  "kr": {
+   "full": "하나만 알고 둘은 모르는군",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#73",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "一を識って二を知らない",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#73",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "not seeing the full picture",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#73",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "只知其一，不知其二",
+   "source": "遊戲內",
+   "loc": "StoryData/P10414.json#73",
+   "who": "료슈"
+  },
+  "remark": "JP 不知＝知らない"
+ },
+ {
+  "id": 249,
+  "kr": {
+   "full": "말한 대로 했다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "言われた通りやった",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Did As You Said",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "照你說的做了",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 250,
+  "kr": {
+   "full": "기전",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I2.json#120",
+   "who": "파우스트만우"
+  },
+  "jp": {
+   "full": "きこう",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I2.json#120",
+   "who": "파우스트만우"
+  },
+  "en": {
+   "full": "modus",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I2.json#120",
+   "who": "파우스트만우"
+  },
+  "tw": {
+   "full": "機轉",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I2.json#120",
+   "who": "파우스트만우"
+  },
+  "remark": "劇中誤讀：本非縮寫（홍루만우 #122）；JP ruby 機構"
+ },
+ {
+  "id": 251,
+  "kr": {
+   "full": "알아듣게",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "わかる",
+   "source": "推測"
+  },
+  "en": {
+   "full": "What You Mean",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "聽得懂點",
+   "source": "未縮"
+  },
+  "remark": "TW 逐字加點即完整詞"
+ },
+ {
+  "id": 252,
+  "kr": {
+   "full": "바보 멍청이",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "バカ、まぬけ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Stupid Idiot",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "笨蛋",
+   "source": "未縮"
+  },
+  "remark": "TW 逐字加點即完整詞"
+ },
+ {
+  "id": 253,
+  "kr": {
+   "full": "요리가 너무 맛있다",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#31",
+   "who": "료슈2"
+  },
+  "jp": {
+   "full": "この世の味ではない",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#31",
+   "who": "료슈2"
+  },
+  "en": {
+   "full": "Yeah, Unbelievably Mouthwatering",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#31",
+   "who": "료슈2"
+  },
+  "tw": {
+   "full": "菜做得超讚",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#31",
+   "who": "료슈2"
+  },
+  "remark": "同句自解；KR 넘＝너무；JP 此＝この、無＝ない"
+ },
+ {
+  "id": 254,
+  "kr": {
+   "full": "뭔 말인지 모르겠다",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#55",
+   "who": "과거료슈3"
+  },
+  "jp": {
+   "full": "何を言っているのか分からない",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#55",
+   "who": "과거료슈3"
+  },
+  "en": {
+   "full": "I Don't Understand",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#55",
+   "who": "과거료슈3"
+  },
+  "tw": {
+   "full": "不知道妳在說啥",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#55",
+   "who": "과거료슈3"
+  },
+  "remark": "JP 不＝ない"
+ },
+ {
+  "id": 255,
+  "kr": {
+   "full": "동물 탈",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "動物の面",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Animal Masks",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "動物面具",
+   "source": "推測"
+  },
+  "remark": "指野獸派"
+ },
+ {
+  "id": 256,
+  "kr": {
+   "full": "반반보다 위",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#108",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "半々より上",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#108",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Half <i>Of</i> Half Or More",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#108",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "半半以上",
+   "source": "遊戲內",
+   "loc": "StoryData/E912B.json#108",
+   "who": "료슈"
+  },
+  "remark": "綺羅 #107 先誤讀為「반의 반보다 위」等，#108 良秀更正"
+ },
+ {
+  "id": 257,
+  "kr": {
+   "full": "돈키호테 없다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ドンキホーテがいない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No Don Quixote",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "唐吉訶德不見了",
+   "source": "推測"
+  },
+  "remark": "以實瑪利接著問唐吉訶德去向；KR 雙關「돈 없다」"
+ },
+ {
+  "id": 258,
+  "kr": {
+   "full": "너는 내 소중한 딸",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "私の大切な娘",
+   "source": "推測"
+  },
+  "en": {
+   "full": "I Love You Too",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "我最重要的女兒",
+   "source": "推測"
+  },
+  "remark": "回應女兒的완소／ILY；阿賴耶說縮錯了"
+ },
+ {
+  "id": 259,
+  "kr": {
+   "full": "빨리 강의는 끝내라고",
+   "source": "遊戲內",
+   "loc": "StoryData/E050X.json#68",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "早く講義は終わらせろ",
+   "source": "遊戲內",
+   "loc": "StoryData/E050X.json#68",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Enough with the lecture",
+   "source": "遊戲內",
+   "loc": "StoryData/E050X.json#68",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "快點結束講課",
+   "source": "遊戲內",
+   "loc": "StoryData/E050X.json#68",
+   "who": "싱클레어"
+  },
+  "remark": "JP は・こ＝はやく・こうぎ（讀音）"
+ },
+ {
+  "id": 260,
+  "kr": {
+   "full": "바가지 머리",
+   "source": "遊戲內",
+   "loc": "StoryData/E907B.json#55",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "おかっぱ頭",
+   "source": "遊戲內",
+   "loc": "StoryData/E907B.json#55",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Bowl Cut",
+   "source": "遊戲內",
+   "loc": "StoryData/E907B.json#55",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "西瓜頭",
+   "source": "遊戲內",
+   "loc": "StoryData/E907B.json#55",
+   "who": "료슈"
+  },
+  "remark": ""
+ },
+ {
+  "id": 261,
+  "kr": {
+   "full": "괜찮은 방법",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "良い方法",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Good Idea",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "妙招",
+   "source": "未縮"
+  },
+  "remark": "TW 逐字加點即完整詞"
+ },
+ {
+  "id": 262,
+  "kr": {
+   "full": "그림자 속에서 움직이는 반푼이 해결사",
+   "source": "遊戲內",
+   "loc": "StoryData/S426B.json#33",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "影の中で動く阿呆なフィクサー",
+   "source": "遊戲內",
+   "loc": "StoryData/S426B.json#33",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Fixers inanely treading shadows",
+   "source": "遊戲內",
+   "loc": "StoryData/S426B.json#33",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "影子中移動的半吊子收尾人",
+   "source": "遊戲內",
+   "loc": "StoryData/S426B.json#33",
+   "who": "료슈"
+  },
+  "remark": "同句寫出"
+ },
+ {
+  "id": 263,
+  "kr": {
+   "full": "작은 형님",
+   "source": "遊戲內",
+   "loc": "StoryData/S510A.json#3",
+   "who": "다친스미"
+  },
+  "jp": {
+   "full": "末兄",
+   "source": "遊戲內",
+   "loc": "StoryData/S510A.json#3",
+   "who": "다친스미"
+  },
+  "en": {
+   "full": "Big Brother",
+   "source": "遊戲內",
+   "loc": "StoryData/S510A.json#3",
+   "who": "다친스미"
+  },
+  "tw": {
+   "full": "幼兄",
+   "source": "遊戲內",
+   "loc": "StoryData/S510A.json#3",
+   "who": "다친스미"
+  },
+  "remark": "前一句的用語；JP ま・け＝末兄（まっけい？）讀音"
+ },
+ {
+  "id": 264,
+  "kr": {
+   "full": "걸작",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "傑作",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Art",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "傑作",
+   "source": "未縮"
+  },
+  "remark": "KR、JP、TW 逐音節／字加點即完整詞；EN 把 art 逐字母加點？"
+ },
+ {
+  "id": 265,
+  "kr": {
+   "full": "사람으로 만든 선물",
+   "source": "遊戲內",
+   "loc": "StoryData/E506A.json#9",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "人間でせっせと作った贈り物",
+   "source": "遊戲內",
+   "loc": "StoryData/E506A.json#9",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Gifts made from humans",
+   "source": "遊戲內",
+   "loc": "StoryData/E506A.json#9",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "人類製造的禮物",
+   "source": "遊戲內",
+   "loc": "StoryData/E506A.json#9",
+   "who": "싱클레어"
+  },
+  "remark": "雙關：JP にせもの（偽物）、TW 人造物"
+ },
+ {
+  "id": 266,
+  "kr": {
+   "full": "별걸 다 금지하는군",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "変な事まで禁止",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Stupid？ Pointless？ Rules",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "怪事都禁止？",
+   "source": "推測"
+  },
+  "remark": "EN 僅 R=Rules 較可信"
+ },
+ {
+  "id": 267,
+  "kr": {
+   "full": "빨리 말하지 않으면 대가리 박살 낸다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "早く言わないと頭が割れる",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Talk Or Suffer The Obliteration Of Forehead",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "快點說，否則就把你的頭砸碎",
+   "source": "推測"
+  },
+  "remark": "辛克萊於 #6、#8 分兩句解釋，非單一單位"
+ },
+ {
+  "id": 268,
+  "kr": {
+   "full": "다 말해",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "全部言え",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Full？ Sentence",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "說完全部",
+   "source": "推測"
+  },
+  "remark": "要辛克萊把話說完；EN F 亦可能為 Finish"
+ },
+ {
+  "id": 269,
+  "kr": {
+   "full": "잔챙이 썰기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "雑魚掃討",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "雜魚掃蕩",
+   "source": "推測"
+  },
+  "remark": "EN 無據可推；KR 語尾不確定"
+ },
+ {
+  "id": 270,
+  "kr": {
+   "full": "범인 둘",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "犯人二人",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Two Culprits",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "犯人有二",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 271,
+  "kr": {
+   "full": "밤에 악몽？ 내가？ 통？",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "夜、悪夢？ 俺、通？",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "夜裡噩夢，我翻來覆去？",
+   "source": "推測"
+  },
+  "remark": "劇中辛克萊無法解讀；僅「夜／噩夢」較可信"
+ },
+ {
+  "id": 272,
+  "kr": {
+   "full": "베고 싶다는 생각",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "斬りたいと望む考え",
+   "source": "推測"
+  },
+  "en": {
+   "full": "S？ It Down",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "想考慮斬掉它",
+   "source": "推測"
+  },
+  "remark": "EN S 可能為 Slice／Shoot／Strike"
+ },
+ {
+  "id": 273,
+  "kr": {
+   "full": "큰형",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "長兄",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Great Brother",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#32",
+   "who": "파우스트"
+  },
+  "tw": {
+   "full": "長兄",
+   "source": "未縮"
+  },
+  "remark": "EN G.B.＝Great Brother（同場景 #32 파우스트 稱中指的 큰형님 為 a Great Brother of the Middle）；KR、JP、TW 為完整詞逐字拆開"
+ },
+ {
+  "id": 274,
+  "kr": {
+   "full": "같은 취급",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "類は…友を",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#65",
+   "who": "돈키호테"
+  },
+  "en": {
+   "full": "Same treatment",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#64",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "同樣對待",
+   "source": "推測"
+  },
+  "remark": "劇中唐吉訶德誤讀為「같은 취미」「同樣……期待」；JP 類友＝類は友を呼ぶ"
+ },
+ {
+  "id": 275,
+  "kr": {
+   "full": "순순히 협조",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "jp": {
+   "full": "大人しく協力",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "en": {
+   "full": "Cooperate quietly",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "tw": {
+   "full": "乖乖配合",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "remark": ""
+ },
+ {
+  "id": 276,
+  "kr": {
+   "full": "머리를 절단해",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "jp": {
+   "full": "頭を切り落として",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "en": {
+   "full": "snap your neck completely",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "tw": {
+   "full": "身首分家",
+   "source": "遊戲內",
+   "loc": "StoryData/E902B.json#71",
+   "who": "료슈2"
+  },
+  "remark": "TW 展開「身首分家」字序為首…分"
+ },
+ {
+  "id": 277,
+  "kr": {
+   "full": "가관",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "見物",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Total？ Disaster",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "亦可一見？",
+   "source": "推測"
+  },
+  "remark": "TW 推測依據薄弱"
+ },
+ {
+  "id": 278,
+  "kr": {
+   "full": "사지를 분질러",
+   "source": "遊戲內",
+   "loc": "StoryData/P10404.json#10",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "四肢をへし切る",
+   "source": "遊戲內",
+   "loc": "StoryData/P10404.json#10",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "limbs broken",
+   "source": "遊戲內",
+   "loc": "StoryData/P10404.json#10",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "折斷四肢",
+   "source": "遊戲內",
+   "loc": "StoryData/P10404.json#10",
+   "who": "旁白"
+  },
+  "remark": ""
+ },
+ {
+  "id": 279,
+  "kr": {
+   "full": "말 잘 듣는",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "話を良く聞く賞",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Obedient P？",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "乖乖聽話獎",
+   "source": "推測"
+  },
+  "remark": "EN P 可能為 Patient／Pet"
+ },
+ {
+  "id": 280,
+  "kr": {
+   "full": "온통 파랗다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "全部青い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "blue all over",
+   "source": "遊戲內",
+   "loc": "StoryData/E090X.json#93",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "全是藍色",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 281,
+  "kr": {
+   "full": "임시로 동행",
+   "source": "遊戲內",
+   "loc": "StoryData/E908B.json#112",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "臨時で同行",
+   "source": "遊戲內",
+   "loc": "StoryData/E908B.json#112",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Temporary Accompaniment",
+   "source": "遊戲內",
+   "loc": "StoryData/E908B.json#112",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "臨時同行",
+   "source": "遊戲內",
+   "loc": "StoryData/E908B.json#112",
+   "who": "료슈"
+  },
+  "remark": "紅樓 #111 先誤讀為「임시 동맹／臨時同盟／Temporary Ally」，良秀 #112 更正"
+ },
+ {
+  "id": 282,
+  "kr": {
+   "full": "알고말고",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "もちろん",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Of Course",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "當然",
+   "source": "未縮"
+  },
+  "remark": ""
+ },
+ {
+  "id": 283,
+  "kr": {
+   "full": "모두 끝",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "臨終",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Fucked Up Beyond All Recognition",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "臨終",
+   "source": "未縮"
+  },
+  "remark": "EN FUBAR 為慣用縮寫，R 亦作 Repair"
+ },
+ {
+  "id": 284,
+  "kr": {
+   "full": "속이 좁다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ケツの穴が小さい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "",
+   "source": "不明"
+  },
+  "tw": {
+   "full": "氣量小",
+   "source": "推測"
+  },
+  "remark": "EN 無據可推"
+ },
+ {
+  "id": 285,
+  "kr": {
+   "full": "비명소리",
+   "source": "遊戲內",
+   "loc": "StoryData/E507B.json#2",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "叫び声",
+   "source": "遊戲內",
+   "loc": "StoryData/E507B.json#2",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "sounds of screaming",
+   "source": "遊戲內",
+   "loc": "StoryData/E507B.json#2",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "慘叫聲",
+   "source": "遊戲內",
+   "loc": "StoryData/E507B.json#2",
+   "who": "싱클레어"
+  },
+  "remark": "JP サビ 雙關歌曲副歌（呼應「高音域」）"
+ },
+ {
+  "id": 286,
+  "kr": {
+   "full": "용케 소문을 들었군",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#12",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "よくぞ噂を聞きつけた",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#12",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Surprised word reached you",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#12",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "竟然聽到了傳聞啊",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#12",
+   "who": "료슈"
+  },
+  "remark": ""
+ },
+ {
+  "id": 287,
+  "kr": {
+   "full": "별 이상한 소리를 다 듣겠군",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#58",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "随分と妙な話を聞かされる",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#58",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Such outlandish drivel, astonishing",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#58",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "盡是聽到些怪話啊",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#58",
+   "who": "료슈"
+  },
+  "remark": ""
+ },
+ {
+  "id": 288,
+  "kr": {
+   "full": "신규 고객",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#2",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "新入りの顧客",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#2",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "new customer",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#2",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "新客人",
+   "source": "遊戲內",
+   "loc": "StoryData/P10416.json#2",
+   "who": "료슈"
+  },
+  "remark": "同場景 #2 良秀先說出全稱"
+ },
+ {
+  "id": 289,
+  "kr": {
+   "full": "별말씀을",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "別に問題無い",
+   "source": "推測"
+  },
+  "en": {
+   "full": "No Problem",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒問題",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 290,
+  "kr": {
+   "full": "맘에 들어",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "気に入った",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Not Bad",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "我很滿意",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 291,
+  "kr": {
+   "full": "도대체 언제 안으로 진입할",
+   "source": "遊戲內",
+   "loc": "StoryData/E063X.json#72",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "いったいいつになったら中へ突入する",
+   "source": "遊戲內",
+   "loc": "StoryData/E063X.json#72",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "When the hell are we going in",
+   "source": "遊戲內",
+   "loc": "StoryData/E063X.json#72",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "到底什麼時候進入裡面",
+   "source": "遊戲內",
+   "loc": "StoryData/E063X.json#72",
+   "who": "싱클레어"
+  },
+  "remark": "旁白 #74 確認辛克萊答對"
+ },
+ {
+  "id": 292,
+  "kr": {
+   "full": "웃기는 소리",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "臍で茶を沸かす",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Bullshit",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "可笑至極",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 293,
+  "kr": {
+   "full": "오랜만",
+   "source": "遊戲內",
+   "loc": "StoryData/P10408.json#52",
+   "who": "마왕히스클리프4"
+  },
+  "jp": {
+   "full": "郷にまんまと帰ってきやがって",
+   "source": "遊戲內",
+   "loc": "StoryData/P10408.json#52",
+   "who": "마왕히스클리프4"
+  },
+  "en": {
+   "full": "rather unfortunate, destructive entrance",
+   "source": "遊戲內",
+   "loc": "StoryData/P10408.json#52",
+   "who": "마왕히스클리프4"
+  },
+  "tw": {
+   "full": "無需多禮",
+   "source": "遊戲內",
+   "loc": "StoryData/P10408.json#52",
+   "who": "마왕히스클리프4"
+  },
+  "remark": "雙關：字面為「오만／傲慢／RUDE／無禮」，希斯克里夫回應時展開"
+ },
+ {
+  "id": 294,
+  "kr": {
+   "full": "말은 똑바로",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "正確に言うと",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Bullshit",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "正確地說",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 295,
+  "kr": {
+   "full": "토끼의 말이 맞다",
+   "source": "遊戲內",
+   "loc": "StoryData/PC06B.json#62",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "うさぎの言うことが正しい",
+   "source": "遊戲內",
+   "loc": "StoryData/PC06B.json#62",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Rabbit’s right",
+   "source": "遊戲內",
+   "loc": "StoryData/PC06B.json#62",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "兔子說得對",
+   "source": "遊戲內",
+   "loc": "StoryData/PC06B.json#62",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 296,
+  "kr": {
+   "full": "죽다 살아나다 죽다 살아나다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "死んで生き返り、死んで生き返り",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Die, Revive, Die, Revive",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "死去又活來，死去又活來",
+   "source": "推測"
+  },
+  "remark": "取自前句希斯克里夫的說法（#8）"
+ },
+ {
+  "id": 297,
+  "kr": {
+   "full": "뭔가 다가오고 있다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "何かが近寄ってくる",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Something Is Coming",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "有什麼東西在靠近",
+   "source": "推測"
+  },
+  "remark": ""
+ },
+ {
+  "id": 298,
+  "kr": {
+   "full": "닥쳐라 허접",
+   "source": "遊戲內",
+   "loc": "StoryData/S703B.json#50",
+   "who": "료슈"
+  },
+  "jp": {
+   "full": "黙れザコ",
+   "source": "遊戲內",
+   "loc": "StoryData/S703B.json#50",
+   "who": "료슈"
+  },
+  "en": {
+   "full": "Shut that flaphole, ugly",
+   "source": "遊戲內",
+   "loc": "StoryData/S703B.json#50",
+   "who": "료슈"
+  },
+  "tw": {
+   "full": "閉嘴吧雜魚",
+   "source": "遊戲內",
+   "loc": "StoryData/S703B.json#50",
+   "who": "료슈"
+  },
+  "remark": "辛克萊 #49 先誤讀，良秀 #50 更正"
+ },
+ {
+  "id": 299,
+  "kr": {
+   "full": "개인플레이",
+   "source": "遊戲內",
+   "loc": "StoryData/S833A.json#138",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "個人プレイ",
+   "source": "遊戲內",
+   "loc": "StoryData/S833A.json#138",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Playing on Solo-mode",
+   "source": "遊戲內",
+   "loc": "StoryData/S833A.json#138",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "單打獨鬥",
+   "source": "遊戲內",
+   "loc": "StoryData/S833A.json#138",
+   "who": "싱클레어"
+  },
+  "remark": ""
+ },
+ {
+  "id": 300,
+  "kr": {
+   "full": "재수없는 수염",
+   "source": "遊戲內",
+   "loc": "StoryData/E605B.json#95",
+   "who": "탐정료슈"
+  },
+  "jp": {
+   "full": "出しゃばりな口ひげ野郎",
+   "source": "遊戲內",
+   "loc": "StoryData/E605B.json#95",
+   "who": "탐정료슈"
+  },
+  "en": {
+   "full": "Annoying, Stupid Stache",
+   "source": "遊戲內",
+   "loc": "StoryData/E605B.json#95",
+   "who": "탐정료슈"
+  },
+  "tw": {
+   "full": "鬼話連篇的鬍子佬",
+   "source": "遊戲內",
+   "loc": "StoryData/E605B.json#95",
+   "who": "탐정료슈"
+  },
+  "remark": ""
+ },
+ {
+  "id": 301,
+  "kr": {
+   "full": "감쟈… 합니다",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I3.json#14",
+   "who": "료슈만우"
+  },
+  "jp": {
+   "full": "ありがじゅっ…とう…ございましゅ",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I3.json#14",
+   "who": "료슈만우"
+  },
+  "en": {
+   "full": "Thank... you",
+   "source": "遊戲內",
+   "loc": "StoryData/E003I3.json#14",
+   "who": "료슈만우"
+  },
+  "tw": {
+   "full": "謝謝你",
+   "source": "推測"
+  },
+  "remark": "幼兒腔（감쟈＝감사）；TW 劇中作「蟹、蟹……您」，字對不上"
+ },
+ {
+  "id": 302,
+  "kr": {
+   "full": "좋은 소식이라",
+   "source": "遊戲內",
+   "loc": "StoryData/P10902.json#10",
+   "who": "로쟈"
+  },
+  "jp": {
+   "full": "いいニュースだ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "good news",
+   "source": "遊戲內",
+   "loc": "StoryData/P10902.json#10",
+   "who": "로쟈"
+  },
+  "tw": {
+   "full": "好消息",
+   "source": "遊戲內",
+   "loc": "StoryData/P10902.json#10",
+   "who": "로쟈"
+  },
+  "remark": "KR 다＝이다；JP 羅佳說「いい知らせ」，不含ニュ"
+ },
+ {
+  "id": 303,
+  "kr": {
+   "full": "신경 안 써",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "気にしない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Don't Care",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒在意",
+   "source": "推測"
+  },
+  "remark": "KR 신 亦可能指紅樓說的「신선」"
+ },
+ {
+  "id": 304,
+  "kr": {
+   "full": "모가지를 분질러야 말을 듣지？ 도야지",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "首をへし折らないと言うことを聞かないのか、ブタ",
+   "source": "推測"
+  },
+  "en": {
+   "full": "To Right Against S？ Hogs Entails Scragging",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "不把脖子扭斷，這群豬就不會閉嘴",
+   "source": "推測"
+  },
+  "remark": "仿 S101B#45–46「모분조도／くへしぶ／TRANCHES」；TW 與之同形"
+ },
+ {
+  "id": 305,
+  "kr": {
+   "full": "삼조씨… 대답",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#59",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "サムジョさん…答えろ",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#59",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Samjo... She wants answers",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#59",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "三朝先生……她讓您回答",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#59",
+   "who": "싱클레어"
+  },
+  "remark": "JP こ＝答え（こたえ）"
+ },
+ {
+  "id": 306,
+  "kr": {
+   "full": "삼조 씨… 이번엔 대가리",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#62",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "サムジョさん…今度はこうべをカチ割る",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#62",
+   "who": "싱클레어"
+  },
+  "en": {
+   "full": "Samjo... She says she'll assail you",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#62",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "三朝先生……她這次說要打爆您的頭",
+   "source": "遊戲內",
+   "loc": "StoryData/S430B.json#62",
+   "who": "싱클레어"
+  },
+  "remark": "雙關：同一 삼.대 第二次改指 대가리；#63 良秀只更正時間（지금 대가리를 깬다）"
+ },
+ {
+  "id": 307,
+  "kr": {
+   "full": "림버스 컴퍼니의 수치",
+   "source": "遊戲內",
+   "loc": "StoryData/S701B.json#64",
+   "who": "오티스"
+  },
+  "jp": {
+   "full": "リンバス・カンパニーの恥",
+   "source": "遊戲內",
+   "loc": "StoryData/S701B.json#64",
+   "who": "오티스"
+  },
+  "en": {
+   "full": "shame of Limbus company",
+   "source": "遊戲內",
+   "loc": "StoryData/S701B.json#64",
+   "who": "오티스"
+  },
+  "tw": {
+   "full": "邊獄公司的恥辱",
+   "source": "遊戲內",
+   "loc": "StoryData/S701B.json#64",
+   "who": "오티스"
+  },
+  "remark": ""
+ },
+ {
+  "id": 308,
+  "kr": {
+   "full": "알아듣게 말해",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "分かるように言え",
+   "source": "推測"
+  },
+  "en": {
+   "full": "What Do You Mean",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "說人話",
+   "source": "未縮"
+  },
+  "remark": ""
+ },
+ {
+  "id": 309,
+  "kr": {
+   "full": "답답하게 하면 모가지를 분질러버린다",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "まだるっこしくするなら首をへし折る",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Talk, Or I Snap Your Neck Completely",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "如果讓我感到鬱悶，就把脖子扭斷",
+   "source": "推測"
+  },
+  "remark": "辛克萊 #36 只展開到「모가지를…／首を…／Snap Your—」就中斷"
+ },
+ {
+  "id": 310,
+  "kr": {
+   "full": "좋다 말았다",
+   "source": "遊戲內",
+   "loc": "StoryData/E042X.json#97",
+   "who": "旁白"
+  },
+  "jp": {
+   "full": "糠喜び",
+   "source": "遊戲內",
+   "loc": "StoryData/E042X.json#97",
+   "who": "旁白"
+  },
+  "en": {
+   "full": "what a disappointment",
+   "source": "遊戲內",
+   "loc": "StoryData/E042X.json#97",
+   "who": "旁白"
+  },
+  "tw": {
+   "full": "真令人失望",
+   "source": "推測"
+  },
+  "remark": "旁白 #97 先說出（좋다 말았다／糠喜び／what a disappointment）；TW #97 作「讓人失望」，真、令 對不上，故列推測"
+ },
+ {
+  "id": 311,
+  "kr": {
+   "full": "빠따",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "バット",
+   "source": "未縮"
+  },
+  "en": {
+   "full": "Bats",
+   "source": "未縮"
+  },
+  "tw": {
+   "full": "球棒",
+   "source": "未縮"
+  },
+  "remark": "指希斯克里夫（球棒）；KR/JP/TW 為整詞加點"
+ },
+ {
+  "id": 312,
+  "kr": {
+   "full": "뫼르소 차례",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "ムルソーの番",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Meursault's turn",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "輪到莫梭",
+   "source": "推測"
+  },
+  "remark": "EN 同句有「had my turn」"
+ },
+ {
+  "id": 313,
+  "kr": {
+   "full": "유잼",
+   "source": "未縮"
+  },
+  "jp": {
+   "full": "おもろい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Fun As Hell",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "有趣",
+   "source": "未縮"
+  },
+  "remark": "유잼 是俗語本身（유＋재미，S951B#24 亦用「유잼」），只逐字加點"
+ },
+ {
+  "id": 314,
+  "kr": {
+   "full": "안 심심하고 안 지루",
+   "source": "遊戲內",
+   "loc": "StoryData/S951B.json#25",
+   "who": "싱클레어"
+  },
+  "jp": {
+   "full": "退屈でもなく、怠くもない",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Such A Disappoin",
+   "source": "遊戲內",
+   "loc": "StoryData/S951B.json#25",
+   "who": "싱클레어"
+  },
+  "tw": {
+   "full": "不沉悶也不煩躁",
+   "source": "推測"
+  },
+  "remark": "辛克萊話被打斷；JP 缺末字「無」，TW「無聊」對不上「悶」"
+ },
+ {
+  "id": 315,
+  "kr": {
+   "full": "재미있음",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "おもろい",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Not Gonna Lie",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "挺有意思的",
+   "source": "未縮"
+  },
+  "remark": "유잼＝有＋재미 俚語"
+ },
+ {
+  "id": 316,
+  "kr": {
+   "full": "전부 소탕",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "全部掃討",
+   "source": "推測"
+  },
+  "en": {
+   "full": "kill them all",
+   "source": "遊戲內",
+   "loc": "StoryData/E607B.json#33",
+   "who": "T사대표"
+  },
+  "tw": {
+   "full": "完全清掃",
+   "source": "遊戲內",
+   "loc": "StoryData/E607B.json#33",
+   "who": "T사대표"
+  },
+  "remark": "EN、TW 由 T사대표 #33 回應時說出（If we do kill them all／如果完全清掃）；KR #33 只說 소탕、JP 只說 掃討，전／全 推為 전부／全部"
+ },
+ {
+  "id": 317,
+  "kr": {
+   "full": "잘 알아봤군",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "そのとおり",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Good Eye",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "沒錯",
+   "source": "未縮"
+  },
+  "remark": "KR 語尾不確定"
+ },
+ {
+  "id": 318,
+  "kr": {
+   "full": "흥미로운 이야기",
+   "source": "推測"
+  },
+  "jp": {
+   "full": "興味深い話",
+   "source": "推測"
+  },
+  "en": {
+   "full": "Interesting Story",
+   "source": "推測"
+  },
+  "tw": {
+   "full": "有趣的談話",
+   "source": "推測"
+  },
+  "remark": ""
+ }
+]
