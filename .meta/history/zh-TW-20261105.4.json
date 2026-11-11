@@ -1,0 +1,491 @@
+{
+  "tag": "zh-TW-20261105.4",
+  "prev_tag": "zh-TW-20261105.3",
+  "released_at": "2026-11-11T11:43:08Z",
+  "prev_released_at": "2026-11-07T13:49:48Z",
+  "raw_tag": "raw-20261105",
+  "prev_raw_tag": "raw-20261105",
+  "rules_commit": "ebbb490ca56d41c7d99dcd8496ccaee19a55063e",
+  "prev_rules_commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce",
+  "counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 24
+  },
+  "copy_counts": {
+    "new": 0,
+    "kr_changed": 0,
+    "deleted": 0,
+    "zh_changed": 0
+  },
+  "other_files": [],
+  "entries": [
+    {
+      "file": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json",
+      "field": "dlg",
+      "ptr": "/dataList/7/dlg",
+      "kind": "zh-changed",
+      "new_kr": "닥.돌.죽. 다음은 시계의 고통과 함께 살.이겠군.",
+      "old_zh": "閉．突．死，下一步就是伴隨著時鐘的痛苦復活了。",
+      "new_zh": "閉．突．死。接下來就是伴著時鐘之痛的生．了吧。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 19：`살.` 的縮略遺失；S302B#11 `닥.돌.죽.살.` 寫 閉．突．死．生"
+        }
+      ]
+    },
+    {
+      "file": "BattleAnnouncerDlg/Announcer_Ryoshu_42.json",
+      "field": "dlg",
+      "ptr": "/dataList/26/dlg",
+      "kind": "zh-changed",
+      "new_kr": "바꿀 수 없는 상황을 탓하는 것만큼 무의미한 일은 없다.\n그러니 시시비비는 버.안에서 배틀로얄로 가리는 게 좋겠군.",
+      "old_zh": "這世上沒什麼比埋怨既定局面更毫無意義的了。\n既然如此，是非對錯就在蠢．中大逃殺決定吧。",
+      "new_zh": "這世上沒什麼比埋怨既定局面更毫無意義的了。\n既然如此，是非對錯就在巴．內用大逃殺決定吧。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 31：`버.안`＝버스 안（JP バ・中、EN \"back O.T.B.\"），與 E512B#1 巴．內 同義；蠢．中 是誤譯"
+        }
+      ]
+    },
+    {
+      "file": "Passives.json",
+      "field": "name",
+      "ptr": "/dataList/173/name",
+      "kind": "zh-changed",
+      "new_kr": "담.탐",
+      "old_zh": "煙．休",
+      "new_zh": "菸．休",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 18：同名被動 #171、#172 寫 菸．休"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json",
+      "field": "dlg",
+      "ptr": "/dataList/7/dlg",
+      "kind": "zh-changed",
+      "new_kr": "누구보다 신속하게 정보를 전달하려면 말이야… 하나하나 다 말하는 것도 시간 낭비야. 알.단.이.예.(알겠나 단테? 이것이 예술이다.)",
+      "old_zh": "要是打算比別人更快地傳達訊息……逐字解釋就是浪費時間。明．了．這．術。\n（明白了嗎但丁？這就是藝術。）",
+      "new_zh": "要是打算比別人更快地傳達訊息……逐字解釋就是浪費時間。明．但．這．藝。\n（明白了嗎但丁？這就是藝術。）",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 15：`알.단.이.예.` 漏了「但」；同檔 #18 `알.단.잘.부` 寫 知．但．請．關；括號不動"
+        }
+      ]
+    },
+    {
+      "file": "PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json",
+      "field": "dlg",
+      "ptr": "/dataList/11/dlg",
+      "kind": "zh-changed",
+      "new_kr": "알.단.이.예",
+      "old_zh": "明．了．這．術。",
+      "new_zh": "明．但．這．藝。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 15：`알.단.이.예` 漏了「但」，與 #7 一致"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E402A.json",
+      "field": "content",
+      "ptr": "/dataList/16/content",
+      "kind": "zh-changed",
+      "new_kr": "저. 뭐.",
+      "old_zh": "東．說。",
+      "new_zh": "那．啥。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 17：`저. 뭐.` 是「那些東西是什麼」（#17）；東．說 是誤譯"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E402A.json",
+      "field": "content",
+      "ptr": "/dataList/17/content",
+      "kind": "zh-changed",
+      "new_kr": "저것들은 뭐냐고 하시는 것 같네요…",
+      "old_zh": "她應該是「那些東西在說什麼」的意思……",
+      "new_zh": "她應該是在問「那些東西是啥」……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 17：KR「저것들은 뭐냐고」是問那些東西是什麼，不是「在說什麼」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E406B.json",
+      "field": "content",
+      "ptr": "/dataList/16/content",
+      "kind": "zh-changed",
+      "new_kr": "모. 분.",
+      "old_zh": "脖．扭．豬．閉。",
+      "new_zh": "脖．扭。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 10：KR 只有 `모. 분.`，譯文多了 豬．閉"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E406B.json",
+      "field": "content",
+      "ptr": "/dataList/17/content",
+      "kind": "zh-changed",
+      "new_kr": "아니, 여기서는 다. 분.이 맞다.",
+      "old_zh": "不，這裡說「脖．扭．蟹．閉」更好。",
+      "new_zh": "不，這裡該說盡．折。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 11：莫梭說的是 `다. 분.`（다 분질러），2D102B、E910B#56 寫 盡．折"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/E912B.json",
+      "field": "content",
+      "ptr": "/dataList/56/content",
+      "kind": "zh-changed",
+      "new_kr": "하… 진짜 엄마, 별다줄이야.",
+      "old_zh": "唉……媽媽真的是什麼都要縮寫耶。",
+      "new_zh": "唉……媽媽真的是「全縮」耶。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 24：流行語 별다줄 遺失；S940B#25 寫「全縮」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/ES130B.json",
+      "field": "content",
+      "ptr": "/dataList/10/content",
+      "kind": "zh-changed",
+      "new_kr": "말 안 듣는 어른 놈들은 모가지를 분질러버리면 그만이지만…",
+      "old_zh": "不聽話的大人，折斷脖子便可……",
+      "new_zh": "不聽話的大人，扭斷脖子便可……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 13：辛克萊的展開要對上 脖．扭（同場景 #6）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10410.json",
+      "field": "content",
+      "ptr": "/dataList/76/content",
+      "kind": "zh-changed",
+      "new_kr": "네놈도 거기 붙는 게 낫겠군. 초. 깡.이 엔. 팔.에 절여져 한 말은 무시한다.",
+      "old_zh": "你也最好加入他們。記得無視那個泡在腦啡肽裡的腦．醃．罐說的話。",
+      "new_zh": "你也最好加入他們。記得無視那個泡在腦．肽裡的腦．醃．罐說的話。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 9：`엔. 팔.` 的縮略遺失；Voice_LEGOEcho#7 寫 腦．肽"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10413.json",
+      "field": "content",
+      "ptr": "/dataList/19/content",
+      "kind": "zh-changed",
+      "new_kr": "모… 그, 그거지? 모가지를 분질러 버린다는… 그럼, 사 살려준다는…",
+      "old_zh": "折……是、是那個嗎？將脖子折斷……那麼，妳會饒我一命的對吧……",
+      "new_zh": "脖……是、是那個嗎？將脖子扭斷……那麼，妳會饒我一命的對吧……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 14：結巴的第一字要是縮略語的第一字（#18 脖．扭），展開對上「扭斷」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10414.json",
+      "field": "content",
+      "ptr": "/dataList/75/content",
+      "kind": "zh-changed",
+      "new_kr": "잘 봐둬라. 어. 떠.",
+      "old_zh": "給我看好了。有．無。",
+      "new_zh": "給我看好了。烏．眾。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 8：`어. 떠.`（어중이떠중이）另 2 處寫 烏．眾；有．無 是照 JP「有象無象」"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P10607.json",
+      "field": "content",
+      "ptr": "/dataList/26/content",
+      "kind": "zh-changed",
+      "new_kr": "동. 감. 이런 건 내 습작을 만드는 데나 유효할 짓거리다.",
+      "old_zh": "同．想。這種只能作為我的練習。",
+      "new_zh": "同．感。這種只能作為我的練習。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 6：`동. 감.`（동감＝同感）統一寫 同．感（JP 同・感）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/P11110.json",
+      "field": "content",
+      "ptr": "/dataList/74/content",
+      "kind": "zh-changed",
+      "new_kr": "차. 마.를 통한 공. 절.은 나의 피를 머금었을 때야 예술적인…",
+      "old_zh": "次．魔．空．裂只有在浸透我的血液時才是藝術……",
+      "new_zh": "透過次．魔的空．裂，只有在浸透我的血液時才是藝術……",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 20：KR 是 `차. 마.` 與 `공. 절.` 兩個縮略語，譯文併成一個"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S1013B.json",
+      "field": "content",
+      "ptr": "/dataList/10/content",
+      "kind": "zh-changed",
+      "new_kr": "…무엇이 필요하지? 황. 가. 라도 있어야 하나?",
+      "old_zh": "……需要什麼？得要有黃．金．才行嗎？",
+      "new_zh": "……需要什麼？得要有黃．金才行嗎？",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 37：末字後多了「．」，會讀成三字的 黃．金．才"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S1013B.json",
+      "field": "content",
+      "ptr": "/dataList/12/content",
+      "kind": "zh-changed",
+      "new_kr": "쯧… 황. 가. 는 황금가지가 아니라, 황금가죽이다.",
+      "old_zh": "嘖……黃．金．指的不是金枝，是黃金皮革。",
+      "new_zh": "嘖……黃．金指的不是金枝，是黃金皮革。",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 37：末字後多了「．」，會讀成三字的 黃．金．指"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S1027B.json",
+      "field": "content",
+      "ptr": "/dataList/18/content",
+      "kind": "zh-changed",
+      "new_kr": "불만 있나? 시. 대?",
+      "old_zh": "有意見嗎？鐘．頭？",
+      "new_zh": "有意見嗎？時．頭？",
+      "old_origin": "claude",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 1：`시. 대.` 其他 11 處都寫 時．頭；鐘．頭 是詞彙表禁用的寫法"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S210B.json",
+      "field": "content",
+      "ptr": "/dataList/5/content",
+      "kind": "zh-changed",
+      "new_kr": "모가지를 분질러버린다는 뜻 이다.",
+      "old_zh": "折斷你脖子的意思。",
+      "new_zh": "扭斷你脖子的意思。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 12：展開要對上 脖．扭（S101B#46、Announcer#28 都寫「扭斷」）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S445B.json",
+      "field": "content",
+      "ptr": "/dataList/0/content",
+      "kind": "zh-changed",
+      "new_kr": "어.이.",
+      "old_zh": "喂，李。",
+      "new_zh": "喂．李。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 21：KR 加點，譯文改成了逗號"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S514B.json",
+      "field": "content",
+      "ptr": "/dataList/4/content",
+      "kind": "zh-changed",
+      "new_kr": "빨. 말. 않. 대. 박.",
+      "old_zh": "快．說．否．頭．砸。",
+      "new_zh": "快．說．否．頭．裂。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 25：`대.박.` 其他 2 處與技能名都是 頭．裂"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S514B.json",
+      "field": "content",
+      "ptr": "/dataList/97/content",
+      "kind": "zh-changed",
+      "new_kr": "…동. 감.",
+      "old_zh": "……同．意。",
+      "new_zh": "……同．感。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 7：`동. 감.`（동감＝同感）統一寫 同．感（JP 同・感）"
+        }
+      ]
+    },
+    {
+      "file": "StoryData/S940B.json",
+      "field": "content",
+      "ptr": "/dataList/24/content",
+      "kind": "zh-changed",
+      "new_kr": "…별걸 다 줄이는군.",
+      "old_zh": "……什麼都要縮寫啊。",
+      "new_zh": "……全都要縮寫啊。",
+      "old_origin": "paratranz",
+      "new_origin": "human",
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-11-ryoshu-proposals.yaml",
+          "reason": "提案 24：讓 #25 的「全縮」還原得出（별걸 다 줄이는군）"
+        }
+      ]
+    }
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-11-ryoshu-proposals.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-11-ryoshu-proposals.yaml",
+      "path": "rules/adjustments/2026-11-11-ryoshu-proposals.yaml",
+      "title": "2026-11-11-ryoshu-proposals.yaml",
+      "commit": "ebbb490ca56d41c7d99dcd8496ccaee19a55063e"
+    }
+  }
+}

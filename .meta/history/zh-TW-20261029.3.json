@@ -31,7 +31,13 @@
       "new_zh": "<color=#ebcaa2>罪人{0}<color=#e30000>受到{2}點</color>{1}傷害</color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-02-closing-tags"
+        }
+      ]
     },
     {
       "file": "HellsChicken.json",
@@ -43,7 +49,23 @@
       "new_zh": "銀鳳家<color=#205925>炸雞酒吧\n<color=#ebcaa2>究極跳樓價特惠活動！</color></color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-02-closing-tags"
+        }
+      ]
     }
-  ]
+  ],
+  "causes_version": 1,
+  "rules": {
+    "rewrite:2026-11-02-closing-tags": {
+      "kind": "rewrite",
+      "id": "2026-11-02-closing-tags",
+      "path": "rules/rewrite/2026-11-02-closing-tags.yaml",
+      "title": "KR 開著沒關的 <color>，句中多出的 </color> 移到句尾，兩句社群譯文才通過結構檢查",
+      "commit": "acd4e0e5ad871a20ab38ff0e218adc6a45356c21"
+    }
+  }
 }

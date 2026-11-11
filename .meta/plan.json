@@ -1,7 +1,7 @@
 {
   "raw_tag": "raw-20261105",
   "prev_raw_tag": "raw-20261029",
-  "rules_commit": "58ede3ec52524e6f1686bf13b39504da678e670c",
+  "rules_commit": "ebbb490ca56d41c7d99dcd8496ccaee19a55063e",
   "changes": {
     "unchanged": 272757,
     "moved": 0,
@@ -35,7 +35,7 @@
   "copy": 0,
   "reused": 0,
   "adjustments": {
-    "applied": 80,
+    "applied": 104,
     "moved": [],
     "expired": []
   },

@@ -1,8 +1,8 @@
 {
   "raw_tag": "raw-20261105",
   "raw_token": "l20261105_4RMUNwPWm5cUQDw9o-n8",
-  "rules_commit": "58ede3ec52524e6f1686bf13b39504da678e670c",
-  "built_at": "2026-11-08T00:11:45Z",
+  "rules_commit": "ebbb490ca56d41c7d99dcd8496ccaee19a55063e",
+  "built_at": "2026-11-11T11:39:32Z",
   "upstream": {
     "llc": "LocalizeLimbusCompany/LocalizeLimbusCompany@2026103002",
     "ltm": "LimbusTraditionalMandarin/storyline@1792667238",
@@ -10,15 +10,15 @@
   },
   "notes_seen": 1000,
   "zips": {
-    "zh-TW_complete_raw-20261105.zip": "8f1df373f94c9f7ee1d22227b186b7dea66641327fce826527d690d33ce6b557",
-    "zh-TW_text_raw-20261105.zip": "108fe8e5ae8ce0a28193fb922ea16414a3e9897c71e5a1c7cd4c1e23ed85eb1c"
+    "zh-TW_complete_raw-20261105.zip": "f481f8d59e49d97986b40dc441d49f29414cfbecf2191d8516f5b4d0d4f0072f",
+    "zh-TW_text_raw-20261105.zip": "bd4e0daa4a5200863be4c37f4cc224a105a23424cee6a49d0bbcf699aef3647a"
   },
   "report": {
     "origins": {
-      "claude": 18076,
+      "claude": 18072,
       "copy": 90961,
-      "human": 80,
-      "paratranz": 163758
+      "human": 104,
+      "paratranz": 163738
     },
     "pending": 0,
     "needs_review": 0,
@@ -29,11 +29,11 @@
     "warnings": {
       "ascii-ellipsis": 13,
       "curly-quotes": 4,
-      "forbidden-term": 4,
+      "forbidden-term": 3,
       "halfwidth-punct": 9,
       "kana": 7,
       "length-ratio": 2,
-      "term-missing": 675
+      "term-missing": 674
     },
     "missing_glyphs": [],
     "stand_in": 0,
@@ -59,7 +59,6 @@
       "forbidden-term": [
         "StoryData/5D101B.json|/dataList/44/content",
         "StoryData/E723B.json|/dataList/63/content",
-        "StoryData/S1027B.json|/dataList/18/content",
         "StoryData/S937B.json|/dataList/35/content"
       ],
       "halfwidth-punct": [
@@ -485,10 +484,10 @@
     "notes": [],
     "new_translated": 73,
     "shown": {
-      "claude": 18076,
+      "claude": 18072,
       "copy": 90961,
-      "human": 80,
-      "paratranz": 163758
+      "human": 104,
+      "paratranz": 163738
     },
     "misaligned": [
       {
@@ -6344,24 +6343,6 @@
     {
       "family": "ally",
       "field": "name",
-      "kr": "담.탐",
-      "zh": [
-        "菸．休",
-        "煙．休"
-      ],
-      "keys": [
-        "Passives.json|/dataList/171/name",
-        "Passives.json|/dataList/173/name"
-      ],
-      "counts": [
-        2,
-        1
-      ],
-      "units": 3
-    },
-    {
-      "family": "ally",
-      "field": "name",
       "kr": "만개",
       "zh": [
         "盛放",
@@ -9991,6 +9972,24 @@
       "keys": [
         "Skills_Enemy-tkt-re.json|/dataList/2/levelList/0/coinlist/1/coindescs/0/desc",
         "Skills_Enemy-tkt.json|/dataList/10/levelList/0/coinlist/1/coindescs/0/desc"
+      ],
+      "counts": [
+        1,
+        1
+      ],
+      "units": 2
+    },
+    {
+      "family": "enemy",
+      "field": "desc",
+      "kr": "[OnSucceedAttack] 파열 10 부여",
+      "zh": [
+        "[OnSucceedAttack] 使目標增加10級破裂 強度 ",
+        "[OnSucceedAttack] 使目標增加10級破裂 強度"
+      ],
+      "keys": [
+        "Skills_Abnormality.json|/dataList/209/levelList/0/coinlist/0/coindescs/0/desc",
+        "Skills_Enemy91-4.json|/dataList/18/levelList/0/coinlist/0/coindescs/0/desc"
       ],
       "counts": [
         1,

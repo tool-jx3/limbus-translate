@@ -874,7 +874,7 @@
     },
     {
       "id": 1040611,
-      "name": "煙．休",
+      "name": "菸．休",
       "desc": "- 常駐效果：關卡開始時，帶有7發彈藥 \n- 回合結束時，若自身的<sprite name=\"Breath\"><color=#f8c200><u><link=\"Breath\">呼吸法</color></link></u>強度不低於7級，則使自身恢復8點理智值。\n<style=\"highlight\">- 若已達到最大理智值，則下回合使自身增加1級呼吸法 強度</style>"
     },
     {

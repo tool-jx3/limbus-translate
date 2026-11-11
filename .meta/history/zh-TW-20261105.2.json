@@ -31,7 +31,13 @@
       "new_zh": "<color=#ebcaa2>將全體罪人的</color> <color=#e30000>{0}強度和 {0} 回數</color>相加，然後以罪人的數量等分，使罪人增加相應的<color=#e30000>{0}強度 和{0} 回數</color> 。(最少1回)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "AbnormalityGuides.json",
@@ -43,7 +49,13 @@
       "new_zh": "啊……我終於想通了。\n\n狐狸對於那些只給自己扔下毫無意義關心的人感到憤怒。\n\n在一個雨天，看到被遺棄在小巷裡的它，卻只給它撐開一把雨傘……\n\n那些只給予它如此微不足道的關心，卻認為自己是它的恩人，滿足自己的虛榮心的人……\n\n你很難過，你很憤怒。\n\n我也，我也明白了。\n\n我們必須挪走那個可憐孩子身上的破傘，並且親自擁抱它。我們——\n\n→ 這次是沒辦法了。看來他得死一次再醒過來才能打起精神。（可以在日誌上看見血跡。）\n\n→ 儘管有點極端……但除了這個方法之外，我認為沒什麼希望能讓他在短時間內恢復理智。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "AbnormalityGuides_Mirror.json",
@@ -55,7 +67,13 @@
       "new_zh": "啊……我終於想通了。\n\n狐狸對於那些只給自己扔下毫無意義關心的人感到憤怒。\n\n在一個雨天，看到被遺棄在小巷裡的它，卻只給它撐開一把雨傘……\n\n那些只給予它如此微不足道的關心，卻認為自己是它的恩人，滿足自己的虛榮心的人……\n\n你很難過，你很憤怒。\n\n我也，我也明白了。\n\n我們必須挪走那個可憐孩子身上的破傘，並且親自擁抱它。我們——\n\n→ 這次是沒辦法了。看來他得死一次再醒過來才能打起精神。（可以在日誌上看見血跡。）\n\n→ 儘管有點極端……但除了這個方法之外，我認為沒什麼希望能讓他在短時間內恢復理智。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "AbnormalityGuides_Refraction2.json",
@@ -67,7 +85,13 @@
       "new_zh": "啊……我終於想通了。\n\n狐狸對於那些只給自己扔下毫無意義關心的人感到憤怒。\n\n在一個雨天，看到被遺棄在小巷裡的它，卻只給它撐開一把雨傘……\n\n那些只給予它如此微不足道的關心，卻認為自己是它的恩人，滿足自己的虛榮心的人……\n\n你很難過，你很憤怒。\n\n我也，我也明白了。\n\n我們必須挪走那個可憐孩子身上的破傘，並且親自擁抱它。我們——\n\n→ 這次是沒辦法了。看來他得死一次再醒過來才能打起精神。（可以在日誌上看見血跡。）\n\n→ 儘管有點極端……但除了這個方法之外，我認為沒什麼希望能讓他在短時間內恢復理智。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "ActionEvents-a1c7p3.json",
@@ -79,7 +103,13 @@
       "new_zh": "注意)繼續食用後，會獲得帶有負面效果的E.G.O飾品",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-caution-bracket"
+        }
+      ]
     },
     {
       "file": "ActionEvents-a1c7p3.json",
@@ -91,7 +121,13 @@
       "new_zh": "注意)繼續食用後，會獲得帶有負面效果的E.G.O飾品",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-caution-bracket"
+        }
+      ]
     },
     {
       "file": "ActionEvents-a1c7p3.json",
@@ -103,7 +139,13 @@
       "new_zh": "注意)繼續食用後，會獲得帶有負面效果的E.G.O飾品",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-caution-bracket"
+        }
+      ]
     },
     {
       "file": "ActionEvents-pilgrimage.json",
@@ -115,7 +157,13 @@
       "new_zh": "帶走搭載家政輔助模組的小幫手。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "ActionEvents-pilgrimage.json",
@@ -127,7 +175,13 @@
       "new_zh": "「已確認家政輔助模組。即將轉換為聖徒之手巡迴模式。」\n\n雖然不清楚原理，不過看來確實可以幫上罪人們。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "ActionEvents-walpu4.json",
@@ -139,7 +193,13 @@
       "new_zh": "進行色慾、怠惰優勢判定，根據結果獲得2件沉淪E.G.O飾品 (失敗後會觸發遭遇戰)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "ActionEvents-walpu8.json",
@@ -151,7 +211,17 @@
       "new_zh": "愛娜溫選項（第1次）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "ActionEvents-walpu8.json",
@@ -163,7 +233,17 @@
       "new_zh": "愛娜溫選項（第2次）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "ActionEvents-walpu8.json",
@@ -175,7 +255,17 @@
       "new_zh": "愛娜溫選項（第3次）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "ActionEvents_Mirror7.json",
@@ -187,7 +277,13 @@
       "new_zh": "選擇時，獲得經費(有機率額外獲得)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "ActionEvents_Mirror7.json",
@@ -199,7 +295,13 @@
       "new_zh": "選擇時，獲得經費(有機率額外獲得)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "ActionEvents_Mirror8.json",
@@ -211,7 +313,13 @@
       "new_zh": "進行色慾、暴食優勢判定，獲得1件泛用E.G.O飾品(失敗後會觸發遭遇戰)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "ActionEvents_Mirror8.json",
@@ -223,7 +331,13 @@
       "new_zh": "進行嫉妒優勢判定，獲得1件充能E.G.O飾品(失敗後會觸發遭遇戰)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "AttendanceRewardsText.json",
@@ -235,7 +349,13 @@
       "new_zh": "消耗腦啡肽模組時會換算為等量的20腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "BattleHint.json",
@@ -247,7 +367,13 @@
       "new_zh": "領取鏡像迷宮的獎勵時需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c10p1.json",
@@ -259,7 +385,13 @@
       "new_zh": "- 最大值：100\n- 回合開始時，每帶有20層本效果，則使自身獲得1層防禦等級提升(最多4層)\n- 自身透過技能、被動效果消耗或獲得保存回數時，獲得相應層數的本效果(每回合最多30層，包括超過保存回數最大值而獲得的本效果)\n- 若自身帶有護盾時受到攻擊，則使自身獲得2層本效果(每回合最多20層)\n- 回合結束時，若自身帶有護盾，則使自身獲得10層本效果\n- 若本效果層數為100層，則下回合使本效果轉變為衣料甦醒",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c10p3.json",
@@ -271,7 +403,13 @@
       "new_zh": "- 最大值：9\n- 若透過「審判……！宣告……！判罪……！」觸發本效果時，使混亂閾值前移(本效果層數×2)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c10p3.json",
@@ -283,7 +421,13 @@
       "new_zh": "- 最大值：3\n- 不會使自身陣亡\n- 回合結束時，使本效果的層數減少1層\n- 本效果結束時，自身恢復成原本的姿態(丹紅派 上級工作人員)，並根據處於被剝離的丹紅之神肉片狀態時所剩餘的體力，每有10點則使自身恢復5點理智值。使自身獲得2回脈動\n．若自身獲得的脈動回數不低於10回，則消耗所有脈動回數，每消耗5回，則下回合使自身獲得1層暴走[慾求]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p1.json",
@@ -295,7 +439,13 @@
       "new_zh": "- 最大值：2\n- 特殊充能(級數固定)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -307,7 +457,13 @@
       "new_zh": "人體材料(骨)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -319,7 +475,13 @@
       "new_zh": "- 最大值：206\n- 特殊充能(固定強度)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -331,7 +493,13 @@
       "new_zh": "人體材料(血)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -343,7 +511,13 @@
       "new_zh": "- 最大值：5\n- 特殊充能(固定強度)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-cultivation.json",
@@ -355,7 +529,13 @@
       "new_zh": "一口酒(真)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-exme.json",
@@ -367,7 +547,14 @@
       "new_zh": "- 最大層數：3\n- 回合開始時，本效果每有1層，則對自身施加2級流血 強度\n．若層數為最大值，則額外施加1回流血 \n- 回合結束時，本效果每有1層，則在下回合對自身施加1層束縛 \n．若層數為最大值，則在下回合額外施加1層虛弱 \n- 回合結束時，若本單位本回合內沒有受到暴擊攻擊命中，則使本效果層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）；同時補上舊譯漏掉的「다음 턴」（下回合）"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-pilgrimage.json",
@@ -379,7 +566,13 @@
       "new_zh": "小幫手 - 家政輔助模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -391,7 +584,14 @@
       "new_zh": "目標的嫉妒抗性減少(每層0.1)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "KR「대상의 질투 내성을 (스택 * 0.1) 감소」（JP 嫉妬耐性、EN Envy Resistance）是嫉妒抗性；舊譯「目標的暴怒嫉妒減少」多了「暴怒」、少了「抗性」。照同組 /76～/81 的寫法（詞彙表 질투 → 嫉妒、내성 → 抗性）"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -403,7 +603,14 @@
       "new_zh": "本回合內，攻擊帶有尖釘 的目標時，技能的最終威力提升等同於本效果層數的數值。(拚點時同樣生效)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -415,7 +622,14 @@
       "new_zh": "本回合內，攻擊帶有尖釘 的目標時，技能的最終威力提升等同於本效果層數的數值。(拚點時同樣生效)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -427,7 +641,13 @@
       "new_zh": "- 最大值：6\n- 本效果每有1層，使消耗充能 回數的技能造成的傷害+2.5%(最多+15%)\n- 若受影響的單位屬於W公司職員，則改為使造成的傷害+5%(最多+30%)\n- 回合結束時，解除本效果",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -439,7 +659,13 @@
       "new_zh": "- 最大值：2\n- 自身陣亡時，使最後的攻擊者恢復3點理智值，然後隨機對未帶有本效果的友方單位施加2層本效果\n- 自身每帶有1級沉淪 強度，受到的傷害+0.5%(最大10%，集中遭遇戰中各部位單獨計算)\n- 回合結束時，本效果的層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -451,7 +677,13 @@
       "new_zh": "- 最大值：2\n- 自身最小與最大速度值+3\n- 戰鬥開始時，使本單位獲得1層守護\n- 本單位將於戰鬥中發動下列效果(每個技能1次；每回合最多發動3次)\n- 當本單位成為單方面攻擊技能的主要目標時，使該技能的第一枚硬幣翻為正面的機率減半\n- 本單位開始拚點時，在第一次拚點中使對方所有硬幣翻為正面的機率減半\n- 若生效目標使用的硬幣為減算硬幣，則使上述效果改為減少翻為反面的機率\n- 回合結束時，使本效果層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -463,7 +695,13 @@
       "new_zh": "- 本單位於拚點失敗時，使本單位增加1回沉淪(每回合最多3次)\n- 若本單位帶有理智值：將本單位的恐慌類型轉變為「藍沙」\n- 若本單位沒有理智值：使本單位的最小與最大速度值-1\n- 回合結束時，本效果層數將減少1層\n- 本效果層數無法疊加；重新施加本效果時，層數會刷新為施加的層數\n- 若本單位帶有理智值但恐慌類型無法被轉變，則改為施加沒有理智值時的效果\n\n※ 藍沙恐慌類型效果：\n- 士氣低落：使本單位的拚點威力-1，且最小與最大速度值-1\n- 陷入恐慌：使本單位的拚點威力-2，且最小與最大速度值-1",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -475,7 +713,13 @@
       "new_zh": "- 特殊沉淪\n- 最大值：10\n- 每帶有1層本效果，使本單位受到來自怠惰、暴食攻擊技能的傷害+1%\n- 本效果於最大層數時，使本單位獲得1層暴食易損(每回合最多1次)。使本單位受到與自身帶有的沉淪強度等量的暴食傷害，並解除本效果(消耗1回沉淪)\n- 若本單位帶有本效果時陣亡，則使其1名理智值最高的友方單位獲得其死亡時帶有的一半效果層數(無條件捨去)\n- 回合開始時，若戰場上沒有隸屬於LCA的人格，則使本效果解除",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -487,7 +731,14 @@
       "new_zh": "- 最大值：30\n- 受到沉淪傷害時，使本效果層數+1\n- 受到震顫引爆時，對自身以外的3名隨機友方單位施加1 ~ 2層餘香 (異想體則改為部位)\n- 本效果達到最大層數時，對自身施加2級震顫 強度，並使自身震顫引爆，後根據帶有的沉淪強度，對自身造成等量的憂鬱傷害，並解除餘香，且本回合內無法再獲得餘香層數\n- 陣亡時，將自身帶有的餘香層數的一半隨機分配至其他友方單位 (無條件捨去)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -499,7 +750,13 @@
       "new_zh": "- 最大值：5\n- 使所有友方人格獲得以下效果\n．使用技能時，使各個友方單位獲得其體力上限(唐吉訶德的保存強度×2)%的護盾(每回合最多1次，最多10%)\n\n- 使屬於漆黑派的所有友方單位獲得以下效果\n．攻擊等級+(唐吉訶德的保存強度÷3)(無條件捨去，最多2級)\n．防禦等級+(唐吉訶德的保存強度÷2)(無條件捨去，最多3級)\n\n- 對所有敵方單位施加以下效果\n．最小與最大速度值-1(本效果不會使最小與最大速度值小於1點)\n．震顫引爆時，使其混亂閾值前移量+10%\n．受到消耗充能回數或特殊充能的技能造成的傷害+10%(若是屬於漆黑派的友方人格的技能，則改為+20%)\n\n- 回合結束時，使本效果的層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "BattlePass.json",
@@ -511,7 +768,13 @@
       "new_zh": "<size=75%>（根據購買通行證時的等級\n獲得<style=\"highlightConverted\">{1}</style>個[第{0}賽季]自我碎片自選箱）</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "BattlePass_Mission.json",
@@ -523,7 +786,13 @@
       "new_zh": "製作腦啡肽模組{0}次",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "BattleSpeechBubbleDlg-a1c9p3.json",
@@ -535,7 +804,13 @@
       "new_zh": "三（Trois）。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "BattleSpeechBubbleDlg-a1c9p3.json",
@@ -547,7 +822,13 @@
       "new_zh": "六（Six）。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "BattleUIText.json",
@@ -559,7 +840,13 @@
       "new_zh": "（當前值：{0}）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "BattleUIText.json",
@@ -571,7 +858,13 @@
       "new_zh": "※放棄關卡時，消耗{0}個模組並獲得相應的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "BattleUIText.json",
@@ -583,7 +876,13 @@
       "new_zh": "※放棄關卡時，不消耗模組也無法獲得獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "BossRaidUI-2.json",
@@ -595,7 +894,13 @@
       "new_zh": "映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、體力、能力提升、剩餘的罪孽碎片，\n由下個編成繼承並接續戰鬥。\n（※不會保存BOSS的模式、BOSS以外的敵方體力及理智值、敵方持有的效果。）\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "BossRaidUI-3.json",
@@ -607,7 +912,13 @@
       "new_zh": "<size=80%>※2026. 06. 18 11:00 ～ 2026. 07. 16 09:00（GMT+8）共計4週的期限內可領取獎勵。\n請注意，一旦超過領取期限將不可再領取獎勵。</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "BossRaidUI-4.json",
@@ -619,7 +930,13 @@
       "new_zh": "由於映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、攻擊模式、部分持有效果、體力、理智值、剩餘的罪孽碎片，\n並繼承至下個編隊接續戰鬥。\n（※ BOSS的攻擊模式、BOSS以外的敵方單位體力、理智值、持有的效果狀態將不會被保存。）\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "BossRaidUI.json",
@@ -631,7 +948,13 @@
       "new_zh": "<size=80%>※2026. 04. 23 11:00 ～ 2026. 05. 21 09:00（GMT+8）共計4週的期限內可領取獎勵。\n請注意，一旦超過領取期限將不可再領取獎勵。</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "BossRaidUI.json",
@@ -643,7 +966,13 @@
       "new_zh": "映射戰鬥][鬥戰射映是<color=#ff0000>高難度的遊戲內容</color>，\n請配合推薦事項<color=#ff0000>充分提升人格與E.G.O後再進行挑戰</color>。\n（※無法使用助戰人格。）\n\n- 每場BOSS戰皆會套用特殊效果。\n映射效果適用於所有難度，<color=#f8c200>苦難僅適用於困難難度</color>。\n\n- 整個戰鬥流程中，最多可依序使用<color=#f8c200>3個編隊</color>。\n但編入前一場戰鬥編隊的人格，不得再編入後續的隊伍。\n\n- 每個編成最多可進行<color=#f8c200>12回合</color>戰鬥。\n當戰鬥進行超過12回合或選擇戰鬥結束時，\n可保存BOSS當前階段、體力、能力提升、剩餘的罪孽碎片，\n由下個編成繼承並接續戰鬥。\n（※不會保存BOSS的模式、BOSS以外的敵方體力及理智值、敵方持有的效果。）\n\n- 從第二個編隊開始，依入場時累積的回合數依比例\n<color=#f8c200>增加初始理智值</color>。（※每回合增加5點）\n\n對於使用減算硬幣的人格，初始理智值將會以負數適用。（※每回合減少5點，最低-25點）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "BossRaidUI.json",
@@ -655,7 +984,13 @@
       "new_zh": "<size=80%>按下確認時<color=#f8c200>結束戰鬥</color>。\n\n（※由於當前已是最後可用的編隊，將以<color=#ff0000>戰鬥失敗</color>結束關卡。）</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "BossRaidUI.json",
@@ -667,7 +1002,13 @@
       "new_zh": "結束進行中的關卡。\n（※最後的編隊將不會保存進度，立刻結束關卡。）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c10p1.json",
@@ -679,7 +1020,13 @@
       "new_zh": "- 最大值：100\n- 回合開始時，每帶有20層本效果，則使自身獲得1層防禦等級提升(最多4層)\n- 自身透過技能、被動效果消耗或獲得保存回數時，獲得相應層數的本效果(每回合最多30層，包括超過保存回數最大值而獲得的本效果)\n- 若自身帶有護盾時受到攻擊，則使自身獲得2層本效果(每回合最多20層)\n- 回合結束時，若自身帶有護盾，則使自身獲得10層本效果\n- 若本效果層數為100層，則下回合使本效果轉變為衣料甦醒",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c10p3.json",
@@ -691,7 +1038,13 @@
       "new_zh": "- 最大值：9\n- 若透過「審判……！宣告……！判罪……！」觸發本效果時，使混亂閾值前移(本效果層數×2)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c10p3.json",
@@ -703,7 +1056,13 @@
       "new_zh": "- 最大值：3\n- 不會使自身陣亡\n- 回合結束時，使本效果的層數減少1層\n- 本效果結束時，自身恢復成原本的姿態(丹紅派 上級工作人員)，並根據處於被剝離的丹紅之神肉片狀態時所剩餘的體力，每有10點則使自身恢復5點理智值。使自身獲得2回脈動\n．若自身獲得的脈動回數不低於10回，則消耗所有脈動回數，每消耗5回，則下回合使自身獲得1層暴走[慾求]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p1.json",
@@ -715,7 +1074,13 @@
       "new_zh": "- 最大值：2\n- 特殊充能(級數固定)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -727,7 +1092,13 @@
       "new_zh": "人體材料(骨)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -739,7 +1110,13 @@
       "new_zh": "- 最大值：206\n- 特殊充能(固定強度)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -751,7 +1128,13 @@
       "new_zh": "人體材料(血)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -763,7 +1146,13 @@
       "new_zh": "- 最大值：5\n- 特殊充能(固定強度)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-cultivation.json",
@@ -775,7 +1164,13 @@
       "new_zh": "一口酒(真)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs-exme.json",
@@ -787,7 +1182,14 @@
       "new_zh": "- 最大層數：3\n- 回合開始時，本效果每有1層，則對自身施加2級流血 強度\n．若層數為最大值，則額外施加1回流血 \n- 回合結束時，本效果每有1層，則在下回合對自身施加1層束縛 \n．若層數為最大值，則在下回合額外施加1層虛弱 \n- 回合結束時，若本單位本回合內沒有受到暴擊攻擊命中，則使本效果層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）；同時補上舊譯漏掉的「다음 턴」（下回合）"
+        }
+      ]
     },
     {
       "file": "Bufs-pilgrimage.json",
@@ -799,7 +1201,13 @@
       "new_zh": "小幫手 - 家政輔助模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -811,7 +1219,13 @@
       "new_zh": "- 最大值：6\n- 本效果每有1層，使消耗充能 回數的技能造成的傷害+({0} × 2.5)%(最多+15%)\n- 若受影響的單位屬於W公司職員，則改為使造成的傷害+({0} × 5)%(最多+30%)\n- 回合結束時，解除本效果",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -823,7 +1237,13 @@
       "new_zh": "- 最大值：2\n- 自身陣亡時，使最後的攻擊者恢復3點理智值，然後隨機對未帶有本效果的友方單位施加2層本效果\n- 自身每帶有1級沉淪 強度，受到的傷害+0.5%(最大10%，集中遭遇戰中各部位單獨計算)\n- 回合結束時，本效果的層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -835,7 +1255,13 @@
       "new_zh": "- 最大值：2\n- 自身最小與最大速度值+3\n- 戰鬥開始時，使本單位獲得1層守護\n- 本單位將於戰鬥中發動下列效果(每個技能1次；每回合最多發動3次)\n- 當本單位成為單方面攻擊技能的主要目標時，使該技能的第一枚硬幣翻為正面的機率減半\n- 本單位開始拚點時，在第一次拚點中使對方所有硬幣翻為正面的機率減半\n- 若生效目標使用的硬幣為減算硬幣，則使上述效果改為減少翻為反面的機率\n- 回合結束時，使本效果層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -847,7 +1273,13 @@
       "new_zh": "- 本單位於拚點失敗時，使本單位增加1回沉淪(每回合最多3次)\n- 若本單位帶有理智值：將本單位的恐慌類型轉變為「藍沙」\n- 若本單位沒有理智值：使本單位的最小與最大速度值-1\n- 回合結束時，本效果層數將減少1層\n- 本效果層數無法疊加；重新施加本效果時，層數會刷新為施加的層數\n- 若本單位帶有理智值但恐慌類型無法被轉變，則改為施加沒有理智值時的效果\n\n※ 藍沙恐慌類型效果：\n- 士氣低落：使本單位的拚點威力-1，且最小與最大速度值-1\n- 陷入恐慌：使本單位的拚點威力-2，且最小與最大速度值-1",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -859,7 +1291,13 @@
       "new_zh": "- 本單位於拚點失敗時，使本單位增加1回沉淪(每回合最多3次)\n- 若本單位帶有理智值：使本單位的恐慌類型轉變為「藍沙」\n- 回合結束時，本效果層數將減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -871,7 +1309,13 @@
       "new_zh": "本單位於拚點失敗時，使本單位增加1回沉淪(每回合最多3次)\n- 若本單位帶有理智值：使本單位的恐慌類型轉變為「藍沙」",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -883,7 +1327,13 @@
       "new_zh": "- 本單位於拚點失敗時，使本單位增加1回沉淪(每回合最多3次)\n- 若本單位沒有理智值：使本單位的最小與最大速度值-1\n- 回合結束時，本效果層數將減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -895,7 +1345,13 @@
       "new_zh": "本單位於拚點失敗時，使本單位增加1回沉淪(每回合最多3次)\n- 若本單位沒有理智值：使本單位的最小與最大速度值-1",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -907,7 +1363,13 @@
       "new_zh": "- 特殊沉淪\n- 最大值：10\n- 每帶有1層本效果，使本單位受到來自怠惰、暴食攻擊技能的傷害+1%\n- 本效果於最大層數時，使本單位獲得1層暴食易損(每回合最多1次)。使本單位受到與自身帶有的沉淪強度等量的暴食傷害，並解除本效果(消耗1回沉淪)\n- 若本單位帶有本效果時陣亡，則使其1名理智值最高的友方單位獲得其死亡時帶有的一半效果層數(無條件捨去)\n- 回合開始時，若戰場上沒有隸屬於LCA的人格，則使本效果解除",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -919,7 +1381,14 @@
       "new_zh": "- 最大值：30\n- 受到沉淪傷害時，使本效果層數+1\n- 受到震顫引爆時，對自身以外的3名隨機友方單位施加1 ~ 2層餘香 (異想體則改為部位)\n- 本效果達到最大層數時，對自身施加2級震顫 強度，並使自身震顫引爆，後根據帶有的沉淪強度，對自身造成等量的憂鬱傷害，並解除餘香，且本回合內無法再獲得餘香層數\n- 陣亡時，將自身帶有的餘香層數的一半隨機分配至其他友方單位 (無條件捨去)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1）"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -931,7 +1400,13 @@
       "new_zh": "- 最大值：5\n- 使所有友方人格獲得以下效果\n．使用技能時，使各個友方單位獲得其體力上限(唐吉訶德的保存強度×2)%的護盾(每回合最多1次，最多10%)\n\n- 使屬於漆黑派的所有友方單位獲得以下效果\n．攻擊等級+(唐吉訶德的保存強度÷3)(無條件捨去，最多2級)\n．防禦等級+(唐吉訶德的保存強度÷2)(無條件捨去，最多3級)\n\n- 對所有敵方單位施加以下效果\n．最小與最大速度值-1(本效果不會使最小與最大速度值小於1點)\n．震顫引爆時，使其混亂閾值前移量+10%\n．受到消耗充能回數或特殊充能的技能造成的傷害+10%(若是屬於漆黑派的友方人格的技能，則改為+20%)\n\n- 回合結束時，使本效果的層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs.json",
@@ -943,7 +1418,13 @@
       "new_zh": "選擇未被記錄的主題卡包時(階層{4}及其以下)，在該卡包的遭遇戰中獲得{2}層<color=#5bffde>{1}</color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD6.json",
@@ -955,7 +1436,13 @@
       "new_zh": "<color=#f8c200>選擇未被記錄的主題卡包時(階層{4}及其以下)，在該卡包的遭遇戰中獲得{2}層{1}</color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD6.json",
@@ -967,7 +1454,13 @@
       "new_zh": "<color=#f8c200>進入商店時，獲得持有中所有E.G.O飾品等級之和的經費。(最多{1})</color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD6.json",
@@ -979,7 +1472,13 @@
       "new_zh": "進入鏡像迷宮時，選擇獲得{0}件所選關鍵字對應的隨機3級<color=#5bffde>E.G.O飾品</color>(若無該等級飾品時，則會出現更低等級之飾品)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD6.json",
@@ -991,7 +1490,13 @@
       "new_zh": "進入鏡像迷宮時，<color=#f8c200>選擇獲得{0}件</color>所選關鍵字對應的隨機3級<color=#5bffde>E.G.O飾品</color>(若無該等級飾品時，則會出現更低等級之飾品)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD7.json",
@@ -1003,7 +1508,13 @@
       "new_zh": "<color=#f8c200>選擇未被記錄的主題卡包時，在該卡包的遭遇戰中獲得{2}層{1}(僅限階層{4}及其以下)</color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD7.json",
@@ -1015,7 +1526,13 @@
       "new_zh": "<color=#f8c200>進入商店時，獲得持有中所有E.G.O飾品等級之和的經費。(最多{1})</color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD7.json",
@@ -1027,7 +1544,13 @@
       "new_zh": "進入鏡像迷宮時，可選擇獲得與所選關鍵字對應的{0}件3級<color=#627eff>E.G.O飾品</color>(若沒有剩下滿足條件的E.G.O飾品，則將改為出現更低等級之飾品)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "DungeonStartBuffs_MD7.json",
@@ -1039,7 +1562,13 @@
       "new_zh": "進入鏡像迷宮時，可選擇獲得與所選關鍵字對應的<color=#f8c200>{0}件</color>3級<color=#627eff>E.G.O飾品</color>(若沒有剩下滿足條件的E.G.O飾品，則將改為出現更低等級之飾品)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-EventTheme.json",
@@ -1051,7 +1580,13 @@
       "new_zh": "本場戰鬥中，首次透過攻擊技能效果使敵方單位增加 [Laceration] 強度或施加特殊流血時，額外使其增加2回 [Laceration]。(每場戰鬥最多1次)\n\n若為屬於黑雲會的友方單位，則改為首次對敵方單位造成傷害時，額外使其增加4級 [Laceration] 強度與4回 [Laceration]。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-mowe-re.json",
@@ -1063,7 +1598,14 @@
       "new_zh": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-mowe-re.json",
@@ -1075,7 +1617,14 @@
       "new_zh": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多1次)\n<style=\"upgradeHighlight\">- 額外施加1層 [VioletResistDown]</style>",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-mowe-re.json",
@@ -1087,7 +1636,14 @@
       "new_zh": "使用消耗 [Charge] 回數或特殊充能的技能對敵方單位造成傷害時，本回合內使該敵方單位最低的物理抗性+0.1(每回合最多<style=\"upgradeHighlight\">2</style>次)\n- 額外施加1層 [VioletResistDown] 與<style=\"upgradeHighlight\">1層 [AzureResistDown]</style>",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-mowe.json",
@@ -1099,7 +1655,13 @@
       "new_zh": "心臟反應模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-ycgd.json",
@@ -1111,7 +1673,13 @@
       "new_zh": "本場戰鬥中，首次透過攻擊技能效果使敵方單位增加 [Laceration] 強度或施加特殊流血時，額外使其增加2回 [Laceration]。(每場戰鬥最多1次)\n\n若為屬於黑雲會的友方單位，則改為首次對敵方單位造成傷害時，額外使其增加4級 [Laceration] 強度與4回 [Laceration]。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-ycgd.json",
@@ -1123,7 +1691,13 @@
       "new_zh": "友方單位對敵方單位造成暴擊時，對目標額外造成(自身的 [Breath] 強度/3)點傲慢傷害。\n\n若該友方單位屬於劍契組，則改為暴擊時對目標額外造成(自身的 [Breath] 強度/2)點傲慢傷害。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-ycgd.json",
@@ -1135,7 +1709,13 @@
       "new_zh": "額外造成(自身的 [Breath] 強度/3)點傲慢傷害",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-ycgd.json",
@@ -1147,7 +1727,13 @@
       "new_zh": "額外造成(自身的 [Breath] 強度/2)點傲慢傷害",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-ycgd.json",
@@ -1159,7 +1745,17 @@
       "new_zh": "回合開始時，若戰場上隸屬於黑雲會的友方單位不低於3名，則觸發該效果。\n\n回合開始時，使全體友方單位獲得2層斬擊威力提升 並使其造成的斬擊傷害+35%\n\n回合開始時，屬於黑雲會的友方單位首次造成傷害時，額外使目標增加4級 [Laceration] 強度與4回 [Laceration] (每回合最多1次)。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-3-id-space"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1171,7 +1767,13 @@
       "new_zh": "友方單位透過技能效果使敵方單位增加 [Sinking] 強度，對敵方單位施加 [Sinking] 回數或對敵方單位施加特殊沉淪時，下回合使該友方單位增加1級攻擊等級(最多增加3級)。\n\n若該友方單位擁有憂鬱或暴怒攻擊技能，則改為每次增加 [Sinking] 強度或施加 [Sinking] 回數時，下回合使該友方單位增加2級攻擊等級(最多增加4級)。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1183,7 +1785,13 @@
       "new_zh": "友方單位透過技能效果使敵方單位增加 [Sinking] 強度，對敵方單位施加 [Sinking] 回數或對敵方單位施加特殊沉淪時，下回合使該友方單位增加1級攻擊等級<style=\"upgradeHighlight\">(最多增加4級)。</style>\n\n若該友方單位擁有憂鬱或暴怒攻擊技能，則改為每次增加 [Sinking] 強度或施加 [Sinking] 回數時，下回合使該友方單位增加2級攻擊等級<style=\"upgradeHighlight\">(最多增加5級)</style>。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1195,7 +1803,13 @@
       "new_zh": "友方單位透過技能效果使敵方單位增加 [Sinking] 強度，對敵方單位施加 [Sinking] 回數或對敵方單位施加特殊沉淪時，下回合使該友方單位<style=\"upgradeHighlight\">增加2級攻擊等級</style>(最多增加4級)。\n\n若該友方單位擁有憂鬱或暴怒攻擊技能，則改為每次增加 [Sinking] 強度或施加 [Sinking] 回數時，下回合使該友方單位<style=\"upgradeHighlight\">增加3級攻擊等級(最多增加6級)</style>。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1207,7 +1821,13 @@
       "new_zh": "波次的首個回合開始時，隨機對全體敵方單位(或所有異想體部位)施加共計(5+敵方單位數量×3)回 [Sinking] 。(若是異想體，僅其本體算作1名敵方單位)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1219,7 +1839,13 @@
       "new_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+2，從第2回合起使其獲得1層 [Agility] 並使其拚點威力+2。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的75%，但受到的傷害與使自身恢復的體力-50%(關卡開始時立即觸發；不包含E.G.O飾品恢復的體力)。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與1層斬擊傷害強化 ",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1231,7 +1857,13 @@
       "new_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+2，從第2回合起使其獲得<style=\"upgradeHighlight\">2</style>層 [Agility] 並使其拚點威力+2。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的<style=\"upgradeHighlight\">50</style>%，但受到的傷害與使自身恢復的體力-<style=\"upgradeHighlight\">75</style>%(關卡開始時立即觸發；不包含E.G.O飾品恢復的體力)。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與<style=\"upgradeHighlight\">2</style>層斬擊傷害強化 ",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon.json",
@@ -1243,7 +1875,13 @@
       "new_zh": "本場戰鬥中，擁有不低於2個斬擊技能的友方單位首個回合的拚點威力+2，從第2回合起使其獲得2層 [Agility] 並使其<style=\"upgradeHighlight\">最終威力+1\n- 若該人格的速度值不低於7，則使該人格的斬擊技能造成的傷害+10%</style>。\n\n屬於し協會的友方單位恢復體力最多恢復至體力上限的<style=\"upgradeHighlight\">49</style>%，但受到的傷害與使自身恢復的體力-75%(關卡開始時立即觸發；不包含E.G.O飾品恢復的體力)。\n\n每回合開始時，使屬於し協會的友方單位獲得1層斬擊威力提升 與<style=\"upgradeHighlight\">3</style>層斬擊傷害強化 ",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_StoryDungeon.json",
@@ -1255,7 +1893,13 @@
       "new_zh": "友方單位在戰鬥中受到致命傷害時，使其恢復體力上限50%的體力\n(一次性飾品，生效後消耗)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_StoryDungeon.json",
@@ -1267,7 +1911,13 @@
       "new_zh": "受到的暴怒傷害-10%\n受到攻擊時，下回合使自身獲得1層強壯 (每名罪人每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EGOgift_StoryDungeon.json",
@@ -1279,7 +1929,13 @@
       "new_zh": "受到攻擊時，下回合獲得1層守護 (每名罪人每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Egos.json",
@@ -1291,7 +1947,13 @@
       "new_zh": "赤瞳(開)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Enemies-x1p1c1.json",
@@ -1303,7 +1965,13 @@
       "new_zh": "章節1裡的G公司職員(ver.小鳳)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Enemies-x1p1c1.json",
@@ -1315,7 +1983,13 @@
       "new_zh": "章節2裡的警衛(ver.小鳳)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Enemies-x1p1c1.json",
@@ -1327,7 +2001,13 @@
       "new_zh": "章節3裡的K公司員工(ver.小鳳)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Enemies-x1p1c1.json",
@@ -1339,7 +2019,13 @@
       "new_zh": "章節1裡的G公司職員(ver.小鳳)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Enemies-x1p1c1.json",
@@ -1351,7 +2037,13 @@
       "new_zh": "章節2裡的警衛(ver.小鳳)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Enemies-x1p1c1.json",
@@ -1363,7 +2055,13 @@
       "new_zh": "章節3裡的K公司員工(ver.小鳳)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "EventVerificationUIText.json",
@@ -1375,7 +2073,17 @@
       "new_zh": "已完成驗證的帳號（無法重新驗證）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "EventVerificationUIText.json",
@@ -1387,7 +2095,13 @@
       "new_zh": "此帳號已完成驗證。（無法重新驗證）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "EventVerificationUIText.json",
@@ -1399,7 +2113,13 @@
       "new_zh": "驗證時間：{0}（KST）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "FAQ.json",
@@ -1411,7 +2131,13 @@
       "new_zh": "當您購買<b>每月狂氣補給</b>後，您將立即獲得650付費狂氣，並且您可在含購買日當天在內的三十天內獲得以下每日獎勵。\n當您購買<b>每月小份狂氣補給</b>後，您將立即獲得130付費狂氣，並且您可在含購買日當天在內的三十天內獲得以下每日獎勵。\n\n■ 每月狂氣補給每日獎勵：\n65免費狂氣\n\n■ 每月小份狂氣補給每日獎勵：\n39免費狂氣\n\n※ 注意事項\n1） 所有獎勵均透過遊戲內郵件提供。\n2） 兩個每月補給包分別生效。\n3） 兩個每月補給包在有效期內最多可再進行兩次購買。（持續時間最多可延長67日）\n4） 在您未登入遊戲的幾天內，將不會提供每日獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-6-list"
+        }
+      ]
     },
     {
       "file": "FAQ.json",
@@ -1423,7 +2149,13 @@
       "new_zh": "對於FAQ（常見問題解答）中未包含的諮詢內容，請透過電子郵件聯繫客服中心。\n\n帳戶查詢\n<color=#F8C200><u><link=\"mailto:limbussupport+account@projmoon.com\">limbussupport+account@projmoon.com</link></u></color>\n\n付款查詢\n<color=#F8C200><u><link=\"mailto:limbussupport+payment@projmoon.com\">limbussupport+payment@projmoon.com</link></u></color>\n\nBug報告\n<color=#F8C200><u><link=\"mailto:limbussupport+bug@projmoon.com\">limbussupport+bug@projmoon.com</link></u></color>\n\n應用程式使用問題\n<color=#F8C200><u><link=\"mailto:limbussupport+applicationissue@projmoon.com\">limbussupport+applicationissue@projmoon.com</link></u></color>\n\n其他問題\n<color=#F8C200><u><link=\"mailto:limbussupport+others@projmoon.com\">limbussupport+others@projmoon.com</link></u></color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "HellsChicken.json",
@@ -1435,7 +2167,13 @@
       "new_zh": "伺服器發生錯誤，您的遊戲資料消失。\n若您選擇放棄，則會歸還入場時花費的腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1447,7 +2185,13 @@
       "new_zh": "腦啡肽模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1459,7 +2203,17 @@
       "new_zh": "由特殊密封材料製成的球型模組。\n[介紹]相比於以往的氣態腦啡肽，一定劑量的液態腦啡肽能更加穩定地發揮作用。\n將模組與特定的插座結合，便能把腦啡肽轉化為能源。\n[注意]腦啡肽模組化是一種單向不可逆過程，模組僅能透過插座消耗\n嚴禁在預期用途外使用或改造。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-sphere"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1471,7 +2225,13 @@
       "new_zh": "由LCA研究開發小組製作的首個快速人格同步模組。\n將顫動著閃爍的紡錘強行注入，並與碎片編織在一起，以將同步階段迅速加速到特定水準。\n雖然在鏡外無從得知，但於那鏡中的破壞性注射會短暫地將一切全都破壞。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1483,7 +2243,13 @@
       "new_zh": "由LCA研究開發小組製作的首個E.G.O異想解析模組。\n在短時間內將顫動著閃爍的紡錘與大量碎片編織在一起，以將E.G.O異想解析階段加速至特定水準。\n如果因為便利而漫不經心地解析既是異想神備的E.G.O的話……這被稱為E.G.O的心靈能忍受到何時，至今仍是未知數。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1495,7 +2261,13 @@
       "new_zh": "由LCA研究開發小組製作的第二個E.G.O異想解析模組。在短時間內將顫動著閃爍的紡錘與大量碎片編織在一起，以將[HE]級別的E.G.O異想解析階段加速至特定水準。紡錘與碎片相互編織，紡出實體。散發著溫暖光芒的紡錘，宛若某一日長久照耀都市的光。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1507,7 +2279,13 @@
       "new_zh": "使用時，可從提取的[理想]中選擇一名可兌換的播報員並獲得。\n（※無法獲得瓦爾普吉斯之夜的播報員）\n\n",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -1519,7 +2297,13 @@
       "new_zh": "由LCA研究開發小組製作的第四個E.G.O異想解析模組。在短時間內將顫動著閃爍的紡錘與大量碎片編織在一起，以將[TETH]級別以下的E.G.O異想解析階段加速至特定水準。衣服是由布料拼接，而布料則是由絲線交織而成的對吧。然後呢，那些絲線也同樣是由細小的纖維相互捻合而成的。記得是叫碎形來著？有時，我會對這種反覆出現的規律產生既視感。某種事物正不斷地重複著。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "Limbus3rdAnniversary.json",
@@ -1531,7 +2315,13 @@
       "new_zh": "3週年紀念人格自選券\nAngela （圖書館館長 - 前期）播報員\n邊獄公司3週年紀念特別橫幅 \n3rd Anniversary（Special）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "LobbyBGM.json",
@@ -1543,7 +2333,13 @@
       "new_zh": "In Hell We Live, Lament（Long Ver）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "LobbyBGMUI.json",
@@ -1555,7 +2351,13 @@
       "new_zh": "播放清單（{0}/{1}）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "LobbyBGMUI.json",
@@ -1567,7 +2369,13 @@
       "new_zh": "播放清單（{0}/{1}）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "LoginUIText.json",
@@ -1579,7 +2387,13 @@
       "new_zh": "腦啡肽已充滿，執行經理。為了更有效率地使用，推薦您將其轉換為模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "LoginUIText.json",
@@ -1591,7 +2405,13 @@
       "new_zh": "但丁～腦啡肽已經補充滿啦。不快點轉換成模組可就無法再攢了～",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "MainUIText-a1c10p1.json",
@@ -1603,7 +2423,13 @@
       "new_zh": "◆ 即使未通過前一章節，亦可<color=#ff6000><mark color=#ff000040><b><u>遊玩主線劇情第十章</color></mark></b></u>。\n◆ 包含<color=#ff6000><mark color=#ff000040><b><u>截至9.5章的劇透內容</color></mark></b></u>。\n◆ 通關第十章時，若尚未通關先前的章節，鏡像迷宮、折射軌道、採光、映射戰鬥等<color=#ff6000><mark color=#ff000040><b><u>需通關先前章節才能解鎖的內容將無法遊玩。</color></mark></b></u>若要遊玩所有內容，請先滿足相應的解鎖條件。\n◆ 若要遊玩以通關第十章為前置條件的內容（預計於後續更新中追加），<color=#ff6000><mark color=#ff000040><b><u>請先通關第十章及9.5-26關卡</color></mark></b></u>。\n◆ 遊玩第十章時，<color=#ff6000><mark color=#ff000040><b><u>將提供莫梭的部分助戰人格</color></mark></b></u>。（助戰人格及E.G.O將套用同步/異想解析4階段。）\n◆ 遊玩第十章時，<color=#ff6000><mark color=#ff000040><b><u>將支援我方所有人格同步至3階段</color></mark></b></u>。E.G.O則不會額外補正異想解析。",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1615,7 +2441,13 @@
       "new_zh": "※已消耗的腦啡肽模組將不會返還。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1627,7 +2459,13 @@
       "new_zh": "腦啡肽模組不足。\n要進行合成嗎？",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1639,7 +2477,13 @@
       "new_zh": "※ 同時選擇2個或以上播報員時，所選播報員的對話將會被隨機播放。（最多同時選擇100個）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1651,7 +2495,13 @@
       "new_zh": "{0}月{1}日（{2}） 更新後解鎖",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1663,7 +2513,13 @@
       "new_zh": "{0}月{1}日（{2}）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1675,7 +2531,13 @@
       "new_zh": "{0}月{1}日{2}（{3}）後可在自動販賣機兌換",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1687,7 +2549,13 @@
       "new_zh": "賽季人格能在{0}月{1}日{2}（{3}）後透過自動販賣機兌換。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1699,7 +2567,13 @@
       "new_zh": "賽季E.G.O能在{0}月{1}日{2}（{3}）後透過自動販賣機兌換。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1711,7 +2585,13 @@
       "new_zh": "賽季人格與E.G.O能在{0}月{1}日{2}（{3}）後透過自動販賣機兌換。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -1723,7 +2603,13 @@
       "new_zh": "消耗模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1735,7 +2621,13 @@
       "new_zh": "拚點勝利後根據拚點次數依比例增加\n<size=95%>(增加量的基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1747,7 +2639,13 @@
       "new_zh": "拚點勝利後根據拚點次數依比例減少\n<size=95%>(減少量的基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1759,7 +2657,13 @@
       "new_zh": "拚點失敗時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1771,7 +2675,13 @@
       "new_zh": "拚點失敗時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1783,7 +2693,13 @@
       "new_zh": "友方單位陣亡時，若該友方單位等級不低於自身等級，\n根據等級差相應增加\n<size=95%>(增加量：基礎值為{0}，根據等級差相應增加{0})</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1795,7 +2711,13 @@
       "new_zh": "友方單位陣亡時，若該友方單位等級不低於自身等級，\n根據等級差相應減少\n<size=95%>(減少量：基礎值為{0}，根據等級差相應增加{0})</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1807,7 +2729,13 @@
       "new_zh": "拚點勝利時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1819,7 +2747,13 @@
       "new_zh": "拚點勝利時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1831,7 +2765,13 @@
       "new_zh": "拚點失敗時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，從第二次拚點起，每次拚點增加<color=red>{1}%</color>)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1843,7 +2783,13 @@
       "new_zh": "拚點失敗時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，從第二次拚點起，每次拚點增加<color=red>{1}%</color>)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1855,7 +2801,13 @@
       "new_zh": "<color=red>受到敵方單位攻擊時增加\n<size=95%>(增加量：基礎值為{0}，每回合最多為{1})</size></color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1867,7 +2819,13 @@
       "new_zh": "<color=red>受到敵方單位攻擊時減少\n<size=95%>(減少量：基礎值為{0}，每回合最多為{1})</size></color>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1879,7 +2837,13 @@
       "new_zh": "理智值不低於{2}且拚點勝利時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1891,7 +2855,13 @@
       "new_zh": "理智值不低於{2}且拚點勝利時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，首次拚點之後每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1903,7 +2873,13 @@
       "new_zh": "<color=red>理智值不低於{2}時，</color>拚點勝利時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1915,7 +2891,13 @@
       "new_zh": "<color=red>理智值不低於{2}時，</color>拚點勝利時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，首次拚點之後每次拚點增加<color=red>{1}%</color>)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1927,7 +2909,13 @@
       "new_zh": "與速度值低於自身的敵方單位拚點失敗時，根據拚點次數依比例增加\n<size=95%>(增加量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MentalCondition.json",
@@ -1939,7 +2927,13 @@
       "new_zh": "與速度值低於自身的敵方單位拚點失敗時，根據拚點次數依比例減少\n<size=95%>(減少量：基礎值為{0}，從第二次拚點起，每次拚點增加{1}%)</size>",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI.json",
@@ -1951,7 +2945,13 @@
       "new_zh": "◆ 不會消耗腦啡肽模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI_4.json",
@@ -1963,7 +2963,13 @@
       "new_zh": "（未使用）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI_4.json",
@@ -1975,7 +2981,13 @@
       "new_zh": "在以下情況中，合成結果出現的E.G.O飾品將與現有的合成公式不同。該情況下，預測關鍵字將顯示為？（隨機）。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI_5_InfinityFloor.json",
@@ -1987,7 +2999,13 @@
       "new_zh": "※ 僅在消耗腦啡肽模組領取獎勵的情況下，鏡像迷宮才被視為通關完成。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI_7.json",
@@ -1999,7 +3017,13 @@
       "new_zh": "（目前{0}次）",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "PanicInfo-a1c6p1.json",
@@ -2011,7 +3035,17 @@
       "new_zh": "拚點失敗時使自身失去5點理智值。受到攻擊時，下回合使自身獲得1層 [Agility] (最多2層)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-3-id-space"
+        }
+      ]
     },
     {
       "file": "PanicInfo-a1c6p1.json",
@@ -2023,7 +3057,17 @@
       "new_zh": "對自身施加2層 [Vulnerable]。受到攻擊時，下回合使自身獲得1層 [Agility] (最多3層)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-3-id-space"
+        }
+      ]
     },
     {
       "file": "PanicInfo-a1c6p2.json",
@@ -2035,7 +3079,17 @@
       "new_zh": "拚點勝利時，下回合使自身獲得1層 [AttackUp] (每回合最多3次)\n拚點失敗時，使自身獲得1層 [DefenseUp] (每回合最多3次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-3-id-space"
+        }
+      ]
     },
     {
       "file": "PanicInfo-a1c6p2.json",
@@ -2047,7 +3101,17 @@
       "new_zh": "拚點勝利時，本回合與下回合使自身獲得1層 [AttackUp] (每回合最多3次)\n拚點失敗時，使自身獲得1層 [DefenseUp] (每回合最多3次)\n回合結束時，使自身獲得2層 [Agility]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-3-id-space"
+        }
+      ]
     },
     {
       "file": "PanicInfo.json",
@@ -2059,7 +3123,13 @@
       "new_zh": "回合開始時，使自身獲得1層<sprite name=\"Enhancement\"><color=#f8c200><u><link=\"Enhancement\">強壯</color></link></u>並對自身施加3層<sprite name=\"DefenseDown\"><color=#e30000><u><link=\"DefenseDown\">防禦等級降低</color></link></u>，基於上回合受到的傷害使自身獲得<sprite name=\"AttackDmgUp\"><color=#f8c200><u><link=\"AttackDmgUp\">傷害強化</color></link></u>\n(每失去體力上限3%的體力，使自身獲得1層<sprite name=\"AttackDmgUp\"><color=#f8c200><u><link=\"AttackDmgUp\">傷害強化</color></link></u>)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "PanicInfo.json",
@@ -2071,7 +3141,13 @@
       "new_zh": "回合開始時，使自身獲得2層<sprite name=\"Enhancement\"><color=#f8c200><u><link=\"Enhancement\">強壯</color></link></u>並對自身施加6層<sprite name=\"DefenseDown\"><color=#e30000><u><link=\"DefenseDown\">防禦等級降低</color></link></u>，基於上回合受到的傷害使自身獲得<sprite name=\"AttackDmgUp\"><color=#f8c200><u><link=\"AttackDmgUp\">傷害強化</color></link></u>\n(每失去體力上限3%的體力，使自身獲得1層<sprite name=\"AttackDmgUp\"><color=#f8c200><u><link=\"AttackDmgUp\">傷害強化</color></link></u>)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Passive_Ego.json",
@@ -2083,7 +3159,13 @@
       "new_zh": "若自身位於儀錶盤最左側的基礎攻擊技能為\n暴怒技能或色慾技能，\n則該技能攻擊結束後，隨機對1名敵方單位造成等同於\n該技能對主要目標造成傷害量30%的對應罪孽屬性的傷害(最多30點；若為集中遭遇戰，則改為以部位判定)\n\n若自身透過以上效果造成的傷害達到最大值，則下回合使自身獲得1層對應罪孽屬性的<noparse>傷害強化</noparse>，並在2回合內使以上效果無法觸發",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -2095,7 +3177,13 @@
       "new_zh": "充能模組安裝",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -2107,7 +3195,13 @@
       "new_zh": "君．可．保．好\n(君主……如果在這種可能性之下還能保護他，那真是再好不過了。)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Passives_Assist-a1c9p2.json",
@@ -2119,7 +3213,13 @@
       "new_zh": "蜜黃蜂槍(命名者：以斯拉)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Passives_Assist-a1c9p3.json",
@@ -2131,7 +3231,13 @@
       "new_zh": "蜜黃蜂槍(命名者：以斯拉)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "PersonalityVoiceDlg/Voice_Donquixote_Cinq_10305.json",
@@ -2143,7 +3249,13 @@
       "new_zh": "Allez！（來吧！）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "RPGSystem/rpg-loc-item-common-a1c10p2.json",
@@ -2155,7 +3267,13 @@
       "new_zh": "在象徵界時，使普依的移動路徑上生成<color=#F8C200>嘔吐物（Le Vomissement）</color>\n- 每經過2秒，對普依的周圍1格或是位於<color=#F8C200>嘔吐物（Le Vomissement）</color>上的敵方單位造成4點<color=#fe4b48>傷害</color>\n- 對受到該效果<color=#fe4b48>傷害</color>的敵方單位施加<color=#F8C200>黃金啟示</color>\n- 若帶有<color=#F8C200>黃金啟示</color>的敵方單位陣亡，則對其周圍1格造成4點<color=#fe4b48>傷害</color>（硬直1秒）\n\n在陰影界的戰鬥中，普依的脈動強度+1級\n- 防禦等級+10\n- 回合結束時若自身陷入混亂，解除自身混亂，並使自身<color=#00ff9c>恢復自身</color><color=#00ff9c>體力</color>上限50%的體力（每場戰鬥最多1次）\n- 當「丹紅之釘」（第2枚硬幣）、「走開」、「丹紅之釘的洗禮」命中時，對目標施加1層<color=#F8C200>黃金啟示</color>\n- 使用「丹紅之釘的洗禮」時，若自身的脈動強度不低於5級，則使該技能的攻擊容量+2、硬幣威力+（自身的脈動強度-3）\n- 「別受傷」命中時，使目標額外<color=#00ff9c>恢復</color>其<color=#00ff9c>體力</color>上限（自身的脈動強度×2）%的體力與（自身脈動強度×3）點理智值\n- 「抓住我的手」命中時，下回合使自身獲得等同於目標<color=#00ff9c>體力</color>上限50%的護盾",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "RPGSystem/rpg-loc-item-common-a1c10p2.json",
@@ -2167,7 +3285,13 @@
       "new_zh": "在象徵界中<color=#F8C200>第二段攻擊連擊</color>命中時，觸發<color=#F8C200>額外攻擊</color>（硬直1秒）\n- 命中的敵方單位其周圍3格內，隨機使1名敵方單位受到4點<color=#fe4b48>傷害</color>\n- 該<color=#F8C200>額外攻擊</color>命中的敵方單位周圍1格內的隨機1名敵方單位，有（80-觸發次數×20）%機率再次觸發效果\n- 該效果可以連續觸發（最多5次，最低觸發機率10%）\n\n在象徵界中<color=#F8C200>第二段攻擊連擊</color>的射程+1格",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "RPGSystem/rpg-loc-item-common-a1c10p2.json",
@@ -2179,7 +3303,13 @@
       "new_zh": "在象徵界解鎖普依的<color=#F8C200>針投射物</color>\n- 朝10格內最遠的敵人發射造成3點<color=#fe4b48>傷害</color>的投射物（冷卻時間3秒、硬直0.5秒）\n- 命中時以（100÷該效果的觸發次數）%的機率，朝周圍1名敵方單位發射相同的投射物\n\n在陰影界的戰鬥中，普依的脈動強度+1級\n- 使用「走開」時，每帶有2級脈動強度，則使該技能的攻擊容量+1（最多+2）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "RPGSystem/rpg-loc-item-common-a1c10p2.json",
@@ -2191,7 +3321,13 @@
       "new_zh": "在象徵界時，強化普依的<color=#F8C200>黑水投射物</color>\n- 在命中地點周圍1格生成<color=#F8C200>黑水之磚</color>（持續5秒）\n- 每經過2秒，使該磁磚上的敵方單位受到2點<color=#fe4b48>傷害</color>並使其減少20%移動速度\n\n在陰影界的戰鬥中，強化普依的「丹紅之釘的洗禮」\n- 使用時，目標每帶有4級<color=#F8C200>流血</color>強度，則使該技能的基礎威力+1（最多+2）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "RPGSystem/rpg-loc-item-common-a1c10p3.json",
@@ -2203,7 +3339,13 @@
       "new_zh": "在陰影界的戰鬥中拚點勝利時，<color=#00ff9c>使自身恢復</color>（技能最終威力×1.5）點體力（每個人格每回合最多1次）\n- 使用E.G.O技能時，則改為1而非1.5（無條件捨去）\n- 觸發本<color=#00ff9c>恢復</color>效果的人格，下回合使其獲得1層<color=#fe4b48>傷害</color>強化（每個人格每回合最多1次）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "RailwayDungeonUI.json",
@@ -2215,7 +3357,13 @@
       "new_zh": "是否花費<color=#990000>{0}腦啡肽模組</color>\n以領取獎勵？",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "RailwayDungeonUI_2.json",
@@ -2227,7 +3375,17 @@
       "new_zh": "<color=#d6e7f2>第2賽季 追憶</color> 期間內，以巡迴數{1}以上，總計回合數{0}以下通關2號線時獲得\n（※以23/09/15 19:15（GMT+8） 後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "RailwayDungeonUI_2.json",
@@ -2239,7 +3397,13 @@
       "new_zh": "<color=#32434f>第2賽季 追憶</color>期間內，以巡迴數<color=#005823>{1}</color>以上，總計回合數<color=#005823>{0}</color>以下通關2號線時獲得。\n（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "RailwayDungeonUI_5.json",
@@ -2251,7 +3415,17 @@
       "new_zh": "※當前人格平均等級 ：<color=#990000>{0}</color>（推薦等級：<color=#990000>{1}</color> ）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "ReturnPolicy.json",
@@ -2263,7 +3437,13 @@
       "new_zh": "（1） 購買後立即使用或生效的內容",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "ReturnPolicy.json",
@@ -2275,7 +3455,13 @@
       "new_zh": "（2） 若提供額外優惠，使用額外優惠的內容",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "ReturnPolicy.json",
@@ -2287,7 +3473,13 @@
       "new_zh": "（3） 若存在打開的行為即可被視為使用，或是效用在打開時就已經生效\n\n",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "RewardDungeonUI.json",
@@ -2299,7 +3491,13 @@
       "new_zh": "紡錘採光（{0}）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "ScenarioModelCodes-AutoCreated.json",
@@ -2311,7 +3509,14 @@
       "new_zh": "神父",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」"
+        }
+      ]
     },
     {
       "file": "ScenarioModelCodes-AutoCreated.json",
@@ -2323,7 +3528,14 @@
       "new_zh": "神父",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」"
+        }
+      ]
     },
     {
       "file": "ScenarioModelCodes-AutoCreated.json",
@@ -2335,7 +3547,14 @@
       "new_zh": "神父",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」"
+        }
+      ]
     },
     {
       "file": "ScenarioModelCodes-AutoCreated.json",
@@ -2347,7 +3566,14 @@
       "new_zh": "神父",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "第七章拉曼查之地的神父（nickName 라만차랜드，JP 神父、EN The Priest；model 신부다침、신부하편、신부다침2 用在 S724A、S725B、7D103B～7D110B、S737B，這些劇情都寫「神父」），不是第十章的牧師莫里斯（신부거인，司祭／The Chaplain）；依詞彙表寫「神父」"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2359,7 +3585,13 @@
       "new_zh": "製作腦啡肽模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2371,7 +3603,13 @@
       "new_zh": "要製作腦啡肽模組嗎？",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2383,7 +3621,13 @@
       "new_zh": "模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2395,7 +3639,13 @@
       "new_zh": "腦啡肽模組製作完畢",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2407,7 +3657,13 @@
       "new_zh": "無法製作腦啡肽模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2419,7 +3675,13 @@
       "new_zh": "腦啡肽模組",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2431,7 +3693,13 @@
       "new_zh": "腦啡肽模組已滿",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "ShopUI.json",
@@ -2443,7 +3711,14 @@
       "new_zh": "已達腦啡肽模組的持有上限，無法再製作。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "「엔케팔린 모듈 최대치를 초과하여 제작할 수 없습니다」：舊譯「無法製作模塊；您的庫存已滿。」缺「腦啡肽」，詞彙表寫「腦啡肽模組」（使用者決定 2026-11-07）"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality-mowe-re.json",
@@ -2455,7 +3730,14 @@
       "new_zh": "[CantDuel]\n[WhenUse] 對自身施加4層 [Paralysis]\n[WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍\n[WhenUse] 將自身理智值重置為0\n[EndSkill] 使自身獲得10層 [KeptBlood]\n本回合內自身不會陷入混亂；回合於本技能施放後強制結束",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality_Mirror7-extreme.json",
@@ -2467,7 +3749,14 @@
       "new_zh": "[CantDuel]\n[WhenUse] 對自身施加4層 [Paralysis]\n[WhenUse] 使<noparse>硬血長柄刀</noparse>的恢復效果增加至2倍\n[WhenUse] 將自身理智值重置為0\n[EndSkill] 使自身獲得10層 [KeptBlood]\n本回合內自身不會陷入混亂；回合於本技能施放後強制結束",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-this-turn.yaml",
+          "reason": "「이번 턴 동안」（this turn）統一寫「本回合內」（詞彙表；使用者決定 2026-11-07，H1 的其餘單位）"
+        }
+      ]
     },
     {
       "file": "Skills_personality-05.json",
@@ -2479,7 +3768,13 @@
       "new_zh": "本技能命中時，使自身恢復造成傷害量40%的體力 (每次技能最多恢復50點體力)\n[BeforeUse] 若自身帶有5層 [BloodArmorMeursault]，改為使用「序曲」\n[WhenUse] 指定目標每帶有6級 [Laceration]，使本技能硬幣威力 +1 (最多+2)\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得1層 [BloodArmorMeursault] (每回合最多2次；最多4名友方單位；優先指定隸屬為<拉．曼查領>和<血魔>(高等眷屬)的友方單位；不包含已帶有最大效果層數的友方)\n[EndSkill] 本技能擊殺目標時，獲得20層 [BloodDinner] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Skills_personality-05.json",
@@ -2491,7 +3786,13 @@
       "new_zh": "本技能命中時，使自身恢復造成傷害量40%的體力 (每次技能最多恢復<style=\"highlight\">80</style>點體力)\n[BeforeUse] 若自身帶有5層 [BloodArmorMeursault]，改為使用「序曲」\n[WhenUse] 指定目標每帶有6級 [Laceration]，使本技能硬幣威力 +1 (最多+2)\n<style=\"highlight\">[WhenUse] 指定目標每帶有2回 [Laceration]，使本技能造成的傷害+10% (最多40%)</style>\n[WhenUse] 使自身與(最大共鳴數)名友方單位獲得1層 [BloodArmorMeursault] (每回合最多2次；最多4名友方單位；優先指定隸屬為<拉．曼查領>和<血魔>(高等眷屬)的友方單位；不包含已帶有最大效果層數的友方)\n<style=\"highlight\">- 若該共鳴為色慾共鳴，額外使2名最大體力值最低的友方單位獲得2層 [BloodArmorMeursault]</style>\n[EndSkill] 本技能擊殺目標時，獲得20層 [BloodDinner] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Skills_personality-07.json",
@@ -2503,7 +3804,13 @@
       "new_zh": "[WideAreaRampage]\n本技能命中時，使自身恢復體力上限8%的體力\n[WhenUse] 消耗自身所有 [NeedlekinAlly]，下回合使自身與除自身以外隨機2名友方單位獲得1層 [PenetrateDamageUp]\n- 優先適用於屬於丹紅派的友方單位(編入順序)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "Skills_personality-12.json",
@@ -2515,7 +3822,13 @@
       "new_zh": "目標<style=\"highlight\">每帶有</style>3回 [Combustion]，使本技能的硬幣威力+1<style=\"highlight\">(最多+2)</style>\n[WhenUse] 目標每帶有6級 [Combustion] 強度，使本技能的基礎威力+1(最多<style=\"highlight\">+3</style>)\n[WhenUse] 消耗最多25層 [FirePunchFuel]，每消耗1層 [FirePunchFuel]，使本技能造成的傷害+<style=\"highlight\">2</style>%(最多<style=\"highlight\">+50</style>%)\n- 若自身處於 [FirePunchFuelOverheated] 狀態，則改為每消耗1層 [FirePunchFuel]，使本技能造成的傷害+<style=\"highlight\">4</style>%(最多<style=\"highlight\">+100</style>%)\n[EndSkill] 若擊殺目標，或本技能消耗了 [FirePunchFuel]，則下回合使自身獲得<style=\"highlight\">2</style>層 [HitDamageUp]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-2-half"
+        }
+      ]
     },
     {
       "file": "StoryData/P11106.json",
@@ -2527,7 +3840,13 @@
       "new_zh": "（……看來她相當自負。）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "StoryData/S407B.json",
@@ -2539,7 +3858,13 @@
       "new_zh": "有幾人膽怯地縮起了肩。（辛克萊不出所料，但意外的是希斯克利夫和以實瑪利看起來也有些畏縮。）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "StoryData/S430B.json",
@@ -2551,7 +3876,14 @@
       "new_zh": "我們的指令是抹除恐怖分子。目標：摘除所有部位。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-07-side-fixes.yaml",
+          "reason": "「목표는 전 부위 적출」是摘除身體的所有部位（JP「全部位の摘出」、EN「Target: all parts」），舊譯誤作「所有部門」（人工確認）"
+        }
+      ]
     },
     {
       "file": "StoryData/S735B.json",
@@ -2563,7 +3895,17 @@
       "new_zh": "♬親手築起的♬ ♬屬於我們的♬（幸福的王國！）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "StoryData/S735B.json",
@@ -2575,7 +3917,17 @@
       "new_zh": "♬拉．曼查領♬（歡迎各位前來！）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-7-space"
+        }
+      ]
     },
     {
       "file": "StoryDungeonUI.json",
@@ -2587,7 +3939,13 @@
       "new_zh": "※ 所消耗的腦啡肽模組將會返還。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "StoryTheaterDanteNoteDetail_2.json",
@@ -2599,7 +3957,13 @@
       "new_zh": "- 指所有由收尾人創建的企業或是事業單位。（還是說工作場所？）\n- 收尾人若想承接委託，即使並未創立龐大的企業，也似乎得遵循某種規定，成為各類被授權團體中的一員，就算是建立一家只有自己的「一人事務所」也可以。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "StoryTheaterDanteNoteDetail_2.json",
@@ -2611,7 +3975,13 @@
       "new_zh": "- 根據唐吉訶德的說法（她補充道：「對於涉世未深的雛鳥來說，辨別兩者談何容易！」），作為決鬥協會的Cinq協會一般負責處理一對一的決鬥型作戰，而六協會處理的則是團體型作戰。仔細想來，相較於個人行動，大多數六協會人格似乎更重視團隊的協調與合作。\n他們看起來也相當遊刃有餘……\n- 格里高爾的六協會人格也告訴我，同時與五六個人發生戰鬥是常有的事。（他還不忘自豪地提到，自己「狠狠地踹爛了那些小子的屁股」）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "StoryTheaterDanteNoteDetail_2.json",
@@ -2623,7 +3993,13 @@
       "new_zh": "- 似乎是指腦葉公司所生產的散發著綠色螢光的燃料。\n- 在梅菲斯托費勒斯上也有將人類還原為腦啡肽的裝置，所謂腦啡肽應該就是指那管中注滿的液體了。\n- 腦啡肽並非一定要儲存在管中，也可以因事制宜選擇將其移至更易於儲存或運輸的容器中，代表性的便是盒子與模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "StoryTheaterDanteNoteDetail_8.json",
@@ -2635,7 +4011,13 @@
       "new_zh": "- 顯然，他們在裝有AI「波魯德尼察」的次元包，也叫「物流箱」中放入貨物來進行配送。更準確地說，似乎會根據委託與路徑為每位收尾人分配最適合的波魯德尼察型號。\n- 浮士德解釋說，是將搭載了AI的核心或模組嵌入到每個物流箱中，然後……總之，他們使用搭載了AI的包來運送貨物。\n- 箱子裡的物品通常都保存完好，而且他們很少遲到，這使他們成為了都市中至關重要的協會。或許有一天我們也可以利用他們的服務？聽起來很方便。\n- 經過與人格的簡短交談，我了解到，若判斷認為可能難以按時交付，AI波魯德尼察會大幅強化其持有者的力量，之後如果不準時交貨也可能會導致死亡……難怪他們極少錯過最後期限。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-modules-other"
+        }
+      ]
     },
     {
       "file": "StoryTheaterUIText.json",
@@ -2647,7 +4029,13 @@
       "new_zh": "無配音\n（0.00 MB）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "StoryTheaterUIText.json",
@@ -2659,7 +4047,13 @@
       "new_zh": "有配音\n（{0} MB）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2671,7 +4065,13 @@
       "new_zh": "在各章節的最後關卡將會出現迷宮。入場時將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2683,7 +4083,13 @@
       "new_zh": "能夠在眾多鏡像迷宮中選擇其一入場。需要消耗腦啡肽模組來獲得獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2695,7 +4101,13 @@
       "new_zh": "能夠從符合推薦等級的經驗採光中選擇其一入場。入場時需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2707,7 +4119,13 @@
       "new_zh": "所開放的異想體戰鬥根據星期不同而變化。進入戰鬥關卡時需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2719,7 +4137,13 @@
       "new_zh": "活動期間，初次通關獎勵將會累計存放在失物招領處。\n初次在失物招領處領取獎勵，需要消耗一定量的腦啡肽模組。\n在此之後，無須消耗更多腦啡肽模組，可以隨時領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2731,7 +4155,13 @@
       "new_zh": "地獄雞共有 8 個普通關卡和 2 個迷宮。\n[小鳳玩偶]除了地獄雞的通關獎勵外，EX CLEAR獎勵也會獲得。（限1次）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2743,7 +4173,13 @@
       "new_zh": "自我碎片可在其規定的賽季期間內使用。\n\n當新賽季開始時，上一賽季的自我碎片總數將減半，並繼承至下一賽季。（無條件進位）\n\n如果經過了多個賽季，則每經過一個賽季繼承數量減半一次。\n\n未被繼承的自我碎片將會被轉換為紡錘。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2755,7 +4191,13 @@
       "new_zh": "在探險結束後，能夠花費腦啡肽模組來領取獎勵。\n如果使用每週3次的額外獎勵次數，可以獲得大量的戰鬥通行證經驗和定量狂氣。\n獎勵數量根據通關節點的數量發放。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2767,7 +4209,13 @@
       "new_zh": "去．海．邊包括劇情關卡在內共有12關。\n[巴士改造廢料]除了去．海．邊的通關獎勵外，EX通關獎勵也會獲得。（限1次） ",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2779,7 +4227,13 @@
       "new_zh": "這個特殊關卡透過消耗腦啡肽模組來進入。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2791,7 +4245,13 @@
       "new_zh": "為了領取失物招領處中的獎勵，最初需要支付一定數量的腦啡肽模組。後續領取獎勵無需額外消耗腦啡肽模組，並且可以隨時獲取已獲得的獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2803,7 +4263,13 @@
       "new_zh": "通關鏡像迷宮後，能夠消耗腦啡肽模組來領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2815,7 +4281,13 @@
       "new_zh": "20區的奇蹟活動並不包含迷宮關卡。作為替代，將會有供您反覆進入並獲得大量裝飾品包裹的特殊關卡。特殊關卡將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2827,7 +4299,13 @@
       "new_zh": "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。而之後再領取獎勵將不再需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2839,7 +4317,13 @@
       "new_zh": "肉斬骨斷最後的戰鬥，將以鏡像迷宮的形式進行。\n\n入場時，將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2851,7 +4335,13 @@
       "new_zh": "時間殺人時間活動的最後關卡將會出現迷宮，入場時將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2863,7 +4353,13 @@
       "new_zh": "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。\n\n而之後再領取獎勵將不再需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2875,7 +4371,13 @@
       "new_zh": "WARP列車謀殺案包括劇情關卡在內共有15關。除了WARP列車謀殺案的通關獎勵外，EX通關獎勵也會獲得[普通乘客復原包]（限1次）。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2887,7 +4389,13 @@
       "new_zh": "LCB定期體檢活動的最後關卡將會出現迷宮，入場時將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2899,7 +4407,13 @@
       "new_zh": "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。\n\n而之後再領取獎勵將不再需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2911,7 +4425,13 @@
       "new_zh": "深夜清掃包括劇情關卡在內共有12關。\n[清道夫液態燃料罐]除了深夜清掃的通關獎勵外，EX通關獎勵也會獲得。（限1次） ",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2923,7 +4443,13 @@
       "new_zh": "切磋琢春最後的戰鬥，將以連續遭遇戰的形式進行。\n\n入場時，將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2935,7 +4461,17 @@
       "new_zh": "請注意。\n章節進度及EX進度獎勵僅能在活動期間（2025/9/25 11:00～10/23 05:00（GMT+8））內領取。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-5-outer"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2947,7 +4483,13 @@
       "new_zh": "善意的巡禮活動的最後關卡將會出現迷宮，\n入場時將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2959,7 +4501,17 @@
       "new_zh": "※ 活動期間（2025/9/25 11:00～10/23 05:00（GMT+8））結束後，善意的巡禮的戰鬥與劇情將從駕駛席與放映室中移除。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-5-outer"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2971,7 +4523,13 @@
       "new_zh": "WARP列車謀殺案 復刻包括劇情關卡在內共有15關。除了WARP列車謀殺案的通關獎勵外，EX通關獎勵也會獲得[普通乘客復原包]（限1次）。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2983,7 +4541,13 @@
       "new_zh": "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -2995,7 +4559,13 @@
       "new_zh": "而之後再領取獎勵將不再需要消耗腦啡肽模組，可以在任何時間領取。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -3007,7 +4577,13 @@
       "new_zh": "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -3019,7 +4595,13 @@
       "new_zh": "而之後再領取獎勵將不再需要消耗腦啡肽模組，可以在任何時間領取。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -3031,7 +4613,13 @@
       "new_zh": "第一次透過失物招領處領取獎勵時，需要使用特定數量的腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -3043,7 +4631,13 @@
       "new_zh": "而之後再領取獎勵將不再需要消耗腦啡肽模組，可以在任何時間領取。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3055,7 +4649,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3067,7 +4667,13 @@
       "new_zh": "通關鏡像迷宮後，能夠消耗腦啡肽模組來領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3079,7 +4685,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3091,7 +4703,13 @@
       "new_zh": "通關鏡像迷宮後，能夠消耗腦啡肽模組來領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3103,7 +4721,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3115,7 +4739,13 @@
       "new_zh": "僅在消耗腦啡肽模組領取獎勵的情況下，要求通關鏡像迷宮的成就才被視為已完成。\n\n在您嘗試完成要求通關鏡像迷宮的成就之前，還請注意本條訊息。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3127,7 +4757,13 @@
       "new_zh": "25.02.27（GMT+8） 已追加更新",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3139,7 +4775,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3151,7 +4793,13 @@
       "new_zh": "通關鏡像迷宮後，能夠消耗腦啡肽模組來領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3163,7 +4811,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3175,7 +4829,13 @@
       "new_zh": "※以通關為條件的成就，僅在消耗腦啡肽模組領取獎勵的情況下，才會被視為已完成。在您嘗試完成要求通關鏡像迷宮的成就之前請多加注意。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3187,7 +4847,13 @@
       "new_zh": "可獲得的折射率有每週上限，每週上限將會在週四上午5點（GMT+8）重置。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3199,7 +4865,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3211,7 +4883,13 @@
       "new_zh": "通關鏡像迷宮後，能夠消耗腦啡肽模組來領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3223,7 +4901,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3235,7 +4919,13 @@
       "new_zh": "※以通關為條件的成就，僅在消耗腦啡肽模組領取獎勵的情況下，才會被視為已完成。在您嘗試完成要求通關鏡像迷宮的成就之前請多加注意。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3247,7 +4937,13 @@
       "new_zh": "可獲得的折射率有每週上限，每週上限將會在週四上午5點（GMT+8）重置。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3259,7 +4955,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3271,7 +4973,13 @@
       "new_zh": "通關鏡像迷宮後，能夠消耗腦啡肽模組來領取獎勵。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3283,7 +4991,13 @@
       "new_zh": "但是，比起一次性消耗3次每週加成，每次消耗1次加成可以更有效率地利用腦啡肽。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-typo"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3295,7 +5009,13 @@
       "new_zh": "※以通關為條件的成就，僅在消耗腦啡肽模組領取獎勵的情況下，才會被視為已完成。在您嘗試完成要求通關鏡像迷宮的成就之前請多加注意。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -3307,7 +5027,13 @@
       "new_zh": "可獲得的折射率有每週上限，每週上限將會在週四上午5點（GMT+8）重置。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalDesc.json",
@@ -3319,7 +5045,13 @@
       "new_zh": "友方單位的速度值與敵方相同或是低於敵方時，將無法變更敵方的攻擊目標。\n此時將不會進行拚點，而是<color=#05DBF2>進行單方面攻擊（藍色箭頭）<color=#ebcaa2>。\n\n<color=#05DBF2>單方面攻擊<color=#ebcaa2>將不會進行拚點，只會進行攻擊。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-1-full"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalMainUIDesc.json",
@@ -3331,7 +5063,13 @@
       "new_zh": "進入採光迷宮，需要消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalMainUIDesc.json",
@@ -3343,7 +5081,13 @@
       "new_zh": "已完成的採光戰鬥，將會開啟跳過戰鬥的功能。\n雖然會消耗2倍的模組，但是可以節省時間並獲得1.5倍的報酬。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     },
     {
       "file": "UI_Mission_NewReturnUserEvent.json",
@@ -3355,7 +5099,13 @@
       "new_zh": "對象：<color=#990000>{2}年{0}月{1}日</color> 11:00（GMT+8）後新創建的帳戶",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "UnlockCode-1.json",
@@ -3367,7 +5117,13 @@
       "new_zh": "人格等級上限根據主線劇情進度解鎖，\n透過本張票券可達到的最高等級（Lv. {0}）\n將在通過章節5後解鎖。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "UnlockCode-1.json",
@@ -3379,7 +5135,13 @@
       "new_zh": "人格等級上限根據主線劇情進度解鎖，\n透過本張票券可達到的最高等級（Lv. {0}）\n將在通過章節6後解鎖。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "UnlockCode-1.json",
@@ -3391,7 +5153,13 @@
       "new_zh": "人格等級上限根據主線劇情進度解鎖，\n透過本張票券可達到的最高等級（Lv. {0}）\n將在通過章節8後解鎖。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg.json",
@@ -3403,7 +5171,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數150以下通關2號線時獲得。（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "UserTicket-L.json",
@@ -3415,7 +5189,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數150以下通關2號線時獲得。（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "UserTicket-R.json",
@@ -3427,7 +5207,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數150以下通關2號線時獲得。（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-brackets-4-codes"
+        }
+      ]
     },
     {
       "file": "Walpu7EventText.json",
@@ -3439,7 +5225,125 @@
       "new_zh": "活動期間所消耗的腦啡肽會被記錄下來。\n用於製作模組的腦啡肽將不計入，\n當腦啡肽模組被消耗時，\n每個將會換算成<color=#22ffe4>20 腦啡肽 </color>。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-enkephalin-module"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-07-module-bare"
+        }
+      ]
     }
-  ]
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-07-side-fixes.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-07-side-fixes.yaml",
+      "path": "rules/adjustments/2026-11-07-side-fixes.yaml",
+      "title": "2026-11-07-side-fixes.yaml",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "adjustment:2026-11-07-this-turn.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-07-this-turn.yaml",
+      "path": "rules/adjustments/2026-11-07-this-turn.yaml",
+      "title": "2026-11-07-this-turn.yaml",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-1-full": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-1-full",
+      "path": "rules/rewrite/2026-11-07-brackets-1-full.yaml",
+      "title": "base.md 第 7 條：括號用全形（效果文字以外，括號內有中文的）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-2-half": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-2-half",
+      "path": "rules/rewrite/2026-11-07-brackets-2-half.yaml",
+      "title": "效果文字的括號用半形（guides/shared/battle-text.md；括號內有中文的）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-3-id-space": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-3-id-space",
+      "path": "rules/rewrite/2026-11-07-brackets-3-id-space.yaml",
+      "title": "[ID] 後的半形括號前空一格（base.md 第 6 條）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-4-codes": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-4-codes",
+      "path": "rules/rewrite/2026-11-07-brackets-4-codes.yaml",
+      "title": "base.md 第 7 條：括號用全形（效果文字以外，括號內是時區、佔位符、英文或編號的）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-5-outer": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-5-outer",
+      "path": "rules/rewrite/2026-11-07-brackets-5-outer.yaml",
+      "title": "base.md 第 7 條：括號用全形（內層已是全形的外層括號）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-6-list": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-6-list",
+      "path": "rules/rewrite/2026-11-07-brackets-6-list.yaml",
+      "title": "base.md 第 7 條：括號用全形（FAQ 的「1)」編號）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-brackets-7-space": {
+      "kind": "rewrite",
+      "id": "2026-11-07-brackets-7-space",
+      "path": "rules/rewrite/2026-11-07-brackets-7-space.yaml",
+      "title": "全形括號前不留半形空格",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-caution-bracket": {
+      "kind": "rewrite",
+      "id": "2026-11-07-caution-bracket",
+      "path": "rules/rewrite/2026-11-07-caution-bracket.yaml",
+      "title": "事件選項效果的括號用半形（base.md 第 7 條）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-enkephalin-module": {
+      "kind": "rewrite",
+      "id": "2026-11-07-enkephalin-module",
+      "path": "rules/rewrite/2026-11-07-enkephalin-module.yaml",
+      "title": "엔케팔린 모듈 寫「腦啡肽模組」（詞彙表）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-enkephalin-typo": {
+      "kind": "rewrite",
+      "id": "2026-11-07-enkephalin-typo",
+      "path": "rules/rewrite/2026-11-07-enkephalin-typo.yaml",
+      "title": "「腦啡呔模塊」是錯字，KR 是 엔케팔린（腦啡肽）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-module-bare": {
+      "kind": "rewrite",
+      "id": "2026-11-07-module-bare",
+      "path": "rules/rewrite/2026-11-07-module-bare.yaml",
+      "title": "엔케팔린 모듈 單寫「모듈」時也寫「模組」（詞彙表）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-module-sphere": {
+      "kind": "rewrite",
+      "id": "2026-11-07-module-sphere",
+      "path": "rules/rewrite/2026-11-07-module-sphere.yaml",
+      "title": "엔케팔린 모듈 的道具說明寫「模組」（詞彙表）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    },
+    "rewrite:2026-11-07-modules-other": {
+      "kind": "rewrite",
+      "id": "2026-11-07-modules-other",
+      "path": "rules/rewrite/2026-11-07-modules-other.yaml",
+      "title": "KR 모듈 寫「模組」（台灣用語，使用者決定 2026-11-07）",
+      "commit": "c922394a49d63ef61b5b3a06f96064886eac0e68"
+    }
+  }
 }

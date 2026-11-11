@@ -31,7 +31,13 @@
       "new_zh": "為了控制天殺星刀 - 阿賴耶識而打造，僅為了良秀存在的刀鞘。於不滅之炎中鍛造出來，阿賴耶的E.G.O。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-04-ego-no-period"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -43,7 +49,13 @@
       "new_zh": "這是個殘存微弱自我，矛盾的E.G.O。\n即使看來像是僅為了對方，卻非絕對的利他性。\n若想將他人人生意義置於自己人生意義之上，必須先懷有絕對的利己心。\n\n「雖然希望媽媽不要忘記我，可是就這樣失去媽媽更讓我無法接受。」\n「所以先忘了我，再更重視自己吧。」",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-04-ego-no-period"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -55,7 +67,13 @@
       "new_zh": "為了控制天殺星刀 - 阿賴耶識而打造，僅為了良秀存在的刀鞘。於不滅之炎中鍛造出來，阿賴耶的E.G.O。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-04-ego-no-period"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -67,7 +85,13 @@
       "new_zh": "這是個殘存微弱自我，矛盾的E.G.O。\n即使看來像是僅為了對方，卻非絕對的利他性。\n若想將他人人生意義置於自己人生意義之上，必須先懷有絕對的利己心。\n\n「雖然希望媽媽不要忘記我，可是就這樣失去媽媽更讓我無法接受。」\n「所以先忘了我，再更重視自己吧。」",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-04-ego-no-period"
+        }
+      ]
     },
     {
       "file": "StoryData/P11214.json",
@@ -79,7 +103,13 @@
       "new_zh": "我聽說了李箱先生的事，為了拯救格里高爾先生，而將E.G.O的感應度過度提高了……",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-04-ego-no-period"
+        }
+      ]
     },
     {
       "file": "StoryData/S912B.json",
@@ -91,7 +121,23 @@
       "new_zh": "邊獄公司。鏡子。玻璃窗。舊L公司。提取E.G.O。腦啡肽。神備。異想體。獨石。罪人良秀。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-04-ego-no-period"
+        }
+      ]
     }
-  ]
+  ],
+  "causes_version": 1,
+  "rules": {
+    "rewrite:2026-11-04-ego-no-period": {
+      "kind": "rewrite",
+      "id": "2026-11-04-ego-no-period",
+      "path": "rules/rewrite/2026-11-04-ego-no-period.yaml",
+      "title": "E.G.O 結尾不加「.」（guides/base.md 第 8 條）",
+      "commit": "ae80691b319ce3b1d5abe3e8ed9ba5520a1793df"
+    }
+  }
 }

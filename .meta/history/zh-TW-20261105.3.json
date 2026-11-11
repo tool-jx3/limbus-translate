@@ -31,7 +31,13 @@
       "new_zh": "獲得暴怒、傲慢屬性罪孽碎片",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-resource"
+        }
+      ]
     },
     {
       "file": "ActionEvents-a1c7p3.json",
@@ -43,7 +49,13 @@
       "new_zh": "獲得色慾、暴食屬性罪孽碎片",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-resource"
+        }
+      ]
     },
     {
       "file": "ActionEvents-a1c7p3.json",
@@ -55,7 +67,13 @@
       "new_zh": "獲得憂鬱、嫉妒屬性罪孽碎片",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-resource"
+        }
+      ]
     },
     {
       "file": "ActionEvents-a1c9p1.json",
@@ -67,7 +85,13 @@
       "new_zh": "「等、等等。這孩子是怎麼一回事？它和我們在鏡像迷宮見到的是不是不一樣啊？」\n「……硬要說的話，折射軌道……它與那個地方看到的更為相似。」\n\n「雖然霍恩海姆確實對那個領域有興趣……」\n\n「但他並非是那種優秀得能將興趣作為成果實現出來的天才。」\n「那麼，這到㡳是……」\n\n「等一下，這裡是不是有人掉下什麼東西了啊？」\n「嗯。看起來是從筆記本上撕下後夾在這裡的。為了更清楚看見還特地塗上了螢光塗料。」\n\n大概是沒想到我們會來吧，這應該是留給倖存者的筆記。\n看一眼應該也不會有什麼損失。\n\n- 特別事項紀錄\n創建者：LCD部門，現場推理小組 隊長 摩西。\n\n對象個體在襲擊發生時，突然從收容單元出逃。\n此事件屬仍未解明的特異事項，特此紀錄。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-osir-team"
+        }
+      ]
     },
     {
       "file": "ActionEvents_Ycgd.json",
@@ -79,7 +103,13 @@
       "new_zh": "一個熟悉的休息點。\n\n入口雖然關著，但玻璃窗上貼著什麼東西。\n\n「十分抱歉，因為店主身體狀況欠佳，今日休店。」\n\n「作為補償，可以使用合成裝置，若顧客需要合成飾品，請使用入口旁邊的裝置吧。」\n\n該怎麼做？",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-rest-stop"
+        }
+      ]
     },
     {
       "file": "ActionEvents_Ycgd.json",
@@ -91,7 +121,13 @@
       "new_zh": "一個熟悉的休息點。\n\n入口雖然關著，但玻璃窗上貼著什麼東西。\n\n「十分抱歉，因為店主身體狀況欠佳，今日休店。」\n\n「作為補償，可以使用合成裝置，若顧客需要合成飾品，請使用入口旁邊的裝置吧。」\n\n該怎麼做？",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-rest-stop"
+        }
+      ]
     },
     {
       "file": "ActionEvents_tkt.json",
@@ -103,7 +139,13 @@
       "new_zh": "一個熟悉的休息點。\n\n入口雖然關著，但玻璃窗上貼著什麼東西。\n\n「十分抱歉，因為店主身體狀況欠佳，今日休店。」\n\n「作為補償，可以使用合成裝置，若顧客需要合成飾品，請使用入口旁邊的裝置吧。」\n\n該怎麼做？",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-rest-stop"
+        }
+      ]
     },
     {
       "file": "BattleAnnouncerDlg/Announcer_Magical_32.json",
@@ -115,7 +157,14 @@
       "new_zh": "今天也為了充滿正義的一天而努力吧！一起～阿爾卡那……心跳跳！",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「아르카나」寫「阿爾卡那」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -127,7 +176,13 @@
       "new_zh": "- 最大值：50\n- 每有1層本效果，使自身的體力上限減少1%\n- 戰鬥開始時，對自身造成(本效果層數×12)點的固定傷害\n- 每次本效果層數減少時，根據減少的層數，使我方獲得等量的隨機屬性罪孽碎片(最多15個)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-start-2"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -139,7 +194,13 @@
       "new_zh": "- 回合開始時，自身獲得1層斬擊傷害強化、1層拚點威力提升，並對自身施加1層易損\n- 使用技能時無法獲得望",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-clash-power-up"
+        }
+      ]
     },
     {
       "file": "BattleKeywords-a1c9p3.json",
@@ -151,7 +212,13 @@
       "new_zh": "- 回合開始時，自身獲得2層斬擊傷害強化、2層拚點威力提升，並對自身施加2層易損\n- 使用技能時無法獲得望",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-clash-power-up"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -163,7 +230,13 @@
       "new_zh": "- 最小值：0\n- 最大值：4\n- 特定技能使用時消耗的箭矢",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-certain-skill"
+        }
+      ]
     },
     {
       "file": "BattleKeywords.json",
@@ -175,7 +248,13 @@
       "new_zh": "- 最大值：2\n- 自身最小與最大速度值+3\n- 戰鬥開始時，使本單位獲得1層守護\n- 本單位將於戰鬥中發動下列效果(每個技能最多1次；每回合最多發動3次)\n- 當本單位成為單方面攻擊技能的主要目標時，使該技能的第一枚硬幣翻為正面的機率減半\n- 本單位開始拚點時，在第一次拚點中使對方所有硬幣翻為正面的機率減半\n- 若生效目標使用的硬幣為減算硬幣，則使上述效果改為減少翻為反面的機率\n- 回合結束時，使本效果層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "BattlePass.json",
@@ -187,7 +266,14 @@
       "new_zh": "※購買戰鬥通行證等級需要花費300付費狂氣。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）"
+        }
+      ]
     },
     {
       "file": "BattlePass.json",
@@ -199,7 +285,14 @@
       "new_zh": "購買巴士通行證組合包時，\n會在{0}期間提供以下福利。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「림버스 패스 패키지」寫「巴士通行證組合包」（ShopUI /73 既有；詞彙表）；舊譯漏了「組合包」"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -211,7 +304,13 @@
       "new_zh": "- 最大值：50\n- 每有1層本效果，使自身的體力上限減少1%\n- 戰鬥開始時，對自身造成(本效果層數×12)點的固定傷害\n- 每次本效果層數減少時，根據減少的層數，使我方獲得等量的隨機屬性罪孽碎片(最多15個)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-start-2"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -223,7 +322,13 @@
       "new_zh": "- 回合開始時，自身獲得1層斬擊傷害強化、1層拚點威力提升，並對自身施加1層易損\n- 使用技能時無法獲得望",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-clash-power-up"
+        }
+      ]
     },
     {
       "file": "Bufs-a1c9p3.json",
@@ -235,7 +340,13 @@
       "new_zh": "- 回合開始時，自身獲得2層斬擊傷害強化、2層拚點威力提升，並對自身施加2層易損\n- 使用技能時無法獲得望",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-clash-power-up"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -247,7 +358,13 @@
       "new_zh": "- 最小值：0\n- 最大值：4\n- 特定技能使用時消耗的箭矢",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-certain-skill"
+        }
+      ]
     },
     {
       "file": "Bufs.json",
@@ -259,7 +376,13 @@
       "new_zh": "- 最大值：2\n- 自身最小與最大速度值+3\n- 戰鬥開始時，使本單位獲得1層守護\n- 本單位將於戰鬥中發動下列效果(每個技能最多1次；每回合最多發動3次)\n- 當本單位成為單方面攻擊技能的主要目標時，使該技能的第一枚硬幣翻為正面的機率減半\n- 本單位開始拚點時，在第一次拚點中使對方所有硬幣翻為正面的機率減半\n- 若生效目標使用的硬幣為減算硬幣，則使上述效果改為減少翻為反面的機率\n- 回合結束時，使本效果層數減少1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "DungeonNode1-1.json",
@@ -271,7 +394,14 @@
       "new_zh": "控制部 大廳",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「지휘팀」寫「控制部」（詞彙表）；寫法照同檔 /stageList/2 的「控制部 大廳」"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-StoryTheme.json",
@@ -283,7 +413,13 @@
       "new_zh": "使用色慾或暴食攻擊技能命中敵方單位時，對其施加2層 [Muckworm] (不包括E.G.O技能)\n\n若該技能為增加 [Laceration] 強度、[Laceration] 回數或施加特殊流血的技能，則改為對目標施加3層 [Muckworm]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-StoryTheme_2.json",
@@ -295,7 +431,13 @@
       "new_zh": "使用攻擊技能命中帶有 [Laceration] 或特殊流血的敵方單位時，使自身增加1級 [Breath] 強度。(每回合每名人格最多3次)\n\n暴擊命中時，以50%的機率使自身於下回合獲得1層 [PenetrateResultUp] (每回合每名人格最多2次；包括E.G.O技能與反擊技能)\n\n基礎技能正面暴擊命中時，令該硬幣對目標施加的負面狀態額外 +1。(每回合每名人格最多1次；包括反擊技能，不包括E.G.O技能)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-mowe-re.json",
@@ -307,7 +449,13 @@
       "new_zh": "根據編隊中具有消耗 [BloodDinner] 的攻擊技能人格數強化飾品效果(不包括E.G.O技能，包含編入人員)\n\n波次的首個回合開始時，生成(編入人格數×20)層 [BloodDinner]，並使所有目標增加3級 [Laceration] 強度與3回 [Laceration] (波次的首個回合生成的 [BloodDinner] 最多100層)\n\n友方單位受到來自 [Laceration] 造成的傷害-(編入人格數×10)%( [Laceration] 造成的傷害不會低於1點；最多-40%)\n- 減少的傷害不會影響 [BloodDinner] 的儲存層數\n\n敵方單位受到來自 [Laceration] 造成的傷害+(編入人格數×5)%(最多+20%)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon-mowe-re.json",
@@ -319,7 +467,13 @@
       "new_zh": "根據編隊中具有消耗 [BloodDinner] 的攻擊技能人格數強化飾品效果(不包括E.G.O技能，包含所有編隊人員)\n\n關卡開始時，使所有友方單位獲得(編入人格數-2)層 [BloodArmorCasting] (最多3層)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon_7.json",
@@ -331,7 +485,13 @@
       "new_zh": "回合開始時，若全體敵方單位帶有的 [Sinking] 強度以及 [Sinking] 回數之和不低於30，則發動以下效果：\n\n- 增加 [Sinking] 強度或回數的技能獲得最終威力 +1 (包含特殊沉淪；不包括E.G.O技能)\n\n- 當隊伍中擁有增加 [Sinking] 強度、[Sinking] 回數或特殊沉淪的攻擊技能的友方人格至少有6名時：\n使增加 [Sinking] 強度或回數的技能造成的傷害 +20% (包含特殊沉淪；包含待命人員；不包括E.G.O技能)\n．若攻擊目標的理智值為-45點，則額外使造成的傷害 +10%\n\n- 當隊伍中擁有增加 [Sinking] 強度、[Sinking] 回數或特殊沉淪的攻擊技能的友方人格至少有10名時：\n使增加 [Sinking] 強度或回數的技能獲得硬幣威力 +1 (包含特殊沉淪；包含待命人員；不包括E.G.O技能)\n．若是減算硬幣技能：則不獲得硬幣威力，改為獲得基礎威力 +(4 ÷ 技能硬幣數) (至少+1；無條件捨去)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon_7.json",
@@ -343,7 +503,17 @@
       "new_zh": "當屬於「裴廓德號」的人格至少有3名時，則發動本飾品的效果 (包含待命人員)\n\n使用攻擊技能命中帶有 [Laceration] 或特殊流血的敵方單位時，使自身獲得2回 [Breath] 或3級 [Breath] 強度 (每回合1名人格最多3次)\n\n技能暴擊命中時，以80%的機率使自身下回合獲得1層 [PenetrateResultUp] (每回合每1名人格最多2次；包含E.G.O技能以及反擊技能)\n- 若是屬於「裴廓德號」的人格，則觸發時額外獲得1層 [PlusCoinValueUp] (每回合1名人格最多1次)\n\n基礎技能的硬幣正面暴擊命中時，使該硬幣施加的負面效果 +1 (每回合每1名友方單位最多1次；包含反擊技能，不包括E.G.O技能)\n\n當敵方單位或友方單位陣亡時：接下來的戰鬥期間，使屬於「裴廓德號」的人格每回合獲得1層 [PenetrateResultUp]、1層 [Protection] 以及1層 [CriticalDamageUp] (每關卡最多累加3次)\n\n當屬於「裴廓德號」的人格攻擊命中時，使編入順序最早的「裴廓德號」所屬人格恢復7點理智值 (每個技能最多1次)\n\n友方單位擊殺敵方單位時，若編入順序最早的「裴廓德號」所屬人格失去了理智值，則使該人格恢復15點理智值",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        },
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "EGOgift_MirrorDungeon_7.json",
@@ -355,7 +525,13 @@
       "new_zh": "使用施加 [Laceration] 強度、[Laceration] 回數或特殊流血的技能命中敵方單位時，對其施加1層 [NailPersonality] (每個技能最多1次)\n使帶有 [NailPersonality] 的敵方單位 [VibrationExplosion] 時，下回合對其施加1層 [Binding] (每回合最多3次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "EGOgift_lcbcheckup-re.json",
@@ -367,7 +543,14 @@
       "new_zh": "與速度較低的敵人拚點時，增加最終威力[TabExplain]並使造成的傷害增加[TabExplain]",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「최종 위력」寫「最終威力」（詞彙表；EN Final Power），不是拚點威力"
+        }
+      ]
     },
     {
       "file": "EventMiracleText.json",
@@ -379,7 +562,13 @@
       "new_zh": "通關活動或主線章節的關卡和鏡像迷宮可獲得<color=#008d0d>[裝飾品包裹]</color>\n獲得時，有低機率額外獲得<color=#008d0d>[巨大裝飾品包裹]</color>。\n\n<color=#008d0d>[巨大裝飾品包裹]</color>會立即轉換為20個<color=#008d0d>[裝飾品包裹]</color>。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "GachaTitle.json",
@@ -391,7 +580,14 @@
       "new_zh": "特定提取：劍契組．黑雲會",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「검계」寫「劍契組」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "HellsChicken.json",
@@ -403,7 +599,13 @@
       "new_zh": "放棄活動鏡像迷宮",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "IAPProduct-a1c9.json",
@@ -415,7 +617,13 @@
       "new_zh": "3週年限定商品，可獲得以下道具。\n\n． 立即獲得Angela（圖書館館長 - 前期）播報員\n． 3星人格必得十連提取券 ×1\n． 人格跳躍成長券 - ver.3 ×1\n\n※ 持有Angela（圖書館館長 - 前期）播報員時，將獲得紡錘箱 ×50。\n※ 使用人格跳躍成長券 - ver.3時，所選人格等級將提升至60級，同步階段將提升至同步階段4。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-guarantee-ticket"
+        }
+      ]
     },
     {
       "file": "IAPProduct.json",
@@ -427,7 +635,13 @@
       "new_zh": "提供給新晉經理的一次性組合包。內含以下物品：\n\n．3星人格必得十連提取券 × 1\n．十連提取券 × 1",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-guarantee-ticket"
+        }
+      ]
     },
     {
       "file": "IAPProduct.json",
@@ -439,7 +653,13 @@
       "new_zh": "1週年限定商品，可獲得以下道具。\n\n． 立即獲得Angela播報員\n． 3星人格必得十連提取券 ×1\n． 人格跳躍成長券 ×1\n\n※ 持有Angela播報員時，將獲得紡錘箱 ×50。\n※ 使用人格跳躍成長券時，所選人格等級將提升至40級，同步階段將提升至同步階段4。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-guarantee-ticket"
+        }
+      ]
     },
     {
       "file": "IAPProduct.json",
@@ -451,7 +671,13 @@
       "new_zh": "2週年限定商品，可獲得以下道具。\n\n．立即獲得維吉里烏斯播報員\n．3星人格必得十連提取券 ×1\n．人格跳躍成長券 - ver.2 ×1\n\n※持有維吉里烏斯播報員時，將獲得紡錘箱 ×50。\n※使用人格跳躍成長券 - ver.2時，所選人格等級將提升至50級，同步階段將提升至同步階段4。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-guarantee-ticket"
+        }
+      ]
     },
     {
       "file": "Items.json",
@@ -463,7 +689,14 @@
       "new_zh": "第1賽季戰鬥通行證E.G.O自選券",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；道具名與同一道具的 Items /81/desc「第1賽季戰鬥通行證E.G.O」一致"
+        }
+      ]
     },
     {
       "file": "MainUIText.json",
@@ -475,7 +708,13 @@
       "new_zh": "追加戰鬥被動技能",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-passive-skill"
+        }
+      ]
     },
     {
       "file": "MainUIText_UPDATE_ON_0720.json",
@@ -487,7 +726,13 @@
       "new_zh": "戰鬥被動 [{0}] 強化",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-passive"
+        }
+      ]
     },
     {
       "file": "MainUIText_UPDATE_ON_0720.json",
@@ -499,7 +744,13 @@
       "new_zh": "戰鬥被動技能強化",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-passive-skill"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI_6.json",
@@ -511,7 +762,14 @@
       "new_zh": "第{0}賽季 戰鬥通行證",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）"
+        }
+      ]
     },
     {
       "file": "MirrorDungeonUI_7.json",
@@ -523,7 +781,14 @@
       "new_zh": "是否消耗<color=#f8c200>{0}</color>星芒進行技能替換？",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「별빛」寫「星芒」（詞彙表）；舊譯把별빛 寫成「經費」，與 KR、EN（Starlight）不符"
+        }
+      ]
     },
     {
       "file": "Passives-BossRaid.json",
@@ -535,7 +800,13 @@
       "new_zh": "拚點勝利時，使自身獲得2回 [Breath] (每回合最多2次)\n\n自身攻擊技能命中時，若目標帶有的 [Laceration] 強度低於5級，則於攻擊結束時使目標增加1級 [Laceration] 強度與2回 [Laceration] (每個技能最多1次；每回合最多2次；優先指定主要目標)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives-BossRaid.json",
@@ -547,7 +818,13 @@
       "new_zh": "關卡開始時，使自身獲得5層 [ChoiSwordsmanship]\n\n每經過3回合，改變自身的本國架勢\n\n自身的斬擊技能命中時，使自身獲得1級 [Breath] 強度 (每個技能最多1次)\n\n當下列條件遭到觸發時，使自身改變至包含技能「本國弓術[肉] - 有的放矢」的行動模式\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時\n\n回合開始時，若自身的 [ChoiSwordsmanship] 層數為最小值或最大值，則發動強力技能\n若自身於上回合使用了技能「本國弓術[肉] - 有的放矢」，則無視自身 [ChoiSwordsmanship] 層數，發動強力技能\n自身體力值減少至60%以下時，將無視自身 [ChoiSwordsmanship] 層數，發動強力技能",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -559,7 +836,13 @@
       "new_zh": "拚點勝利時，使目標增加1級 [Laceration] 強度(每回合最多3次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-thrice-per-turn"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -571,7 +854,13 @@
       "new_zh": "速度值最低的1名友方單位命中 [Laceration] 強度不低於10級的敵方單位時，下回合對該敵方單位施加1層攻擊等級降低 (每回合最多3次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-thrice-per-turn"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -583,7 +872,13 @@
       "new_zh": "速度值最低的1名友方單位命中 [Laceration] 強度不低於7級的敵方單位時，下回合對該敵方單位施加1層攻擊等級降低 (每回合最多3次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-thrice-per-turn"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -595,7 +890,13 @@
       "new_zh": "若句點事務所 收尾人 希斯克利夫處於 [Retreat_FullStop] 狀態，或作為待命人員編入隊伍，則強化句點事務所 代表 鴻璐的2技能與3技能",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-fullstop-fixer"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -607,7 +908,13 @@
       "new_zh": "若句點事務所 收尾人 希斯克利夫處於 [Retreat_FullStop] 狀態，或作為待命人員編入隊伍，則強化句點事務所 代表 鴻璐的2技能與3技能\n\n戰鬥開始時，若自身的 [Breath] 強度不低於20級，則使自身獲得1回 [Breath]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-fullstop-fixer"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -619,7 +926,13 @@
       "new_zh": "使理智值最低的1名友方單位使用消耗 [Charge] 或特殊充能並且增加 [Sinking] 的技能時，造成的傷害+10% (不包括E.G.O技能)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-ego-skill-except"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -631,7 +944,13 @@
       "new_zh": "當自身解放階段低於 [UnlockBuffAlly_2] 時，並且在回合中執行了 [IndexPrescript_Base_2nd]：\n回合結束時，使自身恢復4點理智值，並使自身獲得1層 [BlessingOfIndexPrescriptAlly] (每回合最多1次)\n- 若執行 [IndexPrescript_Base_2nd] 時，主要目標帶有 [IndexPrescriptTargetToEnemy]：\n則改為恢復8點理智值，並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n當自身解放階段到達 [UnlockBuffAlly_2] 時，並且在回合中執行了 [IndexPrescriptYi_2]：\n回合結束時，使自身恢復4點理智值 (每回合最多1次)\n- 若執行 [IndexPrescript_Base_2nd] 時，自身的 [StackYisangSpecialSkill] 層數為9：\n則改為恢復8點理智值，並獲得3層 [BlessingOfIndexPrescriptAlly]\n\n若回合中未能執行 [IndexPrescript_Base_2nd]：\n回合結束時，對自身施加5層 [KarmaOfIndexAlly]\n- 自身帶有 [UnlockBuffAlly_3] 時，則不會對自身施加 [KarmaOfIndexAlly]\n- 若自身在戰鬥開始時嘗試執行 [IndexPrescript_Base_2nd]，但於交戰期間無法指定目標，則回合結束時不會對自身施加 [KarmaOfIndexAlly] (僅限自身解放階段未達到 [UnlockBuffAlly_2] 前)\n\n自身帶有的 [BlessingOfIndexPrescriptAlly] 層數分別在3/6/9層時，將於回合結束時使自身獲得 [UnlockBuffAlly_1] / [UnlockBuffAlly_2] / [UnlockBuffAlly_3]\n若自身帶有 [UnlockBuffAlly_3]，則於回合開始時，使自身獲得 [Shin_IndexFingerYisang]",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-start"
+        }
+      ]
     },
     {
       "file": "Passives.json",
@@ -643,7 +962,13 @@
       "new_zh": "回合結束時：\n- 對本回合中對友方單位造成最多技能傷害的1名敵方單位施加 [RetaliationBook]\n- 對本回合中對自身造成最多技能傷害的1名敵方單位施加 [RetaliationBookSpiderOutis]\n\n戰鬥開始時，根據嫉妒共鳴連鎖數，使自身獲得等量的 [ResentmentSpiderOutis] 層數 (最多7層)\n\n交戰期間滿足下列條件時，使自身獲得2層 [ResentmentSpiderOutis]\n- 自身遭到其他單位的技能命中時 (每回合最多2次)\n- 蜘蛛巢 中指 弟子 - 以實瑪利遭到其他單位的技能命中時 (每回合最多1次)\n\n交戰期間滿足下列條件時，使自身獲得1層 [ResentmentSpiderOutis] (適用於除自身以及蜘蛛巢 中指 弟子 - 以實瑪利之外的友方單位)\n- 屬於中指的友方單位遭到其他單位的技能命中時 (每人每回合最多1次)\n- 屬於蜘蛛巢的友方單位遭到其他單位的技能命中時 (每人每回合最多1次)\n\n自身獲得 [ResentmentSpiderOutis] 層數時，若對方帶有 [RetaliationBook]，則額外使獲得層數增加1層\n\n自身每消耗5層 [ResentmentSpiderOutis] 時，使自身獲得1層 [ReinforcedTattooSpiderOutis]\n\n【蜘蛛巢 中指 弟子 - 以實瑪利專屬效果】\n當蜘蛛巢 中指 父輩 - 奧提斯遭到其他單位的技能命中時，使以實瑪利獲得2層 [ResentmentIshmael] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-combat-start"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-a1c10p2.json",
@@ -655,7 +980,14 @@
       "new_zh": "關卡開始時，使自身陷入恐慌並開始戰鬥\n\n自身陷入恐慌時，觸發以下效果\n- <color=#ff6000><mark color=#ff000040><b><u>所有攻擊目標指定普依</color></mark></b></u>\n- 使用技能時，若主要目標為普依，則使其拚點威力與基礎威力增加[TabExplain]\n- 戰鬥開始時，技能的所有硬幣轉變為 [SuperCoin]",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「패닉」寫「恐慌」（詞彙表；EN Panic）；舊譯把恐慌寫成混亂"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-a1c9p3.json",
@@ -667,7 +999,13 @@
       "new_zh": "回合結束時，若自身帶有206層的 [HumanBoneTheRings] 以及5層的 [HumanBloodTheRings]，則消耗所有層數並使自身獲得1層 [MineTheRings]\n\n回合開始時，若自身帶有 [MineTheRings]，則本回合將發動強力攻擊\n\n<color=#ff6000><mark=#ff000040><b><u>自身準備使用強力攻擊時，每被技能攻擊一次，則對自身施加1層 [PlusCoinValueDown] 以及1層 [ResultReduction]</u></b></mark></color>(每個技能最多1次；每回合最多3次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-a1c9p3.json",
@@ -679,7 +1017,14 @@
       "new_zh": "回合開始時，使自身獲得50層 [DefenseBug] (每經過1回合，使自身獲得的層數減少3層，最多減少20層)\n- 若自身帶有 [Combustion]、[Laceration]、[Vibration]、[Burst]、[Sinking]，\n<color=#ff6000><mark=#ff000040><b><u>則使效果強度隨機減少，並使自身的 [DefenseBug] 層數等量減少</u></b></mark></color>\n- 若該效果強度為1級，但回數不低於2回，則改為減少回數\n\n<color=#ff6000><mark=#ff000040><b><u>若自身失去所有 [DefenseBug]</u></b></mark></color>，則下回合觸發以下效果\n- 自身不會獲得 [DefenseBug]，而改為對自身施加10層 [DefenseDown]\n- 獲得敵方單位最少屬性的3種罪孽碎片各2個\n- 回合結束時，解除自身帶有的所有負面狀態並獲得 [DefenseBug]",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「E.G.O 자원」寫「罪孽碎片」（詞彙表）；KR「가장 부족한 속성의 E.G.O 자원 3종」，舊譯「3種罪孽屬性碎片」字序顛倒，改為「3種罪孽碎片」"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-exme.json",
@@ -691,7 +1036,13 @@
       "new_zh": "拚點勝利時，使自身獲得2回 [Breath] (每回合最多2次)\n\n自身攻擊技能命中時，若目標帶有的 [Laceration] 強度低於5級，則於攻擊結束時使目標增加1級 [Laceration] 強度與2回 [Laceration] (每個技能最多1次；每回合最多2次；優先指定主要目標)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-exme.json",
@@ -703,7 +1054,13 @@
       "new_zh": "關卡開始時，使自身獲得5層 [ChoiSwordsmanship]\n\n每經過3回合，改變自身的本國架勢\n\n自身的斬擊技能命中時，使自身獲得1級 [Breath] 強度 (每個技能最多1次)\n\n當下列條件遭到觸發時，使自身改變至包含技能「本國弓術[肉] - 有的放矢」的行動模式\n- 自身連續2個回合所有技能拚點均失敗時 (無視單方面攻擊)\n- 自身陷入混亂狀態的下回合\n- 自身陷入士氣低落或恐慌時\n\n回合開始時，若自身的 [ChoiSwordsmanship] 層數為最小值或最大值，則發動強力技能\n若自身於上回合使用了技能「本國弓術[肉] - 有的放矢」，則無視自身 [ChoiSwordsmanship] 層數，發動強力技能\n自身體力值減少至55%以下時，將無視自身 [ChoiSwordsmanship] 層數，發動強力技能(每場戰鬥最多1次)",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-pilgrimage.json",
@@ -715,7 +1072,13 @@
       "new_zh": "當被動技能「命運的寵兒」發動時，觸發以下效果\n- 回合結束時，下回合對自身施加1層 [Binding] \n- 自身遭受傷害時，對目標施加1層 [ColdAirDOQ] (每個技能最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality-walpu8.json",
@@ -727,7 +1090,13 @@
       "new_zh": "攻擊命中時，若目標對該攻擊的抗性為脆弱、致命(抗性為1以上時)，下回合對該目標施加1層 [Binding] (每個技能最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Passives_Abnormality_Refraction4.json",
@@ -739,7 +1108,13 @@
       "new_zh": "受到攻擊時，使攻擊者獲得1層 [AntiSheepGround] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-once-per-turn"
+        }
+      ]
     },
     {
       "file": "PersonalityVoiceDlg/Voice_DonQuixote_LEGOMagic_10312.json",
@@ -751,7 +1126,14 @@
       "new_zh": "敵方混亂 2",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「적 흐트러질 시 대사」寫「敵方混亂」（詞彙表，既有 193 個）；舊譯寫成自身混亂"
+        }
+      ]
     },
     {
       "file": "PersonalityVoiceDlg/Voice_Ishmael_LCD_10815.json",
@@ -763,7 +1145,13 @@
       "new_zh": "即使歷經風蝕雨洗，劍訣始終不曾蒙塵。因此只要遵循本位，完成自己應負的責任而已。\n呼……隸屬LCD部門現場推理小組——以實瑪利。奉委託之令，開始捕獲扭曲。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-osir-team"
+        }
+      ]
     },
     {
       "file": "PersonalityVoiceDlg/Voice_Rodion_Blackwater_10912.json",
@@ -775,7 +1163,14 @@
       "new_zh": "黑獸並非效忠於人，而是效忠於主公。我聽過這樣的話無數次了，但是……為了蛻去野獸的外殼，為了更加引人注目……就必須向他人宣示自己的忠誠，只有這樣才能夠被選上。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「주군」寫「主公」（詞彙表；使用者決定 2026-11-07，不另加「主君」）；KR「흑수는 사람이 아니라, 주군에게 충성한다」是「效忠的不是人，而是主公」，舊譯「黑獸並不是人，僅僅只是侍奉主君的道具」與後文「사람에게 충성해야 해」（向他人宣示忠誠）的對比不合，一併照 KR 改"
+        }
+      ]
     },
     {
       "file": "Personality_Get_Condition.json",
@@ -787,7 +1182,14 @@
       "new_zh": "裴廓德號 大副 李箱 人格同步階段3 完成",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「동기화 3단계 달성」寫「人格同步階段3 完成」（詞彙表，與同檔其他人格一致）"
+        }
+      ]
     },
     {
       "file": "Personality_Get_Condition.json",
@@ -799,7 +1201,14 @@
       "new_zh": "家主候選人 以實瑪利 人格同步階段3 完成",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「동기화 3단계 달성」寫「人格同步階段3 完成」（詞彙表，與同檔其他人格一致）"
+        }
+      ]
     },
     {
       "file": "RPGSystem/rpg-loc-ui-common-a1c10p1.json",
@@ -811,7 +1220,14 @@
       "new_zh": "陰影界的情況",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「그림자계」寫「陰影界」（詞彙表）；舊譯是 JP 字形「影界」"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality-a1c10p1.json",
@@ -823,7 +1239,13 @@
       "new_zh": "[DuelCounter]\n[RougeThreeCocoon] 專用技能\n\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-damage-80-verb"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality-a1c6p3.json",
@@ -835,7 +1257,13 @@
       "new_zh": "[WhenUse] 下回合使自身獲得1層 [Enhancement] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-once-per-turn"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality-a1c9p3.json",
@@ -847,7 +1275,13 @@
       "new_zh": "帶有 [SojiAbiBuffOne]、[SojiAbiBuffTwo]、[SojiAbiBuffThree] 效果的單位當中，<color=#ff6000><mark=#ff000040><b><u>僅有相應效果的目標可與本技能拚點</u></b></mark></color>\n本技能不會觸發守備技能\n\n[DefeatDuel] 對自身施加1層 [Vulnerable]\n[DefeatDuel] 解除目標帶有的 [SojiAbiBuffOne]、[SojiAbiBuffTwo]、[SojiAbiBuffThree]\n\n[OnDirectAttack] 本技能的最終威力+10",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-defense-not-triggered"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality-twth.json",
@@ -859,7 +1293,13 @@
       "new_zh": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發目標的守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+100%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-target-defense"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality-twth.json",
@@ -871,7 +1311,13 @@
       "new_zh": "[WideAreaRampage]\n優先指定帶有 [IntenseColors] 的目標\n本技能不會觸發目標的守備技能(不包括可拚點守備技能)\n可無視速度值與本技能拚點\n[WhenUse]\n- 主要目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能的最終威力+1(最多+6)\n- <color=#ff6000><mark=#ff000040><b><u>若主要目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能的拚點威力+6\n- <color=#ff6000><mark=#ff000040><b><u>若目標帶有 [IntenseColors]，</u></b></mark></color>則使本技能對其造成的傷害+200%\n(每名目標分別判定)\n．若目標帶有 [IntenseColors] 且<color=#ff6000><mark=#ff000040><b><u>裝備了守備技能</u></b></mark></color>，則改為使本技能造成的傷害-90%\n[WinDuel]\n- 目標<color=#ff6000><mark=#ff000040><b><u>每帶有1種負面狀態</u></b></mark></color>，使本技能對其造成的傷害+10%(最多+60%，每名目標分別判定)\n[DefeatDuel]\n- 對自身施加5層 [AttackDmgDown] 與5層 [Paralysis]\n- 使本技能造成的傷害不會使目標陷入混亂，且命中時不會觸發目標的 [Sinking]\n[EndSkill] 結束本回合",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-target-defense"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality_Refraction2_bokgak.json",
@@ -883,7 +1329,13 @@
       "new_zh": "[StartBattle] 下回合召喚折射的精靈酒\n[DefeatDuel] 折射的精靈酒會以體力上限50%的體力被召喚\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害不會使目標陷入混亂",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-damage-80"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality_Refraction6.json",
@@ -895,7 +1347,13 @@
       "new_zh": "[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [YesdragonSelfRefraction]</u></b></mark></color>，則使本技能的基礎威力+1\n[WhenUse] 若自身的 <color=#ff6000><mark=#ff000040><b><u>[YesdragonSelfRefraction] 層數不低於5層</u></b></mark></color>，則使本技能的硬幣威力+1、攻擊容量+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-damage-80"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality_Refraction6.json",
@@ -907,7 +1365,13 @@
       "new_zh": "[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [YesdragonSelfRefraction]</u></b></mark></color>，則使本技能的基礎威力+1\n[WhenUse] 若自身的 <color=#ff6000><mark=#ff000040><b><u>[YesdragonSelfRefraction] 層數不低於5層</u></b></mark></color>，則使本技能的硬幣威力+1、攻擊容量+1\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-damage-80"
+        }
+      ]
     },
     {
       "file": "Skills_Abnormality_Refraction6.json",
@@ -919,7 +1383,13 @@
       "new_zh": "可無視速度值與本技能拚點\n[WhenUse] 直到本技能結束，自身不會因受到傷害而陷入混亂\n[WhenUse] 自身<color=#ff6000><mark=#ff000040><b><u>每帶有1層 [DragonLanceRefraction]</u></b></mark></color>，使本技能的硬幣威力+1、攻擊容量+1\n- 若自身的 [DragonLanceRefraction] 層數為最大值，則使本技能造成的傷害額外+100%\n[DefeatDuel] 使本技能造成的傷害-80%，且本技能造成的傷害無法使目標陷入混亂\n[DefeatDuel] 直到下回合，對自身施加3層 [Vulnerable]\n[EndSkillAll] 使自身的 [DragonLanceRefraction] 減少至1層",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-damage-80"
+        }
+      ]
     },
     {
       "file": "Skills_Assist-a1c9p3.json",
@@ -931,7 +1401,13 @@
       "new_zh": "[CantDuel]\n優先指定體力上限最低的敵人\n本技能不會觸發守備技能\n[BeforeAttack] 使本技能的攻擊容量+(所有敵方單位的行動槽總數)\n[WhenUse] 自身的速度值高於4點時，使本技能造成的傷害+50%",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-defense-not-triggered"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-09.json",
@@ -943,7 +1419,13 @@
       "new_zh": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多4名，每個技能最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once-ego09"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-09.json",
@@ -955,7 +1437,13 @@
       "new_zh": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多<style=\"highlight\">5</style>名，每個技能最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once-ego09"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-09.json",
@@ -967,7 +1455,13 @@
       "new_zh": "[EnemyKill] 使現存體力比例最低的(1+最大共鳴數)名友方單位獲得1層 [CrimsonResultUp] 與1層 [CrimsonDamageUp] (最多<style=\"highlight\">6</style>名，每個技能最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once-ego09"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-10.json",
@@ -979,7 +1473,13 @@
       "new_zh": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力 +1(最多+6)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多+10%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每個技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復8點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-10.json",
@@ -991,7 +1491,13 @@
       "new_zh": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+8</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+15</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每個技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">10</style>點理智值 (最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-10.json",
@@ -1003,7 +1509,13 @@
       "new_zh": "主要目標帶有的 [Laceration] 強度與 [Combustion] 強度之和每有2級，則使本技能的拚點威力+1(最多<style=\"highlight\">+10</style>)\n根據自身失去的體力值，使本技能造成的<noparse>傷害增加</noparse>(最多<style=\"highlight\">+20</style>%)\n對次要目標造成的傷害-50%\n[TargetKill] 下回合使全體友方單位獲得2層 [ThatIsRhythm] (每個技能最多1次)\n[EndSkill] 使自身以外理智值最低的(1+最大共鳴數)名友方單位恢復<style=\"highlight\">12</style>點理智值(最多4名)\n[EndSkill] 2回合內，於戰鬥結束時使自身失去8點理智值",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-11.json",
@@ -1015,7 +1527,13 @@
       "new_zh": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限6%的體力值(每個技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-11.json",
@@ -1027,7 +1545,13 @@
       "new_zh": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限8%的體力值(每個技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_Ego_Personality-11.json",
@@ -1039,7 +1563,13 @@
       "new_zh": "[UnBrokenCoinOnSucceedAttack] 使現存體力比例最少的2位友方單位恢復其體力上限10%的體力值(每個技能最多1次)\n- 該效果不會指定自身除外的未帶有嫉妒基礎攻擊技能的友方單位",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_Enemy-ycgd.json",
@@ -1051,7 +1581,13 @@
       "new_zh": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-once-per-turn"
+        }
+      ]
     },
     {
       "file": "Skills_Enemy-ycgd.json",
@@ -1063,7 +1599,13 @@
       "new_zh": "[OnSucceedEvade] 下回合使自身獲得1層 [SlashDamageUp] (每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-once-per-turn"
+        }
+      ]
     },
     {
       "file": "Skills_personality-01.json",
@@ -1075,7 +1617,14 @@
       "new_zh": "以(75-(自身的 [KarmaOfIndexAlly] 層數/2))%的機率使用打擊武器\n- 令使用打擊武器的硬幣造成的傷害<style=\"highlight\">+15%</style>\n若本技能被 [IndexPrescriptTargetMarkToEnemy] 標記，則使本技能<style=\"highlight\">的拚點威力+1</style>，造成的傷害<style=\"highlight\">+20%</style>\n自身的 [Breath] 強度與目標的 [Sinking] 強度之和<style=\"highlight\">每有6級，使本技能的硬幣威力+1(最多+2)</style>\n[WhenUse] 從本技能的最後一枚硬幣起，使(自身的 [UnlockBuff_Base] 階段-1)枚硬幣轉化為 [SuperCoin]\n[WhenUse] 使自身獲得2回 [Breath]",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「합 위력」寫「拚點威力」（詞彙表；EN Clash Power）；舊譯寫成硬幣威力"
+        }
+      ]
     },
     {
       "file": "Skills_personality-01.json",
@@ -1087,7 +1636,13 @@
       "new_zh": "[OnSucceedAttack] 使自身獲得6回 [Charge] (每個技能最多1次)",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_personality-07.json",
@@ -1099,7 +1654,13 @@
       "new_zh": "[OnSucceedAttack] 若自身帶有的 [Combustion] 強度不低於20級或現存體力低於體力上限的50%，則重複使用本硬幣(每個技能最多1次)",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_personality-07.json",
@@ -1111,7 +1672,13 @@
       "new_zh": "[OnSucceedAttack] 若自身帶有的 [Combustion] 強度不低於20級或現存體力低於體力上限的50%，則重複使用本硬幣(每個技能最多1次)",
       "old_origin": "claude",
       "new_origin": "claude",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-skill-once"
+        }
+      ]
     },
     {
       "file": "Skills_personality-10.json",
@@ -1123,7 +1690,14 @@
       "new_zh": "<style=\"highlight\">[StartBattle] 根據總計嫉妒完全共鳴數相應改變本技能效果\n- 總計不低於4時，反擊時改為使用「加倍奉還吧」進行反擊\n- 總計不低於6時，反擊時改為使用「銘刻於心」進行反擊\n(位於儀錶盤左側的技能優先觸發，每回合最多觸發2次)</style>\n[StartBattle] 使自身獲得已失去體力<style=\"highlight\">30%</style>的護盾(每回合最多1次)",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「완전 공명」寫「完全共鳴」（詞彙表；EN A-Reson.）；舊譯漏了「完全」"
+        }
+      ]
     },
     {
       "file": "Skills_personality-11.json",
@@ -1135,7 +1709,13 @@
       "new_zh": "[WhenUse] 使自身獲得1層 [FreischutzShotCount] (每回合最多1次)\n[EndSkillAll] 根據自身帶有的 [FreischutzShotCount] 層數，使自身失去相應的理智值",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-once-per-turn"
+        }
+      ]
     },
     {
       "file": "Skills_personality-11.json",
@@ -1147,7 +1727,13 @@
       "new_zh": "[WhenUse] 使自身獲得1層 [FreischutzShotCount] (每回合最多1次)\n[WhenUse] 使本技能的最終威力+(自身的 [FreischutzShotCount] 層數×2)\n[EndSkillAll] 根據自身帶有的 [FreischutzShotCount] 層數，使自身失去相應的理智值",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-once-per-turn"
+        }
+      ]
     },
     {
       "file": "StageNode-a1c5p2.json",
@@ -1159,7 +1745,14 @@
       "new_zh": "霧氣彼岸，隱約可見的，是尋覓已久的U公司的腦葉公司分部。只是那建築通體覆蓋在一層詭異的白色黏膜之下，令人不禁懷疑其真實性……我忖度著，起碼我們沒走錯路。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「로보토미」寫「腦葉公司」（詞彙表）；「U사의 로보토미 지부」照 E401B /23、S524B /1 寫「U公司的腦葉公司分部」"
+        }
+      ]
     },
     {
       "file": "StoryData/4D301B.json",
@@ -1171,7 +1764,14 @@
       "new_zh": "難道不是這樣嗎？有著如此深厚關係的九人會也分崩離析……",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「구인회」寫「九人會」（詞彙表）；舊譯「九人也會」把「會」併進了「也會」"
+        }
+      ]
     },
     {
       "file": "StoryData/E001X.json",
@@ -1183,7 +1783,14 @@
       "new_zh": "我望著巴士的後門那邊悄悄說道。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「버스의 뒷문」寫「巴士的後門」（詞彙表）；「뒷문이 있는 쪽」寫「後門那邊」，避免連用兩個「的」"
+        }
+      ]
     },
     {
       "file": "StoryData/E913B.json",
@@ -1195,7 +1802,14 @@
       "new_zh": "畢竟……又不是要進分部或地牢之類的地方嘛……",
       "old_origin": "claude",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「지부」寫「分部」（詞彙表）；舊譯是 JP 字形「支部」"
+        }
+      ]
     },
     {
       "file": "StoryData/P10313.json",
@@ -1207,7 +1821,14 @@
       "new_zh": "主公尋求的正義之人，恐怕並不在那個堡壘中吧？",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「주군」寫「主公」（詞彙表；使用者決定 2026-11-07，不另加「主君」）"
+        }
+      ]
     },
     {
       "file": "StoryData/P10609.json",
@@ -1219,7 +1840,14 @@
       "new_zh": "比起由翼或協會來負責調查這樣的事件，同志之間自己解決更符合聖愚的宗旨。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「협회」寫「協會」（詞彙表）；舊譯寫成事務所"
+        }
+      ]
     },
     {
       "file": "StoryData/P10815.json",
@@ -1231,7 +1859,13 @@
       "new_zh": "說什麼想要在現場推理小組工作，就必須要有這種程度的義體，又說什麼扭曲可不會因為你連手都沒有就手下留情。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-osir-team"
+        }
+      ]
     },
     {
       "file": "StoryData/P10815.json",
@@ -1243,7 +1877,13 @@
       "new_zh": "隸屬現場推理小組——以實瑪利。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-osir-team"
+        }
+      ]
     },
     {
       "file": "StoryData/P10903.json",
@@ -1255,7 +1895,14 @@
       "new_zh": "協助在梅菲斯托費勒斯上的12罪人並確保他們能成功回收金枝是LCC清理部門的工作。這是連這孩子都知道的事實。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「클리어 부서」寫「清理部門」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "StoryData/P10915.json",
@@ -1267,7 +1914,14 @@
       "new_zh": "這個是導覽員大人的作品……沒錯吧？但你說這上面既沒有毛也沒有爪子，真的假的？",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「도슨트」寫「導覽員」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "StoryData/S514B.json",
@@ -1279,7 +1933,13 @@
       "new_zh": "像我們尋找的腦葉公司分部或是旗魚港船這樣的規模龐大的船隻，會收到U公司透過暗號傳達的大湖中的部分規則。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-lobotomy-branch"
+        }
+      ]
     },
     {
       "file": "StoryData/S625B.json",
@@ -1291,7 +1951,14 @@
       "new_zh": "那些大人們。有趣。是導覽員嗎？還是大師呢？",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「도슨트」寫「導覽員」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1303,7 +1970,14 @@
       "new_zh": "能夠確認及領取戰鬥通行證每級的免費或巴士通行證獎勵。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；KR「배틀 패스 레벨별 무료 혹은 림버스 패스에 해당하는 보상」，림버스 패스 寫「巴士通行證」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1315,7 +1989,14 @@
       "new_zh": "任務列表中顯示了完成後將會獲得的戰鬥通行證進度。分為日常，周常及賽季任務。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；同句「시즌 미션」照詞彙表寫「賽季任務」（系統用語，不寫「季度」）"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1327,7 +2008,14 @@
       "new_zh": "在紡錘採光中出現的敵人均擁有特殊的物理抗性及屬性抗性。在對應關卡中將會標明有效的罪孽屬性。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「죄악 속성」寫「罪孽屬性」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1339,7 +2027,13 @@
       "new_zh": "能夠在此處查看您所持有的經費。\n經費可用於在商店處購買E.G.O飾品，也可以在商店處或休息點購買新的人格和E.G.O飾品。\n在普通難度下，不會獲得初始經費，但初始編隊不需要任何經費。\n在困難模式下，提供一定初始經費，並且初始編隊需要消耗經費。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-rest-stop"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1351,7 +2045,14 @@
       "new_zh": "初次通關關卡或是滿足特定的條件後，相關的獎勵將會在失物招領處中呈現。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「분실물 보관소」寫「失物招領處」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1363,7 +2064,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[懷錶]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1375,7 +2082,13 @@
       "new_zh": "時間殺人時間活動的最後關卡將會出現鏡像迷宮，入場時將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1387,7 +2100,13 @@
       "new_zh": "此處展示了WARP列車謀殺案的持續時間。活動期間內，透過WARP列車謀殺案、鏡像迷宮，或者初次通關主線劇情時，均可獲得[普通乘客復原包]。在採光與折射軌道中無法獲得[普通乘客復原包]。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-luxcavation"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1399,7 +2118,13 @@
       "new_zh": "LCB定期體檢活動的最後關卡將會出現鏡像迷宮，入場時將消耗腦啡肽模組。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1411,7 +2136,13 @@
       "new_zh": "活動期間，在隊伍中編入活動加成人格後通關活動關卡及鏡像迷宮，[染血劍鞘]的獲取量將提升。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1423,7 +2154,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[懷錶]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1435,7 +2172,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[智、勇、仁 基礎教學書]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1447,7 +2190,13 @@
       "new_zh": "在隊伍中編入活動加成E.G.O後通關活動關卡及鏡像迷宮，能夠提升[恐魚標本]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1459,7 +2208,13 @@
       "new_zh": "此處展示了WARP列車謀殺案 復刻的持續時間。活動期間內，透過WARP列車謀殺案、鏡像迷宮，或者初次通關主線劇情時，均可獲得[普通乘客復原包]。\n※在採光與折射軌道中無法獲得[普通乘客復原包]。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-luxcavation"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1471,7 +2226,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[普通乘客復原包]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1483,7 +2244,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[被斬斷的線]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1495,7 +2262,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[清道夫液態燃料罐]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMainUIText.json",
@@ -1507,7 +2280,13 @@
       "new_zh": "在隊伍中編入活動加成角色與E.G.O後通關活動關卡及鏡像迷宮，能夠提升[數張相片]的獲取量。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-mirror-dungeon"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1519,7 +2298,13 @@
       "new_zh": "獲得星芒的數量與抵達的層數及完成的困難難度卡包數量成正比。您也可以透過完成折射軌道主題卡包或選擇星芒遭遇戰獎勵卡來額外獲得星芒。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-reward-card"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1531,7 +2316,13 @@
       "new_zh": "點擊觀測主題卡包按鈕後，將會在主題卡包的右上方出現刷新按鈕，點擊後將會出現觀測主題卡包視窗。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-refresh"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1543,7 +2334,13 @@
       "new_zh": "獲得星芒的數量與抵達的層數及完成的困難難度卡包數量成正比。您也可以透過完成折射軌道主題卡包或選擇星芒遭遇戰獎勵卡來額外獲得星芒。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-reward-card"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1555,7 +2352,13 @@
       "new_zh": "點擊觀測主題卡包按鈕後，將會在主題卡包的右上方出現刷新按鈕，點擊後將會出現觀測主題卡包視窗。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-refresh"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1567,7 +2370,13 @@
       "new_zh": "可以查看在鏡像迷宮探索過程中選擇的苦難、星之恩惠和選擇的事件效果。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-grace-of-stars"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1579,7 +2388,13 @@
       "new_zh": "獲得星芒的數量與抵達的層數及完成的困難難度卡包數量成正比。您也可以透過完成折射軌道主題卡包或選擇星芒遭遇戰獎勵卡來額外獲得星芒。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-reward-card"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1591,7 +2406,13 @@
       "new_zh": "點擊觀測主題卡包按鈕後，將會在主題卡包的右上方出現刷新按鈕，點擊後將會出現觀測主題卡包視窗。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-refresh"
+        }
+      ]
     },
     {
       "file": "TutorialMirrorDungeon.json",
@@ -1603,7 +2424,13 @@
       "new_zh": "可以查看在鏡像迷宮探索過程中選擇的苦難、星之恩惠和選擇的事件效果。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-grace-of-stars"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalDesc.json",
@@ -1615,7 +2442,13 @@
       "new_zh": "理智值下降至一定程度的敵人會進入<color=#f8c200><士氣低落><color=#ebcaa2>、抑或<color=#f8c200><恐慌><color=#ebcaa2>的負面狀態。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-low-morale-tutorial"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalDesc.json",
@@ -1627,7 +2460,13 @@
       "new_zh": "受到<color=#f8c200><士氣低落><color=#ebcaa2>、<color=#f8c200><恐慌><color=#ebcaa2>效果影響的敵人，其負面狀態將會顯示於此。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-low-morale-tutorial"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalDesc.json",
@@ -1639,7 +2478,13 @@
       "new_zh": "<color=#f8c200><士氣低落><color=#ebcaa2>、<color=#f8c200><恐慌><color=#ebcaa2>的效果會有個體差異。\n點擊底下的圖示，即可確認目前正受到哪種狀態影響。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-low-morale-tutorial"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalDesc.json",
@@ -1651,7 +2496,14 @@
       "new_zh": "支援被動",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「서포트 패시브」寫「支援被動」（詞彙表）"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalDesc.json",
@@ -1663,7 +2515,13 @@
       "new_zh": "此外，若經理<color=#f8c200>未直接下達指令<color=#ebcaa2>，罪人們將不會自行使用<color=#f8c200><守備技能><color=#ebcaa2>，因此在使用<color=#f8c200>自動裝填技能<color=#ebcaa2>功能時，請多加注意。",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-defense-skill-tutorial"
+        }
+      ]
     },
     {
       "file": "TutorialRenewalMainUIDesc.json",
@@ -1675,7 +2533,14 @@
       "new_zh": "點擊此處進入鏡像迷宮。\n鏡像迷宮是用於測試多種可能性的場域，通關後可獲得戰鬥通行證經驗與一定數量的狂氣。",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）"
+        }
+      ]
     },
     {
       "file": "UI_ModuleDevice.json",
@@ -1687,7 +2552,14 @@
       "new_zh": "選擇第1賽季戰鬥通行證E.G.O",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배틀 패스」寫「戰鬥通行證」（詞彙表；使用者決定 2026-11-07：補上「戰鬥」，不放寬譯名）；與道具名 Items /81「第1賽季戰鬥通行證E.G.O自選券」一致"
+        }
+      ]
     },
     {
       "file": "UnlockCode-1.json",
@@ -1699,7 +2571,14 @@
       "new_zh": "通關第3次 瓦爾普吉斯之夜",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "KR「제3회 발푸르기스의 밤 클리어」：第3次瓦爾普吉斯之夜（詞彙表），舊譯的次數與活動名都錯；格式照同檔 /10、/16"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1711,7 +2590,13 @@
       "new_zh": "購買第3賽季 一路順風 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1723,7 +2608,13 @@
       "new_zh": "購買第4賽季 清除凱茜 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1735,7 +2626,13 @@
       "new_zh": "購買第4賽季 清除凱茜 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1747,7 +2644,13 @@
       "new_zh": "購買第5賽季 忘卻 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1759,7 +2662,13 @@
       "new_zh": "購買第5賽季 忘卻 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1771,7 +2680,13 @@
       "new_zh": "購買第6賽季 葬花吟 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1783,7 +2698,14 @@
       "new_zh": "切磋琢春 - 特別橫幅",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배너」寫「橫幅」（詞彙表；「특별 배너」既有 24 個寫「特別橫幅」），不是車票"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1795,7 +2717,14 @@
       "new_zh": "善意的巡禮 - 特別橫幅",
       "old_origin": "paratranz",
       "new_origin": "human",
-      "cause": "adjustment"
+      "cause": "adjustment",
+      "causes": [
+        {
+          "kind": "adjustment",
+          "id": "2026-11-08-glossary-review.yaml",
+          "reason": "「배너」寫「橫幅」（詞彙表；「특별 배너」既有 24 個寫「特別橫幅」），不是車票"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1807,7 +2736,13 @@
       "new_zh": "第7賽季 蛛絲線紅 巴士通行證達到等級120的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1819,7 +2754,13 @@
       "new_zh": "購買第7賽季 蛛絲線紅 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserBanner.json",
@@ -1831,7 +2772,13 @@
       "new_zh": "購買第8賽季 刺點 巴士通行證組合包時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-package"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg-a1c10p1.json",
@@ -1843,7 +2790,13 @@
       "new_zh": "第8賽季 刺點 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg-a1c10p3.json",
@@ -1855,7 +2808,13 @@
       "new_zh": "第8賽季 刺點 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg-a1c9p1.json",
@@ -1867,7 +2826,13 @@
       "new_zh": "第7賽季 蛛絲線紅 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg.json",
@@ -1879,7 +2844,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數200以下通關2號線時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-reminiscence-line2"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg.json",
@@ -1891,7 +2862,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數150以下通關折射軌道2號線時獲得。（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-railway-line2"
+        }
+      ]
     },
     {
       "file": "UserTicket-EGOBg.json",
@@ -1903,7 +2880,13 @@
       "new_zh": "第5賽季 忘卻 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-L-a1c10p1.json",
@@ -1915,7 +2898,13 @@
       "new_zh": "第8賽季 刺點 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-L-a1c10p3.json",
@@ -1927,7 +2916,13 @@
       "new_zh": "第8賽季 刺點 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-L-a1c9p1.json",
@@ -1939,7 +2934,13 @@
       "new_zh": "第7賽季 蛛絲線紅 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-L.json",
@@ -1951,7 +2952,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數200以下通關2號線時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-reminiscence-line2"
+        }
+      ]
     },
     {
       "file": "UserTicket-L.json",
@@ -1963,7 +2970,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數150以下通關折射軌道2號線時獲得。（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-railway-line2"
+        }
+      ]
     },
     {
       "file": "UserTicket-L.json",
@@ -1975,7 +2988,13 @@
       "new_zh": "第5賽季 忘卻 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-R-a1c10p1.json",
@@ -1987,7 +3006,13 @@
       "new_zh": "第8賽季 刺點 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-R-a1c10p3.json",
@@ -1999,7 +3024,13 @@
       "new_zh": "第8賽季 刺點 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-R-a1c9p1.json",
@@ -2011,7 +3042,13 @@
       "new_zh": "第7賽季 蛛絲線紅 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     },
     {
       "file": "UserTicket-R.json",
@@ -2023,7 +3060,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數200以下通關2號線時獲得",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-reminiscence-line2"
+        }
+      ]
     },
     {
       "file": "UserTicket-R.json",
@@ -2035,7 +3078,13 @@
       "new_zh": "第2賽季 追憶期間內，以巡迴數5以上，總計回合數150以下通關折射軌道2號線時獲得。（※以23/09/15 19:15（GMT+8）後重新開始的紀錄為準）",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-railway-line2"
+        }
+      ]
     },
     {
       "file": "UserTicket-R.json",
@@ -2047,7 +3096,247 @@
       "new_zh": "第5賽季 忘卻 巴士通行證達到等級90的獎勵",
       "old_origin": "paratranz",
       "new_origin": "paratranz",
-      "cause": "retranslated"
+      "cause": "retranslated",
+      "causes": [
+        {
+          "kind": "rewrite",
+          "id": "2026-11-08-limbus-pass-reward"
+        }
+      ]
     }
-  ]
+  ],
+  "causes_version": 1,
+  "rules": {
+    "adjustment:2026-11-08-glossary-review.yaml": {
+      "kind": "adjustment",
+      "id": "2026-11-08-glossary-review.yaml",
+      "path": "rules/adjustments/2026-11-08-glossary-review.yaml",
+      "title": "2026-11-08-glossary-review.yaml",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-certain-skill": {
+      "kind": "rewrite",
+      "id": "2026-11-08-certain-skill",
+      "path": "rules/rewrite/2026-11-08-certain-skill.yaml",
+      "title": "「특정 스킬」寫「特定技能」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-clash-power-up": {
+      "kind": "rewrite",
+      "id": "2026-11-08-clash-power-up",
+      "path": "rules/rewrite/2026-11-08-clash-power-up.yaml",
+      "title": "「합 위력 증가」是拚點威力提升，不是強壯（詞彙表：합 위력 → 拚點威力）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-combat-passive": {
+      "kind": "rewrite",
+      "id": "2026-11-08-combat-passive",
+      "path": "rules/rewrite/2026-11-08-combat-passive.yaml",
+      "title": "「전투 패시브」寫「戰鬥被動」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-combat-passive-skill": {
+      "kind": "rewrite",
+      "id": "2026-11-08-combat-passive-skill",
+      "path": "rules/rewrite/2026-11-08-combat-passive-skill.yaml",
+      "title": "「전투 패시브」寫「戰鬥被動」（詞彙表），照同組寫「戰鬥被動技能」",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-combat-start": {
+      "kind": "rewrite",
+      "id": "2026-11-08-combat-start",
+      "path": "rules/rewrite/2026-11-08-combat-start.yaml",
+      "title": "「전투 시작 시」寫「戰鬥開始時」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-combat-start-2": {
+      "kind": "rewrite",
+      "id": "2026-11-08-combat-start-2",
+      "path": "rules/rewrite/2026-11-08-combat-start-2.yaml",
+      "title": "「전투 시작 시」是戰鬥開始時，不是回合開始時（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-damage-80": {
+      "kind": "rewrite",
+      "id": "2026-11-08-damage-80",
+      "path": "rules/rewrite/2026-11-08-damage-80.yaml",
+      "title": "「피해량이 80%만큼 감소하고」寫「使本技能造成的傷害-80%」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-damage-80-verb": {
+      "kind": "rewrite",
+      "id": "2026-11-08-damage-80-verb",
+      "path": "rules/rewrite/2026-11-08-damage-80-verb.yaml",
+      "title": "「피해량이 80%만큼 감소하고」寫「使本技能造成的傷害-80%」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-defense-not-triggered": {
+      "kind": "rewrite",
+      "id": "2026-11-08-defense-not-triggered",
+      "path": "rules/rewrite/2026-11-08-defense-not-triggered.yaml",
+      "title": "「이 스킬은 수비 스킬을 발동시키지 않음」寫「本技能不會觸發守備技能」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-defense-skill-tutorial": {
+      "kind": "rewrite",
+      "id": "2026-11-08-defense-skill-tutorial",
+      "path": "rules/rewrite/2026-11-08-defense-skill-tutorial.yaml",
+      "title": "「수비 스킬」寫「守備技能」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-ego-resource": {
+      "kind": "rewrite",
+      "id": "2026-11-08-ego-resource",
+      "path": "rules/rewrite/2026-11-08-ego-resource.yaml",
+      "title": "「E.G.O 자원」寫「罪孽碎片」（詞彙表），屬性照既有寫在前面",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-ego-skill-except": {
+      "kind": "rewrite",
+      "id": "2026-11-08-ego-skill-except",
+      "path": "rules/rewrite/2026-11-08-ego-skill-except.yaml",
+      "title": "「E.G.O 스킬 제외」寫「不包括E.G.O技能」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-fullstop-fixer": {
+      "kind": "rewrite",
+      "id": "2026-11-08-fullstop-fixer",
+      "path": "rules/rewrite/2026-11-08-fullstop-fixer.yaml",
+      "title": "「해결사」寫「收尾人」（詞彙表），人格名照既有寫法",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-grace-of-stars": {
+      "kind": "rewrite",
+      "id": "2026-11-08-grace-of-stars",
+      "path": "rules/rewrite/2026-11-08-grace-of-stars.yaml",
+      "title": "「별의 가호」寫「星之恩惠」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-guarantee-ticket": {
+      "kind": "rewrite",
+      "id": "2026-11-08-guarantee-ticket",
+      "path": "rules/rewrite/2026-11-08-guarantee-ticket.yaml",
+      "title": "「3성 인격 출현 추출 티켓」寫「3星人格必得十連提取券」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-limbus-pass-package": {
+      "kind": "rewrite",
+      "id": "2026-11-08-limbus-pass-package",
+      "path": "rules/rewrite/2026-11-08-limbus-pass-package.yaml",
+      "title": "「림버스 패스 패키지」寫「巴士通行證組合包」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-limbus-pass-reward": {
+      "kind": "rewrite",
+      "id": "2026-11-08-limbus-pass-reward",
+      "path": "rules/rewrite/2026-11-08-limbus-pass-reward.yaml",
+      "title": "「림버스 패스」寫「巴士通行證」（詞彙表），巴士通行證的獎勵不是免費獎勵",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-lobotomy-branch": {
+      "kind": "rewrite",
+      "id": "2026-11-08-lobotomy-branch",
+      "path": "rules/rewrite/2026-11-08-lobotomy-branch.yaml",
+      "title": "「로보토미」寫「腦葉公司」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-low-morale-tutorial": {
+      "kind": "rewrite",
+      "id": "2026-11-08-low-morale-tutorial",
+      "path": "rules/rewrite/2026-11-08-low-morale-tutorial.yaml",
+      "title": "「사기 저하」寫「士氣低落」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-luxcavation": {
+      "kind": "rewrite",
+      "id": "2026-11-08-luxcavation",
+      "path": "rules/rewrite/2026-11-08-luxcavation.yaml",
+      "title": "補上漏譯的「채광」（詞彙表：採光）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-mirror-dungeon": {
+      "kind": "rewrite",
+      "id": "2026-11-08-mirror-dungeon",
+      "path": "rules/rewrite/2026-11-08-mirror-dungeon.yaml",
+      "title": "「거울 던전」寫「鏡像迷宮」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-once-per-turn": {
+      "kind": "rewrite",
+      "id": "2026-11-08-once-per-turn",
+      "path": "rules/rewrite/2026-11-08-once-per-turn.yaml",
+      "title": "「(턴 당 1회)」寫「(每回合最多1次)」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-osir-team": {
+      "kind": "rewrite",
+      "id": "2026-11-08-osir-team",
+      "path": "rules/rewrite/2026-11-08-osir-team.yaml",
+      "title": "「현장추리팀」寫「現場推理小組」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-railway-line2": {
+      "kind": "rewrite",
+      "id": "2026-11-08-railway-line2",
+      "path": "rules/rewrite/2026-11-08-railway-line2.yaml",
+      "title": "「거울굴절철도」寫「折射軌道」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-refresh": {
+      "kind": "rewrite",
+      "id": "2026-11-08-refresh",
+      "path": "rules/rewrite/2026-11-08-refresh.yaml",
+      "title": "「새로고침」寫「刷新」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-reminiscence-line2": {
+      "kind": "rewrite",
+      "id": "2026-11-08-reminiscence-line2",
+      "path": "rules/rewrite/2026-11-08-reminiscence-line2.yaml",
+      "title": "補上漏譯的「시즌 2 레미니센스 기간 내에」（詞彙表），回合數照 KR 寫 200",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-rest-stop": {
+      "kind": "rewrite",
+      "id": "2026-11-08-rest-stop",
+      "path": "rules/rewrite/2026-11-08-rest-stop.yaml",
+      "title": "「쉼터」寫「休息點」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-reward-card": {
+      "kind": "rewrite",
+      "id": "2026-11-08-reward-card",
+      "path": "rules/rewrite/2026-11-08-reward-card.yaml",
+      "title": "「전투 보상 카드」寫「遭遇戰獎勵卡」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-skill-once": {
+      "kind": "rewrite",
+      "id": "2026-11-08-skill-once",
+      "path": "rules/rewrite/2026-11-08-skill-once.yaml",
+      "title": "「스킬당 1회」寫「每個技能最多1次」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-skill-once-ego09": {
+      "kind": "rewrite",
+      "id": "2026-11-08-skill-once-ego09",
+      "path": "rules/rewrite/2026-11-08-skill-once-ego09.yaml",
+      "title": "「스킬당 1회」是每個技能最多1次，不是每回合（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-target-defense": {
+      "kind": "rewrite",
+      "id": "2026-11-08-target-defense",
+      "path": "rules/rewrite/2026-11-08-target-defense.yaml",
+      "title": "「대상의 수비 스킬을 발동시키지 않음」寫「不會觸發目標的守備技能」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    },
+    "rewrite:2026-11-08-thrice-per-turn": {
+      "kind": "rewrite",
+      "id": "2026-11-08-thrice-per-turn",
+      "path": "rules/rewrite/2026-11-08-thrice-per-turn.yaml",
+      "title": "「(턴 당 3회)」寫「(每回合最多3次)」（詞彙表）",
+      "commit": "96df15a599e4b767d47b2b408aa98d31c7dd58ce"
+    }
+  }
 }
