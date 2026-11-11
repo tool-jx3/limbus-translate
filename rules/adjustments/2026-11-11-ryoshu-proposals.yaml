@@ -1,0 +1,148 @@
+- key: StoryData/S1027B.json|/dataList/18/content
+  raw: raw-20261105
+  kr_sha: 3581daf7781e5f0789465c11145965bf2ea59f8bc15a7658ea19f420093316d5
+  zh: 有意見嗎？時．頭？
+  reason: 提案 1：`시. 대.` 其他 11 處都寫 時．頭；鐘．頭 是詞彙表禁用的寫法
+  rule: guides/characters/ryoshu.md
+- key: StoryData/P10607.json|/dataList/26/content
+  raw: raw-20261105
+  kr_sha: 5404ee2de62fcd047477f978c12b53e2c5ff9fc1926bb46b57c9807ce457b39f
+  zh: 同．感。這種只能作為我的練習。
+  reason: 提案 6：`동. 감.`（동감＝同感）統一寫 同．感（JP 同・感）
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S514B.json|/dataList/97/content
+  raw: raw-20261105
+  kr_sha: 8ebd8fcc04d7a6bcd8dc0000ae801825fc3854a82659ba9bb1cabc2ed4449580
+  zh: ……同．感。
+  reason: 提案 7：`동. 감.`（동감＝同感）統一寫 同．感（JP 同・感）
+  rule: guides/characters/ryoshu.md
+- key: StoryData/P10414.json|/dataList/75/content
+  raw: raw-20261105
+  kr_sha: 092cbc237438a89402779361814f0d79e44f1d79421f3770ad19f849701b855f
+  zh: 給我看好了。烏．眾。
+  reason: 提案 8：`어. 떠.`（어중이떠중이）另 2 處寫 烏．眾；有．無 是照 JP「有象無象」
+  rule: guides/characters/ryoshu.md
+- key: StoryData/P10410.json|/dataList/76/content
+  raw: raw-20261105
+  kr_sha: 0d48675ff5867e6e09ab85b36c8599ef5ae9da8bed8aa8edb82275269412a42a
+  zh: 你也最好加入他們。記得無視那個泡在腦．肽裡的腦．醃．罐說的話。
+  reason: 提案 9：`엔. 팔.` 的縮略遺失；Voice_LEGOEcho#7 寫 腦．肽
+  rule: guides/characters/ryoshu.md
+- key: StoryData/E406B.json|/dataList/16/content
+  raw: raw-20261105
+  kr_sha: 874a8f282ba41c1049a53e11873af9c3d8e6fb35e72ee0efb1787f1b6d6368a0
+  zh: 脖．扭。
+  reason: 提案 10：KR 只有 `모. 분.`，譯文多了 豬．閉
+  rule: guides/characters/ryoshu.md
+- key: StoryData/E406B.json|/dataList/17/content
+  raw: raw-20261105
+  kr_sha: d9f07aecde7a94d5c948200bbfeed3b58be24ec3c56a7a46951e1198d751eff3
+  zh: 不，這裡該說盡．折。
+  reason: 提案 11：莫梭說的是 `다. 분.`（다 분질러），2D102B、E910B#56 寫 盡．折
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S210B.json|/dataList/5/content
+  raw: raw-20261105
+  kr_sha: 128aabd32f1e398801d98221a41ee9eae2e9a000e504a06be5fdc7031935bf2f
+  zh: 扭斷你脖子的意思。
+  reason: 提案 12：展開要對上 脖．扭（S101B#46、Announcer#28 都寫「扭斷」）
+  rule: guides/characters/ryoshu.md
+- key: StoryData/ES130B.json|/dataList/10/content
+  raw: raw-20261105
+  kr_sha: 84b429e3a5199ad85e2fbfa46aecf8ca84a32a35ff3f0ed24ef55672195e8870
+  zh: 不聽話的大人，扭斷脖子便可……
+  reason: '提案 13：辛克萊的展開要對上 脖．扭（同場景 #6）'
+  rule: guides/characters/ryoshu.md
+- key: StoryData/P10413.json|/dataList/19/content
+  raw: raw-20261105
+  kr_sha: 05d79cec07a1f299ab1a4c19630a824e146a6c3f02c0086e497b1c7a2b302aa5
+  zh: 脖……是、是那個嗎？將脖子扭斷……那麼，妳會饒我一命的對吧……
+  reason: 提案 14：結巴的第一字要是縮略語的第一字（#18 脖．扭），展開對上「扭斷」
+  rule: guides/characters/ryoshu.md
+- key: PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json|/dataList/7/dlg
+  raw: raw-20261105
+  kr_sha: 01daacfe5d29dc054cbf94f87656c0f6d9c120a47aeda56542538b9c35cd4031
+  zh: |-
+    要是打算比別人更快地傳達訊息……逐字解釋就是浪費時間。明．但．這．藝。
+    （明白了嗎但丁？這就是藝術。）
+  reason: '提案 15：`알.단.이.예.` 漏了「但」；同檔 #18 `알.단.잘.부` 寫 知．但．請．關；括號不動'
+  rule: guides/characters/ryoshu.md
+- key: PersonalityVoiceDlg/Voice_Ryoshu_Seven6_10402.json|/dataList/11/dlg
+  raw: raw-20261105
+  kr_sha: 19da26bb74df7ddf5f149a6bedb84cefa69e3183ef42991d22a43a97e8a2fb4e
+  zh: 明．但．這．藝。
+  reason: '提案 15：`알.단.이.예` 漏了「但」，與 #7 一致'
+  rule: guides/characters/ryoshu.md
+- key: StoryData/E402A.json|/dataList/16/content
+  raw: raw-20261105
+  kr_sha: fff9e249deb58f7992db0f39942c2a9ea393624bb8d9c3efd8402cf9ae900d46
+  zh: 那．啥。
+  reason: 提案 17：`저. 뭐.` 是「那些東西是什麼」（#17）；東．說 是誤譯
+  rule: guides/characters/ryoshu.md
+- key: StoryData/E402A.json|/dataList/17/content
+  raw: raw-20261105
+  kr_sha: 5d7a91c31086d77f0767a63d8af2f3605bb85cf5b2d24ba077b8fd74c466a373
+  zh: 她應該是在問「那些東西是啥」……
+  reason: 提案 17：KR「저것들은 뭐냐고」是問那些東西是什麼，不是「在說什麼」
+  rule: guides/characters/ryoshu.md
+- key: Passives.json|/dataList/173/name
+  raw: raw-20261105
+  kr_sha: 23059c5e3798cd45acffd182369e740996e9bb02abd9ade2b09b8c4b25ad746b
+  zh: 菸．休
+  reason: '提案 18：同名被動 #171、#172 寫 菸．休'
+  rule: guides/characters/ryoshu.md
+- key: BattleAnnouncerDlg/Announcer_Ryoshu_42.json|/dataList/7/dlg
+  raw: raw-20261105
+  kr_sha: 2a5189f979c2c4d6ee08376a4b41630a52dbe509023d3da073f55719389c3c1c
+  zh: 閉．突．死。接下來就是伴著時鐘之痛的生．了吧。
+  reason: 提案 19：`살.` 的縮略遺失；S302B#11 `닥.돌.죽.살.` 寫 閉．突．死．生
+  rule: guides/characters/ryoshu.md
+- key: StoryData/P11110.json|/dataList/74/content
+  raw: raw-20261105
+  kr_sha: d2a2be0dd3764d7cbd28cd72657a496e543d01f476a5fa21f6113cee587763aa
+  zh: 透過次．魔的空．裂，只有在浸透我的血液時才是藝術……
+  reason: 提案 20：KR 是 `차. 마.` 與 `공. 절.` 兩個縮略語，譯文併成一個
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S445B.json|/dataList/0/content
+  raw: raw-20261105
+  kr_sha: 61b743e8e81de8513cb60751bad4c15c73489de24aae79dbff44faa255ded255
+  zh: 喂．李。
+  reason: 提案 21：KR 加點，譯文改成了逗號
+  rule: guides/characters/ryoshu.md
+- key: StoryData/E912B.json|/dataList/56/content
+  raw: raw-20261105
+  kr_sha: e7b4b3f94e1afc0364512ff9d62347a0fa56321d2c221d2d8bdadf2ffaabba5d
+  zh: 唉……媽媽真的是「全縮」耶。
+  reason: 提案 24：流行語 별다줄 遺失；S940B#25 寫「全縮」
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S940B.json|/dataList/24/content
+  raw: raw-20261105
+  kr_sha: d75a700f8230c74fb679def44b0cd48e8bd184f471a59dda90946bcb915e34ee
+  zh: ……全都要縮寫啊。
+  reason: '提案 24：讓 #25 的「全縮」還原得出（별걸 다 줄이는군）'
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S514B.json|/dataList/4/content
+  raw: raw-20261105
+  kr_sha: 2ce197e858d5f85370f7db2405c296611723ea36a1080f12467699c9d92a6741
+  zh: 快．說．否．頭．裂。
+  reason: 提案 25：`대.박.` 其他 2 處與技能名都是 頭．裂
+  rule: guides/characters/ryoshu.md
+- key: BattleAnnouncerDlg/Announcer_Ryoshu_42.json|/dataList/26/dlg
+  raw: raw-20261105
+  kr_sha: 7d0eb2c4d38993574a11b62630f38417a58e4f17e958f2b6515c8ca790608573
+  zh: |-
+    這世上沒什麼比埋怨既定局面更毫無意義的了。
+    既然如此，是非對錯就在巴．內用大逃殺決定吧。
+  reason: 提案 31：`버.안`＝버스 안（JP バ・中、EN "back O.T.B."），與 E512B#1 巴．內 同義；蠢．中 是誤譯
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S1013B.json|/dataList/10/content
+  raw: raw-20261105
+  kr_sha: 8f85e38dbb794f8200c6cb1052ebebdff7465d58e400e3eb6d7fc131b3c578b5
+  zh: ……需要什麼？得要有黃．金才行嗎？
+  reason: 提案 37：末字後多了「．」，會讀成三字的 黃．金．才
+  rule: guides/characters/ryoshu.md
+- key: StoryData/S1013B.json|/dataList/12/content
+  raw: raw-20261105
+  kr_sha: d515972954b1ae9fb7d5582deb2066696a46eb2ed33c5bf262dd38c237b966d4
+  zh: 嘖……黃．金指的不是金枝，是黃金皮革。
+  reason: 提案 37：末字後多了「．」，會讀成三字的 黃．金．指
+  rule: guides/characters/ryoshu.md
