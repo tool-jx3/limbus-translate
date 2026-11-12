@@ -4757,6 +4757,36 @@ func TestBatchNamesSkipsVariantsWithTheSameRenderings(t *testing.T) {
 	}
 }
 
+// Variants are alike when they have the same renderings in the same order,
+// whatever their counts. Of alike ones the batch keeps the one the JP or EN
+// of a unit that is the whole name points at, in the place of the first;
+// else the first.
+func TestBatchNamesKeepsTheMatchingOneOfAlikeVariants(t *testing.T) {
+	const file = "Skill.json"
+	name := nameEntry("출혈",
+		[]existing.Rendering{{ZH: "流血", Units: 3}, {ZH: "出血", Units: 2}},
+		[]existing.Rendering{{ZH: "出血", Units: 2}, {ZH: "流血", Units: 1}}, // another order: not alike
+		[]existing.Rendering{{ZH: "流血", Units: 1}, {ZH: "出血", Units: 1}})
+	for _, tc := range []struct {
+		jp        string
+		want      []string
+		wantCount int // the count of the first entry
+	}{
+		{"他の名前", []string{"jp0", "jp1"}, 3},
+		{"jp2", []string{"jp2", "jp1"}, 1},
+		{"jp0", []string{"jp0", "jp1"}, 3},
+	} {
+		env := newEnv(t, map[string]string{file: `{"dataList":[{"id":0,"name":"출혈"}]}`}, nil,
+			map[string]string{file: `{"dataList":[{"id":0,"name":` + q(t, tc.jp) + `}]}`})
+		env.Names = existing.NewIndex(&existing.Table{RawTag: testTag, Fields: []string{"name"}, Names: []existing.Name{name}}, env.Rules, nil)
+		seed(t, env, store.PendingItem{Key: file + "|/dataList/0/name", Reason: "new"})
+		b := mustNext(t, env, NextOptions{})
+		if got := variantJPs(b); !slices.Equal(got, tc.want) || b.Names[0].Count != tc.wantCount {
+			t.Errorf("JP %q: variants %v, first count %d; want %v, %d", tc.jp, got, b.Names[0].Count, tc.want, tc.wantCount)
+		}
+	}
+}
+
 func TestBatchNamesMentions(t *testing.T) {
 	names := []existing.Name{
 		nameEntry("노을빛 검", []existing.Rendering{{ZH: "霞光劍刃", Units: 2}}),

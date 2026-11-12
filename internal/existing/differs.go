@@ -66,29 +66,33 @@ func (v *Variant) matchesJP(jp string) bool { return v.JP != "" && jp == v.JP }
 
 func (v *Variant) matchesEN(en string) bool { return v.EN != "" && strings.EqualFold(en, v.EN) }
 
+// MatchRank says how well the JP text jp and the EN text en, both trimmed,
+// point at v: 0 when they do not (see Matches); 3 when both match; 2 when one
+// matches and the other does not contradict, as when the unit or the variant
+// has no text in that language; 1 when one matches and the other differs.
+func (v *Variant) MatchRank(jp, en string) int {
+	if !v.Matches(jp, en) {
+		return 0
+	}
+	mJP, mEN := v.matchesJP(jp), v.matchesEN(en)
+	switch {
+	case mJP && mEN:
+		return 3
+	case (mJP || v.JP == "" || jp == "") && (mEN || v.EN == "" || en == ""):
+		return 2
+	}
+	return 1
+}
+
 // bestVariant returns the variant of n that the JP text jp and the EN text en
-// point at best, or nil when they point at none (see Variant.Matches). Best
-// is a variant both match; then one that one of them matches and the other
-// does not contradict, as when the unit or the variant has no text in that
-// language; then any variant one of them matches. Among equals the first in
-// order wins.
+// point at best (the highest MatchRank), or nil when they point at none.
+// Among equals the first in order wins.
 func bestVariant(n *Name, jp, en string) *Variant {
 	var best *Variant
 	bestRank := 0
 	for i := range n.Variants {
 		v := &n.Variants[i]
-		if !v.Matches(jp, en) {
-			continue
-		}
-		mJP, mEN := v.matchesJP(jp), v.matchesEN(en)
-		rank := 1
-		switch {
-		case mJP && mEN:
-			rank = 3
-		case (mJP || v.JP == "" || jp == "") && (mEN || v.EN == "" || en == ""):
-			rank = 2
-		}
-		if rank > bestRank {
+		if rank := v.MatchRank(jp, en); rank > bestRank {
 			best, bestRank = v, rank
 		}
 	}

@@ -154,8 +154,10 @@ type nameUse struct {
 // nameRefs makes the names of a batch from the uses, in batch order: one
 // NameRef for each of the first maxNameVariants variants of a name and for
 // each later one that the JP or EN of a unit that is the whole name points at
-// (existing.Variant.Matches, as name-differs judges it), leaving out a variant
-// whose renderings are those of one before it. When more than MaxNames come
+// (existing.Variant.Matches, as name-differs judges it). Variants with the
+// same renderings in the same order, whatever their counts, are one NameRef,
+// in the place of the first of them: the one those JP and EN point at best
+// (existing.Variant.MatchRank), else the first. When more than MaxNames come
 // out, those that stand for a whole unit are kept first, then the mentioned
 // ones, each class longest KR first (by runes), then by KR. A name whose
 // variants do not all fit ends the list. A name that is exact for one unit
@@ -199,11 +201,17 @@ func nameRefs(uses []nameUse) []NameRef {
 	refs := []NameRef{}
 	for _, e := range order {
 		var mine []NameRef
-		for i, v := range e.name.Variants {
+		var ranks []int // how well the units point at the variant of each of mine
+		for i := range e.name.Variants {
+			v := &e.name.Variants[i]
 			if len(v.Renderings) == 0 {
 				continue
 			}
-			if i >= maxNameVariants && !slices.ContainsFunc(e.texts, func(t [2]string) bool { return v.Matches(t[0], t[1]) }) {
+			rank := 0
+			for _, t := range e.texts {
+				rank = max(rank, v.MatchRank(t[0], t[1]))
+			}
+			if i >= maxNameVariants && rank == 0 {
 				continue
 			}
 			ref := NameRef{KR: e.name.KR, ZH: v.Renderings[0].ZH, Count: v.Renderings[0].Units, JP: v.JP, EN: v.EN, Units: e.keys}
@@ -211,11 +219,15 @@ func nameRefs(uses []nameUse) []NameRef {
 				ref.Others = v.Renderings[1:]
 			}
 			// Spellings of one name that the translation renders alike are
-			// one entry; the first stands for them.
-			if slices.ContainsFunc(mine, func(m NameRef) bool { return m.ZH == ref.ZH && slices.Equal(m.Others, ref.Others) }) {
+			// one entry, so that the translator does not read the same
+			// renderings twice.
+			if j := slices.IndexFunc(mine, func(m NameRef) bool { return sameRenderings(m, ref) }); j >= 0 {
+				if rank > ranks[j] {
+					mine[j], ranks[j] = ref, rank
+				}
 				continue
 			}
-			mine = append(mine, ref)
+			mine, ranks = append(mine, ref), append(ranks, rank)
 		}
 		// A name is kept with all its variants or not at all, so that the
 		// translator never sees a name without the variants that tell its
@@ -226,6 +238,12 @@ func nameRefs(uses []nameUse) []NameRef {
 		refs = append(refs, mine...)
 	}
 	return refs
+}
+
+// sameRenderings reports whether a and b have the same renderings in the same
+// order, the main one and the others, whatever their counts.
+func sameRenderings(a, b NameRef) bool {
+	return a.ZH == b.ZH && slices.EqualFunc(a.Others, b.Others, func(x, y existing.Rendering) bool { return x.ZH == y.ZH })
 }
 
 // BatchUnit is one string to translate.
