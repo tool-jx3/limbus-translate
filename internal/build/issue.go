@@ -163,6 +163,9 @@ func ReviewItems(info Info, sum *plan.Summary, pending []store.PendingItem) []Re
 // inconsistent_new lists.
 const maxItemUnits = 5
 
+// maxItemRunes is how long a KR text or a translation in such an item is.
+const maxItemRunes = 60
+
 // nameDiffItems is the item of each existing name that was rendered otherwise
 // and of each provisional term that is not in force.
 func nameDiffItems(rep Report) []string {
@@ -177,7 +180,7 @@ func nameDiffItems(rep Report) []string {
 			if u.Kind == NameDiffMention {
 				units = append(units, code(u.Key)+"（提及）")
 			} else {
-				units = append(units, code(u.Key)+"（"+code(u.ZH)+"）")
+				units = append(units, code(u.Key)+"（"+code(capRunes(oneLine(u.ZH), maxItemRunes))+"）")
 			}
 		}
 		item := fmt.Sprintf("%s：既有 %s；這次 %d 個單位不同：%s",
@@ -228,7 +231,7 @@ func inconsistentNewItems(info Info) []string {
 			}
 		}
 		items = append(items, fmt.Sprintf("%s：%s（族群 %s、欄位 %s，%d 個單位，這次新譯 %d 個）：%s",
-			code(itemid.Inconsistent(g.Family, g.Field, g.KR)), code(g.KR), code(g.Family), code(g.Field), g.Units, g.New, strings.Join(zhs, "、")))
+			code(itemid.Inconsistent(g.Family, g.Field, g.KR)), code(capRunes(oneLine(g.KR), maxItemRunes)), code(g.Family), code(g.Field), g.Units, g.New, strings.Join(zhs, "、")))
 	}
 	return items
 }

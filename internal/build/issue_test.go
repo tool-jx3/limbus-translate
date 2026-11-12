@@ -682,3 +682,34 @@ func TestReviewIssueInconsistentNew(t *testing.T) {
 		t.Errorf("item = %q, want %q", sec.Items[0], want)
 	}
 }
+
+func TestReviewIssueCapsLongKRAndZH(t *testing.T) {
+	long := strings.Repeat("長", 100)
+	capped := strings.Repeat("長", 60) + "…"
+	info := issueInfo()
+	info.Report.NameDiffs = []NameDiff{{KR: "검", Existing: []existing.Rendering{{ZH: "劍", Units: 2}},
+		Units: []NameDiffUnit{{Key: "A|/1", ZH: long, Kind: NameDiffField}}}}
+	info.InconsistentAll = []Inconsistency{{Family: "f", Field: "content", KR: long, ZH: []string{"甲", "乙"},
+		Keys: []string{"B|/1", "B|/2"}, Units: 2, New: 1, NewKeys: []string{"B|/2"}}}
+	secs := ReviewItems(info, nil, nil)
+	if it := sectionOfKind(secs, KindNameDiffers).Items[0]; !strings.Contains(it, "（`"+capped+"`）") || strings.Contains(it, long) {
+		t.Errorf("name_differs item not capped: %q", it)
+	}
+	if it := sectionOfKind(secs, KindInconsistentNew).Items[0]; !strings.Contains(it, "：`"+capped+"`（族群") || strings.Contains(it, long) {
+		t.Errorf("inconsistent_new item not capped: %q", it)
+	}
+}
+
+// A group with new units but no NewKeys (an older record) cannot be shown to
+// be listed under a name, so it is kept.
+func TestReviewIssueInconsistentNewKeepsAGroupWithoutNewKeys(t *testing.T) {
+	info := issueInfo()
+	info.Report.NameDiffs = []NameDiff{{KR: "검", Existing: []existing.Rendering{{ZH: "劍", Units: 1}},
+		Units: []NameDiffUnit{{Key: "A|/1", ZH: "刀", Kind: NameDiffField}}}}
+	info.InconsistentAll = []Inconsistency{{Family: "f", Field: "name", KR: "검", ZH: []string{"刀", "劍"},
+		Keys: []string{"A|/1", "A|/2"}, Units: 2, New: 1}}
+	sec := sectionOfKind(ReviewItems(info, nil, nil), KindInconsistentNew)
+	if sec == nil || len(sec.Items) != 1 {
+		t.Errorf("section = %+v, want one item", sec)
+	}
+}
